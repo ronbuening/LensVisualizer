@@ -80,7 +80,7 @@ flowchart LR
 
 - Direct source files: 24
 - Direct subfolders: 0
-- Main outbound areas: src/types (30), package:react (23), same folder (18), src/optics/dispersion.ts (6), src/optics/cardinalElements.ts (3), src/optics/optics.ts (3), src/components/display (2), src/optics/chromaticRayFanScaling.ts (2), +4 more
+- Main outbound areas: src/types (30), package:react (23), same folder (18), src/optics/dispersion.ts (7), src/optics/cardinalElements.ts (3), src/optics/optics.ts (3), src/components/display (2), src/optics/chromaticRayFanScaling.ts (2), +4 more
 - External consumers: src/benchmarks, src/components/layout, src/components/markdown
 
 ## Files
@@ -107,7 +107,7 @@ flowchart LR
 | `MTFDiagram.tsx` | React component module | package:react | src/components/markdown | default |
 | `PetzvalOverlayContent.tsx` | React component module | src/types (2), package:react, src/optics/optics.ts | src/components/layout | default |
 | `PetzvalSumBadge.tsx` | React component module | src/types (2), package:react, src/optics/optics.ts | same folder | default |
-| `PVDiagram.tsx` | React component module | package:react | src/components/markdown | default |
+| `PVDiagram.tsx` | React component module | package:react, src/optics/dispersion.ts | src/components/markdown | default |
 | `RayPolylines.tsx` | React component module | package:react, same folder | same folder | default |
 | `TelecentricityDiagram.tsx` | React component module | package:react | src/components/markdown | default |
 | `WorkingFNumberDiagram.tsx` | React component module | package:react | src/components/markdown | default |

@@ -76,9 +76,12 @@ describe("RelationshipMapPage", () => {
     const author = AUTHORS.find((a) => a.slug === slug)!;
     renderRoutes(`/relationships/#focus=author:${slug}`, PAGE_ROUTE);
     await waitFor(() => {
-      const map = screen.getByRole("img");
+      const map = screen.getByRole("group", { name: /Relationship map centered on/ });
       expect(map.getAttribute("aria-label")).toContain(author.name);
     });
+    // The focused state must still expose a document h1 for the outline.
+    const h1 = screen.getByRole("heading", { level: 1 });
+    expect(h1.textContent).toContain(author.name);
   });
 
   it("falls back to the intro for a garbage focus", async () => {
@@ -86,7 +89,7 @@ describe("RelationshipMapPage", () => {
     await waitFor(() => {
       expect(screen.getByRole("heading", { level: 1, name: /Patent Relationship Map/ })).toBeDefined();
     });
-    expect(screen.queryByRole("img")).toBeNull();
+    expect(screen.queryByRole("group", { name: /Relationship map centered on/ })).toBeNull();
   });
 
   it("updates the URL fragment when a party node is clicked", async () => {
@@ -108,7 +111,7 @@ describe("RelationshipMapPage", () => {
     await waitFor(() => {
       expect(screen.getByRole("heading", { level: 1, name: /Patent Relationship Map/ })).toBeDefined();
     });
-    expect(screen.queryByRole("img")).toBeNull();
+    expect(screen.queryByRole("group", { name: /Relationship map centered on/ })).toBeNull();
   });
 
   it("renders the breadcrumb as plain text with no focus", () => {

@@ -7,6 +7,7 @@
 import type { ChromaticChannel, RuntimeLens } from "../../types/optics.js";
 import type { PreparedOpticalState } from "../types.js";
 import { normalizeRuntimeLens } from "../prescription/normalizeLensData.js";
+import { normalLinePgF } from "../dispersion.js";
 import { CHROMATIC_CHANNEL_METADATA, CHROMATIC_CHANNEL_ORDER } from "./channels.js";
 
 /** Chromatic channels traced by the engine: C, d, F, and g spectral lines. */
@@ -29,8 +30,6 @@ export const CHANNEL_WAVELENGTH_NM_2: Readonly<Record<ChromaticChannel, number>>
  */
 export type SurfaceIndexResolver2 = (surfaceIndex: number, dLineIndex: number) => number;
 
-const ENGINE_LENS_BY_RUNTIME = new WeakMap<RuntimeLens, ReturnType<typeof normalizeRuntimeLens>>();
-
 /**
  * Approximate channel refractive index from d-line index and Abbe number.
  *
@@ -51,7 +50,7 @@ export function wavelengthNd2(nd: number, vd: number | undefined, channel: Chrom
   if (channel === "B") return nd + delta;
   const nC = nd - delta;
   const nF = nd + delta;
-  const PgF = 0.6438 - 0.001682 * vd;
+  const PgF = normalLinePgF(vd);
   return nF + PgF * (nF - nC);
 }
 
@@ -93,11 +92,7 @@ export function indexAtRuntimeSurface2(
   const surface = L.S[surfaceIndex];
   if (!surface) return 1;
   if (!channel) return surface.nd === 1 ? 1 : surface.nd;
-  let engineLens = ENGINE_LENS_BY_RUNTIME.get(L);
-  if (!engineLens) {
-    engineLens = normalizeRuntimeLens(L);
-    ENGINE_LENS_BY_RUNTIME.set(L, engineLens);
-  }
+  const engineLens = normalizeRuntimeLens(L);
   return (
     engineLens.dispersion[surfaceIndex]?.indexAt(channel) ?? wavelengthNd2(surface.nd, L.vdByIdx[surfaceIndex], channel)
   );

@@ -10,7 +10,7 @@ import { formatCanonicalURL, SITE_NAME, SITE_URL } from "../utils/catalog/lensMe
 import { breadcrumbJsonLd, collectionPageJsonLd } from "../utils/seo/structuredData.js";
 import { usePageThemeToggle } from "../utils/theme/usePageThemeToggle.js";
 import { getImageFormatDetails } from "../utils/catalog/imageFormatDetails.js";
-import { LENS_LINK_BASE_STYLE, PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
+import { H1_STYLE, LENS_LINK_BASE_STYLE, PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
 import { lensLinkFromFormat } from "./lensIndex/clusterLinks.js";
 import { lensesForImageFormat } from "./lensIndex/catalog.js";
 
@@ -69,9 +69,7 @@ export default function FormatPage() {
       </PageNavBar>
 
       <div style={PAGE_BASE_STYLE}>
-        <h1 style={{ fontSize: "1.5rem", fontWeight: 600, marginTop: "1.5rem", marginBottom: "0.5rem" }}>
-          {format.label} Lenses
-        </h1>
+        <h1 style={H1_STYLE}>{format.label} Lenses</h1>
         <p style={{ fontSize: "0.875rem", color: t.muted, marginBottom: "1.5rem" }}>
           {format.widthMm} x {format.heightMm} mm image area · {lenses.length} interactive lens{" "}
           {lenses.length === 1 ? "diagram" : "diagrams"}

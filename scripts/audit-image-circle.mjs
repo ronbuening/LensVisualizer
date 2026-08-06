@@ -27,7 +27,7 @@
  */
 
 import { readdirSync } from "node:fs";
-import { join, relative } from "node:path";
+import { join, relative, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 
 const ROOT = join(import.meta.dirname, "..");
@@ -114,7 +114,7 @@ async function auditLens(file) {
 const args = process.argv.slice(2);
 const markdown = args.includes("--markdown");
 const named = args.filter((arg) => !arg.startsWith("--"));
-const files = named.length ? named.map((arg) => join(process.cwd(), arg)) : allLensFiles();
+const files = named.length ? named.map((arg) => resolve(arg)) : allLensFiles();
 
 const results = [];
 for (const file of files) results.push(await auditLens(file));

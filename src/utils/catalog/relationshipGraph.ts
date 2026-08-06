@@ -11,6 +11,7 @@
 
 import { AuthorPatent, getAuthorBySlug, getAuthorByName, patentsForParty } from "./authorCatalog.js";
 import { getAssigneeBySlug, getAssigneeByName } from "./assigneeCatalog.js";
+import { catalogCollator } from "./collation.js";
 
 export type PartyRole = "author" | "assignee";
 
@@ -126,7 +127,7 @@ export function buildRelationshipGraph(focus: PartyRef): RelationshipGraph {
 
   const parties = [...partiesById.values()]
     .map((node) => ({ ...node, patentIds: [...node.patentIds].sort() }))
-    .sort((a, b) => a.ref.name.localeCompare(b.ref.name));
+    .sort((a, b) => catalogCollator.compare(a.ref.name, b.ref.name));
 
   const center: GraphPartyNode = {
     id: centerId,

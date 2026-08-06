@@ -6,7 +6,7 @@
 
 import type { ElementData, RuntimeLens, SurfaceData, SurfaceSpectral } from "../../types/optics.js";
 import { makeSurfaceDispersion } from "../dispersion.js";
-import type { SurfaceDispersion } from "../types.js";
+import type { CompiledSurfaceDispersion } from "../types.js";
 import { compileSurfaceDispersions } from "../prescription/dispersion.js";
 
 export { compileSurfaceDispersions };
@@ -33,6 +33,6 @@ export function makeSurfaceDispersion2(
  * @param L - runtime lens with physical surfaces, elements, and spectral metadata
  * @returns one dispersion descriptor per physical surface
  */
-export function dispersionTableFromRuntime2(L: RuntimeLens): readonly SurfaceDispersion[] {
+export function dispersionTableFromRuntime2(L: RuntimeLens): readonly CompiledSurfaceDispersion[] {
   return compileSurfaceDispersions(L.S, L.data.elements, L.spectralByIdx);
 }

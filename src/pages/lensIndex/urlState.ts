@@ -14,6 +14,7 @@ import {
 import buildMeta from "../../generated/build-metadata.json";
 import { clampNumericFilterValue, defaultCustomFilter, hasActiveCustomFilters } from "./catalog.js";
 import type { CustomFilterState, FilterBounds, GroupMode, LensIndexViewMode, NumericFilterField } from "./types.js";
+import { catalogCollator } from "../../utils/catalog/collation.js";
 
 export interface LensIndexUrlState {
   viewMode: LensIndexViewMode;
@@ -60,18 +61,18 @@ export function parseLensIndexViewMode(search: string): LensIndexViewMode {
 
 function sortedKnownMakers(values: string[], knownMakerSlugs = PUBLIC_MAKER_SLUGS): string[] {
   const makerSlugs = new Set(knownMakerSlugs);
-  return [...new Set(values.filter((slug) => makerSlugs.has(slug)))].sort((a, b) => a.localeCompare(b));
+  return [...new Set(values.filter((slug) => makerSlugs.has(slug)))].sort((a, b) => catalogCollator.compare(a, b));
 }
 
 function sortedKnownMounts(values: string[]): CustomFilterState["lensMountIds"] {
   return [...new Set(values.filter(isLensMountId))].sort(
-    (a, b) => LENS_MOUNT_BY_ID[a].sortOrder - LENS_MOUNT_BY_ID[b].sortOrder || a.localeCompare(b),
+    (a, b) => LENS_MOUNT_BY_ID[a].sortOrder - LENS_MOUNT_BY_ID[b].sortOrder || catalogCollator.compare(a, b),
   );
 }
 
 function sortedKnownFormats(values: string[]): CustomFilterState["imageFormatIds"] {
   return [...new Set(values.filter(isImageFormatId))].sort(
-    (a, b) => IMAGE_FORMAT_BY_ID[a].sortOrder - IMAGE_FORMAT_BY_ID[b].sortOrder || a.localeCompare(b),
+    (a, b) => IMAGE_FORMAT_BY_ID[a].sortOrder - IMAGE_FORMAT_BY_ID[b].sortOrder || catalogCollator.compare(a, b),
   );
 }
 

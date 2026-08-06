@@ -10,17 +10,16 @@ import type {
   FoldedPathClipEvent,
   FoldedPathTraceTermination,
 } from "../../types/optics.js";
-import type { PreparedOpticalState, Ray3, Vec3 } from "../types.js";
+import type { CompiledStateSurface, PreparedOpticalState, Ray3, Vec3 } from "../types.js";
 import { evaluateAperture, isInsideActiveAperture } from "./aperture.js";
 import { pushClipEvent, surfaceLabel } from "./foldedDiagnostics.js";
 import {
   advanceOrigin,
   incidentSideFor,
+  interactRefractiveSurface,
   isSurfaceSideActive,
   orientedRefractionNormal,
   reflectedDirection,
-  phaseRefractedDirection,
-  refractedDirection,
   resolvedNextIndex,
 } from "./interactions.js";
 import { DEFAULT_PHASE_WAVELENGTH_NM } from "../math/diffractivePhase.js";
@@ -63,6 +62,52 @@ export function shouldUseGeneralizedTrace(state: PreparedOpticalState, stopAt: n
  * @param options - aperture, ghost, chromatic, and launch-bound controls
  * @returns engine trace result with folded diagnostics and hit history
  */
+/* Passive clip classification for a surface the ray does not interact with:
+ * inactive-side block, block surface, or aperture clip. Returns the reason to
+ * record, or null when the ray passes through unrecorded. */
+function passiveClipReason(
+  surface: CompiledStateSurface,
+  sideActive: boolean,
+  withinAperture: boolean,
+  apertureOutside: boolean,
+  checkSemiDiameter: boolean,
+): "inactive-side-block" | "block-surface" | "semi-diameter" | null {
+  if (!sideActive) {
+    /* Inactive-side behavior is data-driven. Some mirror backs are blockers;
+     * passive refractive surfaces simply let the ray continue through. */
+    return surface.interaction.inactiveSide === "block" && withinAperture ? "inactive-side-block" : null;
+  }
+  if (surface.interaction.type === "block") return withinAperture ? "block-surface" : null;
+  /* Central annular holes are not clips unless the caller asked for
+   * semi-diameter clipping; they represent clear space through a mirror. */
+  return checkSemiDiameter && apertureOutside ? "semi-diameter" : null;
+}
+
+/* Record one passively clipped hit: one clip event plus one clipped hit row.
+ * Callers keep their own break/continue control flow. */
+function recordClippedHit(
+  hits: TraceHit[],
+  clipEvents: FoldedPathClipEvent[],
+  state: PreparedOpticalState,
+  surfaceIndex: number,
+  geometry: { point: Vec3; normal: Vec3; incidentDirection: Vec3; radius: number },
+  clipReason: "inactive-side-block" | "block-surface" | "semi-diameter",
+): void {
+  pushClipEvent(clipEvents, state, surfaceIndex, clipReason);
+  hits.push({
+    surfaceIndex,
+    surfaceLabel: surfaceLabel(state, surfaceIndex),
+    point: geometry.point,
+    normal: geometry.normal,
+    incidentDirection: geometry.incidentDirection,
+    radius: geometry.radius,
+    clipped: true,
+    fallback: false,
+    failureReason: null,
+    clipReason,
+  });
+}
+
 export function traceGeneralized(
   state: PreparedOpticalState,
   input: Ray3,
@@ -213,74 +258,24 @@ export function traceGeneralized(
     const aperture = evaluateAperture(state, surface, radius, stopSemiDiameter);
     const withinAperture = isInsideActiveAperture(aperture);
 
-    if (!sideActive) {
-      /* Inactive-side behavior is data-driven. Some mirror backs are blockers;
-       * passive refractive surfaces simply let the ray continue through. */
-      const inactiveClipped = surface.interaction.inactiveSide === "block" && withinAperture;
-      if (inactiveClipped) {
+    if (!sideActive || surface.interaction.type === "block" || !withinAperture) {
+      const clipReason = passiveClipReason(
+        surface,
+        sideActive,
+        withinAperture,
+        aperture.state === "outside",
+        checkSemiDiameter,
+      );
+      if (clipReason !== null) {
         clipped = true;
-        pushClipEvent(clipEvents, state, nextSurfaceIndex, "inactive-side-block");
-        hits.push({
-          surfaceIndex: nextSurfaceIndex,
-          surfaceLabel: surfaceLabel(state, nextSurfaceIndex),
-          point,
-          normal,
-          incidentDirection,
-          radius,
-          clipped: true,
-          fallback: false,
-          failureReason: null,
-          clipReason: "inactive-side-block",
-        });
-        terminationReason = "clipped";
-        if (stopOnClip && !ghost) break;
-      }
-      origin = advanceOrigin(point, direction);
-      continue;
-    }
-
-    if (surface.interaction.type === "block") {
-      if (withinAperture) {
-        clipped = true;
-        pushClipEvent(clipEvents, state, nextSurfaceIndex, "block-surface");
-        hits.push({
-          surfaceIndex: nextSurfaceIndex,
-          surfaceLabel: surfaceLabel(state, nextSurfaceIndex),
-          point,
-          normal,
-          incidentDirection,
-          radius,
-          clipped: true,
-          fallback: false,
-          failureReason: null,
-          clipReason: "block-surface",
-        });
-        terminationReason = "clipped";
-        if (stopOnClip && !ghost) break;
-      }
-      origin = advanceOrigin(point, direction);
-      continue;
-    }
-
-    if (!withinAperture) {
-      /* Central annular holes are not clips unless the caller asked for
-       * semi-diameter clipping; they represent clear space through a mirror. */
-      const apertureClipped = checkSemiDiameter && aperture.state === "outside";
-      if (apertureClipped) {
-        clipped = true;
-        pushClipEvent(clipEvents, state, nextSurfaceIndex, "semi-diameter");
-        hits.push({
-          surfaceIndex: nextSurfaceIndex,
-          surfaceLabel: surfaceLabel(state, nextSurfaceIndex),
-          point,
-          normal,
-          incidentDirection,
-          radius,
-          clipped: true,
-          fallback: false,
-          failureReason: null,
-          clipReason: "semi-diameter",
-        });
+        recordClippedHit(
+          hits,
+          clipEvents,
+          state,
+          nextSurfaceIndex,
+          { point, normal, incidentDirection, radius },
+          clipReason,
+        );
         terminationReason = "clipped";
         if (stopOnClip && !ghost) break;
       }
@@ -317,26 +312,21 @@ export function traceGeneralized(
       const nn = resolvedNextIndex(nextSurfaceIndex, side, surface, state.surfaces, indexAtSurface);
       if (nn !== n || surface.diffractive) {
         const orientedNormal = orientedRefractionNormal(normal, side);
-        const refracted = surface.diffractive
-          ? phaseRefractedDirection(direction, orientedNormal, point, n, nn, surface, wavelengthNm)
-          : refractedDirection(direction, orientedNormal, n, nn);
-        if (refracted === null) {
+        const interaction = interactRefractiveSurface(direction, orientedNormal, point, n, nn, surface, wavelengthNm);
+        if (interaction.failure) {
           clipped = true;
-          failureReason = surface.diffractive ? "nonPropagatingDiffractionOrder" : "totalInternalReflection";
+          failureReason = interaction.failure.failureReason;
           terminationReason = "trace-failure";
-          const failureClipReason = surface.diffractive
-            ? "non-propagating-diffraction-order"
-            : "total-internal-reflection";
-          pushClipEvent(clipEvents, state, nextSurfaceIndex, failureClipReason, failureReason);
+          pushClipEvent(clipEvents, state, nextSurfaceIndex, interaction.failure.clipReason, failureReason);
           hits[hits.length - 1] = {
             ...hits[hits.length - 1],
             clipped: true,
             failureReason,
-            clipReason: failureClipReason,
+            clipReason: interaction.failure.clipReason,
           };
           if (!ghost) break;
         } else {
-          direction = refracted;
+          direction = interaction.direction;
         }
       }
       n = nn;

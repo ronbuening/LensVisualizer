@@ -5,7 +5,7 @@
  * by diagram layers and analysis modules stable.
  */
 
-import type { ChromaticChannel, ChromaticRayFanSpread, RayTraceResult, RuntimeLens } from "../types/optics.js";
+import type { ChromaticChannel, RayTraceResult, RuntimeLens } from "../types/optics.js";
 import {
   traceExactSurfaceStack,
   traceExactSurfaceStackVector,
@@ -15,6 +15,7 @@ import {
 import { traceSurfacesParaxial } from "./internal/traceSurfaces.js";
 import { stateSurfaces, thick } from "./layout.js";
 import { CHROMATIC_CHANNEL_WAVELENGTH_NM } from "./constants.js";
+import { wavelengthNd2 } from "./chromatic/indexResolver.js";
 
 /** Public skew-ray result at the return/image plane. */
 export interface SkewRayTraceResult {
@@ -61,29 +62,10 @@ export const DEFAULT_ORTHOGONAL_PUPIL_FAN_SAMPLE_COUNT = 51;
 /** Default circular point-cloud ring population from center to rim. */
 export const DEFAULT_CIRCULAR_PUPIL_RING_SAMPLES = [1, 6, 12, 18, 24] as const;
 
-/**
- * Approximate refractive index for a chromatic channel from nd/Vd data.
- *
- * Used as the fallback when no Sellmeier or patent line-index data exists. The
- * violet channel uses the same partial-dispersion approximation as the chromatic
- * index resolver.
- *
- * @param nd - d-line refractive index
- * @param vd - Abbe Vd number, if available
- * @param channel - chromatic channel to evaluate
- * @returns estimated channel refractive index
- */
-export function wavelengthNd(nd: number, vd: number | undefined, channel: ChromaticChannel): number {
-  if (nd === 1.0) return 1.0;
-  if (!vd || channel === "G") return nd;
-  const delta = (nd - 1) / (2 * vd);
-  if (channel === "R") return nd - delta;
-  if (channel === "B") return nd + delta;
-  const nC = nd - delta;
-  const nF = nd + delta;
-  const PgF = 0.6438 - 0.001682 * vd;
-  return nF + PgF * (nF - nC);
-}
+/* Chromatic fallback math lives in the chromatic modules; re-exported here so
+ * existing rayTrace.js imports keep working. */
+export { wavelengthNd2 as wavelengthNd } from "./chromatic/indexResolver.js";
+export { computeChromaticRayFanSpread2 as computeChromaticRayFanSpread } from "./chromatic/chromaticTrace.js";
 
 function traceRayExactCore(
   y0: number,
@@ -117,7 +99,7 @@ function traceRayExactCore(
       stopOnClip: true,
       leadDistance: rayLead,
       indexAtSurface: channel
-        ? (i, nd) => L.indexByIdx?.[i]?.fn(channel) ?? wavelengthNd(nd, L.vdByIdx[i], channel)
+        ? (i, nd) => L.indexByIdx?.[i]?.fn(channel) ?? wavelengthNd2(nd, L.vdByIdx[i], channel)
         : undefined,
       wavelengthNm: channel ? CHROMATIC_CHANNEL_WAVELENGTH_NM[channel] : undefined,
     },
@@ -208,7 +190,7 @@ function traceSkewRayExactCore(
       stopOnClip: true,
       leadDistance: L.rayLead ?? 0,
       indexAtSurface: channel
-        ? (i, nd) => L.indexByIdx?.[i]?.fn(channel) ?? wavelengthNd(nd, L.vdByIdx[i], channel)
+        ? (i, nd) => L.indexByIdx?.[i]?.fn(channel) ?? wavelengthNd2(nd, L.vdByIdx[i], channel)
         : undefined,
       wavelengthNm: channel ? CHROMATIC_CHANNEL_WAVELENGTH_NM[channel] : undefined,
     },
@@ -242,7 +224,7 @@ function traceSkewRayVectorExactCore(
       stopOnClip: true,
       launchBoundT: input.launchBoundT,
       indexAtSurface: channel
-        ? (i, nd) => L.indexByIdx?.[i]?.fn(channel) ?? wavelengthNd(nd, L.vdByIdx[i], channel)
+        ? (i, nd) => L.indexByIdx?.[i]?.fn(channel) ?? wavelengthNd2(nd, L.vdByIdx[i], channel)
         : undefined,
       wavelengthNm: channel ? CHROMATIC_CHANNEL_WAVELENGTH_NM[channel] : undefined,
     },
@@ -625,7 +607,7 @@ function traceRayVectorExactCore(
       stopOnClip: true,
       launchBoundT: input.launchBoundT,
       indexAtSurface: channel
-        ? (i, nd) => L.indexByIdx?.[i]?.fn(channel) ?? wavelengthNd(nd, L.vdByIdx[i], channel)
+        ? (i, nd) => L.indexByIdx?.[i]?.fn(channel) ?? wavelengthNd2(nd, L.vdByIdx[i], channel)
         : undefined,
       wavelengthNm: channel ? CHROMATIC_CHANNEL_WAVELENGTH_NM[channel] : undefined,
     },
@@ -688,52 +670,6 @@ export function traceRayVectorChromatic(
   channel: ChromaticChannel,
 ): RayTraceResult {
   return traceRayVectorExactCore(input, zPos, stopSD, ghost, L, channel);
-}
-
-interface MarginalRayData {
-  y: number;
-  u: number;
-  clipped: boolean;
-  z?: number;
-}
-
-function spanOf(values: number[]): number {
-  if (values.length < 2) return 0;
-  return Math.max(...values) - Math.min(...values);
-}
-
-/**
- * Measure chromatic ray-fan spread from traced marginal rays.
- *
- * LoCA spread is the span of axial intercepts; fan image-height spread is the
- * span of image heights at `imgZ`. Clipped channels are omitted.
- *
- * @param marginalRays - per-channel marginal ray state after the last surface
- * @param imgZ - image-plane z coordinate in mm
- * @param lastSurfZ - final surface vertex z coordinate in mm
- * @returns ray-fan spans plus per-channel axial intercepts and image heights in mm
- */
-export function computeChromaticRayFanSpread(
-  marginalRays: Partial<Record<ChromaticChannel, MarginalRayData>>,
-  imgZ: number,
-  lastSurfZ: number,
-): ChromaticRayFanSpread {
-  const axialIntercepts: Partial<Record<ChromaticChannel, number>> = {};
-  const imagePlaneHeights: Partial<Record<ChromaticChannel, number>> = {};
-  for (const ch of ["R", "G", "B", "V"] as ChromaticChannel[]) {
-    const ray = marginalRays[ch];
-    if (!ray || ray.clipped) continue;
-    const rayZ = Number.isFinite(ray.z) ? ray.z! : lastSurfZ;
-    if (Math.abs(ray.u) > 1e-15) {
-      axialIntercepts[ch] = rayZ - ray.y / ray.u;
-    }
-    const dz = imgZ - rayZ;
-    imagePlaneHeights[ch] = ray.y + dz * ray.u;
-  }
-
-  const axialInterceptSpreadMm = spanOf(Object.values(axialIntercepts));
-  const imagePlaneHeightSpreadMm = spanOf(Object.values(imagePlaneHeights));
-  return { axialInterceptSpreadMm, imagePlaneHeightSpreadMm, axialIntercepts, imagePlaneHeights };
 }
 
 /**

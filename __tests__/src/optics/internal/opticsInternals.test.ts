@@ -27,6 +27,8 @@ describe("lensState helpers", () => {
 
     expect(labelIdx).toEqual({ 1: 0, STO: 1, 2: 2 });
     expect(asphByIdx).toEqual({ 1: asphere });
+    expect(asphByIdx[1]).not.toBe(asphere);
+    expect(Object.isFrozen(asphByIdx[1])).toBe(true);
   });
 
   it("interpolates non-monotonic zoom ranges across focus and zoom", () => {

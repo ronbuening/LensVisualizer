@@ -20,10 +20,11 @@ import { MOUNT_SPECS } from "../mounts/index.js";
 import MountDiagramPanel from "../components/mount/MountDiagramPanel.js";
 import LinkListSidebar from "../components/content/LinkListSidebar.js";
 import SidebarLayout from "../components/content/SidebarLayout.js";
-import { LENS_LINK_BASE_STYLE, PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
+import { H1_STYLE, LENS_LINK_BASE_STYLE, PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
 import { lensLinkFromMount } from "./lensIndex/clusterLinks.js";
 import { lensesForMount } from "./lensIndex/catalog.js";
 import type { LensSummary } from "../utils/catalog/lensSummaries.js";
+import { catalogCollator } from "../utils/catalog/collation.js";
 
 /** Makers (slug + display label) that have lenses for this mount, alphabetically. */
 function makersForMount(lenses: { data: LensSummary }[]): { slug: string; label: string }[] {
@@ -32,7 +33,9 @@ function makersForMount(lenses: { data: LensSummary }[]): { slug: string; label:
     const { slug } = deriveMaker(data.name, data.maker);
     if (!map.has(slug)) map.set(slug, makerDisplayName(slug) ?? slug);
   }
-  return [...map.entries()].map(([slug, label]) => ({ slug, label })).sort((a, b) => a.label.localeCompare(b.label));
+  return [...map.entries()]
+    .map(([slug, label]) => ({ slug, label }))
+    .sort((a, b) => catalogCollator.compare(a.label, b.label));
 }
 
 export default function MountPage() {
@@ -93,9 +96,7 @@ export default function MountPage() {
       </PageNavBar>
 
       <div style={PAGE_BASE_STYLE}>
-        <h1 style={{ fontSize: "1.5rem", fontWeight: 600, marginTop: "1.5rem", marginBottom: "0.5rem" }}>
-          {mount.label} Lenses
-        </h1>
+        <h1 style={H1_STYLE}>{mount.label} Lenses</h1>
         <p style={{ fontSize: "0.875rem", color: t.muted, marginBottom: "1.5rem" }}>
           {lenses.length} interactive lens {lenses.length === 1 ? "diagram" : "diagrams"}
         </p>

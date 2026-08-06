@@ -1,5 +1,6 @@
 import type { Theme } from "../../types/theme.js";
 import { CHANGELOG } from "../../utils/content/changelogData.js";
+import { withAlpha } from "../../utils/style/styles.js";
 import {
   CHANGELOG_TYPE_COLORS,
   CHANGELOG_TYPE_LABELS,
@@ -58,7 +59,7 @@ export default function ChangelogList({ theme: t, entries = CHANGELOG, maxHeight
                     fontSize: "0.6rem",
                     padding: "1px 6px",
                     borderRadius: 3,
-                    background: `${CHANGELOG_TYPE_COLORS[entry.type]}22`,
+                    background: withAlpha(CHANGELOG_TYPE_COLORS[entry.type], "22"),
                     color: CHANGELOG_TYPE_COLORS[entry.type],
                     letterSpacing: "0.06em",
                     textTransform: "uppercase",

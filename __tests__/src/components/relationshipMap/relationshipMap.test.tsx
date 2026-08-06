@@ -68,6 +68,44 @@ describe("RelationshipMap", () => {
     expect(onFocusParty).toHaveBeenCalledTimes(1);
   });
 
+  it("exposes the svg as a group so interactive descendants stay in the tree", () => {
+    const graph = findConnectedGraph();
+    const { getByRole } = renderWithRouter(
+      <RelationshipMap
+        graph={graph}
+        theme={theme}
+        selectedPatentId={null}
+        onSelectPatent={vi.fn()}
+        onFocusParty={vi.fn()}
+      />,
+    );
+    expect(getByRole("group", { name: /Relationship map centered on/ })).toBeTruthy();
+  });
+
+  it("shows the hover highlight when a node receives keyboard focus", () => {
+    const graph = findConnectedGraph();
+    const { getAllByRole } = renderWithRouter(
+      <RelationshipMap
+        graph={graph}
+        theme={theme}
+        selectedPatentId={null}
+        onSelectPatent={vi.fn()}
+        onFocusParty={vi.fn()}
+      />,
+    );
+
+    const partyButton = getAllByRole("button", { name: /Recenter map on/ })[0];
+    const shape = partyButton.querySelector("circle, rect");
+    expect(shape).toBeTruthy();
+    expect(shape!.getAttribute("stroke-width")).toBe("1.5");
+
+    fireEvent.focus(partyButton);
+    expect(shape!.getAttribute("stroke-width")).toBe("3");
+
+    fireEvent.blur(partyButton);
+    expect(shape!.getAttribute("stroke-width")).toBe("1.5");
+  });
+
   it("selects and deselects a patent node", () => {
     const graph = findConnectedGraph();
     const onSelectPatent = vi.fn();

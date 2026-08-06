@@ -15,53 +15,35 @@
  * inventory is empty (fresh worktrees, CI); the checked-in report stays
  * authoritative there.
  */
-import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
-import buildLens from "../../../src/optics/buildLens.js";
 import type { DispersionQuality } from "../../../src/optics/dispersion.js";
+import { allEntries, resolveCompatibleGlass, resolveGlass, decodeCode6 } from "../../../src/optics/glassCatalog.js";
 import {
-  allEntries,
-  assessCatalogGlassCompatibility,
-  evaluateCatalogAbbeNumber,
-  GLASS_ND_TOLERANCE,
-  GLASS_VD_TOLERANCE,
-  resolveCompatibleGlass,
-  resolveGlass,
-  type GlassEntry,
-} from "../../../src/optics/glassCatalog.js";
+  extractPatentNumber,
+  findCandidates,
+  patentSearchTokens,
+  findLocalPatent,
+  extractSixDigitCodes,
+  isCodeOnlyGlassAnnotation,
+  isExplicitlyUnmatched,
+  patentInventory,
+  walkLensSurfaces,
+  type EmbeddedCode,
+  type GlassScanCandidate,
+  type PatentMatch,
+} from "./glassScanLib.js";
 import type { LensData, RefractiveIndexReferenceLine } from "../../../src/types/optics.js";
 
 const modules = import.meta.glob<{ default: LensData }>("../../../src/lens-data/**/*.data.ts", { eager: true });
 
 const REPORT_DIR = "agent_docs/generated";
-const PATENTS_DIR = "patents";
 const REVIEWED_SIDECAR = "agent_docs/generated/six-digit-glass-codes-missing-sellmeier-reviewed.md";
-const ND_TOLERANCE = GLASS_ND_TOLERANCE;
-const VD_TOLERANCE = GLASS_VD_TOLERANCE;
-const PGF_TOLERANCE = 0.02;
 const TOP_CODE_COUNT = 25;
 const TOP_NAMED_TOKEN_COUNT = 25;
 const MAX_RELEVANT_PATENTS = 4;
 
-interface EmbeddedCode {
-  raw: string;
-  nd: number;
-  vd: number;
-}
-
-interface Candidate {
-  name: string;
-  ndDiff: number;
-  vdDiff: number | null;
-  pgfDiff: number | null;
-  codeDistance: number | null;
-}
-
-interface PatentMatch {
-  path: string | null;
-  status: string;
-}
+type Candidate = GlassScanCandidate;
 
 interface RelabelOpportunity {
   lensKey: string;
@@ -142,103 +124,6 @@ interface ProprietaryOpportunity {
   localPatent: PatentMatch;
 }
 
-function toRepoRelativeLensPath(modulePath: string): string {
-  const lensDataIndex = modulePath.indexOf("src/lens-data/");
-  return lensDataIndex >= 0 ? modulePath.slice(lensDataIndex) : modulePath.replace(/^(\.\.\/)+/, "");
-}
-
-function extractPatentNumber(subtitle: string | undefined): string | null {
-  const match = subtitle?.match(patentReferencePattern);
-  return match?.[1].replace(/\s+/g, " ").trim() ?? null;
-}
-
-const patentReferencePattern =
-  /\b(?:Patent\s+)?((?:JPWO|WO|US|JP|DE|GB|FR|CH|CN)\s*\d(?:[\d,./-]|\s+(?=\d))*(?:\s*(?:A1|A|B2|B1|B|C\d?|U))?)/i;
-
-function extractPatentReference(value: string): string | null {
-  const match = value.match(patentReferencePattern);
-  return match?.[1].replace(/\s+/g, " ").trim() ?? null;
-}
-
-function normalizePatentToken(value: string): string {
-  return value.toUpperCase().replace(/[^A-Z0-9]/g, "");
-}
-
-function stripPatentKind(value: string): string {
-  return value.replace(/(?:A1|A|B2|B1|B|C\d?|U)$/i, "");
-}
-
-function patentSearchTokens(patentNumber: string | null): string[] {
-  if (!patentNumber) return [];
-  const patentReference = extractPatentReference(patentNumber);
-  if (!patentReference) return [];
-  const normalized = normalizePatentToken(patentReference);
-  const stripped = stripPatentKind(normalized);
-  const noCountry = stripped.replace(/^(?:JPWO|WO|US|JP|DE|GB|FR|CH|CN)/, "");
-  const tokens = [normalized, stripped, noCountry];
-
-  for (const token of [normalized, stripped]) {
-    const publicationMatch = token.match(/^(JP|CN)(\d{4})(\d{1,5})((?:A1|A|B2|B1|B|C\d?|U)?)$/);
-    if (!publicationMatch) continue;
-    const [, country, year, serial, kind] = publicationMatch;
-    const padded = `${country}${year}${serial.padStart(6, "0")}${kind}`;
-    tokens.push(padded, stripPatentKind(padded), stripPatentKind(padded).replace(/^(?:JP|CN)/, ""));
-  }
-
-  return [...new Set(tokens)];
-}
-
-function patentInventory(): string[] {
-  if (!existsSync(PATENTS_DIR)) return [];
-  return readdirSync(PATENTS_DIR)
-    .filter((name) => name.toLowerCase().endsWith(".pdf"))
-    .sort((a, b) => a.localeCompare(b));
-}
-
-function findLocalPatent(patentNumber: string | null, files: readonly string[]): PatentMatch {
-  const tokens = patentSearchTokens(patentNumber);
-  if (tokens.length === 0) {
-    return { path: null, status: "No patent number parsed from lens metadata/reference" };
-  }
-
-  const scored = files
-    .map((file) => {
-      const normalizedFile = normalizePatentToken(file.replace(/\.pdf$/i, ""));
-      let score = 0;
-      for (const token of tokens) {
-        if (normalizedFile === token) score = Math.max(score, 100);
-        else if (normalizedFile.includes(token)) score = Math.max(score, 75);
-        else if (token.includes(normalizedFile)) score = Math.max(score, 60);
-      }
-      return { file, score };
-    })
-    .filter((match) => match.score > 0)
-    .sort((a, b) => b.score - a.score || a.file.localeCompare(b.file));
-
-  if (scored.length === 0) {
-    return {
-      path: null,
-      status: `Missing from untracked local ${PATENTS_DIR}/ references (${tokens.join(", ")})`,
-    };
-  }
-
-  const best = scored[0];
-  if (scored.length > 1 && scored[1].score === best.score) {
-    return {
-      path: `${PATENTS_DIR}/${best.file}`,
-      status: `Ambiguous untracked local match; also see ${scored
-        .slice(1, MAX_RELEVANT_PATENTS)
-        .map((match) => `${PATENTS_DIR}/${match.file}`)
-        .join(", ")}`,
-    };
-  }
-
-  return {
-    path: `${PATENTS_DIR}/${best.file}`,
-    status: "Matched untracked local patent PDF",
-  };
-}
-
 function escapeTableCell(value: string): string {
   return value.replace(/\|/g, "\\|").replace(/\r?\n/g, " ");
 }
@@ -259,85 +144,12 @@ function localPatentSummary(match: PatentMatch): string {
 function extractGlassCode(annotation: string): EmbeddedCode | null {
   const match = annotation.match(/\b(\d{3})[/\-\s](\d{3})\b/) ?? annotation.match(/\b(\d{3})(\d{3})\b/);
   if (!match) return null;
-  const ndCode = parseInt(match[1], 10);
-  const vdCode = parseInt(match[2], 10);
-  if (ndCode < 400 || ndCode > 1100) return null;
-  return { raw: `${match[1]}/${match[2]}`, nd: 1 + ndCode / 1000, vd: vdCode / 10 };
-}
-
-function partialDispersionPgF(vd: number, dPgF: number): number {
-  return 0.6438 - 0.001682 * vd + dPgF;
-}
-
-function findCandidates(
-  entries: readonly GlassEntry[],
-  storedNd: number,
-  storedVd: number | undefined,
-  storedDPgF: number | undefined,
-  embeddedCode: EmbeddedCode | null,
-  referenceLine: RefractiveIndexReferenceLine,
-): Candidate[] {
-  const lensPgF =
-    referenceLine === "d" && storedVd !== undefined && storedDPgF !== undefined
-      ? partialDispersionPgF(storedVd, storedDPgF)
-      : null;
-
-  return entries
-    .map<Candidate>((entry) => {
-      const compatibility = assessCatalogGlassCompatibility(entry, storedNd, storedVd, referenceLine);
-      const nd = compatibility.catalogIndex;
-      const candidateAbbe = referenceLine === "d" ? entry.vd : evaluateCatalogAbbeNumber(entry, "e");
-      const ndDiff = compatibility.indexDiff;
-      const vdDiff = compatibility.abbeDiff;
-      const pgfDiff = lensPgF !== null && entry.PgF !== undefined ? entry.PgF - lensPgF : null;
-      const codeDistance =
-        referenceLine === "e" || embeddedCode === null
-          ? null
-          : Math.abs(nd - embeddedCode.nd) * 1000 + Math.abs(candidateAbbe - embeddedCode.vd) * 10;
-      return { name: entry.name, ndDiff, vdDiff, pgfDiff, codeDistance };
-    })
-    .filter(
-      (candidate) =>
-        Math.abs(candidate.ndDiff) <= ND_TOLERANCE &&
-        (candidate.vdDiff === null || Math.abs(candidate.vdDiff) <= VD_TOLERANCE),
-    )
-    .filter((candidate) => candidate.pgfDiff === null || Math.abs(candidate.pgfDiff) <= PGF_TOLERANCE)
-    .sort((a, b) => {
-      if (a.codeDistance !== null && b.codeDistance !== null) return a.codeDistance - b.codeDistance;
-      return Math.abs(a.ndDiff) - Math.abs(b.ndDiff);
-    })
-    .slice(0, 5);
-}
-
-function extractSixDigitCodes(glassString: string): string[] {
-  const codes = new Set<string>();
-  const codePattern = /(?<![\d.])(\d{3})[/\-\s]?(\d{3})(?![\d.])/g;
-  for (const match of glassString.matchAll(codePattern)) {
-    codes.add(`${match[1]}${match[2]}`);
-  }
-  return [...codes];
-}
-
-function hasActualGlassTypeToken(glassString: string): boolean {
-  const tokens = glassString.match(/[A-Za-z][A-Za-z0-9-]*\d[A-Za-z0-9]*/g) ?? [];
-  return tokens.some((tokenRaw) => {
-    const token = tokenRaw.toUpperCase();
-    if (/^L\d+$/.test(token)) return false;
-    if (/^S\d+$/.test(token)) return false;
-    if (/^D\d+$/.test(token)) return false;
-    if (/^G\d+$/.test(token)) return false;
-    if (/^A\d+$/.test(token)) return false;
-    if (/^F\d+$/.test(token)) return true;
-    return (token.match(/[A-Z]/g) ?? []).length >= 2;
-  });
-}
-
-function isCodeOnlyGlassAnnotation(glassString: string): boolean {
-  return extractSixDigitCodes(glassString).length > 0 && !hasActualGlassTypeToken(glassString);
-}
-
-function isExplicitlyUnmatched(glassString: string | undefined): boolean {
-  return /\b(unmatched|unknown|proprietary|unidentified)\b/i.test(glassString ?? "");
+  const { nd, vd } = decodeCode6(`${match[1]}${match[2]}`);
+  // Sanity-check: plausible refractive-index range for optical glass. The
+  // shared decoder handles the <300 → nd ≥ 2.0 wrap the old local decoders
+  // rejected outright.
+  if (nd < 1.4 || nd > 2.15) return null;
+  return { raw: `${match[1]}/${match[2]}`, nd, vd };
 }
 
 function classifyMissingMaterial(elementLabel: string, glassString: string): MissingMaterialKind {
@@ -494,24 +306,12 @@ describe("glass coverage opportunities scan", () => {
     let totalSellmeierSurfaces = 0;
     let totalTrustedChromaticSurfaces = 0;
 
-    for (const [path, mod] of Object.entries(modules)) {
-      const raw = mod.default;
-      if (!raw?.key) continue;
-      const data: LensData = { ...LENS_DEFAULTS, ...raw } as LensData;
+    totalLenses = walkLensSurfaces(modules, ({ filePath, data, L }) => {
       const visible = data.visible !== false;
       const patentNumber = extractPatentNumber(data.subtitle);
       const localPatent = findLocalPatent(patentNumber, patentFiles);
-      totalLenses++;
       if (visible) visibleLenses++;
 
-      let L;
-      try {
-        L = buildLens(data);
-      } catch {
-        continue;
-      }
-
-      const filePath = toRepoRelativeLensPath(path);
       const elementById = new Map(L.elements.map((element) => [element.id, element]));
       const missingSurfaces: MissingSurface[] = [];
       const missingTrustedSurfaces: MissingSurface[] = [];
@@ -662,7 +462,7 @@ describe("glass coverage opportunities scan", () => {
           });
         }
       }
-    }
+    });
 
     const visibleNearComplete = coverageRows
       .filter(

@@ -13,6 +13,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { extractHeadingsFromAst } from "../markdown/extractHeadingsFromAst.js";
 import type { Theme } from "../../types/theme.js";
 import { subscribeToMediaQuery } from "../../utils/mediaQuery.js";
+import { STICKY_NAV_SCROLL_MARGIN } from "../../utils/style/pageStyles.js";
 
 export interface TOCHeading {
   /** 2 or 3 — h2 vs h3 nesting level */
@@ -39,7 +40,7 @@ export interface ArticleTOCProps {
   wideQuery?: string;
 }
 
-export const ARTICLE_SCROLL_MARGIN_TOP = 88;
+export const ARTICLE_SCROLL_MARGIN_TOP = STICKY_NAV_SCROLL_MARGIN;
 export const TOC_OBSERVER_THRESHOLDS = [0, 0.1, 0.25, 0.5];
 export const TOC_OBSERVER_BOTTOM_ROOT_MARGIN = "-35%";
 

@@ -10,6 +10,7 @@
  */
 
 import type { AsphericCoefficients, ImagePlaneData, PerspectiveControlConfig, SurfaceData } from "../types/optics.js";
+import { ASPHERIC_COEFFICIENT_SCHEMA } from "../types/asphericSchema.js";
 import { isImageFormatId, isLensMountId } from "../utils/catalog/lensTaxonomy.js";
 import {
   centralOpeningSemiDiameter,
@@ -34,25 +35,13 @@ type ExplicitElementSpan = {
   rearSurface: UntrustedLensData;
 };
 
-const REQUIRED_ASPHERIC_COEFFICIENTS = ["K", "A4", "A6", "A8", "A10", "A12", "A14"] as const;
-const OPTIONAL_ASPHERIC_COEFFICIENTS = [
-  "A16",
-  "A18",
-  "A20",
-  "A3",
-  "A5",
-  "A7",
-  "A9",
-  "A11",
-  "A13",
-  "A15",
-  "A17",
-  "A19",
-] as const;
-const KNOWN_ASPHERIC_COEFFICIENTS = new Set<string>([
-  ...REQUIRED_ASPHERIC_COEFFICIENTS,
-  ...OPTIONAL_ASPHERIC_COEFFICIENTS,
-]);
+const REQUIRED_ASPHERIC_COEFFICIENTS = ASPHERIC_COEFFICIENT_SCHEMA.filter((descriptor) => descriptor.required).map(
+  (descriptor) => descriptor.key,
+);
+const OPTIONAL_ASPHERIC_COEFFICIENTS = ASPHERIC_COEFFICIENT_SCHEMA.filter((descriptor) => !descriptor.required).map(
+  (descriptor) => descriptor.key,
+);
+const KNOWN_ASPHERIC_COEFFICIENTS = new Set<string>(ASPHERIC_COEFFICIENT_SCHEMA.map((descriptor) => descriptor.key));
 
 function validateNumberRange(
   config: PerspectiveControlConfig,

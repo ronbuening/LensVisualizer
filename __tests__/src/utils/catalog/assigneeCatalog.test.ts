@@ -6,6 +6,7 @@
 import { describe, expect, it } from "vitest";
 import { ASSIGNEES, getAssigneeByName, getAssigneeBySlug } from "../../../../src/utils/catalog/assigneeCatalog.js";
 import { patentsForParty } from "../../../../src/utils/catalog/authorCatalog.js";
+import { catalogCollator } from "../../../../src/utils/catalog/collation.js";
 
 const sample = ASSIGNEES[0];
 
@@ -39,7 +40,7 @@ describe("patentsForParty in assignee mode", () => {
     expect(patents.length).toBeGreaterThan(0);
 
     const sortKeys = patents.map((p) => [p.patentYear ?? Number.POSITIVE_INFINITY, p.patentNumber] as const);
-    const resorted = [...sortKeys].sort((a, b) => a[0] - b[0] || a[1].localeCompare(b[1]));
+    const resorted = [...sortKeys].sort((a, b) => a[0] - b[0] || catalogCollator.compare(a[1], b[1]));
     expect(sortKeys).toEqual(resorted);
   });
 
@@ -58,7 +59,7 @@ describe("patentsForParty in assignee mode", () => {
   it("sorts the lenses inside each record by display name", () => {
     for (const patent of patentsForParty(sample.name, "assignee")) {
       const names = patent.lenses.map((lens) => lens.name);
-      expect(names, patent.patentNumber).toEqual([...names].sort((a, b) => a.localeCompare(b)));
+      expect(names, patent.patentNumber).toEqual([...names].sort((a, b) => catalogCollator.compare(a, b)));
     }
   });
 

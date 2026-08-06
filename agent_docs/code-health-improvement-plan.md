@@ -257,7 +257,7 @@ surfaces (Table 8 vs Table 10 renumbering), so parity must stop at 45.
 
 ### N5. Single-source the aspheric coefficient schema; derive sag, slope, validation, and tests
 
-- [ ] Effort: M · Impact: high · Risk: med (runtime math refactor; golden/benchmark gated)
+- [x] Effort: M · Impact: high · Risk: med (runtime math refactor; golden/benchmark gated)
 
 The A3–A20 coefficient set is hand-synchronized across four expansions: the type
 (`src/types/optics.ts` ~148–172), validator lists (`src/optics/validateLensData.ts` ~37–55), the
@@ -398,7 +398,7 @@ already cover it.
 
 ### X1. Render the badge tint backgrounds (invalid hex alpha) **[changelog]**
 
-- [ ] Effort: S · Impact: med · Risk: low
+- [x] Effort: S · Impact: med · Risk: low
 
 The ~13%-alpha tints behind changelog type badges, article tag chips, and series badges have never
 rendered: the code appends a hex alpha to 3-digit hex or `rgba()` colors, producing invalid CSS
@@ -428,7 +428,7 @@ wanted; requires `agent_docs/theme_tokens.md` four-variant procedure).
 
 ### X2. Make `/updates#entry` RSS deep links hash-safe **[changelog]**
 
-- [ ] Effort: S · Impact: med · Risk: low
+- [x] Effort: S · Impact: med · Risk: low
 
 The #644 changelog feed links to `/updates#<entryId>` (`scripts/generate-rss-feeds.mjs` ~221), but
 `src/pages/UpdatesPage.tsx:16-18` unconditionally calls `window.scrollTo({top: 0})` on mount,
@@ -458,7 +458,7 @@ PUSH/REPLACE/POP navigation, lazy-route commit timing, and saved-position behavi
 
 ### X3. Relationship map SVG: `role="group"` + keyboard-focus visibility **[changelog]**
 
-- [ ] Effort: S · Impact: med · Risk: low
+- [x] Effort: S · Impact: med · Risk: low
 
 Found independently by two reviewers. `src/components/relationshipMap/RelationshipMap.tsx:98` sets
 `role="img"` on the `<svg>` while its children are interactive `role="button" tabIndex={0}` `<g>`
@@ -479,7 +479,7 @@ Verification: gate passes; Tab across nodes shows visible highlight.
 
 ### X4. Shared nav chrome: toggle/disclosure ARIA attributes
 
-- [ ] Effort: S · Impact: med · Risk: low
+- [x] Effort: S · Impact: med · Risk: low
 
 The early-July a11y pass (commit 25314099) set the standard the new pages follow (`aria-pressed`
 on toggles, `aria-expanded` on disclosure triggers), but the two nav bars rendered on every page
@@ -498,7 +498,7 @@ Verification: gate passes.
 
 ### X5. Anchor targets under the sticky navbar: shared `scrollMarginTop`
 
-- [ ] Effort: S · Impact: med · Risk: low
+- [x] Effort: S · Impact: med · Risk: low
 
 `PageNavBar` is sticky (`~52–54`, `zIndex: 100`). Direct loads of `/patents#patent-country-us`
 etc. use native fragment scroll and hide the heading under the bar. The article pipeline already
@@ -516,7 +516,7 @@ Verification: gate passes; cold-load `/patents#<country-anchor>` shows the headi
 
 ### X6. Heading fixes: focused relationship map h1; adopt `H1_STYLE`; drop ineffective aria-labels
 
-- [ ] Effort: S · Impact: low-med · Risk: low
+- [x] Effort: S · Impact: low-med · Risk: low
 
 `RelationshipMapPage.tsx` ~116–137: in the focused state the top heading is an `<h2>` — no `<h1>`
 exists in that branch, so every `#focus=` view has a broken outline. Separately `H1_STYLE`
@@ -535,7 +535,7 @@ Verification: gate passes.
 
 ### X7. Pin catalog collation to a fixed locale (hydration-mismatch hazard)
 
-- [ ] Effort: S · Impact: med · Risk: low
+- [x] Effort: S · Impact: med · Risk: low
 
 28 bare `.localeCompare(` calls sort prerendered content (`authorCatalog.ts` ~114/119/158,
 `patentCatalog.ts` ~129–131/171/174, `authorAssignees.ts` ~23/40, `AuthorsIndexPage.tsx` ~59–60,
@@ -557,7 +557,7 @@ drops to ~0 (patent-number collator remains).
 
 ### X8. Publication dates: UTC everywhere **[changelog]**
 
-- [ ] Effort: S · Impact: low-med · Risk: low-med (some displayed dates shift by one day)
+- [x] Effort: S · Impact: low-med · Risk: low-med (some displayed dates shift by one day)
 
 `parseGitLogDates` (`scripts/build-metadata-lib.mjs` ~60–69) keeps the committer-LOCAL calendar
 date as `publishedOn` (shown on site cards, JSON-LD, sitemap) while `publishedAt` is UTC (drives
@@ -577,7 +577,7 @@ card date for the spot-checked entries.
 
 ### X9. Complete the patent jurisdiction label map + real-data guard
 
-- [ ] Effort: S · Impact: low-med · Risk: low
+- [x] Effort: S · Impact: low-med · Risk: low
 
 `patentCatalog.ts` ~50–59 labels CH/CN/DE/FR/GB/JP/US/WO only; any other authority falls back to
 the raw code as a prerendered page heading ("DD"). `lensPatentMetadata.ts` ~44 already recognizes
@@ -593,7 +593,7 @@ Verification: gate passes.
 
 ### X10. Glass tokenizer: decimal-boundary guards + one shared `decodeCode6`
 
-- [ ] Effort: S · Impact: med · Risk: low-med
+- [x] Effort: S · Impact: med · Risk: low-med
 
 The runtime tokenizer's bare `\d{6}` alternative (`src/optics/glassCatalog.ts:275`) has no
 digit/decimal boundary guards: `"Crown 1.516330 index note"` tokenizes to `["516330"]` — 19 lens
@@ -621,7 +621,7 @@ checkout with `patents/` populated.
 
 ### X11. Align `unresolvedGlassScan` with the real resolver tokenizer
 
-- [ ] Effort: S · Impact: med · Risk: low
+- [x] Effort: S · Impact: med · Risk: low
 
 `__tests__/src/optics/unresolvedGlassScan.test.ts` ~37–45 filters candidate tokens through a
 vendor-prefix whitelist written before the Hikari-era expansion — unresolved `J-`, `Q-`, `M-`,
@@ -640,7 +640,7 @@ Verification: gate passes; `npm run generate:glass-reports`; diff of
 
 ### X12. Defuse the `traceEngineRayChromatic2` wavelength trap
 
-- [ ] Effort: S · Impact: med · Risk: low
+- [x] Effort: S · Impact: med · Risk: low
 
 `src/optics/chromatic/chromaticTrace.ts:45-55` sets per-channel glass indices but not
 `wavelengthNm`, so any caller gets diffractive phase power at d-line while glass disperses per
@@ -658,7 +658,7 @@ hits or the fixed implementation plus its test.
 
 ### X13. Wrap the relationship map in `PanelErrorBoundary`
 
-- [ ] Effort: S · Impact: low-med · Risk: low
+- [x] Effort: S · Impact: low-med · Risk: low
 
 The most algorithmically complex new UI renders bare inside `RelationshipMapPage.tsx` ~152–159;
 any render throw escalates to the route boundary and blanks the whole page including the picker
@@ -754,7 +754,7 @@ Verification: gate passes (docDrift validates moved path references).
 
 ### D5. Slim the largest generated reports (keep committed)
 
-- [ ] Effort: M · Impact: high · Risk: low-med
+- [x] Effort: M · Impact: high · Risk: low-med
 
 Maintainer decision: keep everything agents read committed; shrink payloads. Regenerated reports
 account for ~110 MB of git blob history: `sellmeier-coverage.generated.md` 28.6 MB across 156
@@ -1251,7 +1251,7 @@ a perf claim is made.
 
 ### G1. Centralize the `normalizeRuntimeLens` cache (5 private WeakMaps → 1)
 
-- [ ] Effort: S · Impact: high · Risk: low
+- [x] Effort: S · Impact: high · Risk: low
 
 `normalizeRuntimeLens` (`prescription/normalizeLensData.ts` ~66–91) structuredClones the full
 prescription and re-runs glass-catalog matching per surface on EVERY call. Five modules each
@@ -1275,7 +1275,7 @@ Rollback: revert branch.
 
 ### G2. Extract the 4×-duplicated diffractive refract-or-fail block
 
-- [ ] Effort: S · Impact: high · Risk: low
+- [x] Effort: S · Impact: high · Risk: low
 
 The identical "phase-aware refract, map null to
 `nonPropagatingDiffractionOrder`/`totalInternalReflection` + clip reason" block exists at
@@ -1292,7 +1292,7 @@ Verification: gate passes; golden suite + Nikon PF parity test
 
 ### G3. Unify the twin paraxial engines
 
-- [ ] Effort: M · Impact: med · Risk: low-med
+- [x] Effort: M · Impact: med · Risk: low-med
 
 `internal/traceSurfaces.ts` ~68–93 and `math/paraxial.ts` ~64–89 are line-for-line identical
 (verified) including the July diffractive additions — the plan's "both paths must remain in
@@ -1308,7 +1308,7 @@ Rollback: revert; the twin returns.
 
 ### G4. Deduplicate chromatic fallback math (`wavelengthNd`, fan spread, PgF formula)
 
-- [ ] Effort: S · Impact: med · Risk: low
+- [x] Effort: S · Impact: med · Risk: low
 
 `wavelengthNd` (`rayTrace.ts` ~76–87) ≡ `wavelengthNd2` (`chromatic/indexResolver.ts` ~46–56)
 verbatim (verified); `computeChromaticRayFanSpread` ≡ `…2` line-identical with private helper
@@ -1330,7 +1330,7 @@ green; generated glass reports byte-identical (`npm run generate:glass-reports`)
 
 ### G5. Precompute Sellmeier channel indices per surface
 
-- [ ] Effort: S · Impact: med-low · Risk: low
+- [x] Effort: S · Impact: med-low · Risk: low
 
 `dispersion.ts` ~122–124 returns `(ch) => evaluateSellmeier(entry, CHANNEL_NM[ch])` — re-running
 sqrt/divisions (or a 7-term power series for 109 entries) on every refraction event, contradicting
@@ -1343,7 +1343,7 @@ Verification: gate passes; `dispersion.test.ts` ~779–791 + golden suite green.
 
 ### G6. Hoist per-call vendor/alias work in `candidateMatches`
 
-- [ ] Effort: S · Impact: med · Risk: low
+- [x] Effort: S · Impact: med · Risk: low
 
 `glassCatalog.ts` ~309–312 rebuilds a 463-element vendor scan per resolution call; ~280–285
 compiles up to 42 alias RegExps per call. Called per glass surface per normalize (×2 per lens:
@@ -1358,7 +1358,7 @@ scan suites drops (note before/after in the branch record).
 
 ### G7. Reimplement `resolveGlass` over `candidateMatches`; share the unresolved-marker regex
 
-- [ ] Effort: M · Impact: med · Risk: med
+- [x] Effort: M · Impact: med · Risk: med
 
 `glassCatalog.ts` contains two hand-maintained copies of the tokenize/trim/lookup loop
 (~349–371 ranked vs ~567–594 first-hit) with divergent semantics for alias-before-name strings;
@@ -1379,7 +1379,7 @@ Verification: gate passes; report byte-diff empty (or divergence documented and 
 
 ### G8. Shared library for the 8 glass report scans
 
-- [ ] Effort: M · Impact: high (maintenance) · Risk: low
+- [x] Effort: M · Impact: high (maintenance) · Risk: low
 
 Eight scan files under `__tests__/src/optics/` re-implement the same harness:
 `toRepoRelativeLensPath` ×8, `extractPatentNumber` ×5, the ~60-line patent-PDF inventory matcher
@@ -1403,7 +1403,7 @@ Verification: per-commit byte-identical reports; gate passes; combined scan wall
 
 ### G9. Type/dead-code cleanup: `SurfaceDispersion` name collision, dead `indexAt`, deprecated trio
 
-- [ ] Effort: S · Impact: low-med · Risk: low
+- [x] Effort: S · Impact: low-med · Risk: low
 
 Two exported `SurfaceDispersion` types with different shapes (`dispersion.ts` ~60–65 vs
 `types.ts` ~162–167, converted between in `prescription/dispersion.ts` ~23–41); dead export
@@ -1417,7 +1417,7 @@ Verification: gate passes; reports byte-identical.
 
 ### G10. Readability pass on the two generalized-trace loops
 
-- [ ] Effort: M · Impact: low-med · Risk: low-med
+- [x] Effort: M · Impact: low-med · Risk: low-med
 
 `traceGeneralized` (`trace/generalizedTrace.ts` ~66–391) and `traceGeneralizedSurfaceStackVector`
 (`internal/exactSurfaceTrace.ts` ~570–900) each interleave side-activity, blocking, aperture,
@@ -1432,7 +1432,7 @@ suites, golden values all green; `npm run generate:mirror-reports` byte-identica
 
 ### G11. Harden the three audit scripts (loader hook, absolute paths, arg validation)
 
-- [ ] Effort: S · Impact: med-low · Risk: low
+- [x] Effort: S · Impact: med-low · Risk: low
 
 `audit:image-circle` and `audit:patent-figure` run plain `node` yet import `.ts` sources — they
 work only because those specific modules currently have zero value imports (adding one exported

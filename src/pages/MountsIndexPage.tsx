@@ -11,7 +11,7 @@ import { SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
 import { collectionPageJsonLd, itemListJsonLd } from "../utils/seo/structuredData.js";
 import { usePageThemeToggle } from "../utils/theme/usePageThemeToggle.js";
 import { getMountDetails } from "../utils/catalog/mountDetails.js";
-import { PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
+import { H1_STYLE, PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
 import { MOUNT_OPTIONS } from "./lensIndex/catalog.js";
 
 export default function MountsIndexPage() {
@@ -59,9 +59,7 @@ export default function MountsIndexPage() {
       </PageNavBar>
 
       <div style={PAGE_BASE_STYLE}>
-        <h1 style={{ fontSize: "1.5rem", fontWeight: 600, marginTop: "1.5rem", marginBottom: "1.5rem" }}>
-          Lens Mounts
-        </h1>
+        <h1 style={{ ...H1_STYLE, marginBottom: "1.5rem" }}>Lens Mounts</h1>
 
         {MOUNT_OPTIONS.map((mount) => {
           const details = getMountDetails(mount.id);

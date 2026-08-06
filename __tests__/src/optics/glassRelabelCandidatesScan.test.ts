@@ -30,29 +30,24 @@
  */
 import { describe, it, expect } from "vitest";
 import { mkdirSync, writeFileSync } from "node:fs";
-import buildLens from "../../../src/optics/buildLens.js";
 import {
   allEntries,
-  assessCatalogGlassCompatibility,
-  evaluateCatalogAbbeNumber,
   GLASS_ND_TOLERANCE,
   GLASS_VD_TOLERANCE,
   resolveCompatibleGlass,
   resolveGlass,
-  type GlassEntry,
+  decodeCode6,
 } from "../../../src/optics/glassCatalog.js";
-import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
+import { normalLinePgF } from "../../../src/optics/dispersion.js";
+import { findCandidates, walkLensSurfaces } from "./glassScanLib.js";
 import type { LensData, RefractiveIndexReferenceLine } from "../../../src/types/optics.js";
 
-const ND_TOLERANCE = GLASS_ND_TOLERANCE;
-const VD_TOLERANCE = GLASS_VD_TOLERANCE;
-const PGF_TOLERANCE = 0.02; // ΔPgF spread that's plausible across melt variants
 const REPORT_DIR = "agent_docs/generated";
 
 /**
  * Extract a Schott-style six-digit glass code from a glass annotation.
- * Matches "903313", "903/313", "903 313", "903-313" patterns. Reads the first
- * three digits as floor(nd*1000-1000), the last three as round(vd*10).
+ * Matches "903313", "903/313", "903 313", "903-313" patterns and decodes
+ * them via the runtime's shared decodeCode6 (including the nd ≥ 2.0 wrap).
  * Returns null when no code-shaped substring is present.
  */
 function extractGlassCode(annotation: string): { raw: string; nd: number; vd: number } | null {
@@ -60,11 +55,12 @@ function extractGlassCode(annotation: string): { raw: string; nd: number; vd: nu
   // count from a longer numeric string in the annotation.
   const match = annotation.match(/\b(\d{3})[/\-\s](\d{3})\b/) ?? annotation.match(/\b(\d{3})(\d{3})\b/);
   if (!match) return null;
-  const ndCode = parseInt(match[1], 10);
-  const vdCode = parseInt(match[2], 10);
-  // Sanity-check: nd code should map to plausible refractive index (1.4–2.1)
-  if (ndCode < 400 || ndCode > 1100) return null;
-  return { raw: `${match[1]}/${match[2]}`, nd: 1 + ndCode / 1000, vd: vdCode / 10 };
+  const { nd, vd } = decodeCode6(`${match[1]}${match[2]}`);
+  // Sanity-check: plausible refractive-index range for optical glass. The
+  // shared decoder handles the <300 → nd ≥ 2.0 wrap the old local decoders
+  // rejected outright.
+  if (nd < 1.4 || nd > 2.15) return null;
+  return { raw: `${match[1]}/${match[2]}`, nd, vd };
 }
 
 interface Mismatch {
@@ -80,85 +76,15 @@ interface Mismatch {
   embeddedCode: { raw: string; nd: number; vd: number } | null;
 }
 
-interface Candidate {
-  name: string;
-  nd: number;
-  vd: number;
-  pgf: number | undefined;
-  ndDiff: number;
-  vdDiff: number | null;
-  pgfDiff: number | null;
-  codeDistance: number | null;
-}
-
 const modules = import.meta.glob<{ default: LensData }>("../../../src/lens-data/**/*.data.ts", { eager: true });
-
-function toRepoRelativeLensPath(modulePath: string): string {
-  const lensDataIndex = modulePath.indexOf("src/lens-data/");
-  return lensDataIndex >= 0 ? modulePath.slice(lensDataIndex) : modulePath.replace(/^(\.\.\/)+/, "");
-}
-
-function partialDispersionPgF(vd: number, dPgF: number): number {
-  return 0.6438 - 0.001682 * vd + dPgF;
-}
-
-function findCandidates(
-  entries: readonly GlassEntry[],
-  storedNd: number,
-  storedVd: number | undefined,
-  storedDPgF: number | undefined,
-  embeddedCode: { nd: number; vd: number } | null,
-  referenceLine: RefractiveIndexReferenceLine,
-): Candidate[] {
-  const lensPgF =
-    referenceLine === "d" && storedVd !== undefined && storedDPgF !== undefined
-      ? partialDispersionPgF(storedVd, storedDPgF)
-      : null;
-  const ranked = entries.map<Candidate>((e) => {
-    const compatibility = assessCatalogGlassCompatibility(e, storedNd, storedVd, referenceLine);
-    const candNd = compatibility.catalogIndex;
-    const candidateAbbe = referenceLine === "d" ? e.vd : evaluateCatalogAbbeNumber(e, "e");
-    const ndDiff = compatibility.indexDiff;
-    const vdDiff = compatibility.abbeDiff;
-    const pgfDiff = lensPgF !== null && e.PgF !== undefined ? e.PgF - lensPgF : null;
-    let codeDistance: number | null = null;
-    if (referenceLine === "d" && embeddedCode !== null) {
-      // Distance combines |Δnd|*1000 (3-digit precision) + |Δvd|*10 (1-digit precision)
-      // so each axis contributes proportionally to its code resolution.
-      codeDistance = Math.abs(candNd - embeddedCode.nd) * 1000 + Math.abs(candidateAbbe - embeddedCode.vd) * 10;
-    }
-    return { name: e.name, nd: candNd, vd: candidateAbbe, pgf: e.PgF, ndDiff, vdDiff, pgfDiff, codeDistance };
-  });
-
-  return ranked
-    .filter((c) => Math.abs(c.ndDiff) <= ND_TOLERANCE && (c.vdDiff === null || Math.abs(c.vdDiff) <= VD_TOLERANCE))
-    .filter((c) => c.pgfDiff === null || Math.abs(c.pgfDiff) <= PGF_TOLERANCE)
-    .sort((a, b) => {
-      // When an embedded code is present, code distance wins — it's ground truth
-      // and the stored (nd, vd) might have melt-variant rounding.
-      if (a.codeDistance !== null && b.codeDistance !== null) return a.codeDistance - b.codeDistance;
-      return Math.abs(a.ndDiff) - Math.abs(b.ndDiff);
-    })
-    .slice(0, 5);
-}
 
 describe("glass-relabel candidate scan", () => {
   it("emits a report of catalog-relabel candidates for every mismatched surface", () => {
     const entries = allEntries();
 
     const mismatches: Mismatch[] = [];
-    for (const [path, mod] of Object.entries(modules)) {
-      const raw = mod.default;
-      if (!raw?.key) continue;
-      const data: LensData = { ...LENS_DEFAULTS, ...raw } as LensData;
-      let L;
-      try {
-        L = buildLens(data);
-      } catch {
-        continue;
-      }
+    walkLensSurfaces(modules, ({ filePath, data, L }) => {
       const elementById = new Map(L.elements.map((e) => [e.id, e]));
-      const filePath = toRepoRelativeLensPath(path);
 
       for (let i = 0; i < L.S.length; i++) {
         const surface = L.S[i];
@@ -181,7 +107,7 @@ describe("glass-relabel candidate scan", () => {
           embeddedCode: element.indexReference === "e" ? null : extractGlassCode(element.glass),
         });
       }
-    }
+    });
 
     // Group by (storedNd, storedVd) — same physical glass should share both.
     // Group key also includes the embedded code so different annotations don't
@@ -207,7 +133,7 @@ describe("glass-relabel candidate scan", () => {
     lines.push("");
     lines.push("Companion to [catalog-mismatches.generated.md](catalog-mismatches.generated.md). For each rejected");
     lines.push("catalog mismatch, this report searches the catalog for a *better* candidate whose reference index and");
-    lines.push(`Abbe number both match within tolerance (Δn ±${ND_TOLERANCE}, Δν ±${VD_TOLERANCE}).`);
+    lines.push(`Abbe number both match within tolerance (Δn ±${GLASS_ND_TOLERANCE}, Δν ±${GLASS_VD_TOLERANCE}).`);
     lines.push("");
     lines.push("**Regenerate** with `npm test -- glassRelabelCandidatesScan`.");
     lines.push("");
@@ -237,8 +163,7 @@ describe("glass-relabel candidate scan", () => {
       const candidates = findCandidates(entries, storedNd, storedVd, storedDPgF, embeddedCode, referenceLine);
       const rejected = group[0].catalogName;
 
-      const lensPgF =
-        storedVd !== undefined && storedDPgF !== undefined ? partialDispersionPgF(storedVd, storedDPgF) : null;
+      const lensPgF = storedVd !== undefined && storedDPgF !== undefined ? normalLinePgF(storedVd, storedDPgF) : null;
 
       const headingExtras: string[] = [];
       if (embeddedCode !== null) headingExtras.push(`code=${embeddedCode.raw}`);

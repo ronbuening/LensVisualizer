@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import useMediaQuery from "../utils/useMediaQuery.js";
 import SEOHead from "../components/SEOHead.js";
 import ChangelogList from "../components/content/ChangelogList.js";
@@ -9,13 +9,34 @@ import { collectionPageJsonLd } from "../utils/seo/structuredData.js";
 import { ALL_LENSES_BY_DATE, LENS_SUMMARIES } from "../utils/catalog/lensSummaries.js";
 import { formatDisplayDate } from "../utils/content/changelogHelpers.js";
 import { CHANGELOG_FEED_PATH, LENS_FEED_PATH } from "../utils/content/feedMetadata.js";
+import { H1_STYLE } from "../utils/style/pageStyles.js";
 
 export default function UpdatesPage() {
   const isWide = useMediaQuery("(min-width: 720px)");
+  const { hash } = useLocation();
 
+  // RSS feed items deep-link to /updates#<changelogEntryId>. The browser's
+  // native anchor scroll fires before React commits the page, so the target
+  // is located after commit instead; without a hash the page keeps its
+  // original scroll-to-top behavior.
   useEffect(() => {
-    window.scrollTo({ top: 0, left: 0 });
-  }, []);
+    let fragment = hash.startsWith("#") ? hash.slice(1) : hash;
+    if (fragment) {
+      try {
+        fragment = decodeURIComponent(fragment);
+      } catch {
+        // Malformed percent-encoding: fall back to the raw fragment.
+      }
+    }
+    if (!fragment) {
+      window.scrollTo({ top: 0, left: 0 });
+      return;
+    }
+    const frame = requestAnimationFrame(() => {
+      document.getElementById(fragment)?.scrollIntoView();
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [hash]);
 
   const seoDescription =
     "Full update history for Surface & Stop — recently added lenses and a complete changelog of features, fixes, and improvements.";
@@ -38,7 +59,7 @@ export default function UpdatesPage() {
             ]}
           />
 
-          <h1 style={{ fontSize: "1.5rem", fontWeight: 600, marginTop: "1.5rem", marginBottom: "0.5rem" }}>Updates</h1>
+          <h1 style={H1_STYLE}>Updates</h1>
           <p style={{ fontSize: "0.875rem", color: t.muted, marginBottom: "2rem" }}>
             Recently added lenses and a complete development changelog.
           </p>

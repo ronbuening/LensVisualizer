@@ -2,6 +2,7 @@
 
 import { ASSIGNEES, getAssigneeByName, type AssigneeMetadata } from "./assigneeCatalog.js";
 import { AUTHORS, patentsForAuthor, type AuthorMetadata } from "./authorCatalog.js";
+import { catalogCollator } from "./collation.js";
 
 export const ALL_AUTHOR_ASSIGNEES = "all";
 export const UNASSIGNED_AUTHORS = "unassigned";
@@ -20,7 +21,7 @@ export const AUTHOR_DIRECTORY_ENTRIES: AuthorDirectoryEntry[] = AUTHORS.map((aut
   const assignees = [...assigneeNames]
     .map((name) => getAssigneeByName(name))
     .filter((assignee): assignee is AssigneeMetadata => assignee !== undefined)
-    .sort((left, right) => left.name.localeCompare(right.name));
+    .sort((left, right) => catalogCollator.compare(left.name, right.name));
 
   return { author, assignees };
 });
@@ -37,7 +38,7 @@ export const AUTHOR_ASSIGNEE_STRATA: AuthorAssigneeStratum[] = ASSIGNEES.map((as
   authorCount: authorCountByAssignee.get(assignee.slug) ?? 0,
 }))
   .filter((assignee) => assignee.authorCount > 0)
-  .sort((left, right) => left.name.localeCompare(right.name));
+  .sort((left, right) => catalogCollator.compare(left.name, right.name));
 
 export const UNASSIGNED_AUTHOR_COUNT = AUTHOR_DIRECTORY_ENTRIES.filter((entry) => entry.assignees.length === 0).length;
 

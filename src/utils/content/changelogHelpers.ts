@@ -1,11 +1,11 @@
 import type { ChangelogEntry, ChangelogEntryType } from "./changelogData.js";
 
 export const CHANGELOG_TYPE_COLORS: Record<ChangelogEntryType, string> = {
-  feature: "#58c",
-  fix: "#c65",
-  lens: "#2a7",
-  improvement: "#c84",
-  article: "#a5c",
+  feature: "#5588cc",
+  fix: "#cc6655",
+  lens: "#22aa77",
+  improvement: "#cc8844",
+  article: "#aa55cc",
 };
 
 export const CHANGELOG_TYPE_LABELS: Record<ChangelogEntryType, string> = {

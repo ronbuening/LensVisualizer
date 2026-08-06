@@ -12,7 +12,8 @@ import { deriveMaker, SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.
 import { getMakerDetails } from "../utils/catalog/makerDetails.js";
 import { collectionPageJsonLd, itemListJsonLd } from "../utils/seo/structuredData.js";
 import { usePageThemeToggle } from "../utils/theme/usePageThemeToggle.js";
-import { PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
+import { H1_STYLE, PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
+import { catalogCollator } from "../utils/catalog/collation.js";
 
 interface MakerEntry {
   display: string;
@@ -32,7 +33,7 @@ function getAllMakers(): MakerEntry[] {
       counts.set(maker.slug, { display: maker.display, slug: maker.slug, count: 1 });
     }
   }
-  return Array.from(counts.values()).sort((a, b) => a.display.localeCompare(b.display));
+  return Array.from(counts.values()).sort((a, b) => catalogCollator.compare(a.display, b.display));
 }
 
 export default function MakersIndexPage() {
@@ -79,9 +80,7 @@ export default function MakersIndexPage() {
       </PageNavBar>
 
       <div style={PAGE_BASE_STYLE}>
-        <h1 style={{ fontSize: "1.5rem", fontWeight: 600, marginTop: "1.5rem", marginBottom: "1.5rem" }}>
-          Lens Makers
-        </h1>
+        <h1 style={{ ...H1_STYLE, marginBottom: "1.5rem" }}>Lens Makers</h1>
 
         {makers.map((maker) => {
           const details = getMakerDetails(maker.slug);

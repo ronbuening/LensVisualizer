@@ -4,8 +4,8 @@ Generated from the latest benchmark JSON records in `agent_docs/benchmarks/runs/
 
 ## Latest Run
 
-- Created: 2026-07-08T13:17:08.409Z
-- Commit: a36cfd88 (dirty)
+- Created: 2026-08-05T19:59:14.178Z
+- Commit: ca853dac (dirty)
 - Node: v24.15.0 on darwin/arm64
 - Iterations: 3 measured, 1 warmup
 - Runs compared: 10
@@ -14,79 +14,79 @@ Generated from the latest benchmark JSON records in `agent_docs/benchmarks/runs/
 
 | Category | Current median ms | vs previous | vs 10-run median |
 |---|---:|---:|---:|
-| build | 0.65 | -0.2% | +0.2% |
-| layout | 1.69 | +2.7% | +2.6% |
-| rays | 1.55 | -4.8% | +5.0% |
-| analysis | 76.14 | +1.1% | +1.2% |
-| svgRender | 0.14 | -0.3% | -8.7% |
-| totalCold | 175.58 | +1.8% | +0.4% |
-| totalWarm | 78.03 | +2.8% | +2.2% |
+| build | 1.37 | +6.3% | +107.3% |
+| layout | 0.72 | -5.5% | -56.6% |
+| rays | 1.15 | +5.3% | -22.3% |
+| analysis | 68.47 | +3.9% | -9.0% |
+| svgRender | 0.13 | -0.5% | -9.7% |
+| totalCold | 126.64 | +2.8% | -27.2% |
+| totalWarm | 69.61 | +5.3% | -8.8% |
 
 ## Analysis Work Trends
 
 | Analysis category | Current median ms | vs previous | vs 10-run median |
 |---|---:|---:|---:|
-| summary | 0.00 | +2.1% | -0.0% |
-| distortionCurve | 3.66 | -3.4% | -3.2% |
-| distortionGrid | 1.44 | +1.0% | -1.6% |
-| vignetting | 12.09 | -0.8% | -0.5% |
-| pupils | 0.22 | -2.6% | -1.2% |
-| bokehPair | 44.27 | +0.1% | +0.6% |
-| bestFocus | 0.67 | +0.1% | +0.1% |
+| summary | 0.00 | +6.1% | +8.3% |
+| distortionCurve | 3.99 | +7.5% | +6.1% |
+| distortionGrid | 1.41 | +6.9% | -1.3% |
+| vignetting | 13.73 | +1.2% | +12.8% |
+| pupils | 0.26 | +4.1% | +14.3% |
+| bokehPair | 42.26 | +5.7% | -4.0% |
+| bestFocus | 0.72 | +3.2% | +6.9% |
 
 ## Aberration Panel Trends
 
 | Panel category | Current median ms | vs previous | vs 10-run median |
 |---|---:|---:|---:|
-| data.chromaticFieldCurvature | 33.55 | -0.1% | -0.1% |
-| data.coma | 7.84 | -2.2% | -1.3% |
-| data.fieldCurvature | 28.42 | +1.3% | +0.2% |
-| data.fieldCurvatureBundle | 33.45 | -0.0% | -0.5% |
-| data.saBlurCharacter | 6.69 | -1.0% | +0.5% |
-| data.saProfile | 0.69 | +1.8% | +1.3% |
-| data.sphericalAberration | 0.77 | +0.0% | +0.9% |
-| render.aberrationsTab | 0.33 | -0.2% | +1.7% |
-| render.astigmatismSection | 0.07 | -0.9% | +2.5% |
-| render.comaPreviewSection | 0.39 | -1.1% | -0.4% |
-| render.comaTab | 0.58 | -2.5% | +2.3% |
-| render.fieldCurvatureSection | 0.18 | -0.3% | +0.5% |
-| render.meridionalComaSection | 0.06 | -0.9% | -0.1% |
-| render.sagittalComaSection | 0.06 | -1.1% | +0.8% |
-| render.sphericalSection | 0.03 | -0.9% | +1.6% |
+| data.chromaticFieldCurvature | 41.93 | +3.3% | +24.7% |
+| data.coma | 8.94 | +3.8% | +11.6% |
+| data.fieldCurvature | 35.65 | +4.0% | +25.0% |
+| data.fieldCurvatureBundle | 42.89 | +4.1% | +27.0% |
+| data.saBlurCharacter | 5.67 | +1.9% | -14.8% |
+| data.saProfile | 0.72 | +2.8% | +5.3% |
+| data.sphericalAberration | 0.84 | +2.4% | +9.2% |
+| render.aberrationsTab | 0.28 | +4.1% | -12.7% |
+| render.astigmatismSection | 0.06 | +2.8% | -2.3% |
+| render.comaPreviewSection | 0.34 | +0.0% | -13.3% |
+| render.comaTab | 0.49 | +1.0% | -13.0% |
+| render.fieldCurvatureSection | 0.17 | +0.9% | -5.6% |
+| render.meridionalComaSection | 0.05 | +0.9% | -2.7% |
+| render.sagittalComaSection | 0.06 | +1.0% | -5.3% |
+| render.sphericalSection | 0.03 | +3.6% | +1.2% |
 
 ## Slowest Current Cases
 
 | Category | Lens | Scenario | Median ms |
 |---|---|---|---:|
-| totalCold | sony-fe-24-70mm-f28-gm-ii | stopped-close | 324.35 |
-| totalWarm | sony-fe-24-70mm-f28-gm-ii | stopped-close | 135.97 |
-| analysis | sony-fe-24-70mm-f28-gm-ii | stopped-close | 130.28 |
-| analysis.bokehPair | sony-fe-24-70mm-f28-gm-ii | stopped-close | 81.63 |
-| data.chromaticFieldCurvature | sony-fe-24-70mm-f28-gm-ii | tele-dense-chromatic | 60.14 |
-| data.fieldCurvatureBundle | sony-fe-24-70mm-f28-gm-ii | tele-dense-chromatic | 59.88 |
-| analysis.vignetting | fujifilm-gf-20-35mm-f4-r-wr | default | 53.20 |
-| data.fieldCurvature | sony-fe-24-70mm-f28-gm-ii | tele-dense-chromatic | 51.12 |
-| data.saBlurCharacter | sony-fe-24-70mm-f28-gm-ii | stopped-close | 20.15 |
-| layout | sony-fe-24-70mm-f28-gm-ii | stopped-close | 13.94 |
-| data.coma | sigma-apo-macro-180mm-f28-os-hsm | stopped-close | 12.99 |
-| analysis.distortionCurve | sony-fe-24-70mm-f28-gm-ii | stopped-close | 6.74 |
-| build | leica-apo-vario-elmarit-sl-90-280-f28-4 | tele-dense-chromatic | 4.43 |
-| rays | sony-fe-24-70mm-f28-gm-ii | stopped-close | 3.90 |
-| analysis.distortionGrid | sony-fe-24-70mm-f28-gm-ii | default | 2.68 |
-| data.sphericalAberration | leica-apo-vario-elmarit-sl-90-280-f28-4 | default | 1.19 |
-| data.saProfile | sony-fe-24-70mm-f28-gm-ii | tele-dense-chromatic | 1.08 |
-| render.comaTab | canon-serenar-50f18 | default | 1.02 |
-| analysis.bestFocus | sony-fe-24-70mm-f28-gm-ii | tele-dense-chromatic | 1.02 |
-| render.aberrationsTab | canon-serenar-50f18 | default | 0.63 |
-| render.comaPreviewSection | leica-apo-vario-elmarit-sl-90-280-f28-4 | tele-dense-chromatic | 0.49 |
-| analysis.pupils | sony-fe-24-70mm-f28-gm-ii | stopped-close | 0.44 |
-| svgRender | canon-serenar-50f18 | default | 0.33 |
-| render.fieldCurvatureSection | sony-fe-24-70mm-f28-gm-ii | stopped-close | 0.28 |
-| render.sagittalComaSection | canon-serenar-50f18 | default | 0.15 |
-| render.astigmatismSection | canon-serenar-50f18 | default | 0.11 |
-| render.meridionalComaSection | canon-serenar-50f18 | default | 0.11 |
-| render.sphericalSection | canon-serenar-50f18 | default | 0.06 |
-| analysis.summary | sigma-apo-macro-150mm-f28-os-hsm | default | 0.01 |
+| totalCold | nikon-pc-nikkor-19mm-f4e-ed | tele-dense-chromatic | 288.03 |
+| analysis | fujifilm-gf-20-35mm-f4-r-wr | default | 144.86 |
+| totalWarm | fujifilm-gf-20-35mm-f4-r-wr | default | 144.08 |
+| analysis.bokehPair | sony-fe-24-70mm-f28-gm-ii | tele-dense-chromatic | 85.34 |
+| data.fieldCurvatureBundle | sony-fe-24-70mm-f28-gm-ii | default | 85.17 |
+| data.chromaticFieldCurvature | sony-fe-24-70mm-f28-gm-ii | default | 84.03 |
+| data.fieldCurvature | sony-fe-24-70mm-f28-gm-ii | default | 72.02 |
+| analysis.vignetting | fujifilm-gf-20-35mm-f4-r-wr | default | 71.97 |
+| data.coma | sony-fe-24-70mm-f28-gm-ii | stopped-close | 17.44 |
+| data.saBlurCharacter | sony-fe-24-70mm-f28-gm-ii | tele-dense-chromatic | 13.13 |
+| analysis.distortionCurve | sony-fe-24-70mm-f28-gm-ii | tele-dense-chromatic | 8.05 |
+| build | leica-apo-vario-elmarit-sl-90-280-f28-4 | stopped-close | 5.42 |
+| rays | sony-fe-24-70mm-f28-gm-ii | interactive-drag | 3.88 |
+| layout | sony-fe-70-200mm-f28-gm-ii | tele-dense-chromatic | 3.13 |
+| analysis.distortionGrid | sony-fe-24-70mm-f28-gm-ii | tele-dense-chromatic | 2.86 |
+| data.sphericalAberration | sony-fe-24-70mm-f28-gm-ii | stopped-close | 1.56 |
+| data.saProfile | sony-fe-24-70mm-f28-gm-ii | default | 1.36 |
+| analysis.bestFocus | sony-fe-24-70mm-f28-gm-ii | default | 1.32 |
+| render.comaTab | canon-serenar-50f18 | default | 0.87 |
+| render.aberrationsTab | canon-serenar-50f18 | default | 0.76 |
+| analysis.pupils | sony-fe-24-70mm-f28-gm-ii | stopped-close | 0.55 |
+| render.fieldCurvatureSection | apo-lanthar-50f2 | tele-dense-chromatic | 0.48 |
+| render.comaPreviewSection | apo-lanthar-50f2 | tele-dense-chromatic | 0.47 |
+| svgRender | canon-serenar-50f18 | default | 0.39 |
+| render.astigmatismSection | apo-lanthar-50f2 | tele-dense-chromatic | 0.18 |
+| render.sagittalComaSection | canon-serenar-50f18 | default | 0.09 |
+| render.meridionalComaSection | canon-serenar-50f18 | default | 0.09 |
+| render.sphericalSection | canon-serenar-50f18 | default | 0.07 |
+| analysis.summary | canon-serenar-50f18 | default | 0.01 |
 
 ## Skips And Warnings
 

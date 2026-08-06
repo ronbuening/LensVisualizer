@@ -25,7 +25,6 @@
  */
 import { describe, it, expect } from "vitest";
 import { mkdirSync, writeFileSync } from "node:fs";
-import buildLens from "../../../src/optics/buildLens.js";
 import {
   assessCatalogGlassCompatibility,
   evaluateCatalogAbbeNumber,
@@ -34,7 +33,7 @@ import {
   resolveCompatibleGlass,
   resolveGlass,
 } from "../../../src/optics/glassCatalog.js";
-import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
+import { extractPatentNumber, walkLensSurfaces } from "./glassScanLib.js";
 import type { LensData } from "../../../src/types/optics.js";
 
 const REPORT_DIR = "agent_docs/generated";
@@ -57,18 +56,6 @@ interface Mismatch {
   vdDiff: number | null;
 }
 
-function toRepoRelativeLensPath(modulePath: string): string {
-  const lensDataIndex = modulePath.indexOf("src/lens-data/");
-  return lensDataIndex >= 0 ? modulePath.slice(lensDataIndex) : modulePath.replace(/^(\.\.\/)+/, "");
-}
-
-function extractPatentNumber(subtitle: string | undefined): string | null {
-  const match = subtitle?.match(
-    /\b(?:Patent\s+)?((?:JPWO|WO|US|JP|DE|GB|FR|CH|CN)\s*\d(?:[\d,./-]|\s+(?=\d))*(?:\s*(?:A1|A|B2|B1|B|C\d?|U))?)/i,
-  );
-  return match?.[1].replace(/\s+/g, " ").trim() ?? null;
-}
-
 const modules = import.meta.glob<{ default: LensData }>("../../../src/lens-data/**/*.data.ts", { eager: true });
 
 describe("catalog-mismatch scan", () => {
@@ -81,23 +68,9 @@ describe("catalog-mismatch scan", () => {
     let eLineSurfaces = 0;
     let eLineCatalogResolved = 0;
 
-    for (const [path, mod] of Object.entries(modules)) {
-      const raw = mod.default;
-      if (!raw?.key) continue;
-      const data: LensData = { ...LENS_DEFAULTS, ...raw } as LensData;
+    totalLenses = walkLensSurfaces(modules, ({ filePath, data, L }) => {
       const patentNumber = extractPatentNumber(data.subtitle);
-      totalLenses++;
-
-      let L;
-      try {
-        L = buildLens(data);
-      } catch {
-        // Skip lenses that fail to build (test elsewhere covers build correctness).
-        continue;
-      }
-
       const elementById = new Map(L.elements.map((e) => [e.id, e]));
-      const filePath = toRepoRelativeLensPath(path);
 
       for (let i = 0; i < L.S.length; i++) {
         const surface = L.S[i];
@@ -135,14 +108,14 @@ describe("catalog-mismatch scan", () => {
             referenceLine,
             storedNd: surface.nd,
             storedVd: element.vd,
-            catalogNd: compatibility.catalogNd,
+            catalogNd: compatibility.catalogIndex,
             catalogVd: evaluateCatalogAbbeNumber(entry, referenceLine),
-            ndDiff: compatibility.ndDiff,
-            vdDiff: compatibility.vdDiff,
+            ndDiff: compatibility.indexDiff,
+            vdDiff: compatibility.abbeDiff,
           });
         }
       }
-    }
+    });
 
     // Group mismatches by lens for the report
     const byLens = new Map<string, Mismatch[]>();

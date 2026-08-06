@@ -9,16 +9,17 @@ import type { Theme } from "../../types/theme.js";
 import { formatDisplayDate } from "../../utils/content/changelogHelpers.js";
 import type { HomepageArticle } from "../../utils/content/homepageContent.js";
 import { canonicalPagePath } from "../../utils/seo/siteUrls.js";
+import { withAlpha } from "../../utils/style/styles.js";
 
 interface ArticleCardProps {
   article: HomepageArticle;
   theme: Theme;
 }
 
-const TAG_COLORS: Record<string, string> = {
-  guide: "#2a7",
-  article: "#58c",
-  announcement: "#c84",
+export const TAG_COLORS: Record<string, string> = {
+  guide: "#22aa77",
+  article: "#5588cc",
+  announcement: "#cc8844",
 };
 
 export default function ArticleCard({ article, theme: t }: ArticleCardProps) {
@@ -44,7 +45,7 @@ export default function ArticleCard({ article, theme: t }: ArticleCardProps) {
               fontSize: "0.6rem",
               padding: "1px 6px",
               borderRadius: 3,
-              background: `${TAG_COLORS[article.tag] ?? t.toggleActiveBg}22`,
+              background: withAlpha(TAG_COLORS[article.tag] ?? t.toggleActiveBg, "22"),
               color: TAG_COLORS[article.tag] ?? t.toggleActiveText,
               letterSpacing: "0.06em",
               textTransform: "uppercase",

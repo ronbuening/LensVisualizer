@@ -10,7 +10,7 @@ import { FLAT_R_THRESHOLD } from "../constants.js";
 import type { PreparedOpticalState, Ray3, Vec3 } from "../types.js";
 import { evaluateAperture } from "./aperture.js";
 import { pushClipEvent } from "./foldedDiagnostics.js";
-import { phaseRefractedDirection, refractedDirection } from "./interactions.js";
+import { interactRefractiveSurface } from "./interactions.js";
 import { DEFAULT_PHASE_WAVELENGTH_NM } from "../math/diffractivePhase.js";
 import { intersectStateSurface, sequentialSurfaceMaxT } from "./pathPlanner.js";
 import type { EngineTraceResult, TraceFailureReason, TraceHit, TraceOptions } from "./types.js";
@@ -133,22 +133,17 @@ export function traceSequential(
       if (hitClipped && Math.abs(surface.R) < FLAT_R_THRESHOLD && radius * radius > surface.R * surface.R) {
         // Ghost ray beyond the mathematical sphere extent: preserve legacy straight propagation.
       } else {
-        const refracted = surface.diffractive
-          ? phaseRefractedDirection(direction, normal, point, n, nn, surface, wavelengthNm)
-          : refractedDirection(direction, normal, n, nn);
-        if (refracted === null) {
+        const interaction = interactRefractiveSurface(direction, normal, point, n, nn, surface, wavelengthNm);
+        if (interaction.failure) {
           clipped = true;
-          failureReason = surface.diffractive ? "nonPropagatingDiffractionOrder" : "totalInternalReflection";
-          const failureClipReason = surface.diffractive
-            ? "non-propagating-diffraction-order"
-            : "total-internal-reflection";
-          pushClipEvent(clipEvents, state, i, failureClipReason, failureReason);
+          failureReason = interaction.failure.failureReason;
+          pushClipEvent(clipEvents, state, i, interaction.failure.clipReason, failureReason);
           traceHit.clipped = true;
           traceHit.failureReason = failureReason;
-          traceHit.clipReason = failureClipReason;
+          traceHit.clipReason = interaction.failure.clipReason;
           stopAfterHit = !ghost;
         } else {
-          direction = refracted;
+          direction = interaction.direction;
         }
       }
     }

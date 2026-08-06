@@ -15,7 +15,7 @@ import { SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
 import { collectionPageJsonLd, itemListJsonLd } from "../utils/seo/structuredData.js";
 import { usePageThemeToggle } from "../utils/theme/usePageThemeToggle.js";
 import { ARTICLES, ARTICLE_SERIES } from "../utils/content/homepageContent.js";
-import { PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
+import { H1_STYLE, PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
 import { ARTICLE_FEED_PATH } from "../utils/content/feedMetadata.js";
 
 export default function ArticlesPage() {
@@ -65,9 +65,7 @@ export default function ArticlesPage() {
       </PageNavBar>
 
       <div style={PAGE_BASE_STYLE}>
-        <h1 style={{ fontSize: "1.5rem", fontWeight: 600, marginTop: "1.5rem", marginBottom: "0.5rem" }}>
-          All Articles
-        </h1>
+        <h1 style={H1_STYLE}>All Articles</h1>
         <p style={{ fontSize: "0.875rem", color: t.muted, marginBottom: "2rem" }}>
           {ARTICLES.length} articles and guides about optical design and lens engineering.{" "}
           <a

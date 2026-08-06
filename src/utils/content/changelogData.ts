@@ -1,9 +1,8 @@
 /**
  * changelogData — manually curated list of user-facing site changes.
  *
- * Entries are ordered newest-first. UpdatesPage groups them by date
- * automatically. Add new entries at the top of the CHANGELOG array when
- * merging a user-facing PR; see agent_docs/changelog.md for the full
+ * Entries are ordered newest-first and grouped by date automatically. Add new entries at the top
+ * of the CHANGELOG array when merging a user-facing PR; see agent_docs/changelog.md for the full
  * maintenance guide.
  */
 
@@ -19,6 +18,27 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-08-06 ─────────────────────────────────
+  {
+    date: "2026-08-06",
+    type: "fix",
+    summary: "Fixed publication dates so site cards, feeds, and sitemaps agree on the UTC day",
+  },
+  {
+    date: "2026-08-06",
+    type: "improvement",
+    summary: "Improved relationship map accessibility with visible keyboard focus highlights",
+  },
+  {
+    date: "2026-08-06",
+    type: "fix",
+    summary: "Fixed RSS changelog links so they scroll to the linked entry on the Updates page",
+  },
+  {
+    date: "2026-08-06",
+    type: "fix",
+    summary: "Fixed missing tinted backgrounds behind changelog, article, and series badges",
+  },
   // ── 2026-08-05 ─────────────────────────────────
   {
     date: "2026-08-05",

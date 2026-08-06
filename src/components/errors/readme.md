@@ -34,12 +34,12 @@ flowchart LR
 - Direct source files: 3
 - Direct subfolders: 0
 - Main outbound areas: package:react (5), src/utils/errorBeacon.ts (3), same folder (2), package:react-router, src/utils/errorReporting.ts
-- External consumers: src/comparison, src/components/layout, src/entry-server.tsx, src/main.tsx, src/router.tsx
+- External consumers: src/comparison, src/components/layout, src/entry-server.tsx, src/main.tsx, src/pages/RelationshipMapPage.tsx, src/router.tsx
 
 ## Files
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
 | `ErrorBoundary.tsx` | React component module | package:react (2), src/utils/errorBeacon.ts, src/utils/errorReporting.ts | same folder (2), src/comparison, src/components/layout, src/entry-server.tsx, src/main.tsx | ErrorDisplay, FullPageErrorDisplay, default, ErrorBoundary |
-| `PanelErrorBoundary.tsx` | React component module | package:react (2), same folder, src/utils/errorBeacon.ts | src/components/layout | default, PanelErrorBoundary |
+| `PanelErrorBoundary.tsx` | React component module | package:react (2), same folder, src/utils/errorBeacon.ts | src/components/layout, src/pages/RelationshipMapPage.tsx | default, PanelErrorBoundary |
 | `RouteErrorBoundary.tsx` | React component module | package:react, package:react-router, same folder, src/utils/errorBeacon.ts | src/router.tsx | normalizeRouteError, default, RouteErrorBoundary |

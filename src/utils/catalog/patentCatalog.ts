@@ -8,6 +8,7 @@
 
 import { LENS_SUMMARIES, SUMMARY_KEYS } from "./lensSummaries.js";
 import type { LensSummary } from "./lensSummaries.js";
+import { catalogCollator } from "./collation.js";
 
 export interface PatentLens {
   key: string;
@@ -48,12 +49,19 @@ export interface PatentIndex {
 }
 
 const JURISDICTION_LABELS: Record<string, string> = {
+  AT: "Austria",
+  CA: "Canada",
   CH: "Switzerland",
   CN: "China",
+  DD: "East Germany (GDR)",
   DE: "Germany",
+  EP: "European Patent Office",
   FR: "France",
   GB: "United Kingdom",
+  IT: "Italy",
   JP: "Japan",
+  NL: "Netherlands",
+  SU: "Soviet Union",
   US: "United States",
   WO: "International (WIPO)",
 };
@@ -126,9 +134,9 @@ export function buildPatentIndex(summaries: readonly LensSummary[]): PatentIndex
       patentNumber: record.patentNumber,
       patentYear: record.patentYear,
       jurisdiction: record.jurisdiction,
-      authors: [...record.authors].sort((a, b) => a.localeCompare(b)),
-      assignees: [...record.assignees].sort((a, b) => a.localeCompare(b)),
-      lenses: [...record.lenses.values()].sort((a, b) => a.name.localeCompare(b.name)),
+      authors: [...record.authors].sort((a, b) => catalogCollator.compare(a, b)),
+      assignees: [...record.assignees].sort((a, b) => catalogCollator.compare(a, b)),
+      lenses: [...record.lenses.values()].sort((a, b) => catalogCollator.compare(a.name, b.name)),
     }))
     .sort((a, b) => patentNumberCollator.compare(a.patentNumber, b.patentNumber));
 
@@ -168,10 +176,10 @@ export function buildPatentIndex(summaries: readonly LensSummary[]): PatentIndex
         jurisdiction: country.jurisdiction,
         patentCount: country.patents.size,
         assignees: [...country.assignees.values()].sort(
-          (a, b) => Number(a.isFallback) - Number(b.isFallback) || a.label.localeCompare(b.label),
+          (a, b) => Number(a.isFallback) - Number(b.isFallback) || catalogCollator.compare(a.label, b.label),
         ),
       }))
-      .sort((a, b) => a.jurisdiction.label.localeCompare(b.jurisdiction.label)),
+      .sort((a, b) => catalogCollator.compare(a.jurisdiction.label, b.jurisdiction.label)),
   };
 }
 

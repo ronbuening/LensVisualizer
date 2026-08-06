@@ -94,8 +94,10 @@ export default function RelationshipMap({
       {/* Bordered viewport: makes the zoom/pan region visually distinct from
        * the surrounding page (which scrolls). */}
       <div style={{ border: `1px solid ${t.panelBorder}`, borderRadius: 8, overflow: "hidden" }}>
+        {/* role="group", not "img": descendants of an img are presentational,
+         * which would hide the interactive patent/party buttons from AT. */}
         <svg
-          role="img"
+          role="group"
           aria-label={ariaLabel}
           viewBox={zoom.viewBox}
           style={{
@@ -167,6 +169,8 @@ export default function RelationshipMap({
                   onPointerDown={stopNodePointerDown}
                   onPointerEnter={() => setHoveredNodeId(node.id)}
                   onPointerLeave={() => setHoveredNodeId((cur) => (cur === node.id ? null : cur))}
+                  onFocus={() => setHoveredNodeId(node.id)}
+                  onBlur={() => setHoveredNodeId((cur) => (cur === node.id ? null : cur))}
                   onClick={() => onSelectPatent(selected ? null : node.id)}
                   onKeyDown={(e) => {
                     if (isActivateKey(e)) {
@@ -217,6 +221,8 @@ export default function RelationshipMap({
                 onPointerDown={stopNodePointerDown}
                 onPointerEnter={() => setHoveredNodeId(node.id)}
                 onPointerLeave={() => setHoveredNodeId((cur) => (cur === node.id ? null : cur))}
+                onFocus={() => setHoveredNodeId(node.id)}
+                onBlur={() => setHoveredNodeId((cur) => (cur === node.id ? null : cur))}
                 onClick={() => onFocusParty(party.ref)}
                 onKeyDown={(e) => {
                   if (isActivateKey(e)) {

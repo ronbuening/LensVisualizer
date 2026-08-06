@@ -10,9 +10,8 @@
  */
 import { describe, expect, it } from "vitest";
 import { mkdirSync, writeFileSync } from "node:fs";
-import buildLens from "../../../src/optics/buildLens.js";
-import { resolveGlass } from "../../../src/optics/glassCatalog.js";
-import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
+import { glassTokens, resolveGlass } from "../../../src/optics/glassCatalog.js";
+import { isExplicitlyUnmatched, walkLensSurfaces } from "./glassScanLib.js";
 import type { LensData } from "../../../src/types/optics.js";
 
 const modules = import.meta.glob<{ default: LensData }>("../../../src/lens-data/**/*.data.ts", { eager: true });
@@ -25,23 +24,14 @@ interface Occurrence {
   glassString: string;
 }
 
-function toRepoRelativeLensPath(modulePath: string): string {
-  const lensDataIndex = modulePath.indexOf("src/lens-data/");
-  return lensDataIndex >= 0 ? modulePath.slice(lensDataIndex) : modulePath.replace(/^(\.\.\/)+/, "");
-}
-
-function isExplicitlyUnmatched(glassString: string): boolean {
-  return /\b(unmatched|unknown|proprietary|unidentified)\b/i.test(glassString);
-}
-
 function candidateTokens(glassString: string): string[] {
-  const tokens = glassString.match(/[A-Za-z][A-Za-z0-9-]*\d[A-Za-z0-9]*|\d{6}/g) ?? [];
-  return tokens
+  // Tokenize with the resolver's own tokenizer, then keep every digit-bearing
+  // token that itself fails to resolve. No vendor-prefix whitelist: the old
+  // list predated the Hikari-era expansion and silently hid unresolved J-/Q-/
+  // M-/MC-/D-/PBH/TAC-style tokens from the catalog-expansion queue.
+  return glassTokens(glassString)
     .map((token) => token.toUpperCase())
-    .filter((token) => {
-      if (/^\d{6}$/.test(token)) return true;
-      return /^(S-|N-|L-|H-|K-|TAF|TAFD|NBFD|FCD|FC|BACD|BSC|E-FD|E-F|SF\d|BK\d|F\d|CAF2|CAFD|FK|SK)/.test(token);
-    });
+    .filter((token) => /\d/.test(token) && !resolveGlass(token));
 }
 
 describe("unresolved glass scan", () => {
@@ -52,21 +42,8 @@ describe("unresolved glass scan", () => {
     let totalGlassDeclarations = 0;
     let totalUnresolvedAnnotations = 0;
 
-    for (const [path, mod] of Object.entries(modules)) {
-      const raw = mod.default;
-      if (!raw?.key) continue;
-      const data: LensData = { ...LENS_DEFAULTS, ...raw } as LensData;
-      totalLenses++;
-
-      let L;
-      try {
-        L = buildLens(data);
-      } catch {
-        continue;
-      }
-
+    totalLenses = walkLensSurfaces(modules, ({ filePath, data, L }) => {
       const elementById = new Map(L.elements.map((element) => [element.id, element]));
-      const filePath = toRepoRelativeLensPath(path);
       totalSurfaces += L.S.filter((surface) => surface.nd !== 1.0).length;
 
       for (const element of L.elements) {
@@ -92,7 +69,7 @@ describe("unresolved glass scan", () => {
           byToken.set(token, occurrences);
         }
       }
-    }
+    });
 
     const sorted = [...byToken.entries()].sort((a, b) => {
       const countDiff = b[1].length - a[1].length;

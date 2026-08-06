@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { LENS_SUMMARIES } from "../../../../src/utils/catalog/lensSummaries.js";
 import type { LensSummary } from "../../../../src/utils/catalog/lensSummaries.js";
 import {
   PATENT_ASSIGNEE_FALLBACK,
@@ -26,7 +27,24 @@ describe("patent catalog", () => {
     expect(patentJurisdiction("US 2,819,651")).toEqual({ code: "US", label: "United States" });
     expect(patentJurisdiction("JP 2014-145954 A")).toEqual({ code: "JP", label: "Japan" });
     expect(patentJurisdiction("WO 2021/246545 A1")).toEqual({ code: "WO", label: "International (WIPO)" });
+    expect(patentJurisdiction("EP 1234567 A1")).toEqual({ code: "EP", label: "European Patent Office" });
+    expect(patentJurisdiction("DD 123456")).toEqual({ code: "DD", label: "East Germany (GDR)" });
+    expect(patentJurisdiction("SU 123456")).toEqual({ code: "SU", label: "Soviet Union" });
     expect(patentJurisdiction("XX 123")).toEqual({ code: "XX", label: "XX" });
+  });
+
+  it("has a curated label for every authority in the real catalog", () => {
+    const uncurated = new Set<string>();
+    for (const lens of Object.values(LENS_SUMMARIES)) {
+      if (!lens.visible || !lens.patentNumber) continue;
+      const jurisdiction = patentJurisdiction(lens.patentNumber);
+      if (jurisdiction.label === jurisdiction.code) uncurated.add(jurisdiction.code);
+    }
+
+    expect(
+      [...uncurated],
+      "these patent authorities fall back to their raw code as a page heading — add them to JURISDICTION_LABELS",
+    ).toEqual([]);
   });
 
   it("deduplicates patents and groups them by country and every named assignee", () => {

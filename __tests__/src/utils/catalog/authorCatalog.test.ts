@@ -14,6 +14,7 @@ import {
   groupAuthorPatents,
   patentsForAuthor,
 } from "../../../../src/utils/catalog/authorCatalog.js";
+import { catalogCollator } from "../../../../src/utils/catalog/collation.js";
 
 const sample = AUTHORS[0];
 
@@ -55,7 +56,7 @@ describe("patentsForAuthor", () => {
     expect(patents.length).toBeGreaterThan(0);
 
     const sortKeys = patents.map((p) => [p.patentYear ?? Number.POSITIVE_INFINITY, p.patentNumber] as const);
-    const resorted = [...sortKeys].sort((a, b) => a[0] - b[0] || a[1].localeCompare(b[1]));
+    const resorted = [...sortKeys].sort((a, b) => a[0] - b[0] || catalogCollator.compare(a[1], b[1]));
     expect(sortKeys).toEqual(resorted);
   });
 

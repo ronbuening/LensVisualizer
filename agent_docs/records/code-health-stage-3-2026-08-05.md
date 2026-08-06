@@ -1,0 +1,197 @@
+# Code Health Plan — Stage 3 (verified user-visible and API defects)
+
+## Summary
+
+- Executes Stage 3 of `agent_docs/code-health-improvement-plan.md` in the documented order:
+  X1 → X2 → X3 → X4 → X5 → X6, X7 → X8 → X9, X10 → X11 → X12 → X13.
+- One commit per item; the full gate
+  (`npm run typecheck && npm run format:check && npm run lint && npm run test`) runs before each commit.
+- Stage 2 record: `agent_docs/records/code-health-stage-2-2026-08-04.md`.
+
+## Changes
+
+### X1 — badge tint backgrounds render (invalid hex alpha)
+
+- Added `withAlpha(color, alphaHex)` to `src/utils/style/styles.ts`: expands `#rgb` to `#rrggbb` before
+  suffixing the alpha, rewrites `rgba()`/`rgb()` alpha in place, and passes unknown color forms through
+  unchanged.
+- Replaced the four invalid `` `${color}22` `` call sites: `ChangelogList` type badges, `ArticleCard` tag
+  chips (both branches), `SeriesCard` series badge, and `ElementInspector`'s ASPH chip.
+- Converted `CHANGELOG_TYPE_COLORS` and `TAG_COLORS` to 6-digit hex (same colors); exported `TAG_COLORS`
+  so the palette-shape test can see it. Updated the color column in `agent_docs/changelog.md` to match.
+- New unit tests in `styles.test.ts`: `#rgb`, `#rrggbb`, `rgba()`, `rgb()`, and pass-through cases all
+  yield valid CSS (`^#[0-9a-f]{8}$` or `rgba(`), and every palette literal is `#RRGGBB`.
+- Visual verification is by the unit-level output assertions (computed background strings are valid CSS
+  in all forms the four themes use); no screenshots taken in this non-interactive session.
+- Changelog entry added (fix).
+
+Verification: gate passed (232 files / 2775 tests after readme regeneration; the doc-drift readme check
+initially flagged the new imports, resolved by `npm run generate:readmes` — diffs committed with the item).
+
+### X2 — hash-safe /updates#entry deep links
+
+- `UpdatesPage` now reads `useLocation().hash`: with no hash it keeps the original scroll-to-top; with a
+  hash it decodes the fragment (malformed percent-encoding falls back to the raw string) and calls
+  `scrollIntoView()` on the matching entry inside a `requestAnimationFrame` queued after commit, cancelled
+  on cleanup. Effect is keyed on the hash so same-page navigation between entries re-fires it. The fix is
+  local to the page — `main.tsx`'s GoatCounter subscription and other routes untouched, per the spec.
+- Added the append-only warning to `agent_docs/changelog.md`: editing a shipped entry changes its public
+  anchor and RSS GUID (`changelogEntryId` hashes `date|type|summary`).
+- New `__tests__/src/pages/updatesPage.test.tsx` (5 cases): no-hash scroll-to-top, cold feed-link load
+  asserting the *target's* `scrollIntoView` (identified via `this.id` in the mock), same-page hash
+  navigation to a second entry, percent-encoded fragment decoding, and malformed-encoding survival.
+- Changelog entry added (fix).
+
+Verification: gate passed (233 files / 2780 tests).
+
+### X3 — relationship map role="group" + keyboard-focus visibility
+
+- `RelationshipMap`'s `<svg>` is now `role="group"` (aria-label kept) — descendants of `role="img"` are
+  presentational, which could hide the interactive patent/party buttons from assistive tech.
+- Both interactive `<g>` variants gained `onFocus`/`onBlur` mirroring the pointer-enter/leave handlers,
+  so the existing stroke-width hover treatment doubles as the keyboard focus indicator.
+- Tests: new "svg is a group" and focus/blur stroke-width cases in `relationshipMap.test.tsx`; the three
+  `role="img"` queries in `relationshipMapPage.test.tsx` updated to `role="group"` with an accessible-name
+  filter so unrelated implicit group roles cannot match.
+- Changelog entry added (improvement).
+
+Verification: gate passed (233 files / 2782 tests).
+
+### X4 — nav chrome toggle/disclosure ARIA
+
+- `PageNavBar`: both buttons gained `type="button"`; HC gained `aria-pressed={highContrast}`; the theme
+  button gained an `aria-label` describing the cycle (`Theme: <slot>. Cycle theme`).
+- `BreadcrumbBar`: settings trigger gained `type="button"`, `aria-expanded={settingsOpen}`,
+  `aria-haspopup="true"`, and an `aria-label` (its narrow-viewport ⚙ glyph had no accessible name);
+  the dropdown's HC/theme buttons got the same treatment as PageNavBar's.
+- Deliberately did NOT put an `aria-label` on the HC buttons — the spec assigns labels only to the theme
+  buttons, and an overriding label would break the existing `/HC/i` accessible-name queries.
+- Tests: breadcrumb coverage test now asserts `aria-haspopup`/`aria-expanded` toggling and queries HC via
+  `{ pressed: false }`; homepage render test clicks HC and asserts the pressed state flips.
+
+Verification: gate passed (233 files / 2782 tests).
+
+### X5 — shared scrollMarginTop under the sticky navbar
+
+- Exported `STICKY_NAV_SCROLL_MARGIN = 88` from `src/utils/style/pageStyles.ts`.
+- Applied `scrollMarginTop` to every anchor-target section: the country and per-assignee sections on
+  `PatentsIndexPage`, the group sections on `AuthorPage`, and all seven anchored section/subgroup sites
+  in `LensIndexResults` (maker, focal section + focal subgroup, patent party, year, mount, format).
+- `LinkListSidebar`'s default `offsetTop = 88` and `ArticleTOC`'s `ARTICLE_SCROLL_MARGIN_TOP` now derive
+  from the shared constant. `ThemedMarkdown`'s inline 88s were left as the spec scoped them (article
+  pipeline already correct); they can move to the constant during U-series consolidation.
+
+Verification: gate passed (233 files / 2782 tests).
+
+### X6 — heading fixes
+
+- Focused relationship-map heading is now an `<h1>` keeping its 1.3rem styling, so `#focus=` views have
+  an intact document outline; `relationshipMapPage.test.tsx` asserts a level-1 heading in both states.
+- Adopted `H1_STYLE` on the 13 pages that re-typed the literal (Articles, Author, AuthorsIndex, Format,
+  FormatsIndex, Maker, MakersIndex, Mount, MountsIndex, RelationshipMap intro, PatentsIndex, Search,
+  Updates). Intentional variants are spreads: `marginBottom: "1.5rem"` on the three index pages,
+  `"0.35rem"` on AuthorPage.
+- `AuthorsIndexPage`: controls div gained `role="group"` (making its existing aria-label effective); the
+  non-interactive Biography badge span lost its ignored `aria-label` (visible text "Biography" is the
+  content), and `searchPages.test.tsx` now queries by text.
+
+Verification: gate passed (233 files / 2782 tests).
+
+### X7 — pinned catalog collation
+
+- New `src/utils/catalog/collation.ts` exporting `catalogCollator = new Intl.Collator("en")` with the
+  hydration-mismatch rationale documented.
+- Mechanically replaced all 38 bare `.localeCompare(` calls across `src/utils/catalog` (relationshipGraph,
+  lensCatalog, authorAssignees, authorCatalog, searchCatalog, patentCatalog) and `src/pages`
+  (RelationshipMapPage, MakersIndexPage, MountPage, AuthorsIndexPage, lensIndex/{useLensIndexFilters,
+  urlState, catalog}) with `catalogCollator.compare`. The verification grep over those two trees now
+  returns zero (patent numbers keep their pinned numeric collator).
+- Left out of scope: `relationshipMap/layout.ts` (audit-verified healthy, client-only), the
+  RelationshipEntityPicker suggestion sort (client-only), benchmark report ISO-timestamp sorts, and the
+  glass-scan test sorts (ASCII names; G8's shared lib touches those).
+- Updated the five test files that derived expected order via default-locale `localeCompare`
+  (assigneeCatalog, lensCatalog, relationshipGraph, authorCatalog, searchPages) to the shared collator so
+  they can actually catch regressions under any test-runner locale.
+
+Verification: gate passed (233 files / 2782 tests).
+
+### X8 — publication dates UTC everywhere
+
+- `parseGitLogDates` now derives the calendar date from the UTC instant
+  (`timestamp.toISOString().slice(0, 10)`) instead of slicing the committer-local `%cI` string, so site
+  cards, JSON-LD, sitemap, and RSS `pubDate` all agree on one day. `fallbackDate` in the generator was
+  already UTC-today and is now consistent rather than divergent — no change needed there.
+- New test case pinning the evening-EDT boundary: `2026-08-03T21:14:12-04:00` → publishedOn `2026-08-04`.
+- Measured impact on regeneration: 1172 of 3124 publishedOn/lastModified fields shift forward one day
+  (all evening-ET commits). Spot-check: `canon-ef-14mm-f28-l` card date moved 2026-07-18 → 2026-07-19,
+  matching its `publishedAt` of `2026-07-19T02:51:49Z`; current-feed items' pubDate calendar dates equal
+  their card dates.
+- Changelog entry added (fix).
+
+Verification: gate passed (233 files / 2783 tests); `npm run build` succeeds (1014 routes prerendered,
+sitemap + feeds written).
+
+### X9 — patent jurisdiction labels
+
+- Extended `JURISDICTION_LABELS` with the seven spec'd authorities: EP (European Patent Office),
+  DD (East Germany (GDR)), AT (Austria), SU (Soviet Union), IT (Italy), NL (Netherlands), CA (Canada).
+- New walk-the-real-data guard in `patentCatalog.test.ts`: every visible summary's
+  `patentJurisdiction(...).code` must have a curated label (label ≠ raw code), with a message pointing at
+  the map; plus direct pins for EP/DD/SU label strings.
+
+Verification: gate passed (233 files / 2784 tests).
+
+### X10 — glass tokenizer decimal guards + shared decodeCode6
+
+- `glassTokens`'s bare `\d{6}` alternative gained `(?<![\d.])` / `(?![\d.])` boundary guards, so a
+  six-decimal refractive index ("nd=1.516330") can no longer shed its integer part and resolve as the
+  phantom Schott code 516330. Both resolution paths (`candidateMatches` ranked and `resolveGlass`
+  first-hit) share the tokenizer, so one edit covers both.
+- Exported `decodeCode6(code)` from `glassCatalog.ts` as the single source of the `<300 → nd ≥ 2.0` wrap
+  rule; the catalog-consistency check now uses it, and the three scan-local decoders
+  (`glassRelabelCandidatesScan`, `glassRelabelByLensScan`, `glassCoverageOpportunitiesScan`) were
+  replaced with it. Their old `ndCode < 400` gate silently rejected nd ≥ 2.0 codes like `001255` that the
+  runtime decodes correctly; the shared decoder plus an nd ∈ [1.4, 2.15] plausibility gate fixes that.
+- Tests: decimal-adjacent false-positive cases (`"Crown 1.516330 index note"` and `"nd=1.720467
+  measured"` resolve to null; standalone `517642` still resolves) and `decodeCode6("001255")` ≈
+  2.001/25.5.
+- `npm run generate:glass-reports` (with the local `patents/` inventory populated, 508 PDFs): reports are
+  byte-identical. No current report row was produced by a phantom token — the unresolved-token queue was
+  shielded by `unresolvedGlassScan`'s vendor-prefix whitelist, which X11 removes next.
+
+Verification: gate passed (233 files / 2786 tests).
+
+### X11 — unresolvedGlassScan aligned with the resolver tokenizer
+
+- Exported `glassTokens` from `glassCatalog.ts` (documented as the alignment point for scans).
+- `candidateTokens` in the scan now tokenizes via `glassTokens` and keeps digit-bearing tokens that
+  themselves fail `resolveGlass`; the pre-Hikari vendor-prefix whitelist is gone.
+- Regenerated report: 122 → 202 distinct unresolved tokens. Newly surfaced rows are exactly the
+  predicted classes (`J-LASFH13`, LAK/LAF/PK families, `E48R`, `BASF6-CLASS`, more six-digit codes).
+- **One nuance vs the spec's "only ADDS rows" expectation:** two rows disappeared — phantom tokens
+  `552981` and `854505` from six-decimal indices (`nd=1.552981`, `nd=1.854505`). X10's regeneration could
+  not remove them because they came from the scan's own unguarded local regex, not the runtime tokenizer;
+  switching the scan onto the guarded tokenizer removed them here. Both are X10's intended fix, one item
+  late, and both annotations' real codes (553555, 855399) remain in the queue.
+
+Verification: gate passed (233 files / 2786 tests).
+
+### X12 — traceEngineRayChromatic2 deleted
+
+- Took the spec's delete option: the function had zero callers (only a `compat.ts` re-export), and its
+  per-channel glass indices without `wavelengthNm` were exactly the mixed diffractive state the
+  diffractive plan forbids. Removed the function, its now-unused imports, and its half of the compat
+  re-export line (`computeChromaticRayFanSpread2` has real callers and stays).
+- `grep -rn traceEngineRayChromatic2 src __tests__` → no hits.
+
+Verification: gate passed (233 files / 2786 tests).
+
+### X13 — relationship map wrapped in PanelErrorBoundary
+
+- `RelationshipMap` and `PatentDetailCard` now render inside one `PanelErrorBoundary` keyed on
+  `graph.center.id`, so a map render throw shows the panel-level error display while the heading and
+  entity picker stay usable, and refocusing via the picker resets the boundary.
+- New `__tests__/src/pages/relationshipMapPageError.test.tsx` (separate file because the map module is
+  mocked to throw file-wide): asserts the error message renders AND the h1 + picker searchbox survive.
+
+Verification: gate passed (234 files / 2787 tests). **Stage 3 complete.**

@@ -12,6 +12,7 @@ import { isImageFormatId, isLensMountId } from "../../utils/catalog/lensTaxonomy
 import type { LensLibraryBreadcrumbContext, LensLinkTarget } from "./clusterLinks.js";
 import { canonicalPagePath } from "../../utils/seo/siteUrls.js";
 import { LENS_LINK_BASE_STYLE, SECTION_HEADING_BASE_STYLE } from "./styles.js";
+import { STICKY_NAV_SCROLL_MARGIN } from "../../utils/style/pageStyles.js";
 import {
   focalSectionAnchorId,
   focalSubGroupAnchorId,
@@ -73,7 +74,11 @@ function MakerSections({
       {groups.map((group) => {
         const details = getMakerDetails(group.slug);
         return (
-          <section key={group.slug} id={makerGroupAnchorId(group.slug)}>
+          <section
+            key={group.slug}
+            id={makerGroupAnchorId(group.slug)}
+            style={{ scrollMarginTop: STICKY_NAV_SCROLL_MARGIN }}
+          >
             <h2 style={{ ...SECTION_HEADING_BASE_STYLE, borderBottom: `1px solid ${theme.panelBorder}` }}>
               <Link to={`/makers/${group.slug}/`} style={{ color: "inherit", textDecoration: "none" }}>
                 {group.display}
@@ -124,7 +129,11 @@ function FocalSections({
   return (
     <>
       {sections.map((section) => (
-        <section key={section.label} id={focalSectionAnchorId(section.label)}>
+        <section
+          key={section.label}
+          id={focalSectionAnchorId(section.label)}
+          style={{ scrollMarginTop: STICKY_NAV_SCROLL_MARGIN }}
+        >
           <h2
             style={{
               ...SECTION_HEADING_BASE_STYLE,
@@ -142,7 +151,7 @@ function FocalSections({
             <div
               key={group.label}
               id={focalSubGroupAnchorId(section.label, group.label)}
-              style={{ marginBottom: "1rem" }}
+              style={{ marginBottom: "1rem", scrollMarginTop: STICKY_NAV_SCROLL_MARGIN }}
             >
               <h3
                 style={{
@@ -192,7 +201,11 @@ function PatentPartySections({
   return (
     <>
       {groups.map((group) => (
-        <section key={group.id} id={patentPartyGroupAnchorId(role, group.id)}>
+        <section
+          key={group.id}
+          id={patentPartyGroupAnchorId(role, group.id)}
+          style={{ scrollMarginTop: STICKY_NAV_SCROLL_MARGIN }}
+        >
           <h2 style={{ ...SECTION_HEADING_BASE_STYLE, borderBottom: `1px solid ${theme.panelBorder}` }}>
             {group.label}
             <span style={{ color: theme.label, fontSize: "0.75rem", marginLeft: "0.5rem", fontWeight: 400 }}>
@@ -227,7 +240,11 @@ function PatentYearSections({
   return (
     <>
       {groups.map((group) => (
-        <section key={group.decade} id={yearGroupAnchorId(group.decade)}>
+        <section
+          key={group.decade}
+          id={yearGroupAnchorId(group.decade)}
+          style={{ scrollMarginTop: STICKY_NAV_SCROLL_MARGIN }}
+        >
           <h2 style={{ ...SECTION_HEADING_BASE_STYLE, borderBottom: `1px solid ${theme.panelBorder}` }}>
             {group.decade}
             <span style={{ color: theme.label, fontSize: "0.75rem", marginLeft: "0.5rem", fontWeight: 400 }}>
@@ -262,7 +279,7 @@ function MountSections({
   return (
     <>
       {groups.map((group) => (
-        <section key={group.id} id={mountGroupAnchorId(group.id)}>
+        <section key={group.id} id={mountGroupAnchorId(group.id)} style={{ scrollMarginTop: STICKY_NAV_SCROLL_MARGIN }}>
           <h2 style={{ ...SECTION_HEADING_BASE_STYLE, borderBottom: `1px solid ${theme.panelBorder}` }}>
             {isLensMountId(group.id) ? (
               <Link to={`/mounts/${group.id}/`} style={{ color: "inherit", textDecoration: "none" }}>
@@ -305,7 +322,11 @@ function ImageFormatSections({
   return (
     <>
       {groups.map((group) => (
-        <section key={group.id} id={formatGroupAnchorId(group.id)}>
+        <section
+          key={group.id}
+          id={formatGroupAnchorId(group.id)}
+          style={{ scrollMarginTop: STICKY_NAV_SCROLL_MARGIN }}
+        >
           <h2 style={{ ...SECTION_HEADING_BASE_STYLE, borderBottom: `1px solid ${theme.panelBorder}` }}>
             {isImageFormatId(group.id) ? (
               <Link to={`/formats/${group.id}/`} style={{ color: "inherit", textDecoration: "none" }}>

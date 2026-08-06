@@ -6,6 +6,71 @@
  */
 
 import type { AsphericCoefficients } from "../../types/optics.js";
+import { ASPHERIC_POLYNOMIAL_TERMS } from "../../types/asphericSchema.js";
+import type { AsphericPolynomialDescriptor } from "../../types/asphericSchema.js";
+
+/* Sag/slope evaluation plans derived from the shared schema. Terms keep the
+ * schema's accumulation order within each parity; even and odd sums stay
+ * separate so even-only surfaces remain bit-identical to the pre-odd-order
+ * engine (the odd sum is exactly 0 for them). */
+interface AsphericTermPlan {
+  readonly key: AsphericPolynomialDescriptor["key"];
+  readonly power: number;
+  /** Exponent applied to h² when evaluating this term's sag contribution. */
+  readonly sagExponent: number;
+  /** Exponent applied to h² inside this term's slope sum. */
+  readonly slopeExponent: number;
+}
+
+function termPlans(parity: "even" | "odd"): readonly AsphericTermPlan[] {
+  return ASPHERIC_POLYNOMIAL_TERMS.filter((term) => term.parity === parity).map((term) => ({
+    key: term.key,
+    power: term.power,
+    // Even sag terms are A_n·(h²)^(n/2); odd sag terms are h·A_n·(h²)^((n-1)/2).
+    sagExponent: parity === "even" ? term.power / 2 : (term.power - 1) / 2,
+    // d/dh gives n·A_n·h^(n-1): h·(h²)^(n/2-1) for even n, (h²)^((n-1)/2) for odd n.
+    slopeExponent: parity === "even" ? term.power / 2 - 1 : (term.power - 1) / 2,
+  }));
+}
+
+const EVEN_TERM_PLANS = termPlans("even");
+const ODD_TERM_PLANS = termPlans("odd");
+
+const EVEN_POWER = Float64Array.from(EVEN_TERM_PLANS, (term) => term.power);
+const EVEN_SAG_EXP = Float64Array.from(EVEN_TERM_PLANS, (term) => term.sagExponent);
+const EVEN_SLOPE_EXP = Float64Array.from(EVEN_TERM_PLANS, (term) => term.slopeExponent);
+const ODD_POWER = Float64Array.from(ODD_TERM_PLANS, (term) => term.power);
+const ODD_SAG_EXP = Float64Array.from(ODD_TERM_PLANS, (term) => term.sagExponent);
+const ODD_SLOPE_EXP = Float64Array.from(ODD_TERM_PLANS, (term) => term.slopeExponent);
+
+function coefficientOf(asph: AsphericCoefficients, key: AsphericPolynomialDescriptor["key"]): number {
+  return (asph as Partial<Record<typeof key, number>>)[key] ?? 0;
+}
+
+/* Coefficient vectors compiled once per immutable asphere object (schema order
+ * within each parity), so the hot sag/slope loops read dense arrays instead of
+ * doing 18 string-keyed lookups per evaluation. Mutable ad-hoc inputs are
+ * recompiled to preserve value semantics when a caller edits a coefficient. */
+interface CompiledAsphereCoefficients {
+  readonly even: Float64Array;
+  readonly odd: Float64Array;
+}
+
+const COMPILED_ASPHERES = new WeakMap<AsphericCoefficients, CompiledAsphereCoefficients>();
+
+function compiledCoefficients(asph: AsphericCoefficients): CompiledAsphereCoefficients {
+  const cacheable = Object.isFrozen(asph);
+  if (cacheable) {
+    const cached = COMPILED_ASPHERES.get(asph);
+    if (cached) return cached;
+  }
+  const compiled = {
+    even: Float64Array.from(EVEN_TERM_PLANS, (term) => coefficientOf(asph, term.key)),
+    odd: Float64Array.from(ODD_TERM_PLANS, (term) => coefficientOf(asph, term.key)),
+  };
+  if (cacheable) COMPILED_ASPHERES.set(asph, compiled);
+  return compiled;
+}
 
 /** Radius magnitude above which the engine treats a surface as optically flat. */
 export const FLAT_R_THRESHOLD = 1e10;
@@ -53,29 +118,18 @@ export function conicPolySag(h: number, R: number, asph: AsphericCoefficients | 
   const d = 1 - (1 + K) * c * c * h2;
   const conic = (c * h2) / (1 + Math.sqrt(d > 0 ? d : 1e-12));
   if (!asph) return conic;
-  const poly =
-    asph.A4 * h2 * h2 +
-    asph.A6 * h2 ** 3 +
-    asph.A8 * h2 ** 4 +
-    asph.A10 * h2 ** 5 +
-    asph.A12 * h2 ** 6 +
-    asph.A14 * h2 ** 7 +
-    (asph.A16 ?? 0) * h2 ** 8 +
-    (asph.A18 ?? 0) * h2 ** 9 +
-    (asph.A20 ?? 0) * h2 ** 10;
+  const { even, odd } = compiledCoefficients(asph);
+  let poly = 0;
+  for (let t = 0; t < even.length; t++) {
+    poly += even[t] * h2 ** EVEN_SAG_EXP[t];
+  }
   // Odd orders stay a separate additive sum: it is exactly 0 for even-only
   // surfaces, keeping their sag bit-identical to the pre-odd-order engine.
-  const oddPoly =
-    h *
-    ((asph.A3 ?? 0) * h2 +
-      (asph.A5 ?? 0) * h2 ** 2 +
-      (asph.A7 ?? 0) * h2 ** 3 +
-      (asph.A9 ?? 0) * h2 ** 4 +
-      (asph.A11 ?? 0) * h2 ** 5 +
-      (asph.A13 ?? 0) * h2 ** 6 +
-      (asph.A15 ?? 0) * h2 ** 7 +
-      (asph.A17 ?? 0) * h2 ** 8 +
-      (asph.A19 ?? 0) * h2 ** 9);
+  let oddSum = 0;
+  for (let t = 0; t < odd.length; t++) {
+    oddSum += odd[t] * h2 ** ODD_SAG_EXP[t];
+  }
+  const oddPoly = h * oddSum;
   return conic + poly + oddPoly;
 }
 
@@ -98,28 +152,17 @@ export function sagSlopeRaw(h: number, R: number, asph: AsphericCoefficients | u
   const denom2 = 1 - (1 + K) * c * c * h2;
   const conicSlope = (c * h) / Math.sqrt(denom2 > 0 ? denom2 : 1e-12);
   if (!asph) return conicSlope;
-  const polySlope =
-    h *
-    (4 * asph.A4 * h2 +
-      6 * asph.A6 * h2 * h2 +
-      8 * asph.A8 * h2 ** 3 +
-      10 * asph.A10 * h2 ** 4 +
-      12 * asph.A12 * h2 ** 5 +
-      14 * asph.A14 * h2 ** 6 +
-      16 * (asph.A16 ?? 0) * h2 ** 7 +
-      18 * (asph.A18 ?? 0) * h2 ** 8 +
-      20 * (asph.A20 ?? 0) * h2 ** 9);
+  const { even, odd } = compiledCoefficients(asph);
+  let evenSum = 0;
+  for (let t = 0; t < even.length; t++) {
+    evenSum += EVEN_POWER[t] * even[t] * h2 ** EVEN_SLOPE_EXP[t];
+  }
+  const polySlope = h * evenSum;
   // d/dh of an odd term A_n*h^n is n*A_n*h^(n-1), an even power of h; kept as a
   // separate sum so even-only surfaces remain bit-identical (see conicPolySag).
-  const oddSlope =
-    3 * (asph.A3 ?? 0) * h2 +
-    5 * (asph.A5 ?? 0) * h2 ** 2 +
-    7 * (asph.A7 ?? 0) * h2 ** 3 +
-    9 * (asph.A9 ?? 0) * h2 ** 4 +
-    11 * (asph.A11 ?? 0) * h2 ** 5 +
-    13 * (asph.A13 ?? 0) * h2 ** 6 +
-    15 * (asph.A15 ?? 0) * h2 ** 7 +
-    17 * (asph.A17 ?? 0) * h2 ** 8 +
-    19 * (asph.A19 ?? 0) * h2 ** 9;
+  let oddSlope = 0;
+  for (let t = 0; t < odd.length; t++) {
+    oddSlope += ODD_POWER[t] * odd[t] * h2 ** ODD_SLOPE_EXP[t];
+  }
   return conicSlope + polySlope + oddSlope;
 }

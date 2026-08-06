@@ -2,6 +2,7 @@ import { describe, it, expect, vi } from "vitest";
 import validateLensData from "../../../src/optics/validateLensData.js";
 import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
 import { MAX_RIM_SLOPE_TAN } from "../../../src/optics/internal/surfaceMath.js";
+import { ASPHERIC_COEFFICIENT_SCHEMA } from "../../../src/types/asphericSchema.js";
 
 /* Passthrough mock so a single test can make buildAsphereIndex throw once.
  * buildAsphereIndex cannot be made to throw from plain lens data, so the
@@ -418,6 +419,29 @@ describe("validateLensData", () => {
     });
     const errors = validateLensData(data);
     expect(errors.some((e) => e.includes('asph key "1"') && e.includes("A14"))).toBe(true);
+  });
+
+  it("validates every schema descriptor: required-missing and optional-non-finite", () => {
+    const fullAsphere = Object.fromEntries(ASPHERIC_COEFFICIENT_SCHEMA.map((descriptor) => [descriptor.key, 0]));
+
+    for (const descriptor of ASPHERIC_COEFFICIENT_SCHEMA) {
+      if (descriptor.required) {
+        const missing = { ...fullAsphere } as Record<string, number>;
+        delete missing[descriptor.key];
+        const errors = validateLensData(makeValid({ asph: { "1": missing } }));
+        expect(
+          errors.some((e) => e.includes(`missing finite numeric coefficient ${descriptor.key}`)),
+          `required ${descriptor.key}`,
+        ).toBe(true);
+      } else {
+        const nonFinite = { ...fullAsphere, [descriptor.key]: NaN };
+        const errors = validateLensData(makeValid({ asph: { "1": nonFinite } }));
+        expect(
+          errors.some((e) => e.includes(`non-finite optional coefficient ${descriptor.key}`)),
+          `optional ${descriptor.key}`,
+        ).toBe(true);
+      }
+    }
   });
 
   it("accepts finite odd-order aspheric coefficients", () => {

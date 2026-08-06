@@ -13,7 +13,6 @@
  */
 import { mkdirSync, writeFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import buildLens from "../../../src/optics/buildLens.js";
 import {
   explainCompatibleGlassResolution,
   GLASS_ND_TOLERANCE,
@@ -22,8 +21,8 @@ import {
   type CompatibleGlassCandidate,
   type GlassResolutionCriterion,
 } from "../../../src/optics/glassCatalog.js";
-import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
-import type { LensData } from "../../../src/types/optics.js";
+import { walkLensSurfaces } from "./glassScanLib.js";
+import type { LensData, RefractiveIndexReferenceLine } from "../../../src/types/optics.js";
 
 const REPORT_DIR = "agent_docs/generated";
 const modules = import.meta.glob<{ default: LensData }>("../../../src/lens-data/**/*.data.ts", { eager: true });
@@ -38,6 +37,7 @@ interface AmbiguousElement {
   glassString: string;
   storedNd: number;
   storedVd: number | undefined;
+  indexReference: RefractiveIndexReferenceLine;
   selectedName: string;
   criterion: GlassResolutionCriterion;
   reason: string;
@@ -56,75 +56,53 @@ const CRITERION_LABELS: Readonly<Record<GlassResolutionCriterion, string>> = {
   "canonical-name-order": "Stable canonical-name order",
 };
 
-function toRepoRelativeLensPath(modulePath: string): string {
-  const lensDataIndex = modulePath.indexOf("src/lens-data/");
-  return lensDataIndex >= 0 ? modulePath.slice(lensDataIndex) : modulePath.replace(/^(\.\.\/)+/, "");
-}
-
 function escapeMarkdownCell(value: string): string {
   return value.replace(/\|/g, "\\|").replace(/\r?\n/g, " ");
 }
 
-function formatSigned(value: number, digits: number): string {
-  return `${value >= 0 ? "+" : ""}${value.toFixed(digits)}`;
+function ambiguityGroupKey(
+  row: Pick<AmbiguousElement, "glassString" | "storedNd" | "storedVd" | "indexReference">,
+): string {
+  return JSON.stringify([row.glassString, row.storedNd, row.storedVd ?? null, row.indexReference]);
 }
 
 function sourceLabel(candidate: CompatibleGlassCandidate): string {
-  if (candidate.source === "name") return "direct name";
+  if (candidate.source === "name") return "name";
   if (candidate.source === "alias") return "alias";
-  return "six-digit code";
+  return "code";
 }
 
-function vendorContextLabel(candidate: CompatibleGlassCandidate): string {
-  if (candidate.vendorMatch === null) return "vendor not specified";
-  return candidate.vendorMatch ? "vendor matches annotation" : "vendor conflicts with annotation";
-}
-
+/* Compact candidate summary: name, vendor, evidence source, vendor-context
+ * flag, and duplicate-code standing. The per-candidate Δn/Δν residuals are
+ * deliberately omitted from the committed report — the deciding residual
+ * appears in the selection reason, and the full numbers are one
+ * `explainCompatibleGlassResolution` call away. */
 function candidateDescription(candidate: CompatibleGlassCandidate): string {
-  const abbeDiff =
-    candidate.compatibility.abbeDiff === null ? "n/a" : formatSigned(candidate.compatibility.abbeDiff, 4);
-  const referenceLine = candidate.compatibility.referenceLine;
+  const vendor = candidate.vendorMatch === null ? "" : candidate.vendorMatch ? ", vendor ✓" : ", vendor ✗";
   const legacyCode =
     candidate.legacyCodePreferred === null
       ? ""
       : candidate.legacyCodePreferred
-        ? "; preferred duplicate-code row"
-        : "; alternate duplicate-code row";
-  return (
-    `**${candidate.entry.name}** (${candidate.entry.vendor}; ${sourceLabel(candidate)} ` +
-    `\`${candidate.matchedToken}\`; ${vendorContextLabel(candidate)}; ` +
-    `Δn${referenceLine}=${formatSigned(candidate.compatibility.indexDiff, 9)}; ` +
-    `Δν${referenceLine}=${abbeDiff}${legacyCode})`
-  );
-}
-
-function criterionLabel(row: AmbiguousElement): string {
-  if (row.criterion !== "index-residual") return CRITERION_LABELS[row.criterion];
-  return row.candidates[0]?.compatibility.referenceLine === "d"
-    ? "Smallest d-line residual"
-    : "Smallest e-line index residual";
+        ? ", preferred code row"
+        : ", alternate code row";
+  return `${candidate.entry.name} (${candidate.entry.vendor}, ${sourceLabel(candidate)}${vendor}${legacyCode})`;
 }
 
 describe("glass ambiguity scan", () => {
+  it("keeps d-line and e-line resolutions in separate report groups", () => {
+    const coordinates = { glassString: "example", storedNd: 1.5, storedVd: 50 };
+
+    expect(ambiguityGroupKey({ ...coordinates, indexReference: "d" })).not.toBe(
+      ambiguityGroupKey({ ...coordinates, indexReference: "e" }),
+    );
+  });
+
   it("emits every multi-candidate compatible resolution with its selection reasoning", () => {
     const rows: AmbiguousElement[] = [];
     let totalLenses = 0;
     let totalGlassElements = 0;
 
-    for (const [path, mod] of Object.entries(modules)) {
-      const raw = mod.default;
-      if (!raw?.key) continue;
-      const data: LensData = { ...LENS_DEFAULTS, ...raw } as LensData;
-      totalLenses++;
-
-      let lens;
-      try {
-        lens = buildLens(data);
-      } catch {
-        continue;
-      }
-
-      const filePath = toRepoRelativeLensPath(path);
+    totalLenses = walkLensSurfaces(modules, ({ filePath, data, L: lens }) => {
       for (const element of lens.elements) {
         if (!element.glass || element.nd === 1) continue;
         totalGlassElements++;
@@ -151,13 +129,14 @@ describe("glass ambiguity scan", () => {
           glassString: element.glass,
           storedNd: element.nd,
           storedVd: element.vd,
+          indexReference: element.indexReference ?? "d",
           selectedName: explanation.selected.name,
           criterion: explanation.criterion,
           reason: explanation.reason,
           candidates: explanation.candidates,
         });
       }
-    }
+    });
 
     rows.sort(
       (a, b) =>
@@ -203,19 +182,44 @@ describe("glass ambiguity scan", () => {
       lines.push(`| ${CRITERION_LABELS[criterion]} | ${count} |`);
     }
     lines.push("");
-    lines.push("## Ambiguous Elements");
+    // Resolution is a pure function of (annotation, reference line, stored coordinates), so
+    // per-element repetition collapses into one rollup row per distinct
+    // ambiguity with an occurrence count and one example locator.
+    const groups = new Map<string, AmbiguousElement[]>();
+    for (const row of rows) {
+      const key = ambiguityGroupKey(row);
+      const list = groups.get(key) ?? [];
+      list.push(row);
+      groups.set(key, list);
+    }
+
+    lines.push("## Ambiguous Annotations");
     lines.push("");
     lines.push(
-      "| Lens / element | Annotation | Stored reference n / ν | Selected and reason | Compatible candidates in resolver order |",
+      "One row per distinct (annotation, reference line, stored coordinates) ambiguity; the count spans every element it",
     );
-    lines.push("|---|---|---:|---|---|");
-    for (const row of rows) {
-      const elementLabel = row.elementLabel ? `${row.elementName} (${row.elementLabel})` : row.elementName;
+    lines.push("resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution` call away.");
+    lines.push("");
+    lines.push(
+      "| Annotation | Stored n / ν (line) | Selected and reason | Runners-up in resolver order | Elements | Example |",
+    );
+    lines.push("|---|---:|---|---|---:|---|");
+    for (const group of groups.values()) {
+      const row = group[0];
       const storedVd = row.storedVd === undefined ? "?" : row.storedVd.toFixed(2);
-      const surfaces = row.surfaces.join(", ") || "none";
-      const candidates = row.candidates.map(candidateDescription).join("<br>");
+      const runnersUp = row.candidates.slice(1).map(candidateDescription).join("<br>");
+      const files = new Set(group.map((entry) => entry.filePath));
+      const suffix = files.size > 1 ? ` +${files.size - 1} files` : "";
+      // Residual comparisons compress to two-significant-digit magnitudes;
+      // the full-precision numbers come from explainCompatibleGlassResolution.
+      const reasonText =
+        row.criterion === "index-residual" && row.candidates.length >= 2
+          ? `smallest ${row.candidates[0].compatibility.referenceLine}-line |Δn| (${Math.abs(
+              row.candidates[0].compatibility.indexDiff,
+            ).toExponential(1)} vs ${Math.abs(row.candidates[1].compatibility.indexDiff).toExponential(1)})`
+          : row.reason;
       lines.push(
-        `| [${escapeMarkdownCell(row.lensName)}](../../${row.filePath})<br>${escapeMarkdownCell(elementLabel)}; surfaces ${surfaces} | \`${escapeMarkdownCell(row.glassString)}\` | ${row.storedNd.toFixed(5)} / ${storedVd} | **${row.selectedName}**<br>${criterionLabel(row)}: ${row.reason} | ${candidates} |`,
+        `| \`${escapeMarkdownCell(row.glassString)}\` | ${row.storedNd.toFixed(5)} / ${storedVd} (${row.indexReference}) | ${row.selectedName} — ${escapeMarkdownCell(reasonText)} | ${runnersUp} | ${group.length} | [${escapeMarkdownCell(row.lensName)}](../../${row.filePath}) ${escapeMarkdownCell(row.elementName)}${suffix} |`,
       );
     }
     lines.push("");

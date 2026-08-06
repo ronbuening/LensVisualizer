@@ -7,7 +7,7 @@
 
 import type { ElementData, SurfaceData, SurfaceSpectral } from "../../types/optics.js";
 import { makeSurfaceDispersion } from "../dispersion.js";
-import type { SurfaceDispersion } from "../types.js";
+import type { CompiledSurfaceDispersion } from "../types.js";
 
 /**
  * Compile one chromatic dispersion descriptor per physical surface.
@@ -24,7 +24,7 @@ export function compileSurfaceDispersions(
   surfaces: readonly SurfaceData[],
   elements: readonly ElementData[],
   spectralByIdx: Readonly<Record<number, SurfaceSpectral>>,
-): readonly SurfaceDispersion[] {
+): readonly CompiledSurfaceDispersion[] {
   const elementById = new Map(elements.map((element) => [element.id, element]));
   return Object.freeze(
     surfaces.map((surface, surfaceIndex) => {

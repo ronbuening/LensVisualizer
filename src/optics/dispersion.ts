@@ -45,8 +45,14 @@ const CHANNEL_NM: Record<ChromaticChannel, number> = {
  * `dPgF` field on ElementData), which is what makes apochromatic correction
  * possible. Adding ΔP_g,F to the normal-line baseline gives the corrected
  * partial dispersion used by the Abbe-channel cascade for the V channel.
+ *
+ * Single source of the formula. The dPgF asymmetry is intentional: only this
+ * module's dispersion cascade has per-element ΔP_g,F available, so it passes
+ * dPgF explicitly; the runtime fallbacks (`wavelengthNd2`, PV diagram) fire
+ * only for out-of-range probes with no element context and use the normal
+ * line alone via the default.
  */
-function partialDispersionPgF(vd: number, dPgF: number): number {
+export function normalLinePgF(vd: number, dPgF = 0): number {
   return 0.6438 - 0.001682 * vd + dPgF;
 }
 
@@ -80,7 +86,7 @@ function makeLineIndicesDispersion(
   if (ngMeasured !== undefined) {
     nVfallback = ngMeasured;
   } else if (element?.vd !== undefined) {
-    const PgF = partialDispersionPgF(element.vd, element.dPgF ?? 0);
+    const PgF = normalLinePgF(element.vd, element.dPgF ?? 0);
     nVfallback = nF + PgF * (nF - nC);
   } else {
     nVfallback = nF;
@@ -120,7 +126,15 @@ export function makeSurfaceDispersion(
   if (element?.glass) {
     const entry = resolveCompatibleGlass(element.glass, surface.nd, element.vd, element.indexReference);
     if (entry) {
-      const fn: SurfaceIndexFn = (ch) => evaluateSellmeier(entry, CHANNEL_NM[ch]);
+      // Evaluate all four channels once at build time (same lookup shape as
+      // the lineIndices tier): re-running the Sellmeier series on every
+      // refraction event contradicted this module's no-repeated-overhead
+      // contract for the hot trace loop.
+      const nR = evaluateSellmeier(entry, CHANNEL_NM.R);
+      const nG = evaluateSellmeier(entry, CHANNEL_NM.G);
+      const nB = evaluateSellmeier(entry, CHANNEL_NM.B);
+      const nV = evaluateSellmeier(entry, CHANNEL_NM.V);
+      const fn: SurfaceIndexFn = (ch) => (ch === "R" ? nR : ch === "B" ? nB : ch === "V" ? nV : nG);
       return { fn, quality: "sellmeier", glassEntry: entry };
     }
     // Catalog match disagrees with the authored optical coordinates, or an
@@ -145,7 +159,7 @@ export function makeSurfaceDispersion(
     const delta = (nd - 1) / (2 * vd);
     const nC = nd - delta;
     const nF = nd + delta;
-    const PgF = partialDispersionPgF(vd, element?.dPgF ?? 0);
+    const PgF = normalLinePgF(vd, element?.dPgF ?? 0);
     const ng = nF + PgF * (nF - nC);
     const fn: SurfaceIndexFn = (ch) => (ch === "R" ? nC : ch === "B" ? nF : ch === "V" ? ng : nd);
     return { fn, quality: "abbe" };
@@ -175,20 +189,6 @@ export function buildSurfaceDispersionIndex(
     out[i] = makeSurfaceDispersion(surface, element, spectralByIdx[i]);
   }
   return out;
-}
-
-/**
- * Look up the refractive index at a surface for a given chromatic channel.
- * Convenience wrapper that delegates to the pre-resolved closure on the
- * runtime lens. Returns the legacy d-line `nd` if no dispersion entry exists
- * at the requested index (e.g. an out-of-range probe).
- */
-export function indexAt(L: RuntimeLens, surfIdx: number, channel: ChromaticChannel | undefined): number {
-  const surf = L.S[surfIdx];
-  if (!channel) return surf.nd === 1.0 ? 1.0 : surf.nd;
-  const entry = L.indexByIdx?.[surfIdx];
-  if (!entry) return surf.nd === 1.0 ? 1.0 : surf.nd;
-  return entry.fn(channel);
 }
 
 /**

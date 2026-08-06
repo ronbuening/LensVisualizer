@@ -10,6 +10,7 @@ import buildMeta from "../../generated/build-metadata.json";
 import { LENS_SUMMARIES, SUMMARY_KEYS } from "./lensSummaries.js";
 import type { LensSummary } from "./lensSummaries.js";
 import { canonicalPagePath } from "../seo/siteUrls.js";
+import { catalogCollator } from "./collation.js";
 
 export interface AuthorMetadata {
   name: string;
@@ -111,12 +112,12 @@ export function patentsForParty(name: string, role: "author" | "assignee"): Auth
       patentYear: patent.patentYear,
       authors: [...patent.authors],
       assignees: [...patent.assignees],
-      lenses: patent.lenses.sort((a, b) => a.name.localeCompare(b.name)),
+      lenses: patent.lenses.sort((a, b) => catalogCollator.compare(a.name, b.name)),
     }))
     .sort(
       (a, b) =>
         (a.patentYear ?? Number.POSITIVE_INFINITY) - (b.patentYear ?? Number.POSITIVE_INFINITY) ||
-        a.patentNumber.localeCompare(b.patentNumber),
+        catalogCollator.compare(a.patentNumber, b.patentNumber),
     );
 }
 
@@ -155,6 +156,6 @@ export function groupAuthorPatents(
   }
 
   return [...groups.values()].sort(
-    (a, b) => Number(a.isFallback) - Number(b.isFallback) || a.label.localeCompare(b.label),
+    (a, b) => Number(a.isFallback) - Number(b.isFallback) || catalogCollator.compare(a.label, b.label),
   );
 }

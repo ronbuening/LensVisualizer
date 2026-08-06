@@ -16,6 +16,7 @@ import {
   chromaticChannelIndexLabel,
 } from "../../optics/chromatic/channels.js";
 import { getAsphericEntriesForElement } from "./asphericElementUtils.js";
+import { withAlpha } from "../../utils/style/styles.js";
 
 interface ElementInspectorProps {
   info: ElementData;
@@ -184,7 +185,7 @@ export default function ElementInspector({ info, L, t, showChromatic, onOpenAsph
                   fontSize: 8,
                   padding: "2px 6px",
                   borderRadius: 3,
-                  background: `${t.asphStroke}22`,
+                  background: withAlpha(t.asphStroke, "22"),
                   color: t.asphLabel,
                   letterSpacing: "0.08em",
                   fontWeight: 600,

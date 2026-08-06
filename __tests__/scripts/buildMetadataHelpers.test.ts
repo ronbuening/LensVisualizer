@@ -107,6 +107,21 @@ describe("build metadata helpers", () => {
     });
   });
 
+  it("uses the UTC calendar date when a negative offset crosses midnight", () => {
+    // An evening-EDT commit is already the next day in UTC; the calendar
+    // dates shown on site cards must match the UTC instants used by RSS.
+    const dates = parseGitLogDates("2026-08-03T21:14:12-04:00\tcommit-evening");
+
+    expect(dates).toEqual({
+      publishedOn: "2026-08-04",
+      publishedAt: "2026-08-04T01:14:12.000Z",
+      publishedCommit: "commit-evening",
+      lastModified: "2026-08-04",
+      lastModifiedAt: "2026-08-04T01:14:12.000Z",
+      lastModifiedCommit: "commit-evening",
+    });
+  });
+
   it("orders later same-day commits first and alphabetizes entries from one commit", () => {
     const entries = [
       {

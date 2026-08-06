@@ -17,6 +17,7 @@ import { useState } from "react";
 import { Link } from "react-router";
 import type { Theme } from "../../types/theme.js";
 import { canonicalPagePath } from "../../utils/seo/siteUrls.js";
+import { STICKY_NAV_SCROLL_MARGIN } from "../../utils/style/pageStyles.js";
 
 export interface LinkListSidebarItem {
   /** Stable React key + hover id. */
@@ -39,7 +40,13 @@ interface LinkListSidebarProps {
   offsetTop?: number;
 }
 
-export default function LinkListSidebar({ title, items, theme: t, ariaLabel, offsetTop = 88 }: LinkListSidebarProps) {
+export default function LinkListSidebar({
+  title,
+  items,
+  theme: t,
+  ariaLabel,
+  offsetTop = STICKY_NAV_SCROLL_MARGIN,
+}: LinkListSidebarProps) {
   const [hovered, setHovered] = useState<string | null>(null);
   const [expanded, setExpanded] = useState<Set<string>>(() => new Set());
 

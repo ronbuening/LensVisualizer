@@ -22,7 +22,12 @@ import {
 import type { AuthorGroupMode, AuthorPatent } from "../utils/catalog/authorCatalog.js";
 import { SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
 import { breadcrumbJsonLd, collectionPageJsonLd, itemListJsonLd } from "../utils/seo/structuredData.js";
-import { LENS_LINK_BASE_STYLE, PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
+import {
+  H1_STYLE,
+  LENS_LINK_BASE_STYLE,
+  PAGE_BASE_STYLE,
+  STICKY_NAV_SCROLL_MARGIN,
+} from "../utils/style/pageStyles.js";
 import { toggleBtn, toggleGroup } from "../utils/style/styles.js";
 import { usePageThemeToggle } from "../utils/theme/usePageThemeToggle.js";
 import { patentPartyGroupAnchorId } from "./lensIndex/groupAnchors.js";
@@ -206,7 +211,7 @@ export default function AuthorPage() {
       </PageNavBar>
 
       <main style={PAGE_BASE_STYLE}>
-        <h1 style={{ fontSize: "1.5rem", fontWeight: 600, margin: "1.5rem 0 0.35rem" }}>{author.name}</h1>
+        <h1 style={{ ...H1_STYLE, marginBottom: "0.35rem" }}>{author.name}</h1>
         <p style={{ color: t.muted, fontSize: "0.8rem", lineHeight: 1.5, marginBottom: "0.4rem" }}>
           {patents.length} related {patents.length === 1 ? "patent" : "patents"} across {author.lensKeys.length}{" "}
           interactive lens {author.lensKeys.length === 1 ? "diagram" : "diagrams"}.
@@ -266,7 +271,7 @@ export default function AuthorPage() {
               <section
                 key={group.id}
                 id={patentPartyGroupAnchorId(anchorRole, group.id)}
-                style={{ marginBottom: "1.75rem" }}
+                style={{ marginBottom: "1.75rem", scrollMarginTop: STICKY_NAV_SCROLL_MARGIN }}
               >
                 <h2
                   style={{

@@ -12,7 +12,6 @@
  */
 import { describe, expect, it } from "vitest";
 import { mkdirSync, writeFileSync } from "node:fs";
-import buildLens from "../../../src/optics/buildLens.js";
 import {
   assessCatalogGlassCompatibility,
   GLASS_ND_TOLERANCE,
@@ -21,7 +20,7 @@ import {
   resolveGlass,
 } from "../../../src/optics/glassCatalog.js";
 import type { DispersionQuality } from "../../../src/optics/dispersion.js";
-import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
+import { extractPatentNumber, isExplicitlyUnmatched, walkLensSurfaces } from "./glassScanLib.js";
 import type { ElementData, LensData } from "../../../src/types/optics.js";
 
 const modules = import.meta.glob<{ default: LensData }>("../../../src/lens-data/**/*.data.ts", { eager: true });
@@ -65,22 +64,6 @@ interface ELineCatalogMatch {
   storedAbbe: number | undefined;
   catalogIndex: number;
   catalogAbbe: number | null;
-}
-
-function toRepoRelativeLensPath(modulePath: string): string {
-  const lensDataIndex = modulePath.indexOf("src/lens-data/");
-  return lensDataIndex >= 0 ? modulePath.slice(lensDataIndex) : modulePath.replace(/^(\.\.\/)+/, "");
-}
-
-function extractPatentNumber(subtitle: string | undefined): string | null {
-  const match = subtitle?.match(
-    /\b(?:Patent\s+)?((?:JPWO|WO|US|JP|DE|GB|FR|CH|CN)\s*\d(?:[\d,./-]|\s+(?=\d))*(?:\s*(?:A1|A|B2|B1|B|C\d?|U))?)/i,
-  );
-  return match?.[1].replace(/\s+/g, " ").trim() ?? null;
-}
-
-function isExplicitlyUnmatched(glassString: string | undefined): boolean {
-  return /\b(unmatched|unknown|proprietary|unidentified)\b/i.test(glassString ?? "");
 }
 
 function formatPercent(numerator: number, denominator: number): string {
@@ -161,12 +144,7 @@ describe("Sellmeier coverage scan", () => {
     let eLineSurfaces = 0;
     let eLineSellmeierSurfaces = 0;
 
-    for (const [path, mod] of Object.entries(modules)) {
-      const raw = mod.default;
-      if (!raw?.key) continue;
-
-      const data: LensData = { ...LENS_DEFAULTS, ...raw } as LensData;
-      const L = buildLens(data);
+    walkLensSurfaces(modules, ({ filePath, data, L }) => {
       const elementById = new Map(L.elements.map((element) => [element.id, element]));
 
       const missingSurfaces: MissingSurface[] = [];
@@ -194,7 +172,7 @@ describe("Sellmeier coverage scan", () => {
             const compatibility = assessCatalogGlassCompatibility(catalogEntry, surface.nd, element.vd, "e");
             eLineMatches.push({
               lensName: data.name ?? data.key,
-              filePath: toRepoRelativeLensPath(path),
+              filePath,
               surfaceLabel: surface.label ?? `surface[${i}]`,
               elementLabel: element.label || element.name,
               glassString: element.glass ?? "",
@@ -266,7 +244,7 @@ describe("Sellmeier coverage scan", () => {
         name: data.name ?? data.key,
         visible: data.visible !== false,
         patentNumber: extractPatentNumber(data.subtitle),
-        filePath: toRepoRelativeLensPath(path),
+        filePath,
         glassElements,
         fullySellmeierElements,
         fullyTrustedChromaticElements,
@@ -276,7 +254,7 @@ describe("Sellmeier coverage scan", () => {
         missingSurfaces,
         missingTrustedSurfaces,
       });
-    }
+    });
 
     const sortedRows = [...rows].sort(compareCoverage);
     const completeRows = sortedRows.filter((row) => row.nonAirSurfaces > 0 && row.missingTrustedSurfaces.length === 0);

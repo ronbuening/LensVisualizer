@@ -70,11 +70,16 @@ export default function PageNavBar({
           ⌕
         </Link>
         <div style={toggleGroup(t)}>
-          <button onClick={onToggleHC} style={toggleBtn(t, highContrast)}>
+          <button type="button" aria-pressed={highContrast} onClick={onToggleHC} style={toggleBtn(t, highContrast)}>
             <span style={{ fontSize: 12, lineHeight: 1, fontWeight: 700 }}>◐</span>
             <span>HC</span>
           </button>
-          <button onClick={onToggleTheme} style={toggleBtn(t, false, { hasRightBorder: false })}>
+          <button
+            type="button"
+            aria-label={`Theme: ${slot.label}. Cycle theme`}
+            onClick={onToggleTheme}
+            style={toggleBtn(t, false, { hasRightBorder: false })}
+          >
             <span style={{ fontSize: themeMode === "auto" ? 12 : 14, lineHeight: 1 }}>{slot.icon}</span>
             <span>{slot.label}</span>
           </button>

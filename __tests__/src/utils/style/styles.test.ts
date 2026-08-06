@@ -17,7 +17,10 @@ import {
   overlayModal,
   panelOverlayContent,
   closeBtn,
+  withAlpha,
 } from "../../../../src/utils/style/styles.js";
+import { CHANGELOG_TYPE_COLORS } from "../../../../src/utils/content/changelogHelpers.js";
+import { TAG_COLORS } from "../../../../src/components/content/ArticleCard.js";
 import type { Theme } from "../../../../src/types/theme.js";
 
 /* Minimal mock theme with just the tokens factories consume */
@@ -38,6 +41,43 @@ const mockTheme = {
   descBg: "#101010",
   descBorder: "#333",
 } as unknown as Theme;
+
+/* ── Color helpers ── */
+
+const VALID_TINT = /^#([0-9a-f]{8})$|^rgba\(/i;
+
+describe("withAlpha(color, alphaHex)", () => {
+  it("expands 3-digit hex before appending the alpha", () => {
+    expect(withAlpha("#58c", "22")).toBe("#5588cc22");
+    expect(withAlpha("#58c", "22")).toMatch(VALID_TINT);
+  });
+
+  it("appends the alpha to 6-digit hex", () => {
+    expect(withAlpha("#5588cc", "22")).toBe("#5588cc22");
+    expect(withAlpha("#5588cc", "22")).toMatch(VALID_TINT);
+  });
+
+  it("replaces the alpha component of rgba() colors", () => {
+    expect(withAlpha("rgba(59, 130, 246, 0.18)", "22")).toBe("rgba(59, 130, 246, 0.133)");
+    expect(withAlpha("rgba(59, 130, 246, 0.18)", "22")).toMatch(VALID_TINT);
+  });
+
+  it("converts rgb() colors to rgba()", () => {
+    expect(withAlpha("rgb(59, 130, 246)", "22")).toBe("rgba(59, 130, 246, 0.133)");
+  });
+
+  it("returns unrecognized color forms unchanged", () => {
+    expect(withAlpha("transparent", "22")).toBe("transparent");
+  });
+});
+
+describe("badge palettes", () => {
+  it("every palette literal is 6-digit hex so tints render", () => {
+    for (const color of [...Object.values(CHANGELOG_TYPE_COLORS), ...Object.values(TAG_COLORS)]) {
+      expect(color).toMatch(/^#[0-9a-fA-F]{6}$/);
+    }
+  });
+});
 
 /* ── Static constants ── */
 

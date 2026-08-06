@@ -24,6 +24,7 @@ import { PATENTS, PATENT_COUNTRY_GROUPS, espacenetPatentUrl } from "../../../src
 import { AUTHOR_SORT_PREFERENCE_KEY } from "../../../src/utils/state/authorSortPreference.js";
 import themes from "../../../src/utils/theme/themes.js";
 import { clearBrowserState, installMatchMediaMock, renderWithRouter } from "../../testUtils.js";
+import { catalogCollator } from "../../../src/utils/catalog/collation.js";
 
 vi.mock("../../../src/components/SEOHead.js", () => ({
   default: function SEOHead() {
@@ -131,9 +132,9 @@ describe("search, author, and patent pages", () => {
   });
 
   it("renders an author index and sorts it by name or patent count", () => {
-    const alphabeticalAuthors = [...AUTHORS].sort((left, right) => left.name.localeCompare(right.name));
+    const alphabeticalAuthors = [...AUTHORS].sort((left, right) => catalogCollator.compare(left.name, right.name));
     const authorsByPatentCount = [...AUTHORS].sort(
-      (left, right) => right.patentCount - left.patentCount || left.name.localeCompare(right.name),
+      (left, right) => right.patentCount - left.patentCount || catalogCollator.compare(left.name, right.name),
     );
 
     renderWithRouter(
@@ -161,7 +162,7 @@ describe("search, author, and patent pages", () => {
   it("restores the author sort preference on a later visit", async () => {
     localStorage.setItem(AUTHOR_SORT_PREFERENCE_KEY, "patents");
     const authorsByPatentCount = [...AUTHORS].sort(
-      (left, right) => right.patentCount - left.patentCount || left.name.localeCompare(right.name),
+      (left, right) => right.patentCount - left.patentCount || catalogCollator.compare(left.name, right.name),
     );
 
     renderWithRouter(
@@ -181,7 +182,7 @@ describe("search, author, and patent pages", () => {
 
   it("falls back to alphabetical sorting for an invalid stored preference", async () => {
     localStorage.setItem(AUTHOR_SORT_PREFERENCE_KEY, "newest-first");
-    const alphabeticalAuthors = [...AUTHORS].sort((left, right) => left.name.localeCompare(right.name));
+    const alphabeticalAuthors = [...AUTHORS].sort((left, right) => catalogCollator.compare(left.name, right.name));
 
     renderWithRouter(
       <HelmetProvider>
@@ -292,8 +293,8 @@ describe("search, author, and patent pages", () => {
     expect(unprofiledCard).toBeTruthy();
     if (!profiledCard || !unprofiledCard) return;
 
-    expect(within(profiledCard).getByLabelText("Curated biography available").textContent).toBe("Biography");
-    expect(within(unprofiledCard).queryByLabelText("Curated biography available")).toBeNull();
+    expect(within(profiledCard).getByText("Biography")).toBeTruthy();
+    expect(within(unprofiledCard).queryByText("Biography")).toBeNull();
   });
 
   it("renders patents in Country → Assignee sections with lens links", () => {

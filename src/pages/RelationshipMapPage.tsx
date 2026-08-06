@@ -16,6 +16,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import SEOHead from "../components/SEOHead.js";
 import PageNavBar from "../components/layout/PageNavBar.js";
+import PanelErrorBoundary from "../components/errors/PanelErrorBoundary.js";
 import RelationshipMap from "../components/relationshipMap/RelationshipMap.js";
 import RelationshipEntityPicker from "../components/relationshipMap/RelationshipEntityPicker.js";
 import PatentDetailCard from "../components/relationshipMap/PatentDetailCard.js";
@@ -24,16 +25,17 @@ import { ASSIGNEES } from "../utils/catalog/assigneeCatalog.js";
 import { buildRelationshipGraph, resolveFocusParam, type PartyRef } from "../utils/catalog/relationshipGraph.js";
 import { SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
 import { breadcrumbJsonLd, collectionPageJsonLd } from "../utils/seo/structuredData.js";
-import { PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
+import { H1_STYLE, PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
 import { usePageThemeToggle } from "../utils/theme/usePageThemeToggle.js";
 import { canonicalPagePath, canonicalPageUrl } from "../utils/seo/siteUrls.js";
+import { catalogCollator } from "../utils/catalog/collation.js";
 
 const TOP_COUNT = 12;
 
 /** Top-N entities of an index by patent count, then name. */
 function topByPatents<T extends { name: string; slug: string; patentCount: number }>(index: T[]): T[] {
   return [...index]
-    .sort((left, right) => right.patentCount - left.patentCount || left.name.localeCompare(right.name))
+    .sort((left, right) => right.patentCount - left.patentCount || catalogCollator.compare(left.name, right.name))
     .slice(0, TOP_COUNT);
 }
 
@@ -116,7 +118,9 @@ export default function RelationshipMapPage() {
         {graph && focus ? (
           <>
             <div style={{ margin: "1.25rem 0 1rem" }}>
-              <h2 style={{ fontSize: "1.3rem", fontWeight: 600, margin: "0 0 0.35rem" }}>
+              {/* h1: the focused view renders no other h1, so this heading must
+               * be the document heading for the outline to stay intact. */}
+              <h1 style={{ fontSize: "1.3rem", fontWeight: 600, margin: "0 0 0.35rem" }}>
                 {focus.name}
                 <span
                   style={{
@@ -134,7 +138,7 @@ export default function RelationshipMapPage() {
                 >
                   {focus.role === "assignee" ? "assignee" : "inventor"}
                 </span>
-              </h2>
+              </h1>
               {graph.center.hasPage && (
                 <Link
                   to={`/authors/${focus.slug}/`}
@@ -149,28 +153,33 @@ export default function RelationshipMapPage() {
               <RelationshipEntityPicker theme={t} onPick={setFocusParty} compact />
             </div>
 
-            <RelationshipMap
-              key={graph.center.id}
-              graph={graph}
-              theme={t}
-              selectedPatentId={selectedPatentId}
-              onSelectPatent={setSelectedPatentId}
-              onFocusParty={setFocusParty}
-            />
-
-            {selectedPatent && (
-              <PatentDetailCard
-                patent={selectedPatent}
-                centerRef={focus}
+            {/* A render throw inside the map must not blank the page: the
+             * boundary keeps the picker above usable, and its center-id key
+             * resets the error state when the user refocuses. */}
+            <PanelErrorBoundary lensKey={graph.center.id}>
+              <RelationshipMap
+                key={graph.center.id}
+                graph={graph}
                 theme={t}
+                selectedPatentId={selectedPatentId}
+                onSelectPatent={setSelectedPatentId}
                 onFocusParty={setFocusParty}
-                onClose={() => setSelectedPatentId(null)}
               />
-            )}
+
+              {selectedPatent && (
+                <PatentDetailCard
+                  patent={selectedPatent}
+                  centerRef={focus}
+                  theme={t}
+                  onFocusParty={setFocusParty}
+                  onClose={() => setSelectedPatentId(null)}
+                />
+              )}
+            </PanelErrorBoundary>
           </>
         ) : (
           <>
-            <h1 style={{ fontSize: "1.5rem", fontWeight: 600, margin: "1.5rem 0 0.5rem" }}>Patent Relationship Map</h1>
+            <h1 style={H1_STYLE}>Patent Relationship Map</h1>
             <p
               style={{
                 color: t.muted,
