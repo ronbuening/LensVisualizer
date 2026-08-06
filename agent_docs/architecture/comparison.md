@@ -50,3 +50,7 @@ stable `focus`, `aperture`, `zoom`, `shift`, and `tilt` params. Shared overlay/v
 pane-specific via `a_el` and `b_el`. URL helpers live in `comparisonURLSync.ts`,
 `src/utils/state/parseComparisonParams.ts`, and `src/utils/state/lensViewUrlState.ts`. All URL writes flow through one
 100 ms-debounced callback in `src/utils/state/useURLSync.ts`.
+
+Compare identity may be a hidden member of a visible lens's `opticalConfiguration` group. The selector allow-list is
+the visible catalog plus those group members; unrelated hidden debug/reference fixtures remain unavailable. This makes
+configurations such as TC OUT versus TC IN directly comparable without an ambiguous pane-specific `cfg` query.

@@ -163,8 +163,9 @@ opticalConfiguration: {
 - Author each member as a complete, independently valid prescription. Do not store only a surface delta or combine
   numerical groups from different patent examples unless the source explicitly defines that combination.
 - Keep exactly one member catalog-visible. Set `visible: false` on alternate data-only members so they do not appear as
-  separate lenses, patents, debug fixtures, routes, or SEO entries. The visible member remains the canonical page and
-  supplies the shared analysis prose.
+  separate lenses, patents, debug fixtures, or index/SEO entries. The visible member remains the canonical single-lens
+  page and supplies the shared analysis prose; hidden members may appear as noindex compare-route identities so two
+  configurations can be selected independently.
 - Record material source differences between configurations in each file's header and `subtitle`. A shared
   `groupKey` communicates a UI relationship, not that the source necessarily publishes a matched before/after pair.
 

@@ -1042,7 +1042,7 @@ Verification: gate passes.
 
 ### U7. Make TC/optical-configuration state URL-shareable and compare-reachable **[changelog]**
 
-- [ ] Effort: M · Impact: med · Risk: med (lens identity, URL hydration, hidden catalog keys)
+- [x] Effort: M · Impact: med · Risk: med (lens identity, URL hydration, hidden catalog keys)
 
 Maintainer decision: change the deliberate viewer-local design. Today
 `LensViewer.tsx` ~124–141 keeps `selectedConfigurationKey` in component state (comment: "the
