@@ -13,7 +13,8 @@
  */
 
 import { readFileSync, existsSync } from "node:fs";
-import { join } from "node:path";
+import { basename, join } from "node:path";
+import { ARTICLE_FEED_PATH, CHANGELOG_FEED_PATH, LENS_FEED_PATH } from "../src/utils/content/feedMetadata.ts";
 import { buildChangelogFeedItems } from "./generate-rss-feeds.mjs";
 import { SITE_URL, canonicalPagePath, canonicalPageUrl } from "./site-url.mjs";
 import { htmlHasNoindexDirective } from "./sitemap-lib.mjs";
@@ -23,10 +24,14 @@ const DIST_DIR = join(ROOT, "dist");
 const META_PATH = join(ROOT, "src", "generated", "build-metadata.json");
 const FEED_LIMIT = 50;
 const FEEDS = [
-  { name: "lens", file: "lenses.xml", url: `${SITE_URL}/feeds/lenses.xml` },
-  { name: "article", file: "articles.xml", url: `${SITE_URL}/feeds/articles.xml` },
-  { name: "changelog", file: "changelog.xml", url: `${SITE_URL}/feeds/changelog.xml` },
-];
+  { name: "lens", path: LENS_FEED_PATH },
+  { name: "article", path: ARTICLE_FEED_PATH },
+  { name: "changelog", path: CHANGELOG_FEED_PATH },
+].map(({ name, path }) => ({
+  name,
+  file: basename(path),
+  url: `${SITE_URL}${path}`,
+}));
 
 let errors = 0;
 let warnings = 0;

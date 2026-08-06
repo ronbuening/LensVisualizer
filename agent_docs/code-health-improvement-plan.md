@@ -1225,7 +1225,7 @@ regenerated feeds byte-identical.
 
 ### C10. Derive feed paths from one definition
 
-- [ ] Effort: S · Impact: low-med · Risk: low
+- [x] Effort: S · Impact: low-med · Risk: low
 
 `/feeds/{lenses,articles,changelog}.xml` is hardcoded in five places: `feedMetadata.ts` ~1–3,
 `FEED_DEFINITIONS` (`generate-rss-feeds.mjs` ~22–41), AGAIN as raw filenames in `writeRssFeeds`
