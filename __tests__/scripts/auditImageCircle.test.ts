@@ -9,37 +9,34 @@
 import { execFileSync } from "node:child_process";
 import { describe, expect, it } from "vitest";
 
-describe("audit:image-circle loader contract", () => {
+function runNpmScript(script: string, args: string[] = []): string {
+  return execFileSync("npm", ["run", script, "--", ...args], { encoding: "utf8" });
+}
+
+describe("audit script npm contracts", () => {
   it("audits one known lens through the npm entry with the loader hook", () => {
-    const output = execFileSync(
-      "node",
-      [
-        "--import",
-        "./scripts/ts-js-specifier-hook-register.mjs",
-        "scripts/audit-image-circle.mjs",
-        "src/lens-data/canon/Canon50mmf12.data.ts",
-      ],
-      { encoding: "utf8" },
-    );
+    const output = runNpmScript("audit:image-circle", ["src/lens-data/canon/Canon50mmf12.data.ts"]);
 
     expect(output).toContain("1 lens checked");
   });
 
-  it("rejects an invalid --sd override in audit-surface-probe", () => {
+  it("loads audit:patent-figure through its npm entry before validating arguments", () => {
     let failed = false;
     try {
-      execFileSync(
-        "node",
-        [
-          "--import",
-          "./scripts/ts-js-specifier-hook-register.mjs",
-          "scripts/audit-surface-probe.mjs",
-          "src/lens-data/canon/Canon50mmf12.data.ts",
-          "--sd",
-          "1=-5",
-        ],
-        { encoding: "utf8" },
-      );
+      runNpmScript("audit:patent-figure");
+    } catch (error) {
+      failed = true;
+      const stderr = String((error as { stderr?: string }).stderr);
+      expect(stderr).toContain("usage: node scripts/audit-patent-figure.mjs");
+      expect(stderr).not.toContain("ERR_MODULE_NOT_FOUND");
+    }
+    expect(failed).toBe(true);
+  });
+
+  it("rejects an invalid --sd override through the audit:surface npm entry", () => {
+    let failed = false;
+    try {
+      runNpmScript("audit:surface", ["src/lens-data/canon/Canon50mmf12.data.ts", "--sd", "1=-5"]);
     } catch (error) {
       failed = true;
       expect(String((error as { stderr?: string }).stderr)).toContain("finite positive value");

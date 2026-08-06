@@ -76,6 +76,19 @@ describe("per-descriptor term isolation", () => {
 });
 
 describe("combined-term slope consistency", () => {
+  it("reflects coefficient changes on mutable ad-hoc inputs", () => {
+    const asph = zeroCoefficients();
+    const h = 2;
+
+    expect(conicPolySag(h, FLAT_R, asph)).toBe(0);
+    expect(sagSlopeRaw(h, FLAT_R, asph)).toBe(0);
+
+    asph.A4 = 1;
+
+    expect(conicPolySag(h, FLAT_R, asph)).toBe(16);
+    expect(sagSlopeRaw(h, FLAT_R, asph)).toBe(32);
+  });
+
   it("matches a central difference of sag inside the valid conic domain", () => {
     const R = 30;
     const K = -0.6;

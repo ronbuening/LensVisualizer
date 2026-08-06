@@ -19,6 +19,7 @@ import { emitMountJsonString } from "../../../../src/optics/mount/emitMountJson.
 const REPORT_DIR = "agent_docs/generated";
 const SVG_DIR = `${REPORT_DIR}/mounts`;
 const REPORT_PATH = `${REPORT_DIR}/lens-mount-svg-specifications.md`;
+const UTF8_ENCODER = new TextEncoder();
 
 const VIEWS: { view: MountView; label: string; file: string }[] = [
   { view: "camera_side_front", label: "Camera-side front view", file: "camera-front" },
@@ -197,6 +198,10 @@ function svgContentSummary(markup: string): string {
   return `${elementCount} elements in ${layerCount} layers · hash \`${svgContentHash(markup)}\``;
 }
 
+function utf8ByteLength(value: string): number {
+  return UTF8_ENCODER.encode(value).byteLength;
+}
+
 function mountSection(spec: MountSpec, svgRelPaths: Record<string, string>): string[] {
   const lines: string[] = [];
   lines.push(`### \`${spec.mountId}\` — ${spec.displayLabel}`);
@@ -225,7 +230,7 @@ function mountSection(spec: MountSpec, svgRelPaths: Record<string, string>): str
   lines.push("");
   lines.push(
     `Summarized, not embedded: the block is emitted by construction from \`src/mounts/${spec.mountId}.mount.ts\` ` +
-      `(${machineJson.length} bytes, content hash \`${svgContentHash(machineJson)}\`). Read the typed source for the ` +
+      `(${utf8ByteLength(machineJson)} bytes, content hash \`${svgContentHash(machineJson)}\`). Read the typed source for the ` +
       `diffable geometry, or regenerate the full JSON with \`emitMountJsonString\`.`,
   );
   lines.push("");
@@ -305,5 +310,11 @@ describe("lens mount SVG specifications report", () => {
     expect(report).toContain("nikon-f");
     expect(report).toContain("Machine-readable mount block");
     expect(report).toMatch(/content hash `[0-9a-f]{8}`/);
+    expect(specs.some((spec) => utf8ByteLength(emitMountJsonString(spec)) > emitMountJsonString(spec).length)).toBe(
+      true,
+    );
+    for (const spec of specs) {
+      expect(report).toContain(`(${utf8ByteLength(emitMountJsonString(spec))} bytes, content hash`);
+    }
   });
 });

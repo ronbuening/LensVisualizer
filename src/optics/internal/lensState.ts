@@ -48,7 +48,7 @@ export function buildAsphereIndex(
   const asphByIdx: Record<number, AsphericCoefficients> = {};
   for (const [label, coeffs] of Object.entries(asph || {})) {
     const idx = labelIdx[label];
-    if (idx !== undefined) asphByIdx[idx] = coeffs;
+    if (idx !== undefined) asphByIdx[idx] = Object.freeze({ ...coeffs });
   }
   return asphByIdx;
 }

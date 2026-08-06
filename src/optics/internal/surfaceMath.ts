@@ -47,10 +47,10 @@ function coefficientOf(asph: AsphericCoefficients, key: AsphericPolynomialDescri
   return (asph as Partial<Record<typeof key, number>>)[key] ?? 0;
 }
 
-/* Coefficient vectors compiled once per asphere object (schema order within
- * each parity), so the hot sag/slope loops read dense arrays instead of doing
- * 18 string-keyed lookups per evaluation. Keyed by object identity — asphere
- * objects are immutable once authored/compiled. */
+/* Coefficient vectors compiled once per immutable asphere object (schema order
+ * within each parity), so the hot sag/slope loops read dense arrays instead of
+ * doing 18 string-keyed lookups per evaluation. Mutable ad-hoc inputs are
+ * recompiled to preserve value semantics when a caller edits a coefficient. */
 interface CompiledAsphereCoefficients {
   readonly even: Float64Array;
   readonly odd: Float64Array;
@@ -59,13 +59,16 @@ interface CompiledAsphereCoefficients {
 const COMPILED_ASPHERES = new WeakMap<AsphericCoefficients, CompiledAsphereCoefficients>();
 
 function compiledCoefficients(asph: AsphericCoefficients): CompiledAsphereCoefficients {
-  const cached = COMPILED_ASPHERES.get(asph);
-  if (cached) return cached;
+  const cacheable = Object.isFrozen(asph);
+  if (cacheable) {
+    const cached = COMPILED_ASPHERES.get(asph);
+    if (cached) return cached;
+  }
   const compiled = {
     even: Float64Array.from(EVEN_TERM_PLANS, (term) => coefficientOf(asph, term.key)),
     odd: Float64Array.from(ODD_TERM_PLANS, (term) => coefficientOf(asph, term.key)),
   };
-  COMPILED_ASPHERES.set(asph, compiled);
+  if (cacheable) COMPILED_ASPHERES.set(asph, compiled);
   return compiled;
 }
 

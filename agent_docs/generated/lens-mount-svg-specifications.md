@@ -140,7 +140,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/bronica-etr.mount.ts` (28955 bytes, content hash `c0159b28`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/bronica-etr.mount.ts` (28965 bytes, content hash `c0159b28`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -236,7 +236,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/bronica-gs.mount.ts` (28594 bytes, content hash `ce14d029`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/bronica-gs.mount.ts` (28604 bytes, content hash `ce14d029`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -332,7 +332,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/bronica-sq.mount.ts` (28602 bytes, content hash `739c5835`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/bronica-sq.mount.ts` (28612 bytes, content hash `739c5835`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -447,7 +447,7 @@ None — fully electronic.
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/canon-ef.mount.ts` (39142 bytes, content hash `0b9dc789`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/canon-ef.mount.ts` (39164 bytes, content hash `0b9dc789`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -567,7 +567,7 @@ None — fully electronic.
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/canon-ef-m.mount.ts` (46112 bytes, content hash `838778d4`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/canon-ef-m.mount.ts` (46128 bytes, content hash `838778d4`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -682,7 +682,7 @@ None — fully electronic.
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/canon-ef-s.mount.ts` (43211 bytes, content hash `b97fa3c0`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/canon-ef-s.mount.ts` (43227 bytes, content hash `b97fa3c0`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -781,7 +781,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/canon-fd.mount.ts` (30556 bytes, content hash `0f75e587`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/canon-fd.mount.ts` (30572 bytes, content hash `0f75e587`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -878,7 +878,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/canon-fl.mount.ts` (25609 bytes, content hash `b74b8c87`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/canon-fl.mount.ts` (25621 bytes, content hash `b74b8c87`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -1000,7 +1000,7 @@ None — fully electronic.
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/canon-rf.mount.ts` (46525 bytes, content hash `0b5c4722`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/canon-rf.mount.ts` (46547 bytes, content hash `0b5c4722`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -1099,7 +1099,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/contax-rf.mount.ts` (25078 bytes, content hash `337c0902`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/contax-rf.mount.ts` (25084 bytes, content hash `337c0902`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -1193,7 +1193,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/contax-yashica.mount.ts` (25389 bytes, content hash `868c20a8`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/contax-yashica.mount.ts` (25395 bytes, content hash `868c20a8`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -1288,7 +1288,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/exakta.mount.ts` (28287 bytes, content hash `af4a67e7`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/exakta.mount.ts` (28297 bytes, content hash `af4a67e7`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -1368,7 +1368,7 @@ None — fully electronic.
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/fixed-lens-camera.mount.ts` (7471 bytes, content hash `622f749b`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/fixed-lens-camera.mount.ts` (7473 bytes, content hash `622f749b`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -1482,7 +1482,7 @@ None — fully electronic.
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/four-thirds.mount.ts` (44770 bytes, content hash `9a036e06`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/four-thirds.mount.ts` (44782 bytes, content hash `9a036e06`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -1605,7 +1605,7 @@ None — fully electronic.
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/fujifilm-g.mount.ts` (44873 bytes, content hash `6c77e633`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/fujifilm-g.mount.ts` (44894 bytes, content hash `6c77e633`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -1725,7 +1725,7 @@ None — fully electronic.
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/fujifilm-x.mount.ts` (40872 bytes, content hash `ff27dc67`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/fujifilm-x.mount.ts` (40894 bytes, content hash `ff27dc67`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -1844,7 +1844,7 @@ None — fully electronic.
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/hasselblad-h.mount.ts` (43918 bytes, content hash `d75bc0ad`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/hasselblad-h.mount.ts` (43920 bytes, content hash `d75bc0ad`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -1939,7 +1939,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/hasselblad-v.mount.ts` (28593 bytes, content hash `853c6244`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/hasselblad-v.mount.ts` (28599 bytes, content hash `853c6244`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -2058,7 +2058,7 @@ None — fully electronic.
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/hasselblad-xcd.mount.ts` (44317 bytes, content hash `4a1b20fc`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/hasselblad-xcd.mount.ts` (44323 bytes, content hash `4a1b20fc`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -2178,7 +2178,7 @@ None — fully electronic.
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/l-mount.mount.ts` (42761 bytes, content hash `90e54dd8`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/l-mount.mount.ts` (42783 bytes, content hash `90e54dd8`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -2264,7 +2264,7 @@ None — fully electronic.
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/leica-ltm.mount.ts` (15625 bytes, content hash `285cfa96`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/leica-ltm.mount.ts` (15635 bytes, content hash `285cfa96`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -2362,7 +2362,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/leica-m.mount.ts` (29629 bytes, content hash `8f6e9792`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/leica-m.mount.ts` (29645 bytes, content hash `8f6e9792`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -2458,7 +2458,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/leica-r.mount.ts` (25220 bytes, content hash `f5eb116d`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/leica-r.mount.ts` (25226 bytes, content hash `f5eb116d`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -2545,7 +2545,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/m42.mount.ts` (16246 bytes, content hash `09ea5151`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/m42.mount.ts` (16256 bytes, content hash `09ea5151`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -2665,7 +2665,7 @@ None — fully electronic.
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/micro-four-thirds.mount.ts` (45369 bytes, content hash `6a5536e9`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/micro-four-thirds.mount.ts` (45379 bytes, content hash `6a5536e9`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -2760,7 +2760,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/minolta-sr.mount.ts` (26071 bytes, content hash `33eee8d8`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/minolta-sr.mount.ts` (26077 bytes, content hash `33eee8d8`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -2882,7 +2882,7 @@ None — fully electronic.
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/nikon-1.mount.ts` (63911 bytes, content hash `6568e816`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/nikon-1.mount.ts` (63927 bytes, content hash `6568e816`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -3020,7 +3020,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/nikon-f.mount.ts` (54554 bytes, content hash `e1a10aa8`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/nikon-f.mount.ts` (54564 bytes, content hash `e1a10aa8`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -3117,7 +3117,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/nikon-s.mount.ts` (24645 bytes, content hash `2ec9eb3c`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/nikon-s.mount.ts` (24651 bytes, content hash `2ec9eb3c`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -3239,7 +3239,7 @@ None — fully electronic.
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/nikon-z.mount.ts` (47921 bytes, content hash `bfe835f0`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/nikon-z.mount.ts` (47939 bytes, content hash `bfe835f0`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -3336,7 +3336,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/olympus-om.mount.ts` (23215 bytes, content hash `9febe918`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/olympus-om.mount.ts` (23223 bytes, content hash `9febe918`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -3425,7 +3425,7 @@ None — fully electronic.
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/pentax-110.mount.ts` (21805 bytes, content hash `5d80fc6f`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/pentax-110.mount.ts` (21815 bytes, content hash `5d80fc6f`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -3519,7 +3519,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/pentax-645.mount.ts` (25670 bytes, content hash `7e8b4fba`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/pentax-645.mount.ts` (25676 bytes, content hash `7e8b4fba`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -3613,7 +3613,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/pentax-67.mount.ts` (25422 bytes, content hash `5e33b695`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/pentax-67.mount.ts` (25428 bytes, content hash `5e33b695`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -3741,7 +3741,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/pentax-k.mount.ts` (49517 bytes, content hash `92a0fb24`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/pentax-k.mount.ts` (49534 bytes, content hash `92a0fb24`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -3859,7 +3859,7 @@ None — fully electronic.
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/samsung-nx.mount.ts` (39875 bytes, content hash `da9c7128`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/samsung-nx.mount.ts` (39883 bytes, content hash `da9c7128`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -3976,7 +3976,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/sigma-sa.mount.ts` (41223 bytes, content hash `1abfc097`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/sigma-sa.mount.ts` (41229 bytes, content hash `1abfc097`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -4094,7 +4094,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/sony-a.mount.ts` (43999 bytes, content hash `28a65a55`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/sony-a.mount.ts` (44001 bytes, content hash `28a65a55`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -4216,7 +4216,7 @@ None — fully electronic.
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/sony-fe.mount.ts` (44941 bytes, content hash `3fe5d167`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/sony-fe.mount.ts` (44943 bytes, content hash `3fe5d167`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -4311,7 +4311,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/zeiss-contarex.mount.ts` (25479 bytes, content hash `de45b240`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/zeiss-contarex.mount.ts` (25485 bytes, content hash `de45b240`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 

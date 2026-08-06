@@ -22,7 +22,7 @@ import {
   type GlassResolutionCriterion,
 } from "../../../src/optics/glassCatalog.js";
 import { walkLensSurfaces } from "./glassScanLib.js";
-import type { LensData } from "../../../src/types/optics.js";
+import type { LensData, RefractiveIndexReferenceLine } from "../../../src/types/optics.js";
 
 const REPORT_DIR = "agent_docs/generated";
 const modules = import.meta.glob<{ default: LensData }>("../../../src/lens-data/**/*.data.ts", { eager: true });
@@ -37,6 +37,7 @@ interface AmbiguousElement {
   glassString: string;
   storedNd: number;
   storedVd: number | undefined;
+  indexReference: RefractiveIndexReferenceLine;
   selectedName: string;
   criterion: GlassResolutionCriterion;
   reason: string;
@@ -57,6 +58,12 @@ const CRITERION_LABELS: Readonly<Record<GlassResolutionCriterion, string>> = {
 
 function escapeMarkdownCell(value: string): string {
   return value.replace(/\|/g, "\\|").replace(/\r?\n/g, " ");
+}
+
+function ambiguityGroupKey(
+  row: Pick<AmbiguousElement, "glassString" | "storedNd" | "storedVd" | "indexReference">,
+): string {
+  return JSON.stringify([row.glassString, row.storedNd, row.storedVd ?? null, row.indexReference]);
 }
 
 function sourceLabel(candidate: CompatibleGlassCandidate): string {
@@ -82,6 +89,14 @@ function candidateDescription(candidate: CompatibleGlassCandidate): string {
 }
 
 describe("glass ambiguity scan", () => {
+  it("keeps d-line and e-line resolutions in separate report groups", () => {
+    const coordinates = { glassString: "example", storedNd: 1.5, storedVd: 50 };
+
+    expect(ambiguityGroupKey({ ...coordinates, indexReference: "d" })).not.toBe(
+      ambiguityGroupKey({ ...coordinates, indexReference: "e" }),
+    );
+  });
+
   it("emits every multi-candidate compatible resolution with its selection reasoning", () => {
     const rows: AmbiguousElement[] = [];
     let totalLenses = 0;
@@ -114,6 +129,7 @@ describe("glass ambiguity scan", () => {
           glassString: element.glass,
           storedNd: element.nd,
           storedVd: element.vd,
+          indexReference: element.indexReference ?? "d",
           selectedName: explanation.selected.name,
           criterion: explanation.criterion,
           reason: explanation.reason,
@@ -166,12 +182,12 @@ describe("glass ambiguity scan", () => {
       lines.push(`| ${CRITERION_LABELS[criterion]} | ${count} |`);
     }
     lines.push("");
-    // Resolution is a pure function of (annotation, stored coordinates), so
+    // Resolution is a pure function of (annotation, reference line, stored coordinates), so
     // per-element repetition collapses into one rollup row per distinct
     // ambiguity with an occurrence count and one example locator.
     const groups = new Map<string, AmbiguousElement[]>();
     for (const row of rows) {
-      const key = `${row.glassString}|${row.storedNd}|${row.storedVd ?? "?"}`;
+      const key = ambiguityGroupKey(row);
       const list = groups.get(key) ?? [];
       list.push(row);
       groups.set(key, list);
@@ -179,11 +195,13 @@ describe("glass ambiguity scan", () => {
 
     lines.push("## Ambiguous Annotations");
     lines.push("");
-    lines.push("One row per distinct (annotation, stored coordinates) ambiguity; the count spans every element it");
+    lines.push(
+      "One row per distinct (annotation, reference line, stored coordinates) ambiguity; the count spans every element it",
+    );
     lines.push("resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution` call away.");
     lines.push("");
     lines.push(
-      "| Annotation | Stored n / ν | Selected and reason | Runners-up in resolver order | Elements | Example |",
+      "| Annotation | Stored n / ν (line) | Selected and reason | Runners-up in resolver order | Elements | Example |",
     );
     lines.push("|---|---:|---|---|---:|---|");
     for (const group of groups.values()) {
@@ -201,7 +219,7 @@ describe("glass ambiguity scan", () => {
             ).toExponential(1)} vs ${Math.abs(row.candidates[1].compatibility.indexDiff).toExponential(1)})`
           : row.reason;
       lines.push(
-        `| \`${escapeMarkdownCell(row.glassString)}\` | ${row.storedNd.toFixed(5)} / ${storedVd} | ${row.selectedName} — ${escapeMarkdownCell(reasonText)} | ${runnersUp} | ${group.length} | [${escapeMarkdownCell(row.lensName)}](../../${row.filePath}) ${escapeMarkdownCell(row.elementName)}${suffix} |`,
+        `| \`${escapeMarkdownCell(row.glassString)}\` | ${row.storedNd.toFixed(5)} / ${storedVd} (${row.indexReference}) | ${row.selectedName} — ${escapeMarkdownCell(reasonText)} | ${runnersUp} | ${group.length} | [${escapeMarkdownCell(row.lensName)}](../../${row.filePath}) ${escapeMarkdownCell(row.elementName)}${suffix} |`,
       );
     }
     lines.push("");
