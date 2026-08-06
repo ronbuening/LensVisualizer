@@ -17,6 +17,8 @@ const zoomLensKey = CATALOG_KEYS.find(
   (key) => Array.isArray(LENS_CATALOG[key].zoomPositions) && LENS_CATALOG[key].zoomPositions!.length >= 2,
 )!;
 const zoomLensPositions = LENS_CATALOG[zoomLensKey].zoomPositions!;
+const canonicalConfigurationKey = "nikon-af-s-nikkor-180-400mm-f4e-tc14-fl-ed-vr";
+const alternateConfigurationKey = `${canonicalConfigurationKey}-tc-in`;
 
 /* ── Setup / teardown ── */
 
@@ -85,7 +87,7 @@ describe("useURLSync — immediate URL update on lens change", () => {
 
     const state2: LensState = {
       ...state1,
-      lens: { ...state1.lens, lensKeyA: CATALOG_KEYS[1] },
+      lens: { ...state1.lens, lensKeyA: CATALOG_KEYS[1], selectedConfigurationKey: CATALOG_KEYS[1] },
     };
     act(() => {
       rerender({ s: state2 });
@@ -138,7 +140,7 @@ describe("useURLSync — zoom initialization", () => {
     const dispatch = vi.fn() as unknown as Dispatch<LensAction>;
     const state: LensState = {
       ...makeState(),
-      lens: { ...makeState().lens, lensKeyA: zoomLensKey, comparing: false },
+      lens: { ...makeState().lens, lensKeyA: zoomLensKey, selectedConfigurationKey: zoomLensKey, comparing: false },
     };
     const urlZoom = zoomLensPositions[1];
     window.history.replaceState({}, "", `?zoom=${urlZoom}`);
@@ -199,6 +201,38 @@ describe("useURLSync — updateURLWithSliders (debounced)", () => {
     expect(lastCall[2]).toBe(`/lens/${CATALOG_KEYS[0]}/?v=1&el=3&gm=1&ad=1&tab=coma`);
   });
 
+  it("writes configuration identity and removes stale configuration params", () => {
+    const dispatch = vi.fn() as unknown as Dispatch<LensAction>;
+    const configuredState: LensState = {
+      ...makeState(),
+      lens: {
+        ...makeState().lens,
+        lensKeyA: canonicalConfigurationKey,
+        selectedConfigurationKey: alternateConfigurationKey,
+      },
+    };
+    window.history.replaceState({}, "", `/lens/${canonicalConfigurationKey}/`);
+    replaceStateSpy.mockClear();
+
+    const { rerender } = renderHook(({ state }) => useURLSync(state, dispatch, null, true, false), {
+      initialProps: { state: configuredState },
+    });
+    act(() => vi.advanceTimersByTime(100));
+    expect(replaceStateSpy.mock.calls.at(-1)?.[2]).toBe(
+      `/lens/${canonicalConfigurationKey}/?v=1&cfg=${alternateConfigurationKey}`,
+    );
+
+    const canonicalState: LensState = {
+      ...configuredState,
+      lens: { ...configuredState.lens, selectedConfigurationKey: canonicalConfigurationKey },
+    };
+    window.history.replaceState({}, "", `/lens/${canonicalConfigurationKey}/?v=1&cfg=stale-configuration-key`);
+    replaceStateSpy.mockClear();
+    rerender({ state: canonicalState });
+    act(() => vi.advanceTimersByTime(100));
+    expect(replaceStateSpy.mock.calls.at(-1)?.[2]).toBe(`/lens/${canonicalConfigurationKey}/`);
+  });
+
   it("uses shared overlay params and per-pane element params on compare pages", () => {
     const dispatch = vi.fn() as unknown as Dispatch<LensAction>;
     const [lensKeyA, lensKeyB] = CATALOG_KEYS;
@@ -245,6 +279,33 @@ describe("useURLSync — updateURLWithSliders (debounced)", () => {
         analysisDrawerOpen: true,
         analysisDrawerTab: "pupils",
       }),
+    });
+  });
+
+  it("hydrates valid configuration history and rejects cross-group history", () => {
+    const dispatch = vi.fn() as unknown as Dispatch<LensAction>;
+    const state: LensState = {
+      ...makeState(),
+      lens: {
+        ...makeState().lens,
+        lensKeyA: canonicalConfigurationKey,
+        selectedConfigurationKey: canonicalConfigurationKey,
+      },
+    };
+    renderHook(() => useURLSync(state, dispatch, null, true, false));
+
+    window.history.replaceState({}, "", `?v=1&cfg=${alternateConfigurationKey}`);
+    act(() => window.dispatchEvent(new PopStateEvent("popstate")));
+    expect(dispatch).toHaveBeenCalledWith({
+      type: "APPLY_URL_VIEW_STATE",
+      state: expect.objectContaining({ configurationKey: alternateConfigurationKey }),
+    });
+
+    window.history.replaceState({}, "", "?v=1&cfg=reference-newtonian-side-focus");
+    act(() => window.dispatchEvent(new PopStateEvent("popstate")));
+    expect(dispatch).toHaveBeenCalledWith({
+      type: "APPLY_URL_VIEW_STATE",
+      state: expect.objectContaining({ configurationKey: canonicalConfigurationKey }),
     });
   });
 
@@ -431,7 +492,7 @@ describe("useURLSync — updateURLWithSliders (debounced)", () => {
     const dispatch = vi.fn() as unknown as Dispatch<LensAction>;
     const state: LensState = {
       ...makeState(),
-      lens: { ...makeState().lens, lensKeyA: zoomLensKey },
+      lens: { ...makeState().lens, lensKeyA: zoomLensKey, selectedConfigurationKey: zoomLensKey },
       sliders: { focusT: 0, zoomT: 0.5, aberrationT: 0, stopdownT: 0, shiftMm: 0, tiltDeg: 0 },
     };
     const { result } = renderHook(() => useURLSync(state, dispatch, null));

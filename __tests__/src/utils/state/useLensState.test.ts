@@ -52,6 +52,9 @@ describe("useLensState — defaults", () => {
 /* ── URL param initialization ── */
 
 describe("useLensState — URL params override defaults", () => {
+  const canonicalConfigurationKey = "nikon-af-s-nikkor-180-400mm-f4e-tc14-fl-ed-vr";
+  const alternateConfigurationKey = `${canonicalConfigurationKey}-tc-in`;
+
   it("uses ?lens= to set lensKeyA when key is valid", () => {
     window.history.replaceState({}, "", `?lens=${CATALOG_KEYS[1]}`);
     const { result } = renderHook(() => useLensState(CATALOG_KEYS));
@@ -81,6 +84,21 @@ describe("useLensState — URL params override defaults", () => {
     const { result } = renderHook(() => useLensState(CATALOG_KEYS));
     // Falls back to default (first key)
     expect(result.current[0].lens.lensKeyA).toBe(CATALOG_KEYS[0]);
+  });
+
+  it("hydrates a valid optical configuration on the first render", () => {
+    window.history.replaceState({}, "", `/lens/${canonicalConfigurationKey}/?v=1&cfg=${alternateConfigurationKey}`);
+    const { result } = renderHook(() => useLensState(CATALOG_KEYS, canonicalConfigurationKey));
+
+    expect(result.current[0].lens.lensKeyA).toBe(canonicalConfigurationKey);
+    expect(result.current[0].lens.selectedConfigurationKey).toBe(alternateConfigurationKey);
+  });
+
+  it("falls back to the canonical key for a cross-group configuration", () => {
+    window.history.replaceState({}, "", `/lens/${canonicalConfigurationKey}/?v=1&cfg=reference-newtonian-side-focus`);
+    const { result } = renderHook(() => useLensState(CATALOG_KEYS, canonicalConfigurationKey));
+
+    expect(result.current[0].lens.selectedConfigurationKey).toBe(canonicalConfigurationKey);
   });
 });
 

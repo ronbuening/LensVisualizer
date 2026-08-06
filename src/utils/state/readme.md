@@ -48,6 +48,8 @@ flowchart LR
   n_src_utils_state_src_utils_state_useURLSync_ts --> n_external_src_types
   n_src_utils_state_src_utils_state_lensReducer_ts --> n_external_src_utils_appConfig_ts
   n_src_utils_state_src_utils_state_lensViewUrlSync_ts --> n_external_src_utils_catalog
+  n_src_utils_state_src_utils_state_useLensState_ts --> n_external_src_utils_catalog
+  n_src_utils_state_src_utils_state_useURLSync_ts --> n_external_src_utils_catalog
   n_src_utils_state_src_utils_state_lensReducer_ts --> n_external_src_utils_featureFlags_ts
   n_src_utils_state_src_utils_state_lensViewUrlSync_ts --> n_external_src_utils_seo
   n_src_utils_state_src_utils_state_lensReducer_ts --> n_external_src_utils_theme
@@ -65,15 +67,14 @@ flowchart LR
   n_src_utils_state_src_utils_state_useLensState_ts --> n_src_utils_state_src_utils_state_parseComparisonParams_ts
   n_src_utils_state_src_utils_state_useLensState_ts --> n_src_utils_state_src_utils_state_preferences_ts
   n_src_utils_state_src_utils_state_usePreferences_ts --> n_src_utils_state_src_utils_state_preferences_ts
-  n_src_utils_state_src_utils_state_lensViewUrlSync_ts --> n_src_utils_state_src_utils_state_zoomConversion_ts
-  n_src_utils_state_src_utils_state_parseComparisonParams_ts --> n_src_utils_state_src_utils_state_zoomConversion_ts
+  n_src_utils_state_truncated["additional relationships omitted"]
 ```
 
 ## Directory Overview
 
 - Direct source files: 11
 - Direct subfolders: 0
-- Main outbound areas: same folder (15), src/types (12), package:react (4), src/comparison (3), src/optics/lensMovement.ts, src/utils/appConfig.ts, src/utils/catalog, src/utils/featureFlags.ts, +3 more
+- Main outbound areas: same folder (15), src/types (12), package:react (4), src/comparison (3), src/utils/catalog (3), src/optics/lensMovement.ts, src/utils/appConfig.ts, src/utils/featureFlags.ts, +3 more
 - External consumers: src/comparison, src/components/HolidayFavicon.tsx, src/components/hooks, src/components/layout, src/pages/AuthorsIndexPage.tsx, src/utils/theme
 
 ## Files
@@ -87,7 +88,7 @@ flowchart LR
 | `lensViewUrlSync.ts` | Lens View Url Sync helper module | same folder (4), src/types (2), src/utils/catalog, src/utils/seo | same folder | ComparisonLenses, ComparisonError, ComparisonLensesParam, getComparisonZoomLens, getCatalogZoomLens, getUrlZoomLens, getStateZoom, buildLensViewSearch, +4 more |
 | `parseComparisonParams.ts` | Parse Comparison Params helper module | same folder (2), src/comparison | same folder (2), src/comparison | focalLengthToZoomT, zoomTToFocalLength, buildComparePath, BuildURLSliders, parseLensKeysFromSearch, parseComparisonParams, encodeSliderParams, buildComparisonURL |
 | `preferences.ts` | Preferences helper module | src/types | same folder (2), src/utils/theme (2), src/components/HolidayFavicon.tsx | PREFS_KEY, loadPrefs |
-| `useLensState.ts` | React hook module | same folder (4), package:react, src/types, src/utils/useMediaQuery.ts | src/components/layout | default, useLensState |
+| `useLensState.ts` | React hook module | same folder (4), package:react, src/types, src/utils/catalog, src/utils/useMediaQuery.ts | src/components/layout | default, useLensState |
 | `usePreferences.ts` | React hook module | package:react, same folder, src/types | src/components/layout | default, usePreferences |
-| `useURLSync.ts` | React hook module | same folder (3), package:react, src/types | src/components/layout | default, useURLSync |
+| `useURLSync.ts` | React hook module | same folder (3), package:react, src/types, src/utils/catalog | src/components/layout | default, useURLSync |
 | `zoomConversion.ts` | Zoom Conversion helper module | none | same folder (2) | ZoomConvertibleLens, focalLengthToZoomT, zoomTToFocalLength |

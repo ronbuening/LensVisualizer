@@ -262,25 +262,29 @@ describe("LensViewer", () => {
     expect(mocks.updateURLWithSliders).toHaveBeenCalledTimes(1);
   });
 
-  it("switches a configured diagram without changing the canonical lens", () => {
+  it("switches a configured diagram through reducer-owned identity", () => {
     const baseKey = "apo-lanthar-50f2";
     const alternateKey = `${baseKey}-optic-b`;
     mocks.state = makeState({ lens: { ...makeState().lens, lensKeyA: baseKey } });
 
-    render(<LensViewer initialLensKey={baseKey} />);
+    const { rerender } = render(<LensViewer initialLensKey={baseKey} />);
 
     expect(screen.getByTestId("active-configuration").textContent).toBe(baseKey);
     expect(screen.getByTestId("diagram-lens-key").textContent).toBe(baseKey);
     fireEvent.click(screen.getByRole("button", { name: "OPTIC B" }));
 
-    expect(screen.getByTestId("active-configuration").textContent).toBe(alternateKey);
-    expect(screen.getByTestId("diagram-lens-key").textContent).toBe(alternateKey);
     expect(mocks.dispatch).toHaveBeenCalledWith({
-      type: "SET_SELECTED_ELEMENT",
-      panelId: "main",
-      elementId: null,
+      type: "SET_OPTICAL_CONFIGURATION",
+      key: alternateKey,
     });
     expect(mocks.navigate).not.toHaveBeenCalled();
+
+    mocks.state = makeState({
+      lens: { ...makeState().lens, lensKeyA: baseKey, selectedConfigurationKey: alternateKey },
+    });
+    rerender(<LensViewer initialLensKey={baseKey} />);
+    expect(screen.getByTestId("active-configuration").textContent).toBe(alternateKey);
+    expect(screen.getByTestId("diagram-lens-key").textContent).toBe(alternateKey);
   });
 
   it("uses a fixed-height desktop app shell with a scroll-contained content slot", () => {
