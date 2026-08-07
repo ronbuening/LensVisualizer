@@ -28,4 +28,10 @@ Catalog version: local working tree, 2026-08-07
 ### Glass and identity review
 
 - Retained the patent-coordinate glass classes because the patent supplies `nd` and `vd` without coefficient-backed production identities.
+- Marked L2 as `APD (INFERRED)`: its `nd = 1.49700`, `vd = 81.6` coordinates identify the ED/APD fluorophosphate-crown class, while the note preserves that the patent supplies no partial-dispersion table or unique production melt.
 - Corrected the display name from “Mamiya 7 210mm f/8 N L” to the production ordering “Mamiya N 210mm f/8 L.”
+
+### Screenshot follow-up
+
+- Re-measured the supplied site diagram against the isolated patent figure. The rear group differs by approximately 13–20%, below the audit procedure's approximately 25% strong-evidence threshold; leader-line contamination prevents an independent reliable measurement of the central elements.
+- No additional semi-diameter change was justified. Element shapes, D1/D2 boundaries, functional-group labels, and rounded Abbe badges agree with the prescription.

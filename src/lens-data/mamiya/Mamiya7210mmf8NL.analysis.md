@@ -84,8 +84,9 @@ length of +153.470mm.
 
 L2 is the strongest low-dispersion positive member in the prescription. Its unusually high Abbe number provides low
 primary chromatic dispersion for the positive power placed near the front of the lens. The patent does not publish
-line indices or partial-dispersion data, however, so the glass supports a low-dispersion classification rather than an
-APO or anomalous-dispersion claim.
+line indices or partial-dispersion data. The diagram therefore marks the element `APD (INFERRED)` from its 497816
+fluorophosphate-crown class, not from a patent partial-dispersion measurement or a uniquely identified production melt.
+That element-level catalog inference does not support a system APO claim.
 
 L2 is cemented directly to L3. The positive standalone power listed above therefore describes L2 in isolation, not the
 power of the cemented D1 pair.

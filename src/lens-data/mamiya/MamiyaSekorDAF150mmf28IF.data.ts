@@ -34,7 +34,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  near-exact current OHARA catalog models were selected independently from ║
  * ║  those coordinates. Their nC, nF, ng, and dPgF values are catalog-derived ║
  * ║  modeling data, not patent values or supplier claims. L7 remains           ║
- * ║  unmatched. No system-level APO claim is encoded.                          ║
+ * ║  unmatched. L1's APD tag is inferred from S-FPL51 catalog data; no          ║
+ * ║  system-level APO claim is encoded.                                        ║
  * ║                                                                            ║
  * ║  The file excludes filters, sensor cover glass, dummy planes, and          ║
  * ║  mechanical parts.                                                         ║
@@ -82,6 +83,10 @@ const LENS_DATA = {
       nF: 1.501231,
       ng: 1.504507,
       dPgF: 0.028,
+      apd: "inferred",
+      apdNote:
+        "S-FPL51 catalog-equivalent ED fluorophosphate; dPgF = +0.0280 from the catalog model, " +
+        "not the patent.",
       role: "Front positive collector in the fixed G1 group.",
     },
     {
@@ -230,9 +235,9 @@ const LENS_DATA = {
   ],
 
   groups: [
-    { text: "G1 (FIXED)", fromSurface: "1", toSurface: "6" },
-    { text: "G2 (FOCUS)", fromSurface: "7", toSurface: "14" },
-    { text: "G3 (FOCUS)", fromSurface: "15", toSurface: "16" },
+    { text: "G1", fromSurface: "1", toSurface: "6" },
+    { text: "G2", fromSurface: "7", toSurface: "14" },
+    { text: "G3", fromSurface: "15", toSurface: "16" },
   ],
 
   doublets: [{ text: "D1", fromSurface: "12", toSurface: "14" }],

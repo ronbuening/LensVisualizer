@@ -171,10 +171,10 @@ const LENS_DATA = {
   ],
 
   groups: [
-    { text: "G1 FLOAT", fromSurface: "1", toSurface: "3" },
-    { text: "G2 FIXED", fromSurface: "4", toSurface: "5" },
-    { text: "G3 FLOAT", fromSurface: "6", toSurface: "7" },
-    { text: "G4 FIXED", fromSurface: "8", toSurface: "10" },
+    { text: "G1", fromSurface: "1", toSurface: "3" },
+    { text: "G2", fromSurface: "4", toSurface: "5" },
+    { text: "G3", fromSurface: "6", toSurface: "7" },
+    { text: "G4", fromSurface: "8", toSurface: "10" },
   ],
 
   doublets: [

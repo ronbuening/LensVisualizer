@@ -31,3 +31,9 @@ Catalog version: local working tree, 2026-08-07
 ### Glass review
 
 - Retained the six-digit patent-coordinate glass classes. The patent gives only `nd` and `vd`, and no unique coefficient-backed production identities were established.
+
+### Screenshot follow-up
+
+- A tighter repeat measurement against patent Figure 1 found L1–L6 figure/data mean-height ratios of approximately `1.007`, `0.996`, `0.941`, `0.991`, `1.118`, and `0.996`. Every element is within approximately 12% of the patent silhouette, so no further semi-diameter change is justified.
+- Element shapes, D1/D2 boundaries, rounded Abbe badges, and the production display name remain correct.
+- Shortened the diagram captions to `G1`–`G4`; the floating/fixed behavior remains explicit in the focus model, variable-gap labels, top-line specification, and analysis while no longer colliding beneath the compact rear group.

@@ -163,9 +163,9 @@ const LENS_DATA = {
   varLabels: [],
 
   groups: [
-    { text: "FRONT G1–G2", fromSurface: "1", toSurface: "4" },
-    { text: "MIDDLE G3–G4", fromSurface: "5", toSurface: "8" },
-    { text: "REAR G5–G6", fromSurface: "9", toSurface: "12" },
+    { text: "G1–G2", fromSurface: "1", toSurface: "4" },
+    { text: "G3–G4", fromSurface: "5", toSurface: "8" },
+    { text: "G5–G6", fromSurface: "9", toSurface: "12" },
   ],
   doublets: [],
 

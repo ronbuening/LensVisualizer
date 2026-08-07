@@ -20,3 +20,10 @@ Catalog version: local working tree, 2026-08-07
 - Strict and trusted Sellmeier coverage increased from 3/6 to 5/6 elements after assigning the existing S-FSL5 catalog equivalent to G1 and G3.
 - No new catalog entry was added. G2 lacks a source-backed public identity and coefficients, so creating an entry would encode unsupported dispersion data.
 - The other three catalog-resolved classes remain vendor-neutral because the numerical match does not establish Mamiya's production supplier.
+
+### Diagram and source review
+
+- No matching local patent PDF is present in `patents/`, so the project's patent-figure audit procedure blocks a direct semi-diameter revision for this lens. The current image-circle audit reports zero undersized surfaces.
+- Reviewed all six surface-derived element types, air-spaced group boundaries, and rounded Abbe badges; they agree with the stored prescription.
+- Shortened the crowded functional captions from `FRONT G1–G2`, `MIDDLE G3–G4`, and `REAR G5–G6` to `G1–G2`, `G3–G4`, and `G5–G6` without changing their physical spans.
+- The production display name `MAMIYA-SEKOR CS 35mm f/2.8` remains correct.

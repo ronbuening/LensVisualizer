@@ -27,6 +27,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  meridional ray bundles, edge thickness, rim slope, cross-gap clearance,    ║
  * ║  off-axis containment, and zero required render trim in the standalone      ║
  * ║  Stage 2 audit. They remain modeling inferences, not patent dimensions.     ║
+ * ║                                                                            ║
+ * ║  GLASS: The patent publishes nd/νd but no line-index or partial-dispersion  ║
+ * ║  table. L2's APD tag is inferred from its 497816 fluorophosphate-crown      ║
+ * ║  class; it does not identify a production melt or assert a system APO label.║
  * ╚══════════════════════════════════════════════════════════════════════════════╝
  */
 
@@ -80,7 +84,10 @@ const LENS_DATA = {
       vd: 81.6,
       fl: 85.537214185,
       glass: "497816 low-dispersion fluorophosphate-crown class",
-      apd: false,
+      apd: "inferred",
+      apdNote:
+        "ED/APD fluorophosphate-crown class inferred from nd = 1.49700 and νd = 81.6; " +
+        "the patent publishes no partial-dispersion table.",
       role: "Low-dispersion positive member of the front cemented doublet.",
       cemented: "D1",
     },

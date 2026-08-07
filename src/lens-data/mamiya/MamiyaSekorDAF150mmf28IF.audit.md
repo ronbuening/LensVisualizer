@@ -20,6 +20,7 @@ Catalog version: local working tree, 2026-08-07
 ### Glass review
 
 - Canonicalized `S-NBH 8` to `S-NBH8` and `S-TIM 5` to `S-TIM5`, allowing the existing OHARA Sellmeier catalog entries to resolve.
+- Marked L1 as `APD (INFERRED)` because the selected S-FPL51 catalog model supplies `dPgF = +0.0280`; the patent itself publishes only `nd` and `vd` and does not identify a supplier.
 - Retained L7 as unmatched. The nearby public candidates do not reproduce both its stored `nd = 1.806098` and `vd = 40.34` closely enough to support an exact spectral identity.
 - No new glass catalog entry was added because the remaining unmatched coordinate lacks a source-backed public identity and coefficients.
 
@@ -27,3 +28,4 @@ Catalog version: local working tree, 2026-08-07
 
 - Corrected the marketed display order from “D AF 150mm f/2.8 IF” to “AF 150mm f/2.8 IF D.”
 - Romanized the patent inventor as Hideyuki Suga to satisfy catalog metadata conventions and match the existing author identity.
+- Shortened the diagram's functional-group captions to the patent's `G1`, `G2`, and `G3`; fixed/focusing behavior remains documented in the focus model and analysis without crowding the element annotations.

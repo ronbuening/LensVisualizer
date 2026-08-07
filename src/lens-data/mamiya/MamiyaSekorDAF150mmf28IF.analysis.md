@@ -73,7 +73,7 @@ Standalone `f = +148.791678 mm`.
 L1 is the strongly curved front collector of G1. Its high Abbe number places a low-dispersion positive component at the
 largest ray heights in the lens. The current OHARA model gives `nC = 1.495136`, `nF = 1.501231`, `ng = 1.504507`, and
 `dPgF = +0.0280` [3]. Those spectral values are catalog-derived modeling data; the patent does not name S-FPL51 or a
-glass supplier.
+glass supplier. The diagram consequently marks L1 as `APD (INFERRED)`, not patent-confirmed APD glass.
 
 The modeled clear semi-diameter is 34.5 mm, giving a 69.0 mm front clear diameter. This is a derived optical aperture,
 not a published mechanical diameter, and it remains below the production lens's 72 mm filter diameter.
