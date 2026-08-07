@@ -28,14 +28,23 @@ This file tracks the second bucket plus any cases from the first bucket that nee
 - `catalog-mismatches.generated.md` and `glass-relabel-by-lens.generated.md` report **0** remaining
   dispersion-coordinate mismatches across **0** lens files. The mismatch report separately records **18 / 75**
   native e-line surfaces resolved through explicit names or aliases.
-- `sellmeier-coverage.generated.md` reports **526** lenses, **5774** non-air surfaces, **5085** strict catalog
-  Sellmeier surfaces (**88.1%**), and **5096** trusted chromatic surfaces (**88.3%**).
-- **258** lenses are fully covered by strict Sellmeier data and **263** are fully covered by trusted chromatic data.
+- `sellmeier-coverage.generated.md` reports **532** lenses, **5814** non-air surfaces, **5123** strict catalog
+  Sellmeier surfaces (**88.1%**), and **5134** trusted chromatic surfaces (**88.3%**).
+- **262** lenses are fully covered by strict Sellmeier data and **267** are fully covered by trusted chromatic data.
 - `unresolvedGlassScan` reports **364** non-explicit-unmatched annotations and **201** distinct unresolved glass-like
   tokens. The residual total is code/prose inventory rather than a catalog-coordinate mismatch queue.
-- The missing-Sellmeier six-digit report contains **291** code-only elements, with **17** active unreviewed rows,
-  **127** self-recording explicit unmatched/unidentified dispositions, and **0** dispositions missing a review record.
+- The missing-Sellmeier six-digit report contains **292** code-only elements, with **17** active unreviewed rows,
+  **128** self-recording explicit unmatched/unidentified dispositions, and **0** dispositions missing a review record.
 - The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work; for patent-by-patent execution, start from [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md).
+
+## Resolved Phase 83 — August 2026 spectral ambiguity audit
+
+- Audited all multi-candidate catalog annotations against authored patent `dPgF` and complete C/F/g line indices.
+- Changed catalog-backed dispersion so authored d-line `dPgF` remains authoritative at g; the ambiguity report now
+  quantifies 127 protected dPgF elements and 138 complete-line-index elements.
+- Relabeled Canon EF-M 32mm L5 to FCD515, Panasonic S Pro 50mm L1 to E-FDS1, and Sigma APO Macro 180mm L11 to
+  N-BK7 from their ignored local patent tables, retaining catalog-equivalent wording and unspecified suppliers.
+- Global coverage remains 5123/5814 strict and 5134/5814 trusted, with zero catalog-coordinate mismatches.
 
 ## Resolved Phase 82 — August 2026 Angénieux glass audit
 

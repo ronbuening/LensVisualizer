@@ -8,7 +8,7 @@
  *
  *   1. Air (nd === 1.0)                         → constant 1.0
  *   2. Complete measured nC/nF/ng on the element → exact at the traced lines
- *   3. Compatible catalog Sellmeier             → λ-accurate at any wavelength
+ *   3. Compatible catalog Sellmeier             → λ-accurate C/d/F; authored dPgF wins at g
  *   4. Measured nC/nF on the element            → exact C/F, estimated g
  *   5. Abbe approximation (the legacy path)     → unchanged fallback
  *
@@ -133,7 +133,16 @@ export function makeSurfaceDispersion(
       const nR = evaluateSellmeier(entry, CHANNEL_NM.R);
       const nG = evaluateSellmeier(entry, CHANNEL_NM.G);
       const nB = evaluateSellmeier(entry, CHANNEL_NM.B);
-      const nV = evaluateSellmeier(entry, CHANNEL_NM.V);
+      // Patent partial-dispersion evidence describes the authored glass melt
+      // more directly than a catalog-equivalent curve. Preserve the catalog's
+      // C/d/F shape, but reconstruct g from the authored dPgF whenever it is
+      // available. This also prevents same-coordinate catalog ambiguities from
+      // silently changing the violet channel. Native e-line prescriptions do
+      // not share the d-line vd/dPgF convention, so retain their catalog g.
+      const nV =
+        element.indexReference !== "e" && element.vd !== undefined && element.dPgF !== undefined
+          ? nB + normalLinePgF(element.vd, element.dPgF) * (nB - nR)
+          : evaluateSellmeier(entry, CHANNEL_NM.V);
       const fn: SurfaceIndexFn = (ch) => (ch === "R" ? nR : ch === "B" ? nB : ch === "V" ? nV : nG);
       return { fn, quality: "sellmeier", glassEntry: entry };
     }

@@ -971,6 +971,40 @@ describe("makeSurfaceDispersion preference cascade", () => {
     expect(d.fn("B")).toBeLessThan(d.fn("V"));
   });
 
+  it("preserves authored dPgF on the violet channel of a compatible catalog curve", () => {
+    const baseline = makeSurfaceDispersion(
+      { R: 0, d: 0, sd: 0, label: "", nd, elemId: 1 },
+      { id: 1, name: "L1", label: "L1", type: "Test", nd, vd: 64.14, glass: "S-BSL7" },
+      undefined,
+    );
+    const patentPartialDispersion = makeSurfaceDispersion(
+      { R: 0, d: 0, sd: 0, label: "", nd, elemId: 1 },
+      {
+        id: 1,
+        name: "L1",
+        label: "L1",
+        type: "Test",
+        nd,
+        vd: 64.14,
+        glass: "S-BSL7",
+        dPgF: 0.04,
+      },
+      undefined,
+    );
+
+    expect(patentPartialDispersion.quality).toBe("sellmeier");
+    expect(patentPartialDispersion.fn("R")).toBe(baseline.fn("R"));
+    expect(patentPartialDispersion.fn("G")).toBe(baseline.fn("G"));
+    expect(patentPartialDispersion.fn("B")).toBe(baseline.fn("B"));
+    const expectedPgF = 0.6438 - 0.001682 * 64.14 + 0.04;
+    expect(patentPartialDispersion.fn("V")).toBeCloseTo(
+      patentPartialDispersion.fn("B") +
+        expectedPgF * (patentPartialDispersion.fn("B") - patentPartialDispersion.fn("R")),
+      12,
+    );
+    expect(patentPartialDispersion.fn("V")).toBeGreaterThan(baseline.fn("V"));
+  });
+
   it("prefers complete measured line indices over a matching catalog entry", () => {
     const d = makeSurfaceDispersion(
       { R: 0, d: 0, sd: 0, label: "", nd, elemId: 1 },

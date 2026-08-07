@@ -66,7 +66,8 @@ The constructor validates lens data and constructs a frozen `RuntimeLens` with:
 - Element/group/doublet/aspheric/variable maps for runtime lookup.
 - Per-surface dispersion resolvers. Catalog Sellmeier substitution compares d-line-authored elements at C/d/F and
   native e-line elements at C′/e/F′. E-line matching requires an explicit catalog name or alias; six-digit codes stay
-  d-line-only because their encoded coordinates are nd/νd.
+  d-line-only because their encoded coordinates are nd/νd. For d-line elements with authored `dPgF`, the catalog
+  curve supplies C/d/F while the patent/source partial dispersion remains authoritative at g.
 - Folded-path metadata: resolved `opticalPath`, explicit `imagePlane`, `isFoldedOptics`, and normalized surface/image-plane
   normals when mirror data opts into the generalized model.
 - Folded entrance/exit pupil geometry derived from generalized real-ray stop and full-system basis traces, with finite

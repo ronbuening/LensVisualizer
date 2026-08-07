@@ -2,8 +2,9 @@
 
 A focused follow-up to the chromatic dispersion overhaul. Current architecture is summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md). The chromatic engine now uses this preference cascade:
-air → complete measured `nC`/`nF`/`ng` line indices → catalog Sellmeier → partial measured `nC`/`nF` line indices →
-Abbe + dPgF → plain Abbe, backed by the current vendor catalog in `src/optics/glassCatalog.ts`. What remains is a
+air → complete measured `nC`/`nF`/`ng` line indices → catalog Sellmeier with authored `dPgF` retained at g → partial
+measured `nC`/`nF` line indices → Abbe + dPgF → plain Abbe, backed by the current vendor catalog in
+`src/optics/glassCatalog.ts`. What remains is a
 per-lens queue of proprietary, unidentified, or inconsistently annotated glasses that no public catalog can safely
 resolve by name alone.
 
@@ -70,7 +71,9 @@ prescription unchanged.
 
 The dispersion cascade in [src/optics/dispersion.ts](../src/optics/dispersion.ts) honors these immediately. With `nC`/`nF` populated the surface upgrades from `abbe` to `lineIndices` quality, and the LCA inset's quality badge will reflect the change.
 
-If the patent only lists `nd`/`vd` and `dPgF` without explicit `ng`, populate `dPgF` alone — the V-channel cascade will use the Schott normal-line approximation plus your `dPgF` to estimate `ng`.
+If the patent only lists `nd`/`vd` and `dPgF` without explicit `ng`, populate `dPgF` alone — the V-channel cascade will
+use the Schott normal-line approximation plus your `dPgF` to estimate `ng`, including when a compatible catalog curve
+supplies the C/d/F channels.
 
 ## Tier A — active source blockers
 

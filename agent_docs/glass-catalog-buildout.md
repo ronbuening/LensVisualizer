@@ -2,12 +2,22 @@
 
 A focused follow-up to the chromatic dispersion overhaul. The chromatic ray-trace now consults a Sellmeier glass catalog
 at [src/optics/glassCatalog.ts](../src/optics/glassCatalog.ts) when an element's `glass` string resolves to a known
-entry after first honoring complete measured `nC`/`nF`/`ng` line-index data authored on the element. If neither path is
-available, it falls back to partial measured `nC`/`nF` line indices, dPgF-corrected indices, or the legacy Abbe
-approximation. Current optics-engine boundaries are summarized in
+entry after first honoring complete measured `nC`/`nF`/`ng` line-index data authored on the element. Catalog-backed
+elements retain authored `dPgF` at the g-line so a patent's partial-dispersion evidence is not replaced by a generic
+catalog equivalent. If neither path is available, the engine falls back to partial measured `nC`/`nF` line indices,
+dPgF-corrected indices, or the legacy Abbe approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
 The catalog currently has **475 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+
+The August 7, 2026 Phase 83 ambiguity audit compared every multi-candidate annotation with authored patent spectral
+evidence. The runtime now keeps a d-line element's authored `dPgF` authoritative at g even when a compatible catalog
+curve supplies C/d/F; 127 currently ambiguous elements benefit from that safeguard, while another 138 carry complete
+C/F/g indices and already bypass catalog dispersion. Local patent tables resolve three stale labels: Canon EF-M 32mm
+L5 now uses the FCD515 coefficient curve that reproduces θgF = 0.5441, Panasonic S Pro 50mm L1 uses the
+partial-dispersion-compatible E-FDS1 representation of its 923209 row, and Sigma APO Macro 180mm L11 uses N-BK7,
+whose C/F/g curve reproduces the patent line indices. The production supplier remains unspecified in every
+catalog-equivalent label. Coverage remains 5123/5814 strict and 5134/5814 trusted, with zero coordinate mismatches.
 
 The August 6, 2026 Phase 82 pass revisited all three Angénieux prescriptions. Sumita K-SFLD11 and SSK2 were
 recovered from the manufacturer's discontinued-inclusive 2025 all-glass catalog, and Schott P-LASF47 was added from

@@ -14,13 +14,15 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 - **532** lenses scanned
 - **5806** glass elements examined
-- **1406** elements have multiple coordinate-compatible candidates
+- **1405** elements have multiple coordinate-compatible candidates
 - **324** lens files are affected
+- **127** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
+- **138** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
 | Smallest reference-index residual | 683 |
-| Evidence-source priority | 468 |
+| Evidence-source priority | 467 |
 | Vendor context | 253 |
 | Stable canonical-name order | 2 |
 
@@ -93,7 +95,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `S-LAH58 (OHARA, 883408)` | 1.88300 / 40.80 (d) | S-LAH58 — direct name evidence outranks six-digit code evidence. | TAFD30 (Hoya, code, vendor ✗, alternate code row) | 4 | [CANON EF-M 22mm f/2 STM](../../src/lens-data/canon/CanonEFM22mmf2STM.data.ts) L21p +1 files |
 | `S-TIH11 (OHARA, 785257)` | 1.78472 / 25.70 (d) | S-TIH11 — direct name evidence outranks six-digit code evidence. | H-ZF13 (CDGM, code, vendor ✗, alternate code row) | 1 | [CANON EF-M 22mm f/2 STM](../../src/lens-data/canon/CanonEFM22mmf2STM.data.ts) L21n |
 | `S-BAL42 / L-BAL42 (OHARA, 583594)` | 1.58313 / 59.40 (d) | S-BAL42 — direct name evidence outranks six-digit code evidence. | J-SK12 (Hikari, code, vendor ✗, alternate code row) | 1 | [CANON EF-M 22mm f/2 STM](../../src/lens-data/canon/CanonEFM22mmf2STM.data.ts) L24 |
-| `FCD505 (HOYA, 593686)` | 1.59282 / 68.60 (d) | FCD505 — direct name evidence outranks six-digit code evidence. | FCD515 (Hoya, code, vendor ✓, alternate code row) | 1 | [CANON EF-M 32mm f/1.4 STM](../../src/lens-data/canon/CanonEFM32mmf14STM.data.ts) L5 |
+| `FCD515 (HOYA catalog-equivalent; 593686, production supplier unspecified)` | 1.59282 / 68.60 (d) | FCD515 — direct name evidence outranks six-digit code evidence. | FCD505 (Hoya, code, vendor ✓, preferred code row) | 1 | [CANON EF-M 32mm f/1.4 STM](../../src/lens-data/canon/CanonEFM32mmf14STM.data.ts) L5 |
 | `S-NBH53/S-NBH53V class (OHARA, 738323)` | 1.73800 / 32.30 (d) | S-NBH53V — direct name evidence outranks six-digit code evidence. | J-KZFH9 (Hikari, code, vendor ✗, preferred code row) | 1 | [CANON EF-M 32mm f/1.4 STM](../../src/lens-data/canon/CanonEFM32mmf14STM.data.ts) L6 |
 | `TAFD40-W / TAFD40 (HOYA, 001255)` | 2.00069 / 25.50 (d) | TAFD40 — direct name evidence outranks six-digit code evidence. | TAFD40L-W (Hoya, code, vendor ✓, alternate code row) | 1 | [CANON EF-M 32mm f/1.4 STM](../../src/lens-data/canon/CanonEFM32mmf14STM.data.ts) L14 |
 | `S-BAL42 (OHARA) / 583594 barium crown` | 1.58313 / 59.40 (d) | S-BAL42 — direct name evidence outranks six-digit code evidence. | J-SK12 (Hikari, code, vendor ✗, alternate code row) | 1 | [CANON EF-S 24mm f/2.8 STM](../../src/lens-data/canon/CanonEFS24mmf28STM.data.ts) L6 |
@@ -125,7 +127,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `TAFD40 (HOYA catalog-equivalent to patent 001255; supplier not identified)` | 2.00069 / 25.50 (d) | TAFD40 — direct name evidence outranks six-digit code evidence. | TAFD40L-W (Hoya, code, vendor ✓, alternate code row) | 1 | [CANON RF 135mm f/1.8 L IS USM](../../src/lens-data/canon/CanonRF135f18.data.ts) L14 |
 | `N-SSK5 (Schott; catalog-equivalent 658509 extra-dense crown)` | 1.65844 / 50.90 (d) | N-SSK5 — direct name evidence outranks six-digit code evidence. | S-BSM25 (Ohara, code, vendor ✗, alternate code row)<br>BACED5 (Hoya, code, vendor ✗, alternate code row) | 1 | [CANON RF 135mm f/1.8 L IS USM](../../src/lens-data/canon/CanonRF135f18.data.ts) L15 |
 | `S-BAL35 / N-SK5 (OHARA / Schott)` | 1.58913 / 61.10 (d) | S-BAL35 — smallest d-line \|Δn\| (9.0e-8 vs 1.2e-7) | N-SK5 (Schott, name, vendor ✓) | 1 | [CANON RF 135mm f/1.8 L IS USM](../../src/lens-data/canon/CanonRF135f18.data.ts) L17 |
-| `PBH21 (OHARA; historical 923209)` | 1.92286 / 20.90 (d) | PBH21 — direct name evidence outranks six-digit code evidence. | N-SF66 (Schott, code, vendor ✗, preferred code row)<br>E-FDS1 (Hoya, code, vendor ✗, alternate code row) | 8 | [CANON RF 15-35mm f/2.8 L IS USM](../../src/lens-data/canon/CanonRF1535f28.data.ts) L6 +5 files |
+| `PBH21 (OHARA; historical 923209)` | 1.92286 / 20.90 (d) | PBH21 — direct name evidence outranks six-digit code evidence. | N-SF66 (Schott, code, vendor ✗, preferred code row)<br>E-FDS1 (Hoya, code, vendor ✗, alternate code row) | 7 | [CANON RF 15-35mm f/2.8 L IS USM](../../src/lens-data/canon/CanonRF1535f28.data.ts) L6 +4 files |
 | `S-FPL51 / FCD1 (OHARA / HOYA)` | 1.49700 / 81.60 (d) | FCD1 — smallest d-line \|Δn\| (1.6e-7 vs 7.1e-7) | S-FPL51 (Ohara, name, vendor ✓) | 2 | [CANON RF 15-35mm f/2.8 L IS USM](../../src/lens-data/canon/CanonRF1535f28.data.ts) L12 |
 | `N-LAK33B (Schott catalog-equivalent to patent 755523; supplier not identified)` | 1.75500 / 52.30 (d) | N-LAK33B — direct name evidence outranks six-digit code evidence. | J-LASKH2 (Hikari, code, vendor ✗, preferred code row)<br>TAC6L (Hoya, code, vendor ✗, alternate code row) | 1 | [CANON RF 20mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF20mmf14LVCM.data.ts) G4 |
 | `OHARA L-BAL42 PGM glass (583/594)` | 1.58313 / 59.40 (d) | S-BAL42 — alias evidence outranks six-digit code evidence. | J-SK12 (Hikari, code, vendor ✗, alternate code row) | 1 | [CANON RF 24-105mm f/2.8 L IS USM Z](../../src/lens-data/canon/CanonRF24105mmf28Z.data.ts) L21 |
@@ -784,6 +786,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `497816 — ED fluorophosphate crown class (vendor unresolved)` | 1.49700 / 81.60 (d) | H-FK61 — smallest d-line \|Δn\| (1.1e-8 vs 1.6e-7) | FCD1 (Hoya, code, alternate code row)<br>S-FPL51 (Ohara, code, preferred code row) | 5 | [PANASONIC LUMIX S PRO 24-70mm f/2.8](../../src/lens-data/panasonic/PanasonicLumixSPro2470mmf28.data.ts) L9 +1 files |
 | `835427 — lanthanum dense-flint class (vendor unresolved)` | 1.83481 / 42.70 (d) | S-LAH55 — smallest d-line \|Δn\| (2.9e-6 vs 4.5e-6) | TAFD5F (Hoya, code, alternate code row) | 1 | [PANASONIC LUMIX S PRO 24-70mm f/2.8](../../src/lens-data/panasonic/PanasonicLumixSPro2470mmf28.data.ts) L15 |
 | `954323 — high-index lanthanum class (vendor unresolved)` | 1.95375 / 32.30 (d) | S-LAH98 — smallest d-line \|Δn\| (5.9e-7 vs 2.6e-6) | TAFD45 (Hoya, code, alternate code row) | 1 | [PANASONIC LUMIX S PRO 24-70mm f/2.8](../../src/lens-data/panasonic/PanasonicLumixSPro2470mmf28.data.ts) L18 |
+| `E-FDS1 (HOYA catalog-equivalent; 923209, production supplier unspecified)` | 1.92286 / 20.90 (d) | E-FDS1 — direct name evidence outranks six-digit code evidence. | N-SF66 (Schott, code, vendor ✗, preferred code row)<br>PBH21 (Ohara, code, vendor ✗, alternate code row) | 1 | [PANASONIC LUMIX S PRO 50mm f/1.4](../../src/lens-data/panasonic/PanasonicSPro50mmf14.data.ts) L1 |
 | `Dense flint (581/409, uncertain)` | 1.58144 / 40.90 (d) | E-FL5 — smallest d-line \|Δn\| (1.2e-7 vs 4.2e-7) | LF5 (Schott, code, alternate code row) | 1 | [PANASONIC LUMIX S PRO 50mm f/1.4](../../src/lens-data/panasonic/PanasonicSPro50mmf14.data.ts) L3 |
 | `717295 - dense flint (SF1 / S-TIH1 code match)` | 1.71736 / 29.50 (d) | SF1 — smallest d-line \|Δn\| (1.5e-7 vs 1.8e-6) | S-TIH1 (Ohara, name) | 1 | [PANASONIC LUMIX S PRO 50mm f/1.4](../../src/lens-data/panasonic/PanasonicSPro50mmf14.data.ts) L9 |
 | `904313 — lanthanum dense-flint class (vendor unresolved)` | 1.90366 / 31.30 (d) | N-LASF46B — smallest d-line \|Δn\| (1.0e-7 vs 5.9e-7) | S-LAH95 (Ohara, code, preferred code row)<br>TAFD25 (Hoya, code, alternate code row) | 2 | [PANASONIC LUMIX S PRO 70-200mm f/2.8 O.I.S.](../../src/lens-data/panasonic/PanasonicLumixSPro70200mmf28OIS.data.ts) L1 |
@@ -968,7 +971,6 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `N-BK7 / BSC7 class (517642)` | 1.51680 / 64.20 (d) | N-BK7 — direct name evidence outranks alias evidence. | S-BSL7 (Ohara, alias)<br>H-K9L (CDGM, code, alternate code row)<br>H-K9LGT (CDGM, code, alternate code row) | 1 | [SIGMA APO Macro 105mm f/2.8 EX DG OS HSM](../../src/lens-data/sigma/SigmaAPOMacro105mmf28OSHSM.data.ts) E6 |
 | `S-TIH6 (OHARA) / SF6 class` | 1.80518 / 25.46 (d) | S-TIH6 — Annotation vendor context matches Ohara. | SF6 (Schott, name, vendor ✗) | 2 | [SIGMA APO Macro 105mm f/2.8 EX DG OS HSM](../../src/lens-data/sigma/SigmaAPOMacro105mmf28OSHSM.data.ts) E8 |
 | `S-LAH66 (OHARA) / TAF1 / N-LAF34 class` | 1.77250 / 49.62 (d) | S-LAH66 — Annotation vendor context matches Ohara. | N-LAF34 (Schott, name, vendor ✗) | 1 | [SIGMA APO Macro 105mm f/2.8 EX DG OS HSM](../../src/lens-data/sigma/SigmaAPOMacro105mmf28OSHSM.data.ts) E13 |
-| `BK7 / S-BSL7 class borosilicate crown` | 1.51680 / 64.20 (d) | S-BSL7 — direct name evidence outranks alias evidence. | N-BK7 (Schott, alias) | 1 | [SIGMA APO Macro 180mm f/2.8 EX DG OS HSM](../../src/lens-data/sigma/SigmaAPOMacro180mmf28.data.ts) L11 |
 | `FCD100 / S-FPL53 class fluorite-like ED glass (Sigma FLD)` | 1.43700 / 95.10 (d) | FCD100 — smallest d-line \|Δn\| (5.6e-7 vs 1.8e-3) | S-FPL53 (Ohara, name) | 3 | [SIGMA APO Macro 180mm f/2.8 EX DG OS HSM](../../src/lens-data/sigma/SigmaAPOMacro180mmf28.data.ts) L12 |
 | `N-LAF34 / TAF1 class lanthanum dense flint` | 1.77250 / 49.62 (d) | N-LAF34 — direct name evidence outranks alias evidence. | S-LAH66 (Ohara, alias) | 1 | [SIGMA APO Macro 180mm f/2.8 EX DG OS HSM](../../src/lens-data/sigma/SigmaAPOMacro180mmf28.data.ts) L21 |
 | `SF6 / S-TIH6 class dense flint` | 1.80518 / 25.46 (d) | S-TIH6 — smallest d-line \|Δn\| (7.1e-7 vs 2.1e-6) | SF6 (Schott, name) | 4 | [SIGMA APO Macro 180mm f/2.8 EX DG OS HSM](../../src/lens-data/sigma/SigmaAPOMacro180mmf28.data.ts) L22 |

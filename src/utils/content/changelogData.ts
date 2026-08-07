@@ -20,6 +20,11 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-08-07",
+    type: "fix",
+    summary: "Preserved patent partial-dispersion evidence in catalog-backed chromatic traces",
+  },
+  {
+    date: "2026-08-07",
     type: "article",
     summary: "Published a three-part spherical aberration series with nine themed figures",
   },

@@ -39,3 +39,12 @@ Catalog version: local working tree, 2026-05-19
 - `npm run generate:glass-reports` - passed; the unresolved 675348 row remains in `six-digit-glass-codes-missing-sellmeier.generated.md` because no coefficient-backed public catalog match was found.
 - `npm run typecheck` - passed.
 - `npm run format:check` - passed.
+
+## 2026-08-07 - Partial-dispersion ambiguity audit
+
+- Rechecked Numerical Data 1 in the ignored local `patents/JP2018180366A.pdf`.
+- Corrected L5's catalog-equivalent label from FCD505 to FCD515. Both HOYA rows share the 593686 d-line coordinate,
+  but the stored FCD515 coefficient curve gives PgF ≈ 0.54410, reproducing the patent θgF = 0.5441; FCD505 gives
+  approximately 0.54432. The patent does not identify the production supplier.
+- Retained the patent's structured `dPgF: 0.0157`; the dispersion cascade now preserves that authored evidence at
+  the g-line even when a compatible catalog curve supplies C/d/F.

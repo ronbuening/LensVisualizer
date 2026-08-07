@@ -53,3 +53,12 @@ Patent: WO 2020/158622 A1, Example 3 / Table 3A
 ## 2026-07-29 - Catalog-coordinate correction
 
 - Corrected L1 from modern `S-NPH2` to historical OHARA `PBH21`, the exact 1.92286 / 20.90 row.
+
+## 2026-08-07 - Partial-dispersion ambiguity audit
+
+- Rechecked Example 3 / Table 3A in the ignored local `patents/JPWO2020158622A1.pdf`.
+- Table 3A gives L1 as nd = 1.92286, vd = 20.9, and dPgF = +0.0282. PBH21, N-SF66, and E-FDS1 share the
+  923209 coordinate, but E-FDS1 is the catalog-equivalent row whose published partial-dispersion value matches the
+  patent. Relabeled L1 accordingly while leaving Panasonic's production supplier unspecified.
+- The authored patent `dPgF` now remains authoritative at the runtime g-line even when the catalog-equivalent curve
+  supplies C/d/F.
