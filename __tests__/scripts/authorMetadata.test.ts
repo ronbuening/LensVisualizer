@@ -105,13 +105,43 @@ describe("author metadata generation", () => {
 describe("assignee metadata generation", () => {
   it("deduplicates one assignee across lenses and counts unique patents", () => {
     const assignees = buildAssigneeMetadata([
-      { key: "a", patentNumber: "US 1", patentAssignees: ["Canon Inc."], visible: true },
-      { key: "b", patentNumber: "US 1", patentAssignees: ["Canon Inc."], visible: true },
-      { key: "c", patentNumber: "US 2", patentAssignees: ["Canon Inc."], visible: true },
-      { key: "hidden", patentNumber: "US 3", patentAssignees: ["Canon Inc."], visible: false },
+      { key: "a", patentNumber: "US 1", patentAssignees: ["Example Optics"], visible: true },
+      { key: "b", patentNumber: "US 1", patentAssignees: ["Example Optics"], visible: true },
+      { key: "c", patentNumber: "US 2", patentAssignees: ["Example Optics"], visible: true },
+      { key: "hidden", patentNumber: "US 3", patentAssignees: ["Example Optics"], visible: false },
     ]);
 
-    expect(assignees).toEqual([{ name: "Canon Inc.", slug: "canon-inc", lensKeys: ["a", "b", "c"], patentCount: 2 }]);
+    expect(assignees).toEqual([
+      {
+        name: "Example Optics",
+        slug: "example-optics",
+        lensKeys: ["a", "b", "c"],
+        patentCount: 2,
+        successorOf: [],
+        acquiredBy: [],
+        subsidiaryOf: [],
+        corporateFamily: [],
+      },
+    ]);
+  });
+
+  it("adds sourced corporate history without changing patent aggregation", () => {
+    const [canon] = buildAssigneeMetadata([
+      { key: "a", patentNumber: "US 1", patentAssignees: ["Canon Inc."], visible: true },
+    ]);
+
+    expect(canon).toMatchObject({
+      name: "Canon Inc.",
+      lensKeys: ["a"],
+      patentCount: 1,
+      successorOf: [
+        {
+          organization: "Canon Camera Co., Inc.",
+          effectiveDate: "1969-03-01",
+          sourceUrl: expect.stringMatching(/^https:\/\//),
+        },
+      ],
+    });
   });
 
   it("reads patentAssignees, not patentAuthors", () => {

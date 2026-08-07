@@ -10,6 +10,7 @@ Generated `readme.md` and `improvementsuggestions.md` files are intentionally om
 flowchart LR
   subgraph n_src_utils_catalog["src/utils/catalog"]
     n_src_utils_catalog_src_utils_catalog_assigneeCatalog_ts["assigneeCatalog.ts"]
+    n_src_utils_catalog_src_utils_catalog_assigneeCorporateHistory_ts["assigneeCorporateHistory.ts"]
     n_src_utils_catalog_src_utils_catalog_authorAssignees_ts["authorAssignees.ts"]
     n_src_utils_catalog_src_utils_catalog_authorBiographies_ts["authorBiographies.ts"]
     n_src_utils_catalog_src_utils_catalog_authorCatalog_ts["authorCatalog.ts"]
@@ -30,16 +31,17 @@ flowchart LR
     n_src_utils_catalog_src_utils_catalog_slugText_ts["slugText.ts"]
   end
   n_external_src_generated["src/generated"]
+  n_external_src_types["src/types"]
   n_external_glob_______lens_data______analysis_md["glob:../../lens-data/**/*.analysis.md"]
   n_external_glob_______lens_data______data_ts["glob:../../lens-data/**/*.data.ts"]
   n_external_src_comparison["src/comparison"]
   n_external_src_lens_data_defaults_ts["src/lens-data/defaults.ts"]
-  n_external_src_types["src/types"]
   n_external_src_utils_chunkLoadRetry_ts["src/utils/chunkLoadRetry.ts"]
   n_external_src_utils_seo["src/utils/seo"]
   n_src_utils_catalog_src_utils_catalog_patentCatalog_ts --> |4| n_src_utils_catalog_src_utils_catalog_patentRecords_ts
   n_src_utils_catalog_src_utils_catalog_lensMetadata_ts --> |2| n_external_src_generated
   n_src_utils_catalog_src_utils_catalog_lensSummaries_ts --> |2| n_external_src_generated
+  n_src_utils_catalog_src_utils_catalog_assigneeCatalog_ts --> |2| n_external_src_types
   n_src_utils_catalog_src_utils_catalog_searchCatalog_ts --> |2| n_src_utils_catalog_src_utils_catalog_authorCatalog_ts
   n_src_utils_catalog_src_utils_catalog_lensMetadata_ts --> |2| n_src_utils_catalog_src_utils_catalog_lensPatentMetadata_ts
   n_src_utils_catalog_src_utils_catalog_authorCatalog_ts --> |2| n_src_utils_catalog_src_utils_catalog_lensSummaries_ts
@@ -51,7 +53,7 @@ flowchart LR
   n_src_utils_catalog_src_utils_catalog_assigneeCatalog_ts --> n_external_src_generated
   n_src_utils_catalog_src_utils_catalog_authorCatalog_ts --> n_external_src_generated
   n_src_utils_catalog_src_utils_catalog_lensCatalog_ts --> n_external_src_lens_data_defaults_ts
-  n_src_utils_catalog_src_utils_catalog_assigneeCatalog_ts --> n_external_src_types
+  n_src_utils_catalog_src_utils_catalog_assigneeCorporateHistory_ts --> n_external_src_types
   n_src_utils_catalog_src_utils_catalog_authorCatalog_ts --> n_external_src_types
   n_src_utils_catalog_src_utils_catalog_lensCatalog_ts --> n_external_src_types
   n_src_utils_catalog_src_utils_catalog_lensMetadata_ts --> n_external_src_types
@@ -72,22 +74,22 @@ flowchart LR
   n_src_utils_catalog_src_utils_catalog_authorCatalog_ts --> n_src_utils_catalog_src_utils_catalog_collation_ts
   n_src_utils_catalog_src_utils_catalog_groupByNamedParty_ts --> n_src_utils_catalog_src_utils_catalog_collation_ts
   n_src_utils_catalog_src_utils_catalog_lensCatalog_ts --> n_src_utils_catalog_src_utils_catalog_collation_ts
-  n_src_utils_catalog_src_utils_catalog_patentCatalog_ts --> n_src_utils_catalog_src_utils_catalog_collation_ts
   n_src_utils_catalog_truncated["additional relationships omitted"]
 ```
 
 ## Directory Overview
 
-- Direct source files: 19
+- Direct source files: 20
 - Direct subfolders: 0
-- Main outbound areas: same folder (34), src/types (9), src/generated (6), src/utils/seo (3), glob:../../lens-data/**/*.analysis.md, glob:../../lens-data/**/*.data.ts, src/comparison, src/lens-data/defaults.ts, +1 more
+- Main outbound areas: same folder (34), src/types (11), src/generated (6), src/utils/seo (3), glob:../../lens-data/**/*.analysis.md, glob:../../lens-data/**/*.data.ts, src/comparison, src/lens-data/defaults.ts, +1 more
 - External consumers: src/benchmarks, src/comparison, src/components/content, src/components/controls, src/components/homepage, src/components/hooks, src/components/layout, src/components/relationshipMap, +28 more
 
 ## Files
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
-| `assigneeCatalog.ts` | Assignee Catalog helper module | src/generated, src/types | same folder (2), src/components/relationshipMap (2), src/pages/RelationshipMapPage.tsx | AssigneeMetadata, ASSIGNEES, getAssigneeBySlug, getAssigneeByName |
+| `assigneeCatalog.ts` | Assignee Catalog helper module | src/types (2), src/generated | same folder (2), src/components/relationshipMap (2), src/pages/RelationshipMapPage.tsx | AssigneeMetadata, ASSIGNEES, getAssigneeBySlug, getAssigneeByName |
+| `assigneeCorporateHistory.ts` | Assignee Corporate History helper module | src/types | none | ASSIGNEE_CORPORATE_HISTORY, corporateRelationshipsForAssignee |
 | `authorAssignees.ts` | Author Assignees helper module | same folder (3) | src/pages/AuthorsIndexPage.tsx | ALL_AUTHOR_ASSIGNEES, UNASSIGNED_AUTHORS, AuthorDirectoryEntry, AuthorAssigneeStratum, AUTHOR_DIRECTORY_ENTRIES, AUTHOR_ASSIGNEE_STRATA, UNASSIGNED_AUTHOR_COUNT, filterAuthorsByAssignee |
 | `authorBiographies.ts` | Author Biographies helper module | none | src/pages/AuthorPage.tsx, src/pages/AuthorsIndexPage.tsx | AuthorBiographySource, AuthorBiography, AUTHOR_BIOGRAPHIES, getAuthorBiography |
 | `authorCatalog.ts` | Author Catalog helper module | same folder (5), src/generated, src/types, src/utils/seo | same folder (3), src/components/relationshipMap (2), src/components/content, src/pages/AuthorPage.tsx, src/pages/AuthorsIndexPage.tsx, +1 more | AuthorMetadata, AuthorPatentLens, AuthorPatent, AuthorGroupMode, AuthorPatentGroup, AUTHORS, getAuthorBySlug, getAuthorByName, +4 more |

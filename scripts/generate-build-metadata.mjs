@@ -8,7 +8,7 @@
  *   - makerSlugs: sorted array of unique maker URL slugs
  *   - mountIds / formatIds: sorted arrays of used taxonomy ids
  *   - authors: inventor names, stable slugs, and related lens/patent counts
- *   - assignees: assignee names, stable slugs, and related lens/patent counts
+ *   - assignees: names, stable slugs, lens/patent counts, and dated corporate history
  *   - routes: flat array of all concrete URL paths to pre-render
  *
  * This is the single source of truth for route enumeration. Downstream scripts

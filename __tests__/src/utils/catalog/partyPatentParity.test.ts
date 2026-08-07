@@ -15,7 +15,7 @@ const PARTY_STRATA = [
 ] as const;
 
 function expectPatentPartyMetadata(entry: PatentPartyMetadata | undefined): void {
-  expect(entry).toEqual({
+  expect(entry).toMatchObject({
     name: expect.any(String),
     slug: expect.any(String),
     lensKeys: expect.arrayContaining([expect.any(String)]),

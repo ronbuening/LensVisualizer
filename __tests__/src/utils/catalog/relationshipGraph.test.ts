@@ -68,10 +68,16 @@ describe("buildRelationshipGraph invariants", () => {
         expect(party.hasPage).toBe(party.ref.role === "author");
       }
 
-      // Every edge endpoint is a node id present in the graph.
+      // Every edge endpoint is a node id present in the graph. Corporate
+      // history is deliberately excluded from this selected-party ego graph:
+      // only center→patent and patent→co-party edges are allowed.
+      const partyIds = new Set(graph.parties.map((party) => party.id));
       for (const edge of graph.edges) {
         expect(nodeIds.has(edge.from)).toBe(true);
         expect(nodeIds.has(edge.to)).toBe(true);
+        const isCenterPatentEdge = edge.from === centerId && patentIds.includes(edge.to);
+        const isPatentPartyEdge = patentIds.includes(edge.from) && partyIds.has(edge.to);
+        expect(isCenterPatentEdge || isPatentPartyEdge, `${ref.name}: ${edge.from} → ${edge.to}`).toBe(true);
       }
     }
   });

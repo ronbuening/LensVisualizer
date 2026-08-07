@@ -41,7 +41,10 @@ to keep the server render and first client render identical; the real focus appe
 Recentering pushes a new fragment, so browser Back retraces the exploration path without exposing separate query URLs to
 crawlers. Legacy `?focus=` links are read and replaced with the fragment form after hydration. The canonical URL is
 always `/relationships/`. Assignee slugs come from the build-generated `assignees` array in `build-metadata.json`
-(alongside `authors`); assignees have no dedicated pages.
+(alongside `authors`); assignees have no dedicated pages. Assignee records also carry sourced, dated `successorOf`,
+`acquiredBy`, `subsidiaryOf`, and `corporateFamily` arrays curated in
+`src/utils/catalog/assigneeCorporateHistory.ts`. Those fields are deliberately not consumed by the selected-party ego
+graph: `relationshipGraph.ts` continues to derive its nodes and edges only from patent attribution.
 
 ## Static Page Shells
 

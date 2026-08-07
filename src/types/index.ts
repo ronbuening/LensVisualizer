@@ -50,7 +50,16 @@ export type {
 
 export type { ThemeInternalTokens, ThemeColorTokens, Theme, ThemeVariant } from "./theme.js";
 
-export type { PatentPartyMetadata, PatentLensRef, PatentPartyRole } from "./catalog.js";
+export type {
+  AssigneeCorporateRelationships,
+  AssigneeMetadata,
+  CorporateFamilyPeriod,
+  CorporateRelationshipEvent,
+  CorporateRelationshipPeriod,
+  PatentPartyMetadata,
+  PatentLensRef,
+  PatentPartyRole,
+} from "./catalog.js";
 
 export type {
   MountSchemaVersion,
