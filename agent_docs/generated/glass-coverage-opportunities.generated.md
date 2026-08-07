@@ -9,12 +9,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **526** lenses scanned (**516** visible)
-- **5085 / 5774** non-air surfaces use strict catalog Sellmeier data (88.1%)
-- **5096 / 5774** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 88.3%)
+- **532** lenses scanned (**522** visible)
+- **5123 / 5814** non-air surfaces use strict catalog Sellmeier data (88.1%)
+- **5134 / 5814** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 88.3%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
-- **291** code-only missing-Sellmeier elements in Sweep 2: **17** active unreviewed, **127** self-recording explicit dispositions, **0** dispositions missing any review record
+- **292** code-only missing-Sellmeier elements in Sweep 2: **17** active unreviewed, **128** self-recording explicit dispositions, **0** dispositions missing any review record
 - **0** unresolved named-token elements in Sweep 2B, producing **0** token occurrences across **0** distinct tokens
 - **0** Tier A proprietary backfill rows in Sweep 3
 
@@ -78,6 +78,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [PENTAX FA 31mm f/1.8 AL Limited](../../src/lens-data/pentax/PentaxFA31mmf18ALLtd.data.ts) | US 6,560,042 B2 | [PDF](../../patents/US6560042.pdf) | 88.9% (8/9) | 88.9% (8/9) | 1 | 13 [glass] (Element 8: `Unmatched (728403 lanthanum flint; no public coefficient row inside the d-line safety window)`) | abbe: 1 |
 | [FUJIFILM FUJINON 23mm f/2 (Fujifilm X100)](../../src/lens-data/fujifilm/FujifilmX10023mmf2.data.ts) | US 2012/0069456 A1 | [PDF](../../patents/US20120069456A1.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 10A [glass] (Element 6: `Unmatched (569586 patent molded crown; no exact public catalog identity)`) | abbe: 1 |
 | [FUJIFILM FUJINON XF 35mm f/1.4 R](../../src/lens-data/fujifilm/FujifilmXF35mmf14R.data.ts) | US 2014/0285903 A1 | [PDF](../../patents/US20140285903A1.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 10A [glass] (Element 5: `BSC7 family (glass-molded, proprietary PGM)`) | abbe: 1 |
+| [MAMIYA SEKOR AF 150mm f/2.8 IF D](../../src/lens-data/mamiya/MamiyaSekorDAF150mmf28IF.data.ts) | JP 2001-183581 A | [PDF](../../patents/JP_2001183581_A.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 13 [glass] (Element 7: `Unmatched (nd=1.806098, νd=40.34; no exact current catalog identity)`) | abbe: 1 |
 | [MINOLTA AF 100mm f/2.8 Macro](../../src/lens-data/minolta/MinoltaAF100mmf28Macro.data.ts) | US 4,764,000 | [PDF](../../patents/US4764000.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 13 [glass] (Element 7: `807316 - dense lanthanum flint (patent nd=1.80741, vd=31.59; unresolved)`) | abbe: 1 |
 | [OLYMPUS H.ZUIKO AUTO-W 24mm f/2.8](../../src/lens-data/olympus/OlympusZuiko24mmf28.data.ts) | US 3,884,556 | [PDF](../../patents/US3884556.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 9 [glass] (Element 5a: `Unmatched (dense flint 762/271; current SF14-family catalogs are nd≈1.76182, vd≈26.5–26.6)`) | abbe: 1 |
 | [RODENSTOCK GRANDAGON-N 75mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN75mmf45.data.ts) | DE 2444954 A1 | [PDF](../../patents/DE_2444954_A1.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 5 [glass] (Element 4: `Unmatched (short-flint / barium-crown boundary; patent ne=1.5629, ve=46.88)`) | abbe: 1 |
@@ -99,6 +100,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [NIKON AF-S NIKKOR 105mm f/1.4 E ED](../../src/lens-data/nikon/NikonNikkor105f14E.data.ts) | WO2019/116563 A1 | [PDF](../../patents/JPWO2019116563A1.pdf) | 85.7% (12/14) | 85.7% (12/14) | 2 | 8 [glass] (Element 5: `Specialty APD glass (Nikon)`)<br>14 [glass] (Element 9: `Specialty high-dispersion flint`) | abbe: 2 |
 | [SONY FE 24mm f/1.4 GM](../../src/lens-data/sony/SonyFE24mmf14GM.data.ts) | WO2019/073744 A1 | [PDF](../../patents/JPWO2019073744A1.pdf) | 84.6% (11/13) | 84.6% (11/13) | 2 | 1A [glass] (L11 front XA element: `MC-TAF115 class (Hoya; close match, stored nd=1.77002)`)<br>21A [glass] (L27 rear XA element: `Unmatched (lanthanum flint, 852/401; no exact public catalog match)`) | abbe: 2 |
 | [CANON SERENAR 28mm f/3.5](../../src/lens-data/canon/CanonSerenar28mmf35.data.ts) | US 2,645,974 | [PDF](../../patents/US2645974.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 6 [glass] (Element 4: `Unmatched (579417 vintage barium flint; no exact public catalog identity)`) | abbe: 1 |
+| [MAMIYA-SEKOR CS 35mm f/2.8](../../src/lens-data/mamiya/MamiyaSekorCS35mmf28.data.ts) | JP1978-066222 | Missing from untracked local patents/ references (JP1978066222, 1978066222) | 83.3% (5/6) | 83.3% (5/6) | 1 | 3 [glass] (Element 2: `Unmatched (nd=1.69480, νd=55.5; nearest public 697555 lanthanum-crown family)`) | abbe: 1 |
 | [NIKON AI NIKKOR 135mm f/2](../../src/lens-data/nikon/NikonAI135mmf2.data.ts) | US 4,062,630 | [PDF](../../patents/US4062630.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 6 [glass] (Element 4: `HOYA FD110 (740/282)`) | abbe: 1 |
 | [NIKON REFLEX-NIKKOR 500mm f/8 (New)](../../src/lens-data/nikon/NikonReflexNikkor500mmf8New.data.ts) | US 4,666,259 A | [PDF](../../patents/US4666259.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 13 [glass] (Third rear corrector element: `Unmatched (lanthanum dense flint, patent 796/410; nearest current class S-LAH52 / K-LaSFn3)`) | abbe: 1 |
 | [NIKON REFLEX-NIKKOR·C 500mm f/8](../../src/lens-data/nikon/NikonReflexNikkorC500mmf8.data.ts) | US 3,632,190 | [PDF](../../patents/US3632190.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 1 [glass] (Front corrector: `Unmatched light crown (525/596; K5-class nearest)`) | abbe: 1 |
