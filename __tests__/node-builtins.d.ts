@@ -28,6 +28,10 @@ declare module "node:path" {
   export function relative(from: string, to: string): string;
 }
 
+declare module "node:process" {
+  export const env: Record<string, string | undefined>;
+}
+
 declare module "node:url" {
   export function fileURLToPath(url: string | URL): string;
 }

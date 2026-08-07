@@ -78,6 +78,7 @@ npm run test:coverage
 npm run generate:glass-reports
 npm run generate:mirror-reports
 npm run generate:mount-svgs
+npm run generate:sa-figure-svgs     # Regenerate static spherical-aberration article figures from their components
 npm run generate:holiday-branding   # Recolor the base marks into public/branding/holiday/
 npm run audit:dependencies          # Fail on non-allowlisted high/critical npm advisories
 npm run audit:image-circle          # semi-diameters that cannot cover their own image circle

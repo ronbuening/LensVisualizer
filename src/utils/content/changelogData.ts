@@ -20,6 +20,11 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-08-07",
+    type: "article",
+    summary: "Published a three-part spherical aberration series with nine themed figures",
+  },
+  {
+    date: "2026-08-07",
     type: "improvement",
     summary: "Enabled contained pinch-to-zoom in both patent relationship maps",
   },

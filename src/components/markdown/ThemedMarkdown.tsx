@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import type { CSSProperties, ReactNode } from "react";
+import type { ComponentType, CSSProperties, ReactNode } from "react";
 import { Link } from "react-router";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -16,6 +16,15 @@ import WorkingFNumberDiagram from "../diagram/WorkingFNumberDiagram.js";
 import PVDiagram from "../diagram/PVDiagram.js";
 import LocaDiagram from "../diagram/LocaDiagram.js";
 import MTFDiagram from "../diagram/MTFDiagram.js";
+import CausticDiagram from "../diagram/sphericalAberration/CausticDiagram.js";
+import ThreeDescriptionsDiagram from "../diagram/sphericalAberration/ThreeDescriptionsDiagram.js";
+import ZonalCurvesDiagram from "../diagram/sphericalAberration/ZonalCurvesDiagram.js";
+import CoreHaloDiagram from "../diagram/sphericalAberration/CoreHaloDiagram.js";
+import ApertureSweepDiagram from "../diagram/sphericalAberration/ApertureSweepDiagram.js";
+import FrontRearDefocusDiagram from "../diagram/sphericalAberration/FrontRearDefocusDiagram.js";
+import SpherochromatismDiagram from "../diagram/sphericalAberration/SpherochromatismDiagram.js";
+import LensBendingDiagram from "../diagram/sphericalAberration/LensBendingDiagram.js";
+import DesignGoalsDiagram from "../diagram/sphericalAberration/DesignGoalsDiagram.js";
 import type { Theme } from "../../types/theme.js";
 import { canonicalPagePath } from "../../utils/seo/siteUrls.js";
 
@@ -263,10 +272,41 @@ export default function ThemedMarkdown({
   );
 }
 
+/* The spherical-aberration series references its figures by static asset path;
+ * each path substitutes the matching themed inline diagram. */
+const SPHERICAL_ABERRATION_DIAGRAMS: ReadonlyArray<[string, ComponentType<{ isDark: boolean }>]> = [
+  ["spherical-aberration/01-caustic", CausticDiagram],
+  ["spherical-aberration/02-three-descriptions", ThreeDescriptionsDiagram],
+  ["spherical-aberration/03-zonal-curves", ZonalCurvesDiagram],
+  ["spherical-aberration/04-core-halo", CoreHaloDiagram],
+  ["spherical-aberration/05-aperture-sweep", ApertureSweepDiagram],
+  ["spherical-aberration/06-front-rear-defocus", FrontRearDefocusDiagram],
+  ["spherical-aberration/07-spherochromatism", SpherochromatismDiagram],
+  ["spherical-aberration/08-lens-bending", LensBendingDiagram],
+  ["spherical-aberration/09-design-goals", DesignGoalsDiagram],
+];
+
 function renderMarkdownImage(src: string | undefined, alt: string | undefined, t: Theme, isDark: boolean) {
   const caption = alt ? (
     <figcaption style={{ marginTop: 6, fontSize: 11, color: t.muted, fontStyle: "italic" }}>{alt}</figcaption>
   ) : null;
+
+  for (const [pathToken, SaDiagram] of SPHERICAL_ABERRATION_DIAGRAMS) {
+    if (src?.includes(pathToken)) {
+      /* The min-width keeps the 640-unit figures from shrinking their labels
+       * below legibility on phones; narrow viewports scroll horizontally. */
+      return (
+        <figure style={{ margin: "24px 0", textAlign: "center" }}>
+          <div style={{ overflowX: "auto" }}>
+            <div style={{ minWidth: 560 }}>
+              <SaDiagram isDark={isDark} />
+            </div>
+          </div>
+          {caption}
+        </figure>
+      );
+    }
+  }
 
   if (src?.includes("entrance-pupil")) {
     return (

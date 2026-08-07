@@ -9,79 +9,48 @@ Generated `readme.md` and `improvementsuggestions.md` files are intentionally om
 ```mermaid
 flowchart LR
   subgraph n_src_components_diagram["src/components/diagram"]
-    n_src_components_diagram_src_components_diagram_ApertureStop_tsx["ApertureStop.tsx"]
-    n_src_components_diagram_src_components_diagram_CardinalElementsOverlay_tsx["CardinalElementsOverlay.tsx"]
-    n_src_components_diagram_src_components_diagram_ChromaticFanSpreadWidget_tsx["ChromaticFanSpreadWidget.tsx"]
-    n_src_components_diagram_src_components_diagram_ChromaticOverlayContent_tsx["ChromaticOverlayContent.tsx"]
-    n_src_components_diagram_src_components_diagram_ChromaticQualityBadge_tsx["ChromaticQualityBadge.tsx"]
-    n_src_components_diagram_src_components_diagram_DiagramDefs_tsx["DiagramDefs.tsx"]
-    n_src_components_diagram_src_components_diagram_DiagramElementLayer_tsx["DiagramElementLayer.tsx"]
-    n_src_components_diagram_src_components_diagram_DiagramGridAxisLayer_tsx["DiagramGridAxisLayer.tsx"]
-    n_src_components_diagram_src_components_diagram_DiagramOverlayLayer_tsx["DiagramOverlayLayer.tsx"]
-    n_src_components_diagram_src_components_diagram_DiagramRayLayers_tsx["DiagramRayLayers.tsx"]
-    n_src_components_diagram_src_components_diagram_DiagramSVG_tsx["DiagramSVG.tsx"]
-    n_src_components_diagram_src_components_diagram_diagramSvgTypes_ts["diagramSvgTypes.ts"]
-    n_src_components_diagram_src_components_diagram_ElementAnnotations_tsx["ElementAnnotations.tsx"]
-    n_src_components_diagram_src_components_diagram_EntrancePupilDiagram_tsx["EntrancePupilDiagram.tsx"]
-    n_src_components_diagram_src_components_diagram_ExitPupilDiagram_tsx["ExitPupilDiagram.tsx"]
-    n_src_components_diagram_src_components_diagram_LocaDiagram_tsx["LocaDiagram.tsx"]
-    n_src_components_diagram_src_components_diagram_LocaInsetWidget_tsx["LocaInsetWidget.tsx"]
-    n_src_components_diagram_src_components_diagram_MTFDiagram_tsx["MTFDiagram.tsx"]
-    n_src_components_diagram_src_components_diagram_PetzvalOverlayContent_tsx["PetzvalOverlayContent.tsx"]
-    n_src_components_diagram_src_components_diagram_PetzvalSumBadge_tsx["PetzvalSumBadge.tsx"]
-    n_src_components_diagram_src_components_diagram_PVDiagram_tsx["PVDiagram.tsx"]
-    n_src_components_diagram_src_components_diagram_RayPolylines_tsx["RayPolylines.tsx"]
-    n_src_components_diagram_src_components_diagram_TelecentricityDiagram_tsx["TelecentricityDiagram.tsx"]
-    n_src_components_diagram_src_components_diagram_WorkingFNumberDiagram_tsx["WorkingFNumberDiagram.tsx"]
+    n_src_components_diagram_src_components_diagram_sphericalAberration["sphericalAberration/"]
+    n_src_components_diagram_React_components["React components (23)"]
+    n_src_components_diagram_TypeScript_modules["TypeScript modules (1)"]
   end
   n_external_src_types["src/types"]
   n_external_pkg_react["pkg:react"]
+  n_external_src_optics_dispersion_ts["src/optics/dispersion.ts"]
+  n_external_src_optics_cardinalElements_ts["src/optics/cardinalElements.ts"]
+  n_external_src_optics_optics_ts["src/optics/optics.ts"]
   n_external_src_components_display["src/components/display"]
-  n_src_components_diagram_src_components_diagram_DiagramRayLayers_tsx --> |3| n_external_src_types
-  n_src_components_diagram_src_components_diagram_DiagramSVG_tsx --> |3| n_external_src_types
-  n_src_components_diagram_src_components_diagram_ChromaticOverlayContent_tsx --> |2| n_external_pkg_react
-  n_src_components_diagram_src_components_diagram_CardinalElementsOverlay_tsx --> |2| n_external_src_types
-  n_src_components_diagram_src_components_diagram_ChromaticFanSpreadWidget_tsx --> |2| n_external_src_types
-  n_src_components_diagram_src_components_diagram_ChromaticOverlayContent_tsx --> |2| n_external_src_types
-  n_src_components_diagram_src_components_diagram_DiagramElementLayer_tsx --> |2| n_external_src_types
-  n_src_components_diagram_src_components_diagram_DiagramGridAxisLayer_tsx --> |2| n_external_src_types
-  n_src_components_diagram_src_components_diagram_DiagramOverlayLayer_tsx --> |2| n_external_src_types
-  n_src_components_diagram_src_components_diagram_ElementAnnotations_tsx --> |2| n_external_src_types
-  n_src_components_diagram_src_components_diagram_LocaInsetWidget_tsx --> |2| n_external_src_types
-  n_src_components_diagram_src_components_diagram_PetzvalOverlayContent_tsx --> |2| n_external_src_types
-  n_src_components_diagram_src_components_diagram_PetzvalSumBadge_tsx --> |2| n_external_src_types
-  n_src_components_diagram_src_components_diagram_ApertureStop_tsx --> n_external_pkg_react
-  n_src_components_diagram_src_components_diagram_CardinalElementsOverlay_tsx --> n_external_pkg_react
-  n_src_components_diagram_src_components_diagram_ChromaticFanSpreadWidget_tsx --> n_external_pkg_react
-  n_src_components_diagram_src_components_diagram_DiagramDefs_tsx --> n_external_pkg_react
-  n_src_components_diagram_src_components_diagram_DiagramElementLayer_tsx --> n_external_pkg_react
-  n_src_components_diagram_src_components_diagram_DiagramGridAxisLayer_tsx --> n_external_pkg_react
-  n_src_components_diagram_src_components_diagram_DiagramOverlayLayer_tsx --> n_external_pkg_react
-  n_src_components_diagram_src_components_diagram_DiagramRayLayers_tsx --> n_external_pkg_react
-  n_src_components_diagram_src_components_diagram_DiagramSVG_tsx --> n_external_pkg_react
-  n_src_components_diagram_src_components_diagram_ElementAnnotations_tsx --> n_external_pkg_react
-  n_src_components_diagram_src_components_diagram_EntrancePupilDiagram_tsx --> n_external_pkg_react
-  n_src_components_diagram_src_components_diagram_ExitPupilDiagram_tsx --> n_external_pkg_react
-  n_src_components_diagram_src_components_diagram_LocaDiagram_tsx --> n_external_pkg_react
-  n_src_components_diagram_src_components_diagram_LocaInsetWidget_tsx --> n_external_pkg_react
-  n_src_components_diagram_src_components_diagram_MTFDiagram_tsx --> n_external_pkg_react
-  n_src_components_diagram_src_components_diagram_PetzvalOverlayContent_tsx --> n_external_pkg_react
-  n_src_components_diagram_src_components_diagram_PetzvalSumBadge_tsx --> n_external_pkg_react
-  n_src_components_diagram_src_components_diagram_PVDiagram_tsx --> n_external_pkg_react
-  n_src_components_diagram_src_components_diagram_RayPolylines_tsx --> n_external_pkg_react
-  n_src_components_diagram_src_components_diagram_TelecentricityDiagram_tsx --> n_external_pkg_react
-  n_src_components_diagram_src_components_diagram_WorkingFNumberDiagram_tsx --> n_external_pkg_react
-  n_src_components_diagram_src_components_diagram_ChromaticFanSpreadWidget_tsx --> n_external_src_components_display
-  n_src_components_diagram_src_components_diagram_ChromaticOverlayContent_tsx --> n_external_src_components_display
-  n_src_components_diagram_truncated["additional relationships omitted"]
+  n_external_src_optics_chromaticRayFanScaling_ts["src/optics/chromaticRayFanScaling.ts"]
+  n_external_src_utils_featureFlags_ts["src/utils/featureFlags.ts"]
+  n_external_src_utils_usePrefersReducedMotion_ts["src/utils/usePrefersReducedMotion.ts"]
+  n_external_src_optics_chromatic["src/optics/chromatic"]
+  n_external_src_optics_lensMovement_ts["src/optics/lensMovement.ts"]
+  n_src_components_diagram_React_components --> |29| n_external_src_types
+  n_src_components_diagram_React_components --> |23| n_external_pkg_react
+  n_src_components_diagram_React_components --> |7| n_external_src_optics_dispersion_ts
+  n_src_components_diagram_React_components --> |3| n_external_src_optics_cardinalElements_ts
+  n_src_components_diagram_React_components --> |3| n_external_src_optics_optics_ts
+  n_src_components_diagram_React_components --> |3| n_src_components_diagram_TypeScript_modules
+  n_src_components_diagram_React_components --> |2| n_external_src_components_display
+  n_src_components_diagram_React_components --> |2| n_external_src_optics_chromaticRayFanScaling_ts
+  n_src_components_diagram_React_components --> |2| n_external_src_utils_featureFlags_ts
+  n_src_components_diagram_React_components --> |2| n_external_src_utils_usePrefersReducedMotion_ts
+  n_src_components_diagram_React_components --> n_external_src_optics_chromatic
+  n_src_components_diagram_React_components --> n_external_src_optics_lensMovement_ts
+  n_src_components_diagram_TypeScript_modules --> n_external_src_types
 ```
 
 ## Directory Overview
 
 - Direct source files: 24
-- Direct subfolders: 0
+- Direct subfolders: 1
 - Main outbound areas: src/types (30), package:react (23), same folder (18), src/optics/dispersion.ts (7), src/optics/cardinalElements.ts (3), src/optics/optics.ts (3), src/components/display (2), src/optics/chromaticRayFanScaling.ts (2), +4 more
 - External consumers: src/benchmarks, src/components/layout, src/components/markdown
+
+## Subfolders
+
+| Folder | Role |
+| --- | --- |
+| [sphericalAberration/](sphericalAberration/readme.md) | src/components/diagram/sphericalAberration source folder |
 
 ## Files
 

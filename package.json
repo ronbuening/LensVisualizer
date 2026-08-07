@@ -21,6 +21,7 @@
     "generate:glass-reports": "vitest run --testTimeout 30000 unresolvedGlassScan catalogMismatchScan glassRelabelCandidatesScan glassRelabelByLensScan glassAmbiguityScan sixDigitGlassCodeScan sellmeierCoverageScan glassCoverageOpportunitiesScan",
     "generate:mirror-reports": "vitest run --testTimeout 30000 mirrorFixtureAuthoringReport",
     "generate:mount-svgs": "vitest run --testTimeout 30000 mountSvgSpecificationsReport",
+    "generate:sa-figure-svgs": "SA_FIGURE_SVGS_WRITE=1 vitest run --testTimeout 30000 sphericalAberrationStaticSvgs",
     "generate:holiday-branding": "node scripts/generate-holiday-branding.mjs",
     "audit:dependencies": "node scripts/audit-dependencies.mjs",
     "audit:image-circle": "node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-image-circle.mjs",
