@@ -94,7 +94,7 @@ export default function UniversalRelationshipMapPage() {
           </div>
 
           <p style={{ color: t.label, fontSize: "0.72rem", lineHeight: 1.5, margin: "0 0 0.8rem" }}>
-            Scroll to zoom, drag to pan, and select any node for details. Labels appear as you zoom in.
+            Pinch or scroll to zoom, drag to pan, and select any node for details. Labels appear as you zoom in.
           </p>
 
           <ClientOnly

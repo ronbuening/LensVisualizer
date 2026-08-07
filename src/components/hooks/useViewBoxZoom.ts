@@ -7,7 +7,7 @@
  * infinite-resolution SVG zoom with crisp rendering at any magnification.
  */
 
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, type RefObject } from "react";
 
 /* ── Constants ── */
 const MIN_ZOOM = 1;
@@ -78,7 +78,18 @@ function defaultState(svgW: number, svgH: number): ViewBoxState {
   return { vbX: 0, vbY: 0, vbW: svgW, vbH: svgH, zoom: 1 };
 }
 
-export default function useViewBoxZoom(svgW: number, svgH: number, active: boolean): ViewBoxZoomResult {
+/**
+ * @param containedGestureTarget Optional SVG target that should own native
+ * wheel, touch, and WebKit trackpad-pinch gestures. React delegates wheel and
+ * touch listeners passively, so an element-local non-passive listener is
+ * required when page zoom/scroll must be contained inside a viewport.
+ */
+export default function useViewBoxZoom(
+  svgW: number,
+  svgH: number,
+  active: boolean,
+  containedGestureTarget?: RefObject<SVGSVGElement | null>,
+): ViewBoxZoomResult {
   const [state, setState] = useState<ViewBoxState>(() => defaultState(svgW, svgH));
   const [isPanning, setIsPanning] = useState(false);
 
@@ -92,12 +103,16 @@ export default function useViewBoxZoom(svgW: number, svgH: number, active: boole
 
   /* Refs for pinch tracking */
   const pinchStart = useRef<{ dist: number; zoom: number; midX: number; midY: number } | null>(null);
+  const gestureStartZoom = useRef<number | null>(null);
+  const touchInteractionActive = useRef(false);
 
   const reset = useCallback(() => {
     setState(defaultState(svgW, svgH));
     setIsPanning(false);
     dragStart.current = null;
     pinchStart.current = null;
+    gestureStartZoom.current = null;
+    touchInteractionActive.current = false;
   }, [svgW, svgH]);
 
   /** Convert client coords to SVG viewBox coords using the SVG element's bounding rect */
@@ -144,7 +159,10 @@ export default function useViewBoxZoom(svgW: number, svgH: number, active: boole
 
   const handlePointerDown = useCallback(
     (e: React.PointerEvent<SVGSVGElement>) => {
-      if (!active || e.button !== 0) return;
+      /* Touch input is owned by the touch handlers below. Handling the same
+       * contact as both pointer and touch input makes two-finger gestures fight
+       * with pointer-drag panning in browsers that emit both event families. */
+      if (!active || e.button !== 0 || e.pointerType === "touch") return;
       e.currentTarget.setPointerCapture(e.pointerId);
       /* Capture current vbX/vbY via latestState ref — avoids a side-effect-in-updater
        * and removes the unnecessary setState call that was only used to read prev state. */
@@ -157,7 +175,7 @@ export default function useViewBoxZoom(svgW: number, svgH: number, active: boole
 
   const handlePointerMove = useCallback(
     (e: React.PointerEvent<SVGSVGElement>) => {
-      if (!active || !dragStart.current) return;
+      if (!active || e.pointerType === "touch" || !dragStart.current) return;
 
       const ds = dragStart.current;
       const svgEl = e.currentTarget;
@@ -181,7 +199,7 @@ export default function useViewBoxZoom(svgW: number, svgH: number, active: boole
 
   const handlePointerUp = useCallback(
     (e: React.PointerEvent<SVGSVGElement>) => {
-      if (!active) return;
+      if (!active || e.pointerType === "touch") return;
       try {
         e.currentTarget.releasePointerCapture(e.pointerId);
       } catch {
@@ -204,7 +222,7 @@ export default function useViewBoxZoom(svgW: number, svgH: number, active: boole
         const dist = touchDist(e.touches[0], e.touches[1]);
         pinchStart.current = {
           dist,
-          zoom: state.zoom,
+          zoom: latestState.current.zoom,
           midX: (e.touches[0].clientX + e.touches[1].clientX) / 2,
           midY: (e.touches[0].clientY + e.touches[1].clientY) / 2,
         };
@@ -214,7 +232,7 @@ export default function useViewBoxZoom(svgW: number, svgH: number, active: boole
         setIsPanning(true);
       }
     },
-    [active, state.zoom],
+    [active],
   );
 
   const handleTouchMove = useCallback(
@@ -271,6 +289,101 @@ export default function useViewBoxZoom(svgW: number, svgH: number, active: boole
     },
     [active],
   );
+
+  /** Set an absolute zoom level while keeping the client-space point fixed. */
+  const zoomAtPoint = useCallback(
+    (targetZoom: number, clientX: number, clientY: number, svgEl: SVGSVGElement) => {
+      setState((prev) => {
+        const newZoom = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, targetZoom));
+        const { svgX, svgY } = clientToSvg(clientX, clientY, svgEl, prev);
+        const newVbW = svgW / newZoom;
+        const newVbH = svgH / newZoom;
+        const fracX = (svgX - prev.vbX) / prev.vbW;
+        const fracY = (svgY - prev.vbY) / prev.vbH;
+        const rawVbX = svgX - fracX * newVbW;
+        const rawVbY = svgY - fracY * newVbH;
+        const clamped = clampPan(rawVbX, rawVbY, newVbW, newVbH, svgW, svgH);
+        return { vbX: clamped.vbX, vbY: clamped.vbY, vbW: newVbW, vbH: newVbH, zoom: newZoom };
+      });
+    },
+    [clientToSvg, svgH, svgW],
+  );
+
+  /* React's delegated wheel/touch listeners are passive. Relationship maps
+   * pass their SVG ref here so those gestures can be intercepted locally,
+   * without changing page-level pinch or scroll behavior elsewhere. Safari on
+   * macOS reports trackpad pinch through non-standard gesture events; touch
+   * contacts continue through the standard touch handlers to avoid doubling. */
+  useEffect(() => {
+    const svgEl = containedGestureTarget?.current;
+    if (!active || !svgEl) return;
+
+    type WebKitGestureEvent = Event & {
+      scale?: number;
+      clientX?: number;
+      clientY?: number;
+    };
+
+    const asReactWheelEvent = (event: WheelEvent) => handleWheel(event as unknown as React.WheelEvent<SVGSVGElement>);
+    const handleNativeTouchStart = (event: TouchEvent) => {
+      touchInteractionActive.current = event.touches.length > 0;
+      handleTouchStart(event as unknown as React.TouchEvent<SVGSVGElement>);
+    };
+    const handleNativeTouchMove = (event: TouchEvent) =>
+      handleTouchMove(event as unknown as React.TouchEvent<SVGSVGElement>);
+    const handleNativeTouchEnd = (event: TouchEvent) => {
+      handleTouchEnd(event as unknown as React.TouchEvent<SVGSVGElement>);
+      touchInteractionActive.current = event.touches.length > 0;
+    };
+    const gesturePoint = (event: WebKitGestureEvent) => {
+      const rect = svgEl.getBoundingClientRect();
+      return {
+        x: Number.isFinite(event.clientX) ? (event.clientX as number) : rect.left + rect.width / 2,
+        y: Number.isFinite(event.clientY) ? (event.clientY as number) : rect.top + rect.height / 2,
+      };
+    };
+    const handleGestureStart = (event: Event) => {
+      event.preventDefault();
+      if (touchInteractionActive.current) return;
+      gestureStartZoom.current = latestState.current.zoom;
+    };
+    const handleGestureChange = (event: Event) => {
+      event.preventDefault();
+      if (touchInteractionActive.current) return;
+      const startZoom = gestureStartZoom.current;
+      const gestureEvent = event as WebKitGestureEvent;
+      if (startZoom === null || !Number.isFinite(gestureEvent.scale) || (gestureEvent.scale ?? 0) <= 0) return;
+      const point = gesturePoint(gestureEvent);
+      zoomAtPoint(startZoom * (gestureEvent.scale as number), point.x, point.y, svgEl);
+    };
+    const handleGestureEnd = (event: Event) => {
+      event.preventDefault();
+      gestureStartZoom.current = null;
+    };
+    const nonPassive: AddEventListenerOptions = { passive: false };
+
+    svgEl.addEventListener("wheel", asReactWheelEvent, nonPassive);
+    svgEl.addEventListener("touchstart", handleNativeTouchStart, nonPassive);
+    svgEl.addEventListener("touchmove", handleNativeTouchMove, nonPassive);
+    svgEl.addEventListener("touchend", handleNativeTouchEnd, nonPassive);
+    svgEl.addEventListener("touchcancel", handleNativeTouchEnd, nonPassive);
+    svgEl.addEventListener("gesturestart", handleGestureStart, nonPassive);
+    svgEl.addEventListener("gesturechange", handleGestureChange, nonPassive);
+    svgEl.addEventListener("gestureend", handleGestureEnd, nonPassive);
+
+    return () => {
+      svgEl.removeEventListener("wheel", asReactWheelEvent);
+      svgEl.removeEventListener("touchstart", handleNativeTouchStart);
+      svgEl.removeEventListener("touchmove", handleNativeTouchMove);
+      svgEl.removeEventListener("touchend", handleNativeTouchEnd);
+      svgEl.removeEventListener("touchcancel", handleNativeTouchEnd);
+      svgEl.removeEventListener("gesturestart", handleGestureStart);
+      svgEl.removeEventListener("gesturechange", handleGestureChange);
+      svgEl.removeEventListener("gestureend", handleGestureEnd);
+      gestureStartZoom.current = null;
+      touchInteractionActive.current = false;
+    };
+  }, [active, containedGestureTarget, handleTouchEnd, handleTouchMove, handleTouchStart, handleWheel, zoomAtPoint]);
 
   /* ── Programmatic zoom/pan (for keyboard + buttons) ── */
 

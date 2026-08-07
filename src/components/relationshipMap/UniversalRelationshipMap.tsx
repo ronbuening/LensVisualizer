@@ -7,7 +7,7 @@
  * catalog legible at its initial fit.
  */
 
-import { useMemo, useState, type CSSProperties, type KeyboardEvent, type PointerEvent } from "react";
+import { useMemo, useRef, useState, type CSSProperties, type KeyboardEvent, type PointerEvent } from "react";
 import type { Theme } from "../../types/theme.js";
 import type {
   UniversalEdgeKind,
@@ -86,7 +86,8 @@ export default function UniversalRelationshipMap({
   onSelectNode,
 }: UniversalRelationshipMapProps) {
   const layout = useMemo(() => layoutUniversalRelationshipGraph(graph), [graph]);
-  const zoom = useViewBoxZoom(layout.width, layout.height, true);
+  const svgRef = useRef<SVGSVGElement>(null);
+  const zoom = useViewBoxZoom(layout.width, layout.height, true, svgRef);
   const [hoveredNodeId, setHoveredNodeId] = useState<string | null>(null);
   const activeNodeId = hoveredNodeId ?? selectedNodeId;
 
@@ -146,6 +147,7 @@ export default function UniversalRelationshipMap({
         }}
       >
         <svg
+          ref={svgRef}
           role="group"
           aria-label={ariaLabel}
           viewBox={zoom.viewBox}
@@ -157,13 +159,9 @@ export default function UniversalRelationshipMap({
             touchAction: "none",
             cursor: zoom.isPanning ? "grabbing" : "grab",
           }}
-          onWheel={zoom.handleWheel}
           onPointerDown={zoom.handlePointerDown}
           onPointerMove={zoom.handlePointerMove}
           onPointerUp={zoom.handlePointerUp}
-          onTouchStart={zoom.handleTouchStart}
-          onTouchMove={zoom.handleTouchMove}
-          onTouchEnd={zoom.handleTouchEnd}
         >
           {layout.components.map((component) => (
             <g key={component.id} pointerEvents="none">
