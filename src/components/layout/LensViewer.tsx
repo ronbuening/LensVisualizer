@@ -373,6 +373,7 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
                 onAperturePointerDown={handleAperturePointerDown}
                 onSliderPointerUp={updateURLWithSliders}
                 dispatch={dispatch}
+                showEffectiveFocalLength={panels.showEffectiveFocalLength}
                 showEffectiveAperture={panels.showEffectiveAperture}
                 effectiveDesktopView={effectiveDesktopView}
                 showDesktopToggle={showDesktopToggle}

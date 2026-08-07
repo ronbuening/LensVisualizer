@@ -124,6 +124,7 @@ export default function LensDiagramPanel({
     glassMapOpen,
     chromaticOverlayOpen,
     petzvalOverlayOpen,
+    showEffectiveFocalLength,
     showEffectiveAperture,
     aberrationsExpanded,
     analysisDrawerOpen,
@@ -428,6 +429,7 @@ export default function LensDiagramPanel({
             focusExpanded,
             apertureExpanded,
             legendExpanded,
+            showEffectiveFocalLength,
             showEffectiveAperture,
             abbeShowGlassType,
           }}

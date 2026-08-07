@@ -94,6 +94,7 @@ describe("usePreferences — persisted fields", () => {
     expect(typeof parsed.legendExpanded).toBe("boolean");
     expect(typeof parsed.headerInfoExpanded).toBe("boolean");
     expect(typeof parsed.abbeShowGlassType).toBe("boolean");
+    expect(typeof parsed.showEffectiveFocalLength).toBe("boolean");
   });
 
   it("does NOT persist slider positions", () => {

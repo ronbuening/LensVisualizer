@@ -44,6 +44,7 @@ interface ComparisonContentProps {
   onAperturePointerDown: () => void;
   onSliderPointerUp: () => void;
   dispatch: Dispatch<LensAction>;
+  showEffectiveFocalLength: boolean;
   showEffectiveAperture: boolean;
 }
 
@@ -74,6 +75,7 @@ export default function ComparisonContent({
   onAperturePointerDown,
   onSliderPointerUp,
   dispatch,
+  showEffectiveFocalLength,
   showEffectiveAperture,
 }: ComparisonContentProps) {
   const { dynamicEflA, dynamicEflB, effectiveFNumA, effectiveFNumB } = useComparisonDisplayValues({
@@ -161,6 +163,14 @@ export default function ComparisonContent({
             dynamicEflB={dynamicEflB}
             effectiveFNumA={effectiveFNumA}
             effectiveFNumB={effectiveFNumB}
+            showEffectiveFocalLength={showEffectiveFocalLength}
+            onToggleEffectiveFocalLength={() =>
+              dispatch({
+                type: "SET_PANEL_EXPANDED",
+                panel: "showEffectiveFocalLength",
+                expanded: !showEffectiveFocalLength,
+              })
+            }
             showEffectiveAperture={showEffectiveAperture}
             onToggleEffectiveAperture={() =>
               dispatch({ type: "SET_PANEL_EXPANDED", panel: "showEffectiveAperture", expanded: !showEffectiveAperture })

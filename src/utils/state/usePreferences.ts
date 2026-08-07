@@ -47,6 +47,7 @@ export default function usePreferences(state: LensState): void {
       legendExpanded: panels.legendExpanded,
       headerInfoExpanded: panels.headerInfoExpanded,
       abbeShowGlassType: panels.abbeShowGlassType,
+      showEffectiveFocalLength: panels.showEffectiveFocalLength,
       showEffectiveAperture: panels.showEffectiveAperture,
       aberrationsExpanded: panels.aberrationsExpanded,
       analysisDrawerTab: panels.analysisDrawerTab,

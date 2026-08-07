@@ -47,6 +47,7 @@ function baseProps() {
     onAperturePointerDown: vi.fn(),
     onSliderPointerUp: vi.fn(),
     dispatch: vi.fn(),
+    showEffectiveFocalLength: false,
     showEffectiveAperture: false,
     effectiveDesktopView: "both" as const,
     showDesktopToggle: true,

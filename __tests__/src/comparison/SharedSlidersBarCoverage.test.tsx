@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 
-import { cleanup, fireEvent, render, screen } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen, within } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import SharedSlidersBar from "../../../src/comparison/SharedSlidersBar.js";
 import themes from "../../../src/utils/theme/themes.js";
@@ -50,7 +50,10 @@ function renderSharedSliders({
   sharedZoomT = 0.5,
   sharedShiftMm = 0,
   sharedTiltDeg = 0,
+  showEffectiveFocalLength = false,
   showEffectiveAperture = false,
+  dynamicEflA = 52,
+  dynamicEflB = 50,
   effectiveFNumA = 2.1,
   effectiveFNumB = 2.2,
   onSharedFocusChange = vi.fn(),
@@ -61,6 +64,7 @@ function renderSharedSliders({
   onFocusPointerDown = vi.fn(),
   onAperturePointerDown = vi.fn(),
   onSliderPointerUp = vi.fn(),
+  onToggleEffectiveFocalLength = vi.fn(),
   onToggleEffectiveAperture = vi.fn(),
   onOpenGroupMovement = vi.fn(),
 }: {
@@ -71,7 +75,10 @@ function renderSharedSliders({
   sharedZoomT?: number;
   sharedShiftMm?: number;
   sharedTiltDeg?: number;
+  showEffectiveFocalLength?: boolean;
   showEffectiveAperture?: boolean;
+  dynamicEflA?: number;
+  dynamicEflB?: number;
   effectiveFNumA?: number;
   effectiveFNumB?: number;
   onSharedFocusChange?: (value: number) => void;
@@ -82,6 +89,7 @@ function renderSharedSliders({
   onFocusPointerDown?: () => void;
   onAperturePointerDown?: () => void;
   onSliderPointerUp?: () => void;
+  onToggleEffectiveFocalLength?: () => void;
   onToggleEffectiveAperture?: () => void;
   onOpenGroupMovement?: (mode: "focus" | "zoom" | "combined") => void;
 } = {}) {
@@ -107,10 +115,12 @@ function renderSharedSliders({
         aperturePair={aperturePair}
         zoomPair={zoomPair}
         movementPair={movementPair}
-        dynamicEflA={52}
-        dynamicEflB={50}
+        dynamicEflA={dynamicEflA}
+        dynamicEflB={dynamicEflB}
         effectiveFNumA={effectiveFNumA}
         effectiveFNumB={effectiveFNumB}
+        showEffectiveFocalLength={showEffectiveFocalLength}
+        onToggleEffectiveFocalLength={onToggleEffectiveFocalLength}
         showEffectiveAperture={showEffectiveAperture}
         onToggleEffectiveAperture={onToggleEffectiveAperture}
         onOpenGroupMovement={onOpenGroupMovement}
@@ -127,6 +137,7 @@ function renderSharedSliders({
       onFocusPointerDown,
       onAperturePointerDown,
       onSliderPointerUp,
+      onToggleEffectiveFocalLength,
       onToggleEffectiveAperture,
       onOpenGroupMovement,
     },
@@ -260,6 +271,25 @@ describe("SharedSlidersBar", () => {
 
     fireEvent.click(screen.getByText(/Show effective aperture/i));
     expect(onToggleEffectiveAperture).toHaveBeenCalledTimes(1);
+  });
+
+  it("renders and toggles focused effective focal-length readouts for zoom lenses", () => {
+    const onToggleEffectiveFocalLength = vi.fn();
+    const LA = lens({ name: "Zoom A", isZoom: true, zoomPositions: [24, 70], zoomEFLs: [24, 70] });
+    renderSharedSliders({
+      LA,
+      zoomPair: { zoomA: 0.5, zoomB: 0, showZoom: true },
+      dynamicEflA: 44,
+      showEffectiveFocalLength: true,
+      onToggleEffectiveFocalLength,
+    });
+
+    const zoomBox = screen.getByText("ZOOM").parentElement?.parentElement as HTMLElement;
+    const focusBox = screen.getByText("FOCUS").parentElement?.parentElement as HTMLElement;
+    expect(within(zoomBox).getByText("A: 47 mm (eff. 44.0 mm)")).toBeTruthy();
+    expect(within(focusBox).queryByText(/Show effective focal length/i)).toBeNull();
+    fireEvent.click(within(zoomBox).getByText(/Show effective focal length/i));
+    expect(onToggleEffectiveFocalLength).toHaveBeenCalledTimes(1);
   });
 
   it("opens shared focus and zoom motion charts when movement is modeled", () => {

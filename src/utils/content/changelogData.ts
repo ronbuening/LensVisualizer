@@ -21,6 +21,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-08-07",
     type: "feature",
+    summary: "Added an optional focused effective focal-length readout to zoom controls",
+  },
+  {
+    date: "2026-08-07",
+    type: "feature",
     summary: "Added outbound patent links to lens, author, and relationship map pages",
   },
   {

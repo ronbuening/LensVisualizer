@@ -23,15 +23,18 @@ vi.mock("../../../src/comparison/ComparisonLayout.js", () => ({
 vi.mock("../../../src/comparison/SharedSlidersBar.js", () => ({
   default: ({
     onSharedZoomChange,
+    onToggleEffectiveFocalLength,
     onToggleEffectiveAperture,
     onOpenGroupMovement,
   }: {
     onSharedZoomChange: (value: number) => void;
+    onToggleEffectiveFocalLength: () => void;
     onToggleEffectiveAperture: () => void;
     onOpenGroupMovement: (mode: "focus" | "zoom" | "combined") => void;
   }) => (
     <div data-testid="shared-sliders">
       <button onClick={() => onSharedZoomChange(0.4)}>Zoom</button>
+      <button onClick={onToggleEffectiveFocalLength}>Focal length</button>
       <button onClick={onToggleEffectiveAperture}>Aperture</button>
       <button onClick={() => onOpenGroupMovement("focus")}>Movement</button>
     </div>
@@ -74,6 +77,7 @@ describe("ComparisonContent", () => {
         onAperturePointerDown={vi.fn()}
         onSliderPointerUp={vi.fn()}
         dispatch={dispatch}
+        showEffectiveFocalLength={false}
         showEffectiveAperture={false}
       />,
     );
@@ -83,6 +87,12 @@ describe("ComparisonContent", () => {
 
     fireEvent.click(screen.getByRole("button", { name: "Zoom" }));
     expect(dispatch).toHaveBeenCalledWith({ type: SET_SHARED_ZOOM_T, value: 0.4 });
+    fireEvent.click(screen.getByRole("button", { name: "Focal length" }));
+    expect(dispatch).toHaveBeenCalledWith({
+      type: "SET_PANEL_EXPANDED",
+      panel: "showEffectiveFocalLength",
+      expanded: true,
+    });
     fireEvent.click(screen.getByRole("button", { name: "Aperture" }));
     expect(dispatch).toHaveBeenCalledWith({
       type: "SET_PANEL_EXPANDED",
@@ -122,6 +132,7 @@ describe("ComparisonContent", () => {
         onAperturePointerDown={vi.fn()}
         onSliderPointerUp={vi.fn()}
         dispatch={vi.fn()}
+        showEffectiveFocalLength={false}
         showEffectiveAperture={false}
       />,
     );

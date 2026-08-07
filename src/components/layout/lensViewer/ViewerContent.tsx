@@ -47,6 +47,7 @@ interface ViewerContentProps {
   onAperturePointerDown: () => void;
   onSliderPointerUp: () => void;
   dispatch: Dispatch<LensAction>;
+  showEffectiveFocalLength: boolean;
   showEffectiveAperture: boolean;
   effectiveDesktopView: DesktopView;
   showDesktopToggle: boolean;
@@ -83,6 +84,7 @@ export default function ViewerContent({
   onAperturePointerDown,
   onSliderPointerUp,
   dispatch,
+  showEffectiveFocalLength,
   showEffectiveAperture,
   effectiveDesktopView,
   showDesktopToggle,
@@ -118,6 +120,7 @@ export default function ViewerContent({
         onAperturePointerDown={onAperturePointerDown}
         onSliderPointerUp={onSliderPointerUp}
         dispatch={dispatch}
+        showEffectiveFocalLength={showEffectiveFocalLength}
         showEffectiveAperture={showEffectiveAperture}
       />
     );

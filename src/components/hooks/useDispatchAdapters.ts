@@ -58,6 +58,7 @@ export interface DispatchAdapters {
   onLegendExpandedChange: (v: boolean) => void;
   onHeaderInfoExpandedChange: (v: boolean) => void;
   onAbbeShowGlassTypeChange: (v: boolean) => void;
+  onEffectiveFocalLengthChange: (v: boolean) => void;
   onEffectiveApertureChange: (v: boolean) => void;
   onAberrationsExpandedChange: (v: boolean) => void;
   onAnalysisDrawerToggle: (v: boolean) => void;
@@ -123,6 +124,8 @@ export default function useDispatchAdapters(): DispatchAdapters {
         dispatch({ type: SET_PANEL_EXPANDED, panel: "headerInfoExpanded", expanded: v }),
       onAbbeShowGlassTypeChange: (v: boolean) =>
         dispatch({ type: SET_PANEL_EXPANDED, panel: "abbeShowGlassType", expanded: v }),
+      onEffectiveFocalLengthChange: (v: boolean) =>
+        dispatch({ type: SET_PANEL_EXPANDED, panel: "showEffectiveFocalLength", expanded: v }),
       onEffectiveApertureChange: (v: boolean) =>
         dispatch({ type: SET_PANEL_EXPANDED, panel: "showEffectiveAperture", expanded: v }),
       onAberrationsExpandedChange: (v: boolean) =>

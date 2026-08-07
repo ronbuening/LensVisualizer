@@ -52,6 +52,8 @@ interface DiagramControlsProps {
   baseEPSD: number;
   dynamicEFL: number;
   effectiveFNum: number;
+  showEffectiveFocalLength: boolean;
+  onToggleEffectiveFocalLength?: () => void;
   showEffectiveAperture: boolean;
   onToggleEffectiveAperture?: () => void;
   apertureExpanded: boolean;
@@ -89,6 +91,8 @@ export default function DiagramControls({
   baseEPSD,
   dynamicEFL,
   effectiveFNum,
+  showEffectiveFocalLength,
+  onToggleEffectiveFocalLength,
   showEffectiveAperture,
   onToggleEffectiveAperture,
   apertureExpanded,
@@ -213,7 +217,7 @@ export default function DiagramControls({
           useSideLayout={useSideLayout}
           label="ZOOM"
           labelMinWidth={55}
-          displayValue={`${eflAtZoom(zoomT, L).toFixed(0)} mm`}
+          displayValue={`${eflAtZoom(zoomT, L).toFixed(0)} mm${showEffectiveFocalLength && eflChanged ? ` (eff. ${dynamicEFL.toFixed(1)} mm)` : ""}`}
           value={zoomT}
           step={L.zoomStep}
           onPointerDown={beginInteraction}
@@ -223,7 +227,30 @@ export default function DiagramControls({
           maxLabel={`${L.zoomPositions![L.zoomPositions!.length - 1]} mm`}
           flexBasis="200px"
           action={groupMovementAvailability.zoom ? motionButton("zoom", "zoom") : undefined}
-        />
+        >
+          <button
+            onClick={onToggleEffectiveFocalLength}
+            aria-pressed={showEffectiveFocalLength}
+            style={{
+              marginTop: 8,
+              fontSize: 9,
+              color: t.desc,
+              cursor: "pointer",
+              userSelect: "none",
+              transition: "color 0.3s",
+              background: "none",
+              border: "none",
+              padding: 0,
+              fontFamily: "inherit",
+              textAlign: "left",
+              display: "block",
+            }}
+          >
+            <span style={{ opacity: showEffectiveFocalLength ? 1 : 0.5 }}>
+              {showEffectiveFocalLength ? "\u2611" : "\u2610"} Show effective focal length
+            </span>
+          </button>
+        </SliderControl>
       )}
 
       {showSliders && (
