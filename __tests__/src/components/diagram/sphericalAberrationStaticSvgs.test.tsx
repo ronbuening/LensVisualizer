@@ -1,17 +1,19 @@
 /**
- * Static SVG generator for the spherical-aberration article figures.
+ * Static SVG generator and sync guard for the spherical-aberration article figures.
  *
  * The article markdown references /diagrams/spherical-aberration/*.svg; in the app those paths are
  * substituted with the themed React components, so the static files only serve direct URL hits
  * (feeds, social embeds, hotlinks). Each file embeds the dark and light renders of the same
- * component and switches between them with a prefers-color-scheme media query, so the fallback can
- * never drift from the inline diagrams. Modeled on the mount-SVG report generator: deterministic
- * output, clean diffs.
+ * component and switches between them with a prefers-color-scheme media query.
  *
- * Regenerate: `npm run generate:sa-figure-svgs`
+ * By default this test COMPARES the generated markup against the committed files and fails on any
+ * drift — CI builds deploy from the checkout, so a stale committed fallback would otherwise ship
+ * silently after a component edit. Regenerate with `npm run generate:sa-figure-svgs`, which sets
+ * SA_FIGURE_SVGS_WRITE=1 to rewrite the files instead of diffing them.
  */
 import { describe, expect, it } from "vitest";
-import { mkdirSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { env } from "node:process";
 import { renderToStaticMarkup } from "react-dom/server";
 import type { ComponentType } from "react";
 import CausticDiagram from "../../../../src/components/diagram/sphericalAberration/CausticDiagram.js";
@@ -25,6 +27,7 @@ import LensBendingDiagram from "../../../../src/components/diagram/sphericalAber
 import DesignGoalsDiagram from "../../../../src/components/diagram/sphericalAberration/DesignGoalsDiagram.js";
 
 const OUT_DIR = "public/diagrams/spherical-aberration";
+const WRITE_MODE = env.SA_FIGURE_SVGS_WRITE === "1";
 
 const FIGURES: ReadonlyArray<[string, ComponentType<{ isDark: boolean }>]> = [
   ["01-caustic", CausticDiagram],
@@ -75,8 +78,8 @@ function buildStaticSvg(Diagram: ComponentType<{ isDark: boolean }>): string {
 }
 
 describe("spherical-aberration static figure SVGs", () => {
-  it("emits a theme-switching static SVG per figure", () => {
-    mkdirSync(OUT_DIR, { recursive: true });
+  it("keeps the committed theme-switching fallbacks in sync with the components", () => {
+    if (WRITE_MODE) mkdirSync(OUT_DIR, { recursive: true });
     for (const [name, Diagram] of FIGURES) {
       const svg = buildStaticSvg(Diagram);
       expect(svg).toContain(`class="sa-dark"`);
@@ -85,7 +88,19 @@ describe("spherical-aberration static figure SVGs", () => {
       // Both renders must carry the shared background so each theme is complete on its own.
       expect(svg).toContain("#12151e");
       expect(svg).toContain("#eff2f8");
-      writeFileSync(`${OUT_DIR}/${name}.svg`, svg);
+
+      const filePath = `${OUT_DIR}/${name}.svg`;
+      if (WRITE_MODE) {
+        writeFileSync(filePath, svg);
+      } else {
+        let committed = "";
+        try {
+          committed = readFileSync(filePath, "utf-8");
+        } catch {
+          // fall through to the assertion below with the empty string
+        }
+        expect(committed, `${filePath} is stale or missing — run: npm run generate:sa-figure-svgs`).toBe(svg);
+      }
     }
   });
 });

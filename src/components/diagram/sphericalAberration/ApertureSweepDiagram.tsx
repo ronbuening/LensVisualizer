@@ -61,7 +61,7 @@ const ApertureSweepDiagram = memo(function ApertureSweepDiagram({ isDark }: { is
         const ip = x0 + 158;
         return (
           <g key={title}>
-            <text x={x0 + 100} y="34" textAnchor="middle" fill={c.label} fontFamily={SA_FONT} fontSize={11}>
+            <text x={x0 + 100} y="34" textAnchor="middle" fill={c.label} fontFamily={SA_FONT} fontSize={12}>
               {title}
             </text>
 
@@ -127,7 +127,7 @@ const ApertureSweepDiagram = memo(function ApertureSweepDiagram({ isDark }: { is
               strokeWidth={4}
               opacity={0.9}
             />
-            <text x={ip} y="258" textAnchor="middle" fill={c.muted} fontFamily={SA_FONT} fontSize={10}>
+            <text x={ip} y="258" textAnchor="middle" fill={c.muted} fontFamily={SA_FONT} fontSize={11}>
               image plane
             </text>
           </g>

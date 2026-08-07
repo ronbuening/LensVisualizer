@@ -94,7 +94,7 @@ const LensBendingDiagram = memo(function LensBendingDiagram({ isDark }: { isDark
         const paraxialEndX = x0 + 188;
         return (
           <g key={title}>
-            <text x={x0 + 100} y="34" textAnchor="middle" fill={c.label} fontFamily={SA_FONT} fontSize={11}>
+            <text x={x0 + 100} y="34" textAnchor="middle" fill={c.label} fontFamily={SA_FONT} fontSize={12}>
               {title}
             </text>
 
@@ -152,14 +152,14 @@ const LensBendingDiagram = memo(function LensBendingDiagram({ isDark }: { isDark
             <line x1={mx} y1="220" x2={px} y2="220" stroke={c.tick} strokeWidth={1} />
             <line x1={mx} y1="216" x2={mx} y2="224" stroke={c.tick} strokeWidth={1} />
             <line x1={px} y1="216" x2={px} y2="224" stroke={c.tick} strokeWidth={1} />
-            <text x={(mx + px) / 2} y="240" textAnchor="middle" fill={c.muted} fontFamily={SA_FONT} fontSize={10}>
+            <text x={(mx + px) / 2} y="240" textAnchor="middle" fill={c.muted} fontFamily={SA_FONT} fontSize={11}>
               {spread}
             </text>
           </g>
         );
       })}
 
-      <text x="320" y="268" textAnchor="middle" fill={c.muted} fontFamily={SA_FONT} fontSize={10}>
+      <text x="320" y="268" textAnchor="middle" fill={c.muted} fontFamily={SA_FONT} fontSize={11}>
         equal focal power: all three share the paraxial focus; bending moves the marginal focus
       </text>
     </svg>

@@ -27,7 +27,7 @@ const ZonalCurvesDiagram = memo(function ZonalCurvesDiagram({ isDark }: { isDark
       <rect width="640" height="250" rx="6" fill={c.bg} />
       <rect width="640" height="250" rx="6" fill="none" stroke={c.border} strokeWidth={1} />
 
-      <text x="320" y="30" textAnchor="middle" fill={c.muted} fontFamily={SA_FONT} fontSize={10}>
+      <text x="320" y="30" textAnchor="middle" fill={c.muted} fontFamily={SA_FONT} fontSize={11}>
         focus error Δz (horizontal) vs pupil zone ρ (vertical, 0 → 1)
       </text>
 
@@ -42,7 +42,7 @@ const ZonalCurvesDiagram = memo(function ZonalCurvesDiagram({ isDark }: { isDark
             strokeWidth={1.8}
           />
           <circle cx={zx + fn(1)} cy="65" r="2.5" fill={c.warm} />
-          <text x={zx - 18} y="228" textAnchor="middle" fill={c.label} fontFamily={SA_FONT} fontSize={10}>
+          <text x={zx - 18} y="228" textAnchor="middle" fill={c.label} fontFamily={SA_FONT} fontSize={11}>
             {title}
           </text>
         </g>

@@ -49,24 +49,24 @@ const FrontRearDefocusDiagram = memo(function FrontRearDefocusDiagram({ isDark }
       <rect width="640" height="320" rx="6" fill="none" stroke={c.border} strokeWidth={1} />
 
       {/* Column headers */}
-      <text x="200" y="52" textAnchor="middle" fill={c.label} fontFamily={SA_FONT} fontSize={11}>
+      <text x="200" y="52" textAnchor="middle" fill={c.label} fontFamily={SA_FONT} fontSize={12}>
         foreground point
       </text>
-      <text x="200" y="66" textAnchor="middle" fill={c.muted} fontFamily={SA_FONT} fontSize={10}>
+      <text x="200" y="66" textAnchor="middle" fill={c.muted} fontFamily={SA_FONT} fontSize={11}>
         (in front of focus)
       </text>
-      <text x="460" y="52" textAnchor="middle" fill={c.label} fontFamily={SA_FONT} fontSize={11}>
+      <text x="460" y="52" textAnchor="middle" fill={c.label} fontFamily={SA_FONT} fontSize={12}>
         background point
       </text>
-      <text x="460" y="66" textAnchor="middle" fill={c.muted} fontFamily={SA_FONT} fontSize={10}>
+      <text x="460" y="66" textAnchor="middle" fill={c.muted} fontFamily={SA_FONT} fontSize={11}>
         (behind focus)
       </text>
 
       {/* Row labels */}
-      <text x="24" y="124" fill={c.label} fontFamily={SA_FONT} fontSize={10}>
+      <text x="24" y="124" fill={c.label} fontFamily={SA_FONT} fontSize={11}>
         undercorrected
       </text>
-      <text x="24" y="234" fill={c.label} fontFamily={SA_FONT} fontSize={10}>
+      <text x="24" y="234" fill={c.label} fontFamily={SA_FONT} fontSize={11}>
         overcorrected
       </text>
 
@@ -74,13 +74,13 @@ const FrontRearDefocusDiagram = memo(function FrontRearDefocusDiagram({ isDark }
       {DISKS.map(({ cx, cy, kind }) => (
         <g key={`${cx}-${cy}`}>
           <circle cx={cx} cy={cy} r="38" fill={`url(#sa06-${kind})`} />
-          <text x={cx} y={cy + 52} textAnchor="middle" fill={c.muted} fontFamily={SA_FONT} fontSize={9.5}>
+          <text x={cx} y={cy + 52} textAnchor="middle" fill={c.muted} fontFamily={SA_FONT} fontSize={10.5}>
             {kind === "center" ? "center-weighted" : "edge-weighted"}
           </text>
         </g>
       ))}
 
-      <text x="320" y="308" textAnchor="middle" fill={c.muted} fontFamily={SA_FONT} fontSize={10}>
+      <text x="320" y="308" textAnchor="middle" fill={c.muted} fontFamily={SA_FONT} fontSize={11}>
         disk diameters normalized; reversing the correction sign exchanges the weighting
       </text>
     </svg>

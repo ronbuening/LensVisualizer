@@ -24,6 +24,24 @@
   inline diagrams.
 - `src/utils/content/changelogData.ts` — one `article` entry for the series launch.
 
+## Review-response changes (2026-08-07)
+
+- Mobile legibility: all figure fonts bumped one step (min 10.5 units) and the ThemedMarkdown
+  substitution wraps SA figures in an `overflowX: auto` container with `minWidth: 560`.
+- Contrast: shared `muted` colors raised to 5.8:1 (dark) / 5.5:1 (light) against the figure
+  backgrounds; both were previously below 4.5:1.
+- Static-SVG sync is enforced: the generator test now *compares* generated markup against the
+  committed `public/` files by default and fails with a regenerate hint; only
+  `npm run generate:sa-figure-svgs` (which sets `SA_FIGURE_SVGS_WRITE=1`) rewrites them.
+  `__tests__/node-builtins.d.ts` gained a `node:process` shim for the env read.
+- Figure 9 adjustable-range panel now compares consistent defocused background disks
+  (center-weighted under, uniform sharp, ringed over) instead of mixing in-focus PSFs with a
+  defocused disk, matching Cosina's Portrait Heliar description.
+- Figure 8 was rebuilt earlier in review to ray-traced panels sharing one paraxial focus with
+  bracketed LSA spreads; figure 1's marginal rays were re-laid so all rays pass through the glass.
+- Dead Leica Thambar product URL replaced with the current official technical data sheet PDF
+  (verified HTTP 200).
+
 ## Link audit
 
 - Lens links resolve to existing keys: `nikon-z-135f18-plena`, `varisoft-rokkor-85f28`,

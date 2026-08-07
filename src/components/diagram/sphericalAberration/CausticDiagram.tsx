@@ -63,28 +63,28 @@ const CausticDiagram = memo(function CausticDiagram({ isDark }: { isDark: boolea
       <line x1="490" y1="124" x2="490" y2="136" stroke={c.tick} strokeWidth={1} />
 
       {/* Labels */}
-      <text x="32" y="26" fill={c.muted} fontFamily={SA_FONT} fontSize={10}>
+      <text x="32" y="26" fill={c.muted} fontFamily={SA_FONT} fontSize={11}>
         parallel rays from a distant on-axis point
       </text>
-      <text x="40" y="52" fill={c.warm} fontFamily={SA_FONT} fontSize={10}>
+      <text x="40" y="52" fill={c.warm} fontFamily={SA_FONT} fontSize={11}>
         marginal
       </text>
-      <text x="40" y="78" fill={c.violet} fontFamily={SA_FONT} fontSize={10}>
+      <text x="40" y="78" fill={c.violet} fontFamily={SA_FONT} fontSize={11}>
         zonal
       </text>
-      <text x="40" y="104" fill={c.accent} fontFamily={SA_FONT} fontSize={10}>
+      <text x="40" y="104" fill={c.accent} fontFamily={SA_FONT} fontSize={11}>
         paraxial
       </text>
-      <text x="350" y="246" textAnchor="middle" fill={c.warm} fontFamily={SA_FONT} fontSize={10}>
+      <text x="350" y="246" textAnchor="middle" fill={c.warm} fontFamily={SA_FONT} fontSize={11}>
         marginal focus
       </text>
-      <text x="420" y="246" textAnchor="middle" fill={c.violet} fontFamily={SA_FONT} fontSize={10}>
+      <text x="420" y="232" textAnchor="middle" fill={c.violet} fontFamily={SA_FONT} fontSize={11}>
         zonal
       </text>
-      <text x="490" y="246" textAnchor="middle" fill={c.accent} fontFamily={SA_FONT} fontSize={10}>
+      <text x="490" y="246" textAnchor="middle" fill={c.accent} fontFamily={SA_FONT} fontSize={11}>
         paraxial focus
       </text>
-      <text x="174" y="246" textAnchor="middle" fill={c.muted} fontFamily={SA_FONT} fontSize={10}>
+      <text x="174" y="246" textAnchor="middle" fill={c.muted} fontFamily={SA_FONT} fontSize={11}>
         lens
       </text>
     </svg>

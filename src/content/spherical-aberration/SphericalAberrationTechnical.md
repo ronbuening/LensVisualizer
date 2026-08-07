@@ -567,7 +567,7 @@ Across this lineage, the mechanism changes but the underlying design decision re
 
 [^27]: Rodenstock, "History, characteristics and operation of Imagon lenses," product brochure, Apr. 1986, English trans. reproduced online. [Online]. Available: https://www.pentaconsix.com/imagon2.htm. [Accessed: Aug. 6, 2026].
 
-[^28]: Leica Camera AG, "Thambar-M 90 f/2.2." [Online]. Available: https://leica-camera.com/en-GB/photography/lenses/m/thambar-m-90mm-f2-2-black-painted. [Accessed: Aug. 7, 2026].
+[^28]: Leica Camera AG, "Thambar-M 90mm f/2.2," technical data sheet. [Online]. Available: https://leica-camera.com/sites/default/files/pm-55641-Datenblatt_Thambar-M%2090mm_e_1.pdf. [Accessed: Aug. 7, 2026].
 
 [^29]: Sony Corporation, "FE 100mm F2.8 STF GM OSS," *Sony*. [Online]. Available: https://www.sony.com/en-ae/electronics/camera-lenses/sel100f28gm. [Accessed: Aug. 7, 2026].
 

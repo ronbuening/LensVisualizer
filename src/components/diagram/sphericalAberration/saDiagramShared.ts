@@ -32,7 +32,8 @@ export const SA_DARK: SaColors = {
   grid: "rgba(80,100,140,0.18)",
   tick: "rgba(150,170,210,0.4)",
   label: "#c8d8f0",
-  muted: "rgba(150,170,200,0.65)",
+  /* Kept at >=4.5:1 against bg — muted text carries essential axis/state labels. */
+  muted: "rgba(160,178,205,0.8)",
   lensFill: "rgba(70,130,180,0.22)",
   lensStroke: "rgba(120,170,220,0.80)",
   accent: "#28d8ff",
@@ -55,7 +56,8 @@ export const SA_LIGHT: SaColors = {
   grid: "rgba(120,140,180,0.18)",
   tick: "rgba(60,80,120,0.35)",
   label: "#1a2540",
-  muted: "rgba(60,80,120,0.60)",
+  /* Kept at >=4.5:1 against bg — muted text carries essential axis/state labels. */
+  muted: "rgba(55,72,105,0.85)",
   lensFill: "rgba(30,80,160,0.10)",
   lensStroke: "rgba(30,80,160,0.65)",
   accent: "#006878",

@@ -32,13 +32,13 @@ const ThreeDescriptionsDiagram = memo(function ThreeDescriptionsDiagram({ isDark
       <line x1="422" y1="24" x2="422" y2="236" stroke={c.grid} strokeWidth={1} strokeDasharray="4,4" />
 
       {/* Panel titles */}
-      <text x="125" y="30" textAnchor="middle" fill={c.label} fontFamily={SA_FONT} fontSize={11}>
+      <text x="125" y="30" textAnchor="middle" fill={c.label} fontFamily={SA_FONT} fontSize={12}>
         longitudinal (LSA)
       </text>
-      <text x="320" y="30" textAnchor="middle" fill={c.label} fontFamily={SA_FONT} fontSize={11}>
+      <text x="320" y="30" textAnchor="middle" fill={c.label} fontFamily={SA_FONT} fontSize={12}>
         transverse (TSA)
       </text>
-      <text x="525" y="30" textAnchor="middle" fill={c.label} fontFamily={SA_FONT} fontSize={11}>
+      <text x="525" y="30" textAnchor="middle" fill={c.label} fontFamily={SA_FONT} fontSize={12}>
         wavefront W(ρ)
       </text>
 
@@ -47,10 +47,10 @@ const ThreeDescriptionsDiagram = memo(function ThreeDescriptionsDiagram({ isDark
       <line x1="45" y1="205" x2="205" y2="205" stroke={c.axis} strokeWidth={1} />
       <path d={LSA_PATH} fill="none" stroke={c.accent} strokeWidth={1.8} />
       <circle cx="80" cy="60" r="3" fill={c.warm} />
-      <text x="72" y="63" textAnchor="end" fill={c.muted} fontFamily={SA_FONT} fontSize={10}>
+      <text x="72" y="63" textAnchor="end" fill={c.muted} fontFamily={SA_FONT} fontSize={11}>
         ρ=1
       </text>
-      <text x="125" y="232" textAnchor="middle" fill={c.muted} fontFamily={SA_FONT} fontSize={10}>
+      <text x="125" y="232" textAnchor="middle" fill={c.muted} fontFamily={SA_FONT} fontSize={11}>
         focus position Δz
       </text>
 
@@ -58,10 +58,10 @@ const ThreeDescriptionsDiagram = memo(function ThreeDescriptionsDiagram({ isDark
       <line x1="240" y1="130" x2="400" y2="130" stroke={c.axis} strokeWidth={1} />
       <line x1="320" y1="60" x2="320" y2="200" stroke={c.axis} strokeWidth={1} strokeDasharray="4,3" />
       <path d={TSA_PATH} fill="none" stroke={c.accent} strokeWidth={1.8} />
-      <text x="330" y="68" fill={c.muted} fontFamily={SA_FONT} fontSize={10}>
+      <text x="330" y="68" fill={c.muted} fontFamily={SA_FONT} fontSize={11}>
         ε
       </text>
-      <text x="320" y="232" textAnchor="middle" fill={c.muted} fontFamily={SA_FONT} fontSize={10}>
+      <text x="320" y="232" textAnchor="middle" fill={c.muted} fontFamily={SA_FONT} fontSize={11}>
         pupil coordinate ρ
       </text>
 
@@ -69,10 +69,10 @@ const ThreeDescriptionsDiagram = memo(function ThreeDescriptionsDiagram({ isDark
       <line x1="445" y1="55" x2="445" y2="205" stroke={c.axis} strokeWidth={1} />
       <line x1="445" y1="205" x2="605" y2="205" stroke={c.axis} strokeWidth={1} />
       <path d={WF_PATH} fill="none" stroke={c.accent} strokeWidth={1.8} />
-      <text x="472" y="100" fill={c.accent} fontFamily={SA_FONT} fontSize={10}>
+      <text x="472" y="100" fill={c.accent} fontFamily={SA_FONT} fontSize={11}>
         W ∝ ρ^4
       </text>
-      <text x="525" y="232" textAnchor="middle" fill={c.muted} fontFamily={SA_FONT} fontSize={10}>
+      <text x="525" y="232" textAnchor="middle" fill={c.muted} fontFamily={SA_FONT} fontSize={11}>
         pupil radius ρ
       </text>
     </svg>

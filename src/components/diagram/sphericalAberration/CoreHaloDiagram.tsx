@@ -56,13 +56,13 @@ const CoreHaloDiagram = memo(function CoreHaloDiagram({ isDark }: { isDark: bool
       <line x1="427" y1="24" x2="427" y2="262" stroke={c.grid} strokeWidth={1} strokeDasharray="4,4" />
 
       {/* Panel titles */}
-      <text x="120" y="42" textAnchor="middle" fill={c.label} fontFamily={SA_FONT} fontSize={11}>
+      <text x="120" y="42" textAnchor="middle" fill={c.label} fontFamily={SA_FONT} fontSize={12}>
         concentrated
       </text>
-      <text x="320" y="42" textAnchor="middle" fill={c.label} fontFamily={SA_FONT} fontSize={11}>
+      <text x="320" y="42" textAnchor="middle" fill={c.label} fontFamily={SA_FONT} fontSize={12}>
         core + halo
       </text>
-      <text x="520" y="42" textAnchor="middle" fill={c.label} fontFamily={SA_FONT} fontSize={11}>
+      <text x="520" y="42" textAnchor="middle" fill={c.label} fontFamily={SA_FONT} fontSize={12}>
         ordinary defocus
       </text>
 
@@ -81,7 +81,7 @@ const CoreHaloDiagram = memo(function CoreHaloDiagram({ isDark }: { isDark: bool
       <path d={PROFILE_B} fill="none" stroke={c.accent} strokeWidth={1.5} />
       <path d={PROFILE_C} fill="none" stroke={c.accent} strokeWidth={1.5} />
 
-      <text x="320" y="284" textAnchor="middle" fill={c.muted} fontFamily={SA_FONT} fontSize={10}>
+      <text x="320" y="284" textAnchor="middle" fill={c.muted} fontFamily={SA_FONT} fontSize={11}>
         schematic radial intensity profiles
       </text>
     </svg>

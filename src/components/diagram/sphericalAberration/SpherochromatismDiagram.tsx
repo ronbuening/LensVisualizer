@@ -35,26 +35,26 @@ const SpherochromatismDiagram = memo(function SpherochromatismDiagram({ isDark }
 
       {/* Legend */}
       <line x1="500" y1="58" x2="524" y2="58" stroke={c.blue} strokeWidth={2} />
-      <text x="532" y="62" fill={c.label} fontFamily={SA_FONT} fontSize={10}>
+      <text x="532" y="62" fill={c.label} fontFamily={SA_FONT} fontSize={11}>
         486 nm
       </text>
       <line x1="500" y1="76" x2="524" y2="76" stroke={c.green} strokeWidth={2} />
-      <text x="532" y="80" fill={c.label} fontFamily={SA_FONT} fontSize={10}>
+      <text x="532" y="80" fill={c.label} fontFamily={SA_FONT} fontSize={11}>
         587 nm
       </text>
       <line x1="500" y1="94" x2="524" y2="94" stroke={c.red} strokeWidth={2} />
-      <text x="532" y="98" fill={c.label} fontFamily={SA_FONT} fontSize={10}>
+      <text x="532" y="98" fill={c.label} fontFamily={SA_FONT} fontSize={11}>
         656 nm
       </text>
 
       {/* Labels */}
-      <text x="230" y="64" textAnchor="end" fill={c.muted} fontFamily={SA_FONT} fontSize={10}>
+      <text x="230" y="64" textAnchor="end" fill={c.muted} fontFamily={SA_FONT} fontSize={11}>
         ρ=1
       </text>
-      <text x="320" y="228" textAnchor="middle" fill={c.muted} fontFamily={SA_FONT} fontSize={10}>
+      <text x="320" y="228" textAnchor="middle" fill={c.muted} fontFamily={SA_FONT} fontSize={11}>
         paraxial foci close together
       </text>
-      <text x="320" y="246" textAnchor="middle" fill={c.muted} fontFamily={SA_FONT} fontSize={10}>
+      <text x="320" y="246" textAnchor="middle" fill={c.muted} fontFamily={SA_FONT} fontSize={11}>
         ← undercorrected&#160;&#160;&#160;Δz&#160;&#160;&#160;overcorrected →
       </text>
     </svg>

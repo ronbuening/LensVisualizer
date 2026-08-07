@@ -293,9 +293,15 @@ function renderMarkdownImage(src: string | undefined, alt: string | undefined, t
 
   for (const [pathToken, SaDiagram] of SPHERICAL_ABERRATION_DIAGRAMS) {
     if (src?.includes(pathToken)) {
+      /* The min-width keeps the 640-unit figures from shrinking their labels
+       * below legibility on phones; narrow viewports scroll horizontally. */
       return (
         <figure style={{ margin: "24px 0", textAlign: "center" }}>
-          <SaDiagram isDark={isDark} />
+          <div style={{ overflowX: "auto" }}>
+            <div style={{ minWidth: 560 }}>
+              <SaDiagram isDark={isDark} />
+            </div>
+          </div>
           {caption}
         </figure>
       );
