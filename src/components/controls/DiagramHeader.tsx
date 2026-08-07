@@ -12,6 +12,7 @@
 
 import { forwardRef, memo } from "react";
 import InventorLinks from "../content/InventorLinks.js";
+import PatentNumberLink from "../content/PatentNumberLink.js";
 import { eflAtZoom, formatDist } from "../../optics/optics.js";
 import { fisheyeProjectionFocalLengthAtZoom, isFisheyeProjection } from "../../optics/projection.js";
 import { toggleGroup, toggleBtn, headerStrip } from "../../utils/style/styles.js";
@@ -199,7 +200,7 @@ const DiagramHeader = memo(
               >
                 {patentAttribution ? (
                   <>
-                    {patentAttribution.patentNumber}
+                    <PatentNumberLink patentNumber={patentAttribution.patentNumber} color={t.descLinkColor} />
                     {patentAttribution.authors.length > 0 && (
                       <>
                         {" — "}

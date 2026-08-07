@@ -23,8 +23,8 @@ flowchart LR
   n_external_src_utils_style["src/utils/style"]
   n_external_src_utils_text_ts["src/utils/text.ts"]
   n_src_components_relationshipMap_src_components_relationshipMap_RelationshipEntityPicker_tsx --> |4| n_external_src_utils_catalog
+  n_src_components_relationshipMap_src_components_relationshipMap_PatentDetailCard_tsx --> |3| n_external_src_components_content
   n_src_components_relationshipMap_src_components_relationshipMap_PatentDetailCard_tsx --> |3| n_external_src_utils_catalog
-  n_src_components_relationshipMap_src_components_relationshipMap_PatentDetailCard_tsx --> |2| n_external_src_components_content
   n_src_components_relationshipMap_src_components_relationshipMap_PatentDetailCard_tsx --> |2| n_external_src_types
   n_src_components_relationshipMap_src_components_relationshipMap_roleChip_ts --> |2| n_external_src_types
   n_src_components_relationshipMap_src_components_relationshipMap_RelationshipEntityPicker_tsx --> n_external_pkg_react
@@ -49,7 +49,7 @@ flowchart LR
 
 - Direct source files: 5
 - Direct subfolders: 0
-- Main outbound areas: src/utils/catalog (9), src/types (6), package:react (3), src/utils/style (3), same folder (2), src/components/content (2), src/components/hooks (2), src/utils/text.ts (2)
+- Main outbound areas: src/utils/catalog (9), src/types (6), package:react (3), src/components/content (3), src/utils/style (3), same folder (2), src/components/hooks (2), src/utils/text.ts (2)
 - External consumers: src/pages/RelationshipMapPage.tsx
 
 ## Files
@@ -57,7 +57,7 @@ flowchart LR
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
 | `layout.ts` | Layout helper module | src/utils/catalog | same folder | LayoutNode, LayoutEdge, RelationshipLayout, truncateLabel, layoutRelationshipGraph |
-| `PatentDetailCard.tsx` | React component module | src/utils/catalog (3), src/components/content (2), src/types (2), src/utils/style | src/pages/RelationshipMapPage.tsx | default, PatentDetailCard |
+| `PatentDetailCard.tsx` | React component module | src/components/content (3), src/utils/catalog (3), src/types (2), src/utils/style | src/pages/RelationshipMapPage.tsx | default, PatentDetailCard |
 | `RelationshipEntityPicker.tsx` | React component module | src/utils/catalog (4), package:react, same folder, src/components/hooks, src/types, +2 more | src/pages/RelationshipMapPage.tsx | default, RelationshipEntityPicker |
 | `RelationshipMap.tsx` | React component module | package:react, same folder, src/components/hooks, src/types, src/utils/catalog, +2 more | src/pages/RelationshipMapPage.tsx | default, RelationshipMap |
 | `roleChip.ts` | Role Chip module with default export | src/types (2), package:react | same folder, src/pages/RelationshipMapPage.tsx | default, roleChip |

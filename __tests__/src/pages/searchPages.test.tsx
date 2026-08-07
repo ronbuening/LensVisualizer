@@ -20,7 +20,12 @@ import {
   filterAuthorsByAssignee,
 } from "../../../src/utils/catalog/authorAssignees.js";
 import { AUTHORS, getAuthorByName, patentsForAuthor } from "../../../src/utils/catalog/authorCatalog.js";
-import { PATENTS, PATENT_COUNTRY_GROUPS, espacenetPatentUrl } from "../../../src/utils/catalog/patentCatalog.js";
+import {
+  PATENTS,
+  PATENT_COUNTRY_GROUPS,
+  espacenetPatentUrl,
+  isPatentPublicationNumber,
+} from "../../../src/utils/catalog/patentCatalog.js";
 import { AUTHOR_SORT_PREFERENCE_KEY } from "../../../src/utils/state/authorSortPreference.js";
 import themes from "../../../src/utils/theme/themes.js";
 import { clearBrowserState, installMatchMediaMock, renderWithRouter } from "../../testUtils.js";
@@ -115,12 +120,17 @@ describe("search, author, and patent pages", () => {
 
   it("renders an author patent page and switches to co-author sections", () => {
     const author = AUTHORS.find((entry) =>
-      patentsForAuthor(entry.name).some((patent) => patent.authors.some((name) => name !== entry.name)),
+      patentsForAuthor(entry.name).some(
+        (patent) =>
+          isPatentPublicationNumber(patent.patentNumber) && patent.authors.some((name) => name !== entry.name),
+      ),
     );
     expect(author).toBeDefined();
     if (!author) return;
 
-    const patent = patentsForAuthor(author.name)[0];
+    const patent = patentsForAuthor(author.name).find(
+      (entry) => isPatentPublicationNumber(entry.patentNumber) && entry.authors.some((name) => name !== author.name),
+    )!;
     renderWithRouter(
       <HelmetProvider>
         <Routes>
@@ -132,6 +142,11 @@ describe("search, author, and patent pages", () => {
 
     expect(screen.getByRole("heading", { level: 1, name: author.name })).toBeTruthy();
     expect(screen.getAllByText(patent.patentNumber).length).toBeGreaterThan(0);
+    const patentLinks = screen.getAllByRole("link", {
+      name: `${patent.patentNumber} in Espacenet (opens in a new tab)`,
+    });
+    expect(patentLinks[0].getAttribute("href")).toBe(espacenetPatentUrl(patent.patentNumber));
+    expect(patentLinks[0].getAttribute("target")).toBe("_blank");
     expect(screen.getByRole("navigation", { name: "Assignee sections" })).toBeTruthy();
 
     fireEvent.click(screen.getByRole("button", { name: "Co-authors" }));

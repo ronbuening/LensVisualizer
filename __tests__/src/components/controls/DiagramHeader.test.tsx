@@ -6,6 +6,7 @@ import { MemoryRouter } from "react-router";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import DiagramHeader from "../../../../src/components/controls/DiagramHeader.js";
 import { authorPathForName } from "../../../../src/utils/catalog/authorCatalog.js";
+import { espacenetPatentUrl } from "../../../../src/utils/catalog/patentCatalog.js";
 import themes from "../../../../src/utils/theme/themes.js";
 import type { RuntimeLens } from "../../../../src/types/optics.js";
 import { buildSimplePositiveElementLens } from "../../optics/testLensFixtures.js";
@@ -97,8 +98,13 @@ describe("DiagramHeader", () => {
     renderHeader({ L: structuredLens });
 
     const authorLink = screen.getByRole("link", { name: "Hideki Sakai" });
+    const patentLink = screen.getByRole("link", {
+      name: "US 10,571,651 B2 in Espacenet (opens in a new tab)",
+    });
     expect(authorLink.getAttribute("href")).toBe(authorPathForName("Hideki Sakai"));
-    expect(authorLink.parentElement?.parentElement?.textContent).toBe("US 10,571,651 B2 — Hideki Sakai, Aiko Example");
+    expect(patentLink.getAttribute("href")).toBe(espacenetPatentUrl("US 10,571,651 B2"));
+    expect(patentLink.getAttribute("target")).toBe("_blank");
+    expect(authorLink.parentElement?.parentElement?.textContent).toBe("US 10,571,651 B2↗ — Hideki Sakai, Aiko Example");
     expect(screen.queryByRole("link", { name: "Aiko Example" })).toBeNull();
     expect(screen.queryByText("legacy subtitle")).toBeNull();
   });

@@ -6,6 +6,7 @@ import {
   aggregatePatentRecords,
   buildPatentIndex,
   espacenetPatentUrl,
+  isPatentPublicationNumber,
   patentJurisdiction,
 } from "../../../../src/utils/catalog/patentCatalog.js";
 
@@ -49,6 +50,12 @@ describe("patent catalog", () => {
     expect(espacenetPatentUrl("JP S56-140311")).toBe(
       "https://worldwide.espacenet.com/patent/search?q=pn%3DJPS56140311",
     );
+  });
+
+  it("distinguishes publication numbers from local source fallback labels", () => {
+    expect(isPatentPublicationNumber("US 2,819,651")).toBe(true);
+    expect(isPatentPublicationNumber("WO 2021/246545 A1")).toBe(true);
+    expect(isPatentPublicationNumber("Patent source for an attributed lens")).toBe(false);
   });
 
   it("resolves represented patent authorities to country labels", () => {

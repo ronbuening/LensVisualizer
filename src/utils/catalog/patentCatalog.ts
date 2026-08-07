@@ -14,7 +14,12 @@ import { groupByNamedParty } from "./groupByNamedParty.js";
 import { aggregatePatentRecords } from "./patentRecords.js";
 import type { PatentJurisdiction, PatentRecord } from "./patentRecords.js";
 
-export { aggregatePatentRecords, patentJurisdiction } from "./patentRecords.js";
+export {
+  aggregatePatentRecords,
+  espacenetPatentUrl,
+  isPatentPublicationNumber,
+  patentJurisdiction,
+} from "./patentRecords.js";
 export type { PatentJurisdiction, PatentRecord } from "./patentRecords.js";
 
 export type PatentLens = PatentLensRef;
@@ -40,18 +45,6 @@ export interface PatentIndex {
 }
 
 export const PATENT_ASSIGNEE_FALLBACK = "No named assignee or applicant";
-
-/**
- * Build a worldwide Espacenet publication-number search URL.
- *
- * Espacenet accepts DOCDB-style identifiers without display punctuation and is
- * flexible about omitted kind codes, which covers both modern publications and
- * the historical patent-number formats represented in the catalog.
- */
-export function espacenetPatentUrl(patentNumber: string): string {
-  const publicationNumber = patentNumber.toUpperCase().replace(/[^A-Z0-9]/g, "");
-  return `https://worldwide.espacenet.com/patent/search?q=${encodeURIComponent(`pn=${publicationNumber}`)}`;
-}
 
 /**
  * Build the unique patent records and their Country → Assignee hierarchy.

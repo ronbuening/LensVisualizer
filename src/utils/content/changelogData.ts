@@ -20,6 +20,11 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-08-07",
+    type: "feature",
+    summary: "Added outbound patent links to lens, author, and relationship map pages",
+  },
+  {
+    date: "2026-08-07",
     type: "lens",
     summary: "Added six Mamiya lenses spanning CS, M645, RB67, AF, and Mamiya 7 systems",
   },

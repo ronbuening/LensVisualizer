@@ -9,6 +9,7 @@ import SEOHead from "../components/SEOHead.js";
 import InventorLinks from "../components/content/InventorLinks.js";
 import LensEntryLink from "../components/content/LensEntryLink.js";
 import LinkListSidebar from "../components/content/LinkListSidebar.js";
+import PatentNumberLink from "../components/content/PatentNumberLink.js";
 import SidebarLayout from "../components/content/SidebarLayout.js";
 import StaticPageShell from "../components/layout/StaticPageShell.js";
 import type { Theme } from "../types/theme.js";
@@ -17,7 +18,6 @@ import {
   PATENTS,
   PATENT_ASSIGNEE_FALLBACK,
   PATENT_COUNTRY_GROUPS,
-  espacenetPatentUrl,
   type PatentRecord,
 } from "../utils/catalog/patentCatalog.js";
 import { collectionPageJsonLd, itemListJsonLd } from "../utils/seo/structuredData.js";
@@ -47,19 +47,7 @@ function PatentCard({ patent, groupedAssignee, theme: t }: PatentCardProps) {
       }}
     >
       <h4 style={{ color: t.title, fontSize: "0.9rem", margin: "0 0 0.3rem" }}>
-        <a
-          href={espacenetPatentUrl(patent.patentNumber)}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={`${patent.patentNumber} in Espacenet (opens in a new tab)`}
-          title={`View ${patent.patentNumber} in Espacenet`}
-          style={{ color: t.descLinkColor, textDecoration: "none" }}
-        >
-          {patent.patentNumber}
-          <span aria-hidden="true" style={{ fontSize: "0.72rem", marginLeft: "0.25rem" }}>
-            ↗
-          </span>
-        </a>
+        <PatentNumberLink patentNumber={patent.patentNumber} color={t.descLinkColor} />
         {patent.patentYear !== undefined && (
           <span style={{ color: t.label, fontSize: "0.68rem", marginLeft: "0.5rem", fontWeight: 400 }}>
             {patent.patentYear}

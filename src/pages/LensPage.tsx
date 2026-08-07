@@ -9,6 +9,7 @@ import { useParams, Navigate, Link } from "react-router";
 import LensVisualization from "../components/layout/LensViewer.js";
 import SEOHead from "../components/SEOHead.js";
 import ClientOnly from "../components/ClientOnly.js";
+import PatentNumberLink from "../components/content/PatentNumberLink.js";
 import { LENS_CATALOG, hasMdForKey } from "../utils/catalog/lensCatalog.js";
 import { ENABLE_ANALYSIS_VIEW } from "../utils/featureFlags.js";
 import {
@@ -18,6 +19,7 @@ import {
   lensJsonLd,
   deriveMaker,
   lensDisplaySubtitle,
+  lensPatentAttribution,
   SITE_URL,
 } from "../utils/catalog/lensMetadata.js";
 import { breadcrumbJsonLd } from "../utils/seo/structuredData.js";
@@ -57,6 +59,7 @@ export default function LensPage() {
   /* Existence check only — the markdown body is code-split and loaded by the viewer */
   const hasAnalysis = ENABLE_ANALYSIS_VIEW && hasMdForKey(slug);
   const displaySubtitle = lensDisplaySubtitle(lens);
+  const patentAttribution = lensPatentAttribution(lens);
 
   return (
     <>
@@ -99,7 +102,16 @@ export default function LensPage() {
             <h1 style={{ fontSize: "1.25rem", fontWeight: 600, marginBottom: "0.5rem" }}>{lens.name}</h1>
 
             {displaySubtitle && (
-              <p style={{ fontSize: "0.8rem", color: "#999", marginBottom: "1rem" }}>{displaySubtitle}</p>
+              <p style={{ fontSize: "0.8rem", color: "#999", marginBottom: "1rem" }}>
+                {patentAttribution ? (
+                  <>
+                    <PatentNumberLink patentNumber={patentAttribution.patentNumber} color="#7ec8e3" />
+                    {patentAttribution.authors.length > 0 && ` — ${patentAttribution.authors.join(", ")}`}
+                  </>
+                ) : (
+                  displaySubtitle
+                )}
+              </p>
             )}
 
             {lens.specs && lens.specs.length > 0 && (
