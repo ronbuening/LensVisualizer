@@ -4,10 +4,11 @@
  * Converts the inventor (`patentAuthors`) and assignee (`patentAssignees`)
  * names embedded in lightweight lens summaries into stable, collision-safe
  * indexes. The browser consumes the generated entries, so URL construction has
- * one build-time source of truth. `buildAuthorMetadata` and
- * `buildAssigneeMetadata` are thin wrappers over the same parameterized scan.
+ * one build-time source of truth. Authors use the shared patent-party shape;
+ * assignees additionally receive curated, dated corporate history.
  */
 
+import { corporateRelationshipsForAssignee } from "../src/utils/catalog/assigneeCorporateHistory.ts";
 import { stableHash, transliterateCatalogText } from "../src/utils/catalog/slugText.ts";
 
 /** Convert a display name to a readable ASCII URL segment when possible. */
@@ -75,5 +76,8 @@ export function buildAuthorMetadata(lensSummaries) {
 
 /** Build the assignee (`patentAssignees`) index emitted in build-metadata.json. */
 export function buildAssigneeMetadata(lensSummaries) {
-  return buildPatentPartyMetadata(lensSummaries, "patentAssignees");
+  return buildPatentPartyMetadata(lensSummaries, "patentAssignees").map((assignee) => ({
+    ...assignee,
+    ...corporateRelationshipsForAssignee(assignee.name),
+  }));
 }

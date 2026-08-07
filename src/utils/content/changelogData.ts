@@ -20,6 +20,16 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-08-07",
+    type: "improvement",
+    summary: "Enabled contained pinch-to-zoom in both patent relationship maps",
+  },
+  {
+    date: "2026-08-07",
+    type: "feature",
+    summary: "Added a universal patent map with dated corporate-lineage connections",
+  },
+  {
+    date: "2026-08-07",
     type: "feature",
     summary: "Added an optional focused effective focal-length readout to zoom controls",
   },

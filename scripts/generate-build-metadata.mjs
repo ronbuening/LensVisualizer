@@ -8,7 +8,7 @@
  *   - makerSlugs: sorted array of unique maker URL slugs
  *   - mountIds / formatIds: sorted arrays of used taxonomy ids
  *   - authors: inventor names, stable slugs, and related lens/patent counts
- *   - assignees: assignee names, stable slugs, and related lens/patent counts
+ *   - assignees: names, stable slugs, lens/patent counts, and dated corporate history
  *   - routes: flat array of all concrete URL paths to pre-render
  *
  * This is the single source of truth for route enumeration. Downstream scripts
@@ -42,6 +42,7 @@ const OUT_DIR = join(ROOT, "src", "generated");
 const OUT_FILE = join(OUT_DIR, "build-metadata.json");
 const MAKER_PREFIXES_FILE = join(OUT_DIR, "maker-prefixes.json");
 const MAKER_DETAILS_FILE = join(ROOT, "src", "utils", "catalog", "makerDetails.ts");
+const ASSIGNEE_CORPORATE_HISTORY_FILE = join(ROOT, "src", "utils", "catalog", "assigneeCorporateHistory.ts");
 const LENS_SUMMARIES_FILE = join(OUT_DIR, "lens-summaries.json");
 const GIT_FRESHNESS_CONCURRENCY = 8;
 
@@ -114,6 +115,7 @@ function collectRoutes(lenses, articles, makerSlugs, mountIds, formatIds, author
     "/articles",
     "/updates",
     "/relationships",
+    "/relationships/universal",
     ...articles.map((a) => `/articles/${a.slug}`),
     ...lenses.map((l) => `/lens/${l.key}`),
     ...makerSlugs.map((s) => `/makers/${s}`),
@@ -132,22 +134,24 @@ async function main() {
 
   writeFileSync(MAKER_PREFIXES_FILE, JSON.stringify(MAKER_PREFIXES, null, 2) + "\n", "utf-8");
 
-  const [allLenses, articles, makerDetailsFreshness, lensSummaries] = await Promise.all([
-    collectLensDataAsync({
-      rootDir: ROOT,
-      lensDataDir: LENS_DATA_DIR,
-      fallbackDate,
-      concurrency: GIT_FRESHNESS_CONCURRENCY,
-    }),
-    collectArticles({
-      contentDir: CONTENT_DIR,
-      cwd: ROOT,
-      fallbackDate,
-      concurrency: GIT_FRESHNESS_CONCURRENCY,
-    }),
-    getGitFileFreshnessAsync(MAKER_DETAILS_FILE, { cwd: ROOT, fallbackDate }),
-    collectLensSummaries(),
-  ]);
+  const [allLenses, articles, makerDetailsFreshness, assigneeCorporateHistoryFreshness, lensSummaries] =
+    await Promise.all([
+      collectLensDataAsync({
+        rootDir: ROOT,
+        lensDataDir: LENS_DATA_DIR,
+        fallbackDate,
+        concurrency: GIT_FRESHNESS_CONCURRENCY,
+      }),
+      collectArticles({
+        contentDir: CONTENT_DIR,
+        cwd: ROOT,
+        fallbackDate,
+        concurrency: GIT_FRESHNESS_CONCURRENCY,
+      }),
+      getGitFileFreshnessAsync(MAKER_DETAILS_FILE, { cwd: ROOT, fallbackDate }),
+      getGitFileFreshnessAsync(ASSIGNEE_CORPORATE_HISTORY_FILE, { cwd: ROOT, fallbackDate }),
+      collectLensSummaries(),
+    ]);
 
   assertPatentAssigneeValidity(lensSummaries);
   const lenses = allLenses.filter((lens) => lens.visible !== false);
@@ -167,6 +171,7 @@ async function main() {
     formatIds,
     authors,
     makerDetailsFreshness,
+    assigneeCorporateHistoryFreshness,
     fallbackDate,
   });
   const lensPublicationOrder = new Map(

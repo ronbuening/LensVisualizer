@@ -8,7 +8,7 @@
  * role="button" <g> elements and the parent translates clicks to navigation.
  */
 
-import { useMemo, useState, type CSSProperties, type KeyboardEvent, type PointerEvent } from "react";
+import { useMemo, useRef, useState, type CSSProperties, type KeyboardEvent, type PointerEvent } from "react";
 import useViewBoxZoom from "../hooks/useViewBoxZoom.js";
 import { toggleBtn } from "../../utils/style/styles.js";
 import type { Theme } from "../../types/theme.js";
@@ -49,7 +49,8 @@ export default function RelationshipMap({
   onFocusParty,
 }: RelationshipMapProps) {
   const layout = useMemo(() => layoutRelationshipGraph(graph), [graph]);
-  const zoom = useViewBoxZoom(layout.width, layout.height, true);
+  const svgRef = useRef<SVGSVGElement>(null);
+  const zoom = useViewBoxZoom(layout.width, layout.height, true, svgRef);
   const [hoveredNodeId, setHoveredNodeId] = useState<string | null>(null);
 
   const patentById = useMemo(() => new Map(graph.patents.map((p) => [p.id, p])), [graph.patents]);
@@ -99,6 +100,7 @@ export default function RelationshipMap({
         {/* role="group", not "img": descendants of an img are presentational,
          * which would hide the interactive patent/party buttons from AT. */}
         <svg
+          ref={svgRef}
           role="group"
           aria-label={ariaLabel}
           viewBox={zoom.viewBox}
@@ -109,13 +111,9 @@ export default function RelationshipMap({
             touchAction: "none",
             cursor: zoom.isPanning ? "grabbing" : "grab",
           }}
-          onWheel={zoom.handleWheel}
           onPointerDown={zoom.handlePointerDown}
           onPointerMove={zoom.handlePointerMove}
           onPointerUp={zoom.handlePointerUp}
-          onTouchStart={zoom.handleTouchStart}
-          onTouchMove={zoom.handleTouchMove}
-          onTouchEnd={zoom.handleTouchEnd}
         >
           {/* Edges first so nodes and labels always draw on top. */}
           {layout.edges.map((edge, i) => {
@@ -290,6 +288,7 @@ export default function RelationshipMap({
         <span style={legendItemStyle}>
           <span style={legendSwatch(t.stop, false)} /> Patent
         </span>
+        <span style={{ marginLeft: "auto" }}>Pinch or scroll to zoom · drag to pan</span>
       </div>
     </div>
   );

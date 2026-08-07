@@ -5,10 +5,12 @@
 
 import { describe, expect, it } from "vitest";
 import { ASSIGNEES, getAssigneeByName, getAssigneeBySlug } from "../../../../src/utils/catalog/assigneeCatalog.js";
+import { ASSIGNEE_CORPORATE_HISTORY } from "../../../../src/utils/catalog/assigneeCorporateHistory.js";
 import { patentsForParty } from "../../../../src/utils/catalog/authorCatalog.js";
 import { catalogCollator } from "../../../../src/utils/catalog/collation.js";
 
 const sample = ASSIGNEES[0];
+const ISO_DATE_AT_SUPPORTED_PRECISION = /^\d{4}(?:-\d{2}(?:-\d{2})?)?$/;
 
 describe("assignee lookups", () => {
   it("has a populated generated directory", () => {
@@ -31,6 +33,51 @@ describe("assignee lookups", () => {
   it("keeps slugs unique across the directory", () => {
     const slugs = ASSIGNEES.map((assignee) => assignee.slug);
     expect(new Set(slugs).size).toBe(slugs.length);
+  });
+
+  it("emits all four corporate-history fields for every assignee", () => {
+    for (const assignee of ASSIGNEES) {
+      expect(Array.isArray(assignee.successorOf), `${assignee.name} successorOf`).toBe(true);
+      expect(Array.isArray(assignee.acquiredBy), `${assignee.name} acquiredBy`).toBe(true);
+      expect(Array.isArray(assignee.subsidiaryOf), `${assignee.name} subsidiaryOf`).toBe(true);
+      expect(Array.isArray(assignee.corporateFamily), `${assignee.name} corporateFamily`).toBe(true);
+    }
+  });
+
+  it("keeps the curated registry aligned with exact catalog assignee names", () => {
+    const catalogNames = new Set(ASSIGNEES.map((assignee) => assignee.name));
+    const orphaned = Object.keys(ASSIGNEE_CORPORATE_HISTORY).filter((name) => !catalogNames.has(name));
+    expect(orphaned).toEqual([]);
+  });
+
+  it("uses supported ISO date precision and sourced relationship records", () => {
+    for (const assignee of ASSIGNEES) {
+      for (const relationship of [...assignee.successorOf, ...assignee.acquiredBy]) {
+        expect(relationship.organization.trim(), assignee.name).not.toBe("");
+        expect(relationship.effectiveDate, assignee.name).toMatch(ISO_DATE_AT_SUPPORTED_PRECISION);
+        expect(relationship.sourceUrl, assignee.name).toMatch(/^https:\/\//);
+      }
+
+      for (const relationship of assignee.subsidiaryOf) {
+        expect(relationship.organization.trim(), assignee.name).not.toBe("");
+        expect(relationship.effectiveFrom, assignee.name).toMatch(ISO_DATE_AT_SUPPORTED_PRECISION);
+        if (relationship.effectiveTo) {
+          expect(relationship.effectiveTo, assignee.name).toMatch(ISO_DATE_AT_SUPPORTED_PRECISION);
+          expect(relationship.effectiveTo >= relationship.effectiveFrom, assignee.name).toBe(true);
+        }
+        expect(relationship.sourceUrl, assignee.name).toMatch(/^https:\/\//);
+      }
+
+      for (const relationship of assignee.corporateFamily) {
+        expect(relationship.family.trim(), assignee.name).not.toBe("");
+        expect(relationship.effectiveFrom, assignee.name).toMatch(ISO_DATE_AT_SUPPORTED_PRECISION);
+        if (relationship.effectiveTo) {
+          expect(relationship.effectiveTo, assignee.name).toMatch(ISO_DATE_AT_SUPPORTED_PRECISION);
+          expect(relationship.effectiveTo >= relationship.effectiveFrom, assignee.name).toBe(true);
+        }
+        expect(relationship.sourceUrl, assignee.name).toMatch(/^https:\/\//);
+      }
+    }
   });
 });
 

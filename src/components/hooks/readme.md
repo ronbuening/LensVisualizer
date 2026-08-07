@@ -104,4 +104,4 @@ flowchart LR
 | `useOverlayState.ts` | React hook module | package:react | src/components/layout | OverlayState, default, useOverlayState |
 | `useRayTracing.ts` | React hook module | same folder (5), src/types (2), package:react, src/optics/lensMovement.ts, src/optics/optics.ts | src/components/layout | default, useRayTracing |
 | `useSideLayoutDetection.ts` | React hook module | package:react (2) | src/components/layout | default, useSideLayoutDetection |
-| `useViewBoxZoom.ts` | React hook module | package:react | src/components/display, src/components/layout, src/components/relationshipMap | ViewBoxState, ViewBoxZoomResult, default, useViewBoxZoom |
+| `useViewBoxZoom.ts` | React hook module | package:react | src/components/relationshipMap (2), src/components/display, src/components/layout | ViewBoxState, ViewBoxZoomResult, default, useViewBoxZoom |

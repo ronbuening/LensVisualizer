@@ -30,6 +30,7 @@ flowchart LR
   n_external_src_pages_PatentsIndexPage_tsx["src/pages/PatentsIndexPage.tsx"]
   n_external_src_pages_RelationshipMapPage_tsx["src/pages/RelationshipMapPage.tsx"]
   n_external_src_pages_SearchPage_tsx["src/pages/SearchPage.tsx"]
+  n_external_src_pages_UniversalRelationshipMapPage_tsx["src/pages/UniversalRelationshipMapPage.tsx"]
   n_external_src_pages_UpdatesPage_tsx["src/pages/UpdatesPage.tsx"]
   n_src_routes_src_routes_routeManifest_tsx --> n_external_pkg_react
   n_src_routes_src_routes_routeManifest_tsx --> n_external_src_pages_ArticlePage_tsx
@@ -50,6 +51,7 @@ flowchart LR
   n_src_routes_src_routes_routeManifest_tsx --> n_external_src_pages_PatentsIndexPage_tsx
   n_src_routes_src_routes_routeManifest_tsx --> n_external_src_pages_RelationshipMapPage_tsx
   n_src_routes_src_routes_routeManifest_tsx --> n_external_src_pages_SearchPage_tsx
+  n_src_routes_src_routes_routeManifest_tsx --> n_external_src_pages_UniversalRelationshipMapPage_tsx
   n_src_routes_src_routes_routeManifest_tsx --> n_external_src_pages_UpdatesPage_tsx
 ```
 
@@ -57,11 +59,11 @@ flowchart LR
 
 - Direct source files: 1
 - Direct subfolders: 0
-- Main outbound areas: package:react, src/pages/ArticlePage.tsx, src/pages/ArticlesPage.tsx, src/pages/AuthorPage.tsx, src/pages/AuthorsIndexPage.tsx, src/pages/ComparePage.tsx, src/pages/FormatPage.tsx, src/pages/FormatsIndexPage.tsx, +12 more
+- Main outbound areas: package:react, src/pages/ArticlePage.tsx, src/pages/ArticlesPage.tsx, src/pages/AuthorPage.tsx, src/pages/AuthorsIndexPage.tsx, src/pages/ComparePage.tsx, src/pages/FormatPage.tsx, src/pages/FormatsIndexPage.tsx, +13 more
 - External consumers: src/entry-server.tsx, src/router.tsx
 
 ## Files
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
-| `routeManifest.tsx` | React component module | package:react, src/pages/ArticlePage.tsx, src/pages/ArticlesPage.tsx, src/pages/AuthorPage.tsx, src/pages/AuthorsIndexPage.tsx, +15 more | src/entry-server.tsx, src/router.tsx | RouteManifestEntry, default |
+| `routeManifest.tsx` | React component module | package:react, src/pages/ArticlePage.tsx, src/pages/ArticlesPage.tsx, src/pages/AuthorPage.tsx, src/pages/AuthorsIndexPage.tsx, +16 more | src/entry-server.tsx, src/router.tsx | RouteManifestEntry, default |

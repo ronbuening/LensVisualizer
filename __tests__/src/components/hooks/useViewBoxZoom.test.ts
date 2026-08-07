@@ -20,8 +20,35 @@ function createSvgTarget() {
   } as unknown as SVGSVGElement;
 }
 
+function createNativeSvgTarget() {
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  Object.defineProperty(svg, "getBoundingClientRect", {
+    configurable: true,
+    value: () => ({
+      bottom: SVG_H,
+      height: SVG_H,
+      left: 0,
+      right: SVG_W,
+      top: 0,
+      width: SVG_W,
+      x: 0,
+      y: 0,
+      toJSON: () => ({}),
+    }),
+  });
+  return svg;
+}
+
 function createTouch(x: number, y: number) {
   return { clientX: x, clientY: y } as Touch;
+}
+
+function createNativeEvent(type: string, properties: Record<string, unknown> = {}) {
+  const event = new Event(type, { bubbles: true, cancelable: true });
+  for (const [name, value] of Object.entries(properties)) {
+    Object.defineProperty(event, name, { configurable: true, value });
+  }
+  return event;
 }
 
 describe("useViewBoxZoom", () => {
@@ -237,6 +264,25 @@ describe("useViewBoxZoom", () => {
       expect(result.current.isPanning).toBe(false);
     });
 
+    it("leaves touch contacts to the touch handlers instead of pointer panning", () => {
+      const { result } = renderHook(() => useViewBoxZoom(SVG_W, SVG_H, true));
+      const svgTarget = createSvgTarget();
+
+      act(() =>
+        result.current.handlePointerDown({
+          button: 0,
+          clientX: 200,
+          clientY: 100,
+          pointerId: 7,
+          pointerType: "touch",
+          currentTarget: svgTarget,
+        } as unknown as React.PointerEvent<SVGSVGElement>),
+      );
+
+      expect(result.current.isPanning).toBe(false);
+      expect(svgTarget.setPointerCapture).not.toHaveBeenCalled();
+    });
+
     it("supports one-finger panning and two-finger pinch zoom", () => {
       const { result } = renderHook(() => useViewBoxZoom(SVG_W, SVG_H, true));
       const svgTarget = createSvgTarget();
@@ -284,6 +330,60 @@ describe("useViewBoxZoom", () => {
       );
 
       expect(result.current.state.zoom).toBeGreaterThan(1);
+    });
+  });
+
+  describe("contained native gestures", () => {
+    it("contains native wheel zoom on the supplied SVG only", () => {
+      const svgTarget = createNativeSvgTarget();
+      const outsideTarget = createNativeSvgTarget();
+      const targetRef = { current: svgTarget };
+      const { result } = renderHook(() => useViewBoxZoom(SVG_W, SVG_H, true, targetRef));
+      const outsideEvent = createNativeEvent("wheel", { deltaY: -100, clientX: 300, clientY: 150 });
+
+      act(() => outsideTarget.dispatchEvent(outsideEvent));
+      expect(outsideEvent.defaultPrevented).toBe(false);
+      expect(result.current.state.zoom).toBe(1);
+
+      const insideEvent = createNativeEvent("wheel", { deltaY: -100, clientX: 300, clientY: 150 });
+      act(() => svgTarget.dispatchEvent(insideEvent));
+      expect(insideEvent.defaultPrevented).toBe(true);
+      expect(result.current.state.zoom).toBeGreaterThan(1);
+    });
+
+    it("handles native two-finger touch pinch without page zoom", () => {
+      const svgTarget = createNativeSvgTarget();
+      const targetRef = { current: svgTarget };
+      const { result } = renderHook(() => useViewBoxZoom(SVG_W, SVG_H, true, targetRef));
+      const startEvent = createNativeEvent("touchstart", {
+        touches: [createTouch(200, 200), createTouch(260, 200)],
+      });
+      const moveEvent = createNativeEvent("touchmove", {
+        touches: [createTouch(180, 200), createTouch(320, 200)],
+      });
+
+      act(() => svgTarget.dispatchEvent(startEvent));
+      act(() => svgTarget.dispatchEvent(moveEvent));
+
+      expect(moveEvent.defaultPrevented).toBe(true);
+      expect(result.current.state.zoom).toBeGreaterThan(1);
+    });
+
+    it("handles WebKit trackpad pinch around the gesture point", () => {
+      const svgTarget = createNativeSvgTarget();
+      const targetRef = { current: svgTarget };
+      const { result } = renderHook(() => useViewBoxZoom(SVG_W, SVG_H, true, targetRef));
+      const startEvent = createNativeEvent("gesturestart", { scale: 1, clientX: 300, clientY: 150 });
+      const changeEvent = createNativeEvent("gesturechange", { scale: 2, clientX: 300, clientY: 150 });
+
+      act(() => svgTarget.dispatchEvent(startEvent));
+      act(() => svgTarget.dispatchEvent(changeEvent));
+
+      expect(startEvent.defaultPrevented).toBe(true);
+      expect(changeEvent.defaultPrevented).toBe(true);
+      expect(result.current.state.zoom).toBeCloseTo(2);
+      expect(result.current.state.vbW).toBeCloseTo(SVG_W / 2);
+      expect(result.current.state.vbH).toBeCloseTo(SVG_H / 2);
     });
   });
 });

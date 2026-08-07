@@ -63,6 +63,6 @@ flowchart LR
 | `holidays.ts` | Holidays helper module | none | src/utils/theme (2), src/components/HolidayFavicon.tsx | HolidayId, HOLIDAY_IDS, isHolidayId, nthWeekdayOfMonth, computeEaster, getActiveHoliday, HolidayOverride, holidayOverrideFromSearch |
 | `mediaQuery.ts` | Media Query helper module | none | src/utils/useMediaQuery.ts | subscribeToMediaQuery |
 | `perfProbe.ts` | Perf Probe helper module | none | src/components/display (6), src/benchmarks | probe, resetPerfProbe |
-| `text.ts` | Text helper module | none | src/components/relationshipMap (2), src/components/search (2), src/pages/AuthorPage.tsx, src/pages/AuthorsIndexPage.tsx, src/pages/FormatPage.tsx, +7 more | pluralize |
+| `text.ts` | Text helper module | none | src/components/relationshipMap (4), src/components/search (2), src/pages/AuthorPage.tsx, src/pages/AuthorsIndexPage.tsx, src/pages/FormatPage.tsx, +7 more | pluralize |
 | `useMediaQuery.ts` | React hook module | package:react, src/utils/mediaQuery.ts | src/components/layout (3), src/components/content (2), src/components/homepage (2), src/pages/HomePage.tsx, src/utils/state, +2 more | default, useMediaQuery |
 | `usePrefersReducedMotion.ts` | React hook module | src/utils/useMediaQuery.ts | src/components/layout (4), src/components/diagram (2) | REDUCED_MOTION_QUERY, default, usePrefersReducedMotion |
