@@ -16,6 +16,7 @@ flowchart LR
     n_src_components_content_src_components_content_InventorLinks_tsx["InventorLinks.tsx"]
     n_src_components_content_src_components_content_LensEntryLink_tsx["LensEntryLink.tsx"]
     n_src_components_content_src_components_content_LinkListSidebar_tsx["LinkListSidebar.tsx"]
+    n_src_components_content_src_components_content_PatentNumberLink_tsx["PatentNumberLink.tsx"]
     n_src_components_content_src_components_content_PatentPartyList_tsx["PatentPartyList.tsx"]
     n_src_components_content_src_components_content_SeriesCard_tsx["SeriesCard.tsx"]
     n_src_components_content_src_components_content_SidebarLayout_tsx["SidebarLayout.tsx"]
@@ -28,7 +29,6 @@ flowchart LR
   n_external_src_types["src/types"]
   n_external_src_utils_catalog["src/utils/catalog"]
   n_external_src_utils_seo["src/utils/seo"]
-  n_external_src_utils_useMediaQuery_ts["src/utils/useMediaQuery.ts"]
   n_src_components_content_src_components_content_ChangelogList_tsx --> |3| n_external_src_utils_content
   n_src_components_content_src_components_content_ArticleCard_tsx --> |2| n_external_src_utils_content
   n_src_components_content_src_components_content_SeriesCard_tsx --> |2| n_external_src_utils_content
@@ -38,6 +38,7 @@ flowchart LR
   n_src_components_content_src_components_content_InventorLinks_tsx --> n_external_pkg_react
   n_src_components_content_src_components_content_LensEntryLink_tsx --> n_external_pkg_react
   n_src_components_content_src_components_content_LinkListSidebar_tsx --> n_external_pkg_react
+  n_src_components_content_src_components_content_PatentNumberLink_tsx --> n_external_pkg_react
   n_src_components_content_src_components_content_PatentPartyList_tsx --> n_external_pkg_react
   n_src_components_content_src_components_content_ArticleCard_tsx --> n_external_pkg_react_router
   n_src_components_content_src_components_content_ArticleList_tsx --> n_external_pkg_react_router
@@ -55,6 +56,7 @@ flowchart LR
   n_src_components_content_src_components_content_LinkListSidebar_tsx --> n_external_src_types
   n_src_components_content_src_components_content_SeriesCard_tsx --> n_external_src_types
   n_src_components_content_src_components_content_InventorLinks_tsx --> n_external_src_utils_catalog
+  n_src_components_content_src_components_content_PatentNumberLink_tsx --> n_external_src_utils_catalog
   n_src_components_content_src_components_content_ArticleList_tsx --> n_external_src_utils_content
   n_src_components_content_src_components_content_ArticleCard_tsx --> n_external_src_utils_seo
   n_src_components_content_src_components_content_LensEntryLink_tsx --> n_external_src_utils_seo
@@ -63,17 +65,15 @@ flowchart LR
   n_src_components_content_src_components_content_ArticleCard_tsx --> n_external_src_utils_style
   n_src_components_content_src_components_content_ChangelogList_tsx --> n_external_src_utils_style
   n_src_components_content_src_components_content_LensEntryLink_tsx --> n_external_src_utils_style
-  n_src_components_content_src_components_content_SeriesCard_tsx --> n_external_src_utils_style
-  n_src_components_content_src_components_content_ArticleTOC_tsx --> n_external_src_utils_useMediaQuery_ts
   n_src_components_content_truncated["additional relationships omitted"]
 ```
 
 ## Directory Overview
 
-- Direct source files: 10
+- Direct source files: 11
 - Direct subfolders: 0
-- Main outbound areas: src/types (8), src/utils/content (8), src/utils/style (8), package:react-router (6), package:react (5), src/utils/seo (4), same folder (2), src/utils/useMediaQuery.ts (2), +2 more
-- External consumers: src/components/controls, src/components/relationshipMap, src/components/search, src/pages/ArticlePage.tsx, src/pages/ArticlesPage.tsx, src/pages/AuthorPage.tsx, src/pages/HomePage.tsx, src/pages/lensIndex, +5 more
+- Main outbound areas: src/types (8), src/utils/content (8), src/utils/style (8), package:react (6), package:react-router (6), src/utils/seo (4), same folder (2), src/utils/catalog (2), +2 more
+- External consumers: src/components/controls, src/components/relationshipMap, src/components/search, src/pages/ArticlePage.tsx, src/pages/ArticlesPage.tsx, src/pages/AuthorPage.tsx, src/pages/HomePage.tsx, src/pages/lensIndex, +6 more
 
 ## Files
 
@@ -86,6 +86,7 @@ flowchart LR
 | `InventorLinks.tsx` | React component module | package:react, package:react-router, same folder, src/types, src/utils/catalog | src/components/controls, src/pages/AuthorPage.tsx, src/pages/PatentsIndexPage.tsx | default, InventorLinks |
 | `LensEntryLink.tsx` | React component module | package:react, package:react-router, src/types, src/utils/seo, src/utils/style | src/components/relationshipMap, src/components/search, src/pages/AuthorPage.tsx, src/pages/lensIndex, src/pages/MakerPage.tsx, +1 more | default, LensEntryLink |
 | `LinkListSidebar.tsx` | React component module | src/utils/style (2), package:react, package:react-router, src/types, src/utils/seo | src/pages/AuthorPage.tsx, src/pages/LensIndexPage.tsx, src/pages/MakerPage.tsx, src/pages/MountPage.tsx, src/pages/PatentsIndexPage.tsx | LinkListSidebarItem, default, LinkListSidebar |
+| `PatentNumberLink.tsx` | React component module | package:react, src/utils/catalog | src/components/controls, src/components/relationshipMap, src/pages/AuthorPage.tsx, src/pages/LensPage.tsx, src/pages/PatentsIndexPage.tsx | default, PatentNumberLink |
 | `PatentPartyList.tsx` | React component module | package:react | same folder, src/components/relationshipMap | default, PatentPartyList |
 | `SeriesCard.tsx` | React component module | src/utils/content (2), package:react-router, src/types, src/utils/seo, src/utils/style | src/pages/ArticlesPage.tsx | default, SeriesCard |
 | `SidebarLayout.tsx` | React component module | src/utils/useMediaQuery.ts | src/pages/AuthorPage.tsx, src/pages/LensIndexPage.tsx, src/pages/MakerPage.tsx, src/pages/MountPage.tsx, src/pages/PatentsIndexPage.tsx | default, SidebarLayout |

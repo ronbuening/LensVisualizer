@@ -14,6 +14,7 @@ import RelationshipMap from "../../../../src/components/relationshipMap/Relation
 import RelationshipEntityPicker from "../../../../src/components/relationshipMap/RelationshipEntityPicker.js";
 import PatentDetailCard from "../../../../src/components/relationshipMap/PatentDetailCard.js";
 import { AUTHORS } from "../../../../src/utils/catalog/authorCatalog.js";
+import { espacenetPatentUrl, isPatentPublicationNumber } from "../../../../src/utils/catalog/patentCatalog.js";
 import {
   buildRelationshipGraph,
   type PartyRef,
@@ -141,12 +142,15 @@ describe("RelationshipMap", () => {
 describe("PatentDetailCard", () => {
   it("renders lens links and recenters non-center inventors", () => {
     const graph = findConnectedGraph();
-    // Choose a patent whose inventor list has a non-center inventor.
     const centerRef = graph.center.ref;
-    const patent = graph.patents.find((p) => p.authors.some((name) => name !== centerRef.name)) ?? graph.patents[0];
+    const patent =
+      graph.patents.find(
+        (entry) =>
+          isPatentPublicationNumber(entry.patentNumber) && entry.authors.some((name) => name !== centerRef.name),
+      ) ?? graph.patents.find((entry) => isPatentPublicationNumber(entry.patentNumber))!;
     const onFocusParty = vi.fn();
 
-    const { container, getByText } = renderWithRouter(
+    const { container, getByRole, getByText } = renderWithRouter(
       <PatentDetailCard
         patent={patent}
         centerRef={centerRef}
@@ -158,6 +162,11 @@ describe("PatentDetailCard", () => {
 
     const lensLink = container.querySelector(`a[href^="/lens/"]`);
     expect(lensLink).not.toBeNull();
+    const patentLink = getByRole("link", {
+      name: `${patent.patentNumber} in Espacenet (opens in a new tab)`,
+    });
+    expect(patentLink.getAttribute("href")).toBe(espacenetPatentUrl(patent.patentNumber));
+    expect(patentLink.getAttribute("target")).toBe("_blank");
 
     // The center's own name renders as plain text, not a button.
     const centerEl = getByText(centerRef.name, { selector: "span" });

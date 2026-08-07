@@ -52,6 +52,23 @@ const JURISDICTION_LABELS: Record<string, string> = {
 
 const patentNumberCollator = new Intl.Collator("en", { numeric: true, sensitivity: "base" });
 
+/** Return whether a display value is an external patent publication number rather than a local fallback label. */
+export function isPatentPublicationNumber(value: string): boolean {
+  return /^[A-Z]{2}\s+.*\d/i.test(value.trim());
+}
+
+/**
+ * Build a worldwide Espacenet publication-number search URL.
+ *
+ * Espacenet accepts DOCDB-style identifiers without display punctuation and is
+ * flexible about omitted kind codes, which covers both modern publications and
+ * the historical patent-number formats represented in the catalog.
+ */
+export function espacenetPatentUrl(patentNumber: string): string {
+  const publicationNumber = patentNumber.toUpperCase().replace(/[^A-Z0-9]/g, "");
+  return `https://worldwide.espacenet.com/patent/search?q=${encodeURIComponent(`pn=${publicationNumber}`)}`;
+}
+
 /** Resolve the publication authority encoded at the start of a patent number. */
 export function patentJurisdiction(patentNumber: string): PatentJurisdiction {
   const code = patentNumber.trim().match(/^([A-Z]{2})\b/)?.[1] ?? "OTHER";

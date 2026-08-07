@@ -8,6 +8,7 @@
  */
 
 import LensEntryLink from "../content/LensEntryLink.js";
+import PatentNumberLink from "../content/PatentNumberLink.js";
 import PatentPartyList from "../content/PatentPartyList.js";
 import { getAuthorByName } from "../../utils/catalog/authorCatalog.js";
 import { getAssigneeByName } from "../../utils/catalog/assigneeCatalog.js";
@@ -85,7 +86,7 @@ export default function PatentDetailCard({
       </button>
 
       <h3 style={{ color: t.title, fontSize: "0.95rem", margin: "0 0 0.35rem", paddingRight: "3rem" }}>
-        {patent.patentNumber}
+        <PatentNumberLink patentNumber={patent.patentNumber} color={t.descLinkColor} />
         {patent.patentYear !== undefined && (
           <span style={{ color: t.label, fontSize: "0.7rem", marginLeft: "0.5rem", fontWeight: 400 }}>
             {patent.patentYear}

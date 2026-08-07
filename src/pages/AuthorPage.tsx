@@ -12,6 +12,7 @@ import SEOHead from "../components/SEOHead.js";
 import InventorLinks from "../components/content/InventorLinks.js";
 import LensEntryLink from "../components/content/LensEntryLink.js";
 import LinkListSidebar from "../components/content/LinkListSidebar.js";
+import PatentNumberLink from "../components/content/PatentNumberLink.js";
 import SidebarLayout from "../components/content/SidebarLayout.js";
 import StaticPageShell from "../components/layout/StaticPageShell.js";
 import { getAuthorBiography } from "../utils/catalog/authorBiographies.js";
@@ -86,7 +87,7 @@ function PatentCard({ patent, currentAuthor, theme: t }: PatentCardProps) {
       }}
     >
       <h3 style={{ color: t.title, fontSize: "0.95rem", margin: "0 0 0.35rem" }}>
-        {patent.patentNumber}
+        <PatentNumberLink patentNumber={patent.patentNumber} color={t.descLinkColor} />
         {patent.patentYear !== undefined && (
           <span style={{ color: t.label, fontSize: "0.7rem", marginLeft: "0.5rem", fontWeight: 400 }}>
             {patent.patentYear}

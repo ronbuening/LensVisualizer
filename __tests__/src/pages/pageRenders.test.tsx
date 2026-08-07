@@ -14,6 +14,7 @@ import NotFoundPage from "../../../src/pages/NotFoundPage.js";
 import { ARTICLE_CONTENT, ARTICLES, HOMEPAGE_ARTICLES } from "../../../src/utils/content/homepageContent.js";
 import { CATALOG_KEYS, COMPARISON_CATALOG_KEYS, LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 import { lensDisplaySubtitle } from "../../../src/utils/catalog/lensPatentMetadata.js";
+import { espacenetPatentUrl } from "../../../src/utils/catalog/patentCatalog.js";
 import { clearBrowserState, installMatchMediaMock, renderWithRouter } from "../../testUtils.js";
 
 vi.mock("../../../src/components/SEOHead.js", () => ({
@@ -238,7 +239,12 @@ describe("static page renders", () => {
       </Routes>,
     );
 
-    expect(screen.getByText(displaySubtitle ?? "")).toBeTruthy();
+    const patentLink = screen.getByRole("link", {
+      name: `${lens.patentNumber} in Espacenet (opens in a new tab)`,
+    });
+    expect(patentLink.getAttribute("href")).toBe(espacenetPatentUrl(lens.patentNumber ?? ""));
+    expect(patentLink.closest("p")?.textContent).toContain(lens.patentNumber);
+    for (const author of lens.patentAuthors ?? []) expect(patentLink.closest("p")?.textContent).toContain(author);
     if (lens.subtitle && lens.subtitle !== displaySubtitle) expect(screen.queryByText(lens.subtitle)).toBeNull();
   });
 
