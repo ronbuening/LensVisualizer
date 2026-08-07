@@ -11,6 +11,13 @@ Patent: JP 2022-33487 A, Numerical Example 1
 | L5 / S8 | `glass` | `Heavy flint, code 593/355 (vendor uncertain)` | `593355 — heavy flint (vendor uncertain; no exact public catalog match)` | Patent Example 1 stores nd/vd = 1.59270 / 35.45. No exact public catalog match was found, so the unbroken six-digit token preserves a future auto-upgrade path. |
 | L7 / S11 | `glass` | `HOYA FCD10A (459/902)` | `459902 — HOYA FCD10A (ELD fluorophosphate crown; no coefficient-backed catalog entry yet)` | Patent nd/vd = 1.45860 / 90.19 and Sigma identifies the production class as ELD. The label keeps the HOYA identity while making the six-digit code machine-readable for later coefficient backfill. |
 
+## 2026-08-07 - Near-complete glass opportunity
+
+- Visually rechecked Example 1 in local `patents/JP2022033487A.pdf`; L5 is `nd=1.59270`, `νd=35.45`, `θgF=0.592569`.
+- The coefficient-backed HOYA FF5 curve reproduces the patent nd/νd coordinate and θgF; its catalog code 593354 differs only from the patent-rounded 593355 token.
+- Relabeled L5 as an FF5 catalog spectral equivalent while leaving Sigma's production supplier unspecified. Authored patent `dPgF` remains authoritative at g-line.
+- Synchronized the analysis. No geometry or authored patent constants changed.
+
 ### Phase 2 - Retained-information audit
 
 - Re-checked the extracted JP 2022-33487 A Example 1 prescription against the data file; surface radii, spacings, focus variables, and asphere coefficients were retained.

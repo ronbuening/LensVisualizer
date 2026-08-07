@@ -70,9 +70,9 @@ G5 is the positive component of the cemented doublet and the element most likely
 
 ### G6 — Positive Biconvex, Double Aspherical
 
-$n_d = 1.801$, $\nu_d = 45.45$. Glass: lanthanum dense crown (code 801/454) — no exact catalog match confirmed; nearest candidates include N-LAF3 (Schott, $n_d = 1.800$, $\nu_d = 46.0$) and TAF3 (Hoya, $n_d = 1.804$, $\nu_d = 46.6$), both with residuals exceeding typical matching tolerance. $f \approx +18.6$ mm.
+$n_d = 1.801$, $\nu_d = 45.45$. Glass: HOYA M-TAF31 catalog equivalent to patent code 801/454; the production supplier is unspecified. The public row is $n_d = 1.80139$, $\nu_d = 45.45$ (code 801455), within the rounded patent coordinate and consistent with this double-aspherical PGM position. $f \approx +18.6$ mm.
 
-G6 is the final element of GR1 and carries the second-strongest positive power in the system. The glass may be a restricted-catalog moldable variant not published in standard cross-reference tables — a common situation for PGM aspherical elements where glass manufacturers develop custom compositions optimized for pressing temperature and refractive index stability. Both surfaces are aspherical:
+G6 is the final element of GR1 and carries the second-strongest positive power in the system. The coefficient-backed M-TAF31 model supplies its full dispersion curve without asserting that HOYA supplied Sony's production melt. Both surfaces are aspherical:
 
 - **S11 (front, object side):** $K = 0$, $A_4 = -1.281 \times 10^{-5}$. A gentle aspherical correction with only two active polynomial terms. The negative $A_4$ produces a mild peripheral flattening, which reduces the spherical aberration contributed by G6's strong biconvex power. The positive $A_6 = +2.853 \times 10^{-8}$ partially counteracts the flattening at the outermost zones, creating a zonal correction profile.
 - **S12 (rear, image side):** $K = 0$, $A_4 = +2.495 \times 10^{-5}$. The positive departure steepens the outer zones of the concave rear surface, providing additional correction for coma and astigmatism of the off-axis beam. The alternating signs of $A_6$ through $A_{10}$ create a controlled oscillation in the correction profile that fine-tunes the sagittal and tangential field performance.
@@ -104,7 +104,7 @@ The design uses seven distinct glass types across eight elements, with one glass
 | G3 | S-LAH55V | OHARA | 1.835 | 42.72 | 835/427 | Lanthanum dense crown; high index for strong positive power at low curvature |
 | G4 | S-TIH4 | OHARA | 1.755 | 27.53 | 755/275 | Titanium (dense) flint; high dispersion for achromatic pairing with G5 |
 | G5 | S-PHM52 | OHARA | 1.618 | 63.40 | 618/634 | Phosphate crown (ED); anomalous dispersion for chromatic correction |
-| G6 | Unmatched | — | 1.801 | 45.45 | 801/454 | High-index dense crown; double-asph PGM biconvex with strong power |
+| G6 | M-TAF31 equivalent | HOYA model | 1.801 | 45.45 | 801/454 | Rounded match to catalog 801455; supplier unspecified; double-asph PGM biconvex |
 | G7 | N-LAK14 | Schott | 1.697 | 55.46 | 697/555 | Lanthanum crown; moderate index and weight for lightweight focus element |
 | G8 | S-PHM52 | OHARA | 1.618 | 63.40 | 618/634 | Same as G5; chromatic symmetry across the focus group |
 

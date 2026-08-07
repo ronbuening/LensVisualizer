@@ -24,3 +24,9 @@ Patent: DE 3907928 A1, Table 5
 - S11 `N-KZFS5 class` -> unmatched rounded short flint at 1.650 / 39.6.
 - Table 5's coarse rounding cannot establish unique catalog rows; the analysis now treats those names as family
   comparisons only.
+
+## 2026-08-07 - Legacy K10 catalog recovery
+
+- The official Schott K10 datasheet supplies Sellmeier coefficients for `nd=1.50137`, `νd=56.41`, code 501564.
+- The Table 5 L4 annotation already identifies K10 as a patent-rounded Schott equivalent, so it now resolves through the vendor curve without strengthening the claim on the other coarsely rounded rows.
+- The local `patents/DE_3907928_A1.pdf` review recorded above remains the prescription source. No geometry changed.

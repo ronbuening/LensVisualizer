@@ -123,7 +123,7 @@ const LENS_DATA = {
       nd: 1.801,
       vd: 45.45,
       fl: 18.6,
-      glass: "Unmatched (lanthanum dense crown, 801/454; likely restricted-catalog PGM formulation)",
+      glass: "M-TAF31 (HOYA catalog-equivalent to patent 801454; production supplier unspecified)",
       apd: false,
       role: "Final element of GR1; double-aspherical biconvex carries second-strongest positive power. Front asphere corrects SA, rear asphere corrects off-axis field aberrations.",
     },

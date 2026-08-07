@@ -10,9 +10,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **532** lenses scanned
-- **620** total code-only elements found
-- **620** elements in this report
-- **172** distinct lens files affected
+- **617** total code-only elements found
+- **617** elements in this report
+- **170** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -154,7 +154,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 545486 | 1 | 1 | patents/CN116520542A.pdf | All rows have review records |
 | 548458 | 1 | 1 | patents/US6940655.pdf | No review-record hit |
 | 553381 | 1 | 1 | patents/US7508592.pdf | All rows explicitly disposed |
-| 553551 | 1 | 1 | patents/JP2023063766A.pdf | All rows explicitly disposed |
 | 553555 | 1 | 1 | patents/JP2022092388A.pdf | All rows have review records |
 | 553717 | 1 | 1 | patents/US20200142168A1.pdf | All rows have review records |
 | 554381 | 1 | 1 | patents/US7359125.pdf | All rows have review records |
@@ -178,7 +177,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 592670 | 1 | 1 | patents/US20150092100A1.pdf | No review-record hit |
 | 593343 | 1 | 1 | patents/US2838978.pdf | All rows explicitly disposed |
 | 593353 | 1 | 1 | patents/US7804652.pdf | No review-record hit |
-| 593355 | 1 | 1 | patents/JP2022033487A.pdf | All rows have review records |
 | 595355 | 1 | 1 | patents/US5579169.pdf | All rows explicitly disposed |
 | 595356 | 1 | 1 | patents/US4266860.pdf | All rows explicitly disposed |
 | 595686 | 1 | 1 | patents/WO_2025263124_A1.pdf | All rows have review records |
@@ -315,7 +313,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 800298 | 1 | 1 | patents/JP2020086133A.pdf | No review-record hit |
 | 800422 | 1 | 1 | patents/US4110006.pdf | No review-record hit |
 | 801350 | 1 | 1 | patents/JP2020086133A.pdf | No review-record hit |
-| 801454 | 1 | 1 | patents/US20130033768A1.pdf | All rows explicitly disposed |
 | 803404 | 1 | 1 | patents/US20140247506A1.pdf | All rows have review records |
 | 803405 | 1 | 1 | patents/US20170351051A1.pdf | All rows have review records |
 | 804396 | 1 | 1 | patents/US6940655.pdf | No review-record hit |
@@ -1014,10 +1011,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L6 (Element 6) | 12 | `K10 class (501/565)` | 1.50137 / 56.50 | No catalog entry | abbe | patents/US4189212.pdf | Reviewed sidecar hit |
-| L7 (Element 7) | 14 | `K10 class (501/565)` | 1.50137 / 56.50 | No catalog entry | abbe | patents/US4189212.pdf | Reviewed sidecar hit |
+| L6 (Element 6) | 12 | `K10 class (501/565)` | 1.50137 / 56.50 | K10 (trusted Sellmeier) | sellmeier | patents/US4189212.pdf | Reviewed sidecar hit |
+| L7 (Element 7) | 14 | `K10 class (501/565)` | 1.50137 / 56.50 | K10 (trusted Sellmeier) | sellmeier | patents/US4189212.pdf | Reviewed sidecar hit |
 | L9a (Element 9a) | 18 | `Unmatched 465/658 (FK/phosphate crown class)` | 1.46450 / 65.80 | No catalog entry | abbe | patents/US4189212.pdf | Explicit disposition in data |
-| L9b (Element 9b) | 20 | `K10 class (501/565)` | 1.50137 / 56.50 | No catalog entry | abbe | patents/US4189212.pdf | Reviewed sidecar hit |
+| L9b (Element 9b) | 20 | `K10 class (501/565)` | 1.50137 / 56.50 | K10 (trusted Sellmeier) | sellmeier | patents/US4189212.pdf | Reviewed sidecar hit |
 
 ### [Nikon AI Zoom-Nikkor 35-200mm f/3.5-4.5S](../../src/lens-data/nikon/NikonAIZoomNikkor35200mmf3545S.data.ts) - US 4,770,511
 
@@ -1615,12 +1612,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|---|---|
 | L6 (Element 8) | 13 | `Unmatched (479/587 low-index crown; vendor unspecified)` | 1.47870 / 58.70 | No catalog entry | abbe | patents/US4773745.pdf | Explicit disposition in data |
 
-### [SIGMA 35mm f/1.4 DG DN | Art](../../src/lens-data/sigma/SigmaDGDNA35mmf14.data.ts) - JP 2022-33487 A
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L5 (Element 5) | 8 | `593355 — heavy flint (vendor uncertain; no exact public catalog match)` | 1.59270 / 35.45 | No catalog entry | abbe | patents/JP2022033487A.pdf | Audit-log hit |
-
 ### [SIGMA 50mm f/1.4 DG DN | Art](../../src/lens-data/sigma/SigmaDGDNArt50mmf14.data.ts) - JP 2023-183894 A
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
@@ -1738,12 +1729,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L21 (Element 7) | 12 | `Unmatched (995293 ultra-high-index heavy flint; no public coefficient row inside the d-line safety window)` | 1.99502 / 29.30 | No catalog entry | abbe | patents/JPWO2017138250A1.pdf | Explicit disposition in data |
 | L22 (Element 8) | 14 | `Ultra-high-dispersion titanium heavy flint, 946/179 class (uncertain)` | 1.94594 / 17.90 | H-ZF88 (trusted Sellmeier) | sellmeier | patents/JPWO2017138250A1.pdf | No review-record hit |
 
-### [SONY SONNAR T* E 24mm f/1.8 ZA](../../src/lens-data/sony/SonyFE24mmf18ZA.data.ts) - US 2013/0033768 A1
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L6 (G6) | 11A | `Unmatched (lanthanum dense crown, 801/454; likely restricted-catalog PGM formulation)` | 1.80100 / 45.45 | No catalog entry | abbe | patents/US20130033768A1.pdf | Explicit disposition in data |
-
 ### [SONY SONNAR T* FE 35mm f/2.8 ZA](../../src/lens-data/sony/SonyFE35mmf28ZA.data.ts) - JP 2015-41012 A
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
@@ -1792,7 +1777,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L6r (Element 8) | 14 | `Unmatched (553551 crown; patent nd=1.55298, νd=55.07)` | 1.55298 / 55.07 | No catalog entry | abbe | patents/JP2023063766A.pdf | Explicit disposition in data |
 | L7 (Element 9) | 16A | `Unmatched (808406 high-index lanthanum glass; patent nd=1.80835, νd=40.55)` | 1.80835 / 40.55 | No catalog entry | abbe | patents/JP2023063766A.pdf | Explicit disposition in data |
 
 ### [VOIGTLÄNDER NOKTON 60mm f/0.95](../../src/lens-data/voigtlander/VoigtlanderNokton60mmf95.data.ts) - JP 2021-076740 A

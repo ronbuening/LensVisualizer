@@ -298,7 +298,7 @@ export const sigmaDgDnA35mmF14Data = {
       nd: 1.5927,
       vd: 35.45,
       fl: -42.2,
-      glass: "593355 — heavy flint (vendor uncertain; no exact public catalog match)",
+      glass: "FF5 (HOYA catalog-equivalent to patent 593355; production supplier unspecified)",
       apd: false,
       dPgF: 0.0081,
       cemented: "D1",

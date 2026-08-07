@@ -13,3 +13,9 @@ Patent: US 3,804,494, Example 1 / Claim 2
 
 - No prescription, glass, APD, high-index, or SD changes were made.
 - A full patent audit remains blocked until `patents/US3804494.pdf` or an equivalent local source is added.
+
+## 2026-08-07 - Legacy K10 catalog recovery
+
+- The official Schott K10 datasheet supplies Sellmeier coefficients for the already documented L3 identity (`nd=1.50137`, `νd=56.41`, code 501564).
+- L3 now resolves through that vendor curve, making this lens fully catalog-covered as a catalog-side effect.
+- The local patent-source blocker above remains: no claim is made that the absent patent was re-audited in this pass.

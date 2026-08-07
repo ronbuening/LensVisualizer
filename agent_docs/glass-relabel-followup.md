@@ -28,14 +28,26 @@ This file tracks the second bucket plus any cases from the first bucket that nee
 - `catalog-mismatches.generated.md` and `glass-relabel-by-lens.generated.md` report **0** remaining
   dispersion-coordinate mismatches across **0** lens files. The mismatch report separately records **18 / 75**
   native e-line surfaces resolved through explicit names or aliases.
-- `sellmeier-coverage.generated.md` reports **532** lenses, **5814** non-air surfaces, **5123** strict catalog
-  Sellmeier surfaces (**88.1%**), and **5134** trusted chromatic surfaces (**88.3%**).
-- **262** lenses are fully covered by strict Sellmeier data and **267** are fully covered by trusted chromatic data.
-- `unresolvedGlassScan` reports **364** non-explicit-unmatched annotations and **201** distinct unresolved glass-like
+- `sellmeier-coverage.generated.md` reports **532** lenses, **5814** non-air surfaces, **5139** strict catalog
+  Sellmeier surfaces (**88.4%**), and **5150** trusted chromatic surfaces (**88.6%**).
+- **270** lenses are fully covered by strict Sellmeier data and **275** are fully covered by trusted chromatic data.
+- `unresolvedGlassScan` reports **351** non-explicit-unmatched annotations and **194** distinct unresolved glass-like
   tokens. The residual total is code/prose inventory rather than a catalog-coordinate mismatch queue.
-- The missing-Sellmeier six-digit report contains **292** code-only elements, with **17** active unreviewed rows,
-  **128** self-recording explicit unmatched/unidentified dispositions, and **0** dispositions missing a review record.
+- The missing-Sellmeier six-digit report contains **286** code-only elements, with **17** active unreviewed rows,
+  **126** self-recording explicit unmatched/unidentified dispositions, and **0** dispositions missing a review record.
 - The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work; for patent-by-patent execution, start from [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md).
+
+## Resolved Phase 84 — August 2026 near-complete visible-lens audit
+
+- Audited the strongest near-complete candidates against seven ignored local patent PDFs, accepting exact or rounded
+  spectral equivalents while leaving production suppliers unspecified.
+- Completed the Canon Serenar 50mm f/1.8, Nikon L35AF 35mm f/2.8, Sigma DP3 Merrill 50mm f/2.8, Sigma 35mm
+  f/1.4 DG DN Art, Sony Planar T* 50mm f/1.4 ZA SSM, and Sony Sonnar T* E 24mm f/1.8 ZA.
+- Added official legacy Schott K10 coefficients, which also complete the Carl Zeiss B-Distagon 35mm f/4 and Olympus
+  F.Zuiko Auto-T 200mm f/5. The Voigtländer Nokton 50mm f/1.0 improves to 8/9; its non-identical 808406 rear glass
+  remains unmatched.
+- Global coverage is 5139/5814 strict and 5150/5814 trusted; 270 lenses are strict-complete and 275 trusted-complete,
+  with zero catalog-coordinate mismatches.
 
 ## Resolved Phase 83 — August 2026 spectral ambiguity audit
 

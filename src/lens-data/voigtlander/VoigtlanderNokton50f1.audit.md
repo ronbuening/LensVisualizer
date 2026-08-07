@@ -22,3 +22,10 @@ Patent: JP2023-063766 A, Example 1
 - Confirmed aperture sizing from the patent model: f/1.0 corresponds to EP SD ≈ 24.999 mm (EP diameter ≈ 49.998 mm). The front group maps that to a physical stop SD ≈ 16.14 mm (`y_ratio ≈ 0.6455`, entrance-pupil magnification ≈ 1.55×).
 - Synced production metadata from Cosina specs: 7 groups / 9 elements, 12 aperture blades, F16 minimum aperture, and 0.45 m close focus for the mirrorless variants. The patent does not disclose close-focus variable-spacing tables, so the data file retains the existing BF-only close-focus approximation and documents the limitation.
 - Updated the analysis text: corrected the group count from six to seven, adjusted TT/f to 1.6753 and f/f_le to −0.3234, and clarified why the production field angle and patent EFL are both retained.
+
+## 2026-08-07 — Near-complete glass opportunity
+
+- Visually rechecked Example 1, Table 1 in local `patents/JP2023063766A.pdf`; L6r is `nd=1.55298`, `νd=55.07`, code 553551.
+- Relabeled L6r to coefficient-backed HIKARI J-KZFH4, whose public catalog row is the exact 553551 coordinate.
+- The label is a spectral catalog equivalent and leaves Cosina's production supplier unspecified. L7 remains explicitly unmatched because the nearby 808409 catalog row does not reproduce the patent's 808406 dispersion closely enough.
+- Synchronized the analysis. No geometry or authored patent constants changed.

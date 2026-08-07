@@ -151,7 +151,7 @@ const LENS_DATA = {
       nd: 1.55298,
       vd: 55.07,
       fl: -52.3,
-      glass: "Unmatched (553551 crown; patent nd=1.55298, νd=55.07)",
+      glass: "J-KZFH4 (HIKARI catalog-equivalent to patent 553551; production supplier unspecified)",
       apd: false,
       role: "Cemented in L6; low-index negative partner for field curvature correction",
       cemented: "L6",

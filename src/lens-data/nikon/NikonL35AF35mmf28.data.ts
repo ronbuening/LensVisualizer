@@ -64,7 +64,7 @@ const LENS_DATA = {
       nd: 1.713,
       vd: 54.0,
       fl: 42.8,
-      glass: "LaK 8 (1713/540)",
+      glass: "N-LAK8 (Schott catalog-equivalent to patent LaK 8; production melt unspecified)",
       apd: false,
       role: "Front positive meniscus. Provides initial converging action; bending governed by condition (5) to balance spherical aberration against Petzval sum.",
     },

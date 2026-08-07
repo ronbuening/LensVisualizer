@@ -8,7 +8,16 @@ catalog equivalent. If neither path is available, the engine falls back to parti
 dPgF-corrected indices, or the legacy Abbe approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **475 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **476 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+
+The August 7, 2026 Phase 84 pass audited the near-complete visible-lens queue against the ignored local patent PDFs.
+Exact or rounded-coordinate catalog equivalents complete the Canon Serenar 50mm f/1.8, Nikon L35AF 35mm f/2.8,
+Sigma DP3 Merrill 50mm f/2.8, Sigma 35mm f/1.4 DG DN Art, Sony Planar T* 50mm f/1.4 ZA SSM, and Sony
+Sonnar T* E 24mm f/1.8 ZA. The Voigtländer Nokton 50mm f/1.0 gains an exact J-KZFH4 curve while its
+non-identical 808406 rear glass remains unmatched. The pass also adds legacy Schott K10 from the manufacturer's
+official 2014 datasheet, completing the Carl Zeiss B-Distagon 35mm f/4 and Olympus F.Zuiko Auto-T 200mm f/5 as
+catalog side effects. Global coverage rises from 5123 to 5139/5814 strict and from 5134 to 5150/5814 trusted;
+270 lenses are now strict-complete and 275 trusted-complete, with zero coordinate mismatches.
 
 The August 7, 2026 Phase 83 ambiguity audit compared every multi-candidate annotation with authored patent spectral
 evidence. The runtime now keeps a d-line element's authored `dPgF` authoritative at g even when a compatible catalog

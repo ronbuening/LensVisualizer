@@ -271,7 +271,7 @@ An asymmetric biconvex lens with the front surface more strongly curved. EFL = +
 
 Both radii are positive; R₁₂ > R₁₃, so the image-side surface is more strongly curved, forming a negative meniscus convex toward the object. EFL = −42.66 mm.
 
-**Glass:** nd = 1.62004, Vd = 36.30. Closest match: **Hoya CF6** (nd = 1.62004, Vd = 36.26; ΔVd = +0.04). Identification tentative.
+**Glass:** nd = 1.62004, Vd = 36.30. **HOYA E-F2** is an exact coefficient-backed coordinate match (code 620363). It is used as the catalog spectral equivalent; the patent does not identify Sigma's production supplier.
 
 **Role:** L7 is the first diverging element of G2 and begins the telephoto rear-group action. The moderate index (nd = 1.62) keeps the Petzval contribution modest per unit negative power — lower-index elements at significant off-axis heights generate less Petzval curvature per diopter than high-index alternatives.
 
@@ -300,7 +300,7 @@ Both radii are negative; |R₁₆| < |R₁₇| (front surface more strongly curv
 
 An asymmetric biconvex lens with the rear surface more strongly curved (|R₁₈| > |R₁₉|). EFL = +56.32 mm.
 
-**Glass:** nd = 1.80834, Vd = 40.92. No confirmed exact catalog match. The values fall in the dense lanthanum crown region. Secondary sources suggest **Hoya TACD5** as a possibility, but this is unconfirmed.
+**Glass:** nd = 1.80834, Vd = 40.92. **HOYA MC-NBFD135** is an exact coefficient-backed coordinate match (code 808409). It is used as the catalog spectral equivalent; the patent does not identify Sigma's production supplier.
 
 **Role:** As the last powered element before the image plane, L10 acts as a field-flattening and distortion-correcting element. The on-axis marginal ray height at surface 18 is only ~1.9 mm (the beam is tightly converging), so L10's contribution to axial aberrations is small. The off-axis chief ray, however, is at ~9.2 mm and growing — L10 operates primarily on the field structure.
 
@@ -369,12 +369,12 @@ For context, the uncorrected thin-lens Petzval sum for the same focal length is 
 | L4 | 1.90366 | 31.32 | Ohara S-LAH95 | High | Exact match |
 | L5 | 1.83481 | 42.72 | Ohara S-LAH55 | High | Exact match |
 | L6 | 1.83400 | 37.34 | HOYA NBFD10 catalog equivalent | High | Exact coordinate match; production supplier unspecified |
-| L7 | 1.62004 | 36.30 | Hoya CF6 | Moderate | ΔVd ≈ +0.04 |
+| L7 | 1.62004 | 36.30 | HOYA E-F2 catalog equivalent | High | Exact coordinate match; supplier unspecified |
 | L8 | 1.84666 | 23.78 | Schott SF57 / Ohara S-TIH53 | High | Exact match |
 | L9 | 1.80420 | 46.50 | Ohara S-LAH65 | Moderate | Δnd = +0.0002 |
-| L10 | 1.80834 | 40.92 | Uncertain; Hoya TACD5 possible | Low | No confirmed match |
+| L10 | 1.80834 | 40.92 | HOYA MC-NBFD135 catalog equivalent | High | Exact coordinate match; supplier unspecified |
 
-Glass identification is inferential: catalog nd/Vd pairs are compared against the patent values and residuals reported. L3 now uses the exact Hoya NBFD15 catalog row. For L6, no major Western catalog provides an exact match; CDGM or Hikari formulations are the most likely sources. L10's glass remains unconfirmed at catalog level. Sigma may also use proprietary or non-catalog glass formulations. Identifications marked "Low" confidence should not be cited as confirmed without additional sourcing.
+Glass identification is inferential: catalog nd/Vd pairs are compared against the patent values and residuals reported. L3 uses the exact Hoya NBFD15 catalog row. L7 and L10 now use exact public HOYA coordinate equivalents, E-F2 and MC-NBFD135 respectively, without claiming that HOYA supplied Sigma's production melts. Sigma may also use proprietary or non-catalog glass formulations; the labels distinguish spectral modeling from supplier provenance.
 
 ---
 

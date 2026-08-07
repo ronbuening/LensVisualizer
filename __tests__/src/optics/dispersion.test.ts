@@ -59,6 +59,7 @@ describe("glass catalog", () => {
   // to independent published Schott datasheet indices at the C/d/F/g lines.
   it.each([
     { name: "N-BK7", nC: 1.51432, nd: 1.5168, nF: 1.52238, ng: 1.52668, vd: 64.17 },
+    { name: "K10", nC: 1.49867, nd: 1.50137, nF: 1.50756, ng: 1.51243, vd: 56.41 },
     { name: "SF6", nC: 1.79609, nd: 1.80518, nF: 1.82775, ng: 1.84707, vd: 25.43 },
     { name: "P-LASF47", nC: 1.80023, nd: 1.8061, nF: 1.81994, ng: 1.83112, vd: 40.9 },
   ])("$name reproduces the published Schott datasheet indices at the C/d/F/g lines", (datasheet) => {

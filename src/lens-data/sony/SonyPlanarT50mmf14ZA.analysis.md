@@ -64,11 +64,11 @@ The G1F sub-group (L1 + L2 combined) has $f_{\rm G1F} = -522.8$ mm — very weak
 
 ### L3 — Biconvex Positive, Aspherical Front Surface (G1R, cemented with L4)
 
-$n_d = 1.851348$, $\nu_d = 40.1$. Glass: E-LASFH13 (HIKARI) — high-index lanthanum dense flint. $f = +31.9$ mm.
+$n_d = 1.851348$, $\nu_d = 40.1$. Glass: M-TAFD305 (HOYA catalog-equivalent; patent supplier unspecified) — high-index lanthanum dense flint. $f = +31.9$ mm.
 
 L3 is the strongest positive element in the front group (G1) and the second-strongest positive element in the entire system (after L6 in G2). Its front surface ($R_5 = +28.547$ mm, aspherical) has the third-highest curvature among all surfaces in the prescription, behind L5's front ($|R_9| = 21.8$ mm) and L4's rear ($|R_7| = 25.0$ mm). This surface is the primary contributor to G1's positive power. The aspherical figure on this surface (K = 0, polynomial-only departure) is specifically tasked with controlling the spherical aberration introduced by the fast f/1.4 beam. At the full aperture semi-diameter, the aspherical departure reaches approximately $-94$ μm relative to the base sphere — the surface is *flatter* at the periphery than the underlying sphere, progressively reducing the refraction angle of marginal rays and thereby correcting the undercorrected spherical aberration that a pure sphere would introduce.
 
-The glass selection is notable: $n_d = 1.851$, $\nu_d = 40.1$ falls in the dense lanthanum flint region. Despite being classified as a "flint" by dispersion, the high index permits a steeply curved surface with smaller angular incidence, which is beneficial for controlling monochromatic aberrations at f/1.4. This glass is identified as HIKARI E-LASFH13, which appears in Examples 1, 4, 5, 6, and 7 of the patent (Examples 2 and 3 use a different glass, $n_d = 1.882$, at this position) — it is clearly a key material in the design family.
+The glass selection is notable: $n_d = 1.851$, $\nu_d = 40.1$ falls in the dense lanthanum flint region. Despite being classified as a "flint" by dispersion, the high index permits a steeply curved surface with smaller angular incidence, which is beneficial for controlling monochromatic aberrations at f/1.4. The public HOYA M-TAFD305 row reproduces the patent's 851401 coordinate and supplies the coefficient-backed spectral model. The patent repeats this coordinate in Examples 1, 4, 5, 6, and 7 but does not identify a glass manufacturer, so the catalog-equivalent label is not a supplier claim.
 
 ### L4 — Biconcave Negative (G1R, cemented with L3)
 
@@ -108,13 +108,13 @@ L7 is a weakly negative meniscus with its concave surface facing the image side 
 
 ### L8 — Biconvex Positive, Aspherical Rear Surface (G2, cemented with L7)
 
-$n_d = 1.768015$, $\nu_d = 49.2$. Glass: E-LASKH2 (HIKARI) — lanthanum crown. $f = +29.5$ mm.
+$n_d = 1.768015$, $\nu_d = 49.2$. Glass: M-TAF101 (HOYA catalog-equivalent; patent supplier unspecified) — lanthanum crown. $f = +29.5$ mm.
 
 L8 is the final optical element before the image plane. Its rear surface ($R_{14} = -50.305$ mm) carries the second aspherical figure in the design, with a hyperboloidal base ($K = -1.6554$) and polynomial correction terms. This is the more aggressively aspherized of the two aspheric surfaces: the departure from the base sphere reaches approximately $+280$ μm at the estimated rim. Of this, the hyperboloidal conic base contributes approximately $+63$ μm, while the polynomial terms contribute the remaining $+217$ μm — the polynomial correction is the dominant contributor, refining the coarse conic profile to achieve the required higher-order aberration balance.
 
 The hyperboloidal base flattens the surface more rapidly than a sphere at increasing aperture heights. The positive A4 coefficient ($+5.10 \times 10^{-6}$) counteracts this flattening at intermediate zones, while higher-order terms (A6 through A10) provide fine balancing of the residual higher-order spherical aberration and off-axis coma. As the last refracting surface before the image, this asphere has the most direct leverage over field performance — particularly off-axis coma and astigmatism — making it the single most critical surface for image quality across the field.
 
-The glass selection for L8 is significant: $n_d = 1.768$, $\nu_d = 49.2$ places it in the lanthanum crown region with relatively low dispersion for its index. The Abbe number of 49.2 makes L8 the lowest-dispersion element in the rear group, which is deliberate — the L7–L8 pairing uses the high-dispersion L7 ($\nu_d = 30.1$) against the low-dispersion L8 ($\nu_d = 49.2$) across a strongly curved cemented interface ($R_{13} = +38.7$ mm) to correct the residual lateral and axial chromatic aberration of G2. This glass is identified as HIKARI E-LASKH2 based on the nd/νd match.
+The glass selection for L8 is significant: $n_d = 1.768$, $\nu_d = 49.2$ places it in the lanthanum crown region with relatively low dispersion for its index. The Abbe number of 49.2 makes L8 the lowest-dispersion element in the rear group, which is deliberate — the L7–L8 pairing uses the high-dispersion L7 ($\nu_d = 30.1$) against the low-dispersion L8 ($\nu_d = 49.2$) across a strongly curved cemented interface ($R_{13} = +38.7$ mm) to correct the residual lateral and axial chromatic aberration of G2. The public HOYA M-TAF101 row reproduces the patent's 768492 coordinate and supplies the spectral model without asserting the production supplier.
 
 Sony's marketing materials refer to "Glass-Molded Aspherical Lens Elements" for this lens, indicating that both aspherical surfaces (L3 front and L8 rear) are produced by precision glass molding (PGM) rather than polishing or hybrid resin-on-glass processes. PGM is appropriate given the moderate aspherical departures involved (under 300 μm peak).
 
@@ -124,12 +124,12 @@ Sony's marketing materials refer to "Glass-Molded Aspherical Lens Elements" for 
 |---------|----------|---------|------------------------|---------|---------------|------|
 | L1      | 1.834805 | 42.7    | S-LAH55V               | OHARA   | La high-index glass | Front collector; high-$n$ reduces surface angles |
 | L2      | 1.592703 | 35.5    | S-FTM16                | OHARA | Light flint | G1F diverging partner; achromatizes with L1 |
-| L3      | 1.851348 | 40.1    | E-LASFH13              | HIKARI  | La dense flint | Main positive element; asph front surface |
+| L3      | 1.851348 | 40.1    | M-TAFD305 equivalent   | HOYA model | La dense flint | Exact 851401 coordinate; supplier unspecified |
 | L4      | 1.612930 | 37.0    | E-F3 / S-TIM3 class    | HOYA/OHARA | Moderate flint | G1R corrector; cemented with L3 |
 | L5      | 1.647690 | 33.8    | S-TIM22 / SF2           | OHARA/Schott | Dense flint | Inner negative; strong flint for chromatic correction |
 | L6      | 1.883000 | 40.8    | S-LAH58                | OHARA   | La high-index glass | G2 powerhouse; highest $n_d$ in system |
 | L7      | 1.698950 | 30.1    | E-FD15 / SF15          | HIKARI/Schott | Dense flint | Field flattener; lowest $\nu_d$ in system |
-| L8      | 1.768015 | 49.2    | E-LASKH2               | HIKARI  | La crown      | Final positive; asph rear; highest $\nu_d$ in G2 |
+| L8      | 1.768015 | 49.2    | M-TAF101 equivalent    | HOYA model | La crown      | Exact 768492 coordinate; supplier unspecified |
 
 The glass palette divides into two families: lanthanum-based high-index glasses for the positive elements (L1, L3, L6, L8) and conventional to moderately dense flints for the negative elements (L2, L4, L5, L7). This partition is driven by the f/1.4 aperture requirement — the positive elements need high indices to maintain manageable surface angles at the large beam diameter, while the negative elements need sufficient dispersion to achromatize their positive partners.
 

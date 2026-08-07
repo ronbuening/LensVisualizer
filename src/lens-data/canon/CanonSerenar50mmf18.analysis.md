@@ -87,9 +87,9 @@ This is the front compound meniscus, concave toward the image side. The overall 
 | Glass | nd = 1.6261, νd = 39.1 |
 | Thickness | d = 0.145 |
 | Element focal length | +27.8 mm (at 50 mm scale) |
-| Glass match | Vintage barium dense flint, code 626/391; no current coefficient-backed catalog row matches this pair. Do not resolve it to modern HOYA BAFD7, which is a different 702/412 glass. |
+| Glass match | **CDGM H-BaF8 catalog equivalent** (code 626/391); the patent does not identify the production supplier. This is not modern HOYA BAFD7, which is a different 702/412 glass. |
 
-L2 is the convex component of the front cemented doublet. Its front surface r₃ has the strongest converging power of any surface in the entire system (φ₃ = +1.754), making it the primary bending surface for the incoming beam. The glass has a moderate refractive index with relatively low Abbe number (νd = 39.1), placing it in the barium dense flint family. The current HOYA BAFD7 catalog row is not this material; it is nd = 1.70154, νd = 41.15. No standard Schott glass matches closely, and F2 has a νd discrepancy of about 2.7.
+L2 is the convex component of the front cemented doublet. Its front surface r₃ has the strongest converging power of any surface in the entire system (φ₃ = +1.754), making it the primary bending surface for the incoming beam. The glass has a moderate refractive index with relatively low Abbe number (νd = 39.1), placing it in the barium dense flint family. The public CDGM H-BaF8 row carries the same 626391 code and reproduces the patent coordinate closely, so it supplies the coefficient-backed spectral model without asserting the 1950 production supplier. The current HOYA BAFD7 catalog row is not this material; it is nd = 1.70154, νd = 41.15.
 
 #### L3: Biconcave Negative
 
@@ -180,7 +180,7 @@ The Canon Serenar 50mm f/1.8 uses **unit focusing**: the entire optical assembly
 | Element | nd | νd | 6-Digit Code | Best Catalog Match | Match Quality |
 |---|---|---|---|---|---|
 | L1 | 1.6204 | 60.3 | 620/603 | Schott SK16 | Exact |
-| L2 | 1.6261 | 39.1 | 626/391 | Unmatched vintage barium dense flint; not modern HOYA BAFD7 | Code-family only |
+| L2 | 1.6261 | 39.1 | 626/391 | CDGM H-BaF8 catalog equivalent; supplier unspecified | Code-backed |
 | L3 | 1.7400 | 28.2 | 740/282 | OHARA S-TIH3 | Exact |
 | L4 | 1.5014 | 56.5 | 501/565 | Schott K10 (1.5014/56.4) | Excellent |
 | L5 | 1.6385 | 55.5 | 639/555 | SUMITA K-SK18 catalog equivalent (1.63854/55.5) | Coefficient-backed equivalent |

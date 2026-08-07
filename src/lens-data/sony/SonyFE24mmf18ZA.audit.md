@@ -16,3 +16,9 @@ Patent: US 2013/0033768 A1, Example 2
 - Existing R/d/nd/vd, high-index/code-backed labels, APD metadata, and estimated SD profile remain consistent with the patent-backed prescription and prior relabel pass.
 - No APD, high-index, glass-label, spacing, or SD edits were needed in this pass.
 - Current generated glass reports show no active Sony catalog-mismatch row for this lens.
+
+## 2026-08-07 - Near-complete glass opportunity
+
+- Visually rechecked Example 2, Table 4 in local `patents/US20130033768A1.pdf`; G6 is `nd=1.801`, `νd=45.45`, code 801454 after patent rounding.
+- Relabeled G6 to coefficient-backed HOYA M-TAF31 (`nd=1.80139`, `νd=45.45`, code 801455), a close rounded catalog equivalent consistent with the double-aspherical PGM position.
+- The label leaves Sony's production supplier unspecified. No geometry or authored patent constants changed.

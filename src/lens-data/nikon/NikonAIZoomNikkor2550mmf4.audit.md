@@ -32,3 +32,9 @@ Patent: US 4,189,212, Example 8 / Claim 20.
 ### Verification
 
 - Pending batch verification after the Nikon audit pass.
+
+## 2026-08-07 — Legacy K10 catalog recovery
+
+- The official Schott K10 datasheet supplies Sellmeier coefficients for `nd=1.50137`, `νd=56.41`, code 501564.
+- The three repeated patent rows at L6, L7, and L9b now resolve through that curve; the stored patent coordinates and labels remain unchanged.
+- The local `patents/US4189212.pdf` review recorded above remains the prescription source. No geometry changed.

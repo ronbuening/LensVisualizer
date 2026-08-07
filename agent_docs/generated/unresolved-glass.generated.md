@@ -11,19 +11,17 @@ or per-lens patent backfills.
 - **532** lenses scanned
 - **5814** non-air surfaces examined
 - **5821** element glass declarations examined
-- **364** non-explicit-unmatched annotations did not resolve
-- **201** distinct unresolved glass-like tokens found
+- **351** non-explicit-unmatched annotations did not resolve
+- **194** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
 | Token | Occurrences | Lens files | Notes |
 |---|---:|---:|---|
-| K10 | 7 | 5 | |
 | 493836 | 6 | 2 | |
 | 531559 | 4 | 3 | |
 | 662561 | 4 | 1 | |
 | 863252 | 4 | 2 | |
-| 501565 | 3 | 1 | |
 | 516565 | 3 | 1 | |
 | 585587 | 3 | 1 | |
 | 744495 | 3 | 3 | |
@@ -83,7 +81,6 @@ or per-lens patent backfills.
 | 576414 | 1 | 1 | |
 | 585417 | 1 | 1 | |
 | 593348 | 1 | 1 | |
-| 593355 | 1 | 1 | |
 | 595686 | 1 | 1 | |
 | 596670 | 1 | 1 | |
 | 602352 | 1 | 1 | |
@@ -175,10 +172,7 @@ or per-lens patent backfills.
 | BASF1 | 1 | 1 | |
 | BASF5-CLASS | 1 | 1 | |
 | BASF52-TYPE | 1 | 1 | |
-| CF6 | 1 | 1 | |
 | D-ZLAF85 | 1 | 1 | |
-| E-LASFH13 | 1 | 1 | |
-| E-LASKH2 | 1 | 1 | |
 | EF3 | 1 | 1 | |
 | FD110 | 1 | 1 | |
 | FPL51 | 1 | 1 | |
@@ -217,20 +211,9 @@ or per-lens patent backfills.
 | PKH1-CLASS | 1 | 1 | |
 | QF2 | 1 | 1 | |
 | SSK1-CLASS | 1 | 1 | |
-| TACD5 | 1 | 1 | |
 | ZBAF17 | 1 | 1 | |
 
 ## Occurrences
-
-### K10 — 7 occurrences
-
-- [CANON SERENAR 50mm f/1.8](../../src/lens-data/canon/CanonSerenar50mmf18.data.ts) 6: `K10 (Schott)`
-- [CARL ZEISS B-DISTAGON 35mm f/4 (Contarex)](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon35mmf4.data.ts) 2: `K10 (Schott)`
-- [Nikon AI Zoom-Nikkor 25-50mm f/4](../../src/lens-data/nikon/NikonAIZoomNikkor2550mmf4.data.ts) 12: `K10 class (501/565)`
-- [Nikon AI Zoom-Nikkor 25-50mm f/4](../../src/lens-data/nikon/NikonAIZoomNikkor2550mmf4.data.ts) 14: `K10 class (501/565)`
-- [Nikon AI Zoom-Nikkor 25-50mm f/4](../../src/lens-data/nikon/NikonAIZoomNikkor2550mmf4.data.ts) 20: `K10 class (501/565)`
-- [OLYMPUS F.ZUIKO AUTO-T 200mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoT200mmf5.data.ts) 4: `K10 (Schott)`
-- [RODENSTOCK APO-SIRONAR-W 150mm f/5.6](../../src/lens-data/rodenstock/RodenstockApoSironarW150mmf56.data.ts) 6: `K10 class (Schott equivalent; patent-rounded nd/vd)`
 
 ### 493836 — 6 occurrences
 
@@ -261,12 +244,6 @@ or per-lens patent backfills.
 - [SONY FE 14mm f/1.8 GM](../../src/lens-data/sony/SonyFE14mmf18GM.data.ts) 22: `863252 - dense flint (Sony patent nd=1.86252, vd=25.2; no exact public catalog match)`
 - [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 23: `863252 — dense flint (patent nd=1.86252, νd=25.2)`
 - [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 32: `863252 — dense flint (patent nd=1.86252, νd=25.2)`
-
-### 501565 — 3 occurrences
-
-- [Nikon AI Zoom-Nikkor 25-50mm f/4](../../src/lens-data/nikon/NikonAIZoomNikkor2550mmf4.data.ts) 12: `K10 class (501/565)`
-- [Nikon AI Zoom-Nikkor 25-50mm f/4](../../src/lens-data/nikon/NikonAIZoomNikkor2550mmf4.data.ts) 14: `K10 class (501/565)`
-- [Nikon AI Zoom-Nikkor 25-50mm f/4](../../src/lens-data/nikon/NikonAIZoomNikkor2550mmf4.data.ts) 20: `K10 class (501/565)`
 
 ### 516565 — 3 occurrences
 
@@ -547,10 +524,6 @@ or per-lens patent backfills.
 ### 593348 — 1 occurrence
 
 - [OLYMPUS OM ZUIKO AUTO-W 21mm f/2](../../src/lens-data/olympus/OlympusZuikoAuto21mmf2.data.ts) 12: `593348 — LF7-class light flint (no exact public catalog match)`
-
-### 593355 — 1 occurrence
-
-- [SIGMA 35mm f/1.4 DG DN | Art](../../src/lens-data/sigma/SigmaDGDNA35mmf14.data.ts) 8: `593355 — heavy flint (vendor uncertain; no exact public catalog match)`
 
 ### 595686 — 1 occurrence
 
@@ -916,21 +889,9 @@ or per-lens patent backfills.
 
 - [VIVITAR SERIES 1 35-85mm f/2.8 VMC](../../src/lens-data/vivitar/VivitarSeries13585mmf28.data.ts) 18: `639451 — BaSF52-type barium dense flint (no exact public catalog match)`
 
-### CF6 — 1 occurrence
-
-- [SIGMA 50mm f/2.8 (Sigma DP3 Merrill)](../../src/lens-data/sigma/SigmaDP3M50mmf28.data.ts) 12: `CF6 (Hoya) — tentative (ΔVd = +0.04)`
-
 ### D-ZLAF85 — 1 occurrence
 
 - [SONY FE 12-24mm f/2.8 GM](../../src/lens-data/sony/SonyFE1224mmf28GM.data.ts) 30A: `D-ZLaF85 class (lanthanum flint, 856/401)`
-
-### E-LASFH13 — 1 occurrence
-
-- [SONY PLANAR T* 50mm f/1.4 ZA SSM](../../src/lens-data/sony/SonyPlanarT50mmf14ZA.data.ts) 5A: `E-LASFH13 (HIKARI)`
-
-### E-LASKH2 — 1 occurrence
-
-- [SONY PLANAR T* 50mm f/1.4 ZA SSM](../../src/lens-data/sony/SonyPlanarT50mmf14ZA.data.ts) 13: `E-LASKH2 (HIKARI)`
 
 ### EF3 — 1 occurrence
 
@@ -1083,10 +1044,6 @@ or per-lens patent backfills.
 ### SSK1-CLASS — 1 occurrence
 
 - [ENNA MÜNCHEN ULTRA-LITHAGON 28mm f/3.5](../../src/lens-data/enna-munchen/EnnaMunchenUltraLithagon28mmf35.data.ts) 11: `J-SSK1 equivalent (HIKARI; legacy SSK1-class, patent nd/vd)`
-
-### TACD5 — 1 occurrence
-
-- [SIGMA 50mm f/2.8 (Sigma DP3 Merrill)](../../src/lens-data/sigma/SigmaDP3M50mmf28.data.ts) 18: `Uncertain; TACD5 (Hoya) possible — no confirmed catalog match`
 
 ### ZBAF17 — 1 occurrence
 
