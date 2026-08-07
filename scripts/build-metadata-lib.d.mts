@@ -140,5 +140,6 @@ export function buildRouteFreshness(options: {
   formatIds?: string[];
   authors?: AuthorRouteInput[];
   makerDetailsFreshness: FreshnessEntry | null;
+  assigneeCorporateHistoryFreshness?: FreshnessEntry | null;
   fallbackDate: string;
 }): Record<string, FreshnessEntry>;

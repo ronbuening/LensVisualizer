@@ -371,6 +371,7 @@ describe("build metadata helpers", () => {
       formatIds: ["135-full-frame"],
       authors: [{ name: "Author A", slug: "author-a", lensKeys: ["lens-a"], patentCount: 1 }],
       makerDetailsFreshness: { publishedOn: "2026-03-17", lastModified: "2026-03-26" },
+      assigneeCorporateHistoryFreshness: { publishedOn: "2026-03-20", lastModified: "2026-03-28" },
       fallbackDate: "2026-03-27",
     });
 
@@ -393,6 +394,10 @@ describe("build metadata helpers", () => {
     expect(routeFreshness["/patents"]).toEqual({
       publishedOn: "2026-03-19",
       lastModified: "2026-03-27",
+    });
+    expect(routeFreshness["/relationships/universal"]).toEqual({
+      publishedOn: "2026-03-19",
+      lastModified: "2026-03-28",
     });
     expect(routeFreshness["/articles/optics-primer"]).toEqual({
       publishedOn: "2026-03-18",

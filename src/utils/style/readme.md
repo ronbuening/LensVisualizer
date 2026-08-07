@@ -25,12 +25,12 @@ flowchart LR
 - Direct source files: 3
 - Direct subfolders: 0
 - Main outbound areas: package:react (2), src/types
-- External consumers: src/comparison, src/components/content, src/components/controls, src/components/display, src/components/homepage, src/components/layout, src/components/relationshipMap, src/components/search, +15 more
+- External consumers: src/comparison, src/components/content, src/components/controls, src/components/display, src/components/homepage, src/components/layout, src/components/relationshipMap, src/components/search, +16 more
 
 ## Files
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
-| `pageStyles.ts` | Page Styles helper module | package:react | src/components/content (3), src/pages/lensIndex (2), src/components/layout, src/pages/ArticlesPage.tsx, src/pages/AuthorPage.tsx, +12 more | STICKY_NAV_SCROLL_MARGIN, PAGE_BASE_STYLE, H1_STYLE, SECTION_HEADING_BASE_STYLE, LENS_LINK_BASE_STYLE |
+| `pageStyles.ts` | Page Styles helper module | package:react | src/components/content (3), src/pages/lensIndex (2), src/components/layout, src/pages/ArticlesPage.tsx, src/pages/AuthorPage.tsx, +13 more | STICKY_NAV_SCROLL_MARGIN, PAGE_BASE_STYLE, H1_STYLE, SECTION_HEADING_BASE_STYLE, LENS_LINK_BASE_STYLE |
 | `sliderStops.ts` | Slider Stops helper module | none | src/comparison (2), src/components/controls | snapToStop, snapToZeroStop |
-| `styles.ts` | Styles helper module | package:react, src/types | src/components/layout (9), src/components/controls (7), src/components/content (5), src/components/display (5), src/components/relationshipMap (3), +7 more | withAlpha, OVERLAY_BACKDROP, OVERLAY_MODAL_BASE, PANEL_OVERLAY_BACKDROP, SLIDER_LABEL, SLIDER_VALUE_BASE, VISUALLY_HIDDEN, panelCard, +15 more |
+| `styles.ts` | Styles helper module | package:react, src/types | src/components/layout (9), src/components/controls (7), src/components/content (5), src/components/display (5), src/components/relationshipMap (5), +9 more | withAlpha, OVERLAY_BACKDROP, OVERLAY_MODAL_BASE, PANEL_OVERLAY_BACKDROP, SLIDER_LABEL, SLIDER_VALUE_BASE, VISUALLY_HIDDEN, panelCard, +15 more |

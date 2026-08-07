@@ -69,6 +69,9 @@ describe("RelationshipMapPage", () => {
     expect(screen.getByRole("searchbox")).toBeDefined();
     expect(screen.getByRole("heading", { name: /Most-connected inventors/ })).toBeDefined();
     expect(screen.getByRole("heading", { name: /Most-connected assignees/ })).toBeDefined();
+    expect(screen.getByRole("link", { name: /Explore the universal relationship map/ }).getAttribute("href")).toBe(
+      "/relationships/universal/",
+    );
   });
 
   it("renders the map for a valid author focus", async () => {
@@ -82,6 +85,7 @@ describe("RelationshipMapPage", () => {
     // The focused state must still expose a document h1 for the outline.
     const h1 = screen.getByRole("heading", { level: 1 });
     expect(h1.textContent).toContain(author.name);
+    expect(screen.queryByRole("link", { name: /Explore the universal relationship map/ })).toBeNull();
   });
 
   it("dismisses compact picker suggestions with Escape and an outside click", async () => {

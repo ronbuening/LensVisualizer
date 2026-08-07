@@ -30,6 +30,7 @@ import { canonicalPagePath, canonicalPageUrl } from "../utils/seo/siteUrls.js";
 import { catalogCollator } from "../utils/catalog/collation.js";
 import roleChip from "../components/relationshipMap/roleChip.js";
 import { pluralize } from "../utils/text.js";
+import { panelCard } from "../utils/style/styles.js";
 
 const TOP_COUNT = 12;
 
@@ -165,6 +166,28 @@ export default function RelationshipMapPage() {
                 named on those patents. Click an outer node to recenter the map on that party and keep exploring; click
                 a patent to open its details and jump to the interactive lens diagrams derived from it.
               </p>
+
+              <Link
+                to="/relationships/universal/"
+                style={{
+                  ...panelCard(t),
+                  display: "block",
+                  padding: "1rem 1.1rem",
+                  margin: "0 0 1.25rem",
+                  border: `1px solid ${t.sliderAccent}`,
+                  color: t.body,
+                  textDecoration: "none",
+                  boxShadow: `inset 3px 0 0 ${t.sliderAccent}`,
+                }}
+              >
+                <strong style={{ color: t.descLinkColor, display: "block", fontSize: "0.95rem" }}>
+                  Explore the universal relationship map →
+                </strong>
+                <span style={{ color: t.muted, display: "block", fontSize: "0.75rem", lineHeight: 1.5, marginTop: 4 }}>
+                  See every patent, inventor, and assignee together—including dated successor, acquisition, subsidiary,
+                  and corporate-family connections.
+                </span>
+              </Link>
 
               <RelationshipEntityPicker theme={t} onPick={setFocusParty} />
 

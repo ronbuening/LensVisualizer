@@ -31,6 +31,7 @@ build metadata.
 | `ArticlePage.tsx` | `src/pages/` | Article page at `/articles/:slug`. |
 | `UpdatesPage.tsx` | `src/pages/` | Recently added lens/update page. |
 | `RelationshipMapPage.tsx` | `src/pages/` | Patent relationship map at `/relationships`; the focus inventor/assignee lives in a `#focus=<role>:<slug>` fragment (see below). |
+| `UniversalRelationshipMapPage.tsx` | `src/pages/` | Catalog-wide patent and corporate-lineage network at `/relationships/universal`, linked only from the relationship-map index. |
 | `NotFoundPage.tsx` | `src/pages/` | Catch-all 404. |
 
 `RelationshipMapPage` is one static route whose content is driven by a fragment rather than a path param: with no
@@ -45,6 +46,13 @@ always `/relationships/`. Assignee slugs come from the build-generated `assignee
 `acquiredBy`, `subsidiaryOf`, and `corporateFamily` arrays curated in
 `src/utils/catalog/assigneeCorporateHistory.ts`. Those fields are deliberately not consumed by the selected-party ego
 graph: `relationshipGraph.ts` continues to derive its nodes and edges only from patent attribution.
+
+`/relationships/universal` is a separate, client-rendered clustered SVG that combines every visible patent-party edge
+with those corporate-history records. Shared corporate families become hub nodes, uncataloged parents/predecessors
+become external-organization nodes, and disconnected components are packed into separate outlined networks. Selecting
+a patent opens the shared patent detail card; selecting any other entity exposes its dated corporate records and links
+catalog parties back to the ordinary focused map. No homepage or global navigation link points directly to this route;
+the prominent entry point lives in the no-focus `/relationships` index state.
 
 ## Static Page Shells
 

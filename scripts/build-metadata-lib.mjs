@@ -435,6 +435,7 @@ export function buildRouteFreshness({
   formatIds = [],
   authors = [],
   makerDetailsFreshness,
+  assigneeCorporateHistoryFreshness,
   fallbackDate,
 }) {
   const routeFreshness = {};
@@ -463,6 +464,10 @@ export function buildRouteFreshness({
   routeFreshness["/articles"] = combineFreshnessEntries(allArticleFreshness, fallbackDate);
   routeFreshness["/updates"] = combineFreshnessEntries(allLensFreshness, fallbackDate);
   routeFreshness["/relationships"] = combineFreshnessEntries(allLensFreshness, fallbackDate);
+  routeFreshness["/relationships/universal"] = combineFreshnessEntries(
+    assigneeCorporateHistoryFreshness ? [...allLensFreshness, assigneeCorporateHistoryFreshness] : allLensFreshness,
+    fallbackDate,
+  );
 
   for (const article of articles) {
     routeFreshness[`/articles/${article.slug}`] = articleFreshness(article);

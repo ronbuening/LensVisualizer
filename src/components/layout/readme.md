@@ -83,7 +83,7 @@ flowchart LR
 - Direct source files: 16
 - Direct subfolders: 2
 - Main outbound areas: src/types (22), src/components/hooks (13), package:react (12), same folder (11), src/utils/state (10), src/utils/theme (10), src/utils/style (9), src/utils/catalog (5), +21 more
-- External consumers: src/comparison, src/components/controls, src/components/layout, src/pages/ArticlePage.tsx, src/pages/ArticlesPage.tsx, src/pages/AuthorPage.tsx, src/pages/AuthorsIndexPage.tsx, src/pages/ComparePage.tsx, +14 more
+- External consumers: src/comparison, src/components/controls, src/components/layout, src/pages/ArticlePage.tsx, src/pages/ArticlesPage.tsx, src/pages/AuthorPage.tsx, src/pages/AuthorsIndexPage.tsx, src/pages/ComparePage.tsx, +15 more
 
 ## Subfolders
 
@@ -109,6 +109,6 @@ flowchart LR
 | `PanelOverlay.tsx` | React component module | package:react, src/components/hooks, src/types, src/utils/style, src/utils/usePrefersReducedMotion.ts | same folder | default, PanelOverlay |
 | `PrimerToggleButton.tsx` | React component module | src/types | same folder | default, PrimerToggleButton |
 | `SingleLensContent.tsx` | React component module | same folder (2), src/types (2), src/utils/featureFlags.ts | same folder | default, SingleLensContent |
-| `StaticPageShell.tsx` | React component module | package:react, package:react-router, same folder, src/types, src/utils/seo, +2 more | src/pages/ArticlePage.tsx, src/pages/ArticlesPage.tsx, src/pages/AuthorPage.tsx, src/pages/AuthorsIndexPage.tsx, src/pages/FormatPage.tsx, +10 more | default, StaticPageShell |
+| `StaticPageShell.tsx` | React component module | package:react, package:react-router, same folder, src/types, src/utils/seo, +2 more | src/pages/ArticlePage.tsx, src/pages/ArticlesPage.tsx, src/pages/AuthorPage.tsx, src/pages/AuthorsIndexPage.tsx, src/pages/FormatPage.tsx, +11 more | default, StaticPageShell |
 | `TopBar.tsx` | React component module | src/components/controls, src/components/display, src/types, src/utils/catalog, src/utils/style | same folder | default, TopBar |
 | `ViewToggleBar.tsx` | React component module | src/types, src/utils/style | same folder | default, ViewToggleBar |

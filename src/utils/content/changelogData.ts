@@ -21,6 +21,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-08-07",
     type: "feature",
+    summary: "Added a universal patent map with dated corporate-lineage connections",
+  },
+  {
+    date: "2026-08-07",
+    type: "feature",
     summary: "Added an optional focused effective focal-length readout to zoom controls",
   },
   {

@@ -19,7 +19,8 @@ import { panelCard } from "../../utils/style/styles.js";
 
 interface PatentDetailCardProps {
   patent: GraphPatentNode;
-  centerRef: PartyRef;
+  /** Omitted in the universal map, where no single party is the center. */
+  centerRef?: PartyRef;
   theme: Theme;
   onFocusParty: (ref: PartyRef) => void;
   onClose: () => void;
@@ -32,7 +33,8 @@ export default function PatentDetailCard({
   onFocusParty,
   onClose,
 }: PatentDetailCardProps) {
-  const isCenter = (name: string, role: PatentPartyRole) => role === centerRef.role && name === centerRef.name;
+  const isCenter = (name: string, role: PatentPartyRole) =>
+    centerRef !== undefined && role === centerRef.role && name === centerRef.name;
 
   const renderParty = (name: string, role: PatentPartyRole) => {
     const meta = role === "author" ? getAuthorByName(name) : getAssigneeByName(name);

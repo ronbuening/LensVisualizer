@@ -27,12 +27,12 @@ flowchart LR
 - Direct source files: 3
 - Direct subfolders: 0
 - Main outbound areas: same folder, src/components/SEOHead.tsx, src/generated, src/utils/catalog
-- External consumers: src/comparison, src/components/content, src/components/homepage, src/components/layout, src/components/markdown, src/components/search, src/components/SEOHead.tsx, src/pages/ArticlePage.tsx, +20 more
+- External consumers: src/comparison, src/components/content, src/components/homepage, src/components/layout, src/components/markdown, src/components/search, src/components/SEOHead.tsx, src/pages/ArticlePage.tsx, +21 more
 
 ## Files
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
 | `serializeJsonLd.ts` | Serialize Json Ld helper module | src/components/SEOHead.tsx | src/components/SEOHead.tsx | serializeJsonLd |
-| `siteUrls.ts` | Site Urls helper module | none | src/components/content (4), src/components/homepage (3), src/components/layout (3), src/utils/catalog (3), src/comparison (2), +9 more | SITE_URL, canonicalPagePath, canonicalPageUrl, normalizeSitePageUrl |
-| `structuredData.ts` | Structured Data helper module | same folder, src/generated, src/utils/catalog | src/pages/ArticlePage.tsx, src/pages/ArticlesPage.tsx, src/pages/AuthorPage.tsx, src/pages/AuthorsIndexPage.tsx, src/pages/FormatPage.tsx, +12 more | ListItemEntry, BreadcrumbEntry, publisherJsonLd, websiteJsonLd, webApplicationJsonLd, datasetJsonLd, collectionPageJsonLd, itemListJsonLd, +4 more |
+| `siteUrls.ts` | Site Urls helper module | none | src/components/content (4), src/components/homepage (3), src/components/layout (3), src/utils/catalog (3), src/comparison (2), +10 more | SITE_URL, canonicalPagePath, canonicalPageUrl, normalizeSitePageUrl |
+| `structuredData.ts` | Structured Data helper module | same folder, src/generated, src/utils/catalog | src/pages/ArticlePage.tsx, src/pages/ArticlesPage.tsx, src/pages/AuthorPage.tsx, src/pages/AuthorsIndexPage.tsx, src/pages/FormatPage.tsx, +13 more | ListItemEntry, BreadcrumbEntry, publisherJsonLd, websiteJsonLd, webApplicationJsonLd, datasetJsonLd, collectionPageJsonLd, itemListJsonLd, +4 more |

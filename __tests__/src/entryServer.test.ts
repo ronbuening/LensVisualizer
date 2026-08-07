@@ -90,6 +90,8 @@ describe("SSR render — all routes produce valid head output", () => {
     [`/mounts/${TEST_MOUNT.id}`, "mount page"],
     ["/formats", "formats index"],
     [`/formats/${TEST_FORMAT.id}`, "format page"],
+    ["/relationships", "relationship map"],
+    ["/relationships/universal", "universal relationship map"],
     ["/this-route-does-not-exist", "404"],
   ] as const;
 
@@ -128,6 +130,8 @@ describe("SSR render — content pages produce non-empty HTML", () => {
     [`/mounts/${TEST_MOUNT.id}`, "mount page"],
     ["/formats", "formats index"],
     [`/formats/${TEST_FORMAT.id}`, "format page"],
+    ["/relationships", "relationship map"],
+    ["/relationships/universal", "universal relationship map"],
   ] as const;
 
   it.each(contentRoutes)("%s (%s) returns non-empty html", (url) => {
