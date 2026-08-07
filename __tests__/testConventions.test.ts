@@ -13,7 +13,11 @@ const testsRoot = fileURLToPath(new URL(".", import.meta.url));
  * SSR-only tests that intentionally run under node (react-helmet-async only
  * fills its server context when no DOM is present) are listed here.
  */
-const NODE_ENVIRONMENT_TSX_TESTS = new Set(["src/components/SEOHead.test.tsx"]);
+const NODE_ENVIRONMENT_TSX_TESTS = new Set([
+  "src/components/SEOHead.test.tsx",
+  // Static-SVG generator: renderToStaticMarkup is SSR and needs no DOM.
+  "src/components/diagram/sphericalAberrationStaticSvgs.test.tsx",
+]);
 
 // Assembled at runtime: writing the pragma literally would make vitest's
 // environment scanner run THIS file under jsdom.

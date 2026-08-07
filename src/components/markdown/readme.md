@@ -28,7 +28,7 @@ flowchart LR
   n_external_pkg_remark_math["pkg:remark-math"]
   n_external_src_types["src/types"]
   n_external_src_utils_seo["src/utils/seo"]
-  n_src_components_markdown_src_components_markdown_ThemedMarkdown_tsx --> |7| n_external_src_components_diagram
+  n_src_components_markdown_src_components_markdown_ThemedMarkdown_tsx --> |16| n_external_src_components_diagram
   n_src_components_markdown_src_components_markdown_ThemedMarkdown_tsx --> |2| n_external_pkg_react
   n_src_components_markdown_src_components_markdown_extractHeadingsFromAst_ts --> n_external_pkg_github_slugger
   n_src_components_markdown_src_components_markdown_ThemedMarkdown_tsx --> n_external_pkg_katex
@@ -50,7 +50,7 @@ flowchart LR
 
 - Direct source files: 2
 - Direct subfolders: 0
-- Main outbound areas: src/components/diagram (7), package:react (2), package:github-slugger, package:katex, package:mdast, package:mdast-util-from-markdown, package:mdast-util-gfm, package:micromark-extension-gfm, +8 more
+- Main outbound areas: src/components/diagram (16), package:react (2), package:github-slugger, package:katex, package:mdast, package:mdast-util-from-markdown, package:mdast-util-gfm, package:micromark-extension-gfm, +8 more
 - External consumers: src/components/content, src/components/layout, src/pages/ArticlePage.tsx
 
 ## Files
@@ -58,4 +58,4 @@ flowchart LR
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
 | `extractHeadingsFromAst.ts` | Extract Headings From Ast helper module | package:github-slugger, package:mdast, package:mdast-util-from-markdown, package:mdast-util-gfm, package:micromark-extension-gfm | src/components/content | ASTHeading, extractHeadingsFromAst |
-| `ThemedMarkdown.tsx` | React component module | src/components/diagram (7), package:react (2), package:katex, package:react-markdown, package:react-router, +6 more | src/components/layout, src/pages/ArticlePage.tsx | default, ThemedMarkdown |
+| `ThemedMarkdown.tsx` | React component module | src/components/diagram (16), package:react (2), package:katex, package:react-markdown, package:react-router, +6 more | src/components/layout, src/pages/ArticlePage.tsx | default, ThemedMarkdown |
