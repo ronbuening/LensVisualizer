@@ -132,6 +132,7 @@ export type PanelField =
   | "glassMapOpen"
   | "chromaticOverlayOpen"
   | "petzvalOverlayOpen"
+  | "showEffectiveFocalLength"
   | "showEffectiveAperture"
   | "aberrationsExpanded"
   | "analysisDrawerOpen"
@@ -148,6 +149,7 @@ export interface PanelsSlice {
   glassMapOpen: boolean;
   chromaticOverlayOpen: boolean;
   petzvalOverlayOpen: boolean;
+  showEffectiveFocalLength: boolean;
   showEffectiveAperture: boolean;
   aberrationsExpanded: boolean;
   analysisDrawerOpen: boolean;
@@ -242,6 +244,7 @@ export interface Preferences {
   legendExpanded: boolean;
   headerInfoExpanded: boolean;
   abbeShowGlassType: boolean;
+  showEffectiveFocalLength: boolean;
   showEffectiveAperture: boolean;
   aberrationsExpanded: boolean;
   analysisDrawerTab: AnalysisTabId;

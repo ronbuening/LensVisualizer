@@ -103,6 +103,7 @@ export interface PanelDisplayFlagsModel {
   focusExpanded: boolean;
   apertureExpanded: boolean;
   legendExpanded: boolean;
+  showEffectiveFocalLength: boolean;
   showEffectiveAperture: boolean;
   abbeShowGlassType: boolean;
 }
@@ -129,6 +130,7 @@ export interface PanelAdaptersModel {
   onGroupMovementClose: () => void;
   onGroupMovementModeChange: (mode: GroupMovementMode) => void;
   onAberrationsExpandedChange: (expanded: boolean) => void;
+  onEffectiveFocalLengthChange: (expanded: boolean) => void;
   onEffectiveApertureChange: (expanded: boolean) => void;
   onZoomChange: (value: number) => void;
   onAberrationChange: (value: number) => void;

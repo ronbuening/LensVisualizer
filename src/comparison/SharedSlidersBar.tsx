@@ -63,6 +63,8 @@ interface SharedSlidersBarProps {
   dynamicEflB: number;
   effectiveFNumA: number;
   effectiveFNumB: number;
+  showEffectiveFocalLength: boolean;
+  onToggleEffectiveFocalLength?: () => void;
   showEffectiveAperture: boolean;
   onToggleEffectiveAperture?: () => void;
   onOpenGroupMovement?: (mode: GroupMovementMode) => void;
@@ -94,6 +96,8 @@ export default function SharedSlidersBar({
   dynamicEflB,
   effectiveFNumA,
   effectiveFNumB,
+  showEffectiveFocalLength,
+  onToggleEffectiveFocalLength,
   showEffectiveAperture,
   onToggleEffectiveAperture,
   onOpenGroupMovement,
@@ -115,8 +119,16 @@ export default function SharedSlidersBar({
 
   /* Zoom readout helpers — dual-zoom uses the shared focal length from
    * computeZoomPair; single-zoom reads from the one zoom lens directly. */
-  const zoomReadoutA = LA.isZoom ? `${eflAtZoom(zoomPair?.zoomA ?? 0, LA).toFixed(0)} mm` : "\u2014";
-  const zoomReadoutB = LB.isZoom ? `${eflAtZoom(zoomPair?.zoomB ?? 0, LB).toFixed(0)} mm` : "\u2014";
+  const infinityEflA = LA.isZoom ? eflAtZoom(zoomPair?.zoomA ?? 0, LA) : LA.EFL;
+  const infinityEflB = LB.isZoom ? eflAtZoom(zoomPair?.zoomB ?? 0, LB) : LB.EFL;
+  const focusedEflDiffersA = Math.abs(dynamicEflA - infinityEflA) > 0.1;
+  const focusedEflDiffersB = Math.abs(dynamicEflB - infinityEflB) > 0.1;
+  const zoomReadoutA = LA.isZoom
+    ? `${infinityEflA.toFixed(0)} mm${showEffectiveFocalLength && focusedEflDiffersA ? ` (eff. ${dynamicEflA.toFixed(1)} mm)` : ""}`
+    : "\u2014";
+  const zoomReadoutB = LB.isZoom
+    ? `${infinityEflB.toFixed(0)} mm${showEffectiveFocalLength && focusedEflDiffersB ? ` (eff. ${dynamicEflB.toFixed(1)} mm)` : ""}`
+    : "\u2014";
   const bothZoom = LA.isZoom && LB.isZoom;
   const zoomLens = LA.isZoom ? LA : LB.isZoom ? LB : null;
   const zoomEfl =
@@ -215,6 +227,29 @@ export default function SharedSlidersBar({
                 <span>B: {zoomReadoutB}</span>
               </>
             }
+            footer={
+              <button
+                onClick={onToggleEffectiveFocalLength}
+                aria-pressed={showEffectiveFocalLength}
+                style={{
+                  marginTop: 6,
+                  fontSize: 9,
+                  color: t.desc,
+                  cursor: "pointer",
+                  userSelect: "none",
+                  background: "none",
+                  border: "none",
+                  padding: 0,
+                  fontFamily: "inherit",
+                  textAlign: "left",
+                  display: "block",
+                }}
+              >
+                <span style={{ opacity: showEffectiveFocalLength ? 1 : 0.5 }}>
+                  {showEffectiveFocalLength ? "\u2611" : "\u2610"} Show effective focal length
+                </span>
+              </button>
+            }
           />
         )}
 
@@ -281,13 +316,13 @@ export default function SharedSlidersBar({
             <>
               <span>
                 A: {formatDist(focusPair.focusA, LA)}
-                {focusPair.focusA > 0.003 && Math.abs(dynamicEflA - (LA.isZoom ? eflAtZoom(0, LA) : LA.EFL)) > 0.1 && (
+                {focusPair.focusA > 0.003 && focusedEflDiffersA && (
                   <span style={{ opacity: 0.7 }}> ({dynamicEflA.toFixed(1)} mm)</span>
                 )}
               </span>
               <span>
                 B: {formatDist(focusPair.focusB, LB)}
-                {focusPair.focusB > 0.003 && Math.abs(dynamicEflB - (LB.isZoom ? eflAtZoom(0, LB) : LB.EFL)) > 0.1 && (
+                {focusPair.focusB > 0.003 && focusedEflDiffersB && (
                   <span style={{ opacity: 0.7 }}> ({dynamicEflB.toFixed(1)} mm)</span>
                 )}
               </span>

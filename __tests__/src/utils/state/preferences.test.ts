@@ -130,6 +130,7 @@ describe("loadPrefs", () => {
         headerControlsExpanded: true,
         legendExpanded: false,
         abbeShowGlassType: false,
+        showEffectiveFocalLength: true,
       }),
     );
     const prefs = loadPrefs();
@@ -138,6 +139,7 @@ describe("loadPrefs", () => {
     expect(prefs.headerControlsExpanded).toBe(true);
     expect(prefs.legendExpanded).toBe(false);
     expect(prefs.abbeShowGlassType).toBe(false);
+    expect(prefs.showEffectiveFocalLength).toBe(true);
   });
 
   it("ignores non-boolean values for collapsible panel fields", () => {

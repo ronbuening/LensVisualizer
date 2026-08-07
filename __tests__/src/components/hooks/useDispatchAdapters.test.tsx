@@ -59,6 +59,7 @@ describe("useDispatchAdapters", () => {
       "onLegendExpandedChange",
       "onHeaderInfoExpandedChange",
       "onAbbeShowGlassTypeChange",
+      "onEffectiveFocalLengthChange",
       "onEffectiveApertureChange",
       "onAberrationsExpandedChange",
       "onAnalysisDrawerToggle",
@@ -230,6 +231,16 @@ describe("useDispatchAdapters", () => {
     expect(dispatch).toHaveBeenCalledWith({
       type: SET_PANEL_EXPANDED,
       panel: "showEffectiveAperture",
+      expanded: true,
+    });
+  });
+
+  it("onEffectiveFocalLengthChange dispatches SET_PANEL_EXPANDED for showEffectiveFocalLength", () => {
+    const { adapters, dispatch } = renderAdapters();
+    adapters.onEffectiveFocalLengthChange(true);
+    expect(dispatch).toHaveBeenCalledWith({
+      type: SET_PANEL_EXPANDED,
+      panel: "showEffectiveFocalLength",
       expanded: true,
     });
   });

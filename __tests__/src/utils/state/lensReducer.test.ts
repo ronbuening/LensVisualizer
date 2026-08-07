@@ -71,6 +71,7 @@ describe("createInitialState", () => {
     expect(state.rays.showOffAxis).toBe("off");
     expect(state.rays.rayDensity).toBe("normal");
     expect(state.panels.focusExpanded).toBe(true); // isWide = true
+    expect(state.panels.showEffectiveFocalLength).toBe(false);
     expect(state.panels.analysisDrawerOpen).toBe(false);
     expect(state.panels.analysisDrawerTab).toBe("aberrations");
     expect(state.panels.zoomPanActive).toBe(false);
@@ -131,6 +132,11 @@ describe("createInitialState", () => {
     expect(state.rays.showOnAxis).toBe(false);
     expect(state.rays.rayDensity).toBe("dense");
     expect(state.display.desktopView).toBe("diagram");
+  });
+
+  it("restores the effective focal-length display preference", () => {
+    const state = createInitialState({ showEffectiveFocalLength: true }, {}, false, CATALOG_KEYS);
+    expect(state.panels.showEffectiveFocalLength).toBe(true);
   });
 
   it("downgrades a persisted edge projection when the feature is disabled", () => {

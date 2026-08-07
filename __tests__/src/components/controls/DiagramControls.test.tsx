@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { cleanup, fireEvent, render, screen } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen, within } from "@testing-library/react";
 import DiagramControls from "../../../../src/components/controls/DiagramControls.js";
 import buildLens from "../../../../src/optics/buildLens.js";
 import themes from "../../../../src/utils/theme/themes.js";
@@ -10,13 +10,22 @@ import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
 
 afterEach(() => cleanup());
 
-function renderControls(L: RuntimeLens, options: { focusExpanded?: boolean } = {}) {
+function renderControls(
+  L: RuntimeLens,
+  options: {
+    focusExpanded?: boolean;
+    focusT?: number;
+    dynamicEFL?: number;
+    showEffectiveFocalLength?: boolean;
+  } = {},
+) {
   const callbacks = {
     onAberrationChange: vi.fn(),
     onFocusChange: vi.fn(),
     onShiftChange: vi.fn(),
     onTiltChange: vi.fn(),
     onOpenGroupMovement: vi.fn(),
+    onToggleEffectiveFocalLength: vi.fn(),
   };
   return {
     ...render(
@@ -29,7 +38,7 @@ function renderControls(L: RuntimeLens, options: { focusExpanded?: boolean } = {
         onZoomChange={vi.fn()}
         aberrationT={0}
         onAberrationChange={callbacks.onAberrationChange}
-        focusT={0}
+        focusT={options.focusT ?? 0}
         onFocusChange={callbacks.onFocusChange}
         shiftMm={0}
         tiltDeg={0}
@@ -45,8 +54,10 @@ function renderControls(L: RuntimeLens, options: { focusExpanded?: boolean } = {
         currentFOPEN={L.FOPEN}
         currentPhysStopSD={L.stopPhysSD}
         baseEPSD={L.EP.epSD}
-        dynamicEFL={L.EFL}
+        dynamicEFL={options.dynamicEFL ?? L.EFL}
         effectiveFNum={L.FOPEN}
+        showEffectiveFocalLength={options.showEffectiveFocalLength ?? false}
+        onToggleEffectiveFocalLength={callbacks.onToggleEffectiveFocalLength}
         showEffectiveAperture={false}
         onToggleEffectiveAperture={vi.fn()}
         apertureExpanded={false}
@@ -160,5 +171,22 @@ describe("DiagramControls", () => {
     fireEvent.click(screen.getByRole("button", { name: /open zoom group motion chart/i }));
 
     expect(callbacks.onOpenGroupMovement).toHaveBeenCalledWith("zoom");
+  });
+
+  it("optionally appends the focused effective focal length to a zoom readout", () => {
+    const L = buildLens(LENS_CATALOG["nikon-afp-dx-70-300-f4563g"]);
+    const dynamicEFL = L.zoomEFLs![0] - 4.5;
+    const { callbacks } = renderControls(L, {
+      focusT: 0.5,
+      dynamicEFL,
+      showEffectiveFocalLength: true,
+    });
+
+    const zoomBox = screen.getByText("ZOOM").parentElement?.parentElement as HTMLElement;
+    const focusBox = screen.getByText("FOCUS").parentElement?.parentElement as HTMLElement;
+    expect(within(zoomBox).getByText(new RegExp(`eff\\. ${dynamicEFL.toFixed(1)} mm`))).toBeTruthy();
+    expect(within(focusBox).queryByText(/Show effective focal length/i)).toBeNull();
+    fireEvent.click(within(zoomBox).getByText(/Show effective focal length/i));
+    expect(callbacks.onToggleEffectiveFocalLength).toHaveBeenCalledTimes(1);
   });
 });

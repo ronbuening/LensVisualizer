@@ -100,6 +100,7 @@ export default function LensDiagramLoadedState({
     focusExpanded,
     apertureExpanded,
     legendExpanded,
+    showEffectiveFocalLength,
     showEffectiveAperture,
     abbeShowGlassType,
   } = displayFlags;
@@ -238,6 +239,8 @@ export default function LensDiagramLoadedState({
               baseEPSD={baseEPSD}
               dynamicEFL={dynamicEFL}
               effectiveFNum={effectiveFNum}
+              showEffectiveFocalLength={showEffectiveFocalLength}
+              onToggleEffectiveFocalLength={() => adapters.onEffectiveFocalLengthChange(!showEffectiveFocalLength)}
               showEffectiveAperture={showEffectiveAperture}
               onToggleEffectiveAperture={() => adapters.onEffectiveApertureChange(!showEffectiveAperture)}
               varReadouts={varReadouts}

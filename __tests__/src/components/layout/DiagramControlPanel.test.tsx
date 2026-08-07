@@ -49,6 +49,8 @@ function props(info: object | null = null) {
     baseEPSD: 5,
     dynamicEFL: 50,
     effectiveFNum: 2,
+    showEffectiveFocalLength: false,
+    onToggleEffectiveFocalLength: vi.fn(),
     showEffectiveAperture: false,
     onToggleEffectiveAperture: vi.fn(),
     varReadouts: [],

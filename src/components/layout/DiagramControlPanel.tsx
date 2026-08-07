@@ -44,6 +44,8 @@ interface DiagramControlPanelProps {
   baseEPSD: number;
   dynamicEFL: number;
   effectiveFNum: number;
+  showEffectiveFocalLength: boolean;
+  onToggleEffectiveFocalLength: () => void;
   showEffectiveAperture: boolean;
   onToggleEffectiveAperture: () => void;
   varReadouts: VarReadout[];
@@ -99,6 +101,8 @@ export default function DiagramControlPanel({
   baseEPSD,
   dynamicEFL,
   effectiveFNum,
+  showEffectiveFocalLength,
+  onToggleEffectiveFocalLength,
   showEffectiveAperture,
   onToggleEffectiveAperture,
   varReadouts,
@@ -187,6 +191,8 @@ export default function DiagramControlPanel({
         baseEPSD={baseEPSD}
         dynamicEFL={dynamicEFL}
         effectiveFNum={effectiveFNum}
+        showEffectiveFocalLength={showEffectiveFocalLength}
+        onToggleEffectiveFocalLength={onToggleEffectiveFocalLength}
         showEffectiveAperture={showEffectiveAperture}
         onToggleEffectiveAperture={onToggleEffectiveAperture}
         apertureExpanded={apertureExpanded}
