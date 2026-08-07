@@ -12,15 +12,15 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **526** lenses scanned
-- **5766** glass elements examined
-- **1391** elements have multiple coordinate-compatible candidates
-- **319** lens files are affected
+- **532** lenses scanned
+- **5806** glass elements examined
+- **1406** elements have multiple coordinate-compatible candidates
+- **324** lens files are affected
 
 | Selection criterion | Elements |
 |---|---:|
-| Smallest reference-index residual | 671 |
-| Evidence-source priority | 465 |
+| Smallest reference-index residual | 683 |
+| Evidence-source priority | 468 |
 | Vendor context | 253 |
 | Stable canonical-name order | 2 |
 
@@ -318,6 +318,19 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `N-KZFS5 (Schott) / S-NBH5 (OHARA)` | 1.65412 / 39.70 (d) | N-KZFS5 — smallest d-line \|Δn\| (4.4e-7 vs 4.8e-6) | S-NBH5 (Ohara, name, vendor ✓) | 4 | [LEICA APO-SUMMICRON-M 35mm f/2 ASPH.](../../src/lens-data/leica/LeicaAPO35mmf2.data.ts) L2 |
 | `FK5 / N-FK5 class (Schott legacy; patent n_e)` | 1.48920 / 69.90 (e) | N-FK5 — Annotation vendor context matches Schott. | FK5 (Sumita, name, vendor ✗) | 1 | [LEICA ELMARIT-R 35mm f/2.8](../../src/lens-data/leica/LeicaElmaritR35mmf28.data.ts) L1 |
 | `K-LaFK50-class (Sumita) / S-LAH66-class (OHARA)` | 1.77200 / 50.00 (d) | K-LaFK50 — smallest d-line \|Δn\| (3.6e-6 vs 5.0e-4) | S-LAH66 (Ohara, name, vendor ✓) | 1 | [LEICA ELMARIT-TL 18mm f/2.8 ASPH.](../../src/lens-data/leica/LeicaElmaritTL18mmf28.data.ts) L7 |
+| `497816 low-dispersion fluorophosphate-crown class` | 1.49700 / 81.60 (d) | H-FK61 — smallest d-line \|Δn\| (1.1e-8 vs 1.6e-7) | FCD1 (Hoya, code, alternate code row)<br>S-FPL51 (Ohara, code, preferred code row) | 1 | [MAMIYA N 210mm f/8 L](../../src/lens-data/mamiya/Mamiya7210mmf8NL.data.ts) L2 |
+| `699301 dense-flint class` | 1.69890 / 30.10 (d) | S-TIM35 — smallest d-line \|Δn\| (4.7e-5 vs 5.0e-5) | E-FD15 (Hoya, code, alternate code row) | 1 | [MAMIYA N 210mm f/8 L](../../src/lens-data/mamiya/Mamiya7210mmf8NL.data.ts) L4 |
+| `773496 lanthanum-flint class` | 1.77250 / 49.60 (d) | J-LASF016 — smallest d-line \|Δn\| (1.7e-8 vs 6.4e-8) | N-LAF34 (Schott, code, alternate code row)<br>S-LAH66 (Ohara, code, preferred code row)<br>S-LAH66N (Ohara, code, alternate code row) | 1 | [MAMIYA N 210mm f/8 L](../../src/lens-data/mamiya/Mamiya7210mmf8NL.data.ts) L6 |
+| `516641 — catalog-equivalent class (vendor unresolved)` | 1.51633 / 64.10 (d) | S-BSL7 — smallest d-line \|Δn\| (7.5e-8 vs 8.3e-8) | K-BK7 (Sumita, code, alternate code row) | 2 | [MAMIYA-SEKOR C 55mm f/2.8 N](../../src/lens-data/mamiya/MamiyaSekorC55mmf28N.data.ts) L1 |
+| `773496 — catalog-equivalent class (vendor unresolved)` | 1.77250 / 49.60 (d) | J-LASF016 — smallest d-line \|Δn\| (1.7e-8 vs 6.4e-8) | N-LAF34 (Schott, code, alternate code row)<br>S-LAH66 (Ohara, code, preferred code row)<br>S-LAH66N (Ohara, code, alternate code row) | 1 | [MAMIYA-SEKOR C 55mm f/2.8 N](../../src/lens-data/mamiya/MamiyaSekorC55mmf28N.data.ts) L3 |
+| `694532 — catalog-equivalent class (vendor unresolved)` | 1.69350 / 53.20 (d) | M-LAC130 — smallest d-line \|Δn\| (1.2e-7 vs 3.8e-7) | L-LAL13 (Ohara, code, alternate code row)<br>S-LAL13 (Ohara, code, preferred code row) | 2 | [MAMIYA-SEKOR C 55mm f/2.8 N](../../src/lens-data/mamiya/MamiyaSekorC55mmf28N.data.ts) L5 |
+| `755275 — dense flint class (catalog family unresolved)` | 1.75520 / 27.50 (d) | E-FD4 — smallest d-line \|Δn\| (2.6e-7 vs 3.8e-7) | H-ZF6 (CDGM, code, alternate code row) | 1 | [MAMIYA-SEKOR CS 35mm f/2.8](../../src/lens-data/mamiya/MamiyaSekorCS35mmf28.data.ts) G4 |
+| `713539 — lanthanum crown class (catalog family unresolved)` | 1.71300 / 53.90 (d) | LAC8 — smallest d-line \|Δn\| (1.8e-7 vs 3.0e-4) | MP-LAC8-30 (Hoya, code, alternate code row) | 1 | [MAMIYA-SEKOR CS 35mm f/2.8](../../src/lens-data/mamiya/MamiyaSekorCS35mmf28.data.ts) G6 |
+| `575415 — light flint / TIL27-LF7 class (vendor unspecified)` | 1.57501 / 41.50 (d) | J-LF7 — smallest d-line \|Δn\| (1.4e-8 vs 4.1e-6) | S-TIL27 (Ohara, code, preferred code row) | 1 | [MAMIYA-SEKOR MACRO C 80mm f/4](../../src/lens-data/mamiya/MamiyaSekorMacroC80mmf4.data.ts) L2 |
+| `620603 — SK16 / barium crown class (vendor unspecified)` | 1.62041 / 60.30 (d) | N-SK16 — alias evidence outranks six-digit code evidence. | J-SK16 (Hikari, code, alternate code row)<br>S-BSM16 (Ohara, code, alternate code row) | 1 | [MAMIYA-SEKOR MACRO C 80mm f/4](../../src/lens-data/mamiya/MamiyaSekorMacroC80mmf4.data.ts) L3 |
+| `699301 — SF15 / TIM35 dense flint class (vendor unspecified)` | 1.69895 / 30.10 (d) | SF15 — direct name evidence outranks six-digit code evidence. | E-FD15 (Hoya, code, alternate code row)<br>S-TIM35 (Ohara, code, preferred code row) | 1 | [MAMIYA-SEKOR MACRO C 80mm f/4](../../src/lens-data/mamiya/MamiyaSekorMacroC80mmf4.data.ts) L4 |
+| `673321 — SF5 / TIM25 dense flint class (vendor unspecified)` | 1.67270 / 32.10 (d) | SF5 — direct name evidence outranks six-digit code evidence. | S-TIM25 (Ohara, code, preferred code row) | 1 | [MAMIYA-SEKOR MACRO C 80mm f/4](../../src/lens-data/mamiya/MamiyaSekorMacroC80mmf4.data.ts) L6 |
+| `603607 class (vendor unspecified)` | 1.60311 / 60.70 (d) | BACD14 — smallest d-line \|Δn\| (8.2e-7 vs 1.9e-6) | S-BSM14 (Ohara, code, preferred code row) | 1 | [MAMIYA-SEKOR SFC 150mm f/4 SOFT FOCUS](../../src/lens-data/mamiya/MamiyaSekorSFC150mmf4SoftFocus.data.ts) L2 |
 | `S-NSL3-class crown (OHARA 518590; inferred)` | 1.51823 / 58.96 (d) | S-NSL3 — direct name evidence outranks six-digit code evidence. | E-C3 (Hoya, code, vendor ✗, alternate code row) | 1 | [MINOLTA AF 100mm f/2.8 Macro](../../src/lens-data/minolta/MinoltaAF100mmf28Macro.data.ts) L1 |
 | `S-LAL9-class lanthanum crown (OHARA 691548; inferred)` | 1.69100 / 54.75 (d) | S-LAL9 — direct name evidence outranks six-digit code evidence. | K-LaK9 (Sumita, code, vendor ✗, preferred code row) | 2 | [MINOLTA AF 100mm f/2.8 Macro](../../src/lens-data/minolta/MinoltaAF100mmf28Macro.data.ts) L2 |
 | `S-BAL35-class barium crown (OHARA 589612; inferred)` | 1.58913 / 61.11 (d) | S-BAL35 — direct name evidence outranks six-digit code evidence. | SK5 (Sumita, code, vendor ✗, alternate code row) | 1 | [MINOLTA AF 100mm f/2.8 Macro](../../src/lens-data/minolta/MinoltaAF100mmf28Macro.data.ts) L8 |

@@ -9,12 +9,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **526** lenses scanned
-- **594** total code-only elements found
-- **291** elements in this report
-- **121** distinct lens files affected
+- **532** lenses scanned
+- **620** total code-only elements found
+- **292** elements in this report
+- **122** distinct lens files affected
 - **17** active unreviewed elements have no review-record hit or explicit disposition
-- **127** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
+- **128** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
 - **0** dispositions lack any review record
 
 ## Prioritized Unreviewed Queue
@@ -174,6 +174,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 693562 | 1 | 1 | patents/US2983193.pdf | All rows explicitly disposed |
 | 694312 | 1 | 1 | patents/WO2021199923A1.pdf | All rows have review records |
 | 694536 | 1 | 1 | patents/US4258985.pdf | All rows have review records |
+| 697555 | 1 | 1 | Missing from untracked local patents/ references (JP1978066222, 1978066222) | All rows explicitly disposed |
 | 697558 | 1 | 1 | patents/US4258985.pdf | All rows have review records |
 | 700555 | 1 | 1 | patents/WO_2025263124_A1.pdf | All rows have review records |
 | 701301 | 1 | 1 | patents/US4277149.pdf | All rows have review records |
@@ -484,6 +485,12 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L6 (Element 6) | 12A | `877370 — high-index lanthanum glass (patent nd=1.87722, nu_d=37.0)` | 1.87722 / 37.00 | No catalog entry | abbe | patents/US20160266350A1.pdf | Reviewed sidecar hit |
+
+### [MAMIYA-SEKOR CS 35mm f/2.8](../../src/lens-data/mamiya/MamiyaSekorCS35mmf28.data.ts) - JP1978-066222
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| G2 (Element 2) | 3 | `Unmatched (nd=1.69480, νd=55.5; nearest public 697555 lanthanum-crown family)` | 1.69480 / 55.50 | No catalog entry | abbe | Missing from untracked local patents/ references (JP1978066222, 1978066222) | Explicit disposition in data |
 
 ### [MINOLTA AF 100mm f/2.8 Macro](../../src/lens-data/minolta/MinoltaAF100mmf28Macro.data.ts) - US 4,764,000
 

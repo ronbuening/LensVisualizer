@@ -19,6 +19,11 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-08-07",
+    type: "lens",
+    summary: "Added six Mamiya lenses spanning CS, M645, RB67, AF, and Mamiya 7 systems",
+  },
+  {
     date: "2026-08-06",
     type: "feature",
     summary: "Added shareable optical configurations to lens URLs and comparison selectors",
