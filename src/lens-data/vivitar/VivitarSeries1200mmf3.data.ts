@@ -91,7 +91,7 @@ const LENS_DATA = {
       nd: 1.7127,
       vd: 43.3,
       fl: -71.0,
-      glass: "713433 — LaF/BaSF boundary glass (no exact public catalog match)",
+      glass: "LAFL4 (HOYA catalog-equivalent; production supplier unspecified)",
       apd: false,
       role: "Petzval/aberration balancing — forms near-afocal pair with L4 (combined fl ≈ 7,000 mm). Index mismatch with L4 (1.713 vs 1.805) provides net negative Petzval contribution for field flattening.",
     },

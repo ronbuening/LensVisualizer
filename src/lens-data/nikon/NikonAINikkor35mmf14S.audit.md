@@ -14,3 +14,10 @@ Patent: US 3,576,360, Embodiment 1 / FIG. 1 / Claim 2
 ### Verification
 
 - `npm test -- elementRenderDiagnostics`
+
+## 2026-08-07 — Legacy K10 catalog recovery
+
+- Visually rechecked US 3,576,360 Embodiment 1: L4 remains `nd=1.50137`, `νd=56.5`.
+- The official SCHOTT K10 datasheet supplies the matching coefficient curve (`1.50137 / 56.41`). The label now
+  resolves through K10 while leaving the production supplier unspecified.
+- Strict and trusted catalog coverage are now complete at `9/9`; no geometry changed.

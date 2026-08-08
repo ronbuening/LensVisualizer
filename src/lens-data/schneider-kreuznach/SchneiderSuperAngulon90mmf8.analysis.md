@@ -95,7 +95,7 @@ which exceeds the patent's 0.12 minimum. This large interface step supplies subs
 
 ### L3 — Positive Meniscus, front cemented component
 
-**nd = 1.56010, νd = 47.0. Glass: 560/470 LLF3/PBL3/FEL3 class; supplier unresolved. f = +22.821 mm.**
+**nd = 1.56010, νd = 47.0. Glass: HOYA FEL3 catalog equivalent; production supplier unspecified. f = +22.821 mm.**
 
 L3 is the positive member of the front doublet. Its strongly curved cemented face is followed by a stop-side radius of +944.3769 mm at production scale, which is optically very weak and corresponds to the patent's “nearly plane” description.
 
@@ -139,7 +139,7 @@ The patent publishes only $n_d$ and $\nu_d$; it does not name a glass supplier. 
 |---|---:|---|---|---|
 | L1, L6 | 1.46450 / 65.7 | FK3 class, code 465/657 | Historical Schott-edited tables associate these constants with FK3 | Probable class; supplier unproved |
 | L2, L5 | 1.71740 / 29.5 | SF1 | Schott SF1: 1.71736 / 29.51; residuals 0.00004 / 0.01 | Exact class match |
-| L3 | 1.56010 / 47.0 | LLF3/PBL3/FEL3 class, code 560/470 | Historical cross-vendor class values are approximately 1.56013 / 47.0–47.1 | Class match; supplier unresolved |
+| L3 | 1.56010 / 47.0 | HOYA FEL3 catalog equivalent, code 560/470 | Obsolete FEL3 row: 1.560125 / 47.090971 | Exact coordinate; supplier unspecified |
 | L4 | 1.58270 / 46.5 | BAF3 class, code 583/465 | Hikari J-BAF3: 1.582670 / 46.48; Schott N-BAF3: 1.58272 / 46.64 | Exact class match |
 
 The palette follows the patent's stated index strategy: low-index outer meniscuses, high-index dense flints in the negative halves of the cemented components, and intermediate-index positive partners. L3 and L4 both have $\nu_d < 50$ and are therefore flints by dispersion, despite their positive optical power and the “barium” family name associated with BAF3.

@@ -231,7 +231,7 @@ const LENS_DATA = {
       nd: 1.58578,
       vd: 59.5,
       fl: 60.7002,
-      glass: "Unmatched (molded crown/asphere, nd=1.58578, vd=59.5)",
+      glass: "P-SK57Q1 (SCHOTT catalog-equivalent; production supplier unspecified)",
       role: "Double-sided asphere; probable positive rear element of the inferred O.I.S. subgroup.",
     },
     {

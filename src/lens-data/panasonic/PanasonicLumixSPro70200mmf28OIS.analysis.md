@@ -209,15 +209,16 @@ L14's 6.01 mm center thickness.
 
 ### L15 — Biconvex Positive, two aspherical surfaces
 
-`nd = 1.58578`, `νd = 59.5`. Glass: Unmatched molded crown/asphere. Standalone `f = +60.7002 mm`.
+`nd = 1.58578`, `νd = 59.5`. Glass: SCHOTT P-SK57Q1 catalog equivalent; production supplier unspecified.
+Standalone `f = +60.7002 mm`.
 
 L15 is the only aspherical element in the model. Both surface 30A and surface 31A carry polynomial aspheres. It follows
 D3 with only a 0.3 mm air gap, forming the third member of the probable L13–L15 stabilization subgroup. The centered
 three-element block has a computed standalone EFL of +40.027044 mm in the final normalized arrays.
 
-The glass label remains explicitly unmatched because no public catalog identity was defended from the stored
-`nd`/`νd` pair. The element's optical role is supported by the prescription and manufacturer architecture, but its exact
-melt source is not known.
+SCHOTT P-SK57Q1 (`nd = 1.58600`, `νd = 59.5`) supplies a coefficient-backed curve within `0.00022` of the patent
+index and at the same Abbe number. It is used as a catalog equivalent; neither the patent nor Panasonic identifies the
+production melt supplier.
 
 ### D4: L16–L17 — Cemented Negative/Positive Pair
 
@@ -280,8 +281,8 @@ through the documented 33.4744936709 mm air-equivalent spacing.
 ## Glass Identification and Selection
 
 The patent publishes only d-line refractive indices and Abbe numbers. It does not name glass manufacturers, catalog
-codes, Sellmeier coefficients, C/F/g-line indices, or anomalous partial-dispersion values. The data file therefore uses
-six-digit glass classes or an explicit `Unmatched (...)` label rather than asserting a melt vendor.
+codes, Sellmeier coefficients, C/F/g-line indices, or anomalous partial-dispersion values. Catalog names in the data
+file therefore describe coefficient-backed optical equivalents rather than asserting the production melt vendor.
 
 | Stored glass class | `nd` | `νd` | Elements | Function in the prescription |
 |---|---:|---:|---|---|
@@ -293,7 +294,7 @@ six-digit glass classes or an explicit `Unmatched (...)` label rather than asser
 | 487704 fluor-crown class | 1.48749 | 70.4 | L6 | High-Abbe negative member of D1 |
 | 603607 dense-crown class | 1.60311 | 60.7 | L8 | Rear negative member of G2 |
 | 805396 dense barium-flint class | 1.80450 | 39.6 | L9 | Compact positive compensator |
-| Unmatched molded crown/asphere | 1.58578 | 59.5 | L15 | Double-sided aspherical element |
+| P-SK57Q1 catalog equivalent (SCHOTT) | 1.58578 | 59.5 | L15 | Coefficient-backed molded-crown match; production supplier unidentified; double-sided aspherical element |
 | 694532 lanthanum-crown class | 1.69350 | 53.2 | L16 | Negative member of D4 |
 | 859300 dense-flint class | 1.85883 | 30.0 | L17 | Positive member of D4 |
 | 870200 very dense-flint class | 1.86966 | 20.0 | L18 | Positive member of negative focus pair D5 |
@@ -352,7 +353,7 @@ verified 16.7 mm semi-diameter, surface 31A departs from its vertex sphere by +0
 
 These departures are computed at the model's inferred clear apertures, not at patent-published semi-diameters. The patent
 provides no clear-aperture table. Panasonic states that the production design uses one aspherical lens and describes a
-new processing method for that element, but the public account does not establish a catalog glass identity for L15. [3]
+new processing method for that element, but the public account does not establish the production glass supplier. [3]
 
 ## Chromatic Correction Strategy
 

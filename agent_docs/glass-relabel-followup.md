@@ -28,14 +28,26 @@ This file tracks the second bucket plus any cases from the first bucket that nee
 - `catalog-mismatches.generated.md` and `glass-relabel-by-lens.generated.md` report **0** remaining
   dispersion-coordinate mismatches across **0** lens files. The mismatch report separately records **18 / 75**
   native e-line surfaces resolved through explicit names or aliases.
-- `sellmeier-coverage.generated.md` reports **532** lenses, **5814** non-air surfaces, **5139** strict catalog
-  Sellmeier surfaces (**88.4%**), and **5150** trusted chromatic surfaces (**88.6%**).
-- **270** lenses are fully covered by strict Sellmeier data and **275** are fully covered by trusted chromatic data.
-- `unresolvedGlassScan` reports **351** non-explicit-unmatched annotations and **194** distinct unresolved glass-like
+- `sellmeier-coverage.generated.md` reports **532** lenses, **5814** non-air surfaces, **5153** strict catalog
+  Sellmeier surfaces (**88.6%**), and **5164** trusted chromatic surfaces (**88.8%**).
+- **281** lenses are fully covered by strict Sellmeier data and **286** are fully covered by trusted chromatic data.
+- `unresolvedGlassScan` reports **345** non-explicit-unmatched annotations and **184** distinct unresolved glass-like
   tokens. The residual total is code/prose inventory rather than a catalog-coordinate mismatch queue.
-- The missing-Sellmeier six-digit report contains **286** code-only elements, with **17** active unreviewed rows,
-  **126** self-recording explicit unmatched/unidentified dispositions, and **0** dispositions missing a review record.
+- The missing-Sellmeier six-digit report contains **282** code-only elements, with **17** active unreviewed rows,
+  **124** self-recording explicit unmatched/unidentified dispositions, and **0** dispositions missing a review record.
 - The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work; for patent-by-patent execution, start from [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md).
+
+## Resolved Phase 85 — August 2026 legacy visible-lens catalog audit
+
+- Recovered eight exact HOYA legacy curves from the manufacturer's official obsolete-inclusive catalog: BAF5, FEL3,
+  CF2, FD3, FC3, BSC6, BAF22, and LAFL4.
+- Combined them with existing P-SK57Q1, J-KZFH4, K10, FCD515, and BAF12 curves to upgrade fourteen patent-derived
+  surfaces while leaving every unproved production supplier unspecified.
+- Completed eleven prescriptions: Panasonic S Pro 70-200mm f/2.8; Nikon Z 50mm f/1.2, AI 35mm f/1.4, and AI
+  135mm f/2; Canon FD 28mm f/2.8 and Serenar 100mm f/3.5; Schneider Super-Angulon 90mm and Technika
+  Super-Angulon 75mm; Olympus 50mm f/2 Macro; and Vivitar Series 1 200mm and 35-85mm.
+- Global coverage is 5153/5814 strict and 5164/5814 trusted; 281 lenses are strict-complete and 286 trusted-complete,
+  with zero catalog-coordinate mismatches.
 
 ## Resolved Phase 84 — August 2026 near-complete visible-lens audit
 

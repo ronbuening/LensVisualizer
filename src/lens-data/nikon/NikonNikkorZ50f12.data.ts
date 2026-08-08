@@ -88,7 +88,7 @@ const LENS_DATA = {
       nd: 1.55298,
       vd: 55.1,
       fl: -110.2,
-      glass: "Unmatched (patent nd=1.55298/vd=55.10; no public catalog candidate)",
+      glass: "J-KZFH4 (HIKARI catalog-equivalent; production supplier unspecified)",
       apd: false,
       role: "Paired with L11 for Petzval sum control (cond. 7: −r1/r2)",
     },

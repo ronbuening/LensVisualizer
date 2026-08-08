@@ -20,6 +20,10 @@ The lens employs a positive-negative-negative-positive (PNNP) power distribution
 ## Glass Palette
 The design uses ten distinct nd/νd rows, dominated by high-index dense flints and dense crowns. Notably, the L9–L10 cemented doublet pairs low-dispersion fluor crown FK5 (νd = 70.4) with dense flint SF6 (νd = 25.5), creating a Δνd = 44.9 differential for aggressive chromatic correction — a technique that would become standard in later high-performance zoom designs.
 
+Two formerly code-only rows now have coefficient-backed equivalents: HOYA BSC6 reproduces L2's `531621`
+coordinate, while SUMITA BAF12 reproduces L11's rounded `639451` coordinate. These names identify optical
+equivalents; the patent does not identify the production suppliers.
+
 ## Field Curvature Control
 The computed Petzval sum of +0.0017 mm⁻¹ demonstrates exceptional field-curvature correction for an era before aspherical surfaces became commonplace. This performance results from carefully balanced high-index negative elements working against the positive groups.
 

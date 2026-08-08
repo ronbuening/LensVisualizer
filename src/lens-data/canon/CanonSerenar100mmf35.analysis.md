@@ -78,7 +78,7 @@ Member II is a weak positive meniscus with r4 = +30.25 and r5 = +44.50. Its role
 
 ### Member III — Biconcave Low-Index Negative
 
-nd = 1.52630, νd = 51.0. Glass: unmatched low-index crown/flint-class glass, code 526/510; no current public catalog match found. f = −33.59 mm.
+nd = 1.52630, νd = 51.0. Glass: HOYA CF2 catalog equivalent; production supplier unspecified. f = −33.59 mm.
 
 Member III is the principal telephoto-compressing element. Its front surface r6 = −140.00 is weak, while the rear surface r7 = +20.31 is strong; the rear surface therefore supplies most of the negative power. The patent calls for this element to have nd < 1.55, and the published value of 1.5263 is the lowest index in the system.
 
@@ -99,10 +99,10 @@ The patent gives nd and νd values but no maker-specific glass names. The glass 
 | L11 | 1.6228 | 56.9 | SK10 / S-BSM10 / E-BACD10 class dense barium crown | high | main positive crown in front doublet |
 | L12 | 1.6200 | 36.3 | F2 / S-TIM2 class flint | high | achromatizing partner to L11 |
 | L2 | 1.6031 | 60.7 | SK14 / S-BSM14 / BACD14 class dense barium crown | high | weak positive meniscus, low color |
-| L3 | 1.5263 | 51.0 | unmatched low-index crown/flint-class glass, code 526/510 | unmatched; patent nd/νd used directly | low-index negative Petzval-control element |
+| L3 | 1.5263 | 51.0 | HOYA CF2 catalog equivalent | exact coordinate; supplier unspecified | low-index negative Petzval-control element |
 | L4 | 1.6237 | 47.0 | BaF8 / E-BAF8 / K-BaF8 class barium flint | high | rear positive collector |
 
-The earlier draft's broad glass strategy was correct, but its L3 wording still implied too much catalog certainty. The patent value maps to the six-digit code 526/510, and the governing optical fact is the patent requirement that member III have nd < 1.55. No current Hoya/Schott/OHARA/HIKARI/Sumita/CDGM public catalog entry reviewed for this pass was close enough to name the melt. The element is therefore treated as unmatched, with the patent nd/νd used directly rather than a speculative KF2 or N-KF9 label.
+The patent value maps to the six-digit coordinate 526/510, and the governing optical fact is the requirement that member III have nd < 1.55. HOYA's discontinued CF2 row (`nd = 1.526296`, `νd = 51.046`) is the recovered coefficient-backed equivalent. The patent still does not establish that HOYA supplied the production melt.
 
 No element is fluorite, ED glass, or anomalous partial-dispersion glass. The chromatic design is conventional: the front cemented doublet balances axial color, while the low-index third member is chosen primarily for field-curvature control, not secondary-spectrum correction.
 

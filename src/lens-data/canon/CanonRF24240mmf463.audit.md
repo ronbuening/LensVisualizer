@@ -90,3 +90,11 @@ Catalog version: 5c81522
 - Rechecked US 2020/0142167 A1 Example 1 surface 35: `R=-53.590`, `d=1.28`, `nd=1.83481`, and `νd=42.7` match the data file.
 - Relabeled L20 from `S-LAH60 type (835/427)` to standard OHARA `S-LAH55`, the exact 835427 coordinate. The patent does not specify a vacuum-melt variant, so the non-V formulation is used.
 - Synchronized the analysis glass table. No prescription geometry changed.
+
+## 2026-08-07 - FCD515 coordinate recovery
+
+- Visually rechecked US 2020/0142167 A1 Numerical Data 1 surface 28: L16 remains `nd=1.59282`, `νd=68.6`,
+  code 593686.
+- Existing HOYA FCD515 (`1.59282 / 68.63`) is the exact coefficient-backed equivalent; the prior S-BSM81
+  comparison was the wrong catalog family. The production supplier remains unspecified.
+- Strict and trusted coverage rise to `20/21`; only the separate 531559 row remains unmatched. No geometry changed.

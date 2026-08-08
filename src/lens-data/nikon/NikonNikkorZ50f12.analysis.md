@@ -114,12 +114,12 @@ L12 is the most optically unusual element in the entire design. Its glass — nd
 | R₁ / R₂ | −43.989 / −158.308 |
 | Center thickness | 3.200 mm |
 | nd / νd | 1.55298 / 55.1 |
-| Glass disposition | Unmatched — patent nd=1.55298, νd=55.1 has no public catalog candidate within tolerance |
+| Glass disposition | HIKARI J-KZFH4 catalog equivalent; production supplier unspecified |
 | Thin-lens focal length | −110.2 mm |
 
 L13 is a negative meniscus with its concave side facing the object. Together with L11, it forms one of the pair of opposing concave surfaces described in the patent's conditional expression (7): r1 is the image-side radius of L11 (surface 2, R = +46.02) and r2 is the object-side radius of L13 (surface 5, R = −43.99). The patent explicitly identifies these surfaces as "facing concave surfaces" (向かい合った凹面) and constrains their ratio: 0.500 < −r1/r2 < 2.000. For Example 1, −r1/r2 = −46.02/(−43.99) = 1.046. This Petzval-controlling pair keeps the sum of field-curving contributions from the front divergent section in check.
 
-L13's glass (nd = 1.55298, νd = 55.1) is a light barium flint in the traditional glass map — moderate index, moderate dispersion. It remains unmatched in the public catalog set after the local patent pass. Notably, L13 is the only negative lens in the design that the patent does *not* evaluate under conditional expression (6) (the anomalous partial dispersion condition), indicating standard normal-line dispersion rather than the anomalous dispersion required for secondary spectrum correction.
+L13's glass (nd = 1.55298, νd = 55.1) is a light barium flint in the traditional glass map — moderate index, moderate dispersion. HIKARI J-KZFH4 (`nd = 1.552981`, `νd = 55.07`) reproduces the patent coordinate and supplies the coefficient-backed dispersion curve, but the production supplier remains unspecified. Notably, L13 is the only negative lens in the design that the patent does *not* evaluate under conditional expression (6) (the anomalous partial dispersion condition), indicating standard normal-line dispersion rather than the anomalous dispersion required for secondary spectrum correction.
 
 **L14 — Positive Meniscus, Concave to Object**
 
@@ -324,7 +324,7 @@ The following table presents each unique glass type used in Example 1, the numbe
 |---|---|---|---|---|---|
 | 1.94595 | 18.0 | L12 | HOYA FDS18 | Exact | Ultra-dense flint |
 | 1.64000 | 60.1 | L11 | OHARA S-BSM81 / CDGM H-ZK6 | Exact | Dense barium crown |
-| 1.55298 | 55.1 | L13 | Unmatched public catalog | — | Light barium flint |
+| 1.55298 | 55.1 | L13 | HIKARI J-KZFH4 catalog equivalent | Exact coordinate | Light barium flint |
 | 1.59349 | 67.0 | L14, L15, L16, L17 | HOYA FCD505 / HIKARI J-PSKH1 | Exact | **Phosphate crown (ED)** |
 | 1.59319 | 67.9 | L18, L22 | FCD505 variant / OHARA S-FPM2 | Approximate | **Phosphate crown (ED)** |
 | 1.59306 | 67.0 | L31 | FCD505 variant / HIKARI J-PSKH1 | Approximate | **Phosphate crown (ED)** |

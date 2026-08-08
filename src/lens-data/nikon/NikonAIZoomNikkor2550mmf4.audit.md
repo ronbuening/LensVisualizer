@@ -38,3 +38,11 @@ Patent: US 4,189,212, Example 8 / Claim 20.
 - The official Schott K10 datasheet supplies Sellmeier coefficients for `nd=1.50137`, `νd=56.41`, code 501564.
 - The three repeated patent rows at L6, L7, and L9b now resolve through that curve; the stored patent coordinates and labels remain unchanged.
 - The local `patents/US4189212.pdf` review recorded above remains the prescription source. No geometry changed.
+
+## 2026-08-07 — Legacy FC3 catalog recovery
+
+- Visually rechecked US 4,189,212 Example 8: L9a remains `nd=1.46450`, `νd=65.8`, code 465658.
+- HOYA's obsolete FC3 row (`1.464502 / 65.767612`) is the exact coefficient-backed catalog equivalent. The
+  production supplier remains unspecified.
+- Strict and trusted coverage rise to `10/11`; only L1's separate 773494 coordinate remains unmatched. No geometry
+  changed.

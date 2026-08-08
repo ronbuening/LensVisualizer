@@ -57,7 +57,7 @@ The exact period melt is not named in the patent. The code is a legacy 611/559 c
 
 ### L2 — Negative meniscus, convex to object
 
-nd = 1.60729, νd = 49.3. Glass: barium crown/flint class, legacy 607/493; no specific catalog melt asserted. f = -45.36 mm.
+nd = 1.60729, νd = 49.3. Glass: HOYA BAF5 catalog equivalent; production supplier unspecified. f = -45.36 mm.
 
 L2 is the second negative meniscus and completes the divergent front assembly. Its rear radius γ4 = 0.7757 f is one of the controlled surfaces in the patent's conditional expressions. The surface is strong enough to preserve the retrofocus action but not so strong that its residual aberrations dominate the rear correction.
 
@@ -110,7 +110,7 @@ The patent lists only d-line refractive index and Abbe number. The table below t
 | Element(s) | Patent nd / νd | Code | Catalog or class identification | Status |
 |---|---:|---:|---|---|
 | L1 | 1.61117 / 55.9 | 611/559 | Dense barium crown class; no specific catalog melt asserted | class |
-| L2 | 1.60729 / 49.3 | 607/493 | Barium crown/flint class; no specific catalog melt asserted | class |
+| L2 | 1.60729 / 49.3 | 607/493 | HOYA BAF5 catalog equivalent | exact coordinate; supplier unspecified |
 | L3 | 1.72342 / 38.0 | 723/380 | S-BAH28 (OHARA) / BAFD8 (HOYA) | equivalent |
 | L4 | 1.60311 / 60.7 | 603/607 | S-BSM14 (OHARA) / BACD14 (HOYA) / N-SK14 (Schott) | equivalent |
 | L5 | 1.74077 / 27.8 | 741/278 | S-TIH13 (OHARA) / E-FD13 (HOYA) | equivalent |

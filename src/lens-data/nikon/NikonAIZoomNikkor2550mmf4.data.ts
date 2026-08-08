@@ -159,7 +159,7 @@ const LENS_DATA = {
       nd: 1.4645,
       vd: 65.8,
       fl: 94.823,
-      glass: "Unmatched 465/658 (FK/phosphate crown class)",
+      glass: "FC3 (HOYA catalog-equivalent; production supplier unspecified)",
       role: "Forward half of the split rear positive member used by the Type II converging group.",
     },
     {

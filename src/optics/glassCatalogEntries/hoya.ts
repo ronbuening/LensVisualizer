@@ -1124,4 +1124,87 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "Hoya Zemax catalog 2017-04-01 via refractiveindex.info; discontinued MP-LAC8-30 page (formula 3 polynomial).",
   },
+  /* Phase 85 legacy visible-lens coverage additions (August 2026)
+   * Exact rows from HOYA's vendor-published current/obsolete-inclusive catalog.
+   */
+  {
+    name: "BAF5",
+    vendor: "Hoya",
+    polynomial: [2.5308158, -0.0075473263, 0.018976732, -0.00018623526, 0.000082468218, -0.0000032975868],
+    nd: 1.607292,
+    vd: 49.336899,
+    code6: "607493",
+    source:
+      "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published obsolete catalog row.",
+  },
+  {
+    name: "FEL3",
+    vendor: "Hoya",
+    polynomial: [2.3917789, -0.010682021, 0.013123543, 0.0012012044, -0.00010930097, 0.0000065674835],
+    nd: 1.560125,
+    vd: 47.090971,
+    code6: "560471",
+    source:
+      "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published obsolete catalog row.",
+  },
+  {
+    name: "CF2",
+    vendor: "Hoya",
+    polynomial: [2.2898003, -0.0078780704, 0.013885626, 0.0002773272, -0.000005309901, 0.0000011417842],
+    nd: 1.526296,
+    vd: 51.046045,
+    code6: "526511",
+    source:
+      "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published obsolete catalog row.",
+  },
+  {
+    name: "FD3",
+    vendor: "Hoya",
+    polynomial: [2.9160432, -0.010435647, 0.033907872, 0.0022728802, -0.00013563213, 0.000016527592],
+    nd: 1.739999,
+    vd: 28.245048,
+    code6: "740282",
+    source:
+      "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published obsolete catalog row.",
+  },
+  {
+    name: "FC3",
+    vendor: "Hoya",
+    polynomial: [2.1275277, -0.012433999, 0.0044860639, 0.001429459, -0.00016434517, 0.0000076448653],
+    nd: 1.464502,
+    vd: 65.767612,
+    code6: "465658",
+    source:
+      "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published obsolete catalog row.",
+  },
+  {
+    name: "BSC6",
+    vendor: "Hoya",
+    polynomial: [2.3128326, -0.0093860423, 0.011220011, 0.00032906568, -0.000025007986, 0.0000015189462],
+    nd: 1.531128,
+    vd: 62.075664,
+    code6: "531621",
+    source:
+      "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published obsolete catalog row.",
+  },
+  {
+    name: "BAF22",
+    vendor: "Hoya",
+    polynomial: [2.7665328, -0.011002716, 0.022027498, 0.00039543539, 0.00004056692, -0.0000007267033],
+    nd: 1.682496,
+    vd: 44.671672,
+    code6: "683447",
+    source:
+      "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published obsolete catalog row.",
+  },
+  {
+    name: "LAFL4",
+    vendor: "Hoya",
+    polynomial: [2.8554713, -0.0096096763, 0.029421326, -0.001076041, 0.00023612368, -0.000010372733],
+    nd: 1.712704,
+    vd: 43.295113,
+    code6: "713433",
+    source:
+      "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published obsolete catalog row.",
+  },
 ];

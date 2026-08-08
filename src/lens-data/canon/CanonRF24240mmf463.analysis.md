@@ -178,7 +178,7 @@ A weak **positive meniscus** singlet (f = +105.0 mm) in moldable barium light cr
 
 **L15 + L16** (surfaces 27–29): Cemented doublet
 - **L15**: nd = 1.85478, νd = 24.8 — **biconcave negative** (f = −99.6 mm) in short flint glass (OHARA S-TIH53W)
-- **L16**: nd = 1.59282, νd = 68.6 — **biconvex positive** (f = +39.3 mm) in borosilicate crown glass (six-digit code 593686; current catalog S-BSM81 entry does not round-trip these patent values)
+- **L16**: nd = 1.59282, νd = 68.6 — **biconvex positive** (f = +39.3 mm) in HOYA FCD515 catalog-equivalent low-dispersion phosphate crown; production supplier unspecified
 
 This cemented doublet is a classic achromat with a strong positive element and a weaker negative corrector. Located behind the aspherical element, it handles the primary chromatic correction duties for unit 4.
 
@@ -293,7 +293,7 @@ These nd ≈ 2.0 glasses are expensive specialty materials, but their use is jus
 | L13 | 2.00100 | 29.1 | S-LAH99 (OHARA equivalent; 001291) | Ultra-high index dense flint |
 | L14 | 1.53110 | 55.9 | 531559 code | Barium light crown **(ASPH)** |
 | L15 | 1.85478 | 24.8 | S-TIH53W type | Short flint |
-| L16 | 1.59282 | 68.6 | 593686 code | Borosilicate crown |
+| L16 | 1.59282 | 68.6 | FCD515 (HOYA catalog equivalent) | Low-dispersion phosphate crown |
 | L17 | 1.49700 | 81.5 | S-FPL51 type | Fluorophosphate crown **(UD)** |
 | L18 | 1.80518 | 25.4 | S-TIH10 type | Heavy flint |
 | L19 | 1.63854 | 55.4 | S-BSM18 type | Barium crown |

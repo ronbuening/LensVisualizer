@@ -112,7 +112,7 @@ const LENS_DATA = {
       nd: 1.6825,
       vd: 44.65,
       fl: -31.4,
-      glass: "Unmatched (683447 barium/lanthanum flint; no first-party coefficient row found)",
+      glass: "BAF22 (HOYA catalog-equivalent; production supplier unspecified)",
       apd: false,
       cemented: "Da",
       role: "Negative component of rear cemented meniscus doublet (L5+L6); chromatic/field correction immediately behind stop",

@@ -495,6 +495,14 @@ const GLASS_CATALOG_SOURCE_ORDER = [
   "P-LASF47",
   "K-SFLD11",
   "SSK2",
+  "BAF5",
+  "FEL3",
+  "CF2",
+  "FD3",
+  "FC3",
+  "BSC6",
+  "BAF22",
+  "LAFL4",
 ] as const;
 
 const GLASS_CATALOG_ENTRIES_BY_NAME: ReadonlyMap<string, GlassEntry> = new Map(

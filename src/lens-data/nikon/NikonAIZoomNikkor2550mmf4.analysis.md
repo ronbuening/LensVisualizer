@@ -94,11 +94,13 @@ The patent requires L8 to have an index at least 0.17 higher than the indices of
 
 ### L9a - Biconvex Positive
 
-nd = 1.46450, νd = 65.8. Glass: unmatched 465/658, FK/phosphate-crown class. f = +94.82 mm.
+nd = 1.46450, νd = 65.8. Glass: HOYA FC3 catalog equivalent; production supplier unspecified. f = +94.82 mm.
 
 L9a is the forward half of the split ninth member used by the Type II rear group. The patent explains that dividing the rearmost positive member into two positives gives added freedom for distortion and field-curvature correction at wider angles of view.
 
-The glass has an unusually low refractive index and high Abbe number. No exact match was found in current public Ohara, Hoya, Schott, Hikari, Sumita, or CDGM catalog data, so it is treated as an unmatched FK/phosphate-crown-class glass rather than assigned a speculative vendor identity.
+The glass has an unusually low refractive index and high Abbe number. HOYA's obsolete FC3 row (`nd = 1.464502`,
+`νd = 65.767612`) reproduces the coordinate and supplies the coefficient-backed dispersion curve; the production
+supplier remains unspecified.
 
 ### L9b - Biconvex Positive
 
@@ -119,7 +121,7 @@ The glass palette spans eight optical types across eleven elements.
 | 532/489 | Ohara S-TIL6 / LLF6 class | 1.53172 | 48.9 | L5a | Positive member of cemented L5 |
 | 501/565 | K10 class | 1.50137 | 56.5 | L6, L7, L9b | Low-index positives for Petzval balance |
 | 795/284 | Hikari J-LAFH3 class | 1.79504 | 28.4 | L8 | Strong high-index negative rear element |
-| 465/658 | Unmatched FK/phosphate-crown class | 1.46450 | 65.8 | L9a | Low-dispersion split rear positive |
+| 465/658 | HOYA FC3 catalog equivalent | 1.46450 | 65.8 | L9a | Low-dispersion split rear positive |
 
 The major chromatic pattern is the patent's Abbe-number inversion in the diverging group. L1 and L3 are negative elements with higher Abbe numbers than the positive L2 and L4 elements. That arrangement is used to suppress chromatic aberration of magnification and chromatic field-curvature mismatch at the wide end. The rear group then uses the L5 cemented doublet for axial color and uses low-index positive elements around a high-index negative L8 to keep the Petzval sum near zero.
 

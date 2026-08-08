@@ -251,7 +251,7 @@ const LENS_DATA = {
       nd: 1.59282,
       vd: 68.6,
       fl: 39.3,
-      glass: "Unmatched (593686 borosilicate crown; catalog S-BSM81 does not round-trip patent nd=1.59282, vd=68.6)",
+      glass: "FCD515 (HOYA catalog-equivalent; production supplier unspecified)",
       apd: false,
       role: "Relay achromat positive — primary chromatic correction for unit 4",
       cemented: "D6",

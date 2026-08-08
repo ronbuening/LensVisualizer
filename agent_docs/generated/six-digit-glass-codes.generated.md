@@ -10,9 +10,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **532** lenses scanned
-- **617** total code-only elements found
-- **617** elements in this report
-- **170** distinct lens files affected
+- **613** total code-only elements found
+- **613** elements in this report
+- **167** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -130,7 +130,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 439950 | 1 | 1 | patents/US20180164556A1.pdf | No review-record hit |
 | 449670 | 1 | 1 | patents/GB_1050055_A.pdf | All rows explicitly disposed |
 | 460658 | 1 | 1 | patents/DE_3907928_A1.pdf | All rows explicitly disposed |
-| 465658 | 1 | 1 | patents/US4189212.pdf | All rows explicitly disposed |
 | 479587 | 1 | 1 | patents/US4773745.pdf | All rows explicitly disposed |
 | 487698 | 1 | 1 | patents/US3838911.pdf | All rows have review records |
 | 504667 | 1 | 1 | patents/US2721499.pdf | All rows have review records |
@@ -144,7 +143,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 525558 | 1 | 1 | patents/US8994842.pdf | All rows explicitly disposed |
 | 525596 | 1 | 1 | patents/US3632190.pdf | All rows explicitly disposed |
 | 531557 | 1 | 1 | patents/US8994842.pdf | All rows explicitly disposed |
-| 531621 | 1 | 1 | patents/US3975089.pdf | All rows have review records |
 | 533489 | 1 | 1 | patents/US2084309.pdf | All rows explicitly disposed |
 | 534554 | 1 | 1 | patents/US3737214.pdf | All rows have review records |
 | 534555 | 1 | 1 | patents/US4110006.pdf | All rows explicitly disposed |
@@ -229,7 +227,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 682366 | 1 | 1 | Missing from untracked local patents/ references (US4518229, 4518229) | All rows have review records |
 | 682575 | 1 | 1 | patents/US7542219.pdf | All rows explicitly disposed |
 | 683309 | 1 | 1 | patents/US2983193.pdf | All rows explicitly disposed |
-| 683447 | 1 | 1 | patents/US4708445.pdf | All rows explicitly disposed |
 | 683548 | 1 | 1 | patents/WO2021039813A1.pdf | All rows have review records |
 | 684316 | 1 | 1 | patents/US20100149663A1.pdf | All rows explicitly disposed |
 | 685309 | 1 | 1 | patents/US20160154221A1.pdf | All rows explicitly disposed |
@@ -243,7 +240,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 700555 | 1 | 1 | patents/WO_2025263124_A1.pdf | All rows have review records |
 | 701301 | 1 | 1 | patents/US4277149.pdf | All rows have review records |
 | 712525 | 1 | 1 | patents/JP2021076829A.pdf | All rows explicitly disposed |
-| 713433 | 1 | 1 | patents/US3942876.pdf | All rows have review records |
 | 721334 | 1 | 1 | Missing from untracked local patents/ references (US4786152, 4786152) | All rows have review records |
 | 723380 | 1 | 1 | No patent number parsed from lens metadata | No review-record hit |
 | 728261 | 1 | 1 | patents/US4523816.pdf | All rows explicitly disposed |
@@ -1013,7 +1009,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|---|---|
 | L6 (Element 6) | 12 | `K10 class (501/565)` | 1.50137 / 56.50 | K10 (trusted Sellmeier) | sellmeier | patents/US4189212.pdf | Reviewed sidecar hit |
 | L7 (Element 7) | 14 | `K10 class (501/565)` | 1.50137 / 56.50 | K10 (trusted Sellmeier) | sellmeier | patents/US4189212.pdf | Reviewed sidecar hit |
-| L9a (Element 9a) | 18 | `Unmatched 465/658 (FK/phosphate crown class)` | 1.46450 / 65.80 | No catalog entry | abbe | patents/US4189212.pdf | Explicit disposition in data |
 | L9b (Element 9b) | 20 | `K10 class (501/565)` | 1.50137 / 56.50 | K10 (trusted Sellmeier) | sellmeier | patents/US4189212.pdf | Reviewed sidecar hit |
 
 ### [Nikon AI Zoom-Nikkor 35-200mm f/3.5-4.5S](../../src/lens-data/nikon/NikonAIZoomNikkor35200mmf3545S.data.ts) - US 4,770,511
@@ -1301,12 +1296,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L6 (Element 6) | 9 | `787501 — vintage high-index lanthanum flint (probable; no exact public catalog match)` | 1.78650 / 50.10 | No catalog entry | abbe | patents/DE_2157160_A1.pdf | Audit-log hit |
-
-### [OLYMPUS ZUIKO AUTO-MACRO 50mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoMacro50mmf2.data.ts) - US 4,708,445
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L5 (Element 5) | 9 | `Unmatched (683447 barium/lanthanum flint; no first-party coefficient row found)` | 1.68250 / 44.65 | No catalog entry | abbe | patents/US4708445.pdf | Explicit disposition in data |
 
 ### [OLYMPUS ZUIKO AUTO-W 28mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoW28mmf2.data.ts) - US 3,862,794
 
@@ -1746,18 +1735,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L31 (Element 6) | 10A | `Fluorocrown / phosphate crown, PGM class (592/670, uncertain)` | 1.59201 / 67.00 | M-PCD51 (trusted Sellmeier) | sellmeier | patents/US20150092100A1.pdf | No review-record hit |
-
-### [VIVITAR SERIES 1 200mm f/3.0 VMC](../../src/lens-data/vivitar/VivitarSeries1200mmf3.data.ts) - US 3,942,876
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L5 (Element 5) | 10 | `713433 — LaF/BaSF boundary glass (no exact public catalog match)` | 1.71270 / 43.30 | No catalog entry | abbe | patents/US3942876.pdf | Audit-log hit |
-
-### [VIVITAR SERIES 1 35-85mm f/2.8 VMC](../../src/lens-data/vivitar/VivitarSeries13585mmf28.data.ts) - US 3,975,089
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L2 (Element 2) | 3 | `531621 — BSM-type crown (no exact public catalog match)` | 1.53100 / 62.10 | No catalog entry | abbe | patents/US3975089.pdf | Audit-log hit |
 
 ### [VIVITAR SERIES 1 450mm f/4.5 VMC ASPHERICAL MIRROR](../../src/lens-data/vivitar/VivitarSeries1450mmf45.data.ts) - US 4,523,816
 

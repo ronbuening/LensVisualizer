@@ -76,7 +76,7 @@ const LENS_DATA = {
       nd: 1.60729,
       vd: 49.3,
       fl: -45.36,
-      glass: "BaF5 class (legacy 607/493 barium flint/crown-boundary glass)",
+      glass: "BAF5 (HOYA catalog-equivalent; production supplier unspecified)",
       apd: false,
       role: "Second forward-convex negative meniscus; controlled rear radius sets front-group divergence.",
     },

@@ -56,11 +56,13 @@ Its standalone in-air focal length is not its in-situ contribution inside the ce
 
 ### L3 - Nearly Plano-Convex Positive, rear member of Group II
 
-nd = 1.5601, νd = 47.0. Glass annotation: unmatched Schott legacy light-flint position 560/470; LLF3-class soft match. f = +19.34 mm at production scale.
+nd = 1.5601, νd = 47.0. Glass annotation: HOYA FEL3 catalog equivalent; production supplier unspecified. f = +19.34 mm at production scale.
 
 L3's strongly curved cemented surface $r_4$ carries nearly all of its positive power because the stop-facing rear surface $r_5=+1045.94$ is almost plane. This matches the patent's description of the positive inner components as substantially plano-convex with their nearly plane sides adjoining the diaphragm space.[1][2]
 
-The patent gives only $n_d$ and $\nu_d$, not a glass name. A historical LLF3-class association is plausible from the optical position, but it is not treated as a secure primary-catalog identification in the data file.
+The patent gives only $n_d$ and $\nu_d$, not a glass name. HOYA's obsolete FEL3 row (`1.560125 / 47.090971`)
+supplies the coefficient-backed curve for the shared 560/470 light-flint coordinate; the production supplier remains
+unverified.
 
 ### L4 - Plano-Convex Positive, front member of Group III
 
@@ -92,7 +94,7 @@ The patent states that its calculations use Schott catalog glass types, but its 
 |---|---|---|---|
 | 1.4645 / 65.7 | L1, L6 | Fluor crown | Secure FK3 match; FK3 remains listed by Schott as an inquiry glass.[5] |
 | 1.7174 / 29.5 | L2, L5 | Dense flint | Secure SF1 match; Schott's legacy SF1 entry is 1.71736 / 29.51.[6] |
-| 1.5601 / 47.0 | L3 | Light flint | LLF3-class soft match at approximately 560/470; stored as `Unmatched` because a patent-era primary Schott catalog page was not recovered. |
+| 1.5601 / 47.0 | L3 | Light flint | HOYA FEL3 catalog equivalent (`1.560125 / 47.090971`); production supplier unspecified. |
 | 1.5827 / 46.5 | L4 | Barium flint | Secure BAF3-class position: Hikari J-BAF3 is 1.58267 / 46.48 and modern Schott N-BAF3 is 1.58272 / 46.64; the patent-era supplier remains unverified.[6] |
 
 The chromatic strategy is classical achromatization rather than apochromatic correction. Each inner net-positive group combines a highly dispersive SF1 negative member with a less dispersive positive member. The outer FK3 menisci have the largest Abbe number and therefore impose a smaller chromatic penalty for their negative power. No anomalous-partial-dispersion or secondary-spectrum claim is made because the patent publishes no line indices or partial-dispersion data.

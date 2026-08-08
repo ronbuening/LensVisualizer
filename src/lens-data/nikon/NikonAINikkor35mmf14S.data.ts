@@ -84,7 +84,7 @@ const LENS_DATA = {
       nd: 1.50137,
       vd: 56.5,
       fl: -62.44,
-      glass: "Unmatched K10 (SCHOTT legacy crown)",
+      glass: "K10 (SCHOTT catalog-equivalent; production supplier unspecified)",
       role: "Low-index negative component cemented to L3; helps generate the positive distortion correction cited by the patent.",
       cemented: "D1",
     },

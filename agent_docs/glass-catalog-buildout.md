@@ -8,7 +8,16 @@ catalog equivalent. If neither path is available, the engine falls back to parti
 dPgF-corrected indices, or the legacy Abbe approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **476 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **484 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+
+The August 7, 2026 Phase 85 pass continued through the visible-lens opportunity queue and recovered eight exact legacy
+HOYA curves from the manufacturer's official obsolete-inclusive Zemax catalog: BAF5, FEL3, CF2, FD3, FC3, BSC6,
+BAF22, and LAFL4. Existing P-SK57Q1, J-KZFH4, K10, FCD515, and BAF12 rows complete the source-verified matches.
+Fourteen surfaces gain coefficient-backed chromatic dispersion, completing eleven more lenses: Panasonic S Pro
+70-200mm f/2.8, Nikon Z 50mm f/1.2, AI 35mm f/1.4, and AI 135mm f/2, Canon FD 28mm f/2.8 and Serenar 100mm
+f/3.5, both 75mm and 90mm Super-Angulons, Olympus 50mm f/2 Macro, and the Vivitar Series 1 200mm and 35-85mm.
+Global coverage rises from 5139 to 5153/5814 strict and from 5150 to 5164/5814 trusted; 281 lenses are now
+strict-complete and 286 trusted-complete, with zero coordinate mismatches.
 
 The August 7, 2026 Phase 84 pass audited the near-complete visible-lens queue against the ignored local patent PDFs.
 Exact or rounded-coordinate catalog equivalents complete the Canon Serenar 50mm f/1.8, Nikon L35AF 35mm f/2.8,

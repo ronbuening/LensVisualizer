@@ -90,7 +90,7 @@ const LENS_DATA = {
       nd: 1.74,
       vd: 28.2,
       fl: 47.0,
-      glass: "HOYA FD110 (740/282)",
+      glass: "FD3 (HOYA catalog-equivalent; production supplier unspecified)",
       cemented: "D2",
       role: "Dense flint positive in monochromatic correction doublet (Group III); near-isochromatic with L5",
     },

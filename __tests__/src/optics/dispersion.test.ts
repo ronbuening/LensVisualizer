@@ -426,6 +426,24 @@ describe("glass catalog", () => {
     expect(resolveGlass("713539")?.name).toBe("LAC8");
   });
 
+  it.each([
+    { name: "BAF5", code: "607493", nd: 1.607292, vd: 49.336899 },
+    { name: "FEL3", code: "560471", nd: 1.560125, vd: 47.090971 },
+    { name: "CF2", code: "526511", nd: 1.526296, vd: 51.046045 },
+    { name: "FD3", code: "740282", nd: 1.739999, vd: 28.245048 },
+    { name: "FC3", code: "465658", nd: 1.464502, vd: 65.767612 },
+    { name: "BSC6", code: "531621", nd: 1.531128, vd: 62.075664 },
+    { name: "BAF22", code: "683447", nd: 1.682496, vd: 44.671672 },
+    { name: "LAFL4", code: "713433", nd: 1.712704, vd: 43.295113 },
+  ])("reproduces HOYA's official obsolete-catalog row for $name", ({ name, code, nd, vd }) => {
+    const entry = resolveGlass(`${name} (HOYA)`);
+    expect(entry?.name).toBe(name);
+    expect(entry?.code6).toBe(code);
+    expect(resolveGlass(code)?.name).toBe(name);
+    expect(evaluateSellmeier(entry!, LINE_NM.d)).toBeCloseTo(nd, 5);
+    expect(evaluateCatalogAbbeNumber(entry!)).toBeCloseTo(vd, 2);
+  });
+
   it("evaluates the 2026 vendor named-glass coverage additions", () => {
     const expected: Array<[glass: string, nd: number]> = [
       ["BACD14", 1.60311],
