@@ -10,12 +10,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **538** lenses scanned (**528** visible)
-- **5220 / 5880** non-air surfaces use strict catalog Sellmeier data (88.8%)
-- **5231 / 5880** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 89.0%)
+- **5221 / 5880** non-air surfaces use strict catalog Sellmeier data (88.8%)
+- **5232 / 5880** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 89.0%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **279** code-only missing-Sellmeier elements in Sweep 2: **0** active unreviewed, **127** self-recording explicit dispositions, **0** dispositions missing any review record
-- **1** unresolved named-token elements in Sweep 2B, producing **1** token occurrences across **1** distinct tokens
+- **0** unresolved named-token elements in Sweep 2B, producing **0** token occurrences across **0** distinct tokens
 - **0** Tier A proprietary backfill rows in Sweep 3
 
 ## Sweep 1 - Relabel Mismatches
@@ -97,7 +97,6 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [LEICA SUMMILUX 28mm f/1.7 ASPH. (Leica Q, Q2, Q3)](../../src/lens-data/leica/Leica28mmf17.data.ts) | US 2016/0266350 A1 | [PDF](../../patents/US20160266350A1.pdf) | 81.8% (9/11) | 81.8% (9/11) | 2 | 12A [glass] (Element 6: `877370 — high-index lanthanum glass (patent nd=1.87722, nu_d=37.0)`)<br>20A [glass] (Element 11: `Unmatched (patent nd=1.68250, νd=33.00; prior H-ZF52A annotation rejected on dispersion)`) | abbe: 2 |
 | [AGFA COLOR-MAGNOLAR II 100mm f/4.5](../../src/lens-data/agfa/AgfaColorMagnolarII100mmf45.data.ts) | GB 775,944 | [PDF](../../patents/GB_775944_A.pdf) | 80.0% (4/5) | 60.0% (3/5) | 1 | 4 [glass] (Element 3: `Unmatched (540/509 crown-flint-boundary glass; no public catalog match located)`) | abbe: 1 |
 | [OLYMPUS E.ZUIKO AUTO-T 135mm f/3.5](../../src/lens-data/olympus/OlympusZuiko135mmf35.data.ts) | US 3,838,911 | [PDF](../../patents/US3838911.pdf) | 80.0% (4/5) | 80.0% (4/5) | 1 | 3 [glass] (Element 2: `487698 — FK/FSL low-dispersion crown class (patent nd=1.48749, νd=69.8; no exact modern coefficient-backed match)`) | abbe: 1 |
-| [PENTAX SUPER-TAKUMAR 135mm f/2.5](../../src/lens-data/pentax/PentaxSuperTakumar135mmf2.5.data.ts) | US 3,459,469 | [PDF](../../patents/US3459469.pdf) | 80.0% (4/5) | 80.0% (4/5) | 1 | 4 [glass] (Element 3: `SK1 class (vendor unspecified)`) | abbe: 1 |
 | [SAMSUNG 30mm f/2](../../src/lens-data/samsung/Samsung30mmf2.data.ts) | US 2010/0149663 A1 | [PDF](../../patents/US20100149663A1.pdf) | 80.0% (4/5) | 80.0% (4/5) | 1 | 3 [glass] (Element 2: `Unmatched (684316 dense-flint class; vendor unresolved)`) | abbe: 1 |
 | [FUJIFILM FUJINON XF 23mm f/2 R WR](../../src/lens-data/fujifilm/FujifilmXF23mmf2RWR.data.ts) | US 2017/0351051 A1 | [PDF](../../patents/US20170351051A1.pdf) | 80.0% (8/10) | 80.0% (8/10) | 2 | 7A [glass] (L14 — biconcave double-asphere: `849401 - high-index lanthanum flint (likely PGM aspheric melt; no exact public catalog match)`)<br>13A [glass] (L21 — moving focus asphere: `803405 - high-index lanthanum flint (likely PGM aspheric melt; no exact public catalog match)`) | abbe: 2 |
 | [NIKON AF NIKKOR 85mm f/1.4 D IF](../../src/lens-data/nikon/Nikon85f14D.data.ts) | US 5,640,277 | [PDF](../../patents/US5640277.pdf) | 80.0% (8/10) | 80.0% (8/10) | 2 | 5 [glass] (Element 3: `Unmatched (796409 patent coordinate; vendor unresolved)`)<br>19 [glass] (Element 10: `Unmatched (748523 patent coordinate; vendor unresolved)`) | abbe: 2 |
@@ -166,7 +165,6 @@ These unresolved catalog-style labels are often better first catalog targets tha
 
 | Token | Token occurrences | Lens files | localPatentStatus | Representative rows |
 |---|---:|---:|---|---|
-| SK1 | 1 | 1 | patents/US3459469.pdf | [PENTAX SUPER-TAKUMAR 135mm f/2.5](../../src/lens-data/pentax/PentaxSuperTakumar135mmf2.5.data.ts) Element 3 (1.61025 / 56.50; abbe) |
 
 ## Sweep 3 - Proprietary Line-Index Backfill
 

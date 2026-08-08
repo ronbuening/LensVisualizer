@@ -8,7 +8,15 @@ catalog equivalent. If neither path is available, the engine falls back to parti
 dPgF-corrected indices, or the legacy Abbe approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **491 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **492 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+
+The August 8, 2026 Phase 87 follow-up recovered legacy SUMITA SK1 from an independently retained catalog record. Its
+six-term Schott-form polynomial reproduces the archival manufacturer's published C/d/F/g line indices to the shown
+precision and exactly matches the `1.61025 / 56.5` coordinate in the Pentax Super-Takumar 135mm f/2.5 patent design.
+The lens now has coefficient-backed dispersion on all five elements while the production supplier remains unspecified.
+The same pass rechecked the other unresolved coordinates in the six-lens Pentax batch against the available current and
+discontinued records from the six tracked vendors; only non-exact or non-unique neighbors were found, so those explicit
+unmatched classifications remain.
 
 The August 7, 2026 Phase 86 pass added seven first-party vendor curves: OHARA L-LAH91, L-LAH84, PBH25, YGH52,
 and BAM25, plus HOYA BACD6 and FL57. Compatible existing M-TAF1, M-TAFD51, and N-BAK4 curves raise twelve

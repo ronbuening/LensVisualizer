@@ -2,6 +2,17 @@
 
 Patent: US 3,459,469, Example 1
 
+## 2026-08-08 - Glass-source follow-up
+
+- Rechecked every unresolved coordinate in the six-lens Pentax batch against the available current and discontinued
+  OHARA, HOYA, HIKARI, SCHOTT, CDGM, and SUMITA records. The remaining rows expose only non-exact or non-unique nearby
+  glasses, so their explicit unmatched classifications remain unchanged.
+- Recovered the legacy SUMITA SK1 six-term Schott-form polynomial from AbbeTrex. Its evaluated
+  `nC/nd/nF/ng = 1.606981/1.610249/1.617781/1.623700` reproduces the archival manufacturer table's
+  `1.60698/1.61025/1.61778/1.62370` line-index row.
+- Added SK1 to the coefficient catalog and classified L3 as a SUMITA catalog equivalent while leaving the production
+  supplier unspecified. The lens is now 5/5 strict and trusted dispersion-covered.
+
 ## 2026-08-08 - Integration, semi-diameter, identity, and glass audit
 
 - Reviewed Figure 1 on PDF page 1 of the ignored local patent source.

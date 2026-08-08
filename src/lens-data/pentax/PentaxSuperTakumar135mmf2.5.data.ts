@@ -39,10 +39,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ equivalent to 14.7461697 mm whole-lens forward travel with fixed film.   ║
  * ║                                                                            ║
  * ║ Glass discipline: the patent gives nd/vd coordinates but no vendor.      ║
- * ║ Vendor-neutral coordinate or glass-family classes are retained for all   ║
- * ║ five elements; no historical melt/vendor identity is asserted. No        ║
- * ║ nC/nF/ng/dPgF values are authored because the source does not publish    ║
- * ║ them and vendor-specific historical identity remains unresolved.         ║
+ * ║ Vendor-neutral coordinate or catalog-equivalent labels retain that       ║
+ * ║ uncertainty. L3's exact legacy SUMITA SK1 coordinate is coefficient-     ║
+ * ║ backed without asserting the production supplier. No nC/nF/ng/dPgF       ║
+ * ║ values are authored directly because the patent does not publish them.   ║
  * ║                                                                            ║
  * ║ Product metadata: period Asahi Optical literature gives 135 mm f/2.5,    ║
  * ║ five elements, 18° angle of view, 1.5 m minimum focus, f/22 minimum      ║
@@ -123,7 +123,7 @@ const LENS_DATA = {
       vd: 56.5,
       indexReference: "d",
       fl: 108.206555,
-      glass: "SK1 class (vendor unspecified)",
+      glass: "SK1 (SUMITA catalog equivalent for patent coordinate; production supplier unspecified)",
       apd: false,
       role: "Positive second group preceding the long telephoto separation to L4.",
     },

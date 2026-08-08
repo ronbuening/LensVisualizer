@@ -1,10 +1,22 @@
 /**
- * Vendor-published Sumita optical glass dispersion entries.
+ * Verified Sumita optical glass dispersion entries.
  */
 
 import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const SUMITA_GLASS_ENTRIES: readonly GlassEntry[] = [
+  /* Phase 87: legacy SK1 recovered during the Pentax Super-Takumar
+   * 135mm f/2.5 follow-up glass audit.
+   */
+  {
+    name: "SK1",
+    vendor: "Sumita",
+    polynomial: [2.54976, -0.00973743, 0.0149685, 0.000429407, -0.0000233535, 0.00000155728],
+    nd: 1.61025,
+    vd: 56.5,
+    source:
+      "AbbeTrex Sumita SK1 legacy catalog record, accessed 2026-08-08; Schott-form polynomial cross-checked against the archival SUMITA C/d/F/g line-index table (SumitaAll.PDF).",
+  },
   /* Phase 82: discontinued-inclusive first-party catalog rows recovered during
    * the Angénieux patent-glass audit.
    */

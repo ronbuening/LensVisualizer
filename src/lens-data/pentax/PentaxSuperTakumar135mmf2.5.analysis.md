@@ -95,7 +95,7 @@ historical glass vendor for either element.
 
 ### L3 — Positive Meniscus
 
-**nd = 1.61025, νd = 56.5. Glass: SK1 class (vendor unspecified). f = +108.206555 mm.**
+**nd = 1.61025, νd = 56.5. Glass: SUMITA SK1 catalog equivalent; production supplier unspecified. f = +108.206555 mm.**
 
 L3 forms the second air-separated group. It adds positive power ahead of the long L3-to-L4 separation that the patent
 uses as part of the telephoto configuration. The patent describes the first cemented group as compensating chromatic
@@ -103,10 +103,11 @@ undercorrection associated with this following positive section; the present ana
 a property of the patent's system-level balancing strategy rather than assigning a vendor-specific dispersion behavior
 to L3.
 
-The patent pair is an exact match to the legacy SK1 coordinate published in an archival Sumita optical-glass table.
-Current OHARA, HOYA, HIKARI, SCHOTT, and CDGM catalogs instead place their nearest SK/BSM/ZK families close to, but not
-exactly at, this coordinate. Because the patent names no glass maker or melt, the data records only the vendor-neutral
-SK1 class and does not import vendor-specific line indices or Sellmeier behavior.
+The patent pair is an exact match to the legacy SK1 coordinate published in an archival SUMITA optical-glass table.
+An independently retained legacy catalog record also publishes the six-term Schott-form polynomial. Evaluating it gives
+`nC = 1.606981`, `nd = 1.610249`, `nF = 1.617781`, and `ng = 1.623700`, reproducing the archival manufacturer's
+`1.60698 / 1.61025 / 1.61778 / 1.62370` row. The data therefore uses SUMITA SK1 as a coefficient-backed optical
+equivalent while continuing to leave the production supplier and historical melt unspecified.
 
 ### L4 — Plano-Concave Negative
 
@@ -142,18 +143,18 @@ or equivalent points.
 |---|---:|---:|---|---|
 | 741278 class | 1.74077 | 27.7 | L1 | Vendor unspecified |
 | 640602 class | 1.64000 | 60.2 | L2 | Vendor unspecified |
-| SK1 class | 1.61025 | 56.5 | L3 | Vendor unspecified |
+| SUMITA SK1 catalog equivalent | 1.61025 | 56.5 | L3 | Exact coordinate and spectral-line match; production supplier unspecified |
 | 720437 class | 1.72000 | 43.7 | L4, L5 | Vendor unspecified |
 
-Cross-vendor comparison does not justify a historical vendor assignment for any element. Exact or near-exact coordinate
-examples differ by vendor and catalog generation. L3 is the clearest case: an archival Sumita SK1 row reproduces
-$nd=1.61025$, $νd=56.5$ exactly, while current HIKARI J-SK2 is $nd=1.60738$, $νd=56.74$ and uses `610565` only as its
-e-line glass code. The data therefore uses the family label `SK1 class (vendor unspecified)` rather than treating
-`610565` as a vendor-specific d-line code.
+Cross-vendor comparison does not justify a historical production-vendor assignment for any element. Exact or near-exact
+coordinate examples differ by vendor and catalog generation. L3 is the one defensible coefficient-backed exception:
+SUMITA's archival SK1 row reproduces both the patent coordinate and the independently published C/d/F/g line indices.
+The catalog-equivalent wording supplies its measured dispersion curve without claiming that Asahi used SUMITA glass.
 
-No `nC`, `nF`, `ng`, or `dPgF` values are present in the validated data file. Consequently, the analysis makes no APO,
-ED, or anomalous-partial-dispersion claim. Any chromatic interpretation is limited to the patent's own description of
-the power and Abbe-number balancing among the groups.
+No `nC`, `nF`, `ng`, or `dPgF` values are authored directly on the elements. L3 instead receives the cross-checked SK1
+catalog polynomial, while the other elements use their compatible catalog equivalents or retained patent fallbacks.
+The analysis makes no APO, ED, or anomalous-partial-dispersion claim; chromatic interpretation remains limited to the
+patent's description of power and Abbe-number balancing among the groups.
 
 ## Focus Mechanism
 
@@ -238,3 +239,5 @@ cross-gap calculations require **0.0 mm** hidden trim under the current geometry
 8. CDGM GLASS CO., LTD., **Optical Glass Database**: https://www.cdgmgd.com/database/toWebDatabase.htm?url=database
 9. SUMITA OPTICAL GLASS, Inc., archival manufacturer optical-glass table; the SK1 row gives $nd=1.61025$,
    $νd=56.5$: https://web.stanford.edu/class/ee347/SumitaAll.PDF
+10. AbbeTrex, **Sumita SK1** legacy glass record; six-term Schott-form dispersion polynomial:
+    https://abbetrex.com/glass/sumita/sumita-sk1/
