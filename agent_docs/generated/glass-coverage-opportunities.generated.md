@@ -9,13 +9,13 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **532** lenses scanned (**522** visible)
-- **5166 / 5814** non-air surfaces use strict catalog Sellmeier data (88.9%)
-- **5177 / 5814** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 89.0%)
+- **538** lenses scanned (**528** visible)
+- **5220 / 5880** non-air surfaces use strict catalog Sellmeier data (88.8%)
+- **5231 / 5880** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 89.0%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
-- **274** code-only missing-Sellmeier elements in Sweep 2: **0** active unreviewed, **122** self-recording explicit dispositions, **0** dispositions missing any review record
-- **0** unresolved named-token elements in Sweep 2B, producing **0** token occurrences across **0** distinct tokens
+- **279** code-only missing-Sellmeier elements in Sweep 2: **0** active unreviewed, **127** self-recording explicit dispositions, **0** dispositions missing any review record
+- **1** unresolved named-token elements in Sweep 2B, producing **1** token occurrences across **1** distinct tokens
 - **0** Tier A proprietary backfill rows in Sweep 3
 
 ## Sweep 1 - Relabel Mismatches
@@ -97,6 +97,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [LEICA SUMMILUX 28mm f/1.7 ASPH. (Leica Q, Q2, Q3)](../../src/lens-data/leica/Leica28mmf17.data.ts) | US 2016/0266350 A1 | [PDF](../../patents/US20160266350A1.pdf) | 81.8% (9/11) | 81.8% (9/11) | 2 | 12A [glass] (Element 6: `877370 — high-index lanthanum glass (patent nd=1.87722, nu_d=37.0)`)<br>20A [glass] (Element 11: `Unmatched (patent nd=1.68250, νd=33.00; prior H-ZF52A annotation rejected on dispersion)`) | abbe: 2 |
 | [AGFA COLOR-MAGNOLAR II 100mm f/4.5](../../src/lens-data/agfa/AgfaColorMagnolarII100mmf45.data.ts) | GB 775,944 | [PDF](../../patents/GB_775944_A.pdf) | 80.0% (4/5) | 60.0% (3/5) | 1 | 4 [glass] (Element 3: `Unmatched (540/509 crown-flint-boundary glass; no public catalog match located)`) | abbe: 1 |
 | [OLYMPUS E.ZUIKO AUTO-T 135mm f/3.5](../../src/lens-data/olympus/OlympusZuiko135mmf35.data.ts) | US 3,838,911 | [PDF](../../patents/US3838911.pdf) | 80.0% (4/5) | 80.0% (4/5) | 1 | 3 [glass] (Element 2: `487698 — FK/FSL low-dispersion crown class (patent nd=1.48749, νd=69.8; no exact modern coefficient-backed match)`) | abbe: 1 |
+| [PENTAX SUPER-TAKUMAR 135mm f/2.5](../../src/lens-data/pentax/PentaxSuperTakumar135mmf2.5.data.ts) | US 3,459,469 | [PDF](../../patents/US3459469.pdf) | 80.0% (4/5) | 80.0% (4/5) | 1 | 4 [glass] (Element 3: `SK1 class (vendor unspecified)`) | abbe: 1 |
 | [SAMSUNG 30mm f/2](../../src/lens-data/samsung/Samsung30mmf2.data.ts) | US 2010/0149663 A1 | [PDF](../../patents/US20100149663A1.pdf) | 80.0% (4/5) | 80.0% (4/5) | 1 | 3 [glass] (Element 2: `Unmatched (684316 dense-flint class; vendor unresolved)`) | abbe: 1 |
 | [FUJIFILM FUJINON XF 23mm f/2 R WR](../../src/lens-data/fujifilm/FujifilmXF23mmf2RWR.data.ts) | US 2017/0351051 A1 | [PDF](../../patents/US20170351051A1.pdf) | 80.0% (8/10) | 80.0% (8/10) | 2 | 7A [glass] (L14 — biconcave double-asphere: `849401 - high-index lanthanum flint (likely PGM aspheric melt; no exact public catalog match)`)<br>13A [glass] (L21 — moving focus asphere: `803405 - high-index lanthanum flint (likely PGM aspheric melt; no exact public catalog match)`) | abbe: 2 |
 | [NIKON AF NIKKOR 85mm f/1.4 D IF](../../src/lens-data/nikon/Nikon85f14D.data.ts) | US 5,640,277 | [PDF](../../patents/US5640277.pdf) | 80.0% (8/10) | 80.0% (8/10) | 2 | 5 [glass] (Element 3: `Unmatched (796409 patent coordinate; vendor unresolved)`)<br>19 [glass] (Element 10: `Unmatched (748523 patent coordinate; vendor unresolved)`) | abbe: 2 |
@@ -144,6 +145,7 @@ These rows contain resin, cement, plastic, liquid, or unclassified optical media
 | [NIKON AF ZOOM-NIKKOR 28-200mm f/3.5-5.6 G IF-ED](../../src/lens-data/nikon/NikonAFZoomNikkor28200mmf3556GIFED.data.ts) | US 6,621,643 B2 | [PDF](../../patents/US6621643.pdf) | 85.7% (12/14) | 85.7% (12/14) | 2 | 6A [resin] (Element 4 — L21 resin layer: `Unmatched (optical resin, nd=1.553890, νd=38.09)`)<br>25A [resin] (Element 13 — Gm L2 resin layer: `Unmatched (optical resin, nd=1.553890, νd=38.09)`) | abbe: 2 |
 | [NIKON AF-S NIKKOR 24mm f/1.4 G ED](../../src/lens-data/nikon/NikonNikkorAFS24mmf14G.data.ts) | US 8,416,512 B2 | [PDF](../../patents/US8416512.pdf) | 85.7% (12/14) | 85.7% (12/14) | 2 | 14 [cement] (Cement layer 1: `Patent cement medium (nd=1.51400, νd=42.83)`)<br>19 [cement] (Cement layer 2: `Patent cement medium (nd=1.51400, νd=42.83)`) | abbe: 2 |
 | [NIKON NIKKOR Z 50mm f/1.8 S](../../src/lens-data/nikon/NikonNikkorZ50f18S.data.ts) | WO2019/220618 A1 | [PDF](../../patents/WO2019220618A1.pdf) | 85.7% (12/14) | 85.7% (12/14) | 2 | 6A [other] (element: `no glass annotation`)<br>25 [other] (element: `no glass annotation`) | constant: 2 |
+| [PENTAX SMC DA 16-45mm f/4 ED AL](../../src/lens-data/pentax/PentaxDA1645mmF4EDAL.data.ts) | US 7,106,520 B2 | [PDF](../../patents/US7106520.pdf) | 85.7% (12/14) | 85.7% (12/14) | 2 | 5 [glass] (L13: `Unmatched (nd=1.52538, vd=56.3)`)<br>19A [resin] (L41 resin: `Resin layer (patent hybrid asphere)`) | abbe: 2 |
 | [NIKON AF-P DX NIKKOR 18-55mm f/3.5-5.6 G VR](../../src/lens-data/nikon/NikonAFPDX1855mmf3556G.data.ts) | US 10,690,896 B2 | Missing from untracked local patents/ references (US10690896B2, US10690896, 10690896) | 84.6% (11/13) | 84.6% (11/13) | 2 | 2 [resin] (L11 resin aspherical layer: `UV-curable resin (patent material, no catalog match)`)<br>20 [plastic] (L61 plastic asphere: `Optical plastic (patent material, no catalog match)`) | abbe: 2 |
 | [NIKON R-UW AF ZOOM-NIKKOR 20-35mm f/2.8](../../src/lens-data/nikon/NikonRUWAFZoomNikkor2035mmf28.data.ts) | US 5,490,012 | [PDF](../../patents/US5490012.pdf) | 81.8% (9/11) | 81.8% (9/11) | 2 | WTR [other] (element: `no glass annotation`)<br>17 [glass] (Element 9: `Unmatched (748/523 lanthanum crown; historical/proprietary melt)`) | abbe: 1, constant: 1 |
 | [PENTAX HD D FA645 35mm f/3.5 AL [IF]](../../src/lens-data/pentax/PentaxDFA64535mmf35AL.data.ts) | US 2001/0007512 A1 | [PDF](../../patents/US20010007512A1.pdf) | 81.8% (9/11) | 81.8% (9/11) | 2 | 4 [resin] (Element 2 synthetic-resin layer: `Unmatched (synthetic resin; patent nd=1.52700, νd=43.7)`)<br>18 [glass] (Element 10: `Unmatched (barium-crown vicinity; no exact public-catalog match)`) | abbe: 2 |
@@ -164,6 +166,7 @@ These unresolved catalog-style labels are often better first catalog targets tha
 
 | Token | Token occurrences | Lens files | localPatentStatus | Representative rows |
 |---|---:|---:|---|---|
+| SK1 | 1 | 1 | patents/US3459469.pdf | [PENTAX SUPER-TAKUMAR 135mm f/2.5](../../src/lens-data/pentax/PentaxSuperTakumar135mmf2.5.data.ts) Element 3 (1.61025 / 56.50; abbe) |
 
 ## Sweep 3 - Proprietary Line-Index Backfill
 

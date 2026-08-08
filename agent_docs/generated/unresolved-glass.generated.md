@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **532** lenses scanned
-- **5814** non-air surfaces examined
-- **5821** element glass declarations examined
-- **338** non-explicit-unmatched annotations did not resolve
-- **176** distinct unresolved glass-like tokens found
+- **538** lenses scanned
+- **5880** non-air surfaces examined
+- **5887** element glass declarations examined
+- **340** non-explicit-unmatched annotations did not resolve
+- **177** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -192,6 +192,7 @@ or per-lens patent backfills.
 | PBM18Y | 1 | 1 | |
 | PKH1-CLASS | 1 | 1 | |
 | QF2 | 1 | 1 | |
+| SK1 | 1 | 1 | |
 | SSK1-CLASS | 1 | 1 | |
 | ZBAF17 | 1 | 1 | |
 
@@ -950,6 +951,10 @@ or per-lens patent backfills.
 ### QF2 — 1 occurrence
 
 - [RODENSTOCK GRANDAGON-N 90mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN90mmf45.data.ts) 5: `LLF3 / QF2 class (inferred, d-code 561468)`
+
+### SK1 — 1 occurrence
+
+- [PENTAX SUPER-TAKUMAR 135mm f/2.5](../../src/lens-data/pentax/PentaxSuperTakumar135mmf2.5.data.ts) 4: `SK1 class (vendor unspecified)`
 
 ### SSK1-CLASS — 1 occurrence
 

@@ -9,12 +9,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **532** lenses scanned
-- **605** total code-only elements found
-- **274** elements in this report
-- **109** distinct lens files affected
+- **538** lenses scanned
+- **648** total code-only elements found
+- **279** elements in this report
+- **110** distinct lens files affected
 - **0** active unreviewed elements have no review-record hit or explicit disposition
-- **122** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
+- **127** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
 - **0** dispositions lack any review record
 
 ## Prioritized Unreviewed Queue
@@ -79,12 +79,15 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 501565 | 1 | 1 | patents/US3743384.pdf | All rows explicitly disposed |
 | 504667 | 1 | 1 | patents/US2721499.pdf | All rows have review records |
 | 514530 | 1 | 1 | patents/JP2016021011A.pdf | All rows have review records |
+| 516499 | 1 | 1 | patents/US7307794.pdf | All rows explicitly disposed |
+| 516506 | 1 | 1 | patents/US7307794.pdf | All rows explicitly disposed |
 | 518523 | 1 | 1 | patents/US4871239.pdf | All rows have review records |
 | 518652 | 1 | 1 | patents/US2821112.pdf | All rows explicitly disposed |
 | 519573 | 1 | 1 | patents/DE_1228820_B.pdf | All rows explicitly disposed |
 | 520642 | 1 | 1 | patents/DE_3907928_A1.pdf | All rows explicitly disposed |
 | 523701 | 1 | 1 | patents/US20100194930A1.pdf | All rows explicitly disposed |
 | 525558 | 1 | 1 | patents/US8994842.pdf | All rows explicitly disposed |
+| 525563 | 1 | 1 | patents/US7307794.pdf | All rows explicitly disposed |
 | 525596 | 1 | 1 | patents/US3632190.pdf | All rows explicitly disposed |
 | 531557 | 1 | 1 | patents/US8994842.pdf | All rows explicitly disposed |
 | 533489 | 1 | 1 | patents/US2084309.pdf | All rows explicitly disposed |
@@ -130,6 +133,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 630581 | 1 | 1 | patents/JP2022100641A.pdf | All rows explicitly disposed |
 | 635232 | 1 | 1 | patents/US8081392.pdf | All rows explicitly disposed |
 | 640353 | 1 | 1 | patents/US4277149.pdf | All rows have review records |
+| 641589 | 1 | 1 | patents/US7307794.pdf | All rows explicitly disposed |
 | 642581 | 1 | 1 | patents/US2721499.pdf | All rows have review records |
 | 650396 | 1 | 1 | patents/DE_3907928_A1.pdf | All rows explicitly disposed |
 | 656337 | 1 | 1 | patents/JPA 2021076740-000000.pdf | All rows explicitly disposed |
@@ -220,6 +224,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 835447 | 1 | 1 | patents/CN205720849U.pdf | All rows have review records |
 | 840433 | 1 | 1 | patents/US5528428.pdf | All rows have review records |
 | 842433 | 1 | 1 | patents/JPA 2022012964-000000.pdf | All rows explicitly disposed |
+| 843242 | 1 | 1 | patents/US7307794.pdf | All rows explicitly disposed |
 | 849401 | 1 | 1 | patents/US20170351051A1.pdf | All rows have review records |
 | 850440 | 1 | 1 | patents/US20180164556A1.pdf | All rows explicitly disposed |
 | 852401 | 1 | 1 | patents/JPWO2019073744A1.pdf | All rows explicitly disposed |
@@ -915,6 +920,16 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | L13 (Element 4) | 6 | `Unmatched (810372 class; no defensible current-catalog identity recovered)` | 1.81000 / 37.20 | No catalog entry | abbe | patents/US20180164556A1.pdf | Explicit disposition in data |
 | L15 (Element 6) | 9 | `Unmatched (850440 class; no defensible current-catalog identity recovered)` | 1.85000 / 44.00 | No catalog entry | abbe | patents/US20180164556A1.pdf | Explicit disposition in data |
 | L23 (Element 9) | 14 | `Unmatched (564463 class; no defensible current-catalog identity recovered)` | 1.56406 / 46.30 | No catalog entry | abbe | patents/US20180164556A1.pdf | Explicit disposition in data |
+
+### [PENTAX SMC DA 18-55mm f/3.5-5.6 AL](../../src/lens-data/pentax/PentaxDA1855mmF3556AL.data.ts) - US 7,307,794 B2
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L13 (L13) | 5 | `Unmatched (nd=1.52538, vd=56.3; code position 525563)` | 1.52538 / 56.30 | No catalog entry | abbe | patents/US7307794.pdf | Explicit disposition in data |
+| L21 (L21) | 9 | `Unmatched (nd=1.51601, vd=49.9; code position 516499)` | 1.51601 / 49.90 | No catalog entry | abbe | patents/US7307794.pdf | Explicit disposition in data |
+| L23 (L23) | 12 | `Unmatched (nd=1.84333, vd=24.2; code position 843242)` | 1.84333 / 24.20 | No catalog entry | abbe | patents/US7307794.pdf | Explicit disposition in data |
+| L41 (L41) | 17 | `Unmatched (nd=1.64118, vd=58.9; code position 641589)` | 1.64118 / 58.90 | No catalog entry | abbe | patents/US7307794.pdf | Explicit disposition in data |
+| L42 (L42) | 19 | `Unmatched (nd=1.51601, vd=50.6; code position 516506)` | 1.51601 / 50.60 | No catalog entry | abbe | patents/US7307794.pdf | Explicit disposition in data |
 
 ### [RODENSTOCK APO-SIRONAR-W 150mm f/5.6](../../src/lens-data/rodenstock/RodenstockApoSironarW150mmf56.data.ts) - DE 3907928 A1
 
