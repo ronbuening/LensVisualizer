@@ -31,3 +31,10 @@ Patent: US 4,046,459, Example 2 / Fig. 5 / Table 3
 - `npm run format:check` - passed.
 - `npm run lint` - passed.
 - `npm run test` - initially exposed stale generated route metadata; after `npm run generate:metadata`, passed (183 files, 2212 tests).
+
+## 2026-08-07 - Legacy BAF5 catalog recovery
+
+- Visually rechecked US 4,046,459 Example 2: L2 remains `nd=1.60729`, `νd=49.3`, code 607493.
+- HOYA's obsolete BAF5 row (`1.607292 / 49.336899`) is the exact coefficient-backed catalog equivalent. The
+  production supplier remains unspecified.
+- Strict and trusted catalog coverage are now complete at `7/7`; no geometry changed.

@@ -18,3 +18,9 @@ Patent: US 2010/0220400 A1, Example 2 / Table 2
 ### Analysis sync
 
 - Updated the L54 text and glass map from `821/426` to `821426`.
+
+## 2026-08-07 — M-TAFD51 catalog recovery
+
+- Visually rechecked Table 2 in local `patents/US20100220400A1.pdf`; L54 remains `1.82080 / 42.64`.
+- HOYA's current M-TAFD51 row (`1.82080 / 42.71`) is compatible with the patent coordinate and supplies a vendor polynomial.
+- Relabeled L54 as an M-TAFD51 catalog equivalent while leaving Nikon's production supplier unspecified. This supersedes the earlier source-limited no-match disposition; no geometry changed.

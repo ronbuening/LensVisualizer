@@ -71,7 +71,7 @@ const LENS_DATA = {
       nd: 1.92286,
       vd: 20.9,
       fl: 82.0,
-      glass: "PBH21 (OHARA; historical 923209)",
+      glass: "E-FDS1 (HOYA catalog-equivalent; 923209, production supplier unspecified)",
       apd: "patent",
       apdNote: "ΔPgF = +0.0282 (patent-listed)",
       dPgF: 0.0282,

@@ -58,7 +58,7 @@ const LENS_DATA = {
       nd: 1.77279,
       vd: 49.4,
       fl: -73.069,
-      glass: "Unmatched 773/494 (near Hoya M-TAF1 / Ohara S-LAH66N)",
+      glass: "M-TAF1 (HOYA catalog-equivalent; patent supplier unspecified)",
       role: "High-index negative front meniscus; reduces oblique-ray deviation and front-group diameter.",
     },
     {
@@ -159,7 +159,7 @@ const LENS_DATA = {
       nd: 1.4645,
       vd: 65.8,
       fl: 94.823,
-      glass: "Unmatched 465/658 (FK/phosphate crown class)",
+      glass: "FC3 (HOYA catalog-equivalent; production supplier unspecified)",
       role: "Forward half of the split rear positive member used by the Type II converging group.",
     },
     {

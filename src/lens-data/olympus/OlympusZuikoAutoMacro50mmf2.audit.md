@@ -51,3 +51,10 @@ Patent: US 4,708,445, Embodiment 6
 - No verified first-party coefficient row is inside the runtime d-line safety window; family cross-references alone
   do not justify borrowing a dispersion curve.
 - Reworded L5 as explicit unmatched `683447`; no prescription, focus, aperture, or semi-diameter values changed.
+
+## 2026-08-07 - Legacy BAF22 catalog recovery
+
+- Visually rechecked US 4,708,445 Embodiment 6: L5 remains `nd=1.68250`, `νd=44.65`, code 683447.
+- HOYA's obsolete BAF22 row (`1.682496 / 44.671672`) is the exact coefficient-backed catalog equivalent. The
+  production supplier remains unspecified.
+- Strict and trusted catalog coverage are now complete at `9/9`; no geometry changed.

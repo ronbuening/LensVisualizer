@@ -62,7 +62,7 @@ const LENS_DATA = {
       nd: 1.5168,
       vd: 64.2,
       fl: 487.2,
-      glass: "BK7 / S-BSL7 class borosilicate crown",
+      glass: "N-BK7 (Schott catalog-equivalent; production supplier unspecified)",
       apd: "patent",
       nC: 1.51432,
       nF: 1.52237,

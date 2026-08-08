@@ -126,7 +126,9 @@ The cemented surface (r₄ = +22.593) is a steeply curved junction that is criti
 | Center thickness | 8.89 mm (patent) / 12.0 mm (production) |
 | Focal length | +47.0 mm (patent) / +63.5 mm (production) |
 
-**Glass identification:** Matches HOYA FD110 exactly (Δn_d = 0.000, Δν_d = 0.0). This is a very dense flint with high dispersion. Six-digit code: 740/282.
+**Glass identification:** HOYA's obsolete FD3 row (`nd = 1.739999`, `νd = 28.245`) reproduces the patent's
+740/282 coordinate and supplies its coefficient-backed dispersion curve. It is used as a catalog equivalent; the
+production supplier is unspecified. FD110 is a different HOYA glass at code 785257 and was the wrong prior label.
 
 #### L5: Biconcave Negative
 
@@ -191,7 +193,7 @@ The six elements use only four distinct glass types:
 | 717/481 | 1.717 | 48.1 | L1 | OHARA S-LAM3 |
 | 626391 | 1.626 | 39.1 | L2 | Barium flint; vendor unresolved |
 | 589/612 | 1.589 | 61.2 | L3 | OHARA S-BAL35 / HOYA BACD5 |
-| 740/282 | 1.740 | 28.2 | L4 | HOYA FD110 |
+| 740/282 | 1.740 | 28.2 | L4 | HOYA FD3 catalog equivalent; supplier unspecified |
 | 717/295 | 1.717 | 29.5 | L5, L6 | HOYA E-FD1 / Schott SF1 |
 
 Several observations merit attention. First, no glass in this design has anomalous partial dispersion (APD). There are no ED (extra-low dispersion) elements, no fluorite, no fluorophosphate crowns. The design predates Nikon's widespread adoption of ED glass in telephoto lenses, which began with the Ai Nikkor 300mm f/2.8 ED (IF) in 1977 — the same year the 135mm f/2 received its AI update. Second, the glass palette is heavily weighted toward flints: of the four distinct glass types, two are dense flints (L4 at ν_d = 28.2 and L5/L6 at ν_d = 29.5), one is a regular flint (L2 at ν_d = 39.1), and one is a barium crown (L3 at ν_d = 61.2). L1's lanthanum-type glass (ν_d = 48.1) sits at the boundary between crown and flint families. This heavy use of high-index, high-dispersion glass is characteristic of Sonnar-derived designs where the rear group's negative power demands high-index materials to control curvatures. Third, L5 and L6 share the same glass type despite occupying different groups and serving different optical functions. This is an economical choice that simplifies manufacturing and procurement while exploiting the fact that both elements benefit from high refractive index and high dispersion for their respective roles.

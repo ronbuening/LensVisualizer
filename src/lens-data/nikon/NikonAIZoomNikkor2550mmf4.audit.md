@@ -32,3 +32,23 @@ Patent: US 4,189,212, Example 8 / Claim 20.
 ### Verification
 
 - Pending batch verification after the Nikon audit pass.
+
+## 2026-08-07 — Legacy K10 catalog recovery
+
+- The official Schott K10 datasheet supplies Sellmeier coefficients for `nd=1.50137`, `νd=56.41`, code 501564.
+- The three repeated patent rows at L6, L7, and L9b now resolve through that curve; the stored patent coordinates and labels remain unchanged.
+- The local `patents/US4189212.pdf` review recorded above remains the prescription source. No geometry changed.
+
+## 2026-08-07 — Legacy FC3 catalog recovery
+
+- Visually rechecked US 4,189,212 Example 8: L9a remains `nd=1.46450`, `νd=65.8`, code 465658.
+- HOYA's obsolete FC3 row (`1.464502 / 65.767612`) is the exact coefficient-backed catalog equivalent. The
+  production supplier remains unspecified.
+- Strict and trusted coverage rise to `10/11`; only L1's separate 773494 coordinate remains unmatched. No geometry
+  changed.
+
+## 2026-08-07 — M-TAF1 catalog recovery
+
+- Visually rechecked Example 4 in local `patents/US4189212.pdf`; L1 remains `1.77279 / 49.4`.
+- HOYA's discontinued M-TAF1 row (`1.77250 / 49.46`) is compatible with the rounded patent coordinate and supplies a vendor polynomial.
+- Relabeled L1 as an M-TAF1 catalog equivalent while leaving Nikon's production supplier unspecified. No geometry changed.

@@ -48,7 +48,7 @@ Element focal lengths below are standalone in-air thick-lens values computed dir
 
 The patent describes L1 as, from object side to image side, a biconvex lens, a biconvex lens, a positive meniscus convex to the object, and a cemented biconvex-plus-biconcave doublet (¶0060). It also states that L1 preferably contains at least one positive lens with νd ≥ 80 and that the cemented doublet helps correct axial chromatic aberration while reducing sensitivity to first-group decentering (¶0044). In Example 2, two of L1's four positive elements meet that νd ≥ 80 criterion; the third νd = 95.10 element is in L3, not L1.
 
-**L11 — Biconvex positive.** nd = 1.51680, νd = 64.20. Glass: BK7 / S-BSL7 class borosilicate crown. f = +487.2 mm. This weak, nearly symmetric crown element begins the axial convergence without carrying enough power to dominate the chromatic correction. Its patent-listed θgF is 0.534.
+**L11 — Biconvex positive.** nd = 1.51680, νd = 64.20. Glass: N-BK7 catalog-equivalent; production supplier unspecified. f = +487.2 mm. This weak, nearly symmetric crown element begins the axial convergence without carrying enough power to dominate the chromatic correction. Its patent-listed C/F/g indices select the N-BK7 curve over the nearby S-BSL7 equivalent.
 
 **L12 — Biconvex positive, FLD class.** nd = 1.43700, νd = 95.10. Glass: FCD100-class fluorite-like ED glass; Sigma markets this class as FLD. f = +424.6 mm. This is the first of the three very-low-dispersion elements. Its patent-listed θgF is 0.533, giving ΔPgF ≈ +0.049 against the Schott normal line used here.
 
@@ -115,7 +115,7 @@ The patent gives nd and νd for every element and gives C/F/g-line indices plus 
 | FCD100-class fluorite-like ED (Sigma FLD; nearby S-FPL53/S-FPL55-class equivalents) | 1.43700 | 95.10 | θgF = 0.533; ΔPgF ≈ +0.049 for L12/L13 | L12, L13, L33 | Primary secondary-spectrum correction |
 | PCD51-class low-dispersion crown | 1.59349 | 67.00 | θgF = 0.536 for L14 | L14 | Crown half of L1 doublet |
 | Dense lanthanum flint, M-NBFD130 class | 1.80610 | 40.73 | θgF = 0.567 for L15 | L15, L63 | L1 flint partner and rear positive |
-| BK7 / S-BSL7-class crown | 1.51680 | 64.20 | θgF = 0.534 for L11 | L11 | Weak front collector |
+| N-BK7 catalog-equivalent | 1.51680 | 64.20 | Patent nC/nF/ng = 1.51432/1.52237/1.52667 | L11 | Weak front collector; supplier unspecified |
 | N-LAF34 / TAF1-class lanthanum dense flint | 1.77250 | 49.62 | catalog-class | L21 | Front focus meniscus |
 | SF6 / S-TIH6-class dense flint | 1.80518 | 25.46 | catalog-class | L22, L41, L42, L52 | High-dispersion partner in focus, L4, and OS groups |
 | E-C3 / S-NSL3-class light crown | 1.51823 | 58.96 | catalog-class | L23 | Negative crown in L2 doublet |

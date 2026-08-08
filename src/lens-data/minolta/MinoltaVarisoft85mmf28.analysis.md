@@ -83,7 +83,7 @@ L5 is mechanically stationary during focusing — it does not move relative to L
 
 ### L6 — Negative Meniscus (Group B, soft-focus control)
 
-$n_d = 1.57616$, $\nu_d = 41.4$. Glass: `576414` light flint. No exact coefficient-backed public catalog match was found in the 2026-05-19 audit. $f \approx -166.8$ mm (patent scale), $\approx -141.8$ mm production.
+$n_d = 1.57616$, $\nu_d = 41.4$. Glass: FL57 (HOYA catalog-equivalent; patent supplier unspecified). $f \approx -166.8$ mm (patent scale), $\approx -141.8$ mm production.
 
 Surfaces: $r_{10} = -31.559$, $r_{11} = -48.743$. Center thickness: 3.22 mm. Shape: negative meniscus, concave toward the object.
 
@@ -93,7 +93,7 @@ The patent demonstrates (Column 6, lines 5–35) that widening $d_{B0}$ produces
 
 ## Glass Identification and Selection
 
-The prescription uses six distinct glasses. Minolta was one of the few camera manufacturers to produce its own optical glass, and several rows in this design have no exact match in publicly available catalogs. Those rows are recorded with six-digit code labels so future catalog additions can resolve automatically.
+The prescription uses six distinct glasses. Minolta was one of the few camera manufacturers to produce its own optical glass, and several rows in this design have no exact match in publicly available catalogs. L6 now uses HOYA FL57 as a coordinate-equivalent curve; the remaining unresolved rows retain six-digit codes for future catalog additions.
 
 | Element | $n_d$ | $\nu_d$ | Identification | Confidence | Role |
 |---------|-------|--------|----------------|------------|------|
@@ -102,7 +102,7 @@ The prescription uses six distinct glasses. Minolta was one of the few camera ma
 | L3 | 1.54072 | 46.8 | 541468 light flint | Code fallback | Doublet front — Abbe differential for achromatization |
 | L4 | 1.72 | 52.1 | 720521 lanthanum crown | Code fallback | Doublet rear — primary positive power behind stop |
 | L5 | 1.6968 | 55.5 | S-LAL14 (OHARA) | Confirmed ($\Delta n_d = 0$, $\Delta\nu_d = 0.03$) | Stationary field relay meniscus |
-| L6 | 1.57616 | 41.4 | 576414 light flint | Code fallback | Soft-focus control — low index keeps higher-order SA controllable |
+| L6 | 1.57616 | 41.4 | FL57 | HOYA catalog-equivalent | Soft-focus control — low index keeps higher-order SA controllable |
 
 The chromatic correction strategy pairs a high-$\nu_d$ crown (L1, L4, L5) against moderate-$\nu_d$ flints (L2, L3, L6). The two confirmed catalog glasses — S-TIM27 for L2 and S-LAL14 for L5 — are both standard OHARA production glasses that were widely available in the 1970s. The remaining four glasses are likely Minolta in-house melts, consistent with the company's well-documented practice of producing its own optical glass.
 

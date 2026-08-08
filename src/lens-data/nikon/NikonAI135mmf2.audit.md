@@ -24,3 +24,11 @@ Patent: US 4,062,630, Example V
 - Rechecked US 4,062,630 Example V surface 3: `R=38.148`, `d=2.74`, `nd=1.62606`, and `νd=39.1` agree with the data.
 - Replaced false `HOYA FD60` wording with code-first `626391` barium flint. Public CDGM H-BaF8 is a coefficient-backed code equivalent, but the patent does not identify its supplier.
 - Synchronized the analysis identification and code table. No geometry changed.
+
+## 2026-08-07 — Legacy FD3 correction
+
+- Visually rechecked US 4,062,630 Example V: L4 remains `nd=1.740`, `νd=28.2`, code 740282.
+- HOYA's obsolete catalog identifies this exact coordinate as FD3 (`1.739999 / 28.245048`). The old FD110 label
+  was incorrect: FD110 is code 785257.
+- Relabeled L4 as an FD3 catalog equivalent with the production supplier unspecified. Strict and trusted catalog
+  coverage are now complete at `6/6`; no geometry changed.

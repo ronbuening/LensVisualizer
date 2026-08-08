@@ -37,3 +37,11 @@ Patent: US 3,975,089, Table I / Fig. 1
 - This is a visual/proportional refinement, not a patent-derived SD; US 3,975,089 does not publish semi-diameter data.
 - The new value stays below the edge-thickness limit for the steep L7 rear surface pair.
 - Verification: `npm run typecheck` and focused `buildLens` / `elementRenderDiagnostics` tests passed; computed L7 edge thickness remains positive at about 0.246 mm.
+
+## 2026-08-07 — Legacy BSC6 and BAF12 catalog recovery
+
+- Visually rechecked US 3,975,089 Table I: L2 remains `1.531 / 62.1` (531621) and L11 remains `1.639 / 45.1`
+  (639451).
+- HOYA BSC6 (`1.531128 / 62.075664`) exactly covers L2. Existing SUMITA BAF12 (`1.6393 / 45.0`) covers the
+  rounded L11 coordinate. Both labels state catalog equivalence and leave the production suppliers unspecified.
+- Strict and trusted catalog coverage are now complete at `12/12`; no geometry changed.

@@ -23,3 +23,9 @@ Patent: JP2017-227799A, Example 1
 - Surface 8: replaced speculative `S-BAL2` with explicit unmatched 569560 barium-crown wording because multiple vendors occupy the coordinate.
 - Surface 21: replaced `S-TIH6` with code-first `806333` dense flint; the coordinate matches coefficient-backed NBFD15, but the patent does not identify a vendor.
 - Synchronized the L14/L25 analysis entries. No geometry changed.
+
+## 2026-08-07 — N-BAK4 catalog recovery
+
+- Visually rechecked Example 1 in local `patents/JP2017227799A.pdf`; L14 remains `1.56883 / 56.0`, code 569560.
+- Schott N-BAK4 reproduces the coordinate and already has coefficient-backed catalog coverage in the project.
+- Relabeled L14 as an N-BAK4 catalog equivalent while leaving Nikon's production supplier unspecified. The UV-cured composite element remains intentionally non-Sellmeier; no geometry changed.

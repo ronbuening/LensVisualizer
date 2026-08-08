@@ -140,7 +140,7 @@ const LENS_DATA = {
       nd: 1.57616,
       vd: 41.4,
       fl: -141.8,
-      glass: "576414 - light flint (catalog unresolved)",
+      glass: "FL57 (HOYA catalog-equivalent; patent supplier unspecified)",
       apd: false,
       role: "Group B soft-focus control element — low-index light flint provides fine SA control; as d_B0 widens, marginal ray height on L6 decreases, shifting the 3rd/5th-order SA balance to produce controlled image softening.",
     },

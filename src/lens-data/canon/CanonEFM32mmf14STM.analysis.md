@@ -75,7 +75,7 @@ Optically, L4 adds positive power before the stop while keeping surface curvatur
 
 ### L5-L6 (LF) — Stop-Front Cemented Chromatic Corrector
 
-**L5 / LFP: nd = 1.59282, νd = 68.6, θgF = 0.5441, ΔPgF ≈ +0.0157. Glass: HOYA FCD505. Standalone f = +34.17 mm.**  
+**L5 / LFP: nd = 1.59282, νd = 68.6, θgF = 0.5441, ΔPgF ≈ +0.0157. Glass: HOYA FCD515 catalog-equivalent; production supplier unspecified. Standalone f = +34.17 mm.**
 **L6 / LFN: nd = 1.73800, νd = 32.3, θgF = 0.5899, ΔPgF ≈ +0.0004. Glass: S-NBH53/S-NBH53V class (OHARA 738323). Standalone f = −19.23 mm.**  
 **Cemented-pair f = −54.17 mm.**
 
@@ -140,7 +140,7 @@ The patent publishes nd and νd for every element and θgF for the stop-adjacent
 | L1 | 1.61340 / 44.3 | S-NBM51 class (OHARA 613443) | Code match; front negative field-control glass. |
 | L2, L4 | 1.91082 / 35.3 | HOYA TAFD35L class | Exact nd with νd rounded from catalog value; very-high-index front positive glass. |
 | L3 | 1.85478 / 24.8 | S-NBH56 class (OHARA 855248) | Code match; dense high-dispersion negative partner. |
-| L5 / LFP | 1.59282 / 68.6 / 0.5441 | HOYA FCD505 | Exact match including θgF; low-dispersion anomalous positive member. |
+| L5 / LFP | 1.59282 / 68.6 / 0.5441 | HOYA FCD515 catalog-equivalent | Coefficient curve reproduces the patent θgF to rounding; production supplier unspecified. |
 | L6 / LFN | 1.73800 / 32.3 / 0.5899 | S-NBH53/S-NBH53V class (OHARA 738323) | Code match; high-dispersion stop-front negative member. |
 | L7 / LRP | 1.76385 / 48.5 / 0.5589 | S-LAH96 class (OHARA 764485) | Code match; positive member of LR. |
 | L8 / LRN | 1.67542 / 34.8 / 0.5825 | Unmatched 675/348 partial-dispersion flint | Patent value retained with derived ΔPgF ≈ −0.0028; no exact public catalog match found in checked references. |
@@ -248,4 +248,4 @@ Primary patent source: JP 2018-180366 A, *Imaging Optical System and Imaging App
 
 Canon product sources: Canon Camera Museum, **EF-M32mm f/1.4 STM**; Canon U.S.A. press release, **Canon Introduces New Lens Featuring The Largest and Fastest Aperture in The EF-M Lens Family**, 5 September 2018.
 
-Glass catalog sources checked: OHARA public data sheets and glass tables for S-NBM51, S-NBH56, S-NBH53/S-NBH53V, S-LAH96, S-LAH58, S-TIM25, and S-NSL36; HOYA public data sheets, catalog tables, and news releases for TAFD35L, FCD505, MP-/MC-TAFD305, and TAFD40-W / TAFD40. Where no exact public match was found, the data file uses the explicit `Unmatched` convention.
+Glass catalog sources checked: OHARA public data sheets and glass tables for S-NBM51, S-NBH56, S-NBH53/S-NBH53V, S-LAH96, S-LAH58, S-TIM25, and S-NSL36; HOYA public data sheets and catalog tables for TAFD35L, FCD505/FCD515, MP-/MC-TAFD305, and TAFD40-W / TAFD40. Where no exact public match was found, the data file uses the explicit `Unmatched` convention.

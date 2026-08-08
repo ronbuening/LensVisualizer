@@ -59,6 +59,7 @@ describe("glass catalog", () => {
   // to independent published Schott datasheet indices at the C/d/F/g lines.
   it.each([
     { name: "N-BK7", nC: 1.51432, nd: 1.5168, nF: 1.52238, ng: 1.52668, vd: 64.17 },
+    { name: "K10", nC: 1.49867, nd: 1.50137, nF: 1.50756, ng: 1.51243, vd: 56.41 },
     { name: "SF6", nC: 1.79609, nd: 1.80518, nF: 1.82775, ng: 1.84707, vd: 25.43 },
     { name: "P-LASF47", nC: 1.80023, nd: 1.8061, nF: 1.81994, ng: 1.83112, vd: 40.9 },
   ])("$name reproduces the published Schott datasheet indices at the C/d/F/g lines", (datasheet) => {
@@ -423,6 +424,39 @@ describe("glass catalog", () => {
     expect(evaluateCatalogAbbeNumber(entry!)).toBeCloseTo(53.95, 2);
     expect(assessCatalogGlassCompatibility(entry!, 1.7139, 53.2).compatible).toBe(true);
     expect(resolveGlass("713539")?.name).toBe("LAC8");
+  });
+
+  it.each([
+    { name: "BAF5", code: "607493", nd: 1.607292, vd: 49.336899 },
+    { name: "FEL3", code: "560471", nd: 1.560125, vd: 47.090971 },
+    { name: "CF2", code: "526511", nd: 1.526296, vd: 51.046045 },
+    { name: "FD3", code: "740282", nd: 1.739999, vd: 28.245048 },
+    { name: "FC3", code: "465658", nd: 1.464502, vd: 65.767612 },
+    { name: "BSC6", code: "531621", nd: 1.531128, vd: 62.075664 },
+    { name: "BAF22", code: "683447", nd: 1.682496, vd: 44.671672 },
+    { name: "LAFL4", code: "713433", nd: 1.712704, vd: 43.295113 },
+  ])("reproduces HOYA's official obsolete-catalog row for $name", ({ name, code, nd, vd }) => {
+    const entry = resolveGlass(`${name} (HOYA)`);
+    expect(entry?.name).toBe(name);
+    expect(entry?.code6).toBe(code);
+    expect(resolveGlass(code)?.name).toBe(name);
+    expect(evaluateSellmeier(entry!, LINE_NM.d)).toBeCloseTo(nd, 5);
+    expect(evaluateCatalogAbbeNumber(entry!)).toBeCloseTo(vd, 2);
+  });
+
+  it.each([
+    { name: "L-LAH91", nd: 1.7645, vd: 49.096913 },
+    { name: "L-LAH84", nd: 1.80835, vd: 40.548503 },
+    { name: "PBH25", nd: 1.761797, vd: 27.107724 },
+    { name: "YGH52", nd: 1.7865, vd: 50.001717 },
+    { name: "BAM25", nd: 1.60323, vd: 42.320943 },
+    { name: "BACD6", nd: 1.613753, vd: 56.377856 },
+    { name: "FL57", nd: 1.576163, vd: 41.39334 },
+  ])("reproduces the phase 86 vendor row for $name", ({ name, nd, vd }) => {
+    const entry = resolveGlass(name);
+    expect(entry?.name).toBe(name);
+    expect(evaluateSellmeier(entry!, LINE_NM.d)).toBeCloseTo(nd, 5);
+    expect(evaluateCatalogAbbeNumber(entry!)).toBeCloseTo(vd, 2);
   });
 
   it("evaluates the 2026 vendor named-glass coverage additions", () => {
@@ -969,6 +1003,40 @@ describe("makeSurfaceDispersion preference cascade", () => {
     expect(d.fn("R")).toBeLessThan(d.fn("G"));
     expect(d.fn("G")).toBeLessThan(d.fn("B"));
     expect(d.fn("B")).toBeLessThan(d.fn("V"));
+  });
+
+  it("preserves authored dPgF on the violet channel of a compatible catalog curve", () => {
+    const baseline = makeSurfaceDispersion(
+      { R: 0, d: 0, sd: 0, label: "", nd, elemId: 1 },
+      { id: 1, name: "L1", label: "L1", type: "Test", nd, vd: 64.14, glass: "S-BSL7" },
+      undefined,
+    );
+    const patentPartialDispersion = makeSurfaceDispersion(
+      { R: 0, d: 0, sd: 0, label: "", nd, elemId: 1 },
+      {
+        id: 1,
+        name: "L1",
+        label: "L1",
+        type: "Test",
+        nd,
+        vd: 64.14,
+        glass: "S-BSL7",
+        dPgF: 0.04,
+      },
+      undefined,
+    );
+
+    expect(patentPartialDispersion.quality).toBe("sellmeier");
+    expect(patentPartialDispersion.fn("R")).toBe(baseline.fn("R"));
+    expect(patentPartialDispersion.fn("G")).toBe(baseline.fn("G"));
+    expect(patentPartialDispersion.fn("B")).toBe(baseline.fn("B"));
+    const expectedPgF = 0.6438 - 0.001682 * 64.14 + 0.04;
+    expect(patentPartialDispersion.fn("V")).toBeCloseTo(
+      patentPartialDispersion.fn("B") +
+        expectedPgF * (patentPartialDispersion.fn("B") - patentPartialDispersion.fn("R")),
+      12,
+    );
+    expect(patentPartialDispersion.fn("V")).toBeGreaterThan(baseline.fn("V"));
   });
 
   it("prefers complete measured line indices over a matching catalog entry", () => {

@@ -65,3 +65,10 @@ Patent: JP 2014-126652 A, Example 3
 
 - JP 2014-126652 A Example 3 defines effective radius terminology, but the rendered Example 3 surface table does not include a usable effective-radius column; SDs remain inferred.
 - Temporary Sigma SD audit after the edits reported 0/27 Sigma files with raw SD/render issues.
+
+## 2026-08-07 - Near-complete glass opportunity
+
+- Visually rechecked Example 3 in local `patents/JP2014126652A.pdf`; L7 is `1.62004 / 36.30` and L10 is `1.80834 / 40.92`.
+- Replaced tentative L7 CF6 wording with coefficient-backed HOYA E-F2, an exact 620363 coordinate match.
+- Replaced speculative L10 TACD5 wording with coefficient-backed HOYA MC-NBFD135, an exact 808409 coordinate match.
+- Both labels are catalog spectral equivalents, not production-supplier claims. No geometry or authored patent constants changed.

@@ -15,3 +15,11 @@ Patent: JP 2013-104994 A, Numerical Example 2
 
 - JP 2013-104994 A Example 2 does not publish a clear-aperture / effective-radius table.
 - Temporary Sigma SD audit after the edits reported 0/27 Sigma files with raw SD/render issues.
+
+## 2026-08-07 - Line-index ambiguity audit
+
+- Rechecked Numerical Example 2's glass-index table in the ignored local `patents/JP2013104994A.pdf`.
+- Relabeled L11 from the ambiguous `BK7 / S-BSL7` class to N-BK7 as a catalog equivalent, without asserting Sigma's
+  production supplier. The patent gives nC/nF/ng = 1.51432/1.52237/1.52667; N-BK7 reproduces all three within
+  1.5e-5 maximum error, while S-BSL7 differs by approximately 4.65e-4.
+- The complete patent line indices remain the runtime source of truth and bypass catalog dispersion for this element.

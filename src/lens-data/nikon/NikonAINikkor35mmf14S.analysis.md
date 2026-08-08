@@ -62,7 +62,7 @@ The second front-power condition requires $2f < -f_{L2} < 5.5f$. The computed no
 ### L3-L4 — Positive Cemented Doublet
 
 **L3:** $nd = 1.80411$, $\nu_d = 46.4$. Glass: S-LAH65V class (OHARA). $f = 25.6$ mm.  
-**L4:** $nd = 1.50137$, $\nu_d = 56.5$. Glass: unmatched K10 (SCHOTT legacy crown). $f = -62.4$ mm.  
+**L4:** $nd = 1.50137$, $\nu_d = 56.5$. Glass: K10 (SCHOTT catalog equivalent). $f = -62.4$ mm.
 **Cemented group:** $f = 38.5$ mm.
 
 L3 is a strong high-index positive biconvex element. Its Abbe number places it in dense lanthanum flint territory, not in an ordinary crown category. L4 is a low-index, lower-power biconcave negative element cemented to L3. The group remains net positive.
@@ -108,7 +108,7 @@ The patent gives refractive indices and Abbe numbers but does not name catalog g
 | L1 | 1.56883 | 56.0 | S-BAL14 (OHARA) | 1.56883 / 56.36 | Close barium crown match; patent Abbe is lower by 0.36. |
 | L2 | 1.54814 | 45.9 | S-TIL1 (OHARA) | 1.54814 / 45.79 | Close light-flint match. |
 | L3 | 1.80411 | 46.4 | S-LAH65V class (OHARA) | 1.80400 / 46.58 | High-index lanthanum dense flint class. |
-| L4 | 1.50137 | 56.5 | Unmatched K10 (SCHOTT legacy crown) | 1.50137 / 56.41 | Historical Schott classification retained; no coefficient-backed catalog row is currently available in the project. |
+| L4 | 1.50137 | 56.5 | K10 (SCHOTT catalog equivalent) | 1.50137 / 56.41 | Official legacy datasheet supplies the coefficient curve; production supplier remains unspecified. |
 | L5a | 1.80411 | 46.4 | S-LAH65V class (OHARA) | 1.80400 / 46.58 | Same patent glass as L3. |
 | L5b | 1.78470 | 26.1 | SF56A (SCHOTT) | 1.78470 / 26.08 | Dense flint, effectively exact. |
 | L6 | 1.77250 | 49.5 | S-LAH66 (OHARA) | 1.77250 / 49.60 | Close high-index lanthanum glass match. |

@@ -112,7 +112,7 @@ The nd value of 1.71300 is an exact match to a well-known lanthanum crown family
 | HOYA LAC8 | 1.71300 | 53.80 | 0 | 0.20 | High — exact nd |
 | SCHOTT LaK 8 | 1.71300 | 53.94 | 0 | 0.06 | High — exact nd |
 
-**Identification: LaK 8 / S-LAL8 / LAC8 family (lanthanum crown)**. This is a moderate-index, low-dispersion crown glass, well suited for the front positive meniscus element where it contributes converging power with minimal chromatic contribution.
+**Identification: Schott N-LAK8 catalog equivalent to the patent's LaK 8 coordinate (production melt unspecified).** The coefficient-backed modern row is $n_d=1.71300$, $\nu_d=53.83$, consistent with the patent's rounded $\nu_d=54.0$. This is a moderate-index, low-dispersion crown glass, well suited for the front positive meniscus element where it contributes converging power with minimal chromatic contribution.
 
 **L2 and L4 — nd = 1.77279, νd = 49.4 (six-digit code: 1773/494)**
 
@@ -284,7 +284,7 @@ The Nikon L35AF lens was designed in a competitive landscape dominated by Tessar
 
 - **Design type:** Sonnar-type / behind-diaphragm (derived from modified Tessar lineage per patent), 5 elements in 4 groups
 - **Aspherical surfaces:** None — the design is entirely spherical
-- **Glasses used:** Four distinct catalog families (LaK 8, S-LAH66, S-TIM28, SK 16)
+- **Glasses used:** Four distinct catalog families (N-LAK8-equivalent LaK 8, S-LAH66, S-TIM28, SK 16)
 - **Focus method:** Unit focus (entire lens translates forward), ~1.6 mm extension at 0.8 m; BFD increases from 26.007 mm to 27.608 mm
 - **Key innovation:** Careful chromatic coma correction through nine bounded parametric conditions governing glass dispersion, element bending, and power distribution
 - **Patent–production relationship:** f = 100 prescription scaled ×0.35 to production f = 35 mm

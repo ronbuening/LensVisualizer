@@ -19,6 +19,11 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-08-08",
+    type: "improvement",
+    summary: "Expanded coefficient-backed dispersion across 43 surfaces and 28 fully covered lenses",
+  },
+  {
     date: "2026-08-07",
     type: "article",
     summary: "Published a three-part spherical aberration series with nine themed figures",

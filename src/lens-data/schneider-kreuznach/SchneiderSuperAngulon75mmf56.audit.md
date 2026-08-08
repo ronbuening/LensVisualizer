@@ -46,3 +46,9 @@ APD status remains `false` for all elements. The patent describes ordinary wide-
 - SUMITA's discontinued-inclusive LLF4 vendor polynomial resolves L4 at the exact `1.56138 / 45.3` coordinate.
 - Relabeled L4 as an LLF4 optical equivalent while leaving Schneider's production supplier unspecified.
 - L6 (`614563`) remains unresolved; no prescription or semi-diameter values changed.
+
+## 2026-08-07 — BACD6 catalog recovery
+
+- Visually rechecked Table I in local `patents/US3376091.pdf`; L6 remains `1.61375 / 56.3`, rounded code 614563.
+- HOYA's 2026-07-07 catalog publishes BACD6 at `1.613753 / 56.377856`, inside both runtime tolerances, with a vendor polynomial.
+- Relabeled L6 as a BACD6 catalog equivalent while leaving Schneider's production supplier unspecified. This supersedes the earlier no-match disposition; no geometry changed.

@@ -1834,4 +1834,52 @@ export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
     code6: "533459",
     source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info; FTM8 page (formula 3 polynomial).",
   },
+  /* ────── Phase 86 patent-coordinate coverage additions (August 2026) ────── */
+  {
+    name: "L-LAH91",
+    vendor: "Ohara",
+    B: [1.26144128, 0.782115273, 1.15823645],
+    C: [0.00572512582, 0.0219829752, 88.04822],
+    nd: 1.7645,
+    vd: 49.096913,
+    source:
+      "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF), vendor-published low-softening-temperature glass data.",
+  },
+  {
+    name: "L-LAH84",
+    vendor: "Ohara",
+    B: [1.83606127, 0.341720032, 1.35280173],
+    C: [0.00981969903, 0.0385636264, 107.04553],
+    nd: 1.80835,
+    vd: 40.548503,
+    source:
+      "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF), vendor-published low-softening-temperature glass data.",
+  },
+  {
+    name: "PBH25",
+    vendor: "Ohara",
+    polynomial: [2.9830277, -0.010435952, 0.036346467, 0.0026194115, -0.00017513176, 0.000021325099],
+    nd: 1.761797,
+    vd: 27.107724,
+    code6: "762271",
+    source: "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF), vendor-published discontinued-glass data.",
+  },
+  {
+    name: "YGH52",
+    vendor: "Ohara",
+    polynomial: [3.1224406, -0.015600077, 0.023832255, 0.00072563954, -0.000030563799, 0.0000020883401],
+    nd: 1.7865,
+    vd: 50.001717,
+    code6: "787500",
+    source: "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF), vendor-published discontinued-glass data.",
+  },
+  {
+    name: "BAM25",
+    vendor: "Ohara",
+    polynomial: [2.513482, -0.008739639, 0.0186819, 0.0007470892, -0.00003047596, 0.00000339904],
+    nd: 1.60323,
+    vd: 42.320943,
+    code6: "603423",
+    source: "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF), vendor-published discontinued-glass data.",
+  },
 ];

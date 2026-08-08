@@ -120,7 +120,7 @@ L4 is the positive partner in the L4/L5 cemented doublet. The aspherical front s
 
 #### L5 — Biconcave (S8–S9, cemented to L4)
 
-nd = 1.59270, νd = 35.45, ΔθgF = +0.008. Glass: 593355 — heavy flint (class identification only; no exact public catalog match is known from nd/νd alone in this region). f = −42.2 mm.
+nd = 1.59270, νd = 35.45, ΔθgF = +0.008. Glass: HOYA FF5 catalog equivalent to patent code 593355; the production supplier is unspecified. f = −42.2 mm.
 
 L5 cements onto the rear of L4 with a shared concave junction at R = −43.78 mm. The doublet is a classic positive-then-negative achromat optimised within the front sub-group: L4 (high index, mid-νd) and L5 (mid index, high dispersion) balance axial chromatic aberration locally, while L4's asphericity controls high-order spherical aberration. The cement junction on the stop side of GFA, where the chief ray has begun to bend back, lets the doublet handle off-axis chromatic aberration efficiently as well.
 
@@ -236,7 +236,7 @@ The remaining eleven elements split between glasses with high catalog confidence
 | L1, L9 | 1.48749 | 70.44 | HOYA **FC5** (= Schott N-FK5 / OHARA S-FSL5 / CDGM H-QK3L) | High | Code 487/704; FK-class fluor crown. The patent's νd = 70.44 matches HOYA FC5 / CDGM H-QK3L / Schott N-FK5; OHARA's S-FSL5 sits at νd = 70.23 |
 | L3 | 1.88100 | 40.14 | HOYA **TAFD33** | High | Code 881/401; HOYA-specific "rare-metal-reduced" lanthanum dense flint; CDGM equivalent H-ZLaF73; no OHARA polished equivalent |
 | L4, L14 | 1.77250 | 49.50 | HOYA **M-TAF105** | High | Code 773/495; M-prefix indicates HOYA's moldable-glass series for press-molded aspheres — directly consistent with both being aspherical |
-| L5 | 1.59270 | 35.45 | Heavy flint near OHARA S-FTM16 / HOYA FF5 family | Medium | Code 593/355 sits between OHARA S-FTM16 (593/353, νd=35.31) and HOYA FF5 (593/354). Patent's νd=35.45 is slightly higher than either; vendor identity not confidently determinable |
+| L5 | 1.59270 | 35.45 | HOYA **FF5** catalog equivalent | High | Public FF5 curve reproduces nd/νd and the patent θgF; code 593354 versus patent-rounded 593355; supplier unspecified |
 | L6, L13 | 1.61340 | 44.27 | OHARA **S-NBM51** | High | Code 613/443; one of OHARA's most-used niobium-baryum medium-flints; published dPgF = −0.0065 closely matches patent ΔθgF = −0.0053 |
 | L10 | 1.85451 | 25.15 | HOYA **NBFD25** | High | Code 855/252, exact nd/νd match. HOYA's published PgF = 0.6103 → ΔθgF ≈ +0.0085 vs patent +0.0072 (residual +0.0013, within melt-spread; identification secure) |
 | L12 | 1.95375 | 32.32 | HOYA **TAFD45 / OHARA S-LAH98** | High | Code 953/323, exact match in three vendors' catalogs (HOYA TAFD45, OHARA S-LAH98, HIKARI J-LASFH21); among the highest-index polished glasses in current production |
@@ -446,4 +446,4 @@ The AF actuator choice is consistent with this minimum-mass philosophy. Sigma us
 
 ---
 
-*Analysis completed by independent verification of the patent prescription against the production lens specifications. All numerical claims are computationally checked; all 15 patent conditional expressions reproduce to within rounding; all seven sub-group focal lengths reproduce to within 0.005 mm; the focus-element displacement reproduces the patent's tabulated value to 0.4 µm. Glass identifications are tier-tagged for confidence: high (catalog match within ±0.0005 in nd and ±0.5 in νd, vendor confirmable through multiple cross-reference sources), medium (catalog 6-digit code match, vendor inferred from family conventions), or low (no exact catalog equivalent — class characterisation only). After the 2026-06-04 source pass, both NBFD25 and NBFD29 are coefficient-backed HOYA matches; L5 remains the main unresolved heavy-flint row.*
+*Analysis completed by independent verification of the patent prescription against the production lens specifications. All numerical claims are computationally checked; all 15 patent conditional expressions reproduce to within rounding; all seven sub-group focal lengths reproduce to within 0.005 mm; the focus-element displacement reproduces the patent's tabulated value to 0.4 µm. Glass identifications are tier-tagged for confidence: high (catalog match within ±0.0005 in nd and ±0.5 in νd, vendor confirmable through multiple cross-reference sources), medium (catalog 6-digit code match, vendor inferred from family conventions), or low (no exact catalog equivalent — class characterisation only). The public FF5 curve now resolves the former L5 gap as a spectral equivalent while leaving the production supplier unspecified.*

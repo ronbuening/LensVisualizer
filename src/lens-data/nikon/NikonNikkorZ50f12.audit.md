@@ -51,3 +51,11 @@ Patent: WO 2021/241230 A1
 - The local source is now present. Rechecked WO 2021/241230 A1 Example 1 surface 32A; stored `R`, `d`, `nd=1.51680`, and `νd=64.00` agree with the patent.
 - Relabeled L44 from incorrect OHARA `S-NSL3` to Hikari `J-BK7`, the exact standard-crown coordinate in Nikon/Hikari context.
 - Synchronized the L44 analysis and glass summary. No prescription geometry changed.
+
+## 2026-08-07 — Remaining glass coverage audit
+
+- Visually rechecked the image-based local WO 2021/241230 A1 Example 1 table at surface 6: L13 is
+  `nd=1.55298`, `νd=55.1`.
+- HIKARI J-KZFH4 (`1.552981 / 55.07`) is the exact coefficient-backed catalog equivalent. The label leaves the
+  production supplier unspecified.
+- Strict and trusted catalog coverage are now complete at `17/17`; no geometry changed.

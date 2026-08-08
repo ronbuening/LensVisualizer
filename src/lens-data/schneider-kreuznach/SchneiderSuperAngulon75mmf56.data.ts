@@ -120,7 +120,7 @@ const LENS_DATA = {
       nd: 1.61375,
       vd: 56.3,
       fl: 13.7,
-      glass: "614563 — SSK-class dense barium crown (Schott historical; no exact public Sellmeier)",
+      glass: "BACD6 (HOYA catalog-equivalent; patent supplier unspecified)",
       apd: false as const,
       cemented: "TR",
       role: "Central positive of rear triplet. Most powerful element in the system (shortest focal length); carries the greatest share of the system's positive refractive power.",

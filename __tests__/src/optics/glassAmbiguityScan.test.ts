@@ -38,6 +38,8 @@ interface AmbiguousElement {
   storedNd: number;
   storedVd: number | undefined;
   indexReference: RefractiveIndexReferenceLine;
+  hasAuthoredDPgF: boolean;
+  hasCompleteLineIndices: boolean;
   selectedName: string;
   criterion: GlassResolutionCriterion;
   reason: string;
@@ -130,6 +132,8 @@ describe("glass ambiguity scan", () => {
           storedNd: element.nd,
           storedVd: element.vd,
           indexReference: element.indexReference ?? "d",
+          hasAuthoredDPgF: element.dPgF !== undefined,
+          hasCompleteLineIndices: element.nC !== undefined && element.nF !== undefined && element.ng !== undefined,
           selectedName: explanation.selected.name,
           criterion: explanation.criterion,
           reason: explanation.reason,
@@ -147,6 +151,8 @@ describe("glass ambiguity scan", () => {
     for (const row of rows) {
       criterionCounts.set(row.criterion, (criterionCounts.get(row.criterion) ?? 0) + 1);
     }
+    const authoredDPgFCount = rows.filter((row) => row.hasAuthoredDPgF).length;
+    const completeLineIndexCount = rows.filter((row) => row.hasCompleteLineIndices).length;
 
     const lines: string[] = [];
     lines.push("# Coordinate-Compatible Glass Ambiguities (auto-generated)");
@@ -173,6 +179,12 @@ describe("glass ambiguity scan", () => {
     lines.push(`- **${totalGlassElements}** glass elements examined`);
     lines.push(`- **${rows.length}** elements have multiple coordinate-compatible candidates`);
     lines.push(`- **${affectedFiles.size}** lens files are affected`);
+    lines.push(
+      `- **${authoredDPgFCount}** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row`,
+    );
+    lines.push(
+      `- **${completeLineIndexCount}** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely`,
+    );
     lines.push("");
     lines.push("| Selection criterion | Elements |");
     lines.push("|---|---:|");

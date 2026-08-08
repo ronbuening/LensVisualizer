@@ -372,11 +372,11 @@ Three elements share identical nd and νd values to five decimal places. This st
 
 ### L6r — nd = 1.55298, νd = 55.07
 
-A moderate-index crown glass, serving as the negative element of the field-correcting cemented doublet. The combination of nd ≈ 1.553 and νd ≈ 55 is consistent with several standard crown glasses from Ohara, Schott, and Hoya, though no exact current-catalog match has been identified. The data file records the rounded six-digit code `553551` and leaves the element on the Abbe fallback rather than forcing a weak proxy.
+A moderate-index crown glass, serving as the negative element of the field-correcting cemented doublet. The public HIKARI J-KZFH4 row is an exact 553551 coordinate match (`nd=1.552981`, `νd=55.07`) and now supplies the coefficient-backed spectral model. The patent does not identify Cosina's production supplier, so the label is explicitly a catalog equivalent.
 
 ### L7 — nd = 1.80835, νd = 40.55
 
-A high-index lanthanum glass near the LaF/LaSF boundary. The nearest catalog neighbors are still offset from the patent pair, so the data file records the rounded six-digit code `808406` and keeps this as unmatched rather than assigning S-LAH53 or another near miss.
+A high-index lanthanum glass near the LaF/LaSF boundary. OHARA L-LAH84 reproduces the patent pair and supplies the coefficient-backed dispersion curve; the production supplier remains unspecified.
 
 ### Glass Map Summary
 
@@ -389,8 +389,8 @@ A high-index lanthanum glass near the LaF/LaSF boundary. The nearest catalog nei
 | L4r | 1.88300 | 40.69 | **S-LAH58** | **High** |
 | L5 | 1.88300 | 40.69 | **S-LAH58 (same as L4r)** | **High** |
 | L6f | 1.88300 | 40.69 | **S-LAH58 (same as L4r, L5)** | **High** |
-| L6r | 1.55298 | 55.07 | Unmatched crown (`553551`) | Low |
-| L7 | 1.80835 | 40.55 | Unmatched high-index lanthanum (`808406`) | Low |
+| L6r | 1.55298 | 55.07 | HIKARI J-KZFH4 catalog equivalent (`553551`) | High; supplier unspecified |
+| L7 | 1.80835 | 40.55 | L-LAH84 catalog-equivalent | Low |
 
 ---
 

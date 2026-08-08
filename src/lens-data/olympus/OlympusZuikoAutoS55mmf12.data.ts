@@ -92,7 +92,7 @@ const LENS_DATA = {
       nd: 1.7618,
       vd: 27.1,
       fl: -33.2,
-      glass: "762271 — NbF/SF dense flint family (patent nd=1.7618, νd=27.1; no exact public catalog match)",
+      glass: "PBH25 (OHARA catalog-equivalent; patent supplier unspecified)",
       apd: false,
       role: "Pre-stop diverger — primary SA corrector, strongest negative element in front group",
     },

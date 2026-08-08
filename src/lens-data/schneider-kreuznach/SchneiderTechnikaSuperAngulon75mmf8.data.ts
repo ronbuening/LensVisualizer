@@ -97,7 +97,7 @@ const LENS_DATA = {
       nd: 1.5601,
       vd: 47,
       fl: 19.3353,
-      glass: "Unmatched (560/470 light-flint position; probable historical Schott LLF3)",
+      glass: "FEL3 (HOYA catalog-equivalent; production supplier unspecified)",
       cemented: "D1",
       role: "Positive member of the front cemented doublet.",
     },

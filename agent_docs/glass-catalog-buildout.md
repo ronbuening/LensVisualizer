@@ -2,12 +2,50 @@
 
 A focused follow-up to the chromatic dispersion overhaul. The chromatic ray-trace now consults a Sellmeier glass catalog
 at [src/optics/glassCatalog.ts](../src/optics/glassCatalog.ts) when an element's `glass` string resolves to a known
-entry after first honoring complete measured `nC`/`nF`/`ng` line-index data authored on the element. If neither path is
-available, it falls back to partial measured `nC`/`nF` line indices, dPgF-corrected indices, or the legacy Abbe
-approximation. Current optics-engine boundaries are summarized in
+entry after first honoring complete measured `nC`/`nF`/`ng` line-index data authored on the element. Catalog-backed
+elements retain authored `dPgF` at the g-line so a patent's partial-dispersion evidence is not replaced by a generic
+catalog equivalent. If neither path is available, the engine falls back to partial measured `nC`/`nF` line indices,
+dPgF-corrected indices, or the legacy Abbe approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **475 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **491 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+
+The August 7, 2026 Phase 86 pass added seven first-party vendor curves: OHARA L-LAH91, L-LAH84, PBH25, YGH52,
+and BAM25, plus HOYA BACD6 and FL57. Compatible existing M-TAF1, M-TAFD51, and N-BAK4 curves raise twelve
+patent-derived prescriptions by thirteen surfaces while leaving every production supplier unspecified. Nine lenses become
+fully strict-covered: Canon RF 24-105mm f/4 L; Sigma 20mm f/1.4 Art and 50mm f/1.4 DG DN Art; Voigtländer Nokton
+50mm f/1.0; Olympus 55mm f/1.2 and 8mm f/2.8 fisheye; Nikon Auto Zoom 80-200mm f/4.5 and AI Zoom 25-50mm
+f/4; and Schneider Super-Angulon 75mm f/5.6. Global coverage rises from 5153 to 5166/5814 strict and from 5164
+to 5177/5814 trusted; 290 lenses are strict-complete and 295 trusted-complete, with zero coordinate mismatches. A
+parallel official-catalog audit records explicit no-match dispositions for the Nikon 180-400mm's nine remaining
+six-digit classes, leaving no active unreviewed code-only rows.
+
+The August 7, 2026 Phase 85 pass continued through the visible-lens opportunity queue and recovered eight exact legacy
+HOYA curves from the manufacturer's official obsolete-inclusive Zemax catalog: BAF5, FEL3, CF2, FD3, FC3, BSC6,
+BAF22, and LAFL4. Existing P-SK57Q1, J-KZFH4, K10, FCD515, and BAF12 rows complete the source-verified matches.
+Fourteen surfaces gain coefficient-backed chromatic dispersion, completing eleven more lenses: Panasonic S Pro
+70-200mm f/2.8, Nikon Z 50mm f/1.2, AI 35mm f/1.4, and AI 135mm f/2, Canon FD 28mm f/2.8 and Serenar 100mm
+f/3.5, both 75mm and 90mm Super-Angulons, Olympus 50mm f/2 Macro, and the Vivitar Series 1 200mm and 35-85mm.
+Global coverage rises from 5139 to 5153/5814 strict and from 5150 to 5164/5814 trusted; 281 lenses are now
+strict-complete and 286 trusted-complete, with zero coordinate mismatches.
+
+The August 7, 2026 Phase 84 pass audited the near-complete visible-lens queue against the ignored local patent PDFs.
+Exact or rounded-coordinate catalog equivalents complete the Canon Serenar 50mm f/1.8, Nikon L35AF 35mm f/2.8,
+Sigma DP3 Merrill 50mm f/2.8, Sigma 35mm f/1.4 DG DN Art, Sony Planar T* 50mm f/1.4 ZA SSM, and Sony
+Sonnar T* E 24mm f/1.8 ZA. The Voigtländer Nokton 50mm f/1.0 gains an exact J-KZFH4 curve while its
+non-identical 808406 rear glass remains unmatched. The pass also adds legacy Schott K10 from the manufacturer's
+official 2014 datasheet, completing the Carl Zeiss B-Distagon 35mm f/4 and Olympus F.Zuiko Auto-T 200mm f/5 as
+catalog side effects. Global coverage rises from 5123 to 5139/5814 strict and from 5134 to 5150/5814 trusted;
+270 lenses are now strict-complete and 275 trusted-complete, with zero coordinate mismatches.
+
+The August 7, 2026 Phase 83 ambiguity audit compared every multi-candidate annotation with authored patent spectral
+evidence. The runtime now keeps a d-line element's authored `dPgF` authoritative at g even when a compatible catalog
+curve supplies C/d/F; 127 currently ambiguous elements benefit from that safeguard, while another 138 carry complete
+C/F/g indices and already bypass catalog dispersion. Local patent tables resolve three stale labels: Canon EF-M 32mm
+L5 now uses the FCD515 coefficient curve that reproduces θgF = 0.5441, Panasonic S Pro 50mm L1 uses the
+partial-dispersion-compatible E-FDS1 representation of its 923209 row, and Sigma APO Macro 180mm L11 uses N-BK7,
+whose C/F/g curve reproduces the patent line indices. The production supplier remains unspecified in every
+catalog-equivalent label. Coverage remains 5123/5814 strict and 5134/5814 trusted, with zero coordinate mismatches.
 
 The August 6, 2026 Phase 82 pass revisited all three Angénieux prescriptions. Sumita K-SFLD11 and SSK2 were
 recovered from the manufacturer's discontinued-inclusive 2025 all-glass catalog, and Schott P-LASF47 was added from

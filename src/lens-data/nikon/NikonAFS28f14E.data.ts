@@ -120,7 +120,7 @@ const LENS_DATA = {
       nd: 1.56883,
       vd: 56.0,
       fl: -60.83,
-      glass: "Unmatched (569560 barium crown; patent coordinate is compatible with several vendors)",
+      glass: "N-BAK4 (Schott catalog-equivalent; patent supplier unspecified)",
       apd: false,
       cemented: "LS",
       role: "Negative component of the L14/L15 field-flattening cemented doublet (LS). Contributes negative Petzval sum to flatten the image surface. Power governed by condition (1): φ14/φ = −0.47.",

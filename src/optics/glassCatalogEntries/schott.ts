@@ -34,6 +34,20 @@ export const SCHOTT_GLASS_ENTRIES: readonly GlassEntry[] = [
     code6: "517642",
     source: "Schott TIE-29 / N-BK7 datasheet (Schott AG, public).",
   },
+  /* Phase 84: official legacy K10 datasheet recovered while closing the
+   * near-complete visible-lens queue.
+   */
+  {
+    name: "K10",
+    vendor: "Schott",
+    B: [1.15687082, 0.064262544, 0.872376139],
+    C: [0.008094243, 0.0386051284, 104.74773],
+    nd: 1.50137,
+    vd: 56.41,
+    PgF: 0.5475,
+    code6: "501564",
+    source: "Schott K10 optical-glass datasheet, 2014-02-01; vendor Sellmeier coefficients and line indices.",
+  },
   /* ────── Schott — high-dispersion flints and lanthanum crowns ──────
    * SF6/SF4/SF1 are the legacy lead flints used widely in vintage designs.
    * N-LAK8 is a high-frequency lanthanum crown. N-KZFS5 carries notable

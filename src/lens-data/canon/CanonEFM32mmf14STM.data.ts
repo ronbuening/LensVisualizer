@@ -92,7 +92,7 @@ const LENS_DATA = {
       nd: 1.59282,
       vd: 68.6,
       fl: 34.17,
-      glass: "FCD505 (HOYA, 593686)",
+      glass: "FCD515 (HOYA catalog-equivalent; 593686, production supplier unspecified)",
       apd: "patent",
       apdNote: "Patent-listed θgF = 0.5441; ΔPgF ≈ +0.0157 against the project normal line.",
       dPgF: 0.0157,

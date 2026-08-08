@@ -44,3 +44,11 @@ Patent: US 2,681,594 C, Claim 3
 - Each annotation explicitly identifies K-SK18 as a catalog equivalent and leaves the patent glass supplier
   unspecified.
 - Synchronized the element analysis and glass summary; no prescription geometry or authored optical constants changed.
+
+## 2026-08-07 — Near-complete glass opportunity
+
+- Visually rechecked Claim 3 in local `patents/US2681594.pdf`; L2 is `nd=1.6261`, `νd=39.1`, code 626391.
+- Relabeled L2 to coefficient-backed CDGM H-BaF8, whose public row is code 626391 (`nd=1.62604`, `νd=39.07`).
+- The label explicitly treats H-BaF8 as a catalog equivalent and leaves the 1950 production supplier unspecified; modern HOYA BAFD7 remains rejected as the unrelated 702412 glass.
+- Added legacy Schott K10 from its official datasheet (`nd=1.50137`, `νd=56.41`, code 501564), so the patent's rounded L4 coordinate now also has a coefficient-backed curve.
+- Synchronized the analysis. No geometry or authored patent constants changed.

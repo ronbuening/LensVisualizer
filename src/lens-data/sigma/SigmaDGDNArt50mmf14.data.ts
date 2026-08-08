@@ -100,7 +100,7 @@ const LENS_DATA = {
       nd: 1.7645,
       vd: 49.1,
       fl: 45.6,
-      glass: "764491 — aspherical mold glass (no exact public catalog match; patent nd=1.76450, νd=49.10)",
+      glass: "L-LAH91 (OHARA catalog-equivalent; patent supplier unspecified)",
       apd: false,
       role: "Primary spherical aberration corrector; hyperboloidal front surface (K = −2.02) (GF2).",
     },

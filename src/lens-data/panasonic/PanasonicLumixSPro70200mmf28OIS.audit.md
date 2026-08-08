@@ -28,3 +28,11 @@
 
 - Reviewed the official product styling and project naming convention. The display name
   `PANASONIC LUMIX S PRO 70-200mm f/2.8 O.I.S.` is already correct and was retained.
+
+## 2026-08-07 — Remaining glass coverage audit
+
+- Visually rechecked US 2021/0132345 A1 Numerical Example 3 surface 30: L15 remains `nd=1.58578`, `νd=59.5`.
+- SCHOTT P-SK57Q1 (`1.58600 / 59.5`) supplies a coefficient-backed curve within `0.00022` in d-line index and at
+  the same Abbe number. It is labeled as a catalog equivalent because the patent does not identify the production
+  supplier.
+- Strict and trusted catalog coverage are now complete at `22/22`; no geometry or asphere coefficients changed.

@@ -31,3 +31,10 @@ Patent: DE 1,022,027 B
 - `npm run format:check` - passed.
 - `npm run lint` - passed.
 - `npm run test` - initially exposed stale generated route metadata; after `npm run generate:metadata`, passed (183 files, 2212 tests).
+
+## 2026-08-07 - Legacy CF2 catalog recovery
+
+- Visually rechecked DE 1,022,027 B: Member III remains `nd=1.5263`, `νd=51.0`, code 526510.
+- HOYA's obsolete CF2 row (`1.526296 / 51.046045`, rounded code 526511) supplies the coefficient-backed catalog
+  equivalent. The production supplier remains unspecified.
+- Strict and trusted catalog coverage are now complete at `5/5`; no geometry changed.

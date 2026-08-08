@@ -84,7 +84,7 @@ const LENS_DATA = {
       nd: 1.5263,
       vd: 51.0,
       fl: -33.59,
-      glass: "Legacy KF2 / crown-flint class (526/510, current catalog name uncertain)",
+      glass: "CF2 (HOYA catalog-equivalent; production supplier unspecified)",
       role: "Low-index negative telephoto member and principal Petzval-control element.",
     },
     {

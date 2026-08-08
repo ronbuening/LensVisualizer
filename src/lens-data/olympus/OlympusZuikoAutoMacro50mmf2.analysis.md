@@ -129,10 +129,10 @@ L4 is a thin, strongly negative meniscus that dominates Group II's overall negat
 | Surfaces | r₉ = −0.4730 → r₁₀ = +4.6709 (junction) |
 | Center thickness | 0.0216 (norm) → 1.08 mm |
 | Glass | nd = 1.68250, νd = 44.65 |
-| Catalog match | Explicit unmatched 683447; no first-party coefficient row found; barium/lanthanum flint family |
+| Catalog match | HOYA BAF22 catalog equivalent; production supplier unspecified |
 | Thick-lens focal length | −31.4 mm |
 
-L5 is the negative component of the first cemented doublet in Group III, located immediately behind the stop. Its strongly concave front surface (r₉) faces the stop gap and provides diverging power that, together with the converging L6, forms a meniscus doublet of overall negative power (f = −154.6 mm). The cemented junction at r₁₀ has a very weak curvature (R = 4.67f = 233.6 mm), indicating that the primary purpose of the cementation is chromatic correction via the refractive index step (Δn = 1.72000 − 1.68250 = 0.0375 at the junction) rather than power contribution. The 683447 glass has no verified first-party coefficient row in the reviewed current and discontinued-inclusive sources, so its supplier and precise catalog identity remain unresolved.
+L5 is the negative component of the first cemented doublet in Group III, located immediately behind the stop. Its strongly concave front surface (r₉) faces the stop gap and provides diverging power that, together with the converging L6, forms a meniscus doublet of overall negative power (f = −154.6 mm). The cemented junction at r₁₀ has a very weak curvature (R = 4.67f = 233.6 mm), indicating that the primary purpose of the cementation is chromatic correction via the refractive index step (Δn = 1.72000 − 1.68250 = 0.0375 at the junction) rather than power contribution. HOYA's obsolete BAF22 row (`nd = 1.682496`, `νd = 44.671672`) supplies the exact coefficient-backed catalog equivalent for 683447, while the patent leaves the production supplier unspecified.
 
 ### 4.6 L6 — Biconvex Positive (cemented with L5)
 
@@ -194,13 +194,13 @@ The design uses seven distinct glass types. Four have exact matches in current c
 | L2 | 1.72916 | 54.68 | 729/547 | OHARA S-LAL18 | Lanthanum crown |
 | L3, L7, L8 | 1.77250 | 49.66 | N-LAF34 catalog equivalent (773497) | Supplier unresolved | Lanthanum crown |
 | L4 | 1.58144 | 40.75 | 581408 | OHARA PBL25 | Short flint |
-| L5 | 1.68250 | 44.65 | Explicit unmatched 683447 | No first-party coefficient row found | Barium/lanthanum flint |
+| L5 | 1.68250 | 44.65 | HOYA BAF22 catalog equivalent | Exact coordinate; supplier unspecified | Barium/lanthanum flint |
 | L6 | 1.72000 | 46.03 | 720460 | OHARA S-LAM61 | Lanthanum crown/flint border |
 | L9 | 1.75520 | 27.51 | 755/275 | Schott SF4 / OHARA S-TIH4 / HOYA FD4 | Dense flint |
 
 Three elements (L3, L7, L8) share the same 773497 lanthanum-crown coordinate (nd = 1.773, νd = 49.66). Schott N-LAF34 reproduces the d-line index and differs by only −0.04 in Abbe number, so it is used as a coefficient-backed catalog equivalent. The patent does not identify the production supplier.
 
-The six-digit glass codes given above are manufacturer-agnostic identifiers (first three digits = (nd − 1) × 1000, last three = νd × 10). Olympus, as a Japanese manufacturer, most likely sourced glass from OHARA or HOYA. The catalog names given above reflect exact matches where available; for L5, the unbroken 683447 code remains the authoritative identifier for future catalog backfill.
+The six-digit glass codes given above are manufacturer-agnostic identifiers (first three digits = (nd − 1) × 1000, last three = νd × 10). Catalog names indicate coefficient-backed optical equivalents rather than production-supplier proof.
 
 No anomalous partial dispersion (APD) glasses or ED glasses are used in this design. The chromatic correction relies entirely on conventional crown/flint pairings with adequate Abbe number separation.
 
@@ -356,7 +356,7 @@ Surface numbering follows the patent convention (r₁ through r₁₆, d₁ thro
 | r₆ | +37.71 | 1.52 | 1.0 (air) | L3 rear | |
 | r₇ | +248.9 | 1.17 | 1.58144 | L4 front | Neg. meniscus, PBL25 / 581408 glass |
 | r₈ | +19.29 | 10.16 | 1.0 (air) | L4 rear | **Contains aperture stop** |
-| r₉ | −23.66 | 1.08 | 1.68250 | L5 front | Biconcave, explicitly unmatched 683447 glass |
+| r₉ | −23.66 | 1.08 | 1.68250 | L5 front | Biconcave, BAF22 catalog-equivalent glass |
 | r₁₀ | +233.6 | 4.65 | 1.72000 | L5/L6 junction | Cemented; S-LAM61 / 720460 glass |
 | r₁₁ | −35.52 | 0.10 | 1.0 (air) | L6 rear | |
 | r₁₂ | −82.55 | 2.87 | 1.77250 | L7 front | Pos. meniscus, N-LAF34 equivalent |

@@ -10,11 +10,11 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **532** lenses scanned
-- **620** total code-only elements found
-- **292** elements in this report
-- **122** distinct lens files affected
-- **17** active unreviewed elements have no review-record hit or explicit disposition
-- **128** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
+- **605** total code-only elements found
+- **274** elements in this report
+- **109** distinct lens files affected
+- **0** active unreviewed elements have no review-record hit or explicit disposition
+- **122** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
 - **0** dispositions lack any review record
 
 ## Prioritized Unreviewed Queue
@@ -26,15 +26,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 
 | Tier | Code | Active elements / lens files | Visible lenses | Strict surfaces | Completion candidates | Near-complete candidates | Local patent lenses | Representative rows |
 |---|---|---:|---:|---:|---|---|---:|---|
-| C | 627376 | 2 / 2 | 1 | 2 | — | — | 2/2 | [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) Element L410 (1.62730 / 37.62)<br>[NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR — TC 1.4x Engaged](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14TCIn.data.ts) Element L410 (1.62730 / 37.62) |
-| C | 633315 | 2 / 2 | 1 | 2 | — | — | 2/2 | [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) Element L44 (1.63288 / 31.50)<br>[NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR — TC 1.4x Engaged](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14TCIn.data.ts) Element L44 (1.63288 / 31.50) |
-| C | 690570 | 2 / 2 | 1 | 2 | — | — | 2/2 | [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) Element L47 (1.68991 / 56.97)<br>[NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR — TC 1.4x Engaged](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14TCIn.data.ts) Element L47 (1.68991 / 56.97) |
-| C | 726548 | 2 / 2 | 1 | 2 | — | — | 2/2 | [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) Element L45 (1.72567 / 54.80)<br>[NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR — TC 1.4x Engaged](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14TCIn.data.ts) Element L45 (1.72567 / 54.80) |
-| C | 804238 | 2 / 2 | 1 | 2 | — | — | 2/2 | [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) Element L23 (1.80379 / 23.82)<br>[NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR — TC 1.4x Engaged](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14TCIn.data.ts) Element L23 (1.80379 / 23.82) |
-| C | 806418 | 2 / 2 | 1 | 2 | — | — | 2/2 | [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) Element L49 (1.80592 / 41.79)<br>[NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR — TC 1.4x Engaged](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14TCIn.data.ts) Element L49 (1.80592 / 41.79) |
-| C | 815233 | 2 / 2 | 1 | 2 | — | — | 2/2 | [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) Element L43 (1.81511 / 23.33)<br>[NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR — TC 1.4x Engaged](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14TCIn.data.ts) Element L43 (1.81511 / 23.33) |
-| C | 819287 | 2 / 2 | 1 | 2 | — | — | 2/2 | [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) Element L48 (1.81945 / 28.67)<br>[NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR — TC 1.4x Engaged](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14TCIn.data.ts) Element L48 (1.81945 / 28.67) |
-| D | 786406 | 1 / 1 | 0 | 1 | — | — | 1/1 | [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR — TC 1.4x Engaged](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14TCIn.data.ts) Element Lx2 (1.78605 / 40.63) |
 
 ## Codes by Frequency
 
@@ -43,7 +34,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 796409 | 7 | 6 | patents/US5751485.pdf<br>patents/US5640277.pdf<br>patents/US5734508.pdf<br>patents/US4699475.pdf | All rows explicitly disposed |
 | 493836 | 6 | 2 | patents/JP2004109559A.pdf | All rows have review records |
 | 486815 | 5 | 1 | patents/US3743384.pdf | All rows explicitly disposed |
-| 501565 | 4 | 2 | patents/US4189212.pdf<br>patents/US3743384.pdf | All rows have review records |
 | 662561 | 4 | 1 | patents/GB_850117_A.pdf | All rows have review records |
 | 744495 | 4 | 4 | patents/US20200142168A1.pdf<br>patents/US7508592.pdf<br>patents/WO2020136749A1.pdf<br>patents/JPWO2019049372A1.pdf | All rows have review records |
 | 863252 | 4 | 2 | patents/WO2021199923A1.pdf<br>patents/WO_2025263124_A1.pdf | All rows have review records |
@@ -60,23 +50,23 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 585594 | 2 | 1 | patents/JP2023039817A.pdf | All rows have review records |
 | 620586 | 2 | 1 | patents/US4303314.pdf | All rows have review records |
 | 625356 | 2 | 1 | patents/US2959100.pdf | All rows explicitly disposed |
-| 627376 | 2 | 2 | patents/WO2019131993A1.pdf | No review-record hit |
-| 633315 | 2 | 2 | patents/WO2019131993A1.pdf | No review-record hit |
+| 627376 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
+| 633315 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
 | 666356 | 2 | 1 | patents/US20190265441A1.pdf | All rows have review records |
-| 690570 | 2 | 2 | patents/WO2019131993A1.pdf | No review-record hit |
+| 690570 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
 | 720521 | 2 | 2 | patents/US4124276.pdf | All rows have review records |
-| 726548 | 2 | 2 | patents/WO2019131993A1.pdf | No review-record hit |
+| 726548 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
 | 744494 | 2 | 2 | patents/US3507558.pdf<br>patents/US3743384.pdf | All rows have review records |
 | 755516 | 2 | 1 | patents/JP2004109559A.pdf | All rows have review records |
 | 762404 | 2 | 1 | patents/US4258985.pdf | All rows have review records |
 | 774492 | 2 | 1 | patents/US3748022.pdf | All rows have review records |
 | 781445 | 2 | 2 | patents/US4277149.pdf<br>patents/US4182550.pdf | All rows have review records |
-| 804238 | 2 | 2 | patents/WO2019131993A1.pdf | No review-record hit |
-| 806418 | 2 | 2 | patents/WO2019131993A1.pdf | No review-record hit |
+| 804238 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
+| 806418 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
 | 807316 | 2 | 2 | patents/US4764000.pdf<br>patents/US4871239.pdf | All rows have review records |
 | 813252 | 2 | 1 | patents/US3591257.pdf | All rows have review records |
-| 815233 | 2 | 2 | patents/WO2019131993A1.pdf | No review-record hit |
-| 819287 | 2 | 2 | patents/WO2019131993A1.pdf | No review-record hit |
+| 815233 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
+| 819287 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
 | 830427 | 2 | 1 | patents/JP2015041012A.pdf | All rows explicitly disposed |
 | 840434 | 2 | 1 | patents/US5734508.pdf | All rows explicitly disposed |
 | 930240 | 2 | 2 | patents/WO2021200206A1.pdf<br>patents/WO_2025263124_A1.pdf | All rows have review records |
@@ -84,9 +74,9 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 009291 | 1 | 1 | patents/WO2021200206A1.pdf | All rows explicitly disposed |
 | 449670 | 1 | 1 | patents/GB_1050055_A.pdf | All rows explicitly disposed |
 | 460658 | 1 | 1 | patents/DE_3907928_A1.pdf | All rows explicitly disposed |
-| 465658 | 1 | 1 | patents/US4189212.pdf | All rows explicitly disposed |
 | 479587 | 1 | 1 | patents/US4773745.pdf | All rows explicitly disposed |
 | 487698 | 1 | 1 | patents/US3838911.pdf | All rows have review records |
+| 501565 | 1 | 1 | patents/US3743384.pdf | All rows explicitly disposed |
 | 504667 | 1 | 1 | patents/US2721499.pdf | All rows have review records |
 | 514530 | 1 | 1 | patents/JP2016021011A.pdf | All rows have review records |
 | 518523 | 1 | 1 | patents/US4871239.pdf | All rows have review records |
@@ -97,7 +87,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 525558 | 1 | 1 | patents/US8994842.pdf | All rows explicitly disposed |
 | 525596 | 1 | 1 | patents/US3632190.pdf | All rows explicitly disposed |
 | 531557 | 1 | 1 | patents/US8994842.pdf | All rows explicitly disposed |
-| 531621 | 1 | 1 | patents/US3975089.pdf | All rows have review records |
 | 533489 | 1 | 1 | patents/US2084309.pdf | All rows explicitly disposed |
 | 534554 | 1 | 1 | patents/US3737214.pdf | All rows have review records |
 | 534555 | 1 | 1 | patents/US4110006.pdf | All rows explicitly disposed |
@@ -106,24 +95,20 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 541468 | 1 | 1 | patents/US4124276.pdf | All rows have review records |
 | 545486 | 1 | 1 | patents/CN116520542A.pdf | All rows have review records |
 | 553381 | 1 | 1 | patents/US7508592.pdf | All rows explicitly disposed |
-| 553551 | 1 | 1 | patents/JP2023063766A.pdf | All rows explicitly disposed |
 | 553555 | 1 | 1 | patents/JP2022092388A.pdf | All rows have review records |
 | 554381 | 1 | 1 | patents/US7359125.pdf | All rows have review records |
 | 561575 | 1 | 1 | patents/US2721499.pdf | All rows have review records |
 | 564463 | 1 | 1 | patents/US20180164556A1.pdf | All rows explicitly disposed |
-| 569560 | 1 | 1 | patents/JP2017227799A.pdf | All rows explicitly disposed |
 | 569586 | 1 | 1 | patents/US20120069456A1.pdf | All rows explicitly disposed |
 | 571560 | 1 | 1 | patents/WO_2025263124_A1.pdf | All rows have review records |
 | 574425 | 1 | 1 | patents/FR_1066698_A.pdf | All rows have review records |
 | 575414 | 1 | 1 | patents/US2279384.pdf | All rows explicitly disposed |
 | 575560 | 1 | 1 | patents/JP2021076829A.pdf | All rows explicitly disposed |
-| 576414 | 1 | 1 | patents/US4124276.pdf | All rows have review records |
 | 578671 | 1 | 1 | patents/JPA 2021076740-000000.pdf | All rows explicitly disposed |
 | 579417 | 1 | 1 | patents/US2645974.pdf | All rows explicitly disposed |
 | 580595 | 1 | 1 | patents/JP2015041012A.pdf | All rows explicitly disposed |
 | 585417 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | All rows have review records |
 | 593343 | 1 | 1 | patents/US2838978.pdf | All rows explicitly disposed |
-| 593355 | 1 | 1 | patents/JP2022033487A.pdf | All rows have review records |
 | 595355 | 1 | 1 | patents/US5579169.pdf | All rows explicitly disposed |
 | 595356 | 1 | 1 | patents/US4266860.pdf | All rows explicitly disposed |
 | 595686 | 1 | 1 | patents/WO_2025263124_A1.pdf | All rows have review records |
@@ -135,7 +120,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 607403 | 1 | 1 | patents/US5257137.pdf | All rows explicitly disposed |
 | 611572 | 1 | 1 | patents/US2279384.pdf | All rows explicitly disposed |
 | 612313 | 1 | 1 | patents/US20210026133A1.pdf | All rows have review records |
-| 614563 | 1 | 1 | patents/US3376091.pdf | All rows have review records |
 | 617443 | 1 | 1 | patents/JP2023039817A.pdf | All rows have review records |
 | 617540 | 1 | 1 | patents/US5717527.pdf | All rows explicitly disposed |
 | 621380 | 1 | 1 | patents/US2896506.pdf | All rows explicitly disposed |
@@ -165,7 +149,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 682366 | 1 | 1 | Missing from untracked local patents/ references (US4518229, 4518229) | All rows have review records |
 | 682575 | 1 | 1 | patents/US7542219.pdf | All rows explicitly disposed |
 | 683309 | 1 | 1 | patents/US2983193.pdf | All rows explicitly disposed |
-| 683447 | 1 | 1 | patents/US4708445.pdf | All rows explicitly disposed |
 | 683548 | 1 | 1 | patents/WO2021039813A1.pdf | All rows have review records |
 | 684316 | 1 | 1 | patents/US20100149663A1.pdf | All rows explicitly disposed |
 | 685309 | 1 | 1 | patents/US20160154221A1.pdf | All rows explicitly disposed |
@@ -179,7 +162,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 700555 | 1 | 1 | patents/WO_2025263124_A1.pdf | All rows have review records |
 | 701301 | 1 | 1 | patents/US4277149.pdf | All rows have review records |
 | 712525 | 1 | 1 | patents/JP2021076829A.pdf | All rows explicitly disposed |
-| 713433 | 1 | 1 | patents/US3942876.pdf | All rows have review records |
 | 721334 | 1 | 1 | Missing from untracked local patents/ references (US4786152, 4786152) | All rows have review records |
 | 728261 | 1 | 1 | patents/US4523816.pdf | All rows explicitly disposed |
 | 728403 | 1 | 1 | patents/US6560042.pdf | All rows explicitly disposed |
@@ -203,8 +185,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 755501 | 1 | 1 | patents/US4277149.pdf | All rows have review records |
 | 757316 | 1 | 1 | No patent number parsed from lens metadata | All rows explicitly disposed |
 | 760492 | 1 | 1 | patents/JP2015041012A.pdf | All rows explicitly disposed |
-| 762271 | 1 | 1 | patents/US3743387.pdf | All rows have review records |
-| 764491 | 1 | 1 | patents/JP2023183894A.pdf | All rows have review records |
 | 765249 | 1 | 1 | patents/US20130314588A1.pdf | All rows explicitly disposed |
 | 767462 | 1 | 1 | patents/US3507558.pdf | All rows have review records |
 | 768465 | 1 | 1 | patents/US3524697.pdf | All rows have review records |
@@ -221,8 +201,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 780509 | 1 | 1 | patents/US20180164556A1.pdf | All rows explicitly disposed |
 | 781446 | 1 | 1 | patents/JP2004109559A.pdf | All rows have review records |
 | 786275 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | All rows have review records |
-| 786406 | 1 | 1 | patents/WO2019131993A1.pdf | No review-record hit |
-| 787501 | 1 | 1 | patents/DE_2157160_A1.pdf | All rows have review records |
+| 786406 | 1 | 1 | patents/WO2019131993A1.pdf | All rows have review records |
 | 788474 | 1 | 1 | patents/JPA 2022012964-000000.pdf | All rows explicitly disposed |
 | 789457 | 1 | 1 | patents/US4182550.pdf | All rows have review records |
 | 792257 | 1 | 1 | patents/JP2023039817A.pdf | All rows explicitly disposed |
@@ -232,14 +211,11 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 796410 | 1 | 1 | patents/US4770511.pdf | All rows explicitly disposed |
 | 797455 | 1 | 1 | patents/US4452513.pdf | All rows have review records |
 | 800255 | 1 | 1 | patents/JP2015041012A.pdf | All rows have review records |
-| 801454 | 1 | 1 | patents/US20130033768A1.pdf | All rows explicitly disposed |
 | 803404 | 1 | 1 | patents/US20140247506A1.pdf | All rows have review records |
 | 803405 | 1 | 1 | patents/US20170351051A1.pdf | All rows have review records |
 | 805252 | 1 | 1 | patents/US4258985.pdf | All rows have review records |
 | 805410 | 1 | 1 | patents/US4871239.pdf | All rows have review records |
-| 808406 | 1 | 1 | patents/JP2023063766A.pdf | All rows explicitly disposed |
 | 810372 | 1 | 1 | patents/US20180164556A1.pdf | All rows explicitly disposed |
-| 821426 | 1 | 1 | patents/US20100220400A1.pdf | All rows have review records |
 | 831265 | 1 | 1 | patents/US3615126.pdf | All rows explicitly disposed |
 | 835447 | 1 | 1 | patents/CN205720849U.pdf | All rows have review records |
 | 840433 | 1 | 1 | patents/US5528428.pdf | All rows have review records |
@@ -576,7 +552,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | L1 (Element 1) | 1 | `749501 - lanthanum crown (catalog unresolved)` | 1.74950 / 50.10 | No catalog entry | abbe | patents/US4124276.pdf | Reviewed sidecar hit |
 | L3 (Element 3) | 5 | `541468 - light flint (catalog unresolved)` | 1.54072 / 46.80 | No catalog entry | abbe | patents/US4124276.pdf | Reviewed sidecar hit |
 | L4 (Element 4) | 6 | `720521 - lanthanum crown (catalog unresolved)` | 1.72000 / 52.10 | No catalog entry | abbe | patents/US4124276.pdf | Audit-log hit |
-| L6 (Element 6) | 10 | `576414 - light flint (catalog unresolved)` | 1.57616 / 41.40 | No catalog entry | abbe | patents/US4124276.pdf | Reviewed sidecar hit |
 
 ### [NIKON AF MICRO-NIKKOR 200mm f/4D IF-ED](../../src/lens-data/nikon/NikonAFMicroNikkor200mmf4D.data.ts) - US 5,751,485
 
@@ -630,28 +605,28 @@ Completion counts are conditional on finding a source-verified catalog identity 
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L23 (Element L23) | 20 | `804238 very-dense flint class (catalog unresolved)` | 1.80379 / 23.82 | No catalog entry | abbe | patents/WO2019131993A1.pdf | No review-record hit |
-| L43 (Element L43) | 35 | `815233 dense flint class (catalog unresolved)` | 1.81511 / 23.33 | No catalog entry | abbe | patents/WO2019131993A1.pdf | No review-record hit |
-| L44 (Element L44) | 36 | `633315 flint class (catalog unresolved)` | 1.63288 / 31.50 | No catalog entry | abbe | patents/WO2019131993A1.pdf | No review-record hit |
-| L45 (Element L45) | 38 | `726548 lanthanum crown class (catalog unresolved)` | 1.72567 / 54.80 | No catalog entry | abbe | patents/WO2019131993A1.pdf | No review-record hit |
-| L47 (Element L47) | 42 | `690570 crown class (catalog unresolved)` | 1.68991 / 56.97 | No catalog entry | abbe | patents/WO2019131993A1.pdf | No review-record hit |
-| L48 (Element L48) | 44 | `819287 dense flint class (catalog unresolved)` | 1.81945 / 28.67 | No catalog entry | abbe | patents/WO2019131993A1.pdf | No review-record hit |
-| L49 (Element L49) | 47 | `806418 lanthanum flint class (catalog unresolved)` | 1.80592 / 41.79 | No catalog entry | abbe | patents/WO2019131993A1.pdf | No review-record hit |
-| L410 (Element L410) | 48 | `627376 flint class (catalog unresolved)` | 1.62730 / 37.62 | No catalog entry | abbe | patents/WO2019131993A1.pdf | No review-record hit |
+| L23 (Element L23) | 20 | `804238 very-dense flint class (catalog unresolved)` | 1.80379 / 23.82 | No catalog entry | abbe | patents/WO2019131993A1.pdf | Audit-log hit |
+| L43 (Element L43) | 35 | `815233 dense flint class (catalog unresolved)` | 1.81511 / 23.33 | No catalog entry | abbe | patents/WO2019131993A1.pdf | Audit-log hit |
+| L44 (Element L44) | 36 | `633315 flint class (catalog unresolved)` | 1.63288 / 31.50 | No catalog entry | abbe | patents/WO2019131993A1.pdf | Audit-log hit |
+| L45 (Element L45) | 38 | `726548 lanthanum crown class (catalog unresolved)` | 1.72567 / 54.80 | No catalog entry | abbe | patents/WO2019131993A1.pdf | Audit-log hit |
+| L47 (Element L47) | 42 | `690570 crown class (catalog unresolved)` | 1.68991 / 56.97 | No catalog entry | abbe | patents/WO2019131993A1.pdf | Audit-log hit |
+| L48 (Element L48) | 44 | `819287 dense flint class (catalog unresolved)` | 1.81945 / 28.67 | No catalog entry | abbe | patents/WO2019131993A1.pdf | Audit-log hit |
+| L49 (Element L49) | 47 | `806418 lanthanum flint class (catalog unresolved)` | 1.80592 / 41.79 | No catalog entry | abbe | patents/WO2019131993A1.pdf | Audit-log hit |
+| L410 (Element L410) | 48 | `627376 flint class (catalog unresolved)` | 1.62730 / 37.62 | No catalog entry | abbe | patents/WO2019131993A1.pdf | Audit-log hit |
 
 ### [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR — TC 1.4x Engaged](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14TCIn.data.ts) - WO 2019/131993 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L23 (Element L23) | 20 | `804238 very-dense flint class (catalog unresolved)` | 1.80379 / 23.82 | No catalog entry | abbe | patents/WO2019131993A1.pdf | No review-record hit |
-| L43 (Element L43) | 35 | `815233 dense flint class (catalog unresolved)` | 1.81511 / 23.33 | No catalog entry | abbe | patents/WO2019131993A1.pdf | No review-record hit |
-| L44 (Element L44) | 36 | `633315 flint class (catalog unresolved)` | 1.63288 / 31.50 | No catalog entry | abbe | patents/WO2019131993A1.pdf | No review-record hit |
-| L45 (Element L45) | 38 | `726548 lanthanum crown class (catalog unresolved)` | 1.72567 / 54.80 | No catalog entry | abbe | patents/WO2019131993A1.pdf | No review-record hit |
-| L47 (Element L47) | 42 | `690570 crown class (catalog unresolved)` | 1.68991 / 56.97 | No catalog entry | abbe | patents/WO2019131993A1.pdf | No review-record hit |
-| L48 (Element L48) | 44 | `819287 dense flint class (catalog unresolved)` | 1.81945 / 28.67 | No catalog entry | abbe | patents/WO2019131993A1.pdf | No review-record hit |
-| Lx2 (Element Lx2) | 49 | `786406 lanthanum crown/flint class (catalog unresolved)` | 1.78605 / 40.63 | No catalog entry | abbe | patents/WO2019131993A1.pdf | No review-record hit |
-| L49 (Element L49) | 59 | `806418 lanthanum flint class (catalog unresolved)` | 1.80592 / 41.79 | No catalog entry | abbe | patents/WO2019131993A1.pdf | No review-record hit |
-| L410 (Element L410) | 60 | `627376 flint class (catalog unresolved)` | 1.62730 / 37.62 | No catalog entry | abbe | patents/WO2019131993A1.pdf | No review-record hit |
+| L23 (Element L23) | 20 | `804238 very-dense flint class (catalog unresolved)` | 1.80379 / 23.82 | No catalog entry | abbe | patents/WO2019131993A1.pdf | Audit-log hit |
+| L43 (Element L43) | 35 | `815233 dense flint class (catalog unresolved)` | 1.81511 / 23.33 | No catalog entry | abbe | patents/WO2019131993A1.pdf | Audit-log hit |
+| L44 (Element L44) | 36 | `633315 flint class (catalog unresolved)` | 1.63288 / 31.50 | No catalog entry | abbe | patents/WO2019131993A1.pdf | Audit-log hit |
+| L45 (Element L45) | 38 | `726548 lanthanum crown class (catalog unresolved)` | 1.72567 / 54.80 | No catalog entry | abbe | patents/WO2019131993A1.pdf | Audit-log hit |
+| L47 (Element L47) | 42 | `690570 crown class (catalog unresolved)` | 1.68991 / 56.97 | No catalog entry | abbe | patents/WO2019131993A1.pdf | Audit-log hit |
+| L48 (Element L48) | 44 | `819287 dense flint class (catalog unresolved)` | 1.81945 / 28.67 | No catalog entry | abbe | patents/WO2019131993A1.pdf | Audit-log hit |
+| Lx2 (Element Lx2) | 49 | `786406 lanthanum crown/flint class (catalog unresolved)` | 1.78605 / 40.63 | No catalog entry | abbe | patents/WO2019131993A1.pdf | Audit-log hit |
+| L49 (Element L49) | 59 | `806418 lanthanum flint class (catalog unresolved)` | 1.80592 / 41.79 | No catalog entry | abbe | patents/WO2019131993A1.pdf | Audit-log hit |
+| L410 (Element L410) | 60 | `627376 flint class (catalog unresolved)` | 1.62730 / 37.62 | No catalog entry | abbe | patents/WO2019131993A1.pdf | Audit-log hit |
 
 ### [NIKON AF-S NIKKOR 20mm f/1.8 G ED](../../src/lens-data/nikon/NikonNikkorAFS20mmf18G.data.ts) - JP 2016-021011 A
 
@@ -674,18 +649,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | L1 (Element 1) | 1 | `744495 — unmatched high-index lanthanum-crown class (patent nd=1.744429, νd=49.52; no exact public catalog match)` | 1.74443 / 49.52 | No catalog entry | abbe | patents/US7508592.pdf | Explicit disposition in data |
 | L4r (Element 4 resin layer) | 7A | `553381 — unmatched UV-cure replicated resin (patent nd=1.55389, νd=38.09; not catalog glass)` | 1.55389 / 38.09 | No catalog entry | abbe | patents/US7508592.pdf | Explicit disposition in data |
 
-### [NIKON AF-S NIKKOR 28-300mm f/3.5-5.6 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS28300mmf3556G.data.ts) - US 2010/0220400 A1
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L54 (G5 rear aspherical negative lens) | 34 | `821426 — patent dense flint (nd=1.82080, νd=42.64; no public HIKARI/OHARA match found)` | 1.82080 / 42.64 | No catalog entry | abbe | patents/US20100220400A1.pdf | Reviewed sidecar hit |
-
-### [NIKON AF-S NIKKOR 28mm f/1.4 E ED](../../src/lens-data/nikon/NikonAFS28f14E.data.ts) - JP2017-227799A
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L14 (Element 4) | 8 | `Unmatched (569560 barium crown; patent coordinate is compatible with several vendors)` | 1.56883 / 56.00 | No catalog entry | abbe | patents/JP2017227799A.pdf | Explicit disposition in data |
-
 ### [NIKON AI AF ZOOM-NIKKOR 24-120mm f/3.5-5.6 D IF](../../src/lens-data/nikon/NikonAFNikkor24120mmf3556D.data.ts) - US 5,734,508 A
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
@@ -700,15 +663,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 |---|---|---|---|---|---|---|---|
 | L6 (Element 6) | 9 | `Legacy 744/494 lanthanum-flint class (exact melt uncertain)` | 1.74443 / 49.40 | No catalog entry | abbe | patents/US3507558.pdf | Reviewed sidecar hit |
 | L7 (Element 7) | 11 | `Legacy 767/462 dense lanthanum-flint class (exact melt uncertain)` | 1.76684 / 46.20 | No catalog entry | abbe | patents/US3507558.pdf | Reviewed sidecar hit |
-
-### [Nikon AI Zoom-Nikkor 25-50mm f/4](../../src/lens-data/nikon/NikonAIZoomNikkor2550mmf4.data.ts) - US 4,189,212
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L6 (Element 6) | 12 | `K10 class (501/565)` | 1.50137 / 56.50 | No catalog entry | abbe | patents/US4189212.pdf | Reviewed sidecar hit |
-| L7 (Element 7) | 14 | `K10 class (501/565)` | 1.50137 / 56.50 | No catalog entry | abbe | patents/US4189212.pdf | Reviewed sidecar hit |
-| L9a (Element 9a) | 18 | `Unmatched 465/658 (FK/phosphate crown class)` | 1.46450 / 65.80 | No catalog entry | abbe | patents/US4189212.pdf | Explicit disposition in data |
-| L9b (Element 9b) | 20 | `K10 class (501/565)` | 1.50137 / 56.50 | No catalog entry | abbe | patents/US4189212.pdf | Reviewed sidecar hit |
 
 ### [Nikon AI Zoom-Nikkor 35-200mm f/3.5-4.5S](../../src/lens-data/nikon/NikonAIZoomNikkor35200mmf3545S.data.ts) - US 4,770,511
 
@@ -877,30 +831,12 @@ Completion counts are conditional on finding a source-verified catalog identity 
 |---|---|---|---|---|---|---|---|
 | L2 (Element 2) | 3 | `487698 — FK/FSL low-dispersion crown class (patent nd=1.48749, νd=69.8; no exact modern coefficient-backed match)` | 1.48749 / 69.80 | No catalog entry | abbe | patents/US3838911.pdf | Reviewed sidecar hit |
 
-### [OLYMPUS G.ZUIKO AUTO-S 55mm f/1.2](../../src/lens-data/olympus/OlympusZuikoAutoS55mmf12.data.ts) - US 3,743,387
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L3 (Element 3) | 5 | `762271 — NbF/SF dense flint family (patent nd=1.7618, νd=27.1; no exact public catalog match)` | 1.76180 / 27.10 | No catalog entry | abbe | patents/US3743387.pdf | Audit-log hit |
-
 ### [OLYMPUS M.ZUIKO DIGITAL 14-42mm f/3.5-5.6 II R](../../src/lens-data/olympus/OlympusMZuiko1442mmf3556II.data.ts) - US 8,994,842 B2
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L2 (Element 2) | 3A | `Unmatched (moldable crown, 525/558 class)` | 1.52542 / 55.78 | No catalog entry | abbe | patents/US8994842.pdf | Explicit disposition in data |
 | L7 (Element 7) | 13A | `Unmatched (moldable crown, 531/557 class)` | 1.53071 / 55.69 | No catalog entry | abbe | patents/US8994842.pdf | Explicit disposition in data |
-
-### [OLYMPUS ZUIKO AUTO-FISHEYE 8mm f/2.8](../../src/lens-data/olympus/OlympusZuikoAutoFisheye8mmf28.data.ts) - DE 2157160 A1
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L6 (Element 6) | 9 | `787501 — vintage high-index lanthanum flint (probable; no exact public catalog match)` | 1.78650 / 50.10 | No catalog entry | abbe | patents/DE_2157160_A1.pdf | Audit-log hit |
-
-### [OLYMPUS ZUIKO AUTO-MACRO 50mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoMacro50mmf2.data.ts) - US 4,708,445
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L5 (Element 5) | 9 | `Unmatched (683447 barium/lanthanum flint; no first-party coefficient row found)` | 1.68250 / 44.65 | No catalog entry | abbe | patents/US4708445.pdf | Explicit disposition in data |
 
 ### [OLYMPUS ZUIKO AUTO-W 28mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoW28mmf2.data.ts) - US 3,862,794
 
@@ -1007,29 +943,11 @@ Completion counts are conditional on finding a source-verified catalog identity 
 |---|---|---|---|---|---|---|---|
 | L81 (L81 rear asphere) | 15A | `Unmatched lanthanum flint (770/493)` | 1.76951 / 49.30 | No catalog entry | abbe | Missing from untracked local patents/ references (WO2021246545A1, WO2021246545, 2021246545) | Explicit disposition in data |
 
-### [SCHNEIDER-KREUZNACH SUPER-ANGULON 75mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderSuperAngulon75mmf56.data.ts) - US 3,376,091
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L6 (Element 6) | 8 | `614563 — SSK-class dense barium crown (Schott historical; no exact public Sellmeier)` | 1.61375 / 56.30 | No catalog entry | abbe | patents/US3376091.pdf | Reviewed sidecar hit |
-
 ### [SCHNEIDER-KREUZNACH SUPER-SYMMAR HM 120mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderSuperSymmarHM120mmf56.data.ts) - US 4,773,745
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L6 (Element 8) | 13 | `Unmatched (479/587 low-index crown; vendor unspecified)` | 1.47870 / 58.70 | No catalog entry | abbe | patents/US4773745.pdf | Explicit disposition in data |
-
-### [SIGMA 35mm f/1.4 DG DN | Art](../../src/lens-data/sigma/SigmaDGDNA35mmf14.data.ts) - JP 2022-33487 A
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L5 (Element 5) | 8 | `593355 — heavy flint (vendor uncertain; no exact public catalog match)` | 1.59270 / 35.45 | No catalog entry | abbe | patents/JP2022033487A.pdf | Audit-log hit |
-
-### [SIGMA 50mm f/1.4 DG DN | Art](../../src/lens-data/sigma/SigmaDGDNArt50mmf14.data.ts) - JP 2023-183894 A
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L4 (Element 4) | 7A | `764491 — aspherical mold glass (no exact public catalog match; patent nd=1.76450, νd=49.10)` | 1.76450 / 49.10 | No catalog entry | abbe | patents/JP2023183894A.pdf | Audit-log hit |
 
 ### [SONY FE 12-24mm f/2.8 GM](../../src/lens-data/sony/SonyFE1224mmf28GM.data.ts) - WO 2021/200206 A1
 
@@ -1102,12 +1020,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 |---|---|---|---|---|---|---|---|
 | L21 (Element 7) | 12 | `Unmatched (995293 ultra-high-index heavy flint; no public coefficient row inside the d-line safety window)` | 1.99502 / 29.30 | No catalog entry | abbe | patents/JPWO2017138250A1.pdf | Explicit disposition in data |
 
-### [SONY SONNAR T* E 24mm f/1.8 ZA](../../src/lens-data/sony/SonyFE24mmf18ZA.data.ts) - US 2013/0033768 A1
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L6 (G6) | 11A | `Unmatched (lanthanum dense crown, 801/454; likely restricted-catalog PGM formulation)` | 1.80100 / 45.45 | No catalog entry | abbe | patents/US20130033768A1.pdf | Explicit disposition in data |
-
 ### [SONY SONNAR T* FE 35mm f/2.8 ZA](../../src/lens-data/sony/SonyFE35mmf28ZA.data.ts) - JP 2015-41012 A
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
@@ -1120,30 +1032,11 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | L132 (Element 6) | 10 | `630346 - dense flint (patent nd=1.63000, vd=34.57; no exact public catalog match)` | 1.63000 / 34.57 | No catalog entry | abbe | patents/JP2015041012A.pdf | Audit-log hit |
 | L133 (Element 7) | 12A | `680312 - dense flint (patent nd=1.68000, vd=31.16; no exact public catalog match)` | 1.68000 / 31.16 | No catalog entry | abbe | patents/JP2015041012A.pdf | Audit-log hit |
 
-### [VIVITAR SERIES 1 200mm f/3.0 VMC](../../src/lens-data/vivitar/VivitarSeries1200mmf3.data.ts) - US 3,942,876
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L5 (Element 5) | 10 | `713433 — LaF/BaSF boundary glass (no exact public catalog match)` | 1.71270 / 43.30 | No catalog entry | abbe | patents/US3942876.pdf | Audit-log hit |
-
-### [VIVITAR SERIES 1 35-85mm f/2.8 VMC](../../src/lens-data/vivitar/VivitarSeries13585mmf28.data.ts) - US 3,975,089
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L2 (Element 2) | 3 | `531621 — BSM-type crown (no exact public catalog match)` | 1.53100 / 62.10 | No catalog entry | abbe | patents/US3975089.pdf | Audit-log hit |
-
 ### [VIVITAR SERIES 1 450mm f/4.5 VMC ASPHERICAL MIRROR](../../src/lens-data/vivitar/VivitarSeries1450mmf45.data.ts) - US 4,523,816
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L5 (G2 doublet 1 rear) | 7 | `Unmatched (dense flint 728/261; no official HOYA or SUMITA catalog match)` | 1.72800 / 26.10 | No catalog entry | abbe | patents/US4523816.pdf | Explicit disposition in data |
-
-### [VOIGTLÄNDER NOKTON 50mm f/1.0](../../src/lens-data/voigtlander/VoigtlanderNokton50f1.data.ts) - JP2023063766A
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L6r (Element 8) | 14 | `Unmatched (553551 crown; patent nd=1.55298, νd=55.07)` | 1.55298 / 55.07 | No catalog entry | abbe | patents/JP2023063766A.pdf | Explicit disposition in data |
-| L7 (Element 9) | 16A | `Unmatched (808406 high-index lanthanum glass; patent nd=1.80835, νd=40.55)` | 1.80835 / 40.55 | No catalog entry | abbe | patents/JP2023063766A.pdf | Explicit disposition in data |
 
 ### [VOIGTLÄNDER NOKTON 60mm f/0.95](../../src/lens-data/voigtlander/VoigtlanderNokton60mmf95.data.ts) - JP 2021-076740 A
 
