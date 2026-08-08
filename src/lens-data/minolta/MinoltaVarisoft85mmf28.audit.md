@@ -66,3 +66,9 @@ Patent: US 4,124,276A, Embodiment 3
 
 - The patent gives no clear-aperture table.
 - Existing SDs remain inferred from the f/2.8 portrait-lens envelope and the two independent moving spacings. The proportions remain consistent with the patent drawings and no SD edits were made.
+
+## 2026-08-07 — FL57 catalog recovery
+
+- Visually rechecked Table 6 in local `patents/US4124276.pdf`; L6 remains `1.57616 / 41.4`, code 576414.
+- HOYA's 2026-07-07 catalog publishes FL57 at `1.576163 / 41.393340` with a vendor polynomial.
+- Relabeled L6 as an FL57 catalog equivalent while leaving Minolta's production supplier unspecified. The other code-only rows remain unresolved; no geometry changed.

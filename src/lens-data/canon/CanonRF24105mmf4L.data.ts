@@ -262,7 +262,7 @@ const LENS_DATA = {
       nd: 1.7645,
       vd: 49.1,
       fl: -68.4,
-      glass: "Unmatched 764491 — PGM lanthanum crown (nd=1.76450, νd=49.1; not catalog L-LAM69)",
+      glass: "L-LAH91 (OHARA catalog-equivalent; patent supplier unspecified)",
       apd: false,
       role: "Glass-molded aspheric #3; aggressive aspherization (~1.6 mm departure) for field curvature/distortion",
     },

@@ -164,7 +164,7 @@ const LENS_DATA = {
       nd: 1.80835,
       vd: 40.55,
       fl: -154.6,
-      glass: "Unmatched (808406 high-index lanthanum glass; patent nd=1.80835, νd=40.55)",
+      glass: "L-LAH84 (OHARA catalog-equivalent; patent supplier unspecified)",
       apd: false,
       role: "Rear aspherical corrector — ASP16 + ASP17 carry ~1 mm combined departure; f/f_le = −0.3234",
     },

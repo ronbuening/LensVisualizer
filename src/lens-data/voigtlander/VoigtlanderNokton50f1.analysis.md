@@ -376,7 +376,7 @@ A moderate-index crown glass, serving as the negative element of the field-corre
 
 ### L7 — nd = 1.80835, νd = 40.55
 
-A high-index lanthanum glass near the LaF/LaSF boundary. The nearest catalog neighbors are still offset from the patent pair, so the data file records the rounded six-digit code `808406` and keeps this as unmatched rather than assigning S-LAH53 or another near miss.
+A high-index lanthanum glass near the LaF/LaSF boundary. OHARA L-LAH84 reproduces the patent pair and supplies the coefficient-backed dispersion curve; the production supplier remains unspecified.
 
 ### Glass Map Summary
 
@@ -390,7 +390,7 @@ A high-index lanthanum glass near the LaF/LaSF boundary. The nearest catalog nei
 | L5 | 1.88300 | 40.69 | **S-LAH58 (same as L4r)** | **High** |
 | L6f | 1.88300 | 40.69 | **S-LAH58 (same as L4r, L5)** | **High** |
 | L6r | 1.55298 | 55.07 | HIKARI J-KZFH4 catalog equivalent (`553551`) | High; supplier unspecified |
-| L7 | 1.80835 | 40.55 | Unmatched high-index lanthanum (`808406`) | Low |
+| L7 | 1.80835 | 40.55 | L-LAH84 catalog-equivalent | Low |
 
 ---
 

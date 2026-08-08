@@ -90,7 +90,7 @@ const LENS_DATA = {
       nd: 1.61375,
       vd: 56.3,
       fl: 119.347,
-      glass: "Unmatched (614563 historical crown; prior SK6 / BSM6 annotation not coefficient-backed)",
+      glass: "BACD6 (HOYA catalog-equivalent; patent supplier unspecified)",
       apd: false,
       cemented: "D1",
       role: "Positive component of the fixed first-group cemented pair.",

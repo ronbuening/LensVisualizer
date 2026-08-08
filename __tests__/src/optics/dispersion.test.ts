@@ -444,6 +444,21 @@ describe("glass catalog", () => {
     expect(evaluateCatalogAbbeNumber(entry!)).toBeCloseTo(vd, 2);
   });
 
+  it.each([
+    { name: "L-LAH91", nd: 1.7645, vd: 49.096913 },
+    { name: "L-LAH84", nd: 1.80835, vd: 40.548503 },
+    { name: "PBH25", nd: 1.761797, vd: 27.107724 },
+    { name: "YGH52", nd: 1.7865, vd: 50.001717 },
+    { name: "BAM25", nd: 1.60323, vd: 42.320943 },
+    { name: "BACD6", nd: 1.613753, vd: 56.377856 },
+    { name: "FL57", nd: 1.576163, vd: 41.39334 },
+  ])("reproduces the phase 86 vendor row for $name", ({ name, nd, vd }) => {
+    const entry = resolveGlass(name);
+    expect(entry?.name).toBe(name);
+    expect(evaluateSellmeier(entry!, LINE_NM.d)).toBeCloseTo(nd, 5);
+    expect(evaluateCatalogAbbeNumber(entry!)).toBeCloseTo(vd, 2);
+  });
+
   it("evaluates the 2026 vendor named-glass coverage additions", () => {
     const expected: Array<[glass: string, nd: number]> = [
       ["BACD14", 1.60311],

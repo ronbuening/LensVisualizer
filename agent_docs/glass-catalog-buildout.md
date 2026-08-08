@@ -8,7 +8,17 @@ catalog equivalent. If neither path is available, the engine falls back to parti
 dPgF-corrected indices, or the legacy Abbe approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **484 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **491 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+
+The August 7, 2026 Phase 86 pass added seven first-party vendor curves: OHARA L-LAH91, L-LAH84, PBH25, YGH52,
+and BAM25, plus HOYA BACD6 and FL57. Compatible existing M-TAF1, M-TAFD51, and N-BAK4 curves raise twelve
+patent-derived prescriptions by thirteen surfaces while leaving every production supplier unspecified. Nine lenses become
+fully strict-covered: Canon RF 24-105mm f/4 L; Sigma 20mm f/1.4 Art and 50mm f/1.4 DG DN Art; Voigtländer Nokton
+50mm f/1.0; Olympus 55mm f/1.2 and 8mm f/2.8 fisheye; Nikon Auto Zoom 80-200mm f/4.5 and AI Zoom 25-50mm
+f/4; and Schneider Super-Angulon 75mm f/5.6. Global coverage rises from 5153 to 5166/5814 strict and from 5164
+to 5177/5814 trusted; 290 lenses are strict-complete and 295 trusted-complete, with zero coordinate mismatches. A
+parallel official-catalog audit records explicit no-match dispositions for the Nikon 180-400mm's nine remaining
+six-digit classes, leaving no active unreviewed code-only rows.
 
 The August 7, 2026 Phase 85 pass continued through the visible-lens opportunity queue and recovered eight exact legacy
 HOYA curves from the manufacturer's official obsolete-inclusive Zemax catalog: BAF5, FEL3, CF2, FD3, FC3, BSC6,

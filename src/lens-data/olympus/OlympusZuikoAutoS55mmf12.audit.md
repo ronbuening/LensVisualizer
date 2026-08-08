@@ -32,3 +32,9 @@ Patent: US 3,743,387
 - SUMITA's discontinued-inclusive all-glass catalog publishes K-LaSKn1 at code `755524`, nd = 1.75500, νd = 52.4.
 - Relabeled L5 / S9 from a code-only family annotation to an exact coefficient-backed catalog equivalent while leaving the production supplier unspecified.
 - The patent prescription and inferred semi-diameters remain unchanged.
+
+## 2026-08-07 — PBH25 catalog recovery
+
+- Visually rechecked local `patents/US3743387.pdf`; the third element remains `1.7618 / 27.1`, code 762271.
+- OHARA's 2026-07-01 discontinued catalog row PBH25 is `1.761797 / 27.107724` and carries the same 762271 code.
+- Relabeled L3 as a PBH25 catalog equivalent while leaving Olympus's production supplier unspecified. No geometry changed.

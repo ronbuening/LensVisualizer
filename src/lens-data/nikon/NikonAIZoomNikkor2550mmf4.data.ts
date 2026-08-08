@@ -58,7 +58,7 @@ const LENS_DATA = {
       nd: 1.77279,
       vd: 49.4,
       fl: -73.069,
-      glass: "Unmatched 773/494 (near Hoya M-TAF1 / Ohara S-LAH66N)",
+      glass: "M-TAF1 (HOYA catalog-equivalent; patent supplier unspecified)",
       role: "High-index negative front meniscus; reduces oblique-ray deviation and front-group diameter.",
     },
     {

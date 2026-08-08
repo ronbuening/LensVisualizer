@@ -29,3 +29,9 @@ Patent: JP2023-063766 A, Example 1
 - Relabeled L6r to coefficient-backed HIKARI J-KZFH4, whose public catalog row is the exact 553551 coordinate.
 - The label is a spectral catalog equivalent and leaves Cosina's production supplier unspecified. L7 remains explicitly unmatched because the nearby 808409 catalog row does not reproduce the patent's 808406 dispersion closely enough.
 - Synchronized the analysis. No geometry or authored patent constants changed.
+
+## 2026-08-07 — L-LAH84 catalog recovery
+
+- Visually rechecked Example 1 in local `patents/JP2023063766A.pdf`; L7 remains `1.80835 / 40.55`, code 808406.
+- OHARA's 2026-07-01 catalog publishes low-softening L-LAH84 at `1.808350 / 40.548503` with vendor Sellmeier coefficients.
+- Relabeled L7 as an L-LAH84 catalog equivalent while leaving Cosina's production supplier unspecified. This supersedes the earlier no-match disposition; no geometry changed.

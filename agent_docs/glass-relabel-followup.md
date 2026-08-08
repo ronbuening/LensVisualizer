@@ -28,14 +28,25 @@ This file tracks the second bucket plus any cases from the first bucket that nee
 - `catalog-mismatches.generated.md` and `glass-relabel-by-lens.generated.md` report **0** remaining
   dispersion-coordinate mismatches across **0** lens files. The mismatch report separately records **18 / 75**
   native e-line surfaces resolved through explicit names or aliases.
-- `sellmeier-coverage.generated.md` reports **532** lenses, **5814** non-air surfaces, **5153** strict catalog
-  Sellmeier surfaces (**88.6%**), and **5164** trusted chromatic surfaces (**88.8%**).
-- **281** lenses are fully covered by strict Sellmeier data and **286** are fully covered by trusted chromatic data.
-- `unresolvedGlassScan` reports **345** non-explicit-unmatched annotations and **184** distinct unresolved glass-like
+- `sellmeier-coverage.generated.md` reports **532** lenses, **5814** non-air surfaces, **5166** strict catalog
+  Sellmeier surfaces (**88.9%**), and **5177** trusted chromatic surfaces (**89.0%**).
+- **290** lenses are fully covered by strict Sellmeier data and **295** are fully covered by trusted chromatic data.
+- `unresolvedGlassScan` reports **338** non-explicit-unmatched annotations and **176** distinct unresolved glass-like
   tokens. The residual total is code/prose inventory rather than a catalog-coordinate mismatch queue.
-- The missing-Sellmeier six-digit report contains **282** code-only elements, with **17** active unreviewed rows,
-  **124** self-recording explicit unmatched/unidentified dispositions, and **0** dispositions missing a review record.
+- The missing-Sellmeier six-digit report contains **274** code-only elements, with **0** active unreviewed rows,
+  **122** self-recording explicit unmatched/unidentified dispositions, and **0** dispositions missing a review record.
 - The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work; for patent-by-patent execution, start from [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md).
+
+## Resolved Phase 86 — August 2026 catalog-coordinate and disposition audit
+
+- Added OHARA L-LAH91, L-LAH84, PBH25, YGH52, and BAM25 plus HOYA BACD6 and FL57 from the manufacturers'
+  official 2026 Zemax catalogs.
+- Combined them with existing M-TAF1, M-TAFD51, and N-BAK4 curves to upgrade thirteen surfaces across twelve
+  patent-derived prescriptions, completing nine lenses while leaving every production supplier unspecified.
+- Visually verified the affected patent tables and explicitly audited the Nikon 180-400mm's nine remaining six-digit
+  classes against official OHARA, HOYA, and HIKARI data; none has a candidate inside both runtime tolerances.
+- Global coverage is 5166/5814 strict and 5177/5814 trusted; 290 lenses are strict-complete and 295 trusted-complete,
+  with zero catalog-coordinate mismatches and zero active unreviewed code-only rows.
 
 ## Resolved Phase 85 — August 2026 legacy visible-lens catalog audit
 

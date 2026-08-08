@@ -48,3 +48,9 @@ Catalog version: bb70259
 - `npm run format:check` — passed.
 - `npm run lint` — passed.
 - `npm run test` — passed (120 files, 1566 tests; expected error-boundary stack traces printed during the run).
+
+## 2026-08-07 — L-LAH91 catalog recovery
+
+- Visually rechecked Numerical Example 2 in local `patents/US20190278068A1.pdf`; L17 remains `1.76450 / 49.1`.
+- OHARA's 2026-07-01 catalog publishes low-softening L-LAH91 at `1.764500 / 49.096913` with vendor Sellmeier coefficients.
+- Relabeled L17 as an L-LAH91 catalog equivalent while leaving Canon's production supplier unspecified. No patent constants or geometry changed.

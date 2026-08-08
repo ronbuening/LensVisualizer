@@ -56,3 +56,9 @@ catalog metadata and close focus remains unmodeled, as disclosed in the data and
 - Replaced L5's provisional vendor-unresolved `517696` wording with `S-APL1 (OHARA; 517696)`.
 - The official OHARA 2026-07-01 all-products catalog supplies formula-3 coefficients and the exact 1.517277 / 69.563 coordinate.
 - Synchronized the element analysis and glass table; code `614563` remains the only unresolved row from the prior glass audit.
+
+## 2026-08-07 — BACD6 catalog recovery
+
+- Visually rechecked Example 1 in local `patents/US3615125.pdf`; L2 remains `1.61375 / 56.3`, rounded code 614563.
+- HOYA's 2026-07-07 catalog publishes BACD6 at `1.613753 / 56.377856`, inside both runtime tolerances, with a vendor polynomial.
+- Relabeled L2 as a BACD6 catalog equivalent while leaving Nikon's production supplier unspecified. No geometry changed.

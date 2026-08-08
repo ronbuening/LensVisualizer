@@ -127,11 +127,11 @@ Despite occupying a symmetric position to L4, L5 uses a distinctly different gla
 
 ### L6 — Biconvex Positive (Central Positive of Rear Triplet), Cemented
 
-$n_d = 1.61375$, $\nu_d = 56.3$. Glass: **SSK-class dense barium crown (614563)** — historical Schott-family code-only row. $f = +18.2$.
+$n_d = 1.61375$, $\nu_d = 56.3$. Glass: **BACD6 (HOYA catalog-equivalent; patent supplier unspecified)**. $f = +18.2$.
 
 L6 is the symmetry partner of L3 and the most powerful element in the entire system ($f = +18.2$, the shortest focal length of any element), with surfaces $r_8 = +23.84$ (cemented junction with L5) and $r_9 = -16.29$ (cemented junction with L7). It carries the greatest share of the system's positive refractive power in a nearly biconvex configuration, though somewhat asymmetric ($|r_9| < |r_8|$, meaning the image-side surface is more strongly curved).
 
-The glass is nearly identical to L3 in refractive index ($\Delta n_d = 0.00030$) but differs slightly in Abbe number ($\nu_d = 56.3$ vs 55.1, $\Delta\nu_d = 1.2$). This small difference is within the patent's tolerance of $\leq 8$ units for corresponding positive lenses. Unlike L3's 614551 row, the 614563 pair has no exact coefficient-backed public catalog row in the project, so it remains a code-only SSK-class dense barium crown assignment, likely a companion formulation to the L3 glass from the same era of the Schott catalog.
+The glass is nearly identical to L3 in refractive index ($\Delta n_d = 0.00030$) but differs slightly in Abbe number ($\nu_d = 56.3$ vs 55.1, $\Delta\nu_d = 1.2$). This small difference is within the patent's tolerance of $\leq 8$ units for corresponding positive lenses. HOYA BACD6 reproduces the L6 coordinate within the runtime tolerance and supplies its dispersion curve; the historical production supplier is not identified.
 
 L6 is slightly shorter in focal length than L3 ($+18.2$ vs $+20.2$), compensating for the different glass properties of L7 (which has lower $\nu_d$ than L2) to maintain chromatic balance.
 
@@ -168,7 +168,7 @@ Unlike L1 (FK3 fluorophosphate crown), L8 uses a different crown glass: $n_d = 1
 | L3 | 1.61405 | 55.1 | SSK class / Hikari SK9 optical equivalent (614551) | Schott historical / Hikari equivalent | Exact optical match | Dense barium crown, central positive |
 | L4 | 1.56138 | 45.3 | LLF4 catalog equivalent (561453) | SUMITA coefficients; supplier unspecified | Exact coordinate | Barium light flint, thin biconcave inner corrector |
 | L5 | 1.56883 | 56.0 | BaK4 / S-BAL14 optical equivalent | Schott / OHARA equivalent | High | Barium crown, thin biconcave inner corrector |
-| L6 | 1.61375 | 56.3 | SSK class (614563) | Schott historical | Code-only | Dense barium crown, central positive |
+| L6 | 1.61375 | 56.3 | BACD6 | HOYA catalog-equivalent | Coefficient-backed | Dense barium crown, central positive |
 | L7 | 1.70181 | 41.1 | BaSF class / S-BAH27 or BAFD7 optical equivalent (702411) | Schott historical / OHARA-HOYA equivalent | High | Barium dense flint, high-index outer negative |
 | L8 | 1.52015 | 63.6 | BK7G18 optical match (520636) | Schott | Exact optical match | Crown, low-index field lens |
 

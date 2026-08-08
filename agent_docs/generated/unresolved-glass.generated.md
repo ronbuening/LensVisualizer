@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **532** lenses scanned
 - **5814** non-air surfaces examined
 - **5821** element glass declarations examined
-- **345** non-explicit-unmatched annotations did not resolve
-- **184** distinct unresolved glass-like tokens found
+- **338** non-explicit-unmatched annotations did not resolve
+- **176** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -76,17 +76,14 @@ or per-lens patent backfills.
 | 571560 | 1 | 1 | |
 | 574425 | 1 | 1 | |
 | 575413 | 1 | 1 | |
-| 576414 | 1 | 1 | |
 | 585417 | 1 | 1 | |
 | 593348 | 1 | 1 | |
 | 595686 | 1 | 1 | |
 | 596670 | 1 | 1 | |
 | 602352 | 1 | 1 | |
-| 603423 | 1 | 1 | |
 | 603564 | 1 | 1 | |
 | 607492 | 1 | 1 | |
 | 612313 | 1 | 1 | |
-| 614563 | 1 | 1 | |
 | 617443 | 1 | 1 | |
 | 624584 | 1 | 1 | |
 | 625533 | 1 | 1 | |
@@ -119,8 +116,6 @@ or per-lens patent backfills.
 | 750504 | 1 | 1 | |
 | 754260 | 1 | 1 | |
 | 755501 | 1 | 1 | |
-| 762271 | 1 | 1 | |
-| 764491 | 1 | 1 | |
 | 767462 | 1 | 1 | |
 | 768465 | 1 | 1 | |
 | 769497 | 1 | 1 | |
@@ -134,7 +129,6 @@ or per-lens patent backfills.
 | 781446 | 1 | 1 | |
 | 786275 | 1 | 1 | |
 | 786406 | 1 | 1 | |
-| 787501 | 1 | 1 | |
 | 789457 | 1 | 1 | |
 | 792450 | 1 | 1 | |
 | 797455 | 1 | 1 | |
@@ -144,7 +138,6 @@ or per-lens patent backfills.
 | 804464 | 1 | 1 | |
 | 805252 | 1 | 1 | |
 | 805410 | 1 | 1 | |
-| 821426 | 1 | 1 | |
 | 835447 | 1 | 1 | |
 | 840433 | 1 | 1 | |
 | 849401 | 1 | 1 | |
@@ -163,7 +156,6 @@ or per-lens patent backfills.
 | 933209 | 1 | 1 | |
 | BAM5 | 1 | 1 | |
 | BASF1 | 1 | 1 | |
-| BASF5-CLASS | 1 | 1 | |
 | D-ZLAF85 | 1 | 1 | |
 | EF3 | 1 | 1 | |
 | FPL51 | 1 | 1 | |
@@ -495,10 +487,6 @@ or per-lens patent backfills.
 
 - [CARL ZEISS CONTAREX PLANAR 55mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissContarexPlanar55mmf14.data.ts) 4: `LF7 (Schott 575413)`
 
-### 576414 — 1 occurrence
-
-- [MINOLTA VARISOFT ROKKOR 85mm f/2.8](../../src/lens-data/minolta/MinoltaVarisoft85mmf28.data.ts) 10: `576414 - light flint (catalog unresolved)`
-
 ### 585417 — 1 occurrence
 
 - [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) 3A: `585417 — light flint (patent nd=1.58542, nu_d=41.7)`
@@ -519,10 +507,6 @@ or per-lens patent backfills.
 
 - [CARL ZEISS JENA PANCOLAR 50mm f/2](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPancolar50mmf2.data.ts) 6: `Special light flint (Jena in-house, 602/352)`
 
-### 603423 — 1 occurrence
-
-- [OLYMPUS ZUIKO AUTO-FISHEYE 8mm f/2.8](../../src/lens-data/olympus/OlympusZuikoAutoFisheye8mmf28.data.ts) 10: `603423 — BaSF5-class barium dense flint (no exact public catalog match)`
-
 ### 603564 — 1 occurrence
 
 - [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) 34: `603564 — medium crown (patent nd=1.60342, νd≈56.4; no exact public catalog match)`
@@ -534,10 +518,6 @@ or per-lens patent backfills.
 ### 612313 — 1 occurrence
 
 - [NIKON AF-P DX NIKKOR 70-300mm f/4.5-6.3 G ED VR](../../src/lens-data/nikon/NikonAFPDX70300mmf4563G.data.ts) 3: `612313 — anomalous-dispersion flint class (patent nd=1.61155, νd=31.26, θgF=0.618; no exact public catalog match)`
-
-### 614563 — 1 occurrence
-
-- [SCHNEIDER-KREUZNACH SUPER-ANGULON 75mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderSuperAngulon75mmf56.data.ts) 8: `614563 — SSK-class dense barium crown (Schott historical; no exact public Sellmeier)`
 
 ### 617443 — 1 occurrence
 
@@ -667,14 +647,6 @@ or per-lens patent backfills.
 
 - [MINOLTA MD ROKKOR 45mm f/2](../../src/lens-data/minolta/MinoltaRokkor45mmf2MD.data.ts) 8: `755501 - lanthanum crown (catalog unresolved)`
 
-### 762271 — 1 occurrence
-
-- [OLYMPUS G.ZUIKO AUTO-S 55mm f/1.2](../../src/lens-data/olympus/OlympusZuikoAutoS55mmf12.data.ts) 5: `762271 — NbF/SF dense flint family (patent nd=1.7618, νd=27.1; no exact public catalog match)`
-
-### 764491 — 1 occurrence
-
-- [SIGMA 50mm f/1.4 DG DN | Art](../../src/lens-data/sigma/SigmaDGDNArt50mmf14.data.ts) 7A: `764491 — aspherical mold glass (no exact public catalog match; patent nd=1.76450, νd=49.10)`
-
 ### 767462 — 1 occurrence
 
 - [NIKON AI NIKKOR 35mm f/2](../../src/lens-data/nikon/NikonAINikkor35mmf2.data.ts) 11: `Legacy 767/462 dense lanthanum-flint class (exact melt uncertain)`
@@ -727,10 +699,6 @@ or per-lens patent backfills.
 
 - [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR — TC 1.4x Engaged](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14TCIn.data.ts) 49: `786406 lanthanum crown/flint class (catalog unresolved)`
 
-### 787501 — 1 occurrence
-
-- [OLYMPUS ZUIKO AUTO-FISHEYE 8mm f/2.8](../../src/lens-data/olympus/OlympusZuikoAutoFisheye8mmf28.data.ts) 9: `787501 — vintage high-index lanthanum flint (probable; no exact public catalog match)`
-
 ### 789457 — 1 occurrence
 
 - [MINOLTA MD ROKKOR 50mm f/1.4](../../src/lens-data/minolta/MinoltaRokkor50mmf14MD.data.ts) 1: `789457 - high-index lanthanum flint (catalog unresolved)`
@@ -766,10 +734,6 @@ or per-lens patent backfills.
 ### 805410 — 1 occurrence
 
 - [MINOLTA AF 35-105mm f/3.5-4.5 New (v2)](../../src/lens-data/minolta/MinoltaAF35105mmf3545v2.data.ts) 22: `805410 - dense lanthanum-flint / LASF-class glass (unresolved)`
-
-### 821426 — 1 occurrence
-
-- [NIKON AF-S NIKKOR 28-300mm f/3.5-5.6 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS28300mmf3556G.data.ts) 34: `821426 — patent dense flint (nd=1.82080, νd=42.64; no public HIKARI/OHARA match found)`
 
 ### 835447 — 1 occurrence
 
@@ -842,10 +806,6 @@ or per-lens patent backfills.
 ### BASF1 — 1 occurrence
 
 - [LEICA ELMARIT 90mm f/2.8](../../src/lens-data/leica/LeicaElmarit90mmf28.data.ts) 6: `BaSF1 (SCHOTT)`
-
-### BASF5-CLASS — 1 occurrence
-
-- [OLYMPUS ZUIKO AUTO-FISHEYE 8mm f/2.8](../../src/lens-data/olympus/OlympusZuikoAutoFisheye8mmf28.data.ts) 10: `603423 — BaSF5-class barium dense flint (no exact public catalog match)`
 
 ### D-ZLAF85 — 1 occurrence
 

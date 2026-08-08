@@ -49,3 +49,9 @@ Patent: DE 2157160 A1, Example 1 / first numerical prescription, Fig. 1.
 ### Analysis sync
 
 - Updated the L6/L7 text and glass table to use the normalized six-digit code labels.
+
+## 2026-08-07 — YGH52 and BAM25 catalog recovery
+
+- Visually rechecked Table 1 in local `patents/DE_2157160_A1.pdf`; L6 remains `1.7865 / 50.1` and L7 remains `1.6032 / 42.3`.
+- OHARA's 2026-07-01 discontinued rows YGH52 (`1.786500 / 50.001717`) and BAM25 (`1.603230 / 42.320943`) are tolerance-safe catalog equivalents with vendor polynomials.
+- Relabeled L6/L7 while leaving Olympus's production supplier unspecified. No geometry changed.

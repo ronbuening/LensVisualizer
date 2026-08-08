@@ -21,6 +21,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-08-07",
     type: "improvement",
+    summary: "Extended catalog dispersion across twelve additional lens prescriptions",
+  },
+  {
+    date: "2026-08-07",
+    type: "improvement",
     summary: "Recovered legacy glass dispersion for eleven additional lens prescriptions",
   },
   {

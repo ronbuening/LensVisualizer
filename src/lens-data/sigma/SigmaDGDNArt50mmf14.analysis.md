@@ -66,7 +66,7 @@ L3 is the second negative element in the GF1 subgroup. The patent states that GF
 
 ### L4 — Biconvex Positive, 2× Aspherical (GF2, 1st element)
 
-nd = 1.76450, νd = 49.10. Glass: 764491 — aspherical mold glass with no exact public catalog match. f = +45.6 mm.
+nd = 1.76450, νd = 49.10. Glass: L-LAH91 (OHARA catalog-equivalent; patent supplier unspecified). f = +45.6 mm.
 
 L4 is the first aspherical element and the first element of the positive subgroup GF2. Both surfaces are aspherical. Surface 7 (front) carries a hyperboloidal conic constant K = −2.021, meaning the surface flattens rapidly toward the edge — significantly departing from a sphere. Surface 8 (rear) has K = +0.318, an oblate ellipsoid. Both surfaces carry polynomial coefficients through A18.
 
@@ -151,7 +151,7 @@ The prescription uses 10 distinct glass types across 14 elements. The glass pale
 | L1 | 1.92286 | 20.88 | E-FDS1 (HOYA) | Ultra-high-index front positive; reduces curvatures |
 | L2 | 1.51742 | 52.15 | E-CF6 (HOYA) | Crown/flint boundary glass; negative for distortion/Petzval |
 | L3 | 1.80518 | 25.46 | S-TIH6 (OHARA) | Dense flint; negative Petzval contributor |
-| L4 | 1.76450 | 49.10 | 764491 mold glass | Aspherical SA corrector |
+| L4 | 1.76450 | 49.10 | L-LAH91 catalog-equivalent | Aspherical SA corrector |
 | L5 | 1.59282 | 68.62 | FCD515 (HOYA) | **SLD** — axial color correction |
 | L6 | 1.69895 | 30.05 | E-FD15 (HOYA) | Short flint; chromatic partner to L5 |
 | L7 | 1.88300 | 40.80 | S-LAH58 (OHARA) | Lanthanum crown; final GF convergence |

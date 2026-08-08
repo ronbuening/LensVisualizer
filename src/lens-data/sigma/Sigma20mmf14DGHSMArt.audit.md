@@ -55,3 +55,9 @@ Patent: JP 2019-117419 A, Numerical Example 1
 - JP 2019-117419 A Example 1 does not publish a clear-aperture / effective-radius table.
 - Edits reduce only the offending larger endpoint and keep the inferred SD progression otherwise unchanged.
 - Temporary Sigma SD audit after the edits reported 0/27 Sigma files with raw SD/render issues.
+
+## 2026-08-07 — L-LAH91 catalog recovery
+
+- Visually rechecked Example 1 in local `patents/JP2019117419A.pdf`; E15 remains `1.76450 / 49.10`.
+- OHARA's 2026-07-01 catalog publishes low-softening L-LAH91 at the same coordinate with vendor Sellmeier coefficients.
+- Relabeled E15 as an L-LAH91 catalog equivalent while leaving Sigma's production supplier unspecified. No geometry changed.

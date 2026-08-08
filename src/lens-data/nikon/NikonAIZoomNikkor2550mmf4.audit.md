@@ -46,3 +46,9 @@ Patent: US 4,189,212, Example 8 / Claim 20.
   production supplier remains unspecified.
 - Strict and trusted coverage rise to `10/11`; only L1's separate 773494 coordinate remains unmatched. No geometry
   changed.
+
+## 2026-08-07 — M-TAF1 catalog recovery
+
+- Visually rechecked Example 4 in local `patents/US4189212.pdf`; L1 remains `1.77279 / 49.4`.
+- HOYA's discontinued M-TAF1 row (`1.77250 / 49.46`) is compatible with the rounded patent coordinate and supplies a vendor polynomial.
+- Relabeled L1 as an M-TAF1 catalog equivalent while leaving Nikon's production supplier unspecified. No geometry changed.

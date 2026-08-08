@@ -73,3 +73,9 @@ Patent: JP 2023-183894 A, Example 1
 
 - JP 2023-183894 A Example 1 does not publish a clear-aperture / effective-radius table.
 - Temporary Sigma SD audit after the edit reported 0/27 Sigma files with raw SD/render issues.
+
+## 2026-08-07 — L-LAH91 catalog recovery
+
+- Visually rechecked Example 1 in local `patents/JP2023183894A.pdf`; L4 remains `1.76450 / 49.10`.
+- OHARA's 2026-07-01 catalog publishes low-softening L-LAH91 at the same coordinate with vendor Sellmeier coefficients.
+- Relabeled L4 as an L-LAH91 catalog equivalent while leaving Sigma's production supplier unspecified. No geometry changed.

@@ -1207,4 +1207,23 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published obsolete catalog row.",
   },
+  /* ────── Phase 86 patent-coordinate coverage additions (August 2026) ────── */
+  {
+    name: "BACD6",
+    vendor: "Hoya",
+    polynomial: [2.5590468, -0.0087939706, 0.016000667, 0.00019986862, 0.0000070540862, -0.00000009999357],
+    nd: 1.613753,
+    vd: 56.377856,
+    code6: "614564",
+    source: "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published catalog row.",
+  },
+  {
+    name: "FL57",
+    vendor: "Hoya",
+    polynomial: [2.4280674, -0.0079954051, 0.01931393, 0.00025443035, 0.000037628038, -0.00000014911458],
+    nd: 1.576163,
+    vd: 41.39334,
+    code6: "576414",
+    source: "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published catalog row.",
+  },
 ];
