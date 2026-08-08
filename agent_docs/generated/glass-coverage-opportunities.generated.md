@@ -9,12 +9,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **532** lenses scanned (**522** visible)
-- **5166 / 5814** non-air surfaces use strict catalog Sellmeier data (88.9%)
-- **5177 / 5814** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 89.0%)
+- **538** lenses scanned (**528** visible)
+- **5221 / 5880** non-air surfaces use strict catalog Sellmeier data (88.8%)
+- **5232 / 5880** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 89.0%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
-- **274** code-only missing-Sellmeier elements in Sweep 2: **0** active unreviewed, **122** self-recording explicit dispositions, **0** dispositions missing any review record
+- **279** code-only missing-Sellmeier elements in Sweep 2: **0** active unreviewed, **127** self-recording explicit dispositions, **0** dispositions missing any review record
 - **0** unresolved named-token elements in Sweep 2B, producing **0** token occurrences across **0** distinct tokens
 - **0** Tier A proprietary backfill rows in Sweep 3
 
@@ -144,6 +144,7 @@ These rows contain resin, cement, plastic, liquid, or unclassified optical media
 | [NIKON AF ZOOM-NIKKOR 28-200mm f/3.5-5.6 G IF-ED](../../src/lens-data/nikon/NikonAFZoomNikkor28200mmf3556GIFED.data.ts) | US 6,621,643 B2 | [PDF](../../patents/US6621643.pdf) | 85.7% (12/14) | 85.7% (12/14) | 2 | 6A [resin] (Element 4 — L21 resin layer: `Unmatched (optical resin, nd=1.553890, νd=38.09)`)<br>25A [resin] (Element 13 — Gm L2 resin layer: `Unmatched (optical resin, nd=1.553890, νd=38.09)`) | abbe: 2 |
 | [NIKON AF-S NIKKOR 24mm f/1.4 G ED](../../src/lens-data/nikon/NikonNikkorAFS24mmf14G.data.ts) | US 8,416,512 B2 | [PDF](../../patents/US8416512.pdf) | 85.7% (12/14) | 85.7% (12/14) | 2 | 14 [cement] (Cement layer 1: `Patent cement medium (nd=1.51400, νd=42.83)`)<br>19 [cement] (Cement layer 2: `Patent cement medium (nd=1.51400, νd=42.83)`) | abbe: 2 |
 | [NIKON NIKKOR Z 50mm f/1.8 S](../../src/lens-data/nikon/NikonNikkorZ50f18S.data.ts) | WO2019/220618 A1 | [PDF](../../patents/WO2019220618A1.pdf) | 85.7% (12/14) | 85.7% (12/14) | 2 | 6A [other] (element: `no glass annotation`)<br>25 [other] (element: `no glass annotation`) | constant: 2 |
+| [PENTAX SMC DA 16-45mm f/4 ED AL](../../src/lens-data/pentax/PentaxDA1645mmF4EDAL.data.ts) | US 7,106,520 B2 | [PDF](../../patents/US7106520.pdf) | 85.7% (12/14) | 85.7% (12/14) | 2 | 5 [glass] (L13: `Unmatched (nd=1.52538, vd=56.3)`)<br>19A [resin] (L41 resin: `Resin layer (patent hybrid asphere)`) | abbe: 2 |
 | [NIKON AF-P DX NIKKOR 18-55mm f/3.5-5.6 G VR](../../src/lens-data/nikon/NikonAFPDX1855mmf3556G.data.ts) | US 10,690,896 B2 | Missing from untracked local patents/ references (US10690896B2, US10690896, 10690896) | 84.6% (11/13) | 84.6% (11/13) | 2 | 2 [resin] (L11 resin aspherical layer: `UV-curable resin (patent material, no catalog match)`)<br>20 [plastic] (L61 plastic asphere: `Optical plastic (patent material, no catalog match)`) | abbe: 2 |
 | [NIKON R-UW AF ZOOM-NIKKOR 20-35mm f/2.8](../../src/lens-data/nikon/NikonRUWAFZoomNikkor2035mmf28.data.ts) | US 5,490,012 | [PDF](../../patents/US5490012.pdf) | 81.8% (9/11) | 81.8% (9/11) | 2 | WTR [other] (element: `no glass annotation`)<br>17 [glass] (Element 9: `Unmatched (748/523 lanthanum crown; historical/proprietary melt)`) | abbe: 1, constant: 1 |
 | [PENTAX HD D FA645 35mm f/3.5 AL [IF]](../../src/lens-data/pentax/PentaxDFA64535mmf35AL.data.ts) | US 2001/0007512 A1 | [PDF](../../patents/US20010007512A1.pdf) | 81.8% (9/11) | 81.8% (9/11) | 2 | 4 [resin] (Element 2 synthetic-resin layer: `Unmatched (synthetic resin; patent nd=1.52700, νd=43.7)`)<br>18 [glass] (Element 10: `Unmatched (barium-crown vicinity; no exact public-catalog match)`) | abbe: 2 |

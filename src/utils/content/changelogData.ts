@@ -20,6 +20,11 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-08-08",
+    type: "lens",
+    summary: "Added six Pentax Q, DA, 645, and Super-Takumar lens designs",
+  },
+  {
+    date: "2026-08-08",
     type: "improvement",
     summary: "Expanded coefficient-backed dispersion across 43 surfaces and 28 fully covered lenses",
   },
