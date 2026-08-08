@@ -85,6 +85,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "F1",
+      diagramLabel: "F1",
       label: "Front element F1",
       type: "Negative Meniscus",
       nd: 1.83481,
@@ -96,6 +97,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "F2",
+      diagramLabel: "F2",
       label: "Front element F2",
       type: "Neg. Meniscus (2× Asph)",
       nd: 1.73077,
@@ -107,6 +109,7 @@ const LENS_DATA = {
     {
       id: 3,
       name: "F3",
+      diagramLabel: "F3",
       label: "Front element F3",
       type: "Biconcave Negative",
       nd: 1.618,
@@ -118,6 +121,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "F4",
+      diagramLabel: "F4",
       label: "Front element F4",
       type: "Biconvex Positive",
       nd: 1.744,
@@ -130,6 +134,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "F5",
+      diagramLabel: "F5",
       label: "Front element F5",
       type: "Negative Meniscus",
       nd: 1.83481,
@@ -142,6 +147,7 @@ const LENS_DATA = {
     {
       id: 6,
       name: "R1",
+      diagramLabel: "R1",
       label: "Rear element R1",
       type: "Biconvex Positive",
       nd: 1.64769,
@@ -154,6 +160,7 @@ const LENS_DATA = {
     {
       id: 7,
       name: "R2",
+      diagramLabel: "R2",
       label: "Rear element R2",
       type: "Negative Meniscus",
       nd: 1.7725,
@@ -166,6 +173,7 @@ const LENS_DATA = {
     {
       id: 8,
       name: "R3",
+      diagramLabel: "R3",
       label: "Focus element R3",
       type: "Biconvex Positive",
       nd: 1.497,
@@ -178,6 +186,7 @@ const LENS_DATA = {
     {
       id: 9,
       name: "R4",
+      diagramLabel: "R4",
       label: "Focus element R4",
       type: "Biconcave Negative",
       nd: 1.8061,
@@ -190,6 +199,7 @@ const LENS_DATA = {
     {
       id: 10,
       name: "R5",
+      diagramLabel: "R5",
       label: "Focus element R5",
       type: "Biconvex Positive",
       nd: 1.48749,
@@ -202,6 +212,7 @@ const LENS_DATA = {
     {
       id: 11,
       name: "R6",
+      diagramLabel: "R6",
       label: "Focus element R6",
       type: "Biconcave Negative",
       nd: 1.83481,
@@ -214,6 +225,7 @@ const LENS_DATA = {
     {
       id: 12,
       name: "R7",
+      diagramLabel: "R7",
       label: "Focus element R7",
       type: "Biconvex Positive (1× Asph)",
       nd: 1.58913,

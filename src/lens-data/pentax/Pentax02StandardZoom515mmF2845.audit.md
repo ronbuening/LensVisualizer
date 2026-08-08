@@ -2,6 +2,20 @@
 
 Patent: US 8,824,059 B2, Numerical Embodiment 1
 
+## 2026-08-08 - Screenshot-driven diagram follow-up
+
+- Compared the supplied site screenshot against a 250 dpi render of Figure 1. The hybrid front stack, L12/L13 taper,
+  focusing element, and nearly equal-height rear elements agree with the patent section; no SD change was justified.
+- Added patent identifiers as diagram labels, including distinct `L11g` and `L11r` labels for the separately modeled
+  glass substrate and compound-resin layer.
+- Rechecked the visible glass tags, hybrid/doublet labels, group signs, stop, pupils, image-plane marker, official
+  hyphenated display name, and headline specifications.
+- Retained five coefficient-backed materials, the correctly classified resin layer, and three explicit unmatched
+  coordinate rows. No unresolved row has a unique public catalog match.
+- Local viewer QA confirmed all nine material labels, including the hybrid pair, without diagram errors.
+- `npm run generate:glass-reports` passed (8 files, 14 tests); the image-circle audit, typecheck, format check, lint,
+  2,947-test suite, and production build also passed (1,052 routes prerendered).
+
 ## 2026-08-08 - Integration, semi-diameter, identity, and glass audit
 
 - Reviewed Figure 1 on PDF page 2 of the ignored local patent source.

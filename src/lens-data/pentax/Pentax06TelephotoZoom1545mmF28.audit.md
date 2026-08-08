@@ -2,6 +2,20 @@
 
 Patent: US 9,784,950 B2, Numerical Embodiment 1
 
+## 2026-08-08 - Screenshot-driven diagram follow-up
+
+- Rechecked the supplied site screenshot against a 250 dpi render of Figure 1. The clean enclosed regions show the
+  final L44/L45 pair slightly taller than the preceding G4a elements; the site instead rendered it materially smaller.
+- Enlarged surfaces 22/23 from `4.5/4.4` to `5.2/5.1` mm and surfaces 24/25 from `4.0/4.2` to `5.1/5.2` mm. The surface
+  validator passes, modeled f-number is unchanged, and the less restrictive rear clear aperture increases available
+  half-field at all three zoom samples.
+- Added patent identifiers `L11-L45` as diagram labels instead of exposing internal numeric element IDs.
+- Rechecked the visible glass tags, doublet labels, group signs, stop, pupils, image-plane marker, official hyphenated
+  display name, and headline specifications. All 14 elements retain exact, coefficient-backed OHARA identities.
+- Local viewer QA confirmed all 14 element labels and the corrected rear-group silhouette without diagram errors.
+- `npm run generate:glass-reports` passed (8 files, 14 tests); the surface and image-circle audits, typecheck, format
+  check, lint, 2,947-test suite, and production build also passed (1,052 routes prerendered).
+
 ## 2026-08-08 - Integration, semi-diameter, identity, and glass audit
 
 - Reviewed Figure 1 on PDF page 3 of the ignored local patent source.

@@ -28,9 +28,10 @@ import type { LensDataInput } from "../../types/optics.js";
  *
  * Semi-diameters are Stage-2 modeled clear apertures. The patent publishes none. They were derived by exact meridional
  * tracing over all four zoom states at infinity and the constrained 0.28 m close-focus states, then checked for edge
- * thickness, actual rim slope, conic domain, shared-band cross-gap intrusion, and full-field containment. Surface 2/3
- * and the G3 cemented pair are the binding clear-aperture locations; no layout setting is used to conceal invalid
- * geometry.
+ * thickness, actual rim slope, conic domain, shared-band cross-gap intrusion, and full-field containment. Surface 1 was
+ * reduced after a direct Figure 29 silhouette comparison showed that L11 should be close in height to L12-L14 rather
+ * than substantially flared. Surface 2/3 and the G3 cemented pair remain the binding clear-aperture locations; no layout
+ * setting is used to conceal invalid geometry.
  *
  * Glass names are vendor-neutral classes because the patent names no glass supplier. nC/nF/ng/dPgF values on matched
  * elements come from current representative OHARA or HIKARI catalog entries that reproduce the patent nd/vd coordinate;
@@ -67,6 +68,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L11",
+      diagramLabel: "L11",
       label: "L11",
       type: "Negative Meniscus",
       nd: 1.6968,
@@ -83,6 +85,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L12",
+      diagramLabel: "L12",
       label: "L12",
       type: "Negative Meniscus",
       nd: 1.713,
@@ -99,6 +102,7 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L13",
+      diagramLabel: "L13",
       label: "L13",
       type: "Negative Meniscus (1× Asph)",
       nd: 1.52538,
@@ -111,6 +115,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L14",
+      diagramLabel: "L14",
       label: "L14",
       type: "Biconvex Positive",
       nd: 1.84666,
@@ -127,6 +132,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L21",
+      diagramLabel: "L21",
       label: "L21",
       type: "Biconvex Positive",
       nd: 1.48749,
@@ -143,6 +149,7 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L22",
+      diagramLabel: "L22",
       label: "L22",
       type: "Biconvex Positive",
       nd: 1.497,
@@ -159,6 +166,7 @@ const LENS_DATA = {
     {
       id: 7,
       name: "L23",
+      diagramLabel: "L23",
       label: "L23",
       type: "Biconvex Positive",
       nd: 1.48749,
@@ -176,6 +184,7 @@ const LENS_DATA = {
     {
       id: 8,
       name: "L24",
+      diagramLabel: "L24",
       label: "L24",
       type: "Negative Meniscus",
       nd: 1.6727,
@@ -193,6 +202,7 @@ const LENS_DATA = {
     {
       id: 9,
       name: "L31",
+      diagramLabel: "L31",
       label: "L31",
       type: "Positive Meniscus",
       nd: 1.80518,
@@ -210,6 +220,7 @@ const LENS_DATA = {
     {
       id: 10,
       name: "L32",
+      diagramLabel: "L32",
       label: "L32",
       type: "Biconcave Negative",
       nd: 1.762,
@@ -227,6 +238,7 @@ const LENS_DATA = {
     {
       id: 11,
       name: "L41r",
+      diagramLabel: "L41r",
       label: "L41 resin",
       type: "Thin Resin Aspherical Layer",
       nd: 1.52972,
@@ -240,6 +252,7 @@ const LENS_DATA = {
     {
       id: 12,
       name: "L41g",
+      diagramLabel: "L41g",
       label: "L41 glass substrate",
       type: "Biconvex Positive",
       nd: 1.58913,
@@ -257,6 +270,7 @@ const LENS_DATA = {
     {
       id: 13,
       name: "L42",
+      diagramLabel: "L42",
       label: "L42",
       type: "Negative Meniscus",
       nd: 1.8061,
@@ -274,6 +288,7 @@ const LENS_DATA = {
     {
       id: 14,
       name: "L43",
+      diagramLabel: "L43",
       label: "L43",
       type: "Biconvex Positive",
       nd: 1.48749,
@@ -291,7 +306,7 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 61.5, d: 1.6, nd: 1.6968, elemId: 1, sd: 22.5 },
+    { label: "1", R: 61.5, d: 1.6, nd: 1.6968, elemId: 1, sd: 17 },
     { label: "2", R: 18.346, d: 8.79, nd: 1, elemId: 0, sd: 16.1 },
     { label: "3", R: 89.373, d: 1.5, nd: 1.713, elemId: 2, sd: 15.97 },
     { label: "4", R: 29.259, d: 4.67, nd: 1, elemId: 0, sd: 16.5 },

@@ -2,6 +2,22 @@
 
 Patent: US 8,422,143 B2, Numerical Embodiment 1
 
+## 2026-08-08 - Screenshot-driven diagram follow-up
+
+- Compared the supplied site screenshot against a 250 dpi render of Figure 1. The earlier F3-F5 correction remains
+  supported; all front and rear element-height ratios are now within the audit tolerance, so no further SD change was
+  made.
+- Added patent element identifiers `F1-F5` and `R1-R7` as diagram labels instead of exposing internal numeric element
+  IDs.
+- Rechecked the visible glass tags, cemented-pair labels, `GF`/`GR` movement labels, stop, pupil, image-plane marker,
+  name, and headline specifications. The modeled-group wording intentionally distinguishes this seven-group patent
+  prescription from the production lens's published construction count.
+- Retained all 12 vendor-neutral coordinate classes: each has coefficient-backed dispersion, while the patent does not
+  identify a production glass supplier.
+- Local viewer QA confirmed all 12 element labels and the corrected silhouette without diagram errors.
+- `npm run generate:glass-reports` passed (8 files, 14 tests); the image-circle audit, typecheck, format check, lint,
+  2,947-test suite, and production build also passed (1,052 routes prerendered).
+
 ## 2026-08-08 - Integration, semi-diameter, identity, and glass audit
 
 - Reviewed Figure 1 on PDF page 2 of the ignored local patent source.

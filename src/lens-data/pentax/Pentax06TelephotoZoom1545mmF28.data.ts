@@ -33,7 +33,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ derived from exact spherical ray tracing across all three zoom     ║
  * ║ states at infinity and reconstructed close focus, using on-axis   ║
  * ║ marginal rays, a 0.60-field off-axis bundle, and the edge chief   ║
- * ║ ray, then given conservative mechanical clearance.                 ║
+ * ║ ray, then given conservative mechanical clearance. Surfaces       ║
+ * ║ 22-25 were enlarged after direct Figure 1 silhouette comparison.  ║
  * ║                                                                    ║
  * ║ Glass: nd/vd are the patent d-line values. nC/nF/ng/dPgF are      ║
  * ║ catalog-derived OHARA line/partial-dispersion data for the matched║
@@ -75,6 +76,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L11",
+      diagramLabel: "L11",
       label: "L11",
       type: "Negative Meniscus",
       nd: 1.8081,
@@ -90,6 +92,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L12",
+      diagramLabel: "L12",
       label: "L12",
       type: "Biconvex Positive",
       nd: 1.497,
@@ -105,6 +108,7 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L13",
+      diagramLabel: "L13",
       label: "L13",
       type: "Positive Meniscus",
       nd: 1.48749,
@@ -121,6 +125,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L21",
+      diagramLabel: "L21",
       label: "L21",
       type: "Biconcave Negative",
       nd: 1.72916,
@@ -135,6 +140,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L22",
+      diagramLabel: "L22",
       label: "L22",
       type: "Biconcave Negative",
       nd: 1.72916,
@@ -149,6 +155,7 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L23",
+      diagramLabel: "L23",
       label: "L23",
       type: "Positive Meniscus",
       nd: 1.84666,
@@ -164,6 +171,7 @@ const LENS_DATA = {
     {
       id: 7,
       name: "L24",
+      diagramLabel: "L24",
       label: "L24",
       type: "Negative Meniscus",
       nd: 1.7725,
@@ -179,6 +187,7 @@ const LENS_DATA = {
     {
       id: 8,
       name: "L31",
+      diagramLabel: "L31",
       label: "L31",
       type: "Biconvex Positive",
       nd: 1.6968,
@@ -194,6 +203,7 @@ const LENS_DATA = {
     {
       id: 9,
       name: "L32",
+      diagramLabel: "L32",
       label: "L32",
       type: "Negative Meniscus",
       nd: 1.85026,
@@ -209,6 +219,7 @@ const LENS_DATA = {
     {
       id: 10,
       name: "L41",
+      diagramLabel: "L41",
       label: "L41",
       type: "Positive Meniscus",
       nd: 1.6968,
@@ -223,6 +234,7 @@ const LENS_DATA = {
     {
       id: 11,
       name: "L42",
+      diagramLabel: "L42",
       label: "L42",
       type: "Positive Meniscus",
       nd: 1.497,
@@ -238,6 +250,7 @@ const LENS_DATA = {
     {
       id: 12,
       name: "L43",
+      diagramLabel: "L43",
       label: "L43",
       type: "Negative Meniscus",
       nd: 1.72342,
@@ -253,6 +266,7 @@ const LENS_DATA = {
     {
       id: 13,
       name: "L44",
+      diagramLabel: "L44",
       label: "L44",
       type: "Biconvex Positive",
       nd: 1.603,
@@ -267,6 +281,7 @@ const LENS_DATA = {
     {
       id: 14,
       name: "L45",
+      diagramLabel: "L45",
       label: "L45",
       type: "Negative Meniscus",
       nd: 1.56732,
@@ -303,10 +318,10 @@ const LENS_DATA = {
     { label: "19", R: 9.058, d: 3, nd: 1.497, elemId: 11, sd: 5.2 },
     { label: "20", R: 74.966, d: 1, nd: 1.72342, elemId: 12, sd: 4.8 },
     { label: "21", R: 8.918, d: 5.2, nd: 1, elemId: 0, sd: 4.4 },
-    { label: "22", R: 20.735, d: 2.3, nd: 1.603, elemId: 13, sd: 4.5 },
-    { label: "23", R: -31.228, d: 2.5, nd: 1, elemId: 0, sd: 4.4 },
-    { label: "24", R: -9.86, d: 1, nd: 1.56732, elemId: 14, sd: 4 },
-    { label: "25", R: -16.841, d: 10.529475462274664, nd: 1, elemId: 0, sd: 4.2 },
+    { label: "22", R: 20.735, d: 2.3, nd: 1.603, elemId: 13, sd: 5.2 },
+    { label: "23", R: -31.228, d: 2.5, nd: 1, elemId: 0, sd: 5.1 },
+    { label: "24", R: -9.86, d: 1, nd: 1.56732, elemId: 14, sd: 5.1 },
+    { label: "25", R: -16.841, d: 10.529475462274664, nd: 1, elemId: 0, sd: 5.2 },
   ],
 
   asph: {},

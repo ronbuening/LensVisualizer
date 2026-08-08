@@ -2,6 +2,19 @@
 
 Patent: US 3,459,469, Example 1
 
+## 2026-08-08 - Screenshot-driven diagram follow-up
+
+- Compared the supplied site screenshot against a 250 dpi render of Figure 1. The earlier L4/L5 enlargement remains
+  supported: all five normalized element-height ratios remain between `0.98` and `1.01`, so no further SD change was
+  made.
+- Added patent identifiers `L1-L5` as diagram labels instead of exposing internal numeric element IDs.
+- Rechecked the visible glass tags, `D1` label, stop, pupils, image-plane marker, period display name, and headline
+  specifications. All five elements now have trusted coefficient-backed dispersion, including the recovered Sumita SK1
+  curve used for L3.
+- Local viewer QA confirmed all five element labels and the retained silhouette without diagram errors.
+- `npm run generate:glass-reports` passed (8 files, 14 tests); the image-circle audit, typecheck, format check, lint,
+  2,947-test suite, and production build also passed (1,052 routes prerendered).
+
 ## 2026-08-08 - Glass-source follow-up
 
 - Rechecked every unresolved coordinate in the six-lens Pentax batch against the available current and discontinued
