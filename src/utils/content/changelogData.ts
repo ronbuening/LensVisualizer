@@ -19,24 +19,9 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
-    date: "2026-08-07",
+    date: "2026-08-08",
     type: "improvement",
-    summary: "Extended catalog dispersion across twelve additional lens prescriptions",
-  },
-  {
-    date: "2026-08-07",
-    type: "improvement",
-    summary: "Recovered legacy glass dispersion for eleven additional lens prescriptions",
-  },
-  {
-    date: "2026-08-07",
-    type: "improvement",
-    summary: "Completed catalog dispersion for eight near-complete historical and modern lenses",
-  },
-  {
-    date: "2026-08-07",
-    type: "fix",
-    summary: "Preserved patent partial-dispersion evidence in catalog-backed chromatic traces",
+    summary: "Expanded coefficient-backed dispersion across 43 surfaces and 28 fully covered lenses",
   },
   {
     date: "2026-08-07",
