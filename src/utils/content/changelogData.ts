@@ -20,11 +20,6 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-08-08",
-    type: "improvement",
-    summary: "Completed Super-Takumar 135mm glass coverage with legacy Sumita SK1 data",
-  },
-  {
-    date: "2026-08-08",
     type: "lens",
     summary: "Added six Pentax Q, DA, 645, and Super-Takumar lens designs",
   },
