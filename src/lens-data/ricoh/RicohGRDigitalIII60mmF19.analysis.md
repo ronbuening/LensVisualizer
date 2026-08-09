@@ -44,7 +44,7 @@ The first cemented pair D1, L4-L5, has a cemented net focal length of +60.6607 m
 
 The normalized active-lens back focal distance from surface 15 is 7.2464761 mm, greater than the 5.9997208 mm EFL. It therefore satisfies the project's strict numerical definition of a retrofocus system, `BFD > EFL`. The patent's own background also discusses retrofocus-type wide-angle architectures in this application class (¶0007).
 
-The modeled semi-diameters are not patent values. Example 4 publishes neither clear apertures nor a stop diameter. The stop position is explicit in the patent, but its modeled semi-diameter, 3.2766967 mm, is calibrated to the published F=1.93, and all other clear semi-diameters are derived from meridional ray containment and geometry checks. They are therefore modeling inferences rather than source facts.
+The modeled semi-diameters are not patent values. Example 4 publishes neither clear apertures nor a stop diameter. The stop position is explicit in the patent, but its modeled semi-diameter, 3.2766967 mm, is calibrated to the published F=1.93. The other clear semi-diameters are derived from meridional ray containment and geometry checks, then checked against Figure 4. That comparison reduced L3's two rims to 4.1 mm so its relative height matches the isolated positive element in the drawing while retaining at least 0.60 mm of clearance around the traced display rays at both published focus endpoints. The clear apertures remain modeling inferences rather than source facts.
 
 ## Element-by-Element Analysis
 

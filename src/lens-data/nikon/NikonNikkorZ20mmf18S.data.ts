@@ -44,6 +44,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L11",
+      diagramLabel: "L11",
       label: "L11",
       type: "Negative Meniscus",
       nd: 1.6968,
@@ -59,6 +60,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L12g",
+      diagramLabel: "L12g",
       label: "L12 glass substrate",
       type: "Negative Meniscus",
       nd: 1.7725,
@@ -75,6 +77,7 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L12r",
+      diagramLabel: "L12r",
       label: "L12 resin layer",
       type: "Neg. Meniscus (1× Asph)",
       nd: 1.5138,
@@ -87,6 +90,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L13",
+      diagramLabel: "L13",
       label: "L13",
       type: "Biconcave Negative",
       nd: 1.49782,
@@ -103,6 +107,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L14",
+      diagramLabel: "L14",
       label: "L14",
       type: "Positive Meniscus",
       nd: 1.95375,
@@ -119,6 +124,7 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L21",
+      diagramLabel: "L21",
       label: "L21 / GF",
       type: "Biconvex Positive",
       nd: 1.804,
@@ -134,6 +140,7 @@ const LENS_DATA = {
     {
       id: 7,
       name: "L31",
+      diagramLabel: "L31",
       label: "L31",
       type: "Biconvex Positive",
       nd: 1.95375,
@@ -150,6 +157,7 @@ const LENS_DATA = {
     {
       id: 8,
       name: "L32",
+      diagramLabel: "L32",
       label: "L32",
       type: "Biconcave Negative",
       nd: 1.84666,
@@ -166,6 +174,7 @@ const LENS_DATA = {
     {
       id: 9,
       name: "L33",
+      diagramLabel: "L33",
       label: "L33",
       type: "Biconcave Negative",
       nd: 1.6398,
@@ -181,6 +190,7 @@ const LENS_DATA = {
     {
       id: 10,
       name: "L34",
+      diagramLabel: "L34",
       label: "L34",
       type: "Biconvex Positive",
       nd: 1.49782,
@@ -196,6 +206,7 @@ const LENS_DATA = {
     {
       id: 11,
       name: "L35",
+      diagramLabel: "L35",
       label: "L35",
       type: "Biconvex Positive",
       nd: 1.49782,
@@ -212,6 +223,7 @@ const LENS_DATA = {
     {
       id: 12,
       name: "L36",
+      diagramLabel: "L36",
       label: "L36",
       type: "Negative Meniscus",
       nd: 1.95375,
@@ -228,6 +240,7 @@ const LENS_DATA = {
     {
       id: 13,
       name: "L37",
+      diagramLabel: "L37",
       label: "L37",
       type: "Biconvex Positive",
       nd: 1.963,
@@ -243,6 +256,7 @@ const LENS_DATA = {
     {
       id: 14,
       name: "L41",
+      diagramLabel: "L41",
       label: "L41 / G4",
       type: "Neg. Meniscus (2× Asph)",
       nd: 1.861,
@@ -258,6 +272,7 @@ const LENS_DATA = {
     {
       id: 15,
       name: "L51",
+      diagramLabel: "L51",
       label: "L51",
       type: "Neg. Meniscus (2× Asph)",
       nd: 1.861,

@@ -835,12 +835,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L6 (Element 6) | 11 | `Unmatched lanthanum crown (748/523)` | 1.74810 / 52.30 | No catalog entry | abbe | patents/US5717527.pdf | Explicit disposition in data |
 | L17 (Element 17) | 30 | `Unmatched dense flint (741/276)` | 1.74077 / 27.63 | No catalog entry | abbe | patents/US5717527.pdf | Explicit disposition in data |
 
-### [NIKON AF ZOOM-NIKKOR 20-35mm f/2.8 D IF](../../src/lens-data/nikon/NikonAFZoomNikkor2035mmf28DIF.data.ts) - US 5,276,553 A
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L44b (L44b) | 24 | `Unmatched (patent 861230; no compatible public catalog row)` | 1.86074 / 23.00 | No catalog entry | abbe | patents/US5276553.pdf | Explicit disposition in data |
-
 ### [NIKON AF ZOOM-NIKKOR 28-200mm f/3.5-5.6 G IF-ED](../../src/lens-data/nikon/NikonAFZoomNikkor28200mmf3556GIFED.data.ts) - US 6,621,643 B2
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
@@ -984,6 +978,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L55 (Element 21) | 38 | `593679 - fluorophosphate crown (patent nd=1.59319, vd=67.90)` | 1.59319 / 67.90 | J-PSKH1 (trusted Sellmeier) | sellmeier | patents/WO2019097669A1.pdf | Audit-log hit |
 | L56 (Element 22) | 40 | `720503 - lanthanum crown (patent nd=1.71999, vd=50.27)` | 1.71999 / 50.27 | J-LAK10 (trusted Sellmeier) | sellmeier | patents/WO2019097669A1.pdf | Audit-log hit |
 
+### [NIKON AI AF ZOOM-NIKKOR 20-35mm f/2.8D IF](../../src/lens-data/nikon/NikonAFZoomNikkor2035mmf28DIF.data.ts) - US 5,276,553 A
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L44b (L44b) | 24 | `Unmatched (patent 861230; no compatible public catalog row)` | 1.86074 / 23.00 | No catalog entry | abbe | patents/US5276553.pdf | Explicit disposition in data |
+
 ### [NIKON AI AF ZOOM-NIKKOR 24-120mm f/3.5-5.6 D IF](../../src/lens-data/nikon/NikonAFNikkor24120mmf3556D.data.ts) - US 5,734,508 A
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
@@ -996,7 +996,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L3F3 (Element 11 — L3F3) | 30 | `Unmatched (796409 high-index crown)` | 1.79631 / 40.90 | No catalog entry | abbe | patents/US5734508.pdf | Explicit disposition in data |
 | L3R2 (Element 13 — L3R2) | 34A | `795454 — LaSF class (catalog-near; vendor unresolved)` | 1.79668 / 45.40 | TAF2 (trusted Sellmeier) | sellmeier | patents/US5734508.pdf | No review-record hit |
 
-### [NIKON AI AF ZOOM-NIKKOR 80-200mm f/2.8 D ED](../../src/lens-data/nikon/NikonAIAFZoomNikkor80200mmf28DED.data.ts) - US 5,579,171 A
+### [NIKON AI AF ZOOM-NIKKOR 80-200mm f/2.8D ED](../../src/lens-data/nikon/NikonAIAFZoomNikkor80200mmf28DED.data.ts) - US 5,579,171 A
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
@@ -1632,7 +1632,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L32 (L32) | 13 | `497816 class` | 1.49700 / 81.60 | H-FK61 (trusted Sellmeier) | sellmeier | patents/US8824059.pdf | No review-record hit |
 | L33 (L33) | 14 | `834373 class` | 1.83400 / 37.30 | NBFD10 (trusted Sellmeier) | sellmeier | patents/US8824059.pdf | No review-record hit |
 
-### [RICOH LENS A16 24-85mm f/3.5-5.5 (Ricoh GXR A16)](../../src/lens-data/ricoh/RicohLensA162485mmf3555.data.ts) - US 2012/0307375 A1
+### [RICOH LENS A16 24-85mm F3.5-5.5](../../src/lens-data/ricoh/RicohLensA162485mmf3555.data.ts) - US 2012/0307375 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|

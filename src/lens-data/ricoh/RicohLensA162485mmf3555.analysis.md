@@ -1,4 +1,4 @@
-# RICOH LENS A16 24-85mm f/3.5-5.5 (Ricoh GXR A16)
+# RICOH LENS A16 24-85mm F3.5-5.5
 
 ## Patent Reference and Design Identification
 
@@ -17,7 +17,7 @@
 **Title:** Zoom Lens, Imaging Device and Information Device
 **Embodiment analyzed:** Embodiment 3 / FIG. 9 / Table 3
 
-The prescription modeled here is Embodiment 3 of US 2012/0307375 A1. The patent identifies FIG. 9 as the optical layout for Embodiment 3, FIGS. 10–12 as its wide, intermediate, and telephoto aberration plots, and Table 3 as its variable-spacing table (¶¶0302–0346). The selected production correlation is the **RICOH LENS A16 24-85mm f/3.5-5.5 (Ricoh GXR A16)** camera unit. This correlation is a source-based identification rather than a manufacturer statement that the patent example is the production prescription.
+The prescription modeled here is Embodiment 3 of US 2012/0307375 A1. The patent identifies FIG. 9 as the optical layout for Embodiment 3, FIGS. 10–12 as its wide, intermediate, and telephoto aberration plots, and Table 3 as its variable-spacing table (¶¶0302–0346). The selected production correlation is the **RICOH LENS A16 24-85mm F3.5-5.5** GXR camera unit. This correlation is a source-based identification rather than a manufacturer statement that the patent example is the production prescription.
 
 Several independent characteristics converge on that identification. Ricoh published the A16 as an APS-C camera unit with an actual focal-length range of 15.7–55.5 mm, a 24–85 mm 35 mm-equivalent field of view, maximum aperture f/3.5–5.5, 11 elements in 9 groups, and three double-sided aspherical elements. The patent example has 11 elements in 9 air-separated component groups, six aspherical surfaces on three double-sided aspherical elements, a 14.3 mm maximum image height, and a computed design focal range of 16.146288–53.849931 mm. Its published design aperture is f/3.62 at wide, f/4.65 at the intermediate state, and f/5.67 at telephoto. Ricoh announced the production unit on February 2, 2012, after the patent family's first 2011 priority date and before the US publication date.
 

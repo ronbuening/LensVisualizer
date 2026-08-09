@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔════════════════════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — NIKON AF ZOOM-NIKKOR 20-35mm f/2.8 D IF                             ║
+ * ║ LENS DATA — NIKON AI AF ZOOM-NIKKOR 20-35mm f/2.8D IF                           ║
  * ╠════════════════════════════════════════════════════════════════════════════════════╣
  * ║ Source: US 5,276,553 A, Example 1 (Wataru Tatsuno / Nikon Corporation).          ║
  * ║ Patent prescription: 14 elements / 11 air-separated units / 4 zoom groups.       ║
@@ -56,7 +56,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-af-zoom-nikkor-20-35mm-f28d-if",
   maker: "Nikon",
-  name: "NIKON AF ZOOM-NIKKOR 20-35mm f/2.8 D IF",
+  name: "NIKON AI AF ZOOM-NIKKOR 20-35mm f/2.8D IF",
   subtitle: "US 5,276,553 A — Example 1 — production correlation",
   specs: [
     "14 ELEMENTS / 11 AIR-SEPARATED UNITS / 4 ZOOM GROUPS",
@@ -83,6 +83,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L11",
+      diagramLabel: "L11",
       label: "L11",
       type: "Negative Meniscus (1× Asph)",
       nd: 1.77279,
@@ -95,6 +96,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L12",
+      diagramLabel: "L12",
       label: "L12",
       type: "Biconcave Negative",
       nd: 1.78797,
@@ -106,6 +108,7 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L13",
+      diagramLabel: "L13",
       label: "L13",
       type: "Biconvex Positive",
       nd: 1.75692,
@@ -117,6 +120,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L14",
+      diagramLabel: "L14",
       label: "L14",
       type: "Positive Meniscus",
       nd: 1.75692,
@@ -128,6 +132,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L21a",
+      diagramLabel: "L21a",
       label: "L21a",
       type: "Negative Meniscus",
       nd: 1.71736,
@@ -140,6 +145,7 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L21b",
+      diagramLabel: "L21b",
       label: "L21b",
       type: "Biconvex Positive",
       nd: 1.5186,
@@ -152,6 +158,7 @@ const LENS_DATA = {
     {
       id: 7,
       name: "L22",
+      diagramLabel: "L22",
       label: "L22",
       type: "Positive Meniscus",
       nd: 1.713,
@@ -163,6 +170,7 @@ const LENS_DATA = {
     {
       id: 8,
       name: "L31a",
+      diagramLabel: "L31a",
       label: "L31a",
       type: "Biconcave Negative",
       nd: 1.7481,
@@ -175,6 +183,7 @@ const LENS_DATA = {
     {
       id: 9,
       name: "L31b",
+      diagramLabel: "L31b",
       label: "L31b",
       type: "Positive Meniscus",
       nd: 1.80518,
@@ -187,6 +196,7 @@ const LENS_DATA = {
     {
       id: 10,
       name: "L41",
+      diagramLabel: "L41",
       label: "L41",
       type: "Positive Meniscus",
       nd: 1.65844,
@@ -198,6 +208,7 @@ const LENS_DATA = {
     {
       id: 11,
       name: "L42",
+      diagramLabel: "L42",
       label: "L42",
       type: "Negative Meniscus",
       nd: 1.7847,
@@ -209,6 +220,7 @@ const LENS_DATA = {
     {
       id: 12,
       name: "L43",
+      diagramLabel: "L43",
       label: "L43",
       type: "Biconvex Positive",
       nd: 1.79668,
@@ -220,6 +232,7 @@ const LENS_DATA = {
     {
       id: 13,
       name: "L44a",
+      diagramLabel: "L44a",
       label: "L44a",
       type: "Biconvex Positive",
       nd: 1.6228,
@@ -232,6 +245,7 @@ const LENS_DATA = {
     {
       id: 14,
       name: "L44b",
+      diagramLabel: "L44b",
       label: "L44b",
       type: "Negative Meniscus",
       nd: 1.86074,

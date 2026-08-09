@@ -1,4 +1,4 @@
-# NIKON AF ZOOM-NIKKOR 20-35mm f/2.8 D IF
+# NIKON AI AF ZOOM-NIKKOR 20-35mm f/2.8D IF
 
 ## Patent Reference and Design Identification
 
@@ -17,7 +17,7 @@
 **Title:** *Ultra Wide Angle Zoom Lens*
 **Embodiment analyzed:** Example 1
 
-The prescription is the Example 1 design selected for correlation with the production **NIKON AF ZOOM-NIKKOR 20-35mm f/2.8 D IF**. The correlation is treated as the fixed identification for this model; it is not presented as an explicit Nikon statement that the production lens was manufactured directly from this patent example.
+The prescription is the Example 1 design selected for correlation with the production **NIKON AI AF ZOOM-NIKKOR 20-35mm f/2.8D IF**. The correlation is treated as the fixed identification for this model; it is not presented as an explicit Nikon statement that the production lens was manufactured directly from this patent example.
 
 Several independent features support the correlation:
 

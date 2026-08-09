@@ -2,10 +2,10 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — NIKON AI AF ZOOM-NIKKOR 80-200mm f/2.8 D ED                                           ║
+ * ║  LENS DATA — NIKON AI AF ZOOM-NIKKOR 80-200mm f/2.8D ED                                            ║
  * ╠══════════════════════════════════════════════════════════════════════════════════════════════════════╣
  * ║  Optical source: US 5,579,171 A, Example 3 / third embodiment, Table 4 (Nikon Corporation).         ║
- * ║  Production correlation: Nikon AI AF Zoom-Nikkor 80-200mm f/2.8 D ED, Nikon F, FX/35mm.            ║
+ * ║  Production correlation: Nikon AI AF Zoom-Nikkor 80-200mm f/2.8D ED, Nikon F, FX/35mm.             ║
  * ║  16 elements / 11 air-separated groups; all spherical. No scale factor is applied.                 ║
  * ║                                                                                                      ║
  * ║  Zoom: only the two patent-published infinity endpoints are authored: 80.94 and 196.00 mm.          ║
@@ -25,7 +25,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  cross-gap constraints. gapSagFrac = 0.97 is required by the very tight S8-S9 and S11-S12 rim       ║
  * ║  clearances while preserving the on-axis F/2.8 marginal bundle at both zoom endpoints.              ║
  * ║                                                                                                      ║
- * ║  The patent proposes transverse G3 image stabilization. Nikon's 1996 production 80-200mm f/2.8 D ED ║
+ * ║  The patent proposes transverse G3 image stabilization. Nikon's 1996 production 80-200mm f/2.8D ED  ║
  * ║  did not have VR; this file models only the centered prescription and does not claim production VR.  ║
  * ║                                                                                                      ║
  * ║  Glass vendors are not named by the patent. Catalog names identify coordinate-compatible curves,    ║
@@ -45,7 +45,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-ai-af-zoom-nikkor-80-200-f28d-ed",
   maker: "Nikon",
-  name: "NIKON AI AF ZOOM-NIKKOR 80-200mm f/2.8 D ED",
+  name: "NIKON AI AF ZOOM-NIKKOR 80-200mm f/2.8D ED",
   subtitle: "US 5,579,171 A Example 3 — centered prescription; patent G3 stabilization is not production VR",
   specs: [
     "16 ELEMENTS / 11 GROUPS",
@@ -73,6 +73,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
+      diagramLabel: "L1",
       label: "Element 1",
       type: "Negative Meniscus",
       nd: 1.80518,
@@ -85,6 +86,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L2",
+      diagramLabel: "L2",
       label: "Element 2",
       type: "Biconvex Positive",
       nd: 1.49782,
@@ -97,6 +99,7 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L3",
+      diagramLabel: "L3",
       label: "Element 3",
       type: "Positive Meniscus",
       nd: 1.49782,
@@ -108,6 +111,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L4",
+      diagramLabel: "L4",
       label: "Element 4",
       type: "Positive Meniscus",
       nd: 1.62588,
@@ -120,6 +124,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L5",
+      diagramLabel: "L5",
       label: "Element 5",
       type: "Biconcave Negative",
       nd: 1.56384,
@@ -132,6 +137,7 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L6",
+      diagramLabel: "L6",
       label: "Element 6",
       type: "Biconcave Negative",
       nd: 1.5168,
@@ -144,6 +150,7 @@ const LENS_DATA = {
     {
       id: 7,
       name: "L7",
+      diagramLabel: "L7",
       label: "Element 7",
       type: "Positive Meniscus",
       nd: 1.80458,
@@ -156,6 +163,7 @@ const LENS_DATA = {
     {
       id: 8,
       name: "L8",
+      diagramLabel: "L8",
       label: "Element 8",
       type: "Biconcave Negative",
       nd: 1.713,
@@ -167,6 +175,7 @@ const LENS_DATA = {
     {
       id: 9,
       name: "L9",
+      diagramLabel: "L9",
       label: "Element 9",
       type: "Biconvex Positive",
       nd: 1.51835,
@@ -178,6 +187,7 @@ const LENS_DATA = {
     {
       id: 10,
       name: "L10",
+      diagramLabel: "L10",
       label: "Element 10",
       type: "Biconvex Positive",
       nd: 1.56384,
@@ -190,6 +200,7 @@ const LENS_DATA = {
     {
       id: 11,
       name: "L11",
+      diagramLabel: "L11",
       label: "Element 11",
       type: "Negative Meniscus",
       nd: 1.75692,
@@ -202,6 +213,7 @@ const LENS_DATA = {
     {
       id: 12,
       name: "L12",
+      diagramLabel: "L12",
       label: "Element 12",
       type: "Positive Meniscus",
       nd: 1.49782,
@@ -213,6 +225,7 @@ const LENS_DATA = {
     {
       id: 13,
       name: "L13",
+      diagramLabel: "L13",
       label: "Element 13",
       type: "Positive Meniscus",
       nd: 1.48749,
@@ -225,6 +238,7 @@ const LENS_DATA = {
     {
       id: 14,
       name: "L14",
+      diagramLabel: "L14",
       label: "Element 14",
       type: "Negative Meniscus",
       nd: 1.80458,
@@ -237,6 +251,7 @@ const LENS_DATA = {
     {
       id: 15,
       name: "L15",
+      diagramLabel: "L15",
       label: "Element 15",
       type: "Negative Meniscus",
       nd: 1.744,
@@ -248,6 +263,7 @@ const LENS_DATA = {
     {
       id: 16,
       name: "L16",
+      diagramLabel: "L16",
       label: "Element 16",
       type: "Biconvex Positive",
       nd: 1.66755,

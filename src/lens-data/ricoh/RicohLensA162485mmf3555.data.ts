@@ -46,8 +46,8 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "ricoh-lens-a16-24-85-f35-55",
   maker: "Ricoh",
-  name: "RICOH LENS A16 24-85mm f/3.5-5.5 (Ricoh GXR A16)",
-  subtitle: "US 2012/0307375 A1 — Embodiment 3; strong production correlation",
+  name: "RICOH LENS A16 24-85mm F3.5-5.5",
+  subtitle: "US 2012/0307375 A1 — Embodiment 3; Ricoh GXR camera-unit correlation",
   specs: [
     "11 ELEMENTS / 9 GROUPS",
     "15.7-55.5 mm actual (24-85 mm equivalent)",
@@ -72,6 +72,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
+      diagramLabel: "L1",
       label: "Element 1",
       type: "Negative Meniscus",
       nd: 1.84666,
@@ -84,6 +85,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L2",
+      diagramLabel: "L2",
       label: "Element 2",
       type: "Positive Meniscus",
       nd: 1.7725,
@@ -96,6 +98,7 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L3",
+      diagramLabel: "L3",
       label: "Element 3",
       type: "Negative Meniscus",
       nd: 2.001,
@@ -107,6 +110,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L4",
+      diagramLabel: "L4",
       label: "Element 4",
       type: "Biconcave Negative (2× Asph)",
       nd: 1.7703,
@@ -122,6 +126,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L5",
+      diagramLabel: "L5",
       label: "Element 5",
       type: "Biconvex Positive",
       nd: 1.84666,
@@ -133,6 +138,7 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L6",
+      diagramLabel: "L6",
       label: "Element 6",
       type: "Negative Meniscus",
       nd: 1.6485,
@@ -148,6 +154,7 @@ const LENS_DATA = {
     {
       id: 7,
       name: "L7",
+      diagramLabel: "L7",
       label: "Element 7",
       type: "Biconvex Positive (2× Asph)",
       nd: 1.51633,
@@ -159,6 +166,7 @@ const LENS_DATA = {
     {
       id: 8,
       name: "L8",
+      diagramLabel: "L8",
       label: "Element 8",
       type: "Biconvex Positive",
       nd: 1.51742,
@@ -171,6 +179,7 @@ const LENS_DATA = {
     {
       id: 9,
       name: "L9",
+      diagramLabel: "L9",
       label: "Element 9",
       type: "Biconcave Negative",
       nd: 1.834,
@@ -183,6 +192,7 @@ const LENS_DATA = {
     {
       id: 10,
       name: "L10",
+      diagramLabel: "L10",
       label: "Element 10",
       type: "Biconvex Positive (2× Asph)",
       nd: 1.58913,
@@ -194,6 +204,7 @@ const LENS_DATA = {
     {
       id: 11,
       name: "L11",
+      diagramLabel: "L11",
       label: "Element 11",
       type: "Negative Meniscus",
       nd: 1.90366,

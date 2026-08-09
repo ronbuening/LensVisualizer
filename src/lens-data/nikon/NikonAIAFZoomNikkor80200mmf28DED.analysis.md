@@ -18,7 +18,7 @@
 **Embodiment analyzed:** Example 3 / third embodiment, Figure 5 and Table 4
 
 The prescription is the third embodiment of US 5,579,171 A, selected for correlation with the
-NIKON AI AF ZOOM-NIKKOR 80-200mm f/2.8 D ED. The patent describes this embodiment as a relatively
+NIKON AI AF ZOOM-NIKKOR 80-200mm f/2.8D ED. The patent describes this embodiment as a relatively
 bright 80-200 mm-class zoom with an F-number of 2.8 and gives two infinity-focus endpoints, 80.94 mm
 and 196.00 mm. Its Table 4 contains 16 glass elements in 11 air-separated groups, while Figure 5 shows
 the same positive/negative/positive/positive four-unit structure used by the numerical prescription.

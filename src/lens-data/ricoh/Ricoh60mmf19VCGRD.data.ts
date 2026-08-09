@@ -42,7 +42,13 @@ const LENS_DATA = {
   maker: "Ricoh",
   name: "RICOH GR LENS 6.0mm f/1.9 (Ricoh GR DIGITAL IV)",
   subtitle: "JP 2010-164839 A, Example 4 — GR DIGITAL IV correlation (not unique vs GR DIGITAL III)",
-  specs: ["8 ELEMENTS / 6 GROUPS", "f = 6.0 mm", "F/1.9", "2ω = 78.2°", "2 ASPHERICAL SURFACES"],
+  specs: [
+    "8 ELEMENTS / 6 GROUPS",
+    "6.0 mm",
+    "f/1.9 marketed / f/1.99 patent design",
+    "2ω = 78.2°",
+    "2 ASPHERICAL SURFACES",
+  ],
 
   focalLengthMarketing: 6.0,
   focalLengthDesign: 6.002506074668331,
@@ -62,6 +68,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
+      diagramLabel: "L1",
       label: "Element 1",
       type: "Negative Meniscus",
       nd: 1.497,
@@ -77,6 +84,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L2",
+      diagramLabel: "L2",
       label: "Element 2",
       type: "Neg. Meniscus (1× Asph)",
       nd: 1.51633,
@@ -92,6 +100,7 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L3",
+      diagramLabel: "L3",
       label: "Element 3",
       type: "Biconvex Positive",
       nd: 1.804,
@@ -107,6 +116,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L4",
+      diagramLabel: "L4",
       label: "Element 4",
       type: "Positive Meniscus",
       nd: 1.497,
@@ -123,6 +133,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L5",
+      diagramLabel: "L5",
       label: "Element 5",
       type: "Negative Meniscus",
       nd: 1.69895,
@@ -139,6 +150,7 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L6",
+      diagramLabel: "L6",
       label: "Element 6",
       type: "Negative Meniscus",
       nd: 1.65412,
@@ -155,6 +167,7 @@ const LENS_DATA = {
     {
       id: 7,
       name: "L7",
+      diagramLabel: "L7",
       label: "Element 7",
       type: "Biconvex Positive",
       nd: 1.497,
@@ -171,6 +184,7 @@ const LENS_DATA = {
     {
       id: 8,
       name: "L8",
+      diagramLabel: "L8",
       label: "Element 8",
       type: "Biconvex Positive (1× Asph)",
       nd: 1.51633,

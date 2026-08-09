@@ -63,6 +63,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
+      diagramLabel: "L1",
       label: "Element 1",
       type: "Negative Meniscus",
       nd: 1.48749,
@@ -78,6 +79,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L2",
+      diagramLabel: "L2",
       label: "Element 2",
       type: "Negative Meniscus (Rear Asphere)",
       nd: 1.51633,
@@ -93,6 +95,7 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L3",
+      diagramLabel: "L3",
       label: "Element 3",
       type: "Biconvex Positive",
       nd: 1.816,
@@ -108,6 +111,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L4",
+      diagramLabel: "L4",
       label: "Element 4",
       type: "Biconvex Positive",
       nd: 1.497,
@@ -124,6 +128,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L5",
+      diagramLabel: "L5",
       label: "Element 5",
       type: "Negative Meniscus",
       nd: 1.7552,
@@ -140,6 +145,7 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L6",
+      diagramLabel: "L6",
       label: "Element 6",
       type: "Negative Meniscus",
       nd: 1.62588,
@@ -156,6 +162,7 @@ const LENS_DATA = {
     {
       id: 7,
       name: "L7",
+      diagramLabel: "L7",
       label: "Element 7",
       type: "Biconvex Positive",
       nd: 1.497,
@@ -172,6 +179,7 @@ const LENS_DATA = {
     {
       id: 8,
       name: "L8",
+      diagramLabel: "L8",
       label: "Element 8",
       type: "Positive Meniscus (Front Asphere)",
       nd: 1.51633,
@@ -191,8 +199,8 @@ const LENS_DATA = {
     { label: "2", R: 7.174, d: 2.56, nd: 1, elemId: 0, sd: 5.6 },
     { label: "3", R: 14.459, d: 1.2, nd: 1.51633, elemId: 2, sd: 5.1 },
     { label: "4A", R: 4.641, d: 8.21, nd: 1, elemId: 0, sd: 4.45 },
-    { label: "5", R: 15.107, d: 1.79, nd: 1.816, elemId: 3, sd: 5.2 },
-    { label: "6", R: -86.292, d: 6.12, nd: 1, elemId: 0, sd: 5 },
+    { label: "5", R: 15.107, d: 1.79, nd: 1.816, elemId: 3, sd: 4.1 },
+    { label: "6", R: -86.292, d: 6.12, nd: 1, elemId: 0, sd: 4.1 },
     { label: "STO", R: 1e15, d: 3.82, nd: 1, elemId: 0, sd: 3.2766967269434226 },
     { label: "8", R: 33.384, d: 1.91, nd: 1.497, elemId: 4, sd: 4.35 },
     { label: "9", R: -8.3, d: 1, nd: 1.7552, elemId: 5, sd: 4.55 },
