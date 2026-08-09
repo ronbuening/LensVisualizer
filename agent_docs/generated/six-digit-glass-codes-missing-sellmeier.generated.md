@@ -9,12 +9,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **538** lenses scanned
-- **648** total code-only elements found
-- **279** elements in this report
-- **110** distinct lens files affected
+- **544** lenses scanned
+- **661** total code-only elements found
+- **283** elements in this report
+- **112** distinct lens files affected
 - **0** active unreviewed elements have no review-record hit or explicit disposition
-- **127** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
+- **131** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
 - **0** dispositions lack any review record
 
 ## Prioritized Unreviewed Queue
@@ -62,6 +62,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 774492 | 2 | 1 | patents/US3748022.pdf | All rows have review records |
 | 781445 | 2 | 2 | patents/US4277149.pdf<br>patents/US4182550.pdf | All rows have review records |
 | 804238 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
+| 805255 | 2 | 1 | patents/US5579171.pdf | All rows explicitly disposed |
 | 806418 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
 | 807316 | 2 | 2 | patents/US4764000.pdf<br>patents/US4871239.pdf | All rows have review records |
 | 813252 | 2 | 1 | patents/US3591257.pdf | All rows have review records |
@@ -177,6 +178,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 740464 | 1 | 1 | patents/US2983193.pdf | All rows explicitly disposed |
 | 741262 | 1 | 1 | patents/US3552833.pdf | All rows explicitly disposed |
 | 741276 | 1 | 1 | patents/US5717527.pdf | All rows explicitly disposed |
+| 744450 | 1 | 1 | patents/US5579171.pdf | All rows explicitly disposed |
 | 744458 | 1 | 1 | patents/US2279384.pdf | All rows explicitly disposed |
 | 744496 | 1 | 1 | patents/US6940655.pdf | All rows explicitly disposed |
 | 747274 | 1 | 1 | patents/US3649104.pdf | All rows have review records |
@@ -232,6 +234,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 852428 | 1 | 1 | patents/JPA 2021076740-000000.pdf | All rows explicitly disposed |
 | 855399 | 1 | 1 | patents/JP2022092388A.pdf | All rows have review records |
 | 856323 | 1 | 1 | patents/WO2021200206A1.pdf | All rows explicitly disposed |
+| 861230 | 1 | 1 | patents/US5276553.pdf | All rows explicitly disposed |
 | 866450 | 1 | 1 | patents/CN116520542A.pdf | All rows have review records |
 | 874287 | 1 | 1 | patents/US20130314588A1.pdf | All rows explicitly disposed |
 | 876363 | 1 | 1 | patents/JPA 2021076740-000000.pdf | All rows explicitly disposed |
@@ -580,6 +583,12 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | L6 (Element 6) | 11 | `Unmatched lanthanum crown (748/523)` | 1.74810 / 52.30 | No catalog entry | abbe | patents/US5717527.pdf | Explicit disposition in data |
 | L17 (Element 17) | 30 | `Unmatched dense flint (741/276)` | 1.74077 / 27.63 | No catalog entry | abbe | patents/US5717527.pdf | Explicit disposition in data |
 
+### [NIKON AF ZOOM-NIKKOR 20-35mm f/2.8 D IF](../../src/lens-data/nikon/NikonAFZoomNikkor2035mmf28DIF.data.ts) - US 5,276,553 A
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L44b (L44b) | 24 | `Unmatched (patent 861230; no compatible public catalog row)` | 1.86074 / 23.00 | No catalog entry | abbe | patents/US5276553.pdf | Explicit disposition in data |
+
 ### [NIKON AF-P DX NIKKOR 10-20mm f/4.5-5.6 G VR](../../src/lens-data/nikon/NikonAFPDX1020mmf4556G.data.ts) - WO2021039813A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
@@ -661,6 +670,14 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | L21g (Element 4b — L21 Glass Substrate) | 18 | `Unmatched (840434 high-index glass)` | 1.84042 / 43.40 | No catalog entry | abbe | patents/US5734508.pdf | Explicit disposition in data |
 | L22 (Element 5 — L22) | 20 | `Unmatched (840434 high-index glass)` | 1.84042 / 43.40 | No catalog entry | abbe | patents/US5734508.pdf | Explicit disposition in data |
 | L3F3 (Element 11 — L3F3) | 30 | `Unmatched (796409 high-index crown)` | 1.79631 / 40.90 | No catalog entry | abbe | patents/US5734508.pdf | Explicit disposition in data |
+
+### [NIKON AI AF ZOOM-NIKKOR 80-200mm f/2.8 D ED](../../src/lens-data/nikon/NikonAIAFZoomNikkor80200mmf28DED.data.ts) - US 5,579,171 A
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L7 (Element 7) | 10 | `805255 — dense flint class (unmatched exact public coordinate)` | 1.80458 / 25.50 | No catalog entry | abbe | patents/US5579171.pdf | Explicit disposition in data |
+| L14 (Element 14) | 22 | `805255 — dense flint class (unmatched exact public coordinate)` | 1.80458 / 25.50 | No catalog entry | abbe | patents/US5579171.pdf | Explicit disposition in data |
+| L15 (Element 15) | 25 | `744450 — lanthanum-flint class (unmatched exact public coordinate)` | 1.74400 / 45.00 | No catalog entry | abbe | patents/US5579171.pdf | Explicit disposition in data |
 
 ### [NIKON AI NIKKOR 35mm f/2](../../src/lens-data/nikon/NikonAINikkor35mmf2.data.ts) - US 3,507,558
 

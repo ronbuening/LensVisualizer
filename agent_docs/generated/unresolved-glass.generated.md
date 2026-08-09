@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **538** lenses scanned
-- **5880** non-air surfaces examined
-- **5887** element glass declarations examined
-- **339** non-explicit-unmatched annotations did not resolve
-- **176** distinct unresolved glass-like tokens found
+- **544** lenses scanned
+- **5952** non-air surfaces examined
+- **5959** element glass declarations examined
+- **338** non-explicit-unmatched annotations did not resolve
+- **175** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -166,7 +166,6 @@ or per-lens patent backfills.
 | J-LASFH9A | 1 | 1 | |
 | J-LLF6 | 1 | 1 | |
 | J-PSK03 | 1 | 1 | |
-| J-SF03 | 1 | 1 | |
 | J-SK11 | 1 | 1 | |
 | J-SK14 | 1 | 1 | |
 | J-SSK1 | 1 | 1 | |
@@ -846,10 +845,6 @@ or per-lens patent backfills.
 ### J-PSK03 — 1 occurrence
 
 - [NIKON AF-S NIKKOR 28-300mm f/3.5-5.6 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS28300mmf3556G.data.ts) 4: `J-PSK03 (HIKARI)`
-
-### J-SF03 — 1 occurrence
-
-- [NIKON AF-S DX NIKKOR 55-200mm f/4-5.6 G ED VR II](../../src/lens-data/nikon/NikonAFSDX55200mmf456G.data.ts) 3: `J-SF03 (Hikari)`
 
 ### J-SK11 — 1 occurrence
 

@@ -1882,4 +1882,45 @@ export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
     code6: "603423",
     source: "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF), vendor-published discontinued-glass data.",
   },
+  /* ────── Phase 88 Nikon/Ricoh lens-batch coverage additions (August 2026) ────── */
+  {
+    name: "L-LAH87",
+    vendor: "Ohara",
+    B: [1.44196269, 0.617507311, 1.21890079],
+    C: [0.00731826717, 0.0245370775, 105.976009],
+    nd: 1.7703,
+    vd: 47.401904,
+    source:
+      "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF); vendor Sellmeier coefficients for L-LAH87.",
+  },
+  {
+    name: "L-LAH94",
+    vendor: "Ohara",
+    B: [2.0062142, 0.347029888, 1.41688382],
+    C: [0.0105499238, 0.0445845013, 105.99525],
+    nd: 1.860999,
+    vd: 37.097767,
+    source:
+      "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF); vendor Sellmeier coefficients for L-LAH94.",
+  },
+  {
+    name: "S-TIH57",
+    vendor: "Ohara",
+    B: [2.21103256, 0.450346986, 2.47746663],
+    C: [0.0142330268, 0.0638573392, 161.9376],
+    nd: 1.963,
+    vd: 24.1144,
+    source:
+      "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF); vendor Sellmeier coefficients for S-TIH57.",
+  },
+  {
+    name: "S-TIM1",
+    vendor: "Ohara",
+    B: [1.4496383, 0.122986408, 1.38066723],
+    C: [0.0112094282, 0.059626577, 138.178326],
+    nd: 1.625882,
+    vd: 35.699614,
+    code6: "626357",
+    source: "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF); vendor Sellmeier coefficients for S-TIM1.",
+  },
 ];

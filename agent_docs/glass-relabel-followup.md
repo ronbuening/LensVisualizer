@@ -28,14 +28,25 @@ This file tracks the second bucket plus any cases from the first bucket that nee
 - `catalog-mismatches.generated.md` and `glass-relabel-by-lens.generated.md` report **0** remaining
   dispersion-coordinate mismatches across **0** lens files. The mismatch report separately records **18 / 75**
   native e-line surfaces resolved through explicit names or aliases.
-- `sellmeier-coverage.generated.md` reports **532** lenses, **5814** non-air surfaces, **5166** strict catalog
-  Sellmeier surfaces (**88.9%**), and **5177** trusted chromatic surfaces (**89.0%**).
-- **290** lenses are fully covered by strict Sellmeier data and **295** are fully covered by trusted chromatic data.
-- `unresolvedGlassScan` reports **338** non-explicit-unmatched annotations and **176** distinct unresolved glass-like
+- `sellmeier-coverage.generated.md` reports **544** lenses, **5952** non-air surfaces, **5288** strict catalog
+  Sellmeier surfaces (**88.8%**), and **5299** trusted chromatic surfaces (**89.0%**).
+- **296** lenses are fully covered by strict Sellmeier data and **301** are fully covered by trusted chromatic data.
+- `unresolvedGlassScan` reports **338** non-explicit-unmatched annotations and **175** distinct unresolved glass-like
   tokens. The residual total is code/prose inventory rather than a catalog-coordinate mismatch queue.
-- The missing-Sellmeier six-digit report contains **274** code-only elements, with **0** active unreviewed rows,
-  **122** self-recording explicit unmatched/unidentified dispositions, and **0** dispositions missing a review record.
+- The missing-Sellmeier six-digit report contains **283** code-only elements, with **0** active unreviewed rows,
+  **131** self-recording explicit unmatched/unidentified dispositions, and **0** dispositions missing a review record.
 - The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work; for patent-by-patent execution, start from [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md).
+
+## Resolved Phase 88 — August 2026 Nikon/Ricoh lens-batch audit
+
+- Added Hikari J-SF7, J-SF03, J-LASF015, and J-LASFH21 from Nikon/Hikari's first-party 2023 workbook and OHARA
+  L-LAH87, L-LAH94, S-TIH57, and S-TIM1 from the manufacturer's 2026 all-products Zemax catalog.
+- Assigned compatible existing catalog curves to rounded patent coordinates in the Nikon 20-35mm and 80-200mm
+  zooms while preserving each patent coordinate and leaving every production supplier unspecified.
+- Upgraded twenty-one newly added surfaces; the Ricoh A16 and GR DIGITAL III become strict-complete, while the
+  remaining Nikon gaps are explicitly unmatched after the public-catalog recheck.
+- Global coverage is 5288/5952 strict and 5299/5952 trusted; 296 lenses are strict-complete and 301 trusted-complete,
+  with zero coordinate mismatches and zero active unreviewed code-only rows.
 
 ## Resolved Phase 86 — August 2026 catalog-coordinate and disposition audit
 
