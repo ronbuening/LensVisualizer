@@ -9,12 +9,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **538** lenses scanned (**528** visible)
-- **5221 / 5880** non-air surfaces use strict catalog Sellmeier data (88.8%)
-- **5232 / 5880** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 89.0%)
+- **544** lenses scanned (**534** visible)
+- **5288 / 5952** non-air surfaces use strict catalog Sellmeier data (88.8%)
+- **5299 / 5952** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 89.0%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
-- **279** code-only missing-Sellmeier elements in Sweep 2: **0** active unreviewed, **127** self-recording explicit dispositions, **0** dispositions missing any review record
+- **283** code-only missing-Sellmeier elements in Sweep 2: **0** active unreviewed, **131** self-recording explicit dispositions, **0** dispositions missing any review record
 - **0** unresolved named-token elements in Sweep 2B, producing **0** token occurrences across **0** distinct tokens
 - **0** Tier A proprietary backfill rows in Sweep 3
 
@@ -83,7 +83,9 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [ENNA MÜNCHEN LITHAGON 24mm f/4](../../src/lens-data/enna-munchen/EnnaMunchenLithagon24mmf4.data.ts) | DE 1 228 820 B | [PDF](../../patents/DE_1228820_B.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 7 [glass] (Element 4: `Unmatched 519573 crown glass (patent-listed; supplier unidentified)`) | abbe: 1 |
 | [VOIGTLÄNDER COLOR-SKOPAR 28mm f/2.8 Aspherical SL IIs](../../src/lens-data/voigtlander/VoigtlanderColorSkopar28mmf28Aspherical.data.ts) | JP 2023-032663 A | [PDF](../../patents/JPA 2023032663-000000.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 5 [glass] (Cemented biconcave member: `Unmatched (nd inferred from published FL; νd omitted by patent)`) | constant: 1 |
 | [LAOWA 65mm f/2.8 2× Ultra Macro APO](../../src/lens-data/laowa/Laowa65mmf28MacroAPO.data.ts) | CN 110161666A | [PDF](../../patents/CN110161666A.pdf) | 85.7% (12/14) | 85.7% (12/14) | 2 | 4 [glass] (Element 3: `773530 — high-index lanthanum crown (patent nd=1.77250, νd=53.00; no exact public catalog match)`)<br>16 [glass] (Element 10: `Unmatched (patent nd=1.72916, νd=57.67; prior H-LAK52 candidate rejected on dispersion)`) | abbe: 2 |
+| [NIKON AI AF ZOOM-NIKKOR 20-35mm f/2.8D IF](../../src/lens-data/nikon/NikonAFZoomNikkor2035mmf28DIF.data.ts) | US 5,276,553 A | [PDF](../../patents/US5276553.pdf) | 85.7% (12/14) | 85.7% (12/14) | 2 | 14 [glass] (L31a: `Unmatched (nd=1.74810, vd=52.3)`)<br>24 [glass] (L44b: `Unmatched (patent 861230; no compatible public catalog row)`) | abbe: 2 |
 | [NIKON AF-S NIKKOR 105mm f/1.4 E ED](../../src/lens-data/nikon/NikonNikkor105f14E.data.ts) | WO2019/116563 A1 | [PDF](../../patents/JPWO2019116563A1.pdf) | 85.7% (12/14) | 85.7% (12/14) | 2 | 8 [glass] (Element 5: `Specialty APD glass (Nikon)`)<br>14 [glass] (Element 9: `Specialty high-dispersion flint`) | abbe: 2 |
+| [NIKON AF-S DX NIKKOR 55-200mm f/4-5.6 G ED VR II](../../src/lens-data/nikon/NikonAFSDX55200mmf456G.data.ts) | JPWO2015/141574A1 | Missing from untracked local patents/ references (JPWO2015141574A1, JPWO2015141574, 2015141574) | 84.6% (11/13) | 84.6% (11/13) | 2 | 11 [glass] (L31 G3 front positive: `J-SK14 (Hikari)`)<br>18 [glass] (L35 VR negative: `J-LASF02 (Hikari)`) | abbe: 2 |
 | [SONY FE 24mm f/1.4 GM](../../src/lens-data/sony/SonyFE24mmf14GM.data.ts) | WO2019/073744 A1 | [PDF](../../patents/JPWO2019073744A1.pdf) | 84.6% (11/13) | 84.6% (11/13) | 2 | 1A [glass] (L11 front XA element: `MC-TAF115 class (Hoya; close match, stored nd=1.77002)`)<br>21A [glass] (L27 rear XA element: `Unmatched (lanthanum flint, 852/401; no exact public catalog match)`) | abbe: 2 |
 | [CANON SERENAR 28mm f/3.5](../../src/lens-data/canon/CanonSerenar28mmf35.data.ts) | US 2,645,974 | [PDF](../../patents/US2645974.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 6 [glass] (Element 4: `Unmatched (579417 vintage barium flint; no exact public catalog identity)`) | abbe: 1 |
 | [MAMIYA-SEKOR CS 35mm f/2.8](../../src/lens-data/mamiya/MamiyaSekorCS35mmf28.data.ts) | JP1978-066222 | Missing from untracked local patents/ references (JP1978066222, 1978066222) | 83.3% (5/6) | 83.3% (5/6) | 1 | 3 [glass] (Element 2: `Unmatched (nd=1.69480, νd=55.5; nearest public 697555 lanthanum-crown family)`) | abbe: 1 |
@@ -120,6 +122,7 @@ These rows contain resin, cement, plastic, liquid, or unclassified optical media
 | [CANON RF 50mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF50mmf14LVCM.data.ts) | US 2025/0251576 A1 | [PDF](../../patents/US-20250251576-A1.pdf) | 93.3% (14/15) | 93.3% (14/15) | 1 | 3A [resin] (Element 2 resin cap: `UV-cured optical resin (patent-listed nd/vd)`) | abbe: 1 |
 | [FUJIFILM FUJINON GF 32-64mm f/4 R LM WR](../../src/lens-data/fujifilm/FujifilmGF3264mmf4.data.ts) | US 10,191,246 B2 | [PDF](../../patents/US10191246.pdf) | 93.3% (14/15) | 93.3% (14/15) | 1 | 5 [resin] (L21 aspherical resin layer: `UV-curing aspherical resin (patent-listed)`) | abbe: 1 |
 | [NIKON AF-S NIKKOR 28mm f/1.4 E ED](../../src/lens-data/nikon/NikonAFS28f14E.data.ts) | JP2017-227799A | [PDF](../../patents/JP2017227799A.pdf) | 93.3% (14/15) | 93.3% (14/15) | 1 | 4 [resin] (Element 2 (resin): `UV-curing resin (composite)`) | abbe: 1 |
+| [NIKON NIKKOR Z 20mm f/1.8 S](../../src/lens-data/nikon/NikonNikkorZ20mmf18S.data.ts) | WO 2021/117429 A1 | [PDF](../../patents/WO2021117429A1.pdf) | 93.3% (14/15) | 93.3% (14/15) | 1 | 4 [resin] (L12 resin layer: `Unmatched (hybrid resin layer; patent nd=1.51380, νd=52.97)`) | abbe: 1 |
 | [OLYMPUS ZUIKO DIGITAL ED 12-60mm f/2.8-4.0 SWD](../../src/lens-data/olympus/OlympusMZuiko1260mmf284ED.data.ts) | US 7,583,450 B2 | [PDF](../../patents/US7583450.pdf) | 93.3% (14/15) | 93.3% (14/15) | 1 | 6A [resin] (Element 4 resin layer: `Unmatched (UV-cured hybrid asphere resin; patent nd=1.51940)`) | abbe: 1 |
 | [CANON EF-S 10-18mm f/4.5-5.6 IS STM](../../src/lens-data/canon/CanonEFS1018mmf4.data.ts) | JP 2015-31869 A | [PDF](../../patents/JP2015031869A.pdf) | 92.9% (13/14) | 92.9% (13/14) | 1 | 3 [plastic] (Element 2: `PMo optical plastic (cyclo-olefin polymer)`) | abbe: 1 |
 | [CANON RF 85mm f/1.2 L USM](../../src/lens-data/canon/CanonRF85mmf12L.data.ts) | US 2020/0012073 A1 | [PDF](../../patents/US20200012073A1.pdf) | 92.9% (13/14) | 92.9% (13/14) | 1 | 15 [resin] (Element 9 (Lp2 / BR): `BR optics (Canon proprietary organic)`) | abbe: 1 |

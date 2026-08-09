@@ -354,6 +354,31 @@ describe("glass catalog", () => {
     expect(evaluateCatalogAbbeNumber(entry!)).toBeCloseTo(64.14, 1);
   });
 
+  it.each([
+    { name: "J-SF7", code: "640346", nd: 1.6398, vd: 34.55 },
+    { name: "J-SF03", code: "847238", nd: 1.84666, vd: 23.8 },
+    { name: "J-LASF015", code: "804466", nd: 1.804, vd: 46.6 },
+    { name: "J-LASFH21", code: "954323", nd: 1.95375, vd: 32.33 },
+  ])("reproduces Hikari's official $name workbook row", ({ name, code, nd, vd }) => {
+    const entry = resolveGlass(`${name} (HIKARI)`);
+    expect(entry?.name).toBe(name);
+    expect(entry?.code6).toBe(code);
+    expect(evaluateSellmeier(entry!, LINE_NM.d)).toBeCloseTo(nd, 5);
+    expect(evaluateCatalogAbbeNumber(entry!)).toBeCloseTo(vd, 1);
+  });
+
+  it.each([
+    { name: "L-LAH87", nd: 1.7703, vd: 47.401904 },
+    { name: "L-LAH94", nd: 1.860999, vd: 37.097767 },
+    { name: "S-TIH57", nd: 1.963, vd: 24.1144 },
+    { name: "S-TIM1", nd: 1.625882, vd: 35.699614 },
+  ])("reproduces OHARA's official $name Zemax row", ({ name, nd, vd }) => {
+    const entry = resolveGlass(`${name} (OHARA)`);
+    expect(entry?.name).toBe(name);
+    expect(evaluateSellmeier(entry!, LINE_NM.d)).toBeCloseTo(nd, 5);
+    expect(evaluateCatalogAbbeNumber(entry!)).toBeCloseTo(vd, 2);
+  });
+
   it("evaluates the historical OHARA glasses in the Canon EF 200mm f/1.8 patent", () => {
     const expected = [
       { glass: "BPH5", nC: 1.64921, nd: 1.654115, nF: 1.66569, ng: 1.6751 },

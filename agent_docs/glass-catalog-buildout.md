@@ -8,7 +8,16 @@ catalog equivalent. If neither path is available, the engine falls back to parti
 dPgF-corrected indices, or the legacy Abbe approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **492 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **500 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+
+The August 8, 2026 Phase 88 pass audited the six-lens Nikon/Ricoh batch and added eight first-party curves:
+Hikari J-SF7, J-SF03, J-LASF015, and J-LASFH21 from Nikon/Hikari's 2023 workbook, plus OHARA L-LAH87,
+L-LAH94, S-TIH57, and S-TIM1 from the manufacturer's 2026 all-products Zemax catalog. Compatible existing
+curves were also assigned to rounded patent coordinates in both Nikon zooms while every production supplier remains
+explicitly unidentified. Twenty-one newly added surfaces move to coefficient-backed tracing; the Ricoh A16 and GR
+DIGITAL III prescriptions become strict-complete, and the Z 20mm reaches 14/15 with only its unmatched resin layer
+remaining. Global coverage is now 5288/5952 strict and 5299/5952 trusted; 296 lenses are strict-complete and 301 are
+trusted-complete, with zero coordinate mismatches and zero active unreviewed code-only rows.
 
 The August 8, 2026 Phase 87 follow-up recovered legacy SUMITA SK1 from an independently retained catalog record. Its
 six-term Schott-form polynomial reproduces the archival manufacturer's published C/d/F/g line indices to the shown
