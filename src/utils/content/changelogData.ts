@@ -19,7 +19,7 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
-    date: "2026-08-08",
+    date: "2026-08-09",
     type: "lens",
     summary: "Added six Nikon and Ricoh wide-angle, zoom, and GR camera lens designs",
   },
