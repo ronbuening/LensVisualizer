@@ -121,6 +121,8 @@ Read only the relevant focused doc before changing that area:
   mount SVG specifications with `npm run generate:mount-svgs`
 - `agent_docs/records/exact-surface-trace.md` - historical staged implementation notes for the exact trace rollout
 - `agent_docs/records/relationship-map-plan.md` - shipped implementation record (2026-07-22) for the F25 patent relationship map page
+- `agent_docs/universal-map-consolidation-research.md` - measured fragmentation of `/relationships/universal` and the
+  manufacturer/patent/inventor candidates that would reconnect its 18 separate networks
 - `TRACE_MODEL_IMPROVEMENT_PLAN.md` - current/historical fisheye projection, vector launch, and bounding-sphere trace status
 - `FEATURE_ADDITION_PLAN.md` - single source of truth for planned features (absorbed the analysis-options and mirror-lens backlogs; archives under `agent_docs/records/`)
 - `EFFICIENCY_IMPROVEMENT_PLAN.md` - task-by-task redundancy cleanup and performance backlog with verification gates
