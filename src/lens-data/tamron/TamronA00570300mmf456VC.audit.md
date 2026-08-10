@@ -12,3 +12,13 @@ Patent: US 8,228,605 B2, Example 2
 - Added the official HOYA MC-FCD1-M20 coefficient row for the `497815` class used by L110. SUMITA
   K-PFK80 remains the exact-coordinate cross-check; neither name is treated as production-supplier
   evidence. The prescription is now 17/17 strict Sellmeier-covered.
+
+### Rendered-diagram follow-up
+
+- Compared the site rendering with Figure 12. No additional SD adjustment clears the required
+  figure-evidence threshold; the modeled group envelopes remain consistent with the patent.
+- Restored the patent's 101-118 element numbering (with diaphragm position 108 omitted) and the
+  nested rear-group identifiers 141, 142, and 143. This removes duplicated group prose and reduces
+  annotation collisions without changing optical geometry.
+- Rechecked every medium: all 17 remain coefficient-backed. Coordinate-class labels stay
+  supplier-neutral where the patent does not identify a production glass maker.

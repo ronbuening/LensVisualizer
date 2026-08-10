@@ -388,18 +388,17 @@ const LENS_DATA = {
   ],
 
   groups: [
-    { text: "G1 (+)", fromSurface: "1", toSurface: "5" },
-    { text: "G2 (-) / VC", fromSurface: "6", toSurface: "14" },
-    { text: "G3 (+)", fromSurface: "15", toSurface: "25" },
-    { text: "G4 (-) / FOCUS", fromSurface: "26", toSurface: "28" },
-    { text: "G5 (-)", fromSurface: "29", toSurface: "34" },
+    { text: "G1", fromSurface: "1", toSurface: "5" },
+    { text: "G2", fromSurface: "6", toSurface: "14" },
+    { text: "G3", fromSurface: "15", toSurface: "25" },
+    { text: "G4", fromSurface: "26", toSurface: "28" },
+    { text: "G5", fromSurface: "29", toSurface: "34" },
   ],
   doublets: [
     { text: "D1", fromSurface: "1", toSurface: "3" },
-    { text: "G2V / VC", fromSurface: "12", toSurface: "14" },
-    { text: "D3", fromSurface: "18", toSurface: "20" },
-    { text: "D4", fromSurface: "23", toSurface: "25" },
-    { text: "G4 / FOCUS", fromSurface: "26", toSurface: "28" },
+    { text: "G2V", fromSurface: "12", toSurface: "14" },
+    { text: "3A", fromSurface: "15", toSurface: "20" },
+    { text: "3B", fromSurface: "21", toSurface: "25" },
   ],
 
   closeFocusM: 0.22,
