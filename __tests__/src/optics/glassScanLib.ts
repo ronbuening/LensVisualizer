@@ -11,7 +11,8 @@
  * `UNRESOLVED_MARKER`, `glassTokens`, `normalLinePgF`) come from the engine.
  */
 import { existsSync, readdirSync } from "node:fs";
-import buildLens from "../../../src/optics/buildLens.js";
+import validateLensData from "../../../src/optics/validateLensData.js";
+import { buildSpectralIndex } from "../../../src/optics/internal/lensState.js";
 import {
   assessCatalogGlassCompatibility,
   evaluateCatalogAbbeNumber,
@@ -20,9 +21,9 @@ import {
   UNRESOLVED_MARKER,
   type GlassEntry,
 } from "../../../src/optics/glassCatalog.js";
-import { normalLinePgF } from "../../../src/optics/dispersion.js";
+import { buildSurfaceDispersionIndex, normalLinePgF, type SurfaceDispersion } from "../../../src/optics/dispersion.js";
 import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
-import type { LensData, RefractiveIndexReferenceLine, RuntimeLens } from "../../../src/types/optics.js";
+import type { ElementData, LensData, RefractiveIndexReferenceLine, SurfaceData } from "../../../src/types/optics.js";
 
 /** ΔPgF spread that's plausible across melt variants. */
 export const PGF_TOLERANCE = 0.02;
@@ -32,7 +33,22 @@ const MAX_RELEVANT_PATENTS = 4;
 
 /* ── Lens-module walk ─────────────────────────────────────────────────── */
 
-/** Context handed to the per-lens visitor: built lens plus source metadata. */
+/**
+ * Glass-relevant subset of `RuntimeLens`, built without the full `buildLens`
+ * pipeline. The scans only read surfaces, element metadata, and per-surface
+ * dispersion, so the walk skips the expensive first-order/pupil/layout
+ * derivation — a full build per catalog lens per scan file dominated suite
+ * time. Each field uses the same source `buildLens` does: `S` is the cloned
+ * authored surface list, `elements` is the authored array `RuntimeLens.elements`
+ * exposes, and `indexByIdx` comes from `buildSurfaceDispersionIndex`.
+ */
+export interface ScanLens {
+  S: SurfaceData[];
+  elements: ElementData[];
+  indexByIdx: Record<number, SurfaceDispersion>;
+}
+
+/** Context handed to the per-lens visitor: glass-scan lens view plus source metadata. */
 export interface LensWalkContext {
   /** Vite module path of the lens data file. */
   modulePath: string;
@@ -40,14 +56,16 @@ export interface LensWalkContext {
   filePath: string;
   /** Defaults-merged authored lens data. */
   data: LensData;
-  /** Built runtime lens. */
-  L: RuntimeLens;
+  /** Glass-relevant lens view (see {@link ScanLens}). */
+  L: ScanLens;
 }
 
 /**
- * Walk every registered lens data module: merge defaults, build, and visit.
- * Lenses that fail to build are skipped (build correctness is tested
- * elsewhere). Returns the number of lenses visited.
+ * Walk every registered lens data module: merge defaults, normalize the
+ * glass-relevant fields, and visit. Lenses that fail validation are skipped,
+ * matching the previous behavior where a throwing `buildLens` skipped the
+ * lens (build correctness is tested elsewhere). Returns the number of lenses
+ * visited.
  */
 export function walkLensSurfaces(
   modules: Record<string, { default: LensData }>,
@@ -60,13 +78,15 @@ export function walkLensSurfaces(
     const data: LensData = { ...LENS_DEFAULTS, ...raw } as LensData;
     totalLenses++;
 
-    let L: RuntimeLens;
-    try {
-      L = buildLens(data);
-    } catch {
-      continue;
-    }
-    visitor({ modulePath, filePath: toRepoRelativeLensPath(modulePath), data, L });
+    if (validateLensData(data).length > 0) continue;
+    const S: SurfaceData[] = data.surfaces.map((s) => ({ ...s }));
+    const indexByIdx = buildSurfaceDispersionIndex(S, data.elements, buildSpectralIndex(S, data.elements));
+    visitor({
+      modulePath,
+      filePath: toRepoRelativeLensPath(modulePath),
+      data,
+      L: { S, elements: data.elements, indexByIdx },
+    });
   }
   return totalLenses;
 }
@@ -141,6 +161,19 @@ export function patentInventory(): string[] {
     .sort((a, b) => a.localeCompare(b));
 }
 
+/* Scans call findLocalPatent once per catalog lens against the same inventory
+ * array, so the per-file normalization is cached by array identity. */
+const normalizedInventoryByFiles = new WeakMap<readonly string[], string[]>();
+
+function normalizedInventory(files: readonly string[]): string[] {
+  let normalized = normalizedInventoryByFiles.get(files);
+  if (!normalized) {
+    normalized = files.map((file) => normalizePatentToken(file.replace(/\.pdf$/i, "")));
+    normalizedInventoryByFiles.set(files, normalized);
+  }
+  return normalized;
+}
+
 /** Match one patent number against the local PDF inventory with scoring. */
 export function findLocalPatent(patentNumber: string | null, files: readonly string[]): PatentMatch {
   const tokens = patentSearchTokens(patentNumber);
@@ -148,9 +181,10 @@ export function findLocalPatent(patentNumber: string | null, files: readonly str
     return { path: null, status: "No patent number parsed from lens metadata" };
   }
 
+  const normalizedFiles = normalizedInventory(files);
   const scored = files
-    .map((file) => {
-      const normalizedFile = normalizePatentToken(file.replace(/\.pdf$/i, ""));
+    .map((file, fileIndex) => {
+      const normalizedFile = normalizedFiles[fileIndex];
       let score = 0;
       for (const token of tokens) {
         if (normalizedFile === token) score = Math.max(score, 100);

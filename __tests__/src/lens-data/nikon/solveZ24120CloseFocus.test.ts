@@ -24,9 +24,16 @@
  * Published spec: MFD = 0.35 m at all zoom positions; max MRR = 0.39× at
  * 120 mm. Zoom-ring marks: 24, 28, 35, 50, 70, 85, 120 mm.
  *
- * Run: npx vitest run __tests__/src/lens-data/nikon/solveZ24120CloseFocus.test.ts --reporter=verbose
+ * This is an authoring solver, not a regression test: it emits paste-ready
+ * var-table snippets for the data file, and its solved values are already
+ * transcribed there. Gated behind SOLVE_Z24120=1 so normal suite runs skip
+ * the solve and its console tables (same pattern as SA_FIGURE_SVGS_WRITE in
+ * sphericalAberrationStaticSvgs.test.tsx).
+ *
+ * Run: SOLVE_Z24120=1 npx vitest run __tests__/src/lens-data/nikon/solveZ24120CloseFocus.test.ts --reporter=verbose
  */
 
+import { env } from "node:process";
 import { describe, it, expect } from "vitest";
 import buildLens from "../../../../src/optics/buildLens.js";
 import { traceExactSurfaceStack } from "../../../../src/optics/internal/exactSurfaceTrace.js";
@@ -279,11 +286,10 @@ function estimateMagnification(
   return y_image_avg / h_obj; // negative for real image (inverted)
 }
 
-describe("Nikkor Z 24-120 close-focus solver", () => {
-  const lensData = { ...LENS_DEFAULTS, ...NikkorZ24120Raw } as LensData;
-  const L = buildLens(lensData);
-
+describe.runIf(env.SOLVE_Z24120 === "1")("Nikkor Z 24-120 close-focus solver", () => {
   it("solves (Δ5, Δ6) at each target zoom position", () => {
+    const lensData = { ...LENS_DEFAULTS, ...NikkorZ24120Raw } as LensData;
+    const L = buildLens(lensData);
     const results: SolveResult[] = [];
 
     for (const fDesign of ZOOM_TARGETS) {
