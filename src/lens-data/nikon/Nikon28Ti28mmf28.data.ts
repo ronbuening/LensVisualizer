@@ -25,7 +25,7 @@ const LENS_DATA = {
   key: "nikon-28ti-28f28",
   maker: "Nikon",
   name: "NIKON NIKKOR 28mm f/2.8 (Nikon 28Ti)",
-  subtitle: "US 5,528,428 Ex. 3 — Ohtake & Mori / Nikon",
+  subtitle: "US 5,528,428 Ex. 3 — Ohtake & Mouri / Nikon",
   specs: ["7 ELEMENTS / 5 GROUPS", "f ≈ 28.9 mm", "F/2.87", "2ω ≈ 74.0°", "ALL SPHERICAL"],
 
   /* ── Explicit metadata ── */
@@ -36,7 +36,7 @@ const LENS_DATA = {
   lensMounts: ["fixed-lens-camera"],
   imageFormat: "135-full-frame",
   patentNumber: "US 5,528,428",
-  patentAuthors: ["Motoyuki Ohtake", "Motohisa Mori"],
+  patentAuthors: ["Motoyuki Ohtake", "Motohisa Mouri"],
   patentAssignees: ["Nikon Corporation"],
   patentYear: 1996,
   elementCount: 7,

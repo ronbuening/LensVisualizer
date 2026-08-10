@@ -34,6 +34,7 @@ const SOURCES = {
   leicaHistory: "https://leica-camera.com/en-US/press/four-generations-leitz-company-management-1869-1986",
   mamiyaHistory: "https://www.mamiya-op.co.jp/en/company/history/",
   nikonHistory: "https://www.nikon.com/company/corporate/history/",
+  nittohHistory: "https://www.nittohkogaku.co.jp/en/company/history.html",
   olympusFounding: "https://www.olympus-global.com/company/milestones/founding.html?page=company",
   olympusImaging: "https://www.olympus-global.com/company/milestones/history/05.html?page=company",
   olympusAnnual2016: "https://www.olympus-global.com/ir/data/integratedreport/pdf/ar2016e_A3.pdf",
@@ -48,6 +49,7 @@ const SOURCES = {
   schneiderHistory: "https://schneiderkreuznach.com/en/company/about-us/history",
   sonyReorganization: "https://www.sony.com/en/SonyInfo/News/Press/202005/20-039E/",
   sonyStructure: "https://www.sony.com/en/SonyInfo/News/Press/202011/20-093E/",
+  tamronHistory: "https://www.tamron.com/global/company/tamron_history.html",
   vivitarHistory: "https://japb.net/business/company-profiles/vivitar/",
   vivitarNameChange: "https://uprp.gov.pl/sites/default/files/wup/1979/06/wup06_1979.pdf",
   voigtlanderHistory: "https://www.cosina.co.jp/voigtlander/",
@@ -342,6 +344,16 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
     ],
     corporateFamily: [{ family: "Nikon", effectiveFrom: "1988-04-01", sourceUrl: SOURCES.nikonHistory }],
   },
+  "Nittoh Inc.": {
+    successorOf: [
+      {
+        organization: "Nittoh Kogaku K.K.",
+        effectiveDate: "2017",
+        sourceUrl: SOURCES.nittohHistory,
+        note: "The official history records the 2017 company-name change from Nittoh Kogaku K.K. to Nittoh Inc.",
+      },
+    ],
+  },
   "Nippon Kogaku K.K.": {
     corporateFamily: [
       {
@@ -591,6 +603,16 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
       },
     ],
     corporateFamily: [{ family: "Sony", effectiveFrom: "2021-04-01", sourceUrl: SOURCES.sonyReorganization }],
+  },
+  "Tamron Co., Ltd.": {
+    successorOf: [
+      {
+        organization: "Taisei Optical Equipment Manufacturing Inc.",
+        effectiveDate: "1970-04",
+        sourceUrl: SOURCES.tamronHistory,
+        note: "The official history records the April 1970 company-name change to Tamron Co., Ltd.",
+      },
+    ],
   },
   "VEB Carl Zeiss Jena": {
     acquiredBy: [

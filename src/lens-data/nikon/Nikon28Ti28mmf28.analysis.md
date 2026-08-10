@@ -3,7 +3,7 @@
 ## Nikon "Compact Wide-Angle Objective Lens" — Nikkor 28mm f/2.8 (28Ti)
 
 **Patent:** US 5,528,428 (granted June 18, 1996)
-**Inventors:** Motoyuki Ohtake, Motohisa Mori
+**Inventors:** Motoyuki Ohtake, Motohisa Mouri (rendered as Motohisa Mori in the US patent)
 **Assignee:** Nikon Corporation
 **Priority dates:** November 13, 1991 (JP 3-297444); May 13, 1993 (JP 5-111289)
 **Granted:** June 18, 1996
@@ -285,7 +285,7 @@ The design also achieves a remarkably small total lens thickness: D/f = 0.824, m
 
 Nikon's own "Thousand and One Nights" essay series (Tale No. 1) explicitly identifies the 28Ti lens as a development of the "WAKIMOTO symmetrical wideangle lens" — the symmetric (non-retrofocus) wide-angle architecture that Zenji Wakimoto pioneered at Nikon in the 1950s. This symmetric lineage, which also produced the Nikkor-SW series of large-format wide-angle lenses, is distinct from Wakimoto's separately famous retrofocus SLR designs such as the NIKKOR-H Auto 2.8cm f/3.5. The 28Ti, lacking an SLR mirror box to clear, is free to use the inherently superior symmetric form — a point multiple commentators have noted, observing that its optics are "not compromised by a retrofocus design" and are "fundamentally similar in quality to a Contax or Leica rangefinder lens of that era."
 
-The total optical track from the front vertex to the image plane is 44.76 mm (BFD/f = 0.725), confirming the non-retrofocus character: in a retrofocus 28 mm SLR lens, the back focal distance alone would need to exceed 45 mm for mirror clearance. By avoiding the retrofocus constraint, Ohtake and Mori could devote the entire optical path to aberration correction rather than spending elements on extending the back focus — a fundamental advantage that the patent's Biogon-derived architecture fully exploits.
+The total optical track from the front vertex to the image plane is 44.76 mm (BFD/f = 0.725), confirming the non-retrofocus character: in a retrofocus 28 mm SLR lens, the back focal distance alone would need to exceed 45 mm for mirror clearance. By avoiding the retrofocus constraint, Ohtake and Mouri could devote the entire optical path to aberration correction rather than spending elements on extending the back focus — a fundamental advantage that the patent's Biogon-derived architecture fully exploits.
 
 ---
 

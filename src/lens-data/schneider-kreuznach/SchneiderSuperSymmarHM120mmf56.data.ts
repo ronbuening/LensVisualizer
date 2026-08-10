@@ -4,7 +4,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ╔════════════════════════════════════════════════════════════════════════════╗
  * ║ LENS DATA — SCHNEIDER-KREUZNACH SUPER-SYMMAR HM 120mm f/5.6             ║
  * ╠════════════════════════════════════════════════════════════════════════════╣
- * ║ Source prescription: US 4,773,745, Example 1 (Hiltrud Schitthof).        ║
+ * ║ Source prescription: US 4,773,745, Example 1.                            ║
+ * ║ Inventor: Hiltrud Ebbesmeier née Schitthof.                                ║
+ * ║ Patent rendering: Hiltrud Schitthof.                                       ║
  * ║ Production reference: Schneider-Kreuznach Super-Symmar HM data sheet.    ║
  * ║ 8 elements / 6 groups; all spherical; unit focus by camera bellows.       ║
  * ║                                                                            ║
@@ -42,7 +44,7 @@ const LENS_DATA = {
   key: "schneider-super-symmar-hm-120f56",
   maker: "Schneider-Kreuznach",
   name: "SCHNEIDER-KREUZNACH SUPER-SYMMAR HM 120mm f/5.6",
-  subtitle: "US 4,773,745 EXAMPLE 1 — HILTRUD SCHITTHOF",
+  subtitle: "US 4,773,745 EXAMPLE 1 — HILTRUD EBBESMEIER NÉE SCHITTHOF",
   specs: [
     "8 ELEMENTS / 6 GROUPS",
     "f = 121.6 mm (SCALED PATENT MODEL)",
@@ -57,7 +59,7 @@ const LENS_DATA = {
   apertureDesign: 5.6,
   imageFormat: "4x5",
   patentNumber: "US 4,773,745",
-  patentAuthors: ["Hiltrud Schitthof"],
+  patentAuthors: ["Hiltrud Ebbesmeier née Schitthof"],
   patentAssignees: ["Jos. Schneider Optische Werke Kreuznach GmbH & Co. KG"],
   patentYear: 1988,
   elementCount: 8,

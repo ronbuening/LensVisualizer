@@ -41,3 +41,31 @@ The patent does not publish clear-aperture diameters. Fig. 1 was therefore measu
 - `npm run typecheck && npm run format:check && npm run lint && npm run test` — passed (192 files, 2,311 tests).
 - `npm run build` — passed; 548 routes prerendered and sitemap generated.
 - Local Diagram and Off-Axis browser views — corrected silhouette confirmed; expected ghost/vignetted rays only; no application console errors.
+
+## 2026-08-10 — Patent-author canonicalization
+
+### Phase 1 — Glass corrections
+
+- No glass, refractive-index, or dispersion fields changed in this pass.
+
+### Phase 2 — Retained-information audit
+
+- No optical prescription, aperture, semi-diameter, or movement data changed.
+
+### Phase 3 — Spectral / metadata enrichment
+
+| Field | Before | After | Justification |
+| --- | --- | --- | --- |
+| `patentAuthors` | Hiltrud Schitthof | Hiltrud Ebbesmeier née Schitthof | The later Schneider patent US 5,870,234 identifies the same inventor with her married name and preserves Schitthof as her birth name. One canonical catalog identity prevents the two Schneider patents from creating duplicate author nodes. |
+
+- The data-file subtitle now uses the canonical identity while the source note preserves the shorter name printed on US 4,773,745.
+
+### Phase 4 — Analysis sync
+
+- Updated the inventor line and source citation to distinguish the canonical catalog identity from the name printed on the patent.
+
+### Verification
+
+- `npm run generate:metadata` — passed; the combined inventor-identity pass reduced the generated catalog from 391 to 389 author records.
+- `npm run typecheck && npm run format:check && npm run lint && npm run test` — passed (249 files, 2,962 tests).
+- `npm run build` — passed; 1,070 routes prerendered and sitemap and RSS feeds generated.

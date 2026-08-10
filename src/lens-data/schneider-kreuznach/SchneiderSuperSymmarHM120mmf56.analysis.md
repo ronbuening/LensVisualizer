@@ -5,7 +5,7 @@
 **Priority:** September 2, 1986 (DE 36 29 773)\
 **Filed:** September 2, 1987\
 **Granted:** September 27, 1988\
-**Inventor:** Hiltrud Schitthof\
+**Inventor:** Hiltrud Ebbesmeier née Schitthof (credited as Hiltrud Schitthof)\
 **Assignee:** Jos. Schneider Optische Werke Kreuznach GmbH & Co. KG\
 **Title:** Compact Wide-Angle Objective\
 **Embodiment analyzed:** First numerical example, reproduced in claim 3 and associated with Fig. 2
@@ -209,7 +209,7 @@ Schneider's technical data sheet lists the 120 mm lens with an effective focal l
 
 ## Sources
 
-- Hiltrud Schitthof, [US Patent 4,773,745, “Compact Wide-Angle Objective”](https://patents.google.com/patent/US4773745A/en), granted September 27, 1988. First numerical example and conditions: cols. 2–8; the first table corresponds to Fig. 2.
+- Hiltrud Schitthof (cataloged as Hiltrud Ebbesmeier née Schitthof), [US Patent 4,773,745, “Compact Wide-Angle Objective”](https://patents.google.com/patent/US4773745A/en), granted September 27, 1988. First numerical example and conditions: cols. 2–8; the first table corresponds to Fig. 2.
 - Schneider-Kreuznach, [Super-Symmar HM technical data sheet](https://www.hyam.net/blog/wp-content/uploads/2019/08/super_symmar_hm.pdf), archival manufacturer scan. Page 1: 8 lenses / 6 groups and apochromatic-correction claim; page 2: production section and mechanical dimensions; page 3: EFL, BFD, $HH'$, coverage, image circles, formats, shutter, thread, aperture, and weight.
 - SCHOTT, _Optical Glass Datasheets of Inquiry Glasses_: FK3 and N-SF19 optical data.
 - CDGM, [H-F6 optical-glass datasheet](https://www.cdgmgd.com/webapp/pdf/H-F6.pdf): d-line code and Sellmeier coefficients for the 625/356 comparison used for L2b.

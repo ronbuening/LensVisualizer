@@ -50,6 +50,23 @@ describe("assignee lookups", () => {
     expect(orphaned).toEqual([]);
   });
 
+  it("includes sourced predecessor names for Nittoh and Tamron", () => {
+    expect(getAssigneeByName("Nittoh Inc.")?.successorOf).toContainEqual(
+      expect.objectContaining({
+        organization: "Nittoh Kogaku K.K.",
+        effectiveDate: "2017",
+        sourceUrl: "https://www.nittohkogaku.co.jp/en/company/history.html",
+      }),
+    );
+    expect(getAssigneeByName("Tamron Co., Ltd.")?.successorOf).toContainEqual(
+      expect.objectContaining({
+        organization: "Taisei Optical Equipment Manufacturing Inc.",
+        effectiveDate: "1970-04",
+        sourceUrl: "https://www.tamron.com/global/company/tamron_history.html",
+      }),
+    );
+  });
+
   it("uses supported ISO date precision and sourced relationship records", () => {
     for (const assignee of ASSIGNEES) {
       for (const relationship of [...assignee.successorOf, ...assignee.acquiredBy]) {
