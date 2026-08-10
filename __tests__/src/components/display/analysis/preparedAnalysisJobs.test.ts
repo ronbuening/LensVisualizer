@@ -334,9 +334,48 @@ describe("prepared-state analysis tabs", () => {
     );
 
     expect(html).toContain("Rectilinear distortion");
+    expect(html).toContain("Image height (% of edge)");
+    expect(html).toContain("No distortion");
+    expect(html).toContain("100%");
+    expect(html).not.toContain("Field angle (°)");
     expect(mockPrepareRuntimeState).not.toHaveBeenCalled();
     expect(mockComputeDistortionCurve).toHaveBeenCalledWith(preparedState, 51, 5, fieldGeometry);
     expect(mockComputeDistortionFieldGrid).toHaveBeenCalledWith(preparedState, 5, fieldGeometry);
+  });
+
+  it("switches to projection-residual copy when the distortion reference is a fisheye projection", () => {
+    mockComputeDistortionCurve.mockReturnValue(
+      distortionSamples.map((sample) => ({
+        ...sample,
+        referenceKind: "fisheye-equidistant",
+        referenceLabel: "Equidistant",
+      })),
+    );
+    mockComputeDistortionFieldGrid.mockReturnValue({
+      ...distortionFieldGrid,
+      referenceKind: "fisheye-equidistant",
+      referenceLabel: "Equidistant",
+    });
+
+    const html = renderToStaticMarkup(
+      React.createElement(DistortionTab, {
+        L: lens,
+        t: themes.dark,
+        focusT: 0.2,
+        zoomT: 0.3,
+        aberrationT: 0.4,
+        dynamicEFL: 51,
+        currentPhysStopSD: 5,
+        fieldGeometry,
+        preparedState,
+      }),
+    );
+
+    expect(html).toContain("Equidistant projection residual");
+    expect(html).toContain("declared equidistant fisheye projection");
+    expect(html).toContain("No residual");
+    expect(html).toContain("Dashed = ideal equidistant grid");
+    expect(html).not.toContain("Rectilinear distortion (F-Tan(theta))");
   });
 
   it("routes optical summary work through the prepared-state job facade", () => {

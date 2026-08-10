@@ -35,16 +35,6 @@ describe("useStickySliders", () => {
     dispatch = dispatchMock as unknown as Dispatch<LensAction>;
   });
 
-  it("returns expected interface shape", () => {
-    const { result } = renderHook(() => useStickySliders(dispatch, null, null, null));
-    expect(typeof result.current.handleSharedFocusChange).toBe("function");
-    expect(typeof result.current.handleSharedStopdownChange).toBe("function");
-    expect(typeof result.current.handleFocusPointerDown).toBe("function");
-    expect(typeof result.current.handleAperturePointerDown).toBe("function");
-    expect(typeof result.current.resetSticky).toBe("function");
-    expect(result.current.flashPanel).toBeNull();
-  });
-
   it("dispatches SET_SHARED_FOCUS_T on focus change without sticky", () => {
     const focusPair = makeFocusPair(null);
     const { result } = renderHook(() => useStickySliders(dispatch, focusPair, null, { LA, LB }));

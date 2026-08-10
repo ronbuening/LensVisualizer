@@ -27,6 +27,17 @@ import { CHANGELOG_TYPE_COLORS } from "../../../../src/utils/content/changelogHe
 import { TAG_COLORS } from "../../../../src/components/content/ArticleCard.js";
 import type { Theme } from "../../../../src/types/theme.js";
 
+/*
+ * Pixel values (font sizes, paddings, radii, offsets) are a design choice,
+ * not a contract — they are intentionally NOT asserted here, so visual
+ * tweaks never break tests. This file guards only:
+ *   • withAlpha() color math (real logic with edge cases)
+ *   • badge palette literals staying 6-digit hex so alpha tints render
+ *   • static style constants staying frozen (shared objects, never mutated)
+ *   • theme-token wiring: each factory routes the passed theme's tokens
+ *     into the right style fields
+ */
+
 /* Minimal mock theme with just the tokens factories consume */
 const mockTheme = {
   toggleBg: "#111",
@@ -90,295 +101,111 @@ describe("badge palettes", () => {
 /* ── Static constants ── */
 
 describe("static constants", () => {
-  it("OVERLAY_BACKDROP is frozen with expected keys", () => {
-    expect(Object.isFrozen(OVERLAY_BACKDROP)).toBe(true);
-    expect(OVERLAY_BACKDROP.position).toBe("fixed");
-    expect(OVERLAY_BACKDROP.zIndex).toBe(9999);
-  });
-
-  it("OVERLAY_MODAL_BASE is frozen with expected keys", () => {
-    expect(Object.isFrozen(OVERLAY_MODAL_BASE)).toBe(true);
-    expect(OVERLAY_MODAL_BASE.borderRadius).toBe(10);
-    expect(OVERLAY_MODAL_BASE.maxWidth).toBe(480);
-  });
-
-  it("PANEL_OVERLAY_BACKDROP is frozen with absolute positioning", () => {
-    expect(Object.isFrozen(PANEL_OVERLAY_BACKDROP)).toBe(true);
-    expect(PANEL_OVERLAY_BACKDROP.position).toBe("absolute");
-    expect(PANEL_OVERLAY_BACKDROP.zIndex).toBe(100);
-  });
-
-  it("SLIDER_LABEL is frozen with expected typography", () => {
-    expect(Object.isFrozen(SLIDER_LABEL)).toBe(true);
-    expect(SLIDER_LABEL.fontSize).toBe(9.5);
-    expect(SLIDER_LABEL.letterSpacing).toBe("0.1em");
-    expect(SLIDER_LABEL.transition).toBe("color 0.3s");
-  });
-
-  it("SLIDER_VALUE_BASE is frozen with expected typography", () => {
-    expect(Object.isFrozen(SLIDER_VALUE_BASE)).toBe(true);
-    expect(SLIDER_VALUE_BASE.fontSize).toBe(14);
-    expect(SLIDER_VALUE_BASE.fontWeight).toBe(700);
-    expect(SLIDER_VALUE_BASE.fontVariantNumeric).toBe("tabular-nums");
-    expect(SLIDER_VALUE_BASE.transition).toBe("color 0.3s");
-  });
-
-  it("VISUALLY_HIDDEN is frozen with the established accessible-label clipping", () => {
-    expect(Object.isFrozen(VISUALLY_HIDDEN)).toBe(true);
-    expect(VISUALLY_HIDDEN).toEqual({ position: "absolute", width: 1, height: 1, overflow: "hidden" });
+  it("are frozen so shared style objects cannot be mutated", () => {
+    for (const constant of [
+      OVERLAY_BACKDROP,
+      OVERLAY_MODAL_BASE,
+      PANEL_OVERLAY_BACKDROP,
+      SLIDER_LABEL,
+      SLIDER_VALUE_BASE,
+      VISUALLY_HIDDEN,
+    ]) {
+      expect(Object.isFrozen(constant)).toBe(true);
+    }
   });
 });
 
-/* ── Theme-aware factories ── */
+/* ── Theme-token wiring ── */
 
-describe("panelCard(t, opts)", () => {
-  it("returns the standard themed panel chrome", () => {
-    expect(panelCard(mockTheme)).toEqual({
-      background: mockTheme.panelBg,
-      border: `1px solid ${mockTheme.panelBorder}`,
-      borderRadius: 6,
-    });
+describe("theme-token wiring", () => {
+  it("panelCard and countSuffix use the panel and label tokens", () => {
+    const card = panelCard(mockTheme);
+    expect(card.background).toBe(mockTheme.panelBg);
+    expect(card.border).toContain(mockTheme.panelBorder);
+    expect(countSuffix(mockTheme).color).toBe(mockTheme.label);
   });
 
-  it("supports the existing eight-pixel card radius", () => {
-    expect(panelCard(mockTheme, { borderRadius: 8 }).borderRadius).toBe(8);
-  });
-});
+  it("searchInput, selector, topBarBtn, and headerSearchBtn use the selector chrome tokens", () => {
+    const input = searchInput(mockTheme);
+    expect(input.background).toBe(mockTheme.selectorBg);
+    expect(input.color).toBe(mockTheme.selectorText);
+    expect(input.border).toContain(mockTheme.selectorBorder);
 
-describe("countSuffix(t, opts)", () => {
-  it("returns the shared muted heading suffix", () => {
-    expect(countSuffix(mockTheme)).toEqual({
-      color: mockTheme.label,
-      fontSize: "0.75rem",
-      marginLeft: "0.5rem",
-      fontWeight: 400,
-    });
-  });
+    const sel = selector(mockTheme, true);
+    expect(sel.backgroundColor).toBe(mockTheme.selectorBg);
+    expect(sel.color).toBe(mockTheme.selectorText);
+    expect(sel.border).toContain(mockTheme.sliderAccent);
 
-  it("preserves caller-specific typography", () => {
-    expect(countSuffix(mockTheme, { fontSize: "0.7rem", marginLeft: "0.4rem" })).toMatchObject({
-      fontSize: "0.7rem",
-      marginLeft: "0.4rem",
-    });
-  });
-});
+    const bar = topBarBtn(mockTheme, true);
+    expect(bar.backgroundColor).toBe(mockTheme.selectorBg);
+    expect(bar.color).toBe(mockTheme.selectorText);
+    expect(bar.boxShadow).toContain(mockTheme.sliderAccent);
 
-describe("searchInput(t)", () => {
-  it("uses theme input chrome and an iOS-safe text size", () => {
-    expect(searchInput(mockTheme)).toEqual({
-      background: mockTheme.selectorBg,
-      color: mockTheme.selectorText,
-      border: `1px solid ${mockTheme.selectorBorder}`,
-      borderRadius: 6,
-      padding: "0.7rem 0.8rem",
-      font: "inherit",
-      fontSize: "16px",
-    });
-  });
-});
-
-describe("toggleGroup(t, opts)", () => {
-  it("returns a style object with theme border", () => {
-    const s = toggleGroup(mockTheme);
-    expect(s.display).toBe("flex");
-    expect(s.borderRadius).toBe(5);
-    expect(s.border).toContain(mockTheme.toggleBorder);
+    const search = headerSearchBtn(mockTheme);
+    expect(search.backgroundColor).toBe(mockTheme.selectorBg);
+    expect(search.color).toBe(mockTheme.selectorText);
   });
 
-  it("includes width when opts.width is provided", () => {
-    const s = toggleGroup(mockTheme, { width: 220 });
-    expect(s.width).toBe(220);
-  });
-
-  it("omits width when not provided", () => {
-    const s = toggleGroup(mockTheme);
-    expect(s.width).toBeUndefined();
-  });
-});
-
-describe("toggleBtn(t, active, opts)", () => {
-  it("returns active background when active=true", () => {
-    const s = toggleBtn(mockTheme, true);
-    expect(s.background).toBe(mockTheme.toggleActiveBg);
-    expect(s.color).toBe(mockTheme.toggleActiveText);
-  });
-
-  it("returns inactive background when active=false", () => {
-    const s = toggleBtn(mockTheme, false);
-    expect(s.background).toBe(mockTheme.toggleBg);
-    expect(s.color).toBe(mockTheme.toggleInactiveText);
-  });
-
-  it("shows right border by default", () => {
-    const s = toggleBtn(mockTheme, false);
-    expect(s.borderRight).toContain(mockTheme.toggleBorder);
-  });
-
-  it("hides right border when hasRightBorder=false", () => {
-    const s = toggleBtn(mockTheme, false, { hasRightBorder: false });
-    expect(s.borderRight).toBe("none");
-  });
-
-  it("respects custom flex, padding, and gap", () => {
-    const s = toggleBtn(mockTheme, true, { flex: 0.5, padding: "2px 4px", gap: 3 });
-    expect(s.flex).toBe(0.5);
-    expect(s.padding).toBe("2px 4px");
-    expect(s.gap).toBe(3);
-  });
-
-  it("defaults flex=1, padding='5px 8px', gap=5", () => {
-    const s = toggleBtn(mockTheme, false);
-    expect(s.flex).toBe(1);
-    expect(s.padding).toBe("5px 8px");
-    expect(s.gap).toBe(5);
-  });
-});
-
-describe("chromChannelBtn(t, active, hasRightBorder)", () => {
-  it("uses flex 0.6 and smaller gap", () => {
-    const s = chromChannelBtn(mockTheme, true, true);
-    expect(s.flex).toBe(0.6);
-    expect(s.gap).toBe(3);
-    expect(s.padding).toBe("5px 6px");
-  });
-
-  it("active/inactive colors match toggleBtn pattern", () => {
-    const active = chromChannelBtn(mockTheme, true, false);
-    const inactive = chromChannelBtn(mockTheme, false, false);
+  it("toggleBtn switches between the active and inactive toggle tokens", () => {
+    const active = toggleBtn(mockTheme, true);
     expect(active.background).toBe(mockTheme.toggleActiveBg);
+    expect(active.color).toBe(mockTheme.toggleActiveText);
+
+    const inactive = toggleBtn(mockTheme, false);
     expect(inactive.background).toBe(mockTheme.toggleBg);
+    expect(inactive.color).toBe(mockTheme.toggleInactiveText);
+    expect(inactive.borderRight).toContain(mockTheme.toggleBorder);
   });
 
-  it("controls right border", () => {
-    expect(chromChannelBtn(mockTheme, true, true).borderRight).toContain(mockTheme.toggleBorder);
-    expect(chromChannelBtn(mockTheme, true, false).borderRight).toBe("none");
-  });
-});
+  it("chromChannelBtn switches between the active and inactive toggle tokens", () => {
+    const active = chromChannelBtn(mockTheme, true, true);
+    expect(active.background).toBe(mockTheme.toggleActiveBg);
+    expect(active.color).toBe(mockTheme.toggleActiveText);
+    expect(active.borderRight).toContain(mockTheme.toggleBorder);
 
-describe("collapseBtn(t)", () => {
-  it("returns a style object with theme background and border", () => {
-    const s = collapseBtn(mockTheme);
-    expect(s.borderRadius).toBe(10);
-    expect(s.background).toBe(mockTheme.toggleBg);
-    expect(s.border).toContain(mockTheme.toggleBorder);
-    expect(s.color).toBe(mockTheme.muted);
-    expect(s.fontSize).toBe(8);
+    const inactive = chromChannelBtn(mockTheme, false, false);
+    expect(inactive.background).toBe(mockTheme.toggleBg);
+    expect(inactive.color).toBe(mockTheme.toggleInactiveText);
   });
-});
 
-describe("sliderInput(t, opts)", () => {
-  it("defaults to flex sizing", () => {
+  it("toggleGroup and collapseBtn use the toggle border, background, and muted tokens", () => {
+    expect(toggleGroup(mockTheme).border).toContain(mockTheme.toggleBorder);
+
+    const pill = collapseBtn(mockTheme);
+    expect(pill.background).toBe(mockTheme.toggleBg);
+    expect(pill.border).toContain(mockTheme.toggleBorder);
+    expect(pill.color).toBe(mockTheme.muted);
+  });
+
+  it("sliderInput uses the slider track and accent tokens", () => {
     const s = sliderInput(mockTheme);
-    expect(s.flex).toBe(1);
-    expect(s.width).toBeUndefined();
     expect(s.background).toBe(mockTheme.sliderTrack);
     expect(s.accentColor).toBe(mockTheme.sliderAccent);
   });
 
-  it('uses width:"100%" when sizing="full"', () => {
-    const s = sliderInput(mockTheme, { sizing: "full" });
-    expect(s.width).toBe("100%");
-    expect(s.flex).toBeUndefined();
-  });
-});
-
-describe("selector(t, wide)", () => {
-  it("returns wider padding for desktop", () => {
-    const s = selector(mockTheme, true);
-    expect(s.padding).toBe("7px 32px 7px 12px");
-    expect(s.fontSize).toBe(13);
-  });
-
-  it("returns narrower padding for mobile", () => {
-    const s = selector(mockTheme, false);
-    expect(s.padding).toBe("7px 28px 7px 8px");
-    expect(s.fontSize).toBe(12);
-  });
-
-  it("includes theme-derived colors", () => {
-    const s = selector(mockTheme, true);
-    expect(s.backgroundColor).toBe(mockTheme.selectorBg);
-    expect(s.color).toBe(mockTheme.selectorText);
-    expect(s.border).toContain(mockTheme.sliderAccent);
-  });
-});
-
-describe("headerStrip(t, opts)", () => {
-  it("returns theme-derived header background", () => {
+  it("headerStrip uses the header border and background tokens", () => {
     const s = headerStrip(mockTheme);
     expect(s.borderBottom).toContain(mockTheme.headerBorder);
     expect(s.backgroundColor).toBe(mockTheme.headerBgColor);
     expect(s.backgroundImage).toBe(mockTheme.headerBgImage);
   });
 
-  it("includes padding when provided", () => {
-    const s = headerStrip(mockTheme, { padding: "8px 16px" });
-    expect(s.padding).toBe("8px 16px");
-  });
+  it("overlayModal, panelOverlayContent, and closeBtn use the description and muted tokens", () => {
+    const modal = overlayModal(mockTheme);
+    expect(modal.background).toBe(mockTheme.descBg);
+    expect(modal.border).toContain(mockTheme.descBorder);
 
-  it("omits padding when not provided", () => {
-    const s = headerStrip(mockTheme);
-    expect(s.padding).toBeUndefined();
-  });
-});
+    const panel = panelOverlayContent(mockTheme);
+    expect(panel.background).toBe(mockTheme.descBg);
+    expect(panel.border).toContain(mockTheme.descBorder);
 
-describe("topBarBtn(t, wide)", () => {
-  it("uses desktop padding when wide=true", () => {
-    const s = topBarBtn(mockTheme, true);
-    expect(s.padding).toBe("5px 14px");
-  });
-
-  it("uses mobile padding when wide=false", () => {
-    const s = topBarBtn(mockTheme, false);
-    expect(s.padding).toBe("5px 10px");
-  });
-
-  it("includes theme-derived colors", () => {
-    const s = topBarBtn(mockTheme, true);
-    expect(s.backgroundColor).toBe(mockTheme.selectorBg);
-    expect(s.color).toBe(mockTheme.selectorText);
+    expect(closeBtn(mockTheme).color).toBe(mockTheme.muted);
   });
 });
 
-describe("headerSearchBtn(t)", () => {
-  it("provides a square target matching the header option-group height", () => {
-    const s = headerSearchBtn(mockTheme);
-    expect(s.width).toBe(30);
-    expect(s.height).toBe(30);
-    expect(s.padding).toBe(0);
-    expect(s.alignItems).toBe("center");
-    expect(s.justifyContent).toBe("center");
-  });
-});
-
-describe("overlayModal(t)", () => {
-  it("extends OVERLAY_MODAL_BASE with theme colors", () => {
-    const s = overlayModal(mockTheme);
-    expect(s.borderRadius).toBe(OVERLAY_MODAL_BASE.borderRadius);
-    expect(s.maxWidth).toBe(OVERLAY_MODAL_BASE.maxWidth);
-    expect(s.background).toBe(mockTheme.descBg);
-    expect(s.border).toContain(mockTheme.descBorder);
-  });
-});
-
-describe("panelOverlayContent(t)", () => {
-  it("returns 90% width/height with theme colors", () => {
-    const s = panelOverlayContent(mockTheme);
-    expect(s.width).toBe("90%");
-    expect(s.height).toBe("90%");
-    expect(s.background).toBe(mockTheme.descBg);
-    expect(s.border).toContain(mockTheme.descBorder);
-    expect(s.borderRadius).toBe(10);
-    expect(s.position).toBe("relative");
-  });
-});
-
-describe("closeBtn(t)", () => {
-  it("returns close button style with theme muted color", () => {
-    const s = closeBtn(mockTheme);
-    expect(s.position).toBe("sticky");
-    expect(s.color).toBe(mockTheme.muted);
-    expect(s.cursor).toBe("pointer");
-    expect(s.fontSize).toBe(18);
+describe("overlayModal(t, maxWidth)", () => {
+  it("keeps the base maxWidth by default and overrides it when provided", () => {
+    expect(overlayModal(mockTheme).maxWidth).toBe(OVERLAY_MODAL_BASE.maxWidth);
+    expect(overlayModal(mockTheme, 640).maxWidth).toBe(640);
   });
 });

@@ -15,6 +15,7 @@ import {
 } from "../../../../src/utils/state/LensContext.js";
 import { createInitialState } from "../../../../src/utils/state/lensReducer.js";
 import themes from "../../../../src/utils/theme/themes.js";
+import { makeLensComputationResult, makeRayTracingResult } from "../../../testUtils.js";
 
 const mocks = vi.hoisted(() => {
   const adapters = {
@@ -54,56 +55,68 @@ const mocks = vi.hoisted(() => {
   return { adapters, zoomReset, lensComputation, rayTracing, loadedState, errorState };
 });
 
-vi.mock("../../../../src/components/hooks/useLensComputation.js", () => ({
-  default: (props: unknown) => mocks.lensComputation(props),
-}));
+/* Hook mock shapes come from testUtils.mockLensDiagramHooks; factories are async
+   with dynamic imports because vi.mock calls are hoisted above imports. Overrides
+   pin this file's values and delegate to the vi.hoisted spies above. */
+vi.mock(
+  "../../../../src/components/hooks/useLensComputation.js",
+  async () =>
+    (await import("../../../testUtils.js")).mockLensDiagramHooks({
+      useLensComputation: (props: unknown) => mocks.lensComputation(props),
+    }).useLensComputation,
+);
 
-vi.mock("../../../../src/components/hooks/useRayTracing.js", () => ({
-  default: (props: unknown) => mocks.rayTracing(props),
-}));
+vi.mock(
+  "../../../../src/components/hooks/useRayTracing.js",
+  async () =>
+    (await import("../../../testUtils.js")).mockLensDiagramHooks({
+      useRayTracing: (props: unknown) => mocks.rayTracing(props),
+    }).useRayTracing,
+);
 
-vi.mock("../../../../src/components/hooks/useDispatchAdapters.js", () => ({
-  default: () => mocks.adapters,
-}));
+vi.mock(
+  "../../../../src/components/hooks/useDispatchAdapters.js",
+  async () =>
+    (await import("../../../testUtils.js")).mockLensDiagramHooks({
+      useDispatchAdapters: () => mocks.adapters,
+    }).useDispatchAdapters,
+);
 
-vi.mock("../../../../src/components/hooks/useOverlayState.js", () => ({
-  default: () => ({
-    asphCompareElementId: null,
-    openAsphCompare: vi.fn(),
-    closeAsphCompare: vi.fn(),
-  }),
-}));
+vi.mock(
+  "../../../../src/components/hooks/useOverlayState.js",
+  async () => (await import("../../../testUtils.js")).mockLensDiagramHooks().useOverlayState,
+);
 
-vi.mock("../../../../src/components/hooks/useHeaderHeight.js", () => ({
-  default: () => ({ headerRef: { current: null }, headerHeight: 88 }),
-}));
+vi.mock(
+  "../../../../src/components/hooks/useHeaderHeight.js",
+  async () =>
+    (await import("../../../testUtils.js")).mockLensDiagramHooks({
+      useHeaderHeight: () => ({ headerRef: { current: null }, headerHeight: 88 }),
+    }).useHeaderHeight,
+);
 
-vi.mock("../../../../src/components/hooks/useFlashOverlay.js", () => ({
-  default: () => ({ flashKey: 7, flashVisible: true, flashFading: false }),
-}));
+vi.mock(
+  "../../../../src/components/hooks/useFlashOverlay.js",
+  async () =>
+    (await import("../../../testUtils.js")).mockLensDiagramHooks({
+      useFlashOverlay: () => ({ flashKey: 7, flashVisible: true, flashFading: false }),
+    }).useFlashOverlay,
+);
 
-vi.mock("../../../../src/components/hooks/useSideLayoutDetection.js", () => ({
-  default: () => true,
-}));
+vi.mock(
+  "../../../../src/components/hooks/useSideLayoutDetection.js",
+  async () =>
+    (await import("../../../testUtils.js")).mockLensDiagramHooks({
+      useSideLayoutDetection: () => true,
+    }).useSideLayoutDetection,
+);
 
-vi.mock("../../../../src/components/hooks/useViewBoxZoom.js", () => ({
-  default: () => ({
-    state: { zoom: 1 },
-    viewBox: "0 0 1200 600",
-    isPanning: false,
-    reset: mocks.zoomReset,
-    zoomIn: vi.fn(),
-    zoomOut: vi.fn(),
-    panBy: vi.fn(),
-    handleWheel: vi.fn(),
-    handlePointerDown: vi.fn(),
-    handlePointerMove: vi.fn(),
-    handlePointerUp: vi.fn(),
-    handleTouchStart: vi.fn(),
-    handleTouchMove: vi.fn(),
-    handleTouchEnd: vi.fn(),
-  }),
-}));
+vi.mock("../../../../src/components/hooks/useViewBoxZoom.js", async () => {
+  const { makeViewBoxZoomResult, mockLensDiagramHooks } = await import("../../../testUtils.js");
+  return mockLensDiagramHooks({
+    useViewBoxZoom: () => makeViewBoxZoomResult({ reset: mocks.zoomReset }),
+  }).useViewBoxZoom;
+});
 
 vi.mock("../../../../src/utils/useMediaQuery.js", () => ({
   default: () => false,
@@ -164,9 +177,8 @@ function runtimeLens(): RuntimeLens {
 }
 
 function computation(overrides: Record<string, unknown> = {}) {
-  return {
+  return makeLensComputationResult({
     L: runtimeLens(),
-    buildError: null,
     IMG_MM: 43,
     zPos: [10],
     sx: (z: number) => z,
@@ -174,32 +186,12 @@ function computation(overrides: Record<string, unknown> = {}) {
     clampedRayEnd: 100,
     CX: 20,
     IX: 900,
-    effectiveSC: 1,
-    shapes: [],
-    shapeError: null,
     stopZ: 12,
-    currentFOPEN: 2,
-    fNumber: 2,
-    currentPhysStopSD: 5,
     baseEPSD: 8,
     currentEPSD: 8,
-    varReadouts: [],
-    dynamicEFL: 50,
-    effectiveFNum: 2,
     filterId: "mock-filter",
     ...overrides,
-  };
-}
-
-function rayResult(overrides: Record<string, unknown> = {}) {
-  return {
-    rays: [],
-    offAxisRays: [],
-    chromaticRays: [],
-    chromaticRayFanSpread: null,
-    rayError: null,
-    ...overrides,
-  };
+  });
 }
 
 function makeState(overrides: Partial<LensState> = {}): LensState {
@@ -234,7 +226,7 @@ describe("LensDiagramPanel orchestration", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mocks.lensComputation.mockReturnValue(computation());
-    mocks.rayTracing.mockReturnValue(rayResult());
+    mocks.rayTracing.mockReturnValue(makeRayTracingResult());
   });
 
   afterEach(() => cleanup());
@@ -263,7 +255,7 @@ describe("LensDiagramPanel orchestration", () => {
     expect(screen.getByText("Failed to compute lens element shapes")).toBeTruthy();
 
     mocks.lensComputation.mockReturnValue(computation());
-    mocks.rayTracing.mockReturnValueOnce(rayResult({ rayError: new Error("ray") }));
+    mocks.rayTracing.mockReturnValueOnce(makeRayTracingResult({ rayError: new Error("ray") }));
     rerender(
       <LensStateContext.Provider
         value={{ state: makeState(), theme: themes.dark, isWide: true, updateURLWithSliders: vi.fn() }}

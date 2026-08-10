@@ -5,7 +5,6 @@
  */
 
 import { cleanup, fireEvent, screen, waitFor, within } from "@testing-library/react";
-import { HelmetProvider } from "react-helmet-async";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { Route, Routes, useLocation } from "react-router";
 import SearchPage from "../../../src/pages/SearchPage.js";
@@ -28,7 +27,7 @@ import {
 } from "../../../src/utils/catalog/patentCatalog.js";
 import { AUTHOR_SORT_PREFERENCE_KEY } from "../../../src/utils/state/authorSortPreference.js";
 import themes from "../../../src/utils/theme/themes.js";
-import { clearBrowserState, installMatchMediaMock, renderWithRouter } from "../../testUtils.js";
+import { clearBrowserState, installMatchMediaMock, renderPage, renderWithRouter } from "../../testUtils.js";
 import { catalogCollator } from "../../../src/utils/catalog/collation.js";
 import * as searchCatalogModule from "../../../src/utils/catalog/searchCatalog.js";
 
@@ -56,12 +55,10 @@ describe("search, author, and patent pages", () => {
   });
 
   it("renders patent results from a punctuation-free URL query", () => {
-    renderWithRouter(
-      <HelmetProvider>
-        <Routes>
-          <Route path="/search" element={<SearchPage />} />
-        </Routes>
-      </HelmetProvider>,
+    renderPage(
+      <Routes>
+        <Route path="/search" element={<SearchPage />} />
+      </Routes>,
       { initialEntries: ["/search?q=us2819651"] },
     );
 
@@ -131,12 +128,10 @@ describe("search, author, and patent pages", () => {
     const patent = patentsForAuthor(author.name).find(
       (entry) => isPatentPublicationNumber(entry.patentNumber) && entry.authors.some((name) => name !== author.name),
     )!;
-    renderWithRouter(
-      <HelmetProvider>
-        <Routes>
-          <Route path="/authors/:author" element={<AuthorPage />} />
-        </Routes>
-      </HelmetProvider>,
+    renderPage(
+      <Routes>
+        <Route path="/authors/:author" element={<AuthorPage />} />
+      </Routes>,
       { initialEntries: [`/authors/${author.slug}`] },
     );
 
@@ -159,12 +154,10 @@ describe("search, author, and patent pages", () => {
     expect(author).toBeDefined();
     if (!author) return;
 
-    renderWithRouter(
-      <HelmetProvider>
-        <Routes>
-          <Route path="/authors/:author" element={<AuthorPage />} />
-        </Routes>
-      </HelmetProvider>,
+    renderPage(
+      <Routes>
+        <Route path="/authors/:author" element={<AuthorPage />} />
+      </Routes>,
       { initialEntries: [`/authors/${author.slug}`] },
     );
 
@@ -181,12 +174,10 @@ describe("search, author, and patent pages", () => {
       (left, right) => right.patentCount - left.patentCount || catalogCollator.compare(left.name, right.name),
     );
 
-    renderWithRouter(
-      <HelmetProvider>
-        <Routes>
-          <Route path="/authors" element={<AuthorsIndexPage />} />
-        </Routes>
-      </HelmetProvider>,
+    renderPage(
+      <Routes>
+        <Route path="/authors" element={<AuthorsIndexPage />} />
+      </Routes>,
       { initialEntries: ["/authors"] },
     );
 
@@ -209,12 +200,10 @@ describe("search, author, and patent pages", () => {
       (left, right) => right.patentCount - left.patentCount || catalogCollator.compare(left.name, right.name),
     );
 
-    renderWithRouter(
-      <HelmetProvider>
-        <Routes>
-          <Route path="/authors" element={<AuthorsIndexPage />} />
-        </Routes>
-      </HelmetProvider>,
+    renderPage(
+      <Routes>
+        <Route path="/authors" element={<AuthorsIndexPage />} />
+      </Routes>,
       { initialEntries: ["/authors"] },
     );
 
@@ -228,12 +217,10 @@ describe("search, author, and patent pages", () => {
     localStorage.setItem(AUTHOR_SORT_PREFERENCE_KEY, "newest-first");
     const alphabeticalAuthors = [...AUTHORS].sort((left, right) => catalogCollator.compare(left.name, right.name));
 
-    renderWithRouter(
-      <HelmetProvider>
-        <Routes>
-          <Route path="/authors" element={<AuthorsIndexPage />} />
-        </Routes>
-      </HelmetProvider>,
+    renderPage(
+      <Routes>
+        <Route path="/authors" element={<AuthorsIndexPage />} />
+      </Routes>,
       { initialEntries: ["/authors"] },
     );
 
@@ -249,12 +236,10 @@ describe("search, author, and patent pages", () => {
     if (!assignee) return;
     const expectedAuthors = filterAuthorsByAssignee(AUTHOR_DIRECTORY_ENTRIES, assignee.slug);
 
-    const rendered = renderWithRouter(
-      <HelmetProvider>
-        <Routes>
-          <Route path="/authors" element={<AuthorsIndexPage />} />
-        </Routes>
-      </HelmetProvider>,
+    const rendered = renderPage(
+      <Routes>
+        <Route path="/authors" element={<AuthorsIndexPage />} />
+      </Routes>,
       { initialEntries: ["/authors"] },
     );
 
@@ -298,12 +283,10 @@ describe("search, author, and patent pages", () => {
     ).toBe(true);
 
     rendered.unmount();
-    renderWithRouter(
-      <HelmetProvider>
-        <Routes>
-          <Route path="/authors" element={<AuthorsIndexPage />} />
-        </Routes>
-      </HelmetProvider>,
+    renderPage(
+      <Routes>
+        <Route path="/authors" element={<AuthorsIndexPage />} />
+      </Routes>,
       { initialEntries: ["/authors"] },
     );
 
@@ -322,12 +305,10 @@ describe("search, author, and patent pages", () => {
     expect(unprofiledAuthor).toBeDefined();
     if (!profiledAuthor || !unprofiledAuthor) return;
 
-    renderWithRouter(
-      <HelmetProvider>
-        <Routes>
-          <Route path="/authors" element={<AuthorsIndexPage />} />
-        </Routes>
-      </HelmetProvider>,
+    renderPage(
+      <Routes>
+        <Route path="/authors" element={<AuthorsIndexPage />} />
+      </Routes>,
       { initialEntries: ["/authors"] },
     );
 
@@ -346,12 +327,10 @@ describe("search, author, and patent pages", () => {
     const assignee = country.assignees[0];
     const patent = assignee.patents[0];
 
-    renderWithRouter(
-      <HelmetProvider>
-        <Routes>
-          <Route path="/patents" element={<PatentsIndexPage />} />
-        </Routes>
-      </HelmetProvider>,
+    renderPage(
+      <Routes>
+        <Route path="/patents" element={<PatentsIndexPage />} />
+      </Routes>,
       { initialEntries: ["/patents"] },
     );
 

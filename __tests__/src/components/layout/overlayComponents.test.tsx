@@ -2,10 +2,12 @@
 
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import ChromaticOverlayContent from "../../../../src/components/diagram/ChromaticOverlayContent.js";
 import OverlayModal from "../../../../src/components/layout/OverlayModal.js";
 import PanelOverlay from "../../../../src/components/layout/PanelOverlay.js";
 import PrimerToggleButton from "../../../../src/components/layout/PrimerToggleButton.js";
 import themes from "../../../../src/utils/theme/themes.js";
+import type { ChromaticRayFanSpread } from "../../../../src/types/optics.js";
 import { installMatchMediaMock } from "../../../testUtils.js";
 
 afterEach(() => cleanup());
@@ -128,6 +130,25 @@ describe("overlay utility components", () => {
 
     fireEvent.keyDown(document, { key: "Escape" });
     expect(onClose).toHaveBeenCalledTimes(1);
+  });
+
+  it("ChromaticOverlayContent stays memoized and renders its charts inside PanelOverlay", () => {
+    /* memo matters: PanelOverlay re-renders must not re-trace the chromatic charts */
+    expect(typeof ChromaticOverlayContent).toBe("object");
+
+    const spread: ChromaticRayFanSpread = {
+      axialInterceptSpreadMm: 0.12,
+      imagePlaneHeightSpreadMm: 0.04,
+      axialIntercepts: { R: 50.06, G: 50.0, B: 49.94 },
+      imagePlaneHeights: { R: 12.02, G: 12.0, B: 11.98 },
+    };
+    render(
+      <PanelOverlay onClose={vi.fn()} theme={themes.dark}>
+        <ChromaticOverlayContent chromaticRayFanSpread={spread} effectiveSC={12} IMG_MM={21.6} t={themes.dark} />
+      </PanelOverlay>,
+    );
+
+    expect(screen.getByText("LoCA / Axial Color")).toBeTruthy();
   });
 
   it("PrimerToggleButton switches labels by level and calls onToggle", () => {

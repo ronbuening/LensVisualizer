@@ -9,7 +9,6 @@
 
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { cleanup, fireEvent, screen, waitFor, within } from "@testing-library/react";
-import { HelmetProvider } from "react-helmet-async";
 import LensIndexPage from "../../../src/pages/LensIndexPage.js";
 import {
   ALL_CATALOG_ENTRIES,
@@ -19,7 +18,7 @@ import {
   defaultCustomFilter,
   matchesCustomFilter,
 } from "../../../src/pages/lensIndex/catalog.js";
-import { clearBrowserState, installMatchMediaMock, renderWithRouter } from "../../testUtils.js";
+import { clearBrowserState, installMatchMediaMock, renderPage } from "../../testUtils.js";
 
 vi.mock("../../../src/components/SEOHead.js", () => ({
   default: function SEOHead() {
@@ -29,12 +28,7 @@ vi.mock("../../../src/components/SEOHead.js", () => ({
 
 describe("LensIndexPage", () => {
   function renderLensIndexPage(initialEntry = "/lenses") {
-    renderWithRouter(
-      <HelmetProvider>
-        <LensIndexPage />
-      </HelmetProvider>,
-      { initialEntries: [initialEntry] },
-    );
+    renderPage(<LensIndexPage />, { initialEntries: [initialEntry] });
   }
 
   beforeEach(() => {

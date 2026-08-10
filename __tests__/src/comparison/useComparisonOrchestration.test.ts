@@ -12,6 +12,7 @@ import { act, renderHook, waitFor } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import useComparisonOrchestration from "../../../src/comparison/useComparisonOrchestration.js";
 import { ENTER_COMPARE, EXIT_COMPARE, SET_SHARED_STOPDOWN_T } from "../../../src/comparison/comparisonReducer.js";
+import { makeTestLensState } from "../../testUtils.js";
 import type { LensState } from "../../../src/types/state.js";
 
 const useComparisonModeMock = vi.fn();
@@ -27,87 +28,12 @@ vi.mock("../../../src/comparison/useStickySliders.js", () => ({
 }));
 
 function buildState(overrides?: Partial<LensState["lens"]>): LensState {
-  return {
+  return makeTestLensState({
     lens: {
-      lensKeyA: "lens-a",
-      lensKeyB: "lens-b",
-      comparing: false,
-      scaleMode: "independent",
       ...overrides,
       selectedConfigurationKey: overrides?.selectedConfigurationKey ?? overrides?.lensKeyA ?? "lens-a",
     },
-    display: {
-      dark: null,
-      highContrast: false,
-      mobileView: "diagram",
-      desktopView: "both",
-    },
-    rays: {
-      showOnAxis: true,
-      showOffAxis: "off",
-      rayDensity: "normal",
-      rayTracksF: false,
-      showChromatic: false,
-      chromR: true,
-      chromG: true,
-      chromB: true,
-      chromV: false,
-      showPupils: false,
-      showCardinals: false,
-      showCardinalFocal: true,
-      showCardinalPrincipal: true,
-      showCardinalNodal: true,
-      showCardinalDimensions: false,
-      showCardinalEfl: true,
-      showCardinalBfd: true,
-      showCardinalFfd: true,
-      showCardinalHiatus: true,
-      showCardinalTotalTrack: true,
-    },
-    sliders: {
-      focusT: 0,
-      zoomT: 0,
-      aberrationT: 0,
-      stopdownT: 0,
-      shiftMm: 0,
-      tiltDeg: 0,
-    },
-    sharedSliders: {
-      sharedFocusT: 0,
-      sharedStopdownT: 0,
-      sharedZoomT: 0,
-      sharedShiftMm: 0,
-      sharedTiltDeg: 0,
-    },
-    panels: {
-      focusExpanded: true,
-      apertureExpanded: true,
-      headerControlsExpanded: false,
-      legendExpanded: false,
-      headerInfoExpanded: true,
-      abbeShowGlassType: true,
-      glassMapOpen: false,
-      chromaticOverlayOpen: false,
-      petzvalOverlayOpen: false,
-      showEffectiveFocalLength: false,
-      showEffectiveAperture: false,
-      aberrationsExpanded: true,
-      analysisDrawerOpen: false,
-      analysisDrawerTab: "aberrations",
-      zoomPanActive: false,
-      groupMovementOpen: false,
-      groupMovementMode: "focus",
-      selectedElementId: null,
-      selectedElementIdA: null,
-      selectedElementIdB: null,
-    },
-    overlays: {
-      showAbout: false,
-      showAboutSite: false,
-      showOpticsPrimer: false,
-      showAberrationsPrimer: false,
-    },
-  };
+  });
 }
 
 describe("useComparisonOrchestration", () => {

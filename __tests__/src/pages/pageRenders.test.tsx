@@ -2,7 +2,6 @@
 
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { cleanup, fireEvent, screen, waitFor, within } from "@testing-library/react";
-import { HelmetProvider } from "react-helmet-async";
 import type { ReactElement, ReactNode } from "react";
 import { Route, Routes, useLocation } from "react-router";
 import HomePage from "../../../src/pages/HomePage.js";
@@ -15,7 +14,7 @@ import { ARTICLE_CONTENT, ARTICLES, HOMEPAGE_ARTICLES } from "../../../src/utils
 import { CATALOG_KEYS, COMPARISON_CATALOG_KEYS, LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 import { lensDisplaySubtitle } from "../../../src/utils/catalog/lensPatentMetadata.js";
 import { espacenetPatentUrl } from "../../../src/utils/catalog/patentCatalog.js";
-import { clearBrowserState, installMatchMediaMock, renderWithRouter } from "../../testUtils.js";
+import { clearBrowserState, installMatchMediaMock, renderPage } from "../../testUtils.js";
 
 vi.mock("../../../src/components/SEOHead.js", () => ({
   default: function SEOHead() {
@@ -35,7 +34,7 @@ function LocationEcho() {
 }
 
 function renderRoutes(initialEntry: string, routes: ReactElement) {
-  return renderWithRouter(<HelmetProvider>{routes}</HelmetProvider>, { initialEntries: [initialEntry] });
+  return renderPage(routes, { initialEntries: [initialEntry] });
 }
 
 describe("static page renders", () => {

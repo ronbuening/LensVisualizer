@@ -19,18 +19,6 @@ function makeParams(overrides: Record<string, unknown> = {}) {
 }
 
 describe("useOverlays", () => {
-  it("returns expected interface shape", () => {
-    const { result } = renderHook(() => useOverlays(makeParams()));
-    expect(result.current.primerLevel).toBe("simple");
-    expect(typeof result.current.togglePrimerLevel).toBe("function");
-    expect(typeof result.current.openAboutSite).toBe("function");
-    expect(typeof result.current.openAboutAuthor).toBe("function");
-    expect(typeof result.current.openOpticsPrimer).toBe("function");
-    expect(typeof result.current.closeAboutSite).toBe("function");
-    expect(typeof result.current.closeAboutAuthor).toBe("function");
-    expect(typeof result.current.closeOpticsPrimer).toBe("function");
-  });
-
   it("togglePrimerLevel cycles between simple and intermediate", () => {
     const { result } = renderHook(() => useOverlays(makeParams()));
     expect(result.current.primerLevel).toBe("simple");

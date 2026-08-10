@@ -20,11 +20,13 @@ import { doLayout } from "../../../../src/optics/optics.js";
 import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
 import themes from "../../../../src/utils/theme/themes.js";
 import { installMatchMediaMock } from "../../../testUtils.js";
+import type { CardinalElements } from "../../../../src/optics/cardinalElements.js";
 import type { RaySegment } from "../../../../src/components/diagram/diagramSvgTypes.js";
 import type { RuntimeLens, ElementShape, LensData } from "../../../../src/types/optics.js";
 
-const { mockApertureStop } = vi.hoisted(() => ({
+const { mockApertureStop, mockCardinalElementsOverlay } = vi.hoisted(() => ({
   mockApertureStop: vi.fn(),
+  mockCardinalElementsOverlay: vi.fn(),
 }));
 
 vi.mock("../../../../src/components/diagram/RayPolylines.js", () => ({
@@ -40,6 +42,13 @@ vi.mock("../../../../src/components/diagram/ApertureStop.js", () => ({
 
 vi.mock("../../../../src/components/diagram/ElementAnnotations.js", () => ({
   default: () => <g data-testid="element-annotations" />,
+}));
+
+vi.mock("../../../../src/components/diagram/CardinalElementsOverlay.js", () => ({
+  default: (props: Record<string, unknown>) => {
+    mockCardinalElementsOverlay(props);
+    return <g data-testid="cardinal-overlay" />;
+  },
 }));
 
 vi.mock("../../../../src/components/diagram/LocaInsetWidget.js", () => ({
@@ -160,6 +169,7 @@ describe("DiagramSVG", () => {
     onLocaInsetClick.mockReset();
     onPetzvalBadgeClick.mockReset();
     mockApertureStop.mockReset();
+    mockCardinalElementsOverlay.mockReset();
   });
 
   afterEach(() => {
@@ -794,72 +804,54 @@ describe("DiagramSVG", () => {
     expect(circles.length).toBeGreaterThanOrEqual(2);
   });
 
-  it("renders cardinal overlays when supplied and enabled", () => {
-    const { container } = render(
+  it("passes cardinal props into the CardinalElementsOverlay when supplied and enabled", () => {
+    const cardinalElements: CardinalElements = {
+      frontVertexZ: 0,
+      rearVertexZ: 20,
+      imagePlaneZ: 43,
+      objectIndex: 1,
+      imageIndex: 1,
+      nodalPrincipalCoincident: true,
+      points: {
+        frontFocal: { id: "F", z: -30 },
+        rearFocal: { id: "F'", z: 50 },
+        frontPrincipal: { id: "H", z: 0 },
+        rearPrincipal: { id: "H'", z: 20 },
+        frontNodal: { id: "N", z: 0 },
+        rearNodal: { id: "N'", z: 20 },
+      },
+      distances: {
+        efl: { id: "EFL", fromZ: 20, toZ: 50, valueMm: 30 },
+        bfd: { id: "BFD", fromZ: 20, toZ: 50, valueMm: 30 },
+        ffd: { id: "FFD", fromZ: 0, toZ: -30, valueMm: 30 },
+        hiatus: { id: "Hiatus", fromZ: 20, toZ: 0, valueMm: -20 },
+        totalTrack: { id: "Total track", fromZ: 0, toZ: 43, valueMm: 43 },
+      },
+    };
+
+    render(
       <DiagramSVG
-        L={baseLens}
-        t={themes.dark}
-        dark={true}
-        sx={(z) => z + 100}
-        sy={(y) => 300 + y}
-        CX={220}
-        IX={950}
-        effectiveSC={1}
-        zPos={[120]}
-        IMG_MM={43}
-        shapes={[]}
-        filterId="diagram-cardinals"
-        stopZ={220}
-        currentPhysStopSD={8}
-        rays={[]}
-        offAxisRays={[]}
-        chromaticRays={[]}
-        chromaticRayFanSpread={null}
-        showOnAxis={false}
-        showOffAxis="off"
-        showChromatic={false}
-        showPupils={false}
-        showCardinals={true}
-        showCardinalDimensions={true}
-        cardinalElements={{
-          frontVertexZ: 0,
-          rearVertexZ: 20,
-          imagePlaneZ: 43,
-          objectIndex: 1,
-          imageIndex: 1,
-          nodalPrincipalCoincident: true,
-          points: {
-            frontFocal: { id: "F", z: -30 },
-            rearFocal: { id: "F'", z: 50 },
-            frontPrincipal: { id: "H", z: 0 },
-            rearPrincipal: { id: "H'", z: 20 },
-            frontNodal: { id: "N", z: 0 },
-            rearNodal: { id: "N'", z: 20 },
-          },
-          distances: {
-            efl: { id: "EFL", fromZ: 20, toZ: 50, valueMm: 30 },
-            bfd: { id: "BFD", fromZ: 20, toZ: 50, valueMm: 30 },
-            ffd: { id: "FFD", fromZ: 0, toZ: -30, valueMm: 30 },
-            hiatus: { id: "Hiatus", fromZ: 20, toZ: 0, valueMm: -20 },
-            totalTrack: { id: "Total track", fromZ: 0, toZ: 43, valueMm: 43 },
-          },
-        }}
-        zoomT={0}
-        act={null}
-        onHover={onHover}
-        onSelect={onSelect}
-        sel={null}
-        maxSvgHeight="500px"
-        useSideLayout={false}
-        headerHeight={40}
-        compact={false}
-        flashVisible={false}
-        flashKey={1}
-        flashFading={false}
+        {...baseDiagramSvgProps({
+          filterId: "diagram-cardinals",
+          showCardinals: true,
+          showCardinalDimensions: true,
+          cardinalElements,
+          onHover,
+          onSelect,
+        })}
       />,
     );
 
-    expect(container.textContent).toContain("H/N");
-    expect(container.textContent).toContain("EFL 30.0 mm");
+    expect(screen.getByTestId("cardinal-overlay")).toBeTruthy();
+    expect(mockCardinalElementsOverlay).toHaveBeenCalledTimes(1);
+    expect(mockCardinalElementsOverlay).toHaveBeenCalledWith(
+      expect.objectContaining({
+        lens: baseLens,
+        theme: themes.dark,
+        cardinals: cardinalElements,
+        showCardinals: true,
+        showCardinalDimensions: true,
+      }),
+    );
   });
 });

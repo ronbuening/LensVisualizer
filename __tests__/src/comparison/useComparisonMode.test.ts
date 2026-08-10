@@ -28,18 +28,6 @@ function makeParams(overrides: Record<string, unknown> = {}) {
 }
 
 describe("useComparisonMode", () => {
-  it("returns expected interface shape", () => {
-    const { result } = renderHook(() => useComparisonMode(makeParams()));
-    expect(result.current.comparisonLenses).toBeNull();
-    expect(result.current.scaleRatios).toBeNull();
-    expect(result.current.focusPair).toBeNull();
-    expect(result.current.aperturePair).toBeNull();
-    expect(result.current.zoomPair).toBeNull();
-    expect(result.current.movementPair).toBeNull();
-    expect(typeof result.current.handleHeaderHeight).toBe("function");
-    expect(typeof result.current.maxHeaderHeight).toBe("number");
-  });
-
   it("returns null for all fields when not comparing", () => {
     const { result } = renderHook(() => useComparisonMode(makeParams({ comparing: false })));
     expect(result.current.comparisonLenses).toBeNull();

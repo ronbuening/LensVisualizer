@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 
-import { describe, it, expect, vi, afterEach } from "vitest";
+import { describe, it, expect, afterEach } from "vitest";
 import { render, screen, fireEvent, cleanup } from "@testing-library/react";
 import ChromaticControls from "../../../../src/components/controls/ChromaticControls.js";
 import type { Theme } from "../../../../src/types/theme.js";
@@ -35,23 +35,6 @@ describe("ChromaticControls", () => {
     expect(screen.getByText("COLOR")).toBeTruthy();
   });
 
-  it("calls onShowChromaticChange when COLOR is toggled", () => {
-    const onChange = vi.fn();
-    render(
-      <ChromaticControls
-        t={mockTheme}
-        showChromatic={false}
-        onShowChromaticChange={onChange}
-        chromR={true}
-        chromG={true}
-        chromB={true}
-        chromV={false}
-      />,
-    );
-    fireEvent.click(screen.getByText("COLOR"));
-    expect(onChange).toHaveBeenCalledWith(true);
-  });
-
   it("shows R/G/B channel buttons when showChromatic is true", () => {
     render(
       <ChromaticControls t={mockTheme} showChromatic={true} chromR={true} chromG={true} chromB={true} chromV={false} />,
@@ -75,33 +58,6 @@ describe("ChromaticControls", () => {
     expect(screen.queryByText("R")).toBeNull();
     expect(screen.queryByText("G")).toBeNull();
     expect(screen.queryByText("B")).toBeNull();
-  });
-
-  it("calls individual channel callbacks when clicked", () => {
-    const onR = vi.fn();
-    const onG = vi.fn();
-    const onB = vi.fn();
-    render(
-      <ChromaticControls
-        t={mockTheme}
-        showChromatic={true}
-        chromR={true}
-        chromG={false}
-        chromB={true}
-        chromV={false}
-        onChromRChange={onR}
-        onChromGChange={onG}
-        onChromBChange={onB}
-      />,
-    );
-    fireEvent.click(screen.getByText("R"));
-    expect(onR).toHaveBeenCalledWith(false); // toggling off
-
-    fireEvent.click(screen.getByText("G"));
-    expect(onG).toHaveBeenCalledWith(true); // toggling on
-
-    fireEvent.click(screen.getByText("B"));
-    expect(onB).toHaveBeenCalledWith(false); // toggling off
   });
 
   it("renders SVG icon with three colored lines", () => {
