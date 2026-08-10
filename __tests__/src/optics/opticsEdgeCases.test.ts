@@ -8,7 +8,6 @@
  */
 
 import { describe, it, expect } from "vitest";
-import buildLens from "../../../src/optics/buildLens.js";
 import {
   traceParaxialRay,
   solveChiefRay,
@@ -21,33 +20,12 @@ import {
 } from "../../../src/optics/optics.js";
 import { computeBokehFieldFootprint, computeBokehPreview } from "../../../src/optics/aberration/bokeh.js";
 import { computeMeridionalComa, computeSagittalComa } from "../../../src/optics/aberration/coma.js";
-import { fopenAtZoom, epAtZoom } from "../../../src/optics/optics.js";
-import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
-import ApoLantharRaw from "../../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.js";
-import NoktonRaw from "../../../src/lens-data/voigtlander/VoigtlanderNokton50f1.data.js";
-import NikkorZ70200Raw from "../../../src/lens-data/nikon/NikonNikkorZ70200f28.data.js";
-import type { RuntimeLens, LensData } from "../../../src/types/optics.js";
-
-/* ── Helpers ── */
-
-function build(raw: object): RuntimeLens {
-  return buildLens({ ...LENS_DEFAULTS, ...raw } as LensData);
-}
-
-function apertureAt(L: RuntimeLens, zoomT: number, stopdownT: number) {
-  const currentFOPEN = fopenAtZoom(zoomT, L);
-  const rawFNumber = L.FOPEN * Math.pow(L.maxFstop / L.FOPEN, stopdownT);
-  const fNumber = Math.max(rawFNumber, currentFOPEN);
-  const currentPhysStopSD = (L.stopPhysSD * L.FOPEN) / fNumber;
-  const baseEPSD = epAtZoom(zoomT, L);
-  const currentEPSD = (baseEPSD * L.FOPEN) / fNumber;
-  return { currentPhysStopSD, currentEPSD };
-}
+import { apertureAt, sharedApoLanthar50f2, sharedNikkorZ70200, sharedNokton50f1 } from "./testLensFixtures.js";
 
 /* ── traceParaxialRay ── */
 
 describe("traceParaxialRay", () => {
-  const L = build(ApoLantharRaw);
+  const L = sharedApoLanthar50f2();
 
   it("returns finite y and u for a marginal ray (y=1, u=0)", () => {
     const result = traceParaxialRay(1, 0, 0, 0, L);
@@ -73,7 +51,7 @@ describe("traceParaxialRay", () => {
 /* ── solveChiefRay launch height ── */
 
 describe("solveChiefRay (launch height)", () => {
-  const L = build(ApoLantharRaw);
+  const L = sharedApoLanthar50f2();
 
   it("returns a finite launch height at 0 degrees", () => {
     const result = solveChiefRay(0, 0, 0, L).yLaunch;
@@ -102,7 +80,7 @@ describe("solveChiefRay (launch height)", () => {
 /* ── chiefRayImageHeightAccurate ── */
 
 describe("chiefRayImageHeightAccurate", () => {
-  const L = build(ApoLantharRaw);
+  const L = sharedApoLanthar50f2();
   const layout = doLayout(0, 0, L);
 
   it("returns 0 for on-axis (0 degrees)", () => {
@@ -125,7 +103,7 @@ describe("chiefRayImageHeightAccurate", () => {
 /* ── solveFieldAngleForImageHeight ── */
 
 describe("solveFieldAngleForImageHeight", () => {
-  const L = build(ApoLantharRaw);
+  const L = sharedApoLanthar50f2();
   const layout = doLayout(0, 0, L);
 
   it("returns 0 for targetImageHeight = 0", () => {
@@ -161,7 +139,7 @@ describe("solveFieldAngleForImageHeight", () => {
 /* ── solveFieldAngleForImageHeightAccurate ── */
 
 describe("solveFieldAngleForImageHeightAccurate", () => {
-  const L = build(ApoLantharRaw);
+  const L = sharedApoLanthar50f2();
   const layout = doLayout(0, 0, L);
 
   it("returns 0 for targetImageHeight = 0", () => {
@@ -206,14 +184,14 @@ describe("buildLens — half-field refinement", () => {
     /* The Nokton is a fast lens with a wide paraxial field estimate that
        may be clipped by the real chief ray trace. buildLens should still
        produce a valid half-field value. */
-    const L = build(NoktonRaw);
+    const L = sharedNokton50f1();
     expect(isFinite(L.halfField)).toBe(true);
     expect(L.halfField).toBeGreaterThan(0);
     expect(L.halfField).toBeLessThan(90);
   });
 
   it("zoom lens computes zoom-position arrays", () => {
-    const L = build(NikkorZ70200Raw);
+    const L = sharedNikkorZ70200();
     expect(L.isZoom).toBe(true);
     expect(L.zoomXpZRelLastSurfs).toBeDefined();
     expect(L.zoomXpSDs).toBeDefined();
@@ -234,7 +212,7 @@ describe("buildLens — half-field refinement", () => {
 /* ── Bokeh edge cases ── */
 
 describe("computeBokehFieldFootprint — edge cases", () => {
-  const L = build(ApoLantharRaw);
+  const L = sharedApoLanthar50f2();
   const layout = doLayout(0, 0, L);
 
   it("returns null when currentEPSD is zero", () => {
@@ -251,7 +229,7 @@ describe("computeBokehFieldFootprint — edge cases", () => {
 });
 
 describe("computeBokehPreview — edge cases", () => {
-  const L = build(ApoLantharRaw);
+  const L = sharedApoLanthar50f2();
   const layout = doLayout(0, 0, L);
 
   it("returns null when currentEPSD is zero (all fields unusable)", () => {
@@ -274,7 +252,7 @@ describe("computeBokehPreview — edge cases", () => {
 /* ── Coma edge cases ── */
 
 describe("computeMeridionalComa — edge cases", () => {
-  const L = build(ApoLantharRaw);
+  const L = sharedApoLanthar50f2();
   const layout = doLayout(0, 0, L);
 
   it("returns a valid result at wide-open aperture", () => {
@@ -289,7 +267,7 @@ describe("computeMeridionalComa — edge cases", () => {
 });
 
 describe("computeSagittalComa — edge cases", () => {
-  const L = build(ApoLantharRaw);
+  const L = sharedApoLanthar50f2();
   const layout = doLayout(0, 0, L);
 
   it("returns null when currentEPSD is zero", () => {

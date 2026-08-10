@@ -1,6 +1,58 @@
 import buildLens from "../../../src/optics/buildLens.js";
+import { epAtZoom, fopenAtZoom } from "../../../src/optics/optics.js";
 import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
+import ApoLantharRaw from "../../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.js";
+import Nikkor105Raw from "../../../src/lens-data/nikon/NikonNikkor105f14E.data.js";
+import NikkorRaw from "../../../src/lens-data/nikon/NikonNikkorZ50f18S.data.js";
+import NikkorZ70200Raw from "../../../src/lens-data/nikon/NikonNikkorZ70200f28.data.js";
+import NoktonRaw from "../../../src/lens-data/voigtlander/VoigtlanderNokton50f1.data.js";
+import Sonnar50f15Raw from "../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
 import type { LensData, RuntimeLens, SurfaceData, VarRange } from "../../../src/types/optics.js";
+
+/** Merge project defaults and build — the canonical test-side `buildLens` wrapper. */
+export function build(raw: object): RuntimeLens {
+  return buildLens({ ...LENS_DEFAULTS, ...raw } as LensData);
+}
+
+/**
+ * Current physical stop and entrance-pupil semi-diameters at a zoom/stop-down
+ * position — the slider math analysis helpers expect, shared by the analysis
+ * test files.
+ */
+export function apertureAt(
+  L: RuntimeLens,
+  zoomT: number,
+  stopdownT = 0,
+): { currentPhysStopSD: number; currentEPSD: number } {
+  const currentFOPEN = fopenAtZoom(zoomT, L);
+  const rawFNumber = L.FOPEN * Math.pow(L.maxFstop / L.FOPEN, stopdownT);
+  const fNumber = Math.max(rawFNumber, currentFOPEN);
+  return {
+    currentPhysStopSD: (L.stopPhysSD * L.FOPEN) / fNumber,
+    currentEPSD: (epAtZoom(zoomT, L) * L.FOPEN) / fNumber,
+  };
+}
+
+/* ── Shared pre-built production lenses ──────────────────────────────────
+ *
+ * buildLens returns a frozen RuntimeLens, and the prepared-state/chief-ray
+ * helpers cache by lens object identity (src/optics/compat.ts), so sharing
+ * one instance per file makes repeated analysis calls cheap — rebuilding the
+ * same production lens per test was a dominant suite cost. Lazily memoized so
+ * files only pay for the lenses they use. Never mutate a shared lens
+ * (testing_recipes.md); call `build()` for a fresh instance when a test
+ * modifies the prescription or exercises construction itself. */
+function sharedBuild(raw: object): () => RuntimeLens {
+  let L: RuntimeLens | null = null;
+  return () => (L ??= build(raw));
+}
+
+export const sharedApoLanthar50f2 = sharedBuild(ApoLantharRaw);
+export const sharedNikkor105f14 = sharedBuild(Nikkor105Raw);
+export const sharedNikkorZ50f18 = sharedBuild(NikkorRaw);
+export const sharedNikkorZ70200 = sharedBuild(NikkorZ70200Raw);
+export const sharedNokton50f1 = sharedBuild(NoktonRaw);
+export const sharedSonnar50f15 = sharedBuild(Sonnar50f15Raw);
 
 const BASE_ELEMENT = {
   id: 1,

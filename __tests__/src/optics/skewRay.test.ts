@@ -23,16 +23,12 @@ import {
   wavelengthNd,
 } from "../../../src/optics/rayTrace.js";
 import { computeOffAxisFieldGeometry, traceOrthogonalOffAxisBundle } from "../../../src/optics/aberration/offAxis.js";
-import buildLens from "../../../src/optics/buildLens.js";
-import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
-import ApoLantharRaw from "../../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.js";
-import Sonnar50f15Raw from "../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
-import type { LensData, RuntimeLens } from "../../../src/types/optics.js";
-import { buildChromaticPositiveElementLens, buildSimplePositiveElementLens } from "./testLensFixtures.js";
-
-function build(raw: object): RuntimeLens {
-  return buildLens({ ...LENS_DEFAULTS, ...raw } as LensData);
-}
+import {
+  buildChromaticPositiveElementLens,
+  buildSimplePositiveElementLens,
+  sharedApoLanthar50f2,
+  sharedSonnar50f15,
+} from "./testLensFixtures.js";
 
 describe("traceSkewRay", () => {
   const L = buildSimplePositiveElementLens("test-skew-single-element");
@@ -330,7 +326,7 @@ describe("traceSkewRay with non-trivial initial x-slope", () => {
 
 describe("skew-meridional cross-validation on multi-element lenses", () => {
   it("matches meridional trace for multiple heights on Apo-Lanthar 50/2", () => {
-    const L = build(ApoLantharRaw);
+    const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
     const stopSD = L.stopPhysSD;
 
@@ -352,7 +348,7 @@ describe("skew-meridional cross-validation on multi-element lenses", () => {
   });
 
   it("matches meridional trace for multiple heights on Sonnar 50/1.5", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const stopSD = L.stopPhysSD;
 
@@ -371,7 +367,7 @@ describe("skew-meridional cross-validation on multi-element lenses", () => {
   });
 
   it("preserves rotational symmetry for mirrored x on a real lens", () => {
-    const L = build(ApoLantharRaw);
+    const L = sharedApoLanthar50f2();
 
     const positive = traceSkewRay(4, 2, 0, -0.03, 0, 0, L.stopPhysSD, false, L);
     const negative = traceSkewRay(-4, 2, 0, -0.03, 0, 0, L.stopPhysSD, false, L);
@@ -383,7 +379,7 @@ describe("skew-meridional cross-validation on multi-element lenses", () => {
   });
 
   it("produces zero x-displacement for sagittal bundle at center field", () => {
-    const L = build(ApoLantharRaw);
+    const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
     const currentEPSD = L.EP.epSD * 0.6;
     const currentPhysStopSD = L.stopPhysSD * 0.6;
@@ -406,7 +402,7 @@ describe("skew-meridional cross-validation on multi-element lenses", () => {
 
 describe("traceSkewRayChromatic", () => {
   it("matches the chromatic meridional trace in the tangential plane", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
 
     for (const channel of ["R", "G", "B"] as const) {
@@ -425,7 +421,7 @@ describe("traceSkewRayChromatic", () => {
   });
 
   it("produces different R and B axialIntercepts for a dispersive lens", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
 
     const redSkew = traceSkewRayChromatic(0, 5, 0, 0, 0, 0, L.stopPhysSD, false, L, "R");
     const blueSkew = traceSkewRayChromatic(0, 5, 0, 0, 0, 0, L.stopPhysSD, false, L, "B");
@@ -438,7 +434,7 @@ describe("traceSkewRayChromatic", () => {
   });
 
   it("produces results matching traceSkewRay at channel G (d-line) within data precision", () => {
-    const L = build(ApoLantharRaw);
+    const L = sharedApoLanthar50f2();
 
     const chromatic = traceSkewRayChromatic(3, 4, 0.01, -0.02, 0, 0, L.stopPhysSD, false, L, "G");
     const monochromatic = traceSkewRay(3, 4, 0.01, -0.02, 0, 0, L.stopPhysSD, false, L);
@@ -458,7 +454,7 @@ describe("traceSkewRayChromatic", () => {
   });
 
   it("matches monochromatic skew tracing at channel G on the Sonnar 50/1.5", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
 
     const chromatic = traceSkewRayChromatic(0, 5, 0, 0, 0, 0, L.stopPhysSD, false, L, "G");
     const monochromatic = traceSkewRay(0, 5, 0, 0, 0, 0, L.stopPhysSD, false, L);

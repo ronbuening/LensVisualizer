@@ -1,23 +1,10 @@
 import { describe, it, expect } from "vitest";
 import { computeVignettingCurve as computeVignettingCurveBase } from "../../../src/optics/vignetteAnalysis.js";
-import {
-  computeAnalysisFieldGeometryAtState,
-  doLayout,
-  fopenAtZoom,
-  epAtZoom,
-  type FieldGeometryState,
-} from "../../../src/optics/optics.js";
-import buildLens from "../../../src/optics/buildLens.js";
-import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
-import Sonnar50f15Raw from "../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
-import NikkorZ70200Raw from "../../../src/lens-data/nikon/NikonNikkorZ70200f28.data.js";
+import { computeAnalysisFieldGeometryAtState, doLayout, type FieldGeometryState } from "../../../src/optics/optics.js";
+import { apertureAt, sharedNikkorZ70200, sharedSonnar50f15 } from "./testLensFixtures.js";
 import type { RuntimeLens, LensData } from "../../../src/types/optics.js";
 
 /* ── Helpers ── */
-
-function build(raw: object): RuntimeLens {
-  return buildLens({ ...LENS_DEFAULTS, ...raw } as LensData);
-}
 
 function withImageFormat(L: RuntimeLens, imageFormat: LensData["imageFormat"]): RuntimeLens {
   return {
@@ -27,17 +14,6 @@ function withImageFormat(L: RuntimeLens, imageFormat: LensData["imageFormat"]): 
       imageFormat,
     },
   } as RuntimeLens;
-}
-
-function apertureAt(L: RuntimeLens, zoomT: number, stopdownT: number) {
-  const currentFOPEN = fopenAtZoom(zoomT, L);
-  const rawFNumber = L.FOPEN * Math.pow(L.maxFstop / L.FOPEN, stopdownT);
-  const fNumber = Math.max(rawFNumber, currentFOPEN);
-  const currentPhysStopSD = (L.stopPhysSD * L.FOPEN) / fNumber;
-  /* Entrance-pupil SD: same calculation used in useLensComputation */
-  const baseEPSD = epAtZoom(zoomT, L);
-  const currentEPSD = (baseEPSD * L.FOPEN) / fNumber;
-  return { currentPhysStopSD, currentEPSD };
 }
 
 function computeVignettingCurve(
@@ -57,7 +33,7 @@ describe("computeVignettingCurve", () => {
   /* ── Basic curve shape ── */
 
   it("returns at least 7 samples for Sonnar 50/1.5", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentPhysStopSD, currentEPSD } = apertureAt(L, 0, 0);
 
@@ -67,7 +43,7 @@ describe("computeVignettingCurve", () => {
   });
 
   it("on-axis geometricTransmission is 1.0", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentPhysStopSD, currentEPSD } = apertureAt(L, 0, 0);
 
@@ -76,7 +52,7 @@ describe("computeVignettingCurve", () => {
   });
 
   it("on-axis relativeIllumination is 1.0", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentPhysStopSD, currentEPSD } = apertureAt(L, 0, 0);
 
@@ -85,7 +61,7 @@ describe("computeVignettingCurve", () => {
   });
 
   it("geometricTransmission does not significantly exceed 1.0 at any sample", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentPhysStopSD, currentEPSD } = apertureAt(L, 0, 0);
 
@@ -100,7 +76,7 @@ describe("computeVignettingCurve", () => {
   });
 
   it("relativeIllumination ≤ geometricTransmission at all non-axis samples", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentPhysStopSD, currentEPSD } = apertureAt(L, 0, 0);
 
@@ -112,7 +88,7 @@ describe("computeVignettingCurve", () => {
   });
 
   it("all values are finite", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentPhysStopSD, currentEPSD } = apertureAt(L, 0, 0);
 
@@ -125,7 +101,7 @@ describe("computeVignettingCurve", () => {
   });
 
   it("returns finite non-negative samples in exact mode when Sonnar rays survive", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentPhysStopSD, currentEPSD } = apertureAt(L, 0, 0);
 
@@ -141,7 +117,7 @@ describe("computeVignettingCurve", () => {
   });
 
   it("first sample field angle is 0°", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentPhysStopSD, currentEPSD } = apertureAt(L, 0, 0);
 
@@ -152,7 +128,7 @@ describe("computeVignettingCurve", () => {
   /* ── Edge cases ── */
 
   it("returns empty array when currentEPSD is 0", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentPhysStopSD } = apertureAt(L, 0, 0);
 
@@ -167,7 +143,7 @@ describe("computeVignettingCurve", () => {
   });
 
   it("stays aligned when using precomputed field geometry", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const focusT = 0.25;
     const zoomT = 0;
     const { z: zPos } = doLayout(focusT, zoomT, L);
@@ -182,7 +158,7 @@ describe("computeVignettingCurve", () => {
   });
 
   it("samples to the analysis-limited image-format edge", () => {
-    const L = withImageFormat(build(Sonnar50f15Raw), "aps-c");
+    const L = withImageFormat(sharedSonnar50f15(), "aps-c");
     const { z: zPos } = doLayout(0, 0, L);
     const { currentPhysStopSD, currentEPSD } = apertureAt(L, 0, 0);
     const geometry = computeAnalysisFieldGeometryAtState(0, 0, L);
@@ -196,7 +172,7 @@ describe("computeVignettingCurve", () => {
   /* ── Vignetting direction ── */
 
   it("edge geometricTransmission remains finite at stopped-down Sonnar", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     /* Stop down to f/8 to exaggerate vignetting asymmetry */
     const { z: zPos } = doLayout(0, 0, L);
     const { currentPhysStopSD, currentEPSD } = apertureAt(L, 0, 0.8);
@@ -209,7 +185,7 @@ describe("computeVignettingCurve", () => {
   });
 
   it("edge relativeIllumination is less than geometricTransmission (cos⁴ falloff)", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentPhysStopSD, currentEPSD } = apertureAt(L, 0, 0);
 
@@ -222,7 +198,7 @@ describe("computeVignettingCurve", () => {
   /* ── Zoom lens ── */
 
   it("produces samples for a zoom lens at tele position", () => {
-    const L = build(NikkorZ70200Raw);
+    const L = sharedNikkorZ70200();
     if (!L.isZoom) return; // skip if not a zoom lens
     const { z: zPos } = doLayout(0, 1, L);
     const { currentPhysStopSD, currentEPSD } = apertureAt(L, 1, 0);

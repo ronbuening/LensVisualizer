@@ -30,27 +30,25 @@ import {
   doLayout,
   entrancePupilAtState,
   epAtZoom,
-  fopenAtZoom,
   traceChiefRelativeSkewRay,
   traceRay,
 } from "../../../src/optics/optics.js";
-import buildLens from "../../../src/optics/buildLens.js";
-import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
 import ApoLantharRaw from "../../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.js";
 import Sonnar50f15Raw from "../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
-import NikkorZ70200Raw from "../../../src/lens-data/nikon/NikonNikkorZ70200f28.data.js";
 import NikonAF28f14DRaw from "../../../src/lens-data/nikon/NikonAF28f14D.data.js";
 import type { RuntimeLens, LensData } from "../../../src/types/optics.js";
 import type { OffAxisFieldGeometry } from "../../../src/optics/aberration/offAxis.js";
 import { bestRelativeFocusPlane } from "../../../src/optics/aberration/shared.js";
-import { buildSimplePositiveElementLens } from "./testLensFixtures.js";
+import {
+  apertureAt,
+  build,
+  buildSimplePositiveElementLens,
+  sharedApoLanthar50f2,
+  sharedNikkorZ70200,
+  sharedSonnar50f15,
+} from "./testLensFixtures.js";
 
 /* ── Helpers ── */
-
-/** Build a RuntimeLens from raw lens data + defaults. */
-function build(raw: object): RuntimeLens {
-  return buildLens({ ...LENS_DEFAULTS, ...raw } as LensData);
-}
 
 function withImageFormat(L: RuntimeLens, imageFormat: LensData["imageFormat"]): RuntimeLens {
   return {
@@ -60,17 +58,6 @@ function withImageFormat(L: RuntimeLens, imageFormat: LensData["imageFormat"]): 
       imageFormat,
     },
   } as RuntimeLens;
-}
-
-/** Compute aperture metrics at given zoom/stopdown for a lens. */
-function apertureAt(L: RuntimeLens, zoomT: number, stopdownT: number) {
-  const currentFOPEN = fopenAtZoom(zoomT, L);
-  const rawFNumber = L.FOPEN * Math.pow(L.maxFstop / L.FOPEN, stopdownT);
-  const fNumber = Math.max(rawFNumber, currentFOPEN);
-  const currentPhysStopSD = (L.stopPhysSD * L.FOPEN) / fNumber;
-  const baseEPSD = epAtZoom(zoomT, L);
-  const currentEPSD = (baseEPSD * L.FOPEN) / fNumber;
-  return { currentPhysStopSD, currentEPSD };
 }
 
 function axialIntercept(y: number, u: number, lastSurfZ: number): number {
@@ -170,7 +157,7 @@ describe("computeSphericalAberration", () => {
   /* ── Nominal computation ── */
 
   it("returns a finite SA result for Sonnar 50/1.5 at infinity focus", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     // The exact tracer needs the Sonnar slightly stopped down for marginal-ray survival.
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0.3);
@@ -188,7 +175,7 @@ describe("computeSphericalAberration", () => {
   });
 
   it("returns a finite SA result for ApoLanthar 50/2 at infinity focus", () => {
-    const L = build(ApoLantharRaw);
+    const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
@@ -198,7 +185,7 @@ describe("computeSphericalAberration", () => {
   });
 
   it("handles exact-mode Sonnar clipping as a graceful nullable SA result", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
@@ -212,7 +199,7 @@ describe("computeSphericalAberration", () => {
   /* ── µm conversion consistency ── */
 
   it("longitudinalSaUm equals longitudinalSaMm × 1000", () => {
-    const L = build(ApoLantharRaw);
+    const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
@@ -230,7 +217,7 @@ describe("computeSphericalAberration", () => {
   it("Sonnar 50/1.5 shows non-zero SA at a stopped-down aperture", () => {
     // Exact tracing rejects the Sonnar's wide-open marginal rays; we sample at
     // a moderate stopdown where marginal rays survive but SA is still strong.
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0.3);
 
@@ -250,7 +237,7 @@ describe("computeSphericalAberration", () => {
   });
 
   it("uses a near-axis real-ray reference fraction", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0.3);
     const lastSurfZ = zPos[L.N - 1];
@@ -267,7 +254,7 @@ describe("computeSphericalAberration", () => {
   /* ── SA decreases with smaller aperture ── */
 
   it("SA magnitude decreases when stopped down (ApoLanthar)", () => {
-    const L = build(ApoLantharRaw);
+    const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
 
     const wideOpen = apertureAt(L, 0, 0);
@@ -289,7 +276,7 @@ describe("computeSphericalAberration", () => {
   /* ── SA updates with focus change ── */
 
   it("returns a result at close focus", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0.5, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0.3);
 
@@ -316,7 +303,7 @@ describe("computeSphericalAberration", () => {
   /* ── Zoom lens support ── */
 
   it("returns a result for zoom lens (Nikkor Z 70-200/2.8) at tele end", () => {
-    const L = build(NikkorZ70200Raw);
+    const L = sharedNikkorZ70200();
     const { z: zPos } = doLayout(0, 1, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 1, 0);
 
@@ -328,7 +315,7 @@ describe("computeSphericalAberration", () => {
   /* ── Symmetry: +Y and −Y averaging ── */
 
   it("near-axis and marginal real intercepts are distinct (non-trivial SA)", () => {
-    const L = build(ApoLantharRaw);
+    const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
@@ -369,7 +356,7 @@ describe("computeSphericalAberration", () => {
   /* ── Edge cases: invalid inputs ── */
 
   it("returns null when currentEPSD is zero", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
 
     const result = computeSphericalAberration(L, zPos, 0, 0, 0, 0);
@@ -377,7 +364,7 @@ describe("computeSphericalAberration", () => {
   });
 
   it("returns null when currentEPSD is negative", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
 
     const result = computeSphericalAberration(L, zPos, 0, 0, -1, 1);
@@ -393,7 +380,7 @@ describe("computeSphericalAberration", () => {
   /* ── Clipped ray handling ── */
 
   it("returns null when stop is too small to pass the marginal ray", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD } = apertureAt(L, 0, 0);
 
@@ -408,7 +395,7 @@ describe("computeSAProfile", () => {
   /* ── Nominal computation ── */
 
   it("returns ≥ 2 points for Sonnar 50/1.5 at infinity focus", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
@@ -417,7 +404,7 @@ describe("computeSAProfile", () => {
   });
 
   it("all fraction values are in (0, 1]", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
@@ -429,7 +416,7 @@ describe("computeSAProfile", () => {
   });
 
   it("all signed transverse profile values are finite", () => {
-    const L = build(ApoLantharRaw);
+    const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
@@ -440,7 +427,7 @@ describe("computeSAProfile", () => {
   });
 
   it("handles exact-mode Sonnar clipping as a graceful nullable SA profile", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
@@ -456,7 +443,7 @@ describe("computeSAProfile", () => {
   it("profile values stay within twice the best-focus peak spread", () => {
     // ApoLanthar is a slower lens whose marginal rays survive exact tracing
     // cleanly, so the SA solver and profile are guaranteed to be non-null.
-    const L = build(ApoLantharRaw);
+    const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
@@ -470,7 +457,7 @@ describe("computeSAProfile", () => {
   });
 
   it("near-axis profile sample is close to zero at best focus", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
@@ -494,7 +481,7 @@ describe("computeSAProfile", () => {
   });
 
   it("profile marginal value matches the spherical aberration sign convention", () => {
-    const L = build(ApoLantharRaw);
+    const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
@@ -510,7 +497,7 @@ describe("computeSAProfile", () => {
   /* ── Edge cases ── */
 
   it("returns empty array when currentEPSD is zero", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
 
     const profile = computeSAProfile(L, zPos, 0, 0, 0, 0);
@@ -534,7 +521,7 @@ describe("computeSAProfile", () => {
   /* ── Aperture sensitivity ── */
 
   it("keeps stopped-down profile samples finite when the current pupil shrinks", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
 
     const wideOpen = apertureAt(L, 0, 0);
@@ -554,7 +541,7 @@ describe("computeSAProfile", () => {
   /* ── Zoom lens ── */
 
   it("returns ≥ 2 points for zoom lens (Nikkor Z 70-200/2.8) at tele end", () => {
-    const L = build(NikkorZ70200Raw);
+    const L = sharedNikkorZ70200();
     const { z: zPos } = doLayout(0, 1, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 1, 0);
 
@@ -580,7 +567,7 @@ describe("computeSphericalAberrationBlurCharacter", () => {
   });
 
   it("returns null when the aperture is closed", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
 
     const blurCharacter = computeSphericalAberrationBlurCharacter(L, zPos, 0, 0, 0, 0);
@@ -590,7 +577,7 @@ describe("computeSphericalAberrationBlurCharacter", () => {
 
 describe("computeMeridionalComa", () => {
   it("returns a dense sampled coma result for Sonnar 50/1.5", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
@@ -608,7 +595,7 @@ describe("computeMeridionalComa", () => {
   });
 
   it("uses dense sampling rather than the sparse display ray fractions", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
@@ -618,7 +605,7 @@ describe("computeMeridionalComa", () => {
   });
 
   it("falls back to outermost valid samples when marginal rays clip", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD } = apertureAt(L, 0, 0);
     const clippedStop = currentEPSD * 0.85;
@@ -643,7 +630,7 @@ describe("computeMeridionalComa", () => {
   });
 
   it("updates with stopdown changes", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
 
     const wideOpen = apertureAt(L, 0, 0);
@@ -673,7 +660,7 @@ describe("computeMeridionalComa", () => {
   });
 
   it("preserves the configured off-axis field fraction after the helper refactor", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
@@ -687,7 +674,7 @@ describe("computeMeridionalComa", () => {
   });
 
   it("allows the detailed coma fan field fraction to be selected", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
     const fieldGeometry = computeAnalysisFieldGeometryAtState(0, 0, L);
@@ -704,7 +691,7 @@ describe("computeMeridionalComa", () => {
   });
 
   it("matches the shared tangential bundle trace at the configured field", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
@@ -743,7 +730,7 @@ describe("computeMeridionalComa", () => {
 
 describe("computeComaPreview", () => {
   it("returns four ordered preview fields for the current lens state", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
@@ -756,7 +743,7 @@ describe("computeComaPreview", () => {
   });
 
   it("uses the analysis-limited image-format field angle", () => {
-    const L = withImageFormat(build(ApoLantharRaw), "aps-c");
+    const L = withImageFormat(sharedApoLanthar50f2(), "aps-c");
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
     const geometry = computeAnalysisFieldGeometryAtState(0, 0, L);
@@ -770,7 +757,7 @@ describe("computeComaPreview", () => {
   });
 
   it("returns dense samples for each usable preview tile", () => {
-    const L = build(ApoLantharRaw);
+    const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
@@ -786,7 +773,7 @@ describe("computeComaPreview", () => {
   });
 
   it("keeps the center field finite and chief-ray centered", () => {
-    const L = build(ApoLantharRaw);
+    const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
@@ -805,7 +792,7 @@ describe("computeComaPreview", () => {
   });
 
   it("exposes a shared normalization range across usable tiles", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
@@ -830,7 +817,7 @@ describe("computeComaPreview", () => {
 
 describe("computeComaPointCloudPreview", () => {
   it("returns four ordered preview fields and preserves usable field count", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
@@ -844,7 +831,7 @@ describe("computeComaPointCloudPreview", () => {
   });
 
   it("matches the shared circular bundle trace at an off-axis field", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
@@ -882,7 +869,7 @@ describe("computeComaPointCloudPreview", () => {
   });
 
   it("keeps the center field centered and sagittally symmetric", () => {
-    const L = build(ApoLantharRaw);
+    const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
@@ -918,7 +905,7 @@ describe("computeComaPointCloudPreview", () => {
   });
 
   it("survives clipped outer rays when enough valid samples remain", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD } = apertureAt(L, 0, 0);
     const clippedStop = currentEPSD * 0.85;
@@ -938,7 +925,7 @@ describe("computeComaPointCloudPreview", () => {
   });
 
   it("tracks tangential spread changes in the same direction as the meridional preview", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
 
     const wideOpen = apertureAt(L, 0, 0);
@@ -1000,7 +987,7 @@ describe("computeComaPointCloudPreview", () => {
   });
 
   it("uses the fixed circular pupil pattern for sample counts", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
@@ -1010,7 +997,7 @@ describe("computeComaPointCloudPreview", () => {
   });
 
   it("exposes positive finite shared sagittal and tangential half-ranges", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
@@ -1027,7 +1014,7 @@ describe("computeComaPointCloudPreview", () => {
   });
 
   it("records the weighted centroid and RMS spot radius for each usable field", () => {
-    const L = build(ApoLantharRaw);
+    const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
@@ -1060,7 +1047,7 @@ describe("computeComaPointCloudPreview", () => {
 
 describe("computeComaAnalysis", () => {
   it("returns the shared coma bundle with current-field fans and preview descriptors", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
@@ -1080,7 +1067,7 @@ describe("computeComaAnalysis", () => {
   });
 
   it("matches when using precomputed field geometry", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const focusT = 0.25;
     const zoomT = 0;
     const { z: zPos } = doLayout(focusT, zoomT, L);
@@ -1109,7 +1096,7 @@ describe("computeSagittalComa", () => {
   });
 
   it("differs from meridional coma for an asymmetric off-axis field", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
@@ -1123,7 +1110,7 @@ describe("computeSagittalComa", () => {
   });
 
   it("returns null for zero field angle", () => {
-    const L = build(ApoLantharRaw);
+    const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
@@ -1151,7 +1138,7 @@ describe("computeSagittalComa", () => {
   });
 
   it("responds to aperture changes", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
 
     const wideOpen = apertureAt(L, 0, 0);
@@ -1169,7 +1156,7 @@ describe("computeSagittalComa", () => {
 
 describe("computeFieldCurvature", () => {
   it("returns an ordered field sweep for a representative prime lens", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
@@ -1187,7 +1174,7 @@ describe("computeFieldCurvature", () => {
   });
 
   it("matches when using precomputed field geometry", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const focusT = 0.25;
     const zoomT = 0;
     const { z: zPos } = doLayout(focusT, zoomT, L);
@@ -1203,7 +1190,7 @@ describe("computeFieldCurvature", () => {
   });
 
   it("computes a bundled monochrome and chromatic result equal to separate calls", () => {
-    const L = build(NikkorZ70200Raw);
+    const L = sharedNikkorZ70200();
     const focusT = 0.25;
     const zoomT = 1;
     const { z: zPos } = doLayout(focusT, zoomT, L);
@@ -1221,7 +1208,7 @@ describe("computeFieldCurvature", () => {
   });
 
   it("uses the analysis-limited image-format edge for the 100% field", () => {
-    const L = withImageFormat(build(ApoLantharRaw), "aps-c");
+    const L = withImageFormat(sharedApoLanthar50f2(), "aps-c");
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
     const geometry = computeAnalysisFieldGeometryAtState(0, 0, L);
@@ -1235,7 +1222,7 @@ describe("computeFieldCurvature", () => {
   });
 
   it("keeps the dense curve sweep aligned with the standard checkpoint fields", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
@@ -1257,7 +1244,7 @@ describe("computeFieldCurvature", () => {
   });
 
   it("returns a finite result for a zoom lens at the tele end", () => {
-    const L = build(NikkorZ70200Raw);
+    const L = sharedNikkorZ70200();
     const { z: zPos } = doLayout(0, 1, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 1, 0);
 
@@ -1320,7 +1307,7 @@ describe("computeFieldCurvature", () => {
   });
 
   it("keeps the center-field astigmatic difference at zero", () => {
-    const L = build(ApoLantharRaw);
+    const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
@@ -1331,7 +1318,7 @@ describe("computeFieldCurvature", () => {
   });
 
   it("keeps the center-field standardized curves coincident and preserves the dense real-ray diagnostic", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
@@ -1406,7 +1393,7 @@ describe("computeFieldCurvature", () => {
   });
 
   it("changes with zoom", () => {
-    const L = build(NikkorZ70200Raw);
+    const L = sharedNikkorZ70200();
     const wide = apertureAt(L, 0, 0);
     const tele = apertureAt(L, 1, 0);
     const { z: zWide } = doLayout(0, 0, L);
@@ -1421,7 +1408,7 @@ describe("computeFieldCurvature", () => {
   });
 
   it("returns null for invalid inputs", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
 
     expect(computeFieldCurvature(L, zPos, 0, 0, 0, 0)).toBeNull();
@@ -1429,7 +1416,7 @@ describe("computeFieldCurvature", () => {
   });
 
   it("returns zero astigmatism at center for a second lens (Sonnar 50/1.5)", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
@@ -1440,7 +1427,7 @@ describe("computeFieldCurvature", () => {
   });
 
   it("produces non-zero Petzval shift at off-axis fields for a lens with finite Petzval sum", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
@@ -1454,7 +1441,7 @@ describe("computeFieldCurvature", () => {
   });
 
   it("keeps Petzval shift proportional to image height squared (small-angle regime)", () => {
-    const L = build(ApoLantharRaw);
+    const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
@@ -1474,7 +1461,7 @@ describe("computeFieldCurvature", () => {
   });
 
   it("produces Petzval shift in same direction as tangential/sagittal shifts for a converging system", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
@@ -1501,7 +1488,7 @@ describe("computeFieldCurvature", () => {
   });
 
   it("produces astigmatic difference as S minus T (signed convention)", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
@@ -1517,7 +1504,7 @@ describe("computeFieldCurvature", () => {
   });
 
   it("includes diagnostic shifts in sharedFocusShiftHalfRangeMm", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
@@ -1535,7 +1522,7 @@ describe("computeFieldCurvature", () => {
   });
 
   it("produces both parabasal and real-ray results at off-axis fields", () => {
-    const L = build(ApoLantharRaw);
+    const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
@@ -1557,7 +1544,7 @@ describe("computeFieldCurvature", () => {
   });
 
   it("computes non-null chromatic field shifts for a dispersive lens", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
@@ -1583,7 +1570,7 @@ describe("computeFieldCurvature", () => {
   });
 
   it("returns null chromatic data when chromatic flag is false", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
@@ -1596,7 +1583,7 @@ describe("computeFieldCurvature", () => {
   });
 
   it("includes all four spectral channels (R, G, B, V) in chromatic shifts", () => {
-    const L = build(ApoLantharRaw);
+    const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
@@ -1613,7 +1600,7 @@ describe("computeFieldCurvature", () => {
 
 describe("entrancePupilAtState", () => {
   it("scales linearly with the physical stop at a fixed optical state", () => {
-    const L = build(NikkorZ70200Raw);
+    const L = sharedNikkorZ70200();
 
     const wideOpen = entrancePupilAtState(L.stopPhysSD, 0, 1, L);
     const halfStop = entrancePupilAtState(L.stopPhysSD * 0.5, 0, 1, L);

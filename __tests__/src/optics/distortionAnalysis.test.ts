@@ -4,42 +4,23 @@ import {
   computeAnalysisFieldGeometryAtState,
   doLayout,
   eflAtFocus,
-  fopenAtZoom,
   skewImagePlaneIntercept,
   solveChiefRay,
   thick,
   traceSkewRay,
 } from "../../../src/optics/optics.js";
-import buildLens from "../../../src/optics/buildLens.js";
-import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
-import Sonnar50f15Raw from "../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
-import ApoLantharRaw from "../../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.js";
-import NikkorZ70200Raw from "../../../src/lens-data/nikon/NikonNikkorZ70200f28.data.js";
 import NikonZ135Raw from "../../../src/lens-data/nikon/NikonZ135f18.data.js";
 import NikonZ100400Raw from "../../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.js";
 import NikonFisheye6mmf28Raw from "../../../src/lens-data/nikon/NikonFisheyeNikkor6mmf28.data.js";
 import MinoltaAF100MacroRaw from "../../../src/lens-data/minolta/MinoltaAF100mmf28Macro.data.js";
-import type { RuntimeLens, LensData } from "../../../src/types/optics.js";
-
-/* ── Helpers ── */
-
-function build(raw: object): RuntimeLens {
-  return buildLens({ ...LENS_DEFAULTS, ...raw } as LensData);
-}
-
-function apertureAt(L: RuntimeLens, zoomT: number, stopdownT: number) {
-  const currentFOPEN = fopenAtZoom(zoomT, L);
-  const rawFNumber = L.FOPEN * Math.pow(L.maxFstop / L.FOPEN, stopdownT);
-  const fNumber = Math.max(rawFNumber, currentFOPEN);
-  const currentPhysStopSD = (L.stopPhysSD * L.FOPEN) / fNumber;
-  return { currentPhysStopSD };
-}
+import { apertureAt, build, sharedApoLanthar50f2, sharedNikkorZ70200, sharedSonnar50f15 } from "./testLensFixtures.js";
+import type { RuntimeLens } from "../../../src/types/optics.js";
 
 describe("computeDistortionCurve", () => {
   /* ── Basic curve shape ── */
 
   it("returns at least 9 samples for Sonnar 50/1.5", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const dynamicEFL = eflAtFocus(0, 0, L);
     const { currentPhysStopSD } = apertureAt(L, 0, 0);
@@ -49,7 +30,7 @@ describe("computeDistortionCurve", () => {
   });
 
   it("first sample is at 0° with exactly 0% distortion", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const dynamicEFL = eflAtFocus(0, 0, L);
     const { currentPhysStopSD } = apertureAt(L, 0, 0);
@@ -60,7 +41,7 @@ describe("computeDistortionCurve", () => {
   });
 
   it("field angles span from 0 to near the current field edge", () => {
-    const L = build(ApoLantharRaw);
+    const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
     const dynamicEFL = eflAtFocus(0, 0, L);
     const { currentPhysStopSD } = apertureAt(L, 0, 0);
@@ -76,7 +57,7 @@ describe("computeDistortionCurve", () => {
   });
 
   it("all samples have finite values", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const dynamicEFL = eflAtFocus(0, 0, L);
     const { currentPhysStopSD } = apertureAt(L, 0, 0);
@@ -96,7 +77,7 @@ describe("computeDistortionCurve", () => {
   /* ── Edge cases ── */
 
   it("ignores the legacy dynamicEFL input and still computes the curve", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentPhysStopSD } = apertureAt(L, 0, 0);
 
@@ -105,7 +86,7 @@ describe("computeDistortionCurve", () => {
   });
 
   it("matches exactly when using precomputed field geometry", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0.25, 0, L);
     const dynamicEFL = eflAtFocus(0.25, 0, L);
     const { currentPhysStopSD } = apertureAt(L, 0, 0.2);
@@ -122,7 +103,7 @@ describe("computeDistortionCurve", () => {
   /* ── Zoom lens ── */
 
   it("produces samples for a zoom lens at tele position", () => {
-    const L = build(NikkorZ70200Raw);
+    const L = sharedNikkorZ70200();
     if (!L.isZoom) return; // skip if not zoom
     const { z: zPos } = doLayout(0, 1, L);
     const dynamicEFL = eflAtFocus(0, 1, L);
@@ -136,7 +117,7 @@ describe("computeDistortionCurve", () => {
   /* ── Distortion direction ── */
 
   it("ApoLanthar 50/2 shows non-zero distortion at field edge", () => {
-    const L = build(ApoLantharRaw);
+    const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
     const dynamicEFL = eflAtFocus(0, 0, L);
     const { currentPhysStopSD } = apertureAt(L, 0, 0);
@@ -148,7 +129,7 @@ describe("computeDistortionCurve", () => {
   });
 
   it("field angles are monotonically increasing", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const dynamicEFL = eflAtFocus(0, 0, L);
     const { currentPhysStopSD } = apertureAt(L, 0, 0);
@@ -160,7 +141,7 @@ describe("computeDistortionCurve", () => {
   });
 
   it("image heights are monotonically increasing in magnitude", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const dynamicEFL = eflAtFocus(0, 0, L);
     const { currentPhysStopSD } = apertureAt(L, 0, 0);
@@ -226,7 +207,7 @@ describe("computeDistortionFieldGrid", () => {
   }
 
   it("returns a paired horizontal and vertical grid set", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const grid = tracedGridAtState(L, 0, 0);
 
     expect(grid.idealFieldRadius).toBeGreaterThan(0);
@@ -237,7 +218,7 @@ describe("computeDistortionFieldGrid", () => {
   });
 
   it("keeps the center point fixed", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const grid = tracedGridAtState(L, 0, 0);
     const centerLine = grid.lines.find((line) => line.orientation === "vertical" && line.idealCoordinate === 0);
     expect(centerLine).toBeDefined();
@@ -250,7 +231,7 @@ describe("computeDistortionFieldGrid", () => {
   });
 
   it("marks corner samples outside the current image circle as unavailable", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const grid = tracedGridAtState(L, 0, 0);
     const topLine = grid.lines.find((line) => line.orientation === "horizontal" && line.idealCoordinate === 1);
 
@@ -262,7 +243,7 @@ describe("computeDistortionFieldGrid", () => {
   });
 
   it("moves the traced axis edge point in the same direction as the 1D edge distortion sign", () => {
-    const L = build(ApoLantharRaw);
+    const L = sharedApoLanthar50f2();
     const focusT = 0;
     const zoomT = 0;
     const { z: zPos } = doLayout(focusT, zoomT, L);
@@ -292,7 +273,7 @@ describe("computeDistortionFieldGrid", () => {
   });
 
   it("keeps usable traced grid points finite", () => {
-    const L = build(NikkorZ70200Raw);
+    const L = sharedNikkorZ70200();
     const grid = tracedGridAtState(L, 0, 1);
 
     for (const line of grid.lines) {

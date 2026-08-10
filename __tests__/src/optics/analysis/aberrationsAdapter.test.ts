@@ -13,16 +13,8 @@ import {
 } from "../../../../src/optics/analysis/aberrations.js";
 import { zPosForPreparedAnalysis2 } from "../../../../src/optics/analysis/preparedStateAdapters.js";
 import { prepareRuntimeState } from "../../../../src/optics/compat.js";
-import { computeAnalysisFieldGeometryAtState, epAtZoom, fopenAtZoom } from "../../../../src/optics/optics.js";
-import { buildSimplePositiveElementLens } from "../testLensFixtures.js";
-
-function apertureAt(lens: ReturnType<typeof buildSimplePositiveElementLens>, zoomT: number) {
-  const fNumber = Math.max(lens.FOPEN, fopenAtZoom(zoomT, lens));
-  return {
-    currentPhysStopSD: (lens.stopPhysSD * lens.FOPEN) / fNumber,
-    currentEPSD: (epAtZoom(zoomT, lens) * lens.FOPEN) / fNumber,
-  };
-}
+import { computeAnalysisFieldGeometryAtState } from "../../../../src/optics/optics.js";
+import { apertureAt, buildSimplePositiveElementLens } from "../testLensFixtures.js";
 
 describe("aberration analysis prepared-state adapters", () => {
   it("matches runtime spherical-aberration helpers for the same prepared state", () => {

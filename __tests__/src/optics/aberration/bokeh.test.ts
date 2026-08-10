@@ -22,26 +22,18 @@ import {
   computeAnalysisFieldGeometryAtState,
   computeFieldGeometryAtState,
   doLayout,
-  epAtZoom,
-  fopenAtZoom,
   solveChiefRay,
 } from "../../../../src/optics/optics.js";
 import { computeOffAxisFieldGeometry } from "../../../../src/optics/aberration/offAxis.js";
 import buildLens from "../../../../src/optics/buildLens.js";
-import LENS_DEFAULTS from "../../../../src/lens-data/defaults.js";
-import ApoLantharRaw from "../../../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.js";
-import NikkorZ70200Raw from "../../../../src/lens-data/nikon/NikonNikkorZ70200f28.data.js";
 import NikonZ135Raw from "../../../../src/lens-data/nikon/NikonZ135f18.data.js";
 import NikonAF28f14DRaw from "../../../../src/lens-data/nikon/NikonAF28f14D.data.js";
 import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
+import { apertureAt, build, sharedApoLanthar50f2, sharedNikkorZ70200 } from "../testLensFixtures.js";
 import type { RuntimeLens, LensData } from "../../../../src/types/optics.js";
 import type { BokehPoint } from "../../../../src/optics/aberration/types.js";
 
 /* ── Helpers ── */
-
-function build(raw: object): RuntimeLens {
-  return buildLens({ ...LENS_DEFAULTS, ...raw } as LensData);
-}
 
 function withImageFormat(L: RuntimeLens, imageFormat: LensData["imageFormat"]): RuntimeLens {
   return {
@@ -51,16 +43,6 @@ function withImageFormat(L: RuntimeLens, imageFormat: LensData["imageFormat"]): 
       imageFormat,
     },
   } as RuntimeLens;
-}
-
-function apertureAt(L: RuntimeLens, zoomT: number, stopdownT: number) {
-  const currentFOPEN = fopenAtZoom(zoomT, L);
-  const rawFNumber = L.FOPEN * Math.pow(L.maxFstop / L.FOPEN, stopdownT);
-  const fNumber = Math.max(rawFNumber, currentFOPEN);
-  const currentPhysStopSD = (L.stopPhysSD * L.FOPEN) / fNumber;
-  const baseEPSD = epAtZoom(zoomT, L);
-  const currentEPSD = (baseEPSD * L.FOPEN) / fNumber;
-  return { currentPhysStopSD, currentEPSD };
 }
 
 function pointAt(radius: number, angleRad: number, weight = 1): BokehPoint {
@@ -138,7 +120,7 @@ describe("radial profile helpers", () => {
 });
 
 describe("computeImagePlaneZAtFocus", () => {
-  const L = build(ApoLantharRaw);
+  const L = sharedApoLanthar50f2();
 
   it("returns the image plane Z from doLayout", () => {
     const layout = doLayout(0, 0, L);
@@ -216,7 +198,7 @@ describe("analysis field geometry", () => {
 });
 
 describe("computeBokehFieldFootprint", () => {
-  const L = build(ApoLantharRaw);
+  const L = sharedApoLanthar50f2();
   const layout = doLayout(0, 0, L);
   const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
@@ -325,7 +307,7 @@ describe("computeBokehFieldFootprint", () => {
 });
 
 describe("computeBokehPreview", () => {
-  const L = build(ApoLantharRaw);
+  const L = sharedApoLanthar50f2();
   const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
   const bf0 = computeBestFocusZ(L, 0, 0, currentEPSD, currentPhysStopSD);
 
@@ -349,7 +331,7 @@ describe("computeBokehPreview", () => {
 });
 
 describe("computeBokehPreviewPair", () => {
-  const L = build(ApoLantharRaw);
+  const L = sharedApoLanthar50f2();
   const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
   it("returns both grids at mid-focus", () => {
@@ -419,7 +401,7 @@ describe("computeBokehPreviewPair brightness character", () => {
 });
 
 describe("computeBokehPreviewPair with zoom lens", () => {
-  const L = build(NikkorZ70200Raw);
+  const L = sharedNikkorZ70200();
   const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
   it("produces valid results for zoom lens at wide", () => {
@@ -469,7 +451,7 @@ describe("buildBokehDensityGrid", () => {
   });
 
   it("works with real bokeh data", () => {
-    const L = build(ApoLantharRaw);
+    const L = sharedApoLanthar50f2();
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
     const pair = computeBokehPreviewPair(L, 0.5, 0, currentEPSD, currentPhysStopSD);
 
@@ -490,7 +472,7 @@ describe("buildBokehDensityGrid", () => {
 
 describe("computeBestFocusZ", () => {
   it("returns finite value for standard lens at infinity", () => {
-    const L = build(ApoLantharRaw);
+    const L = sharedApoLanthar50f2();
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
     const bf = computeBestFocusZ(L, 0, 0, currentEPSD, currentPhysStopSD);
     expect(isFinite(bf)).toBe(true);

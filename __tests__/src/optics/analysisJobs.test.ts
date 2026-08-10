@@ -1,30 +1,12 @@
 import { describe, expect, it } from "vitest";
-import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
-import Sonnar50f15Raw from "../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
-import buildLens from "../../../src/optics/buildLens.js";
 import { analysisJobs2, analysisJobsForState2, prepareRuntimeState } from "../../../src/optics/compat.js";
-import { eflAtFocus, epAtZoom, fopenAtZoom } from "../../../src/optics/optics.js";
+import { eflAtFocus } from "../../../src/optics/optics.js";
 import { zPosForPreparedAnalysis2 } from "../../../src/optics/analysis/preparedStateAdapters.js";
-import { buildChromaticPositiveElementLens } from "./testLensFixtures.js";
-import type { LensData } from "../../../src/types/optics.js";
-
-function build(raw: object) {
-  return buildLens({ ...LENS_DEFAULTS, ...raw } as LensData);
-}
-
-function apertureAt(L: ReturnType<typeof build>, zoomT: number) {
-  const currentFOPEN = fopenAtZoom(zoomT, L);
-  const rawFNumber = L.FOPEN;
-  const fNumber = Math.max(rawFNumber, currentFOPEN);
-  return {
-    currentPhysStopSD: (L.stopPhysSD * L.FOPEN) / fNumber,
-    currentEPSD: (epAtZoom(zoomT, L) * L.FOPEN) / fNumber,
-  };
-}
+import { apertureAt, buildChromaticPositiveElementLens, sharedSonnar50f15 } from "./testLensFixtures.js";
 
 describe("analysis job facade", () => {
   it("runs distortion and vignetting from a shared prepared-state z-position view", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const focusT = 0.25;
     const zoomT = 0;
     const state = prepareRuntimeState(L, focusT, zoomT);
@@ -97,7 +79,7 @@ describe("analysis job facade", () => {
   });
 
   it("exposes bokeh and pupil work through the same prepared-state facade", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const focusT = 0;
     const zoomT = 0;
     const state = prepareRuntimeState(L, focusT, zoomT);

@@ -6,43 +6,35 @@ import {
   PUPIL_ABERRATION_SAMPLE_COUNT,
 } from "../../../src/optics/pupilAberration.js";
 import { computeAnalysisFieldGeometryAtState } from "../../../src/optics/optics.js";
-import buildLens from "../../../src/optics/buildLens.js";
-import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
-import Sonnar50f15Raw from "../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
-import NikkorZ70200Raw from "../../../src/lens-data/nikon/NikonNikkorZ70200f28.data.js";
 import MinoltaAF100MacroRaw from "../../../src/lens-data/minolta/MinoltaAF100mmf28Macro.data.js";
 import ReferenceAnnularObscuredMirrorRaw from "../../../src/lens-data/reference/ReferenceAnnularObscuredMirror.data.js";
 import ReferenceCassegrainBackFocusRaw from "../../../src/lens-data/reference/ReferenceCassegrainBackFocus.data.js";
 import ReferenceGregorianSecondaryRaw from "../../../src/lens-data/reference/ReferenceGregorianSecondary.data.js";
 import ReferenceMaksutovCassegrainMeniscusRaw from "../../../src/lens-data/reference/ReferenceMaksutovCassegrainMeniscus.data.js";
 import ReferenceNewtonianSideFocusRaw from "../../../src/lens-data/reference/ReferenceNewtonianSideFocus.data.js";
-import type { LensData } from "../../../src/types/optics.js";
-
-function build(raw: object) {
-  return buildLens({ ...LENS_DEFAULTS, ...raw } as LensData);
-}
+import { build, sharedNikkorZ70200, sharedSonnar50f15 } from "./testLensFixtures.js";
 
 describe("computePupilAberrationProfile — structure", () => {
   it("returns the default sample count", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const profile = computePupilAberrationProfile(0, 0, L);
     expect(profile.samples).toHaveLength(PUPIL_ABERRATION_SAMPLE_COUNT);
   });
 
   it("respects a custom sampleCount", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     expect(computePupilAberrationProfile(0, 0, L, 5).samples).toHaveLength(5);
     expect(computePupilAberrationProfile(0, 0, L, 17).samples).toHaveLength(17);
   });
 
   it("clamps sampleCount to a minimum of 2", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     expect(computePupilAberrationProfile(0, 0, L, 1).samples).toHaveLength(2);
     expect(computePupilAberrationProfile(0, 0, L, 0).samples).toHaveLength(2);
   });
 
   it("fieldFrac runs from 0 to 1 monotonically", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { samples } = computePupilAberrationProfile(0, 0, L);
     expect(samples[0].fieldFrac).toBe(0);
     expect(samples[samples.length - 1].fieldFrac).toBe(1);
@@ -52,7 +44,7 @@ describe("computePupilAberrationProfile — structure", () => {
   });
 
   it("fieldDeg runs from 0 to halfFieldDeg monotonically", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const profile = computePupilAberrationProfile(0, 0, L);
     const { samples, halfFieldDeg } = profile;
     expect(samples[0].fieldDeg).toBe(0);
@@ -63,7 +55,7 @@ describe("computePupilAberrationProfile — structure", () => {
   });
 
   it("all chiefRayCorrection values are finite and positive", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { samples } = computePupilAberrationProfile(0, 0, L);
     for (const s of samples) {
       expect(isFinite(s.chiefRayCorrection)).toBe(true);
@@ -72,7 +64,7 @@ describe("computePupilAberrationProfile — structure", () => {
   });
 
   it("all epShiftMm values are finite", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { samples } = computePupilAberrationProfile(0, 0, L);
     for (const s of samples) {
       expect(isFinite(s.epShiftMm)).toBe(true);
@@ -82,14 +74,14 @@ describe("computePupilAberrationProfile — structure", () => {
 
 describe("computePupilAberrationProfile — on-axis sample", () => {
   it("on-axis sample has chiefRayCorrection = 1 (paraxial regime)", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { samples } = computePupilAberrationProfile(0, 0, L);
     expect(samples[0].fieldDeg).toBe(0);
     expect(samples[0].chiefRayCorrection).toBe(1);
   });
 
   it("on-axis sample has epShiftMm = 0", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { samples } = computePupilAberrationProfile(0, 0, L);
     expect(samples[0].epShiftMm).toBe(0);
   });
@@ -97,33 +89,33 @@ describe("computePupilAberrationProfile — on-axis sample", () => {
 
 describe("computePupilAberrationProfile — profile metadata", () => {
   it("paraxialEpZRelStop matches L.epZRelStop for a prime", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const profile = computePupilAberrationProfile(0, 0, L);
     expect(profile.paraxialEpZRelStop).toBeCloseTo(L.epZRelStop, 10);
   });
 
   it("halfFieldDeg is positive and matches field geometry", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const profile = computePupilAberrationProfile(0, 0, L);
     expect(profile.halfFieldDeg).toBeGreaterThan(0);
   });
 
   it("maxAbsShiftMm equals the maximum |epShiftMm| across samples", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const profile = computePupilAberrationProfile(0, 0, L);
     const expected = Math.max(...profile.samples.map((s) => Math.abs(s.epShiftMm)));
     expect(profile.maxAbsShiftMm).toBeCloseTo(expected, 10);
   });
 
   it("maxAbsShiftMm is non-negative", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     expect(computePupilAberrationProfile(0, 0, L).maxAbsShiftMm).toBeGreaterThanOrEqual(0);
   });
 });
 
 describe("computePupilAberrationProfile — pre-computed geometry shortcut", () => {
   it("produces the same result when geometry is pre-computed vs derived internally", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const geom = computeAnalysisFieldGeometryAtState(0, 0, L);
     const withGeom = computePupilAberrationProfile(0, 0, L, PUPIL_ABERRATION_SAMPLE_COUNT, geom);
     const withoutGeom = computePupilAberrationProfile(0, 0, L);
@@ -137,7 +129,7 @@ describe("computePupilAberrationProfile — pre-computed geometry shortcut", () 
   });
 
   it("keeps the combined EP/XP profile identical with precomputed geometry", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const geom = computeAnalysisFieldGeometryAtState(0.25, 0, L);
     expect(computeBothPupilAberrationProfiles(0.25, 0, L, PUPIL_ABERRATION_SAMPLE_COUNT, geom)).toEqual(
       computeBothPupilAberrationProfiles(0.25, 0, L),
@@ -147,7 +139,7 @@ describe("computePupilAberrationProfile — pre-computed geometry shortcut", () 
 
 describe("computePupilAberrationProfile — zoom lens", () => {
   it("returns a valid profile at zoom position 0 (wide end)", () => {
-    const L = build(NikkorZ70200Raw);
+    const L = sharedNikkorZ70200();
     const profile = computePupilAberrationProfile(0, 0, L);
     expect(profile.samples).toHaveLength(PUPIL_ABERRATION_SAMPLE_COUNT);
     expect(profile.halfFieldDeg).toBeGreaterThan(0);
@@ -155,7 +147,7 @@ describe("computePupilAberrationProfile — zoom lens", () => {
   });
 
   it("returns a valid profile at zoom position 1 (tele end)", () => {
-    const L = build(NikkorZ70200Raw);
+    const L = sharedNikkorZ70200();
     const profile = computePupilAberrationProfile(0, 1, L);
     expect(profile.samples).toHaveLength(PUPIL_ABERRATION_SAMPLE_COUNT);
     expect(profile.halfFieldDeg).toBeGreaterThan(0);
@@ -163,14 +155,14 @@ describe("computePupilAberrationProfile — zoom lens", () => {
   });
 
   it("halfFieldDeg at tele end is smaller than at wide end for a zoom", () => {
-    const L = build(NikkorZ70200Raw);
+    const L = sharedNikkorZ70200();
     const wide = computePupilAberrationProfile(0, 0, L);
     const tele = computePupilAberrationProfile(0, 1, L);
     expect(tele.halfFieldDeg).toBeLessThan(wide.halfFieldDeg);
   });
 
   it("on-axis sample always has correction=1 and shift=0 regardless of zoom", () => {
-    const L = build(NikkorZ70200Raw);
+    const L = sharedNikkorZ70200();
     for (const zoomT of [0, 0.5, 1]) {
       const { samples } = computePupilAberrationProfile(0, zoomT, L);
       expect(samples[0].chiefRayCorrection).toBe(1);
@@ -183,23 +175,23 @@ describe("computePupilAberrationProfile — zoom lens", () => {
 
 describe("computeExitPupilAberrationProfile — structure", () => {
   it("returns the default sample count", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     expect(computeExitPupilAberrationProfile(0, 0, L).samples).toHaveLength(PUPIL_ABERRATION_SAMPLE_COUNT);
   });
 
   it("respects a custom sampleCount", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     expect(computeExitPupilAberrationProfile(0, 0, L, 5).samples).toHaveLength(5);
     expect(computeExitPupilAberrationProfile(0, 0, L, 17).samples).toHaveLength(17);
   });
 
   it("clamps sampleCount to a minimum of 2", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     expect(computeExitPupilAberrationProfile(0, 0, L, 1).samples).toHaveLength(2);
   });
 
   it("fieldFrac runs from 0 to 1 monotonically", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { samples } = computeExitPupilAberrationProfile(0, 0, L);
     expect(samples[0].fieldFrac).toBe(0);
     expect(samples[samples.length - 1].fieldFrac).toBe(1);
@@ -209,7 +201,7 @@ describe("computeExitPupilAberrationProfile — structure", () => {
   });
 
   it("fieldDeg runs from 0 to halfFieldDeg monotonically", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const profile = computeExitPupilAberrationProfile(0, 0, L);
     const { samples, halfFieldDeg } = profile;
     expect(samples[0].fieldDeg).toBe(0);
@@ -220,7 +212,7 @@ describe("computeExitPupilAberrationProfile — structure", () => {
   });
 
   it("all xpZRelLastSurf values are finite", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { samples } = computeExitPupilAberrationProfile(0, 0, L);
     for (const s of samples) {
       expect(isFinite(s.xpZRelLastSurf)).toBe(true);
@@ -228,7 +220,7 @@ describe("computeExitPupilAberrationProfile — structure", () => {
   });
 
   it("all xpShiftMm values are finite", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { samples } = computeExitPupilAberrationProfile(0, 0, L);
     for (const s of samples) {
       expect(isFinite(s.xpShiftMm)).toBe(true);
@@ -238,14 +230,14 @@ describe("computeExitPupilAberrationProfile — structure", () => {
 
 describe("computeExitPupilAberrationProfile — on-axis sample", () => {
   it("on-axis sample has xpShiftMm = 0", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { samples } = computeExitPupilAberrationProfile(0, 0, L);
     expect(samples[0].fieldDeg).toBe(0);
     expect(samples[0].xpShiftMm).toBe(0);
   });
 
   it("on-axis sample xpZRelLastSurf equals paraxial baseline", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const profile = computeExitPupilAberrationProfile(0, 0, L);
     expect(profile.samples[0].xpZRelLastSurf).toBe(profile.paraxialXpZRelLastSurf);
   });
@@ -253,32 +245,32 @@ describe("computeExitPupilAberrationProfile — on-axis sample", () => {
 
 describe("computeExitPupilAberrationProfile — profile metadata", () => {
   it("paraxialXpZRelLastSurf matches L.xpZRelLastSurf for a prime", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const profile = computeExitPupilAberrationProfile(0, 0, L);
     expect(profile.paraxialXpZRelLastSurf).toBeCloseTo(L.xpZRelLastSurf, 10);
   });
 
   it("halfFieldDeg is positive", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     expect(computeExitPupilAberrationProfile(0, 0, L).halfFieldDeg).toBeGreaterThan(0);
   });
 
   it("maxAbsShiftMm equals the maximum |xpShiftMm| across samples", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const profile = computeExitPupilAberrationProfile(0, 0, L);
     const expected = Math.max(...profile.samples.map((s) => Math.abs(s.xpShiftMm)));
     expect(profile.maxAbsShiftMm).toBeCloseTo(expected, 10);
   });
 
   it("maxAbsShiftMm is non-negative", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     expect(computeExitPupilAberrationProfile(0, 0, L).maxAbsShiftMm).toBeGreaterThanOrEqual(0);
   });
 });
 
 describe("computeExitPupilAberrationProfile — pre-computed geometry shortcut", () => {
   it("produces the same result when geometry is pre-computed vs derived internally", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const geom = computeAnalysisFieldGeometryAtState(0, 0, L);
     const withGeom = computeExitPupilAberrationProfile(0, 0, L, PUPIL_ABERRATION_SAMPLE_COUNT, geom);
     const withoutGeom = computeExitPupilAberrationProfile(0, 0, L);
@@ -294,7 +286,7 @@ describe("computeExitPupilAberrationProfile — pre-computed geometry shortcut",
 
 describe("computeExitPupilAberrationProfile — zoom lens", () => {
   it("returns a valid profile at zoom position 0 (wide end)", () => {
-    const L = build(NikkorZ70200Raw);
+    const L = sharedNikkorZ70200();
     const profile = computeExitPupilAberrationProfile(0, 0, L);
     expect(profile.samples).toHaveLength(PUPIL_ABERRATION_SAMPLE_COUNT);
     expect(profile.halfFieldDeg).toBeGreaterThan(0);
@@ -302,14 +294,14 @@ describe("computeExitPupilAberrationProfile — zoom lens", () => {
   });
 
   it("returns a valid profile at zoom position 1 (tele end)", () => {
-    const L = build(NikkorZ70200Raw);
+    const L = sharedNikkorZ70200();
     const profile = computeExitPupilAberrationProfile(0, 1, L);
     expect(profile.samples).toHaveLength(PUPIL_ABERRATION_SAMPLE_COUNT);
     expect(isFinite(profile.paraxialXpZRelLastSurf)).toBe(true);
   });
 
   it("on-axis sample always has xpShiftMm = 0 regardless of zoom", () => {
-    const L = build(NikkorZ70200Raw);
+    const L = sharedNikkorZ70200();
     for (const zoomT of [0, 0.5, 1]) {
       const { samples } = computeExitPupilAberrationProfile(0, zoomT, L);
       expect(samples[0].xpShiftMm).toBe(0);
@@ -321,47 +313,47 @@ describe("computeExitPupilAberrationProfile — zoom lens", () => {
 
 describe("computeBothPupilAberrationProfiles — structure", () => {
   it("returns ep and xp profiles each with the default sample count", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const both = computeBothPupilAberrationProfiles(0, 0, L);
     expect(both.ep.samples).toHaveLength(PUPIL_ABERRATION_SAMPLE_COUNT);
     expect(both.xp.samples).toHaveLength(PUPIL_ABERRATION_SAMPLE_COUNT);
   });
 
   it("respects a custom sampleCount on both profiles", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const both = computeBothPupilAberrationProfiles(0, 0, L, 5);
     expect(both.ep.samples).toHaveLength(5);
     expect(both.xp.samples).toHaveLength(5);
   });
 
   it("clamps sampleCount to a minimum of 2 on both profiles", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const both = computeBothPupilAberrationProfiles(0, 0, L, 1);
     expect(both.ep.samples).toHaveLength(2);
     expect(both.xp.samples).toHaveLength(2);
   });
 
   it("halfFieldDeg on the result equals ep.halfFieldDeg and xp.halfFieldDeg", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const both = computeBothPupilAberrationProfiles(0, 0, L);
     expect(both.halfFieldDeg).toBe(both.ep.halfFieldDeg);
     expect(both.halfFieldDeg).toBe(both.xp.halfFieldDeg);
   });
 
   it("maxAbsEpShiftMm mirrors ep.maxAbsShiftMm", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const both = computeBothPupilAberrationProfiles(0, 0, L);
     expect(both.maxAbsEpShiftMm).toBe(both.ep.maxAbsShiftMm);
   });
 
   it("maxAbsXpShiftMm mirrors xp.maxAbsShiftMm", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const both = computeBothPupilAberrationProfiles(0, 0, L);
     expect(both.maxAbsXpShiftMm).toBe(both.xp.maxAbsShiftMm);
   });
 
   it("on-axis sample has epShiftMm = 0 and xpShiftMm = 0", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const both = computeBothPupilAberrationProfiles(0, 0, L);
     expect(both.ep.samples[0].epShiftMm).toBe(0);
     expect(both.xp.samples[0].xpShiftMm).toBe(0);
@@ -370,7 +362,7 @@ describe("computeBothPupilAberrationProfiles — structure", () => {
 
 describe("computeBothPupilAberrationProfiles — agreement with separate functions", () => {
   it("ep profile values match computePupilAberrationProfile", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const both = computeBothPupilAberrationProfiles(0, 0, L);
     const ep = computePupilAberrationProfile(0, 0, L);
     expect(both.ep.paraxialEpZRelStop).toBeCloseTo(ep.paraxialEpZRelStop, 10);
@@ -383,7 +375,7 @@ describe("computeBothPupilAberrationProfiles — agreement with separate functio
   });
 
   it("xp profile values match computeExitPupilAberrationProfile", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const both = computeBothPupilAberrationProfiles(0, 0, L);
     const xp = computeExitPupilAberrationProfile(0, 0, L);
     expect(both.xp.paraxialXpZRelLastSurf).toBeCloseTo(xp.paraxialXpZRelLastSurf, 10);
@@ -398,7 +390,7 @@ describe("computeBothPupilAberrationProfiles — agreement with separate functio
 
 describe("computeBothPupilAberrationProfiles — pre-computed geometry shortcut", () => {
   it("produces the same result when geometry is pre-computed vs derived internally", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const geom = computeAnalysisFieldGeometryAtState(0, 0, L);
     const withGeom = computeBothPupilAberrationProfiles(0, 0, L, PUPIL_ABERRATION_SAMPLE_COUNT, geom);
     const withoutGeom = computeBothPupilAberrationProfiles(0, 0, L);
@@ -410,7 +402,7 @@ describe("computeBothPupilAberrationProfiles — pre-computed geometry shortcut"
 
 describe("computeBothPupilAberrationProfiles — zoom lens", () => {
   it("returns valid profiles at zoom position 0 (wide end)", () => {
-    const L = build(NikkorZ70200Raw);
+    const L = sharedNikkorZ70200();
     const both = computeBothPupilAberrationProfiles(0, 0, L);
     expect(both.ep.samples).toHaveLength(PUPIL_ABERRATION_SAMPLE_COUNT);
     expect(both.xp.samples).toHaveLength(PUPIL_ABERRATION_SAMPLE_COUNT);
@@ -419,7 +411,7 @@ describe("computeBothPupilAberrationProfiles — zoom lens", () => {
   });
 
   it("returns valid profiles at zoom position 1 (tele end)", () => {
-    const L = build(NikkorZ70200Raw);
+    const L = sharedNikkorZ70200();
     const both = computeBothPupilAberrationProfiles(0, 1, L);
     expect(both.ep.samples).toHaveLength(PUPIL_ABERRATION_SAMPLE_COUNT);
     expect(both.xp.samples).toHaveLength(PUPIL_ABERRATION_SAMPLE_COUNT);
@@ -427,7 +419,7 @@ describe("computeBothPupilAberrationProfiles — zoom lens", () => {
   });
 
   it("on-axis shifts are 0 at all zoom positions", () => {
-    const L = build(NikkorZ70200Raw);
+    const L = sharedNikkorZ70200();
     for (const zoomT of [0, 0.5, 1]) {
       const both = computeBothPupilAberrationProfiles(0, zoomT, L);
       expect(both.ep.samples[0].epShiftMm).toBe(0);
@@ -436,7 +428,7 @@ describe("computeBothPupilAberrationProfiles — zoom lens", () => {
   });
 
   it("ep and xp profiles have matching halfFieldDeg at all zoom positions", () => {
-    const L = build(NikkorZ70200Raw);
+    const L = sharedNikkorZ70200();
     for (const zoomT of [0, 0.5, 1]) {
       const both = computeBothPupilAberrationProfiles(0, zoomT, L);
       expect(both.ep.halfFieldDeg).toBeCloseTo(both.xp.halfFieldDeg, 10);

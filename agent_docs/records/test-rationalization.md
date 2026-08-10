@@ -35,6 +35,19 @@
     data (one specifically that reference fixtures omit metadata), and the file never loads a second module set,
     so there is no duplicate glob in its process.
 
+### Phase 2 — shared optics fixtures (no test-count change)
+
+- `__tests__/src/optics/testLensFixtures.ts` now exports the canonical test-side `build()` (was duplicated in 14
+  files), `apertureAt()` (was duplicated in 12), and six lazily-memoized shared frozen production lenses
+  (`sharedSonnar50f15()`, `sharedApoLanthar50f2()`, `sharedNokton50f1()`, `sharedNikkorZ50f18()`,
+  `sharedNikkor105f14()`, `sharedNikkorZ70200()`). Prepared-state/chief-ray helpers cache by lens object
+  identity, so sharing one instance per file makes repeated analysis calls cheap.
+- Converted 17 optics test files (~200 bare `build(XRaw)` sites) to the shared getters; kept fresh builds
+  wherever a test modifies the prescription, exercises construction itself, or builds an unmapped lens.
+  Aggregate suite test-body time dropped ~14% (83.8s → 72.3s across workers).
+- Constraint noted for the Phase 8 isolation experiment: `buildLens.test.ts` mocks `ENABLE_UNIFORM_SCALING`
+  via `vi.mock`, which is only safe with shared memoized fixtures under vitest's default per-file isolation.
+
 ## Verification
 
 - `npm run typecheck && npm run format:check && npm run lint && npm run test` — passed after Phase 1

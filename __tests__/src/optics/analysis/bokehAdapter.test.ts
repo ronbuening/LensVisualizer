@@ -10,16 +10,7 @@ import {
   describeBokehDefocusSide2,
 } from "../../../../src/optics/analysis/bokeh.js";
 import { prepareRuntimeState } from "../../../../src/optics/compat.js";
-import { epAtZoom, fopenAtZoom } from "../../../../src/optics/optics.js";
-import { buildSimplePositiveElementLens } from "../testLensFixtures.js";
-
-function apertureAt(lens: ReturnType<typeof buildSimplePositiveElementLens>, zoomT: number) {
-  const fNumber = Math.max(lens.FOPEN, fopenAtZoom(zoomT, lens));
-  return {
-    currentPhysStopSD: (lens.stopPhysSD * lens.FOPEN) / fNumber,
-    currentEPSD: (epAtZoom(zoomT, lens) * lens.FOPEN) / fNumber,
-  };
-}
+import { apertureAt, buildSimplePositiveElementLens } from "../testLensFixtures.js";
 
 describe("bokeh analysis adapter", () => {
   it("matches runtime best-focus and preview-pair helpers for a prepared state", () => {

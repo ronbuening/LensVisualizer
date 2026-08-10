@@ -26,14 +26,7 @@ import { SCHOTT_GLASS_ENTRIES } from "../../../src/optics/glassCatalogEntries/sc
 import { SPECIAL_GLASS_ENTRIES } from "../../../src/optics/glassCatalogEntries/special.js";
 import { SUMITA_GLASS_ENTRIES } from "../../../src/optics/glassCatalogEntries/sumita.js";
 import { makeSurfaceDispersion, summarizeDispersionQuality } from "../../../src/optics/dispersion.js";
-import buildLens from "../../../src/optics/buildLens.js";
-import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
-import ApoLantharRaw from "../../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.js";
-import type { LensData, RuntimeLens } from "../../../src/types/optics.js";
-
-function build(raw: object): RuntimeLens {
-  return buildLens({ ...LENS_DEFAULTS, ...raw } as LensData);
-}
+import { sharedApoLanthar50f2 } from "./testLensFixtures.js";
 
 describe("glass catalog", () => {
   it("every entry reproduces its listed nd, vd, and code coordinate", () => {
@@ -1208,7 +1201,7 @@ describe("makeSurfaceDispersion preference cascade", () => {
 
 describe("buildLens integration with dispersion", () => {
   it("populates indexByIdx for each surface on a real lens", () => {
-    const L = build(ApoLantharRaw);
+    const L = sharedApoLanthar50f2();
     for (let i = 0; i < L.N; i++) {
       expect(L.indexByIdx[i]).toBeDefined();
       expect(typeof L.indexByIdx[i].fn).toBe("function");
@@ -1216,7 +1209,7 @@ describe("buildLens integration with dispersion", () => {
   });
 
   it("resolves S-BSL7 via the catalog for ApoLanthar's L10 element (mixed-name string)", () => {
-    const L = build(ApoLantharRaw);
+    const L = sharedApoLanthar50f2();
     // The Voigtländer APO-Lanthar's last element has glass "S-BSL7 / N-BK7 (universal)".
     // At least one of its surfaces should land on the sellmeier path.
     const qualities = new Set<string>();
@@ -1225,7 +1218,7 @@ describe("buildLens integration with dispersion", () => {
   });
 
   it("summarizeDispersionQuality returns the worst non-air tier across all glass surfaces", () => {
-    const L = build(ApoLantharRaw);
+    const L = sharedApoLanthar50f2();
     // ApoLanthar has many proprietary/unmatched glasses, so the weakest surface is 'abbe'.
     expect(summarizeDispersionQuality(L)).toBe("abbe");
   });
