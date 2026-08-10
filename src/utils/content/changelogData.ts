@@ -20,6 +20,11 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-08-10",
+    type: "fix",
+    summary: "Corrected Schneider and Nikon inventor identities and added Nittoh and Tamron lineages",
+  },
+  {
+    date: "2026-08-10",
     type: "lens",
     summary: "Added six Tamron SP, Di II, and Di III zoom lens designs",
   },

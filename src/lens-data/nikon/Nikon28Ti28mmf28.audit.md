@@ -49,3 +49,16 @@ Reviewed `patents/US5528428.pdf`, Embodiment 3 / Table 3. The relevant six-digit
   coefficient-backed catalog row in the reviewed public data (`delta nd = -0.00168`, `delta vd = -0.06`).
 - Relabeled L4 as a J-LASF017 catalog equivalent while leaving the production supplier unidentified. Synchronized
   the analysis; no prescription, focus, aperture, or semi-diameter values changed.
+
+## 2026-08-10 — Patent-author romanization canonicalization
+
+- The Japanese family filing [JPH05-134175 A](https://patents.google.com/patent/JPH05134175A/ja) identifies the second inventor as `元壽 毛利` while transliterating the name as Motohisa Mori.
+- The Nikonos RS fisheye family filing [JPH07-084180 A](https://patents.google.com/patent/JPH0784180A/ja) identifies its inventor with the same `元壽 毛利` characters. US 5,579,169 and [Nikon's own designer history](https://imaging.nikon.com/imaging/information/story/0088/) use the Motohisa Mouri romanization.
+- Canonicalized `patentAuthors` from `Motohisa Mori` to `Motohisa Mouri`, merging two records for the same Nikon designer. The subtitle and analysis use the canonical form while the source banner preserves the US patent's spelling.
+- No optical prescription, focus, aperture, semi-diameter, glass, or movement data changed.
+
+### Verification
+
+- `npm run generate:metadata` — passed; the combined inventor-identity pass reduced the generated catalog from 391 to 389 author records.
+- `npm run typecheck && npm run format:check && npm run lint && npm run test` — passed (249 files, 2,962 tests).
+- `npm run build` — passed; 1,070 routes prerendered and sitemap and RSS feeds generated.

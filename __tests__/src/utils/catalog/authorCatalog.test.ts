@@ -50,6 +50,32 @@ describe("author lookups", () => {
     const slugs = AUTHORS.map((author) => author.slug);
     expect(new Set(slugs).size).toBe(slugs.length);
   });
+
+  it("uses one canonical identity for Hiltrud Ebbesmeier née Schitthof", () => {
+    const author = getAuthorByName("Hiltrud Ebbesmeier née Schitthof");
+    expect(author).toBeDefined();
+    if (!author) return;
+
+    expect(getAuthorByName("Hiltrud Schitthof")).toBeUndefined();
+    expect(author.patentCount).toBe(2);
+    expect(patentsForAuthor(author.name).map((patent) => patent.patentNumber)).toEqual([
+      "US 4,773,745",
+      "US 5,870,234",
+    ]);
+  });
+
+  it("uses one canonical romanization for Motohisa Mouri", () => {
+    const author = getAuthorByName("Motohisa Mouri");
+    expect(author).toBeDefined();
+    if (!author) return;
+
+    expect(getAuthorByName("Motohisa Mori")).toBeUndefined();
+    expect(author.patentCount).toBe(2);
+    expect(patentsForAuthor(author.name).map((patent) => patent.patentNumber)).toEqual([
+      "US 5,528,428",
+      "US 5,579,169",
+    ]);
+  });
 });
 
 describe("patentsForAuthor", () => {
