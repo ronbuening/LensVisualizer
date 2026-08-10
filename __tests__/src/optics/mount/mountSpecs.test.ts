@@ -61,8 +61,10 @@ it("keeps MountSpec keys in sync with lens-mount.schema.json", () => {
   }
 });
 
-it("registers at least the three POC mounts", () => {
-  expect(ENTRIES.length).toBeGreaterThanOrEqual(3);
+it("registers the three POC mounts and never silently shrinks the registry", () => {
+  // Floor guard for the aggregate sweeps below: a registry that silently lost
+  // mounts would otherwise still pass every per-mount check.
+  expect(ENTRIES.length).toBeGreaterThanOrEqual(40);
   expect(MOUNT_SPECS["nikon-f"]).toBeDefined();
   expect(MOUNT_SPECS["pentax-k"]).toBeDefined();
   expect(MOUNT_SPECS["canon-ef"]).toBeDefined();
@@ -174,93 +176,123 @@ it("keeps Nikon Z claws in the patent unequal-length rotation", () => {
   expect(span(lensFeatureById, "lens-lug-39d")).toBeGreaterThan(span(lensFeatureById, "lens-lug-39b"));
 });
 
-describe.each(ENTRIES)("%s", (mountId, spec) => {
+/* Aggregate per-mount conformance sweeps. Each test loops every registered
+ * mount and collects offenders so a failure names every non-conforming mount
+ * (same style as the full-catalog lens sweeps); the registry-floor test above
+ * guards against a silently shrunken ENTRIES list. */
+describe("every registered mount spec", () => {
   it("has a canonical mount id", () => {
-    expect(isLensMountId(mountId)).toBe(true);
-    expect(spec.mountId).toBe(mountId);
+    const offenders = ENTRIES.filter(([mountId, spec]) => !isLensMountId(mountId) || spec.mountId !== mountId).map(
+      ([mountId]) => mountId,
+    );
+    expect(offenders).toEqual([]);
   });
 
   it("passes cross-field validation", () => {
-    expect(validateMountSpec(spec)).toEqual([]);
+    const offenders = ENTRIES.flatMap(([mountId, spec]) =>
+      validateMountSpec(spec).map((error) => `${mountId}: ${error}`),
+    );
+    expect(offenders).toEqual([]);
   });
 
   it("renders deterministically with ordered layers", () => {
-    for (const view of VIEWS) {
-      const doc = buildMountSvgDoc(spec, spec.mvp.profileModel.selectedMvpProfileId, view);
-      expect(doc.viewBox).toMatch(/^-?\d+ -?\d+ \d+ \d+$/);
-      const a = mountSvgDocToString(doc);
-      const b = mountSvgDocToString(buildMountSvgDoc(spec, spec.mvp.profileModel.selectedMvpProfileId, view));
-      expect(a).toBe(b);
-      const layerIdx = doc.layers.map((l) => MOUNT_LAYER_ORDER.indexOf(l.name));
-      expect(layerIdx).toEqual([...layerIdx].sort((x, y) => x - y));
-      // no coordinate carries more than 3 decimals
-      expect(a.match(/\d+\.\d{4,}/g)).toBeNull();
+    const offenders: string[] = [];
+    for (const [mountId, spec] of ENTRIES) {
+      for (const view of VIEWS) {
+        const label = `${mountId}/${view}`;
+        const doc = buildMountSvgDoc(spec, spec.mvp.profileModel.selectedMvpProfileId, view);
+        if (!/^-?\d+ -?\d+ \d+ \d+$/.test(doc.viewBox)) offenders.push(`${label}: viewBox "${doc.viewBox}"`);
+        const a = mountSvgDocToString(doc);
+        const b = mountSvgDocToString(buildMountSvgDoc(spec, spec.mvp.profileModel.selectedMvpProfileId, view));
+        if (a !== b) offenders.push(`${label}: render is not deterministic`);
+        const layerIdx = doc.layers.map((l) => MOUNT_LAYER_ORDER.indexOf(l.name));
+        if (layerIdx.some((idx, i) => i > 0 && idx < layerIdx[i - 1])) offenders.push(`${label}: layers out of order`);
+        // no coordinate carries more than 3 decimals
+        if (a.match(/\d+\.\d{4,}/g)) offenders.push(`${label}: coordinate precision exceeds 3 decimals`);
+      }
     }
+    expect(offenders).toEqual([]);
   });
 
   it("emits a schema-shaped JSON block", () => {
-    const json = emitMountJson(spec);
-    expect(json.schemaVersion).toBe("1.3");
-    for (const key of [
-      "mountId",
-      "displayLabel",
-      "mechanism",
-      "coreDimensions",
-      "lockGeometry",
-      "cameraSideFeatures",
-      "lensSideFeatures",
-      "svgLayers",
-      "sourceRefs",
-    ]) {
-      expect(json).toHaveProperty(key);
-    }
-    for (const view of ["cameraSideFront", "lensSideRear", "axialSection"] as const) {
-      expect(json.render.views[view].viewBox).toMatch(/^-?\d+ -?\d+ \d+ \d+$/);
-    }
-
-    // Every value envelope reachable in the JSON has a valid status token, a value, and resolvable refs.
-    const knownRefs = new Set(json.sourceRefs.map((s) => s.ref));
-    const visit = (node: unknown): void => {
-      if (!node || typeof node !== "object") return;
-      if (Array.isArray(node)) {
-        node.forEach(visit);
-        return;
+    const offenders: string[] = [];
+    for (const [mountId, spec] of ENTRIES) {
+      const json = emitMountJson(spec);
+      if (json.schemaVersion !== "1.3") offenders.push(`${mountId}: schemaVersion "${json.schemaVersion}"`);
+      for (const key of [
+        "mountId",
+        "displayLabel",
+        "mechanism",
+        "coreDimensions",
+        "lockGeometry",
+        "cameraSideFeatures",
+        "lensSideFeatures",
+        "svgLayers",
+        "sourceRefs",
+      ]) {
+        if (!(key in json)) offenders.push(`${mountId}: missing "${key}"`);
       }
-      const obj = node as Record<string, unknown>;
-      if ("value" in obj && "status" in obj && "sourceRefs" in obj) {
-        expect(STATUS_TOKENS.has(obj.status as ValueStatus)).toBe(true);
-        expect(Array.isArray(obj.sourceRefs)).toBe(true);
-        for (const ref of obj.sourceRefs as string[]) expect(knownRefs.has(ref)).toBe(true);
+      for (const view of ["cameraSideFront", "lensSideRear", "axialSection"] as const) {
+        if (!/^-?\d+ -?\d+ \d+ \d+$/.test(json.render.views[view].viewBox)) {
+          offenders.push(`${mountId}: ${view} viewBox "${json.render.views[view].viewBox}"`);
+        }
       }
-      Object.values(obj).forEach(visit);
-    };
-    visit(json);
 
-    expect(() => JSON.parse(JSON.stringify(json))).not.toThrow();
+      // Every value envelope reachable in the JSON has a valid status token, a value, and resolvable refs.
+      const knownRefs = new Set(json.sourceRefs.map((s) => s.ref));
+      const visit = (node: unknown, path: string): void => {
+        if (!node || typeof node !== "object") return;
+        if (Array.isArray(node)) {
+          node.forEach((child, index) => visit(child, `${path}[${index}]`));
+          return;
+        }
+        const obj = node as Record<string, unknown>;
+        if ("value" in obj && "status" in obj && "sourceRefs" in obj) {
+          if (!STATUS_TOKENS.has(obj.status as ValueStatus)) offenders.push(`${path}: status "${obj.status}"`);
+          if (!Array.isArray(obj.sourceRefs)) offenders.push(`${path}: sourceRefs is not an array`);
+          else {
+            for (const ref of obj.sourceRefs as string[]) {
+              if (!knownRefs.has(ref)) offenders.push(`${path}: unresolved ref "${ref}"`);
+            }
+          }
+        }
+        Object.entries(obj).forEach(([key, value]) => visit(value, `${path}.${key}`));
+      };
+      visit(json, mountId);
+
+      try {
+        JSON.parse(JSON.stringify(json));
+      } catch {
+        offenders.push(`${mountId}: JSON round-trip failed`);
+      }
+    }
+    expect(offenders).toEqual([]);
   });
 
   it("promotes patent-cited photo-scaled values to patent status", () => {
-    const patentRefs = new Set(
-      spec.sourceRefs.filter((source) => source.sourceType === "patent").map((source) => source.ref),
-    );
-    if (patentRefs.size === 0) return;
-
     const offenders: string[] = [];
-    const visit = (node: unknown, path: string): void => {
-      if (!node || typeof node !== "object") return;
-      if (Array.isArray(node)) {
-        node.forEach((child, index) => visit(child, `${path}[${index}]`));
-        return;
-      }
-      const obj = node as Record<string, unknown>;
-      if ("value" in obj && "status" in obj && "sourceRefs" in obj) {
-        const sourceRefs = Array.isArray(obj.sourceRefs) ? (obj.sourceRefs as string[]) : [];
-        if (obj.status === "photo_scaled" && sourceRefs.some((ref) => patentRefs.has(ref))) offenders.push(path);
-      }
-      Object.entries(obj).forEach(([key, value]) => visit(value, `${path}.${key}`));
-    };
+    for (const [mountId, spec] of ENTRIES) {
+      const patentRefs = new Set(
+        spec.sourceRefs.filter((source) => source.sourceType === "patent").map((source) => source.ref),
+      );
+      if (patentRefs.size === 0) continue;
 
-    visit(spec, mountId);
+      const visit = (node: unknown, path: string): void => {
+        if (!node || typeof node !== "object") return;
+        if (Array.isArray(node)) {
+          node.forEach((child, index) => visit(child, `${path}[${index}]`));
+          return;
+        }
+        const obj = node as Record<string, unknown>;
+        if ("value" in obj && "status" in obj && "sourceRefs" in obj) {
+          const sourceRefs = Array.isArray(obj.sourceRefs) ? (obj.sourceRefs as string[]) : [];
+          if (obj.status === "photo_scaled" && sourceRefs.some((ref) => patentRefs.has(ref))) offenders.push(path);
+        }
+        Object.entries(obj).forEach(([key, value]) => visit(value, `${path}.${key}`));
+      };
+
+      visit(spec, mountId);
+    }
     expect(offenders).toEqual([]);
   });
 });

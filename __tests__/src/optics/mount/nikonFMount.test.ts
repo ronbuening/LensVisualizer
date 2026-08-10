@@ -9,9 +9,7 @@
 import { describe, expect, it } from "vitest";
 import NIKON_F_INPUT from "../../../../src/mounts/nikon-f.mount.js";
 import { normalizeMountSpec } from "../../../../src/optics/mount/defaults.js";
-import validateMountSpec from "../../../../src/optics/mount/validateMountSpec.js";
 import { buildMountSvgDoc } from "../../../../src/optics/mount/renderMount.js";
-import { mountSvgDocToString } from "../../../../src/optics/mount/toSvgString.js";
 
 const SPEC = normalizeMountSpec(NIKON_F_INPUT);
 
@@ -23,20 +21,9 @@ function deepFreeze<T>(obj: T): T {
   return obj;
 }
 
-describe("nikon-f.mount", () => {
-  it("passes cross-field validation with no errors", () => {
-    expect(validateMountSpec(NIKON_F_INPUT)).toEqual([]);
-  });
-
-  it("renders all three views with integer-bounded viewBoxes", () => {
-    for (const view of ["camera_side_front", "lens_side_rear", "axial_section"] as const) {
-      const doc = buildMountSvgDoc(SPEC, SPEC.mvp.profileModel.selectedMvpProfileId, view);
-      expect(doc.viewBox).toMatch(/^-?\d+ -?\d+ \d+ \d+$/);
-      expect(() => mountSvgDocToString(doc)).not.toThrow();
-    }
-  });
-});
-
+/* Validation and per-view render conformance for nikon-f are covered by the
+ * aggregate sweeps in mountSpecs.test.ts; this file keeps only the §4.1
+ * mirror gate that is unique to the Nikon F reference mount. */
 describe("§4.1 lens-rear mirror gate (Nikon F)", () => {
   it("reflects the mounting index left-to-right (60° → 300°), not up-down", () => {
     const bodyIndex = SPEC.cameraSideFeatures.find((f) => f.featureId === "body-index-mark");
