@@ -15,9 +15,6 @@ import {
   eflAtZoom,
   eflAtFocus,
   effectiveFNumber,
-  epAtZoom,
-  halfFieldAtZoom,
-  xpAtZoom,
 } from "../../../src/optics/optics.js";
 import type { RuntimeLens, LensData, ChromaticChannel, RayTraceResult } from "../../../src/types/optics.js";
 import { resolveAberrationThickness, resolveVariableThickness } from "../../../src/optics/prescription/variables.js";
@@ -727,54 +724,10 @@ describe("centered aberration-control interpolation", () => {
   });
 });
 
-describe("eflAtZoom", () => {
-  it("returns L.EFL for prime lenses regardless of zoomT", () => {
-    const L = buildLens({ ...LENS_DEFAULTS, ...ApoLantharRaw } as LensData);
-    expect(eflAtZoom(0, L)).toBe(L.EFL);
-    expect(eflAtZoom(0.5, L)).toBe(L.EFL);
-    expect(eflAtZoom(1, L)).toBe(L.EFL);
-  });
-
-  it("returns wide EFL at zoomT=0 and tele EFL at zoomT=1", () => {
-    const L = buildLens({ ...LENS_DEFAULTS, ...NikkorZ70200Raw } as LensData);
-    expect(eflAtZoom(0, L)).toBeCloseTo(L.zoomEFLs![0], 5);
-    expect(eflAtZoom(1, L)).toBeCloseTo(L.zoomEFLs![2], 5);
-  });
-
-  it("interpolates monotonically between wide and tele", () => {
-    const L = buildLens({ ...LENS_DEFAULTS, ...NikkorZ70200Raw } as LensData);
-    const efl = eflAtZoom(0.5, L);
-    expect(efl).toBeGreaterThan(L.zoomEFLs![0]);
-    expect(efl).toBeLessThan(L.zoomEFLs![2]);
-  });
-
-  it("handles single-element zoomEFLs defensively", () => {
-    const L = { isZoom: true, zoomEFLs: [50], EFL: 50 } as unknown as RuntimeLens;
-    expect(eflAtZoom(0, L)).toBe(50);
-    expect(eflAtZoom(1, L)).toBe(50);
-  });
-});
-
-describe("epAtZoom / halfFieldAtZoom", () => {
-  it("returns static values for prime lenses", () => {
-    const L = buildLens({ ...LENS_DEFAULTS, ...ApoLantharRaw } as LensData);
-    expect(epAtZoom(0, L)).toBe(L.EP.epSD);
-    expect(epAtZoom(0.5, L)).toBe(L.EP.epSD);
-    expect(halfFieldAtZoom(0, L)).toBe(L.halfField);
-  });
-
-  it("interpolates across zoom positions", () => {
-    const L = buildLens({ ...LENS_DEFAULTS, ...NikkorZ70200Raw } as LensData);
-    const epWide = epAtZoom(0, L);
-    const epTele = epAtZoom(1, L);
-    const epMid = epAtZoom(0.5, L);
-    expect(epWide).toBeCloseTo(L.zoomEPs![0], 5);
-    expect(epTele).toBeCloseTo(L.zoomEPs![2], 5);
-    /* Mid should be between wide and tele (or equal) */
-    expect(epMid).toBeGreaterThanOrEqual(Math.min(epWide, epTele) - 0.01);
-    expect(epMid).toBeLessThanOrEqual(Math.max(epWide, epTele) + 0.01);
-  });
-});
+/* Zoom accessor coverage (eflAtZoom, epAtZoom, halfFieldAtZoom, xpAtZoom, …)
+ * lives in zoomOptics.test.ts: shape tests plus a per-accessor dispatch matrix
+ * and production-lens anchors. eflAtZoom is used below only as the reference
+ * value for eflAtFocus. */
 
 describe("eflAtFocus", () => {
   it("returns static EFL at infinity focus for prime lenses", () => {
@@ -834,21 +787,5 @@ describe("effectiveFNumber", () => {
     const effF = effectiveFNumber(2.8, 1, 0, L);
     expect(effF).toBeGreaterThan(2.8);
     expect(isFinite(effF)).toBe(true);
-  });
-});
-
-describe("xpAtZoom", () => {
-  it("returns static xpSD for prime lenses", () => {
-    const L = buildLens({ ...LENS_DEFAULTS, ...ApoLantharRaw } as LensData);
-    expect(xpAtZoom(0, L)).toBe(L.xpSD);
-    expect(xpAtZoom(0.5, L)).toBe(L.xpSD);
-  });
-
-  it("interpolates across zoom positions", () => {
-    const L = buildLens({ ...LENS_DEFAULTS, ...NikkorZ70200Raw } as LensData);
-    const xpWide = xpAtZoom(0, L);
-    const xpTele = xpAtZoom(1, L);
-    expect(xpWide).toBeCloseTo(L.zoomXpSDs![0], 5);
-    expect(xpTele).toBeCloseTo(L.zoomXpSDs![2], 5);
   });
 });
