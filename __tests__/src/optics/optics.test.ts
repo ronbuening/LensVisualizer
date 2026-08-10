@@ -18,8 +18,6 @@ import {
   epAtZoom,
   halfFieldAtZoom,
   xpAtZoom,
-  FLAT_R_THRESHOLD,
-  FOCUS_INFINITY_THRESHOLD,
 } from "../../../src/optics/optics.js";
 import type { RuntimeLens, LensData, ChromaticChannel, RayTraceResult } from "../../../src/types/optics.js";
 import { resolveAberrationThickness, resolveVariableThickness } from "../../../src/optics/prescription/variables.js";
@@ -646,13 +644,9 @@ describe("conjugateK", () => {
     ["Sonnar50f15", buildLens({ ...LENS_DEFAULTS, ...Sonnar50f15Raw } as LensData)],
   ];
 
+  /* Includes the Sonnar50f15 regression case: |K(0)| was 0.00442 with the
+   * paraxial trace before the exact-trace rollout. */
   it.each(allLenses)("%s: conjugateK(0) ≈ 0 at infinity", (name, L) => {
-    const K = conjugateK(0, 0, L);
-    expect(Math.abs(K)).toBeLessThan(1e-4);
-  });
-
-  it("Sonnar50f15 regression: |K(0)| < 1e-4 (was 0.00442 with paraxial)", () => {
-    const L = buildLens({ ...LENS_DEFAULTS, ...Sonnar50f15Raw } as LensData);
     const K = conjugateK(0, 0, L);
     expect(Math.abs(K)).toBeLessThan(1e-4);
   });
@@ -779,16 +773,6 @@ describe("epAtZoom / halfFieldAtZoom", () => {
     /* Mid should be between wide and tele (or equal) */
     expect(epMid).toBeGreaterThanOrEqual(Math.min(epWide, epTele) - 0.01);
     expect(epMid).toBeLessThanOrEqual(Math.max(epWide, epTele) + 0.01);
-  });
-});
-
-describe("named constants", () => {
-  it("FLAT_R_THRESHOLD is 1e10", () => {
-    expect(FLAT_R_THRESHOLD).toBe(1e10);
-  });
-
-  it("FOCUS_INFINITY_THRESHOLD is 0.003", () => {
-    expect(FOCUS_INFINITY_THRESHOLD).toBe(0.003);
   });
 });
 

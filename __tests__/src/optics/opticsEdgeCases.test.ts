@@ -258,11 +258,9 @@ describe("computeMeridionalComa — edge cases", () => {
   it("returns a valid result at wide-open aperture", () => {
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
     const result = computeMeridionalComa(L, layout.z, 0, 0, currentEPSD, currentPhysStopSD);
-    /* May return null if field fraction is 0 or angle <= 0, but should not throw */
-    if (result !== null) {
-      expect(result.validSampleCount).toBeGreaterThanOrEqual(3);
-      expect(isFinite(result.spanMm)).toBe(true);
-    }
+    expect(result).not.toBeNull();
+    expect(result!.validSampleCount).toBeGreaterThanOrEqual(3);
+    expect(isFinite(result!.spanMm)).toBe(true);
   });
 });
 
@@ -283,9 +281,8 @@ describe("computeSagittalComa — edge cases", () => {
   it("returns valid result at wide-open aperture", () => {
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
     const result = computeSagittalComa(L, layout.z, 0, 0, currentEPSD, currentPhysStopSD);
-    if (result !== null) {
-      expect(result.validSampleCount).toBeGreaterThanOrEqual(3);
-      expect(isFinite(result.spanMm)).toBe(true);
-    }
+    expect(result).not.toBeNull();
+    expect(result!.validSampleCount).toBeGreaterThanOrEqual(3);
+    expect(isFinite(result!.spanMm)).toBe(true);
   });
 });

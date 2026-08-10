@@ -3,7 +3,6 @@ import { computeElementRenderDiagnostics } from "../../../src/optics/diagramGeom
 import buildLens from "../../../src/optics/buildLens.js";
 import { sharedMaterialBand } from "../../../src/optics/internal/apertureBands.js";
 import { doLayout, renderSag } from "../../../src/optics/optics.js";
-import validateLensData from "../../../src/optics/validateLensData.js";
 import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 import type { RuntimeLens } from "../../../src/types/optics.js";
 
@@ -62,13 +61,8 @@ describe("element render diagnostics", () => {
     return maxOverlap;
   }
 
-  it("has no production lens cross-gap validation failures", () => {
-    const offenders = Object.entries(LENS_CATALOG).flatMap(([key, data]) =>
-      validateLensData(data).map((error) => `${key}: ${error}`),
-    );
-
-    expect(offenders).toEqual([]);
-  });
+  /* The full-catalog validateLensData sweep lives in validateLensData.test.ts
+   * ("every catalog lens passes validation with no errors"). */
 
   it("does not hide material production-lens semi-diameter trims", () => {
     const offenders: string[] = [];

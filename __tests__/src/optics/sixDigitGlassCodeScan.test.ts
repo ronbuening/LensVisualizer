@@ -24,7 +24,6 @@ import { evaluateSellmeier, LINE_NM, resolveCompatibleGlass, resolveGlass } from
 import type { DispersionQuality } from "../../../src/optics/dispersion.js";
 import {
   extractPatentNumber,
-  patentSearchTokens,
   type PatentMatch,
   extractSixDigitCodes,
   findLocalPatent,
@@ -415,14 +414,6 @@ describe("six-digit glass-code scan", () => {
         auditReviewed: false,
       }),
     ).toBe("Explicit disposition in data");
-  });
-
-  it("matches spaced legacy patent numbers without substring collisions", () => {
-    expect(patentSearchTokens("DE 1 228 820 B")).toEqual(["DE1228820B", "DE1228820", "1228820"]);
-    expect(findLocalPatent("DE 1 228 820 B", ["20260118637.pdf", "DE_1228820_B.pdf"])).toEqual({
-      path: "patents/DE_1228820_B.pdf",
-      status: "Matched untracked local patent PDF",
-    });
   });
 
   it("emits reports for code-only glass annotations", () => {

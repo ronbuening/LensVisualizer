@@ -802,6 +802,29 @@ describe("validateLensData", () => {
     expect(validateLensData(invalid).some((error) => error.includes('indexReference must be "d" or "e"'))).toBe(true);
   });
 
+  it("catches non-positive surface sd", () => {
+    const data = makeValid({
+      surfaces: [
+        { label: "1", R: 100, d: 5, nd: 1.5, elemId: 1, sd: 0 },
+        { label: "STO", R: 1e15, d: 2, nd: 1.0, elemId: 0, sd: 8 },
+        { label: "2", R: -100, d: 50, nd: 1.0, elemId: 1, sd: 10 },
+      ],
+    });
+    expect(validateLensData(data).some((e) => e.includes("sd must be a positive finite number"))).toBe(true);
+  });
+
+  it("accepts canonical apd markers and rejects unknown values", () => {
+    const patentApd = makeValid();
+    (patentApd.elements as Array<Record<string, unknown>>)[0].apd = "patent";
+    expect(validateLensData(patentApd)).toEqual([]);
+
+    const invalid = makeValid();
+    (invalid.elements as Array<Record<string, unknown>>)[0].apd = "guessed";
+    expect(
+      validateLensData(invalid).some((error) => error.includes('apd must be "patent", "inferred", or false')),
+    ).toBe(true);
+  });
+
   it("reports multiple errors at once", () => {
     const data = makeValid();
     delete data.key;
@@ -946,49 +969,27 @@ describe("validateLensData", () => {
   });
 });
 
-/* ── Production lens validation ── */
-import ApoLantharRaw from "../../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.js";
-import NoktonRaw from "../../../src/lens-data/voigtlander/VoigtlanderNokton50f1.data.js";
-import NikkorRaw from "../../../src/lens-data/nikon/NikonNikkorZ50f18S.data.js";
-import Nikkor105Raw from "../../../src/lens-data/nikon/NikonNikkor105f14E.data.js";
-import Sonnar50f15Raw from "../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
-import Hologon15f8Raw from "../../../src/lens-data/carl-zeiss-oberkochen/ZeissHologon15mmf8.data.js";
-import CanonRF1535Raw from "../../../src/lens-data/canon/CanonRF1535f28.data.js";
-import Nikkor1424Raw from "../../../src/lens-data/nikon/NikonNikkorAFS1424mmf28.data.js";
-import Nikkor1635Raw from "../../../src/lens-data/nikon/NikonNikkorAFS1635mmf4.data.js";
+/* ── Production lens validation ──
+ * One offender-collecting sweep over the full catalog (visible and hidden
+ * entries alike) subsumes any hand-picked per-lens "passes validation"
+ * list — every registered lens, including every zoom, is covered. */
+import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 
 describe("validateLensData — production lenses", () => {
-  const lenses: [string, Record<string, unknown>][] = [
-    ["ApoLanthar", { ...LENS_DEFAULTS, ...ApoLantharRaw }],
-    ["Nokton", { ...LENS_DEFAULTS, ...NoktonRaw }],
-    ["NikkorZ50", { ...LENS_DEFAULTS, ...NikkorRaw }],
-    ["Nikkor105", { ...LENS_DEFAULTS, ...Nikkor105Raw }],
-    ["Sonnar50f15", { ...LENS_DEFAULTS, ...Sonnar50f15Raw }],
-    ["Hologon15f8", { ...LENS_DEFAULTS, ...Hologon15f8Raw }],
-    ["Canon RF 15-35", { ...LENS_DEFAULTS, ...CanonRF1535Raw }],
-    ["Nikkor 14-24", { ...LENS_DEFAULTS, ...Nikkor1424Raw }],
-    ["Nikkor 16-35", { ...LENS_DEFAULTS, ...Nikkor1635Raw }],
-  ];
+  it("every catalog lens passes validation with no errors", () => {
+    const offenders = Object.entries(LENS_CATALOG).flatMap(([key, data]) =>
+      validateLensData(data).map((error) => `${key}: ${error}`),
+    );
 
-  for (const [name, data] of lenses) {
-    it(`${name} passes validation with no errors`, () => {
-      const errors = validateLensData(data);
-      expect(errors).toEqual([]);
-    });
-  }
+    expect(offenders).toEqual([]);
+  });
 });
 
 /* ═══════════════════════════════════════════════════════════════════
  *  Zoom-specific validation
  * ═══════════════════════════════════════════════════════════════════ */
-import NikkorZ70200Raw from "../../../src/lens-data/nikon/NikonNikkorZ70200f28.data.js";
 
 describe("validateLensData — zoom lens paths", () => {
-  it("Nikkor Z 70-200 zoom lens passes validation", () => {
-    const data = { ...LENS_DEFAULTS, ...NikkorZ70200Raw };
-    expect(validateLensData(data)).toEqual([]);
-  });
-
   it("catches negative var thickness in zoom format", () => {
     const data = makeValid({
       zoomPositions: [24, 70],
