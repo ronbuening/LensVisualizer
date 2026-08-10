@@ -8,7 +8,16 @@ catalog equivalent. If neither path is available, the engine falls back to parti
 dPgF-corrected indices, or the legacy Abbe approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **500 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **503 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+
+The August 10, 2026 Phase 89 pass audited the six-lens Tamron batch and added three first-party HOYA
+curves from the manufacturer's 2026-07-07 obsolete-inclusive Zemax catalog: discontinued TAF3,
+M-PCD4, and MC-FCD1-M20. The existing OHARA S-LAL19 row was verified against the manufacturer's
+2025 detailed datasheet and gained its exact `729541` code. Five newly added Tamron media move to
+coefficient-backed tracing; the A005 70-300mm and A069 50-300mm prescriptions become strict-complete,
+while each remaining gap in the other four lenses is an unidentified bonded aspheric layer. Global
+coverage is now 5395/6064 strict and 5406/6064 trusted; 298 lenses are strict-complete and 303 are
+trusted-complete, with zero coordinate mismatches.
 
 The August 8, 2026 Phase 88 pass audited the six-lens Nikon/Ricoh batch and added eight first-party curves:
 Hikari J-SF7, J-SF03, J-LASF015, and J-LASFH21 from Nikon/Hikari's 2023 workbook, plus OHARA L-LAH87,

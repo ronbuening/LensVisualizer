@@ -5,6 +5,36 @@
 import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
+  /* Phase 89: Tamron patent-batch coverage additions from HOYA's
+   * 2026-07-07 obsolete-inclusive Zemax catalog. */
+  {
+    name: "TAF3",
+    vendor: "Hoya",
+    polynomial: [3.1743707, -0.014110466, 0.028862637, 0.00003355949, 0.000080422109, -0.0000028956744],
+    nd: 1.8042,
+    vd: 46.5,
+    code6: "804465",
+    source:
+      "HOYA Zemax catalog 2026-07-07 including obsolete glasses; vendor formula-3 polynomial for discontinued TAF3.",
+  },
+  {
+    name: "M-PCD4",
+    vendor: "Hoya",
+    polynomial: [2.582335, -0.009952039, 0.01329184, 0.0004550621, -0.00003327132, 0.000001730172],
+    nd: 1.61881,
+    vd: 63.85,
+    code6: "619639",
+    source: "HOYA Zemax catalog 2026-07-07; vendor formula-3 polynomial for M-PCD4.",
+  },
+  {
+    name: "MC-FCD1-M20",
+    vendor: "Hoya",
+    polynomial: [2.2209418, -0.0074830372, 0.0062463392, 0.00071157759, -0.000082274254, 0.0000040430546],
+    nd: 1.4969,
+    vd: 81.51,
+    code6: "497815",
+    source: "HOYA Zemax catalog 2026-07-07; vendor formula-3 polynomial for MC-FCD1-M20.",
+  },
   /* Phase 45: first-party named-token audit additions. */
   {
     name: "LAF3",

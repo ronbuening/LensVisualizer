@@ -87,6 +87,17 @@ better investment.
 | AF-S NIKKOR 500mm f/5.6E PF ED VR | Figure 3 at 600 dpi / 7.5 px/mm; tightened L15/L16, G2, C31, VR1, and CL31 outlines | done 2026-08-03; zero image-circle-floor failures |
 | AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR | Figures 7/9; rear master pair measured about 12.9 mm, engaged Lx7/Lx8 enlarged to validated figure envelope | done 2026-08-03; both TC states have zero image-circle-floor failures |
 
+### Completed Tamron additions
+
+| Lens | Figure screen | Status |
+|---|---|---|
+| SP 70-300mm f/4-5.6 Di VC USD | US 8,228,605 Figure 12 at 300 dpi | no change 2026-08-10; modeled taper matches |
+| 28-300mm f/3.5-6.3 Di VC PZD | JP 2013-254160 Figure 37 at 300 dpi | no change 2026-08-10; deviations below evidence threshold |
+| 70-180mm f/2.8 Di III VXD | JP 2021-43375 Figure 1 plus published effective diameters | no change 2026-08-10; source `phi/2` values retained |
+| 50-300mm f/4.5-6.3 Di III VC VXD | US 2024/0295723 Figure 1 at 300 dpi | done 2026-08-10; G2-G5 enlarged within geometry limits |
+| 18-400mm f/3.5-6.3 Di II VC HLD | JP 2017-116646 Figure 1 at 300 dpi | done 2026-08-10; front G2 enlarged to validated limit |
+| SP 24-70mm f/2.8 Di VC USD | US 8,810,918 Figure 22 at 300 dpi | no change 2026-08-10; modeled taper matches |
+
 ### Completed Voigtländer additions
 
 | Lens | Figure screen | Status |
