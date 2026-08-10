@@ -353,30 +353,6 @@ describe("computeSphericalAberration", () => {
     }
   });
 
-  /* ── Edge cases: invalid inputs ── */
-
-  it("returns null when currentEPSD is zero", () => {
-    const L = sharedSonnar50f15();
-    const { z: zPos } = doLayout(0, 0, L);
-
-    const result = computeSphericalAberration(L, zPos, 0, 0, 0, 0);
-    expect(result).toBeNull();
-  });
-
-  it("returns null when currentEPSD is negative", () => {
-    const L = sharedSonnar50f15();
-    const { z: zPos } = doLayout(0, 0, L);
-
-    const result = computeSphericalAberration(L, zPos, 0, 0, -1, 1);
-    expect(result).toBeNull();
-  });
-
-  it("returns null for a degenerate lens with no surfaces", () => {
-    const L = { N: 0, S: [] } as unknown as RuntimeLens;
-    const result = computeSphericalAberration(L, [], 0, 0, 10, 5);
-    expect(result).toBeNull();
-  });
-
   /* ── Clipped ray handling ── */
 
   it("returns null when stop is too small to pass the marginal ray", () => {
@@ -496,20 +472,6 @@ describe("computeSAProfile", () => {
 
   /* ── Edge cases ── */
 
-  it("returns empty array when currentEPSD is zero", () => {
-    const L = sharedSonnar50f15();
-    const { z: zPos } = doLayout(0, 0, L);
-
-    const profile = computeSAProfile(L, zPos, 0, 0, 0, 0);
-    expect(profile).toEqual([]);
-  });
-
-  it("returns empty array for a degenerate lens with no surfaces", () => {
-    const L = { N: 0, S: [] } as unknown as RuntimeLens;
-    const profile = computeSAProfile(L, [], 0, 0, 10, 5);
-    expect(profile).toEqual([]);
-  });
-
   it("returns empty array when fewer than two zone samples survive clipping", () => {
     const L = mkSingleElement();
     const { z: zPos } = doLayout(0, 0, L);
@@ -565,13 +527,32 @@ describe("computeSphericalAberrationBlurCharacter", () => {
     expect(blurCharacter!.frontDefocus.brightnessCharacter).toBe("edge-bright");
     expect(blurCharacter!.rearDefocus.brightnessCharacter).toBe("center-bright");
   });
+});
 
-  it("returns null when the aperture is closed", () => {
-    const L = sharedSonnar50f15();
-    const { z: zPos } = doLayout(0, 0, L);
+describe("aperture-closed and degenerate-lens guards", () => {
+  const L = sharedSonnar50f15();
+  const { z: zPos } = doLayout(0, 0, L);
+  const degenerate = { N: 0, S: [] } as unknown as RuntimeLens;
 
-    const blurCharacter = computeSphericalAberrationBlurCharacter(L, zPos, 0, 0, 0, 0);
-    expect(blurCharacter).toBeNull();
+  it.each([
+    ["computeSphericalAberration", (epSD: number) => computeSphericalAberration(L, zPos, 0, 0, epSD, 1), null],
+    ["computeSAProfile", (epSD: number) => computeSAProfile(L, zPos, 0, 0, epSD, 1), []],
+    [
+      "computeSphericalAberrationBlurCharacter",
+      (epSD: number) => computeSphericalAberrationBlurCharacter(L, zPos, 0, 0, epSD, 0),
+      null,
+    ],
+    ["computeSagittalComa", (epSD: number) => computeSagittalComa(L, zPos, 0, 0, epSD, 0), null],
+  ])("%s returns null/empty when currentEPSD is zero or negative", (_name, run, expectedEmpty) => {
+    expect(run(0)).toEqual(expectedEmpty);
+    expect(run(-1)).toEqual(expectedEmpty);
+  });
+
+  it.each([
+    ["computeSphericalAberration", () => computeSphericalAberration(degenerate, [], 0, 0, 10, 5), null],
+    ["computeSAProfile", () => computeSAProfile(degenerate, [], 0, 0, 10, 5), []],
+  ])("%s returns null/empty for a degenerate lens with no surfaces", (_name, run, expectedEmpty) => {
+    expect(run()).toEqual(expectedEmpty);
   });
 });
 
@@ -602,6 +583,16 @@ describe("computeMeridionalComa", () => {
     const result = computeMeridionalComa(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
     expect(result).not.toBeNull();
     expect(result!.sampleCount).toBeGreaterThan(L.offAxisFractions.length);
+  });
+
+  it("returns a valid result at wide-open aperture", () => {
+    const L = sharedApoLanthar50f2();
+    const layout = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+    const result = computeMeridionalComa(L, layout.z, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+    expect(result!.validSampleCount).toBeGreaterThanOrEqual(3);
+    expect(isFinite(result!.spanMm)).toBe(true);
   });
 
   it("falls back to outermost valid samples when marginal rays clip", () => {
@@ -1120,6 +1111,16 @@ describe("computeSagittalComa", () => {
     const result = computeSagittalComa(emptyLens, zPos, 0, 0, currentEPSD, currentPhysStopSD);
     // At field fraction 0, fieldAngleDeg is 0, so it should return null
     expect(result).toBeNull();
+  });
+
+  it("returns valid result at wide-open aperture", () => {
+    const L = sharedApoLanthar50f2();
+    const layout = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+    const result = computeSagittalComa(L, layout.z, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+    expect(result!.validSampleCount).toBeGreaterThanOrEqual(3);
+    expect(isFinite(result!.spanMm)).toBe(true);
   });
 
   it("extracts x-coordinate intercepts (not y)", () => {

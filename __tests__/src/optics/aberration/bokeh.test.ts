@@ -288,11 +288,6 @@ describe("computeBokehFieldFootprint", () => {
     expect(result!.fieldAngleDeg).toBeCloseTo(geometry.halfFieldDeg * 0.75, 8);
   });
 
-  it("returns unusable result when currentEPSD is zero", () => {
-    const result = computeBokehFieldFootprint(L, layout.z, 0, 0, 0, currentPhysStopSD, 0, layout.imgZ + 0.5);
-    expect(result).toBeNull();
-  });
-
   it("preserves pupil coordinates for future blade masking", () => {
     const result = computeBokehFieldFootprint(L, layout.z, 0, 0, currentEPSD, currentPhysStopSD, 0, layout.imgZ + 0.5);
     expect(result).not.toBeNull();
@@ -327,6 +322,26 @@ describe("computeBokehPreview", () => {
         expect(centerField.rmsRadiusMm).toBeGreaterThanOrEqual(0);
       }
     }
+  });
+});
+
+describe("aperture-closed guards", () => {
+  const L = sharedApoLanthar50f2();
+  const layout = doLayout(0, 0, L);
+  const { currentPhysStopSD } = apertureAt(L, 0, 0);
+
+  it.each([
+    [
+      "computeBokehFieldFootprint",
+      (epSD: number) => computeBokehFieldFootprint(L, layout.z, 0, 0, epSD, currentPhysStopSD, 0, layout.imgZ + 0.5),
+    ],
+    [
+      "computeBokehPreview",
+      (epSD: number) => computeBokehPreview(L, 0, layout.imgZ + 0.5, 0, epSD, currentPhysStopSD, "Guard"),
+    ],
+  ])("%s returns null when currentEPSD is zero or negative", (_name, run) => {
+    expect(run(0)).toBeNull();
+    expect(run(-1)).toBeNull();
   });
 });
 

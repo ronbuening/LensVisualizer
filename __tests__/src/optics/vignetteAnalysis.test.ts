@@ -127,19 +127,27 @@ describe("computeVignettingCurve", () => {
 
   /* ── Edge cases ── */
 
-  it("returns empty array when currentEPSD is 0", () => {
-    const L = sharedSonnar50f15();
-    const { z: zPos } = doLayout(0, 0, L);
-    const { currentPhysStopSD } = apertureAt(L, 0, 0);
-
-    const samples = computeVignettingCurve(L, zPos, 0, 0, 0, currentPhysStopSD);
-    expect(samples).toEqual([]);
-  });
-
-  it("returns empty array when L.N < 1", () => {
-    const badLens = { N: 0 } as unknown as RuntimeLens;
-    const samples = computeVignettingCurve(badLens, [], 0, 0, 1, 1);
-    expect(samples).toEqual([]);
+  it.each([
+    [
+      "computeVignettingCurve (currentEPSD zero or negative)",
+      () => {
+        const L = sharedSonnar50f15();
+        const { z: zPos } = doLayout(0, 0, L);
+        const { currentPhysStopSD } = apertureAt(L, 0, 0);
+        return [
+          computeVignettingCurve(L, zPos, 0, 0, 0, currentPhysStopSD),
+          computeVignettingCurve(L, zPos, 0, 0, -1, currentPhysStopSD),
+        ];
+      },
+    ],
+    [
+      "computeVignettingCurve (degenerate lens, L.N < 1)",
+      () => [computeVignettingCurve({ N: 0 } as unknown as RuntimeLens, [], 0, 0, 1, 1)],
+    ],
+  ])("%s returns an empty array", (_name, run) => {
+    for (const samples of run()) {
+      expect(samples).toEqual([]);
+    }
   });
 
   it("stays aligned when using precomputed field geometry", () => {

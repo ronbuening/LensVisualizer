@@ -1,7 +1,6 @@
 import { describe, it, expect } from "vitest";
 import {
   sag,
-  renderSag,
   sagSlope,
   thick,
   doLayout,
@@ -154,24 +153,10 @@ describe("sagSlope", () => {
     expect(sagSlope(h, 0, L)).toBeCloseTo(expected, 10);
   });
 
-  it("matches finite-difference of renderSag for spherical surface", () => {
-    const R = 30;
-    const h = 8;
-    const eps = 1e-6;
-    const L = { S: [{ R }], asphByIdx: {} } as unknown as RuntimeLens;
-    const fd = (renderSag(h + eps, 0, L) - renderSag(h - eps, 0, L)) / (2 * eps);
-    expect(sagSlope(h, 0, L)).toBeCloseTo(fd, 5);
-  });
-
-  it("matches finite-difference of renderSag for aspheric surface", () => {
-    const R = 40;
-    const h = 6;
-    const eps = 1e-6;
-    const asph = { K: -0.5, A4: 1e-5, A6: -2e-8, A8: 0, A10: 0, A12: 0, A14: 0 };
-    const L = { S: [{ R }], asphByIdx: { 0: asph } } as unknown as RuntimeLens;
-    const fd = (renderSag(h + eps, 0, L) - renderSag(h - eps, 0, L)) / (2 * eps);
-    expect(sagSlope(h, 0, L)).toBeCloseTo(fd, 4);
-  });
+  /* Finite-difference correctness of the sag/slope pair is anchored in
+     internal/asphericSchemaMath.test.ts and opticsEngineMath.test.ts; the
+     facade delegates directly to those primitives (layout.ts), and the
+     facade-vs-engine equivalence is proven in opticsEngineMath.test.ts. */
 });
 
 describe("traceRay — exact Snell", () => {

@@ -1,10 +1,10 @@
 /**
  * Edge-case tests for optics engine — targeting uncovered branches in
- * optics.ts, buildLens.ts, bokeh.ts, and coma.ts.
+ * optics.ts and buildLens.ts.
  *
  * Focuses on: traceParaxialRay, solveChiefRay fallbacks,
- * solveFieldAngleForImageHeight(Accurate) null paths, bokeh unusable-field
- * paths, and coma insufficient-samples paths.
+ * solveFieldAngleForImageHeight(Accurate) null paths, and buildLens
+ * half-field refinement.
  */
 
 import { describe, it, expect } from "vitest";
@@ -18,9 +18,7 @@ import {
   chiefRayImageHeightAccurate,
   doLayout,
 } from "../../../src/optics/optics.js";
-import { computeBokehFieldFootprint, computeBokehPreview } from "../../../src/optics/aberration/bokeh.js";
-import { computeMeridionalComa, computeSagittalComa } from "../../../src/optics/aberration/coma.js";
-import { apertureAt, sharedApoLanthar50f2, sharedNikkorZ70200, sharedNokton50f1 } from "./testLensFixtures.js";
+import { sharedApoLanthar50f2, sharedNikkorZ70200, sharedNokton50f1 } from "./testLensFixtures.js";
 
 /* ── traceParaxialRay ── */
 
@@ -206,83 +204,5 @@ describe("buildLens — half-field refinement", () => {
       expect(isFinite(v)).toBe(true);
       expect(v).toBeGreaterThan(0);
     }
-  });
-});
-
-/* ── Bokeh edge cases ── */
-
-describe("computeBokehFieldFootprint — edge cases", () => {
-  const L = sharedApoLanthar50f2();
-  const layout = doLayout(0, 0, L);
-
-  it("returns null when currentEPSD is zero", () => {
-    const sensorZ = layout.imgZ + 0.5;
-    const result = computeBokehFieldFootprint(L, layout.z, 0, 0, 0, 0, 0, sensorZ);
-    expect(result).toBeNull();
-  });
-
-  it("returns null when currentEPSD is negative", () => {
-    const sensorZ = layout.imgZ + 0.5;
-    const result = computeBokehFieldFootprint(L, layout.z, 0, 0, -1, -1, 0, sensorZ);
-    expect(result).toBeNull();
-  });
-});
-
-describe("computeBokehPreview — edge cases", () => {
-  const L = sharedApoLanthar50f2();
-  const layout = doLayout(0, 0, L);
-
-  it("returns null when currentEPSD is zero (all fields unusable)", () => {
-    const result = computeBokehPreview(L, 0, layout.imgZ + 0.5, 0, 0, 0, "Test");
-    expect(result).toBeNull();
-  });
-
-  it("returns valid result with normal aperture", () => {
-    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
-    const result = computeBokehPreview(L, 0, layout.imgZ + 0.5, 0, currentEPSD, currentPhysStopSD, "Normal");
-    expect(result).not.toBeNull();
-    if (result) {
-      expect(result.fields.length).toBeGreaterThan(0);
-      const usable = result.fields.filter((f) => f.usable);
-      expect(usable.length).toBeGreaterThan(0);
-    }
-  });
-});
-
-/* ── Coma edge cases ── */
-
-describe("computeMeridionalComa — edge cases", () => {
-  const L = sharedApoLanthar50f2();
-  const layout = doLayout(0, 0, L);
-
-  it("returns a valid result at wide-open aperture", () => {
-    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
-    const result = computeMeridionalComa(L, layout.z, 0, 0, currentEPSD, currentPhysStopSD);
-    expect(result).not.toBeNull();
-    expect(result!.validSampleCount).toBeGreaterThanOrEqual(3);
-    expect(isFinite(result!.spanMm)).toBe(true);
-  });
-});
-
-describe("computeSagittalComa — edge cases", () => {
-  const L = sharedApoLanthar50f2();
-  const layout = doLayout(0, 0, L);
-
-  it("returns null when currentEPSD is zero", () => {
-    const result = computeSagittalComa(L, layout.z, 0, 0, 0, 0);
-    expect(result).toBeNull();
-  });
-
-  it("returns null when currentEPSD is negative", () => {
-    const result = computeSagittalComa(L, layout.z, 0, 0, -1, 0);
-    expect(result).toBeNull();
-  });
-
-  it("returns valid result at wide-open aperture", () => {
-    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
-    const result = computeSagittalComa(L, layout.z, 0, 0, currentEPSD, currentPhysStopSD);
-    expect(result).not.toBeNull();
-    expect(result!.validSampleCount).toBeGreaterThanOrEqual(3);
-    expect(isFinite(result!.spanMm)).toBe(true);
   });
 });
