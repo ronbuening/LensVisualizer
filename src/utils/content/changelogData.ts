@@ -19,6 +19,11 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-08-10",
+    type: "lens",
+    summary: "Added six Tamron SP, Di II, and Di III zoom lens designs",
+  },
+  {
     date: "2026-08-09",
     type: "lens",
     summary: "Added six Nikon and Ricoh wide-angle, zoom, and GR camera lens designs",

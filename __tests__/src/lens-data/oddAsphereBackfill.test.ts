@@ -23,6 +23,7 @@ import FujifilmX100 from "../../../src/lens-data/fujifilm/FujifilmX10023mmf2.dat
 import FujifilmX100V from "../../../src/lens-data/fujifilm/FujifilmX100V23mmf2.data.js";
 import Sigma1018 from "../../../src/lens-data/sigma/Sigma1018mmf28DCDN.data.js";
 import Sigma1424 from "../../../src/lens-data/sigma/Sigma1424mmf28DGHSM.data.js";
+import TamronB028 from "../../../src/lens-data/tamron/TamronB02818400mmf3563.data.js";
 import type { AsphericCoefficients } from "../../../src/types/optics.js";
 
 /* Guards the exact odd/even patent transcriptions that replaced the even-order
@@ -39,6 +40,14 @@ function surfaceR(lens: { surfaces: readonly { label: string; R: number }[] }, l
 function departureMicrons(h: number, R: number, asph: AsphericCoefficients): number {
   return (conicPolySag(h, R, asph) - sag(h, R)) * 1000;
 }
+
+describe("Tamron B028 18-400mm asphere transcription", () => {
+  it("matches the analysis-quoted 6A departure at the figure-refined semi-diameter", () => {
+    expect(
+      Math.abs(departureMicrons(14.0, surfaceR(TamronB028, "6A"), TamronB028.asph["6A"]) - 212.39),
+    ).toBeLessThanOrEqual(0.01);
+  });
+});
 
 describe("Zeiss Touit 50mm f/2.8 Macro odd-order backfill", () => {
   it("matches the analysis-quoted polynomial departures at the data-file semi-diameters", () => {

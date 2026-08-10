@@ -1781,7 +1781,8 @@ export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
     nd: 1.72916,
     vd: 54.095223,
     PgF: 0.5436,
-    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info; S-LAL19 page.",
+    code6: "729541",
+    source: "OHARA S-LAL19 detailed data sheet created 2025-03-24; vendor Sellmeier coefficients and d-line code.",
   },
   {
     name: "S-APL1",
