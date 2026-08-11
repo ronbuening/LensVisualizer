@@ -86,7 +86,7 @@ const LENS_DATA = {
       nd: 1.76684,
       vd: 46.8,
       fl: -46.66,
-      glass: "Unmatched J-LASFH2 class (Hikari; patent nd=1.76684, vd=46.8)",
+      glass: "J-LASFH2 (Hikari; patent nd=1.76684, vd=46.8)",
       apd: false,
       role: "Negative forward G2 unit correcting water-port distortion and lateral color.",
     },

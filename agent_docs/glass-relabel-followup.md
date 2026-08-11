@@ -26,16 +26,26 @@ This file tracks the second bucket plus any cases from the first bucket that nee
 - Catalog: verified entries in `src/optics/glassCatalogData.ts` — `catalogSize()` is the live count; the
   generated glass reports carry the number at their generation date. (A hand-bumped figure here went stale.)
 - `catalog-mismatches.generated.md` and `glass-relabel-by-lens.generated.md` report **0** remaining
-  dispersion-coordinate mismatches across **0** lens files. The mismatch report separately records **18 / 75**
+  dispersion-coordinate mismatches across **0** lens files. The mismatch report separately records **26 / 75**
   native e-line surfaces resolved through explicit names or aliases.
-- `sellmeier-coverage.generated.md` reports **556** lenses, **6129** non-air surfaces, **5485** strict catalog
-  Sellmeier surfaces (**89.5%**), and **5496** trusted chromatic surfaces (**89.7%**).
-- **314** lenses are fully covered by strict Sellmeier data and **319** are fully covered by trusted chromatic data.
-- `unresolvedGlassScan` reports **334** non-explicit-unmatched annotations and **170** distinct unresolved glass-like
+- `sellmeier-coverage.generated.md` reports **556** lenses, **6129** non-air surfaces, **5496** strict catalog
+  Sellmeier surfaces (**89.7%**), and **5507** trusted chromatic surfaces (**89.9%**).
+- **316** lenses are fully covered by strict Sellmeier data and **321** are fully covered by trusted chromatic data.
+- `unresolvedGlassScan` reports **332** non-explicit-unmatched annotations and **168** distinct unresolved glass-like
   tokens. The residual total is code/prose inventory rather than a catalog-coordinate mismatch queue.
 - The missing-Sellmeier six-digit report contains **266** code-only elements, with **0** active unreviewed rows,
   **116** self-recording explicit unmatched/unidentified dispositions, and **0** dispositions missing a review record.
 - The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work; for patent-by-patent execution, start from [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md).
+
+## Resolved Phase 94 — August 2026 first-party Hikari and native e-line recovery
+
+- Added Hikari J-SK14 and J-LASF02 from the retained manufacturer workbook, completing two named gaps in the Nikon
+  AF-S DX 55-200mm.
+- Rechecked three local patent tables and removed obsolete explicit-unmatched guards only where current catalog
+  coefficients reproduce the authored d- or e-line coordinates: J-LASFH2 in the Nikon R-UW Micro; SF10, SF11, and
+  SF2 in the Leica Summicron-R 50mm; and five Schott rows in the Schneider Super-Symmar XL 110mm.
+- Eleven surfaces gain full curves. Global strict coverage rises to 5496/6129, native e-line coverage to 26/75, and
+  the strict-complete lens count to 316; the mismatch and active unreviewed queues remain empty.
 
 ## Resolved Phase 93 — August 2026 Hikari SF catalog recovery
 

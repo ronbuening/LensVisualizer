@@ -5,6 +5,49 @@
 import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const HIKARI_GLASS_ENTRIES: readonly GlassEntry[] = [
+  /* Phase 94: first-party rows completing the Nikon AF-S DX 55-200mm. */
+  {
+    name: "J-SK14",
+    vendor: "Hikari",
+    powerSeries: [
+      [2.53043945, 0],
+      [-0.0102567827, 2],
+      [-0.000097944083, 4],
+      [0.014275253, -2],
+      [0.000200898558, -4],
+      [0.00000118522803, -6],
+      [0.000000146555128, -8],
+      [0, -10],
+      [0, -12],
+    ],
+    nd: 1.60311,
+    vd: 60.69,
+    PgF: 0.5411,
+    code6: "603607",
+    source:
+      "Nikon/Hikari Optical Glass Data workbook, J-SK14 row; vendor nine-term power-series coefficients and d-line code.",
+  },
+  {
+    name: "J-LASF02",
+    vendor: "Hikari",
+    powerSeries: [
+      [3.15037829, 0],
+      [-0.0126701101, 2],
+      [-0.00018434208, 4],
+      [0.0301788791, -2],
+      [0.000435495344, -4],
+      [0.0000591055881, -6],
+      [-0.00000381755339, -8],
+      [0.000000251546253, -10],
+      [0, -12],
+    ],
+    nd: 1.79952,
+    vd: 42.09,
+    PgF: 0.5667,
+    code6: "800421",
+    source:
+      "Nikon/Hikari Optical Glass Data workbook, J-LASF02 row; vendor nine-term power-series coefficients and d-line code.",
+  },
   /* Phase 93: first-party SF rows replacing cross-vendor aliases. */
   {
     name: "J-SF1",

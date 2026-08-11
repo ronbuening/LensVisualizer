@@ -27,3 +27,11 @@ Patent: US 5,257,137, Embodiment 1
   (`1.607171 / 40.359687`); both are compatible with their patent coordinates.
 - Relabeled the two elements as supplier-neutral optical equivalents and synchronized the analysis. No underwater
   prescription geometry, aperture, projection, or semi-diameter values changed.
+
+## 2026-08-11 — Phase 94 J-LASFH2 completion
+
+- Rechecked Example 1 Table 1 on rendered PDF page 8: surface 3 is `nd = 1.76684`, `νd = 46.8`.
+- The subsequently added first-party Hikari J-LASFH2 curve reproduces that coordinate at `1.766840019 / 46.78`, so
+  the earlier explicit-unmatched safeguard is no longer applicable.
+- Relabeled L2F to J-LASFH2, completing the lens at 10/10 strict Sellmeier surfaces. No source values or geometry
+  changed.

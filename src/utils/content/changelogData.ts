@@ -21,6 +21,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-08-11",
     type: "improvement",
+    summary: "Added two Hikari curves and upgraded 11 more patent-backed glass surfaces",
+  },
+  {
+    date: "2026-08-11",
+    type: "improvement",
     summary: "Added first-party Hikari dense-flint curves and resolved three more Nikon glass surfaces",
   },
   {

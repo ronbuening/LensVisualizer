@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **556** lenses scanned
 - **6129** non-air surfaces examined
 - **6136** element glass declarations examined
-- **334** non-explicit-unmatched annotations did not resolve
-- **170** distinct unresolved glass-like tokens found
+- **332** non-explicit-unmatched annotations did not resolve
+- **168** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -158,13 +158,11 @@ or per-lens patent backfills.
 | FPL51 | 1 | 1 | |
 | J-LAK02 | 1 | 1 | |
 | J-LAK9 | 1 | 1 | |
-| J-LASF02 | 1 | 1 | |
 | J-LASFH6 | 1 | 1 | |
 | J-LASFH9A | 1 | 1 | |
 | J-LLF6 | 1 | 1 | |
 | J-PSK03 | 1 | 1 | |
 | J-SK11 | 1 | 1 | |
-| J-SK14 | 1 | 1 | |
 | J-SSK1 | 1 | 1 | |
 | KF5 | 1 | 1 | |
 | KZF4 | 1 | 1 | |
@@ -809,10 +807,6 @@ or per-lens patent backfills.
 
 - [NIKON W-NIKKOR 35mm f/1.8](../../src/lens-data/nikon/NikonWNikkor35mmf18.data.ts) 10: `J-LAK9 class (Nikon J-series match)`
 
-### J-LASF02 — 1 occurrence
-
-- [NIKON AF-S DX NIKKOR 55-200mm f/4-5.6 G ED VR II](../../src/lens-data/nikon/NikonAFSDX55200mmf456G.data.ts) 18: `J-LASF02 (Hikari)`
-
 ### J-LASFH6 — 1 occurrence
 
 - [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR — TC 1.4x Engaged](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14TCIn.data.ts) 50: `J-LASFH6 class (HIKARI nd exact; Δνd = +0.07)`
@@ -832,10 +826,6 @@ or per-lens patent backfills.
 ### J-SK11 — 1 occurrence
 
 - [NIKON AF-S NIKKOR 28-300mm f/3.5-5.6 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS28300mmf3556G.data.ts) 29: `J-SK11 (HIKARI)`
-
-### J-SK14 — 1 occurrence
-
-- [NIKON AF-S DX NIKKOR 55-200mm f/4-5.6 G ED VR II](../../src/lens-data/nikon/NikonAFSDX55200mmf456G.data.ts) 11: `J-SK14 (Hikari)`
 
 ### J-SSK1 — 1 occurrence
 

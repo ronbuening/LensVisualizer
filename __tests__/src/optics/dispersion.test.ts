@@ -279,6 +279,15 @@ describe("glass catalog", () => {
     expect(evaluateSellmeier(llf4!, 546.074)).toBeCloseTo(1.56433, 5);
   });
 
+  it("reproduces the Hikari workbook anchors for J-SK14 and J-LASF02", () => {
+    const sk14 = resolveGlass("J-SK14 (Hikari)");
+    const lasf02 = resolveGlass("J-LASF02 (Hikari)");
+    expect(evaluateSellmeier(sk14!, LINE_NM.d)).toBeCloseTo(1.60311, 6);
+    expect(evaluateSellmeier(sk14!, LINE_NM.e)).toBeCloseTo(1.60548, 6);
+    expect(evaluateSellmeier(lasf02!, LINE_NM.d)).toBeCloseTo(1.79952, 6);
+    expect(evaluateSellmeier(lasf02!, LINE_NM.e)).toBeCloseTo(1.804034, 6);
+  });
+
   it("resolves CDGM names regardless of the annotation's casing", () => {
     // Canonical names use the vendor's mixed case (H-ZLaF50D); lens annotations
     // authored in all caps must keep resolving to the same entry.

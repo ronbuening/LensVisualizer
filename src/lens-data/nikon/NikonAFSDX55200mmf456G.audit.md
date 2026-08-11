@@ -13,3 +13,11 @@ The data file cites `JPWO2015/141574A1`, Example 2. I checked the local untracke
 ### Verification
 
 - Pending batch verification after the current Nikon audit pass.
+
+## 2026-08-11 — Phase 94 Hikari catalog completion
+
+- Added the first-party Hikari J-SK14 (`603607`) and J-LASF02 (`800421`) nine-term power-series rows from the
+  retained Nikon/Hikari optical-glass workbook.
+- Their coefficients reproduce the workbook's d/e indices (`1.603110 / 1.605480` and `1.799520 / 1.804034`) and
+  resolve the already authored L31 and L35 names without changing the patent prescription.
+- The lens moves from 11/13 to 13/13 strict Sellmeier coverage. No geometry, movement, or source indices changed.

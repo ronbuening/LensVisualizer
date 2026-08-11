@@ -50,7 +50,7 @@ The plate is optically significant even though its focal length is infinite. It 
 
 ### L2F — Negative Meniscus, Convex to Object, G2F
 
-nd = 1.76684, νd = 46.8. Glass: unmatched J-LASFH2 class (Hikari; no source-backed local catalog entry). f = -46.66 mm.
+nd = 1.76684, νd = 46.8. Glass: Hikari J-LASFH2. f = -46.66 mm.
 
 L2F is the single element of the negative forward sub-unit G2F. Its shape factor is
 
@@ -120,12 +120,12 @@ Because G4 is fixed relative to the image plane, this negative rear group is cen
 
 ## Glass Identification and Selection
 
-The design uses a small palette of high-index flint and dense-flint glasses plus one BK7-class crown plate. Catalog-backed labels are used where the current local catalog resolves to a coefficient-backed entry within the d-line tolerance. J-SFH2 is catalog-backed at the L31 coordinate; NBFD2 and BAFD3 now cover L33 and L41 through legacy HOYA optical equivalents. J-LASFH2 remains an unmatched class note, and none of the equivalent labels asserts Nikon's production supplier.
+The design uses a small palette of high-index flint and dense-flint glasses plus one BK7-class crown plate. Catalog-backed labels are used where the current local catalog resolves to a coefficient-backed entry within the d-line tolerance. Hikari J-LASFH2 and J-SFH2 cover L2F and L31; NBFD2 and BAFD3 cover L33 and L41 through legacy HOYA optical equivalents. None of the equivalent labels asserts Nikon's production supplier.
 
 | Element | nd | νd | Identification | Status | Optical role |
 |---|---:|---:|---|---|---|
 | PL | 1.51680 | 64.1 | N-BK7 / J-BK7A class | Exact/class | Waterproof flat port |
-| L2F | 1.76684 | 46.8 | Unmatched J-LASFH2 class | Unmatched | Negative flat-port corrector |
+| L2F | 1.76684 | 46.8 | J-LASFH2 | Hikari | Negative flat-port corrector |
 | L2R1 | 1.80518 | 25.4 | N-SF6 / S-TIH6 / J-SF6 class | Exact/class | Dense-flint positive meniscus |
 | L2R2 | 1.79668 | 45.4 | J-LASF017 close class | Close, not exact | Positive doublet component |
 | L2R3 | 1.71736 | 29.5 | SF1 / S-TIH1 / J-SF1 class | Exact/class | Negative doublet component |
@@ -200,7 +200,7 @@ This patent's contribution is not simply a sealed macro lens. It is a macro lens
 
 - US Patent 5,257,137, Suzuki and Hamanishi, "Photo-Taking Lens for an Underwater Camera," assigned to Nikon Corporation, granted October 26, 1993.
 - Nikon Imaging, "Evolution of NIKONOS," Camera Chronicle, for Nikonos RS system context and R-UW lens lineup.
-- Hikari Optical Glass Catalog, for J-BK7A, J-SF6/J-SF1 class equivalents, J-LASF017 comparison, the coefficient-backed J-SFH2 coordinate, and the negative check on unresolved J-LASFH2.
+- Hikari Optical Glass Catalog, for J-BK7A, J-SF6/J-SF1 class equivalents, J-LASF017 comparison, and the coefficient-backed J-LASFH2 and J-SFH2 coordinates.
 - HOYA Zemax catalog including obsolete glasses, July 7, 2026, for the NBFD2 and BAFD3 optical-equivalent coefficients.
 - OHARA optical glass catalog data, for independent S-glass comparison around the L33 and L41 coordinates.
 - Production specification references for R-UW AF Micro-Nikkor 50mm f/2.8: 10 elements / 9 groups, f/2.8-f/22, 35° underwater field, 1:1 close focus, 88 mm attachment, 103 x 126 mm, approximately 1,100 g.

@@ -8,7 +8,27 @@ catalog equivalent. If neither path is available, the engine falls back to parti
 dPgF-corrected indices, or the legacy Abbe approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **515 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **517 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+
+The August 11, 2026 Phase 94 pass added first-party Hikari J-SK14 (`603607`) and J-LASF02 (`800421`) curves from
+the retained manufacturer workbook, completing the Nikon AF-S DX 55-200mm. A review of old explicit-unmatched
+guards also recovered J-LASFH2 for the Nikon R-UW Micro and eight exact native e-line matches across the Leica
+Summicron-R 50mm and Schneider Super-Symmar XL 110mm. Eleven surfaces move from Abbe approximations to full
+curves; the Nikon lenses become strict-complete, Schneider rises from 0/6 to 5/6, and Leica rises from 0/6 to 3/6.
+Global coverage is 5496/6129 strict and 5507/6129 trusted, with 316 strict-complete and 321 trusted-complete lenses,
+zero coordinate mismatches, and zero active unreviewed six-digit rows.
+
+Phase 94 used a 10-point color-accuracy opportunity score: 4 points for spectral-fidelity gain, 3 for source and
+coordinate confidence, 2 for completion or a large coverage jump, and 1 for reuse across multiple surfaces or files.
+
+| Improvement | Score | Result |
+|---|---:|---|
+| Hikari J-SK14 + J-LASF02 catalog expansion | 10/10 | Two first-party curves; Nikon 55-200 moves 11/13 → 13/13 |
+| Nikon R-UW Micro J-LASFH2 recovery | 9/10 | Exact named coordinate; lens moves 9/10 → 10/10 |
+| Schneider native e-line recovery | 9/10 | Five exact C′/e/F′ matches; lens moves 0/6 → 5/6 |
+| Leica Summicron-R native e-line recovery | 9/10 | Three exact C′/e/F′ matches; lens moves 0/6 → 3/6 |
+| Deferred Leica N-LAF21-class pair | 6/10 | Useful two-surface completion opportunity, but the modern curve is only a near match |
+| Deferred Schneider KF9 row | 4/10 | Would complete one lens, but no compatible sourced curve is in the local catalog |
 
 The August 11, 2026 Phase 93 pass replaced the legacy cross-vendor aliases for Hikari J-SF1, J-SF6, J-SF10, and
 J-SF11 with their first-party nine-term power-series rows. Patent Table 4 for the Nikon AI AF Zoom-Nikkor 80-200mm
