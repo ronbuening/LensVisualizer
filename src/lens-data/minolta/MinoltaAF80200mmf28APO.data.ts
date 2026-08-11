@@ -39,7 +39,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  Glass: the patent publishes only nd and νd. No per-element nC, nF, ng,   ║
  * ║  or dPgF data are available, so those fields are deliberately omitted.     ║
  * ║  Compatible catalog curves are used without asserting production vendor.  ║
- * ║  The remaining proprietary coordinates stay explicitly unresolved.       ║
+ * ║  Rows outside the compatibility guard stay explicitly unmatched.          ║
  * ║                                                                            ║
  * ║  Source normalization: patent r19 = 0.000 is a plane and is stored as      ║
  * ║  R = 1e15. Patent condition (7) prints +0.101; independent substitution    ║
@@ -147,7 +147,7 @@ const LENS_DATA = {
       nd: 1.75,
       vd: 25.1,
       fl: 54.783874,
-      glass: "750251 — dense-flint glass (catalog unresolved)",
+      glass: "FF8 (HOYA catalog equivalent; patent 750251; production supplier unspecified)",
       cemented: "D2",
       role: "Positive high-index member of the second-group cemented pair.",
     },
@@ -205,7 +205,7 @@ const LENS_DATA = {
       nd: 1.4931,
       vd: 83.6,
       fl: 65.271203,
-      glass: "493836 — Minolta AD/ED fluorophosphate class (catalog unresolved)",
+      glass: "Unmatched (493836 Minolta AD/ED fluorophosphate; no compatible public coefficient row)",
       apd: "inferred",
       apdNote:
         "AD/APD status is inferred from the exact 493836 Minolta glass family; this patent publishes only nd and νd, so no numeric dPgF is borrowed.",

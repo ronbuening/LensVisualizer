@@ -10,11 +10,11 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **556** lenses scanned
-- **777** total code-only elements found
-- **296** elements in this report
+- **772** total code-only elements found
+- **291** elements in this report
 - **117** distinct lens files affected
-- **12** active unreviewed elements have no review-record hit or explicit disposition
-- **131** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
+- **0** active unreviewed elements have no review-record hit or explicit disposition
+- **138** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
 - **0** dispositions lack any review record
 
 ## Prioritized Unreviewed Queue
@@ -26,21 +26,12 @@ Completion counts are conditional on finding a source-verified catalog identity 
 
 | Tier | Code | Active elements / lens files | Visible lenses | Strict surfaces | Completion candidates | Near-complete candidates | Local patent lenses | Representative rows |
 |---|---|---:|---:|---:|---|---|---:|---|
-| B | 493836 | 3 / 2 | 2 | 3 | — | MINOLTA AF 80-200mm f/2.8 APO | 2/2 | [MINOLTA AF 400mm f/4.5 APO G](../../src/lens-data/minolta/MinoltaAF400mmf45APOG.data.ts) Element 1 (1.49310 / 83.60)<br>[MINOLTA AF 400mm f/4.5 APO G](../../src/lens-data/minolta/MinoltaAF400mmf45APOG.data.ts) Element 2 (1.49310 / 83.60)<br>[MINOLTA AF 80-200mm f/2.8 APO](../../src/lens-data/minolta/MinoltaAF80200mmf28APO.data.ts) Element 12 (1.49310 / 83.60) |
-| B | 750251 | 1 / 1 | 1 | 1 | — | MINOLTA AF 80-200mm f/2.8 APO | 1/1 | [MINOLTA AF 80-200mm f/2.8 APO](../../src/lens-data/minolta/MinoltaAF80200mmf28APO.data.ts) Element 7 (1.75000 / 25.10) |
-| C | 733282 | 2 / 1 | 1 | 2 | — | — | 1/1 | [MINOLTA MC FISH-EYE ROKKOR-OK 16mm f/2.8](../../src/lens-data/minolta/MinoltaMCFishEyeRokkorOK16mmf28.data.ts) Element G5 (1.73300 / 28.20)<br>[MINOLTA MC FISH-EYE ROKKOR-OK 16mm f/2.8](../../src/lens-data/minolta/MinoltaMCFishEyeRokkorOK16mmf28.data.ts) Element G8 (1.73300 / 28.20) |
-| D | 618527 | 1 / 1 | 1 | 1 | — | — | 1/1 | [MINOLTA MC FISH-EYE ROKKOR-OK 16mm f/2.8](../../src/lens-data/minolta/MinoltaMCFishEyeRokkorOK16mmf28.data.ts) Element G2 (1.61760 / 52.70) |
-| D | 621612 | 1 / 1 | 1 | 1 | — | — | 1/1 | [MINOLTA MC FISH-EYE ROKKOR-OK 16mm f/2.8](../../src/lens-data/minolta/MinoltaMCFishEyeRokkorOK16mmf28.data.ts) Element G7 (1.62140 / 61.20) |
-| D | 694518 | 1 / 1 | 1 | 1 | — | — | 1/1 | [MINOLTA AF 100mm f/2](../../src/lens-data/minolta/MinoltaAF100mmf2.data.ts) Element 2 (1.69350 / 51.83) |
-| D | 721334 | 1 / 1 | 1 | 1 | — | — | 1/1 | [MINOLTA AF 400mm f/4.5 APO G](../../src/lens-data/minolta/MinoltaAF400mmf45APOG.data.ts) Element 3 (1.72100 / 33.40) |
-| D | 740375 | 1 / 1 | 1 | 1 | — | — | 1/1 | [MINOLTA MC FISH-EYE ROKKOR-OK 16mm f/2.8](../../src/lens-data/minolta/MinoltaMCFishEyeRokkorOK16mmf28.data.ts) Element G9 (1.74000 / 37.50) |
-| D | 781446 | 1 / 1 | 1 | 1 | — | — | 1/1 | [MINOLTA AF 100mm f/2](../../src/lens-data/minolta/MinoltaAF100mmf2.data.ts) Element 5 (1.78100 / 44.55) |
 
 ## Codes by Frequency
 
 | Code | Elements | Lens files | localPatentStatus | reviewRecordStatus |
 |---|---:|---:|---|---|
-| 493836 | 9 | 4 | patents/JPA 1996327896-000000.pdf<br>patents/JP2004109559A.pdf<br>patents/JPA 1989039542-000000.pdf | 6/9 rows have review records |
+| 493836 | 9 | 4 | patents/JPA 1996327896-000000.pdf<br>patents/JP2004109559A.pdf<br>patents/JPA 1989039542-000000.pdf | All rows have review records |
 | 796409 | 7 | 6 | patents/US5751485.pdf<br>patents/US5640277.pdf<br>patents/US5734508.pdf<br>patents/US4699475.pdf | All rows explicitly disposed |
 | 486815 | 5 | 1 | patents/US3743384.pdf | All rows explicitly disposed |
 | 662561 | 4 | 1 | patents/GB_850117_A.pdf | All rows have review records |
@@ -64,16 +55,14 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 666356 | 2 | 1 | patents/US20190265441A1.pdf | All rows have review records |
 | 690570 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
 | 720521 | 2 | 2 | patents/US4124276.pdf | All rows have review records |
-| 721334 | 2 | 2 | patents/JPA 1996327896-000000.pdf | 1/2 rows have review records |
 | 726548 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
-| 733282 | 2 | 1 | patents/US3589798.pdf | No review-record hit |
+| 733282 | 2 | 1 | patents/US3589798.pdf | All rows explicitly disposed |
 | 744494 | 2 | 2 | patents/US3507558.pdf<br>patents/US3743384.pdf | All rows have review records |
-| 750251 | 2 | 2 | patents/JPA 1989039542-000000.pdf | 1/2 rows have review records |
 | 755516 | 2 | 1 | patents/JP2004109559A.pdf | All rows have review records |
 | 762404 | 2 | 1 | patents/US4258985.pdf | All rows have review records |
 | 774492 | 2 | 1 | patents/US3748022.pdf | All rows have review records |
 | 781445 | 2 | 2 | patents/US4277149.pdf<br>patents/US4182550.pdf | All rows have review records |
-| 781446 | 2 | 2 | patents/JPA 1987244010-000000.pdf<br>patents/JP2004109559A.pdf | 1/2 rows have review records |
+| 781446 | 2 | 2 | patents/JPA 1987244010-000000.pdf<br>patents/JP2004109559A.pdf | All rows have review records |
 | 804238 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
 | 805255 | 2 | 1 | patents/US5579171.pdf | All rows explicitly disposed |
 | 806418 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
@@ -140,9 +129,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 612313 | 1 | 1 | patents/US20210026133A1.pdf | All rows have review records |
 | 617443 | 1 | 1 | patents/JP2023039817A.pdf | All rows have review records |
 | 617540 | 1 | 1 | patents/US5717527.pdf | All rows explicitly disposed |
-| 618527 | 1 | 1 | patents/US3589798.pdf | No review-record hit |
 | 621380 | 1 | 1 | patents/US2896506.pdf | All rows explicitly disposed |
-| 621612 | 1 | 1 | patents/US3589798.pdf | No review-record hit |
 | 622639 | 1 | 1 | patents/WO2021199923A1.pdf | All rows explicitly disposed |
 | 624584 | 1 | 1 | patents/JP2025052870A.pdf | All rows have review records |
 | 625533 | 1 | 1 | patents/US2721499.pdf | All rows have review records |
@@ -177,19 +164,19 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 693495 | 1 | 1 | patents/US3552833.pdf | All rows explicitly disposed |
 | 693562 | 1 | 1 | patents/US2983193.pdf | All rows explicitly disposed |
 | 694312 | 1 | 1 | patents/WO2021199923A1.pdf | All rows have review records |
-| 694518 | 1 | 1 | patents/JPA 1987244010-000000.pdf | No review-record hit |
 | 694536 | 1 | 1 | patents/US4258985.pdf | All rows have review records |
 | 697555 | 1 | 1 | Missing from untracked local patents/ references (JP1978066222, 1978066222, JPA1978066222000000, JPB1978066222000000) | All rows explicitly disposed |
 | 697558 | 1 | 1 | patents/US4258985.pdf | All rows have review records |
 | 700555 | 1 | 1 | patents/WO_2025263124_A1.pdf | All rows have review records |
 | 701301 | 1 | 1 | patents/US4277149.pdf | All rows have review records |
 | 712525 | 1 | 1 | patents/JP2021076829A.pdf | All rows explicitly disposed |
+| 721334 | 1 | 1 | Missing from untracked local patents/ references (US4786152, 4786152) | All rows have review records |
 | 728261 | 1 | 1 | patents/US4523816.pdf | All rows explicitly disposed |
 | 728403 | 1 | 1 | patents/US6560042.pdf | All rows explicitly disposed |
 | 730262 | 1 | 1 | patents/JP2021076829A.pdf | All rows explicitly disposed |
 | 732547 | 1 | 1 | patents/WO2021199923A1.pdf | All rows explicitly disposed |
 | 738493 | 1 | 1 | patents/JP2022092388A.pdf | All rows have review records |
-| 740375 | 1 | 1 | patents/US3589798.pdf | No review-record hit |
+| 740375 | 1 | 1 | patents/US3589798.pdf | All rows explicitly disposed |
 | 740439 | 1 | 1 | patents/US2983193.pdf | All rows explicitly disposed |
 | 740458 | 1 | 1 | patents/US2983193.pdf | All rows explicitly disposed |
 | 740464 | 1 | 1 | patents/US2983193.pdf | All rows explicitly disposed |
@@ -201,6 +188,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 747274 | 1 | 1 | patents/US3649104.pdf | All rows have review records |
 | 749501 | 1 | 1 | patents/US4124276.pdf | All rows have review records |
 | 749547 | 1 | 1 | patents/CN205720849U.pdf | All rows have review records |
+| 750251 | 1 | 1 | Missing from untracked local patents/ references (US4560253, 4560253) | All rows have review records |
 | 750501 | 1 | 1 | patents/US4277149.pdf | All rows have review records |
 | 750504 | 1 | 1 | patents/US4258985.pdf | All rows have review records |
 | 754260 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | All rows have review records |
@@ -495,8 +483,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L2 (Element 2) | 3 | `694518 — optical-glass coordinate class (vendor unresolved)` | 1.69350 / 51.83 | No catalog entry | abbe | patents/JPA 1987244010-000000.pdf | No review-record hit |
-| L5 (Element 5) | 8 | `781446 — high-index mid-dispersion glass (catalog unresolved)` | 1.78100 / 44.55 | No catalog entry | abbe | patents/JPA 1987244010-000000.pdf | No review-record hit |
+| L5 (Element 5) | 8 | `Unmatched (781446 high-index mid-dispersion glass; no compatible public coefficient row)` | 1.78100 / 44.55 | No catalog entry | abbe | patents/JPA 1987244010-000000.pdf | Explicit disposition in data |
 
 ### [MINOLTA AF 100mm f/2.8 Macro](../../src/lens-data/minolta/MinoltaAF100mmf28Macro.data.ts) - US 4,764,000
 
@@ -535,9 +522,8 @@ Completion counts are conditional on finding a source-verified catalog identity 
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L1 (Element 1) | 1 | `493836 — Minolta AD/ED fluorophosphate class (catalog unresolved)` | 1.49310 / 83.60 | No catalog entry | abbe | patents/JPA 1996327896-000000.pdf | No review-record hit |
-| L2 (Element 2) | 3 | `493836 — Minolta AD/ED fluorophosphate class (catalog unresolved)` | 1.49310 / 83.60 | No catalog entry | abbe | patents/JPA 1996327896-000000.pdf | No review-record hit |
-| L3 (Element 3) | 5 | `721334 — high-index medium-dispersion glass (catalog unresolved)` | 1.72100 / 33.40 | No catalog entry | abbe | patents/JPA 1996327896-000000.pdf | No review-record hit |
+| L1 (Element 1) | 1 | `Unmatched (493836 Minolta AD/ED fluorophosphate; no compatible public coefficient row)` | 1.49310 / 83.60 | No catalog entry | abbe | patents/JPA 1996327896-000000.pdf | Explicit disposition in data |
+| L2 (Element 2) | 3 | `Unmatched (493836 Minolta AD/ED fluorophosphate; no compatible public coefficient row)` | 1.49310 / 83.60 | No catalog entry | abbe | patents/JPA 1996327896-000000.pdf | Explicit disposition in data |
 
 ### [MINOLTA AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) - JP 2004-109559 A
 
@@ -555,8 +541,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L7 (Element 7) | 11 | `750251 — dense-flint glass (catalog unresolved)` | 1.75000 / 25.10 | No catalog entry | abbe | patents/JPA 1989039542-000000.pdf | No review-record hit |
-| L12 (Element 12) | 20 | `493836 — Minolta AD/ED fluorophosphate class (catalog unresolved)` | 1.49310 / 83.60 | No catalog entry | abbe | patents/JPA 1989039542-000000.pdf | No review-record hit |
+| L12 (Element 12) | 20 | `Unmatched (493836 Minolta AD/ED fluorophosphate; no compatible public coefficient row)` | 1.49310 / 83.60 | No catalog entry | abbe | patents/JPA 1989039542-000000.pdf | Explicit disposition in data |
 
 ### [MINOLTA AF APO Tele 200mm f/2.8](../../src/lens-data/minolta/MinoltaAF200mmf28.data.ts) - US 4,786,152
 
@@ -583,11 +568,9 @@ Completion counts are conditional on finding a source-verified catalog identity 
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| G2 (Element G2) | 3 | `618527 — legacy glass class (catalog unresolved)` | 1.61760 / 52.70 | No catalog entry | abbe | patents/US3589798.pdf | No review-record hit |
-| G5 (Element G5) | 9 | `733282 — dense-flint class (catalog unresolved)` | 1.73300 / 28.20 | No catalog entry | abbe | patents/US3589798.pdf | No review-record hit |
-| G7 (Element G7) | 13 | `621612 — crown class (catalog unresolved)` | 1.62140 / 61.20 | No catalog entry | abbe | patents/US3589798.pdf | No review-record hit |
-| G8 (Element G8) | 14 | `733282 — dense-flint class (catalog unresolved)` | 1.73300 / 28.20 | No catalog entry | abbe | patents/US3589798.pdf | No review-record hit |
-| G9 (Element G9) | 17 | `740375 — high-index flint/lanthanum class (catalog unresolved)` | 1.74000 / 37.50 | No catalog entry | abbe | patents/US3589798.pdf | No review-record hit |
+| G5 (Element G5) | 9 | `Unmatched (733282 dense flint; no compatible public coefficient row)` | 1.73300 / 28.20 | No catalog entry | abbe | patents/US3589798.pdf | Explicit disposition in data |
+| G8 (Element G8) | 14 | `Unmatched (733282 dense flint; no compatible public coefficient row)` | 1.73300 / 28.20 | No catalog entry | abbe | patents/US3589798.pdf | Explicit disposition in data |
+| G9 (Element G9) | 17 | `Unmatched (740375 high-index flint; no compatible public coefficient row)` | 1.74000 / 37.50 | No catalog entry | abbe | patents/US3589798.pdf | Explicit disposition in data |
 
 ### [MINOLTA MD ROKKOR 45mm f/2](../../src/lens-data/minolta/MinoltaRokkor45mmf2MD.data.ts) - US 4,277,149
 

@@ -46,7 +46,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                    ║
  * ║  The patent publishes only N and V. No per-element nC, nF, ng, or ║
  * ║  dPgF values are available, so those optional spectral fields are ║
- * ║  intentionally not fabricated. Glass labels are class/code-level.║
+ * ║  intentionally not fabricated. Catalog equivalents remain explicit║
+ * ║  approximations, and incompatible rows are marked unmatched.      ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -109,7 +110,7 @@ const LENS_DATA = {
       vd: 52.7,
       indexReference: "d",
       fl: -48.4640315065228,
-      glass: "618527 — legacy glass class (catalog unresolved)",
+      glass: "K-SSK1 (SUMITA catalog equivalent; patent 618527; production supplier unspecified)",
       apd: false,
       role: "Second divergent front meniscus; part of the patent's front negative section.",
     },
@@ -153,7 +154,7 @@ const LENS_DATA = {
       vd: 28.2,
       indexReference: "d",
       fl: 47.46957708049113,
-      glass: "733282 — dense-flint class (catalog unresolved)",
+      glass: "Unmatched (733282 dense flint; no compatible public coefficient row)",
       apd: false,
       role: "Positive element immediately ahead of the stop/filter region.",
     },
@@ -167,7 +168,7 @@ const LENS_DATA = {
       vd: 61.2,
       indexReference: "d",
       fl: 21.74339423513618,
-      glass: "621612 — crown class (catalog unresolved)",
+      glass: "N-SK16 / S-BSM16 / J-SK16 catalog-equivalent crown class (patent 621612; supplier unspecified)",
       apd: false,
       cemented: "D2",
       role: "Positive member of the G7/G8 rear-side cemented pair.",
@@ -182,7 +183,7 @@ const LENS_DATA = {
       vd: 28.2,
       indexReference: "d",
       fl: -26.544201505929248,
-      glass: "733282 — dense-flint class (catalog unresolved)",
+      glass: "Unmatched (733282 dense flint; no compatible public coefficient row)",
       apd: false,
       cemented: "D2",
       role: "Negative member of the G7/G8 cemented pair.",
@@ -197,7 +198,7 @@ const LENS_DATA = {
       vd: 37.5,
       indexReference: "d",
       fl: -28.977836535083295,
-      glass: "740375 — high-index flint/lanthanum class (catalog unresolved)",
+      glass: "Unmatched (740375 high-index flint; no compatible public coefficient row)",
       apd: false,
       cemented: "D3",
       role: "Negative member of the G9/G10 cemented pair.",

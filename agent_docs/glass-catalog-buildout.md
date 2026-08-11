@@ -10,6 +10,13 @@ dPgF-corrected indices, or the legacy Abbe approximation. Current optics-engine 
 
 The catalog currently has **503 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
 
+The August 11, 2026 Phase 90 pass audited the twelve active Minolta six-digit glass opportunities against four ignored
+local patent PDFs. Existing FF8, K-SSK1, N-SK16-family, S-LAL58, and N-KZFS8 curves upgrade five surfaces while
+leaving every production supplier unspecified. The seven coordinates outside the compatibility guard now carry
+explicit unmatched dispositions, including all newly added `493836` occurrences. The active unreviewed queue is empty;
+global coverage is 5452/6129 strict and 5463/6129 trusted, with 299 strict-complete and 304 trusted-complete lenses and
+zero coordinate mismatches.
+
 The August 10, 2026 Phase 89 pass audited the six-lens Tamron batch and added three first-party HOYA
 curves from the manufacturer's 2026-07-07 obsolete-inclusive Zemax catalog: discontinued TAF3,
 M-PCD4, and MC-FCD1-M20. The existing OHARA S-LAL19 row was verified against the manufacturer's

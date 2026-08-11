@@ -14,14 +14,14 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 - **556** lenses scanned
 - **6121** glass elements examined
-- **1536** elements have multiple coordinate-compatible candidates
+- **1537** elements have multiple coordinate-compatible candidates
 - **345** lens files are affected
 - **137** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **148** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
-| Smallest reference-index residual | 785 |
+| Smallest reference-index residual | 786 |
 | Evidence-source priority | 486 |
 | Vendor context | 261 |
 | Stable canonical-name order | 4 |
@@ -385,6 +385,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `E-FD5 / N-SF5 / S-TIM25 class (673/322)` | 1.67270 / 32.22 (d) | S-TIM25 — smallest d-line \|Δn\| (1.9e-7 vs 2.0e-7) | E-FD5 (Hoya, name)<br>N-SF5 (Schott, name)<br>H-ZF2 (CDGM, code, alternate code row)<br>SF5 (Schott, code, alternate code row) | 1 | [MINOLTA AF Zoom 35-70mm f/4](../../src/lens-data/minolta/MinoltaAF3570mmf4.data.ts) L6 |
 | `620603 — SK16/BSM16/BACD16 class` | 1.62040 / 60.30 (d) | N-SK16 — alias evidence outranks six-digit code evidence. | J-SK16 (Hikari, code, alternate code row)<br>S-BSM16 (Ohara, code, alternate code row) | 1 | [MINOLTA MC FISH-EYE ROKKOR-OK 16mm f/2.8](../../src/lens-data/minolta/MinoltaMCFishEyeRokkorOK16mmf28.data.ts) G1 |
 | `620603 — SK16/BSM16/BACD16 class (melt/rounding residual)` | 1.62050 / 60.30 (d) | N-SK16 — alias evidence outranks six-digit code evidence. | S-BSM16 (Ohara, code, alternate code row)<br>J-SK16 (Hikari, code, alternate code row) | 1 | [MINOLTA MC FISH-EYE ROKKOR-OK 16mm f/2.8](../../src/lens-data/minolta/MinoltaMCFishEyeRokkorOK16mmf28.data.ts) G3 |
+| `N-SK16 / S-BSM16 / J-SK16 catalog-equivalent crown class (patent 621612; supplier unspecified)` | 1.62140 / 61.20 (d) | S-BSM16 — smallest d-line \|Δn\| (9.9e-4 vs 9.9e-4) | J-SK16 (Hikari, name)<br>N-SK16 (Schott, name) | 1 | [MINOLTA MC FISH-EYE ROKKOR-OK 16mm f/2.8](../../src/lens-data/minolta/MinoltaMCFishEyeRokkorOK16mmf28.data.ts) G7 |
 | `517642 — BK7/BSC7/K9L class` | 1.51680 / 64.20 (d) | N-BK7 — smallest d-line \|Δn\| (3.5e-8 vs 4.7e-4) | S-BSL7 (Ohara, alias)<br>H-K9L (CDGM, code, alternate code row)<br>H-K9LGT (CDGM, code, alternate code row) | 1 | [MINOLTA MC FISH-EYE ROKKOR-OK 16mm f/2.8](../../src/lens-data/minolta/MinoltaMCFishEyeRokkorOK16mmf28.data.ts) G11 |
 | `697555 - lanthanum crown (catalog unresolved)` | 1.69680 / 55.50 (d) | J-LAK14 — smallest d-line \|Δn\| (1.3e-8 vs 2.3e-6) | LAC14 (Hoya, code, alternate code row)<br>S-LAL14 (Ohara, code, preferred code row) | 1 | [MINOLTA MD ROKKOR 45mm f/2](../../src/lens-data/minolta/MinoltaRokkor45mmf2MD.data.ts) L6 |
 | `BK7 / S-BSL7 class (protective glass)` | 1.51680 / 63.88 (d) | S-BSL7 — direct name evidence outranks alias evidence. | N-BK7 (Schott, alias) | 1 | [NIKON 1 NIKKOR 11-27.5mm f/3.5-5.6](../../src/lens-data/nikon/Nikon1Nikkor1127mmf3556.data.ts) P |

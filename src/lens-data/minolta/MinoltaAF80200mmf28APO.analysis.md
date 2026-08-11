@@ -79,9 +79,9 @@ L6 is the negative component of D2. Its standalone focal length shows strong neg
 
 ### L7 - Positive Meniscus, Cemented Pair D2
 
-nd = 1.75000, νd = 25.1. Glass: 750251 — dense-flint glass (catalog unresolved). f = +54.784 mm.
+nd = 1.75000, νd = 25.1. Glass: FF8 (HOYA catalog equivalent; patent 750251; production supplier unspecified). f = +54.784 mm.
 
-L7 is the positive component of D2 and uses a high-index, low-Abbe prescription coordinate that does not support a defensible public catalog identity in the available audit. Although L6 and L7 have strong opposing standalone powers, their cemented net focal length is approximately -293.777 mm, so D2 is only weakly negative compared with either isolated component. This is an important distinction between element power and cemented-stack behavior.
+L7 is the positive component of D2 and uses a high-index, low-Abbe prescription coordinate. HOYA FF8 is the only reviewed catalog curve inside the project compatibility guard and is used as a spectral equivalent without asserting Minolta's production supplier. Although L6 and L7 have strong opposing standalone powers, their cemented net focal length is approximately -293.777 mm, so D2 is only weakly negative compared with either isolated component. This is an important distinction between element power and cemented-stack behavior.
 
 ### L8 - Biconcave Negative
 
@@ -109,7 +109,7 @@ L11 terminates Group III with nearly equal and opposite standalone power relativ
 
 ### L12 - Biconvex Positive
 
-nd = 1.49310, νd = 83.6. Glass: 493836 — Minolta AD/ED fluorophosphate class (catalog unresolved). f = +65.271 mm.
+nd = 1.49310, νd = 83.6. Glass: Unmatched (493836 Minolta AD/ED fluorophosphate; no compatible public coefficient row). f = +65.271 mm.
 
 L12 is the first and strongest positive element of fixed Group IV. Its very high Abbe number indicates unusually low primary dispersion in the d-line/Abbe description, but the audited coordinates do not match a public catalog glass closely enough to justify a vendor name. The `APD (INFERRED)` tag is supported at the exact `493836` Minolta material-family level by the AF 200mm patent; because this prescription does not publish line indices or partial dispersion, no numeric `dPgF` is borrowed and no fluorite identity is claimed.
 
@@ -146,16 +146,16 @@ The patent publishes `nd` and `νd` only. It does not identify glass manufacture
 | S-FSL5 catalog equivalent (patent 487701) | 1.48749 | 70.1 | L1, L2, L10 | Compatible OHARA curve; production supplier unspecified |
 | 740317 class (vendor unresolved) | 1.74000 | 31.7 | L3, L11 | Higher-index, lower-Abbe negative members in cemented pairs |
 | 603607 class (vendor unresolved) | 1.60311 | 60.7 | L4, L5, L6 | Medium-index, relatively high-Abbe glass used across Groups I-II |
-| 750251 — dense-flint glass (catalog unresolved) | 1.75000 | 25.1 | L7 | High-index, low-Abbe positive member; no defensible catalog identity |
+| FF8 catalog equivalent (patent 750251) | 1.75000 | 25.1 | L7 | Compatible HOYA curve; production supplier unspecified |
 | 694532 class (vendor unresolved) | 1.69350 | 53.2 | L8 | Rear negative member of Group II |
 | 773496 class (vendor unresolved) | 1.77250 | 49.6 | L9 | High-index positive member leading Group III |
-| 493836 — Minolta AD/ED fluorophosphate class (catalog unresolved) | 1.49310 | 83.6 | L12 | APD inferred from the exact Minolta material family; no catalog curve or numeric dPgF asserted |
+| Unmatched 493836 Minolta AD/ED fluorophosphate | 1.49310 | 83.6 | L12 | APD inferred from the exact Minolta material family; no compatible catalog curve or numeric dPgF asserted |
 | 755275 class (vendor unresolved) | 1.75520 | 27.5 | L13 | High-index, low-Abbe negative member of Group IV |
 | 717295 class (vendor unresolved) | 1.71736 | 29.5 | L14 | High-index positive meniscus in Group IV |
 | 834372 class (vendor unresolved) | 1.83400 | 37.2 | L15 | Very high-index negative meniscus in Group IV |
 | 689311 class (vendor unresolved) | 1.68893 | 31.1 | L16 | Final high-index positive element |
 
-The coordinate audit finds exact or near-exact entries in more than one manufacturer catalog for several class-labeled rows. L1, L2, and L10 use the compatible S-FSL5 curve while explicitly leaving the production supplier unspecified. L7 and L12 retain code-leading unresolved labels so future coefficient-backed catalog additions can upgrade them without implying a vendor identity now.
+The coordinate audit finds exact or near-exact entries in more than one manufacturer catalog for several class-labeled rows. L1, L2, and L10 use the compatible S-FSL5 curve while explicitly leaving the production supplier unspecified. L7 now uses the compatible FF8 curve on the same basis. L12 remains explicitly unmatched so a future coefficient-backed `493836` row can upgrade it without implying a vendor identity now.
 
 The commercial product name contains “APO,” but that branding is not used here as evidence of quantified apochromatic system performance. Abbe number alone describes primary dispersion and does not establish secondary-spectrum correction. L12's family-level APD tag records the strongest available material evidence while keeping the prescription on an Abbe-only chromatic model until source-specific line indices, `dPgF`, or a validated Sellmeier assignment becomes available.
 

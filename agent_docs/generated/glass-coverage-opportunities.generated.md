@@ -10,11 +10,11 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **556** lenses scanned (**546** visible)
-- **5447 / 6129** non-air surfaces use strict catalog Sellmeier data (88.9%)
-- **5458 / 6129** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 89.1%)
+- **5452 / 6129** non-air surfaces use strict catalog Sellmeier data (89.0%)
+- **5463 / 6129** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 89.1%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
-- **296** code-only missing-Sellmeier elements in Sweep 2: **12** active unreviewed, **131** self-recording explicit dispositions, **0** dispositions missing any review record
+- **291** code-only missing-Sellmeier elements in Sweep 2: **0** active unreviewed, **138** self-recording explicit dispositions, **0** dispositions missing any review record
 - **0** unresolved named-token elements in Sweep 2B, producing **0** token occurrences across **0** distinct tokens
 - **0** Tier A proprietary backfill rows in Sweep 3
 
@@ -39,6 +39,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [FUJIFILM FUJINON XF 16-55mm f/2.8 R LM WR](../../src/lens-data/fujifilm/FujifilmXF1655mmf28R.data.ts) | US 2016/0154221 A1 | [PDF](../../patents/US20160154221A1.pdf) | 94.1% (16/17) | 94.1% (16/17) | 1 | 13A [glass] (Element 8 (L31): `Unmatched (685309 dense flint; nearest public catalog row exceeds d-line tolerance)`) | abbe: 1 |
 | [NIKON NIKKOR Z 35mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) | JP 2025-052870 A | [PDF](../../patents/JP2025052870A.pdf) | 94.1% (16/17) | 94.1% (16/17) | 1 | 32A [glass] (Element 17: `Barium crown / LaK family (624584, no exact catalog match)`) | abbe: 1 |
 | [TAMRON 18-400mm f/3.5-6.3 Di II VC HLD](../../src/lens-data/tamron/TamronB02818400mmf3563.data.ts) | JP 2017-116646 A | [PDF](../../patents/JP2017116646A.pdf) | 94.1% (16/17) | 94.1% (16/17) | 1 | 6A [glass] (Element 4 thin layer: `Unmatched (thin aspheric layer; patent nd=1.51460, vd=49.96)`) | abbe: 1 |
+| [MINOLTA AF 80-200mm f/2.8 APO](../../src/lens-data/minolta/MinoltaAF80200mmf28APO.data.ts) | JP1989-039542 A | [PDF](../../patents/JPA 1989039542-000000.pdf) | 93.8% (15/16) | 93.8% (15/16) | 1 | 20 [glass] (Element 12: `Unmatched (493836 Minolta AD/ED fluorophosphate; no compatible public coefficient row)`) | abbe: 1 |
 | [PANASONIC LUMIX G VARIO 7-14mm f/4 ASPH.](../../src/lens-data/panasonic/PanasonicLumixGVario714mmf4.data.ts) | US 2010/0194930 A1 | [PDF](../../patents/US20100194930A1.pdf) | 93.8% (15/16) | 93.8% (15/16) | 1 | 28 [glass] (Element 16: `Unmatched crown class (523/701, likely phosphate/fluorophosphate)`) | abbe: 1 |
 | [PANASONIC LUMIX S 24-105mm f/4 MACRO O.I.S.](../../src/lens-data/panasonic/PanasonicLumixS24105mmf4MacroOIS.data.ts) | JP 2020-118738 A | [PDF](../../patents/JP2020118738A.pdf) | 93.8% (15/16) | 93.8% (15/16) | 1 | 16A [glass] (Element 8: `Unmatched (688311; M-FD80 / S-TIM28 / J-SF8 class)`) | abbe: 1 |
 | [FUJIFILM FUJINON XF 33mm f/1.4 R LM WR](../../src/lens-data/fujifilm/FujifilmXF33mmf14RLMWR.data.ts) | US 2022/0276464 A1 | [PDF](../../patents/US20220276464A1.pdf) | 93.3% (14/15) | 93.3% (14/15) | 1 | 20A [glass] (L26 focus Lp asphere: `Unmatched (853/406 dense lanthanum flint; near S-LAH89 / M-TAFD305 / D-ZLaF85 class)`) | abbe: 1 |
@@ -78,13 +79,13 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [RODENSTOCK GRANDAGON-N 75mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN75mmf45.data.ts) | DE 2444954 A1 | [PDF](../../patents/DE_2444954_A1.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 5 [glass] (Element 4: `Unmatched (short-flint / barium-crown boundary; patent ne=1.5629, ve=46.88)`) | abbe: 1 |
 | [RODENSTOCK GRANDAGON-N 90mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN90mmf45.data.ts) | DE 2444954 A1 | [PDF](../../patents/DE_2444954_A1.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 5 [glass] (Element 4: `LLF3 / QF2 class (inferred, d-code 561468)`) | abbe: 1 |
 | [SCHNEIDER-KREUZNACH SUPER-SYMMAR HM 120mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderSuperSymmarHM120mmf56.data.ts) | US 4,773,745 | [PDF](../../patents/US4773745.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 13 [glass] (Element 8: `Unmatched (479/587 low-index crown; vendor unspecified)`) | abbe: 1 |
-| [MINOLTA AF 80-200mm f/2.8 APO](../../src/lens-data/minolta/MinoltaAF80200mmf28APO.data.ts) | JP1989-039542 A | [PDF](../../patents/JPA 1989039542-000000.pdf) | 87.5% (14/16) | 87.5% (14/16) | 2 | 11 [glass] (Element 7: `750251 — dense-flint glass (catalog unresolved)`)<br>20 [glass] (Element 12: `493836 — Minolta AD/ED fluorophosphate class (catalog unresolved)`) | abbe: 2 |
 | [Nikon AI Zoom-Nikkor 50-135mm f/3.5S](../../src/lens-data/nikon/NikonAIZoomNikko50135mmf35S.data.ts) | US 4,497,547 | [PDF](../../patents/US4497547.pdf) | 87.5% (14/16) | 87.5% (14/16) | 2 | 13 [glass] (G3 L2: `Unmatched / S-NBH-class (672389 short-flint code)`)<br>18 [glass] (G4 L3: `Unmatched / S-LAH52-class (796410 lanthanum-flint code)`) | abbe: 2 |
 | [Nikon AI Zoom-Nikkor 35–105mm f/3.5–4.5S](../../src/lens-data/nikon/NikonAIZoomNikkor35105mmf3545.data.ts) | US 4,699,475 | [PDF](../../patents/US4699475.pdf) | 87.5% (14/16) | 87.5% (14/16) | 2 | 13 [glass] (Element 8: `Unmatched (796/409 lanthanum flint; no current public catalog match verified)`)<br>27 [glass] (Element 16: `Unmatched (796/409 lanthanum flint; no current public catalog match verified)`) | abbe: 2 |
 | [CANON RF 50mm f/1.2 L USM](../../src/lens-data/canon/CanonRF50mmf12L.data.ts) | US 2019/0265441 A1 | [PDF](../../patents/US20190265441A1.pdf) | 86.7% (13/15) | 86.7% (13/15) | 2 | 8 [glass] (Element 5: `666356 — dense flint (nd=1.66565, νd=35.64)`)<br>16 [glass] (Element 10: `666356 — dense flint (nd=1.66565, νd=35.64)`) | abbe: 2 |
 | [CANON New FD 50mm f/1.2](../../src/lens-data/canon/CanonFDn50f12.data.ts) | US 4,364,643 | [PDF](../../patents/US4364643.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 10 [glass] (Element 6: `Lanthanum special flint (high-index) [863415] — OHARA LASF07`) | abbe: 1 |
 | [CARL ZEISS JENA BIOGON 35mm f/2.8 (pre-war)](../../src/lens-data/carl-zeiss-jena/ZeissBiogon35mmf28Prewar.data.ts) | US 2,084,309 | [PDF](../../patents/US2084309.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 10 [glass] (Element 7: `Unmatched vintage Zeiss/Schott 533/489 (nd=1.5333, νd=48.9)`) | abbe: 1 |
 | [ENNA MÜNCHEN LITHAGON 24mm f/4](../../src/lens-data/enna-munchen/EnnaMunchenLithagon24mmf4.data.ts) | DE 1 228 820 B | [PDF](../../patents/DE_1228820_B.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 7 [glass] (Element 4: `Unmatched 519573 crown glass (patent-listed; supplier unidentified)`) | abbe: 1 |
+| [MINOLTA AF 100mm f/2](../../src/lens-data/minolta/MinoltaAF100mmf2.data.ts) | JP1987-244010 A | [PDF](../../patents/JPA 1987244010-000000.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 8 [glass] (Element 5: `Unmatched (781446 high-index mid-dispersion glass; no compatible public coefficient row)`) | abbe: 1 |
 | [VOIGTLÄNDER COLOR-SKOPAR 28mm f/2.8 Aspherical SL IIs](../../src/lens-data/voigtlander/VoigtlanderColorSkopar28mmf28Aspherical.data.ts) | JP 2023-032663 A | [PDF](../../patents/JPA 2023032663-000000.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 5 [glass] (Cemented biconcave member: `Unmatched (nd inferred from published FL; νd omitted by patent)`) | constant: 1 |
 | [LAOWA 65mm f/2.8 2× Ultra Macro APO](../../src/lens-data/laowa/Laowa65mmf28MacroAPO.data.ts) | CN 110161666 A | [PDF](../../patents/CN110161666A.pdf) | 85.7% (12/14) | 85.7% (12/14) | 2 | 4 [glass] (Element 3: `773530 — high-index lanthanum crown (patent nd=1.77250, νd=53.00; no exact public catalog match)`)<br>16 [glass] (Element 10: `Unmatched (patent nd=1.72916, νd=57.67; prior H-LAK52 candidate rejected on dispersion)`) | abbe: 2 |
 | [NIKON AI AF ZOOM-NIKKOR 20-35mm f/2.8D IF](../../src/lens-data/nikon/NikonAFZoomNikkor2035mmf28DIF.data.ts) | US 5,276,553 A | [PDF](../../patents/US5276553.pdf) | 85.7% (12/14) | 85.7% (12/14) | 2 | 14 [glass] (L31a: `Unmatched (nd=1.74810, vd=52.3)`)<br>24 [glass] (L44b: `Unmatched (patent 861230; no compatible public catalog row)`) | abbe: 2 |
@@ -167,15 +168,6 @@ Add catalog entries only when public coefficient-backed vendor data is available
 
 | Code | Active elements | Lens files | localPatentStatus | Representative rows |
 |---|---:|---:|---|---|
-| 493836 | 3 | 2 | patents/JPA 1996327896-000000.pdf<br>patents/JPA 1989039542-000000.pdf | [MINOLTA AF 400mm f/4.5 APO G](../../src/lens-data/minolta/MinoltaAF400mmf45APOG.data.ts) Element 1 (1.49310 / 83.60)<br>[MINOLTA AF 400mm f/4.5 APO G](../../src/lens-data/minolta/MinoltaAF400mmf45APOG.data.ts) Element 2 (1.49310 / 83.60)<br>[MINOLTA AF 80-200mm f/2.8 APO](../../src/lens-data/minolta/MinoltaAF80200mmf28APO.data.ts) Element 12 (1.49310 / 83.60) |
-| 733282 | 2 | 1 | patents/US3589798.pdf | [MINOLTA MC FISH-EYE ROKKOR-OK 16mm f/2.8](../../src/lens-data/minolta/MinoltaMCFishEyeRokkorOK16mmf28.data.ts) Element G5 (1.73300 / 28.20)<br>[MINOLTA MC FISH-EYE ROKKOR-OK 16mm f/2.8](../../src/lens-data/minolta/MinoltaMCFishEyeRokkorOK16mmf28.data.ts) Element G8 (1.73300 / 28.20) |
-| 618527 | 1 | 1 | patents/US3589798.pdf | [MINOLTA MC FISH-EYE ROKKOR-OK 16mm f/2.8](../../src/lens-data/minolta/MinoltaMCFishEyeRokkorOK16mmf28.data.ts) Element G2 (1.61760 / 52.70) |
-| 621612 | 1 | 1 | patents/US3589798.pdf | [MINOLTA MC FISH-EYE ROKKOR-OK 16mm f/2.8](../../src/lens-data/minolta/MinoltaMCFishEyeRokkorOK16mmf28.data.ts) Element G7 (1.62140 / 61.20) |
-| 694518 | 1 | 1 | patents/JPA 1987244010-000000.pdf | [MINOLTA AF 100mm f/2](../../src/lens-data/minolta/MinoltaAF100mmf2.data.ts) Element 2 (1.69350 / 51.83) |
-| 721334 | 1 | 1 | patents/JPA 1996327896-000000.pdf | [MINOLTA AF 400mm f/4.5 APO G](../../src/lens-data/minolta/MinoltaAF400mmf45APOG.data.ts) Element 3 (1.72100 / 33.40) |
-| 740375 | 1 | 1 | patents/US3589798.pdf | [MINOLTA MC FISH-EYE ROKKOR-OK 16mm f/2.8](../../src/lens-data/minolta/MinoltaMCFishEyeRokkorOK16mmf28.data.ts) Element G9 (1.74000 / 37.50) |
-| 750251 | 1 | 1 | patents/JPA 1989039542-000000.pdf | [MINOLTA AF 80-200mm f/2.8 APO](../../src/lens-data/minolta/MinoltaAF80200mmf28APO.data.ts) Element 7 (1.75000 / 25.10) |
-| 781446 | 1 | 1 | patents/JPA 1987244010-000000.pdf | [MINOLTA AF 100mm f/2](../../src/lens-data/minolta/MinoltaAF100mmf2.data.ts) Element 5 (1.78100 / 44.55) |
 
 ## Sweep 2B - Named Tokens Missing Catalog Resolution
 
