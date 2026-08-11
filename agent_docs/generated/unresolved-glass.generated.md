@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **556** lenses scanned
 - **6129** non-air surfaces examined
 - **6136** element glass declarations examined
-- **336** non-explicit-unmatched annotations did not resolve
-- **172** distinct unresolved glass-like tokens found
+- **334** non-explicit-unmatched annotations did not resolve
+- **170** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -60,7 +60,6 @@ or per-lens patent backfills.
 | PK1 | 2 | 1 | |
 | 487698 | 1 | 1 | |
 | 499801 | 1 | 1 | |
-| 504667 | 1 | 1 | |
 | 507589 | 1 | 1 | |
 | 514530 | 1 | 1 | |
 | 518523 | 1 | 1 | |
@@ -74,7 +73,6 @@ or per-lens patent backfills.
 | 561575 | 1 | 1 | |
 | 570481 | 1 | 1 | |
 | 571560 | 1 | 1 | |
-| 574425 | 1 | 1 | |
 | 575413 | 1 | 1 | |
 | 585417 | 1 | 1 | |
 | 593348 | 1 | 1 | |
@@ -419,10 +417,6 @@ or per-lens patent backfills.
 
 - [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) 1: `FPL51 class (499/801, OHARA family)`
 
-### 504667 — 1 occurrence
-
-- [CARL ZEISS BIOGON 21mm f/4.5](../../src/lens-data/carl-zeiss-oberkochen/ZeissBiogon21mmf45.data.ts) 1: `BK crown (504/667)`
-
 ### 507589 — 1 occurrence
 
 - [MINOLTA AF 135mm f/2.8 [T4.5] STF](../../src/lens-data/minolta/MinoltaSTF135mmf28T45.data.ts) 9: `507589 — bulk absorbing ND glass (catalog unresolved; patent α=0.55)`
@@ -474,10 +468,6 @@ or per-lens patent backfills.
 ### 571560 — 1 occurrence
 
 - [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 17: `571560 — barium crown (patent nd=1.57125, νd=56.0)`
-
-### 574425 — 1 occurrence
-
-- [CARL ZEISS JENA TESSAR 50mm f/2.8](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaTessar50mmf28.data.ts) 5: `574425 — light flint (no exact public catalog match)`
 
 ### 575413 — 1 occurrence
 

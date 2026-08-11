@@ -135,7 +135,7 @@ const LENS_DATA = {
       nd: 1.79631,
       vd: 40.9,
       fl: -35.4,
-      glass: "Unmatched high-index flint (796409)",
+      glass: "NBFD2 (HOYA catalog equivalent; production supplier unspecified; patent 796409)",
       cemented: "G5",
       role: "High-index negative front component of the fifth-group cemented doublet.",
     },

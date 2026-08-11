@@ -57,7 +57,7 @@ const LENS_DATA = {
       nd: 1.5038,
       vd: 66.7,
       fl: -63.0,
-      glass: "BK crown (504/667)",
+      glass: "PC1 (HOYA catalog equivalent; production supplier unspecified; patent 504667)",
       apd: false,
       role: "Front field lens — steers oblique ray bundles toward central groups",
       cemented: undefined,

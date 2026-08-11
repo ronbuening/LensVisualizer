@@ -152,7 +152,7 @@ The patent provides refractive index (n_d) and Abbe number (V_d) for each elemen
 
 | Element | n_d | V_d | Six-digit code | Nearest Schott match | Δn_d | ΔV_d | Confidence |
 |---------|-----|-----|----------------|---------------------|------|------|------------|
-| L₁ | 1.50380 | 66.7 | 504/667 | BK10 (1.4978/66.9) | +0.0060 | −0.2 | Family (BK crown) |
+| L₁ | 1.50380 | 66.7 | 504/667 | HOYA PC1 optical equivalent (1.503779/66.887) | −0.00002 | +0.19 | Catalog-backed equivalent; supplier unspecified |
 | L₂ | 1.48697 | 70.3 | 487/703 | FK5 (1.4875/70.4) | −0.0005 | −0.1 | **Near-exact** |
 | L₃ | 1.72050 | 50.3 | 721/503 | LaK10 (1.7200/50.3) | +0.0005 | 0.0 | **Near-exact** |
 | L₄ | 1.60739 | 59.5 | 607/595 | K-SK7 (Sumita, 1.60729/59.5) | +0.0001 | 0.0 | **Near-exact** |

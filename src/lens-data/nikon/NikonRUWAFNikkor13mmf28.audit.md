@@ -18,3 +18,11 @@ Patent: US 5,579,169, Example 1 / Table 1
   coefficient-backed catalog row in the reviewed public data (`delta nd = -0.00168`, `delta vd = -0.09`).
 - Relabeled L3 as a J-LASF017 catalog equivalent while leaving the production supplier unidentified. Synchronized
   the analysis; no underwater prescription geometry, aperture, projection, or semi-diameter values changed.
+
+## 2026-08-11 — Phase 92 HOYA legacy-catalog recovery
+
+- Visually rechecked US 5,579,169 Table 1: L6 is `1.79631 / 40.9`.
+- Added the official legacy HOYA NBFD2 row (`1.797199 / 41.143795`) to the shared catalog and used it for L6 as a
+  coefficient-backed optical equivalent inside runtime tolerance.
+- The production supplier remains unspecified. No underwater prescription geometry, aperture, projection, or
+  semi-diameter values changed.

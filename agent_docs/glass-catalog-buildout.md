@@ -8,7 +8,16 @@ catalog equivalent. If neither path is available, the engine falls back to parti
 dPgF-corrected indices, or the legacy Abbe approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **503 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **511 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+
+The August 11, 2026 Phase 92 pass revisited legacy six-digit coordinates against fourteen ignored local patent PDFs
+and HOYA's official 2026-07-07 obsolete-inclusive Zemax catalog. Eight recovered formula-3 rows — NBFD2, BACED1,
+PC1, PC2, F7, FL4, FL1, and BAFD3 — plus existing J-LAFH3 and E-FD13 models upgrade twenty-two surfaces.
+Seven lenses become strict-complete: Nikon AI Zoom 35-105mm and AF Micro 200mm; Olympus 28mm f/2; Enna
+Lithagon 35mm; Agfa Solagon 50mm; Canon Serenar 28mm; and Carl Zeiss Jena Tessar 50mm. Global coverage is
+5482/6129 strict and 5493/6129 trusted, with 313 strict-complete and 318 trusted-complete lenses, zero coordinate
+mismatches, and zero active unreviewed code-only rows. Every optical-equivalent label leaves the production supplier
+unspecified.
 
 The August 11, 2026 Phase 91 pass revisited the near-complete visible-lens queue against seven ignored local patent
 PDFs and current coefficient rows. Patent triple or native-line matches assigned FCD515, PBH25, S-TIL6, S-LAL52,
@@ -365,8 +374,9 @@ The July 29, 2026 Phase 46 pass audited the three highest-frequency remaining si
 `670571` elements now use discontinued OHARA S-LAL52 as a coefficient-backed catalog equivalent: the official
 all-products row has the same d-line index (`1.669999` versus patent `1.67000`) and only `+0.258` higher Abbe number.
 The annotations explicitly leave the production supplier unspecified. Nikon `796409` (seven elements) and Minolta
-`493836` (six elements) remain unresolved after patent-row checks and searches of official OHARA, HOYA, Hikari, and
-Sumita coefficient data; neither family was forced to a nearest neighbor. Strict coverage increased from 4586 to
+`493836` (six elements) remained unresolved after that pass's patent-row checks and searches of official OHARA, HOYA,
+Hikari, and Sumita coefficient data; neither family was forced to a nearest neighbor. Phase 92 later recovered Nikon
+`796409` through legacy HOYA NBFD2. Strict coverage increased from 4586 to
 4596 surfaces, trusted coverage from 4600 to 4610, and one additional lens became fully covered in each measure.
 
 The July 29, 2026 Phase 45 pass added seven direct vendor rows: Hikari J-BK7A; SUMITA K-LaFK50, K-BaSF5,

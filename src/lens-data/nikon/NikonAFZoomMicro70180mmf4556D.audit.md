@@ -47,3 +47,12 @@ Patent: US 5,717,527, seventh embodiment, Table 8.
   plausible rows are around `1.741 / 52.6` or `1.755 / 52.3`, outside the accepted d-line residual.
 - Retained the explicit unmatched `748523` annotation without a supplier or APD claim. No prescription, zoom,
   focus, aperture, or semi-diameter values changed.
+
+## 2026-08-11 — Phase 92 patent-coordinate catalog recovery
+
+- Visually rechecked US 5,717,527 Table 8 on rendered PDF page 69: L3 is `1.61720 / 54.01`, L4 is
+  `1.79504 / 28.56`, and L17 is `1.74077 / 27.63`.
+- Recovered HOYA BACED1 (`1.617203 / 53.945664`) and matched the other rows to existing coefficient-backed
+  J-LAFH3 (`1.79504 / 28.692277`) and E-FD13 (`1.74077 / 27.76`) models.
+- Relabeled all three as supplier-neutral optical equivalents and synchronized the analysis. L6 `748523` remains
+  unresolved; no prescription, zoom, focus, aperture, or semi-diameter values changed.

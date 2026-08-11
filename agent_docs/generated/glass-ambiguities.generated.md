@@ -14,16 +14,16 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 - **556** lenses scanned
 - **6121** glass elements examined
-- **1537** elements have multiple coordinate-compatible candidates
-- **345** lens files are affected
+- **1545** elements have multiple coordinate-compatible candidates
+- **347** lens files are affected
 - **137** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **148** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
 | Smallest reference-index residual | 786 |
-| Evidence-source priority | 486 |
-| Vendor context | 261 |
+| Evidence-source priority | 493 |
+| Vendor context | 262 |
 | Stable canonical-name order | 4 |
 
 ## Ambiguous Annotations
@@ -34,6 +34,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | Annotation | Stored n / ν (line) | Selected and reason | Runners-up in resolver order | Elements | Example |
 |---|---:|---|---|---:|---|
 | `S-BAH11 (Ohara) / BaF11 cross-reference class (patent 667/484)` | 1.66670 / 48.40 (d) | S-BAH11 — Annotation vendor context matches Ohara. | BAF11 (Sumita, name, vendor ✗) | 2 | [AGFA SOLAGON 50mm f/2](../../src/lens-data/agfa/AgfaSolagon50mmf2.data.ts) L2 |
+| `F7 (HOYA catalog equivalent; production supplier unspecified; patent 625356)` | 1.62540 / 35.60 (d) | F7 — direct name evidence outranks six-digit code evidence. | H-F6 (CDGM, code, vendor ✗, preferred code row) | 2 | [AGFA SOLAGON 50mm f/2](../../src/lens-data/agfa/AgfaSolagon50mmf2.data.ts) L3 |
 | `S-TIH1 (OHARA; 717295 coordinate equivalent, original Canon melt not identified)` | 1.71740 / 29.50 (d) | S-TIH1 — direct name evidence outranks six-digit code evidence. | SF1 (Schott, code, vendor ✗, preferred code row) | 1 | [CANON 50mm f/1.2](../../src/lens-data/canon/Canon50mmf12.data.ts) L4 |
 | `F3 / E-F3 class` | 1.61293 / 37.00 (d) | E-F3 — smallest d-line \|Δn\| (1.6e-7 vs 4.2e-7) | F3 (Sumita, name) | 1 | [CANON EF 20-35mm f/2.8 L](../../src/lens-data/canon/CanonEF2035mmf28L.data.ts) L2 |
 | `S-LAH58 / TAFD30 class` | 1.88300 / 40.80 (d) | S-LAH58 — smallest d-line \|Δn\| (3.0e-6 vs 3.9e-6) | TAFD30 (Hoya, name) | 1 | [CANON EF 20-35mm f/2.8 L](../../src/lens-data/canon/CanonEF2035mmf28L.data.ts) L3 |
@@ -172,7 +173,9 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `M-LAF81 / MP-LAF81 class (HOYA, 731/405)` | 1.73077 / 40.50 (d) | M-LAF81 — direct name evidence outranks six-digit code evidence. | L-LAM69 (Ohara, code, vendor ✗, alternate code row) | 1 | [CARL ZEISS TOUIT MAKRO-PLANAR T* 50mm f/2.8 Macro](../../src/lens-data/carl-zeiss-oberkochen/ZeissTouit50mmf28Macro.data.ts) L21 |
 | `BSC7 (HOYA) / N-BK7 class (517/642)` | 1.51680 / 64.20 (d) | N-BK7 — direct name evidence outranks alias evidence. | S-BSL7 (Ohara, alias, vendor ✗)<br>H-K9L (CDGM, code, vendor ✗, alternate code row)<br>H-K9LGT (CDGM, code, vendor ✗, alternate code row) | 1 | [CARL ZEISS TOUIT MAKRO-PLANAR T* 50mm f/2.8 Macro](../../src/lens-data/carl-zeiss-oberkochen/ZeissTouit50mmf28Macro.data.ts) L22 |
 | `E-FDS1 / MP-FDS1 class (HOYA, 923/209)` | 1.92286 / 20.88 (d) | E-FDS1 — direct name evidence outranks six-digit code evidence. | N-SF66 (Schott, code, vendor ✗, preferred code row)<br>PBH21 (Ohara, code, vendor ✗, alternate code row) | 1 | [CARL ZEISS TOUIT MAKRO-PLANAR T* 50mm f/2.8 Macro](../../src/lens-data/carl-zeiss-oberkochen/ZeissTouit50mmf28Macro.data.ts) L31 |
+| `F7-class flint (legacy Schott 625/356; CDGM H-F6 equivalent)` | 1.62536 / 35.60 (d) | H-F6 — Annotation vendor context matches CDGM. | F7 (Hoya, name, vendor ✗) | 1 | [ENNA MÜNCHEN LITHAGON 24mm f/4](../../src/lens-data/enna-munchen/EnnaMunchenLithagon24mmf4.data.ts) L3 |
 | `S-BSM10 equivalent (OHARA; legacy SK10-class, patent nd/vd)` | 1.62280 / 56.90 (d) | S-BSM10 — direct name evidence outranks alias evidence. | N-SK10 (Schott, alias, vendor ✗) | 1 | [ENNA MÜNCHEN ULTRA-LITHAGON 28mm f/3.5](../../src/lens-data/enna-munchen/EnnaMunchenUltraLithagon28mmf35.data.ts) L1 |
+| `F7 (HOYA catalog equivalent; production supplier unspecified; patent 625356)` | 1.62536 / 35.60 (d) | F7 — direct name evidence outranks six-digit code evidence. | H-F6 (CDGM, code, vendor ✗, preferred code row) | 2 | [ENNA MÜNCHEN ULTRA-LITHAGON 28mm f/3.5](../../src/lens-data/enna-munchen/EnnaMunchenUltraLithagon28mmf35.data.ts) L2 |
 | `S-TIM2 (OHARA) / N-F2 class` | 1.62004 / 36.26 (d) | S-TIM2 — direct name evidence outranks alias evidence. | F2 (Schott, alias, vendor ✗) | 1 | [FUJIFILM FUJINON 35mm f/4 (Fujifilm GFX100RF)](../../src/lens-data/fujifilm/FujifilmGFX100RF35mmf4.data.ts) L14 |
 | `HOYA E-LAF7 / CDGM H-LaF4 (750350; OHARA S-LAM7 class)` | 1.74950 / 35.02 (d) | H-LaF4 — smallest d-line \|Δn\| (2.4e-8 vs 2.0e-7) | E-LAF7 (Hoya, name, vendor ✓)<br>S-LAM7 (Ohara, name, vendor ✓) | 1 | [FUJIFILM FUJINON GF 100-200mm f/5.6 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmGF100200mmf56.data.ts) L11 |
 | `N-BK7 / BSC7 / H-K9L class` | 1.51680 / 64.21 (d) | H-K9L — smallest d-line \|Δn\| (2.2e-9 vs 3.5e-8) | N-BK7 (Schott, name)<br>S-BSL7 (Ohara, alias) | 1 | [FUJIFILM FUJINON GF 100-200mm f/5.6 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmGF100200mmf56.data.ts) L12 |
@@ -415,6 +418,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `Dense Flint (SF1 / S-TIH1)` | 1.71736 / 29.46 (d) | SF1 — smallest d-line \|Δn\| (1.5e-7 vs 1.8e-6) | S-TIH1 (Ohara, name) | 1 | [NIKON AF NIKKOR 85mm f/1.4 D IF](../../src/lens-data/nikon/Nikon85f14D.data.ts) L3 |
 | `Dense Niobium Flint (NBFD3 / S-LAH63)` | 1.80454 / 39.61 (d) | NBFD3 — smallest d-line \|Δn\| (3.6e-5 vs 1.4e-4) | S-LAH63 (Ohara, name) | 1 | [NIKON AF NIKKOR 85mm f/1.4 D IF](../../src/lens-data/nikon/Nikon85f14D.data.ts) L4 |
 | `Flint (E-FD5 / S-TIM25)` | 1.67270 / 32.17 (d) | S-TIM25 — smallest d-line \|Δn\| (1.9e-7 vs 2.0e-7) | E-FD5 (Hoya, name) | 1 | [NIKON AF NIKKOR 85mm f/1.4 D IF](../../src/lens-data/nikon/Nikon85f14D.data.ts) L5 |
+| `BACED1 (HOYA catalog equivalent; production supplier unspecified; patent 617540)` | 1.61720 / 54.01 (d) | BACED1 — direct name evidence outranks six-digit code evidence. | K-SSK1 (Sumita, code, vendor ✗, preferred code row) | 1 | [NIKON AF ZOOM-MICRO NIKKOR ED 70-180mm f/4.5-5.6D](../../src/lens-data/nikon/NikonAFZoomMicro70180mmf4556D.data.ts) L3 |
 | `S-LAH65V class (OHARA, 804/466)` | 1.80411 / 46.54 (d) | S-LAH65V — direct name evidence outranks six-digit code evidence. | S-LAH65 (Ohara, code, vendor ✓, preferred code row)<br>J-LASF015 (Hikari, code, vendor ✗, alternate code row)<br>H-ZLaF50D (CDGM, code, vendor ✗, alternate code row) | 3 | [NIKON AF ZOOM-MICRO NIKKOR ED 70-180mm f/4.5-5.6D](../../src/lens-data/nikon/NikonAFZoomMicro70180mmf4556D.data.ts) L10 |
 | `SF6-class dense flint (Schott, 805/255)` | 1.80458 / 25.50 (d) | SF6 — direct name evidence outranks six-digit code evidence. | H-ZF7LA (CDGM, code, vendor ✗, preferred code row)<br>FD60 (Hoya, code, vendor ✗, alternate code row) | 1 | [NIKON AF ZOOM-MICRO NIKKOR ED 70-180mm f/4.5-5.6D](../../src/lens-data/nikon/NikonAFZoomMicro70180mmf4556D.data.ts) L11 |
 | `847238 — dense flint class` | 1.84666 / 23.78 (d) | J-SF03 — smallest d-line \|Δn\| (3.7e-8 vs 5.0e-8) | H-ZF52 (CDGM, code, alternate code row)<br>S-TIH53W (Ohara, code, alternate code row)<br>S-TIH53 (Ohara, code, preferred code row)<br>FDS90 (Hoya, code, alternate code row) | 2 | [NIKON AF ZOOM-NIKKOR 28-200mm f/3.5-5.6 G IF-ED](../../src/lens-data/nikon/NikonAFZoomNikkor28200mmf3556GIFED.data.ts) L11a |
@@ -964,6 +968,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `SSK2 / N-SSK2 (Schott)` | 1.62229 / 53.27 (d) | N-SSK2 — Annotation vendor context matches Schott. | SSK2 (Sumita, name, vendor ✗) | 1 | [RODENSTOCK GRANDAGON-N 90mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN90mmf45.data.ts) L3 |
 | `BaF11 / S-BAH11 class (Schott/Ohara equivalent)` | 1.66672 / 48.33 (d) | S-BAH11 — Annotation vendor context matches Ohara. | BAF11 (Sumita, name, vendor ✗) | 1 | [RODENSTOCK GRANDAGON-N 90mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN90mmf45.data.ts) L7 |
 | `N-FK5 / FK5 (Schott)` | 1.48749 / 70.41 (d) | N-FK5 — Annotation vendor context matches Schott. | FK5 (Sumita, name, vendor ✗) | 1 | [RODENSTOCK GRANDAGON-N 90mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN90mmf45.data.ts) L8 |
+| `F7 class (625/356; Schott F7 / CDGM F6 equivalents)` | 1.62500 / 35.60 (d) | F7 — direct name evidence outranks six-digit code evidence. | H-F6 (CDGM, code, vendor ✓, preferred code row) | 1 | [RODENSTOCK ROGONAR-S 50mm f/2.8](../../src/lens-data/rodenstock/RodenstockRogonarS50mmf28.data.ts) L2 |
 | `LAF3 class (717/479; S-LAM3 / H-LaF2 / K-LaF3 equivalents)` | 1.71700 / 47.90 (d) | LAF3 — smallest d-line \|Δn\| (2.6e-8 vs 3.9e-6) | S-LAM3 (Ohara, name) | 1 | [RODENSTOCK ROGONAR-S 50mm f/2.8](../../src/lens-data/rodenstock/RodenstockRogonarS50mmf28.data.ts) L4 |
 | `923209 dense flint (E-FDS1 / N-SF66 / H-ZF62 equivalent)` | 1.92286 / 20.88 (d) | N-SF66 — smallest d-line \|Δn\| (8.8e-8 vs 4.0e-7) | E-FDS1 (Hoya, name)<br>PBH21 (Ohara, code, alternate code row) | 1 | [SAMYANG AF 18mm f/2.8 FE](../../src/lens-data/samyang/SamyangAF18mmf28.data.ts) L11 |
 | `S-FPL51 / FCD1 class (ED fluorophosphate)` | 1.49700 / 81.61 (d) | FCD1 — smallest d-line \|Δn\| (1.6e-7 vs 7.1e-7) | S-FPL51 (Ohara, name) | 3 | [SAMYANG AF 18mm f/2.8 FE](../../src/lens-data/samyang/SamyangAF18mmf28.data.ts) L31 |
@@ -984,6 +989,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `FDS18 (HOYA) / H-ZF88 class` | 1.94595 / 17.98 (d) | FDS18 — Annotation vendor context matches Hoya. | H-ZF88 (CDGM, name, vendor ✗) | 1 | [SAMYANG AF 85mm f/1.4 FE](../../src/lens-data/samyang/SamyangAF85mmf14.data.ts) L11 |
 | `LaF3 (Schott 717479) / S-LAM3 optical equivalent` | 1.71700 / 47.90 (d) | LAF3 — smallest d-line \|Δn\| (2.6e-8 vs 3.9e-6) | S-LAM3 (Ohara, name, vendor ✗) | 1 | [SCHNEIDER-KREUZNACH SUPER-ANGULON 75mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderSuperAngulon75mmf56.data.ts) L2 |
 | `BaSF-class barium dense flint (Schott 702411; S-BAH27 / BAFD7 optical equivalent)` | 1.70181 / 41.10 (d) | BAFD7 — smallest d-line \|Δn\| (2.7e-4 vs 2.7e-4) | S-BAH27 (Ohara, name, vendor ✗)<br>BASF7 (Sumita, code, vendor ✗, preferred code row) | 1 | [SCHNEIDER-KREUZNACH SUPER-ANGULON 75mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderSuperAngulon75mmf56.data.ts) L7 |
+| `625/356 flint (CDGM H-F6 optical equivalent; historical supplier unverified)` | 1.62540 / 35.56 (d) | H-F6 — direct name evidence outranks six-digit code evidence. | F7 (Hoya, code, vendor ✗, alternate code row) | 1 | [SCHNEIDER-KREUZNACH SUPER-SYMMAR HM 120mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderSuperSymmarHM120mmf56.data.ts) L2b |
 | `SF1 (Schott, legacy dense flint; 717/295)` | 1.71740 / 29.50 (d) | SF1 — direct name evidence outranks six-digit code evidence. | S-TIH1 (Ohara, code, vendor ✗, alternate code row) | 2 | [SCHNEIDER-KREUZNACH TECHNIKA SUPER-ANGULON 75mm f/8](../../src/lens-data/schneider-kreuznach/SchneiderTechnikaSuperAngulon75mmf8.data.ts) L2 |
 | `BACED5 (Hoya) / N-SSK5 class` | 1.65844 / 50.85 (d) | BACED5 — Annotation vendor context matches Hoya. | N-SSK5 (Schott, name, vendor ✗) | 1 | [SIGMA 105mm f/1.4 DG HSM \| Art](../../src/lens-data/sigma/Sigma105mmf14DGHSMArt.data.ts) L1 |
 | `FCD100 (Hoya) / S-FPL53 class (fluorite-class FLD)` | 1.43700 / 95.10 (d) | FCD100 — Annotation vendor context matches Hoya. | S-FPL53 (Ohara, name, vendor ✗) | 3 | [SIGMA 105mm f/1.4 DG HSM \| Art](../../src/lens-data/sigma/Sigma105mmf14DGHSMArt.data.ts) L2 |

@@ -54,3 +54,11 @@ Patent: US 5,640,277
   plausible rows are around `1.741 / 52.6` or `1.755 / 52.3`, outside the accepted d-line residual.
 - Retained the explicit unmatched `748523` annotation without a supplier or APD claim. No prescription geometry
   changed.
+
+## 2026-08-11 — Phase 92 HOYA legacy-catalog recovery
+
+- Visually rechecked US 5,640,277 Table 1 on rendered PDF page 34: L2 is `1.79631 / 40.90`.
+- HOYA's official obsolete-inclusive catalog now supplies NBFD2 at `1.797199 / 41.143795` (`797411`), within
+  `+0.000889 / +0.243795` of the patent coordinate and inside the runtime compatibility window.
+- Relabeled L2 as an NBFD2 optical equivalent and synchronized the analysis. The label does not identify Nikon's
+  production supplier; `748523` remains unresolved and no geometry changed.

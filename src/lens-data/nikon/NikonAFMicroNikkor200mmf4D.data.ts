@@ -111,7 +111,7 @@ const LENS_DATA = {
       vd: 40.9,
       ng: 1.82107,
       fl: -104.5,
-      glass: "Unmatched lanthanum flint class (796/409 patent code)",
+      glass: "NBFD2 (HOYA catalog equivalent; production supplier unspecified; patent 796409)",
       cemented: "D2",
       role: "Negative member of the stationary G12 cemented doublet.",
     },

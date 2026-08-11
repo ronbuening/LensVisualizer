@@ -36,11 +36,11 @@ The patent gives only $nd$ and $νd$, not a glass name. The pair is close to OHA
 
 ### L2 — Positive Meniscus, concave to object
 
-$nd = 1.62536$, $νd = 35.6$. Glass: unmatched legacy flint, 625/356 code. $f = +280.4$ mm.
+$nd = 1.62536$, $νd = 35.6$. Glass: HOYA F7 catalog equivalent for patent 625/356; production supplier unspecified. $f = +280.4$ mm.
 
 L2 is part S, the weak median collective lens. Its focal length is more than six times the absolute focal length of L1, so it contributes little direct paraxial power compared with the front and rear systems. Its importance is positional: it sits in the large space between F and H, where it can influence astigmatism and vignetting before the ray bundles enter the rear main group.
 
-Both radii are negative, so the element is a positive meniscus concave toward the object. Its low Abbe number makes it a flint-class element, but the exact historical catalog type is unresolved.
+Both radii are negative, so the element is a positive meniscus concave toward the object. Its low Abbe number makes it a flint-class element; the official legacy HOYA F7 row supplies an effectively exact coefficient-backed optical equivalent.
 
 ### L3 — Biconvex Positive
 
@@ -52,7 +52,7 @@ The $nd/νd$ pair matches HOYA BACD4 within the precision of the patent table.
 
 ### L4 — Positive Meniscus, convex to object
 
-$nd = 1.62536$, $νd = 35.6$. Glass: unmatched legacy flint, 625/356 code. $f = +56.6$ mm.
+$nd = 1.62536$, $νd = 35.6$. Glass: HOYA F7 catalog equivalent for patent 625/356; production supplier unspecified. $f = +56.6$ mm.
 
 L4 follows L3 across only 0.14 mm at the 28 mm scale. The close spacing makes the L3-L4 pair behave as a split positive front component of the rear main group, but the air gap means it is not a cemented achromat. L4 adds positive power with a much lower Abbe number than L3, giving the designer another chromatic degree of freedom without a cemented interface.
 
@@ -81,13 +81,13 @@ The patent gives refractive indices and Abbe numbers only. It does not list glas
 | Element | Patent $nd$ | Patent $νd$ | Glass annotation | Confidence |
 |---|---:|---:|---|---|
 | L1 | 1.62280 | 56.9 | S-BSM10 equivalent / legacy SK10-class | Good equivalent; exact historical vendor unproven |
-| L2 | 1.62536 | 35.6 | Unmatched legacy flint, 625/356 | Exact catalog type unresolved |
+| L2 | 1.62536 | 35.6 | F7 (HOYA optical equivalent) | Official row 1.625363 / 35.583498; supplier unspecified |
 | L3 | 1.61272 | 58.6 | BACD4 (HOYA equivalent) | Direct coordinate match; supplier unspecified |
-| L4 | 1.62536 | 35.6 | Unmatched legacy flint, 625/356 | Exact catalog type unresolved |
+| L4 | 1.62536 | 35.6 | F7 (HOYA optical equivalent) | Official row 1.625363 / 35.583498; supplier unspecified |
 | L5 | 1.75520 | 27.5 | SF4 (SCHOTT) | Direct catalog match |
 | L6 | 1.61720 | 54.0 | J-SSK1 equivalent / legacy SSK1-class | Good equivalent; exact historical vendor unproven |
 
-The palette uses ordinary crown and flint glasses. No ED, fluorite, anomalous-partial-dispersion, or aspherical material behavior is implied by the patent data. L2 and L4 share the same 625/356 flint-class glass, but no exact current manufacturer catalog match has been established from the checked catalogs.
+The palette uses ordinary crown and flint glasses. No ED, fluorite, anomalous-partial-dispersion, or aspherical material behavior is implied by the patent data. L2 and L4 share the 625/356 coordinate and now use the effectively exact legacy HOYA F7 dispersion model as a supplier-neutral optical equivalent.
 
 ## Focus Mechanism
 
@@ -148,7 +148,7 @@ The design should therefore be described as a patent-grounded Enna three-part re
 ## Sources
 
 1. US Patent 2,959,100, Hans Lautenbacher, "Wide Angle Photographic Objective," granted November 8, 1960. Example 1, Table I, is the transcribed prescription source.
-2. HOYA optical-glass catalog, BACD4, used to verify the L3 $nd/νd$ match.
+2. HOYA optical-glass catalog including obsolete glasses, F7 and BACD4, used to verify the L2/L4 and L3 $nd/νd$ matches.
 3. SCHOTT, Optical Glass Datasheet SF4, used to verify the L5 $nd/νd$ match.
 4. OHARA, S-BSM10 catalog entry, used as the closest documented equivalent for L1.
 5. HIKARI, J-SSK1 catalog sheet, used as the closest documented equivalent for L6.

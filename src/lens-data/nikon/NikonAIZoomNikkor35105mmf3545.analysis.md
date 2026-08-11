@@ -76,7 +76,7 @@ The cemented L5/L6 pair has a computed focal length of approximately +1262mm and
 #### L7 + L8 — Cemented Doublet, net negative
 
 L7: nd = 1.713, νd = 53.9. Glass: S-LAL8 (OHARA), lanthanum crown. f = −13.3mm standalone.
-L8: nd = 1.796, νd = 40.9. Glass: unmatched 796/409 lanthanum flint. f = +21.2mm standalone.
+L8: nd = 1.796, νd = 40.9. Glass: HOYA NBFD2 catalog equivalent for patent 796/409; production supplier unspecified. f = +21.2mm standalone.
 
 The L7/L8 doublet carries the dominant negative power in G2, with a computed focal length of −36.96mm. L7 is biconcave and L8 is biconvex. The rear surface of L8 is very weak (R14 = −696.58mm), so most of the doublet's power is concentrated at the first three surfaces of the cemented pair.
 
@@ -118,7 +118,7 @@ L14 is the main positive singlet in G32. It adds strong positive relay power at 
 #### L15 + L16 — Cemented Doublet, weak negative
 
 L15: nd = 1.563, νd = 60.8. Glass: BACD11 / N-SK11 / S-BAL41 class, barium crown. f = +34.2mm standalone.
-L16: nd = 1.796, νd = 40.9. Glass: unmatched 796/409 lanthanum flint. f = −32.7mm standalone.
+L16: nd = 1.796, νd = 40.9. Glass: HOYA NBFD2 catalog equivalent for patent 796/409; production supplier unspecified. f = −32.7mm standalone.
 
 The L15/L16 doublet is weakly negative as a cemented pair, with a computed focal length of −414.7mm. It is the rear chromatic corrector. The seventh embodiment cements L15 and L16; this is one of the features that separates Table 7 from the sixth embodiment.
 
@@ -132,7 +132,7 @@ The glass table avoids circular catalog assignment. Exact current OHARA matches 
 | 1.603 / 60.6 | S-BSM14 (OHARA), 603/607 barium crown | L2, L3 | Exact code-class match. |
 | 1.796 / 45.5 | J-LASF017 class, 795/453-455 | L4, L6, L13 | Close class match; patent values are rounded. |
 | 1.713 / 53.9 | S-LAL8 (OHARA), 713/539 lanthanum crown | L7, L9 | Exact code-class match. |
-| 1.796 / 40.9 | Unmatched 796/409 lanthanum flint | L8, L16 | Not forced to S-LAH52; S-LAH52 is closer to 800/422 and is materially different in Abbe number. |
+| 1.796 / 40.9 | NBFD2 (HOYA catalog equivalent) | L8, L16 | Official legacy row 1.797199 / 41.143795; production supplier unspecified. |
 | 1.568 / 56.0 | N-BAK4 / S-BAL14 class, 569/560-563 | L11 | Rounded barium-crown class, not an exact stored-index match. |
 | 1.563 / 60.8 | BACD11 / N-SK11 / S-BAL41 class, 564/608-607 | L12, L15 | Cross-reference match. |
 | 1.518 / 60.3 | BALK3 (SUMITA catalog equivalent) | L14 | Exact catalog coordinate within patent rounding; supplier unspecified. |

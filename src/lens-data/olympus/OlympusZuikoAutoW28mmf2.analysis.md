@@ -54,19 +54,19 @@ L1 is a thick, weak positive collector. It limits how abruptly the wide-angle bu
 
 ### L2 — Negative Meniscus, convex to object
 
-$n_d=1.50378$, $\nu_d=66.8$. Glass: unmatched crown, code 504/668. Standalone $f=-31.661$ mm.
+$n_d=1.50378$, $\nu_d=66.8$. Glass: HOYA PC1 catalog equivalent for patent 504/668; production supplier unspecified. Standalone $f=-31.661$ mm.
 
 L2 supplies most of the negative power in the front group. Its high Abbe number is deliberate: a strongly powered negative element placed far forward would otherwise add substantial lateral chromatic aberration.
 
 ### L3 — Negative Meniscus, convex to object
 
-$n_d=1.50378$, $\nu_d=66.8$. Glass: unmatched crown, code 504/668. Standalone $f=-110.123$ mm.
+$n_d=1.50378$, $\nu_d=66.8$. Glass: HOYA PC1 catalog equivalent for patent 504/668; production supplier unspecified. Standalone $f=-110.123$ mm.
 
 L3 is the weaker negative meniscus. Splitting the front negative function between L2 and L3 avoids concentrating the required divergence at one highly curved rear surface. Together, L1–L3 form a front group of $f=-35.508$ mm at production scale.
 
 ### L4a — Negative Meniscus, front member of cemented L4
 
-$n_d=1.50378$, $\nu_d=66.8$. Glass: unmatched crown, code 504/668. Standalone in-air $f=-47.531$ mm.
+$n_d=1.50378$, $\nu_d=66.8$. Glass: HOYA PC1 catalog equivalent for patent 504/668; production supplier unspecified. Standalone in-air $f=-47.531$ mm.
 
 The quoted focal length is the element’s standalone in-air value. L4a does not behave as an isolated negative singlet in the cemented assembly. Its rear surface is the $r_8$ junction into L4b, and the positive index step across that interface is central to the patent’s correction strategy.
 
@@ -107,13 +107,13 @@ The patent gives only $n_d$ and $\nu_d$; it does not identify glass manufacturer
 | Patent pair | Authoritative catalog-class match | Residual / confidence | Elements | Optical role |
 |---|---|---:|---|---|
 | 1.64000 / 60.3 | LACL60 class, HOYA reference 640/602; N-LAK21 and S-BSM81 equivalents | $\Delta n_d\approx0$, $\Delta\nu_d=-0.1$; probable class | L1 | Low-dispersion front collector |
-| 1.50378 / 66.8 | Unmatched crown, 504/668 | No sufficiently close catalog entry; retain as unmatched | L2, L3, L4a | Front negative group and L4 front member |
+| 1.50378 / 66.8 | PC1 (HOYA optical equivalent) | Official row 1.503779 / 66.887120; supplier unspecified | L2, L3, L4a | Front negative group and L4 front member |
 | 1.72000 / 46.0 | K-LaFn11, SUMITA 1.72013 / 46.0 | $\Delta n_d=+0.00013$; high-confidence class | L4b | Strong positive cemented-interface partner |
 | 1.78800 / 47.5 | TAF4, HOYA reference 788/475 | Six-digit pair match; high-confidence class | L5a | High-index positive member of L5 |
 | 1.76182 / 26.6 | FD140, HOYA 762/266 | $\Delta n_d\approx-0.00001$; high-confidence class | L5b | Dense-flint negative and chromatic partner |
 | 1.69680 / 55.6 | K-LaK14, SUMITA 697/556 | Exact $n_d/\nu_d$ match | L6, L7 | Rear positive correctors |
 
-The 504/668 material should not be labeled N-BK10: the index mismatch is too large for a confident identification. The patent’s $n_d/\nu_d$ values also do not establish anomalous partial dispersion, so no APD or apochromatic claim is made.
+The 504/668 material should not be labeled N-BK10: HOYA's legacy PC1 row is effectively coincident with the patent coordinate and provides the coefficient-backed model. This is an optical-equivalent assignment, not evidence of the original Olympus melt supplier. The patent’s $n_d/\nu_d$ values also do not establish anomalous partial dispersion, so no APD or apochromatic claim is made.
 
 ## Focus Mechanism
 
@@ -185,5 +185,5 @@ The patent states that conventional approximately 76° retrofocus systems of the
 - Toru Fujii, **US 3,862,794A, “Large-Aperture Ratio Retrofocus Lens System,”** Olympus Optical Co., Ltd.; especially FIG. 2, Table 2, Claim 4, and columns 1–4.
 - Olympus Optical Co., Ltd., **The Zuiko Interchangeable Lens Group**, catalog page 4: 28mm f/2, nine elements/eight groups, floating-element design, 75° field, 0.3 m minimum focus, and 49 mm filters.
 - HOYA Optics Europe, **Glass Cross Reference Index**: official six-digit $n_d/\nu_d$ code convention and cross-vendor reference classes.
-- HOYA, **Zemax optical-glass catalog including obsolete glasses**, July 7, 2026: LACL60, TAF4, and FD140.
+- HOYA, **Zemax optical-glass catalog including obsolete glasses**, July 7, 2026: PC1, LACL60, TAF4, and FD140.
 - SUMITA Optical Glass, **Zemax optical-glass catalog**, June 4, 2026: K-LaFn11 and K-LaK14.

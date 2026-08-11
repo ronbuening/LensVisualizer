@@ -47,11 +47,11 @@ L1 supplies the first negative bend in the focusing group. Its rear radius is mu
 
 L2 is nearly symmetric, with equal-magnitude front and rear radii. It offsets part of L1's negative power while keeping the front focusing group compact. Because L1 and L2 share the same high-dispersion glass family, their opposite powers partly balance first-order chromatic power, leaving the later cemented groups to handle residual correction.
 
-**L3 — Negative meniscus, convex to object.** $n_d = 1.61720$, $ν_d = 54.01$. Glass: unmatched crown, code 617/540. Standalone $f = -89.8$ mm.
+**L3 — Negative meniscus, convex to object.** $n_d = 1.61720$, $ν_d = 54.01$. Glass: HOYA BACED1 catalog equivalent for patent 617/540; production supplier unspecified. Standalone $f = -89.8$ mm.
 
 The patent table image reads $R_5 = 1559.0379$ mm. The searchable text may drop the leading digit, but the 1559 mm value is required to reproduce the patent's stated $f_1 = -100.000$ mm for G1. L3 has a nearly flat front surface and a strong rear surface, concentrating negative power near the L3–L4 air space.
 
-**L4 — Negative meniscus, concave to object.** $n_d = 1.79504$, $ν_d = 28.56$. Glass: unmatched dense flint, code 795/286. Standalone $f = -78.9$ mm.
+**L4 — Negative meniscus, concave to object.** $n_d = 1.79504$, $ν_d = 28.56$. Glass: Hikari J-LAFH3 catalog equivalent for patent 795/286; production supplier unspecified. Standalone $f = -78.9$ mm.
 
 L4 is the second strong negative element in the rear part of G1. Its stronger front curvature faces the object side. Together with L3 it forms the main negative-power core of the focusing group.
 
@@ -105,7 +105,7 @@ L14 is a biconvex FK5-class crown element with $n_d = 1.48749$, $ν_d = 70.41$, 
 
 The triplet has very weak net power because the two crown positives are largely balanced by the central flint. Its role is correction: chromatic control, spherical correction, and off-axis aberration balancing in the rear relay.
 
-**L17 — Biconvex positive.** $n_d = 1.74077$, $ν_d = 27.63$. Glass: unmatched dense flint, code 741/276. Standalone $f = +47.8$ mm.
+**L17 — Biconvex positive.** $n_d = 1.74077$, $ν_d = 27.63$. Glass: HOYA E-FD13 catalog equivalent for patent 741/276; production supplier unspecified. Standalone $f = +47.8$ mm.
 
 L17 supplies substantial positive power late in the system. The high index allows a relatively compact rear relay, while the high dispersion is balanced by the adjacent triplet and final negative element.
 
@@ -120,8 +120,8 @@ The patent does not name glass manufacturers. The identifications below are cata
 | Patent code | Catalog / class annotation | Elements | Confidence | Notes |
 |---|---|---:|---|---|
 | 861/230 | J-SFH2 (Hikari coordinate successor) | L1, L2 | high coordinate confidence | Current J-SFH2 retains `nd=1.86074`; its code 861/231 and `νd=23.08` differ only in the final rounded digit from the patent row. |
-| 617/540 | unmatched crown | L3 | unmatched | No current public catalog match retained. |
-| 795/286 | unmatched dense flint | L4 | unmatched | No current public catalog match retained. |
+| 617/540 | BACED1 (HOYA optical equivalent) | L3 | Catalog-backed equivalent | Official row 1.617203 / 53.945664; supplier unspecified. |
+| 795/286 | J-LAFH3 (Hikari optical equivalent) | L4 | Catalog-backed equivalent | Same index; catalog $ν_d=28.692277$; supplier unspecified. |
 | 785/258 | SF11-class dense flint | L5, L7 | close | Schott SF11 is 1.78472 / 25.76; patent table uses 25.80. |
 | 748/523 | unmatched lanthanum crown | L6 | unmatched | Treated by code only. |
 | 640/600 | S-BSM81 class | L8 | close | OHARA S-BSM81 is 1.64000 / 60.08. |
@@ -130,7 +130,7 @@ The patent does not name glass manufacturers. The identifications below are cata
 | 805/255 | SF6-class dense flint | L11 | close | Schott SF6 is 1.80518 / 25.43. |
 | 697/556 | S-LAL14 | L13 | close | OHARA S-LAL14 is 1.69680 / 55.53; patent table uses 55.60. |
 | 804/339 | E-LAFH2 (Hikari) | L15 | exact | Exact catalog code and `nd`/`νd` coordinate. |
-| 741/276 | unmatched dense flint | L17 | unmatched | Treated by code only. |
+| 741/276 | E-FD13 (HOYA optical equivalent) | L17 | Catalog-backed equivalent | Same index; catalog $ν_d=27.76$; supplier unspecified. |
 
 The key chromatic correction pattern is not a single anomalous-dispersion material in Table 8, but repeated pairing of high-index flints with higher-Abbe crowns in the nearly stationary G2 and rear G4 correction groups. The production lens's stated ED element is therefore a production-level fact, while Table 8's exact glass list remains a patent disclosure with no ED-class Abbe number.
 

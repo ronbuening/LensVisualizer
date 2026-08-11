@@ -67,7 +67,7 @@ const LENS_DATA = {
       nd: 1.51821,
       vd: 65.2,
       fl: -127.02,
-      glass: "Unmatched (518/652 crown class)",
+      glass: "PC2 (HOYA catalog equivalent; production supplier unspecified; patent 518652)",
       apd: false,
       role: "Front negative meniscus that provides the long-back-focus retrofocus layout.",
     },

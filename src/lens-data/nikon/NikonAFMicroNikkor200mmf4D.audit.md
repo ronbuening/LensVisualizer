@@ -31,3 +31,11 @@ Patent: US 5,751,485, Ninth Embodiment / Table 9
   J-LASF03 is a materially different `1.80610 / 40.97`.
 - Retained L4's explicit unmatched `796409` lanthanum-flint-class annotation. No supplier,
   nearest-neighbor model, prescription geometry, or spectral claim changed.
+
+## 2026-08-11 — Phase 92 HOYA legacy-catalog recovery
+
+- Visually rechecked US 5,751,485 Table 9 on rendered PDF page 33: L4 is `1.79631 / 40.90`.
+- The later obsolete-inclusive HOYA source contains NBFD2 at `1.797199 / 41.143795`, resolving the earlier
+  catalog-source blocker with a coefficient-backed match inside runtime tolerance.
+- Relabeled L4 as a supplier-neutral NBFD2 optical equivalent and synchronized the analysis. No prescription,
+  focus, aperture, or semi-diameter values changed.

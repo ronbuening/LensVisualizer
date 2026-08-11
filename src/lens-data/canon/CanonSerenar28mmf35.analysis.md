@@ -136,7 +136,7 @@ The design uses only four distinct glass types across six elements:
 | S-BAL41 equivalent | Barium crown | 1.5638 | 60.7 | 564/607 | Crown | L1 |
 | E-BAF8 | Barium flint | 1.6237 | 47.0 | 624/470 | Crown-side doublet member | L2 |
 | E-F8 catalog equivalent | Dense flint | 1.5955 | 39.2 | 596/392 | Flint; production supplier unspecified | L3 |
-| Unmatched BaF3-class row | Barium flint | 1.5785 | 41.7 | 579/417 | Flint; no exact public catalog identity | L4 |
+| FL4 (HOYA optical equivalent) | Legacy flint | 1.5785 | 41.7 | 579/417 | Official row 1.578447 / 41.707529; production supplier unspecified | L4 |
 | SK14 | Dense barium crown | 1.6204 | 60.3 | 620/603 | Crown | L5, L6 |
 
 All five glass types were standard Schott catalog offerings of the era. Canon, like most Japanese manufacturers in the early 1950s, would have used equivalent domestic melts — likely from Ohara or HOYA. The patent lists nᵈ and νᵈ values that match the Schott catalog exactly, which was common practice: designers specified glasses by their Schott equivalents regardless of which foundry actually produced the melt.

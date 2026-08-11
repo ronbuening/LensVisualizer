@@ -51,13 +51,13 @@ The elevated index of L2 relative to L1 and L3 is one of the patent's essential 
 
 ### L3 — Negative Plano-Concave Element of the Front Cemented Meniscus
 
-$n_d = 1.6254$, $\nu_d = 35.6$. Glass: unmatched 625/356 flint, with CDGM F6/H-F6 and Schott F7 as class candidates. Standalone $f = -18.8\;\text{mm}$ at production scale.
+$n_d = 1.6254$, $\nu_d = 35.6$. Glass: HOYA F7 catalog equivalent for patent 625/356; production supplier unspecified. Standalone $f = -18.8\;\text{mm}$ at production scale.
 
 L3 is the negative element of the front cemented meniscus. Its plane front surface is cemented to L2; its strongly concave rear surface faces the central stop. This surface supplies most of the front meniscus group's negative power and contributes a large negative Petzval term that offsets the positive Petzval contributions of the outer singlets.
 
 ### L4 — Negative Concave-Plano Element of the Rear Cemented Meniscus
 
-$n_d = 1.6254$, $\nu_d = 35.6$. Glass: unmatched 625/356 flint, with CDGM F6/H-F6 and Schott F7 as class candidates. Standalone $f = -23.4\;\text{mm}$ at production scale.
+$n_d = 1.6254$, $\nu_d = 35.6$. Glass: HOYA F7 catalog equivalent for patent 625/356; production supplier unspecified. Standalone $f = -23.4\;\text{mm}$ at production scale.
 
 L4 is the rear-half counterpart to L3. Its concave front surface faces the stop and its rear surface is plane, forming the cemented junction with L5. The glass is identical to L3 in Example 1, satisfying the symmetric-glass condition in Claim 2.
 
@@ -87,7 +87,7 @@ The patent publishes only $n_d$ and $\nu_d$ values, not glass maker names. The f
 | -------------------------- | -------------: | --------------------------------------------------------- | -------- | --------------------------------------------------------------------------------------- |
 | $n_d=1.6230$, $\nu_d=58.1$ |        623/581 | N-SK15 / SK15 class (Schott)                              | L1, L6   | Close match to Schott N-SK15 and Ohara S-BSM15.                                         |
 | $n_d=1.6667$, $\nu_d=48.4$ |        667/484 | S-BAH11 / BaF11 cross-reference class                     | L2, L5   | Close match to Ohara S-BAH11, CDGM H-ZBaF16, and legacy BaF11/BAFN11 cross-references.  |
-| $n_d=1.6254$, $\nu_d=35.6$ |        625/356 | Unmatched flint; CDGM F6/H-F6 and Schott F7 class candidates | L3, L4   | No coefficient-backed project catalog row is available; the data keeps this explicit instead of asserting a resolved glass. |
+| $n_d=1.6254$, $\nu_d=35.6$ |        625/356 | F7 (HOYA optical equivalent) | L3, L4   | Official legacy row 1.625363 / 35.583498; production supplier unspecified. |
 
 
 The glass palette is materially important. The inner negative elements are ordinary high-dispersion flints near 625/356, while the positive elements in the cemented menisci are barium flints near 667/484. The design is a well-corrected achromat, not an apochromat. No ED, fluorophosphate, or anomalous partial-dispersion glass is specified by the patent.

@@ -97,7 +97,7 @@ const LENS_DATA = {
       nd: 1.5785,
       vd: 41.7,
       fl: -11.2,
-      glass: "Unmatched (579417 vintage barium flint; no exact public catalog identity)",
+      glass: "FL4 (HOYA catalog equivalent; production supplier unspecified; patent 579417)",
       apd: false as const,
       cemented: "D2",
       role: "Rear doublet negative — strongest negative element, Gauss waist",

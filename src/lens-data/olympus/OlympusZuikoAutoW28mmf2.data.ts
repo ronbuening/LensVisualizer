@@ -84,7 +84,7 @@ const LENS_DATA = {
       nd: 1.50378,
       vd: 66.8,
       fl: -31.661,
-      glass: "Unmatched crown (504/668; vintage or proprietary)",
+      glass: "PC1 (HOYA catalog equivalent; production supplier unspecified; patent 504668)",
       role: "Primary negative-power element in the divided front group.",
     },
     {
@@ -95,7 +95,7 @@ const LENS_DATA = {
       nd: 1.50378,
       vd: 66.8,
       fl: -110.123,
-      glass: "Unmatched crown (504/668; vintage or proprietary)",
+      glass: "PC1 (HOYA catalog equivalent; production supplier unspecified; patent 504668)",
       role: "Weaker front negative meniscus; moderates aberrations and sets group power.",
     },
     {
@@ -106,7 +106,7 @@ const LENS_DATA = {
       nd: 1.50378,
       vd: 66.8,
       fl: -47.531,
-      glass: "Unmatched crown (504/668; vintage or proprietary)",
+      glass: "PC1 (HOYA catalog equivalent; production supplier unspecified; patent 504668)",
       role: "Front member of the positive cemented L4 component.",
       cemented: "D1",
     },
