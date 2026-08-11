@@ -57,6 +57,10 @@ describe("lens patent metadata", () => {
       expectCleanNames(path, "patentAssignees", data.patentAssignees ?? []);
 
       for (const author of data.patentAuthors ?? []) {
+        const nonLatinLetters = [...author].filter(
+          (character) => /\p{Letter}/u.test(character) && !/\p{Script=Latin}/u.test(character),
+        );
+        expect(nonLatinLetters, `${path}: patentAuthors must be romanized`).toEqual([]);
         expect(author.normalize("NFKC"), `${path}: patentAuthors must use normalized Unicode`).toBe(author);
         expect(author, `${path}: patentAuthors must omit honorifics`).not.toMatch(/\b(?:Dr|Prof)\.?\b/i);
         expect(author, `${path}: patentAuthors must use conventional capitalization`).not.toMatch(/\b\p{Lu}{2,}\b/u);

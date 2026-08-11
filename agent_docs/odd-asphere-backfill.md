@@ -10,8 +10,8 @@ Companion references:
 
 - `src/lens-data/LENS_DATA_SPEC.md` — the `asph` format, odd-order rules, and the KA → K
   conic conversion.
-- `__tests__/src/lens-data/oddAsphereBackfill.test.ts` — departure regression assertions for
-  completed backfills; extend it with each new backfill.
+- `__tests__/src/lens-data/oddAsphereBackfill.test.ts` — the `BACKFILLS` departure regression
+  table for completed backfills; add a table row for each new backfill.
 - [patent-figure-sd-audit.md](patent-figure-sd-audit.md) — the follow-up audit of these lenses'
   semi-diameters and cross-section proportions against the same patent figures. Note that changing an
   aspheric surface's `sd` moves the quoted rim departure, so the data file, the analysis prose, and the
@@ -57,8 +57,9 @@ Companion references:
    rescale each polynomial coefficient: Aₙ(scaled) = Aₙ(patent) / s^(n−1).
 5. Update the data-file header note and the analysis file's "renderer is even-order only" /
    refit statements (keep the patent tables — they are the canonical source).
-6. Add departure assertions to `oddAsphereBackfill.test.ts` using analysis-quoted departure or
-   residual values, then run the fast loop plus the full catalog validation
+6. Add the lens's row of departure cases to the `BACKFILLS` table in `oddAsphereBackfill.test.ts`
+   using analysis-quoted departure values (residual-style checks, like the GFX100RF refit guard,
+   stay separate tests), then run the fast loop plus the full catalog validation
    (`npx vitest run __tests__/src/lens-data/oddAsphereBackfill.test.ts __tests__/src/utils/catalog/lensCatalog.test.ts`).
 7. Visually check the lens page (cross-section, rays at wide aperture, aspheric-compare overlay).
 

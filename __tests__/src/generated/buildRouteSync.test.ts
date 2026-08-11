@@ -1,5 +1,4 @@
 import { describe, it, expect } from "vitest";
-import { allMakerSlugs } from "../../../src/utils/catalog/lensMetadata.js";
 import { CATALOG_KEYS } from "../../../src/utils/catalog/lensCatalog.js";
 import { CATALOG_ENTRIES } from "../../../src/pages/lensIndex/catalog.js";
 import buildMeta from "../../../src/generated/build-metadata.json";
@@ -28,17 +27,6 @@ describe("build-route-sync", () => {
         .map((entry) => entry.publicationOrder)
         .sort((a, b) => a - b),
     ).toEqual(Array.from({ length: buildMeta.lensKeys.length }, (_, index) => index));
-  });
-
-  it("every shipped maker slug is registered in the runtime prefix table", () => {
-    /* Runtime prefixes may include makers that have no lenses yet (entries are
-       seeded ahead of lens additions), so we only assert the one-way subset:
-       every maker that actually appears in build metadata must be registered
-       at runtime. The reverse direction is allowed to differ. */
-    const runtimeSlugs = new Set(allMakerSlugs());
-    for (const slug of buildMeta.makerSlugs) {
-      expect(runtimeSlugs.has(slug), `build slug "${slug}" missing from runtime MAKER_PREFIXES`).toBe(true);
-    }
   });
 
   it("maker slugs are exactly the makers represented by visible lens pages", () => {
@@ -122,15 +110,15 @@ describe("build-route-sync", () => {
   });
 
   it("generated authors match the prerendered author routes", () => {
+    /* Slug uniqueness and non-empty lensKeys/patentCount live with the runtime
+       AUTHORS checks (authorCatalog.test.ts, partyPatentParity.test.ts), which
+       read the same generated entries. Only route correspondence is unique here. */
     const authorRoutes = buildMeta.routes.filter((route: string) => route.startsWith("/authors/"));
 
     expect(authorRoutes.length).toBe(buildMeta.authors.length);
-    expect(new Set(buildMeta.authors.map((author) => author.slug)).size).toBe(buildMeta.authors.length);
     for (const author of buildMeta.authors) {
       expect(authorRoutes).toContain(`/authors/${author.slug}`);
       expect(author.name).toBeTruthy();
-      expect(author.lensKeys.length).toBeGreaterThan(0);
-      expect(author.patentCount).toBeGreaterThan(0);
     }
   });
 

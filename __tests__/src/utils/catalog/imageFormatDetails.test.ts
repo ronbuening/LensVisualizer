@@ -1,20 +1,14 @@
 import { describe, expect, it } from "vitest";
 import { IMAGE_FORMAT_DETAILS, getImageFormatDetails } from "../../../../src/utils/catalog/imageFormatDetails.js";
 import { IMAGE_FORMATS } from "../../../../src/utils/catalog/lensTaxonomy.js";
+import { describeDetailRegistry } from "./detailRegistryHarness.js";
 
-describe("IMAGE_FORMAT_DETAILS", () => {
-  it("has an entry for every canonical image format", () => {
-    for (const format of IMAGE_FORMATS) {
-      expect(IMAGE_FORMAT_DETAILS[format.id], `missing entry for "${format.id}"`).toBeDefined();
-    }
-  });
-
-  it("every entry has non-empty required fields", () => {
-    for (const [formatId, details] of Object.entries(IMAGE_FORMAT_DETAILS)) {
-      expect(details.summary.length, `${formatId}.summary`).toBeGreaterThan(0);
-      expect(details.description.length, `${formatId}.description`).toBeGreaterThan(0);
-    }
-  });
+describeDetailRegistry({
+  registryName: "IMAGE_FORMAT_DETAILS",
+  registry: IMAGE_FORMAT_DETAILS,
+  ids: IMAGE_FORMATS.map((format) => format.id),
+  idNoun: "canonical image format",
+  nonEmptyStringFields: ["summary", "description"],
 });
 
 describe("getImageFormatDetails", () => {
