@@ -10,10 +10,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **556** lenses scanned
-- **777** total code-only elements found
-- **296** elements in this report
+- **776** total code-only elements found
+- **295** elements in this report
 - **116** distinct lens files affected
-- **13** active unreviewed elements have no review-record hit or explicit disposition
+- **12** active unreviewed elements have no review-record hit or explicit disposition
 - **131** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
 - **0** dispositions lack any review record
 
@@ -35,7 +35,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | D | 721334 | 1 / 1 | 1 | 1 | — | — | 1/1 | [MINOLTA AF 400mm f/4.5 APO G](../../src/lens-data/minolta/MinoltaAF400mmf45APOG.data.ts) Element 3 (1.72100 / 33.40) |
 | D | 740375 | 1 / 1 | 1 | 1 | — | — | 1/1 | [MINOLTA MC FISH-EYE ROKKOR-OK 16mm f/2.8](../../src/lens-data/minolta/MinoltaMCFishEyeRokkorOK16mmf28.data.ts) Element G9 (1.74000 / 37.50) |
 | D | 781446 | 1 / 1 | 1 | 1 | — | — | 1/1 | [MINOLTA AF 100mm f/2](../../src/lens-data/minolta/MinoltaAF100mmf2.data.ts) Element 5 (1.78100 / 44.55) |
-| D | 846238 | 1 / 1 | 1 | 1 | — | — | 1/1 | [MINOLTA AF 400mm f/4.5 APO G](../../src/lens-data/minolta/MinoltaAF400mmf45APOG.data.ts) Element 7 (1.84566 / 23.80) |
 
 ## Codes by Frequency
 
@@ -242,7 +241,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 840433 | 1 | 1 | patents/US5528428.pdf | All rows have review records |
 | 842433 | 1 | 1 | patents/JPA 2022012964-000000.pdf | All rows explicitly disposed |
 | 843242 | 1 | 1 | patents/US7307794.pdf | All rows explicitly disposed |
-| 846238 | 1 | 1 | patents/JPA 1996327896-000000.pdf | No review-record hit |
 | 849401 | 1 | 1 | patents/US20170351051A1.pdf | All rows have review records |
 | 850440 | 1 | 1 | patents/US20180164556A1.pdf | All rows explicitly disposed |
 | 852401 | 1 | 1 | patents/JPWO2019073744A1.pdf | All rows explicitly disposed |
@@ -533,7 +531,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | L1 (Element 1) | 1 | `493836 — Minolta AD/ED fluorophosphate class (catalog unresolved)` | 1.49310 / 83.60 | No catalog entry | abbe | patents/JPA 1996327896-000000.pdf | No review-record hit |
 | L2 (Element 2) | 3 | `493836 — Minolta AD/ED fluorophosphate class (catalog unresolved)` | 1.49310 / 83.60 | No catalog entry | abbe | patents/JPA 1996327896-000000.pdf | No review-record hit |
 | L3 (Element 3) | 5 | `721334 — high-index medium-dispersion glass (catalog unresolved)` | 1.72100 / 33.40 | No catalog entry | abbe | patents/JPA 1996327896-000000.pdf | No review-record hit |
-| L7 (Element 7) | 11 | `846238 — dense-flint glass (catalog unresolved)` | 1.84566 / 23.80 | No catalog entry | abbe | patents/JPA 1996327896-000000.pdf | No review-record hit |
 
 ### [MINOLTA AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) - JP 2004-109559 A
 

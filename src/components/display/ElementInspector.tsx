@@ -240,6 +240,12 @@ export default function ElementInspector({ info, L, t, showChromatic, onOpenAsph
           <span style={{ color: t.propLabel }}>Glass: </span>
           <span style={{ color: t.value }}>{info.glass}</span>
         </div>
+        {info.absorptionCoefficientPerMm !== undefined && (
+          <div>
+            <span style={{ color: t.propLabel }}>Bulk absorption: </span>
+            <span style={{ color: t.value }}>α = {fmtNumber(info.absorptionCoefficientPerMm)} mm⁻¹</span>
+          </div>
+        )}
         {(() => {
           const entries = getAsphericEntriesForElement(L, info.id);
           if (entries.length === 0) return null;
@@ -344,7 +350,6 @@ export default function ElementInspector({ info, L, t, showChromatic, onOpenAsph
                 }}
               >
                 {info.vd >= 55 ? "Low dispersion" : info.vd >= 35 ? "Normal dispersion" : "High dispersion"}
-                {info.vd >= 65 ? " (ED)" : ""}
               </span>
             </div>
           )}

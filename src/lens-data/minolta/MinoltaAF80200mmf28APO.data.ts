@@ -206,6 +206,9 @@ const LENS_DATA = {
       vd: 83.6,
       fl: 65.271203,
       glass: "493836 — Minolta AD/ED fluorophosphate class (catalog unresolved)",
+      apd: "inferred",
+      apdNote:
+        "AD/APD status is inferred from the exact 493836 Minolta glass family; this patent publishes only nd and νd, so no numeric dPgF is borrowed.",
       role: "Strong positive front member of the fixed fourth group.",
     },
     {

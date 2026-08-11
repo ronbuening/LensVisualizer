@@ -88,6 +88,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "G1",
+      diagramLabel: "G1",
       label: "Element G1",
       type: "Negative Meniscus, convex to object",
       nd: 1.6204,
@@ -101,6 +102,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "G2",
+      diagramLabel: "G2",
       label: "Element G2",
       type: "Negative Meniscus, convex to object",
       nd: 1.6176,
@@ -114,6 +116,7 @@ const LENS_DATA = {
     {
       id: 3,
       name: "G3",
+      diagramLabel: "G3",
       label: "Element G3",
       type: "Biconcave Negative",
       nd: 1.6205,
@@ -128,6 +131,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "G4",
+      diagramLabel: "G4",
       label: "Element G4",
       type: "Biconvex Positive",
       nd: 1.7495,
@@ -142,6 +146,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "G5",
+      diagramLabel: "G5",
       label: "Element G5",
       type: "Plano-Convex Positive",
       nd: 1.733,
@@ -155,6 +160,7 @@ const LENS_DATA = {
     {
       id: 6,
       name: "G7",
+      diagramLabel: "G7",
       label: "Element G7",
       type: "Positive Meniscus, convex to image",
       nd: 1.6214,
@@ -169,6 +175,7 @@ const LENS_DATA = {
     {
       id: 7,
       name: "G8",
+      diagramLabel: "G8",
       label: "Element G8",
       type: "Negative Meniscus, convex to image",
       nd: 1.733,
@@ -183,6 +190,7 @@ const LENS_DATA = {
     {
       id: 8,
       name: "G9",
+      diagramLabel: "G9",
       label: "Element G9",
       type: "Biconcave Negative",
       nd: 1.74,
@@ -197,6 +205,7 @@ const LENS_DATA = {
     {
       id: 9,
       name: "G10",
+      diagramLabel: "G10",
       label: "Element G10",
       type: "Biconvex Positive",
       nd: 1.5688,
@@ -211,6 +220,7 @@ const LENS_DATA = {
     {
       id: 10,
       name: "G11",
+      diagramLabel: "G11",
       label: "Element G11",
       type: "Biconvex Positive",
       nd: 1.5168,

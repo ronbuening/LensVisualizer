@@ -60,6 +60,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
+      diagramLabel: "L1",
       label: "Element 1",
       type: "Plano-Convex Positive",
       nd: 1.60311,
@@ -71,6 +72,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L2",
+      diagramLabel: "L2",
       label: "Element 2",
       type: "Negative Meniscus",
       nd: 1.72342,
@@ -83,6 +85,7 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L3",
+      diagramLabel: "L3",
       label: "Element 3",
       type: "Positive Meniscus",
       nd: 1.5168,
@@ -95,6 +98,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L4",
+      diagramLabel: "L4",
       label: "Element 4",
       type: "Negative Meniscus",
       nd: 1.61293,
@@ -106,6 +110,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L5",
+      diagramLabel: "L5",
       label: "Element 5",
       type: "Plano-Concave Absorbing ND",
       nd: 1.5069,
@@ -119,6 +124,7 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L6",
+      diagramLabel: "L6",
       label: "Element 6",
       type: "Plano-Convex Positive",
       nd: 1.50137,
@@ -131,6 +137,7 @@ const LENS_DATA = {
     {
       id: 7,
       name: "L7",
+      diagramLabel: "L7",
       label: "Element 7",
       type: "Biconvex Positive",
       nd: 1.58913,
@@ -142,6 +149,7 @@ const LENS_DATA = {
     {
       id: 8,
       name: "L8",
+      diagramLabel: "L8",
       label: "Element 8",
       type: "Negative Meniscus",
       nd: 1.62041,

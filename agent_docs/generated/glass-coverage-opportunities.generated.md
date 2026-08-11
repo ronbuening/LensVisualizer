@@ -10,11 +10,11 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **556** lenses scanned (**546** visible)
-- **5446 / 6129** non-air surfaces use strict catalog Sellmeier data (88.9%)
-- **5457 / 6129** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 89.0%)
+- **5447 / 6129** non-air surfaces use strict catalog Sellmeier data (88.9%)
+- **5458 / 6129** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 89.1%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
-- **296** code-only missing-Sellmeier elements in Sweep 2: **13** active unreviewed, **131** self-recording explicit dispositions, **0** dispositions missing any review record
+- **295** code-only missing-Sellmeier elements in Sweep 2: **12** active unreviewed, **131** self-recording explicit dispositions, **0** dispositions missing any review record
 - **0** unresolved named-token elements in Sweep 2B, producing **0** token occurrences across **0** distinct tokens
 - **0** Tier A proprietary backfill rows in Sweep 3
 
@@ -176,7 +176,6 @@ Add catalog entries only when public coefficient-backed vendor data is available
 | 740375 | 1 | 1 | patents/US3589798.pdf | [MINOLTA MC FISH-EYE ROKKOR-OK 16mm f/2.8](../../src/lens-data/minolta/MinoltaMCFishEyeRokkorOK16mmf28.data.ts) Element G9 (1.74000 / 37.50) |
 | 750251 | 1 | 1 | patents/JPA 1989039542-000000.pdf | [MINOLTA AF 80-200mm f/2.8 APO](../../src/lens-data/minolta/MinoltaAF80200mmf28APO.data.ts) Element 7 (1.75000 / 25.10) |
 | 781446 | 1 | 1 | patents/JPA 1987244010-000000.pdf | [MINOLTA AF 100mm f/2](../../src/lens-data/minolta/MinoltaAF100mmf2.data.ts) Element 5 (1.78100 / 44.55) |
-| 846238 | 1 | 1 | patents/JPA 1996327896-000000.pdf | [MINOLTA AF 400mm f/4.5 APO G](../../src/lens-data/minolta/MinoltaAF400mmf45APOG.data.ts) Element 7 (1.84566 / 23.80) |
 
 ## Sweep 2B - Named Tokens Missing Catalog Resolution
 

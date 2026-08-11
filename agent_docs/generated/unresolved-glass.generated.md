@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **556** lenses scanned
 - **6129** non-air surfaces examined
 - **6136** element glass declarations examined
-- **351** non-explicit-unmatched annotations did not resolve
-- **181** distinct unresolved glass-like tokens found
+- **350** non-explicit-unmatched annotations did not resolve
+- **180** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -145,7 +145,6 @@ or per-lens patent backfills.
 | 805410 | 1 | 1 | |
 | 835447 | 1 | 1 | |
 | 840433 | 1 | 1 | |
-| 846238 | 1 | 1 | |
 | 849401 | 1 | 1 | |
 | 852402 | 1 | 1 | |
 | 855399 | 1 | 1 | |
@@ -774,10 +773,6 @@ or per-lens patent backfills.
 ### 840433 — 1 occurrence
 
 - [NIKON NIKKOR 28mm f/2.8 (Nikon 28Ti)](../../src/lens-data/nikon/Nikon28Ti28mmf28.data.ts) 3: `840433 - lanthanum flint (patent nd=1.84042, vd=43.30; no exact public catalog match)`
-
-### 846238 — 1 occurrence
-
-- [MINOLTA AF 400mm f/4.5 APO G](../../src/lens-data/minolta/MinoltaAF400mmf45APOG.data.ts) 11: `846238 — dense-flint glass (catalog unresolved)`
 
 ### 849401 — 1 occurrence
 

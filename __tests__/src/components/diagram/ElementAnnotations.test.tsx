@@ -139,6 +139,33 @@ describe("ElementAnnotations", () => {
     expect(texts[5].textContent).toContain("45"); // vd=45
   });
 
+  it("staggers crowded Abbe badges and moves lower annotation rows clear", () => {
+    const crowdedShapes = mockShapes.map((shape, index) => ({ ...shape, z1: index, z2: index + 0.5 }));
+    const { container } = render(
+      <svg>
+        <ElementAnnotations
+          L={mockLens}
+          t={mockTheme}
+          shapes={crowdedShapes}
+          sx={identity}
+          sy={identity}
+          zPos={[0, 5, 6, 11, 12, 17]}
+          act={null}
+          showChromatic={true}
+        />
+      </svg>,
+    );
+
+    const texts = Array.from(container.querySelectorAll("text"));
+    const firstBadge = texts.find((node) => node.textContent === "ν60")!;
+    const secondBadge = texts.find((node) => node.textContent === "ν30")!;
+    const group = texts.find((node) => node.textContent === "FRONT")!;
+    const doublet = texts.find((node) => node.textContent === "DOUBLET")!;
+    expect(firstBadge.getAttribute("y")).not.toBe(secondBadge.getAttribute("y"));
+    expect(group.getAttribute("y")).toBe("-15");
+    expect(doublet.getAttribute("y")).toBe("-30");
+  });
+
   it("color-codes Abbe badges by dispersion class", () => {
     const { container } = render(
       <svg>

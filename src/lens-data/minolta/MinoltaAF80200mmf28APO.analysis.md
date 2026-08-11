@@ -111,7 +111,7 @@ L11 terminates Group III with nearly equal and opposite standalone power relativ
 
 nd = 1.49310, νd = 83.6. Glass: 493836 — Minolta AD/ED fluorophosphate class (catalog unresolved). f = +65.271 mm.
 
-L12 is the first and strongest positive element of fixed Group IV. Its very high Abbe number indicates unusually low primary dispersion in the d-line/Abbe description, but the audited coordinates do not match a public catalog glass closely enough to justify a vendor name. In particular, the prescription does not provide the line-index or partial-dispersion data needed to classify L12 as ED, fluorite, or anomalous-dispersion glass.
+L12 is the first and strongest positive element of fixed Group IV. Its very high Abbe number indicates unusually low primary dispersion in the d-line/Abbe description, but the audited coordinates do not match a public catalog glass closely enough to justify a vendor name. The `APD (INFERRED)` tag is supported at the exact `493836` Minolta material-family level by the AF 200mm patent; because this prescription does not publish line indices or partial dispersion, no numeric `dPgF` is borrowed and no fluorite identity is claimed.
 
 ### L13 - Biconcave Negative
 
@@ -149,7 +149,7 @@ The patent publishes `nd` and `νd` only. It does not identify glass manufacture
 | 750251 — dense-flint glass (catalog unresolved) | 1.75000 | 25.1 | L7 | High-index, low-Abbe positive member; no defensible catalog identity |
 | 694532 class (vendor unresolved) | 1.69350 | 53.2 | L8 | Rear negative member of Group II |
 | 773496 class (vendor unresolved) | 1.77250 | 49.6 | L9 | High-index positive member leading Group III |
-| 493836 — Minolta AD/ED fluorophosphate class (catalog unresolved) | 1.49310 | 83.6 | L12 | Very high-Abbe positive member; no catalog curve asserted |
+| 493836 — Minolta AD/ED fluorophosphate class (catalog unresolved) | 1.49310 | 83.6 | L12 | APD inferred from the exact Minolta material family; no catalog curve or numeric dPgF asserted |
 | 755275 class (vendor unresolved) | 1.75520 | 27.5 | L13 | High-index, low-Abbe negative member of Group IV |
 | 717295 class (vendor unresolved) | 1.71736 | 29.5 | L14 | High-index positive meniscus in Group IV |
 | 834372 class (vendor unresolved) | 1.83400 | 37.2 | L15 | Very high-index negative meniscus in Group IV |
@@ -157,7 +157,7 @@ The patent publishes `nd` and `νd` only. It does not identify glass manufacture
 
 The coordinate audit finds exact or near-exact entries in more than one manufacturer catalog for several class-labeled rows. L1, L2, and L10 use the compatible S-FSL5 curve while explicitly leaving the production supplier unspecified. L7 and L12 retain code-leading unresolved labels so future coefficient-backed catalog additions can upgrade them without implying a vendor identity now.
 
-The commercial product name contains “APO,” but that branding is not used here as evidence of quantified apochromatic performance. Abbe number alone describes primary dispersion and does not establish secondary-spectrum correction. Without published line indices, `dPgF`, or a validated specific Sellmeier glass assignment for the relevant elements, the prescription is not given an independent APO or anomalous-partial-dispersion classification.
+The commercial product name contains “APO,” but that branding is not used here as evidence of quantified apochromatic system performance. Abbe number alone describes primary dispersion and does not establish secondary-spectrum correction. L12's family-level APD tag records the strongest available material evidence while keeping the prescription on an Abbe-only chromatic model until source-specific line indices, `dPgF`, or a validated Sellmeier assignment becomes available.
 
 ## Focus Mechanism
 
@@ -214,3 +214,4 @@ The prescription is all-spherical. No aspheric coefficients, conic constants, di
 1. **JP1989-039542**, 大口径比望遠ズームレンズ, Minolta Co., Ltd., filed 1987-08-06 and published 1989-02-09. Example 1 supplies the numerical prescription and 82-140-195 mm spacing table; Fig. 1 supplies the four-group optical section.
 2. **Minolta factory service manual, AF Zoom 80-200mm F2.8, lens code 2589-100 / Maxxum code 2589-600.** Manufacturer-authored service material, consulted as an archival scan hosted by AllPhotoLenses, used for the production 16-element/13-group identity, Minolta A mount, front-focus mechanism, first-group focusing, Groups II/III zoom motion, fixed Group IV, constant zoom length, 1.8 m minimum focus distance, diaphragm location within Group IV, and the 2.4 mm minimum-side aperture adjustment.
 3. **Manufacturer optical-glass catalogs audited for coordinate compatibility:** OHARA, HOYA, SCHOTT, HIKARI, CDGM, and SUMITA. These comparisons support the conservative class/unmatched annotations but do not establish the actual Minolta glass vendor or melt identity.
+4. **Minolta US 4,786,152, Embodiment 3.** Used only as cross-patent evidence that the exact `493836` material family is anomalous-dispersion glass, not as a source of numeric spectral data for this prescription.

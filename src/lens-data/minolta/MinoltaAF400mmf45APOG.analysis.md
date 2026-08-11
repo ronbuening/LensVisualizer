@@ -40,11 +40,15 @@ The patent also does not publish clear semi-diameters. The surface semi-diameter
 
 L1 is the first converging element of fixed Gr1. It shares its d-line index and Abbe number with L2, so the front pair begins with two relatively low-index, high-Abbe positive elements before the negative L3. The standalone focal length is reported for the element isolated in air; it is not the same as L1’s in-situ contribution inside the complete thick group.
 
+The `APD (INFERRED)` classification comes from the exact `493836` Minolta glass family, which is independently documented with anomalous partial dispersion in the Minolta AF 200mm patent. This patent publishes only `nd` and `νd`, so the model does not borrow that other prescription's numeric `dPgF` value.
+
 ### L2 — Biconvex Positive
 
 `nd = 1.49310`, `νd = 83.6`. Glass: `493836 — Minolta AD/ED fluorophosphate class (catalog unresolved)`. Standalone `f = +219.750 mm`.
 
 L2 continues the positive front-group power with nearly the same standalone power as L1. The 0.400 mm air gap between L1 and L2 keeps the two lenses optically distinct rather than forming a cemented pair. In the complete Gr1 assembly, L1 and L2 act together with L3 to produce the group’s +183.752680 mm isolated EFL.
+
+L2 receives the same family-level `APD (INFERRED)` tag as L1, with the same explicit limitation: no partial-dispersion number is transferred into this prescription.
 
 ### L3 — Biconcave Negative
 
@@ -66,7 +70,7 @@ The patent’s focus-group condition applies to Gr2 as a whole, not to either me
 
 **L6:** `nd = 1.65844`, `νd = 50.9`. Glass: `N-SSK5 (SCHOTT catalog equivalent; patent 658509; production supplier unspecified)`. Standalone `f = -60.264 mm`.
 
-**L7:** `nd = 1.84566`, `νd = 23.8`. Glass: `846238 — dense-flint glass (catalog unresolved)`. Standalone `f = +135.182 mm`.
+**L7:** `nd = 1.84566`, `νd = 23.8`. Glass: `J-SF03 / H-ZF52 / FDS90 catalog-equivalent dense-flint class (patent 846238; production supplier unspecified)`. Standalone `f = +135.182 mm`.
 
 L6 is the strongest negative standalone element in the prescription. It is cemented to the high-index, low-Abbe positive meniscus L7 at surface 11. Unlike the first cemented pair, this D2 pair remains strongly negative when isolated in air, with EFL `-99.746001 mm`. It therefore supplies most of the negative character of Gr2, whose complete isolated EFL is -113.226858 mm.
 
@@ -91,9 +95,9 @@ The patent publishes only d-line refractive index and Abbe number for each glass
 | L4 | 1.62004 | 36.3 | `E-F2 catalog equivalent (patent 620363)` |
 | L5, L8 | 1.48749 | 70.2 | `S-FSL5 catalog equivalent (patent 487702)` |
 | L6 | 1.65844 | 50.9 | `N-SSK5 catalog equivalent (patent 658509)` |
-| L7 | 1.84566 | 23.8 | `846238 — dense-flint glass (catalog unresolved)` |
+| L7 | 1.84566 | 23.8 | `J-SF03 / H-ZF52 / FDS90 catalog-equivalent dense-flint class (patent 846238)` |
 
-The glass palette spans a wide range of Abbe numbers, but the patent names no glass vendor and does not publish per-element `nC`, `nF`, `ng`, or `dPgF`. An independent catalog-coordinate check supports E-F2 for L4, S-FSL5 for L5/L8, and N-SSK5 for L6 as close modern equivalents. These labels enable compatible Sellmeier curves without claiming the production melts came from those vendors. L1/L2, L3, and L7 remain coordinate-only, and `APO` remains product branding rather than a modeled spectral classification.
+The glass palette spans a wide range of Abbe numbers, but the patent names no glass vendor and does not publish per-element `nC`, `nF`, `ng`, or `dPgF`. An independent catalog-coordinate check supports E-F2 for L4, S-FSL5 for L5/L8, N-SSK5 for L6, and the J-SF03/H-ZF52/FDS90 dense-flint family for L7 as compatible modern equivalents. These labels enable compatible Sellmeier curves without claiming the production melts came from those vendors. L1/L2 retain an inferred APD family tag but no borrowed partial-dispersion value; L3 remains coordinate-only. `APO` is still product branding rather than an independently quantified system-performance claim.
 
 ## Focus Mechanism
 
@@ -144,5 +148,6 @@ The system is entirely spherical, so there are no aspheric coefficients, conic c
 
 1. Minolta Co., Ltd., JP1996-327896 A (特開平8-327896 A), “Lens system” (レンズ系), Example 1; especially Table 1, Table 4, and ¶0017–0021, ¶0029–0038.
 2. Minolta Co., Ltd., owner’s manual for AF APO Telephoto 300mm F4 APO G / AF 400mm F4.5 APO G, document 9222-2640-14 (P9611-B509), manufacturer-authored archival scan.
-3. HOYA E-F2 and OHARA S-FSL5 optical-glass catalog data; used only for compatible dispersion curves and coordinate-class comparison.
+3. HOYA E-F2/FDS90, OHARA S-FSL5, Hikari J-SF03, and CDGM H-ZF52 optical-glass catalog data; used only for compatible dispersion curves and coordinate-class comparison.
 4. SCHOTT Advanced Optics N-SSK5 catalog data; used only for a compatible dispersion curve and cross-vendor coordinate comparison.
+5. Minolta US 4,786,152, Embodiment 3; used only as cross-patent evidence that the exact `493836` material family is anomalous-dispersion glass, not as a source of numeric spectral data for this prescription.

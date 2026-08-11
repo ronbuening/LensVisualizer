@@ -14,14 +14,14 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 - **556** lenses scanned
 - **6121** glass elements examined
-- **1535** elements have multiple coordinate-compatible candidates
+- **1536** elements have multiple coordinate-compatible candidates
 - **345** lens files are affected
 - **137** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **148** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
-| Smallest reference-index residual | 784 |
+| Smallest reference-index residual | 785 |
 | Evidence-source priority | 486 |
 | Vendor context | 261 |
 | Stable canonical-name order | 4 |
@@ -360,6 +360,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `N-BK7 / BK7-family crown (517/642 class)` | 1.51680 / 64.20 (d) | N-BK7 — direct name evidence outranks six-digit code evidence. | H-K9L (CDGM, code, alternate code row)<br>H-K9LGT (CDGM, code, alternate code row) | 1 | [MINOLTA AF 35-105mm f/3.5-4.5 New (v2)](../../src/lens-data/minolta/MinoltaAF35105mmf3545v2.data.ts) L9 |
 | `E-F2 (HOYA catalog equivalent; patent 620363; production supplier unspecified)` | 1.62004 / 36.30 (d) | E-F2 — direct name evidence outranks six-digit code evidence. | S-TIM2 (Ohara, code, vendor ✗, preferred code row) | 1 | [MINOLTA AF 400mm f/4.5 APO G](../../src/lens-data/minolta/MinoltaAF400mmf45APOG.data.ts) L4 |
 | `N-SSK5 (SCHOTT catalog equivalent; patent 658509; production supplier unspecified)` | 1.65844 / 50.90 (d) | N-SSK5 — direct name evidence outranks six-digit code evidence. | S-BSM25 (Ohara, code, vendor ✗, alternate code row)<br>BACED5 (Hoya, code, vendor ✗, alternate code row) | 1 | [MINOLTA AF 400mm f/4.5 APO G](../../src/lens-data/minolta/MinoltaAF400mmf45APOG.data.ts) L6 |
+| `J-SF03 / H-ZF52 / FDS90 catalog-equivalent dense-flint class (patent 846238; production supplier unspecified)` | 1.84566 / 23.80 (d) | J-SF03 — smallest d-line \|Δn\| (1.0e-3 vs 1.0e-3) | H-ZF52 (CDGM, name)<br>FDS90 (Hoya, name) | 1 | [MINOLTA AF 400mm f/4.5 APO G](../../src/lens-data/minolta/MinoltaAF400mmf45APOG.data.ts) L7 |
 | `F2 / S-TIM2 class (620/363; vendor not specified)` | 1.62004 / 36.30 (d) | F2 — smallest d-line \|Δn\| (1.4e-7 vs 8.4e-7) | S-TIM2 (Ohara, name)<br>E-F2 (Hoya, code, alternate code row) | 1 | [MINOLTA AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) L1 |
 | `E-FD1L (HOYA) / S-TIH1 / N-SF1 class` | 1.71736 / 29.50 (d) | S-TIH1 — direct name evidence outranks alias evidence. | SF1 (Schott, alias, vendor ✗) | 1 | [MINOLTA AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) L4 |
 | `FDS90 / N-SF57 / S-TIH53 dense-flint class` | 1.84666 / 23.82 (d) | S-TIH53 — smallest d-line \|Δn\| (3.2e-7 vs 3.2e-6) | FDS90 (Hoya, name) | 2 | [MINOLTA AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) L7 |

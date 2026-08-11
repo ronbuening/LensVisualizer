@@ -10,8 +10,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **556** lenses scanned
-- **777** total code-only elements found
-- **777** elements in this report
+- **776** total code-only elements found
+- **776** elements in this report
 - **179** distinct lens files affected
 
 ## Codes by Frequency
@@ -351,7 +351,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 840433 | 1 | 1 | patents/US5528428.pdf | All rows have review records |
 | 842433 | 1 | 1 | patents/JPA 2022012964-000000.pdf | All rows explicitly disposed |
 | 843242 | 1 | 1 | patents/US7307794.pdf | All rows explicitly disposed |
-| 846238 | 1 | 1 | patents/JPA 1996327896-000000.pdf | No review-record hit |
 | 847240 | 1 | 1 | patents/US7307794.pdf | No review-record hit |
 | 849401 | 1 | 1 | patents/US20170351051A1.pdf | All rows have review records |
 | 850323 | 1 | 1 | patents/JP2022092388A.pdf | All rows have review records |
@@ -819,7 +818,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L1 (Element 1) | 1 | `493836 — Minolta AD/ED fluorophosphate class (catalog unresolved)` | 1.49310 / 83.60 | No catalog entry | abbe | patents/JPA 1996327896-000000.pdf | No review-record hit |
 | L2 (Element 2) | 3 | `493836 — Minolta AD/ED fluorophosphate class (catalog unresolved)` | 1.49310 / 83.60 | No catalog entry | abbe | patents/JPA 1996327896-000000.pdf | No review-record hit |
 | L3 (Element 3) | 5 | `721334 — high-index medium-dispersion glass (catalog unresolved)` | 1.72100 / 33.40 | No catalog entry | abbe | patents/JPA 1996327896-000000.pdf | No review-record hit |
-| L7 (Element 7) | 11 | `846238 — dense-flint glass (catalog unresolved)` | 1.84566 / 23.80 | No catalog entry | abbe | patents/JPA 1996327896-000000.pdf | No review-record hit |
 
 ### [MINOLTA AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) - JP 2004-109559 A
 
