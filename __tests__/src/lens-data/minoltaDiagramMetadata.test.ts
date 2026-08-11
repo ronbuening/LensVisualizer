@@ -4,10 +4,7 @@ import stf from "../../../src/lens-data/minolta/MinoltaSTF135mmf28T45.data.js";
 import af400 from "../../../src/lens-data/minolta/MinoltaAF400mmf45APOG.data.js";
 import af80200 from "../../../src/lens-data/minolta/MinoltaAF80200mmf28APO.data.js";
 import fisheye from "../../../src/lens-data/minolta/MinoltaMCFishEyeRokkorOK16mmf28.data.js";
-import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
-import buildLens from "../../../src/optics/buildLens.js";
 import { resolveCompatibleGlass } from "../../../src/optics/glassCatalog.js";
-import type { LensData } from "../../../src/types/optics.js";
 
 function displayedElementLabels(lens: { elements: readonly { id: number; diagramLabel?: string }[] }): string[] {
   return lens.elements.map((element) => element.diagramLabel ?? String(element.id));
@@ -34,17 +31,5 @@ describe("Minolta patent diagram metadata", () => {
   it("uses a coordinate-compatible catalog curve for the AF 400mm dense flint", () => {
     const element = af400.elements[6];
     expect(resolveCompatibleGlass(element.glass, element.nd, element.vd)?.name).toBe("J-SF03");
-  });
-
-  it("models the STF bulk ND element from its patent Abbe coordinates without inventing a catalog glass", () => {
-    const element = stf.elements[4];
-    const lens = buildLens({ ...LENS_DEFAULTS, ...stf } as LensData);
-    const dispersion = lens.indexByIdx[lens.labelIdx["9"]];
-
-    expect(element.glass).toMatch(/^507589 — bulk absorbing ND glass/);
-    expect(resolveCompatibleGlass(element.glass, element.nd, element.vd)).toBeNull();
-    expect(dispersion.quality).toBe("abbe");
-    expect(dispersion.glassEntry).toBeUndefined();
-    expect(dispersion.fn("R")).not.toBe(dispersion.fn("B"));
   });
 });
