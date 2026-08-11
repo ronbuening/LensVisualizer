@@ -2,12 +2,11 @@
 
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { act, cleanup, fireEvent, screen } from "@testing-library/react";
-import { HelmetProvider } from "react-helmet-async";
 import { Route, Routes, useNavigate } from "react-router";
 import UpdatesPage from "../../../src/pages/UpdatesPage.js";
 import { CHANGELOG } from "../../../src/utils/content/changelogData.js";
 import { changelogEntryId } from "../../../src/utils/content/changelogHelpers.js";
-import { clearBrowserState, installMatchMediaMock, renderWithRouter } from "../../testUtils.js";
+import { clearBrowserState, installMatchMediaMock, renderPage } from "../../testUtils.js";
 
 vi.mock("../../../src/components/SEOHead.js", () => ({
   default: function SEOHead() {
@@ -25,20 +24,18 @@ function HashNavButton({ hash }: { hash: string }) {
 }
 
 function renderUpdatesPage(initialEntry: string, navHash?: string) {
-  return renderWithRouter(
-    <HelmetProvider>
-      <Routes>
-        <Route
-          path="/updates"
-          element={
-            <>
-              <UpdatesPage />
-              {navHash != null && <HashNavButton hash={navHash} />}
-            </>
-          }
-        />
-      </Routes>
-    </HelmetProvider>,
+  return renderPage(
+    <Routes>
+      <Route
+        path="/updates"
+        element={
+          <>
+            <UpdatesPage />
+            {navHash != null && <HashNavButton hash={navHash} />}
+          </>
+        }
+      />
+    </Routes>,
     { initialEntries: [initialEntry] },
   );
 }

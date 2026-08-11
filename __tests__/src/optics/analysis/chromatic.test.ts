@@ -9,9 +9,17 @@ import {
   prepareRuntimeState,
   summarizeChromaticFieldFocus2,
 } from "../../../../src/optics/compat.js";
+import {
+  computeChromaticAnalysis,
+  computeLateralColorCurve,
+  computeLongitudinalChromaticFocus,
+} from "../../../../src/optics/chromatic/analysis.js";
 import { doLayout } from "../../../../src/optics/optics.js";
 import type { FieldCurvatureFieldResult, FieldCurvatureResult } from "../../../../src/optics/aberrationAnalysis.js";
 
+/* The single-field variants of these fixtures leave the max-field reduction
+ * in summarizeChromaticFieldFocus2 unexecuted — keep at least two curve
+ * fields in the summary test. */
 function chromaticFixture() {
   const L = buildChromaticPositiveElementLens();
   const { z } = doLayout(0, 0, L);
@@ -33,48 +41,25 @@ describe("chromatic analysis helpers", () => {
     expect(result.offAxisAttemptedRayCount).toBeGreaterThanOrEqual(3);
   });
 
-  it("computes longitudinal chromatic focus from the outermost usable marginal ray", () => {
+  it("matches the runtime chromatic helpers through the v2 wrappers", () => {
+    /* Behavioral coverage of these helpers lives in chromatic/analysis.test.ts;
+       the v2 names only need to prove they delegate to the same runtime code. */
     const { L, z, currentEPSD, currentPhysStopSD } = chromaticFixture();
+    const curveOptions = { channels: ["R", "G", "B"] as const, fieldFractions: [0, 0.5, 1] };
 
-    const result = computeLongitudinalChromaticFocus2(L, z, 0, 0, currentEPSD, currentPhysStopSD);
+    const longitudinal = computeLongitudinalChromaticFocus2(L, z, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(longitudinal).not.toBeNull();
+    expect(longitudinal).toEqual(computeLongitudinalChromaticFocus(L, z, 0, 0, currentEPSD, currentPhysStopSD));
 
-    expect(result).not.toBeNull();
-    expect(result?.channels).toEqual(["R", "G", "B", "V"]);
-    expect(result?.referenceChannel).toBe("G");
-    expect(result?.spread.axis).toBe("onAxis");
-    expect(result?.spread.channels).toEqual(["R", "G", "B", "V"]);
-    expect(result?.longitudinalSpreadMm).toBeGreaterThan(0);
-    expect(result?.transverseSpreadMm).toBeGreaterThanOrEqual(0);
-    expect(result?.validChannelCount).toBeGreaterThanOrEqual(2);
-    expect(result?.samples.find((sample) => sample.channel === "G")?.relativeFocusShiftMm).toBeCloseTo(0);
-  });
+    const lateral = computeLateralColorCurve2(L, z, 0, 0, currentEPSD, currentPhysStopSD, 0, undefined, curveOptions);
+    expect(lateral).not.toBeNull();
+    expect(lateral).toEqual(
+      computeLateralColorCurve(L, z, 0, 0, currentEPSD, currentPhysStopSD, 0, undefined, curveOptions),
+    );
 
-  it("computes lateral color as chief-ray image-height spread across fields", () => {
-    const { L, z, currentEPSD, currentPhysStopSD } = chromaticFixture();
-
-    const result = computeLateralColorCurve2(L, z, 0, 0, currentEPSD, currentPhysStopSD, 0, undefined, {
-      channels: ["R", "G", "B"],
-      fieldFractions: [0, 0.5, 1],
-    });
-
-    expect(result).not.toBeNull();
-    expect(result?.channels).toEqual(["R", "G", "B"]);
-    expect(result?.referenceChannel).toBe("G");
-    expect(result?.fields).toHaveLength(3);
-    expect(result?.fields[0].fieldFraction).toBe(0);
-    expect(result?.fields.some((field) => field.usable)).toBe(true);
-    expect(result?.maxLateralSpreadMm).toBeGreaterThanOrEqual(0);
-  });
-
-  it("returns null chromatic sections when fewer than two channels are selected", () => {
-    const { L, z, currentEPSD, currentPhysStopSD } = chromaticFixture();
-
-    const result = computeChromaticAnalysis2(L, z, 0, 0, currentEPSD, currentPhysStopSD, 0, undefined, {
-      channels: ["R"],
-    });
-
-    expect(result.longitudinalFocus).toBeNull();
-    expect(result.lateralColor).toBeNull();
+    expect(computeChromaticAnalysis2(L, z, 0, 0, currentEPSD, currentPhysStopSD)).toEqual(
+      computeChromaticAnalysis(L, z, 0, 0, currentEPSD, currentPhysStopSD),
+    );
   });
 
   it("matches the prepared-state chromatic analysis adapter", () => {
@@ -113,6 +98,12 @@ describe("chromatic analysis helpers", () => {
           { channel: "G", tangentialShiftMm: 0, sagittalShiftMm: 0.05 },
           { channel: "B", tangentialShiftMm: 0.2, sagittalShiftMm: 0.4 },
         ]),
+        // Second field with a smaller spread so the max-field reduction has to compare.
+        field(1, [
+          { channel: "R", tangentialShiftMm: -0.02, sagittalShiftMm: -0.02 },
+          { channel: "G", tangentialShiftMm: 0, sagittalShiftMm: 0 },
+          { channel: "B", tangentialShiftMm: 0.05, sagittalShiftMm: 0.08 },
+        ]),
       ],
     } as FieldCurvatureResult;
 
@@ -122,6 +113,6 @@ describe("chromatic analysis helpers", () => {
     expect(summary?.maxTangentialSpreadMm).toBeCloseTo(0.3);
     expect(summary?.maxSagittalSpreadMm).toBeCloseTo(0.45);
     expect(summary?.maxFocusFieldFraction).toBe(0.5);
-    expect(summary?.edgeFocusSpreadMm).toBeCloseTo(0.2);
+    expect(summary?.edgeFocusSpreadMm).toBeCloseTo(0.2); // from the outermost `fields` entry, not curveFields
   });
 });

@@ -686,6 +686,8 @@ export default function validateLensData(data: UntrustedLensData): string[] {
     if (typeof s.d !== "number") errors.push(`surfaces[${i}] ("${s.label}"): missing or invalid d`);
     if (typeof s.nd !== "number") errors.push(`surfaces[${i}] ("${s.label}"): missing or invalid nd`);
     if (typeof s.sd !== "number") errors.push(`surfaces[${i}] ("${s.label}"): missing or invalid sd`);
+    else if (!isFinite(s.sd) || s.sd <= 0)
+      errors.push(`surfaces[${i}] ("${s.label}"): sd must be a positive finite number`);
     if (s.innerSd !== undefined) {
       if (typeof s.innerSd !== "number" || !isFinite(s.innerSd) || s.innerSd < 0) {
         errors.push(`surfaces[${i}] ("${s.label}"): innerSd must be a finite non-negative number when provided`);
@@ -757,6 +759,9 @@ export default function validateLensData(data: UntrustedLensData): string[] {
     elemIds.add(e.id);
     if (e.indexReference !== undefined && e.indexReference !== "d" && e.indexReference !== "e") {
       errors.push(`elements[${i}]: indexReference must be "d" or "e" when provided`);
+    }
+    if (e.apd !== undefined && e.apd !== false && e.apd !== "patent" && e.apd !== "inferred") {
+      errors.push(`elements[${i}]: apd must be "patent", "inferred", or false when provided`);
     }
   }
 

@@ -36,17 +36,6 @@ afterEach(() => {
   vi.restoreAllMocks();
 });
 
-/* ── Return value shape ── */
-
-describe("useURLSync — return value", () => {
-  it("returns an object with updateURLWithSliders function", () => {
-    const dispatch = vi.fn() as unknown as Dispatch<LensAction>;
-    const state = makeState();
-    const { result } = renderHook(() => useURLSync(state, dispatch, null));
-    expect(typeof result.current.updateURLWithSliders).toBe("function");
-  });
-});
-
 /* ── Immediate URL update on lens selection change ── */
 
 describe("useURLSync — immediate URL update on lens change", () => {

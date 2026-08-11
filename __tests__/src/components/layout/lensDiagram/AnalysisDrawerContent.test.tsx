@@ -6,6 +6,7 @@ import AnalysisDrawerContent from "../../../../../src/components/layout/lensDiag
 import { ANALYSIS_TAB_RENDERERS } from "../../../../../src/components/layout/lensDiagram/analysisTabRenderers.js";
 import { ANALYSIS_TABS } from "../../../../../src/components/layout/lensDiagram/analysisTabs.js";
 import type { RuntimeLens } from "../../../../../src/types/optics.js";
+import type { AnalysisTabId } from "../../../../../src/types/state.js";
 import type { Theme } from "../../../../../src/types/theme.js";
 
 const {
@@ -138,87 +139,6 @@ describe("AnalysisDrawerContent", () => {
     mockVignettingTab.mockReset();
   });
 
-  it("maps the aberrations tab to AberrationsPanel and passes the expanded state", () => {
-    render(<AnalysisDrawerContent {...baseProps} activeTab="aberrations" />);
-
-    expect(screen.getByText("Aberrations:true")).toBeTruthy();
-    expect(mockAberrationsPanel).toHaveBeenCalledTimes(1);
-    expect(mockAberrationsPanel.mock.calls[0][0].expanded).toBe(true);
-    expect(mockAberrationsPanel.mock.calls[0][0].onExpandedChange).toBe(baseProps.onAberrationsExpandedChange);
-    expect(mockAberrationsPanel.mock.calls[0][0].preparedState).toBe(mockPreparedState);
-  });
-
-  it("maps the summary tab to OpticalSummaryTab", () => {
-    render(<AnalysisDrawerContent {...baseProps} activeTab="summary" />);
-
-    expect(screen.getByText("Summary")).toBeTruthy();
-    expect(mockOpticalSummaryTab).toHaveBeenCalledTimes(1);
-    expect(mockOpticalSummaryTab.mock.calls[0][0].preparedState).toBe(mockPreparedState);
-    expect(mockAberrationsPanel).not.toHaveBeenCalled();
-  });
-
-  it("maps the distortion tab to DistortionTab", () => {
-    render(<AnalysisDrawerContent {...baseProps} activeTab="distortion" />);
-
-    expect(screen.getByText("Distortion")).toBeTruthy();
-    expect(mockDistortionTab).toHaveBeenCalledTimes(1);
-    expect(mockDistortionTab.mock.calls[0][0].preparedState).toBe(mockPreparedState);
-    expect(mockAberrationsPanel).not.toHaveBeenCalled();
-  });
-
-  it("maps the bokeh tab to BokehTab", () => {
-    render(<AnalysisDrawerContent {...baseProps} activeTab="bokeh" />);
-
-    expect(screen.getByText("Bokeh")).toBeTruthy();
-    expect(mockBokehTab).toHaveBeenCalledTimes(1);
-    expect(mockBokehTab.mock.calls[0][0].preparedState).toBe(mockPreparedState);
-    expect(mockAberrationsPanel).not.toHaveBeenCalled();
-  });
-
-  it("maps the chromatic tab to ChromaticTab", () => {
-    render(<AnalysisDrawerContent {...baseProps} activeTab="chromatic" />);
-
-    expect(screen.getByText("Chromatic")).toBeTruthy();
-    expect(mockChromaticTab).toHaveBeenCalledTimes(1);
-    expect(mockChromaticTab.mock.calls[0][0].preparedState).toBe(mockPreparedState);
-    expect(mockAberrationsPanel).not.toHaveBeenCalled();
-  });
-
-  it("maps the coma tab to ComaTab", () => {
-    render(<AnalysisDrawerContent {...baseProps} activeTab="coma" aberrationT={0.37} />);
-
-    expect(screen.getByText("Coma")).toBeTruthy();
-    expect(mockComaTab).toHaveBeenCalledTimes(1);
-    expect(mockComaTab.mock.calls[0][0].aberrationT).toBe(0.37);
-    expect(mockComaTab.mock.calls[0][0].preparedState).toBe(mockPreparedState);
-    expect(mockAberrationsPanel).not.toHaveBeenCalled();
-  });
-
-  it("maps the breathing tab to FocusBreathingTab", () => {
-    render(<AnalysisDrawerContent {...baseProps} activeTab="breathing" />);
-
-    expect(screen.getByText("Breathing")).toBeTruthy();
-    expect(mockFocusBreathingTab).toHaveBeenCalledTimes(1);
-  });
-
-  it("maps the vignetting tab to VignettingTab", () => {
-    render(<AnalysisDrawerContent {...baseProps} activeTab="vignetting" />);
-
-    expect(screen.getByText("Vignetting")).toBeTruthy();
-    expect(mockVignettingTab).toHaveBeenCalledTimes(1);
-    expect(mockVignettingTab.mock.calls[0][0].preparedState).toBe(mockPreparedState);
-  });
-
-  it("maps the pupils tab to PupilAberrationTab", () => {
-    render(<AnalysisDrawerContent {...baseProps} activeTab="pupils" aberrationT={0.37} />);
-
-    expect(screen.getByText("Pupils")).toBeTruthy();
-    expect(mockPupilAberrationTab).toHaveBeenCalledTimes(1);
-    expect(mockPupilAberrationTab.mock.calls[0][0].aberrationT).toBe(0.37);
-    expect(mockPupilAberrationTab.mock.calls[0][0].preparedState).toBe(mockPreparedState);
-    expect(mockVignettingTab).not.toHaveBeenCalled();
-  });
-
   it("shows a folded-optics guard instead of invoking sequential analysis tabs", () => {
     render(
       <AnalysisDrawerContent {...baseProps} L={{ ...baseProps.L, isFoldedOptics: true }} activeTab="vignetting" />,
@@ -263,7 +183,50 @@ describe("AnalysisDrawerContent", () => {
     expect(mockPupilAberrationTab).toHaveBeenCalledTimes(1);
   });
 
-  it("has exactly one renderer for every registered analysis tab", () => {
-    expect(Object.keys(ANALYSIS_TAB_RENDERERS).sort()).toEqual(ANALYSIS_TABS.map((tab) => tab.id).sort());
+  it("has exactly one renderer for every registered analysis tab and maps each tab to its component", () => {
+    const expectations: Record<
+      AnalysisTabId,
+      { mock: ReturnType<typeof vi.fn>; text: string; props: Record<string, unknown> }
+    > = {
+      summary: { mock: mockOpticalSummaryTab, text: "Summary", props: { preparedState: mockPreparedState } },
+      aberrations: {
+        mock: mockAberrationsPanel,
+        text: "Aberrations:true",
+        props: {
+          expanded: true,
+          onExpandedChange: baseProps.onAberrationsExpandedChange,
+          preparedState: mockPreparedState,
+        },
+      },
+      chromatic: { mock: mockChromaticTab, text: "Chromatic", props: { preparedState: mockPreparedState } },
+      coma: { mock: mockComaTab, text: "Coma", props: { aberrationT: 0.37, preparedState: mockPreparedState } },
+      bokeh: { mock: mockBokehTab, text: "Bokeh", props: { preparedState: mockPreparedState } },
+      distortion: { mock: mockDistortionTab, text: "Distortion", props: { preparedState: mockPreparedState } },
+      breathing: { mock: mockFocusBreathingTab, text: "Breathing", props: {} },
+      vignetting: { mock: mockVignettingTab, text: "Vignetting", props: { preparedState: mockPreparedState } },
+      pupils: {
+        mock: mockPupilAberrationTab,
+        text: "Pupils",
+        props: { aberrationT: 0.37, preparedState: mockPreparedState },
+      },
+    };
+    const registeredTabIds = ANALYSIS_TABS.map((tab) => tab.id).sort();
+    expect(Object.keys(ANALYSIS_TAB_RENDERERS).sort()).toEqual(registeredTabIds);
+    expect(Object.keys(expectations).sort()).toEqual(registeredTabIds);
+
+    for (const tab of ANALYSIS_TABS) {
+      const { mock, text, props } = expectations[tab.id];
+      render(<AnalysisDrawerContent {...baseProps} activeTab={tab.id} aberrationT={0.37} />);
+
+      expect(screen.getByText(text)).toBeTruthy();
+      expect(mock).toHaveBeenCalledTimes(1);
+      expect(mock.mock.calls[0][0]).toMatchObject(props);
+      for (const other of Object.values(expectations)) {
+        if (other.mock !== mock) expect(other.mock).not.toHaveBeenCalled();
+      }
+
+      cleanup();
+      Object.values(expectations).forEach((expectation) => expectation.mock.mockClear());
+    }
   });
 });

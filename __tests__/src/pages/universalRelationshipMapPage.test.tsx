@@ -6,11 +6,10 @@
 
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { cleanup, fireEvent, screen, waitFor } from "@testing-library/react";
-import { HelmetProvider } from "react-helmet-async";
 import { Route, Routes } from "react-router";
 import type { UniversalRelationshipGraph } from "../../../src/utils/catalog/universalRelationshipGraph.js";
 import UniversalRelationshipMapPage from "../../../src/pages/UniversalRelationshipMapPage.js";
-import { clearBrowserState, installMatchMediaMock, renderWithRouter } from "../../testUtils.js";
+import { clearBrowserState, installMatchMediaMock, renderPage } from "../../testUtils.js";
 
 vi.mock("../../../src/components/SEOHead.js", () => ({
   default: function SEOHead() {
@@ -45,13 +44,11 @@ vi.mock("../../../src/components/relationshipMap/UniversalRelationshipMap.js", (
   },
 }));
 
-function renderPage() {
-  return renderWithRouter(
-    <HelmetProvider>
-      <Routes>
-        <Route path="/relationships/universal" element={<UniversalRelationshipMapPage />} />
-      </Routes>
-    </HelmetProvider>,
+function renderUniversalPage() {
+  return renderPage(
+    <Routes>
+      <Route path="/relationships/universal" element={<UniversalRelationshipMapPage />} />
+    </Routes>,
     { initialEntries: ["/relationships/universal"] },
   );
 }
@@ -65,7 +62,7 @@ describe("UniversalRelationshipMapPage", () => {
   afterEach(cleanup);
 
   it("renders catalog totals and the client map", async () => {
-    renderPage();
+    renderUniversalPage();
     expect(screen.getByRole("heading", { level: 1, name: "Universal Relationship Map" })).toBeDefined();
     expect(screen.getByText("corporate links")).toBeDefined();
     expect(screen.getByText("connected networks")).toBeDefined();
@@ -73,26 +70,26 @@ describe("UniversalRelationshipMapPage", () => {
   });
 
   it("links its breadcrumb back to the ordinary relationship index", () => {
-    renderPage();
+    renderUniversalPage();
     expect(screen.getByRole("link", { name: "Relationship map" }).getAttribute("href")).toBe("/relationships/");
   });
 
   it("opens shared patent details without requiring a center party", async () => {
-    renderPage();
+    renderUniversalPage();
     fireEvent.click(await screen.findByRole("button", { name: "Select test patent" }));
     expect(screen.getByRole("button", { name: "Close patent details" })).toBeDefined();
     expect(document.querySelector('a[href^="/lens/"]')).not.toBeNull();
   });
 
   it("opens entity details with a focused-map handoff for assignees", async () => {
-    renderPage();
+    renderUniversalPage();
     fireEvent.click(await screen.findByRole("button", { name: "Select test assignee" }));
     const focusedLink = screen.getByRole("link", { name: /Open focused relationship map/ });
     expect(focusedLink.getAttribute("href")).toMatch(/^\/relationships\/#focus=assignee:/);
   });
 
   it("shows dated sourced corporate records for a family hub", async () => {
-    renderPage();
+    renderUniversalPage();
     fireEvent.click(await screen.findByRole("button", { name: "Select test family" }));
     await waitFor(() => expect(screen.getAllByRole("link", { name: "Source ↗" }).length).toBeGreaterThan(0));
     expect(document.body.textContent).toMatch(/\d{4}/);

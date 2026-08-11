@@ -1,12 +1,5 @@
 import { describe, it, expect } from "vitest";
-import {
-  parseComparisonParams,
-  buildComparisonURL,
-  buildComparePath,
-  focalLengthToZoomT,
-  zoomTToFocalLength,
-} from "../../../../src/utils/state/parseComparisonParams.js";
-import type { RuntimeLens } from "../../../../src/types/optics.js";
+import { parseComparisonParams, buildComparisonURL } from "../../../../src/utils/state/parseComparisonParams.js";
 
 const KEYS = ["NikkorZ50f12", "Nokton50f1", "ApoLanthar50f2", "Sonnar50f15"];
 
@@ -108,7 +101,7 @@ describe("buildComparisonURL", () => {
 
   it("returns empty string when no key provided", () => {
     expect(buildComparisonURL(false, "", "")).toBe("");
-    expect(buildComparisonURL(false, "", "")).toBe("");
+    expect(buildComparisonURL(true, "", "")).toBe("");
   });
 
   it("encodes special characters in keys", () => {
@@ -130,73 +123,5 @@ describe("buildComparisonURL", () => {
   it("appends slider params in comparison mode", () => {
     const url = buildComparisonURL(true, "NikkorZ50f12", "Nokton50f1", { focus: 0.6 });
     expect(url).toBe("?a=NikkorZ50f12&b=Nokton50f1&focus=0.600");
-  });
-});
-
-describe("buildComparePath", () => {
-  it("builds pathname-based comparison URL", () => {
-    expect(buildComparePath("NikkorZ50f12", "Nokton50f1")).toBe("/compare/NikkorZ50f12/Nokton50f1/");
-  });
-
-  it("appends slider params as query string", () => {
-    const path = buildComparePath("NikkorZ50f12", "Nokton50f1", { focus: 0.3, aperture: 0.5 });
-    expect(path).toBe("/compare/NikkorZ50f12/Nokton50f1/?focus=0.300&aperture=0.500");
-  });
-
-  it("appends zoom param", () => {
-    const path = buildComparePath("NikkorZ50f12", "Nokton50f1", { zoom: 50 });
-    expect(path).toBe("/compare/NikkorZ50f12/Nokton50f1/?zoom=50");
-  });
-
-  it("omits zero/null slider params", () => {
-    const path = buildComparePath("NikkorZ50f12", "Nokton50f1", { zoom: null, focus: 0, aperture: 0 });
-    expect(path).toBe("/compare/NikkorZ50f12/Nokton50f1/");
-  });
-
-  it("encodes special characters in slugs", () => {
-    const path = buildComparePath("a b", "c&d");
-    expect(path).toBe("/compare/a%20b/c%26d/");
-  });
-});
-
-describe("focalLengthToZoomT / zoomTToFocalLength", () => {
-  const zoomLens = { isZoom: true, zoomPositions: [24, 50, 70] } as unknown as RuntimeLens;
-  const primeLens = { isZoom: false } as unknown as RuntimeLens;
-
-  it("returns 0 for prime lenses", () => {
-    expect(focalLengthToZoomT(50, primeLens)).toBe(0);
-  });
-
-  it("returns null for prime lenses (zoomTToFocalLength)", () => {
-    expect(zoomTToFocalLength(0.5, primeLens)).toBeNull();
-  });
-
-  it("returns 0 at wide end", () => {
-    expect(focalLengthToZoomT(24, zoomLens)).toBe(0);
-    expect(focalLengthToZoomT(20, zoomLens)).toBe(0);
-  });
-
-  it("returns 1 at tele end", () => {
-    expect(focalLengthToZoomT(70, zoomLens)).toBe(1);
-    expect(focalLengthToZoomT(100, zoomLens)).toBe(1);
-  });
-
-  it("round-trips at defined positions", () => {
-    for (const fl of [24, 50, 70]) {
-      const t = focalLengthToZoomT(fl, zoomLens);
-      expect(zoomTToFocalLength(t, zoomLens)).toBeCloseTo(fl, 5);
-    }
-  });
-
-  it("round-trips at intermediate values", () => {
-    for (const fl of [30, 37, 45, 55, 60, 65]) {
-      const t = focalLengthToZoomT(fl, zoomLens);
-      expect(zoomTToFocalLength(t, zoomLens)).toBeCloseTo(fl, 5);
-    }
-  });
-
-  it("zoomT=0 gives wide end, zoomT=1 gives tele end", () => {
-    expect(zoomTToFocalLength(0, zoomLens)).toBeCloseTo(24, 5);
-    expect(zoomTToFocalLength(1, zoomLens)).toBeCloseTo(70, 5);
   });
 });

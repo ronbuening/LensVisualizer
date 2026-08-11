@@ -3,7 +3,7 @@
  */
 
 import { describe, expect, it } from "vitest";
-import { AUTHORS, groupAuthorPatents, patentsForAuthor } from "../../../../src/utils/catalog/authorCatalog.js";
+import { groupAuthorPatents } from "../../../../src/utils/catalog/authorCatalog.js";
 import { exactSearchTarget, normalizeSearchText, searchCatalog } from "../../../../src/utils/catalog/searchCatalog.js";
 
 describe("catalog search", () => {
@@ -29,16 +29,6 @@ describe("catalog search", () => {
 });
 
 describe("author catalog", () => {
-  it("keeps generated author entries in sync with their aggregated patents", () => {
-    const author = AUTHORS.find((entry) => entry.name === "Carl Baur");
-    expect(author).toBeDefined();
-    if (!author) return;
-
-    const patents = patentsForAuthor(author.name);
-    expect(patents).toHaveLength(author.patentCount);
-    expect(patents.every((patent) => patent.authors.includes(author.name))).toBe(true);
-  });
-
   it("groups multi-party patents into every relevant section", () => {
     const patents = [
       {

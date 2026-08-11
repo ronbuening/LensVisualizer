@@ -29,54 +29,39 @@ function ThrowingChild({ shouldThrow = true }: { shouldThrow?: boolean }) {
  * ErrorDisplay (named export — reusable error UI)
  * ═══════════════════════════════════════════════════════════════════════ */
 describe("ErrorDisplay", () => {
-  it("renders the error message", () => {
+  it("renders the message, default title, and GitHub link with no Retry button by default", () => {
     const error = new Error("display-test-msg");
     render(<ErrorDisplay error={error} context={{}} />);
+
     // The message appears in the pre element; may also appear in the stack
     expect(screen.getAllByText(/display-test-msg/).length).toBeGreaterThanOrEqual(1);
-  });
-
-  it("renders a default title", () => {
-    render(<ErrorDisplay error={new Error("x")} context={{}} />);
     expect(screen.getByText("Rendering Error")).toBeTruthy();
-  });
-
-  it("renders a custom title", () => {
-    render(<ErrorDisplay error={new Error("x")} context={{}} title="Custom Title" />);
-    expect(screen.getByText("Custom Title")).toBeTruthy();
-  });
-
-  it("renders the 'Report Issue on GitHub' link", () => {
-    render(<ErrorDisplay error={new Error("link-test")} context={{}} />);
     const links = screen.getAllByText("Report Issue on GitHub");
     expect(links.length).toBeGreaterThanOrEqual(1);
     const link = links[0];
     expect(link.tagName).toBe("A");
     expect((link as HTMLAnchorElement).href).toContain("github.com");
+    expect(screen.queryByText("Retry")).toBeNull();
   });
 
-  it("renders a Retry button when onRetry is provided", () => {
+  it("renders a custom title and a working Retry button when provided", () => {
     const onRetry = vi.fn();
-    render(<ErrorDisplay error={new Error("x")} context={{}} onRetry={onRetry} />);
+    render(<ErrorDisplay error={new Error("x")} context={{}} title="Custom Title" onRetry={onRetry} />);
+
+    expect(screen.getByText("Custom Title")).toBeTruthy();
     const btn = screen.getByText("Retry");
     expect(btn).toBeTruthy();
     fireEvent.click(btn);
     expect(onRetry).toHaveBeenCalledOnce();
   });
 
-  it("does not render a Retry button when onRetry is not provided", () => {
-    render(<ErrorDisplay error={new Error("x")} context={{}} />);
-    expect(screen.queryByText("Retry")).toBeNull();
-  });
-
-  it("renders a stack trace in a details element when error has stack", () => {
+  it("renders a stack trace details element and handles a null error gracefully", () => {
     const error = new Error("x");
     error.stack = "Error: x\n  at foo (bar.ts:1:1)";
     render(<ErrorDisplay error={error} context={{}} />);
     expect(screen.getByText("Stack trace")).toBeTruthy();
-  });
 
-  it("handles null error gracefully", () => {
+    cleanup();
     render(<ErrorDisplay error={null} context={{}} />);
     // Should not crash
     expect(screen.getByText("Rendering Error")).toBeTruthy();

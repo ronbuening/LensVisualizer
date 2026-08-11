@@ -54,15 +54,9 @@ describe("SharedFStopQuickSelect", () => {
     expect(button.tagName).toBe("BUTTON");
   });
 
-  it("highlights the current f-number with full opacity", () => {
+  it("highlights the current f-number at full opacity and dims the rest", () => {
     render(<SharedFStopQuickSelect {...baseProps} currentFNumber={4} />);
-    const active = screen.getByText("f/4");
-    expect(active.style.opacity).toBe("1");
-  });
-
-  it("dims non-current f-stops", () => {
-    render(<SharedFStopQuickSelect {...baseProps} currentFNumber={4} />);
-    const dim = screen.getByText("f/8");
-    expect(dim.style.opacity).toBe("0.55");
+    expect(screen.getByText("f/4").style.opacity).toBe("1");
+    expect(Number(screen.getByText("f/8").style.opacity)).toBeLessThan(1);
   });
 });

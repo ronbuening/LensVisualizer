@@ -23,60 +23,20 @@ import {
   wavelengthNd,
 } from "../../../src/optics/rayTrace.js";
 import { computeOffAxisFieldGeometry, traceOrthogonalOffAxisBundle } from "../../../src/optics/aberration/offAxis.js";
-import buildLens from "../../../src/optics/buildLens.js";
-import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
-import ApoLantharRaw from "../../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.js";
-import Sonnar50f15Raw from "../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
-import type { LensData, RuntimeLens } from "../../../src/types/optics.js";
-import { buildChromaticPositiveElementLens, buildSimplePositiveElementLens } from "./testLensFixtures.js";
-
-function build(raw: object): RuntimeLens {
-  return buildLens({ ...LENS_DEFAULTS, ...raw } as LensData);
-}
+import {
+  buildChromaticPositiveElementLens,
+  buildSimplePositiveElementLens,
+  sharedApoLanthar50f2,
+  sharedSonnar50f15,
+} from "./testLensFixtures.js";
 
 describe("traceSkewRay", () => {
   const L = buildSimplePositiveElementLens("test-skew-single-element");
   const { z: zPos, imgZ: imagePlaneZ } = doLayout(0, 0, L);
   const lastSurfZ = zPos[L.N - 1];
 
-  it("matches the on-axis meridional trace", () => {
-    const skew = traceSkewRay(0, 0, 0, 0, 0, 0, 15, false, L);
-    const meridional = traceRay(0, 0, zPos, 0, 0, 15, false, L);
-
-    expect(skew.x).toBeCloseTo(0, 10);
-    expect(skew.y).toBeCloseTo(meridional.y, 10);
-    expect(skew.ux).toBeCloseTo(0, 10);
-    expect(skew.uy).toBeCloseTo(meridional.u, 10);
-    expect(skew.clipped).toBe(false);
-  });
-
-  it("reduces to the existing meridional trace when launched in the tangential plane", () => {
-    const skew = traceSkewRay(0, 0.1, 0, 0, 0, 0, 15, false, L);
-    const meridional = traceRay(0.1, 0, zPos, 0, 0, 15, false, L);
-
-    expect(skew.x).toBeCloseTo(0, 10);
-    expect(skew.y).toBeCloseTo(meridional.y, 10);
-    expect(skew.ux).toBeCloseTo(0, 10);
-    expect(skew.uy).toBeCloseTo(meridional.u, 10);
-  });
-
-  it("preserves rotational symmetry for mirrored sagittal rays", () => {
-    const positive = traceSkewRay(3, 1, 0, -0.04, 0, 0, 15, false, L);
-    const negative = traceSkewRay(-3, 1, 0, -0.04, 0, 0, 15, false, L);
-
-    expect(positive.x).toBeCloseTo(-negative.x, 8);
-    expect(positive.y).toBeCloseTo(negative.y, 8);
-    expect(positive.ux).toBeCloseTo(-negative.ux, 8);
-    expect(positive.uy).toBeCloseTo(negative.uy, 8);
-  });
-
-  it("marks skew rays clipped when they exceed the stop radius", () => {
-    const clipped = traceSkewRay(20, 0, 0, 0, 0, 0, 15, true, L);
-    expect(clipped.clipped).toBe(true);
-  });
-
-  it("marks non-ghost skew rays clipped when they exceed the stop radius", () => {
-    const clipped = traceSkewRay(20, 0, 0, 0, 0, 0, 15, false, L);
+  it.each([[true], [false]])("marks skew rays clipped when they exceed the stop radius (ghost=%s)", (ghost) => {
+    const clipped = traceSkewRay(20, 0, 0, 0, 0, 0, 15, ghost, L);
     expect(clipped.clipped).toBe(true);
   });
 
@@ -87,17 +47,6 @@ describe("traceSkewRay", () => {
     expect(intercept).not.toBeNull();
     expect(isFinite(intercept!.x)).toBe(true);
     expect(isFinite(intercept!.y)).toBe(true);
-  });
-
-  it("matches meridional tracing when launched in the tangential plane (large height)", () => {
-    const skew = traceSkewRay(0, 5, 0, 0, 0, 0, 15, false, L);
-    const meridional = traceRay(5, 0, zPos, 0, 0, 15, false, L);
-
-    expect(skew.clipped).toBe(false);
-    expect(skew.x).toBeCloseTo(0, 10);
-    expect(skew.y).toBeCloseTo(meridional.y, 8);
-    expect(skew.ux).toBeCloseTo(0, 10);
-    expect(skew.uy).toBeCloseTo(meridional.u, 8);
   });
 });
 
@@ -317,73 +266,112 @@ describe("traceSkewRay with non-trivial initial x-slope", () => {
     expect(withUx.x).not.toBeCloseTo(withoutUx.x, 6);
     expect(withUx.ux).not.toBeCloseTo(withoutUx.ux, 6);
   });
-
-  it("preserves symmetry for opposite initial x-slopes", () => {
-    const positive = traceSkewRay(3, 0, 0.05, 0, 0, 0, 15, false, L);
-    const negative = traceSkewRay(3, 0, -0.05, 0, 0, 0, 15, false, L);
-
-    // For a rotationally symmetric system, mirroring ux should mirror the output x
-    // but y should remain the same since the surface is symmetric
-    expect(positive.y).toBeCloseTo(negative.y, 8);
-  });
 });
 
-describe("skew-meridional cross-validation on multi-element lenses", () => {
-  it("matches meridional trace for multiple heights on Apo-Lanthar 50/2", () => {
-    const L = build(ApoLantharRaw);
+describe("skew-meridional cross-validation", () => {
+  /* Tangential-plane skew launches must reduce to the meridional trace. One
+     sweep covers the union of the previously separate per-lens/per-height
+     tests; per-height digits preserve each original tolerance. */
+  it.each([
+    {
+      label: "single positive element",
+      make: () => buildSimplePositiveElementLens("test-skew-single-element"),
+      stopSD: 15 as number | undefined,
+      axisDigits: 10,
+      heights: [
+        [0, 10],
+        [0.1, 10],
+        [5, 8],
+      ] as const,
+    },
+    {
+      label: "Apo-Lanthar 50/2",
+      make: sharedApoLanthar50f2,
+      stopSD: undefined as number | undefined,
+      axisDigits: 8,
+      heights: [
+        [1, 6],
+        [3, 6],
+        [6, 6],
+        [9, 6],
+      ] as const,
+    },
+    {
+      label: "Sonnar 50/1.5",
+      make: sharedSonnar50f15,
+      stopSD: undefined as number | undefined,
+      axisDigits: 8,
+      heights: [
+        [2, 6],
+        [5, 6],
+        [10, 6],
+      ] as const,
+    },
+  ])("matches the meridional trace in the tangential plane on $label", ({ make, stopSD, axisDigits, heights }) => {
+    const L = make();
     const { z: zPos } = doLayout(0, 0, L);
-    const stopSD = L.stopPhysSD;
+    const stop = stopSD ?? L.stopPhysSD;
 
-    for (const h of [1, 3, 6, 9]) {
-      const skew = traceSkewRay(0, h, 0, 0, 0, 0, stopSD, false, L);
-      const meridional = traceRay(h, 0, zPos, 0, 0, stopSD, false, L);
+    for (const [h, digits] of heights) {
+      const skew = traceSkewRay(0, h, 0, 0, 0, 0, stop, false, L);
+      const meridional = traceRay(h, 0, zPos, 0, 0, stop, false, L);
 
       if (meridional.clipped) {
         expect(skew.clipped).toBe(true);
         continue;
       }
 
-      expect(skew.x).toBeCloseTo(0, 8);
-      expect(skew.y).toBeCloseTo(meridional.y, 6);
-      expect(skew.ux).toBeCloseTo(0, 8);
-      expect(skew.uy).toBeCloseTo(meridional.u, 6);
+      expect(skew.x).toBeCloseTo(0, axisDigits);
+      expect(skew.y).toBeCloseTo(meridional.y, digits);
+      expect(skew.ux).toBeCloseTo(0, axisDigits);
+      expect(skew.uy).toBeCloseTo(meridional.u, digits);
       expect(skew.clipped).toBe(meridional.clipped);
     }
   });
 
-  it("matches meridional trace for multiple heights on Sonnar 50/1.5", () => {
-    const L = build(Sonnar50f15Raw);
-    const { z: zPos } = doLayout(0, 0, L);
-    const stopSD = L.stopPhysSD;
+  it.each([
+    {
+      label: "mirrored sagittal rays on the single positive element",
+      make: () => buildSimplePositiveElementLens("test-skew-single-element"),
+      stopSD: 15 as number | undefined,
+      positive: [3, 1, 0, -0.04] as const,
+      negative: [-3, 1, 0, -0.04] as const,
+      fullMirror: true,
+    },
+    {
+      // With y=0 and uy=0 both rays stay in the x-z plane, so only the
+      // y-equality half of the mirror relation is asserted (as originally).
+      label: "opposite initial x-slopes on the single positive element",
+      make: () => buildSimplePositiveElementLens("test-skew-x-slope-single-element"),
+      stopSD: 15 as number | undefined,
+      positive: [3, 0, 0.05, 0] as const,
+      negative: [3, 0, -0.05, 0] as const,
+      fullMirror: false,
+    },
+    {
+      label: "mirrored x on the Apo-Lanthar 50/2",
+      make: sharedApoLanthar50f2,
+      stopSD: undefined as number | undefined,
+      positive: [4, 2, 0, -0.03] as const,
+      negative: [-4, 2, 0, -0.03] as const,
+      fullMirror: true,
+    },
+  ])("preserves rotational symmetry for $label", ({ make, stopSD, positive, negative, fullMirror }) => {
+    const L = make();
+    const stop = stopSD ?? L.stopPhysSD;
+    const positiveTrace = traceSkewRay(positive[0], positive[1], positive[2], positive[3], 0, 0, stop, false, L);
+    const negativeTrace = traceSkewRay(negative[0], negative[1], negative[2], negative[3], 0, 0, stop, false, L);
 
-    for (const h of [2, 5, 10]) {
-      const skew = traceSkewRay(0, h, 0, 0, 0, 0, stopSD, false, L);
-      const meridional = traceRay(h, 0, zPos, 0, 0, stopSD, false, L);
-
-      if (meridional.clipped) {
-        expect(skew.clipped).toBe(true);
-        continue;
-      }
-
-      expect(skew.y).toBeCloseTo(meridional.y, 6);
-      expect(skew.uy).toBeCloseTo(meridional.u, 6);
+    expect(positiveTrace.y).toBeCloseTo(negativeTrace.y, 8);
+    if (fullMirror) {
+      expect(positiveTrace.x).toBeCloseTo(-negativeTrace.x, 8);
+      expect(positiveTrace.ux).toBeCloseTo(-negativeTrace.ux, 8);
+      expect(positiveTrace.uy).toBeCloseTo(negativeTrace.uy, 8);
     }
   });
 
-  it("preserves rotational symmetry for mirrored x on a real lens", () => {
-    const L = build(ApoLantharRaw);
-
-    const positive = traceSkewRay(4, 2, 0, -0.03, 0, 0, L.stopPhysSD, false, L);
-    const negative = traceSkewRay(-4, 2, 0, -0.03, 0, 0, L.stopPhysSD, false, L);
-
-    expect(positive.x).toBeCloseTo(-negative.x, 8);
-    expect(positive.y).toBeCloseTo(negative.y, 8);
-    expect(positive.ux).toBeCloseTo(-negative.ux, 8);
-    expect(positive.uy).toBeCloseTo(negative.uy, 8);
-  });
-
   it("produces zero x-displacement for sagittal bundle at center field", () => {
-    const L = build(ApoLantharRaw);
+    const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
     const currentEPSD = L.EP.epSD * 0.6;
     const currentPhysStopSD = L.stopPhysSD * 0.6;
@@ -406,7 +394,7 @@ describe("skew-meridional cross-validation on multi-element lenses", () => {
 
 describe("traceSkewRayChromatic", () => {
   it("matches the chromatic meridional trace in the tangential plane", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
 
     for (const channel of ["R", "G", "B"] as const) {
@@ -425,7 +413,7 @@ describe("traceSkewRayChromatic", () => {
   });
 
   it("produces different R and B axialIntercepts for a dispersive lens", () => {
-    const L = build(Sonnar50f15Raw);
+    const L = sharedSonnar50f15();
 
     const redSkew = traceSkewRayChromatic(0, 5, 0, 0, 0, 0, L.stopPhysSD, false, L, "R");
     const blueSkew = traceSkewRayChromatic(0, 5, 0, 0, 0, 0, L.stopPhysSD, false, L, "B");
@@ -437,35 +425,47 @@ describe("traceSkewRayChromatic", () => {
     expect(redSkew.uy).not.toBeCloseTo(blueSkew.uy, 6);
   });
 
-  it("produces results matching traceSkewRay at channel G (d-line) within data precision", () => {
-    const L = build(ApoLantharRaw);
+  // Apo-Lanthar tolerance reflects data rounding: when an element's `glass` resolves in the
+  // catalog, Sellmeier-at-d-line can differ from the lens-data-stored `nd` by ~1e-4 per surface
+  // (the precision at which patent values are typically transcribed), and across a 10-
+  // element trace this accumulates to a few-thousandths-of-a-mm path difference. The
+  // chromatic engine is intentionally self-consistent with the catalog, not with the
+  // rounded scalar nd. Tolerance 1e-2 mm absorbs the accumulated transcription rounding
+  // while still catching meaningful divergence (the safety net in dispersion.ts rejects
+  // catalog matches that disagree with the authored nd/vd beyond the runtime compatibility window).
+  it.each([
+    {
+      label: "the Apo-Lanthar 50/2 (catalog-resolved glasses, transcription-rounding tolerance)",
+      make: sharedApoLanthar50f2,
+      launch: [3, 4, 0.01, -0.02] as const,
+      digits: { x: 2, y: 2, ux: 2, uy: 2 },
+    },
+    {
+      label: "the Sonnar 50/1.5",
+      make: sharedSonnar50f15,
+      launch: [0, 5, 0, 0] as const,
+      digits: { x: 8, y: 6, ux: 8, uy: 6 },
+    },
+  ])("matches monochromatic skew tracing at channel G on $label", ({ make, launch, digits }) => {
+    const L = make();
 
-    const chromatic = traceSkewRayChromatic(3, 4, 0.01, -0.02, 0, 0, L.stopPhysSD, false, L, "G");
-    const monochromatic = traceSkewRay(3, 4, 0.01, -0.02, 0, 0, L.stopPhysSD, false, L);
+    const chromatic = traceSkewRayChromatic(
+      launch[0],
+      launch[1],
+      launch[2],
+      launch[3],
+      0,
+      0,
+      L.stopPhysSD,
+      false,
+      L,
+      "G",
+    );
+    const monochromatic = traceSkewRay(launch[0], launch[1], launch[2], launch[3], 0, 0, L.stopPhysSD, false, L);
 
-    // Tolerance reflects data rounding: when an element's `glass` resolves in the catalog,
-    // Sellmeier-at-d-line can differ from the lens-data-stored `nd` by ~1e-4 per surface
-    // (the precision at which patent values are typically transcribed), and across a 10-
-    // element trace this accumulates to a few-thousandths-of-a-mm path difference. The
-    // chromatic engine is intentionally self-consistent with the catalog, not with the
-    // rounded scalar nd. Tolerance 1e-2 mm absorbs the accumulated transcription rounding
-    // while still catching meaningful divergence (the safety net in dispersion.ts rejects
-    // catalog matches that disagree with the authored nd/vd beyond the runtime compatibility window).
-    expect(chromatic.x).toBeCloseTo(monochromatic.x, 2);
-    expect(chromatic.y).toBeCloseTo(monochromatic.y, 2);
-    expect(chromatic.ux).toBeCloseTo(monochromatic.ux, 2);
-    expect(chromatic.uy).toBeCloseTo(monochromatic.uy, 2);
-  });
-
-  it("matches monochromatic skew tracing at channel G on the Sonnar 50/1.5", () => {
-    const L = build(Sonnar50f15Raw);
-
-    const chromatic = traceSkewRayChromatic(0, 5, 0, 0, 0, 0, L.stopPhysSD, false, L, "G");
-    const monochromatic = traceSkewRay(0, 5, 0, 0, 0, 0, L.stopPhysSD, false, L);
-
-    expect(chromatic.x).toBeCloseTo(monochromatic.x, 8);
-    expect(chromatic.y).toBeCloseTo(monochromatic.y, 6);
-    expect(chromatic.ux).toBeCloseTo(monochromatic.ux, 8);
-    expect(chromatic.uy).toBeCloseTo(monochromatic.uy, 6);
+    expect(chromatic.x).toBeCloseTo(monochromatic.x, digits.x);
+    expect(chromatic.y).toBeCloseTo(monochromatic.y, digits.y);
+    expect(chromatic.ux).toBeCloseTo(monochromatic.ux, digits.ux);
+    expect(chromatic.uy).toBeCloseTo(monochromatic.uy, digits.uy);
   });
 });

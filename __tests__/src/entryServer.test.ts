@@ -8,7 +8,7 @@
  */
 
 import { describe, it, expect } from "vitest";
-import { render } from "../../src/entry-server.js";
+import { render as renderRoute } from "../../src/entry-server.js";
 import { ARTICLES } from "../../src/utils/content/homepageContent.js";
 import { CATALOG_KEYS, LENS_CATALOG } from "../../src/utils/catalog/lensCatalog.js";
 import { IMAGE_FORMAT_OPTIONS, MOUNT_OPTIONS } from "../../src/pages/lensIndex/catalog.js";
@@ -51,6 +51,21 @@ const TEST_UNPROFILED_RICH_AUTHOR = AUTHORS.find(
 )!;
 const TEST_PATENT = PATENTS[0];
 
+/* render(url) is a pure function of the URL (no shared mutable state between
+ * calls), so each unique route is SSR-rendered once and shared by every test
+ * that asserts on it — this file previously rendered 49 times for ~19 URLs,
+ * and the full React+router+catalog render dominates its runtime. */
+const RENDER_CACHE = new Map<string, ReturnType<typeof renderRoute>>();
+
+function render(url: string): ReturnType<typeof renderRoute> {
+  let result = RENDER_CACHE.get(url);
+  if (!result) {
+    result = renderRoute(url);
+    RENDER_CACHE.set(url, result);
+  }
+  return result;
+}
+
 function escapeHtmlText(value: string): string {
   return value
     .replaceAll("&", "&amp;")
@@ -72,34 +87,38 @@ describe("SSR test preconditions", () => {
   });
 });
 
-/* ── All routes produce valid helmet metadata ── */
+/* ── All routes produce valid helmet metadata (and SSR body content where expected) ── */
 
 describe("SSR render — all routes produce valid head output", () => {
+  /* expectsBody is false only where the SSR body is intentionally empty or
+   * client-driven: the home page (interactive viewer), compare (client-side
+   * state), and the 404 shell asserted separately below. */
   const routes = [
-    ["/", "home"],
-    ["/search", "search"],
-    ["/lenses", "lens index"],
-    [`/lens/${TEST_LENS_SLUG}`, "lens page"],
-    [`/compare/${TEST_LENS_SLUG}/${CATALOG_KEYS[1]}`, "compare page"],
-    ["/makers", "makers index"],
-    [`/makers/${TEST_MAKER_SLUG}`, "maker page"],
-    ["/authors", "authors index"],
-    [`/authors/${TEST_AUTHOR.slug}`, "author page"],
-    ["/patents", "patents index"],
-    ["/mounts", "mounts index"],
-    [`/mounts/${TEST_MOUNT.id}`, "mount page"],
-    ["/formats", "formats index"],
-    [`/formats/${TEST_FORMAT.id}`, "format page"],
-    ["/relationships", "relationship map"],
-    ["/relationships/universal", "universal relationship map"],
-    ["/this-route-does-not-exist", "404"],
+    ["/", "home", false],
+    ["/search", "search", true],
+    ["/lenses", "lens index", true],
+    [`/lens/${TEST_LENS_SLUG}`, "lens page", true],
+    [`/compare/${TEST_LENS_SLUG}/${CATALOG_KEYS[1]}`, "compare page", false],
+    ["/makers", "makers index", true],
+    [`/makers/${TEST_MAKER_SLUG}`, "maker page", true],
+    ["/authors", "authors index", true],
+    [`/authors/${TEST_AUTHOR.slug}`, "author page", true],
+    ["/patents", "patents index", true],
+    ["/mounts", "mounts index", true],
+    [`/mounts/${TEST_MOUNT.id}`, "mount page", true],
+    ["/formats", "formats index", true],
+    [`/formats/${TEST_FORMAT.id}`, "format page", true],
+    ["/relationships", "relationship map", true],
+    ["/relationships/universal", "universal relationship map", true],
+    ["/this-route-does-not-exist", "404", false],
   ] as const;
 
-  it.each(routes)("%s (%s) returns helmet with title and description", (url) => {
-    const { helmet } = render(url);
+  it.each(routes)("%s (%s) returns valid head output", (url, _label, expectsBody) => {
+    const { helmet, html } = render(url);
     expect(helmet).not.toBeNull();
     expect(helmet.title.toString()).toContain("<title");
     expect(helmet.meta.toString()).toContain('name="description"');
+    if (expectsBody) expect(html.length).toBeGreaterThan(0);
   });
 });
 
@@ -111,32 +130,6 @@ describe("SSR render — native metadata extraction", () => {
     expect(html).not.toContain("<title");
     expect(html).not.toContain('type="application/ld+json"');
     expect(html).not.toContain("data-prerender-body");
-  });
-});
-
-/* ── Routes with visible SSR content produce non-empty HTML ── */
-
-describe("SSR render — content pages produce non-empty HTML", () => {
-  const contentRoutes = [
-    ["/lenses", "lens index"],
-    ["/search", "search"],
-    [`/lens/${TEST_LENS_SLUG}`, "lens page"],
-    ["/makers", "makers index"],
-    [`/makers/${TEST_MAKER_SLUG}`, "maker page"],
-    ["/authors", "authors index"],
-    [`/authors/${TEST_AUTHOR.slug}`, "author page"],
-    ["/patents", "patents index"],
-    ["/mounts", "mounts index"],
-    [`/mounts/${TEST_MOUNT.id}`, "mount page"],
-    ["/formats", "formats index"],
-    [`/formats/${TEST_FORMAT.id}`, "format page"],
-    ["/relationships", "relationship map"],
-    ["/relationships/universal", "universal relationship map"],
-  ] as const;
-
-  it.each(contentRoutes)("%s (%s) returns non-empty html", (url) => {
-    const { html } = render(url);
-    expect(html.length).toBeGreaterThan(0);
   });
 });
 
@@ -153,17 +146,12 @@ describe("SSR render — home page /", () => {
     expect(helmet.link.toString()).toContain(`${SITE_URL}/`);
   });
 
-  it("includes Open Graph and Twitter meta tags", () => {
+  it("includes Open Graph, Twitter, and default social image meta tags", () => {
     const { helmet } = render("/");
     const meta = helmet.meta.toString();
     expect(meta).toContain('property="og:title"');
     expect(meta).toContain('property="og:description"');
     expect(meta).toContain('name="twitter:card"');
-  });
-
-  it("includes the default social image tags", () => {
-    const { helmet } = render("/");
-    const meta = helmet.meta.toString();
     expect(meta).toContain(`property="og:image" content="${SOCIAL_IMAGE_URL}"`);
     expect(meta).toContain(`property="og:image:type" content="${SOCIAL_IMAGE_TYPE}"`);
     expect(meta).toContain(`property="og:image:width" content="${SOCIAL_IMAGE_WIDTH}"`);
@@ -185,13 +173,9 @@ describe("SSR render — home page /", () => {
 describe("SSR render — compare page /compare/:slugA/:slugB", () => {
   const url = `/compare/${TEST_LENS_SLUG}/${CATALOG_KEYS[1]}`;
 
-  it("uses a self canonical URL", () => {
+  it("uses a self canonical URL and marks the page noindex", () => {
     const { helmet } = render(url);
     expect(helmet.link.toString()).toContain(url);
-  });
-
-  it("marks compare pages as noindex", () => {
-    const { helmet } = render(url);
     expect(helmet.meta.toString()).toContain('name="robots" content="noindex,follow"');
   });
 });
@@ -304,14 +288,10 @@ describe("SSR render — lens page /lens/:slug", () => {
     expect(scripts).toContain('"dateModified"');
   });
 
-  it("og:type is article", () => {
-    const { helmet } = render(`/lens/${TEST_LENS_SLUG}`);
-    expect(helmet.meta.toString()).toContain("article");
-  });
-
-  it("includes the default social image tags", () => {
+  it("og:type is article and the default social image tags are present", () => {
     const { helmet } = render(`/lens/${TEST_LENS_SLUG}`);
     const meta = helmet.meta.toString();
+    expect(meta).toContain("article");
     expect(meta).toContain(`property="og:image" content="${SOCIAL_IMAGE_URL}"`);
     expect(meta).toContain(`property="og:image:type" content="${SOCIAL_IMAGE_TYPE}"`);
     expect(meta).toContain(`name="twitter:image" content="${SOCIAL_IMAGE_URL}"`);
@@ -357,13 +337,9 @@ describe("SSR render — maker page /makers/:maker", () => {
     expect(helmet.link.toString()).toContain(`/makers/${TEST_MAKER_SLUG}`);
   });
 
-  it("HTML contains the maker display name", () => {
-    const { html } = render(`/makers/${TEST_MAKER_SLUG}`);
+  it("HTML contains the maker display name and the default social image tags are present", () => {
+    const { helmet, html } = render(`/makers/${TEST_MAKER_SLUG}`);
     expect(html).toContain(TEST_MAKER_DISPLAY);
-  });
-
-  it("includes the default social image tags", () => {
-    const { helmet } = render(`/makers/${TEST_MAKER_SLUG}`);
     const meta = helmet.meta.toString();
     expect(meta).toContain(`property="og:image" content="${SOCIAL_IMAGE_URL}"`);
     expect(meta).toContain(`property="og:image:type" content="${SOCIAL_IMAGE_TYPE}"`);
@@ -444,21 +420,17 @@ describe("SSR render — article page /articles/:slug", () => {
     expect(helmet.title.toString()).toContain(encodedTitle);
   });
 
-  it("includes the default social image tags", () => {
-    const { helmet } = render(url);
-    const meta = helmet.meta.toString();
-    expect(meta).toContain(`property="og:image" content="${SOCIAL_IMAGE_URL}"`);
-    expect(meta).toContain(`property="og:image:type" content="${SOCIAL_IMAGE_TYPE}"`);
-    expect(meta).toContain(`name="twitter:image" content="${SOCIAL_IMAGE_URL}"`);
-  });
-
-  it("includes Article and BreadcrumbList structured data", () => {
+  it("includes Article and BreadcrumbList structured data plus the default social image tags", () => {
     const { helmet } = render(url);
     const scripts = helmet.script.toString();
     expect(scripts).toContain('"@type":"Article"');
     expect(scripts).toContain('"@type":"BreadcrumbList"');
     expect(scripts).toContain('"datePublished"');
     expect(scripts).toContain('"dateModified"');
+    const meta = helmet.meta.toString();
+    expect(meta).toContain(`property="og:image" content="${SOCIAL_IMAGE_URL}"`);
+    expect(meta).toContain(`property="og:image:type" content="${SOCIAL_IMAGE_TYPE}"`);
+    expect(meta).toContain(`name="twitter:image" content="${SOCIAL_IMAGE_URL}"`);
   });
 });
 

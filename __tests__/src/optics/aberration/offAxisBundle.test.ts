@@ -9,30 +9,15 @@ import {
   traceOrthogonalOffAxisBundle,
   transverseFocusHitsForDirection,
 } from "../../../../src/optics/aberration/offAxis.js";
-import { DEFAULT_CIRCULAR_PUPIL_RING_SAMPLES, doLayout, epAtZoom, fopenAtZoom } from "../../../../src/optics/optics.js";
+import { DEFAULT_CIRCULAR_PUPIL_RING_SAMPLES, doLayout } from "../../../../src/optics/optics.js";
 import buildLens from "../../../../src/optics/buildLens.js";
-import LENS_DEFAULTS from "../../../../src/lens-data/defaults.js";
-import ApoLantharRaw from "../../../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.js";
 import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
-import type { LensData, RuntimeLens } from "../../../../src/types/optics.js";
-
-function build(raw: object): RuntimeLens {
-  return buildLens({ ...LENS_DEFAULTS, ...raw } as LensData);
-}
-
-function apertureAt(L: RuntimeLens, zoomT: number, stopdownT: number) {
-  const currentFOPEN = fopenAtZoom(zoomT, L);
-  const rawFNumber = L.FOPEN * Math.pow(L.maxFstop / L.FOPEN, stopdownT);
-  const fNumber = Math.max(rawFNumber, currentFOPEN);
-  const currentPhysStopSD = (L.stopPhysSD * L.FOPEN) / fNumber;
-  const baseEPSD = epAtZoom(zoomT, L);
-  const currentEPSD = (baseEPSD * L.FOPEN) / fNumber;
-  return { currentPhysStopSD, currentEPSD };
-}
+import { apertureAt, sharedApoLanthar50f2 } from "../testLensFixtures.js";
+import type { RuntimeLens } from "../../../../src/types/optics.js";
 
 describe("off-axis aberration helpers", () => {
   it("computes finite center-field geometry", () => {
-    const L = build(ApoLantharRaw);
+    const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
 
     const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0);
@@ -45,7 +30,7 @@ describe("off-axis aberration helpers", () => {
   });
 
   it("traces a tangential orthogonal fan bundle and keeps the chief sample", () => {
-    const L = build(ApoLantharRaw);
+    const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
     const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0.5);
@@ -70,7 +55,7 @@ describe("off-axis aberration helpers", () => {
   });
 
   it("keeps the weighted circular bundle centered on axis", () => {
-    const L = build(ApoLantharRaw);
+    const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
     const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0);
@@ -102,7 +87,7 @@ describe("off-axis aberration helpers", () => {
   });
 
   it("produces matching tangential and sagittal focus at the center field", () => {
-    const L = build(ApoLantharRaw);
+    const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
     const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0);
@@ -125,7 +110,7 @@ describe("off-axis aberration helpers", () => {
   });
 
   it("computes finite geometry at half-field (0.5)", () => {
-    const L = build(ApoLantharRaw);
+    const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
 
     const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0.5);
@@ -138,7 +123,7 @@ describe("off-axis aberration helpers", () => {
   });
 
   it("computes finite geometry at full field (1.0)", () => {
-    const L = build(ApoLantharRaw);
+    const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
 
     const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 1.0);
@@ -166,7 +151,7 @@ describe("off-axis aberration helpers", () => {
   });
 
   it("rejects invalid field fractions", () => {
-    const L = build(ApoLantharRaw);
+    const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
 
     expect(computeOffAxisFieldGeometry(L, zPos, 0, -0.1)).toBeNull();
@@ -175,7 +160,7 @@ describe("off-axis aberration helpers", () => {
   });
 
   it("extracts tangential y/uy from transverseFocusHitsForDirection", () => {
-    const L = build(ApoLantharRaw);
+    const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
     const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0.5);
@@ -202,7 +187,7 @@ describe("off-axis aberration helpers", () => {
   });
 
   it("extracts sagittal x/ux from transverseFocusHitsForDirection", () => {
-    const L = build(ApoLantharRaw);
+    const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
     const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0.5);
@@ -227,7 +212,7 @@ describe("off-axis aberration helpers", () => {
   });
 
   it("traces a sagittal orthogonal fan bundle with all xFraction variation", () => {
-    const L = build(ApoLantharRaw);
+    const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
     const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0.5);
@@ -252,7 +237,7 @@ describe("off-axis aberration helpers", () => {
   });
 
   it("returns null from traceOffAxisBundleFromSamples for zero EPSD", () => {
-    const L = build(ApoLantharRaw);
+    const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
     const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0.5);
 
@@ -269,7 +254,7 @@ describe("off-axis aberration helpers", () => {
   });
 
   it("produces different chromatic bundle intercepts for R vs B channels", () => {
-    const L = build(ApoLantharRaw);
+    const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
     const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0.5);
@@ -309,7 +294,7 @@ describe("off-axis aberration helpers", () => {
   });
 
   it("produces different chromatic circular bundle intercepts for R vs B", () => {
-    const L = build(ApoLantharRaw);
+    const L = sharedApoLanthar50f2();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
     const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0.5);

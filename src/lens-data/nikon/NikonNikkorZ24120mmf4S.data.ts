@@ -28,10 +28,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    on-axis object at MFD = 0.35 m on the image plane, subject to a     ║
  * ║    0.5 mm mechanical-clearance floor on all variable gaps. Δ5 and Δ6   ║
  * ║    denote displacement of G5 and G6 toward the object; total-track is  ║
- * ║    conserved so d21 also varies with focus. See                        ║
- * ║    __tests__/src/lens-data/nikon/solveZ24120CloseFocus.test.ts for     ║
- * ║    the derivation. At tele                                             ║
- * ║    the solver reproduces the published MRR (0.39×) to within ~5%.      ║
+ * ║    conserved so d21 also varies with focus. The solver script that     ║
+ * ║    derived these values lived at __tests__/src/lens-data/nikon/        ║
+ * ║    solveZ24120CloseFocus.test.ts until 2026-08 and is recoverable      ║
+ * ║    from git history should the prescription be revised. At tele the    ║
+ * ║    solver reproduces the published MRR (0.39×) to within ~5%.          ║
  * ║                                                                        ║
  * ║  NOTE ON ZOOM POSITIONS:                                               ║
  * ║    Patent tabulates variable gaps only at wide (24.7) and tele (116.5).║

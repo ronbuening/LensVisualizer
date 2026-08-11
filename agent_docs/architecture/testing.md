@@ -38,8 +38,14 @@ Keep tests that cover generated metadata, build scripts, or public assets in the
 
 Shared browser/router helpers remain at `__tests__/testUtils.tsx`. They cover:
 
-- Router mounting.
-- Lens-context rendering.
+- Router mounting (`renderWithRouter`).
+- Page rendering under `HelmetProvider` + router (`renderPage`).
+- Lens-context rendering (`renderWithLensContext`).
+- Full lens state built on the real reducer defaults with per-slice overrides (`makeTestLensState`).
+- A frozen complete dark `Theme` (`mockTheme`).
+- Mock-module shapes for the eight LensDiagramPanel hooks (`mockLensDiagramHooks` plus the
+  `makeLensComputationResult` / `makeRayTracingResult` / `makeViewBoxZoomResult` builders); `vi.mock` factories are
+  hoisted, so consume these via `await import("../../testUtils.js")` inside an async factory.
 - `matchMedia` mocking.
 - localStorage seeding.
 - `history.replaceState` mocking.

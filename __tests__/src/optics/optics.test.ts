@@ -1,7 +1,6 @@
 import { describe, it, expect } from "vitest";
 import {
   sag,
-  renderSag,
   sagSlope,
   thick,
   doLayout,
@@ -15,11 +14,6 @@ import {
   eflAtZoom,
   eflAtFocus,
   effectiveFNumber,
-  epAtZoom,
-  halfFieldAtZoom,
-  xpAtZoom,
-  FLAT_R_THRESHOLD,
-  FOCUS_INFINITY_THRESHOLD,
 } from "../../../src/optics/optics.js";
 import type { RuntimeLens, LensData, ChromaticChannel, RayTraceResult } from "../../../src/types/optics.js";
 import { resolveAberrationThickness, resolveVariableThickness } from "../../../src/optics/prescription/variables.js";
@@ -159,24 +153,10 @@ describe("sagSlope", () => {
     expect(sagSlope(h, 0, L)).toBeCloseTo(expected, 10);
   });
 
-  it("matches finite-difference of renderSag for spherical surface", () => {
-    const R = 30;
-    const h = 8;
-    const eps = 1e-6;
-    const L = { S: [{ R }], asphByIdx: {} } as unknown as RuntimeLens;
-    const fd = (renderSag(h + eps, 0, L) - renderSag(h - eps, 0, L)) / (2 * eps);
-    expect(sagSlope(h, 0, L)).toBeCloseTo(fd, 5);
-  });
-
-  it("matches finite-difference of renderSag for aspheric surface", () => {
-    const R = 40;
-    const h = 6;
-    const eps = 1e-6;
-    const asph = { K: -0.5, A4: 1e-5, A6: -2e-8, A8: 0, A10: 0, A12: 0, A14: 0 };
-    const L = { S: [{ R }], asphByIdx: { 0: asph } } as unknown as RuntimeLens;
-    const fd = (renderSag(h + eps, 0, L) - renderSag(h - eps, 0, L)) / (2 * eps);
-    expect(sagSlope(h, 0, L)).toBeCloseTo(fd, 4);
-  });
+  /* Finite-difference correctness of the sag/slope pair is anchored in
+     internal/asphericSchemaMath.test.ts and opticsEngineMath.test.ts; the
+     facade delegates directly to those primitives (layout.ts), and the
+     facade-vs-engine equivalence is proven in opticsEngineMath.test.ts. */
 });
 
 describe("traceRay — exact Snell", () => {
@@ -646,13 +626,9 @@ describe("conjugateK", () => {
     ["Sonnar50f15", buildLens({ ...LENS_DEFAULTS, ...Sonnar50f15Raw } as LensData)],
   ];
 
+  /* Includes the Sonnar50f15 regression case: |K(0)| was 0.00442 with the
+   * paraxial trace before the exact-trace rollout. */
   it.each(allLenses)("%s: conjugateK(0) ≈ 0 at infinity", (name, L) => {
-    const K = conjugateK(0, 0, L);
-    expect(Math.abs(K)).toBeLessThan(1e-4);
-  });
-
-  it("Sonnar50f15 regression: |K(0)| < 1e-4 (was 0.00442 with paraxial)", () => {
-    const L = buildLens({ ...LENS_DEFAULTS, ...Sonnar50f15Raw } as LensData);
     const K = conjugateK(0, 0, L);
     expect(Math.abs(K)).toBeLessThan(1e-4);
   });
@@ -733,64 +709,10 @@ describe("centered aberration-control interpolation", () => {
   });
 });
 
-describe("eflAtZoom", () => {
-  it("returns L.EFL for prime lenses regardless of zoomT", () => {
-    const L = buildLens({ ...LENS_DEFAULTS, ...ApoLantharRaw } as LensData);
-    expect(eflAtZoom(0, L)).toBe(L.EFL);
-    expect(eflAtZoom(0.5, L)).toBe(L.EFL);
-    expect(eflAtZoom(1, L)).toBe(L.EFL);
-  });
-
-  it("returns wide EFL at zoomT=0 and tele EFL at zoomT=1", () => {
-    const L = buildLens({ ...LENS_DEFAULTS, ...NikkorZ70200Raw } as LensData);
-    expect(eflAtZoom(0, L)).toBeCloseTo(L.zoomEFLs![0], 5);
-    expect(eflAtZoom(1, L)).toBeCloseTo(L.zoomEFLs![2], 5);
-  });
-
-  it("interpolates monotonically between wide and tele", () => {
-    const L = buildLens({ ...LENS_DEFAULTS, ...NikkorZ70200Raw } as LensData);
-    const efl = eflAtZoom(0.5, L);
-    expect(efl).toBeGreaterThan(L.zoomEFLs![0]);
-    expect(efl).toBeLessThan(L.zoomEFLs![2]);
-  });
-
-  it("handles single-element zoomEFLs defensively", () => {
-    const L = { isZoom: true, zoomEFLs: [50], EFL: 50 } as unknown as RuntimeLens;
-    expect(eflAtZoom(0, L)).toBe(50);
-    expect(eflAtZoom(1, L)).toBe(50);
-  });
-});
-
-describe("epAtZoom / halfFieldAtZoom", () => {
-  it("returns static values for prime lenses", () => {
-    const L = buildLens({ ...LENS_DEFAULTS, ...ApoLantharRaw } as LensData);
-    expect(epAtZoom(0, L)).toBe(L.EP.epSD);
-    expect(epAtZoom(0.5, L)).toBe(L.EP.epSD);
-    expect(halfFieldAtZoom(0, L)).toBe(L.halfField);
-  });
-
-  it("interpolates across zoom positions", () => {
-    const L = buildLens({ ...LENS_DEFAULTS, ...NikkorZ70200Raw } as LensData);
-    const epWide = epAtZoom(0, L);
-    const epTele = epAtZoom(1, L);
-    const epMid = epAtZoom(0.5, L);
-    expect(epWide).toBeCloseTo(L.zoomEPs![0], 5);
-    expect(epTele).toBeCloseTo(L.zoomEPs![2], 5);
-    /* Mid should be between wide and tele (or equal) */
-    expect(epMid).toBeGreaterThanOrEqual(Math.min(epWide, epTele) - 0.01);
-    expect(epMid).toBeLessThanOrEqual(Math.max(epWide, epTele) + 0.01);
-  });
-});
-
-describe("named constants", () => {
-  it("FLAT_R_THRESHOLD is 1e10", () => {
-    expect(FLAT_R_THRESHOLD).toBe(1e10);
-  });
-
-  it("FOCUS_INFINITY_THRESHOLD is 0.003", () => {
-    expect(FOCUS_INFINITY_THRESHOLD).toBe(0.003);
-  });
-});
+/* Zoom accessor coverage (eflAtZoom, epAtZoom, halfFieldAtZoom, xpAtZoom, …)
+ * lives in zoomOptics.test.ts: shape tests plus a per-accessor dispatch matrix
+ * and production-lens anchors. eflAtZoom is used below only as the reference
+ * value for eflAtFocus. */
 
 describe("eflAtFocus", () => {
   it("returns static EFL at infinity focus for prime lenses", () => {
@@ -850,21 +772,5 @@ describe("effectiveFNumber", () => {
     const effF = effectiveFNumber(2.8, 1, 0, L);
     expect(effF).toBeGreaterThan(2.8);
     expect(isFinite(effF)).toBe(true);
-  });
-});
-
-describe("xpAtZoom", () => {
-  it("returns static xpSD for prime lenses", () => {
-    const L = buildLens({ ...LENS_DEFAULTS, ...ApoLantharRaw } as LensData);
-    expect(xpAtZoom(0, L)).toBe(L.xpSD);
-    expect(xpAtZoom(0.5, L)).toBe(L.xpSD);
-  });
-
-  it("interpolates across zoom positions", () => {
-    const L = buildLens({ ...LENS_DEFAULTS, ...NikkorZ70200Raw } as LensData);
-    const xpWide = xpAtZoom(0, L);
-    const xpTele = xpAtZoom(1, L);
-    expect(xpWide).toBeCloseTo(L.zoomXpSDs![0], 5);
-    expect(xpTele).toBeCloseTo(L.zoomXpSDs![2], 5);
   });
 });

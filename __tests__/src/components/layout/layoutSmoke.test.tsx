@@ -49,80 +49,60 @@ vi.mock("../../../../src/components/layout/DescriptionPanel.js", () => ({
   ),
 }));
 
-/* Mock all hooks used by LensDiagramPanel (for the real component if tested directly) */
-vi.mock("../../../../src/components/hooks/useLensComputation.js", () => ({
-  default: () => ({
-    L: null,
-    buildError: null,
-    IMG_MM: 0,
-    zPos: [],
-    sx: 1,
-    sy: 1,
-    clampedRayEnd: 0,
-    CX: 0,
-    IX: 0,
-    effectiveSC: 1,
-    shapes: [],
-    shapeError: null,
-    stopZ: 0,
-    currentFOPEN: 2,
-    fNumber: 2,
-    currentPhysStopSD: 5,
-    baseEPSD: 5,
-    currentEPSD: 5,
-    varReadouts: [],
-    dynamicEFL: 50,
-    effectiveFNum: 2,
-    filterId: "filter-test",
-  }),
-}));
+/* Mock all hooks used by LensDiagramPanel (for the real component if tested directly).
+   The shared shapes live in testUtils.mockLensDiagramHooks; factories must be async
+   and dynamically import it because vi.mock calls are hoisted above imports. */
+vi.mock(
+  "../../../../src/components/hooks/useLensComputation.js",
+  async () => (await import("../../../testUtils.js")).mockLensDiagramHooks().useLensComputation,
+);
 
-vi.mock("../../../../src/components/hooks/useRayTracing.js", () => ({
-  default: () => ({ rays: [], offAxisRays: [], chromaticRays: [], chromaticRayFanSpread: null, rayError: null }),
-}));
+vi.mock(
+  "../../../../src/components/hooks/useRayTracing.js",
+  async () => (await import("../../../testUtils.js")).mockLensDiagramHooks().useRayTracing,
+);
 
-vi.mock("../../../../src/components/hooks/useDispatchAdapters.js", () => ({
-  default: () =>
-    new Proxy(
-      {},
-      {
-        get: () => vi.fn(),
-      },
-    ),
-}));
+vi.mock(
+  "../../../../src/components/hooks/useDispatchAdapters.js",
+  async () => (await import("../../../testUtils.js")).mockLensDiagramHooks().useDispatchAdapters,
+);
 
-vi.mock("../../../../src/components/hooks/useOverlayState.js", () => ({
-  default: () => ({
-    asphCompareElementId: null,
-    openAsphCompare: vi.fn(),
-    closeAsphCompare: vi.fn(),
-  }),
-}));
+vi.mock(
+  "../../../../src/components/hooks/useOverlayState.js",
+  async () => (await import("../../../testUtils.js")).mockLensDiagramHooks().useOverlayState,
+);
 
-vi.mock("../../../../src/components/hooks/useHeaderHeight.js", () => ({
-  default: () => ({ headerRef: { current: null }, headerHeight: 40 }),
-}));
+vi.mock(
+  "../../../../src/components/hooks/useHeaderHeight.js",
+  async () => (await import("../../../testUtils.js")).mockLensDiagramHooks().useHeaderHeight,
+);
 
-vi.mock("../../../../src/components/hooks/useFlashOverlay.js", () => ({
-  default: () => ({ flashKey: 0, flashVisible: false, flashFading: false }),
-}));
+vi.mock(
+  "../../../../src/components/hooks/useFlashOverlay.js",
+  async () => (await import("../../../testUtils.js")).mockLensDiagramHooks().useFlashOverlay,
+);
 
-vi.mock("../../../../src/components/hooks/useSideLayoutDetection.js", () => ({
-  default: () => false,
-}));
+vi.mock(
+  "../../../../src/components/hooks/useSideLayoutDetection.js",
+  async () => (await import("../../../testUtils.js")).mockLensDiagramHooks().useSideLayoutDetection,
+);
 
-vi.mock("../../../../src/components/hooks/useViewBoxZoom.js", () => ({
-  default: () => ({
-    viewBox: "0 0 1200 600",
-    handlers: {},
-    zoomLevel: 1,
-    reset: vi.fn(),
-    zoomIn: vi.fn(),
-    zoomOut: vi.fn(),
-    isPanned: false,
-    isZoomed: false,
-  }),
-}));
+vi.mock(
+  "../../../../src/components/hooks/useViewBoxZoom.js",
+  async () =>
+    (await import("../../../testUtils.js")).mockLensDiagramHooks({
+      useViewBoxZoom: () => ({
+        viewBox: "0 0 1200 600",
+        handlers: {},
+        zoomLevel: 1,
+        reset: vi.fn(),
+        zoomIn: vi.fn(),
+        zoomOut: vi.fn(),
+        isPanned: false,
+        isZoomed: false,
+      }),
+    }).useViewBoxZoom,
+);
 
 /* ─────────────────── Shared State ─────────────────── */
 

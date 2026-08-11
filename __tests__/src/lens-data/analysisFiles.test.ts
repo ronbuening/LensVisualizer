@@ -27,6 +27,9 @@ function collectAnalysisFiles(dir: string): string[] {
 
 const FILES = collectAnalysisFiles(lensDataRoot);
 
+/* Read the corpus once — each per-check test below scans every file. */
+const TEXTS = new Map(FILES.map((path) => [path, readFileSync(path, "utf-8")]));
+
 const CHECKS: { label: string; ok: (text: string) => boolean }[] = [
   { label: "non-empty body", ok: (text) => text.trim().length > 0 },
   { label: "**Patent:** metadata line", ok: (text) => /^\*\*Patent/m.test(text) },
@@ -48,9 +51,7 @@ describe("lens analysis files", () => {
 
   for (const { label, ok } of CHECKS) {
     it(`every analysis file has: ${label}`, () => {
-      const offenders = FILES.filter((path) => !ok(readFileSync(path, "utf-8"))).map((path) =>
-        relative(lensDataRoot, path),
-      );
+      const offenders = FILES.filter((path) => !ok(TEXTS.get(path)!)).map((path) => relative(lensDataRoot, path));
       expect(offenders, `see the Required Section Skeleton in src/lens-data/LENS_ANALYSIS_SPEC.md`).toEqual([]);
     });
   }

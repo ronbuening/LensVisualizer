@@ -1,4 +1,8 @@
 // @vitest-environment jsdom
+/* Reducer initialization semantics (defaults, URL > prefs precedence, isWide panel defaults) are covered by
+   lensReducer.test.ts createInitialState tests: "uses defaults when prefs and URL are empty", "URL params
+   override prefs", "prefs override defaults", and "panel expanded defaults to isWide". This file keeps only
+   the hook-specific wiring (tuple shape, URL parsing/validation, prefs handling, dispatch round-trips). */
 import { describe, it, expect, beforeEach } from "vitest";
 import { renderHook, act } from "@testing-library/react";
 import useLensState from "../../../../src/utils/state/useLensState.js";
@@ -15,52 +19,13 @@ beforeEach(() => {
 
 /* ── Default state initialization ── */
 
-describe("useLensState — defaults", () => {
+describe("useLensState — hook interface", () => {
   it("returns [state, dispatch, isWide] tuple", () => {
     const { result } = renderHook(() => useLensState(CATALOG_KEYS));
     const [state, dispatch, isWide] = result.current;
     expect(typeof state).toBe("object");
     expect(typeof dispatch).toBe("function");
     expect(typeof isWide).toBe("boolean");
-  });
-
-  it("defaults lensKeyA to first catalog key when no URL or prefs", () => {
-    const { result } = renderHook(() => useLensState(CATALOG_KEYS));
-    expect(result.current[0].lens.lensKeyA).toBe(CATALOG_KEYS[0]);
-  });
-
-  it("defaults lensKeyB to second catalog key when no URL or prefs", () => {
-    const { result } = renderHook(() => useLensState(CATALOG_KEYS));
-    expect(result.current[0].lens.lensKeyB).toBe(CATALOG_KEYS[1]);
-  });
-
-  it("defaults comparing to false", () => {
-    const { result } = renderHook(() => useLensState(CATALOG_KEYS));
-    expect(result.current[0].lens.comparing).toBe(false);
-  });
-
-  /* The reducer initializer runs once, so it must see the real viewport width on the
-     first render — not the SSR default (the viewer tree mounts inside ClientOnly). */
-  it("expands the focus and aperture panels on a first visit at desktop width", () => {
-    const { result } = renderHook(() => useLensState(CATALOG_KEYS));
-    expect(result.current[0].panels.focusExpanded).toBe(true);
-    expect(result.current[0].panels.apertureExpanded).toBe(true);
-  });
-
-  it("collapses the focus and aperture panels on a first visit at narrow width", () => {
-    installMatchMediaMock(false);
-    const { result } = renderHook(() => useLensState(CATALOG_KEYS));
-    expect(result.current[0].panels.focusExpanded).toBe(false);
-    expect(result.current[0].panels.apertureExpanded).toBe(false);
-  });
-
-  it("defaults sliders to zero", () => {
-    const { result } = renderHook(() => useLensState(CATALOG_KEYS));
-    const { focusT, zoomT, aberrationT, stopdownT } = result.current[0].sliders;
-    expect(focusT).toBe(0);
-    expect(zoomT).toBe(0);
-    expect(aberrationT).toBe(0);
-    expect(stopdownT).toBe(0);
   });
 });
 
@@ -76,6 +41,16 @@ describe("useLensState — URL params override defaults", () => {
     expect(result.current[0].lens.lensKeyA).toBe(CATALOG_KEYS[1]);
   });
 
+  it("ignores ?lens= value not in catalog", () => {
+    window.history.replaceState({}, "", "?lens=totally_fake_lens_xyz");
+    const { result } = renderHook(() => useLensState(CATALOG_KEYS));
+    // Falls back to default (first key)
+    expect(result.current[0].lens.lensKeyA).toBe(CATALOG_KEYS[0]);
+  });
+
+  /* These three route real URL strings through the lensViewUrlState parsing
+   * path — the reducer's "URL params override prefs" test receives already-
+   * parsed values, so per-key parse coverage lives only here. */
   it("applies ?focus= slider to focusT", () => {
     window.history.replaceState({}, "", "?focus=0.6");
     const { result } = renderHook(() => useLensState(CATALOG_KEYS));
@@ -92,13 +67,6 @@ describe("useLensState — URL params override defaults", () => {
     window.history.replaceState({}, "", "?aperture=0.4");
     const { result } = renderHook(() => useLensState(CATALOG_KEYS));
     expect(result.current[0].sliders.stopdownT).toBeCloseTo(0.4, 5);
-  });
-
-  it("ignores ?lens= value not in catalog", () => {
-    window.history.replaceState({}, "", "?lens=totally_fake_lens_xyz");
-    const { result } = renderHook(() => useLensState(CATALOG_KEYS));
-    // Falls back to default (first key)
-    expect(result.current[0].lens.lensKeyA).toBe(CATALOG_KEYS[0]);
   });
 
   it("hydrates a valid optical configuration on the first render", () => {
@@ -130,25 +98,13 @@ describe("useLensState — URL params override defaults", () => {
 
 /* ── Preferences initialization ── */
 
-describe("useLensState — localStorage prefs override defaults", () => {
+describe("useLensState — localStorage prefs handling", () => {
   it("ignores saved lensKeyA from prefs (lens selection is URL-only)", () => {
     const targetKey = CATALOG_KEYS[Math.min(2, CATALOG_KEYS.length - 1)];
     localStorage.setItem(PREFS_KEY, JSON.stringify({ v: 2, lensKeyA: targetKey }));
     const { result } = renderHook(() => useLensState(CATALOG_KEYS));
     // lensKeyA should be the catalog default, not the saved key
     expect(result.current[0].lens.lensKeyA).toBe(CATALOG_KEYS[0]);
-  });
-
-  it("applies dark=true from prefs", () => {
-    localStorage.setItem(PREFS_KEY, JSON.stringify({ v: 2, dark: true }));
-    const { result } = renderHook(() => useLensState(CATALOG_KEYS));
-    expect(result.current[0].display.dark).toBe(true);
-  });
-
-  it("applies dark=false from prefs", () => {
-    localStorage.setItem(PREFS_KEY, JSON.stringify({ v: 2, dark: false }));
-    const { result } = renderHook(() => useLensState(CATALOG_KEYS));
-    expect(result.current[0].display.dark).toBe(false);
   });
 
   it("ignores comparing from prefs (comparison is URL-only)", () => {

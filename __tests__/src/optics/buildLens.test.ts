@@ -2,6 +2,13 @@ import { describe, it, expect, vi } from "vitest";
 import buildLens, { paraxialTrace, realTraceToStop } from "../../../src/optics/buildLens.js";
 import { doLayout } from "../../../src/optics/optics.js";
 import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
+import {
+  sharedApoLanthar50f2,
+  sharedNikkor105f14,
+  sharedNikkorZ50f18,
+  sharedNokton50f1,
+  sharedSonnar50f15,
+} from "./testLensFixtures.js";
 import type { LensData, SurfaceData } from "../../../src/types/optics.js";
 
 /* ── Load all production lens data files ── */
@@ -32,6 +39,17 @@ const NikonFisheye6mmf56 = { ...LENS_DEFAULTS, ...NikonFisheye6mmf56Raw } as Len
 const CanonEF815mmf4LFisheye = { ...LENS_DEFAULTS, ...CanonEF815mmf4LFisheyeRaw } as LensData;
 const Sonnar50f15 = { ...LENS_DEFAULTS, ...Sonnar50f15Raw } as LensData;
 const Hologon15f8 = { ...LENS_DEFAULTS, ...Hologon15f8Raw } as LensData;
+
+/* Shared frozen instances of the same five production lenses (identical
+ * LENS_DEFAULTS-merge + buildLens path) for loops that only read the built
+ * lens — order matches [ApoLanthar, Nokton, Nikkor, Nikkor105, Sonnar50f15]. */
+const SHARED_PRODUCTION_LENSES = [
+  sharedApoLanthar50f2,
+  sharedNokton50f1,
+  sharedNikkorZ50f18,
+  sharedNikkor105f14,
+  sharedSonnar50f15,
+];
 
 describe("paraxialTrace", () => {
   const simpleSurfaces = [
@@ -208,15 +226,15 @@ describe("buildLens — production lenses", () => {
 
   /* ── Structural checks ── */
   it("all lenses have frozen output", () => {
-    for (const data of [ApoLanthar, Nokton, Nikkor, Nikkor105, Sonnar50f15]) {
-      const L = buildLens(data);
+    for (const shared of SHARED_PRODUCTION_LENSES) {
+      const L = shared();
       expect(Object.isFrozen(L)).toBe(true);
     }
   });
 
   it("all lenses have a valid stopIdx", () => {
-    for (const data of [ApoLanthar, Nokton, Nikkor, Nikkor105, Sonnar50f15]) {
-      const L = buildLens(data);
+    for (const shared of SHARED_PRODUCTION_LENSES) {
+      const L = shared();
       expect(L.stopIdx).toBeGreaterThanOrEqual(0);
       expect(L.stopIdx).toBeLessThan(L.N);
       expect(L.S[L.stopIdx].label).toBe("STO");
@@ -224,16 +242,16 @@ describe("buildLens — production lenses", () => {
   });
 
   it("all lenses have positive halfField", () => {
-    for (const data of [ApoLanthar, Nokton, Nikkor, Nikkor105, Sonnar50f15]) {
-      const L = buildLens(data);
+    for (const shared of SHARED_PRODUCTION_LENSES) {
+      const L = shared();
       expect(L.halfField).toBeGreaterThan(0);
       expect(L.halfField).toBeLessThan(90);
     }
   });
 
   it("all lenses have ES entries with valid surface indices", () => {
-    for (const data of [ApoLanthar, Nokton, Nikkor, Nikkor105, Sonnar50f15]) {
-      const L = buildLens(data);
+    for (const shared of SHARED_PRODUCTION_LENSES) {
+      const L = shared();
       for (const [, s1, s2] of L.ES) {
         expect(s1).toBeGreaterThanOrEqual(0);
         expect(s2).toBeGreaterThanOrEqual(0);
@@ -481,8 +499,8 @@ describe("buildLens — error handling", () => {
 
 describe("buildLens — vdByIdx", () => {
   it("all production lenses have vdByIdx with entries for glass surfaces", () => {
-    for (const data of [ApoLanthar, Nokton, Nikkor, Nikkor105, Sonnar50f15]) {
-      const L = buildLens(data);
+    for (const shared of SHARED_PRODUCTION_LENSES) {
+      const L = shared();
       expect(L.vdByIdx).toBeDefined();
       // At least one glass surface should have a vd entry
       const entries = Object.keys(L.vdByIdx);
@@ -491,7 +509,7 @@ describe("buildLens — vdByIdx", () => {
   });
 
   it("vdByIdx values match corresponding element vd", () => {
-    const L = buildLens(ApoLanthar);
+    const L = sharedApoLanthar50f2();
     for (const [idxStr, vd] of Object.entries(L.vdByIdx)) {
       const idx = parseInt(idxStr);
       const eid = L.S[idx].elemId;
@@ -503,7 +521,7 @@ describe("buildLens — vdByIdx", () => {
   });
 
   it("air surfaces (elemId=0) are not in vdByIdx", () => {
-    const L = buildLens(Nokton);
+    const L = sharedNokton50f1();
     for (const [idxStr] of Object.entries(L.vdByIdx)) {
       const idx = parseInt(idxStr);
       expect(L.S[idx].elemId).not.toBe(0);
@@ -546,26 +564,23 @@ describe("scaleRatio for normalized comparison", () => {
   });
 
   it("all production lenses have positive SC and YSC", () => {
-    const lenses = [ApoLanthar, Nokton];
-    for (const data of lenses) {
-      const L = buildLens(data);
+    for (const shared of [sharedApoLanthar50f2, sharedNokton50f1]) {
+      const L = shared();
       expect(L.SC).toBeGreaterThan(0);
       expect(L.YSC).toBeGreaterThan(0);
     }
   });
 
   it("uniform scaling: SC equals YSC for all lenses", () => {
-    const lenses = [ApoLanthar, Nokton];
-    for (const data of lenses) {
-      const L = buildLens(data);
+    for (const shared of [sharedApoLanthar50f2, sharedNokton50f1]) {
+      const L = shared();
       expect(L.SC).toBe(L.YSC);
     }
   });
 
   it("uniform scaling: svgH accommodates all annotation positions", () => {
-    const lenses = [ApoLanthar, Nokton];
-    for (const data of lenses) {
-      const L = buildLens(data);
+    for (const shared of [sharedApoLanthar50f2, sharedNokton50f1]) {
+      const L = shared();
       /* lyGroup (1.37 * maxSD) is the farthest annotation below center.
        * sy(lyGroup) = svgH/2 + lyGroup * YSC must fit within svgH. */
       const lyGroupPx = L.svgH / 2 + L.lyGroup * L.YSC;
@@ -574,7 +589,7 @@ describe("scaleRatio for normalized comparison", () => {
   });
 
   it("keeps element, Abbe, and group annotation rows vertically separated", () => {
-    const L = buildLens(ApoLanthar);
+    const L = sharedApoLanthar50f2();
     expect(L.lyElemNum).toBeLessThan(L.lyVdBadge);
     expect(L.lyVdBadge).toBeLessThan(L.lyGroup);
     expect(L.lyVdBadge - L.lyElemNum).toBeCloseTo(L.lyGroup - L.lyVdBadge, 10);

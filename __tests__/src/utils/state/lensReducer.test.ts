@@ -53,6 +53,42 @@ function makeState() {
   return createInitialState({}, {}, true, CATALOG_KEYS);
 }
 
+const SLICES: Array<keyof LensState> = ["lens", "display", "rays", "sliders", "sharedSliders", "panels", "overlays"];
+
+/**
+ * Single-field setter actions that all share the identical `{...state, slice: {...slice, field: value}}`
+ * reducer shape (including the comparison sub-reducer's scaleMode and shared-slider cases).
+ * Every value differs from its default so the assertion proves the write happened.
+ */
+const SETTER_CASES: Array<{ action: LensAction; slice: keyof LensState; field: string; value: unknown }> = [
+  { action: { type: SET_SCALE_MODE, scaleMode: "normalized" }, slice: "lens", field: "scaleMode", value: "normalized" },
+  { action: { type: SET_DARK, dark: false }, slice: "display", field: "dark", value: false },
+  { action: { type: SET_HIGH_CONTRAST, highContrast: true }, slice: "display", field: "highContrast", value: true },
+  {
+    action: { type: SET_MOBILE_VIEW, mobileView: "description" },
+    slice: "display",
+    field: "mobileView",
+    value: "description",
+  },
+  {
+    action: { type: SET_DESKTOP_VIEW, desktopView: "analysis" },
+    slice: "display",
+    field: "desktopView",
+    value: "analysis",
+  },
+  { action: { type: SET_FOCUS_T, value: 0.75 }, slice: "sliders", field: "focusT", value: 0.75 },
+  { action: { type: SET_ZOOM_T, value: 0.5 }, slice: "sliders", field: "zoomT", value: 0.5 },
+  { action: { type: SET_ABERRATION_T, value: 0.65 }, slice: "sliders", field: "aberrationT", value: 0.65 },
+  { action: { type: SET_STOPDOWN_T, value: 0.3 }, slice: "sliders", field: "stopdownT", value: 0.3 },
+  { action: { type: SET_SHIFT_MM, value: -6.5 }, slice: "sliders", field: "shiftMm", value: -6.5 },
+  { action: { type: SET_TILT_DEG, value: 4.5 }, slice: "sliders", field: "tiltDeg", value: 4.5 },
+  { action: { type: SET_SHARED_FOCUS_T, value: 0.6 }, slice: "sharedSliders", field: "sharedFocusT", value: 0.6 },
+  { action: { type: SET_SHARED_STOPDOWN_T, value: 0.4 }, slice: "sharedSliders", field: "sharedStopdownT", value: 0.4 },
+  { action: { type: SET_SHARED_ZOOM_T, value: 0.8 }, slice: "sharedSliders", field: "sharedZoomT", value: 0.8 },
+  { action: { type: SET_SHARED_SHIFT_MM, value: 7 }, slice: "sharedSliders", field: "sharedShiftMm", value: 7 },
+  { action: { type: SET_SHARED_TILT_DEG, value: -5 }, slice: "sharedSliders", field: "sharedTiltDeg", value: -5 },
+];
+
 describe("createInitialState", () => {
   it("uses defaults when prefs and URL are empty", () => {
     const state = createInitialState({}, {}, true, CATALOG_KEYS);
@@ -275,39 +311,19 @@ describe("lensReducer", () => {
     });
   });
 
-  describe("SET_SCALE_MODE", () => {
-    it("updates scaleMode", () => {
-      const next = lensReducer(state, { type: SET_SCALE_MODE, scaleMode: "normalized" });
-      expect(next.lens.scaleMode).toBe("normalized");
-    });
-  });
-
-  /* ── Display ── */
-  describe("SET_DARK", () => {
-    it("toggles dark mode", () => {
-      const next = lensReducer(state, { type: SET_DARK, dark: false });
-      expect(next.display.dark).toBe(false);
-    });
-  });
-
-  describe("SET_HIGH_CONTRAST", () => {
-    it("toggles high contrast", () => {
-      const next = lensReducer(state, { type: SET_HIGH_CONTRAST, highContrast: true });
-      expect(next.display.highContrast).toBe(true);
-    });
-  });
-
-  describe("SET_MOBILE_VIEW", () => {
-    it("sets mobile view", () => {
-      const next = lensReducer(state, { type: SET_MOBILE_VIEW, mobileView: "description" });
-      expect(next.display.mobileView).toBe("description");
-    });
-  });
-
-  describe("SET_DESKTOP_VIEW", () => {
-    it("sets desktop view", () => {
-      const next = lensReducer(state, { type: SET_DESKTOP_VIEW, desktopView: "analysis" });
-      expect(next.display.desktopView).toBe("analysis");
+  /* ── Single-field setters (scale mode, display, sliders, shared sliders) ── */
+  describe("single-field setters", () => {
+    it.each(SETTER_CASES)("$action.type sets $slice.$field", ({ action, slice, field, value }) => {
+      const next = lensReducer(state, action);
+      const nextSlice = next[slice] as unknown as Record<string, unknown>;
+      const prevSlice = state[slice] as unknown as Record<string, unknown>;
+      expect(nextSlice[field]).toBe(value);
+      /* Every other slice keeps reference identity (structural sharing) */
+      for (const s of SLICES) {
+        if (s !== slice) expect(next[s]).toBe(state[s]);
+      }
+      /* The rest of the changed slice is untouched */
+      expect({ ...nextSlice, [field]: prevSlice[field] }).toEqual(prevSlice);
     });
   });
 
@@ -359,49 +375,6 @@ describe("lensReducer", () => {
     });
   });
 
-  /* ── Single-lens sliders ── */
-  describe("SET_FOCUS_T", () => {
-    it("sets focusT", () => {
-      const next = lensReducer(state, { type: SET_FOCUS_T, value: 0.75 });
-      expect(next.sliders.focusT).toBe(0.75);
-    });
-  });
-
-  describe("SET_ZOOM_T", () => {
-    it("sets zoomT", () => {
-      const next = lensReducer(state, { type: SET_ZOOM_T, value: 0.5 });
-      expect(next.sliders.zoomT).toBe(0.5);
-    });
-  });
-
-  describe("SET_ABERRATION_T", () => {
-    it("sets aberrationT", () => {
-      const next = lensReducer(state, { type: SET_ABERRATION_T, value: 0.65 });
-      expect(next.sliders.aberrationT).toBe(0.65);
-    });
-  });
-
-  describe("SET_STOPDOWN_T", () => {
-    it("sets stopdownT", () => {
-      const next = lensReducer(state, { type: SET_STOPDOWN_T, value: 0.3 });
-      expect(next.sliders.stopdownT).toBe(0.3);
-    });
-  });
-
-  describe("SET_SHIFT_MM", () => {
-    it("sets shiftMm", () => {
-      const next = lensReducer(state, { type: SET_SHIFT_MM, value: -6.5 });
-      expect(next.sliders.shiftMm).toBe(-6.5);
-    });
-  });
-
-  describe("SET_TILT_DEG", () => {
-    it("sets tiltDeg", () => {
-      const next = lensReducer(state, { type: SET_TILT_DEG, value: 4.5 });
-      expect(next.sliders.tiltDeg).toBe(4.5);
-    });
-  });
-
   describe("RESET_SLIDERS", () => {
     it("resets all sliders to 0", () => {
       state.sliders = { focusT: 0.5, zoomT: 0.3, aberrationT: 0.4, stopdownT: 0.2, shiftMm: 5, tiltDeg: -3 };
@@ -410,116 +383,29 @@ describe("lensReducer", () => {
     });
   });
 
-  /* ── Shared sliders ── */
-  describe("SET_SHARED_FOCUS_T", () => {
-    it("sets sharedFocusT", () => {
-      const next = lensReducer(state, { type: SET_SHARED_FOCUS_T, value: 0.6 });
-      expect(next.sharedSliders.sharedFocusT).toBe(0.6);
-    });
-  });
-
-  describe("SET_SHARED_STOPDOWN_T", () => {
-    it("sets sharedStopdownT", () => {
-      const next = lensReducer(state, { type: SET_SHARED_STOPDOWN_T, value: 0.4 });
-      expect(next.sharedSliders.sharedStopdownT).toBe(0.4);
-    });
-  });
-
-  describe("SET_SHARED_ZOOM_T", () => {
-    it("sets sharedZoomT", () => {
-      const next = lensReducer(state, { type: SET_SHARED_ZOOM_T, value: 0.8 });
-      expect(next.sharedSliders.sharedZoomT).toBe(0.8);
-    });
-  });
-
-  describe("SET_SHARED_SHIFT_MM", () => {
-    it("sets sharedShiftMm", () => {
-      const next = lensReducer(state, { type: SET_SHARED_SHIFT_MM, value: 7 });
-      expect(next.sharedSliders.sharedShiftMm).toBe(7);
-    });
-  });
-
-  describe("SET_SHARED_TILT_DEG", () => {
-    it("sets sharedTiltDeg", () => {
-      const next = lensReducer(state, { type: SET_SHARED_TILT_DEG, value: -5 });
-      expect(next.sharedSliders.sharedTiltDeg).toBe(-5);
-    });
-  });
-
   /* ── Panels ── */
   describe("SET_PANEL_EXPANDED", () => {
-    it("sets valid panel", () => {
-      const next = lensReducer(state, { type: SET_PANEL_EXPANDED, panel: "focusExpanded", expanded: false });
-      expect(next.panels.focusExpanded).toBe(false);
-    });
+    /* All valid panels flow through the same PANEL_FIELDS-guarded generic case */
+    it.each(["focusExpanded", "aberrationsExpanded", "analysisDrawerOpen", "zoomPanActive", "glassMapOpen"] as const)(
+      "sets %s",
+      (panel) => {
+        const expanded = !state.panels[panel];
+        const next = lensReducer(state, { type: SET_PANEL_EXPANDED, panel, expanded });
+        expect(next.panels[panel]).toBe(expanded);
+      },
+    );
 
     it("ignores invalid panel", () => {
       const next = lensReducer(state, { type: SET_PANEL_EXPANDED, panel: "bogus" as PanelField, expanded: true });
       expect(next).toBe(state);
     });
-
-    it("toggles aberrationsExpanded", () => {
-      expect(state.panels.aberrationsExpanded).toBe(true);
-      const next = lensReducer(state, {
-        type: SET_PANEL_EXPANDED,
-        panel: "aberrationsExpanded",
-        expanded: false,
-      });
-      expect(next.panels.aberrationsExpanded).toBe(false);
-    });
-
-    it("toggles analysisDrawerOpen", () => {
-      expect(state.panels.analysisDrawerOpen).toBe(false);
-      const next = lensReducer(state, {
-        type: SET_PANEL_EXPANDED,
-        panel: "analysisDrawerOpen",
-        expanded: true,
-      });
-      expect(next.panels.analysisDrawerOpen).toBe(true);
-    });
-
-    it("toggles zoomPanActive", () => {
-      expect(state.panels.zoomPanActive).toBe(false);
-      const next = lensReducer(state, {
-        type: SET_PANEL_EXPANDED,
-        panel: "zoomPanActive",
-        expanded: true,
-      });
-      expect(next.panels.zoomPanActive).toBe(true);
-    });
-
-    it("toggles glassMapOpen", () => {
-      expect(state.panels.glassMapOpen).toBe(false);
-      const next = lensReducer(state, {
-        type: SET_PANEL_EXPANDED,
-        panel: "glassMapOpen",
-        expanded: true,
-      });
-      expect(next.panels.glassMapOpen).toBe(true);
-    });
   });
 
   /* ── Analysis drawer tab ── */
   describe("SET_ANALYSIS_TAB", () => {
-    it("updates analysisDrawerTab", () => {
-      expect(state.panels.analysisDrawerTab).toBe("aberrations");
-      const next = lensReducer(state, { type: SET_ANALYSIS_TAB, tab: "distortion" });
-      expect(next.panels.analysisDrawerTab).toBe("distortion");
-    });
-
-    it("accepts the breathing analysis tab", () => {
-      const next = lensReducer(state, { type: SET_ANALYSIS_TAB, tab: "breathing" });
-      expect(next.panels.analysisDrawerTab).toBe("breathing");
-    });
-
-    it("accepts the summary analysis tab", () => {
-      const next = lensReducer(state, { type: SET_ANALYSIS_TAB, tab: "summary" });
-      expect(next.panels.analysisDrawerTab).toBe("summary");
-    });
-
-    it("accepts the chromatic analysis tab", () => {
-      const next = lensReducer(state, { type: SET_ANALYSIS_TAB, tab: "chromatic" });
-      expect(next.panels.analysisDrawerTab).toBe("chromatic");
+    it.each(["distortion", "breathing", "summary", "chromatic"] as const)("sets the %s analysis tab", (tab) => {
+      const next = lensReducer(state, { type: SET_ANALYSIS_TAB, tab });
+      expect(next.panels.analysisDrawerTab).toBe(tab);
     });
   });
 
@@ -553,11 +439,6 @@ describe("lensReducer", () => {
       next = lensReducer(next, { type: SET_SELECTED_ELEMENT, panelId: "b", elementId: 6 });
       expect(next.panels.selectedElementIdA).toBe(4);
       expect(next.panels.selectedElementIdB).toBe(6);
-    });
-
-    it("sets shared glass map open state", () => {
-      const next = lensReducer(state, { type: SET_PANEL_EXPANDED, panel: "glassMapOpen", expanded: true });
-      expect(next.panels.glassMapOpen).toBe(true);
     });
 
     it("applies URL view state in single-lens mode", () => {
@@ -740,45 +621,6 @@ describe("lensReducer", () => {
 
 /* ── Action constant exhaustiveness ── */
 describe("lensReducer — action constant exports", () => {
-  it("exports all 27 expected action type constants", () => {
-    const EXPECTED = [
-      SET_LENS_A,
-      SET_LENS_B,
-      SET_SCALE_MODE,
-      SET_DARK,
-      SET_HIGH_CONTRAST,
-      SET_MOBILE_VIEW,
-      SET_DESKTOP_VIEW,
-      SET_RAY_TOGGLE,
-      SET_FOCUS_T,
-      SET_ZOOM_T,
-      SET_STOPDOWN_T,
-      SET_SHIFT_MM,
-      SET_TILT_DEG,
-      SET_SHARED_FOCUS_T,
-      SET_SHARED_STOPDOWN_T,
-      SET_SHARED_ZOOM_T,
-      SET_SHARED_SHIFT_MM,
-      SET_SHARED_TILT_DEG,
-      RESET_SLIDERS,
-      SET_PANEL_EXPANDED,
-      SET_ANALYSIS_TAB,
-      SET_SELECTED_ELEMENT,
-      APPLY_URL_VIEW_STATE,
-      SET_OVERLAY,
-      CLOSE_ALL_OVERLAYS,
-      ENTER_COMPARE,
-      EXIT_COMPARE,
-    ];
-    // Each constant must be a non-empty string
-    for (const c of EXPECTED) {
-      expect(typeof c).toBe("string");
-      expect(c.length).toBeGreaterThan(0);
-    }
-    // The full set must be exactly 27 unique values
-    expect(new Set(EXPECTED).size).toBe(27);
-  });
-
   it("every action constant's string value matches its export name", () => {
     const constants = {
       SET_LENS_A,

@@ -7,13 +7,12 @@
 
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { cleanup, fireEvent, screen, waitFor } from "@testing-library/react";
-import { HelmetProvider } from "react-helmet-async";
 import type { ReactElement } from "react";
 import { Route, Routes, useLocation } from "react-router";
 import RelationshipMapPage from "../../../src/pages/RelationshipMapPage.js";
 import { AUTHORS } from "../../../src/utils/catalog/authorCatalog.js";
 import { buildRelationshipGraph } from "../../../src/utils/catalog/relationshipGraph.js";
-import { clearBrowserState, installMatchMediaMock, renderWithRouter } from "../../testUtils.js";
+import { clearBrowserState, installMatchMediaMock, renderPage } from "../../testUtils.js";
 
 vi.mock("../../../src/components/SEOHead.js", () => ({
   default: function SEOHead() {
@@ -27,7 +26,7 @@ function LocationEcho() {
 }
 
 function renderRoutes(initialEntry: string, routes: ReactElement) {
-  return renderWithRouter(<HelmetProvider>{routes}</HelmetProvider>, { initialEntries: [initialEntry] });
+  return renderPage(routes, { initialEntries: [initialEntry] });
 }
 
 const PAGE_ROUTE = (

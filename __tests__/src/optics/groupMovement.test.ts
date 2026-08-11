@@ -1,19 +1,13 @@
 import { describe, expect, it } from "vitest";
-import buildLens from "../../../src/optics/buildLens.js";
-import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
 import {
   computeGroupMovementProfile,
   getGroupMovementAvailability,
   inferLensMovementGroups,
 } from "../../../src/optics/groupMovement.js";
-import Sonnar50Raw from "../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
 import NikonAfpDx70300Raw from "../../../src/lens-data/nikon/NikonAFPDX70300mmf4563G.data.js";
 import NikonZ100400Raw from "../../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.js";
-import type { LensData, RuntimeLens } from "../../../src/types/optics.js";
-
-function build(raw: object): RuntimeLens {
-  return buildLens({ ...LENS_DEFAULTS, ...raw } as LensData);
-}
+import { build, sharedSonnar50f15 } from "./testLensFixtures.js";
+import type { RuntimeLens } from "../../../src/types/optics.js";
 
 describe("group movement optics helpers", () => {
   it("falls back to air-separated construction groups", () => {
@@ -34,7 +28,7 @@ describe("group movement optics helpers", () => {
   });
 
   it("uses fixed-image-plane anchoring so unit focus translates the optical block", () => {
-    const L = build(Sonnar50Raw);
+    const L = sharedSonnar50f15();
     const profile = computeGroupMovementProfile(L, "focus", { focusT: 1, zoomT: 0 });
 
     expect(getGroupMovementAvailability(L).focus).toBe(true);

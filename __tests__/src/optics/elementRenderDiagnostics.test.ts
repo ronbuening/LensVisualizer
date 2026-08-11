@@ -3,17 +3,35 @@ import { computeElementRenderDiagnostics } from "../../../src/optics/diagramGeom
 import buildLens from "../../../src/optics/buildLens.js";
 import { sharedMaterialBand } from "../../../src/optics/internal/apertureBands.js";
 import { doLayout, renderSag } from "../../../src/optics/optics.js";
-import validateLensData from "../../../src/optics/validateLensData.js";
 import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
+import type { RuntimeLens } from "../../../src/types/optics.js";
 
 const MATERIAL_TRIM_TOLERANCE_MM = 0.25;
 const INTENTIONAL_MATERIAL_TRIMS = new Set(["canon-s-50mm-f2-8:L2:4:gap"]);
 
-describe("element render diagnostics", () => {
-  function maxRenderedGapOverlapMm(key: string): number {
+/* Build + layout + diagnostics once per lens, shared across every test in
+ * this file — several tests sweep the full catalog. */
+interface CatalogDiagnostics {
+  L: RuntimeLens;
+  diagnostics: ReturnType<typeof computeElementRenderDiagnostics>;
+}
+
+const catalogDiagnosticsByKey = new Map<string, CatalogDiagnostics>();
+
+function catalogDiagnostics(key: string): CatalogDiagnostics {
+  let entry = catalogDiagnosticsByKey.get(key);
+  if (!entry) {
     const L = buildLens(LENS_CATALOG[key]);
     const layout = doLayout(0, 0, L);
-    const diagnostics = computeElementRenderDiagnostics(L, layout.z);
+    entry = { L, diagnostics: computeElementRenderDiagnostics(L, layout.z) };
+    catalogDiagnosticsByKey.set(key, entry);
+  }
+  return entry;
+}
+
+describe("element render diagnostics", () => {
+  function maxRenderedGapOverlapMm(key: string): number {
+    const { L, diagnostics } = catalogDiagnostics(key);
     const surfaceDiagnostics = new Map(
       diagnostics.flatMap((diagnostic) => [
         [diagnostic.front.surfaceIndex, diagnostic.front],
@@ -43,21 +61,15 @@ describe("element render diagnostics", () => {
     return maxOverlap;
   }
 
-  it("has no production lens cross-gap validation failures", () => {
-    const offenders = Object.entries(LENS_CATALOG).flatMap(([key, data]) =>
-      validateLensData(data).map((error) => `${key}: ${error}`),
-    );
-
-    expect(offenders).toEqual([]);
-  });
+  /* The full-catalog validateLensData sweep lives in validateLensData.test.ts
+   * ("every catalog lens passes validation with no errors"). */
 
   it("does not hide material production-lens semi-diameter trims", () => {
     const offenders: string[] = [];
 
-    for (const [key, data] of Object.entries(LENS_CATALOG)) {
-      const L = buildLens(data);
-      const layout = doLayout(0, 0, L);
-      for (const diagnostic of computeElementRenderDiagnostics(L, layout.z)) {
+    for (const key of Object.keys(LENS_CATALOG)) {
+      const { diagnostics } = catalogDiagnostics(key);
+      for (const diagnostic of diagnostics) {
         for (const surface of [diagnostic.front, diagnostic.rear]) {
           const trimKey = `${key}:L${diagnostic.eid}:${surface.surfaceLabel}:${surface.trimCause}`;
           if (surface.trimAmount > MATERIAL_TRIM_TOLERANCE_MM && !INTENTIONAL_MATERIAL_TRIMS.has(trimKey)) {
@@ -73,9 +85,7 @@ describe("element render diagnostics", () => {
   });
 
   it("documents the Canon 50mm f/2.8 patent-silhouette trim", () => {
-    const L = buildLens(LENS_CATALOG["canon-s-50mm-f2-8"]);
-    const layout = doLayout(0, 0, L);
-    const diagnostic = computeElementRenderDiagnostics(L, layout.z).find((candidate) => candidate.eid === 2);
+    const diagnostic = catalogDiagnostics("canon-s-50mm-f2-8").diagnostics.find((candidate) => candidate.eid === 2);
 
     expect(diagnostic).toBeDefined();
     expect(diagnostic!.rear.surfaceLabel).toBe("4");
@@ -102,9 +112,7 @@ describe("element render diagnostics", () => {
     ] as const;
 
     for (const [key, elementId] of cases) {
-      const L = buildLens(LENS_CATALOG[key]);
-      const layout = doLayout(0, 0, L);
-      const diagnostic = computeElementRenderDiagnostics(L, layout.z).find((candidate) => candidate.eid === elementId);
+      const diagnostic = catalogDiagnostics(key).diagnostics.find((candidate) => candidate.eid === elementId);
 
       expect(diagnostic, `${key} L${elementId}`).toBeDefined();
       expect(Math.max(diagnostic!.front.trimAmount, diagnostic!.rear.trimAmount)).toBeLessThanOrEqual(

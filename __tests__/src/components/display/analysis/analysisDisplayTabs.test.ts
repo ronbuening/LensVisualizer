@@ -1,3 +1,13 @@
+/**
+ * Real-optics SSR renders of the analysis tabs. Although the copy strings
+ * asserted here overlap with the mocked unit tests (AberrationsPanel.test.tsx,
+ * preparedAnalysisJobs.test.ts), these renders are the only tests that drive
+ * the tab components with REAL analysis output — deleting this file measurably
+ * drops branch coverage across FocusBreathingTab, DistortionTab/FieldGrid,
+ * ChromaticTab, PupilAberrationTab, the coma/SA plot components, and their
+ * formatting helpers (verified 2026-08-10 during the test-rationalization
+ * branch). Treat it as the real-data integration layer, not duplication.
+ */
 import { describe, it, expect } from "vitest";
 import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";

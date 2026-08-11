@@ -17,6 +17,7 @@ import {
   SITE_NAME,
   SITE_URL,
 } from "../../../../src/utils/catalog/lensMetadata.js";
+import buildMeta from "../../../../src/generated/build-metadata.json";
 import type { LensData } from "../../../../src/types/optics.js";
 
 /* ── helpers ── */
@@ -168,27 +169,18 @@ describe("deriveMaker", () => {
 /* ── allMakerSlugs ── */
 
 describe("allMakerSlugs", () => {
-  it("returns an array of known maker slugs", () => {
+  it("returns unique slugs covering every maker in the build metadata", () => {
     const slugs = allMakerSlugs();
-    expect(slugs).toContain("canon");
-    expect(slugs).toContain("nikon");
-    expect(slugs).toContain("carl-zeiss-jena");
-    expect(slugs).toContain("carl-zeiss-oberkochen");
-    expect(slugs).toContain("voigtlander");
-    expect(slugs).toContain("ricoh");
-    expect(slugs).toContain("fujifilm");
-    expect(slugs).toContain("vivitar");
-    expect(slugs).toContain("laowa");
-    expect(slugs).toContain("rodenstock");
-    expect(slugs).toContain("agfa");
-    expect(slugs).toContain("enna-munchen");
-    expect(slugs).toContain("kodak");
-    expect(slugs).toContain("meyer-optik-goerlitz");
-    expect(slugs).toContain("samyang");
-    expect(slugs).toContain("samsung");
-    expect(slugs).toContain("tokina");
-    expect(slugs).toContain("yashica");
     expect(slugs.length).toBeGreaterThan(0);
+    expect(new Set(slugs).size).toBe(slugs.length);
+    // Stable anchors, so an accidentally emptied prefix table cannot pass.
+    expect(slugs).toContain("nikon");
+    expect(slugs).toContain("canon");
+    /* Runtime prefixes may include makers that have no lenses yet (entries are
+       seeded ahead of lens additions), so this is one-way: every maker that
+       appears in build metadata must be registered at runtime. The reverse
+       direction is allowed to differ. */
+    expect(slugs).toEqual(expect.arrayContaining(buildMeta.makerSlugs));
   });
 });
 

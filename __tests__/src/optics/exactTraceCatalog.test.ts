@@ -7,20 +7,12 @@ import { obstructionAwareRayFractionsForDensity } from "../../../src/optics/rayS
 
 /**
  * Historical exact-trace fixtures — the first three lenses validated when the
- * exact tracer landed. Kept as a deliberately small smoke set; the next test
- * in this file iterates the full catalog for broader coverage.
+ * exact tracer landed. The full-catalog smoke test below traces an extra safe
+ * near-axis ray for these keys on top of the representative rays.
  */
 const EXACT_TRACE_FIXTURE_KEYS = ["apo-lanthar-50f2", "nokton-50f1", "sonnar-50f15"] as const;
 import type { LensData, RuntimeLens } from "../../../src/types/optics.js";
 import { ALL_CATALOG_KEYS, CATALOG_KEYS, LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
-
-const REPRESENTATIVE_KEYS = [
-  "apo-lanthar-50f2",
-  "nokton-50f1",
-  "canon-rf-15-35-f28",
-  "nikkor-z-70-200f28",
-  "sony-fe-90mm-f2p8-macro",
-] as const;
 
 const HIDDEN_FOLDED_TRACE_CASES = [
   {
@@ -101,42 +93,7 @@ function expectFiniteTraceResult(result: { x?: number; y: number; u?: number; ux
   if (result.uy !== undefined) expect(isFinite(result.uy)).toBe(true);
 }
 
-function timeRepresentativeTraceBatch(): number {
-  const startedAt = Date.now();
-  for (const key of REPRESENTATIVE_KEYS) {
-    const L = buildCatalogLens(key);
-    for (const zoomT of zoomSamples(L)) {
-      const layout = doLayout(0, zoomT, L);
-      const h = safeNearAxisHeight(L, zoomT);
-      traceRay(h, 0, layout.z, 0, zoomT, L.stopPhysSD, true, L);
-      traceSkewRay(0, h, 0, 0, 0, zoomT, L.stopPhysSD, true, L);
-    }
-  }
-  return Date.now() - startedAt;
-}
-
 describe("exact surface trace catalog smoke coverage", () => {
-  it("traces finite on-axis and safe near-axis exact rays for the historical fixture set", () => {
-    for (const key of EXACT_TRACE_FIXTURE_KEYS) {
-      const L = buildCatalogLens(key);
-      for (const zoomT of zoomSamples(L)) {
-        const layout = doLayout(0, zoomT, L);
-        const h = safeNearAxisHeight(L, zoomT);
-        const traces = [
-          traceRay(0, 0, layout.z, 0, zoomT, L.stopPhysSD, true, L),
-          traceRay(h, 0, layout.z, 0, zoomT, L.stopPhysSD, true, L),
-          traceSkewRay(0, 0, 0, 0, 0, zoomT, L.stopPhysSD, true, L),
-          traceSkewRay(0, h, 0, 0, 0, zoomT, L.stopPhysSD, true, L),
-        ];
-
-        for (const trace of traces) {
-          expect(trace.clipped, `${key} zoomT=${zoomT}`).toBe(false);
-          expectFiniteTraceResult(trace);
-        }
-      }
-    }
-  });
-
   it("traces finite representative exact rays across every visible catalog lens", () => {
     expect(CATALOG_KEYS.length).toBeGreaterThan(0);
 
@@ -152,6 +109,21 @@ describe("exact surface trace catalog smoke coverage", () => {
         expect(skew.clipped, `${key} zoomT=${zoomT} skew`).toBe(false);
         expectFiniteTraceResult(meridional);
         expectFiniteTraceResult(skew);
+
+        /* The historical exact-trace fixture set (the first lenses validated
+         * when the exact tracer landed) also smokes a safe near-axis height
+         * on top of the representative rays above. */
+        if ((EXACT_TRACE_FIXTURE_KEYS as readonly string[]).includes(key)) {
+          const h = safeNearAxisHeight(L, zoomT);
+          const fixtureTraces = [
+            traceRay(h, 0, layout.z, 0, zoomT, L.stopPhysSD, true, L),
+            traceSkewRay(0, h, 0, 0, 0, zoomT, L.stopPhysSD, true, L),
+          ];
+          for (const trace of fixtureTraces) {
+            expect(trace.clipped, `${key} zoomT=${zoomT} near-axis`).toBe(false);
+            expectFiniteTraceResult(trace);
+          }
+        }
       }
     }
   });
@@ -210,12 +182,5 @@ describe("exact surface trace catalog smoke coverage", () => {
     expect(typeof result.clipped).toBe("boolean");
     expect(result.pts.length + result.ghostPts.length).toBeGreaterThan(0);
     expectFiniteTraceResult(result);
-  });
-
-  it("collects timing samples for representative traces", () => {
-    const elapsedMs = timeRepresentativeTraceBatch();
-
-    expect(isFinite(elapsedMs)).toBe(true);
-    expect(elapsedMs).toBeGreaterThanOrEqual(0);
   });
 });
