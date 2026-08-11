@@ -18,6 +18,24 @@ interface ElementAnnotationsProps {
   showChromatic: boolean;
 }
 
+interface PackableLabel {
+  x: number;
+  text: string;
+  fontSize: number;
+}
+
+function packLabelRows<T extends PackableLabel>(items: T[]): Array<T & { row: number }> {
+  const rowRightEdges = [Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY];
+  return items.map((item) => {
+    const estimatedWidth = Math.max(item.fontSize, item.text.length * item.fontSize * 0.62);
+    const left = item.x - estimatedWidth / 2;
+    let row = rowRightEdges.findIndex((rightEdge) => left >= rightEdge + 2);
+    if (row < 0) row = rowRightEdges[0] <= rowRightEdges[1] ? 0 : 1;
+    rowRightEdges[row] = item.x + estimatedWidth / 2;
+    return { ...item, row };
+  });
+}
+
 const ElementAnnotations = memo(function ElementAnnotations({
   L,
   t,
@@ -47,15 +65,22 @@ const ElementAnnotations = memo(function ElementAnnotations({
   // Dense patent groups often place several thin elements next to one another.
   // Pack their source identifiers into two rows so labels such as L210–L213
   // remain legible without colliding.
-  const rowRightEdges = [Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY];
-  const packedElementLabels = elementLabels.map((item) => {
-    const estimatedWidth = Math.max(item.fontSize, item.text.length * item.fontSize * 0.62);
-    const left = item.x - estimatedWidth / 2;
-    let row = rowRightEdges.findIndex((rightEdge) => left >= rightEdge + 2);
-    if (row < 0) row = rowRightEdges[0] <= rowRightEdges[1] ? 0 : 1;
-    rowRightEdges[row] = item.x + estimatedWidth / 2;
-    return { ...item, y: item.y - row * 11 };
-  });
+  const packedElementLabels = packLabelRows(elementLabels).map((item) => ({ ...item, y: item.y - item.row * 11 }));
+
+  const abbeLabels = showChromatic
+    ? shapes
+        .map(({ eid, z1, z2 }) => {
+          const element = L.elements.find((candidate) => candidate.id === eid);
+          if (!element?.vd) return null;
+          const text = `\u03bd${element.vd.toFixed(0)}`;
+          const [x, y] = screenPoint((z1 + z2) / 2, L.lyVdBadge);
+          return { eid, vd: element.vd, text, fontSize: 8.5, x, y };
+        })
+        .filter((item): item is NonNullable<typeof item> => item !== null)
+        .sort((a, b) => a.x - b.x)
+    : [];
+  const packedAbbeLabels = packLabelRows(abbeLabels).map((item) => ({ ...item, y: item.y + item.row * 10 }));
+  const lowerAnnotationShift = packedAbbeLabels.some(({ row }) => row > 0) ? 10 : 0;
 
   return (
     <>
@@ -79,14 +104,11 @@ const ElementAnnotations = memo(function ElementAnnotations({
       })}
 
       {/* Authored Abbe-number badges (νd or νe) — color-coded by dispersion class:
-       * <35 = high dispersion (flint), 35-55 = normal, >55 = low dispersion (crown/ED) */}
+       * <35 = high dispersion (flint), 35-55 = normal, >55 = low dispersion (crown). */}
       {showChromatic &&
-        shapes.map(({ eid, z1, z2 }) => {
-          const e = L.elements.find((x) => x.id === eid);
-          if (!e || !e.vd) return null;
+        packedAbbeLabels.map(({ eid, vd, text, x, y }) => {
           const on = act === eid;
-          const dispColor = e.vd < 35 ? t.chromDispHigh : e.vd < 55 ? t.chromDispMid : t.chromDispLow;
-          const [x, y] = screenPoint((z1 + z2) / 2, L.lyVdBadge);
+          const dispColor = vd < 35 ? t.chromDispHigh : vd < 55 ? t.chromDispMid : t.chromDispLow;
           return (
             <text
               key={`vd${eid}`}
@@ -99,15 +121,15 @@ const ElementAnnotations = memo(function ElementAnnotations({
               fontWeight={on ? 600 : 500}
               opacity={on ? 1 : 0.9}
             >
-              {"\u03bd"}
-              {e.vd.toFixed(0)}
+              {text}
             </text>
           );
         })}
 
       {/* Group labels */}
       {L.groups.map(({ text, fromSurface, toSurface }) => {
-        const [x, y] = screenPoint((zPos[fromSurface] + zPos[toSurface]) / 2, L.lyGroup);
+        const [x, baseY] = screenPoint((zPos[fromSurface] + zPos[toSurface]) / 2, L.lyGroup);
+        const y = baseY + lowerAnnotationShift;
         return (
           <text
             key={text}

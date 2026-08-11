@@ -16,6 +16,7 @@ import { traceSurfacesParaxial } from "./internal/traceSurfaces.js";
 import { stateSurfaces, thick } from "./layout.js";
 import { CHROMATIC_CHANNEL_WAVELENGTH_NM } from "./constants.js";
 import { wavelengthNd2 } from "./chromatic/indexResolver.js";
+import { bulkTransmissionForTrace } from "./trace/bulkAbsorption.js";
 
 /** Public skew-ray result at the return/image plane. */
 export interface SkewRayTraceResult {
@@ -24,6 +25,8 @@ export interface SkewRayTraceResult {
   ux: number;
   uy: number;
   clipped: boolean;
+  /** Bulk-material intensity transmission accumulated along the traced path. */
+  transmission?: number;
 }
 
 /** Vector-native ray launch input for fisheye and wide-field tracing. */
@@ -113,6 +116,7 @@ function traceRayExactCore(
     y: result.y,
     u: result.uy,
     clipped: result.clipped,
+    transmission: bulkTransmissionForTrace(L, result.hits),
     reachedImagePlane: result.reachedImagePlane,
     diagnostics: result.diagnostics,
   };
@@ -202,6 +206,7 @@ function traceSkewRayExactCore(
     ux: result.ux,
     uy: result.uy,
     clipped: result.clipped,
+    transmission: bulkTransmissionForTrace(L, result.hits),
   };
 }
 
@@ -236,6 +241,7 @@ function traceSkewRayVectorExactCore(
     ux: result.ux,
     uy: result.uy,
     clipped: result.clipped,
+    transmission: bulkTransmissionForTrace(L, result.hits),
   };
 }
 
@@ -625,6 +631,7 @@ function traceRayVectorExactCore(
     y: result.y,
     u: result.uy,
     clipped: result.clipped,
+    transmission: bulkTransmissionForTrace(L, result.hits),
     reachedImagePlane: result.reachedImagePlane,
     diagnostics: result.diagnostics,
   };

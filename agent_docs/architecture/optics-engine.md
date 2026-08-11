@@ -178,6 +178,31 @@ and `isFiniteEvaluation` (additionally requires non-zero derivative, used inside
 grazing meridional ray whose derivative collapses to zero at the optical axis can still anchor a bracket.
 The Newton seed falls back to the bracket midpoint when the z-projected guess is non-finite.
 
+### Bulk Absorption And Apodization
+
+`ElementData.absorptionCoefficientPerMm` opts a sequential element into broadband Beer–Lambert intensity loss.
+`trace/bulkAbsorption.ts` walks exact hits in encounter order, assigns each hit-to-next-hit segment from the departing
+surface's `elemId`, measures its three-dimensional chord length, and accumulates `exp(-αd)`. Coefficients are cached per
+frozen runtime lens in a `WeakMap`; ordinary lenses take the constant-time transparent fast path. All meridional, skew,
+scalar, and vector runtime adapters expose the result as optional `ray.transmission`, with `1` as the compatibility
+default.
+
+Keep this energy channel distinct from aperture state:
+
+- A ray can survive every clear aperture while carrying less than unit intensity.
+- Mechanical pupil footprints, vignetting survival fractions, and stop geometry must not be inferred from absorption.
+- Photometric bokeh point weights, bokeh best focus, and relative illumination do consume the intensity.
+- Zero total energy is a valid physical/numerical outcome and must produce an empty result rather than divisions by zero.
+
+Validation rejects the property on folded/generalized prescriptions. Supporting those paths requires explicit
+encounter-side medium accounting because a repeated or reverse surface order cannot safely infer the traversed material
+from sequential `elemId` ownership alone.
+
+The implementation is geometric-radiometric, not wave-optical. It models a source-published broadband intensity
+coefficient along the actual glass path. It does not infer a product T-number or model wavelength-dependent ND response,
+coatings, Fresnel loss, diffraction, scatter, or flare. The Minolta AF 135mm f/2.8 [T4.5] STF is the catalog reference:
+its 0.300 mm axial L5 path at `α = 0.55 mm⁻¹` yields `exp(-0.55 × 0.300) = 0.8478937041`.
+
 ## Mirror And Folded Optical Paths
 
 Folded systems opt into the generalized exact tracer through lens data, not through a trace-mode flag:
@@ -363,6 +388,10 @@ rectilinear primes and 96 for heavy lenses (fisheye, ≥32 surfaces, ≥50 mm SD
 `computeVignettingCurve()` accepts optional precomputed field geometry and traces `solve.vectorLaunch` for
 fisheye/past-cap fields when the scalar slope helper reports `out-of-domain`.
 
+`geometricTransmission` remains the normalized fraction of rays that survive clipping. `relativeIllumination` sums the
+surviving rays' bulk-transmission weights, applies `cos⁴(θ)`, and normalizes by the on-axis intensity. This separation is
+required for apodizers: absorption changes brightness without pretending that the mechanical aperture rejected a ray.
+
 ## Pupil Aberration
 
 `pupilAberration.ts` provides:
@@ -387,6 +416,12 @@ to finite slope launches and fall back to neutral correction when no scalar refe
 
 The traced image-plane point cloud is the source of truth; radial profiles are derived summaries. Off-axis bokeh
 footprints use projection-aware field geometry and vector launches for fisheye/past-cap fields when available.
+
+Each displayed bokeh point uses `equalAreaSampleWeight × ray.transmission`. Reference and near-focus planes use the same
+transmission weights in their least-squares best-focus solve. The pupil-footprint inset deliberately retains the base
+equal-area weights so its centroid and shift radius remain mechanical diagnostics; absorption changes photometric
+density, not the reported pupil position. Point and pupil reductions guard zero total weight and return empty results
+rather than usable structures containing non-finite metrics.
 
 ## Aspheric Comparison
 

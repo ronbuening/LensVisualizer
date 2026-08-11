@@ -235,6 +235,51 @@ patentAssignees: ["Canon Inc."],
 - Build metadata generation checks curated historical assignee aliases and legal-form start years. These checks flag
   impossible or non-canonical values for source review; they never infer or rewrite an assignee automatically.
 
+## Element Bulk Absorption
+
+Use optional `ElementData.absorptionCoefficientPerMm` only when the source publishes a bulk Beer-Lambert intensity
+coefficient for an absorbing optical element:
+
+```ts
+{
+  id: 5,
+  name: "L5",
+  // ...ordinary element fields...
+  absorptionCoefficientPerMm: 0.55,
+}
+```
+
+The coefficient is α in `I / I0 = exp(-α · distance)`, expressed in inverse millimeters. Exact tracing measures the
+three-dimensional path length through the element. In an ordinary sequential prescription, the `elemId` on a surface
+identifies the medium traversed from that hit to the next hit, so the absorbing element must own the surface immediately
+before the physical absorbing segment. Cemented compensators remain separate elements and should not repeat the
+coefficient unless the source says they also absorb.
+
+Every exact public ray result carries the accumulated intensity as `transmission` (transparent prescriptions retain the
+default value `1`). The consumers intentionally keep geometric and photometric concepts separate:
+
+- Bokeh point weights multiply equal-area pupil-sample weight by the traced bulk transmission. The mechanical pupil
+  footprint and its centroid continue to use the unattenuated equal-area weights, so radial absorption cannot masquerade
+  as mechanical pupil shift or clipping.
+- The bokeh best-focus plane minimizes the transmission-weighted ray error. If all traced energy underflows to zero, the
+  result is returned empty/unusable instead of exposing `NaN` centroids or blur radii.
+- Vignetting reports surviving-ray fraction as geometric transmission. Relative illumination instead uses the summed
+  surviving intensity, applies the existing `cos⁴` factor, and normalizes that photometric quantity to the on-axis value.
+
+The coefficient is treated as a broadband **intensity** scalar. It is not an amplitude coefficient and does not model
+wavelength-dependent absorption, Fresnel or coating losses, scatter, diffraction, or flare. Do not author it from a
+T-number, coating loss, or an unspecified qualitative ND description; a product T-number describes the complete lens
+and remains independent metadata/prose. Validation requires a finite non-negative number. Omit the field for ordinary
+transparent glass.
+
+Folded and generalized optical paths currently reject authored absorption because repeated or reverse encounters need
+explicit incident-side medium accounting; leave the field unset on those prescriptions until that support is added.
+
+For a new absorbing prescription, add a focused public-trace regression. At minimum, verify an axial ray against
+`exp(-α · axialThickness)` and one oblique ray against its three-dimensional hit-to-hit distance. Also verify that the
+same lens without authored absorption returns unit transmission. The Minolta STF 135mm data and
+`__tests__/src/optics/bulkAbsorption.test.ts` are the reference implementation.
+
 ## Projection Metadata
 
 Most lenses should omit `projection`; they default to rectilinear behavior, and `focalLengthDesign` is expected to be close to the computed Gaussian EFL. Add projection metadata for non-rectilinear lenses when the published focal length is the imaging/projection constant used for f-number and image-circle descriptions. For unusual rectilinear ultrawides, projection metadata may also declare the published coverage when the paraxial chief-ray estimate is known to undercount the design.

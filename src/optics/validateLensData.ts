@@ -749,6 +749,12 @@ export default function validateLensData(data: UntrustedLensData): string[] {
 
   /* ── Element IDs: unique ── */
   const elemIds = new Set<number>();
+  const usesGeneralizedOpticalPath = Boolean(
+    data.opticalPath ||
+    data.surfaces.some(
+      (surface: SurfaceData) => surface.interaction !== undefined && surface.interaction.type !== "refract",
+    ),
+  );
   for (let i = 0; i < data.elements.length; i++) {
     const e = data.elements[i];
     if (e.id === undefined || e.id === null) {
@@ -762,6 +768,19 @@ export default function validateLensData(data: UntrustedLensData): string[] {
     }
     if (e.apd !== undefined && e.apd !== false && e.apd !== "patent" && e.apd !== "inferred") {
       errors.push(`elements[${i}]: apd must be "patent", "inferred", or false when provided`);
+    }
+    if (
+      e.absorptionCoefficientPerMm !== undefined &&
+      (typeof e.absorptionCoefficientPerMm !== "number" ||
+        !isFinite(e.absorptionCoefficientPerMm) ||
+        e.absorptionCoefficientPerMm < 0)
+    ) {
+      errors.push(`elements[${i}]: absorptionCoefficientPerMm must be a finite non-negative number when provided`);
+    }
+    if (e.absorptionCoefficientPerMm !== undefined && usesGeneralizedOpticalPath) {
+      errors.push(
+        `elements[${i}]: absorptionCoefficientPerMm is not supported for folded or generalized optical paths`,
+      );
     }
   }
 

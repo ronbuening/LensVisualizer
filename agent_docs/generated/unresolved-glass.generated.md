@@ -8,17 +8,17 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **550** lenses scanned
-- **6064** non-air surfaces examined
-- **6071** element glass declarations examined
-- **338** non-explicit-unmatched annotations did not resolve
-- **175** distinct unresolved glass-like tokens found
+- **556** lenses scanned
+- **6129** non-air surfaces examined
+- **6136** element glass declarations examined
+- **351** non-explicit-unmatched annotations did not resolve
+- **181** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
 | Token | Occurrences | Lens files | Notes |
 |---|---:|---:|---|
-| 493836 | 6 | 2 | |
+| 493836 | 9 | 4 | |
 | 531559 | 4 | 3 | |
 | 662561 | 4 | 1 | |
 | 863252 | 4 | 2 | |
@@ -38,11 +38,15 @@ or per-lens patent backfills.
 | 666356 | 2 | 1 | |
 | 690570 | 2 | 2 | |
 | 720521 | 2 | 2 | |
+| 721334 | 2 | 2 | |
 | 726548 | 2 | 2 | |
+| 733282 | 2 | 1 | |
+| 750251 | 2 | 2 | |
 | 755516 | 2 | 1 | |
 | 762404 | 2 | 1 | |
 | 774492 | 2 | 1 | |
 | 777297 | 2 | 2 | |
+| 781446 | 2 | 2 | |
 | 784438 | 2 | 1 | |
 | 804238 | 2 | 2 | |
 | 806418 | 2 | 2 | |
@@ -61,6 +65,7 @@ or per-lens patent backfills.
 | 487698 | 1 | 1 | |
 | 499801 | 1 | 1 | |
 | 504667 | 1 | 1 | |
+| 507589 | 1 | 1 | |
 | 514530 | 1 | 1 | |
 | 518523 | 1 | 1 | |
 | 519700 | 1 | 1 | |
@@ -85,6 +90,8 @@ or per-lens patent backfills.
 | 607492 | 1 | 1 | |
 | 612313 | 1 | 1 | |
 | 617443 | 1 | 1 | |
+| 618527 | 1 | 1 | |
+| 621612 | 1 | 1 | |
 | 624584 | 1 | 1 | |
 | 625533 | 1 | 1 | |
 | 630346 | 1 | 1 | |
@@ -100,18 +107,18 @@ or per-lens patent backfills.
 | 682366 | 1 | 1 | |
 | 683548 | 1 | 1 | |
 | 694312 | 1 | 1 | |
+| 694518 | 1 | 1 | |
 | 694536 | 1 | 1 | |
 | 697558 | 1 | 1 | |
 | 700555 | 1 | 1 | |
 | 701301 | 1 | 1 | |
-| 721334 | 1 | 1 | |
 | 721503 | 1 | 1 | |
 | 738493 | 1 | 1 | |
+| 740375 | 1 | 1 | |
 | 744494 | 1 | 1 | |
 | 747274 | 1 | 1 | |
 | 749501 | 1 | 1 | |
 | 749547 | 1 | 1 | |
-| 750251 | 1 | 1 | |
 | 750501 | 1 | 1 | |
 | 750504 | 1 | 1 | |
 | 754260 | 1 | 1 | |
@@ -126,7 +133,6 @@ or per-lens patent backfills.
 | 773530 | 1 | 1 | |
 | 774494 | 1 | 1 | |
 | 781445 | 1 | 1 | |
-| 781446 | 1 | 1 | |
 | 786275 | 1 | 1 | |
 | 786406 | 1 | 1 | |
 | 789457 | 1 | 1 | |
@@ -196,14 +202,17 @@ or per-lens patent backfills.
 
 ## Occurrences
 
-### 493836 — 6 occurrences
+### 493836 — 9 occurrences
 
 - [MINOLTA AF APO Tele 200mm f/2.8](../../src/lens-data/minolta/MinoltaAF200mmf28.data.ts) 1: `493836 - AD fluorophosphate crown (theta_gF = 0.539 patent-listed; catalog unresolved)`
 - [MINOLTA AF APO Tele 200mm f/2.8](../../src/lens-data/minolta/MinoltaAF200mmf28.data.ts) 3: `493836 - AD fluorophosphate crown (theta_gF = 0.539 patent-listed; catalog unresolved)`
+- [MINOLTA AF 400mm f/4.5 APO G](../../src/lens-data/minolta/MinoltaAF400mmf45APOG.data.ts) 1: `493836 — Minolta AD/ED fluorophosphate class (catalog unresolved)`
+- [MINOLTA AF 400mm f/4.5 APO G](../../src/lens-data/minolta/MinoltaAF400mmf45APOG.data.ts) 3: `493836 — Minolta AD/ED fluorophosphate class (catalog unresolved)`
 - [MINOLTA AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) 2: `493836 - Minolta AD/ED fluorophosphate-type (nd=1.49310, vd=83.58; catalog unresolved)`
 - [MINOLTA AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) 4: `493836 - Minolta AD/ED fluorophosphate-type (nd=1.49310, vd=83.58; catalog unresolved)`
 - [MINOLTA AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) 21: `493836 - Minolta AD/ED fluorophosphate-type (nd=1.49310, vd=83.58; catalog unresolved)`
 - [MINOLTA AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) 27: `493836 - Minolta AD/ED fluorophosphate-type (nd=1.49310, vd=83.58; catalog unresolved)`
+- [MINOLTA AF 80-200mm f/2.8 APO](../../src/lens-data/minolta/MinoltaAF80200mmf28APO.data.ts) 20: `493836 — Minolta AD/ED fluorophosphate class (catalog unresolved)`
 
 ### 531559 — 4 occurrences
 
@@ -314,10 +323,25 @@ or per-lens patent backfills.
 - [MINOLTA AF APO Tele 200mm f/2.8](../../src/lens-data/minolta/MinoltaAF200mmf28.data.ts) 5: `720521 - high-index lanthanum crown (catalog unresolved)`
 - [MINOLTA VARISOFT ROKKOR 85mm f/2.8](../../src/lens-data/minolta/MinoltaVarisoft85mmf28.data.ts) 6: `720521 - lanthanum crown (catalog unresolved)`
 
+### 721334 — 2 occurrences
+
+- [MINOLTA AF APO Tele 200mm f/2.8](../../src/lens-data/minolta/MinoltaAF200mmf28.data.ts) 7: `721334 - dense lanthanum flint (catalog unresolved)`
+- [MINOLTA AF 400mm f/4.5 APO G](../../src/lens-data/minolta/MinoltaAF400mmf45APOG.data.ts) 5: `721334 — high-index medium-dispersion glass (catalog unresolved)`
+
 ### 726548 — 2 occurrences
 
 - [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) 38: `726548 lanthanum crown class (catalog unresolved)`
 - [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR — TC 1.4x Engaged](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14TCIn.data.ts) 38: `726548 lanthanum crown class (catalog unresolved)`
+
+### 733282 — 2 occurrences
+
+- [MINOLTA MC FISH-EYE ROKKOR-OK 16mm f/2.8](../../src/lens-data/minolta/MinoltaMCFishEyeRokkorOK16mmf28.data.ts) 9: `733282 — dense-flint class (catalog unresolved)`
+- [MINOLTA MC FISH-EYE ROKKOR-OK 16mm f/2.8](../../src/lens-data/minolta/MinoltaMCFishEyeRokkorOK16mmf28.data.ts) 14: `733282 — dense-flint class (catalog unresolved)`
+
+### 750251 — 2 occurrences
+
+- [MINOLTA AF Zoom 35-70mm f/4](../../src/lens-data/minolta/MinoltaAF3570mmf4.data.ts) 9: `750251 - dense/fluor flint (catalog unresolved)`
+- [MINOLTA AF 80-200mm f/2.8 APO](../../src/lens-data/minolta/MinoltaAF80200mmf28APO.data.ts) 11: `750251 — dense-flint glass (catalog unresolved)`
 
 ### 755516 — 2 occurrences
 
@@ -338,6 +362,11 @@ or per-lens patent backfills.
 
 - [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 8: `777297 — dense flint (patent nd=1.77660, νd=29.7)`
 - [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 1: `Dense flint (777/297, uncertain)`
+
+### 781446 — 2 occurrences
+
+- [MINOLTA AF 100mm f/2](../../src/lens-data/minolta/MinoltaAF100mmf2.data.ts) 8: `781446 — high-index mid-dispersion glass (catalog unresolved)`
+- [MINOLTA AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) 25: `781446 - high-index mid-dispersion glass (unresolved)`
 
 ### 784438 — 2 occurrences
 
@@ -425,6 +454,10 @@ or per-lens patent backfills.
 ### 504667 — 1 occurrence
 
 - [CARL ZEISS BIOGON 21mm f/4.5](../../src/lens-data/carl-zeiss-oberkochen/ZeissBiogon21mmf45.data.ts) 1: `BK crown (504/667)`
+
+### 507589 — 1 occurrence
+
+- [MINOLTA AF 135mm f/2.8 [T4.5] STF](../../src/lens-data/minolta/MinoltaSTF135mmf28T45.data.ts) 9: `507589 — bulk absorbing ND glass (catalog unresolved; patent α=0.55)`
 
 ### 514530 — 1 occurrence
 
@@ -522,6 +555,14 @@ or per-lens patent backfills.
 
 - [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 27: `617443 — flint/crown-boundary glass (patent coordinate; vendor unspecified)`
 
+### 618527 — 1 occurrence
+
+- [MINOLTA MC FISH-EYE ROKKOR-OK 16mm f/2.8](../../src/lens-data/minolta/MinoltaMCFishEyeRokkorOK16mmf28.data.ts) 3: `618527 — legacy glass class (catalog unresolved)`
+
+### 621612 — 1 occurrence
+
+- [MINOLTA MC FISH-EYE ROKKOR-OK 16mm f/2.8](../../src/lens-data/minolta/MinoltaMCFishEyeRokkorOK16mmf28.data.ts) 13: `621612 — crown class (catalog unresolved)`
+
 ### 624584 — 1 occurrence
 
 - [NIKON NIKKOR Z 35mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 32A: `Barium crown / LaK family (624584, no exact catalog match)`
@@ -582,6 +623,10 @@ or per-lens patent backfills.
 
 - [SONY FE 14mm f/1.8 GM](../../src/lens-data/sony/SonyFE14mmf18GM.data.ts) 7: `694312 - short flint (Sony patent nd=1.69416, vd=31.2; no exact public catalog match)`
 
+### 694518 — 1 occurrence
+
+- [MINOLTA AF 100mm f/2](../../src/lens-data/minolta/MinoltaAF100mmf2.data.ts) 3: `694518 — optical-glass coordinate class (vendor unresolved)`
+
 ### 694536 — 1 occurrence
 
 - [MINOLTA AF 28mm f/2](../../src/lens-data/minolta/MinoltaAF28mmf2.data.ts) 1: `694536 - lanthanum crown (catalog unresolved)`
@@ -598,10 +643,6 @@ or per-lens patent backfills.
 
 - [MINOLTA MD ROKKOR 45mm f/2](../../src/lens-data/minolta/MinoltaRokkor45mmf2MD.data.ts) 5: `701301 - dense flint (catalog unresolved)`
 
-### 721334 — 1 occurrence
-
-- [MINOLTA AF APO Tele 200mm f/2.8](../../src/lens-data/minolta/MinoltaAF200mmf28.data.ts) 7: `721334 - dense lanthanum flint (catalog unresolved)`
-
 ### 721503 — 1 occurrence
 
 - [CARL ZEISS BIOGON 21mm f/4.5](../../src/lens-data/carl-zeiss-oberkochen/ZeissBiogon21mmf45.data.ts) 5: `LaK10 lanthanum crown (721/503)`
@@ -609,6 +650,10 @@ or per-lens patent backfills.
 ### 738493 — 1 occurrence
 
 - [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) 45: `738493 — lanthanum crown (patent nd=1.73800, νd≈49.3; no exact public catalog match)`
+
+### 740375 — 1 occurrence
+
+- [MINOLTA MC FISH-EYE ROKKOR-OK 16mm f/2.8](../../src/lens-data/minolta/MinoltaMCFishEyeRokkorOK16mmf28.data.ts) 17: `740375 — high-index flint/lanthanum class (catalog unresolved)`
 
 ### 744494 — 1 occurrence
 
@@ -625,10 +670,6 @@ or per-lens patent backfills.
 ### 749547 — 1 occurrence
 
 - [LAOWA 12mm f/2.8 Zero-D](../../src/lens-data/laowa/Laowa12mmf28ZeroD.data.ts) 1: `749547 - high-index crown class (patent nd=1.74916, vd=54.67; unresolved)`
-
-### 750251 — 1 occurrence
-
-- [MINOLTA AF Zoom 35-70mm f/4](../../src/lens-data/minolta/MinoltaAF3570mmf4.data.ts) 9: `750251 - dense/fluor flint (catalog unresolved)`
 
 ### 750501 — 1 occurrence
 
@@ -685,10 +726,6 @@ or per-lens patent backfills.
 ### 781445 — 1 occurrence
 
 - [MINOLTA MD ROKKOR 45mm f/2](../../src/lens-data/minolta/MinoltaRokkor45mmf2MD.data.ts) 1: `781445 - lanthanum flint (catalog unresolved)`
-
-### 781446 — 1 occurrence
-
-- [MINOLTA AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) 25: `781446 - high-index mid-dispersion glass (unresolved)`
 
 ### 786275 — 1 occurrence
 

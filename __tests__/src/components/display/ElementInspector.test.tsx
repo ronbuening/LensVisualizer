@@ -83,6 +83,19 @@ describe("ElementInspector", () => {
     expect(screen.getByText("S-BSL7")).toBeTruthy();
   });
 
+  it("discloses bulk absorption on absorbing glass", () => {
+    render(
+      <ElementInspector
+        info={{ ...basicElement, absorptionCoefficientPerMm: 0.55 }}
+        L={mockLens}
+        t={mockTheme}
+        showChromatic={false}
+      />,
+    );
+    expect(screen.getByText("Bulk absorption:")).toBeTruthy();
+    expect(screen.getByText("α = 0.55 mm⁻¹")).toBeTruthy();
+  });
+
   it("renders APD patent badge", () => {
     const apdElement: ElementData = { ...basicElement, apd: "patent" };
     render(<ElementInspector info={apdElement} L={mockLens} t={mockTheme} showChromatic={false} />);
@@ -193,6 +206,32 @@ describe("ElementInspector", () => {
     expect(screen.getByText("1.51432").getAttribute("title")).toBe("C-line 656.3 nm");
     expect(screen.getByText("1.51680").getAttribute("title")).toBe("d-line 587.6 nm");
     expect(screen.getByText("1.52238").getAttribute("title")).toBe("F-line 486.1 nm");
+  });
+
+  it("does not infer ED status from a high Abbe number alone", () => {
+    const chromaticLens = {
+      ...mockLens,
+      S: [{ label: "1", R: 100, d: 5, nd: 1.49, sd: 10, elemId: basicElement.id }],
+      indexByIdx: {
+        0: {
+          quality: "abbe",
+          glassEntry: null,
+          fn: (channel: ChromaticChannel) => ({ R: 1.485, G: 1.49, B: 1.495, V: 1.498 })[channel],
+        },
+      },
+    } as unknown as RuntimeLens;
+
+    render(
+      <ElementInspector
+        info={{ ...basicElement, nd: 1.49, vd: 83.6, glass: "493836 class" }}
+        L={chromaticLens}
+        t={mockTheme}
+        showChromatic={true}
+      />,
+    );
+
+    expect(screen.getByText("Low dispersion")).toBeTruthy();
+    expect(screen.queryByText(/\(ED\)/)).toBeNull();
   });
 });
 

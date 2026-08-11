@@ -28,6 +28,7 @@ import { computeOffAxisFieldGeometry } from "../../../../src/optics/aberration/o
 import buildLens from "../../../../src/optics/buildLens.js";
 import NikonZ135Raw from "../../../../src/lens-data/nikon/NikonZ135f18.data.js";
 import NikonAF28f14DRaw from "../../../../src/lens-data/nikon/NikonAF28f14D.data.js";
+import MinoltaSTFRaw from "../../../../src/lens-data/minolta/MinoltaSTF135mmf28T45.data.js";
 import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
 import { apertureAt, build, sharedApoLanthar50f2, sharedNikkorZ70200 } from "../testLensFixtures.js";
 import type { RuntimeLens, LensData } from "../../../../src/types/optics.js";
@@ -298,6 +299,142 @@ describe("computeBokehFieldFootprint", () => {
       expect(p.pupilRadius).toBeLessThanOrEqual(1.01);
       expect(typeof p.pupilAzimuth).toBe("number");
     }
+  });
+
+  it("weights the Minolta STF pupil rim below its center using the authored apodizer", () => {
+    const stf = build(MinoltaSTFRaw);
+    const stfLayout = doLayout(0, 0, stf);
+    const stfAperture = apertureAt(stf, 0, 0);
+    const result = computeBokehFieldFootprint(
+      stf,
+      stfLayout.z,
+      0,
+      0,
+      stfAperture.currentEPSD,
+      stfAperture.currentPhysStopSD,
+      0,
+      stfLayout.imgZ + 0.5,
+    );
+
+    expect(result).not.toBeNull();
+    expect(result!.usable).toBe(true);
+    const byRadius = [...result!.points].sort((a, b) => a.pupilRadius - b.pupilRadius);
+    expect(byRadius[0].weight).toBeGreaterThan(byRadius.at(-1)!.weight);
+    expect(byRadius.at(-1)!.weight / byRadius[0].weight).toBeLessThan(0.25);
+  });
+
+  it("keeps the Minolta STF mechanical pupil footprint independent from absorption", () => {
+    const stf = build(MinoltaSTFRaw);
+    const transparent = build({
+      ...MinoltaSTFRaw,
+      elements: MinoltaSTFRaw.elements.map((element) =>
+        element.id === 5 ? { ...element, absorptionCoefficientPerMm: undefined } : element,
+      ),
+    });
+    const stfLayout = doLayout(0, 0, stf);
+    const transparentLayout = doLayout(0, 0, transparent);
+    const stfAperture = apertureAt(stf, 0, 0);
+    const transparentAperture = apertureAt(transparent, 0, 0);
+    const stfResult = computeBokehFieldFootprint(
+      stf,
+      stfLayout.z,
+      0,
+      0,
+      stfAperture.currentEPSD,
+      stfAperture.currentPhysStopSD,
+      0.75,
+      stfLayout.imgZ + 0.5,
+    );
+    const transparentResult = computeBokehFieldFootprint(
+      transparent,
+      transparentLayout.z,
+      0,
+      0,
+      transparentAperture.currentEPSD,
+      transparentAperture.currentPhysStopSD,
+      0.75,
+      transparentLayout.imgZ + 0.5,
+    );
+
+    expect(stfResult).not.toBeNull();
+    expect(transparentResult).not.toBeNull();
+    expect(stfResult!.pupilFootprint.samples.map((sample) => sample.weight)).toEqual(
+      transparentResult!.pupilFootprint.samples.map((sample) => sample.weight),
+    );
+    expect(stfResult!.pupilFootprint.centroidSagittal).toBeCloseTo(
+      transparentResult!.pupilFootprint.centroidSagittal,
+      12,
+    );
+    expect(stfResult!.pupilFootprint.centroidTangential).toBeCloseTo(
+      transparentResult!.pupilFootprint.centroidTangential,
+      12,
+    );
+    expect(stfResult!.pupilFootprint.shiftRadius).toBeCloseTo(transparentResult!.pupilFootprint.shiftRadius, 12);
+    expect(stfResult!.points.some((point, index) => point.weight !== transparentResult!.points[index]?.weight)).toBe(
+      true,
+    );
+  });
+
+  it("returns a finite unusable field when all STF photometric energy underflows to zero", () => {
+    const opaqueStf = build({
+      ...MinoltaSTFRaw,
+      elements: MinoltaSTFRaw.elements.map((element) =>
+        element.id === 5 ? { ...element, absorptionCoefficientPerMm: 3000 } : element,
+      ),
+    });
+    const opaqueLayout = doLayout(0, 0, opaqueStf);
+    const opaqueAperture = apertureAt(opaqueStf, 0, 0);
+    const result = computeBokehFieldFootprint(
+      opaqueStf,
+      opaqueLayout.z,
+      0,
+      0,
+      opaqueAperture.currentEPSD,
+      opaqueAperture.currentPhysStopSD,
+      0,
+      opaqueLayout.imgZ + 0.5,
+    );
+
+    expect(result).not.toBeNull();
+    expect(result!.usable).toBe(false);
+    expect(result!.points).toEqual([]);
+    expect(result!.pupilFootprint.samples.length).toBeGreaterThan(0);
+    for (const value of [
+      result!.centroidSagittal,
+      result!.centroidTangential,
+      result!.rmsRadiusMm,
+      result!.maxRadiusMm,
+      result!.pupilFootprint.centroidSagittal,
+      result!.pupilFootprint.centroidTangential,
+      result!.pupilFootprint.shiftRadius,
+      result!.pupilFootprint.catEyeAspect,
+    ]) {
+      expect(Number.isFinite(value)).toBe(true);
+    }
+  });
+});
+
+describe("STF photometric best focus", () => {
+  it("uses ray transmission without changing the transparent prescription geometry", () => {
+    const stf = build(MinoltaSTFRaw);
+    const transparent = build({
+      ...MinoltaSTFRaw,
+      elements: MinoltaSTFRaw.elements.map((element) =>
+        element.id === 5 ? { ...element, absorptionCoefficientPerMm: undefined } : element,
+      ),
+    });
+    const stfAperture = apertureAt(stf, 0, 0);
+    const transparentAperture = apertureAt(transparent, 0, 0);
+    const stfBestFocus = computeBestFocusZ(stf, 1, 0, stfAperture.currentEPSD, stfAperture.currentPhysStopSD);
+    const transparentBestFocus = computeBestFocusZ(
+      transparent,
+      1,
+      0,
+      transparentAperture.currentEPSD,
+      transparentAperture.currentPhysStopSD,
+    );
+
+    expect(Math.abs(stfBestFocus - transparentBestFocus)).toBeGreaterThan(0.05);
   });
 });
 

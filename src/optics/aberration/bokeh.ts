@@ -25,7 +25,7 @@ import {
 import { doLayout } from "../layout.js";
 import type { LayoutResult, RuntimeLens } from "../../types/optics.js";
 import { computeProjectionAwareOffAxisFieldGeometry, traceOffAxisBundleFromSamples } from "./offAxis.js";
-import { bestFocusPlane, computeRealRayHit, PROFILE_FRACS } from "./shared.js";
+import { computeRealRayHit, PROFILE_FRACS, type RealRayHit } from "./shared.js";
 import {
   BOKEH_CIRCULAR_PUPIL_RING_SAMPLES,
   BOKEH_RADIAL_PROFILE_BIN_COUNT,
@@ -70,6 +70,18 @@ interface BokehTraceContext {
 }
 
 /* ── Best-focus helpers ── */
+
+/** Bokeh-only least-squares focus, weighted by each ray's surviving optical intensity. */
+function photometricBestFocusPlane(hits: readonly RealRayHit[], lastSurfZ: number): number {
+  const denom = hits.reduce((sum, hit) => sum + (hit.transmission ?? 1) * hit.slope * hit.slope, 0);
+  if (!Number.isFinite(denom) || denom <= 1e-12) return lastSurfZ;
+
+  const numer = hits.reduce((sum, hit) => {
+    const referenceZ = hit.referenceZ ?? lastSurfZ;
+    return sum + (hit.transmission ?? 1) * (hit.slope * hit.slope * referenceZ - hit.coordinate * hit.slope);
+  }, 0);
+  return Number.isFinite(numer) ? numer / denom : lastSurfZ;
+}
 
 /**
  * Compute the absolute image-plane Z position for a given focusT by performing
@@ -120,7 +132,7 @@ function computeBestFocusZFromLayout(
   });
 
   if (hits.length < 4) return imagePlaneZ;
-  return bestFocusPlane(hits, lastSurfZ);
+  return photometricBestFocusPlane(hits, lastSurfZ);
 }
 
 /**
@@ -219,6 +231,7 @@ function buildPupilFootprint(samples: readonly BokehPupilSample[], totalRays: nu
   if (samples.length === 0 || totalRays <= 0) return emptyPupilFootprint(0);
 
   const totalWeight = samples.reduce((sum, sample) => sum + sample.weight, 0);
+  if (!Number.isFinite(totalWeight) || totalWeight <= 0) return emptyPupilFootprint(samples.length / totalRays);
   const centroidSagittal = samples.reduce((sum, sample) => sum + sample.xFraction * sample.weight, 0) / totalWeight;
   const centroidTangential = samples.reduce((sum, sample) => sum + sample.yFraction * sample.weight, 0) / totalWeight;
   const xs = samples.map((sample) => sample.xFraction);
@@ -445,7 +458,7 @@ function computeBokehFieldFootprintFromContext(
       tangentialOffset: intercept.y - chiefDefocused.y,
       pupilRadius: sample.radiusFraction ?? 0,
       pupilAzimuth: sample.azimuthRad ?? 0,
-      weight: sample.weight ?? 1,
+      weight: (sample.weight ?? 1) * (sample.trace.transmission ?? 1),
     });
   }
 
@@ -457,6 +470,12 @@ function computeBokehFieldFootprintFromContext(
   }
 
   const totalWeight = points.reduce((sum, point) => sum + point.weight, 0);
+  if (!Number.isFinite(totalWeight) || totalWeight <= 0) {
+    return {
+      ...makeEmptyFieldResult(fieldFraction, geometry.fieldAngleDeg, bundle.sampleCount, pupilFootprint.transmission),
+      pupilFootprint,
+    };
+  }
   const centroidSagittal = points.reduce((sum, point) => sum + point.sagittalOffset * point.weight, 0) / totalWeight;
   const centroidTangential =
     points.reduce((sum, point) => sum + point.tangentialOffset * point.weight, 0) / totalWeight;

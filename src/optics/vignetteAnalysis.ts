@@ -4,14 +4,14 @@
  *
  * Launches a dedicated dense meridional pupil sweep for each field angle,
  * counts the fraction of rays that survive aperture clipping (geometric
- * transmission), and multiplies by cos⁴(θ) to produce the photometric
- * relative illumination metric.
+ * transmission), and applies authored bulk-material absorption plus cos⁴(θ)
+ * to produce the photometric relative illumination metric.
  *
  * Assumptions / scope:
  *   - 1D meridional analysis only; no sagittal or full 2D pupil integration.
  *   - Chief-ray offset sets the pupil sweep center; pupil aberrations (shift
  *     of the entrance pupil with field angle) are not modeled.
- *   - cos⁴ factor is applied to the object-space field angle.  Sensor
+ *   - cos⁴ factor is applied to the object-space field angle. Sensor
  *     obliquity, Fresnel reflection losses, and coating transmission are out
  *     of scope (see issue #299).
  *   - Result is normalized to on-axis = 1.0; any residual on-axis vignetting
@@ -45,8 +45,8 @@ export interface VignettingSample {
    */
   geometricTransmission: number;
   /**
-   * Relative illumination: geometricTransmission × cos⁴(θ), normalized so
-   * on-axis = 1.0.  Combines vignetting with the cos⁴ illumination falloff law.
+   * Relative illumination from surviving-ray intensity × cos⁴(θ), normalized
+   * so on-axis = 1.0. Includes authored bulk absorption as well as vignetting.
    */
   relativeIllumination: number;
 }
@@ -120,6 +120,7 @@ export function computeVignettingCurve(
 
   /* ── Raw geometric transmission per field sample ── */
   const rawGT: number[] = [];
+  const rawIntensity: number[] = [];
 
   for (let i = 0; i < fieldSamples; i++) {
     const fieldAngleDeg = (i / (fieldSamples - 1)) * halfFieldDeg;
@@ -127,6 +128,7 @@ export function computeVignettingCurve(
     const launch = projectionLaunchSlopeForField(L, fieldAngleDeg);
     if (launch.status === "out-of-domain" && !solve.vectorLaunch) {
       rawGT.push(0);
+      rawIntensity.push(0);
       continue;
     }
 
@@ -135,6 +137,7 @@ export function computeVignettingCurve(
 
     /* Dense meridional pupil sweep: nPupil evenly-spaced fractions in [−1, +1] */
     let surviving = 0;
+    let transmittedIntensity = 0;
     for (let j = 0; j < nPupil; j++) {
       const pupilFrac = -1 + (2 * j) / (nPupil - 1);
       const pupilOffset = pupilFrac * currentEPSD;
@@ -150,15 +153,20 @@ export function computeVignettingCurve(
             aberrationT,
           )
         : traceRay(yChief + pupilOffset, uField, zPos, focusT, zoomT, currentPhysStopSD, true, L, aberrationT);
-      if (!trace.clipped) surviving++;
+      if (!trace.clipped) {
+        surviving++;
+        transmittedIntensity += trace.transmission ?? 1;
+      }
     }
 
     rawGT.push(surviving / nPupil);
+    rawIntensity.push(transmittedIntensity / nPupil);
   }
 
   /* ── Normalise to on-axis = 1.0 ── */
   const gtAxis = rawGT[0];
-  if (gtAxis === 0) return [];
+  const intensityAxis = rawIntensity[0];
+  if (gtAxis === 0 || intensityAxis === 0) return [];
 
   const samples: VignettingSample[] = [];
   for (let i = 0; i < fieldSamples; i++) {
@@ -167,8 +175,8 @@ export function computeVignettingCurve(
     const cos4 = Math.pow(Math.cos(thetaRad), 4);
 
     const gt = rawGT[i] / gtAxis;
-    /* ri is normalised by the same on-axis GT, so on-axis ri = cos⁴(0) = 1.0 */
-    const ri = (rawGT[i] * cos4) / gtAxis;
+    /* Intensity normalization keeps on-axis ri = cos⁴(0) = 1.0. */
+    const ri = (rawIntensity[i] * cos4) / intensityAxis;
 
     samples.push({
       fieldAngleDeg,

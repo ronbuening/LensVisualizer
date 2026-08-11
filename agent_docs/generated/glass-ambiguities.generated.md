@@ -12,19 +12,19 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **550** lenses scanned
-- **6056** glass elements examined
-- **1506** elements have multiple coordinate-compatible candidates
-- **339** lens files are affected
+- **556** lenses scanned
+- **6121** glass elements examined
+- **1536** elements have multiple coordinate-compatible candidates
+- **345** lens files are affected
 - **137** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **148** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
-| Smallest reference-index residual | 760 |
-| Evidence-source priority | 482 |
+| Smallest reference-index residual | 785 |
+| Evidence-source priority | 486 |
 | Vendor context | 261 |
-| Stable canonical-name order | 3 |
+| Stable canonical-name order | 4 |
 
 ## Ambiguous Annotations
 
@@ -339,12 +339,28 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `699301 — SF15 / TIM35 dense flint class (vendor unspecified)` | 1.69895 / 30.10 (d) | SF15 — direct name evidence outranks six-digit code evidence. | E-FD15 (Hoya, code, alternate code row)<br>S-TIM35 (Ohara, code, preferred code row) | 1 | [MAMIYA-SEKOR MACRO C 80mm f/4](../../src/lens-data/mamiya/MamiyaSekorMacroC80mmf4.data.ts) L4 |
 | `673321 — SF5 / TIM25 dense flint class (vendor unspecified)` | 1.67270 / 32.10 (d) | SF5 — direct name evidence outranks six-digit code evidence. | S-TIM25 (Ohara, code, preferred code row) | 1 | [MAMIYA-SEKOR MACRO C 80mm f/4](../../src/lens-data/mamiya/MamiyaSekorMacroC80mmf4.data.ts) L6 |
 | `603607 class (vendor unspecified)` | 1.60311 / 60.70 (d) | BACD14 — smallest d-line \|Δn\| (8.2e-7 vs 1.9e-6) | S-BSM14 (Ohara, code, preferred code row) | 1 | [MAMIYA-SEKOR SFC 150mm f/4 SOFT FOCUS](../../src/lens-data/mamiya/MamiyaSekorSFC150mmf4SoftFocus.data.ts) L2 |
+| `713539 — optical-glass coordinate class (vendor unresolved)` | 1.71300 / 53.93 (d) | LAC8 — smallest d-line \|Δn\| (1.8e-7 vs 3.0e-4) | MP-LAC8-30 (Hoya, code, alternate code row) | 1 | [MINOLTA AF 100mm f/2](../../src/lens-data/minolta/MinoltaAF100mmf2.data.ts) L1 |
+| `720503 — optical-glass coordinate class (vendor unresolved)` | 1.72000 / 50.31 (d) | LAC10 — smallest d-line \|Δn\| (1.7e-6 vs 1.0e-5) | J-LAK10 (Hikari, code, preferred code row) | 1 | [MINOLTA AF 100mm f/2](../../src/lens-data/minolta/MinoltaAF100mmf2.data.ts) L7 |
 | `S-NSL3-class crown (OHARA 518590; inferred)` | 1.51823 / 58.96 (d) | S-NSL3 — direct name evidence outranks six-digit code evidence. | E-C3 (Hoya, code, vendor ✗, alternate code row) | 1 | [MINOLTA AF 100mm f/2.8 Macro](../../src/lens-data/minolta/MinoltaAF100mmf28Macro.data.ts) L1 |
 | `S-LAL9-class lanthanum crown (OHARA 691548; inferred)` | 1.69100 / 54.75 (d) | S-LAL9 — direct name evidence outranks six-digit code evidence. | K-LaK9 (Sumita, code, vendor ✗, preferred code row) | 2 | [MINOLTA AF 100mm f/2.8 Macro](../../src/lens-data/minolta/MinoltaAF100mmf28Macro.data.ts) L2 |
 | `S-BAL35-class barium crown (OHARA 589612; inferred)` | 1.58913 / 61.11 (d) | S-BAL35 — direct name evidence outranks six-digit code evidence. | SK5 (Sumita, code, vendor ✗, alternate code row) | 1 | [MINOLTA AF 100mm f/2.8 Macro](../../src/lens-data/minolta/MinoltaAF100mmf28Macro.data.ts) L8 |
+| `603607 — crown class (vendor unresolved)` | 1.60311 / 60.74 (d) | BACD14 — smallest d-line \|Δn\| (8.2e-7 vs 1.9e-6) | S-BSM14 (Ohara, code, preferred code row) | 1 | [MINOLTA AF 135mm f/2.8 [T4.5] STF](../../src/lens-data/minolta/MinoltaSTF135mmf28T45.data.ts) L1 |
+| `517642 — crown class (vendor unresolved)` | 1.51680 / 64.20 (d) | H-K9L — Stable canonical-name ordering breaks an otherwise equal match (H-K9L before H-K9LGT). | H-K9LGT (CDGM, code, alternate code row)<br>N-BK7 (Schott, code, preferred code row) | 1 | [MINOLTA AF 135mm f/2.8 [T4.5] STF](../../src/lens-data/minolta/MinoltaSTF135mmf28T45.data.ts) L3 |
+| `613370 — flint class (vendor unresolved)` | 1.61293 / 36.96 (d) | E-F3 — smallest d-line \|Δn\| (1.6e-7 vs 8.0e-7) | S-TIM3 (Ohara, code, preferred code row) | 1 | [MINOLTA AF 135mm f/2.8 [T4.5] STF](../../src/lens-data/minolta/MinoltaSTF135mmf28T45.data.ts) L4 |
+| `620603 — dense-crown class (vendor unresolved)` | 1.62041 / 60.29 (d) | J-SK16 — smallest d-line \|Δn\| (1.0e-8 vs 3.5e-8) | N-SK16 (Schott, code, preferred code row)<br>S-BSM16 (Ohara, code, alternate code row) | 1 | [MINOLTA AF 135mm f/2.8 [T4.5] STF](../../src/lens-data/minolta/MinoltaSTF135mmf28T45.data.ts) L8 |
+| `847239 (vendor identity not source-defensible)` | 1.84666 / 23.90 (d) | S-NPH53 — smallest d-line \|Δn\| (3.2e-7 vs 7.7e-7) | S-TIH53WN (Ohara, code, alternate code row)<br>PBH53 (Ohara, code, alternate code row) | 5 | [MINOLTA AF 28-70mm f/2.8 G](../../src/lens-data/minolta/MinoltaAF2870mmf28G.data.ts) L1 |
+| `800422 (vendor identity not source-defensible)` | 1.79952 / 42.20 (d) | S-LAH52Q — smallest d-line \|Δn\| (1.4e-7 vs 4.2e-6) | S-LAH52 (Ohara, code, preferred code row) | 1 | [MINOLTA AF 28-70mm f/2.8 G](../../src/lens-data/minolta/MinoltaAF2870mmf28G.data.ts) L2 |
+| `583594 (vendor identity not source-defensible)` | 1.58313 / 59.40 (d) | J-SK12 — smallest d-line \|Δn\| (1.0e-8 vs 4.1e-6) | S-BAL42 (Ohara, code, preferred code row) | 1 | [MINOLTA AF 28-70mm f/2.8 G](../../src/lens-data/minolta/MinoltaAF2870mmf28G.data.ts) L4 |
+| `729547 (vendor identity not source-defensible)` | 1.72916 / 54.70 (d) | TAC8 — smallest d-line \|Δn\| (6.0e-8 vs 3.1e-6) | S-LAL18 (Ohara, code, preferred code row) | 1 | [MINOLTA AF 28-70mm f/2.8 G](../../src/lens-data/minolta/MinoltaAF2870mmf28G.data.ts) L8 |
+| `618634 (vendor identity not source-defensible)` | 1.61800 / 63.40 (d) | S-PHM52 — smallest d-line \|Δn\| (9.0e-8 vs 1.0e-7) | N-PSK53A (Schott, code, alternate code row)<br>K-PSKn2 (Sumita, code, alternate code row) | 1 | [MINOLTA AF 28-70mm f/2.8 G](../../src/lens-data/minolta/MinoltaAF2870mmf28G.data.ts) L14 |
+| `785257 (vendor identity not source-defensible)` | 1.78472 / 25.70 (d) | H-ZF13 — smallest d-line \|Δn\| (1.8e-9 vs 2.7e-6) | S-TIH11 (Ohara, code, preferred code row) | 1 | [MINOLTA AF 28-70mm f/2.8 G](../../src/lens-data/minolta/MinoltaAF2870mmf28G.data.ts) L15 |
+| `805254 (vendor identity not source-defensible)` | 1.80518 / 25.40 (d) | S-TIH6 — smallest d-line \|Δn\| (7.1e-7 vs 2.1e-6) | SF6 (Schott, code, alternate code row) | 1 | [MINOLTA AF 28-70mm f/2.8 G](../../src/lens-data/minolta/MinoltaAF2870mmf28G.data.ts) L16 |
 | `S-TIH6 (OHARA; SF6 class)` | 1.80518 / 25.40 (d) | S-TIH6 — Annotation vendor context matches Ohara. | SF6 (Schott, name, vendor ✗) | 2 | [MINOLTA AF 28-75mm f/2.8 (D)](../../src/lens-data/minolta/MinoltaAF2875mmf28D.data.ts) L23 |
 | `S-FPL51 (OHARA) / FCD1 class` | 1.49700 / 81.60 (d) | S-FPL51 — Annotation vendor context matches Ohara. | FCD1 (Hoya, name, vendor ✗) | 8 | [MINOLTA AF 28-75mm f/2.8 (D)](../../src/lens-data/minolta/MinoltaAF2875mmf28D.data.ts) L31 +2 files |
 | `N-BK7 / BK7-family crown (517/642 class)` | 1.51680 / 64.20 (d) | N-BK7 — direct name evidence outranks six-digit code evidence. | H-K9L (CDGM, code, alternate code row)<br>H-K9LGT (CDGM, code, alternate code row) | 1 | [MINOLTA AF 35-105mm f/3.5-4.5 New (v2)](../../src/lens-data/minolta/MinoltaAF35105mmf3545v2.data.ts) L9 |
+| `E-F2 (HOYA catalog equivalent; patent 620363; production supplier unspecified)` | 1.62004 / 36.30 (d) | E-F2 — direct name evidence outranks six-digit code evidence. | S-TIM2 (Ohara, code, vendor ✗, preferred code row) | 1 | [MINOLTA AF 400mm f/4.5 APO G](../../src/lens-data/minolta/MinoltaAF400mmf45APOG.data.ts) L4 |
+| `N-SSK5 (SCHOTT catalog equivalent; patent 658509; production supplier unspecified)` | 1.65844 / 50.90 (d) | N-SSK5 — direct name evidence outranks six-digit code evidence. | S-BSM25 (Ohara, code, vendor ✗, alternate code row)<br>BACED5 (Hoya, code, vendor ✗, alternate code row) | 1 | [MINOLTA AF 400mm f/4.5 APO G](../../src/lens-data/minolta/MinoltaAF400mmf45APOG.data.ts) L6 |
+| `J-SF03 / H-ZF52 / FDS90 catalog-equivalent dense-flint class (patent 846238; production supplier unspecified)` | 1.84566 / 23.80 (d) | J-SF03 — smallest d-line \|Δn\| (1.0e-3 vs 1.0e-3) | H-ZF52 (CDGM, name)<br>FDS90 (Hoya, name) | 1 | [MINOLTA AF 400mm f/4.5 APO G](../../src/lens-data/minolta/MinoltaAF400mmf45APOG.data.ts) L7 |
 | `F2 / S-TIM2 class (620/363; vendor not specified)` | 1.62004 / 36.30 (d) | F2 — smallest d-line \|Δn\| (1.4e-7 vs 8.4e-7) | S-TIM2 (Ohara, name)<br>E-F2 (Hoya, code, alternate code row) | 1 | [MINOLTA AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) L1 |
 | `E-FD1L (HOYA) / S-TIH1 / N-SF1 class` | 1.71736 / 29.50 (d) | S-TIH1 — direct name evidence outranks alias evidence. | SF1 (Schott, alias, vendor ✗) | 1 | [MINOLTA AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) L4 |
 | `FDS90 / N-SF57 / S-TIH53 dense-flint class` | 1.84666 / 23.82 (d) | S-TIH53 — smallest d-line \|Δn\| (3.2e-7 vs 3.2e-6) | FDS90 (Hoya, name) | 2 | [MINOLTA AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) L7 |
@@ -352,6 +368,11 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `F2 / S-TIM2 class (620/363; vendor not specified)` | 1.62004 / 36.29 (d) | F2 — smallest d-line \|Δn\| (1.4e-7 vs 8.4e-7) | S-TIM2 (Ohara, name)<br>E-F2 (Hoya, code, alternate code row) | 1 | [MINOLTA AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) L16 |
 | `FF5 (HOYA) / S-FTM16 class` | 1.59270 / 35.45 (d) | FF5 — Annotation vendor context matches Hoya. | S-FTM16 (Ohara, name, vendor ✗) | 1 | [MINOLTA AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) L17 |
 | `LAF3 / S-LAM3 / N-LAF3 class (close, patent νd=47.86)` | 1.71700 / 47.86 (d) | LAF3 — smallest d-line \|Δn\| (2.6e-8 vs 3.9e-6) | S-LAM3 (Ohara, name) | 1 | [MINOLTA AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) L19 |
+| `603607 class (vendor unresolved)` | 1.60311 / 60.70 (d) | BACD14 — smallest d-line \|Δn\| (8.2e-7 vs 1.9e-6) | S-BSM14 (Ohara, code, preferred code row) | 3 | [MINOLTA AF 80-200mm f/2.8 APO](../../src/lens-data/minolta/MinoltaAF80200mmf28APO.data.ts) L4 |
+| `694532 class (vendor unresolved)` | 1.69350 / 53.20 (d) | M-LAC130 — smallest d-line \|Δn\| (1.2e-7 vs 3.8e-7) | L-LAL13 (Ohara, code, alternate code row)<br>S-LAL13 (Ohara, code, preferred code row) | 1 | [MINOLTA AF 80-200mm f/2.8 APO](../../src/lens-data/minolta/MinoltaAF80200mmf28APO.data.ts) L8 |
+| `773496 class (vendor unresolved)` | 1.77250 / 49.60 (d) | J-LASF016 — smallest d-line \|Δn\| (1.7e-8 vs 6.4e-8) | N-LAF34 (Schott, code, alternate code row)<br>S-LAH66 (Ohara, code, preferred code row)<br>S-LAH66N (Ohara, code, alternate code row) | 1 | [MINOLTA AF 80-200mm f/2.8 APO](../../src/lens-data/minolta/MinoltaAF80200mmf28APO.data.ts) L9 |
+| `755275 class (vendor unresolved)` | 1.75520 / 27.50 (d) | E-FD4 — smallest d-line \|Δn\| (2.6e-7 vs 3.8e-7) | H-ZF6 (CDGM, code, alternate code row) | 1 | [MINOLTA AF 80-200mm f/2.8 APO](../../src/lens-data/minolta/MinoltaAF80200mmf28APO.data.ts) L13 |
+| `717295 class (vendor unresolved)` | 1.71736 / 29.50 (d) | SF1 — smallest d-line \|Δn\| (1.5e-7 vs 1.8e-6) | S-TIH1 (Ohara, code, alternate code row) | 1 | [MINOLTA AF 80-200mm f/2.8 APO](../../src/lens-data/minolta/MinoltaAF80200mmf28APO.data.ts) L14 |
 | `E-FD4 (HOYA) / S-TIH4 (OHARA)` | 1.75520 / 27.51 (d) | E-FD4 — smallest d-line \|Δn\| (2.6e-7 vs 1.2e-6) | S-TIH4 (Ohara, name, vendor ✓) | 1 | [MINOLTA AF APO Tele 200mm f/2.8](../../src/lens-data/minolta/MinoltaAF200mmf28.data.ts) L5 |
 | `LAC10 (HOYA) / S-LAL10 (OHARA)` | 1.72000 / 50.31 (d) | LAC10 — smallest d-line \|Δn\| (1.7e-6 vs 4.7e-6) | S-LAL10 (Ohara, name, vendor ✓) | 1 | [MINOLTA AF APO Tele 200mm f/2.8](../../src/lens-data/minolta/MinoltaAF200mmf28.data.ts) L6 |
 | `FC5 (HOYA) / S-FSL5 (OHARA)` | 1.48749 / 70.44 (d) | S-FSL5 — smallest d-line \|Δn\| (6.5e-8 vs 5.1e-7) | FC5 (Hoya, name, vendor ✓) | 1 | [MINOLTA AF APO Tele 200mm f/2.8](../../src/lens-data/minolta/MinoltaAF200mmf28.data.ts) L8 |
@@ -362,6 +383,9 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `LAF2 / N-LAF2 / S-LAM2 class (744/449)` | 1.74400 / 44.93 (d) | S-LAM2 — smallest d-line \|Δn\| (3.2e-6 vs 2.8e-5) | N-LAF2 (Schott, name)<br>H-LaF3B (CDGM, code, preferred code row) | 1 | [MINOLTA AF Zoom 35-70mm f/4](../../src/lens-data/minolta/MinoltaAF3570mmf4.data.ts) L1 |
 | `E-FD1L / N-SF1 / S-TIH1 class (717/295; patent νd = 29.42)` | 1.71736 / 29.42 (d) | S-TIH1 — direct name evidence outranks alias evidence. | SF1 (Schott, alias) | 1 | [MINOLTA AF Zoom 35-70mm f/4](../../src/lens-data/minolta/MinoltaAF3570mmf4.data.ts) L2g |
 | `E-FD5 / N-SF5 / S-TIM25 class (673/322)` | 1.67270 / 32.22 (d) | S-TIM25 — smallest d-line \|Δn\| (1.9e-7 vs 2.0e-7) | E-FD5 (Hoya, name)<br>N-SF5 (Schott, name)<br>H-ZF2 (CDGM, code, alternate code row)<br>SF5 (Schott, code, alternate code row) | 1 | [MINOLTA AF Zoom 35-70mm f/4](../../src/lens-data/minolta/MinoltaAF3570mmf4.data.ts) L6 |
+| `620603 — SK16/BSM16/BACD16 class` | 1.62040 / 60.30 (d) | N-SK16 — alias evidence outranks six-digit code evidence. | J-SK16 (Hikari, code, alternate code row)<br>S-BSM16 (Ohara, code, alternate code row) | 1 | [MINOLTA MC FISH-EYE ROKKOR-OK 16mm f/2.8](../../src/lens-data/minolta/MinoltaMCFishEyeRokkorOK16mmf28.data.ts) G1 |
+| `620603 — SK16/BSM16/BACD16 class (melt/rounding residual)` | 1.62050 / 60.30 (d) | N-SK16 — alias evidence outranks six-digit code evidence. | S-BSM16 (Ohara, code, alternate code row)<br>J-SK16 (Hikari, code, alternate code row) | 1 | [MINOLTA MC FISH-EYE ROKKOR-OK 16mm f/2.8](../../src/lens-data/minolta/MinoltaMCFishEyeRokkorOK16mmf28.data.ts) G3 |
+| `517642 — BK7/BSC7/K9L class` | 1.51680 / 64.20 (d) | N-BK7 — smallest d-line \|Δn\| (3.5e-8 vs 4.7e-4) | S-BSL7 (Ohara, alias)<br>H-K9L (CDGM, code, alternate code row)<br>H-K9LGT (CDGM, code, alternate code row) | 1 | [MINOLTA MC FISH-EYE ROKKOR-OK 16mm f/2.8](../../src/lens-data/minolta/MinoltaMCFishEyeRokkorOK16mmf28.data.ts) G11 |
 | `697555 - lanthanum crown (catalog unresolved)` | 1.69680 / 55.50 (d) | J-LAK14 — smallest d-line \|Δn\| (1.3e-8 vs 2.3e-6) | LAC14 (Hoya, code, alternate code row)<br>S-LAL14 (Ohara, code, preferred code row) | 1 | [MINOLTA MD ROKKOR 45mm f/2](../../src/lens-data/minolta/MinoltaRokkor45mmf2MD.data.ts) L6 |
 | `BK7 / S-BSL7 class (protective glass)` | 1.51680 / 63.88 (d) | S-BSL7 — direct name evidence outranks alias evidence. | N-BK7 (Schott, alias) | 1 | [NIKON 1 NIKKOR 11-27.5mm f/3.5-5.6](../../src/lens-data/nikon/Nikon1Nikkor1127mmf3556.data.ts) P |
 | `S-TIH53 equivalent (N-SF57HT / FDS90-SG class dense flint)` | 1.84666 / 23.80 (d) | S-TIH53 — smallest d-line \|Δn\| (3.2e-7 vs 3.2e-6) | FDS90 (Hoya, name) | 1 | [NIKON 1 NIKKOR 11-27.5mm f/3.5-5.6](../../src/lens-data/nikon/Nikon1Nikkor1127mmf3556.data.ts) L3 |

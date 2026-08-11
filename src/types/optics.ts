@@ -170,6 +170,8 @@ export interface ElementData {
   fl?: number;
   glass?: string;
   role?: string;
+  /** Beer-Lambert intensity absorption coefficient in inverse millimeters. */
+  absorptionCoefficientPerMm?: number;
   apd?: "patent" | "inferred" | false;
   apdNote?: string;
   cemented?: string;
@@ -483,6 +485,8 @@ export interface RayTraceResult {
   y: number;
   u: number;
   clipped: boolean;
+  /** Bulk-material intensity transmission accumulated along the traced path. */
+  transmission?: number;
   reachedImagePlane?: boolean;
   diagnostics?: FoldedPathTraceDiagnostics;
 }

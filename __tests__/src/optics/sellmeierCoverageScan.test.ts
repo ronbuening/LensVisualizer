@@ -243,7 +243,7 @@ describe("Sellmeier coverage scan", () => {
         key: data.key,
         name: data.name ?? data.key,
         visible: data.visible !== false,
-        patentNumber: extractPatentNumber(data.subtitle),
+        patentNumber: extractPatentNumber(data.patentNumber, data.subtitle),
         filePath,
         glassElements,
         fullySellmeierElements,
