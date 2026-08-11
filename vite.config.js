@@ -30,6 +30,13 @@ export default defineConfig(({ isSsrBuild }) => ({
         },
   },
   test: {
+    /* threads spawn cheaper than the default forks pool; measured ~5% faster
+     * with the full suite green. */
+    pool: "threads",
+    /* Full-catalog sweeps legitimately exceed the 5s default. Lives here so
+     * ad-hoc `npx vitest run <file>` behaves like `npm test` (the npm scripts
+     * used to pass --testTimeout 30000 on the CLI). */
+    testTimeout: 30000,
     exclude: [...configDefaults.exclude, "**/.claude/**"],
     coverage: {
       provider: "v8",
