@@ -30,9 +30,9 @@ six-digit codes are ignored for those rows. The full per-surface mismatch list i
 
 For code-only rows, start with
 [six-digit-glass-codes-missing-sellmeier.generated.md](generated/six-digit-glass-codes-missing-sellmeier.generated.md).
-Its active A-E queue indexes both the manual sidecar and companion audit logs. The current report contains 296
-missing-Sellmeier elements, of which 131 are self-recording explicit unmatched/unidentified dispositions; 12 recent
-rows remain active and unreviewed. The full inventory remains in the same report for audit context.
+Its active A-E queue indexes both the manual sidecar and companion audit logs. The current report contains 266
+missing-Sellmeier elements, of which 116 are self-recording explicit unmatched/unidentified dispositions; no rows
+remain active and unreviewed. The full inventory remains in the same report for audit context.
 
 The fix for a mismatch is one of:
 
@@ -119,8 +119,8 @@ Rows removed from Tier A after local patent review:
 
 | Code | Lens files | Patent evidence | Outcome |
 |---|---:|---|---|
-| `493836` | 2 | Minolta AF 200mm US 4,786,152 gives `nd = 1.49310`, `vd = 83.55`, and `theta_gF = 0.539`; Minolta AF 70-200mm JP 2004-109559 gives four `1.49310 / 83.58` rows without partial dispersion. | No exact row exists in the reviewed official OHARA, HOYA, Hikari, or Sumita coefficient catalogs. Retained explicit Minolta AD/ED labels; the 200mm keeps its patent-derived `dPgF`, while the 70-200mm remains APD-inferred. |
-| `796409` | 6 | Six Nikon patents independently print `nd = 1.79631`, `vd = 40.90` across seven elements. | No exact coefficient-backed vendor row was found. Retained explicit unmatched labels rather than borrowing S-LAH52, J-LASF03, or another nearby high-index family. |
+| `493836` | 4 files / 9 elements | Minolta AF 200mm US 4,786,152 gives two `nd = 1.49310`, `vd = 83.55`, `theta_gF = 0.539` rows; Minolta AF 70-200mm JP 2004-109559 gives four `1.49310 / 83.58` rows; JP1996-327896 Example 1 adds two `1.49310 / 83.6` rows and JP1989-039542 Example 1 adds one. The latter three patents publish no partial dispersion for this family. | No row exists inside the runtime compatibility guard in the reviewed official OHARA, HOYA, Hikari, or Sumita coefficient catalogs. Retained explicit Minolta AD/ED classifications; rows without a catalog curve are recorded as unmatched. The 200mm keeps its patent-derived `dPgF`; the other prescriptions remain APD-inferred only. |
+| `796409` | 6 files / 7 elements | Six Nikon patents independently print `nd = 1.79631`, `vd = 40.90` across seven elements. | Phase 92 recovered legacy HOYA NBFD2 (`1.797199 / 41.143795`) from the official obsolete-inclusive catalog. All seven rows now use its coefficients as a catalog equivalent inside runtime tolerance; production suppliers remain unspecified. |
 | `797454` | 5 files / 6 elements: [Nikon28Ti28mmf28.data.ts](../src/lens-data/nikon/Nikon28Ti28mmf28.data.ts), [NikonAFZoomNikkor2880mmf3556.data.ts](../src/lens-data/nikon/NikonAFZoomNikkor2880mmf3556.data.ts), [NikonRUWAFNikkor13mmf28.data.ts](../src/lens-data/nikon/NikonRUWAFNikkor13mmf28.data.ts), [NikonAFNikkor28mmf28D.data.ts](../src/lens-data/nikon/NikonAFNikkor28mmf28D.data.ts), and [NikonRUWAFZoomNikkor2035mmf28.data.ts](../src/lens-data/nikon/NikonRUWAFZoomNikkor2035mmf28.data.ts) | The reviewed Nikon rows print `nd = 1.79668`, `vd = 45.37–45.4`; the US 5,557,473 row was also rendered and checked visually. | Relabeled to Hikari J-LASF017 (`1.79500 / 45.31`, code `795453`) as a coefficient-backed catalog equivalent within the runtime safety window. Every annotation leaves the production supplier unidentified. |
 | `773497` | 3 files / 5 elements: [CanonFD150600mmf56L.data.ts](../src/lens-data/canon/CanonFD150600mmf56L.data.ts), [OlympusZuikoAutoMacro50mmf2.data.ts](../src/lens-data/olympus/OlympusZuikoAutoMacro50mmf2.data.ts), and [OlympusZuikoAutoMacro90mmf2.data.ts](../src/lens-data/olympus/OlympusZuikoAutoMacro90mmf2.data.ts) | The reviewed Canon and Olympus rows print `nd = 1.77250`, `vd = 49.66–49.7`; the Canon Example 4 row was rendered and checked visually. | Relabeled to Schott N-LAF34 (`1.77250 / 49.62`, code `773496`) as a coefficient-backed catalog equivalent. The exact index and `0.04–0.08` Abbe residual support the match; the production supplier remains unidentified. |
 | `515546` | 6 files / 6 elements | Reviewed Agfa and Nikon rows print `nd = 1.51454`, `vd = 54.55–54.7`. | Added SUMITA KF3 from the vendor's discontinued-inclusive all-glass AGF and relabeled all six rows as catalog equivalents. The vendor row is the exact `1.51454 / 54.6` coordinate; production suppliers remain unspecified. |

@@ -18,3 +18,20 @@ Patent: US 5,257,137, Embodiment 1
 - Official OHARA, HOYA, Hikari, and Sumita coefficient catalogs contain no exact `796409` row.
   The nearby named lanthanum-flint families do not reproduce both coordinates.
 - Retained the explicit unmatched `796409` annotation. No supplier, catalog model, or geometry changed.
+
+## 2026-08-11 — Phase 92 HOYA legacy-catalog recovery
+
+- Visually rechecked US 5,257,137 Table 1 on rendered PDF page 8: L33 is `1.79631 / 40.9` and L41 is
+  `1.60717 / 40.3`.
+- Recovered official legacy HOYA models NBFD2 (`1.797199 / 41.143795`) and BAFD3
+  (`1.607171 / 40.359687`); both are compatible with their patent coordinates.
+- Relabeled the two elements as supplier-neutral optical equivalents and synchronized the analysis. No underwater
+  prescription geometry, aperture, projection, or semi-diameter values changed.
+
+## 2026-08-11 — Phase 94 J-LASFH2 completion
+
+- Rechecked Example 1 Table 1 on rendered PDF page 8: surface 3 is `nd = 1.76684`, `νd = 46.8`.
+- The subsequently added first-party Hikari J-LASFH2 curve reproduces that coordinate at `1.766840019 / 46.78`, so
+  the earlier explicit-unmatched safeguard is no longer applicable.
+- Relabeled L2F to J-LASFH2, completing the lens at 10/10 strict Sellmeier surfaces. No source values or geometry
+  changed.

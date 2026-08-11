@@ -121,7 +121,7 @@ Glass types were identified by matching patent nd/νd values against known optic
 |------|------------|------|------|-------------------|------------|-------|
 | 1 | L1a | 1.60300 | 65.42 | **OHARA S-PHM53** (nd=1.60300, νd=65.44) | High | Phosphate crown. Δνd=0.02 |
 | 2 | L1b | 1.59319 | 67.87 | Fluorophosphate crown (glass code 593679) | Low | No exact current-catalog match. Nearest: OHARA S-FPM2 (nd=1.59522, νd=67.73, Δnd=0.002). Likely a 1990s-era fluorophosphate crown, now discontinued or redesignated. Specific type uncertain |
-| 3 | L2 | 1.79631 | 40.90 | Unmatched 796409 patent glass | Unresolved | Dense lanthanum-flint region; no exact public catalog identity |
+| 3 | L2 | 1.79631 | 40.90 | HOYA NBFD2 optical equivalent | Catalog-backed equivalent | Official obsolete row 1.797199 / 41.143795; production supplier unspecified |
 | 4 | L3 | 1.71736 | 29.46 | **SCHOTT SF1 / OHARA S-TIH1** (nd=1.71736, νd=29.51) | High | Dense flint. Exact nd match |
 | 5 | L4 | 1.80454 | 39.61 | **HOYA NBFD3** (nd=1.80454, νd=39.61) | Exact | Dense niobium flint. OHARA S-LAH63 is near-equivalent |
 | 6 | L5 | 1.67270 | 32.17 | **HOYA E-FD5 / OHARA S-TIM25** (nd=1.67270, νd=32.17) | Exact | Flint glass |
@@ -130,7 +130,7 @@ Glass types were identified by matching patent nd/νd values against known optic
 | 9 | L7 | 1.78797 | 47.47 | **SCHOTT LaFN21** (nd=1.78797, νd=47.47) | Exact | Lanthanum flint. Modern equivalent: SCHOTT N-LAF21 |
 | 10 | L8 | 1.74810 | 52.30 | Unmatched 748523 patent glass | Unresolved | Lanthanum-crown region; no exact public catalog identity |
 
-Six of the ten elements have exact or catalog-tolerance matches. L1b, L2, and L8 remain deliberately unresolved at their patent coordinates, while L1a has a near-exact S-PHM53 match. The unresolved labels prevent the dispersion model from borrowing coefficients from numerically different catalog rows.
+Seven of the ten elements have exact or catalog-tolerance matches. L2 now uses the official legacy HOYA NBFD2 dispersion model as a close optical equivalent; L1b and L8 remain deliberately unresolved at their patent coordinates. The NBFD2 label does not identify Nikon's production supplier.
 
 ### 5.2 Element-by-Element Optical Analysis
 
@@ -150,7 +150,7 @@ Six of the ten elements have exact or catalog-tolerance matches. L1b, L2, and L8
 - **Dispersion note:** The Abbe number difference v1−v2 = 65.42−40.90 = 24.52 (patent condition 15) is computed between L1a and L2, not within the L1 compound, confirming that the chromatic correction strategy uses the low-dispersion front pair against the higher-dispersion L2.
 
 #### Element 3 — L2 (Positive Meniscus, convex toward object)
-- **Glass:** Unmatched 796409 dense lanthanum-flint-region glass, nd=1.796, νd=40.9
+- **Glass:** HOYA NBFD2 catalog equivalent for patent 796409, nd=1.796, νd=40.9; production supplier unspecified
 - **Thin-lens FL:** +371 mm (weakly positive)
 - **Shape:** Meniscus with both surfaces convex toward object (R5=43.25, R6=50.65), deeply curved
 - **Role:** Completes the positive power of G1. Its high refractive index (1.796) allows strong curvatures with less spherical aberration than would be possible with lower-index glass. The higher dispersion (νd=40.9) relative to L1a/L1b provides the Abbe number differential needed for lateral chromatic aberration and chromatic astigmatism correction within G1 (condition 15). The patent states that r3/f = 0.509, and this value — combined with r1/f — must satisfy conditions (6) and (12) simultaneously to control annular spherical aberration.

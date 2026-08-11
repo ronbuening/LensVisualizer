@@ -45,13 +45,15 @@ The glass is a moderate-index barium crown. The patent's nd value matches curren
 
 ### L2 — Negative Meniscus, concave to object
 
-nd = 1.75692, νd = 31.62. Glass: unmatched dense flint, 757/316 code. f = −181.11 mm in air.
+nd = 1.75692, νd = 31.62. Glass: E-LAF11 catalog equivalent; production supplier not established. f = −181.11 mm in air.
 
 L2 is cemented to L1 at R2 = −103.020 mm and exits to air at R3 = −419.760 mm. Both radii are negative in the patent sign convention, so the element is a negative meniscus with the concave side facing the object. This matches the prose definition of the second element in the claim and detailed description.
 
 The L1-L2 index difference is n2 − n1 = 0.13412. The patent makes this index difference a condition because the cemented interface is being used to correct zonal spherical aberration without adding another air-spaced surface (¶0016). The dispersion difference between L1 and L2 provides the front group's ordinary achromatization, but the patent does not support any apochromatic claim.
 
-The L2 glass code does not correspond cleanly to a current public catalog entry from OHARA, SCHOTT, HOYA, HIKARI, CDGM, or Sumita within a tight nd/νd tolerance. The data file therefore labels it explicitly as unmatched rather than forcing a speculative catalog name.
+Hikari E-LAF11 reproduces the patent's d-line index exactly and gives νd = 31.591, only 0.029 below the rounded patent
+value. Its published coefficients therefore provide a safe catalog-equivalent dispersion curve. The patent does not
+name a supplier, so this assignment is a color model rather than a production-material identification.
 
 ### L3 — Biconvex Positive, rear flint
 
@@ -78,7 +80,7 @@ The patent's eighth condition, n3 − n4 = 0.103, depends on the index contrast 
 | Element | nd | νd | Identification | Match quality |
 |---|---:|---:|---|---|
 | L1 | 1.62280 | 57.03 | S-BSM10 (OHARA) | Exact nd; νd within catalog/melt rounding |
-| L2 | 1.75692 | 31.62 | Unmatched dense flint, 757/316 code | No current public catalog match found |
+| L2 | 1.75692 | 31.62 | E-LAF11 catalog equivalent; patent 757/316 | Exact nd; νd within patent rounding |
 | L3 | 1.62004 | 36.27 | S-TIM2 (OHARA) | Exact nd; νd within catalog rounding |
 | L4 | 1.51680 | 64.10 | BK7-class crown; N-BK7 (SCHOTT) closest checked match | Better match than current OHARA S-BSL7 |
 
@@ -158,5 +160,6 @@ The resulting lens is a deliberately sparse telephoto. It does not attempt the c
 - Nikon Imaging. Kouichi Ohshita, "NIKKOR: The Thousand and One Nights — Tale 54: Nikon Fun Fun LensSet, Part 2 (Gyogyotto 20, Dodotto 400)." https://imaging.nikon.com/imaging/information/story/0054/
 - OHARA Corporation, S-BSM10 optical-glass datasheet / catalog page. https://oharacorp.com/glass/s-bsm10/
 - OHARA Corporation, S-TIM2 optical-glass datasheet / catalog page. https://oharacorp.com/glass/s-tim2/
+- Nikon/Hikari optical-glass data, E-LAF11; published dispersion coefficients and d-line coordinate.
 - OHARA Corporation, S-BSL7 optical-glass datasheet / catalog page. https://oharacorp.com/glass/s-bsl7/
 - SCHOTT, N-BK7 optical-glass datasheet. https://www.schott.com/shop/advanced-optics/en/Optical-Glass/N-BK7/c/glass-N-BK7

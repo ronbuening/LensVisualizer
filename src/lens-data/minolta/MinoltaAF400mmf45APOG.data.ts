@@ -35,8 +35,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ diameter. No layout control is used to conceal invalid geometry.           ║
  * ║                                                                            ║
  * ║ The patent publishes only nd and νd and names no glass vendor. Compatible ║
- * ║ catalog curves are used without asserting the production supplier; the     ║
- * ║ remaining proprietary coordinates stay explicitly unresolved.             ║
+ * ║ catalog curves are used without asserting the production supplier; rows    ║
+ * ║ outside the compatibility guard stay explicitly unmatched.                 ║
  * ║ No nC, nF, ng, or dPgF fields are fabricated; “APO” remains branding.     ║
  * ║                                                                            ║
  * ║ Patent condition (3) is sign-inconsistent across the printed source:      ║
@@ -81,7 +81,7 @@ const LENS_DATA = {
       nd: 1.4931,
       vd: 83.6,
       fl: 214.144,
-      glass: "493836 — Minolta AD/ED fluorophosphate class (catalog unresolved)",
+      glass: "Unmatched (493836 Minolta AD/ED fluorophosphate; no compatible public coefficient row)",
       apd: "inferred",
       apdNote:
         "AD/APD status is inferred from the exact 493836 Minolta glass family; this patent publishes only nd and νd, so no numeric dPgF is borrowed.",
@@ -96,7 +96,7 @@ const LENS_DATA = {
       nd: 1.4931,
       vd: 83.6,
       fl: 219.75,
-      glass: "493836 — Minolta AD/ED fluorophosphate class (catalog unresolved)",
+      glass: "Unmatched (493836 Minolta AD/ED fluorophosphate; no compatible public coefficient row)",
       apd: "inferred",
       apdNote:
         "AD/APD status is inferred from the exact 493836 Minolta glass family; this patent publishes only nd and νd, so no numeric dPgF is borrowed.",
@@ -111,7 +111,7 @@ const LENS_DATA = {
       nd: 1.721,
       vd: 33.4,
       fl: -240.817,
-      glass: "721334 — high-index medium-dispersion glass (catalog unresolved)",
+      glass: "N-KZFS8 (SCHOTT catalog equivalent; patent 721334; production supplier unspecified)",
       role: "Negative member completing the fixed positive Gr1 assembly.",
     },
     {

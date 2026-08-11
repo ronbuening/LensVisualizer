@@ -95,9 +95,9 @@ const LENS_DATA = {
       nd: 1.56091,
       vd: 46.78,
       fl: -31.96,
-      glass: "LLF3 / QF2 class (inferred, d-code 561468)",
+      glass: "FEL3 (HOYA catalog equivalent; production supplier unspecified)",
       cemented: "T1",
-      role: "Inner negative element of the front triplet, adjacent to the stop.",
+      role: "Inner negative element of the front triplet; FEL3 reproduces the patent e-line coordinate.",
     },
     {
       id: 5,

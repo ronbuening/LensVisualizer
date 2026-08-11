@@ -8,7 +8,67 @@ catalog equivalent. If neither path is available, the engine falls back to parti
 dPgF-corrected indices, or the legacy Abbe approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **503 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **517 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+
+The August 11, 2026 Phase 95 post-commit review rendered four more local patent tables and removed legacy
+reference-line guards from four exact native e-line matches: F5 in the Leica Elmar-M 135mm, F2 in the Leica
+Elmarit-R 28mm, and SF5 in both the Leica Elmarit-M 135mm and Rodenstock Grandagon-N 65mm. These score 7/10,
+7/10, and 8/10 respectively under the Phase 94 rubric: every row gains full spectral fidelity with strong coordinate
+evidence, while the shared SF5 curve earns the reuse point. Global coverage is now 5500/6129 strict and 5511/6129
+trusted; 30/75 native e-line surfaces resolve by verified names. The modern N-LAF21, N-SF8, and K5 near-matches
+remain deferred because their residuals are materially larger than the rows recovered here.
+
+The August 11, 2026 Phase 94 pass added first-party Hikari J-SK14 (`603607`) and J-LASF02 (`800421`) curves from
+the retained manufacturer workbook, completing the Nikon AF-S DX 55-200mm. A review of old explicit-unmatched
+guards also recovered J-LASFH2 for the Nikon R-UW Micro and eight exact native e-line matches across the Leica
+Summicron-R 50mm and Schneider Super-Symmar XL 110mm. Eleven surfaces move from Abbe approximations to full
+curves; the Nikon lenses become strict-complete, Schneider rises from 0/6 to 5/6, and Leica rises from 0/6 to 3/6.
+Global coverage is 5496/6129 strict and 5507/6129 trusted, with 316 strict-complete and 321 trusted-complete lenses,
+zero coordinate mismatches, and zero active unreviewed six-digit rows.
+
+Phase 94 used a 10-point color-accuracy opportunity score: 4 points for spectral-fidelity gain, 3 for source and
+coordinate confidence, 2 for completion or a large coverage jump, and 1 for reuse across multiple surfaces or files.
+
+| Improvement | Score | Result |
+|---|---:|---|
+| Hikari J-SK14 + J-LASF02 catalog expansion | 10/10 | Two first-party curves; Nikon 55-200 moves 11/13 → 13/13 |
+| Nikon R-UW Micro J-LASFH2 recovery | 9/10 | Exact named coordinate; lens moves 9/10 → 10/10 |
+| Schneider native e-line recovery | 9/10 | Five exact C′/e/F′ matches; lens moves 0/6 → 5/6 |
+| Leica Summicron-R native e-line recovery | 9/10 | Three exact C′/e/F′ matches; lens moves 0/6 → 3/6 |
+| Deferred Leica N-LAF21-class pair | 6/10 | Useful two-surface completion opportunity, but the modern curve is only a near match |
+| Deferred N-SF8-class e-line rows | 5/10 | Several useful surfaces, but the modern curve's e-line residuals exceed this pass's exact-match tier |
+| Deferred Rodenstock K5-class pair | 5/10 | Two surfaces, but the modern curve misses the patent e-line Abbe number by 0.17 |
+| Deferred Schneider KF9 row | 4/10 | Would complete one lens, but no compatible sourced curve is in the local catalog |
+
+The August 11, 2026 Phase 93 pass replaced the legacy cross-vendor aliases for Hikari J-SF1, J-SF6, J-SF10, and
+J-SF11 with their first-party nine-term power-series rows. Patent Table 4 for the Nikon AI AF Zoom-Nikkor 80-200mm
+f/2.8D ED supports assigning the compatible J-SF6 curve to L7 and L14, and JP H9-105860 Example 1 supports assigning
+Hikari E-LAF11 to the Nikon Dodotto 400 L2. The PC-E Micro-Nikkor 45mm L12 documentation was also corrected to reflect
+its already coefficient-backed E-LAF11 match. Global coverage is 5485/6129 strict and 5496/6129 trusted, with 314
+strict-complete and 319 trusted-complete lenses, zero coordinate mismatches, and zero active unreviewed six-digit rows.
+
+The August 11, 2026 Phase 92 pass revisited legacy six-digit coordinates against fourteen ignored local patent PDFs
+and HOYA's official 2026-07-07 obsolete-inclusive Zemax catalog. Eight recovered formula-3 rows — NBFD2, BACED1,
+PC1, PC2, F7, FL4, FL1, and BAFD3 — plus existing J-LAFH3 and E-FD13 models upgrade twenty-two surfaces.
+Seven lenses become strict-complete: Nikon AI Zoom 35-105mm and AF Micro 200mm; Olympus 28mm f/2; Enna
+Lithagon 35mm; Agfa Solagon 50mm; Canon Serenar 28mm; and Carl Zeiss Jena Tessar 50mm. Global coverage is
+5482/6129 strict and 5493/6129 trusted, with 313 strict-complete and 318 trusted-complete lenses, zero coordinate
+mismatches, and zero active unreviewed code-only rows. Every optical-equivalent label leaves the production supplier
+unspecified.
+
+The August 11, 2026 Phase 91 pass revisited the near-complete visible-lens queue against seven ignored local patent
+PDFs and current coefficient rows. Patent triple or native-line matches assigned FCD515, PBH25, S-TIL6, S-LAL52,
+D-K59, J-SFH2, and FEL3 equivalents across eight surfaces. Seven lenses become strict-complete; the Nikon 20-35mm
+improves to 13/14 with only its unrelated L31a glass still unmatched. Global coverage is 5460/6129 strict and
+5471/6129 trusted, with 306 strict-complete and 311 trusted-complete lenses, zero coordinate mismatches, and zero
+active unreviewed code-only rows. Every catalog-equivalent label leaves the production supplier unspecified.
+
+The August 11, 2026 Phase 90 pass audited the twelve active Minolta six-digit glass opportunities against four ignored
+local patent PDFs. Existing FF8, K-SSK1, N-SK16-family, S-LAL58, and N-KZFS8 curves upgrade five surfaces while
+leaving every production supplier unspecified. The seven coordinates outside the compatibility guard now carry
+explicit unmatched dispositions, including all newly added `493836` occurrences. The active unreviewed queue is empty;
+global coverage is 5452/6129 strict and 5463/6129 trusted, with 299 strict-complete and 304 trusted-complete lenses and
+zero coordinate mismatches.
 
 The August 10, 2026 Phase 89 pass audited the six-lens Tamron batch and added three first-party HOYA
 curves from the manufacturer's 2026-07-07 obsolete-inclusive Zemax catalog: discontinued TAF3,
@@ -351,8 +411,9 @@ The July 29, 2026 Phase 46 pass audited the three highest-frequency remaining si
 `670571` elements now use discontinued OHARA S-LAL52 as a coefficient-backed catalog equivalent: the official
 all-products row has the same d-line index (`1.669999` versus patent `1.67000`) and only `+0.258` higher Abbe number.
 The annotations explicitly leave the production supplier unspecified. Nikon `796409` (seven elements) and Minolta
-`493836` (six elements) remain unresolved after patent-row checks and searches of official OHARA, HOYA, Hikari, and
-Sumita coefficient data; neither family was forced to a nearest neighbor. Strict coverage increased from 4586 to
+`493836` (six elements) remained unresolved after that pass's patent-row checks and searches of official OHARA, HOYA,
+Hikari, and Sumita coefficient data; neither family was forced to a nearest neighbor. Phase 92 later recovered Nikon
+`796409` through legacy HOYA NBFD2. Strict coverage increased from 4586 to
 4596 surfaces, trusted coverage from 4600 to 4610, and one additional lens became fully covered in each measure.
 
 The July 29, 2026 Phase 45 pass added seven direct vendor rows: Hikari J-BK7A; SUMITA K-LaFK50, K-BaSF5,

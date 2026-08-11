@@ -127,7 +127,7 @@ The aperture stop is located in the air gap between the front and rear groups, a
 | Shape | Biconcave (paraxial) with both surfaces aspherical |
 | Glass | nd = 1.51760, νd = 63.5 |
 | Focal length | −59.0 mm |
-| Glass match | **BSC7 family** — near HOYA BSC7 (nd = 1.51742, νd = 63.96); likely a proprietary Fujifilm PGM formulation |
+| Glass match | **D-K59 (CDGM catalog equivalent)** — exact 518635 coordinate; production supplier unspecified |
 
 L21 is the single aspherical element in the design and the most optically interesting component. Positioned immediately behind the aperture stop, it is a glass-molded biconcave singlet with aspherical profiles on both surfaces. Fujifilm's marketing explicitly states: "Using a glass-molded aspheric lens at the 5th element minimizes spherical aberration."
 
@@ -135,7 +135,7 @@ L21 is the single aspherical element in the design and the most optically intere
 
 **Aspherical departure:** With the exact patent polynomials, the front surface S10A departs by −1257.304 µm from its paraxial sphere at the 8.4 mm data-file semi-diameter, while S11A departs by −149.709 µm at 6.5 mm. The S10A estimate is 0.1 mm smaller than the original refit-era estimate so the exact profile remains inside the project rim-slope safety limit. The net effect is to increase L21's negative power at the margin relative to the paraxial zone, over-correcting marginal rays to compensate for the residual under-corrected spherical aberration from the many positive elements in the front group and cemented triplet.
 
-**Glass type:** The nd = 1.51760, νd = 63.5 prescription places this glass in the borosilicate crown (BK/BSC) family, close to the ubiquitous BK7 (nd = 1.51680, νd = 64.17). The slight difference from standard BK7 values suggests a proprietary glass-molding formulation optimized for precision glass molding (PGM). Fujifilm, as a major glass manufacturer through its Fujinon optical division, likely uses an in-house molding glass. The low refractive index and high Abbe number make this glass essentially "color-neutral," ensuring that the aspheric surfaces correct monochromatic aberrations without disturbing the chromatic balance.
+**Glass type:** The $n_d = 1.51760$, $\nu_d = 63.5$ prescription is the exact 518635 coordinate of coefficient-backed CDGM D-K59, a molding crown in the borosilicate region. D-K59 is therefore used as the optical catalog equivalent. The patent identifies neither a vendor nor a production melt, so the label does not claim CDGM supplied Fujifilm. The low refractive index and high Abbe number make this glass essentially "color-neutral," ensuring that the aspheric surfaces correct monochromatic aberrations without disturbing the chromatic balance.
 
 **Aspherical coefficient format:** The patent describes the aspheric sag with both odd and even powers of radial height *h* (A3·h³ through A20·h²⁰) and writes its conic denominator as `1−K_A·C²·h²`. Its tabulated $K_A = 0$ therefore describes a paraboloid and converts to the renderer's standard conic constant $K = K_A - 1 = -1$.
 
@@ -237,12 +237,12 @@ The patent does not list semi-diameters. They were estimated using combined marg
 | L12 | 1.80400 | 46.6 | 804-466 | OHARA S-LAH65VS | Lanthanum dense flint | No |
 | L13 | 1.69895 | 30.1 | 699-301 | OHARA S-TIM35 | Titanium medium-index flint | No |
 | L14 | 1.60342 | 38.0 | 603-380 | OHARA S-TIM5 | Titanium medium-index flint | No |
-| L21 | 1.51760 | 63.5 | 518-635 | BK7/BSC7 family (PGM) | Borosilicate crown | No |
+| L21 | 1.51760 | 63.5 | 518-635 | CDGM D-K59 catalog equivalent | Molding crown | No |
 | L22 | 1.88300 | 40.8 | 883-408 | OHARA S-LAH58 | Lanthanum dense flint | No |
 | L23 | 1.76182 | 26.5 | 762-265 | OHARA S-TIH14 | Titanium high-index flint | No |
 | L24 | 1.88300 | 40.8 | 883-408 | OHARA S-LAH58 | Lanthanum dense flint | No |
 
-Glass identifications are based on matching nd/νd pairs against the HOYA official cross-reference index and verified against the OHARA May 2023 pocket catalog. All matches are confirmed via six-digit glass code (nd×1000 rounded / νd×10 rounded) with the exception of L21, which does not exactly match any standard catalog glass. The closest matches are HOYA BSC7 (nd = 1.51742, νd = 63.96) and OHARA S-BSM4 (nd = 1.51823, νd = 63.98), but neither is exact. L21 is most likely a proprietary Fujifilm PGM (precision glass molding) formulation in the borosilicate crown family, optimized for their in-house glass molding process.
+Glass identifications are based on matching nd/νd pairs against coefficient-backed public catalogs. L21's previously unresolved 518635 coordinate now has an exact catalog position in CDGM D-K59. The catalog name models its dispersion; it does not establish the supplier of Fujifilm's glass-molded production element.
 
 The design uses no anomalous partial dispersion (APD) glasses. Chromatic correction is achieved through conventional crown-flint pairings with adequate Abbe number spread. The average index of the front group positive elements is Nd1 = 1.7795 (patent conditional expression (3): Nd1 > 1.75 ✓), and the average index of the cemented triplet positive elements is Nd2 = 1.8830 (patent conditional expression (1): Nd2 > 1.85 ✓). These high refractive indices are a deliberate design strategy: higher index reduces the required surface curvatures for a given power, which reduces spherical aberration at wide apertures.
 

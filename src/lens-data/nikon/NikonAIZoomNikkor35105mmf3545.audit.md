@@ -55,3 +55,10 @@ Patent: US 4,699,475, Seventh Embodiment / Table 7
 - SUMITA's discontinued-inclusive BALK3 vendor polynomial resolves L14 at the patent-rounded `1.518 / 60.3` coordinate.
 - Relabeled L14 as a BALK3 optical equivalent while leaving the production supplier unspecified.
 - Both `796409` elements remain unresolved; no prescription or zoom data changed.
+
+## 2026-08-11 — Phase 92 HOYA legacy-catalog recovery
+
+- Visually rechecked US 4,699,475 Table 5: L8 and L16 are the patent-rounded `1.796 / 40.9` material.
+- HOYA NBFD2 at `1.797199 / 41.143795` is within `+0.001199 / +0.243795`, so both elements now use its official
+  formula-3 model as an optical equivalent.
+- Synchronized the analysis and left the production supplier unspecified. No prescription or zoom data changed.

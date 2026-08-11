@@ -36,3 +36,12 @@ No new catalog entries were added. The issue is reference-line convention, not m
   `ne` / `νe` values.
 - The runtime and generated reports now reject d-line catalog substitution structurally rather than relying on annotation wording.
 - No source values or prescription geometry changed.
+
+## 2026-08-11 — Phase 94 native e-line recovery
+
+- Re-rendered patent PDF page 10 and confirmed Example 8's SF10-like `1.73430 / 28.19`, SF11-like
+  `1.79190 / 25.55`, and SF2-like `1.65222 / 33.60` rows.
+- With `indexReference: "e"` now enforcing C′/e/F′ compatibility, the existing SF10, SF11, and SF2 catalog curves
+  reproduce those pairs essentially exactly and no longer need the old explicit-unmatched workaround.
+- Upgraded L1, L3, and L4 from Abbe approximations to full curves, raising strict coverage from 0/6 to 3/6. L2 and
+  the two N-LAF21-class rows remain unresolved because their exact catalog identities are not established.

@@ -46,3 +46,12 @@ APD status remains `false` for all elements. The patent describes low-refractivi
   `ne` / `νe` values.
 - The runtime and generated reports now reject d-line catalog substitution structurally rather than relying on annotation wording.
 - No source values or prescription geometry changed.
+
+## 2026-08-11 — Phase 94 native e-line recovery
+
+- Re-rendered patent PDF page 4 and confirmed Example 2's six `ne / νe` rows.
+- The explicit e-line resolver now verifies N-LAK33B (L2/L3), N-SK5 (L4a), legacy F2 (L4b), and K10 (L5)
+  directly at C′/e/F′. Their index residuals are at most `0.0000041` and their Abbe residuals at most `0.022`.
+- Removed the obsolete unmatched guards from those five exact names, raising strict coverage from 0/6 to 5/6.
+  KF9 remains on the Abbe fallback because the local catalog has no compatible curve. No prescription values or
+  geometry changed.

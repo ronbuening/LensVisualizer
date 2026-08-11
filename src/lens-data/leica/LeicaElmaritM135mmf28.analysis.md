@@ -58,7 +58,7 @@ No current Schott glass in the checked catalog matches this e-line pair as clean
 
 ### L4 — Plano-concave Negative Flint, rear element of the cemented member
 
-$n_e = 1.67764$, $\nu_e = 32.0$. Glass: SF5 / N-SF5-class dense flint. $f = -39.0$ mm.
+$n_e = 1.67764$, $\nu_e = 32.0$. Glass: Schott SF5; the catalog curve reproduces the patent e-line pair at $1.677639 / 31.971$. $f = -39.0$ mm.
 
 L4 is the strongest single element in the prescription. Its front surface is the flat cemented interface, while its rear surface is $r_7=+0.19572$. At that surface the ray passes from dense flint to air, producing a normalized surface power of about $-3.46$. This is the dominant negative-power contribution in the design and the largest single Petzval term.
 
@@ -80,7 +80,7 @@ The patent gives e-line values. The data file preserves those values in the `nd`
 |---|---:|---|---|
 | L1, L2 | 1.62303 / 60.1 | Schott N-SK16: $n_e=1.62286$, $\nu_e=60.08$ | Very close optical match; period Leitz literature indicates proprietary Leitz special glass. |
 | L3 | 1.55897 / 58.3 | Between BaK/SK crown families | No clean current-catalog match; recorded as unmatched vintage crown. |
-| L4 | 1.67764 / 32.0 | Schott SF5 / N-SF5 class: $n_e\approx1.67764$, $\nu_e\approx32.0$ | Confident dense-flint match. |
+| L4 | 1.67764 / 32.0 | Schott SF5: $n_e=1.677639$, $\nu_e=31.971$ | Exact e-line catalog-curve match. |
 | L5 | 1.69416 / 30.9 | Schott N-SF8 e-line class: $n_e=1.69413$, $\nu_e=31.06$ | Confident class match; explicit unmatched for d-line catalog resolution. |
 
 The chromatic correction is conventional. There is no ED, fluorite, anomalous-partial-dispersion, or apochromatic glass claim in the patent. The L3–L4 crown/flint pairing supplies a large Abbe contrast, while L5 gives the designer a rear dense-flint balancing element. The flat cemented interface prevents the cemented member from behaving like a compact, self-contained achromat; the color correction is instead spread through the powers of all five elements.

@@ -25,3 +25,11 @@ Patent: US 2,959,100, Example 1 / Table I
 ### Verification
 
 - `npm test -- elementRenderDiagnostics`
+
+## 2026-08-11 — Phase 92 HOYA F7 recovery
+
+- Visually rechecked US 2,959,100 Tables I and II on rendered PDF pages 2–3: L2 and L4 are both
+  `1.62536 / 35.6`.
+- Added the official legacy HOYA F7 row (`1.625363 / 35.583498`, code `625356`) to the shared catalog.
+- Relabeled both elements as supplier-neutral F7 optical equivalents and synchronized the analysis. No geometry,
+  aperture, or semi-diameter values changed.

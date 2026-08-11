@@ -84,11 +84,11 @@ The prescription specifies nine distinct glass types. Using six-digit glass code
 | L21 | 1.49782 | 82.56 | 498/826 | OHARA S-FPL51 (1.497/81.6) / HOYA FCD1 | Near (Δnd = 0.0008, Δνd = 0.95) — **ED glass** |
 | L23 | 1.56732 | 42.72 | 567/427 | OHARA S-TIL26 (1.56739/42.84; code 567428) | Close coefficient-backed match within patent rounding tolerance |
 
-### 4.3 Unmatched Glasses
+### 4.3 Catalog-equivalent glass
 
 | Element | nd | νd | Code | Assessment |
 |---|---|---|---|---|
-| L12 | 1.75692 | 31.59 | 757/316 | No standard catalog match. High-index, high-dispersion lanthanum flint in the SF/TIH family. Likely a Nikon proprietary melt or special-order glass. Nearest standard types are OHARA S-TIH4 (755/275, Δνd = 4.1) and OHARA S-LAM54 (757/478, Δνd = 16). |
+| L12 | 1.75692 | 31.59 | 757/316 | Hikari E-LAF11 catalog equivalent. Its published curve reproduces the patent coordinate; the production supplier remains unidentified. |
 
 ### 4.4 The ED Element
 
@@ -112,7 +112,7 @@ The following analysis describes the shape, power, and role of each element in t
 ### L12 — Biconvex Positive (G1, rear element)
 
 - **Shape:** Biconvex (R₁ = +130.000, R₂ = −492.062)
-- **Glass:** 757316 — high-dispersion lanthanum flint (nd = 1.75692, νd = 31.59); no exact public coefficient-backed catalog match
+- **Glass:** Hikari E-LAF11 catalog equivalent (nd = 1.75692, νd = 31.59); production supplier not established
 - **Focal length:** f ≈ +136 mm (weakly positive)
 - **Role:** L12 partially compensates L11's negative power, reducing G1's net divergence to a very weak negative (f_G1 ≈ −1023 mm). More importantly, its high-dispersion glass (νd = 31.59) is paired with L11's moderate-dispersion glass in a chromatic near-doublet arrangement: the opposite-sign powers with different νd values produce a degree of axial color correction within G1 itself. The Coddington shape factor of approximately +0.58 indicates a front-biased biconvex shape, intermediate between equiconvex (q = 0) and plano-convex (q = 1) — the front surface (R₁ = 130 mm) carries substantially more refractive power than the weak rear surface (R₂ = −492 mm). The patent's conditional expression (5) constrains L12's shape factor to the range 0.5–3.0, and the value of 0.58 sits near the lower bound, favoring controlled spherical aberration variation during focusing.
 

@@ -26,3 +26,11 @@ Patent: US 2,645,974
 - Relabeled the unsupported `F7 (Schott)` claim to HOYA `E-F8` as a catalog equivalent. The official
   coefficient-backed row is `1.59551 / 39.22` with code `596392`, matching the patent's printed precision.
 - Synchronized the L3 narrative and glass table. No prescription geometry changed.
+
+## 2026-08-11 — Phase 92 HOYA FL4 recovery
+
+- Visually rechecked US 2,645,974's worked prescription on rendered PDF page 3: L4 is `1.5785 / 41.7`.
+- HOYA's official obsolete-inclusive catalog contains FL4 at `1.578447 / 41.707529` (code `578417`), compatible
+  with the patent's rounded `579417` coordinate.
+- Relabeled L4 as a supplier-neutral FL4 optical equivalent and synchronized the glass table. No prescription
+  geometry changed.

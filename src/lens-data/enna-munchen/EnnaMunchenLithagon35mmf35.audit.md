@@ -14,3 +14,11 @@ Patent: US 2,821,112, sole numerical example
 ### Verification
 
 - `npm test -- elementRenderDiagnostics`
+
+## 2026-08-11 — Phase 92 HOYA PC2 recovery
+
+- Visually rechecked US 2,821,112's rendered prescription page: L1 is `1.51821 / 65.2`.
+- HOYA's official obsolete-inclusive catalog contains PC2 at `1.518210 / 65.160509`, effectively the same optical
+  coordinate and an exact six-digit-code recovery at patent precision.
+- Relabeled L1 as a supplier-neutral PC2 optical equivalent and synchronized the analysis. No geometry, aperture,
+  or semi-diameter values changed.

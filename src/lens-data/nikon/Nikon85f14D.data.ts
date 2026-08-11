@@ -72,7 +72,7 @@ const LENS_DATA = {
       nd: 1.79631,
       vd: 40.9,
       fl: 371.4,
-      glass: "Unmatched (796409 patent coordinate; vendor unresolved)",
+      glass: "NBFD2 (HOYA catalog equivalent; production supplier unspecified; patent 796409)",
       apd: false,
       role: "Completes G1 positive power; high-index allows strong curvatures with reduced SA",
     },

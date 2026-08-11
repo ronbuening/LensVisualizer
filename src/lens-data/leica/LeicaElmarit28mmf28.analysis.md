@@ -102,13 +102,13 @@ Example 3 uses mostly catalog-resolvable historical Schott-class glasses. The re
 | G2 | L3 | 1.79227 | 47.15 | **Unmatched LaF21-class e-line glass** | 1.78800 | 47.49 | Lanthanum flint; d-line row is comparison only |
 | G3 | L4, L7 | 1.81265 | 25.24 | **813252 patent code** | — | — | High-index dense flint |
 | G4 | L6 | 1.72823 | 37.85 | **LaF10** | 1.72600 | 38.90 | Lanthanum flint |
-| G5 | L8 | 1.62408 | 36.11 | **Unmatched F2-class e-line glass** | 1.62004 | 36.37 | Flint; d-line row is comparison only |
+| G5 | L8 | 1.62408 | 36.11 | **Schott F2** | 1.62004 | 36.37 | Flint; exact e-line catalog-curve match |
 
 The earlier SF6 assignment was too specific for the resolver path. The patent pair nₑ = 1.81265 and νₑ = 25.24 is very close to historical dense-flint territory, but the tracked data now preserve the unbroken `813252` patent code until a coefficient-backed exact match is found. Note that current SCHOTT "N-" prefixed designations represent later lead-free reformulations, so legacy names should not be treated as automatic coefficient identities.
 
 **Glass selection rationale:** The design uses only five distinct patent glass coordinates — a modest palette for an eight-element lens. Three elements (L1, L2, L5) share the same coordinate, and L4/L7 share the `813252` high-index dense-flint row. The LaF21- and F2-class names below are historical family descriptions, not resolver-safe d-line identities.
 
-The glasses span a deliberate dispersion range. The SK16-class coordinate (νₑ ≈ 60) provides the low-dispersion crown needed for the front menisci and rear singlet. The unmatched LaF21-class row (νₑ ≈ 47) enables the strongly positive L3 element with manageable curvatures. The `813252` glass (νₑ ≈ 25) is a high-index dense flint used for the negative elements of the cemented doublets. The LaF10-class L6 and unmatched F2-class L8 provide intermediate dispersion values for the rear group's color correction.
+The glasses span a deliberate dispersion range. The SK16-class coordinate (νₑ ≈ 60) provides the low-dispersion crown needed for the front menisci and rear singlet. The unmatched LaF21-class row (νₑ ≈ 47) enables the strongly positive L3 element with manageable curvatures. The `813252` glass (νₑ ≈ 25) is a high-index dense flint used for the negative elements of the cemented doublets. The LaF10-class L6 and catalog-backed F2 L8 provide intermediate dispersion values for the rear group's color correction.
 
 None of the glasses exhibit significant anomalous partial dispersion (ΔP_{g,F} < 0.009 for all five types). The design relies on classical achromatization through dispersion-contrast pairing of lanthanum flints with dense flints rather than the secondary spectrum correction that would become standard in later apochromatic Leica designs.
 
@@ -182,13 +182,13 @@ L6 has a nearly flat front surface (R₁ = +3330 is effectively planar) and a st
 
 The LaF10/813252 pairing mirrors the achromatization strategy of the front doublet (L3+L4), using the dispersion contrast between a moderate-dispersion lanthanum flint and a high-dispersion dense flint (Δνₑ ≈ 13) to provide local chromatic correction in the rear group. The combined focal length of +166 is weakly positive, meaning this doublet adds slight convergence to the beam while primarily serving a chromatic correction role.
 
-**L8 — Final Negative Meniscus (unmatched F2-class e-line glass, f ≈ −139):**
+**L8 — Final Negative Meniscus (Schott F2, f ≈ −139):**
 
 | | R_front | R_rear | d |
 |---|--------:|-------:|----:|
 | L8 | −34.62 | −61.00 | 5.43 |
 
-L8 is the rearmost element, a negative meniscus with concavity toward the object, using an unmatched F2-class e-line flint coordinate (nₑ = 1.624, νₑ = 36.1). This element is strongly negative (f ≈ −139) and contributes the bulk of Group 3's overall negative power. Its placement at the rear of the system, far from the stop, gives it strong leverage over field-dependent aberrations.
+L8 is the rearmost element, a negative meniscus with concavity toward the object, using a Schott F2 curve that reproduces the patent e-line coordinate (nₑ = 1.624, νₑ = 36.1). This element is strongly negative (f ≈ −139) and contributes the bulk of Group 3's overall negative power. Its placement at the rear of the system, far from the stop, gives it strong leverage over field-dependent aberrations.
 
 The large air gap a₅ = 13.61 separating L8 from the L6+L7 doublet is notable; it provides the necessary separation for L8 to act as an effective field corrector independent of the doublet.
 
@@ -243,7 +243,7 @@ The BFD/EFL ratio of 0.643 (from e-line traced values: 67.0/104.2) places this d
 
 ### 10.2 Chromatic Correction
 
-The design achieves achromatization through two separated cemented doublets (L3+L4 and L6+L7), each pairing a moderate-dispersion lanthanum-flint-class row with a high-dispersion dense flint. The front menisci use the low-dispersion SK16-class coordinate, while L8 uses the moderately dispersive unmatched F2-class row. The patent does not publish partial-dispersion data.
+The design achieves achromatization through two separated cemented doublets (L3+L4 and L6+L7), each pairing a moderate-dispersion lanthanum-flint-class row with a high-dispersion dense flint. The front menisci use the low-dispersion SK16-class coordinate, while L8 uses the moderately dispersive catalog-backed F2 curve. The patent does not publish partial-dispersion data.
 
 ### 10.3 Distortion and Aberration Performance
 

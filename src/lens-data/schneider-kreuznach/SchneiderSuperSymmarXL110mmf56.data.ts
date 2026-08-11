@@ -18,10 +18,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    the e-line (546.1 nm), as is conventional for German optical    ║
  * ║    patents.  All ne and νe values are transcribed directly as the  ║
  * ║    nd / vd fields to preserve the prescription exactly as          ║
- * ║    published.  Glass labels are intentionally marked Unmatched so  ║
- * ║    the d-line Sellmeier resolver does not apply catalog curves to  ║
- * ║    e-line-retained prescription data.  The paraxial EFL at e-line  ║
- * ║    is 110.64 mm.                                                  ║
+ * ║    published. `indexReference: "e"` makes the resolver compare     ║
+ * ║    named catalog curves at C′/e/F′ instead of C/d/F. The paraxial  ║
+ * ║    EFL at e-line is 110.64 mm.                                    ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    Patent does not publish SDs.  Estimated via combined marginal   ║
@@ -92,7 +91,7 @@ const LENS_DATA = {
       vd: 52.09,
       indexReference: "e",
       fl: 72.8,
-      glass: "Unmatched (Schott N-LAK33B; patent e-line ne=1.75844, ve=52.09 stored as nd/vd)",
+      glass: "N-LAK33B (Schott; patent ne=1.75844, ve=52.09 stored as nd/vd)",
       apd: false as const,
       role: "Primary positive power element. High-index lanthanum crown minimises Petzval contribution per unit of power.",
     },
@@ -105,7 +104,7 @@ const LENS_DATA = {
       vd: 52.09,
       indexReference: "e",
       fl: 167.3,
-      glass: "Unmatched (Schott N-LAK33B; patent e-line ne=1.75844, ve=52.09 stored as nd/vd)",
+      glass: "N-LAK33B (Schott; patent ne=1.75844, ve=52.09 stored as nd/vd)",
       apd: false as const,
       role: "Weak positive meniscus before stop; astigmatism and coma corrector.",
     },
@@ -118,7 +117,7 @@ const LENS_DATA = {
       vd: 61.03,
       indexReference: "e",
       fl: 25.1,
-      glass: "Unmatched (Schott N-SK5; patent e-line ne=1.59142, ve=61.03 stored as nd/vd)",
+      glass: "N-SK5 (Schott; patent ne=1.59142, ve=61.03 stored as nd/vd)",
       apd: false as const,
       cemented: "L4",
       role: "Convergent partner of cemented achromat L4. Low-dispersion dense crown; near-index / far-dispersion pairing with L4b.",
@@ -132,7 +131,7 @@ const LENS_DATA = {
       vd: 36.12,
       indexReference: "e",
       fl: -72.0,
-      glass: "Unmatched (Schott F2-class; patent e-line ne=1.62408, ve=36.12 stored as nd/vd)",
+      glass: "F2 (Schott; patent ne=1.62408, ve=36.12 stored as nd/vd)",
       apd: false as const,
       cemented: "L4",
       role: "Divergent partner of cemented achromat. High-dispersion flint; aspherical rear surface corrects oblique SA and coma across the 105° field.",
@@ -146,7 +145,7 @@ const LENS_DATA = {
       vd: 56.13,
       indexReference: "e",
       fl: -50.6,
-      glass: "Unmatched (Schott K10; patent e-line ne=1.50349, ve=56.13 stored as nd/vd)",
+      glass: "K10 (Schott; patent ne=1.50349, ve=56.13 stored as nd/vd)",
       apd: false as const,
       role: "Rear negative element; field flattener pulling Petzval sum toward zero. Low-index crown per patent requirement.",
     },

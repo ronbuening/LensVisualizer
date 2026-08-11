@@ -104,7 +104,7 @@ const LENS_DATA = {
       nd: 1.6172,
       vd: 54.01,
       fl: -89.8,
-      glass: "Unmatched crown (617/540)",
+      glass: "BACED1 (HOYA catalog equivalent; production supplier unspecified; patent 617540)",
       role: "Rear-power negative element in G1; R5 is 1559.0379 in the patent table image.",
     },
     {
@@ -115,7 +115,7 @@ const LENS_DATA = {
       nd: 1.79504,
       vd: 28.56,
       fl: -78.9,
-      glass: "Unmatched dense flint (795/286)",
+      glass: "J-LAFH3 (Hikari catalog equivalent; production supplier unspecified; patent 795286)",
       role: "Strong negative meniscus in the rear part of the focusing group.",
     },
     {
@@ -265,7 +265,7 @@ const LENS_DATA = {
       nd: 1.74077,
       vd: 27.63,
       fl: 47.8,
-      glass: "Unmatched dense flint (741/276)",
+      glass: "E-FD13 (HOYA catalog equivalent; production supplier unspecified; patent 741276)",
       role: "High-index positive lens supplying rear relay power.",
     },
     {

@@ -43,11 +43,11 @@ The stored glass label is a class-level identification, not a claimed vendor ide
 
 ### G2 — Negative Meniscus, Convex to Object
 
-**nd = 1.6176, νd = 52.7. Glass: 618527 — legacy glass class (catalog unresolved). Standalone f = −48.464 mm.**
+**nd = 1.6176, νd = 52.7. Glass: K-SSK1 (SUMITA catalog equivalent; patent 618527; production supplier unspecified). Standalone f = −48.464 mm.**
 
-G2 continues the front negative action with a less dispersive requirement than a dense flint but without a defensible modern catalog identity at the stored coordinates. Its optical role is best understood as part of the distributed front negative section rather than as an isolated power contributor.
+G2 continues the front negative action with a less dispersive requirement than a dense flint. SUMITA K-SSK1 is the only reviewed catalog curve inside the project compatibility guard and is used as a spectral equivalent without asserting Minolta's production supplier. Its optical role is best understood as part of the distributed front negative section rather than as an isolated power contributor.
 
-The code-leading unresolved label preserves the patent coordinates without asserting a vendor-specific identity. It also leaves the row eligible for a future coefficient-backed catalog upgrade.
+The authored patent coordinates remain unchanged; the named curve supplies only the modeled wavelength dependence.
 
 ### D1 — Cemented G3/G4 Pair
 
@@ -60,7 +60,7 @@ The patent specifically places convergent G4, together with G5, between the firs
 
 ### G5 — Plano-Convex Positive
 
-**nd = 1.7330, νd = 28.2. Glass: 733282 — dense-flint class (catalog unresolved). Standalone f = +47.470 mm.**
+**nd = 1.7330, νd = 28.2. Glass: Unmatched (733282 dense flint; no compatible public coefficient row). Standalone f = +47.470 mm.**
 
 G5 is the final positive element ahead of the stop/filter region. The data file's rear surface is plane, making the element plano-convex in the scaled Example II prescription. Its low Abbe number is part of the front-side chromatic strategy specified by the patent, but no anomalous-dispersion behavior is inferred from `nd` and `νd` alone.
 
@@ -68,8 +68,8 @@ The element's relatively strong positive standalone power partially counteracts 
 
 ### D2 — Cemented G7/G8 Pair
 
-**G7: nd = 1.6214, νd = 61.2. Glass: 621612 — crown class (catalog unresolved). Standalone f = +21.743 mm.**<br>
-**G8: nd = 1.7330, νd = 28.2. Glass: 733282 — dense-flint class (catalog unresolved). Standalone f = −26.544 mm.**
+**G7: nd = 1.6214, νd = 61.2. Glass: N-SK16 / S-BSM16 / J-SK16 catalog-equivalent crown class (patent 621612; supplier unspecified). Standalone f = +21.743 mm.**<br>
+**G8: nd = 1.7330, νd = 28.2. Glass: Unmatched (733282 dense flint; no compatible public coefficient row). Standalone f = −26.544 mm.**
 
 G7 and G8 form a cemented positive/negative meniscus pair convex toward the image. Their strong standalone powers largely cancel: the cemented net power is +0.00331042 mm⁻¹, or an equivalent focal length of about +302.076 mm.
 
@@ -77,7 +77,7 @@ The pair begins the five-element rear section identified by the patent as respon
 
 ### D3 — Cemented G9/G10 Pair
 
-**G9: nd = 1.7400, νd = 37.5. Glass: 740375 — high-index flint/lanthanum class (catalog unresolved). Standalone f = −28.978 mm.**<br>
+**G9: nd = 1.7400, νd = 37.5. Glass: Unmatched (740375 high-index flint; no compatible public coefficient row). Standalone f = −28.978 mm.**<br>
 **G10: nd = 1.5688, νd = 56.0. Glass: 569560 — BAK4/BAC4/BaK7 class. Standalone f = +26.409 mm.**
 
 G9 is biconcave and G10 biconvex. As with D1 and D2, the individual powers are much stronger than the cemented pair's net power. D3 is positive at +0.00594320 mm⁻¹, equivalent to about +168.259 mm focal length.
@@ -92,17 +92,17 @@ G11 is the final positive singlet. It completes the positive rear section and le
 
 ## Glass Identification and Selection
 
-The patent publishes refractive indices and Abbe numbers but no trade names or glass vendors. The data file therefore uses code-leading unresolved labels and compatible modern catalog equivalents with the production supplier explicitly unspecified. The table below records the authored modeling choices; it does not elevate an equivalent curve into a historical source fact.
+The patent publishes refractive indices and Abbe numbers but no trade names or glass vendors. The data file therefore uses explicit unmatched labels and compatible modern catalog equivalents with the production supplier explicitly unspecified. The table below records the authored modeling choices; it does not elevate an equivalent curve into a historical source fact.
 
 | Element(s) | nd | νd | Authored glass identification |
 |---|---:|---:|---|
 | G1 | 1.6204 | 60.3 | 620603 — SK16/BSM16/BACD16 class |
-| G2 | 1.6176 | 52.7 | 618527 — legacy glass class (catalog unresolved) |
+| G2 | 1.6176 | 52.7 | K-SSK1 catalog equivalent (patent 618527) |
 | G3 | 1.6205 | 60.3 | 620603 — SK16/BSM16/BACD16 class (melt/rounding residual) |
 | G4 | 1.7495 | 34.9 | H-LaF4 catalog equivalent (patent 750349) |
-| G5, G8 | 1.7330 | 28.2 | 733282 — dense-flint class (catalog unresolved) |
-| G7 | 1.6214 | 61.2 | 621612 — crown class (catalog unresolved) |
-| G9 | 1.7400 | 37.5 | 740375 — high-index flint/lanthanum class (catalog unresolved) |
+| G5, G8 | 1.7330 | 28.2 | Unmatched 733282 dense flint |
+| G7 | 1.6214 | 61.2 | N-SK16 / S-BSM16 / J-SK16 catalog-equivalent class (patent 621612) |
+| G9 | 1.7400 | 37.5 | Unmatched 740375 high-index flint |
 | G10 | 1.5688 | 56.0 | 569560 — BAK4/BAC4/BaK7 class |
 | G11 | 1.5168 | 64.2 | 517642 — BK7/BSC7/K9L class |
 

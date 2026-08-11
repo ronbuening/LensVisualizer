@@ -30,3 +30,11 @@ Patent: FR 1.066.698, Example 1
 
 - The patent drawing does not publish clear apertures. Existing SDs remain consistent with the drawing proportions and the rendered runtime layout.
 - Temporary Zeiss Jena diagnostic test - passed; runtime trim diagnostics empty for this lens.
+
+## 2026-08-11 — Phase 92 HOYA FL1 recovery
+
+- Visually rechecked FR 1.066.698 Example 1 on rendered PDF page 1: L3 is `1.57380 / 42.5`.
+- HOYA's official obsolete-inclusive catalog contains FL1 at `1.573091 / 42.586108` (code `573426`), within
+  `-0.000709 / +0.086108` of the patent coordinate.
+- Relabeled L3 as a supplier-neutral FL1 optical equivalent and synchronized the analysis. This does not identify
+  the historical Jena melt; no prescription geometry or semi-diameter values changed.

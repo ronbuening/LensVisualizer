@@ -73,7 +73,7 @@ Both components have $\nu_d < 50$ and are therefore flints under the usual crown
 
 ### L6 and L7 — G5: Positive cemented doublet
 
-L6: $n_d = 1.79631$, $\nu_d = 40.9$. Glass: unmatched high-index flint, 796409 code. $f = -35.4$ mm.
+L6: $n_d = 1.79631$, $\nu_d = 40.9$. Glass: HOYA NBFD2 catalog equivalent for patent 796409; production supplier unspecified. $f = -35.4$ mm.
 
 L7: $n_d = 1.51860$, $\nu_d = 69.9$. Glass: Hikari J-PKH1 phosphate crown. $f = +28.8$ mm.
 
@@ -108,7 +108,7 @@ The patent gives only refractive index and Abbe number, not manufacturer glass n
 | L3 | 1.69680 | 55.6 | S-LAL14 / 697555 lanthanum crown class | High |
 | L4 | 1.59507 | 35.5 | Dense flint, 595355 code | Unmatched current catalog |
 | L5 | 1.79668 | 45.4 | J-LASF017 catalog equivalent, 797454 | Coefficient-backed near equivalent |
-| L6 | 1.79631 | 40.9 | High-index flint, 796409 code | Unmatched current catalog |
+| L6 | 1.79631 | 40.9 | NBFD2 (HOYA catalog equivalent) | Catalog-backed equivalent; supplier unspecified |
 | L7 | 1.51860 | 69.9 | J-PKH1 phosphate crown | High |
 | L8 | 1.51680 | 69.9 | Phosphate crown near J-PKH1, 517699 code | Unmatched exact catalog |
 | L9 | 1.80518 | 25.3 | N-SF6HT / 805254 dense flint class | High |

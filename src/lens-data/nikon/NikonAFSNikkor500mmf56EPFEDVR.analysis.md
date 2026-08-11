@@ -60,7 +60,7 @@ Standalone focal lengths below describe each complete refractive element in air.
 lengths are separately computed from the actual sequence of interfaces; they are not algebraic sums of the standalone
 values.
 
-### L11 — Front Positive Meniscus
+### L11 — Front Biconvex Positive
 
 nd = 1.48749, νd = 70.31. Glass: J-FK5 (Hikari coordinate match). f = +275.70 mm.
 

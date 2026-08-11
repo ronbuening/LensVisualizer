@@ -115,7 +115,7 @@ const LENS_DATA = {
       nd: 1.53172,
       vd: 48.87,
       fl: -43.1,
-      glass: "Crown (no exact catalog match — likely proprietary or discontinued)",
+      glass: "S-TIL6 (OHARA catalog equivalent; production supplier unspecified)",
       apd: false,
       cemented: "D1",
       role: "Front element of G2 cemented doublet; weak negative in unconventional pairing with dense-flint positive L7.",

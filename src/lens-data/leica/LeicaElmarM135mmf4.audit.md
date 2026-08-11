@@ -23,3 +23,11 @@ Patent: DE 1 183 707 B, single worked prescription
   `ne` / `νe` values.
 - The runtime and generated reports now reject d-line catalog substitution structurally rather than relying on annotation wording.
 - No source values or prescription geometry changed.
+
+## 2026-08-11 — Phase 95 F5 e-line recovery
+
+- Re-rendered the worked table on local patent PDF page 1 and confirmed L4 at `ne = 1.60718`, `νe = 37.8`.
+- With e-line-aware resolution now available, the legacy Schott F5 curve reproduces `1.607182 / 37.766`; removed
+  the obsolete unmatched guard from L4.
+- Strict coverage rises by one surface. L2 and the N-SF8-class L5 remain unmatched; no source values or geometry
+  changed.

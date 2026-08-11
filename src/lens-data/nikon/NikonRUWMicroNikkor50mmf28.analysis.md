@@ -50,7 +50,7 @@ The plate is optically significant even though its focal length is infinite. It 
 
 ### L2F — Negative Meniscus, Convex to Object, G2F
 
-nd = 1.76684, νd = 46.8. Glass: unmatched J-LASFH2 class (Hikari; no source-backed local catalog entry). f = -46.66 mm.
+nd = 1.76684, νd = 46.8. Glass: Hikari J-LASFH2. f = -46.66 mm.
 
 L2F is the single element of the negative forward sub-unit G2F. Its shape factor is
 
@@ -96,19 +96,19 @@ L32 is the principal contributor to the positive power of G3. It also contribute
 
 ### L33 — Positive Meniscus, Convex to Object, G3
 
-nd = 1.79631, νd = 40.9. Glass: Unmatched 796/409 lanthanum-flint-region glass; no close current public catalog match. f = +115.63 mm.
+nd = 1.79631, νd = 40.9. Glass: HOYA NBFD2 catalog equivalent for patent 796/409; production supplier unspecified. f = +115.63 mm.
 
 L33 is a weak positive meniscus at the exit of G3. Its power is modest compared with L32, but it finishes the G3 power distribution and moderates the ray angles entering the fixed negative rear group.
 
-The glass should not be forced into a modern catalog designation. The nearest current catalog families around νd ≈ 40.9 have noticeably different index; for example, OHARA L-LAH53 / Hikari J-LASF03 type glasses sit near nd ≈ 1.806 rather than the patent's nd = 1.79631. The analysis and data file therefore mark this material as unmatched rather than assigning a false exact catalog name.
+The official legacy HOYA NBFD2 row at 1.797199 / 41.143795 is within +0.000889 / +0.244 of the patent coordinate and supplies a coefficient-backed optical model. The data file uses it only as an optical equivalent; the patent does not identify the production supplier.
 
 ### L41 — Biconvex Positive, G4
 
-nd = 1.60717, νd = 40.3. Glass: Unmatched 607/403 medium-index flint; no close current public catalog match. f = +48.90 mm.
+nd = 1.60717, νd = 40.3. Glass: HOYA BAFD3 catalog equivalent for patent 607/403; production supplier unspecified. f = +48.90 mm.
 
 L41 is the positive element inside the fixed negative G4 unit. The patent describes the fourth unit in the first and second embodiments as a positive lens followed by a negative lens, with the positive lens having its sharper surface facing the image side. The prescription confirms that description: the front surface is very weak and the rear surface is much stronger.
 
-This material should remain unresolved rather than being forced into an OHARA or Hikari name. A direct check against current Hikari J-series and OHARA S-glass catalog data gives nearby but materially different entries: J-BAF4 / S-BAM4 is close in index but too high in Abbe number, while J-F5 / S-TIM5 is lower in both index and Abbe number. The data file therefore marks L41 as an unmatched 607/403 glass.
+HOYA's official obsolete-inclusive catalog supplies BAFD3 at 1.607171 / 40.359687, effectively the same patent coordinate. Its formula-3 coefficients replace the Abbe fallback while the label remains supplier-neutral.
 
 ### L42 — Biconcave Negative, G4
 
@@ -120,19 +120,19 @@ Because G4 is fixed relative to the image plane, this negative rear group is cen
 
 ## Glass Identification and Selection
 
-The design uses a small palette of high-index flint and dense-flint glasses plus one BK7-class crown plate. Catalog-backed labels are used where the current local catalog resolves to a coefficient-backed entry within the d-line tolerance. J-SFH2 is now catalog-backed at the L31 coordinate; J-LASFH2 remains an unmatched class note. OHARA data were used as an independent cross-check, but L41 is not assigned to an OHARA catalog name because no current OHARA entry matches the patent coordinates closely.
+The design uses a small palette of high-index flint and dense-flint glasses plus one BK7-class crown plate. Catalog-backed labels are used where the current local catalog resolves to a coefficient-backed entry within the d-line tolerance. Hikari J-LASFH2 and J-SFH2 cover L2F and L31; NBFD2 and BAFD3 cover L33 and L41 through legacy HOYA optical equivalents. None of the equivalent labels asserts Nikon's production supplier.
 
 | Element | nd | νd | Identification | Status | Optical role |
 |---|---:|---:|---|---|---|
 | PL | 1.51680 | 64.1 | N-BK7 / J-BK7A class | Exact/class | Waterproof flat port |
-| L2F | 1.76684 | 46.8 | Unmatched J-LASFH2 class | Unmatched | Negative flat-port corrector |
+| L2F | 1.76684 | 46.8 | J-LASFH2 | Hikari | Negative flat-port corrector |
 | L2R1 | 1.80518 | 25.4 | N-SF6 / S-TIH6 / J-SF6 class | Exact/class | Dense-flint positive meniscus |
 | L2R2 | 1.79668 | 45.4 | J-LASF017 close class | Close, not exact | Positive doublet component |
 | L2R3 | 1.71736 | 29.5 | SF1 / S-TIH1 / J-SF1 class | Exact/class | Negative doublet component |
 | L31 | 1.86074 | 23.0 | J-SFH2 (Hikari; 861230 coordinate successor) | Catalog-backed coordinate | Dense-flint negative corrector |
 | L32 | 1.79668 | 45.4 | J-LASF017 close class | Close, not exact | Main positive power element |
-| L33 | 1.79631 | 40.9 | Unmatched 796/409 glass | Unmatched | Weak positive exit meniscus |
-| L41 | 1.60717 | 40.3 | Unmatched 607/403 glass | Unmatched | Positive element in G4 |
+| L33 | 1.79631 | 40.9 | NBFD2 (HOYA optical equivalent) | Catalog-backed equivalent | Weak positive exit meniscus; supplier unspecified |
+| L41 | 1.60717 | 40.3 | BAFD3 (HOYA optical equivalent) | Catalog-backed equivalent | Positive element in G4; supplier unspecified |
 | L42 | 1.79668 | 45.4 | J-LASF017 close class | Close, not exact | Negative rear field element |
 
 Only the flat plate PL is a crown by Abbe number. All powered elements have νd below 50 and are therefore flints in the ordinary crown/flint classification, even where their family names include lanthanum or barium.
@@ -200,6 +200,7 @@ This patent's contribution is not simply a sealed macro lens. It is a macro lens
 
 - US Patent 5,257,137, Suzuki and Hamanishi, "Photo-Taking Lens for an Underwater Camera," assigned to Nikon Corporation, granted October 26, 1993.
 - Nikon Imaging, "Evolution of NIKONOS," Camera Chronicle, for Nikonos RS system context and R-UW lens lineup.
-- Hikari Optical Glass Catalog, for J-BK7A, J-SF6/J-SF1 class equivalents, J-LASF017 comparison, the coefficient-backed J-SFH2 coordinate, and the negative check on unresolved J-LASFH2.
-- OHARA optical glass catalog data, for S-glass comparison and negative checks on the unmatched L33 and L41 coordinates.
+- Hikari Optical Glass Catalog, for J-BK7A, J-SF6/J-SF1 class equivalents, J-LASF017 comparison, and the coefficient-backed J-LASFH2 and J-SFH2 coordinates.
+- HOYA Zemax catalog including obsolete glasses, July 7, 2026, for the NBFD2 and BAFD3 optical-equivalent coefficients.
+- OHARA optical glass catalog data, for independent S-glass comparison around the L33 and L41 coordinates.
 - Production specification references for R-UW AF Micro-Nikkor 50mm f/2.8: 10 elements / 9 groups, f/2.8-f/22, 35° underwater field, 1:1 close focus, 88 mm attachment, 103 x 126 mm, approximately 1,100 g.

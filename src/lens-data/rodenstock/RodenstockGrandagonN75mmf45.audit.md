@@ -20,3 +20,12 @@ Patent: DE 2444954 A1, Claim 3 / Example 3
 - Verified SUMITA SK3 in the vendor's 2025-11-07 all-glass catalog, including its formula-3 dispersion polynomial and the exact `1.60881 / 58.9` d-line coordinate.
 - Relabeled L6 as a SUMITA catalog equivalent while leaving the historical production supplier unspecified.
 - The existing patent-derived C/F/g line indices remain stored and independently support the catalog assignment. No prescription geometry changed.
+
+## 2026-08-11 - FEL3 e-line recovery
+
+- Rendered local `patents/DE_2444954_A1.pdf` page 8 and visually confirmed Claim 3's 75 mm prescription lists L4 at
+  `ne = 1.5629`, `ve = 46.88`.
+- HOYA FEL3's coefficient-backed polynomial evaluates to `ne = 1.56295`, `ve = 46.79`, reproducing the native e-line
+  pair more directly than the prior unmatched short-flint class label.
+- Relabeled L4 as an FEL3 catalog equivalent while leaving the historical production supplier unspecified. No
+  prescription or semi-diameter values changed.

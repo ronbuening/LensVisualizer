@@ -118,30 +118,6 @@ export const ALIAS_RECORDS: readonly GlassAliasRecord[] = [
   { alias: "N-SF1", target: "SF1", kind: "legacy-name", note: "Route N-SF1 annotations to the cataloged SF1 row." },
   { alias: "N-SF6", target: "SF6", kind: "legacy-name", note: "Route N-SF6 annotations to the cataloged SF6 row." },
   {
-    alias: "J-SF1",
-    target: "SF1",
-    kind: "vendor-equivalent",
-    note: "Nikon/Hikari J-SF1 annotations use the 717/295 dense-flint optical-constant class.",
-  },
-  {
-    alias: "J-SF6",
-    target: "SF6",
-    kind: "vendor-equivalent",
-    note: "Nikon/Hikari J-SF6 annotations use the 805/254 dense-flint optical-constant class.",
-  },
-  {
-    alias: "J-SF10",
-    target: "SF10",
-    kind: "vendor-equivalent",
-    note: "Nikon/Hikari J-SF10 annotations use the 728/284 dense-flint optical-constant class.",
-  },
-  {
-    alias: "J-SF11",
-    target: "SF11",
-    kind: "vendor-equivalent",
-    note: "Nikon/Hikari J-SF11 annotations use the 785/258 dense-flint optical-constant class.",
-  },
-  {
     alias: "BAF3",
     target: "J-BAF3",
     kind: "legacy-name",

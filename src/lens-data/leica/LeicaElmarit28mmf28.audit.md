@@ -29,3 +29,11 @@ Patent: US 3,591,257
   `ne` / `νe` values.
 - The runtime and generated reports now reject d-line catalog substitution structurally rather than relying on annotation wording.
 - No source values or prescription geometry changed.
+
+## 2026-08-11 — Phase 95 F2 e-line recovery
+
+- Re-rendered Example 3 on local patent PDF page 13 and confirmed L8 at `ne = 1.62408`, `νe = 36.11`.
+- The legacy Schott F2 curve reproduces `1.624080 / 36.108`, so the old reference-line workaround is no longer
+  needed for L8.
+- Strict coverage rises by one surface. The N-LAF21-class row remains unmatched; no source values or geometry
+  changed.

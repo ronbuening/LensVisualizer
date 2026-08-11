@@ -58,9 +58,9 @@ L3 repeats the low-index, high-Abbe ED glass used in L2 and completes the positi
 
 ### L4 - Negative Meniscus, convex to object, cemented with L5
 
-nd = 1.79631, νd = 40.90. Glass: unmatched lanthanum-flint class, patent code 796/409. f = -104.5 mm.
+nd = 1.79631, νd = 40.90. Glass: HOYA NBFD2 catalog equivalent for patent code 796/409; production supplier unspecified. f = -104.5 mm.
 
-L4 is the negative member of the stationary G12 cemented doublet. The glass is a high-index lanthanum-family flint by code and dispersion, but no public catalog entry used for this review matched closely enough to justify a specific vendor designation.
+L4 is the negative member of the stationary G12 cemented doublet. HOYA's official obsolete-inclusive catalog supplies an NBFD2 model at 1.797199 / 41.143795, close to the patent coordinate by +0.000889 / +0.244. It is used as an optical equivalent, not as evidence of Nikon's production supplier.
 
 ### L5 - Positive Meniscus, convex to object, cemented with L4
 
@@ -127,7 +127,7 @@ The patent publishes nd, νd, and ng values, not glass names. Catalog names belo
 | L1 | 1.80384 | 33.89 | E-LAFH2 (Hikari), 804/339 code | Exact code and coordinate | Negative flint member of front ED doublet |
 | L2 | 1.49782 | 82.52 | J-FKH1-class FK fluorophosphate (Hikari) | Close / catalog-class | ED positive element |
 | L3 | 1.49782 | 82.52 | J-FKH1-class FK fluorophosphate (Hikari) | Close / catalog-class | ED positive element |
-| L4 | 1.79631 | 40.90 | Unmatched lanthanum flint, 796/409 code | Unmatched | G12 negative doublet member |
+| L4 | 1.79631 | 40.90 | NBFD2 (HOYA optical equivalent) | Catalog-backed equivalent | G12 negative doublet member; supplier unspecified |
 | L5 | 1.60311 | 60.64 | S-BSM14 (OHARA) | Exact to listed nd/νd | G12 crown partner |
 | L6 | 1.62280 | 57.03 | S-BSM10-class (OHARA) | Close | G2 negative meniscus |
 | L7 | 1.80384 | 33.89 | E-LAFH2 (Hikari), 804/339 code | Exact code and coordinate | G2 high-index partner |
@@ -138,7 +138,7 @@ The patent publishes nd, νd, and ng values, not glass names. Catalog names belo
 | L12 | 1.77279 | 49.45 | S-LAH66-class (OHARA) | Close, not exact | Patent VR/GLP element |
 | L13 | 1.54814 | 45.87 | S-TIL1-class (OHARA) | Close, not exact νd | Rear field corrector |
 
-S-BSM14 is an exact match to the OHARA catalog values used here. S-TIH6 and S-TIM28 are close enough to use as specific OHARA glasses. S-BSM10, S-BSM16, S-LAH66, and S-TIL1 are retained only as class or close matches because their catalog Abbe numbers differ slightly from the patent table. L1/L7 and L4 remain unmatched rather than being forced into speculative lanthanum-glass names.
+S-BSM14 is an exact match to the OHARA catalog values used here. S-TIH6 and S-TIM28 are close enough to use as specific OHARA glasses. S-BSM10, S-BSM16, S-LAH66, and S-TIL1 are retained only as class or close matches because their catalog Abbe numbers differ slightly from the patent table. L1/L7 remain unmatched; L4 now uses NBFD2's coefficient-backed legacy HOYA model as an explicitly supplier-neutral optical equivalent.
 
 The chromatic strategy is conventional for a high-quality 200 mm macro: ED positive elements in the front group reduce secondary spectrum, and each cemented doublet pairs a lower-Abbe flint-like member with a higher-Abbe crown-like member. Because the patent does not publish partial-dispersion deviation, the analysis avoids making a quantitative apochromatic claim.
 

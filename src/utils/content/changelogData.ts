@@ -21,6 +21,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-08-11",
     type: "improvement",
+    summary: "Added 14 verified glass curves, upgrading 53 surfaces and completing 17 lenses",
+  },
+  {
+    date: "2026-08-11",
+    type: "improvement",
     summary: "Modeled Minolta STF apodization in bokeh and relative illumination with Beer–Lambert ray weighting",
   },
   {

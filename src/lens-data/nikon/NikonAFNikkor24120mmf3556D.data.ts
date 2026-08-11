@@ -211,7 +211,7 @@ const LENS_DATA = {
       nd: 1.79631,
       vd: 40.9,
       fl: -17.966261,
-      glass: "Unmatched (796409 high-index crown)",
+      glass: "NBFD2 (HOYA catalog equivalent; production supplier unspecified; patent 796409)",
       cemented: "C3",
       role: "Negative cemented partner that controls the net power of C3.",
     },

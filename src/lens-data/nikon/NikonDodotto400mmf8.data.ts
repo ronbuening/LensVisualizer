@@ -78,7 +78,7 @@ const LENS_DATA = {
       nd: 1.75692,
       vd: 31.62,
       fl: -181.11,
-      glass: "Unmatched dense flint (757/316 code, patent nd=1.75692 νd=31.62)",
+      glass: "E-LAF11 catalog equivalent (production supplier not established; patent 757316)",
       apd: false,
       role: "Front-group negative flint; cemented achromatizing and spherical-aberration correction partner for L1.",
       cemented: "D1",

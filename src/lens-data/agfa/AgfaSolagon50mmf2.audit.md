@@ -14,3 +14,11 @@ Patent: US 2,745,315, Example 1
 ### Verification
 
 - `npm test -- elementRenderDiagnostics`
+
+## 2026-08-11 — Phase 92 HOYA F7 recovery
+
+- Visually rechecked US 2,745,315 Examples 1–3 on rendered PDF pages 2–3: L3 and L4 use the rounded
+  `1.6254 / 35.6` flint coordinate.
+- Added the official legacy HOYA F7 row (`1.625363 / 35.583498`, code `625356`) and used it as the
+  coefficient-backed optical equivalent for both elements.
+- The production supplier remains unspecified. No prescription geometry, aperture, or semi-diameter values changed.

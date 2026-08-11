@@ -26,16 +26,74 @@ This file tracks the second bucket plus any cases from the first bucket that nee
 - Catalog: verified entries in `src/optics/glassCatalogData.ts` — `catalogSize()` is the live count; the
   generated glass reports carry the number at their generation date. (A hand-bumped figure here went stale.)
 - `catalog-mismatches.generated.md` and `glass-relabel-by-lens.generated.md` report **0** remaining
-  dispersion-coordinate mismatches across **0** lens files. The mismatch report separately records **18 / 75**
+  dispersion-coordinate mismatches across **0** lens files. The mismatch report separately records **30 / 75**
   native e-line surfaces resolved through explicit names or aliases.
-- `sellmeier-coverage.generated.md` reports **544** lenses, **5952** non-air surfaces, **5288** strict catalog
-  Sellmeier surfaces (**88.8%**), and **5299** trusted chromatic surfaces (**89.0%**).
-- **296** lenses are fully covered by strict Sellmeier data and **301** are fully covered by trusted chromatic data.
-- `unresolvedGlassScan` reports **338** non-explicit-unmatched annotations and **175** distinct unresolved glass-like
+- `sellmeier-coverage.generated.md` reports **556** lenses, **6129** non-air surfaces, **5500** strict catalog
+  Sellmeier surfaces (**89.7%**), and **5511** trusted chromatic surfaces (**89.9%**).
+- **316** lenses are fully covered by strict Sellmeier data and **321** are fully covered by trusted chromatic data.
+- `unresolvedGlassScan` reports **332** non-explicit-unmatched annotations and **168** distinct unresolved glass-like
   tokens. The residual total is code/prose inventory rather than a catalog-coordinate mismatch queue.
-- The missing-Sellmeier six-digit report contains **283** code-only elements, with **0** active unreviewed rows,
-  **131** self-recording explicit unmatched/unidentified dispositions, and **0** dispositions missing a review record.
+- The missing-Sellmeier six-digit report contains **266** code-only elements, with **0** active unreviewed rows,
+  **116** self-recording explicit unmatched/unidentified dispositions, and **0** dispositions missing a review record.
 - The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work; for patent-by-patent execution, start from [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md).
+
+## Resolved Phase 95 — August 2026 exact native e-line follow-up
+
+- Rendered four additional local patent tables and verified F5, F2, and two SF5 rows against the catalog's computed
+  C′/e/F′ coordinates.
+- Upgraded one surface each in the Leica Elmar-M 135mm, Leica Elmarit-R 28mm, Leica Elmarit-M 135mm, and
+  Rodenstock Grandagon-N 65mm. Native e-line coverage rises from 26/75 to 30/75.
+- Retained N-LAF21, N-SF8, and K5 class annotations as explicit unmatched rows because those modern curves are only
+  near matches. The mismatch and active unreviewed queues remain empty.
+
+## Resolved Phase 94 — August 2026 first-party Hikari and native e-line recovery
+
+- Added Hikari J-SK14 and J-LASF02 from the retained manufacturer workbook, completing two named gaps in the Nikon
+  AF-S DX 55-200mm.
+- Rechecked three local patent tables and removed obsolete explicit-unmatched guards only where current catalog
+  coefficients reproduce the authored d- or e-line coordinates: J-LASFH2 in the Nikon R-UW Micro; SF10, SF11, and
+  SF2 in the Leica Summicron-R 50mm; and five Schott rows in the Schneider Super-Symmar XL 110mm.
+- Eleven surfaces gain full curves. Global strict coverage rises to 5496/6129, native e-line coverage to 26/75, and
+  the strict-complete lens count to 316; the mismatch and active unreviewed queues remain empty.
+
+## Resolved Phase 93 — August 2026 Hikari SF catalog recovery
+
+- Added first-party Hikari J-SF1, J-SF6, J-SF10, and J-SF11 power-series rows and removed their cross-vendor aliases.
+- Assigned J-SF6 to two patent `805255` positions in the Nikon AI AF 80-200mm f/2.8D ED and E-LAF11 to the Nikon
+  Dodotto 400's patent `757316` position. Corrected the PC-E Micro-Nikkor 45mm documentation to reflect the same
+  existing E-LAF11 match.
+- Added three strict/trusted surfaces, completed the Dodotto, and retained the production-supplier caveat on every
+  patent-coordinate assignment. The mismatch and active unreviewed queues remain empty.
+
+## Resolved Phase 92 — August 2026 legacy HOYA and six-digit recovery
+
+- Visually rechecked fourteen patent prescriptions and compared their d-line coordinates with HOYA's official
+  obsolete-inclusive catalog.
+- Added NBFD2, BACED1, PC1, PC2, F7, FL4, FL1, and BAFD3, then combined them with existing J-LAFH3 and
+  E-FD13 to upgrade twenty-two surfaces while leaving every production supplier unspecified.
+- Completed seven more prescriptions and raised global coverage to 5482/6129 strict and 5493/6129 trusted;
+  313 lenses are strict-complete and 318 trusted-complete, with zero coordinate mismatches and zero active unreviewed
+  code-only rows.
+
+## Resolved Phase 91 — August 2026 near-complete visible-lens audit
+
+- Rendered the relevant tables in seven ignored local patent PDFs and compared native d/e-line coordinates and the
+  available patent partial-dispersion anchor with current coefficient-backed catalog rows.
+- Assigned FCD515, PBH25, S-TIL6, S-LAL52, D-K59, J-SFH2, and FEL3 catalog equivalents across eight surfaces while
+  leaving every production supplier unspecified.
+- Completed the Nikon Z 35mm f/1.8, Olympus 24mm f/2.8, Nikon Micro 105mm, Hasselblad HC 150mm, Fujifilm XF 35mm,
+  and both Rodenstock Grandagon-N prescriptions. The Nikon 20-35mm improves to 13/14; its L31a remains unmatched.
+- Global coverage is 5460/6129 strict and 5471/6129 trusted; 306 lenses are strict-complete and 311 trusted-complete,
+  with zero coordinate mismatches and zero active unreviewed code-only rows.
+
+## Resolved Phase 90 — August 2026 Minolta glass-opportunity audit
+
+- Visually rechecked the twelve active six-digit rows against four ignored local patent PDFs; every source publishes
+  d-line index and Abbe number only, with no supplier or secondary spectral data.
+- Applied existing FF8, K-SSK1, N-SK16-family, S-LAL58, and N-KZFS8 curves to five compatible surfaces while
+  preserving the patent coordinates and leaving production suppliers unspecified.
+- Recorded explicit unmatched dispositions for the seven rows outside the compatibility guard. Global coverage is
+  5452/6129 strict and 5463/6129 trusted; the active unreviewed queue and coordinate-mismatch queue are both empty.
 
 ## Resolved Phase 88 — August 2026 Nikon/Ricoh lens-batch audit
 

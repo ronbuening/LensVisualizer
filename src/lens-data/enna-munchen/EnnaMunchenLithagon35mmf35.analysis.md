@@ -38,7 +38,7 @@ The aperture stop is not tabulated in the patent prescription. The drawing place
 
 ### L1 — Negative Meniscus, convex to object
 
-$n_d = 1.51821$, $\nu_d = 65.2$. Glass: unmatched 518/652 crown class. $f = -127.0$ mm.
+$n_d = 1.51821$, $\nu_d = 65.2$. Glass: HOYA PC2 catalog equivalent for patent 518/652; production supplier unspecified. $f = -127.0$ mm.
 
 L1 has both centers of curvature to the image side: $R_1 = +1.984f$ and $R_2 = +0.95718f$. Because the rear surface is more strongly curved, the element has net negative power despite its meniscus form. The patent describes this as a negative meniscus with its concave surface directed toward the triplet; in the sign convention used by the numerical table, that is the rear surface $R_2$.
 
@@ -74,12 +74,12 @@ The patent provides only $n_d$ and $\nu_d$ values and does not name catalog glas
 
 | Element | Patent $n_d$ | Patent $\nu_d$ | Catalog identification        | Catalog $n_d$ | Catalog $\nu_d$ | $\Delta n_d$ | $\Delta\nu_d$ | Status      |
 | ------- | -----------: | -------------: | ----------------------------- | ------------: | --------------: | -----------: | ------------: | ----------- |
-| L1      |      1.51821 |           65.2 | Unmatched 518/652 crown class |             — |               — |            — |             — | Class only  |
+| L1      |      1.51821 |           65.2 | PC2 (HOYA optical equivalent) |       1.51821 |        65.160509 |      0.00000 |      -0.03949 | Catalog-backed equivalent |
 | L2      |      1.74400 |           44.9 | N-LAF2 (Schott), equivalent   |       1.74397 |           44.85 |     -0.00003 |         -0.05 | Close match |
 | L3      |      1.67270 |           32.2 | SF5 (Schott)                  |       1.67270 |           32.21 |      0.00000 |         +0.01 | Match       |
 | L4      |      1.65160 |           58.5 | N-LAK7 (Schott)               |       1.65160 |           58.52 |      0.00000 |         +0.02 | Match       |
 
-L1 is deliberately left as a class rather than forced to a modern catalog name. Schott N-BK7 is near the patent value but not exact: N-BK7 is $n_d = 1.51680$, $\nu_d = 64.17$, giving residuals of $\Delta n_d = -0.00141$ and $\Delta\nu_d = -1.03$. That is close enough for class context, but not close enough to assert that the patent glass is N-BK7.
+L1 uses HOYA's official legacy PC2 coefficients because its 1.518210 / 65.160509 coordinate is effectively identical to the patent row. The label is an optical equivalent and does not assert that Enna used a HOYA melt. Schott N-BK7 remains useful only as broader crown-family context.
 
 L2, L3, and L4 are much more secure. N-LAF2, SF5, and N-LAK7 reproduce the patent glass coordinates to normal transcription tolerance. For a historical lens, the exact melt may have been a predecessor or lead-containing formulation rather than the modern N-series glass, so the data file marks L2 as an equivalent and uses the exact patent $n_d$/$\nu_d$ values as authoritative.
 

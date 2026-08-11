@@ -46,7 +46,7 @@ L1 is the first strong positive member at the front of the system and serves as 
 
 ### L2 — Positive Meniscus
 
-nd = 1.69350, νd = 51.83. Glass: 694518 — optical-glass coordinate class (vendor unresolved). Standalone $f=+109.639$ mm.
+nd = 1.69350, νd = 51.83. Glass: S-LAL58 (OHARA catalog equivalent; patent 694518; production supplier unspecified). Standalone $f=+109.639$ mm.
 
 L2 adds positive power ahead of the stop and is separated from L1 and L3 by air. Together with L1 and L3, it forms a front three-element subsystem whose computed paraxial focal length is +165.653 mm. The patent's third conditional expression constrains the ratio between the whole-system focal length and this front subsystem.
 
@@ -64,7 +64,7 @@ L4 begins the cemented pair immediately behind the stop. It is a strong negative
 
 ### L5 — Biconvex Positive, Cemented Pair D1
 
-nd = 1.78100, νd = 44.55. Glass: 781446 — high-index mid-dispersion glass (catalog unresolved). Standalone $f=+53.104$ mm.
+nd = 1.78100, νd = 44.55. Glass: Unmatched (781446 high-index mid-dispersion glass; no compatible public coefficient row). Standalone $f=+53.104$ mm.
 
 L5 is the positive member of D1 and uses a relatively high refractive index. Although L4 and L5 have large and opposite standalone powers, their cemented combination is only weakly negative in first-order terms: the independently computed cemented-pair focal length is -825.427 mm. The pair therefore must not be interpreted by simply combining the isolated focal-length signs or magnitudes.
 
@@ -82,15 +82,15 @@ L7 is a weak positive rear element that remains fixed during focusing. Its low s
 
 ## Glass Identification and Selection
 
-The patent publishes only nd and νd values and does not identify glass manufacturers or melt names. The data file therefore preserves source-honest coordinate-class labels rather than assigning speculative vendor products. L5 is explicitly marked unmatched because no surveyed public catalog candidate is close enough to justify a named glass assignment from its stored coordinate pair.
+The patent publishes only nd and νd values and does not identify glass manufacturers or melt names. The data file uses catalog curves only as spectral equivalents inside the project compatibility guard and leaves the production supplier unspecified. L5 is explicitly marked unmatched because no surveyed public catalog candidate is close enough to justify a named glass assignment from its stored coordinate pair.
 
 | Element | nd | νd | Data-file glass annotation |
 |---|---:|---:|---|
 | L1 | 1.71300 | 53.93 | 713539 — optical-glass coordinate class (vendor unresolved) |
-| L2 | 1.69350 | 51.83 | 694518 — optical-glass coordinate class (vendor unresolved) |
+| L2 | 1.69350 | 51.83 | S-LAL58 catalog equivalent (patent 694518) |
 | L3 | 1.71736 | 29.42 | SF1 catalog equivalent (patent 717294) |
 | L4 | 1.65446 | 33.66 | FD9 catalog equivalent (patent 654337) |
-| L5 | 1.78100 | 44.55 | 781446 — high-index mid-dispersion glass (catalog unresolved) |
+| L5 | 1.78100 | 44.55 | Unmatched 781446 high-index mid-dispersion glass |
 | L6 | 1.83400 | 37.05 | S-LAH60 catalog equivalent (patent 834371) |
 | L7 | 1.72000 | 50.31 | 720503 — optical-glass coordinate class (vendor unresolved) |
 

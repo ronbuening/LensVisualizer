@@ -36,7 +36,7 @@ The patent also does not publish clear semi-diameters. The surface semi-diameter
 
 ### L1 — Biconvex Positive
 
-`nd = 1.49310`, `νd = 83.6`. Glass: `493836 — Minolta AD/ED fluorophosphate class (catalog unresolved)`. Standalone `f = +214.144 mm`.
+`nd = 1.49310`, `νd = 83.6`. Glass: `Unmatched (493836 Minolta AD/ED fluorophosphate; no compatible public coefficient row)`. Standalone `f = +214.144 mm`.
 
 L1 is the first converging element of fixed Gr1. It shares its d-line index and Abbe number with L2, so the front pair begins with two relatively low-index, high-Abbe positive elements before the negative L3. The standalone focal length is reported for the element isolated in air; it is not the same as L1’s in-situ contribution inside the complete thick group.
 
@@ -44,7 +44,7 @@ The `APD (INFERRED)` classification comes from the exact `493836` Minolta glass 
 
 ### L2 — Biconvex Positive
 
-`nd = 1.49310`, `νd = 83.6`. Glass: `493836 — Minolta AD/ED fluorophosphate class (catalog unresolved)`. Standalone `f = +219.750 mm`.
+`nd = 1.49310`, `νd = 83.6`. Glass: `Unmatched (493836 Minolta AD/ED fluorophosphate; no compatible public coefficient row)`. Standalone `f = +219.750 mm`.
 
 L2 continues the positive front-group power with nearly the same standalone power as L1. The 0.400 mm air gap between L1 and L2 keeps the two lenses optically distinct rather than forming a cemented pair. In the complete Gr1 assembly, L1 and L2 act together with L3 to produce the group’s +183.752680 mm isolated EFL.
 
@@ -52,7 +52,7 @@ L2 receives the same family-level `APD (INFERRED)` tag as L1, with the same expl
 
 ### L3 — Biconcave Negative
 
-`nd = 1.72100`, `νd = 33.4`. Glass: `721334 — high-index medium-dispersion glass (catalog unresolved)`. Standalone `f = -240.817 mm`.
+`nd = 1.72100`, `νd = 33.4`. Glass: `N-KZFS8 (SCHOTT catalog equivalent; patent 721334; production supplier unspecified)`. Standalone `f = -240.817 mm`.
 
 L3 is the negative member that completes Gr1. Its higher index and lower Abbe number distinguish it from L1 and L2. The contrast in sign and glass coordinates is consistent with chromatic and monochromatic balancing within the fixed front group, but the patent does not name a vendor glass or publish partial-dispersion data from which a more specific spectral role could be established.
 
@@ -90,14 +90,14 @@ The patent publishes only d-line refractive index and Abbe number for each glass
 
 | Elements | nd | νd | Data-file glass annotation |
 |---|---:|---:|---|
-| L1, L2 | 1.49310 | 83.6 | `493836 — Minolta AD/ED fluorophosphate class (catalog unresolved)` |
-| L3 | 1.72100 | 33.4 | `721334 — high-index medium-dispersion glass (catalog unresolved)` |
+| L1, L2 | 1.49310 | 83.6 | `Unmatched 493836 Minolta AD/ED fluorophosphate` |
+| L3 | 1.72100 | 33.4 | `N-KZFS8 catalog equivalent (patent 721334)` |
 | L4 | 1.62004 | 36.3 | `E-F2 catalog equivalent (patent 620363)` |
 | L5, L8 | 1.48749 | 70.2 | `S-FSL5 catalog equivalent (patent 487702)` |
 | L6 | 1.65844 | 50.9 | `N-SSK5 catalog equivalent (patent 658509)` |
 | L7 | 1.84566 | 23.8 | `J-SF03 / H-ZF52 / FDS90 catalog-equivalent dense-flint class (patent 846238)` |
 
-The glass palette spans a wide range of Abbe numbers, but the patent names no glass vendor and does not publish per-element `nC`, `nF`, `ng`, or `dPgF`. An independent catalog-coordinate check supports E-F2 for L4, S-FSL5 for L5/L8, N-SSK5 for L6, and the J-SF03/H-ZF52/FDS90 dense-flint family for L7 as compatible modern equivalents. These labels enable compatible Sellmeier curves without claiming the production melts came from those vendors. L1/L2 retain an inferred APD family tag but no borrowed partial-dispersion value; L3 remains coordinate-only. `APO` is still product branding rather than an independently quantified system-performance claim.
+The glass palette spans a wide range of Abbe numbers, but the patent names no glass vendor and does not publish per-element `nC`, `nF`, `ng`, or `dPgF`. An independent catalog-coordinate check supports N-KZFS8 for L3, E-F2 for L4, S-FSL5 for L5/L8, N-SSK5 for L6, and the J-SF03/H-ZF52/FDS90 dense-flint family for L7 as compatible modern equivalents. These labels enable compatible Sellmeier curves without claiming the production melts came from those vendors. L1/L2 retain an inferred APD family tag but no borrowed partial-dispersion value; no reviewed public curve falls inside the compatibility guard for their `493836` coordinate. `APO` is still product branding rather than an independently quantified system-performance claim.
 
 ## Focus Mechanism
 

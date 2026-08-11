@@ -121,7 +121,7 @@ L3F1 is the first refractive element behind the traveling stop. It supplies the 
 
 **L3F2:** `nd = 1.51680`, `νd = 64.1`. Glass: `517641 — BK7 class (vendor unresolved)`. `f = +21.536693 mm`.
 
-**L3F3:** `nd = 1.79631`, `νd = 40.9`. Glass: `Unmatched (796409 high-index crown)`. `f = -17.966261 mm`.
+**L3F3:** `nd = 1.79631`, `νd = 40.9`. Glass: `NBFD2 (HOYA catalog equivalent; production supplier unspecified; patent 796409)`. `f = -17.966261 mm`.
 
 Although L3F2 is positive and L3F3 is negative, their computed cemented net focal length is `-309.447249 mm`: a weak negative pair. This does not make G3F negative. L3F1 is sufficiently positive that the complete group remains `+36.527636 mm`. The distinction between standalone element powers, cemented net power, and complete-group power is essential to interpreting this section.
 
@@ -165,7 +165,7 @@ The patent supplies `nd` and `νd` but does not name glass manufacturers or publ
 | L23 | 1.68893 | 31.1 | 689311 — high-dispersion flint class, vendor unresolved |
 | L24 | 1.75520 | 27.6 | 755276 — SF4 class, vendor unresolved |
 | L3F1, L3F2 | 1.51680 | 64.1 | 517641 — BK7 class, vendor unresolved |
-| L3F3 | 1.79631 | 40.9 | Unmatched 796409 high-index crown |
+| L3F3 | 1.79631 | 40.9 | NBFD2 (HOYA catalog equivalent; supplier unspecified) |
 | L3R1 | 1.65844 | 50.8 | J-SSK5; exact Hikari/patent code 658508 |
 | L3R2 | 1.79668 | 45.4 | 795454 — LaSF class, catalog-near and vendor unresolved |
 | L3R3 | 1.83400 | 37.4 | NBFD10 catalog equivalent; production supplier unspecified |

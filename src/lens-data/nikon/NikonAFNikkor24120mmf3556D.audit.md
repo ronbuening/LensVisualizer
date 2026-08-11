@@ -90,3 +90,10 @@ code-only glasses remain unresolved where no comparably strong, coefficient-back
 - `npm test -- dispersion.test.ts lensDataTyping.test.ts validateLensData.test.ts buildLens.test.ts` — passed
   (4 files / 237 tests).
 - `npm run typecheck`, `npm run format:check`, and `git diff --check` — passed.
+
+## 2026-08-11 — Phase 92 HOYA legacy-catalog recovery
+
+- Visually rechecked the `1.79631 / 40.9` L3F3 row in US 5,734,508 Table 4.
+- HOYA NBFD2 (`1.797199 / 41.143795`) is a coefficient-backed optical equivalent inside the runtime safety window.
+- Relabeled L3F3 and synchronized the analysis while leaving the production supplier unspecified. No geometry,
+  asphere, zoom, focus, aperture, or semi-diameter values changed.
