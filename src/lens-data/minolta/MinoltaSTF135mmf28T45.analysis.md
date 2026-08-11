@@ -227,6 +227,23 @@ accumulates the exact three-dimensional path length through L5 for each ray and 
 weight bokeh density and relative illumination. The geometric f/2.83 entrance pupil remains separate from that energy
 weighting, and the marketed T/4.5 value is still not inferred from the patent coefficient alone.
 
+For the axial ray, the path through L5 is its 0.300 mm center thickness, giving
+`I/I₀ = exp(-0.55 × 0.300) = 0.8478937041`. Oblique rays use the actual three-dimensional distance between their
+surface-9 and surface-10 hits rather than dividing the axial thickness by a paraxial cosine approximation. This makes
+the weighting reusable at infinity and throughout the reconstructed floating-focus range.
+
+The runtime keeps three related quantities deliberately separate. Aperture survival remains geometric; an unvignetted
+ray may still have transmission below one. Bokeh image-plane points multiply their equal-area pupil weights by the
+traced intensity, while the pupil-footprint inset retains unattenuated weights so it continues to describe mechanical
+clipping and pupil shift. Relative illumination sums surviving intensity before applying `cos⁴` and normalizing to the
+on-axis value. The bokeh best-focus solve is also intensity-weighted, so strongly attenuated marginal rays do not exert
+the same influence as brighter rays.
+
+These calculations are geometric-radiometric rather than diffraction simulations. They improve pupil weighting,
+defocused point density, and relative illumination, but do not reconstruct the full wave-optical PSF, wavelength-
+dependent ND response, coating losses, scatter, or the marketed T/4.5 transmission. If all sampled intensity reaches
+zero numerically, the analysis returns an empty result rather than non-finite centroid or blur metrics.
+
 The compensating L6 member allows the absorbing profile to be incorporated without requiring L5 to act alone as a
 strong negative lens. Because the L5/L6 indices are close but not identical, the filter is not perfectly afocal. The
 surrounding Gr1/Gr2 prescription is consequently designed around the actual powered filter, which is the central problem
@@ -269,6 +286,12 @@ functional group power reproduce the patent's rounded values of +0.00370, −0.0
 The physical stop diameter is not a patent datum. It is derived from the modeled EFL and FNO = 2.83 as 28.758127 mm.
 The corresponding entrance-pupil diameter is 47.703723 mm. These are modeling results used to make the prescription
 self-consistent, not transcribed source values.
+
+The public exact-trace regression for the axial ray reproduces `0.8478937041`, and an oblique-ray regression checks the
+same Beer–Lambert calculation against the measured three-dimensional L5 hit-to-hit chord. Transparent-lens and no-alpha
+controls retain unit transmission. Bokeh tests separately verify photometric weighting, absorption-aware best focus,
+mechanical-pupil independence, and the zero-energy guard; vignetting tests verify that geometric transmission remains
+unchanged while relative illumination responds to the apodizer.
 
 Surface-by-surface Petzval summation using φ/(n·n′) gives +0.000917680 mm⁻¹, corresponding under the audit convention
 `RP = −1/ΣP` to −1089.705 mm. This is a computed paraxial diagnostic, not a patent claim about best-focus field
