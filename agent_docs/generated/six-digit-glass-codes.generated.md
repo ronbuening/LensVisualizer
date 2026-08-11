@@ -10,9 +10,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **556** lenses scanned
-- **750** total code-only elements found
-- **750** elements in this report
-- **169** distinct lens files affected
+- **747** total code-only elements found
+- **747** elements in this report
+- **168** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -48,7 +48,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 694532 | 5 | 4 | patents/JPA 1989039542-000000.pdf<br>patents/US20210132345A1.pdf<br>patents/US20180164556A1.pdf | No review-record hit |
 | 694533 | 5 | 4 | patents/US20200142168A1.pdf<br>patents/JP2019008031A.pdf<br>patents/WO2020136749A1.pdf | 4/5 rows have review records |
 | 699301 | 5 | 4 | patents/JP_2000028919_A.pdf<br>patents/JP2020086133A.pdf<br>patents/US8228605.pdf<br>patents/JPA 2020122918-000000.pdf | 1/5 rows have review records |
-| 805255 | 5 | 4 | patents/US5579171.pdf<br>patents/US4223981.pdf<br>patents/US20130222925A1.pdf<br>patents/JP_2026120386_A.pdf | 3/5 rows have review records |
 | 517642 | 4 | 3 | patents/JPA 1999231209-000000.pdf<br>patents/US4223981.pdf<br>patents/JP2017116646A.pdf | No review-record hit |
 | 603380 | 4 | 3 | patents/JP2017116646A.pdf<br>patents/JPA 2020122918-000000.pdf | 1/4 rows have review records |
 | 620603 | 4 | 3 | patents/JPA 1999231209-000000.pdf<br>patents/US4452513.pdf<br>patents/US4223981.pdf | No review-record hit |
@@ -75,6 +74,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 777297 | 3 | 3 | patents/WO2021199923A1.pdf<br>patents/WO_2025263124_A1.pdf<br>patents/JP2023039817A.pdf | All rows have review records |
 | 785257 | 3 | 3 | patents/JPA 1994082698-000000.pdf<br>patents/US7804652.pdf<br>patents/JP_2026120386_A.pdf | 1/3 rows have review records |
 | 800422 | 3 | 3 | patents/US4110006.pdf<br>patents/JPA 1994082698-000000.pdf<br>patents/US20240295723A1.pdf | No review-record hit |
+| 805255 | 3 | 3 | patents/US4223981.pdf<br>patents/US20130222925A1.pdf<br>patents/JP_2026120386_A.pdf | 1/3 rows have review records |
 | 816466 | 3 | 2 | patents/US20170068075A1.pdf<br>patents/US20180164556A1.pdf | No review-record hit |
 | 851401 | 3 | 3 | patents/JPWO2017138250A1.pdf<br>patents/JP2017116646A.pdf<br>patents/JP2021043375A.pdf | No review-record hit |
 | 856401 | 3 | 2 | patents/WO2021199923A1.pdf<br>patents/WO_2025263124_A1.pdf | All rows have review records |
@@ -291,7 +291,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 754260 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | All rows have review records |
 | 755501 | 1 | 1 | patents/US4277149.pdf | All rows have review records |
 | 756288 | 1 | 1 | patents/US7307794.pdf | No review-record hit |
-| 757316 | 1 | 1 | No patent number parsed from lens metadata | All rows explicitly disposed |
 | 757478 | 1 | 1 | patents/JP_2000028919_A.pdf | No review-record hit |
 | 760492 | 1 | 1 | patents/JP2015041012A.pdf | All rows explicitly disposed |
 | 762265 | 1 | 1 | patents/JP_2000028919_A.pdf | No review-record hit |
@@ -1027,8 +1026,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L7 (Element 7) | 10 | `805255 — dense flint class (unmatched exact public coordinate)` | 1.80458 / 25.50 | No catalog entry | abbe | patents/US5579171.pdf | Explicit disposition in data |
-| L14 (Element 14) | 22 | `805255 — dense flint class (unmatched exact public coordinate)` | 1.80458 / 25.50 | No catalog entry | abbe | patents/US5579171.pdf | Explicit disposition in data |
 | L15 (Element 15) | 25 | `744450 — lanthanum-flint class (unmatched exact public coordinate)` | 1.74400 / 45.00 | No catalog entry | abbe | patents/US5579171.pdf | Explicit disposition in data |
 
 ### [NIKON AI NIKKOR 135mm f/2](../../src/lens-data/nikon/NikonAI135mmf2.data.ts) - US 4,062,630
@@ -1098,7 +1095,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|---|---|
 | L1 (Element 1) | 1 | `564608 — dense barium crown class (catalog vendor unspecified)` | 1.56384 / 60.80 | N-SK11 (trusted Sellmeier) | sellmeier | patents/US4223981.pdf | No review-record hit |
 | L2a (Element 2) | 3 | `603607 — dense crown class (catalog vendor unspecified)` | 1.60311 / 60.70 | BACD14 (trusted Sellmeier) | sellmeier | patents/US4223981.pdf | No review-record hit |
-| L2b (Element 3) | 4 | `805255 — dense flint class (catalog vendor unspecified)` | 1.80518 / 25.50 | H-ZF7LA (trusted Sellmeier) | sellmeier | patents/US4223981.pdf | No review-record hit |
+| L2b (Element 3) | 4 | `805255 — dense flint class (catalog vendor unspecified)` | 1.80518 / 25.50 | J-SF6 (trusted Sellmeier) | sellmeier | patents/US4223981.pdf | No review-record hit |
 | L3a (Element 4) | 6 | `755275 — dense flint class (catalog vendor unspecified)` | 1.75520 / 27.50 | E-FD4 (trusted Sellmeier) | sellmeier | patents/US4223981.pdf | No review-record hit |
 | L3b (Element 5) | 7 | `517642 — borosilicate crown class (catalog vendor unspecified)` | 1.51680 / 64.20 | H-K9L (trusted Sellmeier) | sellmeier | patents/US4223981.pdf | No review-record hit |
 | L4 (Element 6) | 9 | `589612 — dense barium crown class (catalog vendor unspecified)` | 1.58913 / 61.20 | S-BAL35 (trusted Sellmeier) | sellmeier | patents/US4223981.pdf | No review-record hit |
@@ -1112,12 +1109,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L4 (Element 4) | 7 | `Unmatched 595/356 light flint class` | 1.59507 / 35.60 | No catalog entry | abbe | patents/US4266860.pdf | Explicit disposition in data |
-
-### [NIKON DODOTTO 400mm f/8](../../src/lens-data/nikon/NikonDodotto400mmf8.data.ts)
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L2 (Element 2) | 2 | `Unmatched dense flint (757/316 code, patent nd=1.75692 νd=31.62)` | 1.75692 / 31.62 | No catalog entry | abbe | No patent number parsed from lens metadata | Explicit disposition in data |
 
 ### [NIKON FISHEYE-NIKKOR 6mm f/2.8](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf28.data.ts) - US 3,737,214
 
@@ -1194,7 +1185,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L21 (Element 4) | 6A | `744495 — moldable lanthanum crown (patent nd=1.74389, νd=49.53; no exact public catalog match)` | 1.74389 / 49.53 | No catalog entry | abbe | patents/WO2020136749A1.pdf | Reviewed sidecar hit |
-| L23 (Element 6) | 10 | `728284 - high-dispersion flint (patent nd=1.72825, vd=28.38)` | 1.72825 / 28.38 | SF10 (trusted Sellmeier) | sellmeier | patents/WO2020136749A1.pdf | Audit-log hit |
+| L23 (Element 6) | 10 | `728284 - high-dispersion flint (patent nd=1.72825, vd=28.38)` | 1.72825 / 28.38 | J-SF10 (trusted Sellmeier) | sellmeier | patents/WO2020136749A1.pdf | Audit-log hit |
 | L31 (Element 8) | 15A | `694533 - lanthanum crown (patent nd=1.69370, vd=53.32)` | 1.69370 / 53.32 | LAC13 (trusted Sellmeier) | sellmeier | patents/WO2020136749A1.pdf | Audit-log hit |
 | L32 (Element 9) | 17 | `593679 - fluorophosphate crown (patent nd=1.59319, vd=67.90)` | 1.59319 / 67.90 | J-PSKH1 (trusted Sellmeier) | sellmeier | patents/WO2020136749A1.pdf | Audit-log hit |
 | L41 (Element 10) | 19 | `738323 - niobium dense flint (patent nd=1.73800, vd=32.33)` | 1.73800 / 32.33 | J-KZFH9 (trusted Sellmeier) | sellmeier | patents/WO2020136749A1.pdf | Audit-log hit |
@@ -1521,7 +1512,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L11 (Element L11) | 1 | `835427 - high-index lanthanum glass class (vendor unresolved)` | 1.83481 / 42.70 | S-LAH55 (trusted Sellmeier) | sellmeier | patents/US20130222925A1.pdf | No review-record hit |
 | L12 (Element L12) | 3 | `806333 - high-index lanthanum flint class (vendor unresolved)` | 1.80610 / 33.30 | NBFD15 (trusted Sellmeier) | sellmeier | patents/US20130222925A1.pdf | No review-record hit |
 | L13 (Element L13) | 5 | `497816 - ED fluorophosphate crown class (vendor unresolved)` | 1.49700 / 81.60 | H-FK61 (trusted Sellmeier) | sellmeier | patents/US20130222925A1.pdf | No review-record hit |
-| L15 (Element L15) | 8 | `805255 - dense flint class (vendor unresolved)` | 1.80518 / 25.50 | H-ZF7LA (trusted Sellmeier) | sellmeier | patents/US20130222925A1.pdf | No review-record hit |
+| L15 (Element L15) | 8 | `805255 - dense flint class (vendor unresolved)` | 1.80518 / 25.50 | J-SF6 (trusted Sellmeier) | sellmeier | patents/US20130222925A1.pdf | No review-record hit |
 | L16 (Element L16) | 11 | `728283 - dense flint class (vendor unresolved)` | 1.72825 / 28.30 | H-ZF4A (trusted Sellmeier) | sellmeier | patents/US20130222925A1.pdf | No review-record hit |
 | L17 (Element L17) | 12 | `497816 - ED fluorophosphate crown class (vendor unresolved)` | 1.49700 / 81.60 | H-FK61 (trusted Sellmeier) | sellmeier | patents/US20130222925A1.pdf | No review-record hit |
 | L18 (Element L18) | 14 | `806407 - high-index lanthanum glass class (vendor unresolved)` | 1.80610 / 40.70 | NBFD13 (trusted Sellmeier) | sellmeier | patents/US20130222925A1.pdf | No review-record hit |
@@ -1952,7 +1943,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|---|---|
 | L4f (Element 1) | 1 | `883408 — high-index lanthanum glass class (vendor unresolved)` | 1.88300 / 40.80 | S-LAH58 (trusted Sellmeier) | sellmeier | patents/JP_2026120386_A.pdf | Audit-log hit |
 | L4r (Element 2) | 2 | `847238 — very-dense-flint class (vendor unresolved)` | 1.84666 / 23.78 | J-SF03 (trusted Sellmeier) | sellmeier | patents/JP_2026120386_A.pdf | Audit-log hit |
-| L5f (Element 3) | 4 | `805255 — dense-flint class (vendor unresolved)` | 1.80518 / 25.46 | H-ZF7LA (trusted Sellmeier) | sellmeier | patents/JP_2026120386_A.pdf | Audit-log hit |
+| L5f (Element 3) | 4 | `805255 — dense-flint class (vendor unresolved)` | 1.80518 / 25.46 | J-SF6 (trusted Sellmeier) | sellmeier | patents/JP_2026120386_A.pdf | Audit-log hit |
 | L5r (Element 4) | 5 | `648338 — dense-flint class (vendor unresolved)` | 1.64769 / 33.84 | E-FD2 (trusted Sellmeier) | sellmeier | patents/JP_2026120386_A.pdf | Audit-log hit |
 | L6f (Element 5) | 8 | `785257 — dense-flint class (vendor unresolved)` | 1.78472 / 25.72 | H-ZF13 (trusted Sellmeier) | sellmeier | patents/JP_2026120386_A.pdf | Audit-log hit |
 | L6r (Element 6) | 9 | `883408 — high-index lanthanum glass class (vendor unresolved)` | 1.88300 / 40.80 | S-LAH58 (trusted Sellmeier) | sellmeier | patents/JP_2026120386_A.pdf | Audit-log hit |

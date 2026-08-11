@@ -10,11 +10,11 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **556** lenses scanned (**546** visible)
-- **5482 / 6129** non-air surfaces use strict catalog Sellmeier data (89.4%)
-- **5493 / 6129** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 89.6%)
+- **5485 / 6129** non-air surfaces use strict catalog Sellmeier data (89.5%)
+- **5496 / 6129** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 89.7%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
-- **269** code-only missing-Sellmeier elements in Sweep 2: **0** active unreviewed, **119** self-recording explicit dispositions, **0** dispositions missing any review record
+- **266** code-only missing-Sellmeier elements in Sweep 2: **0** active unreviewed, **116** self-recording explicit dispositions, **0** dispositions missing any review record
 - **0** unresolved named-token elements in Sweep 2B, producing **0** token occurrences across **0** distinct tokens
 - **0** Tier A proprietary backfill rows in Sweep 3
 
@@ -41,6 +41,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [NIKON NIKKOR Z 35mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) | JP 2025-052870 A | [PDF](../../patents/JP2025052870A.pdf) | 94.1% (16/17) | 94.1% (16/17) | 1 | 32A [glass] (Element 17: `Barium crown / LaK family (624584, no exact catalog match)`) | abbe: 1 |
 | [TAMRON 18-400mm f/3.5-6.3 Di II VC HLD](../../src/lens-data/tamron/TamronB02818400mmf3563.data.ts) | JP 2017-116646 A | [PDF](../../patents/JP2017116646A.pdf) | 94.1% (16/17) | 94.1% (16/17) | 1 | 6A [glass] (Element 4 thin layer: `Unmatched (thin aspheric layer; patent nd=1.51460, vd=49.96)`) | abbe: 1 |
 | [MINOLTA AF 80-200mm f/2.8 APO](../../src/lens-data/minolta/MinoltaAF80200mmf28APO.data.ts) | JP1989-039542 A | [PDF](../../patents/JPA 1989039542-000000.pdf) | 93.8% (15/16) | 93.8% (15/16) | 1 | 20 [glass] (Element 12: `Unmatched (493836 Minolta AD/ED fluorophosphate; no compatible public coefficient row)`) | abbe: 1 |
+| [NIKON AI AF ZOOM-NIKKOR 80-200mm f/2.8D ED](../../src/lens-data/nikon/NikonAIAFZoomNikkor80200mmf28DED.data.ts) | US 5,579,171 A | [PDF](../../patents/US5579171.pdf) | 93.8% (15/16) | 93.8% (15/16) | 1 | 25 [glass] (Element 15: `744450 — lanthanum-flint class (unmatched exact public coordinate)`) | abbe: 1 |
 | [PANASONIC LUMIX G VARIO 7-14mm f/4 ASPH.](../../src/lens-data/panasonic/PanasonicLumixGVario714mmf4.data.ts) | US 2010/0194930 A1 | [PDF](../../patents/US20100194930A1.pdf) | 93.8% (15/16) | 93.8% (15/16) | 1 | 28 [glass] (Element 16: `Unmatched crown class (523/701, likely phosphate/fluorophosphate)`) | abbe: 1 |
 | [PANASONIC LUMIX S 24-105mm f/4 MACRO O.I.S.](../../src/lens-data/panasonic/PanasonicLumixS24105mmf4MacroOIS.data.ts) | JP 2020-118738 A | [PDF](../../patents/JP2020118738A.pdf) | 93.8% (15/16) | 93.8% (15/16) | 1 | 16A [glass] (Element 8: `Unmatched (688311; M-FD80 / S-TIM28 / J-SF8 class)`) | abbe: 1 |
 | [FUJIFILM FUJINON XF 33mm f/1.4 R LM WR](../../src/lens-data/fujifilm/FujifilmXF33mmf14RLMWR.data.ts) | US 2022/0276464 A1 | [PDF](../../patents/US20220276464A1.pdf) | 93.3% (14/15) | 93.3% (14/15) | 1 | 20A [glass] (L26 focus Lp asphere: `Unmatched (853/406 dense lanthanum flint; near S-LAH89 / M-TAFD305 / D-ZLaF85 class)`) | abbe: 1 |

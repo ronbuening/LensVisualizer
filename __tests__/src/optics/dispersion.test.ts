@@ -87,6 +87,20 @@ describe("glass catalog", () => {
     expect(evaluateCatalogAbbeNumber(entry!)).toBeCloseTo(64.14, 2);
   });
 
+  it.each([
+    { name: "J-SF1", code6: "717296", nd: 1.71736, vd: 29.57 },
+    { name: "J-SF6", code6: "805255", nd: 1.80518, vd: 25.45 },
+    { name: "J-SF10", code6: "728284", nd: 1.72825, vd: 28.38 },
+    { name: "J-SF11", code6: "785256", nd: 1.78472, vd: 25.64 },
+  ])("$name resolves to its first-party Hikari curve", ({ name, code6, nd, vd }) => {
+    const entry = resolveGlass(`${name} (HIKARI)`);
+    expect(entry?.name).toBe(name);
+    expect(entry?.vendor).toBe("Hikari");
+    expect(entry?.code6).toBe(code6);
+    expect(evaluateSellmeier(entry!, LINE_NM.d)).toBeCloseTo(nd, 6);
+    expect(evaluateCatalogAbbeNumber(entry!)).toBeCloseTo(vd, 2);
+  });
+
   it("J-SF14 reproduces the published Hikari line indices and Abbe number", () => {
     const entry = resolveGlass("J-SF14 (HIKARI)");
     expect(entry?.name).toBe("J-SF14");

@@ -28,14 +28,23 @@ This file tracks the second bucket plus any cases from the first bucket that nee
 - `catalog-mismatches.generated.md` and `glass-relabel-by-lens.generated.md` report **0** remaining
   dispersion-coordinate mismatches across **0** lens files. The mismatch report separately records **18 / 75**
   native e-line surfaces resolved through explicit names or aliases.
-- `sellmeier-coverage.generated.md` reports **556** lenses, **6129** non-air surfaces, **5482** strict catalog
-  Sellmeier surfaces (**89.4%**), and **5493** trusted chromatic surfaces (**89.6%**).
-- **313** lenses are fully covered by strict Sellmeier data and **318** are fully covered by trusted chromatic data.
+- `sellmeier-coverage.generated.md` reports **556** lenses, **6129** non-air surfaces, **5485** strict catalog
+  Sellmeier surfaces (**89.5%**), and **5496** trusted chromatic surfaces (**89.7%**).
+- **314** lenses are fully covered by strict Sellmeier data and **319** are fully covered by trusted chromatic data.
 - `unresolvedGlassScan` reports **334** non-explicit-unmatched annotations and **170** distinct unresolved glass-like
   tokens. The residual total is code/prose inventory rather than a catalog-coordinate mismatch queue.
-- The missing-Sellmeier six-digit report contains **269** code-only elements, with **0** active unreviewed rows,
-  **119** self-recording explicit unmatched/unidentified dispositions, and **0** dispositions missing a review record.
+- The missing-Sellmeier six-digit report contains **266** code-only elements, with **0** active unreviewed rows,
+  **116** self-recording explicit unmatched/unidentified dispositions, and **0** dispositions missing a review record.
 - The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work; for patent-by-patent execution, start from [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md).
+
+## Resolved Phase 93 — August 2026 Hikari SF catalog recovery
+
+- Added first-party Hikari J-SF1, J-SF6, J-SF10, and J-SF11 power-series rows and removed their cross-vendor aliases.
+- Assigned J-SF6 to two patent `805255` positions in the Nikon AI AF 80-200mm f/2.8D ED and E-LAF11 to the Nikon
+  Dodotto 400's patent `757316` position. Corrected the PC-E Micro-Nikkor 45mm documentation to reflect the same
+  existing E-LAF11 match.
+- Added three strict/trusted surfaces, completed the Dodotto, and retained the production-supplier caveat on every
+  patent-coordinate assignment. The mismatch and active unreviewed queues remain empty.
 
 ## Resolved Phase 92 — August 2026 legacy HOYA and six-digit recovery
 

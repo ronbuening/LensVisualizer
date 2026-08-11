@@ -169,7 +169,7 @@ that must remain net negative. The data supports that qualitative description fr
 **L6:** `nd = 1.51680`, `νd = 64.10`. Glass: **J-BK7A catalog equivalent (patent 517641; production supplier not established)**.
 Standalone `f = -56.556908 mm`.
 
-**L7:** `nd = 1.80458`, `νd = 25.50`. Glass: **805255 — dense flint class (unmatched exact public coordinate)**.
+**L7:** `nd = 1.80458`, `νd = 25.50`. Glass: **J-SF6 catalog equivalent (patent 805255; production supplier not established)**.
 Standalone `f = +73.222191 mm`.
 
 The sign pattern reverses that of D2: a negative low-index/high-Abbe element is cemented to a
@@ -244,7 +244,7 @@ J-FKH1 is used only as the compatible public dispersion curve.
 **L13:** `nd = 1.48749`, `νd = 70.41`. Glass: **N-FK5 catalog equivalent (patent 487704; production supplier not established)**.
 Standalone `f = +90.007702 mm`.
 
-**L14:** `nd = 1.80458`, `νd = 25.50`. Glass: **805255 — dense flint class (unmatched exact public coordinate)**.
+**L14:** `nd = 1.80458`, `νd = 25.50`. Glass: **J-SF6 catalog equivalent (patent 805255; production supplier not established)**.
 Standalone `f = -371.182464 mm`.
 
 The D5 cemented pair is net positive (`f = +116.544141 mm`). Its high-Abbe positive L13 is partnered
@@ -287,7 +287,7 @@ centered prescription gives 65.984391 mm and 65.984457 mm, respectively. [1]
 ## Glass Identification and Selection
 
 The patent supplies refractive index and Abbe number but does not name glass manufacturers. A public-catalog
-recheck supplies coordinate-compatible dispersion curves for thirteen elements while preserving the authored patent
+recheck supplies coordinate-compatible dispersion curves for fifteen elements while preserving the authored patent
 coordinates and leaving every production supplier unknown. The three 498825 ED positions use Hikari J-FKH1 because
 its `1.49782 / 82.57` curve is compatible with the rounded `1.49782 / 82.52` patent rows; this is not a supplier claim.
 
@@ -298,7 +298,7 @@ its `1.49782 / 82.57` curve is compatible with the rounded `1.49782 / 82.52` pat
 | S-TIM1 catalog equivalent (patent 626357) | 1.62588 | 35.70 | L4 |
 | S-BAL41 catalog equivalent (patent 564607) | 1.56384 | 60.69 | L5, L10 |
 | J-BK7A catalog equivalent (patent 517641) | 1.51680 | 64.10 | L6 |
-| 805255 — dense flint class (unmatched exact public coordinate) | 1.80458 | 25.50 | L7, L14 |
+| J-SF6 catalog equivalent (patent 805255) | 1.80458 | 25.50 | L7, L14 |
 | LAC8 catalog equivalent (patent 713539) | 1.71300 | 53.93 | L8 |
 | BALK3 catalog equivalent (patent 518602) | 1.51835 | 60.23 | L9 |
 | E-LAF11 catalog equivalent (patent 757316) | 1.75692 | 31.62 | L11 |

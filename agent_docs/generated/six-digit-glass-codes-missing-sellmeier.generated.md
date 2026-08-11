@@ -10,11 +10,11 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **556** lenses scanned
-- **750** total code-only elements found
-- **269** elements in this report
-- **107** distinct lens files affected
+- **747** total code-only elements found
+- **266** elements in this report
+- **106** distinct lens files affected
 - **0** active unreviewed elements have no review-record hit or explicit disposition
-- **119** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
+- **116** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
 - **0** dispositions lack any review record
 
 ## Prioritized Unreviewed Queue
@@ -61,7 +61,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 781445 | 2 | 2 | patents/US4277149.pdf<br>patents/US4182550.pdf | All rows have review records |
 | 781446 | 2 | 2 | patents/JPA 1987244010-000000.pdf<br>patents/JP2004109559A.pdf | All rows have review records |
 | 804238 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
-| 805255 | 2 | 1 | patents/US5579171.pdf | All rows explicitly disposed |
 | 806418 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
 | 807316 | 2 | 2 | patents/US4764000.pdf<br>patents/US4871239.pdf | All rows have review records |
 | 813252 | 2 | 1 | patents/US3591257.pdf | All rows have review records |
@@ -182,7 +181,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 750504 | 1 | 1 | patents/US4258985.pdf | All rows have review records |
 | 754260 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | All rows have review records |
 | 755501 | 1 | 1 | patents/US4277149.pdf | All rows have review records |
-| 757316 | 1 | 1 | No patent number parsed from lens metadata | All rows explicitly disposed |
 | 760492 | 1 | 1 | patents/JP2015041012A.pdf | All rows explicitly disposed |
 | 765249 | 1 | 1 | patents/US20130314588A1.pdf | All rows explicitly disposed |
 | 767462 | 1 | 1 | patents/US3507558.pdf | All rows have review records |
@@ -649,8 +647,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L7 (Element 7) | 10 | `805255 — dense flint class (unmatched exact public coordinate)` | 1.80458 / 25.50 | No catalog entry | abbe | patents/US5579171.pdf | Explicit disposition in data |
-| L14 (Element 14) | 22 | `805255 — dense flint class (unmatched exact public coordinate)` | 1.80458 / 25.50 | No catalog entry | abbe | patents/US5579171.pdf | Explicit disposition in data |
 | L15 (Element 15) | 25 | `744450 — lanthanum-flint class (unmatched exact public coordinate)` | 1.74400 / 45.00 | No catalog entry | abbe | patents/US5579171.pdf | Explicit disposition in data |
 
 ### [NIKON AI NIKKOR 35mm f/2](../../src/lens-data/nikon/NikonAINikkor35mmf2.data.ts) - US 3,507,558
@@ -695,12 +691,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L4 (Element 4) | 7 | `Unmatched 595/356 light flint class` | 1.59507 / 35.60 | No catalog entry | abbe | patents/US4266860.pdf | Explicit disposition in data |
-
-### [NIKON DODOTTO 400mm f/8](../../src/lens-data/nikon/NikonDodotto400mmf8.data.ts)
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L2 (Element 2) | 2 | `Unmatched dense flint (757/316 code, patent nd=1.75692 νd=31.62)` | 1.75692 / 31.62 | No catalog entry | abbe | No patent number parsed from lens metadata | Explicit disposition in data |
 
 ### [NIKON FISHEYE-NIKKOR 6mm f/2.8](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf28.data.ts) - US 3,737,214
 

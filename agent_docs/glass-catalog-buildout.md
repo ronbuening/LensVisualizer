@@ -8,7 +8,14 @@ catalog equivalent. If neither path is available, the engine falls back to parti
 dPgF-corrected indices, or the legacy Abbe approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **511 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **515 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+
+The August 11, 2026 Phase 93 pass replaced the legacy cross-vendor aliases for Hikari J-SF1, J-SF6, J-SF10, and
+J-SF11 with their first-party nine-term power-series rows. Patent Table 4 for the Nikon AI AF Zoom-Nikkor 80-200mm
+f/2.8D ED supports assigning the compatible J-SF6 curve to L7 and L14, and JP H9-105860 Example 1 supports assigning
+Hikari E-LAF11 to the Nikon Dodotto 400 L2. The PC-E Micro-Nikkor 45mm L12 documentation was also corrected to reflect
+its already coefficient-backed E-LAF11 match. Global coverage is 5485/6129 strict and 5496/6129 trusted, with 314
+strict-complete and 319 trusted-complete lenses, zero coordinate mismatches, and zero active unreviewed six-digit rows.
 
 The August 11, 2026 Phase 92 pass revisited legacy six-digit coordinates against fourteen ignored local patent PDFs
 and HOYA's official 2026-07-07 obsolete-inclusive Zemax catalog. Eight recovered formula-3 rows — NBFD2, BACED1,

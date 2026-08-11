@@ -31,3 +31,9 @@ Local patent source: `patents/US7656591.pdf` (untracked local file).
 - Re-extracted the local PDF with `pdftotext -layout`.
 - The patent prescription publishes `nd` and `νd` for the glass rows, including L12 and the ED L21, but no `nC`, `nF`, `ng`, `θgF`, or `dPgF` rows were found in the extracted text.
 - No data-file spectral backfill was made from this pass.
+
+## 2026-08-11 — E-LAF11 catalog correction
+
+- Rechecked the retained Hikari catalog data and found E-LAF11 at `nd = 1.75692`, `νd = 31.591329`, code `757316`.
+- Replaced the stale unmatched disposition for L12 with an E-LAF11 catalog-equivalent label. The match supplies a
+  coefficient-backed curve while leaving the production supplier unidentified.

@@ -21,6 +21,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-08-11",
     type: "improvement",
+    summary: "Added first-party Hikari dense-flint curves and resolved three more Nikon glass surfaces",
+  },
+  {
+    date: "2026-08-11",
+    type: "improvement",
     summary: "Improved patent-backed color accuracy across 22 legacy glass surfaces",
   },
   {

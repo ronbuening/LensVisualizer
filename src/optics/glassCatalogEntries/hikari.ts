@@ -5,6 +5,91 @@
 import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const HIKARI_GLASS_ENTRIES: readonly GlassEntry[] = [
+  /* Phase 93: first-party SF rows replacing cross-vendor aliases. */
+  {
+    name: "J-SF1",
+    vendor: "Hikari",
+    powerSeries: [
+      [2.8477793, 0],
+      [-0.0114171302, 2],
+      [0, 4],
+      [0.0310426999, -2],
+      [0.00254456183, -4],
+      [-0.000460296278, -6],
+      [0.000102222014, -8],
+      [-0.0000101220546, -10],
+      [0.000000462539051, -12],
+    ],
+    nd: 1.71736,
+    vd: 29.57,
+    PgF: 0.6036,
+    code6: "717296",
+    source:
+      "Nikon/Hikari Optical Glass Data workbook, J-SF1 row; vendor nine-term power-series coefficients and d-line code.",
+  },
+  {
+    name: "J-SF6",
+    vendor: "Hikari",
+    powerSeries: [
+      [3.11993645, 0],
+      [-0.0126679163, 2],
+      [0, 4],
+      [0.0421698355, -2],
+      [0.00304768926, -4],
+      [-0.000420720196, -6],
+      [0.000106770582, -8],
+      [-0.0000109382035, -10],
+      [0.000000557077794, -12],
+    ],
+    nd: 1.80518,
+    vd: 25.45,
+    PgF: 0.6157,
+    code6: "805255",
+    source:
+      "Nikon/Hikari Optical Glass Data workbook, J-SF6 row; vendor nine-term power-series coefficients and d-line code.",
+  },
+  {
+    name: "J-SF10",
+    vendor: "Hikari",
+    powerSeries: [
+      [2.87916509, 0],
+      [-0.0119049122, 2],
+      [0, 4],
+      [0.0328054585, -2],
+      [0.00270047713, -4],
+      [-0.000476826023, -6],
+      [0.000107927203, -8],
+      [-0.0000107672748, -10],
+      [0.000000500986227, -12],
+    ],
+    nd: 1.72825,
+    vd: 28.38,
+    PgF: 0.6069,
+    code6: "728284",
+    source:
+      "Nikon/Hikari Optical Glass Data workbook, J-SF10 row; vendor nine-term power-series coefficients and d-line code.",
+  },
+  {
+    name: "J-SF11",
+    vendor: "Hikari",
+    powerSeries: [
+      [3.05304325, 0],
+      [-0.012733991, 2],
+      [0, 4],
+      [0.0399774262, -2],
+      [0.00316619134, -4],
+      [-0.000502824259, -6],
+      [0.000122491876, -8],
+      [-0.0000125325941, -10],
+      [0.000000619354223, -12],
+    ],
+    nd: 1.78472,
+    vd: 25.64,
+    PgF: 0.6157,
+    code6: "785256",
+    source:
+      "Nikon/Hikari Optical Glass Data workbook, J-SF11 row; vendor nine-term power-series coefficients and d-line code.",
+  },
   /* Phase 46: first-party additions used by the August 2026 lens batch. */
   {
     name: "J-BAF10",
