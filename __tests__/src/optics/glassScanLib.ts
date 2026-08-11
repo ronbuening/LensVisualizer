@@ -107,10 +107,9 @@ export function isExplicitlyUnmatched(glassString: string | undefined): boolean 
 const patentReferencePattern =
   /\b(?:Patent\s+)?((?:JPWO|WO|US|JP|DE|GB|FR|CH|CN)\s*\d(?:[\d,./-]|\s+(?=\d))*(?:\s*(?:A1|A|B2|B1|B|C\d?|U))?)/i;
 
-/** Extract a display-form patent number from a lens subtitle. */
-export function extractPatentNumber(subtitle: string | undefined): string | null {
-  const match = subtitle?.match(patentReferencePattern);
-  return match?.[1].replace(/\s+/g, " ").trim() ?? null;
+/** Extract a display-form patent number, preferring dedicated lens metadata over the legacy subtitle fallback. */
+export function extractPatentNumber(patentNumber: string | undefined, subtitle?: string): string | null {
+  return extractPatentReference(patentNumber ?? "") ?? extractPatentReference(subtitle ?? "");
 }
 
 function extractPatentReference(value: string): string | null {
@@ -136,8 +135,16 @@ export function patentSearchTokens(patentNumber: string | null): string[] {
   const noCountry = stripped.replace(/^(?:JPWO|WO|US|JP|DE|GB|FR|CH|CN)/, "");
   const tokens = [normalized, stripped, noCountry];
 
+  const japanesePublication = normalized.match(/^(?:JP)(\d{4})(\d{1,6})(A1|A|B2|B1|B)?$/);
+  if (japanesePublication) {
+    const [, year, serial, kind] = japanesePublication;
+    const publicationDigits = `${year}${serial.padStart(6, "0")}`;
+    const wrapperKinds = kind?.startsWith("A") ? ["A"] : kind?.startsWith("B") ? ["B"] : ["A", "B"];
+    for (const wrapperKind of wrapperKinds) tokens.push(`JP${wrapperKind}${publicationDigits}000000`);
+  }
+
   for (const token of [normalized, stripped]) {
-    const publicationMatch = token.match(/^(JP|CN)(\d{4})(\d{1,5})((?:A1|A|B2|B1|B|C\d?|U)?)$/);
+    const publicationMatch = token.match(/^(JP|CN)(\d{4})(\d{1,6})((?:A1|A|B2|B1|B|C\d?|U)?)$/);
     if (!publicationMatch) continue;
     const [, country, year, serial, kind] = publicationMatch;
     const padded = `${country}${year}${serial.padStart(6, "0")}${kind}`;
@@ -186,6 +193,15 @@ export function findLocalPatent(patentNumber: string | null, files: readonly str
     .map((file, fileIndex) => {
       const normalizedFile = normalizedFiles[fileIndex];
       let score = 0;
+
+      // The Japanese platform exports publication PDFs as an exact
+      // JPA/JPB + YYYY + six-digit serial + six-zero wrapper. Match that
+      // complete identity only; ordinary substring scoring would let a short
+      // serial collide with a longer publication number inside the wrapper.
+      if (/^JP[AB]\d{10}0{6}$/.test(normalizedFile)) {
+        return { file, score: tokens.includes(normalizedFile) ? 100 : 0 };
+      }
+
       for (const token of tokens) {
         if (normalizedFile === token) score = Math.max(score, 100);
         else if (normalizedFile.includes(token)) score = Math.max(score, 75);

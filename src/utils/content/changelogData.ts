@@ -19,6 +19,16 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-08-11",
+    type: "improvement",
+    summary: "Modeled Minolta STF apodization in bokeh and relative illumination with Beer–Lambert ray weighting",
+  },
+  {
+    date: "2026-08-11",
+    type: "lens",
+    summary: "Added six Minolta AF, Fish-Eye Rokkor, and apodized STF lens designs",
+  },
+  {
     date: "2026-08-10",
     type: "fix",
     summary: "Corrected Schneider and Nikon inventor identities and added Nittoh and Tamron lineages",

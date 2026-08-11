@@ -36,6 +36,8 @@ export interface TransverseFocusHit {
 export interface RealRayHit extends TransverseFocusHit {
   fraction: number;
   signedFraction: number;
+  /** Bulk-material intensity transmission carried by the traced ray. */
+  transmission?: number;
   y: number;
   u: number;
   intercept: number;
@@ -188,6 +190,7 @@ export function computeRealRayHit(
     coordinate: referenceY,
     fraction: Math.abs(signedFraction),
     signedFraction,
+    transmission: ray.transmission ?? 1,
     slope: ray.u,
     referenceZ,
     y: referenceY,

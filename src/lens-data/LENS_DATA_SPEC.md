@@ -235,6 +235,28 @@ patentAssignees: ["Canon Inc."],
 - Build metadata generation checks curated historical assignee aliases and legal-form start years. These checks flag
   impossible or non-canonical values for source review; they never infer or rewrite an assignee automatically.
 
+## Element Bulk Absorption
+
+Use optional `ElementData.absorptionCoefficientPerMm` only when the source publishes a bulk Beer-Lambert intensity
+coefficient for an absorbing optical element:
+
+```ts
+{
+  id: 5,
+  name: "L5",
+  // ...ordinary element fields...
+  absorptionCoefficientPerMm: 0.55,
+}
+```
+
+The coefficient is α in `I / I0 = exp(-α · distance)`, expressed in inverse millimeters. Exact tracing measures the
+three-dimensional path length through the element. Bokeh density and relative illumination consume the resulting ray
+intensity; clear-aperture transmission remains a separate geometric-clipping metric. The coefficient is treated as a
+broadband scalar, so do not author it from a T-number, coating loss, or an unspecified qualitative ND description.
+Validation requires a finite non-negative number. Omit the field for ordinary transparent glass.
+Folded and generalized optical paths currently reject authored absorption because repeated or reverse encounters need
+explicit incident-side medium accounting; leave the field unset on those prescriptions until that support is added.
+
 ## Projection Metadata
 
 Most lenses should omit `projection`; they default to rectilinear behavior, and `focalLengthDesign` is expected to be close to the computed Gaussian EFL. Add projection metadata for non-rectilinear lenses when the published focal length is the imaging/projection constant used for f-number and image-circle descriptions. For unusual rectilinear ultrawides, projection metadata may also declare the published coverage when the paraxial chief-ray estimate is known to undercount the design.

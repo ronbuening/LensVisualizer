@@ -120,7 +120,7 @@ describe("glass relabel by lens scan", () => {
     const rows: RelabelRow[] = [];
 
     walkLensSurfaces(modules, ({ filePath, data, L }) => {
-      const patentNumber = extractPatentNumber(data.subtitle);
+      const patentNumber = extractPatentNumber(data.patentNumber, data.subtitle);
       const elementById = new Map(L.elements.map((element) => [element.id, element]));
 
       for (let i = 0; i < L.S.length; i++) {

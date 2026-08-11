@@ -98,6 +98,19 @@ describe("glass catalog", () => {
     expect(evaluateCatalogAbbeNumber(entry!)).toBeCloseTo(26.58, 2);
   });
 
+  it("FD9 reproduces the HOYA catalog lines and resolves its 654337 code", () => {
+    const entry = resolveGlass("FD9 (HOYA)");
+    expect(entry?.name).toBe("FD9");
+    expect(entry?.code6).toBe("654337");
+    expect(evaluateSellmeier(entry!, LINE_NM.C)).toBeCloseTo(1.648789162, 8);
+    expect(evaluateSellmeier(entry!, LINE_NM.d)).toBeCloseTo(1.654461781, 8);
+    expect(evaluateSellmeier(entry!, LINE_NM.F)).toBeCloseTo(1.668199592, 8);
+    expect(evaluateSellmeier(entry!, LINE_NM.g)).toBeCloseTo(1.679614451, 8);
+    expect(evaluateCatalogAbbeNumber(entry!)).toBeCloseTo(33.7170166, 6);
+    expect(decodeCode6(entry!.code6!)).toEqual({ nd: 1.654, vd: 33.7 });
+    expect(resolveGlass("654337")?.name).toBe("FD9");
+  });
+
   it("L-TIM28P reproduces the published OHARA line indices and Abbe number", () => {
     const entry = resolveGlass("L-TIM28P (OHARA)");
     expect(entry?.name).toBe("L-TIM28P");

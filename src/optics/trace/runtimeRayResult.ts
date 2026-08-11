@@ -4,8 +4,9 @@
  * Preserves y/u and x/y/ux/uy result contracts while exact tracing records richer hit diagnostics internally.
  */
 
-import type { RayTraceResult } from "../../types/optics.js";
+import type { RayTraceResult, RuntimeLens } from "../../types/optics.js";
 import type { Vec3 } from "../types.js";
+import { bulkTransmissionForTrace } from "./bulkAbsorption.js";
 import type { EngineTraceResult } from "./types.js";
 
 /** Runtime-compatible skew ray result using image-plane coordinates and slopes. */
@@ -15,6 +16,8 @@ export interface RuntimeSkewRayTraceResult {
   ux: number;
   uy: number;
   clipped: boolean;
+  /** Bulk-material intensity transmission accumulated along the traced path. */
+  transmission: number;
 }
 
 /**
@@ -29,6 +32,7 @@ export function engineTraceToRuntimeRayResult(
   result: EngineTraceResult,
   leadPoint: [number, number],
   ghost: boolean,
+  L: RuntimeLens,
 ): RayTraceResult {
   const pts: number[][] = [leadPoint];
   const ghostPts: number[][] = [];
@@ -40,6 +44,7 @@ export function engineTraceToRuntimeRayResult(
     y: result.y,
     u: result.uy,
     clipped: result.status !== "ok",
+    transmission: bulkTransmissionForTrace(L, result.hits),
     reachedImagePlane: result.reachedImagePlane,
     diagnostics: result.diagnostics,
   };
@@ -51,13 +56,14 @@ export function engineTraceToRuntimeRayResult(
  * @param result - engine exact trace result
  * @returns final x/y coordinates, slopes, and clipping state
  */
-export function engineTraceToRuntimeSkewResult(result: EngineTraceResult): RuntimeSkewRayTraceResult {
+export function engineTraceToRuntimeSkewResult(result: EngineTraceResult, L: RuntimeLens): RuntimeSkewRayTraceResult {
   return {
     x: result.x,
     y: result.y,
     ux: result.ux,
     uy: result.uy,
     clipped: result.status !== "ok",
+    transmission: bulkTransmissionForTrace(L, result.hits),
   };
 }
 

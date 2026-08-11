@@ -69,7 +69,7 @@ describe("catalog-mismatch scan", () => {
     let eLineCatalogResolved = 0;
 
     totalLenses = walkLensSurfaces(modules, ({ filePath, data, L }) => {
-      const patentNumber = extractPatentNumber(data.subtitle);
+      const patentNumber = extractPatentNumber(data.patentNumber, data.subtitle);
       const elementById = new Map(L.elements.map((e) => [e.id, e]));
 
       for (let i = 0; i < L.S.length; i++) {

@@ -66,6 +66,39 @@ describe("validateLensData", () => {
     expect(validateLensData(makeValid())).toEqual([]);
   });
 
+  it("accepts a non-negative bulk absorption coefficient and rejects invalid values", () => {
+    const valid = makeValid();
+    (valid.elements as Record<string, unknown>[])[0].absorptionCoefficientPerMm = 0.55;
+    expect(validateLensData(valid)).toEqual([]);
+
+    for (const absorptionCoefficientPerMm of [-0.1, Number.NaN, "0.55"]) {
+      const invalid = makeValid();
+      (invalid.elements as Record<string, unknown>[])[0].absorptionCoefficientPerMm = absorptionCoefficientPerMm;
+      expect(validateLensData(invalid).some((error) => error.includes("absorptionCoefficientPerMm"))).toBe(true);
+    }
+  });
+
+  it("rejects authored bulk absorption on folded or generalized optical paths", () => {
+    for (const generalizedOverride of [
+      { opticalPath: { mode: "auto" } },
+      {
+        surfaces: [
+          { label: "1", R: 100, d: 5, nd: 1.5, elemId: 1, sd: 10, interaction: { type: "reflect" } },
+          { label: "STO", R: 1e15, d: 2, nd: 1.0, elemId: 0, sd: 8 },
+          { label: "2", R: -100, d: 50, nd: 1.0, elemId: 0, sd: 10 },
+        ],
+      },
+    ]) {
+      const invalid = makeValid(generalizedOverride);
+      (invalid.elements as Record<string, unknown>[])[0].absorptionCoefficientPerMm = 0.55;
+      expect(
+        validateLensData(invalid).some((error) =>
+          error.includes("absorptionCoefficientPerMm is not supported for folded or generalized optical paths"),
+        ),
+      ).toBe(true);
+    }
+  });
+
   it("rejects keys that are not URL- and cfg-safe", () => {
     for (const key of ["canon-ef-24mm-f1.4-l-usm", "Test-Lens", "double--hyphen", "-leading", "trailing-"]) {
       const errors = validateLensData(makeValid({ key }));

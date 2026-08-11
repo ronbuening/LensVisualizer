@@ -301,7 +301,7 @@ export interface BokehPoint {
   pupilRadius: number;
   /** Pupil azimuth in radians — preserved for future aperture blade masking. */
   pupilAzimuth: number;
-  /** Equal-area weighting from the circular pupil sample. */
+  /** Equal-area pupil weighting multiplied by the traced bulk-material transmission. */
   weight: number;
 }
 
@@ -312,6 +312,7 @@ export interface BokehPupilSample {
   yFraction: number;
   pupilRadius: number;
   pupilAzimuth: number;
+  /** Equal-area geometric pupil weight; optical absorption is deliberately excluded. */
   weight: number;
 }
 

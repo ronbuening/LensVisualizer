@@ -1,7 +1,8 @@
 import { describe, it, expect } from "vitest";
 import { computeVignettingCurve as computeVignettingCurveBase } from "../../../src/optics/vignetteAnalysis.js";
 import { computeAnalysisFieldGeometryAtState, doLayout, type FieldGeometryState } from "../../../src/optics/optics.js";
-import { apertureAt, sharedNikkorZ70200, sharedSonnar50f15 } from "./testLensFixtures.js";
+import MinoltaSTFRaw from "../../../src/lens-data/minolta/MinoltaSTF135mmf28T45.data.js";
+import { apertureAt, build, sharedNikkorZ70200, sharedSonnar50f15 } from "./testLensFixtures.js";
 import type { RuntimeLens, LensData } from "../../../src/types/optics.js";
 
 /* ── Helpers ── */
@@ -98,6 +99,36 @@ describe("computeVignettingCurve", () => {
       expect(isFinite(s.geometricTransmission)).toBe(true);
       expect(isFinite(s.relativeIllumination)).toBe(true);
     }
+  });
+
+  it("applies the Minolta STF apodizer to relative illumination without changing geometric transmission", () => {
+    const stf = build(MinoltaSTFRaw);
+    const transparent = build({
+      ...MinoltaSTFRaw,
+      elements: MinoltaSTFRaw.elements.map((element) =>
+        element.id === 5 ? { ...element, absorptionCoefficientPerMm: undefined } : element,
+      ),
+    });
+
+    const curveFor = (L: RuntimeLens) => {
+      const { z } = doLayout(0, 0, L);
+      const { currentPhysStopSD, currentEPSD } = apertureAt(L, 0, 0);
+      return computeVignettingCurve(L, z, 0, 0, currentEPSD, currentPhysStopSD);
+    };
+    const absorbed = curveFor(stf);
+    const clear = curveFor(transparent);
+
+    expect(absorbed).toHaveLength(clear.length);
+    for (let i = 0; i < absorbed.length; i++) {
+      expect(absorbed[i].geometricTransmission).toBeCloseTo(clear[i].geometricTransmission, 12);
+    }
+    expect(
+      Math.max(
+        ...absorbed
+          .slice(1)
+          .map((sample, index) => Math.abs(sample.relativeIllumination - clear[index + 1].relativeIllumination)),
+      ),
+    ).toBeGreaterThan(1e-3);
   });
 
   it("returns finite non-negative samples in exact mode when Sonnar rays survive", () => {

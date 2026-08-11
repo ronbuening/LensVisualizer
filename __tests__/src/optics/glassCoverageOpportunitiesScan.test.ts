@@ -263,10 +263,30 @@ function parseTierAProprietaryRows(patentFiles: readonly string[]): ProprietaryO
 }
 
 describe("glass coverage opportunities scan", () => {
+  it("prefers explicit patent metadata when a subtitle uses Japanese-era notation", () => {
+    expect(extractPatentNumber("JP1987-244010 A", "JP S62-244010 A Example 2")).toBe("JP1987-244010 A");
+    expect(extractPatentNumber(undefined, "US 4,123,456 A Example 1")).toBe("US 4,123,456 A");
+  });
+
   it("matches spaced legacy patent numbers without substring collisions", () => {
     expect(patentSearchTokens("DE 1 228 820 B")).toEqual(["DE1228820B", "DE1228820", "1228820"]);
     expect(findLocalPatent("DE 1 228 820 B", ["20260118637.pdf", "DE_1228820_B.pdf"])).toEqual({
       path: "patents/DE_1228820_B.pdf",
+      status: "Matched untracked local patent PDF",
+    });
+  });
+
+  it("matches exact JPA and JPB export wrappers without short-serial collisions", () => {
+    expect(patentSearchTokens("JP1987-244010 A")).toContain("JPA1987244010000000");
+    expect(findLocalPatent("JP1987-244010 A", ["JPA 1987004010-000000.pdf", "JPA 1987244010-000000.pdf"])).toEqual({
+      path: "patents/JPA 1987244010-000000.pdf",
+      status: "Matched untracked local patent PDF",
+    });
+    expect(findLocalPatent("JP1987-4010 A", ["JPA 1987244010-000000.pdf"]).path).toBeNull();
+
+    expect(patentSearchTokens("JP1980-024081 B2")).toContain("JPB1980024081000000");
+    expect(findLocalPatent("JP1980-024081 B2", ["JPA 1980024081-000000.pdf", "JPB 1980024081-000000.pdf"])).toEqual({
+      path: "patents/JPB 1980024081-000000.pdf",
       status: "Matched untracked local patent PDF",
     });
   });
@@ -308,7 +328,7 @@ describe("glass coverage opportunities scan", () => {
 
     totalLenses = walkLensSurfaces(modules, ({ filePath, data, L }) => {
       const visible = data.visible !== false;
-      const patentNumber = extractPatentNumber(data.subtitle);
+      const patentNumber = extractPatentNumber(data.patentNumber, data.subtitle);
       const localPatent = findLocalPatent(patentNumber, patentFiles);
       if (visible) visibleLenses++;
 

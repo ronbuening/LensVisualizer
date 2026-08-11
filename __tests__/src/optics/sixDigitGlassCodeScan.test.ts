@@ -424,7 +424,7 @@ describe("six-digit glass-code scan", () => {
 
     totalLenses = walkLensSurfaces(modules, ({ filePath, data, L }) => {
       const visible = data.visible !== false;
-      const patentNumber = extractPatentNumber(data.subtitle);
+      const patentNumber = extractPatentNumber(data.patentNumber, data.subtitle);
       const localPatent = findLocalPatent(patentNumber, patentFiles);
       const lensNonAirSurfaces = L.S.filter((surface) => surface.nd !== 1.0).length;
       const lensSellmeierSurfaces = L.S.filter(
