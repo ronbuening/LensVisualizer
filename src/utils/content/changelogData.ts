@@ -21,32 +21,7 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-08-11",
     type: "improvement",
-    summary: "Recovered four more patent-verified native e-line glass curves",
-  },
-  {
-    date: "2026-08-11",
-    type: "improvement",
-    summary: "Added two Hikari curves and upgraded 11 more patent-backed glass surfaces",
-  },
-  {
-    date: "2026-08-11",
-    type: "improvement",
-    summary: "Added first-party Hikari dense-flint curves and resolved three more Nikon glass surfaces",
-  },
-  {
-    date: "2026-08-11",
-    type: "improvement",
-    summary: "Improved patent-backed color accuracy across 22 legacy glass surfaces",
-  },
-  {
-    date: "2026-08-11",
-    type: "improvement",
-    summary: "Completed coefficient-backed dispersion for seven more patent-derived lenses",
-  },
-  {
-    date: "2026-08-11",
-    type: "improvement",
-    summary: "Improved coefficient-backed dispersion across five Minolta glass surfaces",
+    summary: "Added 14 verified glass curves, upgrading 53 surfaces and completing 17 lenses",
   },
   {
     date: "2026-08-11",
