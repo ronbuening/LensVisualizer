@@ -133,6 +133,10 @@ All plan phases (0–8) are committed. Final numbers vs the pre-branch baseline:
 - All protected regression anchors intact (exact-trace golden values, datasheet anchors, mirror/folded suite,
   generated report outputs byte-identical); docDrift and testConventions green throughout.
 - No changelog entry: internal test/tooling work is out of scope per `agent_docs/changelog.md`.
+- Post-completion follow-up: the env-gated Z 24-120 close-focus solver (the suite's one skipped test) was
+  removed entirely at the user's request. Its derivation provenance note in
+  `src/lens-data/nikon/NikonNikkorZ24120mmf4S.data.ts` now points at git history, where the solver remains
+  recoverable if the prescription is ever revised. The suite reports 2,461 passed / 0 skipped.
 
 ## Verification
 
