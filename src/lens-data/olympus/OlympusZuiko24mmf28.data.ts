@@ -121,7 +121,7 @@ const LENS_DATA = {
       nd: 1.7618,
       vd: 27.1,
       fl: 13.827,
-      glass: "Unmatched (dense flint 762/271; current SF14-family catalogs are nd≈1.76182, vd≈26.5–26.6)",
+      glass: "PBH25 (OHARA catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Front member of the cemented negative doublet; standalone in-air power is positive, but its in-situ role is set by the cemented interface.",
       cemented: "L5",

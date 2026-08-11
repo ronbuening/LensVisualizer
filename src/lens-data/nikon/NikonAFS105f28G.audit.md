@@ -1,6 +1,6 @@
 # Audit Log - Nikon AF-S VR Micro-NIKKOR 105mm f/2.8G IF-ED
 
-Patent: US 7,218,457 B2, Example 4 / Table 4
+Patent: US 7,218,457 B2, Example 3 / Table 3
 
 ## 2026-05-20 - Catalog-mismatch queue audit
 
@@ -30,3 +30,12 @@ Patent: US 7,218,457 B2, Example 4 / Table 4
 ### Analysis sync
 
 - Updated affected element descriptions, glass table rows, and the catalog-identification note.
+
+## 2026-08-11 - S-TIL6 catalog recovery
+
+- Rendered local `patents/US7218457.pdf` page 24 and visually confirmed Example 3 / Table 3 surface 11 at
+  `nd = 1.531720`, `vd = 48.87`.
+- The recovered OHARA S-TIL6 polynomial carries code 532489 and differs by only `-0.000003` in d-line index and
+  `-0.029` in Abbe number.
+- Relabeled L6 as an S-TIL6 catalog equivalent while leaving Nikon's production supplier unspecified. No prescription
+  geometry, focusing data, or aperture data changed.

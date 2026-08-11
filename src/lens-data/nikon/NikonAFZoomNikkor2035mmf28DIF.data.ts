@@ -251,7 +251,7 @@ const LENS_DATA = {
       nd: 1.86074,
       vd: 23,
       fl: -44.911826,
-      glass: "Unmatched (patent 861230; no compatible public catalog row)",
+      glass: "J-SFH2 catalog equivalent (production supplier not established; patent 861230)",
       apd: false,
       cemented: "L44",
     },

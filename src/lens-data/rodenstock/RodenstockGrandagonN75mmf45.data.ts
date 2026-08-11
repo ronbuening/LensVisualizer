@@ -89,8 +89,8 @@ const LENS_DATA = {
       nd: 1.56,
       vd: 47.1,
       fl: -26.6,
-      glass: "Unmatched (short-flint / barium-crown boundary; patent ne=1.5629, ve=46.88)",
-      role: "Trailing negative element of the front cemented triplet; catalog identity unresolved.",
+      glass: "FEL3 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Trailing negative element of the front cemented triplet; FEL3 reproduces the patent e-line coordinate.",
       cemented: "T1",
     },
     {

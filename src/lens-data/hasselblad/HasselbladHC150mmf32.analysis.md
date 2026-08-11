@@ -71,7 +71,7 @@ L4 is the rearmost element of G1 and the second ED element. Together with L2, it
 
 ### L5 — Biconcave Negative (cemented to L6)
 
-$N_e = 1.67380$, $\nu_d = 57.2$. Glass: **670572 lanthanum crown** — d-line conversion estimate with no exact public coefficient-backed catalog match. $f = -36.5$ mm.
+$N_e = 1.67380$, $\nu_d = 57.2$. Glass: **S-LAL52 (OHARA catalog equivalent)** — production supplier unspecified. $f = -36.5$ mm.
 
 L5 is the first element of the cemented focusing doublet G2. Its biconcave form ($R_1 = -1185.3$ mm, $R_2 = +25.0$ mm) places almost all of the diverging power on the rear surface, which serves as the cemented junction with L6. The lanthanum-crown-class glass ($\nu_d = 57.2$) combined with L6's higher-dispersion lanthanum crown creates an achromatic cemented pair with net negative power ($f_2 = -72.8$ mm). The near-flat front surface ($R = -1185$ mm) minimizes the sensitivity of the design to positional tolerances during focusing — a critical consideration since this group translates axially.
 
@@ -110,7 +110,7 @@ The design uses 6 distinct glass types across 9 elements. Two elements (L2, L4) 
 | L1, L9 | 1.77621 | 49.6 | S-LAH66 | OHARA | Lanthanum crown; high-$n$ meniscus for power and Petzval control |
 | L2, L4 | 1.49845 | 81.6 | S-FPL51 | OHARA | ED fluorophosphate crown; primary chromatic corrector |
 | L3 | 1.69416 | 31.2 | E-FD8 (689312) | HOYA | Achromatizing flint partner to L2 in G1 |
-| L5 | 1.67380 | 57.2 | 670572 lanthanum crown | Uncertain | Crown partner in G2 cemented doublet |
+| L5 | 1.67380 | 57.2 | S-LAL52 catalog equivalent | OHARA coefficients; supplier unspecified | Crown partner in G2 cemented doublet |
 | L6 | 1.83932 | 37.2 | S-LAH60 | OHARA | High-$n$ lanthanum crown in G2 cemented doublet |
 | L7 | 1.56433 | 45.3 | LLF4 catalog equivalent (561453) | SUMITA coefficients; supplier unspecified | Biconvex positive; main relay power in G3 |
 | L8 | 1.72538 | 34.7 | S-NBH8 (≡ N-KZFS8) | OHARA | KZFS-class; anomalous $\Delta P_{gF}$ for secondary spectrum correction |
@@ -119,7 +119,7 @@ The chromatic strategy is layered. Primary achromatization in G1 uses the classi
 
 The patent's Condition 6 ($N_e + 0.015\nu_d > 2.58$) selects specifically for the ED glasses at L2 and L4 — it defines a curve in the $N_e$–$\nu_d$ diagram that excludes ordinary crowns and accepts only fluorophosphate or fluorite-class materials. S-FPL51 satisfies this comfortably at $1.498 + 0.015 \times 81.6 = 2.722$.
 
-L5 remains the unresolved 670572 code because its patent e-line coordinate has no coefficient-backed identity within tight tolerance. L7 is now resolved to the SUMITA LLF4 optical equivalent: the recovered vendor polynomial evaluates to $N_e = 1.56433$, exactly reproducing the patent line-index anchor. This does not establish that SUMITA supplied the production melt. L3 uses the coefficient-backed HOYA E-FD8 entry because the stored d-line conversion matches the 689312 code family.
+L5 now uses the discontinued OHARA S-LAL52 curve as a catalog equivalent. Its vendor polynomial evaluates to $N_e = 1.67279$ and $\nu_e = 57.08$, safely reproducing the patent's independently published $1.67380 / 57.2$ e-line coordinate without asserting a production supplier. L7 uses the SUMITA LLF4 optical equivalent: the recovered vendor polynomial evaluates to $N_e = 1.56433$, exactly reproducing that patent line-index anchor. L3 uses the coefficient-backed HOYA E-FD8 entry because the stored d-line conversion matches the 689312 code family.
 
 ## Focus Mechanism
 

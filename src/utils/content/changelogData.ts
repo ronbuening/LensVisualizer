@@ -21,6 +21,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-08-11",
     type: "improvement",
+    summary: "Completed coefficient-backed dispersion for seven more patent-derived lenses",
+  },
+  {
+    date: "2026-08-11",
+    type: "improvement",
     summary: "Improved coefficient-backed dispersion across five Minolta glass surfaces",
   },
   {

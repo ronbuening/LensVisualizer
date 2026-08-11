@@ -112,7 +112,7 @@ L6:
 | Property | Value |
 |----------|-------|
 | Shape | Biconcave (R₁ = −173.39, junction R₂ = +26.39) |
-| Glass | nd = 1.5317, νd = 48.87 → No exact catalog match; likely proprietary |
+| Glass | nd = 1.53172, νd = 48.87 → S-TIL6 catalog equivalent; supplier unspecified |
 | Center thickness | 1.252 mm |
 | Focal length | −43.0 mm |
 
@@ -268,7 +268,7 @@ The cemented doublet construction of the VR group is specifically called out in 
 | L3 | 1.7174 | 29.52 | S-TIH1 (OHARA) | Heavy flint | Normal |
 | L4 | 1.7725 | 49.61 | S-LAH66 (OHARA) | Lanthanum crown | Normal |
 | L5 | 1.5827 | 46.43 | BAF3 (Schott) | Barium flint | Normal |
-| L6 | 1.5317 | 48.87 | *No exact match* | Crown (proprietary) | Unknown |
+| L6 | 1.5317 | 48.87 | S-TIL6 | Light flint / crown-boundary glass | OHARA equivalent; supplier unspecified |
 | L7 | 1.8052 | 25.43 | S-TIH6 (OHARA) | Dense flint | Normal |
 | **L8** | **1.4970** | **81.61** | **S-FPL51 (OHARA)** | **Fluorophosphate ED** | **Anomalous** |
 | L9 | 1.8467 | 23.78 | S-TIH53W (OHARA) / SF57 (SCHOTT) | Very dense flint | Normal |
@@ -278,7 +278,7 @@ The cemented doublet construction of the VR group is specifically called out in 
 | L13 | 1.5182 | 58.96 | S-NSL3 (OHARA) | Normal crown | Normal |
 | L14 | 1.7859 | 44.20 | S-LAH51 (OHARA) | Lanthanum crown | Normal |
 
-Glass identifications are inferred from nd/νd matching against published catalogs (OHARA, SCHOTT, HOYA, CDGM). Patent prescriptions typically use nd/νd values rounded from catalog specifications, so matches within Δnd < 0.0001 and Δνd < 0.1 are considered positive identifications. L6 (nd = 1.5317, νd = 48.87) has no close match in current public catalogs and may represent a proprietary formulation, discontinued glass, or Nikon-specified melt. L11 (nd = 1.8061, νd = 40.94) matches OHARA S-LAH53 within rounding tolerance.
+Glass identifications are inferred from nd/νd matching against published catalogs (OHARA, SCHOTT, HOYA, CDGM). Patent prescriptions typically use nd/νd values rounded from catalog specifications, so matches within Δnd < 0.0001 and Δνd < 0.1 are considered positive identifications. L6 matches the recovered OHARA S-TIL6 row within $\Delta n_d = -0.000003$ and $\Delta\nu_d = -0.029$; this identifies a catalog dispersion equivalent without establishing Nikon's production supplier. L11 (nd = 1.8061, νd = 40.94) matches OHARA S-LAH53 within rounding tolerance.
 
 ### 8.2 Chromatic Correction Strategy
 

@@ -63,3 +63,12 @@ Figure / SD check:
   reproducing the patent's independent L7 line-index anchor.
 - Relabeled L7 as an LLF4 optical equivalent while leaving the production supplier unspecified.
 - L5 (`670572`) remains unresolved; no prescription, focus, or semi-diameter values changed.
+
+## 2026-08-11 - S-LAL52 e-line recovery
+
+- Rendered local `patents/US20020075570A1.pdf` page 14 and visually confirmed Embodiment 1 / Table 1 surface 9 at
+  `Ne = 1.67380`, `vd = 57.2`.
+- The discontinued OHARA S-LAL52 polynomial evaluates to `Ne = 1.67279`, `ve = 57.08`, independently reproducing the
+  patent's native e-line coordinate inside the project's compatibility window.
+- Relabeled L5 as an S-LAL52 catalog equivalent while leaving the production supplier unspecified. No geometry or
+  focus model changed.

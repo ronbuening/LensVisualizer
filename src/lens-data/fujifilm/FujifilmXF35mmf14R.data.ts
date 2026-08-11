@@ -110,7 +110,7 @@ const LENS_DATA = {
       nd: 1.5176,
       vd: 63.5,
       fl: -59.0,
-      glass: "BSC7 family (glass-molded, proprietary PGM)",
+      glass: "D-K59 (CDGM catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Aspheric aberration corrector — glass-molded biconcave singlet corrects spherical aberration before triplet",
     },

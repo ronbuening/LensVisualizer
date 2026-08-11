@@ -180,11 +180,11 @@ L21 is the first element of the focus group, positioned immediately behind the s
 | nd / νd | 1.59282 / 68.62 |
 | Thick-lens fl | +32.6 mm (scaled) |
 | θgF / ΔθgF | 0.5441 / +0.019 (from patent Table 2) |
-| Glass ID | Fluorophosphate crown with anomalous partial dispersion. See discussion below. |
+| Glass ID | HOYA FCD515 catalog equivalent; production supplier unspecified |
 
 L22 is the strongest positive element in Gr2 and the second ED element. It is the only element in the lens for which the patent explicitly provides θgF data (condition 6), confirming it has significant positive anomalous partial dispersion: ΔθgF = +0.019, well above the 0.009 minimum required by condition (6).
 
-**Glass identification — a note of caution.** The patent values nd = 1.59282, νd = 68.62 do not closely match any single glass in the OHARA 2018 catalog. The nearest OHARA glass is S-FPM2 (nd = 1.59522, νd = 67.74), but the residuals are substantial: Δnd = 0.0024, Δνd = 0.88. Notably, S-FPM2 shares an essentially identical θgF value (0.5442 vs. the patent's 0.5441), indicating both glasses belong to the same fluorophosphate compositional family. The discrepancy in nd and νd may indicate: (a) a glass from a different supplier (HOYA, HIKARI, or Sumita) in the fluorophosphate crown region; (b) a variant melt or development composition not listed in the standard OHARA catalog; or (c) deliberately adjusted refractive data in the patent to obscure the exact glass choice. This identification is classified as *family-level only* (fluorophosphate crown) rather than exact catalog match.
+**Glass identification.** The patent values $n_d = 1.59282$, $\nu_d = 68.62$, and $\theta_{gF} = 0.5441$ reproduce HOYA FCD515's coefficient-backed $1.59282 / 68.63 / 0.5441$ triple to the published precision. FCD515 is therefore used as the catalog dispersion equivalent. The patent does not name a manufacturer, so this is not a claim that HOYA supplied the production melt.
 
 The identical nd/νd pair (1.59282/68.62) appears in all four patent examples at this same optical position, confirming it is a deliberately selected material, not a design placeholder.
 

@@ -126,7 +126,7 @@ The patent supplies only $n_d$ and $\nu_d$; it does not name glass manufacturers
 | L2      |       1.6228 |           57.1 | S-BSM10 (OHARA), 1.62280 / 57.05                                            | Direct equivalent                                            |
 | L3      |       1.7130 |           54.0 | S-LAL8 (OHARA), 1.71300 / 53.87                                             | Direct equivalent within patent rounding                     |
 | L4      |       1.6141 |           55.0 | S-BSM9 (OHARA), 1.61405 / 54.99                                             | Direct equivalent; legacy/non-recommended type               |
-| L5a     |       1.7618 |           27.1 | Unmatched 762/271; current SF14 family is approximately 1.76182 / 26.5-26.6 | Index match, dispersion mismatch; no secure catalog identity |
+| L5a     |       1.7618 |           27.1 | PBH25 (OHARA), 1.761797 / 27.1077                                          | Exact 762271 catalog equivalent; supplier unspecified        |
 | L5b     |       1.8052 |           25.4 | S-TIH6 (OHARA), 1.80518 / 25.42                                             | Direct equivalent                                            |
 | L6      |       1.6180 |           63.4 | S-PHM52 (OHARA), 1.61800 / 63.33                                            | Direct equivalent                                            |
 | L7      |       1.6180 |           63.4 | S-PHM52 (OHARA), 1.61800 / 63.33                                            | Direct equivalent                                            |
@@ -136,6 +136,8 @@ Three points follow from this palette:
 1. The design does not rely on an ED or fluorite-equivalent material identifiable from the patent data. No apochromatic claim is supportable from $n_d$ and $\nu_d$ alone.
 2. The negative cemented group uses two high-index, high-dispersion glasses. Its cemented interface is therefore important for monochromatic correction as well as for system-level chromatic balance; it is not a conventional low-index-crown/high-index-flint achromat.
 3. The two final positive elements use the lowest-dispersion glass in the prescription, giving the rear group useful longitudinal-color leverage against L1 and L5.
+
+The recovered discontinued OHARA PBH25 row resolves L5a without relying on the lower-Abbe SF14 family: its coefficient-backed $1.761797 / 27.1077$ coordinate carries the same 762271 code as the patent pair. OHARA is used as the optical equivalent only; the patent does not disclose the production supplier.
 
 ## Focus Mechanism
 

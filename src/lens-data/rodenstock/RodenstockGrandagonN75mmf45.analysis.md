@@ -63,11 +63,11 @@ The rear surface, `r2 = 18.97 mm`, carries most of the element's negative power.
 
 `L2: nd = 1.67270, νd = 32.21. Glass: SF5 (Schott legacy dense flint). f = −97.9 mm.`
 `L3: nd = 1.62229, νd = 53.27. Glass: SSK2 / N-SSK2 class (Schott dense crown). f = +15.7 mm.`
-`L4: nd ≈ 1.5600, νd ≈ 47.1. Glass: Unmatched short-flint / barium-crown boundary glass. f = −26.6 mm.`
+`L4: nd ≈ 1.5600, νd ≈ 47.1. Glass: FEL3 (HOYA catalog equivalent; supplier unspecified). f = −26.6 mm.`
 
 The front triplet is the first strong positive group. It is cemented, so the two steep internal surfaces work as glass-to-glass refracting interfaces rather than as air-glass surfaces. This keeps the group compact and avoids placing highly curved air spaces close to the stop.
 
-L3 is the power core of the group. Its biconvex form, `r4 = 17.22 mm` and `r5 = −16.73 mm`, gives the group most of its positive convergence. L2 and L4 provide negative flanking power and chromatic balancing. L2 is an ordinary dense flint. L4 is the only glass that does not resolve cleanly to a public catalog name; its patent values, `n_e = 1.5629` and `ν_e = 46.88`, place it near historical short-flint and barium-crown catalog positions but not on an exact public Schott, Ohara, Hoya, Hikari, CDGM, or Sumita match available for this review.
+L3 is the power core of the group. Its biconvex form, `r4 = 17.22 mm` and `r5 = −16.73 mm`, gives the group most of its positive convergence. L2 and L4 provide negative flanking power and chromatic balancing. L2 is an ordinary dense flint. For L4, HOYA FEL3's coefficient-backed polynomial evaluates to $n_e = 1.56295$ and $\nu_e = 46.79$, independently reproducing the patent's $1.5629 / 46.88$ e-line pair. FEL3 is used as the optical equivalent; the historical production supplier remains unspecified.
 
 The resulting front-triplet focal length is +50.9 mm in the d-line data model. This positive group is deliberately weaker than the rear triplet in the same model, contributing to the residual asymmetry needed for infinity-conjugate correction.
 
@@ -98,7 +98,7 @@ The patent publishes e-line optical constants. The data file stores d-line value
 | L1 | 1.4662 / 65.56 | 1.46450 / 65.77 | FK3, Schott | High |
 | L2 | 1.6776 / 31.97 | 1.67270 / 32.21 | SF5, Schott | High |
 | L3 | 1.6251 / 52.86 | 1.62229 / 53.27 | SSK2 / N-SSK2 class, Schott | High |
-| L4 | 1.5629 / 46.88 | ≈1.5600 / ≈47.1 | Unmatched short-flint / barium-crown boundary | Low |
+| L4 | 1.5629 / 46.88 | 1.56295 / 46.79 at e line | FEL3, HOYA catalog equivalent | High; supplier unspecified |
 | L5 | 1.5855 / 59.19 | 1.58313 / 59.3 | S-BAL42, OHARA equivalent | High |
 | L6 | 1.6113 / 58.65 | 1.60881 / 58.9 | SK3, SUMITA catalog equivalent | High |
 | L7 | 1.6700 / 48.13 | 1.66672 / 48.4 | BaF11, Schott legacy | High |

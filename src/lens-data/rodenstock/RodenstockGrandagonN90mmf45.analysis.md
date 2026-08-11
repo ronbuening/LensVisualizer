@@ -57,9 +57,9 @@ L3 is the main positive element of the front triplet. Its nearly opposed curvatu
 
 ### L4 — Biconcave Negative, Front Triplet Inner Element
 
-nd ≈ 1.56091, νd ≈ 46.78. Glass: LLF3 / QF2 class, inferred from d-code 561468. f = −32.0 mm.
+nd ≈ 1.56091, νd ≈ 46.78. Glass: FEL3 (HOYA catalog equivalent; supplier unspecified). f = −32.0 mm.
 
-L4 is the inner negative element of the front triplet, next to the aperture stop. Its patent e-line values are nₑ = 1.5629 and νₑ = 46.88. A close d-line cross-reference places this element in the LLF3 / QF2 class. The assignment remains marked as inferred because a directly matching Schott historical datasheet was not available in the checked sources.
+L4 is the inner negative element of the front triplet, next to the aperture stop. Its patent e-line values are $n_e = 1.5629$ and $\nu_e = 46.88$. HOYA FEL3's coefficient-backed polynomial evaluates to $n_e = 1.56295$ and $\nu_e = 46.79$, independently reproducing that pair. FEL3 is used as the optical equivalent; the patent does not identify the historical production supplier.
 
 ### L5 — Negative Meniscus, Rear Triplet Inner Element
 
@@ -94,7 +94,7 @@ The patent's native spectral convention is e-line. The data file stores d-line v
 | L1      |    1.4662 |     65.56 | FK3, Schott inquiry glass |  1.46450 |  65.77 | Direct Schott match          |
 | L2      |    1.6776 |     31.97 | SF5, Schott               |  1.67270 |  32.21 | Direct Schott match          |
 | L3      |    1.6251 |     52.86 | SSK2 / N-SSK2, Schott     |  1.62229 |  53.27 | Direct class match           |
-| L4      |    1.5629 |     46.88 | LLF3 / QF2 class          | ≈1.56091 | ≈46.78 | Inferred; close d-code match |
+| L4      |    1.5629 |     46.88 | FEL3, HOYA equivalent     | 1.56295 at e line | 46.79 at e line | Coefficient-backed; supplier unspecified |
 | L5      |    1.5855 |     59.19 | SK12 / S-BAL42 class      |  1.58313 |  59.38 | Cross-reference match        |
 | L6      |    1.6113 |     58.65 | SK3, SUMITA equivalent    |  1.60881 |  58.86 | Coefficient-backed match     |
 | L7      |    1.6700 |     48.13 | BaF11 / S-BAH11 class     |  1.66672 |  48.33 | Cross-reference match        |
@@ -102,7 +102,7 @@ The patent's native spectral convention is e-line. The data file stores d-line v
 
 SUMITA SK3 is the coefficient-backed catalog equivalent for L6. A SK4-class assignment is too high in refractive index for the stored d-line values and would not match the patent-derived pair as closely. The production supplier is not established by the patent.
 
-L4 remains the lowest-confidence glass assignment. The numerical pair is close to the LLF3 / QF2 cross-reference class, but it is safer to retain the "class" and "inferred" wording than to assert a recovered Schott catalog identity.
+L4 now resolves through FEL3's independent e-line reproduction rather than a d-code-only LLF3/QF2 inference. This strengthens the dispersion model without asserting a recovered Schott identity or a production supplier.
 
 ## Focus Mechanism
 

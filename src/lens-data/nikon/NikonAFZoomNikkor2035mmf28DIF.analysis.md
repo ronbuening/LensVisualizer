@@ -148,7 +148,7 @@ The J-LASF017 curve is the previously audited compatible public representation f
 
 **L44a: nd = 1.62280, νd = 57.0. Glass: S-BSM10 catalog equivalent (patent 623570; production supplier not established). Standalone f = +28.094946 mm.**
 
-**L44b: nd = 1.86074, νd = 23.0. Glass: Unmatched (patent 861230; no compatible public catalog row). Standalone f = −44.911826 mm.**
+**L44b: nd = 1.86074, νd = 23.0. Glass: J-SFH2 catalog equivalent (patent 861230; production supplier not established). Standalone f = −44.911826 mm.**
 
 L44 closes the optical train as a cemented positive unit. The isolated positive and negative members combine to a verified cemented net EFL of **+74.931449 mm**. As with L21 and L31, this bonded value is the appropriate first-order description of the unit; the standalone values describe hypothetical air-to-air elements.
 
@@ -158,7 +158,7 @@ Condition (5) applies to G4 as a whole rather than L44 alone. The verified group
 
 ## Glass Identification and Selection
 
-The patent publishes only refractive index and Abbe number at the d line (587.6 nm). It names no glass manufacturer and supplies no C-, F-, or g-line indices and no dPgF values. A catalog recheck assigns public, coordinate-compatible curves to twelve of the fourteen elements while preserving the patent coordinates and explicitly leaving the production supplier unknown. L31a and L44b remain unmatched because no coefficient-backed public row lies safely within the runtime compatibility window.
+The patent publishes only refractive index and Abbe number at the d line (587.6 nm). It names no glass manufacturer and supplies no C-, F-, or g-line indices and no dPgF values. A catalog recheck assigns public, coordinate-compatible curves to thirteen of the fourteen elements while preserving the patent coordinates and explicitly leaving the production supplier unknown. Only L31a remains unmatched.
 
 | Element(s) | nd | νd | Data-file glass annotation |
 |---|---:|---:|---|
@@ -174,7 +174,7 @@ The patent publishes only refractive index and Abbe number at the d line (587.6 
 | L42 | 1.78470 | 26.1 | SF56A catalog equivalent (patent 785261) |
 | L43 | 1.79668 | 45.4 | J-LASF017 catalog equivalent (patent 797454) |
 | L44a | 1.62280 | 57.0 | S-BSM10 catalog equivalent (patent 623570) |
-| L44b | 1.86074 | 23.0 | Unmatched (patent 861230; no compatible public catalog row) |
+| L44b | 1.86074 | 23.0 | J-SFH2 catalog equivalent (patent 861230) |
 
 The broad spread from high-νd crown-like coordinates to low-νd flint-like coordinates gives the designer multiple ordinary chromatic-balancing pairs, particularly in the cemented groups. That observation does not establish APO performance. Without validated line data, dPgF, or a defensible Sellmeier identity, the model is limited to the published d-line/Abbe description.
 

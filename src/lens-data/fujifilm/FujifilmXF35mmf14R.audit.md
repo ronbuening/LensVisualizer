@@ -14,3 +14,12 @@ Patent: US 2014/0285903 A1, Example 1
 ### Verification
 
 - `npm test -- elementRenderDiagnostics`
+
+## 2026-08-11 - D-K59 catalog recovery
+
+- Rendered local `patents/US20140285903A1.pdf` page 14 and visually confirmed Example 1 surfaces 10-11 at
+  `nd = 1.51760`, `vd = 63.5` for the double-aspheric L21 element.
+- CDGM D-K59 is the exact coefficient-backed 518635 catalog coordinate and is a better dispersion model than the prior
+  BSC7-family inference.
+- Relabeled L21 as a D-K59 catalog equivalent. Fujifilm's production supplier remains unspecified; no asphere,
+  prescription, or semi-diameter values changed.

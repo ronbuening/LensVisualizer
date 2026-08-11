@@ -28,14 +28,25 @@ This file tracks the second bucket plus any cases from the first bucket that nee
 - `catalog-mismatches.generated.md` and `glass-relabel-by-lens.generated.md` report **0** remaining
   dispersion-coordinate mismatches across **0** lens files. The mismatch report separately records **18 / 75**
   native e-line surfaces resolved through explicit names or aliases.
-- `sellmeier-coverage.generated.md` reports **556** lenses, **6129** non-air surfaces, **5452** strict catalog
-  Sellmeier surfaces (**89.0%**), and **5463** trusted chromatic surfaces (**89.1%**).
-- **299** lenses are fully covered by strict Sellmeier data and **304** are fully covered by trusted chromatic data.
-- `unresolvedGlassScan` reports **339** non-explicit-unmatched annotations and **176** distinct unresolved glass-like
+- `sellmeier-coverage.generated.md` reports **556** lenses, **6129** non-air surfaces, **5460** strict catalog
+  Sellmeier surfaces (**89.1%**), and **5471** trusted chromatic surfaces (**89.3%**).
+- **306** lenses are fully covered by strict Sellmeier data and **311** are fully covered by trusted chromatic data.
+- `unresolvedGlassScan` reports **336** non-explicit-unmatched annotations and **172** distinct unresolved glass-like
   tokens. The residual total is code/prose inventory rather than a catalog-coordinate mismatch queue.
-- The missing-Sellmeier six-digit report contains **291** code-only elements, with **0** active unreviewed rows,
-  **138** self-recording explicit unmatched/unidentified dispositions, and **0** dispositions missing a review record.
+- The missing-Sellmeier six-digit report contains **289** code-only elements, with **0** active unreviewed rows,
+  **137** self-recording explicit unmatched/unidentified dispositions, and **0** dispositions missing a review record.
 - The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work; for patent-by-patent execution, start from [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md).
+
+## Resolved Phase 91 — August 2026 near-complete visible-lens audit
+
+- Rendered the relevant tables in seven ignored local patent PDFs and compared native d/e-line coordinates and the
+  available patent partial-dispersion anchor with current coefficient-backed catalog rows.
+- Assigned FCD515, PBH25, S-TIL6, S-LAL52, D-K59, J-SFH2, and FEL3 catalog equivalents across eight surfaces while
+  leaving every production supplier unspecified.
+- Completed the Nikon Z 35mm f/1.8, Olympus 24mm f/2.8, Nikon Micro 105mm, Hasselblad HC 150mm, Fujifilm XF 35mm,
+  and both Rodenstock Grandagon-N prescriptions. The Nikon 20-35mm improves to 13/14; its L31a remains unmatched.
+- Global coverage is 5460/6129 strict and 5471/6129 trusted; 306 lenses are strict-complete and 311 trusted-complete,
+  with zero coordinate mismatches and zero active unreviewed code-only rows.
 
 ## Resolved Phase 90 — August 2026 Minolta glass-opportunity audit
 

@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **556** lenses scanned
 - **6129** non-air surfaces examined
 - **6136** element glass declarations examined
-- **339** non-explicit-unmatched annotations did not resolve
-- **176** distinct unresolved glass-like tokens found
+- **336** non-explicit-unmatched annotations did not resolve
+- **172** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -71,7 +71,6 @@ or per-lens patent backfills.
 | 545486 | 1 | 1 | |
 | 553555 | 1 | 1 | |
 | 554381 | 1 | 1 | |
-| 561468 | 1 | 1 | |
 | 561575 | 1 | 1 | |
 | 570481 | 1 | 1 | |
 | 571560 | 1 | 1 | |
@@ -93,7 +92,6 @@ or per-lens patent backfills.
 | 642581 | 1 | 1 | |
 | 658397 | 1 | 1 | |
 | 667311 | 1 | 1 | |
-| 670572 | 1 | 1 | |
 | 670574 | 1 | 1 | |
 | 670575 | 1 | 1 | |
 | 672323 | 1 | 1 | |
@@ -184,14 +182,12 @@ or per-lens patent backfills.
 | LASF07 | 1 | 1 | |
 | LF7 | 1 | 1 | |
 | LF7-CLASS | 1 | 1 | |
-| LLF3 | 1 | 1 | |
 | LLF6 | 1 | 1 | |
 | LLF7 | 1 | 1 | |
 | MC-TAF115 | 1 | 1 | |
 | N3 | 1 | 1 | |
 | PBM18Y | 1 | 1 | |
 | PKH1-CLASS | 1 | 1 | |
-| QF2 | 1 | 1 | |
 | SSK1-CLASS | 1 | 1 | |
 | ZBAF17 | 1 | 1 | |
 
@@ -467,10 +463,6 @@ or per-lens patent backfills.
 
 - [NIKON AF-S NIKKOR 14-24mm f/2.8 G ED](../../src/lens-data/nikon/NikonNikkorAFS1424mmf28.data.ts) 6: `554381 — dense flint (patent nd=1.55389, nu_d=38.09)`
 
-### 561468 — 1 occurrence
-
-- [RODENSTOCK GRANDAGON-N 90mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN90mmf45.data.ts) 5: `LLF3 / QF2 class (inferred, d-code 561468)`
-
 ### 561575 — 1 occurrence
 
 - [CARL ZEISS BIOGON 21mm f/4.5](../../src/lens-data/carl-zeiss-oberkochen/ZeissBiogon21mmf45.data.ts) 8: `BaK/SK crown (561/575)`
@@ -554,10 +546,6 @@ or per-lens patent backfills.
 ### 667311 — 1 occurrence
 
 - [FUJIFILM FUJINON XF 60mm f/2.4 R Macro](../../src/lens-data/fujifilm/FujifilmXF60mmf24R.data.ts) 6: `667311 - dense flint (patent nd=1.66680, vd=31.1; no exact public catalog match)`
-
-### 670572 — 1 occurrence
-
-- [HASSELBLAD HC 150mm f/3.2](../../src/lens-data/hasselblad/HasselbladHC150mmf32.data.ts) 9: `670572 - lanthanum crown (converted d-line estimate from patent e-line data; no exact public catalog match)`
 
 ### 670574 — 1 occurrence
 
@@ -919,10 +907,6 @@ or per-lens patent backfills.
 
 - [OLYMPUS OM ZUIKO AUTO-W 21mm f/2](../../src/lens-data/olympus/OlympusZuikoAuto21mmf2.data.ts) 12: `593348 — LF7-class light flint (no exact public catalog match)`
 
-### LLF3 — 1 occurrence
-
-- [RODENSTOCK GRANDAGON-N 90mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN90mmf45.data.ts) 5: `LLF3 / QF2 class (inferred, d-code 561468)`
-
 ### LLF6 — 1 occurrence
 
 - [CANON SERENAR 85mm f/1.5](../../src/lens-data/canon/CanonSerenar85mmf15.data.ts) 8: `LLF6 (Schott, ≈)`
@@ -946,10 +930,6 @@ or per-lens patent backfills.
 ### PKH1-CLASS — 1 occurrence
 
 - [Nikon AI Zoom-Nikkor 35-200mm f/3.5-4.5S](../../src/lens-data/nikon/NikonAIZoomNikkor35200mmf3545S.data.ts) 16: `PKH1-class phosphate crown (519/700)`
-
-### QF2 — 1 occurrence
-
-- [RODENSTOCK GRANDAGON-N 90mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN90mmf45.data.ts) 5: `LLF3 / QF2 class (inferred, d-code 561468)`
 
 ### SSK1-CLASS — 1 occurrence
 

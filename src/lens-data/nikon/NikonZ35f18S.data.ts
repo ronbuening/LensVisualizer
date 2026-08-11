@@ -156,10 +156,10 @@ const LENS_DATA = {
       nd: 1.59282,
       vd: 68.62,
       fl: 1.46,
-      glass: "Fluorophosphate crown (family-level ID only)",
+      glass: "FCD515 (HOYA catalog equivalent; production supplier unspecified)",
       apd: "patent",
       dPgF: 0.019, apdNote:
-        "θgF = 0.5441, ΔθgF = +0.019 (patent condition 6). nd/νd = 1.59282/68.62 does not exactly match any single OHARA catalog glass; nearest is S-FPM2 (Δnd = 0.0024, Δνd = 0.88).",
+        "Patent θgF = 0.5441 and ΔθgF = +0.019 (condition 6). HOYA FCD515 reproduces the patent nd/νd/θgF triple; production supplier remains unspecified.",
       role: "ED element #2. Strongest positive element in Gr2. Anomalous partial dispersion maintains chromatic correction stability across the entire focus range.",
     },
     {

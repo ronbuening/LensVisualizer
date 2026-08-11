@@ -10,6 +10,13 @@ dPgF-corrected indices, or the legacy Abbe approximation. Current optics-engine 
 
 The catalog currently has **503 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
 
+The August 11, 2026 Phase 91 pass revisited the near-complete visible-lens queue against seven ignored local patent
+PDFs and current coefficient rows. Patent triple or native-line matches assigned FCD515, PBH25, S-TIL6, S-LAL52,
+D-K59, J-SFH2, and FEL3 equivalents across eight surfaces. Seven lenses become strict-complete; the Nikon 20-35mm
+improves to 13/14 with only its unrelated L31a glass still unmatched. Global coverage is 5460/6129 strict and
+5471/6129 trusted, with 306 strict-complete and 311 trusted-complete lenses, zero coordinate mismatches, and zero
+active unreviewed code-only rows. Every catalog-equivalent label leaves the production supplier unspecified.
+
 The August 11, 2026 Phase 90 pass audited the twelve active Minolta six-digit glass opportunities against four ignored
 local patent PDFs. Existing FF8, K-SSK1, N-SK16-family, S-LAL58, and N-KZFS8 curves upgrade five surfaces while
 leaving every production supplier unspecified. The seven coordinates outside the compatibility guard now carry

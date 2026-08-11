@@ -42,3 +42,12 @@ Patent: JP 2019-090947 A, Example 4
 - Rechecked JP 2019-090947 A Example 4 surface 11A; stored `R`, `d`, `nd=1.83441`, and `νd=37.28` agree with the patent.
 - Relabeled double-aspheric L17 from probable `S-LAH55VS` to HOYA `M-NBFD10`, whose molded-glass row is an exact coordinate match and is consistent with the element's manufacturing context.
 - Synchronized the analysis and removed the obsolete VS speculation. No geometry changed.
+
+## 2026-08-11 - FCD515 triple-match recovery
+
+- Rendered local `patents/JP2019090947A.pdf` page 17 and confirmed Example 4 surface 16 at
+  `nd = 1.59282`, `vd = 68.62`, and `theta_gF = 0.544` (the patent text carries 0.5441).
+- HOYA FCD515 reproduces the full published triple at `1.59282 / 68.63 / 0.5441`; the earlier family-only disposition
+  predated the coefficient-backed FCD515 row used by the current catalog.
+- Relabeled L22 as an FCD515 catalog equivalent. The patent does not identify a production supplier, and the existing
+  patent-backed APD metadata remains unchanged.
