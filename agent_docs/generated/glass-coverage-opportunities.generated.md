@@ -14,7 +14,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 - **5458 / 6129** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 89.1%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
-- **295** code-only missing-Sellmeier elements in Sweep 2: **12** active unreviewed, **131** self-recording explicit dispositions, **0** dispositions missing any review record
+- **296** code-only missing-Sellmeier elements in Sweep 2: **12** active unreviewed, **131** self-recording explicit dispositions, **0** dispositions missing any review record
 - **0** unresolved named-token elements in Sweep 2B, producing **0** token occurrences across **0** distinct tokens
 - **0** Tier A proprietary backfill rows in Sweep 3
 
@@ -73,7 +73,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [FUJIFILM FUJINON XF 35mm f/1.4 R](../../src/lens-data/fujifilm/FujifilmXF35mmf14R.data.ts) | US 2014/0285903 A1 | [PDF](../../patents/US20140285903A1.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 10A [glass] (Element 5: `BSC7 family (glass-molded, proprietary PGM)`) | abbe: 1 |
 | [MAMIYA SEKOR AF 150mm f/2.8 IF D](../../src/lens-data/mamiya/MamiyaSekorDAF150mmf28IF.data.ts) | JP 2001-183581 A | [PDF](../../patents/JP_2001183581_A.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 13 [glass] (Element 7: `Unmatched (nd=1.806098, νd=40.34; no exact current catalog identity)`) | abbe: 1 |
 | [MINOLTA AF 100mm f/2.8 Macro](../../src/lens-data/minolta/MinoltaAF100mmf28Macro.data.ts) | US 4,764,000 | [PDF](../../patents/US4764000.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 13 [glass] (Element 7: `807316 - dense lanthanum flint (patent nd=1.80741, vd=31.59; unresolved)`) | abbe: 1 |
-| [MINOLTA AF 135mm f/2.8 [T4.5] STF](../../src/lens-data/minolta/MinoltaSTF135mmf28T45.data.ts) | JP1999-231209 A | [PDF](../../patents/JPA 1999231209-000000.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 9 [glass] (Element 5: `Unmatched (absorbing ND glass; nd=1.50690, νd=58.94, α=0.55)`) | abbe: 1 |
+| [MINOLTA AF 135mm f/2.8 [T4.5] STF](../../src/lens-data/minolta/MinoltaSTF135mmf28T45.data.ts) | JP1999-231209 A | [PDF](../../patents/JPA 1999231209-000000.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 9 [glass] (Element 5: `507589 — bulk absorbing ND glass (catalog unresolved; patent α=0.55)`) | abbe: 1 |
 | [OLYMPUS H.ZUIKO AUTO-W 24mm f/2.8](../../src/lens-data/olympus/OlympusZuiko24mmf28.data.ts) | US 3,884,556 | [PDF](../../patents/US3884556.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 9 [glass] (Element 5a: `Unmatched (dense flint 762/271; current SF14-family catalogs are nd≈1.76182, vd≈26.5–26.6)`) | abbe: 1 |
 | [RODENSTOCK GRANDAGON-N 75mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN75mmf45.data.ts) | DE 2444954 A1 | [PDF](../../patents/DE_2444954_A1.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 5 [glass] (Element 4: `Unmatched (short-flint / barium-crown boundary; patent ne=1.5629, ve=46.88)`) | abbe: 1 |
 | [RODENSTOCK GRANDAGON-N 90mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN90mmf45.data.ts) | DE 2444954 A1 | [PDF](../../patents/DE_2444954_A1.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 5 [glass] (Element 4: `LLF3 / QF2 class (inferred, d-code 561468)`) | abbe: 1 |

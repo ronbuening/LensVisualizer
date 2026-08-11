@@ -10,9 +10,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **556** lenses scanned
-- **776** total code-only elements found
-- **295** elements in this report
-- **116** distinct lens files affected
+- **777** total code-only elements found
+- **296** elements in this report
+- **117** distinct lens files affected
 - **12** active unreviewed elements have no review-record hit or explicit disposition
 - **131** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
 - **0** dispositions lack any review record
@@ -92,6 +92,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 487698 | 1 | 1 | patents/US3838911.pdf | All rows have review records |
 | 501565 | 1 | 1 | patents/US3743384.pdf | All rows explicitly disposed |
 | 504667 | 1 | 1 | patents/US2721499.pdf | All rows have review records |
+| 507589 | 1 | 1 | patents/JPA 1999231209-000000.pdf | All rows have review records |
 | 514530 | 1 | 1 | patents/JP2016021011A.pdf | All rows have review records |
 | 516499 | 1 | 1 | patents/US7307794.pdf | All rows explicitly disposed |
 | 516506 | 1 | 1 | patents/US7307794.pdf | All rows explicitly disposed |
@@ -502,6 +503,12 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L7 (Element 7) | 13 | `807316 - dense lanthanum flint (patent nd=1.80741, vd=31.59; unresolved)` | 1.80741 / 31.59 | No catalog entry | abbe | patents/US4764000.pdf | Reviewed sidecar hit |
+
+### [MINOLTA AF 135mm f/2.8 [T4.5] STF](../../src/lens-data/minolta/MinoltaSTF135mmf28T45.data.ts) - JP1999-231209 A
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L5 (Element 5) | 9 | `507589 — bulk absorbing ND glass (catalog unresolved; patent α=0.55)` | 1.50690 / 58.94 | No catalog entry | abbe | patents/JPA 1999231209-000000.pdf | Reviewed sidecar hit |
 
 ### [MINOLTA AF 28mm f/2](../../src/lens-data/minolta/MinoltaAF28mmf2.data.ts) - US 4,258,985
 

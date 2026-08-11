@@ -109,7 +109,7 @@ balanced positive Gr1 rather than as a uniquely identified coma, spherical-aberr
 
 ### L5/L6 — Cemented Apodization Filter AF
 
-**L5: nd = 1.50690, νd = 58.94. Glass: Unmatched (absorbing ND glass; nd=1.50690, νd=58.94, α=0.55). f = −40.898 mm.**<br>
+**L5: nd = 1.50690, νd = 58.94. Glass: 507589 — bulk absorbing ND glass (catalog unresolved; patent α=0.55). f = −40.898 mm.**<br>
 **L6: nd = 1.50137, νd = 56.46. Glass: 501565 — crown class (K10-family equivalent; vendor unresolved). f = +41.349 mm.**
 
 L5 is the absorbing plano-concave member of the apodization filter. The patent assigns the absorbing material
@@ -160,8 +160,9 @@ specific chromatic interpretation would require line-index or validated Sellmeie
 ## Glass Identification and Selection
 
 The patent publishes nd and νd coordinates but no glass manufacturer or trade names. The final data therefore uses
-vendor-neutral six-digit classes, except for the absorbing ND element, which is explicitly left unmatched. This avoids
-turning a coordinate coincidence in a public catalog into an unsupported claim about Minolta's actual glass source.
+vendor-neutral six-digit classes, including `507589` for the absorbing ND element. That coordinate-leading label keeps
+L5 eligible for a future catalog upgrade without turning a loose public-catalog similarity into an unsupported claim
+about Minolta's actual glass source.
 
 | Element | nd | νd | Data-file glass annotation | Use in the design |
 |---|---:|---:|---|---|
@@ -169,7 +170,7 @@ turning a coordinate coincidence in a public catalog into an unsupported claim a
 | L2 | 1.72342 | 37.99 | 723380 — dense barium-flint class (vendor unresolved) | Negative member of D1 |
 | L3 | 1.51680 | 64.20 | 517642 — crown class (vendor unresolved) | Positive member of D1 |
 | L4 | 1.61293 | 36.96 | 613370 — flint class (vendor unresolved) | Rear negative member of Gr1 |
-| L5 | 1.50690 | 58.94 | Unmatched absorbing ND glass | Radially absorbing APD member |
+| L5 | 1.50690 | 58.94 | 507589 — bulk absorbing ND glass (catalog unresolved) | Radially absorbing APD member |
 | L6 | 1.50137 | 56.46 | 501565 — crown class (K10-family equivalent; vendor unresolved) | APD index compensator |
 | L7 | 1.58913 | 61.11 | S-BAL35 catalog equivalent (patent 589611) | Positive member of Gr2 |
 | L8 | 1.62041 | 60.29 | 620603 — dense-crown class (vendor unresolved) | Negative rear member |
@@ -178,7 +179,9 @@ The most explicit material-selection requirement in the patent concerns L5/L6 ra
 compensator should have an index close to that of the absorbing ND glass so the cemented interface contributes as little
 power as practical; Example 1 uses |1.50690 − 1.50137| = 0.00553, satisfying condition (2). The patent also notes that
 large Abbe-number differences between the two apodization members would create analogous correction difficulty
-(¶0018–¶0019).
+(¶0018–¶0019). No retained transparent-glass catalog curve matches L5's combined `1.50690 / 58.94` coordinates
+within the project's compatibility limits. The runtime therefore uses those source coordinates through its Abbe
+dispersion model rather than substituting the visibly different L6/K10-family curve.
 
 No element in the final data carries nC, nF, ng, or dPgF. There is therefore no basis here for an APO designation,
 an anomalous-partial-dispersion claim, or a secondary-spectrum analysis beyond what ordinary nd/νd coordinates can
@@ -226,6 +229,13 @@ The data records the patent's `α = 0.55 mm⁻¹` as L5's Beer-Lambert intensity
 accumulates the exact three-dimensional path length through L5 for each ray and uses the resulting transmission to
 weight bokeh density and relative illumination. The geometric f/2.83 entrance pupil remains separate from that energy
 weighting, and the marketed T/4.5 value is still not inferred from the patent coefficient alone.
+
+Example 1 expressly identifies L5 as ND glass whose absorption occurs through its bulk. It is not modeled as a clear
+glass lens with an ND coating. Paragraph 45 discusses a deposited absorber on a transparent plate as a different way to
+construct an apodizer, then notes the phase, scatter, and reflection problems of that alternative. Even without a named
+catalog melt, L5 is not chromatically constant: the authored `nd` and `νd` produce the same Abbe-derived dispersion
+fallback used by other unresolved optical glasses. What remains unresolved is the higher-order Sellmeier curve and
+production melt identity, not whether the element disperses light.
 
 For the axial ray, the path through L5 is its 0.300 mm center thickness, giving
 `I/I₀ = exp(-0.55 × 0.300) = 0.8478937041`. Oblique rays use the actual three-dimensional distance between their

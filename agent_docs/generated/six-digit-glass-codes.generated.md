@@ -10,8 +10,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **556** lenses scanned
-- **776** total code-only elements found
-- **776** elements in this report
+- **777** total code-only elements found
+- **777** elements in this report
 - **179** distinct lens files affected
 
 ## Codes by Frequency
@@ -159,6 +159,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 479587 | 1 | 1 | patents/US4773745.pdf | All rows explicitly disposed |
 | 487698 | 1 | 1 | patents/US3838911.pdf | All rows have review records |
 | 504667 | 1 | 1 | patents/US2721499.pdf | All rows have review records |
+| 507589 | 1 | 1 | patents/JPA 1999231209-000000.pdf | All rows have review records |
 | 514530 | 1 | 1 | patents/JP2016021011A.pdf | All rows have review records |
 | 516499 | 1 | 1 | patents/US7307794.pdf | All rows explicitly disposed |
 | 516506 | 1 | 1 | patents/US7307794.pdf | All rows explicitly disposed |
@@ -764,6 +765,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L2 (Element 2) | 3 | `723380 — dense barium-flint class (vendor unresolved)` | 1.72342 / 37.99 | S-BAH28 (trusted Sellmeier) | sellmeier | patents/JPA 1999231209-000000.pdf | No review-record hit |
 | L3 (Element 3) | 4 | `517642 — crown class (vendor unresolved)` | 1.51680 / 64.20 | H-K9L (trusted Sellmeier) | sellmeier | patents/JPA 1999231209-000000.pdf | No review-record hit |
 | L4 (Element 4) | 6 | `613370 — flint class (vendor unresolved)` | 1.61293 / 36.96 | E-F3 (trusted Sellmeier) | sellmeier | patents/JPA 1999231209-000000.pdf | No review-record hit |
+| L5 (Element 5) | 9 | `507589 — bulk absorbing ND glass (catalog unresolved; patent α=0.55)` | 1.50690 / 58.94 | No catalog entry | abbe | patents/JPA 1999231209-000000.pdf | Reviewed sidecar hit |
 | L6 (Element 6) | 10 | `501565 — crown class (K10-family equivalent; vendor unresolved)` | 1.50137 / 56.46 | K10 (trusted Sellmeier) | sellmeier | patents/JPA 1999231209-000000.pdf | No review-record hit |
 | L8 (Element 8) | 14 | `620603 — dense-crown class (vendor unresolved)` | 1.62041 / 60.29 | J-SK16 (trusted Sellmeier) | sellmeier | patents/JPA 1999231209-000000.pdf | No review-record hit |
 

@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **556** lenses scanned
 - **6129** non-air surfaces examined
 - **6136** element glass declarations examined
-- **350** non-explicit-unmatched annotations did not resolve
-- **180** distinct unresolved glass-like tokens found
+- **351** non-explicit-unmatched annotations did not resolve
+- **181** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -65,6 +65,7 @@ or per-lens patent backfills.
 | 487698 | 1 | 1 | |
 | 499801 | 1 | 1 | |
 | 504667 | 1 | 1 | |
+| 507589 | 1 | 1 | |
 | 514530 | 1 | 1 | |
 | 518523 | 1 | 1 | |
 | 519700 | 1 | 1 | |
@@ -453,6 +454,10 @@ or per-lens patent backfills.
 ### 504667 — 1 occurrence
 
 - [CARL ZEISS BIOGON 21mm f/4.5](../../src/lens-data/carl-zeiss-oberkochen/ZeissBiogon21mmf45.data.ts) 1: `BK crown (504/667)`
+
+### 507589 — 1 occurrence
+
+- [MINOLTA AF 135mm f/2.8 [T4.5] STF](../../src/lens-data/minolta/MinoltaSTF135mmf28T45.data.ts) 9: `507589 — bulk absorbing ND glass (catalog unresolved; patent α=0.55)`
 
 ### 514530 — 1 occurrence
 

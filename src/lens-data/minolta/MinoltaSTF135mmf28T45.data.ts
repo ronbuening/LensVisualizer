@@ -116,7 +116,7 @@ const LENS_DATA = {
       nd: 1.5069,
       vd: 58.94,
       fl: -40.897612941408575,
-      glass: "Unmatched (absorbing ND glass; nd=1.50690, νd=58.94, α=0.55)",
+      glass: "507589 — bulk absorbing ND glass (catalog unresolved; patent α=0.55)",
       absorptionCoefficientPerMm: 0.55,
       role: "Absorbing plano-concave member of the active apodization filter.",
       cemented: "AF",

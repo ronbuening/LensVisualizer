@@ -21,11 +21,6 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-08-11",
     type: "improvement",
-    summary: "Improved Minolta patent labels, dispersion badges, and APD glass classification",
-  },
-  {
-    date: "2026-08-11",
-    type: "improvement",
     summary: "Modeled Minolta STF apodization in bokeh and relative illumination with Beer–Lambert ray weighting",
   },
   {

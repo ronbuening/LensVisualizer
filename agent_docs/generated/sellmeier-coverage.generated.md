@@ -1084,7 +1084,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 9 | Element 5 | abbe | `Unmatched (absorbing ND glass; nd=1.50690, νd=58.94, α=0.55)` | Explicit unmatched/proprietary annotation |
+| 9 | Element 5 | abbe | `507589 — bulk absorbing ND glass (catalog unresolved; patent α=0.55)` | No catalog match |
 
 ### [OLYMPUS H.ZUIKO AUTO-W 24mm f/2.8](../../src/lens-data/olympus/OlympusZuiko24mmf28.data.ts) - 87.5% trusted (7/8); 87.5% Sellmeier (7/8) - US 3,884,556
 
