@@ -83,7 +83,7 @@ const LENS_DATA = {
       vd: 31.97,
       indexReference: "e",
       fl: -84.58,
-      glass: "Unmatched (SF5-class dense flint; patent e-line values)",
+      glass: "SF5 (Schott; patent ne=1.6776, ve=31.97 stored as nd/vd)",
       cemented: "T1",
       role: "High-dispersion outer component of the front cemented triplet.",
     },

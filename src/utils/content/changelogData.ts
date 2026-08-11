@@ -21,6 +21,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-08-11",
     type: "improvement",
+    summary: "Recovered four more patent-verified native e-line glass curves",
+  },
+  {
+    date: "2026-08-11",
+    type: "improvement",
     summary: "Added two Hikari curves and upgraded 11 more patent-backed glass surfaces",
   },
   {

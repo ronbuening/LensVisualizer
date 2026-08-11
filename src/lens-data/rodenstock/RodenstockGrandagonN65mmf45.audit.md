@@ -21,3 +21,10 @@ Patent: DE 2444954 A1, Claim 4 / worked data set 4
   `ne` / `νe` values.
 - The runtime and generated reports now reject d-line catalog substitution structurally rather than relying on annotation wording.
 - No source values or prescription geometry changed.
+
+## 2026-08-11 — Phase 95 SF5 e-line recovery
+
+- Re-rendered worked data set 4 on local patent PDF page 7 and confirmed L2 at `ne = 1.6776`, `νe = 31.97`.
+- The legacy Schott SF5 curve reproduces `1.677639 / 31.971`, so L2 now uses its full catalog curve.
+- Strict coverage rises by one surface. The other unresolved historical classes remain on their authored fallbacks;
+  no source values or geometry changed.

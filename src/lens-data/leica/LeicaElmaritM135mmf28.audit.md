@@ -15,3 +15,9 @@ Patent: US 3,108,152, Example 2 / Table II / claim 2
   `ne` / `νe` values.
 - The runtime and generated reports now reject d-line catalog substitution structurally rather than relying on annotation wording.
 - No source values or prescription geometry changed.
+
+## 2026-08-11 — Phase 95 SF5 e-line recovery
+
+- Re-rendered Example 2 / claim 2 on local patent PDF page 3 and confirmed L4 at `ne = 1.67764`, `νe = 32.0`.
+- The legacy Schott SF5 curve reproduces `1.677639 / 31.971`, so L4 now uses its full catalog curve.
+- Strict coverage rises by one surface. The N-SF8-class L5 remains unmatched; no source values or geometry changed.

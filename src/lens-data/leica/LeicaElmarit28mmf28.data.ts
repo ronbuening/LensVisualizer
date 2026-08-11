@@ -161,7 +161,7 @@ const LENS_DATA = {
       vd: 36.11,
       indexReference: "e",
       fl: -39.0,
-      glass: "Unmatched (F2-class patent e-line value; no verified d-line catalog identity)",
+      glass: "F2 (Schott; patent ne=1.62408, ve=36.11 stored as nd/vd)",
       apd: false,
       role: "Final negative meniscus — primary field curvature corrector; large Petzval flattening contribution from strongly curved front surface",
     },

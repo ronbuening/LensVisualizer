@@ -26,16 +26,25 @@ This file tracks the second bucket plus any cases from the first bucket that nee
 - Catalog: verified entries in `src/optics/glassCatalogData.ts` — `catalogSize()` is the live count; the
   generated glass reports carry the number at their generation date. (A hand-bumped figure here went stale.)
 - `catalog-mismatches.generated.md` and `glass-relabel-by-lens.generated.md` report **0** remaining
-  dispersion-coordinate mismatches across **0** lens files. The mismatch report separately records **26 / 75**
+  dispersion-coordinate mismatches across **0** lens files. The mismatch report separately records **30 / 75**
   native e-line surfaces resolved through explicit names or aliases.
-- `sellmeier-coverage.generated.md` reports **556** lenses, **6129** non-air surfaces, **5496** strict catalog
-  Sellmeier surfaces (**89.7%**), and **5507** trusted chromatic surfaces (**89.9%**).
+- `sellmeier-coverage.generated.md` reports **556** lenses, **6129** non-air surfaces, **5500** strict catalog
+  Sellmeier surfaces (**89.7%**), and **5511** trusted chromatic surfaces (**89.9%**).
 - **316** lenses are fully covered by strict Sellmeier data and **321** are fully covered by trusted chromatic data.
 - `unresolvedGlassScan` reports **332** non-explicit-unmatched annotations and **168** distinct unresolved glass-like
   tokens. The residual total is code/prose inventory rather than a catalog-coordinate mismatch queue.
 - The missing-Sellmeier six-digit report contains **266** code-only elements, with **0** active unreviewed rows,
   **116** self-recording explicit unmatched/unidentified dispositions, and **0** dispositions missing a review record.
 - The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work; for patent-by-patent execution, start from [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md).
+
+## Resolved Phase 95 — August 2026 exact native e-line follow-up
+
+- Rendered four additional local patent tables and verified F5, F2, and two SF5 rows against the catalog's computed
+  C′/e/F′ coordinates.
+- Upgraded one surface each in the Leica Elmar-M 135mm, Leica Elmarit-R 28mm, Leica Elmarit-M 135mm, and
+  Rodenstock Grandagon-N 65mm. Native e-line coverage rises from 26/75 to 30/75.
+- Retained N-LAF21, N-SF8, and K5 class annotations as explicit unmatched rows because those modern curves are only
+  near matches. The mismatch and active unreviewed queues remain empty.
 
 ## Resolved Phase 94 — August 2026 first-party Hikari and native e-line recovery
 

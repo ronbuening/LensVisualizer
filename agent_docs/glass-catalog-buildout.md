@@ -10,6 +10,14 @@ dPgF-corrected indices, or the legacy Abbe approximation. Current optics-engine 
 
 The catalog currently has **517 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
 
+The August 11, 2026 Phase 95 post-commit review rendered four more local patent tables and removed legacy
+reference-line guards from four exact native e-line matches: F5 in the Leica Elmar-M 135mm, F2 in the Leica
+Elmarit-R 28mm, and SF5 in both the Leica Elmarit-M 135mm and Rodenstock Grandagon-N 65mm. These score 7/10,
+7/10, and 8/10 respectively under the Phase 94 rubric: every row gains full spectral fidelity with strong coordinate
+evidence, while the shared SF5 curve earns the reuse point. Global coverage is now 5500/6129 strict and 5511/6129
+trusted; 30/75 native e-line surfaces resolve by verified names. The modern N-LAF21, N-SF8, and K5 near-matches
+remain deferred because their residuals are materially larger than the rows recovered here.
+
 The August 11, 2026 Phase 94 pass added first-party Hikari J-SK14 (`603607`) and J-LASF02 (`800421`) curves from
 the retained manufacturer workbook, completing the Nikon AF-S DX 55-200mm. A review of old explicit-unmatched
 guards also recovered J-LASFH2 for the Nikon R-UW Micro and eight exact native e-line matches across the Leica
@@ -28,6 +36,8 @@ coordinate confidence, 2 for completion or a large coverage jump, and 1 for reus
 | Schneider native e-line recovery | 9/10 | Five exact C′/e/F′ matches; lens moves 0/6 → 5/6 |
 | Leica Summicron-R native e-line recovery | 9/10 | Three exact C′/e/F′ matches; lens moves 0/6 → 3/6 |
 | Deferred Leica N-LAF21-class pair | 6/10 | Useful two-surface completion opportunity, but the modern curve is only a near match |
+| Deferred N-SF8-class e-line rows | 5/10 | Several useful surfaces, but the modern curve's e-line residuals exceed this pass's exact-match tier |
+| Deferred Rodenstock K5-class pair | 5/10 | Two surfaces, but the modern curve misses the patent e-line Abbe number by 0.17 |
 | Deferred Schneider KF9 row | 4/10 | Would complete one lens, but no compatible sourced curve is in the local catalog |
 
 The August 11, 2026 Phase 93 pass replaced the legacy cross-vendor aliases for Hikari J-SF1, J-SF6, J-SF10, and
