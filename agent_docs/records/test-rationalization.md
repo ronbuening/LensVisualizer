@@ -97,15 +97,42 @@
   (they cover `lensViewUrlSync` branches the codec unit tests don't); the useLensState URL-slider trio kept as
   the only per-key parse coverage.
 
-## Status
+### Phase 7 — entryServer + data merges (−25 runtime tests)
 
-Phases 0–6 complete and committed. Suite: 2,962 → **2,487** runtime tests (−475), per-file coverage
-non-decreasing vs the pre-branch baseline (several files improved). Remaining plan phases (not started):
-Phase 7 (entryServer render dedup, oddAsphereBackfill table, detail-registry shared harness, party-sweep
-dedups) and Phase 8 (measured vitest config experiment — note `buildLens.test.ts` mocks
-`ENABLE_UNIFORM_SCALING` via `vi.mock`, which constrains any isolate:false split). The full plan lives at the
-session's plan file; the phase list above plus `EFFICIENCY_IMPROVEMENT_PLAN.md`-style verification gates
-(typecheck/format/lint/test + coverage diff) are what future phases must preserve.
+- `entryServer.test.ts` 77→58: `render(url)` is pure, so a module-level per-URL cache replaced 49 render calls
+  for ~19 routes; the two overlapping route `it.each` lists merged with an `expectsBody` column; the per-page
+  social-image tests folded into their pages' existing meta tests with every assertion preserved (not deleted —
+  they are the only page-level wiring checks). File test time 536ms → 213ms.
+- `oddAsphereBackfill.test.ts`: 24 per-lens describes → one 23-row departure table + the separate GFX100RF
+  residual test (every quoted tuple preserved); `agent_docs/odd-asphere-backfill.md` updated to the table
+  workflow. Detail registries share `detailRegistryHarness.ts` while keeping their three mirror files.
+  Party-sweep assertions verified duplicated against authorCatalog/partyPatentParity were dropped; the
+  maker-slug relocation made the buildRouteSync deletion coverage-neutral. Declined dedup, with evidence:
+  partyPatentParity's "gives every party at least one patent record" is the only full ">0" sweep for both
+  party kinds and stays.
+
+### Phase 8 — wall-clock work (measured; test count unchanged)
+
+- The suite's wall time was bound by its slowest single files, not by pool settings: `lensIndexPage.test.tsx`
+  (~15s of test time) and `searchPages.test.tsx` (~9.6s) split into eight per-concern files (bodies and count
+  unchanged; AuthorsIndexPage/PatentsIndexPage now have properly mirrored test files); slowest file is now
+  ~4.6s. `pool: "threads"` (measured faster, suite green) and `testTimeout: 30000` moved from npm-script CLI
+  flags into `vite.config.js` so ad-hoc `npx vitest run <file>` matches `npm test`.
+- Measured and rejected: further pool/isolation changes (blocked by `vi.mock` usage in four node files and
+  bounded by the critical path anyway); deps-optimizer prebundling (the ~82s aggregate import cost is module
+  *evaluation* of the 550-lens glob, which prebundling does not reduce).
+
+## Status — COMPLETE (2026-08-10)
+
+All plan phases (0–8) are committed. Final numbers vs the pre-branch baseline:
+
+- Runtime tests: 2,962 → **2,462** (−500, −17%) with zero per-file coverage decrease — every changed
+  per-file number improved (totals 94.14% → 94.17% lines, 82.21% → 82.30% branches).
+- Full-suite wall clock: 20.4s → **15.4s** (−25%); aggregate per-worker test time ~84s → ~66s; ~4,400
+  redundant `buildLens()` calls, ~2,100 redundant file reads, and 30 redundant SSR renders removed.
+- All protected regression anchors intact (exact-trace golden values, datasheet anchors, mirror/folded suite,
+  generated report outputs byte-identical); docDrift and testConventions green throughout.
+- No changelog entry: internal test/tooling work is out of scope per `agent_docs/changelog.md`.
 
 ## Verification
 
