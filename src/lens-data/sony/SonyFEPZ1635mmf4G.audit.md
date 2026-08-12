@@ -25,3 +25,14 @@ names were romanized to the repository's canonical spellings: Kohei Uemura, Tets
 
 - `npm run audit:image-circle -- ./src/lens-data/sony/SonyFEPZ1635mmf4G.data.ts`
 - `npm run audit:patent-figure -- ./src/lens-data/sony/SonyFEPZ1635mmf4G.data.ts patents/JP2023044106A.pdf 91 0.14,0.57,0.46,0.69`
+
+## 2026-08-12 — Display screenshot follow-up
+
+The rendered site screenshot was compared directly with Patent Figure 53 at the wide state. The silhouette remains
+consistent with the patent-published effective diameters (`sd = phi/2`), so those source dimensions were retained. The
+eight aspherical-surface tags, L22/L23 cement label, stop, and five group labels agree with the prescription and figure.
+
+The diagram now displays the patent identifiers L11–L14, L21–L23, L31–L32, L41–L43, and L51. All 13 elements resolve
+to existing coefficient-backed catalog curves. Because the patent supplies optical coordinates but no commercial glass
+names or spectral-line measurements, the supplier-unresolved class labels remain the most defensible classification;
+no new catalog entry was warranted.

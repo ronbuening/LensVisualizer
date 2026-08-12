@@ -21,8 +21,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Selection criterion | Elements |
 |---|---:|
-| Smallest reference-index residual | 800 |
-| Evidence-source priority | 504 |
+| Smallest reference-index residual | 799 |
+| Evidence-source priority | 505 |
 | Vendor context | 268 |
 | Stable canonical-name order | 4 |
 
@@ -1147,7 +1147,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `773496 — S-LAH66 coordinate model (supplier unresolved; source νe=49.36)` | 1.77250 / 49.36 (d) | S-LAH66 — direct name evidence outranks six-digit code evidence. | J-LASF016 (Hikari, code, alternate code row)<br>N-LAF34 (Schott, code, alternate code row)<br>S-LAH66N (Ohara, code, alternate code row) | 2 | [SONY VARIO-SONNAR T* 24-70mm f/2.8 ZA SSM](../../src/lens-data/sony/SonyVarioSonnarT2470mmf28ZASSM.data.ts) G4 |
 | `N-LASF44 (SCHOTT) — 804465 class` | 1.80420 / 46.50 (d) | N-LASF44 — direct name evidence outranks six-digit code evidence. | TAF3 (Hoya, code, vendor ✗, alternate code row)<br>TAF3D (Hoya, code, vendor ✗, alternate code row) | 1 | [SONY VARIO-SONNAR T* 24-70mm f/2.8 ZA SSM](../../src/lens-data/sony/SonyVarioSonnarT2470mmf28ZASSM.data.ts) G5 |
 | `N-LAF34 (SCHOTT) — 773496 class` | 1.77250 / 49.62 (d) | N-LAF34 — direct name evidence outranks six-digit code evidence. | J-LASF016 (Hikari, code, vendor ✗, alternate code row)<br>S-LAH66 (Ohara, code, vendor ✗, preferred code row)<br>S-LAH66N (Ohara, code, vendor ✗, alternate code row) | 1 | [SONY VARIO-SONNAR T* 24-70mm f/2.8 ZA SSM](../../src/lens-data/sony/SonyVarioSonnarT2470mmf28ZASSM.data.ts) G7 |
-| `N-LASF31A (SCHOTT) — 883408 class` | 1.88300 / 40.80 (d) | S-LAH58 — smallest d-line \|Δn\| (3.0e-6 vs 3.9e-6) | TAFD30 (Hoya, code, vendor ✗, alternate code row) | 1 | [SONY VARIO-SONNAR T* 24-70mm f/2.8 ZA SSM](../../src/lens-data/sony/SonyVarioSonnarT2470mmf28ZASSM.data.ts) G8 |
+| `883408 — S-LAH58 coordinate model (supplier unresolved)` | 1.88300 / 40.80 (d) | S-LAH58 — direct name evidence outranks six-digit code evidence. | TAFD30 (Hoya, code, alternate code row) | 1 | [SONY VARIO-SONNAR T* 24-70mm f/2.8 ZA SSM](../../src/lens-data/sony/SonyVarioSonnarT2470mmf28ZASSM.data.ts) G8 |
 | `J-LAK10 (HIKARI) — 720503 class representative` | 1.72000 / 50.34 (d) | J-LAK10 — direct name evidence outranks six-digit code evidence. | LAC10 (Hoya, code, vendor ✗, alternate code row) | 1 | [SONY VARIO-SONNAR T* 24-70mm f/2.8 ZA SSM](../../src/lens-data/sony/SonyVarioSonnarT2470mmf28ZASSM.data.ts) G9 |
 | `N-LASF46B (SCHOTT) — 904313 class` | 1.90366 / 31.32 (d) | N-LASF46B — direct name evidence outranks six-digit code evidence. | S-LAH95 (Ohara, code, vendor ✗, preferred code row)<br>TAFD25 (Hoya, code, vendor ✗, alternate code row) | 2 | [SONY VARIO-SONNAR T* 24-70mm f/2.8 ZA SSM](../../src/lens-data/sony/SonyVarioSonnarT2470mmf28ZASSM.data.ts) G11 |
 | `S-FPL51 (OHARA) — 497816 class representative` | 1.49700 / 81.61 (d) | S-FPL51 — direct name evidence outranks six-digit code evidence. | H-FK61 (CDGM, code, vendor ✗, alternate code row)<br>FCD1 (Hoya, code, vendor ✗, alternate code row) | 2 | [SONY VARIO-SONNAR T* 24-70mm f/2.8 ZA SSM](../../src/lens-data/sony/SonyVarioSonnarT2470mmf28ZASSM.data.ts) G12 |

@@ -2,14 +2,14 @@
 
 ## Patent Reference and Design Identification
 
-- **Patent:** US 2008/0198475 A1
-- **Priority:** JP P2006-270765, October 2, 2006
-- **Filed:** September 25, 2007
-- **Published:** August 21, 2008
-- **Inventors:** Tetsuya Arimoto; Yasushi Yamamoto
-- **Assignee:** Sony Corporation
-- **Title:** *Zoom Lens and Image Capture Apparatus*
-- **Embodiment analyzed:** Example 3 / third numerical embodiment, Fig. 9 and Tables 7–9
+**Patent:** US 2008/0198475 A1
+**Priority:** JP P2006-270765, October 2, 2006
+**Filed:** September 25, 2007
+**Published:** August 21, 2008
+**Inventors:** Tetsuya Arimoto; Yasushi Yamamoto
+**Assignee:** Sony Corporation
+**Title:** *Zoom Lens and Image Capture Apparatus*
+**Embodiment analyzed:** Example 3 / third numerical embodiment, Fig. 9 and Tables 7–9
 
 The modeled prescription is the job-card-selected production correlation for the Sony SAL2470Z Vario-Sonnar T* 24–70mm
 f/2.8 ZA SSM. The patent does not state that Example 3 became the commercial SAL2470Z, and the cited Sony product
@@ -178,7 +178,7 @@ Sony used a SCHOTT melt in the production lens.
 
 ### G8–G9 — Cemented positive doublet at the front of Gr3
 
-**G8:** nd = 1.88300, νd = 40.80. Glass: N-LASF31A (SCHOTT) — 883408 class. Standalone f = −53.948959 mm.
+**G8:** nd = 1.88300, νd = 40.80. Glass: 883408 — S-LAH58 coordinate model (supplier unresolved). Standalone f = −53.948959 mm.
 
 **G9:** nd = 1.72000, νd = 50.34. Glass: J-LAK10 (HIKARI) — 720503 class representative. Standalone f = +26.122620 mm.
 
@@ -188,7 +188,9 @@ cemented block has a net focal length of +49.821001 mm, or +20.071857 D.
 
 This is the first powered assembly after the stop, and the stop moves with Gr3. The large positive contribution from G9,
 moderated by G8, establishes a positive front section for the third group while providing index and dispersion contrast
-at the cemented interface. J-LAK10 is a representative 720503-class assignment; vendor identity is not a patent fact.
+at the cemented interface. G8's stored catalog-derived C/F/g indices and dPgF reproduce S-LAH58, not N-LASF31A; the
+annotation now names that runtime coordinate model while keeping the production supplier unresolved. J-LAK10 is a
+representative 720503-class assignment; vendor identity is not a patent fact.
 
 ### G10 — Biconvex positive
 
@@ -283,7 +285,7 @@ that the production lens used those exact commercial melts.
 | 773496 — S-LAH66 coordinate model | 1.77250 / 49.36 | -0.0092 | G4, G16 | Mixed d-index/e-Abbe source pair; coefficient-backed family, supplier unresolved |
 | N-LASF44 (SCHOTT) — 804465 class | 1.80420 / 46.50 | −0.0084 | G5 | Exact coordinate match |
 | N-LAF34 (SCHOTT) — 773496 class | 1.77250 / 49.62 | −0.0085 | G7 | Exact coordinate match |
-| N-LASF31A (SCHOTT) — 883408 class | 1.88300 / 40.80 | −0.0085 | G8 | Close catalog match |
+| 883408 — S-LAH58 coordinate model | 1.88300 / 40.80 | −0.0085 | G8 | Coefficient-backed model; supplier unresolved |
 | J-LAK10 (HIKARI) — 720503 class representative | 1.72000 / 50.34 | −0.0073 | G9 | Representative class match |
 | N-LASF46B (SCHOTT) — 904313 class | 1.90366 / 31.32 | +0.0045 | G11, G14 | Exact coordinate match |
 | S-FPL51 (OHARA) — 497816 class representative | 1.49700 / 81.61 | +0.0280 | G12, G13 | Representative low-dispersion match |
@@ -479,11 +481,11 @@ wide-state value is stored as the base `STO.sd`, with the zoom-dependent pupil b
    https://www.sony.com/electronics/support/lenses-a-mount-lenses/sal2470z/specifications
 4. Sony Group Corporation, **Sony to Showcase Latest DI Products at “PMA 2008” Exhibition**, February 1, 2008:
    https://www.sony.com/en/SonyInfo/News/Press/200802/08-0201E/
-5. OHARA, optical-glass catalog data used for the S-TIH53, S-LAH55V, and S-FPL51 representative annotations and the
-   S-LAH66 nd/νe cross-pair check:
+5. OHARA, optical-glass catalog data used for the S-TIH53, S-LAH55V, S-LAH58, and S-FPL51 representative annotations
+   and the S-LAH66 nd/νe cross-pair check:
    https://www.ohara-inc.co.jp/en/product/01000/
-6. SCHOTT Advanced Optics, individual optical-glass product data for N-LASF44, N-LAF34, N-LASF31A, N-LASF46B, and
-   N-FK5. Representative catalog entry: https://us.shop.schott.com/advanced-optics/en/Optical-Glass/N-LAF34/c/glass-N-LAF34
+6. SCHOTT Advanced Optics, individual optical-glass product data for N-LASF44, N-LAF34, N-LASF46B, and N-FK5.
+   Representative catalog entry: https://us.shop.schott.com/advanced-optics/en/Optical-Glass/N-LAF34/c/glass-N-LAF34
 7. Nikon / HIKARI optical-glass catalog, J-LAK family data used for the 720503-class representative:
    https://www.nikon.com/business/components/lineup/materials/optical-glass/catalog/lak.html
 8. HOYA optical-glass catalog and cross-reference data used for the NBFD10 annotation and class comparisons:

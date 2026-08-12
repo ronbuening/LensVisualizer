@@ -34,3 +34,13 @@ The display name was checked against Sony model SELP1650 and retained as `SONY E
 - `npm run audit:image-circle -- ./src/lens-data/sony/SonyEPZ1650mmf3556OSS.data.ts`
 - `npm run audit:patent-figure -- ./src/lens-data/sony/SonyEPZ1650mmf3556OSS.data.ts patents/US20150316753A9.pdf 2 0.19,0.48,0.73,0.73`
 - `npm run audit:surface -- ./src/lens-data/sony/SonyEPZ1650mmf3556OSS.data.ts --sd 1=12.2 2A=11.8`
+
+## 2026-08-12 — Display screenshot follow-up
+
+The rendered site screenshot was compared directly with Patent Figure 1. The revised L1/L2 envelope, the four-group
+profile, and the rear-element taper follow the source drawing closely; no additional SD change had clean figure evidence.
+The six aspherical-surface tags, the L4/L5 cement label, the stop, and all four moving-group labels were also confirmed.
+
+The diagram now uses the patent element identifiers L1–L9 instead of generic sequence numbers. All nine elements still
+resolve to coefficient-backed catalog curves, including L9's supplier-unresolved NBFD13 family, so no new catalog glass
+or speculative vendor attribution was added.

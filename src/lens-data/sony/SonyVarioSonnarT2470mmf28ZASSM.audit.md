@@ -28,3 +28,15 @@ The display name was checked against Sony model SAL2470Z and retained as
 
 - `npm run audit:image-circle -- ./src/lens-data/sony/SonyVarioSonnarT2470mmf28ZASSM.data.ts`
 - `npm run audit:patent-figure -- ./src/lens-data/sony/SonyVarioSonnarT2470mmf28ZASSM.data.ts patents/US20080198475A1-2.pdf 6 0.17,0.35,0.90,0.70`
+
+## 2026-08-12 — Display screenshot follow-up
+
+The rendered site screenshot was compared directly with Patent Figure 9. The apparent G4 and rear-triplet diameter
+steps are present in the source drawing, while the remaining clean contours stay within the established screening
+tolerance. No additional SD change was justified. The two aspherical-surface tags, D1/D2/T1 assembly labels, stop, and
+four moving-group labels were confirmed.
+
+The diagram now uses source identifiers G1–G17 instead of generic sequence numbers. G8's stored C/F/g indices and
+partial-dispersion deviation reproduce the existing S-LAH58 curve rather than N-LASF31A, so its annotation now names
+the S-LAH58 coordinate model while leaving the supplier unresolved. All 17 elements remain coefficient-backed and no
+new catalog curve was needed.

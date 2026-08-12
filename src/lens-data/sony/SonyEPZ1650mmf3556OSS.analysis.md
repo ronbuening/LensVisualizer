@@ -1,14 +1,14 @@
 ## Patent Reference and Design Identification
 
-- **Patent:** US 2015/0316753 A9
-- **Application Number:** 13/862,667
-- **Filed:** April 15, 2013
-- **Priority:** JP 2012-052721, March 9, 2012; JP 2012-134773, June 14, 2012
-- **Published:** November 5, 2015, corrected publication
-- **Inventor:** Masaharu Hosoi
-- **Assignee:** Sony Corporation
-- **Title:** *Zoom Lens and Imaging Apparatus*
-- **Embodiment analyzed:** Example 1 / Numerical Value Embodiment 1
+**Patent:** US 2015/0316753 A9
+**Application Number:** 13/862,667
+**Filed:** April 15, 2013
+**Priority:** JP 2012-052721, March 9, 2012; JP 2012-134773, June 14, 2012
+**Published:** November 5, 2015, corrected publication
+**Inventor:** Masaharu Hosoi
+**Assignee:** Sony Corporation
+**Title:** *Zoom Lens and Imaging Apparatus*
+**Embodiment analyzed:** Example 1 / Numerical Value Embodiment 1
 
 The prescription is the project-selected correlation for the **SONY E PZ 16-50mm f/3.5-5.6 OSS**. The patent does not
 name SELP1650, so the production identification is an inference rather than a manufacturer-confirmed patent assignment.
