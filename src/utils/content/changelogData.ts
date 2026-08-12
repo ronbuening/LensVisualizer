@@ -20,6 +20,11 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-08-11",
+    type: "lens",
+    summary: "Added Sony E PZ 16-50mm, FE PZ 16-35mm, and Vario-Sonnar 24-70mm designs",
+  },
+  {
+    date: "2026-08-11",
     type: "improvement",
     summary: "Added 14 verified glass curves, upgrading 53 surfaces and completing 17 lenses",
   },

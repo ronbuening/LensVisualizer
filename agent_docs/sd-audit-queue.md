@@ -98,6 +98,14 @@ better investment.
 | 18-400mm f/3.5-6.3 Di II VC HLD | JP 2017-116646 Figure 1 at 300 dpi | done 2026-08-10; front G2 enlarged to validated limit |
 | SP 24-70mm f/2.8 Di VC USD | US 8,810,918 Figure 22 at 300 dpi | no change 2026-08-10; modeled taper matches |
 
+### Completed Sony additions
+
+| Lens | Figure screen | Status |
+|---|---|---|
+| E PZ 16-50mm f/3.5-5.6 OSS | US 2015/0316753 A9 Figure 1 at 300 dpi; L1 drawn near 12.5 mm | done 2026-08-11; L1 enlarged to validator-safe 12.2/11.8 mm |
+| FE PZ 16-35mm f/4 G | JP 2023-44106 A Figure 53; patent effective diameters retained | no change 2026-08-11; zero image-circle-floor failures |
+| Vario-Sonnar T* 24-70mm f/2.8 ZA SSM | US 2008/0198475 A1 Figure 9; clean-row median 1.019 | no change 2026-08-11; reliable deviations below threshold |
+
 ### Completed Voigtländer additions
 
 | Lens | Figure screen | Status |

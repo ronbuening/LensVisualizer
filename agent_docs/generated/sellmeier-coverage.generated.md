@@ -11,18 +11,18 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **556** lenses scanned
-- **546** visible lenses scanned
-- **321** lenses fully covered by trusted chromatic data
-- **321** visible lenses fully covered by trusted chromatic data
-- **316** lenses fully covered by strict Sellmeier data
-- **316** visible lenses fully covered by strict Sellmeier data
+- **559** lenses scanned
+- **549** visible lenses scanned
+- **324** lenses fully covered by trusted chromatic data
+- **324** visible lenses fully covered by trusted chromatic data
+- **319** lenses fully covered by strict Sellmeier data
+- **319** visible lenses fully covered by strict Sellmeier data
 - **5** lenses fully covered only after measured line-index data
 - **5** visible lenses fully covered only after measured line-index data
-- **5500 / 6129** non-air surfaces use strict catalog Sellmeier data
-- **89.7%** strict Sellmeier surface coverage overall
-- **5511 / 6129** non-air surfaces use trusted chromatic data
-- **89.9%** trusted chromatic coverage overall
+- **5539 / 6168** non-air surfaces use strict catalog Sellmeier data
+- **89.8%** strict Sellmeier surface coverage overall
+- **5550 / 6168** non-air surfaces use trusted chromatic data
+- **90.0%** trusted chromatic coverage overall
 - **30 / 75** native e-line surfaces use name-verified catalog Sellmeier data
 
 ## Native E-Line Catalog Matches
@@ -110,6 +110,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [SIGMA 14-24mm f/2.8 DG HSM | Art](../../src/lens-data/sigma/Sigma1424mmf28DGHSM.data.ts) | 17/17 | 17 | 17/17 |
 | [SIGMA 17-40mm f/1.8 DC | Art](../../src/lens-data/sigma/Sigma1740mmf18DCA.data.ts) | 17/17 | 17 | 17/17 |
 | [SIGMA 24mm f/1.4 DG DN | Art](../../src/lens-data/sigma/Sigma24mmf14ArtDN.data.ts) | 17/17 | 17 | 17/17 |
+| [SONY VARIO-SONNAR T* 24-70mm f/2.8 ZA SSM](../../src/lens-data/sony/SonyVarioSonnarT2470mmf28ZASSM.data.ts) | 17/17 | 17 | 17/17 |
 | [TAMRON SP 70-300mm f/4-5.6 Di VC USD](../../src/lens-data/tamron/TamronA00570300mmf456VC.data.ts) | 17/17 | 17 | 17/17 |
 | [CANON EF 11-24mm f/4 L USM](../../src/lens-data/canon/CanonEF1124mmf4L.data.ts) | 16/16 | 16 | 16/16 |
 | [CANON EF 200mm f/2 L IS USM](../../src/lens-data/canon/CanonEF200mmf2LISUSM.data.ts) | 16/16 | 16 | 16/16 |
@@ -177,6 +178,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [SIGMA 35mm f/1.4 DG HSM | Art](../../src/lens-data/sigma/Sigma35mmf14DGHSMA.data.ts) | 13/13 | 13 | 13/13 |
 | [SIGMA 50mm f/1.4 DG HSM | Art](../../src/lens-data/sigma/Sigma50mmf14DGHSMA.data.ts) | 13/13 | 13 | 13/13 |
 | [SONY FE 135mm f/1.8 GM](../../src/lens-data/sony/SonyFE135mmf18GM.data.ts) | 13/13 | 13 | 13/13 |
+| [SONY FE PZ 16-35mm f/4 G](../../src/lens-data/sony/SonyFEPZ1635mmf4G.data.ts) | 13/13 | 13 | 13/13 |
 | [CANON RF 85mm f/2 Macro IS STM](../../src/lens-data/canon/CanonRF85mmf2Macro.data.ts) | 12/12 | 12 | 12/12 |
 | [CANON TS-E 50mm f/2.8L MACRO](../../src/lens-data/canon/CanonTSE50mmf28L.data.ts) | 12/12 | 12 | 12/12 |
 | [FUJIFILM FUJINON GF 80mm f/1.7 R WR](../../src/lens-data/fujifilm/FujifilmGF80mmf17R.data.ts) | 12/12 | 12 | 12/12 |
@@ -258,6 +260,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [PENTAX SMC A 645 45mm f/2.8](../../src/lens-data/pentax/Pentax645A45mmf28.data.ts) | 9/9 | 9 | 9/9 |
 | [PENTAX SMC FA 645 120mm f/4 Macro](../../src/lens-data/pentax/Pentax645FA120mmf4.data.ts) | 9/9 | 9 | 9/9 |
 | [SIGMA 30mm f/1.4 DC HSM | Art](../../src/lens-data/sigma/Sigma30mmf14DCHSMA.data.ts) | 9/9 | 9 | 9/9 |
+| [SONY E PZ 16-50mm f/3.5-5.6 OSS](../../src/lens-data/sony/SonyEPZ1650mmf3556OSS.data.ts) | 9/9 | 9 | 9/9 |
 | [SONY FE 28-70mm f/3.5-5.6 OSS](../../src/lens-data/sony/SonyFE2870mmf3556.data.ts) | 9/9 | 9 | 9/9 |
 | [SONY FE 28mm f/2](../../src/lens-data/sony/SonyFE28mmf2.data.ts) | 9/9 | 9 | 9/9 |
 | [VOIGTLÄNDER APO-LANTHAR 180mm f/4 SL Close Focus](../../src/lens-data/voigtlander/VoigtlanderApoLanthar180mmf4.data.ts) | 9/9 | 9 | 9/9 |
