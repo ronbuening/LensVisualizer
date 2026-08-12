@@ -12,17 +12,17 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **556** lenses scanned
-- **6121** glass elements examined
-- **1553** elements have multiple coordinate-compatible candidates
-- **348** lens files are affected
-- **137** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
-- **151** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
+- **559** lenses scanned
+- **6160** glass elements examined
+- **1576** elements have multiple coordinate-compatible candidates
+- **351** lens files are affected
+- **155** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
+- **169** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
-| Smallest reference-index residual | 794 |
-| Evidence-source priority | 487 |
+| Smallest reference-index residual | 799 |
+| Evidence-source priority | 505 |
 | Vendor context | 268 |
 | Stable canonical-name order | 4 |
 
@@ -1080,6 +1080,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `FD140 / S-TIH14 class (762/266 heavy flint)` | 1.76200 / 26.61 (d) | S-TIH14 — smallest d-line \|Δn\| (1.8e-4 vs 1.8e-4) | FD140 (Hoya, name)<br>J-SF14 (Hikari, code, preferred code row) | 2 | [SONY E 35mm f/1.8 OSS](../../src/lens-data/sony/SonyE35mmf18.data.ts) L111 |
 | `TAFD5G / TAFD5F / S-LAH55VS class (835/427)` | 1.83500 / 42.72 (d) | S-LAH55VS — smallest d-line \|Δn\| (1.9e-4 vs 1.9e-4) | TAFD5F (Hoya, name)<br>S-LAH55 (Ohara, code, preferred code row) | 1 | [SONY E 35mm f/1.8 OSS](../../src/lens-data/sony/SonyE35mmf18.data.ts) L112 |
 | `FCD1 / S-FPL51 class (ED fluorocrown, 497/816)` | 1.49700 / 81.61 (d) | FCD1 — smallest d-line \|Δn\| (1.6e-7 vs 7.1e-7) | S-FPL51 (Ohara, name)<br>H-FK61 (CDGM, code, alternate code row) | 1 | [SONY E 35mm f/1.8 OSS](../../src/lens-data/sony/SonyE35mmf18.data.ts) L121 |
+| `697-555 — HOYA LAC14/M-LAC14 coordinate family` | 1.69680 / 55.46 (d) | LAC14 — direct name evidence outranks six-digit code evidence. | J-LAK14 (Hikari, code, vendor ✗, alternate code row)<br>S-LAL14 (Ohara, code, vendor ✗, preferred code row) | 1 | [SONY E PZ 16-50mm f/3.5-5.6 OSS](../../src/lens-data/sony/SonyEPZ1650mmf3556OSS.data.ts) L8 |
 | `S-FPL53 / FCD100 class (Super ED fluorophosphate, 438/951)` | 1.43810 / 95.10 (d) | S-FPL53 — smallest d-line \|Δn\| (6.5e-4 vs 1.1e-3) | FCD100 (Hoya, name) | 2 | [SONY FE 12-24mm f/2.8 GM](../../src/lens-data/sony/SonyFE1224mmf28GM.data.ts) L14 |
 | `S-FPL51 / FCD1 / N-PK52A class (ED fluorophosphate, 498/816)` | 1.49845 / 81.60 (d) | FCD1 — smallest d-line \|Δn\| (1.5e-3 vs 1.5e-3) | S-FPL51 (Ohara, name) | 1 | [SONY FE 12-24mm f/2.8 GM](../../src/lens-data/sony/SonyFE1224mmf28GM.data.ts) L56 |
 | `Titanium flint (741/278, class S-TIH)` | 1.74077 / 27.76 (d) | E-FD13 — smallest d-line \|Δn\| (2.3e-7 vs 1.2e-6) | S-TIH13 (Ohara, code, preferred code row) | 1 | [SONY FE 135mm f/1.8 GM](../../src/lens-data/sony/SonyFE135mmf18GM.data.ts) L31 |
@@ -1135,8 +1136,23 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `S-TIH11 / FD110 / N-SF11 class (785257)` | 1.78472 / 25.70 (d) | S-TIH11 — direct name evidence outranks six-digit code evidence. | H-ZF13 (CDGM, code, alternate code row) | 1 | [SONY FE 70-200mm f/4 G OSS](../../src/lens-data/sony/SonyFE70200mmf4G.data.ts) L434 |
 | `S-LAH58 / N-LASF31A / TAFD30 class (883408)` | 1.88300 / 40.80 (d) | S-LAH58 — smallest d-line \|Δn\| (3.0e-6 vs 3.9e-6) | TAFD30 (Hoya, name) | 1 | [SONY FE 70-200mm f/4 G OSS](../../src/lens-data/sony/SonyFE70200mmf4G.data.ts) L435 |
 | `PBH21 (OHARA; historical 923209)` | 1.92290 / 20.88 (d) | PBH21 — direct name evidence outranks six-digit code evidence. | N-SF66 (Schott, code, vendor ✗, preferred code row)<br>E-FDS1 (Hoya, code, vendor ✗, alternate code row) | 1 | [SONY FE 90mm f/2.8 Macro G OSS](../../src/lens-data/sony/SonyFE90mmf28.data.ts) G7 |
+| `835427 class (vendor unresolved)` | 1.83481 / 42.70 (d) | S-LAH55 — smallest d-line \|Δn\| (2.9e-6 vs 4.5e-6) | TAFD5F (Hoya, code, alternate code row) | 1 | [SONY FE PZ 16-35mm f/4 G](../../src/lens-data/sony/SonyFEPZ1635mmf4G.data.ts) L11 |
+| `583595 class (vendor unresolved)` | 1.58313 / 59.50 (d) | M-BACD12 — smallest d-line \|Δn\| (1.6e-8 vs 2.7e-4) | Q-SK52S (Hikari, code, preferred code row) | 2 | [SONY FE PZ 16-35mm f/4 G](../../src/lens-data/sony/SonyFEPZ1635mmf4G.data.ts) L12 |
+| `497816 class (vendor unresolved)` | 1.49700 / 81.60 (d) | H-FK61 — smallest d-line \|Δn\| (1.1e-8 vs 1.6e-7) | FCD1 (Hoya, code, alternate code row)<br>S-FPL51 (Ohara, code, preferred code row) | 1 | [SONY FE PZ 16-35mm f/4 G](../../src/lens-data/sony/SonyFEPZ1635mmf4G.data.ts) L13 |
+| `497816 class (source nd 1.49710; vendor unresolved)` | 1.49710 / 81.60 (d) | H-FK61 — smallest d-line \|Δn\| (1.0e-4 vs 1.0e-4) | FCD1 (Hoya, code, alternate code row)<br>S-FPL51 (Ohara, code, preferred code row) | 1 | [SONY FE PZ 16-35mm f/4 G](../../src/lens-data/sony/SonyFEPZ1635mmf4G.data.ts) L32 |
 | `613370 - E-F3/S-TIM3 moderate flint (code equivalent)` | 1.61293 / 37.00 (d) | E-F3 — smallest d-line \|Δn\| (1.6e-7 vs 8.0e-7) | S-TIM3 (Ohara, name) | 1 | [SONY PLANAR T* 50mm f/1.4 ZA SSM](../../src/lens-data/sony/SonyPlanarT50mmf14ZA.data.ts) L4 |
 | `Fluorophosphate crown, 593/686 class (uncertain) — ED glass` | 1.59282 / 68.60 (d) | FCD515 — smallest d-line \|Δn\| (4.3e-6 vs 6.8e-6) | FCD505 (Hoya, code, preferred code row) | 1 | [SONY PLANAR T* FE 50mm f/1.4 ZA](../../src/lens-data/sony/SonyPlanarFE50mmf14ZA.data.ts) Lp3 |
+| `S-TIH53 (OHARA) — 847238 class` | 1.84666 / 23.78 (d) | S-TIH53 — direct name evidence outranks six-digit code evidence. | S-TIH53W (Ohara, code, vendor ✓, alternate code row)<br>J-SF03 (Hikari, code, vendor ✗, alternate code row)<br>H-ZF52 (CDGM, code, vendor ✗, alternate code row)<br>FDS90 (Hoya, code, vendor ✗, alternate code row) | 2 | [SONY VARIO-SONNAR T* 24-70mm f/2.8 ZA SSM](../../src/lens-data/sony/SonyVarioSonnarT2470mmf28ZASSM.data.ts) G1 |
+| `S-LAH55V (OHARA) — 835427 class representative` | 1.83481 / 42.72 (d) | S-LAH55V — direct name evidence outranks six-digit code evidence. | S-LAH55 (Ohara, code, vendor ✓, preferred code row)<br>TAFD5F (Hoya, code, vendor ✗, alternate code row) | 3 | [SONY VARIO-SONNAR T* 24-70mm f/2.8 ZA SSM](../../src/lens-data/sony/SonyVarioSonnarT2470mmf28ZASSM.data.ts) G2 |
+| `773496 — S-LAH66 coordinate model (supplier unresolved; source νe=49.36)` | 1.77250 / 49.36 (d) | S-LAH66 — direct name evidence outranks six-digit code evidence. | J-LASF016 (Hikari, code, alternate code row)<br>N-LAF34 (Schott, code, alternate code row)<br>S-LAH66N (Ohara, code, alternate code row) | 2 | [SONY VARIO-SONNAR T* 24-70mm f/2.8 ZA SSM](../../src/lens-data/sony/SonyVarioSonnarT2470mmf28ZASSM.data.ts) G4 |
+| `N-LASF44 (SCHOTT) — 804465 class` | 1.80420 / 46.50 (d) | N-LASF44 — direct name evidence outranks six-digit code evidence. | TAF3 (Hoya, code, vendor ✗, alternate code row)<br>TAF3D (Hoya, code, vendor ✗, alternate code row) | 1 | [SONY VARIO-SONNAR T* 24-70mm f/2.8 ZA SSM](../../src/lens-data/sony/SonyVarioSonnarT2470mmf28ZASSM.data.ts) G5 |
+| `N-LAF34 (SCHOTT) — 773496 class` | 1.77250 / 49.62 (d) | N-LAF34 — direct name evidence outranks six-digit code evidence. | J-LASF016 (Hikari, code, vendor ✗, alternate code row)<br>S-LAH66 (Ohara, code, vendor ✗, preferred code row)<br>S-LAH66N (Ohara, code, vendor ✗, alternate code row) | 1 | [SONY VARIO-SONNAR T* 24-70mm f/2.8 ZA SSM](../../src/lens-data/sony/SonyVarioSonnarT2470mmf28ZASSM.data.ts) G7 |
+| `883408 — S-LAH58 coordinate model (supplier unresolved)` | 1.88300 / 40.80 (d) | S-LAH58 — direct name evidence outranks six-digit code evidence. | TAFD30 (Hoya, code, alternate code row) | 1 | [SONY VARIO-SONNAR T* 24-70mm f/2.8 ZA SSM](../../src/lens-data/sony/SonyVarioSonnarT2470mmf28ZASSM.data.ts) G8 |
+| `J-LAK10 (HIKARI) — 720503 class representative` | 1.72000 / 50.34 (d) | J-LAK10 — direct name evidence outranks six-digit code evidence. | LAC10 (Hoya, code, vendor ✗, alternate code row) | 1 | [SONY VARIO-SONNAR T* 24-70mm f/2.8 ZA SSM](../../src/lens-data/sony/SonyVarioSonnarT2470mmf28ZASSM.data.ts) G9 |
+| `N-LASF46B (SCHOTT) — 904313 class` | 1.90366 / 31.32 (d) | N-LASF46B — direct name evidence outranks six-digit code evidence. | S-LAH95 (Ohara, code, vendor ✗, preferred code row)<br>TAFD25 (Hoya, code, vendor ✗, alternate code row) | 2 | [SONY VARIO-SONNAR T* 24-70mm f/2.8 ZA SSM](../../src/lens-data/sony/SonyVarioSonnarT2470mmf28ZASSM.data.ts) G11 |
+| `S-FPL51 (OHARA) — 497816 class representative` | 1.49700 / 81.61 (d) | S-FPL51 — direct name evidence outranks six-digit code evidence. | H-FK61 (CDGM, code, vendor ✗, alternate code row)<br>FCD1 (Hoya, code, vendor ✗, alternate code row) | 2 | [SONY VARIO-SONNAR T* 24-70mm f/2.8 ZA SSM](../../src/lens-data/sony/SonyVarioSonnarT2470mmf28ZASSM.data.ts) G12 |
+| `N-FK5 (SCHOTT) — 487704 class representative` | 1.48749 / 70.44 (d) | N-FK5 — direct name evidence outranks six-digit code evidence. | H-QK3L (CDGM, code, vendor ✗, alternate code row)<br>FK5 (Sumita, code, vendor ✗, alternate code row)<br>FC5 (Hoya, code, vendor ✗, alternate code row) | 1 | [SONY VARIO-SONNAR T* 24-70mm f/2.8 ZA SSM](../../src/lens-data/sony/SonyVarioSonnarT2470mmf28ZASSM.data.ts) G15 |
+| `NBFD10 (HOYA) — 834373 class` | 1.83400 / 37.34 (d) | NBFD10 — direct name evidence outranks six-digit code evidence. | M-NBFD10 (Hoya, code, vendor ✓, preferred code row) | 1 | [SONY VARIO-SONNAR T* 24-70mm f/2.8 ZA SSM](../../src/lens-data/sony/SonyVarioSonnarT2470mmf28ZASSM.data.ts) G17 |
 | `497816 coordinate class` | 1.49700 / 81.61 (d) | H-FK61 — smallest d-line \|Δn\| (1.1e-8 vs 1.6e-7) | FCD1 (Hoya, code, alternate code row)<br>S-FPL51 (Ohara, code, preferred code row) | 2 | [TAMRON 18-400mm f/3.5-6.3 Di II VC HLD](../../src/lens-data/tamron/TamronB02818400mmf3563.data.ts) L2 |
 | `618634 coordinate class` | 1.61800 / 63.39 (d) | S-PHM52 — smallest d-line \|Δn\| (9.0e-8 vs 1.0e-7) | N-PSK53A (Schott, code, alternate code row)<br>K-PSKn2 (Sumita, code, alternate code row) | 1 | [TAMRON 18-400mm f/3.5-6.3 Di II VC HLD](../../src/lens-data/tamron/TamronB02818400mmf3563.data.ts) L5 |
 | `847238 coordinate class` | 1.84666 / 23.78 (d) | J-SF03 — smallest d-line \|Δn\| (3.7e-8 vs 5.0e-8) | H-ZF52 (CDGM, code, alternate code row)<br>S-TIH53W (Ohara, code, alternate code row)<br>S-TIH53 (Ohara, code, preferred code row)<br>FDS90 (Hoya, code, alternate code row) | 2 | [TAMRON 18-400mm f/3.5-6.3 Di II VC HLD](../../src/lens-data/tamron/TamronB02818400mmf3563.data.ts) L6 |

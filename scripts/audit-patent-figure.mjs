@@ -43,9 +43,9 @@
  */
 
 import { execFileSync } from "node:child_process";
-import { readFileSync, rmSync } from "node:fs";
+import { readFileSync, readdirSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { join, resolve } from "node:path";
+import { basename, dirname, join, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 
 const ROOT = join(import.meta.dirname, "..");
@@ -77,15 +77,11 @@ if (crop.length !== 4 || crop.some((value) => !Number.isFinite(value) || value <
 /* ── render and parse the page as binary PGM ── */
 const prefix = join(tmpdir(), `patentfig_${process.pid}`);
 execFileSync("pdftoppm", ["-gray", "-r", String(dpi), "-f", String(page), "-l", String(page), pdf, prefix]);
-const padded = page < 10 ? `0${page}` : String(page);
-let pgmPath = `${prefix}-${padded}.pgm`;
-let buffer;
-try {
-  buffer = readFileSync(pgmPath);
-} catch {
-  pgmPath = `${prefix}-${page}.pgm`;
-  buffer = readFileSync(pgmPath);
-}
+const outputStem = `${basename(prefix)}-`;
+const outputName = readdirSync(dirname(prefix)).find((name) => name.startsWith(outputStem) && name.endsWith(".pgm"));
+if (!outputName) throw new Error(`pdftoppm did not produce a PGM for PDF page ${page}`);
+const pgmPath = join(dirname(prefix), outputName);
+const buffer = readFileSync(pgmPath);
 
 let cursor = 0;
 /** Read the next whitespace-delimited PGM header token, skipping comments. */
