@@ -19,7 +19,7 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
-    date: "2026-08-11",
+    date: "2026-08-12",
     type: "lens",
     summary: "Added Sony E PZ 16-50mm, FE PZ 16-35mm, and Vario-Sonnar 24-70mm designs",
   },
