@@ -1,209 +1,362 @@
 ## Patent Reference and Design Identification
 
-**Patent:** US 5,751,485  
-**Title:** Lens Capable of Short Distance Photographing with Vibration Reduction Function  
-**Filed:** August 2, 1995  
-**Granted:** May 12, 1998  
-**Priority:** JP 5-323282; JP 6-074439; JP 6-074440; JP 7-031544; JP 7-031545  
-**Inventor:** Kenzaburo Suzuki  
-**Assignee:** Nikon Corporation, Tokyo, Japan  
-**Embodiment analyzed:** Ninth Embodiment, FIG. 9 and Table 9
+**Patent:** US 5,402,268<br />
+**Filed:** March 14, 1994; continuation of application filed April 21, 1993<br />
+**Priority:** Japan, May 18, 1992 (JP 4-24480)<br />
+**Granted:** March 28, 1995<br />
+**Inventor:** Wataru Tatsuno<br />
+**Assignee:** Nikon Corporation<br />
+**Title:** “Telephoto Lens System Allowing Short-Distance Photographing Operation”<br />
+**Embodiment analyzed:** Example 1 / First Embodiment, Fig. 1, Table 1, claim 14
 
-US 5,751,485 is a Nikon patent for close-focusing photographic lenses with vibration reduction. The eighth and ninth embodiments are introduced as fourth-mode examples: a positive first group G1, a negative second group G2, and a positive last group GL, with a negative partial group GLP in GL available for vibration reduction. The ninth embodiment is the relevant worked example for this file.
+The prescription models the NIKON AF MICRO-NIKKOR 200mm f/4D IF-ED with the first numerical embodiment of
+US 5,402,268. The patent does not identify a commercial lens by product name, so the production correlation is an
+inference rather than a manufacturer-confirmed patent attribution. The correlation is nevertheless supported by several
+independent points of agreement.
 
-The match to the production AF Micro-Nikkor 200mm f/4D IF-ED is supported by the following convergent evidence.
+1. The patent gives a 200.0 mm, f/4.0 system; the independently traced Example 1 prescription has an effective focal
+   length of 200.145720 mm. Nikon specifies the production lens as 200 mm f/4.
+2. Both the patent embodiment and the production lens contain 13 elements in 8 air-separated physical groups.
+3. The patent gives a full field of 12.33°, while Nikon specifies 12°20′ for FX/35 mm coverage.
+4. Example 1 publishes focusing from infinity to β = −1.0000; Nikon specifies 1:1 maximum reproduction at a marketed
+   minimum focus distance of 0.5 m and describes the production lens as an internal-focusing design.
+5. The production optical section marks two ED elements in the front section. Their positions correspond to L12 and L2,
+   the two Example 1 elements with the unusually high νd = 82.6 coordinate.
+6. The sequence of meniscus, cemented-doublet, and rear-group shapes in Nikon's optical section follows the topology of
+   Fig. 1 closely, including the long separation inside the rear fixed group.
 
-1. The patent prescription has 13 glass elements in 8 air-separated groups; Nikon's product specifications list the production lens as 13 elements in 8 groups.
-2. The patent uses two very-low-dispersion FK-class elements at nd = 1.49782 and νd = 82.52 in the front group; Nikon specifies two ED glass elements for the production lens.
-3. The computed infinity EFL is 199.996 mm, matching the 200 mm marketed focal length.
-4. The patent lists F = 4.07, consistent with the production f/4 maximum aperture.
-5. The patent lists 2ω = 12.23°, close to Nikon's published 12°20' FX angle of view.
-6. The patent reaches β = -1.0 at the shortest photographing distance. The computed object-to-image distance at that state is 495.28 mm, consistent with Nikon's 0.5 m minimum-focus specification.
-7. The patent's focusing kinematics move the front sub-group G11 and the negative second group G2 while the rear sub-group G12 and GL remain fixed along the axis, matching the production lens's IF and CRC designation.
-8. The design is all-spherical; the patent lists no aspherical coefficients.
+The selected embodiment is used at its native scale. No focal-length scaling is applied, and no cover glass, filter,
+sensor plate, inactive dummy plane, or mechanical plane is added to or removed from the patent prescription. The 21
+published refracting surfaces are all spherical, so no aspheric coefficient conversion or scaling rule is involved.
 
-The production AF Micro-Nikkor 200mm f/4D IF-ED is not a VR lens. This file therefore treats the patent embodiment as a VR-capable form of the same base macro optical architecture, not as evidence that the production product contains a moving stabilization unit.
+Where the PDF text layer conflicts with the rendered numerical tables, the rendered patent page is treated as the source
+authority; no rendered numerical value is altered. The source caption “Variable Interval in Zooming” is retained as a
+source wording anomaly: Example 1 is a fixed-focal-length prime and the three columns are
+infinity, β = −0.5000, and β = −1.0000 focus states. A second source tension is real rather than an OCR error: the prose
+says G1 moves objectward during close focusing, while the tabulated 1:1 endpoint returns G1 to its infinity axial
+position. The analysis follows the published numerical table.
 
 ## Optical Architecture
 
-The ninth embodiment is a long-focus macro lens with a positive-negative-positive group structure: G1 is positive, G2 is negative, and GL is positive. It is not a strict telephoto design by the usual total-track criterion: the infinity first-surface-to-image track is 222.918 mm, so TL/EFL = 1.115. The more precise description is a compact internal-focusing 200 mm macro design whose negative G2 group provides focus leverage and Petzval balancing.
+Example 1 is a four-functional-group internal-focusing macro prime with a **positive / positive / negative / positive**
+power sequence. The 13 glass elements form eight air-separated physical groups, five of which are cemented doublets. G1
+and G3 move during focusing; G2 and G4 remain fixed. The architecture therefore separates the major focusing action from
+the long rear positive relay and avoids moving the entire lens assembly to reach 1:1.
 
-G1 is divided into two sub-groups. G11 contains L1-L3: a cemented negative/ED-positive doublet followed by a second ED positive meniscus. G12 contains L4-L5: a stationary cemented doublet. The variable air gap d5 separates G11 and G12.
+| Functional group | Elements | Computed in-situ EFL | Focus behavior | Principal structural role |
+|---|---|---:|---|---|
+| G1 | L11 + L12, L2 | +114.998349 mm | Nonlinear motion | Front positive group with two ED-class positive elements |
+| G2 | L31 + L32 | +243.701007 mm | Fixed | Weak positive fixed group and reference for the moving groups |
+| G3 | L41 + L42, L51 + L52 | −47.991137 mm | Moves imageward | Strong negative internal focus group |
+| G4 | L61 + L62, L7, L8 | +119.999894 mm | Fixed | Rear positive group with a long internal air interval |
 
-G2 contains two cemented doublets, L6-L7 and L8-L9, separated by a 3.70 mm air gap. This group has the strongest negative net power in the system and moves imageward during close focusing. The small 3.70 mm air gap between surfaces 11 and 12 is the binding semi-diameter constraint in the rendered data file.
+The patent itself calls the invention a telephoto lens system. Under the project's stricter geometric classification,
+however, the final data have S1-to-image track / EFL = 1.114546, so the prescription is not labeled “telephoto” by the
+project rule requiring a ratio below 1. It is also not retrofocus: BFD / EFL = 0.294604, far below the criterion
+BFD > EFL. The word “telephoto” therefore appears here only as part of the patent's own terminology, not as the
+computed project architecture label.
 
-GL begins with the cemented doublet L10-L11, followed by a large 46.50 mm air space, L12, a 0.40 mm air space, and the final positive meniscus L13. The patent places the aperture stop S between G2 and GL and a flare stop FS inside GL. Because Table 9 does not give the exact axial split of the aperture-stop position inside d14, the data file inserts STO in d14 for rendering while preserving the total patent d14.
-
-All optical surfaces are spherical. No aspherical-surface section is included because neither the patent prescription nor the figure gives any aspherical coefficients.
+The rear section is intentionally extended. The patent makes the axial interval DA between cemented L6 and L7 part of
+its correction strategy, and Example 1 sets that interval to 46.5 mm. This separates the last two singlets from the
+front of G4 and gives the rear group a role beyond simple positive relay power: the patent specifically relates this
+spacing to control of oblique rays and distortion.
 
 ## Element-by-Element Analysis
 
-### L1 - Negative Meniscus, convex to object, cemented with L2
+### L1 — L11 + L12 Cemented Positive Doublet
 
-nd = 1.80384, νd = 33.89. Glass: Hikari E-LAFH2, exact patent code 804/339. f = -189.7 mm.
+**L11:** nd = 1.80384, νd = 33.9. Glass: E-LAFH2 catalog equivalent (patent 804339; production supplier
+unspecified).
+Standalone f = −189.502331 mm.<br />
+**L12:** nd = 1.49782, νd = 82.6. Glass: J-FKH1 catalog equivalent (patent 498826; production supplier
+unspecified). Standalone f = +122.468927 mm.
 
-L1 is the negative flint member of the opening achromat. Its high refractive index and low Abbe number make it the dispersive partner for the ED crown L2. The two positive radii form a negative meniscus that is convex to the object side.
+L11 is the negative meniscus at the object side of the system; L12 is the biconvex positive rear member of the cemented
+pair. In isolation their powers are opposite and considerably stronger than the net doublet, whose computed cemented EFL
+is +344.592347 mm. This distinction matters: L11 is not evidence that the front group is negative. The cemented L1 unit
+is weakly positive, and with L2 it forms the substantially stronger positive G1.
 
-### L2 - Biconvex Positive ED element, cemented with L1
+The patent singles out the power of the front negative lens through condition (2), fA/f1. Its discussion states that an
+excessively strong L11 makes spherical-aberration correction difficult, while insufficient negative power weakens both
+spherical- and chromatic-aberration correction. The front negative member therefore has a deliberately constrained role
+inside a positive moving group rather than serving as a separate negative front group.
 
-nd = 1.49782, νd = 82.52. Glass: J-FKH1-class Hikari FK fluorophosphate / ED glass. f = +122.5 mm.
+L12 carries the same nd/νd pair as L2. Nikon's production optical section marks the corresponding two front positive
+elements as ED glass. J-FKH1 supplies a coefficient-backed spectral model at the same coordinate, but the label is a
+catalog-equivalent assignment and does not claim that Hikari supplied Nikon's production melt.
 
-L2 supplies the principal positive power of the first cemented doublet while reducing secondary spectrum. It is treated as a catalog-resolvable FK-class ED glass, but not as a named Nikon-specific melt because the patent publishes nd, νd, and ng rather than a glass trade name.
+### L2 — Positive Meniscus
 
-### L3 - Positive Meniscus ED element
+**nd = 1.49782, νd = 82.6. Glass: J-FKH1 catalog equivalent (patent 498826; production supplier unspecified).
+f = +171.464632 mm.**
 
-nd = 1.49782, νd = 82.52. Glass: J-FKH1-class Hikari FK fluorophosphate / ED glass. f = +171.5 mm.
+L2 is a positive meniscus, convex toward the object, separated from L1 by only 0.3 mm of air. Together, L1 and L2 form
+G1 with a computed in-situ EFL of +114.998349 mm. L2 is the second νd = 82.6 element and the second position that aligns
+with an ED-marked element in Nikon's production section.
 
-L3 repeats the low-index, high-Abbe ED glass used in L2 and completes the positive G11 sub-group. Its front radius is much stronger than its rear radius, so it acts as a front-subgroup collector while keeping chromatic error low before the floating focus separation at d5.
+Because G1 moves during focus, L2 participates in the patent's deliberate change of front-group contribution at close
+range. The source does not assign an independent aberration function to L2, so its role is best described at the group
+level: it supplies positive power and low-dispersion positive glass within the moving front group.
 
-### L4 - Negative Meniscus, convex to object, cemented with L5
+### L3 — L31 + L32 Cemented Positive Doublet
 
-nd = 1.79631, νd = 40.90. Glass: HOYA NBFD2 catalog equivalent for patent code 796/409; production supplier unspecified. f = -104.5 mm.
+**L31:** nd = 1.79631, νd = 40.9. Glass: NBFD2 catalog equivalent (patent 796409; production supplier unspecified).
+Standalone f = −104.311476 mm.<br />
+**L32:** nd = 1.60311, νd = 60.7. Glass: J-SK14 catalog equivalent (patent 603607; production supplier unspecified).
+Standalone f = +71.679576 mm.
 
-L4 is the negative member of the stationary G12 cemented doublet. HOYA's official obsolete-inclusive catalog supplies an NBFD2 model at 1.797199 / 41.143795, close to the patent coordinate by +0.000889 / +0.244. It is used as an optical equivalent, not as evidence of Nikon's production supplier.
+L31 and L32 form the fixed positive G2. The cemented pair has a computed EFL of +243.701007 mm, identical to G2 because
+no other element belongs to that functional group. The negative-front/positive-rear pairing allows the fixed group to
+remain weakly positive while presenting a cemented interface of substantial curvature.
 
-### L5 - Positive Meniscus, convex to object, cemented with L4
+Mechanically, G2 is the fixed reference between the two moving groups. The focus law changes d5 between G1 and G2 and
+d8 between G2 and G3, while the G2 glass itself remains stationary. Its relatively weak positive power also appears in
+condition (1), which constrains f2/f1 and thereby limits how strong the moving front group can become relative to this
+fixed positive group.
 
-nd = 1.60311, νd = 60.64. Glass: S-BSM14 (OHARA). f = +71.7 mm.
+### L4 — L41 + L42 Cemented Negative Doublet
 
-L5 is the crown member of the G12 doublet. With L4 it forms a weak positive doublet of f = +243.6 mm. G12 remains stationary in the patent focus model and conditions the ray bundle entering the negative G2 group.
+**L41:** nd = 1.62280, νd = 57.0. Glass: S-BSM10 catalog equivalent (patent 623570; production supplier
+unspecified). Standalone f = −60.320053 mm.<br />
+**L42:** nd = 1.80384, νd = 33.9. Glass: E-LAFH2 catalog equivalent (patent 804339; production supplier
+unspecified). Standalone f = +73.492675 mm.
 
-### L6 - Negative Meniscus, convex to object, cemented with L7
+The L4 pair is a meniscus-shaped cemented negative doublet with computed cemented EFL −276.455203 mm. Although its net
+power is modest compared with the following L5 doublet, its cemented interface is explicitly part of the patent's design
+conditions. Condition (3) constrains the radius of that interface relative to whole-system focal length and the index
+difference across the cement.
 
-nd = 1.62280, νd = 57.03. Glass: S-BSM10-class (OHARA, close). f = -60.4 mm.
+The patent explains condition (3) in terms of Petzval balance, astigmatism, and spherical aberration. The interface is
+therefore not merely a convenient cement line: its surface power is one of the variables used to keep field curvature and
+astigmatic correction in balance without making spherical correction unmanageable.
 
-L6 starts the first cemented doublet in G2. Its steep rear junction surface at R10 = 31.4573 mm gives it strong negative standalone power while the full L6-L7 doublet is only weakly negative in situ.
+### L5 — L51 + L52 Cemented Negative Doublet
 
-### L7 - Positive Meniscus, convex to object, cemented with L6
+**L51:** nd = 1.80518, νd = 25.4. Glass: S-TIH6 catalog equivalent (patent 805254; production supplier
+unspecified). Standalone f = +160.184962 mm.<br />
+**L52:** nd = 1.62041, νd = 60.1. Glass: J-SK16 catalog equivalent (patent 620601; production supplier
+unspecified). Standalone f = −42.921845 mm.
 
-nd = 1.80384, νd = 33.89. Glass: Hikari E-LAFH2, same exact patent code as L1. f = +73.7 mm.
+L5 is the stronger of the two negative cemented units in G3. Its computed cemented EFL is −57.630123 mm. In combination
+with L4 and their 3.7 mm air separation, the complete moving G3 reaches −47.991137 mm.
 
-L7 is the positive high-index member of the first G2 doublet. The L6-L7 cemented pair computes to f = -275.8 mm; by itself it is not the dominant negative component, but it participates in balancing coma and chromatic error before the stronger L8-L9 pair.
+This strong negative power is central to the internal-focus mechanism. As G3 moves imageward, the interval from fixed G2
+increases while the interval to fixed G4 decreases by almost the same amount. The patent's discussion treats that G3
+motion as the main focusing displacement and uses the smaller nonlinear G1 displacement to suppress the aberration
+variation that would remain if G3 moved alone.
 
-### L8 - Positive Meniscus, concave to object, cemented with L9
+### L6 — L61 + L62 Cemented Positive Doublet
 
-nd = 1.80518, νd = 25.41. Glass: S-TIH6 (OHARA). f = +159.6 mm.
+**L61:** nd = 1.68893, νd = 31.1. Glass: S-TIM28 catalog equivalent (patent 689311; production supplier
+unspecified). Standalone f = −107.274379 mm.<br />
+**L62:** nd = 1.62041, νd = 60.1. Glass: J-SK16 catalog equivalent (patent 620601; production supplier
+unspecified). Standalone f = +52.477312 mm.
 
-L8 is a dense flint positive meniscus with both radii negative. It forms the front member of the principal negative doublet in G2. Its very low Abbe number supplies strong dispersive leverage at the L8-L9 cemented interface.
+L6 is a cemented positive doublet at the front of fixed G4. Its computed cemented EFL is +99.174536 mm. The patent's
+condition (4) applies directly to the L61/L62 cemented interface and relates its surface power to correction at the
+minimum-focus side, especially spherical aberration and oblique-image behavior.
 
-### L9 - Biconcave Negative, cemented with L8
+L6 does not operate as an isolated +99 mm objective. Its effect must be read together with the long DA interval, negative
+L7, positive L8, and their separations. Those components form a +119.999894 mm in-situ G4 while keeping the image plane
+at the published back focus.
 
-nd = 1.62041, νd = 60.14. Glass: S-BSM16-class (OHARA, close). f = -42.9 mm.
+### L7 — Negative Meniscus
 
-L9 is the strongest standalone negative element in the design. The L8-L9 doublet computes to f = -57.7 mm and is the dominant contributor to G2's net f = -48.0 mm. Its negative power is also central to the low positive surface-by-surface Petzval sum.
+**nd = 1.77279, νd = 49.4. Glass: M-TAF1 catalog equivalent (patent 773494; production supplier unspecified).
+f = −113.254745 mm.**
 
-### L10 - Negative Meniscus, convex to object, cemented with L11
+L7 is a negative meniscus, convex toward the image, positioned 46.5 mm behind L6. The patent makes this long separation a
+formal design variable, DA, and condition (5) constrains DA/F. Its discussion says that increasing the interval can
+strengthen correction of oblique rays but also enlarges the required rear-element diameter and makes back-focus control
+more difficult; reducing it too far weakens distortion correction.
 
-nd = 1.68893, νd = 31.08. Glass: S-TIM28 (OHARA). f = -107.3 mm.
+Accordingly, L7's placement is at least as significant as its standalone negative power. It is the first singlet in the
+widely spaced rear portion of G4 and works with L8 to shape the final positive group rather than acting as an independent
+negative group.
 
-L10 opens the fixed last group GL. Its front surface is very weakly curved, while the cemented junction to L11 is much stronger. This negative flint member helps achromatize the strong positive relay element L11.
+### L8 — Positive Meniscus
 
-### L11 - Biconvex Positive, cemented with L10
+**nd = 1.54814, νd = 45.9. Glass: E-FEL1 catalog equivalent (patent 548459; production supplier unspecified).
+f = +176.972875 mm.**
 
-nd = 1.62041, νd = 60.14. Glass: S-BSM16-class (OHARA, close). f = +52.5 mm.
+L8 is the final positive meniscus and the last glass element before the published back-focus interval. It follows L7 by a
+0.4 mm air gap, so the negative-positive pair closes the long rear group compactly after the large L6-to-L7 separation.
+The source does not assign a separate conditional expression to L8; its verified role is therefore described through the
+net G4 behavior rather than by attributing an unsupported single-element aberration function.
 
-L11 is the strongest positive element in GL. The L10-L11 cemented doublet computes to f = +99.2 mm and reconverges the beam from the negative G2 group. It is followed by the large 46.50 mm air space that contains the patent's flare-stop location.
+The final G4 remains fixed throughout focusing. That fixed rear reference is consistent with the patent's goal of
+limiting focus-induced mechanical extension while preserving a long working distance at high magnification.
 
-### L12 - Negative Meniscus, concave to object; patent GLP
+## Glass Identification and Selection
 
-nd = 1.77279, νd = 49.45. Glass: S-LAH66-class (OHARA, close). f = -113.4 mm.
+The patent supplies only d-line refractive index and Abbe number. It does not name a glass manufacturer, glass catalog,
+partial-dispersion value, or C/F/g-line index. The data file preserves those patent coordinates exactly while assigning
+the closest compatible coefficient-backed catalog entry as an optical dispersion model. These are catalog equivalents,
+not claims about Nikon's historical supplier or production melt.
 
-L12 is the patent-designated vibration-reduction group GLP. The element is a single negative meniscus located after the large GL air space and on the image side of the aperture stop. In the non-VR production lens, this element is fixed and functions as a rear field and aberration corrector.
+| Catalog-equivalent spectral model | Patent nd | Patent νd | Elements | Coordinate comparison |
+|---|---:|---:|---|---|
+| E-LAFH2 | 1.80384 | 33.9 | L11, L42 | Exact nd; catalog νd differs by −0.01 |
+| J-FKH1 | 1.49782 | 82.6 | L12, L2 | Exact nd; catalog νd differs by −0.03; ED-position equivalent |
+| NBFD2 | 1.79631 | 40.9 | L31 | nd differs by +0.00089; catalog νd differs by +0.24 |
+| J-SK14 | 1.60311 | 60.7 | L32 | Exact nd; catalog νd differs by −0.01 |
+| S-BSM10 | 1.62280 | 57.0 | L41 | Exact rounded six-digit code; catalog νd differs by +0.05 |
+| S-TIH6 | 1.80518 | 25.4 | L51 | Exact rounded six-digit code; catalog νd differs by +0.03 |
+| J-SK16 | 1.62041 | 60.1 | L52, L62 | Exact nd; catalog νd differs by +0.15 |
+| S-TIM28 | 1.68893 | 31.1 | L61 | Exact rounded six-digit code; catalog νd differs by −0.03 |
+| M-TAF1 | 1.77279 | 49.4 | L7 | nd differs by −0.00029; catalog νd differs by +0.06 |
+| E-FEL1 | 1.54814 | 45.9 | L8 | Exact nd; catalog νd differs by −0.08 |
 
-The catalog label is class-level rather than a direct S-LAH66 assertion: S-LAH66 is close in code but not exact at the patent's nd and νd.
-
-### L13 - Positive Meniscus, convex to object
-
-nd = 1.54814, νd = 45.87. Glass: S-TIL1-class (OHARA, close). f = +177.1 mm.
-
-L13 is the final positive meniscus before the 58.809 mm back focus. It provides final convergence and residual field correction after the L12 negative meniscus.
-
-## Glass Identification / Selection
-
-The patent publishes nd, νd, and ng values, not glass names. Catalog names below are therefore assigned only where the published data matches an authoritative manufacturer catalog closely enough. Where the match is not exact, the file uses a class label rather than an asserted exact glass.
-
-| Element | Patent nd | Patent νd | Working identification | Match status | Role |
-|---|---:|---:|---|---|---|
-| L1 | 1.80384 | 33.89 | E-LAFH2 (Hikari), 804/339 code | Exact code and coordinate | Negative flint member of front ED doublet |
-| L2 | 1.49782 | 82.52 | J-FKH1-class FK fluorophosphate (Hikari) | Close / catalog-class | ED positive element |
-| L3 | 1.49782 | 82.52 | J-FKH1-class FK fluorophosphate (Hikari) | Close / catalog-class | ED positive element |
-| L4 | 1.79631 | 40.90 | NBFD2 (HOYA optical equivalent) | Catalog-backed equivalent | G12 negative doublet member; supplier unspecified |
-| L5 | 1.60311 | 60.64 | S-BSM14 (OHARA) | Exact to listed nd/νd | G12 crown partner |
-| L6 | 1.62280 | 57.03 | S-BSM10-class (OHARA) | Close | G2 negative meniscus |
-| L7 | 1.80384 | 33.89 | E-LAFH2 (Hikari), 804/339 code | Exact code and coordinate | G2 high-index partner |
-| L8 | 1.80518 | 25.41 | S-TIH6 (OHARA) | Close / essentially exact | Dense flint in dominant G2 doublet |
-| L9 | 1.62041 | 60.14 | S-BSM16-class (OHARA) | Close, not exact νd | G2 negative crown member |
-| L10 | 1.68893 | 31.08 | S-TIM28 (OHARA) | Close / essentially exact | GL flint member |
-| L11 | 1.62041 | 60.14 | S-BSM16-class (OHARA) | Close, not exact νd | GL positive crown member |
-| L12 | 1.77279 | 49.45 | S-LAH66-class (OHARA) | Close, not exact | Patent VR/GLP element |
-| L13 | 1.54814 | 45.87 | S-TIL1-class (OHARA) | Close, not exact νd | Rear field corrector |
-
-S-BSM14 is an exact match to the OHARA catalog values used here. S-TIH6 and S-TIM28 are close enough to use as specific OHARA glasses. S-BSM10, S-BSM16, S-LAH66, and S-TIL1 are retained only as class or close matches because their catalog Abbe numbers differ slightly from the patent table. L1/L7 remain unmatched; L4 now uses NBFD2's coefficient-backed legacy HOYA model as an explicitly supplier-neutral optical equivalent.
-
-The chromatic strategy is conventional for a high-quality 200 mm macro: ED positive elements in the front group reduce secondary spectrum, and each cemented doublet pairs a lower-Abbe flint-like member with a higher-Abbe crown-like member. Because the patent does not publish partial-dispersion deviation, the analysis avoids making a quantitative apochromatic claim.
+All 13 elements now resolve to compatible catalog curves, so the viewer can perform coefficient-backed spectral tracing
+without inventing patent line indices. The assignments still do not prove apochromatic correction, anomalous partial
+dispersion, a specific secondary-spectrum behavior, or a production supplier. The two νd = 82.6 elements are described
+as ED-class because their locations coincide with Nikon's two ED-marked production elements; that production correlation
+is distinct from identifying a particular glass maker.
 
 ## Focus Mechanism
 
-The patent focus system is a floating internal-focus design. In the patent coordinate system, G12 and GL remain fixed. G11 and G2 move relative to those fixed groups as the lens focuses from infinity to 1:1.
+The patent publishes the focus law directly, so no close-focus movement is reconstructed. G2 and G4 remain fixed; G3
+moves toward the image while G1 follows a separate convex nonlinear path toward the object side at intermediate
+magnification. The numerical table gives three source states:
 
-| Focus state | d5: G11-G12 | d8: G12-G2 | d14: G2-GL | Bf | Paraxial image magnification |
+| Source state | d0, object to S1 | d5, G1→G2 | source d8, G2→G3 | d14, G3→G4 | Bf |
 |---|---:|---:|---:|---:|---:|
-| Infinity | 6.64330 mm | 5.14048 mm | 45.12496 mm | 58.809 mm | 0 |
-| β = -0.5 | 14.20990 mm | 17.75138 mm | 32.51406 mm | 58.809 mm | -0.500 |
-| β = -1.0 | 6.64330 mm | 37.14078 mm | 13.12466 mm | 58.809 mm | -1.000 |
+| Infinity | ∞ | 6.6432 mm | 5.1405 mm | 45.1242 mm | 58.9638 mm |
+| β = −0.5000 | 480.7237 mm | 14.2044 mm | 17.7426 mm | 32.5222 mm | 58.9638 mm |
+| β = −1.0000 | 272.5885 mm | 6.6432 mm | 37.1142 mm | 13.1506 mm | 58.9638 mm |
 
-G2 moves monotonically imageward: d8 increases by 32.000 mm from infinity to 1:1 while d14 decreases by the same amount. G11 is non-monotonic: d5 increases at β = -0.5 and returns to its infinity value at β = -1.0. That mid-focus excursion is an important CRC/floating correction and is documented here, even though the companion `.data.ts` endpoint model cannot encode the intermediate d5 peak.
+Relative to infinity, G3 moves 12.6021 mm imageward at β = −0.5 and 31.9737 mm imageward at 1:1. The adjacent d8 and
+d14 gaps conserve their sum to 0.0001 mm, consistent with source rounding. At the intermediate state, G1 moves
+7.5612 mm objectward; at the 1:1 endpoint, the tabulated d5 returns to its infinity value, so G1 has zero net endpoint
+displacement despite its intermediate excursion.
 
-The independently computed object distance at β = -1.0 is WD = 272.364 mm from the object to the first surface, giving WD/f = 1.3618. Adding the first-surface-to-image track gives an object-to-image distance of 495.281 mm, which rounds to the production 0.5 m minimum-focus specification.
+This nonlinear G1 reversal is the one focus behavior that the current prime-lens data schema cannot display exactly. The
+schema stores only infinity and close-focus endpoint pairs and interpolates them linearly. The final data therefore retain
+the published infinity and 1:1 endpoints, with d5 equal at both ends, while the β = −0.5 source state is documented here.
+No pseudo-zoom, aberration-control slider, or invented focus reconstruction is used to force the intermediate G1 excursion
+into the viewer.
 
-## Image Stabilization / Patent VR Group
+The G3 motion is much better behaved under the endpoint representation. The published β = −0.5 d8 value corresponds to
+mechanical travel fraction 0.3941396 between the two endpoint d8 values; linear interpolation of d14 at that same
+fraction gives 32.522139 mm, only 0.000061 mm from the published 32.5222 mm. Thus the endpoint model preserves the
+paired G3 motion to source precision even though it cannot preserve G1's nonlinear reversal.
 
-In Table 9, the moving vibration-reduction group is GLP = L12. The patent gives a maximum GLP decenter of 0.70 mm at infinity, β = -0.5, and β = -1.0, with image motion of -0.396 mm. The corresponding ratio is ΔSLP/|fLP| = 0.0062 using fLP = -113.36 mm.
+The patent's 1:1 object distance is measured to the first optical vertex, not to the camera image plane. Adding the
+verified S1-to-image track gives 495.6603 mm object-to-image-plane distance at β = −1.0000, consistent with Nikon's
+rounded 0.5 m marketed minimum focus distance. Nikon's separately published approximately 0.26 m working distance at
+1:1 uses a different mechanical reference and is not substituted for patent d0.
 
-This is a patent function only. The production AF Micro-Nikkor 200mm f/4D IF-ED does not include optical vibration reduction, so the data file models L12 as an ordinary fixed element.
+## Chromatic Correction Strategy
+
+The most conspicuous glass choice is concentrated in G1. L12 and L2 both use nd = 1.49782, νd = 82.6, and occupy the
+two locations marked as ED glass in Nikon's production optical section. They are paired with the strongly refracting,
+lower-Abbe L11 front member and with the remainder of the positive moving group. This is consistent with a front-loaded
+chromatic-correction strategy appropriate to a 200 mm lens, while keeping the low-dispersion elements inside the group
+that also participates in focus compensation.
+
+The patent itself gives one explicit chromatic clue: its discussion of condition (2) states that if the negative L11
+becomes too weak, correction of both spherical and chromatic aberration becomes inadequate. The chromatic design is
+therefore not reducible to “two ED elements”; it depends on the power balance between those low-dispersion positive
+elements and the front negative member.
+
+Beyond that, the source data do not justify stronger historical claims. The catalog-equivalent curves support modeled
+wavelength behavior, but the patent itself provides only nd and νd. The resulting spectral trace must not be read as a
+measured production melt, proof of APO correction, or proof of Nikon's glass supplier.
+
+## Aberration Correction Strategy
+
+The patent's central design idea is that G3 motion alone is not enough to maintain correction from infinity to high
+magnification. It states that when the negative third group is used as the sole focusing group, suppressing the focus
+variation of astigmatism tends to leave spherical aberration over-corrected at intermediate magnification. The first
+positive group is therefore moved nonlinearly so that its contribution changes most strongly in the middle of the focus
+range rather than simply translating monotonically to the 1:1 endpoint.
+
+The cemented interface in L4 is then used as a Petzval/astigmatism control term through condition (3), while the L6
+cemented interface and the long DA spacing in G4 are constrained by conditions (4) and (5). The patent links these rear
+choices to spherical correction at the minimum-focus side, oblique-ray behavior, astigmatism, distortion, rear-element
+diameter, and back-focus feasibility.
+
+Independent computation on the final prescription gives a Petzval sum of +0.000478851989 mm⁻¹ using the project
+surface-by-surface definition Σφ/(n·n′). Its reciprocal magnitude is 2088.327966 mm. No sign-convention-dependent
+“Petzval radius” is assigned to that reciprocal.
+
+The combination is thus a coordinated focus-and-field correction strategy: a strongly negative moving G3 supplies the
+large focus displacement, nonlinear G1 motion compensates the mid-range aberration change, and the fixed rear group uses
+cemented-interface power plus a large internal air interval to manage the oblique field while preserving the published
+back focus.
+
+## Conditional Expressions
+
+The seven conditional expressions stated for Example 1 all pass when recomputed from the final data. Group focal lengths
+are calculated with the published in-situ internal spacings; fA is the standalone focal length of L11, and the cemented
+surface terms use the actual refractive indices on the two sides of the specified interfaces.
+
+| Patent condition | Recomputed value | Patent rounded value | Required interval |
+|---|---:|---:|---|
+| f2 / f1 | 2.119169608 | 2.12 | 1.0 < value < 3.0 |
+| fA / f1 | −1.647870006 | −1.65 | −3.0 < value < −1.4 |
+| ra / [F(nb − na)] | 0.866966648 | 0.87 | 0.5 < value < 1.0 |
+| rb / [F(nd − nc)] | −5.076205149 | −5.08 | −7.0 < value < −2.0 |
+| DA / F | 0.232330724 | 0.23 | 0.05 < value < 0.35 |
+| f12 / |f3| | 1.667206077 | 1.67 | 1.3 < value < 2.2 |
+| f4 / |f3| | 2.500459482 | 2.50 | 1.5 < value < 2.7 |
+
+These results distinguish three power levels that should not be conflated. Individual element focal lengths describe
+each singlet isolated in air; the cemented values describe the bonded pairs as isolated units; and the G1–G4 values
+include each group's actual internal air spacings. The patent conditions use the latter group quantities except where the
+formula explicitly calls for the standalone L11 focal length or a particular cemented interface.
+
+## Aperture Stop and Clear-Aperture Model
+
+The patent gives f/4.0 but does not publish an aperture-stop plane, stop diameter, clear semi-diameter, or aperture-height
+table. The stop and clear apertures in the data are therefore modeling inferences, not patent facts.
+
+For the viewer model, `STO` is placed at the midpoint of the infinity d8 air interval, 2.57025 mm after surface 8, and is
+held fixed relative to G2. The source d8 gap is represented as the fixed S8-to-STO segment plus the variable STO-to-S9
+segment; the totals remain 5.1405 mm at infinity and 37.1142 mm at 1:1. The modeled stop semi-diameter is 19.097853 mm.
+Paraxial propagation through the actual pre-stop data gives an entrance-pupil semi-diameter of 25.018216 mm and a modeled
+wide-open f-number of 3.999999913 at the computed EFL. These are model outputs from an inferred stop, not source-published
+pupil dimensions.
+
+The patent also supplies no element clear apertures. The authored semi-diameters were constrained from on-axis and
+off-axis rays across all three published focus states, the relative proportions of Nikon's production optical section,
+and the current edge-thickness, actual-rim-slope, cross-gap, and containment rules. In the final geometry the minimum
+element edge thickness is 0.619565 mm, the maximum actual rim-slope angle is 40.736050°, and the maximum non-stop shared-
+gap intrusion fraction is 0.894226. L5 uses a 16.0 mm front and 17.0 mm cemented/rear semi-diameter so its displayed
+height more closely follows Fig. 1 while retaining physical edge and gap clearance. The full on-axis f/4 pupil and the
+viewer's default visible off-axis fan remain contained in all three source states. Full-field/full-pupil corner bundles
+may vignette at exterior element rims; that is treated as physical wide-open vignetting rather than hidden by layout
+controls.
 
 ## Verification Summary
 
-All load-bearing first-order quantities below were recomputed from the Table 9 surface prescription with an independent Python paraxial matrix trace. The Petzval value uses the surface-by-surface sum, Σ φ/(n n'), not an element-level thin-lens approximation.
+Independent reduced-angle y–ν tracing and ABCD multiplication agree to machine precision on the final TypeScript surface
+array. The primary first-order results are:
 
-| Quantity | Computed | Patent / table value | Result |
-|---|---:|---:|---|
-| Infinity EFL | 199.996 mm | 200 mm / 199.99680 mm | Match |
-| Back focal distance | 58.808 mm | 58.809 mm | Match |
-| Total track at infinity and 1:1 | 222.918 mm | From Table 9 spacings | Match |
-| Paraxial EFL at β = -0.5 | 151.179 mm | Not separately tabulated | Derived |
-| Paraxial EFL at β = -1.0 | 102.126 mm | Not separately tabulated | Derived |
-| G1 focal length | +80.000 mm | +80.0 mm | Match |
-| G2 focal length | -48.000 mm | -48.0 mm | Match |
-| GL focal length | +119.999 mm | +120.0 mm | Match |
-| GLP / L12 focal length | -113.360 mm | -113.36 mm | Match |
-| G11 focal length | +115.000 mm | Not separately tabulated | Derived |
-| G12 focal length | +243.619 mm | Not separately tabulated | Derived |
-| L1-L2 cemented focal length | +344.275 mm | Not separately tabulated | Derived |
-| L4-L5 cemented focal length | +243.619 mm | Not separately tabulated | Derived |
-| L6-L7 cemented focal length | -275.782 mm | Not separately tabulated | Derived |
-| L8-L9 cemented focal length | -57.677 mm | Not separately tabulated | Derived |
-| L10-L11 cemented focal length | +99.196 mm | Not separately tabulated | Derived |
-| G2 travel Δ | 32.000 mm | 32.0 mm | Match |
-| WD/f at 1:1 | 1.3618 | 1.3618 | Match |
-| Object-to-image distance at 1:1 | 495.281 mm | Production spec rounds to 0.5 m | Match |
-| ΔSLP/|fLP| | 0.00618 | 0.0062 | Match |
-| Surface-by-surface Petzval sum | +0.0004819 mm^-1 | Not tabulated | Derived |
-| EFL × Petzval sum | +0.09637 | Not tabulated | Derived |
+| Quantity | Final computed value | Source comparison |
+|---|---:|---|
+| Effective focal length | 200.145720214 mm | Patent detailed value 200.1499 mm |
+| Back focal length from S21 | 58.961743933 mm | Patent Bf 58.9638 mm |
+| S1-to-image track at infinity | 223.0717 mm | Computed from the final data |
+| Modeled f-number | 3.999999913 | Patent/data nominal f/4.0; inferred stop model |
+| Petzval sum | +0.000478851989 mm⁻¹ | Surface-by-surface computation |
+| S1-to-image / EFL | 1.114546 | Does not meet the project telephoto criterion |
+| BFD / EFL | 0.294604 | Does not meet the project retrofocus criterion |
 
-The Table 9 condition list gives L = 6.0 and L/f = 0.03. If L is interpreted strictly as the axial thickness of the Table 9 GLP element L12, the value should be 2.5 mm and L/f = 0.0125. The table's 6.0 mm value matches L13's center thickness, not L12's. The discrepancy is retained as a patent-table inconsistency, not silently corrected. Both interpretations still satisfy the patent's stated upper bound for L/f.
+The finite-focus matrix at β = −0.5000 gives paraxial lateral magnification −0.5000041 with a residual imaging B term of
+−0.004493 mm. At β = −1.0000 it gives magnification −0.9999983 with B = −0.001826 mm. These residuals are at the scale
+expected from the patent's rounded tabular spacings and independently confirm the published focus states.
 
-## Data-File Notes
+The final prescription reproduces all seven patent conditions and independently recomputed EFL, BFL, Petzval, and
+finite-focus results within floating-point noise.
 
-The companion data file transcribes the patent surfaces at the patent scale with no focal-length scaling. The aperture stop is inserted into d14 because the patent identifies the stop location only qualitatively. The total d14 distance is preserved by splitting it into surface 14 -> STO and STO -> surface 15.
+## Sources and References
 
-The patent does not publish semi-diameters. The data file therefore uses inferred semi-diameters suitable for rendering, constrained by sd/|R|, element edge thickness, element front/rear diameter ratio, and cross-gap sag intrusion. These inferred values are not Nikon manufacturing diameters. The surface 11 -> 12 air gap is the tightest inferred-aperture constraint and remains just within the 90% cross-gap sag-intrusion limit.
-
-No sensor cover glass, filter, mount glass, or mechanical aperture-blade geometry is included.
-
-## Sources
-
-- US 5,751,485, Kenzaburo Suzuki / Nikon Corporation, Ninth Embodiment, FIG. 9 and Table 9.
-- Nikon USA, AF Micro-Nikkor 200mm f/4D IF-ED product page and specifications.
-- Hikari, J-FKH1 optical-glass data sheet.
-- OHARA optical-glass data sheets for S-BSM10, S-BSM14, S-BSM16, S-TIH6, S-TIM28, S-LAH66, and S-TIL1.
+- Wataru Tatsuno, **US 5,402,268**, “Telephoto Lens System Allowing Short-Distance Photographing Operation,” Nikon
+  Corporation, granted March 28, 1995. Example 1 / First Embodiment, Fig. 1, Table 1, claim 14.
+- Nikon Imaging Japan, **AI AF Micro-Nikkor 200mm f/4D IF-ED**, product overview and specifications:
+  https://nij.nikon.com/products/lineup/nikkor/fmount/ai_af_micro-nikkor_200mm_f4d_if-ed/
+- Nikon, **AF Micro-Nikkor ED 200mm f/4D IF instruction manual**, production specifications and reproduction range:
+  https://nij.nikon.com/support/manual/nikkor/AFMCED200mm_f4D_02.pdf
+- Nikon USA, **AF Micro-Nikkor 200mm f/4D IF-ED**, official specifications and technology notes:
+  https://www.nikonusa.com/p/af-micro-nikkor-200mm-f4d-if-ed/1989/overview

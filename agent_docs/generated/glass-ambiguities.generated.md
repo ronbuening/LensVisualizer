@@ -14,7 +14,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 - **556** lenses scanned
 - **6121** glass elements examined
-- **1552** elements have multiple coordinate-compatible candidates
+- **1553** elements have multiple coordinate-compatible candidates
 - **348** lens files are affected
 - **137** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **151** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
@@ -22,7 +22,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Selection criterion | Elements |
 |---|---:|
 | Smallest reference-index residual | 794 |
-| Evidence-source priority | 486 |
+| Evidence-source priority | 487 |
 | Vendor context | 268 |
 | Stable canonical-name order | 4 |
 
@@ -405,7 +405,8 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `N-PK52A / FCD1 class ED (497/816; vendor unresolved)` | 1.49700 / 81.61 (d) | FCD1 — direct name evidence outranks six-digit code evidence. | H-FK61 (CDGM, code, alternate code row)<br>S-FPL51 (Ohara, code, preferred code row) | 1 | [NIKON AF DX FISHEYE-NIKKOR 10.5mm f/2.8G ED](../../src/lens-data/nikon/NikonFisheyeNikkor105mmf28GED.data.ts) L6b |
 | `626357 — F1/TIM1 flint class (vendor unassigned)` | 1.62588 / 35.70 (d) | F1 — direct name evidence outranks six-digit code evidence. | E-F1 (Hoya, code, preferred code row)<br>S-TIM1 (Ohara, code, alternate code row) | 1 | [NIKON AF FISHEYE-NIKKOR 16mm f/2.8D](../../src/lens-data/nikon/NikonAFFisheyeNikkor16mmf28D.data.ts) L31 |
 | `785261 — dense-flint class (nearest J-SFS3/S-TIH23)` | 1.78470 / 26.10 (d) | S-TIH23 — direct name evidence outranks six-digit code evidence. | SF56A (Schott, code, preferred code row) | 1 | [NIKON AF FISHEYE-NIKKOR 16mm f/2.8D](../../src/lens-data/nikon/NikonAFFisheyeNikkor16mmf28D.data.ts) L52 |
-| `S-LAH66-class (OHARA; close to patent 773/495 code)` | 1.77279 / 49.45 (d) | S-LAH66 — direct name evidence outranks six-digit code evidence. | M-TAF1 (Hoya, code, vendor ✗, alternate code row)<br>M-TAF105 (Hoya, code, vendor ✗, preferred code row) | 1 | [NIKON AF MICRO-NIKKOR 200mm f/4D IF-ED](../../src/lens-data/nikon/NikonAFMicroNikkor200mmf4D.data.ts) L12 |
+| `J-SK14 catalog equivalent (patent 603607; production supplier unspecified)` | 1.60311 / 60.70 (d) | J-SK14 — direct name evidence outranks six-digit code evidence. | BACD14 (Hoya, code, alternate code row)<br>S-BSM14 (Ohara, code, preferred code row) | 1 | [NIKON AF MICRO-NIKKOR 200mm f/4D IF-ED](../../src/lens-data/nikon/NikonAFMicroNikkor200mmf4D.data.ts) L32 |
+| `S-TIH6 catalog equivalent (patent 805254; production supplier unspecified)` | 1.80518 / 25.40 (d) | S-TIH6 — direct name evidence outranks six-digit code evidence. | SF6 (Schott, code, alternate code row) | 1 | [NIKON AF MICRO-NIKKOR 200mm f/4D IF-ED](../../src/lens-data/nikon/NikonAFMicroNikkor200mmf4D.data.ts) L51 |
 | `S-BSM16 class (OHARA / 620603)` | 1.62041 / 60.40 (d) | S-BSM16 — direct name evidence outranks six-digit code evidence. | J-SK16 (Hikari, code, vendor ✗, alternate code row)<br>N-SK16 (Schott, code, vendor ✗, preferred code row) | 3 | [Nikon AF Nikkor 20mm f/2.8D](../../src/lens-data/nikon/NikonAFNikkor20mmf28D.data.ts) L1 |
 | `S-LAL8 class (OHARA / 713539)` | 1.71300 / 54.00 (d) | S-LAL8 — direct name evidence outranks six-digit code evidence. | LAC8 (Hoya, code, vendor ✗, preferred code row)<br>MP-LAC8-30 (Hoya, code, vendor ✗, alternate code row) | 1 | [Nikon AF Nikkor 20mm f/2.8D](../../src/lens-data/nikon/NikonAFNikkor20mmf28D.data.ts) L3 |
 | `S-TIH4 class (OHARA / 755275)` | 1.75520 / 27.60 (d) | S-TIH4 — direct name evidence outranks six-digit code evidence. | E-FD4 (Hoya, code, vendor ✗, preferred code row)<br>H-ZF6 (CDGM, code, vendor ✗, alternate code row) | 1 | [Nikon AF Nikkor 20mm f/2.8D](../../src/lens-data/nikon/NikonAFNikkor20mmf28D.data.ts) L4a |
