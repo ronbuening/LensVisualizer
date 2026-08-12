@@ -1,304 +1,314 @@
 import type { LensDataInput } from "../../types/optics.js";
 
 /**
- * ╔══════════════════════════════════════════════════════════════════════╗
- * ║        NIKON AF MICRO-NIKKOR 200mm f/4D IF-ED                      ║
- * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Data source: US 5,751,485, Ninth Embodiment, Table 9.             ║
- * ║  Nikon / Kenzaburo Suzuki macro lens with patent-described VR.     ║
- * ║  13 elements / 8 air-separated groups, all spherical surfaces.     ║
- * ║  Focus: internal floating focus; G11 and G2 move while G12 and GL  ║
- * ║  remain axially fixed in the patent coordinate system.             ║
- * ║                                                                    ║
- * ║  NOTE ON STOP PLACEMENT:                                            ║
- * ║    The patent places S in the variable gap d14 between G2 and GL    ║
- * ║    but does not tabulate its exact axial split. The STO surface     ║
- * ║    below is inserted 5.0 mm object-side of surface 15 for rendering;║
- * ║    patent d14 is represented as surface 14 -> STO plus STO -> 15.  ║
- * ║                                                                    ║
- * ║  NOTE ON FOCUS MODEL:                                               ║
- * ║    The patent gives three focus states. This prime-lens data format║
- * ║    stores infinity and 1:1 endpoints only. The mid-focus d5         ║
- * ║    excursion at beta = -0.5 (d5 = 14.20990 mm) is documented in    ║
- * ║    the companion analysis but is not representable as a non-       ║
- * ║    monotonic intermediate waypoint in the endpoint var model.      ║
- * ║                                                                    ║
- * ║  NOTE ON SEMI-DIAMETERS:                                            ║
- * ║    The patent does not publish clear apertures. Semi-diameters are ║
- * ║    inferred for LensVisualizer rendering from paraxial ray fans,    ║
- * ║    then clamped to physical edge-thickness and cross-gap sag        ║
- * ║    constraints. They should not be read as Nikon production part    ║
- * ║    diameters.                                                       ║
- * ║                                                                    ║
- * ║  IMPORTANT: This file describes ONLY the optical design:            ║
- * ║    ✓ Glass elements and surfaces from front element to image plane ║
- * ║    ✓ Aperture stop and variable focus gaps                         ║
- * ║    ✗ No sensor cover glass, filters, mechanical parts, or barrel   ║
- * ╚══════════════════════════════════════════════════════════════════════╝
+ * ╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
+ * ║ LENS DATA — NIKON AF MICRO-NIKKOR 200mm f/4D IF-ED                                                        ║
+ * ╠══════════════════════════════════════════════════════════════════════════════════════════════════════════════╣
+ * ║ Data source: US 5,402,268, Example 1 (Wataru Tatsuno / Nikon Corporation).                                ║
+ * ║ Prescription: 13 elements / 8 air-separated physical groups; 4 functional focus groups (+ / + / - / +).   ║
+ * ║ All 21 patent refracting surfaces are spherical. No scaling is applied.                                    ║
+ * ║                                                                                                              ║
+ * ║ Focus status: PUBLISHED. The data model stores the published infinity and beta=-1.0000 endpoint spacings.   ║
+ * ║ The patent also publishes beta=-0.5000. G3 motion is compatible with the endpoint interpolation when that   ║
+ * ║ source state is evaluated at its mechanical travel fraction, but G1 is not: d5 is 6.6432 mm at both         ║
+ * ║ endpoints and 14.2044 mm at beta=-0.5000. The current prime var schema cannot encode that mid-focus         ║
+ * ║ excursion/reversal, so d5 is retained as an endpoint-equal var and the limitation is disclosed here.        ║
+ * ║                                                                                                              ║
+ * ║ STO MODELING INFERENCE: the patent publishes no aperture-stop plane or stop diameter. STO is placed at the  ║
+ * ║ midpoint of the infinity d8 air gap, 2.57025 mm after S8, and is held fixed relative to fixed group G2.     ║
+ * ║ The source d8 spacing is therefore S8.d + STO.d. STO.sd is solved paraxially so the infinity entrance pupil  ║
+ * ║ is EFL/(2*4.0), giving a modeled f/4.0000 at the verified EFL.                                               ║
+ * ║                                                                                                              ║
+ * ║ SEMI-DIAMETER MODELING INFERENCE: the patent publishes none. SDs were derived from paraxial marginal/chief  ║
+ * ║ rays at the published infinity, beta=-0.5, and beta=-1 states, then constrained by Nikon's production       ║
+ * ║ optical-section proportions and by edge-thickness, actual-rim-slope, shared-gap-intrusion, and visible      ║
+ * ║ off-axis containment checks. Full-pupil corner rays are permitted to vignette at exterior element rims;     ║
+ * ║ the default rendered 0.6-field / 0.75-pupil fan remains contained in all three published source states.     ║
+ * ║                                                                                                              ║
+ * ║ GLASS: the patent gives d-line nd/nu_d only and no manufacturer identities or line indices. Compatible      ║
+ * ║ coefficient-backed catalog glasses are used as spectral models without claiming Nikon's production vendor. ║
+ * ╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
+ *
+ * Production metadata sources:
+ * - Nikon Imaging Japan specifications:
+ *   https://nij.nikon.com/products/lineup/nikkor/fmount/ai_af_micro-nikkor_200mm_f4d_if-ed/spec.html
+ * - Nikon USA overview/specifications:
+ *   https://www.nikonusa.com/p/af-micro-nikkor-200mm-f4d-if-ed/1989/overview
  */
 
 const LENS_DATA = {
+  /* ── Identity ── */
   key: "nikon-af-micro-nikkor-200mm-f4d",
   maker: "Nikon",
   name: "NIKON AF MICRO-NIKKOR 200mm f/4D IF-ED",
-  subtitle: "US 5,751,485 — Ninth Embodiment, Table 9",
-  specs: [
-    "13 elements / 8 groups",
-    "200 mm",
-    "f/4 marketed; patent F/4.07",
-    "2ω = 12.23° patent",
-    "1:1 macro; IF/CRC floating focus",
-    "All-spherical",
-  ],
+  subtitle: "US 5,402,268 Example 1 — Wataru Tatsuno / Nikon Corporation",
+  specs: ["13 ELEMENTS / 8 GROUPS", "f = 200.1457 mm", "F/4.0", "2ω = 12.33°", "ALL SPHERICAL"],
+
   focalLengthMarketing: 200,
-  focalLengthDesign: 199.9963,
+  focalLengthDesign: 200.145720214,
   apertureMarketing: 4,
-  apertureDesign: 4.07,
   lensMounts: ["nikon-f"],
   imageFormat: "135-full-frame",
-  patentNumber: "US 5,751,485",
-  patentAuthors: ["Kenzaburo Suzuki"],
+  patentNumber: "US 5,402,268",
+  patentAuthors: ["Wataru Tatsuno"],
   patentAssignees: ["Nikon Corporation"],
-  patentYear: 1998,
+  patentYear: 1995,
   elementCount: 13,
   groupCount: 8,
 
+  /* ── Elements ── */
   elements: [
     {
       id: 1,
-      name: "L1",
-      label: "Element 1",
-      type: "Negative Meniscus",
+      name: "L11",
+      label: "L11",
+      diagramLabel: "L11",
+      type: "Negative Meniscus (convex to object)",
       nd: 1.80384,
-      vd: 33.89,
-      ng: 1.83464,
-      fl: -189.7,
-      glass: "E-LAFH2 (Hikari; patent code 804339)",
-      cemented: "D1",
-      role: "Front negative flint element cemented to the first ED crown element.",
+      vd: 33.9,
+      indexReference: "d",
+      fl: -189.502331,
+      glass: "E-LAFH2 catalog equivalent (patent 804339; production supplier unspecified)",
+      cemented: "L1",
+      role: "Negative front member of the positive G1 cemented doublet L1.",
     },
     {
       id: 2,
-      name: "L2",
-      label: "Element 2",
+      name: "L12",
+      label: "L12",
+      diagramLabel: "L12",
       type: "Biconvex Positive",
       nd: 1.49782,
-      vd: 82.52,
-      ng: 1.50527,
-      fl: 122.5,
-      glass: "J-FKH1 (HIKARI, ED fluorophosphate)",
-      cemented: "D1",
-      role: "First ED positive element in the front achromat.",
+      vd: 82.6,
+      indexReference: "d",
+      fl: 122.468927,
+      glass: "J-FKH1 catalog equivalent (patent 498826; production supplier unspecified)",
+      cemented: "L1",
+      role: "Positive ED-class rear member of cemented L1; one of the two production-diagram ED positions.",
     },
     {
       id: 3,
-      name: "L3",
-      label: "Element 3",
-      type: "Positive Meniscus",
+      name: "L2",
+      label: "L2",
+      diagramLabel: "L2",
+      type: "Positive Meniscus (convex to object)",
       nd: 1.49782,
-      vd: 82.52,
-      ng: 1.50527,
-      fl: 171.5,
-      glass: "J-FKH1 (HIKARI, ED fluorophosphate)",
-      role: "Second ED element; completes the positive front floating sub-group G11.",
+      vd: 82.6,
+      indexReference: "d",
+      fl: 171.464632,
+      glass: "J-FKH1 catalog equivalent (patent 498826; production supplier unspecified)",
+      role: "Positive ED-class singlet completing G1; the second production-diagram ED position.",
     },
     {
       id: 4,
-      name: "L4",
-      label: "Element 4",
-      type: "Negative Meniscus",
+      name: "L31",
+      label: "L31",
+      diagramLabel: "L31",
+      type: "Negative Meniscus (convex to object)",
       nd: 1.79631,
       vd: 40.9,
-      ng: 1.82107,
-      fl: -104.5,
-      glass: "NBFD2 (HOYA catalog equivalent; production supplier unspecified; patent 796409)",
-      cemented: "D2",
-      role: "Negative member of the stationary G12 cemented doublet.",
+      indexReference: "d",
+      fl: -104.311476,
+      glass: "NBFD2 catalog equivalent (patent 796409; production supplier unspecified)",
+      cemented: "L3",
+      role: "Negative front member of the positive fixed G2 cemented doublet L3.",
     },
     {
       id: 5,
-      name: "L5",
-      label: "Element 5",
-      type: "Positive Meniscus",
+      name: "L32",
+      label: "L32",
+      diagramLabel: "L32",
+      type: "Positive Meniscus (convex to object)",
       nd: 1.60311,
-      vd: 60.64,
-      ng: 1.6154,
-      fl: 71.7,
-      glass: "S-BSM14 (OHARA)",
-      cemented: "D2",
-      role: "Positive crown member of the weak positive G12 doublet.",
+      vd: 60.7,
+      indexReference: "d",
+      fl: 71.679576,
+      glass: "J-SK14 catalog equivalent (patent 603607; production supplier unspecified)",
+      cemented: "L3",
+      role: "Positive rear member of fixed G2 cemented doublet L3.",
     },
     {
       id: 6,
-      name: "L6",
-      label: "Element 6",
-      type: "Negative Meniscus",
+      name: "L41",
+      label: "L41",
+      diagramLabel: "L41",
+      type: "Negative Meniscus (convex to object)",
       nd: 1.6228,
-      vd: 57.03,
-      ng: 1.63639,
-      fl: -60.4,
-      glass: "S-BSM10-class (OHARA; patent νd = 57.03)",
-      cemented: "D3",
-      role: "Front negative member of the first G2 cemented doublet.",
+      vd: 57.0,
+      indexReference: "d",
+      fl: -60.320053,
+      glass: "S-BSM10 catalog equivalent (patent 623570; production supplier unspecified)",
+      cemented: "L4",
+      role: "Negative front member of the first negative cemented doublet in moving G3.",
     },
     {
       id: 7,
-      name: "L7",
-      label: "Element 7",
-      type: "Positive Meniscus",
+      name: "L42",
+      label: "L42",
+      diagramLabel: "L42",
+      type: "Positive Meniscus (convex to object)",
       nd: 1.80384,
-      vd: 33.89,
-      ng: 1.83464,
-      fl: 73.7,
-      glass: "E-LAFH2 (Hikari; patent code 804339)",
-      cemented: "D3",
-      role: "High-index positive member of the first G2 doublet.",
+      vd: 33.9,
+      indexReference: "d",
+      fl: 73.492675,
+      glass: "E-LAFH2 catalog equivalent (patent 804339; production supplier unspecified)",
+      cemented: "L4",
+      role: "Positive rear member of the first negative cemented doublet in moving G3.",
     },
     {
       id: 8,
-      name: "L8",
-      label: "Element 8",
-      type: "Positive Meniscus",
+      name: "L51",
+      label: "L51",
+      diagramLabel: "L51",
+      type: "Positive Meniscus (convex to image)",
       nd: 1.80518,
-      vd: 25.41,
-      ng: 1.84731,
-      fl: 159.6,
-      glass: "S-TIH6 (OHARA)",
-      cemented: "D4",
-      role: "Dense flint positive meniscus; front member of the dominant negative G2 doublet.",
+      vd: 25.4,
+      indexReference: "d",
+      fl: 160.184962,
+      glass: "S-TIH6 catalog equivalent (patent 805254; production supplier unspecified)",
+      cemented: "L5",
+      role: "Positive front member of the second negative cemented doublet in moving G3.",
     },
     {
       id: 9,
-      name: "L9",
-      label: "Element 9",
+      name: "L52",
+      label: "L52",
+      diagramLabel: "L52",
       type: "Biconcave Negative",
       nd: 1.62041,
-      vd: 60.14,
-      ng: 1.63317,
-      fl: -42.9,
-      glass: "S-BSM16-class (OHARA; patent νd = 60.14)",
-      cemented: "D4",
-      role: "Strong negative crown element; completes G2.",
+      vd: 60.1,
+      indexReference: "d",
+      fl: -42.921845,
+      glass: "J-SK16 catalog equivalent (patent 620601; production supplier unspecified)",
+      cemented: "L5",
+      role: "Negative rear member that makes cemented L5 and functional group G3 strongly negative.",
     },
     {
       id: 10,
-      name: "L10",
-      label: "Element 10",
-      type: "Negative Meniscus",
+      name: "L61",
+      label: "L61",
+      diagramLabel: "L61",
+      type: "Negative Meniscus (convex to object)",
       nd: 1.68893,
-      vd: 31.08,
-      ng: 1.71783,
-      fl: -107.3,
-      glass: "S-TIM28 (OHARA)",
-      cemented: "D5",
-      role: "Negative flint member at the front of the fixed rear group GL.",
+      vd: 31.1,
+      indexReference: "d",
+      fl: -107.274379,
+      glass: "S-TIM28 catalog equivalent (patent 689311; production supplier unspecified)",
+      cemented: "L6",
+      role: "Negative front member of the positive fixed-G4 cemented doublet L6.",
     },
     {
       id: 11,
-      name: "L11",
-      label: "Element 11",
+      name: "L62",
+      label: "L62",
+      diagramLabel: "L62",
       type: "Biconvex Positive",
       nd: 1.62041,
-      vd: 60.14,
-      ng: 1.63317,
-      fl: 52.5,
-      glass: "S-BSM16-class (OHARA; patent νd = 60.14)",
-      cemented: "D5",
-      role: "Strong positive crown member of the GL front relay doublet.",
+      vd: 60.1,
+      indexReference: "d",
+      fl: 52.477312,
+      glass: "J-SK16 catalog equivalent (patent 620601; production supplier unspecified)",
+      cemented: "L6",
+      role: "Positive rear member of the positive fixed-G4 cemented doublet L6.",
     },
     {
       id: 12,
-      name: "L12",
-      label: "Element 12 / GLP",
-      type: "Negative Meniscus",
+      name: "L7",
+      label: "L7",
+      diagramLabel: "L7",
+      type: "Negative Meniscus (convex to image)",
       nd: 1.77279,
-      vd: 49.45,
-      ng: 1.79232,
-      fl: -113.4,
-      glass: "S-LAH66-class (OHARA; close to patent 773/495 code)",
-      role: "Patent-designated negative vibration-reduction element GLP; fixed in the production non-VR lens.",
+      vd: 49.4,
+      indexReference: "d",
+      fl: -113.254745,
+      glass: "M-TAF1 catalog equivalent (patent 773494; production supplier unspecified)",
+      role: "Negative singlet in the long rear section of fixed G4.",
     },
     {
       id: 13,
-      name: "L13",
-      label: "Element 13",
-      type: "Positive Meniscus",
+      name: "L8",
+      label: "L8",
+      diagramLabel: "L8",
+      type: "Positive Meniscus (convex to object)",
       nd: 1.54814,
-      vd: 45.87,
-      ng: 1.56328,
-      fl: 177.1,
-      glass: "S-TIL1-class (OHARA; patent νd = 45.87)",
-      role: "Rear positive field-correcting meniscus before the 58.809 mm back focus.",
+      vd: 45.9,
+      indexReference: "d",
+      fl: 176.972875,
+      glass: "E-FEL1 catalog equivalent (patent 548459; production supplier unspecified)",
+      role: "Final positive singlet of fixed G4 ahead of the published back focus.",
     },
   ],
 
+  /* ── Surface prescription ──
+   * Original patent labels are retained for all 21 refracting surfaces. The inferred STO splits source d8:
+   * S8.d = 2.57025 mm (fixed) and STO.d = d8 - 2.57025 mm (variable).
+   */
   surfaces: [
-    { label: "1", R: 197.7383, d: 2.5, nd: 1.80384, elemId: 1, sd: 31.0 },
-    { label: "2", R: 85.6098, d: 7.0, nd: 1.49782, elemId: 2, sd: 27.8 },
-    { label: "3", R: -206.2828, d: 0.3, nd: 1.0, elemId: 0, sd: 27.8 },
-    { label: "4", R: 71.6067, d: 6.0, nd: 1.49782, elemId: 3, sd: 29.6 },
-    { label: "5", R: 431.05366, d: 6.6433, nd: 1.0, elemId: 0, sd: 29.6 },
-    { label: "6", R: 79.0168, d: 2.5, nd: 1.79631, elemId: 4, sd: 27.0 },
-    { label: "7", R: 39.9554, d: 8.8, nd: 1.60311, elemId: 5, sd: 25.0 },
-    { label: "8", R: 478.742, d: 5.14048, nd: 1.0, elemId: 0, sd: 25.0 },
-    { label: "9", R: 196.4322, d: 2.0, nd: 1.6228, elemId: 6, sd: 21.5 },
-    { label: "10", R: 31.4573, d: 5.0, nd: 1.80384, elemId: 7, sd: 20.0 },
-    { label: "11", R: 62.3232, d: 3.7, nd: 1.0, elemId: 0, sd: 16.0 },
-    { label: "12", R: -105.6139, d: 4.0, nd: 1.80518, elemId: 8, sd: 16.0 },
-    { label: "13", R: -58.945, d: 2.0, nd: 1.62041, elemId: 9, sd: 16.0 },
-    { label: "14", R: 49.1628, d: 40.12496, nd: 1.0, elemId: 0, sd: 16.0 },
-    { label: "STO", R: 1e15, d: 5.0, nd: 1.0, elemId: 0, sd: 14.7416 },
-    { label: "15", R: 1206.1834, d: 2.0, nd: 1.68893, elemId: 10, sd: 15.8 },
-    { label: "16", R: 69.6055, d: 6.0, nd: 1.62041, elemId: 11, sd: 16.5 },
-    { label: "17", R: -59.1728, d: 46.5, nd: 1.0, elemId: 0, sd: 18.4 },
-    { label: "18", R: -72.7684, d: 2.5, nd: 1.77279, elemId: 12, sd: 18.0 },
-    { label: "19", R: -436.1421, d: 0.4, nd: 1.0, elemId: 0, sd: 18.0 },
-    { label: "20", R: 86.7935, d: 6.0, nd: 1.54814, elemId: 13, sd: 18.2 },
-    { label: "21", R: 799.37974, d: 58.809, nd: 1.0, elemId: 0, sd: 18.2 },
+    { label: "1", R: 197.971, d: 2.5, nd: 1.80384, elemId: 1, sd: 27.5 },
+    { label: "2", R: 85.604, d: 7.0, nd: 1.49782, elemId: 2, sd: 27.5 },
+    { label: "3", R: -206.085, d: 0.3, nd: 1.0, elemId: 0, sd: 27.5 },
+    { label: "4", R: 71.626, d: 6.0, nd: 1.49782, elemId: 3, sd: 29.0 },
+    { label: "5", R: 432.817, d: 6.6432, nd: 1.0, elemId: 0, sd: 29.0 },
+    { label: "6", R: 79.137, d: 2.5, nd: 1.79631, elemId: 4, sd: 25.0 },
+    { label: "7", R: 39.959, d: 8.8, nd: 1.60311, elemId: 5, sd: 25.0 },
+    { label: "8", R: 484.258, d: 2.57025, nd: 1.0, elemId: 0, sd: 25.0 },
+    { label: "STO", R: 1e15, d: 2.57025, nd: 1.0, elemId: 0, sd: 19.097853 },
+    { label: "9", R: 196.475, d: 2.0, nd: 1.6228, elemId: 6, sd: 20.5 },
+    { label: "10", R: 31.414, d: 5.0, nd: 1.80384, elemId: 7, sd: 20.5 },
+    { label: "11", R: 62.33, d: 3.7, nd: 1.0, elemId: 0, sd: 20.5 },
+    { label: "12", R: -105.523, d: 4.0, nd: 1.80518, elemId: 8, sd: 16.0 },
+    { label: "13", R: -59.02, d: 2.0, nd: 1.62041, elemId: 9, sd: 17.0 },
+    { label: "14", R: 49.151, d: 45.1242, nd: 1.0, elemId: 0, sd: 17.0 },
+    { label: "15", R: 1213.454, d: 2.0, nd: 1.68893, elemId: 10, sd: 18.0 },
+    { label: "16", R: 69.615, d: 6.0, nd: 1.62041, elemId: 11, sd: 18.0 },
+    { label: "17", R: -59.143, d: 46.5, nd: 1.0, elemId: 0, sd: 18.0 },
+    { label: "18", R: -72.715, d: 2.5, nd: 1.77279, elemId: 12, sd: 19.0 },
+    { label: "19", R: -436.246, d: 0.4, nd: 1.0, elemId: 0, sd: 19.0 },
+    { label: "20", R: 86.92, d: 6.0, nd: 1.54814, elemId: 13, sd: 19.0 },
+    { label: "21", R: 815.561, d: 58.9638, nd: 1.0, elemId: 0, sd: 19.0 },
   ],
 
   asph: {},
 
+  /* ── Published focus endpoints ──
+   * Source d8 = S8.d + STO.d, so total d8 is 5.1405 mm at infinity and 37.1142 mm at 1:1.
+   * The published beta=-0.5000 state is retained in the audit: d5=14.2044, d8=17.7426, d14=32.5222 mm.
+   */
   var: {
-    "5": [6.6433, 6.6433],
-    "8": [5.14048, 37.14078],
-    "14": [40.12496, 8.12466],
+    "5": [6.6432, 6.6432],
+    STO: [2.57025, 34.54395],
+    "14": [45.1242, 13.1506],
   },
-
   varLabels: [
-    ["5", "d5: G11-G12"],
-    ["8", "d8: G12-G2"],
-    ["14", "d14a: G2-STO"],
+    ["5", "D5"],
+    ["STO", "D8"],
+    ["14", "D14"],
   ],
 
   groups: [
-    { text: "G11", fromSurface: "1", toSurface: "5" },
-    { text: "G12", fromSurface: "6", toSurface: "8" },
-    { text: "G2", fromSurface: "9", toSurface: "14" },
-    { text: "GL", fromSurface: "15", toSurface: "21" },
+    { text: "G1 (+)", fromSurface: "1", toSurface: "5" },
+    { text: "G2 (+)", fromSurface: "6", toSurface: "8" },
+    { text: "G3 (-)", fromSurface: "9", toSurface: "14" },
+    { text: "G4 (+)", fromSurface: "15", toSurface: "21" },
   ],
-
   doublets: [
-    { text: "D1", fromSurface: "1", toSurface: "3" },
-    { text: "D2", fromSurface: "6", toSurface: "8" },
-    { text: "D3", fromSurface: "9", toSurface: "11" },
-    { text: "D4", fromSurface: "12", toSurface: "14" },
-    { text: "D5", fromSurface: "15", toSurface: "17" },
+    { text: "L1", fromSurface: "1", toSurface: "3" },
+    { text: "L3", fromSurface: "6", toSurface: "8" },
+    { text: "L4", fromSurface: "9", toSurface: "11" },
+    { text: "L5", fromSurface: "12", toSurface: "14" },
+    { text: "L6", fromSurface: "15", toSurface: "17" },
   ],
 
   closeFocusM: 0.5,
-  apertureBlades: 9,
   focusDescription:
-    "Internal floating focus from US 5,751,485 Table 9. Endpoint model: G2 moves imageward as d8 increases from 5.14048 mm to 37.14078 mm and patent d14 decreases from 45.12496 mm to 13.12466 mm; d5 returns to its infinity value at 1:1 but has a mid-focus excursion to 14.20990 mm at beta = -0.5.",
+    "PUBLISHED focus endpoints from US 5,402,268 Example 1. G3 moves imageward while G2/G4 remain fixed; source d8 is represented as fixed S8.d plus variable STO.d. G1 is nonlinear: d5 is 6.6432 mm at infinity and 1:1 but 14.2044 mm at beta=-0.5, so the current endpoint-only prime schema cannot display its published mid-focus reversal. STO placement is inferred, not patent-published.",
 
-  nominalFno: 4,
+  nominalFno: 4.0,
   fstopSeries: [4, 5.6, 8, 11, 16, 22, 32],
+  apertureBlades: 9,
   maxFstop: 32,
 
-  scFill: 0.74,
-  yScFill: 0.72,
-  rayLeadFrac: 0.28,
-  offAxisFieldFrac: 0.25,
+  yScFill: 0.3,
 } satisfies LensDataInput;
 
 export default LENS_DATA;
