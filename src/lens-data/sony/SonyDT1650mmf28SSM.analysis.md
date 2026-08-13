@@ -54,7 +54,7 @@ The focal lengths quoted below are the data file's independently verified **stan
 ### D1 — G1 Negative Meniscus + G2 Biconvex Positive
 
 **G1:** nd = 1.84666, νd = 23.7. Glass: J-SF03 catalog equivalent (patent class 847237; production supplier unspecified). f = -122.94155 mm.\
-**G2:** nd = 1.80420, νd = 46.5. Glass: 804465 class (vendor unresolved). f = +102.08879 mm.
+**G2:** nd = 1.80420, νd = 46.5. Glass: N-LASF44 catalog equivalent (SCHOTT; production supplier unspecified). f = +102.08879 mm.
 
 G1 and G2 form the cemented front cell of GR1 (¶0090). G1 is a negative meniscus with its convex surface toward the object, followed directly by the biconvex positive G2. The pair combines opposite standalone powers at a cemented interface, so neither element's isolated focal length should be treated as the cell's in-situ focal length.
 
@@ -62,14 +62,14 @@ The relatively high index of G2 is directly relevant to the patent's first-group
 
 ### G3 — Positive Meniscus
 
-**nd = 1.80420, νd = 46.5. Glass: 804465 class (vendor unresolved). f = +97.85381 mm.**
+**nd = 1.80420, νd = 46.5. Glass: N-LASF44 catalog equivalent (SCHOTT; production supplier unspecified). f = +97.85381 mm.**
 
 G3 is the rear positive meniscus of GR1, convex toward the object (¶0090), and uses the same d-line coordinate class as G2. Its positive standalone power completes the patent's one-negative/two-positive first-group arrangement. In the assembled lens this group remains fixed internally while its separation from GR2 changes during zooming.
 
 ### H1 — G4 Compound Layer + G4 Negative-Meniscus Substrate
 
 **G4 compound layer:** nd = 1.53420, νd = 41.7. Glass: Unmatched (compound-asphere layer; material unspecified by patent). f = -205.55725 mm.\
-**G4 substrate:** nd = 1.91082, νd = 35.2. Glass: 911352 class (vendor unresolved). f = -21.52816 mm.
+**G4 substrate:** nd = 1.91082, νd = 35.2. Glass: K-LaSFn23 catalog equivalent (SUMITA; production supplier unspecified). f = -21.52816 mm.
 
 G4 is the front element of the negative GR2 and is described by the patent as a negative meniscus with a compound aspherical surface (¶0091). The data resolves the published 1.53420/41.7 medium at S6A as a thin bonded optical layer ahead of the higher-index 1.91082 substrate rather than collapsing both media into one nominal element. This produces two model entries for one patent-counted physical lens.
 
@@ -77,20 +77,20 @@ The substrate supplies strong negative standalone power at the front of the movi
 
 ### G5 — Biconcave Negative
 
-**nd = 1.88300, νd = 40.8. Glass: 883408 class (vendor unresolved). f = -24.67788 mm.**
+**nd = 1.88300, νd = 40.8. Glass: S-LAH58 catalog equivalent (OHARA; production supplier unspecified). f = -24.67788 mm.**
 
 G5 is the second negative element in GR2 (¶0091). Its biconcave form reinforces the negative power of the variator group after the compound-asphere G4. Because GR2 is the group whose axial position changes both with zoom and with close focusing, the distribution of power across G4-G8 directly controls how ray height and conjugate position change through the system.
 
 ### G6 — Biconvex Positive
 
-**nd = 1.64769, νd = 33.8. Glass: 648338 class (vendor unresolved). f = +27.10242 mm.**
+**nd = 1.64769, νd = 33.8. Glass: E-FD2 catalog equivalent (HOYA; production supplier unspecified). f = +27.10242 mm.**
 
 G6 introduces a strong positive component inside the otherwise negative GR2 (¶0091). This internal positive power provides an additional degree of freedom for controlling the group rather than relying on a simple stack of negative lenses. The patent emphasizes that GR2 is especially important to zoom-dependent off-axis aberration control because the height of off-axis rays through this group changes substantially with zoom position (¶0032).
 
 ### D2 — G7 Biconcave Negative + G8 Biconvex Positive
 
-**G7:** nd = 1.77250, νd = 49.6. Glass: 773496 class (vendor unresolved). f = -18.78792 mm.\
-**G8:** nd = 1.84666, νd = 23.8. Glass: 847238 class (vendor unresolved). f = +32.09372 mm.
+**G7:** nd = 1.77250, νd = 49.6. Glass: J-LASF016 catalog equivalent (HIKARI; production supplier unspecified). f = -18.78792 mm.\
+**G8:** nd = 1.84666, νd = 23.8. Glass: J-SF03 catalog equivalent (HIKARI; production supplier unspecified). f = +32.09372 mm.
 
 G7 and G8 form the cemented rear cell of GR2 (¶0091). Their opposite standalone powers and large Abbe-number contrast supply coupled power and dispersion control without an intervening air gap. The available d-line data are sufficient to describe that primary dispersion contrast, but not to support anomalous-partial-dispersion or apochromatic claims.
 
@@ -98,25 +98,25 @@ Together with G4-G6, this cemented pair completes the negative focusing/variator
 
 ### G9 — Biconvex Positive
 
-**nd = 1.80611, νd = 40.7. Glass: 806407 class (vendor unresolved). f = +31.16461 mm.**
+**nd = 1.80611, νd = 40.7. Glass: NBFD13 catalog equivalent (HOYA; production supplier unspecified). f = +31.16461 mm.**
 
 G9 is the first lens of GR3 and sits directly behind the stop (¶0092). It begins the positive-positive-negative sequence that the patent uses to keep GR3 compact. The patent links this three-lens arrangement to moving the group's principal point toward the object side, reducing total optical length while retaining degrees of freedom for on-axis aberration correction (¶¶0047-0049, 0059-0063).
 
 ### G10 — Positive Meniscus
 
-**nd = 1.49700, νd = 81.6. Glass: 497816 class (vendor unresolved). f = +70.91781 mm.**
+**nd = 1.49700, νd = 81.6. Glass: H-FK61 catalog equivalent (CDGM; production supplier unspecified). f = +70.91781 mm.**
 
 G10 is the second positive lens in GR3, a positive meniscus convex toward the object (¶0092). Its unusually high Abbe number marks it as a low-dispersion coordinate in the patent prescription, but no vendor glass, partial-dispersion value, or line-index set is published. The model therefore retains only the generic 497816 coordinate class and makes no ED or APO attribution.
 
 ### G11 — Biconcave Negative
 
-**nd = 1.83481, νd = 42.7. Glass: 835427 class (vendor unresolved). f = -24.45707 mm.**
+**nd = 1.83481, νd = 42.7. Glass: S-LAH55 catalog equivalent (OHARA; production supplier unspecified). f = -24.45707 mm.**
 
 G11 terminates GR3 as a biconcave negative lens (¶0092). The patent specifically calls for the image-side surface nearest the end of GR3 to be concave so that the emerging bundle remains sufficiently high before entering GR4 (¶¶0050-0052). This is not merely a sign convention in the data: it is part of the patent's stated ray-height management strategy at the GR3-GR4 transition.
 
 ### G12 — Biconvex Positive
 
-**nd = 1.49700, νd = 81.6. Glass: 497816 class (vendor unresolved). f = +32.40868 mm.**
+**nd = 1.49700, νd = 81.6. Glass: H-FK61 catalog equivalent (CDGM; production supplier unspecified). f = +32.40868 mm.**
 
 G12 is the front positive lens of GR4 (¶0093). Its object-side surface is convex, complementing the concave image-side termination of G11. The patent states that this curvature pairing allows the flux leaving GR3 to remain high and then reconverge in GR4 while maintaining the required light level (¶¶0050-0052, 0064-0069).
 
@@ -124,7 +124,7 @@ Like G10 and G15, G12 uses the 1.49700/81.6 low-dispersion coordinate. That repe
 
 ### H2 — G13 Biconcave Substrate + G13 Compound Layer
 
-**G13 substrate:** nd = 1.90366, νd = 31.3. Glass: 904313 class (vendor unresolved). f = -72.97715 mm.\
+**G13 substrate:** nd = 1.90366, νd = 31.3. Glass: N-LASF46B catalog equivalent (SCHOTT; production supplier unspecified). f = -72.97715 mm.\
 **G13 compound layer:** nd = 1.53420, νd = 41.7. Glass: Unmatched (compound-asphere layer; material unspecified by patent). f = +228.60257 mm.
 
 G13 is the biconcave negative lens in GR4 carrying the second compound asphere on its image-side surface (¶¶0093, 0097). The data models the substrate and its thin bonded 1.53420/41.7 layer as separate optical media because the patent prescription explicitly changes refractive index across S26 before the aspherical exit surface S27A.
@@ -133,38 +133,38 @@ The opposite standalone signs of substrate and layer do not imply that the layer
 
 ### D3 — G14 Biconcave Negative + G15 Biconvex Positive
 
-**G14:** nd = 1.84666, νd = 23.8. Glass: 847238 class (vendor unresolved). f = -31.35274 mm.\
-**G15:** nd = 1.49700, νd = 81.6. Glass: 497816 class (vendor unresolved). f = +45.48899 mm.
+**G14:** nd = 1.84666, νd = 23.8. Glass: J-SF03 catalog equivalent (HIKARI; production supplier unspecified). f = -31.35274 mm.\
+**G15:** nd = 1.49700, νd = 81.6. Glass: H-FK61 catalog equivalent (CDGM; production supplier unspecified). f = +45.48899 mm.
 
 G14 and G15 form the cemented rear pair within GR4 (¶0093). The pair combines opposite power signs with a very large Abbe-number contrast. As with D2, this supports primary dispersion balancing within the cemented cell, but the available d-line-only data do not justify any anomalous-dispersion label.
 
 ### G16 — Biconvex Positive
 
-**nd = 1.62004, νd = 36.3. Glass: 620363 class (vendor unresolved). f = +41.24211 mm.**
+**nd = 1.62004, νd = 36.3. Glass: E-F2 catalog equivalent (HOYA; production supplier unspecified). f = +41.24211 mm.**
 
 G16 is the final biconvex positive lens before the rear spacing to the image plane. Figure 2 explicitly identifies the final lens as G16; Table 1's last biconvex surface pair is consistent with that assignment. The repeated “G15” in paragraph 0093 is treated as a source-text error. G16 provides the final positive standalone element power of GR4 before the published BF interval.
 
 ## Glass Identification and Selection
 
-The selected patent publishes only d-line refractive index and Abbe number. It does not identify a glass manufacturer or glass trade name, and it does not supply `nC`, `nF`, `ng`, `PgF`, or `dPgF`. Accordingly, the data uses six-digit coordinate classes for physical glasses and leaves the two compound-asphere layers explicitly unmatched. The six-digit labels are rounded coordinate identifiers, not claims of a specific vendor melt.
+The selected patent publishes only d-line refractive index and Abbe number. It does not identify a glass manufacturer or glass trade name, and it does not supply `nC`, `nF`, `ng`, `PgF`, or `dPgF`. The catalog audit found a compatible existing Sellmeier curve for all 16 physical glass pieces. The data names those resolver-selected equivalents while preserving the patent coordinate and explicitly leaving the production supplier unspecified. The two compound-asphere layers remain unmatched because their chemistry is unpublished.
 
 | Data annotation | nd | νd | Used in | Interpretation |
 |---|---:|---:|---|---|
 | J-SF03 catalog equivalent (patent class 847237; production supplier unspecified) | 1.84666 | 23.7 | G1 | HIKARI curve used as an optical equivalent; not a production-supplier claim |
-| 804465 class (vendor unresolved) | 1.80420 | 46.5 | G2, G3 | High-index positive material satisfying the patent's GR1 index condition |
+| N-LASF44 (SCHOTT), patent class 804465 | 1.80420 | 46.5 | G2, G3 | High-index positive material satisfying the patent's GR1 index condition |
 | Unmatched compound-asphere layer | 1.53420 | 41.7 | G4 layer, G13 layer | Patent-specified hybrid-layer coordinate; material identity unpublished |
-| 911352 class (vendor unresolved) | 1.91082 | 35.2 | G4 substrate | Very high-index negative variator material |
-| 883408 class (vendor unresolved) | 1.88300 | 40.8 | G5 | High-index negative material |
-| 648338 class (vendor unresolved) | 1.64769 | 33.8 | G6 | Positive component inside GR2 |
-| 773496 class (vendor unresolved) | 1.77250 | 49.6 | G7 | Negative component of D2 |
-| 847238 class (vendor unresolved) | 1.84666 | 23.8 | G8, G14 | High-dispersion positive/negative cemented-cell components |
-| 806407 class (vendor unresolved) | 1.80611 | 40.7 | G9 | Front positive lens of GR3 |
-| 497816 class (vendor unresolved) | 1.49700 | 81.6 | G10, G12, G15 | Low-dispersion coordinate used repeatedly in positive elements |
-| 835427 class (vendor unresolved) | 1.83481 | 42.7 | G11 | Negative rear lens of GR3 |
-| 904313 class (vendor unresolved) | 1.90366 | 31.3 | G13 substrate | High-index negative rear-group substrate |
-| 620363 class (vendor unresolved) | 1.62004 | 36.3 | G16 | Final positive lens |
+| K-LaSFn23 (SUMITA), patent class 911352 | 1.91082 | 35.2 | G4 substrate | Very high-index negative variator material |
+| S-LAH58 (OHARA), patent class 883408 | 1.88300 | 40.8 | G5 | High-index negative material |
+| E-FD2 (HOYA), patent class 648338 | 1.64769 | 33.8 | G6 | Positive component inside GR2 |
+| J-LASF016 (HIKARI), patent class 773496 | 1.77250 | 49.6 | G7 | Negative component of D2 |
+| J-SF03 (HIKARI), patent class 847238 | 1.84666 | 23.8 | G8, G14 | High-dispersion positive/negative cemented-cell components |
+| NBFD13 (HOYA), patent class 806407 | 1.80611 | 40.7 | G9 | Front positive lens of GR3 |
+| H-FK61 (CDGM), patent class 497816 | 1.49700 | 81.6 | G10, G12, G15 | Three production-count-correlated ED positions |
+| S-LAH55 (OHARA), patent class 835427 | 1.83481 | 42.7 | G11 | Negative rear lens of GR3 |
+| N-LASF46B (SCHOTT), patent class 904313 | 1.90366 | 31.3 | G13 substrate | High-index negative rear-group substrate |
+| E-F2 (HOYA), patent class 620363 | 1.62004 | 36.3 | G16 | Final positive lens |
 
-Fresh catalog matching against the current supplied OHARA, HOYA, and HIKARI tables finds several exact or source-precision-near coordinate matches, often in more than one vendor family. G1's 1.84666/23.7 patent coordinate is covered by the existing HIKARI J-SF03 curve at 1.84666/23.78, so the data uses that catalog-equivalent dispersion curve while explicitly leaving the production supplier unspecified. The 0.08 Abbe difference is consistent with the patent's one-decimal source precision. Other coordinates remain generic where multiple vendor families are equally plausible. For example, 1.49700/81.6 matches OHARA S-FPL51 exactly and HOYA FCD1 at Δνd = +0.01. The 1.49700/81.6 entries are plainly low-dispersion in the d-line/Abbe sense, but no APO, anomalous-partial-dispersion, fluorite, or proprietary ED claim is made because the supporting spectral information is absent.
+Fresh matching against the current OHARA, HOYA, HIKARI, SCHOTT, SUMITA, and CDGM data finds exact or source-precision-near catalog curves, sometimes in more than one vendor family. The selected names make the inspector and spectral model concrete without asserting production melts. Sony describes three ED elements in the production lens; the repeated 1.49700/81.6 positions G10, G12, and G15 map to an ED fluorophosphate class and are therefore tagged `apd: "inferred"`. No patent `dPgF` is invented, and no APO claim is made.
 
 ## Focus Mechanism
 
@@ -254,6 +254,7 @@ The inferred semi-diameters also pass the independent geometry checks over all t
 
 - Hideki Kai and Makoto Kanai, **US 2012/0307129 A1**, *Zoom Lens and Imaging Apparatus*, Sony Corporation, published December 6, 2012. Prescription: Numerical Value Embodiment 1 / Example 1, especially Figure 2, Tables 1-4 and 9, and ¶¶0087-0102.
 - Sony Corporation, **SAL1650 Specifications / DT 16-50mm F2.8 SSM**, official Sony support specifications: https://www.sony.com/electronics/support/lenses-a-mount-lenses/sal1650/specifications
+- Sony Corporation, **2011 α77 / SAL1650 launch press release**, specifying three ED lens elements: https://www.sony.com.hk/press/pdf/20110825_e_2.pdf
 - OHARA Inc., **Optical Glass Data — Recommended Glasses (6-digit)**, supplied catalog dated April 2, 2026.
 - HOYA Corporation, **Optical Glass Data Table**, supplied catalog dated June 1, 2026.
 - HIKARI GLASS CO., LTD., **Optical Glass Data**, supplied workbook containing the June 1, 2025 catalog set.

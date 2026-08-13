@@ -37,7 +37,7 @@ $$
 G1(+)\;\rightarrow\;G2(-)\;\rightarrow\;STO\;\rightarrow\;G3(+)\;\rightarrow\;G4(-)\;\rightarrow\;G5(+).
 $$
 
-The patent places the aperture stop immediately in front of G3. G4 is the internal focusing group. Within G3, the cemented L10+L11 pair is the transverse anti-vibration subset. During zooming, G3 and G5 move by the same axial displacement, allowing the patent to describe them as sharing a common cam structure.[1]
+The patent places the aperture stop immediately in front of G3. The diagram now preserves Figure 1's G3A, G3B, and G3C subgroup tags: G3B is the transverse anti-vibration L10+L11 subset. G4 is the internal focusing group. During zooming, G3 and G5 move by the same axial displacement, allowing the patent to describe them as sharing a common cam structure.[1]
 
 The 17 physical lens pieces are represented by 19 optical-media entries in the data file because two patent-described bonded resin layers remain active media: L4r on the object side of L4 and L15r on the image side of L15. This modeling split does not change the physical `elementCount`, which remains 17.
 
@@ -63,26 +63,26 @@ All focal lengths in the element headings are **standalone isolated-air element 
 
 ### L1 — Negative Meniscus
 
-`nd = 1.90366`, `νd = 31.31`. Glass: **904313 — high-index lanthanum dense-flint class**. Standalone $f=-168.6919$ mm.
+`nd = 1.90366`, `νd = 31.31`. Glass: **N-LASF46B catalog equivalent (SCHOTT; production supplier unspecified)**. Standalone $f=-168.6919$ mm.
 
 L1 is the negative front member of the cemented L1+L2 pair in G1. Its object-side surface is convex toward the object, matching the patent description of the first member as a negative meniscus.[1] In isolation it is negative, but its cemented partnership with L2 produces a weak net positive unit.
 
 ### L2 — Biconvex Positive
 
-`nd = 1.49700`, `νd = 81.61`. Glass: **497816 — ED fluorophosphate-crown class**. Standalone $f=+124.3212$ mm.
+`nd = 1.49700`, `νd = 81.61`. Glass: **H-FK61 catalog equivalent (CDGM; production supplier unspecified)**. Standalone $f=+124.3212$ mm.
 
-L2 is the positive high-Abbe member cemented directly to L1. The isolated L1+L2 cemented pair has computed EFL $+473.7514$ mm, so the pair is weakly positive despite L1's negative standalone power. The very high Abbe number provides strong dispersion contrast against L1's high-index, lower-Abbe material; this is a glass-selection inference from the prescription, not a claim of apochromatic correction.
+L2 is the positive high-Abbe member cemented directly to L1. The isolated L1+L2 cemented pair has computed EFL $+473.7514$ mm, so the pair is weakly positive despite L1's negative standalone power. Sony specifies two ED elements in the production lens; the patent coordinate and ED-class catalog match identify L2 as one of the two correlated positions. The `apd: "inferred"` tag records that production-count inference without inventing partial-dispersion data or claiming apochromatic correction.
 
 ### L3 — Positive Meniscus
 
-`nd = 1.61800`, `νd = 63.39`. Glass: **618634 — phosphate dense-crown class**. Standalone $f=+135.9941$ mm.
+`nd = 1.61800`, `νd = 63.39`. Glass: **S-PHM52 catalog equivalent (OHARA; production supplier unspecified)**. Standalone $f=+135.9941$ mm.
 
 L3 is the rear positive meniscus of G1. Together with the L1+L2 cemented pair it establishes the positive sign of the complete front group. G1's isolated EFL is $+106.2329$ mm.
 
 ### L4r + L4 — Hybrid Negative Meniscus
 
 **L4r resin:** `nd = 1.51460`, `νd = 49.96`. Glass: **Unmatched (optical resin layer; vendor not identified)**. Standalone $f=-356.7079$ mm.\
-**L4 substrate:** `nd = 1.90366`, `νd = 31.31`. Glass: **904313 — high-index lanthanum dense-flint class**. Standalone $f=-20.0544$ mm.
+**L4 substrate:** `nd = 1.90366`, `νd = 31.31`. Glass: **N-LASF46B catalog equivalent (SCHOTT; production supplier unspecified)**. Standalone $f=-20.0544$ mm.
 
 The patent describes L4 as a composite aspherical negative meniscus with a resin layer superposed on its object-side glass surface.[1] The data therefore keeps the resin and glass as separate active optical media rather than collapsing the layer into the substrate. The complete physical L4 composite has independently computed isolated EFL $-18.9588$ mm.
 
@@ -90,25 +90,25 @@ The resin's outer surface is `6A`, the first aspheric surface in the prescriptio
 
 ### L5 — Biconcave Negative
 
-`nd = 1.83481`, `νd = 42.72`. Glass: **835427 — lanthanum dense-flint class**. Standalone $f=-23.8579$ mm.
+`nd = 1.83481`, `νd = 42.72`. Glass: **S-LAH55 catalog equivalent (OHARA; production supplier unspecified)**. Standalone $f=-23.8579$ mm.
 
 L5 is a biconcave negative member of G2. It follows the hybrid L4 composite and adds substantial negative power inside the primary variator group.
 
 ### L6 — Biconvex Positive
 
-`nd = 1.92286`, `νd = 20.88`. Glass: **923209 — very-dense flint class**. Standalone $f=+20.3635$ mm.
+`nd = 1.92286`, `νd = 20.88`. Glass: **N-SF66 catalog equivalent (SCHOTT; production supplier unspecified)**. Standalone $f=+20.3635$ mm.
 
 L6 is a strong positive element embedded inside the otherwise negative G2 group. Its unusually high index and low Abbe number place positive refractive power and strong dispersion leverage between negative neighbors. The exact aberration balance is a property of the assembled group; the standalone focal length should not be read as its in-situ contribution.
 
 ### L7 — Negative Meniscus
 
-`nd = 1.83481`, `νd = 42.72`. Glass: **835427 — lanthanum dense-flint class**. Standalone $f=-47.6566$ mm.
+`nd = 1.83481`, `νd = 42.72`. Glass: **S-LAH55 catalog equivalent (OHARA; production supplier unspecified)**. Standalone $f=-47.6566$ mm.
 
 L7 is the rear negative meniscus of G2. The air gap after L7 is the zoom-variable `D14` spacing to the aperture stop. It decreases from 25.4255 mm at wide angle to 1.7000 mm at telephoto, bringing the negative variator close to the stop as the zoom advances.
 
 ### L8 — Biconvex Positive, Bi-Aspheric
 
-`nd = 1.61881`, `νd = 63.85`. Glass: **619639 — low-Tg molded phosphate-crown class**. Standalone $f=+22.1401$ mm.
+`nd = 1.61881`, `νd = 63.85`. Glass: **M-PCD4 catalog equivalent (OHARA; production supplier unspecified)**. Standalone $f=+22.1401$ mm.
 
 L8 is the first element of positive G3 and is glass-molded with both major surfaces aspheric (`16A` and `17A`). The patent specifically states that an aspheric positive lens at the front of G3 helps compensate spherical and comatic aberration generated principally by G1 and G2.[1]
 
@@ -116,43 +116,43 @@ Because the stop is immediately in front of L8, this element operates near the a
 
 ### L9 — Negative Meniscus
 
-`nd = 1.77250`, `νd = 49.62`. Glass: **773496 — lanthanum flint class**. Standalone $f=-66.6362$ mm.
+`nd = 1.77250`, `νd = 49.62`. Glass: **J-LASF016 catalog equivalent (HIKARI; production supplier unspecified)**. Standalone $f=-66.6362$ mm.
 
 L9 is the negative meniscus following L8 within G3. It separates the front bi-aspheric positive element from the stabilized cemented pair and contributes negative balancing power inside a group that remains positive as a whole.
 
 ### L10 — Biconvex Positive Asphere
 
-`nd = 1.59201`, `νd = 67.02`. Glass: **592670 — low-Tg molded phosphate-crown class**. Standalone $f=+24.9228$ mm.
+`nd = 1.59201`, `νd = 67.02`. Glass: **M-PCD51 catalog equivalent (OHARA; production supplier unspecified)**. Standalone $f=+24.9228$ mm.
 
 L10 is the positive member of the cemented L10+L11 stabilization pair. Its object-side surface `20A` is a glass-molded asphere.[1] The patent identifies this composite pair as the lens subset that moves orthogonally to the optical axis for anti-vibration correction.
 
 ### L11 — Negative Meniscus
 
-`nd = 1.84666`, `νd = 23.78`. Glass: **847238 — dense-flint class**. Standalone $f=-80.7274$ mm.
+`nd = 1.84666`, `νd = 23.78`. Glass: **J-SF03 catalog equivalent (HIKARI; production supplier unspecified)**. Standalone $f=-80.7274$ mm.
 
 L11 is cemented to L10 and moves transversely with it as one stabilization subset. The isolated cemented pair has EFL $+35.9234$ mm, distinct from either constituent's standalone focal length. The high dispersion contrast between L10 ($νd=67.02$) and L11 ($νd=23.78$) also gives the pair chromatic balancing leverage, although the available data do not support an apochromatic claim.
 
 ### L12 — Negative Meniscus
 
-`nd = 1.90366`, `νd = 31.31`. Glass: **904313 — high-index lanthanum dense-flint class**. Standalone $f=-17.3390$ mm.
+`nd = 1.90366`, `νd = 31.31`. Glass: **N-LASF46B catalog equivalent (SCHOTT; production supplier unspecified)**. Standalone $f=-17.3390$ mm.
 
 L12 is the negative front member of the rear cemented pair in G3. It is one of three physical lens pieces in the model using the 1.90366 / 31.31 coordinate class.
 
 ### L13 — Biconvex Positive
 
-`nd = 1.51742`, `νd = 52.15`. Glass: **517522 — crown-flint class**. Standalone $f=+17.6091$ mm.
+`nd = 1.51742`, `νd = 52.15`. Glass: **E-CF6 catalog equivalent (HOYA; production supplier unspecified)**. Standalone $f=+17.6091$ mm.
 
 L13 is cemented to L12 and closes G3. Although the two standalone powers are of nearly equal magnitude and opposite sign, the finite thickness and cemented interface leave the L12+L13 compound weakly positive, with independently computed EFL $+321.7070$ mm.
 
 ### L14 — Positive Meniscus
 
-`nd = 1.72825`, `νd = 28.32`. Glass: **728283 — dense-flint class**. Standalone $f=+28.1351$ mm.
+`nd = 1.72825`, `νd = 28.32`. Glass: **H-ZF4A catalog equivalent (CDGM; production supplier unspecified)**. Standalone $f=+28.1351$ mm.
 
 L14 is the positive front member of G4, the patent's focusing group. It is cemented directly to L15. The patent describes L14 as a positive meniscus with its convex side toward the image plane.[1]
 
 ### L15 + L15r — Hybrid Biconcave Negative Asphere
 
-**L15 glass:** `nd = 1.69680`, `νd = 55.46`. Glass: **697555 — lanthanum-crown class**. Standalone $f=-13.1075$ mm.\
+**L15 glass:** `nd = 1.69680`, `νd = 55.46`. Glass: **J-LAK14 catalog equivalent (HIKARI; production supplier unspecified)**. Standalone $f=-13.1075$ mm.\
 **L15r resin:** `nd = 1.51460`, `νd = 49.96`. Glass: **Unmatched (optical resin layer; vendor not identified)**. Standalone $f=+435.5657$ mm.
 
 L15 is the strong negative member of G4. The patent describes a bonded image-side resin layer whose outer surface is aspheric; the data retains that layer as L15r, with `29A` as the air-facing asphere.[1]
@@ -161,42 +161,42 @@ The physical L15 glass-plus-resin composite has independently computed isolated 
 
 ### L16 — Biconvex Positive
 
-`nd = 1.48749`, `νd = 70.44`. Glass: **487704 — fluorine-crown class**. Standalone $f=+30.3978$ mm.
+`nd = 1.48749`, `νd = 70.44`. Glass: **N-FK5 catalog equivalent (SCHOTT; production supplier unspecified)**. Standalone $f=+30.3978$ mm.
 
-L16 is the positive front member of G5. Its high Abbe number supplies another low-dispersion positive component toward the rear of the lens. G5 moves axially by the same amount as G3 during zooming but does not participate in the published focus motion.
+L16 is the positive front member of G5. Its high Abbe number and catalog match identify it as the second production-count-correlated ED position, recorded as `apd: "inferred"`; the patent still provides no partial-dispersion value. G5 moves axially by the same amount as G3 during zooming but does not participate in the published focus motion.
 
 ### L17 — Negative Meniscus
 
-`nd = 1.83481`, `νd = 42.72`. Glass: **835427 — lanthanum dense-flint class**. Standalone $f=-34.6940$ mm.
+`nd = 1.83481`, `νd = 42.72`. Glass: **S-LAH55 catalog equivalent (OHARA; production supplier unspecified)**. Standalone $f=-34.6940$ mm.
 
 L17 is the rear negative meniscus and final physical lens piece. Together with L16 it leaves G5 weakly positive overall; the isolated two-element group has EFL $+157.2930$ mm. The back-focus spacing after L17 is zoom-variable but unchanged between infinity and the published 0.5 m focus state at a given zoom position.
 
 ## Glass Identification and Selection
 
-The patent publishes only d-line refractive index and Abbe number. It does not identify glass vendors, catalog names, C/F/g-line indices, partial-dispersion ratios, or anomalous-partial-dispersion deviations.[1] The data file therefore uses neutral six-digit coordinate classes and descriptive material classes rather than asserting vendor melts. The two bonded resin layers remain explicitly `Unmatched`.
+The patent publishes only d-line refractive index and Abbe number. It does not identify glass vendors, catalog names, C/F/g-line indices, partial-dispersion ratios, or anomalous-partial-dispersion deviations.[1] The catalog audit nevertheless found a compatible existing Sellmeier curve for every physical glass medium. The data names those resolver-selected equivalents while preserving each patent coordinate and explicitly leaving the production supplier unspecified. The two bonded resin layers remain `Unmatched` because their unpublished chemistry cannot be backfilled defensibly.
 
-| Data glass label | nd | νd | Physical pieces / media | Data-level interpretation |
+| Catalog equivalent | nd | νd | Physical pieces / media | Data-level interpretation |
 |---|---:|---:|---|---|
-| 904313 — high-index lanthanum dense-flint class | 1.90366 | 31.31 | L1, L4, L12 | High-index, lower-Abbe negative/correcting members |
-| 497816 — ED fluorophosphate-crown class | 1.49700 | 81.61 | L2 | Very high-Abbe positive member in front cemented pair |
-| 618634 — phosphate dense-crown class | 1.61800 | 63.39 | L3 | Positive crown-class member |
+| N-LASF46B (SCHOTT), patent class 904313 | 1.90366 | 31.31 | L1, L4, L12 | High-index, lower-Abbe negative/correcting members |
+| H-FK61 (CDGM), patent class 497816 | 1.49700 | 81.61 | L2 | Production-count-correlated ED position |
+| S-PHM52 (OHARA), patent class 618634 | 1.61800 | 63.39 | L3 | Positive crown-class member |
 | Unmatched optical resin layer | 1.51460 | 49.96 | L4r, L15r | Patent-described bonded hybrid-asphere media |
-| 835427 — lanthanum dense-flint class | 1.83481 | 42.72 | L5, L7, L17 | Repeated high-index negative members |
-| 923209 — very-dense flint class | 1.92286 | 20.88 | L6 | Very high-index, low-Abbe positive member in G2 |
-| 619639 — low-Tg molded phosphate-crown class | 1.61881 | 63.85 | L8 | Glass-molded bi-asphere |
-| 773496 — lanthanum flint class | 1.77250 | 49.62 | L9 | Negative G3 member |
-| 592670 — low-Tg molded phosphate-crown class | 1.59201 | 67.02 | L10 | Glass-molded aspheric positive IS member |
-| 847238 — dense-flint class | 1.84666 | 23.78 | L11 | Negative cemented IS partner |
-| 517522 — crown-flint class | 1.51742 | 52.15 | L13 | Positive rear member of G3 cemented pair |
-| 728283 — dense-flint class | 1.72825 | 28.32 | L14 | Positive front member of negative focus group |
-| 697555 — lanthanum-crown class | 1.69680 | 55.46 | L15 | Strong negative focus-group member |
-| 487704 — fluorine-crown class | 1.48749 | 70.44 | L16 | High-Abbe rear positive member |
+| S-LAH55 (OHARA), patent class 835427 | 1.83481 | 42.72 | L5, L7, L17 | Repeated high-index negative members |
+| N-SF66 (SCHOTT), patent class 923209 | 1.92286 | 20.88 | L6 | Very high-index, low-Abbe positive member in G2 |
+| M-PCD4 (OHARA), patent class 619639 | 1.61881 | 63.85 | L8 | Glass-molded bi-asphere |
+| J-LASF016 (HIKARI), patent class 773496 | 1.77250 | 49.62 | L9 | Negative G3 member |
+| M-PCD51 (OHARA), patent class 592670 | 1.59201 | 67.02 | L10 | Glass-molded aspheric positive IS member |
+| J-SF03 (HIKARI), patent class 847238 | 1.84666 | 23.78 | L11 | Negative cemented IS partner |
+| E-CF6 (HOYA), patent class 517522 | 1.51742 | 52.15 | L13 | Positive rear member of G3 cemented pair |
+| H-ZF4A (CDGM), patent class 728283 | 1.72825 | 28.32 | L14 | Positive front member of negative focus group |
+| J-LAK14 (HIKARI), patent class 697555 | 1.69680 | 55.46 | L15 | Strong negative focus-group member |
+| N-FK5 (SCHOTT), patent class 487704 | 1.48749 | 70.44 | L16 | Production-count-correlated ED position |
 
-The glass audit compared these coordinates against current OHARA, HOYA, SCHOTT, HIKARI, CDGM, and SUMITA catalog resources.[4–9] Some coordinates have very close or exact cross-vendor catalog equivalents, but coordinate agreement alone does not prove which supplier or melt was used. The neutral labels in the data file preserve that distinction.
+The glass audit compared these coordinates against current OHARA, HOYA, SCHOTT, HIKARI, CDGM, and SUMITA catalog resources.[4–9] Some coordinates have very close or exact cross-vendor alternatives, so the named entries are catalog equivalents rather than supplier claims. Coverage is complete for all 17 physical glass media; only L4r and L15r remain unresolved.
 
-The broad chromatic strategy can be described only at the Abbe-number level. High-Abbe positive members such as L2 ($νd=81.61$), L10 ($νd=67.02$), and L16 ($νd=70.44$) are paired within the system with high-index, lower-Abbe members such as L1/L4/L12 ($νd=31.31$), L6 ($νd=20.88$), and L11 ($νd=23.78$). This distribution gives the designer dispersion-balancing freedom across the zoom groups. It does **not** establish apochromatic correction or anomalous partial dispersion.
+The broad chromatic strategy pairs high-Abbe positive members such as L2 ($νd=81.61$), L10 ($νd=67.02$), and L16 ($νd=70.44$) with high-index, lower-Abbe members such as L1/L4/L12 ($νd=31.31$), L6 ($νd=20.88$), and L11 ($νd=23.78$). Sony's two-ED production count and the patent topology support inferred ED tags on L2 and L16. That positional inference does **not** establish apochromatic correction or authorize a patent `dPgF` value.
 
-Accordingly, the data file intentionally contains no `nC`, `nF`, `ng`, or `dPgF` fields. No secondary-spectrum or APO claim is made from `nd` and `νd` alone.
+Accordingly, the data file intentionally contains no patent-authored `nC`, `nF`, `ng`, or `dPgF` fields. Catalog Sellmeier curves provide complete spectral rendering for the identified physical glasses, but no secondary-spectrum or APO claim is made from `nd` and `νd` alone.
 
 ## Focus Mechanism
 
@@ -267,7 +267,7 @@ These departure values are **model evaluations at inferred apertures**, not pate
 
 Manufacturing treatment is explicit for the principal aspheres. L8 is a glass-molded bi-aspheric lens; L10 is a glass-molded aspheric lens; L4 and L15 use bonded resin composite aspheres.[1] The patent specifically ties the G3 front asphere and the aspheric surface in the transverse stabilization subset to control of spherical/comatic behavior.[1]
 
-Sony's current product page describes four aspheric surfaces.[2] Because the selected patent explicitly tabulates five aspheric surfaces and identifies four physical aspheric lens pieces, the data follows the patent prescription rather than modifying the model to match the marketing wording.
+Sony's current product page describes four aspheric lens elements.[2] The selected patent likewise has four physical aspheric lens pieces but tabulates five aspheric surfaces because L8 is bi-aspheric. The data therefore preserves both the production piece count and the patent surface count.
 
 ## Image Stabilization
 

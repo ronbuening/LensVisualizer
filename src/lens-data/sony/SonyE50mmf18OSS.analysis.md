@@ -43,15 +43,15 @@ The complete centered prescription has an independently recomputed infinity-focu
 
 ### L211 — Biconvex Positive
 
-**nd = 1.83481, νd = 42.72. Glass: 835427 optical-position code (vendor unresolved). Standalone f = +46.539 mm.**
+**nd = 1.83481, νd = 42.72. Glass: S-LAH55 catalog equivalent (OHARA; production supplier unspecified). Standalone f = +46.539 mm.**
 
 L211 is the front positive collector of G21. Its biconvex form and positive standalone power begin the converging action of the Sonnar-type first group. The patent does not assign a specific named aberration to L211 individually, so its role is best stated at the group level: it contributes positive front-group power before the stronger bending and negative correction that follow.
 
-The 835427 annotation is retained exactly as the data-file glass identity. Catalog comparisons show more than one vendor near this optical position, so no manufacturer-specific glass name is asserted.
+The patent's 835427 coordinate maps to the existing S-LAH55 catalog curve. This is a rendering and spectral-model equivalent, not a claim that the production melt came from OHARA.
 
 ### L212 — Positive Meniscus
 
-**nd = 1.91082, νd = 35.25. Glass: 911353 optical-position code (vendor unresolved). Standalone f = +42.000 mm.**
+**nd = 1.91082, νd = 35.25. Glass: TAFD35 catalog equivalent (HOYA; production supplier unspecified). Standalone f = +42.000 mm.**
 
 L212 is a high-index positive meniscus following L211. Its refractive index is the highest among the active elements in the example. In the modeled power distribution it reinforces the positive front block before L213 and L214 introduce negative power.
 
@@ -59,13 +59,13 @@ The patent does not identify a glass manufacturer. The 911353 code therefore rem
 
 ### L213 — Negative Meniscus
 
-**nd = 1.72825, νd = 28.32. Glass: 728283 optical-position code (vendor unresolved). Standalone f = -22.712 mm.**
+**nd = 1.72825, νd = 28.32. Glass: H-ZF4A catalog equivalent (CDGM; production supplier unspecified). Standalone f = -22.712 mm.**
 
 L213 supplies the strongest standalone negative power in the fixed portion of the first group ahead of the OSS element. It reverses part of the convergence established by L211 and L212 before the beam reaches L214. Its relatively low νd compared with the two preceding positive elements also gives the group a materially different dispersion contribution, although the patent supplies no line-index or partial-dispersion data from which a more specific secondary-spectrum claim could be made.
 
 ### L214 — OSS Biconcave Negative
 
-**nd = 1.80610, νd = 33.27. Glass: 806333 optical-position code (vendor unresolved). Standalone f = -56.691 mm.**
+**nd = 1.80610, νd = 33.27. Glass: NBFD15 catalog equivalent (HOYA; production supplier unspecified). Standalone f = -56.691 mm.**
 
 L214 is the patent's image-stabilization lens. It is a single biconcave negative element positioned ahead of the aperture stop. The patent states that moving this lens approximately perpendicular to the optical axis compensates image motion and that using one negative element reduces the mass of the moving stabilizer (¶0021, ¶0053).
 
@@ -75,19 +75,19 @@ The active axial model represents L214 in its centered position. Its inferred se
 
 ### L215-L216 — Cemented Corrective Doublet
 
-**L215: nd = 1.84666, νd = 23.78. Glass: 847238 optical-position code. Standalone f = -53.492 mm.**\
-**L216: nd = 1.83481, νd = 42.72. Glass: 835427 optical-position code. Standalone f = +18.030 mm.**\
+**L215: nd = 1.84666, νd = 23.78. Glass: J-SF03 catalog equivalent (HIKARI; production supplier unspecified). Standalone f = -53.492 mm.**\
+**L216: nd = 1.83481, νd = 42.72. Glass: S-LAH55 catalog equivalent (OHARA; production supplier unspecified). Standalone f = +18.030 mm.**\
 **Cemented-pair net EFL = +27.255 mm.**
 
 The patent explicitly states that L215 and L216 are cemented (¶0053). The data therefore assigns the shared interface to downstream element L216 rather than inserting a synthetic cement layer.
 
 The distinction between individual and cemented power is important. L215 is negative in isolation and L216 is strongly positive in isolation, but the assembled pair is net positive. The pair closes G21 after the stop and contributes a substantial portion of the first group's positive power without being equivalent to either standalone element.
 
-The two glasses also occupy notably different νd positions, and their opposite powers are consistent with ordinary chromatic balancing within the cemented pair. There are no authored nC, nF, ng, or dPgF values and no source-proven vendor Sellmeier assignment, so no apochromatic or anomalous-partial-dispersion claim is made.
+The two glasses also occupy notably different νd positions, and their opposite powers are consistent with ordinary chromatic balancing within the cemented pair. Catalog-equivalent Sellmeier curves provide complete rendered-color coverage, but there are no patent-authored nC, nF, ng, or dPgF values, so no apochromatic or anomalous-partial-dispersion claim is made.
 
 ### L221 — Biconcave Negative Focus Element
 
-**nd = 1.62041, νd = 60.34. Glass: 620603 optical-position code (vendor unresolved). Standalone f = -28.713 mm.**
+**nd = 1.62041, νd = 60.34. Glass: J-SK16 catalog equivalent (HIKARI; production supplier unspecified). Standalone f = -28.713 mm.**
 
 L221 alone forms G22. The patent directs this negative second group to translate along the optical axis for focusing (¶0023, ¶0054). Because G22 contains only one element, its functional-group EFL and standalone element EFL are the same to the reported precision.
 
@@ -95,7 +95,7 @@ The element's relatively high νd distinguishes it from the stronger-dispersion 
 
 ### L231 — Biconvex Positive
 
-**nd = 1.72916, νd = 54.67. Glass: 729547 optical-position code (vendor unresolved). Standalone f = +27.856 mm.**
+**nd = 1.72916, νd = 54.67. Glass: TAC8 catalog equivalent (HOYA; production supplier unspecified). Standalone f = +27.856 mm.**
 
 L231 provides the dominant positive standalone power of G23. It receives the beam after the moving negative focus group and forms, together with L232, the fixed positive rear group described in ¶0055.
 
@@ -103,7 +103,7 @@ The complete G23 EFL is +35.02197 mm rather than +27.856 mm because the negative
 
 ### L232 — Negative Meniscus
 
-**nd = 1.80518, νd = 25.46. Glass: 805255 optical-position code (vendor unresolved). Standalone f = -102.039 mm.**
+**nd = 1.80518, νd = 25.46. Glass: J-SF6 catalog equivalent (HIKARI; production supplier unspecified). Standalone f = -102.039 mm.**
 
 L232 is a comparatively weak negative meniscus at the rear of G23. Its standalone magnitude is much longer than that of L231, so the rear pair remains net positive. The patent does not separately describe L232's aberration allocation; its interpreted role is as the negative finishing component of the rear correction group.
 
@@ -111,20 +111,20 @@ The modeled clear apertures at L232 are inferred rather than published. They wer
 
 ## Glass Identification and Selection
 
-The patent publishes d-line refractive indices and Abbe numbers but does not name glass vendors or catalog types. The data file therefore stores six-digit optical-position codes rather than selecting a vendor by proximity alone. The catalog audit found plausible equivalents across several authoritative Japanese, German, and Chinese catalogs for most positions, often with multiple vendors occupying essentially the same coordinate region. That evidence supports the code classification but not a unique manufacturer assignment.
+The patent publishes d-line refractive indices and Abbe numbers but does not name glass vendors or catalog types. A complete catalog audit found a compatible existing Sellmeier curve for all nine media. The data now names the resolver-selected equivalent while retaining the six-digit patent coordinate and explicitly stating that the production supplier is unspecified. These names improve the inspector and color model; they are not melt identifications.
 
-| Data glass code | nd | νd | Elements | Interpretation in this model |
+| Catalog equivalent | nd | νd | Elements | Interpretation in this model |
 |---|---:|---:|---|---|
-| 835427 | 1.83481 | 42.72 | L211, L216 | High-index, moderate-dispersion positive glass position |
-| 911353 | 1.91082 | 35.25 | L212 | Very-high-index positive glass position |
-| 728283 | 1.72825 | 28.32 | L213 | Higher-dispersion negative glass position |
-| 806333 | 1.80610 | 33.27 | L214 | High-index OSS negative glass position |
-| 847238 | 1.84666 | 23.78 | L215 | High-index, high-dispersion negative doublet member |
-| 620603 | 1.62041 | 60.34 | L221 | Lower-index, low-dispersion focus glass position |
-| 729547 | 1.72916 | 54.67 | L231 | Moderate-dispersion positive rear-group glass position |
-| 805255 | 1.80518 | 25.46 | L232 | High-index, high-dispersion rear negative position |
+| S-LAH55 (OHARA), patent class 835427 | 1.83481 | 42.72 | L211, L216 | High-index, moderate-dispersion positive glass position |
+| TAFD35 (HOYA), patent class 911353 | 1.91082 | 35.25 | L212 | Very-high-index positive glass position |
+| H-ZF4A (CDGM), patent class 728283 | 1.72825 | 28.32 | L213 | Higher-dispersion negative glass position |
+| NBFD15 (HOYA), patent class 806333 | 1.80610 | 33.27 | L214 | High-index OSS negative glass position |
+| J-SF03 (HIKARI), patent class 847238 | 1.84666 | 23.78 | L215 | High-index, high-dispersion negative doublet member |
+| J-SK16 (HIKARI), patent class 620603 | 1.62041 | 60.34 | L221 | Lower-index, low-dispersion focus glass position |
+| TAC8 (HOYA), patent class 729547 | 1.72916 | 54.67 | L231 | Moderate-dispersion positive rear-group glass position |
+| J-SF6 (HIKARI), patent class 805255 | 1.80518 | 25.46 | L232 | High-index, high-dispersion rear negative position |
 
-No element carries nC, nF, ng, or dPgF in the final data. The patent provides only nd and νd for these elements. Consequently, the analysis does not attribute anomalous partial dispersion, ED behavior, or apochromatic correction to any element. Any higher-fidelity spectral behavior would require a source-proven line-index set or a defensible catalog Sellmeier identity that is not established by this embodiment alone.
+No element carries patent-authored nC, nF, ng, or dPgF in the final data. Consequently, the analysis does not attribute anomalous partial dispersion, ED behavior, or apochromatic correction to any element. The compatible catalog curves complete the site's spectral rendering without turning those equivalents into production-glass claims.
 
 ## Focus Mechanism
 
@@ -176,7 +176,7 @@ At infinity focus, independent sequential y-ν tracing and ABCD composition give
 
 The patent's optional 2.0 mm, nd = 1.5168 sensor cover is excluded from the active lens model. Its optical path is preserved by replacing the plate with its 1.318565 mm air-equivalent thickness inside the final rear spacing. Surface 18 therefore carries 15.468565 mm to IMG rather than the raw cover-containing 16.15 mm physical distance. No powered surface is altered by this normalization.
 
-The authored semi-diameters are modeling inferences. They are not patent clear-aperture values. They were constrained by the centered marginal and chief rays, all three published focus states, the full-field chief ray, the published L214 stabilization travel, measured Figure 8 proportions, and the production filter-diameter context. Figure 8 showed that the initial L211 and L212 envelopes were materially oversized, so surfaces 1–4 were tightened as element-consistent pairs to 10.7/10.1 mm and 9.8/8.4 mm. The final geometry passes the project's surface-domain, edge-thickness, rim-slope, image-circle, and ray-containment checks at all three published focus states.
+The authored semi-diameters are modeling inferences. They are not patent clear-aperture values. They were constrained by the centered marginal and chief rays, all three published focus states, the full-field chief ray, the published L214 stabilization travel, direct Figure 8 silhouette comparison, and the production filter-diameter context. The final review tightened L211 to 10.7/10.1 mm, L212 to 10.0/9.6 mm, L213 and L214 to 9.0 mm, L215-L216 to 9.6 mm, L221 to 8.5 mm, and L232 to 9.8 mm. The remaining difference from the schematic's very small central drawing is intentional: the modeled f/1.85 stop and verified ray envelope set a harder lower bound. The final geometry passes the project's surface-domain, edge-thickness, rim-slope, image-circle, and ray-containment checks at all three published focus states.
 
 The surface-by-surface Petzval sum, evaluated as `Σ φ/(n·n′)`, is +0.00302765 mm⁻¹. This is a computed design quantity; the patent does not publish a Petzval radius for Example 2.
 
@@ -195,7 +195,7 @@ No patent numerical correction, focus reconstruction, dimensional scaling, asphe
 
 ### Glass-catalog verification basis
 
-The data intentionally retains vendor-neutral six-digit optical-position codes. Candidate-coordinate checks were made against authoritative catalog material from:
+The data retains the patent coordinate beside each selected catalog equivalent and leaves the production supplier unspecified. Candidate-coordinate checks were made against authoritative catalog material from:
 
 - OHARA optical glass catalogs: <https://www.ohara-inc.co.jp/en/product/01000/>
 - HOYA optical glass cross-reference and data: <https://www.hoyaoptics.eu/glass-cross-reference-index>

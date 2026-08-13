@@ -10,6 +10,15 @@ dPgF-corrected indices, or the legacy Abbe approximation. Current optics-engine 
 
 The catalog currently has **517 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
 
+The August 13, 2026 Phase 97 screenshot-led follow-up made the Sony batch's existing spectral coverage explicit in the
+site inspector. Every identified physical glass now names the resolver-selected catalog equivalent while preserving
+the patent coordinate and stating that the production supplier is unspecified. Sony's published element counts support
+inferred ED tags on DT 16-50mm G10/G12/G15 and E 18-200mm L2/L16; no patent `dPgF` was invented. The audit again
+found no responsible catalog expansion: all 42 physical glass media across the three lenses already have trusted
+Sellmeier curves, while the four remaining modeled media are unpublished bonded/compound resin layers. Global
+coverage therefore remains 5581/6214 strict and 5592/6214 trusted, with 517 verified catalog entries and zero active
+unreviewed six-digit rows.
+
 The August 13, 2026 Phase 96 pass audited the three-lens Sony batch. The E 50mm is already strict-complete at 9/9,
 and the E 18-200mm OSS LE resolves all 17 physical glass media; only its two unidentified bonded resin layers remain.
 The DT 16-50mm G1 patent coordinate `1.84666 / 23.7` is compatible with the existing first-party HIKARI J-SF03
