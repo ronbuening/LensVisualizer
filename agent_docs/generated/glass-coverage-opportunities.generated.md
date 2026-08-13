@@ -9,9 +9,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **559** lenses scanned (**549** visible)
-- **5539 / 6168** non-air surfaces use strict catalog Sellmeier data (89.8%)
-- **5550 / 6168** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 90.0%)
+- **562** lenses scanned (**552** visible)
+- **5581 / 6214** non-air surfaces use strict catalog Sellmeier data (89.8%)
+- **5592 / 6214** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 90.0%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **266** code-only missing-Sellmeier elements in Sweep 2: **0** active unreviewed, **116** self-recording explicit dispositions, **0** dispositions missing any review record
@@ -70,6 +70,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [NIKON NIKKOR-N 5cm f/1.1](../../src/lens-data/nikon/NikonN5cmf11.data.ts) | US 2,828,671 | [PDF](../../patents/US2828671.pdf) | 88.9% (8/9) | 88.9% (8/9) | 1 | 5 [glass] (Element 3: `770479 — lanthanum crown/flint patent glass (nd=1.77000, νd=47.9; no exact public catalog match)`) | abbe: 1 |
 | [NIKON NIKKOR-N AUTO 28mm f/2](../../src/lens-data/nikon/NikonNikkorN28mmf2.data.ts) | US 3,736,049 | [PDF](../../patents/US3736049.pdf) | 88.9% (8/9) | 88.9% (8/9) | 1 | 14 [glass] (Element 8: `Discontinued LaF/LaK type (1970s)`) | abbe: 1 |
 | [PENTAX FA 31mm f/1.8 AL Limited](../../src/lens-data/pentax/PentaxFA31mmf18ALLtd.data.ts) | US 6,560,042 B2 | [PDF](../../patents/US6560042.pdf) | 88.9% (8/9) | 88.9% (8/9) | 1 | 13 [glass] (Element 8: `Unmatched (728403 lanthanum flint; no public coefficient row inside the d-line safety window)`) | abbe: 1 |
+| [SONY DT 16-50mm f/2.8 SSM](../../src/lens-data/sony/SonyDT1650mmf28SSM.data.ts) | US 2012/0307129 A1 | [PDF](../../patents/US20120307129A1.pdf) | 88.9% (16/18) | 88.9% (16/18) | 2 | 6A [glass] (G4 compound layer: `Unmatched (compound-asphere layer; material unspecified by patent)`)<br>26 [glass] (G13 compound layer: `Unmatched (compound-asphere layer; material unspecified by patent)`) | abbe: 2 |
 | [FUJIFILM FUJINON 23mm f/2 (Fujifilm X100)](../../src/lens-data/fujifilm/FujifilmX10023mmf2.data.ts) | US 2012/0069456 A1 | [PDF](../../patents/US20120069456A1.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 10A [glass] (Element 6: `Unmatched (569586 patent molded crown; no exact public catalog identity)`) | abbe: 1 |
 | [MAMIYA SEKOR AF 150mm f/2.8 IF D](../../src/lens-data/mamiya/MamiyaSekorDAF150mmf28IF.data.ts) | JP 2001-183581 A | [PDF](../../patents/JP_2001183581_A.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 13 [glass] (Element 7: `Unmatched (nd=1.806098, νd=40.34; no exact current catalog identity)`) | abbe: 1 |
 | [MINOLTA AF 100mm f/2.8 Macro](../../src/lens-data/minolta/MinoltaAF100mmf28Macro.data.ts) | US 4,764,000 | [PDF](../../patents/US4764000.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 13 [glass] (Element 7: `807316 - dense lanthanum flint (patent nd=1.80741, vd=31.59; unresolved)`) | abbe: 1 |
@@ -132,6 +133,7 @@ These rows contain resin, cement, plastic, liquid, or unclassified optical media
 | [NIKON NIKKOR Z DX 16-50mm f/3.5-6.3 VR](../../src/lens-data/nikon/NikonZDX1650mmf3563VR.data.ts) | WO 2020/012638 A1 | [PDF](../../patents/JPWO2020012638A1.pdf) | 90.0% (9/10) | 90.0% (9/10) | 1 | 2 [resin] (Element 1r (resin layer): `UV-curable optical resin`) | abbe: 1 |
 | [NIKON NIKKOR Z DX 18-140mm f/3.5-6.3 VR](../../src/lens-data/nikon/NikonZDX18140mmf3563VR.data.ts) | WO 2022/264542 A1 | [PDF](../../patents/WO2022264542A1.pdf) | 89.5% (17/19) | 89.5% (17/19) | 2 | 15A [resin] (Element 8: `UV-curing resin (composite aspheric layer)`)<br>23A [resin] (Element 13: `UV-curing resin (composite aspheric layer)`) | abbe: 2 |
 | [PENTAX SMC DA 17-70mm f/4 AL [IF] SDM](../../src/lens-data/pentax/PentaxDA1770mmf4ALSDM.data.ts) | US 7,804,652 B2 | [PDF](../../patents/US7804652.pdf) | 89.5% (17/19) | 89.5% (17/19) | 2 | 6A [resin] (Element 4 resin layer: `Unmatched (hybrid aspherical resin nd=1.52700, vd=43.7)`)<br>28A [resin] (Element 16 resin layer: `Unmatched (hybrid aspherical resin nd=1.52972, vd=42.7)`) | abbe: 2 |
+| [SONY E 18-200mm f/3.5-6.3 OSS LE](../../src/lens-data/sony/SonyE18200mmf3563OSSLE.data.ts) | US 8,553,339 B2 | [PDF](../../patents/US8553339.pdf) | 89.5% (17/19) | 89.5% (17/19) | 2 | 6A [resin] (L4 Bonded Resin: `Unmatched (optical resin layer; vendor not identified)`)<br>28 [resin] (L15 Bonded Resin: `Unmatched (optical resin layer; vendor not identified)`) | abbe: 2 |
 | [CANON EF 28-105mm f/4-5.6](../../src/lens-data/canon/CanonEF28105mmf456.data.ts) | US 2004/0223070 A1 | Missing from untracked local patents/ references (US20040223070A1, US20040223070, 20040223070) | 88.9% (8/9) | 88.9% (8/9) | 1 | 17 [plastic] (Element L42: `Unmatched (polycarbonate-class optical resin inferred from nd=1.583060, νd=30.2)`) | abbe: 1 |
 | [CANON ZOOM LENS 15-45mm f/2.8-5.6 (PowerShot G1 X Mark III)](../../src/lens-data/canon/CanonPowerShotG1XIII1545mmf2856.data.ts) | JP 2018-106021 A | [PDF](../../patents/JP2018106021A.pdf) | 88.9% (8/9) | 88.9% (8/9) | 1 | 18A [resin] (GRP resin rear meniscus: `Optical resin / polymer (patent GRP)`) | abbe: 1 |
 | [CANON RF 16mm f/2.8 STM](../../src/lens-data/canon/CanonRF16mmf28STM.data.ts) | JP 2022-085382 A | [PDF](../../patents/JP2022085382A.pdf) | 88.9% (8/9) | 88.9% (8/9) | 1 | 14A [resin] (Element 8: `Unmatched (Canon PMo optical resin, nd=1.53110, νd=55.9)`) | abbe: 1 |

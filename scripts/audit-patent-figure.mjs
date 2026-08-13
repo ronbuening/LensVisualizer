@@ -39,6 +39,7 @@
  * Flags:
  *   --rot90 / --rot270   sheet prints the optical axis vertically
  *   --flip               figure is drawn image-side-left
+ *   --axis=<fraction>    override automatic axis detection for annotated figures
  *   --dpi=<n>            render resolution (default 300)
  */
 
@@ -68,6 +69,12 @@ if (!Number.isFinite(dpi) || dpi <= 0) {
 }
 const flip = flags.includes("--flip");
 const rotation = flags.includes("--rot90") ? 90 : flags.includes("--rot270") ? 270 : 0;
+const axisFractionArg = flags.find((flag) => flag.startsWith("--axis="));
+const axisFraction = axisFractionArg ? Number(axisFractionArg.split("=")[1]) : undefined;
+if (axisFraction !== undefined && (!Number.isFinite(axisFraction) || axisFraction < 0 || axisFraction > 1)) {
+  console.error("--axis must be a finite page fraction in [0,1]");
+  process.exit(2);
+}
 const crop = cropArg.split(",").map(Number);
 if (crop.length !== 4 || crop.some((value) => !Number.isFinite(value) || value < 0 || value > 1)) {
   console.error(`<x0,y0,x1,y1> must be four page fractions in [0,1], got "${cropArg}"`);
@@ -122,24 +129,30 @@ const cropX1 = Math.round(crop[2] * imageWidth);
 const cropY1 = Math.round(crop[3] * imageHeight);
 
 /* ── locate the optical axis: the row spanning the widest run of ink ── */
-let axisY = -1;
-let bestScore = -1;
-for (let y = cropY0; y < cropY1; y++) {
-  let count = 0;
-  let first = -1;
-  let last = -1;
-  for (let x = cropX0; x < cropX1; x++) {
-    if (!isDark(x, y)) continue;
-    count++;
-    if (first < 0) first = x;
-    last = x;
+let axisY = axisFraction === undefined ? -1 : Math.round(axisFraction * imageHeight);
+if (axisFraction === undefined) {
+  let bestScore = -1;
+  for (let y = cropY0; y < cropY1; y++) {
+    let count = 0;
+    let first = -1;
+    let last = -1;
+    for (let x = cropX0; x < cropX1; x++) {
+      if (!isDark(x, y)) continue;
+      count++;
+      if (first < 0) first = x;
+      last = x;
+    }
+    const span = last - first;
+    const score = span * Math.min(1, count / Math.max(1, span * 0.3));
+    if (score > bestScore) {
+      bestScore = score;
+      axisY = y;
+    }
   }
-  const span = last - first;
-  const score = span * Math.min(1, count / Math.max(1, span * 0.3));
-  if (score > bestScore) {
-    bestScore = score;
-    axisY = y;
-  }
+}
+if (axisY < cropY0 || axisY >= cropY1) {
+  console.error(`axis row ${axisY} falls outside crop rows ${cropY0}..${cropY1 - 1}`);
+  process.exit(2);
 }
 
 /* ── measure both envelopes ── */

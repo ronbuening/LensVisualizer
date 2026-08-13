@@ -105,6 +105,9 @@ better investment.
 | E PZ 16-50mm f/3.5-5.6 OSS | US 2015/0316753 A9 Figure 1 at 300 dpi; L1 drawn near 12.5 mm | done 2026-08-11; L1 enlarged to validator-safe 12.2/11.8 mm |
 | FE PZ 16-35mm f/4 G | JP 2023-44106 A Figure 53; patent effective diameters retained | no change 2026-08-11; zero image-circle-floor failures |
 | Vario-Sonnar T* 24-70mm f/2.8 ZA SSM | US 2008/0198475 A1 Figure 9; clean-row median 1.019 | no change 2026-08-11; reliable deviations below threshold |
+| DT 16-50mm f/2.8 SSM | US 2012/0307129 A1 Figure 2 at 300 dpi | no change 2026-08-13; modeled taper matches the patent section |
+| E 18-200mm f/3.5-6.3 OSS LE | US 8,553,339 B2 Figure 1 at 300 dpi | done 2026-08-13; front pair and meniscus tightened for Figure 1 and 62 mm barrel |
+| E 50mm f/1.8 OSS | JP 2012-242690 A Figure 8 at 300 dpi | done 2026-08-13; oversized L211/L212 envelopes tightened to measured proportions |
 
 ### Completed Voigtländer additions
 
