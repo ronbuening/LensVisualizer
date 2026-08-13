@@ -19,6 +19,11 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-08-14",
+    type: "lens",
+    summary: "Added six Nikon AF and AF-S Zoom-Nikkor designs spanning 18-400mm",
+  },
+  {
     date: "2026-08-13",
     type: "lens",
     summary: "Added Sony DT 16-50mm, E 18-200mm OSS LE, and E 50mm OSS designs",
