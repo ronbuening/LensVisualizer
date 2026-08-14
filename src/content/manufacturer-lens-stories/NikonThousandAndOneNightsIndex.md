@@ -47,7 +47,7 @@ Nikon does not display a publication date on the current index or individual Eng
 | No. 70 | [AI Nikkor 300mm f/4.5S](https://imaging.nikon.com/imaging/information/story/0070/) | — |
 | No. 69 | [Medical-Nikkor 120mm f/4 IF](https://imaging.nikon.com/imaging/information/story/0069/) | — |
 | No. 68 | [AF-S DX Zoom-Nikkor 12–24mm f/4G IF-ED](https://imaging.nikon.com/imaging/information/story/0068/) | [AF-S DX Zoom-Nikkor 12–24mm](/lens/nikon-af-s-dx-zoom-nikkor-12-24mm-f4g-if-ed) |
-| No. 67 | [AI AF-S Zoom-Nikkor 80–200mm f/2.8D IF-ED](https://imaging.nikon.com/imaging/information/story/0067/) | — |
+| No. 67 | [AI AF-S Zoom-Nikkor 80–200mm f/2.8D IF-ED](https://imaging.nikon.com/imaging/information/story/0067/) | [AI AF-S Zoom-Nikkor 80–200mm](/lens/nikon-afs-zoom-nikkor-80-200mm-f28d-if-ed) |
 | No. 66 | [AI Nikkor 400mm f/3.5 IF-ED](https://imaging.nikon.com/imaging/information/story/0066/) | — |
 | No. 65 | [AF Zoom-Nikkor 28–200mm f/3.5–5.6G IF-ED](https://imaging.nikon.com/imaging/information/story/0065/) | [AF Zoom-Nikkor 28–200mm](/lens/nikkor-af-28-200-f3556-g-if-ed) |
 | No. 64 | [EL-Nikkor 80mm f/5.6N](https://imaging.nikon.com/imaging/information/story/0064/) | — |
@@ -79,7 +79,7 @@ Nikon does not display a publication date on the current index or individual Eng
 | No. 38 | [From Nikkor-S Auto 35mm f/2.8 to New Nikkor 35mm f/2.8](https://imaging.nikon.com/imaging/information/story/0038/) | — |
 | No. 37 | [W-Nikkor 3.5cm F2.5](https://imaging.nikon.com/imaging/information/story/0037/) | — |
 | No. 36 | [Nikkor P·C 8.5cm F2](https://imaging.nikon.com/imaging/information/story/0036/) | — |
-| No. 35 | [Ai AF VR Zoom-Nikkor 80–400mm f/4.5–5.6D ED](https://imaging.nikon.com/imaging/information/story/0035/) | — |
+| No. 35 | [Ai AF VR Zoom-Nikkor 80–400mm f/4.5–5.6D ED](https://imaging.nikon.com/imaging/information/story/0035/) | [AI AF VR Zoom-Nikkor 80–400mm](/lens/nikon-ai-af-vr-zoom-nikkor-80-400mm-f45-56d-ed) |
 | No. 34 | [NIKKOR-H·C 5cm F2](https://imaging.nikon.com/imaging/information/story/0034/) | — |
 | No. 33 | ["Pikaichi" L35AF 35mm f/2.8](https://imaging.nikon.com/imaging/information/story/0033/) | [L35AF 35mm f/2.8](/lens/nikon-l35af-35f28) |
 | No. 32 | [Ai AF DC Nikkor 135mm F2S](https://imaging.nikon.com/imaging/information/story/0032/) | — |
