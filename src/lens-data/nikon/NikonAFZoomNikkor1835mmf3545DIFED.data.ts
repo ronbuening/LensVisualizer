@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — NIKON AI AF ZOOM-NIKKOR 18-35mm f/3.5-4.5 D IF-ED                                    ║
+ * ║  LENS DATA — NIKON AI AF ZOOM-NIKKOR 18-35mm f/3.5-4.5D IF-ED                                     ║
  * ╠══════════════════════════════════════════════════════════════════════════════════════════════════════╣
  * ║  Data source: US 2001/0030812 A1, Example 2 (Akiko Furuta).                                       ║
  * ║  Production correlation: Nikon AI AF Zoom-Nikkor 18-35mm f/3.5-4.5D IF-ED.                         ║
@@ -30,7 +30,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                                                    ║
  * ║  Spectral data: the patent publishes only nd and νd. Compatible coefficient-backed catalog         ║
  * ║  equivalents model dispersion without asserting production suppliers; no patent nC/nF/ng or dPgF   ║
- * ║  values are invented. The unidentified compound-asphere layer remains unmatched.                    ║
+ * ║  values are invented. L26's inferred ED tag records the production correlation only. The            ║
+ * ║  unidentified compound-asphere layer remains unmatched.                                              ║
  * ║                                                                                                    ║
  * ║  Manufacturer metadata sources (identity/marketing only):                                          ║
  * ║  - https://nij.nikon.com/products/lineup/nikkor/fmount/ai_af_zoom-nikkor_18-35mm_f35-45d_if-ed/  ║
@@ -43,7 +44,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-ai-af-zoom-nikkor-18-35mm-f3-5-4-5d-if-ed",
   maker: "Nikon",
-  name: "NIKON AI AF ZOOM-NIKKOR 18-35mm f/3.5-4.5 D IF-ED",
+  name: "NIKON AI AF ZOOM-NIKKOR 18-35mm f/3.5-4.5D IF-ED",
   subtitle: "US 2001/0030812 A1 Example 2 — production-correlated design",
   specs: [
     "18-35mm f/3.5-4.5",
@@ -67,6 +68,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L11",
+      diagramLabel: "L11",
       label: "L11",
       type: "Negative Meniscus",
       nd: 1.794997,
@@ -78,6 +80,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L12c",
+      diagramLabel: "L12c",
       label: "L12 compound layer",
       type: "Compound Asphere Layer",
       nd: 1.50625,
@@ -89,6 +92,7 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L12",
+      diagramLabel: "L12",
       label: "L12 substrate",
       type: "Negative Meniscus Substrate",
       nd: 1.794997,
@@ -100,6 +104,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L13",
+      diagramLabel: "L13",
       label: "L13",
       type: "Biconcave Negative",
       nd: 1.744,
@@ -111,6 +116,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L14",
+      diagramLabel: "L14",
       label: "L14",
       type: "Biconvex Positive",
       nd: 1.79504,
@@ -122,6 +128,7 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L21",
+      diagramLabel: "L21",
       label: "L21",
       type: "Negative Meniscus",
       nd: 1.788,
@@ -134,6 +141,7 @@ const LENS_DATA = {
     {
       id: 7,
       name: "L22",
+      diagramLabel: "L22",
       label: "L22",
       type: "Biconvex Positive",
       nd: 1.50137,
@@ -146,6 +154,7 @@ const LENS_DATA = {
     {
       id: 8,
       name: "L23",
+      diagramLabel: "L23",
       label: "L23",
       type: "Biconvex Positive",
       nd: 1.53996,
@@ -158,6 +167,7 @@ const LENS_DATA = {
     {
       id: 9,
       name: "L24",
+      diagramLabel: "L24",
       label: "L24",
       type: "Biconcave Negative",
       nd: 1.794997,
@@ -170,6 +180,7 @@ const LENS_DATA = {
     {
       id: 10,
       name: "L25",
+      diagramLabel: "L25",
       label: "L25",
       type: "Negative Meniscus",
       nd: 1.834,
@@ -182,18 +193,22 @@ const LENS_DATA = {
     {
       id: 11,
       name: "L26",
+      diagramLabel: "L26",
       label: "L26",
       type: "Biconvex Positive",
       nd: 1.49782,
       vd: 82.52,
       fl: 18.481122,
       glass: "J-FKH1 catalog equivalent (patent 498825; production supplier unspecified)",
+      apd: "inferred",
+      apdNote: "Production-correlated ED element; the patent publishes nd/vd only.",
       cemented: "D25",
       role: "High-Abbe positive member correlated with Nikon's single production ED element.",
     },
     {
       id: 12,
       name: "L27",
+      diagramLabel: "L27",
       label: "L27",
       type: "Biconvex Positive",
       nd: 1.53996,
@@ -269,7 +284,7 @@ const LENS_DATA = {
 
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "9" },
-    { text: "G2a (IF)", fromSurface: "10", toSurface: "12" },
+    { text: "G2a", fromSurface: "10", toSurface: "12" },
     { text: "G2b", fromSurface: "14", toSurface: "21" },
   ],
 

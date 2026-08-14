@@ -1,4 +1,4 @@
-# NIKON AF-S VR ZOOM-NIKKOR 24-120mm f/3.5-5.6 G IF-ED
+# NIKON AF-S VR ZOOM-NIKKOR 24-120mm f/3.5-5.6G IF-ED
 
 ## Patent Reference and Design Identification
 
@@ -12,7 +12,7 @@
 **Title:** *Vibration Reduction Zoom Lens System*
 **Embodiment analyzed:** Example 2
 
-The prescription modeled here is Example 2 of US 2004/0218274 A1. The production correlation is the one fixed for this lens: the NIKON AF-S VR ZOOM-NIKKOR 24-120mm f/3.5-5.6 G IF-ED. The patent does not state that Example 2 is the commercial product prescription, so the identification is a correlation rather than a manufacturer-confirmed disclosure.
+The prescription modeled here is Example 2 of US 2004/0218274 A1. The production correlation is the one fixed for this lens: the NIKON AF-S VR ZOOM-NIKKOR 24-120mm f/3.5-5.6G IF-ED. The patent does not state that Example 2 is the commercial product prescription, so the identification is a correlation rather than a manufacturer-confirmed disclosure.
 
 Several independent characteristics converge on that correlation:
 
@@ -126,7 +126,7 @@ L3A is the only laterally shifted vibration-reduction unit in the patent. It con
 
 The L3AN/L3AP index difference is 0.308182 at the d line, one of the patent's explicit design conditions. The large difference in Abbe number, 25.41 versus 81.61, also gives the cemented pair substantial ordinary chromatic-correction leverage while it is decentered for stabilization. The patent specifically associates the cemented construction with suppression of aberration changes during vibration reduction (¶¶0048-0052).
 
-L3AP's 497816 coordinate is classified as an ED fluorophosphate class. This is a class-level catalog conclusion rather than a vendor identification. No `nC`, `nF`, `ng`, or `dPgF` values are stored, so the model does not make an apochromatic or anomalous-partial-dispersion claim.
+L3AP's 497816 coordinate is classified as an ED fluorophosphate class. Together with L51, it accounts for Nikon's two-ED production specification, so both carry `apd: "inferred"`. This is production-correlation metadata rather than a vendor identification, quantitative `dPgF` value, or apochromatic claim.
 
 The doublet's +42.392245 mm net power is also distinct from the +26.381025 mm in-situ power of G3. L33 and the air spaces within G3 materially alter the behavior of the complete group.
 
@@ -285,7 +285,7 @@ The patent emphasizes chromatic control most directly in the VR doublet. L3AN an
 
 Elsewhere, the design repeatedly pairs high-index, lower-Abbe negative media with higher-Abbe positive crowns. G1 uses 847238/755523 classes in its cemented pair; G2 mixes 835427 and 785257 classes; G5 combines the 497816 and 487702/487704 high-Abbe classes with a rear 847238 dense flint. These combinations are consistent with ordinary achromatic balancing across multiple zoom groups.
 
-The analysis deliberately stops at that level. No element in the final data carries explicit `nC`, `nF`, `ng`, or `dPgF`, and the vendor identities remain unresolved. The model therefore makes no APO claim and no claim of specifically engineered anomalous partial dispersion.
+The analysis deliberately stops at that level. No element in the final data carries explicit `nC`, `nF`, `ng`, or `dPgF`, and the vendor identities remain unresolved. The two inferred ED tags record the production count but do not support an APO claim or a quantitative anomalous-partial-dispersion model.
 
 ## Image Stabilization
 

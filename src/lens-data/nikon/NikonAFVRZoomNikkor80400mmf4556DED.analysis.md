@@ -1,4 +1,4 @@
-# NIKON AI AF VR ZOOM-NIKKOR 80-400mm f/4.5-5.6 D ED
+# NIKON AI AF VR ZOOM-NIKKOR 80-400mm f/4.5-5.6D ED
 
 ## Patent Reference and Design Identification
 
@@ -15,7 +15,7 @@
 The prescription is the fixed Working Example 4 of US 6,141,156 A. The patent does not identify a commercial lens by
 product name, so the production relationship is a correlation rather than a patent-stated identity. The correlation is
 nevertheless unusually specific. Nikon's own design retrospective names Masayuki Aoki as optical designer of the AI AF
-VR Zoom-Nikkor 80-400mm f/4.5-5.6 D ED, states that its optical design was completed in 1997 and released commercially in
+VR Zoom-Nikkor 80-400mm f/4.5-5.6D ED, states that its optical design was completed in 1997 and released commercially in
 November 2000, and describes a six-group positive-front zoom in which G1 focuses, G2 is fixed relative to the focal
 surface, and a subset of G2 moves laterally for vibration reduction.[2]
 
@@ -233,10 +233,9 @@ one-to-one vendor-glass identity where the selected example does not supply one.
 `νd = 82.52` elements as an ED fluorophosphate/fluorocrown class but leaves other high- or low-dispersion coordinates at
 the class level dictated by the catalog audit.
 
-No element in Working Example 4 has authored `nC`, `nF`, `ng`, or `dPgF` values. No aspheric or diffractive spectral data
-are present. Consequently, the model supports no claim of apochromatic correction or anomalous partial-dispersion
-behavior from its authored spectral data. Statements about the production lens's ED elements remain manufacturer facts,
-not an assertion of APO status.
+No element in Working Example 4 has authored `nC`, `nF`, `ng`, or `dPgF` values. L11b, L12, and L32a carry
+`apd: "inferred"` because Nikon's production account uniquely places two ED elements in G1 and one in G3. These viewer
+tags record that production correlation; they are not quantitative partial-dispersion values or an assertion of APO status.
 
 ## Focus Mechanism
 
@@ -274,8 +273,9 @@ contributes to longitudinal chromatic correction toward the wide end.[2]
 The selected patent prescription is consistent with a deliberate alternation of high- and low-dispersion members, but
 its only spectral descriptors are d-line index and Abbe number. L11b and L32a have `νd = 82.52`; L12 and several later
 positive elements use the `νd = 70.41` coordinate; the dense-flint members at `nd = 1.805182` use much lower Abbe values
-of 25.41 or 25.35. These are source facts and data-file classifications. Without line-index or validated Sellmeier data,
-the analysis does not infer secondary-spectrum behavior beyond what the manufacturer and patent explicitly describe.
+of 25.41 or 25.35. These are source facts and data-file classifications. Without patent-published line indices or a
+unique production-melt identification, the analysis does not infer quantitative secondary-spectrum behavior beyond what
+the manufacturer and patent explicitly describe.
 
 G2B uses a large refractive-index difference between its cemented members. The patent formalizes this through condition
 (2), using `Na = 1.803840` and `Nb = 1.640000`, while also requiring the correction subgroup to retain net negative power.

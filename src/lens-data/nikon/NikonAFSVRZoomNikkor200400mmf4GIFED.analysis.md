@@ -1,4 +1,4 @@
-# NIKON AF-S VR ZOOM-NIKKOR 200-400mm f/4 G IF-ED — Optical Analysis
+# NIKON AF-S VR ZOOM-NIKKOR 200-400mm f/4G IF-ED — Optical Analysis
 
 ## Patent Reference and Design Identification
 
@@ -82,7 +82,7 @@ The first group reaches the patent's maximum effective diameter d1 = 102.10 mm a
 
 L13 is a positive meniscus following the front cemented pair. It uses the same low-dispersion coordinate as L12. In the fixed G1f subgroup it adds positive power while preserving the same high-Abbe material coordinate through the front collector.
 
-Because the patent provides only nd and νd for this glass, the data does not attach a vendor Sellmeier identity or explicit C/F/g-line indices. Its chromatic behavior is therefore represented only to the level supported by the authored glass class and Abbe data.
+The patent provides only nd and νd for this glass and does not identify the production supplier. The `498826` code resolves to a coordinate-compatible catalog curve for chromatic tracing, while the authored data deliberately avoids claiming a particular vendor melt or patent-published C/F/g-line indices.
 
 #### L14 — Positive Meniscus
 
@@ -190,7 +190,7 @@ G4f has a computed focal length of +99.972604 mm. It lies immediately behind S1 
 
 The patent describes this cemented unit as a negative meniscus L41 joined to a biconvex L42, forming a cemented positive lens (¶0073). The independently computed cemented focal length is +201.354584 mm.
 
-The pair therefore repeats a theme seen at the front of the lens: a negative isolated element is incorporated into a net-positive cemented unit. The differing Abbe values provide first-order chromatic balancing, but no stronger secondary-spectrum claim is made because the data lacks explicit line indices or validated vendor Sellmeier identities for all members.
+The pair therefore repeats a theme seen at the front of the lens: a negative isolated element is incorporated into a net-positive cemented unit. The differing Abbe values provide first-order chromatic balancing, but no stronger secondary-spectrum claim is made because the patent lacks explicit line indices and production-melt identities.
 
 #### L43 — Positive Meniscus
 
@@ -237,7 +237,7 @@ G4r has a computed focal length of +82.057370 mm and remains fixed relative to t
 
 L47 is the fourth and final element in Example 1 using the 1.49782/82.56 low-dispersion coordinate. It is the front positive element of G4r and is air-spaced from the final cemented pair.
 
-The occurrence count of this coordinate matches Nikon's marketed count of four ED elements, which is useful correlation evidence. It does not establish that the patent coordinate is a particular commercial ED glass; accordingly, the data keeps the class designation and does not add anomalous-dispersion metadata.
+The occurrence count of this coordinate matches Nikon's marketed count of four ED elements, which is useful correlation evidence. It does not establish that the patent coordinate is a particular commercial ED glass; accordingly, the data keeps the class designation and limits anomalous-dispersion metadata to an `apd: "inferred"` production-correlation tag.
 
 #### L48 + L49 — Final Cemented Positive Pair
 
@@ -267,7 +267,7 @@ The patent supplies d-line refractive index and Abbe number for each glass but d
 
 The four 1.49782/82.56 elements are conspicuous because Nikon's production specification separately states that the lens contains four ED elements. The numerical example therefore supports the production correlation at the level of count and low-dispersion character. It does not supply enough information to label those patent elements as a specific Nikon ED melt, fluorite, or a named OHARA/HOYA/HIKARI/SCHOTT/CDGM/SUMITA glass.
 
-Similarly, the data contains no authored nC, nF, ng, or dPgF values. The patent identifies the C, d, F, and g wavelengths used in its aberration plots (¶0077), but it does not tabulate per-element line indices. Consequently, the model supports ordinary Abbe-based chromatic discussion but not an APO classification, anomalous-partial-dispersion claim, or quantitative secondary-spectrum analysis.
+Similarly, the data contains no authored nC, nF, ng, or dPgF values. L12, L13, L14, and L47 carry `apd: "inferred"` because their shared coordinate and count match Nikon's four-ED production specification. Those viewer tags do not establish an APO classification, a particular production melt, or quantitative secondary-spectrum behavior.
 
 ## Chromatic Correction Strategy
 
@@ -275,7 +275,7 @@ At the d-line/Abbe level, the design repeatedly combines high- and low-dispersio
 
 The front L11/L12 pair combines νd = 33.89 and 82.56; the G1m L16/L17 pair combines 23.78 and 65.47; G2's L22/L23 combines 23.78 and 60.09; G3's L32/L33 combines 65.47 and 28.55; G4f's L41/L42 combines 33.89 and 65.47; G4m's L44/L45 combines 23.78 and 52.67; and the final L48/L49 pair combines 60.09 and 23.78. These pairings show deliberate dispersion contrast even when their net first-order powers are weak.
 
-The design also places three of the four 1.49782/82.56 elements in the large fixed front subgroup and the fourth in G4r. Nikon's marketed four-ED-element count is therefore structurally consistent with Example 1, but the model does not infer anomalous partial dispersion from νd alone.
+The design also places three of the four 1.49782/82.56 elements in the large fixed front subgroup and the fourth in G4r. Nikon's marketed four-ED-element count is therefore structurally consistent with Example 1 and supports the inferred ED tags, while no quantitative partial-dispersion value is inferred from νd alone.
 
 ## Focus Mechanism
 

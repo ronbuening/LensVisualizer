@@ -1,4 +1,4 @@
-# NIKON AI AF-S ZOOM-NIKKOR 80-200mm f/2.8 D IF-ED — Optical Analysis
+# NIKON AI AF-S ZOOM-NIKKOR 80-200mm f/2.8D IF-ED — Optical Analysis
 
 ## Patent Reference and Design Identification
 
@@ -11,7 +11,7 @@
 **Title:** 大口径比内焦式望遠ズームレンズ (“Large-aperture-ratio internal-focusing telephoto zoom lens”)
 **Embodiment analyzed:** Example 1 / 第1実施例
 
-The selected prescription is Example 1 of JP 2000-19398 A. The project treats this embodiment as the fixed production correlation for the NIKON AI AF-S ZOOM-NIKKOR 80-200mm f/2.8 D IF-ED. The patent itself does not identify a commercial product, so the correlation is not presented as manufacturer confirmation.
+The selected prescription is Example 1 of JP 2000-19398 A. The project treats this embodiment as the fixed production correlation for the NIKON AI AF-S ZOOM-NIKKOR 80-200mm f/2.8D IF-ED. The patent itself does not identify a commercial product, so the correlation is not presented as manufacturer confirmation.
 
 The identification rests on several convergent facts. Example 1 is an 18-element, 14-air-spaced-group, positive-negative-positive-positive zoom with a split first group; the rear part of the first group alone performs internal focusing, while the second and third groups perform zooming and the fourth group remains fixed. The prescription contains five elements at the same very-low-dispersion optical position, `nd = 1.497820`, `νd = 82.52`. Its verified design range is approximately 81.55–196.00 mm at a modeled f/2.88. Nikon's production archive lists the commercial lens as an 80–200 mm f/2.8 FX/35 mm lens with 18 elements in 14 groups, five ED elements, and nine diaphragm blades. Nikon's historical design account also describes the production lens as a positive-negative-positive-positive four-group afocal zoom whose first group is divided so that its rear portion performs internal focusing.
 
@@ -180,7 +180,7 @@ The strongest production-correlation feature in the glass palette is the repeate
 
 The patent's material conditions show that dispersion placement is structurally important. Conditions (5) and (6) constrain a positive G3 component to the low-index/high-Abbe region, while conditions (7)–(9) constrain the index separation and Abbe values of the positive and negative members of the G1R focusing subgroup. These are source-published glass-coordinate requirements rather than retrospective catalog assignments.
 
-No element carries authored `nC`, `nF`, `ng`, or `dPgF`, and no `apd` flag is present. Nikon's retrospective discusses very strong axial chromatic correction in the production lens, but the available prescription data do not support an APO or anomalous-partial-dispersion claim under the project's evidence rules. Chromatic interpretation is therefore limited to the published `nd/νd` coordinates, the patent conditions, and the manufacturer-confirmed count of five ED elements.
+No element carries authored `nC`, `nF`, `ng`, or `dPgF`. L2, L3, L10, L11, and L14 carry `apd: "inferred"` solely because their shared `498825` coordinate and count match Nikon's five-ED production specification. That UI classification does not establish a particular production melt, an APO designation, or a quantitative partial-dispersion value.
 
 ## Focus Mechanism
 

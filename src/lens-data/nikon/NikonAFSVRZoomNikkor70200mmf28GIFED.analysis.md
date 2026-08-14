@@ -12,7 +12,7 @@
 
 The modeled prescription is Example 1 of the first embodiment in US 2003/0133200 A1. The patent describes a four-power-group large-aperture internal-focusing zoom with axial motion of G2 and G3, axial focusing by the rear portion of G1, and transverse vibration-reduction motion within G4 (¶¶0092–0108). Example 1 then specifies the 21-element prescription, its cemented relationships, the three zoom stations, the close-focus state, and the vibration-reduction offsets (¶¶0109–0114).
 
-The project treats this example as the fixed production correlation for the **NIKON AF-S VR ZOOM-NIKKOR 70-200mm f/2.8 G IF-ED**. That correlation is supported by convergent evidence rather than an explicit Nikon statement tying the commercial lens to this patent:
+The project treats this example as the fixed production correlation for the **NIKON AF-S VR ZOOM-NIKKOR 70-200mm f/2.8G IF-ED**. That correlation is supported by convergent evidence rather than an explicit Nikon statement tying the commercial lens to this patent:
 
 1. Nikon specifies the production lens as a 70–200 mm f/2.8 Nikon F-mount lens for FX/35 mm with 21 elements in 15 groups, five ED elements, VR, AF-S, internal focusing, and a 1.5 m minimum focus distance.
 2. Example 1 contains 21 elements in 15 air-separated groups, a design focal range of approximately 71.4–196.0 mm at f/2.88, five occurrences of the same very-low-dispersion coordinate pair `nd = 1.497820, νd = 82.52`, axial internal focusing, transverse vibration reduction, and a published closest-focus condition of 1500 mm.
@@ -223,7 +223,7 @@ The patent publishes only d-line refractive indices and Abbe numbers. It does no
 
 The five `498825` elements are notable because Nikon's production specification states that the commercial lens contains five ED elements. J-FKH1 supplies a compatible public dispersion curve, but its use does not identify Nikon's historical supplier or production melt.
 
-No apochromatic or anomalous-partial-dispersion claim is made. The stored `nd`/`νd` values support ordinary Abbe-based dispersion modeling, but they do not establish secondary-spectrum behavior. Such a claim would require published line indices, `dPgF`, or a uniquely validated catalog Sellmeier resolution, none of which is available here.
+L12, L13, L31, L32, and L47 carry `apd: "inferred"` because their shared `498825` coordinate and count match Nikon's five-ED production specification. The tags are production-correlation metadata, not published line indices or `dPgF`; they do not establish an APO designation or quantitative secondary-spectrum behavior.
 
 ## Focus Mechanism
 
@@ -247,7 +247,7 @@ The prescription distributes its highest-`νd` material across three positive-po
 
 Several cemented pairs deliberately combine strongly different index/dispersion coordinates: L11+L12, L22+L23, L32+L33, L41+L42, L44+L45, and L48+L49. Their independently computed net powers alternate between weak negative, weak positive, and stronger negative/positive roles depending on location. Those net pair powers are distinct from both the standalone element powers and the in-situ group powers reported above.
 
-Because the source supplies only d-line index and Abbe number, the analysis stops at this structural description. It does not infer anomalous partial dispersion, fluorite equivalence, or apochromatic correction from the high Abbe numbers alone.
+Because the source supplies only d-line index and Abbe number, the analysis stops at this structural description. The ED tags use the independent production count as corroboration and do not infer fluorite equivalence, a quantitative partial-dispersion value, or apochromatic correction from the high Abbe numbers alone.
 
 ## Image Stabilization
 

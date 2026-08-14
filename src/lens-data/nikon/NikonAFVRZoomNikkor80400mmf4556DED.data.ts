@@ -1,7 +1,7 @@
 import type { LensDataInput } from "../../types/optics.js";
 
 /**
- * NIKON AI AF VR ZOOM-NIKKOR 80-400mm f/4.5-5.6 D ED - US 6,141,156 A, Working Example 4.
+ * NIKON AI AF VR ZOOM-NIKKOR 80-400mm f/4.5-5.6D ED - US 6,141,156 A, Working Example 4.
  *
  * Strong production correlation, not an explicit product identification in the patent. The active model preserves
  * Working Example 4 at native scale: 17 physical elements in 11 air-separated optical units, organized as six
@@ -34,7 +34,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-ai-af-vr-zoom-nikkor-80-400mm-f45-56d-ed",
   maker: "Nikon",
-  name: "NIKON AI AF VR ZOOM-NIKKOR 80-400mm f/4.5-5.6 D ED",
+  name: "NIKON AI AF VR ZOOM-NIKKOR 80-400mm f/4.5-5.6D ED",
   subtitle: "US 6,141,156 A Working Example 4 - constrained 2.3 m G1 focus reconstruction",
   specs: [
     "17 ELEMENTS / 11 GROUPS",
@@ -60,6 +60,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L11a",
+      diagramLabel: "L11a",
       label: "L11a",
       type: "Negative Meniscus",
       nd: 1.805182,
@@ -73,6 +74,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L11b",
+      diagramLabel: "L11b",
       label: "L11b",
       type: "Biconvex Positive",
       nd: 1.49782,
@@ -80,12 +82,15 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 148.075239,
       glass: "J-FKH1 catalog equivalent (patent 498825; production supplier unspecified)",
+      apd: "inferred",
+      apdNote: "Production-correlated G1 ED element; the patent publishes nd/vd only.",
       role: "Imagewise positive member of cemented front doublet L11.",
       cemented: "L11",
     },
     {
       id: 3,
       name: "L12",
+      diagramLabel: "L12",
       label: "L12",
       type: "Biconvex Positive",
       nd: 1.48749,
@@ -93,11 +98,14 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 224.570387,
       glass: "487704 - low-dispersion crown class (vendor unresolved)",
+      apd: "inferred",
+      apdNote: "Second production-correlated G1 ED element; the patent publishes nd/vd only.",
       role: "Rear positive element of focusing group G1.",
     },
     {
       id: 4,
       name: "L21a",
+      diagramLabel: "L21a",
       label: "L21a",
       type: "Positive Meniscus",
       nd: 1.805182,
@@ -111,6 +119,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L21b",
+      diagramLabel: "L21b",
       label: "L21b",
       type: "Biconcave Negative",
       nd: 1.79631,
@@ -124,6 +133,7 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L22a",
+      diagramLabel: "L22a",
       label: "L22a",
       type: "Biconcave Negative",
       nd: 1.64,
@@ -137,6 +147,7 @@ const LENS_DATA = {
     {
       id: 7,
       name: "L22b",
+      diagramLabel: "L22b",
       label: "L22b",
       type: "Positive Meniscus",
       nd: 1.80384,
@@ -150,6 +161,7 @@ const LENS_DATA = {
     {
       id: 8,
       name: "L23",
+      diagramLabel: "L23",
       label: "L23",
       type: "Biconcave Negative",
       nd: 1.796681,
@@ -162,6 +174,7 @@ const LENS_DATA = {
     {
       id: 9,
       name: "L31",
+      diagramLabel: "L31",
       label: "L31",
       type: "Biconvex Positive",
       nd: 1.48749,
@@ -174,6 +187,7 @@ const LENS_DATA = {
     {
       id: 10,
       name: "L32a",
+      diagramLabel: "L32a",
       label: "L32a",
       type: "Biconvex Positive",
       nd: 1.49782,
@@ -181,12 +195,15 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 74.249883,
       glass: "J-FKH1 catalog equivalent (patent 498825; production supplier unspecified)",
+      apd: "inferred",
+      apdNote: "Production-correlated G3 ED element; the patent publishes nd/vd only.",
       role: "Positive member of cemented doublet L32 in G3.",
       cemented: "L32",
     },
     {
       id: 11,
       name: "L32b",
+      diagramLabel: "L32b",
       label: "L32b",
       type: "Negative Meniscus",
       nd: 1.772789,
@@ -200,6 +217,7 @@ const LENS_DATA = {
     {
       id: 12,
       name: "L41",
+      diagramLabel: "L41",
       label: "L41",
       type: "Negative Meniscus",
       nd: 1.48749,
@@ -212,6 +230,7 @@ const LENS_DATA = {
     {
       id: 13,
       name: "L51a",
+      diagramLabel: "L51a",
       label: "L51a",
       type: "Biconvex Positive",
       nd: 1.48749,
@@ -225,6 +244,7 @@ const LENS_DATA = {
     {
       id: 14,
       name: "L51b",
+      diagramLabel: "L51b",
       label: "L51b",
       type: "Negative Meniscus",
       nd: 1.805182,
@@ -238,6 +258,7 @@ const LENS_DATA = {
     {
       id: 15,
       name: "L52",
+      diagramLabel: "L52",
       label: "L52",
       type: "Positive Meniscus",
       nd: 1.48749,
@@ -250,6 +271,7 @@ const LENS_DATA = {
     {
       id: 16,
       name: "L61a",
+      diagramLabel: "L61a",
       label: "L61a",
       type: "Biconcave Negative",
       nd: 1.796681,
@@ -263,6 +285,7 @@ const LENS_DATA = {
     {
       id: 17,
       name: "L61b",
+      diagramLabel: "L61b",
       label: "L61b",
       type: "Positive Meniscus",
       nd: 1.805182,
@@ -354,7 +377,7 @@ const LENS_DATA = {
   zoomLabels: ["Wide", "Tele"],
 
   groups: [
-    { text: "G1 FOCUS", fromSurface: "1", toSurface: "5" },
+    { text: "G1", fromSurface: "1", toSurface: "5" },
     { text: "G2", fromSurface: "6", toSurface: "13" },
     { text: "G3", fromSurface: "14", toSurface: "18" },
     { text: "G4", fromSurface: "19", toSurface: "20" },
@@ -364,7 +387,7 @@ const LENS_DATA = {
   doublets: [
     { text: "L11", fromSurface: "1", toSurface: "3" },
     { text: "L21", fromSurface: "6", toSurface: "8" },
-    { text: "L22 VR", fromSurface: "9", toSurface: "11" },
+    { text: "L22", fromSurface: "9", toSurface: "11" },
     { text: "L32", fromSurface: "16", toSurface: "18" },
     { text: "L51", fromSurface: "21", toSurface: "23" },
     { text: "L61", fromSurface: "26", toSurface: "28" },

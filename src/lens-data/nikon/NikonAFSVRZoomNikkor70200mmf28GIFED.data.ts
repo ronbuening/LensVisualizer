@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — NIKON AF-S VR ZOOM-NIKKOR 70-200mm f/2.8G IF-ED              ║
+ * ║ LENS DATA — NIKON AF-S VR ZOOM-NIKKOR 70-200mm f/2.8G IF-ED             ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
  * ║ Data source: US 2003/0133200 A1, Example 1 (Susumu Sato / Nikon Corp.).    ║
  * ║ Production correlation: Nikon AF-S VR Zoom-Nikkor 70-200mm f/2.8G IF-ED. ║
@@ -35,8 +35,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ and the current edge/slope/shared-band geometry checks. gapSagFrac = 0.93 ║
  * ║ is required only by the nested L14→L15 gap: at sd = 28.6 mm the 1.92 mm  ║
  * ║ axial gap retains 0.15194 mm positive rim clearance (92.09% intrusion).   ║
- * ║ L47 is reduced relative to L48/L49 to match the rear-group silhouette in   ║
- * ║ Figure 1. This is a geometry-policy override, not a render concealment.     ║
+ * ║ Figure 1 shows L47 and the L48/L49 pair at essentially equal apertures;     ║
+ * ║ their near-equal 15.8/15.7 mm envelopes preserve that measured silhouette. ║
  * ║                                                                           ║
  * ║ GLASS: the patent gives nd/νd but no vendor names or per-line indices.     ║
  * ║ Compatible coefficient-backed catalog equivalents model dispersion without ║
@@ -49,7 +49,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-afs-vr-zoom-nikkor-70-200-f28g-if-ed",
   maker: "Nikon",
-  name: "NIKON AF-S VR ZOOM-NIKKOR 70-200mm f/2.8 G IF-ED",
+  name: "NIKON AF-S VR ZOOM-NIKKOR 70-200mm f/2.8G IF-ED",
   subtitle: "US 2003/0133200 A1 Example 1 — strong production correlation; tele source label corrected to 196 mm",
   specs: [
     "21 ELEMENTS / 15 GROUPS",
@@ -77,6 +77,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L11",
+      diagramLabel: "L11",
       label: "L11",
       type: "Negative Meniscus",
       nd: 1.804,
@@ -89,29 +90,36 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L12",
+      diagramLabel: "L12",
       label: "L12",
       type: "Positive Meniscus",
       nd: 1.49782,
       vd: 82.52,
       fl: 200.898822,
       glass: "J-FKH1 catalog equivalent (patent 498825; production supplier unspecified)",
+      apd: "inferred",
+      apdNote: "Production-correlated ED element; the patent publishes nd/vd only.",
       cemented: "D11-12",
       role: "G1F positive low-dispersion member of the front cemented pair.",
     },
     {
       id: 3,
       name: "L13",
+      diagramLabel: "L13",
       label: "L13",
       type: "Positive Meniscus",
       nd: 1.49782,
       vd: 82.52,
       fl: 175.07934,
       glass: "J-FKH1 catalog equivalent (patent 498825; production supplier unspecified)",
+      apd: "inferred",
+      apdNote: "Production-correlated ED element; the patent publishes nd/vd only.",
       role: "G1F positive low-dispersion meniscus.",
     },
     {
       id: 4,
       name: "L14",
+      diagramLabel: "L14",
       label: "L14",
       type: "Negative Meniscus",
       nd: 1.84666,
@@ -123,6 +131,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L15",
+      diagramLabel: "L15",
       label: "L15",
       type: "Positive Meniscus",
       nd: 1.64,
@@ -134,6 +143,7 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L21",
+      diagramLabel: "L21",
       label: "L21",
       type: "Biconcave Negative",
       nd: 1.741,
@@ -145,6 +155,7 @@ const LENS_DATA = {
     {
       id: 7,
       name: "L22",
+      diagramLabel: "L22",
       label: "L22",
       type: "Biconcave Negative",
       nd: 1.48749,
@@ -157,6 +168,7 @@ const LENS_DATA = {
     {
       id: 8,
       name: "L23",
+      diagramLabel: "L23",
       label: "L23",
       type: "Biconvex Positive",
       nd: 1.80518,
@@ -169,6 +181,7 @@ const LENS_DATA = {
     {
       id: 9,
       name: "L24",
+      diagramLabel: "L24",
       label: "L24",
       type: "Biconcave Negative",
       nd: 1.8044,
@@ -180,29 +193,36 @@ const LENS_DATA = {
     {
       id: 10,
       name: "L31",
+      diagramLabel: "L31",
       label: "L31",
       type: "Positive Meniscus",
       nd: 1.49782,
       vd: 82.52,
       fl: 168.000836,
       glass: "J-FKH1 catalog equivalent (patent 498825; production supplier unspecified)",
+      apd: "inferred",
+      apdNote: "Production-correlated ED element; the patent publishes nd/vd only.",
       role: "G3 leading positive low-dispersion meniscus.",
     },
     {
       id: 11,
       name: "L32",
+      diagramLabel: "L32",
       label: "L32",
       type: "Biconvex Positive",
       nd: 1.49782,
       vd: 82.52,
       fl: 65.510633,
       glass: "J-FKH1 catalog equivalent (patent 498825; production supplier unspecified)",
+      apd: "inferred",
+      apdNote: "Production-correlated ED element; the patent publishes nd/vd only.",
       cemented: "D32-33",
       role: "G3 positive low-dispersion member of the cemented pair.",
     },
     {
       id: 12,
       name: "L33",
+      diagramLabel: "L33",
       label: "L33",
       type: "Negative Meniscus",
       nd: 1.741,
@@ -215,6 +235,7 @@ const LENS_DATA = {
     {
       id: 13,
       name: "L41",
+      diagramLabel: "L41",
       label: "L41",
       type: "Negative Meniscus",
       nd: 1.80518,
@@ -227,6 +248,7 @@ const LENS_DATA = {
     {
       id: 14,
       name: "L42",
+      diagramLabel: "L42",
       label: "L42",
       type: "Biconvex Positive",
       nd: 1.6968,
@@ -239,6 +261,7 @@ const LENS_DATA = {
     {
       id: 15,
       name: "L43",
+      diagramLabel: "L43",
       label: "L43",
       type: "Positive Meniscus",
       nd: 1.603,
@@ -250,6 +273,7 @@ const LENS_DATA = {
     {
       id: 16,
       name: "L44",
+      diagramLabel: "L44",
       label: "L44",
       type: "Biconvex Positive",
       nd: 1.84666,
@@ -262,6 +286,7 @@ const LENS_DATA = {
     {
       id: 17,
       name: "L45",
+      diagramLabel: "L45",
       label: "L45",
       type: "Biconcave Negative",
       nd: 1.741,
@@ -274,6 +299,7 @@ const LENS_DATA = {
     {
       id: 18,
       name: "L46",
+      diagramLabel: "L46",
       label: "L46",
       type: "Biconcave Negative",
       nd: 1.741,
@@ -285,17 +311,21 @@ const LENS_DATA = {
     {
       id: 19,
       name: "L47",
+      diagramLabel: "L47",
       label: "L47",
       type: "Positive Meniscus",
       nd: 1.49782,
       vd: 82.52,
       fl: 135.032628,
       glass: "J-FKH1 catalog equivalent (patent 498825; production supplier unspecified)",
+      apd: "inferred",
+      apdNote: "Production-correlated ED element; the patent publishes nd/vd only.",
       role: "G4R leading positive low-dispersion meniscus.",
     },
     {
       id: 20,
       name: "L48",
+      diagramLabel: "L48",
       label: "L48",
       type: "Biconvex Positive",
       nd: 1.741,
@@ -308,6 +338,7 @@ const LENS_DATA = {
     {
       id: 21,
       name: "L49",
+      diagramLabel: "L49",
       label: "L49",
       type: "Negative Meniscus",
       nd: 1.84666,
@@ -352,8 +383,8 @@ const LENS_DATA = {
     { label: "31", R: 50.043, d: 3.9, nd: 1.0, elemId: 0, sd: 15.0 },
     { label: "32", R: -246.5579, d: 1.5, nd: 1.741, elemId: 18, sd: 14.8 },
     { label: "33", R: 102.2448, d: 6.6784, nd: 1.0, elemId: 0, sd: 14.7 },
-    { label: "35", R: -427.7771, d: 4, nd: 1.49782, elemId: 19, sd: 14.0 },
-    { label: "36", R: -58.2736, d: 0.1, nd: 1.0, elemId: 0, sd: 14.0 },
+    { label: "35", R: -427.7771, d: 4, nd: 1.49782, elemId: 19, sd: 15.8 },
+    { label: "36", R: -58.2736, d: 0.1, nd: 1.0, elemId: 0, sd: 15.7 },
     { label: "37", R: 68.1118, d: 7.5, nd: 1.741, elemId: 20, sd: 15.8 },
     { label: "38", R: -60.14, d: 2, nd: 1.84666, elemId: 21, sd: 15.7 },
     { label: "39", R: -641.0882, d: 66.21049, nd: 1.0, elemId: 0, sd: 15.6 },
@@ -395,20 +426,20 @@ const LENS_DATA = {
 
   groups: [
     { text: "G1F", fromSurface: "1", toSurface: "5" },
-    { text: "G1R / FOCUS", fromSurface: "6", toSurface: "9" },
+    { text: "G1R", fromSurface: "6", toSurface: "9" },
     { text: "G2", fromSurface: "10", toSurface: "16" },
     { text: "G3", fromSurface: "17", toSurface: "21" },
     { text: "G4F", fromSurface: "STO", toSurface: "27" },
-    { text: "G4M / VR", fromSurface: "29", toSurface: "33" },
+    { text: "G4M", fromSurface: "29", toSurface: "33" },
     { text: "G4R", fromSurface: "35", toSurface: "39" },
   ],
   doublets: [
-    { text: "L11+L12", fromSurface: "1", toSurface: "3" },
-    { text: "L22+L23", fromSurface: "12", toSurface: "14" },
-    { text: "L32+L33", fromSurface: "19", toSurface: "21" },
-    { text: "L41+L42", fromSurface: "23", toSurface: "25" },
-    { text: "L44+L45", fromSurface: "29", toSurface: "31" },
-    { text: "L48+L49", fromSurface: "37", toSurface: "39" },
+    { text: "D11", fromSurface: "1", toSurface: "3" },
+    { text: "D22", fromSurface: "12", toSurface: "14" },
+    { text: "D32", fromSurface: "19", toSurface: "21" },
+    { text: "D41", fromSurface: "23", toSurface: "25" },
+    { text: "D44", fromSurface: "29", toSurface: "31" },
+    { text: "D48", fromSurface: "37", toSurface: "39" },
   ],
 
   closeFocusM: 1.5,

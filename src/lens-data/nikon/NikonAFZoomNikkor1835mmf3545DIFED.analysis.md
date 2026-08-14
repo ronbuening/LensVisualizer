@@ -11,7 +11,7 @@
 **Embodiment analyzed:** Example 2
 
 The prescription represented here is Example 2 of US 2001/0030812 A1, correlated to the production
-Nikon AI AF Zoom-Nikkor 18-35mm f/3.5-4.5 D IF-ED. The patent and production lens are treated as a
+Nikon AI AF Zoom-Nikkor 18-35mm f/3.5-4.5D IF-ED. The patent and production lens are treated as a
 fixed correlation for this analysis; the discussion does not imply that Nikon separately identified
 Example 2 as the production prescription.
 
@@ -244,8 +244,9 @@ The compound-asphere layer remains explicitly unmatched, and production supplier
 The catalog assignments above are optical equivalents only. They improve coefficient-backed
 dispersion coverage but do not establish that Nikon used those vendors or production melts.
 
-No `nC`, `nF`, `ng`, or `dPgF` fields are authored. Consequently, this analysis does not describe the
-lens as apochromatic and does not claim anomalous-partial-dispersion behavior. The supported
+No `nC`, `nF`, `ng`, or `dPgF` fields are authored. L26 carries `apd: "inferred"` because its unique
+`498825` coordinate matches Nikon's one-ED production specification; that UI classification is not a
+quantitative partial-dispersion value or an APO claim. The supported
 chromatic statement is narrower: the patent deliberately pairs a high-index, lower-Abbe negative
 member with a much higher-Abbe positive member in L25–L26 and ties the resulting index and Abbe
 differences to lateral-chromatic-aberration control.
@@ -377,9 +378,9 @@ super-wide regime. This is a source-grounded chromatic claim.
 
 The production lens is specified by Nikon as containing one ED element. L26 is the only
 very-high-Abbe member of the prescription and is therefore identified as the `498825` production
-correlation, with J-FKH1 used only as a compatible catalog dispersion curve. Because the patent supplies no line indices or
-partial-dispersion data, the analysis does not infer secondary-spectrum or apochromatic performance
-from \(\nu_d\) alone.
+correlation, with J-FKH1 used only as a compatible catalog dispersion curve. Its `apd: "inferred"`
+tag records that production correlation without inferring quantitative secondary-spectrum or
+apochromatic performance from \(\nu_d\) alone.
 
 ## Conditional Expressions
 

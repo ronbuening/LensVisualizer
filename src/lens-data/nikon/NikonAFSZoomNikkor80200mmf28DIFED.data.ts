@@ -2,10 +2,10 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔════════════════════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — NIKON AI AF-S ZOOM-NIKKOR 80-200mm f/2.8 D IF-ED                   ║
+ * ║ LENS DATA — NIKON AI AF-S ZOOM-NIKKOR 80-200mm f/2.8D IF-ED                   ║
  * ╠════════════════════════════════════════════════════════════════════════════════════╣
  * ║ Source: JP 2000-19398 A, Example 1 (Nikon Corporation / Susumu Sato).            ║
- * ║ Strong production correlation to the marketed 80-200mm f/2.8 D IF-ED.           ║
+ * ║ Strong production correlation to the marketed 80-200mm f/2.8D IF-ED.            ║
  * ║ 18 elements / 14 air-spaced groups; all spherical; native patent scale.          ║
  * ║ Functional power sequence: G1 positive, G2 negative, G3 positive, G4 positive.   ║
  * ║ G2 and G3 move for zoom; G3 reverses direction between mid and tele.             ║
@@ -41,11 +41,14 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ SDs are modeling values constrained by the Example 1 optical section, paraxial   ║
  * ║ marginal bundles, edge thickness, actual spherical rim slope, shared-band        ║
  * ║ cross-gap intrusion, and off-axis containment. They are not patent source data.  ║
+ * ║ The L43-equivalent relay element uses 10.6/10.4 mm SDs from the 300 dpi figure, ║
+ * ║ correcting its prior oversized rendering relative to L44 and L45.                ║
  * ║                                                                                   ║
  * ║ GLASS                                                                             ║
  * ║ The patent publishes nd/vd coordinates only. Compatible coefficient-backed       ║
  * ║ catalog equivalents model dispersion without asserting production suppliers.     ║
- * ║ No patent nC/nF/ng/dPgF values or APD claim is authored.                          ║
+ * ║ The five production-correlated ED positions are tagged APD-inferred; no patent ║
+ * ║ nC/nF/ng/dPgF values or quantitative APD claim is authored.                    ║
  * ║                                                                                   ║
  * ║ No cover glass, filter, dummy plane, mechanical part, folded path, or asphere is ║
  * ║ included. Surface 22 is the single active aperture stop and is labeled STO.       ║
@@ -56,7 +59,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-afs-zoom-nikkor-80-200mm-f28d-if-ed",
   maker: "Nikon",
-  name: "NIKON AI AF-S ZOOM-NIKKOR 80-200mm f/2.8 D IF-ED",
+  name: "NIKON AI AF-S ZOOM-NIKKOR 80-200mm f/2.8D IF-ED",
   subtitle: "JP 2000-19398 A Example 1 — strong production correlation",
   specs: [
     "18 ELEMENTS / 14 GROUPS",
@@ -84,6 +87,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
+      diagramLabel: "L11a",
       label: "Element 1",
       type: "Negative Meniscus",
       nd: 1.805182,
@@ -96,29 +100,36 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L2",
+      diagramLabel: "L11b",
       label: "Element 2",
       type: "Positive Meniscus",
       nd: 1.49782,
       vd: 82.52,
       fl: 196.583024,
       glass: "J-FKH1 catalog equivalent (patent 498825; production supplier unspecified)",
+      apd: "inferred",
+      apdNote: "Production-correlated ED element; the patent publishes nd/vd only.",
       cemented: "D01",
       role: "G1F positive ED-class member of the front cemented component.",
     },
     {
       id: 3,
       name: "L3",
+      diagramLabel: "L12",
       label: "Element 3",
       type: "Positive Meniscus",
       nd: 1.49782,
       vd: 82.52,
       fl: 383.837282,
       glass: "J-FKH1 catalog equivalent (patent 498825; production supplier unspecified)",
+      apd: "inferred",
+      apdNote: "Production-correlated ED element; the patent publishes nd/vd only.",
       role: "G1F positive ED-class singlet.",
     },
     {
       id: 4,
       name: "L4",
+      diagramLabel: "L13",
       label: "Element 4",
       type: "Negative Meniscus",
       nd: 1.84666,
@@ -130,6 +141,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L5",
+      diagramLabel: "L14",
       label: "Element 5",
       type: "Positive Meniscus",
       nd: 1.48749,
@@ -141,6 +153,7 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L6",
+      diagramLabel: "L21",
       label: "Element 6",
       type: "Negative Meniscus",
       nd: 1.796681,
@@ -152,6 +165,7 @@ const LENS_DATA = {
     {
       id: 7,
       name: "L7",
+      diagramLabel: "L22a",
       label: "Element 7",
       type: "Biconcave Negative",
       nd: 1.48749,
@@ -164,6 +178,7 @@ const LENS_DATA = {
     {
       id: 8,
       name: "L8",
+      diagramLabel: "L22b",
       label: "Element 8",
       type: "Biconvex Positive",
       nd: 1.84666,
@@ -176,6 +191,7 @@ const LENS_DATA = {
     {
       id: 9,
       name: "L9",
+      diagramLabel: "L23",
       label: "Element 9",
       type: "Biconcave Negative",
       nd: 1.796681,
@@ -187,29 +203,36 @@ const LENS_DATA = {
     {
       id: 10,
       name: "L10",
+      diagramLabel: "L31",
       label: "Element 10",
       type: "Biconvex Positive",
       nd: 1.49782,
       vd: 82.52,
       fl: 131.264963,
       glass: "J-FKH1 catalog equivalent (patent 498825; production supplier unspecified)",
+      apd: "inferred",
+      apdNote: "Production-correlated ED element; the patent publishes nd/vd only.",
       role: "Front positive ED-class member of G3.",
     },
     {
       id: 11,
       name: "L11",
+      diagramLabel: "L32a",
       label: "Element 11",
       type: "Biconvex Positive",
       nd: 1.49782,
       vd: 82.52,
       fl: 77.025752,
       glass: "J-FKH1 catalog equivalent (patent 498825; production supplier unspecified)",
+      apd: "inferred",
+      apdNote: "Production-correlated ED element; the patent publishes nd/vd only.",
       cemented: "D03",
       role: "Positive ED-class member of the G3 cemented component.",
     },
     {
       id: 12,
       name: "L12",
+      diagramLabel: "L32b",
       label: "Element 12",
       type: "Negative Meniscus",
       nd: 1.744,
@@ -222,6 +245,7 @@ const LENS_DATA = {
     {
       id: 13,
       name: "L13",
+      diagramLabel: "L41",
       label: "Element 13",
       type: "Positive Meniscus",
       nd: 1.787971,
@@ -233,18 +257,22 @@ const LENS_DATA = {
     {
       id: 14,
       name: "L14",
+      diagramLabel: "L42a",
       label: "Element 14",
       type: "Positive Meniscus",
       nd: 1.49782,
       vd: 82.52,
       fl: 103.56798,
       glass: "J-FKH1 catalog equivalent (patent 498825; production supplier unspecified)",
+      apd: "inferred",
+      apdNote: "Production-correlated ED element; the patent publishes nd/vd only.",
       cemented: "D04",
       role: "Positive ED-class member of the G4 cemented component.",
     },
     {
       id: 15,
       name: "L15",
+      diagramLabel: "L42b",
       label: "Element 15",
       type: "Negative Meniscus",
       nd: 1.62004,
@@ -257,6 +285,7 @@ const LENS_DATA = {
     {
       id: 16,
       name: "L16",
+      diagramLabel: "L43",
       label: "Element 16",
       type: "Biconvex Positive",
       nd: 1.531721,
@@ -268,6 +297,7 @@ const LENS_DATA = {
     {
       id: 17,
       name: "L17",
+      diagramLabel: "L44",
       label: "Element 17",
       type: "Negative Meniscus",
       nd: 1.80384,
@@ -279,6 +309,7 @@ const LENS_DATA = {
     {
       id: 18,
       name: "L18",
+      diagramLabel: "L45",
       label: "Element 18",
       type: "Biconvex Positive",
       nd: 1.772789,
@@ -318,8 +349,8 @@ const LENS_DATA = {
     { label: "25", R: 39.9627, d: 6, nd: 1.49782, elemId: 14, sd: 19 },
     { label: "26", R: 168.823, d: 4.4, nd: 1.62004, elemId: 15, sd: 18.1 },
     { label: "27", R: 38.2994, d: 30.5, nd: 1, elemId: 0, sd: 17.5 },
-    { label: "28", R: 272.261, d: 5, nd: 1.531721, elemId: 16, sd: 14.5 },
-    { label: "29", R: -62.3609, d: 14.8, nd: 1, elemId: 0, sd: 14.2 },
+    { label: "28", R: 272.261, d: 5, nd: 1.531721, elemId: 16, sd: 10.6 },
+    { label: "29", R: -62.3609, d: 14.8, nd: 1, elemId: 0, sd: 10.4 },
     { label: "30", R: -36.5028, d: 1.9, nd: 1.80384, elemId: 17, sd: 11.2 },
     { label: "31", R: -160.6086, d: 0.2, nd: 1, elemId: 0, sd: 11.2 },
     { label: "32", R: 137.3427, d: 4.6, nd: 1.772789, elemId: 18, sd: 11 },
@@ -363,16 +394,16 @@ const LENS_DATA = {
 
   groups: [
     { text: "G1F", fromSurface: "1", toSurface: "5" },
-    { text: "G1R / FOCUS", fromSurface: "6", toSurface: "9" },
-    { text: "G2 / VARIATOR", fromSurface: "10", toSurface: "16" },
-    { text: "G3 / COMPENSATOR", fromSurface: "17", toSurface: "21" },
-    { text: "G4 / MASTER", fromSurface: "23", toSurface: "33" },
+    { text: "G1R", fromSurface: "6", toSurface: "9" },
+    { text: "G2", fromSurface: "10", toSurface: "16" },
+    { text: "G3", fromSurface: "17", toSurface: "21" },
+    { text: "G4", fromSurface: "23", toSurface: "33" },
   ],
   doublets: [
-    { text: "D01", fromSurface: "1", toSurface: "3" },
-    { text: "D02", fromSurface: "12", toSurface: "14" },
-    { text: "D03", fromSurface: "19", toSurface: "21" },
-    { text: "D04", fromSurface: "25", toSurface: "27" },
+    { text: "L11", fromSurface: "1", toSurface: "3" },
+    { text: "L22", fromSurface: "12", toSurface: "14" },
+    { text: "L32", fromSurface: "19", toSurface: "21" },
+    { text: "L42", fromSurface: "25", toSurface: "27" },
   ],
 
   closeFocusM: 1.5,

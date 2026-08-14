@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔════════════════════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — NIKON AF-S VR ZOOM-NIKKOR 24-120mm f/3.5-5.6 G IF-ED                ║
+ * ║ LENS DATA — NIKON AF-S VR ZOOM-NIKKOR 24-120mm f/3.5-5.6G IF-ED                 ║
  * ╠════════════════════════════════════════════════════════════════════════════════════╣
  * ║ Data source: US 2004/0218274 A1, Example 2 (Misako Aoki / Nikon Corporation).    ║
  * ║ Five-group positive-negative-positive-negative-positive VR zoom.                  ║
@@ -33,7 +33,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ No layout control is used to conceal invalid geometry.                            ║
  * ║                                                                                   ║
  * ║ No geometric scale is applied. Patent d-line nd/vd values are retained exactly.  ║
- * ║ The patent supplies no nC/nF/ng/dPgF data, so none are invented here.             ║
+ * ║ The patent supplies no nC/nF/ng/dPgF data, so none are invented here; L3AP and   ║
+ * ║ L51 are tagged inferred ED solely from the production count and coordinates.     ║
  * ╚════════════════════════════════════════════════════════════════════════════════════╝
  */
 
@@ -41,7 +42,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-afs-vr-zoom-nikkor-24-120-f35-56g-if-ed",
   maker: "Nikon",
-  name: "NIKON AF-S VR ZOOM-NIKKOR 24-120mm f/3.5-5.6 G IF-ED",
+  name: "NIKON AF-S VR ZOOM-NIKKOR 24-120mm f/3.5-5.6G IF-ED",
   subtitle: "US 2004/0218274 A1 Example 2 — constrained G2 close-focus reconstruction",
   specs: [
     "15 ELEMENTS / 13 GROUPS",
@@ -70,6 +71,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L11",
+      diagramLabel: "L11",
       label: "L11",
       type: "Negative Meniscus",
       nd: 1.84666,
@@ -82,6 +84,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L12",
+      diagramLabel: "L12",
       label: "L12",
       type: "Positive Meniscus",
       nd: 1.755,
@@ -94,6 +97,7 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L13",
+      diagramLabel: "L13",
       label: "L13",
       type: "Positive Meniscus",
       nd: 1.816,
@@ -105,6 +109,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L21r",
+      diagramLabel: "L21r",
       label: "L21 bonded aspheric layer",
       type: "Bonded Aspheric Resin/Composite Layer",
       nd: 1.55389,
@@ -116,6 +121,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L21",
+      diagramLabel: "L21",
       label: "L21 substrate",
       type: "Negative Meniscus",
       nd: 1.83481,
@@ -127,6 +133,7 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L22",
+      diagramLabel: "L22",
       label: "L22",
       type: "Biconcave Negative",
       nd: 1.83481,
@@ -138,6 +145,7 @@ const LENS_DATA = {
     {
       id: 7,
       name: "L23",
+      diagramLabel: "L23",
       label: "L23",
       type: "Biconvex Positive",
       nd: 1.78472,
@@ -149,6 +157,7 @@ const LENS_DATA = {
     {
       id: 8,
       name: "L24",
+      diagramLabel: "L24",
       label: "L24",
       type: "Negative Meniscus",
       nd: 1.83481,
@@ -160,6 +169,7 @@ const LENS_DATA = {
     {
       id: 9,
       name: "L3AN",
+      diagramLabel: "L3AN",
       label: "L3AN",
       type: "Negative Meniscus",
       nd: 1.805182,
@@ -172,18 +182,22 @@ const LENS_DATA = {
     {
       id: 10,
       name: "L3AP",
+      diagramLabel: "L3AP",
       label: "L3AP",
       type: "Biconvex Positive",
       nd: 1.497,
       vd: 81.61,
       fl: 23.92881,
       glass: "497816 — ED fluorophosphate class (vendor unresolved)",
+      apd: "inferred",
+      apdNote: "Production-correlated ED element; the patent publishes nd/vd only.",
       cemented: "L3A",
       role: "Positive low-dispersion member of the transverse VR cemented doublet.",
     },
     {
       id: 11,
       name: "L33",
+      diagramLabel: "L33",
       label: "L33",
       type: "Pos. Meniscus (1× Asph)",
       nd: 1.5168,
@@ -195,6 +209,7 @@ const LENS_DATA = {
     {
       id: 12,
       name: "L41",
+      diagramLabel: "L41",
       label: "L41",
       type: "Positive Meniscus",
       nd: 1.84666,
@@ -206,6 +221,7 @@ const LENS_DATA = {
     {
       id: 13,
       name: "L42",
+      diagramLabel: "L42",
       label: "L42",
       type: "Biconcave Negative",
       nd: 1.83481,
@@ -217,17 +233,21 @@ const LENS_DATA = {
     {
       id: 14,
       name: "L51",
+      diagramLabel: "L51",
       label: "L51",
       type: "Biconvex Positive",
       nd: 1.497,
       vd: 81.61,
       fl: 44.474601,
       glass: "497816 — ED fluorophosphate class (vendor unresolved)",
+      apd: "inferred",
+      apdNote: "Production-correlated ED element; the patent publishes nd/vd only.",
       role: "Front low-dispersion positive member of G5.",
     },
     {
       id: 15,
       name: "L52",
+      diagramLabel: "L52",
       label: "L52",
       type: "Biconvex Positive",
       nd: 1.48749,
@@ -239,6 +259,7 @@ const LENS_DATA = {
     {
       id: 16,
       name: "L53",
+      diagramLabel: "L53",
       label: "L53",
       type: "Negative Meniscus",
       nd: 1.84666,
@@ -349,16 +370,16 @@ const LENS_DATA = {
   zoomLabels: ["Wide", "Tele"],
 
   groups: [
-    { text: "G1 (+)", fromSurface: "1", toSurface: "5" },
-    { text: "G2 (-) / FOCUS", fromSurface: "6A", toSurface: "14" },
-    { text: "G3 (+) / VR", fromSurface: "STO", toSurface: "19" },
-    { text: "G4 (-)", fromSurface: "20", toSurface: "23" },
-    { text: "G5 (+)", fromSurface: "24", toSurface: "29" },
+    { text: "G1", fromSurface: "1", toSurface: "5" },
+    { text: "G2", fromSurface: "6A", toSurface: "14" },
+    { text: "G3", fromSurface: "STO", toSurface: "19" },
+    { text: "G4", fromSurface: "20", toSurface: "23" },
+    { text: "G5", fromSurface: "24", toSurface: "29" },
   ],
   doublets: [
     { text: "D1", fromSurface: "1", toSurface: "3" },
     { text: "H1", fromSurface: "6A", toSurface: "8" },
-    { text: "L3A VR", fromSurface: "15", toSurface: "17" },
+    { text: "L3A", fromSurface: "15", toSurface: "17" },
   ],
 
   closeFocusM: 0.5,

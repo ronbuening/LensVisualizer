@@ -1,7 +1,7 @@
 import type { LensDataInput } from "../../types/optics.js";
 
 /**
- * Lens data - NIKON AF-S VR ZOOM-NIKKOR 200-400mm f/4 G IF-ED
+ * Lens data - NIKON AF-S VR ZOOM-NIKKOR 200-400mm f/4G IF-ED
  *
  * Source: US 2005/0157403 A1, Example 1 (Susumu Sato / Nikon Corporation).
  * Production correlation: Nikon's original 2003 AF-S VR Zoom-Nikkor 200-400mm f/4G IF-ED.
@@ -32,15 +32,15 @@ import type { LensDataInput } from "../../types/optics.js";
  * No layout control is used to conceal invalid geometry.
  *
  * Glass labels use coefficient-backed catalog equivalents where the nd/vd coordinate is compatible; production
- * suppliers remain unproven. The patent does not publish
- * per-element nC/nF/ng or dPgF, so those fields are intentionally absent and no anomalous-partial-dispersion claim is
- * encoded from nd/vd alone.
+ * suppliers remain unproven. The patent does not publish per-element nC/nF/ng or dPgF, so those fields are
+ * intentionally absent. The four production-correlated ED positions are tagged APD-inferred for the viewer without
+ * asserting a particular production melt or quantitative dPgF value.
  */
 
 const LENS_DATA = {
   key: "nikon-afs-vr-200400f4g-if-ed",
   maker: "Nikon",
-  name: "NIKON AF-S VR ZOOM-NIKKOR 200-400mm f/4 G IF-ED",
+  name: "NIKON AF-S VR ZOOM-NIKKOR 200-400mm f/4G IF-ED",
   subtitle: "US 2005/0157403 A1 Example 1 - Susumu Sato / Nikon Corporation",
   specs: [
     "24 ELEMENTS / 17 GROUPS",
@@ -67,6 +67,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L11",
+      diagramLabel: "L11",
       label: "L11",
       type: "Negative Meniscus",
       nd: 1.80384,
@@ -79,40 +80,50 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L12",
+      diagramLabel: "L12",
       label: "L12",
       type: "Biconvex Positive",
       nd: 1.49782,
       vd: 82.56,
       fl: 216.992431,
       glass: "498826 - low-dispersion crown class (vendor identity unproven)",
+      apd: "inferred",
+      apdNote: "Production-correlated ED element; the patent publishes nd/vd only.",
       cemented: "D11",
       role: "Positive partner of the L11/L12 cemented unit in G1f.",
     },
     {
       id: 3,
       name: "L13",
+      diagramLabel: "L13",
       label: "L13",
       type: "Positive Meniscus",
       nd: 1.49782,
       vd: 82.56,
       fl: 349.31747,
       glass: "498826 - low-dispersion crown class (vendor identity unproven)",
+      apd: "inferred",
+      apdNote: "Production-correlated ED element; the patent publishes nd/vd only.",
       role: "Positive low-dispersion meniscus in the fixed G1f front group.",
     },
     {
       id: 4,
       name: "L14",
+      diagramLabel: "L14",
       label: "L14",
       type: "Positive Meniscus",
       nd: 1.49782,
       vd: 82.56,
       fl: 335.580445,
       glass: "498826 - low-dispersion crown class (vendor identity unproven)",
+      apd: "inferred",
+      apdNote: "Production-correlated ED element; the patent publishes nd/vd only.",
       role: "Rear positive low-dispersion meniscus of the fixed G1f front group.",
     },
     {
       id: 5,
       name: "L15",
+      diagramLabel: "L15",
       label: "L15",
       type: "Biconcave Negative",
       nd: 1.788,
@@ -124,6 +135,7 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L16",
+      diagramLabel: "L16",
       label: "L16",
       type: "Positive Meniscus",
       nd: 1.84666,
@@ -136,6 +148,7 @@ const LENS_DATA = {
     {
       id: 7,
       name: "L17",
+      diagramLabel: "L17",
       label: "L17",
       type: "Biconcave Negative",
       nd: 1.603,
@@ -148,6 +161,7 @@ const LENS_DATA = {
     {
       id: 8,
       name: "L18",
+      diagramLabel: "L18",
       label: "L18",
       type: "Positive Meniscus",
       nd: 1.8044,
@@ -159,6 +173,7 @@ const LENS_DATA = {
     {
       id: 9,
       name: "L21",
+      diagramLabel: "L21",
       label: "L21",
       type: "Negative Meniscus",
       nd: 1.6968,
@@ -170,6 +185,7 @@ const LENS_DATA = {
     {
       id: 10,
       name: "L22",
+      diagramLabel: "L22",
       label: "L22",
       type: "Biconvex Positive",
       nd: 1.84666,
@@ -182,6 +198,7 @@ const LENS_DATA = {
     {
       id: 11,
       name: "L23",
+      diagramLabel: "L23",
       label: "L23",
       type: "Biconcave Negative",
       nd: 1.64,
@@ -194,6 +211,7 @@ const LENS_DATA = {
     {
       id: 12,
       name: "L24",
+      diagramLabel: "L24",
       label: "L24",
       type: "Negative Meniscus",
       nd: 1.64,
@@ -205,6 +223,7 @@ const LENS_DATA = {
     {
       id: 13,
       name: "L31",
+      diagramLabel: "L31",
       label: "L31",
       type: "Biconvex Positive",
       nd: 1.603,
@@ -216,6 +235,7 @@ const LENS_DATA = {
     {
       id: 14,
       name: "L32",
+      diagramLabel: "L32",
       label: "L32",
       type: "Biconvex Positive",
       nd: 1.603,
@@ -228,6 +248,7 @@ const LENS_DATA = {
     {
       id: 15,
       name: "L33",
+      diagramLabel: "L33",
       label: "L33",
       type: "Negative Meniscus",
       nd: 1.79504,
@@ -240,6 +261,7 @@ const LENS_DATA = {
     {
       id: 16,
       name: "L41",
+      diagramLabel: "L41",
       label: "L41",
       type: "Negative Meniscus",
       nd: 1.80384,
@@ -252,6 +274,7 @@ const LENS_DATA = {
     {
       id: 17,
       name: "L42",
+      diagramLabel: "L42",
       label: "L42",
       type: "Biconvex Positive",
       nd: 1.603,
@@ -264,6 +287,7 @@ const LENS_DATA = {
     {
       id: 18,
       name: "L43",
+      diagramLabel: "L43",
       label: "L43",
       type: "Positive Meniscus",
       nd: 1.603,
@@ -275,6 +299,7 @@ const LENS_DATA = {
     {
       id: 19,
       name: "L44",
+      diagramLabel: "L44",
       label: "L44",
       type: "Biconvex Positive",
       nd: 1.84666,
@@ -287,6 +312,7 @@ const LENS_DATA = {
     {
       id: 20,
       name: "L45",
+      diagramLabel: "L45",
       label: "L45",
       type: "Biconcave Negative",
       nd: 1.741,
@@ -299,6 +325,7 @@ const LENS_DATA = {
     {
       id: 21,
       name: "L46",
+      diagramLabel: "L46",
       label: "L46",
       type: "Biconcave Negative",
       nd: 1.741,
@@ -310,17 +337,21 @@ const LENS_DATA = {
     {
       id: 22,
       name: "L47",
+      diagramLabel: "L47",
       label: "L47",
       type: "Biconvex Positive",
       nd: 1.49782,
       vd: 82.56,
       fl: 139.311163,
       glass: "498826 - low-dispersion crown class (vendor identity unproven)",
+      apd: "inferred",
+      apdNote: "Production-correlated ED element; the patent publishes nd/vd only.",
       role: "Front positive element of the fixed G4r rear relay.",
     },
     {
       id: 23,
       name: "L48",
+      diagramLabel: "L48",
       label: "L48",
       type: "Biconvex Positive",
       nd: 1.64,
@@ -333,6 +364,7 @@ const LENS_DATA = {
     {
       id: 24,
       name: "L49",
+      diagramLabel: "L49",
       label: "L49",
       type: "Biconcave Negative",
       nd: 1.84666,
@@ -439,13 +471,13 @@ const LENS_DATA = {
   ],
 
   doublets: [
-    { text: "L11+L12", fromSurface: "1", toSurface: "3" },
-    { text: "L16+L17", fromSurface: "10", toSurface: "12" },
-    { text: "L22+L23", fromSurface: "17", toSurface: "19" },
-    { text: "L32+L33", fromSurface: "24", toSurface: "26" },
-    { text: "L41+L42", fromSurface: "28", toSurface: "30" },
-    { text: "L44+L45", fromSurface: "34", toSurface: "36" },
-    { text: "L48+L49", fromSurface: "41", toSurface: "43" },
+    { text: "D11", fromSurface: "1", toSurface: "3" },
+    { text: "D16", fromSurface: "10", toSurface: "12" },
+    { text: "D22", fromSurface: "17", toSurface: "19" },
+    { text: "D32", fromSurface: "24", toSurface: "26" },
+    { text: "D41", fromSurface: "28", toSurface: "30" },
+    { text: "D44", fromSurface: "34", toSurface: "36" },
+    { text: "D48", fromSurface: "41", toSurface: "43" },
   ],
 
   closeFocusM: 2,

@@ -19,7 +19,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Code | Elements | Lens files | localPatentStatus | reviewRecordStatus |
 |---|---:|---:|---|---|
 | 847238 | 44 | 21 | patents/US6621643.pdf<br>patents/US20050157403A1.pdf<br>patents/US20040218274A1.pdf<br>patents/US20030133200A1.pdf | 1/44 rows have review records |
-| 497816 | 32 | 17 | patents/JP_2000028919_A.pdf<br>patents/US20040218274A1.pdf<br>patents/JP2020118738A.pdf<br>patents/JP2021076829A.pdf | 2/32 rows have review records |
+| 497816 | 32 | 17 | patents/JP_2000028919_A.pdf<br>patents/US20040218274A1.pdf<br>patents/JP2020118738A.pdf<br>patents/JP2021076829A.pdf | 4/32 rows have review records |
 | 773496 | 22 | 17 | patents/JP2013054269A.pdf<br>patents/JP_2000028919_A.pdf<br>patents/JPA 1989039542-000000.pdf<br>patents/US6621643.pdf | No review-record hit |
 | 487704 | 18 | 11 | patents/US20040218274A1.pdf<br>patents/US20030133200A1.pdf<br>patents/US6141156.pdf<br>patents/JPA 2000019398-000000.pdf | No review-record hit |
 | 487702 | 14 | 9 | patents/JP2013054269A.pdf<br>patents/JP_2000028919_A.pdf<br>patents/JPA 1994082698-000000.pdf<br>patents/US20040218274A1.pdf | No review-record hit |
@@ -51,7 +51,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 694533 | 5 | 4 | patents/US20200142168A1.pdf<br>patents/JP2019008031A.pdf<br>patents/WO2020136749A1.pdf | 4/5 rows have review records |
 | 699301 | 5 | 4 | patents/JP_2000028919_A.pdf<br>patents/JP2020086133A.pdf<br>patents/US8228605.pdf<br>patents/JPA 2020122918-000000.pdf | 1/5 rows have review records |
 | 773495 | 5 | 4 | patents/US6141156.pdf<br>patents/US5734508.pdf<br>patents/JPA 2000019398-000000.pdf<br>patents/US20190250367A1.pdf | 1/5 rows have review records |
-| 498826 | 4 | 1 | patents/US20050157403A1.pdf | No review-record hit |
+| 498826 | 4 | 1 | patents/US20050157403A1.pdf | All rows have review records |
 | 517642 | 4 | 3 | patents/JPA 1999231209-000000.pdf<br>patents/US4223981.pdf<br>patents/JP2017116646A.pdf | No review-record hit |
 | 603380 | 4 | 3 | patents/JP2017116646A.pdf<br>patents/JPA 2020122918-000000.pdf | 1/4 rows have review records |
 | 620603 | 4 | 3 | patents/JPA 1999231209-000000.pdf<br>patents/US4452513.pdf<br>patents/US4223981.pdf | No review-record hit |
@@ -1020,13 +1020,13 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L55 (Element 21) | 38 | `593679 - fluorophosphate crown (patent nd=1.59319, vd=67.90)` | 1.59319 / 67.90 | J-PSKH1 (trusted Sellmeier) | sellmeier | patents/WO2019097669A1.pdf | Audit-log hit |
 | L56 (Element 22) | 40 | `720503 - lanthanum crown (patent nd=1.71999, vd=50.27)` | 1.71999 / 50.27 | J-LAK10 (trusted Sellmeier) | sellmeier | patents/WO2019097669A1.pdf | Audit-log hit |
 
-### [NIKON AF-S VR ZOOM-NIKKOR 200-400mm f/4 G IF-ED](../../src/lens-data/nikon/NikonAFSVRZoomNikkor200400mmf4GIFED.data.ts) - US 2005/0157403 A1
+### [NIKON AF-S VR ZOOM-NIKKOR 200-400mm f/4G IF-ED](../../src/lens-data/nikon/NikonAFSVRZoomNikkor200400mmf4GIFED.data.ts) - US 2005/0157403 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L12 (L12) | 2 | `498826 - low-dispersion crown class (vendor identity unproven)` | 1.49782 / 82.56 | J-FKH1 (trusted Sellmeier) | sellmeier | patents/US20050157403A1.pdf | No review-record hit |
-| L13 (L13) | 4 | `498826 - low-dispersion crown class (vendor identity unproven)` | 1.49782 / 82.56 | J-FKH1 (trusted Sellmeier) | sellmeier | patents/US20050157403A1.pdf | No review-record hit |
-| L14 (L14) | 6 | `498826 - low-dispersion crown class (vendor identity unproven)` | 1.49782 / 82.56 | J-FKH1 (trusted Sellmeier) | sellmeier | patents/US20050157403A1.pdf | No review-record hit |
+| L12 (L12) | 2 | `498826 - low-dispersion crown class (vendor identity unproven)` | 1.49782 / 82.56 | J-FKH1 (trusted Sellmeier) | sellmeier | patents/US20050157403A1.pdf | Audit-log hit |
+| L13 (L13) | 4 | `498826 - low-dispersion crown class (vendor identity unproven)` | 1.49782 / 82.56 | J-FKH1 (trusted Sellmeier) | sellmeier | patents/US20050157403A1.pdf | Audit-log hit |
+| L14 (L14) | 6 | `498826 - low-dispersion crown class (vendor identity unproven)` | 1.49782 / 82.56 | J-FKH1 (trusted Sellmeier) | sellmeier | patents/US20050157403A1.pdf | Audit-log hit |
 | L15 (L15) | 8 | `788474/475 - lanthanum glass class` | 1.78800 / 47.38 | J-LASF014 (trusted Sellmeier) | sellmeier | patents/US20050157403A1.pdf | No review-record hit |
 | L16 (L16) | 10 | `847238 - dense-flint class` | 1.84666 / 23.78 | J-SF03 (trusted Sellmeier) | sellmeier | patents/US20050157403A1.pdf | No review-record hit |
 | L17 (L17) | 11 | `603655 - phosphate-crown class` | 1.60300 / 65.47 | S-PHM53 (trusted Sellmeier) | sellmeier | patents/US20050157403A1.pdf | No review-record hit |
@@ -1040,10 +1040,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L44 (L44) | 34 | `847238 - dense-flint class` | 1.84666 / 23.78 | J-SF03 (trusted Sellmeier) | sellmeier | patents/US20050157403A1.pdf | No review-record hit |
 | L45 (L45) | 35 | `741527/528 - lanthanum-crown class` | 1.74100 / 52.67 | LAK011 (trusted Sellmeier) | sellmeier | patents/US20050157403A1.pdf | No review-record hit |
 | L46 (L46) | 37 | `741527/528 - lanthanum-crown class` | 1.74100 / 52.67 | LAK011 (trusted Sellmeier) | sellmeier | patents/US20050157403A1.pdf | No review-record hit |
-| L47 (L47) | 39 | `498826 - low-dispersion crown class (vendor identity unproven)` | 1.49782 / 82.56 | J-FKH1 (trusted Sellmeier) | sellmeier | patents/US20050157403A1.pdf | No review-record hit |
+| L47 (L47) | 39 | `498826 - low-dispersion crown class (vendor identity unproven)` | 1.49782 / 82.56 | J-FKH1 (trusted Sellmeier) | sellmeier | patents/US20050157403A1.pdf | Audit-log hit |
 | L49 (L49) | 42 | `847238 - dense-flint class` | 1.84666 / 23.78 | J-SF03 (trusted Sellmeier) | sellmeier | patents/US20050157403A1.pdf | No review-record hit |
 
-### [NIKON AF-S VR ZOOM-NIKKOR 24-120mm f/3.5-5.6 G IF-ED](../../src/lens-data/nikon/NikonAFSVRZoomNikkor24120mmf3556GIFED.data.ts) - US 2004/0218274 A1
+### [NIKON AF-S VR ZOOM-NIKKOR 24-120mm f/3.5-5.6G IF-ED](../../src/lens-data/nikon/NikonAFSVRZoomNikkor24120mmf3556GIFED.data.ts) - US 2004/0218274 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
@@ -1055,14 +1055,14 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L23 (L23) | 11 | `785257 — dense-flint class (vendor unresolved)` | 1.78472 / 25.68 | H-ZF13 (trusted Sellmeier) | sellmeier | patents/US20040218274A1.pdf | No review-record hit |
 | L24 (L24) | 13 | `835427 — high-index lanthanum class (vendor unresolved)` | 1.83481 / 42.72 | S-LAH55 (trusted Sellmeier) | sellmeier | patents/US20040218274A1.pdf | No review-record hit |
 | L3AN (L3AN) | 15 | `805254 — dense-flint class (vendor unresolved)` | 1.80518 / 25.41 | SF6 (trusted Sellmeier) | sellmeier | patents/US20040218274A1.pdf | No review-record hit |
-| L3AP (L3AP) | 16 | `497816 — ED fluorophosphate class (vendor unresolved)` | 1.49700 / 81.61 | H-FK61 (trusted Sellmeier) | sellmeier | patents/US20040218274A1.pdf | No review-record hit |
+| L3AP (L3AP) | 16 | `497816 — ED fluorophosphate class (vendor unresolved)` | 1.49700 / 81.61 | H-FK61 (trusted Sellmeier) | sellmeier | patents/US20040218274A1.pdf | Audit-log hit |
 | L41 (L41) | 20 | `847238 — dense-flint class (vendor unresolved)` | 1.84666 / 23.78 | J-SF03 (trusted Sellmeier) | sellmeier | patents/US20040218274A1.pdf | No review-record hit |
 | L42 (L42) | 22 | `835427 — high-index lanthanum class (vendor unresolved)` | 1.83481 / 42.72 | S-LAH55 (trusted Sellmeier) | sellmeier | patents/US20040218274A1.pdf | No review-record hit |
-| L51 (L51) | 24 | `497816 — ED fluorophosphate class (vendor unresolved)` | 1.49700 / 81.61 | H-FK61 (trusted Sellmeier) | sellmeier | patents/US20040218274A1.pdf | No review-record hit |
+| L51 (L51) | 24 | `497816 — ED fluorophosphate class (vendor unresolved)` | 1.49700 / 81.61 | H-FK61 (trusted Sellmeier) | sellmeier | patents/US20040218274A1.pdf | Audit-log hit |
 | L52 (L52) | 26 | `487702/487704 — low-index FK/FSL crown class (vendor unresolved)` | 1.48749 / 70.24 | N-FK5 (trusted Sellmeier) | sellmeier | patents/US20040218274A1.pdf | No review-record hit |
 | L53 (L53) | 28 | `847238 — dense-flint class (vendor unresolved)` | 1.84666 / 23.78 | J-SF03 (trusted Sellmeier) | sellmeier | patents/US20040218274A1.pdf | No review-record hit |
 
-### [NIKON AF-S VR ZOOM-NIKKOR 70-200mm f/2.8 G IF-ED](../../src/lens-data/nikon/NikonAFSVRZoomNikkor70200mmf28GIFED.data.ts) - US 2003/0133200 A1
+### [NIKON AF-S VR ZOOM-NIKKOR 70-200mm f/2.8G IF-ED](../../src/lens-data/nikon/NikonAFSVRZoomNikkor70200mmf28GIFED.data.ts) - US 2003/0133200 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
@@ -1082,7 +1082,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L48 (L48) | 37 | `741527 — vendor unresolved` | 1.74100 / 52.67 | LAK011 (trusted Sellmeier) | sellmeier | patents/US20030133200A1.pdf | No review-record hit |
 | L49 (L49) | 38 | `847238 — vendor unresolved` | 1.84666 / 23.78 | J-SF03 (trusted Sellmeier) | sellmeier | patents/US20030133200A1.pdf | No review-record hit |
 
-### [NIKON AI AF VR ZOOM-NIKKOR 80-400mm f/4.5-5.6 D ED](../../src/lens-data/nikon/NikonAFVRZoomNikkor80400mmf4556DED.data.ts) - US 6,141,156 A
+### [NIKON AI AF VR ZOOM-NIKKOR 80-400mm f/4.5-5.6D ED](../../src/lens-data/nikon/NikonAFVRZoomNikkor80400mmf4556DED.data.ts) - US 6,141,156 A
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
@@ -1097,7 +1097,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L52 (L52) | 24 | `487704 - low-dispersion crown class (vendor unresolved)` | 1.48749 / 70.41 | N-FK5 (trusted Sellmeier) | sellmeier | patents/US6141156.pdf | No review-record hit |
 | L61b (L61b) | 27 | `805254 - dense-flint class (vendor unresolved; vd=25.35)` | 1.80518 / 25.35 | SF6 (trusted Sellmeier) | sellmeier | patents/US6141156.pdf | No review-record hit |
 
-### [NIKON AI AF ZOOM-NIKKOR 18-35mm f/3.5-4.5 D IF-ED](../../src/lens-data/nikon/NikonAFZoomNikkor1835mmf3545DIFED.data.ts) - US 2001/0030812 A1
+### [NIKON AI AF ZOOM-NIKKOR 18-35mm f/3.5-4.5D IF-ED](../../src/lens-data/nikon/NikonAFZoomNikkor1835mmf3545DIFED.data.ts) - US 2001/0030812 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
@@ -1124,7 +1124,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|---|---|
 | L15 (Element 15) | 25 | `744450 — lanthanum-flint class (unmatched exact public coordinate)` | 1.74400 / 45.00 | No catalog entry | abbe | patents/US5579171.pdf | Explicit disposition in data |
 
-### [NIKON AI AF-S ZOOM-NIKKOR 80-200mm f/2.8 D IF-ED](../../src/lens-data/nikon/NikonAFSZoomNikkor80200mmf28DIFED.data.ts) - JP 2000-19398 A
+### [NIKON AI AF-S ZOOM-NIKKOR 80-200mm f/2.8D IF-ED](../../src/lens-data/nikon/NikonAFSZoomNikkor80200mmf28DIFED.data.ts) - JP 2000-19398 A
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
