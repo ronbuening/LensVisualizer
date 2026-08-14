@@ -86,6 +86,12 @@ better investment.
 | AF Zoom-Nikkor 28-200mm f/3.5-5.6 G IF-ED | Median 1.113; revised L12/L21 each 1.00 after normalization | done 2026-07-29 |
 | AF-S NIKKOR 500mm f/5.6E PF ED VR | Figure 3 at 600 dpi / 7.5 px/mm; tightened L15/L16, G2, C31, VR1, and CL31 outlines | done 2026-08-03; zero image-circle-floor failures |
 | AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR | Figures 7/9; rear master pair measured about 12.9 mm, engaged Lx7/Lx8 enlarged to validated figure envelope | done 2026-08-03; both TC states have zero image-circle-floor failures |
+| AI AF-S Zoom-Nikkor 80-200mm f/2.8D IF-ED | JP 2000-19398 Figure 1 at 300 dpi plus supplied site screenshot | done 2026-08-14; L43-equivalent relay reduced to 10.6/10.4 mm |
+| AI AF Zoom-Nikkor 18-35mm f/3.5-4.5D IF-ED | US 2001/0030812 Figure 4A at 300 dpi plus supplied site screenshot | no further change 2026-08-14; integration L13/L14 correction retained |
+| AI AF VR Zoom-Nikkor 80-400mm f/4.5-5.6D ED | US 6,141,156 Figure 7 at 300 dpi plus supplied site screenshot | no change 2026-08-14; modeled group taper matches |
+| AF-S VR Zoom-Nikkor 70-200mm f/2.8G IF-ED | US 2003/0133200 Figure 1 at 300 dpi plus supplied site screenshot | done 2026-08-14; L47 restored to the final pair's near-equal aperture |
+| AF-S VR Zoom-Nikkor 24-120mm f/3.5-5.6G IF-ED | US 2004/0218274 Figure 5 at 300 dpi plus supplied site screenshot | no further change 2026-08-14; compact L33 correction retained |
+| AF-S VR Zoom-Nikkor 200-400mm f/4G IF-ED | US 2005/0157403 Figure 1 at 300 dpi plus supplied site screenshot | no change 2026-08-14; modeled taper matches |
 
 ### Completed Tamron additions
 

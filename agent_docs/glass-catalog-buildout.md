@@ -10,6 +10,14 @@ dPgF-corrected indices, or the legacy Abbe approximation. Current optics-engine 
 
 The catalog currently has **517 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
 
+The August 14, 2026 Phase 98 patent-figure follow-up audited the six-lens Nikon AF/AF-S zoom batch. All 106 physical
+glass elements already resolve to coordinate-compatible Sellmeier curves: the 80-200mm, 80-400mm, 70-200mm, and
+200-400mm designs are strict-complete, while the 18-35mm and 24-120mm gaps are solely unidentified bonded/compound
+resin layers. No responsible optical-glass addition was available, so the catalog remains at 517 verified entries.
+Nikon's published ED counts and group placement support 20 inferred ED/APD viewer tags without inventing patent
+`dPgF` values or production-melt identities. Global coverage is 5687/6322 strict and 5698/6322 trusted, with zero
+catalog-coordinate mismatches.
+
 The August 13, 2026 Phase 97 screenshot-led follow-up made the Sony batch's existing spectral coverage explicit in the
 site inspector. Every identified physical glass now names the resolver-selected catalog equivalent while preserving
 the patent coordinate and stating that the production supplier is unspecified. Sony's published element counts support
