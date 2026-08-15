@@ -1,4 +1,4 @@
-# Audit Log — PENTAX HD DA 18-50mm f/4-5.6 DC WR RE
+# Audit Log — HD PENTAX-DA 18-50mm f/4-5.6 DC WR RE
 
 Patent: JP 2016-6455 A, Numerical Example 2, Figure 10 and Tables 5–8
 
@@ -16,8 +16,14 @@ The revised surface 5A polynomial departure and total sag were recomputed at the
 ### Labels and glass
 
 - Removed the decimal point from the internal lens key, fixing schema validation.
-- Romanized inventor 古賀 知也 as Tomoya Koga and corrected the displayed model name.
+- Romanized inventor 古賀 知也 as Tomoya Koga and corrected the displayed model name to Ricoh's `HD PENTAX-DA` styling.
+- Matched Ricoh's anomalous-dispersion marking to patent L41, added its inferred APD tag and the official special-glass count, and retained 618634 as a vendor-neutral coordinate.
+- Added the patent power signs to the four functional-group diagram labels.
 - Identified S-NSL5 and S-NBH55 as source-precision catalog equivalents for patent coordinates 522598 and 800299. The production suppliers remain unspecified, and the bonded resin remains unmatched.
+
+### Motion
+
+- Rechecked wide/middle/tele order and all published 300 mm focus rows. G1b moves objectward at every station: D2 decreases and D7 increases by the same amount. The infinity and close arrays remain correctly ordered `[infinity, close]`.
 
 ### Verification
 

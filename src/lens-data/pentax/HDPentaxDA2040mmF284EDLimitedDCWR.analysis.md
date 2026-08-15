@@ -9,7 +9,7 @@
 **Title:** ズームレンズ系 ("Zoom lens system")\
 **Embodiment analyzed:** Numerical Example 1
 
-The data file identifies the modeled production lens as **PENTAX HD PENTAX-DA 20–40mm f/2.8–4 ED Limited DC WR** and transcribes Numerical Example 1 of JP 2015-11156 A. The patent itself does not name that production lens. The production correlation is therefore an author/modeling inference fixed for this dataset rather than a manufacturer-confirmed patent identification.
+The data file identifies the modeled production lens as **HD PENTAX-DA 20–40mm f/2.8–4 ED Limited DC WR** and transcribes Numerical Example 1 of JP 2015-11156 A. The patent itself does not name that production lens. The production correlation is therefore an author/modeling inference fixed for this dataset rather than a manufacturer-confirmed patent identification.
 
 Several independent characteristics support that correlation:
 
@@ -133,7 +133,7 @@ The patent gives d-line refractive indices and d-line Abbe numbers, but no glass
 
 The largest Abbe-number contrast within a cemented assembly occurs at L22/L23: νd = 81.6 for the positive element and νd = 47.4 for the negative element. This is consistent with the patent's stated use of that pre-stop cemented pair for chromatic correction. It does not, by itself, establish anomalous partial dispersion or a specific vendor glass.
 
-The production lens name contains “ED,” but the selected patent prescription does not identify a particular element as ED glass and does not publish per-element nC, nF, ng, PgF, or dPgF values. The final data file therefore contains no authored line-index or anomalous-partial-dispersion fields. No APO or anomalous-dispersion performance claim is made from the nd/νd coordinates alone.
+Ricoh's production construction diagram independently marks the middle pre-stop L22 position as ED and the final L27 position as anomalous-dispersion glass. The fixed production correlation therefore carries `apd: "inferred"` at those two patent positions. The tags record the manufacturer diagram mapping; they do not assign a production supplier, invent per-line indices, or claim that the patent itself publishes a `dPgF` value.
 
 ## Focus Mechanism
 
@@ -185,7 +185,7 @@ First, L22 and L23 form a cemented positive-negative pair immediately before the
 
 Second, condition (4) requires the aspherical element in G1 to have Aνd > 52.5. L12 has νd = 52.8 and therefore satisfies the condition. Paragraph ¶0031 associates that threshold with correction of lateral chromatic aberration and related chromatic errors.
 
-The available data do not support a stronger spectral classification. Without per-element line indices, dPgF values, or a uniquely resolved Sellmeier glass identity, the prescription cannot substantiate an APO label or a claim of anomalous-partial-dispersion behavior for a particular element. The production “ED” designation remains product metadata rather than a prescription-level vendor-glass identification.
+The official construction mapping supports ED/APD display tags at L22 and L27, but not a stronger spectral classification. Without manufacturer-identified glass species or published per-element line indices, the prescription cannot substantiate an APO label or numerical secondary-spectrum performance for either position.
 
 ## Aberration Correction Strategy
 

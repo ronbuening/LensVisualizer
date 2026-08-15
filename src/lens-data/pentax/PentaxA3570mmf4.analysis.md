@@ -1,4 +1,4 @@
-# PENTAX SMC PENTAX-A ZOOM 35-70mm f/4
+# SMC PENTAX-A ZOOM 35-70mm f/4
 
 ## Patent Reference and Design Identification
 
@@ -11,7 +11,7 @@
 **Title:** *Zoom Lens*\
 **Embodiment analyzed:** Example 3
 
-The selected correlation is the production **PENTAX SMC PENTAX-A ZOOM 35-70mm f/4** with Example 3 of US 4,812,022. The patent does not identify the commercial lens by product name, so the correlation is not presented as manufacturer confirmation. It rests on the convergence of the following source facts:
+The selected correlation is the production **SMC PENTAX-A ZOOM 35-70mm f/4** with Example 3 of US 4,812,022. The patent does not identify the commercial lens by product name, so the correlation is not presented as manufacturer confirmation. It rests on the convergence of the following source facts:
 
 1. The Pentax A-series catalog lists an SMC PENTAX-A Zoom 35-70mm f/4 with seven elements in seven groups.
 2. Example 3 is likewise a seven-element / seven-group zoom and publishes a design focal range of 36-68.5 mm at f/4.1.

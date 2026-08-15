@@ -9,7 +9,7 @@
 **Title:** Zoom lens system\
 **Embodiment analyzed:** Numerical Example 1
 
-This analysis treats Numerical Example 1 as the fixed production correlation for the **PENTAX HD PENTAX-DA 16-85mm f/3.5-5.6 ED DC WR**. The correlation is convergent rather than an explicit manufacturer statement that the production lens uses this patent example.
+This analysis treats Numerical Example 1 as the fixed production correlation for the **HD PENTAX-DA 16-85mm f/3.5-5.6 ED DC WR**. The correlation is convergent rather than an explicit manufacturer statement that the production lens uses this patent example.
 
 Several independent characteristics support the correlation:
 
@@ -165,11 +165,9 @@ The patent provides d-line `nd` and `νd` coordinates but no vendor glass names.
 | `618634` | 1.61800 | 63.4 | L42 |
 | `538747` | 1.53775 | 74.7 | L44 |
 
-No element carries authored `nC`, `nF`, `ng`, or `dPgF` values, and no vendor-specific Sellmeier identity is asserted. Consequently, the analysis does **not** claim apochromatic correction or validated anomalous partial dispersion from the data model.
+No element carries authored `nC`, `nF`, `ng`, or `dPgF` values, and no vendor-specific Sellmeier identity is asserted. Consequently, the analysis does **not** claim apochromatic correction or numerical anomalous-partial-dispersion performance.
 
-The patent itself calls the high-νd outer positive elements in G4 anomalous-dispersion materials (¶0025, ¶0029), but Example 1 supplies only d-line index and Abbe number. That source wording is recorded as patent context rather than promoted to a validated spectral property in LensVisualizer.
-
-Ricoh Imaging separately markets the production lens as containing one ED element. The fixed production-to-patent correlation does not establish which Example 1 glass should be identified with that marketing statement, so no specific patent element is relabeled as the production ED glass.
+The patent itself calls the high-νd outer positive elements L41 and L44 anomalous-dispersion materials (¶0025, ¶0029). Both therefore carry `apd: "patent"`, with notes that the source publishes no line-index or `dPgF` table. Ricoh's production construction diagram additionally marks the corresponding final L44 position as the product's single ED element. This supports the positional display annotation without establishing a production supplier.
 
 ## Focus Mechanism
 
@@ -211,7 +209,7 @@ The patent frames Example 1 around chromatic correction, especially in G4. Its s
 
 First, the source specifies a positive-negative-positive G4 substructure. L41 and L44 are positive singletons, while L42-L43 is a negative cemented unit. Paragraph ¶0027 states that the central negative cemented component contributes to chromatic correction while the near-symmetric power arrangement also supports control of other aberrations.
 
-Second, the source constrains the outer positive G4 elements by high d-line Abbe number. In Example 1, L41 has νd = 81.6 and L44 has νd = 74.7. These values satisfy the patent's conditions (1) and (2), but `νd` alone does not establish partial-dispersion behavior. The data model therefore retains the high-νd coordinates without adding unsupported spectral fields.
+Second, the source identifies the outer positive G4 elements as anomalous-dispersion materials and constrains their d-line Abbe numbers. In Example 1, L41 has νd = 81.6 and L44 has νd = 74.7. These values satisfy the patent's conditions (1) and (2). The `apd: "patent"` tags preserve that explicit source classification, while the absence of line indices and `dPgF` prevents a numerical partial-dispersion model from being invented.
 
 Third, the patent assigns a separate chromatic role to the image-side L24-L25 cemented pair in G2 (¶0035). Its recomputed net power is negative, while its constituents have opposite standalone signs. This provides a second cemented refractive-power balance outside G4. Again, the present verification can establish the geometry and paraxial powers but cannot independently reproduce secondary-spectrum behavior without C/F/g-line data.
 

@@ -10,7 +10,7 @@
 **Title:** Zoom Lens System\
 **Embodiment analyzed:** Numerical Embodiment 1 (Example 1; Figs. 1–6, Tables 1–3)
 
-The prescription is the selected production correlation for the **PENTAX HD PENTAX-D FA 150–450mm f/4.5–5.6 ED DC AW**. The patent itself does not identify a commercial product, and RICOH's product literature does not identify this patent. The correlation therefore remains an author/modeling inference fixed for this dataset rather than a manufacturer-confirmed attribution.
+The prescription is the selected production correlation for the **HD PENTAX-D FA 150–450mm f/4.5–5.6 ED DC AW**. The patent itself does not identify a commercial product, and RICOH's product literature does not identify this patent. The correlation therefore remains an author/modeling inference fixed for this dataset rather than a manufacturer-confirmed attribution.
 
 Several independent characteristics converge on that correlation:
 
@@ -191,9 +191,9 @@ The patent publishes d-line `nd` and `νd` coordinates but no glass maker or tra
 
 Because the patent does not establish a catalog family, the final data removes the previous vendor-specific `nC`, `nF`, `ng`, and `dPgF` fields. This is significant for 497816 in particular: catalog families sharing essentially the same d-line coordinate can have different anomalous-partial-dispersion values, so selecting one family would inject spectral behavior not established by the patent. Patent conditions (9) and (12) remain verifiable from the publication's own Example-1 condition table, which supplies the relevant partial-dispersion ratios.
 
-RICOH's February 2015 launch release states that the production lens uses three ED glass elements and one super-low-dispersion glass element. That is a product-level statement. The patent does not identify which prescription slots correspond to those marketed categories, so the analysis does not map the production ED/anomalous-dispersion count onto individual elements.
+RICOH's February 2015 launch release states that the production lens uses three ED glass elements and one anomalous/super-low-dispersion element. Its official construction diagram places the ED elements at the two positive G1 positions and the negative member of the G5 cemented pair, mapping to Example-1 L12, L13, and L53. The anomalous-dispersion marking maps to L42 in G4. Those four positions carry `apd: "inferred"` because the product-to-patent correlation fixes the positional mapping, while the patent itself does not publish the production glass species or their line indices.
 
-No apochromatic classification is made. The patent discusses secondary-spectrum and g-line correction through explicit conditions, but the final vendor-neutral data does not contain enough independently sourced line-index information to assign an APO or anomalous-dispersion label to a specific element.
+No apochromatic classification is made. The display tags preserve RICOH's special-glass positions, but the final vendor-neutral data does not contain enough independently sourced line-index information to quantify their production partial dispersion.
 
 ## Focus Mechanism
 

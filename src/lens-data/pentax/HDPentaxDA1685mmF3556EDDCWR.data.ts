@@ -46,13 +46,14 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "hd-pentax-da-16-85mm-f35-56-ed-dc-wr",
   maker: "Pentax",
-  name: "PENTAX HD DA 16-85mm f/3.5-5.6 ED DC WR",
+  name: "HD PENTAX-DA 16-85mm f/3.5-5.6 ED DC WR",
   subtitle: "JP 2016-114800 A Example 1 — Ricoh Imaging / Yoichi Nomura",
   specs: [
     "16 ELEMENTS / 12 GROUPS",
     "16-85mm f/3.5-5.6 (marketing)",
     "16.48-82.45mm, modeled f/3.585-5.764 (Example 1)",
     "3 ASPHERICAL SURFACES",
+    "1 PRODUCTION ED ELEMENT",
     "APS-C / PENTAX K",
   ],
 
@@ -216,6 +217,9 @@ const LENS_DATA = {
       vd: 81.6,
       fl: 43.228259,
       glass: "497816 (vendor-neutral optical code)",
+      apd: "patent",
+      apdNote:
+        "JP 2016-114800 A identifies the outer positive G4 lenses as anomalous-dispersion materials. Example 1 publishes no line indices or dPgF for L41.",
     },
     {
       id: 15,
@@ -248,6 +252,9 @@ const LENS_DATA = {
       vd: 74.7,
       fl: 34.89006,
       glass: "538747 (vendor-neutral optical code)",
+      apd: "patent",
+      apdNote:
+        "JP 2016-114800 A identifies the outer positive G4 lenses as anomalous-dispersion materials; Ricoh's production diagram also marks the corresponding final element as ED. No production supplier or dPgF is asserted.",
     },
   ],
 

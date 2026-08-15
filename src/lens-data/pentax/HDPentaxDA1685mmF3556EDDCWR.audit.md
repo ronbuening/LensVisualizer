@@ -1,4 +1,4 @@
-# Audit Log — PENTAX HD DA 16-85mm f/3.5-5.6 ED DC WR
+# Audit Log — HD PENTAX-DA 16-85mm f/3.5-5.6 ED DC WR
 
 Patent: JP 2016-114800 A, Numerical Example 1, Figure 1 and Tables 1–4
 
@@ -19,8 +19,13 @@ All revised asphere diagnostics were recomputed at the new modeled apertures. Th
 ### Labels and glass
 
 - Romanized inventor 能村 洋一 as Yoichi Nomura and normalized the assignee spelling.
-- Corrected the displayed model name to the repository's `PENTAX HD DA` convention.
+- Corrected the displayed model name to Ricoh's `HD PENTAX-DA` styling.
+- Added patent APD tags to L41 and L44, which the patent explicitly calls anomalous-dispersion materials; Ricoh's production construction diagram independently marks the corresponding final L44 position as the product's one ED element. No line indices, dPgF, or production supplier were inferred.
 - All 16 physical glass elements retain coordinate-compatible Sellmeier coverage. The explicitly synthetic L21 resin remains unmatched because the patent does not identify its chemistry.
+
+### Motion
+
+- Rechecked the wide/middle/tele sequence and four zoom spacings. The 16.48 / 35.00 / 82.45 mm ordering is correct; all four functional groups move objectward overall, while G2 retains the patent's small imageward wide-to-mid reversal before moving objectward to tele. No close-focus motion is authored because the source publishes none.
 
 ### Verification
 

@@ -1,4 +1,4 @@
-# Audit Log — PENTAX SMC PENTAX-A ZOOM 35-70mm f/4
+# Audit Log — SMC PENTAX-A ZOOM 35-70mm f/4
 
 Patent: US 4,812,022, Example 3, Figure 9 and Table 3
 
@@ -14,9 +14,14 @@ The remaining profiles follow Figure 9 within the drawing tolerance. Leader curv
 
 ### Labels and glass
 
+- Corrected the displayed name to the A-series catalog styling, `SMC PENTAX-A ZOOM`, removing the duplicated leading maker name.
 - Normalized the patent assignee spelling to the repository's existing form.
 - Identified OHARA S-LAM2 as a source-precision catalog equivalent for L4's patent 744447 coordinate. This supplies verified Sellmeier coverage without asserting the production supplier.
 - All seven elements now have coordinate-compatible Sellmeier coverage.
+
+### Motion
+
+- Rechecked the two source endpoints. The modeled order is 36.0 mm wide to 68.5 mm tele: the front/rear-group gap contracts from 41.111 to 3.821 mm while the solved infinity back focus increases. Focus pairs remain identical because Example 3 publishes no close-focus cam law.
 
 ### Verification
 

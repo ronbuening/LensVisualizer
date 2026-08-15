@@ -1,7 +1,7 @@
 import type { LensDataInput } from "../../types/optics.js";
 
 /**
- * LENS DATA — PENTAX HD PENTAX-DA645 28-45mm f/4.5 ED AW SR
+ * LENS DATA — HD PENTAX-DA645 28-45mm f/4.5 ED AW SR
  *
  * Data source: JP 2015-87681 A, Numerical Example 1 (RICOH IMAGING COMPANY, LTD.; Tatsuyuki Onozaki).
  * Production correlation: HD PENTAX-DA645 28-45mm F4.5 ED AW SR.
@@ -52,13 +52,14 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "hd-pentax-da645-28-45mm-f45-ed-aw-sr",
   maker: "Pentax",
-  name: "PENTAX HD DA645 28-45mm f/4.5 ED AW SR",
+  name: "HD PENTAX-DA645 28-45mm f/4.5 ED AW SR",
   subtitle: "JP 2015-87681 A Example 1 — strong HD PENTAX-DA645 28-45mm f/4.5 ED AW SR correlation",
   specs: [
     "17 PHYSICAL LENSES / 12 GROUPS",
     "28-45mm f/4.5 MARKETED",
     "28.699-43.874mm DESIGN",
     "f/4.6 MODELED DESIGN APERTURE",
+    "2 ED ELEMENTS",
     "2 HYBRID ASPHERICAL ELEMENTS / 2 ASPHERICAL SURFACES",
     "CONSTRAINED G2a INNER-FOCUS RECONSTRUCTION",
   ],
@@ -211,6 +212,9 @@ const LENS_DATA = {
       nF: 1.501231,
       ng: 1.504507,
       dPgF: 0.028,
+      apd: "inferred",
+      apdNote:
+        "Ricoh's production documentation marks physical lens 8 as ED. The Example 1 correlation maps that position to L24; S-FPL51 is a catalog model, not a production-supplier claim.",
       role: "Single positive G2b element; physical lens 8, one of the production lens's two maker-identified ED positions.",
     },
     {
@@ -320,6 +324,9 @@ const LENS_DATA = {
       nF: 1.501231,
       ng: 1.504507,
       dPgF: 0.028,
+      apd: "inferred",
+      apdNote:
+        "Ricoh's production documentation marks physical lens 15 as ED. The Example 1 correlation maps that position to L43; S-FPL51 is a catalog model, not a production-supplier claim.",
       cemented: "T1",
       role: "Positive rear member of G4a; physical lens 15, the second maker-identified ED position.",
     },

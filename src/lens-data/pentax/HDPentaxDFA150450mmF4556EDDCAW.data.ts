@@ -45,13 +45,14 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "hd-pentax-d-fa-150-450-f45-56-ed-dc-aw",
   maker: "Pentax",
-  name: "PENTAX HD D FA 150-450mm f/4.5-5.6 ED DC AW",
+  name: "HD PENTAX-D FA 150-450mm f/4.5-5.6 ED DC AW",
   subtitle: "US 2016/0327774 A1 Numerical Embodiment 1 — production correlation",
   specs: [
     "Marketed 150–450mm f/4.5–5.6",
     "Design f = 153.50–440.00 mm",
     "Design F/4.6–5.7",
     "18 elements / 14 groups",
+    "3 ED + 1 ANOMALOUS-DISPERSION ELEMENT",
     "35 mm full-frame · Y = 21.64 mm",
   ],
 
@@ -89,6 +90,9 @@ const LENS_DATA = {
       vd: 81.6,
       fl: 316.4014,
       glass: "497816 (vendor unresolved; patent nd/νd coordinate)",
+      apd: "inferred",
+      apdNote:
+        "Ricoh's production construction diagram marks this corresponding front-group position as ED; the patent correlation does not establish a production supplier or dPgF.",
       role: "Low-dispersion positive element in G1.",
     },
     {
@@ -100,6 +104,9 @@ const LENS_DATA = {
       vd: 74.7,
       fl: 259.9572,
       glass: "538747 (vendor unresolved; patent nd/νd coordinate)",
+      apd: "inferred",
+      apdNote:
+        "Ricoh's production construction diagram marks this corresponding front-group position as ED; the patent correlation does not establish a production supplier or dPgF.",
       role: "Second low-dispersion positive element completing G1.",
     },
     {
@@ -192,6 +199,9 @@ const LENS_DATA = {
       vd: 63.4,
       fl: 81.4105,
       glass: "618634 (vendor unresolved; patent nd/νd coordinate)",
+      apd: "inferred",
+      apdNote:
+        "Ricoh's production construction diagram marks this corresponding G4 position as anomalous-dispersion glass; the patent publishes no production supplier or dPgF.",
       role: "Primary positive power contributor in G4.",
     },
     {
@@ -261,6 +271,9 @@ const LENS_DATA = {
       vd: 81.6,
       fl: -146.8564,
       glass: "497816 (vendor unresolved; patent nd/νd coordinate)",
+      apd: "inferred",
+      apdNote:
+        "Ricoh's production construction diagram marks this corresponding rear-focus position as ED; the patent correlation does not establish a production supplier or dPgF.",
       cemented: "D52-53",
       role: "Low-dispersion negative partner in the G5 cemented doublet.",
     },

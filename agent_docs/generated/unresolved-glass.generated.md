@@ -562,7 +562,7 @@ or per-lens patent backfills.
 
 ### 689528 — 1 occurrence
 
-- [PENTAX HD DA 20-40mm f/2.8-4 ED Limited DC WR](../../src/lens-data/pentax/HDPentaxDA2040mmF284EDLimitedDCWR.data.ts) 3: `689528 (catalog identity unresolved)`
+- [HD PENTAX-DA 20-40mm f/2.8-4 ED Limited DC WR](../../src/lens-data/pentax/HDPentaxDA2040mmF284EDLimitedDCWR.data.ts) 3: `689528 (catalog identity unresolved)`
 
 ### 694312 — 1 occurrence
 

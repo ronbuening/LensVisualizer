@@ -41,9 +41,15 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "pentax-hd-da-18-50-f4-56-dc-wr-re",
   maker: "Pentax",
-  name: "PENTAX HD DA 18-50mm f/4-5.6 DC WR RE",
+  name: "HD PENTAX-DA 18-50mm f/4-5.6 DC WR RE",
   subtitle: "JP 2016-6455 A — Numerical Example 2; production-correlated prescription",
-  specs: ["11 ELEMENTS / 8 GROUPS", "18-50mm F4-5.6", "0.3m MFD", "1 HYBRID ASPHERICAL SURFACE"],
+  specs: [
+    "11 ELEMENTS / 8 GROUPS",
+    "18-50mm F4-5.6",
+    "0.3m MFD",
+    "1 HYBRID ASPHERICAL SURFACE",
+    "1 ANOMALOUS-DISPERSION ELEMENT",
+  ],
 
   focalLengthMarketing: [18, 50],
   focalLengthDesign: [18.500561, 48.605212],
@@ -173,6 +179,9 @@ const LENS_DATA = {
       vd: 63.4,
       fl: 37.815566,
       glass: "618634 (vendor unresolved)",
+      apd: "inferred",
+      apdNote:
+        "Ricoh's production construction diagram marks this front element of G4 as anomalous-dispersion glass; the patent correlation does not establish a production supplier or dPgF.",
       role: "Front positive singlet of G4.",
     },
     {
@@ -276,10 +285,10 @@ const LENS_DATA = {
   ],
 
   groups: [
-    { text: "G1", fromSurface: "1", toSurface: "7" },
-    { text: "G2", fromSurface: "8", toSurface: "12" },
-    { text: "G3", fromSurface: "14", toSurface: "16" },
-    { text: "G4", fromSurface: "17", toSurface: "21" },
+    { text: "G1 (−)", fromSurface: "1", toSurface: "7" },
+    { text: "G2 (+)", fromSurface: "8", toSurface: "12" },
+    { text: "G3 (−)", fromSurface: "14", toSurface: "16" },
+    { text: "G4 (+)", fromSurface: "17", toSurface: "21" },
   ],
   doublets: [
     { text: "H1", fromSurface: "3", toSurface: "5A" },

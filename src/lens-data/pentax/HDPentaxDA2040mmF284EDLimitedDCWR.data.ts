@@ -40,7 +40,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "pentax-hd-da-20-40-f28-4-limited",
   maker: "Pentax",
-  name: "PENTAX HD DA 20-40mm f/2.8-4 ED Limited DC WR",
+  name: "HD PENTAX-DA 20-40mm f/2.8-4 ED Limited DC WR",
   subtitle: "JP 2015-11156 A — Numerical Example 1; production correlation inferred",
   specs: [
     "9 ELEMENTS / 8 GROUPS",
@@ -48,6 +48,7 @@ const LENS_DATA = {
     "20.60 / 30.00 / 39.00 mm (patent)",
     "FNO 2.9 / 2.9 / 4.0",
     "1 ASPHERICAL SURFACE",
+    "1 ED + 1 ANOMALOUS-DISPERSION ELEMENT",
   ],
 
   focalLengthMarketing: [20, 40],
@@ -123,6 +124,9 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 31.765924,
       glass: "497816 (vendor/catalog identity unresolved)",
+      apd: "inferred",
+      apdNote:
+        "Ricoh's production construction diagram marks the corresponding middle cemented-pair position as ED; the patent publishes no line indices or production glass identity.",
       cemented: "D1",
       role: "Positive member of the cemented L22+L23 pair immediately before the stop.",
     },
@@ -173,6 +177,9 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 40.149892,
       glass: "603655 (vendor/catalog identity unresolved)",
+      apd: "inferred",
+      apdNote:
+        "Ricoh's production construction diagram marks the final element as anomalous-dispersion glass; the patent publishes no partial-dispersion value or production supplier.",
       role: "Final positive element of G2B.",
     },
   ],
@@ -238,9 +245,9 @@ const LENS_DATA = {
   zoomLabels: ["Wide", "Tele"],
 
   groups: [
-    { text: "G1", fromSurface: "1", toSurface: "6" },
-    { text: "G2A", fromSurface: "7", toSurface: "11" },
-    { text: "G2B", fromSurface: "13", toSurface: "18" },
+    { text: "G1 (−)", fromSurface: "1", toSurface: "6" },
+    { text: "G2A (+)", fromSurface: "7", toSurface: "11" },
+    { text: "G2B (+)", fromSurface: "13", toSurface: "18" },
   ],
 
   doublets: [{ text: "L22+L23", fromSurface: "9", toSurface: "11" }],

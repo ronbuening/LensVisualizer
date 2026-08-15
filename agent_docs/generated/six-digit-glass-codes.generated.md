@@ -18,32 +18,32 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Code | Elements | Lens files | localPatentStatus | reviewRecordStatus |
 |---|---:|---:|---|---|
-| 847238 | 47 | 24 | patents/US6621643.pdf<br>patents/US20050157403A1.pdf<br>patents/US20040218274A1.pdf<br>patents/US20030133200A1.pdf | 1/47 rows have review records |
-| 497816 | 37 | 21 | patents/JP_2000028919_A.pdf<br>patents/US20040218274A1.pdf<br>patents/JP2020118738A.pdf<br>patents/JP2021076829A.pdf | 4/37 rows have review records |
-| 773496 | 24 | 18 | patents/JP2013054269A.pdf<br>patents/JP_2000028919_A.pdf<br>patents/JPA 1989039542-000000.pdf<br>patents/US6621643.pdf | No review-record hit |
+| 847238 | 47 | 24 | patents/JP2016114800A.pdf<br>patents/JP2016006455A.pdf<br>patents/JP2015011156A.pdf<br>patents/US6621643.pdf | 1/47 rows have review records |
+| 497816 | 37 | 21 | patents/US20160327774A1.pdf<br>patents/JP2016114800A.pdf<br>patents/JP2016006455A.pdf<br>patents/JP2015011156A.pdf | 4/37 rows have review records |
+| 773496 | 24 | 18 | patents/JP2013054269A.pdf<br>patents/JP2016114800A.pdf<br>patents/JP_2000028919_A.pdf<br>patents/JPA 1989039542-000000.pdf | No review-record hit |
 | 487704 | 18 | 11 | patents/US20040218274A1.pdf<br>patents/US20030133200A1.pdf<br>patents/US6141156.pdf<br>patents/JPA 2000019398-000000.pdf | No review-record hit |
-| 805254 | 18 | 11 | patents/JPA 1994082698-000000.pdf<br>patents/US20040218274A1.pdf<br>patents/US20030133200A1.pdf<br>patents/US6141156.pdf | No review-record hit |
-| 487702 | 15 | 10 | patents/JP2013054269A.pdf<br>patents/JP_2000028919_A.pdf<br>patents/JPA 1994082698-000000.pdf<br>patents/US20040218274A1.pdf | No review-record hit |
-| 835427 | 14 | 9 | patents/US6621643.pdf<br>patents/US20040218274A1.pdf<br>patents/US20210055531A1.pdf<br>patents/JP2020086133A.pdf | No review-record hit |
+| 805254 | 18 | 11 | patents/JP2016006455A.pdf<br>patents/JPA 1994082698-000000.pdf<br>patents/US20040218274A1.pdf<br>patents/US20030133200A1.pdf | No review-record hit |
+| 487702 | 15 | 10 | patents/JP2013054269A.pdf<br>patents/JP2016006455A.pdf<br>patents/JP_2000028919_A.pdf<br>patents/JPA 1994082698-000000.pdf | No review-record hit |
+| 835427 | 14 | 9 | patents/US20160327774A1.pdf<br>patents/US6621643.pdf<br>patents/US20040218274A1.pdf<br>patents/US20210055531A1.pdf | No review-record hit |
 | 697555 | 13 | 12 | patents/JP2013054269A.pdf<br>patents/US4277149.pdf<br>patents/JP2020177057A.pdf<br>patents/US20050157403A1.pdf | 4/13 rows have review records |
-| 804466 | 13 | 9 | patents/US6621643.pdf<br>patents/US6940655.pdf<br>patents/US20030133200A1.pdf<br>patents/US20160327774A1.pdf | No review-record hit |
+| 804466 | 13 | 9 | patents/US20160327774A1.pdf<br>patents/JP2016114800A.pdf<br>patents/JP2016006455A.pdf<br>patents/US6621643.pdf | No review-record hit |
 | 603607 | 11 | 9 | patents/JP2013054269A.pdf<br>patents/JPA 1999231209-000000.pdf<br>patents/JPA 1989039542-000000.pdf<br>patents/US4223981.pdf | No review-record hit |
-| 729547 | 11 | 10 | patents/JP2013054269A.pdf<br>patents/JPA 1994082698-000000.pdf<br>patents/JP2020118738A.pdf<br>patents/JP2020086133A.pdf | 2/11 rows have review records |
+| 729547 | 11 | 10 | patents/JP2013054269A.pdf<br>patents/JP2015011156A.pdf<br>patents/JPA 1994082698-000000.pdf<br>patents/JP2020118738A.pdf | 2/11 rows have review records |
 | 911353 | 11 | 9 | patents/JP2013054269A.pdf<br>patents/US20230213745A1.pdf<br>patents/US20190278068A1.pdf<br>patents/JP2020086133A.pdf | 2/11 rows have review records |
 | 806333 | 10 | 9 | patents/JP2017227799A.pdf<br>patents/JP2020086133A.pdf<br>patents/US20130222925A1.pdf<br>patents/US8422143.pdf | 1/10 rows have review records |
-| 883408 | 10 | 7 | patents/US20170068075A1.pdf<br>patents/JP2016114800A.pdf<br>patents/US8228605.pdf<br>patents/JPA 2025108279-000000.pdf | 5/10 rows have review records |
+| 883408 | 10 | 7 | patents/JP2016114800A.pdf<br>patents/US20170068075A1.pdf<br>patents/US8228605.pdf<br>patents/JPA 2025108279-000000.pdf | 5/10 rows have review records |
 | 493836 | 9 | 4 | patents/JPA 1996327896-000000.pdf<br>patents/JP2004109559A.pdf<br>patents/JPA 1989039542-000000.pdf | All rows have review records |
-| 516641 | 9 | 7 | patents/US20030072086A1.pdf<br>patents/US20160327774A1.pdf<br>patents/JP2016114800A.pdf<br>patents/US20180164556A1.pdf | 1/9 rows have review records |
-| 618634 | 9 | 8 | patents/JPA 1994082698-000000.pdf<br>patents/US20160327774A1.pdf<br>patents/US20170068075A1.pdf<br>patents/JP2016114800A.pdf | No review-record hit |
+| 516641 | 9 | 7 | patents/US20160327774A1.pdf<br>patents/JP2016114800A.pdf<br>patents/US20030072086A1.pdf<br>patents/US20180164556A1.pdf | 1/9 rows have review records |
+| 618634 | 9 | 8 | patents/US20160327774A1.pdf<br>patents/JP2016114800A.pdf<br>patents/JP2016006455A.pdf<br>patents/JPA 1994082698-000000.pdf | 2/9 rows have review records |
 | 741527 | 9 | 4 | patents/US6940655.pdf<br>patents/US7359125.pdf<br>patents/US20050157403A1.pdf<br>patents/US20030133200A1.pdf | 1/9 rows have review records |
 | 755275 | 9 | 8 | patents/JPA 1989039542-000000.pdf<br>patents/US6940655.pdf<br>patents/US4223981.pdf<br>patents/JP2020086133A.pdf | 1/9 rows have review records |
 | 593670 | 8 | 5 | patents/US20200142168A1.pdf<br>patents/WO2020136749A1.pdf<br>patents/JP2025052870A.pdf<br>patents/JP2020086133A.pdf | 5/8 rows have review records |
 | 437951 | 7 | 5 | patents/JP2020118738A.pdf<br>patents/US20210132345A1.pdf<br>patents/JP2020086133A.pdf<br>patents/US20240295723A1.pdf | No review-record hit |
-| 589612 | 7 | 7 | patents/US4452513.pdf<br>patents/US4223981.pdf<br>patents/US20160327774A1.pdf<br>patents/US20170068075A1.pdf | No review-record hit |
-| 603655 | 7 | 3 | patents/US20050157403A1.pdf<br>patents/US20030133200A1.pdf<br>patents/JP2015011156A.pdf | No review-record hit |
-| 834372 | 7 | 6 | patents/US4110006.pdf<br>patents/JPA 1989039542-000000.pdf<br>patents/US7804652.pdf<br>patents/US4812022.pdf | No review-record hit |
+| 589612 | 7 | 7 | patents/US20160327774A1.pdf<br>patents/US4452513.pdf<br>patents/US4223981.pdf<br>patents/US20170068075A1.pdf | No review-record hit |
+| 603655 | 7 | 3 | patents/JP2015011156A.pdf<br>patents/US20050157403A1.pdf<br>patents/US20030133200A1.pdf | No review-record hit |
+| 834372 | 7 | 6 | patents/US4110006.pdf<br>patents/JPA 1989039542-000000.pdf<br>patents/US7804652.pdf<br>patents/US20120307375A1.pdf | No review-record hit |
 | 593679 | 6 | 4 | patents/US5640277.pdf<br>patents/US20200142168A1.pdf<br>patents/WO2019097669A1.pdf<br>patents/WO2020136749A1.pdf | 5/6 rows have review records |
-| 788474 | 6 | 6 | patents/US20050157403A1.pdf<br>patents/US20010030812A1.pdf<br>patents/US20170068075A1.pdf<br>patents/JP2016006455A.pdf | 1/6 rows have review records |
+| 788474 | 6 | 6 | patents/JP2016006455A.pdf<br>patents/JP2015011156A.pdf<br>patents/US20050157403A1.pdf<br>patents/US20010030812A1.pdf | 1/6 rows have review records |
 | 847239 | 6 | 2 | patents/JPA 1994082698-000000.pdf | No review-record hit |
 | 904313 | 6 | 5 | patents/US20210132345A1.pdf<br>patents/US20120307375A1.pdf<br>patents/US20240295723A1.pdf<br>patents/JP2021043375A.pdf | No review-record hit |
 | 486815 | 5 | 1 | patents/US3743384.pdf | All rows explicitly disposed |
@@ -58,15 +58,15 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 620603 | 4 | 3 | patents/JPA 1999231209-000000.pdf<br>patents/US4452513.pdf<br>patents/US4223981.pdf | No review-record hit |
 | 662561 | 4 | 1 | patents/GB_850117_A.pdf | All rows have review records |
 | 713539 | 4 | 4 | patents/JPA 1987244010-000000.pdf<br>patents/US20210055531A1.pdf<br>patents/US7106520.pdf | 1/4 rows have review records |
-| 717295 | 4 | 2 | patents/JPA 1989039542-000000.pdf<br>patents/US20160327774A1.pdf | No review-record hit |
+| 717295 | 4 | 2 | patents/US20160327774A1.pdf<br>patents/JPA 1989039542-000000.pdf | No review-record hit |
 | 720502 | 4 | 3 | patents/JP2022092388A.pdf | 1/4 rows have review records |
 | 720503 | 4 | 2 | patents/JPA 1987244010-000000.pdf<br>patents/WO2019097669A1.pdf | 3/4 rows have review records |
 | 738323 | 4 | 4 | patents/JP2013054269A.pdf<br>patents/US20190278068A1.pdf<br>patents/US20190265441A1.pdf<br>patents/WO2020136749A1.pdf | 3/4 rows have review records |
 | 744495 | 4 | 4 | patents/US20200142168A1.pdf<br>patents/US7508592.pdf<br>patents/WO2020136749A1.pdf<br>patents/JPWO2019049372A1.pdf | All rows have review records |
-| 762265 | 4 | 3 | patents/JP_2000028919_A.pdf<br>patents/JP2016114800A.pdf<br>patents/JP2015011156A.pdf | No review-record hit |
+| 762265 | 4 | 3 | patents/JP2016114800A.pdf<br>patents/JP2015011156A.pdf<br>patents/JP_2000028919_A.pdf | No review-record hit |
 | 764485 | 4 | 4 | patents/JP2021047297A.pdf<br>patents/US20190278068A1.pdf<br>patents/US20190265441A1.pdf<br>patents/WO2023181666A1.pdf | 3/4 rows have review records |
 | 785257 | 4 | 4 | patents/JPA 1994082698-000000.pdf<br>patents/US20040218274A1.pdf<br>patents/US7804652.pdf<br>patents/JP_2026120386_A.pdf | 1/4 rows have review records |
-| 800422 | 4 | 4 | patents/US4110006.pdf<br>patents/JPA 1994082698-000000.pdf<br>patents/JP2016114800A.pdf<br>patents/US20240295723A1.pdf | No review-record hit |
+| 800422 | 4 | 4 | patents/US4110006.pdf<br>patents/JP2016114800A.pdf<br>patents/JPA 1994082698-000000.pdf<br>patents/US20240295723A1.pdf | No review-record hit |
 | 804465 | 4 | 3 | patents/US20100194930A1.pdf<br>patents/US8824059.pdf<br>patents/US20240295723A1.pdf | No review-record hit |
 | 816466 | 4 | 3 | patents/US20040218274A1.pdf<br>patents/US20170068075A1.pdf<br>patents/US20180164556A1.pdf | No review-record hit |
 | 851401 | 4 | 4 | patents/JP2023044106A.pdf<br>patents/JPWO2017138250A1.pdf<br>patents/JP2017116646A.pdf<br>patents/JP2021043375A.pdf | No review-record hit |
@@ -82,7 +82,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 593686 | 3 | 3 | patents/JP2020086133A.pdf<br>patents/JPWO2017138250A1.pdf<br>patents/JP2021043375A.pdf | No review-record hit |
 | 648338 | 3 | 3 | patents/US8422143.pdf<br>patents/US20240295723A1.pdf<br>patents/JP_2026120386_A.pdf | 1/3 rows have review records |
 | 720347 | 3 | 3 | patents/WO2022097401A1.pdf<br>patents/WO2023153076A1.pdf<br>patents/US20240295723A1.pdf | No review-record hit |
-| 743493 | 3 | 3 | patents/JPA 1994082698-000000.pdf<br>patents/JP2016114800A.pdf<br>patents/JP2015011156A.pdf | No review-record hit |
+| 743493 | 3 | 3 | patents/JP2016114800A.pdf<br>patents/JP2015011156A.pdf<br>patents/JPA 1994082698-000000.pdf | No review-record hit |
 | 748523 | 3 | 3 | patents/US5640277.pdf<br>patents/US5717527.pdf<br>patents/US5490012.pdf | All rows explicitly disposed |
 | 777297 | 3 | 3 | patents/WO2021199923A1.pdf<br>patents/WO_2025263124_A1.pdf<br>patents/JP2023039817A.pdf | All rows have review records |
 | 795453 | 3 | 1 | patents/US20010030812A1.pdf | No review-record hit |
@@ -138,7 +138,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 750353 | 2 | 1 | patents/US20160327774A1.pdf | No review-record hit |
 | 755276 | 2 | 1 | patents/US4452513.pdf | No review-record hit |
 | 755516 | 2 | 1 | patents/JP2004109559A.pdf | All rows have review records |
-| 757478 | 2 | 2 | patents/JP_2000028919_A.pdf<br>patents/US20160327774A1.pdf | No review-record hit |
+| 757478 | 2 | 2 | patents/US20160327774A1.pdf<br>patents/JP_2000028919_A.pdf | No review-record hit |
 | 762404 | 2 | 1 | patents/US4258985.pdf | All rows have review records |
 | 774492 | 2 | 1 | patents/US3748022.pdf | All rows have review records |
 | 781445 | 2 | 2 | patents/US4277149.pdf<br>patents/US4182550.pdf | All rows have review records |
@@ -572,6 +572,77 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|---|---|
 | L14 (Element 4) | 6 | `667311 - dense flint (patent nd=1.66680, vd=31.1; no exact public catalog match)` | 1.66680 / 31.10 | No catalog entry | abbe | patents/US20140247506A1.pdf | Reviewed sidecar hit |
 | L17 (Element 7) | 12A | `803404 - PGM lanthanum heavy flint (patent nd=1.80348, vd=40.4; no exact public catalog match)` | 1.80348 / 40.40 | No catalog entry | abbe | patents/US20140247506A1.pdf | Reviewed sidecar hit |
+
+### [HD PENTAX-D FA 150-450mm f/4.5-5.6 ED DC AW](../../src/lens-data/pentax/HDPentaxDFA150450mmF4556EDDCAW.data.ts) - US 2016/0327774 A1
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L11 (Element 11) | 1 | `750353 (vendor unresolved; patent nd/νd coordinate)` | 1.74950 / 35.30 | J-LAF7 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
+| L12 (Element 12) | 3 | `497816 (vendor unresolved; patent nd/νd coordinate)` | 1.49700 / 81.60 | H-FK61 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
+| L13 (Element 13) | 5 | `538747 (vendor unresolved; patent nd/νd coordinate)` | 1.53775 / 74.70 | S-FPM3 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
+| L21 (Element 21) | 7 | `717295 (vendor unresolved; patent nd/νd coordinate)` | 1.71736 / 29.50 | SF1 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
+| L22 (Element 22) | 8 | `786442 (vendor unresolved; patent nd/νd coordinate)` | 1.78590 / 44.20 | S-LAH51 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
+| L31 (Element 31) | 10 | `516641 (vendor unresolved; patent nd/νd coordinate)` | 1.51633 / 64.10 | S-BSL7 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
+| L32 (Element 32) | 12 | `806409 (vendor unresolved; patent nd/νd coordinate)` | 1.80610 / 40.90 | P-LASF47 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
+| L34 (Element 34) | 15 | `757478 (vendor unresolved; patent nd/νd coordinate)` | 1.75700 / 47.80 | S-LAM54 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
+| L41 (Element 41) | 18 | `717295 (vendor unresolved; patent nd/νd coordinate)` | 1.71736 / 29.50 | SF1 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
+| L42 (Element 42) | 20 | `618634 (vendor unresolved; patent nd/νd coordinate)` | 1.61800 / 63.40 | S-PHM52 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
+| L43 (Element 43) | 22 | `589612 (vendor unresolved; patent nd/νd coordinate)` | 1.58913 / 61.20 | S-BAL35 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
+| L44 (Element 44) | 23 | `750353 (vendor unresolved; patent nd/νd coordinate)` | 1.74950 / 35.30 | J-LAF7 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
+| L45 (Element 45) | 25 | `658509 (vendor unresolved; patent nd/νd coordinate)` | 1.65844 / 50.90 | N-SSK5 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
+| L51 (Element 51) | 27 | `835427 (vendor unresolved; patent nd/νd coordinate)` | 1.83481 / 42.70 | S-LAH55 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
+| L52 (Element 52) | 29 | `717295 (vendor unresolved; patent nd/νd coordinate)` | 1.71736 / 29.50 | SF1 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
+| L53 (Element 53) | 30 | `497816 (vendor unresolved; patent nd/νd coordinate)` | 1.49700 / 81.60 | H-FK61 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
+| L54 (Element 54) | 32 | `804466 (vendor unresolved; patent nd/νd coordinate)` | 1.80400 / 46.60 | H-ZLaF50D (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
+
+### [HD PENTAX-DA 16-85mm f/3.5-5.6 ED DC WR](../../src/lens-data/pentax/HDPentaxDA1685mmF3556EDDCWR.data.ts) - JP 2016-114800 A
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L11 (L11) | 1 | `847238 (vendor-neutral optical code)` | 1.84666 / 23.80 | J-SF03 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
+| L12 (L12) | 2 | `773496 (vendor-neutral optical code)` | 1.77250 / 49.60 | J-LASF016 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
+| L13 (L13) | 4 | `804466 (vendor-neutral optical code)` | 1.80400 / 46.60 | H-ZLaF50D (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
+| L21g (L21 glass substrate) | 7 | `883408 (vendor-neutral optical code)` | 1.88300 / 40.80 | S-LAH58 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
+| L22 (L22) | 9 | `773496 (vendor-neutral optical code)` | 1.77250 / 49.60 | J-LASF016 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
+| L23 (L23) | 11 | `762265 (vendor-neutral optical code)` | 1.76182 / 26.50 | S-TIH14 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
+| L24 (L24) | 13 | `804466 (vendor-neutral optical code)` | 1.80400 / 46.60 | H-ZLaF50D (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
+| L25 (L25) | 14 | `762265 (vendor-neutral optical code)` | 1.76182 / 26.50 | S-TIH14 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
+| L31 (L31) | 17 | `516641 (vendor-neutral optical code)` | 1.51633 / 64.10 | S-BSL7 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
+| L32 (L32) | 19 | `516641 (vendor-neutral optical code)` | 1.51633 / 64.10 | S-BSL7 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
+| L33 (L33) | 20 | `800422 (vendor-neutral optical code)` | 1.79952 / 42.20 | S-LAH52Q (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
+| L34 (L34) | 22A | `743493 (vendor-neutral optical code)` | 1.74330 / 49.30 | S-LAM60 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
+| L41 (L41) | 24 | `497816 (vendor-neutral optical code)` | 1.49700 / 81.60 | H-FK61 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
+| L42 (L42) | 26 | `618634 (vendor-neutral optical code)` | 1.61800 / 63.40 | S-PHM52 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
+| L43 (L43) | 27 | `883408 (vendor-neutral optical code)` | 1.88300 / 40.80 | S-LAH58 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
+| L44 (L44) | 29 | `538747 (vendor-neutral optical code)` | 1.53775 / 74.70 | S-FPM3 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
+
+### [HD PENTAX-DA 18-50mm f/4-5.6 DC WR RE](../../src/lens-data/pentax/HDPentaxDA1850mmF456DCWRRE.data.ts) - JP 2016-6455 A
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L11 (L11) | 1 | `804466 (vendor unresolved)` | 1.80400 / 46.60 | H-ZLaF50D (trusted Sellmeier) | sellmeier | patents/JP2016006455A.pdf | No review-record hit |
+| L12g (L12 Glass Substrate) | 3 | `497816 (vendor unresolved)` | 1.49700 / 81.60 | H-FK61 (trusted Sellmeier) | sellmeier | patents/JP2016006455A.pdf | No review-record hit |
+| L13 (L13) | 6 | `805254 (vendor unresolved)` | 1.80518 / 25.40 | S-TIH6 (trusted Sellmeier) | sellmeier | patents/JP2016006455A.pdf | No review-record hit |
+| L21 (L21) | 8 | `618634 (vendor unresolved)` | 1.61800 / 63.40 | S-PHM52 (trusted Sellmeier) | sellmeier | patents/JP2016006455A.pdf | Audit-log hit |
+| L22 (L22) | 10 | `487702 (vendor unresolved)` | 1.48749 / 70.20 | S-FSL5 (trusted Sellmeier) | sellmeier | patents/JP2016006455A.pdf | No review-record hit |
+| L23 (L23) | 11 | `847238 (vendor unresolved)` | 1.84666 / 23.80 | J-SF03 (trusted Sellmeier) | sellmeier | patents/JP2016006455A.pdf | No review-record hit |
+| L31 (L31) | 14 | `805254 (vendor unresolved)` | 1.80518 / 25.40 | S-TIH6 (trusted Sellmeier) | sellmeier | patents/JP2016006455A.pdf | No review-record hit |
+| L32 (L32) | 15 | `788474 (vendor unresolved)` | 1.78800 / 47.40 | J-LASF014 (trusted Sellmeier) | sellmeier | patents/JP2016006455A.pdf | No review-record hit |
+| L41 (L41) | 17 | `618634 (vendor unresolved)` | 1.61800 / 63.40 | S-PHM52 (trusted Sellmeier) | sellmeier | patents/JP2016006455A.pdf | Audit-log hit |
+
+### [HD PENTAX-DA 20-40mm f/2.8-4 ED Limited DC WR](../../src/lens-data/pentax/HDPentaxDA2040mmF284EDLimitedDCWR.data.ts) - JP 2015-11156 A
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L11 (L11) | 1 | `729547 (vendor/catalog identity unresolved)` | 1.72916 / 54.70 | TAC8 (trusted Sellmeier) | sellmeier | patents/JP2015011156A.pdf | No review-record hit |
+| L12 (L12) | 3 | `689528 (catalog identity unresolved)` | 1.68900 / 52.80 | No catalog entry | abbe | patents/JP2015011156A.pdf | Audit-log hit |
+| L13 (L13) | 5 | `762265 (vendor/catalog identity unresolved)` | 1.76182 / 26.50 | S-TIH14 (trusted Sellmeier) | sellmeier | patents/JP2015011156A.pdf | No review-record hit |
+| L21 (L21) | 7 | `743493 (vendor/catalog identity unresolved)` | 1.74320 / 49.30 | S-LAM60 (trusted Sellmeier) | sellmeier | patents/JP2015011156A.pdf | No review-record hit |
+| L22 (L22) | 9 | `497816 (vendor/catalog identity unresolved)` | 1.49700 / 81.60 | H-FK61 (trusted Sellmeier) | sellmeier | patents/JP2015011156A.pdf | No review-record hit |
+| L23 (L23) | 10 | `788474 (vendor/catalog identity unresolved)` | 1.78800 / 47.40 | J-LASF014 (trusted Sellmeier) | sellmeier | patents/JP2015011156A.pdf | No review-record hit |
+| L25 (L25) | 13 | `717479 (vendor/catalog identity unresolved)` | 1.71700 / 47.90 | S-LAM3 (trusted Sellmeier) | sellmeier | patents/JP2015011156A.pdf | No review-record hit |
+| L26 (L26) | 15 | `847238 (vendor/catalog identity unresolved)` | 1.84666 / 23.80 | J-SF03 (trusted Sellmeier) | sellmeier | patents/JP2015011156A.pdf | No review-record hit |
+| L27 (L27) | 17 | `603655 (vendor/catalog identity unresolved)` | 1.60300 / 65.50 | S-PHM53 (trusted Sellmeier) | sellmeier | patents/JP2015011156A.pdf | No review-record hit |
 
 ### [KODAK AERO EKTAR 6 in f/3.5](../../src/lens-data/kodak/KodakAeroEktar6inf35.data.ts) - US 2,983,193
 
@@ -1584,28 +1655,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|---|---|
 | L8 (Element 8) | 13 | `Unmatched (728403 lanthanum flint; no public coefficient row inside the d-line safety window)` | 1.72750 / 40.30 | No catalog entry | abbe | patents/US6560042.pdf | Explicit disposition in data |
 
-### [PENTAX HD D FA 150-450mm f/4.5-5.6 ED DC AW](../../src/lens-data/pentax/HDPentaxDFA150450mmF4556EDDCAW.data.ts) - US 2016/0327774 A1
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L11 (Element 11) | 1 | `750353 (vendor unresolved; patent nd/νd coordinate)` | 1.74950 / 35.30 | J-LAF7 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
-| L12 (Element 12) | 3 | `497816 (vendor unresolved; patent nd/νd coordinate)` | 1.49700 / 81.60 | H-FK61 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
-| L13 (Element 13) | 5 | `538747 (vendor unresolved; patent nd/νd coordinate)` | 1.53775 / 74.70 | S-FPM3 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
-| L21 (Element 21) | 7 | `717295 (vendor unresolved; patent nd/νd coordinate)` | 1.71736 / 29.50 | SF1 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
-| L22 (Element 22) | 8 | `786442 (vendor unresolved; patent nd/νd coordinate)` | 1.78590 / 44.20 | S-LAH51 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
-| L31 (Element 31) | 10 | `516641 (vendor unresolved; patent nd/νd coordinate)` | 1.51633 / 64.10 | S-BSL7 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
-| L32 (Element 32) | 12 | `806409 (vendor unresolved; patent nd/νd coordinate)` | 1.80610 / 40.90 | P-LASF47 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
-| L34 (Element 34) | 15 | `757478 (vendor unresolved; patent nd/νd coordinate)` | 1.75700 / 47.80 | S-LAM54 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
-| L41 (Element 41) | 18 | `717295 (vendor unresolved; patent nd/νd coordinate)` | 1.71736 / 29.50 | SF1 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
-| L42 (Element 42) | 20 | `618634 (vendor unresolved; patent nd/νd coordinate)` | 1.61800 / 63.40 | S-PHM52 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
-| L43 (Element 43) | 22 | `589612 (vendor unresolved; patent nd/νd coordinate)` | 1.58913 / 61.20 | S-BAL35 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
-| L44 (Element 44) | 23 | `750353 (vendor unresolved; patent nd/νd coordinate)` | 1.74950 / 35.30 | J-LAF7 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
-| L45 (Element 45) | 25 | `658509 (vendor unresolved; patent nd/νd coordinate)` | 1.65844 / 50.90 | N-SSK5 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
-| L51 (Element 51) | 27 | `835427 (vendor unresolved; patent nd/νd coordinate)` | 1.83481 / 42.70 | S-LAH55 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
-| L52 (Element 52) | 29 | `717295 (vendor unresolved; patent nd/νd coordinate)` | 1.71736 / 29.50 | SF1 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
-| L53 (Element 53) | 30 | `497816 (vendor unresolved; patent nd/νd coordinate)` | 1.49700 / 81.60 | H-FK61 (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
-| L54 (Element 54) | 32 | `804466 (vendor unresolved; patent nd/νd coordinate)` | 1.80400 / 46.60 | H-ZLaF50D (trusted Sellmeier) | sellmeier | patents/US20160327774A1.pdf | No review-record hit |
-
 ### [PENTAX HD D FA 28-105mm f/3.5-5.6 ED DC WR](../../src/lens-data/pentax/PentaxDFA28105mmF3556EDDCWR.data.ts) - US 2017/0068075 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
@@ -1656,55 +1705,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L18 (Element L18) | 14 | `806407 - high-index lanthanum glass class (vendor unresolved)` | 1.80610 / 40.70 | NBFD13 (trusted Sellmeier) | sellmeier | patents/US20130222925A1.pdf | No review-record hit |
 | L22 (Element L22) | 18 | `806333 - high-index lanthanum flint class (vendor unresolved)` | 1.80610 / 33.30 | NBFD15 (trusted Sellmeier) | sellmeier | patents/US20130222925A1.pdf | No review-record hit |
 | L23 (Element L23) | 20 | `569560 - barium crown class (vendor unresolved)` | 1.56883 / 56.00 | N-BAK4 (trusted Sellmeier) | sellmeier | patents/US20130222925A1.pdf | No review-record hit |
-
-### [PENTAX HD DA 16-85mm f/3.5-5.6 ED DC WR](../../src/lens-data/pentax/HDPentaxDA1685mmF3556EDDCWR.data.ts) - JP 2016-114800 A
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L11 (L11) | 1 | `847238 (vendor-neutral optical code)` | 1.84666 / 23.80 | J-SF03 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
-| L12 (L12) | 2 | `773496 (vendor-neutral optical code)` | 1.77250 / 49.60 | J-LASF016 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
-| L13 (L13) | 4 | `804466 (vendor-neutral optical code)` | 1.80400 / 46.60 | H-ZLaF50D (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
-| L21g (L21 glass substrate) | 7 | `883408 (vendor-neutral optical code)` | 1.88300 / 40.80 | S-LAH58 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
-| L22 (L22) | 9 | `773496 (vendor-neutral optical code)` | 1.77250 / 49.60 | J-LASF016 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
-| L23 (L23) | 11 | `762265 (vendor-neutral optical code)` | 1.76182 / 26.50 | S-TIH14 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
-| L24 (L24) | 13 | `804466 (vendor-neutral optical code)` | 1.80400 / 46.60 | H-ZLaF50D (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
-| L25 (L25) | 14 | `762265 (vendor-neutral optical code)` | 1.76182 / 26.50 | S-TIH14 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
-| L31 (L31) | 17 | `516641 (vendor-neutral optical code)` | 1.51633 / 64.10 | S-BSL7 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
-| L32 (L32) | 19 | `516641 (vendor-neutral optical code)` | 1.51633 / 64.10 | S-BSL7 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
-| L33 (L33) | 20 | `800422 (vendor-neutral optical code)` | 1.79952 / 42.20 | S-LAH52Q (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
-| L34 (L34) | 22A | `743493 (vendor-neutral optical code)` | 1.74330 / 49.30 | S-LAM60 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
-| L41 (L41) | 24 | `497816 (vendor-neutral optical code)` | 1.49700 / 81.60 | H-FK61 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
-| L42 (L42) | 26 | `618634 (vendor-neutral optical code)` | 1.61800 / 63.40 | S-PHM52 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
-| L43 (L43) | 27 | `883408 (vendor-neutral optical code)` | 1.88300 / 40.80 | S-LAH58 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
-| L44 (L44) | 29 | `538747 (vendor-neutral optical code)` | 1.53775 / 74.70 | S-FPM3 (trusted Sellmeier) | sellmeier | patents/JP2016114800A.pdf | No review-record hit |
-
-### [PENTAX HD DA 18-50mm f/4-5.6 DC WR RE](../../src/lens-data/pentax/HDPentaxDA1850mmF456DCWRRE.data.ts) - JP 2016-6455 A
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L11 (L11) | 1 | `804466 (vendor unresolved)` | 1.80400 / 46.60 | H-ZLaF50D (trusted Sellmeier) | sellmeier | patents/JP2016006455A.pdf | No review-record hit |
-| L12g (L12 Glass Substrate) | 3 | `497816 (vendor unresolved)` | 1.49700 / 81.60 | H-FK61 (trusted Sellmeier) | sellmeier | patents/JP2016006455A.pdf | No review-record hit |
-| L13 (L13) | 6 | `805254 (vendor unresolved)` | 1.80518 / 25.40 | S-TIH6 (trusted Sellmeier) | sellmeier | patents/JP2016006455A.pdf | No review-record hit |
-| L21 (L21) | 8 | `618634 (vendor unresolved)` | 1.61800 / 63.40 | S-PHM52 (trusted Sellmeier) | sellmeier | patents/JP2016006455A.pdf | No review-record hit |
-| L22 (L22) | 10 | `487702 (vendor unresolved)` | 1.48749 / 70.20 | S-FSL5 (trusted Sellmeier) | sellmeier | patents/JP2016006455A.pdf | No review-record hit |
-| L23 (L23) | 11 | `847238 (vendor unresolved)` | 1.84666 / 23.80 | J-SF03 (trusted Sellmeier) | sellmeier | patents/JP2016006455A.pdf | No review-record hit |
-| L31 (L31) | 14 | `805254 (vendor unresolved)` | 1.80518 / 25.40 | S-TIH6 (trusted Sellmeier) | sellmeier | patents/JP2016006455A.pdf | No review-record hit |
-| L32 (L32) | 15 | `788474 (vendor unresolved)` | 1.78800 / 47.40 | J-LASF014 (trusted Sellmeier) | sellmeier | patents/JP2016006455A.pdf | No review-record hit |
-| L41 (L41) | 17 | `618634 (vendor unresolved)` | 1.61800 / 63.40 | S-PHM52 (trusted Sellmeier) | sellmeier | patents/JP2016006455A.pdf | No review-record hit |
-
-### [PENTAX HD DA 20-40mm f/2.8-4 ED Limited DC WR](../../src/lens-data/pentax/HDPentaxDA2040mmF284EDLimitedDCWR.data.ts) - JP 2015-11156 A
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L11 (L11) | 1 | `729547 (vendor/catalog identity unresolved)` | 1.72916 / 54.70 | TAC8 (trusted Sellmeier) | sellmeier | patents/JP2015011156A.pdf | No review-record hit |
-| L12 (L12) | 3 | `689528 (catalog identity unresolved)` | 1.68900 / 52.80 | No catalog entry | abbe | patents/JP2015011156A.pdf | Audit-log hit |
-| L13 (L13) | 5 | `762265 (vendor/catalog identity unresolved)` | 1.76182 / 26.50 | S-TIH14 (trusted Sellmeier) | sellmeier | patents/JP2015011156A.pdf | No review-record hit |
-| L21 (L21) | 7 | `743493 (vendor/catalog identity unresolved)` | 1.74320 / 49.30 | S-LAM60 (trusted Sellmeier) | sellmeier | patents/JP2015011156A.pdf | No review-record hit |
-| L22 (L22) | 9 | `497816 (vendor/catalog identity unresolved)` | 1.49700 / 81.60 | H-FK61 (trusted Sellmeier) | sellmeier | patents/JP2015011156A.pdf | No review-record hit |
-| L23 (L23) | 10 | `788474 (vendor/catalog identity unresolved)` | 1.78800 / 47.40 | J-LASF014 (trusted Sellmeier) | sellmeier | patents/JP2015011156A.pdf | No review-record hit |
-| L25 (L25) | 13 | `717479 (vendor/catalog identity unresolved)` | 1.71700 / 47.90 | S-LAM3 (trusted Sellmeier) | sellmeier | patents/JP2015011156A.pdf | No review-record hit |
-| L26 (L26) | 15 | `847238 (vendor/catalog identity unresolved)` | 1.84666 / 23.80 | J-SF03 (trusted Sellmeier) | sellmeier | patents/JP2015011156A.pdf | No review-record hit |
-| L27 (L27) | 17 | `603655 (vendor/catalog identity unresolved)` | 1.60300 / 65.50 | S-PHM53 (trusted Sellmeier) | sellmeier | patents/JP2015011156A.pdf | No review-record hit |
 
 ### [PENTAX HD DA* 11-18mm f/2.8 ED DC AW](../../src/lens-data/pentax/PentaxD1118mmF28EDDCWR.data.ts) - US 2018/0164556 A1
 
@@ -1795,17 +1795,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L42 (L42) | 19 | `Unmatched (nd=1.51601, vd=50.6; code position 516506)` | 1.51601 / 50.60 | No catalog entry | abbe | patents/US7307794.pdf | Explicit disposition in data |
 | L43 (L43) | 20 | `756288 class (nearest current dense-flint family 755275/276; patent vendor unspecified)` | 1.75589 / 28.80 | H-ZF6 (trusted Sellmeier) | sellmeier | patents/US7307794.pdf | No review-record hit |
 
-### [PENTAX SMC PENTAX-A ZOOM 35-70mm f/4](../../src/lens-data/pentax/PentaxA3570mmf4.data.ts) - US 4,812,022
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L1 (Element 1) | 1 | `834372 class (vendor unresolved)` | 1.83400 / 37.20 | S-LAH60 (trusted Sellmeier) | sellmeier | patents/US4812022.pdf | No review-record hit |
-| L2 (Element 2) | 3 | `806409 class (vendor unresolved)` | 1.80610 / 40.90 | P-LASF47 (trusted Sellmeier) | sellmeier | patents/US4812022.pdf | No review-record hit |
-| L3 (Element 3) | 5 | `805254 class (vendor unresolved)` | 1.80518 / 25.40 | S-TIH6 (trusted Sellmeier) | sellmeier | patents/US4812022.pdf | No review-record hit |
-| L5 (Element 5) | 9 | `658509 class (vendor unresolved)` | 1.65844 / 50.90 | N-SSK5 (trusted Sellmeier) | sellmeier | patents/US4812022.pdf | No review-record hit |
-| L6 (Element 6) | 11 | `805254 class (vendor unresolved)` | 1.80518 / 25.40 | S-TIH6 (trusted Sellmeier) | sellmeier | patents/US4812022.pdf | No review-record hit |
-| L7 (Element 7) | 13 | `581408 class (vendor unresolved)` | 1.58144 / 40.80 | PBL25 (trusted Sellmeier) | sellmeier | patents/US4812022.pdf | No review-record hit |
-
 ### [PENTAX SUPER-TAKUMAR 135mm f/2.5](../../src/lens-data/pentax/PentaxSuperTakumar135mmf2.5.data.ts) - US 3,459,469
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
@@ -1871,6 +1860,17 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L6 (Element 8) | 13 | `Unmatched (479/587 low-index crown; vendor unspecified)` | 1.47870 / 58.70 | No catalog entry | abbe | patents/US4773745.pdf | Explicit disposition in data |
+
+### [SMC PENTAX-A ZOOM 35-70mm f/4](../../src/lens-data/pentax/PentaxA3570mmf4.data.ts) - US 4,812,022
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L1 (Element 1) | 1 | `834372 class (vendor unresolved)` | 1.83400 / 37.20 | S-LAH60 (trusted Sellmeier) | sellmeier | patents/US4812022.pdf | No review-record hit |
+| L2 (Element 2) | 3 | `806409 class (vendor unresolved)` | 1.80610 / 40.90 | P-LASF47 (trusted Sellmeier) | sellmeier | patents/US4812022.pdf | No review-record hit |
+| L3 (Element 3) | 5 | `805254 class (vendor unresolved)` | 1.80518 / 25.40 | S-TIH6 (trusted Sellmeier) | sellmeier | patents/US4812022.pdf | No review-record hit |
+| L5 (Element 5) | 9 | `658509 class (vendor unresolved)` | 1.65844 / 50.90 | N-SSK5 (trusted Sellmeier) | sellmeier | patents/US4812022.pdf | No review-record hit |
+| L6 (Element 6) | 11 | `805254 class (vendor unresolved)` | 1.80518 / 25.40 | S-TIH6 (trusted Sellmeier) | sellmeier | patents/US4812022.pdf | No review-record hit |
+| L7 (Element 7) | 13 | `581408 class (vendor unresolved)` | 1.58144 / 40.80 | PBL25 (trusted Sellmeier) | sellmeier | patents/US4812022.pdf | No review-record hit |
 
 ### [SONY FE 12-24mm f/2.8 GM](../../src/lens-data/sony/SonyFE1224mmf28GM.data.ts) - WO 2021/200206 A1
 

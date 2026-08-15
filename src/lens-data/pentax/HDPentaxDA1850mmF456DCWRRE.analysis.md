@@ -9,13 +9,13 @@
 **Title:** *Zoom lens system* (変倍レンズ系)\
 **Embodiment analyzed:** Numerical Example 2 (Fig. 10; Tables 5–8)
 
-The prescription modeled here is Numerical Example 2 of JP 2016-6455 A. The job card fixes its production correlation to the **PENTAX HD PENTAX-DA 18-50mm f/4-5.6 DC WR RE**. The patent itself does not identify that retail product by name, so the correlation is treated as the selected dataset identity rather than as a manufacturer-confirmed statement.
+The prescription modeled here is Numerical Example 2 of JP 2016-6455 A. The job card fixes its production correlation to the **HD PENTAX-DA 18-50mm f/4-5.6 DC WR RE**. The patent itself does not identify that retail product by name, so the correlation is treated as the selected dataset identity rather than as a manufacturer-confirmed statement.
 
 Several independent points make the fixed correlation technically coherent:
 
 1. Ricoh Imaging specifies the production lens as an APS-C PENTAX K-mount zoom covering 18–50 mm at F4–5.6, with 11 elements in 8 groups and a 0.3 m minimum focusing distance. Numerical Example 2 gives 18.500–48.601 mm at infinity, FNO 3.98–5.74, 11 physical lens members in eight air-separated groups, and published 300 mm close-focus states.
 2. The production specification gives 0.23× maximum magnification. Example 2 reaches |β| = 0.242 at the telephoto-end 300 mm state. These values are close but are kept separate as marketing and design quantities.
-3. Ricoh's production literature identifies low-dispersion and aspherical optics. Example 2 contains a very-low-dispersion negative member in G1b and a bonded synthetic-resin aspherical layer on physical lens member L12. The production literature does not map those marketing descriptions to patent element labels, so no stronger identification is asserted.
+3. Ricoh's production construction diagram marks the hybrid-aspherical position at physical L12 and the anomalous-dispersion position at the front of G4. Those positions map to Example-2 L12 and L41 respectively, supporting the special-element diagram tags while leaving the production glass identity unpublished.
 4. The patent application was filed on 2014-06-20, before Ricoh announced the production lens on 2015-02-10. Ricoh later specified a 2015-04-17 release date. The timing is consistent with, but does not by itself prove, the correlation.
 
 No uniform prescription scaling is applied. The model uses **s = 1**, so radii, spacings, image-plane coordinates, and aspherical coefficients retain the selected example's dimensional scale. The marketed 18–50 mm range and the computed infinity-state design EFLs of 18.500561–48.605212 mm therefore remain distinct fields rather than being forced into equality.
@@ -123,6 +123,8 @@ The stop moves with this pair. That mechanical-optical relationship keeps the st
 
 L41 is the principal positive contributor in G4. Its standalone focal length is already close to the complete G4 power, +37.672 mm, whereas the following L42/L43 cemented pair is nearly afocal as an isolated assembly.
 
+Ricoh's production construction drawing marks this physical position as anomalous-dispersion glass. The data records that positional evidence as `apd: "inferred"`; the 618634 coordinate remains source-faithful and vendor-neutral.
+
 The group follows the same zoom trajectory as G2, a specific kinematic relationship stated in claim 9 and ¶0022/¶0026. The shared trajectory is reproduced exactly by the published spacing table.
 
 ### L42 + L43 — Rear Cemented Pair in G4
@@ -155,7 +157,7 @@ A separate catalog audit found several close cross-vendor matches for many coord
 
 The data file intentionally carries **no authored `nC`, `nF`, `ng`, or `dPgF` fields** because Numerical Example 2 does not publish them. S-NSL5 and S-NBH55 provide verified Sellmeier models for the two source-precision catalog-equivalent coordinates, while the remaining coordinate labels resolve only where the shared catalog rules support them. These equivalents do not establish the production supplier, an apochromatic claim, or a specific ED glass species.
 
-Ricoh's production literature separately states that the retail lens uses super-low-dispersion glass. That is a manufacturer-level product statement; it is not used here to rename a specific Example 2 coordinate as a branded or vendor-defined glass.
+Ricoh's production construction diagram marks the corresponding L41 position as anomalous-dispersion glass. The data therefore sets `apd: "inferred"` on L41, reflecting the production-to-patent position mapping without renaming its 618634 coordinate as a branded or vendor-defined glass. No `dPgF` is authored, and no APO claim is made.
 
 ## Focus Mechanism
 
@@ -209,7 +211,7 @@ Paragraphs 0038–0040 associate that choice with control of lateral chromatic a
 
 The L22/L23 cemented pair likewise combines νd = 70.2 and 23.8, but the patent does not single out that pair in the same way. Its role as an ordinary dispersion-balancing cemented pair is therefore a modeling interpretation rather than a quoted patent claim.
 
-No claim of apochromatic or anomalous-partial-dispersion performance is made. The available prescription carries only d-line `nd` and `νd`, which are insufficient to establish secondary-spectrum behavior by themselves.
+No apochromatic or numerical secondary-spectrum claim is made. The manufacturer construction drawing supports the L41 APD display tag, but the available prescription carries only d-line `nd` and `νd`, which are insufficient to quantify its partial-dispersion behavior by themselves.
 
 ## Conditional Expressions
 
