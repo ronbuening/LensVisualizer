@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **568** lenses scanned
-- **830** total code-only elements found
-- **266** elements in this report
-- **106** distinct lens files affected
+- **574** lenses scanned
+- **887** total code-only elements found
+- **267** elements in this report
+- **107** distinct lens files affected
 - **0** active unreviewed elements have no review-record hit or explicit disposition
 - **116** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
 - **0** dispositions lack any review record
@@ -149,6 +149,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 683548 | 1 | 1 | patents/WO2021039813A1.pdf | All rows have review records |
 | 684316 | 1 | 1 | patents/US20100149663A1.pdf | All rows explicitly disposed |
 | 685309 | 1 | 1 | patents/US20160154221A1.pdf | All rows explicitly disposed |
+| 689528 | 1 | 1 | patents/JP2015011156A.pdf | All rows have review records |
 | 691536 | 1 | 1 | patents/JP2021076829A.pdf | All rows explicitly disposed |
 | 693495 | 1 | 1 | patents/US3552833.pdf | All rows explicitly disposed |
 | 693562 | 1 | 1 | patents/US2983193.pdf | All rows explicitly disposed |
@@ -869,6 +870,12 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L8 (Element 8) | 13 | `Unmatched (728403 lanthanum flint; no public coefficient row inside the d-line safety window)` | 1.72750 / 40.30 | No catalog entry | abbe | patents/US6560042.pdf | Explicit disposition in data |
+
+### [PENTAX HD DA 20-40mm f/2.8-4 ED Limited DC WR](../../src/lens-data/pentax/HDPentaxDA2040mmF284EDLimitedDCWR.data.ts) - JP 2015-11156 A
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L12 (L12) | 3 | `689528 (catalog identity unresolved)` | 1.68900 / 52.80 | No catalog entry | abbe | patents/JP2015011156A.pdf | Audit-log hit |
 
 ### [PENTAX HD DA* 11-18mm f/2.8 ED DC AW](../../src/lens-data/pentax/PentaxD1118mmF28EDDCWR.data.ts) - US 2018/0164556 A1
 

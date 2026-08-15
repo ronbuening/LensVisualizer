@@ -20,6 +20,11 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-08-14",
+    type: "lens",
+    summary: "Added six Pentax DA, DA645, D FA, and A-series zoom lens designs",
+  },
+  {
+    date: "2026-08-14",
     type: "improvement",
     summary: "Added two Nikon catalog matches to the Thousand and One Nights index",
   },
