@@ -132,6 +132,17 @@ better investment.
 | NOKTON 50mm f/1.5 | US 2,646,721 Figure 2 at 600 dpi; restored front-to-center scale break | done 2026-08-05; zero image-circle-floor failures |
 | TELOMAR 100mm f/5.5 | US 2,662,446 A Figure 3 at 600 dpi; equalized rear doublet at 11.0 mm | done 2026-08-05; zero image-circle-floor failures |
 
+### Completed Pentax additions
+
+| Lens | Figure screen | Status |
+|---|---|---|
+| HD DA 16-85mm f/3.5-5.6 ED DC WR | JP 2016-114800 Figure 1 at 600 dpi; restored the front/rear group taper and enlarged hybrid L21 to its safe limit | done 2026-08-14; zero image-circle-floor failures |
+| HD DA 18-50mm f/4-5.6 DC WR RE | JP 2016-6455 Figure 10 at 600 dpi; enlarged hybrid L12 and L13 | done 2026-08-14; zero image-circle-floor failures |
+| HD DA 20-40mm f/2.8-4 ED Limited DC WR | JP 2015-11156 Figure 1 at 600 dpi; radial drawing scale is not dimensionally uniform | no change 2026-08-14; modeled taper matches |
+| HD DA645 28-45mm f/4.5 ED AW SR | JP 2015-87681 Figure 1 at 600 dpi; normalized deviations remain within drawing tolerance | no change 2026-08-14; modeled taper matches |
+| HD D FA 150-450mm f/4.5-5.6 ED DC AW | US 2016/0327774 Figure 1 at 600 dpi; final L54 restored near the L51-L53 envelope | done 2026-08-14; zero image-circle-floor failures |
+| SMC PENTAX-A ZOOM 35-70mm f/4 | US 4,812,022 Figure 9 at 300 dpi; final L7 reduced to the distinctly smaller source profile | done 2026-08-14; zero image-circle-floor failures |
+
 ## Section C — source blockers
 
 Nothing can be audited on these until the source is available.

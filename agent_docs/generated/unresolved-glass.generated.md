@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **568** lenses scanned
-- **6322** non-air surfaces examined
-- **6329** element glass declarations examined
-- **332** non-explicit-unmatched annotations did not resolve
-- **168** distinct unresolved glass-like tokens found
+- **574** lenses scanned
+- **6404** non-air surfaces examined
+- **6411** element glass declarations examined
+- **336** non-explicit-unmatched annotations did not resolve
+- **169** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -96,6 +96,7 @@ or per-lens patent backfills.
 | 680312 | 1 | 1 | |
 | 682366 | 1 | 1 | |
 | 683548 | 1 | 1 | |
+| 689528 | 1 | 1 | |
 | 694312 | 1 | 1 | |
 | 694536 | 1 | 1 | |
 | 697558 | 1 | 1 | |
@@ -558,6 +559,10 @@ or per-lens patent backfills.
 ### 683548 — 1 occurrence
 
 - [NIKON AF-P DX NIKKOR 10-20mm f/4.5-5.6 G VR](../../src/lens-data/nikon/NikonAFPDX1020mmf4556G.data.ts) 7: `683548 - patent-specified glass (theta_gF=0.5501; unresolved)`
+
+### 689528 — 1 occurrence
+
+- [HD PENTAX-DA 20-40mm f/2.8-4 ED Limited DC WR](../../src/lens-data/pentax/HDPentaxDA2040mmF284EDLimitedDCWR.data.ts) 3: `689528 (catalog identity unresolved)`
 
 ### 694312 — 1 occurrence
 
