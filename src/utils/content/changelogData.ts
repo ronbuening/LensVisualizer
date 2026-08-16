@@ -25,6 +25,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   },
   {
     date: "2026-08-14",
+    type: "lens",
+    summary: "Added six Nikon AF-S 300mm, 400mm, and 500mm super-telephoto lens designs",
+  },
+  {
+    date: "2026-08-14",
     type: "improvement",
     summary: "Added two Nikon catalog matches to the Thousand and One Nights index",
   },

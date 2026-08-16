@@ -12,17 +12,17 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **574** lenses scanned
-- **6396** glass elements examined
-- **1709** elements have multiple coordinate-compatible candidates
-- **365** lens files are affected
-- **155** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
-- **169** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
+- **580** lenses scanned
+- **6479** glass elements examined
+- **1724** elements have multiple coordinate-compatible candidates
+- **370** lens files are affected
+- **165** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
+- **179** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
-| Smallest reference-index residual | 896 |
-| Evidence-source priority | 541 |
+| Smallest reference-index residual | 897 |
+| Evidence-source priority | 555 |
 | Vendor context | 268 |
 | Stable canonical-name order | 4 |
 
@@ -541,6 +541,13 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `J-K3 (HIKARI) / S-NSL3 class` | 1.51823 / 58.89 (d) | J-K3 — Annotation vendor context matches Hikari. | S-NSL3 (Ohara, name, vendor ✗) | 1 | [NIKON AF-S NIKKOR 28-300mm f/3.5-5.6 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS28300mmf3556G.data.ts) L35 |
 | `J-LASF016 (HIKARI) / S-LAH66 class` | 1.77250 / 49.61 (d) | J-LASF016 — Annotation vendor context matches Hikari. | S-LAH66 (Ohara, name, vendor ✗) | 1 | [NIKON AF-S NIKKOR 28-300mm f/3.5-5.6 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS28300mmf3556G.data.ts) L41 |
 | `J-LASF021 (HIKARI) / S-LAH71 class` | 1.85026 / 32.34 (d) | J-LASF021 — Annotation vendor context matches Hikari. | S-LAH71 (Ohara, name, vendor ✗) | 1 | [NIKON AF-S NIKKOR 28-300mm f/3.5-5.6 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS28300mmf3556G.data.ts) L42 |
+| `J-LF7 / 575415 class (HIKARI spectral proxy)` | 1.57500 / 41.50 (d) | J-LF7 — direct name evidence outranks six-digit code evidence. | S-TIL27 (Ohara, code, vendor ✗, preferred code row) | 2 | [NIKON AF-S NIKKOR 300mm f/4 E PF ED VR](../../src/lens-data/nikon/NikonAFSNIKKOR300mmf4EPFEDVR.data.ts) L13 |
+| `J-F2 / 620364 class (HIKARI spectral proxy)` | 1.62000 / 36.40 (d) | J-F2 — direct name evidence outranks six-digit code evidence. | F2 (Schott, code, vendor ✗, preferred code row) | 1 | [NIKON AF-S NIKKOR 300mm f/4 E PF ED VR](../../src/lens-data/nikon/NikonAFSNIKKOR300mmf4EPFEDVR.data.ts) L21 |
+| `J-LAK14 / 697555 class (HIKARI spectral proxy)` | 1.69680 / 55.50 (d) | J-LAK14 — direct name evidence outranks six-digit code evidence. | LAC14 (Hoya, code, vendor ✗, alternate code row)<br>S-LAL14 (Ohara, code, vendor ✗, preferred code row) | 1 | [NIKON AF-S NIKKOR 300mm f/4 E PF ED VR](../../src/lens-data/nikon/NikonAFSNIKKOR300mmf4EPFEDVR.data.ts) L22 |
+| `J-SF10 / 728284 class (HIKARI spectral proxy)` | 1.72830 / 28.40 (d) | J-SF10 — direct name evidence outranks six-digit code evidence. | SF10 (Schott, code, vendor ✗, preferred code row) | 1 | [NIKON AF-S NIKKOR 300mm f/4 E PF ED VR](../../src/lens-data/nikon/NikonAFSNIKKOR300mmf4EPFEDVR.data.ts) L25 |
+| `613445 class (HIKARI J-KZFH1 spectral match)` | 1.61266 / 44.46 (d) | J-KZFH1 — direct name evidence outranks six-digit code evidence. | N-KZFS4 (Schott, code, vendor ✗, preferred code row) | 3 | [NIKON AF-S NIKKOR 500mm f/4 E FL ED VR](../../src/lens-data/nikon/NikonAFSNIKKOR500mmf4EFLEDVR.data.ts) L13 |
+| `697555 class (HIKARI J-LAK14 spectral match)` | 1.69680 / 55.52 (d) | J-LAK14 — direct name evidence outranks six-digit code evidence. | LAC14 (Hoya, code, vendor ✗, alternate code row)<br>S-LAL14 (Ohara, code, vendor ✗, preferred code row) | 1 | [NIKON AF-S NIKKOR 500mm f/4 E FL ED VR](../../src/lens-data/nikon/NikonAFSNIKKOR500mmf4EFLEDVR.data.ts) L14 |
+| `835427 class (HIKARI J-LASF05 spectral match)` | 1.83481 / 42.73 (d) | S-LAH55 — smallest d-line \|Δn\| (2.9e-6 vs 4.5e-6) | TAFD5F (Hoya, code, vendor ✗, alternate code row) | 1 | [NIKON AF-S NIKKOR 500mm f/4 E FL ED VR](../../src/lens-data/nikon/NikonAFSNIKKOR500mmf4EFLEDVR.data.ts) L37 |
 | `J-LASKH2 (Hikari, patent nd/vd match) / N-LAK33B` | 1.75500 / 52.34 (d) | J-LASKH2 — Annotation vendor context matches Hikari. | N-LAK33B (Schott, name, vendor ✗) | 1 | [NIKON AF-S NIKKOR 58mm f/1.4 G](../../src/lens-data/nikon/Nikon58f14GDesignCandidate.data.ts) Lb1p |
 | `S-FSL5 / FK5 (fluorine crown, low dispersion)` | 1.48749 / 70.31 (d) | S-FSL5 — smallest d-line \|Δn\| (6.5e-8 vs 3.0e-7) | FK5 (Sumita, name) | 1 | [NIKON AF-S NIKKOR 58mm f/1.4 G](../../src/lens-data/nikon/Nikon58f14GDesignCandidate.data.ts) Lb1n |
 | `E-FD8 (HOYA, patent nd/vd match) / S-TIM28` | 1.68893 / 31.16 (d) | E-FD8 — Annotation vendor context matches Hoya. | S-TIM28 (Ohara, name, vendor ✗) | 1 | [NIKON AF-S NIKKOR 58mm f/1.4 G](../../src/lens-data/nikon/Nikon58f14GDesignCandidate.data.ts) Lb2 |
@@ -593,6 +600,11 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `J-SF6 catalog equivalent (production supplier not established; patent 805255)` | 1.80458 / 25.50 (d) | J-SF6 — direct name evidence outranks six-digit code evidence. | H-ZF7LA (CDGM, code, preferred code row)<br>FD60 (Hoya, code, alternate code row) | 2 | [NIKON AI AF ZOOM-NIKKOR 80-200mm f/2.8D ED](../../src/lens-data/nikon/NikonAIAFZoomNikkor80200mmf28DED.data.ts) L7 |
 | `LAC8 catalog equivalent (production supplier not established; patent 713539)` | 1.71300 / 53.93 (d) | LAC8 — direct name evidence outranks six-digit code evidence. | MP-LAC8-30 (Hoya, code, alternate code row) | 1 | [NIKON AI AF ZOOM-NIKKOR 80-200mm f/2.8D ED](../../src/lens-data/nikon/NikonAIAFZoomNikkor80200mmf28DED.data.ts) L8 |
 | `N-FK5 catalog equivalent (production supplier not established; patent 487704)` | 1.48749 / 70.41 (d) | N-FK5 — direct name evidence outranks six-digit code evidence. | H-QK3L (CDGM, code, alternate code row)<br>FK5 (Sumita, code, alternate code row)<br>FC5 (Hoya, code, alternate code row) | 1 | [NIKON AI AF ZOOM-NIKKOR 80-200mm f/2.8D ED](../../src/lens-data/nikon/NikonAIAFZoomNikkor80200mmf28DED.data.ts) L13 |
+| `TAF3D catalog equivalent (patent 804465; production supplier unspecified)` | 1.80411 / 46.54 (d) | TAF3D — direct name evidence outranks six-digit code evidence. | TAF3 (Hoya, code, alternate code row)<br>N-LASF44 (Schott, code, preferred code row) | 1 | [NIKON AI AF-S NIKKOR 300mm f/2.8 D IF-ED](../../src/lens-data/nikon/NikonAFSNikkor300mmf28DIFED.data.ts) L13 |
+| `N-FK5 catalog equivalent (patent 487704; production supplier unspecified)` | 1.48749 / 70.41 (d) | N-FK5 — direct name evidence outranks six-digit code evidence. | H-QK3L (CDGM, code, alternate code row)<br>FK5 (Sumita, code, alternate code row)<br>FC5 (Hoya, code, alternate code row) | 1 | [NIKON AI AF-S NIKKOR 300mm f/2.8 D IF-ED](../../src/lens-data/nikon/NikonAFSNikkor300mmf28DIFED.data.ts) L33 |
+| `TAF4 catalog equivalent (patent 788475; production supplier unspecified)` | 1.78797 / 47.47 (d) | TAF4 — direct name evidence outranks six-digit code evidence. | N-LAF21 (Schott, code, preferred code row) | 1 | [NIKON AI AF-S NIKKOR 400mm f/2.8 D IF-ED II](../../src/lens-data/nikon/NikonAFSNikkor400mmf28DIFEDII.data.ts) L13 |
+| `SF6 catalog equivalent (patent 805254; production supplier unspecified)` | 1.80518 / 25.41 (d) | SF6 — direct name evidence outranks six-digit code evidence. | S-TIH6 (Ohara, code, preferred code row) | 1 | [NIKON AI AF-S NIKKOR 400mm f/2.8 D IF-ED II](../../src/lens-data/nikon/NikonAFSNikkor400mmf28DIFEDII.data.ts) L22 |
+| `J-SF03 catalog equivalent (patent 847238; production supplier unspecified)` | 1.84666 / 23.82 (d) | J-SF03 — direct name evidence outranks six-digit code evidence. | H-ZF52 (CDGM, code, alternate code row)<br>S-TIH53W (Ohara, code, alternate code row)<br>S-TIH53 (Ohara, code, preferred code row)<br>FDS90 (Hoya, code, alternate code row) | 1 | [NIKON AI AF-S NIKKOR 500mm f/4 D IF-ED](../../src/lens-data/nikon/NikonAFSNikkor500mmf4DIFED.data.ts) L22a |
 | `805254 — optical-position class (vendor unproven)` | 1.80518 / 25.41 (d) | SF6 — smallest d-line \|Δn\| (7.8e-8 vs 1.3e-6) | S-TIH6 (Ohara, code, preferred code row) | 1 | [NIKON AI AF-S ZOOM-NIKKOR 80-200mm f/2.8D IF-ED](../../src/lens-data/nikon/NikonAFSZoomNikkor80200mmf28DIFED.data.ts) L1 |
 | `847238 — optical-position class (vendor unproven)` | 1.84666 / 23.82 (d) | J-SF03 — smallest d-line \|Δn\| (3.7e-8 vs 5.0e-8) | H-ZF52 (CDGM, code, alternate code row)<br>S-TIH53W (Ohara, code, alternate code row)<br>S-TIH53 (Ohara, code, preferred code row)<br>FDS90 (Hoya, code, alternate code row) | 2 | [NIKON AI AF-S ZOOM-NIKKOR 80-200mm f/2.8D IF-ED](../../src/lens-data/nikon/NikonAFSZoomNikkor80200mmf28DIFED.data.ts) L4 |
 | `487704 — optical-position class (vendor unproven)` | 1.48749 / 70.41 (d) | N-FK5 — smallest d-line \|Δn\| (3.7e-9 vs 4.1e-8) | H-QK3L (CDGM, code, alternate code row)<br>FK5 (Sumita, code, alternate code row)<br>FC5 (Hoya, code, alternate code row) | 2 | [NIKON AI AF-S ZOOM-NIKKOR 80-200mm f/2.8D IF-ED](../../src/lens-data/nikon/NikonAFSZoomNikkor80200mmf28DIFED.data.ts) L5 |
