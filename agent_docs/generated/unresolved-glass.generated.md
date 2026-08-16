@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **580** lenses scanned
 - **6487** non-air surfaces examined
 - **6494** element glass declarations examined
-- **338** non-explicit-unmatched annotations did not resolve
-- **171** distinct unresolved glass-like tokens found
+- **336** non-explicit-unmatched annotations did not resolve
+- **169** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -68,7 +68,6 @@ or per-lens patent backfills.
 | 534556 | 1 | 1 | |
 | 541468 | 1 | 1 | |
 | 545486 | 1 | 1 | |
-| 548455 | 1 | 1 | |
 | 553555 | 1 | 1 | |
 | 554381 | 1 | 1 | |
 | 561575 | 1 | 1 | |
@@ -162,7 +161,6 @@ or per-lens patent backfills.
 | J-LAK9 | 1 | 1 | |
 | J-LASFH6 | 1 | 1 | |
 | J-LASFH9A | 1 | 1 | |
-| J-LLF1 | 1 | 1 | |
 | J-LLF6 | 1 | 1 | |
 | J-PSK03 | 1 | 1 | |
 | J-SK11 | 1 | 1 | |
@@ -449,10 +447,6 @@ or per-lens patent backfills.
 ### 545486 — 1 occurrence
 
 - [LAOWA 58mm f/2.8 2× Ultra-Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) 20: `545486 - crown glass (patent nd=1.54517, vd=48.63)`
-
-### 548455 — 1 occurrence
-
-- [NIKON AF-S NIKKOR 300mm f/4 E PF ED VR](../../src/lens-data/nikon/NikonAFSNIKKOR300mmf4EPFEDVR.data.ts) 25: `J-LLF1 / 548455 class (HIKARI spectral proxy)`
 
 ### 553555 — 1 occurrence
 
@@ -825,10 +819,6 @@ or per-lens patent backfills.
 ### J-LASFH9A — 1 occurrence
 
 - [Nikon AI Zoom-Nikkor 35-200mm f/3.5-4.5S](../../src/lens-data/nikon/NikonAIZoomNikkor35200mmf3545S.data.ts) 6: `J-LASFH9A class (Hikari, 903/358)`
-
-### J-LLF1 — 1 occurrence
-
-- [NIKON AF-S NIKKOR 300mm f/4 E PF ED VR](../../src/lens-data/nikon/NikonAFSNIKKOR300mmf4EPFEDVR.data.ts) 25: `J-LLF1 / 548455 class (HIKARI spectral proxy)`
 
 ### J-LLF6 — 1 occurrence
 

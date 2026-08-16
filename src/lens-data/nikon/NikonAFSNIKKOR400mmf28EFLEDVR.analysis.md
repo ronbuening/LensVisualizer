@@ -1,4 +1,4 @@
-# NIKON AF-S NIKKOR 400mm f/2.8 E FL ED VR — Optical Design Analysis
+# NIKON AF-S NIKKOR 400mm f/2.8E FL ED VR — Optical Design Analysis
 
 ## Patent Reference and Design Identification
 
@@ -12,7 +12,7 @@
 **Embodiment analyzed:** Example 1 / 第1実施例\
 
 The prescription is the first numerical embodiment in JP 2015-215559 A, described in ¶0122–0133 and tabulated in
-Table 1. The production correlation is to the **NIKON AF-S NIKKOR 400mm f/2.8 E FL ED VR**. This correlation is an
+Table 1. The production correlation is to the **NIKON AF-S NIKKOR 400mm f/2.8E FL ED VR**. This correlation is an
 analytical identification of the selected patent embodiment; Nikon does not publish a statement identifying Example 1
 as the production prescription.
 
@@ -297,9 +297,10 @@ dispersive positive member, L22 at νd = 23.80. The patent explicitly states tha
 lateral chromatic correction (¶0034–0041, ¶0054–0062, ¶0090–0101).
 
 The final spectral enrichment is sufficient for line-index and partial-dispersion tracing, but the analysis does not label
-the prescription apochromatic. Nikon markets two ED glass elements in addition to two fluorite elements, yet the
-selected patent example and final data do not provide an unambiguous source mapping from the production ED labels to two
-specific non-fluorite element slots.
+the prescription apochromatic. Nikon markets two ED glass elements in addition to two fluorite elements. The viewer maps
+the two ED tags inferentially to L15 (`νd = 82.57`) and L31 (`νd = 70.31`), the only non-fluorite positive elements with
+exceptionally low dispersion in the selected example. That positional mapping is useful for the diagram, but it is not a
+patent-stated surface assignment or a production-melt identification.
 
 ## Focus Mechanism
 

@@ -1,4 +1,4 @@
-# NIKON AF-S NIKKOR 500mm f/4 E FL ED VR
+# NIKON AF-S NIKKOR 500mm f/4E FL ED VR
 
 ## Patent Reference and Design Identification
 
@@ -11,7 +11,7 @@
 **Title:** 光学系、光学装置、光学系の製造方法 (*Optical system, optical apparatus, and method for manufacturing an optical system*)\
 **Embodiment analyzed:** Example 1 / 第1実施例
 
-The prescription is the project-selected correlation for the **NIKON AF-S NIKKOR 500mm f/4 E FL ED VR**. The patent does not identify a commercial lens by product name, so the correspondence is an evidence-based production correlation rather than an express manufacturer statement.
+The prescription is the project-selected correlation for the **NIKON AF-S NIKKOR 500mm f/4E FL ED VR**. The patent does not identify a commercial lens by product name, so the correspondence is an evidence-based production correlation rather than an express manufacturer statement.
 
 Several independent features converge on that identification:
 
@@ -98,9 +98,9 @@ L22 is the positive member of the cemented L22+L23 pair. Its unusually low Abbe 
 
 ### L23 — Plano-Concave Negative
 
-`nd = 1.55298`, `νd = 55.07`. Glass: **Unmatched (553551; current HIKARI J-KZFH4 is a post-filing spectral proxy only)**. Standalone `f = −171.288293 mm`.
+`nd = 1.55298`, `νd = 55.07`. Glass: **553551 class (HIKARI J-KZFH4 catalog-equivalent spectral proxy; historical identity unasserted)**. Standalone `f = −171.288293 mm`.
 
-L23 is cemented to L22 and is the negative glass governed by patent conditions (3) and (5). The final data deliberately leaves its identity unmatched. A current HIKARI J-KZFH4 entry is an exceptionally close coordinate analogue, but HIKARI's history records its development after this patent's filing and after the production lens's release period. It is therefore used only as an explicit spectral proxy for line-index modeling, not as the historical glass identification. [HIKARI history archive][hikari-history]
+L23 is cemented to L22 and is the negative glass governed by patent conditions (3) and (5). Its `553551` coordinate is an exact catalog-coordinate match to current HIKARI J-KZFH4, so the data now resolves it to that coefficient-backed curve as a catalog-equivalent spectral proxy. HIKARI's history records the named glass's development after this patent's filing and after the production lens's release period, so the label explicitly avoids asserting J-KZFH4 as the historical glass identity. [HIKARI history archive][hikari-history]
 
 The isolated L22+L23 cemented pair is weakly positive, with equivalent focal length **+1373.881775 mm**. G2 nevertheless remains strongly negative at **−107.210701 mm** because L21 precedes that pair with negative power and a finite air separation. This illustrates why standalone element power, cemented net power, and complete group power must be kept separate.
 
@@ -160,7 +160,7 @@ The patent itself supplies `nd`, `νd`, and rounded `θgF` values but does not n
 
 - **Manufacturer-correlated material:** L11 and L12 are assigned CaF2 because Nikon's production specification explicitly states that the lens contains two fluorite elements and the patent contains exactly two matching low-index/high-Abbe elements.
 - **Coordinate class with spectral proxy:** where a current HIKARI glass reproduces the patent's `nd/νd` coordinate, the class remains the authored identity while HIKARI line data populate `nC`, `nF`, `ng`, and `dPgF` for chromatic tracing.
-- **Unmatched material:** L23 remains `Unmatched (553551)` because the closest current named HIKARI coordinate post-dates the design. Its line data are retained only as a disclosed spectral proxy.
+- **Post-filing catalog equivalent:** L23 resolves to the exact-coordinate J-KZFH4 curve for spectral modeling, while its label and note explicitly avoid asserting the later named glass as the historical material.
 
 | Model material | `nd` | `νd` | `dPgF` in final data | Elements | Basis of identification |
 | --- | ---: | ---: | ---: | --- | --- |
@@ -170,7 +170,7 @@ The patent itself supplies `nd`, `νd`, and rounded `θgF` values but does not n
 | 498826 ED class (HIKARI J-FKH1 spectral match) | 1.49782 | 82.57 | +0.0327 | L15, L32, L35 | Three-element count correlates with Nikon's three ED elements; HIKARI spectral proxy |
 | 834372 class (HIKARI J-LASF010 spectral match) | 1.83400 | 37.18 | −0.0042 | L21 | Patent coordinate; HIKARI spectral proxy |
 | 808227 high-dispersion class (HIKARI J-SFH1 spectral match) | 1.80809 | 22.74 | +0.0226 | L22, L31 | Patent coordinate; HIKARI spectral proxy |
-| Unmatched 553551; J-KZFH4 post-filing proxy | 1.55298 | 55.07 | −0.0073 | L23 | Historical identity not asserted; current HIKARI line data used only as proxy |
+| 553551 class; J-KZFH4 catalog-equivalent proxy | 1.55298 | 55.07 | −0.0073 | L23 | Exact catalog coordinate; historical identity not asserted because the named glass post-dates the design |
 | 623581 class (HIKARI J-SK15 spectral match) | 1.62299 | 58.12 | −0.0030 | L33 | Patent coordinate; HIKARI spectral proxy |
 | 835427 class (HIKARI J-LASF05 spectral match) | 1.83481 | 42.73 | −0.0079 | L37 | Patent coordinate; HIKARI spectral proxy |
 | 801349 class (HIKARI J-LAF016 spectral match) | 1.80100 | 34.92 | −0.0004 | L38 | Patent coordinate; HIKARI spectral proxy |

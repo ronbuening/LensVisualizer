@@ -49,10 +49,11 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-af-s-nikkor-400mm-f28e-fl-ed-vr",
   maker: "Nikon",
-  name: "NIKON AF-S NIKKOR 400mm f/2.8 E FL ED VR",
+  name: "NIKON AF-S NIKKOR 400mm f/2.8E FL ED VR",
   subtitle: "JP 2015-215559 A Example 1 — plate-normalized active prescription",
   specs: [
     "16 ELEMENTS / 12 GROUPS",
+    "2 FLUORITE + 2 ED",
     "400 mm MARKETED / 391.497 mm MODELED",
     "f/2.8 MARKETED / f/2.8815 MODELED",
     "FX / 6°10′ MARKETED",
@@ -76,7 +77,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L11",
-      label: "L11",
+      label: "L11 — Fluorite",
       type: "Biconvex Positive",
       nd: 1.43385,
       vd: 95.25,
@@ -86,12 +87,14 @@ const LENS_DATA = {
       nF: 1.437025037791202,
       ng: 1.439485097442597,
       dPgF: 0.055066835746213016,
+      apd: "inferred",
+      apdNote: "Fluorite assignment from Nikon's two-fluorite production specification and this patent coordinate.",
       role: "Front positive collector; correlated with one of the production lens's two fluorite elements.",
     },
     {
       id: 2,
       name: "L12",
-      label: "L12",
+      label: "L12 — Fluorite",
       type: "Biconvex Positive",
       nd: 1.43385,
       vd: 95.25,
@@ -101,6 +104,8 @@ const LENS_DATA = {
       nF: 1.437025037791202,
       ng: 1.439485097442597,
       dPgF: 0.055066835746213016,
+      apd: "inferred",
+      apdNote: "Fluorite assignment from Nikon's two-fluorite production specification and this patent coordinate.",
       role: "Second front positive collector; correlated with the second production fluorite element.",
     },
     {
@@ -137,7 +142,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L15",
-      label: "L15",
+      label: "L15 — ED class",
       type: "Positive Meniscus",
       nd: 1.49782,
       vd: 82.57,
@@ -147,6 +152,8 @@ const LENS_DATA = {
       nF: 1.502009,
       ng: 1.505256,
       dPgF: 0.0327,
+      apd: "inferred",
+      apdNote: "ED assignment inferred from Nikon's two-ED production specification and the patent's 498826 class.",
       role: "Positive member of the cemented G1b pair.",
       cemented: "D1",
     },
@@ -200,7 +207,7 @@ const LENS_DATA = {
     {
       id: 9,
       name: "L31",
-      label: "L31",
+      label: "L31 — ED class",
       type: "Biconvex Positive",
       nd: 1.48749,
       vd: 70.31,
@@ -210,6 +217,8 @@ const LENS_DATA = {
       nF: 1.492276,
       ng: 1.495944,
       dPgF: 0.0027,
+      apd: "inferred",
+      apdNote: "ED assignment inferred from Nikon's two-ED production specification and the patent's low-dispersion class.",
       role: "Positive first element of fixed G3a behind the stop.",
     },
     {
@@ -371,9 +380,9 @@ const LENS_DATA = {
   groups: [
     { text: "G1a", fromSurface: "3", toSurface: "8" },
     { text: "G1b", fromSurface: "9", toSurface: "11" },
-    { text: "G2 FOCUS", fromSurface: "12", toSurface: "16" },
+    { text: "G2", fromSurface: "12", toSurface: "16" },
     { text: "G3a", fromSurface: "18", toSurface: "21" },
-    { text: "G3b VR", fromSurface: "22", toSurface: "26" },
+    { text: "G3b", fromSurface: "22", toSurface: "26" },
     { text: "G3c", fromSurface: "27", toSurface: "31" },
   ],
   doublets: [

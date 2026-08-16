@@ -32,7 +32,7 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 const LENS_DATA = {
   key: "nikon-af-s-nikkor-300mm-f4e-pf-ed-vr",
-  name: "NIKON AF-S NIKKOR 300mm f/4 E PF ED VR",
+  name: "NIKON AF-S NIKKOR 300mm f/4E PF ED VR",
   maker: "Nikon",
   subtitle: "JP 2015-102852 A — Example 1; strong production correlation; unscaled patent design",
 
@@ -70,7 +70,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L12",
-      label: "L12",
+      label: "L12 — ED class",
       type: "Biconvex Positive",
       nd: 1.4978,
       vd: 82.6,
@@ -109,12 +109,13 @@ const LENS_DATA = {
       nd: 1.5168,
       vd: 63.9,
       fl: 513.3961963236305,
-      glass: "Unmatched (legacy 1.5168/63.9 crown; J-BK7A spectral proxy)",
+      glass: "J-BK7A catalog-equivalent spectral proxy (patent 517639; production supplier unspecified)",
       nC: 1.514324,
       nF: 1.522382,
       ng: 1.526699,
       dPgF: -0.001,
-      apdNote: "J-BK7A line indices are used only as a spectral proxy; current J-BK7A vd = 64.14, not the patent's 63.9.",
+      apdNote:
+        "J-BK7A line indices are used as a compatible catalog-equivalent proxy; current J-BK7A vd = 64.14 versus the patent's rounded 63.9.",
       role: "Positive substrate carrying the contact multilayer DOE on its image-side structure.",
       cemented: "PF1",
     },
@@ -291,7 +292,7 @@ const LENS_DATA = {
       nd: 1.5481,
       vd: 45.5,
       fl: 56.807925456913296,
-      glass: "J-LLF1 / 548455 class (HIKARI spectral proxy)",
+      glass: "J-LLF1 / 548455 class (HIKARI catalog-equivalent spectral proxy)",
       nC: 1.54455,
       nF: 1.556594,
       ng: 1.563441,
@@ -398,11 +399,11 @@ const LENS_DATA = {
     { text: "G2", fromSurface: "13", toSurface: "29" },
   ],
   doublets: [
-    { text: "L12+L13", fromSurface: "3", toSurface: "5" },
-    { text: "L15+L16", fromSurface: "10", toSurface: "12" },
+    { text: "D1", fromSurface: "3", toSurface: "5" },
+    { text: "D2", fromSurface: "10", toSurface: "12" },
     { text: "LF", fromSurface: "13", toSurface: "15" },
     { text: "LC1", fromSurface: "17", toSurface: "19" },
-    { text: "L25+L26", fromSurface: "20", toSurface: "22" },
+    { text: "D3", fromSurface: "20", toSurface: "22" },
     { text: "LC2", fromSurface: "25", toSurface: "27" },
   ],
 

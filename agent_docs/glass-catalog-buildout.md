@@ -8,7 +8,17 @@ catalog equivalent. If neither path is available, the engine falls back to parti
 dPgF-corrected indices, or the legacy Abbe approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **517 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **518 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+
+The August 16, 2026 Phase 99 screenshot-led Nikon super-telephoto audit added HIKARI J-LLF1 from HIKARI's first-party
+2023 optical-glass catalog and its published power-series dispersion coefficients. The new curve resolves the
+300mm f/4E PF ED VR's L28 (`548455`). The same audit promoted three already available, coordinate-compatible curves:
+J-BK7A for that lens's L14 substrate (`517639`), J-KZFH4 for the 500mm f/4E FL ED VR's L23 (`553551`, retained as a
+post-filing catalog equivalent rather than a historical identity), and M-TAF1 for the older 500mm f/4D IF lens's L21
+(`773495`). Nikon's official material counts also support inferred ED/APD diagram tags without inventing patent `dPgF`.
+The pass adds four strict Sellmeier surfaces and one net trusted surface, makes the modern 500mm strict-complete, and
+brings global coverage to 5841/6487 strict and 5855/6487 trusted. There are now 330 strict-complete and 335
+trusted-complete visible lenses, with zero catalog-coordinate mismatches.
 
 The August 14, 2026 Phase 98 patent-figure follow-up audited the six-lens Nikon AF/AF-S zoom batch. All 106 physical
 glass elements already resolve to coordinate-compatible Sellmeier curves: the 80-200mm, 80-400mm, 70-200mm, and

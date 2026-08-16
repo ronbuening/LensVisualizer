@@ -10,7 +10,7 @@
 **Title:** *Internal Focusing Telephoto Lens*\
 **Embodiment analyzed:** Example 1 (Fig. 1 and Table 1)
 
-This prescription is the project-selected correlation for the **NIKON AI AF-S NIKKOR 300mm f/2.8 D IF-ED**. The patent
+This prescription is the project-selected correlation for the **NIKON AI AF-S NIKKOR ED 300mm f/2.8D IF**. The patent
 itself does not identify a commercial product by model name, and the cited Nikon product material does not explicitly
 state that US 5,745,306 is the production patent. The identification therefore rests on convergent correspondence rather
 than a manufacturer-published patent cross-reference.
@@ -206,8 +206,9 @@ they are not claims about Nikon's historical melts.
 | N-FK5 (patent 487704) | 1.487490 | 70.41 | L33 | Positive high-Abbe final element |
 
 The ED designation on L11, L12, and L14b follows the selected production correlation and Nikon's specification of three
-ED elements at positions 1, 2, and 5. The patent itself supplies the unusually high $\nu_d=82.52$ coordinate but does not
-name an ED trade glass or supplier.
+ED elements at positions 1, 2, and 5. Their `apd: inferred` viewer tags encode that official positional correlation so the
+diagram can identify the three ED-class elements; they do not invent patent $dP_{gF}$ data, name an ED trade glass, or
+identify a supplier.
 
 No per-element `nC`, `nF`, `ng`, or `dPgF` values are presented as patent data. Runtime chromatic tracing uses the named
 catalog-equivalent curves, while the authored d-line coordinates remain the source prescription.

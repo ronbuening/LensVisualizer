@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — NIKON AI AF-S NIKKOR 300mm f/2.8 D IF-ED                    ║
+ * ║  LENS DATA — NIKON AI AF-S NIKKOR ED 300mm f/2.8D IF                     ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
  * ║  Data source: US 5,745,306 A, Example 1 (Susumu Sato / Nikon Corporation).║
  * ║  Production correlation: Nikon AF-S Nikkor 300mm f/2.8D IF-ED (1996).     ║
@@ -28,6 +28,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║      Modeling values derived from paraxial marginal/chief rays,           ║
  * ║      the published 43.4 mm G2 effective diameter, condition (12), Fig. 1, ║
  * ║      the 52 mm rear drop-in-filter constraint, and geometry validation.   ║
+ * ║    - Fig. 1 supports the reduced terminal L33 SDs of 16.0 / 16.5 mm;       ║
+ * ║      the earlier 22.5 / 23.5 mm estimate visibly overstated that element. ║
  * ║    - They are not represented as patent measurements.                     ║
  * ║                                                                            ║
  * ║  GLASS / SPECTRAL DATA:                                                    ║
@@ -43,7 +45,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-ai-af-s-nikkor-300mm-f28d-if-ed",
   maker: "Nikon",
-  name: "NIKON AI AF-S NIKKOR 300mm f/2.8 D IF-ED",
+  name: "NIKON AI AF-S NIKKOR ED 300mm f/2.8D IF",
   subtitle: "US 5,745,306 A — Example 1; correlated to the 1996 AF-S production lens",
   specs: [
     "11 ELEMENTS / 8 GROUPS",
@@ -71,23 +73,27 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L11",
-      label: "Element L11",
+      label: "Element L11 — ED",
       type: "Biconvex Positive",
       nd: 1.49782,
       vd: 82.52,
       fl: 297.569744,
       glass: "J-FKH1 catalog equivalent (patent 498825; production supplier unspecified)",
+      apd: "inferred",
+      apdNote: "ED assignment from Nikon's published three-element positions G1-1, G1-2, and G1-5.",
       role: "First positive ED element of the G11 front collector.",
     },
     {
       id: 2,
       name: "L12",
-      label: "Element L12",
+      label: "Element L12 — ED",
       type: "Biconvex Positive",
       nd: 1.49782,
       vd: 82.52,
       fl: 210.237398,
       glass: "J-FKH1 catalog equivalent (patent 498825; production supplier unspecified)",
+      apd: "inferred",
+      apdNote: "ED assignment from Nikon's published three-element positions G1-1, G1-2, and G1-5.",
       cemented: "D1",
       role: "Second positive ED element of G11; cemented to negative L13.",
     },
@@ -118,12 +124,14 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L14b",
-      label: "Element L14b",
+      label: "Element L14b — ED",
       type: "Biconvex Positive",
       nd: 1.49782,
       vd: 82.52,
       fl: 107.791053,
       glass: "J-FKH1 catalog equivalent (patent 498825; production supplier unspecified)",
+      apd: "inferred",
+      apdNote: "ED assignment from Nikon's published three-element positions G1-1, G1-2, and G1-5.",
       cemented: "D2",
       role: "Positive ED rear member of G12; the third ED element in the active train.",
     },
@@ -237,9 +245,9 @@ const LENS_DATA = {
   ],
 
   groups: [
-    { text: "G1 (+)", fromSurface: "3", toSurface: "10" },
-    { text: "G2 FOCUS (-)", fromSurface: "11", toSurface: "15" },
-    { text: "G3 (+)", fromSurface: "17", toSurface: "22" },
+    { text: "G1", fromSurface: "3", toSurface: "10" },
+    { text: "G2", fromSurface: "11", toSurface: "15" },
+    { text: "G3", fromSurface: "17", toSurface: "22" },
   ],
 
   doublets: [

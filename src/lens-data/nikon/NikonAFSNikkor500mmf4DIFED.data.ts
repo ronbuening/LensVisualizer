@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔════════════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — NIKON AI AF-S NIKKOR 500mm f/4 D IF-ED                     ║
+ * ║ LENS DATA — NIKON AI AF-S NIKKOR ED 500mm f/4D IF                      ║
  * ╠════════════════════════════════════════════════════════════════════════════╣
  * ║ Data source: US 5,745,306 A, Example 2 / Fig. 4 / Table 2 (Sato/Nikon). ║
  * ║ Native patent scale: F=490.0 mm; independent EFL=489.960550 mm.          ║
@@ -23,6 +23,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ published 42.3 mm effective diameter, and the remaining clear apertures  ║
  * ║ are constrained by paraxial marginal/chief rays, Fig. 4 proportions,     ║
  * ║ edge thickness, rim slope, cross-gap clearance, and off-axis clipping.   ║
+ * ║ Fig. 4 supports the reduced terminal L3c SDs of 16.5 / 17.0 mm instead    ║
+ * ║ of the earlier 20.3 / 20.5 mm estimate.                                   ║
  * ║ gapSagFrac=0.91 is required only by the tight s13-s14 G2 air gap; at     ║
  * ║ h=20.0 mm its spherical-sag intrusion is 3.209551 mm of 3.5400 mm,       ║
  * ║ leaving 0.330449 mm physical rim clearance.                              ║
@@ -41,10 +43,11 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-ai-af-s-nikkor-500mm-f4d-if-ed",
   maker: "Nikon",
-  name: "NIKON AI AF-S NIKKOR 500mm f/4 D IF-ED",
+  name: "NIKON AI AF-S NIKKOR ED 500mm f/4D IF",
   subtitle: "US 5,745,306 A — Example 2 / second embodiment (Fig. 4, Table 2)",
   specs: [
     "11 ELEMENTS / 9 GROUPS",
+    "3 ED ELEMENTS",
     "PATENT F=490.0 mm; EFL≈489.961 mm",
     "DESIGN f/4.08",
     "2ω≈5.05°",
@@ -69,23 +72,27 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L11",
-      label: "L11",
+      label: "L11 — ED",
       type: "Biconvex Positive",
       nd: 1.49782,
       vd: 82.52,
       fl: 331.037085,
       glass: "J-FKH1 catalog equivalent (patent 498825; production supplier unspecified)",
+      apd: "inferred",
+      apdNote: "ED assignment from Nikon's published production positions G1-1, G1-2, and G1-5.",
       role: "Front positive collector; production correlation places an ED element at this position.",
     },
     {
       id: 2,
       name: "L12",
-      label: "L12",
+      label: "L12 — ED",
       type: "Biconvex Positive",
       nd: 1.49782,
       vd: 82.52,
       fl: 324.178322,
       glass: "J-FKH1 catalog equivalent (patent 498825; production supplier unspecified)",
+      apd: "inferred",
+      apdNote: "ED assignment from Nikon's published production positions G1-1, G1-2, and G1-5.",
       role: "Second positive collector; production correlation places an ED element at this position.",
     },
     {
@@ -114,12 +121,14 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L14b",
-      label: "L14b",
+      label: "L14b — ED",
       type: "Positive Meniscus",
       nd: 1.49782,
       vd: 82.52,
       fl: 128.727534,
       glass: "J-FKH1 catalog equivalent (patent 498825; production supplier unspecified)",
+      apd: "inferred",
+      apdNote: "ED assignment from Nikon's published production positions G1-1, G1-2, and G1-5.",
       role: "Positive second component of G12/L14; production correlation places an ED element here.",
       cemented: "D1",
     },
@@ -131,7 +140,7 @@ const LENS_DATA = {
       nd: 1.772789,
       vd: 49.45,
       fl: -131.631005,
-      glass: "Lanthanum-flint class (target nd=1.772789, νd=49.45; supplier unproven)",
+      glass: "773495 class (M-TAF1 catalog-equivalent spectral proxy; production supplier unspecified)",
       role: "First negative element of the translating internal-focus group G2.",
     },
     {
@@ -231,13 +240,13 @@ const LENS_DATA = {
   ],
 
   groups: [
-    { text: "G1 (+)", fromSurface: "3", toSurface: "11" },
-    { text: "G2 FOCUS (−)", fromSurface: "12", toSurface: "16" },
-    { text: "G3 (+)", fromSurface: "STO", toSurface: "23" },
+    { text: "G1", fromSurface: "3", toSurface: "11" },
+    { text: "G2", fromSurface: "12", toSurface: "16" },
+    { text: "G3", fromSurface: "STO", toSurface: "23" },
   ],
 
   doublets: [
-    { text: "G12 / L14", fromSurface: "9", toSurface: "11" },
+    { text: "L14", fromSurface: "9", toSurface: "11" },
     { text: "L22", fromSurface: "14", toSurface: "16" },
   ],
 

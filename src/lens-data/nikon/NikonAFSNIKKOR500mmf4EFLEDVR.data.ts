@@ -36,9 +36,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  not vendor names or full line indices. For exact-coordinate classes,      ║
  * ║  nC/nF/ng/dPgF use current HIKARI catalog analogues as Nikon-group spectral ║
  * ║  proxies; these are not claims that the patent names HIKARI melts. L23     ║
- * ║  remains Unmatched because current J-KZFH4 post-dates the filing, although ║
- * ║  its exact-coordinate line data are retained explicitly as a disclosed     ║
- * ║  spectral proxy. L11/L12 use CaF2 line indices from Malitson's 24 °C       ║
+ * ║  uses current J-KZFH4 as an exact-coordinate catalog-equivalent spectral    ║
+ * ║  proxy while explicitly retaining its post-filing historical caveat.       ║
+ * ║  L11/L12 use CaF2 line indices from Malitson's 24 °C                       ║
  * ║  dispersion relation.                                                      ║
  * ║                                                                            ║
  * ║  SOURCE DISCREPANCY: Table 1 lists condition (4) as 0.81, but the published║
@@ -58,7 +58,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-af-s-nikkor-500mm-f4e-fl-ed-vr",
   maker: "Nikon",
-  name: "NIKON AF-S NIKKOR 500mm f/4 E FL ED VR",
+  name: "NIKON AF-S NIKKOR 500mm f/4E FL ED VR",
   subtitle: "JP 2015-215560 A Example 1 — FLG omitted; active rear focus normalized",
   specs: [
     "16 ELEMENTS / 12 GROUPS",
@@ -96,6 +96,8 @@ const LENS_DATA = {
       nF: 1.437026402,
       ng: 1.439487119,
       dPgF: 0.055004227,
+      apd: "inferred",
+      apdNote: "Fluorite assignment from Nikon's two-fluorite production specification and this patent coordinate.",
       role: "Front positive collector; one of the two production-correlated fluorite elements.",
     },
     {
@@ -111,6 +113,8 @@ const LENS_DATA = {
       nF: 1.437026402,
       ng: 1.439487119,
       dPgF: 0.055004227,
+      apd: "inferred",
+      apdNote: "Fluorite assignment from Nikon's two-fluorite production specification and this patent coordinate.",
       role: "Second front-group positive collector; one of the two production-correlated fluorite elements.",
     },
     {
@@ -157,6 +161,8 @@ const LENS_DATA = {
       nF: 1.502009,
       ng: 1.505256,
       dPgF: 0.0327,
+      apd: "inferred",
+      apdNote: "ED assignment inferred from Nikon's three-ED production specification and the patent's 498826 class.",
       role: "Positive cemented partner of L14; one of the three production-correlated ED-class elements.",
       cemented: "D1",
     },
@@ -194,12 +200,13 @@ const LENS_DATA = {
     {
       id: 8,
       name: "L23",
-      label: "L23 — Unmatched 553551",
+      label: "L23 — 553551 class",
       type: "Plano-Concave Negative",
       nd: 1.55298,
       vd: 55.07,
       fl: -171.288293,
-      glass: "Unmatched (553551; current HIKARI J-KZFH4 is a post-filing spectral proxy only)",
+      glass:
+        "J-KZFH4 catalog-equivalent spectral proxy (patent 553551; current glass post-dates filing; production supplier unspecified)",
       nC: 1.549923,
       nF: 1.559964,
       ng: 1.565433,
@@ -238,6 +245,8 @@ const LENS_DATA = {
       nF: 1.502009,
       ng: 1.505256,
       dPgF: 0.0327,
+      apd: "inferred",
+      apdNote: "ED assignment inferred from Nikon's three-ED production specification and the patent's 498826 class.",
       role: "Positive G3a cemented partner; one of the three production-correlated ED-class elements.",
       cemented: "D3",
     },
@@ -285,6 +294,8 @@ const LENS_DATA = {
       nF: 1.502009,
       ng: 1.505256,
       dPgF: 0.0327,
+      apd: "inferred",
+      apdNote: "ED assignment inferred from Nikon's three-ED production specification and the patent's 498826 class.",
       role: "Negative cemented partner in the G3b VR group; one of the three production-correlated ED-class elements.",
       cemented: "D4",
     },
@@ -384,9 +395,9 @@ const LENS_DATA = {
   /* ── Patent functional-group annotations ── */
   groups: [
     { text: "G1", fromSurface: "3", toSurface: "11" },
-    { text: "G2 — FOCUS", fromSurface: "12", toSurface: "16" },
+    { text: "G2", fromSurface: "12", toSurface: "16" },
     { text: "G3a", fromSurface: "18", toSurface: "20" },
-    { text: "G3b — VR", fromSurface: "21", toSurface: "25" },
+    { text: "G3b", fromSurface: "21", toSurface: "25" },
     { text: "G3c", fromSurface: "26", toSurface: "31" },
   ],
 

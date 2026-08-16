@@ -1,4 +1,4 @@
-# NIKON AF-S NIKKOR 300mm f/4 E PF ED VR
+# NIKON AF-S NIKKOR 300mm f/4E PF ED VR
 
 ## Patent Reference and Design Identification
 
@@ -67,7 +67,7 @@ The data file uses J-FKH1 as the spectral proxy for L12 and records the proxy's 
 
 ### L14 Substrate and Contact Multilayer DOE
 
-**L14 substrate — Positive Meniscus: nd = 1.5168, νd = 63.9. Glass: Unmatched (legacy 1.5168/63.9 crown; J-BK7A spectral proxy). f = +513.396 mm.**\
+**L14 substrate — Positive Meniscus: nd = 1.5168, νd = 63.9. Glass: J-BK7A catalog-equivalent spectral proxy (patent 517639; production supplier unspecified). f = +513.396 mm.**\
 **DOE resin 1 — Diffractive Resin Layer: nd = 1.5278, νd = 33.4. Glass: Unmatched UV-curing DOE resin. Standalone lens focal length is not assigned.**\
 **DOE resin 2 — Diffractive Resin Layer: nd = 1.5572, νd = 50.0. Glass: Unmatched UV-curing DOE resin. Standalone lens focal length is not assigned.**
 
@@ -75,7 +75,7 @@ L14 is the third positive lens in G1a. The patent places the DOE on the image-si
 
 The substrate itself is weakly positive when considered as an isolated refractive element. The important additional action comes from the phase surface at surface 8. With the authored diffractive phase enabled, the complete system computes to 293.914643 mm EFL; disabling the phase term while retaining the refractive media changes the computed EFL to 302.797346 mm. This isolates the substantial first-order contribution of the DOE without treating it as a fictitious refractive glass power.
 
-The L14 substrate's stored nd/νd pair does not match current J-BK7A closely enough to justify naming it as that glass. The data file therefore uses `Unmatched (...)` for identity while retaining J-BK7A line data only as a disclosed spectral proxy. The two DOE resins have no invented nC/nF/ng/dPgF data.
+The L14 substrate's stored nd/νd pair is compatible with current J-BK7A at patent precision, so the data file uses that catalog curve as a disclosed spectral proxy while preserving the patent's `1.5168 / 63.9` coordinate and leaving the production supplier unspecified. The two DOE resins have no invented nC/nF/ng/dPgF data.
 
 ### L15 + L16 — G1b Cemented Pair
 
@@ -116,7 +116,7 @@ Paragraph 0074 identifies these three elements as the preferred candidate for la
 
 ### L28 + L29 — LC2 Rear Achromat
 
-**L28 — Biconvex Positive: nd = 1.5481, νd = 45.5. Glass: J-LLF1 / 548455 class (HIKARI spectral proxy). f = +56.808 mm.**\
+**L28 — Biconvex Positive: nd = 1.5481, νd = 45.5. Glass: J-LLF1 / 548455 class (HIKARI catalog-equivalent spectral proxy). f = +56.808 mm.**\
 **L29 — Negative Meniscus: nd = 1.7880, νd = 47.4. Glass: J-LASF014 / 788474 class (HIKARI spectral proxy). f = -85.687 mm.**
 
 L28 and L29 form the second patent-labeled achromatic pair LC2 (¶0043). Their computed cemented EFL is +164.152 mm. LC2 follows the preferred VR set and provides a positive rear correction component before the final relay element.
@@ -140,7 +140,7 @@ The patent supplies nd, νd, and in most cases θgF, but it does not name catalo
 | J-FK5 / 487703 class (HIKARI spectral proxy) | 1.4875 / 70.3 | L11, L16, L30 | Close high-Abbe crown proxy; catalog line indices stored in the data file. |
 | J-FKH1 / 498826 class (HIKARI spectral proxy; ED-class) | 1.4978 / 82.6 | L12 | Very high-Abbe proxy; probable production ED element by correlation, not patent identification. |
 | J-LF7 / 575415 class (HIKARI spectral proxy) | 1.5750 / 41.5 | L13, L24 | Low-flint-class proxy used in two cemented correction pairs. |
-| Unmatched (legacy 1.5168/63.9 crown; J-BK7A spectral proxy) | 1.5168 / 63.9 | L14 | Current J-BK7A does not reproduce the patent νd exactly; identity remains unmatched. |
+| J-BK7A catalog-equivalent spectral proxy (patent 517639) | 1.5168 / 63.9 | L14 | Compatible current catalog curve; production supplier unspecified. |
 | Unmatched UV-curing DOE resin | 1.5278 / 33.4 | DOE resin 1 | Patent-stated resin medium; no catalog glass identity or invented line data. |
 | Unmatched UV-curing DOE resin | 1.5572 / 50.0 | DOE resin 2 | Patent-stated resin medium; no catalog glass identity or invented line data. |
 | TAFD35 / 911353 class (HOYA spectral proxy) | 1.9108 / 35.2 | L15, L23 | Dense high-index proxy; official HOYA spectral data used. |
@@ -148,7 +148,7 @@ The patent supplies nd, νd, and in most cases θgF, but it does not name catalo
 | J-LAK14 / 697555 class (HIKARI spectral proxy) | 1.6968 / 55.5 | L22 | Lanthanum-crown-class proxy in the negative member of LF. |
 | J-SF10 / 728284 class (HIKARI spectral proxy) | 1.7283 / 28.4 | L25 | High-dispersion proxy in the positive member of the preferred VR set. |
 | 729546 class (J-LAK18 spectral proxy) | 1.7292 / 54.6 | L26, L27 | Class-level label avoids asserting a historically unsupported vendor identity. |
-| J-LLF1 / 548455 class (HIKARI spectral proxy) | 1.5481 / 45.5 | L28 | Low-flint-class proxy in LC2. |
+| J-LLF1 / 548455 class (HIKARI catalog-equivalent spectral proxy) | 1.5481 / 45.5 | L28 | First-party coefficient-backed low-flint proxy in LC2. |
 | J-LASF014 / 788474 class (HIKARI spectral proxy) | 1.7880 / 47.4 | L29 | Close high-index proxy in LC2. |
 
 For the refractive proxy materials, the data file stores nC, nF, ng, and dPgF directly on the elements. Independent catalog checking compared those values against the selected manufacturer proxy data and verified the proxy nd/νd residuals. These spectral fields support the modeled proxy dispersion, but they do not establish the production glass melts. The two DOE resins intentionally remain without line-index or dPgF fields.

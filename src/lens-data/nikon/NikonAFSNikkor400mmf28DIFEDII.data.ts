@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — NIKON AI AF-S NIKKOR 400mm f/2.8 D IF-ED II                   ║
+ * ║ LENS DATA — NIKON AI AF-S NIKKOR ED 400mm f/2.8D II IF                    ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
  * ║ Data source: US 6,239,919 B1, Example 4 / Embodiment 4 (Susumu Sato,       ║
  * ║ Nikon Corporation). The active prescription is kept at the patent scale.   ║
@@ -40,6 +40,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ from Fig. 10 proportions and paraxial marginal-ray envelopes, then reduced  ║
  * ║ only where required by current edge-thickness, rim-slope, shared-band       ║
  * ║ cross-gap, off-axis containment, and render-trim geometry rules.            ║
+ * ║ Fig. 10 specifically supports terminal L33 SDs of 15.5 / 16.0 mm instead    ║
+ * ║ of the earlier 21.0 / 21.5 mm estimate.                                     ║
  * ║                                                                            ║
  * ║ Glass discipline: Table 4 publishes only d-line nd/nu_d coordinates. Nikon  ║
  * ║ identifies elements 1, 2, and 5 as ED, but does not identify glass vendors. ║
@@ -52,7 +54,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-ai-af-s-nikkor-400mm-f28d-if-ed-ii",
   maker: "Nikon",
-  name: "NIKON AI AF-S NIKKOR 400mm f/2.8 D IF-ED II",
+  name: "NIKON AI AF-S NIKKOR ED 400mm f/2.8D II IF",
   subtitle: "US 6,239,919 B1 — Example 4; constrained active-model close-focus reconstruction",
   specs: [
     "11 ELEMENTS / 9 GROUPS",
@@ -81,25 +83,29 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L11",
-      label: "L11",
+      label: "L11 — ED",
       type: "Biconvex Positive",
       nd: 1.49782,
       vd: 82.52,
       indexReference: "d",
       fl: 302.68714776251915,
       glass: "J-FKH1 catalog equivalent (patent 498825; production supplier unspecified)",
+      apd: "inferred",
+      apdNote: "ED assignment from Nikon's published production positions G1-1, G1-2, and G1-5.",
       role: "First positive element of G1F; Nikon identifies production element position 1 as ED.",
     },
     {
       id: 2,
       name: "L12",
-      label: "L12",
+      label: "L12 — ED",
       type: "Biconvex Positive",
       nd: 1.49782,
       vd: 82.52,
       indexReference: "d",
       fl: 270.1401513050027,
       glass: "J-FKH1 catalog equivalent (patent 498825; production supplier unspecified)",
+      apd: "inferred",
+      apdNote: "ED assignment from Nikon's published production positions G1-1, G1-2, and G1-5.",
       role: "Second positive element of G1F; Nikon identifies production element position 2 as ED.",
     },
     {
@@ -130,13 +136,15 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L15",
-      label: "L15",
+      label: "L15 — ED",
       type: "Positive Meniscus, convex to object",
       nd: 1.49782,
       vd: 82.52,
       indexReference: "d",
       fl: 113.31270068251617,
       glass: "J-FKH1 catalog equivalent (patent 498825; production supplier unspecified)",
+      apd: "inferred",
+      apdNote: "ED assignment from Nikon's published production positions G1-1, G1-2, and G1-5.",
       role: "Positive member of the cemented G1R doublet; Nikon identifies production element position 5 as ED.",
       cemented: "D1",
     },

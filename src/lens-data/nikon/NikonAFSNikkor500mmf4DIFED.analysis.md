@@ -1,4 +1,4 @@
-# NIKON AI AF-S NIKKOR 500mm f/4 D IF-ED
+# NIKON AI AF-S NIKKOR ED 500mm f/4D IF
 
 ## Patent Reference and Design Identification
 
@@ -14,7 +14,7 @@
 
 The prescription is the second embodiment of US 5,745,306 A. The patent publishes a 490.0 mm, f/4.08 internal-focusing telephoto system in which a positive first group G1, negative focusing group G2, and positive rear group G3 form the principal power sequence. Table 2 is a d-line prescription: its refractive indices and Abbe numbers refer to 587.6 nm. The companion data file retains that native patent scale; no uniform rescaling is applied.
 
-The production correlation is fixed to the NIKON AI AF-S NIKKOR 500mm f/4 D IF-ED named in the job card. It is a correlation rather than a manufacturer statement that this patent example is the production prescription. Several independent features converge:
+The production correlation is fixed to the NIKON AI AF-S NIKKOR ED 500mm f/4D IF named in the job card. It is a correlation rather than a manufacturer statement that this patent example is the production prescription. Several independent features converge:
 
 1. The modeled prescription contains 11 elements in 9 air-separated groups after exclusion of the patent's front and rear plane-glass filter plates. Nikon's official legacy product page specifies 11 elements in 9 groups plus one protective glass.
 2. The patent's three elements at L11, L12, and L14b use the same very-low-dispersion coordinate pair, nd = 1.497820 and νd = 82.52. Nikon specifies three ED elements at production positions 1, 2, and 5, which are the corresponding active-element positions in this model.
@@ -83,7 +83,7 @@ G11 and G12 have computed EFLs of +353.602858 mm and +357.331921 mm respectively
 
 ### L21 — Biconcave Negative
 
-nd = 1.772789, νd = 49.45. Glass: lanthanum-flint class; supplier unproven. Standalone f = -131.631005 mm.
+nd = 1.772789, νd = 49.45. Glass: 773495 code class (M-TAF1 catalog-equivalent spectral proxy; supplier unproven). Standalone f = -131.631005 mm.
 
 L21 is the first element of the translating negative focus group G2. The patent seeks a small, light focusing group and specifically allows this object-side portion of G2 to be a single negative element rather than a more complex compound component.
 
@@ -131,12 +131,12 @@ The patent does not identify glass vendors. The final data retains the patent's 
 | J-FKH1 equivalent (498825) | 1.497820 | 82.52 | L11, L12, L14b | Compatible ED curve; production supplier unspecified |
 | Unmatched | 1.802180 | 44.69 | L13 | No defensible public catalog identity assigned |
 | J-SSK5 equivalent (658508) | 1.658440 | 50.84 | L14a | Exact coordinate match |
-| Lanthanum-flint class | 1.772789 | 49.45 | L21 | Unresolved coordinate class |
+| 773495 code class (M-TAF1 catalog-equivalent spectral proxy) | 1.772789 | 49.45 | L21 | Compatible code-level curve; production supplier unspecified |
 | J-SF03 equivalent (847238) | 1.846660 | 23.82 | L22a | Exact index and compatible Abbe match |
 | J-PKH1 equivalent (519700) | 1.518601 | 69.98 | L22b, L3a, L3c | Exact index and compatible Abbe match |
 | NBFD3 equivalent (805396) | 1.804540 | 39.61 | L3b | Compatible coefficient-backed curve |
 
-The low-dispersion 1.497820/82.52 material is used three times, matching the three production ED positions identified by Nikon. That positional agreement supports the product correlation, but the data does not turn it into a vendor-specific glass identification.
+The low-dispersion 1.497820/82.52 material is used three times, matching the three production ED positions identified by Nikon. The `apd: inferred` viewer tags on L11, L12, and L14b encode that positional correlation for the diagram, but they do not invent source $dP_{gF}$ values or turn the correlation into a vendor-specific glass identification.
 
 No `nC`, `nF`, `ng`, or `dPgF` values are authored as patent data. Runtime chromatic tracing uses the named catalog-equivalent curves, but the analysis does not claim apochromatic correction, historical production melts, or source-published anomalous partial dispersion.
 

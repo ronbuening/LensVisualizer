@@ -19,14 +19,14 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-08-16",
+    type: "lens",
+    summary: "Added six Nikon AF-S 300mm, 400mm, and 500mm super-telephoto lens designs",
+  },
+  {
     date: "2026-08-15",
     type: "lens",
     summary: "Added six Pentax DA, DA645, D FA, and A-series zoom lens designs",
-  },
-  {
-    date: "2026-08-14",
-    type: "lens",
-    summary: "Added six Nikon AF-S 300mm, 400mm, and 500mm super-telephoto lens designs",
   },
   {
     date: "2026-08-14",
