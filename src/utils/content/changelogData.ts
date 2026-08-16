@@ -19,7 +19,7 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
-    date: "2026-08-14",
+    date: "2026-08-15",
     type: "lens",
     summary: "Added six Pentax DA, DA645, D FA, and A-series zoom lens designs",
   },
