@@ -96,7 +96,10 @@ const LENS_DATA = {
       nd: 1.435,
       vd: 95.0,
       fl: 120.81525651881772,
-      glass: "Unmatched (1.43500/95.0 ultra-low-dispersion crown)",
+      glass: "K-CaFK95 (Sumita catalog equivalent; production supplier unspecified)",
+      apd: "inferred",
+      apdNote:
+        "K-CaFK95 catalog-equivalent fluor-crown; coefficient-derived ΔPgF ≈ +0.0477. The patent identifies only nd/vd, not the production supplier.",
       cemented: "J1",
       role: "Ultra-low-dispersion positive partner in the front cemented pair.",
     },
@@ -114,6 +117,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L4r",
+      diagramLabel: "4r",
       label: "G2 hybrid asphere resin layer",
       type: "Hybrid Resin Layer (1x Asph)",
       nd: 1.5146,
@@ -126,6 +130,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L4g",
+      diagramLabel: "4",
       label: "G2 hybrid asphere glass substrate",
       type: "Negative Meniscus",
       nd: 1.883,
@@ -138,6 +143,7 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L5",
+      diagramLabel: "5",
       label: "G2 negative singlet",
       type: "Biconcave Negative",
       nd: 1.8042,
@@ -149,6 +155,7 @@ const LENS_DATA = {
     {
       id: 7,
       name: "L6",
+      diagramLabel: "6",
       label: "G2 positive singlet",
       type: "Biconvex Positive",
       nd: 1.92286,
@@ -160,6 +167,7 @@ const LENS_DATA = {
     {
       id: 8,
       name: "L7",
+      diagramLabel: "7",
       label: "G2 rear aspherical singlet",
       type: "Negative Meniscus (1x Asph)",
       nd: 1.80139,
@@ -171,6 +179,7 @@ const LENS_DATA = {
     {
       id: 9,
       name: "L8",
+      diagramLabel: "8",
       label: "F focusing element",
       type: "Biconvex Positive (2x Asph)",
       nd: 1.6935,
@@ -182,6 +191,7 @@ const LENS_DATA = {
     {
       id: 10,
       name: "L9",
+      diagramLabel: "9",
       label: "MA cemented positive element",
       type: "Biconvex Positive",
       nd: 1.497,
@@ -194,6 +204,7 @@ const LENS_DATA = {
     {
       id: 11,
       name: "L10",
+      diagramLabel: "10",
       label: "MA cemented negative element",
       type: "Negative Meniscus",
       nd: 1.8061,
@@ -206,6 +217,7 @@ const LENS_DATA = {
     {
       id: 12,
       name: "L11",
+      diagramLabel: "11",
       label: "MA cemented negative element",
       type: "Negative Meniscus",
       nd: 1.90366,
@@ -218,6 +230,7 @@ const LENS_DATA = {
     {
       id: 13,
       name: "L12",
+      diagramLabel: "12",
       label: "MA cemented positive element",
       type: "Positive Meniscus",
       nd: 1.497,
@@ -230,6 +243,7 @@ const LENS_DATA = {
     {
       id: 14,
       name: "L13",
+      diagramLabel: "13",
       label: "MVC aspherical positive element",
       type: "Biconvex Positive (1x Asph)",
       nd: 1.68893,
@@ -242,6 +256,7 @@ const LENS_DATA = {
     {
       id: 15,
       name: "L14",
+      diagramLabel: "14",
       label: "MVC negative element",
       type: "Biconcave Negative",
       nd: 1.83481,
@@ -254,6 +269,7 @@ const LENS_DATA = {
     {
       id: 16,
       name: "L15",
+      diagramLabel: "15",
       label: "MC positive singlet",
       type: "Biconvex Positive",
       nd: 1.54072,
@@ -265,6 +281,7 @@ const LENS_DATA = {
     {
       id: 17,
       name: "L16",
+      diagramLabel: "16",
       label: "MC negative singlet",
       type: "Negative Meniscus",
       nd: 1.883,
@@ -276,6 +293,7 @@ const LENS_DATA = {
     {
       id: 18,
       name: "L17",
+      diagramLabel: "17",
       label: "MC rear positive singlet",
       type: "Biconvex Positive",
       nd: 1.6727,

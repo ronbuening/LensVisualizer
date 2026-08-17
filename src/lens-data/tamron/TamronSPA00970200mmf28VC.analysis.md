@@ -330,6 +330,10 @@ the sole $1.43700/95.10$ element, while L3, L4, L15, and L17 form a four-element
 construction diagram marks one XLD and four LD elements in corresponding portions of the optical train.[3][4] The
 matching counts and positions support the selected patent/product correlation without proving trade-name identity.
 
+The diagram metadata marks those exact five positions as `apd: "inferred"`: L2 for the single XLD position and L3,
+L4, L15, and L17 for the four LD positions. The classification is backed by both the official construction mapping and
+the selected catalog-equivalent line data; it is not a claim that Tamron used the named HOYA melts.
+
 The stored line data also permits the modeled chromatic behavior to use more than an Abbe-only approximation. That does
 not justify calling the production lens apochromatic, nor does it convert the equivalent-glass assignment into source
 fact. It simply means the LensVisualizer model has explicit C-, F-, and g-line indices and partial-dispersion deviation

@@ -91,6 +91,9 @@ const LENS_DATA = {
       nF: 1.50123,
       ng: 1.50451,
       dPgF: 0.028,
+      apd: "inferred",
+      apdNote:
+        "Production construction identifies two LD elements; the two S-FPL51 positions in this correlated patent design reproduce that count.",
       cemented: "D1",
       role: "Low-dispersion positive member of the front cemented pair in G1.",
     },
@@ -112,6 +115,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "R6",
+      diagramLabel: "4r",
       label: "Bonded Resin Layer at 6A",
       type: "Bonded Aspheric Resin Layer",
       nd: 1.5361,
@@ -124,6 +128,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L4",
+      diagramLabel: "4",
       label: "Element 4",
       type: "Negative Meniscus",
       nd: 1.83481,
@@ -140,6 +145,7 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L5",
+      diagramLabel: "5",
       label: "Element 5",
       type: "Biconcave Negative",
       nd: 1.6968,
@@ -155,6 +161,7 @@ const LENS_DATA = {
     {
       id: 7,
       name: "L6",
+      diagramLabel: "6",
       label: "Element 6",
       type: "Biconvex Positive",
       nd: 1.84666,
@@ -170,6 +177,7 @@ const LENS_DATA = {
     {
       id: 8,
       name: "L7",
+      diagramLabel: "7",
       label: "Element 7",
       type: "Biconcave Negative",
       nd: 1.83481,
@@ -185,6 +193,7 @@ const LENS_DATA = {
     {
       id: 9,
       name: "R16",
+      diagramLabel: "8r",
       label: "Bonded Resin Layer at 16A",
       type: "Bonded Aspheric Resin Layer",
       nd: 1.5361,
@@ -197,6 +206,7 @@ const LENS_DATA = {
     {
       id: 10,
       name: "L8",
+      diagramLabel: "8",
       label: "Element 8",
       type: "Positive Meniscus",
       nd: 1.618,
@@ -213,6 +223,7 @@ const LENS_DATA = {
     {
       id: 11,
       name: "L9",
+      diagramLabel: "9",
       label: "Element 9",
       type: "Biconvex Positive",
       nd: 1.497,
@@ -223,11 +234,15 @@ const LENS_DATA = {
       nF: 1.50123,
       ng: 1.50451,
       dPgF: 0.028,
+      apd: "inferred",
+      apdNote:
+        "Production construction identifies two LD elements; the two S-FPL51 positions in this correlated patent design reproduce that count.",
       role: "Low-dispersion positive element in G3.",
     },
     {
       id: 12,
       name: "L10",
+      diagramLabel: "10",
       label: "Element 10",
       type: "Biconcave Negative",
       nd: 1.84666,
@@ -243,6 +258,7 @@ const LENS_DATA = {
     {
       id: 13,
       name: "L11",
+      diagramLabel: "11",
       label: "Element 11",
       type: "Biconvex Positive",
       nd: 1.48749,
@@ -258,6 +274,7 @@ const LENS_DATA = {
     {
       id: 14,
       name: "L12",
+      diagramLabel: "12",
       label: "Element 12",
       type: "Negative Meniscus",
       nd: 1.7725,
@@ -273,6 +290,7 @@ const LENS_DATA = {
     {
       id: 15,
       name: "L13",
+      diagramLabel: "13",
       label: "Element 13",
       type: "Biconvex Positive",
       nd: 1.51823,
@@ -289,6 +307,7 @@ const LENS_DATA = {
     {
       id: 16,
       name: "R29",
+      diagramLabel: "14r",
       label: "Bonded Resin Layer at 29A",
       type: "Bonded Aspheric Resin Layer",
       nd: 1.5361,
@@ -301,6 +320,7 @@ const LENS_DATA = {
     {
       id: 17,
       name: "L14",
+      diagramLabel: "14",
       label: "Element 14",
       type: "Biconvex Positive",
       nd: 1.54072,
@@ -317,6 +337,7 @@ const LENS_DATA = {
     {
       id: 18,
       name: "L15",
+      diagramLabel: "15",
       label: "Element 15",
       type: "Biconcave Negative",
       nd: 1.7725,
@@ -436,10 +457,10 @@ const LENS_DATA = {
 
   /* ── Visual group annotations ── */
   groups: [
-    { text: "G1 (+)", fromSurface: "1", toSurface: "5" },
-    { text: "G2 (- / FOCUS)", fromSurface: "6A", toSurface: "14" },
-    { text: "G3 (+)", fromSurface: "16A", toSurface: "22" },
-    { text: "G4 (+)", fromSurface: "23", toSurface: "32" },
+    { text: "G1", fromSurface: "1", toSurface: "5" },
+    { text: "G2", fromSurface: "6A", toSurface: "14" },
+    { text: "G3", fromSurface: "16A", toSurface: "22" },
+    { text: "G4", fromSurface: "23", toSurface: "32" },
   ],
   doublets: [
     { text: "D1", fromSurface: "1", toSurface: "3" },

@@ -92,6 +92,9 @@ const LENS_DATA = {
       vd: 81.61,
       fl: 261.850974,
       glass: "497816 class (low-dispersion crown; vendor unresolved)",
+      apd: "inferred",
+      apdNote:
+        "Production construction identifies three LD elements; the three 1.497/81.61 positions in this correlated patent design reproduce that count.",
       cemented: "D1",
     },
     {
@@ -103,6 +106,9 @@ const LENS_DATA = {
       vd: 81.61,
       fl: 286.339699,
       glass: "497816 class (low-dispersion crown; vendor unresolved)",
+      apd: "inferred",
+      apdNote:
+        "Production construction identifies three LD elements; the three 1.497/81.61 positions in this correlated patent design reproduce that count.",
     },
     {
       id: 4,
@@ -167,6 +173,9 @@ const LENS_DATA = {
       vd: 81.61,
       fl: 180.649215,
       glass: "497816 class (low-dispersion crown; vendor unresolved)",
+      apd: "inferred",
+      apdNote:
+        "Production construction identifies three LD elements; the three 1.497/81.61 positions in this correlated patent design reproduce that count.",
     },
     {
       id: 10,
@@ -367,11 +376,11 @@ const LENS_DATA = {
   zoomLabels: ["Wide", "Tele"],
 
   groups: [
-    { text: "G1 (+)", fromSurface: "1", toSurface: "6" },
-    { text: "G2 (-)", fromSurface: "7", toSurface: "16" },
-    { text: "G3 (+)", fromSurface: "17", toSurface: "28" },
-    { text: "G4 (+, FOCUS)", fromSurface: "30", toSurface: "35" },
-    { text: "G5 (-)", fromSurface: "37", toSurface: "42" },
+    { text: "G1", fromSurface: "1", toSurface: "6" },
+    { text: "G2", fromSurface: "7", toSurface: "16" },
+    { text: "G3", fromSurface: "17", toSurface: "28" },
+    { text: "G4", fromSurface: "30", toSurface: "35" },
+    { text: "G5", fromSurface: "37", toSurface: "42" },
   ],
 
   doublets: [

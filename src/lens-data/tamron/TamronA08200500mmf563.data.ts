@@ -92,6 +92,9 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 189.54509530408723,
       glass: "497816 class (vendor underdetermined)",
+      apd: "inferred",
+      apdNote:
+        "Production construction identifies two LD elements; the two 1.497/81.6 positions in this correlated patent design reproduce that count.",
       cemented: "J1",
       role: "Positive low-dispersion-class component completing the L1 cemented pair.",
     },
@@ -153,6 +156,9 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 234.17522193790853,
       glass: "497816 class (vendor underdetermined)",
+      apd: "inferred",
+      apdNote:
+        "Production construction identifies two LD elements; the two 1.497/81.6 positions in this correlated patent design reproduce that count.",
       role: "Low-dispersion-class positive element at the front of group L4.",
     },
     {
@@ -300,7 +306,7 @@ const LENS_DATA = {
     { text: "L2", fromSurface: "7", toSurface: "10" },
     { text: "L3", fromSurface: "11", toSurface: "14" },
     { text: "L4", fromSurface: "15", toSurface: "19" },
-    { text: "L6 FOCUS", fromSurface: "21", toSurface: "25" },
+    { text: "L6", fromSurface: "21", toSurface: "25" },
   ],
 
   doublets: [

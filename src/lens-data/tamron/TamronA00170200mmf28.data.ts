@@ -41,6 +41,13 @@ const LENS_DATA = {
   maker: "Tamron",
   name: "TAMRON SP AF 70-200mm f/2.8 Di LD [IF] MACRO",
   subtitle: "US 2008/0212200 A1 Example 1 — inferred A001 correlation; constrained focus reconstruction",
+  specs: [
+    "18 ELEMENTS / 13 GROUPS",
+    "70-200mm f/2.8 (MARKETING)",
+    "71.50-194.00mm F/2.88 (PATENT DESIGN)",
+    "0.95 m MFD (CONSTRAINED RECONSTRUCTION)",
+    "3 INFERRED LD ELEMENTS",
+  ],
 
   focalLengthMarketing: [70, 200],
   focalLengthDesign: [71.49967, 194.001215],
@@ -114,6 +121,9 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 190.5956,
       glass: "497816 coordinate class (vendor unresolved)",
+      apd: "inferred",
+      apdNote:
+        "Production construction identifies three LD elements; this patent position is one of the three 1.497/81.6 elements that reproduce that count.",
     },
     {
       id: 6,
@@ -195,6 +205,9 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 85.0896,
       glass: "497816 coordinate class (vendor unresolved)",
+      apd: "inferred",
+      apdNote:
+        "Production construction identifies three LD elements; this patent position is one of the three 1.497/81.6 elements that reproduce that count.",
       cemented: "D5",
     },
     {
@@ -219,6 +232,9 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 76.0265,
       glass: "497816 coordinate class (vendor unresolved)",
+      apd: "inferred",
+      apdNote:
+        "Production construction identifies three LD elements; this patent position is one of the three 1.497/81.6 elements that reproduce that count.",
     },
     {
       id: 15,
@@ -337,7 +353,8 @@ const LENS_DATA = {
   ],
 
   groups: [
-    { text: "G1", fromSurface: "1", toSurface: "8" },
+    { text: "G1F", fromSurface: "1", toSurface: "3" },
+    { text: "G1R", fromSurface: "4", toSurface: "8" },
     { text: "G2", fromSurface: "9", toSurface: "16" },
     { text: "G3", fromSurface: "17", toSurface: "21" },
     { text: "G4", fromSurface: "22", toSurface: "32" },

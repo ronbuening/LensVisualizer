@@ -216,9 +216,9 @@ The prescription distributes high-Abbe positive material across both the front a
 
 Several cemented pairs use nearly cancelling positive and negative standalone powers with large `νd` differences. D4, for example, combines L11 at 1.48749/70.44 and +77.986 mm with L12 at 1.90366/31.31 and −80.833 mm, leaving only weak positive net power. D6 follows the same broad strategy in the focusing group. Such pairs can provide significant chromatic leverage without imposing an equally large net paraxial power on the containing group.
 
-Tamron describes the production A011 as using three LD elements. The selected Example 4 contains exactly three occurrences of the 1.49700/81.61 high-Abbe coordinate, but the correspondence is not asserted as a vendor or melt identification. It is one of the convergent production-correlation clues, not proof of the glass chemistry.
+Tamron describes the production A011 as using three LD elements. The selected Example 4 contains exactly three occurrences of the 1.49700/81.61 high-Abbe coordinate, and L2, L3, and L9 therefore carry `apd: "inferred"` diagram tags. The correspondence is not asserted as a vendor or melt identification; it is one of the convergent production-correlation clues, not proof of the glass chemistry.
 
-No APO, super-ED, fluorite, or anomalous-partial-dispersion performance claim is made. The model has only d-line `nd`/`νd` information for these vendor-unresolved classes, which is insufficient to represent secondary-spectrum behavior faithfully.
+No APO, super-ED, fluorite, or quantitative anomalous-partial-dispersion performance claim is made. The model has only d-line `nd`/`νd` information for these vendor-unresolved classes, so the inferred tags expose Tamron's LD classification without pretending to represent secondary-spectrum behavior faithfully.
 
 ## Image Stabilization
 

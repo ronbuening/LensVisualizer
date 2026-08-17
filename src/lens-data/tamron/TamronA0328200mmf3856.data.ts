@@ -104,6 +104,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L4r",
+      diagramLabel: "4r",
       label: "Element 4 resin layer",
       type: "Negative Meniscus (Asph)",
       nd: 1.5361,
@@ -116,6 +117,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L4",
+      diagramLabel: "4",
       label: "Element 4 substrate",
       type: "Negative Meniscus",
       nd: 1.83481,
@@ -128,6 +130,7 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L5",
+      diagramLabel: "5",
       label: "Element 5",
       type: "Biconcave Negative",
       nd: 1.72,
@@ -139,6 +142,7 @@ const LENS_DATA = {
     {
       id: 7,
       name: "L6",
+      diagramLabel: "6",
       label: "Element 6",
       type: "Biconvex Positive",
       nd: 1.84666,
@@ -150,6 +154,7 @@ const LENS_DATA = {
     {
       id: 8,
       name: "L7",
+      diagramLabel: "7",
       label: "Element 7",
       type: "Negative Meniscus",
       nd: 1.83481,
@@ -161,6 +166,7 @@ const LENS_DATA = {
     {
       id: 9,
       name: "L8r",
+      diagramLabel: "8r",
       label: "Element 8 resin layer",
       type: "Meniscus Resin Layer (Asph)",
       nd: 1.5361,
@@ -173,6 +179,7 @@ const LENS_DATA = {
     {
       id: 10,
       name: "L8",
+      diagramLabel: "8",
       label: "Element 8 substrate",
       type: "Biconvex Positive",
       nd: 1.79952,
@@ -185,6 +192,7 @@ const LENS_DATA = {
     {
       id: 11,
       name: "L9",
+      diagramLabel: "9",
       label: "Element 9",
       type: "Positive Meniscus",
       nd: 1.72,
@@ -196,6 +204,7 @@ const LENS_DATA = {
     {
       id: 12,
       name: "L10",
+      diagramLabel: "10",
       label: "Element 10",
       type: "Biconcave Negative",
       nd: 1.84666,
@@ -207,6 +216,7 @@ const LENS_DATA = {
     {
       id: 13,
       name: "L11",
+      diagramLabel: "11",
       label: "Element 11",
       type: "Biconvex Positive",
       nd: 1.51633,
@@ -218,6 +228,7 @@ const LENS_DATA = {
     {
       id: 14,
       name: "L12",
+      diagramLabel: "12",
       label: "Element 12",
       type: "Negative Meniscus",
       nd: 1.8061,
@@ -229,6 +240,7 @@ const LENS_DATA = {
     {
       id: 15,
       name: "L13",
+      diagramLabel: "13",
       label: "Element 13 substrate",
       type: "Biconvex Positive",
       nd: 1.51823,
@@ -241,6 +253,7 @@ const LENS_DATA = {
     {
       id: 16,
       name: "L13r",
+      diagramLabel: "13r",
       label: "Element 13 resin layer",
       type: "Meniscus Resin Layer (Asph)",
       nd: 1.5361,
@@ -253,6 +266,7 @@ const LENS_DATA = {
     {
       id: 17,
       name: "L14",
+      diagramLabel: "14",
       label: "Element 14",
       type: "Biconvex Positive",
       nd: 1.53172,
@@ -265,6 +279,7 @@ const LENS_DATA = {
     {
       id: 18,
       name: "L15",
+      diagramLabel: "15",
       label: "Element 15",
       type: "Biconcave Negative",
       nd: 1.7725,
@@ -378,10 +393,10 @@ const LENS_DATA = {
   zoomLabels: ["Wide", "Tele"],
 
   groups: [
-    { text: "G1 (+)", fromSurface: "1", toSurface: "6" },
-    { text: "G2 (-) FOCUS", fromSurface: "7A", toSurface: "15" },
-    { text: "G3 (+)", fromSurface: "17A", toSurface: "23" },
-    { text: "G4 (+)", fromSurface: "24", toSurface: "33" },
+    { text: "G1", fromSurface: "1", toSurface: "6" },
+    { text: "G2", fromSurface: "7A", toSurface: "15" },
+    { text: "G3", fromSurface: "17A", toSurface: "23" },
+    { text: "G4", fromSurface: "24", toSurface: "33" },
   ],
   doublets: [
     { text: "H1", fromSurface: "7A", toSurface: "9" },

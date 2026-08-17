@@ -541,6 +541,7 @@ const GLASS_CATALOG_SOURCE_ORDER = [
   "PCD4",
   "BAC4",
   "TAFD5G",
+  "K-CaFK95",
   "LASFN13",
 ] as const;
 
