@@ -81,6 +81,16 @@ const ElementAnnotations = memo(function ElementAnnotations({
     : [];
   const packedAbbeLabels = packLabelRows(abbeLabels).map((item) => ({ ...item, y: item.y + item.row * 10 }));
   const lowerAnnotationShift = packedAbbeLabels.some(({ row }) => row > 0) ? 10 : 0;
+  const groupLabels = L.groups
+    .map(({ text, fromSurface, toSurface }) => {
+      const [x, y] = screenPoint((zPos[fromSurface] + zPos[toSurface]) / 2, L.lyGroup);
+      return { text, x, y, fontSize: 9 };
+    })
+    .sort((a, b) => a.x - b.x);
+  const packedGroupLabels = packLabelRows(groupLabels).map((item) => ({
+    ...item,
+    y: item.y + lowerAnnotationShift + item.row * 11,
+  }));
 
   return (
     <>
@@ -127,24 +137,20 @@ const ElementAnnotations = memo(function ElementAnnotations({
         })}
 
       {/* Group labels */}
-      {L.groups.map(({ text, fromSurface, toSurface }) => {
-        const [x, baseY] = screenPoint((zPos[fromSurface] + zPos[toSurface]) / 2, L.lyGroup);
-        const y = baseY + lowerAnnotationShift;
-        return (
-          <text
-            key={text}
-            x={x}
-            y={y}
-            fill={t.groupLabel}
-            fontSize={9}
-            fontFamily="inherit"
-            textAnchor="middle"
-            style={{ letterSpacing: "0.08em" }}
-          >
-            {text}
-          </text>
-        );
-      })}
+      {packedGroupLabels.map(({ text, x, y }) => (
+        <text
+          key={text}
+          x={x}
+          y={y}
+          fill={t.groupLabel}
+          fontSize={9}
+          fontFamily="inherit"
+          textAnchor="middle"
+          style={{ letterSpacing: "0.08em" }}
+        >
+          {text}
+        </text>
+      ))}
 
       {/* Doublet labels */}
       {L.doublets.map(({ text, fromSurface, toSurface }) => {

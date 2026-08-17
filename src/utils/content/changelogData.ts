@@ -19,6 +19,11 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-08-17",
+    type: "lens",
+    summary: "Added nine Tamron SP, AF, Di, and Di III zoom lens designs spanning 14-600mm",
+  },
+  {
     date: "2026-08-16",
     type: "lens",
     summary: "Added six Nikon AF-S 300mm, 400mm, and 500mm super-telephoto lens designs",

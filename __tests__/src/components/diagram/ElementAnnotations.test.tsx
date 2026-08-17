@@ -231,6 +231,36 @@ describe("ElementAnnotations", () => {
     expect(groupText!.getAttribute("fill")).toBe("#aaa");
   });
 
+  it("staggers crowded group labels", () => {
+    const crowdedGroupLens = {
+      ...mockLens,
+      groups: [
+        { text: "G1F", fromSurface: 0, toSurface: 1 },
+        { text: "G1R", fromSurface: 1, toSurface: 2 },
+        { text: "G2", fromSurface: 2, toSurface: 3 },
+      ],
+    } as unknown as RuntimeLens;
+    const { container } = render(
+      <svg>
+        <ElementAnnotations
+          L={crowdedGroupLens}
+          t={mockTheme}
+          shapes={mockShapes}
+          sx={identity}
+          sy={identity}
+          zPos={[0, 1, 2, 3]}
+          act={null}
+          showChromatic={false}
+        />
+      </svg>,
+    );
+
+    const texts = Array.from(container.querySelectorAll("text"));
+    const firstGroup = texts.find((node) => node.textContent === "G1F")!;
+    const secondGroup = texts.find((node) => node.textContent === "G1R")!;
+    expect(firstGroup.getAttribute("y")).not.toBe(secondGroup.getAttribute("y"));
+  });
+
   it("renders doublet labels", () => {
     const { container } = render(
       <svg>

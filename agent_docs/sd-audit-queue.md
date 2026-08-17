@@ -103,6 +103,15 @@ better investment.
 | 50-300mm f/4.5-6.3 Di III VC VXD | US 2024/0295723 Figure 1 at 300 dpi | done 2026-08-10; G2-G5 enlarged within geometry limits |
 | 18-400mm f/3.5-6.3 Di II VC HLD | JP 2017-116646 Figure 1 at 300 dpi | done 2026-08-10; front G2 enlarged to validated limit |
 | SP 24-70mm f/2.8 Di VC USD | US 8,810,918 Figure 22 at 300 dpi | no change 2026-08-10; modeled taper matches |
+| SP AF 70-200mm f/2.8 Di LD [IF] MACRO (A001) | US 2008/0212200 Figure 1 at 300 dpi | done 2026-08-14; L16-L18 enlarged to 16.0 / 17.0 / 18.0 mm |
+| AF 28-200mm Super XR f/3.8-5.6 Aspherical [IF] MACRO (A03) | US 6,437,923 Figure 1 at 300 dpi | no change 2026-08-14; modeled taper matches |
+| AF 28-300mm f/3.5-6.3 XR Di LD Aspherical [IF] MACRO (A061) | US 2003/0156333 Figure 1 at 300 dpi | no change 2026-08-14; modeled taper matches |
+| SP AF 200-500mm f/5-6.3 Di LD [IF] (A08) | JP 2003-344768 Figure 1 at 300 dpi | no change 2026-08-14; modeled taper matches |
+| 18-200mm f/3.5-6.3 Di III VC (B011) | JP 2012-181525 Figure 1 at 600 dpi | no change 2026-08-14; modeled taper matches |
+| 14-150mm f/3.5-5.8 Di III (C001) | US 2014/0347522 Figure 9 at 300 dpi | no change 2026-08-14; modeled taper matches |
+| SP 70-200mm f/2.8 Di VC USD (A009) | US 8,867,144 Figure 1 at 300 dpi | no change 2026-08-14; all three zoom rows match |
+| SP 150-600mm f/5-6.3 Di VC USD (A011) | US 10,545,321 Figure 13 at 300 dpi | done 2026-08-14; L18-L20 enlarged to 14.0 / 14.5 / 15.0 mm |
+| SP AF 28-75mm f/2.8 XR Di LD Aspherical [IF] MACRO (A09) | US 7,075,731 Figure 1 at 300 dpi | no change 2026-08-14; modeled taper matches |
 
 ### Completed Sony additions
 

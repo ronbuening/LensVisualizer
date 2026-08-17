@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **580** lenses scanned
-- **6487** non-air surfaces examined
-- **6494** element glass declarations examined
-- **336** non-explicit-unmatched annotations did not resolve
-- **169** distinct unresolved glass-like tokens found
+- **589** lenses scanned
+- **6653** non-air surfaces examined
+- **6660** element glass declarations examined
+- **337** non-explicit-unmatched annotations did not resolve
+- **170** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -148,6 +148,7 @@ or per-lens patent backfills.
 | 903354 | 1 | 1 | |
 | 903358 | 1 | 1 | |
 | 904293 | 1 | 1 | |
+| 908334 | 1 | 1 | |
 | 910313 | 1 | 1 | |
 | 916364 | 1 | 1 | |
 | 930240 | 1 | 1 | |
@@ -767,6 +768,10 @@ or per-lens patent backfills.
 ### 904293 — 1 occurrence
 
 - [LAOWA 12mm f/2.8 Zero-D](../../src/lens-data/laowa/Laowa12mmf28ZeroD.data.ts) 19: `904293 - dense flint class (patent nd=1.90366, vd=29.31; unresolved)`
+
+### 908334 — 1 occurrence
+
+- [TAMRON 14-150mm f/3.5-5.8 Di III (C001)](../../src/lens-data/tamron/TamronC00114150mmf3558.data.ts) 22: `908334 class (catalog unresolved)`
 
 ### 910313 — 1 occurrence
 

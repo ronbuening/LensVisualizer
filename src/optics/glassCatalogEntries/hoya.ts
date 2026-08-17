@@ -1350,4 +1350,38 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published obsolete catalog row.",
   },
+  /* Phase 100 Tamron patent-batch coverage additions (August 2026).
+   * These named rows are copied from HOYA's first-party obsolete-inclusive
+   * OpticStudio catalog and preserve the vendor's formula-3 coefficients.
+   */
+  {
+    name: "PCD4",
+    vendor: "Hoya",
+    polynomial: [2.5807045, -0.010957538, 0.01268943, 0.00066387812, -0.000064849664, 0.0000034787863],
+    nd: 1.618,
+    vd: 63.4,
+    code6: "618634",
+    source:
+      "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published recommended-glass formula-3 row.",
+  },
+  {
+    name: "BAC4",
+    vendor: "Hoya",
+    polynomial: [2.4196645, -0.0083329314, 0.01539739, -0.00017391654, 0.00006218322, -0.000003062131],
+    nd: 1.56883,
+    vd: 56.04,
+    code6: "569560",
+    source:
+      "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published general-glass formula-3 row.",
+  },
+  {
+    name: "TAFD5G",
+    vendor: "Hoya",
+    polynomial: [3.2756799, -0.014485625, 0.030780102, 0.00078915515, -0.0000040810229, 0.0000022273965],
+    nd: 1.83481,
+    vd: 42.72,
+    code6: "835427",
+    source:
+      "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published recommended-glass formula-3 row.",
+  },
 ];
