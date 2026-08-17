@@ -9,12 +9,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **580** lenses scanned (**570** visible)
-- **5841 / 6487** non-air surfaces use strict catalog Sellmeier data (90.0%)
-- **5855 / 6487** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 90.3%)
+- **589** lenses scanned (**579** visible)
+- **5993 / 6653** non-air surfaces use strict catalog Sellmeier data (90.1%)
+- **6007 / 6653** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 90.3%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
-- **267** code-only missing-Sellmeier elements in Sweep 2: **0** active unreviewed, **116** self-recording explicit dispositions, **0** dispositions missing any review record
+- **268** code-only missing-Sellmeier elements in Sweep 2: **0** active unreviewed, **116** self-recording explicit dispositions, **0** dispositions missing any review record
 - **0** unresolved named-token elements in Sweep 2B, producing **0** token occurrences across **0** distinct tokens
 - **0** Tier A proprietary backfill rows in Sweep 3
 
@@ -148,6 +148,8 @@ These rows contain resin, cement, plastic, liquid, or unclassified optical media
 | [PENTAX DA 21mm f/3.2 AL Limited](../../src/lens-data/pentax/PentaxDA21mmf32Limited.data.ts) | US 7,411,746 B2 | [PDF](../../patents/US7411746.pdf) | 88.9% (8/9) | 88.9% (8/9) | 1 | 12A [resin] (Hybrid resin layer: `Compound UV-curing resin (patent; no catalog glass match)`) | abbe: 1 |
 | [SONY E 35mm f/1.8 OSS](../../src/lens-data/sony/SonyE35mmf18.data.ts) | JP 2014-089352 A | [PDF](../../patents/JP2014089352A.pdf) | 88.9% (8/9) | 88.9% (8/9) | 1 | 4A [resin] (L113 composite resin layer: `UV-curable optical resin (patent nd=1.540, νd=41.200)`) | abbe: 1 |
 | [NIKON AF-S NIKKOR 300mm f/4E PF ED VR](../../src/lens-data/nikon/NikonAFSNIKKOR300mmf4EPFEDVR.data.ts) | JP 2015-102852 A | [PDF](../../patents/JP2015102852A.pdf) | 88.9% (16/18) | 88.9% (16/18) | 2 | 7 [resin] (DOE resin 1: `Unmatched (UV-curing DOE resin; patent nd=1.5278, vd=33.4)`)<br>8 [resin] (DOE resin 2: `Unmatched (UV-curing DOE resin; patent nd=1.5572, vd=50.0)`) | abbe: 2 |
+| [TAMRON 18-200mm f/3.5-6.3 Di III VC (B011)](../../src/lens-data/tamron/TamronB01118200mmf3563VC.data.ts) | JP 2012-181525 A | [PDF](../../patents/JP2012181525A.pdf) | 88.9% (16/18) | 88.9% (16/18) | 2 | 3 [glass] (G1 rear cemented element: `Unmatched (1.43500/95.0 ultra-low-dispersion crown)`)<br>7A [resin] (G2 hybrid asphere resin layer: `Unmatched (hybrid asphere resin/polymer, nd=1.51460, vd=50.0)`) | abbe: 2 |
+| [TAMRON 14-150mm f/3.5-5.8 Di III (C001)](../../src/lens-data/tamron/TamronC00114150mmf3558.data.ts) | US 2014/0347522 A1 | [PDF](../../patents/US20140347522A1.pdf) | 88.9% (16/18) | 88.9% (16/18) | 2 | 7A [resin] (L4 Hybrid Resin Layer: `Unmatched (hybrid-asphere resin, nd=1.51460, vd=49.96)`)<br>22 [glass] (Element 11: `908334 class (catalog unresolved)`) | abbe: 2 |
 | [NIKON AF-S NIKKOR 24-70mm f/2.8 G ED](../../src/lens-data/nikon/NikonAFS2470mmf28G.data.ts) | US 7,508,592 B2 | [PDF](../../patents/US7508592.pdf) | 87.5% (14/16) | 87.5% (14/16) | 2 | 1 [glass] (Element 1: `744495 — unmatched high-index lanthanum-crown class (patent nd=1.744429, νd=49.52; no exact public catalog match)`)<br>7A [resin] (Element 4 resin layer: `553381 — unmatched UV-cure replicated resin (patent nd=1.55389, νd=38.09; not catalog glass)`) | abbe: 2 |
 | [NIKON PC-E NIKKOR 24mm f/3.5 D ED](../../src/lens-data/nikon/NikonPCENikkor24mmf35DED.data.ts) | JP 2008-151949 A | [PDF](../../patents/JP2008151949A.pdf) | 86.7% (13/15) | 86.7% (13/15) | 2 | 2 [resin] (Element 1 (resin layer): `UV-cure resin`)<br>7 [resin] (Element 3 (resin layer): `UV-cure resin`) | abbe: 2 |
 | [NIKON AF ZOOM-NIKKOR 28-80mm f/3.3-5.6 G](../../src/lens-data/nikon/NikonAFZoomNikkor2880mmf3356.data.ts) | US 5,485,314 | [PDF](../../patents/US5485314.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 2 [resin] (L1 resin aspherical layer: `UV-curing optical resin (patent)`) | abbe: 1 |

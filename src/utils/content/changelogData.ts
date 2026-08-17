@@ -36,6 +36,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-08-14",
     type: "lens",
+    summary: "Added nine Tamron SP, AF, Di, and Di III zoom lens designs spanning 14-600mm",
+  },
+  {
+    date: "2026-08-14",
+    type: "lens",
     summary: "Added six Nikon AF and AF-S Zoom-Nikkor designs spanning 18-400mm",
   },
   {

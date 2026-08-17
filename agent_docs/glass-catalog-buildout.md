@@ -8,7 +8,15 @@ catalog equivalent. If neither path is available, the engine falls back to parti
 dPgF-corrected indices, or the legacy Abbe approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **518 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **522 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+
+The August 14, 2026 Phase 100 Tamron batch audit added first-party formula-3 curves for HOYA PCD4, BAC4, and
+TAFD5G plus SUMITA LASFN13 from the retained vendor obsolete/discontinued-inclusive catalogs. Those additions make
+the A009 70-200mm strict-complete and recover C001 L9. The pass also removed incorrect `Unmatched` guards from
+A001's 18 neutral coordinate classes, assigned existing M-TAF31 to B011 L7, and assigned existing M-PCD4 to C001
+L13; all catalog-equivalent labels leave the production supplier unspecified. The audit adds 25 strict surfaces and
+21 net trusted surfaces, bringing global coverage to 5993/6653 strict and 6007/6653 trusted. There are now 334
+strict-complete and 339 trusted-complete visible lenses, with zero catalog-coordinate mismatches.
 
 The August 16, 2026 Phase 99 screenshot-led Nikon super-telephoto audit added HIKARI J-LLF1 from HIKARI's first-party
 2023 optical-glass catalog and its published power-series dispersion coefficients. The new curve resolves the

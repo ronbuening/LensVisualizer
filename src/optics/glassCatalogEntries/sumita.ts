@@ -495,4 +495,15 @@ export const SUMITA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor K-SKLD5(M) formula-1 polynomial. The catalog reuses base-glass product code 589612, so code6 is intentionally omitted because the molding-state optical coordinate is 1.58606 / 61.0.",
   },
+  /* Phase 100 Tamron patent-batch coverage addition (August 2026). */
+  {
+    name: "LASFN13",
+    vendor: "Sumita",
+    polynomial: [3.371255, -0.01423903, 0.03407303, 0.0005350138, 0.00005805409, -0.000002453365],
+    nd: 1.863,
+    vd: 41.6,
+    code6: "863416",
+    source:
+      "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-3 polynomial for LASFN13.",
+  },
 ];
