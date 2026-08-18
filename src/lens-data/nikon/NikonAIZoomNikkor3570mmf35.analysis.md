@@ -54,7 +54,7 @@ L3 is the second negative meniscus in the divergent portion. Its power is weaker
 
 ### L4 — Positive Meniscus, L12 close-correction element
 
-nd = 1.59507, νd = 35.6. Glass: Unmatched 595/356 light flint class. f = +95.31 mm.
+nd = 1.59507, νd = 35.6. Glass: HOYA FF5 catalog equivalent to patent 595356; production supplier unspecified. f = +95.31 mm.
 
 L4 is the entire convergent rearward portion L12 of the first group. It offsets part of the L11 negative power, yielding the patent's f(L1) = -59.942 mm rather than the much stronger f(L11) = -34.602 mm. Because L4 is a positive element made of relatively high-dispersion flint glass, it also contributes to the system's chromatic balance.
 
@@ -103,7 +103,7 @@ L10 is the rear positive element and completes the final convergence to the imag
 | L1 | 1.60323 | 42.5 | 603/425 barium flint; Sumita K-BaSF5-equivalent | Front collector in L11 |
 | L2 | 1.67790 | 55.5 | S-LAL12 (OHARA) | Primary negative meniscus |
 | L3 | 1.71300 | 53.9 | S-LAL8 (OHARA) | Secondary negative meniscus |
-| L4 | 1.59507 | 35.6 | Unmatched 595/356 light flint | L12 close-correction element |
+| L4 | 1.59507 | 35.6 | FF5 equivalent; patent 595356 | L12 close-correction element |
 | L5 | 1.62041 | 60.3 | S-BSM16 / SK16 class | Cemented doublet crown |
 | L6 | 1.80518 | 25.5 | S-TIH6 / SF6 class | Cemented doublet flint |
 | L7 | 1.51118 | 50.9 | SUMITA KF8 catalog equivalent, code 511509 | Positive relay meniscus |
@@ -166,4 +166,4 @@ The design is entirely spherical. The aberration plots for the Second Embodiment
 - SUMITA optical-glass data for K-BaSF5 / BASF5-class 603/425 glass consulted for L1.
 - OHARA manufacturer catalog/datasheet entries consulted for S-LAL12, S-LAL8, S-BSM16, and S-TIH6 class matches.
 - SCHOTT N-BK7 manufacturer datasheet consulted for L8.
-- L4, L7, and L10 are left as unmatched or unresolved class labels because no exact authoritative modern catalog identity was established in this review.
+- L4 uses FF5 as a coordinate-compatible spectral equivalent; L7 and L10 retain class-level labels where no sufficiently supported catalog identity was established.

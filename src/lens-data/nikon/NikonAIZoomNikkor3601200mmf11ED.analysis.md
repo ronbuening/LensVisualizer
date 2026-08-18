@@ -140,13 +140,13 @@ The triplet is essentially neutral in first-order power. Its role is chromatic c
 
 #### L18 — Biconvex Positive
 
-nd = 1.50137, νd = 56.5. Glass: unmatched light crown (501/565; catalog identity uncertain). f = +384.5 mm.
+nd = 1.50137, νd = 56.5. Glass: SUMITA K10 catalog equivalent for patent 501565; production supplier unspecified. f = +384.5 mm.
 
 L18 is a symmetric biconvex singlet preceding the relay's rear negative doublet. The long 139.4 mm air gap before L18 and the negative rear doublet together create the telephoto relay geometry.
 
 #### L19-L20 — Cemented Doublet, Negative
 
-L19: nd = 1.74443, νd = 49.4. Glass: unmatched high-index crown/flint boundary glass (744/494; catalog identity uncertain). f = -68.7 mm.
+L19: nd = 1.74443, νd = 49.4. Glass: HOYA M-NBF1 catalog equivalent for patent 744494; production supplier unspecified. f = -68.7 mm.
 L20: nd = 1.60342, νd = 38.0. Glass: F5 / S-TIM5 class. f = +101.5 mm.
 Net: f = -223.0 mm.
 
@@ -168,8 +168,8 @@ The prescription uses thirteen distinct nd/νd pairs across twenty elements. The
 | SUMITA F3 catalog equivalent | 1.61293 | 36.9 | L11 | Exact code 613369 coordinate; production supplier unspecified |
 | KF3 catalog equivalent | 1.51454 | 54.6 | L14 | Exact coordinate in SUMITA's discontinued-inclusive catalog; supplier unspecified |
 | SUMITA BAF12 catalog equivalent | 1.63930 | 45.0 | L17 | Exact code 639450 coordinate; production supplier unspecified |
-| Light crown 501/565 | 1.50137 | 56.5 | L18 | Unmatched in checked current recommended tables |
-| High-index 744/494 | 1.74443 | 49.4 | L19 | Unmatched in checked current recommended tables |
+| SUMITA K10 catalog equivalent | 1.50137 | 56.5 | L18 | Exact patent coordinate; production supplier unspecified |
+| HOYA M-NBF1 catalog equivalent | 1.74443 | 49.4 | L19 | Close coefficient-backed coordinate; production supplier unspecified |
 | F5 / S-TIM5 class | 1.60342 | 38.0 | L20 | Catalog class match by code |
 
 The five 486/815 elements are the principal low-dispersion material choice in the patent. The patent text predates modern public ED marketing terminology and does not name a catalog glass. Because no matching current OHARA, Hoya, Schott, Hikari, CDGM, or Sumita catalog entry was confirmed, the data file does not assign a modern FK or FPL trade name to these elements.

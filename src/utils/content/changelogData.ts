@@ -21,6 +21,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-08-18",
     type: "improvement",
+    summary: "Matched 21 patent glass elements and completed chromatic coverage for 13 lenses",
+  },
+  {
+    date: "2026-08-18",
+    type: "improvement",
     summary: "Added six verified glass curves, improving chromatic tracing across 25 elements",
   },
   {

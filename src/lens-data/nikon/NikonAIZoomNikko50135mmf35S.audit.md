@@ -41,3 +41,9 @@ Patent: US 4,497,547, Example 1
   is inside the runtime d-line safety window.
 - Relabeled 3L1 as the S-LAL52 optical equivalent while leaving the production supplier unspecified.
   The `672389` and `796410` rows remain unresolved; no prescription or zoom data changed.
+
+## 2026-08-18 — 672389 and 796410 coefficient assignments
+
+- Visually rechecked `patents/US4497547.pdf`, PDF page 10, Example 1. The two rows remain `1.67163 / 38.9` and `1.79631 / 41.0`.
+- OHARA S-BAH32 matches 672389 within `Δnd = -0.001651`, `Δνd = +0.371`; HOYA NBFD2 matches 796410 within `Δnd = +0.000889`, `Δνd = +0.144`.
+- Relabeled both rows as catalog equivalents while leaving their production suppliers unspecified. No prescription or zoom geometry changed.

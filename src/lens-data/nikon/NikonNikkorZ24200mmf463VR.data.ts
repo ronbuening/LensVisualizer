@@ -290,7 +290,7 @@ const LENS_DATA = {
       vd: 42.51,
       fl: -84.3,
       glass:
-        "Unmatched lanthanum flint (patent nd=1.82080, νd=42.51; prior H-LAF3 attribution unsupported)",
+        "M-TAFD51 catalog equivalent (patent nd=1.82080, νd=42.51; production supplier unspecified)",
       apd: false,
       role: "Rear field corrector negative — asph S33A corrects field curvature/astigmatism. Part of G6 air lens.",
     },

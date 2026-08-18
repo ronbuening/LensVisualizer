@@ -110,11 +110,11 @@ The nd/νd pair places L32 in a 757/477 lanthanum-flint class rather than in the
 
 ### L34 - Biconvex aspherical ED element
 
-nd = 1.49648, νd = 81.30. Glass: unmatched ED fluorophosphate near the 497/816 family. f = +30.16 mm.
+nd = 1.49648, νd = 81.30. Glass: HOYA MC-FCD1-M20 catalog equivalent; production supplier unspecified. f = +30.16 mm.
 
 L34 is the aspherical ED element counted separately in Fujifilm's published specification. It sits after the G3 cemented triplet and supplies real positive power while correcting spherical aberration and field shape near the stop-side positive group.
 
-Its nd/νd pair is close to FCD1/S-FPL51/N-PK52A-type ED glass but does not exactly match the common public catalog entries. The data file labels it as unmatched ED fluorophosphate rather than forcing a false exact vendor name.
+Its nd/νd pair is closely reproduced by the coefficient-backed MC-FCD1-M20 row (1.496899 / 81.51). The label therefore supplies a complete ED dispersion curve without claiming that Fujifilm used a particular production supplier.
 
 ### L41 + L42 - Rear negative cemented doublet
 
@@ -156,12 +156,14 @@ The patent does not print manufacturer glass names, so the identification must b
 | L22           |       1.68863 / 31.20 | HOYA E-FD8 / M-FD80, 689312                   | Code-family coefficient-backed match   |
 | L31           |       1.48749 / 70.44 | N-FK5 / S-FSL5 class                          | Moderate-high                          |
 | L32           |       1.75700 / 47.71 | CDGM H-LaF6LA catalog match                    | High; production supplier unspecified  |
-| L34           |       1.49648 / 81.30 | Unmatched ED fluorophosphate near 497/816     | Unresolved exact vendor                |
+| L34           |       1.49648 / 81.30 | HOYA MC-FCD1-M20 catalog equivalent           | Close optical match; supplier unstated |
 | L41           |       1.90366 / 31.31 | N-LASF46B / TAFD25 / S-LAH95 class            | High as class                          |
 | L43           |       1.69350 / 53.20 | HOYA MP-/MC-LAC130 precision-molding class    | High                                   |
 | L51           |       1.87070 / 40.73 | TAFD32 / H-ZLaF64 class dense lanthanum flint | Moderate                               |
 
 The design uses four ED-class elements distributed across G1, G3, and G4. This is not a single apochromatic block; it is a distributed correction strategy. G1 corrects the lateral-color burden of the negative front section, G3 corrects the main stop-side converging section, and G4 corrects chromatic error introduced by the rear negative variator.
+
+Table 28 also publishes θgF for all fourteen elements. Those values were converted to the project's `dPgF` convention and stored on every glass row, preserving the patent's partial-dispersion intent even where a catalog-equivalent curve supplies the remaining spectral indices.
 
 ## Focus Mechanism
 

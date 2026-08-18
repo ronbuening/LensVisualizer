@@ -16,7 +16,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 - **6645** glass elements examined
 - **1830** elements have multiple coordinate-compatible candidates
 - **378** lens files are affected
-- **168** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
+- **177** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **181** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |

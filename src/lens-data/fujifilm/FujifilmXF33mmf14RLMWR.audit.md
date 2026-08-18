@@ -14,3 +14,9 @@ Patent: US 2022/0276464 A1, Example 3
 ### Verification
 
 - `npm test -- elementRenderDiagnostics`
+
+## 2026-08-18 — L26 L-LAH85V coefficient assignment
+
+- Visually rechecked `patents/US20220276464A1.pdf`, PDF page 38, Example 3. L26 remains `nd = 1.85343`, `νd = 40.55`.
+- HOYA L-LAH85V is within the runtime catalog-equivalent window (`Δnd = +0.000570`, `Δνd = -0.172`).
+- Relabeled L26 as an L-LAH85V optical equivalent while leaving the production supplier unspecified. No prescription geometry changed.

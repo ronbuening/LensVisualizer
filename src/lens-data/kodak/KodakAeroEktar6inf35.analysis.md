@@ -54,7 +54,7 @@ The dispersion contrast between L2 (νd = 56.2) and L3 (νd = 30.9) is the princ
 
 ### L4 — Negative Meniscus, negative member of the rear doublet
 
-nd = 1.66700, νd = 32.2. Glass: Unmatched Kodak proprietary dense-flint class, 667/322. f = -55.4 mm scaled (-36.38 mm normalized).
+nd = 1.66700, νd = 32.2. Glass: CDGM H-ZF39 catalog equivalent for patent 667322; production supplier unspecified. f = -55.4 mm scaled (-36.38 mm normalized).
 
 L4 is the rear-side counterpart to L3. Its front surface $R_6 = -23.85$ mm bounds the central air space on the image side. The $R_5/R_6$ pair is the central air-lens geometry singled out by the patent.
 
@@ -76,16 +76,16 @@ L6 is the rear positive singlet. Its front surface $R_9 = -1012$ mm is very weak
 
 ## Glass Identification
 
-The patent gives only refractive index for the D line and conventional dispersive index V. It does not name glass vendors or catalog designations for the individual elements. Public catalog matching from nd/νd alone is not adequate here: none of the six glasses is identified by the patent as Schott, Bausch & Lomb, OHARA, Hoya, Hikari, CDGM, or Sumita, and the nd/νd pairs do not justify exact catalog assignments.
+The patent gives only refractive index for the D line and conventional dispersive index V. It does not name glass vendors or catalog designations for the individual elements. Five rows therefore remain class-only, but L4's 667/322 coordinate is closely reproduced by the coefficient-backed CDGM H-ZF39 row. That assignment is an optical equivalent, not a production-supplier claim.
 
-The data file therefore uses explicit `Unmatched (...)` annotations instead of vendor-specific equivalents. This is a deliberate data-quality choice. It prevents the viewer from implying a Sellmeier catalog match that the patent does not support.
+The data file retains explicit `Unmatched (...)` annotations where a catalog curve is not adequately supported and uses a qualified catalog-equivalent label only for L4.
 
 | Element | nd | νd | Code | Classification | Role |
 |---|---:|---:|---:|---|---|
 | L1 | 1.740 | 45.8 | 740/458 | high-index lanthanum-flint class | front collector |
 | L2 | 1.693 | 56.2 | 693/562 | high-index crown / lanthanum-crown class | positive member, front achromat |
 | L3 | 1.683 | 30.9 | 683/309 | dense-flint class | negative member, front achromat |
-| L4 | 1.667 | 32.2 | 667/322 | dense-flint class | rear negative member |
+| L4 | 1.667 | 32.2 | 667/322 | H-ZF39 catalog equivalent; supplier unspecified | rear negative member |
 | L5 | 1.740 | 43.9 | 740/439 | lanthanum-flint class | positive member, rear doublet |
 | L6 | 1.740 | 46.4 | 740/464 | high-index lanthanum-flint class | rear collector |
 

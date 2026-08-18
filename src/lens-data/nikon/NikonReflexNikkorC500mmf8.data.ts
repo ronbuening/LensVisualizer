@@ -65,7 +65,7 @@ const LENS_DATA = {
       nd: 1.5245,
       vd: 59.6,
       fl: 696.5,
-      glass: "Unmatched light crown (525/596; K5-class nearest)",
+      glass: "K5 catalog equivalent (patent 525596; production supplier unspecified)",
       apd: false,
       role: "Weak positive meniscus that pre-converges the entrance beam and corrects field curvature.",
     },

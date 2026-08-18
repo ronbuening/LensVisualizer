@@ -40,13 +40,13 @@ The sequence below follows optical encounter order, not simple physical front-to
 
 ### L1 — Positive Meniscus, convex to object
 
-nd = 1.52450, νd = 59.6. Glass: unmatched light crown, 525/596 code; K5-class nearest, not an exact catalog match. f = +696.5mm.
+nd = 1.52450, νd = 59.6. Glass: SUMITA K5 catalog equivalent to patent 525596; production supplier unspecified. f = +696.5mm.
 
 L1 is a weak positive meniscus at the front of the system. The patent states that this positive element begins to converge the incoming beam before it reaches the main mirror, allowing the main mirror diameter to be smaller than it would be in a bare reflector of the same entrance pupil.
 
 The convex-to-object orientation is also specified by the patent. Its purpose is not merely sealing the mirror cavity; the patent connects this orientation to correction of the negative image-surface curvature caused by the entrance pupil position behind L1 and by the relatively wide 5° field for a reflex telephoto.
 
-The glass is treated conservatively. The stored nd / νd pair does not land on an exact public catalog entry within normal transcription tolerance. It is therefore marked as an unmatched light crown rather than assigned a false exact vendor name.
+SUMITA K5 reproduces the patent Abbe number and stays inside the runtime index window. It is used as a qualified coefficient-backed equivalent while the patent coordinate and unidentified production supplier remain explicit.
 
 ### M1 / L4 — Primary Mangin Mirror and clear central corrector
 
@@ -82,13 +82,13 @@ The design uses ordinary crown, barium-crown, light-flint, and dense-flint glass
 
 | Element | nd | νd | Working identification | Confidence | Role |
 |---|---:|---:|---|---|---|
-| L1 | 1.52450 | 59.6 | Unmatched light crown, 525/596; K5-class nearest | approximate only | Front positive corrector |
+| L1 | 1.52450 | 59.6 | K5 equivalent; patent 525596 | supplier unspecified | Front positive corrector |
 | M1 / L4 | 1.54072 | 47.2 | LLF2 / S-TIL2 / E-FEL2 class, 541/472 | high class match | Primary Mangin substrate and final clear corrector |
 | M2 | 1.54814 | 45.9 | LLF1 / S-TIL1 / E-FEL1 class, 548/459 | high class match | Secondary Mangin substrate |
 | L2 | 1.56883 | 56.0 | BAK4 / BAC4 class, 569/560 | high class match | Negative member of rear corrector |
 | L3 | 1.72825 | 28.3 | SF10 / E-FD10 / S-TIH10 class, 728/283 | high class match | Positive dense-flint corrector |
 
-The prior analysis over-stated the certainty of some vendor names. The corrected file uses class-level identifications and six-digit glass codes where the patent gives only nd and νd. The front crown is explicitly left unmatched because forcing it to a K5 catalog name would introduce a non-trivial nd error.
+The catalog-equivalent wording does not identify the original melt. The front crown retains the patent coordinate because K5's useful dispersion curve carries a small but non-zero index residual.
 
 ## Focus Mechanism
 

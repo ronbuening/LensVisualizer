@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **589** lenses scanned
 - **6653** non-air surfaces examined
 - **6660** element glass declarations examined
-- **316** non-explicit-unmatched annotations did not resolve
-- **154** distinct unresolved glass-like tokens found
+- **312** non-explicit-unmatched annotations did not resolve
+- **152** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -31,7 +31,6 @@ or per-lens patent backfills.
 | 620586 | 2 | 1 | |
 | 627376 | 2 | 2 | |
 | 633315 | 2 | 2 | |
-| 666356 | 2 | 1 | |
 | 690570 | 2 | 2 | |
 | 720521 | 2 | 2 | |
 | 726548 | 2 | 2 | |
@@ -158,7 +157,6 @@ or per-lens patent backfills.
 | KZFS2 | 1 | 1 | |
 | L13 | 1 | 1 | |
 | L24 | 1 | 1 | |
-| L3 | 1 | 1 | |
 | LAFN7 | 1 | 1 | |
 | LAH65V-CLASS | 1 | 1 | |
 | LAK8 | 1 | 1 | |
@@ -254,11 +252,6 @@ or per-lens patent backfills.
 
 - [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) 36: `633315 flint class (catalog unresolved)`
 - [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR — TC 1.4x Engaged](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14TCIn.data.ts) 36: `633315 flint class (catalog unresolved)`
-
-### 666356 — 2 occurrences
-
-- [CANON RF 50mm f/1.2 L USM](../../src/lens-data/canon/CanonRF50mmf12L.data.ts) 8: `666356 — dense flint (nd=1.66565, νd=35.64)`
-- [CANON RF 50mm f/1.2 L USM](../../src/lens-data/canon/CanonRF50mmf12L.data.ts) 16: `666356 — dense flint (nd=1.66565, νd=35.64)`
 
 ### 690570 — 2 occurrences
 
@@ -783,10 +776,6 @@ or per-lens patent backfills.
 ### L24 — 1 occurrence
 
 - [NIKON NIKKOR Z 58mm f/0.95 S Noct](../../src/lens-data/nikon/NikonZ58f095SNoct.data.ts) 21: `High-dispersion flint (same as L24)`
-
-### L3 — 1 occurrence
-
-- [NIKON NIKKOR Z 24-120mm f/4 S](../../src/lens-data/nikon/NikonNikkorZ24120mmf4S.data.ts) 28A: `Moldable lanthanum crown (same as L3)`
 
 ### LAFN7 — 1 occurrence
 

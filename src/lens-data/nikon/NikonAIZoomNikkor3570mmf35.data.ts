@@ -110,7 +110,7 @@ const LENS_DATA = {
       nd: 1.59507,
       vd: 35.6,
       fl: 95.31,
-      glass: "Unmatched 595/356 light flint class",
+      glass: "FF5 catalog equivalent (patent 595356; production supplier unspecified)",
       apd: false,
       role: "Convergent L12 element; the close-distance correction element within L1.",
     },

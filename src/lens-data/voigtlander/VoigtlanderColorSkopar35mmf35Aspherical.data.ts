@@ -109,7 +109,7 @@ const LENS_DATA = {
       vd: 44.27,
       dPgF: -0.005,
       fl: -17.457979,
-      glass: "Unmatched (613443 negative anomalous-dispersion class; closest S-NBM51)",
+      glass: "S-NBM51 catalog equivalent (patent 613443; production supplier unspecified)",
       cemented: "L10",
       role: "Negative member of G2a; the patent constrains its low index and negative dPgF.",
     },

@@ -39,3 +39,9 @@ Patent: US 4,266,860, Second Embodiment / Claim 8
 - SUMITA's discontinued-inclusive all-glass catalog publishes KF8 at code `511509`, nd = 1.51118, νd = 50.9.
 - Relabeled L7 from an explicit unmatched light-crown annotation to an exact KF8 catalog equivalent; the production supplier remains unspecified.
 - The other unresolved rows and all prescription geometry remain unchanged.
+
+## 2026-08-18 — Element 4 FF5 coefficient assignment
+
+- Visually rechecked `patents/US4266860.pdf`, PDF page 9, Example 1. Element 4 remains patent code `595356`, `nd = 1.594633`, `νd = 35.75`.
+- SUMITA FF5 is within the runtime catalog-equivalent window (`Δnd = -0.002367`, `Δνd = -0.15`).
+- Relabeled element 4 as an FF5 optical equivalent while leaving the production supplier unspecified. No prescription or zoom geometry changed.

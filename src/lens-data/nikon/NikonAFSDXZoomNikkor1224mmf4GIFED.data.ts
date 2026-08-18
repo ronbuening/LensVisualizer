@@ -219,7 +219,7 @@ const LENS_DATA = {
       nd: 1.60602,
       vd: 57.44,
       fl: -240.469845,
-      glass: "Unmatched (606574 class; nd=1.606020, vd=57.44)",
+      glass: "N-SK2 catalog equivalent (patent 606574; production supplier unspecified)",
       apd: false,
       role: "Rear double-aspherical negative meniscus used for residual off-axis correction.",
     },

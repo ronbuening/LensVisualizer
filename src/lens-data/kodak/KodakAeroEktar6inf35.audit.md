@@ -27,3 +27,9 @@ Patent: US 2,983,193, Fig. 2 prescription / Fig. 1 section
 ### Verification
 
 - `npm test -- elementRenderDiagnostics`
+
+## 2026-08-18 — L4 H-ZF39 coefficient assignment
+
+- Visually rechecked `patents/US2983193.pdf`, PDF page 3. L4 remains patent coordinate `1.66700 / 32.2`.
+- CDGM H-ZF39 is within the runtime catalog-equivalent window (`Δnd = -0.000200`, `Δνd = +0.85`).
+- Relabeled only L4 as an H-ZF39 optical equivalent while leaving the production supplier unspecified; the other five unresolved glass rows remain unchanged. No prescription geometry changed.

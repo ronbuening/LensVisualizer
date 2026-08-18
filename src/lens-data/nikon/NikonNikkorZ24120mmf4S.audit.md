@@ -59,3 +59,9 @@ Patent: WO 2022/259649 A1, Example 5 / Table 5
 ## 2026-07-29 - Catalog-coordinate correction
 
 - Corrected L16 from modern `S-NPH2` to historical OHARA `PBH21`, the exact 1.92286 / 20.88 row.
+
+## 2026-08-18 — Aspherical mold-glass coefficient assignments
+
+- Visually rechecked `patents/WO2022259649A1.pdf`, PDF page 51, Example 5. L3/L15 share `1.77503 / 47.31`; L7 remains `1.59306 / 66.97`.
+- HOYA M-TAF401 is within the runtime window for L3/L15 (`Δnd = -0.001264`, `Δνd = -0.14`); Hikari J-PSKH4 closely reproduces L7 (`Δnd = +0.000430`, `Δνd = +0.031`).
+- Relabeled all three as catalog equivalents while leaving their production suppliers unspecified. No prescription, asphere, focus, or zoom geometry changed.

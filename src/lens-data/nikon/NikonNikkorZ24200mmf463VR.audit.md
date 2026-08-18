@@ -78,3 +78,9 @@ Changes made:
 - Removed the speculative CDGM `H-LAF3` attribution from L61. Patent Table 1 gives nd=1.82080 and νd=42.51 but no supplier.
 - The nearest coefficient-backed public row shares the d-line index but misses the Abbe number; without patent line indices or partial dispersion, applying that spectrum would be an unsupported quality trade. L61 is now explicitly `Unmatched`.
 - Synchronized the analysis; no prescription geometry changed.
+
+## 2026-08-18 — L61 M-TAFD51 coefficient assignment
+
+- Visually rechecked `patents/JPWO2020157904A1.pdf`, PDF page 16, Example 1. L61 remains `nd = 1.82080`, `νd = 42.51`.
+- HOYA M-TAFD51 reproduces the d-line index essentially exactly and is within the runtime Abbe window (`Δnd = -0.000002`, `Δνd = +0.20`).
+- Relabeled L61 as an M-TAFD51 optical equivalent while leaving the production supplier unspecified. No prescription, asphere, focus, or zoom geometry changed.

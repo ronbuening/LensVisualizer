@@ -94,13 +94,13 @@ Its strength must be read in context. As a standalone thick lens, it is the stro
 
 ### L7 — Rear Negative Meniscus, Concave to Object
 
-$n_d = 1.5333$, $\nu_d = 48.9$. Glass: unmatched vintage Zeiss/Schott medium-index glass, code 533/489. Standalone $f = -132.572$ mm at patent scale (−46.290 mm scaled).
+$n_d = 1.5333$, $\nu_d = 48.9$. Glass: OHARA S-TIL6 catalog equivalent to patent 533489; production supplier unspecified. Standalone $f = -132.572$ mm at patent scale (−46.290 mm scaled).
 
 L7 is the rear meniscus. Both surfaces have negative radii in the patent convention: R10 = −47.17 mm and R11 = −168.02 mm. The more strongly curved front surface and weaker rear surface make the element net negative.
 
 The element is directly involved in the patent's principal correction mechanism. Its front surface forms the image-side wall of the curved third air space, while the element itself modifies the oblique, strongly converging beam just before the short back-focus image plane. The scaled center thickness is 8.785 mm, and the scaled back focal distance from R11 to the image plane is only 6.465 mm.
 
-No current public Schott catalog match was assigned for $n_d = 1.5333$, $\nu_d = 48.9$. The data file therefore labels it as an unmatched vintage Zeiss/Schott glass rather than forcing a speculative modern catalog name.
+OHARA S-TIL6 provides the closest coefficient-backed curve inside the runtime coordinate window. It is used as a modern spectral equivalent while the patent coordinate and unidentified historical supplier remain explicit.
 
 ## Glass Identification and Selection
 
@@ -109,11 +109,11 @@ No current public Schott catalog match was assigned for $n_d = 1.5333$, $\nu_d =
 | A | 1.6716 | 47.2 | N-BAF10 catalog equivalent (672472) | L1, L2, L6 | Exact vintage designation and supplier unidentified |
 | B | 1.4645 | 65.7 | FK3 (Schott) | L3, L5 | Confirmed against SCHOTT inquiry-glass data |
 | C | 1.6890 | 31.0 | SF8 / N-SF8 equivalent (Schott) | L4 | Modern SCHOTT N-SF8 matches within transcription tolerance |
-| D | 1.5333 | 48.9 | Unmatched vintage Zeiss/Schott 533/489 | L7 | No current public catalog match assigned |
+| D | 1.5333 | 48.9 | S-TIL6 equivalent; patent 533489 | L7 | Production supplier unspecified |
 
 The design uses a restricted glass palette, appropriate for a 1930s cemented-group lens. Two FK3 elements are used as low-dispersion correction partners: L3 against the dense flint L4 in the front triplet, and L5 against the higher-index positive L6 in the rear doublet. L4 supplies the strongest dispersion correction because it combines high refractive index with low Abbe number.
 
-The six-digit optical codes are retained for the unmatched glasses, with probable Zeiss/Schott origin noted but without forcing catalog names not verified against a manufacturer table.
+The patent coordinates remain authoritative; catalog names identify compatible dispersion curves and do not claim the historical production supplier.
 
 ## Focus Mechanism
 

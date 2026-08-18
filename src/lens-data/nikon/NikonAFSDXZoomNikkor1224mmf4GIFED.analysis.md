@@ -144,7 +144,7 @@ The completed L23 component has a verified net EFL of +49.307645 mm. The matched
 
 ### L24 / L11 — Rear Negative Meniscus, Double Aspherical
 
-**$n_d=1.606020$, $\nu_d=57.44$. Glass: `Unmatched (606574 class; nd=1.606020, vd=57.44)`. Standalone $f_{air}=-240.469845$ mm.**
+**$n_d=1.606020$, $\nu_d=57.44$. Glass: `N-SK2 catalog equivalent; patent 606574; production supplier unspecified`. Standalone $f_{air}=-240.469845$ mm.**
 
 L11 is a weak negative meniscus at the rear of G2. Both surfaces, 19A and 20A, are aspherical. Its low paraxial power allows the rear component to modify residual off-axis aberrations without functioning as the principal power source of the master group.
 
@@ -152,7 +152,7 @@ The patent places this aspherical component at the image side of the lens, where
 
 ## Glass Identification and Selection
 
-The patent does not name glass vendors or melts. Most rows therefore retain six-digit optical classes or explicit `Unmatched (...)` labels. L1 is mapped to the coefficient-backed Hoya M-NBF1 catalog equivalent, whose 1.74330 / 49.33 coordinate is compatible with the patent's 1.744429 / 49.55 row. The two 498825 ED rows are mapped to current Hikari J-FKH1 because its published `nd = 1.497820` is exact and its `νd = 82.57` differs by only 0.05. Patent codes remain in the annotations so these coordinate-based classifications are not mistaken for melt provenance.
+The patent does not name glass vendors or melts. Most rows therefore retain six-digit optical classes or explicit `Unmatched (...)` labels. L1 is mapped to the coefficient-backed Hoya M-NBF1 catalog equivalent, whose 1.74330 / 49.33 coordinate is compatible with the patent's 1.744429 / 49.55 row. The two 498825 ED rows are mapped to current Hikari J-FKH1 because its published `nd = 1.497820` is exact and its `νd = 82.57` differs by only 0.05. L11 now uses Schott N-SK2, whose coefficient-backed 1.607381 / 56.65 coordinate closely reproduces patent 606574. Patent codes remain in the annotations so these coordinate-based classifications are not mistaken for melt provenance.
 
 | Material slot | Authored glass description | $n_d$ | $\nu_d$ | Use |
 | --- | --- | ---: | ---: | --- |
@@ -166,7 +166,7 @@ The patent does not name glass vendors or melts. Most rows therefore retain six-
 | L7, L10 | J-FKH1; patent code 498825 | 1.497820 | 82.52 | Current Hikari coordinate successor; low-dispersion positive members of L22 and L23 |
 | L8 | 804466 lanthanum-flint class | 1.804000 | 46.58 | Negative partner in L22 |
 | L9 | 804396 dense-lanthanum-flint class | 1.804400 | 39.59 | Negative partner in L23 |
-| L11 | Unmatched 606574 class | 1.606020 | 57.44 | Rear double-aspherical meniscus |
+| L11 | N-SK2 catalog equivalent; patent 606574 | 1.606020 | 57.44 | Rear double-aspherical meniscus; supplier unspecified |
 
 Example 1 publishes $n_d$ and $\nu_d$ only. The data file consequently contains no authored $n_C$, $n_F$, $n_g$, or $\Delta P_{g,F}$ values. The M-NBF1 and J-FKH1 catalog models now supply source-backed dispersion for their coordinate-matched rows, but the available evidence does not support an APO designation or a patent-specific anomalous-partial-dispersion claim.
 

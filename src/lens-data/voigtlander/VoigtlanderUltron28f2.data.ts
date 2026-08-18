@@ -169,10 +169,10 @@ const LENS_DATA = {
       nd: 1.62999,
       vd: 58.12,
       fl: -100.0,
-      glass: "Unmatched (630581 crown/APD candidate; patent nd=1.62999, νd=58.12)",
+      glass: "J-PSKH8 catalog equivalent (patent 630581; production supplier unspecified)",
       apd: "inferred",
       apdNote:
-        "Manufacturer states 2 APD elements; nd/νd in BaK/LaC transition region consistent with anomalous dispersion but no exact catalog glass identified",
+        "Manufacturer states 2 APD elements; J-PSKH8 is a qualified coordinate-equivalent curve, but the patent does not identify the production melt or publish partial dispersion for this row",
       role: "Weak negative field corrector; possible APD element — controls astigmatism and ray exit angles for digital sensors",
     },
     {

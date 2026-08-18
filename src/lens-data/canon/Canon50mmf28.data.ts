@@ -77,7 +77,7 @@ const LENS_DATA = {
       nd: 1.593,
       vd: 34.3,
       fl: -18.254041,
-      glass: "Unmatched (593/343 medium-index flint; nearest public catalog coordinates are non-unique)",
+      glass: "S-FTM16 catalog equivalent (patent 593343; production supplier unspecified)",
       role: "Strong negative middle component with the stronger concavity toward the image.",
     },
     {

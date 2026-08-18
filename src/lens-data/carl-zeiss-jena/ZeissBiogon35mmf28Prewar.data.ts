@@ -144,7 +144,7 @@ const LENS_DATA = {
       nd: 1.5333,
       vd: 48.9,
       fl: -46.29,
-      glass: "Unmatched vintage Zeiss/Schott 533/489 (nd=1.5333, νd=48.9)",
+      glass: "S-TIL6 catalog equivalent (patent 533489; production supplier unspecified)",
       apd: false,
       role: "Rear negative meniscus; image-side boundary of the patent's collective third air-space correction mechanism.",
     },

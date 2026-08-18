@@ -93,7 +93,7 @@ const LENS_DATA = {
       nd: 1.667,
       vd: 32.2,
       fl: -55.4,
-      glass: "Unmatched (Kodak proprietary dense flint, 667/322)",
+      glass: "H-ZF39 catalog equivalent (patent 667322; production supplier unspecified)",
       apd: false,
       role: "Front member of the rear cemented component; bounds the central airspace.",
       cemented: "D2",
