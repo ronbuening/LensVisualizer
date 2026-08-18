@@ -93,6 +93,10 @@ describe("Nikon AF-I and DX batch diagram metadata", () => {
     expect(micro40.groups.map(({ text }) => text)).toEqual(["G1 (+) FOCUS", "G2 (+) FOCUS", "G3 (−) FIXED"]);
   });
 
+  it("keeps the 300mm L14 cemented pair on one patent-figure rim", () => {
+    expect(afI300.surfaces.slice(6, 9).map(({ sd }) => sd)).toEqual([29.5, 29.5, 29.5]);
+  });
+
   it("preserves the published prime-lens focus directions", () => {
     expect(movementShifts(afI300, "focus", 1, 0)["G2 (FOCUS)"]).toBeCloseTo(10.8889, 4);
     expect(movementShifts(afI400, "focus", 1, 0)["G2 (FOCUS)"]).toBeCloseTo(17.8317, 4);

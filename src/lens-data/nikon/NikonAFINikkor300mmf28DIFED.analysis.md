@@ -73,7 +73,7 @@ L14a and L14b are cemented across surface 8. The individual elements are compara
 
 That distinction matters here: the standalone element powers describe the pieces separated into air, while the +1741 mm value describes the actual cemented pair with the published interface and indices. Neither number alone describes the pair's in-situ action inside G1, where spacing to the preceding elements also affects the group cardinal points.
 
-Surface 8 is the most strongly curved interface in the front group. The final model assigns its semi-diameter from the Stage 2 ray/geometry reconstruction rather than from a patent aperture table; the patent publishes no such table.
+Surface 8 is the most strongly curved interface in the front group. Figure 1 shows surfaces 7, 8, and 9 ending at a common cemented-pair rim, so the final model assigns all three a 29.5 mm semi-diameter. The patent publishes no numerical aperture table; this remains a figure-derived modeling value.
 
 ### L21a + L21b — Cemented Component of the Moving G2 Group
 

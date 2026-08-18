@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — NIKON AF-I NIKKOR 300mm f/2.8 D IF-ED                       ║
+ * ║  LENS DATA — NIKON AF-I NIKKOR 300mm f/2.8D IF-ED                        ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
  * ║  Data source: JPH04294310A, Example 1 (Nikon / Susumu Sato).              ║
  * ║  Production correlation is strong but inferential; the patent does not     ║
@@ -29,9 +29,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  SEMI-DIAMETERS: not numerically published. Values are constrained by       ║
  * ║  the patent optical section, the H=51.0 infinity aperture reference,         ║
  * ║  full-stop on-axis marginal rays at infinity and the published close state,  ║
- * ║  and the defined 0.6-field / ±0.5-pupil off-axis diagnostic fan. Surface 8  ║
- * ║  is a genuinely steep cemented interface; maxRimAngleDeg is raised to 71°   ║
- * ║  after positive edge-thickness and shared-gap checks.                        ║
+ * ║  and the defined 0.6-field / ±0.5-pupil off-axis diagnostic fan. Figure 1   ║
+ * ║  shows the three L14 cemented-pair surfaces ending at one rim, so surfaces   ║
+ * ║  7-9 share a 29.5 mm semi-diameter. Surface 8 remains steep;                 ║
+ * ║  maxRimAngleDeg is 71° after edge-thickness and shared-gap checks.           ║
  * ║                                                                              ║
  * ║  SPECTRAL DATA: patent nd/νd remain authoritative. Catalog-resolved class ║
  * ║  and HIKARI correlations supply modeled curves without asserting a vendor. ║
@@ -203,8 +204,8 @@ const LENS_DATA = {
     { label: "4", R: -410.068, d: 4.1, nd: 1, elemId: 0, sd: 48.5 },
     { label: "5", R: -335.183, d: 4.7, nd: 1.7495, elemId: 3, sd: 46.5 },
     { label: "6", R: 480.374, d: 34.6628, nd: 1, elemId: 0, sd: 45.5 },
-    { label: "7", R: 105.825, d: 3.5, nd: 1.6968, elemId: 4, sd: 35 },
-    { label: "8", R: 35.452, d: 14.4, nd: 1.59319, elemId: 5, sd: 33.4 },
+    { label: "7", R: 105.825, d: 3.5, nd: 1.6968, elemId: 4, sd: 29.5 },
+    { label: "8", R: 35.452, d: 14.4, nd: 1.59319, elemId: 5, sd: 29.5 },
     { label: "9", R: 180.758, d: 5.134, nd: 1, elemId: 0, sd: 29.5 },
     { label: "10", R: -9945, d: 6.6, nd: 1.80384, elemId: 6, sd: 24.5 },
     { label: "11", R: -80.453, d: 2.3, nd: 1.58913, elemId: 7, sd: 23.4 },
