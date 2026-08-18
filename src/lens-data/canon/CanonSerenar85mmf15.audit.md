@@ -33,3 +33,11 @@ Catalog version: local working tree, 2026-05-19
 - `npm run typecheck` — passed.
 - `npm run format:check` — passed.
 - `npm run test` — passed (131 files, 1666 tests; expected error-boundary console output only).
+
+## 2026-08-18 - Remaining Example 1 coefficient backfill
+
+- Visually rechecked the Example 1 table on rendered page 3 of `patents/US2645973.pdf`; it confirms L5 at
+  `1.5317 / 48.9` and L6 at `1.6584 / 50.8`.
+- Assigned S-TIL6 and BACED5 as coefficient-backed optical equivalents, with the production supplier unspecified.
+  The BACED5 coordinate also corrects the prior unsupported KzFS2 family description and its APD implication.
+- No patent constants or geometry changed.

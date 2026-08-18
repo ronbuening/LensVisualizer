@@ -21,8 +21,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Selection criterion | Elements |
 |---|---:|
-| Smallest reference-index residual | 990 |
-| Evidence-source priority | 565 |
+| Smallest reference-index residual | 989 |
+| Evidence-source priority | 566 |
 | Vendor context | 271 |
 | Stable canonical-name order | 4 |
 
@@ -359,7 +359,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `TAC8 (HOYA catalog-equivalent to patent 729547; supplier not identified)` | 1.72916 / 54.67 (d) | TAC8 — direct name evidence outranks six-digit code evidence. | S-LAL18 (Ohara, code, vendor ✗, preferred code row) | 1 | [LAOWA 58mm f/2.8 2× Ultra-Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) L4 |
 | `569560 — barium crown (patent coordinate; vendor unresolved)` | 1.56883 / 56.04 (d) | BAC4 — smallest d-line \|Δn\| (9.0e-7 vs 2.5e-6) | N-BAK4 (Schott, code, preferred code row) | 1 | [LEICA APO-MACRO-ELMARIT-TL 60mm f/2.8 ASPH.](../../src/lens-data/leica/LeicaAPOMacroElmaritTL60mmf28.data.ts) L33 |
 | `N-KZFS5 (Schott) / S-NBH5 (OHARA)` | 1.65412 / 39.70 (d) | N-KZFS5 — smallest d-line \|Δn\| (4.4e-7 vs 4.8e-6) | S-NBH5 (Ohara, name, vendor ✓) | 4 | [LEICA APO-SUMMICRON-M 35mm f/2 ASPH.](../../src/lens-data/leica/LeicaAPO35mmf2.data.ts) L2 |
-| `640346 - F-family flint (patent nd=1.63980, vd=34.6; no exact public catalog match)` | 1.63980 / 34.60 (d) | J-SF7 — smallest d-line \|Δn\| (2.1e-8 vs 1.6e-7) | E-FD7 (Hoya, code, preferred code row) | 1 | [LEICA ELMARIT 90mm f/2.8](../../src/lens-data/leica/LeicaElmarit90mmf28.data.ts) L3 |
+| `E-FD7 catalog equivalent (exact patent code 640346; production supplier unspecified)` | 1.63980 / 34.60 (d) | E-FD7 — direct name evidence outranks six-digit code evidence. | J-SF7 (Hikari, code, alternate code row) | 1 | [LEICA ELMARIT 90mm f/2.8](../../src/lens-data/leica/LeicaElmarit90mmf28.data.ts) L3 |
 | `FK5 / N-FK5 class (Schott legacy; patent n_e)` | 1.48920 / 69.90 (e) | N-FK5 — Annotation vendor context matches Schott. | FK5 (Sumita, name, vendor ✗) | 1 | [LEICA ELMARIT-R 35mm f/2.8](../../src/lens-data/leica/LeicaElmaritR35mmf28.data.ts) L1 |
 | `K-LaFK50-class (Sumita) / S-LAH66-class (OHARA)` | 1.77200 / 50.00 (d) | K-LaFK50 — smallest d-line \|Δn\| (3.6e-6 vs 5.0e-4) | S-LAH66 (Ohara, name, vendor ✓) | 1 | [LEICA ELMARIT-TL 18mm f/2.8 ASPH.](../../src/lens-data/leica/LeicaElmaritTL18mmf28.data.ts) L7 |
 | `497816 low-dispersion fluorophosphate-crown class` | 1.49700 / 81.60 (d) | H-FK61 — smallest d-line \|Δn\| (1.1e-8 vs 1.6e-7) | FCD1 (Hoya, code, alternate code row)<br>S-FPL51 (Ohara, code, preferred code row) | 1 | [MAMIYA N 210mm f/8 L](../../src/lens-data/mamiya/Mamiya7210mmf8NL.data.ts) L2 |

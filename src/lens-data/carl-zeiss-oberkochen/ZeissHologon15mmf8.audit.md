@@ -34,3 +34,11 @@ Catalog version: local working tree, 2026-06-25
 - `npm run format:check` - passed.
 - `npm run test -- __tests__/src/lens-data/lensDataTyping.test.ts __tests__/src/optics/validateLensData.test.ts __tests__/src/optics/buildLens.test.ts` - passed (3 files, 143 tests).
 - `npm run test` - failed outside this audit's edits: stale/generated route metadata is missing Rodenstock lens routes, and the existing Sonnar 50/1.5 skew-ray chromatic assertion differs by 0.0011856 mm.
+
+## 2026-08-18 - Central-element coefficient backfill
+
+- Rendered and visually checked the image-only `patents/DE_1241637_B.pdf`. The example table on printed pages 5–6
+  confirms the central L_II glass at `1.71300 / 53.89` and the two outer elements at `1.80518 / 25.46`.
+- Assigned the existing N-LAK8 curve to L_II as a coefficient-backed equivalent in the historical LAK8 family;
+  the production supplier remains unspecified. The outer SF6 rows were already resolved.
+- No prescription or geometry value changed.

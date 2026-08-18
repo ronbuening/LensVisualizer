@@ -97,7 +97,7 @@ The overall power arrangement is P–N–P–P, which departs from the classic d
 ### L5 — Biconcave Negative (Group III, front element of cemented doublet)
 
 - **Shape:** Biconcave (R₇ = −0.310, R₈ = +0.572)
-- **Glass:** nd = 1.5317, νd = 48.9 → most likely **Schott LLF6** (nd = 1.5313, νd = 48.8; residuals Δnd = −0.4×10⁻⁴, Δνd = −0.1). This is a "light light flint" — a glass with moderate dispersion falling between crown and flint categories.
+- **Glass:** nd = 1.5317, νd = 48.9 → **S-TIL6 catalog equivalent**; production supplier unspecified. This is a moderate-dispersion light flint coordinate between crown and flint regions.
 - **Focal length:** −32.0 mm (thick-lens)
 - **Cemented to:** L6 at r₈
 - **Role:** L5 is the concave-facing element of the image-side meniscus, directly opposing L4 across the stop. The patent emphasizes that this concave face (r₇) must have an absolute radius between 0.25f and 0.45f for proper oblique spherical aberration (coma) correction; the computed value |r₇| = 0.310f satisfies this constraint. Per the patent, the image-side meniscus "shall act in convex manner" — that is, the doublet's net power profile differs from the front meniscus. L5's choice of an intermediate-dispersion glass (rather than a heavy flint) reflects the asymmetric aberration correction strategy. The large index jump at the L5–L6 cemented interface (Δnd = 0.127) creates the strong positive refractive power (φ = +0.2215) that the patent requires to exceed +0.18.
@@ -105,10 +105,10 @@ The overall power arrangement is P–N–P–P, which departs from the classic d
 ### L6 — Biconvex Positive (Group III, rear element of cemented doublet)
 
 - **Shape:** Biconvex (R₈ = +0.572, R₉ = −0.440)
-- **Glass:** nd = 1.6584, νd = 50.8 → **Schott KzFS2** (exact match). This is a "short flint special" glass — a relatively unusual type with high index and moderate dispersion, positioned between the crown and flint families.
+- **Glass:** nd = 1.6584, νd = 50.8 → **BACED5 catalog equivalent**; production supplier unspecified. This is a moderate-dispersion barium dense-crown coordinate.
 - **Focal length:** +33.5 mm (thick-lens)
 - **Cemented to:** L5 at r₈
-- **Role:** L6 provides the dominant positive power within Group III and is the element that gives the group its net (weakly) positive character. Its use of KzFS2 — a glass known for its anomalous partial dispersion characteristics — suggests that L6 plays a role in secondary chromatic aberration (secondary spectrum) correction. As the second-thickest element (d₈ = 0.103f = 8.76 mm), it also contributes substantially to the total optical path length. The biconvex shape with relatively steep curvatures on both surfaces makes L6 a strong converging element that partially compensates L5's negative power while directing the beam toward the rear collector.
+- **Role:** L6 provides the dominant positive power within Group III and is the element that gives the group its net (weakly) positive character. Its moderate-dispersion coordinate supports ordinary chromatic balance with L5; the patent provides no partial-dispersion evidence for an APD claim. As the second-thickest element (d₈ = 0.103f = 8.76 mm), it also contributes substantially to the total optical path length.
 
 ### L7 — Biconvex Positive (Group IV)
 
@@ -127,12 +127,10 @@ The design uses only five distinct glass types across seven elements:
 | 639/555 | 1.6385 | 55.5 | K-SK18 (Sumita) | L2, L7 | Dense barium crown |
 | 517/640 | 1.5163 | 64.0 | Schott BK7 (≈) | L3 | Borosilicate crown |
 | 689/311 | 1.6889 | 31.1 | S-TIM28 (OHARA) | L4 | Dense flint |
-| 532/489 | 1.5317 | 48.9 | Schott LLF6 (≈) | L5 | Light light flint |
-| 658/508 | 1.6584 | 50.8 | Schott KzFS2 | L6 | Short flint special |
+| 532/489 | 1.5317 | 48.9 | S-TIL6 optical equivalent | L5 | Light flint |
+| 658/508 | 1.6584 | 50.8 | BACED5 optical equivalent | L6 | Barium dense crown |
 
-The glass palette reflects a careful balance between aberration correction and 1950s-era glass availability. The crown elements (L1, L2, L3, L7) span a moderate range of indices (1.52–1.64), while the flint elements (L4, L5, L6) cover a wide dispersion range (νd = 31–51). The use of KzFS2 for L6 is particularly noteworthy — this "short flint special" glass has anomalous relative partial dispersion, meaning its blue-to-green dispersion ratio deviates from the normal glass line. This property is useful for secondary spectrum correction in fast lenses where longitudinal chromatic aberration must be tightly controlled.
-
-With the exception of KzFS2 (L6), whose anomalous partial dispersion is noted above, none of the glasses in this design exhibit the strong anomalous partial dispersion characteristics seen in modern ED (extra-low dispersion) or fluorite elements. This is expected for a 1951 design — such specialty glasses did not become widely available to Japanese manufacturers until the 1960s and 1970s. KzFS2's anomalous dispersion is comparatively modest and represents the extent of what was available for secondary spectrum control in this era.
+The glass palette reflects a careful balance between aberration correction and 1950s-era glass availability. The positive and negative elements span a broad dispersion range, distributing ordinary longitudinal-color correction across the triplet and rear doublet. The patent gives no relative-partial-dispersion column, so no element is classified as anomalous or ED from `nd/νd` alone.
 
 ## 7. Aperture Stop and Focusing
 

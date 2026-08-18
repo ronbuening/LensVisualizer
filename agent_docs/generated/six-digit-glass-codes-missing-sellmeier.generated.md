@@ -10,9 +10,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **589** lenses scanned
-- **965** total code-only elements found
-- **229** elements in this report
-- **89** distinct lens files affected
+- **963** total code-only elements found
+- **228** elements in this report
+- **88** distinct lens files affected
 - **0** active unreviewed elements have no review-record hit or explicit disposition
 - **99** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
 - **0** dispositions lack any review record
@@ -166,7 +166,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 767462 | 1 | 1 | patents/US3507558.pdf | All rows have review records |
 | 768465 | 1 | 1 | patents/US3524697.pdf | All rows have review records |
 | 769497 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | All rows have review records |
-| 770479 | 1 | 1 | patents/US2828671.pdf | All rows have review records |
 | 770493 | 1 | 1 | Missing from untracked local patents/ references (WO2021246545A1, WO2021246545, 2021246545) | All rows explicitly disposed |
 | 772493 | 1 | 1 | patents/US20230341664A1.pdf | All rows have review records |
 | 773498 | 1 | 1 | patents/US4871239.pdf | All rows have review records |
@@ -625,12 +624,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L44 (Element 17) | 32A | `Barium crown / LaK family (624584, no exact catalog match)` | 1.62372 / 58.40 | No catalog entry | abbe | patents/JP2025052870A.pdf | Reviewed sidecar hit |
-
-### [NIKON NIKKOR-N 5cm f/1.1](../../src/lens-data/nikon/NikonN5cmf11.data.ts) - US 2,828,671
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L3 (Element 3) | 5 | `770479 — lanthanum crown/flint patent glass (nd=1.77000, νd=47.9; no exact public catalog match)` | 1.77000 / 47.90 | No catalog entry | abbe | patents/US2828671.pdf | Reviewed sidecar hit |
 
 ### [NIKON R-UW AF FISHEYE-NIKKOR 13mm f/2.8](../../src/lens-data/nikon/NikonRUWAFNikkor13mmf28.data.ts) - US 5,579,169
 

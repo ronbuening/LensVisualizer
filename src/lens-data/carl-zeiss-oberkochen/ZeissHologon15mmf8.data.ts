@@ -87,7 +87,7 @@ const LENS_DATA = {
       nd: 1.713,
       vd: 53.89,
       fl: 5.5,
-      glass: "LAK8 (Schott)",
+      glass: "N-LAK8 catalog equivalent (historical LAK8 family; production supplier unspecified)",
       apd: false,
       fromSurface: "3",
       toSurface: "4",

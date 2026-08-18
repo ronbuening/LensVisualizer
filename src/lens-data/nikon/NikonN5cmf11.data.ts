@@ -8,13 +8,12 @@
  * Prescription linearly rescaled from the patent's f = 100 mm example
  * to the production 50 mm focal length (scale factor 0.5).
  *
- * Correction applied — r₆:
- *   The patent consistently prints r₆ = +872.1 (both the worked example
- *   and Claim 3). This is a typographical error in the original 1958
- *   publication. Paraxial verification shows that r₆ ≈ +122.5 (exact:
- *   122.495) is required to reproduce the patent's own stated f_III = −823.7
- *   and system EFL = 100. All six component focal lengths agree to within
- *   0.1% with this correction.
+ * Patent transcription correction:
+ *   High-resolution checks of both the worked table and Claim 3 show
+ *   n₃ = 1.7170 and r₆ = +872.1. The earlier 1.7700 transcription made
+ *   the printed r₆ appear inconsistent and led to an unnecessary radius
+ *   substitution. With the correct index, the printed radius reproduces the
+ *   patent's component power and system focal length.
  *
  * Semi-diameters estimated via combined marginal + chief ray trace
  * (23° half-field, f/1.1 EP), with ~8–10% mechanical clearance. Front
@@ -33,7 +32,7 @@ const LENS_DATA = {
   name: "NIKON NIKKOR-N 5cm f/1.1",
   subtitle: "US 2,828,671 — Murakami 1958",
   focalLengthMarketing: 50,
-  focalLengthDesign: 50.08,
+  focalLengthDesign: 49.93,
   apertureMarketing: 1.1,
   apertureDesign: 1.1,
   lensMounts: ["nikon-s"],
@@ -75,12 +74,12 @@ const LENS_DATA = {
       name: "L3",
       label: "Element 3",
       type: "Positive Meniscus",
-      nd: 1.77,
+      nd: 1.717,
       vd: 47.9,
-      fl: 54.95,
-      glass: "770479 — lanthanum crown/flint patent glass (nd=1.77000, νd=47.9; no exact public catalog match)",
+      fl: 39.36,
+      glass: "S-LAM3 catalog equivalent (patent 717479; production supplier unspecified)",
       cemented: "D1",
-      role: "Strongest positive element in the front group; highest refractive index in the system (nd = 1.77). Lanthanum glass #1.",
+      role: "Positive element of the front cemented doublet; uses the same patent 717479 lanthanum coordinate as L6 and L7.",
     },
     {
       id: 4,
@@ -89,7 +88,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.5927,
       vd: 35.4,
-      fl: -39.25,
+      fl: -29.26,
       glass: "S-FTM16 (OHARA, 593353)",
       cemented: "D1",
       role: "Chromatic correction partner to L3 in cemented doublet D1; low Abbe number balances L3's positive power.",
@@ -114,7 +113,7 @@ const LENS_DATA = {
       nd: 1.717,
       vd: 47.9,
       fl: 29.7,
-      glass: "S-LAM3 (OHARA, 717479)",
+      glass: "S-LAM3 catalog equivalent (patent 717479; production supplier unspecified)",
       cemented: "D2",
       role: "Strongest single positive element in the rear group; extraordinarily thick (20.5 mm). Lanthanum glass #2.",
     },
@@ -126,7 +125,7 @@ const LENS_DATA = {
       nd: 1.717,
       vd: 47.9,
       fl: 81.1,
-      glass: "S-LAM3 (OHARA, 717479)",
+      glass: "S-LAM3 catalog equivalent (patent 717479; production supplier unspecified)",
       role: "Principal power element of the rear group; plano-convex with flat rear contributing zero Seidel aberrations. Lanthanum glass #3.",
     },
     {
@@ -163,8 +162,8 @@ const LENS_DATA = {
     { label: "3", R: 46.5, d: 4.25, nd: 1.6073, elemId: 2, sd: 24.0 },
     { label: "4", R: 81.9, d: 0.7, nd: 1.0, elemId: 0, sd: 22.75 },
     // ── Component III: L3 + L4 cemented (D1) ──
-    { label: "5", R: 26.75, d: 9.7, nd: 1.77, elemId: 3, sd: 14.95 },
-    { label: "6", R: 61.25, d: 2.05, nd: 1.5927, elemId: 4, sd: 18.5 }, // r₆ corrected from patent's 872.1
+    { label: "5", R: 26.75, d: 9.7, nd: 1.717, elemId: 3, sd: 14.95 },
+    { label: "6", R: 436.05, d: 2.05, nd: 1.5927, elemId: 4, sd: 18.5 },
     { label: "7", R: 16.65, d: 6.3, nd: 1.0, elemId: 0, sd: 13.3 },
     // ── Aperture stop (inferred from figure, midpoint of 25.2 mm gap) ──
     { label: "STO", R: 1e15, d: 6.3, nd: 1.0, elemId: 0, sd: 13.9 },

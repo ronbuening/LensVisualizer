@@ -97,7 +97,7 @@ const LENS_DATA = {
       nd: 1.90265,
       vd: 35.76,
       fl: -32.0,
-      glass: "J-LASFH9A class (Hikari, 903/358)",
+      glass: "J-LASFH9 catalog equivalent (patent coordinate; production supplier unspecified)",
       role: "Leading high-index negative variator element.",
     },
     {
@@ -120,7 +120,7 @@ const LENS_DATA = {
       nd: 1.80411,
       vd: 46.43,
       fl: -31.5,
-      glass: "LAH65V-class lanthanum flint (804/464, near-match)",
+      glass: "TAF3D catalog equivalent (patent coordinate; production supplier unspecified)",
       cemented: "D2",
       role: "Negative half of the nearly afocal G2 chromatic corrector.",
     },
@@ -167,7 +167,7 @@ const LENS_DATA = {
       nd: 1.5186,
       vd: 70.08,
       fl: 49.6,
-      glass: "PKH1-class phosphate crown (519/700)",
+      glass: "J-PKH1 catalog equivalent (patent coordinate; production supplier unspecified)",
       role: "Main positive power element in the compensator group.",
     },
     {

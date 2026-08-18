@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **589** lenses scanned
 - **6653** non-air surfaces examined
 - **6660** element glass declarations examined
-- **312** non-explicit-unmatched annotations did not resolve
-- **152** distinct unresolved glass-like tokens found
+- **283** non-explicit-unmatched annotations did not resolve
+- **137** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -25,8 +25,6 @@ or per-lens patent backfills.
 | 856401 | 3 | 2 | |
 | 863248 | 3 | 1 | |
 | LAF10 | 3 | 2 | |
-| LAF2 | 3 | 2 | |
-| LAK9 | 3 | 3 | |
 | 514428 | 2 | 1 | |
 | 620586 | 2 | 1 | |
 | 627376 | 2 | 2 | |
@@ -49,14 +47,15 @@ or per-lens patent backfills.
 | J-LASFH13 | 2 | 1 | |
 | L14 | 2 | 1 | |
 | L5 | 2 | 2 | |
+| LAF2 | 2 | 1 | |
 | LAK10 | 2 | 2 | |
+| LAK9 | 2 | 2 | |
 | PK1 | 2 | 1 | |
 | 487698 | 1 | 1 | |
 | 499801 | 1 | 1 | |
 | 507589 | 1 | 1 | |
 | 514530 | 1 | 1 | |
 | 518523 | 1 | 1 | |
-| 519700 | 1 | 1 | |
 | 534554 | 1 | 1 | |
 | 534556 | 1 | 1 | |
 | 541468 | 1 | 1 | |
@@ -107,7 +106,6 @@ or per-lens patent backfills.
 | 767462 | 1 | 1 | |
 | 768465 | 1 | 1 | |
 | 769497 | 1 | 1 | |
-| 770479 | 1 | 1 | |
 | 772493 | 1 | 1 | |
 | 773498 | 1 | 1 | |
 | 773501 | 1 | 1 | |
@@ -123,16 +121,13 @@ or per-lens patent backfills.
 | 800255 | 1 | 1 | |
 | 803404 | 1 | 1 | |
 | 803405 | 1 | 1 | |
-| 804464 | 1 | 1 | |
 | 805252 | 1 | 1 | |
 | 805410 | 1 | 1 | |
 | 835447 | 1 | 1 | |
 | 840433 | 1 | 1 | |
-| 863415 | 1 | 1 | |
 | 866450 | 1 | 1 | |
 | 877370 | 1 | 1 | |
 | 882408 | 1 | 1 | |
-| 903358 | 1 | 1 | |
 | 904293 | 1 | 1 | |
 | 908334 | 1 | 1 | |
 | 910313 | 1 | 1 | |
@@ -140,35 +135,25 @@ or per-lens patent backfills.
 | 930240 | 1 | 1 | |
 | 933209 | 1 | 1 | |
 | BAM5 | 1 | 1 | |
-| BASF1 | 1 | 1 | |
 | D-ZLAF85 | 1 | 1 | |
 | EF3 | 1 | 1 | |
 | FPL51 | 1 | 1 | |
 | J-LAK02 | 1 | 1 | |
 | J-LAK9 | 1 | 1 | |
 | J-LASFH6 | 1 | 1 | |
-| J-LASFH9A | 1 | 1 | |
 | J-LLF6 | 1 | 1 | |
 | J-PSK03 | 1 | 1 | |
 | J-SK11 | 1 | 1 | |
-| J-SSK1 | 1 | 1 | |
 | KF5 | 1 | 1 | |
 | KZF4 | 1 | 1 | |
-| KZFS2 | 1 | 1 | |
 | L13 | 1 | 1 | |
 | L24 | 1 | 1 | |
 | LAFN7 | 1 | 1 | |
-| LAH65V-CLASS | 1 | 1 | |
-| LAK8 | 1 | 1 | |
-| LASF07 | 1 | 1 | |
 | LF7 | 1 | 1 | |
 | LF7-CLASS | 1 | 1 | |
-| LLF6 | 1 | 1 | |
 | LLF7 | 1 | 1 | |
 | N3 | 1 | 1 | |
 | PBM18Y | 1 | 1 | |
-| PKH1-CLASS | 1 | 1 | |
-| SSK1-CLASS | 1 | 1 | |
 | ZBAF17 | 1 | 1 | |
 
 ## Occurrences
@@ -220,18 +205,6 @@ or per-lens patent backfills.
 - [CARL ZEISS CONTAREX PLANAR 55mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissContarexPlanar55mmf14.data.ts) 7: `LaF10 (Schott 784438)`
 - [CARL ZEISS CONTAREX PLANAR 55mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissContarexPlanar55mmf14.data.ts) 9: `LaF10 (Schott 784438)`
 - [LEICA ELMARIT-R 28mm f/2.8](../../src/lens-data/leica/LeicaElmarit28mmf28.data.ts) 10: `LaF10 (SCHOTT)`
-
-### LAF2 — 3 occurrences
-
-- [CARL ZEISS PRO-TESSAR 35mm f/3.2](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissProTessar35mmf32.data.ts) 2: `LaF2 (Schott)`
-- [CARL ZEISS PRO-TESSAR 35mm f/3.2](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissProTessar35mmf32.data.ts) 8: `LaF2 (Schott)`
-- [LEICA ELMARIT 90mm f/2.8](../../src/lens-data/leica/LeicaElmarit90mmf28.data.ts) 7: `LaF2 (SCHOTT)`
-
-### LAK9 — 3 occurrences
-
-- [LEICA ELCAN 50mm f/2](../../src/lens-data/leica/LeicaElcan50mmf2.data.ts) 1: `LaK9 (Schott / Leitz)`
-- [LEICA ELMARIT 90mm f/2.8](../../src/lens-data/leica/LeicaElmarit90mmf28.data.ts) 1: `LaK9 (SCHOTT)`
-- [VOIGTLÄNDER ULTRON 50mm f/2](../../src/lens-data/voigtlander/VoigtlanderUltron50f2.data.ts) 8: `LaK9 type (high-index crown — possibly La₂O₃ or ThO₂ formulation)`
 
 ### 514428 — 2 occurrences
 
@@ -343,10 +316,20 @@ or per-lens patent backfills.
 - [LEICA SUMMICRON-M 50mm f/2](../../src/lens-data/leica/LeicaSummicronV550mmf2.data.ts) 10: `Lanthanum crown (same glass as L5)`
 - [NIKON NIKKOR Z 135mm f/1.8 S Plena](../../src/lens-data/nikon/NikonZ135f18.data.ts) 17: `Anomalous high-index flint (same as L5)`
 
+### LAF2 — 2 occurrences
+
+- [CARL ZEISS PRO-TESSAR 35mm f/3.2](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissProTessar35mmf32.data.ts) 2: `LaF2 (Schott)`
+- [CARL ZEISS PRO-TESSAR 35mm f/3.2](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissProTessar35mmf32.data.ts) 8: `LaF2 (Schott)`
+
 ### LAK10 — 2 occurrences
 
 - [CARL ZEISS PRO-TESSAR 35mm f/3.2](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissProTessar35mmf32.data.ts) 13: `LaK10 (Schott)`
 - [CARL ZEISS BIOGON 21mm f/4.5](../../src/lens-data/carl-zeiss-oberkochen/ZeissBiogon21mmf45.data.ts) 5: `LaK10 lanthanum crown (721/503)`
+
+### LAK9 — 2 occurrences
+
+- [LEICA ELCAN 50mm f/2](../../src/lens-data/leica/LeicaElcan50mmf2.data.ts) 1: `LaK9 (Schott / Leitz)`
+- [VOIGTLÄNDER ULTRON 50mm f/2](../../src/lens-data/voigtlander/VoigtlanderUltron50f2.data.ts) 8: `LaK9 type (high-index crown — possibly La₂O₃ or ThO₂ formulation)`
 
 ### PK1 — 2 occurrences
 
@@ -372,10 +355,6 @@ or per-lens patent backfills.
 ### 518523 — 1 occurrence
 
 - [MINOLTA AF 35-105mm f/3.5-4.5 New (v2)](../../src/lens-data/minolta/MinoltaAF35105mmf3545v2.data.ts) 21A: `518523 - thin hybrid aspheric layer (unresolved)`
-
-### 519700 — 1 occurrence
-
-- [Nikon AI Zoom-Nikkor 35-200mm f/3.5-4.5S](../../src/lens-data/nikon/NikonAIZoomNikkor35200mmf3545S.data.ts) 16: `PKH1-class phosphate crown (519/700)`
 
 ### 534554 — 1 occurrence
 
@@ -577,10 +556,6 @@ or per-lens patent backfills.
 
 - [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) 12: `769497 — lanthanum crown (patent nd=1.76864, nu_d=49.7)`
 
-### 770479 — 1 occurrence
-
-- [NIKON NIKKOR-N 5cm f/1.1](../../src/lens-data/nikon/NikonN5cmf11.data.ts) 5: `770479 — lanthanum crown/flint patent glass (nd=1.77000, νd=47.9; no exact public catalog match)`
-
 ### 772493 — 1 occurrence
 
 - [FUJIFILM FUJINON GF 55mm f/1.7 R WR](../../src/lens-data/fujifilm/FujifilmGF55mmf17.data.ts) 11A: `772493 — molded lanthanum-crown class (no exact public catalog match)`
@@ -641,10 +616,6 @@ or per-lens patent backfills.
 
 - [FUJIFILM FUJINON XF 23mm f/2 R WR](../../src/lens-data/fujifilm/FujifilmXF23mmf2RWR.data.ts) 13A: `803405 - high-index lanthanum flint (likely PGM aspheric melt; no exact public catalog match)`
 
-### 804464 — 1 occurrence
-
-- [Nikon AI Zoom-Nikkor 35-200mm f/3.5-4.5S](../../src/lens-data/nikon/NikonAIZoomNikkor35200mmf3545S.data.ts) 9: `LAH65V-class lanthanum flint (804/464, near-match)`
-
 ### 805252 — 1 occurrence
 
 - [MINOLTA AF 28mm f/2](../../src/lens-data/minolta/MinoltaAF28mmf2.data.ts) 11: `805252 - dense flint (catalog unresolved)`
@@ -661,10 +632,6 @@ or per-lens patent backfills.
 
 - [NIKON NIKKOR 28mm f/2.8 (Nikon 28Ti)](../../src/lens-data/nikon/Nikon28Ti28mmf28.data.ts) 3: `840433 - lanthanum flint (patent nd=1.84042, vd=43.30; no exact public catalog match)`
 
-### 863415 — 1 occurrence
-
-- [CANON New FD 50mm f/1.2](../../src/lens-data/canon/CanonFDn50f12.data.ts) 10: `Lanthanum special flint (high-index) [863415] — OHARA LASF07`
-
 ### 866450 — 1 occurrence
 
 - [LAOWA 58mm f/2.8 2× Ultra-Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) 1: `866450 - high-index lanthanum flint (patent nd=1.86665, vd=45.0)`
@@ -676,10 +643,6 @@ or per-lens patent backfills.
 ### 882408 — 1 occurrence
 
 - [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) 5: `882408 — high-index lanthanum glass (patent nd=1.88234, nu_d=40.8)`
-
-### 903358 — 1 occurrence
-
-- [Nikon AI Zoom-Nikkor 35-200mm f/3.5-4.5S](../../src/lens-data/nikon/NikonAIZoomNikkor35200mmf3545S.data.ts) 6: `J-LASFH9A class (Hikari, 903/358)`
 
 ### 904293 — 1 occurrence
 
@@ -709,10 +672,6 @@ or per-lens patent backfills.
 
 - [AGFA COLOR-TELINEAR 90mm f/4](../../src/lens-data/agfa/AgfaColorTelinear90mmf4.data.ts) 7: `BAM5 class (barium middle glass, 607/492)`
 
-### BASF1 — 1 occurrence
-
-- [LEICA ELMARIT 90mm f/2.8](../../src/lens-data/leica/LeicaElmarit90mmf28.data.ts) 6: `BaSF1 (SCHOTT)`
-
 ### D-ZLAF85 — 1 occurrence
 
 - [SONY FE 12-24mm f/2.8 GM](../../src/lens-data/sony/SonyFE1224mmf28GM.data.ts) 30A: `D-ZLaF85 class (lanthanum flint, 856/401)`
@@ -737,10 +696,6 @@ or per-lens patent backfills.
 
 - [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR — TC 1.4x Engaged](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14TCIn.data.ts) 50: `J-LASFH6 class (HIKARI nd exact; Δνd = +0.07)`
 
-### J-LASFH9A — 1 occurrence
-
-- [Nikon AI Zoom-Nikkor 35-200mm f/3.5-4.5S](../../src/lens-data/nikon/NikonAIZoomNikkor35200mmf3545S.data.ts) 6: `J-LASFH9A class (Hikari, 903/358)`
-
 ### J-LLF6 — 1 occurrence
 
 - [NIKON AF-P DX NIKKOR 10-20mm f/4.5-5.6 G VR](../../src/lens-data/nikon/NikonAFPDX1020mmf4556G.data.ts) 18: `J-LLF6 (Hikari-equivalent light flint)`
@@ -753,10 +708,6 @@ or per-lens patent backfills.
 
 - [NIKON AF-S NIKKOR 28-300mm f/3.5-5.6 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS28300mmf3556G.data.ts) 29: `J-SK11 (HIKARI)`
 
-### J-SSK1 — 1 occurrence
-
-- [ENNA MÜNCHEN ULTRA-LITHAGON 28mm f/3.5](../../src/lens-data/enna-munchen/EnnaMunchenUltraLithagon28mmf35.data.ts) 11: `J-SSK1 equivalent (HIKARI; legacy SSK1-class, patent nd/vd)`
-
 ### KF5 — 1 occurrence
 
 - [AGFA COLOR-MAGNOLAR II 100mm f/4.5](../../src/lens-data/agfa/AgfaColorMagnolarII100mmf45.data.ts) 6: `KF5 class (Sumita legacy catalog; Schott-type)`
@@ -764,10 +715,6 @@ or per-lens patent backfills.
 ### KZF4 — 1 occurrence
 
 - [AGFA COLOR-TELINEAR 90mm f/4](../../src/lens-data/agfa/AgfaColorTelinear90mmf4.data.ts) 4: `KzF4 class (Schott-Jena legacy short flint, 570/481)`
-
-### KZFS2 — 1 occurrence
-
-- [CANON SERENAR 85mm f/1.5](../../src/lens-data/canon/CanonSerenar85mmf15.data.ts) 9: `KzFS2 (Schott)`
 
 ### L13 — 1 occurrence
 
@@ -781,18 +728,6 @@ or per-lens patent backfills.
 
 - [LEICA ELCAN 50mm f/2](../../src/lens-data/leica/LeicaElcan50mmf2.data.ts) 7: `≈LAFN7 (lanthanum flint)`
 
-### LAH65V-CLASS — 1 occurrence
-
-- [Nikon AI Zoom-Nikkor 35-200mm f/3.5-4.5S](../../src/lens-data/nikon/NikonAIZoomNikkor35200mmf3545S.data.ts) 9: `LAH65V-class lanthanum flint (804/464, near-match)`
-
-### LAK8 — 1 occurrence
-
-- [CARL ZEISS HOLOGON 15mm f/8 (Contarex Hologon / Leica M)](../../src/lens-data/carl-zeiss-oberkochen/ZeissHologon15mmf8.data.ts) 3, STO: `LAK8 (Schott)`
-
-### LASF07 — 1 occurrence
-
-- [CANON New FD 50mm f/1.2](../../src/lens-data/canon/CanonFDn50f12.data.ts) 10: `Lanthanum special flint (high-index) [863415] — OHARA LASF07`
-
 ### LF7 — 1 occurrence
 
 - [CARL ZEISS CONTAREX PLANAR 55mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissContarexPlanar55mmf14.data.ts) 4: `LF7 (Schott 575413)`
@@ -800,10 +735,6 @@ or per-lens patent backfills.
 ### LF7-CLASS — 1 occurrence
 
 - [OLYMPUS OM ZUIKO AUTO-W 21mm f/2](../../src/lens-data/olympus/OlympusZuikoAuto21mmf2.data.ts) 12: `593348 — LF7-class light flint (no exact public catalog match)`
-
-### LLF6 — 1 occurrence
-
-- [CANON SERENAR 85mm f/1.5](../../src/lens-data/canon/CanonSerenar85mmf15.data.ts) 8: `LLF6 (Schott, ≈)`
 
 ### LLF7 — 1 occurrence
 
@@ -816,14 +747,6 @@ or per-lens patent backfills.
 ### PBM18Y — 1 occurrence
 
 - [NIKON NIKKOR Z 40mm f/2](../../src/lens-data/nikon/NikonNikkorZ40mmf2.data.ts) 5: `PBM18Y (OHARA)`
-
-### PKH1-CLASS — 1 occurrence
-
-- [Nikon AI Zoom-Nikkor 35-200mm f/3.5-4.5S](../../src/lens-data/nikon/NikonAIZoomNikkor35200mmf3545S.data.ts) 16: `PKH1-class phosphate crown (519/700)`
-
-### SSK1-CLASS — 1 occurrence
-
-- [ENNA MÜNCHEN ULTRA-LITHAGON 28mm f/3.5](../../src/lens-data/enna-munchen/EnnaMunchenUltraLithagon28mmf35.data.ts) 11: `J-SSK1 equivalent (HIKARI; legacy SSK1-class, patent nd/vd)`
 
 ### ZBAF17 — 1 occurrence
 

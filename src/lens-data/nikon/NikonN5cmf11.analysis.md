@@ -56,13 +56,11 @@ The correction of higher-order aberrations (particularly sagittal coma at the pe
 
 The patent provides a single worked numerical example at a normalized focal length of f = 100 mm, F/1.1, with a 46° field angle. The production-scale prescription used in this project is a direct linear rescale to 50 mm (exact factor 0.5).
 
-### 4.1 Correction: Surface r₆ — Patent Typographical Error
+### 4.1 Coupled Transcription Check: n₃ and r₆
 
-During transcription of the patent, the radius of curvature of the cemented interface between L3 and L4 (surface r₆) required correction. The patent prints this value as **r₆ = +872.1** in both the worked example (page 2, column 2) and the repeated prescription in Claim 3 (page 3, column 2). Since the same value appears in two independently typeset sections of the document, this is a **typographical error in the original 1958 patent publication**, not a modern OCR artifact.
+High-resolution inspection of both the worked prescription and the independently typeset Claim 3 shows **n₃ = 1.7170**, not the `1.7700` produced by OCR. Both locations also print **r₆ = +872.1**.
 
-Paraxial ray tracing demonstrates that r₆ = +872.1 is inconsistent with the patent's own stated component focal length of f_III = −823.7. A radius of +872.1 produces an essentially afocal cemented pair (f_III ≈ −8,460), not the moderately negative component the patent describes.
-
-A systematic numerical search yields **r₆ = +122.5** (exact: 122.495) as the value required to reproduce f_III = −823.7 exactly. With this correction, all six stated component focal lengths agree with the thick-lens paraxial ray trace to within 0.1%, and the computed system EFL = 100.17 mm, closely matching the patent's stated f = 100. The typographical corruption of "122" → "872" is consistent with transposed or misset digits during the 1958 typesetting process.
+These values validate each other. Using `1.7170` with the printed radius gives component III a computed focal length of −823.6 mm, matching the patent's stated −823.7 mm within rounding. The earlier `1.7700` transcription made r₆ appear inconsistent and prompted an unsupported replacement with `122.5`; restoring the correct index removes the apparent conflict. The data therefore retains the patent's printed `872.1` radius and `1.7170` index.
 
 ### 4.2 Verified Prescription Table (f = 100 scale)
 
@@ -72,8 +70,8 @@ A systematic numerical search yields **r₆ = +122.5** (exact: 122.495) as the v
 | r₂ | +428.3 | 0.6 | 1.0 | — | Air |
 | r₃ | +93.0 | 8.5 | 1.6073 | L2 | Glass (L2) |
 | r₄ | +163.8 | 1.4 | 1.0 | — | Air |
-| r₅ | +53.5 | 19.4 | 1.7700 | L3 | Glass (L3) |
-| r₆ | +122.5* | 4.1 | 1.5927 | L4 | Glass (L4, cemented) |
+| r₅ | +53.5 | 19.4 | 1.7170 | L3 | Glass (L3) |
+| r₆ | +872.1 | 4.1 | 1.5927 | L4 | Glass (L4, cemented) |
 | r₇ | +33.3 | 25.2 | 1.0 | — | Air (stop gap) |
 | *STO* | ∞ | — | 1.0 | — | *Aperture stop* |
 | r₈ | −42.6 | 5.4 | 1.6483 | L5 | Glass (L5) |
@@ -85,7 +83,7 @@ A systematic numerical search yields **r₆ = +122.5** (exact: 122.495) as the v
 | r₁₄ | +96.9 | 7.8 | 1.6385 | L9 | Glass (L9, cemented) |
 | r₁₅ | +518.0 | BFL | 1.0 | — | Air → image |
 
-*r₆ corrected from patent's printed value of +872.1 based on paraxial verification against patent-stated component focal lengths. See §4.1.
+The `n₃ = 1.7170` and `r₆ = 872.1` entries were visually checked in both patent tables; see §4.1.
 
 **Sign convention:** Positive R = center of curvature to the right (convex to incident light from object side). This matches the patent's stated convention.
 
@@ -95,14 +93,15 @@ A systematic numerical search yields **r₆ = +122.5** (exact: 122.495) as the v
 
 | Parameter | Value |
 |-----------|-------|
-| EFL (paraxial) | 100.17 mm |
-| BFL | 45.58 mm |
+| EFL (paraxial) | 99.85 mm |
+| BFL (paraxial) | 46.11 mm |
+| Published image spacing | 45.58 mm |
 | Total track (lens + BFL) | 162.3 mm |
-| Entrance pupil diameter | 91.1 mm |
-| Petzval sum | +0.00330 mm⁻¹ |
-| Petzval radius | 303 mm (~3× EFL) |
+| Entrance pupil diameter | 90.8 mm |
+| Petzval sum | +0.003432 mm⁻¹ |
+| Petzval radius | 291 mm (~2.9× EFL) |
 
-A Petzval radius of approximately 3× EFL is typical for a fast double-Gauss design and represents a reasonable — though not exceptional — degree of field curvature correction. A positive Petzval sum for a positive-power system means the Petzval surface curves inward (toward the lens), causing the best-focus surface to bow backward away from the image plane at wide field angles. Nikon's own evaluation acknowledges that "a minimal amount of curvature of field appears" and that "curvature of field is strong in faraway backgrounds," with resolving power dipping in intermediate zones. This is consistent with the computed Petzval curvature and the characteristic pattern of a double-Gauss where the sagittal and tangential field curves cross at an intermediate field angle, creating a zone of reduced sharpness between a well-corrected center and a partially recovered periphery.
+A Petzval radius of approximately 2.9× EFL is typical for a fast double-Gauss design and represents a reasonable degree of field-curvature correction. The 0.53 mm difference between the paraxial BFL and the patent's published image spacing is consistent with the precision of the rounded table; the project preserves the published spacing. Nikon's own evaluation acknowledges some residual curvature of field, consistent with the computed Petzval curvature.
 
 ### 4.4 Production-Scale Prescription Table (f ≈ 50)
 
@@ -114,8 +113,8 @@ All linear dimensions below are the corrected patent prescription scaled by exac
 | r₂ | +214.15 | 0.30 | 1.0 | — | Air |
 | r₃ | +46.5 | 4.25 | 1.6073 | L2 | Glass (L2) |
 | r₄ | +81.9 | 0.70 | 1.0 | — | Air |
-| r₅ | +26.75 | 9.70 | 1.7700 | L3 | Glass (L3) |
-| r₆ | +61.25* | 2.05 | 1.5927 | L4 | Glass (L4, cemented) |
+| r₅ | +26.75 | 9.70 | 1.7170 | L3 | Glass (L3) |
+| r₆ | +436.05 | 2.05 | 1.5927 | L4 | Glass (L4, cemented) |
 | r₇ | +16.65 | 12.6 total gap | 1.0 | — | Air (6.3 mm to stop + 6.3 mm from stop) |
 | *STO* | ∞ | — | 1.0 | — | *Aperture stop* |
 | r₈ | −21.3 | 2.70 | 1.6483 | L5 | Glass (L5) |
@@ -127,18 +126,19 @@ All linear dimensions below are the corrected patent prescription scaled by exac
 | r₁₄ | +48.45 | 3.90 | 1.6385 | L9 | Glass (L9, cemented) |
 | r₁₅ | +259.0 | BFL | 1.0 | — | Air → image |
 
-*r₆ remains the corrected value derived in §4.1; only the linear scale changes.
+The patent's r₆ value is scaled by the same factor of 0.5 as every other linear dimension.
 
 ### 4.5 Production-Scale System Parameters (f ≈ 50)
 
 | Parameter | Value |
 |-----------|-------|
-| EFL (paraxial) | 50.08 mm |
-| BFL | 22.79 mm |
+| EFL (paraxial) | 49.93 mm |
+| BFL (paraxial) | 23.05 mm |
+| Published image spacing | 22.79 mm |
 | Total track (lens + BFL) | 81.15 mm |
-| Entrance pupil diameter | 45.5 mm |
-| Petzval sum | +0.00660 mm⁻¹ |
-| Petzval radius | 151.5 mm (~3× EFL) |
+| Entrance pupil diameter | 45.4 mm |
+| Petzval sum | +0.006865 mm⁻¹ |
+| Petzval radius | 145.7 mm (~2.9× EFL) |
 
 Because the design is a strict half-scale reduction of the 100 mm patent example, all linear lengths halve and the Petzval curvature doubles in dioptric strength, while the normalized aberration balance and f/1.1 speed remain unchanged.
 
@@ -148,12 +148,12 @@ Because the design is a strict half-scale reduction of the 100 mm patent example
 |-----------|-------------|----------------------|-----------|
 | f_I (L1) | +447.7 | +447.8 | ✓ |
 | f_II (L2) | +338.9 | +338.9 | ✓ |
-| f_III (L3+L4) | −823.7 | −823.7 | ✓ |
+| f_III (L3+L4) | −823.7 | −823.6 | ✓ |
 | f_IV (L5+L6) | +2,309.5 | +2,308.2 | ✓ |
 | f_V (L7) | +162.2 | +162.2 | ✓ |
 | f_VI (L8+L9) | +300.2 | +300.2 | ✓ |
 
-Every component focal length matches to within 0.1% after the r₆ correction. The patent's constraint that each component's absolute focal length exceeds 1.1f (= 110 mm) is satisfied by all six components, with f_V = 162.2 being the tightest case.
+Every component focal length matches to within 0.1% with the visually verified n₃/r₆ pair. The patent's constraint that each component's absolute focal length exceeds 1.1f (= 110 mm) is satisfied by all six components, with f_V = 162.2 being the tightest case.
 
 ---
 
@@ -175,20 +175,20 @@ Every component focal length matches to within 0.1% after the r₆ correction. T
 
 ### L3 — Component III, front element (cemented doublet D1)
 
-- **Shape:** Positive meniscus, convex to object (R₅ = +53.5, R₆ = +122.5)
-- **Glass:** 770479 — lanthanum crown/flint patent glass, nd = 1.7700, νd = 47.9; no exact public coefficient-backed catalog match
-- **Focal length (standalone):** +109.9 mm
-- **Role:** L3 is the first and most powerful of the three lanthanum elements. It carries the highest refractive index in the entire system (nd = 1.77). Its strongly curved front surface (r₅ = +53.5) does the bulk of the refracting in the front group, while the high refractive index keeps the surface curvatures more moderate than they would otherwise need to be — directly reducing spherical aberration contributions.
+- **Shape:** Positive meniscus, convex to object (R₅ = +53.5, R₆ = +872.1)
+- **Glass:** S-LAM3 catalog equivalent, patent code 717479; production supplier unspecified; nd = 1.7170, νd = 47.9
+- **Focal length (standalone):** +78.7 mm
+- **Role:** L3 is the positive half of the front cemented doublet and uses the same lanthanum coordinate as L6 and L7. Its strongly curved front surface (r₅ = +53.5) supplies substantial front-group convergence while the high index limits the required curvature.
 
-  The patent's conditional expressions require n₃ > 1.69 and 40 < ν₃ < 55. The lanthanum glass at nd = 1.77 satisfies this with comfortable margin. The condition n₃ > n₄ (1.770 > 1.593) ensures that the cemented interface contributes the correct chromatic correction: the high-index positive element paired with a lower-index, higher-dispersion negative element creates an achromatic doublet.
+  The patent's conditional expressions require n₃ > 1.69 and 40 < ν₃ < 55. The lanthanum glass at nd = 1.717 satisfies both. The condition n₃ > n₄ (1.717 > 1.593) ensures that the cemented interface contributes the intended chromatic correction: the high-index positive element paired with a lower-index, higher-dispersion negative element creates an achromatic doublet.
 
   **Glass note:** Nikon specifically credited "a newly developed type of optical glass made with the rare-earth element lanthanum" as a key design feature. George W. Morey had discovered the outstanding optical properties of lanthanum-containing glasses in the 1930s, and Eastman Kodak commercialized seven lanthanum glass types in the 1940s. After World War II, Schott's Walter Geffcken extended the range further into high-index territory. By the mid-1950s, lanthanum glasses were beginning to appear in Japanese photographic optics — the glasses used in this lens were likely manufactured by HIKARI Glass (Nikon's subsidiary) or OHARA.
 
 ### L4 — Component III, rear element (cemented doublet D1)
 
-- **Shape:** Negative meniscus, convex to object (R₆ = +122.5, R₇ = +33.3)
+- **Shape:** Negative meniscus, convex to object (R₆ = +872.1, R₇ = +33.3)
 - **Glass:** S-FTM16 (OHARA, 593353), nd = 1.5927, νd = 35.4 — light flint (LLF family)
-- **Focal length (standalone):** −78.5 mm
+- **Focal length (standalone):** −58.5 mm
 - **Role:** L4 is the chromatic correction partner to L3. Its lower Abbe number (higher dispersion) balances the chromatic aberration introduced by L3's positive power. The cemented pair III has a combined focal length of −823.7 mm — a very weak negative meniscus that acts primarily as a chromatic corrector rather than a significant power element.
 
   The strongly curved rear surface r₇ = +33.3 (with r₇/f = 0.333, satisfying the patent's 0.25f–0.40f condition) is the most steeply curved surface in the front group. The patent identifies the combination of conditions on r₅, r₇, n₃, n₄, and ν₃ as jointly responsible for minimizing coma and astigmatism; r₇'s curvature is a critical degree of freedom within that system.
@@ -205,7 +205,7 @@ Every component focal length matches to within 0.1% after the r₆ correction. T
 ### L6 — Component IV, rear element (cemented doublet D2)
 
 - **Shape:** Biconvex positive (R₉ = +135.7, R₁₀ = −58.1)
-- **Glass:** S-LAM3 (OHARA, 717479), nd = 1.7170, νd = 47.9 — lanthanum crown (LaK)
+- **Glass:** S-LAM3 catalog equivalent, patent code 717479; production supplier unspecified; nd = 1.7170, νd = 47.9
 - **Focal length (standalone):** +59.4 mm
 - **Role:** L6 is the second lanthanum element and the strongest single positive element in the rear group. Its biconvex form provides strong convergence immediately behind the stop. The lanthanum glass (shared with L7) provides high refractive index with moderate dispersion, allowing the biconvex curvatures to be less extreme than they would with conventional crown glass.
 
@@ -214,7 +214,7 @@ Every component focal length matches to within 0.1% after the r₆ correction. T
 ### L7 — Component V: Single Plano-Convex
 
 - **Shape:** Plano-convex (R₁₁ = +116.3, R₁₂ = flat)
-- **Glass:** S-LAM3 (OHARA, 717479), nd = 1.7170, νd = 47.9 — same glass as L6, lanthanum crown (LaK)
+- **Glass:** S-LAM3 catalog equivalent, patent code 717479; production supplier unspecified; nd = 1.7170, νd = 47.9 — same patent coordinate as L3 and L6
 - **Focal length:** +162.2 mm (1.62× EFL)
 - **Role:** L7 is the third lanthanum element and the principal power element of the rear group — at f = 162.2, it is the shortest focal length of any single component. Its plano-convex form with the flat surface facing the image is geometrically simple but optically significant: the single curved surface contributes positive power while the flat rear surface contributes zero power and no primary (Seidel) aberrations, making L7 a clean, efficient power contributor.
 
@@ -246,11 +246,11 @@ Nikon's own documentation identifies the key innovation as "the use of a newly d
 
 | Element | nd | νd | Code | Position |
 |---------|-----|-----|------|----------|
-| L3 | 1.7700 | 47.9 | 770479 | Positive element, front cemented doublet; no exact public coefficient-backed match |
+| L3 | 1.7170 | 47.9 | S-LAM3 / 717479 | Positive element, front cemented doublet |
 | L6 | 1.7170 | 47.9 | S-LAM3 / 717479 | Positive element, rear cemented doublet |
 | L7 | 1.7170 | 47.9 | S-LAM3 / 717479 | Positive element, single plano-convex |
 
-All three share the same Abbe number (νd = 47.9), and L6/L7 use identical glass. The lanthanum content provides refractive indices of 1.717–1.770, which is substantially higher than what conventional crown glasses could achieve at the same dispersion level. For comparison, a non-lanthanum crown with νd ≈ 48 would typically have nd around 1.52–1.56 — the lanthanum glasses provide roughly 0.16–0.25 higher refractive index.
+All three share the same patent coordinate (`1.7170 / 47.9`). The lanthanum content provides substantially higher index than conventional crown glasses at similar dispersion, reducing the surface curvature needed for a given optical power.
 
 This higher index means less surface curvature is needed to achieve a given optical power, which directly reduces the spherical aberration, coma, and astigmatism contributions from each surface. Nikon credits this innovation with "significant improvements in spherical aberration, curvature of field, sharpness, and image flatness."
 
@@ -270,19 +270,18 @@ Given that Nikon's glass subsidiary HIKARI Glass Co., Ltd. was the primary suppl
 
 ### 6.4 Glass Census
 
-Seven distinct glass types are used across nine elements, with two duplications (L1 = L2 and L6 = L7):
+Six distinct glass types are used across nine elements, with two repeated coordinates (L1 = L2 and L3 = L6 = L7):
 
 | Glass type | nd | νd | Elements | Family |
 |-----------|-----|-----|----------|--------|
 | K-SK7 / 607595 | 1.6073 | 59.5 | L1, L2 | Dense Crown (SK) |
-| 770479 | 1.7700 | 47.9 | L3 | Lanthanum Crown/Flint (LaK/LaF); unresolved exact catalog match |
-| S-LAM3 / 717479 | 1.7170 | 47.9 | L6, L7 | Lanthanum Crown (LaK) |
+| S-LAM3 / 717479 | 1.7170 | 47.9 | L3, L6, L7 | Lanthanum Crown (LaK); coefficient-backed equivalent |
 | S-FTM16 / 593353 | 1.5927 | 35.4 | L4 | Light Flint (LLF) |
 | S-TIM22 / 648338 | 1.6483 | 33.8 | L5 | Flint (F) |
 | E-F1 / 626357 | 1.6259 | 35.6 | L8 | Light Flint (LF) |
 | K-SK18 / 639555 | 1.6385 | 55.5 | L9 | Dense Crown (SK) |
 
-The use of identical glass for L6 and L7 is notable: both are lanthanum crown elements in the rear group, and sharing a glass type was a practical decision that reduced manufacturing complexity.
+The repeated 717479 coordinate across L3, L6, and L7 is notable: the same high-index, moderate-dispersion glass supports positive power on both sides of the stop.
 
 ---
 
@@ -330,9 +329,9 @@ The patent specifies several conditional relationships that the design must sati
 
 | Condition | Required | Actual | Status |
 |-----------|----------|--------|--------|
-| n₃ > 1.69 | n₃ > 1.69 | n₃ = 1.770 | ✓ |
+| n₃ > 1.69 | n₃ > 1.69 | n₃ = 1.717 | ✓ |
 | 40 < ν₃ < 55 | Abbe number of L3 | ν₃ = 47.9 | ✓ |
-| n₃ > n₄ | Index of positive > negative in D1 | 1.770 > 1.593 | ✓ |
+| n₃ > n₄ | Index of positive > negative in D1 | 1.717 > 1.593 | ✓ |
 | 0.45f < r₅ < 0.60f | Outer convex of Comp. III | r₅/f = 0.534 | ✓ |
 | 0.25f < r₇ < 0.40f | Outer concave of Comp. III | r₇/f = 0.332 | ✓ |
 | n₆ > 1.70 | Refractive index of L6 | n₆ = 1.717 | ✓ |
@@ -352,14 +351,14 @@ Applying the exact linear scale factor of 0.5 (from f = 100 patent to 50 mm prod
 
 | Parameter | Patent (f = 100) | Production (f ≈ 50) |
 |-----------|-----------------|---------------------|
-| EFL | 100.17 mm | 50.08 mm |
-| BFL | 45.58 mm | 22.79 mm |
+| EFL | 99.85 mm | 49.93 mm |
+| Published image spacing | 45.58 mm | 22.79 mm |
 | Lens track | 116.7 mm | 58.36 mm |
 | EP diameter | 91.1 mm | 45.5 mm |
 | Front element semi-diameter | ~49 mm | ~24.5 mm (49 mm diameter) |
 | Filter size | — | 62 mm |
 
-**Production focal length note:** The patent normalizes the prescription to f = 100.0. The production lens is marketed as "5cm" (50 mm). The data file in this project now uses the exact 0.5 rescale, which yields a computed paraxial EFL of 50.08 mm. Nikon's historical practice sometimes produced "50 mm" normal lenses with slightly longer actual focal lengths, but no verified production prescription for this lens has surfaced that would justify a different scale factor here.
+**Production focal length note:** The patent normalizes the prescription to f = 100.0. The production lens is marketed as "5cm" (50 mm). The exact 0.5 rescale yields a computed paraxial EFL of 49.93 mm from the rounded patent table.
 
 The BFL of 22.79 mm at production scale is well inside the Nikon S-mount flange distance of 34.85 mm. This means the rear elements of the lens protrude significantly into the camera body — about 12.1 mm behind the lens mount flange. This is typical of fast rangefinder lenses, which do not require the long back focal distance needed by SLR mirror boxes. It is one reason the f/1.1 speed was achievable for rangefinder cameras but would not be matched for SLR normal lenses until decades later.
 

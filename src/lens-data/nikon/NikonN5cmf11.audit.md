@@ -26,3 +26,14 @@ Patent: US 2,828,671, single prescription
 - Public catalog search found coefficient-backed matches for every six-digit row except `770479`.
 - Updated the analysis notes and glass census to use catalog names where defensible and keep `770479` explicit for future upgrade.
 
+## 2026-08-18 - L3 patent transcription correction
+
+- Re-rendered `patents/US2828671.pdf` at high resolution because OCR reported L3 as `1.7700`. Direct visual checks
+  of both the original prescription table and the independent claim table show `n3 = 1.7170`, `v3 = 47.9`.
+- Corrected L3 and surface 5 from `1.7700` to `1.7170` and assigned the same S-LAM3 optical-equivalent curve already
+  used for the identical L6/L7 patent row. With that index corrected, the patent's printed `r6 = 872.1` correctly
+  reproduces the stated component power; restored surface 6 from the prior unsupported `122.5` substitution to
+  `872.1` (production scale `436.05`). Recalculated the standalone L3/L4 focal lengths to 39.36/−29.26 mm.
+- Updated the analysis and glass census accordingly. The production supplier remains unspecified.
+- This section supersedes both the OCR-dependent `770479` statements in the 2026-05-20 entry and the earlier
+  radius-correction rationale.

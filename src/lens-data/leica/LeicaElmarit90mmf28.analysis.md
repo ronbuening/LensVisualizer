@@ -95,40 +95,40 @@ The ABCD system matrix determinant is exactly 1.000 (air-to-air system), confirm
 
 ## 5. Glass Identification
 
-The patent provides nd and νd values for each element. Matching against the SCHOTT optical glass catalog (the primary supplier for Leitz Wetzlar in this era) yields the following identifications:
+The patent provides nd and νd values for each element but does not name suppliers. Matching those coordinates against the shared catalog yields the following coefficient-backed optical equivalents:
 
 ### L1 — nd = 1.69100, νd = 54.8
 
-**Identification: SCHOTT LaK9** (lanthanum crown)
-**Confidence: Confirmed.** The catalog value for LaK9 is nd = 1.69100, νd = 54.7; the refractive index is an exact match and the Abbe number differs by 0.1, well within normal melt-to-melt variation (Schott's standard tolerance on νd is ±0.8%). Six-digit glass code: 1691/548.
+**Coefficient-backed equivalent: K-LaK9** (lanthanum crown)
+**Confidence: High optical-equivalent confidence.** Its catalog coordinate matches the patent within printed precision. The patent does not identify the production supplier. Six-digit glass code: 691548.
 
 LaK9 is a lanthanum crown (LaK) glass with moderately high refractive index and relatively low dispersion. In the 1950s, lanthanum-containing glasses were among the newer "highly refracting, weak dispersing" glasses that the patent specifically credits with enabling the f/2.8 aperture — an advance over the prior f/6.3 triplet designs. Its high nd allows strong positive power with moderate surface curvatures, reducing spherical aberration contributions.
 
 ### L2 — nd = 1.75520, νd = 27.5
 
-**Identification: SCHOTT SF4** (dense flint)
-**Confidence: Confirmed.** Both nd and νd are exact catalog matches. Six-digit glass code: 1755/275.
+**Coefficient-backed equivalent: SF4** (dense flint)
+**Confidence: High optical-equivalent confidence.** The coordinate matches within catalog precision; the patent does not identify the production supplier. Six-digit glass code: 755275.
 
 SF4 is a dense flint glass with very high refractive index and high dispersion. Within the middle doublet, L2 is the positive element despite the group being negative overall. The patent explicitly states that "the glass of the positive lens of the negative component has a smaller 'Nu' value [lower Abbe number, i.e. higher dispersion] than the glass of the negative lens." SF4's νd = 27.5 satisfies this condition relative to L3's νd = 34.6.
 
 ### L3 — nd = 1.63980, νd = 34.6
 
-**Identification: Flint-family glass, nearest catalog match SCHOTT F6**
-**Confidence: Family-level only.** The nearest modern SCHOTT catalog glass is F6 (nd = 1.63636, νd = 35.4), but the discrepancy is significant: Δnd = 0.00344, Δνd = 0.8. Six-digit glass code: 640346.
+**Coefficient-backed equivalent: E-FD7**
+**Confidence: High optical-equivalent confidence.** E-FD7 carries the exact six-digit patent code `640346` and reproduces the d-line coordinate within catalog precision. The patent does not identify the production supplier.
 
-This glass falls in the flint (F) region of the Abbe diagram but does not match any glass in the current Schott catalog exactly. In the 1950s, Schott's catalog included glass types that have since been discontinued or reformulated — particularly lead-containing flints that were later replaced with eco-friendly equivalents. The patent value nd = 1.63980 / νd = 34.6 likely represents a specific historical glass type or melt batch available to Leitz in 1956–1957. Alternatively, Leitz may have used glass from another supplier (e.g., their own internal melts, or Chance-Pilkington glass). At family level, it is unambiguously a flint glass.
+This coordinate lies in the flint region of the Abbe diagram. The E-FD7 curve supplies defensible chromatic behavior for tracing without asserting that Leitz used a HOYA production melt.
 
 ### L4 — nd = 1.62588, νd = 35.6
 
-**Identification: SCHOTT BaSF1** (barium dense flint)
-**Confidence: Confirmed.** The catalog value for BaSF1 is nd = 1.62588, νd = 35.7; the refractive index is an exact match and νd differs by 0.1. Six-digit glass code: 1626/356.
+**Coefficient-backed equivalent: F1** (flint)
+**Confidence: High optical-equivalent confidence.** The existing F1 curve matches the patent's `1.62588 / 35.6` coordinate within catalog precision. The patent does not identify the production supplier. Six-digit glass code: 626356.
 
-BaSF1 is a barium-containing dense flint with moderate refractive index and moderate dispersion. Within the rear doublet, L4 serves as the negative element. Its nd is significantly lower than L5's nd (Δnd = 0.118), which creates a strong refractive index difference at the cemented interface — important for controlling spherical aberration.
+L4's F1-equivalent coordinate has moderate refractive index and dispersion. Within the rear doublet, L4 serves as the negative element. Its nd is significantly lower than L5's nd (Δnd = 0.118), creating a strong refractive-index step at the cemented interface for spherical-aberration control.
 
 ### L5 — nd = 1.74400, νd = 44.9
 
-**Identification: SCHOTT LaF2** (lanthanum flint)
-**Confidence: Confirmed.** The catalog value for LaF2 is nd = 1.74400, νd = 44.7; the refractive index is an exact match and νd differs by 0.2. Six-digit glass code: 1744/449.
+**Coefficient-backed equivalent: N-LAF2** (lanthanum flint)
+**Confidence: High family-level optical-equivalent confidence.** The curve retains historical LaF2-family continuity and matches the patent coordinate closely. The patent does not identify the production supplier. Six-digit glass code: 744449.
 
 LaF2 is a lanthanum flint glass — high refractive index with moderate dispersion. This is another of the "new" glass types referenced in the patent. Lanthanum flint occupies a region of the Abbe diagram that was not accessible with classical crown/flint glass combinations, enabling the rear doublet to achieve strong positive power with improved chromatic performance. L5 is by far the thickest element in the system (d₅ = 9.27 mm at f = 100 scale) and carries the strongest individual positive power (EFL = +26.1 mm).
 
@@ -136,13 +136,13 @@ LaF2 is a lanthanum flint glass — high refractive index with moderate dispersi
 
 | Element | nd | νd | Glass | Family | Confidence |
 |:--------|------:|-----:|:------|:-------|:-----------|
-| L1 | 1.69100 | 54.8 | LaK9 | Lanthanum crown | Confirmed |
+| L1 | 1.69100 | 54.8 | K-LaK9 equivalent | Lanthanum crown | Coefficient-backed |
 | L2 | 1.75520 | 27.5 | SF4 | Dense flint | Confirmed |
-| L3 | 1.63980 | 34.6 | (F-type) | Flint | Family only |
-| L4 | 1.62588 | 35.6 | BaSF1 | Barium dense flint | Confirmed |
-| L5 | 1.74400 | 44.9 | LaF2 | Lanthanum flint | Confirmed |
+| L3 | 1.63980 | 34.6 | E-FD7 equivalent | Flint | Exact six-digit code |
+| L4 | 1.62588 | 35.6 | F1 equivalent | Flint | Exact patent coordinate |
+| L5 | 1.74400 | 44.9 | N-LAF2 equivalent | Lanthanum flint | Coefficient-backed |
 
-Four of the five glasses are confidently identified to the specific Schott catalog type. Two of the five (L1 and L5) are lanthanum-containing glasses — these were the enabling technology for this design's f/2.8 aperture at 90 mm focal length.
+All five elements now have coefficient-backed optical equivalents. These labels support chromatic tracing but do not identify Leitz's production suppliers. Two coordinates (L1 and L5) lie in lanthanum-glass families that enabled strong positive power at moderate curvature.
 
 ---
 
@@ -155,7 +155,7 @@ Four of the five glasses are confidently identified to the specific Schott catal
 | Surfaces | r₁ = +44.05, r₂ = −267.94 |
 | Thickness | 6.70 mm |
 | Shape | Biconvex (strongly convex front, nearly flat rear) |
-| Glass | LaK9 (nd = 1.691, νd = 54.8) |
+| Glass | K-LaK9 catalog equivalent (nd = 1.691, νd = 54.8) |
 | Element EFL | +55.2 mm |
 
 L1 is the front positive collector of the triplet. Its strongly convex front surface (r₁ = +44.05) provides the majority of the element's optical power, while the rear surface (r₂ = −267.94) is nearly flat — the radius of curvature is 6× the EFL, so this surface contributes only weak positive power. The element is effectively a plano-convex lens oriented convex-toward-object.
@@ -203,7 +203,7 @@ L3 uses a flint glass with higher νd (34.6) than L2's SF4 (27.5). In a conventi
 | Surfaces | r₆ = −1326.67 (front, nearly flat), r₇ = +29.16 (cemented rear) |
 | Thickness | 3.00 mm |
 | Shape | Biconcave (weakly, with nearly flat front) |
-| Glass | BaSF1 (nd = 1.626, νd = 35.6) |
+| Glass | F1 catalog equivalent (nd = 1.626, νd = 35.6) |
 | Element EFL | −45.6 mm |
 | Cemented to | L5 |
 
@@ -218,13 +218,13 @@ Within the rear doublet, L4 serves the traditional role of the flint (negative, 
 | Surfaces | r₇ = +29.16 (cemented front), r₈ = −49.93 (rear) |
 | Thickness | 9.27 mm |
 | Shape | Biconvex |
-| Glass | LaF2 (nd = 1.744, νd = 44.9) |
+| Glass | N-LAF2 catalog equivalent (nd = 1.744, νd = 44.9) |
 | Element EFL | +26.1 mm |
 | Cemented to | L4 |
 
 L5 is the optically strongest positive element in the entire system (EFL = +26.1 mm) and is by far the thickest element (d₅ = 9.27 mm, 38% more than the next thickest element L1). Its biconvex shape with the steeper surface toward the front (r₇ = +29.16 vs. |r₈| = 49.93) concentrates power on the cemented interface where the refractive index transition is most favourable.
 
-The choice of LaF2 (lanthanum flint) is critical. With nd = 1.744 and νd = 44.9, LaF2 provides high refractive power per unit curvature while maintaining moderate dispersion. The combination of L4 (BaSF1, νd = 35.6) and L5 (LaF2, νd = 44.9) has a Δνd of 9.3, which is modest for an achromatic doublet — but the high-index glass allows the doublet to function effectively as both an image-forming group and a chromatic corrector.
+The L5 lanthanum-flint coordinate is critical. With nd = 1.744 and νd = 44.9, it provides high refractive power per unit curvature while maintaining moderate dispersion. The combination of L4's F1-equivalent coordinate (νd = 35.6) and L5 (νd = 44.9) has a Δνd of 9.3, which is modest for an achromatic doublet, but the high-index glass allows the pair to function as both an image-forming group and a chromatic corrector.
 
 The rear surface r₈ = −49.93 is the final optical surface before the image. Its moderate concave curvature contributes to the lens's field curvature correction by bending the marginal ray bundle appropriately before it reaches the focal plane.
 
@@ -336,4 +336,4 @@ The 1 m minimum focusing distance, while standard for the era, limits the lens's
 
 The Leica Elmarit 90mm f/2.8 (US 2,995,980) is a modified Cooke Triplet with 5 elements in 3 groups, achieving f/2.8 at a 90 mm focal length through the use of lanthanum glasses and an innovative reversed-dispersion cemented doublet in the middle group. The design is entirely spherical, with no aspherical surfaces. It is not a telephoto — the total track exceeds the focal length by 22% (telephoto ratio 1.22). Focusing is by unit extension of the entire optical assembly. The optical prescription is well-balanced, with near-symmetric positive groups flanking a powerful negative middle group, yielding a Petzval sum normalised to EFL of 0.202 and sphero-chromatic correction within 0.25% of the focal length at full aperture.
 
-Five glass types are used: Schott LaK9 (confirmed), SF4 (confirmed), an F-family flint (family-level identification only), BaSF1 (confirmed), and LaF2 (confirmed). The two lanthanum glasses (L1 and L5) are the enabling materials for the design's performance.
+Five glass coordinates are used, all with coefficient-backed optical equivalents: K-LaK9, SF4, E-FD7, F1, and N-LAF2. These names support dispersion tracing and do not establish Leitz's production suppliers. The two lanthanum-family coordinates (L1 and L5) are enabling materials for the design's performance.

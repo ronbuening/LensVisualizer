@@ -10,6 +10,17 @@ dPgF-corrected indices, or the legacy Abbe approximation. Current optics-engine 
 
 The catalog currently has **529 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
 
+The August 18, 2026 Phase 104 patent-table audit assigned existing coefficient-backed curves to 31 more non-air
+surfaces across ten lenses: Sigma 85mm DG DN, Zeiss Planar 50mm, Nikon 35–200mm, Leica Elmarit 90mm, Canon
+Serenar 85mm, Enna Ultra-Lithagon 28mm, Zeiss Hologon 15mm, Canon New FD 50mm, Samsung 20mm, and Nikon
+Nikkor-N 5cm. All ten are now strict-complete. High-resolution inspection of US 2,828,671 also corrected the
+Nikkor-N's L3 from OCR-derived `1.7700` to the patent's `1.7170` and restored the printed `r6 = 872.1`; those two
+values jointly reproduce the patent's stated component power. No new catalog row or relaxed tolerance was needed,
+and production suppliers remain unspecified. Strict coverage rises from 6040/6653 to 6071/6653 and trusted coverage
+from 6054/6653 to 6085/6653. Visible strict-complete lenses rise from 353 to 363 and trusted-complete lenses from 358
+to 368. The missing-Sellmeier report falls from 89 to 88 affected lens files while retaining 99 explicit unresolved
+dispositions and zero active unreviewed rows or catalog-coordinate mismatches.
+
 The August 18, 2026 Phase 103 patent/code audit assigned existing coefficient-backed curves to 21 more elements
 across sixteen lenses. The pass also converted Fujifilm GF 20-35mm Table 28 θgF values into authored `dPgF` for
 all fourteen elements. No new catalog row was needed: the verified curves already present for S-FTM16, S-TIL6,

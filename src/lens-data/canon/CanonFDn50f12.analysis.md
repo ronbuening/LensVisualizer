@@ -121,7 +121,7 @@ This cemented doublet is the heart of the design's aberration correction. The ju
 | Surfaces | R10 = −197.48, R11 = −36.00 |
 | Shape | Positive meniscus, convex toward image |
 | Glass | nd = 1.863, νd = 41.5 — **Lanthanum special flint (high-index)** [863415] |
-| Catalog match | OHARA LASF07 (per Cavina); also HOYA TAFD25 |
+| Catalog match | LASFN13 coefficient-backed equivalent; production supplier unspecified |
 | Thick-lens focal length | +50.3 mm |
 
 L6 is the most remarkable element in the design and the subject of patent condition (3): 1.85 < n6. At nd = 1.863, this is the highest refractive index glass in the system, and the patent explicitly identifies it as essential for correcting both spherical aberration and off-axis halo simultaneously.
@@ -159,9 +159,9 @@ The use of only five distinct glass types across seven elements — with L1 = L2
 | L3 | 1.66680 | 33.0 | 667330 | H-ZF39 equivalent | CDGM | Dense flint |
 | L4 | 1.80518 | 25.4 | 805254 | SF6 | FDS6 | Dense flint |
 | L5, L7 | 1.77250 | 49.6 | 773496 | LASF016 | NBFD10 | Lanthanum special flint |
-| L6 | 1.86300 | 41.5 | 863415 | LASF07 | TAFD25 | Lanthanum special flint |
+| L6 | 1.86300 | 41.5 | 863415 | LASFN13 optical equivalent | Supplier unspecified | Lanthanum special flint |
 
-Cavina identifies OHARA as the glass supplier for the production lens, using old-catalog designations (pre-"S-" prefix era). Both OHARA and HOYA catalogs contain exact nd/νd matches for all five glass types. Note that OHARA LASF016 — used in L5 and L7 — is described by Cavina as a glass frequently favored by Momiyama across multiple Canon designs, including elements of the FD 24mm f/1.4 Aspherical.
+Cavina attributes several production glasses to historical OHARA types. For chromatic tracing, the data file uses compatible coefficient-backed curves and treats those names as optical equivalents unless the primary patent itself identifies a supplier. L6 now uses LASFN13 at the patent's `863415` coordinate.
 
 ## 6. Aberration Budget
 
@@ -217,4 +217,4 @@ Despite these limitations, the design represents a carefully optimized solution 
 
 ---
 
-*Analysis based on US 4,364,643 Embodiment 3. All numerical values independently verified by paraxial ray trace (ABCD matrix method). Glass identifications follow Cavina's OHARA attributions (NOC Sensei, January 2025), cross-referenced against HOYA and Schott catalogs; all suppliers offer exact nd/νd matches. Aberration coefficients are as published in the patent. The identification of Embodiment 3 as the production design is corroborated by Cavina's independent analysis but not confirmed by Canon directly.*
+*Analysis based on US 4,364,643 Embodiment 3. All numerical values independently verified by paraxial ray trace (ABCD matrix method). Catalog glass names provide compatible dispersion curves and do not establish production suppliers. Aberration coefficients are as published in the patent. The identification of Embodiment 3 as the production design is corroborated by Cavina's independent analysis but not confirmed by Canon directly.*

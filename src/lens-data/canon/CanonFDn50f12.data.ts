@@ -100,7 +100,7 @@ const LENS_DATA = {
       nd: 1.863,
       vd: 41.5,
       fl: 50.3,
-      glass: "Lanthanum special flint (high-index) [863415] — OHARA LASF07",
+      glass: "LASFN13 catalog equivalent (patent coordinate 863415; production supplier unspecified)",
       apd: false,
       role: "Rear positive meniscus, convex toward image. Highest-index glass in system (1.863) per condition (3): n6 > 1.85. R11 generates second-largest positive SA (I = +1.48), opposing R7.",
     },

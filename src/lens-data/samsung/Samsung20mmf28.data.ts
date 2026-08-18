@@ -129,7 +129,7 @@ const LENS_DATA = {
       nd: 1.68997,
       vd: 53,
       fl: 27.8176292707,
-      glass: "Unmatched (nd=1.68997, vd=53.0; no close public catalog identity is uniquely defensible)",
+      glass: "K-VC80-M catalog equivalent (patent coordinate; production supplier unspecified)",
       role: "Positive rear meniscus; its image-side surface is the design's sole asphere.",
     },
   ],

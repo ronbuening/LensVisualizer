@@ -31,3 +31,11 @@ Patent: US 4,364,643, Embodiment 3
 - `npm run format:check` - passed.
 - `npm run lint` - passed.
 - `npm run test` - initially exposed stale generated route metadata; after `npm run generate:metadata`, passed (183 files, 2212 tests).
+
+## 2026-08-18 - Embodiment 3 L6 coefficient backfill
+
+- Visually rechecked Embodiment 3 on rendered pages 7–8 of `patents/US4364643.pdf`; L6 is confirmed at
+  `1.863 / 41.5` (`863415`).
+- Replaced the unresolved LASF07 attribution with the existing LASFN13 curve, which matches the patent coordinate
+  within printed precision. This is an optical equivalent; Canon's production supplier remains unspecified.
+- No prescription or geometry value changed.

@@ -10,9 +10,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **589** lenses scanned
-- **965** total code-only elements found
-- **965** elements in this report
-- **174** distinct lens files affected
+- **963** total code-only elements found
+- **963** elements in this report
+- **172** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -230,7 +230,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 630346 | 1 | 1 | patents/JP2015041012A.pdf | All rows have review records |
 | 635232 | 1 | 1 | patents/US8081392.pdf | All rows explicitly disposed |
 | 639554 | 1 | 1 | patents/WO2023181666A1.pdf | No review-record hit |
-| 640346 | 1 | 1 | patents/US2995980.pdf | All rows have review records |
 | 640353 | 1 | 1 | patents/US4277149.pdf | All rows have review records |
 | 641589 | 1 | 1 | patents/US7307794.pdf | All rows explicitly disposed |
 | 642581 | 1 | 1 | patents/US2721499.pdf | All rows have review records |
@@ -301,7 +300,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 768465 | 1 | 1 | patents/US3524697.pdf | All rows have review records |
 | 769497 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | All rows have review records |
 | 770297 | 1 | 1 | patents/JP2023044106A.pdf | No review-record hit |
-| 770479 | 1 | 1 | patents/US2828671.pdf | All rows have review records |
 | 770493 | 1 | 1 | Missing from untracked local patents/ references (WO2021246545A1, WO2021246545, 2021246545) | All rows explicitly disposed |
 | 772493 | 1 | 1 | patents/US20230341664A1.pdf | All rows have review records |
 | 772496 | 1 | 1 | patents/JPWO2019187633A1.pdf | No review-record hit |
@@ -650,12 +648,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L3 (Element 3) | 5 | `747274 - dense flint (patent nd=1.74710, vd=27.40; no exact public catalog match)` | 1.74710 / 27.40 | No catalog entry | abbe | patents/US3649104.pdf | Reviewed sidecar hit |
-
-### [LEICA ELMARIT 90mm f/2.8](../../src/lens-data/leica/LeicaElmarit90mmf28.data.ts) - US 2,995,980
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L3 (Element 3) | 4 | `640346 - F-family flint (patent nd=1.63980, vd=34.6; no exact public catalog match)` | 1.63980 / 34.60 | J-SF7 (trusted Sellmeier) | sellmeier | patents/US2995980.pdf | Reviewed sidecar hit |
 
 ### [LEICA ELMARIT-R 28mm f/2.8](../../src/lens-data/leica/LeicaElmarit28mmf28.data.ts) - US 3,591,257
 
@@ -1305,12 +1297,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L22 (Element 6) | 10 | `Lanthanum/titanium flint (glass code 720347)` | 1.72047 / 34.71 | N-KZFS8 (trusted Sellmeier) | sellmeier | patents/WO2022097401A1.pdf | No review-record hit |
 | L42 (Element 12) | 21 | `Phosphate crown (glass code 519699)` | 1.51860 / 69.89 | J-PKH1 (trusted Sellmeier) | sellmeier | patents/WO2022097401A1.pdf | No review-record hit |
 | L44 (Element 14) | 24 | `Ultra-high-index specialty (glass code 001255, nd > 2.0)` | 2.00069 / 25.46 | TAFD40L-W (trusted Sellmeier) | sellmeier | patents/WO2022097401A1.pdf | No review-record hit |
-
-### [NIKON NIKKOR-N 5cm f/1.1](../../src/lens-data/nikon/NikonN5cmf11.data.ts) - US 2,828,671
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L3 (Element 3) | 5 | `770479 — lanthanum crown/flint patent glass (nd=1.77000, νd=47.9; no exact public catalog match)` | 1.77000 / 47.90 | No catalog entry | abbe | patents/US2828671.pdf | Reviewed sidecar hit |
 
 ### [NIKON R-UW AF FISHEYE-NIKKOR 13mm f/2.8](../../src/lens-data/nikon/NikonRUWAFNikkor13mmf28.data.ts) - US 5,579,169
 
