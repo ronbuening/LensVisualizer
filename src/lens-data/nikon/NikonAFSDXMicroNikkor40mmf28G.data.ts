@@ -57,7 +57,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-af-s-dx-micro-nikkor-40mm-f28g",
   maker: "Nikon",
-  name: "NIKON AF-S DX MICRO-NIKKOR 40mm f/2.8 G",
+  name: "NIKON AF-S DX MICRO-NIKKOR 40mm f/2.8G",
   subtitle: "US 2011/0170195 A1 — Example 1; strong production correlate with documented group-count mismatch",
   specs: [
     "PATENT: 9 ELEMENTS / 8 GROUPS",
@@ -90,7 +90,7 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.4,
       fl: -35.974194643072416,
-      glass: "487704 — FK5-class crown (vendor unconfirmed)",
+      glass: "FK5 (SUMITA catalog equivalent; production supplier unspecified)",
       role: "Negative first member of G1F; the patent places this meniscus closest to the object.",
     },
     {
@@ -123,7 +123,7 @@ const LENS_DATA = {
       nd: 1.61293,
       vd: 37,
       fl: -24.057353624629997,
-      glass: "613370 — F2/F3-class flint (vendor unconfirmed)",
+      glass: "F3 (SUMITA catalog equivalent; production supplier unspecified)",
       role: "Negative second member of G1R, immediately preceding the aperture stop.",
     },
     {
@@ -134,7 +134,7 @@ const LENS_DATA = {
       nd: 1.61293,
       vd: 37,
       fl: -21.024612610044304,
-      glass: "613370 — F2/F3-class flint (vendor unconfirmed)",
+      glass: "F3 (SUMITA catalog equivalent; production supplier unspecified)",
       cemented: "D1",
       role: "Negative front member of the cemented L21/L22 pair in positive-power G2.",
     },
@@ -146,7 +146,7 @@ const LENS_DATA = {
       nd: 1.62041,
       vd: 60.29,
       fl: 27.92786543505808,
-      glass: "620603 — SK16/BSM16-class crown (vendor unconfirmed)",
+      glass: "N-SK16 (SCHOTT catalog equivalent; production supplier unspecified)",
       cemented: "D1",
       role: "Positive rear member of the cemented L21/L22 pair; the junction carries this element's id and index.",
     },
@@ -169,7 +169,7 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.4,
       fl: -58.212830982188954,
-      glass: "487704 — FK5-class crown (vendor unconfirmed)",
+      glass: "FK5 (SUMITA catalog equivalent; production supplier unspecified)",
       role: "Negative first member of the fixed rear group G3.",
     },
     {
@@ -180,7 +180,7 @@ const LENS_DATA = {
       nd: 1.744,
       vd: 44.79,
       fl: 93.16380423458116,
-      glass: "744448 — LAF2/LAM2-class lanthanum glass (vendor unconfirmed)",
+      glass: "J-LAF2 (HIKARI catalog equivalent; production supplier unspecified)",
       role: "Positive final member of the net-negative fixed rear group G3.",
     },
   ],
@@ -228,9 +228,9 @@ const LENS_DATA = {
   ],
 
   groups: [
-    { text: "G1 (+)", fromSurface: "1", toSurface: "8" },
-    { text: "G2 (+)", fromSurface: "10", toSurface: "14A" },
-    { text: "G3 (−)", fromSurface: "15", toSurface: "18" },
+    { text: "G1 (+) FOCUS", fromSurface: "1", toSurface: "8" },
+    { text: "G2 (+) FOCUS", fromSurface: "10", toSurface: "14A" },
+    { text: "G3 (−) FIXED", fromSurface: "15", toSurface: "18" },
   ],
   doublets: [{ text: "L21–L22", fromSurface: "10", toSurface: "12" }],
 

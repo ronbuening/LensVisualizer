@@ -1,4 +1,4 @@
-# NIKON AF-S DX MICRO-NIKKOR 40mm f/2.8 G — Patent Analysis
+# NIKON AF-S DX MICRO-NIKKOR 40mm f/2.8G — Patent Analysis
 
 ## Patent Reference and Design Identification
 
@@ -46,7 +46,7 @@ The focal length on each element line below is the **standalone thick-lens focal
 
 ### L11 — Negative Meniscus, concave to image
 
-**nd = 1.48749, νd = 70.40. Glass: 487704 — FK5-class crown (vendor unconfirmed). Standalone f = −35.974 mm.**
+**nd = 1.48749, νd = 70.40. Glass: FK5 (SUMITA catalog equivalent; production supplier unspecified). Standalone f = −35.974 mm.**
 
 L11 is the object-side negative meniscus required by the patent's basic architecture (¶¶0011, 0090, 0096). Its image-side surface has the stronger curvature, so the element sends off-axis rays outward before L12 collects them. The patent's discussion of conditional expression (3) explicitly treats the L11–L12 spacing as part of the control of off-axis ray angles and the division of corrective work between the first three members of G1 (¶¶0040–0043).
 
@@ -70,7 +70,7 @@ G1R is positive overall, with an independently computed focal length of about +1
 
 ### L14 — Biconcave Negative
 
-**nd = 1.61293, νd = 37.00. Glass: 613370 — F2/F3-class flint (vendor unconfirmed). Standalone f = −24.057 mm.**
+**nd = 1.61293, νd = 37.00. Glass: F3 (SUMITA catalog equivalent; production supplier unspecified). Standalone f = −24.057 mm.**
 
 L14 is the negative second member of G1R and the last powered element before the stop. The combination of positive L13 and negative L14 remains positive as a subgroup; the patent explicitly assigns G1R positive refractive power and describes its balance with negative G1F as part of the correction strategy across focus (¶¶0053–0057, 0096).
 
@@ -78,7 +78,7 @@ Its low νd contrasts with the crown-like L13. That dispersion contrast can supp
 
 ### L21 — Biconcave Negative, cemented front member of D1
 
-**nd = 1.61293, νd = 37.00. Glass: 613370 — F2/F3-class flint (vendor unconfirmed). Standalone f = −21.025 mm.**
+**nd = 1.61293, νd = 37.00. Glass: F3 (SUMITA catalog equivalent; production supplier unspecified). Standalone f = −21.025 mm.**
 
 L21 is the negative front member of the only cemented pair in Example 1. Its front surface is strongly negative, while its shallow cemented rear surface joins directly to L22. In the LensVisualizer prescription the shared surface carries the downstream L22 index and element identity, matching the actual glass-to-glass boundary.
 
@@ -86,7 +86,7 @@ The standalone focal length above describes L21 isolated in air. At the cemented
 
 ### L22 — Biconvex Positive, cemented rear member of D1
 
-**nd = 1.62041, νd = 60.29. Glass: 620603 — SK16/BSM16-class crown (vendor unconfirmed). Standalone f = +27.928 mm.**
+**nd = 1.62041, νd = 60.29. Glass: N-SK16 (SCHOTT catalog equivalent; production supplier unspecified). Standalone f = +27.928 mm.**
 
 L22 is the positive rear member of the cemented D1 pair. Its νd is substantially higher than L21's 37.00, so the pair combines opposite powers with a large Abbe-number separation. That is consistent with primary chromatic balancing, but the patent gives no vendor glass names and no per-line dispersion data from which to infer higher-order chromatic behavior.
 
@@ -102,7 +102,7 @@ The patent does not assign one named aberration exclusively to surface 14. A sys
 
 ### L31 — Negative Meniscus, concave to image
 
-**nd = 1.48749, νd = 70.40. Glass: 487704 — FK5-class crown (vendor unconfirmed). Standalone f = −58.213 mm.**
+**nd = 1.48749, νd = 70.40. Glass: FK5 (SUMITA catalog equivalent; production supplier unspecified). Standalone f = −58.213 mm.**
 
 L31 begins the fixed rear group G3. It is a negative meniscus with its concavity directed toward the image, as specified in the patent's Example-1 construction (¶¶0090, 0098). G3 receives a converging beam from the positive front groups and remains fixed relative to the image plane while G1 and G2 move.
 
@@ -110,7 +110,7 @@ The group is net negative even after the following positive L32; the independent
 
 ### L32 — Positive Meniscus, concave to object
 
-**nd = 1.74400, νd = 44.79. Glass: 744448 — LAF2/LAM2-class lanthanum glass (vendor unconfirmed). Standalone f = +93.164 mm.**
+**nd = 1.74400, νd = 44.79. Glass: J-LAF2 (HIKARI catalog equivalent; production supplier unspecified). Standalone f = +93.164 mm.**
 
 L32 is the final powered element and is a positive meniscus concave toward the object. It partially offsets L31 while leaving G3 negative overall. The patent specifically states that placing a positive lens closest to the image side in G3 can move the exit pupil farther away and facilitate coma correction (¶0058).
 
@@ -118,19 +118,19 @@ The high index of 1.74400 allows this weak positive correction to be obtained wi
 
 ## Glass Identification and Selection
 
-The patent publishes only d-line refractive index and Abbe number (`nd`, `νd`) for the active elements. It does not identify the optical-glass manufacturer. The final data therefore uses vendor-neutral six-digit coordinate/class labels rather than converting close catalog matches into asserted material identities.
+The patent publishes only d-line refractive index and Abbe number (`nd`, `νd`) for the active elements. It does not identify the optical-glass manufacturer. The final data uses checked catalog equivalents for dispersion modeling while explicitly leaving the production supplier unspecified.
 
 | Data-file glass annotation | nd | νd | Elements | Interpretation |
 |---|---:|---:|---|---|
-| 487704 — FK5-class crown (vendor unconfirmed) | 1.48749 | 70.40 | L11, L31 | Low-index, high-νd crown class used in negative menisci |
+| FK5 (SUMITA catalog equivalent; production supplier unspecified) | 1.48749 | 70.40 | L11, L31 | Low-index, high-νd crown used in negative menisci |
 | NBFD13 (HOYA catalog correlation; patent vendor unspecified) | 1.80604 | 40.77 | L12 | Catalog-compatible high-index positive member of G1F |
 | BACD4 (HOYA catalog correlation; patent vendor unspecified) | 1.61272 | 58.73 | L13 | Catalog-compatible crown-like positive member of G1R |
-| 613370 — F2/F3-class flint (vendor unconfirmed) | 1.61293 | 37.00 | L14, L21 | Lower-νd negative members in G1R and G2 |
-| 620603 — SK16/BSM16-class crown (vendor unconfirmed) | 1.62041 | 60.29 | L22 | Higher-νd positive half of the cemented pair |
+| F3 (SUMITA catalog equivalent; production supplier unspecified) | 1.61293 | 37.00 | L14, L21 | Lower-νd negative members in G1R and G2 |
+| N-SK16 (SCHOTT catalog equivalent; production supplier unspecified) | 1.62041 | 60.29 | L22 | Higher-νd positive half of the cemented pair |
 | M-PCD4 (HOYA catalog correlation; patent vendor unspecified) | 1.61881 | 63.73 | L23 | Catalog-compatible positive rear member of G2 and asphere carrier |
-| 744448 — LAF2/LAM2-class lanthanum glass (vendor unconfirmed) | 1.74400 | 44.79 | L32 | High-index positive final meniscus |
+| J-LAF2 (HIKARI catalog equivalent; production supplier unspecified) | 1.74400 | 44.79 | L32 | High-index positive final meniscus |
 
-The independent glass audit found close coordinate matches in more than one manufacturer family for several rows. The three named HOYA entries were selected as explicit catalog correlations because they reproduce the patent coordinates within the project compatibility window and provide verified dispersion curves. They are modeling choices, not evidence that Nikon purchased those melts for this design.
+The independent glass audit found close coordinate matches in more than one manufacturer family for several rows. The selected entries reproduce the patent coordinates within the project compatibility window and provide verified dispersion curves. They are modeling choices, not evidence that Nikon purchased those melts for this design.
 
 No element in the final data directly authors `nC`, `nF`, `ng`, or `dPgF`; compatible catalog names let the runtime derive curves for the correlated rows. Those curves improve modeled chromatic coverage but do not establish historical melts or justify an APO claim. The patent `nd/νd` pattern remains sufficient to discuss ordinary dispersion contrast—most clearly across the L21/L22 cemented pair.
 

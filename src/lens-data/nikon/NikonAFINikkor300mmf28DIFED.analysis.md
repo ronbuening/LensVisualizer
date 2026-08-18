@@ -9,7 +9,7 @@
 **Title:** Internal-Focusing Telephoto Lens (内焦望遠レンズ)\
 **Embodiment analyzed:** Example 1 (実施例1)
 
-This analysis treats JPH04294310A Example 1 as the fixed production correlation for the **NIKON AF-I NIKKOR 300mm f/2.8 D IF-ED**. The patent itself does not name the commercial lens, so the correlation should not be read as manufacturer confirmation. It is instead supported by convergent timing and optical characteristics.
+This analysis treats JPH04294310A Example 1 as the fixed production correlation for the **NIKON AF-I NIKKOR 300mm f/2.8D IF-ED**. The patent itself does not name the commercial lens, so the correlation should not be read as manufacturer confirmation. It is instead supported by convergent timing and optical characteristics.
 
 1. Nikon records that the AF-I Nikkor 300mm f/2.8D IF-ED appeared in September 1992 with a completely renewed optical design and a built-in focusing motor. The selected application was filed in March 1991 and published the following month after that product introduction.
 2. Example 1 gives a headline focal length of 294.0 mm, a more precise design value of 293.9647 mm, and `FN = 2.9`. These are close to, but intentionally kept separate from, the production designation of 300mm f/2.8.
@@ -39,9 +39,9 @@ The patent draws the aperture stop `S` behind G3 but does not publish its numeri
 
 ### L11 — Positive Meniscus
 
-**nd = 1.49782, νd = 82.6. Glass: `498826 - high-Abbe crown/ED class (vendor unresolved)`. f = +237.961792 mm.**
+**nd = 1.49782, νd = 82.6. Glass: `J-FKH1 (HIKARI catalog equivalent; production supplier unspecified)`. f = +237.961792 mm.**
 
-L11 is the object-side positive element of G1. Its rear surface is nearly plane on the scale of the system (`R = +9945 mm`), so most of its standalone positive power comes from the strongly convex first surface. The high Abbe number is a source coordinate; the data file does not promote it to a specific vendor glass.
+L11 is the object-side positive element of G1. Its rear surface is nearly plane on the scale of the system (`R = +9945 mm`), so most of its standalone positive power comes from the strongly convex first surface. The high-Abbe coordinate is compatible with HIKARI J-FKH1, which supplies a checked dispersion curve without asserting the production melt. L11 is one of the three positions inferred as ED from the marketed three-ED construction and the repeated `1.49782 / 82.6` coordinate.
 
 The Example 1 numerical radii make L11 a positive meniscus under the patent's sign convention. This is more specific than the generic description in ¶0023, which calls the corresponding component biconvex; ¶0016 separately states that the image-side curvature sign of L11 may be positive or negative according to correction. The numerical example therefore governs the modeled shape.
 
@@ -49,7 +49,7 @@ Together with L12, L11 establishes the positive front power before the negative 
 
 ### L12 — Biconvex Positive
 
-**nd = 1.49782, νd = 82.6. Glass: `498826 - high-Abbe crown/ED class (vendor unresolved)`. f = +190.561415 mm.**
+**nd = 1.49782, νd = 82.6. Glass: `J-FKH1 (HIKARI catalog equivalent; production supplier unspecified)`. f = +190.561415 mm.**
 
 L12 repeats the same high-Abbe glass coordinate as L11 but with a stronger biconvex form. It is the second positive component of G1 and adds substantial converging power before the negative correction supplied by L13.
 
@@ -65,9 +65,9 @@ The data label records a lanthanum-flint class rather than a named vendor glass.
 
 ### L14a + L14b — Cemented Meniscus Pair
 
-**L14a:** nd = 1.69680, νd = 55.6. Glass: `697556 - lanthanum-crown class (vendor unresolved)`. f = −78.104606 mm.
+**L14a:** nd = 1.69680, νd = 55.6. Glass: `K-LaK14 (SUMITA catalog equivalent; production supplier unspecified)`. f = −78.104606 mm.
 
-**L14b:** nd = 1.59319, νd = 67.9. Glass: `593679 - PSK/high-Abbe crown class (vendor unresolved)`. f = +71.700928 mm.
+**L14b:** nd = 1.59319, νd = 67.9. Glass: `J-PSKH1 (HIKARI catalog equivalent; production supplier unspecified)`. f = +71.700928 mm.
 
 L14a and L14b are cemented across surface 8. The individual elements are comparatively strong and opposite in sign, but the complete cemented pair has an isolated EFL of approximately **+1741.2774 mm**. It is therefore a **weak net positive** component even though L14a by itself is negative and L14b by itself is positive.
 
@@ -79,25 +79,25 @@ Surface 8 is the most strongly curved interface in the front group. The final mo
 
 **L21a:** nd = 1.80384, νd = 33.9. Glass: `E-LAFH2 (HIKARI catalog correlation; patent vendor unspecified)`. f = +100.872040 mm.
 
-**L21b:** nd = 1.58913, νd = 61.0. Glass: `589610 - SK5/BAL35 class (vendor unresolved)`. f = −81.285442 mm.
+**L21b:** nd = 1.58913, νd = 61.0. Glass: `SK5 (SUMITA catalog equivalent; production supplier unspecified)`. f = −81.285442 mm.
 
 The L21 cemented pair begins the moving focus group. L21a is a positive meniscus and L21b a biconcave negative element, but their cemented combination is **net negative**, with an isolated EFL of approximately **−430.7162 mm**.
 
 This is another case where the signs of the individual pieces do not predict the sign of the cemented component by simple comparison of their standalone focal lengths. The shared cemented interface at surface 11 changes the combined power. The data file accordingly assigns surface 11 to the downstream L21b element and its refractive index, preserving the physical junction.
 
-L21a's patent coordinate is intentionally retained as `Unmatched`. Current public-glass proximity is insufficient to justify replacing it with a specific vendor name.
+L21a uses the coordinate-exact HIKARI E-LAFH2 correlation. As with every named equivalent in this transcription, that is a runtime dispersion choice rather than a claim about Nikon's historical supplier.
 
 ### L22 — Biconcave Negative
 
-**nd = 1.67025, νd = 57.5. Glass: `Unmatched (670575; nd=1.67025, vd=57.5)`. f = −70.611234 mm.**
+**nd = 1.67025, νd = 57.5. Glass: `S-LAL52 (OHARA catalog equivalent; production supplier unspecified)`. f = −70.611234 mm.**
 
 L22 is the second negative component of G2. Its standalone negative power is substantially stronger than the weak net negative power of the L21 cemented pair, and the full isolated G2 subassembly reaches approximately −60.1134 mm EFL after the internal spacing between L21 and L22 is included.
 
-The combination of the L21 cemented pair and L22 forms the complete translating negative group described by the patent. L22's glass coordinate is also retained as `Unmatched`, avoiding a speculative catalog identity.
+The combination of the L21 cemented pair and L22 forms the complete translating negative group described by the patent. OHARA S-LAL52 is compatible within `Δnd = −0.000251` and `Δνd = −0.172`; the small residual is explicitly treated as a modeling equivalent rather than a historical identity.
 
 ### L31 — Biconvex Positive
 
-**nd = 1.49782, νd = 82.6. Glass: `498826 - high-Abbe crown/ED class (vendor unresolved)`. f = +98.226770 mm.**
+**nd = 1.49782, νd = 82.6. Glass: `J-FKH1 (HIKARI catalog equivalent; production supplier unspecified)`. f = +98.226770 mm.**
 
 L31 is the first element of fixed G3 and uses the same high-Abbe coordinate as L11 and L12. Its biconvex form gives it considerably stronger standalone power than either front high-Abbe element.
 
@@ -105,7 +105,7 @@ Within the full design, L31 receives the beam after the moving negative group an
 
 ### L32 — Negative Meniscus
 
-**nd = 1.80458, νd = 25.5. Glass: `805255 - SF6/high-index flint class (vendor unresolved)`. f = −98.530466 mm.**
+**nd = 1.80458, νd = 25.5. Glass: `SF6 (SCHOTT catalog equivalent; production supplier unspecified)`. f = −98.530466 mm.**
 
 L32 is the negative member of G3 and has the highest index and lowest Abbe number in the final group. Its standalone focal length is almost equal in magnitude and opposite in sign to L31's, although the two are air separated and should not be treated as a cemented achromat.
 
@@ -113,7 +113,7 @@ The data label records an SF6/high-index-flint class rather than a named catalog
 
 ### L33 — Positive Meniscus
 
-**nd = 1.74000, νd = 28.2. Glass: `740282 - SF3/TIH3 class (vendor unresolved)`. f = +118.256490 mm.**
+**nd = 1.74000, νd = 28.2. Glass: `FD3 (HOYA catalog equivalent; production supplier unspecified)`. f = +118.256490 mm.**
 
 L33 is the final positive element of G3. Together with L31 and L32, it produces an isolated G3 EFL of approximately +117.6861 mm. The complete group remains positive despite the strong negative L32.
 
@@ -121,19 +121,19 @@ The stop is shown by the patent on the image side of this element rather than be
 
 ## Glass Identification and Selection
 
-The final data file preserves the patent's `nd` and `νd` coordinates while keeping vendor attribution conservative. The six-digit-style labels are coordinate/class descriptors, not claims that Nikon used a particular catalog melt. Two coordinates remain explicitly unmatched because no public identity was considered defensible enough for the authored data.
+The final data file preserves the patent's `nd` and `νd` coordinates while keeping vendor attribution conservative. Every physical element now has a coordinate-compatible catalog curve; the names are modeling equivalents, not claims that Nikon used a particular supplier or melt.
 
 | Data-file glass annotation | nd | νd | Element(s) | Authored status |
 |---|---:|---:|---|---|
-| `498826 - high-Abbe crown/ED class (vendor unresolved)` | 1.49782 | 82.6 | L11, L12, L31 | Class/code only |
+| `J-FKH1 (HIKARI catalog equivalent; production supplier unspecified)` | 1.49782 | 82.6 | L11, L12, L31 | Exact coordinate match; ED positions inferred from production count |
 | `J-LAF7 (HIKARI catalog correlation; patent vendor unspecified)` | 1.74950 | 35.2 | L13 | Exact catalog-coordinate correlation; historical vendor unproven |
-| `697556 - lanthanum-crown class (vendor unresolved)` | 1.69680 | 55.6 | L14a | Class/code only |
-| `593679 - PSK/high-Abbe crown class (vendor unresolved)` | 1.59319 | 67.9 | L14b | Class/code only |
+| `K-LaK14 (SUMITA catalog equivalent; production supplier unspecified)` | 1.69680 | 55.6 | L14a | Compatible catalog equivalent |
+| `J-PSKH1 (HIKARI catalog equivalent; production supplier unspecified)` | 1.59319 | 67.9 | L14b | Exact coordinate match |
 | `E-LAFH2 (HIKARI catalog correlation; patent vendor unspecified)` | 1.80384 | 33.9 | L21a | Exact catalog-coordinate correlation; historical vendor unproven |
-| `589610 - SK5/BAL35 class (vendor unresolved)` | 1.58913 | 61.0 | L21b | Class/code only |
-| `Unmatched (670575; nd=1.67025, vd=57.5)` | 1.67025 | 57.5 | L22 | Unmatched |
-| `805255 - SF6/high-index flint class (vendor unresolved)` | 1.80458 | 25.5 | L32 | Class/code only |
-| `740282 - SF3/TIH3 class (vendor unresolved)` | 1.74000 | 28.2 | L33 | Class/code only |
+| `SK5 (SUMITA catalog equivalent; production supplier unspecified)` | 1.58913 | 61.0 | L21b | Compatible catalog equivalent |
+| `S-LAL52 (OHARA catalog equivalent; production supplier unspecified)` | 1.67025 | 57.5 | L22 | Compatible catalog equivalent |
+| `SF6 (SCHOTT catalog equivalent; production supplier unspecified)` | 1.80458 | 25.5 | L32 | Compatible catalog equivalent |
+| `FD3 (HOYA catalog equivalent; production supplier unspecified)` | 1.74000 | 28.2 | L33 | Compatible catalog equivalent |
 
 The broad dispersion strategy is visible in the patent coordinates themselves: high-Abbe positive elements are paired across the system with lower-Abbe, higher-index negative or compensating elements. This is a statement about the authored `nd/νd` palette, not a claim of apochromatic correction or anomalous partial dispersion.
 

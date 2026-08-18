@@ -1,4 +1,4 @@
-# NIKON AF-S DX MICRO-NIKKOR 85mm f/3.5 G ED VR
+# NIKON AF-S DX MICRO-NIKKOR 85mm f/3.5G ED VR
 
 ## Patent Reference and Design Identification
 
@@ -12,7 +12,7 @@
 **Title:** *Imaging Lens, Optical Device Thereof, and Method for Manufacturing Imaging Lens*\
 **Embodiment analyzed:** Example 1
 
-The prescription is the Example 1 system shown in Fig. 2 and Table 1 of US 2009/0190220 A1. The patent describes a five-power-group macro lens with two internal focusing groups and a transverse vibration-proof group (¶0103–¶0111). This analysis treats Example 1 as the selected production correlation for the NIKON AF-S DX MICRO-NIKKOR 85mm f/3.5 G ED VR. The correlation is an inference from convergent optical and product characteristics; neither the patent nor Nikon's product literature explicitly identifies the production lens as Example 1.
+The prescription is the Example 1 system shown in Fig. 2 and Table 1 of US 2009/0190220 A1. The patent describes a five-power-group macro lens with two internal focusing groups and a transverse vibration-proof group (¶0103–¶0111). This analysis treats Example 1 as the selected production correlation for the NIKON AF-S DX MICRO-NIKKOR 85mm f/3.5G ED VR. The correlation is an inference from convergent optical and product characteristics; neither the patent nor Nikon's product literature explicitly identifies the production lens as Example 1.
 
 The principal correlation evidence is:
 
@@ -51,7 +51,7 @@ The patent assigns most aberration functions at the group level rather than to i
 
 ### L11 — Biconvex Positive
 
-`nd = 1.772499, νd = 49.60. Glass: 773496-class (vendor unresolved). Isolated f = +59.754 mm.`
+`nd = 1.772499, νd = 49.60. Glass: S-LAH66 (OHARA catalog equivalent; production supplier unspecified). Isolated f = +59.754 mm.`
 
 L11 is the first element of fixed positive group G1. Its biconvex form and positive isolated power provide the initial convergence of the system. The patent describes G1 as fixed with respect to the image plane during focusing (¶0104), so L11 does not participate in the close-focus compensation.
 
@@ -59,19 +59,19 @@ At group level, G1 contributes +45.99999 mm of focal length. The difference betw
 
 ### L12 — Positive Meniscus
 
-`nd = 1.696797, νd = 55.53. Glass: 697555-class (vendor unresolved). Isolated f = +99.955 mm.`
+`nd = 1.696797, νd = 55.53. Glass: S-LAL14 (OHARA catalog equivalent; production supplier unspecified). Isolated f = +99.955 mm.`
 
 L12 is the second positive component of G1 and is a positive meniscus with its convex side toward the object, as specified in ¶0104. It adds positive power without being part of a cemented pair. Its role is best interpreted as part of the group-level power and aberration balance rather than as a separately identified patent correction mechanism.
 
 ### L13 — Biconcave Negative
 
-`nd = 1.717362, νd = 29.52. Glass: 717295-class (vendor unresolved). Isolated f = -32.691 mm.`
+`nd = 1.717362, νd = 29.52. Glass: S-TIH1 (OHARA catalog equivalent; production supplier unspecified). Isolated f = -32.691 mm.`
 
 L13 is the negative member of cemented component D1. The patent describes the L13+L14 pair as a cemented negative component within the otherwise positive G1 (¶0104). L13's relatively high dispersion and strong negative isolated power oppose the positive members ahead of and behind it.
 
 ### L14 — Positive Meniscus
 
-`nd = 1.699998, νd = 48.08. Glass: 700481-class (vendor unresolved). Isolated f = +40.116 mm.`
+`nd = 1.699998, νd = 48.08. Glass: J-LAF01 (HIKARI catalog equivalent; production supplier unspecified). Isolated f = +40.116 mm.`
 
 L14 is cemented directly to L13 and is a positive meniscus convex toward the object. Evaluated together in air, D1 has a net focal length of -175.687 mm: the cemented pair is therefore weakly negative even though L14 itself is positive. In situ, the complete G1 remains substantially positive at +45.99999 mm.
 
@@ -79,7 +79,7 @@ This distinction matters because the patent describes D1 by its net negative rol
 
 ### L21 — Negative Meniscus
 
-`nd = 1.516800, νd = 64.12. Glass: BK7-like crown (vendor unresolved). Isolated f = -47.480 mm.`
+`nd = 1.516800, νd = 64.12. Glass: N-BK7 (SCHOTT catalog equivalent; production supplier unspecified). Isolated f = -47.480 mm.`
 
 L21 is the leading element of the negative focusing group G2. The patent describes it as a negative meniscus convex toward the object and states that the complete G2 moves toward the image as focus shifts from infinity to close distance (¶0105).
 
@@ -87,7 +87,7 @@ L21 is also the element used in conditional expression (6). With the published o
 
 ### L22 — Biconcave Negative
 
-`nd = 1.516800, νd = 64.12. Glass: BK7-like crown (vendor unresolved). Isolated f = -37.395 mm.`
+`nd = 1.516800, νd = 64.12. Glass: N-BK7 (SCHOTT catalog equivalent; production supplier unspecified). Isolated f = -37.395 mm.`
 
 L22 is the negative member of cemented component D2 in G2. It shares the same `nd` and `νd` coordinate as L21 and is followed directly by the much higher-index, lower-Abbe positive L23.
 
@@ -95,7 +95,7 @@ The patent treats G2 as the negative moving group responsible for suppressing cl
 
 ### L23 — Positive Meniscus
 
-`nd = 1.846660, νd = 23.78. Glass: 847238-class (vendor unresolved). Isolated f = +64.315 mm.`
+`nd = 1.846660, νd = 23.78. Glass: J-SF03 (HIKARI catalog equivalent; production supplier unspecified). Isolated f = +64.315 mm.`
 
 L23 is cemented to L22 and is the positive member of D2. The cemented L22+L23 component has a computed net focal length of -89.280 mm, while the complete G2, including L21 and the intervening air space, is stronger at -30.21276 mm.
 
@@ -103,7 +103,7 @@ The strong refractive-index and Abbe-number contrast across the L22/L23 cemented
 
 ### L31 — Biconvex Positive
 
-`nd = 1.516800, νd = 64.12. Glass: BK7-like crown (vendor unresolved). Isolated f = +55.107 mm.`
+`nd = 1.516800, νd = 64.12. Glass: N-BK7 (SCHOTT catalog equivalent; production supplier unspecified). Isolated f = +55.107 mm.`
 
 L31 is the leading positive element of G3. The patent specifies a biconvex positive lens followed by a cemented positive component, with G3 moving from the image side toward the object during close focusing (¶0107).
 
@@ -111,13 +111,13 @@ G3's counter-motion relative to G2 is central to the macro focusing architecture
 
 ### L32 — Negative Meniscus
 
-`nd = 1.755199, νd = 27.51. Glass: 755275-class (vendor unresolved). Isolated f = -58.608 mm.`
+`nd = 1.755199, νd = 27.51. Glass: E-FD4 (HOYA catalog equivalent; production supplier unspecified). Isolated f = -58.608 mm.`
 
 L32 is the negative member of cemented component D3. Its negative isolated power and comparatively low Abbe number are paired with the low-index, high-Abbe positive L33. The pair is nevertheless positive as a cemented component.
 
 ### L33 — Biconvex Positive
 
-`nd = 1.497820, νd = 82.56. Glass: 498826 ED-class (vendor unresolved). Isolated f = +37.841 mm.`
+`nd = 1.497820, νd = 82.56. Glass: J-FKH1 (HIKARI catalog equivalent; production supplier unspecified). Isolated f = +37.841 mm.`
 
 L33 is the positive member of D3 and has the highest Abbe number in the prescription. The final data therefore identifies it only as an ED-class coordinate; it does not assign a vendor glass. Nikon specifies one ED element in the production lens, making L33 the selected correlation for that element, but the patent itself does not label L33 as the production ED glass.
 
@@ -125,13 +125,13 @@ The L32+L33 cemented component has a computed net focal length of +108.762 mm. T
 
 ### L41 — Biconcave Negative
 
-`nd = 1.834000, νd = 37.16. Glass: 834372-class (vendor unresolved). Isolated f = -21.612 mm.`
+`nd = 1.834000, νd = 37.16. Glass: S-LAH60 (OHARA catalog equivalent; production supplier unspecified). Isolated f = -21.612 mm.`
 
 L41 is the negative member of cemented component D4 and the dominant negative element of the vibration-proof group G4. The patent specifies G4 as a cemented negative group that moves substantially perpendicular to the optical axis for image-blur correction (¶0108).
 
 ### L42 — Positive Meniscus
 
-`nd = 1.846660, νd = 23.78. Glass: 847238-class (vendor unresolved). Isolated f = +44.426 mm.`
+`nd = 1.846660, νd = 23.78. Glass: J-SF03 (HIKARI catalog equivalent; production supplier unspecified). Isolated f = +44.426 mm.`
 
 L42 is cemented to L41 and is a positive meniscus convex toward the object. Because D4 is the entirety of G4, the cemented-pair focal length and the group focal length are the same: -39.99532 mm. This is distinct from the much stronger isolated negative power of L41 alone.
 
@@ -139,7 +139,7 @@ The patent's vibration-proof coefficient and transverse-shift calculations there
 
 ### L51 — Negative Meniscus
 
-`nd = 1.518229, νd = 58.90. Glass: 518590-class (vendor unresolved). Isolated f = -186.648 mm.`
+`nd = 1.518229, νd = 58.90. Glass: S-NSL3 (OHARA catalog equivalent; production supplier unspecified). Isolated f = -186.648 mm.`
 
 L51 is the weak negative meniscus at the front of fixed rear group G5. The data retains a vendor-neutral `518590-class` annotation. A fresh catalog audit finds an exact coordinate match in OHARA S-NSL 3 (`nd = 1.518229`, `νd = 58.90`) and near matches in HIKARI J-K3 and HOYA E-C3, but the patent does not identify the procurement vendor.
 
@@ -147,7 +147,7 @@ The patent places a negative meniscus before the final positive L52 and connects
 
 ### L52 — Biconvex Positive
 
-`nd = 1.785896, νd = 44.20. Glass: 786442-class (vendor unresolved). Isolated f = +55.112 mm.`
+`nd = 1.785896, νd = 44.20. Glass: S-LAH51 (OHARA catalog equivalent; production supplier unspecified). Isolated f = +55.112 mm.`
 
 L52 is the final positive element and provides most of the positive power of G5. Combined with the weak negative L51 and their separation, the complete rear group has a computed focal length of +75.21543 mm.
 
@@ -155,23 +155,23 @@ G5 remains fixed during focusing (¶0109). Its position behind the vibration-pro
 
 ## Glass Identification and Selection
 
-The patent publishes d-line refractive indices and Abbe numbers but does not name glass vendors or melts. The final data therefore uses vendor-neutral classes or an explicit unmatched designation. These labels are catalog-class annotations, not claims about Nikon's procurement.
+The patent publishes d-line refractive indices and Abbe numbers but does not name glass vendors or melts. The final data uses coordinate-compatible catalog equivalents for dispersion modeling. These annotations are not claims about Nikon's procurement.
 
 | Element(s) | Glass annotation in data | `nd` | `νd` | Interpretation |
 |---|---|---:|---:|---|
-| L11 | 773496-class (vendor unresolved) | 1.772499 | 49.60 | Dense positive-group glass class |
-| L12 | 697555-class (vendor unresolved) | 1.696797 | 55.53 | Positive G1 glass coordinate |
-| L13 | 717295-class (vendor unresolved) | 1.717362 | 29.52 | Higher-dispersion negative member of D1 |
-| L14 | 700481-class (vendor unresolved) | 1.699998 | 48.08 | Positive partner in D1 |
-| L21, L22, L31 | BK7-like crown (vendor unresolved) | 1.516800 | 64.12 | Reused moderate-index crown coordinate |
-| L23, L42 | 847238-class (vendor unresolved) | 1.846660 | 23.78 | High-index, high-dispersion positive partners |
-| L32 | 755275-class (vendor unresolved) | 1.755199 | 27.51 | Negative member of D3 |
-| L33 | 498826 ED-class (vendor unresolved) | 1.497820 | 82.56 | Extreme-low-dispersion coordinate; production ED correlation inferred |
-| L41 | 834372-class (vendor unresolved) | 1.834000 | 37.16 | Negative member of VR cemented group |
-| L51 | 518590-class (vendor unresolved) | 1.518229 | 58.90 | Exact OHARA S-NSL 3 coordinate; vendor procurement unresolved |
-| L52 | 786442-class (vendor unresolved) | 1.785896 | 44.20 | Final positive element |
+| L11 | S-LAH66 (OHARA catalog equivalent) | 1.772499 | 49.60 | Dense positive-group glass |
+| L12 | S-LAL14 (OHARA catalog equivalent) | 1.696797 | 55.53 | Positive G1 glass coordinate |
+| L13 | S-TIH1 (OHARA catalog equivalent) | 1.717362 | 29.52 | Higher-dispersion negative member of D1 |
+| L14 | J-LAF01 (HIKARI catalog equivalent) | 1.699998 | 48.08 | Positive partner in D1 |
+| L21, L22, L31 | N-BK7 (SCHOTT catalog equivalent) | 1.516800 | 64.12 | Reused moderate-index crown coordinate |
+| L23, L42 | J-SF03 (HIKARI catalog equivalent) | 1.846660 | 23.78 | High-index, high-dispersion positive partners |
+| L32 | E-FD4 (HOYA catalog equivalent) | 1.755199 | 27.51 | Negative member of D3 |
+| L33 | J-FKH1 (HIKARI catalog equivalent) | 1.497820 | 82.56 | Production ED position inferred from the one-ED product specification |
+| L41 | S-LAH60 (OHARA catalog equivalent) | 1.834000 | 37.16 | Negative member of VR cemented group |
+| L51 | S-NSL3 (OHARA catalog equivalent) | 1.518229 | 58.90 | Weak negative member of G5 |
+| L52 | S-LAH51 (OHARA catalog equivalent) | 1.785896 | 44.20 | Final positive element |
 
-The prescription clearly uses substantial index and dispersion contrasts across several cemented interfaces, especially D2, D3, and D4. The selected patent example, however, does not publish C-, F-, or g-line indices, nor `dPgF`. The final data likewise contains no synthesized spectral values. Consequently the glass discussion is limited to `nd`, `νd`, and the vendor-neutral classifications retained in the data; it does not claim APO correction or anomalous partial dispersion.
+The prescription clearly uses substantial index and dispersion contrasts across several cemented interfaces, especially D2, D3, and D4. The selected patent example, however, does not publish C-, F-, or g-line indices, nor `dPgF`. The final data likewise contains no synthesized spectral values. Consequently the glass discussion is limited to `nd`, `νd`, and compatible catalog curves; it does not claim APO correction or anomalous partial dispersion.
 
 ## Focus Mechanism
 

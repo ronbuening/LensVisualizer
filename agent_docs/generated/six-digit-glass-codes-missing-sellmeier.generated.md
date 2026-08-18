@@ -10,11 +10,11 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **595** lenses scanned
-- **994** total code-only elements found
-- **229** elements in this report
-- **89** distinct lens files affected
+- **963** total code-only elements found
+- **228** elements in this report
+- **88** distinct lens files affected
 - **0** active unreviewed elements have no review-record hit or explicit disposition
-- **100** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
+- **99** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
 - **0** dispositions lack any review record
 
 ## Prioritized Unreviewed Queue
@@ -119,7 +119,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 662331 | 1 | 1 | patents/JPA 2021076740-000000.pdf | All rows explicitly disposed |
 | 662577 | 1 | 1 | patents/US2896506.pdf | All rows explicitly disposed |
 | 667311 | 1 | 1 | patents/US20140247506A1.pdf | All rows have review records |
-| 670575 | 1 | 1 | No patent number parsed from lens metadata | All rows explicitly disposed |
 | 672323 | 1 | 1 | patents/GB_850117_A.pdf | All rows have review records |
 | 675348 | 1 | 1 | patents/JP2018180366A.pdf | All rows explicitly disposed |
 | 676440 | 1 | 1 | patents/US7542219.pdf | All rows explicitly disposed |
@@ -498,12 +497,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L6 (Element 6) | 11 | `Unmatched lanthanum crown (748/523)` | 1.74810 / 52.30 | No catalog entry | abbe | patents/US5717527.pdf | Explicit disposition in data |
-
-### [NIKON AF-I NIKKOR 300mm f/2.8 D IF-ED](../../src/lens-data/nikon/NikonAFINikkor300mmf28DIFED.data.ts)
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L22 (L22) | 13 | `Unmatched (670575; nd=1.67025, vd=57.5)` | 1.67025 / 57.50 | No catalog entry | abbe | No patent number parsed from lens metadata | Explicit disposition in data |
 
 ### [NIKON AF-P DX NIKKOR 10-20mm f/4.5-5.6 G VR](../../src/lens-data/nikon/NikonAFPDX1020mmf4556G.data.ts) - WO 2021/039813 A1
 

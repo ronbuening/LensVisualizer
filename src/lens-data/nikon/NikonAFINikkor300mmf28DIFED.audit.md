@@ -1,4 +1,4 @@
-# Nikon AF-I NIKKOR 300mm f/2.8 D IF-ED Patent Audit
+# Nikon AF-I NIKKOR 300mm f/2.8D IF-ED Patent Audit
 
 Patent: JPH04294310A, Example 1
 
@@ -8,10 +8,16 @@ Patent: JPH04294310A, Example 1
 - Compared the rendered figure with the authored prescription at native scale. The front collector, narrowing G2 focus group, and rear G3 envelope already follow the schematic closely, so no semi-diameter was changed.
 - Kept the patent-published radii, thicknesses, indices, Abbe numbers, and focus gaps unchanged. The patent does not tabulate clear apertures, so the stored SDs remain explicitly inferred model geometry.
 - Relabeled L13 to Hikari `J-LAF7` and L21a to Hikari `E-LAFH2`; both reproduce the patent coordinates within the catalog compatibility criteria and provide verified dispersion curves without asserting historical vendor identity.
-- Retained L22 as `Unmatched (670575; nd=1.67025, vd=57.5)` because no checked current-catalog curve was sufficiently defensible.
-- Normalized the display name to `NIKON AF-I NIKKOR 300mm f/2.8 D IF-ED`.
+- Completed physical-glass coverage with checked equivalents, including OHARA `S-LAL52` for L22.
+- Normalized the display name to `NIKON AF-I NIKKOR 300mm f/2.8D IF-ED`.
 
 ### Verification
 
 - `npm run audit:image-circle -- src/lens-data/nikon/NikonAFINikkor300mmf28DIFED.data.ts`
 - Full repository checks are recorded in the integrating commit.
+
+## 2026-08-18 — Screenshot follow-up
+
+- Compared the supplied site screenshot directly with Figure 1 again. The front collector, stepped G2 diameter, and G3 outline remain proportionally consistent; the automated silhouette scan was affected by figure annotations, and visual confirmation did not justify another SD change.
+- Confirmed the published focus order: G2 moves `+10.8889mm` imageward from infinity to the patent close state while G1 and G3 remain fixed.
+- Marked L11, L12, and L31 as the three inferred ED positions and retained the patent values as authoritative; catalog names provide curves only.

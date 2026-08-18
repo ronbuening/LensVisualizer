@@ -1,4 +1,4 @@
-# Nikon AF-S DX MICRO-NIKKOR 85mm f/3.5 G ED VR Patent Audit
+# Nikon AF-S DX MICRO-NIKKOR 85mm f/3.5G ED VR Patent Audit
 
 Patent: US 2009/0190220 A1, Example 1
 
@@ -13,11 +13,17 @@ Patent: US 2009/0190220 A1, Example 1
 | 5 / 6 / 7 | 13.25 / 13.0 / 12.7 | 15.0 / 15.0 / 15.0 |
 | 19 / 20 / 21 | 8.6 / 8.6 / 8.5 | 10.5 / 10.5 / 10.3 |
 
-- The glass audit found no additional defensible relabel beyond the compatible catalog resolution already available from the authored class coordinates.
-- Normalized the display name to `NIKON AF-S DX MICRO-NIKKOR 85mm f/3.5 G ED VR`.
+- Replaced class-only annotations with the compatible catalog entries already selected by the resolver; no new catalog row was required.
+- Normalized the display name to `NIKON AF-S DX MICRO-NIKKOR 85mm f/3.5G ED VR`.
 
 ### Verification
 
 - `npm run audit:surface -- src/lens-data/nikon/NikonAFSDXMicroNikkor85mmf35GEDVR.data.ts`
 - `npm run audit:image-circle -- src/lens-data/nikon/NikonAFSDXMicroNikkor85mmf35GEDVR.data.ts`
 - Full repository checks are recorded in the integrating commit.
+
+## 2026-08-18 — Screenshot follow-up
+
+- Compared the supplied rendering directly with Figure 2. The revised G1 and VR-pair heights align with the source silhouette; no further SD change was justified.
+- Confirmed published dual-focus travel: G2 moves `+15.2850mm` imageward, G3 moves `−12.9922mm` objectward, and G1/G4/G5 remain axially fixed.
+- Marked L33 as the single inferred ED position, matching the production one-ED count, while leaving G4's transverse VR behavior separate from axial focus motion.

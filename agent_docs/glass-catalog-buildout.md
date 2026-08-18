@@ -10,6 +10,14 @@ dPgF-corrected indices, or the legacy Abbe approximation. Current optics-engine 
 
 The catalog currently has **530 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
 
+The August 18, 2026 Phase 106 Nikon screenshot follow-up recovered three more physical-glass surfaces without adding
+a catalog row: OHARA S-LAL52 for AF-I 300mm L22, HIKARI E-LAF11 for AF-I 600mm L13, and OHARA S-LAL12 for
+DX 18–200mm L41. The selected curves stay within the catalog-compatibility window and leave the production supplier
+unspecified. All physical glass media in the six-lens batch now have coefficient-backed curves; only the 18–200mm's two
+patented bonded-resin layers remain unresolved. Production ED counts support 12 inferred diagram tags without
+inventing patent partial dispersion. Global coverage rises to 6141/6724 strict and 6155/6724 trusted, with zero
+catalog-coordinate mismatches; the catalog remains at 530 verified entries.
+
 The August 18, 2026 Phase 105 Nikon AF-I/DX audit added Hikari J-LLF6 from the retained first-party Nikon/Hikari
 optical-glass workbook, including its nine-term power-series coefficients and d-line code. The curve resolves L22b in
 the new AF-I 400mm and the existing AF-P DX 10–20mm. Five more surfaces in the new AF-I 300mm and DX Micro 40mm

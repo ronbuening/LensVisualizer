@@ -1,4 +1,4 @@
-# NIKON AF-S DX VR ZOOM-NIKKOR 18-200mm f/3.5-5.6 G IF-ED
+# NIKON AF-S DX VR ZOOM-NIKKOR 18-200mm f/3.5-5.6G IF-ED
 
 ## Patent Reference and Design Identification
 
@@ -64,7 +64,7 @@ No sensor cover glass, filter, inactive dummy plane, flare-cutter plane, or mech
 
 #### L11 - Negative Meniscus
 
-**nd = 1.850260, νd = 32.35. Glass: 850324 high-index flint class (patent vendor unspecified). f = -146.180838 mm.**
+**nd = 1.850260, νd = 32.35. Glass: J-LASF021 (HIKARI catalog equivalent; production supplier unspecified). f = -146.180838 mm.**
 
 L11 is the negative member of the D1 cemented pair. Its standalone power is negative, but it is bonded to the strongly positive L12 and the pair has a weak positive net EFL of +515.658178 mm. The distinction is important: the negative sign of L11 does not make the cemented pair negative, and the cemented pair's weak power is not the same as the +100.054253 mm power of the complete G1 after L13 is included.
 
@@ -72,7 +72,7 @@ The high index and modest Abbe number place L11 on the high-index, higher-disper
 
 #### L12 - Biconvex Positive
 
-**nd = 1.497000, νd = 81.61. Glass: 497816 ED fluorophosphate-crown class (patent vendor unspecified). f = +113.682439 mm.**
+**nd = 1.497000, νd = 81.61. Glass: H-FK61 (CDGM catalog equivalent; production supplier unspecified). f = +113.682439 mm.**
 
 L12 is the positive member of D1. Its very high Abbe number is the strongest low-dispersion coordinate in the prescription and makes it the natural chromatic partner to L11 within the front cemented pair.
 
@@ -80,7 +80,7 @@ Nikon markets the production lens as containing two ED elements. The model ident
 
 #### L13 - Positive Meniscus
 
-**nd = 1.603000, νd = 65.47. Glass: 603655 crown class (patent coordinate; catalog near-match). f = +122.891175 mm.**
+**nd = 1.603000, νd = 65.47. Glass: S-PHM53 (OHARA catalog equivalent; production supplier unspecified). f = +122.891175 mm.**
 
 L13 is the air-spaced rear positive member of G1. It raises the complete first-group power from the weak D1 cemented-pair value to a computed G1 EFL of +100.054253 mm. In architectural terms, G1 is therefore positive even though its first physical element is negative.
 
@@ -96,7 +96,7 @@ Its optical power is not reported as an independent standalone element in the da
 
 #### L21 - Negative Meniscus Hybrid
 
-**nd = 1.816000, νd = 46.63. Glass: 816466 high-index crown class (patent vendor unspecified). f = -19.324874 mm for the complete L21 hybrid.**
+**nd = 1.816000, νd = 46.63. Glass: J-LASF09A (HIKARI catalog equivalent; production supplier unspecified). f = -19.324874 mm for the complete L21 hybrid.**
 
 L21 is the first physical lens of G2 and is a strong negative meniscus. Its object-side surface is the resin-carried asphere 6A. The hybrid lens is therefore optically stronger than would be described by the base-glass body alone; the authored standalone focal length includes the bonded resin layer.
 
@@ -104,7 +104,7 @@ Because G2 is the focusing group, L21's strong negative power participates direc
 
 #### L22 - Biconcave Negative
 
-**nd = 1.816000, νd = 46.63. Glass: 816466 high-index crown class (patent vendor unspecified). f = -26.797663 mm.**
+**nd = 1.816000, νd = 46.63. Glass: J-LASF09A (HIKARI catalog equivalent; production supplier unspecified). f = -26.797663 mm.**
 
 L22 is the second consecutive negative lens in G2 and uses the same index/Abbe coordinate as the L21 glass body. It reinforces the group's negative power while remaining air-spaced from L21 and L23.
 
@@ -112,7 +112,7 @@ The complete G2 has a computed isolated EFL of -14.530078 mm. That group value i
 
 #### L23 - Biconvex Positive
 
-**nd = 1.846660, νd = 23.78. Glass: 847238 dense-flint class (patent vendor unspecified). f = +21.015051 mm.**
+**nd = 1.846660, νd = 23.78. Glass: J-SF03 (HIKARI catalog equivalent; production supplier unspecified). f = +21.015051 mm.**
 
 L23 is a strong positive lens embedded within the otherwise negative G2. Its high index and low Abbe number distinguish it from the adjacent negative members. The positive standalone sign does not change the sign of G2 as a whole; rather, it forms part of the internal power balance of a group whose net EFL remains -14.530078 mm.
 
@@ -120,7 +120,7 @@ The dense-flint class label is coordinate-based. It is not a claim that Nikon us
 
 #### L24 - Negative Meniscus
 
-**nd = 1.788000, νd = 47.38. Glass: 788474 lanthanum-crown class (patent vendor unspecified). f = -41.191618 mm.**
+**nd = 1.788000, νd = 47.38. Glass: J-LASF014 (HIKARI catalog equivalent; production supplier unspecified). f = -41.191618 mm.**
 
 L24 is the rear negative member of G2 and the last physical lens before the aperture-stop gap. Its rear surface is surface 14, so focusing movement of G2 changes the D14 spacing between this surface and the stop/G31 assembly.
 
@@ -130,7 +130,7 @@ The patent's focus mechanism therefore changes the two air spaces that bracket G
 
 #### L31 - Biconvex Positive
 
-**nd = 1.603000, νd = 65.47. Glass: 603655 crown class (patent coordinate; catalog near-match). f = +34.131931 mm.**
+**nd = 1.603000, νd = 65.47. Glass: S-PHM53 (OHARA catalog equivalent; production supplier unspecified). f = +34.131931 mm.**
 
 L31 is the front positive lens of G31 and is encountered 0.5000 mm behind the aperture stop. Its power and the following L32/L33 cemented pair produce a computed G31 EFL of +26.386000 mm.
 
@@ -138,7 +138,7 @@ The stop and G31 move together axially during zooming (¶0166), so the stop-to-L
 
 #### L32 - Biconvex Positive
 
-**nd = 1.497000, νd = 81.61. Glass: 497816 ED fluorophosphate-crown class (patent vendor unspecified). f = +29.460746 mm.**
+**nd = 1.497000, νd = 81.61. Glass: H-FK61 (CDGM catalog equivalent; production supplier unspecified). f = +29.460746 mm.**
 
 L32 is the positive member of the D2 cemented pair and is the second element carrying the 1.497000 / 81.61 low-dispersion coordinate. As with L12, the ED-class label is supported by the coordinate and by Nikon's two-ED production specification, but the precise historical vendor identity is not asserted.
 
@@ -146,7 +146,7 @@ L32's standalone positive power is +29.460746 mm. The cemented L32/L33 pair is m
 
 #### L33 - Plano-Concave Negative
 
-**nd = 1.850260, νd = 32.35. Glass: 850324 high-index flint class (patent vendor unspecified). f = -36.879308 mm.**
+**nd = 1.850260, νd = 32.35. Glass: J-LASF021 (HIKARI catalog equivalent; production supplier unspecified). f = -36.879308 mm.**
 
 L33 is the negative member of D2. Its object-side cemented surface is shared with L32, and its rear face, surface 20, is planar. Although the radius of surface 20 is infinite and therefore its paraxial surface power is zero, it remains an active glass-to-air boundary and cannot be removed from the sequential model.
 
@@ -164,7 +164,7 @@ The patent gives a 15.0 mm effective diameter for surface 21. The model preserve
 
 #### L34 - Biconcave Negative Hybrid
 
-**nd = 1.772500, νd = 49.61. Glass: 773496 lanthanum-crown class (patent vendor unspecified). f = -23.816870 mm for the complete L34 hybrid.**
+**nd = 1.772500, νd = 49.61. Glass: J-LASF016 (HIKARI catalog equivalent; production supplier unspecified). f = -23.816870 mm for the complete L34 hybrid.**
 
 L34 is the negative member of the cemented G32 vibration-reduction pair. The standalone focal length stored in the data file includes the bonded L34r resin layer. It is therefore a physical-lens value for the hybrid construction, not the power of the base glass alone.
 
@@ -172,7 +172,7 @@ The complete G32 subgroup, after L35 is cemented to L34, has a computed isolated
 
 #### L35 - Positive Meniscus
 
-**nd = 1.805180, νd = 25.43. Glass: 805254 dense-flint class (patent vendor unspecified). f = +58.795916 mm.**
+**nd = 1.805180, νd = 25.43. Glass: S-TIH6 (OHARA catalog equivalent; production supplier unspecified). f = +58.795916 mm.**
 
 L35 is the positive meniscus cemented to L34. Its standalone sign is positive, but the net G32 pair remains negative because the negative L34 hybrid and the cemented interface dominate the unit's total power.
 
@@ -182,15 +182,15 @@ This distinction is especially relevant to the stabilization mechanism: the phys
 
 #### L41 - Biconvex Positive Asphere
 
-**nd = 1.676974, νd = 54.52. Glass: Unmatched (nd=1.676974, νd=54.52; no exact checked current-catalog match). f = +34.485046 mm.**
+**nd = 1.676974, νd = 54.52. Glass: S-LAL12 (OHARA catalog equivalent; production supplier unspecified). f = +34.485046 mm.**
 
 L41 is the strongly positive aspheric front lens of G4. Its object-side surface 25A is the third and final asphere in Example 2 (¶0165).
 
-The glass coordinate is intentionally left unmatched. Current catalog screening found near families but no exact identity sufficient to justify a named historical melt. This is a data-quality boundary rather than a missing prescription value: the patent's `nd` and `νd` remain authoritative.
+OHARA S-LAL12 falls within the catalog-compatibility window (`Δnd = +0.000926`, `Δνd = +0.820`) and supplies a checked dispersion curve. The patent's `nd` and `νd` remain authoritative, and the label does not claim a historical melt identity.
 
 #### L42 - Biconvex Positive
 
-**nd = 1.487490, νd = 70.24. Glass: 487702 fluor-crown class (patent vendor unspecified). f = +52.320529 mm.**
+**nd = 1.487490, νd = 70.24. Glass: S-FSL5 (OHARA catalog equivalent; production supplier unspecified). f = +52.320529 mm.**
 
 L42 is the positive member of the D4 cemented pair. Its relatively high Abbe number contrasts with the higher-index, more dispersive L43 that follows.
 
@@ -198,7 +198,7 @@ Despite L42's positive standalone power, the L42/L43 cemented pair has a compute
 
 #### L43 - Biconcave Negative
 
-**nd = 1.834000, νd = 37.17. Glass: 834372 lanthanum-flint class (patent vendor unspecified). f = -24.977518 mm.**
+**nd = 1.834000, νd = 37.17. Glass: S-LAH60 (OHARA catalog equivalent; production supplier unspecified). f = -24.977518 mm.**
 
 L43 is the negative member of D4. The sign and magnitude of its standalone power are sufficient to drive the cemented L42/L43 unit negative even though L42 itself is positive.
 
@@ -206,7 +206,7 @@ The fourth group as a whole remains positive, with a computed EFL of +43.067122 
 
 #### L44 - Positive Meniscus
 
-**nd = 1.516800, νd = 64.12. Glass: 517641 BK7-class crown (patent vendor unspecified). f = +70.034226 mm.**
+**nd = 1.516800, νd = 64.12. Glass: N-BK7 (SCHOTT catalog equivalent; production supplier unspecified). f = +70.034226 mm.**
 
 L44 is the rear positive meniscus and final physical lens. Its rear surface is surface 31, from which the patent tabulates Bf to the image plane.
 
@@ -214,23 +214,23 @@ The final air gap is a zoom-dependent back-focus spacing, not an interchangeable
 
 ## Glass Identification and Selection
 
-The patent publishes only d-line refractive index and Abbe number. It does not identify vendors or catalog glass names. The data file therefore uses coordinate-based classes and explicit `Unmatched (...)` labels rather than treating current catalog equivalents as proof of Nikon's historical melts.
+The patent publishes only d-line refractive index and Abbe number. It does not identify vendors or catalog glass names. The data file uses coordinate-compatible catalog equivalents for dispersion modeling without treating them as proof of Nikon's historical melts. Only the two patented optical-resin layers remain unmatched.
 
 | Patent coordinate `nd / νd` | Data-file identification | Used in | Status in the model |
 |---|---|---|---|
-| 1.850260 / 32.35 | 850324 high-index flint class | L11, L33 | coordinate class; vendor unspecified |
-| 1.497000 / 81.61 | 497816 ED fluorophosphate-crown class | L12, L32 | ED-class correlation; vendor unspecified |
-| 1.603000 / 65.47 | 603655 crown class | L13, L31 | catalog near-match class |
+| 1.850260 / 32.35 | J-LASF021 (HIKARI catalog equivalent) | L11, L33 | compatible curve; supplier unspecified |
+| 1.497000 / 81.61 | H-FK61 (CDGM catalog equivalent) | L12, L32 | ED positions inferred from production count |
+| 1.603000 / 65.47 | S-PHM53 (OHARA catalog equivalent) | L13, L31 | compatible curve; supplier unspecified |
 | 1.553890 / 38.09 | Unmatched optical resin layer | L21r, L34r | patent explicitly identifies resin layers |
-| 1.816000 / 46.63 | 816466 high-index crown class | L21, L22 | coordinate class; vendor unspecified |
-| 1.846660 / 23.78 | 847238 dense-flint class | L23 | six-digit coordinate class |
-| 1.788000 / 47.38 | 788474 lanthanum-crown class | L24 | coordinate class; vendor unspecified |
-| 1.772500 / 49.61 | 773496 lanthanum-crown class | L34 | coordinate class; vendor unspecified |
-| 1.805180 / 25.43 | 805254 dense-flint class | L35 | coordinate class; vendor unspecified |
-| 1.676974 / 54.52 | Unmatched | L41 | no exact checked current-catalog identity |
-| 1.487490 / 70.24 | 487702 fluor-crown class | L42 | coordinate class; vendor unspecified |
-| 1.834000 / 37.17 | 834372 lanthanum-flint class | L43 | coordinate class; vendor unspecified |
-| 1.516800 / 64.12 | 517641 BK7-class crown | L44 | broad catalog class; vendor unspecified |
+| 1.816000 / 46.63 | J-LASF09A (HIKARI catalog equivalent) | L21, L22 | compatible curve; supplier unspecified |
+| 1.846660 / 23.78 | J-SF03 (HIKARI catalog equivalent) | L23 | compatible curve; supplier unspecified |
+| 1.788000 / 47.38 | J-LASF014 (HIKARI catalog equivalent) | L24 | compatible curve; supplier unspecified |
+| 1.772500 / 49.61 | J-LASF016 (HIKARI catalog equivalent) | L34 | compatible curve; supplier unspecified |
+| 1.805180 / 25.43 | S-TIH6 (OHARA catalog equivalent) | L35 | compatible curve; supplier unspecified |
+| 1.676974 / 54.52 | S-LAL12 (OHARA catalog equivalent) | L41 | compatible curve; supplier unspecified |
+| 1.487490 / 70.24 | S-FSL5 (OHARA catalog equivalent) | L42 | compatible curve; supplier unspecified |
+| 1.834000 / 37.17 | S-LAH60 (OHARA catalog equivalent) | L43 | compatible curve; supplier unspecified |
+| 1.516800 / 64.12 | N-BK7 (SCHOTT catalog equivalent) | L44 | compatible curve; supplier unspecified |
 
 The two 1.497000 / 81.61 elements occupy different positive groups: L12 is in the front G1 cemented pair and L32 is in the positive G31 cemented pair. This distribution is consistent with Nikon's marketed statement that the production lens contains two ED elements, but the patent itself provides only their refractive coordinates.
 

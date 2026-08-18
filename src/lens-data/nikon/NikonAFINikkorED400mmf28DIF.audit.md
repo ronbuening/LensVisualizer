@@ -1,4 +1,4 @@
-# Nikon AF-I NIKKOR 400mm f/2.8 D IF-ED Patent Audit
+# Nikon AF-I NIKKOR 400mm f/2.8D IF-ED Patent Audit
 
 Patent: US 5,438,455 A, Example 1
 
@@ -16,10 +16,16 @@ Patent: US 5,438,455 A, Example 1
 
 - The rear cemented group cannot be enlarged to the schematic's full apparent outline without violating the physical shared-gap geometry; its final values are the validator-safe compromise.
 - Added Hikari `J-LLF6` to the catalog from the retained first-party Nikon/Hikari workbook. Its vendor coefficients resolve L22b here and the same named glass in the existing Nikon AF-P DX 10–20mm record.
-- Normalized the display name to `NIKON AF-I NIKKOR 400mm f/2.8 D IF-ED`.
+- Normalized the display name to `NIKON AF-I NIKKOR 400mm f/2.8D IF-ED`.
 
 ### Verification
 
 - `npm run audit:surface -- src/lens-data/nikon/NikonAFINikkorED400mmf28DIF.data.ts`
 - `npm run audit:image-circle -- src/lens-data/nikon/NikonAFINikkorED400mmf28DIF.data.ts`
 - Full repository checks are recorded in the integrating commit.
+
+## 2026-08-18 — Screenshot follow-up
+
+- Rechecked the supplied rendering against Figure 1. The revised G2/G3 diameter ladder is the closest validator-safe match; no further SD change was supported.
+- Confirmed the published focus order: G2 moves `+17.8317mm` imageward while G1 and G3 remain fixed.
+- Corrected L3b's displayed type to `Negative Meniscus`, marked L11/L12/L3a as the three inferred ED positions, and retained the source subgroup labels without inventing additional product claims.

@@ -9,7 +9,7 @@
 **Title:** オートフォーカスカメラ用内焦望遠レンズ — *Inner-focus telephoto lens for an autofocus camera*\
 **Embodiment analyzed:** Example 5 (実施例5)
 
-The data file transcribes Example 5 of JPH04238311A and treats it, as specified by the job card, as the optical-design correlation for the NIKON AF-I NIKKOR 600mm f/4 D IF-ED. The patent itself does not name the retail lens. It describes a positive–negative–positive three-group telephoto in which the negative second group performs focusing, with the first and second groups arranged so that the beam presented to the fixed positive rear group remains approximately afocal during focus [JPH04238311A, ¶0005]. Example 5 is identified as a design with a cemented rear subgroup in G1, a single-element G3, focusing by G2, and fixed filters at the front and rear [JPH04238311A, ¶0020].
+The data file transcribes Example 5 of JPH04238311A and treats it, as specified by the job card, as the optical-design correlation for the NIKON AF-I NIKKOR 600mm f/4D IF-ED. The patent itself does not name the retail lens. It describes a positive–negative–positive three-group telephoto in which the negative second group performs focusing, with the first and second groups arranged so that the beam presented to the fixed positive rear group remains approximately afocal during focus [JPH04238311A, ¶0005]. Example 5 is identified as a design with a cemented rear subgroup in G1, a single-element G3, focusing by G2, and fixed filters at the front and rear [JPH04238311A, ¶0020].
 
 The production correlation rests on several independent points rather than on a manufacturer statement that the patent is the production prescription:
 
@@ -65,13 +65,13 @@ L12 is the second positive collector in G11 and uses the same high-Abbe coordina
 
 ### L13 — Biconcave Negative
 
-`nd = 1.75692, νd = 31.7.` Glass: **Unmatched (nd=1.75692, νd=31.7)**. Standalone `f = −386.878 mm`.
+`nd = 1.75692, νd = 31.7.` Glass: **E-LAF11 (HIKARI catalog equivalent; production supplier unspecified)**. Standalone `f = −386.878 mm`.
 
-L13 is the negative member that completes G11. Its higher refractive index and much lower Abbe number oppose the two low-dispersion positive elements ahead of it, providing both negative first-order power and a strong chromatic balancing lever. No current public catalog identity was sufficiently close in both `nd` and `νd`, so the final data deliberately uses the `Unmatched` form rather than assigning a speculative vendor glass.
+L13 is the negative member that completes G11. Its higher refractive index and much lower Abbe number oppose the two low-dispersion positive elements ahead of it, providing both negative first-order power and a strong chromatic balancing lever. HIKARI E-LAF11 is index-exact and differs by only `Δνd = −0.109`, so the data uses its checked curve while explicitly leaving the production supplier unspecified.
 
 ### L14 — Negative Meniscus
 
-`nd = 1.71300, νd = 54.0.` Glass: **713540 — LAK8-class lanthanum crown**. Standalone `f = −141.365 mm`.
+`nd = 1.71300, νd = 54.0.` Glass: **J-LAK8 (HIKARI catalog equivalent; production supplier unspecified)**. Standalone `f = −141.365 mm`.
 
 L14 is the front member of the cemented G12 pair. The patent describes it as a negative meniscus with its convex surface toward the object side, followed by a positive meniscus with its convex surface toward the object side [JPH04238311A, ¶0020]. Its independently computed standalone power is likewise negative.
 
@@ -79,7 +79,7 @@ L14 must be distinguished from G12 as a whole. Cemented to L15, the pair has a c
 
 ### L15 — Positive Meniscus
 
-`nd = 1.59319, νd = 67.9.` Glass: **593679 — PSKH/low-dispersion crown class; HIKARI J-PSKH1 coordinate match**. Standalone `f = +120.231 mm`.
+`nd = 1.59319, νd = 67.9.` Glass: **J-PSKH1 (HIKARI catalog equivalent; production supplier unspecified)**. Standalone `f = +120.231 mm`.
 
 L15 is the positive rear member of G12 and receives the cemented junction at surface 10. The patent explicitly places refractive-index and Abbe-number conditions on the positive member of this rear G1 subgroup, requiring `Na < 1.60` and `νa > 65` to control aberration in the compact rear portion of G1 [JPH04238311A, ¶¶0012–0013]. The Example-5 values `1.59319 / 67.9` satisfy both conditions.
 
@@ -87,7 +87,7 @@ The present glass annotation remains class-level. Current HIKARI J-PSKH1 reprodu
 
 ### L21 — Positive Meniscus
 
-`nd = 1.80518, νd = 25.4.` Glass: **805254 — SF6/TIH6-class dense flint**. Standalone `f = +151.917 mm`.
+`nd = 1.80518, νd = 25.4.` Glass: **SF6 (SCHOTT catalog equivalent; production supplier unspecified)**. Standalone `f = +151.917 mm`.
 
 L21 is the positive front member of the cemented pair at the head of the translating G2 focus group. Its high index and low Abbe number are paired directly with the negative L22. The cemented pair is not positive overall: its computed EFL is **−175.331 mm**.
 
@@ -95,13 +95,13 @@ Because G2 is the moving group, its system role is set by the net negative group
 
 ### L22 — Biconcave Negative
 
-`nd = 1.71300, νd = 54.0.` Glass: **713540 — LAK8-class lanthanum crown**. Standalone `f = −80.857 mm`.
+`nd = 1.71300, νd = 54.0.` Glass: **J-LAK8 (HIKARI catalog equivalent; production supplier unspecified)**. Standalone `f = −80.857 mm`.
 
 L22 is the negative rear member of the G2 cemented pair and receives the cemented junction at surface 13. Its magnitude of negative standalone power exceeds the positive power of L21, giving the cemented pair its net negative sign. The same `713540` class coordinate also appears in L14, but the data does not infer a common historical vendor from that repetition.
 
 ### L23 — Biconcave Negative
 
-`nd = 1.69350, νd = 53.8.` Glass: **694538 — LAC13/LAK13-class; exact historical melt unresolved**. Standalone `f = −172.934 mm`.
+`nd = 1.69350, νd = 53.8.` Glass: **LAC13 (HOYA catalog equivalent; production supplier unspecified)**. Standalone `f = −172.934 mm`.
 
 L23 is the separated negative element that completes G2. Combined with the front cemented pair and the internal spacings, the moving G2 group has a computed EFL of **−85.000 mm**. This is the quantity that governs its inner-focus behavior in the full system.
 
@@ -122,11 +122,11 @@ The patent supplies d-line `nd` and `νd` values at approximately **587.6 nm** b
 | Stored glass annotation | `nd / νd` | Elements | Identification status |
 |---|---:|---|---|
 | 498826 — ED/fluorophosphate-crown class; HIKARI J-FKH1 coordinate match | 1.49782 / 82.6 | L11, L12, L31 | Exact current HIKARI coordinate match; historical identity unproven |
-| Unmatched (nd=1.75692, νd=31.7) | 1.75692 / 31.7 | L13 | No defensible current public-catalog match |
-| 713540 — LAK8-class lanthanum crown | 1.71300 / 54.0 | L14, L22 | Strong cross-vendor class match; vendor unresolved |
-| 593679 — PSKH/low-dispersion crown class; HIKARI J-PSKH1 coordinate match | 1.59319 / 67.9 | L15 | Exact current HIKARI coordinate match; historical identity unproven |
-| 805254 — SF6/TIH6-class dense flint | 1.80518 / 25.4 | L21 | Strong cross-vendor dense-flint class match; vendor unresolved |
-| 694538 — LAC13/LAK13-class; exact historical melt unresolved | 1.69350 / 53.8 | L23 | Class-level match only |
+| E-LAF11 (HIKARI catalog equivalent; production supplier unspecified) | 1.75692 / 31.7 | L13 | Compatible catalog equivalent; historical identity unproven |
+| J-LAK8 (HIKARI catalog equivalent; production supplier unspecified) | 1.71300 / 54.0 | L14, L22 | Compatible catalog equivalent |
+| J-PSKH1 (HIKARI catalog equivalent; production supplier unspecified) | 1.59319 / 67.9 | L15 | Exact current HIKARI coordinate match; historical identity unproven |
+| SF6 (SCHOTT catalog equivalent; production supplier unspecified) | 1.80518 / 25.4 | L21 | Compatible catalog equivalent |
+| LAC13 (HOYA catalog equivalent; production supplier unspecified) | 1.69350 / 53.8 | L23 | Compatible catalog equivalent |
 
 No `nC`, `nF`, `ng`, or `dPgF` values are authored. The source does not publish them, and the class-level glass matches are not sufficient grounds to synthesize line indices from a modern catalog. Consequently, this analysis does not claim apochromatic correction, anomalous partial dispersion, or a specific secondary-spectrum behavior.
 
