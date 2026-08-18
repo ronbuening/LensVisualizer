@@ -24,6 +24,11 @@ export const CHANGELOG: ChangelogEntry[] = [
     summary: "Expanded patent-backed chromatic coverage and corrected the Nikkor-N 5cm prescription",
   },
   {
+    date: "2026-08-18",
+    type: "lens",
+    summary: "Added six Nikon AF-I and DX lenses spanning 18–600mm, including two Micro-NIKKORs",
+  },
+  {
     date: "2026-08-17",
     type: "lens",
     summary: "Added nine Tamron SP, AF, Di, and Di III zoom lens designs spanning 14-600mm",

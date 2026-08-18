@@ -112,6 +112,17 @@ describe("glass catalog", () => {
     expect(evaluateCatalogAbbeNumber(entry!)).toBeCloseTo(26.58, 2);
   });
 
+  it("J-LLF6 reproduces the published Hikari line indices and Abbe number", () => {
+    const entry = resolveGlass("J-LLF6 (HIKARI)");
+    expect(entry?.name).toBe("J-LLF6");
+    expect(entry?.code6).toBe("532488");
+    expect(evaluateSellmeier(entry!, LINE_NM.C)).toBeCloseTo(1.528453, 6);
+    expect(evaluateSellmeier(entry!, LINE_NM.d)).toBeCloseTo(1.53172, 5);
+    expect(evaluateSellmeier(entry!, LINE_NM.F)).toBeCloseTo(1.539353, 6);
+    expect(evaluateSellmeier(entry!, LINE_NM.g)).toBeCloseTo(1.545481, 6);
+    expect(evaluateCatalogAbbeNumber(entry!)).toBeCloseTo(48.78, 2);
+  });
+
   it("FD9 reproduces the HOYA catalog lines and resolves its 654337 code", () => {
     const entry = resolveGlass("FD9 (HOYA)");
     expect(entry?.name).toBe("FD9");

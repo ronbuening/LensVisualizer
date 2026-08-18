@@ -1249,6 +1249,28 @@ export const HIKARI_GLASS_ENTRIES: readonly GlassEntry[] = [
     code6: "548455",
     source: "Hikari Optical Glass Catalog 2023, J-LLF1 page; vendor power-series coefficients and d-line code.",
   },
+  /* ────── Phase 105 Nikon AF-I coverage addition (August 2026) ────── */
+  {
+    name: "J-LLF6",
+    vendor: "Hikari",
+    powerSeries: [
+      [2.30465477, 0],
+      [-0.00842372028, 2],
+      [-0.0000853219261, 4],
+      [0.0143763145, -2],
+      [0.000330848944, -4],
+      [-0.00000410026783, -6],
+      [0.00000157001947, -8],
+      [0, -10],
+      [0, -12],
+    ],
+    nd: 1.53172,
+    vd: 48.78,
+    PgF: 0.5622,
+    code6: "532488",
+    source:
+      "Nikon/Hikari Optical Glass Data workbook, J-LLF6 row; vendor nine-term power-series coefficients and d-line code.",
+  },
   /* ────── Phase 78 Nikon 180-400mm coverage additions (August 2026) ────── */
   {
     name: "J-SK12",

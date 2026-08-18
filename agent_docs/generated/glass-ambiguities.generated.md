@@ -12,8 +12,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **589** lenses scanned
-- **6645** glass elements examined
+- **595** lenses scanned
+- **6716** glass elements examined
 - **1830** elements have multiple coordinate-compatible candidates
 - **378** lens files are affected
 - **177** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row

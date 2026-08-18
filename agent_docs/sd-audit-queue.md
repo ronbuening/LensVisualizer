@@ -92,6 +92,7 @@ better investment.
 | AF-S VR Zoom-Nikkor 70-200mm f/2.8G IF-ED | US 2003/0133200 Figure 1 at 300 dpi plus supplied site screenshot | done 2026-08-14; L47 restored to the final pair's near-equal aperture |
 | AF-S VR Zoom-Nikkor 24-120mm f/3.5-5.6G IF-ED | US 2004/0218274 Figure 5 at 300 dpi plus supplied site screenshot | no further change 2026-08-14; compact L33 correction retained |
 | AF-S VR Zoom-Nikkor 200-400mm f/4G IF-ED | US 2005/0157403 Figure 1 at 300 dpi plus supplied site screenshot | no change 2026-08-14; modeled taper matches |
+| AF-S DX Micro-Nikkor 85mm f/3.5G ED VR | US 2009/0190220 Figure 2 at 600 dpi plus supplied site screenshot | done 2026-08-18; D1 and D4 restored to the patent's neighboring-group height order |
 
 ### Completed Tamron additions
 
