@@ -21,3 +21,9 @@ Patent: US 2017/0351051 A1, Example 1
 ### Analysis sync
 
 - Updated L14 and L21 from `Unmatched` prose to code-only glass descriptions and noted retained patent partial dispersion.
+
+## 2026-08-18 — M-TAFD305 coefficient assignment
+
+- Visually rechecked local `patents/US20170351051A1.pdf`, PDF page 22, Example 1 / Table 1. L14 remains `nd = 1.84887`, `νd = 40.12`, `θgF = 0.57197`.
+- Re-sourced Hoya M-TAFD305 / MC-TAFD305 from the first-party 2026-07-07 AGF. Its coefficient curve (`1.851348 / 40.104 / 0.569519`) is within catalog-assignment tolerances and is explicitly a precision-molding family.
+- Relabeled only L14 to `M-TAFD305` as a catalog equivalent. Patent code `849401`, patent `dPgF`, and the unspecified production supplier remain explicit; L21 stays code-only.

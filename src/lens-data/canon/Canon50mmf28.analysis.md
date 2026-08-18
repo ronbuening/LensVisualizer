@@ -59,11 +59,11 @@ The patent groups L1 with L4 in its positive-element mean-index condition. This 
 
 ### L2 — Biconcave Negative Singlet
 
-**$n_d=1.5930$, $\nu_d=34.3$. Glass: unmatched 593/343 medium-index flint. Standalone in-air $f=-18.2540$ mm.**
+**$n_d=1.5930$, $\nu_d=34.3$. Glass: OHARA S-FTM16 catalog equivalent to patent 593343; production supplier unspecified. Standalone in-air $f=-18.2540$ mm.**
 
 The converted radii are $R_3=-37.050$ mm and $R_4=+15.500$ mm, with a 1.350 mm center thickness. The opposite signs establish a biconcave element, and the smaller magnitude of $R_4$ confirms the stronger image-side concavity described by the patent.
 
-No exact public catalog match is established. OHARA S-FTM16, for example, is $n_d=1.59270$, $\nu_d=35.31$; its index is close, but its Abbe number is 1.01 higher than the patent value.[^ohara] That residual is too large for a unique assignment.
+OHARA S-FTM16 is $n_d=1.59270$, $\nu_d=35.31$; its residual from the patent coordinate is inside the runtime catalog-equivalent window.[^ohara] It therefore supplies a qualified coefficient-backed spectral curve, but the patent does not establish a unique production-supplier identity.
 
 ### L3 — Plano-Concave Negative Member of the Rear Cemented Component
 
@@ -90,7 +90,7 @@ The patent publishes only $n_d$ and $\nu_d$; it names no manufacturer or melt. C
 | Element | Patent code | Catalog assessment | Residual to patent $(\Delta n_d,\Delta\nu_d)$ |
 |---|---:|---|---:|
 | L1 | 658573 | Modeled with Sumita K-LaK11, an exact-coordinate equivalent | $(0.000000,0.00)$ |
-| L2 | 593343 | Unmatched medium-index flint; OHARA S-FTM16 is nearby but non-unique | $(-0.000300,+1.01)$ |
+| L2 | 593343 | OHARA S-FTM16 catalog equivalent; production supplier unspecified | $(-0.000300,+1.01)$ |
 | L3 | 511606 | Modeled with historical OHARA NSL7, a close coordinate equivalent | approximately $(+0.000020,-0.11)$ |
 | L4 | 691548 | Modeled with Sumita K-LaK9, an exact-coordinate equivalent; OHARA S-LAL9 has $\nu_d=54.82$ | Sumita $(0.000000,0.00)$; OHARA $(0.000000,+0.02)$ |
 

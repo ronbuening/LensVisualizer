@@ -104,7 +104,7 @@ SF6 has a density of 5.18 g/cm³ — quite heavy, which contributes to the Holog
 | n_d | 1.71300 | 1.71300 | 0.00000 |
 | ν_d | 53.89 | 53.83 | +0.06 |
 
-**Identification: Schott LAK8** (six-digit glass code 713538). LAK8 is a lanthanum crown glass — a rare-earth-containing optical glass with moderately high refractive index and low dispersion. The "LaK" designation indicates lanthanum crown (La = lanthanum, K = Kron/crown). The refractive index match is exact; the Abbe number residual of +0.06 is again well within tolerance.
+**Coefficient-backed equivalent: N-LAK8** (six-digit glass code 713538). The curve retains the historical LAK8 lanthanum-crown family and matches the patent coordinate closely. The patent does not identify the production supplier.
 
 Lanthanum crown glasses were among the important new glass types that became available in the post-war period, enabling designers like Glatzel to achieve combinations of high index and low dispersion that were previously impossible. For the Hologon, using a high-index, low-dispersion glass for the central positive element while pairing it with high-dispersion flint for the negative elements is the key to achieving chromatic correction.
 

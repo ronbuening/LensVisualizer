@@ -37,7 +37,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                            ║
  * ║ Spectral data: Example 1 publishes nd and nu_d only. nC, nF, ng, and       ║
  * ║ dPgF are therefore not authored. Patent code 498825 is mapped to the       ║
- * ║ current Hikari J-FKH1 coordinate successor; other unresolved rows retain   ║
+ * ║ current Hikari J-FKH1 coordinate successor, and L1 uses coefficient-backed ║
+ * ║ Hoya M-NBF1 as a catalog equivalent; other unresolved rows retain          ║
  * ║ code-class or explicit Unmatched labels.                                    ║
  * ╚════════════════════════════════════════════════════════════════════════════╝
  */
@@ -77,7 +78,7 @@ const LENS_DATA = {
       nd: 1.744429,
       vd: 49.55,
       fl: -35.736802,
-      glass: "Unmatched (744496 class; nd=1.744429, vd=49.55)",
+      glass: "M-NBF1 (Hoya catalog equivalent; patent code 744496, supplier unspecified)",
       apd: false,
       role: "Front double-aspherical meniscus and principal negative member of the first zoom group.",
     },
@@ -218,7 +219,7 @@ const LENS_DATA = {
       nd: 1.60602,
       vd: 57.44,
       fl: -240.469845,
-      glass: "Unmatched (606574 class; nd=1.606020, vd=57.44)",
+      glass: "N-SK2 catalog equivalent (patent 606574; production supplier unspecified)",
       apd: false,
       role: "Rear double-aspherical negative meniscus used for residual off-axis correction.",
     },

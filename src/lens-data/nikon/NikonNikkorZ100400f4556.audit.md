@@ -78,3 +78,14 @@ Figure / SD check:
 
 - Rendered Figure 1 from the local PDF, page 26. Figure 1 shows the wide and tele Example 1 sections.
 - The patent does not publish semi-diameters. The stored SD profile visually follows the figure envelope: large front G1/G2 diameters, a narrower G3/G4 stop region, and a larger rear relay/cover-glass section. No SD edits were made.
+
+## 2026-08-18 — Current-catalog equivalent backfill
+
+- Re-rendered Example 1 / Table 1 from `patents/JP2022092388A.pdf`; rows 14, 31, and 41 confirm
+  `nd = 1.854505`, `1.552981`, and `1.902650`, respectively. The table does not publish Abbe numbers.
+- Assigned coefficient-backed optical equivalents that now exist in the runtime catalog: L9 uses L-LAH85V
+  (catalog residuals `Δnd = -0.000510`, `Δνd = +0.478`), L17 uses J-KZFH4
+  (`Δnd = +0.000001`, `Δνd = -0.430`), and L23 uses J-LASFH9
+  (`Δnd = 0.000000`, `Δνd = +0.325`).
+- The patent codes remain in each label and the production supplier remains unspecified. L19 (`603564`) and L25
+  (`738493`) remain unresolved because the current catalog does not provide comparably strong equivalents.

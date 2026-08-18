@@ -125,9 +125,9 @@ describe("buildLens — production lenses", () => {
     expect(L.EFL).toBeCloseTo(102.148542, 5);
   });
 
-  it("NIKKOR-N 5cm f/1.1 EFL ≈ 50.1 mm", () => {
+  it("NIKKOR-N 5cm f/1.1 EFL ≈ 49.93 mm", () => {
     const L = buildLens(NikkorN5cmf11);
-    expect(L.EFL).toBeCloseTo(50.087386, 5);
+    expect(L.EFL).toBeCloseTo(49.926581, 5);
   });
 
   it("Sonnar 50 f/1.5 EFL ≈ 50.2 mm", () => {

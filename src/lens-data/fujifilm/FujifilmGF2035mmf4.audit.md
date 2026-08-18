@@ -13,3 +13,9 @@ Patent: US 2022/0236544 A1, Example 10 (Tables 28-30)
 - No changes were made to L34 / 496813; it remains an unmatched ED fluorophosphate near the FCD1/S-FPL51 family.
 - Updated [FujifilmGF2035mmf4.analysis.md](FujifilmGF2035mmf4.analysis.md) to distinguish the E-FD8 code-family assignment from a patent-confirmed exact melt.
 - Batch verification is recorded in [six-digit-glass-codes-missing-sellmeier-reviewed.md](../../../agent_docs/generated/six-digit-glass-codes-missing-sellmeier-reviewed.md).
+
+## 2026-08-18 — L34 curve and Table 28 partial-dispersion recovery
+
+- Visually rechecked `patents/US20220236544A1.pdf`, PDF page 53, Table 28. L34 remains `nd = 1.49648`, `νd = 81.30`; the table also publishes θgF for all fourteen glass rows.
+- HOYA MC-FCD1-M20 is a close coefficient-backed ED match (`Δnd = +0.000419`, `Δνd = +0.21`). Relabeled L34 as its catalog equivalent with the production supplier unspecified.
+- Converted every Table 28 θgF value to the project's `dPgF` convention and stored all fourteen patent-authored values. No prescription geometry changed.

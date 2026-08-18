@@ -33,3 +33,10 @@ Patent: US 2,959,100, Example 1 / Table I
 - Added the official legacy HOYA F7 row (`1.625363 / 35.583498`, code `625356`) to the shared catalog.
 - Relabeled both elements as supplier-neutral F7 optical equivalents and synchronized the analysis. No geometry,
   aperture, or semi-diameter values changed.
+
+## 2026-08-18 - K-SSK1 coefficient backfill
+
+- Visually rechecked Table I on rendered page 2 of `patents/US2959100.pdf`; L6 is `1.61720 / 54.0`.
+- Replaced the unresolved J-SSK1 class label with the existing K-SSK1 curve, whose catalog coordinate matches the
+  patent within printed precision. This is an optical equivalent; the production supplier remains unspecified.
+- No prescription or geometry value changed.

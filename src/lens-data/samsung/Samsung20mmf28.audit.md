@@ -53,3 +53,11 @@ identifies Samsung's production supplier.
 - `npm run typecheck`, `npm run format:check`, and `npm run lint` — passed.
 - `npm run test` — 220 files / 2591 tests passed.
 - `npm run build` — passed; 1008 routes prerendered.
+
+## 2026-08-18 - L6 coefficient backfill
+
+- Visually rechecked Example 1 / Table 1 on rendered page 17 of `patents/US20120056976A1.pdf`; L6 is confirmed at
+  `1.68997 / 53.0`.
+- The later-added K-VC80-M catalog curve is the unique compatible coefficient-backed entry for this coordinate, so
+  L6 is now recorded as an optical equivalent with Samsung's production supplier unspecified.
+- This supersedes the 2026-08-04 unresolved disposition. No patent constant, asphere, or geometry value changed.

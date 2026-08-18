@@ -14,3 +14,12 @@ Patent: JP WO2019/073744 A1, Numerical Example 1 / FIG. 1
 ### Verification
 
 - `npm test -- elementRenderDiagnostics`
+
+## 2026-08-18 — Hoya M-TAFD305 coefficient assignment
+
+- Visually rechecked local `patents/JPWO2019073744A1.pdf`, PDF page 14, Numerical Example 1 / Table 1. Surface 21 (L27) remains `nd = 1.85235`, `νd = 40.1` and is aspherical on both faces.
+- Re-sourced Hoya M-TAFD305 / MC-TAFD305 from the vendor's first-party 2026-07-07 AGF; its curve evaluates to `1.851348 / 40.104`.
+- Relabeled L27 to M-TAFD305 as a catalog equivalent while retaining patent code `852401` and the unspecified production supplier. No geometry changed.
+- Kept L11 unresolved after checking the retained MC-TAF115 row: its nominal `nd = 1.777047` conflicts with its
+  polynomial (`nd = 1.770473`). The polynomial is tempting for the patent's `1.77002 / 49.4` coordinate, but the
+  internally inconsistent vendor record is not accepted as coefficient evidence.

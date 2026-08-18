@@ -36,3 +36,9 @@ Patent: US 3,743,384, Example I / Claim 4
 - SUMITA's discontinued-inclusive all-glass catalog publishes F3 at code `613369`, nd = 1.61293, νd = 36.9, and BAF12 at code `639450`, nd = 1.63930, νd = 45.0.
 - Relabeled L11 and L17 as exact coefficient-backed catalog equivalents while leaving their production suppliers unspecified.
 - The `486815`, `501565`, and `744494` families remain unresolved; no prescription or zoom data changed.
+
+## 2026-08-18 — 501565 and 744494 coefficient assignments
+
+- Visually rechecked `patents/US3743384.pdf`, PDF page 9. L18 remains `1.50137 / 56.5` and L19 remains `1.74443 / 49.4`.
+- SUMITA K10 reproduces 501565 essentially exactly (`Δnd = +0.000001`, `Δνd = -0.09`); HOYA M-NBF1 is within the runtime window for 744494 (`Δnd = -0.001130`, `Δνd = -0.074`).
+- Relabeled L18 and L19 as catalog equivalents while leaving their production suppliers unspecified. The special 486815 family remains unresolved; no prescription or zoom geometry changed.

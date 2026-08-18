@@ -28,14 +28,25 @@ This file tracks the second bucket plus any cases from the first bucket that nee
 - `catalog-mismatches.generated.md` and `glass-relabel-by-lens.generated.md` report **0** remaining
   dispersion-coordinate mismatches across **0** lens files. The mismatch report separately records **30 / 75**
   native e-line surfaces resolved through explicit names or aliases.
-- `sellmeier-coverage.generated.md` reports **556** lenses, **6129** non-air surfaces, **5500** strict catalog
-  Sellmeier surfaces (**89.7%**), and **5511** trusted chromatic surfaces (**89.9%**).
-- **316** lenses are fully covered by strict Sellmeier data and **321** are fully covered by trusted chromatic data.
-- `unresolvedGlassScan` reports **332** non-explicit-unmatched annotations and **168** distinct unresolved glass-like
+- `sellmeier-coverage.generated.md` reports **589** lenses, **6653** non-air surfaces, **6040** strict catalog
+  Sellmeier surfaces (**90.8%**), and **6054** trusted chromatic surfaces (**91.0%**).
+- **353** visible lenses are fully covered by strict Sellmeier data and **358** are fully covered by trusted chromatic data.
+- `unresolvedGlassScan` reports **312** non-explicit-unmatched annotations and **152** distinct unresolved glass-like
   tokens. The residual total is code/prose inventory rather than a catalog-coordinate mismatch queue.
-- The missing-Sellmeier six-digit report contains **266** code-only elements, with **0** active unreviewed rows,
-  **116** self-recording explicit unmatched/unidentified dispositions, and **0** dispositions missing a review record.
+- The missing-Sellmeier six-digit report contains **229** code-only elements across **89** lens files, with **0** active
+  unreviewed rows, **99** self-recording explicit unmatched/unidentified dispositions, and **0** dispositions missing a review record.
 - The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work; for patent-by-patent execution, start from [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md).
+
+## Resolved Phase 103 — August 2026 patent-coordinate recovery
+
+- Rendered and visually checked sixteen local patent tables, then assigned existing coefficient-backed curves to 21
+  elements while retaining source coordinates and supplier uncertainty.
+- Added patent-authored `dPgF` to all fourteen Fujifilm GF 20-35mm glass rows from Table 28 θgF values.
+- Strict/trusted coverage rose to 6040/6054 of 6653 surfaces. The visible strict/trusted complete counts rose to
+  353/358, and the explicit missing-Sellmeier queue fell to 99 elements across 89 lens files.
+- This pass supersedes the older Phase 61 Enna J-K3 deferral and the Phase 51 Canon RF 50mm H-ZBaF4 deferral. J-K3
+  is now used as a qualified coordinate equivalent; H-ZBaF4 supplies Canon's baseline curve while the patent-authored
+  `dPgF` remains authoritative at g.
 
 ## Resolved Phase 95 — August 2026 exact native e-line follow-up
 
@@ -291,11 +302,12 @@ DE 1 228 820 B's sole claim table was rendered and checked visually, confirming 
 index or partial-dispersion anchor. OHARA NSL2/NSL3, HOYA E-C3, and SUMITA K3 all provide nearby coefficient-backed
 crown curves, but selecting one would be speculative.
 
-The unsupported `K4-class` attribution was replaced by an explicit unmatched `519573` crown annotation, preserving
+The unsupported `K4-class` attribution was replaced at that time by an explicit unmatched `519573` crown annotation, preserving
 the patent-coordinate Abbe fallback. The report parser now retains internal spaces in legacy patent numbers, so this
 lens resolves to `patents/DE_1228820_B.pdf` rather than an unrelated filename containing the previously parsed
-single digit. Coverage is unchanged at 4665 strict / 4677 trusted surfaces; the active queue fell to seven elements
-across six families.
+single digit. Phase 103 later assigned the compatible J-K3 curve while retaining supplier uncertainty. Coverage was
+unchanged at 4665 strict / 4677 trusted surfaces in this historical pass; the active queue fell to seven elements across
+six families.
 
 ## Resolved Phase 60 — July 2026 SUMITA molding-state recovery
 
@@ -423,8 +435,10 @@ net trusted surface because the 75mm element already stored measured C/F/g line 
 CDGM H-ZBaF4 was not forced onto Canon's nearby `1.66565 / 35.6` elements. Its official datasheet publishes code
 `664355`, `PgF = 0.5895`, and `ΔPgF = +0.0042`; Canon RF 20mm G10 instead has patent `θgF = 0.5824` and
 `ΔθgF ≈ -0.0026`. G10/G16 are now explicitly unmatched so the runtime retains the patent fallback. Canon RF 50mm
-code `666356` was likewise reviewed and retained: its code, index, and patent-family `ΔθgF = -0.0018` all reject the
-CDGM row. Strict coverage rose from 4624 to 4626 and trusted coverage from 4638 to 4639.
+code `666356` was likewise reviewed and retained at that time because its code, index, and patent-family
+`ΔθgF = -0.0018` differ from the CDGM row. Phase 103 later used H-ZBaF4 as a qualified baseline curve after confirming
+that authored patent `dPgF` remains authoritative at g. Strict coverage rose from 4624 to 4626 and trusted coverage
+from 4638 to 4639 in this historical pass.
 
 ## Resolved Phase 50 — July 2026 exact catalog-equivalent recovery
 

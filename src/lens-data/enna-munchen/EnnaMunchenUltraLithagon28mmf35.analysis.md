@@ -68,15 +68,15 @@ The $nd/νd$ pair matches SCHOTT SF4 at patent-table precision.
 
 ### L6 — Plano-Convex Positive
 
-$nd = 1.61720$, $νd = 54.0$. Glass: J-SSK1 equivalent / legacy SSK1-class, not patent-named. $f = +23.7$ mm.
+$nd = 1.61720$, $νd = 54.0$. Glass: K-SSK1 catalog equivalent; production supplier unspecified. $f = +23.7$ mm.
 
 L6 is the rear positive element. Its front surface is plane and its rear surface carries the refractive power, providing the final convergence toward the image plane. Because this surface is close to the image side of the optical train, it has strong leverage over the final spherical and field-curvature balance.
 
-The $nd/νd$ pair matches HIKARI J-SSK1 and other SSK1-class data closely, but the patent does not name the vendor or the historical melt. The data file therefore uses an equivalent-class label rather than a confirmed Schott SSK1 identity.
+The existing K-SSK1 curve matches the patent coordinate within printed precision. It supplies dispersion coefficients without identifying the historical vendor or production melt.
 
 ## Glass Identification / Selection
 
-The patent gives refractive indices and Abbe numbers only. It does not list glass names. The analysis therefore separates direct catalog matches from equivalents and unresolved historical glasses.
+The patent gives refractive indices and Abbe numbers only. It does not list glass names. The analysis therefore records coefficient-backed optical equivalents without treating them as historical production identities.
 
 | Element | Patent $nd$ | Patent $νd$ | Glass annotation | Confidence |
 |---|---:|---:|---|---|
@@ -85,7 +85,7 @@ The patent gives refractive indices and Abbe numbers only. It does not list glas
 | L3 | 1.61272 | 58.6 | BACD4 (HOYA equivalent) | Direct coordinate match; supplier unspecified |
 | L4 | 1.62536 | 35.6 | F7 (HOYA optical equivalent) | Official row 1.625363 / 35.583498; supplier unspecified |
 | L5 | 1.75520 | 27.5 | SF4 (SCHOTT) | Direct catalog match |
-| L6 | 1.61720 | 54.0 | J-SSK1 equivalent / legacy SSK1-class | Good equivalent; exact historical vendor unproven |
+| L6 | 1.61720 | 54.0 | K-SSK1 catalog equivalent | Coefficient-backed equivalent; supplier unspecified |
 
 The palette uses ordinary crown and flint glasses. No ED, fluorite, anomalous-partial-dispersion, or aspherical material behavior is implied by the patent data. L2 and L4 share the 625/356 coordinate and now use the effectively exact legacy HOYA F7 dispersion model as a supplier-neutral optical equivalent.
 
@@ -151,4 +151,4 @@ The design should therefore be described as a patent-grounded Enna three-part re
 2. HOYA optical-glass catalog including obsolete glasses, F7 and BACD4, used to verify the L2/L4 and L3 $nd/νd$ matches.
 3. SCHOTT, Optical Glass Datasheet SF4, used to verify the L5 $nd/νd$ match.
 4. OHARA, S-BSM10 catalog entry, used as the closest documented equivalent for L1.
-5. HIKARI, J-SSK1 catalog sheet, used as the closest documented equivalent for L6.
+5. SUMITA, K-SSK1 catalog data, used as the coefficient-backed optical equivalent for L6.

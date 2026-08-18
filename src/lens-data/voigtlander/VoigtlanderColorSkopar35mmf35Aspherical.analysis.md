@@ -58,11 +58,11 @@ The negative member reduces the net power of the front pair and supplies an oppo
 
 #### L10f — Biconcave Negative
 
-**nd = 1.61340, νd = 44.27. Glass: Unmatched (613443 negative anomalous-dispersion class; closest S-NBM51). Standalone f = −17.457979 mm.**
+**nd = 1.61340, νd = 44.27. Glass: OHARA S-NBM51 catalog equivalent for patent 613443; production supplier unspecified. Standalone f = −17.457979 mm.**
 
 L10f begins the negative G2a sub-group immediately behind the stop. The patent specifically constrains this member to nd < 1.62 and ΔPgF ≤ −0.005 (claim 5; ¶0086). The stored values, 1.61340 and −0.005, meet those limits at the patent's stated precision.
 
-No public catalog glass matches all three stored quantities exactly. OHARA S-NBM51 is the closest six-digit and optical-class candidate, but its residual partial-dispersion difference is too large to justify an exact vendor identity. The data file therefore retains an explicit `Unmatched` class label and does not invent C-, F-, or g-line indices.
+OHARA S-NBM51 reproduces the patent nd/νd coordinate essentially exactly and its catalog partial dispersion is close to the patent's rounded ΔPgF. The data file therefore uses its complete curve as an optical equivalent while retaining the patent-authored `dPgF = −0.005`; this does not identify the production supplier.
 
 #### L10r — Biconvex Positive
 
@@ -94,13 +94,13 @@ The nd and six-digit 516641 position correspond to a BK7-family borosilicate cro
 
 ## Glass Identification and Selection
 
-The final data file preserves the patent's nd, νd, and rounded ΔPgF values on all six elements. It does not duplicate catalog-derived C-, F-, and g-line indices: compatible labels resolve to complete catalog curves, while the unmatched L10f retains the patent's dPgF-aware fallback. Every named match is an optical equivalent rather than a production-supplier claim.
+The final data file preserves the patent's nd, νd, and rounded ΔPgF values on all six elements. It does not duplicate catalog-derived C-, F-, and g-line indices: compatible labels resolve to complete catalog curves, while the authored `dPgF` values remain authoritative. Every named match is an optical equivalent rather than a production-supplier claim.
 
 | Element | Stored glass label | nd | νd | ΔPgF | Identification status |
 |---|---|---:|---:|---:|---|
 | L9f | TAFD35 catalog equivalent | 1.91082 | 35.25 | −0.003 | Complete HOYA catalog curve; supplier unspecified |
 | L9r | FD225 catalog equivalent | 1.80809 | 22.76 | +0.021 | Complete HOYA catalog curve; supplier unspecified |
-| L10f | Unmatched 613443 negative anomalous-dispersion class | 1.61340 | 44.27 | −0.005 | Closest to S-NBM51; no exact identity asserted |
+| L10f | S-NBM51 catalog equivalent; patent 613443 | 1.61340 | 44.27 | −0.005 | Complete OHARA curve; supplier unspecified; patent dPgF retained |
 | L10r | TAFD30 catalog equivalent | 1.88300 | 40.81 | −0.009 | Complete HOYA catalog curve; supplier unspecified |
 | L11 | FCD1 catalog equivalent | 1.49700 | 81.61 | +0.037 | Complete HOYA catalog curve; supplier unspecified |
 | L12 | S-BSL7 / K-BK7 catalog-equivalent class | 1.51633 | 64.06 | 0.000 | Complete catalog curve; vendor not uniquely identified |

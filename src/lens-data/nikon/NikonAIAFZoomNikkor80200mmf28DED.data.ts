@@ -257,7 +257,7 @@ const LENS_DATA = {
       nd: 1.744,
       vd: 45.0,
       fl: -40.838625,
-      glass: "744450 — lanthanum-flint class (unmatched exact public coordinate)",
+      glass: "H-LaF3B catalog equivalent (patent 744450; production supplier unspecified)",
       role: "G4 negative relay singlet immediately imageward of S3.",
     },
     {

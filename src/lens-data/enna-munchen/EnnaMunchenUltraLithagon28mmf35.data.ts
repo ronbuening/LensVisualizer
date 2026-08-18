@@ -118,7 +118,7 @@ const LENS_DATA = {
       nd: 1.6172,
       vd: 54.0,
       fl: 23.746,
-      glass: "J-SSK1 equivalent (HIKARI; legacy SSK1-class, patent nd/vd)",
+      glass: "K-SSK1 catalog equivalent (patent coordinate; production supplier unspecified)",
       apd: false,
       role: "Rear positive element providing final convergence to the image plane.",
     },

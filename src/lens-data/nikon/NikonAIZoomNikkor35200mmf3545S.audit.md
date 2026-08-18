@@ -30,3 +30,19 @@ Patent: US 4,770,511, Example 2 / Table 2
 - SUMITA's discontinued-inclusive BALK3 vendor polynomial resolves L14a at `1.51835 / 60.34` within patent rounding.
 - Relabeled L14a as a BALK3 optical equivalent while leaving the production supplier unspecified.
 - L12 (`796/410`) remains unresolved; no prescription or zoom data changed.
+
+## 2026-08-18 — NBFD2 equivalent backfill
+
+- Re-rendered `patents/US4770511.pdf`, PDF page 12. Example 2 / Table 2 row 24 confirms
+  `nd = 1.79631` and `νd = 40.98` for L12.
+- Assigned the existing HOYA NBFD2 curve as an optical equivalent. Its catalog coordinate
+  (`1.797199 / 41.1438`) differs by `Δnd = +0.000889` and `Δνd = +0.164`, inside the runtime
+  consistency window. The patent code is retained and the production supplier remains unspecified.
+
+## 2026-08-18 - Remaining Example 2 coefficient backfill
+
+- Visually rechecked Example 2 / Table 2 on rendered page 12 of `patents/US4770511.pdf`; the rows confirm L4 at
+  `1.90265 / 35.76`, L5b at `1.80411 / 46.43`, and L8 at `1.51860 / 70.08`.
+- Assigned J-LASFH9, TAF3D, and J-PKH1 as coefficient-backed optical equivalents. The labels do not identify
+  Nikon's production supplier.
+- No patent constants, geometry, or zoom states changed.

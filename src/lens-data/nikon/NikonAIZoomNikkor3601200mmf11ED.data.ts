@@ -282,7 +282,7 @@ const LENS_DATA = {
       nd: 1.50137,
       vd: 56.5,
       fl: 384.5,
-      glass: "Unmatched light crown (501/565; catalog identity uncertain)",
+      glass: "K10 catalog equivalent (patent 501565; production supplier unspecified)",
       role: "Symmetric positive singlet ahead of the telephoto rear negative doublet.",
     },
     {
@@ -293,7 +293,7 @@ const LENS_DATA = {
       nd: 1.74443,
       vd: 49.4,
       fl: -68.7,
-      glass: "Unmatched high-index crown/flint (744/494; catalog identity uncertain)",
+      glass: "M-NBF1 catalog equivalent (patent 744494; production supplier unspecified)",
       role: "Strong negative rear member producing the telephoto relay behavior.",
       cemented: "D5",
     },

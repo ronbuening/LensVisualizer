@@ -40,3 +40,9 @@ Patent: DE 1 228 820 B, sole claimed prescription
 ### Verification
 
 - `npm test -- elementRenderDiagnostics`
+
+## 2026-08-18 — L4 J-K3 coefficient assignment
+
+- Visually rechecked `patents/DE_1228820_B.pdf`, PDF page 1. L4 remains `nd = 1.519573`, `νd = 59.4`.
+- Hikari J-K3 is within the runtime catalog-equivalent window (`Δnd = -0.000720`, `Δνd = +1.52`).
+- Relabeled L4 as a J-K3 optical equivalent while leaving the production supplier unspecified. No prescription geometry changed.

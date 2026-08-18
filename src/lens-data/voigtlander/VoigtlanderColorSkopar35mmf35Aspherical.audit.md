@@ -252,3 +252,9 @@ incompatible label was changed to an explicit unmatched 009/291 class; no compat
 | `npm run lint` | pass with 0 errors and 3 pre-existing unrelated warnings |
 | `npm run test` | pass: 2528/2528 tests across 213 files |
 | `npm run build` | pass: 984 routes prerendered and sitemap generated |
+
+## 2026-08-18 — L10f S-NBM51 coefficient assignment
+
+- Visually rechecked `patents/JPA 2026121744-000000.pdf`, PDF page 14. L10f remains patent code `613443`, `nd = 1.61340`, `νd = 44.27`, `ΔPgF = -0.005`.
+- OHARA S-NBM51 reproduces the coordinate essentially exactly (`Δnd = -0.000003`, `Δνd = -0.0023`); its catalog `dPgF` is about `-0.00584`, close to the patent's rounded value.
+- Relabeled L10f as an S-NBM51 optical equivalent while retaining the patent-authored `dPgF` and leaving the production supplier unspecified. No prescription or asphere geometry changed.

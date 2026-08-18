@@ -104,3 +104,9 @@ Figure / SD check:
 - Compared G5/G10 code `666356` (`1.66565 / 35.64`, patent-family `ΔθgF = -0.0018`) with the newly sourced CDGM H-ZBaF4 row, code `664355` (`1.664260 / 35.48`, `ΔPgF = +0.0042`).
 - The code, d-line index, and partial dispersion all differ; the partial-dispersion sign conflict rules out H-ZBaF4 as a safe catalog equivalent.
 - Retained the code-only annotations and patent `dPgF` fallback for both elements.
+
+## 2026-08-18 — H-ZBaF4 coefficient assignment with patent partial dispersion
+
+- Visually rechecked `patents/US20190265441A1.pdf`, PDF page 17, Numerical Data 2. G5 and G10 remain patent code `666356`, `nd = 1.66565`, `νd = 35.64`, `ΔθgF = -0.0018`.
+- CDGM H-ZBaF4 is within the runtime coordinate window (`Δnd = -0.00139`, `Δνd = -0.16`). Its catalog PgF differs from the patent normal-line PgF by about `+0.00745`, so the patent-authored `dPgF` remains authoritative at the g line.
+- Relabeled G5/G10 as H-ZBaF4 catalog equivalents for coefficient-backed interpolation at the remaining wavelengths. The production supplier remains unspecified and no prescription geometry changed.

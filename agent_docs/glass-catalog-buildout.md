@@ -8,7 +8,44 @@ catalog equivalent. If neither path is available, the engine falls back to parti
 dPgF-corrected indices, or the legacy Abbe approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **523 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **529 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+
+The August 18, 2026 Phase 104 patent-table audit assigned existing coefficient-backed curves to 31 more non-air
+surfaces across ten lenses: Sigma 85mm DG DN, Zeiss Planar 50mm, Nikon 35–200mm, Leica Elmarit 90mm, Canon
+Serenar 85mm, Enna Ultra-Lithagon 28mm, Zeiss Hologon 15mm, Canon New FD 50mm, Samsung 20mm, and Nikon
+Nikkor-N 5cm. All ten are now strict-complete. High-resolution inspection of US 2,828,671 also corrected the
+Nikkor-N's L3 from OCR-derived `1.7700` to the patent's `1.7170` and restored the printed `r6 = 872.1`; those two
+values jointly reproduce the patent's stated component power. No new catalog row or relaxed tolerance was needed,
+and production suppliers remain unspecified. Strict coverage rises from 6040/6653 to 6071/6653 and trusted coverage
+from 6054/6653 to 6085/6653. Visible strict-complete lenses rise from 353 to 363 and trusted-complete lenses from 358
+to 368. The missing-Sellmeier report falls from 89 to 88 affected lens files while retaining 99 explicit unresolved
+dispositions and zero active unreviewed rows or catalog-coordinate mismatches.
+
+The August 18, 2026 Phase 103 patent/code audit assigned existing coefficient-backed curves to 21 more elements
+across sixteen lenses. The pass also converted Fujifilm GF 20-35mm Table 28 θgF values into authored `dPgF` for
+all fourteen elements. No new catalog row was needed: the verified curves already present for S-FTM16, S-TIL6,
+J-K3, K5, FF5, J-PSKH8, M-TAFD51, MC-FCD1-M20, S-NBM51, L-LAH85V, N-SK2, S-BAH32, NBFD2, M-TAF401,
+J-PSKH4, K10, M-NBF1, H-ZF39, and H-ZBaF4 safely reproduce the reviewed patent coordinates. Catalog-equivalent
+labels leave the production supplier unspecified, and authored patent partial dispersion remains authoritative.
+Strict coverage rises from 6019/6653 to 6040/6653 and trusted coverage from 6033/6653 to 6054/6653. The visible
+strict-complete count rises from 340 to 353 and the trusted-complete count from 345 to 358. The missing-Sellmeier
+report falls to 99 explicit unmatched dispositions across 89 affected lens files, with zero active unreviewed rows or
+catalog-coordinate mismatches.
+
+The August 18, 2026 Phase 102 patent/code audit added six first-party coefficient rows from retained manufacturer
+catalogs: HOYA M-NBF1, C2, and NBFD5; OHARA L-BAL43; and SUMITA K-CSK120(M) and K-VC80(M). It also replaced
+the older M-TAFD305 nominal metadata with values evaluated from HOYA's current published polynomial and added the
+MC-TAFD305 spelling alias. Nineteen patent rows across Fujifilm, Minolta, Nikon, Panasonic, Pentax, and Sony now use
+those curves while preserving their source coordinates, six-digit codes, and supplier uncertainty. A current-catalog
+recheck recovered six more surfaces through existing L-LAH85V, J-KZFH4, J-LASFH9, NBFD2, H-LaF3B, and S-LAL52
+curves. In total, 25 elements move from Abbe approximations to coefficient-backed tracing. Global strict coverage rises
+from 5994/6653 to 6019/6653 and trusted coverage from 6008/6653 to 6033/6653; 340 visible lenses are now
+strict-complete and 345 are trusted-complete, with zero catalog-coordinate mismatches.
+
+The pass deliberately leaves weaker matches unresolved. HOYA's retained MC-TAF115 record has internally inconsistent
+nominal metadata (`nd = 1.777047`) versus its published polynomial (`nd = 1.770473`), SUMITA K-VC185(M) does not
+reproduce the patent partial-dispersion evidence, and the Canon `666356` plus Panasonic `882408`/`769497` rows remain
+non-unique. Catalog-equivalent labels never assert a production supplier.
 
 The August 17, 2026 Phase 101 Tamron screenshot follow-up added SUMITA K-CaFK95 from the retained first-party
 discontinued-inclusive catalog. The coefficient-evaluated curve is a close, qualified equivalent for B011 L2's

@@ -34,3 +34,9 @@ Patent: JP2022-100641A
 
 - Rechecked the local untracked `patents/` folder for JP2022-100641A / `100641`; no matching local PDF is present.
 - No glass or SD changes made. Patent figure/table review remains blocked until the source PDF or a verified local family equivalent is added.
+
+## 2026-08-18 — Element 9 J-PSKH8 coefficient assignment
+
+- Located and visually checked `patents/JP2022100641A.pdf`, PDF page 7. Element 9 remains patent code `630581`, `nd = 1.63058`, `νd = 58.1`.
+- Hikari J-PSKH8 is within the runtime catalog-equivalent window (`Δnd = -0.001530`, `Δνd = +1.05`).
+- Relabeled element 9 as a J-PSKH8 optical equivalent while leaving the production supplier unspecified. No prescription or asphere geometry changed.

@@ -22,3 +22,15 @@ Patent: JP 2021-85935, Example 1
 - JP 2021-85935 A Example 1 does not publish surface clear apertures.
 - The S16 reduction is intentionally larger than a cosmetic trim; it removes the visible overhang/intersection in the L8/L9 cemented pair while preserving a small positive extended edge margin.
 - Temporary Sigma SD audit after the edits reported 0/27 Sigma files with raw SD/render issues.
+
+## 2026-08-18 - Example 1 coefficient backfill
+
+- Visually rechecked Example 1 on rendered pages 12–13 of `patents/JP2021085935A.pdf`. The table confirms all
+  fifteen stored d-line index/Abbe coordinates and the `θgF = 0.6103` value for L5.
+- Assigned existing coefficient-backed catalog equivalents to every element: FDS18, FCD705, FCD515, NBFD25,
+  J-PSKH4, TAFD55, TAFD65, E-FD15, and M-LAF81. These are optical-coordinate assignments, not claims about
+  Sigma's production suppliers.
+- Replaced the prior S-NBH56 approximation for the repeated `1.85451 / 25.15` glass with NBFD25. NBFD25 matches
+  the patent coordinate within catalog precision and reproduces L5's patent-listed `θgF`; the authored patent
+  `dPgF` remains authoritative.
+- No geometry, focus, aperture, or patent `nd`/`νd` value changed.

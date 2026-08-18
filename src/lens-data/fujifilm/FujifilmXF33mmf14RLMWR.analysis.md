@@ -93,7 +93,7 @@ The air space between L23 and L24 is optically important. Surface 16, the rear s
 
 #### L26 - Positive double-aspheric Lp, convex to image
 
-nd = 1.85343, νd = 40.55. Glass: unmatched 853/406 dense lanthanum-flint class. f = +20.36 mm.
+nd = 1.85343, νd = 40.55. Glass: HOYA L-LAH85V catalog equivalent for patent 853406; production supplier unspecified. f = +20.36 mm.
 
 L26 is the strongest positive lens in G2 and is therefore the patent's Lp lens. It has a nearly flat object-side surface and a strongly convex image-side surface, satisfying the patent's preferred Lp shape (¶0079). Both surfaces are aspheric. It is the only aspherical element in the moving focus group and is the element that makes the production special-element placement match especially strong.
 
@@ -129,7 +129,7 @@ The patent gives refractive indices and Abbe numbers, not vendor names. Glass na
 | L23 | 1.59283 | 68.63 | FCD515 / FCD505-class ED | ED element in focus group |
 | L24 | 1.49700 | 81.59 | S-FPL51 / FCD1-class ED | ED element in focus group |
 | L25 | 1.74077 | 27.76 | HOYA E-FD13 / H-ZF50 class | strongest negative G2 element |
-| L26 | 1.85343 | 40.55 | unmatched dense lanthanum-flint class | near S-LAH89 / M-TAFD305 / D-ZLaF85, but not asserted |
+| L26 | 1.85343 | 40.55 | HOYA L-LAH85V catalog equivalent | close coordinate match; production supplier unspecified |
 | L31 | 1.90043 | 37.37 | TAFD37-class dense lanthanum flint | rear positive corrector |
 | L32 | 1.67300 | 38.26 | OHARA S-NBH52V | rear negative corrector |
 | L33 | 1.68863 | 31.19 | E-FD8 / SF8-class flint | rear aspheric field corrector |

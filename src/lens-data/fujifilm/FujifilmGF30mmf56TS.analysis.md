@@ -47,11 +47,11 @@ This folded value reproduces the infinity-focus paraxial image plane to within p
 
 ### L11 — Negative Meniscus, Two Aspherical Surfaces
 
-nd = 1.58480, νd = 58.71. Glass: code-labeled 585587 moldable aspherical glass. f = −43.62 mm.
+nd = 1.58480, νd = 58.71. Glass: Sumita K-CSK120-M catalog equivalent (patent code 585587; supplier unspecified). f = −43.62 mm.
 
 L11 is the front negative aspherical meniscus. Both surfaces are aspherical, and the element is strongly negative because the rear surface, R2 = +23.0054 mm, is much more strongly curved than the weakly convex front surface. It begins the retrofocus expansion of the ray bundle and performs a large share of the early distortion, coma, and field-angle conditioning.
 
-The repeated use of this same 1.58480 / 58.71 substrate on all three aspherical elements suggests a moldable aspherical glass family, but a public catalog match was not established. It is therefore treated as a patent-listed 585587 material rather than assigned to a named catalog glass.
+The repeated 1.58480 / 58.71 / 0.54116 substrate is coordinate-compatible with Sumita K-CSK120(M), whose first-party polynomial evaluates to 1.58444 / 59.12 / 0.54111. Its molding-state designation and partial-dispersion agreement make it a useful catalog equivalent, while the patent code and unspecified supplier remain explicit.
 
 ### L12 — Negative Meniscus
 
@@ -109,7 +109,7 @@ Placing the Super ED doublet inside G2 means the secondary-spectrum correction m
 
 ### L25 — Negative Meniscus, Two Aspherical Surfaces
 
-nd = 1.58480, νd = 58.71. Glass: code-labeled 585587 moldable aspherical glass. f = −32.81 mm.
+nd = 1.58480, νd = 58.71. Glass: Sumita K-CSK120-M catalog equivalent (patent code 585587). f = −32.81 mm.
 
 L25 is a strong negative meniscus in the middle of G2. Both surfaces are aspherical. Its negative power offsets the field-curvature tendency of the surrounding positive elements, while the aspherical terms correct coma, spherical aberration, and zonal behavior near the aperture stop.
 
@@ -123,7 +123,7 @@ L26 is the final element of G2 and the second ED element in the design. It exits
 
 ### L31 — Weak Negative Aspherical Field Corrector
 
-nd = 1.58480, νd = 58.71. Glass: code-labeled 585587 moldable aspherical glass. f = −209.22 mm.
+nd = 1.58480, νd = 58.71. Glass: Sumita K-CSK120-M catalog equivalent (patent code 585587). f = −209.22 mm.
 
 L31 is a weak biconcave negative element at the front of the stationary rear group. Both surfaces are aspherical. Unlike L11 and L25, it has very weak first-order power and works principally on off-axis aberrations because it is positioned far behind the stop where chief-ray height is large.
 
@@ -143,7 +143,7 @@ L32 is a dense lanthanum flint by Abbe-number behavior, not a crown. The value �
 
 | Element | nd | νd | θgF | ΔPgF | Glass assignment | Notes |
 |---|---:|---:|---:|---:|---|---|
-| L11 | 1.58480 | 58.71 | 0.54116 | −0.00387 | 585587 code-labeled moldable glass | Aspherical substrate |
+| L11 | 1.58480 | 58.71 | 0.54116 | −0.00387 | K-CSK120-M equivalent; patent code 585587 | Aspherical substrate |
 | L12 | 1.69680 | 55.53 | 0.54420 | −0.00618 | S-LAL14 (OHARA) | Exact nd/νd match |
 | L13 | 1.49700 | 81.60 | 0.53774 | +0.03119 | FCD1 / M-FCD1 (HOYA) | ED |
 | L14 | 1.65412 | 39.68 | 0.57378 | −0.00327 | S-NBH5 (OHARA) | Exact nd/νd match |
@@ -154,9 +154,9 @@ L32 is a dense lanthanum flint by Abbe-number behavior, not a crown. The value �
 | L22 | 1.48749 | 70.44 | 0.53062 | +0.00532 | 487/704 low-dispersion crown | Same class as L16 |
 | L23 | 1.87070 | 40.73 | 0.56825 | −0.00705 | TAFD32 (HOYA) | High-index flint partner |
 | L24 | 1.43700 | 95.10 | 0.53364 | +0.04980 | FCD100 (HOYA) | Super ED |
-| L25 | 1.58480 | 58.71 | 0.54116 | −0.00387 | 585587 code-labeled moldable glass | Aspherical substrate |
+| L25 | 1.58480 | 58.71 | 0.54116 | −0.00387 | K-CSK120-M equivalent; patent code 585587 | Aspherical substrate |
 | L26 | 1.49700 | 81.61 | 0.53804 | +0.03151 | FCD1 / M-FCD1 (HOYA) | ED |
-| L31 | 1.58480 | 58.71 | 0.54116 | −0.00387 | 585587 code-labeled moldable glass | Aspherical substrate |
+| L31 | 1.58480 | 58.71 | 0.54116 | −0.00387 | K-CSK120-M equivalent; patent code 585587 | Aspherical substrate |
 | L32 | 1.80420 | 46.50 | 0.55727 | −0.00831 | N-LASF44 (Schott) | Dense lanthanum flint |
 | L33 | 1.56732 | 42.81 | 0.57567 | +0.00389 | S-TIL26 / E-FL6 / H-QF56 class | Flint rear doublet member |
 

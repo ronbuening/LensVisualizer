@@ -47,23 +47,23 @@ The Petzval sum of 0.196 yields a Petzval radius of approximately 255 mm at the 
 
 ## Glass Identification
 
-The patent lists both refractive index (nd, at the helium d-line, 587.6 nm) and Abbe number (Vd) for each element in Examples 4 and 5. Because the assignee is Carl Zeiss Oberkochen, the production lens would have used glasses from the Schott catalog, Zeiss's in-house glass supplier. The identifications below match the patent's nd/Vd pairs against the Schott catalog. Note that many Schott glasses have been reformulated since the 1970s to remove lead and arsenic (the modern "N-" prefix denotes these eco-friendly reformulations), so the exact catalog names given here reflect the original 1970s designations where the nd/Vd match is nearest.
+The patent lists refractive index (nd, at the helium d-line, 587.6 nm) and Abbe number (Vd), but no glass names or partial-dispersion data. The names below are coefficient-backed optical equivalents selected from the shared catalog. Historical Schott-family continuity is noted where the coordinate supports it, but the assignments do not establish the production melts or supplier.
 
 | Element | nd | Vd | Six-digit code | Glass identification | Confidence |
 |---|---|---|---|---|---|
-| L1 | 1.71700 | 47.99 | 717/480 | **Schott LaK 21** (nd=1.71700, Vd=47.98) | Exact match |
-| L2 | 1.78831 | 47.37 | 788/474 | **Schott LaF 21** (nd≈1.788, Vd≈47.4) | Near-exact; modern N-LAF21 has nd=1.788, Vd=47.49 |
-| L3 | 1.68893 | 31.17 | 689/312 | **Schott SF 56** (nd=1.68893, Vd=31.18) | Exact match |
-| L4 | 1.72830 | 28.68 | 728/287 | **Schott SF 10 family** (nd=1.72825, Vd=28.41); Vd residual +0.27 | Close; likely a period-specific melt or related dense flint |
-| L5 | 1.78831 | 47.37 | 788/474 | **Schott LaF 21** (same as L2) | Near-exact |
-| L6 | 1.78831 | 47.37 | 788/474 | **Schott LaF 21** (same as L2 and L5) | Near-exact |
-| L7 | 1.74400 | 44.77 | 744/448 | **Schott LaF 2** (nd=1.74400, Vd=44.77) | Exact match |
+| L1 | 1.71700 | 47.99 | 717/480 | **LAF3 catalog equivalent** | Exact d-line index; patent-rounded Vd |
+| L2 | 1.78831 | 47.37 | 788/474 | **N-LAF21 catalog equivalent** | Historical LaF 21 family; close coordinate |
+| L3 | 1.68893 | 31.17 | 689/312 | **J-SF8 catalog equivalent** | Exact d-line index; patent-rounded Vd |
+| L4 | 1.72830 | 28.68 | 728/287 | **SF10 catalog equivalent** | Historical SF 10 family; Vd residual 0.27 |
+| L5 | 1.78831 | 47.37 | 788/474 | **N-LAF21 catalog equivalent** | Same patent coordinate as L2 |
+| L6 | 1.78831 | 47.37 | 788/474 | **N-LAF21 catalog equivalent** | Same patent coordinate as L2/L5 |
+| L7 | 1.74400 | 44.77 | 744/448 | **N-LAF2 catalog equivalent** | Historical LaF 2 family; close coordinate |
 
 Several observations emerge from the glass map:
 
-The design uses only **five distinct glass types** across seven elements (three lanthanum-bearing, two dense flints). Three elements (L2, L5, L6) share the same lanthanum flint glass (LaF 21), and two of the remaining four use exact-match catalog glasses (LaK 21 for L1 and LaF 2 for L7). This economy of glass types is typical of 1970s Zeiss practice, where Schott and Zeiss maintained a curated catalog relationship.
+The design uses only **five distinct glass coordinates** across seven elements. Three elements (L2, L5, L6) share the same high-index, moderate-dispersion coordinate. This economy is consistent with the production-minded design, while the catalog labels remain optical equivalents rather than supplier identifications.
 
-Five of the seven elements use **lanthanum-containing glasses** — LaK (lanthanum crown) and LaF (lanthanum flint) types — in the positive collecting positions (L1, L2, L5, L6, L7). These provide the high refractive index needed to flatten the Petzval surface while maintaining moderate dispersion for chromatic control. The two diverging elements (L3 and L4) are **dense flints** (SF family), which supply the high dispersion needed for chromatic correction at the cemented interface and across the air-spaced front negative combination.
+Five positive collecting positions use high-index, moderate-dispersion crown/flint coordinates; the coefficient-backed equivalents for L2/L5/L6 and L7 retain historical LaF-family continuity. The two diverging elements use higher-dispersion flint coordinates, supplying chromatic correction at the cemented interface and across the air-spaced front negative combination.
 
 L4, the front element of the cemented doublet, presents the most uncertain identification. Its nd = 1.72830 matches Schott SF 10 closely (nd = 1.72825), but its Vd = 28.68 deviates from SF 10's standard Vd of 28.41 by about +0.27 units. This could indicate a period-specific melt variant, a related glass that has since been discontinued, or a deliberate design-stage rounding. The mismatch is small enough that it does not materially affect the chromatic analysis.
 
@@ -76,28 +76,28 @@ The front member as a group has a focal length of 2.87F (143.5 mm at production 
 **Element L1** — *Positive Meniscus (convex forward)*
 - Surfaces: R1 = +44.45 mm, R'1 = +288.66 mm
 - Thickness: 5.09 mm
-- Glass: LaK 21 (nd = 1.71700, Vd = 47.99)
+- Glass: LAF3 catalog equivalent (nd = 1.71700, Vd = 47.99)
 - Element focal length: +1.45F (+72.7 mm)
 
-L1 is the front positive element (designated Pv in the patent's structural analysis). It is a strongly unequal-sided meniscus: the front surface has a relatively tight 44.5 mm radius while the rear surface is nearly flat at 288.7 mm. This meniscus shape reduces surface reflection losses and minimizes the contribution to spherical aberration compared to a biconvex form at the same power. Its role is to provide the primary positive refractive power of the front group, bending the incoming marginal rays inward. The LaK 21 glass is a lanthanum crown with high index (1.717) and moderate dispersion (Vd ≈ 48), enabling a shallower front curvature (and thus less surface aberration) than a lower-index glass would require for the same power.
+L1 is the front positive element (designated Pv in the patent's structural analysis). It is a strongly unequal-sided meniscus: the front surface has a relatively tight 44.5 mm radius while the rear surface is nearly flat at 288.7 mm. This meniscus shape reduces surface reflection losses and minimizes the contribution to spherical aberration compared to a biconvex form at the same power. Its role is to provide the primary positive refractive power of the front group. The high index and moderate dispersion enable a shallower front curvature than a lower-index glass would require for the same power.
 
 **Element L2** — *Positive Meniscus (convex forward)*
 - Surfaces: R2 = +21.80 mm, R'2 = +34.06 mm
 - Thickness: 4.86 mm
-- Glass: LaF 21 (nd = 1.78831, Vd = 47.37)
+- Glass: N-LAF21 catalog equivalent (nd = 1.78831, Vd = 47.37)
 - Element focal length: +1.31F (+65.4 mm)
 
-L2 is the second collecting element, and the one with the strongest curvatures among the positive front-group elements. Its front radius of only 21.8 mm at production scale is among the steepest in the system (exceeded only by L3's rear surface at 15.3 mm and L4's front surface at 17.3 mm). The meniscus shape (both surfaces convex toward the object) controls the angle of incidence at each surface, reducing higher-order spherical aberration. The LaF 21 glass (nd = 1.788) is the highest-index material in the design, and its use here is critical: the high index reduces the bending angle at each surface for a given power, directly suppressing fifth-order spherical aberration, which is the dominant residual at f/1.4. The air space between L1 and L2 is extraordinarily thin (0.059 mm at production scale), making them essentially a close-contact pair — but deliberately not cemented. This air gap (air lens α) has a positive refractive power sum, contributing to the delicate balance of air-lens powers that the patent's conditions A through C specify.
+L2 is the second collecting element, and the one with the strongest curvatures among the positive front-group elements. Its front radius of only 21.8 mm at production scale is among the steepest in the system. The high-index N-LAF21 equivalent reduces the bending angle at each surface for a given power, directly suppressing fifth-order spherical aberration. The 0.059 mm air space between L1 and L2 makes them essentially a close-contact pair, but deliberately not cemented; this air lens contributes to the balance specified by the patent's conditions A through C.
 
 **Element L3** — *Negative Meniscus (convex forward)*
 - Surfaces: R3 = +47.09 mm, R'3 = +15.32 mm
 - Thickness: 1.19 mm
-- Glass: SF 56 (nd = 1.68893, Vd = 31.17)
+- Glass: J-SF8 catalog equivalent (nd = 1.68893, Vd = 31.17)
 - Element focal length: −0.67F (−33.5 mm)
 
 L3 is the first of two diverging elements and plays a pivotal role in the extended Gauss correction strategy. It is a thin, strongly negative meniscus with its steeper (rear) surface facing the central air space. The air space between L2 and L3 (air lens β, 1.59 mm at production) forms a powerfully divergent air lens whose refractive power sum is negative — one of the patent's key conditions (A1). This air lens β partially relieves the overcorrecting effect of the central air space (CS) by distributing the negative power across two air lenses rather than concentrating it at the stop, enabling control of higher-order spherical aberration.
 
-The SF 56 glass has the lowest Abbe number (31.17) and moderate index (1.689) among the front elements, identifying it as a dense flint. Its high dispersion relative to the surrounding lanthanum glasses creates a chromatic divergence that is later corrected by the rear group's cemented doublet.
+The L3 coordinate has the lowest Abbe number (31.17) and moderate index (1.689) among the front elements, identifying it as a dense flint. Its high dispersion relative to the surrounding positive glasses creates a chromatic divergence that is later corrected by the rear group's cemented doublet.
 
 ### Central Air Space (CS) and Aperture Stop
 
@@ -112,7 +112,7 @@ The rear member has a focal length of 0.86F (42.8 mm) — significantly more pow
 **Element L4** — *Biconcave Negative* (cemented to L5)
 - Surfaces: R4 = −17.32 mm, R'4 = +374.02 mm (junction)
 - Thickness: 1.15 mm
-- Glass: SF 10 family (nd = 1.72830, Vd = 28.68)
+- Glass: SF10 catalog equivalent (nd = 1.72830, Vd = 28.68)
 - Element focal length: −0.45F (−22.7 mm)
 - Cemented group: N2 (negative combination, with L5)
 
@@ -120,23 +120,23 @@ L4 is the second diverging element, positioned immediately behind the stop. Its 
 
 L4 is the strongest negative element in the system, with a focal length of −22.7 mm (−0.45F) — more powerful than L3 at −33.5 mm. Its steep front surface bending is necessary to generate sufficient negative Petzval contribution behind the stop, where the marginal ray height is large and the aberration leverage is greatest.
 
-The SF 10-family glass (dense flint, Vd = 28.68) is paired with the LaF 21 lanthanum flint of L5 to form the system's primary achromatic correction. Despite both being classified as "flints" in Schott nomenclature, their dispersions differ by nearly a factor of two (Vd = 28.68 vs. 47.37), which provides the differential dispersion needed for color correction.
+The SF10-family coordinate (Vd = 28.68) is paired with L5's N-LAF21-equivalent coordinate to form the system's primary achromatic correction. Their dispersions differ by nearly a factor of two, providing the differential dispersion needed for color correction.
 
 **Element L5** — *Biconvex Positive* (cemented to L4)
 - Surfaces: R5 = +374.02 mm (junction), R'5 = −30.36 mm
 - Thickness: 5.15 mm
-- Glass: LaF 21 (nd = 1.78831, Vd = 47.37)
+- Glass: N-LAF21 catalog equivalent (nd = 1.78831, Vd = 47.37)
 - Element focal length: +0.72F (+35.8 mm)
 - Cemented group: N2 (with L4)
 
-L5 is the strongest positive element in the rear group and the thickest element behind the stop (5.15 mm). Its rear surface (R'5 = −30.36 mm) is the primary positive refracting surface of the rear member, bending the rays back toward the axis after their divergence through the CS and L4. The high-index LaF 21 glass again reduces surface angles and suppresses higher-order aberrations.
+L5 is the strongest positive element in the rear group and the thickest element behind the stop (5.15 mm). Its rear surface (R'5 = −30.36 mm) is the primary positive refracting surface of the rear member, bending the rays back toward the axis after their divergence through the CS and L4. Its high-index N-LAF21-equivalent coordinate reduces surface angles and suppresses higher-order aberrations.
 
 Together, the cemented doublet L4+L5 has a combined focal length of −1.66F (−82.9 mm) — net negative. This is a hallmark of the extended Gauss design: the inner doublet near the stop is a diverging unit, not a converging one. Its negative power contributes to Petzval flattening while the individual elements' opposite dispersions provide chromatic correction. The patent designates this pair as N2, the rear negative combination, mirroring the front negative combination N1 (L2+L3, which are air-spaced rather than cemented).
 
 **Element L6** — *Positive Meniscus (concave forward)*
 - Surfaces: R6 = −87.43 mm, R'6 = −28.25 mm
 - Thickness: 4.38 mm
-- Glass: LaF 21 (nd = 1.78831, Vd = 47.37)
+- Glass: N-LAF21 catalog equivalent (nd = 1.78831, Vd = 47.37)
 - Element focal length: +1.03F (+51.3 mm)
 
 L6 begins the rear positive combination (PH in the patent's nomenclature). It is a meniscus with both surfaces concave toward the object — a shape that is qualitatively the mirror image of L2's convex-forward meniscus in the front group. This approximate symmetry about the stop (though the curvatures differ substantially: L2 is far more strongly curved) is characteristic of the double-Gauss heritage and contributes to the cancellation of odd-order aberrations (coma, distortion, lateral chromatic aberration).
@@ -146,10 +146,10 @@ The air space between L5 and L6 (air lens γ, 0.28 mm at production) is thin but
 **Element L7** — *Biconvex Positive*
 - Surfaces: R7 = +164.68 mm, R'7 = −130.81 mm
 - Thickness: 2.83 mm
-- Glass: LaF 2 (nd = 1.74400, Vd = 44.77)
+- Glass: N-LAF2 catalog equivalent (nd = 1.74400, Vd = 44.77)
 - Element focal length: +1.97F (+98.4 mm)
 
-L7 is the final element, a weakly positive biconvex lens that provides the last course correction before the image plane. Its curvatures are gentle compared to the inner elements (164.7 mm and 130.8 mm at production), reflecting its role as a field-flattening corrector rather than a primary power element. The air space between L6 and L7 (air lens δ, 0.13 mm at production) is very thin — though not the thinnest gap in the system (that distinction belongs to the α space between L1 and L2 at just 0.059 mm). Together, L6 and L7 form a near-contact positive pair. The LaF 2 glass (nd = 1.744, Vd = 44.77) is a moderate-index lanthanum flint, slightly lower in index than the LaF 21 used elsewhere — this difference helps fine-tune the marginal chromatic balance at the system exit.
+L7 is the final element, a weakly positive biconvex lens that provides the last course correction before the image plane. Its gentle curvatures reflect a field-flattening role rather than primary power. Together, L6 and L7 form a near-contact positive pair. The N-LAF2-equivalent coordinate is slightly lower in index than N-LAF21, helping fine-tune the marginal chromatic balance at the system exit.
 
 ## Focus Mechanism
 
@@ -173,7 +173,7 @@ The net result is a design that achieves at f/1.4 what earlier Gauss derivatives
 
 ## Summary
 
-The Carl Zeiss Planar T* 50mm f/1.4, as described in US Patent 3,874,771 Example 5, represents a mature and elegant expression of the extended double-Gauss design philosophy. Its seven all-spherical elements use only five distinct glass types from the Schott catalog — three lanthanum-bearing (LaK 21, LaF 21, LaF 2) and two dense flints (SF 56, SF 10) — achieving f/1.4 performance through meticulous tuning of the five air-lens powers rather than through exotic surfaces or materials. The design's longevity — announced in 1974 and manufactured through the 2020s in various mount iterations — is a testament to the robustness of Behrens and Glatzel's correction strategy, which trades the theoretical perfection of aspherical designs for a rugged, manufacturable system that delivers consistent imaging quality across millions of production units.
+The Carl Zeiss Planar T* 50mm f/1.4, as described in US Patent 3,874,771 Example 5, represents a mature expression of the extended double-Gauss design philosophy. Its seven all-spherical elements use only five distinct glass coordinates, now represented by coefficient-backed catalog equivalents, and achieve f/1.4 performance through meticulous tuning of the five air-lens powers rather than through exotic surfaces.
 
 ---
 

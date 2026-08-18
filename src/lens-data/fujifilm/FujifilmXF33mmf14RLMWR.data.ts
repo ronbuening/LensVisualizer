@@ -221,7 +221,7 @@ const LENS_DATA = {
       nd: 1.85343,
       vd: 40.55,
       fl: 20.36,
-      glass: "Unmatched (853/406 dense lanthanum flint; near S-LAH89 / M-TAFD305 / D-ZLaF85 class)",
+      glass: "L-LAH85V catalog equivalent (patent 853406; production supplier unspecified)",
       apd: false,
       role: "Strongest positive lens in G2 and the patent's Lp lens; both surfaces are aspheric and the rear surface is convex toward the image.",
     },

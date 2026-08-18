@@ -93,7 +93,7 @@ nd = 1.80518, νd = 25.4. Glass: S-TIH6 (OHARA; exact d-line code 805254). f = +
 #### 3L1 + 3L2 - Cemented doublet, net negative meniscus
 
 3L1: nd = 1.67025, νd = 57.6. Glass: S-LAL52 (OHARA catalog equivalent for patent 670576; production supplier unspecified). f = -46.84 mm.
-3L2: nd = 1.67163, νd = 38.9. Glass: unmatched / S-NBH-class 672389 short-flint code. f = +82.22 mm.
+3L2: nd = 1.67163, νd = 38.9. Glass: OHARA S-BAH32 catalog equivalent for patent 672389; production supplier unspecified. f = +82.22 mm.
 
 The compensator is a cemented negative/positive doublet with net focal length -112.00 mm. The near equality of the two refractive indices means that the cemented interface contributes very little d-line power; its purpose is primarily chromatic, using the Abbe-number difference between the two glasses.
 
@@ -112,7 +112,7 @@ nd = 1.71300, νd = 54.0. Glass: S-LAL8 class (OHARA; patent νd rounded to 54.0
 #### 4L2 + 4L3 - Cemented positive/negative doublet
 
 4L2: nd = 1.56384, νd = 60.8. Glass: N-SK11 / BACD11 class, dense-crown code 564608. f = +52.75 mm.
-4L3: nd = 1.79631, νd = 41.0. Glass: unmatched / S-LAH52-class lanthanum-flint code 796410. f = -67.32 mm.
+4L3: nd = 1.79631, νd = 41.0. Glass: HOYA NBFD2 catalog equivalent for patent 796410; production supplier unspecified. f = -67.32 mm.
 
 The cemented surface 4r4 is concave toward the object side, matching the patent claim language. The refractive-index step n(4L3) - n(4L2) is 0.232, exceeding the condition (6) lower bound of 0.18.
 
@@ -154,7 +154,7 @@ Condition (14) constrains |νd(4L8) - νd(4L7)| <= 10. The Example 1 value is 6.
 
 ## Glass Selection
 
-The prescription uses conventional high-index crowns, barium crowns/flints, dense flints, and lanthanum flints. It contains no ED, fluorite, anomalous partial-dispersion, or aspherical elements. The strongest glass-identification corrections in this review were not optical corrections but certainty corrections: several earlier labels were too definite. Public catalog matches are now marked as exact only where the catalog nd/νd pair supports that status; otherwise the element is identified by class, six-digit glass code, or as unmatched.
+The prescription uses conventional high-index crowns, barium crowns/flints, dense flints, and lanthanum flints. It contains no ED, fluorite, anomalous partial-dispersion, or aspherical elements. Public catalog matches are marked as exact only where the catalog nd/νd pair supports that status; close coefficient-backed rows are labeled as catalog equivalents with the production supplier left unspecified.
 
 | Element | nd | νd | Glass annotation | Certainty | Role |
 |---|---:|---:|---|---|---|
@@ -165,10 +165,10 @@ The prescription uses conventional high-index crowns, barium crowns/flints, dens
 | 2L2 | 1.78797 | 47.5 | S-LAH64 class (OHARA) | Class | Lanthanum flint variator negative |
 | 2L3 | 1.80518 | 25.4 | S-TIH6 (OHARA; 805254) | Exact | Dense-flint variator positive |
 | 3L1 | 1.67025 | 57.6 | S-LAL52 (OHARA catalog equivalent) | Close catalog coordinate | Compensator negative member |
-| 3L2 | 1.67163 | 38.9 | Unmatched / S-NBH-class 672389 code | Class / unmatched | Compensator positive chromatic member |
+| 3L2 | 1.67163 | 38.9 | S-BAH32 catalog equivalent; patent 672389 | Close catalog coordinate | Compensator positive chromatic member |
 | 4L1 | 1.71300 | 54.0 | S-LAL8 class (OHARA) | Class / rounded | Leading master positive |
 | 4L2 | 1.56384 | 60.8 | N-SK11 / BACD11 class, 564608 code | Class | Dense crown cemented member |
-| 4L3 | 1.79631 | 41.0 | Unmatched / S-LAH52-class 796410 code | Class / unmatched | Lanthanum-flint cemented member |
+| 4L3 | 1.79631 | 41.0 | NBFD2 catalog equivalent; patent 796410 | Close catalog coordinate | Lanthanum-flint cemented member |
 | 4L4 | 1.51823 | 59.0 | S-NSL3 (OHARA) | Exact within rounding | Positive member of G41 pair |
 | 4L5 | 1.79504 | 28.6 | J-LAFH3 (HIKARI; 795286) | Exact | Strong dense short flint |
 | 4L6 | 1.51680 | 64.1 | S-BSL7 / N-BK7 class, 517641 code | Class | Borosilicate-crown G42 element |

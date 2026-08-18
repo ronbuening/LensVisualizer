@@ -44,3 +44,13 @@ Catalog version: local working tree, 2026-06-25
 - `npm run format:check` - passed.
 - `npm run test -- __tests__/src/lens-data/lensDataTyping.test.ts __tests__/src/optics/validateLensData.test.ts __tests__/src/optics/buildLens.test.ts` - passed (3 files, 143 tests).
 - `npm run test` - failed outside this audit's edits: stale/generated route metadata is missing Rodenstock lens routes, and the existing Sonnar 50/1.5 skew-ray chromatic assertion differs by 0.0011856 mm.
+
+## 2026-08-18 - Example 5 coefficient backfill
+
+- Visually rechecked Table 5 on rendered page 6 of `patents/US3874771.pdf`; it confirms the seven stored d-line
+  index/Abbe coordinates and provides no partial-dispersion column.
+- The expanded catalog now supports LAF3, N-LAF21, J-SF8, SF10, and N-LAF2 optical equivalents for all seven
+  elements. Historical LaF 21, SF 10, and LaF 2 family continuity is retained where applicable, but the production
+  supplier remains unspecified.
+- This supersedes the 2026-06-25 no-relabel disposition because the required coefficient-backed entries were not
+  yet available then. No prescription value or geometry changed.

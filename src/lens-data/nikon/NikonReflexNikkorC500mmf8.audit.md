@@ -27,3 +27,9 @@ Patent: US 3,632,190, Example 1
 ### Verification
 
 - `npx vitest run __tests__/src/optics/mirrorOptics.test.ts __tests__/src/optics/validateLensData.test.ts __tests__/src/optics/elementRenderDiagnostics.test.ts __tests__/src/optics/exactTraceCatalog.test.ts __tests__/src/utils/catalog/lensCatalog.test.ts --reporter=verbose`
+
+## 2026-08-18 — Front corrector K5 coefficient assignment
+
+- Visually rechecked `patents/US3632190.pdf`, PDF page 5, Example C. The front corrector remains patent code `525596`, `nd = 1.52559`, `νd = 59.6`.
+- SUMITA K5 is within the runtime catalog-equivalent window (`Δnd = -0.002010`, `Δνd = 0.00`).
+- Relabeled the corrector as a K5 optical equivalent while leaving the production supplier unspecified. No folded-path or prescription geometry changed.

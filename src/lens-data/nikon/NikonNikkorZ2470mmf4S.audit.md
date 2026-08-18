@@ -47,3 +47,8 @@ Patent: JP WO2019/049372 A1, Example 1
 ### Analysis sync
 
 - Updated the affected element notes, glass sourcing summary, ED note, and table rows.
+
+## 2026-08-18 — Hoya M-NBF1 coefficient assignment
+
+- Visually rechecked local `patents/JPWO2019049372A1.pdf`, PDF page 13, Example 1 / Table 1. Surface 4 remains `nd = 1.74353`, `νd = 49.5`.
+- Relabeled L21 to coefficient-backed Hoya M-NBF1 as a catalog equivalent (`1.743300 / 49.326`), retaining patent code `744495`, the PGM context, and the unspecified production supplier. No geometry changed.

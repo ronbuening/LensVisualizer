@@ -258,7 +258,7 @@ and their internal separations; D5 alone is not a substitute for the in-situ G4 
 
 ### L15 — negative relay singlet immediately imageward of S3
 
-**L15:** `nd = 1.74400`, `νd = 45.00`. Glass: **744450 — lanthanum-flint class (unmatched exact public coordinate)**.
+**L15:** `nd = 1.74400`, `νd = 45.00`. Glass: **H-LaF3B catalog equivalent (patent 744450; production supplier unspecified)**.
 Standalone `f = -40.838625 mm`.
 
 L15 is the strongest negative standalone element in the rear part of G4 and sits 2.0 mm behind the
@@ -303,7 +303,7 @@ its `1.49782 / 82.57` curve is compatible with the rounded `1.49782 / 82.52` pat
 | BALK3 catalog equivalent (patent 518602) | 1.51835 | 60.23 | L9 |
 | E-LAF11 catalog equivalent (patent 757316) | 1.75692 | 31.62 | L11 |
 | N-FK5 catalog equivalent (patent 487704) | 1.48749 | 70.41 | L13 |
-| 744450 — lanthanum-flint class (unmatched exact public coordinate) | 1.74400 | 45.00 | L15 |
+| H-LaF3B catalog equivalent (patent 744450) | 1.74400 | 45.00 | L15 |
 | J-BASF6 catalog equivalent (patent 668420) | 1.66755 | 41.96 | L16 |
 
 The `498825` coordinate is especially significant for the production correlation because it occurs in

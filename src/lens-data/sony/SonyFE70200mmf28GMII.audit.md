@@ -89,3 +89,12 @@ Patent: JP 2023-039817 A, Example 2
 - `npm test -- dispersion.test.ts lensDataTyping.test.ts validateLensData.test.ts buildLens.test.ts` — passed
   (4 files / 237 tests).
 - `npm run typecheck`, `npm run format:check`, and `git diff --check` — passed.
+
+## 2026-08-18 — Ohara L-BAL43 coefficient assignment
+
+- Visually rechecked local `patents/JP2023039817A.pdf`, PDF page 21, Example 2 / Table 6. Surfaces 20 and 22 both use `nd = 1.58547`, `νd = 59.4`.
+- Added low-softening-temperature Ohara L-BAL43 from the first-party 2026-07-01 AGF; its Sellmeier curve evaluates to `1.585729 / 59.697`.
+- Relabeled L54 and XA element L55 to L-BAL43 as catalog equivalents while retaining patent code `585594` and the unspecified production supplier. The other unresolved rows are unchanged.
+- Rechecked L11 / `777297` against the retained HOYA MC-TAF115 row. Although its printed nominal coordinate is
+  close, the same vendor row's polynomial evaluates to `nd = 1.770473` instead of nominal `1.777047`; the
+  internally inconsistent source is not accepted as coefficient evidence, so L11 remains code-only.

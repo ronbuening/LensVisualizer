@@ -94,8 +94,7 @@ const LENS_DATA = {
       nd: 1.67025,
       vd: 57.53,
       fl: 13.34,
-      glass:
-        "670575 — Nikon patent glass (nd=1.67025, νd=57.53; no current public OHARA/SCHOTT catalog match within tolerance)",
+      glass: "S-LAL52 catalog equivalent (patent 670575; production supplier unspecified)",
       apd: false,
       cemented: "D1",
       role: "Sole positive image-forming element; works with the L2/L3 cemented interface to form a compact corrected rear group.",

@@ -281,7 +281,7 @@ current catalog closely enough for dispersion modeling.
 | Focal length | −100.00 mm |
 | Type | Negative meniscus (concave toward object, convex toward image) |
 | APD | **Possible** — glass-map position is consistent with anomalous dispersion, but no exact catalog match confirms it |
-| Glass (catalog match) | **Unmatched (`630581`)** — nd/νd does not match any standard OHARA, Schott, HOYA, or current catalog glass closely enough. May correspond to a proprietary, discontinued, or supplier-specific designation. Nearest inspected neighbors remain too distant for a reliable match. |
+| Glass (catalog match) | **Hikari J-PSKH8 equivalent (`630581`)** — the coefficient-backed curve is compatible with the patent coordinate and positive anomalous-dispersion context; production supplier unspecified. |
 
 **Optical role:** L9 is a weak negative meniscus (f = −100 mm) that acts primarily as a field
 corrector. Its low power means it contributes little to the system's overall focal length, but
@@ -440,7 +440,7 @@ elements:
 | SF1-type | 1.71736 | 29.50 | L6 | Schott SF1 / OHARA S-TIH1 | Dense flint for Jx achromat |
 | S-LAC14 (probable APD) | 1.69680 | 55.46 | L7 | OHARA S-LAC14 (Δνd=0.05) | LaC crown, probable anomalous dispersion |
 | H-ZLAF68C | 1.88300 | 40.81 | L8 | CDGM H-ZLAF68C | High-index LaF for rear positive |
-| Unmatched (`630581`, possible APD) | 1.62999 | 58.12 | L9 | No exact catalog match found | BaK/LaC region crown, possible anomalous dispersion |
+| J-PSKH8 equivalent (`630581`, possible APD) | 1.62999 | 58.12 | L9 | Qualified catalog proxy | Positive-anomalous phosphate crown; supplier unspecified |
 | NBFD3 / S-LAH63Q | 1.80610 | 40.73 | L10 | HOYA NBFD3 / OHARA S-LAH63Q | High-index LaF for aspheric element |
 
 Two features of the glass selection are noteworthy:

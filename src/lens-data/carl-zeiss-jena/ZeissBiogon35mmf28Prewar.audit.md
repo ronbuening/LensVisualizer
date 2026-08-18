@@ -36,3 +36,9 @@ Catalog version: local working tree, 2026-06-25
   coefficient-backed catalog row in the reviewed public data (`delta nd = -0.00157`, `delta vd = -0.09`).
 - Relabeled all three elements as N-BAF10 catalog equivalents while leaving the historical production supplier
   unidentified. Synchronized the analysis; no scaled prescription, stop, aperture, or semi-diameter values changed.
+
+## 2026-08-18 — L7 S-TIL6 coefficient assignment
+
+- Visually rechecked `patents/US2084309.pdf`, PDF page 3. L7 remains `nd = 1.5333`, `νd = 48.9` (code `533489`).
+- OHARA S-TIL6 is within the runtime catalog-equivalent window (`Δnd = -0.001583`, `Δνd = -0.059`).
+- Relabeled L7 as an S-TIL6 optical equivalent while leaving the production supplier unspecified. No prescription geometry changed.

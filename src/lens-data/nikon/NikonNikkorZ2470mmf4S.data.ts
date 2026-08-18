@@ -107,7 +107,7 @@ const LENS_DATA = {
       nd: 1.74353,
       vd: 49.5,
       fl: -24.0,
-      glass: "744495 — PGM low-Tg lanthanum crown (patent nd=1.74353, νd=49.5; no exact public catalog match)",
+      glass: "M-NBF1 (Hoya catalog equivalent; patent code 744495, supplier unspecified)",
       apd: false,
       role: "G2 variator — strongest single element, paraboloidal rear asph corrects off-axis aberrations",
     },

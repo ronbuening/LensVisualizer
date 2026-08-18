@@ -519,4 +519,28 @@ export const SUMITA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-3 polynomial for LASFN13.",
   },
+  /* Phase 102 patent-coordinate coverage additions (August 2026).
+   * Parenthesized molding-state suffixes are normalized to a hyphen so the
+   * canonical names remain directly tokenizable in lens annotations.
+   */
+  {
+    name: "K-CSK120-M",
+    vendor: "Sumita",
+    polynomial: [2.4722418, -0.01073376, 0.013736108, 0.00027440551, -0.0000098995396, 0.00000082295122],
+    nd: 1.584438176,
+    vd: 59.119026,
+    PgF: 0.541114,
+    source:
+      "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor K-CSK120(M) formula-1 polynomial and molding-state optical coordinate. The catalog reuses base-family code 587596, so code6 is omitted because that code does not encode the molding-state nd/vd pair.",
+  },
+  {
+    name: "K-VC80-M",
+    vendor: "Sumita",
+    polynomial: [2.800208, -0.012536465, 0.019904622, 0.00012816526, 0.000046545827, -0.0000028784776],
+    nd: 1.68983441,
+    vd: 52.880209,
+    PgF: 0.548803,
+    source:
+      "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor K-VC80(M) formula-1 polynomial and molding-state optical coordinate. The catalog reuses base-family code 694531, so code6 is omitted because that code does not encode the molding-state nd/vd pair.",
+  },
 ];

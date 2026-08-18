@@ -23,3 +23,9 @@ No SD change was justified. The element-to-element taper agrees with Figure 1 af
 
 - `audit:image-circle` reported zero undersized surfaces.
 - The unchanged prescription passes the shared lens validator.
+
+## 2026-08-18 — Sumita K-VC80(M) coefficient assignment
+
+- Visually rechecked local `patents/JP2015011156A.pdf`, PDF page 9, Numerical Example 1 / Table 1. Aspherical L12 begins at surface 3 with `nd = 1.68900`, `νd = 52.8`.
+- Added Sumita K-VC80(M) from the first-party 2025-11-07 all-glass AGF. Its molding-state polynomial evaluates to `1.689834 / 52.880`.
+- Relabeled L12 to `K-VC80-M` as a catalog equivalent while retaining patent code `689528` and the unspecified production supplier. The base-family AGF code is not used as `code6` because it encodes a different nominal coordinate. No geometry changed.

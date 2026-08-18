@@ -70,7 +70,7 @@ The overall power distribution — negative, positive, negative, positive — gi
 G1's three elements handle the extreme angular divergence at the wide end (half-field 42.5°). Its strongly negative power bends off-axis ray bundles inward, providing wide-angle coverage at the cost of introducing significant aberrations — primarily barrel distortion and lateral chromatic aberration — that subsequent groups must correct.
 
 **L11 — Negative Meniscus (convex toward object), 1× aspherical**
-nd = 1.74389, νd = 49.5 · Glass: 744495 lanthanum crown (no exact public catalog match) · fl = −53.4 mm
+nd = 1.74389, νd = 49.5 · Glass: Hoya M-NBF1 catalog equivalent (patent code 744495; supplier unspecified) · fl = −53.4 mm
 The front element of the entire system. Its meniscus shape keeps the angle of incidence moderate despite the wide field angle, reducing surface reflection losses and coma. The aspherical rear surface (surface 2A) corrects spherical aberration and distortion introduced by the steep ray bending at the wide end. The aspherical coefficients (K = 0, A4 = +2.215×10⁻⁶) add a small positive sag departure at the rim, steepening the surface slightly relative to the base sphere.
 
 **L12 — Biconcave Negative (composite aspherical)**
@@ -178,7 +178,7 @@ The design uses 16 distinct material types across its 20 elements (15 optical gl
 
 | Six-Digit Code | nd | νd | Count | Classification | Probable Catalog Match |
 |---|---|---|---|---|---|
-| 744/495 | 1.74389 | 49.5 | 1 | Lanthanum crown | 744495 code |
+| M-NBF1 equivalent / 744495 | 1.74389 | 49.5 | 1 | Lanthanum crown | Coefficient-backed Hoya equivalent; patent supplier unspecified |
 | 561/366 | 1.56093 | 36.6 | 1 | UV resin | Composite asph. resin |
 | 804/466 | 1.80400 | 46.6 | 2 | Lanthanum flint | S-LAH65V |
 | 2001/291 | 2.00100 | 29.1 | 1 | **HRI glass** | **S-LAH99 / TAFD55** |

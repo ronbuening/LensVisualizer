@@ -87,7 +87,7 @@ const LENS_DATA = {
       vd: 52.8,
       indexReference: "d",
       fl: -50.785104,
-      glass: "689528 (catalog identity unresolved)",
+      glass: "K-VC80-M (Sumita catalog equivalent; patent code 689528, supplier unspecified)",
       role: "Negative G1 meniscus with the image-side asphere on surface 4A.",
     },
     {

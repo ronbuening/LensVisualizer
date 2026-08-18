@@ -54,19 +54,19 @@ L3 is the air-spaced positive element that completes G1. Its meniscus form adds 
 
 ### L4 — Negative Meniscus, convex to object
 
-nd = 1.90265, νd = 35.76. Glass: Hikari J-LASFH9A class. f = -32.0 mm.
+nd = 1.90265, νd = 35.76. Glass: J-LASFH9 catalog equivalent; production supplier unspecified. f = -32.0 mm.
 
 L4 is the first element of G2 and begins the strong negative variator. The refractive index above 1.90 is a significant design choice: it gives a compact high-power negative element without extreme surface curvature. The element also contributes a large negative Petzval component, counterbalancing the many positive elements elsewhere in the zoom.
 
 ### L5 — Cemented positive-negative doublet
 
 L5a: nd = 1.80518, νd = 25.36. Glass: SF6 / S-TIH6 class dense flint. f = +33.7 mm.
-L5b: nd = 1.80411, νd = 46.43. Glass: LAH65V-class lanthanum flint, near-match. f = -31.5 mm.
+L5b: nd = 1.80411, νd = 46.43. Glass: TAF3D catalog equivalent; production supplier unspecified. f = -31.5 mm.
 Cemented doublet focal length: approximately -658.9 mm.
 
 The L5 doublet is almost afocal as a component. It therefore functions less as a power element and more as a chromatic and aberrational corrector within G2. The high-index materials allow the designer to introduce strong refracting interfaces while keeping net power small.
 
-The exact L5b glass is not assigned to a single catalog name. The stored code 804/464 lies close to OHARA S-LAH65V / LAH65V-class lanthanum flints, but the match is not exact enough to state an unqualified catalog identity.
+TAF3D supplies a compatible coefficient-backed curve for L5b's patent coordinate. It is used only as an optical equivalent; the patent does not identify the production glass.
 
 ### L6 — Cemented negative-positive doublet
 
@@ -84,7 +84,7 @@ L7 begins G3 after the large variable G2-G3 spacing. Its radii, R14 = -486.79 mm
 
 ### L8 — Biconvex Positive
 
-nd = 1.51860, νd = 70.08. Glass: PKH1-class low-dispersion phosphate crown. f = +49.6 mm.
+nd = 1.51860, νd = 70.08. Glass: J-PKH1 catalog equivalent; production supplier unspecified. f = +49.6 mm.
 
 L8 is the main positive power element of G3. Its low dispersion helps keep the compensator group from adding unnecessary axial color, especially near the stop region where the paraxial axial bundle is narrow. In the data file the inferred stop plane is placed immediately ahead of L7, at the front of the aperture-bearing third group suggested by the production cross-section.
 
@@ -108,9 +108,9 @@ L11 adds weak positive power after L10. The relatively high index for a crown gl
 
 ### L12 — Biconcave Negative
 
-nd = 1.79631, νd = 40.98. Glass: unmatched lanthanum-flint-region glass, code 796/410. f = -33.0 mm.
+nd = 1.79631, νd = 40.98. Glass: NBFD2 catalog equivalent for patent code 796410; production supplier unspecified. f = -33.0 mm.
 
-L12 is the strongest negative element in the master group. It is the fourth group's principal field-curvature and chromatic correction element, balancing the positive power of L10, L11, L13, and the rear doublet. No exact modern public catalog match has been assigned to nd = 1.79631 and νd = 40.98; it is therefore left as an unmatched 796/410 glass rather than forced into a close but incorrect catalog designation.
+L12 is the strongest negative element in the master group. It is the fourth group's principal field-curvature and chromatic correction element, balancing the positive power of L10, L11, L13, and the rear doublet. HOYA NBFD2 is a coefficient-backed optical equivalent within the runtime consistency window; the label does not claim that HOYA supplied the production glass.
 
 ### L13 — Positive Meniscus, concave to object
 
@@ -124,25 +124,25 @@ L14a: nd = 1.51835, νd = 60.34. Glass: BALK3 (SUMITA catalog equivalent; produc
 L14b: nd = 1.78797, νd = 47.53. Glass: LAH64-class lanthanum flint, near-match. f = -74.3 mm.
 Cemented doublet focal length: approximately +79.2 mm.
 
-The rear cemented doublet closes the system with net positive power while correcting lateral color and off-axis aberrations near the image side. As with L12, L14a is left as an unmatched catalog entry because no exact public catalog match was verified. L14b lies in the LAH64-class lanthanum flint region but is labeled as a near-match rather than a precise manufacturer assignment.
+The rear cemented doublet closes the system with net positive power while correcting lateral color and off-axis aberrations near the image side. L14a uses the coefficient-backed SUMITA BALK3 curve as a supplier-neutral optical equivalent. L14b lies in the LAH64-class lanthanum flint region but is labeled as a near-match rather than a precise manufacturer assignment.
 
 ## Glass Identification and Selection
 
-The patent supplies only nd and νd values, not named glass codes. The following identifications therefore use catalog matching by d-line index and Abbe number. Exact or very close matches are identified by class; mismatched or uncertain entries are deliberately left as near-match or unmatched.
+The patent supplies only nd and νd values, not named glass codes. The following identifications use catalog matching by d-line index and Abbe number. Catalog names identify optical equivalents, not Nikon's production supplier.
 
 | Element(s) | nd | νd | Identification used | Confidence |
 |---|---:|---:|---|---|
 | L1, L5a | 1.80518 | 25.36 | SF6 / S-TIH6 class dense flint | High class confidence |
 | L2 | 1.49782 | 82.28 | FK / J-FKH1-class fluorophosphate crown | High class confidence |
 | L3 | 1.67003 | 47.05 | BAF10-class barium flint | Near-match |
-| L4 | 1.90265 | 35.76 | Hikari J-LASFH9A class | High |
-| L5b | 1.80411 | 46.43 | LAH65V-class lanthanum flint | Near-match |
+| L4 | 1.90265 | 35.76 | J-LASFH9 catalog equivalent | Coefficient-backed equivalent |
+| L5b | 1.80411 | 46.43 | TAF3D catalog equivalent | Coefficient-backed equivalent |
 | L6a | 1.71300 | 53.97 | J-LAK8 / LAK8 class | High |
 | L6b, L9 | 1.86074 | 23.00 | J-SFH2-class very dense flint | High class confidence |
 | L7, L10, L13 | 1.51680 | 64.12 | BK7 / J-BK7A / S-BSL7 class | High |
-| L8 | 1.51860 | 70.08 | PKH1-class phosphate crown | High class confidence |
+| L8 | 1.51860 | 70.08 | J-PKH1 catalog equivalent | Coefficient-backed equivalent |
 | L11 | 1.62041 | 60.29 | S-BSM16 / J-SK16 / N-SK16 class | High |
-| L12 | 1.79631 | 40.98 | Unmatched 796/410 lanthanum-flint-region glass | Unmatched |
+| L12 | 1.79631 | 40.98 | NBFD2 catalog equivalent (patent 796410) | Coefficient-backed equivalent |
 | L14a | 1.51835 | 60.34 | BALK3 (SUMITA catalog equivalent) | Exact catalog coordinate within patent rounding |
 | L14b | 1.78797 | 47.53 | LAH64-class lanthanum flint | Near-match |
 
@@ -209,6 +209,6 @@ Those constraints explain the high element count in the fourth group and the ela
 
 - US Patent 4,770,511, “Zoom Lens Capable of Accomplishing Macro-Photography,” granted September 13, 1988.
 - Nikon Corporation, “NIKKOR — The Thousand and One Nights No. 47: The Ai Zoom Nikkor 35-200mm F3.5-4.5S.”
-- Hikari Glass Co., Ltd., optical glass data sheets for J-LASFH9A, J-FKH1, J-LAK8, J-SFH2, J-PKH1, J-BK7A, and J-SK16 classes.
+- Hikari Glass Co., Ltd., optical glass data sheets for J-LASFH9, J-FKH1, J-LAK8, J-SFH2, J-PKH1, J-BK7A, and J-SK16 classes.
 - OHARA Corporation optical glass catalog entries for S-TIH6, S-BSL7, S-BSM16, and LAH-class comparison glasses.
 - SCHOTT AG optical glass catalog entries for N-BK7 and N-SK16 comparison glasses.

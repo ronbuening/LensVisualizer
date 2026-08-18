@@ -24,11 +24,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                    ║
  * ║  NOTE ON GLASS IDENTIFICATION:                                      ║
  * ║    Catalog names are nd/νd matches where public catalogs support    ║
- * ║    them. L11 is retained as a Hoya MC-TAF115-class close match,     ║
- * ║    not an exact catalog assertion. L27 is explicitly marked         ║
- * ║    Unmatched because the patent nd = 1.85235, νd = 40.1 does not    ║
- * ║    resolve cleanly to an authoritative public OHARA/HOYA/SCHOTT     ║
- * ║    entry.                                                          ║
+ * ║    them. L11 remains unmatched because Hoya's retained MC-TAF115    ║
+ * ║    nominal index conflicts with its polynomial. L27 uses            ║
+ * ║    Hoya M-TAFD305 as a coordinate-compatible catalog equivalent;    ║
+ * ║    the patent does not identify the production supplier.            ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces from front element to image plane  ║
@@ -73,7 +72,7 @@ const LENS_DATA = {
       nd: 1.77002,
       vd: 49.4,
       fl: -39.29,
-      glass: "MC-TAF115 class (Hoya; close match, stored nd=1.77002)",
+      glass: "Unmatched (MC-TAF115-class; Hoya source nominal/polynomial conflict; patent nd=1.77002, νd=49.4)",
       role: "Large negative front asphere; sets the retrofocus entrance geometry and helps suppress peripheral distortion.",
     },
     {
@@ -200,7 +199,7 @@ const LENS_DATA = {
       nd: 1.85235,
       vd: 40.1,
       fl: -126.92,
-      glass: "Unmatched (lanthanum flint, 852/401; no exact public catalog match)",
+      glass: "M-TAFD305 (Hoya catalog equivalent; patent code 852401, supplier unspecified)",
       role: "Rear negative asphere; peripheral negative-power increase corrects field curvature and distortion in GR2b.",
     },
     {

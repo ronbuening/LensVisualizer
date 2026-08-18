@@ -134,7 +134,7 @@ gap, it forms the patent's substantially stronger positive G2.
 ### L6 — Positive Meniscus with Rear Asphere
 
 $n_d=1.68997$, $\nu_d=53.0$. Glass:
-`Unmatched (nd=1.68997, vd=53.0; no close public catalog identity is uniquely defensible)`. Standalone
+`K-VC80-M catalog equivalent; production supplier unspecified`. Standalone
 $f=+27.818$ mm.
 
 L6 is a positive meniscus concave toward the object and is the final air-spaced physical group. Its image-side surface,
@@ -146,7 +146,7 @@ Within G2, L6 combines with D2 and the L5–L6 separation to produce the compute
 ## Glass Identification and Selection
 
 The patent publishes only $n_d$ and $\nu_d$ values and does not name vendors or melts. Independent comparison against
-current OHARA, HOYA, SCHOTT, HIKARI, CDGM, and Sumita catalogs finds compatible coefficient-backed curves for L1–L5.
+current OHARA, HOYA, SCHOTT, HIKARI, CDGM, and Sumita catalogs finds compatible coefficient-backed curves for all six elements.
 The selected names identify optical equivalents for chromatic tracing; they do not identify Samsung's production
 supplier or melt.
 
@@ -157,11 +157,11 @@ supplier or melt.
 | L3 | 1.88300 | 40.8 | S-LAH58 catalog equivalent; production supplier unspecified |
 | L4 | 1.80420 | 46.5 | N-LASF44 catalog equivalent; production supplier unspecified |
 | L5 | 1.69895 | 30.1 | E-FD15 catalog equivalent; production supplier unspecified |
-| L6 | 1.68997 | 53.0 | Unmatched; no uniquely defensible public-catalog identity |
+| L6 | 1.68997 | 53.0 | K-VC80-M catalog equivalent; production supplier unspecified |
 
 NBF1 is the closest current coefficient-backed curve at L1's coordinate; E-C3 reproduces L2's stored d-line index;
 S-LAH58 reproduces L3's coordinate; N-LASF44 reproduces L4's d-line index; and E-FD15 closely reproduces L5. These
-matches establish compatible dispersion models, not the actual production melts.
+K-VC80-M provides the compatible curve for L6. These matches establish dispersion models, not the actual production melts.
 
 The first cemented pair combines a negative crown-like glass with a positive high-index, higher-dispersion glass. The
 second pair reverses that power/dispersion relationship: L4 is positive and less dispersive, while L5 is negative and

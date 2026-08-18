@@ -1924,4 +1924,16 @@ export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
     code6: "626357",
     source: "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF); vendor Sellmeier coefficients for S-TIM1.",
   },
+  /* Phase 102 patent-coordinate coverage addition (August 2026). */
+  {
+    name: "L-BAL43",
+    vendor: "Ohara",
+    B: [1.04745291, 0.428452873, 1.14111303],
+    C: [0.00563209756, 0.0188321416, 114.197069],
+    nd: 1.58572941,
+    vd: 59.69698,
+    PgF: 0.541561,
+    source:
+      "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF), vendor-published low-softening-temperature L-BAL43 Sellmeier row.",
+  },
 ];

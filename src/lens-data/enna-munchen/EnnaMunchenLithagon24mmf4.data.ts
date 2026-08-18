@@ -83,7 +83,7 @@ const LENS_DATA = {
       nd: 1.51895,
       vd: 57.3,
       fl: 48.88,
-      glass: "Unmatched 519573 crown glass (patent-listed; supplier unidentified)",
+      glass: "J-K3 catalog equivalent (patent 519573; production supplier unspecified)",
       role: "First positive element of the rear main system; closely spaced to L5.",
     },
     {
