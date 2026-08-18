@@ -68,3 +68,9 @@ Changes made:
 - Added Hikari J-FKH1 to `glassCatalogData.ts`.
 - Relabeled L42 in `NikonZ2470f28.data.ts` to J-FKH1 and reworded the unresolved L21/L61/L72 labels.
 - Updated `NikonZ2470f28.analysis.md` so L42 is catalog-backed and the other reviewed rows are explicitly unresolved.
+
+## 2026-08-18 — Hoya molding-glass coefficient assignments
+
+- Rechecked local `patents/WO2020136749A1.pdf`, Example 1 / Table 1, against the prior transcription: L21 remains `1.74389 / 49.53` and L72 remains `1.85207 / 40.15`.
+- Relabeled L21 to Hoya M-NBF1 (`1.743300 / 49.326`) and L72 to Hoya M-TAFD305 (`1.851348 / 40.104`) as coefficient-backed catalog equivalents.
+- Patent codes `744495` and `852402` and the unspecified production supplier remain explicit. L61 stays unresolved; no geometry, asphere, or APD metadata changed.

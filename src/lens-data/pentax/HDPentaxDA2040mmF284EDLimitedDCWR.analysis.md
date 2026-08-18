@@ -53,7 +53,7 @@ The patent does not assign a distinct aberration-correction task to L11 alone. I
 
 ### L12 — Neg. Meniscus (1× Asph)
 
-**nd = 1.68900, νd = 52.8. Glass: 689528 (catalog identity unresolved). Standalone f = −50.785104 mm.**
+**nd = 1.68900, νd = 52.8. Glass: Sumita K-VC80-M catalog equivalent (patent code 689528; supplier unspecified). Standalone f = −50.785104 mm.**
 
 L12 is the second negative meniscus of G1 and carries the only aspherical surface in the selected example, on its image side at surface 4A. Paragraphs ¶0026 and ¶0029–¶0031 identify this first-group asphere as a means of controlling distortion while supporting the required negative-group power distribution and chromatic correction through optical-material choice. The focus-induced stability claim in ¶0026 belongs instead to the positive L13.
 
@@ -122,7 +122,7 @@ The patent gives d-line refractive indices and d-line Abbe numbers, but no glass
 | Element | Glass annotation | nd | νd | Prescription role |
 |---|---|---:|---:|---|
 | L11 | 729547 (vendor/catalog identity unresolved) | 1.72916 | 54.7 | Negative G1 meniscus |
-| L12 | 689528 (catalog identity unresolved) | 1.68900 | 52.8 | Negative G1 aspheric meniscus |
+| L12 | K-VC80-M equivalent; patent code 689528 | 1.68900 | 52.8 | Negative G1 aspheric meniscus |
 | L13 | 762265 (vendor/catalog identity unresolved) | 1.76182 | 26.5 | Positive G1 meniscus |
 | L21 | 743493 (vendor/catalog identity unresolved) | 1.74320 | 49.3 | Positive G2A element |
 | L22 | 497816 (vendor/catalog identity unresolved) | 1.49700 | 81.6 | Positive member of cemented D1 |

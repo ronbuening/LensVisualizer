@@ -22,3 +22,12 @@ Patent: US 5,579,171 A, Example 3 / Figure 5.
   window; the labels do not claim that Hikari supplied the production glass.
 - Fifteen of sixteen elements now have coefficient-backed catalog equivalents. L15 (`1.74400 / 45.00`) remains the
   only explicit unmatched row.
+
+## 2026-08-18 — H-LaF3B equivalent backfill
+
+- Re-rendered `patents/US5579171.pdf`, PDF page 15. Example 3 / Table 4 row 25 confirms L15 at
+  `nd = 1.744000`, `νd = 45.00`.
+- Assigned the existing CDGM H-LaF3B curve as an optical equivalent. Its catalog coordinate differs by
+  `Δnd = 0.000000` and `Δνd = -0.10`, and the same equivalent is already used for Nikon's 744450 rows in
+  two related telephoto prescriptions. The production supplier remains unspecified.
+- All sixteen glass elements now have coefficient-backed dispersion models.

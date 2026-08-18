@@ -211,7 +211,7 @@ const LENS_DATA = {
       nd: 1.79631,
       vd: 40.98,
       fl: -33.0,
-      glass: "Unmatched lanthanum-flint-region glass (796/410)",
+      glass: "NBFD2 catalog equivalent (patent 796410; production supplier unspecified)",
       role: "Main negative flint-like corrector in the fourth group.",
     },
     {

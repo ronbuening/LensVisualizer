@@ -122,7 +122,7 @@ L52 follows the stop and provides strong negative power to achromatize GR5 again
 $n_d$ = 1.86290, $\nu_d$ = 24.8. Glass: 863248 patent-code dense flint. $f$ = −145.7 mm.
 
 **L54** — Biconvex Positive, 1× Aspherical (rear surface S21).
-$n_d$ = 1.58547, $\nu_d$ = 59.4. Glass: 585594 patent-code barium crown; no unique public catalog match found. $f$ = +40.7 mm.
+$n_d$ = 1.58547, $\nu_d$ = 59.4. Glass: Ohara L-BAL43 catalog equivalent (patent code 585594; supplier unspecified). $f$ = +40.7 mm.
 
 The cemented L53 + L54 doublet is identified by the patent (¶0091) as the optical image stabilization (OIS) group: "the cemented lens composed of L53 and L54 can be used as the stabilization lens group by moving perpendicular to the optical axis." This is the "decentering" element that shifts laterally to counteract hand-shake blur. The cemented construction ensures that L53 and L54 move as a rigid unit during OIS operation without introducing decenter-induced coma from an air gap.
 
@@ -132,7 +132,7 @@ The net power of the cemented pair ($f$ ≈ +56 mm) is positive, contributing to
 
 #### L55 — Biconvex Positive, 2× Aspherical (XA Element)
 
-$n_d$ = 1.58547, $\nu_d$ = 59.4. Glass: 585594 patent-code barium crown, same glass as L54. $f$ = +126.2 mm.
+$n_d$ = 1.58547, $\nu_d$ = 59.4. Glass: Ohara L-BAL43 catalog equivalent, same material slot as L54. $f$ = +126.2 mm.
 
 L55 is a standalone biconvex element with both surfaces (S22, S23) aspherical. This is the XA (Extreme Aspherical) element, manufactured to 0.01-micron surface precision per Sony's specification. The XA designation indicates a glass-molded aspherical element with surface accuracy an order of magnitude tighter than standard aspherical elements, specifically designed to suppress "onion ring" bokeh patterns that arise from periodic surface irregularities in conventional aspherics. The patent-code barium crown glass ($n_d$ = 1.58547) is well-suited to precision glass molding (PGM), but the audit did not find a unique public catalog entry for the exact pair.
 
@@ -203,8 +203,8 @@ The design employs glasses from at least two vendors (OHARA and HOYA), which is 
 | L51     | 1.49856 | 81.6    | S-FPL51 class (OHARA)     | ED crown (moldable) | Close      |
 | L52     | 1.86290 | 24.8    | 863248 patent-code         | Ultra-dense flint   | Patent-code |
 | L53     | 1.86290 | 24.8    | 863248 patent-code         | Ultra-dense flint   | Patent-code |
-| L54     | 1.58547 | 59.4    | 585594 patent-code         | Barium crown        | Patent-code |
-| L55     | 1.58547 | 59.4    | 585594 patent-code         | Barium crown (XA)   | Patent-code |
+| L54     | 1.58547 | 59.4    | L-BAL43 equivalent / 585594 | Barium crown        | Coefficient-backed equivalent |
+| L55     | 1.58547 | 59.4    | L-BAL43 equivalent / 585594 | Barium crown (XA)   | Coefficient-backed equivalent |
 | L61     | 1.93323 | 20.9    | 933209 patent-code         | Ultra-dense flint   | Patent-code |
 | L62     | 1.65803 | 39.7    | 658397 patent-code         | Short flint         | Patent-code |
 | L71     | 1.61669 | 44.3    | 617443 patent coordinate   | Flint/crown boundary | Unresolved |
@@ -213,7 +213,7 @@ The design employs glasses from at least two vendors (OHARA and HOYA), which is 
 
 The chromatic correction strategy is built on three tiers of low-dispersion glass. The two Super ED elements (L12, L13, $\nu_d$ = 95.1) handle primary axial color correction in GR1, where the marginal ray height is largest. Three ED elements (L31, L51, L81, $\nu_d$ = 81.6) provide secondary color correction distributed across the variator, relay, and rear groups. The achromatizing partners are consistently ultra-high-dispersion dense flints: the 863248 patent-code glass ($\nu_d$ = 24.8) appears in three elements (L32, L52, L53), providing chromatic lever arms of 56.8 Abbe units against the ED crowns. L82's unmatched patent-coordinate glass pushes the index to the extreme high end of the glass map, allowing a compact negative element at the rear of the system without implying a catalog identity the source does not establish.
 
-L11 (1.77660/29.7), L21 (1.77621/49.6), and L41 (1.79191/25.7) resist confident identification against the public catalog. For L21, S-LAH66 matches the Abbe number but misses the index beyond the resolver tolerance. For L41, the visually confirmed patent table explicitly uses d-line coordinates, rejecting the tempting J-SF11 e-line coincidence. These data labels stay explicitly unmatched. The Super ED and ED rows likewise remain class-level comparisons where the patent does not establish a unique vendor.
+L11 (1.77660/29.7), L21 (1.77621/49.6), and L41 (1.79191/25.7) resist confident identification against the public catalog. For L21, S-LAH66 matches the Abbe number but misses the index beyond the resolver tolerance. For L41, the visually confirmed patent table explicitly uses d-line coordinates, rejecting the tempting J-SF11 e-line coincidence. These data labels stay explicitly unmatched. L54 and L55 now use the coefficient-backed L-BAL43 curve, whose 1.58573 / 59.70 coordinate fits the patent pair, while retaining the patent code and unspecified supplier. The Super ED and ED rows likewise remain class-level comparisons where the patent does not establish a unique vendor.
 
 
 ## Focus Mechanism

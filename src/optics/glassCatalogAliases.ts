@@ -134,6 +134,12 @@ export const ALIAS_RECORDS: readonly GlassAliasRecord[] = [
     note: "Hoya PGM/pressed-glass row sharing TAFD35 911/353 optical constants.",
   },
   {
+    alias: "MC-TAFD305",
+    target: "M-TAFD305",
+    kind: "catalog-variant",
+    note: "Hoya precision-molding preform variant sharing the M-TAFD305 coefficient set.",
+  },
+  {
     alias: "BSC3",
     target: "E-C3",
     kind: "vendor-equivalent",

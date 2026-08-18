@@ -50,11 +50,11 @@ L13 supplies the high-dispersion negative component of the G1Fb doublet. Its rea
 
 ### L14 — Biconcave Negative, Doubly Aspherical (G1R)
 
-nd = 1.84887, νd = 40.12. Glass: 849401 high-index lanthanum flint class, likely PGM aspheric melt. f = -33.2 mm.
+nd = 1.84887, νd = 40.12. Glass: Hoya M-TAFD305 catalog equivalent (patent code 849401; supplier unspecified). f = -33.2 mm.
 
 L14 is the first aspherical element and is biconcave. Both its front and rear surfaces carry aspherical profiles in the patent. It subtracts power after the stop and provides a major correction point for spherical aberration, coma, and field curvature before the strongly positive cemented triplet.
 
-No exact public catalog glass match was found for nd = 1.84887 and νd = 40.12. Hoya MC-TAFD305 / M-TAFD305 is a nearby moldable high-index glass class, but its published index is not exact. The data file therefore records the 849401 code and patent partial-dispersion deviation rather than assigning a false catalog identity.
+Hoya M-TAFD305 is a coordinate-compatible precision-molding catalog equivalent: its coefficient curve evaluates to nd = 1.85135, νd = 40.10 and Pg,F = 0.56952, versus the patent's 1.84887 / 40.12 / 0.57197. The patent-specific `dPgF` remains authoritative at g, and the annotation retains code 849401 without claiming Hoya as the production supplier.
 
 ### L15 — Plano-Convex Positive (G1R, cemented to L16)
 
@@ -98,14 +98,14 @@ L32 is the positive member of the rear doublet. Like L15, its Abbe number is bel
 
 ## Glass Identification / Selection
 
-The design uses a compact but nontrivial glass palette. Six material entries are exact public OHARA catalog matches, two catalog glasses are reused, and two high-index aspherical elements remain unmatched against public catalogs.
+The design uses a compact but nontrivial glass palette. Six material entries are exact public OHARA catalog matches, two catalog glasses are reused, L14 now has a coefficient-backed Hoya molding-glass equivalent, and L21 remains code-only.
 
 | Element(s) | nd | νd | θgF | Catalog identification | Role |
 |---|---:|---:|---:|---|---|
 | L11 | 1.51633 | 64.14 | 0.53531 | S-BSL7 (OHARA) | Low-index crown front field element |
 | L12, L17 | 1.88300 | 40.76 | 0.56679 | S-LAH58 (OHARA) | High-index positive lanthanum flint |
 | L13, L16 | 1.68893 | 31.07 | 0.60041 | S-TIM28 (OHARA) | High-dispersion titanium flint |
-| L14 | 1.84887 | 40.12 | 0.57197 | 849401 high-index aspheric melt | Biconcave aspherical corrector |
+| L14 | 1.84887 | 40.12 | 0.57197 | M-TAFD305 equivalent; patent code 849401 | Biconcave aspherical corrector |
 | L15 | 1.81600 | 46.62 | 0.55682 | S-LAH59 (OHARA) | Positive member of G1R triplet |
 | L21 | 1.80312 | 40.54 | 0.56551 | 803405 high-index aspheric melt | Moving negative focus element |
 | L31 | 1.78470 | 26.29 | 0.61360 | S-TIH23 (OHARA) | Very high-dispersion negative rear corrector |
@@ -203,4 +203,4 @@ Kawamura, Daiki. US Patent Application Publication US 2017/0351051 A1, "Imaging 
 
 OHARA Corporation / OHARA GmbH. Optical glass datasheets and catalog entries for S-BSL7, S-LAH58, S-TIM28, S-LAH59, S-TIH23, and S-LAH65V.
 
-HOYA Corporation. Molded-glass catalog/news data for MC-TAFD305 / M-TAFD305, used only as a nearby comparison for the unmatched L14 aspherical material.
+HOYA Corporation. OpticStudio catalog data for M-TAFD305 / MC-TAFD305, used as the coefficient-backed catalog equivalent for L14 without asserting production-supplier provenance.

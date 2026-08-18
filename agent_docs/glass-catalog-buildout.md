@@ -8,7 +8,22 @@ catalog equivalent. If neither path is available, the engine falls back to parti
 dPgF-corrected indices, or the legacy Abbe approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **523 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **529 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+
+The August 18, 2026 Phase 102 patent/code audit added six first-party coefficient rows from retained manufacturer
+catalogs: HOYA M-NBF1, C2, and NBFD5; OHARA L-BAL43; and SUMITA K-CSK120(M) and K-VC80(M). It also replaced
+the older M-TAFD305 nominal metadata with values evaluated from HOYA's current published polynomial and added the
+MC-TAFD305 spelling alias. Nineteen patent rows across Fujifilm, Minolta, Nikon, Panasonic, Pentax, and Sony now use
+those curves while preserving their source coordinates, six-digit codes, and supplier uncertainty. A current-catalog
+recheck recovered six more surfaces through existing L-LAH85V, J-KZFH4, J-LASFH9, NBFD2, H-LaF3B, and S-LAL52
+curves. In total, 25 elements move from Abbe approximations to coefficient-backed tracing. Global strict coverage rises
+from 5994/6653 to 6019/6653 and trusted coverage from 6008/6653 to 6033/6653; 340 visible lenses are now
+strict-complete and 345 are trusted-complete, with zero catalog-coordinate mismatches.
+
+The pass deliberately leaves weaker matches unresolved. HOYA's retained MC-TAF115 record has internally inconsistent
+nominal metadata (`nd = 1.777047`) versus its published polynomial (`nd = 1.770473`), SUMITA K-VC185(M) does not
+reproduce the patent partial-dispersion evidence, and the Canon `666356` plus Panasonic `882408`/`769497` rows remain
+non-unique. Catalog-equivalent labels never assert a production supplier.
 
 The August 17, 2026 Phase 101 Tamron screenshot follow-up added SUMITA K-CaFK95 from the retained first-party
 discontinued-inclusive catalog. The coefficient-evaluated curve is a close, qualified equivalent for B011 L2's

@@ -18,3 +18,11 @@ Patent: US 5,949,588, eighth embodiment / Table 8
 ### Analysis sync
 
 - Updated the L3 text and glass table from `670/575` to `670575`.
+
+## 2026-08-18 — S-LAL52 equivalent backfill
+
+- Re-rendered `patents/US5949588.pdf`, PDF page 42. Eighth embodiment / Table 8 row 4 confirms
+  `nd = 1.67025` and `νd = 57.53`.
+- Assigned the existing OHARA S-LAL52 curve as an optical equivalent. Its catalog coordinate differs by
+  `Δnd = -0.000251` and `Δνd = -0.202`, inside the runtime consistency window. This supersedes the older
+  S-LAL12 comparison; the production supplier remains unspecified.

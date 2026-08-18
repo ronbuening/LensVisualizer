@@ -31,3 +31,9 @@ Notes:
 
 - No radius, spacing, focus, surface-order, or glass-name changes were made.
 - No semi-diameter edits were made. The existing `sd` values still follow the patent ED/2 values, except surfaces 7 and 25A where the file header documents the small render-clearance trims.
+
+## 2026-08-18 — K-CSK120(M) coefficient backfill
+
+- Visually rechecked local `patents/WO2024195273A1.pdf`, PDF page 53, Example 4 / Table 10. Surfaces 1, 20, and 24 repeat `nd = 1.58480`, `νd = 58.71`, and `θgF = 0.54116`.
+- Added Sumita K-CSK120(M) from the first-party 2025-11-07 all-glass AGF. Its coefficient curve evaluates to `1.584438 / 59.119 / 0.541114`, and the source identifies the molding-state variant.
+- Relabeled L11, L25, and L31 to `K-CSK120-M` as catalog equivalents while retaining patent code `585587`, the patent-authored `dPgF`, and the unspecified production supplier. No prescription geometry changed.

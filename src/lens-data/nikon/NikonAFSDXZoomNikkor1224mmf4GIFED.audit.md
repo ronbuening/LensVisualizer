@@ -45,3 +45,9 @@ a duplicate glass record. The remaining proprietary/code-only rows stay unresolv
 - `npm run test` — passed (209 files, 2450 tests).
 - `npm run build` — passed (966 routes prerendered).
 - In-app browser screenshots were unavailable; visual comparison used the rendered 300 dpi patent page plus the passing full-catalog render diagnostics.
+
+## 2026-08-18 — Hoya M-NBF1 coefficient assignment
+
+- Visually rechecked local `patents/US6940655.pdf`, PDF page 14, Example 1 / Table 1. L1 remains `nd = 1.744429`, `νd = 49.55`.
+- Added Hoya M-NBF1 from the first-party 2026-07-07 obsolete-inclusive AGF. Its polynomial evaluates to `1.743300 / 49.326`, within the repository's catalog-equivalent tolerances.
+- Relabeled L1 to M-NBF1 while retaining patent code `744496` and the unspecified production supplier. The other unresolved optical-glass and resin rows are unchanged.

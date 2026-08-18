@@ -57,11 +57,11 @@ A surface-by-surface Petzval sum Σφ/(n·n′) gives +3.477 × 10⁻³ mm⁻¹,
 
 #### L1 — Negative meniscus, convex to object, rear aspheric
 
-nd = 1.744429, νd = 49.52. Glass: `744495` unmatched high-index lanthanum-crown class. f = −46.58 mm.
+nd = 1.744429, νd = 49.52. Glass: Hoya `M-NBF1` catalog equivalent (patent code `744495`; supplier unspecified). f = −46.58 mm.
 
 L1 is the large negative front meniscus. Its rear surface is aspheric and is the probable large-diameter molded asphere referenced in Nikon's product literature. Its task is to accept the wide chief rays and reduce the distortion and astigmatism that a negative-lead f/2.8 zoom would otherwise generate at the 24 mm end.
 
-No exact public catalog match was found for the `744495` code. The closest public glasses are in high-index lanthanum crown or lanthanum flint-adjacent territory, but the element should remain labeled as an unmatched class glass rather than assigned to a specific catalog name.
+Hoya M-NBF1's first-party coefficient row evaluates to nd = 1.74330 and νd = 49.33, making it a coordinate-compatible catalog equivalent for the patent's 1.744429 / 49.52 row. The annotation retains `744495` and does not claim that Nikon sourced the production melt from Hoya.
 
 #### L2 — Biconcave negative
 
@@ -153,7 +153,7 @@ Glass names were matched by nd/νd code against manufacturer data sheets. The pa
 
 | Elements | nd | νd | Identification | Status |
 |---|---:|---:|---|---|
-| L1 | 1.744429 | 49.52 | `744495` unmatched high-index lanthanum-crown class | No exact public catalog match |
+| L1 | 1.744429 | 49.52 | M-NBF1 equivalent; patent code `744495` | Coefficient-backed curve; supplier unspecified |
 | L2 | 1.618000 | 63.33 | S-PHM52 (OHARA) | Exact |
 | L3, L8 | 1.846660 | 23.78 | S-TIH53 (OHARA) | Exact |
 | L4 resin | 1.553890 | 38.09 | `553381` unmatched UV-cure resin | Not catalog glass |

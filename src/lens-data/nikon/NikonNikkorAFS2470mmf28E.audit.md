@@ -71,3 +71,8 @@ Local patent source: `patents/US20200142168A1.pdf` (untracked local file).
 - Re-extracted Example 1 / Table 1 with `pdftotext -layout`.
 - The local patent text publishes `n(d)` and `νd` only for the lens prescription. No `nC`, `nF`, `ng`, `θgF`, or `dPgF` rows were found.
 - No data-file spectral backfill was made from this pass.
+
+## 2026-08-18 — Hoya M-NBF1 coefficient assignment
+
+- Visually rechecked local `patents/US20200142168A1.pdf`, PDF page 47, Example 1 / Table 1. Surface 1 is `nd = 1.74389`, `νd = 49.5`.
+- Relabeled L11 from code-only `744495` to coefficient-backed Hoya M-NBF1 as a catalog equivalent (`1.743300 / 49.326`), retaining the patent code and unspecified supplier. No geometry or patent-derived optical coordinate changed.

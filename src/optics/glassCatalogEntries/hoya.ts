@@ -969,11 +969,12 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
     name: "M-TAFD305",
     vendor: "Hoya",
     polynomial: [3.327184, -0.01343242, 0.033398, 0.001006047, -0.00002136908, 0.000003972561],
-    nd: 1.85135,
-    vd: 40.1,
-    PgF: 0.5697,
+    nd: 1.851348122,
+    vd: 40.104483,
+    PgF: 0.569519,
     code6: "851401",
-    source: "Hoya Zemax catalog 2017-04-01 via refractiveindex.info; M-TAFD305 page (formula 3 polynomial).",
+    source:
+      "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published M-TAFD305 / MC-TAFD305 precision-molding formula-3 row.",
   },
   {
     name: "BAFD7",
@@ -1383,5 +1384,43 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
     code6: "835427",
     source:
       "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published recommended-glass formula-3 row.",
+  },
+  /* Phase 102 patent-coordinate coverage additions (August 2026).
+   * These coefficient-backed rows were recovered from HOYA's first-party
+   * obsolete-inclusive OpticStudio catalog and checked against the cited
+   * local patent prescription tables.
+   */
+  {
+    name: "M-NBF1",
+    vendor: "Hoya",
+    polynomial: [2.975245, -0.01425016, 0.02140074, 0.0009755337, -0.0000697953, 0.000004114924],
+    nd: 1.743299744,
+    vd: 49.325889,
+    PgF: 0.552712,
+    code6: "743493",
+    source:
+      "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published discontinued M-NBF1 formula-3 row.",
+  },
+  {
+    name: "C2",
+    vendor: "Hoya",
+    polynomial: [2.2651705, -0.008951295, 0.011557056, 0.00038238194, -0.000022927434, 0.0000015350398],
+    nd: 1.516019775,
+    vd: 56.771193,
+    PgF: 0.547759,
+    code6: "516568",
+    source:
+      "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published C2 formula-3 row.",
+  },
+  {
+    name: "NBFD5",
+    vendor: "Hoya",
+    polynomial: [3.021769, -0.011641743, 0.026713839, 0.0012766896, -0.000067665, 0.0000064036776],
+    nd: 1.762001225,
+    vd: 40.263213,
+    PgF: 0.575333,
+    code6: "762403",
+    source:
+      "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published NBFD5 formula-3 row.",
   },
 ];

@@ -30,8 +30,8 @@ six-digit codes are ignored for those rows. The full per-surface mismatch list i
 
 For code-only rows, start with
 [six-digit-glass-codes-missing-sellmeier.generated.md](generated/six-digit-glass-codes-missing-sellmeier.generated.md).
-Its active A-E queue indexes both the manual sidecar and companion audit logs. The current report contains 266
-missing-Sellmeier elements, of which 116 are self-recording explicit unmatched/unidentified dispositions; no rows
+Its active A-E queue indexes both the manual sidecar and companion audit logs. The current report contains 243
+missing-Sellmeier elements, of which 111 are self-recording explicit unmatched/unidentified dispositions; no rows
 remain active and unreviewed. The full inventory remains in the same report for audit context.
 
 The fix for a mismatch is one of:

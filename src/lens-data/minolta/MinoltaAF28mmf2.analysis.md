@@ -79,7 +79,7 @@ The wide `d6 = 30.72` patent-unit air gap after L3 is a major retrofocus lever. 
 
 #### L4a — Positive Meniscus, convex to object
 
-`nd = 1.7620`, `νd = 40.38`. Glass: `762404` lanthanum flint class. `f = +173.90` (`+48.69 mm`).
+`nd = 1.7620`, `νd = 40.38`. Glass: Hoya `NBFD5` catalog equivalent (patent code `762404`; supplier unspecified). `f = +173.90` (`+48.69 mm`).
 
 L4a begins reconverging the diverged front-group bundle. Its positive power is concentrated mainly at the front surface, `r7 = +112.26`, while the rear radius, `r7′ = +694.93`, is much weaker.
 
@@ -87,7 +87,7 @@ The relatively high index allows useful power without especially steep curvature
 
 #### L4b — Weak Positive Singlet, near-plano biconvex
 
-`nd = 1.7620`, `νd = 40.38`. Glass: `762404` lanthanum flint class. `f = +244.65` (`+68.50 mm`).
+`nd = 1.7620`, `νd = 40.38`. Glass: Hoya `NBFD5` catalog equivalent (patent code `762404`; supplier unspecified). `f = +244.65` (`+68.50 mm`).
 
 L4b is the second positive singlet in the split second group. Its object-side radius, `r7″ = +1254.71`, is very weak; its rear surface, `r8 = −217.30`, supplies most of the element's power.
 
@@ -135,7 +135,7 @@ The patent lists only `nd` and `νd`. It does not name OHARA, Hoya, Schott, Hika
 |---|---:|---|---|---|
 | L1 | 1.6935 / 53.61 | Lanthanum crown | `694536` | Weak front positive |
 | L2, L3 | 1.5111 / 60.49 | Crown | `511605` | Low-dispersion front negative menisci |
-| L4a, L4b | 1.7620 / 40.38 | Lanthanum flint | `762404` | Split second-group positive power |
+| L4a, L4b | 1.7620 / 40.38 | Lanthanum flint | `NBFD5` equivalent; patent code `762404` | Split second-group positive power |
 | L5 | 1.7495 / 50.41 | Dense lanthanum crown | `750504` | Post-stop spherical/coma correction |
 | L6 | 1.8052 / 25.21 | Dense flint | `805252` | Rear-group chromatic correction |
 | L7 | 1.7725 / 50.14 | High-index lanthanum glass | `773501` | Rear positive meniscus |

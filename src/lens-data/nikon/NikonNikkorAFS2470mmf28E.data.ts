@@ -68,7 +68,7 @@ const LENS_DATA = {
       nd: 1.74389,
       vd: 49.5,
       fl: -53.4,
-      glass: "744495 — lanthanum crown (patent nd=1.74389, νd=49.50; no exact public catalog match)",
+      glass: "M-NBF1 (Hoya catalog equivalent; patent code 744495, supplier unspecified)",
       apd: false,
       role: "Front element; aspherical rear corrects wide-angle distortion and SA",
     },

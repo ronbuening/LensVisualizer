@@ -62,7 +62,7 @@ const LENS_DATA = {
       nd: 1.744429,
       vd: 49.52,
       fl: -46.58,
-      glass: "744495 — unmatched high-index lanthanum-crown class (patent nd=1.744429, νd=49.52; no exact public catalog match)",
+      glass: "M-NBF1 (Hoya catalog equivalent; patent code 744495, supplier unspecified)",
       apd: false,
       role: "Large negative lead meniscus; rear asphere corrects wide-angle off-axis aberrations.",
     },

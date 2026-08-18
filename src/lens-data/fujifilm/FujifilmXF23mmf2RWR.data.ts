@@ -113,9 +113,9 @@ const LENS_DATA = {
       nd: 1.84887,
       vd: 40.12,
       fl: -33.2,
-      glass: "849401 - high-index lanthanum flint (likely PGM aspheric melt; no exact public catalog match)",
+      glass: "M-TAFD305 (Hoya catalog equivalent; patent code 849401, supplier unspecified)",
       dPgF: -0.00435,
-      apdNote: "Patent θgF = 0.57197; ΔPgF ≈ -0.00435; no exact public catalog match found.",
+      apdNote: "Patent θgF = 0.57197; ΔPgF ≈ -0.00435; the authored patent value remains authoritative at g.",
       role: "Biconcave aspherical corrector at the front of G1R.",
     },
     {

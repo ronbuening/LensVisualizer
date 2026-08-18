@@ -64,3 +64,9 @@ Patent: CN 216772097 U, Example 1
 
 - L18, L21, and L31 remain `516565` PGM moldable crown annotations; no exact public coefficient-backed match was found.
 - Existing estimated SDs remain in place because the patent lacks clear-aperture data. The current proportions remain rational for the drawing: large front collector, smaller post-stop focus group, and modest rear-field group.
+
+## 2026-08-18 — Hoya C2 coefficient backfill
+
+- Re-rendered local `patents/CN216772097U.pdf`, PDF page 9. Example 1 visibly repeats `nd = 1.51602`, `νd = 56.5` at surfaces 18, 20, and 24.
+- Added Hoya C2 from the vendor's first-party 2026-07-07 obsolete-inclusive AGF; its polynomial evaluates to `nd = 1.516020`, `νd = 56.771`.
+- Relabeled L18, L21, and L31 to C2 as a catalog equivalent while retaining patent code `516565` and an explicit supplier caveat. No prescription geometry or APD status changed.

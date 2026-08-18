@@ -108,9 +108,9 @@ L11 adds weak positive power after L10. The relatively high index for a crown gl
 
 ### L12 — Biconcave Negative
 
-nd = 1.79631, νd = 40.98. Glass: unmatched lanthanum-flint-region glass, code 796/410. f = -33.0 mm.
+nd = 1.79631, νd = 40.98. Glass: NBFD2 catalog equivalent for patent code 796410; production supplier unspecified. f = -33.0 mm.
 
-L12 is the strongest negative element in the master group. It is the fourth group's principal field-curvature and chromatic correction element, balancing the positive power of L10, L11, L13, and the rear doublet. No exact modern public catalog match has been assigned to nd = 1.79631 and νd = 40.98; it is therefore left as an unmatched 796/410 glass rather than forced into a close but incorrect catalog designation.
+L12 is the strongest negative element in the master group. It is the fourth group's principal field-curvature and chromatic correction element, balancing the positive power of L10, L11, L13, and the rear doublet. HOYA NBFD2 is a coefficient-backed optical equivalent within the runtime consistency window; the label does not claim that HOYA supplied the production glass.
 
 ### L13 — Positive Meniscus, concave to object
 
@@ -124,7 +124,7 @@ L14a: nd = 1.51835, νd = 60.34. Glass: BALK3 (SUMITA catalog equivalent; produc
 L14b: nd = 1.78797, νd = 47.53. Glass: LAH64-class lanthanum flint, near-match. f = -74.3 mm.
 Cemented doublet focal length: approximately +79.2 mm.
 
-The rear cemented doublet closes the system with net positive power while correcting lateral color and off-axis aberrations near the image side. As with L12, L14a is left as an unmatched catalog entry because no exact public catalog match was verified. L14b lies in the LAH64-class lanthanum flint region but is labeled as a near-match rather than a precise manufacturer assignment.
+The rear cemented doublet closes the system with net positive power while correcting lateral color and off-axis aberrations near the image side. L14a uses the coefficient-backed SUMITA BALK3 curve as a supplier-neutral optical equivalent. L14b lies in the LAH64-class lanthanum flint region but is labeled as a near-match rather than a precise manufacturer assignment.
 
 ## Glass Identification and Selection
 
@@ -142,7 +142,7 @@ The patent supplies only nd and νd values, not named glass codes. The following
 | L7, L10, L13 | 1.51680 | 64.12 | BK7 / J-BK7A / S-BSL7 class | High |
 | L8 | 1.51860 | 70.08 | PKH1-class phosphate crown | High class confidence |
 | L11 | 1.62041 | 60.29 | S-BSM16 / J-SK16 / N-SK16 class | High |
-| L12 | 1.79631 | 40.98 | Unmatched 796/410 lanthanum-flint-region glass | Unmatched |
+| L12 | 1.79631 | 40.98 | NBFD2 catalog equivalent (patent 796410) | Coefficient-backed equivalent |
 | L14a | 1.51835 | 60.34 | BALK3 (SUMITA catalog equivalent) | Exact catalog coordinate within patent rounding |
 | L14b | 1.78797 | 47.53 | LAH64-class lanthanum flint | Near-match |
 

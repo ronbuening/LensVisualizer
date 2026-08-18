@@ -28,3 +28,8 @@ Reviewed local untracked patent file `patents/US7508592.pdf`, Example 2 / Table 
 ### Verification
 
 - Pending batch verification after the current Nikon audit pass.
+
+## 2026-08-18 — Hoya M-NBF1 coefficient assignment
+
+- Visually rechecked local `patents/US7508592.pdf`, PDF page 15, Example 2 / Table 2. Surface 1 remains `nd = 1.744429`, `νd = 49.52`.
+- Relabeled L1 to coefficient-backed Hoya M-NBF1 as a catalog equivalent (`1.743300 / 49.326`), retaining patent code `744495` and the unspecified production supplier. No geometry changed.
