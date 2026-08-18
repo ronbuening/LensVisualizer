@@ -27,10 +27,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    The patent publishes neither clear apertures nor stop diameter. SDs    ║
  * ║    are inferred from the FNO=3.6 stop solution, exact spherical-ray       ║
  * ║    envelopes, Figure-2 proportions, and geometry limits.                  ║
+ * ║    Figure 2 keeps D1 below L11 and near L12, while D4 falls between      ║
+ * ║    the neighboring G3 and G5 heights; surfaces 5–7 and 19–21 retain      ║
+ * ║    those relative rim proportions.                                        ║
  * ║    stop sd = 8.6116527358 mm is the paraxial value implied by FNO 3.6.   ║
- * ║    gapSagFrac=0.94 is a disclosed lens-specific override: the 1.300 mm    ║
- * ║    air gap between surfaces 4 and 5 remains physically positive at the    ║
- * ║    shared authored rim while preserving the on-axis marginal bundle.      ║
+ * ║    The 1.300 mm air gap between surfaces 4 and 5 remains physically      ║
+ * ║    positive at the shared authored rim under the default gap policy.      ║
  * ║                                                                            ║
  * ║  GLASS / SPECTRAL DATA:                                                    ║
  * ║    Table 1 publishes nd/νd only and no vendor/melt identities. Glass      ║
@@ -259,9 +261,9 @@ const LENS_DATA = {
     { label: "2", R: -117.9415, d: 0.1, nd: 1.0, elemId: 0, sd: 13.8 },
     { label: "3", R: 44.3101, d: 3.0, nd: 1.696797, elemId: 2, sd: 13.0 },
     { label: "4", R: 118.411, d: 1.3, nd: 1.0, elemId: 0, sd: 13.0 },
-    { label: "5", R: -190.2091, d: 1.3, nd: 1.717362, elemId: 3, sd: 15.0 },
-    { label: "6", R: 26.8256, d: 4.5, nd: 1.699998, elemId: 4, sd: 15.0 },
-    { label: "7", R: 558.6033, d: 2.49595, nd: 1.0, elemId: 0, sd: 15.0 },
+    { label: "5", R: -190.2091, d: 1.3, nd: 1.717362, elemId: 3, sd: 13.25 },
+    { label: "6", R: 26.8256, d: 4.5, nd: 1.699998, elemId: 4, sd: 13.0 },
+    { label: "7", R: 558.6033, d: 2.49595, nd: 1.0, elemId: 0, sd: 12.7 },
     { label: "8", R: 179.5945, d: 1.3, nd: 1.5168, elemId: 5, sd: 10.3 },
     { label: "9", R: 21.535, d: 3.2, nd: 1.0, elemId: 0, sd: 9.4 },
     { label: "10", R: -39.8733, d: 1.3, nd: 1.5168, elemId: 6, sd: 8.5 },
@@ -273,9 +275,9 @@ const LENS_DATA = {
     { label: "16", R: 42.8755, d: 1.3, nd: 1.755199, elemId: 9, sd: 9.4 },
     { label: "17", R: 21.4944, d: 4.4, nd: 1.49782, elemId: 10, sd: 9.2 },
     { label: "18", R: -142.0701, d: 4.99729, nd: 1.0, elemId: 0, sd: 9.1 },
-    { label: "19", R: -133.7831, d: 1.3, nd: 1.834, elemId: 11, sd: 10.5 },
-    { label: "20", R: 20.9234, d: 2.8, nd: 1.84666, elemId: 12, sd: 10.5 },
-    { label: "21", R: 44.2606, d: 7.4995, nd: 1.0, elemId: 0, sd: 10.3 },
+    { label: "19", R: -133.7831, d: 1.3, nd: 1.834, elemId: 11, sd: 9.5 },
+    { label: "20", R: 20.9234, d: 2.8, nd: 1.84666, elemId: 12, sd: 9.5 },
+    { label: "21", R: 44.2606, d: 7.4995, nd: 1.0, elemId: 0, sd: 9.4 },
     { label: "22", R: -23.2425, d: 1.5, nd: 1.518229, elemId: 13, sd: 9.0 },
     { label: "23", R: -31.2679, d: 0.1, nd: 1.0, elemId: 0, sd: 9.4 },
     { label: "24", R: 88.0814, d: 3.5, nd: 1.785896, elemId: 14, sd: 9.7 },
@@ -326,7 +328,6 @@ const LENS_DATA = {
   maxFstop: 32,
 
   /* ── Geometry / layout ── */
-  gapSagFrac: 0.94,
   yScFill: 0.34,
 } satisfies LensDataInput;
 

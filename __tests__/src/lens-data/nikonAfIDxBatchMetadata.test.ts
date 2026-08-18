@@ -97,6 +97,11 @@ describe("Nikon AF-I and DX batch diagram metadata", () => {
     expect(afI300.surfaces.slice(6, 9).map(({ sd }) => sd)).toEqual([29.5, 29.5, 29.5]);
   });
 
+  it("keeps the 85mm cemented-pair rims in patent-figure proportion", () => {
+    expect(micro85.surfaces.slice(4, 7).map(({ sd }) => sd)).toEqual([13.25, 13.0, 12.7]);
+    expect(micro85.surfaces.slice(18, 21).map(({ sd }) => sd)).toEqual([9.5, 9.5, 9.4]);
+  });
+
   it("preserves the published prime-lens focus directions", () => {
     expect(movementShifts(afI300, "focus", 1, 0)["G2 (FOCUS)"]).toBeCloseTo(10.8889, 4);
     expect(movementShifts(afI400, "focus", 1, 0)["G2 (FOCUS)"]).toBeCloseTo(17.8317, 4);
