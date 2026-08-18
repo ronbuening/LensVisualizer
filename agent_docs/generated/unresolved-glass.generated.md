@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **589** lenses scanned
-- **6653** non-air surfaces examined
-- **6660** element glass declarations examined
-- **283** non-explicit-unmatched annotations did not resolve
-- **137** distinct unresolved glass-like tokens found
+- **595** lenses scanned
+- **6724** non-air surfaces examined
+- **6731** element glass declarations examined
+- **282** non-explicit-unmatched annotations did not resolve
+- **136** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -141,7 +141,6 @@ or per-lens patent backfills.
 | J-LAK02 | 1 | 1 | |
 | J-LAK9 | 1 | 1 | |
 | J-LASFH6 | 1 | 1 | |
-| J-LLF6 | 1 | 1 | |
 | J-PSK03 | 1 | 1 | |
 | J-SK11 | 1 | 1 | |
 | KF5 | 1 | 1 | |
@@ -695,10 +694,6 @@ or per-lens patent backfills.
 ### J-LASFH6 — 1 occurrence
 
 - [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR — TC 1.4x Engaged](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14TCIn.data.ts) 50: `J-LASFH6 class (HIKARI nd exact; Δνd = +0.07)`
-
-### J-LLF6 — 1 occurrence
-
-- [NIKON AF-P DX NIKKOR 10-20mm f/4.5-5.6 G VR](../../src/lens-data/nikon/NikonAFPDX1020mmf4556G.data.ts) 18: `J-LLF6 (Hikari-equivalent light flint)`
 
 ### J-PSK03 — 1 occurrence
 

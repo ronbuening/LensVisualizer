@@ -8,7 +8,15 @@ catalog equivalent. If neither path is available, the engine falls back to parti
 dPgF-corrected indices, or the legacy Abbe approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **529 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **530 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+
+The August 18, 2026 Phase 105 Nikon AF-I/DX audit added Hikari J-LLF6 from the retained first-party Nikon/Hikari
+optical-glass workbook, including its nine-term power-series coefficients and d-line code. The curve resolves L22b in
+the new AF-I 400mm and the existing AF-P DX 10–20mm. Five more surfaces in the new AF-I 300mm and DX Micro 40mm
+were assigned already-verified J-LAF7, E-LAFH2, NBFD13, BACD4, and M-PCD4 curves after patent-coordinate checks;
+all labels retain supplier uncertainty. Within the six-lens batch, these changes add seven strict/trusted surfaces and
+bring global coverage to 6138/6724 strict and 6152/6724 trusted. The AF-I 400mm and DX Micro 40mm become
+strict-complete, with zero catalog-coordinate mismatches and zero active unreviewed glass dispositions.
 
 The August 18, 2026 Phase 104 patent-table audit assigned existing coefficient-backed curves to 31 more non-air
 surfaces across ten lenses: Sigma 85mm DG DN, Zeiss Planar 50mm, Nikon 35–200mm, Leica Elmarit 90mm, Canon

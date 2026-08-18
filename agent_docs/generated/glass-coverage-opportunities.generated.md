@@ -9,12 +9,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **589** lenses scanned (**579** visible)
-- **6071 / 6653** non-air surfaces use strict catalog Sellmeier data (91.3%)
-- **6085 / 6653** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 91.5%)
+- **595** lenses scanned (**585** visible)
+- **6138 / 6724** non-air surfaces use strict catalog Sellmeier data (91.3%)
+- **6152 / 6724** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 91.5%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
-- **228** code-only missing-Sellmeier elements in Sweep 2: **0** active unreviewed, **99** self-recording explicit dispositions, **0** dispositions missing any review record
+- **229** code-only missing-Sellmeier elements in Sweep 2: **0** active unreviewed, **100** self-recording explicit dispositions, **0** dispositions missing any review record
 - **0** unresolved named-token elements in Sweep 2B, producing **0** token occurrences across **0** distinct tokens
 - **0** Tier A proprietary backfill rows in Sweep 3
 
@@ -57,6 +57,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [SONY PLANAR T* FE 50mm f/1.4 ZA](../../src/lens-data/sony/SonyPlanarFE50mmf14ZA.data.ts) | WO 2017/138250 A1 | [PDF](../../patents/JPWO2017138250A1.pdf) | 91.7% (11/12) | 91.7% (11/12) | 1 | 12 [glass] (Element 7: `Unmatched (995293 ultra-high-index heavy flint; no public coefficient row inside the d-line safety window)`) | abbe: 1 |
 | [CANON EF-S 18-55mm f/3.5-5.6 IS](../../src/lens-data/canon/CanonEFS1855mmf3556IS.data.ts) | US 2007/0058265 A1 | [PDF](../../patents/US20070058265A1.pdf) | 90.9% (10/11) | 90.9% (10/11) | 1 | 18 [glass] (Element 10: `Unmatched (583/302 flint; obsolete HOYA E-F3-class candidate)`) | abbe: 1 |
 | [NIKON AF NIKKOR 28mm f/1.4 D](../../src/lens-data/nikon/NikonAF28f14D.data.ts) | US 5,315,441 | [PDF](../../patents/US5315441.pdf) | 90.9% (10/11) | 90.9% (10/11) | 1 | 12 [glass] (Element 7: `Unmatched LaM crown (patent nd=1.74810, νd=52.3; S-LAM7 is index-near only)`) | abbe: 1 |
+| [NIKON AF-I NIKKOR 300mm f/2.8 D IF-ED](../../src/lens-data/nikon/NikonAFINikkor300mmf28DIFED.data.ts) |  | No patent number parsed from lens metadata | 90.9% (10/11) | 90.9% (10/11) | 1 | 13 [glass] (L22: `Unmatched (670575; nd=1.67025, vd=57.5)`) | abbe: 1 |
 | [NIKON AI AF-S NIKKOR ED 500mm f/4D IF](../../src/lens-data/nikon/NikonAFSNikkor500mmf4DIFED.data.ts) | US 5,745,306 A | [PDF](../../patents/US5745306.pdf) | 90.9% (10/11) | 90.9% (10/11) | 1 | 7 [glass] (L13: `Unmatched (nd=1.802180, νd=44.69)`) | abbe: 1 |
 | [OLYMPUS OM ZUIKO AUTO-W 21mm f/2](../../src/lens-data/olympus/OlympusZuikoAuto21mmf2.data.ts) | US 4,210,388 | [PDF](../../patents/US4210388.pdf) | 90.9% (10/11) | 90.9% (10/11) | 1 | 12 [glass] (Element 6: `593348 — LF7-class light flint (no exact public catalog match)`) | abbe: 1 |
 | [PENTAX HD D FA 21mm f/2.4 ED Limited DC WR](../../src/lens-data/pentax/PentaxHDDFA21mmf24Limited.data.ts) | JP 2022-117775 A | [PDF](../../patents/JP2022117775A.pdf) | 90.9% (10/11) | 90.9% (10/11) | 1 | 3A [glass] (Element 2: `Unmatched (BAL/SK moldable crown; nearest S-BAL42/M-BACD12-type catalog glasses are about 1.583/59.4)`) | abbe: 1 |
@@ -65,6 +66,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [FUJIFILM FUJINON XF 23mm f/2 R WR](../../src/lens-data/fujifilm/FujifilmXF23mmf2RWR.data.ts) | US 2017/0351051 A1 | [PDF](../../patents/US20170351051A1.pdf) | 90.0% (9/10) | 90.0% (9/10) | 1 | 13A [glass] (L21 — moving focus asphere: `803405 - high-index lanthanum flint (likely PGM aspheric melt; no exact public catalog match)`) | abbe: 1 |
 | [MINOLTA AF APO TELE 300mm f/2.8](../../src/lens-data/minolta/MinoltaAF300mmf28.data.ts) | US 4,518,229 | Missing from untracked local patents/ references (US4518229, 4518229) | 90.0% (9/10) | 90.0% (9/10) | 1 | 5 [glass] (Element 3: `682366 - dense flint class (catalog unresolved)`) | abbe: 1 |
 | [NIKON AF NIKKOR 85mm f/1.4 D IF](../../src/lens-data/nikon/Nikon85f14D.data.ts) | US 5,640,277 | [PDF](../../patents/US5640277.pdf) | 90.0% (9/10) | 90.0% (9/10) | 1 | 19 [glass] (Element 10: `Unmatched (748523 patent coordinate; vendor unresolved)`) | abbe: 1 |
+| [NIKON AF-I NIKKOR 600mm f/4 D IF-ED](../../src/lens-data/nikon/NikonAFINikkor600mmf4DIFED.data.ts) |  | No patent number parsed from lens metadata | 88.9% (8/9) | 88.9% (8/9) | 1 | 7 [glass] (G11 Element 3: `Unmatched (nd=1.75692, νd=31.7)`) | abbe: 1 |
 | [NIKON FISHEYE-NIKKOR 6mm f/5.6](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf56.data.ts) | US 3,524,697 | [PDF](../../patents/US3524697.pdf) | 88.9% (8/9) | 88.9% (8/9) | 1 | 11 [glass] (Patent L8: `768465 — lanthanum flint patent melt (nd=1.76764, νd=46.5; no exact public catalog match)`) | abbe: 1 |
 | [NIKON NIKKOR-N AUTO 28mm f/2](../../src/lens-data/nikon/NikonNikkorN28mmf2.data.ts) | US 3,736,049 | [PDF](../../patents/US3736049.pdf) | 88.9% (8/9) | 88.9% (8/9) | 1 | 14 [glass] (Element 8: `Discontinued LaF/LaK type (1970s)`) | abbe: 1 |
 | [PENTAX FA 31mm f/1.8 AL Limited](../../src/lens-data/pentax/PentaxFA31mmf18ALLtd.data.ts) | US 6,560,042 B2 | [PDF](../../patents/US6560042.pdf) | 88.9% (8/9) | 88.9% (8/9) | 1 | 13 [glass] (Element 8: `Unmatched (728403 lanthanum flint; no public coefficient row inside the d-line safety window)`) | abbe: 1 |

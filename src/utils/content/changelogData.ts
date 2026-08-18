@@ -46,6 +46,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-08-14",
     type: "lens",
+    summary: "Added six Nikon AF-I and DX lenses spanning 18–600mm, including two Micro-NIKKORs",
+  },
+  {
+    date: "2026-08-14",
+    type: "lens",
     summary: "Added six Nikon AF and AF-S Zoom-Nikkor designs spanning 18-400mm",
   },
   {
