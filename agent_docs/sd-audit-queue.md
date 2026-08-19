@@ -159,7 +159,7 @@ better investment.
 |---|---|---|
 | EF 70-300mm f/4.5-5.6 DO IS USM | JP 2004-317867 Figure 1 at 600 dpi; median figure/data ratio 0.976 | no change 2026-08-19; reliable group deviations remained below 15% |
 | EF 400mm f/2.8 L IS II USM | US 2011/0090576 Figure 3 at 600 dpi; contaminated rear rows checked manually | no change 2026-08-19; optical rims remained within about 20% |
-| RF 100-500mm f/4.5-7.1 L IS USM | US 2021/0003832 Figure 3 at 600 dpi; terminal cemented group measured about 17.5 mm | done 2026-08-19; L82/L83 enlarged to 17.2/17.5/17.9 mm |
+| RF 100-500mm f/4.5-7.1 L IS USM | US 2021/0003832 Figure 3 at 600 dpi; terminal cemented group measured about 17.0-17.5 mm | done 2026-08-19; L82/L83 enlarged to 17.2/17.5/17.9 mm and screenshot recheck found no further >25% deviation |
 
 ## Section C — source blockers
 

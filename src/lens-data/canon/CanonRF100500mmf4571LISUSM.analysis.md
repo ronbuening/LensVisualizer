@@ -295,27 +295,27 @@ establish Canon's production supplier. The three HOYA rows are explicitly labele
 coordinate-compatible curves do not become production-material claims.
 
 No catalog-derived `nC`, `nF`, or `ng` values are authored in the data file. The named compatible catalog curves supply
-C/d/F dispersion, while each structured `dPgF` is derived from the patent's published `θgF` row and controls the
-violet-channel correction. This separation is especially important for L81 because FCD515 has a measurable
-partial-dispersion mismatch from the patent row.
+C/d/F dispersion, while each structured `dPgF` is calculated from the patent's published `θgF` row as
+`θgF - (0.6438 - 0.001682νd)` and controls the violet-channel correction. This separation is especially important for
+L81 because FCD515 has a measurable partial-dispersion mismatch from the patent row.
 
 | Glass annotation | `nd` | `νd` | Patent-derived `dPgF` | Elements | Status |
 |---|---:|---:|---:|---|---|
-| S-FPL51 (OHARA) | 1.49700 | 81.54 | +0.0280 | L11, L22, L31, L41, L54, L82 | Exact coordinate equivalent within source precision |
-| S-NBM51 (OHARA) | 1.61340 | 44.27 | −0.0065 | L12 | Exact coordinate equivalent within source precision |
-| S-FPL55 (OHARA) | 1.43875 | 94.66 | +0.0457 | L13 | Exact coordinate equivalent |
-| S-LAL14 (OHARA) | 1.69680 | 55.53 | −0.0082 | L21 | Exact coordinate equivalent within source precision |
-| S-TIH14 (OHARA) | 1.76182 | 26.52 | +0.0150 | L23 | Exact coordinate equivalent within source precision |
-| S-FTM16 (OHARA) | 1.59270 | 35.31 | +0.0090 | L32 | Exact coordinate equivalent within source precision |
-| HOYA TAFD45L modeling equivalent | 1.95375 | 32.32 | −0.0002 | L33 | Coordinate-compatible curve; supplier unspecified |
-| S-TIM28 (OHARA) | 1.68893 | 31.07 | +0.0092 | L51 | Exact coordinate equivalent within source precision |
-| S-NSL3 (OHARA) | 1.51823 | 58.90 | −0.0005 | L52 | Exact coordinate equivalent within source precision |
-| HOYA TAFD65 modeling equivalent | 2.05090 | 26.94 | +0.0055 | L53 | Coordinate-compatible curve; full-triad identity not proven |
-| S-TIM22 (OHARA) | 1.64769 | 33.79 | +0.0070 | L61 | Exact coordinate equivalent within source precision |
-| S-LAH66 (OHARA) | 1.77250 | 49.60 | −0.0092 | L62 | Exact coordinate equivalent within source precision |
-| S-FSL5 (OHARA) | 1.48749 | 70.23 | +0.0022 | L71 | Exact coordinate equivalent |
-| HOYA FCD515 modeling equivalent | 1.59282 | 68.63 | +0.0194 | L81 | Coordinate-compatible curve; partial-dispersion mismatch |
-| S-NBH8 (OHARA) | 1.72047 | 34.71 | −0.0019 | L83 | Exact coordinate equivalent within source precision |
+| S-FPL51 (OHARA) | 1.49700 | 81.54 | +0.03085028 | L11, L22, L31, L41, L54, L82 | Exact coordinate equivalent within source precision |
+| S-NBM51 (OHARA) | 1.61340 | 44.27 | −0.00603786 | L12 | Exact coordinate equivalent within source precision |
+| S-FPL55 (OHARA) | 1.43875 | 94.66 | +0.04941812 | L13 | Exact coordinate equivalent |
+| S-LAL14 (OHARA) | 1.69680 | 55.53 | −0.00699854 | L21 | Exact coordinate equivalent within source precision |
+| S-TIH14 (OHARA) | 1.76182 | 26.52 | +0.01440664 | L23 | Exact coordinate equivalent within source precision |
+| S-FTM16 (OHARA) | 1.59270 | 35.31 | +0.00889142 | L32 | Exact coordinate equivalent within source precision |
+| HOYA TAFD45L modeling equivalent | 1.95375 | 32.32 | +0.00036224 | L33 | Coordinate-compatible curve; supplier unspecified |
+| S-TIM28 (OHARA) | 1.68893 | 31.07 | +0.00885974 | L51 | Exact coordinate equivalent within source precision |
+| S-NSL3 (OHARA) | 1.51823 | 58.90 | +0.00096980 | L52 | Exact coordinate equivalent within source precision |
+| HOYA TAFD65 modeling equivalent | 2.05090 | 26.94 | +0.00691308 | L53 | Coordinate-compatible curve; full-triad identity not proven |
+| S-TIM22 (OHARA) | 1.64769 | 33.79 | +0.00683478 | L61 | Exact coordinate equivalent within source precision |
+| S-LAH66 (OHARA) | 1.77250 | 49.60 | −0.00837280 | L62 | Exact coordinate equivalent within source precision |
+| S-FSL5 (OHARA) | 1.48749 | 70.23 | +0.00432686 | L71 | Exact coordinate equivalent |
+| HOYA FCD515 modeling equivalent | 1.59282 | 68.63 | +0.01623566 | L81 | Coordinate-compatible curve; partial-dispersion mismatch |
+| S-NBH8 (OHARA) | 1.72047 | 34.71 | −0.00201778 | L83 | Exact coordinate equivalent within source precision |
 
 The palette is not simply a sequence of low- and high-dispersion pairs. It repeatedly places very high-`νd` materials
 at optically strategic locations: positive L11 and L13 in the first unit, negative L22 near the front negative unit,
@@ -462,7 +462,7 @@ component is rear block `G`, whose effect is retained through the documented air
 ## Sources and References
 
 1. **US 2021/0003832 A1**, Masato Katayose and Junya Ichimura, *Zoom Lens and Image Pickup Apparatus Having the Same*,
-   Canon Kabushiki Kaisha, published January 7, 2021. Primary sections used: Figure 3, Figures 4A-4C, ¶¶0023, 0026,
+   Canon Inc., published January 7, 2021. Primary sections used: Figure 3, Figures 4A-4C, ¶¶0023, 0026,
    0029, 0032, 0033-0046, 0049-0065, Numerical Example 2, and Table 1.
 2. **Canon U.S.A. — RF100-500mm F4.5-7.1 L IS USM product/support specifications.** Production focal range,
    maximum aperture, 20/14 construction, one Super UD plus six UD elements, focusing distances, nine diaphragm blades,

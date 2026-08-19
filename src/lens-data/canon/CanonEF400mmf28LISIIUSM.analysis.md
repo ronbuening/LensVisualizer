@@ -219,7 +219,9 @@ line indices rather than synthesizing them from an unproven catalog identity.
 Fresh screening of current OHARA, HOYA, SCHOTT, HIKARI, CDGM, and SUMITA catalog material finds exact or near-exact
 coordinate equivalents for the ordinary patent materials, often from several manufacturers. The final data therefore
 uses the neutral six-digit coordinate class derived from the patent `nd/νd` pair instead of naming a supplier. A
-coordinate match establishes an optical-glass class; it does not establish which supplier or melt Canon used.
+coordinate match establishes an optical-glass class; it does not establish which supplier or melt Canon used. The
+inspector's chromatic detail still exposes the resolver-selected catalog curve, and the authored patent `dPgF` remains
+authoritative for the violet channel so ambiguity cannot replace the source's partial-dispersion evidence.
 
 L12 and L14 are the one deliberate exception to the otherwise vendor-neutral treatment. Their `nd/νd` coordinates are
 consistent with fluorite, and Canon independently documents two fluorite elements in the production lens at the
@@ -270,7 +272,8 @@ to address lateral color together with field curvature and astigmatism (¶0027, 
 Gp2 immediately ahead of Gn1 has `nd = 1.65412`, `νd = 39.7`, and `dPgF = -0.0033`. Its partial-dispersion condition is
 not the same positive-deviation criterion used to define the patent's Gp1/Gn1 anomalous materials. Instead, it is a
 complementary rear positive whose material is selected under conditions (5) and (6), allowing the terminal cemented pair
-to contribute chromatic correction while retaining very little net paraxial power.
+to contribute chromatic correction while retaining very little net paraxial power. Its inspector badge is therefore
+patent-backed APD metadata, not an inferred production-glass claim.
 
 ## Conditional Expressions
 

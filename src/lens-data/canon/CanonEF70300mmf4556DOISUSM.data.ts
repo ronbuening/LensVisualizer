@@ -13,21 +13,21 @@ import type { LensDataInput } from "../../types/optics.js";
  * zoom groups; Canon marketed 18 elements / 12 groups and a three-layer DO element. elementCount and groupCount
  * describe this authored patent model.
  *
- * Diffractive normalization: source surface 4 is the L2-to-L3 bonded interface and carries Canon's radial phase
+ * Diffractive normalization: source surface 4 is the E2-to-E3 bonded interface and carries Canon's radial phase
  * polynomial. The patent prints raw C2/C4/C6 values of -7.27275e-5, -3.95105e-9, and -3.14725e-12. Its rendered formula
  * is OCR-prone, but Canon's Phi=(2*pi/lambda0)*sum(Cp*h^p) convention makes those Cp values optical-path coefficients.
  * LensVisualizer uses that same W=sum(Cp*h^p) representation, so no additional 2*pi/lambda0 factor is applied. The
  * current tracer follows the ideal +1 design order; it does not model Canon's multi-layer diffraction efficiency,
  * unwanted orders, scatter, or flare.
  *
- * Focus status: PATENT_CAM_SAMPLED. The patent mechanism moves G6 only, with D25 increasing and D31 decreasing by the
+ * Focus status: PATENT_CAM_SAMPLED. The patent mechanism moves L6 only, with D25 increasing and D31 decreasing by the
  * same amount. The authored 1.5 m shifts are 0.713980 mm wide, 2.399338 mm middle, and 7.934380 mm tele, evaluated from
  * the printed focus-cam polynomial at the reconstructed W/M/T zoom coordinates. Table 2 independently rounds the
  * endpoints to 0.71 and 7.93 mm. The marketed 1.4 m MFD does not override the patent model.
  *
- * Zoom: the patent publishes three infinity states plus 12-term motion cams for G1, G3, G4, and G6; G2 (IS), G5, and
- * G7 remain fixed. A least-squares fit to all six printed variable gaps places the middle station at cam parameter
- * z=0.50540029. The 21-point schedule samples those source cams, includes G4's turning point at z=0.0748997827, and
+ * Zoom: the patent publishes three infinity states plus 12-term motion cams for L1, L3, L4, and L6; L2 (IS), L5, and
+ * L7 remain fixed. A least-squares fit to all six printed variable gaps places the middle station at cam parameter
+ * z=0.50540029. The 21-point schedule samples those source cams, includes L4's turning point at z=0.0748997827, and
  * retains the three printed W/M/T gaps exactly. Intermediate zoomPositions are computed d-line EFL labels.
  *
  * Semi-diameters are inferred because Example 1 publishes no clear apertures. The draft values combine the 600 dpi
@@ -38,12 +38,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * marginal-ray opening (10.408 mm at tele); the current scalar runtime opening remains a documented engine limitation.
  * Surface SDs 4/5 and 7/8 contain that tele marginal ray and remain consistent with the 600 dpi Figure 1 outline.
  *
- * The zero-distance, equal-radius air split at source surfaces 29/30 is collapsed to one direct L15-to-L16 interface
+ * The zero-distance, equal-radius air split at source surfaces 29/30 is collapsed to one direct E15-to-E16 interface
  * labeled 29, with source d30=0.95 mm retained. This leaves the paraxial, exact-refractive, and Petzval behavior
  * unchanged. No cover glass, filter, dummy/flare-cutter plane, folded path, or mechanical component is included.
  *
  * Patent glass identities are unresolved. A coherent whole-prescription coordinate fingerprint supports qualified
- * OHARA catalog surrogates for 13 elements. The four non-unique rows (L2, L6, L14, and L16) retain vendor-neutral
+ * OHARA catalog surrogates for 13 elements. The four non-unique rows (E2, E6, E14, and E16) retain vendor-neutral
  * six-digit classes while using coordinate-compatible catalog curves. No catalog-derived nC/nF/ng is presented as
  * measured patent data, and dPgF is omitted because the source publishes neither line indices nor partial dispersion.
  */
@@ -51,7 +51,7 @@ const LENS_DATA = {
   key: "canon-ef-70-300mm-f45-56-do-is-usm",
   maker: "Canon",
   name: "CANON EF 70-300mm f/4.5-5.6 DO IS USM",
-  subtitle: "JP 2004-317867 A, Numerical Example 1 — patent-cam G6 focus model",
+  subtitle: "JP 2004-317867 A, Numerical Example 1 — patent-cam L6 focus model",
   specs: [
     "17 ELEMENTS / 14 AIR-SPACED ASSEMBLIES",
     "7 FUNCTIONAL ZOOM GROUPS",
@@ -59,7 +59,7 @@ const LENS_DATA = {
     "NOMINAL f/4.6-5.8",
     "PRODUCT 3-LAYER DO / MODEL +1 PHASE",
     "1 ASPHERE",
-    "G2 IMAGE STABILIZATION / G6 REAR FOCUS",
+    "L2 IMAGE STABILIZATION / L6 IMAGEWARD REAR FOCUS",
   ],
 
   focalLengthMarketing: [70, 300],
@@ -79,18 +79,18 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
+      name: "E1",
       label: "Element 1",
       type: "Positive Meniscus",
       nd: 1.48749,
       vd: 70.2,
       fl: 227.345987,
       glass: "S-FSL5 (OHARA catalog surrogate; patent identity unresolved)",
-      role: "Front positive collector in functional group G1.",
+      role: "Front positive collector in patent group L1.",
     },
     {
       id: 2,
-      name: "L2",
+      name: "E2",
       label: "Element 2 — DO front member",
       type: "Negative Meniscus",
       nd: 1.834,
@@ -102,7 +102,7 @@ const LENS_DATA = {
     },
     {
       id: 3,
-      name: "L3",
+      name: "E3",
       label: "Element 3 — DO rear member",
       type: "Biconvex Positive",
       nd: 1.51633,
@@ -110,22 +110,22 @@ const LENS_DATA = {
       fl: 91.815361,
       glass: "S-BSL7 (OHARA catalog surrogate; patent identity unresolved)",
       cemented: "DO1",
-      role: "Positive rear member of the bonded DO pair and main positive component of functional group G1.",
+      role: "Positive rear member of the bonded DO pair and main positive component of patent group L1.",
     },
     {
       id: 4,
-      name: "L4",
+      name: "E4",
       label: "Element 4 — IS group",
       type: "Biconcave Negative",
       nd: 1.713,
       vd: 53.9,
       fl: -60.00451,
       glass: "S-LAL8 (OHARA catalog surrogate; patent identity unresolved)",
-      role: "Front negative member of fixed functional group G2, which the patent identifies as the lateral IS group.",
+      role: "Front negative member of fixed patent group L2, which the source identifies as the lateral IS group.",
     },
     {
       id: 5,
-      name: "L5",
+      name: "E5",
       label: "Element 5 — IS group",
       type: "Biconcave Negative",
       nd: 1.62299,
@@ -137,7 +137,7 @@ const LENS_DATA = {
     },
     {
       id: 6,
-      name: "L6",
+      name: "E6",
       label: "Element 6 — IS group",
       type: "Biconvex Positive",
       nd: 1.84666,
@@ -149,95 +149,95 @@ const LENS_DATA = {
     },
     {
       id: 7,
-      name: "L7",
+      name: "E7",
       label: "Element 7 — front asphere",
       type: "Biconvex Positive (1x Asph)",
       nd: 1.58313,
       vd: 59.4,
       fl: 31.188373,
       glass: "S-BAL42 (OHARA catalog surrogate; patent identity unresolved)",
-      role: "Strong positive aspheric member of functional group G3 ahead of the aperture stop.",
+      role: "Strong positive aspheric member of patent group L3 ahead of the aperture stop.",
     },
     {
       id: 8,
-      name: "L8",
+      name: "E8",
       label: "Element 8",
       type: "Negative Meniscus",
       nd: 1.80518,
       vd: 25.4,
       fl: -124.344478,
       glass: "S-TIH6 (OHARA catalog surrogate; patent identity unresolved)",
-      role: "Weak negative partner completing functional group G3.",
+      role: "Weak negative partner completing patent group L3.",
     },
     {
       id: 9,
-      name: "L9",
+      name: "E9",
       label: "Element 9",
       type: "Negative Meniscus",
       nd: 1.755,
       vd: 52.3,
       fl: -39.18805,
       glass: "S-LAH97 (OHARA catalog surrogate; patent identity unresolved)",
-      role: "Single negative moving functional group G4 immediately behind the stop.",
+      role: "Single negative moving patent group L4 immediately behind the stop.",
     },
     {
       id: 10,
-      name: "L10",
+      name: "E10",
       label: "Element 10",
       type: "Positive Meniscus",
       nd: 1.51742,
       vd: 52.4,
       fl: 61.309616,
       glass: "S-NSL36 (OHARA catalog surrogate; patent identity unresolved)",
-      role: "Front positive element of fixed functional group G5.",
+      role: "Front positive element of fixed patent group L5.",
     },
     {
       id: 11,
-      name: "L11",
+      name: "E11",
       label: "Element 11",
       type: "Negative Meniscus",
       nd: 1.80518,
       vd: 25.4,
       fl: -67.676777,
       glass: "S-TIH6 (OHARA catalog surrogate; patent identity unresolved)",
-      role: "Negative element balancing the positive members of fixed functional group G5.",
+      role: "Negative element balancing the positive members of fixed patent group L5.",
     },
     {
       id: 12,
-      name: "L12",
+      name: "E12",
       label: "Element 12",
       type: "Biconvex Positive",
       nd: 1.48749,
       vd: 70.2,
       fl: 53.201389,
       glass: "S-FSL5 (OHARA catalog surrogate; patent identity unresolved)",
-      role: "Low-dispersion positive element in fixed functional group G5.",
+      role: "Low-dispersion positive element in fixed patent group L5.",
     },
     {
       id: 13,
-      name: "L13",
+      name: "E13",
       label: "Element 13",
       type: "Positive Meniscus",
       nd: 1.60311,
       vd: 60.6,
       fl: 59.091672,
       glass: "S-BSM14 (OHARA catalog surrogate; patent identity unresolved)",
-      role: "Rear positive element completing fixed functional group G5.",
+      role: "Rear positive element completing fixed patent group L5.",
     },
     {
       id: 14,
-      name: "L14",
+      name: "E14",
       label: "Element 14 — focus group",
       type: "Negative Meniscus",
       nd: 1.83481,
       vd: 42.7,
       fl: -37.415378,
       glass: "835427 class (vendor unresolved; multiple catalog equivalents)",
-      role: "Front negative element of moving rear-focus functional group G6.",
+      role: "Front negative element of moving rear-focus patent group L6.",
     },
     {
       id: 15,
-      name: "L15",
+      name: "E15",
       label: "Element 15 — focus group",
       type: "Biconvex Positive",
       nd: 1.72825,
@@ -245,11 +245,11 @@ const LENS_DATA = {
       fl: 25.46681,
       glass: "S-TIH10 (OHARA catalog surrogate; patent identity unresolved)",
       cemented: "D3",
-      role: "Positive member of the collapsed zero-air-gap L15/L16 assembly in moving G6.",
+      role: "Positive member of the collapsed zero-air-gap E15/E16 assembly in moving patent group L6.",
     },
     {
       id: 16,
-      name: "L16",
+      name: "E16",
       label: "Element 16 — focus group",
       type: "Biconcave Negative",
       nd: 1.83481,
@@ -257,18 +257,18 @@ const LENS_DATA = {
       fl: -19.707635,
       glass: "835427 class (vendor unresolved; multiple catalog equivalents)",
       cemented: "D3",
-      role: "Negative partner in the normalized L15/L16 assembly completing moving G6.",
+      role: "Negative partner in the normalized E15/E16 assembly completing moving patent group L6.",
     },
     {
       id: 17,
-      name: "L17",
+      name: "E17",
       label: "Element 17",
       type: "Positive Meniscus",
       nd: 1.58313,
       vd: 59.4,
       fl: 151.175826,
       glass: "S-BAL42 (OHARA catalog surrogate; patent identity unresolved)",
-      role: "Fixed final positive field-relay group G7 ahead of the 38.63 mm image spacing.",
+      role: "Fixed final positive field-relay patent group L7 ahead of the 38.63 mm image spacing.",
     },
   ],
 
@@ -478,12 +478,12 @@ const LENS_DATA = {
   },
 
   varLabels: [
-    ["5", "D5 / G1-G2"],
-    ["10", "D10 / G2-G3"],
-    ["STO", "D15 / STO-G4"],
-    ["17", "D17 / G4-G5"],
-    ["25", "D25 / G6 focus front"],
-    ["31", "D31 / G6 focus rear"],
+    ["5", "D5 / L1-L2"],
+    ["10", "D10 / L2-L3"],
+    ["STO", "D15 / STO-L4"],
+    ["17", "D17 / L4-L5"],
+    ["25", "D25 / L6 focus front"],
+    ["31", "D31 / L6 focus rear"],
   ],
 
   zoomPositions: [
@@ -494,13 +494,13 @@ const LENS_DATA = {
   zoomLabels: ["Wide", "Tele"],
 
   groups: [
-    { text: "G1 (+) / DO", fromSurface: "1", toSurface: "5" },
-    { text: "G2 (-) / IS", fromSurface: "6", toSurface: "10" },
-    { text: "G3 (+)", fromSurface: "11A", toSurface: "14" },
-    { text: "G4 (-)", fromSurface: "16", toSurface: "17" },
-    { text: "G5 (+)", fromSurface: "18", toSurface: "25" },
-    { text: "G6 (-) / FOCUS", fromSurface: "26", toSurface: "31" },
-    { text: "G7 (+)", fromSurface: "32", toSurface: "33" },
+    { text: "L1 (+) / DO", fromSurface: "1", toSurface: "5" },
+    { text: "L2 (-) / IS", fromSurface: "6", toSurface: "10" },
+    { text: "L3 (+)", fromSurface: "11A", toSurface: "14" },
+    { text: "L4 (-)", fromSurface: "16", toSurface: "17" },
+    { text: "L5 (+)", fromSurface: "18", toSurface: "25" },
+    { text: "L6 (-) / FOCUS", fromSurface: "26", toSurface: "31" },
+    { text: "L7 (+)", fromSurface: "32", toSurface: "33" },
   ],
   doublets: [
     { text: "DO1", fromSurface: "3", toSurface: "5" },
@@ -510,7 +510,7 @@ const LENS_DATA = {
 
   closeFocusM: 1.5,
   focusDescription:
-    "PATENT_CAM_SAMPLED: G6 translates imageward with D25 + D31 conserved. The W/M/T close pairs evaluate the printed focus-cam polynomial at the reconstructed zoom coordinates; Table 2 independently rounds the endpoint shifts to 0.71 and 7.93 mm at 1.5 m. The marketed 1.4 m MFD is metadata only.",
+    "PATENT_CAM_SAMPLED: patent group L6 translates imageward with D25 + D31 conserved. The W/M/T close pairs evaluate the printed focus-cam polynomial at the reconstructed zoom coordinates; Table 2 independently rounds the endpoint shifts to 0.71 and 7.93 mm at 1.5 m. The marketed 1.4 m MFD is metadata only.",
 
   nominalFno: [
     4.6, 4.66, 4.72, 4.78, 4.84, 4.9, 4.96, 5.02, 5.08, 5.14, 5.2, 5.26, 5.32, 5.38, 5.44, 5.5, 5.56, 5.62, 5.68, 5.74,

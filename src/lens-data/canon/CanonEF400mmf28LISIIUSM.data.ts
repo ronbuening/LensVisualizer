@@ -57,7 +57,7 @@ const LENS_DATA = {
     "PATENT f = 392.15 mm; COMPUTED EFL 392.2607 mm",
     "PATENT F/2.90 / MARKETED 400mm f/2.8",
     "ALL-SPHERICAL",
-    "L16 INNER FOCUS; RECONSTRUCTED 2.7 m CLOSE STATE",
+    "L16 IMAGEWARD INNER FOCUS; RECONSTRUCTED 2.7 m CLOSE STATE",
     "L22 + L23 TRANSVERSE IS UNIT",
   ],
 
@@ -251,7 +251,8 @@ const LENS_DATA = {
       vd: 39.7,
       fl: 46.72992076667075,
       glass: "654397 anomalous-dispersion class (vendor unresolved; multiple catalog equivalents)",
-      apdNote: "Patent Gp2 material; X = dPgF = -0.0033.",
+      apd: "patent",
+      apdNote: "Patent Gp2 partial-dispersion material; condition (6), X = dPgF = -0.0033.",
       dPgF: -0.0033,
       cemented: "L25",
       role: "Gp2 positive of the terminal cemented pair; patent condition (5)/(6) material.",

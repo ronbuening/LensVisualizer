@@ -32,21 +32,24 @@ reference wavelength alone is explicitly identified as the d-line.
 ## Optical Architecture
 
 The example is a seven-unit positive-negative-positive-negative-positive-
-negative-positive zoom. The aperture stop lies between G3 and G4.
+negative-positive zoom. The aperture stop lies between patent groups L3 and
+L4. The group annotations follow the source's `L1`–`L7` notation; the
+element-by-element table independently uses neutral `E1`–`E17` identifiers
+because the patent does not name the individual glass members.
 
 | Functional group | Surfaces |    Power | Wide-to-tele axial behavior                    | Modeled role                          |
 | ---------------- | -------- | -------: | ---------------------------------------------- | ------------------------------------- |
-| G1               | 1–5      | positive | moves objectward                               | front collector and effective DO pair |
-| G2               | 6–10     | negative | fixed                                          | centered image-stabilization group    |
-| G3               | 11–14    | positive | moves objectward                               | positive aspheric group before stop   |
-| G4               | 16–17    | negative | reverses shallowly, then moves imageward       | negative group behind stop            |
-| G5               | 18–25    | positive | fixed                                          | positive rear cluster                 |
-| G6               | 26–31    | negative | moves objectward for zoom, imageward for focus | rear-focus group                      |
-| G7               | 32–33    | positive | fixed                                          | terminal positive group               |
+| L1               | 1–5      | positive | moves objectward                               | front collector and effective DO pair |
+| L2               | 6–10     | negative | fixed                                          | centered image-stabilization group    |
+| L3               | 11–14    | positive | moves objectward                               | positive aspheric group before stop   |
+| L4               | 16–17    | negative | reverses shallowly, then moves imageward       | negative group behind stop            |
+| L5               | 18–25    | positive | fixed                                          | positive rear cluster                 |
+| L6               | 26–31    | negative | moves objectward for zoom, imageward for focus | rear-focus group                      |
+| L7               | 32–33    | positive | fixed                                          | terminal positive group               |
 
 The patent's three printed infinity stations are 72.16, 139.54, and 290.26 mm.
 The data also samples the printed 12-term motion cams at 18 intermediate
-positions, with the source G4 turning point at cam parameter 0.0748998 included
+positions, with the source L4 turning point at cam parameter 0.0748998 included
 explicitly. The three printed gap columns remain exact at schedule entries 1,
 11, and 21. Their first-surface-to-image tracks are 143.77, 183.96, and
 208.94 mm. Only the tele station has track/EFL below one
@@ -67,26 +70,26 @@ vendor-neutral coordinate classes, never patent-named identities.
 
 | Element | Group | Patent nd/vd   | Isolated f mm | Glass disposition                         | Interpretation                             |
 | ------- | ----- | -------------- | ------------: | ----------------------------------------- | ------------------------------------------ |
-| L1      | G1    | 1.48749 / 70.2 |      +227.346 | S-FSL5 surrogate                          | weak positive front collector              |
-| L2      | G1    | 1.83400 / 37.2 |      -126.309 | 834372 vendor-neutral class               | negative front member of bonded DO pair    |
-| L3      | G1    | 1.51633 / 64.1 |       +91.815 | S-BSL7 surrogate                          | positive rear member of bonded DO pair     |
-| L4      | G2    | 1.71300 / 53.9 |       -60.005 | S-LAL8 surrogate                          | front negative IS member                   |
-| L5      | G2    | 1.62299 / 58.2 |       -32.872 | S-BSM15 surrogate                         | negative member of cemented rear pair      |
-| L6      | G2    | 1.84666 / 23.9 |       +51.478 | 847239 vendor-neutral class               | positive partner; G2 remains net negative  |
-| L7      | G3    | 1.58313 / 59.4 |       +31.188 | S-BAL42 surrogate                         | strong positive element with front asphere |
-| L8      | G3    | 1.80518 / 25.4 |      -124.344 | S-TIH6 surrogate                          | weak negative partner                      |
-| L9      | G4    | 1.75500 / 52.3 |       -39.188 | S-LAH97 surrogate                         | single moving negative group               |
-| L10     | G5    | 1.51742 / 52.4 |       +61.310 | S-NSL36 surrogate                         | front positive member of fixed cluster     |
-| L11     | G5    | 1.80518 / 25.4 |       -67.677 | S-TIH6 surrogate                          | principal negative member of fixed cluster |
-| L12     | G5    | 1.48749 / 70.2 |       +53.201 | S-FSL5 surrogate                          | low-dispersion positive member             |
-| L13     | G5    | 1.60311 / 60.6 |       +59.092 | S-BSM14 surrogate                         | rear positive member                       |
-| L14     | G6    | 1.83481 / 42.7 |       -37.415 | 835427 vendor-neutral class               | front negative focus member                |
-| L15     | G6    | 1.72825 / 28.5 |       +25.467 | S-TIH10 surrogate                         | positive member of direct L15/L16 assembly |
-| L16     | G6    | 1.83481 / 42.7 |       -19.708 | same vendor-neutral class as L14          | strong negative partner                    |
-| L17     | G7    | 1.58313 / 59.4 |      +151.176 | S-BAL42 surrogate                         | weak fixed terminal positive element       |
+| E1      | L1    | 1.48749 / 70.2 |      +227.346 | S-FSL5 surrogate                          | weak positive front collector              |
+| E2      | L1    | 1.83400 / 37.2 |      -126.309 | 834372 vendor-neutral class               | negative front member of bonded DO pair    |
+| E3      | L1    | 1.51633 / 64.1 |       +91.815 | S-BSL7 surrogate                          | positive rear member of bonded DO pair     |
+| E4      | L2    | 1.71300 / 53.9 |       -60.005 | S-LAL8 surrogate                          | front negative IS member                   |
+| E5      | L2    | 1.62299 / 58.2 |       -32.872 | S-BSM15 surrogate                         | negative member of cemented rear pair      |
+| E6      | L2    | 1.84666 / 23.9 |       +51.478 | 847239 vendor-neutral class               | positive partner; L2 remains net negative  |
+| E7      | L3    | 1.58313 / 59.4 |       +31.188 | S-BAL42 surrogate                         | strong positive element with front asphere |
+| E8      | L3    | 1.80518 / 25.4 |      -124.344 | S-TIH6 surrogate                          | weak negative partner                      |
+| E9      | L4    | 1.75500 / 52.3 |       -39.188 | S-LAH97 surrogate                         | single moving negative group               |
+| E10     | L5    | 1.51742 / 52.4 |       +61.310 | S-NSL36 surrogate                         | front positive member of fixed cluster     |
+| E11     | L5    | 1.80518 / 25.4 |       -67.677 | S-TIH6 surrogate                          | principal negative member of fixed cluster |
+| E12     | L5    | 1.48749 / 70.2 |       +53.201 | S-FSL5 surrogate                          | low-dispersion positive member             |
+| E13     | L5    | 1.60311 / 60.6 |       +59.092 | S-BSM14 surrogate                         | rear positive member                       |
+| E14     | L6    | 1.83481 / 42.7 |       -37.415 | 835427 vendor-neutral class               | front negative focus member                |
+| E15     | L6    | 1.72825 / 28.5 |       +25.467 | S-TIH10 surrogate                         | positive member of direct E15/E16 assembly |
+| E16     | L6    | 1.83481 / 42.7 |       -19.708 | same vendor-neutral class as E14          | strong negative partner                    |
+| E17     | L7    | 1.58313 / 59.4 |      +151.176 | S-BAL42 surrogate                         | weak fixed terminal positive element       |
 
 The repeated patent pairs use identical dispositions and runtime curves:
-L1/L12, L7/L17, L8/L11, and L14/L16. No role statement attributes a specific
+E1/E12, E7/E17, E8/E11, and E14/E16. No role statement attributes a specific
 aberration correction without a differential source calculation.
 
 ## Glass Identification and Selection
@@ -118,7 +121,7 @@ not prove supplier or melt identity.
 
 No catalog-derived `nC`, `nF`, or `ng` fields are authored because the patent
 does not provide measured line indices. Thirteen elements resolve explicitly to
-qualified OHARA Sellmeier surrogates. L2, L6, L14, and L16 use vendor-neutral
+qualified OHARA Sellmeier surrogates. E2, E6, E14, and E16 use vendor-neutral
 six-digit classes that select coordinate-compatible curves without choosing a
 production vendor or vacuum-melt variant. All 17 elements therefore receive
 Sellmeier dispersion while their patent identities remain unresolved. No
@@ -127,12 +130,12 @@ or APO claims.
 
 ## Focus Mechanism
 
-The patent moves G6 imageward from infinity to 1.5 m while preserving its
+The patent moves group L6 imageward from infinity to 1.5 m while preserving its
 internal geometry: `d25` increases and `d31` decreases by the same amount. The
 data samples the printed focus-cam polynomial at every authored zoom coordinate
 rather than fitting a separate image-plane reference.
 
-| Station | d25 infinity → close mm | d31 infinity → close mm | G6 imageward shift mm |
+| Station | d25 infinity → close mm | d31 infinity → close mm | L6 imageward shift mm |
 | ------- | ----------------------: | ----------------------: | --------------------: |
 | Wide    |   15.780000 → 16.493980 |     3.000000 → 2.286020 |              0.713980 |
 | Middle  |   12.430000 → 14.829338 |     6.340000 → 3.940662 |              2.399338 |
@@ -160,7 +163,7 @@ metadata and does not alter this 1.5 m patent model.
 
 ## Aspherical Surface
 
-Surface 11A, the front of L7, is the only asphere. The scan's denominator glyph
+Surface 11A, the front of E7, is the only asphere. The scan's denominator glyph
 is poor, and no conic coefficient is printed. The standard spherical-base
 interpretation is modeled as `K=0`:
 
@@ -177,7 +180,7 @@ semi-diameter and any rim departure are not patent dimensions.
 
 ## Canon Diffractive Optical Element and Modeling Boundary
 
-Surface 4 is the direct L2-to-L3 material interface at radius +49.800 mm. The
+Surface 4 is the direct E2-to-E3 material interface at radius +49.800 mm. The
 patent table prints radial coefficients `c2`, `c4`, and `c6`; the phase-equation
 scan has an ambiguous prefactor glyph, but the dimensionally consistent Canon
 convention is:
@@ -207,8 +210,8 @@ scatter, flare, coherent PSF, or diffraction-limited MTF.
 ## Image Stabilization
 
 The patent assigns stabilization to a transverse displacement of the fixed
-negative G2 unit. In the centered prescription its paraxial decenter
-sensitivity at tele is about -3.384 mm of image shift per millimetre of G2
+negative L2 unit. In the centered prescription its paraxial decenter
+sensitivity at tele is about -3.384 mm of image shift per millimetre of L2
 shift, producing the Table 3 sensitivity angle of 0.66792°. The patent does not
 publish an actuator stroke for Example 1. The data therefore identifies the IS
 group but does not invent a decentered state, stabilization range, or
@@ -247,7 +250,7 @@ The fixed PDF controls over OCR. It visibly prints r4 = +49.800 mm and
 r10 = -759.945 mm; those literal values are used.
 
 Source rows 29 and 30 share radius -31.265 mm with `d29 = 0.00`. The data
-collapses them to one direct L15-to-L16 interface at label 29 and retains
+collapses them to one direct E15-to-E16 interface at label 29 and retains
 source `d30 = 0.95 mm`. The fresh verifier shows a maximum full-matrix change
 of only 2.22e-16. No air, cement, or resin layer is invented.
 
@@ -258,10 +261,10 @@ definition.
 
 Paragraph [0052] illustrates a generic sixth-order motion series, while the
 Example 1 tables explicitly label coefficients 1 through 12. At cam parameter
-1, the rendered coefficient rows evaluate to G1 -65.18406, G3 -10.81255, G4
-+7.72279, and G6 -14.31067 mm. All six resulting tele gaps agree with the
+1, the rendered coefficient rows evaluate to L1 -65.18406, L3 -10.81255, L4
++7.72279, and L6 -14.31067 mm. All six resulting tele gaps agree with the
 independently rounded table column within 0.01 mm. The sampled schedule uses
-the 12 printed terms and includes G4's shallow initial reversal.
+the 12 printed terms and includes L4's shallow initial reversal.
 
 ## Conditional Expressions
 
