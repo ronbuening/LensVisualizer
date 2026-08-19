@@ -12,6 +12,7 @@ patents/*
 
 # Local in-progress lens workflow artifacts
 /in_progress/
+/.lens-work/
 
 # Dependencies
 node_modules/
