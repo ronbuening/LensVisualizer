@@ -8,7 +8,14 @@ catalog equivalent. If neither path is available, the engine falls back to parti
 dPgF-corrected indices, or the legacy Abbe approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **530 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **531 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+
+The August 19, 2026 Canon three-lens audit added HOYA TAFD45L from the retained first-party July 7, 2026 Zemax
+catalog. Its distinct formula-3 curve resolves the RF 100-500mm's 954323 row, while existing TAFD65 and FCD515
+curves resolve that lens's other two candidate-equivalent rows. Vendor-neutral 834372, 847239, and 835427 classes
+recover the EF 70-300mm DO's four previously Abbe-only surfaces without choosing a production supplier or glass
+variant. All three Canon additions are now strict-complete, raising global coverage to 6193/6776 strict and 6207/6776
+trusted surfaces, with 371 strict-complete visible lenses and zero catalog-coordinate mismatches.
 
 The August 18, 2026 Phase 106 Nikon screenshot follow-up recovered three more physical-glass surfaces without adding
 a catalog row: OHARA S-LAL52 for AF-I 300mm L22, HIKARI E-LAF11 for AF-I 600mm L13, and OHARA S-LAL12 for

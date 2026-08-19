@@ -19,6 +19,11 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-08-19",
+    type: "lens",
+    summary: "Added Canon EF 70-300mm DO, EF 400mm f/2.8 L II, and RF 100-500mm designs",
+  },
+  {
     date: "2026-08-18",
     type: "improvement",
     summary: "Expanded patent-backed chromatic coverage and corrected the Nikkor-N 5cm prescription",

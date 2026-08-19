@@ -153,6 +153,14 @@ better investment.
 | HD D FA 150-450mm f/4.5-5.6 ED DC AW | US 2016/0327774 Figure 1 at 600 dpi; final L54 restored near the L51-L53 envelope | done 2026-08-14; zero image-circle-floor failures |
 | SMC PENTAX-A ZOOM 35-70mm f/4 | US 4,812,022 Figure 9 at 300 dpi; final L7 reduced to the distinctly smaller source profile | done 2026-08-14; zero image-circle-floor failures |
 
+### Completed Canon additions
+
+| Lens | Figure screen | Status |
+|---|---|---|
+| EF 70-300mm f/4.5-5.6 DO IS USM | JP 2004-317867 Figure 1 at 600 dpi; median figure/data ratio 0.976 | no change 2026-08-19; reliable group deviations remained below 15% |
+| EF 400mm f/2.8 L IS II USM | US 2011/0090576 Figure 3 at 600 dpi; contaminated rear rows checked manually | no change 2026-08-19; optical rims remained within about 20% |
+| RF 100-500mm f/4.5-7.1 L IS USM | US 2021/0003832 Figure 3 at 600 dpi; terminal cemented group measured about 17.5 mm | done 2026-08-19; L82/L83 enlarged to 17.2/17.5/17.9 mm |
+
 ## Section C — source blockers
 
 Nothing can be audited on these until the source is available.

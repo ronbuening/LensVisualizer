@@ -62,17 +62,17 @@ combined. The seven `groups` entries describe functional zoom units. Canon's
 
 The focal lengths below are isolated-in-air thick-element calculations. They
 show sign and relative strength; they are not in-system or cemented-group focal
-lengths. The glass names are either qualified current-catalog surrogates or an
-explicit unresolved disposition, never patent-named identities.
+lengths. The glass names are either qualified current-catalog surrogates or
+vendor-neutral coordinate classes, never patent-named identities.
 
 | Element | Group | Patent nd/vd   | Isolated f mm | Glass disposition                         | Interpretation                             |
 | ------- | ----- | -------------- | ------------: | ----------------------------------------- | ------------------------------------------ |
 | L1      | G1    | 1.48749 / 70.2 |      +227.346 | S-FSL5 surrogate                          | weak positive front collector              |
-| L2      | G1    | 1.83400 / 37.2 |      -126.309 | unresolved OHARA high-index crown variant | negative front member of bonded DO pair    |
+| L2      | G1    | 1.83400 / 37.2 |      -126.309 | 834372 vendor-neutral class               | negative front member of bonded DO pair    |
 | L3      | G1    | 1.51633 / 64.1 |       +91.815 | S-BSL7 surrogate                          | positive rear member of bonded DO pair     |
 | L4      | G2    | 1.71300 / 53.9 |       -60.005 | S-LAL8 surrogate                          | front negative IS member                   |
 | L5      | G2    | 1.62299 / 58.2 |       -32.872 | S-BSM15 surrogate                         | negative member of cemented rear pair      |
-| L6      | G2    | 1.84666 / 23.9 |       +51.478 | unresolved OHARA dense-flint variant      | positive partner; G2 remains net negative  |
+| L6      | G2    | 1.84666 / 23.9 |       +51.478 | 847239 vendor-neutral class               | positive partner; G2 remains net negative  |
 | L7      | G3    | 1.58313 / 59.4 |       +31.188 | S-BAL42 surrogate                         | strong positive element with front asphere |
 | L8      | G3    | 1.80518 / 25.4 |      -124.344 | S-TIH6 surrogate                          | weak negative partner                      |
 | L9      | G4    | 1.75500 / 52.3 |       -39.188 | S-LAH97 surrogate                         | single moving negative group               |
@@ -80,9 +80,9 @@ explicit unresolved disposition, never patent-named identities.
 | L11     | G5    | 1.80518 / 25.4 |       -67.677 | S-TIH6 surrogate                          | principal negative member of fixed cluster |
 | L12     | G5    | 1.48749 / 70.2 |       +53.201 | S-FSL5 surrogate                          | low-dispersion positive member             |
 | L13     | G5    | 1.60311 / 60.6 |       +59.092 | S-BSM14 surrogate                         | rear positive member                       |
-| L14     | G6    | 1.83481 / 42.7 |       -37.415 | unresolved OHARA lanthanum-crown variant  | front negative focus member                |
+| L14     | G6    | 1.83481 / 42.7 |       -37.415 | 835427 vendor-neutral class               | front negative focus member                |
 | L15     | G6    | 1.72825 / 28.5 |       +25.467 | S-TIH10 surrogate                         | positive member of direct L15/L16 assembly |
-| L16     | G6    | 1.83481 / 42.7 |       -19.708 | same unresolved variant as L14            | strong negative partner                    |
+| L16     | G6    | 1.83481 / 42.7 |       -19.708 | same vendor-neutral class as L14          | strong negative partner                    |
 | L17     | G7    | 1.58313 / 59.4 |      +151.176 | S-BAL42 surrogate                         | weak fixed terminal positive element       |
 
 The repeated patent pairs use identical dispositions and runtime curves:
@@ -103,25 +103,27 @@ not prove supplier or melt identity.
 | Patent nd/vd   | Final runtime disposition | Residual/ambiguity                                          |
 | -------------- | ------------------------- | ----------------------------------------------------------- |
 | 1.48749 / 70.2 | S-FSL5                    | coefficient-evaluated Δnd about -0.00000007, Δvd +0.036     |
-| 1.83400 / 37.2 | unresolved                | S-LAH60 and S-LAH60V both round to the source pair          |
+| 1.83400 / 37.2 | 834372 class              | S-LAH60/S-LAH60V variant remains unresolved                 |
 | 1.51633 / 64.1 | S-BSL7                    | also exact-rounding Sumita K-BK7                            |
 | 1.71300 / 53.9 | S-LAL8                    | also exact-rounding Hoya LAC8                               |
 | 1.62299 / 58.2 | S-BSM15                   | OHARA-family match preferred                                |
-| 1.84666 / 23.9 | unresolved                | legacy PBH53/S-NPH53 identity not distinguishable           |
+| 1.84666 / 23.9 | 847239 class              | legacy PBH53/S-NPH53 identity remains unresolved            |
 | 1.58313 / 59.4 | S-BAL42                   | also exact-rounding Hikari J-SK12                           |
 | 1.80518 / 25.4 | S-TIH6                    | also exact-rounding Schott/Hikari SF6 variants              |
 | 1.75500 / 52.3 | S-LAH97                   | Schott N-LAK33B, Hoya TAC6L, and Hikari J-LASKH2 also round |
 | 1.51742 / 52.4 | S-NSL36                   | preferred OHARA match                                       |
 | 1.60311 / 60.6 | S-BSM14                   | also exact-rounding Schott N-SK14                           |
-| 1.83481 / 42.7 | unresolved                | S-LAH55/S-LAH55V/S-LAH55VS variants and Hoya alternatives   |
+| 1.83481 / 42.7 | 835427 class              | S-LAH55 variants and Hoya alternatives remain non-unique    |
 | 1.72825 / 28.5 | S-TIH10                   | preferred OHARA match                                       |
 
 No catalog-derived `nC`, `nF`, or `ng` fields are authored because the patent
-does not provide measured line indices. Thirteen elements resolve explicitly to the qualified
-OHARA Sellmeier surrogate. L2, L6, L14, and L16 intentionally remain
-unresolved and use the repository's `nd/vd` Abbe fallback rather than silently
-choosing among indistinguishable variants. No `dPgF` is authored, so this file
-does not support anomalous-partial-dispersion or APO claims.
+does not provide measured line indices. Thirteen elements resolve explicitly to
+qualified OHARA Sellmeier surrogates. L2, L6, L14, and L16 use vendor-neutral
+six-digit classes that select coordinate-compatible curves without choosing a
+production vendor or vacuum-melt variant. All 17 elements therefore receive
+Sellmeier dispersion while their patent identities remain unresolved. No
+`dPgF` is authored, so this file does not support anomalous-partial-dispersion
+or APO claims.
 
 ## Focus Mechanism
 

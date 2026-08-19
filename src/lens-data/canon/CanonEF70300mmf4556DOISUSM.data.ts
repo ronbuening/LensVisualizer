@@ -43,9 +43,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * unchanged. No cover glass, filter, dummy/flare-cutter plane, folded path, or mechanical component is included.
  *
  * Patent glass identities are unresolved. A coherent whole-prescription coordinate fingerprint supports qualified
- * OHARA catalog surrogates for 13 elements. Four elements remain on nd/vd-only dispersion because the OHARA variant is
- * not uniquely determined (L2, L6, L14, and L16). No catalog-derived nC/nF/ng is presented as measured patent data,
- * and dPgF is omitted because the source publishes neither line indices nor partial dispersion.
+ * OHARA catalog surrogates for 13 elements. The four non-unique rows (L2, L6, L14, and L16) retain vendor-neutral
+ * six-digit classes while using coordinate-compatible catalog curves. No catalog-derived nC/nF/ng is presented as
+ * measured patent data, and dPgF is omitted because the source publishes neither line indices nor partial dispersion.
  */
 const LENS_DATA = {
   key: "canon-ef-70-300mm-f45-56-do-is-usm",
@@ -96,7 +96,7 @@ const LENS_DATA = {
       nd: 1.834,
       vd: 37.2,
       fl: -126.309451,
-      glass: "Unresolved OHARA-family high-index crown (patent nd/vd only)",
+      glass: "834372 class (vendor unresolved; multiple catalog equivalents)",
       cemented: "DO1",
       role: "Negative front member of the bonded pair whose interface carries the effective Canon DO phase.",
     },
@@ -143,7 +143,7 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.9,
       fl: 51.477738,
-      glass: "Unresolved OHARA-family dense flint (patent nd/vd only)",
+      glass: "847239 class (vendor unresolved; multiple catalog equivalents)",
       cemented: "D2",
       role: "High-dispersion positive partner completing the net-negative IS group.",
     },
@@ -232,7 +232,7 @@ const LENS_DATA = {
       nd: 1.83481,
       vd: 42.7,
       fl: -37.415378,
-      glass: "Unresolved OHARA-family lanthanum crown (patent nd/vd only)",
+      glass: "835427 class (vendor unresolved; multiple catalog equivalents)",
       role: "Front negative element of moving rear-focus functional group G6.",
     },
     {
@@ -255,7 +255,7 @@ const LENS_DATA = {
       nd: 1.83481,
       vd: 42.7,
       fl: -19.707635,
-      glass: "Unresolved OHARA-family lanthanum crown (patent nd/vd only)",
+      glass: "835427 class (vendor unresolved; multiple catalog equivalents)",
       cemented: "D3",
       role: "Negative partner in the normalized L15/L16 assembly completing moving G6.",
     },

@@ -152,6 +152,7 @@ const GLASS_CATALOG_SOURCE_ORDER = [
   "FCD515",
   "FCD705",
   "TAFD45",
+  "TAFD45L",
   "TAFD55",
   "E-CF6",
   "MC-TAF101-100",
