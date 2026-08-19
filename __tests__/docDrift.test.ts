@@ -39,10 +39,28 @@ function fencedBlockUnderHeading(markdown: string, heading: string): string {
   return fence![1];
 }
 
+function sectionUnderHeading(markdown: string, heading: string): string | undefined {
+  const marker = `## ${heading}\n`;
+  const headingIndex = markdown.indexOf(marker);
+  if (headingIndex < 0) return undefined;
+  const bodyIndex = headingIndex + marker.length;
+  const nextHeadingIndex = markdown.indexOf("\n## ", bodyIndex);
+  return markdown.slice(bodyIndex, nextHeadingIndex < 0 ? undefined : nextHeadingIndex);
+}
+
 function topLevelDirectories(relativeDir: string): string[] {
   return readdirSync(join(repoRoot, relativeDir))
     .filter((name) => statSync(join(repoRoot, relativeDir, name)).isDirectory())
     .sort();
+}
+
+function filesNamed(relativeDir: string, filename: string): string[] {
+  return readdirSync(join(repoRoot, relativeDir)).flatMap((name) => {
+    const relativePath = join(relativeDir, name);
+    const stat = statSync(join(repoRoot, relativePath));
+    if (stat.isDirectory()) return filesNamed(relativePath, filename);
+    return name === filename ? [relativePath] : [];
+  });
 }
 
 function documentedProjectMapDirectories(projectMap: string): {
@@ -86,6 +104,27 @@ describe("doc drift guards", () => {
         encoding: "utf8",
       }),
     ).not.toThrow();
+  });
+
+  it("omits intentionally data-heavy sources from large-file warnings", () => {
+    const largeFileWarnings = filesNamed("src", "improvementsuggestions.md")
+      .flatMap((relativePath) => {
+        const section = sectionUnderHeading(
+          readFileSync(join(repoRoot, relativePath), "utf-8"),
+          "Large files carry substantial maintenance weight",
+        );
+        return section === undefined ? [] : [section];
+      })
+      .join("\n");
+    const excludedBasenames = [
+      "changelogData.ts",
+      "glassCatalogData.ts",
+      ...readdirSync(join(repoRoot, "src", "optics", "glassCatalogEntries")).filter((name) => name.endsWith(".ts")),
+    ];
+
+    for (const basename of excludedBasenames) {
+      expect(largeFileWarnings, `${basename} should not inform generated large-file warnings`).not.toContain(basename);
+    }
   });
 
   it("keeps agents.md byte-identical to CLAUDE.md", () => {

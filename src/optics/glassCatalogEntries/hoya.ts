@@ -553,6 +553,15 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source: "Hoya Zemax catalog 2017-04-01 via refractiveindex.info; TAFD45 page (formula 3 polynomial).",
   },
   {
+    name: "TAFD45L",
+    vendor: "Hoya",
+    polynomial: [3.6715088, -0.014402693, 0.046652775, 0.0019167306, -0.000063043119, 0.000013004923],
+    nd: 1.95375,
+    vd: 32.32,
+    code6: "954323",
+    source: "Hoya Zemax catalog 2026-07-07; TAFD45L row (formula 3 polynomial, d-code 954323).",
+  },
+  {
     name: "TAFD55",
     vendor: "Hoya",
     polynomial: [3.8317578, -0.015266397, 0.054573843, 0.0023109346, -0.000044476201, 0.000016143887],
