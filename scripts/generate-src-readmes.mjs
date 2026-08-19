@@ -6,6 +6,8 @@ const repoRoot = process.cwd();
 const srcRoot = path.join(repoRoot, "src");
 const generatedDocNames = new Set(["readme.md", "improvementsuggestions.md"]);
 const skippedDocSubtrees = new Set(["src/generated", "src/lens-data", "src/mounts"]);
+const largeFileWarningExcludedFiles = new Set(["src/optics/glassCatalogData.ts", "src/utils/content/changelogData.ts"]);
+const largeFileWarningExcludedSubtrees = new Set(["src/optics/glassCatalogEntries"]);
 const sourceExtensions = new Set([".ts", ".tsx", ".json", ".md", ".template"]);
 const codeExtensions = new Set([".ts", ".tsx"]);
 const moduleExtensions = [".ts", ".tsx", ".d.ts", ".json", ".md"];
@@ -153,6 +155,10 @@ const hasGeneratedDocName = (absolutePath) => generatedDocNames.has(path.basenam
 
 const isSkippedDocSubtree = (dirRel) =>
   [...skippedDocSubtrees].some((skipped) => dirRel === skipped || dirRel.startsWith(`${skipped}/`));
+
+const isLargeFileWarningExcluded = (fileRel) =>
+  largeFileWarningExcludedFiles.has(fileRel) ||
+  [...largeFileWarningExcludedSubtrees].some((subtree) => fileRel.startsWith(`${subtree}/`));
 
 const readDirRecursive = async (dir) => {
   const dirRel = fromSrcRel(dir);
@@ -741,6 +747,7 @@ const suggestForDir = (dirRel, cycles) => {
   const directFiles = filesInDir(dirRel);
   const suggestions = [];
   const lineHeavy = directFiles
+    .filter((file) => !isLargeFileWarningExcluded(file))
     .map((file) => fileInfos.get(file))
     .filter(Boolean)
     .filter((info) => codeExtensions.has(path.extname(info.rel)) || info.rel.endsWith(".d.ts"))
