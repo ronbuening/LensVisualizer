@@ -19,14 +19,16 @@ The pupil-calibrated stop remains 8.31053 mm. The revised prescription passes th
 
 ### Glass classification
 
-- The patent publishes nd/νd coordinates but no vendor names or line indices. The ten elements therefore retain vendor-neutral six-digit coordinate classes.
-- Existing compatible catalog curves cover all 10/10 elements without relaxing the Δn ±0.003 / Δν ±2 guards; the ambiguity report correctly preserves supplier uncertainty.
+- The patent publishes nd/νd coordinates but no vendor names or line indices. The ten elements therefore retain their six-digit patent coordinates and now identify the compatible catalog material used as each spectral proxy.
+- Existing compatible full-coefficient catalog curves cover all 10/10 elements without relaxing the Δn ±0.003 / Δν ±2 guards; production suppliers remain explicitly unspecified.
 - No new catalog row is supported or needed, and the lens has no coordinate mismatch.
 
 ### Identity and metadata
 
 - Verified the display name `CANON RF 600mm f/11 IS STM` against Canon's product identity and the repository's spacing policy.
 - Verified the front-page inventors 横谷 真樹 and 井野 友裕 and stored the family-publication romanizations Maki Yokoya and Tomohiro Ino.
+- Normalized the front diffractive pair's diagram/cemented label to `DOE`, matching the patent terminology while retaining Canon's product-level `DO` wording in the analysis sources.
+- Verified the Figure 1 focus arrow and paragraph 0036 against the runtime motion profile: only L2 moves, by -14.94 mm objectward; the lens has no zoom travel.
 
 ### Verification
 

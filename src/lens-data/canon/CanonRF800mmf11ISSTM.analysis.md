@@ -41,23 +41,23 @@ The focal lengths below are the standalone refractive-element focal lengths stor
 
 ### E1 — Positive Meniscus
 
-nd = 1.48749, νd = 70.2. Glass: `487702 — optical-glass coordinate (vendor unresolved)`. f = +189.285305 mm.
+nd = 1.48749, νd = 70.2. Glass: `487702 patent coordinate; S-FSL5 catalog spectral proxy`. f = +189.285305 mm.
 
 E1 is the large front positive meniscus of L1. Its relatively strong positive standalone power begins the telephoto front collector. The data file assigns the same 39.8 mm semi-diameter to both E1 surfaces; that aperture is a modeling inference because the patent publishes no semi-diameters.
 
 The patent does not assign an element-specific aberration function to E1. Its role as the first positive collector is therefore an architectural interpretation based on its sign, position, and membership in the positive L1 unit rather than a quoted patent statement.
 
-### E2 — Biconvex Positive, Front Member of the DO Pair
+### E2 — Biconvex Positive, Front Member of the DOE Pair
 
-nd = 1.48749, νd = 70.2. Glass: `487702 — optical-glass coordinate (vendor unresolved)`. f = +119.445580 mm.
+nd = 1.48749, νd = 70.2. Glass: `487702 patent coordinate; S-FSL5 catalog spectral proxy`. f = +119.445580 mm.
 
 E2 is a biconvex positive lens cemented directly to E3. Surface 4 is the E2→E3 junction and carries the diffractive radial polynomial. Under the data schema's cemented-interface rule, surface 4 uses E3's downstream index and element identifier.
 
-E2 supplies substantial positive standalone power, but it must not be treated independently when describing the DO pair's system behavior. The cemented E2+E3 assembly, with the DOE included at surface 4, has a computed net focal length of -518.081454 mm.
+E2 supplies substantial positive standalone power, but it must not be treated independently when describing the DOE pair's system behavior. The cemented E2+E3 assembly, with the DOE included at surface 4, has a computed net focal length of -518.081454 mm.
 
-### E3 — Biconcave Negative, Rear Member of the DO Pair
+### E3 — Biconcave Negative, Rear Member of the DOE Pair
 
-nd = 1.74400, νd = 44.8. Glass: `744448 — optical-glass coordinate (vendor unresolved)`. f = -91.715811 mm.
+nd = 1.74400, νd = 44.8. Glass: `744448 patent coordinate; J-LAF2 catalog spectral proxy`. f = -91.715811 mm.
 
 E3 is the negative partner of E2 and completes the cemented diffractive pair. Its stronger negative standalone power partly offsets E2's positive power. The DOE is not represented as a geometric asphere on E3; it is a separate phase interaction at the shared surface 4.
 
@@ -65,23 +65,25 @@ The patent explicitly associates the diffractive surface with chromatic correcti
 
 ### E4 — Negative Meniscus
 
-nd = 1.69680, νd = 55.5. Glass: `697555 — optical-glass coordinate (vendor unresolved)`. f = -152.723030 mm.
+nd = 1.69680, νd = 55.5. Glass: `697555 patent coordinate; J-LAK14 catalog spectral proxy`. f = -152.723030 mm.
 
-E4 is an air-separated negative meniscus and the final physical element of L1. Together with E1 and the cemented DO pair, it yields the positive L1 unit power despite its own negative standalone power.
+E4 is an air-separated negative meniscus and the final physical element of L1. Together with E1 and the cemented DOE pair, it yields the positive L1 unit power despite its own negative standalone power.
 
 The contrast between E4's negative element power and the positive net L1 power illustrates why standalone focal lengths must not be substituted for group or full-system behavior.
 
 ### E5 — Positive Meniscus, L2 Focus Element
 
-nd = 1.48749, νd = 70.2. Glass: `487702 — optical-glass coordinate (vendor unresolved)`. f = +169.053213 mm.
+nd = 1.48749, νd = 70.2. Glass: `487702 patent coordinate; S-FSL5 catalog spectral proxy`. f = +169.053213 mm.
 
 E5 is the complete L2 unit and is the only internal focusing element in Numerical Example 2. The patent specifies that L2 moves toward the object when focusing from infinity toward a near object (¶0036). Its single-element construction is also consistent with the patent's stated preference for reducing focus-unit mass (¶0033–¶0034).
+
+The modeled 16.1 mm semi-diameter follows the clean rim of E5 in the 600 dpi Figure 2 measurement rather than the smaller ray-envelope-only estimate. No patent dimension is implied.
 
 The production lens uses a lead-screw STM focusing drive according to Canon. That motor specification is a manufacturer fact; the patent prescribes the optical movement but does not specify STM for Numerical Example 2.
 
 ### E6 — Biconcave Negative, Front Member of D2
 
-nd = 1.90043, νd = 37.4. Glass: `900374 — optical-glass coordinate (vendor unresolved)`. f = -23.602837 mm.
+nd = 1.90043, νd = 37.4. Glass: `900374 patent coordinate; TAFD37A catalog spectral proxy`. f = -23.602837 mm.
 
 E6 begins L3 immediately after the aperture stop. It is a strong negative biconcave element cemented to E7 at surface 12.
 
@@ -89,7 +91,7 @@ The E6+E7 cemented doublet has a computed net focal length of -341.995856 mm. Th
 
 ### E7 — Biconvex Positive, Rear Member of D2
 
-nd = 1.65412, νd = 39.7. Glass: `654397 — optical-glass coordinate (vendor unresolved)`. f = +27.148865 mm.
+nd = 1.65412, νd = 39.7. Glass: `654397 patent coordinate; N-KZFS5 catalog spectral proxy`. f = +27.148865 mm.
 
 E7 is the positive member of the first rear cemented doublet. Its positive standalone power closely opposes E6's negative power, leaving the pair weakly negative as a cemented unit.
 
@@ -97,7 +99,7 @@ No anomalous-partial-dispersion designation is assigned. The patent publishes on
 
 ### E8 — Biconvex Positive, Front Member of D3
 
-nd = 1.65412, νd = 39.7. Glass: `654397 — optical-glass coordinate (vendor unresolved)`. f = +28.539796 mm.
+nd = 1.65412, νd = 39.7. Glass: `654397 patent coordinate; N-KZFS5 catalog spectral proxy`. f = +28.539796 mm.
 
 E8 begins the second cemented doublet in L3 and is joined to E9 at surface 15. Its glass coordinate is the same as E7's, but this does not establish that the production lens uses a particular vendor melt.
 
@@ -105,7 +107,7 @@ The E8+E9 cemented pair has a computed net focal length of +146.121347 mm. The p
 
 ### E9 — Biconcave Negative, Rear Member of D3
 
-nd = 1.59282, νd = 68.6. Glass: `593686 — optical-glass coordinate (vendor unresolved)`. f = -34.943037 mm.
+nd = 1.59282, νd = 68.6. Glass: `593686 patent coordinate; FCD515 catalog spectral proxy`. f = -34.943037 mm.
 
 E9 is the negative member of the second rear cemented pair. Its higher published νd contrasts with the lower-νd positive E8 coordinate, but the absence of independently identified glass and line-index data prevents a more specific claim about anomalous partial dispersion or apochromatic correction.
 
@@ -113,7 +115,7 @@ The element's negative standalone power is again distinct from the positive net 
 
 ### E10 — Biconcave Negative Singlet
 
-nd = 1.80400, νd = 46.5. Glass: `804465 — optical-glass coordinate (vendor unresolved)`. f = -39.371451 mm.
+nd = 1.80400, νd = 46.5. Glass: `804465 patent coordinate; TAF3D catalog spectral proxy`. f = -39.371451 mm.
 
 E10 is an air-separated negative singlet in the rear part of L3. It follows the two cemented doublets and contributes substantial negative standalone power to the rear unit.
 
@@ -121,7 +123,7 @@ Its role is described here only in terms of verified power distribution and posi
 
 ### E11 — Biconvex Positive Rear Singlet
 
-nd = 1.59551, νd = 39.2. Glass: `596392 — optical-glass coordinate (vendor unresolved)`. f = +98.012225 mm.
+nd = 1.59551, νd = 39.2. Glass: `596392 patent coordinate; E-F8 catalog spectral proxy`. f = +98.012225 mm.
 
 E11 is the final positive singlet and completes L3. It partially offsets E10's negative power while leaving the overall L3 unit strongly negative at -86.514216 mm.
 
@@ -129,20 +131,20 @@ The last refracting surface is followed by the patent's 138.30 mm air-equivalent
 
 ## Glass Identification and Selection
 
-The patent supplies d-line nd and νd values but does not name a glass manufacturer or catalog designation for Numerical Example 2. The validated data file therefore uses six-digit coordinate labels derived from the stored nd/νd pairs. These are authoring identifiers for the published optical coordinates, not assertions that the patent specified a particular vendor glass.
+The patent supplies d-line nd and νd values but does not name a glass manufacturer or production catalog designation for Numerical Example 2. The catalog audit nevertheless finds a compatible full-coefficient spectral proxy for every physical element. The six-digit patent coordinate remains the primary label, and each proxy is qualified so it cannot be mistaken for a production-glass claim.
 
-| Coordinate label | nd | νd | Elements | Data-file status |
+| Patent coordinate | nd | νd | Elements | Catalog spectral proxy |
 |---|---:|---:|---|---|
-| 487702 | 1.48749 | 70.2 | E1, E2, E5 | Vendor unresolved |
-| 744448 | 1.74400 | 44.8 | E3 | Vendor unresolved |
-| 697555 | 1.69680 | 55.5 | E4 | Vendor unresolved |
-| 900374 | 1.90043 | 37.4 | E6 | Vendor unresolved |
-| 654397 | 1.65412 | 39.7 | E7, E8 | Vendor unresolved |
-| 593686 | 1.59282 | 68.6 | E9 | Vendor unresolved |
-| 804465 | 1.80400 | 46.5 | E10 | Vendor unresolved |
-| 596392 | 1.59551 | 39.2 | E11 | Vendor unresolved |
+| 487702 | 1.48749 | 70.2 | E1, E2, E5 | S-FSL5 |
+| 744448 | 1.74400 | 44.8 | E3 | J-LAF2 |
+| 697555 | 1.69680 | 55.5 | E4 | J-LAK14 |
+| 900374 | 1.90043 | 37.4 | E6 | TAFD37A |
+| 654397 | 1.65412 | 39.7 | E7, E8 | N-KZFS5 |
+| 593686 | 1.59282 | 68.6 | E9 | FCD515 |
+| 804465 | 1.80400 | 46.5 | E10 | TAF3D |
+| 596392 | 1.59551 | 39.2 | E11 | E-F8 |
 
-No nC, nF, ng, or dPgF values are authored for any element because the patent does not publish them and no production glass identity has been independently established. The model therefore does not make an APO or anomalous-partial-dispersion claim from nd/νd alone.
+Those proxies provide Sellmeier curves for visualization while the production suppliers remain unspecified. No nC, nF, ng, or dPgF values are claimed as patent data, and the model does not infer APO or anomalous-partial-dispersion status from the proxy choices.
 
 The glass coordinates still show the broad dispersion structure available to the designer: the positive front/focus coordinate 1.48749/70.2 is used three times, while the rear unit alternates several higher-index and lower-νd coordinates. Any stronger statement about specific melt families would exceed the evidence retained in the data file.
 
@@ -196,7 +198,7 @@ The patent explicitly assigns chromatic-correction work to the diffractive surfa
 
 Canon's production description is consistent with that architectural intent: the RF800mm F11 IS STM is specified as using gapless double-layer Diffractive Optics to reduce chromatic aberration. This is production-level functional evidence, not confirmation that Canon manufactured the exact patent glass coordinates or phase prescription unchanged.
 
-No apochromatic designation is inferred. The data file lacks per-element nC/nF/ng data, dPgF values, and defensible vendor Sellmeier identities, so only the patent's stated DOE correction strategy is claimed.
+No apochromatic designation is inferred. Compatible catalog proxies supply full Sellmeier curves for visualization, but they are not defensible production-glass identities; only the patent's stated DOE correction strategy is claimed.
 
 ## Conditional Expressions
 

@@ -54,7 +54,7 @@ const LENS_DATA = {
     "16 active elements / 12 groups (rear filter omitted)",
     "Patent f = 392.00 mm; traced EFL = 391.938 mm",
     "Design F/2.90; 2ω = 6.32°",
-    "Inner focus; transverse L3B image-stabilization group",
+    "Imageward L2 inner focus; transverse L3B image-stabilization group",
   ],
 
   focalLengthMarketing: 400,

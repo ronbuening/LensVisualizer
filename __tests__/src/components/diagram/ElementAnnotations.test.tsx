@@ -91,6 +91,41 @@ describe("ElementAnnotations", () => {
     expect(texts[0].getAttribute("y")).not.toBe(texts[1].getAttribute("y"));
   });
 
+  it("uses three rows for a dense run of element identifiers", () => {
+    const elements = Array.from({ length: 6 }, (_, index) => ({
+      ...mockElements[index % mockElements.length],
+      id: index + 1,
+      diagramLabel: `L2${index + 10}`,
+    }));
+    const denseLens = { ...mockLens, elements } as unknown as RuntimeLens;
+    const denseShapes = elements.map((element, index) => ({
+      eid: element.id,
+      z1: index,
+      z2: index + 0.5,
+    })) as unknown as ElementShape[];
+    const { container } = render(
+      <svg>
+        <ElementAnnotations
+          L={denseLens}
+          t={mockTheme}
+          shapes={denseShapes}
+          sx={identity}
+          sy={identity}
+          zPos={[0, 5, 6, 11, 12, 17]}
+          act={null}
+          showChromatic={false}
+        />
+      </svg>,
+    );
+
+    const rows = new Set(
+      Array.from(container.querySelectorAll("text"))
+        .filter((node) => node.textContent?.startsWith("L2"))
+        .map((node) => node.getAttribute("y")),
+    );
+    expect(rows.size).toBe(3);
+  });
+
   it("highlights the active element", () => {
     const { container } = render(
       <svg>
@@ -162,7 +197,7 @@ describe("ElementAnnotations", () => {
     const group = texts.find((node) => node.textContent === "FRONT")!;
     const doublet = texts.find((node) => node.textContent === "DOUBLET")!;
     expect(firstBadge.getAttribute("y")).not.toBe(secondBadge.getAttribute("y"));
-    expect(group.getAttribute("y")).toBe("-15");
+    expect(group.getAttribute("y")).toBe("-5");
     expect(doublet.getAttribute("y")).toBe("-30");
   });
 
@@ -280,5 +315,34 @@ describe("ElementAnnotations", () => {
     const doubletText = texts.find((t) => t.textContent === "DOUBLET");
     expect(doubletText).toBeTruthy();
     expect(doubletText!.getAttribute("fill")).toBe("#bbb");
+  });
+
+  it("staggers crowded doublet labels", () => {
+    const crowdedDoubletLens = {
+      ...mockLens,
+      doublets: [
+        { text: "D2", fromSurface: 0, toSurface: 1 },
+        { text: "D3", fromSurface: 1, toSurface: 2 },
+      ],
+    } as unknown as RuntimeLens;
+    const { container } = render(
+      <svg>
+        <ElementAnnotations
+          L={crowdedDoubletLens}
+          t={mockTheme}
+          shapes={mockShapes}
+          sx={identity}
+          sy={identity}
+          zPos={[0, 1, 2]}
+          act={null}
+          showChromatic={false}
+        />
+      </svg>,
+    );
+
+    const texts = Array.from(container.querySelectorAll("text"));
+    const d2 = texts.find((node) => node.textContent === "D2")!;
+    const d3 = texts.find((node) => node.textContent === "D3")!;
+    expect(d2.getAttribute("y")).not.toBe(d3.getAttribute("y"));
   });
 });

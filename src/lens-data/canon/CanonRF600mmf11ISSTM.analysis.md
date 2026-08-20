@@ -66,16 +66,16 @@ is applicable.
 
 ## Element-by-Element Analysis
 
-### D1 — E1 + E2, front cemented DO group
+### DOE — E1 + E2, front cemented diffractive pair
 
-**E1:** nd = 1.48749, νd = 70.2. Glass: 487702 class (vendor unresolved). Standalone f = +89.475 mm.
-**E2:** nd = 1.59551, νd = 39.2. Glass: 596392 class (vendor unresolved). Standalone f = -246.071 mm.
+**E1:** nd = 1.48749, νd = 70.2. Glass: 487702 patent coordinate; S-FSL5 catalog spectral proxy. Standalone f = +89.475 mm.
+**E2:** nd = 1.59551, νd = 39.2. Glass: 596392 patent coordinate; E-F8 catalog spectral proxy. Standalone f = -246.071 mm.
 
 E1 is the front biconvex positive element. Its rear surface, S2, is the cemented interface into E2 and also carries the
 patent's diffractive phase interaction. E2 is a biconcave negative element behind that interface. The isolated EFLs above
 refer to each refractive element considered separately in air and do not describe the power of the cemented pair.
 
-Including the refractive interface and the first-order diffractive power at S2, the complete D1 group has a net EFL of
+Including the refractive interface and the first-order diffractive power at S2, the complete DOE group has a net EFL of
 +133.273634 mm. In situ it is only the front portion of L1; the complete L1 unit includes the long air space and E3 and
 has the much weaker net EFL of +384.245675 mm. This distinction is important because neither the standalone element
 powers nor the cemented-pair power can be substituted for the power of the assembled L1 unit.
@@ -86,16 +86,16 @@ interaction, not as a geometrically deformed aspheric surface.
 
 ### E3 — negative meniscus completing L1
 
-nd = 1.83481, νd = 42.7. Glass: 835427 class (vendor unresolved). Standalone f = -97.029 mm.
+nd = 1.83481, νd = 42.7. Glass: 835427 patent coordinate; S-LAH55 catalog spectral proxy. Standalone f = -97.029 mm.
 
 E3 is an air-spaced negative meniscus at the rear of the fixed L1 unit. Its standalone power is negative, but it operates
-behind the strongly positive front DO group and a 59.15 mm air space. The complete L1 unit remains positive. The data
+behind the strongly positive front DOE group and a 59.15 mm air space. The complete L1 unit remains positive. The data
 file therefore assigns E3's functional role from its location and measured paraxial contribution without treating its
 isolated focal length as the power of L1.
 
 ### E4 — single-element positive focus unit L2
 
-nd = 1.48749, νd = 70.2. Glass: 487702 class (vendor unresolved). Standalone f = +201.044 mm.
+nd = 1.48749, νd = 70.2. Glass: 487702 patent coordinate; S-FSL5 catalog spectral proxy. Standalone f = +201.044 mm.
 
 E4 is a plano-convex positive element and is the entire L2 focus unit. Its isolated EFL reproduces the patent's published
 L2 value of 201.04 mm to about 0.004 mm. Patent ¶0036 states that the second lens unit moves toward the object when
@@ -106,8 +106,8 @@ behavior still depends on the two adjacent air gaps, which are the quantities va
 
 ### D2 — E5 + E6, first rear cemented pair
 
-**E5:** nd = 1.90043, νd = 37.4. Glass: 900374 class (vendor unresolved). Standalone f = -23.603 mm.
-**E6:** nd = 1.65412, νd = 39.7. Glass: 654397 class (vendor unresolved). Standalone f = +27.149 mm.
+**E5:** nd = 1.90043, νd = 37.4. Glass: 900374 patent coordinate; TAFD37A catalog spectral proxy. Standalone f = -23.603 mm.
+**E6:** nd = 1.65412, νd = 39.7. Glass: 654397 patent coordinate; N-KZFS5 catalog spectral proxy. Standalone f = +27.149 mm.
 
 E5 is biconcave and E6 is biconvex. They share S10 as a cemented interface, with the downstream E6 index and element ID
 used at the junction. The pair's net EFL is -341.995856 mm, far weaker in magnitude than either isolated element because
@@ -118,8 +118,8 @@ D2 is only one subassembly of L3. Its weak net negative power should not be conf
 
 ### D3 — E7 + E8, second rear cemented pair
 
-**E7:** nd = 1.65412, νd = 39.7. Glass: 654397 class (vendor unresolved). Standalone f = +28.540 mm.
-**E8:** nd = 1.59282, νd = 68.6. Glass: 593686 class (vendor unresolved). Standalone f = -34.943 mm.
+**E7:** nd = 1.65412, νd = 39.7. Glass: 654397 patent coordinate; N-KZFS5 catalog spectral proxy. Standalone f = +28.540 mm.
+**E8:** nd = 1.59282, νd = 68.6. Glass: 593686 patent coordinate; FCD515 catalog spectral proxy. Standalone f = -34.943 mm.
 
 E7 is biconvex positive and E8 is biconcave negative, sharing S13 as the cemented interface into E8. Considered as a
 cemented group, D3 has a net EFL of +146.121347 mm. Its positive group power therefore differs in sign from the complete
@@ -130,7 +130,7 @@ is assigned. The analysis therefore does not infer ED, APO, or anomalous-dispers
 
 ### E9 — air-spaced negative rear corrector
 
-nd = 1.80400, νd = 46.5. Glass: 804465 class (vendor unresolved). Standalone f = -39.371 mm.
+nd = 1.80400, νd = 46.5. Glass: 804465 patent coordinate; TAF3D catalog spectral proxy. Standalone f = -39.371 mm.
 
 E9 is a biconcave negative element after D3. It contributes substantial negative standalone power within L3. Its
 specific aberration-correction role is not individually stated by the patent, so the model limits the interpretation to
@@ -138,7 +138,7 @@ its measured power, position, and contribution to the assembled negative rear un
 
 ### E10 — final positive rear element
 
-nd = 1.59551, νd = 39.2. Glass: 596392 class (vendor unresolved). Standalone f = +98.012 mm.
+nd = 1.59551, νd = 39.2. Glass: 596392 patent coordinate; E-F8 catalog spectral proxy. Standalone f = +98.012 mm.
 
 E10 is the final biconvex positive element. It is followed by the long 138.06 mm air space to the image plane. In the
 assembled rear unit its positive power partly offsets the preceding negative members; the complete L3 unit nevertheless
@@ -147,25 +147,23 @@ remains negative at -86.514216 mm.
 ## Glass Identification and Selection
 
 The selected patent publishes only d-line refractive indices and Abbe numbers. It does not identify glass manufacturers
-or catalog products, and it does not publish per-element nC, nF, ng, or dPgF values. The Stage 1/2 catalog audit found
-multiple vendor materials at or near several of the same nd/νd coordinates. A vendor-specific assignment would therefore
-be stronger than the source permits.
+or production catalog products, and it does not publish per-element nC, nF, ng, or dPgF values. The catalog audit does,
+however, find a compatible full-coefficient spectral proxy for every physical element. The data file keeps the patent
+coordinate first and labels each proxy explicitly so that a catalog match is not mistaken for a production-glass claim.
 
-The final data file consequently uses six-digit optical classes and deliberately leaves the vendor unresolved:
+| Patent coordinate | nd | νd | Elements | Catalog spectral proxy |
+|---|---:|---:|---|---|
+| 487702 | 1.48749 | 70.2 | E1, E4 | S-FSL5 |
+| 596392 | 1.59551 | 39.2 | E2, E10 | E-F8 |
+| 835427 | 1.83481 | 42.7 | E3 | S-LAH55 |
+| 900374 | 1.90043 | 37.4 | E5 | TAFD37A |
+| 654397 | 1.65412 | 39.7 | E6, E7 | N-KZFS5 |
+| 593686 | 1.59282 | 68.6 | E8 | FCD515 |
+| 804465 | 1.80400 | 46.5 | E9 | TAF3D |
 
-| Authored class | nd | νd | Elements |
-|---|---:|---:|---|
-| 487702 class | 1.48749 | 70.2 | E1, E4 |
-| 596392 class | 1.59551 | 39.2 | E2, E10 |
-| 835427 class | 1.83481 | 42.7 | E3 |
-| 900374 class | 1.90043 | 37.4 | E5 |
-| 654397 class | 1.65412 | 39.7 | E6, E7 |
-| 593686 class | 1.59282 | 68.6 | E8 |
-| 804465 class | 1.80400 | 46.5 | E9 |
-
-These labels preserve the source coordinates without causing LensVisualizer to resolve the elements to unsupported
-vendor Sellmeier data. Because the file contains no verified line indices, dPgF values, or catalog-resolved Sellmeier
-models, no apochromatic or anomalous-partial-dispersion claim is made.
+Those proxies provide Sellmeier curves for visualization while the production suppliers remain unspecified. Because the
+patent does not identify the actual melts or publish partial-dispersion data, no apochromatic or anomalous-partial-
+dispersion claim is made.
 
 ## Focus Mechanism
 
@@ -232,10 +230,10 @@ can compensate longitudinal and lateral chromatic aberration generated by the fi
 power with that unit (¶0022-¶0024). The selected example places that diffractive interaction at the front cemented pair,
 where paraxial ray height is large.
 
-This patent statement is distinct from a glass-catalog claim. The authored element data have only nd and νd, so the
-refractive glasses are modeled at the Abbe-data quality tier. The analysis does not infer APO correction, secondary-
-spectrum behavior, or anomalous partial dispersion for any individual glass. The only explicitly wavelength-dependent
-higher-order mechanism represented beyond Abbe dispersion is the patent-specified diffractive phase surface.
+This patent statement is distinct from a production-glass claim. The authored patent data have only nd and νd, while
+compatible catalog proxies supply full Sellmeier curves for visualization. The analysis does not infer APO correction,
+secondary-spectrum behavior, or anomalous partial dispersion for any individual production glass. The patent-specified
+diffractive phase surface remains the only source-explicit higher-order chromatic mechanism.
 
 ## Conditional Expressions
 

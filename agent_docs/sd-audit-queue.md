@@ -162,7 +162,7 @@ better investment.
 | RF 100-500mm f/4.5-7.1 L IS USM | US 2021/0003832 Figure 3 at 600 dpi; terminal cemented group measured about 17.0-17.5 mm | done 2026-08-19; L82/L83 enlarged to 17.2/17.5/17.9 mm and screenshot recheck found no further >25% deviation |
 | EF 400mm f/2.8 L IS III USM | US 2019/0041605 Figure 2A at 600 dpi; reliable rows within about 14% | no change 2026-08-20; contaminated labels checked manually and modeled silhouette retained |
 | RF 600mm f/11 IS STM | JP 2020-173349 Figure 1 at 600 dpi; E3 measured 12.2 mm and E4 bracketed at 10.9-12.7 mm | done 2026-08-20; E3/E4 tightened to 12.2/12.7 mm with zero image-circle-floor failures |
-| RF 800mm f/11 IS STM | JP 2020-173349 Figure 2 at 600 dpi; dense DOE/stop/focus annotation checked manually | no change 2026-08-20; height order matches and reliable deviation remains below 25% |
+| RF 800mm f/11 IS STM | JP 2020-173349 Figure 2 at 600 dpi; dense DOE/stop/focus annotation checked manually | done 2026-08-20; clean E5 row increased from 13.5 to 16.1 mm with zero image-circle-floor failures |
 
 ## Section C — source blockers
 

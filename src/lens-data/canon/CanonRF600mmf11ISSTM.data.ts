@@ -37,9 +37,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  The front element is the intended vignetting boundary for the extreme   ║
  * ║  off-axis pupil edge; default LensVisualizer fractions remain contained. ║
  * ║                                                                            ║
- * ║  Glass note: the patent supplies nd and vd only. Vendor identity and     ║
- * ║  nC/nF/ng/dPgF are unresolved, so elements retain six-digit class labels ║
- * ║  and no vendor spectral data are invented.                               ║
+ * ║  Glass note: the patent supplies nd and vd only. Elements retain their   ║
+ * ║  six-digit patent coordinates and identify the compatible catalog glass ║
+ * ║  used as the spectral proxy; production suppliers remain unspecified.    ║
  * ║                                                                            ║
  * ║  Production optical IS is product metadata only; Example 1 publishes no  ║
  * ║  decentered stabilization motion, so no IS optical movement is modeled.  ║
@@ -57,7 +57,7 @@ const LENS_DATA = {
     "600mm f/11 (MARKETED)",
     "EXAMPLE 1: 581.65mm f/11.31",
     "S2 DIFFRACTIVE PHASE SURFACE",
-    "SINGLE-ELEMENT INNER FOCUS",
+    "OBJECTWARD SINGLE-ELEMENT INNER FOCUS",
   ],
   focalLengthMarketing: 600,
   focalLengthDesign: 581.639114,
@@ -82,9 +82,9 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.2,
       fl: 89.475284,
-      glass: "487702 class (vendor unresolved)",
-      cemented: "D1",
-      role: "Front positive element; the rear cemented interface also carries the DO phase interaction.",
+      glass: "487702 patent coordinate; S-FSL5 catalog spectral proxy (production supplier unspecified)",
+      cemented: "DOE",
+      role: "Front positive element; the rear cemented interface also carries the DOE phase interaction.",
     },
     {
       id: 2,
@@ -94,9 +94,9 @@ const LENS_DATA = {
       nd: 1.59551,
       vd: 39.2,
       fl: -246.071357,
-      glass: "596392 class (vendor unresolved)",
-      cemented: "D1",
-      role: "Negative partner in the front cemented DO group.",
+      glass: "596392 patent coordinate; E-F8 catalog spectral proxy (production supplier unspecified)",
+      cemented: "DOE",
+      role: "Negative partner in the front cemented DOE group.",
     },
     {
       id: 3,
@@ -106,7 +106,7 @@ const LENS_DATA = {
       nd: 1.83481,
       vd: 42.7,
       fl: -97.028769,
-      glass: "835427 class (vendor unresolved)",
+      glass: "835427 patent coordinate; S-LAH55 catalog spectral proxy (production supplier unspecified)",
       role: "Rear element of fixed positive lens unit L1.",
     },
     {
@@ -117,7 +117,7 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.2,
       fl: 201.044124,
-      glass: "487702 class (vendor unresolved)",
+      glass: "487702 patent coordinate; S-FSL5 catalog spectral proxy (production supplier unspecified)",
       role: "Single translating positive focus element forming lens unit L2.",
     },
     {
@@ -128,7 +128,7 @@ const LENS_DATA = {
       nd: 1.90043,
       vd: 37.4,
       fl: -23.602837,
-      glass: "900374 class (vendor unresolved)",
+      glass: "900374 patent coordinate; TAFD37A catalog spectral proxy (production supplier unspecified)",
       cemented: "D2",
       role: "Negative member of the first rear cemented doublet in lens unit L3.",
     },
@@ -140,7 +140,7 @@ const LENS_DATA = {
       nd: 1.65412,
       vd: 39.7,
       fl: 27.148865,
-      glass: "654397 class (vendor unresolved)",
+      glass: "654397 patent coordinate; N-KZFS5 catalog spectral proxy (production supplier unspecified)",
       cemented: "D2",
       role: "Positive member of the first rear cemented doublet in lens unit L3.",
     },
@@ -152,7 +152,7 @@ const LENS_DATA = {
       nd: 1.65412,
       vd: 39.7,
       fl: 28.539796,
-      glass: "654397 class (vendor unresolved)",
+      glass: "654397 patent coordinate; N-KZFS5 catalog spectral proxy (production supplier unspecified)",
       cemented: "D3",
       role: "Positive member of the second rear cemented doublet in lens unit L3.",
     },
@@ -164,7 +164,7 @@ const LENS_DATA = {
       nd: 1.59282,
       vd: 68.6,
       fl: -34.943037,
-      glass: "593686 class (vendor unresolved)",
+      glass: "593686 patent coordinate; FCD515 catalog spectral proxy (production supplier unspecified)",
       cemented: "D3",
       role: "Negative member of the second rear cemented doublet in lens unit L3.",
     },
@@ -176,7 +176,7 @@ const LENS_DATA = {
       nd: 1.804,
       vd: 46.5,
       fl: -39.371451,
-      glass: "804465 class (vendor unresolved)",
+      glass: "804465 patent coordinate; TAF3D catalog spectral proxy (production supplier unspecified)",
       role: "Air-spaced negative rear corrector in lens unit L3.",
     },
     {
@@ -187,7 +187,7 @@ const LENS_DATA = {
       nd: 1.59551,
       vd: 39.2,
       fl: 98.012225,
-      glass: "596392 class (vendor unresolved)",
+      glass: "596392 patent coordinate; E-F8 catalog spectral proxy (production supplier unspecified)",
       role: "Final positive rear element ahead of the long back-focus space.",
     },
   ],
@@ -251,7 +251,7 @@ const LENS_DATA = {
     { text: "L3 (-)", fromSurface: "STO", toSurface: "18" },
   ],
   doublets: [
-    { text: "D1 / DO", fromSurface: "1", toSurface: "3" },
+    { text: "DOE", fromSurface: "1", toSurface: "3" },
     { text: "D2", fromSurface: "9", toSurface: "11" },
     { text: "D3", fromSurface: "12", toSurface: "14" },
   ],

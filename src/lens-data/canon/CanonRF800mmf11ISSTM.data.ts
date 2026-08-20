@@ -32,12 +32,13 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ actual spherical rim slope, shared-gap intrusion, and comparison with     ║
  * ║ patent Fig. 2 and Canon's official optical block diagram. Outer off-axis  ║
  * ║ rays may vignette at the front element; no default off-axis ray first     ║
- * ║ clips at a cemented interface.                                             ║
+ * ║ clips at a cemented interface. A clean 600 dpi Fig. 2 row sets the E5     ║
+ * ║ focus element to 16.1 mm.                                                  ║
  * ║                                                                            ║
  * ║ GLASS: the patent supplies only nd/νd and no vendor identities or line    ║
- * ║ indices. Generic six-digit coordinate codes are used instead of           ║
- * ║ speculative vendor names. nC/nF/ng/dPgF are therefore intentionally       ║
- * ║ omitted.                                                                   ║
+ * ║ indices. Elements retain their six-digit patent coordinates and identify ║
+ * ║ the compatible catalog spectral proxy; production suppliers remain       ║
+ * ║ unspecified.                                                               ║
  * ║                                                                            ║
  * ║ SCALE: s = 1.0; no dimensional or diffractive-coefficient scaling.        ║
  * ╚════════════════════════════════════════════════════════════════════════════╝
@@ -54,7 +55,8 @@ const LENS_DATA = {
     "800mm f/11 (MARKETED)",
     "f = 776.37 mm / F/11.31 (PATENT)",
     "2ω = 3.20°",
-    "DIFFRACTIVE SURFACE 4",
+    "S4 DIFFRACTIVE PHASE SURFACE",
+    "OBJECTWARD SINGLE-ELEMENT INNER FOCUS",
   ],
 
   focalLengthMarketing: 800,
@@ -80,7 +82,7 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.2,
       fl: 189.285305,
-      glass: "487702 — optical-glass coordinate (vendor unresolved)",
+      glass: "487702 patent coordinate; S-FSL5 catalog spectral proxy (production supplier unspecified)",
       role: "Front positive collector in fixed unit L1.",
     },
     {
@@ -91,9 +93,9 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.2,
       fl: 119.44558,
-      glass: "487702 — optical-glass coordinate (vendor unresolved)",
+      glass: "487702 patent coordinate; S-FSL5 catalog spectral proxy (production supplier unspecified)",
       role: "Positive component of the cemented diffractive doublet in L1.",
-      cemented: "DO",
+      cemented: "DOE",
     },
     {
       id: 3,
@@ -103,9 +105,9 @@ const LENS_DATA = {
       nd: 1.744,
       vd: 44.8,
       fl: -91.715811,
-      glass: "744448 — optical-glass coordinate (vendor unresolved)",
+      glass: "744448 patent coordinate; J-LAF2 catalog spectral proxy (production supplier unspecified)",
       role: "Negative partner of the cemented diffractive doublet; surface 4 carries the DOE phase polynomial.",
-      cemented: "DO",
+      cemented: "DOE",
     },
     {
       id: 4,
@@ -115,7 +117,7 @@ const LENS_DATA = {
       nd: 1.6968,
       vd: 55.5,
       fl: -152.72303,
-      glass: "697555 — optical-glass coordinate (vendor unresolved)",
+      glass: "697555 patent coordinate; J-LAK14 catalog spectral proxy (production supplier unspecified)",
       role: "Negative meniscus completing fixed unit L1.",
     },
     {
@@ -126,7 +128,7 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.2,
       fl: 169.053213,
-      glass: "487702 — optical-glass coordinate (vendor unresolved)",
+      glass: "487702 patent coordinate; S-FSL5 catalog spectral proxy (production supplier unspecified)",
       role: "Single positive L2 inner-focus element; translates objectward for close focus.",
     },
     {
@@ -137,7 +139,7 @@ const LENS_DATA = {
       nd: 1.90043,
       vd: 37.4,
       fl: -23.602837,
-      glass: "900374 — optical-glass coordinate (vendor unresolved)",
+      glass: "900374 patent coordinate; TAFD37A catalog spectral proxy (production supplier unspecified)",
       role: "Negative component of the first cemented doublet in rear unit L3.",
       cemented: "D2",
     },
@@ -149,7 +151,7 @@ const LENS_DATA = {
       nd: 1.65412,
       vd: 39.7,
       fl: 27.148865,
-      glass: "654397 — optical-glass coordinate (vendor unresolved)",
+      glass: "654397 patent coordinate; N-KZFS5 catalog spectral proxy (production supplier unspecified)",
       role: "Positive partner of the first cemented doublet in L3.",
       cemented: "D2",
     },
@@ -161,7 +163,7 @@ const LENS_DATA = {
       nd: 1.65412,
       vd: 39.7,
       fl: 28.539796,
-      glass: "654397 — optical-glass coordinate (vendor unresolved)",
+      glass: "654397 patent coordinate; N-KZFS5 catalog spectral proxy (production supplier unspecified)",
       role: "Positive component of the second cemented doublet in L3.",
       cemented: "D3",
     },
@@ -173,7 +175,7 @@ const LENS_DATA = {
       nd: 1.59282,
       vd: 68.6,
       fl: -34.943037,
-      glass: "593686 — optical-glass coordinate (vendor unresolved)",
+      glass: "593686 patent coordinate; FCD515 catalog spectral proxy (production supplier unspecified)",
       role: "Negative partner of the second cemented doublet in L3.",
       cemented: "D3",
     },
@@ -185,7 +187,7 @@ const LENS_DATA = {
       nd: 1.804,
       vd: 46.5,
       fl: -39.371451,
-      glass: "804465 — optical-glass coordinate (vendor unresolved)",
+      glass: "804465 patent coordinate; TAF3D catalog spectral proxy (production supplier unspecified)",
       role: "Negative rear singlet in L3.",
     },
     {
@@ -196,7 +198,7 @@ const LENS_DATA = {
       nd: 1.59551,
       vd: 39.2,
       fl: 98.012225,
-      glass: "596392 — optical-glass coordinate (vendor unresolved)",
+      glass: "596392 patent coordinate; E-F8 catalog spectral proxy (production supplier unspecified)",
       role: "Positive rear singlet completing L3.",
     },
   ],
@@ -229,8 +231,8 @@ const LENS_DATA = {
     { label: "5", R: 105.769, d: 70.95, nd: 1.0, elemId: 0, sd: 31.5 },
     { label: "6", R: -53.038, d: 1.35, nd: 1.6968, elemId: 4, sd: 17.0 },
     { label: "7", R: -106.842, d: 38.42721463001324, nd: 1.0, elemId: 0, sd: 17.0 },
-    { label: "8", R: 69.898, d: 2.4, nd: 1.48749, elemId: 5, sd: 13.5 },
-    { label: "9", R: 455.147, d: 18.90278536998676, nd: 1.0, elemId: 0, sd: 13.5 },
+    { label: "8", R: 69.898, d: 2.4, nd: 1.48749, elemId: 5, sd: 16.1 },
+    { label: "9", R: 455.147, d: 18.90278536998676, nd: 1.0, elemId: 0, sd: 16.1 },
     { label: "STO", R: 1e15, d: 6.44, nd: 1.0, elemId: 0, sd: 8.323960831362765 },
     { label: "11", R: -42.741, d: 1.0, nd: 1.90043, elemId: 6, sd: 9.6 },
     { label: "12", R: 42.741, d: 3.85, nd: 1.65412, elemId: 7, sd: 9.6 },
@@ -264,14 +266,14 @@ const LENS_DATA = {
   ],
 
   doublets: [
-    { text: "DO", fromSurface: "3", toSurface: "5" },
+    { text: "DOE", fromSurface: "3", toSurface: "5" },
     { text: "D2", fromSurface: "11", toSurface: "13" },
     { text: "D3", fromSurface: "14", toSurface: "16" },
   ],
 
   closeFocusM: 6.0,
   focusDescription:
-    "CONSTRAINED_RECONSTRUCTION: the patent infinity row conflicts with its own cardinal data. The modeled infinity state conserves d7+d9 = 57.33 mm and solves the single L2 translation for EFL = 776.37 mm (d7 = 38.42721463001324 mm, d9 = 18.90278536998676 mm). The published near row 21.25/36.08 mm is retained and traces to about 6.014 m from the image plane; Canon specifies a 6.0 m production MFD.",
+    "CONSTRAINED_RECONSTRUCTION: the patent infinity row conflicts with its own cardinal data. The modeled infinity state conserves d7+d9 = 57.33 mm and solves the single L2 translation for EFL = 776.37 mm (d7 = 38.42721463001324 mm, d9 = 18.90278536998676 mm). L2 moves objectward toward close focus. The published near row 21.25/36.08 mm is retained and traces to about 6.014 m from the image plane; Canon specifies a 6.0 m production MFD.",
 
   /* ── Fixed aperture ── */
   nominalFno: 11.31,

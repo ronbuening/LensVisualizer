@@ -21,6 +21,8 @@ Patent: US 2019/0041605 A1, Numerical Data 2 / Figure 2A
 
 - Verified the display name `CANON EF 400mm f/2.8 L IS III USM` against Canon's product identity and the repository's spacing policy.
 - Normalized the structured assignee to the repository-wide `Canon Inc.` spelling; the source reference continues to record the patent's printed applicant name, Canon Kabushiki Kaisha.
+- Verified Figure 2A's infinity-to-proximity arrow against the runtime motion profile: only L2 moves, by +19.078267603 mm imageward; the fixed L1/L3 units do not acquire zoom travel.
+- Kept the patent's D1-D4 pair labels. The shared annotation renderer now staggers close D2/D3 captions instead of allowing the two labels to collide.
 
 ### Verification
 
