@@ -178,7 +178,7 @@ The patent itself names no glass manufacturer. It publishes only rounded d-line 
 
 The maximum coordinate difference between a selected proxy and the patent value is $|\Delta n_d|=0.000470$; all selected proxies match the patent $\nu_d$ values to the quoted precision. The line indices and $dP_{gF}$ stored on the elements reproduce the selected catalog rows to the authored precision. These fields therefore permit line-index-based dispersion modeling, but they do not establish that Canon used the named catalog melts.
 
-The strongest production-level glass statement that can be made is Canon's own count of two UD elements.[1][2] The patent's two $1.497/81.54$ elements, L8 and L10, are consistent with that count and are modeled with S-FPL51 coordinate proxies. No apochromatic designation is inferred, and the proxy $dP_{gF}$ values are not transferred into a claim about the commercial lens's actual glass chemistry.
+The strongest production-level glass statement that can be made is Canon's own count of two UD elements.[1][2] The patent's two $1.497/81.54$ elements, L8 and L10, are consistent with that count and are modeled with S-FPL51 coordinate proxies. They are tagged as inferred anomalous-dispersion elements in the diagram so that production-supported special-element count is visible without turning it into a patent melt identification. No apochromatic designation is inferred, and the proxy $dP_{gF}$ values are not transferred into a claim about the commercial lens's actual glass chemistry.
 
 ## Focus Mechanism
 
@@ -186,7 +186,7 @@ The patent describes a two-unit internal focusing mechanism. B2 and B4 move inde
 
 Canon's production documentation describes a Nano USM driving a floating-focus unit and a VCM driving a rear-focus unit, with the two units controlled independently or together.[2][3] This is consistent with the patent's two moving units, but the commercial motor labels are not assigned directly to B2 and B4 in the patent, so no one-to-one motor mapping is asserted here.
 
-Example 2 publishes only its infinity prescription. It provides no numerical close-focus spacing table, no total travel for B2 or B4, and no intermediate focus states. The data file therefore uses `var: {}` and `varLabels: []`; its focus status is **NO_INTERNAL_RECONSTRUCTION**. No internal close-focus geometry is invented from the commercial minimum focusing distance.
+Example 2 publishes only its infinity prescription. It provides no numerical close-focus spacing table, no total travel for B2 or B4, and no intermediate focus states. The data file therefore uses `var: {}` and `varLabels: []`; its focus status is **NO_INTERNAL_RECONSTRUCTION**. No internal close-focus geometry is invented from the commercial minimum focusing distance. The group captions identify both published directions as `OBJECTWARD FOCUS`, but the viewer correctly exposes neither a focus slider nor a zoom slider for this prime.
 
 The stored `closeFocusM = 0.28` m is Canon production metadata only.[1] It does not imply that the modeled infinity prescription has been solved to 0.28 m, nor does it provide enough information to determine two independent internal translations uniquely.
 
@@ -249,6 +249,8 @@ The computed effective focal length is 33.942091880 mm, compared with the patent
 The aperture stop is source surface 15, labeled `STO` in the data model. Patent $\Phi$ is defined as an effective diameter, not a physical diaphragm diameter (¶0078). If the published stop $\Phi=27.298$ mm were treated as the physical aperture, the rounded prescription would model approximately F/1.425 rather than F/1.46. The authored physical stop semi-diameter is therefore an inferred value of 13.324145 mm, solved from the final prescription to reproduce the design F-number. The independently recomputed value is F/1.459999950.
 
 The optical-surface semi-diameters otherwise begin from patent $\Phi/2$ as source-derived effective radii. One surface is intentionally adjusted: source surface 26 uses `sd = 16.85` mm rather than $17.0725$ mm. At the full source-derived value, the 26→27 gap remained physically open but exceeded the current 0.90 shared-band sag-intrusion policy. At the authored value, the 6.839 mm vertex gap retains 0.697420218 mm minimum sampled clearance and an intrusion fraction of 0.898023071. This is a rendering/clearance model choice, not a change to the prescription's optical power.
+
+A screenshot-triggered follow-up reran Figure 4 at 600 dpi. The median figure/data ratio is **1.043**, and all 14 clean element comparisons remain within 13.4%; the rear L8 and L14 shape-normalized comparisons are about 1.08 and 1.09. Those differences remain below the project's 15% figure-noise threshold, so no further semi-diameter adjustment was justified.
 
 All 14 sampled element edge thicknesses remain positive, all active air gaps avoid physical contact, and the maximum actual rim-slope angle is 42.036998°. All three aspheres have $K=0$, so no positive-$K$ conic-height limit is active. The surface-by-surface Petzval sum, using $\phi/(nn')$ at every refracting interface, is +0.001820226987 mm$^{-1}$, corresponding to a radius magnitude of 549.382031 mm under the project's sign convention.
 

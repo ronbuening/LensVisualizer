@@ -187,6 +187,10 @@ const LENS_DATA = {
       vd: 81.54,
       fl: 154.170372,
       glass: "S-FPL51 (OHARA) coordinate proxy; patent vendor unresolved",
+      apd: "inferred",
+      apdNote:
+        "First of the two patent 1.497/81.54 elements correlated with Canon's published two-UD production count.",
+      role: "First product-correlated UD element in the moving B4 unit.",
       nC: 1.49514,
       nF: 1.50123,
       ng: 1.50451,
@@ -217,6 +221,10 @@ const LENS_DATA = {
       vd: 81.54,
       fl: 43.211274,
       glass: "S-FPL51 (OHARA) coordinate proxy; patent vendor unresolved",
+      apd: "inferred",
+      apdNote:
+        "Second of the two patent 1.497/81.54 elements correlated with Canon's published two-UD production count.",
+      role: "Second product-correlated UD element in the moving B4 unit.",
       nC: 1.49514,
       nF: 1.50123,
       ng: 1.50451,
@@ -348,9 +356,9 @@ const LENS_DATA = {
 
   groups: [
     { text: "B1", fromSurface: "1", toSurface: "9" },
-    { text: "B2", fromSurface: "11", toSurface: "12" },
+    { text: "B2 (OBJECTWARD FOCUS)", fromSurface: "11", toSurface: "12" },
     { text: "B3", fromSurface: "13", toSurface: "14" },
-    { text: "B4", fromSurface: "16", toSurface: "23A" },
+    { text: "B4 (OBJECTWARD FOCUS)", fromSurface: "16", toSurface: "23A" },
     { text: "B5", fromSurface: "24", toSurface: "28" },
   ],
 

@@ -66,7 +66,7 @@ group powers are independent computations from those same surfaces.
 
 ### E1 — Negative Meniscus
 
-$n_d=1.59349$, $\nu_d=67.0$. Glass: 593670 class (vendor unresolved). Standalone $f=-52.148$ mm.
+$n_d=1.59349$, $\nu_d=67.0$. Glass model: J-PSKH4 equivalent for patent 593670; production supplier unspecified. Standalone $f=-52.148$ mm.
 
 E1 is the first element of L1 and supplies negative front-end power while retaining relatively high Abbe number. Its shape
 matches the negative-meniscus feature described for the first group in ¶0032. The patent assigns the aberration-control
@@ -75,7 +75,7 @@ claim is made here.
 
 ### E2 — Biconcave Negative
 
-$n_d=1.54814$, $\nu_d=45.8$. Glass: 548458 light-flint class (vendor unresolved). Standalone $f=-35.632$ mm.
+$n_d=1.54814$, $\nu_d=45.8$. Glass model: LLF1 equivalent for patent 548458; production supplier unspecified. Standalone $f=-35.632$ mm.
 
 E2 adds a second negative component inside L1 before the strong positive rear portion of the group. Its lower Abbe number
 than E1 broadens the dispersion palette available to the front group, but the patent does not publish a separate material
@@ -83,7 +83,7 @@ rationale for E2.
 
 ### E3 — Biconvex Positive, first member of D1
 
-$n_d=1.76385$, $\nu_d=48.5$. Glass: 764485 high-index crown class (vendor unresolved). Standalone $f=+24.870$ mm.
+$n_d=1.76385$, $\nu_d=48.5$. Glass model: S-LAH96 equivalent for patent 764485; production supplier unspecified. Standalone $f=+24.870$ mm.
 
 E3 begins the positive cemented component D1. The high refractive index permits substantial positive power within a compact
 center thickness. E3 should not be interpreted in isolation when discussing the component's installed behavior: its
@@ -91,7 +91,7 @@ cemented partner E4 changes the net power substantially.
 
 ### E4 — Negative Meniscus, second member of D1
 
-$n_d=1.85478$, $\nu_d=24.8$. Glass: 855248 high-index flint class (vendor unresolved). Standalone $f=-57.253$ mm.
+$n_d=1.85478$, $\nu_d=24.8$. Glass model: S-NBH56 equivalent for patent 855248; production supplier unspecified. Standalone $f=-57.253$ mm.
 
 E4 is cemented directly to E3. As a pair, D1 has a computed net focal length of +43.193 mm, distinct from either
 standalone element focal length. The large dispersion contrast between E3 and E4 is consistent with a cemented
@@ -100,7 +100,7 @@ formula.
 
 ### E5 — Biconvex Positive
 
-$n_d=2.00069$, $\nu_d=25.5$. Glass: 001255 high-index class (vendor unresolved). Standalone $f=+43.795$ mm.
+$n_d=2.00069$, $\nu_d=25.5$. Glass model: TAFD40L-W equivalent for patent 001255; production supplier unspecified. Standalone $f=+43.795$ mm.
 
 E5 is the final element of L1. Its index is the highest in the front group and it contributes positive power after the two
 front negatives and D1. The combined in-situ L1 group remains positive at +38.489 mm even though the first two standalone
@@ -108,7 +108,7 @@ elements are negative.
 
 ### E6 — Negative Meniscus; L2 Focus Group
 
-$n_d=1.62004$, $\nu_d=36.3$. Glass: 620363 flint class (vendor unresolved). Standalone and group
+$n_d=1.62004$, $\nu_d=36.3$. Glass model: E-F2 equivalent for patent 620363; production supplier unspecified. Standalone and group
 $f=-167.878$ mm.
 
 E6 alone constitutes L2, so its standalone focal length is also the L2 group focal length. From infinity to the published
@@ -118,14 +118,14 @@ focus travel and focus-induced variation in field angle (¶0027-¶0028).
 
 ### E7 — Biconvex Positive, first member of D2
 
-$n_d=1.76385$, $\nu_d=48.5$. Glass: 764485 high-index crown class (vendor unresolved). Standalone $f=+27.259$ mm.
+$n_d=1.76385$, $\nu_d=48.5$. Glass model: S-LAH96 equivalent for patent 764485; production supplier unspecified. Standalone $f=+27.259$ mm.
 
 E7 begins the cemented L3 component immediately behind the aperture stop. Its strongly positive standalone power is
 substantially moderated by E8.
 
 ### E8 — Negative Meniscus, second member of D2
 
-$n_d=1.72047$, $\nu_d=34.7$. Glass: 720347 special-flint class (vendor unresolved). Standalone $f=-33.679$ mm.
+$n_d=1.72047$, $\nu_d=34.7$. Glass model: N-KZFS8 equivalent for patent 720347; production supplier unspecified. Standalone $f=-33.679$ mm.
 
 E7 and E8 form D2 with a computed net focal length of +143.518 mm. Because D2 is the only refractive component in L3,
 that cemented net focal length is also the L3 functional-group focal length. L3 is axially fixed in the published focus
@@ -134,7 +134,7 @@ lens, so the data model leaves L3 centered and fixed.
 
 ### E9 — Positive Meniscus, first member of D3
 
-$n_d=1.49700$, $\nu_d=81.5$. Glass: 497816 low-dispersion class (vendor unresolved). Standalone $f=+55.176$ mm.
+$n_d=1.49700$, $\nu_d=81.5$. Glass model: H-FK61 equivalent for patent 497816; production supplier unspecified. Standalone $f=+55.176$ mm.
 
 E9 is the first element of the moving L4 group and the first of the two $n_d=1.49700$, $\nu_d=81.5$ elements in the
 prescription. Canon's production specification lists two UD lenses; the one-to-one correspondence with E9 and E11 is part
@@ -142,7 +142,7 @@ of the production correlation, not proof of a particular glass supplier.
 
 ### E10 — Biconcave Negative, second member of D3
 
-$n_d=1.77047$, $\nu_d=29.7$. Glass: 770297 high-index flint class (vendor unresolved). Standalone $f=-20.215$ mm.
+$n_d=1.77047$, $\nu_d=29.7$. Glass model: NBFD29 equivalent for patent 770297; production supplier unspecified. Standalone $f=-20.215$ mm.
 
 E10 is cemented to E9. D3 as a whole is negative, with a computed net focal length of -29.514 mm. This is a useful example
 of why standalone element power, cemented-component power, and functional-group power must be kept separate: although D3
@@ -150,7 +150,7 @@ is negative, the complete L4 group is positive once E11 and E12 are included.
 
 ### E11 — Biconvex Positive
 
-$n_d=1.49700$, $\nu_d=81.5$. Glass: 497816 low-dispersion class (vendor unresolved). Standalone $f=+39.737$ mm.
+$n_d=1.49700$, $\nu_d=81.5$. Glass model: H-FK61 equivalent for patent 497816; production supplier unspecified. Standalone $f=+39.737$ mm.
 
 E11 is the second low-dispersion positive element in L4. Together with E9 it supplies the high-Abbe positive material that
 satisfies the patent's $\nu_{4p}$ condition. The final data preserve the source-table value $\nu_d=81.5$; the patent's
@@ -158,7 +158,7 @@ condition table gives 81.54 at higher precision.
 
 ### E12 — Biconvex Positive with Two Aspherical Surfaces
 
-$n_d=1.80400$, $\nu_d=46.5$. Glass: 804465 high-index crown class (vendor unresolved). Standalone $f=+37.877$ mm.
+$n_d=1.80400$, $\nu_d=46.5$. Glass model: TAF3D equivalent for patent 804465; production supplier unspecified. Standalone $f=+37.877$ mm.
 
 E12 is the last element of L4 and carries the only two aspherical surfaces in Numerical Example 3, `21A` and `22A`. Its
 placement at the rear of the moving positive group makes it the only explicitly nonlinear-sag correction element within
@@ -170,14 +170,14 @@ focus it moves 2.87 mm toward the object while L2 moves in the opposite directio
 
 ### E13 — Biconvex Positive, first member of D4
 
-$n_d=1.92286$, $\nu_d=20.9$. Glass: 923209 high-index flint class (vendor unresolved). Standalone $f=+53.875$ mm.
+$n_d=1.92286$, $\nu_d=20.9$. Glass model: N-SF66 equivalent for patent 923209; production supplier unspecified. Standalone $f=+53.875$ mm.
 
 E13 begins the fixed rear group L5 and is cemented to E14. Its very high index and low Abbe number place it at the dense,
 dispersive end of this prescription's glass-coordinate range.
 
 ### E14 — Biconcave Negative, second member of D4
 
-$n_d=1.77047$, $\nu_d=29.7$. Glass: 770297 high-index flint class (vendor unresolved). Standalone $f=-36.935$ mm.
+$n_d=1.77047$, $\nu_d=29.7$. Glass model: NBFD29 equivalent for patent 770297; production supplier unspecified. Standalone $f=-36.935$ mm.
 
 E14 reverses the sign of the D4 component: the cemented E13+E14 pair has a computed net focal length of -127.223 mm.
 This negative component forms the first part of the rear negative functional group rather than acting as an isolated
@@ -185,7 +185,7 @@ negative element.
 
 ### E15 — Negative Meniscus
 
-$n_d=1.65412$, $\nu_d=39.7$. Glass: 654397 special-flint class (vendor unresolved). Standalone $f=-170.525$ mm.
+$n_d=1.65412$, $\nu_d=39.7$. Glass model: N-KZFS5 equivalent for patent 654397; production supplier unspecified. Standalone $f=-170.525$ mm.
 
 E15 is the final active glass element and the second negative component in L5. The complete L5 group has a computed focal
 length of -72.416 mm. This element directly corresponds to the Example 3 description in ¶0061: the optical system uses a
@@ -194,39 +194,41 @@ rearmost negative meniscus convex toward the image side to make field-curvature 
 ## Glass Identification and Selection
 
 The patent publishes only d-line refractive index and Abbe number for each material. It does not identify a glass maker,
-publish per-element C/F/g-line indices, or provide $\Delta P_{gF}$. The final data therefore use supplier-neutral
-coordinate/class labels. A multi-vendor catalog comparison found coordinate-compatible families for every active glass,
-but a coordinate match is not supplier evidence and no vendor Sellmeier model is authored.
+publish per-element C/F/g-line indices, or provide $\Delta P_{gF}$. A multi-vendor catalog comparison found a compatible
+Sellmeier curve for every active element. The final labels now name those selected model curves explicitly while stating
+that the production supplier is unspecified; no coordinate match is treated as supplier evidence.
 
-| Data glass label | $n_d$ | $\nu_d$ | Elements | Data-level interpretation |
+| Catalog-equivalent model | $n_d$ | $\nu_d$ | Elements | Data-level interpretation |
 |---|---:|---:|---|---|
-| 593670 class | 1.59349 | 67.0 | E1 | relatively low-dispersion front negative material |
-| 548458 light-flint class | 1.54814 | 45.8 | E2 | moderate-dispersion negative material |
-| 764485 high-index crown class | 1.76385 | 48.5 | E3, E7 | high-index positive material in D1 and D2 |
-| 855248 high-index flint class | 1.85478 | 24.8 | E4 | dense, high-dispersion D1 partner |
-| 001255 high-index class | 2.00069 | 25.5 | E5 | very-high-index front positive material |
-| 620363 flint class | 1.62004 | 36.3 | E6 | L2 negative focus element |
-| 720347 special-flint class | 1.72047 | 34.7 | E8 | negative D2 partner |
-| 497816 low-dispersion class | 1.49700 | 81.5 | E9, E11 | high-Abbe positive material in L4 |
-| 770297 high-index flint class | 1.77047 | 29.7 | E10, E14 | negative partners in D3 and D4 |
-| 804465 high-index crown class | 1.80400 | 46.5 | E12 | aspherical positive element in L4 |
-| 923209 high-index flint class | 1.92286 | 20.9 | E13 | dense positive member of D4 |
-| 654397 special-flint class | 1.65412 | 39.7 | E15 | rearmost negative meniscus |
+| J-PSKH4 for patent 593670 | 1.59349 | 67.0 | E1 | relatively low-dispersion front negative model |
+| LLF1 for patent 548458 | 1.54814 | 45.8 | E2 | moderate-dispersion negative model |
+| S-LAH96 for patent 764485 | 1.76385 | 48.5 | E3, E7 | high-index positive model in D1 and D2 |
+| S-NBH56 for patent 855248 | 1.85478 | 24.8 | E4 | dense, high-dispersion D1 partner model |
+| TAFD40L-W for patent 001255 | 2.00069 | 25.5 | E5 | very-high-index front positive model |
+| E-F2 for patent 620363 | 1.62004 | 36.3 | E6 | L2 negative focus-element model |
+| N-KZFS8 for patent 720347 | 1.72047 | 34.7 | E8 | negative D2-partner model |
+| H-FK61 for patent 497816 | 1.49700 | 81.5 | E9, E11 | high-Abbe positive model in L4 |
+| NBFD29 for patent 770297 | 1.77047 | 29.7 | E10, E14 | negative-partner model in D3 and D4 |
+| TAF3D for patent 804465 | 1.80400 | 46.5 | E12 | aspherical positive model in L4 |
+| N-SF66 for patent 923209 | 1.92286 | 20.9 | E13 | dense positive model in D4 |
+| N-KZFS5 for patent 654397 | 1.65412 | 39.7 | E15 | rearmost negative-meniscus model |
 
 The strongest chromatic-design signal available directly from the prescription is the pair E9/E11 at
 $n_d=1.49700$, $\nu_d=81.5$ in L4, set against higher-index, lower-Abbe neighbors. Canon separately markets two UD
 lenses in the production optical design. That correspondence supports the selected production correlation, but it does
-not establish the melt supplier or anomalous partial-dispersion behavior.
+not establish the melt supplier or anomalous partial-dispersion behavior. The diagram tags E9 and E11 as inferred UD
+correlations so the production-supported special-element count is visible without presenting it as a patent material ID.
 
-No APO designation is inferred. Without source-published line indices, $dP_{gF}$, or a uniquely justified catalog
-Sellmeier assignment, the data support only d-line/Abbe-level discussion of chromatic strategy.
+No APO designation is inferred. The catalog-equivalent curves make C/F/g color modeling complete for all 15 elements,
+but their line indices describe the selected model melts, not source-published Canon materials.
 
 ## Focus Mechanism
 
 The focus status is **PUBLISHED**. Numerical Example 3 gives four complete variable-spacing rows, and the mechanism is a
 two-group internal focus system: negative L2 moves toward the image while positive L4 moves toward the object. The patent
 explains that opposite movement reduces the change in off-axis ray heights and thereby suppresses focus-induced field-angle
-variation (¶0023-¶0024).
+variation (¶0023-¶0024). The diagram labels both directions explicitly; zoom is correctly unavailable because this is a
+prime lens.
 
 | Published state | d9 (mm) | d11 (mm) | d15 (mm) | d22 / `22A` (mm) | L2 motion (mm) | L4 motion (mm) |
 |---|---:|---:|---:|---:|---:|---:|
@@ -341,6 +343,10 @@ F-number 1.46. The inferred semi-diameters were checked against edge thickness, 
 asphere limits, and representative meridional ray containment across all four published focus states; they must not be
 read as Canon manufacturing clear apertures.
 
+The screenshot follow-up reran the same 600 dpi Figure 5 audit across all 15 elements. The median figure/data ratio is
+**1.001**; every clean shape comparison remains within 10%, including E11 at 0.903 and E15 at 1.062. Those differences are
+below the project's 15% figure-noise threshold, so the current semi-diameters were retained.
+
 No source correction is hidden in the prescription. The close-row `d11=5.28` value reflects the rendered patent rather
 than an OCR page-break artifact, and the aspheric equation uses the exponents visible on the rendered source. The patent's
 raw L5 construction-length entry of 26.19 mm is also not treated as the active L5 span: it numerically includes the
@@ -362,5 +368,5 @@ separate GB block, while Figure 5 brackets L5 apart from GB. The final active L5
    <https://www.nikon.com/business/components/lineup/materials/optical-glass/catalog/>,
    <https://www.schott.com/en-us/products/optical-glass-p1000267/downloads>,
    <https://www.sumita-opt.co.jp/en/download/>, and
-   <https://www.cdgmgd.com/go.htm?k=Colourless_Optical_Glass&url=goods>. No supplier identity or vendor spectral model is
-   asserted from those coordinate matches.
+   <https://www.cdgmgd.com/go.htm?k=Colourless_Optical_Glass&url=goods>. No supplier identity is asserted from those
+   coordinate matches; the named curves are explicitly modeling equivalents.

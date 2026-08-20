@@ -19,3 +19,9 @@ Patent: US 2024/0302626 A1, Numerical Example 2 / Figure 4
 
 - Verified the display name `CANON RF 35mm f/1.4 L VCM` against Canon's `RF35mm F1.4 L VCM` product name and repository spacing conventions.
 - Normalized the structured assignee to the repository-wide `Canon Inc.` spelling.
+
+## 2026-08-20 - Screenshot, movement, and chromatic follow-up
+
+- Rechecked Figure 4 at 600 dpi after reviewing the site screenshot. The median figure/data ratio remains 1.043 and all clean comparisons remain within 13.4%, so no additional SD adjustment was justified.
+- Labeled patent units B2 and B4 as objectward focus units, matching the published direction. Example 2 supplies no numerical focus travel, so focus animation remains intentionally unavailable; the prime also exposes no zoom travel.
+- Confirmed 14/14 strict Sellmeier coverage and zero catalog mismatches. Added inferred special-element tags to L8 and L10, matching Canon's two-UD production count without converting the coordinate proxies into supplier identities.

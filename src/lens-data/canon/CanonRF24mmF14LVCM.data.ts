@@ -37,9 +37,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  13.5 to 11.7 mm. The physical stop radius is calibrated to F/1.46 and   ║
  * ║  is therefore inferred rather than independently published.              ║
  * ║                                                                            ║
- * ║  Glass note: the patent supplies nd and νd only. Vendor identity and     ║
- * ║  nC/nF/ng/dPgF are unresolved, so elements retain coordinate-class       ║
- * ║  labels and no vendor spectral data are imported.                        ║
+ * ║  Glass note: the patent supplies nd and νd only. All 15 elements use    ║
+ * ║  coordinate-compatible catalog-equivalent Sellmeier curves, with labels ║
+ * ║  explicitly preserving unresolved production suppliers. No patent       ║
+ * ║  nC/nF/ng/dPgF values are invented.                                      ║
  * ║                                                                            ║
  * ║  The patent permits optional lateral L3 stabilization, but Canon lists   ║
  * ║  optical IS as not provided on the production lens. No IS motion is      ║
@@ -84,7 +85,7 @@ const LENS_DATA = {
       nd: 1.59349,
       vd: 67.0,
       fl: -52.148246,
-      glass: "593670 class (vendor unresolved)",
+      glass: "J-PSKH4 catalog equivalent (patent 593670; production supplier unspecified)",
     },
     {
       id: 2,
@@ -94,7 +95,7 @@ const LENS_DATA = {
       nd: 1.54814,
       vd: 45.8,
       fl: -35.631525,
-      glass: "548458 light-flint class (vendor unresolved)",
+      glass: "LLF1 catalog equivalent (patent 548458; production supplier unspecified)",
     },
     {
       id: 3,
@@ -104,7 +105,7 @@ const LENS_DATA = {
       nd: 1.76385,
       vd: 48.5,
       fl: 24.869542,
-      glass: "764485 high-index crown class (vendor unresolved)",
+      glass: "S-LAH96 catalog equivalent (patent 764485; production supplier unspecified)",
       cemented: "D1",
     },
     {
@@ -115,7 +116,7 @@ const LENS_DATA = {
       nd: 1.85478,
       vd: 24.8,
       fl: -57.252937,
-      glass: "855248 high-index flint class (vendor unresolved)",
+      glass: "S-NBH56 catalog equivalent (patent 855248; production supplier unspecified)",
       cemented: "D1",
     },
     {
@@ -126,7 +127,7 @@ const LENS_DATA = {
       nd: 2.00069,
       vd: 25.5,
       fl: 43.795312,
-      glass: "001255 high-index class (vendor unresolved)",
+      glass: "TAFD40L-W catalog equivalent (patent 001255; production supplier unspecified)",
     },
     {
       id: 6,
@@ -136,7 +137,7 @@ const LENS_DATA = {
       nd: 1.62004,
       vd: 36.3,
       fl: -167.877978,
-      glass: "620363 flint class (vendor unresolved)",
+      glass: "E-F2 catalog equivalent (patent 620363; production supplier unspecified)",
     },
     {
       id: 7,
@@ -146,7 +147,7 @@ const LENS_DATA = {
       nd: 1.76385,
       vd: 48.5,
       fl: 27.259062,
-      glass: "764485 high-index crown class (vendor unresolved)",
+      glass: "S-LAH96 catalog equivalent (patent 764485; production supplier unspecified)",
       cemented: "D2",
     },
     {
@@ -157,7 +158,7 @@ const LENS_DATA = {
       nd: 1.72047,
       vd: 34.7,
       fl: -33.678789,
-      glass: "720347 special-flint class (vendor unresolved)",
+      glass: "N-KZFS8 catalog equivalent (patent 720347; production supplier unspecified)",
       cemented: "D2",
     },
     {
@@ -168,7 +169,11 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.5,
       fl: 55.175782,
-      glass: "497816 low-dispersion class (vendor unresolved)",
+      glass: "H-FK61 catalog equivalent (patent 497816; production supplier unspecified)",
+      apd: "inferred",
+      apdNote:
+        "First of the two patent 1.497/81.5 elements correlated with Canon's published two-UD production count.",
+      role: "First product-correlated UD element in the moving positive L4 group.",
       cemented: "D3",
     },
     {
@@ -179,7 +184,7 @@ const LENS_DATA = {
       nd: 1.77047,
       vd: 29.7,
       fl: -20.214523,
-      glass: "770297 high-index flint class (vendor unresolved)",
+      glass: "NBFD29 catalog equivalent (patent 770297; production supplier unspecified)",
       cemented: "D3",
     },
     {
@@ -190,7 +195,11 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.5,
       fl: 39.737184,
-      glass: "497816 low-dispersion class (vendor unresolved)",
+      glass: "H-FK61 catalog equivalent (patent 497816; production supplier unspecified)",
+      apd: "inferred",
+      apdNote:
+        "Second of the two patent 1.497/81.5 elements correlated with Canon's published two-UD production count.",
+      role: "Second product-correlated UD element in the moving positive L4 group.",
     },
     {
       id: 12,
@@ -200,7 +209,7 @@ const LENS_DATA = {
       nd: 1.804,
       vd: 46.5,
       fl: 37.876794,
-      glass: "804465 high-index crown class (vendor unresolved)",
+      glass: "TAF3D catalog equivalent (patent 804465; production supplier unspecified)",
     },
     {
       id: 13,
@@ -210,7 +219,7 @@ const LENS_DATA = {
       nd: 1.92286,
       vd: 20.9,
       fl: 53.875285,
-      glass: "923209 high-index flint class (vendor unresolved)",
+      glass: "N-SF66 catalog equivalent (patent 923209; production supplier unspecified)",
       cemented: "D4",
     },
     {
@@ -221,7 +230,7 @@ const LENS_DATA = {
       nd: 1.77047,
       vd: 29.7,
       fl: -36.93535,
-      glass: "770297 high-index flint class (vendor unresolved)",
+      glass: "NBFD29 catalog equivalent (patent 770297; production supplier unspecified)",
       cemented: "D4",
     },
     {
@@ -232,7 +241,7 @@ const LENS_DATA = {
       nd: 1.65412,
       vd: 39.7,
       fl: -170.525195,
-      glass: "654397 special-flint class (vendor unresolved)",
+      glass: "N-KZFS5 catalog equivalent (patent 654397; production supplier unspecified)",
     },
   ],
 
@@ -309,9 +318,9 @@ const LENS_DATA = {
   /* ── Patent functional groups and cemented components ── */
   groups: [
     { text: "L1 (+)", fromSurface: "1", toSurface: "9" },
-    { text: "L2 (-) FOCUS", fromSurface: "10", toSurface: "11" },
+    { text: "L2 (-) IMAGEWARD FOCUS", fromSurface: "10", toSurface: "11" },
     { text: "L3 (+)", fromSurface: "STO", toSurface: "15" },
-    { text: "L4 (+) FOCUS", fromSurface: "16", toSurface: "22A" },
+    { text: "L4 (+) OBJECTWARD FOCUS", fromSurface: "16", toSurface: "22A" },
     { text: "L5 (-)", fromSurface: "23", toSurface: "27" },
   ],
   doublets: [

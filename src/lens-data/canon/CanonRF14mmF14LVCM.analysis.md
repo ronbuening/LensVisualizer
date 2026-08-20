@@ -12,7 +12,7 @@
 
 The LensVisualizer prescription uses Numerical Example 1 of US 2025/0389929 A1 as the fixed correlation for the Canon RF 14mm f/1.4 L VCM. The patent itself does not identify a commercial product. The correspondence is therefore an architectural and numerical correlation rather than a manufacturer statement that the production lens uses this exact prescription.
 
-The notation needs one explicit mapping. LensVisualizer element labels **L1–L18** correspond to patent lens labels **G1–G18**. LensVisualizer's three functional annotations **G1 (FIXED), G2 (FOCUS), and G3 (FIXED)** correspond to the patent's three lens groups **L1, L2, and L3**, respectively.
+The notation needs one explicit mapping. The data keeps internal element names **L1–L18**, while the diagram now displays the patent's physical-lens labels **G1–G18**. Its functional annotations likewise use the patent group labels **L1 (FIXED), L2 (OBJECTWARD FOCUS), and L3 (FIXED)**.
 
 Several independent features converge on the selected production correlation:
 
@@ -21,7 +21,7 @@ Several independent features converge on the selected production correlation:
 3. Canon specifies **three aspherical elements**. Example 1 contains five aspherical surfaces on three elements: data L1, L3, and L16. Canon's developer interview independently places two GMo aspherical elements in the front portion and one in the rear focus group.
 4. Canon specifies one **fluorite** and one **UD** element. The production optical cross-section locates the UD element in the front portion of the lens, making data L2 / patent G2 the strongest location-based UD correlation. The negative data L5 / patent G5 has `nd = 1.43387`, `νd = 95.1` and is the convergent match for Canon's explicitly concave fluorite element.
 5. Canon locates its **BR optical element immediately behind the aperture**, sandwiched between a convex and a concave lens. Example 1 has a `1.57060 / 20.08` resin-correlated member, data L11, between positive L10 and negative L12 in the cemented triplet immediately behind the stop.
-6. Canon identifies a rear focus unit driven by VCM actuators. Example 1 likewise focuses by translating only the second functional group, data G2 / patent L2, while the front and rear functional groups remain fixed.
+6. Canon identifies a rear focus unit driven by VCM actuators. Example 1 likewise focuses by translating only patent group L2, while L1 and L3 remain fixed.
 7. The product's **0.24 m** minimum focusing distance and **0.11×** maximum magnification are close to the patent's second focus state, which is tabulated at **−0.1×** and includes a disputed `240.532 mm` object-distance row discussed below.
 8. The timing is consistent: Japanese priority was claimed in June 2024, the U.S. application was published in December 2025, and Canon announced the RF14mm F1.4 L VCM on February 4, 2026.
 
@@ -33,17 +33,17 @@ The patent's own prose contains a separate internal label error at ¶0136. It fi
 
 Numerical Example 1 is a three-functional-group, wide-angle prime with a **positive–positive–negative** group-power sequence. It contains 18 elements in 13 air-separated groups and four cemented assemblies. The aperture stop lies inside the first functional group, after data L9 and before the post-stop cemented triplet C2. Patent ¶¶0032–0049 describe the same broad architecture: a positive front group, a positive moving second group, and a rear group whose negative power is used to control the rear ray geometry and Petzval balance.
 
-| Functional group | Patent group | Elements | State | Independently verified focal length | Principal role |
-|---|---|---|---|---:|---|
-| G1 (FIXED) | L1 | L1–L12 | Fixed | +36.2812 mm | Front negative-power distribution, aperture, and most of the primary chromatic/aberration correction |
-| G2 (FOCUS) | L2 | L13–L16 | Moves toward object at close focus | +28.3504 mm | Rear focusing group; preserves a positive net power despite a net-negative front cemented pair |
-| G3 (FIXED) | L3 | L17–L18 | Fixed | −57.2743 mm | Rear negative cemented group controlling image-side ray geometry and field balance |
+| Patent / diagram group | Data elements | State | Independently verified focal length | Principal role |
+|---|---|---|---:|---|
+| L1 (FIXED) | L1–L12 / G1–G12 | Fixed | +36.2812 mm | Front negative-power distribution, aperture, and most of the primary chromatic/aberration correction |
+| L2 (OBJECTWARD FOCUS) | L13–L16 / G13–G16 | Moves toward object at close focus | +28.3504 mm | Rear focusing group; preserves a positive net power despite a net-negative front cemented pair |
+| L3 (FIXED) | L17–L18 / G17–G18 | Fixed | −57.2743 mm | Rear negative cemented group controlling image-side ray geometry and field balance |
 
 The front group begins with three consecutive negative lenses. Patent ¶¶0042–0043 states the purpose explicitly: distributing the required negative refractive power among three lenses reduces the burden on each element and suppresses barrel distortion and field curvature while retaining sufficient back focus. The following positive members then restore the group to a net positive focal length. Patent ¶¶0153–0158 further associates the front meniscus/aspherical arrangement with distortion, astigmatism, field curvature, and chromatic correction.
 
 The second functional group has four elements. Its front cemented pair C3 is net negative in isolation, while L15 and L16 supply enough positive power to make the complete focus group positive. That distinction matters: the positive **group** focal length does not mean every constituent or every cemented subassembly is positive.
 
-The third functional group is exactly the cemented pair C4. Its isolated focal length, **−57.2743 mm**, is therefore also the focal length of the complete G3 functional group. Patent ¶0171 assigns this positive/negative cemented rear pair to magnification-chromatic and astigmatism correction.
+The third functional group is exactly the cemented pair C4. Its isolated focal length, **−57.2743 mm**, is therefore also the focal length of the complete patent L3 functional group. Patent ¶0171 assigns this positive/negative cemented rear pair to magnification-chromatic and astigmatism correction.
 
 Independent paraxial tracing of the infinity state gives an effective focal length of **14.4176265 mm** and a back focal length of **13.9940664 mm** from the last surface, reproducing the patent's 14.42 mm and 14.00 mm values to the table precision. The first vertex to image-plane track is **118.50 mm**. Under the project's strict terminology, the design is neither telephoto (`TL/EFL = 8.2191`) nor retrofocus (`BFD/EFL = 0.97062`, below unity).
 
@@ -55,25 +55,25 @@ The patent publishes neither clear apertures nor an absolute stop diameter. The 
 
 ### L1 — Negative Meniscus, two aspherical surfaces
 
-`nd = 1.58313, νd = 59.4. Glass: 583594 — BAL42-class crown (OHARA S-/L-family unresolved). f = −40.86 mm.`
+`nd = 1.58313, νd = 59.4. Glass model: S-BAL42 catalog equivalent for patent 583594; production supplier unspecified. f = −40.86 mm.`
 
 L1 is the large front negative meniscus and carries aspherical surfaces 1A and 2A. It supplies the first share of the distributed front negative power discussed in ¶¶0042–0043. Patent ¶¶0153–0154 identifies the first negative menisci and their aspherization as important to distortion, field-curvature, and astigmatism control. Canon's production interview places one of its two front GMo aspheres at the large front element, providing a strong positional correlation without proving material identity.
 
 ### L2 — Negative Meniscus, front low-dispersion element
 
-`nd = 1.49700, νd = 81.65. Glass: 497817 — S-FPL51/FCD1-class low-dispersion crown. f = −97.46 mm.`
+`nd = 1.49700, νd = 81.65. Glass model: FCD1 catalog equivalent for patent 497817; production supplier unspecified. f = −97.46 mm.`
 
 L2 is the weakest of the first three negative lenses by standalone power, which is consistent with the patent's strategy of spreading the front negative power among several elements. Its high Abbe number also places low dispersion early in the train. Table 2 identifies patent G2 as one of the high-`νd` negative lenses satisfying condition (14). Canon's production cross-section labels the marketed UD element in this front region, making L2 the strongest location-based UD correlation; the patent does not identify a Canon melt or vendor catalog glass.
 
 ### L3 — Biconcave Negative, rear aspherical surface
 
-`nd = 1.80400, νd = 46.5. Glass: 804465 — S-LAH65V/VS-class high-index crown. f = −34.81 mm.`
+`nd = 1.80400, νd = 46.5. Glass model: S-LAH65V catalog equivalent for patent 804465; production supplier unspecified. f = −34.81 mm.`
 
 L3 is the strongest of the first three front negative elements after L1 and carries the aspherical rear surface 6A. In Example 1, patent ¶0154 specifically identifies G1 and G3 as the two front aspherical lenses used to strengthen distortion and astigmatism correction. Its high index permits substantial negative power without requiring the extreme curvatures that a lower-index glass would require for the same standalone power.
 
 ### L4 — Positive Meniscus
 
-`nd = 1.66565, νd = 35.6. Glass: 666356 — dense-flint class (catalog identity unresolved). f = +87.85 mm.`
+`nd = 1.66565, νd = 35.6. Glass model: H-ZBaF4 catalog equivalent for patent 666356; production supplier unspecified. f = +87.85 mm.`
 
 L4 is the first positive element after the three-lens negative front train. Patent ¶¶0156–0157 assigns this positive fourth lens a direct role in correcting barrel distortion and magnification chromatic aberration generated by the preceding negative sequence. Its moderate standalone positive power begins the recovery toward the net-positive G1 functional group.
 
@@ -85,26 +85,26 @@ L5 is a strongly low-dispersion negative element. Table 2 lists patent G5 at `ν
 
 ### L6 + L7 — C1 cemented positive/negative pair
 
-- **L6:** `nd = 1.75500, νd = 52.3. Glass: 755523 — TAC6L/S-LAH97-class lanthanum crown. f = +20.57 mm.`
-- **L7:** `nd = 1.84666, νd = 23.8. Glass: 847238 — N-SF57-equivalent dense flint. f = −62.22 mm.`
+- **L6:** `nd = 1.75500, νd = 52.3. Glass model: S-LAH97 catalog equivalent for patent 755523; production supplier unspecified. f = +20.57 mm.`
+- **L7:** `nd = 1.84666, νd = 23.8. Glass model: S-TIH53 catalog equivalent for patent 847238; production supplier unspecified. f = −62.22 mm.`
 
 The isolated C1 cemented pair has a computed focal length of **+29.4283 mm**. This is a computed cemented-stack value; the standalone L6 and L7 powers remain those shown above. Patent ¶0158 states that a positive/negative cemented lens in the first functional group can favorably correct axial and magnification chromatic aberration. C1 provides that pairing before the final pre-stop elements.
 
 ### L8 — Biconvex Positive
 
-`nd = 1.83481, νd = 42.7. Glass: 835427 — TAFD5G-class high-index crown. f = +46.32 mm.`
+`nd = 1.83481, νd = 42.7. Glass model: TAFD5G catalog equivalent for patent 835427; production supplier unspecified. f = +46.32 mm.`
 
 L8 is an uncoupled positive element between C1 and the final negative element ahead of the stop. Together with L4 and the net-positive C1 pair, it supplies positive power needed to make the complete front group positive after the strongly negative front cluster. Its high index keeps that positive contribution compact.
 
 ### L9 — Negative Meniscus, pre-stop anomalous-dispersion datum
 
-`nd = 1.77047, νd = 29.74. Glass: 770297 — NBFD29-class dense flint. f = −52.48 mm.`
+`nd = 1.77047, νd = 29.74. Glass model: NBFD29 catalog equivalent for patent 770297; production supplier unspecified. f = −52.48 mm.`
 
 L9 is the last refracting element before the aperture stop. The patent publishes `θgF = 0.5951` for patent G9 and includes it among the negative lenses evaluated by conditions (6) and (7). Patent ¶¶0079–0089 explains that selected negative lenses with controlled partial dispersion can reduce excessive short-wavelength axial chromatic aberration. The data file stores a SCHOTT-normal-line `dPgF = +0.00132268` derived from the published `θgF`; this is not the same quantity as the patent's own `ΔθgFn` normal-line residual.
 
 ### L10 + L11 + L12 — C2 post-stop cemented triplet with BR resin
 
-- **L10:** `nd = 2.00100, νd = 29.1. Glass: 001291 — TAFD55/S-LAH99-class high-index flint. f = +24.97 mm.`
+- **L10:** `nd = 2.00100, νd = 29.1. Glass model: S-LAH99 catalog equivalent for patent 001291; production supplier unspecified. f = +24.97 mm.`
 - **L11:** `nd = 1.57060, νd = 20.08. Glass: Unmatched (Canon BR optical resin). f = +198.37 mm.`
 - **L12:** `nd = 1.66565, νd = 35.64. Glass: H-ZBaF4 catalog equivalent for patent 666356; production supplier unspecified. f = −33.37 mm.`
 
@@ -116,10 +116,10 @@ L12 carries `θgF = 0.5824` and derived `dPgF = -0.00145352`. Its negative power
 
 ### L13 + L14 — C3 cemented pair at the front of the focus group
 
-- **L13:** `nd = 1.43875, νd = 94.66. Glass: 439947 — S-FPL55-class ED/UD crown. f = +36.96 mm.`
-- **L14:** `nd = 1.77047, νd = 29.74. Glass: 770297 — NBFD29-class dense flint. f = −25.61 mm.`
+- **L13:** `nd = 1.43875, νd = 94.66. Glass model: S-FPL55 catalog equivalent for patent 439947; production supplier unspecified. f = +36.96 mm.`
+- **L14:** `nd = 1.77047, νd = 29.74. Glass model: NBFD29 catalog equivalent for patent 770297; production supplier unspecified. f = −25.61 mm.`
 
-C3 begins the moving G2 functional group. In isolation the cemented pair is **net negative**, with a computed focal length of **−77.2687 mm**. The complete focus group nevertheless remains positive because L15 and L16 add greater positive power downstream.
+C3 begins the moving patent L2 functional group. In isolation the cemented pair is **net negative**, with a computed focal length of **−77.2687 mm**. The complete focus group nevertheless remains positive because L15 and L16 add greater positive power downstream.
 
 L13 is an extreme low-dispersion positive member, but Canon's published optical cross-section places the marketed UD element in the front portion of the production lens. The data file therefore treats L13 as a low-dispersion catalog-class match, not as the production UD identification.
 
@@ -127,13 +127,13 @@ L14 provides the negative partner and carries patent `θgF = 0.5951`, giving the
 
 ### L15 — Biconvex Positive, low-dispersion
 
-`nd = 1.49700, νd = 81.65. Glass: 497817 — S-FPL51/FCD1-class low-dispersion crown. f = +36.91 mm.`
+`nd = 1.49700, νd = 81.65. Glass model: FCD1 catalog equivalent for patent 497817; production supplier unspecified. f = +36.91 mm.`
 
-L15 is a strong positive lens in the moving group and supplies low-dispersion positive power after the net-negative C3 pair. Table 2 identifies patent G15 as one of the high-Abbe positive lenses satisfying condition (12). The complete G2 focal length of +28.3504 mm depends materially on L15 and L16; it cannot be inferred from C3 alone.
+L15 is a strong positive lens in the moving group and supplies low-dispersion positive power after the net-negative C3 pair. Table 2 identifies patent G15 as one of the high-Abbe positive lenses satisfying condition (12). The complete patent L2 focal length of +28.3504 mm depends materially on L15 and L16; it cannot be inferred from C3 alone.
 
 ### L16 — Biconvex Positive, two aspherical surfaces
 
-`nd = 1.85400, νd = 40.4. Glass: 854404 — L-LAH85V-class high-index crown. f = +52.63 mm.`
+`nd = 1.85400, νd = 40.4. Glass model: L-LAH85V catalog equivalent for patent 854404; production supplier unspecified. f = +52.63 mm.`
 
 L16 is the final element of the moving focus group and carries aspherical surfaces 28A and 29A. Patent ¶¶0169–0170 explains why an image-side lens of the second group is made strongly relevant to focus stability: its geometry is used to reduce variations in astigmatism, coma, and angle of view as the group moves. The high-index positive element also supplies part of the net positive group power.
 
@@ -141,45 +141,45 @@ Canon confirms that the production rear focus group contains a GMo aspherical el
 
 ### L17 + L18 — C4 rear cemented group
 
-- **L17:** `nd = 1.59282, νd = 68.6. Glass: 593686 — FCD505/FCD515-class low-dispersion crown. f = +39.24 mm.`
-- **L18:** `nd = 1.91650, νd = 31.6. Glass: 917316 — S-LAH88-class high-index lanthanum flint. f = −23.32 mm.`
+- **L17:** `nd = 1.59282, νd = 68.6. Glass model: FCD515 catalog equivalent for patent 593686; production supplier unspecified. f = +39.24 mm.`
+- **L18:** `nd = 1.91650, νd = 31.6. Glass model: S-LAH88 catalog equivalent for patent 917316; production supplier unspecified. f = −23.32 mm.`
 
-C4 is the entire fixed rear G3 functional group. Its isolated net focal length is **−57.2743 mm**, reproducing the patent's `f3 = −57.275 mm`. Patent ¶0171 identifies the rear positive/negative cemented lens as a contributor to magnification-chromatic and astigmatism correction. Patent ¶¶0152 and 0068–0075 also explain the broader reason for a negative rear group: it sets image-side ray angles and reduces the positive Petzval burden while preserving peripheral correction.
+C4 is the entire fixed rear patent L3 functional group. Its isolated net focal length is **−57.2743 mm**, reproducing the patent's `f3 = −57.275 mm`. Patent ¶0171 identifies the rear positive/negative cemented lens as a contributor to magnification-chromatic and astigmatism correction. Patent ¶¶0152 and 0068–0075 also explain the broader reason for a negative rear group: it sets image-side ray angles and reduces the positive Petzval burden while preserving peripheral correction.
 
 ## Glass Identification and Selection
 
-The patent supplies refractive indices and Abbe numbers but does not name glass vendors or melts. Catalog names in the data file are therefore **class or equivalent labels** unless manufacturer evidence independently identifies a material. Fifteen distinct `nd/νd` coordinate pairs occur.
+The patent supplies refractive indices and Abbe numbers but does not name glass vendors or melts. Catalog names in the data file are therefore **qualified optical-model equivalents**, not material identities. The explicit names make the resolver's selected Sellmeier curve visible and deterministic while every label preserves the unresolved production supplier. Seventeen of 18 elements now have a compatible catalog or fluorite curve; only Canon's proprietary BR resin remains unresolved.
 
-Two same-coordinate catalog ambiguities are left explicit. OHARA publishes both S-BAL42 and low-Tg L-BAL42 at code 583594 and `nd = 1.58313`, `νd = 59.38`, so L1 cannot be assigned to either family from the patent coordinates alone. HOYA likewise uses code 593-686 for both FCD505 and FCD515-family entries, so L17 is kept at the dual-family class level rather than promoted to a unique melt.
+Where multiple catalogs share a coordinate, the selected name identifies the model curve only. S-BAL42 is used for patent 583594 instead of implying that the coordinate proves OHARA's standard- or low-Tg BAL42 family, and FCD515 is the nearest compatible curve for patent 593686 without asserting a HOYA production melt. H-ZBaF4 is the only compatible explicit catalog candidate for both patent 666356 elements within the repository tolerances. On L4, which lacks patent `θgF`, the catalog g-line remains purely a modeling extension; on L12, the patent-derived `dPgF` remains authoritative.
 
 | Data element(s) | `nd` | `νd` | Data-file glass identification | Status / role |
 |---|---:|---:|---|---|
-| L1 | 1.58313 | 59.4 | 583594 — BAL42-class crown (OHARA S-/L-family unresolved) | Coordinate match; family/vendor unresolved |
-| L2, L15 | 1.49700 | 81.65 | 497817 — S-FPL51/FCD1-class low-dispersion crown | L2 is strongest production UD-location correlation; vendor/melt unresolved |
-| L3 | 1.80400 | 46.5 | 804465 — S-LAH65V/VS-class high-index crown | Catalog-class match |
-| L4 | 1.66565 | 35.6 | Unmatched patent 666356 dense flint | No published partial-dispersion basis for a catalog proxy |
+| L1 | 1.58313 | 59.4 | S-BAL42 equivalent for patent 583594 | Model curve only; BAL42 family and production supplier unresolved |
+| L2, L15 | 1.49700 | 81.65 | FCD1 equivalent for patent 497817 | L2 is strongest production UD-location correlation; production supplier unresolved |
+| L3 | 1.80400 | 46.5 | S-LAH65V equivalent for patent 804465 | Qualified model equivalent |
+| L4 | 1.66565 | 35.6 | H-ZBaF4 equivalent for patent 666356 | Catalog C/d/F model; no patent partial-dispersion datum |
 | L5 | 1.43387 | 95.1 | CaF2 fluorite | Canon production-correlation inference at the patent G5 coordinate |
 | L12 | 1.66565 | 35.64 | H-ZBaF4 catalog equivalent | Patent `dPgF` remains authoritative; production supplier unspecified |
-| L6 | 1.75500 | 52.3 | 755523 — TAC6L/S-LAH97-class lanthanum crown | Cross-vendor class match |
-| L7 | 1.84666 | 23.8 | 847238 — N-SF57-equivalent dense flint | Catalog-equivalent class |
-| L8 | 1.83481 | 42.7 | 835427 — TAFD5G-class high-index crown | Catalog-class match |
-| L9, L14 | 1.77047 | 29.74 | 770297 — NBFD29-class dense flint | Patent `θgF = 0.5951`; derived `dPgF = +0.00132268` |
-| L10 | 2.00100 | 29.1 | 001291 — TAFD55/S-LAH99-class high-index flint | Very-high-index class |
+| L6 | 1.75500 | 52.3 | S-LAH97 equivalent for patent 755523 | Qualified model equivalent |
+| L7 | 1.84666 | 23.8 | S-TIH53 equivalent for patent 847238 | Qualified model equivalent |
+| L8 | 1.83481 | 42.7 | TAFD5G equivalent for patent 835427 | Qualified model equivalent |
+| L9, L14 | 1.77047 | 29.74 | NBFD29 equivalent for patent 770297 | Patent `θgF = 0.5951`; derived `dPgF = +0.00132268` |
+| L10 | 2.00100 | 29.1 | S-LAH99 equivalent for patent 001291 | Qualified very-high-index model |
 | L11 | 1.57060 | 20.08 | Unmatched (Canon BR optical resin) | Manufacturer-supported proprietary resin correlation |
-| L13 | 1.43875 | 94.66 | 439947 — S-FPL55-class ED/UD crown | Low-dispersion class; not assigned as production UD element |
-| L16 | 1.85400 | 40.4 | 854404 — L-LAH85V-class high-index crown | Catalog-class match |
-| L17 | 1.59282 | 68.6 | 593686 — FCD505/FCD515-class low-dispersion crown | Same-code HOYA family ambiguity; vendor/melt unresolved |
-| L18 | 1.91650 | 31.6 | 917316 — S-LAH88-class high-index lanthanum flint | Catalog-class match |
+| L13 | 1.43875 | 94.66 | S-FPL55 equivalent for patent 439947 | Low-dispersion model; not assigned as production UD element |
+| L16 | 1.85400 | 40.4 | L-LAH85V equivalent for patent 854404 | Qualified model equivalent |
+| L17 | 1.59282 | 68.6 | FCD515 equivalent for patent 593686 | Selected model curve; production melt unresolved |
+| L18 | 1.91650 | 31.6 | S-LAH88 equivalent for patent 917316 | Qualified model equivalent |
 
 The palette uses three distinct chromatic mechanisms rather than relying on one nominal “ED” category. First, high-Abbe negative and positive members such as L2, L5, L13, L15, and L17 reduce ordinary d-line dispersion. Second, the patent explicitly controls partial dispersion in selected negative elements L9, L12, and L14. Third, the post-stop L11 resin has an unusually large positive partial-dispersion deviation and is placed in a cemented triplet where the patent expects strong axial-color leverage.
 
-The patent defines d, F, C, and g Fraunhofer wavelengths as 587.6, 486.1, 656.3, and 435.8 nm and publishes `θgF` only for selected elements. Complete `nC/nF/ng` triplets are not published for Example 1 and are not invented in the data file. The stored `dPgF` values are derived from the published `θgF` values using the SCHOTT Pg,F normal line; they must not be confused with the patent's separately defined `ΔθgF` conditional-expression residuals.
+The patent defines d, F, C, and g Fraunhofer wavelengths as 587.6, 486.1, 656.3, and 435.8 nm and publishes `θgF` only for selected elements. Complete `nC/nF/ng` triplets are not published for Example 1; the selected catalog-equivalent curves supply those model wavelengths. The stored `dPgF` values on L9, L11, L12, and L14 are instead derived from the published `θgF` values using the SCHOTT Pg,F normal line and remain authoritative over catalog g-line behavior. The diagram tags those four as patent-backed anomalous-dispersion elements and tags the production-correlated UD L2 and fluorite L5 separately as inferred.
 
 No apochromatic designation is asserted. The prescription and Canon's product documentation plainly contain substantial chromatic-correction measures, but the available source data do not justify converting that into a formal APO claim.
 
 ## Focus Mechanism
 
-The patent uses a published rear/inner-focus state rather than a reconstructed one. Data G2, corresponding to patent lens group L2 and surfaces 23–29A, translates **toward the object** from infinity to the close state. Data G1 and G3 remain fixed with respect to the image plane. This agrees with the abstract, ¶0027, ¶0032, claim 1, and the variable-spacing table for Numerical Example 1.
+The patent uses a published rear/inner-focus state rather than a reconstructed one. Patent lens group L2, corresponding to data elements L13–L16 and surfaces 23–29A, translates **toward the object** from infinity to the close state. Patent groups L1 and L3 remain fixed with respect to the image plane. This agrees with the abstract, ¶0027, ¶0032, claim 1, and the variable-spacing table for Numerical Example 1. The diagram labels the moving group `L2 (OBJECTWARD FOCUS)`; zoom is correctly unavailable because this is a prime lens.
 
 | Variable gap | Infinity | Patent close state | Change |
 |---|---:|---:|---:|
@@ -264,12 +264,14 @@ The final authored prescription reproduces the patent's first-order quantities w
 - **EFL:** 14.4176265 mm, versus patent 14.42 mm.
 - **BFL:** 13.9940664 mm, versus patent 14.00 mm.
 - **Total track:** 118.500 mm, versus patent 118.50 mm.
-- **G1 / patent L1 focal length:** +36.2812 mm, versus 36.30 mm.
-- **G2 / patent L2 focal length:** +28.3504 mm, versus 28.349 mm.
-- **G3 / patent L3 focal length:** −57.2743 mm, versus −57.275 mm.
+- **Patent L1 focal length:** +36.2812 mm, versus 36.30 mm.
+- **Patent L2 focal length:** +28.3504 mm, versus 28.349 mm.
+- **Patent L3 focal length:** −57.2743 mm, versus −57.275 mm.
 - **Petzval sum:** +0.002927098 mm⁻¹, corresponding to a Petzval-radius magnitude of about 341.635 mm under the adopted sign convention.
 
 The modeled aperture and semi-diameters are not source facts. The authored stop semi-diameter of **11.504 mm** differs from the paraxially inferred f/1.46 value by only about **0.000043 mm**. With the final modeled semi-diameters, the minimum computed element edge thickness is **0.07394 mm**, the maximum actual rim-slope angle is **59.91°**, the maximum shared-band cross-gap fraction is **0.84852** against the 0.90 limit, and the default 0.6-field exact meridional trace retains a minimum non-stop clear-aperture margin of **0.15949 mm** in both published focus states. These are validation results for the authored geometry, not dimensions published by Canon or the patent.
+
+A screenshot-triggered follow-up reran Figure 1 at 600 dpi. The clean optical rims have a median figure/data ratio of **0.985**; the apparent L2/L3/L9 outliers in automated edge scans are figure callouts, leader strokes, or flange ink rather than lens rims. No clean element exceeds the project's 15% figure-noise threshold, so no further semi-diameter repaint was justified.
 
 No plate, dummy plane, or filter has been removed from Numerical Example 1, because the example does not contain one. Patent ¶0175 explicitly notes that optical members corresponding to filters are excluded from the numerical-example optical length. The production lens's rear gelatin-filter holder is mechanical product hardware and does not create an additional refracting plane in this prescription.
 
