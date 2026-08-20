@@ -12,18 +12,18 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **601** lenses scanned
-- **6805** glass elements examined
-- **1859** elements have multiple coordinate-compatible candidates
-- **384** lens files are affected
+- **604** lenses scanned
+- **6852** glass elements examined
+- **1876** elements have multiple coordinate-compatible candidates
+- **386** lens files are affected
 - **190** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **182** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
-| Smallest reference-index residual | 1002 |
-| Evidence-source priority | 582 |
-| Vendor context | 271 |
+| Smallest reference-index residual | 1015 |
+| Evidence-source priority | 585 |
+| Vendor context | 272 |
 | Stable canonical-name order | 4 |
 
 ## Ambiguous Annotations
@@ -143,6 +143,14 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `TAFD40 (HOYA catalog-equivalent to patent 001255; supplier not identified)` | 2.00069 / 25.50 (d) | TAFD40 — direct name evidence outranks six-digit code evidence. | TAFD40L-W (Hoya, code, vendor ✓, alternate code row) | 1 | [CANON RF 135mm f/1.8 L IS USM](../../src/lens-data/canon/CanonRF135f18.data.ts) L14 |
 | `N-SSK5 (Schott; catalog-equivalent 658509 extra-dense crown)` | 1.65844 / 50.90 (d) | N-SSK5 — direct name evidence outranks six-digit code evidence. | S-BSM25 (Ohara, code, vendor ✗, alternate code row)<br>BACED5 (Hoya, code, vendor ✗, alternate code row) | 1 | [CANON RF 135mm f/1.8 L IS USM](../../src/lens-data/canon/CanonRF135f18.data.ts) L15 |
 | `S-BAL35 / N-SK5 (OHARA / Schott)` | 1.58913 / 61.10 (d) | S-BAL35 — smallest d-line \|Δn\| (9.0e-8 vs 1.2e-7) | N-SK5 (Schott, name, vendor ✓) | 1 | [CANON RF 135mm f/1.8 L IS USM](../../src/lens-data/canon/CanonRF135f18.data.ts) L17 |
+| `583594 — BAL42-class crown (OHARA S-/L-family unresolved)` | 1.58313 / 59.40 (d) | S-BAL42 — Annotation vendor context matches Ohara. | J-SK12 (Hikari, code, vendor ✗, alternate code row) | 1 | [CANON RF 14mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF14mmF14LVCM.data.ts) L1 |
+| `497817 — S-FPL51/FCD1-class low-dispersion crown` | 1.49700 / 81.65 (d) | FCD1 — smallest d-line \|Δn\| (1.6e-7 vs 7.1e-7) | S-FPL51 (Ohara, name)<br>J-FK01A (Hikari, code, preferred code row) | 2 | [CANON RF 14mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF14mmF14LVCM.data.ts) L2 |
+| `804465 — S-LAH65V/VS-class high-index crown` | 1.80400 / 46.50 (d) | S-LAH65V — direct name evidence outranks six-digit code evidence. | TAF3D (Hoya, code, alternate code row)<br>TAF3 (Hoya, code, alternate code row)<br>N-LASF44 (Schott, code, preferred code row) | 1 | [CANON RF 14mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF14mmF14LVCM.data.ts) L3 |
+| `755523 — TAC6L/S-LAH97-class lanthanum crown` | 1.75500 / 52.30 (d) | S-LAH97 — smallest d-line \|Δn\| (3.4e-7 vs 8.6e-7) | TAC6L (Hoya, name)<br>J-LASKH2 (Hikari, code, preferred code row)<br>N-LAK33B (Schott, code, alternate code row) | 1 | [CANON RF 14mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF14mmF14LVCM.data.ts) L6 |
+| `847238 — N-SF57-equivalent dense flint` | 1.84666 / 23.80 (d) | S-TIH53 — alias evidence outranks six-digit code evidence. | J-SF03 (Hikari, code, alternate code row)<br>H-ZF52 (CDGM, code, alternate code row)<br>S-TIH53W (Ohara, code, alternate code row)<br>FDS90 (Hoya, code, alternate code row) | 1 | [CANON RF 14mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF14mmF14LVCM.data.ts) L7 |
+| `835427 — TAFD5G-class high-index crown` | 1.83481 / 42.70 (d) | TAFD5G — direct name evidence outranks six-digit code evidence. | S-LAH55 (Ohara, code, preferred code row)<br>TAFD5F (Hoya, code, alternate code row) | 1 | [CANON RF 14mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF14mmF14LVCM.data.ts) L8 |
+| `001291 — TAFD55/S-LAH99-class high-index flint` | 2.00100 / 29.10 (d) | S-LAH99 — smallest d-line \|Δn\| (3.6e-10 vs 3.0e-6) | TAFD55 (Hoya, name) | 1 | [CANON RF 14mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF14mmF14LVCM.data.ts) L10 |
+| `593686 — FCD505/FCD515-class low-dispersion crown` | 1.59282 / 68.60 (d) | FCD515 — smallest d-line \|Δn\| (4.3e-6 vs 6.8e-6) | FCD505 (Hoya, name) | 1 | [CANON RF 14mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF14mmF14LVCM.data.ts) L17 |
 | `PBH21 (OHARA; historical 923209)` | 1.92286 / 20.90 (d) | PBH21 — direct name evidence outranks six-digit code evidence. | N-SF66 (Schott, code, vendor ✗, preferred code row)<br>E-FDS1 (Hoya, code, vendor ✗, alternate code row) | 7 | [CANON RF 15-35mm f/2.8 L IS USM](../../src/lens-data/canon/CanonRF1535f28.data.ts) L6 +4 files |
 | `S-FPL51 / FCD1 (OHARA / HOYA)` | 1.49700 / 81.60 (d) | FCD1 — smallest d-line \|Δn\| (1.6e-7 vs 7.1e-7) | S-FPL51 (Ohara, name, vendor ✓) | 2 | [CANON RF 15-35mm f/2.8 L IS USM](../../src/lens-data/canon/CanonRF1535f28.data.ts) L12 |
 | `N-LAK33B (Schott catalog-equivalent to patent 755523; supplier not identified)` | 1.75500 / 52.30 (d) | N-LAK33B — direct name evidence outranks six-digit code evidence. | J-LASKH2 (Hikari, code, vendor ✗, preferred code row)<br>TAC6L (Hoya, code, vendor ✗, alternate code row) | 1 | [CANON RF 20mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF20mmf14LVCM.data.ts) G4 |
@@ -157,6 +165,13 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `S-NPH53 (OHARA 847/239)` | 1.84666 / 23.90 (d) | S-NPH53 — direct name evidence outranks six-digit code evidence. | S-TIH53WN (Ohara, code, vendor ✓, alternate code row)<br>PBH53 (Ohara, code, vendor ✓, alternate code row) | 1 | [CANON RF 24-50mm f/4.5-6.3 IS STM](../../src/lens-data/canon/CanonRF2450mmf463.data.ts) L2b |
 | `S-LAH66 (OHARA 773/496)` | 1.77250 / 49.60 (d) | S-LAH66 — direct name evidence outranks six-digit code evidence. | S-LAH66N (Ohara, code, vendor ✓, alternate code row)<br>J-LASF016 (Hikari, code, vendor ✗, alternate code row)<br>N-LAF34 (Schott, code, vendor ✗, alternate code row) | 1 | [CANON RF 24-50mm f/4.5-6.3 IS STM](../../src/lens-data/canon/CanonRF2450mmf463.data.ts) L2c |
 | `TAFD55 (HOYA) / S-LAH99 (OHARA)` | 2.00100 / 29.10 (d) | S-LAH99 — smallest d-line \|Δn\| (3.6e-10 vs 3.0e-6) | TAFD55 (Hoya, name, vendor ✓) | 1 | [CANON RF 24-70mm f/2.8 L IS USM](../../src/lens-data/canon/CanonRF2470f28.data.ts) Grp |
+| `548458 light-flint class (vendor unresolved)` | 1.54814 / 45.80 (d) | LLF1 — smallest d-line \|Δn\| (9.5e-8 vs 1.2e-7) | E-FEL1 (Hoya, code, alternate code row)<br>S-TIL1 (Ohara, code, preferred code row) | 1 | [CANON RF 24mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF24mmF14LVCM.data.ts) E2 |
+| `001255 high-index class (vendor unresolved)` | 2.00069 / 25.50 (d) | TAFD40L-W — smallest d-line \|Δn\| (1.9e-6 vs 3.8e-6) | TAFD40 (Hoya, code, preferred code row) | 1 | [CANON RF 24mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF24mmF14LVCM.data.ts) E5 |
+| `620363 flint class (vendor unresolved)` | 1.62004 / 36.30 (d) | E-F2 — smallest d-line \|Δn\| (1.5e-7 vs 8.4e-7) | S-TIM2 (Ohara, code, preferred code row) | 1 | [CANON RF 24mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF24mmF14LVCM.data.ts) E6 |
+| `497816 low-dispersion class (vendor unresolved)` | 1.49700 / 81.50 (d) | H-FK61 — smallest d-line \|Δn\| (1.1e-8 vs 1.6e-7) | FCD1 (Hoya, code, alternate code row)<br>S-FPL51 (Ohara, code, preferred code row) | 2 | [CANON RF 24mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF24mmF14LVCM.data.ts) E9 |
+| `804465 high-index crown class (vendor unresolved)` | 1.80400 / 46.50 (d) | TAF3D — smallest d-line \|Δn\| (2.0e-4 vs 2.0e-4) | TAF3 (Hoya, code, alternate code row)<br>N-LASF44 (Schott, code, preferred code row) | 1 | [CANON RF 24mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF24mmF14LVCM.data.ts) E12 |
+| `923209 high-index flint class (vendor unresolved)` | 1.92286 / 20.90 (d) | N-SF66 — smallest d-line \|Δn\| (8.8e-8 vs 4.0e-7) | E-FDS1 (Hoya, code, alternate code row)<br>PBH21 (Ohara, code, alternate code row) | 1 | [CANON RF 24mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF24mmF14LVCM.data.ts) E13 |
+| `654397 special-flint class (vendor unresolved)` | 1.65412 / 39.70 (d) | N-KZFS5 — smallest d-line \|Δn\| (4.4e-7 vs 4.8e-6) | S-NBH5 (Ohara, code, vendor ✗, preferred code row)<br>BPH5 (Ohara, code, vendor ✗, alternate code row) | 1 | [CANON RF 24mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF24mmF14LVCM.data.ts) E15 |
 | `904313 — S-LAH58 family (OHARA)` | 1.90366 / 31.30 (d) | S-LAH95 — Annotation vendor context matches Ohara. | N-LASF46B (Schott, code, vendor ✗, alternate code row)<br>TAFD25 (Hoya, code, vendor ✗, alternate code row) | 1 | [CANON RF 28-70mm f/2.8 IS STM](../../src/lens-data/canon/CanonRF2870mmf28.data.ts) L4 |
 | `954323 — ultra-high-index dense flint (nd=1.95375, νd=32.32)` | 1.95375 / 32.32 (d) | J-LASFH21 — smallest d-line \|Δn\| (3.1e-8 vs 2.8e-7) | TAFD45L (Hoya, code, alternate code row)<br>S-LAH98 (Ohara, code, preferred code row)<br>TAFD45 (Hoya, code, alternate code row) | 1 | [CANON RF 50mm f/1.2 L USM](../../src/lens-data/canon/CanonRF50mmf12L.data.ts) G6 |
 | `S-LAH58 / TAFD30 class (883408)` | 1.88300 / 40.80 (d) | S-LAH58 — smallest d-line \|Δn\| (3.0e-6 vs 3.9e-6) | TAFD30 (Hoya, name) | 3 | [CANON RF 50mm f/1.2 L USM](../../src/lens-data/canon/CanonRF50mmf12L.data.ts) G11 +1 files |
