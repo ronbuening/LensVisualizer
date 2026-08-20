@@ -21,6 +21,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-08-20",
     type: "lens",
+    summary: "Added Canon RF 14mm, 24mm, and 35mm f/1.4 L VCM lens designs",
+  },
+  {
+    date: "2026-08-20",
+    type: "lens",
     summary: "Added Canon EF 400mm f/2.8 L IS III and RF 600mm/800mm f/11 designs",
   },
   {

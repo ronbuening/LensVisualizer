@@ -9,9 +9,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **601** lenses scanned (**591** visible)
-- **6230 / 6813** non-air surfaces use strict catalog Sellmeier data (91.4%)
-- **6244 / 6813** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 91.6%)
+- **604** lenses scanned (**594** visible)
+- **6276 / 6860** non-air surfaces use strict catalog Sellmeier data (91.5%)
+- **6290 / 6860** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 91.7%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **228** code-only missing-Sellmeier elements in Sweep 2: **0** active unreviewed, **99** self-recording explicit dispositions, **0** dispositions missing any review record
@@ -101,6 +101,7 @@ These rows contain resin, cement, plastic, liquid, or unclassified optical media
 | [NIKON AF-S NIKKOR 24-70mm f/2.8 E ED VR](../../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) | US 2020/0142168 A1 | [PDF](../../patents/US20200142168A1.pdf) | 95.2% (20/21) | 95.2% (20/21) | 1 | 3A [resin] (Element 2r: `UV-curing resin`) | abbe: 1 |
 | [NIKON 1 NIKKOR VR 10-100mm f/4-5.6](../../src/lens-data/nikon/Nikon1Nikkor10100mmf4VR.data.ts) | US 2020/0348497 A1 | [PDF](../../patents/US20200348497A1.pdf) | 95.0% (19/20) | 95.0% (19/20) | 1 | 6A [resin] (L21 resin: `Patent-listed compound asphere resin`) | abbe: 1 |
 | [TAMRON 28-300mm f/3.5-6.3 Di VC PZD](../../src/lens-data/tamron/TamronA01028300mmf3563.data.ts) | JP 2013-254160 A | [PDF](../../patents/JP2013254160A.pdf) | 95.0% (19/20) | 95.0% (19/20) | 1 | 33A [resin] (Hybrid resin layer: `Unmatched (hybrid asphere resin layer, nd=1.51460, νd=49.96)`) | abbe: 1 |
+| [CANON RF 14mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF14mmF14LVCM.data.ts) | US 2025/0389929 A1 | [PDF](../../patents/US-20250389929-A1.pdf) | 94.4% (17/18) | 94.4% (17/18) | 1 | 20 [resin] (Element 11: `Unmatched (Canon BR optical resin)`) | abbe: 1 |
 | [NIKON AF-S NIKKOR 16-35mm f/4 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS1635mmf4.data.ts) | US 2010/0238560 A1 | [PDF](../../patents/US20100238560A1.pdf) | 94.4% (17/18) | 94.4% (17/18) | 1 | 6 [resin] (Element 3r: `UV-cure resin`) | abbe: 1 |
 | [NIKON PC NIKKOR 19mm f/4 E ED](../../src/lens-data/nikon/NikonNikkorPCE19mmf4E.data.ts) | JP 2017-161685 A | [PDF](../../patents/JP2017161685A.pdf) | 94.4% (17/18) | 94.4% (17/18) | 1 | 30A [resin] (Element 17 (resin): `UV-cure aspherical resin`) | abbe: 1 |
 | [TAMRON 18-200mm f/3.5-6.3 Di III VC (B011)](../../src/lens-data/tamron/TamronB01118200mmf3563VC.data.ts) | JP 2012-181525 A | [PDF](../../patents/JP2012181525A.pdf) | 94.4% (17/18) | 94.4% (17/18) | 1 | 7A [resin] (G2 hybrid asphere resin layer: `Unmatched (hybrid asphere resin/polymer, nd=1.51460, vd=50.0)`) | abbe: 1 |
