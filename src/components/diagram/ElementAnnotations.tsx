@@ -24,13 +24,18 @@ interface PackableLabel {
   fontSize: number;
 }
 
-function packLabelRows<T extends PackableLabel>(items: T[]): Array<T & { row: number }> {
-  const rowRightEdges = [Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY];
+function packLabelRows<T extends PackableLabel>(items: T[], rowCount = 2): Array<T & { row: number }> {
+  const rowRightEdges = Array<number>(rowCount).fill(Number.NEGATIVE_INFINITY);
   return items.map((item) => {
     const estimatedWidth = Math.max(item.fontSize, item.text.length * item.fontSize * 0.62);
     const left = item.x - estimatedWidth / 2;
     let row = rowRightEdges.findIndex((rightEdge) => left >= rightEdge + 2);
-    if (row < 0) row = rowRightEdges[0] <= rowRightEdges[1] ? 0 : 1;
+    if (row < 0) {
+      row = rowRightEdges.reduce(
+        (bestRow, rightEdge, candidateRow) => (rightEdge < rowRightEdges[bestRow] ? candidateRow : bestRow),
+        0,
+      );
+    }
     rowRightEdges[row] = item.x + estimatedWidth / 2;
     return { ...item, row };
   });
@@ -63,9 +68,9 @@ const ElementAnnotations = memo(function ElementAnnotations({
     .sort((a, b) => a.x - b.x);
 
   // Dense patent groups often place several thin elements next to one another.
-  // Pack their source identifiers into two rows so labels such as L210–L213
+  // Pack their source identifiers into three rows so labels such as L210–L213
   // remain legible without colliding.
-  const packedElementLabels = packLabelRows(elementLabels).map((item) => ({ ...item, y: item.y - item.row * 11 }));
+  const packedElementLabels = packLabelRows(elementLabels, 3).map((item) => ({ ...item, y: item.y - item.row * 11 }));
 
   const abbeLabels = showChromatic
     ? shapes
@@ -79,8 +84,8 @@ const ElementAnnotations = memo(function ElementAnnotations({
         .filter((item): item is NonNullable<typeof item> => item !== null)
         .sort((a, b) => a.x - b.x)
     : [];
-  const packedAbbeLabels = packLabelRows(abbeLabels).map((item) => ({ ...item, y: item.y + item.row * 10 }));
-  const lowerAnnotationShift = packedAbbeLabels.some(({ row }) => row > 0) ? 10 : 0;
+  const packedAbbeLabels = packLabelRows(abbeLabels, 3).map((item) => ({ ...item, y: item.y + item.row * 10 }));
+  const lowerAnnotationShift = packedAbbeLabels.reduce((maxShift, { row }) => Math.max(maxShift, row * 10), 0);
   const groupLabels = L.groups
     .map(({ text, fromSurface, toSurface }) => {
       const [x, y] = screenPoint((zPos[fromSurface] + zPos[toSurface]) / 2, L.lyGroup);
@@ -90,6 +95,16 @@ const ElementAnnotations = memo(function ElementAnnotations({
   const packedGroupLabels = packLabelRows(groupLabels).map((item) => ({
     ...item,
     y: item.y + lowerAnnotationShift + item.row * 11,
+  }));
+  const doubletLabels = L.doublets
+    .map(({ text, fromSurface, toSurface }) => {
+      const [x, y] = screenPoint((zPos[fromSurface] + zPos[toSurface]) / 2, L.lyDoublet);
+      return { text, fromSurface, toSurface, x, y, fontSize: 9 };
+    })
+    .sort((a, b) => a.x - b.x);
+  const packedDoubletLabels = packLabelRows(doubletLabels).map((item) => ({
+    ...item,
+    y: item.y - item.row * 11,
   }));
 
   return (
@@ -153,14 +168,19 @@ const ElementAnnotations = memo(function ElementAnnotations({
       ))}
 
       {/* Doublet labels */}
-      {L.doublets.map(({ text, fromSurface, toSurface }) => {
-        const [x, y] = screenPoint((zPos[fromSurface] + zPos[toSurface]) / 2, L.lyDoublet);
-        return (
-          <text key={text} x={x} y={y} textAnchor="middle" fill={t.doubletLabel} fontSize={9} fontFamily="inherit">
-            {text}
-          </text>
-        );
-      })}
+      {packedDoubletLabels.map(({ text, fromSurface, toSurface, x, y }) => (
+        <text
+          key={`${text}-${fromSurface}-${toSurface}`}
+          x={x}
+          y={y}
+          textAnchor="middle"
+          fill={t.doubletLabel}
+          fontSize={9}
+          fontFamily="inherit"
+        >
+          {text}
+        </text>
+      ))}
     </>
   );
 });
