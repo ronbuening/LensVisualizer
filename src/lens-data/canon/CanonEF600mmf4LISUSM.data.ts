@@ -55,6 +55,7 @@ const LENS_DATA = {
     "Patent f = 585.20 mm; computed EFL ≈ 585.328 mm",
     "Design F/4.12; marketed f/4",
     "2ω = 4.2°",
+    "1 FLUORITE + 2 UD ELEMENTS",
     "Inner focus + transverse IS",
   ],
 
@@ -76,6 +77,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1a-1",
+      diagramLabel: "L1a-1",
       label: "L1a front positive",
       type: "Biconvex Positive",
       nd: 1.496999,
@@ -83,11 +85,14 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 365.989798,
       glass: "497815/497816 low-dispersion crown class (vendor unresolved; Canon-correlated UD)",
+      apd: "inferred",
+      apdNote: "Production-correlated UD element; the patent does not publish partial-dispersion data.",
       role: "Single positive front subunit L1a; front collector and low-dispersion correction.",
     },
     {
       id: 2,
       name: "L1b-1",
+      diagramLabel: "L1b-1",
       label: "L1b positive",
       type: "Positive Meniscus",
       nd: 1.496999,
@@ -95,11 +100,14 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 324.493634,
       glass: "497815/497816 low-dispersion crown class (vendor unresolved; Canon-correlated UD)",
+      apd: "inferred",
+      apdNote: "Production-correlated UD element; the patent does not publish partial-dispersion data.",
       role: "Positive member of the net-negative middle subunit L1b.",
     },
     {
       id: 3,
       name: "L1b-2",
+      diagramLabel: "L1b-2",
       label: "L1b negative",
       type: "Biconcave Negative",
       nd: 1.834807,
@@ -112,6 +120,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L1c-1",
+      diagramLabel: "L1c-1",
       label: "L1c fluorite positive",
       type: "Positive Meniscus",
       nd: 1.43387,
@@ -119,11 +128,14 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 270.260667,
       glass: "Fluorite (CaF2), manufacturer-correlated",
+      apd: "inferred",
+      apdNote: "Production-correlated fluorite element; the patent does not publish partial-dispersion data.",
       role: "Positive fluorite-coordinate member in the positive rear subunit L1c.",
     },
     {
       id: 5,
       name: "L1c-2",
+      diagramLabel: "L1c-2",
       label: "L1c negative meniscus",
       type: "Negative Meniscus",
       nd: 1.51633,
@@ -136,6 +148,7 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L2-1",
+      diagramLabel: "L2-1",
       label: "L2 positive",
       type: "Biconvex Positive",
       nd: 1.805181,
@@ -149,6 +162,7 @@ const LENS_DATA = {
     {
       id: 7,
       name: "L2-2",
+      diagramLabel: "L2-2",
       label: "L2 negative",
       type: "Biconcave Negative",
       nd: 1.834807,
@@ -162,6 +176,7 @@ const LENS_DATA = {
     {
       id: 8,
       name: "L3a-1",
+      diagramLabel: "L3a-1",
       label: "L3a negative",
       type: "Negative Meniscus",
       nd: 1.846658,
@@ -175,6 +190,7 @@ const LENS_DATA = {
     {
       id: 9,
       name: "L3a-2",
+      diagramLabel: "L3a-2",
       label: "L3a positive",
       type: "Biconvex Positive",
       nd: 1.603112,
@@ -188,6 +204,7 @@ const LENS_DATA = {
     {
       id: 10,
       name: "L3b-1",
+      diagramLabel: "L3b-1",
       label: "L3b positive",
       type: "Biconvex Positive",
       nd: 1.846658,
@@ -201,6 +218,7 @@ const LENS_DATA = {
     {
       id: 11,
       name: "L3b-2",
+      diagramLabel: "L3b-2",
       label: "L3b cemented negative",
       type: "Biconcave Negative",
       nd: 1.603112,
@@ -214,6 +232,7 @@ const LENS_DATA = {
     {
       id: 12,
       name: "L3b-3",
+      diagramLabel: "L3b-3",
       label: "L3b negative singlet",
       type: "Biconcave Negative",
       nd: 1.804,
@@ -226,6 +245,7 @@ const LENS_DATA = {
     {
       id: 13,
       name: "L3c-1",
+      diagramLabel: "L3c-1",
       label: "L3c positive singlet",
       type: "Biconvex Positive",
       nd: 1.72,
@@ -238,6 +258,7 @@ const LENS_DATA = {
     {
       id: 14,
       name: "L3c-2",
+      diagramLabel: "L3c-2",
       label: "L3c cemented positive",
       type: "Biconvex Positive",
       nd: 1.7495,
@@ -251,6 +272,7 @@ const LENS_DATA = {
     {
       id: 15,
       name: "L3c-3",
+      diagramLabel: "L3c-3",
       label: "L3c cemented negative",
       type: "Biconcave Negative",
       nd: 1.846658,

@@ -10,6 +10,13 @@ dPgF-corrected indices, or the legacy Abbe approximation. Current optics-engine 
 
 The catalog currently has **532 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
 
+The August 21, 2026 Canon EF 600mm screenshot follow-up reconstructed all 16 III-generation `dPgF` values from
+Numerical Data 4's published `θgF` rows. Existing HOYA FCD100 now supplies a qualified curve for the 437951 Super-UD-
+class position, while CDGM H-ZBaF4 supplies E15's compatible C/d/F curve with the patent-derived `dPgF` remaining
+authoritative at g. The III lens improves from 14/16 to 16/16 strict and trusted coverage without adding a catalog row
+or asserting a Canon production supplier. Global coverage rises to 6322/6906 strict and 6336/6906 trusted surfaces,
+with 379 visible lenses now strict-complete and zero catalog-coordinate mismatches.
+
 The August 20, 2026 Canon EF 600mm audit added legacy OHARA S-NBH53 from the vendor's 2009 datasheet as a distinct
 `738323` curve rather than treating the later S-NBH53V as identical. It upgrades the III-generation lens's E10 while
 preserving the patent's exact `1.73800 / 32.26 / 0.5899` coordinates. Vendor-neutral `835427` and `720502` labels also

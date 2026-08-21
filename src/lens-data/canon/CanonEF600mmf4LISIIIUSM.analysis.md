@@ -29,10 +29,10 @@ The design is a three-unit telephoto system in the patent's terminology: positiv
 
 The active 16-element/12-group model divides as follows:
 
-- **L1, surfaces 1–13:** the large positive front unit. Its computed EFL is +237.937023 mm. It contains five air-spaced elements followed by the D1 cemented pair.
+- **L1, surfaces 1–13:** the large positive front unit. Its computed EFL is +237.937023 mm. It contains five air-spaced elements followed by the E6–E7 cemented pair.
 - **STO, patent surface 14:** the aperture stop, explicitly located by the patent between L1 and L2. Its axial position is source-published; its physical semi-diameter is not. The authored `sd = 22.42736934 mm` is a modeling value derived from F4.12 and the traced entrance pupil.
 - **L2, surfaces 15–16:** a single negative meniscus, E8, with computed EFL −120.515837 mm. This is the sole axial focusing unit.
-- **L3, surfaces 17–29:** the rear correction/relay unit. With the printed rounded spacings its computed EFL is approximately −50.07 m, so its net paraxial power is very small compared with L1 and L2. The patent divides L3 into L3A, L3B, and L3C; the Figure 4A geometry is consistent with D2 as L3A, D3 as L3B, and the remaining E13–D4 train as L3C. That subunit mapping is an author inference because Numerical Data 4 does not numerically label the L3 subdivisions.
+- **L3, surfaces 17–29:** the rear correction/relay unit. With the printed rounded spacings its computed EFL is approximately −50.07 m, so its net paraxial power is very small compared with L1 and L2. Figure 4A divides it into the fixed positive L3A (E9–E10), transverse negative L3B (E11–E12), and fixed L3C (E13–E16) subunits. The element-to-subunit boundaries are figure-derived because Numerical Data 4 does not label the rows numerically.
 
 The nearly afocal character of L3 is sensitive to the patent's two-decimal spacing precision. The published Table 1 value for the L3 focal length is −47,873.47 mm, while the rounded prescription gives −50,069.95 mm. The source audit shows that an unprinted value inside the rounding interval of the published 3.79 mm spacing is sufficient to recover the Table 1 value; no prescription spacing is altered in the data file.
 
@@ -48,7 +48,7 @@ All surface semi-diameters are modeling values because Numerical Data 4 does not
 
 E1 is the large front collector and the patent's positive lens G1P. Paragraphs 0035–0036 and 0040–0053 make G1P a central design variable: its refractive index, Abbe number, relative partial dispersion, focal length, shape factor, and hardness are all constrained to balance compactness against spherical and chromatic correction. The standalone focal length quoted above is the power of E1 by itself, not the power of L1 in situ.
 
-The data file's PCD51 label is catalog-derived: the HOYA coordinate matches the stored `nd` and `νd`. No authored `nC`, `nF`, `ng`, or `dPgF` is attached to E1 because Numerical Data 4 does not publish those line indices or anomalous-partial-dispersion deviations.
+The data file's PCD51 label is catalog-derived: the HOYA coordinate matches the stored `nd` and `νd`. Numerical Data 4 does not publish absolute `nC`, `nF`, or `ng`, but its `θgF = 0.5361` gives the authored `dPgF = +0.00499400` through the patent's own normal-line relation.
 
 ### E2 — Biconvex Positive
 
@@ -82,14 +82,14 @@ E5 combines high index with low Abbe number. The legacy OHARA S-NPH53 coordinate
 
 The high-index, high-dispersion coordinate is consistent with a compact corrective role in the rear half of the front group. That role is inferred from the power distribution and position; the patent does not assign an element-specific aberration function to E5.
 
-### D1 — E6/E7 cemented pair
+### E6–E7 cemented pair
 
 **E6:** `nd = 1.80420, νd = 46.50. Glass: N-LASF44 (SCHOTT). f = −89.468882 mm.`\
-**E7:** `nd = 1.43700, νd = 95.10. Glass: Canon Super UD (manufacturer-constrained; public catalog unresolved). f = +109.196204 mm.`
+**E7:** `nd = 1.43700, νd = 95.10. Glass: 437951 ultra-low-dispersion class; spectral proxy FCD100 (HOYA). f = +109.196204 mm.`
 
 E6 and E7 share the surface-12 cemented interface. SCHOTT N-LASF44 reproduces E6's published `nd = 1.80420`, `νd = 46.50`, and `θgF = 0.5572` exactly at source precision; because the patent does not name a vendor, the label remains a catalog-derived equivalence. Their individual powers have opposite signs, and the cemented pair has a computed net EFL of −463.350731 mm. This net power is distinct from either standalone element focal length and from the positive +237.937023 mm power of L1 as a complete unit.
 
-E7 is the unique 1.43700 / 95.10 body. The data file identifies it as the production lens's one Super UD element by the conjunction of that unique coordinate and Canon's published one-Super-UD count. The identification is therefore manufacturer-constrained rather than a public catalog match. The pair's large dispersion contrast is consistent with chromatic balancing, but the model does not label the complete lens apochromatic because the proprietary element lacks authored line indices or `dPgF`.
+E7 is the unique 1.43700 / 95.10 body. The data file identifies it as the production lens's one Super UD element by the conjunction of that unique coordinate and Canon's published one-Super-UD count. That product identity remains manufacturer-constrained; FCD100 is a coordinate-compatible public spectral proxy, not an assertion about Canon's production supplier. The patent's `θgF = 0.5326` gives `dPgF = +0.04875820`, which remains authoritative at g when the proxy supplies the rest of the curve.
 
 ### E8 — Negative Meniscus / L2 focus unit
 
@@ -99,29 +99,29 @@ E8 is the entirety of the second lens unit L2. Its standalone focal length there
 
 Because E8 is small relative to the front group and is the only axial focus unit, the design obtains internal focusing without translating the massive front collector. The finite-focus travel in the data file is a constrained reconstruction rather than a published spacing table, as described below.
 
-### D2 — E9/E10 cemented pair; inferred L3A
+### L3A — E9/E10 cemented pair
 
 **E9:** `nd = 1.89286, νd = 20.36. Glass: S-NPH4 (OHARA). f = −81.408919 mm.`\
 **E10:** `nd = 1.73800, νd = 32.26. Glass: S-NBH53 (OHARA; legacy). f = +63.382733 mm.`
 
-D2 is a cemented negative-positive pair with a computed net EFL of +279.954428 mm. The Figure 4A subunit boundaries are consistent with D2 being L3A, which the patent describes as a positive fixed subunit. That correspondence is a modeling inference from the drawing and the computed positive pair power, not a numerical label in the table.
+The E9/E10 cemented negative-positive pair has a computed net EFL of +279.954428 mm. Figure 4A places it inside L3A, which the patent describes as a positive fixed subunit. That correspondence comes from the drawing and the computed positive pair power, not a numerical label in the table.
 
 S-NPH4 is a catalog-derived OHARA assignment for E9. For E10, the legacy OHARA S-NBH53 data reproduce the patent coordinate exactly at the published precision (`1.73800 / 32.26 / 0.5899`). The legacy qualifier is intentional: later S-NBH53V data are close but not identical. The patent does not identify the vendor.
 
-### D3 — E11/E12 cemented pair; inferred L3B image-stabilization unit
+### L3B IS — E11/E12 cemented pair
 
 **E11:** `nd = 1.80518, νd = 25.46. Glass: FD60-W (HOYA). f = +57.478514 mm.`\
 **E12:** `nd = 1.59349, νd = 67.00. Glass: PCD51 (HOYA). f = −51.604950 mm.`
 
-D3 has a computed cemented net EFL of −763.157302 mm. HOYA FD60-W reproduces E11's `nd = 1.80518` and `νd = 25.46`; HOYA states that FD60-W is the transmittance-improved FD60 with unchanged composition and other material characteristics. The patent `θgF = 0.6156` differs from common catalog rounding by only about 0.0001, so the assignment is treated as catalog-derived rather than source-named. Its location and negative net power are consistent with the L3B subunit shown in Figure 4A. Paragraph 0024 describes L3B as the negative subunit that moves in a direction containing a component perpendicular to the optical axis for image-blur correction.
+The E11/E12 pair has a computed cemented net EFL of −763.157302 mm. HOYA FD60-W reproduces E11's `nd = 1.80518` and `νd = 25.46`; HOYA states that FD60-W is the transmittance-improved FD60 with unchanged composition and other material characteristics. The patent `θgF = 0.6156` gives `dPgF = +0.01462372`. Its location and negative net power match the L3B subunit shown in Figure 4A. Paragraph 0024 describes L3B as the negative subunit that moves in a direction containing a component perpendicular to the optical axis for image-blur correction.
 
-The LensVisualizer data remains centered because the patent does not publish a transverse stabilization displacement. D3 is therefore identified as the likely IS group in the analysis, but no unverified decenter state is introduced into the prescription.
+The LensVisualizer data remains centered because the patent does not publish a transverse stabilization displacement. L3B is therefore labeled as the IS group, but no unverified decenter state is introduced into the prescription.
 
 ### E13 — Biconcave Negative
 
 `nd = 1.81600, νd = 46.62. Glass: S-LAH59 (OHARA). f = −56.987445 mm.`
 
-E13 begins the inferred L3C region after D3. It is a comparatively strong negative element and uses the catalog-resolved S-LAH59 coordinate. In combination with E14 and D4 it forms the final fixed rear correction train.
+E13 begins the figure-identified L3C region after L3B. It is a comparatively strong negative element and uses the catalog-resolved S-LAH59 coordinate. In combination with E14 and the E15–E16 pair it forms the final fixed rear correction train.
 
 Its standalone power should not be confused with the net power of L3C or with the nearly afocal behavior of L3 as a whole; the air spaces and neighboring powers materially change the in-situ result.
 
@@ -133,18 +133,18 @@ E14 is a high-index, low-Abbe positive meniscus separated from E13 by 3.79 mm of
 
 The element reverses part of E13's negative power before the long 30.08 mm relay gap to the final cemented pair. Its element-specific aberration role is an inference from position and power; the patent does not name one.
 
-### D4 — E15/E16 cemented rear pair
+### E15–E16 cemented rear pair
 
-**E15:** `nd = 1.66565, νd = 35.64. Glass: Unmatched (nd=1.66565, vd=35.64, theta_gF=0.5824). f = +55.385866 mm.`\
+**E15:** `nd = 1.66565, νd = 35.64. Glass: H-ZBaF4 catalog equivalent (patent 666356; production supplier unspecified). f = +55.385866 mm.`\
 **E16:** `nd = 1.89286, νd = 20.36. Glass: S-NPH4 (OHARA). f = −59.583092 mm.`
 
-D4 is the last active cemented pair and has a computed net EFL of +519.032506 mm. E15 remains explicitly `Unmatched (...)`: the six-vendor glass search found nearby BASF2/BAFD2-class entries, but none reproduced the full source coordinate closely enough to justify a named vendor glass. E16 returns to the catalog-resolved S-NPH4 coordinate used for E9.
+The final active cemented pair has a computed net EFL of +519.032506 mm. CDGM H-ZBaF4 lies within the runtime `nd`/`νd` compatibility window and supplies a qualified C/d/F spectral proxy. Its catalog partial dispersion has the opposite sign from the patent row, so the patent-derived `dPgF = −0.00145352` is retained as authoritative at g; the label does not assert a Canon production supplier. E16 returns to the catalog-resolved S-NPH4 coordinate used for E9.
 
 The pair provides weak positive net power at the rear of L3. Together with E13 and E14 it completes the fixed L3C-side correction train before the air-equivalent back-focus spacing to the image plane.
 
 ## Glass Identification and Selection
 
-The patent gives d-line refractive index, Abbe number, and `θgF` for each material but does not name vendors. The final data file therefore separates catalog-derived names from manufacturer-constrained product correlations and unresolved classes. It does not author `nC`, `nF`, `ng`, or `dPgF` proxies.
+The patent gives d-line refractive index, Abbe number, and `θgF` for every material but does not name vendors. The final data file therefore separates catalog-derived spectral proxies from manufacturer-constrained product correlations. It does not invent absolute `nC`, `nF`, or `ng`; it reconstructs all 16 `dPgF` values directly from the published `θgF` rows using `dPgF = θgF − (0.6438 − 0.001682·νd)`.
 
 | Data-file glass label | nd | νd | Elements | Status |
 |---|---:|---:|---|---|
@@ -153,15 +153,15 @@ The patent gives d-line refractive index, Abbe number, and `θgF` for each mater
 | NBFD15-W (HOYA) | 1.80610 | 33.27 | E3 | Catalog-derived match |
 | S-NPH53 (OHARA; legacy) | 1.84666 | 23.88 | E5 | Catalog-derived exact coordinate match |
 | N-LASF44 (SCHOTT) | 1.80420 | 46.50 | E6 | Catalog-derived exact coordinate match |
-| Canon Super UD | 1.43700 | 95.10 | E7 | Manufacturer-constrained; public catalog unresolved |
+| 437951 class; spectral proxy FCD100 (HOYA) | 1.43700 | 95.10 | E7 | Manufacturer-constrained Super UD correlation; supplier-neutral proxy |
 | S-NPH4 (OHARA) | 1.89286 | 20.36 | E9, E16 | Catalog-derived match within source precision |
 | S-NBH53 (OHARA; legacy) | 1.73800 | 32.26 | E10 | Catalog-derived exact coordinate match |
 | FD60-W (HOYA) | 1.80518 | 25.46 | E11 | Catalog-derived match |
 | S-LAH59 (OHARA) | 1.81600 | 46.62 | E13 | Catalog-derived match within source precision |
 | S-NBH56 (OHARA) | 1.85478 | 24.80 | E14 | Catalog-derived match |
-| Unmatched (nd=1.66565, vd=35.64, theta_gF=0.5824) | 1.66565 | 35.64 | E15 | No defensible public-catalog identity |
+| H-ZBaF4 catalog equivalent (patent 666356) | 1.66565 | 35.64 | E15 | Qualified spectral proxy; patent `dPgF` overrides catalog g behavior |
 
-The two fluorite labels and the one Super UD label should be read as production-correlation inferences. Canon's manufacturer material count is a product fact; the mapping of those three production materials onto the patent's three extreme-`νd` bodies is the modeler's inference. Conversely, PCD51, NBFD15-W, S-NPH53, N-LASF44, S-NPH4, S-NBH53, FD60-W, S-LAH59, and S-NBH56 are catalog-derived assignments whose d-line coordinates were checked against the stored prescription.
+The two fluorite labels and the one Super UD label should be read as production-correlation inferences. Canon's manufacturer material count is a product fact; the mapping of those three production materials onto the patent's three extreme-`νd` bodies is the modeler's inference. Conversely, PCD51, NBFD15-W, S-NPH53, N-LASF44, FCD100, S-NPH4, S-NBH53, FD60-W, S-LAH59, S-NBH56, and H-ZBaF4 are catalog-derived proxy assignments whose d-line coordinates were checked against the stored prescription. All 16 active elements now have both a compatible coefficient-backed C/d/F path and patent-derived g-line correction.
 
 ## Focus Mechanism
 
@@ -185,7 +185,7 @@ The patent treats chromatic control as a central part of the architecture. In pa
 
 Within the fixed production correlation, the front group combines two fluorite-labeled positive elements, one Super-UD-labeled positive element, several high-index flints, and multiple PCD51 bodies. Canon independently states that the production EF 600mm f/4L IS III USM uses two fluorite elements and one Super UD element for chromatic correction. The patent prescription supplies the complementary high- and low-dispersion coordinates needed to distribute positive and negative power through L1 and the rear correction groups.
 
-No claim of apochromatic performance is made here. The final data file does not contain source-published `nC`, `nF`, `ng`, or `dPgF` for the proprietary/unresolved materials. Patent `θgF` values are used below only to audit the patent's own conditional expressions; they are not substituted for missing line-index data in the LensVisualizer element records.
+No claim of apochromatic performance is made here. The patent does not publish absolute `nC`, `nF`, or `ng`, so compatible catalog coefficients supply C/d/F where available. At g, every element uses the source-derived `dPgF` reconstructed from Numerical Data 4 rather than silently inheriting a catalog's relative partial dispersion. The three production-correlated fluorite/Super UD positions carry `apd: "inferred"`, distinguishing the product-material inference from patent-named APD tags.
 
 ## Conditional Expressions
 
@@ -219,7 +219,7 @@ Condition 15 uses the patent's defined axial distance from the image-side vertex
 
 Paragraph 0024 divides L3 into a fixed positive L3A, a negative L3B that moves transversely for image-blur correction, and a fixed L3C. Claims 13–15 preserve the same basic arrangement and keep the third lens unit fixed during axial focusing.
 
-For Example 4, the Figure 4A grouping is consistent with D2 (E9/E10) as positive L3A and D3 (E11/E12) as negative L3B. Their independently computed cemented focal lengths are +279.954428 mm and −763.157302 mm, respectively, matching the power signs stated for L3A and L3B. This correspondence is a figure-based modeling inference, not an explicit numerical label in Numerical Data 4.
+For Example 4, Figure 4A identifies E9/E10 as positive L3A and E11/E12 as negative L3B. Their independently computed cemented focal lengths are +279.954428 mm and −763.157302 mm, respectively, matching the power signs stated for those subunits. The data annotations now expose those source-facing names directly instead of generic D2/D3 labels.
 
 The patent does not publish the transverse displacement used for stabilization. The LensVisualizer prescription therefore models the centered optical state only and does not invent an IS decenter distance.
 
@@ -236,7 +236,8 @@ The modeled semi-diameters remain geometry-valid at both infinity and the recons
 1. Shinichiro Saito and Makoto Nakahara, **US 2019/0041605 A1, “Optical System and Image Pickup Apparatus,”** published February 7, 2019. Primary prescription source: Figure 4A; ¶0024–0027; ¶0030–0067; Numerical Data 4; Table 1; claims 13–15.
 2. Canon Camera Museum, **EF600mm f/4L IS III USM**, product record and specifications: <https://global.canon/en/c-museum/product/ef475.html>.
 3. Canon Camera Museum (Japanese), **EF600mm F4L IS III USM**, manufacturer statement identifying two fluorite elements and one Super UD element: <https://global.canon/ja/c-museum/product/ef475.html>.
-4. HOYA Corporation, **Optical Glass / Optical World**, used for PCD51, NBFD15-W, and FD60-W coordinate checks, including HOYA's NBFD15-W / FD60-W transmittance-improvement notice: <https://www.hoya-opticalworld.com/>.
+4. HOYA Corporation, **Optical Glass / Optical World**, used for PCD51, NBFD15-W, FD60-W, and FCD100 coordinate checks, including HOYA's NBFD15-W / FD60-W transmittance-improvement notice: <https://www.hoya-opticalworld.com/>.
 5. SCHOTT, **N-LASF44 optical-glass datasheet**, used for the E6 coordinate check: <https://media.schott.com/api/public/content/bd4fa2fe91a04937b7de073bea46cfa9>.
 6. OHARA Inc., **Optical Glass Catalog and legacy datasheets**, used for S-NPH53, S-NPH4, S-NBH53, S-LAH59, and S-NBH56 coordinate checks: <https://www.ohara-inc.co.jp/en/product/catalog/>.
-7. I. H. Malitson, “A redetermination of some optical properties of calcium fluoride,” *Applied Optics* 2 (1963), used only as an independent CaF2 dispersion check.
+7. CDGM, **Optical Glass Data Sheet**, June 2022, H-ZBaF4, used as a qualified C/d/F spectral proxy while preserving the patent-derived g-line correction.
+8. I. H. Malitson, “A redetermination of some optical properties of calcium fluoride,” *Applied Optics* 2 (1963), used only as an independent CaF2 dispersion check.

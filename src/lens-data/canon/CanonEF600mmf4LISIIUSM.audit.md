@@ -36,3 +36,24 @@ Patent: US 2011/0090576 A1, Third Numerical Embodiment / Figure 5
 - `npm run audit:surface -- src/lens-data/canon/CanonEF600mmf4LISIIUSM.data.ts` - passed.
 - `npm run audit:image-circle -- src/lens-data/canon/CanonEF600mmf4LISIIUSM.data.ts` - passed, 0 undersized.
 - `npm run generate:glass-reports` - passed, 8 files / 15 tests.
+
+## 2026-08-21 - Diagram-label and movement follow-up
+
+### Patent-figure review
+
+- Re-inspected Figure 5 at 600 dpi against the site screenshot. The authored semi-diameters remain direct halves of the
+  patent's effective-diameter column and are stronger evidence than contaminated figure rows, so no SD changed.
+- Replaced numeric element tags with the patent's L11–L25 identifiers, using `a`/`b` only to distinguish physical members
+  of cemented patent groups.
+
+### Focus annotation root cause
+
+- The prescription's infinity-to-close gap order was correct, but the diagram's single `LF` annotation combined fixed
+  L11–L15 with moving L16. Movement analysis therefore averaged the two and displayed only half the real shift.
+- Split the display spans into fixed LF, imageward-moving `L16 FOCUS (−)`, and fixed LR. L16 now reports its full
+  +20.112105825 mm imageward translation. This prime lens has no zoom travel.
+
+### Verification
+
+- `npm run audit:surface -- src/lens-data/canon/CanonEF600mmf4LISIIUSM.data.ts` - passed.
+- `npm run audit:image-circle -- src/lens-data/canon/CanonEF600mmf4LISIIUSM.data.ts` - passed, 0 undersized.

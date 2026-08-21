@@ -72,6 +72,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L11",
+      diagramLabel: "L11",
       label: "L11",
       type: "Biconvex Positive",
       nd: 1.48749,
@@ -85,6 +86,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L12",
+      diagramLabel: "L12",
       label: "L12 (Gp1)",
       type: "Biconvex Positive",
       nd: 1.43387,
@@ -99,6 +101,7 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L13",
+      diagramLabel: "L13",
       label: "L13",
       type: "Biconcave Negative",
       nd: 1.83481,
@@ -112,6 +115,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L14",
+      diagramLabel: "L14",
       label: "L14 (Gp1)",
       type: "Biconvex Positive",
       nd: 1.43387,
@@ -126,6 +130,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L15",
+      diagramLabel: "L15",
       label: "L15",
       type: "Negative Meniscus",
       nd: 1.48749,
@@ -139,6 +144,7 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L16a",
+      diagramLabel: "L16a",
       label: "L16a",
       type: "Biconvex Positive",
       nd: 1.80518,
@@ -153,6 +159,7 @@ const LENS_DATA = {
     {
       id: 7,
       name: "L16b",
+      diagramLabel: "L16b",
       label: "L16b",
       type: "Biconcave Negative",
       nd: 1.83481,
@@ -167,6 +174,7 @@ const LENS_DATA = {
     {
       id: 8,
       name: "L21a",
+      diagramLabel: "L21a",
       label: "L21a",
       type: "Negative Meniscus",
       nd: 1.834,
@@ -181,6 +189,7 @@ const LENS_DATA = {
     {
       id: 9,
       name: "L21b",
+      diagramLabel: "L21b",
       label: "L21b",
       type: "Biconvex Positive",
       nd: 1.7432,
@@ -195,6 +204,7 @@ const LENS_DATA = {
     {
       id: 10,
       name: "L22a",
+      diagramLabel: "L22a",
       label: "L22a",
       type: "Biconvex Positive",
       nd: 1.84666,
@@ -209,6 +219,7 @@ const LENS_DATA = {
     {
       id: 11,
       name: "L22b",
+      diagramLabel: "L22b",
       label: "L22b",
       type: "Biconcave Negative",
       nd: 1.72,
@@ -223,6 +234,7 @@ const LENS_DATA = {
     {
       id: 12,
       name: "L23",
+      diagramLabel: "L23",
       label: "L23",
       type: "Negative Meniscus",
       nd: 1.834,
@@ -236,6 +248,7 @@ const LENS_DATA = {
     {
       id: 13,
       name: "L24",
+      diagramLabel: "L24",
       label: "L24",
       type: "Positive Meniscus",
       nd: 1.84666,
@@ -249,6 +262,7 @@ const LENS_DATA = {
     {
       id: 14,
       name: "L25a",
+      diagramLabel: "L25a",
       label: "L25a (Gp2)",
       type: "Positive Meniscus",
       nd: 1.7495,
@@ -263,6 +277,7 @@ const LENS_DATA = {
     {
       id: 15,
       name: "L25b",
+      diagramLabel: "L25b",
       label: "L25b (Gn1)",
       type: "Negative Meniscus",
       nd: 1.92286,
@@ -329,8 +344,9 @@ const LENS_DATA = {
 
   /* ── Group and cemented-pair annotations ── */
   groups: [
-    { text: "LF", fromSurface: "1", toSurface: "13" },
-    { text: "LR", fromSurface: "15", toSurface: "27" },
+    { text: "LF FIXED (L11-L15)", fromSurface: "1", toSurface: "10" },
+    { text: "L16 FOCUS (−)", fromSurface: "11", toSurface: "13" },
+    { text: "LR FIXED", fromSurface: "15", toSurface: "27" },
   ],
   doublets: [
     { text: "L16", fromSurface: "11", toSurface: "13" },

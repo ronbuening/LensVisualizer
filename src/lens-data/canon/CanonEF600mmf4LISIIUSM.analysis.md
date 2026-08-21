@@ -68,6 +68,10 @@ The active modeled track from surface 1 to the normalized image plane is 474.91 
 than focal length. The computed BFD/EFL ratio is 0.207060; because BFD is far shorter than EFL, the system is not a
 retrofocus design.
 
+The site diagram keeps the patent's LF/LR terminology while splitting the authored movement annotations into fixed
+L11–L15, moving L16, and fixed LR spans. This prevents the movement overlay from averaging the translating doublet with
+the stationary remainder of LF and makes the full imageward L16 travel visible.
+
 The architecture is all-spherical. There is no zoom motion, folded path, perspective-control movement, diffractive phase
 surface, or independent spherical-aberration control. The only modeled axial state change is the constrained L16 focus
 translation. Image stabilization is documented as transverse motion and is discussed separately below; no arbitrary

@@ -282,6 +282,10 @@ publishes the **categories** of those special elements for the finished lens. Th
 functional identity in the correlation; it does not identify a catalog supplier or justify replacing the patent nd/νd
 values with a modern catalog value.
 
+Those three positions carry `apd: "inferred"` in the diagram metadata so the viewer exposes the production-backed
+special-dispersion classification without presenting it as a patent-named glass. Example 22 publishes no `θgF`, line
+indices, or `dPgF`, so no numerical partial-dispersion value is invented for this generation.
+
 ## Focus Mechanism
 
 The patent defines L2 as the sole axial focusing unit and states that it moves toward the image side as object distance

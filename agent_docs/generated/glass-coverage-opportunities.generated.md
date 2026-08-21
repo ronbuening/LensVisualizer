@@ -10,8 +10,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **607** lenses scanned (**597** visible)
-- **6320 / 6906** non-air surfaces use strict catalog Sellmeier data (91.5%)
-- **6334 / 6906** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 91.7%)
+- **6322 / 6906** non-air surfaces use strict catalog Sellmeier data (91.5%)
+- **6336 / 6906** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 91.7%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **228** code-only missing-Sellmeier elements in Sweep 2: **0** active unreviewed, **99** self-recording explicit dispositions, **0** dispositions missing any review record
@@ -74,7 +74,6 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [MINOLTA AF 100mm f/2.8 Macro](../../src/lens-data/minolta/MinoltaAF100mmf28Macro.data.ts) | US 4,764,000 | [PDF](../../patents/US4764000.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 13 [glass] (Element 7: `807316 - dense lanthanum flint (patent nd=1.80741, vd=31.59; unresolved)`) | abbe: 1 |
 | [MINOLTA AF 135mm f/2.8 [T4.5] STF](../../src/lens-data/minolta/MinoltaSTF135mmf28T45.data.ts) | JP1999-231209 A | [PDF](../../patents/JPA 1999231209-000000.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 9 [glass] (Element 5: `507589 — bulk absorbing ND glass (catalog unresolved; patent α=0.55)`) | abbe: 1 |
 | [SCHNEIDER-KREUZNACH SUPER-SYMMAR HM 120mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderSuperSymmarHM120mmf56.data.ts) | US 4,773,745 | [PDF](../../patents/US4773745.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 13 [glass] (Element 8: `Unmatched (479/587 low-index crown; vendor unspecified)`) | abbe: 1 |
-| [CANON EF 600mm f/4 L IS III USM](../../src/lens-data/canon/CanonEF600mmf4LISIIIUSM.data.ts) | US 2019/0041605 A1 | [PDF](../../patents/US20190041605A1.pdf) | 87.5% (14/16) | 87.5% (14/16) | 2 | 12 [glass] (Element 7: `Canon Super UD (manufacturer-constrained; public catalog unresolved)`)<br>27 [glass] (Element 15: `Unmatched (nd=1.66565, vd=35.64, theta_gF=0.5824)`) | abbe: 2 |
 | [MINOLTA AF 100mm f/2](../../src/lens-data/minolta/MinoltaAF100mmf2.data.ts) | JP1987-244010 A | [PDF](../../patents/JPA 1987244010-000000.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 8 [glass] (Element 5: `Unmatched (781446 high-index mid-dispersion glass; no compatible public coefficient row)`) | abbe: 1 |
 | [VOIGTLÄNDER COLOR-SKOPAR 28mm f/2.8 Aspherical SL IIs](../../src/lens-data/voigtlander/VoigtlanderColorSkopar28mmf28Aspherical.data.ts) | JP 2023-032663 A | [PDF](../../patents/JPA 2023032663-000000.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 5 [glass] (Cemented biconcave member: `Unmatched (nd inferred from published FL; νd omitted by patent)`) | constant: 1 |
 | [LAOWA 65mm f/2.8 2× Ultra Macro APO](../../src/lens-data/laowa/Laowa65mmf28MacroAPO.data.ts) | CN 110161666 A | [PDF](../../patents/CN110161666A.pdf) | 85.7% (12/14) | 85.7% (12/14) | 2 | 4 [glass] (Element 3: `773530 — high-index lanthanum crown (patent nd=1.77250, νd=53.00; no exact public catalog match)`)<br>16 [glass] (Element 10: `Unmatched (patent nd=1.72916, νd=57.67; prior H-LAK52 candidate rejected on dispersion)`) | abbe: 2 |

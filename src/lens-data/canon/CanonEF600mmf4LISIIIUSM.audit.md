@@ -37,3 +37,28 @@ Patent: US 2019/0041605 A1, Numerical Data 4 / Figure 4A
 - `npm run audit:surface -- src/lens-data/canon/CanonEF600mmf4LISIIIUSM.data.ts` - passed.
 - `npm run audit:image-circle -- src/lens-data/canon/CanonEF600mmf4LISIIIUSM.data.ts` - passed, 0 undersized.
 - `npm run generate:glass-reports` - passed, 8 files / 15 tests.
+
+## 2026-08-21 - Diagram-label, movement, and chromatic follow-up
+
+### Patent-figure review
+
+- Re-inspected Figure 4A at 600 dpi against the site screenshot, including a tighter rear-group crop. The measured rims
+  still support the authored semi-diameters; the largest credible difference remains below the strong-evidence threshold.
+- Replaced numeric tags with E1–E16 and replaced generic D2/D3/L3 annotations with the Figure 4A L3A, L3B IS, and L3C
+  subunit spans. Cemented labels now identify their member pairs directly.
+
+### Glass and motion metadata
+
+- Reconstructed `dPgF` for all 16 active elements from the patent's published `θgF` rows and normal-line relation.
+- Qualified E7's 437951 material with HOYA FCD100 as a supplier-neutral spectral proxy. Qualified E15 with CDGM
+  H-ZBaF4 for C/d/F interpolation while keeping the patent-derived negative `dPgF` authoritative at g.
+- Marked the two production-correlated fluorite positions and one Super UD position as inferred special-dispersion tags.
+  Coverage improves from 14/16 to 16/16 without changing the patent nd/νd coordinates or asserting a production melt.
+- Confirmed that E8/L2 translates 18.906939851 mm imageward from infinity to the modeled 4.2 m state, while L1/L3
+  remain fixed. This prime lens has no zoom travel; L3B's only source-described motion is transverse IS.
+
+### Verification
+
+- `npm run audit:surface -- src/lens-data/canon/CanonEF600mmf4LISIIIUSM.data.ts` - passed.
+- `npm run audit:image-circle -- src/lens-data/canon/CanonEF600mmf4LISIIIUSM.data.ts` - passed, 0 undersized.
+- `npm run generate:glass-reports` - passed, 8 files / 15 tests; 16/16 strict and trusted coverage, 0 mismatches.

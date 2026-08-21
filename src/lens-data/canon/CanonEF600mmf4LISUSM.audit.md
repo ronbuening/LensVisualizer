@@ -36,3 +36,24 @@ Patent: US 6,115,188 A, Numerical Example 22 / Figure 85
 - `npm run audit:surface -- src/lens-data/canon/CanonEF600mmf4LISUSM.data.ts` - passed.
 - `npm run audit:image-circle -- src/lens-data/canon/CanonEF600mmf4LISUSM.data.ts` - passed, 0 undersized.
 - `npm run generate:glass-reports` - passed, 8 files / 15 tests.
+
+## 2026-08-21 - Diagram-label and movement follow-up
+
+### Patent-figure review
+
+- Re-inspected Figure 85 at 600 dpi against the site screenshot. Optical rims remain within the accepted figure-reading
+  uncertainty, so no semi-diameter change is supported.
+- Replaced numeric element tags with the source-derived L1a/L1b/L1c/L2/L3a/L3b/L3c element identifiers already used
+  by the prescription analysis.
+
+### Glass and motion metadata
+
+- Added inferred special-dispersion tags to the two production-correlated UD positions and the fluorite-coordinate
+  position. No `dPgF` was invented because Example 22 publishes no partial-dispersion row.
+- Confirmed that L2 translates 18.829163964 mm imageward from infinity to the modeled 5.5 m state, while L1/L3 remain
+  fixed. This prime lens has no zoom travel.
+
+### Verification
+
+- `npm run audit:surface -- src/lens-data/canon/CanonEF600mmf4LISUSM.data.ts` - passed.
+- `npm run audit:image-circle -- src/lens-data/canon/CanonEF600mmf4LISUSM.data.ts` - passed, 0 undersized.
