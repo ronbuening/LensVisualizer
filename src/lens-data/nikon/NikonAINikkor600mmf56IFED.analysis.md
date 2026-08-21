@@ -32,43 +32,43 @@ A 600 dpi review of local PDF page 3 confirmed the Figure 1 proportions. The dra
 
 ### L1 — Biconvex Positive
 
-**nd = 1.50032, νd = 81.9. Glass: J-FKH1-compatible low-dispersion proxy; patent supplier unresolved. Standalone f = +253.734 mm.**
+**nd = 1.50032, νd = 81.9. Glass: J-FKH1 catalog equivalent (patent 500819; production supplier unspecified). Standalone f = +253.734 mm.**
 
 L1 is the first positive collector in G1 and carries the largest modeled clear aperture. Its high Abbe number places it in a low-dispersion/high-Abbe region. The production lens is ED-branded, but the selected patent does not identify this glass by trade name or assign an ED designation to a particular element, so no modern catalog or historical supplier is asserted.
 
 ### L2 — Biconvex Positive
 
-**nd = 1.50032, νd = 81.9. Glass: J-FKH1-compatible low-dispersion proxy; patent supplier unresolved. Standalone f = +253.426 mm.**
+**nd = 1.50032, νd = 81.9. Glass: J-FKH1 catalog equivalent (patent 500819; production supplier unspecified). Standalone f = +253.426 mm.**
 
 L2 repeats the same refractive coordinate as L1 and supplies a second substantial positive contribution in G1. The repeated high-Abbe coordinate is compatible with a low-dispersion front-pair strategy, but the selected patent supplies only `nd` and `νd`, not a material trade name, line-index data, or a vendor designation.
 
 ### L3 — Biconcave Negative
 
-**nd = 1.74950, νd = 35.0. Glass: 750350 — lanthanum-flint class; vendor unresolved. Standalone f = −265.549 mm.**
+**nd = 1.74950, νd = 35.0. Glass: H-LaF4 catalog equivalent (patent 750350; production supplier unspecified). Standalone f = −265.549 mm.**
 
 L3 is the negative member that completes the net-positive first functional group. Its substantially higher index and lower Abbe number contrast with L1 and L2. That pairing is consistent with first-order chromatic balancing inside G1, but the class label is deliberately generic: current cross-vendor catalogs contain close modern equivalents without evidence that any one catalog identifies the historical melt.
 
 ### L4 — Positive Meniscus, front member of D1
 
-**nd = 1.69895, νd = 30.0. Glass: 699300 — dense-flint/SF15-class; vendor unresolved. Standalone f = +168.433 mm.**
+**nd = 1.69895, νd = 30.0. Glass: SF15 catalog equivalent (patent 699300; production supplier unspecified). Standalone f = +168.433 mm.**
 
 L4 is the positive front member of the only cemented pair and sits inside the translating G2 focusing assembly. Its low Abbe number and strong curvature make it very different from the two high-Abbe front positives. The data file assigns the shared cemented interface to the downstream L5 element, as required by the sequential medium convention.
 
 ### L5 — Biconcave Negative, rear member of D1
 
-**nd = 1.51680, νd = 64.2. Glass: 517642 — BK7-equivalent crown class; vendor unresolved. Standalone f = −119.423 mm.**
+**nd = 1.51680, νd = 64.2. Glass: H-K9L catalog equivalent (patent 517642; production supplier unspecified). Standalone f = −119.423 mm.**
 
 L5 follows L4 across the cemented interface and contributes negative standalone power. The L4+L5 cemented pair has a verified net EFL in air of approximately −391.018 mm. That number must not be confused with the power of the complete focusing group: the in-situ G2 also includes L6 and the published separations, and its verified functional-group EFL is approximately −90.000 mm.
 
 ### L6 — Biconcave Negative
 
-**nd = 1.69680, νd = 55.6. Glass: 697556 — lanthanum-crown class; vendor unresolved. Standalone f = −120.601 mm.**
+**nd = 1.69680, νd = 55.6. Glass: K-LaK14 catalog equivalent (patent 697556; production supplier unspecified). Standalone f = −120.601 mm.**
 
 L6 is the rear negative element of G2. Together with the cemented L4/L5 pair it makes the second functional group decisively negative. G2 is the only functional group that moves during focusing; its role is therefore defined not just by its optical power but by its axial position relative to the fixed G1 and G3 groups.
 
 ### L7 — Positive Meniscus
 
-**nd = 1.52000, νd = 70.1. Glass: J-PKH1-compatible phosphate-crown proxy; corrected patent coordinate and supplier unresolved. Standalone f = +240.004 mm.**
+**nd = 1.52000, νd = 70.1. Glass: J-PKH1 catalog equivalent; corrected patent coordinate and production supplier unspecified. Standalone f = +240.004 mm.**
 
 L7 is the complete fixed third functional group. Because G3 contains only this element, its standalone EFL and functional-group EFL are effectively the same. The stored index is the explicitly documented `1.57 → 1.52` source correction required to reproduce the patent's stated focal constraints. The corrected coordinate still does not justify assigning a specific historical catalog glass.
 
@@ -78,22 +78,22 @@ The model retains the patent's `nd/νd` coordinates and uses catalog classes onl
 
 | Element(s) | nd | νd | Data-file glass representation | Interpretation |
 |---|---:|---:|---|---|
-| L1, L2 | 1.50032 | 81.9 | J-FKH1-compatible low-dispersion proxy | high-Abbe front positives; patent supplier unresolved |
-| L3 | 1.74950 | 35.0 | 750350 — lanthanum-flint class; vendor unresolved | high-index, lower-Abbe negative partner in G1 |
-| L4 | 1.69895 | 30.0 | 699300 — dense-flint/SF15-class; vendor unresolved | low-Abbe positive member of D1 |
-| L5 | 1.51680 | 64.2 | 517642 — BK7-equivalent crown class; vendor unresolved | higher-Abbe negative member of D1 |
-| L6 | 1.69680 | 55.6 | 697556 — lanthanum-crown class; vendor unresolved | high-index negative member of G2 |
-| L7 | 1.52000 | 70.1 | J-PKH1-compatible phosphate-crown proxy | corrected high-Abbe rear positive; patent supplier unresolved |
+| L1, L2 | 1.50032 | 81.9 | J-FKH1 catalog equivalent (500819) | high-Abbe front positives; production supplier unspecified |
+| L3 | 1.74950 | 35.0 | H-LaF4 catalog equivalent (750350) | high-index, lower-Abbe negative partner in G1; production supplier unspecified |
+| L4 | 1.69895 | 30.0 | SF15 catalog equivalent (699300) | low-Abbe positive member of D1; production supplier unspecified |
+| L5 | 1.51680 | 64.2 | H-K9L catalog equivalent (517642) | higher-Abbe negative member of D1; production supplier unspecified |
+| L6 | 1.69680 | 55.6 | K-LaK14 catalog equivalent (697556) | high-index negative member of G2; production supplier unspecified |
+| L7 | 1.52000 | 70.1 | J-PKH1 catalog equivalent | corrected high-Abbe rear positive; production supplier unspecified |
 
-No `nC`, `nF`, `ng`, or `dPgF` values are authored. The patent does not publish those quantities, and the qualified J-FKH1/J-PKH1 curves are used only as coordinate-compatible runtime proxies, not as historical melt identities or patent-derived line data. The analysis therefore does not classify the prescription as apochromatic or make an anomalous-partial-dispersion claim. Nikon's ED designation applies to the production lens as a product-level material statement; the selected patent does not establish which modeled element or elements carry that designation.
+Every modeled element resolves to a coefficient-backed runtime curve, but no `nC`, `nF`, `ng`, or `dPgF` values are authored from the patent because it does not publish those quantities. The ED tags on L1 and L2 are a qualified production-correlation inference: they are the prescription's only identical very-high-Abbe front pair, while Nikon identifies the product as ED. The tags do not establish a historical melt supplier or turn catalog line data into patent evidence. The analysis therefore does not classify the prescription as apochromatic or make a patent-derived anomalous-partial-dispersion claim.
 
 ## Focus Mechanism
 
-The lens uses internal focusing by translation of functional group G2 (L4–L6), while G1 and G3 remain fixed. The patent publishes a finite-focus movement in which G2 moves rearward and the air gaps on its two sides change by equal and opposite amounts. This conservation fixes the mechanism to one internal degree of freedom.
+The lens uses internal focusing by translation of functional group G2 (L4–L6), while G1 and G3 remain fixed. The patent publishes a finite-focus movement in which G2 moves imageward (rearward) and the air gaps on its two sides change by equal and opposite amounts. This conservation fixes the mechanism to one internal degree of freedom.
 
-The patent's own finite-focus row increases `d6` from 16.255 to 17.589 and decreases `d11` from 2.963 to 1.629, corresponding to a 1.334-unit rearward G2 translation and approximately 1/10 lateral magnification. Independent paraxial solution with the corrected L7 index places that published state at about 1161.527 normalized units object-to-image, or 6969.164 mm after the 6× scaling, so it is not the production 5.5 m endpoint.
+The patent's own finite-focus row increases `d6` from 16.255 to 17.589 and decreases `d11` from 2.963 to 1.629, corresponding to a 1.334-unit imageward (rearward) G2 translation and approximately 1/10 lateral magnification. Independent paraxial solution with the corrected L7 index places that published state at about 1161.527 normalized units object-to-image, or 6969.164 mm after the 6× scaling, so it is not the production 5.5 m endpoint.
 
-The final data file therefore uses a **CONSTRAINED_RECONSTRUCTION** for 5.5 m. The production endpoint is solved while preserving the patent's one-group translation and exact adjacent-gap conservation. The required G2 travel is 10.425804 mm rearward.
+The final data file therefore uses a **CONSTRAINED_RECONSTRUCTION** for 5.5 m. The production endpoint is solved while preserving the patent's one-group translation and exact adjacent-gap conservation. The required G2 travel is 10.425804 mm imageward (rearward).
 
 Because the inferred aperture stop is fixed in the barrel, the patent's long front-side G2 gap is represented by a fixed S6→STO segment and a variable STO→S7 segment. The variable spacings are:
 

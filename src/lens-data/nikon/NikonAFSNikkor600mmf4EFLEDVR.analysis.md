@@ -52,7 +52,7 @@ A 600 dpi review of local PDF page 12 confirmed the Fig. 11 silhouette. After ex
 
 ### HG — Weak Positive Protective Meniscus
 
-`nd = 1.51680, νd = 63.88. Glass: 517639 crown class (historical BK7-coordinate; vendor unresolved). Standalone f ≈ +3.32×10^6 mm.`
+`nd = 1.51680, νd = 63.88. Glass: J-BK7 catalog equivalent (patent 517639; production supplier unspecified). Standalone f ≈ +3.32×10^6 mm.`
 
 HG is optically almost afocal: its two radii are nearly equal and its net refractive power is extremely small. Its importance in the model is therefore not as a contributor to system focal length but as the real curved front plate that the patent includes in G1 and Nikon describes as a meniscus protective glass. Because the production element carries a fluorine coating while the patent prescription concerns bulk optical geometry, the coating is not represented as an additional optical surface.
 
@@ -76,7 +76,7 @@ The prescription does not publish C-, F-, or g-line indices for L11 or L12. The 
 
 ### L13 — Biconcave Negative Element
 
-`nd = 1.61266, νd = 44.46. Glass: 613445 optical-glass class (J-KZFH1-coordinate equivalent; vendor unresolved). Standalone f = -352.407 mm.`
+`nd = 1.61266, νd = 44.46. Glass: J-KZFH1 catalog equivalent (patent 613445; production supplier unspecified). Standalone f = -352.407 mm.`
 
 L13 introduces negative power after the two positive fluorite lenses. In first-order terms it moderates the front group's convergence before the long gap leading to the final cemented component of G1. Its placement also gives the front group an alternating positive–positive–negative sequence rather than concentrating all negative correction at the group rear.
 
@@ -84,8 +84,8 @@ The stored glass label is deliberately a coordinate class rather than a HIKARI v
 
 ### D1 — L14 + L15 Cemented Component
 
-**L14:** `nd = 1.77250, νd = 49.62. Glass: 773496 optical-glass class (vendor unresolved). Standalone f = -202.890 mm.`\
-**L15:** `nd = 1.49782, νd = 82.57. Glass: 498826 low-dispersion crown class (J-FKH1-coordinate equivalent; vendor unresolved). Standalone f = +116.472 mm.`
+**L14:** `nd = 1.77250, νd = 49.62. Glass: J-LASF016 catalog equivalent (patent 773496; production supplier unspecified). Standalone f = -202.890 mm.`\
+**L15:** `nd = 1.49782, νd = 82.57. Glass: J-FKH1 catalog equivalent (patent 498826; production supplier unspecified). Standalone f = +116.472 mm.`
 
 L14 is a negative meniscus and L15 is a positive meniscus. Their individual powers should not be confused with the cemented pair's net behavior: traced as the complete D1 component, L14+L15 has a positive equivalent focal length of approximately +294.277 mm.
 
@@ -93,8 +93,8 @@ The pairing places a higher-index, moderate-dispersion negative member against a
 
 ### D2 / G2 — L21 + L22 Internal-Focus Doublet
 
-**L21:** `nd = 1.92286, νd = 20.88. Glass: 923209 dense-flint class (vendor unresolved). Standalone f = +224.066 mm.`\
-**L22:** `nd = 1.83481, νd = 42.73. Glass: 835427 lanthanum-glass class (vendor unresolved). Standalone f = -70.518 mm.`
+**L21:** `nd = 1.92286, νd = 20.88. Glass: N-SF66 catalog equivalent (patent 923209; production supplier unspecified). Standalone f = +224.066 mm.`\
+**L22:** `nd = 1.83481, νd = 42.73. Glass: S-LAH55 catalog equivalent (patent 835427; production supplier unspecified). Standalone f = -70.518 mm.`
 
 The complete cemented doublet has an EFL of approximately -103.558 mm and is the patent's second lens group G2. This is an important distinction between element and assembly power: the plano-convex L21 is positive by itself, but the much stronger negative L22 makes the cemented unit negative overall.
 
@@ -102,8 +102,8 @@ G2 is the sole published focusing group. The patent explicitly states that it mo
 
 ### D3 — L31 + L32 Cemented Component
 
-**L31:** `nd = 1.90265, νd = 35.73. Glass: 903357 historical high-index lanthanum-glass class (J-LASFH9-coordinate; vendor unresolved). Standalone f = -82.888 mm.`\
-**L32:** `nd = 1.59319, νd = 67.90. Glass: 593679 low-dispersion crown class (vendor unresolved). Standalone f = +60.317 mm.`
+**L31:** `nd = 1.90265, νd = 35.73. Glass: J-LASFH9 catalog equivalent (patent 903357; production supplier unspecified). Standalone f = -82.888 mm.`\
+**L32:** `nd = 1.59319, νd = 67.90. Glass: J-PSKH1 catalog equivalent (patent 593679; production supplier unspecified). Standalone f = +60.317 mm.`
 
 L31 is a negative meniscus and L32 a strong positive biconvex lens. The cemented pair reverses the sign suggested by the first member alone: D3 has a net EFL of approximately +218.057 mm. It begins G3 immediately behind the aperture stop and restores positive relay power after the negative focusing group.
 
@@ -111,8 +111,8 @@ The high-index/moderate-dispersion L31 and lower-dispersion L32 form another pai
 
 ### D4 / VR — L33 + L34 Cemented Component
 
-**L33:** `nd = 1.78472, νd = 25.72. Glass: 785257 dense-flint class (vendor unresolved). Standalone f = +117.765 mm.`\
-**L34:** `nd = 1.49782, νd = 82.57. Glass: 498826 low-dispersion crown class (J-FKH1-coordinate equivalent; vendor unresolved). Standalone f = -67.952 mm.`
+**L33:** `nd = 1.78472, νd = 25.72. Glass: H-ZF13 catalog equivalent (patent 785257; production supplier unspecified). Standalone f = +117.765 mm.`\
+**L34:** `nd = 1.49782, νd = 82.57. Glass: J-FKH1 catalog equivalent (patent 498826; production supplier unspecified). Standalone f = -67.952 mm.`
 
 Although L33 is positive and L34 is negative as standalone lenses, the cemented D4 pair is negative overall, with EFL approximately -160.674 mm. The patent places this pair inside the vibration-reduction group Gvr (¶0310).
 
@@ -120,7 +120,7 @@ The very large Abbe-number contrast between the two members is notable, but the 
 
 ### L35 — Plano-Concave Negative VR Element
 
-`nd = 1.81600, νd = 46.59. Glass: 816466 lanthanum-glass class (J-LASF09A-coordinate equivalent; vendor unresolved). Standalone f = -92.456 mm.`
+`nd = 1.81600, νd = 46.59. Glass: J-LASF09A catalog equivalent (patent 816466; production supplier unspecified). Standalone f = -92.456 mm.`
 
 L35 is the final member of Gvr. Combined with D4, the centered vibration-reduction subassembly has a net EFL of approximately -57.921 mm. The patent moves this three-lens subassembly in a direction with a component perpendicular to the optical axis to shift the image and compensate vibration (¶0310).
 
@@ -128,7 +128,7 @@ The data file represents the centered nominal prescription only. It does not enc
 
 ### L36 — Biconvex Positive Rear-Adjustment Element
 
-`nd = 1.61266, νd = 44.46. Glass: 613445 optical-glass class (J-KZFH1-coordinate equivalent; vendor unresolved). Standalone f = +39.506 mm.`
+`nd = 1.61266, νd = 44.46. Glass: J-KZFH1 catalog equivalent (patent 613445; production supplier unspecified). Standalone f = +39.506 mm.`
 
 L36 is the strongest standalone positive element in the rear adjustment region. Together with L37 it forms G3adjB, the positive object-side subassembly adjacent to the negative lens Ln in the patent's manufacturing-adjustment scheme (¶0311–0312).
 
@@ -136,7 +136,7 @@ The L36+L37 combination is positive overall, with EFL approximately +54.845 mm. 
 
 ### L37 — Negative Meniscus in G3adjB
 
-`nd = 1.92286, νd = 20.88. Glass: 923209 dense-flint class (vendor unresolved). Standalone f = -133.888 mm.`
+`nd = 1.92286, νd = 20.88. Glass: N-SF66 catalog equivalent (patent 923209; production supplier unspecified). Standalone f = -133.888 mm.`
 
 L37 tempers L36's strong positive power and completes G3adjB. The air gap after L37 is one of the two assembly-adjustment gaps studied by the patent. Figure 13(b) evaluates the aberration response after increasing this spacing by 0.2 mm.
 
@@ -144,7 +144,7 @@ This adjustment is not photographic focusing. It is a post-assembly correction m
 
 ### L38 — Biconcave Negative Lens Ln
 
-`nd = 1.59319, νd = 67.90. Glass: 593679 low-dispersion crown class (vendor unresolved). Standalone f = -41.429 mm.`
+`nd = 1.59319, νd = 67.90. Glass: J-PSKH1 catalog equivalent (patent 593679; production supplier unspecified). Standalone f = -41.429 mm.`
 
 L38 is explicitly identified by the patent as the negative lens Ln (¶0312). It lies between the positive G3adjB unit on the object side and the positive G3adjA unit on the image side. This sign pattern is central to the patent's adjustment concept because changing the air spaces on either side of Ln perturbs different aberration balances without requiring a wholesale redesign of the rear group.
 
@@ -152,7 +152,7 @@ Figure 13(a) studies a +0.2 mm change to the air gap after L38 and associates th
 
 ### L39 — Biconvex Positive G3adjA Element
 
-`nd = 1.67003, νd = 47.14. Glass: 670471 barium-flint class (vendor unresolved). Standalone f = +58.452 mm.`
+`nd = 1.67003, νd = 47.14. Glass: J-BAF10 catalog equivalent (patent 670471; production supplier unspecified). Standalone f = +58.452 mm.`
 
 L39 is the final imaging element and alone constitutes the patent's positive G3adjA subgroup. Its standalone EFL is therefore also the subgroup EFL. L36 through L39 together form Gadj, whose centered nominal EFL is approximately +77.323 mm.
 
@@ -164,20 +164,20 @@ The patent supplies d-line `nd` and `νd` values but no glass vendors. The data 
 
 | Data annotation | nd | νd | Elements | Interpretation |
 |---|---:|---:|---|---|
-| 517639 crown class (historical BK7-coordinate; vendor unresolved) | 1.51680 | 63.88 | HG | Historical crown coordinate; retained without vendor attribution |
+| J-BK7 catalog equivalent (517639) | 1.51680 | 63.88 | HG | Historical crown proxy; production supplier unspecified |
 | Crystalline CaF2 fluorite | 1.43385 | 95.25 | L11, L12 | Material-class identification; matches Nikon's two-fluorite count |
-| 613445 optical-glass class | 1.61266 | 44.46 | L13, L36 | J-KZFH1-coordinate equivalent; vendor unresolved |
-| 773496 optical-glass class | 1.77250 | 49.62 | L14 | Cross-vendor coordinate class |
-| 498826 low-dispersion crown class | 1.49782 | 82.57 | L15, L34 | J-FKH1-coordinate equivalent; vendor unresolved |
-| 923209 dense-flint class | 1.92286 | 20.88 | L21, L37 | Cross-vendor dense-flint coordinate class |
-| 835427 lanthanum-glass class | 1.83481 | 42.73 | L22 | J-LASF05-coordinate equivalent; vendor unresolved |
-| 903357 historical high-index lanthanum-glass class | 1.90265 | 35.73 | L31 | Historical J-LASFH9-coordinate; vendor unresolved |
-| 593679 low-dispersion crown class | 1.59319 | 67.90 | L32, L38 | J-PSKH1-coordinate equivalent; vendor unresolved |
-| 785257 dense-flint class | 1.78472 | 25.72 | L33 | Cross-vendor coordinate class |
-| 816466 lanthanum-glass class | 1.81600 | 46.59 | L35 | J-LASF09A-coordinate equivalent; vendor unresolved |
-| 670471 barium-flint class | 1.67003 | 47.14 | L39 | J-BAF10-coordinate equivalent; vendor unresolved |
+| J-KZFH1 catalog equivalent (613445) | 1.61266 | 44.46 | L13, L36 | Optical-glass proxy; production supplier unspecified |
+| J-LASF016 catalog equivalent (773496) | 1.77250 | 49.62 | L14 | Lanthanum-flint proxy; production supplier unspecified |
+| J-FKH1 catalog equivalent (498826) | 1.49782 | 82.57 | L15, L34 | Low-dispersion crown proxy; production supplier unspecified |
+| N-SF66 catalog equivalent (923209) | 1.92286 | 20.88 | L21, L37 | Dense-flint proxy; production supplier unspecified |
+| S-LAH55 catalog equivalent (835427) | 1.83481 | 42.73 | L22 | Lanthanum-glass proxy; production supplier unspecified |
+| J-LASFH9 catalog equivalent (903357) | 1.90265 | 35.73 | L31 | High-index lanthanum-glass proxy; production supplier unspecified |
+| J-PSKH1 catalog equivalent (593679) | 1.59319 | 67.90 | L32, L38 | Low-dispersion crown proxy; production supplier unspecified |
+| H-ZF13 catalog equivalent (785257) | 1.78472 | 25.72 | L33 | Dense-flint proxy; production supplier unspecified |
+| J-LASF09A catalog equivalent (816466) | 1.81600 | 46.59 | L35 | Lanthanum-glass proxy; production supplier unspecified |
+| J-BAF10 catalog equivalent (670471) | 1.67003 | 47.14 | L39 | Barium-flint proxy; production supplier unspecified |
 
-No element carries `nC`, `nF`, `ng`, or `dPgF` in the data file because Example 4 does not publish those quantities. Consequently, no claim of apochromatic correction or anomalous partial dispersion is made here. The design clearly uses a wide spread of Abbe numbers, including fluorite and multiple low-dispersion coordinates, but higher-order chromatic behavior cannot be established from `nd/νd` alone.
+Every optical element resolves to a coefficient-backed runtime curve. The data labels name the selected qualified equivalent explicitly, but no element carries patent-authored `nC`, `nF`, `ng`, or `dPgF` because Example 4 does not publish those quantities. Consequently, no claim of apochromatic correction or patent-proven anomalous partial dispersion is made here. The design clearly uses a wide spread of Abbe numbers, including fluorite and multiple low-dispersion coordinates, but higher-order chromatic behavior cannot be established from patent `nd/νd` alone.
 
 ## Focus Mechanism
 

@@ -1,4 +1,4 @@
-# NIKON AF-S NIKKOR 600mm f/4D IF-ED II
+# NIKON AI AF-S NIKKOR ED 600mm f/4D II IF
 
 ## Patent Reference and Design Identification
 
@@ -12,7 +12,7 @@
 **Title:** *Internal Focusing Telephoto Lens*\
 **Embodiment analyzed:** Example 3 / Table 3 / Fig. 7
 
-The modeled prescription is the third embodiment of Sato's internal-focusing telephoto patent. The patent itself does not identify a commercial product. The association with the NIKON AF-S NIKKOR 600mm f/4D IF-ED II is therefore a production-correlation inference rather than a manufacturer-confirmed patent attribution.
+The modeled prescription is the third embodiment of Sato's internal-focusing telephoto patent. The patent itself does not identify a commercial product. The association with the NIKON AI AF-S NIKKOR ED 600mm f/4D II IF is therefore a production-correlation inference rather than a manufacturer-confirmed patent attribution.
 
 Several independent features converge on that correlation:
 
@@ -55,7 +55,7 @@ The patent's general disclosure discusses lateral decentering of a rear positive
 
 ### L11 — Biconvex Positive
 
-`nd = 1.497820, νd = 82.52. Glass: 498825 class with a J-FKH1-compatible spectral proxy; patent supplier unresolved. Standalone f = +369.599452 mm.`
+`nd = 1.497820, νd = 82.52. Glass: J-FKH1 catalog equivalent (patent 498825; production supplier unspecified). Standalone f = +369.599452 mm.`
 
 L11 is the first positive collector in G11. Its two convex surfaces begin the strong convergence needed to reduce the diameter of the beam before the internal-focus section. The patent describes the first positive element as having a convex object-side surface and explains that the front members of G11 are shaped to keep refraction distributed rather than concentrated at a single strongly bent surface (US 5,745,306 A, cols. 7–8).
 
@@ -63,7 +63,7 @@ The element's very high Abbe number is significant to the production correlation
 
 ### L12 — Biconvex Positive
 
-`nd = 1.497820, νd = 82.52. Glass: 498825 class with a J-FKH1-compatible spectral proxy; patent supplier unresolved. Standalone f = +305.823995 mm.`
+`nd = 1.497820, νd = 82.52. Glass: J-FKH1 catalog equivalent (patent 498825; production supplier unspecified). Standalone f = +305.823995 mm.`
 
 L12 is the second positive collector in G11 and has greater standalone positive power than L11. The patent places L12 immediately ahead of the negative L13 and describes the pair as part of the front-group strategy for controlling the spherical and chromatic consequences of the strong positive front power. Its object-side surface has the stronger curvature, consistent with the patent's preferred shape description.
 
@@ -71,7 +71,7 @@ Like L11, L12 uses the high-Abbe 1.497820/82.52 coordinate pair and is one of th
 
 ### L13 — Biconcave Negative
 
-`nd = 1.804109, νd = 46.54. Glass: 804465 — high-index lanthanum class (vendor unresolved). Standalone f = −261.915920 mm.`
+`nd = 1.804109, νd = 46.54. Glass: TAF3D catalog equivalent (patent 804465; production supplier unspecified). Standalone f = −261.915920 mm.`
 
 L13 follows the two high-Abbe positive elements and supplies negative power within G11. The patent explicitly places a negative element after L11 and L12 so that the strong positive front group can be corrected without simply weakening its collecting power. Condition (4), `νa < 48`, applies to this negative element; the Example-3 value is 46.54. Condition (5) constrains the shape relationship between the rear surface of L12 and the front surface of L13, and Example 3 gives a value near zero, −0.02970.
 
@@ -79,8 +79,8 @@ The result is not a negative front group: the complete G11 remains positive at +
 
 ### L14 — Cemented Positive G12 Doublet
 
-`L14a: nd = 1.804109, νd = 46.54. Glass: 804465 — high-index lanthanum class (vendor unresolved). Standalone f = −258.787937 mm.`\
-`L14b: nd = 1.497820, νd = 82.52. Glass: 498825 class with a J-FKH1-compatible spectral proxy; patent supplier unresolved. Standalone f = +137.825098 mm.`
+`L14a: nd = 1.804109, νd = 46.54. Glass: TAF3D catalog equivalent (patent 804465; production supplier unspecified). Standalone f = −258.787937 mm.`\
+`L14b: nd = 1.497820, νd = 82.52. Glass: J-FKH1 catalog equivalent (patent 498825; production supplier unspecified). Standalone f = +137.825098 mm.`
 
 L14 is the complete rear part G12 of the first group. It is a cemented positive doublet formed from a negative meniscus L14a followed by a positive meniscus L14b, both convex toward the object side. This matches the patent's preferred G12 construction (US 5,745,306 A, col. 9).
 
@@ -90,7 +90,7 @@ G12 is separated from G11 by the lens's largest internal air gap. The patent use
 
 ### L21 — Negative Meniscus, Convex to Object
 
-`nd = 1.787971, νd = 47.47. Glass: 788475 — lanthanum class (vendor unresolved). Standalone f = −145.383568 mm.`
+`nd = 1.787971, νd = 47.47. Glass: TAF4 catalog equivalent (patent 788475; production supplier unspecified). Standalone f = −145.383568 mm.`
 
 L21 is the first element of the translating focus group G2. Its weakly convex object-side surface and strongly convex image-side surface form a negative meniscus in the patent sign convention. Condition (9) requires the Abbe number of this first negative focusing element to exceed 45; Example 3 uses 47.47.
 
@@ -98,8 +98,8 @@ The patent emphasizes that G2 is intended to remain relatively small and light b
 
 ### L22 — Cemented Negative Focus Doublet
 
-`L22a: nd = 1.805182, νd = 25.41. Glass: 805254 — SF6/TIH6-class dense flint (vendor unresolved). Standalone f = +101.458936 mm.`\
-`L22b: nd = 1.640000, νd = 60.03. Glass: 640600 class with an S-BSM81-compatible spectral proxy; patent supplier unresolved. Standalone f = −57.087016 mm.`
+`L22a: nd = 1.805182, νd = 25.41. Glass: SF6 catalog equivalent (patent 805254; production supplier unspecified). Standalone f = +101.458936 mm.`\
+`L22b: nd = 1.640000, νd = 60.03. Glass: S-BSM81 catalog equivalent (patent 640600; production supplier unspecified). Standalone f = −57.087016 mm.`
 
 L22 is a cemented negative doublet within the translating G2 group. Its front component L22a is a positive meniscus with a concave object-side surface; its rear component L22b is biconcave and negative. The complete cemented unit has a computed net focal length of −129.984571 mm.
 
@@ -109,8 +109,8 @@ L21 and L22 together form the negative G2 focus group. Their negative group powe
 
 ### L3 — Cemented Positive Rear Doublet
 
-`L3a: nd = 1.518601, νd = 69.98. Glass: 519700 class with a J-PKH1-compatible spectral proxy; patent supplier unresolved. Standalone f = +93.589918 mm.`\
-`L3b: nd = 1.803840, νd = 33.89. Glass: 804339 — legacy high-index flint class (vendor unresolved). Standalone f = −221.760734 mm.`
+`L3a: nd = 1.518601, νd = 69.98. Glass: J-PKH1 catalog equivalent (patent 519700; production supplier unspecified). Standalone f = +93.589918 mm.`\
+`L3b: nd = 1.803840, νd = 33.89. Glass: E-LAFH2 catalog equivalent (patent 804339; production supplier unspecified). Standalone f = −221.760734 mm.`
 
 The rear group G3 is modeled as the cemented L3 positive doublet shown numerically by Table 3 and geometrically by Fig. 7. L3a is a strong biconvex positive element, and L3b is a weaker negative meniscus with its concave surface toward the object. Their cemented combination has a computed net focal length of +162.128117 mm.
 
@@ -124,15 +124,15 @@ The patent publishes only d-line refractive indices and Abbe numbers. It does no
 
 | Data-file glass label | `nd` | `νd` | Elements | Interpretation |
 |---|---:|---:|---|---|
-| 498825 / J-FKH1-compatible proxy | 1.497820 | 82.52 | L11, L12, L14b | Low-dispersion coordinate class; patent supplier unresolved |
-| 804465 | 1.804109 | 46.54 | L13, L14a | High-index lanthanum class; vendor unresolved |
-| 788475 | 1.787971 | 47.47 | L21 | Lanthanum class; vendor unresolved |
-| 805254 | 1.805182 | 25.41 | L22a | SF6/TIH6-class dense flint; vendor unresolved |
-| 640600 / S-BSM81-compatible proxy | 1.640000 | 60.03 | L22b | Barium-crown coordinate class; patent supplier unresolved |
-| 519700 / J-PKH1-compatible proxy | 1.518601 | 69.98 | L3a | Phosphate-crown coordinate class; patent supplier unresolved |
-| 804339 | 1.803840 | 33.89 | L3b | Legacy high-index flint class; vendor unresolved |
+| J-FKH1 catalog equivalent (498825) | 1.497820 | 82.52 | L11, L12, L14b | Low-dispersion coordinate class; production supplier unspecified |
+| TAF3D catalog equivalent (804465) | 1.804109 | 46.54 | L13, L14a | High-index lanthanum proxy; production supplier unspecified |
+| TAF4 catalog equivalent (788475) | 1.787971 | 47.47 | L21 | Lanthanum proxy; production supplier unspecified |
+| SF6 catalog equivalent (805254) | 1.805182 | 25.41 | L22a | Dense-flint proxy; production supplier unspecified |
+| S-BSM81 catalog equivalent (640600) | 1.640000 | 60.03 | L22b | Barium-crown proxy; production supplier unspecified |
+| J-PKH1 catalog equivalent (519700) | 1.518601 | 69.98 | L3a | Phosphate-crown proxy; production supplier unspecified |
+| E-LAFH2 catalog equivalent (804339) | 1.803840 | 33.89 | L3b | High-index flint proxy; production supplier unspecified |
 
-The coordinate-code audit against authoritative OHARA, HOYA, SCHOTT, HIKARI, CDGM, and SUMITA catalogs found compatible coefficient-backed curves for every element. J-FKH1 differs from the 498825 patent row only in the final Abbe-code digit, J-PKH1 closely reproduces 519700, and S-BSM81 closely reproduces 640600. These are runtime spectral proxies only; none establishes historical vendor provenance or a production melt identity.
+The coordinate-code audit against authoritative OHARA, HOYA, SCHOTT, HIKARI, CDGM, and SUMITA catalogs found compatible coefficient-backed curves for every element. The data labels now name the selected curve explicitly so runtime resolution is deterministic and the inspector exposes the modeled material, while retaining “production supplier unspecified” on every proxy. These are runtime spectral proxies only; none establishes historical vendor provenance or a production melt identity.
 
 No element carries authored `nC`, `nF`, `ng`, or `dPgF` in the final data file because Example 3 does not publish those quantities. The qualified catalog-equivalent curves improve runtime chromatic tracing without converting their coefficients into patent evidence. Accordingly, this analysis makes no claim that the design is apochromatic and does not attribute anomalous partial dispersion to any particular element.
 

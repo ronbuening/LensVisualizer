@@ -19,7 +19,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  remains explicitly documented here rather than silently fixed.    ║
  * ║                                                                    ║
  * ║  FOCUS: CONSTRAINED_RECONSTRUCTION. The patent publishes a        ║
- * ║  1.334-unit rearward G2 movement with equal/opposite d6 and d11     ║
+ * ║  1.334-unit imageward G2 movement with equal/opposite d6 and d11    ║
  * ║  changes. At 6× scale that published state is not the production   ║
  * ║  5.5 m endpoint, so 5.5 m is solved with the same one degree of     ║
  * ║  freedom and exact adjacent-gap conservation:                      ║
@@ -83,80 +83,93 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
-      label: "Element 1",
+      diagramLabel: "L1",
+      label: "L1 — ED",
       type: "Biconvex Positive",
       nd: 1.50032,
       vd: 81.9,
       fl: 253.734049056,
-      glass: "J-FKH1-compatible low-dispersion proxy (patent nd=1.50032, vd=81.9; supplier unresolved)",
+      glass: "J-FKH1 catalog equivalent (patent 500819; production supplier unspecified)",
+      apd: "inferred",
+      apdNote:
+        "ED-position assignment inferred from Nikon's product designation and the two identical 1.50032/81.9 front elements; the patent publishes nd/νd only.",
       role: "Front positive collector; one of the two equal high-Abbe front elements.",
     },
     {
       id: 2,
       name: "L2",
-      label: "Element 2",
+      diagramLabel: "L2",
+      label: "L2 — ED",
       type: "Biconvex Positive",
       nd: 1.50032,
       vd: 81.9,
       fl: 253.426115406,
-      glass: "J-FKH1-compatible low-dispersion proxy (patent nd=1.50032, vd=81.9; supplier unresolved)",
+      glass: "J-FKH1 catalog equivalent (patent 500819; production supplier unspecified)",
+      apd: "inferred",
+      apdNote:
+        "ED-position assignment inferred from Nikon's product designation and the two identical 1.50032/81.9 front elements; the patent publishes nd/νd only.",
       role: "Second front positive collector; paired with L1 in the positive first functional group.",
     },
     {
       id: 3,
       name: "L3",
+      diagramLabel: "L3",
       label: "Element 3",
       type: "Biconcave Negative",
       nd: 1.7495,
       vd: 35,
       fl: -265.549196172,
-      glass: "750350 — lanthanum-flint class; vendor unresolved",
+      glass: "H-LaF4 catalog equivalent (patent 750350; production supplier unspecified)",
       role: "Negative member completing the positive first functional group.",
     },
     {
       id: 4,
       name: "L4",
+      diagramLabel: "L4",
       label: "Element 4",
       type: "Positive Meniscus",
       nd: 1.69895,
       vd: 30,
       fl: 168.43272897,
-      glass: "699300 — dense-flint/SF15-class; vendor unresolved",
+      glass: "SF15 catalog equivalent (patent 699300; production supplier unspecified)",
       cemented: "D1",
       role: "Front member of the cemented pair inside the movable negative focusing group.",
     },
     {
       id: 5,
       name: "L5",
+      diagramLabel: "L5",
       label: "Element 5",
       type: "Biconcave Negative",
       nd: 1.5168,
       vd: 64.2,
       fl: -119.42285007,
-      glass: "517642 — BK7-equivalent crown class; vendor unresolved",
+      glass: "H-K9L catalog equivalent (patent 517642; production supplier unspecified)",
       cemented: "D1",
       role: "Negative rear member of the cemented pair in the movable focusing group.",
     },
     {
       id: 6,
       name: "L6",
+      diagramLabel: "L6",
       label: "Element 6",
       type: "Biconcave Negative",
       nd: 1.6968,
       vd: 55.6,
       fl: -120.601276704,
-      glass: "697556 — lanthanum-crown class; vendor unresolved",
+      glass: "K-LaK14 catalog equivalent (patent 697556; production supplier unspecified)",
       role: "Rear negative element of the movable second functional group.",
     },
     {
       id: 7,
       name: "L7",
+      diagramLabel: "L7",
       label: "Element 7",
       type: "Positive Meniscus",
       nd: 1.52,
       vd: 70.1,
       fl: 240.004334622,
-      glass: "J-PKH1-compatible phosphate-crown proxy (corrected patent nd≈1.52, vd=70.1; supplier unresolved)",
+      glass: "J-PKH1 catalog equivalent (corrected patent nd≈1.52, vd=70.1; production supplier unspecified)",
       role: "Fixed positive third functional group; model uses corrected nd=1.52 (patent prints 1.57).",
     },
   ],
@@ -186,7 +199,7 @@ const LENS_DATA = {
 
   /* ── Focus model ── */
   var: {
-    // Original patent d6 = S6→STO + STO→S7. STO is fixed; G2 moves rearward.
+    // Original patent d6 = S6→STO + STO→S7. STO is fixed; G2 moves imageward (rearward).
     STO: [48.765, 59.190804222],
     "11": [17.778, 7.352195778],
   },
@@ -196,15 +209,15 @@ const LENS_DATA = {
   ],
 
   groups: [
-    { text: "FUNC. G1 (+)", fromSurface: "1", toSurface: "6" },
-    { text: "FUNC. G2 IF (−)", fromSurface: "7", toSurface: "11" },
-    { text: "FUNC. G3 (+)", fromSurface: "12", toSurface: "13" },
+    { text: "G1 (+)", fromSurface: "1", toSurface: "6" },
+    { text: "G2 FOCUS (−)", fromSurface: "7", toSurface: "11" },
+    { text: "G3 (+)", fromSurface: "12", toSurface: "13" },
   ],
-  doublets: [{ text: "D1", fromSurface: "7", toSurface: "9" }],
+  doublets: [{ text: "L4+L5", fromSurface: "7", toSurface: "9" }],
 
   closeFocusM: 5.5,
   focusDescription:
-    "CONSTRAINED_RECONSTRUCTION: functional G2 (L4–L6) translates rearward 10.425804222 mm from infinity to the 5.5 m product endpoint. The patent's adjacent d6/d11 total is conserved exactly. Because the inferred aperture stop is fixed at the midpoint of d6, focus variation is stored on STO→S7 and S11→S12.",
+    "CONSTRAINED_RECONSTRUCTION: functional G2 (L4–L6) translates imageward (rearward) 10.425804222 mm from infinity to the 5.5 m product endpoint. The patent's adjacent d6/d11 total is conserved exactly. Because the inferred aperture stop is fixed at the midpoint of d6, focus variation is stored on STO→S7 and S11→S12.",
 
   nominalFno: 5.6,
   fstopSeries: [5.6, 8, 11, 16, 22],
