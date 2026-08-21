@@ -21,6 +21,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-08-21",
     type: "lens",
+    summary: "Added three Nikon 600mm super-telephotos to honor Surface & Stop's 600-lens milestone",
+  },
+  {
+    date: "2026-08-21",
+    type: "lens",
     summary: "Added three generations of Canon EF 600mm f/4 L IS USM lens designs",
   },
   {
