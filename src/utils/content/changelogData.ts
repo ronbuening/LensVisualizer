@@ -21,6 +21,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-08-21",
     type: "lens",
+    summary: "Added three Nikon 600mm f/4 and f/5.6 super-telephoto lens designs",
+  },
+  {
+    date: "2026-08-21",
+    type: "lens",
     summary: "Added three generations of Canon EF 600mm f/4 L IS USM lens designs",
   },
   {

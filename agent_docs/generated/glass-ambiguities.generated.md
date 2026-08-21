@@ -12,17 +12,17 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **607** lenses scanned
-- **6898** glass elements examined
-- **1896** elements have multiple coordinate-compatible candidates
-- **389** lens files are affected
+- **610** lenses scanned
+- **6932** glass elements examined
+- **1912** elements have multiple coordinate-compatible candidates
+- **392** lens files are affected
 - **193** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **183** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
-| Smallest reference-index residual | 1020 |
-| Evidence-source priority | 601 |
+| Smallest reference-index residual | 1030 |
+| Evidence-source priority | 607 |
 | Vendor context | 271 |
 | Stable canonical-name order | 4 |
 
@@ -607,6 +607,17 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `S-FSL5 / FK5 (fluorine crown, low dispersion)` | 1.48749 / 70.31 (d) | S-FSL5 — smallest d-line \|Δn\| (6.5e-8 vs 3.0e-7) | FK5 (Sumita, name) | 1 | [NIKON AF-S NIKKOR 58mm f/1.4 G](../../src/lens-data/nikon/Nikon58f14GDesignCandidate.data.ts) Lb1n |
 | `E-FD8 (HOYA, patent nd/vd match) / S-TIM28` | 1.68893 / 31.16 (d) | E-FD8 — Annotation vendor context matches Hoya. | S-TIM28 (Ohara, name, vendor ✗) | 1 | [NIKON AF-S NIKKOR 58mm f/1.4 G](../../src/lens-data/nikon/Nikon58f14GDesignCandidate.data.ts) Lb2 |
 | `H-ZF4A (CDGM, patent nd/vd match) / S-TIH10` | 1.72825 / 28.46 (d) | H-ZF4A — Annotation vendor context matches CDGM. | S-TIH10 (Ohara, name, vendor ✗) | 1 | [NIKON AF-S NIKKOR 58mm f/1.4 G](../../src/lens-data/nikon/Nikon58f14GDesignCandidate.data.ts) Lcn |
+| `804465 — high-index lanthanum class (vendor unresolved)` | 1.80411 / 46.54 (d) | TAF3D — smallest d-line \|Δn\| (8.9e-5 vs 9.1e-5) | TAF3 (Hoya, code, alternate code row)<br>N-LASF44 (Schott, code, preferred code row) | 2 | [NIKON AF-S NIKKOR 600mm f/4D IF-ED II](../../src/lens-data/nikon/NikonAFSNikkor600mmf4DIFEDII.data.ts) L13 |
+| `788475 — lanthanum class (vendor unresolved)` | 1.78797 / 47.47 (d) | TAF4 — smallest d-line \|Δn\| (2.6e-5 vs 2.9e-5) | N-LAF21 (Schott, code, preferred code row) | 1 | [NIKON AF-S NIKKOR 600mm f/4D IF-ED II](../../src/lens-data/nikon/NikonAFSNikkor600mmf4DIFEDII.data.ts) L21 |
+| `805254 — SF6/TIH6-class dense flint (vendor unresolved)` | 1.80518 / 25.41 (d) | SF6 — direct name evidence outranks six-digit code evidence. | S-TIH6 (Ohara, code, preferred code row) | 1 | [NIKON AF-S NIKKOR 600mm f/4D IF-ED II](../../src/lens-data/nikon/NikonAFSNikkor600mmf4DIFEDII.data.ts) L22a |
+| `517639 crown class (historical BK7-coordinate; vendor unresolved)` | 1.51680 / 63.88 (d) | N-BK7 — alias evidence outranks six-digit code evidence. | J-BK7 (Hikari, code, preferred code row) | 1 | [NIKON AF-S NIKKOR 600mm f/4E FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor600mmf4EFLEDVR.data.ts) HG |
+| `613445 optical-glass class (J-KZFH1-coordinate equivalent; vendor unresolved)` | 1.61266 / 44.46 (d) | J-KZFH1 — direct name evidence outranks six-digit code evidence. | N-KZFS4 (Schott, code, preferred code row) | 2 | [NIKON AF-S NIKKOR 600mm f/4E FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor600mmf4EFLEDVR.data.ts) L13 |
+| `773496 optical-glass class (vendor unresolved)` | 1.77250 / 49.62 (d) | J-LASF016 — smallest d-line \|Δn\| (1.7e-8 vs 6.4e-8) | N-LAF34 (Schott, code, alternate code row)<br>S-LAH66 (Ohara, code, preferred code row)<br>S-LAH66N (Ohara, code, alternate code row) | 1 | [NIKON AF-S NIKKOR 600mm f/4E FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor600mmf4EFLEDVR.data.ts) L14 |
+| `923209 dense-flint class (vendor unresolved)` | 1.92286 / 20.88 (d) | N-SF66 — smallest d-line \|Δn\| (8.8e-8 vs 4.0e-7) | E-FDS1 (Hoya, code, alternate code row)<br>PBH21 (Ohara, code, alternate code row) | 3 | [NIKON AF-S NIKKOR 600mm f/4E FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor600mmf4EFLEDVR.data.ts) L21 +1 files |
+| `835427 lanthanum-glass class (vendor unresolved)` | 1.83481 / 42.73 (d) | S-LAH55 — smallest d-line \|Δn\| (2.9e-6 vs 3.0e-6) | TAFD5G (Hoya, code, alternate code row)<br>TAFD5F (Hoya, code, alternate code row) | 1 | [NIKON AF-S NIKKOR 600mm f/4E FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor600mmf4EFLEDVR.data.ts) L22 |
+| `785257 dense-flint class (vendor unresolved)` | 1.78472 / 25.72 (d) | H-ZF13 — smallest d-line \|Δn\| (1.8e-9 vs 2.7e-6) | S-TIH11 (Ohara, code, preferred code row) | 1 | [NIKON AF-S NIKKOR 600mm f/4E FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor600mmf4EFLEDVR.data.ts) L33 |
+| `816466 lanthanum-glass class (J-LASF09A-coordinate equivalent; vendor unresolved)` | 1.81600 / 46.59 (d) | J-LASF09A — direct name evidence outranks six-digit code evidence. | S-LAH59 (Ohara, code, preferred code row)<br>TAF5 (Hoya, code, alternate code row) | 1 | [NIKON AF-S NIKKOR 600mm f/4E FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor600mmf4EFLEDVR.data.ts) L35 |
+| `670471 barium-flint class (vendor unresolved)` | 1.67003 / 47.14 (d) | J-BAF10 — smallest d-line \|Δn\| (1.7e-8 vs 1.7e-7) | N-BAF10 (Schott, code, preferred code row) | 1 | [NIKON AF-S NIKKOR 600mm f/4E FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor600mmf4EFLEDVR.data.ts) L39 |
 | `FCD1 (HOYA) / S-FPL51 family` | 1.49782 / 82.57 (d) | FCD1 — Annotation vendor context matches Hoya. | S-FPL51 (Ohara, name, vendor ✗) | 3 | [NIKON AF-S NIKKOR 70-200mm f/2.8 E FL ED VR](../../src/lens-data/nikon/NikonNikkorAFS70200mmf28E.data.ts) L12 |
 | `720503 - lanthanum crown (patent nd=1.71999, vd=50.27)` | 1.71999 / 50.27 (d) | J-LAK10 — smallest d-line \|Δn\| (1.5e-8 vs 8.3e-6) | LAC10 (Hoya, code, alternate code row) | 3 | [NIKON AF-S NIKKOR 70-200mm f/2.8 E FL ED VR](../../src/lens-data/nikon/NikonNikkorAFS70200mmf28E.data.ts) L21 |
 | `S-PHM52 (OHARA) / PCD4 (HOYA)` | 1.61800 / 63.34 (d) | S-PHM52 — smallest d-line \|Δn\| (9.0e-8 vs 2.1e-6) | PCD4 (Hoya, name, vendor ✓) | 1 | [NIKON AF-S NIKKOR 70-200mm f/2.8 E FL ED VR](../../src/lens-data/nikon/NikonNikkorAFS70200mmf28E.data.ts) L22 |
@@ -693,6 +704,8 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `LAF2 / N-LAF2 class (744/449 lanthanum flint)` | 1.74400 / 44.90 (d) | N-LAF2 — direct name evidence outranks six-digit code evidence. | H-LaF3B (CDGM, code, preferred code row) | 1 | [NIKON AI NIKKOR 35mm f/2](../../src/lens-data/nikon/NikonAINikkor35mmf2.data.ts) L8 |
 | `S-LAH59 (OHARA; 816/466 class)` | 1.81600 / 46.63 (d) | S-LAH59 — direct name evidence outranks six-digit code evidence. | J-LASF09A (Hikari, code, vendor ✗, alternate code row)<br>TAF5 (Hoya, code, vendor ✗, alternate code row) | 1 | [NIKON AI NIKKOR 45mm f/2.8 P](../../src/lens-data/nikon/NikonAINikkor45mmf28.data.ts) L1 |
 | `S-LAH58 (OHARA; 883/408 class)` | 1.88300 / 40.77 (d) | S-LAH58 — direct name evidence outranks six-digit code evidence. | TAFD30 (Hoya, code, vendor ✗, alternate code row) | 1 | [NIKON AI NIKKOR 45mm f/2.8 P](../../src/lens-data/nikon/NikonAINikkor45mmf28.data.ts) L4 |
+| `750350 — lanthanum-flint class; vendor unresolved` | 1.74950 / 35.00 (d) | H-LaF4 — smallest d-line \|Δn\| (2.4e-8 vs 2.0e-7) | E-LAF7 (Hoya, code, alternate code row) | 1 | [NIKON AI NIKKOR 600mm f/5.6 IF-ED](../../src/lens-data/nikon/NikonAINikkor600mmf56IFED.data.ts) L3 |
+| `517642 — BK7-equivalent crown class; vendor unresolved` | 1.51680 / 64.20 (d) | N-BK7 — alias evidence outranks six-digit code evidence. | H-K9L (CDGM, code, alternate code row)<br>H-K9LGT (CDGM, code, alternate code row) | 1 | [NIKON AI NIKKOR 600mm f/5.6 IF-ED](../../src/lens-data/nikon/NikonAINikkor600mmf56IFED.data.ts) L5 |
 | `LaK–LaF border (HOYA TAF1 / Schott N-LAF34 class, 773-494)` | 1.77279 / 49.40 (d) | N-LAF34 — direct name evidence outranks alias evidence. | S-LAH66 (Ohara, alias, vendor ✗) | 1 | [NIKON AI NIKKOR 85mm f/1.4 S](../../src/lens-data/nikon/Nikon85f14AIS.data.ts) L1 |
 | `Lanthanum crown (HOYA LAC14 / Schott N-LAK14 class, 697-556)` | 1.69680 / 55.60 (d) | N-LAK14 — smallest d-line \|Δn\| (2.4e-8 vs 2.3e-6) | LAC14 (Hoya, name, vendor ✓)<br>K-LaK14 (Sumita, code, vendor ✗, preferred code row) | 1 | [NIKON AI NIKKOR 85mm f/1.4 S](../../src/lens-data/nikon/Nikon85f14AIS.data.ts) L2 |
 | `Dense flint (HOYA FD110 / Schott SF11 class, 785-261)` | 1.78470 / 26.10 (d) | SF11 — direct name evidence outranks six-digit code evidence. | SF56A (Schott, code, vendor ✓, preferred code row) | 1 | [NIKON AI NIKKOR 85mm f/1.4 S](../../src/lens-data/nikon/Nikon85f14AIS.data.ts) L3a |
@@ -1317,7 +1330,6 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `904313 class (vendor unresolved)` | 1.90366 / 31.31 (d) | N-LASF46B — smallest d-line \|Δn\| (1.0e-7 vs 5.9e-7) | S-LAH95 (Ohara, code, preferred code row)<br>TAFD25 (Hoya, code, alternate code row) | 4 | [TAMRON 14-150mm f/3.5-5.8 Di III (C001)](../../src/lens-data/tamron/TamronC00114150mmf3558.data.ts) L1 +1 files |
 | `497816 fluorophosphate / ED-crown class (vendor unresolved)` | 1.49700 / 81.61 (d) | H-FK61 — smallest d-line \|Δn\| (1.1e-8 vs 1.6e-7) | FCD1 (Hoya, code, alternate code row)<br>S-FPL51 (Ohara, code, preferred code row) | 1 | [TAMRON 14-150mm f/3.5-5.8 Di III (C001)](../../src/lens-data/tamron/TamronC00114150mmf3558.data.ts) L2 |
 | `618634 phosphate-crown class (vendor unresolved)` | 1.61800 / 63.39 (d) | S-PHM52 — smallest d-line \|Δn\| (9.0e-8 vs 1.0e-7) | N-PSK53A (Schott, code, alternate code row)<br>PCD4 (Hoya, code, alternate code row)<br>K-PSKn2 (Sumita, code, alternate code row) | 1 | [TAMRON 14-150mm f/3.5-5.8 Di III (C001)](../../src/lens-data/tamron/TamronC00114150mmf3558.data.ts) L3 |
-| `923209 dense-flint class (vendor unresolved)` | 1.92286 / 20.88 (d) | N-SF66 — smallest d-line \|Δn\| (8.8e-8 vs 4.0e-7) | E-FDS1 (Hoya, code, alternate code row)<br>PBH21 (Ohara, code, alternate code row) | 1 | [TAMRON 14-150mm f/3.5-5.8 Di III (C001)](../../src/lens-data/tamron/TamronC00114150mmf3558.data.ts) L6 |
 | `773496 class (vendor unresolved)` | 1.77250 / 49.62 (d) | J-LASF016 — smallest d-line \|Δn\| (1.7e-8 vs 6.4e-8) | N-LAF34 (Schott, code, alternate code row)<br>S-LAH66 (Ohara, code, preferred code row)<br>S-LAH66N (Ohara, code, alternate code row) | 1 | [TAMRON 14-150mm f/3.5-5.8 Di III (C001)](../../src/lens-data/tamron/TamronC00114150mmf3558.data.ts) L7 |
 | `583595 crown class (vendor unresolved)` | 1.58313 / 59.46 (d) | M-BACD12 — smallest d-line \|Δn\| (1.6e-8 vs 2.7e-4) | Q-SK52S (Hikari, code, preferred code row) | 2 | [TAMRON 14-150mm f/3.5-5.8 Di III (C001)](../../src/lens-data/tamron/TamronC00114150mmf3558.data.ts) L8 |
 | `805255 dense-flint class (vendor unresolved)` | 1.80518 / 25.46 (d) | J-SF6 — smallest d-line \|Δn\| (3.3e-8 vs 4.4e-8) | H-ZF7LA (CDGM, code, preferred code row)<br>FD60 (Hoya, code, alternate code row) | 2 | [TAMRON 14-150mm f/3.5-5.8 Di III (C001)](../../src/lens-data/tamron/TamronC00114150mmf3558.data.ts) L14 |
