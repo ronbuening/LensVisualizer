@@ -8,7 +8,13 @@ catalog equivalent. If neither path is available, the engine falls back to parti
 dPgF-corrected indices, or the legacy Abbe approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **531 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **532 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+
+The August 20, 2026 Canon EF 600mm audit added legacy OHARA S-NBH53 from the vendor's 2009 datasheet as a distinct
+`738323` curve rather than treating the later S-NBH53V as identical. It upgrades the III-generation lens's E10 while
+preserving the patent's exact `1.73800 / 32.26 / 0.5899` coordinates. Vendor-neutral `835427` and `720502` labels also
+recover three II-generation elements through existing S-LAH55 and S-LAL10 catalog-equivalent curves, with the patent's
+authored `dPgF` retained. The II lens is now 15/15 strict-complete and the III lens improves to 14/16.
 
 The August 19, 2026 Canon three-lens audit added HOYA TAFD45L from the retained first-party July 7, 2026 Zemax
 catalog. Its distinct formula-3 curve resolves the RF 100-500mm's 954323 row, while existing TAFD65 and FCD515

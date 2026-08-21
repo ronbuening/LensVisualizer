@@ -19,6 +19,11 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-08-21",
+    type: "lens",
+    summary: "Added three generations of Canon EF 600mm f/4 L IS USM lens designs",
+  },
+  {
     date: "2026-08-20",
     type: "lens",
     summary: "Added Canon RF 14mm, 24mm, and 35mm f/1.4 L VCM lens designs",
