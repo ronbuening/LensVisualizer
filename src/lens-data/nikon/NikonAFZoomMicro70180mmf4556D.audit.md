@@ -56,3 +56,10 @@ Patent: US 5,717,527, seventh embodiment, Table 8.
   J-LAFH3 (`1.79504 / 28.692277`) and E-FD13 (`1.74077 / 27.76`) models.
 - Relabeled all three as supplier-neutral optical equivalents and synchronized the analysis. L6 `748523` remains
   unresolved; no prescription, zoom, focus, aperture, or semi-diameter values changed.
+
+## 2026-08-21 — E-LAKH1 discontinued-catalog recovery
+
+- Hikari's official 2022-07-01 catalog supplies the previously missing discontinued E-LAKH1 row at code `748523`,
+  `nd = 1.748099`, `νd = 52.304982`, exactly matching L6 at the patent's printed precision.
+- Relabeled L6 as a supplier-neutral E-LAKH1 catalog equivalent and synchronized the analysis. This supersedes the
+  earlier current-catalog no-match disposition; no prescription, zoom, focus, aperture, or semi-diameter values changed.

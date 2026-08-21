@@ -155,7 +155,7 @@ const LENS_DATA = {
       nd: 1.71736,
       vd: 29.57,
       fl: -25.8,
-      glass: "Specialty high-dispersion flint",
+      glass: "J-SF1 catalog spectral proxy (patent dPgF retained; production supplier unspecified)",
       apd: "inferred",
       dPgF: 0.01, apdNote: "ΔθgF ≈ +0.010 — moderate positive APD",
       role: "Pre-stop negative. Petzval correction and higher-order spherical aberration.",

@@ -19,3 +19,8 @@ Visually rechecked Table 10 in local `patents/WO2019131993A1.pdf`, then cross-ma
 | 786406 | 1.78605 / 40.63 | No tolerance-safe official catalog row; TC-engaged variant only |
 
 The TC-engaged prescription retains its authored labels and patent coordinates. No geometry or optical constants changed. The shared base-design audit records the same review for the native optical path.
+
+## 2026-08-21 — Hikari catalog follow-up
+
+- Added Hikari's first-party J-LASFH6 curve, allowing the existing explicit J-LASFH6 element to resolve by name.
+- Code-only `806333` resolution continues to prefer the established NBFD15 row; no prescription coordinate changed.

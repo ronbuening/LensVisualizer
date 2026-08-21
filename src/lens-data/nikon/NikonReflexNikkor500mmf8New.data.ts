@@ -158,7 +158,7 @@ const LENS_DATA = {
       nd: 1.79631,
       vd: 40.96,
       fl: 125.619,
-      glass: "Unmatched (lanthanum dense flint, patent 796/410; nearest current class S-LAH52 / K-LaSFn3)",
+      glass: "796410 class; NBFD2 catalog spectral proxy (production supplier unspecified)",
       apd: false,
       role: "High-index positive field-corrector meniscus; the rear group remains net negative.",
     },

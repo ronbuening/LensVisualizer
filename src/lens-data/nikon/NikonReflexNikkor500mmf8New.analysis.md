@@ -81,7 +81,7 @@ Its role is mainly off-axis balancing. The patent identifies the negative lens g
 
 ### L23 — Positive High-Index Meniscus Corrector
 
-nd = 1.79631, νd = 40.96. Glass: unmatched 796/410 lanthanum dense flint; nearest current public catalog class is around S-LAH52 / K-LaSFn3 / H-LaF54, but those are not exact matches. f = +125.6 mm.
+nd = 1.79631, νd = 40.96. Glass: 796410 lanthanum-dense-flint class; obsolete HOYA NBFD2 supplies a compatible catalog spectral proxy without identifying Nikon's production supplier. f = +125.6 mm.
 
 L23 is a positive meniscus convex to the object side, with R13 = +41.434 mm and R14 = +66.948 mm. It is the only high-index element in the lens and the only positive element in the rear corrector group.
 
@@ -95,7 +95,7 @@ The glass palette is conservative. Four of the six elements use the same 517/641
 |---|---:|---:|---|---|
 | L1, M1, M2, L21 | 1.51680 | 64.12 | 517/641 borosilicate crown; BSC7 / N-BK7 class | Front collector, both Mangin mirror bodies, first rear corrector |
 | L22 | 1.51823 | 58.96 | Hoya E-C3 exact; Ohara S-NSL3 near-equivalent | Weak negative meniscus corrector |
-| L23 | 1.79631 | 40.96 | Unmatched 796/410 lanthanum dense flint; nearest current public catalog family is roughly S-LAH52 / K-LaSFn3 / H-LaF54, not exact | Positive high-index field-corrector meniscus |
+| L23 | 1.79631 | 40.96 | 796410 class; NBFD2 catalog spectral proxy, supplier unspecified | Positive high-index field-corrector meniscus |
 
 The mirror-powered architecture is the main chromatic-correction mechanism. Mirrors do not disperse light, so the dominant positive and negative powers do not introduce ordinary longitudinal color in the way a purely refractive 500 mm telephoto would. The glass choices therefore keep residual refractive color under control rather than attempting an apochromatic refractive correction.
 

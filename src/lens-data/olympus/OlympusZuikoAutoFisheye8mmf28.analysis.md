@@ -66,7 +66,7 @@ The group focal length is −44.56 mm on the 8 mm scale. Its role is not merely 
 
 ### L4 + L5 — Cemented Negative Doublet, Group III
 
-**L4:** $n_d = 1.6700$, $\nu_d = 57.3$. Glass: J-LAK02 class (Hikari), 670/573. $f = -24.30$ mm.  
+**L4:** $n_d = 1.6700$, $\nu_d = 57.3$. Glass: J-LAK02 catalog spectral proxy (production supplier unspecified), 670/573. $f = -24.30$ mm.
 **L5:** $n_d = 1.6668$, $\nu_d = 33.0$. Glass: H-ZF39 class (CDGM), 667/330. $f = +30.66$ mm.
 
 The patent describes Group III as a hyperchromatic lens. Its net focal length is only −107.83 mm after scaling, so most of the individual power of L4 and L5 cancels. The group therefore functions primarily as a chromatic and field-balance component rather than as a major power element.
@@ -112,7 +112,7 @@ The design uses eight distinct patent glass codes across ten elements. L1/L3 sha
 |---|---:|---:|---:|---|---|
 | L1, L3 | 1.5891 | 61.0 | 589/610 | S-BAL35 class (OHARA) | Close catalog match |
 | L2 | 1.7847 | 25.6 | 785/256 | S-TIH11 class (OHARA) | Close catalog match |
-| L4 | 1.6700 | 57.3 | 670/573 | J-LAK02 class (Hikari) | Close catalog match |
+| L4 | 1.6700 | 57.3 | 670/573 | J-LAK02 catalog spectral proxy | First-party curve; production supplier unspecified |
 | L5 | 1.6668 | 33.0 | 667/330 | H-ZF39 class (CDGM) | Close catalog match |
 | L6 | 1.7865 | 50.1 | 787/501 | YGH52 | OHARA catalog-equivalent |
 | L7 | 1.6032 | 42.3 | 603/423 | BAM25 | OHARA catalog-equivalent |

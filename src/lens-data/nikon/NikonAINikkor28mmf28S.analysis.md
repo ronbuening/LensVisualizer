@@ -90,7 +90,7 @@ The patent states that the surface adjacent to the image side of the aperture st
 
 ### L7 - Positive Meniscus, convex to image (GLP front element)
 
-nd = 1.67025, νd = 57.53. Glass: unmatched J-LAK02 class (HIKARI nearest). f = +41.9 mm.
+nd = 1.67025, νd = 57.53. Glass: J-LAK02 catalog-equivalent spectral proxy (production supplier unspecified). f = +41.9 mm.
 
 L7 is the front element of GLP. Its two radii are negative (R14 = -46.001 mm, R15 = -17.900 mm), giving a positive meniscus with its convex side facing the image.
 
@@ -98,7 +98,7 @@ The shape factor required by condition (7), using the Table 2 radii, is (R2 + R1
 
 ### L8 - Biconvex Positive (GLP rear element)
 
-nd = 1.67025, νd = 57.53. Glass: unmatched J-LAK02 class (HIKARI nearest). f = +39.8 mm.
+nd = 1.67025, νd = 57.53. Glass: J-LAK02 catalog-equivalent spectral proxy (production supplier unspecified). f = +39.8 mm.
 
 L8 is the rear element of GLP and the final glass element before the image plane. It is biconvex, with the stronger curvature on the image-side surface.
 
@@ -115,9 +115,9 @@ The glass identifications were rechecked against Nikon/HIKARI's published optica
 | L4 | 1.66755 | 41.96 | 1.687870 | J-BASF6 | nd exact; νd -0.09; nG +0.000062 | Barium dense flint positive element |
 | L5 | 1.62041 | 60.14 | 1.633140 | S-BSM16 surrogate for J-SK16 class | nd exact; νd +0.15; HIKARI nG retained from patent table | Dense crown positive element |
 | L6 | 1.75520 | 27.61 | 1.791120 | SF4 surrogate for J-SF4 class | nd exact; νd -0.03; HIKARI nG retained from patent table | Dense flint post-stop negative element |
-| L7, L8 | 1.67025 | 57.53 | 1.684660 | Unmatched J-LAK02 class | No coefficient-backed catalog row stays close enough in both nd and νd | Lanthanum crown GLP elements |
+| L7, L8 | 1.67025 | 57.53 | 1.684660 | J-LAK02 catalog-equivalent proxy | First-party Hikari curve is inside the catalog contract; production supplier unspecified | Lanthanum crown GLP elements |
 
-L7 and L8 are deliberately labeled as unmatched J-LAK02 class because the stored patent values are close to the HIKARI class but no coefficient-backed catalog row in the project matches closely enough for trusted Sellmeier routing. No ED, fluorite, or anomalous-partial-dispersion glass is identified in the prescription.
+L7 and L8 use Hikari J-LAK02 as a catalog-equivalent spectral proxy. The first-party curve is inside the project's index/Abbe tolerance for the patent coordinate, but it does not establish the production supplier. No ED, fluorite, or anomalous-partial-dispersion glass is identified in the prescription.
 
 ## Focus Mechanism
 

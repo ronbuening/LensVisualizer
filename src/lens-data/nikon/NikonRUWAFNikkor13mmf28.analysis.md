@@ -83,7 +83,7 @@ The high-index negative component contributes to Petzval correction, while the h
 
 ### L8 and L9 — G6: Positive cemented doublet
 
-L8: $n_d = 1.51680$, $\nu_d = 69.9$. Glass: phosphate-crown class near J-PKH1, exact catalog unresolved. $f = +26.4$ mm.
+L8: $n_d = 1.51680$, $\nu_d = 69.9$. Glass: 517699 phosphate-crown class; J-PKH1 catalog spectral proxy, production supplier unspecified. $f = +26.4$ mm.
 
 L9: $n_d = 1.80518$, $\nu_d = 25.3$. Glass: Schott N-SF6HT / 805254 dense flint class. $f = -73.4$ mm.
 
@@ -110,7 +110,7 @@ The patent gives only refractive index and Abbe number, not manufacturer glass n
 | L5 | 1.79668 | 45.4 | J-LASF017 catalog equivalent, 797454 | Coefficient-backed near equivalent |
 | L6 | 1.79631 | 40.9 | NBFD2 (HOYA catalog equivalent) | Catalog-backed equivalent; supplier unspecified |
 | L7 | 1.51860 | 69.9 | J-PKH1 phosphate crown | High |
-| L8 | 1.51680 | 69.9 | Phosphate crown near J-PKH1, 517699 code | Unmatched exact catalog |
+| L8 | 1.51680 | 69.9 | 517699 class; J-PKH1 spectral proxy | Compatible curve; supplier unspecified |
 | L9 | 1.80518 | 25.3 | N-SF6HT / 805254 dense flint class | High |
 
 The main chromatic pattern is conventional but severe: high-Abbe positive components are paired against high-index or very low-Abbe negative components in G5 and G6. G4 is different. It is not a conventional crown/flint achromat; it is a positive flint plus a higher-index negative flint, used primarily to counter the front group's Petzval and coma burden without neutralizing all of the positive group power.

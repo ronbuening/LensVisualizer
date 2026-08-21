@@ -78,7 +78,7 @@ const LENS_DATA = {
       vd: 41.64,
       indexReference: "e",
       fl: 30.84,
-      glass: "ZBaF17 / BaSF6-class (CDGM/Schott equivalent; patent ne/νe values stored as nd/vd)",
+      glass: "ZBaF17/BaSF6 class; J-BASF6 catalog e-line spectral proxy (production supplier unspecified)",
       cemented: "D1",
       role: "Positive member of the front cemented meniscus doublet; provides paired positive power before the flat bond interface.",
     },

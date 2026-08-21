@@ -105,12 +105,12 @@ The prior identification of L8 as S-LAM52 is not supported by the checked catalo
 ### L9 + L10 — Second Rear Cemented Doublet, Net Negative
 
 L9: `nd = 1.51823`, `νd = 59.0`. Glass: J-K3 / S-NSL3 equivalent. Isolated `f ≈ +37.5 mm`.  
-L10: `nd = 1.79631`, `νd = 40.8`. Glass: unmatched lanthanum dense flint, six-digit code approximately 796/408. Isolated `f ≈ -31.5 mm`.  
+L10: `nd = 1.79631`, `νd = 40.8`. Glass: 796408 lanthanum-dense-flint class; HOYA NBFD2 catalog spectral proxy, production supplier unspecified. Isolated `f ≈ -31.5 mm`.
 Combined doublet: `f ≈ -137.5 mm`.
 
 The second rear cemented group is the only net negative doublet in the rear relay. Its placement between positive groups is consistent with a field-flattening and Petzval-balancing role. It prevents the rear relay from becoming a simple high-Petzval positive block after the highly negative front group.
 
-L10 does not have a close current HIKARI match. J-LASF02 and J-LASF03 are nearby in broad lanthanum-dense-flint class, but neither reproduces both `nd` and `νd` within a confident historical-transcription tolerance. The data file therefore uses an explicit unmatched label.
+L10 does not have a close current HIKARI match, but the recovered obsolete HOYA NBFD2 row is within `+0.000889 / +0.344` of the patent coordinate and supplies a qualified spectral proxy. This does not establish Nikon's production supplier.
 
 ### L11 + L12 — Final Rear Cemented Doublet, Net Positive
 
@@ -135,7 +135,7 @@ The patent gives refractive indices and Abbe numbers but does not name the glass
 | L6 | 1.64831 | 33.8 | J-SF2 class | Close to J-SF2 but not exact in `nd`; treated as historical/proprietary. |
 | L7 | 1.53375 | 55.4 | 534554 crown, unresolved | No reliable current HIKARI match. |
 | L8 | 1.77250 | 49.5 | J-LASF016; S-LAH66 / TAF1 / N-LAF34 equivalent | High-index lanthanum glass; not S-LAM52. |
-| L10 | 1.79631 | 40.8 | Unmatched lanthanum dense flint, 796/408 | Near LASF class but not an exact current catalog match. |
+| L10 | 1.79631 | 40.8 | 796408 class; NBFD2 spectral proxy | Compatible legacy curve; supplier unspecified. |
 | L11 | 1.71736 | 29.5 | J-SF1; N-SF1 / S-TIH1 equivalent | Dense flint leading element of final achromat. |
 
 The forward group uses a deliberately simple palette: BK7-class glass for the three large menisci, then a dense-crown/dense-flint pair for L4/L5. The rear group uses more specialized high-index and lanthanum glasses to supply positive relay power and chromatic correction in a compact space.

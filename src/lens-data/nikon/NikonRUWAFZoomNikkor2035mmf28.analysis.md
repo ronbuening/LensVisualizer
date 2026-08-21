@@ -106,7 +106,7 @@ The Ohara S-LAL14 catalog entry matches the patent's nd and νd closely and is t
 
 ### L9 - Biconvex / Near Plano-Convex Positive (G3b)
 
-nd = 1.74810, νd = 52.3. Glass: Unmatched 748/523 lanthanum-crown class. f = +40.5 mm.
+nd = 1.74810, νd = 52.3. Glass: 748523 — discontinued Hikari E-LAKH1 catalog equivalent; production supplier unspecified. f = +40.5 mm.
 
 L9 is the final powered element before the rear plate and supplies much of the positive power of G3b. The front radius is very weak, R = 327.070 mm, while the rear radius is strongly convex toward the image side, R = -33.237 mm. The element is geometrically biconvex but functionally close to a positive meniscus / plano-convex rear-power element.
 
@@ -132,7 +132,7 @@ The design uses conventional high-index crown and flint glasses; it does not use
 | L6 | 1.62041 | 60.2 | N-SK16 / S-BSM16 class | Exact/class | Low-dispersion positive partner |
 | L7 | 1.80518 | 25.4 | N-SF6 / S-TIH6 class | Exact/class | Strong negative Petzval corrector |
 | L8 | 1.69680 | 55.6 | S-LAL14 / N-LAK14 class | Exact/class | Image-side positive subgroup |
-| L9 | 1.74810 | 52.3 | Unmatched 748/523 lanthanum-crown class | Uncertain | Final positive power element |
+| L9 | 1.74810 | 52.3 | E-LAKH1 catalog equivalent (Hikari) | Exact coordinate; supplier unspecified | Final positive power element |
 
 The most important correction is L1/P: Ohara S-BSL7 is not an exact match to the patent value because modern S-BSL7 is nd = 1.51633, νd = 64.14. Schott N-BK7, nd = 1.51680, νd = 64.17, matches the patent's 1.51680/64.1 pair.
 

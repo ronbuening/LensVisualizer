@@ -26,3 +26,9 @@ Patent: US 5,579,169, Example 1 / Table 1
   coefficient-backed optical equivalent inside runtime tolerance.
 - The production supplier remains unspecified. No underwater prescription geometry, aperture, projection, or
   semi-diameter values changed.
+
+## 2026-08-21 — Hikari and near/close candidate review
+
+- Added the first-party J-LAK02 curve for the existing explicit label and assigned J-PKH1 as a supplier-neutral
+  spectral proxy for L8's `517699` phosphate-crown class.
+- Patent coordinates, underwater geometry, and production-supplier attribution remain unchanged.

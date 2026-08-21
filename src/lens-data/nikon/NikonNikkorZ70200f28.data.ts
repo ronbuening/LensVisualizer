@@ -120,7 +120,7 @@ const LENS_DATA = {
       nd: 1.66382,
       vd: 27.35,
       fl: 172.8,
-      glass: "Nikon SR glass (proprietary)",
+      glass: "Nikon SR glass; J-SFH4 catalog-equivalent spectral proxy (production material unspecified)",
       apd: "patent",
       dPgF: 0.0341,
       apdNote: "θgF=0.6319; extreme +ΔPgF for secondary spectrum correction",

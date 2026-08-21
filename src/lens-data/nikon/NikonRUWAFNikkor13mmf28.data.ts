@@ -159,7 +159,7 @@ const LENS_DATA = {
       nd: 1.5168,
       vd: 69.9,
       fl: 26.4,
-      glass: "Phosphate crown near J-PKH1 (517699, unmatched exact catalog)",
+      glass: "517699 phosphate-crown class; J-PKH1 catalog spectral proxy (production supplier unspecified)",
       cemented: "G6",
       role: "High-Abbe positive front component of the stronger rear cemented doublet.",
     },

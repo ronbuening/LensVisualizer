@@ -63,7 +63,7 @@ L5 is weakly positive and closes G1. It reduces the net negative power of L3–L
 
 G2 has a computed thick-lens focal length of +48.0 mm. It is fixed during focusing and nearly fixed during zooming; the G1–G2 spacing changes non-monotonically from 2.011 mm to 2.904 mm and back to 2.011 mm across the three zoom positions.
 
-**L6 — Biconvex positive.** $n_d = 1.74810$, $ν_d = 52.30$. Glass: unmatched lanthanum crown, code 748/523. Standalone $f = +83.4$ mm.
+**L6 — Biconvex positive.** $n_d = 1.74810$, $ν_d = 52.30$. Glass: 748523 — discontinued Hikari E-LAKH1 catalog equivalent; production supplier unspecified. Standalone $f = +83.4$ mm.
 
 L6 begins the positive relay action after the strongly negative first group. Its symmetric biconvex form limits coma and distortion contribution in this nearly stationary group.
 
@@ -123,7 +123,7 @@ The patent does not name glass manufacturers. The identifications below are cata
 | 617/540 | BACED1 (HOYA optical equivalent) | L3 | Catalog-backed equivalent | Official row 1.617203 / 53.945664; supplier unspecified. |
 | 795/286 | J-LAFH3 (Hikari optical equivalent) | L4 | Catalog-backed equivalent | Same index; catalog $ν_d=28.692277$; supplier unspecified. |
 | 785/258 | SF11-class dense flint | L5, L7 | close | Schott SF11 is 1.78472 / 25.76; patent table uses 25.80. |
-| 748/523 | unmatched lanthanum crown | L6 | unmatched | Treated by code only. |
+| 748523 | E-LAKH1 catalog equivalent (Hikari) | L6 | exact catalog coordinate | Discontinued source row; production supplier unspecified. |
 | 640/600 | S-BSM81 class | L8 | close | OHARA S-BSM81 is 1.64000 / 60.08. |
 | 487/704 | N-FK5 / FK5 | L9, L14, L16 | exact | Schott N-FK5 is 1.48749 / 70.41. |
 | 804/466 | S-LAH65V class | L10, L12, L18 | close | OHARA S-LAH65V is 1.80400 / 46.58. |

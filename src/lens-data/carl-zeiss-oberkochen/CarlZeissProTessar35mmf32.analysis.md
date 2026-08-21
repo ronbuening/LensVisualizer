@@ -125,7 +125,7 @@ As a high-dispersion flint element in the cemented front doublet, L_I's primary 
 | Surfaces | r₂ = +3.19587 (cemented), r₃ = +0.438637 |
 | Thickness | 0.03546 (1.24 mm production) |
 | Glass | nd = 1.74400, νd = 44.9 |
-| Identification | **Schott LaF2** (nd = 1.74400, νd = 44.72) — exact nd match, or **LaF21** (nd = 1.74397, νd = 44.85) |
+| Identification | Historical **LaF2** class; **N-LAF2** supplies the catalog spectral proxy without identifying the production supplier |
 
 L_II is a thin negative meniscus cemented to L_I. Both its surfaces have positive radii (convex to object), but the rear surface r₃ = +0.438637 is steeply curved compared to the cemented junction r₂ = +3.19587, giving L_II very strong negative refractive power at its rear surface (φ₃ = −1.696 in normalized units — the single strongest refracting surface in the entire system).
 
@@ -141,7 +141,7 @@ The cemented doublet L_I + L_II has a combined thick-lens focal length of approx
 | Surfaces | r₄ = −10.2530, r₅ = −0.802773 |
 | Thickness | 0.27280 (9.55 mm production) |
 | Glass | nd = 1.50378, νd = 66.7 |
-| Identification | **Schott PK1** (nd = 1.50340, νd = 66.81) — near-exact match |
+| Identification | Historical **PK1** class; **PC1** supplies the compatible catalog spectral proxy |
 | Focal length | +59.9 mm (production) |
 
 L_III is a thick positive meniscus with both surfaces concave toward the subject (negative R values). The front surface r₄ = −10.253 is very weakly curved (nearly flat), while the rear surface r₅ = −0.803 has moderate curvature. This gives L_III positive power: the rear surface, where light exits from glass (n = 1.504) to air (n = 1.0), has strong positive refracting power (φ₅ = +0.628).
@@ -158,7 +158,7 @@ L_III's role is to provide **moderate positive power with minimal chromatic cont
 | Surfaces | r₆ = +0.556187, r₇ = −0.695180 |
 | Thickness | 0.26325 (9.21 mm production) |
 | Glass | nd = 1.50378, νd = 66.7 |
-| Identification | **Schott PK1** (same glass as L_III) |
+| Identification | Historical **PK1** class; **PC1** spectral proxy (same glass as L_III) |
 | Focal length | +23.1 mm (production) |
 
 L_IV is the strongest positive element in the system, with a focal length of only +23.1 mm — approximately 0.66× the system EFL. Its biconvex shape distributes power across both surfaces (φ₆ = +0.906, φ₇ = +0.725), giving it a roughly symmetrical bending. L_IV is made from the same low-dispersion phosphate crown as L_III.
@@ -173,7 +173,7 @@ As the dominant positive power element, L_IV is the primary **converging element
 | Surfaces | r₈ = −0.675456, r₉ = −1.28151 |
 | Thickness | 0.02728 (0.955 mm production) |
 | Glass | nd = 1.74400, νd = 44.9 |
-| Identification | **Schott LaF2 / LaF21** (same glass as L_II) |
+| Identification | Historical **LaF2** class; **N-LAF2** spectral proxy (same glass as L_II) |
 | Focal length | −68.5 mm (production) |
 
 L_V is a thin negative meniscus immediately following L_IV, with both surfaces concave to the subject. At only 0.955 mm center thickness, it is the thinnest element in the system. Its glass is identical to L_II — lanthanum flint, providing high index and moderate dispersion.
@@ -222,7 +222,7 @@ The glass is identified as a light-light flint (LLF type) — a relatively unusu
 | Surfaces | r₁₅ = +0.576566 (cemented), r₁₆ = −0.779994 |
 | Thickness | 0.12276 (4.30 mm production) |
 | Glass | nd = 1.72000, νd = 50.3 |
-| Identification | **Schott LaK10** (nd = 1.72000, νd = 50.34) — exact match |
+| Identification | Historical **LaK10** class; **J-LAK10** supplies the compatible catalog spectral proxy |
 | Cemented to | L_VIII at surface r₁₅ |
 
 L_IX is the final optical element, a relatively thick biconvex positive element of lanthanum crown glass. LaK10 provides high refractive index (1.720) with moderate dispersion (νd = 50.3) — a characteristically "lanthanum" combination that allows strong positive power without excessive chromatic aberration.
@@ -234,17 +234,17 @@ The cemented doublet L_VIII + L_IX together has a focal length of approximately 
 | Element | nd | νd | Six-Digit Code | Identification | Confidence |
 |---------|------|------|----------------|----------------|------------|
 | L_I | 1.74000 | 28.2 | 740.282 | OHARA S-TIH3 catalog equivalent | Exact nd |
-| L_II | 1.74400 | 44.9 | 744.449 | Schott LaF2 (lanthanum flint) | Exact nd |
-| L_III | 1.50378 | 66.7 | 503.667 | Schott PK1 (phosphate crown) | Near-exact |
-| L_IV | 1.50378 | 66.7 | 503.667 | Schott PK1 (phosphate crown) | Near-exact |
-| L_V | 1.74400 | 44.9 | 744.449 | Schott LaF2 (lanthanum flint) | Exact nd |
+| L_II | 1.74400 | 44.9 | 744.449 | LaF2 class; N-LAF2 spectral proxy | Compatible; supplier unspecified |
+| L_III | 1.50378 | 66.7 | 503.667 | PK1 class; PC1 spectral proxy | Compatible; supplier unspecified |
+| L_IV | 1.50378 | 66.7 | 503.667 | PK1 class; PC1 spectral proxy | Compatible; supplier unspecified |
+| L_V | 1.74400 | 44.9 | 744.449 | LaF2 class; N-LAF2 spectral proxy | Compatible; supplier unspecified |
 | L_VII | 1.62536 | 35.6 | 625.356 | CDGM H-F6 catalog equivalent | Compatible |
 | L_VIII | 1.54869 | 45.4 | 548.454 | Schott LLF7 (light-light flint) | Near-exact |
-| L_IX | 1.72000 | 50.3 | 720.503 | Schott LaK10 (lanthanum crown) | Exact |
+| L_IX | 1.72000 | 50.3 | 720.503 | LaK10 class; J-LAK10 spectral proxy | Compatible; supplier unspecified |
 
 The glass palette is notable for its heavy use of lanthanum glass types — three of the eight elements use lanthanum glasses (LaF2 for L_II and L_V, LaK10 for L_IX). By 1955, lanthanum glasses were still relatively modern materials; their presence here reflects Zeiss's access to Schott's advanced glass catalog and Dr. Lange's willingness to exploit these newer high-index types for aberration control.
 
-Six distinct glass-coordinate families are used across eight glass elements. S-TIH3 and H-F6 provide coefficient-backed catalog equivalents for the two legacy dense-flint rows; they do not establish the production suppliers. Only four repeated coordinate sets are needed, since PK1 is shared by L_III and L_IV and LaF2 by L_II and L_V.
+Six distinct glass-coordinate families are used across eight glass elements. S-TIH3, H-F6, N-LAF2, PC1, and J-LAK10 provide coefficient-backed catalog equivalents for compatible historical coordinates; none establishes the production supplier. LLF7 remains on the Abbe fallback. Only four repeated coordinate sets are needed, since PK1 is shared by L_III and L_IV and LaF2 by L_II and L_V.
 
 ## 7. Focusing Mechanism
 

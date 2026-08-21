@@ -43,7 +43,7 @@ L1 has r1 = +47.070 mm and r2 = +184.282 mm, making it a shallow positive menisc
 
 ### L2 — Positive Meniscus, convex to object
 
-nd = 1.79631, νd = 41.0. Glass: unmatched lanthanum dense flint; closest public class is J-LASF02 / S-LAH52. f = +79.9 mm.
+nd = 1.79631, νd = 41.0. Glass: 796410 lanthanum-dense-flint class; HOYA NBFD2 supplies a compatible catalog spectral proxy without identifying Nikon's production supplier. f = +79.9 mm.
 
 L2 has r3 = +29.920 mm and r4 = +50.500 mm. It is the stronger positive member of the front unit and supplies most of G1's converging action. Its νd = 41.0 puts it on the dense-flint side of the lanthanum family, so it is not a crown in the ordinary Abbe-number sense.
 

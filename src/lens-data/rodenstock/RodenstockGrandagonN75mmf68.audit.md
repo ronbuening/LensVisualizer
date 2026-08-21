@@ -40,3 +40,10 @@ Patent: DE 26 35 415 B1 / DT 26 35 415 B1, Example 1
   `ne` / `νe` values.
 - The runtime and generated reports now reject d-line catalog substitution structurally rather than relying on annotation wording.
 - No source values or prescription geometry changed.
+
+## 2026-08-21 — Near/close glass-candidate review
+
+- Rechecked DE 26 35 415 B1 on its authored e-line reference and assigned K5 ×2, E-BAF8, and S-TIH18 as
+  supplier-neutral spectral proxies for L1/L6, L3, and L5.
+- The runtime evaluates the catalog curves at C′/e/F′ for this prescription; L2's other legacy dense-flint row
+  remains unresolved because several catalog curves fit it.

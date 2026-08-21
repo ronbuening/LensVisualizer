@@ -128,9 +128,9 @@ Glass types were identified by matching patent nd/νd values against known optic
 | 7 | L6 neg | 1.68893 | 31.08 | **OHARA S-TIM28** (nd=1.68893, νd=31.08) | Exact | Flint glass |
 | 8 | L6 pos | 1.86994 | 39.82 | **HOYA TAFD32** | Catalog-tolerance | Very dense lanthanum flint. Expensive high-index glass |
 | 9 | L7 | 1.78797 | 47.47 | **SCHOTT LaFN21** (nd=1.78797, νd=47.47) | Exact | Lanthanum flint. Modern equivalent: SCHOTT N-LAF21 |
-| 10 | L8 | 1.74810 | 52.30 | Unmatched 748523 patent glass | Unresolved | Lanthanum-crown region; no exact public catalog identity |
+| 10 | L8 | 1.74810 | 52.30 | 748523 — E-LAKH1 catalog equivalent | Catalog-backed equivalent | Exact discontinued Hikari coordinate; production supplier unspecified |
 
-Seven of the ten elements have exact or catalog-tolerance matches. L2 now uses the official legacy HOYA NBFD2 dispersion model as a close optical equivalent; L1b and L8 remain deliberately unresolved at their patent coordinates. The NBFD2 label does not identify Nikon's production supplier.
+Eight of the ten elements have exact or catalog-tolerance matches. L2 uses the official legacy HOYA NBFD2 dispersion model as a close optical equivalent, while L8 now uses the exact discontinued Hikari E-LAKH1 curve. These catalog-equivalent labels do not identify Nikon's production supplier; L1b remains deliberately unresolved at its patent coordinate.
 
 ### 5.2 Element-by-Element Optical Analysis
 
@@ -200,7 +200,7 @@ Seven of the ten elements have exact or catalog-tolerance matches. L2 now uses t
 - **Group membership:** G2, rear sub-unit G22
 
 #### Element 10 — L8 (Positive Meniscus, concave toward object)
-- **Glass:** Unmatched 748523 lanthanum-crown-region glass, nd=1.748, νd=52.3
+- **Glass:** 748523 — discontinued Hikari E-LAKH1 catalog equivalent, nd=1.748, νd=52.3; production supplier unspecified
 - **Thin-lens FL:** +1342 mm; thick-lens FL: +1300 mm (very weakly positive, F3/f = 15.3)
 - **Shape:** Meniscus with both surfaces concave toward object (R19=−177.67, R20=−150.95)
 - **Role:** The fixed rear compensator group G3. This single weak-positive element is the patent's principal innovation. Its deliberate weakness is by design (condition 3: 9 < F3/f < 20) — if G3 were too strong, it would overcorrect the spherical aberration at close focus and undercorrect the field curvature; too weak and it would be ineffective. The meniscus shape is governed by condition (18): r17/r16 = 0.850 (where r16 and r17 are the object-side and image-side radii of L8, respectively). If this shape ratio falls outside the specified range (0.3 < r17/r16 < 0.9), the balance between spherical aberration and field curvature during focusing becomes untenable. As a fixed element behind the moving G2, L8 exploits the fact that when G2 moves forward for close focus, the marginal ray height in G3 decreases, producing an aberration correction that opposes the degradation in G2. Similarly, the chief ray height in G3 increases at close focus, compensating for the reduced chief ray height in G1. The Nikon "Thousand and One Nights" article describes this element's role as "the touch of a master craftsman specifically intended to curb fluctuations at close range due to upper coma aberration and field curvature." The lanthanum crown glass (νd=52.3) keeps this element's chromatic contribution minimal.

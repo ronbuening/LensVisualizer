@@ -79,7 +79,7 @@ G1 is an air-spaced doublet composed of a negative element followed by a positiv
 | R₂ | +18.072 mm (exit to air) |
 | Center thickness | 0.800 mm |
 | nd / νd | 1.53172 / 48.78 |
-| Glass | **OHARA S-TIL 2** (nd = 1.53172, νd = 48.84) |
+| Glass | **532488 class; Hikari J-LLF6 catalog spectral proxy** (nd = 1.53172, νd = 48.78) |
 | Focal length | −26.7 mm |
 
 L11 is a biconcave negative element with modest refractive index. Its strongly curved rear surface (R₂ = +18.07 mm) provides most of its negative power. Being placed at the front of the system where beam diameters are small, it introduces strong negative power without requiring a large aperture. The low index and moderate dispersion (νd ≈ 48.8) are consistent with a titanium-containing crown glass — economical and well-suited to the entry-level positioning of this lens.
@@ -158,10 +158,10 @@ L22 is a thin biconcave negative element cemented directly to L21. The cemented 
 | R₂ | −29.933 mm (exit to air) |
 | Center thickness | 0.900 mm |
 | nd / νd | 1.80809 / 22.74 |
-| Glass | **OHARA S-TIH 18** (nd = 1.80809, νd = 22.76) |
+| Glass | **808227 class; Hikari J-SFH1 catalog spectral proxy** (nd = 1.80809, νd = 22.74) |
 | Focal length | −22.3 mm |
 
-L23 is a negative meniscus (concave toward the object) using OHARA S-TIH 18 — one of the highest-dispersion glasses in the catalog at νd = 22.7. Both centers of curvature lie on the object side (R₁ = −11.08, R₂ = −29.93), forming a meniscus that bows toward the image. The more strongly curved front surface (|R₁| < |R₂|) faces the cemented doublet, concentrating its corrective effect where the ray bundle is most converged.
+L23 is a negative meniscus (concave toward the object) using an 808227 high-dispersion class represented by Hikari J-SFH1 — one of the highest-dispersion glasses in the catalog at νd = 22.7. Both centers of curvature lie on the object side (R₁ = −11.08, R₂ = −29.93), forming a meniscus that bows toward the image. The more strongly curved front surface (|R₁| < |R₂|) faces the cemented doublet, concentrating its corrective effect where the ray bundle is most converged.
 
 **Optical role:** Provides additional negative power for spherical aberration correction within G2, and its very high dispersion contributes to lateral color correction in the off-axis field. The air gap of only 0.150 mm between L23 and L24 keeps the sub-group tightly packed.
 
@@ -280,7 +280,7 @@ The flat front surface and single powered rear is a cost-effective design that r
 | R₂ | +173.144 mm |
 | Center thickness | 1.200 mm |
 | nd / νd | 1.64769 / 33.73 |
-| Glass | **OHARA S-TIM 22** (nd = 1.64769, νd = 33.79) |
+| Glass | **OHARA S-TIM22** (nd = 1.64769, νd = 33.79) |
 | Focal length | −44.3 mm |
 
 L41 is a single biconcave negative element that forms the entire G4 group. It is fixed relative to the image plane and acts as a negative field flattener — a standard role for the rear negative group in compact wide-angle designs. The conditional expression (−f4)/f = 1.536 (condition 2: 1.20 < (−f4)/f < 2.00) constrains the balance between G4's negative power and the system focal length, ensuring adequate field curvature correction without excessive lateral color or distortion ([0028]).
@@ -365,15 +365,15 @@ The design uses only **6 distinct glass types** (plus one resin) across 9 elemen
 | OHARA S-LAH55V | 1.80400 | 46.58 | L12, L24 body, L32 | 3 |
 | OHARA S-NPH 1 | 2.00100 | 29.13 | L21 | 1 |
 | OHARA S-TIH 14 | 1.80518 | 25.46 | L22 | 1 |
-| OHARA S-TIH 18 | 1.80809 | 22.76 | L23 | 1 |
-| OHARA S-TIL 2 | 1.53172 | 48.84 | L11 | 1 |
+| Hikari J-SFH1 spectral proxy | 1.80809 | 22.74 | L23 | 1 |
+| Hikari J-LLF6 spectral proxy | 1.53172 | 48.78 | L11 | 1 |
 | OHARA S-BAL 41 | 1.53113 | 55.82 | L31 | 1 |
-| OHARA S-TIM 22 | 1.64769 | 33.79 | L41 | 1 |
+| OHARA S-TIM22 | 1.64769 | 33.79 | L41 | 1 |
 | UV-curing resin | 1.56093 | 36.64 | L24 resin layer | 1 |
 
 The triple use of S-LAH55V is the most significant cost optimization. Procuring a single glass type in larger volume reduces per-element cost and simplifies quality control. The three elements using it (L12, L24 body, L32) are all plano-convex or plano-concave positive elements — the flat surface on each further reduces manufacturing cost.
 
-None of the glasses in this design are ED (extra-low dispersion) or anomalous partial dispersion types. The lowest Abbe number is 22.74 (S-TIH 18 in L23) and the highest is 55.73 (S-BAL 41 in L31). This is consistent with the lens's non-S-Line positioning: it relies on aspherical correction and floating focus rather than exotic glass types to achieve acceptable aberration control.
+None of the glasses in this design are ED (extra-low dispersion) or authored as anomalous-partial-dispersion types. The lowest Abbe number is 22.74 (the J-SFH1-proxied L23 class) and the highest is 55.73 (S-BAL41 in L31). This is consistent with the lens's non-S-Line positioning: it relies on aspherical correction and floating focus rather than exotic glass types to achieve acceptable aberration control.
 
 ---
 

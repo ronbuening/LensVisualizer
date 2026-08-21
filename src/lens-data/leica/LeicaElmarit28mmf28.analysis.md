@@ -101,7 +101,7 @@ Example 3 uses mostly catalog-resolvable historical Schott-class glasses. The re
 | G1 | L1, L2, L5 | 1.62286 | 60.08 | **SK16** | 1.62041 | 60.32 | Dense barium crown |
 | G2 | L3 | 1.79227 | 47.15 | **Unmatched LaF21-class e-line glass** | 1.78800 | 47.49 | Lanthanum flint; d-line row is comparison only |
 | G3 | L4, L7 | 1.81265 | 25.24 | **813252 patent code** | — | — | High-index dense flint |
-| G4 | L6 | 1.72823 | 37.85 | **LaF10** | 1.72600 | 38.90 | Lanthanum flint |
+| G4 | L6 | 1.72823 | 37.85 | **LaF10 class; S-BAH28 e-line spectral proxy** | 1.72793 | 37.68 at e | Supplier unspecified |
 | G5 | L8 | 1.62408 | 36.11 | **Schott F2** | 1.62004 | 36.37 | Flint; exact e-line catalog-curve match |
 
 The earlier SF6 assignment was too specific for the resolver path. The patent pair nₑ = 1.81265 and νₑ = 25.24 is very close to historical dense-flint territory, but the tracked data now preserve the unbroken `813252` patent code until a coefficient-backed exact match is found. Note that current SCHOTT "N-" prefixed designations represent later lead-free reformulations, so legacy names should not be treated as automatic coefficient identities.
@@ -180,7 +180,7 @@ Despite being a meniscus with both surfaces concave toward the object, L5's thic
 
 L6 has a nearly flat front surface (R₁ = +3330 is effectively planar) and a strongly curved rear surface (R₂ = −36.08). The negative R₂ places the center of curvature to the left, meaning the rear surface is convex toward the image side. The element is therefore geometrically plano-convex (flat front, convex rear toward image), and optically strongly positive (f ≈ +49.1). This geometry places the refractive power at the cemented interface rather than at an air–glass surface, reducing surface reflection losses and ghosting — a practical consideration that Leica's own marketing literature highlighted as contributing to the lens's contrast and flare resistance.
 
-The LaF10/813252 pairing mirrors the achromatization strategy of the front doublet (L3+L4), using the dispersion contrast between a moderate-dispersion lanthanum flint and a high-dispersion dense flint (Δνₑ ≈ 13) to provide local chromatic correction in the rear group. The combined focal length of +166 is weakly positive, meaning this doublet adds slight convergence to the beam while primarily serving a chromatic correction role.
+The LaF10-class/813252 pairing mirrors the achromatization strategy of the front doublet (L3+L4), using the dispersion contrast between a moderate-dispersion lanthanum flint and a high-dispersion dense flint (Δνₑ ≈ 13) to provide local chromatic correction in the rear group. S-BAH28 supplies a compatible C′/e/F′ spectral proxy for L6 without asserting the historical supplier.
 
 **L8 — Final Negative Meniscus (Schott F2, f ≈ −139):**
 

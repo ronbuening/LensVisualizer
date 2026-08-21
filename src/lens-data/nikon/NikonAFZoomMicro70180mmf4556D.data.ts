@@ -137,7 +137,7 @@ const LENS_DATA = {
       nd: 1.7481,
       vd: 52.3,
       fl: 83.4,
-      glass: "Unmatched lanthanum crown (748/523)",
+      glass: "748523 — E-LAKH1 catalog equivalent (Hikari; production supplier unspecified)",
       role: "Positive relay lens at the front of G2.",
     },
     {

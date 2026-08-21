@@ -35,3 +35,9 @@ Patent: JPWO2019116563A1 / WO2019/116563 A1, Example 3
 - `npm run lint` — passed.
 - `npm run format:check` — passed.
 - `git diff --check` — passed.
+
+## 2026-08-21 — Near/close glass-candidate review
+
+- Rechecked WO 2019/116563 A1's L33 coordinate and partial dispersion, then assigned Hikari J-SF1 as a
+  supplier-neutral spectral proxy.
+- Retained the patent-authored `dPgF`; the catalog curve does not assert the production supplier.

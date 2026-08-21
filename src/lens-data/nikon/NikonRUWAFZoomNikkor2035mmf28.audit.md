@@ -17,3 +17,10 @@ Patent: US 5,490,012, First Embodiment / Table 1
   plausible rows are around `1.741 / 52.6` or `1.755 / 52.3`, outside the accepted d-line residual.
 - Retained the explicit unmatched `748523` annotation without a supplier or APD claim. No underwater prescription
   geometry, zoom spacing, stop, focus, or semi-diameter values changed.
+
+## 2026-08-21 — E-LAKH1 discontinued-catalog recovery
+
+- Hikari's official 2022-07-01 catalog supplies discontinued E-LAKH1 at code `748523`,
+  `nd = 1.748099`, `νd = 52.304982`, exactly reproducing L9's patent coordinate within printed precision.
+- Relabeled L9 as a supplier-neutral E-LAKH1 catalog equivalent and synchronized the analysis. This supersedes the
+  earlier current-catalog no-match disposition; no underwater prescription geometry, zoom, APD, or SD values changed.

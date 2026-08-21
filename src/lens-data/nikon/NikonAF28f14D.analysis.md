@@ -195,7 +195,7 @@ G3 has a collective focal length of −54.56 mm. It provides the controlled nega
 - **L6a** (front): nd = 1.74810, νd = 52.3, d = 3.60 mm.
   R₁ = −23.276 mm, R₂(junction) = −19.731 mm.
   Meniscus, concave to object (weakly positive as a standalone element).
-  Index-near to **OHARA S-LAM7**, but Abbe-incompatible (S-LAM7 is νd = 35.28). Retained as an unmatched lanthanum crown row.
+  Exact coordinate match to the discontinued Hikari **E-LAKH1** catalog row (748523). The curve is used as a supplier-neutral optical equivalent; the patent does not establish Nikon's production supplier.
   Individual f = +120.7 mm (weakly positive).
 
 - **L6b** (rear): nd = 1.75520, νd = 27.6, d = 1.00 mm.
@@ -277,7 +277,7 @@ The L8 doublet as a whole has f = +34.77 mm (strongly positive). As the patent t
 | L4a | 1.51860 | 69.9 | Hikari J-PKH1 (519699) | Phosphate crown | Exact |
 | L4b | 1.51454 | 54.6 | KF3 (SUMITA catalog equivalent) | Crown/light flint | Exact coordinate; supplier unspecified |
 | L5 | 1.80411 | 46.5 | OHARA S-LAH55 / Schott LASF35 | Lanthanum dense crown | Close |
-| L6a | 1.74810 | 52.3 | Unmatched LaM crown; S-LAM7 index-near only | Lanthanum crown | Explicit unmatched |
+| L6a | 1.74810 | 52.3 | E-LAKH1 catalog equivalent (Hikari) | Lanthanum crown | Exact 748523 coordinate; supplier unspecified |
 | L6b | 1.75520 | 27.6 | OHARA S-TIH4 | Dense flint | Good |
 | L7 | 1.77279 | 49.4 | Same as L2 | Lanthanum crown | Close |
 | L8a | 1.80411 | 46.5 | Same as L5 | Lanthanum dense crown | Close |

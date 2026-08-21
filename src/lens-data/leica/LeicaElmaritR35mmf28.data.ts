@@ -83,7 +83,7 @@ const LENS_DATA = {
       vd: 41.6,
       indexReference: "e",
       fl: 16.463,
-      glass: "BaSF6-class (Schott legacy barium dense flint, inferred; patent n_e)",
+      glass: "BaSF6 class; J-BASF6 catalog e-line spectral proxy (production supplier unspecified)",
       apd: false,
       role: "Strong positive collector in the front cemented doublet.",
       cemented: "D1",

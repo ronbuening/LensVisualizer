@@ -1948,4 +1948,18 @@ export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF), vendor-published low-softening-temperature L-BAL43 Sellmeier row.",
   },
+  /* Phase 107: exact discontinued barium-crown row recovered during the
+   * patent-backed coverage audit.
+   */
+  {
+    name: "BAL7",
+    vendor: "Ohara",
+    polynomial: [2.4787185, -0.0085856348, 0.015210012, 0.0006044033, -0.000038936391, 0.0000027124338],
+    nd: 1.58875,
+    vd: 51.179278,
+    PgF: 0.5575,
+    code6: "589512",
+    source:
+      "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF); vendor formula-3 polynomial for discontinued BAL7.",
+  },
 ];

@@ -45,3 +45,9 @@ No new catalog entries were added. The issue is reference-line convention, not m
   reproduce those pairs essentially exactly and no longer need the old explicit-unmatched workaround.
 - Upgraded L1, L3, and L4 from Abbe approximations to full curves, raising strict coverage from 0/6 to 3/6. L2 and
   the two N-LAF21-class rows remain unresolved because their exact catalog identities are not established.
+
+## 2026-08-21 — Near/close glass-candidate review
+
+- Evaluated US 4,123,144's L2 coordinate on the patent's e line and assigned J-BASF6 as a supplier-neutral
+  ZBaF17/BaSF6-class spectral proxy.
+- The two LaF21-class elements remain unresolved because their e-line coordinate does not identify one supplier curve.

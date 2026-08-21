@@ -99,14 +99,14 @@ L12 is cemented to L11 to form the G1 achromatic doublet. S-TIH1 is a titanium-s
 | Property | Value |
 |----------|-------|
 | Type | Biconcave negative |
-| Glass | PBM18Y (OHARA) or equivalent S-TIM27, six-digit code 1755/276 |
+| Glass | **755276 dense-flint class; catalog identity unresolved** |
 | nd / νd | 1.7552 / 27.57 |
 | Surfaces | R₅ = −16.536, R₆ = +105.597 |
 | Center thickness | 0.90 mm |
 | Focal length | −18.9 mm (thick-lens) |
 | Cemented to | L22 |
 
-L21 is a high-dispersion flint glass positioned at the front of G2's cemented assembly. Its strongly curved concave front surface (R₅ = −16.5 mm) gives it substantial negative power (f = −18.9 mm), making it the most powerfully diverging element in the system. This strong negative element, placed just behind the stop, is critical for correcting the spherical aberration and coma introduced by the preceding positive G1 doublet. The glass PBM18Y is an older OHARA phosphate-based flint; production may substitute the eco-compliant S-TIM27 (Δνd = 0.04, optically negligible).
+L21 is a high-dispersion flint glass positioned at the front of G2's cemented assembly. Its strongly curved concave front surface (R₅ = −16.5 mm) gives it substantial negative power (f = −18.9 mm), making it the most powerfully diverging element in the system. This strong negative element, placed just behind the stop, is critical for correcting the spherical aberration and coma introduced by the preceding positive G1 doublet. The patent supplies the `1.75520 / 27.57` coordinate, but that coordinate does not match current OHARA PBM18Y (`1.595509 / 38.767`) or uniquely identify another catalog glass. The earlier PBM18Y/S-TIM27 attribution is therefore rejected rather than used to force a Sellmeier curve.
 
 ### L22 — Positive Crown with Hybrid Asphere (G2, cemented doublet rear)
 
@@ -237,7 +237,7 @@ With no ED glass and no anomalous partial dispersion materials anywhere in the s
 
 **G1 doublet (L11 + L12):** S-LAH55 (νd = 42.73, crown) cemented with S-TIH1 (νd = 29.57, flint). The Abbe number difference of 13.16 provides moderate chromatic leverage. This pair corrects primary longitudinal chromatic aberration for the front converging group.
 
-**G2 cemented pair (L21 + L22):** PBM18Y (νd = 27.57, flint) cemented with S-LAH65 (νd = 46.60, crown). The Abbe number difference of 19.03 is larger, providing stronger chromatic correction in the group that carries the most optical power. The flint-ahead configuration (negative flint L21 in front, positive crown L22 behind) is the Steinheil achromat topology, which is preferred in post-stop positions because it reduces the Petzval contribution while maintaining chromatic correction.
+**G2 cemented pair (L21 + L22):** The unresolved 755276-class flint (νd = 27.57) is cemented with S-LAH65 (νd = 46.60). The Abbe number difference of 19.03 is larger, providing stronger chromatic correction in the group that carries the most optical power. The flint-ahead configuration (negative flint L21 in front, positive crown L22 behind) is the Steinheil achromat topology, which is preferred in post-stop positions because it reduces the Petzval contribution while maintaining chromatic correction.
 
 The absence of ED glass means that secondary spectrum (the residual chromatic aberration after primary achromatization) is not explicitly controlled. This is a deliberate trade-off consistent with the lens's budget positioning — secondary spectrum becomes increasingly visible at long focal lengths and very fast apertures, but at 40 mm f/2 its effect on image quality is modest, particularly when combined with Nikon's in-camera chromatic aberration correction algorithms.
 

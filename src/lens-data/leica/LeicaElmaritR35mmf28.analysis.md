@@ -54,7 +54,7 @@ The high Abbe number is appropriate for a strongly powered front negative elemen
 
 ### L2 — Biconvex Positive, front element of D1
 
-$n_e = 1.6713$, $\nu_e = 41.6$. Glass: BaSF6-class Schott legacy barium dense flint, inferred. $f = +16.46\ \mathrm{mm}$.
+$n_e = 1.6713$, $\nu_e = 41.6$. Glass: BaSF6-class barium dense flint; J-BASF6 supplies a compatible native-e-line spectral proxy, production supplier unspecified. $f = +16.46\ \mathrm{mm}$.
 
 L2 is the strongest standalone positive collector in the front half of the lens. Its scaled radii are $R_3 = +52.115\ \mathrm{mm}$ and $R_4 = -12.880\ \mathrm{mm}$, with a center thickness of $10.605\ \mathrm{mm}$. The high index permits the required positive power without making the front surface excessively steep.
 
@@ -107,7 +107,7 @@ The patent tabulates $n_e$ and $\nu_e$, not $n_d$ and $\nu_d$. These values are 
 | Element | Patent $n_e$ | Patent $\nu_e$ | Stored glass description | Confidence |
 |---|---:|---:|---|---|
 | L1 | 1.4892 | 69.9 | FK5 / N-FK5 class | High class match |
-| L2 | 1.6713 | 41.6 | BaSF6-class barium dense flint | Moderate inferred class |
+| L2 | 1.6713 | 41.6 | BaSF6 class; J-BASF6 e-line spectral proxy | Compatible curve; supplier unspecified |
 | L3 | 1.6299 | 38.8 | Unmatched flint / barium-flint position | Low; no confident public match |
 | L4 | 1.6241 | 60.1 | Unmatched SK16-class e-line crown | D-line comparison only |
 | L5 | 1.7046 | 34.6 | Unmatched dense flint | Low; no confident public match |

@@ -43,3 +43,9 @@ Catalog version: local working tree, 2026-06-25
 - `npm run format:check` - passed.
 - `npm run test -- __tests__/src/lens-data/lensDataTyping.test.ts __tests__/src/optics/validateLensData.test.ts __tests__/src/optics/buildLens.test.ts` - passed (3 files, 143 tests).
 - `npm run test` - failed outside this audit's edits: stale/generated route metadata is missing Rodenstock lens routes, and the existing Sonnar 50/1.5 skew-ray chromatic assertion differs by 0.0011856 mm.
+
+## 2026-08-21 — Near/close glass-candidate review
+
+- Rechecked DE 1,089,183's LaF2, PK1, and LaK10 coordinates and assigned N-LAF2, PC1, and J-LAK10 as
+  supplier-neutral spectral proxies for five elements.
+- L7 remains unresolved: its LLF7 name and `1.54869 / 45.4` coordinate do not establish one catalog curve.

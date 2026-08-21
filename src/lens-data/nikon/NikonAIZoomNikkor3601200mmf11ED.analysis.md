@@ -88,7 +88,7 @@ The cemented interface is concave toward the object, as required by the patent. 
 #### L7-L8 — Cemented Doublet, Negative; hyperchromatic component
 
 L7: nd = 1.48606, νd = 81.5. Glass: unmatched special low-dispersion glass (486/815; patent quartzite/ED-type). f = -142.1 mm.
-L8: nd = 1.58875, νd = 51.2. Glass: barium-crown 589/512 class, historical BAL7-class but not resolved to a current recommended-catalog entry. f = +394.7 mm.
+L8: nd = 1.58875, νd = 51.2. Glass: 589512 — discontinued OHARA BAL7 catalog equivalent; production supplier unspecified. f = +394.7 mm.
 Net: f = -220.9 mm.
 
 The patent identifies this as a hyperchromatic achromatic composite when stronger achromatism of the divergent group is needed. Its negative member uses the same high-Abbe special glass as the front group, making it a chromatic counterweight to the collector rather than a conventional crown-positive/flint-negative achromat.
@@ -162,7 +162,7 @@ The prescription uses thirteen distinct nd/νd pairs across twenty elements. The
 | LaF2 / N-LAF2 class | 1.74400 | 44.9 | L3, L16 | Catalog class match by code |
 | N-SK5 / S-BAL35 class | 1.58913 | 61.2 | L4, L6 | Code fits SK5/S-BAL35 family, not BaLF4 |
 | SF4 / N-SF4 | 1.75520 | 27.5 | L5, L13 | Catalog match by code |
-| Barium crown 589/512 | 1.58875 | 51.2 | L8 | Historical BAL7-class; not resolved to a current recommended public entry |
+| BAL7 catalog equivalent | 1.58875 | 51.2 | L8 | Exact OHARA 589512 catalog coordinate; production supplier unspecified |
 | N-BK7 / S-BSL7 class | 1.51680 | 64.2 | L9 | Catalog class match by code |
 | N-SK16 / S-BSM16 class | 1.62041 | 60.3 | L10 | Catalog class match by code |
 | SUMITA F3 catalog equivalent | 1.61293 | 36.9 | L11 | Exact code 613369 coordinate; production supplier unspecified |

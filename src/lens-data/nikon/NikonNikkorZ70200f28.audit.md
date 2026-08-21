@@ -28,3 +28,10 @@ Local patent source: `patents/WO_2020105104_A1.pdf` (untracked local file).
 - L61 / surface 24 is confirmed as `nd = 1.85026`, `νd = 32.35`; relabeled to coefficient-backed Hikari `J-LASF021 (850324)`.
 - L64 / surface 29 is confirmed as `nd = 1.80100`, `νd = 34.92`; relabeled to coefficient-backed Hikari `J-LAF016 (801349)`.
 - No `nC`, `nF`, or `ng` rows were found in the Example 1 prescription pages reviewed.
+
+## 2026-08-21 — SR spectral-proxy recovery
+
+- Hikari's official 2023 catalog supplies J-SFH4 at `nd = 1.66382`, `νd = 27.346974`, and
+  `θgF = 0.6319`, reproducing L23's patent coordinate and published partial dispersion.
+- Kept Nikon's proprietary SR identity explicit and added J-SFH4 only as a catalog spectral proxy. The proxy improves
+  wavelength-dependent tracing without claiming that Nikon used off-the-shelf J-SFH4; no prescription or APD value changed.

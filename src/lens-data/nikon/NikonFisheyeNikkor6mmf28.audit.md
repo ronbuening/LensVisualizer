@@ -18,3 +18,8 @@ Patent: US 3,737,214, Example I
 ### Analysis sync
 
 - Updated the L7 text and glass table from `534/554` to `534554`.
+
+## 2026-08-21 — Near/close glass-candidate review
+
+- Rechecked US 3,737,214 and assigned NBFD2 as a supplier-neutral spectral proxy for L10's `796408` class.
+- The patent coordinate remains unchanged; no supplier identity is asserted.

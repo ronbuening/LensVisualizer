@@ -158,7 +158,7 @@ const LENS_DATA = {
       nd: 1.7481,
       vd: 52.3,
       fl: 40.5,
-      glass: "Unmatched (748/523 lanthanum crown; historical/proprietary melt)",
+      glass: "748523 — E-LAKH1 catalog equivalent (Hikari; production supplier unspecified)",
       role: "Final positive power element of G3b before the rear protective plate.",
     },
     {
