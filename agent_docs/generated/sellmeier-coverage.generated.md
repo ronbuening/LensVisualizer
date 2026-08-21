@@ -11,17 +11,17 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **604** lenses scanned
-- **594** visible lenses scanned
-- **381** lenses fully covered by trusted chromatic data
-- **381** visible lenses fully covered by trusted chromatic data
-- **376** lenses fully covered by strict Sellmeier data
-- **376** visible lenses fully covered by strict Sellmeier data
+- **607** lenses scanned
+- **597** visible lenses scanned
+- **384** lenses fully covered by trusted chromatic data
+- **384** visible lenses fully covered by trusted chromatic data
+- **379** lenses fully covered by strict Sellmeier data
+- **379** visible lenses fully covered by strict Sellmeier data
 - **5** lenses fully covered only after measured line-index data
 - **5** visible lenses fully covered only after measured line-index data
-- **6276 / 6860** non-air surfaces use strict catalog Sellmeier data
+- **6322 / 6906** non-air surfaces use strict catalog Sellmeier data
 - **91.5%** strict Sellmeier surface coverage overall
-- **6290 / 6860** non-air surfaces use trusted chromatic data
+- **6336 / 6906** non-air surfaces use trusted chromatic data
 - **91.7%** trusted chromatic coverage overall
 - **30 / 75** native e-line surfaces use name-verified catalog Sellmeier data
 
@@ -128,6 +128,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [CANON EF 200mm f/2 L IS USM](../../src/lens-data/canon/CanonEF200mmf2LISUSM.data.ts) | 16/16 | 16 | 16/16 |
 | [CANON EF 28-135mm f/3.5-5.6 IS USM](../../src/lens-data/canon/CanonEF28135mmf3556IS.data.ts) | 16/16 | 16 | 16/16 |
 | [CANON EF 400mm f/2.8 L IS III USM](../../src/lens-data/canon/CanonEF400mmf28LISIIIUSM.data.ts) | 16/16 | 16 | 16/16 |
+| [CANON EF 600mm f/4 L IS III USM](../../src/lens-data/canon/CanonEF600mmf4LISIIIUSM.data.ts) | 16/16 | 16 | 16/16 |
 | [CANON RF 15-35mm f/2.8 L IS USM](../../src/lens-data/canon/CanonRF1535f28.data.ts) | 16/16 | 16 | 16/16 |
 | [FUJIFILM FUJINON GF 250mm f/4 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmGF250mmf4RLM.data.ts) | 16/16 | 16 | 16/16 |
 | [FUJIFILM FUJINON GF 30mm f/5.6 T/S](../../src/lens-data/fujifilm/FujifilmGF30mmf56TS.data.ts) | 16/16 | 16 | 16/16 |
@@ -153,6 +154,8 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [CANON EF 20-35mm f/2.8 L](../../src/lens-data/canon/CanonEF2035mmf28L.data.ts) | 15/15 | 15 | 15/15 |
 | [CANON EF 28-105mm f/3.5-4.5 II USM](../../src/lens-data/canon/CanonEF28105mmf3545II.data.ts) | 15/15 | 15 | 15/15 |
 | [CANON EF 400mm f/2.8 L IS II USM](../../src/lens-data/canon/CanonEF400mmf28LISIIUSM.data.ts) | 15/15 | 15 | 15/15 |
+| [CANON EF 600mm f/4 L IS II USM](../../src/lens-data/canon/CanonEF600mmf4LISIIUSM.data.ts) | 15/15 | 15 | 15/15 |
+| [CANON EF 600mm f/4 L IS USM](../../src/lens-data/canon/CanonEF600mmf4LISUSM.data.ts) | 15/15 | 15 | 15/15 |
 | [CANON EF-S 55-250mm f/4-5.6 IS STM](../../src/lens-data/canon/CanonEFS55250mmf456ISSTM.data.ts) | 15/15 | 15 | 15/15 |
 | [CANON RF 24mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF24mmF14LVCM.data.ts) | 15/15 | 15 | 15/15 |
 | [CANON RF 28-70mm f/2.8 IS STM](../../src/lens-data/canon/CanonRF2870mmf28.data.ts) | 15/15 | 15 | 15/15 |

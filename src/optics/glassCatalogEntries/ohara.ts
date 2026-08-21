@@ -1268,6 +1268,18 @@ export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info; S-TIH13 page.",
   },
   {
+    name: "S-NBH53",
+    vendor: "Ohara",
+    B: [1.6582834, 0.263275666, 2.10142759],
+    C: [0.0113872516, 0.0522108137, 165.523649],
+    nd: 1.738,
+    vd: 32.26,
+    PgF: 0.5899,
+    code6: "738323",
+    source:
+      "OHARA S-NBH53 legacy datasheet OHARA 01-12,01-010 (2009), https://oharacorp.com/wp-content/uploads/2023/09/S-NBH53-2009.pdf. Discontinued polished-lens glass; vendor dispersion constants.",
+  },
+  {
     name: "S-NBH53V",
     vendor: "Ohara",
     B: [1.65444141, 0.267453927, 2.14530347],
