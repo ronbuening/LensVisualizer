@@ -135,14 +135,15 @@ class description is therefore retained without a Sellmeier-based spectral claim
 
 ### L5 — Biconvex Positive, Two Aspherical Surfaces
 
-**nd = 1.57469, νd = 56.0. Glass: Unmatched (575560; barium-crown class). f = +28.3634 mm.**
+**nd = 1.57469, νd = 56.0. Glass: HOYA BAC6 legacy catalog-equivalent curve, patent code 575560; production supplier unspecified. f = +28.3634 mm.**
 
 L5 forms the front subunit G2F and lies immediately before the stop (¶0025). It is the strongest positive element in the
 positive zoom group, and both surfaces 10A and 11A are aspherical. Its location near the aperture gives those surfaces
 strong leverage over axial and pupil-dependent aberrations across the zoom range.
 
-The published prescription does not support a specific catalog identity. The barium-crown class label describes the
-index/dispersion region without replacing the stored patent values with a catalog nominal pair.
+The published prescription does not support a production-supplier identity. HOYA's obsolete BAC6 coefficient row
+evaluates to `1.574441 / 56.357`, so the data uses it as a qualified barium-crown spectral proxy without replacing the
+stored patent coordinates.
 
 ### L6-L7 — Cemented Negative/Positive Pair behind the Stop
 
@@ -224,7 +225,7 @@ catalog-class interpretation.
 | Optical resin layer P | 1.51122 | 59.6 | P | Non-glass material; catalog glass identities rejected |
 | 487704 fluor-crown class | 1.48749 | 70.4 | L3, L11 | Cross-vendor class |
 | 730262 dense-flint class | 1.72960 | 26.2 | L4 | Unmatched |
-| 575560 barium-crown class | 1.57469 | 56.0 | L5 | Unmatched |
+| BAC6 catalog-equivalent curve; patent code 575560 | 1.57469 | 56.0 | L5 | Coefficient-backed HOYA legacy proxy; production supplier unspecified |
 | 907303 ultra-high-index flint class | 1.90698 | 30.3 | L6 | Unmatched |
 | 497816 ED fluorophosphate-crown class | 1.49700 | 81.6 | L7 | Cross-vendor class |
 | 581465 barium-flint class | 1.58133 | 46.5 | L8 | Unmatched; J-BAF3 nearest candidate (Δnd +0.00134, Δνd -0.02) |
@@ -238,9 +239,9 @@ members, while several high-index flint-class elements carry strong power in com
 achromatic balancing as a design inference, but the available data does not justify an APO designation or a claim about
 secondary-spectrum correction.
 
-All element records explicitly set `apd: false`. Except for the source-verified K-LaSFn23 catalog equivalent, catalog
-candidates are not used to back-fill line indices or partial dispersion values, because doing so would make the glass
-lookup circular and would imply spectral precision absent from the patent.
+All element records explicitly set `apd: false`. BAC6 and K-LaSFn23 supply coefficient-backed tracing curves, but
+neither is used to back-fill patent line indices or partial-dispersion claims. Other catalog candidates remain rejected
+where the available coordinates do not support a defensible proxy.
 
 ## Focus Mechanism
 

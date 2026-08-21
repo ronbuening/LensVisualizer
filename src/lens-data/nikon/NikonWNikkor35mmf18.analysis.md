@@ -46,9 +46,9 @@ L2 is the positive crown member of the front cemented doublet. It carries strong
 
 ### L3 — Negative Meniscus, Component II rear element
 
-$n_d = 1.62060$, $\nu_d = 38.0$. Glass: Unmatched vintage light flint, 621/380. $f = -14.5$ mm.
+$n_d = 1.62060$, $\nu_d = 38.0$. Glass: HOYA F9 legacy catalog-equivalent curve, patent code 621380; production supplier unspecified. $f = -14.5$ mm.
 
-L3 is the negative flint member of Component II. It is thin and strongly divergent, with the rear surface $r_5$ forming one side of the stop-adjacent correction region identified in the patent. The nearest current Nikon F-family glasses split the match: J-F2 is close in index but too low in Abbe number, while J-F5 is close in Abbe number but too low in index. The data file therefore avoids assigning a modern catalog name.
+L3 is the negative flint member of Component II. It is thin and strongly divergent, with the rear surface $r_5$ forming one side of the stop-adjacent correction region identified in the patent. Current Nikon F-family glasses split the match, but HOYA's obsolete F9 row supplies a close coefficient-backed curve at `1.620446 / 38.090`. It is used as a legacy spectral proxy without asserting that Nippon Kogaku procured HOYA glass.
 
 ### L4 — Negative Meniscus, convex to image
 
@@ -76,17 +76,17 @@ L7 is the final negative element and completes the weakly positive rear doublet.
 
 ## Glass Identification / Selection
 
-The patent gives refractive index and Abbe number but no manufacturer glass names. The corrected data file therefore uses Nikon J-series catalog names only where the public catalog values are close to the patent values, and uses explicit `Unmatched` labels where they are not.
+The patent gives refractive index and Abbe number but no manufacturer glass names. The corrected data file uses Nikon J-series curves where they are close to the patent values and one qualified HOYA legacy proxy where it materially improves spectral tracing. These are coordinate-based equivalents, not production-melt identities.
 
 | Patent glass | $n_d$ | $\nu_d$ | Data-file identification | Elements | Rationale |
 |---|---:|---:|---|---|---|
 | A | 1.7197 | 50.2 | J-LAK10 class (Nikon J-series match) | L1, L5 | Current J-LAK10 is 1.719990 / 50.27, close to the patent value. |
 | B | 1.6620 | 57.7 | Unmatched vintage high-index crown, 662/577 | L2 | No close current Nikon J-series public match was found. |
-| C | 1.6206 | 38.0 | Unmatched vintage light flint, 621/380 | L3 | Current J-F2 matches index but not dispersion; J-F5 matches dispersion but not index. |
+| C | 1.6206 | 38.0 | HOYA F9 legacy catalog-equivalent curve; patent code 621380 | L3 | F9 evaluates to 1.620446 / 38.090; production supplier unspecified. |
 | D | 1.7850 | 25.9 | J-SF11 class (Nikon J-series match) | L4, L7 | Current J-SF11 is 1.784720 / 25.64, close to the patent value. |
 | E | 1.6910 | 54.1 | J-LAK9 class (Nikon J-series match) | L6 | Current J-LAK9 is 1.691000 / 54.93, matching index and close in dispersion. |
 
-This replaces the earlier analysis' speculative Schott/Ohara/CDGM labels. Those labels are plausible by glass family, but the current project standard favors the lens maker's own public glass catalog where available and requires unmatched labels when the numerical pair does not resolve cleanly. The patent's refractive-index conditions specify only that the positive lenses of Components I, IV, and V use materials with $1.65 < n_d < 1.80$; it does not name lanthanum glasses by catalog code.
+This replaces the earlier analysis' speculative Schott/Ohara/CDGM labels. The project favors the lens maker's own public catalog where available, while allowing explicitly qualified spectral proxies when a first-party coefficient row is tightly compatible. The patent's refractive-index conditions specify only that the positive lenses of Components I, IV, and V use materials with $1.65 < n_d < 1.80$; it does not name lanthanum glasses by catalog code.
 
 The patent does not publish line indices beyond $n_d$, partial dispersion, melt data, or chemical composition. Claims about thorium-bearing glass or element-specific radioactive content are therefore treated as external historical reports, not patent-derived optical facts, and are not encoded as element metadata.
 

@@ -57,7 +57,7 @@ Combined doublet: $f \approx +53.7$ mm (patent scale), $\approx +45.6$ mm produc
 
 #### L3 — Weak Negative Meniscus (front element of doublet)
 
-$n_d = 1.54072$, $\nu_d = 46.8$. Glass: `541468` light flint. No exact coefficient-backed match was found in public OHARA, Schott, HOYA, HIKARI, CDGM, or refractiveindex.info catalog searches. In any event, the glass is a low-index, moderate-dispersion light flint.
+$n_d = 1.54072$, $\nu_d = 46.8$. Glass: S-TIL2 catalog-equivalent curve, patent code `541468`; production supplier unspecified. The OHARA curve matches the patent index exactly and differs by only +0.427 in Abbe number, so it supplies a qualified low-index, moderate-dispersion light-flint proxy without changing the patent coordinates.
 
 Surfaces: $r_5 = +650.716$ (nearly flat front), $r_6 = +35.711$ (junction with L4). Center thickness: 2.53 mm. Shape: meniscus, convex to object, thin.
 
@@ -93,18 +93,18 @@ The patent demonstrates (Column 6, lines 5–35) that widening $d_{B0}$ produces
 
 ## Glass Identification and Selection
 
-The prescription uses six distinct glasses. Minolta was one of the few camera manufacturers to produce its own optical glass, and several rows in this design have no exact match in publicly available catalogs. L6 now uses HOYA FL57 as a coordinate-equivalent curve; the remaining unresolved rows retain six-digit codes for future catalog additions.
+The prescription uses six distinct glasses. Minolta was one of the few camera manufacturers to produce its own optical glass, so catalog-equivalent curves do not establish its production suppliers. L3 uses OHARA S-TIL2 and L6 uses HOYA FL57 as coordinate-compatible spectral proxies; the remaining unresolved rows retain six-digit codes for future catalog additions.
 
 | Element | $n_d$ | $\nu_d$ | Identification | Confidence | Role |
 |---------|-------|--------|----------------|------------|------|
 | L1 | 1.7495 | 50.1 | 749501 lanthanum crown | Code fallback | Front positive collector — high index reduces curvature |
 | L2 | 1.6398 | 34.7 | S-TIM27 (OHARA) or equivalent | Confirmed ($\Delta n_d = 0.000$, $\Delta\nu_d = 0.27$) | Biconcave flint — chromatic correction partner for L1 |
-| L3 | 1.54072 | 46.8 | 541468 light flint | Code fallback | Doublet front — Abbe differential for achromatization |
+| L3 | 1.54072 | 46.8 | S-TIL2 equivalent; patent code 541468 | OHARA catalog-equivalent | Doublet front — Abbe differential for achromatization |
 | L4 | 1.72 | 52.1 | 720521 lanthanum crown | Code fallback | Doublet rear — primary positive power behind stop |
 | L5 | 1.6968 | 55.5 | S-LAL14 (OHARA) | Confirmed ($\Delta n_d = 0$, $\Delta\nu_d = 0.03$) | Stationary field relay meniscus |
 | L6 | 1.57616 | 41.4 | FL57 | HOYA catalog-equivalent | Soft-focus control — low index keeps higher-order SA controllable |
 
-The chromatic correction strategy pairs a high-$\nu_d$ crown (L1, L4, L5) against moderate-$\nu_d$ flints (L2, L3, L6). The two confirmed catalog glasses — S-TIM27 for L2 and S-LAL14 for L5 — are both standard OHARA production glasses that were widely available in the 1970s. The remaining four glasses are likely Minolta in-house melts, consistent with the company's well-documented practice of producing its own optical glass.
+The chromatic correction strategy pairs a high-$\nu_d$ crown (L1, L4, L5) against moderate-$\nu_d$ flints (L2, L3, L6). S-TIM27 and S-LAL14 are strong coordinate matches, while S-TIL2 and FL57 are qualified proxy curves. None of those labels proves Minolta's production procurement; the supplier remains unspecified wherever the patent gives only optical coordinates.
 
 The choice of a low-index light flint ($n_d = 1.57616$) for L6 is optically motivated: a low-index glass produces smaller surface contributions to higher-degree spherical aberration per unit of curvature, giving the designer finer control over the balance between third-order and fifth-order spherical aberration — the exact balance that the patent claims is critical for producing a soft-focus image with a sharp core and a controlled peripheral halo rather than an undifferentiated blur.
 

@@ -10,11 +10,11 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **610** lenses scanned (**600** visible)
-- **6356 / 6940** non-air surfaces use strict catalog Sellmeier data (91.6%)
-- **6370 / 6940** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 91.8%)
+- **6364 / 6940** non-air surfaces use strict catalog Sellmeier data (91.7%)
+- **6378 / 6940** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 91.9%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
-- **228** code-only missing-Sellmeier elements in Sweep 2: **0** active unreviewed, **99** self-recording explicit dispositions, **0** dispositions missing any review record
+- **220** code-only missing-Sellmeier elements in Sweep 2: **0** active unreviewed, **97** self-recording explicit dispositions, **0** dispositions missing any review record
 - **0** unresolved named-token elements in Sweep 2B, producing **0** token occurrences across **0** distinct tokens
 - **0** Tier A proprietary backfill rows in Sweep 3
 
@@ -65,7 +65,6 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [FUJIFILM FUJINON XF 23mm f/2 R WR](../../src/lens-data/fujifilm/FujifilmXF23mmf2RWR.data.ts) | US 2017/0351051 A1 | [PDF](../../patents/US20170351051A1.pdf) | 90.0% (9/10) | 90.0% (9/10) | 1 | 13A [glass] (L21 — moving focus asphere: `803405 - high-index lanthanum flint (likely PGM aspheric melt; no exact public catalog match)`) | abbe: 1 |
 | [MINOLTA AF APO TELE 300mm f/2.8](../../src/lens-data/minolta/MinoltaAF300mmf28.data.ts) | US 4,518,229 | Missing from untracked local patents/ references (US4518229, 4518229) | 90.0% (9/10) | 90.0% (9/10) | 1 | 5 [glass] (Element 3: `682366 - dense flint class (catalog unresolved)`) | abbe: 1 |
 | [NIKON AF NIKKOR 85mm f/1.4 D IF](../../src/lens-data/nikon/Nikon85f14D.data.ts) | US 5,640,277 | [PDF](../../patents/US5640277.pdf) | 90.0% (9/10) | 90.0% (9/10) | 1 | 19 [glass] (Element 10: `Unmatched (748523 patent coordinate; vendor unresolved)`) | abbe: 1 |
-| [NIKON FISHEYE-NIKKOR 6mm f/5.6](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf56.data.ts) | US 3,524,697 | [PDF](../../patents/US3524697.pdf) | 88.9% (8/9) | 88.9% (8/9) | 1 | 11 [glass] (Patent L8: `768465 — lanthanum flint patent melt (nd=1.76764, νd=46.5; no exact public catalog match)`) | abbe: 1 |
 | [NIKON NIKKOR-N AUTO 28mm f/2](../../src/lens-data/nikon/NikonNikkorN28mmf2.data.ts) | US 3,736,049 | [PDF](../../patents/US3736049.pdf) | 88.9% (8/9) | 88.9% (8/9) | 1 | 14 [glass] (Element 8: `Discontinued LaF/LaK type (1970s)`) | abbe: 1 |
 | [PENTAX FA 31mm f/1.8 AL Limited](../../src/lens-data/pentax/PentaxFA31mmf18ALLtd.data.ts) | US 6,560,042 B2 | [PDF](../../patents/US6560042.pdf) | 88.9% (8/9) | 88.9% (8/9) | 1 | 13 [glass] (Element 8: `Unmatched (728403 lanthanum flint; no public coefficient row inside the d-line safety window)`) | abbe: 1 |
 | [SONY DT 16-50mm f/2.8 SSM](../../src/lens-data/sony/SonyDT1650mmf28SSM.data.ts) | US 2012/0307129 A1 | [PDF](../../patents/US20120307129A1.pdf) | 88.9% (16/18) | 88.9% (16/18) | 2 | 6A [glass] (G4 compound layer: `Unmatched (compound-asphere layer; material unspecified by patent)`)<br>26 [glass] (G13 compound layer: `Unmatched (compound-asphere layer; material unspecified by patent)`) | abbe: 2 |
@@ -86,7 +85,6 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [FUJIFILM SUPER EBC FUJINON 7.1-28.4mm f/2-2.8 (Fujifilm X10)](../../src/lens-data/fujifilm/FujifilmX1071284mmf228.data.ts) | US 2014/0133036 A1 | Missing from untracked local patents/ references (US20140133036A1, US20140133036, 20140133036) | 81.8% (9/11) | 81.8% (9/11) | 2 | 11A [glass] (G3 front asphere: `Unmatched (nd=1.803603, νd=40.28)`)<br>16A [glass] (G3 negative asphere: `Unmatched (nd=1.803603, νd=40.28)`) | abbe: 2 |
 | [LEICA SUMMILUX 28mm f/1.7 ASPH. (Leica Q, Q2, Q3)](../../src/lens-data/leica/Leica28mmf17.data.ts) | US 2016/0266350 A1 | [PDF](../../patents/US20160266350A1.pdf) | 81.8% (9/11) | 81.8% (9/11) | 2 | 12A [glass] (Element 6: `877370 — high-index lanthanum glass (patent nd=1.87722, nu_d=37.0)`)<br>20A [glass] (Element 11: `Unmatched (patent nd=1.68250, νd=33.00; prior H-ZF52A annotation rejected on dispersion)`) | abbe: 2 |
 | [AGFA COLOR-MAGNOLAR II 100mm f/4.5](../../src/lens-data/agfa/AgfaColorMagnolarII100mmf45.data.ts) | GB 775,944 | [PDF](../../patents/GB_775944_A.pdf) | 80.0% (4/5) | 60.0% (3/5) | 1 | 4 [glass] (Element 3: `Unmatched (540/509 crown-flint-boundary glass; no public catalog match located)`) | abbe: 1 |
-| [OLYMPUS E.ZUIKO AUTO-T 135mm f/3.5](../../src/lens-data/olympus/OlympusZuiko135mmf35.data.ts) | US 3,838,911 | [PDF](../../patents/US3838911.pdf) | 80.0% (4/5) | 80.0% (4/5) | 1 | 3 [glass] (Element 2: `487698 — FK/FSL low-dispersion crown class (patent nd=1.48749, νd=69.8; no exact modern coefficient-backed match)`) | abbe: 1 |
 | [SAMSUNG 30mm f/2](../../src/lens-data/samsung/Samsung30mmf2.data.ts) | US 2010/0149663 A1 | [PDF](../../patents/US20100149663A1.pdf) | 80.0% (4/5) | 80.0% (4/5) | 1 | 3 [glass] (Element 2: `Unmatched (684316 dense-flint class; vendor unresolved)`) | abbe: 1 |
 | [Nikon AI Micro-Nikkor 105mm f/2.8S](../../src/lens-data/nikon/NikonAIMicroNikkor105mmf28S.data.ts) | US 4,392,724 | [PDF](../../patents/US4392724.pdf) | 80.0% (8/10) | 80.0% (8/10) | 2 | 12 [glass] (L31 G3 positive meniscus: `Unmatched (595/355 vintage flint; near FF5 / S-FTM16 class but higher nd)`)<br>16 [glass] (L33 G3 positive reconverger: `Unmatched (595/355 vintage flint; near FF5 / S-FTM16 class but higher nd)`) | abbe: 2 |
 

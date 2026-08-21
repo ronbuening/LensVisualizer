@@ -102,7 +102,7 @@ const LENS_DATA = {
       nd: 1.54072,
       vd: 46.8,
       fl: 145.4,
-      glass: "541468 - light flint (catalog unresolved)",
+      glass: "S-TIL2 (OHARA catalog equivalent; patent code 541468, supplier unspecified)",
       apd: false,
       cemented: "D1",
       role: "Front element of cemented doublet — negative in isolation (f ≈ −60 mm in air), acts as achromatizing partner for L4 via Abbe-number differential at the junction surface.",

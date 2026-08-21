@@ -62,7 +62,7 @@ The 620602 glass class is a high-index crown rather than an ordinary low-index c
 
 ### L2 — Front Component of Cemented Doublet, Plano-Convex Positive
 
-`nd = 1.48749, νd = 69.8. Glass: 487698 low-dispersion crown / FK–FSL class; nearest public equivalents include FC5 (HOYA), N-FK5 (Schott), and S-FSL5 (OHARA), though the patent value is not an exact modern coefficient-backed catalog match. f = +59.7 patent units (+80.6 mm scaled).`
+`nd = 1.48749, νd = 69.8. Glass: S-FSL5 catalog-equivalent curve, patent code 487698; production supplier unspecified. The curve matches the patent index exactly and differs by +0.436 in Abbe number. f = +59.7 patent units (+80.6 mm scaled).`
 
 L2 is the positive crown member of the cemented second group. Its powered surface is `r₃ = +29.103`; the cemented interface `r₄` is plane. As a standalone element, this is a strong positive plano-convex lens, but in the system its behavior is inseparable from the high-dispersion negative L3 cemented to its rear face.
 
@@ -105,14 +105,14 @@ The patent publishes refractive indices and Abbe numbers only. It does **not** n
 | Element | Patent constants | Six-digit code | Catalog identification | Confidence |
 |---|---:|---:|---|---|
 | L1 | `nd = 1.62041`, `νd = 60.2` | 620602 | N-SK16 (Schott) / S-BSM16 (OHARA) / BACD16 (HOYA) class | High class match |
-| L2 | `nd = 1.48749`, `νd = 69.8` | 487698 | Near FK/FSL low-dispersion crown class; modern catalogs list 487702–487704 | Near match only |
+| L2 | `nd = 1.48749`, `νd = 69.8` | 487698 | S-FSL5 catalog-equivalent curve; supplier unspecified | Qualified spectral proxy |
 | L3 | `nd = 1.76182`, `νd = 26.5` | 762265 | SF14 / N-SF14 (Schott), S-TIH14 (OHARA), FD140 (HOYA) class | High match |
 | L4 | `nd = 1.66998`, `νd = 39.3` | 670393 | S-BAH32 (OHARA) exact optical-code match | High match |
 | L5 | `nd = 1.80518`, `νd = 25.4` | 805254 | N-SF6 / SF6 (Schott), S-TIH6 (OHARA), FD60 (HOYA) class | High match |
 
 The glass palette is conventional but carefully balanced. L1 is a high-index crown collector. L2 is a low-dispersion crown. L3 is a dense flint cemented to L2 to make a net-positive achromat. L4 is the negative telephoto meniscus with moderate flint dispersion. L5 is a high-index dense-flint rear meniscus. The design does not use ED, fluorite, anomalous partial-dispersion glass, or aspherical surfaces.
 
-The L2 identification is the least exact. The patent gives `nd = 1.48749`, which is exactly in the FK region, but the stated `νd = 69.8` is lower than the current HOYA/Schott/OHARA cross-reference entries around code 487704. It is best treated as a vintage FK/FSL-class low-dispersion crown rather than forced into a named modern catalog entry.
+The L2 supplier identification remains intentionally open. The patent gives `nd = 1.48749`, which is exactly in the FK region, but its `νd = 69.8` is lower than current cross-vendor rows around code 487704. S-FSL5 is used only as a close coefficient-backed proxy for tracing; it is not presented as proof of Olympus procurement.
 
 ## Focus Mechanism
 

@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **610** lenses scanned
 - **6940** non-air surfaces examined
 - **6947** element glass declarations examined
-- **282** non-explicit-unmatched annotations did not resolve
-- **136** distinct unresolved glass-like tokens found
+- **276** non-explicit-unmatched annotations did not resolve
+- **130** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -51,14 +51,12 @@ or per-lens patent backfills.
 | LAK10 | 2 | 2 | |
 | LAK9 | 2 | 2 | |
 | PK1 | 2 | 1 | |
-| 487698 | 1 | 1 | |
 | 499801 | 1 | 1 | |
 | 507589 | 1 | 1 | |
 | 514530 | 1 | 1 | |
 | 518523 | 1 | 1 | |
 | 534554 | 1 | 1 | |
 | 534556 | 1 | 1 | |
-| 541468 | 1 | 1 | |
 | 545486 | 1 | 1 | |
 | 554381 | 1 | 1 | |
 | 561575 | 1 | 1 | |
@@ -87,8 +85,6 @@ or per-lens patent backfills.
 | 682366 | 1 | 1 | |
 | 683548 | 1 | 1 | |
 | 694312 | 1 | 1 | |
-| 694536 | 1 | 1 | |
-| 697558 | 1 | 1 | |
 | 700555 | 1 | 1 | |
 | 701301 | 1 | 1 | |
 | 721334 | 1 | 1 | |
@@ -104,7 +100,6 @@ or per-lens patent backfills.
 | 754260 | 1 | 1 | |
 | 755501 | 1 | 1 | |
 | 767462 | 1 | 1 | |
-| 768465 | 1 | 1 | |
 | 769497 | 1 | 1 | |
 | 772493 | 1 | 1 | |
 | 773498 | 1 | 1 | |
@@ -121,7 +116,6 @@ or per-lens patent backfills.
 | 800255 | 1 | 1 | |
 | 803404 | 1 | 1 | |
 | 803405 | 1 | 1 | |
-| 805252 | 1 | 1 | |
 | 805410 | 1 | 1 | |
 | 835447 | 1 | 1 | |
 | 840433 | 1 | 1 | |
@@ -335,10 +329,6 @@ or per-lens patent backfills.
 - [CARL ZEISS PRO-TESSAR 35mm f/3.2](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissProTessar35mmf32.data.ts) 4: `PK1 (Schott)`
 - [CARL ZEISS PRO-TESSAR 35mm f/3.2](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissProTessar35mmf32.data.ts) 6: `PK1 (Schott)`
 
-### 487698 — 1 occurrence
-
-- [OLYMPUS E.ZUIKO AUTO-T 135mm f/3.5](../../src/lens-data/olympus/OlympusZuiko135mmf35.data.ts) 3: `487698 — FK/FSL low-dispersion crown class (patent nd=1.48749, νd=69.8; no exact modern coefficient-backed match)`
-
 ### 499801 — 1 occurrence
 
 - [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) 1: `FPL51 class (499/801, OHARA family)`
@@ -362,10 +352,6 @@ or per-lens patent backfills.
 ### 534556 — 1 occurrence
 
 - [PANASONIC LEICA DG SUMMILUX 9mm f/1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG9mmf17.data.ts) 3A: `534556 — moldable crown (patent nd=1.53380, nu_d=55.6)`
-
-### 541468 — 1 occurrence
-
-- [MINOLTA VARISOFT ROKKOR 85mm f/2.8](../../src/lens-data/minolta/MinoltaVarisoft85mmf28.data.ts) 5: `541468 - light flint (catalog unresolved)`
 
 ### 545486 — 1 occurrence
 
@@ -479,14 +465,6 @@ or per-lens patent backfills.
 
 - [SONY FE 14mm f/1.8 GM](../../src/lens-data/sony/SonyFE14mmf18GM.data.ts) 7: `694312 - short flint (Sony patent nd=1.69416, vd=31.2; no exact public catalog match)`
 
-### 694536 — 1 occurrence
-
-- [MINOLTA AF 28mm f/2](../../src/lens-data/minolta/MinoltaAF28mmf2.data.ts) 1: `694536 - lanthanum crown (catalog unresolved)`
-
-### 697558 — 1 occurrence
-
-- [MINOLTA AF 28mm f/2](../../src/lens-data/minolta/MinoltaAF28mmf2.data.ts) 15: `697558 - lanthanum crown (catalog unresolved)`
-
 ### 700555 — 1 occurrence
 
 - [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 11: `700555 — barium crown (patent nd=1.69980, νd=55.5)`
@@ -546,10 +524,6 @@ or per-lens patent backfills.
 ### 767462 — 1 occurrence
 
 - [NIKON AI NIKKOR 35mm f/2](../../src/lens-data/nikon/NikonAINikkor35mmf2.data.ts) 11: `Legacy 767/462 dense lanthanum-flint class (exact melt uncertain)`
-
-### 768465 — 1 occurrence
-
-- [NIKON FISHEYE-NIKKOR 6mm f/5.6](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf56.data.ts) 11: `768465 — lanthanum flint patent melt (nd=1.76764, νd=46.5; no exact public catalog match)`
 
 ### 769497 — 1 occurrence
 
@@ -614,10 +588,6 @@ or per-lens patent backfills.
 ### 803405 — 1 occurrence
 
 - [FUJIFILM FUJINON XF 23mm f/2 R WR](../../src/lens-data/fujifilm/FujifilmXF23mmf2RWR.data.ts) 13A: `803405 - high-index lanthanum flint (likely PGM aspheric melt; no exact public catalog match)`
-
-### 805252 — 1 occurrence
-
-- [MINOLTA AF 28mm f/2](../../src/lens-data/minolta/MinoltaAF28mmf2.data.ts) 11: `805252 - dense flint (catalog unresolved)`
 
 ### 805410 — 1 occurrence
 

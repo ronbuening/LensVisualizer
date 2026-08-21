@@ -72,3 +72,9 @@ Patent: US 4,124,276A, Embodiment 3
 - Visually rechecked Table 6 in local `patents/US4124276.pdf`; L6 remains `1.57616 / 41.4`, code 576414.
 - HOYA's 2026-07-07 catalog publishes FL57 at `1.576163 / 41.393340` with a vendor polynomial.
 - Relabeled L6 as an FL57 catalog equivalent while leaving Minolta's production supplier unspecified. The other code-only rows remain unresolved; no geometry changed.
+
+## 2026-08-21 — S-TIL2 catalog-equivalent recovery
+
+- Visually rechecked Table 6 in local `patents/US4124276.pdf`, PDF page 23. L3 is printed at `nd = 1.54072`, `νd = 46.8`, code `541468`.
+- The current OHARA S-TIL2 curve evaluates to `1.540720 / 47.227`, making it an exact index and close-Abbe spectral proxy (`Δnd = 0.000000`, `Δνd = +0.427`).
+- Relabeled L3 as an S-TIL2 catalog equivalent while retaining the patent coordinates and leaving Minolta's production supplier unspecified. L1 `749501` and L4 `720521` remain unresolved; no geometry or APD metadata changed.

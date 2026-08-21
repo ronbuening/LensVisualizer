@@ -53,7 +53,7 @@ Unless stated otherwise, element focal lengths in this section are standalone th
 
 #### L1 — Weak Positive Singlet, near-plano biconvex
 
-`nd = 1.6935`, `νd = 53.61`. Glass: lanthanum crown class, glass code 694/536. `f = +1799.06` (`+503.74 mm`).
+`nd = 1.6935`, `νd = 53.61`. Glass: H-LaK6A catalog-equivalent curve, patent code 694536; production supplier unspecified. `f = +1799.06` (`+503.74 mm`).
 
 L1 is deliberately weak. Its front radius, `r1 = +7518.80`, is nearly plano at the patent scale, while `r2 = −1494.77` supplies the finite rear curvature required by condition (3). This makes L1 a very shallow biconvex element whose focal length is nearly eighteen times the whole-lens focal length.
 
@@ -61,7 +61,7 @@ The patent's front-group strategy is clear: L1 is not asked to provide strong po
 
 #### L2 — Negative Meniscus, convex to object
 
-`nd = 1.5111`, `νd = 60.49`. Glass: `511605` crown glass. `f = −202.77` (`−56.78 mm`).
+`nd = 1.5111`, `νd = 60.49`. Glass: legacy NSL7 catalog-equivalent curve, patent code `511605`; production supplier unspecified. `f = −202.77` (`−56.78 mm`).
 
 L2 is the first object-convex negative meniscus. Its radii, `r3 = +117.92` and `r4 = +54.21`, have the same sign, with the rear surface more strongly curved. The low index and high Abbe number show that the negative power is obtained mainly through curvature rather than through a dense flint.
 
@@ -69,7 +69,7 @@ This is a conservative chromatic choice for the front divergence: the element co
 
 #### L3 — Negative Meniscus, convex to object
 
-`nd = 1.5111`, `νd = 60.49`. Glass: `511605` crown glass. `f = −196.46` (`−55.01 mm`).
+`nd = 1.5111`, `νd = 60.49`. Glass: legacy NSL7 catalog-equivalent curve, patent code `511605`; production supplier unspecified. `f = −196.46` (`−55.01 mm`).
 
 L3 repeats the L2 strategy with very similar radii, `r5 = +115.00` and `r6 = +52.66`. The paired menisci distribute the front-group divergence over four curved air-glass surfaces instead of concentrating it in one stronger negative element.
 
@@ -105,7 +105,7 @@ This is the element governed by condition (4), which requires `1.3f < f5 < 1.9f`
 
 #### L6 — Biconcave Negative
 
-`nd = 1.8052`, `νd = 25.21`. Glass: dense flint, SF6/S-TIH6 class. `f = −65.30` (`−18.28 mm`).
+`nd = 1.8052`, `νd = 25.21`. Glass: S-TIH6 catalog-equivalent curve, patent code `805252`; production supplier unspecified. `f = −65.30` (`−18.28 mm`).
 
 L6 is the design's only strongly dispersive glass. Its radii, `r11 = −74.06` and `r12 = +192.94`, make it a biconcave negative element.
 
@@ -121,7 +121,7 @@ The optical role is complementary to L5. Together, L5–L7 form a positive–neg
 
 #### L8 — Weak Positive Singlet, near-plano biconvex
 
-`nd = 1.6968`, `νd = 55.80`. Glass: `697558` lanthanum crown. `f = +189.87` (`+53.16 mm`).
+`nd = 1.6968`, `νd = 55.80`. Glass: K-LaK14 catalog-equivalent curve, patent code `697558`; production supplier unspecified. `f = +189.87` (`+53.16 mm`).
 
 L8 is a weak positive terminal element. Its front radius, `r15 = +1956.95`, is nearly plano, while `r16 = −141.52` provides the rear curvature.
 
@@ -129,21 +129,21 @@ Located close to the image plane, L8 behaves partly as a field element. Its mode
 
 ## Glass Identification and Selection
 
-The patent lists only `nd` and `νd`. It does not name OHARA, Hoya, Schott, Hikari, CDGM, Sumita, or any other glass vendor, and it provides no partial-dispersion or line-index table. The glass names below are therefore six-digit code and class identifications, not asserted vendor melt identities.
+The patent lists only `nd` and `νd`. It does not name OHARA, Hoya, Schott, Hikari, CDGM, Sumita, or any other glass vendor, and it provides no partial-dispersion or line-index table. Named rows below are therefore coefficient-backed spectral proxies selected by coordinate compatibility, not asserted production-melt identities.
 
 | Element(s) | Patent `nd / νd` | Glass class | Code / treatment | Role |
 |---|---:|---|---|---|
-| L1 | 1.6935 / 53.61 | Lanthanum crown | `694536` | Weak front positive |
-| L2, L3 | 1.5111 / 60.49 | Crown | `511605` | Low-dispersion front negative menisci |
+| L1 | 1.6935 / 53.61 | Lanthanum crown | `H-LaK6A` equivalent; patent code `694536` | Weak front positive |
+| L2, L3 | 1.5111 / 60.49 | Crown | Legacy `NSL7` equivalent; patent code `511605` | Low-dispersion front negative menisci |
 | L4a, L4b | 1.7620 / 40.38 | Lanthanum flint | `NBFD5` equivalent; patent code `762404` | Split second-group positive power |
 | L5 | 1.7495 / 50.41 | Dense lanthanum crown | `750504` | Post-stop spherical/coma correction |
-| L6 | 1.8052 / 25.21 | Dense flint | `805252` | Rear-group chromatic correction |
+| L6 | 1.8052 / 25.21 | Dense flint | `S-TIH6` equivalent; patent code `805252` | Rear-group chromatic correction |
 | L7 | 1.7725 / 50.14 | High-index lanthanum glass | `773501` | Rear positive meniscus |
-| L8 | 1.6968 / 55.80 | Lanthanum crown | `697558` | Terminal field positive |
+| L8 | 1.6968 / 55.80 | Lanthanum crown | `K-LaK14` equivalent; patent code `697558` | Terminal field positive |
 
 The glass palette is conventional for a late-1970s fast wide-angle SLR lens. There is no ED, fluorite, fluorophosphate, anomalous-dispersion, or KZFS-type glass in the prescription. Color correction is mainly the ordinary achromatic pairing of the high-index, low-Abbe L6 biconcave element against the surrounding positive lanthanum crown/flint elements.
 
-The strongest caution is L5. Its index and Abbe number place it in the dense lanthanum crown region, but no modern public catalog match is exact enough to justify a named catalog glass. The data file therefore records it as a glass-code/class match rather than as a specific vendor melt.
+The strongest cautions are L5 and L7. Their coordinates admit multiple materially plausible curves, and the patent provides no line indices or partial dispersion to distinguish them. The data file therefore keeps both as glass-code/class rows rather than choosing a specific spectral proxy.
 
 ## Focus Mechanism
 
