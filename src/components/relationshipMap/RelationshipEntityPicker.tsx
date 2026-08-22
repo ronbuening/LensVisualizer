@@ -32,7 +32,7 @@ interface PickerOption {
   lensCount: number;
 }
 
-const FULL_LIMIT = 40;
+const FULL_LIMIT = 42;
 const COMPACT_LIMIT = 8;
 
 /** All inventors and assignees as picker options, sorted by patent count desc. */
