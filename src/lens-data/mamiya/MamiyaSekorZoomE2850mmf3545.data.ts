@@ -189,8 +189,8 @@ const LENS_DATA = {
     // Cemented n6→n7 junction: downstream element L7 owns the interface.
     { label: "12", R: -22.5708, d: 1.7556, nd: 1.72342, elemId: 7, sd: 7 },
     { label: "13", R: 24.6008, d: 5.5104, nd: 1, elemId: 0, sd: 7 },
-    { label: "14", R: 78.9936, d: 1.47, nd: 1.7552, elemId: 8, sd: 8.2 },
-    { label: "15", R: 23.156, d: 1.2852, nd: 1, elemId: 0, sd: 8.2 },
+    { label: "14", R: 78.9936, d: 1.47, nd: 1.7552, elemId: 8, sd: 8.8 },
+    { label: "15", R: 23.156, d: 1.2852, nd: 1, elemId: 0, sd: 8.8 },
     { label: "16", R: 166.6084, d: 2.94, nd: 1.7725, elemId: 9, sd: 7.5 },
     { label: "17", R: -31.7576, d: 37.716, nd: 1, elemId: 0, sd: 7.5 },
   ],

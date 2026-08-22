@@ -19,6 +19,12 @@ export const ALIAS_RECORDS: readonly GlassAliasRecord[] = [
     kind: "vendor-equivalent",
     note: "Hoya crown shorthand used as an S-BSL7-class match.",
   },
+  {
+    alias: "BSL7",
+    target: "S-BSL7",
+    kind: "legacy-name",
+    note: "Historical bare OHARA name superseded by the coefficient-backed S-BSL7 row.",
+  },
   { alias: "FLUORITE", target: "CaF2", kind: "informal", note: "Material name for the cataloged CaF2 crystal entry." },
   { alias: "CAF2", target: "CaF2", kind: "informal", note: "Uppercase token form of the CaF2 crystal entry." },
   {

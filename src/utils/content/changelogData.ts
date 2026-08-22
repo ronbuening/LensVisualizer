@@ -20,6 +20,11 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-08-22",
+    type: "improvement",
+    summary: "Improved Mamiya and Yashica lens diagrams and chromatic coverage",
+  },
+  {
+    date: "2026-08-22",
     type: "lens",
     summary: "Added three Mamiya and three Yashica patent-derived lens designs",
   },

@@ -16,6 +16,27 @@ export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF); vendor formula-3 polynomial for discontinued S-BAL50.",
   },
+  {
+    name: "S-BAL12",
+    vendor: "Ohara",
+    B: [0.714605258, 0.621993289, 1.22537681],
+    C: [0.00301763913, 0.016650545, 143.506314],
+    nd: 1.539956,
+    vd: 59.462478,
+    code6: "540595",
+    source:
+      "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF); vendor Sellmeier coefficients for S-BAL12.",
+  },
+  {
+    name: "BAM8",
+    vendor: "Ohara",
+    polynomial: [2.583052, -0.0098044767, 0.017999796, 0.00062560828, -0.000030382771, 0.0000030639765],
+    nd: 1.62374,
+    vd: 47.09722,
+    code6: "624471",
+    source:
+      "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF); vendor formula-3 polynomial for discontinued BAM8.",
+  },
   /* Phase 44: exact legacy rows from OHARA's official 2026-07-01
    * all-products Zemax catalog for the Olympus 85-250mm source audit.
    */

@@ -14,15 +14,15 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 - **616** lenses scanned
 - **6979** glass elements examined
-- **1976** elements have multiple coordinate-compatible candidates
+- **1979** elements have multiple coordinate-compatible candidates
 - **402** lens files are affected
 - **208** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **194** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
-| Smallest reference-index residual | 1046 |
-| Evidence-source priority | 650 |
+| Smallest reference-index residual | 1047 |
+| Evidence-source priority | 652 |
 | Vendor context | 276 |
 | Stable canonical-name order | 4 |
 
@@ -201,6 +201,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `SK10 / S-BSM10 / E-BACD10 class (623/569)` | 1.62280 / 56.90 (d) | S-BSM10 — direct name evidence outranks alias evidence. | N-SK10 (Schott, alias) | 1 | [CANON SERENAR 100mm f/3.5 I](../../src/lens-data/canon/CanonSerenar100mmf35.data.ts) L11 |
 | `F2 / S-TIM2 class (620/363)` | 1.62000 / 36.30 (d) | F2 — smallest d-line \|Δn\| (4.0e-5 vs 4.1e-5) | S-TIM2 (Ohara, name)<br>E-F2 (Hoya, code, alternate code row) | 1 | [CANON SERENAR 100mm f/3.5 I](../../src/lens-data/canon/CanonSerenar100mmf35.data.ts) L12 |
 | `SK14 / S-BSM14 / BACD14 class (603/607)` | 1.60310 / 60.70 (d) | BACD14 — smallest d-line \|Δn\| (1.1e-5 vs 1.2e-5) | S-BSM14 (Ohara, name)<br>N-SK14 (Schott, alias)<br>J-SK14 (Hikari, code, alternate code row) | 1 | [CANON SERENAR 100mm f/3.5 I](../../src/lens-data/canon/CanonSerenar100mmf35.data.ts) L2 |
+| `BaF8 / E-BAF8 / K-BaF8 class (624/471)` | 1.62370 / 47.00 (d) | E-BAF8 — direct name evidence outranks six-digit code evidence. | BAM8 (Ohara, code, preferred code row) | 1 | [CANON SERENAR 100mm f/3.5 I](../../src/lens-data/canon/CanonSerenar100mmf35.data.ts) L4 |
 | `N-SSK5 (Schott; S-BSM25 class equivalent)` | 1.65844 / 50.90 (d) | N-SSK5 — Annotation vendor context matches Schott. | S-BSM25 (Ohara, name, vendor ✗) | 1 | [CANON TS-E 135mm f/4L MACRO](../../src/lens-data/canon/CanonTSE135mmf4L.data.ts) G1 |
 | `N-KZFS5 (Schott) / S-NBH5 class` | 1.65412 / 39.70 (d) | N-KZFS5 — Annotation vendor context matches Schott. | S-NBH5 (Ohara, name, vendor ✗) | 1 | [CANON TS-E 90mm f/2.8L MACRO](../../src/lens-data/canon/CanonTSE90mmf28L.data.ts) L3 |
 | `S-FPL51 (OHARA) / FCD1 class UD fluorophosphate` | 1.49700 / 81.50 (d) | S-FPL51 — Annotation vendor context matches Ohara. | FCD1 (Hoya, name, vendor ✗) | 1 | [CANON TS-E 90mm f/2.8L MACRO](../../src/lens-data/canon/CanonTSE90mmf28L.data.ts) L5 |
@@ -303,7 +304,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `PGM lanthanum crown (583595; HOYA M-BACD12 family)` | 1.58313 / 59.46 (d) | M-BACD12 — direct name evidence outranks six-digit code evidence. | Q-SK52S (Hikari, code, vendor ✗, preferred code row) | 1 | [FUJIFILM FUJINON XF 16-80mm f/4 R OIS WR](../../src/lens-data/fujifilm/FujifilmXF1680mmf4.data.ts) L53 |
 | `S-NPH1 (OHARA) / 808-228 short flint` | 1.80809 / 22.76 (d) | S-NPH1 — direct name evidence outranks six-digit code evidence. | FD225 (Hoya, code, vendor ✗, alternate code row) | 1 | [FUJIFILM FUJINON XF 23mm f/1.4 R LM WR](../../src/lens-data/fujifilm/FujifilmXF23mmf14RLMWR.data.ts) L13 |
 | `M-FD80-class / 689-312 moldable dense flint (HOYA; patent melt offset)` | 1.68863 / 31.20 (d) | M-FD80 — direct name evidence outranks six-digit code evidence. | E-FD8 (Hoya, code, vendor ✓, preferred code row)<br>J-SF8 (Hikari, code, vendor ✗, alternate code row) | 1 | [FUJIFILM FUJINON XF 23mm f/1.4 R LM WR](../../src/lens-data/fujifilm/FujifilmXF23mmf14RLMWR.data.ts) L32 |
-| `BK7 / BSL7-class borosilicate crown (516/641, catalog-class)` | 1.51625 / 64.05 (d) | N-BK7 — alias evidence outranks six-digit code evidence. | K-BK7 (Sumita, code, alternate code row)<br>S-BSL7 (Ohara, code, preferred code row) | 1 | [FUJIFILM FUJINON XF 23mm f/2.8 R WR](../../src/lens-data/fujifilm/FujifilmXF23mmf28RWR.data.ts) L11 |
+| `BK7 / BSL7-class borosilicate crown (516/641, catalog-class)` | 1.51625 / 64.05 (d) | S-BSL7 — smallest d-line \|Δn\| (8.0e-5 vs 5.5e-4) | N-BK7 (Schott, alias)<br>K-BK7 (Sumita, code, alternate code row) | 1 | [FUJIFILM FUJINON XF 23mm f/2.8 R WR](../../src/lens-data/fujifilm/FujifilmXF23mmf28RWR.data.ts) L11 |
 | `S-LAH66-class lanthanum flint (OHARA 773/496 class)` | 1.77250 / 49.60 (d) | S-LAH66 — direct name evidence outranks six-digit code evidence. | S-LAH66N (Ohara, code, vendor ✓, alternate code row)<br>J-LASF016 (Hikari, code, vendor ✗, alternate code row)<br>N-LAF34 (Schott, code, vendor ✗, alternate code row) | 1 | [FUJIFILM FUJINON XF 23mm f/2.8 R WR](../../src/lens-data/fujifilm/FujifilmXF23mmf28RWR.data.ts) L12 |
 | `S-LAH59 / TAF5 / ZLaF54-class lanthanum flint (816/466)` | 1.81600 / 46.55 (d) | S-LAH59 — smallest d-line \|Δn\| (1.6e-7 vs 5.3e-7) | TAF5 (Hoya, name)<br>J-LASF09A (Hikari, code, alternate code row) | 1 | [FUJIFILM FUJINON XF 23mm f/2.8 R WR](../../src/lens-data/fujifilm/FujifilmXF23mmf28RWR.data.ts) L23 |
 | `SF2 / E-FD2-class dense flint (648/339)` | 1.64769 / 33.89 (d) | E-FD2 — smallest d-line \|Δn\| (1.8e-7 vs 9.1e-7) | SF2 (Schott, name) | 1 | [FUJIFILM FUJINON XF 23mm f/2.8 R WR](../../src/lens-data/fujifilm/FujifilmXF23mmf28RWR.data.ts) L24 |
@@ -668,6 +669,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `805254 - dense-flint class (vendor unresolved; vd=25.35)` | 1.80518 / 25.35 (d) | SF6 — smallest d-line \|Δn\| (7.8e-8 vs 1.3e-6) | S-TIH6 (Ohara, code, preferred code row) | 2 | [NIKON AI AF VR ZOOM-NIKKOR 80-400mm f/4.5-5.6D ED](../../src/lens-data/nikon/NikonAFVRZoomNikkor80400mmf4556DED.data.ts) L51b |
 | `795453 class (vendor unspecified)` | 1.79500 / 45.30 (d) | J-LASF017 — smallest d-line \|Δn\| (3.0e-6 vs 2.6e-4) | Q-LASFPH3S (Hikari, code, alternate code row) | 3 | [NIKON AI AF ZOOM-NIKKOR 18-35mm f/3.5-4.5D IF-ED](../../src/lens-data/nikon/NikonAFZoomNikkor1835mmf3545DIFED.data.ts) L11 |
 | `H-LaF3B catalog equivalent (patent 744448; production supplier unspecified)` | 1.74400 / 44.79 (d) | H-LaF3B — direct name evidence outranks six-digit code evidence. | J-LAF2 (Hikari, code, preferred code row) | 1 | [NIKON AI AF ZOOM-NIKKOR 18-35mm f/3.5-4.5D IF-ED](../../src/lens-data/nikon/NikonAFZoomNikkor1835mmf3545DIFED.data.ts) L13 |
+| `BAK2 catalog equivalent (patent 540595; production supplier unspecified)` | 1.53996 / 59.47 (d) | BAK2 — direct name evidence outranks six-digit code evidence. | S-BAL12 (Ohara, code, preferred code row) | 2 | [NIKON AI AF ZOOM-NIKKOR 18-35mm f/3.5-4.5D IF-ED](../../src/lens-data/nikon/NikonAFZoomNikkor1835mmf3545DIFED.data.ts) L23 |
 | `TAF4 catalog equivalent (production supplier not established; patent 788475)` | 1.78797 / 47.50 (d) | TAF4 — direct name evidence outranks six-digit code evidence. | N-LAF21 (Schott, code, preferred code row) | 1 | [NIKON AI AF ZOOM-NIKKOR 20-35mm f/2.8D IF](../../src/lens-data/nikon/NikonAFZoomNikkor2035mmf28DIF.data.ts) L12 |
 | `SF1 catalog equivalent (production supplier not established; patent 717295)` | 1.71736 / 29.50 (d) | SF1 — direct name evidence outranks six-digit code evidence. | S-TIH1 (Ohara, code, alternate code row) | 1 | [NIKON AI AF ZOOM-NIKKOR 20-35mm f/2.8D IF](../../src/lens-data/nikon/NikonAFZoomNikkor2035mmf28DIF.data.ts) L21a |
 | `LAC8 catalog equivalent (production supplier not established; patent 713539)` | 1.71300 / 53.90 (d) | LAC8 — direct name evidence outranks six-digit code evidence. | MP-LAC8-30 (Hoya, code, alternate code row) | 1 | [NIKON AI AF ZOOM-NIKKOR 20-35mm f/2.8D IF](../../src/lens-data/nikon/NikonAFZoomNikkor2035mmf28DIF.data.ts) L22 |

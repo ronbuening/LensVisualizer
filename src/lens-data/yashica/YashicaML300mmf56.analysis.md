@@ -128,16 +128,18 @@ stored 1.81600 value satisfies that condition without assigning the element to a
 
 ### L5 — Biconvex Positive, central member of T1
 
-**nd = 1.59340, νd = 34.8. Glass: Unmatched (nd=1.59340, vd=34.8; patent theta_gF=0.589). f = +28.929010 mm.**
+**nd = 1.59340, νd = 34.8. Glass: 593348 - FF5-class catalog proxy (production supplier unspecified; patent
+theta_gF=0.589). f = +28.929010 mm.**
 
 L5 is individually a strong positive element but operates between two negative members inside a net-negative cemented
 triplet. The patent gives its standalone normalized focal length as approximately 0.096; recomputation from the final
 data gives `f5/f = 0.096430034`, satisfying the stated `0.09 f < f5 < 0.11 f` condition.
 
 The patent also singles out L5 with `θ5 = (ng-nF)/(nF-nC) = 0.589` and requires `θ5 > 0.585`. This is a relative partial-
-dispersion ratio, not anomalous-deviation `dPgF`. Because the source does not supply absolute `nC`, `nF`, or `ng`, the
-data file does not fabricate those line indices and does not convert `θ5` into `dPgF`. No APO or anomalous-dispersion
-classification follows from this entry alone.
+dispersion ratio, not anomalous-deviation `dPgF`. The discontinued HOYA FF5 catalog row is a qualified runtime proxy:
+its `nd = 1.59270`, `νd = 35.45`, and coefficient-derived `θg,F = 0.59269` all remain close to the patent coordinates.
+That numerical agreement supplies a chromatic curve without identifying the historical production glass. No APO or
+anomalous-dispersion classification follows from this entry alone. [1][4]
 
 ### L6 — Negative Meniscus, rear member of T1
 
@@ -160,7 +162,7 @@ catalogs, but coordinate agreement is not evidence of historical supplier identi
 | L1, L3 | 1.48749 | 70.4 | `487704 - FK5 class (vendor unresolved)` | Coordinate class |
 | L2 | 1.75690 | 31.8 | `757318 - E-LAF11 catalog equivalent (production supplier unspecified)` | Qualified dispersion proxy |
 | L4 | 1.81600 | 46.8 | `816468 - S-LAH59 catalog equivalent (production supplier unspecified)` | Qualified dispersion proxy |
-| L5 | 1.59340 | 34.8 | `Unmatched (nd=1.59340, vd=34.8; patent theta_gF=0.589)` | Unresolved |
+| L5 | 1.59340 | 34.8 | `593348 - FF5-class catalog proxy (production supplier unspecified; patent theta_gF=0.589)` | Qualified dispersion proxy |
 | L6 | 1.78800 | 47.5 | `788475 - lanthanum glass class (vendor unresolved)` | Coordinate class |
 
 The patent's chromatic strategy is expressed through ordinary index/Abbe constraints and L5's relative partial-
@@ -168,10 +170,10 @@ dispersion ratio. It explicitly discusses avoiding costly fluorite or unusually 
 available source data therefore supports discussion of dispersion balancing within the cemented groups, but it does not
 support an ED, fluorite, APO, or anomalous-dispersion product classification. [1]
 
-E-LAF11 and S-LAH59 supply coordinate-compatible runtime dispersion curves without identifying the production supplier.
-No `nC`, `nF`, `ng`, or `dPgF` values are authored. This is deliberate: deriving `nF-nC` from `nd` and `νd` does not fix
-the absolute C/F indices, and `θ5` fixes only the ratio of two dispersion intervals. Selecting one catalog analogue and
-copying its line indices would turn an unresolved coordinate match into an unsupported historical-material claim.
+E-LAF11, S-LAH59, and FF5 supply coordinate-compatible runtime dispersion curves without identifying the production
+supplier. No `nC`, `nF`, `ng`, or `dPgF` values are authored into the patent prescription. Runtime catalog evaluation
+keeps the patent coordinates authoritative while making the proxy status explicit rather than turning a close curve
+match into an unsupported historical-material claim.
 
 ## Focus Mechanism
 

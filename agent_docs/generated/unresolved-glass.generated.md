@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **616** lenses scanned
 - **6987** non-air surfaces examined
 - **6994** element glass declarations examined
-- **244** non-explicit-unmatched annotations did not resolve
-- **118** distinct unresolved glass-like tokens found
+- **241** non-explicit-unmatched annotations did not resolve
+- **112** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -47,11 +47,9 @@ or per-lens patent backfills.
 | 499801 | 1 | 1 | |
 | 507589 | 1 | 1 | |
 | 514530 | 1 | 1 | |
-| 516642 | 1 | 1 | |
 | 518523 | 1 | 1 | |
 | 534554 | 1 | 1 | |
 | 534556 | 1 | 1 | |
-| 540595 | 1 | 1 | |
 | 545486 | 1 | 1 | |
 | 554381 | 1 | 1 | |
 | 561575 | 1 | 1 | |
@@ -66,7 +64,6 @@ or per-lens patent backfills.
 | 607492 | 1 | 1 | |
 | 612313 | 1 | 1 | |
 | 617443 | 1 | 1 | |
-| 624471 | 1 | 1 | |
 | 624584 | 1 | 1 | |
 | 625533 | 1 | 1 | |
 | 630346 | 1 | 1 | |
@@ -122,8 +119,6 @@ or per-lens patent backfills.
 | 930240 | 1 | 1 | |
 | 933209 | 1 | 1 | |
 | BAM5 | 1 | 1 | |
-| BAM8 | 1 | 1 | |
-| BSL7 | 1 | 1 | |
 | D-ZLAF85 | 1 | 1 | |
 | EF3 | 1 | 1 | |
 | FPL51 | 1 | 1 | |
@@ -135,7 +130,6 @@ or per-lens patent backfills.
 | LF7-CLASS | 1 | 1 | |
 | LLF7 | 1 | 1 | |
 | N3 | 1 | 1 | |
-| S-BAL12 | 1 | 1 | |
 
 ## Occurrences
 
@@ -293,10 +287,6 @@ or per-lens patent backfills.
 
 - [NIKON AF-S NIKKOR 20mm f/1.8 G ED](../../src/lens-data/nikon/NikonNikkorAFS20mmf18G.data.ts) 4: `514530 — patent UV-cure resin (nd=1.51380, νd=53.0)`
 
-### 516642 — 1 occurrence
-
-- [MAMIYA SEKOR AF 55mm f/2.8](../../src/lens-data/mamiya/MamiyaSekorAF55mmf28.data.ts) A1: `BSL7 (legacy OHARA coordinate match; 516642)`
-
 ### 518523 — 1 occurrence
 
 - [MINOLTA AF 35-105mm f/3.5-4.5 New (v2)](../../src/lens-data/minolta/MinoltaAF35105mmf3545v2.data.ts) 21A: `518523 - thin hybrid aspheric layer (unresolved)`
@@ -308,10 +298,6 @@ or per-lens patent backfills.
 ### 534556 — 1 occurrence
 
 - [PANASONIC LEICA DG SUMMILUX 9mm f/1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG9mmf17.data.ts) 3A: `534556 — moldable crown (patent nd=1.53380, nu_d=55.6)`
-
-### 540595 — 1 occurrence
-
-- [MAMIYA AF APO 300mm f/4.5 IF](../../src/lens-data/mamiya/MamiyaAFAPO300mmf45IF.data.ts) 9: `S-BAL12 class (OHARA 540595 reference)`
 
 ### 545486 — 1 occurrence
 
@@ -368,10 +354,6 @@ or per-lens patent backfills.
 ### 617443 — 1 occurrence
 
 - [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 27: `617443 — flint/crown-boundary glass (patent coordinate; vendor unspecified)`
-
-### 624471 — 1 occurrence
-
-- [MAMIYA SEKOR AF 55mm f/2.8](../../src/lens-data/mamiya/MamiyaSekorAF55mmf28.data.ts) B2: `BAM8 (legacy OHARA coordinate match; 624471)`
 
 ### 624584 — 1 occurrence
 
@@ -593,14 +575,6 @@ or per-lens patent backfills.
 
 - [AGFA COLOR-TELINEAR 90mm f/4](../../src/lens-data/agfa/AgfaColorTelinear90mmf4.data.ts) 7: `BAM5 class (barium middle glass, 607/492)`
 
-### BAM8 — 1 occurrence
-
-- [MAMIYA SEKOR AF 55mm f/2.8](../../src/lens-data/mamiya/MamiyaSekorAF55mmf28.data.ts) B2: `BAM8 (legacy OHARA coordinate match; 624471)`
-
-### BSL7 — 1 occurrence
-
-- [MAMIYA SEKOR AF 55mm f/2.8](../../src/lens-data/mamiya/MamiyaSekorAF55mmf28.data.ts) A1: `BSL7 (legacy OHARA coordinate match; 516642)`
-
 ### D-ZLAF85 — 1 occurrence
 
 - [SONY FE 12-24mm f/2.8 GM](../../src/lens-data/sony/SonyFE1224mmf28GM.data.ts) 30A: `D-ZLaF85 class (lanthanum flint, 856/401)`
@@ -644,8 +618,4 @@ or per-lens patent backfills.
 ### N3 — 1 occurrence
 
 - [CANON EF-S 10-22mm f/3.5-4.5 USM](../../src/lens-data/canon/CanonEFS1022mmf3545.data.ts) 4: `UV-cured replica resin (patent medium N3)`
-
-### S-BAL12 — 1 occurrence
-
-- [MAMIYA AF APO 300mm f/4.5 IF](../../src/lens-data/mamiya/MamiyaAFAPO300mmf45IF.data.ts) 9: `S-BAL12 class (OHARA 540595 reference)`
 

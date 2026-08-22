@@ -56,7 +56,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 501565 | 5 | 3 | patents/JPA 1999231209-000000.pdf<br>patents/US4189212.pdf<br>patents/US3743384.pdf | 4/5 rows have review records |
 | 694533 | 5 | 4 | patents/US20200142168A1.pdf<br>patents/JP2019008031A.pdf<br>patents/WO2020136749A1.pdf | 4/5 rows have review records |
 | 713539 | 5 | 5 | patents/JPA 1987244010-000000.pdf<br>patents/US20210055531A1.pdf<br>patents/US7106520.pdf | 1/5 rows have review records |
-| 717295 | 5 | 3 | patents/US20160327774A1.pdf<br>patents/JPA 1989039542-000000.pdf | No review-record hit |
+| 717295 | 5 | 3 | patents/US20160327774A1.pdf<br>patents/JPA 1989039542-000000.pdf<br>patents/JPB 1969024068-000000.pdf | No review-record hit |
 | 773495 | 5 | 4 | patents/US6141156.pdf<br>patents/US5734508.pdf<br>patents/JPA 2000019398-000000.pdf<br>patents/US20190250367A1.pdf | 1/5 rows have review records |
 | 800422 | 5 | 5 | patents/US4110006.pdf<br>patents/JP2016114800A.pdf<br>patents/JPA 1994082698-000000.pdf<br>patents/US20240295723A1.pdf | No review-record hit |
 | 923209 | 5 | 4 | patents/JP2020118738A.pdf<br>patents/US20140347522A1.pdf<br>patents/JP2012181525A.pdf<br>patents/JP2021043375A.pdf | No review-record hit |
@@ -67,7 +67,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 583595 | 4 | 2 | patents/JP2023044106A.pdf<br>patents/US20140347522A1.pdf | No review-record hit |
 | 603380 | 4 | 3 | patents/JP2017116646A.pdf<br>patents/JPA 2020122918-000000.pdf | 1/4 rows have review records |
 | 620603 | 4 | 3 | patents/JPA 1999231209-000000.pdf<br>patents/US4452513.pdf<br>patents/US4223981.pdf | No review-record hit |
-| 640602 | 4 | 3 | patents/US3459469.pdf<br>patents/US20080212200A1.pdf | No review-record hit |
+| 640602 | 4 | 3 | patents/US3459469.pdf<br>patents/US20080212200A1.pdf<br>patents/JPA 1975110330-000000.pdf | No review-record hit |
 | 648338 | 4 | 4 | patents/US20110090576A1.pdf<br>patents/US8422143.pdf<br>patents/US20240295723A1.pdf<br>patents/JP_2026120386_A.pdf | 1/4 rows have review records |
 | 662561 | 4 | 1 | patents/GB_850117_A.pdf | All rows have review records |
 | 720347 | 4 | 4 | patents/WO2022097401A1.pdf<br>patents/WO2023153076A1.pdf<br>patents/US20240295723A1.pdf<br>patents/US10545321.pdf | No review-record hit |
@@ -95,7 +95,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 743493 | 3 | 3 | patents/JP2016114800A.pdf<br>patents/JP2015011156A.pdf<br>patents/JPA 1994082698-000000.pdf | No review-record hit |
 | 755276 | 3 | 2 | patents/US4452513.pdf<br>patents/JP2021189351A.pdf | 1/3 rows have review records |
 | 777297 | 3 | 3 | patents/WO2021199923A1.pdf<br>patents/WO_2025263124_A1.pdf<br>patents/JP2023039817A.pdf | All rows have review records |
-| 788475 | 3 | 3 | patents/JPA 2000019398-000000.pdf<br>patents/US4452513.pdf | No review-record hit |
+| 788475 | 3 | 3 | patents/JPA 2000019398-000000.pdf<br>patents/US4452513.pdf<br>patents/JPA 1978129629-000000.pdf | No review-record hit |
 | 795453 | 3 | 1 | patents/US20010030812A1.pdf | No review-record hit |
 | 804396 | 3 | 3 | patents/US6940655.pdf<br>patents/US20050157403A1.pdf<br>patents/US20030133200A1.pdf | No review-record hit |
 | 805396 | 3 | 3 | patents/US20210132345A1.pdf<br>patents/JP2020086133A.pdf<br>patents/US10545321.pdf | No review-record hit |
@@ -135,7 +135,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 658509 | 2 | 2 | patents/US20160327774A1.pdf<br>patents/US4812022.pdf | No review-record hit |
 | 673322 | 2 | 2 | patents/JP2012181525A.pdf | No review-record hit |
 | 690570 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
-| 717479 | 2 | 2 | patents/JP2015011156A.pdf | No review-record hit |
+| 717479 | 2 | 2 | patents/JP2015011156A.pdf<br>patents/JPB 1969024068-000000.pdf | No review-record hit |
 | 720521 | 2 | 2 | patents/US4124276.pdf | All rows have review records |
 | 726548 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
 | 733282 | 2 | 1 | patents/US3589798.pdf | All rows explicitly disposed |
@@ -216,7 +216,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 612313 | 1 | 1 | patents/US20210026133A1.pdf | All rows have review records |
 | 613586 | 1 | 1 | patents/US4303314.pdf | All rows have review records |
 | 617443 | 1 | 1 | patents/JP2023039817A.pdf | All rows have review records |
-| 622531 | 1 | 1 | Missing from untracked local patents/ references (JP1969024068, 1969024068, JPA1969024068000000, JPB1969024068000000) | No review-record hit |
+| 622531 | 1 | 1 | patents/JPB 1969024068-000000.pdf | No review-record hit |
 | 622532 | 1 | 1 | patents/JPA 1994082698-000000.pdf | No review-record hit |
 | 622639 | 1 | 1 | patents/WO2021199923A1.pdf | All rows explicitly disposed |
 | 623581 | 1 | 1 | patents/DE_1170157_B.pdf | No review-record hit |
@@ -230,24 +230,24 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 640353 | 1 | 1 | patents/US4277149.pdf | All rows have review records |
 | 641589 | 1 | 1 | patents/US7307794.pdf | All rows explicitly disposed |
 | 642581 | 1 | 1 | patents/US2721499.pdf | All rows have review records |
-| 643478 | 1 | 1 | Missing from untracked local patents/ references (JP1969024068, 1969024068, JPA1969024068000000, JPB1969024068000000) | No review-record hit |
+| 643478 | 1 | 1 | patents/JPB 1969024068-000000.pdf | No review-record hit |
 | 650396 | 1 | 1 | patents/DE_3907928_A1.pdf | All rows explicitly disposed |
 | 652585 | 1 | 1 | No patent number parsed from lens metadata | No review-record hit |
 | 654397 | 1 | 1 | patents/US20110090576A1.pdf | No review-record hit |
 | 656337 | 1 | 1 | patents/JPA 2021076740-000000.pdf | All rows explicitly disposed |
 | 658397 | 1 | 1 | patents/JP2023039817A.pdf | All rows have review records |
-| 658573 | 1 | 1 | Missing from untracked local patents/ references (JP1975110330, 1975110330, JPA1975110330000000, JPB1975110330000000) | No review-record hit |
+| 658573 | 1 | 1 | patents/JPA 1975110330-000000.pdf | No review-record hit |
 | 662331 | 1 | 1 | patents/JPA 2021076740-000000.pdf | All rows explicitly disposed |
 | 662577 | 1 | 1 | patents/US2896506.pdf | All rows explicitly disposed |
 | 667311 | 1 | 1 | patents/US20140247506A1.pdf | All rows have review records |
-| 667484 | 1 | 1 | Missing from untracked local patents/ references (JP1975110330, 1975110330, JPA1975110330000000, JPB1975110330000000) | No review-record hit |
+| 667484 | 1 | 1 | patents/JPA 1975110330-000000.pdf | No review-record hit |
 | 668419 | 1 | 1 | patents/JPA 1994082698-000000.pdf | No review-record hit |
-| 670573 | 1 | 1 | Missing from untracked local patents/ references (JP1969024068, 1969024068, JPA1969024068000000, JPB1969024068000000) | No review-record hit |
+| 670573 | 1 | 1 | patents/JPB 1969024068-000000.pdf | No review-record hit |
 | 672323 | 1 | 1 | patents/GB_850117_A.pdf | All rows have review records |
 | 675348 | 1 | 1 | patents/JP2018180366A.pdf | All rows explicitly disposed |
 | 676440 | 1 | 1 | patents/US7542219.pdf | All rows explicitly disposed |
 | 678322 | 1 | 1 | patents/WO2021200206A1.pdf | All rows explicitly disposed |
-| 678555 | 1 | 1 | Missing from untracked local patents/ references (JP1975110330, 1975110330, JPA1975110330000000, JPB1975110330000000) | No review-record hit |
+| 678555 | 1 | 1 | patents/JPA 1975110330-000000.pdf | No review-record hit |
 | 680312 | 1 | 1 | patents/JP2015041012A.pdf | All rows have review records |
 | 682366 | 1 | 1 | Missing from untracked local patents/ references (US4518229, 4518229) | All rows have review records |
 | 682575 | 1 | 1 | patents/US7542219.pdf | All rows explicitly disposed |
@@ -260,7 +260,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 693495 | 1 | 1 | patents/US3552833.pdf | All rows explicitly disposed |
 | 693562 | 1 | 1 | patents/US2983193.pdf | All rows explicitly disposed |
 | 694312 | 1 | 1 | patents/WO2021199923A1.pdf | All rows have review records |
-| 697556 | 1 | 1 | Missing from untracked local patents/ references (JP1975110330, 1975110330, JPA1975110330000000, JPB1975110330000000) | No review-record hit |
+| 697556 | 1 | 1 | patents/JPA 1975110330-000000.pdf | No review-record hit |
 | 700555 | 1 | 1 | patents/WO_2025263124_A1.pdf | All rows have review records |
 | 701301 | 1 | 1 | patents/US4277149.pdf | All rows have review records |
 | 702412 | 1 | 1 | patents/US20110090576A1.pdf | No review-record hit |
@@ -2230,28 +2230,28 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L1 (Element 1) | 1 | `667484 — nd/νd coordinate code (vendor unresolved)` | 1.66672 / 48.40 | BAF11 (trusted Sellmeier) | sellmeier | Missing from untracked local patents/ references (JP1975110330, 1975110330, JPA1975110330000000, JPB1975110330000000) | No review-record hit |
-| L2 (Element 2) | 3 | `603607 — nd/νd coordinate code (vendor unresolved)` | 1.60311 / 60.70 | J-SK14 (trusted Sellmeier) | sellmeier | Missing from untracked local patents/ references (JP1975110330, 1975110330, JPA1975110330000000, JPB1975110330000000) | No review-record hit |
-| L3 (Element 3) | 5 | `658573 — nd/νd coordinate code (vendor unresolved)` | 1.65830 / 57.30 | K-LaK11 (trusted Sellmeier) | sellmeier | Missing from untracked local patents/ references (JP1975110330, 1975110330, JPA1975110330000000, JPB1975110330000000) | No review-record hit |
-| L4 (Element 4) | 7 | `518590 — nd/νd coordinate code (vendor unresolved)` | 1.51823 / 59.00 | E-C3 (trusted Sellmeier) | sellmeier | Missing from untracked local patents/ references (JP1975110330, 1975110330, JPA1975110330000000, JPB1975110330000000) | No review-record hit |
-| L6 (Element 6) | 10 | `678555 — nd/νd coordinate code (vendor unresolved)` | 1.67790 / 55.50 | LAC12 (trusted Sellmeier) | sellmeier | Missing from untracked local patents/ references (JP1975110330, 1975110330, JPA1975110330000000, JPB1975110330000000) | No review-record hit |
-| L7 (Element 7) | 12 | `755275 — nd/νd coordinate code (vendor unresolved)` | 1.75520 / 27.50 | E-FD4 (trusted Sellmeier) | sellmeier | Missing from untracked local patents/ references (JP1975110330, 1975110330, JPA1975110330000000, JPB1975110330000000) | No review-record hit |
-| L8 (Element 8) | 14 | `640602 — nd/νd coordinate code (vendor unresolved)` | 1.64000 / 60.20 | J-LAK01 (trusted Sellmeier) | sellmeier | Missing from untracked local patents/ references (JP1975110330, 1975110330, JPA1975110330000000, JPB1975110330000000) | No review-record hit |
-| L9 (Element 9) | 16 | `697556 — nd/νd coordinate code (vendor unresolved)` | 1.69680 / 55.60 | K-LaK14 (trusted Sellmeier) | sellmeier | Missing from untracked local patents/ references (JP1975110330, 1975110330, JPA1975110330000000, JPB1975110330000000) | No review-record hit |
+| L1 (Element 1) | 1 | `667484 — nd/νd coordinate code (vendor unresolved)` | 1.66672 / 48.40 | BAF11 (trusted Sellmeier) | sellmeier | patents/JPA 1975110330-000000.pdf | No review-record hit |
+| L2 (Element 2) | 3 | `603607 — nd/νd coordinate code (vendor unresolved)` | 1.60311 / 60.70 | J-SK14 (trusted Sellmeier) | sellmeier | patents/JPA 1975110330-000000.pdf | No review-record hit |
+| L3 (Element 3) | 5 | `658573 — nd/νd coordinate code (vendor unresolved)` | 1.65830 / 57.30 | K-LaK11 (trusted Sellmeier) | sellmeier | patents/JPA 1975110330-000000.pdf | No review-record hit |
+| L4 (Element 4) | 7 | `518590 — nd/νd coordinate code (vendor unresolved)` | 1.51823 / 59.00 | E-C3 (trusted Sellmeier) | sellmeier | patents/JPA 1975110330-000000.pdf | No review-record hit |
+| L6 (Element 6) | 10 | `678555 — nd/νd coordinate code (vendor unresolved)` | 1.67790 / 55.50 | LAC12 (trusted Sellmeier) | sellmeier | patents/JPA 1975110330-000000.pdf | No review-record hit |
+| L7 (Element 7) | 12 | `755275 — nd/νd coordinate code (vendor unresolved)` | 1.75520 / 27.50 | E-FD4 (trusted Sellmeier) | sellmeier | patents/JPA 1975110330-000000.pdf | No review-record hit |
+| L8 (Element 8) | 14 | `640602 — nd/νd coordinate code (vendor unresolved)` | 1.64000 / 60.20 | J-LAK01 (trusted Sellmeier) | sellmeier | patents/JPA 1975110330-000000.pdf | No review-record hit |
+| L9 (Element 9) | 16 | `697556 — nd/νd coordinate code (vendor unresolved)` | 1.69680 / 55.60 | K-LaK14 (trusted Sellmeier) | sellmeier | patents/JPA 1975110330-000000.pdf | No review-record hit |
 
 ### [YASHICA ML 300mm f/5.6 C](../../src/lens-data/yashica/YashicaML300mmf56.data.ts) - JP1978-129629
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L6 (Element 6) | 8 | `788475 - lanthanum glass class (vendor unresolved)` | 1.78800 / 47.50 | N-LAF21 (trusted Sellmeier) | sellmeier | Missing from untracked local patents/ references (JP1978129629, 1978129629, JPA1978129629000000, JPB1978129629000000) | No review-record hit |
+| L6 (Element 6) | 8 | `788475 - lanthanum glass class (vendor unresolved)` | 1.78800 / 47.50 | N-LAF21 (trusted Sellmeier) | sellmeier | patents/JPA 1978129629-000000.pdf | No review-record hit |
 
 ### [YASHICA YASHINON-DX 21mm f/3.3](../../src/lens-data/yashica/YashicaYashinonDX21mmf33.data.ts) - JP1969-024068
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L1 (Element 1) | 1 | `670573 d-line class (historical vendor unresolved)` | 1.67000 / 57.30 | S-LAL52 (trusted Sellmeier) | sellmeier | Missing from untracked local patents/ references (JP1969024068, 1969024068, JPA1969024068000000, JPB1969024068000000) | No review-record hit |
-| L2 (Element 2) | 3 | `717479 d-line class (historical vendor unresolved)` | 1.71700 / 47.90 | S-LAM3 (trusted Sellmeier) | sellmeier | Missing from untracked local patents/ references (JP1969024068, 1969024068, JPA1969024068000000, JPB1969024068000000) | No review-record hit |
-| L3 (Element 3) | 4 | `643478 d-line class (historical vendor unresolved)` | 1.64328 / 47.80 | BAF9 (trusted Sellmeier) | sellmeier | Missing from untracked local patents/ references (JP1969024068, 1969024068, JPA1969024068000000, JPB1969024068000000) | No review-record hit |
-| L6 (Element 6) | 9 | `622531 d-line class (historical vendor unresolved)` | 1.62230 / 53.10 | SSK2 (trusted Sellmeier) | sellmeier | Missing from untracked local patents/ references (JP1969024068, 1969024068, JPA1969024068000000, JPB1969024068000000) | No review-record hit |
-| L7 (Element 7) | 10 | `717295 d-line class (historical vendor unresolved)` | 1.71736 / 29.50 | SF1 (trusted Sellmeier) | sellmeier | Missing from untracked local patents/ references (JP1969024068, 1969024068, JPA1969024068000000, JPB1969024068000000) | No review-record hit |
+| L1 (Element 1) | 1 | `670573 d-line class (historical vendor unresolved)` | 1.67000 / 57.30 | S-LAL52 (trusted Sellmeier) | sellmeier | patents/JPB 1969024068-000000.pdf | No review-record hit |
+| L2 (Element 2) | 3 | `717479 d-line class (historical vendor unresolved)` | 1.71700 / 47.90 | S-LAM3 (trusted Sellmeier) | sellmeier | patents/JPB 1969024068-000000.pdf | No review-record hit |
+| L3 (Element 3) | 4 | `643478 d-line class (historical vendor unresolved)` | 1.64328 / 47.80 | BAF9 (trusted Sellmeier) | sellmeier | patents/JPB 1969024068-000000.pdf | No review-record hit |
+| L6 (Element 6) | 9 | `622531 d-line class (historical vendor unresolved)` | 1.62230 / 53.10 | SSK2 (trusted Sellmeier) | sellmeier | patents/JPB 1969024068-000000.pdf | No review-record hit |
+| L7 (Element 7) | 10 | `717295 d-line class (historical vendor unresolved)` | 1.71736 / 29.50 | SF1 (trusted Sellmeier) | sellmeier | patents/JPB 1969024068-000000.pdf | No review-record hit |
 

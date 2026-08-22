@@ -30,9 +30,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  off-axis containment checks.                                              ║
  * ║                                                                            ║
  * ║  GLASS: The patent publishes d-line nd/vd coordinates but no vendor names. ║
- * ║  Generic coordinate classes are used where defensible. L5 remains         ║
- * ║  Unmatched. Patent theta5=0.589 is a relative partial-dispersion ratio,    ║
- * ║  not dPgF; absolute nC/nF/ng are unavailable and are not fabricated.       ║
+ * ║  Generic coordinate classes are used where defensible. L5 uses an FF5-    ║
+ * ║  class runtime proxy that matches nd/νd and closely reproduces the patent ║
+ * ║  theta5=0.589 ratio without claiming the historical production supplier.  ║
  * ╚══════════════════════════════════════════════════════════════════════════════╝
  */
 
@@ -117,9 +117,10 @@ const LENS_DATA = {
       vd: 34.8,
       indexReference: "d",
       fl: 28.92901,
-      glass: "Unmatched (nd=1.59340, vd=34.8; patent theta_gF=0.589)",
+      glass: "593348 - FF5-class catalog proxy (production supplier unspecified; patent theta_gF=0.589)",
       cemented: "T1",
-      role: "Positive central member of the rear triplet; patent theta5=0.589 is a relative partial-dispersion ratio.",
+      role:
+        "Positive central member of the rear triplet; the qualified FF5-class proxy closely reproduces the patent's relative partial-dispersion ratio without identifying the production glass.",
     },
     {
       id: 6,
@@ -159,7 +160,10 @@ const LENS_DATA = {
     { text: "G2", fromSurface: "4", toSurface: "5" },
     { text: "G3", fromSurface: "6", toSurface: "9" },
   ],
-  doublets: [{ text: "D1", fromSurface: "1", toSurface: "3" }],
+  doublets: [
+    { text: "D1", fromSurface: "1", toSurface: "3" },
+    { text: "T1", fromSurface: "6", toSurface: "9" },
+  ],
 
   closeFocusM: 4.5,
   focusDescription:

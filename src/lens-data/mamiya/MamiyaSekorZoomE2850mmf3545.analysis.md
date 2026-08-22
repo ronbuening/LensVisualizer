@@ -230,8 +230,8 @@ all three states.
 
 The patent also publishes no clear semi-diameters. The modeled semi-diameters were derived from marginal/chief-ray
 containment, the relative silhouette in Figure 1, and the current geometric validity constraints. A 600-dpi review of
-the supplied Figure 1 scan supports 7.0 mm rims for L5-L7, preserving the visibly narrower central rear cluster. These
-values are model geometry, not source transcription. The final model preserves positive edge thickness, remains below the current
+the supplied Figure 1 scan supports 7.0 mm rims for L5-L7 and an 8.8 mm rim for L8, preserving the visibly narrower
+central rear cluster. These values are model geometry, not source transcription. The final model preserves positive edge thickness, remains below the current
 rim-slope limit, and keeps cross-gap sag intrusion below the permitted shared-gap fraction at every defined zoom state.
 Full-field rays can vignette naturally at ordinary air-separated element boundaries; the validated default 0.6-field
 bundle remains contained.
