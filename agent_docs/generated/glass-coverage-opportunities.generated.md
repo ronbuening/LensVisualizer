@@ -9,13 +9,13 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **610** lenses scanned (**600** visible)
-- **6419 / 6940** non-air surfaces use strict catalog Sellmeier data (92.5%)
-- **6433 / 6940** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 92.7%)
+- **616** lenses scanned (**606** visible)
+- **6462 / 6987** non-air surfaces use strict catalog Sellmeier data (92.5%)
+- **6479 / 6987** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 92.7%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **217** code-only missing-Sellmeier elements in Sweep 2: **0** active unreviewed, **94** self-recording explicit dispositions, **0** dispositions missing any review record
-- **0** unresolved named-token elements in Sweep 2B, producing **0** token occurrences across **0** distinct tokens
+- **1** unresolved named-token elements in Sweep 2B, producing **1** token occurrences across **1** distinct tokens
 - **0** Tier A proprietary backfill rows in Sweep 3
 
 ## Sweep 1 - Relabel Mismatches
@@ -79,6 +79,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [MAMIYA-SEKOR CS 35mm f/2.8](../../src/lens-data/mamiya/MamiyaSekorCS35mmf28.data.ts) | JP1978-066222 | Missing from untracked local patents/ references (JP1978066222, 1978066222, JPA1978066222000000, JPB1978066222000000) | 83.3% (5/6) | 83.3% (5/6) | 1 | 3 [glass] (Element 2: `Unmatched (nd=1.69480, νd=55.5; nearest public 697555 lanthanum-crown family)`) | abbe: 1 |
 | [SCHNEIDER-KREUZNACH APO-SYMMAR 100mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderAPOSymmar100mmf56.data.ts) | US 6,028,720 | [PDF](../../patents/US6028720.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 4 [glass] (Element 3: `Unmatched (phosphate crown class, ne=1.5223, ve=69.5; no public catalog match — possible special melt or discontinued glass)`) | abbe: 1 |
 | [SCHNEIDER-KREUZNACH SUPER-SYMMAR XL 110mm f/5.6 ASPHERIC](../../src/lens-data/schneider-kreuznach/SchneiderSuperSymmarXL110mmf56.data.ts) | US 5,870,234 | [PDF](../../patents/US5870234.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 1 [glass] (Element 1: `Unmatched (Schott KF9; patent e-line ne=1.52583, ve=51.25 stored as nd/vd)`) | abbe: 1 |
+| [YASHICA ML 300mm f/5.6 C](../../src/lens-data/yashica/YashicaML300mmf56.data.ts) | JP1978-129629 | Missing from untracked local patents/ references (JP1978129629, 1978129629, JPA1978129629000000, JPB1978129629000000) | 83.3% (5/6) | 83.3% (5/6) | 1 | 7 [glass] (Element 5: `Unmatched (nd=1.59340, vd=34.8; patent theta_gF=0.589)`) | abbe: 1 |
 | [FUJIFILM SUPER EBC FUJINON 7.1-28.4mm f/2-2.8 (Fujifilm X10)](../../src/lens-data/fujifilm/FujifilmX1071284mmf228.data.ts) | US 2014/0133036 A1 | Missing from untracked local patents/ references (US20140133036A1, US20140133036, 20140133036) | 81.8% (9/11) | 81.8% (9/11) | 2 | 11A [glass] (G3 front asphere: `Unmatched (nd=1.803603, νd=40.28)`)<br>16A [glass] (G3 negative asphere: `Unmatched (nd=1.803603, νd=40.28)`) | abbe: 2 |
 | [LEICA SUMMILUX 28mm f/1.7 ASPH. (Leica Q, Q2, Q3)](../../src/lens-data/leica/Leica28mmf17.data.ts) | US 2016/0266350 A1 | [PDF](../../patents/US20160266350A1.pdf) | 81.8% (9/11) | 81.8% (9/11) | 2 | 12A [glass] (Element 6: `877370 — high-index lanthanum glass (patent nd=1.87722, nu_d=37.0)`)<br>20A [glass] (Element 11: `Unmatched (patent nd=1.68250, νd=33.00; prior H-ZF52A annotation rejected on dispersion)`) | abbe: 2 |
 | [AGFA COLOR-MAGNOLAR II 100mm f/4.5](../../src/lens-data/agfa/AgfaColorMagnolarII100mmf45.data.ts) | GB 775,944 | [PDF](../../patents/GB_775944_A.pdf) | 80.0% (4/5) | 60.0% (3/5) | 1 | 4 [glass] (Element 3: `Unmatched (540/509 crown-flint-boundary glass; no public catalog match located)`) | abbe: 1 |
@@ -165,6 +166,7 @@ These unresolved catalog-style labels are often better first catalog targets tha
 
 | Token | Token occurrences | Lens files | localPatentStatus | Representative rows |
 |---|---:|---:|---|---|
+| S-BAL12 | 1 | 1 | No patent number parsed from lens metadata | [MAMIYA AF APO 300mm f/4.5 IF](../../src/lens-data/mamiya/MamiyaAFAPO300mmf45IF.data.ts) Element 5 (1.54000 / 59.50; lineIndices) |
 
 ## Sweep 3 - Proprietary Line-Index Backfill
 

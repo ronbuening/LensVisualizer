@@ -6,7 +6,7 @@
 **Laid open:** 23 August 1979<br>
 **Published as examined patent:** 20 November 1980<br>
 **Inventor:** Yusuke Arisaka<br>
-**Applicant:** Mamiya Camera Co., Ltd.<br>
+**Applicant:** Mamiya Koki Co., Ltd.<br>
 **Title:** Retrofocus-type wide-angle lens<br>
 **Embodiment analyzed:** Example 1
 

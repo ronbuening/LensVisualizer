@@ -1,7 +1,7 @@
 import type { LensDataInput } from "../../types/optics.js";
 
 /**
- * Data source: JPS52-141223A, Example 1 (Yusuke Nanjo / Mamiya Optical Co., Ltd.).
+ * Data source: JPS52-141223A, Example 1 (Yusuke Nanjo / Mamiya Koki Co., Ltd.).
  * Five all-spherical elements in three air-separated groups; the stop lies inside patent gap d5.
  *
  * Scaling: The patent is normalized to f = 1.0. Every radius, thickness, stop position,
@@ -51,7 +51,7 @@ const LENS_DATA = {
   imageFormat: "6x7",
   patentNumber: "JPS52-141223A",
   patentAuthors: ["Yusuke Nanjo"],
-  patentAssignees: ["Mamiya Optical Co., Ltd."],
+  patentAssignees: ["Mamiya Koki Co., Ltd."],
   patentYear: 1977,
   elementCount: 5,
   groupCount: 3,

@@ -5,6 +5,38 @@
 import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
+  /* Legacy Yashica coordinate comparators from HOYA's
+   * 2026-07-07 obsolete-inclusive Zemax catalog. */
+  {
+    name: "BAF6",
+    vendor: "Hoya",
+    polynomial: [2.4726495, -0.0068775126, 0.019233517, -0.0004088165, 0.00011118092, -0.0000046735566],
+    nd: 1.589003,
+    vd: 48.543984,
+    code6: "589485",
+    source:
+      "HOYA Zemax catalog 2026-07-07 including obsolete glasses; vendor formula-3 polynomial for discontinued BAF6.",
+  },
+  {
+    name: "BAFL2",
+    vendor: "Hoya",
+    polynomial: [2.4218746, -0.0072189323, 0.016313823, 0.000072901726, 0.000034182539, -0.0000010482404],
+    nd: 1.570989,
+    vd: 50.858935,
+    code6: "571509",
+    source:
+      "HOYA Zemax catalog 2026-07-07 including obsolete glasses; vendor formula-3 polynomial for discontinued BAFL2.",
+  },
+  {
+    name: "LACL1",
+    vendor: "Hoya",
+    polynomial: [2.6475841, -0.012231817, 0.015713584, 0.00051271652, -0.0000403019, 0.0000027476766],
+    nd: 1.640851,
+    vd: 56.835319,
+    code6: "641568",
+    source:
+      "HOYA Zemax catalog 2026-07-07 including obsolete glasses; vendor formula-3 polynomial for discontinued LACL1.",
+  },
   /* Phase 89: Tamron patent-batch coverage additions from HOYA's
    * 2026-07-07 obsolete-inclusive Zemax catalog. */
   {

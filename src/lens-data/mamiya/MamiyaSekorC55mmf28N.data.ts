@@ -55,7 +55,7 @@ const LENS_DATA = {
   imageFormat: "645",
   patentNumber: "JP S55-45883 B2",
   patentAuthors: ["Yusuke Arisaka"],
-  patentAssignees: ["Mamiya Camera Co., Ltd."],
+  patentAssignees: ["Mamiya Koki Co., Ltd."],
   patentYear: 1980,
   elementCount: 8,
   groupCount: 6,
