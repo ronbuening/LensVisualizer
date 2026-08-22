@@ -134,7 +134,7 @@ The first element of G3 is a high-power positive element (f ≈ +59 mm) in ultra
 | 14 (junction) | −54.38990 | 1.800 | 1.71736 | 29.57 | 0.604 | L33 (neg) |
 | 15 | 28.02300 | 5.843 | (air) | | | |
 
-A cemented doublet positioned immediately before the aperture stop. L32 is a biconvex positive element (f ≈ +51 mm) in lanthanum crown glass, very likely **Ohara S-LAL14** (catalog: nd = 1.69680, νd = 55.53 — an excellent match). L33 is a biconcave negative element (f ≈ −26 mm) in a specialty high-dispersion glass with notably elevated partial dispersion (θgF = 0.604, ΔθgF ≈ +0.010 above the normal line). This glass (nd = 1.71736, νd = 29.57) does not correspond to common catalog types and may be a Nikon-specified or limited-production melt.
+A cemented doublet positioned immediately before the aperture stop. L32 is a biconvex positive element (f ≈ +51 mm) in lanthanum crown glass, very likely **Ohara S-LAL14** (catalog: nd = 1.69680, νd = 55.53 — an excellent match). L33 is a biconcave negative element (f ≈ −26 mm) in a specialty high-dispersion glass with notably elevated partial dispersion (θgF = 0.604, ΔθgF ≈ +0.010 above the normal line). Hikari J-SF1 reproduces its nd, νd, and partial dispersion closely and supplies the catalog spectral proxy without identifying Nikon's production supplier.
 
 The L32–L33 doublet corrects residual axial chromatic aberration and spherical aberration in the converging beam between G2 and the stop. The strong negative power of L33 also contributes to Petzval sum correction (field flattening).
 
@@ -192,7 +192,7 @@ The system employs 10 distinct glass types across its 14 elements. Three element
 | S-NBH8 (Ohara) | 1.72047 | 34.71 | 0.583 | −0.002 | L14, L35 | Achromatic flint partner for ED doublets |
 | S-FPM2 equiv. | 1.59349 | 67.00 | 0.537 | +0.006 | L11 | Fluorophosphate crown, front element |
 | S-BSL7 equiv. | 1.51680 | 63.88 | 0.536 | −0.000 | L22 | Standard borosilicate crown |
-| Specialty flint | 1.71736 | 29.57 | 0.604 | +0.010 | L33 | High-dispersion with moderate APD |
+| J-SF1 spectral proxy | 1.71736 | 29.57 | 0.604 | +0.010 | L33 | High-dispersion proxy; patent APD retained |
 | S-LAH96 (Ohara) | 1.76684 | 46.78 | 0.558 | −0.007 | L36 | Lanthanum heavy flint |
 | E-FL5 (HOYA) | 1.58144 | 40.98 | 0.576 | +0.001 | L37 | Dense flint |
 

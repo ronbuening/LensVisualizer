@@ -118,7 +118,7 @@ The following analysis proceeds front to rear. Element focal lengths are compute
 | Cemented with | L12 (doublet Da) |
 | Aspherical | Surface 1 (front, ground) |
 
-**Glass identification:** nd = 1.90265 with νd = 35.77 is an ultra-high-index lanthanum dense flint. No exact match has been confirmed in the current OHARA, Schott, or HOYA standard catalogs. The nearest OHARA types are S-LAH95 (nd = 1.90366, νd = 31.31 — matching nd within 0.001 but Δνd = 4.5) and S-LAH93 (nd = 1.91082, νd = 35.25 — matching νd region but Δnd = 0.008). Neither matches both parameters simultaneously. CDGM and Hikari may carry closer matches (both manufacturers list types at code 903358 in some cross-reference tables), but this has not been independently confirmed. The glass is most likely a Nikon-specified special-melt or proprietary formulation. Its refractive index exceeds 1.90, placing it in the regime that Nikon specifically highlights in their marketing: "a high refractive index unattainable with molded-glass."
+**Glass identification:** nd = 1.90265 with νd = 35.77 is an ultra-high-index lanthanum dense flint. Hikari J-LASFH9 reproduces the coordinate within `+0.00000003 / −0.045` and supplies a qualified spectral proxy; that numerical match does not identify Nikon's production melt or supplier. Its refractive index exceeds 1.90, placing it in the regime that Nikon specifically highlights in their marketing: "a high refractive index unattainable with molded-glass."
 
 **Aspherical surface:** Surface 1 is the large-diameter front aspherical element — the showpiece of the Noct and a direct spiritual descendant of the hand-ground aspherical element on the original 1977 Noct-Nikkor 58mm f/1.2. Nikon describes this as "a highly accurate, large-diameter ground aspherical lens element using glass material with a high refractive index." With nd ≈ 1.903, precision glass molding (PGM) is not feasible at this refractive index. The glass transition temperature and thermal expansion characteristics of ultra-high-index lanthanum glasses prevent them from being press-molded in conventional PGM processes without unacceptable form errors. This element must be individually CNC-ground and polished to aspherical figure — a costly process that directly contributes to the lens's $8,650 price point.
 
@@ -140,7 +140,7 @@ The aspherical departure at the estimated full clear aperture (SD ≈ 34 mm) rea
 | Cemented with | L11 (doublet Da) |
 | ΔPgF | −0.0065 (below normal line) |
 
-**Glass identification:** This glass has an unusual combination of moderate refractive index (1.553) with moderately low dispersion (νd = 55.07) and distinctly negative anomalous partial dispersion (ΔPgF = −0.0065). The θgF of 0.54467 falls well below the Schott normal glass line. This places it in the family of special short-flint or phosphate-based anomalous dispersion glasses. No exact catalog match has been confirmed — the nd/νd pair does not correspond precisely to any readily available catalog entry from major suppliers. This is likely either a Nikon-proprietary formulation or a special-melt glass from a Japanese supplier (Hikari or Sumita).
+**Glass identification:** This glass has an unusual combination of moderate refractive index (1.553) with moderately low dispersion (νd = 55.07) and distinctly negative anomalous partial dispersion (ΔPgF = −0.0065). Hikari J-KZFH4 matches nd/νd and the patent departure to about `0.00003`, so it supplies the spectral proxy. The patent values remain authoritative and the proxy does not establish Nikon's production material.
 
 **Optical role:** Cemented to L11, this negative element forms the first cemented doublet (Da). The combination of L11's high-index positive power with L12's negative power and anomalous dispersion creates a partially achromatized unit that also seeds the Petzval correction. The negative anomalous dispersion (ΔPgF < 0) means L12 helps suppress secondary spectrum — the residual chromatic error that persists even after conventional first-order achromatization. Together, the L11+L12 doublet is a diverging cemented lens (net negative power) that introduces the first stage of field curvature compensation. The air space between this doublet and the next (L13+L14) forms the biconvex **air lens La1** — a critical design element discussed in Section 4.
 
@@ -158,7 +158,7 @@ The aspherical departure at the estimated full clear aperture (SD ≈ 34 mm) rea
 | Cemented with | L14 (doublet Db) |
 | ΔPgF | −0.0051 (below normal line) |
 
-**Glass identification:** nd = 1.61266 with νd = 44.46 and negative ΔPgF is characteristic of the KZFS (Kurz Flint Sonder / short flint special) glass family. The closest catalog match is Schott N-KZFS4 (nd = 1.61336, νd = 44.49), though the match is not exact. OHARA S-NBM51 (nd = 1.61340, νd = 44.27) is similarly close. The same glass appears in L25, confirming it is a deliberately chosen type, not a transcription variation. This glass type is specifically selected for its negative anomalous partial dispersion — it lies below the normal line on the θgF vs. νd diagram.
+**Glass identification:** nd = 1.61266 with νd = 44.46 and negative ΔPgF is characteristic of the KZFS family. Hikari J-KZFH1 reproduces nd/νd and the patent departure to about `0.00008`, so it supplies the spectral proxy for L13 and L25 without identifying the production melt.
 
 **Optical role:** L13 is the diverging element of the second cemented doublet in G1. Its biconcave shape with a nearly flat rear surface (R₂ ≈ 2498 mm) gives it strong negative power primarily from the front surface. Together with L14, it forms doublet Db. The rear surfaces of L12 (R = 50.252) and the front surface of L13 (R = −60.720) define the biconvex air lens La1, with an axial thickness of 18.12 mm — the longest air gap in G1 and a key aberration-correction element.
 
@@ -175,7 +175,7 @@ The aspherical departure at the estimated full clear aperture (SD ≈ 34 mm) rea
 | Focal length | +126.5 mm |
 | Cemented with | L13 (doublet Db) |
 
-**Glass identification:** nd = 1.593190 with νd = 67.90 is a phosphate crown / fluorophosphate-type ED glass. This same glass appears three times in the design (L14, L22, L23), making it the most frequently used glass type. The Abbe number of 67.90 qualifies it as an extra-low dispersion (ED) glass under Nikon's classification. The closest catalog matches include OHARA S-FPM2 (nd = 1.59522, νd = 67.74) and HOYA FCD10 (nd = 1.59270, νd = 67.87), though neither is exact. Given its repeated use across multiple elements, this is most likely a Nikon-specified glass manufactured to Nikon's tolerances — possibly by OHARA or Hikari under contract.
+**Glass identification:** nd = 1.593190 with νd = 67.90 is a phosphate crown / fluorophosphate-type ED glass. Hikari J-PSKH1 reproduces both coordinates essentially exactly and supplies the spectral proxy for all three occurrences (L14, L22, L23). The proxy does not establish Nikon's production supplier.
 
 **Optical role:** L14's positive power, combined with its ED glass, makes the L13+L14 doublet a partially achromatized diverging unit. The ED glass provides low dispersion in the positive element while L13's KZFS-type glass provides anomalous dispersion in the negative element — together they attack both primary chromatic aberration and secondary spectrum. L14's very weak front surface (R ≈ 2498 mm, essentially the cemented junction with L13) means almost all of its power comes from the strongly curved rear surface (R = −77.239 mm), contributing to the gradual convergence of the beam as it transitions from G1 into the master group G2.
 
@@ -242,7 +242,7 @@ The aspherical departure at the estimated full clear aperture (SD ≈ 34 mm) rea
 | Cemented with | L23 (doublet Jc) |
 | ΔPgF | +0.0006 (essentially on normal line) |
 
-**Glass identification:** nd = 1.738000 with νd = 32.33. This high-index, high-dispersion flint glass appears twice (L24 and L29), bracketing the aperture stop in a quasi-symmetric arrangement. Despite its θgF value being essentially on the normal line (ΔPgF = +0.0006, marginal), it still satisfies the patent's condition (4): θgF + 0.0021 × νd = 0.658 < 0.670. The closest catalog match is potentially OHARA S-NBH53V or a similar niobium-containing heavy flint.
+**Glass identification:** nd = 1.738000 with νd = 32.33. Hikari J-KZFH9 matches the coordinate and patent partial dispersion closely, so it supplies the spectral proxy for both L24 and L29. Despite its θgF value being essentially on the normal line (ΔPgF = +0.0006, marginal), it still satisfies the patent's condition (4): θgF + 0.0021 × νd = 0.658 < 0.670.
 
 **Optical role:** L24 is one of the most optically critical elements in the design. Its strong negative power (f ≈ −43 mm) positioned immediately before the aperture stop serves as the primary Petzval corrector. In a fast optical system, controlling field curvature is paramount, and strongly negative elements near the stop contribute negative Petzval sum without significantly affecting the axial ray heights (since they are near the stop where axial ray heights are low). The L23+L24 doublet as a whole has net negative power, forming a diverging unit that helps balance the heavy positive power of L21 and L22. The air space between L24's rear surface and the stop surface, together with the space between the stop and L25's front surface, forms the biconvex **air lens La2** — the second critical air lens in the design.
 
@@ -594,15 +594,15 @@ The design employs **11 distinct glass types** across 17 elements, showing a hig
 | nd | νd | Count | Elements | Category |
 |---|---|---|---|---|
 | 1.497820 | 82.57 | 1 | L26 | Super-ED fluorophosphate |
-| 1.552981 | 55.07 | 1 | L12 | Anomalous dispersion special |
-| 1.593190 | 67.90 | 3 | L14, L22, L23 | ED phosphate crown |
-| 1.612660 | 44.46 | 2 | L13, L25 | KZFS-type anomalous dispersion |
+| 1.552981 | 55.07 | 1 | L12 | J-KZFH4 spectral proxy; patent APD |
+| 1.593190 | 67.90 | 3 | L14, L22, L23 | J-PSKH1 spectral proxy |
+| 1.612660 | 44.46 | 2 | L13, L25 | J-KZFH1 spectral proxy; patent APD |
 | 1.698950 | 30.13 | 1 | L32 | Dense flint (HOYA E-FD15) |
-| 1.738000 | 32.33 | 2 | L24, L29 | High-dispersion flint |
+| 1.738000 | 32.33 | 2 | L24, L29 | J-KZFH9 spectral proxy; patent APD |
 | 1.765538 | 46.76 | 1 | L34 | Lanthanum crown (Q-LASFPH2S) |
 | 1.848500 | 43.79 | 1 | L21 | Lanthanum dense flint (J-LASFH22) |
 | 1.883000 | 40.69 | 3 | L27, L31, L33 | Lanthanum dense flint (S-LAH58) |
-| 1.902650 | 35.77 | 1 | L11 | Ultra-high-index LaH (no confirmed catalog match) |
+| 1.902650 | 35.77 | 1 | L11 | J-LASFH9 spectral proxy |
 | 1.953750 | 32.33 | 1 | L28 | Ultra-high-index LaH (S-LAH98 / TAFD45) |
 
 The refractive indices span from 1.498 (L26, super-ED) to 1.954 (L28, ultra-high-index) — a range of 0.456, among the widest in any photographic lens design. This extraordinary diversity reflects the competing demands of an f/0.95 system: ultra-high-index glasses to enable strong power from gentle curvatures (minimizing aberrations), ultra-low-dispersion glasses to control chromatic errors, and anomalous-dispersion glasses to attack secondary spectrum.

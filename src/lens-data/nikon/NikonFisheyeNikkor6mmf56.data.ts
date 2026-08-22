@@ -139,7 +139,7 @@ const LENS_DATA = {
       nd: 1.76764,
       vd: 46.5,
       fl: 24.83,
-      glass: "768465 — lanthanum flint patent melt (nd=1.76764, νd=46.5; no exact public catalog match)",
+      glass: "J-LASFH2 (Hikari catalog equivalent; patent code 768465, supplier unspecified)",
       apd: false,
       role: "Air-spaced positive meniscus; field-shaping and rear-group power balance.",
     },

@@ -81,7 +81,7 @@ const LENS_DATA = {
       nd: 1.6206,
       vd: 38,
       fl: -14.5,
-      glass: "Unmatched (vintage light flint, 621/380)",
+      glass: "F9 (HOYA legacy catalog equivalent; patent code 621380, supplier unspecified)",
       role: "Negative flint member of the front cemented doublet in Component II.",
       cemented: "II",
     },

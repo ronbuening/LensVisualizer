@@ -27,3 +27,9 @@
   `PANASONIC LUMIX S PRO 16-35mm f/4` is correct and was retained.
 - Romanized the inventor name and normalized the assignee to the existing
   `Panasonic Intellectual Property Management Co., Ltd.` catalog identity.
+
+## 2026-08-21 — HOYA BAC6 legacy-curve recovery
+
+- Visually rechecked local `patents/JP2021076829A.pdf`, PDF page 16, Numerical Example 1 Table 1. Surface 10 prints L5 at `nd = 1.57469`, `νd = 56.0`; the patent names no glass supplier and publishes no partial-dispersion row.
+- Added HOYA BAC6 from the first-party 2026-07-07 obsolete-inclusive OpticStudio catalog. Its polynomial evaluates to `1.574441 / 56.357`, within `Δnd = -0.000249` and `Δνd = +0.357` of the patent coordinates.
+- Relabeled L5 as a BAC6 legacy catalog equivalent while retaining code `575560` and leaving Panasonic's production supplier unspecified. Geometry and APD metadata are unchanged.

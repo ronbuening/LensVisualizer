@@ -80,11 +80,11 @@ This glass falls in the dense barium crown (SSK) to barium crown (SK) transition
 
 **Confidence:** Family-level identification (SK/SSK region). The specific catalog designation cannot be determined from the available data.
 
-### L_III — Schott LF7 (glass code 575413)
+### L_III — LF7-class light flint (J-LF7 catalog spectral proxy)
 
 **nd = 1.57501, νd = 41.31**
 
-This is a light flint glass. The nd matches Schott LF7 exactly (1.57501), with νd within 0.19 of the catalog value (41.50). It is the lowest-index glass in the system. As the negative element in the front cemented doublet, its role is to provide diverging power and correct chromatic aberration against L_II. The relatively low refractive index produces strong curvature (large surface power) at the concave rear surface (r₆), which is necessary for the negative contribution to the Petzval sum.
+This is a light flint glass. The patent coordinate matches the LF7 family, and Hikari J-LF7 supplies a compatible catalog spectral proxy without establishing the historical production supplier. It is the lowest-index glass in the system. As the negative element in the front cemented doublet, its role is to provide diverging power and correct chromatic aberration against L_II. The relatively low refractive index produces strong curvature (large surface power) at the concave rear surface (r₆), which is necessary for the negative contribution to the Petzval sum.
 
 **Confidence:** Exact match on nd; νd within catalog tolerance. High confidence.
 
@@ -112,7 +112,7 @@ The fact that L_V and L_VI share the same glass type is notable: it simplifies m
 |---|---|---|---|---|---|
 | L_I | 1.71700 | 47.90 | 717479 | Schott LaF3 | Lanthanum flint |
 | L_II | 1.62299 | 58.12 | 623581 | SK/SSK family (discontinued?) | Dense barium crown |
-| L_III | 1.57501 | 41.31 | 575413 | Schott LF7 | Light flint |
+| L_III | 1.57501 | 41.31 | 575413 | LF7 class; J-LF7 spectral proxy | Light flint; supplier unspecified |
 | L_IV | 1.80518 | 25.46 | 805255 | Schott SF6 | Dense flint |
 | L_V | 1.78443 | 43.77 | 784438 | Schott LaF10 | Lanthanum flint |
 | L_VI | 1.78443 | 43.77 | 784438 | Schott LaF10 | Lanthanum flint |

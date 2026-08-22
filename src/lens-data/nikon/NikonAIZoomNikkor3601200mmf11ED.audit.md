@@ -42,3 +42,10 @@ Patent: US 3,743,384, Example I / Claim 4
 - Visually rechecked `patents/US3743384.pdf`, PDF page 9. L18 remains `1.50137 / 56.5` and L19 remains `1.74443 / 49.4`.
 - SUMITA K10 reproduces 501565 essentially exactly (`Δnd = +0.000001`, `Δνd = -0.09`); HOYA M-NBF1 is within the runtime window for 744494 (`Δnd = -0.001130`, `Δνd = -0.074`).
 - Relabeled L18 and L19 as catalog equivalents while leaving their production suppliers unspecified. The special 486815 family remains unresolved; no prescription or zoom geometry changed.
+
+## 2026-08-21 — BAL7 discontinued-catalog recovery
+
+- OHARA's official 2026-07-01 all-products catalog supplies discontinued BAL7 at code `589512`,
+  `nd = 1.58875`, `νd = 51.179278`, exactly reproducing L8's patent coordinate within printed precision.
+- Relabeled L8 as a supplier-neutral BAL7 catalog equivalent and synchronized the analysis. The special `486815`
+  family remains unresolved; no prescription, zoom, movement, or semi-diameter values changed.

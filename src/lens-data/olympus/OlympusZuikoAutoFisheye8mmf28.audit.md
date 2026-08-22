@@ -55,3 +55,8 @@ Patent: DE 2157160 A1, Example 1 / first numerical prescription, Fig. 1.
 - Visually rechecked Table 1 in local `patents/DE_2157160_A1.pdf`; L6 remains `1.7865 / 50.1` and L7 remains `1.6032 / 42.3`.
 - OHARA's 2026-07-01 discontinued rows YGH52 (`1.786500 / 50.001717`) and BAM25 (`1.603230 / 42.320943`) are tolerance-safe catalog equivalents with vendor polynomials.
 - Relabeled L6/L7 while leaving Olympus's production supplier unspecified. No geometry changed.
+
+## 2026-08-21 — Hikari catalog follow-up
+
+- Added Hikari's first-party J-LAK02 curve, allowing the existing explicit J-LAK02-class label to resolve without
+  changing the patent coordinate or asserting Olympus's production supplier.

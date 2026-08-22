@@ -83,7 +83,7 @@ const LENS_DATA = {
       nd: 1.7205,
       vd: 50.3,
       fl: -22.4,
-      glass: "LaK10 lanthanum crown (721/503)",
+      glass: "721503 LaK10 class; J-LAK10 catalog spectral proxy (production supplier unspecified)",
       apd: false,
       role: "Front element of Component C — gradually bends oblique rays before the positive core",
       cemented: "Ja",

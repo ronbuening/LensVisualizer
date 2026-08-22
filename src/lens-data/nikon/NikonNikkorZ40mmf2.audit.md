@@ -19,3 +19,11 @@ Patent: JP 2021-189351A, Example 4
 ### Analysis sync
 
 - Updated L12/L22 labels and the chromatic-pair discussion.
+
+## 2026-08-21 — Near/close catalog-candidate review
+
+- Rechecked Example 4's L21 coordinate at `nd = 1.75520`, `vd = 27.57` against the current catalog.
+- Rejected the prior `PBM18Y (OHARA)` / `S-TIM27` attribution: current OHARA PBM18Y is
+  `1.595509 / 38.767`, so this is not a normalization-only difference.
+- Relabeled L21 as an unresolved `755276` dense-flint class and deliberately left it without a Sellmeier curve;
+  the patent coordinate is unchanged.

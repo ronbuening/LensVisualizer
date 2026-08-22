@@ -37,3 +37,10 @@ Patent: US 3,591,257
   needed for L8.
 - Strict coverage rises by one surface. The N-LAF21-class row remains unmatched; no source values or geometry
   changed.
+
+## 2026-08-21 — Near/close glass-candidate review
+
+- Evaluated US 3,591,257's L6 coordinate on its authored e-line reference and assigned S-BAH28 as a
+  supplier-neutral LaF10-class spectral proxy.
+- L3, L4, and L7 remain unresolved because their e-line/high-index coordinates do not uniquely identify d-line
+  catalog materials.

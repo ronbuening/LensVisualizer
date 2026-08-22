@@ -158,7 +158,7 @@ const LENS_DATA = {
       nd: 1.7481,
       vd: 52.3,
       fl: 1341.8,
-      glass: "Unmatched (748523 patent coordinate; vendor unresolved)",
+      glass: "748523 — E-LAKH1 catalog equivalent (Hikari; production supplier unspecified)",
       apd: false,
       role: "Fixed rear compensator G3 — cancels SA and field curvature variation during focusing",
     },

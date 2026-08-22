@@ -71,7 +71,7 @@ const LENS_DATA = {
       nd: 1.79631,
       vd: 41,
       fl: 79.894,
-      glass: "Unmatched lanthanum dense flint (796/410; closest J-LASF02 / S-LAH52 class)",
+      glass: "796410 class; NBFD2 catalog spectral proxy (production supplier unspecified)",
       role: "Main positive member of the front unit; high index keeps the Gauss front group compact.",
     },
     {

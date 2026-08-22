@@ -23,3 +23,10 @@ Patent: US 2021/0231927 A1, Example 3
 
 - Corrected L1a from `S-FPM3 (OHARA)` to `S-TIL2 (OHARA)`. S-TIL2 exactly matches the patent's 1.54072 / 47.23 coordinate; S-FPM3 has νd = 74.70.
 - Synchronized the element analysis and verified-glass note.
+
+## 2026-08-21 — Near/close glass-candidate review
+
+- Rechecked US 2021/0231927 A1's glass table and assigned J-PSKH1 to the two `593686` ED elements and S-NPH4
+  to the NPH element as supplier-neutral spectral proxies.
+- Retained the patent-authored partial dispersion on both ED elements. Five other multi-candidate families remain
+  unresolved rather than being forced to a supplier.

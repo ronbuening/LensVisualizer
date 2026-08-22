@@ -24,3 +24,13 @@ Patent: US 2010/0220400 A1, Example 2 / Table 2
 - Visually rechecked Table 2 in local `patents/US20100220400A1.pdf`; L54 remains `1.82080 / 42.64`.
 - HOYA's current M-TAFD51 row (`1.82080 / 42.71`) is compatible with the patent coordinate and supplies a vendor polynomial.
 - Relabeled L54 as an M-TAFD51 catalog equivalent while leaving Nikon's production supplier unspecified. This supersedes the earlier source-limited no-match disposition; no geometry changed.
+
+## 2026-08-21 — Hikari catalog-row recovery
+
+- Added official Hikari coefficient rows for J-LASFH13 (`1.90366 / 31.274235`) and J-PSK03
+  (`1.60300 / 65.441311`) from the 2023 catalog. They reproduce the three already source-faithfully named elements:
+  L11/L53 use J-LASFH13 and L13 uses J-PSK03.
+- The existing labels and analysis remain valid; these elements now use first-party catalog dispersion rather than
+  Abbe fallbacks. No production-supplier inference, prescription value, movement, or geometry changed.
+- Hikari J-SK11 was added in the same first-party batch, so the existing explicit J-SK11 element now resolves by
+  name without changing code-only precedence for the duplicate `564607` coordinate.

@@ -89,22 +89,22 @@ Condition (3) is the telephoto ratio. At 0.897, the design is slightly less tele
 
 | Element | Surface(s) | nd | νd | fl (mm) | Type | Glass / Category | Group |
 |---------|-----------|------|-------|---------|------|-----------------|-------|
-| L1 | 1–2 | 1.66382 | 27.35 | +189.8 | Pos. meniscus (convex to obj.) | **SR glass** | G1/GF |
+| L1 | 1–2 | 1.66382 | 27.35 | +189.8 | Pos. meniscus (convex to obj.) | **SR glass** (J-SFH4 catalog spectral proxy) | G1/GF |
 | L2 | 3–4 | 1.49782 | 82.57 | +225.2 | Pos. meniscus (convex to obj.) | **ED fluorophosphate** | G1/GF |
 | L3 | 5–6 | 1.49782 | 82.57 | +298.6 | Pos. meniscus (convex to obj.) | **ED fluorophosphate** | G1/GF |
 | L4 | 7–(8) | 1.49782 | 82.57 | +103.1 | Biconvex positive | **ED fluorophosphate** | G1/GF |
-| L5 | (8)–9 | 1.85451 | 25.15 | −55.0 | Biconcave negative | Anomalous high-index flint (Nf) | G1/GF |
+| L5 | (8)–9 | 1.85451 | 25.15 | −55.0 | Biconcave negative | NBFD25 spectral proxy; patent APD | G1/GF |
 | L6 | *11–12 | 1.51680 | 64.14 | +234.1 | Pos. meniscus (1× asph., convex to obj.) | BK7-type borosilicate crown | G1/GR |
 | L7 | 13–14 | 1.69680 | 55.52 | −68.8 | Neg. meniscus (convex to obj.) | Barium crown/flint | G2/GR |
 | L8 | 15–16 | 1.80809 | 22.74 | +172.4 | Pos. meniscus (concave to obj.) | S-NPH1-type phosphate flint (anomalous ΔPgF ≈ +0.029) | G3/GR |
-| L9 | 17–(18) | 1.85451 | 25.15 | −62.7 | Biconcave negative | Anomalous high-index flint | G3/GR |
+| L9 | 17–(18) | 1.85451 | 25.15 | −62.7 | Biconcave negative | NBFD25 spectral proxy; patent APD | G3/GR |
 | L10 | (18)–19 | 1.59319 | 67.90 | +276.3 | Pos. meniscus (convex to obj.) | **ED fluorophosphate crown** (near S-FPM2) | G3/GR |
-| L11 | 20–21 | 1.80440 | 39.61 | +48.9 | **Biconvex positive (Pr)** | LaF / dense flint | G3/GR |
-| L12 | 22–23 | 1.83481 | 42.73 | −173.1 | Neg. meniscus (convex to obj.) | Dense lanthanum flint | G3/GR |
-| L13 | 24–25 | 1.85883 | 30.00 | +127.6 | Pos. meniscus (convex to obj.) | Dense lanthanum short flint (non-catalog) | G4/GR |
+| L11 | 20–21 | 1.80440 | 39.61 | +48.9 | **Biconvex positive (Pr)** | S-LAH63Q spectral proxy | G3/GR |
+| L12 | 22–23 | 1.83481 | 42.73 | −173.1 | Neg. meniscus (convex to obj.) | S-LAH55VS spectral proxy | G3/GR |
+| L13 | 24–25 | 1.85883 | 30.00 | +127.6 | Pos. meniscus (convex to obj.) | NBFD30 spectral proxy | G4/GR |
 | L14 | 26–27 | 1.78590 | 44.17 | −71.1 | Biconcave negative | Lanthanum flint | G5/GR |
 | L15 | 28–29 | 1.84666 | 23.78 | +88.8 | Pos. meniscus (convex to obj.) | Dense short flint | G5/GR |
-| L16 | 30–31 | 1.81600 | 46.59 | −89.0 | Neg. meniscus (concave to obj.) | Lanthanum flint | G5/GR |
+| L16 | 30–31 | 1.81600 | 46.59 | −89.0 | Neg. meniscus (concave to obj.) | J-LASF09A spectral proxy | G5/GR |
 | FL | 32–33 | 1.51680 | 64.14 | — | Flat filter | BK7 (IR-cut / cover glass) | — |
 
 *Cemented doublets:* L4+L5 (surfaces 7–9, net fl ≈ −138 mm), L9+L10 (surfaces 17–19, net fl ≈ −80 mm). Both are net-negative per patent designation (接合負レンズ).
@@ -120,7 +120,7 @@ The front element L1 is identified as the SR element based on three converging l
 
 Computing the normal-line value: 0.6415 − 0.00162 × 27.35 = 0.5972. Therefore θgF(L1) = 0.6322, a departure of ΔPgF = +0.035 above the normal line.
 
-This is an exceptionally large positive anomalous dispersion for a glass in this region of the Abbe diagram (nd ≈ 1.664, νd ≈ 27.35). Standard dense flint glasses at this position — such as OHARA S-TIH6 (nd = 1.66382, νd = 27.35) — have typical θgF values around 0.608–0.610, yielding ΔPgF of only +0.011 to +0.013. The measured ΔPgF of +0.035 is approximately three times larger, strongly suggesting this is a Nikon-proprietary glass formulation or a special-order melt. Nikon describes SR glass as having "characteristics to greatly refract light with wavelengths shorter than that of blue," which aligns with the elevated partial dispersion at short wavelengths indicated by this high θgF value.
+This is an exceptionally large positive anomalous dispersion for a glass in this region of the Abbe diagram (nd ≈ 1.664, νd ≈ 27.35). Standard dense flint glasses at this position — such as OHARA S-TIH6 (nd = 1.66382, νd = 27.35) — have typical θgF values around 0.608–0.610, yielding ΔPgF of only +0.011 to +0.013. Hikari J-SFH4 instead reproduces the patent coordinate and high partial dispersion ($θ_{gF}=0.6319$, catalog $\Delta P_{g,F}$ about +0.034), so its published curve is used as a spectral proxy. That does not establish the proprietary production material's supplier or catalog identity. Nikon describes SR glass as having "characteristics to greatly refract light with wavelengths shorter than that of blue," which aligns with the elevated partial dispersion at short wavelengths indicated by this high θgF value.
 
 The optical role of L1 as the SR element is to pre-correct secondary spectrum at the point of maximum beam diameter. By placing a high-anomalous-dispersion positive element at the front of the system where the marginal ray height is greatest, L1 provides the maximum leverage for controlling the short-wavelength chromatic contribution without requiring as much compensating power downstream.
 
@@ -136,7 +136,7 @@ L4 is the strongest of the three (fl = +103.1 mm vs. +225.2 and +298.6 for L2 an
 
 L5 is the patent's designated "negative lens Nf" in the front group: nd = 1.85451, νd = 25.15, with a positive anomalous partial dispersion of ΔPgF = +0.010 (from conditions (15)–(17)). While smaller than L1's departure, this anomalous dispersion in the negative partner of the L4+L5 cemented doublet is critically important for secondary spectrum correction. In a classical achromatic doublet, the positive and negative elements must have different partial dispersions to reduce secondary spectrum. Here, both L4 (ED fluorophosphate) and L5 (anomalous high-index flint) have positive ΔPgF values — but the fluorophosphate has much larger anomalous dispersion than the flint. The difference between their partial dispersions, combined with their focal lengths and positions, reduces the residual secondary spectrum beyond what a conventional achromat could achieve.
 
-The glass nd = 1.85451 with νd = 25.15 does not correspond exactly to any standard OHARA or Schott catalog glass, suggesting this may be a Hikari, CDGM, or Nikon-specification glass. It appears twice in the prescription (also as L9), indicating it is a production glass with established supply.
+HOYA NBFD25 reproduces the `1.85451 / 25.15` coordinate and the patent's `ΔPgF = +0.010` closely, so it supplies the spectral proxy for both L5 and L9. This does not identify Nikon's production material or supplier.
 
 #### L6 — Aspherical Element
 
@@ -186,11 +186,11 @@ L9 (nd = 1.85451, νd = 25.15, same glass as L5) and L10 (nd = 1.59319, νd = 67
 
 L11 is the patent's designated "Pr" — the strongest biconvex positive single lens in the rear group. At fl = +48.9 mm, it has by far the shortest focal length of any single element in the system, making it the workhorse power element of the rear group. The patent also designates it as "Pfoi" — the strongest biconvex positive element positioned behind the most object-side focus group.
 
-Its glass (nd = 1.80440, νd = 39.61) falls in the lanthanum dense flint region of the Abbe diagram. This high-index glass provides strong positive power with manageable curvatures. The conditional expression (4) gives fPr/|fr| = 0.221, meaning L11's focal length is about 22% of the rear group focal length — a dominant contribution that anchors the positive power of G3.
+Its glass (nd = 1.80440, νd = 39.61) falls in the lanthanum dense flint region of the Abbe diagram; S-LAH63Q supplies a near-exact catalog spectral proxy. This high-index glass provides strong positive power with manageable curvatures. The conditional expression (4) gives fPr/|fr| = 0.221, meaning L11's focal length is about 22% of the rear group focal length — a dominant contribution that anchors the positive power of G3.
 
 #### L12 — Negative Meniscus
 
-L12 (nd = 1.83481, νd = 42.73) is a weakly negative meniscus convex to the object (fl = −173.1 mm) that serves as a field-flattening corrector following L11. Its glass is a high-index lanthanum flint. The combination of L11 (strong positive biconvex) followed immediately by L12 (weak negative meniscus) resembles a thick-lens equivalent of an air-spaced doublet that corrects Petzval sum and field curvature.
+L12 (nd = 1.83481, νd = 42.73) is a weakly negative meniscus convex to the object (fl = −173.1 mm) that serves as a field-flattening corrector following L11. S-LAH55VS supplies the closest catalog spectral proxy for this high-index lanthanum-flint coordinate. The combination of L11 (strong positive biconvex) followed immediately by L12 (weak negative meniscus) resembles a thick-lens equivalent of an air-spaced doublet that corrects Petzval sum and field curvature.
 
 #### L13 — Focus Group 2 (G4)
 
@@ -198,7 +198,7 @@ L13 is a single positive meniscus (nd = 1.85883, νd = 30.00, fl = +127.6 mm) th
 
 The counter-directional movement of G2 (toward image) and G4 (toward object) during close focusing is a floating-focus design that maintains aberration correction across the focus range. This two-group floating system is driven by Nikon's "Multi-Focus System" using dual STM stepping motors.
 
-The nd/νd pair (1.85883 / 30.00) does not match standard catalog glasses precisely, suggesting a specialty or Nikon-specified glass. This is a high-index glass with moderately low dispersion for its refractive index, placing it in the dense lanthanum short flint region of the Abbe diagram.
+HOYA NBFD30 reproduces the `1.85883 / 30.00` coordinate and supplies a qualified spectral proxy. The label does not assert that Nikon used HOYA's catalog melt.
 
 #### L14, L15, L16 — Rear Group (G5)
 
@@ -208,7 +208,7 @@ G5 is a three-element negative group (EFL = −71.11 mm) that serves as the fina
 
 **L15** (nd = 1.84666, νd = 23.78) is a positive meniscus convex to the object (fl = +88.8 mm). Its very low Abbe number (23.78) indicates a dense short flint, consistent with OHARA S-TIH53 (nd = 1.84666, νd = 23.78) — a near-exact catalog match. This element provides chromatic correction within G5, balancing L14's chromatic contribution.
 
-**L16** (nd = 1.81600, νd = 46.59) is the final optical element — a negative meniscus concave to the object (fl = −89.0 mm). The nd/νd pair falls in the lanthanum flint region but does not match standard OHARA or Schott catalog entries precisely (the nearest candidates include OHARA S-LAH64 at nd = 1.78800, νd = 47.37 and Schott N-LAF33 at nd = 1.78582, νd = 44.05, neither of which is a close match). This glass may be sourced from Hikari, CDGM, or a Nikon-specified melt. This element is designated as "Li1" (the most image-side lens) in the patent, and its divergent effect on the exiting beam is what produces the oversized image circle.
+**L16** (nd = 1.81600, νd = 46.59) is the final optical element — a negative meniscus concave to the object (fl = −89.0 mm). Hikari J-LASF09A reproduces the coordinate and supplies a qualified spectral proxy without establishing Nikon's production supplier. This element is designated as "Li1" (the most image-side lens) in the patent, and its divergent effect on the exiting beam is what produces the oversized image circle.
 
 The patent's conditional expression (7) gives Da/Bf = 0.310, where Da is the axial distance between L16's object-side surface and L15's image-side surface. This ratio constrains how far apart the last two elements can be relative to the back focus, governing field curvature and coma correction at the image plane.
 

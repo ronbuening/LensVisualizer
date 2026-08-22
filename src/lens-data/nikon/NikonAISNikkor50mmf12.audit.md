@@ -29,3 +29,8 @@ Patent: US 4,621,909, Example 3 / Table 3
 ### Verification
 
 - Pending full Nikon batch verification.
+
+## 2026-08-21 — Near/close glass-candidate review
+
+- Rechecked US 4,621,909 and assigned NBFD2 as a supplier-neutral spectral proxy for L2's `796410` class.
+- The proxy is inside the existing catalog tolerance; no prescription coordinate or geometry changed.

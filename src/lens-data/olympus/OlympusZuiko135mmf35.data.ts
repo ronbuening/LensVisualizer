@@ -79,7 +79,7 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 69.8,
       fl: 80.6,
-      glass: "487698 — FK/FSL low-dispersion crown class (patent nd=1.48749, νd=69.8; no exact modern coefficient-backed match)",
+      glass: "S-FSL5 (OHARA catalog equivalent; patent code 487698, supplier unspecified)",
       apd: false,
       cemented: "D1",
       role: "Crown member of the cemented achromat; supplies positive power with low dispersion",

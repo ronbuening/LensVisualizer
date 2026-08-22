@@ -133,7 +133,7 @@ const LENS_DATA = {
       vd: 37.85,
       indexReference: "e",
       fl: 13.7,
-      glass: "LaF10 (SCHOTT)",
+      glass: "LaF10 class; S-BAH28 catalog e-line spectral proxy (production supplier unspecified)",
       apd: false,
       cemented: "D2",
       role: "Nearly flat front, strongly convex rear — concentrates power at cemented interface to reduce ghosting",

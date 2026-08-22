@@ -176,7 +176,7 @@ const LENS_DATA = {
       nd: 1.7481,
       vd: 52.3,
       fl: -21.917166,
-      glass: "Unmatched (nd=1.74810, vd=52.3)",
+      glass: "748523 — E-LAKH1 catalog equivalent (Hikari; production supplier unspecified)",
       apd: false,
       cemented: "L31",
     },

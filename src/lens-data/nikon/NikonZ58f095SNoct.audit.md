@@ -24,3 +24,9 @@ Patent: WO2019/229849 A1
 
 - Rechecked the local untracked `patents/` folder for WO2019/229849 A1 / `229849`; no matching local PDF is present.
 - No glass or SD changes made. Patent figure/table review remains blocked until the source PDF or a verified local family equivalent is added.
+
+## 2026-08-21 — Near/close glass-candidate review
+
+- Rechecked the now-present local `patents/WO2019229849A1.pdf` and its authored glass/partial-dispersion table.
+- Assigned supplier-neutral proxies to six elements: J-LASFH9, J-KZFH4, J-PSKH1 ×2, J-KZFH1, and J-KZFH9.
+- Patent-authored `dPgF` values are retained; the prior missing-source note above records the earlier repository state.

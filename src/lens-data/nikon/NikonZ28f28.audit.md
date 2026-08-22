@@ -24,3 +24,12 @@ Patent: WO 2022/071249 A1
 - Re-searched the local untracked `patents/` folder for WO 2022/071249 A1 / `071249`; no matching PDF was present.
 - Nearby local files `US20220236544A1.pdf` and `US20220236544A1-2.pdf` were not used as substitutes because they are Fujifilm/Nagami zoom patents, not the cited Nikon Z 28mm family.
 - No glass labels were changed, and no figure/SD check was possible without the cited patent file.
+
+## 2026-08-21 — Resolver normalization and candidate audit
+
+- Normalized L41 from `S-TIM 22` to official OHARA `S-TIM22`; the stored `1.64769 / 33.73` coordinate remains
+  compatible with the existing catalog curve at `1.64769 / 33.79`.
+- Rejected the old L11 `S-TIL 2` and L23 `S-TIH 18` spellings as material mismatches, not mere spacing errors.
+  J-LLF6 reproduces L11 at `1.53172 / 48.78`, while J-SFH1 reproduces L23 at `1.80809 / 22.74`; both now supply
+  qualified spectral proxies without assigning Nikon's production supplier.
+- Synchronized the analysis. No prescription, APD, or geometry changed.

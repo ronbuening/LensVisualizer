@@ -54,7 +54,7 @@ The use of a high-index dense flint as the first positive element is atypical co
 
 ### L2 — Plano-Convex Positive, Front Member of Component II
 
-Patent constants: $n_e = 1.67133$, $\nu_e = 41.64$. Glass: CDGM ZBaF17 / historical Schott BaSF6-class equivalent. Standalone focal length: $+58.73$ at patent scale, $+30.84$ mm after scaling.
+Patent constants: $n_e = 1.67133$, $\nu_e = 41.64$. Glass: ZBaF17/BaSF6 class; J-BASF6 supplies a compatible native-e-line spectral proxy without identifying the production supplier. Standalone focal length: $+58.73$ at patent scale, $+30.84$ mm after scaling.
 
 L2 is the thick positive member of the front cemented doublet. Its front surface $r_3 = +39.43$ is one member of a matched-radius pair with $r_9 = -39.43$ in the rear half of the lens. The rear surface is the planar cemented interface to L3.
 
@@ -99,7 +99,7 @@ The corrected glass table is:
 | Element | Patent $n_e$ | Patent $\nu_e$ | Corrected identification | Confidence |
 |---|---:|---:|---|---|
 | L1 | 1.73430 | 28.19 | SF10 | Exact e-line catalog-curve match |
-| L2 | 1.67133 | 41.64 | ZBaF17 / BaSF6-class barium flint | High as class; vendor exactness depends on catalog generation |
+| L2 | 1.67133 | 41.64 | ZBaF17/BaSF6 class; J-BASF6 e-line spectral proxy | Compatible curve; supplier unspecified |
 | L3 | 1.79190 | 25.55 | SF11 | Exact e-line catalog-curve match |
 | L4 | 1.65222 | 33.60 | SF2 | Exact e-line catalog-curve match |
 | L5 | 1.79227 | 47.15 | LaF21 / N-LAF21-class lanthanum flint | Close class match, not exact |

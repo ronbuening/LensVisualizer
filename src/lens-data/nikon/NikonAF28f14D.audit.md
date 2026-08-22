@@ -38,3 +38,10 @@ Reviewed local untracked patent file `patents/US5315441.pdf`, Embodiment 1 / Tab
 - SUMITA's discontinued-inclusive KF3 vendor polynomial resolves L4b at the exact `1.51454 / 54.6` coordinate.
 - Relabeled L4b as a KF3 optical equivalent while leaving the production supplier unspecified.
 - L6a remains unresolved; no prescription, asphere, focus, or semi-diameter values changed.
+
+## 2026-08-21 — E-LAKH1 discontinued-catalog recovery
+
+- Hikari's official 2022-07-01 catalog supplies a discontinued E-LAKH1 row at code `748523`,
+  `nd = 1.748099`, `νd = 52.304982`, exactly reproducing L6a's patent coordinate within printed precision.
+- Relabeled L6a as a supplier-neutral E-LAKH1 catalog equivalent and synchronized the analysis. This supersedes
+  the earlier current-catalog no-match disposition; no prescription, asphere, focus, APD, or semi-diameter values changed.

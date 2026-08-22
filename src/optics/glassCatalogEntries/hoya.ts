@@ -1432,4 +1432,31 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published NBFD5 formula-3 row.",
   },
+  /* Phase 103 patent-coordinate coverage additions (August 2026).
+   * These coefficient-backed legacy rows come from HOYA's first-party
+   * obsolete-inclusive OpticStudio catalog. Lens assignments retain the
+   * patent coordinates and do not assert the production glass supplier.
+   */
+  {
+    name: "F9",
+    vendor: "Hoya",
+    polynomial: [2.5593399, -0.009366785, 0.022253491, 0.00058783629, 0.0000057602503, 0.0000029583845],
+    nd: 1.620446485,
+    vd: 38.090002,
+    PgF: 0.579863,
+    code6: "620381",
+    source:
+      "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published obsolete F9 formula-3 row.",
+  },
+  {
+    name: "BAC6",
+    vendor: "Hoya",
+    polynomial: [2.4398557, -0.0097214767, 0.01352689, 0.00043240066, -0.000022570985, 0.0000014845452],
+    nd: 1.574441468,
+    vd: 56.357089,
+    PgF: 0.549491,
+    code6: "574564",
+    source:
+      "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published obsolete BAC6 formula-3 row.",
+  },
 ];

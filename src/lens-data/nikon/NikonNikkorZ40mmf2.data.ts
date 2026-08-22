@@ -85,7 +85,7 @@ const LENS_DATA = {
       nd: 1.7552,
       vd: 27.57,
       fl: -18.9,
-      glass: "PBM18Y (OHARA)",
+      glass: "755276 dense-flint class (catalog identity unresolved)",
       apd: false,
       role: "High-dispersion flint — spherical and chromatic corrector in G2 cemented assembly",
       cemented: "H1",

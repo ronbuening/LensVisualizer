@@ -72,3 +72,8 @@ Catalog version: local working tree, 2026-05-19
 - Added the official legacy HOYA PC1 row (`1.503779 / 66.887120`) and relabeled L1 as its optical equivalent.
 - Synchronized the glass table while leaving the historical Zeiss production supplier unspecified. No prescription
   geometry, aperture, or semi-diameter values changed.
+
+## 2026-08-21 — Near/close glass-candidate review
+
+- Rechecked US 2,721,499 and assigned J-LAK10 as a supplier-neutral proxy for L3's `721503` LaK10 class.
+- L8's `642581` LaK/SK crown remains unresolved because several supplier families fit the patent coordinate.

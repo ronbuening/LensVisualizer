@@ -46,7 +46,7 @@ const LENS_DATA = {
       type: "Meniscus Corrector",
       nd: 1.5168,
       vd: 64.2,
-      glass: "Reference crown",
+      glass: "N-BK7 reference crown",
       apd: false,
       fromSurface: "MEN1",
       toSurface: "MEN2",

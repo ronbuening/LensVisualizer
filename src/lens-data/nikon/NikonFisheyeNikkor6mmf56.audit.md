@@ -18,3 +18,9 @@ Patent: US 3,524,697, Example 1
 ### Analysis sync
 
 - Updated the L8 text and table from `768/465` to `768465`, preserving the unresolved disposition.
+
+## 2026-08-21 — Hikari J-LASFH2 catalog-equivalent recovery
+
+- Visually rechecked local `patents/US3524697.pdf`, PDF page 4. Example 1 prints L8 at `nd = 1.76764`, `νd = 46.5`.
+- Hikari J-LASFH2, added to the project after the earlier review, evaluates to `1.766840 / 46.780` (`Δnd = -0.000800`, `Δνd = +0.280`).
+- Relabeled L8 as a qualified J-LASFH2 spectral proxy while retaining patent code `768465` and leaving Nikon's production melt unspecified. The rejected NBFD3 identification remains rejected; geometry and APD metadata are unchanged.

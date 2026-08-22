@@ -28,8 +28,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                              ║
  * ║  NOTE ON SPECTRAL DATA:                                                      ║
  * ║  The patent publishes nd and νd only. No nC, nF, ng, or dPgF is invented.    ║
- * ║  Glass labels remain class-level or Unmatched except the coefficient-backed ║
- * ║  K-LaSFn23 catalog equivalent.                                              ║
+ * ║  Glass labels remain class-level or Unmatched except coefficient-backed     ║
+ * ║  BAC6 and K-LaSFn23 catalog equivalents.                                    ║
  * ║                                                                              ║
  * ║  SOURCE CONTRADICTION: ¶0025 calls complete G2R negative, but the published  ║
  * ║  prescription computes f = +63.64335 mm for L6+L7+air+L8. It is preserved.   ║
@@ -134,7 +134,7 @@ const LENS_DATA = {
       nd: 1.57469,
       vd: 56,
       fl: 28.3634,
-      glass: "Unmatched (575560; barium-crown class)",
+      glass: "BAC6 (HOYA legacy catalog equivalent; patent code 575560, supplier unspecified)",
       apd: false,
       role: "Strong positive G2F element before the stop; both surfaces are aspherical.",
     },

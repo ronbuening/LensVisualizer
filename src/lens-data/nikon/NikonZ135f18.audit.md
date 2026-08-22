@@ -32,3 +32,18 @@ Patent: WO 2024/147268 A1
 - S13 `Barium crown (near S-BAH27)` -> code-first `697555 — lanthanum crown (patent coordinate; vendor
   unresolved)`. The coordinate round-trips to the catalog code, while S-BAH27 is numerically unrelated.
 - Synchronized the focus-element analysis and preserved supplier uncertainty.
+
+## 2026-08-21 — SR spectral-proxy recovery
+
+- Hikari's official 2023 catalog supplies J-SFH4 at `nd = 1.66382`, `νd = 27.346974`, and
+  `θgF = 0.6319`. Its computed anomalous-partial-dispersion departure is about `+0.0341`, consistent with L1's
+  patent-authored `+0.035` after rounding.
+- Kept Nikon's proprietary SR identity explicit and added J-SFH4 only as a catalog spectral proxy. The proxy improves
+  wavelength-dependent tracing without assigning Nikon's production supplier; no prescription or APD value changed.
+
+## 2026-08-21 — Near/close glass-candidate review
+
+- Rechecked WO 2024/147268 A1 and assigned supplier-neutral proxies to six additional elements: NBFD25 ×2,
+  S-LAH63Q, S-LAH55VS, NBFD30, and J-LASF09A.
+- Patent-authored partial dispersion is retained for both NBFD25-proxied elements; ambiguous candidates remain
+  unassigned and no production supplier is inferred.

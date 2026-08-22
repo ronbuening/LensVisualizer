@@ -85,7 +85,7 @@ const LENS_DATA = {
       nd: 1.57501,
       vd: 41.31,
       fl: -28.7,
-      glass: "LF7 (Schott 575413)",
+      glass: "LF7 class; J-LF7 catalog spectral proxy (production supplier unspecified)",
       apd: false,
       role: "Negative flint — Petzval correction and front doublet achromatization",
       cemented: "D1",

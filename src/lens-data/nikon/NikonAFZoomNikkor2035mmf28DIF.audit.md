@@ -22,3 +22,10 @@ Patent: US 5,276,553 A, Example 1 / Figure 1.
   Abbe precision.
 - Relabeled L44b as a J-SFH2 catalog equivalent. Thirteen of fourteen elements now have trusted curves; L31a remains
   unmatched. No prescription, zoom, focus, or semi-diameter values changed.
+
+## 2026-08-21 — E-LAKH1 discontinued-catalog recovery
+
+- Hikari's official 2022-07-01 catalog supplies discontinued E-LAKH1 at code `748523`,
+  `nd = 1.748099`, `νd = 52.304982`, exactly reproducing L31a's patent coordinate within printed precision.
+- Relabeled L31a as a supplier-neutral E-LAKH1 catalog equivalent and synchronized the analysis. All fourteen
+  elements now have trusted curves; no prescription, zoom, focus, aperture, or semi-diameter values changed.

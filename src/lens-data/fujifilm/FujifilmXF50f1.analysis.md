@@ -87,7 +87,7 @@ All element shapes are derived from the sign convention: R > 0 = convex toward o
 
 **Role:** L1b is the **LB positive lens** identified by the patent — the positive lens with the highest Abbe number among all positive elements ahead of the stop. It is one of the lens's two ED elements. Its biconvex shape and 11.8 mm thickness indicate it carries substantial convergence, redirecting the divergent beam from L1a. The glass exhibits mild anomalous partial dispersion contributing to secondary spectrum correction.
 
-**Glass:** nd = 1.59282, νd = 68.62 — does not match any current Ohara catalog entry (nearest: S-FPM2 at nd = 1.59522, Δnd = 0.0024). The glass appears in multiple Fujifilm patents and may be sourced from Hikari, Sumita, CDGM, or as a Fujifilm-specified melt.
+**Glass:** nd = 1.59282, νd = 68.62, ΔPgF = +0.014. Hikari J-PSKH1 is the closest joint coordinate/partial-dispersion candidate and supplies a qualified spectral proxy; the patent values remain authoritative and the production supplier is not identified.
 
 ### 3.3 — Element 3 (L1c): Positive Meniscus — ED Glass ②
 
@@ -134,6 +134,8 @@ All element shapes are derived from the sign convention: R > 0 = convex toward o
 | nd / νd / θgF | 1.89286 / 20.36 / 0.63944 |
 | ΔθgF | +0.031 (anomalous) |
 | Thin-lens f | −74.8 mm |
+
+**Glass:** The exact-coordinate S-NPH4 curve supplies a qualified spectral proxy for this NPH-class row; the patent does not identify the production supplier.
 
 **Doublet D1 combined f ≈ −431 mm** (thick-lens paraxial ray trace). The doublet is very weakly negative, contributing negative Petzval curvature for field flattening. L1f's strong anomalous dispersion paired with L1e's below-normal-line dispersion creates effective secondary spectrum correction within the doublet.
 
@@ -260,7 +262,7 @@ The XF 50mm f/1.0 R WR is a 12-element, 9-group inner-focus prime with an f/1.0 
 - A **single doubly-aspherical element** (L2a) immediately behind the stop, carrying 20th-order polynomial figuring for residual aberration correction.
 - A **lightweight 5-element focusing group** with two cemented doublets for chromatic stability across the focus range.
 
-The design is all-glass, all-refractive — no diffractive surfaces, no hybrid resin aspherics, and no fluorite. Verified glass identifications: L1a = OHARA S-TIL2, L1d = OHARA S-NPH3 (both exact on nd, νd, θgF). The ED glass (L1b, L1c; nd = 1.59282, νd = 68.62) does not match any current Ohara catalog entry and remains unidentified.
+The design is all-glass, all-refractive — no diffractive surfaces, no hybrid resin aspherics, and no fluorite. Verified glass identifications remain L1a = OHARA S-TIL2 and L1d = OHARA S-NPH3. L1b/L1c use J-PSKH1 and L1f uses S-NPH4 only as coordinate-compatible spectral proxies; these improve chromatic tracing without asserting Fujifilm's production suppliers.
 
 ---
 

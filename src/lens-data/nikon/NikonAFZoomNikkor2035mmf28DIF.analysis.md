@@ -114,7 +114,7 @@ The verified Example 1 ratio is **F2R/Fw = 3.709297**, comfortably inside the pa
 
 ### L31 — Cemented Negative Doublet
 
-**L31a: nd = 1.74810, νd = 52.3. Glass: Unmatched (nd=1.74810, vd=52.3). Standalone f = −21.917166 mm.**
+**L31a: nd = 1.74810, νd = 52.3. Glass: 748523 — discontinued Hikari E-LAKH1 catalog equivalent; production supplier unspecified. Standalone f = −21.917166 mm.**
 
 **L31b: nd = 1.80518, νd = 25.4. Glass: S-TIH6 catalog equivalent (patent 805254; production supplier not established). Standalone f = +37.691781 mm.**
 
@@ -168,7 +168,7 @@ The patent publishes only refractive index and Abbe number at the d line (587.6 
 | L21a | 1.71736 | 29.5 | SF1 catalog equivalent (patent 717295) |
 | L21b | 1.51860 | 69.9 | J-PKH1 catalog equivalent (patent 519699) |
 | L22 | 1.71300 | 53.9 | LAC8 catalog equivalent (patent 713539) |
-| L31a | 1.74810 | 52.3 | Unmatched (nd=1.74810, vd=52.3) |
+| L31a | 1.74810 | 52.3 | E-LAKH1 catalog equivalent (patent 748523; supplier unspecified) |
 | L31b | 1.80518 | 25.4 | S-TIH6 catalog equivalent (patent 805254) |
 | L41 | 1.65844 | 50.8 | J-SSK5 catalog equivalent (patent 658508) |
 | L42 | 1.78470 | 26.1 | SF56A catalog equivalent (patent 785261) |

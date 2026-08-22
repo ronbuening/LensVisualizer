@@ -167,7 +167,7 @@ const LENS_DATA = {
       nd: 1.79631,
       vd: 40.8,
       fl: -31.5,
-      glass: "Unmatched lanthanum dense flint (796/408; nearest current HIKARI glasses are J-LASF02/J-LASF03 class)",
+      glass: "796408 class; NBFD2 catalog spectral proxy (production supplier unspecified)",
       role: "High-index negative component of the field-flattening rear doublet.",
       cemented: "D2",
     },

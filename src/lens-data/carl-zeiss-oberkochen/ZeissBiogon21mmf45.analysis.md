@@ -154,7 +154,7 @@ The patent provides refractive index (n_d) and Abbe number (V_d) for each elemen
 |---------|-----|-----|----------------|---------------------|------|------|------------|
 | L₁ | 1.50380 | 66.7 | 504/667 | HOYA PC1 optical equivalent (1.503779/66.887) | −0.00002 | +0.19 | Catalog-backed equivalent; supplier unspecified |
 | L₂ | 1.48697 | 70.3 | 487/703 | FK5 (1.4875/70.4) | −0.0005 | −0.1 | **Near-exact** |
-| L₃ | 1.72050 | 50.3 | 721/503 | LaK10 (1.7200/50.3) | +0.0005 | 0.0 | **Near-exact** |
+| L₃ | 1.72050 | 50.3 | 721/503 | LaK10 class; J-LAK10 spectral proxy | +0.0005 | 0.0 | **Near-exact** |
 | L₄ | 1.60739 | 59.5 | 607/595 | K-SK7 (Sumita, 1.60729/59.5) | +0.0001 | 0.0 | **Near-exact** |
 | L₅ | 1.56093 | 57.5 | 561/575 | No close match | — | — | Family (BaK/SK crown) |
 | L₆ | 1.62500 | 53.3 | 625/533 | SK10 (1.6228/53.3) | +0.0022 | 0.0 | Family (SK crown) |
@@ -165,7 +165,7 @@ The patent provides refractive index (n_d) and Abbe number (V_d) for each elemen
 
 **L₂ (FK5):** The fluorite crown in L₂ is the most confidently identified glass. FK5 is a low-index, low-dispersion crown that contributes minimal chromatic aberration in the front negative meniscus. The patent specifies that the sum of V-values for L₁ and L₂ must exceed 100 — their combined V of 137.0 far exceeds this minimum, ensuring good lateral color correction in the front group.
 
-**L₃ (LaK10):** The lanthanum crown in L₃ is an excellent match. LaK10 provides a high refractive index (1.720) with moderate dispersion (V = 50.3), essential for achieving strong surface powers at the front of Component C without excessive chromatic aberration. Lanthanum-containing glasses were still relatively new in the 1950s, having been developed primarily by Schott and Kodak in the 1940s. Their use here is notable.
+**L₃ (LaK10 class):** The lanthanum crown coordinate is an excellent match to the LaK10 family. Hikari J-LAK10 supplies the catalog spectral proxy while leaving the historical production supplier unspecified. Its high refractive index (1.720) with moderate dispersion (V = 50.3) is essential for achieving strong surface powers at the front of Component C without excessive chromatic aberration.
 
 **L₄ (SK7):** An almost exact match. The dense crown SK7 serves as the cemented partner to L₃ in Component C, with a lower refractive index (1.607 vs. 1.721) and higher Abbe number (59.5 vs. 50.3). The refractive index step at the cemented junction (Δn = −0.113) provides chromatic correction, while the curvature at r₆ controls spherical aberration.
 

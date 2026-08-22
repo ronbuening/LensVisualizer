@@ -62,3 +62,11 @@ Patent: US 5,640,277
   `+0.000889 / +0.243795` of the patent coordinate and inside the runtime compatibility window.
 - Relabeled L2 as an NBFD2 optical equivalent and synchronized the analysis. The label does not identify Nikon's
   production supplier; `748523` remains unresolved and no geometry changed.
+
+## 2026-08-21 — E-LAKH1 discontinued-catalog recovery
+
+- Revisited L8/S19 after recovering Hikari's discontinued E-LAKH1 coefficient row from its official 2022-07-01
+  optical-glass catalog. E-LAKH1 is code `748523` at `nd = 1.748099`, `νd = 52.304982`, an exact rounded match to
+  the patent's `1.74810 / 52.30` coordinate.
+- Relabeled L8 as an E-LAKH1 catalog equivalent and synchronized the analysis. This supersedes the earlier
+  current-catalog no-match disposition but does not identify Nikon's production supplier; no geometry or APD claim changed.

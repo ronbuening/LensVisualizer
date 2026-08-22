@@ -164,7 +164,7 @@ const LENS_DATA = {
       nd: 1.58875,
       vd: 51.2,
       fl: 394.7,
-      glass: "Unmatched barium crown (589/512; historical BAL7-class)",
+      glass: "589512 — BAL7 catalog equivalent (OHARA; production supplier unspecified)",
       role: "Weak positive barium-crown member paired with the low-dispersion negative L7.",
       cemented: "D2",
     },

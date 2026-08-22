@@ -22,3 +22,9 @@ Patent: FR 1 471 493, single numerical prescription
   `ne` / `νe` values.
 - The runtime and generated reports now reject d-line catalog substitution structurally rather than relying on annotation wording.
 - No source values or prescription geometry changed.
+
+## 2026-08-21 — Near/close glass-candidate review
+
+- Evaluated FR 1,471,493's L2 coordinate on the patent's e line and assigned J-BASF6 as a supplier-neutral
+  BaSF6-class spectral proxy.
+- L3, L6, and L7 remain unresolved because their historical e-line families are not unique catalog identities.
