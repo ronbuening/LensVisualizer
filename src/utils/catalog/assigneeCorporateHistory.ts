@@ -1,10 +1,11 @@
 /**
  * Curated corporate history for assignee names found in patent records.
  *
- * Patent assignee strings preserve the name printed on the source patent, so a
- * rename, acquisition, or reorganization can split one business lineage across
- * several exact names. This registry records only sourced relationships; the
- * generator supplies empty arrays for assignees without a documented entry.
+ * Patent assignee strings use a canonical English name for the recorded legal
+ * entity. Translation variants, renames, acquisitions, and reorganizations can
+ * otherwise split one business lineage across several names. This registry
+ * records only sourced relationships; the generator supplies empty arrays for
+ * assignees without a documented entry.
  *
  * Dates use the precision supported by the linked source. A corporate-family
  * date marks the beginning of the documented lineage or the named entity's
@@ -266,16 +267,6 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
       },
     ],
   },
-  "Mamiya Camera Co., Ltd.": {
-    corporateFamily: [
-      {
-        family: "Mamiya camera lineage",
-        effectiveFrom: "1940-05",
-        sourceUrl: SOURCES.mamiyaHistory,
-        note: "The date marks the documented Mamiya camera lineage, not the first use of this English patent rendering.",
-      },
-    ],
-  },
   "Mamiya Koki Co., Ltd.": {
     acquiredBy: [
       {
@@ -291,16 +282,7 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
         effectiveFrom: "1950-12",
         effectiveTo: "1992-10",
         sourceUrl: SOURCES.mamiyaHistory,
-      },
-    ],
-  },
-  "Mamiya Optical Co., Ltd.": {
-    corporateFamily: [
-      {
-        family: "Mamiya camera lineage",
-        effectiveFrom: "1940-05",
-        sourceUrl: SOURCES.mamiyaHistory,
-        note: "The date marks the documented Mamiya camera lineage, not the first use of this English patent rendering.",
+        note: "Canonical English name for patent renderings of マミヤ光機株式会社, including Mamiya Camera and Mamiya Optical.",
       },
     ],
   },

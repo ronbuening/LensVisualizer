@@ -21,6 +21,8 @@ export type { GlassEntry } from "./glassCatalogTypes.js";
 const GLASS_CATALOG_SOURCE_ORDER = [
   "J-LAF04",
   "S-BAL50",
+  "S-BAL12",
+  "BAM8",
   "LAF3",
   "FCD600",
   "NBFD26",
@@ -551,6 +553,9 @@ const GLASS_CATALOG_SOURCE_ORDER = [
   "NBFD5",
   "F9",
   "BAC6",
+  "BAF6",
+  "BAFL2",
+  "LACL1",
   "L-BAL43",
   "K-CSK120-M",
   "K-VC80-M",

@@ -5,7 +5,7 @@
 **Filed:** 20 May 1976<br>
 **Published:** 25 November 1977<br>
 **Inventor:** Yusuke Nanjo<br>
-**Applicant:** Mamiya Optical Co., Ltd.<br>
+**Applicant:** Mamiya Koki Co., Ltd.<br>
 **Title:** Soft-focus lens (軟焦点レンズ)<br>
 **Embodiment analyzed:** Example 1 / 第1実施例
 
@@ -160,7 +160,7 @@ No radius, thickness, refractive index, Abbe number, sign, or element order was 
 
 ## Sources and References
 
-1. Yusuke Nanjo, **“Soft-focus lens”**, JPS52-141223A, Mamiya Optical Co., Ltd., published 25 November 1977. Example 1 prescription and aberration table on page 2; optical layout and stop placement in Figure 3 and aberration plots in Figure 4 on page 4.
+1. Yusuke Nanjo, **“Soft-focus lens”**, JPS52-141223A, Mamiya Koki Co., Ltd., published 25 November 1977. Example 1 prescription and aberration table on page 2; optical layout and stop placement in Figure 3 and aberration plots in Figure 4 on page 4.
 2. **Mamiya-Sekor SFC 150mm f/4 Lens Instructions**, Mamiya Camera Co., Ltd., preserved scan: <https://ianbfoto.com/downloads/Mamiya%20RB67/Mamiya%20RB67%20150mm%20Soft%20Focus.pdf>.
 3. **Mamiya RB67 Pro SD Lenses**, Mamiya Camera Co., Ltd., preserved system guide: <https://ianbfoto.com/downloads/Reviews/Mamiya%20Legacy%20-%20Mamiya%20RB67%20Pro%20SD%20Lenses.pdf>.
 4. LensVisualizer data and verification artifacts for `MamiyaSekorSFC150mmf4SoftFocus`, derived from the final validated TypeScript arrays.
