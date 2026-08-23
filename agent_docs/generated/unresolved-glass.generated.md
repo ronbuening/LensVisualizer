@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **616** lenses scanned
-- **6987** non-air surfaces examined
-- **6994** element glass declarations examined
-- **241** non-explicit-unmatched annotations did not resolve
-- **112** distinct unresolved glass-like tokens found
+- **625** lenses scanned
+- **7085** non-air surfaces examined
+- **7092** element glass declarations examined
+- **243** non-explicit-unmatched annotations did not resolve
+- **114** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -74,6 +74,7 @@ or per-lens patent backfills.
 | 672323 | 1 | 1 | |
 | 680312 | 1 | 1 | |
 | 682366 | 1 | 1 | |
+| 683315 | 1 | 1 | |
 | 683548 | 1 | 1 | |
 | 694312 | 1 | 1 | |
 | 700555 | 1 | 1 | |
@@ -100,6 +101,7 @@ or per-lens patent backfills.
 | 781446 | 1 | 1 | |
 | 786275 | 1 | 1 | |
 | 786406 | 1 | 1 | |
+| 786428 | 1 | 1 | |
 | 789457 | 1 | 1 | |
 | 792450 | 1 | 1 | |
 | 797455 | 1 | 1 | |
@@ -395,6 +397,10 @@ or per-lens patent backfills.
 
 - [MINOLTA AF APO TELE 300mm f/2.8](../../src/lens-data/minolta/MinoltaAF300mmf28.data.ts) 5: `682366 - dense flint class (catalog unresolved)`
 
+### 683315 — 1 occurrence
+
+- [MINOLTA AF 20mm f/2.8](../../src/lens-data/minolta/MinoltaAF20mmf28.data.ts) 7: `683315 — flint class (catalog unresolved)`
+
 ### 683548 — 1 occurrence
 
 - [NIKON AF-P DX NIKKOR 10-20mm f/4.5-5.6 G VR](../../src/lens-data/nikon/NikonAFPDX1020mmf4556G.data.ts) 7: `683548 - patent-specified glass (theta_gF=0.5501; unresolved)`
@@ -498,6 +504,10 @@ or per-lens patent backfills.
 ### 786406 — 1 occurrence
 
 - [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR — TC 1.4x Engaged](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14TCIn.data.ts) 49: `786406 lanthanum crown/flint class (catalog unresolved)`
+
+### 786428 — 1 occurrence
+
+- [MINOLTA AF 20mm f/2.8](../../src/lens-data/minolta/MinoltaAF20mmf28.data.ts) 9: `786428 — high-index flint/lanthanum-flint class (catalog unresolved)`
 
 ### 789457 — 1 occurrence
 

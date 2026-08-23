@@ -9,11 +9,11 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **616** lenses scanned
-- **1005** total code-only elements found
-- **217** elements in this report
-- **83** distinct lens files affected
-- **0** active unreviewed elements have no review-record hit or explicit disposition
+- **625** lenses scanned
+- **1068** total code-only elements found
+- **219** elements in this report
+- **84** distinct lens files affected
+- **2** active unreviewed elements have no review-record hit or explicit disposition
 - **94** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
 - **0** dispositions lack any review record
 
@@ -26,6 +26,8 @@ Completion counts are conditional on finding a source-verified catalog identity 
 
 | Tier | Code | Active elements / lens files | Visible lenses | Strict surfaces | Completion candidates | Near-complete candidates | Local patent lenses | Representative rows |
 |---|---|---:|---:|---:|---|---|---:|---|
+| B | 683315 | 1 / 1 | 1 | 1 | — | MINOLTA AF 20mm f/2.8 | 1/1 | [MINOLTA AF 20mm f/2.8](../../src/lens-data/minolta/MinoltaAF20mmf28.data.ts) Element 4 (1.68300 / 31.52) |
+| B | 786428 | 1 / 1 | 1 | 1 | — | MINOLTA AF 20mm f/2.8 | 1/1 | [MINOLTA AF 20mm f/2.8](../../src/lens-data/minolta/MinoltaAF20mmf28.data.ts) Element 5 (1.78560 / 42.81) |
 
 ## Codes by Frequency
 
@@ -122,6 +124,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 682366 | 1 | 1 | Missing from untracked local patents/ references (US4518229, 4518229) | All rows have review records |
 | 682575 | 1 | 1 | patents/US7542219.pdf | All rows explicitly disposed |
 | 683309 | 1 | 1 | patents/US2983193.pdf | All rows explicitly disposed |
+| 683315 | 1 | 1 | patents/JPA 1987249119-000000.pdf | No review-record hit |
 | 683548 | 1 | 1 | patents/WO2021039813A1.pdf | All rows have review records |
 | 684316 | 1 | 1 | patents/US20100149663A1.pdf | All rows explicitly disposed |
 | 685309 | 1 | 1 | patents/US20160154221A1.pdf | All rows explicitly disposed |
@@ -168,6 +171,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 780509 | 1 | 1 | patents/US20180164556A1.pdf | All rows explicitly disposed |
 | 786275 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | All rows have review records |
 | 786406 | 1 | 1 | patents/WO2019131993A1.pdf | All rows have review records |
+| 786428 | 1 | 1 | patents/JPA 1987249119-000000.pdf | No review-record hit |
 | 788474 | 1 | 1 | patents/JPA 2022012964-000000.pdf | All rows explicitly disposed |
 | 789457 | 1 | 1 | patents/US4182550.pdf | All rows have review records |
 | 792257 | 1 | 1 | patents/JP2023039817A.pdf | All rows explicitly disposed |
@@ -378,6 +382,13 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L5 (Element 5) | 9 | `507589 — bulk absorbing ND glass (catalog unresolved; patent α=0.55)` | 1.50690 / 58.94 | No catalog entry | abbe | patents/JPA 1999231209-000000.pdf | Reviewed sidecar hit |
+
+### [MINOLTA AF 20mm f/2.8](../../src/lens-data/minolta/MinoltaAF20mmf28.data.ts) - JP 1987-249119 A
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L4 (Element 4) | 7 | `683315 — flint class (catalog unresolved)` | 1.68300 / 31.52 | No catalog entry | abbe | patents/JPA 1987249119-000000.pdf | No review-record hit |
+| L5 (Element 5) | 9 | `786428 — high-index flint/lanthanum-flint class (catalog unresolved)` | 1.78560 / 42.81 | No catalog entry | abbe | patents/JPA 1987249119-000000.pdf | No review-record hit |
 
 ### [MINOLTA AF 28mm f/2](../../src/lens-data/minolta/MinoltaAF28mmf2.data.ts) - US 4,258,985
 
