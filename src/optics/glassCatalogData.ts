@@ -553,6 +553,7 @@ const GLASS_CATALOG_SOURCE_ORDER = [
   "NBFD5",
   "F9",
   "BAC6",
+  "PCS1",
   "BAF6",
   "BAFL2",
   "LACL1",

@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **616** lenses scanned
-- **6987** non-air surfaces examined
-- **6994** element glass declarations examined
-- **241** non-explicit-unmatched annotations did not resolve
-- **112** distinct unresolved glass-like tokens found
+- **625** lenses scanned
+- **7085** non-air surfaces examined
+- **7092** element glass declarations examined
+- **242** non-explicit-unmatched annotations did not resolve
+- **113** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -74,6 +74,7 @@ or per-lens patent backfills.
 | 672323 | 1 | 1 | |
 | 680312 | 1 | 1 | |
 | 682366 | 1 | 1 | |
+| 683315 | 1 | 1 | |
 | 683548 | 1 | 1 | |
 | 694312 | 1 | 1 | |
 | 700555 | 1 | 1 | |
@@ -394,6 +395,10 @@ or per-lens patent backfills.
 ### 682366 — 1 occurrence
 
 - [MINOLTA AF APO TELE 300mm f/2.8](../../src/lens-data/minolta/MinoltaAF300mmf28.data.ts) 5: `682366 - dense flint class (catalog unresolved)`
+
+### 683315 — 1 occurrence
+
+- [MINOLTA AF 20mm f/2.8](../../src/lens-data/minolta/MinoltaAF20mmf28.data.ts) 7: `683315 — flint class (catalog unresolved)`
 
 ### 683548 — 1 occurrence
 
