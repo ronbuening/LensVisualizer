@@ -258,8 +258,9 @@ glass data. Several positions admit multiple close or essentially exact catalog 
 Sellmeier label less defensible than the generic coordinate/class labels actually stored in the data file.
 
 No `nC`, `nF`, `ng`, or `dPgF` fields are authored. They are neither published by the selected patent example nor
-recoverable from a uniquely established catalog identity. Consequently, the model does not make an APO claim, does not
-claim anomalous partial dispersion, and does not infer secondary-spectrum behavior from `νd` alone.
+recoverable from a uniquely established catalog identity. E3 and E10 carry `apd: "inferred"` only so the diagram shows
+Canon's production-supported two-UD count; the tags do not assert a patent melt or dispersion curve. Consequently, the
+model does not make an APO claim or infer secondary-spectrum behavior from `νd` alone.
 
 The two `1.49700/81.5` positions are nevertheless meaningful at the level supported by the sources. Canon states that
 the production lens contains two UD elements, and Example 2 contains exactly two repeated very-low-dispersion

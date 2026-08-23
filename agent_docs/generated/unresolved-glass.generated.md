@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **625** lenses scanned
 - **7085** non-air surfaces examined
 - **7092** element glass declarations examined
-- **243** non-explicit-unmatched annotations did not resolve
-- **114** distinct unresolved glass-like tokens found
+- **242** non-explicit-unmatched annotations did not resolve
+- **113** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -101,7 +101,6 @@ or per-lens patent backfills.
 | 781446 | 1 | 1 | |
 | 786275 | 1 | 1 | |
 | 786406 | 1 | 1 | |
-| 786428 | 1 | 1 | |
 | 789457 | 1 | 1 | |
 | 792450 | 1 | 1 | |
 | 797455 | 1 | 1 | |
@@ -504,10 +503,6 @@ or per-lens patent backfills.
 ### 786406 — 1 occurrence
 
 - [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR — TC 1.4x Engaged](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14TCIn.data.ts) 49: `786406 lanthanum crown/flint class (catalog unresolved)`
-
-### 786428 — 1 occurrence
-
-- [MINOLTA AF 20mm f/2.8](../../src/lens-data/minolta/MinoltaAF20mmf28.data.ts) 9: `786428 — high-index flint/lanthanum-flint class (catalog unresolved)`
 
 ### 789457 — 1 occurrence
 

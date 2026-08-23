@@ -62,11 +62,13 @@ The relatively low νd identifies a dispersive flint-class coordinate, but the s
 
 ### L5 — Negative Meniscus
 
-nd = 1.78560, νd = 42.81. Glass: 786428 — high-index flint/lanthanum-flint class (catalog unresolved). f = −27.593404 mm.
+nd = 1.78560, νd = 42.81. Glass: NBFD11 coefficient proxy (supplier unspecified; patent 786428). f = −27.593404 mm.
 
 L5 is another strong negative meniscus before the stop. Its high refractive index allows substantial negative standalone power within a compact axial thickness. In the verified prescription it is followed by the strongest positive standalone element, L6, so the pair forms a pronounced local negative-positive power transition immediately ahead of the aperture stop.
 
-The class description remains generic because no catalog match justifies a named historical vendor glass.
+HOYA NBFD11 is used only as a compatible spectral proxy. Its catalog coordinate, 1.78590/43.93, differs from the
+patent by Δn = +0.00030 and Δν = +1.12, within the project's guarded proxy window. This does not establish Minolta's
+historical supplier or replace the patent coordinate.
 
 ### L6 — Biconvex Positive
 
@@ -118,7 +120,7 @@ The patent supplies nd and νd only. It does not identify glass manufacturers an
 | PCD4 coefficient proxy | 1.61800 | 63.45 | L2, L8 | Compatible curve; patent supplier unresolved |
 | H-LaK12 coefficient proxy | 1.69680 | 56.47 | L3 | Compatible curve; patent supplier unresolved |
 | 683315 | 1.68300 | 31.52 | L4 | Coordinate class; vendor unresolved |
-| 786428 | 1.78560 | 42.81 | L5 | Coordinate class; vendor unresolved |
+| NBFD11 coefficient proxy | 1.78560 | 42.81 | L5 | Compatible curve; Δn = +0.00030, Δν = +1.12; patent supplier unresolved |
 | S-LAH60 coefficient proxy | 1.83400 | 37.05 | L6, L9 | Near-exact curve; patent supplier unresolved |
 | SF57 (Schott) | 1.84666 | 23.83 | L7 | Exact coordinate equivalent; patent vendor unresolved |
 | PCS1 (Hoya) | 1.51728 | 69.68 | L10 | Coefficient-backed near-exact proxy; Δn = +0.000004, Δν = −0.00131; patent supplier unresolved |

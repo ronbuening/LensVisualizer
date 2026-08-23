@@ -41,7 +41,7 @@ Example 1 is entirely spherical. No surface in the selected example carries an a
 
 A source/model distinction is required at two non-glass planes. Patent surface 12 is explicitly the diaphragm and becomes the sole `STO` surface in the data file. Patent surface 6 is a plane air-to-air surface followed by 1.55 mm of air. Figure 1 separately labels a flare-cutting diaphragm `FP`; the sequential model therefore treats surface 6 as the probable inactive FP/control plane. Because it has no refractive power and is not an active blocker in LensVisualizer, it is omitted and its 1.55 mm following space is merged into patent gap d5. The authored gap 5 is therefore 2.59/40.93/58.21 mm at wide/middle/tele instead of the patent's raw d5 values of 1.04/39.38/56.66 mm. The omission preserves the axial station of the following powered surfaces.
 
-The patent publishes no clear-aperture or stop-diameter table for Example 1. All surface semi-diameters in the data file are consequently modeling inferences, derived from the traced marginal/chief-ray envelopes and constrained by the production mechanical envelope. The stop's authored `sd = 12.70 mm` is likewise a modeled clear-radius envelope, not a patent dimension. The active wide-open iris radii implied by the modeled entrance pupil and the published design f-numbers are 9.2435, 11.3557, and 12.6903 mm across the three zoom states.
+The patent publishes no clear-aperture or stop-diameter table for Example 1. All surface semi-diameters in the data file are consequently modeling inferences, derived from the traced marginal/chief-ray envelopes and constrained by the production mechanical envelope. Figure 1 draws the L12/L13, L22/L23, L41/L42, and L51/L52 cemented pairs with common outer rims; the data therefore uses shared radii of 25.0, 12.5, 12.8, and 14.5 mm across those pairs instead of stepped element outlines. L22/L23 uses the smaller common radius because enlarging its front surface would overlap L21 across the published 4.9 mm air gap. The selected values retain positive edge thickness and pass the surface-domain and image-circle checks. The stop's authored `sd = 12.70 mm` is likewise a modeled clear-radius envelope, not a patent dimension. The active wide-open iris radii implied by the modeled entrance pupil and the published design f-numbers are 9.2435, 11.3557, and 12.6903 mm across the three zoom states.
 
 No sensor cover glass, filter plate, folded path, or mechanical component is included in the sequential optical model.
 
@@ -190,6 +190,8 @@ The final data represents this strategy at two levels. First, L42/Gp carries the
 
 The four repeated rows correlate numerically with Canon's statement that the production lens contains four UD elements, but the patent does not label those four rows “UD” or name their vendor. Accordingly, the analysis treats the match as correlation evidence and the data labels them UD-*class*, not as manufacturer-confirmed glass identities.
 
+Those four positions carry `apd: "inferred"` so the diagram's special-glass coloring agrees with the published four-UD count. The separate L42/Gp tag remains `apd: "patent"` because its NBFD13 partial-dispersion condition is explicit in the patent. Neither classification converts the four production-correlated rows into vendor identifications.
+
 ## Conditional Expressions
 
 The patent's central material condition is written around
@@ -237,7 +239,7 @@ The residuals are at the scale expected from a source table whose radii/thicknes
 
 The surface-by-surface Petzval calculation, using `P_i = φ_i/(n_i n'_i)`, sums to `+0.000373515525 mm⁻¹`, corresponding to a reciprocal magnitude of approximately 2677.265 mm. This is a first-order curvature diagnostic, not a direct prediction of the final aberrated field surface.
 
-The inferred semi-diameter geometry remains physically separate from the patent prescription. Across the modeled states, the targeted geometry checks give a minimum positive element edge thickness of 0.418474 mm and a maximum spherical rim-slope angle of 47.613° at surface 26. Shared-band cross-gap checks pass for all three defined zoom states, and the full-field off-axis first-clipping test never first-clips a ray at a cemented junction. These results validate the authored geometry surrogate; they do not convert the inferred semi-diameters into patent-published dimensions.
+The inferred semi-diameter geometry remains physically separate from the patent prescription. Across the modeled states, the targeted geometry checks retain positive element edge thickness and bounded spherical rim slopes. Shared-band cross-gap checks pass for all three defined zoom states, and the full-field off-axis first-clipping test never first-clips a ray at a cemented junction. These results validate the authored geometry surrogate; they do not convert the inferred semi-diameters into patent-published dimensions.
 
 ## Sources
 

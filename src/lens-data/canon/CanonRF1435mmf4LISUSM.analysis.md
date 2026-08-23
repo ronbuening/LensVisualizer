@@ -376,9 +376,11 @@ These interfaces give the design additional power/dispersion balancing freedom w
 cemented boundaries. The patent's explicit chromatic constraint on LN is modest: the negative lens included in LN must
 satisfy `30 < νLN < 60` (¶0044, ¶0050), and E9's retained prescription value of 34.7 satisfies it.
 
-The data remains **Abbe-only** for spectral modeling because the patent does not publish per-element line indices or
-partial dispersion. The analysis therefore does not infer APO behavior, secondary-spectrum cancellation, or anomalous
-partial dispersion from an `nd/νd` coordinate coincidence.
+The three production-correlated UD positions carry `apd: "inferred"` so the site diagram shows Canon's published
+special-element count, including the UD asphere at E13. This is a display classification, not a patent glass-melt or
+dispersion-curve claim: the model remains **Abbe-only** because the patent does not publish per-element line indices or
+partial dispersion. The analysis therefore does not infer APO behavior or secondary-spectrum cancellation from the
+`nd/νd` coordinate coincidence.
 
 ## Image Stabilization
 

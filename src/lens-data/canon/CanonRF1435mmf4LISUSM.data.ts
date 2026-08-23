@@ -61,7 +61,7 @@ const LENS_DATA = {
     "14–35mm f/4 (marketed)",
     "Computed EFL = 14.419–33.959 mm",
     "Design F/4.08–4.12",
-    "6 ASPHERICAL SURFACES",
+    "6 ASPHERICAL SURFACES / 3 UD-CLASS ELEMENTS",
   ],
 
   focalLengthMarketing: [14, 35],
@@ -112,6 +112,9 @@ const LENS_DATA = {
       indexReference: "d",
       fl: -50.280043,
       glass: "497816-class UD/ED crown (vendor indeterminate)",
+      apd: "inferred",
+      apdNote:
+        "Production-correlated UD position; the patent publishes nd/νd only and does not identify a vendor or partial-dispersion curve.",
       role: "L1 negative lead group; one of three 1.49700/81.5 elements in the production correlation.",
     },
     {
@@ -227,6 +230,9 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 23.670928,
       glass: "497816-class UD/ED crown (vendor indeterminate)",
+      apd: "inferred",
+      apdNote:
+        "Production-correlated UD position; the patent publishes nd/νd only and does not identify a vendor or partial-dispersion curve.",
       role: "Second member of cemented doublet D4 in L3; 1.49700/81.5 element.",
       cemented: "D4",
     },
@@ -240,6 +246,9 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 26.522669,
       glass: "497816-class UD/ED crown (vendor indeterminate)",
+      apd: "inferred",
+      apdNote:
+        "Production-correlated UD aspherical position; the patent publishes nd/νd only and does not identify a vendor or partial-dispersion curve.",
       role: "Aspherical positive L3 element; 1.49700/81.5 element.",
     },
     {

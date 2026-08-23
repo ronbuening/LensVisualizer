@@ -108,7 +108,7 @@ const LENS_DATA = {
       vd: 45.68,
       indexReference: "d",
       fl: 49.743878,
-      glass: "Unmatched (nd=1.78850, vd=45.68)",
+      glass: "J-LASF014 coefficient proxy (supplier unspecified; patent 1.78850/45.68)",
       role: "Positive rear element of fixed group GI.",
     },
     {
@@ -120,7 +120,7 @@ const LENS_DATA = {
       vd: 45.68,
       indexReference: "d",
       fl: 67.005266,
-      glass: "Unmatched (nd=1.78850, vd=45.68)",
+      glass: "J-LASF014 coefficient proxy (supplier unspecified; patent 1.78850/45.68)",
       role: "Positive front element of moving group GII.",
     },
     {

@@ -30,8 +30,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ Semi-diameters are modeled inferences because Example 1 publishes none.   ║
  * ║ They were derived from marginal/chief-ray envelopes at all three zoom     ║
  * ║ states, refined against Canon's official production block diagram, and    ║
- * ║ bounded by the 77 mm filter / 83.5 mm barrel envelope. Geometry was      ║
- * ║ checked using actual spherical sag/slope, shared-band cross-gap clearance,║
+ * ║ bounded by the 77 mm filter / 83.5 mm barrel envelope. D1 through D4      ║
+ * ║ use common rim radii across each cemented pair, matching Figure 1 while   ║
+ * ║ retaining positive edge thickness. Geometry was checked using actual     ║
+ * ║ spherical sag/slope, shared-band cross-gap clearance,                     ║
  * ║ and off-axis bundle clipping; no obsolete sd/|R| rule was used.           ║
  * ║                                                                            ║
  * ║ The patent summary (¶0005) and claim 17 print an impossible positive-     ║
@@ -110,6 +112,9 @@ const LENS_DATA = {
       vd: 81.5,
       fl: 95.103345,
       glass: "497815 — UD-class low-dispersion glass (vendor unresolved)",
+      apd: "inferred",
+      apdNote:
+        "Production-correlated UD position; the patent publishes nd/νd only and does not identify a vendor or partial-dispersion curve.",
       cemented: "D1",
       role: "One of four 1.49700 / 81.5 elements correlating with Canon's four-UD production count.",
     },
@@ -154,6 +159,9 @@ const LENS_DATA = {
       vd: 81.5,
       fl: 49.467608,
       glass: "497815 — UD-class low-dispersion glass (vendor unresolved)",
+      apd: "inferred",
+      apdNote:
+        "Production-correlated UD position; the patent publishes nd/νd only and does not identify a vendor or partial-dispersion curve.",
       role: "Positive L3/Lp unit; one of the four 1.49700 / 81.5 elements.",
     },
     {
@@ -206,6 +214,9 @@ const LENS_DATA = {
       vd: 81.5,
       fl: 37.770901,
       glass: "497815 — UD-class low-dispersion glass (vendor unresolved)",
+      apd: "inferred",
+      apdNote:
+        "Production-correlated UD position; the patent publishes nd/νd only and does not identify a vendor or partial-dispersion curve.",
       cemented: "D4",
       role: "One of the four 1.49700 / 81.5 elements.",
     },
@@ -250,6 +261,9 @@ const LENS_DATA = {
       vd: 81.5,
       fl: -84.739762,
       glass: "497815 — UD-class low-dispersion glass (vendor unresolved)",
+      apd: "inferred",
+      apdNote:
+        "Production-correlated UD position; the patent publishes nd/νd only and does not identify a vendor or partial-dispersion curve.",
       role: "One of the four 1.49700 / 81.5 elements.",
     },
     {
@@ -268,23 +282,23 @@ const LENS_DATA = {
   surfaces: [
     { label: "1", R: 90.644, d: 5.0, nd: 1.48749, elemId: 1, sd: 30.0 },
     { label: "2", R: 729.457, d: 0.15, nd: 1.0, elemId: 0, sd: 29.5 },
-    { label: "3", R: 118.536, d: 1.72, nd: 1.6134, elemId: 2, sd: 24.0 },
-    { label: "4", R: 44.444, d: 7.63, nd: 1.497, elemId: 3, sd: 24.5 },
-    { label: "5", R: 701.885, d: 2.59, nd: 1.0, elemId: 0, sd: 27.0 },
+    { label: "3", R: 118.536, d: 1.72, nd: 1.6134, elemId: 2, sd: 25.0 },
+    { label: "4", R: 44.444, d: 7.63, nd: 1.497, elemId: 3, sd: 25.0 },
+    { label: "5", R: 701.885, d: 2.59, nd: 1.0, elemId: 0, sd: 25.0 },
     { label: "7", R: 61.503, d: 1.45, nd: 1.51633, elemId: 4, sd: 16.0 },
     { label: "8", R: 30.444, d: 4.9, nd: 1.0, elemId: 0, sd: 15.5 },
     { label: "9", R: -46.693, d: 1.45, nd: 1.54072, elemId: 5, sd: 12.5 },
-    { label: "10", R: 42.46, d: 2.4, nd: 2.00069, elemId: 6, sd: 13.2 },
-    { label: "11", R: 129.562, d: 14.15, nd: 1.0, elemId: 0, sd: 15.0 },
+    { label: "10", R: 42.46, d: 2.4, nd: 2.00069, elemId: 6, sd: 12.5 },
+    { label: "11", R: 129.562, d: 14.15, nd: 1.0, elemId: 0, sd: 12.5 },
     { label: "STO", R: 1e15, d: 0.27, nd: 1.0, elemId: 0, sd: 12.7 },
     { label: "13", R: 30.808, d: 5.46, nd: 1.497, elemId: 7, sd: 14.5 },
     { label: "14", R: -114.56, d: 5.42, nd: 1.0, elemId: 0, sd: 15.5 },
-    { label: "15", R: -34.891, d: 0.76, nd: 1.76385, elemId: 8, sd: 12.2 },
-    { label: "16", R: 21.946, d: 5.06, nd: 1.8061, elemId: 9, sd: 12.6 },
-    { label: "17", R: -157.249, d: 9.21, nd: 1.0, elemId: 0, sd: 13.5 },
-    { label: "18", R: 215.866, d: 0.86, nd: 2.0509, elemId: 10, sd: 14.0 },
-    { label: "19", R: 32.638, d: 6.46, nd: 1.497, elemId: 11, sd: 14.2 },
-    { label: "20", R: -41.283, d: 0.15, nd: 1.0, elemId: 0, sd: 15.5 },
+    { label: "15", R: -34.891, d: 0.76, nd: 1.76385, elemId: 8, sd: 12.8 },
+    { label: "16", R: 21.946, d: 5.06, nd: 1.8061, elemId: 9, sd: 12.8 },
+    { label: "17", R: -157.249, d: 9.21, nd: 1.0, elemId: 0, sd: 12.8 },
+    { label: "18", R: 215.866, d: 0.86, nd: 2.0509, elemId: 10, sd: 14.5 },
+    { label: "19", R: 32.638, d: 6.46, nd: 1.497, elemId: 11, sd: 14.5 },
+    { label: "20", R: -41.283, d: 0.15, nd: 1.0, elemId: 0, sd: 14.5 },
     { label: "21", R: 40.548, d: 4.63, nd: 1.83481, elemId: 12, sd: 17.0 },
     { label: "22", R: -194.106, d: 18.91, nd: 1.0, elemId: 0, sd: 16.5 },
     { label: "23", R: -110.386, d: 0.9, nd: 1.83481, elemId: 13, sd: 15.0 },

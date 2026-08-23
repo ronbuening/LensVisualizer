@@ -101,13 +101,13 @@ The patent specifies only d-line refractive index and Abbe number (`Nd`, `νd`) 
 |---|---:|---:|---|---|
 | 623570 SK10-class (vendor unresolved) | 1.62280 | 56.98 | E1 | Coordinate family is well supported; SCHOTT N-SK10 is extremely close, but the patent does not identify a vendor. |
 | 617540 SSK1-class (vendor unresolved) | 1.61720 | 54.00 | E2 | SSK1-class coordinates are strongly supported across catalogs; an exact or near-exact vendor row does not establish the patent's supplier. |
-| Unmatched (nd=1.78850, vd=45.68) | 1.78850 | 45.68 | E3, E4 | No audited public row reproduces both coordinates closely enough to justify a named glass. |
+| J-LASF014 coefficient proxy (supplier unspecified) | 1.78850 | 45.68 | E3, E4 | Compatible HIKARI curve; catalog 1.78800/47.35 gives Δn = −0.00050 and Δν = +1.67; patent supplier unresolved. |
 | Q-LASFPH2S coefficient proxy (supplier unspecified) | 1.76500 | 46.25 | E5 | Compatible HIKARI curve used for tracing; patent coordinates retained and supplier not established. |
 | 723380 BAF/BASF-class (vendor unresolved) | 1.72342 | 37.88 | E6 | The 723380 class is supported by several vendors with small coordinate residuals. |
 | 755275 SF4/TIH4-class (vendor unresolved) | 1.75520 | 27.51 | E7 | The coordinate family is closely represented in several catalogs, including an exact OHARA coordinate match, but supplier identity is not published. |
 | 720503 LAK10/LAC10-class (vendor unresolved) | 1.72000 | 50.31 | E8-E10 | Several vendors cluster closely around this coordinate pair; the class is defensible while the manufacturer remains unresolved. |
 
-No `nC`, `nF`, `ng`, or `dPgF` values are authored for any element. The patent does not publish those quantities, and no specific catalog identity was established strongly enough to import spectral line data from a tentative equivalent. Consequently the model supports Abbe-level chromatic interpretation, but not an APO or anomalous-partial-dispersion claim.
+No `nC`, `nF`, `ng`, or `dPgF` values are authored as patent facts. J-LASF014 supplies a qualified runtime curve for E3 and E4 while preserving their patent coordinates; the proxy does not establish a Minolta melt or supplier. Consequently the model supports catalog-derived chromatic tracing, but not an APO or anomalous-partial-dispersion claim.
 
 ## Focus Mechanism
 

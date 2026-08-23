@@ -50,7 +50,7 @@ const LENS_DATA = {
     "13 ELEMENTS / 11 GROUPS",
     "15-30mm MARKETING / 15.45-29.15mm PATENT",
     "f/4.5-6.3 MARKETING / f/4.60-6.36 MODEL",
-    "2 ASPHERICAL SURFACES",
+    "2 ASPHERICAL SURFACES / 2 UD-CLASS ELEMENTS",
   ],
 
   focalLengthMarketing: [15, 30],
@@ -101,7 +101,9 @@ const LENS_DATA = {
       vd: 81.5,
       fl: -41.23081291222841,
       glass: "497815 — very-low-dispersion fluorophosphate-crown / UD-like class (vendor unresolved)",
-      apd: false,
+      apd: "inferred",
+      apdNote:
+        "Production-correlated UD position; the patent publishes nd/νd only and does not identify a vendor or partial-dispersion curve.",
       role: "Third negative element of L1; one of two 1.49700/81.5 UD-like elements in the selected prescription.",
     },
     {
@@ -188,7 +190,9 @@ const LENS_DATA = {
       vd: 81.5,
       fl: 17.06424022513546,
       glass: "497815 — very-low-dispersion fluorophosphate-crown / UD-like class (vendor unresolved)",
-      apd: false,
+      apd: "inferred",
+      apdNote:
+        "Production-correlated UD position; the patent publishes nd/νd only and does not identify a vendor or partial-dispersion curve.",
       cemented: "D2",
       role: "Positive UD-like member of the second cemented pair; D2 has weak net negative power.",
     },

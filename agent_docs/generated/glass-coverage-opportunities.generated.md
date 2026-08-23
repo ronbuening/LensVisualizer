@@ -10,11 +10,11 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **625** lenses scanned (**615** visible)
-- **6555 / 7085** non-air surfaces use strict catalog Sellmeier data (92.5%)
-- **6569 / 7085** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 92.7%)
+- **6558 / 7085** non-air surfaces use strict catalog Sellmeier data (92.6%)
+- **6572 / 7085** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 92.8%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
-- **219** code-only missing-Sellmeier elements in Sweep 2: **2** active unreviewed, **94** self-recording explicit dispositions, **0** dispositions missing any review record
+- **218** code-only missing-Sellmeier elements in Sweep 2: **1** active unreviewed, **94** self-recording explicit dispositions, **0** dispositions missing any review record
 - **0** unresolved named-token elements in Sweep 2B, producing **0** token occurrences across **0** distinct tokens
 - **0** Tier A proprietary backfill rows in Sweep 3
 
@@ -62,6 +62,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [NIKON AF-S NIKKOR 500mm f/5.6E PF ED VR](../../src/lens-data/nikon/NikonAFSNikkor500mmf56EPFEDVR.data.ts) | JP 2018-017857 A | [PDF](../../patents/JP2018017857A.pdf) | 90.5% (19/21) | 90.5% (19/21) | 2 | 7 [glass] (PF bonded material A: `Unmatched (bonded PF material A; patent nd=1.52780, vd=33.41)`)<br>8 [glass] (PF bonded material B: `Unmatched (bonded PF material B; patent nd=1.55710, vd=49.74)`) | abbe: 2 |
 | [TAMRON 70-180mm f/2.8 Di III VXD](../../src/lens-data/tamron/TamronA05670180mmf28.data.ts) | JP 2021-43375 A | [PDF](../../patents/JP2021043375A.pdf) | 90.5% (19/21) | 90.5% (19/21) | 2 | 13A [glass] (Element 8 bonded aspheric layer: `Unmatched (bonded aspheric optical layer; physical material not identified by patent)`)<br>30A [glass] (Element 17 bonded aspheric layer: `Unmatched (bonded aspheric optical layer; physical material not identified by patent)`) | abbe: 2 |
 | [FUJIFILM FUJINON XF 23mm f/2 R WR](../../src/lens-data/fujifilm/FujifilmXF23mmf2RWR.data.ts) | US 2017/0351051 A1 | [PDF](../../patents/US20170351051A1.pdf) | 90.0% (9/10) | 90.0% (9/10) | 1 | 13A [glass] (L21 — moving focus asphere: `803405 - high-index lanthanum flint (likely PGM aspheric melt; no exact public catalog match)`) | abbe: 1 |
+| [MINOLTA AF 20mm f/2.8](../../src/lens-data/minolta/MinoltaAF20mmf28.data.ts) | JP 1987-249119 A | [PDF](../../patents/JPA 1987249119-000000.pdf) | 90.0% (9/10) | 90.0% (9/10) | 1 | 7 [glass] (Element 4: `683315 — flint class (catalog unresolved)`) | abbe: 1 |
 | [MINOLTA AF APO TELE 300mm f/2.8](../../src/lens-data/minolta/MinoltaAF300mmf28.data.ts) | US 4,518,229 | Missing from untracked local patents/ references (US4518229, 4518229) | 90.0% (9/10) | 90.0% (9/10) | 1 | 5 [glass] (Element 3: `682366 - dense flint class (catalog unresolved)`) | abbe: 1 |
 | [NIKON R-UW AF FISHEYE-NIKKOR 13mm f/2.8](../../src/lens-data/nikon/NikonRUWAFNikkor13mmf28.data.ts) | US 5,579,169 | [PDF](../../patents/US5579169.pdf) | 90.0% (9/10) | 90.0% (9/10) | 1 | 7 [glass] (G41 positive doublet element: `Unmatched dense flint (595355)`) | abbe: 1 |
 | [NIKON NIKKOR-N AUTO 28mm f/2](../../src/lens-data/nikon/NikonNikkorN28mmf2.data.ts) | US 3,736,049 | [PDF](../../patents/US3736049.pdf) | 88.9% (8/9) | 88.9% (8/9) | 1 | 14 [glass] (Element 8: `Discontinued LaF/LaK type (1970s)`) | abbe: 1 |
@@ -84,8 +85,6 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [LEICA SUMMILUX 28mm f/1.7 ASPH. (Leica Q, Q2, Q3)](../../src/lens-data/leica/Leica28mmf17.data.ts) | US 2016/0266350 A1 | [PDF](../../patents/US20160266350A1.pdf) | 81.8% (9/11) | 81.8% (9/11) | 2 | 12A [glass] (Element 6: `877370 — high-index lanthanum glass (patent nd=1.87722, nu_d=37.0)`)<br>20A [glass] (Element 11: `Unmatched (patent nd=1.68250, νd=33.00; prior H-ZF52A annotation rejected on dispersion)`) | abbe: 2 |
 | [AGFA COLOR-MAGNOLAR II 100mm f/4.5](../../src/lens-data/agfa/AgfaColorMagnolarII100mmf45.data.ts) | GB 775,944 | [PDF](../../patents/GB_775944_A.pdf) | 80.0% (4/5) | 60.0% (3/5) | 1 | 4 [glass] (Element 3: `Unmatched (540/509 crown-flint-boundary glass; no public catalog match located)`) | abbe: 1 |
 | [SAMSUNG 30mm f/2](../../src/lens-data/samsung/Samsung30mmf2.data.ts) | US 2010/0149663 A1 | [PDF](../../patents/US20100149663A1.pdf) | 80.0% (4/5) | 80.0% (4/5) | 1 | 3 [glass] (Element 2: `Unmatched (684316 dense-flint class; vendor unresolved)`) | abbe: 1 |
-| [MINOLTA AF 20mm f/2.8](../../src/lens-data/minolta/MinoltaAF20mmf28.data.ts) | JP 1987-249119 A | [PDF](../../patents/JPA 1987249119-000000.pdf) | 80.0% (8/10) | 80.0% (8/10) | 2 | 7 [glass] (Element 4: `683315 — flint class (catalog unresolved)`)<br>9 [glass] (Element 5: `786428 — high-index flint/lanthanum-flint class (catalog unresolved)`) | abbe: 2 |
-| [MINOLTA AF 35mm f/1.4](../../src/lens-data/minolta/MinoltaAF35mmf14.data.ts) | US 4,806,003 | [PDF](../../patents/US4806003.pdf) | 80.0% (8/10) | 80.0% (8/10) | 2 | 5 [glass] (L3 / Element 3: `Unmatched (nd=1.78850, vd=45.68)`)<br>7 [glass] (L4 / Element 4: `Unmatched (nd=1.78850, vd=45.68)`) | abbe: 2 |
 | [Nikon AI Micro-Nikkor 105mm f/2.8S](../../src/lens-data/nikon/NikonAIMicroNikkor105mmf28S.data.ts) | US 4,392,724 | [PDF](../../patents/US4392724.pdf) | 80.0% (8/10) | 80.0% (8/10) | 2 | 12 [glass] (L31 G3 positive meniscus: `Unmatched (595/355 vintage flint; near FF5 / S-FTM16 class but higher nd)`)<br>16 [glass] (L33 G3 positive reconverger: `Unmatched (595/355 vintage flint; near FF5 / S-FTM16 class but higher nd)`) | abbe: 2 |
 
 ## Near-Complete Visible Lenses - Non-Glass or Mixed-Material Gaps
@@ -164,7 +163,6 @@ Add catalog entries only when public coefficient-backed vendor data is available
 | Code | Active elements | Lens files | localPatentStatus | Representative rows |
 |---|---:|---:|---|---|
 | 683315 | 1 | 1 | patents/JPA 1987249119-000000.pdf | [MINOLTA AF 20mm f/2.8](../../src/lens-data/minolta/MinoltaAF20mmf28.data.ts) Element 4 (1.68300 / 31.52) |
-| 786428 | 1 | 1 | patents/JPA 1987249119-000000.pdf | [MINOLTA AF 20mm f/2.8](../../src/lens-data/minolta/MinoltaAF20mmf28.data.ts) Element 5 (1.78560 / 42.81) |
 
 ## Sweep 2B - Named Tokens Missing Catalog Resolution
 

@@ -127,7 +127,7 @@ const LENS_DATA = {
       nd: 1.7856,
       vd: 42.81,
       fl: -27.593404,
-      glass: "786428 — high-index flint/lanthanum-flint class (catalog unresolved)",
+      glass: "NBFD11 coefficient proxy (supplier unspecified; patent 786428)",
       role: "Negative pre-stop meniscus contributing strong local aberration balance in Gr.",
     },
     {

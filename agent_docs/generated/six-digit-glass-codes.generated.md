@@ -10,8 +10,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **625** lenses scanned
-- **1068** total code-only elements found
-- **1068** elements in this report
+- **1067** total code-only elements found
+- **1067** elements in this report
 - **187** distinct lens files affected
 
 ## Codes by Frequency
@@ -321,7 +321,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 785261 | 1 | 1 | patents/US4303314.pdf | All rows have review records |
 | 786275 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | All rows have review records |
 | 786406 | 1 | 1 | patents/WO2019131993A1.pdf | All rows have review records |
-| 786428 | 1 | 1 | patents/JPA 1987249119-000000.pdf | No review-record hit |
 | 789284 | 1 | 1 | patents/JP2025052870A.pdf | All rows have review records |
 | 789457 | 1 | 1 | patents/US4182550.pdf | All rows have review records |
 | 792257 | 1 | 1 | patents/JP2023039817A.pdf | All rows explicitly disposed |
@@ -916,7 +915,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L4 (Element 4) | 7 | `683315 — flint class (catalog unresolved)` | 1.68300 / 31.52 | No catalog entry | abbe | patents/JPA 1987249119-000000.pdf | No review-record hit |
-| L5 (Element 5) | 9 | `786428 — high-index flint/lanthanum-flint class (catalog unresolved)` | 1.78560 / 42.81 | No catalog entry | abbe | patents/JPA 1987249119-000000.pdf | No review-record hit |
 
 ### [MINOLTA AF 28-70mm f/2.8 G](../../src/lens-data/minolta/MinoltaAF2870mmf28G.data.ts) - JP1994-082698 A
 
