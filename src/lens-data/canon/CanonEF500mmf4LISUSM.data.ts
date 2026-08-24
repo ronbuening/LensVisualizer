@@ -294,19 +294,18 @@ const LENS_DATA = {
 
   /* ── Diagram annotations ── */
   groups: [
+    { text: "L1", fromSurface: "3", toSurface: "12" },
+    { text: "L2 FOCUS", fromSurface: "13", toSurface: "15" },
+    { text: "L3", fromSurface: "17", toSurface: "29" },
+  ],
+  doublets: [
     { text: "L1a", fromSurface: "3", toSurface: "4" },
     { text: "L1b", fromSurface: "5", toSurface: "8" },
     { text: "L1c", fromSurface: "9", toSurface: "12" },
-    { text: "L2 FOCUS", fromSurface: "13", toSurface: "15" },
+    { text: "L2", fromSurface: "13", toSurface: "15" },
     { text: "L3a", fromSurface: "17", toSurface: "19" },
     { text: "L3b IS", fromSurface: "20", toSurface: "24" },
     { text: "L3c", fromSurface: "25", toSurface: "29" },
-  ],
-  doublets: [
-    { text: "L2", fromSurface: "13", toSurface: "15" },
-    { text: "L3a", fromSurface: "17", toSurface: "19" },
-    { text: "L3b", fromSurface: "20", toSurface: "22" },
-    { text: "L3c", fromSurface: "27", toSurface: "29" },
   ],
 
   /* ── Focus configuration ── */

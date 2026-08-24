@@ -82,9 +82,9 @@ E8 is the negative middle component of the positive third functional group. This
 
 ### E9 — Positive Meniscus, G3
 
-**nd = 1.62012, νd = 49.5. Glass: Unmatched (nd=1.62012, nu_d=49.5; public exact-nd families are about 49.8). Standalone f in air = +161.249705 mm.**
+**nd = 1.62012, νd = 49.5. Glass: K-SSK9 coefficient proxy (patent nd=1.62012, nu_d=49.5; production supplier unspecified). Standalone f in air = +161.249705 mm.**
 
-E9 closes G3 with positive power. Its public-catalog identity is intentionally unresolved: catalog families with essentially the same refractive index cluster nearer νd ≈ 49.8 than the source value 49.5. The analysis therefore retains the `Unmatched` designation rather than assigning a convenient but inconsistent vendor glass.
+E9 closes G3 with positive power. SUMITA K-SSK9 has the same catalog refractive index and νd = 49.8, only 0.3 above the patent coordinate. Its catalog polynomial is therefore used as a qualified spectral proxy so the element can participate in chromatic rendering. The label does not assert that SUMITA supplied the production glass.
 
 ### E10 — Negative Meniscus, Floating G4
 
@@ -140,7 +140,7 @@ The patent tabulates refractive-index and Abbe-number pairs but does not name gl
 | E6 | 847238 dense-flint class | 1.84666 | 23.8 | Vendor not established |
 | E7 | 439950 / S-FPL53-coordinate class | 1.43875 | 95.0 | Canon Super UD correlation; vendor not established |
 | E8 | 702412 class | 1.70154 | 41.2 | Vendor not established |
-| E9 | Unmatched | 1.62012 | 49.5 | Public exact-nd families are nearer νd ≈ 49.8 |
+| E9 | K-SSK9 coefficient proxy | 1.62012 | 49.5 | Catalog νd = 49.8; production supplier unspecified |
 | E10 | 603606 / SK14-coordinate class | 1.60311 | 60.6 | Vendor not established |
 | E12 | 805254 high-index flint class | 1.80518 | 25.4 | Vendor not established |
 | E13 | 516641 / S-BSL7-coordinate class | 1.51633 | 64.1 | Vendor not established |
@@ -222,4 +222,4 @@ No aspherical surfaces are present in Numerical Example 2, so there are no conic
 5. **OHARA Optical Glass Pocket Catalog.** Manufacturer catalog used only for coordinate-family checks, including S-FSL5, S-BSL7, S-BSM15, S-LAL8, S-BAH27, S-FPL53, and S-LAH55V: <https://oharacorp.com/wp-content/uploads/2023/06/ohara-pocket-catalog-2023-05.pdf>.
 6. **SCHOTT Optical Glass data.** Manufacturer catalog/download collection used only for coordinate-family and international-code checks, including N-SK14, SF57-class, and N-LAF34 coordinates: <https://www.schott.com/en-us/products/optical-glass-p1000267/downloads>.
 7. **HIKARI J-BAF11 data sheet.** Manufacturer coordinate reference for the 667483 family used by E14: <https://www.hikari-g.co.jp/optical_glass/general_optical_glass/document/BAF/J_BAF11.pdf>.
-8. **SUMITA Optical Glass Data.** Manufacturer catalog download source used to test the E9 coordinate against the K-SSK9 family; the source prescription remains unmatched at its stated νd = 49.5: <https://www.sumita-opt.co.jp/en/download/>.
+8. **SUMITA Optical Glass Data.** Manufacturer catalog source for the K-SSK9 coefficient proxy used by E9; the patent coordinate remains authoritative and no production supplier is inferred: <https://www.sumita-opt.co.jp/en/download/>.

@@ -287,12 +287,8 @@ const LENS_DATA = {
   var: {},
   varLabels: [],
 
-  groups: [{ text: "DO1", fromSurface: "1", toSurface: "3" }],
-  doublets: [
-    { text: "D2", fromSurface: "15", toSurface: "17" },
-    { text: "D3", fromSurface: "18", toSurface: "20" },
-    { text: "D4", fromSurface: "23", toSurface: "25" },
-  ],
+  groups: [{ text: "DO", fromSurface: "1", toSurface: "3" }],
+  doublets: [],
 
   closeFocusM: 3.5,
   focusDescription:

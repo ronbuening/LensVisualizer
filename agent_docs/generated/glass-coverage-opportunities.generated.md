@@ -10,8 +10,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **631** lenses scanned (**621** visible)
-- **6646 / 7174** non-air surfaces use strict catalog Sellmeier data (92.6%)
-- **6660 / 7174** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 92.8%)
+- **6647 / 7174** non-air surfaces use strict catalog Sellmeier data (92.7%)
+- **6661 / 7174** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 92.8%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **218** code-only missing-Sellmeier elements in Sweep 2: **1** active unreviewed, **94** self-recording explicit dispositions, **0** dispositions missing any review record
@@ -34,7 +34,6 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [CANON RF 24-240mm f/4-6.3 IS USM](../../src/lens-data/canon/CanonRF24240mmf463.data.ts) | US 2020/0142167 A1 | [PDF](../../patents/US20200142167A1.pdf) | 95.2% (20/21) | 95.2% (20/21) | 1 | 25A [glass] (Element 14: `531559 - moldable barium light crown (patent nd=1.53110, vd=55.9)`) | abbe: 1 |
 | [CANON NEW FD 150-600mm f/5.6L](../../src/lens-data/canon/CanonFD150600mmf56L.data.ts) | US 4,110,006 | [PDF](../../patents/US4110006.pdf) | 94.7% (18/19) | 94.7% (18/19) | 1 | 30 [glass] (Element 17: `Unmatched (534555 vintage crown; no first-party coefficient row found)`) | abbe: 1 |
 | [OLYMPUS ZUIKO DIGITAL ED 14-35mm f/2.0 SWD](../../src/lens-data/olympus/OlympusMZuiko1435mmf2ED.data.ts) | US 8,081,392 B2 | [PDF](../../patents/US8081392.pdf) | 94.4% (17/18) | 94.4% (17/18) | 1 | 35 [glass] (Element 18: `Unmatched proprietary short flint (635/232, condition-b APD glass)`) | abbe: 1 |
-| [CANON EF 100-400mm f/4.5-5.6 L IS USM](../../src/lens-data/canon/CanonEF100400mmf4556LISUSM.data.ts) | JP 2000-47107 A | [PDF](../../patents/JP_2000047107_A.pdf) | 94.1% (16/17) | 94.1% (16/17) | 1 | 17 [glass] (Element 9: `Unmatched (nd=1.62012, nu_d=49.5; public exact-nd families are about 49.8)`) | abbe: 1 |
 | [FUJIFILM FUJINON XF 16-55mm f/2.8 R LM WR](../../src/lens-data/fujifilm/FujifilmXF1655mmf28R.data.ts) | US 2016/0154221 A1 | [PDF](../../patents/US20160154221A1.pdf) | 94.1% (16/17) | 94.1% (16/17) | 1 | 13A [glass] (Element 8 (L31): `Unmatched (685309 dense flint; nearest public catalog row exceeds d-line tolerance)`) | abbe: 1 |
 | [NIKON NIKKOR Z 35mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) | JP 2025-052870 A | [PDF](../../patents/JP2025052870A.pdf) | 94.1% (16/17) | 94.1% (16/17) | 1 | 32A [glass] (Element 17: `Barium crown / LaK family (624584, no exact catalog match)`) | abbe: 1 |
 | [NIKON NIKKOR Z 24-70mm f/2.8 S](../../src/lens-data/nikon/NikonZ2470f28.data.ts) | WO 2020/136749 A1 | [PDF](../../patents/WO2020136749A1.pdf) | 94.1% (16/17) | 94.1% (16/17) | 1 | 26 [glass] (Element 14: `792450 — dense lanthanum crown (patent nd=1.79189, νd=45.04; no exact public catalog match)`) | abbe: 1 |

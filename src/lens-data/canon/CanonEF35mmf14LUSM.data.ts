@@ -252,8 +252,12 @@ const LENS_DATA = {
   ],
 
   doublets: [
+    { text: "L1a", fromSurface: "1", toSurface: "4" },
+    { text: "L1b", fromSurface: "5", toSurface: "6" },
+    { text: "L2a", fromSurface: "7", toSurface: "10" },
     { text: "L2b", fromSurface: "11", toSurface: "13" },
     { text: "L3a", fromSurface: "15", toSurface: "17A" },
+    { text: "L3b", fromSurface: "18", toSurface: "21" },
   ],
 
   closeFocusM: 0.3,

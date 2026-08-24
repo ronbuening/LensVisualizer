@@ -279,15 +279,13 @@ const LENS_DATA = {
   groups: [
     { text: "L1", fromSurface: "1", toSurface: "10" },
     { text: "L2 FOCUS", fromSurface: "11", toSurface: "13" },
-    { text: "L31", fromSurface: "15", toSurface: "17" },
-    { text: "L32 IS", fromSurface: "18", toSurface: "22" },
-    { text: "L33", fromSurface: "23", toSurface: "27" },
+    { text: "L3", fromSurface: "15", toSurface: "27" },
   ],
   doublets: [
     { text: "L2", fromSurface: "11", toSurface: "13" },
     { text: "L31", fromSurface: "15", toSurface: "17" },
-    { text: "L32a", fromSurface: "18", toSurface: "20" },
-    { text: "L33a", fromSurface: "23", toSurface: "25" },
+    { text: "L32 IS", fromSurface: "18", toSurface: "22" },
+    { text: "L33", fromSurface: "23", toSurface: "27" },
   ],
 
   closeFocusM: 2.5,

@@ -40,7 +40,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ Glass: the patent supplies nd/nu_d pairs but not vendor identities or      ║
  * ║ nC/nF/ng/dPgF line data. Vendor-neutral six-digit/class labels are used;   ║
  * ║ E3 fluorite and E7 Super-UD-class labels are production correlations. E9   ║
- * ║ remains explicitly Unmatched. No APO/APD behavior is asserted.             ║
+ * ║ uses K-SSK9 only as a qualified coefficient proxy. No APO/APD behavior is  ║
+ * ║ asserted.                                                                   ║
  * ║                                                                            ║
  * ║ Semi-diameters: the patent does not tabulate clear apertures. SDs were     ║
  * ║ derived from coded marginal/chief-ray envelopes at all three zoom states  ║
@@ -190,8 +191,8 @@ const LENS_DATA = {
       vd: 49.5,
       indexReference: "d",
       fl: 161.249705,
-      glass: "Unmatched (nd=1.62012, nu_d=49.5; public exact-nd families are about 49.8)",
-      role: "Positive rear component of G3; public-catalog identity remains unresolved.",
+      glass: "K-SSK9 coefficient proxy (patent nd=1.62012, nu_d=49.5; production supplier unspecified)",
+      role: "Positive rear component of G3; K-SSK9 supplies a qualified spectral proxy, not a production identity.",
     },
     {
       id: 10,
@@ -377,18 +378,15 @@ const LENS_DATA = {
   zoomLabels: ["Wide", "Tele"],
 
   groups: [
-    { text: "G1", fromSurface: "1", toSurface: "6" },
-    { text: "G2", fromSurface: "8", toSurface: "12" },
-    { text: "G3", fromSurface: "13", toSurface: "18" },
-    { text: "G4", fromSurface: "20", toSurface: "21" },
-    { text: "G5", fromSurface: "22", toSurface: "29" },
-    { text: "G6", fromSurface: "30", toSurface: "33" },
+    { text: "L1", fromSurface: "1", toSurface: "6" },
+    { text: "L2 IS", fromSurface: "8", toSurface: "12" },
+    { text: "L3", fromSurface: "13", toSurface: "18" },
+    { text: "L4", fromSurface: "20", toSurface: "21" },
+    { text: "L5", fromSurface: "22", toSurface: "29" },
+    { text: "L6", fromSurface: "30", toSurface: "33" },
   ],
 
-  doublets: [
-    { text: "D1", fromSurface: "10", toSurface: "12" },
-    { text: "T1", fromSurface: "30", toSurface: "33" },
-  ],
+  doublets: [],
 
   closeFocusM: 1.8,
   focusDescription:
