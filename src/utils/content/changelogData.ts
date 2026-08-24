@@ -19,6 +19,11 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-08-24",
+    type: "lens",
+    summary: "Added six Canon EF patent-derived lens designs spanning 35-500mm",
+  },
+  {
     date: "2026-08-23",
     type: "lens",
     summary: "Added six Canon RF/RF-S and three Minolta AF patent-derived lens designs",
