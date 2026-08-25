@@ -299,11 +299,21 @@ describe("glass catalog", () => {
     expect(evaluateSellmeier(lasf02!, LINE_NM.e)).toBeCloseTo(1.804034, 6);
   });
 
+  it("reproduces the official CDGM H-ZLaF50E line-index table", () => {
+    const glass = resolveGlass("H-ZLaF50E");
+    expect(glass?.vendor).toBe("CDGM");
+    expect(evaluateSellmeier(glass!, LINE_NM.C)).toBeCloseTo(1.798821, 6);
+    expect(evaluateSellmeier(glass!, LINE_NM.d)).toBeCloseTo(1.804, 6);
+    expect(evaluateSellmeier(glass!, LINE_NM.F)).toBeCloseTo(1.816084, 6);
+    expect(evaluateSellmeier(glass!, LINE_NM.g)).toBeCloseTo(1.825709, 6);
+  });
+
   it("resolves CDGM names regardless of the annotation's casing", () => {
     // Canonical names use the vendor's mixed case (H-ZLaF50D); lens annotations
     // authored in all caps must keep resolving to the same entry.
     for (const [annotated, canonical] of [
       ["H-ZLAF50D", "H-ZLaF50D"],
+      ["H-ZLAF50E", "H-ZLaF50E"],
       ["H-LAK12", "H-LaK12"],
       ["D-ZLAF81-25", "D-ZLaF81-25"],
     ] as const) {

@@ -19,6 +19,21 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-08-25",
+    type: "improvement",
+    summary: "Improved Canon zoom diagrams and added a verified CDGM glass curve",
+  },
+  {
+    date: "2026-08-25",
+    type: "improvement",
+    summary: "Added an extender-in view for the Canon EF 200-400mm f/4 L IS USM",
+  },
+  {
+    date: "2026-08-25",
+    type: "lens",
+    summary: "Added five Canon EF, EF-S, and EF-M patent-derived zoom lens designs",
+  },
+  {
     date: "2026-08-24",
     type: "lens",
     summary: "Added six Canon EF patent-derived lens designs spanning 35-500mm",

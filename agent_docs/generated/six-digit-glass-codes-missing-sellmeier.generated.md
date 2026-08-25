@@ -9,12 +9,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **631** lenses scanned
-- **1117** total code-only elements found
-- **218** elements in this report
-- **84** distinct lens files affected
+- **637** lenses scanned
+- **1211** total code-only elements found
+- **219** elements in this report
+- **85** distinct lens files affected
 - **1** active unreviewed elements have no review-record hit or explicit disposition
-- **94** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
+- **95** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
 - **0** dispositions lack any review record
 
 ## Prioritized Unreviewed Queue
@@ -76,6 +76,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 523701 | 1 | 1 | patents/US20100194930A1.pdf | All rows explicitly disposed |
 | 525558 | 1 | 1 | patents/US8994842.pdf | All rows explicitly disposed |
 | 525563 | 1 | 1 | patents/US7307794.pdf | All rows explicitly disposed |
+| 530558 | 1 | 1 | patents/US20130335830A1.pdf | All rows explicitly disposed |
 | 531557 | 1 | 1 | patents/US8994842.pdf | All rows explicitly disposed |
 | 534554 | 1 | 1 | patents/US3737214.pdf | All rows have review records |
 | 534555 | 1 | 1 | patents/US4110006.pdf | All rows explicitly disposed |
@@ -209,6 +210,12 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L3 (Element 3) | 4 | `Unmatched (540/509 crown-flint-boundary glass; no public catalog match located)` | 1.54041 / 50.90 | No catalog entry | abbe | patents/GB_775944_A.pdf | Explicit disposition in data |
+
+### [CANON EF-M 18-55mm f/3.5-5.6 IS STM](../../src/lens-data/canon/CanonEFM1855mmf3556ISSTM.data.ts) - US 2013/0335830 A1
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| LRc1 (Element 12) | 22 | `Unmatched (nd=1.52996, nu_d=55.8; code 530558)` | 1.52996 / 55.80 | No catalog entry | abbe | patents/US20130335830A1.pdf | Explicit disposition in data |
 
 ### [CANON EF-M 32mm f/1.4 STM](../../src/lens-data/canon/CanonEFM32mmf14STM.data.ts) - JP 2018-180366 A
 
