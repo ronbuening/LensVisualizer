@@ -12,17 +12,17 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **636** lenses scanned
-- **7244** glass elements examined
-- **2116** elements have multiple coordinate-compatible candidates
-- **420** lens files are affected
+- **637** lenses scanned
+- **7276** glass elements examined
+- **2140** elements have multiple coordinate-compatible candidates
+- **421** lens files are affected
 - **208** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **194** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
-| Smallest reference-index residual | 1157 |
-| Evidence-source priority | 679 |
+| Smallest reference-index residual | 1180 |
+| Evidence-source priority | 680 |
 | Vendor context | 276 |
 | Stable canonical-name order | 4 |
 
@@ -53,16 +53,17 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `S-LAL14 / N-LAK14 class` | 1.69680 / 55.50 (d) | N-LAK14 — smallest d-line \|Δn\| (2.4e-8 vs 3.1e-6) | S-LAL14 (Ohara, name) | 2 | [CANON EF 20-35mm f/2.8 L](../../src/lens-data/canon/CanonEF2035mmf28L.data.ts) L9 |
 | `SF6 / S-TIH6 class` | 1.80518 / 25.40 (d) | S-TIH6 — smallest d-line \|Δn\| (7.1e-7 vs 2.1e-6) | SF6 (Schott, name) | 1 | [CANON EF 20-35mm f/2.8 L](../../src/lens-data/canon/CanonEF2035mmf28L.data.ts) L10 |
 | `S-BSL7 (OHARA) / BK7-class crown` | 1.51633 / 64.10 (d) | S-BSL7 — direct name evidence outranks alias evidence. | N-BK7 (Schott, alias, vendor ✗) | 1 | [CANON EF 20-35mm f/2.8 L](../../src/lens-data/canon/CanonEF2035mmf28L.data.ts) L11 |
-| `806333 dense-flint/lanthanum class (vendor unspecified)` | 1.80610 / 33.30 (d) | J-LASFH6 — smallest d-line \|Δn\| (2.6e-8 vs 6.1e-7) | NBFD15 (Hoya, code, preferred code row) | 3 | [CANON EF 200-400mm f/4 L IS USM EXTENDER 1.4×](../../src/lens-data/canon/CanonEF200400mmf4LISUSMExtender14x.data.ts) E2 |
-| `497816 ED/UD crown class (vendor unspecified)` | 1.49700 / 81.50 (d) | H-FK61 — smallest d-line \|Δn\| (1.1e-8 vs 1.6e-7) | FCD1 (Hoya, code, alternate code row)<br>S-FPL51 (Ohara, code, preferred code row) | 4 | [CANON EF 200-400mm f/4 L IS USM EXTENDER 1.4×](../../src/lens-data/canon/CanonEF200400mmf4LISUSMExtender14x.data.ts) E4 |
-| `904313 high-index lanthanum-flint class (vendor unspecified)` | 1.90366 / 31.30 (d) | J-LASFH13 — smallest d-line \|Δn\| (3.1e-8 vs 1.0e-7) | N-LASF46B (Schott, code, alternate code row)<br>S-LAH95 (Ohara, code, preferred code row)<br>TAFD25 (Hoya, code, alternate code row) | 3 | [CANON EF 200-400mm f/4 L IS USM EXTENDER 1.4×](../../src/lens-data/canon/CanonEF200400mmf4LISUSMExtender14x.data.ts) E5 |
-| `697555 lanthanum-crown class (vendor unspecified)` | 1.69680 / 55.50 (d) | J-LAK14 — smallest d-line \|Δn\| (1.3e-8 vs 2.3e-6) | LAC14 (Hoya, code, alternate code row)<br>S-LAL14 (Ohara, code, preferred code row) | 2 | [CANON EF 200-400mm f/4 L IS USM EXTENDER 1.4×](../../src/lens-data/canon/CanonEF200400mmf4LISUSMExtender14x.data.ts) E6 |
-| `835427 high-index lanthanum class (vendor unspecified)` | 1.83481 / 42.70 (d) | S-LAH55 — smallest d-line \|Δn\| (2.9e-6 vs 3.0e-6) | TAFD5G (Hoya, code, alternate code row)<br>TAFD5F (Hoya, code, alternate code row) | 2 | [CANON EF 200-400mm f/4 L IS USM EXTENDER 1.4×](../../src/lens-data/canon/CanonEF200400mmf4LISUSMExtender14x.data.ts) E9 |
-| `593686 low-dispersion class (vendor unspecified)` | 1.59282 / 68.60 (d) | FCD515 — smallest d-line \|Δn\| (4.3e-6 vs 6.8e-6) | FCD505 (Hoya, code, preferred code row) | 1 | [CANON EF 200-400mm f/4 L IS USM EXTENDER 1.4×](../../src/lens-data/canon/CanonEF200400mmf4LISUSMExtender14x.data.ts) E16 |
-| `516/517642 BK7-coordinate crown class (vendor unspecified)` | 1.51633 / 64.10 (d) | N-BK7 — alias evidence outranks six-digit code evidence. | H-K9L (CDGM, code, alternate code row)<br>H-K9LGT (CDGM, code, alternate code row) | 1 | [CANON EF 200-400mm f/4 L IS USM EXTENDER 1.4×](../../src/lens-data/canon/CanonEF200400mmf4LISUSMExtender14x.data.ts) E18 |
-| `652585 lanthanum-crown class (vendor unspecified)` | 1.65160 / 58.50 (d) | N-LAK7 — smallest d-line \|Δn\| (3.6e-7 vs 3.1e-6) | S-LAL7 (Ohara, code, preferred code row) | 1 | [CANON EF 200-400mm f/4 L IS USM EXTENDER 1.4×](../../src/lens-data/canon/CanonEF200400mmf4LISUSMExtender14x.data.ts) E19 |
-| `575415 light-flint class (vendor unspecified)` | 1.57501 / 41.50 (d) | J-LF7 — smallest d-line \|Δn\| (1.4e-8 vs 4.1e-6) | S-TIL27 (Ohara, code, preferred code row) | 1 | [CANON EF 200-400mm f/4 L IS USM EXTENDER 1.4×](../../src/lens-data/canon/CanonEF200400mmf4LISUSMExtender14x.data.ts) E23 |
-| `883408 high-index lanthanum class (vendor unspecified)` | 1.88300 / 40.80 (d) | S-LAH58 — smallest d-line \|Δn\| (3.0e-6 vs 3.9e-6) | TAFD30 (Hoya, code, alternate code row) | 1 | [CANON EF 200-400mm f/4 L IS USM EXTENDER 1.4×](../../src/lens-data/canon/CanonEF200400mmf4LISUSMExtender14x.data.ts) E24 |
+| `806333 dense-flint/lanthanum class (vendor unspecified)` | 1.80610 / 33.30 (d) | J-LASFH6 — smallest d-line \|Δn\| (2.6e-8 vs 6.1e-7) | NBFD15 (Hoya, code, preferred code row) | 6 | [CANON EF 200-400mm f/4 L IS USM EXTENDER 1.4×](../../src/lens-data/canon/CanonEF200400mmf4LISUSMExtender14x.data.ts) E2 +1 files |
+| `497816 ED/UD crown class (vendor unspecified)` | 1.49700 / 81.50 (d) | H-FK61 — smallest d-line \|Δn\| (1.1e-8 vs 1.6e-7) | FCD1 (Hoya, code, alternate code row)<br>S-FPL51 (Ohara, code, preferred code row) | 8 | [CANON EF 200-400mm f/4 L IS USM EXTENDER 1.4×](../../src/lens-data/canon/CanonEF200400mmf4LISUSMExtender14x.data.ts) E4 +1 files |
+| `904313 high-index lanthanum-flint class (vendor unspecified)` | 1.90366 / 31.30 (d) | J-LASFH13 — smallest d-line \|Δn\| (3.1e-8 vs 1.0e-7) | N-LASF46B (Schott, code, alternate code row)<br>S-LAH95 (Ohara, code, preferred code row)<br>TAFD25 (Hoya, code, alternate code row) | 7 | [CANON EF 200-400mm f/4 L IS USM EXTENDER 1.4×](../../src/lens-data/canon/CanonEF200400mmf4LISUSMExtender14x.data.ts) E5 +1 files |
+| `697555 lanthanum-crown class (vendor unspecified)` | 1.69680 / 55.50 (d) | J-LAK14 — smallest d-line \|Δn\| (1.3e-8 vs 2.3e-6) | LAC14 (Hoya, code, alternate code row)<br>S-LAL14 (Ohara, code, preferred code row) | 4 | [CANON EF 200-400mm f/4 L IS USM EXTENDER 1.4×](../../src/lens-data/canon/CanonEF200400mmf4LISUSMExtender14x.data.ts) E6 +1 files |
+| `835427 high-index lanthanum class (vendor unspecified)` | 1.83481 / 42.70 (d) | S-LAH55 — smallest d-line \|Δn\| (2.9e-6 vs 3.0e-6) | TAFD5G (Hoya, code, alternate code row)<br>TAFD5F (Hoya, code, alternate code row) | 4 | [CANON EF 200-400mm f/4 L IS USM EXTENDER 1.4×](../../src/lens-data/canon/CanonEF200400mmf4LISUSMExtender14x.data.ts) E9 +1 files |
+| `593686 low-dispersion class (vendor unspecified)` | 1.59282 / 68.60 (d) | FCD515 — smallest d-line \|Δn\| (4.3e-6 vs 6.8e-6) | FCD505 (Hoya, code, preferred code row) | 3 | [CANON EF 200-400mm f/4 L IS USM EXTENDER 1.4×](../../src/lens-data/canon/CanonEF200400mmf4LISUSMExtender14x.data.ts) E16 +1 files |
+| `516/517642 BK7-coordinate crown class (vendor unspecified)` | 1.51633 / 64.10 (d) | N-BK7 — alias evidence outranks six-digit code evidence. | H-K9L (CDGM, code, alternate code row)<br>H-K9LGT (CDGM, code, alternate code row) | 2 | [CANON EF 200-400mm f/4 L IS USM EXTENDER 1.4×](../../src/lens-data/canon/CanonEF200400mmf4LISUSMExtender14x.data.ts) E18 +1 files |
+| `652585 lanthanum-crown class (vendor unspecified)` | 1.65160 / 58.50 (d) | N-LAK7 — smallest d-line \|Δn\| (3.6e-7 vs 3.1e-6) | S-LAL7 (Ohara, code, preferred code row) | 2 | [CANON EF 200-400mm f/4 L IS USM EXTENDER 1.4×](../../src/lens-data/canon/CanonEF200400mmf4LISUSMExtender14x.data.ts) E19 +1 files |
+| `575415 light-flint class (vendor unspecified)` | 1.57501 / 41.50 (d) | J-LF7 — smallest d-line \|Δn\| (1.4e-8 vs 4.1e-6) | S-TIL27 (Ohara, code, preferred code row) | 2 | [CANON EF 200-400mm f/4 L IS USM EXTENDER 1.4×](../../src/lens-data/canon/CanonEF200400mmf4LISUSMExtender14x.data.ts) E23 +1 files |
+| `883408 high-index lanthanum class (vendor unspecified)` | 1.88300 / 40.80 (d) | S-LAH58 — smallest d-line \|Δn\| (3.0e-6 vs 3.9e-6) | TAFD30 (Hoya, code, alternate code row) | 4 | [CANON EF 200-400mm f/4 L IS USM EXTENDER 1.4×](../../src/lens-data/canon/CanonEF200400mmf4LISUSMExtender14x.data.ts) E24 +1 files |
+| `603380 flint class (vendor unspecified)` | 1.60342 / 38.00 (d) | J-F5 — smallest d-line \|Δn\| (1.6e-8 vs 1.3e-7) | E-F5 (Hoya, code, alternate code row)<br>F5 (Schott, code, preferred code row) | 1 | [CANON EF 200-400mm f/4 L IS USM EXTENDER 1.4× — EXT IN](../../src/lens-data/canon/CanonEF200400mmf4LISUSMExtender14xExtenderIn.data.ts) E24 |
 | `S-FPL51 (OHARA; 497816 class, supplier inferred)` | 1.49700 / 81.60 (d) | S-FPL51 — direct name evidence outranks six-digit code evidence. | H-FK61 (CDGM, code, vendor ✗, alternate code row)<br>FCD1 (Hoya, code, vendor ✗, alternate code row) | 3 | [CANON EF 200mm f/1.8 L USM](../../src/lens-data/canon/CanonEF200mmf18L.data.ts) L1 |
 | `BPH5 (historical OHARA; exact 654397 spectral match, supplier inferred)` | 1.65412 / 39.70 (d) | BPH5 — direct name evidence outranks six-digit code evidence. | S-NBH5 (Ohara, code, vendor ✓, preferred code row)<br>N-KZFS5 (Schott, code, vendor ✗, alternate code row) | 2 | [CANON EF 200mm f/1.8 L USM](../../src/lens-data/canon/CanonEF200mmf18L.data.ts) L3 |
 | `S-LAL14 (OHARA; exact 697555 coordinate, supplier inferred)` | 1.69680 / 55.50 (d) | S-LAL14 — direct name evidence outranks six-digit code evidence. | J-LAK14 (Hikari, code, vendor ✗, alternate code row)<br>LAC14 (Hoya, code, vendor ✗, alternate code row) | 1 | [CANON EF 200mm f/1.8 L USM](../../src/lens-data/canon/CanonEF200mmf18L.data.ts) L5 |

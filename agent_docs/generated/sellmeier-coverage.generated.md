@@ -11,17 +11,17 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **636** lenses scanned
+- **637** lenses scanned
 - **626** visible lenses scanned
-- **418** lenses fully covered by trusted chromatic data
+- **419** lenses fully covered by trusted chromatic data
 - **417** visible lenses fully covered by trusted chromatic data
-- **412** lenses fully covered by strict Sellmeier data
+- **413** lenses fully covered by strict Sellmeier data
 - **411** visible lenses fully covered by strict Sellmeier data
 - **6** lenses fully covered only after measured line-index data
 - **6** visible lenses fully covered only after measured line-index data
-- **6722 / 7252** non-air surfaces use strict catalog Sellmeier data
+- **6754 / 7284** non-air surfaces use strict catalog Sellmeier data
 - **92.7%** strict Sellmeier surface coverage overall
-- **6738 / 7252** non-air surfaces use trusted chromatic data
+- **6770 / 7284** non-air surfaces use trusted chromatic data
 - **92.9%** trusted chromatic coverage overall
 - **37 / 75** native e-line surfaces use name-verified catalog Sellmeier data
 
@@ -74,6 +74,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 
 | Lens | Elements Sellmeier | Non-air surfaces | Strict Sellmeier surfaces |
 |---|---:|---:|---:|
+| [CANON EF 200-400mm f/4 L IS USM EXTENDER 1.4× — EXT IN](../../src/lens-data/canon/CanonEF200400mmf4LISUSMExtender14xExtenderIn.data.ts) *(hidden)* | 32/32 | 32 | 32/32 |
 | [LAOWA 24mm f/14 2× Macro Probe](../../src/lens-data/laowa/Laowa24mmf14Probe.data.ts) | 27/27 | 27 | 27/27 |
 | [NIKON AF-S NIKKOR 120-300mm f/2.8 E FL ED SR VR](../../src/lens-data/nikon/NikonNikkorAFS120300mmf28.data.ts) | 25/25 | 25 | 25/25 |
 | [CANON EF 200-400mm f/4 L IS USM EXTENDER 1.4×](../../src/lens-data/canon/CanonEF200400mmf4LISUSMExtender14x.data.ts) | 24/24 | 24 | 24/24 |
