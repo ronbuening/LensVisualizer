@@ -9,13 +9,13 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **631** lenses scanned (**621** visible)
-- **6647 / 7174** non-air surfaces use strict catalog Sellmeier data (92.7%)
-- **6661 / 7174** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 92.8%)
+- **636** lenses scanned (**626** visible)
+- **6722 / 7252** non-air surfaces use strict catalog Sellmeier data (92.7%)
+- **6738 / 7252** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 92.9%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
-- **218** code-only missing-Sellmeier elements in Sweep 2: **1** active unreviewed, **94** self-recording explicit dispositions, **0** dispositions missing any review record
-- **0** unresolved named-token elements in Sweep 2B, producing **0** token occurrences across **0** distinct tokens
+- **219** code-only missing-Sellmeier elements in Sweep 2: **1** active unreviewed, **95** self-recording explicit dispositions, **0** dispositions missing any review record
+- **1** unresolved named-token elements in Sweep 2B, producing **1** token occurrences across **1** distinct tokens
 - **0** Tier A proprietary backfill rows in Sweep 3
 
 ## Sweep 1 - Relabel Mismatches
@@ -45,6 +45,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [FUJIFILM FUJINON GF 55mm f/1.7 R WR](../../src/lens-data/fujifilm/FujifilmGF55mmf17.data.ts) | US 2023/0341664 A1 | [PDF](../../patents/US20230341664A1.pdf) | 92.9% (13/14) | 92.9% (13/14) | 1 | 11A [glass] (L24: `772493 — molded lanthanum-crown class (no exact public catalog match)`) | abbe: 1 |
 | [NIKON AF-P DX NIKKOR 70-300mm f/4.5-6.3 G ED VR](../../src/lens-data/nikon/NikonAFPDX70300mmf4563G.data.ts) | US 2021/0026133 A1 | [PDF](../../patents/US20210026133A1.pdf) | 92.9% (13/14) | 92.9% (13/14) | 1 | 3 [glass] (L12: `612313 — anomalous-dispersion flint class (patent nd=1.61155, νd=31.26, θgF=0.618; no exact public catalog match)`) | abbe: 1 |
 | [NIKON AF-S NIKKOR 105mm f/1.4 E ED](../../src/lens-data/nikon/NikonNikkor105f14E.data.ts) | WO 2019/116563 A1 | [PDF](../../patents/JPWO2019116563A1.pdf) | 92.9% (13/14) | 92.9% (13/14) | 1 | 8 [glass] (Element 5: `Specialty APD glass (Nikon)`) | abbe: 1 |
+| [CANON EF-M 18-55mm f/3.5-5.6 IS STM](../../src/lens-data/canon/CanonEFM1855mmf3556ISSTM.data.ts) | US 2013/0335830 A1 | [PDF](../../patents/US20130335830A1.pdf) | 92.3% (12/13) | 92.3% (12/13) | 1 | 22 [glass] (Element 12: `Unmatched (nd=1.52996, nu_d=55.8; code 530558)`) | abbe: 1 |
 | [CANON RF 24-105mm f/4-7.1 IS STM](../../src/lens-data/canon/CanonRF24105mmf471ISSTM.data.ts) | US 2021/0003831 A1 | [PDF](../../patents/US20210003831A1.pdf) | 92.3% (12/13) | 92.3% (12/13) | 1 | 22A [glass] (Element 12 / B5: `Unmatched (1.53110/55.9; no exact public catalog match)`) | abbe: 1 |
 | [NIKON AI ZOOM-NIKKOR 80-200mm f/4](../../src/lens-data/nikon/NikonAINikkor80200mmf4.data.ts) | US 4,452,513 | [PDF](../../patents/US4452513.pdf) | 92.3% (12/13) | 92.3% (12/13) | 1 | 19 [glass] (G4 rear negative: `797455 — dense lanthanum glass class (catalog unresolved)`) | abbe: 1 |
 | [SONY FE 24mm f/1.4 GM](../../src/lens-data/sony/SonyFE24mmf14GM.data.ts) | WO 2019/073744 A1 | [PDF](../../patents/JPWO2019073744A1.pdf) | 92.3% (12/13) | 92.3% (12/13) | 1 | 1A [glass] (L11 front XA element: `Unmatched (MC-TAF115-class; Hoya source nominal/polynomial conflict; patent nd=1.77002, νd=49.4)`) | abbe: 1 |
@@ -170,6 +171,7 @@ These unresolved catalog-style labels are often better first catalog targets tha
 
 | Token | Token occurrences | Lens files | localPatentStatus | Representative rows |
 |---|---:|---:|---|---|
+| H-ZLAF50E | 1 | 1 | patents/US20080112063A1.pdf | [CANON EF-S 55-250mm f/4-5.6 IS](../../src/lens-data/canon/CanonEFS55250mmf456IS.data.ts) L2 Element 3 (1.80400 / 46.57; lineIndices) |
 
 ## Sweep 3 - Proprietary Line-Index Backfill
 
