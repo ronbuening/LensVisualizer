@@ -21,6 +21,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-08-25",
     type: "improvement",
+    summary: "Improved Canon zoom diagrams and added a verified CDGM glass curve",
+  },
+  {
+    date: "2026-08-25",
+    type: "improvement",
     summary: "Added an extender-in view for the Canon EF 200-400mm f/4 L IS USM",
   },
   {

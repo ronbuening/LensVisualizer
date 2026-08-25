@@ -116,6 +116,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L4",
+      diagramLabel: "LS",
       label: "Element 4 / LS",
       type: "Positive Meniscus",
       nd: 1.6968,
@@ -327,7 +328,7 @@ const LENS_DATA = {
   groups: [
     { text: "U1 (-)", fromSurface: "1A", toSurface: "6" },
     { text: "U2 (+)", fromSurface: "7", toSurface: "17A" },
-    { text: "U3 FOCUS (-)", fromSurface: "18", toSurface: "19" },
+    { text: "U3 (- / FOCUS)", fromSurface: "18", toSurface: "19" },
     { text: "U4 (+)", fromSurface: "20", toSurface: "22" },
   ],
   doublets: [

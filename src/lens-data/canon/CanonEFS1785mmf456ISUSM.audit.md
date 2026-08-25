@@ -23,3 +23,10 @@ Patent: US 2006/0023317 A1, Numerical Embodiment 1, Figure 1
 - `npm run audit:surface -- src/lens-data/canon/CanonEFS1785mmf456ISUSM.data.ts` — passed.
 - `npm run audit:image-circle -- src/lens-data/canon/CanonEFS1785mmf456ISUSM.data.ts` — passed with 0 undersized surfaces.
 - `npm run generate:glass-reports` — passed; strict and trusted coverage are 17/17.
+
+## 2026-08-25 — Screenshot and movement follow-up
+
+- Rechecked Figure 1 at 600 dpi against the supplied site render. The current E5 correction remains source-faithful. The front rim's rectangular step is a mechanical blank rather than a larger optical aperture, and the movement arrows, group brackets, and G5b leader lines make the remaining automated overreads unsuitable for SD changes.
+- Retained all current SDs. The image-circle floor and surface validator pass, and the earlier attempted G5b enlargement still fails valid edge/rim geometry.
+- Confirmed wide-to-tele movement from the authored numerical gaps: L1, L3, L4, and L5 move objectward while L2 moves 1.086648 mm imageward. The constrained close-focus solution moves L2 objectward by 1.101222 mm at wide and 4.868005 mm at tele; this preserves the documented conflict with the patent prose instead of reversing the numerical solution.
+- Confirmed the existing group labels, display name, IS assignment to L4a, and 17/17 strict glass coverage.

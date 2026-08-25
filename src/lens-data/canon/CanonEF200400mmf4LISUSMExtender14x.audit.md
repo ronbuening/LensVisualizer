@@ -8,3 +8,10 @@
 - Retained the patent's published effective-diameter halves as SDs. Figure 3 is a schematic rather than an axially scaled section, so its automatic photogrammetry screen is not used to override the exact per-surface table.
 - Audited all eight inserted extender elements and the repeated shared glass coordinates. The complete 32-element prescription resolves at 32/32 strict Sellmeier coverage with zero catalog mismatches; no new catalog entry or tolerance change was justified.
 - Added a parity regression covering the 22 shared elements, surfaces through patent surface 40, the surface-41 insertion gap, the repeated L44 pair, and identical zoom motion.
+
+## 2026-08-25 — Six-lens diagram follow-up
+
+- Rechecked the supplied EXT OUT and EXT IN renders against Figures 1 and 3 at 600 dpi. Both figures are schematic and axially compressed; the Numerical Example 1 effective-diameter column remains the stronger source, so every published half-diameter is retained.
+- Added the source-backed unit powers and roles to both diagram configurations: positive focusing L1, negative L2, positive L3/L41/L43/L44, negative stabilizing L42, and positive EXTa/negative EXTb in the inserted state.
+- Verified identical wide-to-tele motion in both configurations. L2 moves 35.00 mm imageward and L3 moves 12.53 mm imageward; L1 and the fixed fourth-unit subgroups do not zoom. The patent publishes no finite-focus spacing, so the L1 focus role remains labeled without synthesizing focus travel.
+- Re-ran glass resolution after the catalog audit. EXT OUT remains 24/24 strict and EXT IN remains 32/32 strict, with zero coordinate mismatches.

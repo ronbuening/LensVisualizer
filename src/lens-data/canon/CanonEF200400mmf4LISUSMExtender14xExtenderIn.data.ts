@@ -937,15 +937,15 @@ const LENS_DATA = {
   zoomLabels: ["Wide", "Tele"],
 
   groups: [
-    { text: "L1", fromSurface: "1", toSurface: "8" },
-    { text: "L2", fromSurface: "9", toSurface: "18" },
-    { text: "L3", fromSurface: "19", toSurface: "25" },
-    { text: "L41", fromSurface: "26", toSurface: "STO" },
-    { text: "L42 / IS", fromSurface: "31", toSurface: "35" },
-    { text: "L43", fromSurface: "36", toSurface: "41" },
-    { text: "EXTa", fromSurface: "42", toSurface: "46" },
-    { text: "EXTb", fromSurface: "47", toSurface: "53" },
-    { text: "L44", fromSurface: "54", toSurface: "56" },
+    { text: "L1 (+ / FOCUS)", fromSurface: "1", toSurface: "8" },
+    { text: "L2 (-)", fromSurface: "9", toSurface: "18" },
+    { text: "L3 (+)", fromSurface: "19", toSurface: "25" },
+    { text: "L41 (+)", fromSurface: "26", toSurface: "STO" },
+    { text: "L42 (- / IS)", fromSurface: "31", toSurface: "35" },
+    { text: "L43 (+)", fromSurface: "36", toSurface: "41" },
+    { text: "EXTa (+)", fromSurface: "42", toSurface: "46" },
+    { text: "EXTb (-)", fromSurface: "47", toSurface: "53" },
+    { text: "L44 (+)", fromSurface: "54", toSurface: "56" },
   ],
 
   doublets: [

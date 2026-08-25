@@ -261,6 +261,7 @@ const GLASS_CATALOG_SOURCE_ORDER = [
   "H-QK3L",
   "H-ZF6",
   "H-ZLaF50D",
+  "H-ZLaF50E",
   "H-ZF4A",
   "H-FK71",
   "H-ZF13",

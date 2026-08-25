@@ -314,8 +314,8 @@ const LENS_DATA = {
   ],
 
   groups: [
-    { text: "L1 (+)", fromSurface: "1", toSurface: "5" },
-    { text: "L2 (− / IS)", fromSurface: "6", toSurface: "10" },
+    { text: "L1 (+ / FOCUS)", fromSurface: "1", toSurface: "5" },
+    { text: "L2 (- / IS)", fromSurface: "6", toSurface: "10" },
     { text: "L3 (+)", fromSurface: "11", toSurface: "23" },
   ],
 

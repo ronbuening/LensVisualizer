@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **637** lenses scanned
 - **7284** non-air surfaces examined
 - **7291** element glass declarations examined
-- **243** non-explicit-unmatched annotations did not resolve
-- **114** distinct unresolved glass-like tokens found
+- **242** non-explicit-unmatched annotations did not resolve
+- **113** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -123,7 +123,6 @@ or per-lens patent backfills.
 | D-ZLAF85 | 1 | 1 | |
 | EF3 | 1 | 1 | |
 | FPL51 | 1 | 1 | |
-| H-ZLAF50E | 1 | 1 | |
 | J-LAK9 | 1 | 1 | |
 | KF5 | 1 | 1 | |
 | KZF4 | 1 | 1 | |
@@ -592,10 +591,6 @@ or per-lens patent backfills.
 ### FPL51 — 1 occurrence
 
 - [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) 1: `FPL51 class (499/801, OHARA family)`
-
-### H-ZLAF50E — 1 occurrence
-
-- [CANON EF-S 55-250mm f/4-5.6 IS](../../src/lens-data/canon/CanonEFS55250mmf456IS.data.ts) 9: `H-ZLaF50E (CDGM-equivalent; exact patent coordinate match)`
 
 ### J-LAK9 — 1 occurrence
 

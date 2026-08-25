@@ -10,12 +10,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **637** lenses scanned (**626** visible)
-- **6754 / 7284** non-air surfaces use strict catalog Sellmeier data (92.7%)
+- **6755 / 7284** non-air surfaces use strict catalog Sellmeier data (92.7%)
 - **6770 / 7284** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 92.9%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **219** code-only missing-Sellmeier elements in Sweep 2: **1** active unreviewed, **95** self-recording explicit dispositions, **0** dispositions missing any review record
-- **1** unresolved named-token elements in Sweep 2B, producing **1** token occurrences across **1** distinct tokens
+- **0** unresolved named-token elements in Sweep 2B, producing **0** token occurrences across **0** distinct tokens
 - **0** Tier A proprietary backfill rows in Sweep 3
 
 ## Sweep 1 - Relabel Mismatches
@@ -171,7 +171,6 @@ These unresolved catalog-style labels are often better first catalog targets tha
 
 | Token | Token occurrences | Lens files | localPatentStatus | Representative rows |
 |---|---:|---:|---|---|
-| H-ZLAF50E | 1 | 1 | patents/US20080112063A1.pdf | [CANON EF-S 55-250mm f/4-5.6 IS](../../src/lens-data/canon/CanonEFS55250mmf456IS.data.ts) L2 Element 3 (1.80400 / 46.57; lineIndices) |
 
 ## Sweep 3 - Proprietary Line-Index Backfill
 

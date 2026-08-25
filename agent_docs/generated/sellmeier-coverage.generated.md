@@ -19,7 +19,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 - **411** visible lenses fully covered by strict Sellmeier data
 - **6** lenses fully covered only after measured line-index data
 - **6** visible lenses fully covered only after measured line-index data
-- **6754 / 7284** non-air surfaces use strict catalog Sellmeier data
+- **6755 / 7284** non-air surfaces use strict catalog Sellmeier data
 - **92.7%** strict Sellmeier surface coverage overall
 - **6770 / 7284** non-air surfaces use trusted chromatic data
 - **92.9%** trusted chromatic coverage overall
@@ -497,8 +497,8 @@ These lenses are complete for chromatic tracing but not strict catalog-Sellmeier
 | [CANON EF-S 17-55mm f/2.8 IS USM](../../src/lens-data/canon/CanonEFS1755mmf28IS.data.ts) | 21/21 | 19/21 | 21 | 19/21 | 2 | Line indices |
 | [CANON EF 24-70mm f/2.8 L USM](../../src/lens-data/canon/CanonEF2470mmf28L.data.ts) | 16/16 | 13/16 | 16 | 13/16 | 3 | Line indices |
 | [TAMRON SP 90mm f/2.8 Di MACRO 1:1 VC USD (F004)](../../src/lens-data/tamron/TamronSP90mmf28Di.data.ts) | 14/14 | 12/14 | 14 | 12/14 | 2 | Line indices |
+| [CANON EF-S 55-250mm f/4-5.6 IS](../../src/lens-data/canon/CanonEFS55250mmf456IS.data.ts) | 12/12 | 11/12 | 12 | 11/12 | 1 | Line indices |
 | [VOIGTLÄNDER APO-LANTHAR 28mm f/2 Aspherical VM](../../src/lens-data/voigtlander/VoigtlanderAPOLanthar28mmf2Aspherical.data.ts) | 12/12 | 11/12 | 12 | 11/12 | 1 | Line indices |
-| [CANON EF-S 55-250mm f/4-5.6 IS](../../src/lens-data/canon/CanonEFS55250mmf456IS.data.ts) | 12/12 | 10/12 | 12 | 10/12 | 2 | Line indices |
 | [PANASONIC LUMIX G 25mm f/1.7 ASPH.](../../src/lens-data/panasonic/PanasonicLumixG25mmf17.data.ts) | 8/8 | 6/8 | 8 | 6/8 | 2 | Line indices |
 
 ## Incomplete Lenses by Completeness

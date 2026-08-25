@@ -8,7 +8,14 @@ catalog equivalent. If neither path is available, the engine falls back to parti
 dPgF-corrected indices, or the legacy Abbe approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **532 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **533 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+
+The August 25, 2026 Canon zoom screenshot follow-up added CDGM H-ZLaF50E from the manufacturer's official datasheet,
+including its published dispersion-formula constants and independent C/d/F/g line-index pins. The exact name now resolves
+the original EF-S 55-250mm's L23 instead of relying only on its already-authored measured lines, raising that lens from
+10/12 to 11/12 strict Sellmeier coverage while retaining 12/12 trusted coverage. Global strict coverage rises to
+6755/7284 surfaces; trusted coverage remains 6770/7284, and catalog-coordinate mismatches remain at zero. The unrelated
+EF-M 18-55mm `530558` coordinate remains unresolved because no current catalog entry falls within the coordinate guard.
 
 The August 21, 2026 Canon EF 600mm screenshot follow-up reconstructed all 16 III-generation `dPgF` values from
 Numerical Data 4's published `θgF` rows. Existing HOYA FCD100 now supplies a qualified curve for the 437951 Super-UD-

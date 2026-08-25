@@ -177,6 +177,18 @@ export const CDGM_GLASS_ENTRIES: readonly GlassEntry[] = [
     source: "CDGM Zemax catalog 2022-06 via refractiveindex.info; H-ZLAF50D page.",
   },
   {
+    name: "H-ZLaF50E",
+    vendor: "CDGM",
+    B: [1.22239213, 0.952859931, 1.37994067],
+    C: [0.00445444481, 0.0229973985, 99.1991267],
+    nd: 1.804,
+    vd: 46.57,
+    PgF: 0.5576,
+    code6: "804466",
+    source:
+      "CDGM H-ZLaF50E official datasheet (https://www.cdgmgd.com/webapp/pdf/H-ZLaF50E.pdf); dispersion formula constants and line indices.",
+  },
+  {
     name: "H-ZF4A",
     vendor: "CDGM",
     B: [1.67238093, 1.34134437, 0.204305471],
