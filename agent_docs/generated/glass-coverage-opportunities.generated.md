@@ -9,9 +9,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **637** lenses scanned (**626** visible)
-- **6755 / 7284** non-air surfaces use strict catalog Sellmeier data (92.7%)
-- **6770 / 7284** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 92.9%)
+- **644** lenses scanned (**633** visible)
+- **6845 / 7375** non-air surfaces use strict catalog Sellmeier data (92.8%)
+- **6860 / 7375** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.0%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **219** code-only missing-Sellmeier elements in Sweep 2: **1** active unreviewed, **95** self-recording explicit dispositions, **0** dispositions missing any review record
@@ -117,6 +117,7 @@ These rows contain resin, cement, plastic, liquid, or unclassified optical media
 | [NIKON AF-S NIKKOR 28mm f/1.4 E ED](../../src/lens-data/nikon/NikonAFS28f14E.data.ts) | JP 2017-227799 A | [PDF](../../patents/JP2017227799A.pdf) | 93.3% (14/15) | 93.3% (14/15) | 1 | 4 [resin] (Element 2 (resin): `UV-curing resin (composite)`) | abbe: 1 |
 | [NIKON NIKKOR Z 20mm f/1.8 S](../../src/lens-data/nikon/NikonNikkorZ20mmf18S.data.ts) | WO 2021/117429 A1 | [PDF](../../patents/WO2021117429A1.pdf) | 93.3% (14/15) | 93.3% (14/15) | 1 | 4 [resin] (L12 resin layer: `Unmatched (hybrid resin layer; patent nd=1.51380, νd=52.97)`) | abbe: 1 |
 | [OLYMPUS ZUIKO DIGITAL ED 12-60mm f/2.8-4.0 SWD](../../src/lens-data/olympus/OlympusMZuiko1260mmf284ED.data.ts) | US 7,583,450 B2 | [PDF](../../patents/US7583450.pdf) | 93.3% (14/15) | 93.3% (14/15) | 1 | 6A [resin] (Element 4 resin layer: `Unmatched (UV-cured hybrid asphere resin; patent nd=1.51940)`) | abbe: 1 |
+| [CANON EF 100-300mm f/4.5-5.6 USM](../../src/lens-data/canon/CanonEF100300mmf4556USM.data.ts) | US 7,158,320 B2 | [PDF](../../patents/US7158320.pdf) | 92.9% (13/14) | 92.9% (13/14) | 1 | 2 [cement] (ITO adhesive layer: `Unmatched (patent-defined 15% ITO/polyvinylcarbazole adhesive composite)`) | abbe: 1 |
 | [CANON EF-S 10-18mm f/4.5-5.6 IS STM](../../src/lens-data/canon/CanonEFS1018mmf4.data.ts) | JP 2015-031869 A | [PDF](../../patents/JP2015031869A.pdf) | 92.9% (13/14) | 92.9% (13/14) | 1 | 3 [plastic] (Element 2: `PMo optical plastic (cyclo-olefin polymer)`) | abbe: 1 |
 | [CANON RF 85mm f/1.2 L USM](../../src/lens-data/canon/CanonRF85mmf12L.data.ts) | US 2020/0012073 A1 | [PDF](../../patents/US20200012073A1.pdf) | 92.9% (13/14) | 92.9% (13/14) | 1 | 15 [resin] (Element 9 (Lp2 / BR): `BR optics (Canon proprietary organic)`) | abbe: 1 |
 | [CANON RF 15-30mm f/4.5-6.3 IS STM](../../src/lens-data/canon/CanonRF1530mmf4563ISSTM.data.ts) |  | No patent number parsed from lens metadata | 92.3% (12/13) | 92.3% (12/13) | 1 | 22A [resin] (Element 12: `Unmatched (PMo optical-resin class; production-correlation inference)`) | abbe: 1 |
