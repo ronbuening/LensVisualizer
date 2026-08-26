@@ -26,6 +26,26 @@ describe("catalog search", () => {
     expect(exactSearchTarget("Carl Baur")).toMatch(/^\/authors\//);
     expect(exactSearchTarget("not in the catalog")).toBeNull();
   });
+
+  it("finds alternate marketed names on their canonical lens route", () => {
+    const match = searchCatalog("Rokinon AF 18mm f/2.8 FE").lenses.find(
+      (candidate) => candidate.key === "samyang-af-18mm-f28-fe",
+    );
+
+    expect(match).toMatchObject({
+      matchedName: "ROKINON AF 18mm f/2.8 FE",
+      matchKind: "alias",
+      relationshipLabel: "Alias of SAMYANG AF 18mm f/2.8 FE",
+    });
+    expect(exactSearchTarget("Rokinon AF 18mm f/2.8 FE")).toBe("/lens/samyang-af-18mm-f28-fe/");
+  });
+
+  it("finds contract manufacturers without treating their names as exact lens targets", () => {
+    expect(searchCatalog("Fujinon").lenses).toEqual(
+      expect.arrayContaining([expect.objectContaining({ key: "hasselblad-hc-80-f28", matchKind: "manufacturer" })]),
+    );
+    expect(exactSearchTarget("Fujinon")).toBeNull();
+  });
 });
 
 describe("author catalog", () => {

@@ -15,6 +15,7 @@ import type {
   ZoomPairResult,
 } from "../../../comparison/comparisonSliders.js";
 import type { Theme } from "../../../types/theme.js";
+import type { LensData } from "../../../types/optics.js";
 import type { DesktopView, LensAction, MobileView } from "../../../types/state.js";
 import type { Dispatch } from "react";
 
@@ -25,6 +26,7 @@ interface ViewerContentProps {
   lensKeyA: string;
   lensKeyB: string;
   diagramLensKey: string;
+  lens?: LensData;
   comparisonLenses: ComparisonLensesResult;
   focusPair: FocusPairResult | null;
   aperturePair: AperturePairResult | null;
@@ -62,6 +64,7 @@ export default function ViewerContent({
   lensKeyA,
   lensKeyB,
   diagramLensKey,
+  lens,
   comparisonLenses,
   focusPair,
   aperturePair,
@@ -134,6 +137,7 @@ export default function ViewerContent({
       showDesktopToggle={showDesktopToggle}
       mobileView={mobileView}
       lensKey={diagramLensKey}
+      lens={lens}
       markdown={markdown}
     />
   );

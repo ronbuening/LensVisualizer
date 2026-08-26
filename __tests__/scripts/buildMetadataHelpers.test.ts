@@ -347,7 +347,8 @@ describe("build metadata helpers", () => {
         {
           key: "lens-a",
           makerSlug: "nikon",
-          lensMountIds: ["nikon-z"],
+          makerSlugs: ["nikon", "tamron"],
+          lensMountIds: ["nikon-z", "sony-fe"],
           imageFormatId: "135-full-frame",
           freshness: { publishedOn: "2026-03-19", lastModified: "2026-03-25" },
         },
@@ -366,8 +367,8 @@ describe("build metadata helpers", () => {
           lastModified: "2026-03-24",
         },
       ],
-      makerSlugs: ["canon", "nikon"],
-      mountIds: ["canon-rf", "nikon-z"],
+      makerSlugs: ["canon", "nikon", "tamron"],
+      mountIds: ["canon-rf", "nikon-z", "sony-fe"],
       formatIds: ["135-full-frame"],
       authors: [{ name: "Author A", slug: "author-a", lensKeys: ["lens-a"], patentCount: 1 }],
       makerDetailsFreshness: { publishedOn: "2026-03-17", lastModified: "2026-03-26" },
@@ -407,7 +408,15 @@ describe("build metadata helpers", () => {
       publishedOn: "2026-03-17",
       lastModified: "2026-03-26",
     });
+    expect(routeFreshness["/makers/tamron"]).toEqual({
+      publishedOn: "2026-03-17",
+      lastModified: "2026-03-26",
+    });
     expect(routeFreshness["/mounts/nikon-z"]).toEqual({
+      publishedOn: "2026-03-19",
+      lastModified: "2026-03-25",
+    });
+    expect(routeFreshness["/mounts/sony-fe"]).toEqual({
       publishedOn: "2026-03-19",
       lastModified: "2026-03-25",
     });

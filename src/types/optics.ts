@@ -278,11 +278,46 @@ export interface OpticalConfigurationData {
   order: number;
 }
 
+/** Public source supporting a marketed-identity or manufacturing relationship. */
+export interface LensRelationshipSource {
+  label: string;
+  url: string;
+}
+
+/** Alternate marketed identity for the same modeled optical prescription. */
+export interface LensAliasData {
+  /** Maker-page identity under which the alternate product was sold. */
+  maker: string;
+  /** Exact user-facing alternate product name. */
+  name: string;
+  kind: "rebrand" | "regional-name" | "cosmetic-variant";
+  /** Relationship-specific mounts; omitted values inherit the canonical lens mounts. */
+  lensMounts?: readonly LensMountId[];
+  sources: readonly [LensRelationshipSource, ...LensRelationshipSource[]];
+  /** Short qualification only; detailed research belongs in the companion analysis file. */
+  note?: string;
+}
+
+/** Company or division documented as physically manufacturing the branded lens. */
+export interface LensManufacturerData {
+  /** Canonical maker-page identity used for catalog grouping. */
+  maker: string;
+  /** Source-specific manufacturer name when it differs from the maker-page label. */
+  entity?: string;
+  /** Relationship-specific mounts; omitted values inherit the canonical lens mounts. */
+  lensMounts?: readonly LensMountId[];
+  sources: readonly [LensRelationshipSource, ...LensRelationshipSource[]];
+  /** Short qualification only; detailed research belongs in the companion analysis file. */
+  note?: string;
+}
+
 /** Complete lens data object (after defaults merging) */
 export interface LensData {
   key: string;
   maker?: string;
   name: string;
+  aliases?: readonly LensAliasData[];
+  manufacturedBy?: readonly LensManufacturerData[];
   subtitle?: string;
   specs?: string[];
   focalLengthMarketing?: number | [number, number];

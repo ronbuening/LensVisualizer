@@ -30,7 +30,11 @@ describe("build-route-sync", () => {
   });
 
   it("maker slugs are exactly the makers represented by visible lens pages", () => {
-    const expectedMakerSlugs = [...new Set(CATALOG_ENTRIES.map((entry) => entry.maker.slug))].sort();
+    const expectedMakerSlugs = [
+      ...new Set(
+        CATALOG_ENTRIES.flatMap((entry) => entry.makerAssociations.map((association) => association.maker.slug)),
+      ),
+    ].sort();
 
     expect(buildMeta.makerSlugs).toEqual(expectedMakerSlugs);
   });

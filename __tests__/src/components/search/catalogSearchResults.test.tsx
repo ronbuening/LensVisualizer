@@ -27,12 +27,12 @@ afterEach(cleanup);
 describe("CatalogSearchResults", () => {
   it("prompts for input when the query is empty", () => {
     renderWithRouter(<CatalogSearchResults query="" theme={theme} />);
-    expect(screen.getByText(/Enter a lens name, a published patent number, or an inventor name/)).toBeTruthy();
+    expect(screen.getByText(/Enter a lens name, alias, manufacturer, published patent number/)).toBeTruthy();
   });
 
   it("treats a whitespace-only query as empty", () => {
     renderWithRouter(<CatalogSearchResults query="   " theme={theme} />);
-    expect(screen.getByText(/Enter a lens name, a published patent number, or an inventor name/)).toBeTruthy();
+    expect(screen.getByText(/Enter a lens name, alias, manufacturer, published patent number/)).toBeTruthy();
   });
 
   it("reports an empty result set politely", () => {

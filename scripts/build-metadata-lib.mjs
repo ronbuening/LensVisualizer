@@ -478,7 +478,9 @@ export function buildRouteFreshness({
   }
 
   for (const slug of makerSlugs) {
-    const makerLensFreshness = lenses.filter((lens) => lens.makerSlug === slug).map((lens) => lens.freshness);
+    const makerLensFreshness = lenses
+      .filter((lens) => (lens.makerSlugs ?? [lens.makerSlug]).includes(slug))
+      .map((lens) => lens.freshness);
 
     routeFreshness[`/makers/${slug}`] = combineFreshnessEntries(
       [...makerLensFreshness, makerDetailsFreshness],

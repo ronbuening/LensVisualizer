@@ -466,6 +466,30 @@ Steps:
 Acceptance: running it on a fully-populated lens prints all-clear; on a backfill-queue lens it
 lists the exact missing fields; gate passes.
 
+### F26. Commercial product relationship view
+
+- [ ] Effort: M
+
+What: a separate catalog view for source-backed rebrand and contract-manufacturer relationships.
+Do not mix these commercial claims into the patent/corporate relationship graph.
+
+- **Files to touch** — **modified** `src/types/catalog.ts`; **new** a catalog relationship-graph helper and page;
+  **modified** route/build metadata wiring and focused tests.
+- **Reference to mimic** — the navigation and SVG interaction patterns in
+  `src/pages/UniversalRelationshipMapPage.tsx`, while sourcing product edges only from lens `aliases` and
+  `manufacturedBy` metadata.
+- **Data-type contract** — nodes are canonical lenses and maker identities; edges are `alias` or `manufacturer` and
+  carry the relationship's source links. No edge may be inferred from patent attribution.
+- **Steps** — add distinct commercial edge types; build the graph from visible lens summaries; add an explanatory
+  catalog route and detail card; register prerender/SEO metadata; add route and graph tests.
+- **Gotchas** — preserve the exact-publication meaning of `patentAssignees`; do not reuse ownership edge styling for
+  manufacturing; keep one canonical lens URL per prescription.
+- **Verification** — focused graph tests plus `npm run typecheck && npm run format:check && npm run lint && npm run test`
+  and `npm run build`; assert every rendered edge has at least one source URL.
+- **Out of scope** — inferred OEM relationships, shared-design similarity, licensing without an alias product, and
+  changes to the existing patent relationship graph.
+- **Rollback** — revert the feature branch and regenerate metadata.
+
 ---
 
 ## Tier 4 — Formerly Deferred, Now Specified

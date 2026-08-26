@@ -351,6 +351,7 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
                 lensKeyA={lensKeyA}
                 lensKeyB={lensKeyB}
                 diagramLensKey={diagramLensKey}
+                lens={LENS_CATALOG[lensKeyA]}
                 comparisonLenses={comparisonLenses}
                 focusPair={focusPair}
                 aperturePair={aperturePair}

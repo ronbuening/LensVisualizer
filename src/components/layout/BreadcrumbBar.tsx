@@ -56,6 +56,9 @@ function validBreadcrumbSource(source: LensBreadcrumbSource | undefined): LensBr
   }
   if (source.type === "mount" && isLensMountId(source.id)) return source;
   if (source.type === "format" && isImageFormatId(source.id)) return source;
+  if (source.type === "maker" && /^[a-z0-9]+(?:[.-][a-z0-9]+)*$/.test(source.slug) && source.label.trim().length > 0) {
+    return source;
+  }
   return null;
 }
 
@@ -179,6 +182,18 @@ export default function BreadcrumbBar({ theme: t, isWide, lensKey }: BreadcrumbB
                       {maker.display}
                     </Link>
                   )}
+                  <span style={separatorStyle}>/</span>
+                  <span style={{ color: t.body }}>{lensA.name}</span>
+                </>
+              ) : source?.type === "maker" ? (
+                <>
+                  <Link to="/makers/" style={linkStyle}>
+                    Makers
+                  </Link>
+                  <span style={separatorStyle}>/</span>
+                  <Link to={`/makers/${source.slug}/`} style={linkStyle}>
+                    {source.label}
+                  </Link>
                   <span style={separatorStyle}>/</span>
                   <span style={{ color: t.body }}>{lensA.name}</span>
                 </>

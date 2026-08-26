@@ -31,8 +31,8 @@ flowchart LR
     n_src_pages_src_pages_UniversalRelationshipMapPage_tsx["UniversalRelationshipMapPage.tsx"]
     n_src_pages_src_pages_UpdatesPage_tsx["UpdatesPage.tsx"]
   end
-  n_external_src_components_homepage["src/components/homepage"]
   n_external_src_utils_catalog["src/utils/catalog"]
+  n_external_src_components_homepage["src/components/homepage"]
   n_external_src_components_content["src/components/content"]
   n_external_src_components_relationshipMap["src/components/relationshipMap"]
   n_external_pkg_react["pkg:react"]
@@ -41,22 +41,23 @@ flowchart LR
   n_external_src_utils_seo["src/utils/seo"]
   n_external_src_utils_style["src/utils/style"]
   n_src_pages_src_pages_LensIndexPage_tsx --> |10| n_src_pages_src_pages_lensIndex
+  n_src_pages_src_pages_MakerPage_tsx --> |8| n_external_src_utils_catalog
   n_src_pages_src_pages_HomePage_tsx --> |6| n_external_src_components_homepage
-  n_src_pages_src_pages_MakerPage_tsx --> |6| n_external_src_utils_catalog
+  n_src_pages_src_pages_MountPage_tsx --> |6| n_external_src_utils_catalog
   n_src_pages_src_pages_AuthorPage_tsx --> |5| n_external_src_components_content
   n_src_pages_src_pages_PatentsIndexPage_tsx --> |5| n_external_src_components_content
   n_src_pages_src_pages_AuthorPage_tsx --> |5| n_external_src_utils_catalog
   n_src_pages_src_pages_AuthorsIndexPage_tsx --> |5| n_external_src_utils_catalog
-  n_src_pages_src_pages_MountPage_tsx --> |5| n_external_src_utils_catalog
+  n_src_pages_src_pages_MakersIndexPage_tsx --> |5| n_external_src_utils_catalog
   n_src_pages_src_pages_RelationshipMapPage_tsx --> |5| n_external_src_utils_catalog
   n_src_pages_src_pages_RelationshipMapPage_tsx --> |4| n_external_src_components_relationshipMap
-  n_src_pages_src_pages_MakersIndexPage_tsx --> |4| n_external_src_utils_catalog
   n_src_pages_src_pages_MakerPage_tsx --> |3| n_external_src_components_content
   n_src_pages_src_pages_UniversalRelationshipMapPage_tsx --> |3| n_external_src_components_relationshipMap
   n_src_pages_src_pages_FormatPage_tsx --> |3| n_external_src_utils_catalog
   n_src_pages_src_pages_ArticlePage_tsx --> |2| n_external_pkg_react
   n_src_pages_src_pages_ArticlesPage_tsx --> |2| n_external_src_components_content
   n_src_pages_src_pages_LensIndexPage_tsx --> |2| n_external_src_components_content
+  n_src_pages_src_pages_LensPage_tsx --> |2| n_external_src_components_content
   n_src_pages_src_pages_MountPage_tsx --> |2| n_external_src_components_content
   n_src_pages_src_pages_SearchPage_tsx --> |2| n_external_src_components_search
   n_src_pages_src_pages_ComparePage_tsx --> |2| n_external_src_utils_catalog
@@ -75,7 +76,6 @@ flowchart LR
   n_src_pages_src_pages_UniversalRelationshipMapPage_tsx --> |2| n_external_src_utils_seo
   n_src_pages_src_pages_AuthorPage_tsx --> |2| n_external_src_utils_style
   n_src_pages_src_pages_AuthorsIndexPage_tsx --> |2| n_external_src_utils_style
-  n_src_pages_src_pages_PatentsIndexPage_tsx --> |2| n_external_src_utils_style
   n_src_pages_truncated["additional relationships omitted"]
 ```
 
@@ -83,7 +83,7 @@ flowchart LR
 
 - Direct source files: 20
 - Direct subfolders: 1
-- Main outbound areas: src/utils/catalog (55), src/components/content (23), src/utils/seo (21), src/components/layout (20), src/components/SEOHead.tsx (20), src/utils/style (20), package:react-router (18), src/pages/lensIndex (18), +18 more
+- Main outbound areas: src/utils/catalog (59), src/components/content (24), src/utils/seo (21), src/components/layout (20), src/components/SEOHead.tsx (20), src/utils/style (20), src/pages/lensIndex (19), package:react-router (18), +18 more
 - External consumers: src/routes
 
 ## Subfolders
@@ -105,10 +105,10 @@ flowchart LR
 | `FormatsIndexPage.tsx` | Route-level React page | src/utils/catalog (2), package:react-router, src/components/layout, src/components/SEOHead.tsx, src/pages/lensIndex, +3 more | src/routes | default, FormatsIndexPage |
 | `HomePage.tsx` | Route-level React page | src/components/homepage (6), src/utils/catalog (2), src/utils/seo (2), package:react, package:react-router, +8 more | src/routes | default, HomePage |
 | `LensIndexPage.tsx` | Route-level React page | src/pages/lensIndex (10), src/components/content (2), src/utils/catalog (2), package:react, package:react-router, +5 more | src/routes | default, LensIndexPage |
-| `LensPage.tsx` | Route-level React page | src/utils/catalog (2), package:react-router, src/components/ClientOnly.tsx, src/components/content, src/components/layout, +3 more | src/routes | default, LensPage |
-| `MakerPage.tsx` | Route-level React page | src/utils/catalog (6), src/components/content (3), package:react-router, src/components/layout, src/components/SEOHead.tsx, +3 more | src/routes | default, MakerPage |
-| `MakersIndexPage.tsx` | Route-level React page | src/utils/catalog (4), package:react-router, src/components/layout, src/components/SEOHead.tsx, src/utils/seo, +2 more | src/routes | default, MakersIndexPage |
-| `MountPage.tsx` | Route-level React page | src/utils/catalog (5), src/components/content (2), src/pages/lensIndex (2), package:react-router, src/components/layout, +6 more | src/routes | default, MountPage |
+| `LensPage.tsx` | Route-level React page | src/components/content (2), src/utils/catalog (2), package:react-router, src/components/ClientOnly.tsx, src/components/layout, +3 more | src/routes | default, LensPage |
+| `MakerPage.tsx` | Route-level React page | src/utils/catalog (8), src/components/content (3), package:react-router, src/components/layout, src/components/SEOHead.tsx, +4 more | src/routes | default, MakerPage |
+| `MakersIndexPage.tsx` | Route-level React page | src/utils/catalog (5), package:react-router, src/components/layout, src/components/SEOHead.tsx, src/utils/seo, +2 more | src/routes | default, MakersIndexPage |
+| `MountPage.tsx` | Route-level React page | src/utils/catalog (6), src/components/content (2), src/pages/lensIndex (2), package:react-router, src/components/layout, +6 more | src/routes | default, MountPage |
 | `MountsIndexPage.tsx` | Route-level React page | src/utils/catalog (2), package:react-router, src/components/layout, src/components/SEOHead.tsx, src/pages/lensIndex, +3 more | src/routes | default, MountsIndexPage |
 | `NotFoundPage.tsx` | Route-level React page | package:react-router, src/components/layout, src/components/SEOHead.tsx, src/utils/catalog | src/routes | default, NotFoundPage |
 | `PatentsIndexPage.tsx` | Route-level React page | src/components/content (5), src/utils/catalog (2), src/utils/style (2), src/components/layout, src/components/SEOHead.tsx, +4 more | src/routes | default, PatentsIndexPage |

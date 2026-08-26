@@ -66,7 +66,9 @@ describe("static page renders", () => {
     expect(screen.getByText("Interactive Camera Lens Cross-Section Visualizer")).toBeTruthy();
     expect(screen.getAllByRole("link", { name: /Lens Library/i }).length).toBeGreaterThan(0);
     expect(screen.getAllByRole("link", { name: /Browse by Maker/i }).length).toBeGreaterThan(0);
-    expect(screen.getByRole("searchbox", { name: /Search lenses, patents, and authors/i })).toBeTruthy();
+    expect(
+      screen.getByRole("searchbox", { name: /Search lenses, aliases, manufacturers, patents, and authors/i }),
+    ).toBeTruthy();
     expect(screen.getByRole("link", { name: "Search" }).style.width).toBe("30px");
     expect(screen.getByRole("link", { name: "Search" }).style.height).toBe("30px");
     const indexNav = screen.getByRole("navigation", { name: "Catalog indexes" });

@@ -71,7 +71,7 @@ export default function CatalogSearchResults({ query, theme: t }: CatalogSearchR
   if (!trimmedQuery) {
     return (
       <p style={{ color: t.muted, fontSize: "0.82rem", lineHeight: 1.6 }}>
-        Enter a lens name, a published patent number, or an inventor name to search the catalog.
+        Enter a lens name, alias, manufacturer, published patent number, or inventor name to search the catalog.
       </p>
     );
   }
@@ -90,13 +90,14 @@ export default function CatalogSearchResults({ query, theme: t }: CatalogSearchR
         {total} {pluralize(total, "match")} for “{trimmedQuery}”
       </p>
 
-      <ResultSection title="Lens names" count={results.lenses.length} theme={t}>
+      <ResultSection title="Lens names and relationships" count={results.lenses.length} theme={t}>
         {results.lenses.slice(0, RESULT_LIMIT).map((match) => (
           <LensEntryLink
             key={match.key}
             lensKey={match.key}
-            text={match.data.name}
-            specs={match.data.specs}
+            text={match.matchedName}
+            meta={match.relationshipLabel}
+            specs={match.relationshipLabel ? undefined : match.data.specs}
             theme={t}
             style={resultLinkStyle(t)}
             metaStyle={{ fontSize: "0.7rem" }}

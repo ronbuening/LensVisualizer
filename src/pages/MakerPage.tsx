@@ -25,21 +25,52 @@ import LinkListSidebar from "../components/content/LinkListSidebar.js";
 import SidebarLayout from "../components/content/SidebarLayout.js";
 import type { LensSummary } from "../utils/catalog/lensSummaries.js";
 import { pluralize } from "../utils/text.js";
+import { associationsForMaker } from "../utils/catalog/lensRelationships.js";
+import type { LensMakerAssociation } from "../utils/catalog/lensRelationships.js";
+import { lensLinkFromMaker } from "./lensIndex/clusterLinks.js";
 
-function lensesForMaker(makerSlug: string): { key: string; data: LensSummary }[] {
-  return SUMMARY_KEYS.filter(
-    (key) => deriveMaker(LENS_SUMMARIES[key].name, LENS_SUMMARIES[key].maker).slug === makerSlug,
-  ).map((key) => ({
-    key,
-    data: LENS_SUMMARIES[key],
-  }));
+interface MakerLensEntry {
+  key: string;
+  data: LensSummary;
+  associations: LensMakerAssociation[];
+}
+
+function lensesForMaker(makerSlug: string): MakerLensEntry[] {
+  return SUMMARY_KEYS.flatMap((key) => {
+    const data = LENS_SUMMARIES[key];
+    const associations = associationsForMaker(data, makerSlug);
+    return associations.length > 0 ? [{ key, data, associations }] : [];
+  });
 }
 
 /** Canonical mount metadata for every mount used by the maker's lenses, in taxonomy order. */
-function mountsForMaker(lenses: { key: string; data: LensSummary }[]): LensMountMetadata[] {
+function mountsForMaker(lenses: MakerLensEntry[]): LensMountMetadata[] {
   const ids = new Set<LensMountId>();
-  for (const { data } of lenses) for (const mountId of data.lensMounts ?? []) ids.add(mountId);
+  for (const { associations } of lenses) {
+    for (const association of associations) for (const mountId of association.lensMounts) ids.add(mountId);
+  }
   return [...ids].map((id) => LENS_MOUNT_BY_ID[id]).sort((a, b) => a.sortOrder - b.sortOrder);
+}
+
+function brandedPresentation(entry: MakerLensEntry): { text: string; meta?: string } {
+  const canonical = entry.associations.find((association) => association.role === "canonical");
+  const aliases = entry.associations.filter((association) => association.role === "alias");
+  if (canonical) {
+    return {
+      text: canonical.displayName,
+      ...(aliases.length > 0
+        ? { meta: `Also sold as ${aliases.map((association) => association.displayName).join(", ")}` }
+        : {}),
+    };
+  }
+  return { text: aliases[0].displayName, meta: `Alias of ${entry.data.name}` };
+}
+
+function manufacturerPresentation(entry: MakerLensEntry): { text: string; meta: string } {
+  const manufacturers = entry.associations.filter((association) => association.role === "manufacturer");
+  const names = manufacturers.map((association) => association.entity ?? association.maker.display);
+  const brandedMaker = deriveMaker(entry.data.name, entry.data.maker).display;
+  return { text: entry.data.name, meta: `${names.join(", ")} manufacturing for ${brandedMaker}` };
 }
 
 export default function MakerPage() {
@@ -50,9 +81,15 @@ export default function MakerPage() {
   const lenses = lensesForMaker(maker);
   if (lenses.length === 0) return <Navigate to="/makers/" replace />;
 
-  const displayName = makerDisplayName(maker) ?? deriveMaker(lenses[0].data.name, lenses[0].data.maker).display;
+  const displayName = makerDisplayName(maker) ?? lenses[0].associations[0].maker.display;
   const details = getMakerDetails(maker);
   const makerMounts = mountsForMaker(lenses);
+  const brandedLenses = lenses.filter((entry) =>
+    entry.associations.some((association) => association.role === "canonical" || association.role === "alias"),
+  );
+  const manufacturedLenses = lenses.filter((entry) =>
+    entry.associations.some((association) => association.role === "manufacturer"),
+  );
 
   const lensCountText = `Explore ${lenses.length} patent-derived ${displayName} lens cross-sections with ray tracing and optical analysis.`;
   const seoDescription = details ? `${details.summary} ${lensCountText}` : lensCountText;
@@ -122,14 +159,45 @@ export default function MakerPage() {
             }
           >
             <div style={{ borderTop: `1px solid ${t.panelBorder}`, paddingTop: "1rem" }}>
-              {lenses.length > 0 ? (
-                lenses.map(({ key, data }) => (
-                  <LensEntryLink key={key} lensKey={key} text={data.name} specs={data.specs} specsCount={3} theme={t} />
-                ))
-              ) : (
-                <p style={{ fontSize: "0.85rem", color: t.muted, margin: 0 }}>
-                  No patent-derived lens diagrams have been published for {displayName} yet.
-                </p>
+              {brandedLenses.length > 0 && (
+                <section style={{ marginBottom: manufacturedLenses.length > 0 ? "1.5rem" : 0 }}>
+                  <h2 style={{ color: t.title, fontSize: "1rem", margin: "0 0 0.6rem" }}>Sold under this brand</h2>
+                  {brandedLenses.map((entry) => {
+                    const presentation = brandedPresentation(entry);
+                    return (
+                      <LensEntryLink
+                        key={entry.key}
+                        lensKey={entry.key}
+                        text={presentation.text}
+                        meta={presentation.meta}
+                        specs={entry.data.specs}
+                        specsCount={3}
+                        theme={t}
+                        hrefForLens={() => lensLinkFromMaker(entry.key, maker, displayName)}
+                      />
+                    );
+                  })}
+                </section>
+              )}
+              {manufacturedLenses.length > 0 && (
+                <section>
+                  <h2 style={{ color: t.title, fontSize: "1rem", margin: "0 0 0.6rem" }}>
+                    Manufactured for other brands
+                  </h2>
+                  {manufacturedLenses.map((entry) => {
+                    const presentation = manufacturerPresentation(entry);
+                    return (
+                      <LensEntryLink
+                        key={entry.key}
+                        lensKey={entry.key}
+                        text={presentation.text}
+                        meta={presentation.meta}
+                        theme={t}
+                        hrefForLens={() => lensLinkFromMaker(entry.key, maker, displayName)}
+                      />
+                    );
+                  })}
+                </section>
               )}
             </div>
           </SidebarLayout>

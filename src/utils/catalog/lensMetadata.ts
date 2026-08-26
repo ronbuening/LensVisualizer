@@ -116,6 +116,17 @@ export function formatCanonicalURL(formatId: string): string {
 /** Generate JSON-LD structured data for a lens page. */
 export function lensJsonLd(lens: LensData, lensKey: string): Record<string, unknown> {
   const freshness = (buildMeta.lensFreshness as Record<string, { publishedOn: string; lastModified: string }>)[lensKey];
+  const canonicalMaker = deriveMaker(lens.name, lens.maker).display;
+  const documentedManufacturers = lens.manufacturedBy?.map((manufacturer) => ({
+    "@type": "Organization",
+    name: manufacturer.entity ?? manufacturer.maker,
+  }));
+  const manufacturer =
+    documentedManufacturers && documentedManufacturers.length > 0
+      ? documentedManufacturers.length === 1
+        ? documentedManufacturers[0]
+        : documentedManufacturers
+      : { "@type": "Organization", name: canonicalMaker };
   return {
     "@context": "https://schema.org",
     "@type": "TechArticle",
@@ -142,8 +153,10 @@ export function lensJsonLd(lens: LensData, lensKey: string): Record<string, unkn
     about: {
       "@type": "Product",
       name: lens.name,
+      ...(lens.aliases?.length ? { alternateName: lens.aliases.map((alias) => alias.name) } : {}),
       category: "Camera Lens",
-      manufacturer: { "@type": "Organization", name: deriveMaker(lens.name, lens.maker).display },
+      brand: { "@type": "Brand", name: canonicalMaker },
+      manufacturer,
     },
   };
 }

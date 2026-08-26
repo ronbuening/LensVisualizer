@@ -284,6 +284,59 @@ describe("validateLensData", () => {
     expect(duplicateErrors.some((error) => error.includes("duplicate mount id"))).toBe(true);
   });
 
+  it("validates sourced alias and manufacturer metadata", () => {
+    expect(
+      validateLensData(
+        makeValid({
+          lensMounts: ["sony-fe"],
+          aliases: [
+            {
+              maker: "Alternate",
+              name: "ALTERNATE 50mm f/2",
+              kind: "rebrand",
+              lensMounts: ["nikon-z"],
+              sources: [{ label: "Official product", url: "https://example.com/product" }],
+            },
+          ],
+          manufacturedBy: [
+            {
+              maker: "Factory",
+              sources: [{ label: "Factory history", url: "https://example.com/history" }],
+            },
+          ],
+        }),
+      ),
+    ).toEqual([]);
+
+    const errors = validateLensData(
+      makeValid({
+        aliases: [
+          {
+            maker: " ",
+            name: " ",
+            kind: "shared-design",
+            lensMounts: ["not-a-mount"],
+            sources: [{ label: "", url: "file:///private/source" }],
+            note: " ",
+          },
+        ],
+        manufacturedBy: [],
+      }),
+    );
+    expect(errors).toEqual(
+      expect.arrayContaining([
+        expect.stringContaining("aliases[0].maker"),
+        expect.stringContaining("aliases[0].name"),
+        expect.stringContaining("aliases[0].kind"),
+        expect.stringContaining("aliases[0].lensMounts[0]"),
+        expect.stringContaining("aliases[0].sources[0].label"),
+        expect.stringContaining("aliases[0].sources[0].url"),
+        expect.stringContaining("aliases[0].note"),
+        expect.stringContaining('"manufacturedBy" must be a non-empty array'),
+      ]),
+    );
+  });
+
   it("rejects invalid image-format metadata", () => {
     const errors = validateLensData(makeValid({ imageFormat: "medium-ish" }));
 

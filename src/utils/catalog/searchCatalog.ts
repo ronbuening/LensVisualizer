@@ -17,6 +17,9 @@ export interface LensNameSearchMatch {
   type: "lens";
   key: string;
   data: LensSummary;
+  matchedName: string;
+  matchKind: "canonical" | "alias" | "manufacturer";
+  relationshipLabel?: string;
 }
 
 export interface PatentSearchMatch {
@@ -71,6 +74,37 @@ const SEARCH_LENSES = SUMMARY_KEYS.map((key) => {
   };
 });
 
+const SEARCH_LENS_NAMES = SEARCH_LENSES.flatMap((entry) => {
+  const canonical = {
+    ...entry,
+    matchedName: entry.data.name,
+    normalizedCandidate: entry.normalizedName,
+    matchKind: "canonical" as const,
+    relationshipLabel: undefined,
+    relationPriority: 0,
+  };
+  const aliases = (entry.data.aliases ?? []).map((alias) => ({
+    ...entry,
+    matchedName: alias.name,
+    normalizedCandidate: normalizeSearchText(alias.name),
+    matchKind: "alias" as const,
+    relationshipLabel: `Alias of ${entry.data.name}`,
+    relationPriority: 1,
+  }));
+  const manufacturers = (entry.data.manufacturedBy ?? []).map((manufacturer) => {
+    const entity = manufacturer.entity ?? manufacturer.maker;
+    return {
+      ...entry,
+      matchedName: entry.data.name,
+      normalizedCandidate: normalizeSearchText(`${entity} ${manufacturer.maker}`),
+      matchKind: "manufacturer" as const,
+      relationshipLabel: `Manufactured by ${entity}`,
+      relationPriority: 2,
+    };
+  });
+  return [canonical, ...aliases, ...manufacturers];
+});
+
 const SEARCH_AUTHORS = AUTHORS.map((author) => ({ author, normalizedName: normalizeSearchText(author.name) }));
 
 /** Return all ranked catalog matches for a query, separated by destination type. */
@@ -79,10 +113,25 @@ export function searchCatalog(query: string): CatalogSearchResults {
   if (!normalizedQuery) return { lenses: [], patents: [], authors: [] };
   const compactQuery = normalizedQuery.replaceAll(" ", "");
 
-  const lenses = SEARCH_LENSES.filter(({ normalizedName }) => matchesWords(normalizedName, normalizedQuery))
-    .map((entry) => ({ ...entry, score: matchScore(entry.normalizedName, normalizedQuery) }))
-    .sort((a, b) => a.score - b.score || catalogCollator.compare(a.data.name, b.data.name))
-    .map(({ key, data }) => ({ type: "lens" as const, key, data }));
+  const rankedLensNames = SEARCH_LENS_NAMES.filter(({ normalizedCandidate }) =>
+    matchesWords(normalizedCandidate, normalizedQuery),
+  )
+    .map((entry) => ({
+      ...entry,
+      score: matchScore(entry.normalizedCandidate, normalizedQuery) * 10 + entry.relationPriority,
+    }))
+    .sort(
+      (a, b) =>
+        a.score - b.score ||
+        catalogCollator.compare(a.matchedName, b.matchedName) ||
+        catalogCollator.compare(a.data.name, b.data.name),
+    );
+  const seenLensKeys = new Set<string>();
+  const lenses = rankedLensNames.flatMap(({ key, data, matchedName, matchKind, relationshipLabel }) => {
+    if (seenLensKeys.has(key)) return [];
+    seenLensKeys.add(key);
+    return [{ type: "lens" as const, key, data, matchedName, matchKind, relationshipLabel }];
+  });
 
   const patents = SEARCH_LENSES.filter(({ normalizedPatent, compactPatent }) => {
     if (!normalizedPatent || !compactPatent) return false;
@@ -112,9 +161,9 @@ export function exactSearchTarget(query: string): string | null {
   if (!normalizedQuery) return null;
   const compactQuery = normalizedQuery.replaceAll(" ", "");
 
-  const lensMatches = SEARCH_LENSES.filter(({ normalizedName }) => normalizedName === normalizedQuery).map(({ key }) =>
-    canonicalPagePath(`/lens/${key}`),
-  );
+  const lensMatches = SEARCH_LENS_NAMES.filter(
+    ({ normalizedCandidate, matchKind }) => matchKind !== "manufacturer" && normalizedCandidate === normalizedQuery,
+  ).map(({ key }) => canonicalPagePath(`/lens/${key}`));
   const patentMatches = SEARCH_LENSES.filter(({ compactPatent }) => compactPatent === compactQuery).map(({ key }) =>
     canonicalPagePath(`/lens/${key}`),
   );
