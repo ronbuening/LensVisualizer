@@ -10,9 +10,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **644** lenses scanned
-- **1279** total code-only elements found
-- **1279** elements in this report
-- **204** distinct lens files affected
+- **1278** total code-only elements found
+- **1278** elements in this report
+- **203** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -194,7 +194,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 517696 | 1 | 1 | patents/JPA 1994082698-000000.pdf | No review-record hit |
 | 518523 | 1 | 1 | patents/US4871239.pdf | All rows have review records |
 | 520642 | 1 | 1 | patents/DE_3907928_A1.pdf | All rows explicitly disposed |
-| 523508 | 1 | 1 | No patent number parsed from lens metadata | All rows explicitly disposed |
 | 523701 | 1 | 1 | patents/US20100194930A1.pdf | All rows explicitly disposed |
 | 525558 | 1 | 1 | patents/US8994842.pdf | All rows explicitly disposed |
 | 525563 | 1 | 1 | patents/US7307794.pdf | All rows explicitly disposed |
@@ -396,12 +395,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | E11 (Element 11) | 21 | `835427 lanthanum high-index class (vendor unspecified)` | 1.83481 / 42.70 | TAFD5G (trusted Sellmeier) | sellmeier | patents/US7158320.pdf | No review-record hit |
 | E12 (Element 12) | 23 | `835427 lanthanum high-index class (vendor unspecified)` | 1.83481 / 42.70 | TAFD5G (trusted Sellmeier) | sellmeier | patents/US7158320.pdf | No review-record hit |
 | E13 (Element 13) | 24 | `785257 dense-flint class (vendor unspecified)` | 1.78472 / 25.70 | H-ZF13 (trusted Sellmeier) | sellmeier | patents/US7158320.pdf | No review-record hit |
-
-### [CANON EF 100-300mm f/5.6](../../src/lens-data/canon/CanonEF100300mmf56.data.ts)
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L7 (Element 7) | 11 | `Unmatched (nd=1.52301, νd=50.8; coordinate 523508)` | 1.52301 / 50.80 | No catalog entry | abbe | No patent number parsed from lens metadata | Explicit disposition in data |
 
 ### [CANON EF 100-400mm f/4.5-5.6 L IS II USM](../../src/lens-data/canon/CanonEF100400mmf4556LISUSMII.data.ts) - US 2015/0146044 A1
 

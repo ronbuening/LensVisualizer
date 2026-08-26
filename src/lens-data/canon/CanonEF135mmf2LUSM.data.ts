@@ -84,6 +84,10 @@ const LENS_DATA = {
       vd: 81.5,
       fl: 130.141309,
       glass: "497815 UD-class coordinate (catalog-equivalent coefficient proxy; production supplier unspecified)",
+      apd: "inferred",
+      apdNote:
+        "UD classification inferred from Canon's two-UD production specification and the patent coordinate; " +
+        "the patent publishes no partial-dispersion data.",
       role: "High-Abbe positive element in fixed G1; one of the two patent-coordinate elements consistent with the product's UD count.",
     },
     {
@@ -106,6 +110,10 @@ const LENS_DATA = {
       vd: 81.5,
       fl: 110.583328,
       glass: "497815 UD-class coordinate (catalog-equivalent coefficient proxy; production supplier unspecified)",
+      apd: "inferred",
+      apdNote:
+        "UD classification inferred from Canon's two-UD production specification and the patent coordinate; " +
+        "the patent publishes no partial-dispersion data.",
       role: "High-Abbe positive element in fixed G1; patent surface 7 carries the first radial-transmission film.",
     },
     {

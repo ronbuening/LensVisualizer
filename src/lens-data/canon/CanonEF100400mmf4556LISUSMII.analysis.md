@@ -2,14 +2,15 @@
 
 ## Patent Reference and Design Identification
 
-- **Patent:** US 2015/0146044 A1
-- **Application Number:** US 14/527,573
-- **Priority:** November 22, 2013 (JP 2013-241733)
-- **Filed:** October 29, 2014
-- **Published:** May 28, 2015
-- **Inventor:** Shigenobu Sugita
-- **Applicant:** Canon Kabushiki Kaisha
-- **Title:** *Zoom Lens and Image Pickup Apparatus Including the Same*
+**Patent:** US 2015/0146044 A1
+**Application Number:** US 14/527,573
+**Priority:** November 22, 2013 (JP 2013-241733)
+**Filed:** October 29, 2014
+**Published:** May 28, 2015
+**Inventor:** Shigenobu Sugita
+**Applicant:** Canon Inc. (Canon Kabushiki Kaisha)
+**Title:** *Zoom Lens and Image Pickup Apparatus Including the Same*
+
 **Embodiment analyzed:** Example 2 / Numerical Example 2
 
 The prescription is the unscaled Numerical Example 2 of US 2015/0146044 A1. The patent describes Example 2 as a
@@ -165,12 +166,12 @@ This pair, D1, and E06 together form the verified -55.244 mm L2 variator unit.
 
 ### E09 — Biconvex Positive
 
-**nd = 1.43387, νd = 95.1. Glass: Unmatched (CaF2/fluorite-like coordinates; production-correlation inference). Standalone f = +99.179306 mm.**
+**nd = 1.43387, νd = 95.1. Glass: CaF2 fluorite coefficient proxy (production-correlation inference; patent material unnamed). Standalone f = +99.179306 mm.**
 
-E09 is the first element of positive unit L3 and has the highest νd in the prescription. The coordinate pair is
-fluorite-like, and Canon states that the production lens contains one fluorite element, but the selected patent does not
-name the material. Accordingly, the data leaves E09 explicitly unmatched and treats fluorite correspondence only as a
-production-correlation inference.
+E09 is the first element of positive unit L3 and has the highest νd in the prescription. Its `1.43387 / 95.1` coordinate
+matches the catalog CaF2 model closely, and Canon states that the production lens contains one fluorite element, but the
+selected patent does not name the material. The data therefore uses CaF2 as a qualified coefficient proxy and records the
+fluorite classification as a production-correlation inference rather than a patent material identity.
 
 ### E10 — Biconvex Positive, cemented pair D3 front member
 
@@ -270,8 +271,8 @@ dispersion behavior is asserted without explicit line-index or dPgF data.
 
 Numerical Example 2 publishes only d-line refractive index and Abbe number; it does not identify glass manufacturers or
 publish per-element nC, nF, ng, PgF, or dPgF. The data therefore uses vendor-neutral six-digit coordinate classes,
-class-level catalog hints, and an explicit `Unmatched (...)` entry where a unique public identity cannot be defended.
-These strings are material annotations, not proof that Canon purchased any named vendor glass for the production lens.
+class-level catalog hints, and qualified coefficient proxies where the public coordinate match is compatible. These
+strings are material annotations, not proof that Canon purchased any named vendor glass for the production lens.
 
 | Elements | nd | νd | Data-file glass annotation |
 |---|---:|---:|---|
@@ -282,7 +283,7 @@ These strings are material annotations, not proof that Canon purchased any named
 | E05, E06 | 1.77250 | 49.6 | 773496 lanthanum flint class (vendor unresolved) |
 | E07 | 1.60311 | 60.6 | 603607 crown class (vendor unresolved) |
 | E08, E16 | 1.84666 | 23.8 | 847238 dense-flint class (vendor unresolved) |
-| E09 | 1.43387 | 95.1 | Unmatched (CaF2/fluorite-like coordinates; production-correlation inference) |
+| E09 | 1.43387 | 95.1 | CaF2 fluorite coefficient proxy; production-correlation inference, patent material unnamed |
 | E10 | 1.51742 | 52.4 | 517524 class; S-NSL36 is the closest public coordinate match |
 | E11 | 1.90366 | 31.3 | 904313 high-index lanthanum-flint class (vendor unresolved) |
 | E12 | 1.59270 | 35.3 | 593353 flint class (vendor unresolved) |
@@ -299,9 +300,9 @@ cemented achromat. The data supports this first-order statement through nd and �
 nor does it support claims about anomalous partial dispersion or secondary-spectrum correction for any particular glass.
 
 The production lens is a separate source fact: Canon identifies one fluorite element and one Super UD element. The patent
-coordinate pattern is consistent with two special low-dispersion elements, especially E03 and E09, but the exact
-production-material mapping is not published in the selected patent and is not encoded as a resolved vendor Sellmeier
-model.
+coordinate pattern is consistent with those two special low-dispersion elements at E03 and E09. The data encodes these
+as inferred diagram classifications and uses a catalog CaF2 curve for E09, while retaining the caveat that the selected
+patent does not publish the exact production-material mapping.
 
 ## Focus Mechanism
 
@@ -333,8 +334,9 @@ This arrangement gives the zoom multiple locations at which axial and lateral co
 ray heights change with focal length.
 
 The production literature's fluorite and Super UD statement is consistent with that strategy, but the analysis stops at
-what the data can support. No element carries explicit C/F/g line indices or dPgF, and no vendor-neutral class is promoted
-to a unique Sellmeier glass. Consequently no apochromatic or anomalous-partial-dispersion correction claim is made.
+what the data can support. The inferred classifications drive diagram tags, and the qualified CaF2 proxy improves E09's
+spectral tracing; they do not turn the patent's unnamed materials into supplier identities. No patent C/F/g line indices
+or dPgF values are stored, so no apochromatic or anomalous-partial-dispersion correction claim is made.
 
 ## Conditional Expressions
 

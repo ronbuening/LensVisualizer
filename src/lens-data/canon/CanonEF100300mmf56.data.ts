@@ -166,7 +166,7 @@ const LENS_DATA = {
       vd: 50.8,
       indexReference: "d",
       fl: 46.504837,
-      glass: "Unmatched (nd=1.52301, νd=50.8; coordinate 523508)",
+      glass: "N-KF9 coefficient proxy (patent 523508; production supplier unspecified)",
       apd: false,
       cemented: "C3",
     },

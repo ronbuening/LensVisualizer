@@ -108,6 +108,10 @@ const LENS_DATA = {
       vd: 94.9,
       fl: 157.805857,
       glass: "439950 ultra-low-dispersion crown; S-FPL53-class (vendor unresolved)",
+      apd: "inferred",
+      apdNote:
+        "Super UD classification inferred from Canon's production specification and the patent coordinate; " +
+        "the patent does not name the material or publish partial-dispersion data.",
       role: "Low-dispersion positive member completing the first zoom unit L1.",
     },
     {
@@ -177,7 +181,11 @@ const LENS_DATA = {
       nd: 1.43387,
       vd: 95.1,
       fl: 99.179306,
-      glass: "Unmatched (CaF2/fluorite-like coordinates; production-correlation inference)",
+      glass: "CaF2 fluorite coefficient proxy (production-correlation inference; patent material unnamed)",
+      apd: "inferred",
+      apdNote:
+        "Fluorite classification inferred from Canon's production specification and the CaF2-matching patent coordinate; " +
+        "the patent does not name the material.",
       role: "Very-low-dispersion positive member of the third zoom unit L3.",
     },
     {

@@ -2,13 +2,14 @@
 
 ## Patent Reference and Design Identification
 
-- **Patent:** JP 2018-049102 A
-- **Application Number:** JP 2016-183796
-- **Filed:** 2016-09-21
-- **Published:** 2018-03-29
-- **Inventor:** Tomohiko Ishibashi
-- **Applicant:** Canon Inc.
-- **Title:** 光学系およびそれを有する光学機器 (*Optical system and optical apparatus having the same*, descriptive translation)
+**Patent:** JP 2018-049102 A
+**Application Number:** JP 2016-183796
+**Filed:** 2016-09-21
+**Published:** 2018-03-29
+**Inventor:** Tomohiko Ishibashi
+**Applicant:** Canon Inc.
+**Title:** 光学系およびそれを有する光学機器 (*Optical system and optical apparatus having the same*, descriptive translation)
+
 **Embodiment analyzed:** Example 1 / Numerical Example 1
 
 The prescription modeled here is Numerical Example 1 of JP 2018-049102 A. The patent describes a three-group positive–negative–positive photographic system in which the negative middle group moves imageward for focusing, while the first and third groups remain fixed (¶¶0089–0093). The numerical table gives a 133.50 mm focal length, F2.06, 21.64 mm image height, 0.900 m close-focus state, and −0.19 close-focus magnification (¶0108 and Table 1).
@@ -112,7 +113,7 @@ The data file deliberately does not assign production-vendor identities. JP 2018
 
 The front group combines high-Abbe positive elements with lower-Abbe negative elements, and both cemented rear components pair glasses with markedly different Abbe numbers. That pattern is consistent with ordinary longitudinal and secondary chromatic balancing in a fast long-focus lens. The coefficient proxies improve chromatic tracing but do not establish historical glass identities or patent partial dispersion. Because the patent contains no line indices or `dPgF`, no APO or anomalous-partial-dispersion behavior is claimed here.
 
-Canon's statement that the production EF135mm f/2L USM uses two UD elements remains a **manufacturer product fact**, not a glass-identity assignment for the patent. The coincidence of that count with L2 and L4 is used only as part of the production-to-patent correlation.
+Canon's statement that the production EF135mm f/2L USM uses two UD elements remains a **manufacturer product fact**, not a glass-identity assignment for the patent. The data marks L2 and L4 as inferred UD positions so the diagram communicates that correlation, while the absence of patent line indices or `dPgF` still precludes an anomalous-partial-dispersion or APO claim.
 
 ## Focus Mechanism
 

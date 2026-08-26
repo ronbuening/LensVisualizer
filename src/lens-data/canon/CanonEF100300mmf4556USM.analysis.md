@@ -1,13 +1,14 @@
 ## Patent Reference and Design Identification
 
-- **Patent:** US 7,158,320 B2
-- **Application Number:** 11/150,456
-- **Priority:** June 11, 2004 (JP 2004-174057)
-- **Filed:** June 10, 2005
-- **Granted:** January 2, 2007
-- **Inventor:** Akihiro Nishio
-- **Assignee:** Canon Kabushiki Kaisha
-- **Title:** Optical System and Image Pickup Apparatus Including the Same
+**Patent:** US 7,158,320 B2
+**Application Number:** 11/150,456
+**Priority:** June 11, 2004 (JP 2004-174057)
+**Filed:** June 10, 2005
+**Granted:** January 2, 2007
+**Inventor:** Akihiro Nishio
+**Assignee:** Canon Inc. (Canon Kabushiki Kaisha)
+**Title:** Optical System and Image Pickup Apparatus Including the Same
+
 **Embodiment analyzed:** Numerical Embodiment 3 / Example 3
 
 The prescription represented here is Numerical Embodiment 3 of US 7,158,320 B2. The patent describes this embodiment as

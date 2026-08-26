@@ -32,6 +32,7 @@ const GLASS_CATALOG_SOURCE_ORDER = [
   "H-LaF6LA",
   "N-BK7",
   "K10",
+  "N-KF9",
   "H-K9L",
   "H-K9LGT",
   "S-BSL7",

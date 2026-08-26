@@ -2,13 +2,14 @@
 
 ## Patent Reference and Design Identification
 
-- **Patent:** JP 1997-211319 A (特開平9-211319)
-- **Application Number:** JP H8-34317 (特願平8-34317)
-- **Filed:** 1996-01-29
-- **Published:** 1997-08-15
-- **Inventor:** Hideki Ogawa
-- **Applicant:** Canon Inc.
-- **Title:** *Macro Lens* (マクロレンズ)
+**Patent:** JP 1997-211319 A (特開平9-211319)
+**Application Number:** JP H8-34317 (特願平8-34317)
+**Filed:** 1996-01-29
+**Published:** 1997-08-15
+**Inventor:** Hideki Ogawa
+**Applicant:** Canon Inc.
+**Title:** *Macro Lens* (マクロレンズ)
+
 **Embodiment analyzed:** Numerical Example 1
 
 The prescription is Numerical Example 1 of JP 1997-211319 A. The job card fixes that example as the production correlation for the CANON EF 180mm f/3.5 L Macro USM; the patent itself does not identify the commercial lens by model name. The correlation rests on several convergent features rather than on a manufacturer statement that Example 1 became the production prescription.
@@ -61,7 +62,7 @@ Element 1 is the front member of L1a. Its isolated power is weakly positive, and
 
 **nd = 1.49700, νd = 81.6. Glass: 497816 — low-dispersion / UD crown class (supplier unresolved). f = +112.405768 mm.**
 
-Element 2 is a substantially stronger positive member of L1a. Canon identifies the second element of the production lens as UD. The patent provides only nd and νd for this coordinate; the data therefore records the production UD identification as a class annotation without assigning a specific supplier glass or importing unpublished line indices.
+Element 2 is a substantially stronger positive member of L1a. Canon identifies the second element of the production lens as UD. The data records that manufacturer position as an inferred diagram classification without assigning a specific supplier glass or importing unpublished line indices.
 
 ### Element 3 (L3) — Negative Meniscus
 
@@ -73,7 +74,7 @@ Element 3 supplies negative isolated power inside the otherwise positive L1a ass
 
 **nd = 1.49700, νd = 81.6. Glass: 497816 — low-dispersion / UD crown class (supplier unresolved). f = +150.787175 mm.**
 
-Element 4 completes L1a and uses the same nd/νd coordinate as Element 2. Canon identifies the fourth production element as UD. As with Element 2, the data preserves that production classification but does not promote any coordinate-compatible public catalog glass to an asserted supplier identity.
+Element 4 completes L1a and uses the same nd/νd coordinate as Element 2. Canon identifies the fourth production element as UD. As with Element 2, the data preserves that production position as an inferred diagram classification but does not promote any coordinate-compatible public catalog glass to an asserted supplier identity.
 
 ### Element 5 (L5) — Negative Meniscus
 
@@ -119,7 +120,7 @@ Element 10 is the positive front member of L3 and has the strongest isolated pos
 
 **nd = 1.49700, νd = 81.6. Glass: 497816 — low-dispersion / UD crown class (supplier unresolved). f = +83.051492 mm.**
 
-Element 11 is the positive L3p member named in conditional expression (6). Its nd = 1.49700 and νd = 81.6 satisfy `N3p < 1.55` and `ν3p > 55` (¶0050–¶0051). Canon also identifies the eleventh production element as UD. The data preserves that manufacturer identification while leaving the supplier and detailed partial-dispersion behavior unresolved.
+Element 11 is the positive L3p member named in conditional expression (6). Its nd = 1.49700 and νd = 81.6 satisfy `N3p < 1.55` and `ν3p > 55` (¶0050–¶0051). Canon also identifies the eleventh production element as UD. The data preserves that position as an inferred diagram classification while leaving the supplier and detailed partial-dispersion behavior unresolved.
 
 ### Element 12 (L12) — Biconcave Negative, cemented to Element 11
 
@@ -159,7 +160,7 @@ Example 1 uses nine distinct nd/νd coordinates. The patent does not name glass 
 
 The stored index/Abbe values are treated as d-line nd/νd coordinates. The patent's ¶0054 labels the quantities only as refractive index and Abbe number, but the numerical coordinate system and the patent's d/g aberration notation are consistent with ordinary d-line glass coding. No e-line conversion is applied.
 
-No element in the data file carries `nC`, `nF`, `ng`, or `dPgF`. Consequently, the analysis does not claim apochromatic correction, quantify anomalous partial dispersion, or promote Canon's “UD” production label into a specific optical-glass identity. The manufacturer identification is useful for production correlation and glass-class context, but the modeled chromatic behavior remains limited to the data actually stored.
+No element in the data file carries `nC`, `nF`, `ng`, or `dPgF`. Consequently, the analysis does not claim apochromatic correction, quantify anomalous partial dispersion, or promote Canon's “UD” production label into a specific optical-glass identity. The inferred tags communicate Canon's element-position classification on the diagram; modeled chromatic behavior remains limited to the data actually stored.
 
 ## Focus Mechanism
 

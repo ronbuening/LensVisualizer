@@ -93,6 +93,10 @@ const LENS_DATA = {
       vd: 81.6,
       fl: 112.405768,
       glass: "497816 — low-dispersion / UD crown class (supplier unresolved)",
+      apd: "inferred",
+      apdNote:
+        "UD classification from Canon's production element-position specification; " +
+        "the patent publishes no partial-dispersion data.",
       role: "L1a UD-class positive element; production element 2 is identified by Canon as UD",
     },
     {
@@ -115,6 +119,10 @@ const LENS_DATA = {
       vd: 81.6,
       fl: 150.787175,
       glass: "497816 — low-dispersion / UD crown class (supplier unresolved)",
+      apd: "inferred",
+      apdNote:
+        "UD classification from Canon's production element-position specification; " +
+        "the patent publishes no partial-dispersion data.",
       role: "L1a UD-class positive element; production element 4 is identified by Canon as UD",
     },
     {
@@ -194,6 +202,10 @@ const LENS_DATA = {
       vd: 81.6,
       fl: 83.051492,
       glass: "497816 — low-dispersion / UD crown class (supplier unresolved)",
+      apd: "inferred",
+      apdNote:
+        "UD classification from Canon's production element-position specification; " +
+        "the patent publishes no partial-dispersion data.",
       role: "L3 UD-class positive member of cemented pair; production element 11 is identified by Canon as UD",
       cemented: "L3-D1",
     },

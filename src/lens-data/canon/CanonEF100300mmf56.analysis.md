@@ -2,13 +2,14 @@
 
 ## Patent Reference and Design Identification
 
-- **Patent:** JPS61-77818A
-- **Application Number:** JP59200177A
-- **Filed:** 25 September 1984
-- **Published:** 21 April 1986
-- **Inventors:** Keiji Ikemori; Sadatoshi Takahashi; Takashi Matsushita; Tsunefumi Tanaka; Nozomi Kitagishi
-- **Applicant:** Canon Inc.
-- **Title:** Zoom Lens
+**Patent:** JPS61-77818A
+**Application Number:** JP59200177A
+**Filed:** 25 September 1984
+**Published:** 21 April 1986
+**Inventors:** Keiji Ikemori; Sadatoshi Takahashi; Takashi Matsushita; Tsunefumi Tanaka; Nozomi Kitagishi
+**Applicant:** Canon Inc.
+**Title:** Zoom Lens
+
 **Embodiment analyzed:** Numerical Example 1
 
 The selected correlation is the Canon EF 100-300mm f/5.6 and the sole numerical example in JPS61-77818A. The patent itself does not name the production lens, so the relationship is not presented as manufacturer-confirmed. It is instead supported by convergent source evidence: the numerical example contains 15 elements in 9 air-separated physical groups, the principal zoom range is 100–290 mm at f/5.6, Canon is the applicant, and the publication precedes the 1987 introduction of the EF product. Canon's product record independently gives the non-L EF100-300mm f/5.6 as 15 elements in 9 groups with a marketed 100–300 mm range and constant f/5.6 maximum aperture. [1–4]
@@ -79,13 +80,13 @@ Although L6 is positive as a standalone element, the cemented C2 pair is net neg
 
 ### C3 — L7 + L8, positive third functional group
 
-**L7 — Biconvex Positive.** `nd = 1.52301, νd = 50.8. Glass: Unmatched (nd=1.52301, νd=50.8; coordinate 523508). f = +46.505 mm.`
+**L7 — Biconvex Positive.** `nd = 1.52301, νd = 50.8. Glass: N-KF9 coefficient proxy (patent 523508; production supplier unspecified). f = +46.505 mm.`
 
 **L8 — Negative Meniscus.** `nd = 1.80518, νd = 25.4. Glass: 805254 — SF6-class dense flint; vendor/melt unresolved. f = −88.059 mm.`
 
 C3 is net positive, with a compound EFL of approximately +99.422 mm, and is identical to functional group G3 because no additional glass elements belong to that group. The aperture stop follows G3 after the variable D13 air space. The patent specifically links the relative motion of G3 and G4 around this stop position to control of astigmatic variation during the second zoom. [1]
 
-L7 remains explicitly unmatched in the data file. Substituting a named glass would imply a vendor/melt identity that the available coordinates do not establish.
+L7 now uses Schott N-KF9 as a supplier-neutral coefficient proxy. Its public `nd = 1.52346, νd = 51.54` coordinate lies within the catalog guard of the patent's `1.52301 / 50.8`, but this compatibility does not establish Canon's historical supplier or melt.
 
 ### C4 — L9 + L10, front positive compound of G4
 
@@ -119,7 +120,7 @@ C6 is net negative, with a compound EFL of approximately −37.237 mm. This is a
 
 ## Glass Identification and Selection
 
-The patent publishes refractive index and Abbe number but no maker names or melt designations. The data file therefore uses six-digit optical positions, class-level labels, or explicit `Unmatched (...)` annotations. These are glass-position identifications, not claims that Canon used a specific current catalog melt.
+The patent publishes refractive index and Abbe number but no maker names or melt designations. The data file therefore uses six-digit optical positions and qualified class-level or coefficient-proxy labels. These are glass-position identifications, not claims that Canon used a specific current catalog melt.
 
 | Optical position / class annotation | nd | νd | Elements | Disposition |
 |---|---:|---:|---|---|
@@ -128,7 +129,7 @@ The patent publishes refractive index and Abbe number but no maker names or melt
 | 48770x — FK5/FSL5-class low-dispersion crown | 1.48749 | 70.1 | L3 | Source-corrected model coordinate |
 | 713538/540 — LAK8/LAL8-class lanthanum crown | 1.71300 | 53.8 | L4 | Vendor unresolved |
 | 697555 — LAK14-class lanthanum crown | 1.69680 | 55.5 | L5 | Vendor unresolved |
-| Unmatched coordinate 523508 | 1.52301 | 50.8 | L7 | No defensible named-glass match |
+| N-KF9 coefficient proxy (patent 523508) | 1.52301 | 50.8 | L7 | Compatible public curve; production supplier unspecified |
 | 603607 — SK14/BACD14-class crown | 1.60311 | 60.7 | L9 | Vendor unresolved |
 | 773496 — LAF34/LAH66/TAF1-class lanthanum flint | 1.77250 | 49.6 | L10 | Vendor unresolved |
 | 834372/373 — LASF010/LAH60-class dense lanthanum flint | 1.83400 | 37.2 | L11 | Vendor unresolved |
@@ -137,7 +138,7 @@ The patent publishes refractive index and Abbe number but no maker names or melt
 | 804466 — LASF015/LAH65-class lanthanum flint | 1.80400 | 46.6 | L14 | Vendor unresolved |
 | 613370 — F3/S-TIM3-class flint | 1.61293 | 37.0 | L15 | Vendor unresolved |
 
-The repeated 1.80518/25.4 coordinate on L1, L6, and L8 is preserved as the same optical position in the model, but it does not establish a historical manufacturer or melt. L12 uses the compatible coefficient-backed BAF5 curve while retaining the patent's 607492 coordinate and leaving the production supplier unspecified. L7 remains unmatched because no catalog row falls within the coordinate guard.
+The repeated 1.80518/25.4 coordinate on L1, L6, and L8 is preserved as the same optical position in the model, but it does not establish a historical manufacturer or melt. L7 uses the compatible coefficient-backed N-KF9 curve while retaining the patent's 523508 coordinate, and L12 does the same with BAF5 for patent coordinate 607492. Both leave the production supplier unspecified.
 
 No element carries explicit patent C-, F-, or g-line indices or `dPgF`. The qualified catalog-equivalent curves improve chromatic tracing but do not support an APO designation or a claim of anomalous partial dispersion.
 
