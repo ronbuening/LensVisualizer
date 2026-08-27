@@ -12,19 +12,19 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **644** lenses scanned
-- **7367** glass elements examined
-- **2192** elements have multiple coordinate-compatible candidates
-- **428** lens files are affected
+- **647** lenses scanned
+- **7410** glass elements examined
+- **2210** elements have multiple coordinate-compatible candidates
+- **430** lens files are affected
 - **208** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **194** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
-| Smallest reference-index residual | 1222 |
+| Smallest reference-index residual | 1238 |
 | Evidence-source priority | 687 |
 | Vendor context | 276 |
-| Stable canonical-name order | 5 |
+| Stable canonical-name order | 7 |
 | Smallest Abbe residual | 2 |
 
 ## Ambiguous Annotations
@@ -651,7 +651,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `BACED1 (HOYA catalog equivalent; production supplier unspecified; patent 617540)` | 1.61720 / 54.01 (d) | BACED1 — direct name evidence outranks six-digit code evidence. | K-SSK1 (Sumita, code, vendor ✗, preferred code row) | 1 | [NIKON AF ZOOM-MICRO NIKKOR ED 70-180mm f/4.5-5.6D](../../src/lens-data/nikon/NikonAFZoomMicro70180mmf4556D.data.ts) L3 |
 | `S-LAH65V class (OHARA, 804/466)` | 1.80411 / 46.54 (d) | S-LAH65V — direct name evidence outranks six-digit code evidence. | S-LAH65 (Ohara, code, vendor ✓, preferred code row)<br>H-ZLaF50E (CDGM, code, vendor ✗, alternate code row)<br>J-LASF015 (Hikari, code, vendor ✗, alternate code row)<br>H-ZLaF50D (CDGM, code, vendor ✗, alternate code row) | 3 | [NIKON AF ZOOM-MICRO NIKKOR ED 70-180mm f/4.5-5.6D](../../src/lens-data/nikon/NikonAFZoomMicro70180mmf4556D.data.ts) L10 |
 | `SF6-class dense flint (Schott, 805/255)` | 1.80458 / 25.50 (d) | SF6 — direct name evidence outranks six-digit code evidence. | H-ZF7LA (CDGM, code, vendor ✗, preferred code row)<br>J-SF6 (Hikari, code, vendor ✗, alternate code row)<br>FD60 (Hoya, code, vendor ✗, alternate code row) | 1 | [NIKON AF ZOOM-MICRO NIKKOR ED 70-180mm f/4.5-5.6D](../../src/lens-data/nikon/NikonAFZoomMicro70180mmf4556D.data.ts) L11 |
-| `847238 — dense flint class` | 1.84666 / 23.78 (d) | J-SF03 — smallest d-line \|Δn\| (3.7e-8 vs 5.0e-8) | H-ZF52 (CDGM, code, alternate code row)<br>S-TIH53W (Ohara, code, alternate code row)<br>S-TIH53 (Ohara, code, preferred code row)<br>FDS90 (Hoya, code, alternate code row) | 2 | [NIKON AF ZOOM-NIKKOR 28-200mm f/3.5-5.6 G IF-ED](../../src/lens-data/nikon/NikonAFZoomNikkor28200mmf3556GIFED.data.ts) L11a |
+| `847238 — dense flint class` | 1.84666 / 23.78 (d) | J-SF03 — smallest d-line \|Δn\| (3.7e-8 vs 5.0e-8) | H-ZF52 (CDGM, code, alternate code row)<br>S-TIH53W (Ohara, code, alternate code row)<br>S-TIH53 (Ohara, code, preferred code row)<br>FDS90 (Hoya, code, alternate code row) | 4 | [NIKON AF ZOOM-NIKKOR 28-200mm f/3.5-5.6 G IF-ED](../../src/lens-data/nikon/NikonAFZoomNikkor28200mmf3556GIFED.data.ts) L11a +1 files |
 | `835427 — lanthanum flint class` | 1.83481 / 42.72 (d) | S-LAH55 — smallest d-line \|Δn\| (2.9e-6 vs 3.0e-6) | TAFD5G (Hoya, code, alternate code row)<br>TAFD5F (Hoya, code, alternate code row) | 1 | [NIKON AF ZOOM-NIKKOR 28-200mm f/3.5-5.6 G IF-ED](../../src/lens-data/nikon/NikonAFZoomNikkor28200mmf3556GIFED.data.ts) L21g |
 | `773496 — lanthanum flint class` | 1.77250 / 49.61 (d) | J-LASF016 — smallest d-line \|Δn\| (1.7e-8 vs 6.4e-8) | N-LAF34 (Schott, code, alternate code row)<br>S-LAH66 (Ohara, code, preferred code row)<br>S-LAH66N (Ohara, code, alternate code row) | 2 | [NIKON AF ZOOM-NIKKOR 28-200mm f/3.5-5.6 G IF-ED](../../src/lens-data/nikon/NikonAFZoomNikkor28200mmf3556GIFED.data.ts) L22 |
 | `808228 — very dense flint class` | 1.80809 / 22.76 (d) | FD225 — smallest d-line \|Δn\| (1.4e-6 vs 4.7e-6) | S-NPH1 (Ohara, code, preferred code row) | 1 | [NIKON AF ZOOM-NIKKOR 28-200mm f/3.5-5.6 G IF-ED](../../src/lens-data/nikon/NikonAFZoomNikkor28200mmf3556GIFED.data.ts) L23 |
@@ -1497,6 +1497,19 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `S-FPL51 (OHARA) — 497816 class representative` | 1.49700 / 81.61 (d) | S-FPL51 — direct name evidence outranks six-digit code evidence. | H-FK61 (CDGM, code, vendor ✗, alternate code row)<br>FCD1 (Hoya, code, vendor ✗, alternate code row) | 2 | [SONY VARIO-SONNAR T* 24-70mm f/2.8 ZA SSM](../../src/lens-data/sony/SonyVarioSonnarT2470mmf28ZASSM.data.ts) G12 |
 | `N-FK5 (SCHOTT) — 487704 class representative` | 1.48749 / 70.44 (d) | N-FK5 — direct name evidence outranks six-digit code evidence. | H-QK3L (CDGM, code, vendor ✗, alternate code row)<br>FK5 (Sumita, code, vendor ✗, alternate code row)<br>FC5 (Hoya, code, vendor ✗, alternate code row) | 1 | [SONY VARIO-SONNAR T* 24-70mm f/2.8 ZA SSM](../../src/lens-data/sony/SonyVarioSonnarT2470mmf28ZASSM.data.ts) G15 |
 | `NBFD10 (HOYA) — 834373 class` | 1.83400 / 37.34 (d) | NBFD10 — direct name evidence outranks six-digit code evidence. | M-NBFD10 (Hoya, code, vendor ✓, preferred code row) | 1 | [SONY VARIO-SONNAR T* 24-70mm f/2.8 ZA SSM](../../src/lens-data/sony/SonyVarioSonnarT2470mmf28ZASSM.data.ts) G17 |
+| `847238 — dense flint coordinate class (vendor non-unique)` | 1.84666 / 23.78 (d) | J-SF03 — smallest d-line \|Δn\| (3.7e-8 vs 5.0e-8) | H-ZF52 (CDGM, code, alternate code row)<br>S-TIH53W (Ohara, code, alternate code row)<br>S-TIH53 (Ohara, code, preferred code row)<br>FDS90 (Hoya, code, alternate code row) | 1 | [SONY VARIO-SONNAR T* DT 16-80mm f/3.5-4.5 ZA](../../src/lens-data/sony/SonyVarioSonnarTDT1680mmf3545ZA.data.ts) L1 |
+| `805255 — dense flint coordinate class (vendor non-unique)` | 1.80518 / 25.46 (d) | J-SF6 — smallest d-line \|Δn\| (3.3e-8 vs 4.4e-8) | H-ZF7LA (CDGM, code, preferred code row)<br>FD60 (Hoya, code, alternate code row) | 1 | [SONY VARIO-SONNAR T* DT 16-80mm f/3.5-4.5 ZA](../../src/lens-data/sony/SonyVarioSonnarTDT1680mmf3545ZA.data.ts) L5 |
+| `883408 — lanthanum high-index coordinate class (vendor non-unique)` | 1.88300 / 40.80 (d) | S-LAH58 — smallest d-line \|Δn\| (3.0e-6 vs 3.9e-6) | TAFD30 (Hoya, code, alternate code row) | 2 | [SONY VARIO-SONNAR T* DT 16-80mm f/3.5-4.5 ZA](../../src/lens-data/sony/SonyVarioSonnarTDT1680mmf3545ZA.data.ts) L6 |
+| `762266 — dense flint coordinate class (vendor non-unique)` | 1.76182 / 26.61 (d) | J-SF14 — smallest d-line \|Δn\| (3.0e-8 vs 1.8e-6) | FD140 (Hoya, code, alternate code row) | 1 | [SONY VARIO-SONNAR T* DT 16-80mm f/3.5-4.5 ZA](../../src/lens-data/sony/SonyVarioSonnarTDT1680mmf3545ZA.data.ts) L7 |
+| `569560 — barium crown coordinate class (vendor non-unique)` | 1.56883 / 56.04 (d) | BAC4 — smallest d-line \|Δn\| (9.0e-7 vs 2.5e-6) | N-BAK4 (Schott, code, preferred code row) | 1 | [SONY VARIO-SONNAR T* DT 16-80mm f/3.5-4.5 ZA](../../src/lens-data/sony/SonyVarioSonnarTDT1680mmf3545ZA.data.ts) L10 |
+| `517642 — crown coordinate class (vendor non-unique)` | 1.51680 / 64.20 (d) | H-K9L — Stable canonical-name ordering breaks an otherwise equal match (H-K9L before H-K9LGT). | H-K9LGT (CDGM, code, alternate code row)<br>N-BK7 (Schott, code, preferred code row) | 2 | [SONY VARIO-SONNAR T* DT 16-80mm f/3.5-4.5 ZA](../../src/lens-data/sony/SonyVarioSonnarTDT1680mmf3545ZA.data.ts) L11 |
+| `904313 — high-index lanthanum coordinate class (vendor non-unique)` | 1.90366 / 31.32 (d) | J-LASFH13 — smallest d-line \|Δn\| (3.1e-8 vs 1.0e-7) | N-LASF46B (Schott, code, alternate code row)<br>S-LAH95 (Ohara, code, preferred code row)<br>TAFD25 (Hoya, code, alternate code row) | 1 | [SONY VARIO-SONNAR T* DT 16-80mm f/3.5-4.5 ZA](../../src/lens-data/sony/SonyVarioSonnarTDT1680mmf3545ZA.data.ts) L13 |
+| `620603 — dense crown class` | 1.62041 / 60.34 (d) | J-SK16 — smallest d-line \|Δn\| (1.0e-8 vs 3.5e-8) | N-SK16 (Schott, code, preferred code row)<br>S-BSM16 (Ohara, code, alternate code row) | 1 | [SONY VARIO-TESSAR T* E 16-70mm f/4 ZA OSS](../../src/lens-data/sony/SonyVarioTessarTE1670mmf4ZAOSS.data.ts) L12 |
+| `729547 — lanthanum crown class` | 1.72916 / 54.67 (d) | TAC8 — smallest d-line \|Δn\| (6.0e-8 vs 3.1e-6) | S-LAL18 (Ohara, code, preferred code row) | 1 | [SONY VARIO-TESSAR T* E 16-70mm f/4 ZA OSS](../../src/lens-data/sony/SonyVarioTessarTE1670mmf4ZAOSS.data.ts) L13 |
+| `904313 — very-high-index flint class` | 1.90366 / 31.31 (d) | J-LASFH13 — smallest d-line \|Δn\| (3.1e-8 vs 1.0e-7) | N-LASF46B (Schott, code, alternate code row)<br>S-LAH95 (Ohara, code, preferred code row)<br>TAFD25 (Hoya, code, alternate code row) | 1 | [SONY VARIO-TESSAR T* E 16-70mm f/4 ZA OSS](../../src/lens-data/sony/SonyVarioTessarTE1670mmf4ZAOSS.data.ts) L31 |
+| `694532 — lanthanum crown class` | 1.69350 / 53.20 (d) | M-LAC130 — smallest d-line \|Δn\| (1.2e-7 vs 3.8e-7) | L-LAL13 (Ohara, code, alternate code row)<br>S-LAL13 (Ohara, code, preferred code row) | 2 | [SONY VARIO-TESSAR T* E 16-70mm f/4 ZA OSS](../../src/lens-data/sony/SonyVarioTessarTE1670mmf4ZAOSS.data.ts) L41 |
+| `497816 — ED fluorophosphate class` | 1.49700 / 81.61 (d) | H-FK61 — smallest d-line \|Δn\| (1.1e-8 vs 1.6e-7) | FCD1 (Hoya, code, alternate code row)<br>S-FPL51 (Ohara, code, preferred code row) | 1 | [SONY VARIO-TESSAR T* E 16-70mm f/4 ZA OSS](../../src/lens-data/sony/SonyVarioTessarTE1670mmf4ZAOSS.data.ts) L43 |
+| `618634 — phosphate crown class` | 1.61800 / 63.40 (d) | S-PHM52 — smallest d-line \|Δn\| (9.0e-8 vs 1.0e-7) | N-PSK53A (Schott, code, alternate code row)<br>PCD4 (Hoya, code, alternate code row)<br>K-PSKn2 (Sumita, code, alternate code row) | 1 | [SONY VARIO-TESSAR T* E 16-70mm f/4 ZA OSS](../../src/lens-data/sony/SonyVarioTessarTE1670mmf4ZAOSS.data.ts) L44 |
 | `904313 class (vendor unresolved)` | 1.90366 / 31.31 (d) | J-LASFH13 — smallest d-line \|Δn\| (3.1e-8 vs 1.0e-7) | N-LASF46B (Schott, code, alternate code row)<br>S-LAH95 (Ohara, code, preferred code row)<br>TAFD25 (Hoya, code, alternate code row) | 4 | [TAMRON 14-150mm f/3.5-5.8 Di III (C001)](../../src/lens-data/tamron/TamronC00114150mmf3558.data.ts) L1 +1 files |
 | `497816 fluorophosphate / ED-crown class (vendor unresolved)` | 1.49700 / 81.61 (d) | H-FK61 — smallest d-line \|Δn\| (1.1e-8 vs 1.6e-7) | FCD1 (Hoya, code, alternate code row)<br>S-FPL51 (Ohara, code, preferred code row) | 1 | [TAMRON 14-150mm f/3.5-5.8 Di III (C001)](../../src/lens-data/tamron/TamronC00114150mmf3558.data.ts) L2 |
 | `618634 phosphate-crown class (vendor unresolved)` | 1.61800 / 63.39 (d) | S-PHM52 — smallest d-line \|Δn\| (9.0e-8 vs 1.0e-7) | N-PSK53A (Schott, code, alternate code row)<br>PCD4 (Hoya, code, alternate code row)<br>K-PSKn2 (Sumita, code, alternate code row) | 1 | [TAMRON 14-150mm f/3.5-5.8 Di III (C001)](../../src/lens-data/tamron/TamronC00114150mmf3558.data.ts) L3 |
