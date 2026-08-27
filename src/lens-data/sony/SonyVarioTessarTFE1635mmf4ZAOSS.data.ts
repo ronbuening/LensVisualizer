@@ -16,12 +16,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                                                      ║
  * ║ Source correction: JP ¶0033 prints a dimensionally invalid y²c² asphere numerator. Computation and  ║
  * ║ this file use the standard c·y² numerator; K is otherwise retained without conversion.             ║
- * ║ Source contradiction: JP ¶0032 calls n the d-line index, but the mineral-glass n values behave      ║
- * ║ like catalog n_e while ν behaves like ν_d. Raw patent n/ν pairs are preserved for prescription      ║
- * ║ reproduction. No indexReference value can truthfully encode this mixed coordinate pair.             ║
- * ║ Glass labels are therefore Unmatched/class-level annotations, not vendor-melt identifications.       ║
- * ║ nC/nF/ng/dPgF are not authored because the source does not publish them and no exact catalog melt    ║
- * ║ is defensible. A14=0 is a schema-required modeling zero; the patent publishes coefficients through A12.║
+ * ║ JP ¶0032 explicitly defines n/ν at the d line. Existing coefficient curves are used only where the   ║
+ * ║ published d-line pair passes the catalog guard; six physical mineral elements gain qualified proxy   ║
+ * ║ curves while the remaining six mineral rows and L12 resin stay unresolved. No production supplier   ║
+ * ║ is inferred. nC/nF/ng/dPgF remain unauthored. A14=0 is a schema-required modeling zero; the patent    ║
+ * ║ publishes coefficients through A12.                                                                    ║
  * ║                                                                                                      ║
  * ║ Semi-diameters are modeled, not patent-published. They were derived from real sequential ray bundles ║
  * ║ at all three zoom states and both focus endpoints, including on-axis marginal rays and full-field    ║
@@ -66,17 +65,19 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L11",
+      diagramLabel: "L11",
       label: "L11",
       type: "Negative Meniscus (2× Asph)",
       nd: 1.77173,
       vd: 49.2,
       fl: -29.1827,
-      glass: "Unmatched (mixed-coordinate patent row; 768492 class)",
+      glass: "M-TAF1 (HOYA catalog-equivalent coefficient proxy; production supplier unspecified)",
       role: "Front negative meniscus of GR1.",
     },
     {
       id: 2,
       name: "L12g",
+      diagramLabel: "L12",
       label: "L12 glass substrate",
       type: "Negative Meniscus Substrate",
       nd: 1.83945,
@@ -89,6 +90,7 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L12r",
+      diagramLabel: "L12r",
       label: "L12 bonded aspheric resin",
       type: "Bonded Aspheric Resin Layer",
       nd: 1.53699,
@@ -101,6 +103,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L13",
+      diagramLabel: "L13",
       label: "L13",
       type: "Negative Meniscus",
       nd: 1.80831,
@@ -112,6 +115,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L14",
+      diagramLabel: "L14",
       label: "L14",
       type: "Biconvex Positive",
       nd: 2.00912,
@@ -123,17 +127,19 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L21",
+      diagramLabel: "L21",
       label: "L21 (OSS)",
       type: "Positive Meniscus",
       nd: 1.57124,
       vd: 56,
       fl: 148.1107,
-      glass: "Unmatched (mixed-coordinate patent row; 569560 crown class)",
+      glass: "BAC4 (HOYA catalog-equivalent coefficient proxy; production supplier unspecified)",
       role: "Front component of GR2; patent-designated lateral image-stabilization lens.",
     },
     {
       id: 7,
       name: "L22",
+      diagramLabel: "L22",
       label: "L22",
       type: "Negative Meniscus (1× Asph)",
       nd: 1.74688,
@@ -146,29 +152,32 @@ const LENS_DATA = {
     {
       id: 8,
       name: "L23",
+      diagramLabel: "L23",
       label: "L23",
       type: "Positive Meniscus",
       nd: 1.49845,
       vd: 81.5,
       fl: 30.827,
-      glass: "Unmatched (mixed-coordinate patent row; 497815 ED-crown class)",
+      glass: "S-FPL51 (OHARA catalog-equivalent coefficient proxy; production supplier unspecified)",
       cemented: "D1",
       role: "Very-low-dispersion positive member of the GR2 cemented doublet.",
     },
     {
       id: 9,
       name: "L31",
+      diagramLabel: "L31",
       label: "L31 focus lens",
       type: "Biconvex Positive (2× Asph)",
       nd: 1.48914,
       vd: 70.3,
       fl: 50.5398,
-      glass: "Unmatched (mixed-coordinate patent row; 487703 low-dispersion crown class)",
+      glass: "J-FK5 (HIKARI catalog-equivalent coefficient proxy; production supplier unspecified)",
       role: "Single-element GR3 focusing group; translates axially for close focus.",
     },
     {
       id: 10,
       name: "L41",
+      diagramLabel: "L41",
       label: "L41",
       type: "Negative Meniscus",
       nd: 1.80831,
@@ -181,29 +190,32 @@ const LENS_DATA = {
     {
       id: 11,
       name: "L42",
+      diagramLabel: "L42",
       label: "L42",
       type: "Positive Meniscus",
       nd: 1.49845,
       vd: 81.6,
       fl: 52.6802,
-      glass: "Unmatched (mixed-coordinate patent row; 497816 ED-crown class)",
+      glass: "S-FPL51 (OHARA catalog-equivalent coefficient proxy; production supplier unspecified)",
       cemented: "D2",
       role: "Very-low-dispersion positive rear member of the GR4 cemented doublet.",
     },
     {
       id: 12,
       name: "L43",
+      diagramLabel: "L43",
       label: "L43",
       type: "Biconvex Positive",
       nd: 1.49845,
       vd: 81.6,
       fl: 22.9585,
-      glass: "Unmatched (mixed-coordinate patent row; 497816 ED-crown class)",
+      glass: "S-FPL51 (OHARA catalog-equivalent coefficient proxy; production supplier unspecified)",
       role: "Very-low-dispersion positive component in GR4.",
     },
     {
       id: 13,
       name: "L44",
+      diagramLabel: "L44",
       label: "L44",
       type: "Biconcave Negative (2× Asph)",
       nd: 1.77767,
@@ -362,12 +374,13 @@ const LENS_DATA = {
   groups: [
     { text: "GR1 (−)", fromSurface: "1A", toSurface: "9" },
     { text: "GR2 (+)", fromSurface: "10", toSurface: "15" },
-    { text: "GR3 (+, focus)", fromSurface: "16A", toSurface: "17A" },
+    { text: "GR3 (+ / FOCUS)", fromSurface: "16A", toSurface: "17A" },
     { text: "GR4 (−)", fromSurface: "18", toSurface: "24A" },
   ],
 
   doublets: [
     { text: "H1", fromSurface: "3", toSurface: "5A" },
+    { text: "L21 / OSS", fromSurface: "10", toSurface: "11" },
     { text: "D1", fromSurface: "13A", toSurface: "15" },
     { text: "D2", fromSurface: "18", toSurface: "20" },
   ],

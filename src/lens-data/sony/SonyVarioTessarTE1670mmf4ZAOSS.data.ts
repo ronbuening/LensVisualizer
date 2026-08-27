@@ -33,6 +33,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ 0.8-field stress fan; full-field chief/±0.375-pupil rays were also traced.║
  * ║ SDs were checked for edge thickness, actual aspheric rim slope, cross-gap ║
  * ║ intrusion, conic limits, and modeled off-axis containment.                ║
+ * ║ Figure 1's taller rear-unit profile is reflected in refined GR4-GR6 rims; ║
+ * ║ cemented GR4 surfaces remain capped where further growth crosses at edge. ║
  * ║                                                                            ║
  * ║ Glass names are conservative catalog classes/codes from nd/νd matching,   ║
  * ║ with qualified catalog-equivalent curves where the coordinates support   ║
@@ -78,6 +80,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L11",
+      diagramLabel: "L11",
       label: "Element L11",
       type: "Negative Meniscus",
       nd: 1.84666,
@@ -90,6 +93,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L12",
+      diagramLabel: "L12",
       label: "Element L12",
       type: "Positive Meniscus",
       nd: 1.62041,
@@ -102,6 +106,7 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L13",
+      diagramLabel: "L13",
       label: "Element L13",
       type: "Positive Meniscus",
       nd: 1.72916,
@@ -113,6 +118,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L21",
+      diagramLabel: "L21",
       label: "Element L21",
       type: "Neg. Meniscus (2× Asph)",
       nd: 1.85135,
@@ -124,6 +130,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L22",
+      diagramLabel: "L22",
       label: "Element L22",
       type: "Biconcave Negative",
       nd: 1.834,
@@ -136,6 +143,7 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L23",
+      diagramLabel: "L23",
       label: "Element L23",
       type: "Biconvex Positive",
       nd: 1.84666,
@@ -148,6 +156,7 @@ const LENS_DATA = {
     {
       id: 7,
       name: "L24",
+      diagramLabel: "L24",
       label: "Element L24",
       type: "Neg. Meniscus (1× Asph)",
       nd: 1.8208,
@@ -159,6 +168,7 @@ const LENS_DATA = {
     {
       id: 8,
       name: "L31",
+      diagramLabel: "L31",
       label: "Element L31",
       type: "Negative Meniscus",
       nd: 1.90366,
@@ -171,6 +181,7 @@ const LENS_DATA = {
     {
       id: 9,
       name: "L32",
+      diagramLabel: "L32",
       label: "Element L32",
       type: "Biconvex Positive",
       nd: 1.7433,
@@ -183,6 +194,7 @@ const LENS_DATA = {
     {
       id: 10,
       name: "L33",
+      diagramLabel: "L33",
       label: "Element L33",
       type: "Negative Meniscus",
       nd: 1.80611,
@@ -194,6 +206,7 @@ const LENS_DATA = {
     {
       id: 11,
       name: "L41",
+      diagramLabel: "L41",
       label: "Element L41",
       type: "Biconvex Positive (1× Asph)",
       nd: 1.6935,
@@ -205,6 +218,7 @@ const LENS_DATA = {
     {
       id: 12,
       name: "L42",
+      diagramLabel: "L42",
       label: "Element L42",
       type: "Negative Meniscus",
       nd: 1.91082,
@@ -217,6 +231,7 @@ const LENS_DATA = {
     {
       id: 13,
       name: "L43",
+      diagramLabel: "L43",
       label: "Element L43",
       type: "Biconvex Positive",
       nd: 1.497,
@@ -229,6 +244,7 @@ const LENS_DATA = {
     {
       id: 14,
       name: "L44",
+      diagramLabel: "L44",
       label: "Element L44",
       type: "Biconvex Positive",
       nd: 1.618,
@@ -240,6 +256,7 @@ const LENS_DATA = {
     {
       id: 15,
       name: "L51",
+      diagramLabel: "L51",
       label: "Element L51",
       type: "Biconcave Negative (2× Asph)",
       nd: 1.6935,
@@ -251,6 +268,7 @@ const LENS_DATA = {
     {
       id: 16,
       name: "L61",
+      diagramLabel: "L61",
       label: "Element L61",
       type: "Biconvex Positive",
       nd: 1.51742,
@@ -286,19 +304,19 @@ const LENS_DATA = {
     { label: "17", R: -15.55, d: 0.8, nd: 1.80611, elemId: 10, sd: 7.8 },
     { label: "18", R: -39.947, d: 5.025, nd: 1.0, elemId: 0, sd: 8.5 },
 
-    { label: "19A", R: 63.402, d: 3.49, nd: 1.6935, elemId: 11, sd: 9.5 },
-    { label: "20", R: -19.063, d: 0.25, nd: 1.0, elemId: 0, sd: 9.5 },
-    { label: "21", R: 134.77, d: 0.8, nd: 1.91082, elemId: 12, sd: 9.0 },
-    { label: "22", R: 18.387, d: 4.19, nd: 1.497, elemId: 13, sd: 9.0 },
-    { label: "23", R: -33.222, d: 1.0, nd: 1.0, elemId: 0, sd: 9.0 },
-    { label: "24", R: 41.268, d: 2.02, nd: 1.618, elemId: 14, sd: 10.5 },
-    { label: "25", R: -750.0, d: 5.437, nd: 1.0, elemId: 0, sd: 10.5 },
+    { label: "19A", R: 63.402, d: 3.49, nd: 1.6935, elemId: 11, sd: 10.4 },
+    { label: "20", R: -19.063, d: 0.25, nd: 1.0, elemId: 0, sd: 10.4 },
+    { label: "21", R: 134.77, d: 0.8, nd: 1.91082, elemId: 12, sd: 9.6 },
+    { label: "22", R: 18.387, d: 4.19, nd: 1.497, elemId: 13, sd: 9.6 },
+    { label: "23", R: -33.222, d: 1.0, nd: 1.0, elemId: 0, sd: 9.6 },
+    { label: "24", R: 41.268, d: 2.02, nd: 1.618, elemId: 14, sd: 12.0 },
+    { label: "25", R: -750.0, d: 5.437, nd: 1.0, elemId: 0, sd: 12.0 },
 
-    { label: "26A", R: -242.5, d: 0.9, nd: 1.6935, elemId: 15, sd: 9.5 },
-    { label: "27A", R: 15.504, d: 4.563, nd: 1.0, elemId: 0, sd: 9.5 },
+    { label: "26A", R: -242.5, d: 0.9, nd: 1.6935, elemId: 15, sd: 10.5 },
+    { label: "27A", R: 15.504, d: 4.563, nd: 1.0, elemId: 0, sd: 10.5 },
 
-    { label: "28", R: 34.502, d: 3.16, nd: 1.51742, elemId: 16, sd: 12.0 },
-    { label: "29", R: -150.0, d: 14.754, nd: 1.0, elemId: 0, sd: 12.0 },
+    { label: "28", R: 34.502, d: 3.16, nd: 1.51742, elemId: 16, sd: 12.5 },
+    { label: "29", R: -150.0, d: 14.754, nd: 1.0, elemId: 0, sd: 12.5 },
   ],
 
   /* ── Aspherical coefficients ──
@@ -417,15 +435,16 @@ const LENS_DATA = {
     { text: "GR2 (-)", fromSurface: "6A", toSurface: "12A" },
     { text: "GR3 (+)", fromSurface: "14", toSurface: "18" },
     { text: "GR4 (+)", fromSurface: "19A", toSurface: "25" },
-    { text: "GR5 (-) FOCUS", fromSurface: "26A", toSurface: "27A" },
+    { text: "GR5 (− / FOCUS)", fromSurface: "26A", toSurface: "27A" },
     { text: "GR6 (+)", fromSurface: "28", toSurface: "29" },
   ],
 
   doublets: [
-    { text: "J1 L11+L12", fromSurface: "1", toSurface: "3" },
-    { text: "J2 L22+L23", fromSurface: "8", toSurface: "10" },
-    { text: "J3 L31+L32", fromSurface: "14", toSurface: "16" },
-    { text: "J4 L42+L43", fromSurface: "21", toSurface: "23" },
+    { text: "J1", fromSurface: "1", toSurface: "3" },
+    { text: "J2", fromSurface: "8", toSurface: "10" },
+    { text: "J3", fromSurface: "14", toSurface: "16" },
+    { text: "J4 / GR4f", fromSurface: "21", toSurface: "23" },
+    { text: "GR4r / OSS", fromSurface: "24", toSurface: "25" },
   ],
 
   /* ── Focus configuration ── */

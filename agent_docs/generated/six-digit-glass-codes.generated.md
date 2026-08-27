@@ -10,15 +10,15 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **647** lenses scanned
-- **1315** total code-only elements found
-- **1315** elements in this report
+- **1309** total code-only elements found
+- **1309** elements in this report
 - **206** distinct lens files affected
 
 ## Codes by Frequency
 
 | Code | Elements | Lens files | localPatentStatus | reviewRecordStatus |
 |---|---:|---:|---|---|
-| 497816 | 72 | 35 | patents/JPA 1997211319-000000.pdf<br>patents/US20130308041A1.pdf<br>patents/US6115188.pdf<br>patents/US20220171174A1.pdf | 6/72 rows have review records |
+| 497816 | 70 | 34 | patents/JPA 1997211319-000000.pdf<br>patents/US20130308041A1.pdf<br>patents/US6115188.pdf<br>patents/US20220171174A1.pdf | 4/70 rows have review records |
 | 847238 | 69 | 35 | patents/US7158320.pdf<br>patents/US20150146044A1.pdf<br>patents/JP_2000047107_A.pdf<br>patents/US20110090576A1.pdf | 1/69 rows have review records |
 | 835427 | 45 | 27 | patents/US7158320.pdf<br>patents/US20130308041A1.pdf<br>patents/US6115188.pdf<br>patents/US20110090576A1.pdf | 5/45 rows have review records |
 | 773496 | 43 | 32 | patents/US20150146044A1.pdf<br>patents/JP_2000047107_A.pdf<br>patents/JP2018049102A.pdf<br>patents/JP2013054269A.pdf | No review-record hit |
@@ -35,8 +35,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 834372 | 18 | 15 | patents/US7158320.pdf<br>patents/JP2018049102A.pdf<br>patents/JPA 1997211319-000000.pdf<br>patents/US6115188.pdf | 1/18 rows have review records |
 | 729547 | 17 | 15 | patents/US20150146044A1.pdf<br>patents/JP2013054269A.pdf<br>patents/JP2015011156A.pdf<br>patents/JPA 1994082698-000000.pdf | 2/17 rows have review records |
 | 516641 | 15 | 13 | patents/JPA 1991141313-000000.pdf<br>patents/US20220171174A1.pdf<br>patents/US20210033835A1.pdf<br>patents/US20160327774A1.pdf | 1/15 rows have review records |
-| 497815 | 14 | 7 | patents/JP2018049102A.pdf<br>patents/US6115188.pdf<br>patents/US20140098253A1.pdf<br>patents/US20210033835A1.pdf | 1/14 rows have review records |
 | 603607 | 14 | 12 | patents/US20150146044A1.pdf<br>patents/JPA 1991141313-000000.pdf<br>patents/JP2013054269A.pdf<br>patents/JPA 1999231209-000000.pdf | No review-record hit |
+| 497815 | 13 | 6 | patents/JP2018049102A.pdf<br>patents/US6115188.pdf<br>patents/US20140098253A1.pdf<br>patents/US20210033835A1.pdf | No review-record hit |
 | 755275 | 13 | 12 | patents/US4826301.pdf<br>patents/JPA 1981119109-000000.pdf<br>patents/JPA 1989039542-000000.pdf<br>patents/US6940655.pdf | 1/13 rows have review records |
 | 804465 | 13 | 8 | patents/US20020015231A1.pdf<br>patents/US20220171174A1.pdf<br>patents/US20100194930A1.pdf<br>patents/US8824059.pdf | No review-record hit |
 | 720502 | 12 | 9 | patents/JP2018049102A.pdf<br>patents/US6115188.pdf<br>patents/US20110090576A1.pdf<br>patents/US20060023317A1.pdf | 2/12 rows have review records |
@@ -83,7 +83,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 001255 | 4 | 4 | patents/US20220171174A1.pdf<br>patents/US20210033835A1.pdf<br>patents/JP2022092388A.pdf<br>patents/WO2022097401A1.pdf | 1/4 rows have review records |
 | 498826 | 4 | 1 | patents/US20050157403A1.pdf | All rows have review records |
 | 517524 | 4 | 4 | patents/US6115188.pdf<br>patents/US20140098253A1.pdf<br>patents/US20010007512A1.pdf<br>patents/US20120307375A1.pdf | No review-record hit |
-| 569560 | 4 | 4 | patents/JP2016090725A.pdf<br>patents/US20130222925A1.pdf<br>patents/US20070229969A1.pdf<br>patents/JP2015166834A.pdf | 2/4 rows have review records |
 | 581408 | 4 | 4 | patents/US6940655.pdf<br>patents/US4452513.pdf<br>patents/US4812022.pdf<br>patents/US7075731.pdf | No review-record hit |
 | 583595 | 4 | 2 | patents/JP2023044106A.pdf<br>patents/US20140347522A1.pdf | No review-record hit |
 | 640602 | 4 | 3 | patents/US3459469.pdf<br>patents/US20080212200A1.pdf<br>patents/JPA 1975110330-000000.pdf | No review-record hit |
@@ -103,6 +102,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 051269 | 3 | 2 | patents/JP2021056407A.pdf<br>patents/US20210033835A1.pdf | 2/3 rows have review records |
 | 516565 | 3 | 1 | patents/CN216772097U.pdf | All rows have review records |
 | 567428 | 3 | 3 | patents/US20180164556A1.pdf<br>patents/US7804652.pdf | No review-record hit |
+| 569560 | 3 | 3 | patents/JP2016090725A.pdf<br>patents/US20130222925A1.pdf<br>patents/US20070229969A1.pdf | 1/3 rows have review records |
 | 575415 | 3 | 3 | patents/US20130308041A1.pdf<br>patents/US20240295723A1.pdf | No review-record hit |
 | 593353 | 3 | 3 | patents/US20150146044A1.pdf<br>patents/JPA 1997211319-000000.pdf<br>patents/US7804652.pdf | No review-record hit |
 | 620363 | 3 | 2 | patents/JPA 2000019398-000000.pdf<br>patents/US20080212200A1.pdf | No review-record hit |
@@ -187,7 +187,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 459902 | 1 | 1 | patents/JP2023044106A.pdf | No review-record hit |
 | 460658 | 1 | 1 | patents/DE_3907928_A1.pdf | All rows explicitly disposed |
 | 479587 | 1 | 1 | patents/US4773745.pdf | All rows explicitly disposed |
-| 487703 | 1 | 1 | patents/JP2015166834A.pdf | All rows explicitly disposed |
 | 501564 | 1 | 1 | patents/US20010030812A1.pdf | No review-record hit |
 | 507589 | 1 | 1 | patents/JPA 1999231209-000000.pdf | All rows have review records |
 | 514530 | 1 | 1 | patents/JP2016021011A.pdf | All rows have review records |
@@ -320,7 +319,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 762266 | 1 | 1 | patents/US20070229969A1.pdf | No review-record hit |
 | 765249 | 1 | 1 | patents/US20130314588A1.pdf | All rows explicitly disposed |
 | 767462 | 1 | 1 | patents/US3507558.pdf | All rows have review records |
-| 768492 | 1 | 1 | patents/JP2015166834A.pdf | All rows explicitly disposed |
 | 769497 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | All rows have review records |
 | 770297 | 1 | 1 | patents/JP2023044106A.pdf | No review-record hit |
 | 770493 | 1 | 1 | Missing from untracked local patents/ references (WO2021246545A1, WO2021246545, 2021246545) | All rows explicitly disposed |
@@ -2392,16 +2390,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L11 (L11) | 1A | `Unmatched (mixed-coordinate patent row; 768492 class)` | 1.77173 / 49.20 | No catalog entry | abbe | patents/JP2015166834A.pdf | Explicit disposition in data |
 | L12g (L12 glass substrate) | 3 | `Unmatched (mixed-coordinate patent row; 835427 class)` | 1.83945 / 42.70 | No catalog entry | abbe | patents/JP2015166834A.pdf | Explicit disposition in data |
 | L13 (L13) | 6 | `Unmatched (mixed-coordinate patent row; 804466 class)` | 1.80831 / 46.50 | No catalog entry | abbe | patents/JP2015166834A.pdf | Explicit disposition in data |
 | L14 (L14) | 8 | `Unmatched (mixed-coordinate patent row; 001291 dense-flint class)` | 2.00912 / 29.10 | No catalog entry | abbe | patents/JP2015166834A.pdf | Explicit disposition in data |
-| L21 (L21 (OSS)) | 10 | `Unmatched (mixed-coordinate patent row; 569560 crown class)` | 1.57124 / 56.00 | No catalog entry | abbe | patents/JP2015166834A.pdf | Explicit disposition in data |
-| L23 (L23) | 14 | `Unmatched (mixed-coordinate patent row; 497815 ED-crown class)` | 1.49845 / 81.50 | No catalog entry | abbe | patents/JP2015166834A.pdf | Explicit disposition in data |
-| L31 (L31 focus lens) | 16A | `Unmatched (mixed-coordinate patent row; 487703 low-dispersion crown class)` | 1.48914 / 70.30 | No catalog entry | abbe | patents/JP2015166834A.pdf | Explicit disposition in data |
 | L41 (L41) | 18 | `Unmatched (mixed-coordinate patent row; 804466 class)` | 1.80831 / 46.50 | No catalog entry | abbe | patents/JP2015166834A.pdf | Explicit disposition in data |
-| L42 (L42) | 19 | `Unmatched (mixed-coordinate patent row; 497816 ED-crown class)` | 1.49845 / 81.60 | No catalog entry | abbe | patents/JP2015166834A.pdf | Explicit disposition in data |
-| L43 (L43) | 21 | `Unmatched (mixed-coordinate patent row; 497816 ED-crown class)` | 1.49845 / 81.60 | No catalog entry | abbe | patents/JP2015166834A.pdf | Explicit disposition in data |
 | L44 (L44) | 23A | `Unmatched (mixed-coordinate patent row; 774472 lanthanum-flint class)` | 1.77767 / 47.10 | No catalog entry | abbe | patents/JP2015166834A.pdf | Explicit disposition in data |
 
 ### [TAMRON 14-150mm f/3.5-5.8 Di III (C001)](../../src/lens-data/tamron/TamronC00114150mmf3558.data.ts) - US 2014/0347522 A1

@@ -23,7 +23,7 @@ Several independent features converge on that identification:
 
 The prescription is retained at its native dimensions. No uniform scale factor is applied: the marketed 16-35 mm endpoints are not related to the patent's 16.48-33.95 mm endpoints by one common multiplier. Consequently, no radii, spacings, image-plane coordinates, or aspherical coefficients are rescaled, and no `A_p / s^(p-1)` coefficient transformation is performed.
 
-Two source issues require explicit separation from the authored model. First, JP ¶0033 prints an aspherical-sag numerator proportional to `y²c²`; that expression is dimensionally inconsistent. The computation and data use the standard `c·y²` numerator while retaining the patent's conic constant without conversion. Second, JP ¶0032 describes the refractive-index column as d-line data, but cross-catalog checking shows that most mineral-glass `n` values behave like e-line indices while the accompanying `ν` values behave like d-line Abbe numbers. The raw patent pairs are therefore preserved, but no exact vendor glass and no `indexReference: "e"` assignment is asserted.
+Two source issues require explicit separation from the authored model. First, JP ¶0033 prints an aspherical-sag numerator proportional to `y²c²`; that expression is dimensionally inconsistent. The computation and data use the standard `c·y²` numerator while retaining the patent's conic constant without conversion. Second, JP ¶0032 explicitly defines both refractive coordinates at the d line, even though several printed `n` values sit closer to modern catalog `n_e`. The patent's stated d-line convention controls: the raw pairs are preserved, no `indexReference: "e"` assignment is made, and a catalog curve is used only when its d-line pair passes the project's existing compatibility guard.
 
 The selected Japanese publication controls the transcription. In particular, surface 3 has the 1.800 mm thickness visibly printed in JP Table 1; a discrepant family text transcription is not substituted. Table 2's numerical F-numbers control over slightly inconsistent figure annotations.
 
@@ -52,11 +52,11 @@ The physical lens count is 12. The `elements` array has 13 modeling entries beca
 
 ## Element-by-Element Analysis
 
-The first line of each subsection reproduces the authored `nd` and `νd` schema fields and the data file's glass annotation. Because the source pairs are spectrally inconsistent, those field names should not be read as proof of a catalog-valid d-line pair. Focal lengths listed for individual entries are independently recomputed standalone powers in air. Cemented or composite net powers are stated separately where applicable.
+The first line of each subsection reproduces the authored `nd` and `νd` schema fields and the data file's glass annotation. Catalog names are qualified coefficient proxies, not claims about Sony's production supplier or melt. Focal lengths listed for individual entries are independently recomputed standalone powers in air. Cemented or composite net powers are stated separately where applicable.
 
 ### L11 — Negative Meniscus with Two Aspheres
 
-**nd = 1.77173, νd = 49.2. Glass: `Unmatched (mixed-coordinate patent row; 768492 class)`. Standalone f = -29.1827 mm.**
+**nd = 1.77173, νd = 49.2. Glass: `M-TAF1 (HOYA catalog-equivalent coefficient proxy; production supplier unspecified)`. Standalone f = -29.1827 mm.**
 
 L11 is the first and strongest front negative component of GR1. The patent describes it as a negative meniscus convex toward the object, with both surfaces aspherical (JP ¶0036). Its paraxial power is therefore distinctly negative before the rest of GR1 is considered.
 
@@ -87,11 +87,11 @@ No surface on L13 is aspherical. Its contribution must therefore be interpreted 
 
 L14 is the positive rear component of the otherwise negative GR1 (JP ¶0036). Its strong positive power partially offsets the three preceding negative lenses while leaving the complete group at approximately -30.83 mm.
 
-The authored Abbe-number slot is much lower than those of the very-low-dispersion positive elements farther back in the system. That contrast is relevant to the first-order chromatic power distribution, but the source-coordinate contradiction prevents a stronger vendor-glass or partial-dispersion claim.
+The authored Abbe number is much lower than those of the very-low-dispersion positive elements farther back in the system. That contrast is relevant to the first-order chromatic power distribution, but it does not establish a production melt or patent partial-dispersion value.
 
 ### L21 — Positive Meniscus / OSS Element
 
-**nd = 1.57124, νd = 56.0. Glass: `Unmatched (mixed-coordinate patent row; 569560 crown class)`. Standalone f = +148.1107 mm.**
+**nd = 1.57124, νd = 56.0. Glass: `BAC4 (HOYA catalog-equivalent coefficient proxy; production supplier unspecified)`. Standalone f = +148.1107 mm.**
 
 L21 is the front lens of positive GR2. It is a relatively weak positive meniscus in standalone paraxial power. The aperture stop lies immediately behind it, before L22 (JP ¶0043).
 
@@ -100,17 +100,17 @@ Its most distinctive source-defined function is image stabilization. JP ¶0042 s
 ### L22 + L23 — Cemented GR2 Doublet D1
 
 **L22: nd = 1.74688, νd = 49.3. Glass: `Unmatched (mixed-coordinate patent row; 74349x lanthanum class)`. Standalone f = -52.5347 mm.**\
-**L23: nd = 1.49845, νd = 81.5. Glass: `Unmatched (mixed-coordinate patent row; 497815 ED-crown class)`. Standalone f = +30.8270 mm.**
+**L23: nd = 1.49845, νd = 81.5. Glass: `S-FPL51 (OHARA catalog-equivalent coefficient proxy; production supplier unspecified)`. Standalone f = +30.8270 mm.**
 
 The patent describes L22 as a negative meniscus with an aspherical object-side surface and L23 as a positive meniscus, cemented together (JP ¶0037). The cemented interface is surface 14, which correctly carries the downstream L23 material in the data model.
 
 The two isolated powers should not be mistaken for the behavior of the cemented unit. In the actual prescription media, D1 has a computed net focal length of **+85.9450 mm**. The doublet therefore remains positive overall despite L22's negative standalone contribution.
 
-L23's very-high authored Abbe-number value is consistent with the production lens's use of ED material, but exact production-glass identity is not established. Without validated line indices or Sellmeier resolution, the analysis does not assign apochromatic or anomalous-partial-dispersion behavior to this pair.
+L23's very-high authored Abbe-number value is consistent with the production lens's use of ED material, but exact production-glass identity is not established. The compatible S-FPL51 curve supplies a qualified spectral proxy; it does not turn the production correlation into a melt identification or establish patent-authored partial dispersion.
 
 ### L31 — Biconvex Positive Focus Lens with Two Aspheres
 
-**nd = 1.48914, νd = 70.3. Glass: `Unmatched (mixed-coordinate patent row; 487703 low-dispersion crown class)`. Standalone f = +50.5398 mm.**
+**nd = 1.48914, νd = 70.3. Glass: `J-FK5 (HIKARI catalog-equivalent coefficient proxy; production supplier unspecified)`. Standalone f = +50.5398 mm.**
 
 L31 is the sole element of GR3 (JP ¶0038). Its standalone focal length is therefore also the focal length of the complete focusing group to the precision of the paraxial model.
 
@@ -121,7 +121,7 @@ The close-focus states in the data file move L31 toward the object relative to i
 ### L41 + L42 — Cemented GR4 Doublet D2
 
 **L41: nd = 1.80831, νd = 46.5. Glass: `Unmatched (mixed-coordinate patent row; 804466 class)`. Standalone f = -21.0194 mm.**\
-**L42: nd = 1.49845, νd = 81.6. Glass: `Unmatched (mixed-coordinate patent row; 497816 ED-crown class)`. Standalone f = +52.6802 mm.**
+**L42: nd = 1.49845, νd = 81.6. Glass: `S-FPL51 (OHARA catalog-equivalent coefficient proxy; production supplier unspecified)`. Standalone f = +52.6802 mm.**
 
 L41 and L42 form the first cemented unit in GR4 (JP ¶0039). L41 is a strong negative meniscus and L42 is a positive meniscus. Their in-prescription cemented net focal length is **-32.6942 mm**, so D2 remains a strongly negative unit despite the positive L42 component.
 
@@ -129,7 +129,7 @@ The high authored Abbe-number value of L42 places a low-dispersion positive comp
 
 ### L43 — Biconvex Positive
 
-**nd = 1.49845, νd = 81.6. Glass: `Unmatched (mixed-coordinate patent row; 497816 ED-crown class)`. Standalone f = +22.9585 mm.**
+**nd = 1.49845, νd = 81.6. Glass: `S-FPL51 (OHARA catalog-equivalent coefficient proxy; production supplier unspecified)`. Standalone f = +22.9585 mm.**
 
 L43 is the strongest positive element in GR4 by standalone focal length and is the most image-side positive lens of that group. The patent's condition (c) is defined specifically from this lens's two radii, `r1p = 20.480 mm` and `r2p = -23.194 mm` (JP ¶0024-¶0026).
 
@@ -149,25 +149,25 @@ The paired rear aspheres, 23A and 24A, provide additional shape freedom in the s
 
 ## Glass Identification and Selection
 
-The data file deliberately does **not** assign exact catalog glass names. JP ¶0032 states that the refractive-index column is a d-line index at 587.6 nm, yet independent catalog comparison shows a repeated mixed-coordinate pattern: the printed mineral-glass `n` values are generally much closer to catalog `n_e`, while the printed `ν` values are generally much closer to catalog `ν_d`.
+JP ¶0032 explicitly states that the refractive-index and Abbe-number columns are d-line coordinates at 587.6 nm. That source convention controls even though several printed indices happen to lie unusually close to modern e-line values. The prescription therefore preserves the patent numbers in the historical `nd`/`vd` schema slots and does not set `indexReference: "e"`.
 
-That contradiction makes neither a conventional d-line nor a conventional e-line `indexReference` honest. The prescription therefore preserves the patent numbers exactly in the historical `nd`/`vd` schema slots and uses explicit `Unmatched (...)` annotations. Six-digit class hints identify approximate d-line catalog neighborhoods; they are not production-melt identifications.
+The catalog audit found qualified d-line coefficient proxies for six of the twelve mineral-glass media. Every selected curve remains inside the standard `Δn ≤ 0.003` and `Δν ≤ 2` compatibility guard. These are supplier-neutral optical equivalents for chromatic tracing: the vendor in the catalog name identifies the coefficient source, not Sony's production supplier. The other six mineral rows and the bonded resin remain explicitly unresolved.
 
 | Element(s) | Authored nd | Authored νd | Data-file glass annotation | Interpretation limit |
 |---|---:|---:|---|---|
-| L11 | 1.77173 | 49.2 | `Unmatched (... 768492 class)` | Class-level only |
+| L11 | 1.77173 | 49.2 | `M-TAF1 (...)` | Qualified d-line proxy; Δn = +0.00077, Δν = +0.26 |
 | L12 substrate | 1.83945 | 42.7 | `Unmatched (... 835427 class)` | Class-level only |
 | L12 resin | 1.53699 | 41.7 | `Unmatched (aspheric resin, patent-only optical constants)` | No mineral-glass match |
 | L13, L41 | 1.80831 | 46.5 | `Unmatched (... 804466 class)` | Class-level only |
 | L14 | 2.00912 | 29.1 | `Unmatched (... 001291 dense-flint class)` | Class-level only |
-| L21 | 1.57124 | 56.0 | `Unmatched (... 569560 crown class)` | Class-level only |
+| L21 | 1.57124 | 56.0 | `BAC4 (...)` | Qualified d-line proxy; Δn = -0.00241, Δν = +0.04 |
 | L22 | 1.74688 | 49.3 | `Unmatched (... 74349x lanthanum class)` | Class-level only |
-| L23 | 1.49845 | 81.5 | `Unmatched (... 497815 ED-crown class)` | Class-level only |
-| L31 | 1.48914 | 70.3 | `Unmatched (... 487703 low-dispersion crown class)` | Class-level only |
-| L42, L43 | 1.49845 | 81.6 | `Unmatched (... 497816 ED-crown class)` | Class-level only |
+| L23 | 1.49845 | 81.5 | `S-FPL51 (...)` | Qualified d-line proxy; Δn = -0.00145, Δν = +0.05 |
+| L31 | 1.48914 | 70.3 | `J-FK5 (...)` | Qualified d-line proxy; Δn = -0.00165, Δν = +0.01 |
+| L42, L43 | 1.49845 | 81.6 | `S-FPL51 (...)` | Qualified d-line proxy; Δn = -0.00145, Δν = -0.05 |
 | L44 | 1.77767 | 47.1 | `Unmatched (... 774472 lanthanum-flint class)` | Class-level only |
 
-No element carries `nC`, `nF`, `ng`, or `dPgF` in the data file. No authored glass string resolves to a validated Sellmeier model. As a result, this analysis does not claim apochromatic correction, anomalous partial dispersion, or a specific secondary-spectrum performance class.
+No element carries patent-authored `nC`, `nF`, `ng`, or `dPgF`. Six of thirteen modeled media now resolve to validated coefficient curves; the six unresolved mineral rows and L12 resin continue to use the Abbe fallback. The proxy curves improve catalog color completeness without supporting a claim of apochromatic correction or a specific production secondary spectrum.
 
 Sony's production specification states that the SEL1635Z uses three ED elements. The patent/data correlation makes L23, L42, and L43 the natural counterparts because they are exactly the three physical lenses with authored Abbe-number values near 81.5-81.6. That mapping is a correlation inference, not an explicit patent labeling of those elements as Sony production ED glass.
 
