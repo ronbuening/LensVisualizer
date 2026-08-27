@@ -19,6 +19,11 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-08-27",
+    type: "lens",
+    summary: "Added three Sony ZEISS patent-derived zoom lens designs",
+  },
+  {
     date: "2026-08-26",
     type: "lens",
     summary: "Added seven Canon EF patent-derived zoom, macro, and telephoto lens designs",

@@ -9,12 +9,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **644** lenses scanned
-- **1278** total code-only elements found
-- **219** elements in this report
-- **85** distinct lens files affected
+- **647** lenses scanned
+- **1315** total code-only elements found
+- **230** elements in this report
+- **86** distinct lens files affected
 - **1** active unreviewed elements have no review-record hit or explicit disposition
-- **95** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
+- **106** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
 - **0** dispositions lack any review record
 
 ## Prioritized Unreviewed Queue
@@ -40,6 +40,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 856401 | 3 | 2 | patents/WO2021199923A1.pdf<br>patents/WO_2025263124_A1.pdf | All rows have review records |
 | 863248 | 3 | 1 | patents/JP2023039817A.pdf | All rows have review records |
 | 961323 | 3 | 1 | patents/WO2021200206A1.pdf | All rows explicitly disposed |
+| 497816 | 2 | 1 | patents/JP2015166834A.pdf | All rows explicitly disposed |
 | 514428 | 2 | 1 | patents/JP2016021011A.pdf | All rows have review records |
 | 531559 | 2 | 2 | patents/US20200142167A1.pdf<br>patents/WO2021039813A1.pdf | All rows have review records |
 | 620586 | 2 | 1 | patents/US4303314.pdf | All rows have review records |
@@ -54,6 +55,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 781445 | 2 | 2 | patents/US4277149.pdf<br>patents/US4182550.pdf | All rows have review records |
 | 781446 | 2 | 2 | patents/JPA 1987244010-000000.pdf<br>patents/JP2004109559A.pdf | All rows have review records |
 | 804238 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
+| 804466 | 2 | 1 | patents/JP2015166834A.pdf | All rows explicitly disposed |
 | 806418 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
 | 807316 | 2 | 2 | patents/US4764000.pdf<br>patents/US4871239.pdf | All rows have review records |
 | 813252 | 2 | 1 | patents/US3591257.pdf | All rows have review records |
@@ -63,10 +65,13 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 840434 | 2 | 1 | patents/US5734508.pdf | All rows explicitly disposed |
 | 930240 | 2 | 2 | patents/WO2021200206A1.pdf<br>patents/WO_2025263124_A1.pdf | All rows have review records |
 | 933209 | 2 | 2 | patents/WO2021199923A1.pdf<br>patents/JP2023039817A.pdf | All rows have review records |
+| 001291 | 1 | 1 | patents/JP2015166834A.pdf | All rows explicitly disposed |
 | 009291 | 1 | 1 | patents/WO2021200206A1.pdf | All rows explicitly disposed |
 | 449670 | 1 | 1 | patents/GB_1050055_A.pdf | All rows explicitly disposed |
 | 460658 | 1 | 1 | patents/DE_3907928_A1.pdf | All rows explicitly disposed |
 | 479587 | 1 | 1 | patents/US4773745.pdf | All rows explicitly disposed |
+| 487703 | 1 | 1 | patents/JP2015166834A.pdf | All rows explicitly disposed |
+| 497815 | 1 | 1 | patents/JP2015166834A.pdf | All rows explicitly disposed |
 | 507589 | 1 | 1 | patents/JPA 1999231209-000000.pdf | All rows have review records |
 | 514530 | 1 | 1 | patents/JP2016021011A.pdf | All rows have review records |
 | 516499 | 1 | 1 | patents/US7307794.pdf | All rows explicitly disposed |
@@ -87,6 +92,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 554381 | 1 | 1 | patents/US7359125.pdf | All rows have review records |
 | 561575 | 1 | 1 | patents/US2721499.pdf | All rows have review records |
 | 564463 | 1 | 1 | patents/US20180164556A1.pdf | All rows explicitly disposed |
+| 569560 | 1 | 1 | patents/JP2015166834A.pdf | All rows explicitly disposed |
 | 569586 | 1 | 1 | patents/US20120069456A1.pdf | All rows explicitly disposed |
 | 571560 | 1 | 1 | patents/WO_2025263124_A1.pdf | All rows have review records |
 | 575414 | 1 | 1 | patents/US2279384.pdf | All rows explicitly disposed |
@@ -160,12 +166,14 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 760492 | 1 | 1 | patents/JP2015041012A.pdf | All rows explicitly disposed |
 | 765249 | 1 | 1 | patents/US20130314588A1.pdf | All rows explicitly disposed |
 | 767462 | 1 | 1 | patents/US3507558.pdf | All rows have review records |
+| 768492 | 1 | 1 | patents/JP2015166834A.pdf | All rows explicitly disposed |
 | 769497 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | All rows have review records |
 | 770493 | 1 | 1 | Missing from untracked local patents/ references (WO2021246545A1, WO2021246545, 2021246545) | All rows explicitly disposed |
 | 772493 | 1 | 1 | patents/US20230341664A1.pdf | All rows have review records |
 | 773498 | 1 | 1 | patents/US4871239.pdf | All rows have review records |
 | 773501 | 1 | 1 | patents/US4258985.pdf | All rows have review records |
 | 773530 | 1 | 1 | patents/CN110161666A.pdf | All rows have review records |
+| 774472 | 1 | 1 | patents/JP2015166834A.pdf | All rows explicitly disposed |
 | 774494 | 1 | 1 | patents/WO_2025263124_A1.pdf | All rows have review records |
 | 776496 | 1 | 1 | patents/JP2023039817A.pdf | All rows explicitly disposed |
 | 780509 | 1 | 1 | patents/US20180164556A1.pdf | All rows explicitly disposed |
@@ -183,6 +191,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 805410 | 1 | 1 | patents/US4871239.pdf | All rows have review records |
 | 810372 | 1 | 1 | patents/US20180164556A1.pdf | All rows explicitly disposed |
 | 831265 | 1 | 1 | patents/US3615126.pdf | All rows explicitly disposed |
+| 835427 | 1 | 1 | patents/JP2015166834A.pdf | All rows explicitly disposed |
 | 835447 | 1 | 1 | patents/CN205720849U.pdf | All rows have review records |
 | 840433 | 1 | 1 | patents/US5528428.pdf | All rows have review records |
 | 842433 | 1 | 1 | patents/JPA 2022012964-000000.pdf | All rows explicitly disposed |
@@ -819,6 +828,22 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | L131 (Element 5) | 9 | `Unmatched (830427 patent-rounded lanthanum glass; vendor unresolved)` | 1.83000 / 42.72 | No catalog entry | abbe | patents/JP2015041012A.pdf | Explicit disposition in data |
 | L132 (Element 6) | 10 | `630346 - dense flint (patent nd=1.63000, vd=34.57; no exact public catalog match)` | 1.63000 / 34.57 | No catalog entry | abbe | patents/JP2015041012A.pdf | Audit-log hit |
 | L133 (Element 7) | 12A | `680312 - dense flint (patent nd=1.68000, vd=31.16; no exact public catalog match)` | 1.68000 / 31.16 | No catalog entry | abbe | patents/JP2015041012A.pdf | Audit-log hit |
+
+### [SONY VARIO-TESSAR T* FE 16-35mm f/4 ZA OSS](../../src/lens-data/sony/SonyVarioTessarTFE1635mmf4ZAOSS.data.ts) - JP 2015-166834 A
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L11 (L11) | 1A | `Unmatched (mixed-coordinate patent row; 768492 class)` | 1.77173 / 49.20 | No catalog entry | abbe | patents/JP2015166834A.pdf | Explicit disposition in data |
+| L12g (L12 glass substrate) | 3 | `Unmatched (mixed-coordinate patent row; 835427 class)` | 1.83945 / 42.70 | No catalog entry | abbe | patents/JP2015166834A.pdf | Explicit disposition in data |
+| L13 (L13) | 6 | `Unmatched (mixed-coordinate patent row; 804466 class)` | 1.80831 / 46.50 | No catalog entry | abbe | patents/JP2015166834A.pdf | Explicit disposition in data |
+| L14 (L14) | 8 | `Unmatched (mixed-coordinate patent row; 001291 dense-flint class)` | 2.00912 / 29.10 | No catalog entry | abbe | patents/JP2015166834A.pdf | Explicit disposition in data |
+| L21 (L21 (OSS)) | 10 | `Unmatched (mixed-coordinate patent row; 569560 crown class)` | 1.57124 / 56.00 | No catalog entry | abbe | patents/JP2015166834A.pdf | Explicit disposition in data |
+| L23 (L23) | 14 | `Unmatched (mixed-coordinate patent row; 497815 ED-crown class)` | 1.49845 / 81.50 | No catalog entry | abbe | patents/JP2015166834A.pdf | Explicit disposition in data |
+| L31 (L31 focus lens) | 16A | `Unmatched (mixed-coordinate patent row; 487703 low-dispersion crown class)` | 1.48914 / 70.30 | No catalog entry | abbe | patents/JP2015166834A.pdf | Explicit disposition in data |
+| L41 (L41) | 18 | `Unmatched (mixed-coordinate patent row; 804466 class)` | 1.80831 / 46.50 | No catalog entry | abbe | patents/JP2015166834A.pdf | Explicit disposition in data |
+| L42 (L42) | 19 | `Unmatched (mixed-coordinate patent row; 497816 ED-crown class)` | 1.49845 / 81.60 | No catalog entry | abbe | patents/JP2015166834A.pdf | Explicit disposition in data |
+| L43 (L43) | 21 | `Unmatched (mixed-coordinate patent row; 497816 ED-crown class)` | 1.49845 / 81.60 | No catalog entry | abbe | patents/JP2015166834A.pdf | Explicit disposition in data |
+| L44 (L44) | 23A | `Unmatched (mixed-coordinate patent row; 774472 lanthanum-flint class)` | 1.77767 / 47.10 | No catalog entry | abbe | patents/JP2015166834A.pdf | Explicit disposition in data |
 
 ### [TAMRON 14-150mm f/3.5-5.8 Di III (C001)](../../src/lens-data/tamron/TamronC00114150mmf3558.data.ts) - US 2014/0347522 A1
 

@@ -11,18 +11,18 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **644** lenses scanned
-- **633** visible lenses scanned
-- **425** lenses fully covered by trusted chromatic data
-- **423** visible lenses fully covered by trusted chromatic data
-- **419** lenses fully covered by strict Sellmeier data
-- **417** visible lenses fully covered by strict Sellmeier data
+- **647** lenses scanned
+- **636** visible lenses scanned
+- **427** lenses fully covered by trusted chromatic data
+- **425** visible lenses fully covered by trusted chromatic data
+- **421** lenses fully covered by strict Sellmeier data
+- **419** visible lenses fully covered by strict Sellmeier data
 - **6** lenses fully covered only after measured line-index data
 - **6** visible lenses fully covered only after measured line-index data
-- **6845 / 7375** non-air surfaces use strict catalog Sellmeier data
-- **92.8%** strict Sellmeier surface coverage overall
-- **6860 / 7375** non-air surfaces use trusted chromatic data
-- **93.0%** trusted chromatic coverage overall
+- **6875 / 7418** non-air surfaces use strict catalog Sellmeier data
+- **92.7%** strict Sellmeier surface coverage overall
+- **6890 / 7418** non-air surfaces use trusted chromatic data
+- **92.9%** trusted chromatic coverage overall
 - **37 / 75** native e-line surfaces use name-verified catalog Sellmeier data
 
 ## Native E-Line Catalog Matches
@@ -169,6 +169,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [SIGMA 40mm f/1.4 DG HSM | Art](../../src/lens-data/sigma/SigmaArt40mmf14.data.ts) | 16/16 | 16 | 16/16 |
 | [SIGMA APO Macro 105mm f/2.8 EX DG OS HSM](../../src/lens-data/sigma/SigmaAPOMacro105mmf28OSHSM.data.ts) | 16/16 | 16 | 16/16 |
 | [SONY FE 20-70mm f/4 G](../../src/lens-data/sony/SonyFE2070mmf4G.data.ts) | 16/16 | 16 | 16/16 |
+| [SONY VARIO-TESSAR T* E 16-70mm f/4 ZA OSS](../../src/lens-data/sony/SonyVarioTessarTE1670mmf4ZAOSS.data.ts) | 16/16 | 16 | 16/16 |
 | [CANON EF 100-300mm f/5.6](../../src/lens-data/canon/CanonEF100300mmf56.data.ts) | 15/15 | 15 | 15/15 |
 | [CANON EF 100mm f/2.8 L Macro IS USM](../../src/lens-data/canon/CanonEF100mmf28LIS.data.ts) | 15/15 | 15 | 15/15 |
 | [CANON EF 20-35mm f/2.8 L](../../src/lens-data/canon/CanonEF2035mmf28L.data.ts) | 15/15 | 15 | 15/15 |
@@ -222,6 +223,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [SIGMA 85mm f/1.4 DG HSM | Art](../../src/lens-data/sigma/Sigma85mmf14Art.data.ts) | 14/14 | 14 | 14/14 |
 | [SONY FE 20mm f/1.8 G](../../src/lens-data/sony/SonyFE20mmf18G.data.ts) | 14/14 | 14 | 14/14 |
 | [SONY FE 85mm f/1.4 GM II](../../src/lens-data/sony/SonyFE85mmf14GMII.data.ts) | 14/14 | 14 | 14/14 |
+| [SONY VARIO-SONNAR T* DT 16-80mm f/3.5-4.5 ZA](../../src/lens-data/sony/SonyVarioSonnarTDT1680mmf3545ZA.data.ts) | 14/14 | 14 | 14/14 |
 | [TAMRON SP AF 180mm f/3.5 Di LD [IF] MACRO 1:1 (B01)](../../src/lens-data/tamron/TamronSPAF180mmf35Di.data.ts) | 14/14 | 14 | 14/14 |
 | [TAMRON SP AF 60mm f/2 Di II LD [IF] MACRO 1:1 (G005)](../../src/lens-data/tamron/TamronSPAF60mmf2Di.data.ts) | 14/14 | 14 | 14/14 |
 | [VIVITAR SERIES 1 70-210mm f/2.8-4 VMC](../../src/lens-data/vivitar/VivitarSeries170210mmf284.data.ts) | 14/14 | 14 | 14/14 |
@@ -744,6 +746,7 @@ Fully strict and line-index-complete trusted lenses are listed above; this table
 | 210 | [CARL ZEISS JENA PANCOLAR 50mm f/2](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPancolar50mmf2.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
 | 211 | [LEICA SUMMICRON-M 50mm f/2](../../src/lens-data/leica/LeicaSummicronV550mmf2.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
 | 212 | [SONY SONNAR T* FE 35mm f/2.8 ZA](../../src/lens-data/sony/SonyFE35mmf28ZA.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
+| 213 | [SONY VARIO-TESSAR T* FE 16-35mm f/4 ZA OSS](../../src/lens-data/sony/SonyVarioTessarTFE1635mmf4ZAOSS.data.ts) | 0.0% | 0.0% | 0/13 | 0/13 | 13 | abbe: 13 |
 
 ## Missing Surface Details
 
@@ -2297,4 +2300,18 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 9 | Element 5 | abbe | `Unmatched (830427 patent-rounded lanthanum glass; vendor unresolved)` | Explicit unmatched/proprietary annotation |
 | 10 | Element 6 | abbe | `630346 - dense flint (patent nd=1.63000, vd=34.57; no exact public catalog match)` | No catalog match |
 | 12A | Element 7 | abbe | `680312 - dense flint (patent nd=1.68000, vd=31.16; no exact public catalog match)` | No catalog match |
+
+### [SONY VARIO-TESSAR T* FE 16-35mm f/4 ZA OSS](../../src/lens-data/sony/SonyVarioTessarTFE1635mmf4ZAOSS.data.ts) - 0.0% trusted (0/13); 0.0% Sellmeier (0/13) - JP 2015-166834 A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1A | L11 | abbe | `Unmatched (mixed-coordinate patent row; 768492 class)` | Explicit unmatched/proprietary annotation |
+| 3 | L12 glass substrate | abbe | `Unmatched (mixed-coordinate patent row; 835427 class)` | Explicit unmatched/proprietary annotation |
+| 4 | L12 bonded aspheric resin | abbe | `Unmatched (aspheric resin, patent-only optical constants)` | Explicit unmatched/proprietary annotation |
+| 6 | L13 | abbe | `Unmatched (mixed-coordinate patent row; 804466 class)` | Explicit unmatched/proprietary annotation |
+| 8 | L14 | abbe | `Unmatched (mixed-coordinate patent row; 001291 dense-flint class)` | Explicit unmatched/proprietary annotation |
+| 10 | L21 (OSS) | abbe | `Unmatched (mixed-coordinate patent row; 569560 crown class)` | Explicit unmatched/proprietary annotation |
+| 13A | L22 | abbe | `Unmatched (mixed-coordinate patent row; 74349x lanthanum class)` | Explicit unmatched/proprietary annotation |
+| 14 | L23 | abbe | `Unmatched (mixed-coordinate patent row; 497815 ED-crown class)` | Explicit unmatched/proprietary annotation |
+| ... | ... | ... | ... | 5 more missing surfaces |
 
