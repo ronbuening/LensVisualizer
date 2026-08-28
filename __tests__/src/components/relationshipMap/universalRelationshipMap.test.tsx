@@ -9,6 +9,7 @@ import UniversalRelationshipMap from "../../../../src/components/relationshipMap
 import type {
   UniversalPartyNode,
   UniversalRelationshipGraph,
+  UniversalRelationshipNode,
 } from "../../../../src/utils/catalog/universalRelationshipGraph.js";
 import themes from "../../../../src/utils/theme/themes.js";
 import { renderWithRouter } from "../../../testUtils.js";
@@ -75,14 +76,86 @@ const graph: UniversalRelationshipGraph = {
   },
 };
 
+function makeMultiHubGraph(): UniversalRelationshipGraph {
+  const alpha: UniversalPartyNode = {
+    id: "assignee:alpha",
+    kind: "assignee",
+    name: "Alpha Optics",
+    ref: { role: "assignee", name: "Alpha Optics", slug: "alpha" },
+    patentCount: 8,
+  };
+  const beta: UniversalPartyNode = {
+    id: "assignee:beta",
+    kind: "assignee",
+    name: "Beta Optics",
+    ref: { role: "assignee", name: "Beta Optics", slug: "beta" },
+    patentCount: 8,
+  };
+  const sharedAuthor: UniversalPartyNode = {
+    id: "author:shared",
+    kind: "author",
+    name: "Shared Inventor",
+    ref: { role: "author", name: "Shared Inventor", slug: "shared" },
+    patentCount: 2,
+  };
+  const patents: UniversalRelationshipNode[] = Array.from({ length: 16 }, (_, index) => {
+    const patentNumber = `${index < 8 ? "AA" : "BB"} ${(index % 8) + 1}`;
+    const id = `patent:${patentNumber}`;
+    return {
+      id,
+      kind: "patent",
+      name: patentNumber,
+      patent: {
+        id,
+        patentNumber,
+        patentYear: 2000 + index,
+        authors: [],
+        assignees: [],
+        lenses: [],
+      },
+    };
+  });
+  const nodes = [alpha, beta, sharedAuthor, ...patents];
+  const edges = [
+    ...patents.map((patent, index) => ({
+      id: `assignment-${index}`,
+      from: patent.id,
+      to: index < 8 ? alpha.id : beta.id,
+      kind: "assignment" as const,
+    })),
+    { id: "authorship-alpha", from: patents[0].id, to: sharedAuthor.id, kind: "authorship" as const },
+    { id: "authorship-beta", from: patents[8].id, to: sharedAuthor.id, kind: "authorship" as const },
+    { id: "acquisition", from: alpha.id, to: beta.id, kind: "acquisition" as const },
+  ];
+
+  return {
+    nodes,
+    edges,
+    patents: [],
+    components: [nodes.map((node) => node.id)],
+    stats: {
+      authors: 1,
+      assignees: 2,
+      patents: 16,
+      organizations: 0,
+      families: 0,
+      patentRelationships: 18,
+      corporateRelationships: 1,
+      components: 1,
+    },
+  };
+}
+
 describe("UniversalRelationshipMap", () => {
   it("renders every node as a keyboard-operable control", () => {
     const onSelectNode = vi.fn();
-    const { getAllByRole, getByRole } = renderWithRouter(
+    const { container, getAllByRole, getByRole, getByText } = renderWithRouter(
       <UniversalRelationshipMap graph={graph} theme={themes.dark} selectedNodeId={null} onSelectNode={onSelectNode} />,
     );
     expect(getByRole("group", { name: /Universal relationship map/ })).toBeDefined();
     expect(getAllByRole("button", { name: /^Select / })).toHaveLength(graph.nodes.length);
+    expect(getByText("Example Optics · 4 nodes")).toBeDefined();
+    expect(container.querySelectorAll("ellipse")).toHaveLength(1);
 
     const familyButton = getByRole("button", { name: "Select corporate family Example family" });
     fireEvent.click(familyButton);
@@ -100,6 +173,30 @@ describe("UniversalRelationshipMap", () => {
     fireEvent.focus(button);
     const activeLines = [...container.querySelectorAll("line")].filter((line) => line.getAttribute("opacity") === "1");
     expect(activeLines).toHaveLength(2);
+  });
+
+  it("draws cross-neighborhood connections as brightly as matching internal connections", () => {
+    const { container } = renderWithRouter(
+      <UniversalRelationshipMap
+        graph={makeMultiHubGraph()}
+        theme={themes.dark}
+        selectedNodeId={null}
+        onSelectNode={vi.fn()}
+      />,
+    );
+    expect(container.querySelectorAll("ellipse")).toHaveLength(2);
+
+    const authorshipLines = [...container.querySelectorAll("line")].filter((line) =>
+      line.querySelector("title")?.textContent?.includes("Shared Inventor named on"),
+    );
+    expect(authorshipLines).toHaveLength(2);
+    expect(new Set(authorshipLines.map((line) => line.getAttribute("opacity")))).toEqual(new Set(["0.3"]));
+
+    const acquisitionLine = [...container.querySelectorAll("line")].find(
+      (line) => line.querySelector("title")?.textContent === "Alpha Optics acquired by Beta Optics",
+    );
+    expect(acquisitionLine?.getAttribute("opacity")).toBe("0.62");
+    expect(acquisitionLine?.getAttribute("stroke-width")).toBe("1.35");
   });
 });
 

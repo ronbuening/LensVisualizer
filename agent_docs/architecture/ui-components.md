@@ -153,6 +153,16 @@ rather than navigating from inside the `<svg>`. `RelationshipEntityPicker.tsx` i
 (full grid + compact dropdown) and `PatentDetailCard.tsx` is the selected-patent panel (a deliberate copy of `AuthorPage`'s
 local `PatentCard` whose party names recenter the map instead of linking to author pages). The page owns URL/`focus` state.
 
+The catalog-wide `/relationships/universal` route uses `universalRelationshipGraph.ts` and the pure
+`universalLayout.ts` engine. Connected components are partitioned into corporate-family hubs and standalone assignees
+with at least eight patent-assignment edges; components without a qualifying hub fall back to their highest-degree node.
+Each graph node is assigned to its nearest deterministic hub and laid out in capacity-limited local rings. The layout then
+contracts those neighborhoods into a weighted hub graph: its most interconnected hub becomes the constellation center,
+and connection-weighted angular ordering places the remaining hubs in compact, collision-free orbits so related
+neighborhoods remain nearby. `UniversalRelationshipMap.tsx` renders soft labeled halos inside each disconnected-network
+boundary, keeps all original edges at the same edge-kind brightness within and between neighborhoods, and renders nodes
+above both boundary layers.
+
 ## Markdown Renderer
 
 `ThemedMarkdown` supports both `article` and `description` variants:
