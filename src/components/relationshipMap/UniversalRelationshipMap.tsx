@@ -90,6 +90,7 @@ export default function UniversalRelationshipMap({
   const zoom = useViewBoxZoom(layout.width, layout.height, true, svgRef);
   const [hoveredNodeId, setHoveredNodeId] = useState<string | null>(null);
   const activeNodeId = hoveredNodeId ?? selectedNodeId;
+  const activeClusterId = activeNodeId ? layout.nodeById[activeNodeId]?.clusterId : undefined;
 
   const graphNodeById = useMemo(() => new Map(graph.nodes.map((node) => [node.id, node])), [graph.nodes]);
   const graphEdgeById = useMemo(() => new Map(graph.edges.map((edge) => [edge.id, edge])), [graph.edges]);
@@ -177,10 +178,41 @@ export default function UniversalRelationshipMap({
                 strokeDasharray="5 7"
               />
               <text x={component.x + 12} y={component.y + 20} fontSize={10} fill={t.muted}>
-                {`Network ${component.index + 1} · ${component.nodeCount} ${pluralize(component.nodeCount, "node")}`}
+                {`Network ${component.index + 1} · ${component.nodeCount} ${pluralize(component.nodeCount, "node")} · ${component.clusterCount} ${pluralize(component.clusterCount, "neighborhood")}`}
               </text>
             </g>
           ))}
+
+          {layout.clusters.map((cluster) => {
+            const active = cluster.id === activeClusterId;
+            const anchorLabel = layout.nodeById[cluster.anchorId]?.label ?? cluster.anchorLabel;
+            return (
+              <g key={cluster.id} pointerEvents="none">
+                <title>{`${cluster.anchorLabel} neighborhood`}</title>
+                <ellipse
+                  cx={cluster.x + cluster.width / 2}
+                  cy={cluster.y + cluster.height / 2}
+                  rx={cluster.width / 2}
+                  ry={cluster.height / 2}
+                  fill={t.toggleActiveBg}
+                  fillOpacity={active ? 0.14 : 0.045}
+                  stroke={active ? t.label : t.panelDivider}
+                  strokeWidth={active ? 1.6 : 0.8}
+                  strokeDasharray="3 5"
+                  opacity={active ? 0.9 : 0.72}
+                />
+                <text
+                  x={cluster.x + cluster.width / 2}
+                  y={cluster.y + 17}
+                  textAnchor="middle"
+                  fontSize={9}
+                  fill={active ? t.title : t.label}
+                >
+                  {`${anchorLabel} · ${cluster.nodeCount} ${pluralize(cluster.nodeCount, "node")}`}
+                </text>
+              </g>
+            );
+          })}
 
           {layout.edges.map((layoutEdge) => {
             const edge = graphEdgeById.get(layoutEdge.id);
@@ -324,6 +356,7 @@ export default function UniversalRelationshipMap({
           <span style={legendSwatch(t.sliderAccent, "hexagon")} /> Corporate family
         </span>
         <span style={legendItemStyle}>Solid/dashed colored links · corporate history</span>
+        <span style={legendItemStyle}>Soft halos · hub neighborhoods</span>
       </div>
     </div>
   );
