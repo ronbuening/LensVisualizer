@@ -31,9 +31,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ SEMI-DIAMETERS: Not tabulated by the patent. SDs are inferred from the clean   ║
  * ║ optical rims in Figure 1, the paraxial f/2 pupil, exact meridional checks at   ║
  * ║ 0.60 × 38° field, and the edge/slope/cross-gap geometry rules. The 600-dpi     ║
- * ║ audit reduced the oversized L4/L7 silhouettes and brought the remaining rear  ║
- * ║ elements into the figure's relative proportions. Surface 12 stays constrained ║
- * ║ by the thin r12→r13 air gap; default off-axis sampled rays still pass.         ║
+ * ║ audit normalized L2–L5 against the L1 rim and gave L6/L7 a common 9.6 mm      ║
+ * ║ rim, the largest rounded shared value that preserves the thin r12→r13 air     ║
+ * ║ gap. L8 remains visibly larger, matching the source silhouette, and default   ║
+ * ║ off-axis sampled rays still pass.                                               ║
  * ║                                                                                ║
  * ║ GLASS: The patent publishes only nd/νd and no vendor, nC, nF, ng, or dPgF.     ║
  * ║ Coordinate-compatible, coefficient-backed catalog curves are used only as      ║
@@ -74,6 +75,7 @@ const LENS_DATA = {
       id: 1,
       name: "L1",
       label: "Element 1",
+      diagramLabel: "L1",
       type: "Negative Meniscus",
       nd: 1.58913,
       vd: 61.1,
@@ -84,6 +86,7 @@ const LENS_DATA = {
       id: 2,
       name: "L2",
       label: "Element 2",
+      diagramLabel: "L2",
       type: "Biconvex Positive",
       nd: 1.64769,
       vd: 33.8,
@@ -94,6 +97,7 @@ const LENS_DATA = {
       id: 3,
       name: "L3",
       label: "Element 3",
+      diagramLabel: "L3",
       type: "Negative Meniscus",
       nd: 1.58913,
       vd: 61.1,
@@ -104,6 +108,7 @@ const LENS_DATA = {
       id: 4,
       name: "L4",
       label: "Element 4",
+      diagramLabel: "L4",
       type: "Positive Meniscus",
       nd: 1.72,
       vd: 50.3,
@@ -114,6 +119,7 @@ const LENS_DATA = {
       id: 5,
       name: "L5",
       label: "Element 5",
+      diagramLabel: "L5",
       type: "Plano-Convex Positive",
       nd: 1.713,
       vd: 53.9,
@@ -124,6 +130,7 @@ const LENS_DATA = {
       id: 6,
       name: "L6",
       label: "Element 6",
+      diagramLabel: "L6",
       type: "Biconcave Negative",
       nd: 1.80518,
       vd: 25.4,
@@ -134,6 +141,7 @@ const LENS_DATA = {
       id: 7,
       name: "L7",
       label: "Element 7",
+      diagramLabel: "L7",
       type: "Positive Meniscus",
       nd: 1.6968,
       vd: 55.7,
@@ -144,6 +152,7 @@ const LENS_DATA = {
       id: 8,
       name: "L8",
       label: "Element 8",
+      diagramLabel: "L8",
       type: "Biconvex Positive",
       nd: 1.7859,
       vd: 44.2,
@@ -160,21 +169,21 @@ const LENS_DATA = {
   surfaces: [
     { label: "1", R: 69.8964, d: 1.9796, nd: 1.58913, elemId: 1, sd: 21.5 },
     { label: "2", R: 24.0772, d: 7.0504, nd: 1, elemId: 0, sd: 19.5 },
-    { label: "3", R: 105.5208, d: 5.0792, nd: 1.64769, elemId: 2, sd: 16.3 },
-    { label: "4", R: -123.7656, d: 0.28, nd: 1, elemId: 0, sd: 16.3 },
-    { label: "5", R: 70.6132, d: 1.6996, nd: 1.58913, elemId: 3, sd: 14 },
-    { label: "6", R: 17.0072, d: 8.4588, nd: 1, elemId: 0, sd: 14 },
-    { label: "7", R: 28.2884, d: 9.2988, nd: 1.72, elemId: 4, sd: 10.6 },
-    { label: "8", R: 296.8308, d: 4.3288, nd: 1, elemId: 0, sd: 10.6 },
-    { label: "9", R: 1e15, d: 4.3988, nd: 1.713, elemId: 5, sd: 10.6 },
-    { label: "10", R: -32.1608, d: 1.16984, nd: 1, elemId: 0, sd: 10.6 },
+    { label: "3", R: 105.5208, d: 5.0792, nd: 1.64769, elemId: 2, sd: 15.4 },
+    { label: "4", R: -123.7656, d: 0.28, nd: 1, elemId: 0, sd: 15.4 },
+    { label: "5", R: 70.6132, d: 1.6996, nd: 1.58913, elemId: 3, sd: 13.1 },
+    { label: "6", R: 17.0072, d: 8.4588, nd: 1, elemId: 0, sd: 13.1 },
+    { label: "7", R: 28.2884, d: 9.2988, nd: 1.72, elemId: 4, sd: 10.2 },
+    { label: "8", R: 296.8308, d: 4.3288, nd: 1, elemId: 0, sd: 10.2 },
+    { label: "9", R: 1e15, d: 4.3988, nd: 1.713, elemId: 5, sd: 10 },
+    { label: "10", R: -32.1608, d: 1.16984, nd: 1, elemId: 0, sd: 10 },
     { label: "STO", R: 1e15, d: 4.67936, nd: 1, elemId: 0, sd: 9.496842 },
-    { label: "11", R: -20.5604, d: 4.7992, nd: 1.80518, elemId: 6, sd: 11.1 },
-    { label: "12", R: 82.9164, d: 1.3804, nd: 1, elemId: 0, sd: 9.4 },
-    { label: "13", R: -68.0652, d: 4.0012, nd: 1.6968, elemId: 7, sd: 11.2 },
-    { label: "14", R: -20.8572, d: 0.2996, nd: 1, elemId: 0, sd: 11.2 },
-    { label: "15", R: 131.6672, d: 4.0992, nd: 1.7859, elemId: 8, sd: 13.8 },
-    { label: "16", R: -46.4996, d: 38.36, nd: 1, elemId: 0, sd: 13.8 },
+    { label: "11", R: -20.5604, d: 4.7992, nd: 1.80518, elemId: 6, sd: 9.6 },
+    { label: "12", R: 82.9164, d: 1.3804, nd: 1, elemId: 0, sd: 9.6 },
+    { label: "13", R: -68.0652, d: 4.0012, nd: 1.6968, elemId: 7, sd: 9.6 },
+    { label: "14", R: -20.8572, d: 0.2996, nd: 1, elemId: 0, sd: 9.6 },
+    { label: "15", R: 131.6672, d: 4.0992, nd: 1.7859, elemId: 8, sd: 13.3 },
+    { label: "16", R: -46.4996, d: 38.36, nd: 1, elemId: 0, sd: 13.3 },
   ],
 
   asph: {},
@@ -190,16 +199,16 @@ const LENS_DATA = {
   varLabels: [],
 
   groups: [
-    { text: "FRONT", fromSurface: "1", toSurface: "2" },
-    { text: "MIDDLE FLOAT", fromSurface: "3", toSurface: "8" },
-    { text: "REAR", fromSurface: "9", toSurface: "16" },
+    { text: "L1 (− / FIXED)", fromSurface: "1", toSurface: "2" },
+    { text: "L2–L4 (+ / FLOAT → IMG)", fromSurface: "3", toSurface: "8" },
+    { text: "L5–L8 (+ / FIXED)", fromSurface: "9", toSurface: "16" },
   ],
   doublets: [],
 
   /* ── Focus configuration ── */
   closeFocusM: 0.18,
   focusDescription:
-    "Production MFD is 0.18 m from the film plane. JP1976-026535 Example 1 publishes only an M=1/6 L2–L4 floating correction; the complete focusing extension/cam to 0.18 m is not published, so no runtime internal focus reconstruction is authored.",
+    "Production MFD is 0.18 m from the film plane. JP1976-026535 Example 1 publishes only an M=1/6 state in which L2–L4 shifts 0.9996 mm imageward; the complete focusing extension/cam to 0.18 m is not published, so no runtime internal focus reconstruction is authored.",
 
   /* ── Aperture configuration ── */
   nominalFno: 2,
