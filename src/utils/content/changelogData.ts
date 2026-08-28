@@ -19,6 +19,11 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-08-28",
+    type: "lens",
+    summary: "Added three Konica UC Hexanon AR patent-derived lens designs",
+  },
+  {
     date: "2026-08-27",
     type: "lens",
     summary: "Added three Sony ZEISS patent-derived zoom lens designs",
