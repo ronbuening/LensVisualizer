@@ -5,6 +5,21 @@
 import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
+  /* Phase 46: exact Konica patent-coordinate coverage from OHARA's current
+   * first-party BAL15Y datasheet.
+   */
+  {
+    name: "BAL15Y",
+    vendor: "Ohara",
+    B: [1.28348331, 0.102800765, 0.404609885],
+    C: [0.00790900515, 0.0305971274, 46.5268356],
+    nd: 1.556711,
+    vd: 58.68,
+    PgF: 0.5444,
+    code6: "557587",
+    source:
+      "OHARA BAL15Y product datasheet (OHARA 24-10), https://oharacorp.com/wp-content/uploads/datasheets/ehbal15y.pdf; vendor-published dispersion constants and C/d/F/g line indices.",
+  },
   /* Phase 45: first-party named-token audit additions. */
   {
     name: "S-BAL50",

@@ -22,6 +22,7 @@ const GLASS_CATALOG_SOURCE_ORDER = [
   "J-LAF04",
   "S-BAL50",
   "S-BAL12",
+  "BAL15Y",
   "BAM8",
   "LAF3",
   "FCD600",

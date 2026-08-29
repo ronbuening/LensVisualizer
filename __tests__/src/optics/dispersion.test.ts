@@ -87,6 +87,17 @@ describe("glass catalog", () => {
     expect(evaluateCatalogAbbeNumber(entry!)).toBeCloseTo(64.14, 2);
   });
 
+  it("BAL15Y reproduces the published OHARA 24-10 line indices and Abbe number", () => {
+    const entry = resolveGlass("BAL15Y (OHARA)");
+    expect(entry?.name).toBe("BAL15Y");
+    expect(entry?.code6).toBe("557587");
+    expect(evaluateSellmeier(entry!, LINE_NM.C)).toBeCloseTo(1.55383, 5);
+    expect(evaluateSellmeier(entry!, LINE_NM.d)).toBeCloseTo(1.55671, 5);
+    expect(evaluateSellmeier(entry!, LINE_NM.F)).toBeCloseTo(1.56331, 5);
+    expect(evaluateSellmeier(entry!, LINE_NM.g)).toBeCloseTo(1.56848, 5);
+    expect(evaluateCatalogAbbeNumber(entry!)).toBeCloseTo(58.68, 2);
+  });
+
   it.each([
     { name: "J-SF1", code6: "717296", nd: 1.71736, vd: 29.57 },
     { name: "J-SF6", code6: "805255", nd: 1.80518, vd: 25.45 },

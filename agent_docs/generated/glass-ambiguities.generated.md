@@ -12,17 +12,17 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **650** lenses scanned
-- **7443** glass elements examined
-- **2223** elements have multiple coordinate-compatible candidates
-- **433** lens files are affected
+- **653** lenses scanned
+- **7480** glass elements examined
+- **2246** elements have multiple coordinate-compatible candidates
+- **436** lens files are affected
 - **208** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **194** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
 | Smallest reference-index residual | 1238 |
-| Evidence-source priority | 700 |
+| Evidence-source priority | 723 |
 | Vendor context | 276 |
 | Stable canonical-name order | 7 |
 | Smallest Abbe residual | 2 |
@@ -521,11 +521,20 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `E-FD2 catalog-equivalent coefficient proxy (patent 648338; production supplier unspecified)` | 1.64769 / 33.80 (d) | E-FD2 — direct name evidence outranks six-digit code evidence. | S-TIM22 (Ohara, code, preferred code row)<br>H-ZF1 (CDGM, code, alternate code row) | 1 | [KONICA UC HEXANON AR 28mm f/1.8](../../src/lens-data/konica/KonicaUCHexanonAR28mmf18.data.ts) L2 |
 | `LAC10 catalog-equivalent coefficient proxy (patent 720503; production supplier unspecified)` | 1.72000 / 50.30 (d) | LAC10 — direct name evidence outranks six-digit code evidence. | J-LAK10 (Hikari, code, preferred code row) | 1 | [KONICA UC HEXANON AR 28mm f/1.8](../../src/lens-data/konica/KonicaUCHexanonAR28mmf18.data.ts) L4 |
 | `LAC8 catalog-equivalent coefficient proxy (patent 713539; production supplier unspecified)` | 1.71300 / 53.90 (d) | LAC8 — direct name evidence outranks six-digit code evidence. | MP-LAC8-30 (Hoya, code, alternate code row) | 1 | [KONICA UC HEXANON AR 28mm f/1.8](../../src/lens-data/konica/KonicaUCHexanonAR28mmf18.data.ts) L5 |
-| `S-TIH6 catalog-equivalent coefficient proxy (patent 805254; production supplier unspecified)` | 1.80518 / 25.40 (d) | S-TIH6 — direct name evidence outranks six-digit code evidence. | SF6 (Schott, code, alternate code row) | 6 | [KONICA UC HEXANON AR 28mm f/1.8](../../src/lens-data/konica/KonicaUCHexanonAR28mmf18.data.ts) L6 +2 files |
+| `S-TIH6 catalog-equivalent coefficient proxy (patent 805254; production supplier unspecified)` | 1.80518 / 25.40 (d) | S-TIH6 — direct name evidence outranks six-digit code evidence. | SF6 (Schott, code, alternate code row) | 11 | [KONICA UC HEXANON AR 28mm f/1.8](../../src/lens-data/konica/KonicaUCHexanonAR28mmf18.data.ts) L6 +4 files |
 | `E-C3 catalog-equivalent coefficient proxy (patent 518590; production supplier unspecified)` | 1.51823 / 59.00 (d) | E-C3 — direct name evidence outranks six-digit code evidence. | S-NSL3 (Ohara, code, preferred code row) | 1 | [KONICA UC ZOOM HEXANON AR 45–100mm f/3.5](../../src/lens-data/konica/KonicaUCZoomHexanonAR45100mmf35.data.ts) L8 |
 | `E-FD15 catalog-equivalent coefficient proxy (patent 699301; production supplier unspecified)` | 1.69895 / 30.10 (d) | E-FD15 — direct name evidence outranks six-digit code evidence. | S-TIM35 (Ohara, code, preferred code row) | 1 | [KONICA UC ZOOM HEXANON AR 45–100mm f/3.5](../../src/lens-data/konica/KonicaUCZoomHexanonAR45100mmf35.data.ts) L9 |
 | `K-BK7 catalog-equivalent coefficient proxy (patent 516641; production supplier unspecified)` | 1.51633 / 64.10 (d) | K-BK7 — direct name evidence outranks six-digit code evidence. | S-BSL7 (Ohara, code, preferred code row) | 1 | [KONICA UC ZOOM HEXANON AR 45–100mm f/3.5](../../src/lens-data/konica/KonicaUCZoomHexanonAR45100mmf35.data.ts) L10 |
 | `E-FD4 catalog-equivalent coefficient proxy (patent 755275; production supplier unspecified)` | 1.75520 / 27.50 (d) | E-FD4 — direct name evidence outranks six-digit code evidence. | H-ZF6 (CDGM, code, alternate code row) | 1 | [KONICA UC ZOOM HEXANON AR 80–200mm f/4](../../src/lens-data/konica/KonicaUCZoomHexanonAR80200mmf4.data.ts) L7b |
+| `E-F2 catalog-equivalent coefficient proxy (patent 620363; production supplier unspecified)` | 1.62004 / 36.30 (d) | E-F2 — direct name evidence outranks six-digit code evidence. | S-TIM2 (Ohara, code, preferred code row) | 3 | [KONICA ZOOM-HEXANON AR 35–70mm f/3.5](../../src/lens-data/konica/KonicaZoomHexanonAR3570mmf35.data.ts) L1 |
+| `J-LASF016 catalog-equivalent coefficient proxy (patent 773496; production supplier unspecified)` | 1.77250 / 49.60 (d) | J-LASF016 — direct name evidence outranks six-digit code evidence. | N-LAF34 (Schott, code, alternate code row)<br>S-LAH66 (Ohara, code, preferred code row)<br>S-LAH66N (Ohara, code, alternate code row) | 3 | [KONICA ZOOM-HEXANON AR 35–70mm f/3.5](../../src/lens-data/konica/KonicaZoomHexanonAR3570mmf35.data.ts) L2 +1 files |
+| `J-LAK14 catalog-equivalent coefficient proxy (patent 697555; production supplier unspecified)` | 1.69680 / 55.50 (d) | J-LAK14 — direct name evidence outranks six-digit code evidence. | LAC14 (Hoya, code, alternate code row)<br>S-LAL14 (Ohara, code, preferred code row) | 3 | [KONICA ZOOM-HEXANON AR 35–70mm f/3.5](../../src/lens-data/konica/KonicaZoomHexanonAR3570mmf35.data.ts) L5 +1 files |
+| `S-BSL7 catalog-equivalent coefficient proxy (patent 516641; production supplier unspecified)` | 1.51633 / 64.10 (d) | S-BSL7 — direct name evidence outranks six-digit code evidence. | K-BK7 (Sumita, code, alternate code row) | 1 | [KONICA ZOOM-HEXANON AR 35–70mm f/3.5](../../src/lens-data/konica/KonicaZoomHexanonAR3570mmf35.data.ts) L7 |
+| `E-FD13 catalog-equivalent coefficient proxy (patent 741278; production supplier unspecified)` | 1.74077 / 27.80 (d) | E-FD13 — direct name evidence outranks six-digit code evidence. | S-TIH13 (Ohara, code, preferred code row) | 1 | [KONICA ZOOM-HEXANON AR 65–135mm f/4](../../src/lens-data/konica/KonicaZoomHexanonAR65135mmf4.data.ts) L1 |
+| `J-SK16 catalog-equivalent coefficient proxy (patent 620603; production supplier unspecified)` | 1.62041 / 60.30 (d) | J-SK16 — direct name evidence outranks six-digit code evidence. | N-SK16 (Schott, code, preferred code row)<br>S-BSM16 (Ohara, code, alternate code row) | 3 | [KONICA ZOOM-HEXANON AR 65–135mm f/4](../../src/lens-data/konica/KonicaZoomHexanonAR65135mmf4.data.ts) L3 |
+| `H-ZF13 catalog-equivalent coefficient proxy (patent 785257; production supplier unspecified)` | 1.78472 / 25.70 (d) | H-ZF13 — direct name evidence outranks six-digit code evidence. | S-TIH11 (Ohara, code, preferred code row) | 2 | [KONICA ZOOM-HEXANON AR 65–135mm f/4](../../src/lens-data/konica/KonicaZoomHexanonAR65135mmf4.data.ts) L5 |
+| `SF1 catalog-equivalent coefficient proxy (patent 717295; production supplier unspecified)` | 1.71736 / 29.50 (d) | SF1 — direct name evidence outranks six-digit code evidence. | S-TIH1 (Ohara, code, alternate code row) | 1 | [KONICA ZOOM-HEXANON AR 70–150mm f/4](../../src/lens-data/konica/KonicaZoomHexanonAR70150mmf4.data.ts) L12 |
+| `E-F8 catalog-equivalent coefficient proxy (patent 596392; production supplier unspecified)` | 1.59551 / 39.20 (d) | E-F8 — direct name evidence outranks six-digit code evidence. | S-TIM8 (Ohara, code, preferred code row) | 1 | [KONICA ZOOM-HEXANON AR 70–150mm f/4](../../src/lens-data/konica/KonicaZoomHexanonAR70150mmf4.data.ts) L15 |
 | `BACD12 / S-BAL42 class (583/595)` | 1.58313 / 59.46 (d) | S-BAL42 — direct name evidence outranks six-digit code evidence. | M-BACD12 (Hoya, code, alternate code row)<br>Q-SK52S (Hikari, code, preferred code row) | 1 | [LAOWA 12mm f/2.8 Zero-D](../../src/lens-data/laowa/Laowa12mmf28ZeroD.data.ts) L2 |
 | `FCD1 / H-FK61 / S-FPL51 class (497/816 ED)` | 1.49700 / 81.61 (d) | H-FK61 — smallest d-line \|Δn\| (1.1e-8 vs 1.6e-7) | FCD1 (Hoya, name)<br>S-FPL51 (Ohara, name) | 3 | [LAOWA 12mm f/2.8 Zero-D](../../src/lens-data/laowa/Laowa12mmf28ZeroD.data.ts) L3 |
 | `E-F1 class (HOYA, 626/357)` | 1.62588 / 35.74 (d) | E-F1 — direct name evidence outranks six-digit code evidence. | S-TIM1 (Ohara, code, vendor ✗, alternate code row) | 1 | [LAOWA 12mm f/2.8 Zero-D](../../src/lens-data/laowa/Laowa12mmf28ZeroD.data.ts) L4 |
