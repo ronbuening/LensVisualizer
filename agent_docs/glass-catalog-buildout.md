@@ -8,7 +8,13 @@ catalog equivalent. If neither path is available, the engine falls back to parti
 dPgF-corrected indices, or the legacy Abbe approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **533 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **534 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+
+The August 29, 2026 Konica Zoom-Hexanon audit added OHARA BAL15Y from the manufacturer's current `OHARA 24-10`
+datasheet. Its exact `557587` code and published dispersion constants close the 65–135mm f/4's only catalog gap,
+raising that lens from 12/13 to 13/13 strict and trusted coverage without asserting a production-glass supplier.
+Global strict coverage rises to 6951/7488 surfaces and trusted coverage to 6966/7488, with zero catalog-coordinate
+mismatches.
 
 The August 25, 2026 Canon zoom screenshot follow-up added CDGM H-ZLaF50E from the manufacturer's official datasheet,
 including its published dispersion-formula constants and independent C/d/F/g line-index pins. The exact name now resolves
