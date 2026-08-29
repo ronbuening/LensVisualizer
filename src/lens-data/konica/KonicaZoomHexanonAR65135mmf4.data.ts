@@ -323,10 +323,10 @@ const LENS_DATA = {
   zoomLabels: ["Wide", "Tele"],
 
   groups: [
-    { text: "G1 + ZOOM / FOCUS", fromSurface: "1", toSurface: "3" },
-    { text: "G2 − FOCUS", fromSurface: "4", toSurface: "8" },
-    { text: "G3 + ZOOM / FOCUS", fromSurface: "9", toSurface: "13" },
-    { text: "G4 + FIXED", fromSurface: "14", toSurface: "22" },
+    { text: "G1 +", fromSurface: "1", toSurface: "3" },
+    { text: "G2 −", fromSurface: "4", toSurface: "8" },
+    { text: "G3 +", fromSurface: "9", toSurface: "13" },
+    { text: "G4 +", fromSurface: "14", toSurface: "22" },
   ],
 
   doublets: [

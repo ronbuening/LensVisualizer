@@ -352,10 +352,10 @@ const LENS_DATA = {
   groups: [
     { text: "G1 + FIXED", fromSurface: "1", toSurface: "5" },
     { text: "G2 − VARIATOR", fromSurface: "6", toSurface: "12" },
-    { text: "G3 + COMPENSATOR", fromSurface: "13", toSurface: "15" },
-    { text: "G4 + FIXED FRONT", fromSurface: "16", toSurface: "19" },
-    { text: "L12 − IMAGEWARD FOCUS", fromSurface: "20", toSurface: "21" },
-    { text: "G4 + FIXED REAR", fromSurface: "22", toSurface: "27" },
+    { text: "G3 + COMP.", fromSurface: "13", toSurface: "15" },
+    { text: "G4 FRONT", fromSurface: "16", toSurface: "19" },
+    { text: "L12 − FOCUS", fromSurface: "20", toSurface: "21" },
+    { text: "G4 REAR", fromSurface: "22", toSurface: "27" },
   ],
   doublets: [
     { text: "D1", fromSurface: "1", toSurface: "3" },
