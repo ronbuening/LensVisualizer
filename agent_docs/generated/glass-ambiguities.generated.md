@@ -12,17 +12,17 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **653** lenses scanned
-- **7480** glass elements examined
-- **2246** elements have multiple coordinate-compatible candidates
-- **436** lens files are affected
+- **656** lenses scanned
+- **7518** glass elements examined
+- **2264** elements have multiple coordinate-compatible candidates
+- **439** lens files are affected
 - **208** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **194** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
-| Smallest reference-index residual | 1238 |
-| Evidence-source priority | 723 |
+| Smallest reference-index residual | 1253 |
+| Evidence-source priority | 726 |
 | Vendor context | 276 |
 | Stable canonical-name order | 7 |
 | Smallest Abbe residual | 2 |
@@ -716,6 +716,18 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `548458 — light-flint class (vendor unresolved)` | 1.54814 / 45.79 (d) | LLF1 — smallest d-line \|Δn\| (9.5e-8 vs 1.2e-7) | E-FEL1 (Hoya, code, alternate code row)<br>S-TIL1 (Ohara, code, preferred code row) | 1 | [NIKON AF-S DX ZOOM-NIKKOR 12-24mm f/4 G IF-ED](../../src/lens-data/nikon/NikonAFSDXZoomNikkor1224mmf4GIFED.data.ts) L6 |
 | `804466 — lanthanum-flint class (vendor unresolved)` | 1.80400 / 46.58 (d) | H-ZLaF50D — smallest d-line \|Δn\| (7.2e-9 vs 1.9e-8) | J-LASF015 (Hikari, code, alternate code row)<br>H-ZLaF50E (CDGM, code, alternate code row)<br>S-LAH65 (Ohara, code, preferred code row) | 1 | [NIKON AF-S DX ZOOM-NIKKOR 12-24mm f/4 G IF-ED](../../src/lens-data/nikon/NikonAFSDXZoomNikkor1224mmf4GIFED.data.ts) L8 |
 | `804396 — dense-lanthanum-flint class (vendor unresolved)` | 1.80440 / 39.59 (d) | S-LAH63Q — smallest d-line \|Δn\| (2.5e-7 vs 2.2e-6) | S-LAH63 (Ohara, code, preferred code row) | 1 | [NIKON AF-S DX ZOOM-NIKKOR 12-24mm f/4 G IF-ED](../../src/lens-data/nikon/NikonAFSDXZoomNikkor1224mmf4GIFED.data.ts) L9 |
+| `SF6 class / 805254` | 1.80518 / 25.43 (d) | SF6 — direct name evidence outranks six-digit code evidence. | S-TIH6 (Ohara, code, preferred code row) | 1 | [NIKON AF-S DX ZOOM-NIKKOR 17-55mm f/2.8G IF-ED](../../src/lens-data/nikon/NikonAFSDXZoomNikkor1755mmf28GIFED.data.ts) L3 |
+| `618634 phosphate-crown class` | 1.61800 / 63.38 (d) | S-PHM52 — smallest d-line \|Δn\| (9.0e-8 vs 1.0e-7) | N-PSK53A (Schott, code, alternate code row)<br>PCD4 (Hoya, code, alternate code row)<br>K-PSKn2 (Sumita, code, alternate code row) | 2 | [NIKON AF-S DX ZOOM-NIKKOR 17-55mm f/2.8G IF-ED](../../src/lens-data/nikon/NikonAFSDXZoomNikkor1755mmf28GIFED.data.ts) L6 |
+| `773496 class (vendor ambiguous; patent nd=1.772500, vd=49.61)` | 1.77250 / 49.61 (d) | J-LASF016 — smallest d-line \|Δn\| (1.7e-8 vs 6.4e-8) | N-LAF34 (Schott, code, alternate code row)<br>S-LAH66 (Ohara, code, preferred code row)<br>S-LAH66N (Ohara, code, alternate code row) | 2 | [NIKON AF-S DX ZOOM-NIKKOR 18-55mm f/3.5-5.6G ED II](../../src/lens-data/nikon/NikonAFSDXZoomNikkor1855mmf3556GEDII.data.ts) L1g |
+| `497816 low-dispersion class (vendor/composition ambiguous)` | 1.49700 / 81.61 (d) | H-FK61 — smallest d-line \|Δn\| (1.1e-8 vs 1.6e-7) | FCD1 (Hoya, code, alternate code row)<br>S-FPL51 (Ohara, code, preferred code row) | 1 | [NIKON AF-S DX ZOOM-NIKKOR 18-55mm f/3.5-5.6G ED II](../../src/lens-data/nikon/NikonAFSDXZoomNikkor1855mmf3556GEDII.data.ts) L2a |
+| `517641 crown class (vendor ambiguous; BK7-family coordinates)` | 1.51680 / 64.10 (d) | N-BK7 — alias evidence outranks six-digit code evidence. | J-BK7A (Hikari, code, preferred code row) | 2 | [NIKON AF-S DX ZOOM-NIKKOR 18-55mm f/3.5-5.6G ED II](../../src/lens-data/nikon/NikonAFSDXZoomNikkor1855mmf3556GEDII.data.ts) L2ap |
+| `847238 class` | 1.84666 / 23.80 (d) | J-SF03 — smallest d-line \|Δn\| (3.7e-8 vs 5.0e-8) | H-ZF52 (CDGM, code, alternate code row)<br>S-TIH53W (Ohara, code, alternate code row)<br>S-TIH53 (Ohara, code, preferred code row)<br>FDS90 (Hoya, code, alternate code row) | 4 | [NIKON AF-S DX ZOOM-NIKKOR 18-70mm f/3.5-4.5G IF-ED](../../src/lens-data/nikon/NikonAFSDXZoomNikkor1870mmf3545GIFED.data.ts) L11 +2 files |
+| `713539 class` | 1.71300 / 53.90 (d) | LAC8 — smallest d-line \|Δn\| (1.8e-7 vs 3.0e-4) | MP-LAC8-30 (Hoya, code, alternate code row) | 2 | [NIKON AF-S DX ZOOM-NIKKOR 18-70mm f/3.5-4.5G IF-ED](../../src/lens-data/nikon/NikonAFSDXZoomNikkor1870mmf3545GIFED.data.ts) L13 +1 files |
+| `804466 class` | 1.80400 / 46.60 (d) | H-ZLaF50D — smallest d-line \|Δn\| (7.2e-9 vs 1.9e-8) | J-LASF015 (Hikari, code, alternate code row)<br>H-ZLaF50E (CDGM, code, alternate code row)<br>S-LAH65 (Ohara, code, preferred code row) | 3 | [NIKON AF-S DX ZOOM-NIKKOR 18-70mm f/3.5-4.5G IF-ED](../../src/lens-data/nikon/NikonAFSDXZoomNikkor1870mmf3545GIFED.data.ts) L21 |
+| `804396 class` | 1.80440 / 39.60 (d) | S-LAH63Q — smallest d-line \|Δn\| (2.5e-7 vs 2.2e-6) | S-LAH63 (Ohara, code, preferred code row) | 1 | [NIKON AF-S DX ZOOM-NIKKOR 18-70mm f/3.5-4.5G IF-ED](../../src/lens-data/nikon/NikonAFSDXZoomNikkor1870mmf3545GIFED.data.ts) L31 |
+| `487704 class` | 1.48749 / 70.40 (d) | N-FK5 — smallest d-line \|Δn\| (3.7e-9 vs 4.1e-8) | H-QK3L (CDGM, code, alternate code row)<br>FK5 (Sumita, code, alternate code row)<br>FC5 (Hoya, code, alternate code row) | 1 | [NIKON AF-S DX ZOOM-NIKKOR 18-70mm f/3.5-4.5G IF-ED](../../src/lens-data/nikon/NikonAFSDXZoomNikkor1870mmf3545GIFED.data.ts) L33 |
+| `835427 class` | 1.83481 / 42.70 (d) | S-LAH55 — smallest d-line \|Δn\| (2.9e-6 vs 3.0e-6) | TAFD5G (Hoya, code, alternate code row)<br>TAFD5F (Hoya, code, alternate code row) | 1 | [NIKON AF-S DX ZOOM-NIKKOR 18-70mm f/3.5-4.5G IF-ED](../../src/lens-data/nikon/NikonAFSDXZoomNikkor1870mmf3545GIFED.data.ts) L42 |
+| `805254 class` | 1.80518 / 25.40 (d) | S-TIH6 — smallest d-line \|Δn\| (7.1e-7 vs 2.1e-6) | SF6 (Schott, code, alternate code row) | 2 | [NIKON AF-S DX ZOOM-NIKKOR 18-70mm f/3.5-4.5G IF-ED](../../src/lens-data/nikon/NikonAFSDXZoomNikkor1870mmf3545GIFED.data.ts) L53 +1 files |
 | `487704 — fluor-crown class (closest FC5, HOYA; vendor unproven)` | 1.48749 / 70.45 (d) | FC5 — direct name evidence outranks six-digit code evidence. | N-FK5 (Schott, code, vendor ✗, preferred code row)<br>H-QK3L (CDGM, code, vendor ✗, alternate code row)<br>FK5 (Sumita, code, vendor ✗, alternate code row) | 1 | [NIKON AF-S FISHEYE NIKKOR 8-15mm f/3.5-4.5E ED](../../src/lens-data/nikon/NikonAFSFisheye815mmf3545EED.data.ts) L213 |
 | `K-SK18 (Sumita, patent nd/vd match) / S-BSM18 (OHARA)` | 1.63854 / 55.48 (d) | S-BSM18 — smallest d-line \|Δn\| (7.9e-7 vs 1.9e-6) | K-SK18 (Sumita, name, vendor ✓) | 1 | [NIKON AF-S MICRO-NIKKOR 60mm f/2.8 G ED](../../src/lens-data/nikon/NikonAFSMicroNikkor60f28G.data.ts) L2 |
 | `S-BSL7 (OHARA) / N-BK7 (Schott)` | 1.51612 / 64.03 (d) | S-BSL7 — smallest d-line \|Δn\| (2.1e-4 vs 6.8e-4) | N-BK7 (Schott, name, vendor ✓) | 1 | [NIKON AF-S MICRO-NIKKOR 60mm f/2.8 G ED](../../src/lens-data/nikon/NikonAFSMicroNikkor60f28G.data.ts) L4 |
@@ -1242,10 +1254,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `487704 — coordinate class (vendor not established)` | 1.48749 / 70.40 (d) | N-FK5 — smallest d-line \|Δn\| (3.7e-9 vs 4.1e-8) | H-QK3L (CDGM, code, alternate code row)<br>FK5 (Sumita, code, alternate code row)<br>FC5 (Hoya, code, alternate code row) | 1 | [PENTAX SMC D FA645 25mm f/4 AL[IF] SDM AW](../../src/lens-data/pentax/PentaxDFA64525mmF4ALIFSDMAW.data.ts) R5 |
 | `589613 — coordinate class (vendor not established)` | 1.58913 / 61.20 (d) | N-SK5 — smallest d-line \|Δn\| (1.2e-7 vs 2.0e-7) | M-BACD5N (Hoya, code, alternate code row) | 1 | [PENTAX SMC D FA645 25mm f/4 AL[IF] SDM AW](../../src/lens-data/pentax/PentaxDFA64525mmF4ALIFSDMAW.data.ts) R7 |
 | `697555 class` | 1.69680 / 55.50 (d) | J-LAK14 — smallest d-line \|Δn\| (1.3e-8 vs 2.3e-6) | LAC14 (Hoya, code, alternate code row)<br>S-LAL14 (Ohara, code, preferred code row) | 1 | [PENTAX SMC DA 16-45mm f/4 ED AL](../../src/lens-data/pentax/PentaxDA1645mmF4EDAL.data.ts) L11 |
-| `713539 class` | 1.71300 / 53.90 (d) | LAC8 — smallest d-line \|Δn\| (1.8e-7 vs 3.0e-4) | MP-LAC8-30 (Hoya, code, alternate code row) | 1 | [PENTAX SMC DA 16-45mm f/4 ED AL](../../src/lens-data/pentax/PentaxDA1645mmF4EDAL.data.ts) L12 |
-| `847238 class` | 1.84666 / 23.80 (d) | J-SF03 — smallest d-line \|Δn\| (3.7e-8 vs 5.0e-8) | H-ZF52 (CDGM, code, alternate code row)<br>S-TIH53W (Ohara, code, alternate code row)<br>S-TIH53 (Ohara, code, preferred code row)<br>FDS90 (Hoya, code, alternate code row) | 2 | [PENTAX SMC DA 16-45mm f/4 ED AL](../../src/lens-data/pentax/PentaxDA1645mmF4EDAL.data.ts) L14 +1 files |
 | `497816 ED class` | 1.49700 / 81.60 (d) | H-FK61 — smallest d-line \|Δn\| (1.1e-8 vs 1.6e-7) | FCD1 (Hoya, code, alternate code row)<br>S-FPL51 (Ohara, code, preferred code row) | 1 | [PENTAX SMC DA 16-45mm f/4 ED AL](../../src/lens-data/pentax/PentaxDA1645mmF4EDAL.data.ts) L22 |
-| `805254 class` | 1.80518 / 25.40 (d) | S-TIH6 — smallest d-line \|Δn\| (7.1e-7 vs 2.1e-6) | SF6 (Schott, code, alternate code row) | 1 | [PENTAX SMC DA 16-45mm f/4 ED AL](../../src/lens-data/pentax/PentaxDA1645mmF4EDAL.data.ts) L31 |
 | `589612 class` | 1.58913 / 61.20 (d) | S-BAL35 — smallest d-line \|Δn\| (9.0e-8 vs 1.7e-6) | SK5 (Sumita, code, alternate code row) | 1 | [PENTAX SMC DA 16-45mm f/4 ED AL](../../src/lens-data/pentax/PentaxDA1645mmF4EDAL.data.ts) L41g |
 | `806333 class` | 1.80610 / 33.30 (d) | J-LASFH6 — smallest d-line \|Δn\| (2.6e-8 vs 6.1e-7) | NBFD15 (Hoya, code, preferred code row) | 1 | [PENTAX SMC DA 16-45mm f/4 ED AL](../../src/lens-data/pentax/PentaxDA1645mmF4EDAL.data.ts) L42 |
 | `847238 — dense flint (vendor unresolved)` | 1.84666 / 23.80 (d) | J-SF03 — smallest d-line \|Δn\| (3.7e-8 vs 5.0e-8) | H-ZF52 (CDGM, code, alternate code row)<br>S-TIH53W (Ohara, code, alternate code row)<br>S-TIH53 (Ohara, code, preferred code row)<br>FDS90 (Hoya, code, alternate code row) | 2 | [PENTAX SMC DA 17-70mm f/4 AL [IF] SDM](../../src/lens-data/pentax/PentaxDA1770mmf4ALSDM.data.ts) L1 |
