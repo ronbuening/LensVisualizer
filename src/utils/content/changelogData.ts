@@ -19,6 +19,11 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-08-30",
+    type: "lens",
+    summary: "Added three Nikon AF-S DX patent-derived zoom lens designs",
+  },
+  {
     date: "2026-08-29",
     type: "lens",
     summary: "Added three Konica Zoom-Hexanon AR patent-derived zoom lens designs",
