@@ -1501,4 +1501,14 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published obsolete PCS1 formula-3 row.",
   },
+  {
+    name: "TAFD10",
+    vendor: "Hoya",
+    polynomial: [3.211602, -0.01458119, 0.0291896, 0.0005105008, 0.0000270253, -0.000000184785],
+    nd: 1.8155017902172328,
+    vd: 44.53790011638503,
+    code6: "816445",
+    source:
+      "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published obsolete TAFD10 formula-3 row.",
+  },
 ];

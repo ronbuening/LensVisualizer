@@ -19,6 +19,11 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-09-01",
+    type: "lens",
+    summary: "Added three Konica patent-derived prime and telephoto lens designs",
+  },
+  {
     date: "2026-08-30",
     type: "lens",
     summary: "Added three Nikon AF-S DX patent-derived zoom lens designs",
