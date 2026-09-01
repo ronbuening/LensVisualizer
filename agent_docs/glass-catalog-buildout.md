@@ -8,7 +8,14 @@ catalog equivalent. If neither path is available, the engine falls back to parti
 dPgF-corrected indices, or the legacy Abbe approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **534 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **535 verified entries** in source as of September 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+
+The September 1, 2026 Konica prime/telephoto audit added legacy HOYA TAFD10 from the manufacturer's first-party
+2026-07-07 obsolete-inclusive OpticStudio catalog. Its formula-3 polynomial and exact `816445` code recover the
+FL-HEXANON AR 300mm f/6.3's final element; existing YGH52 recovers that lens's `787501` position. Existing S-BSL7,
+H-ZF2, and E-FD2 curves also make the new 135mm f/3.5 strict-complete, while the 60mm f/1.2 was already 7/7. All
+labels preserve the patent coordinates and leave the production supplier unspecified. Global strict coverage is now
+7006/7546 surfaces and trusted coverage is 7021/7546, with zero catalog-coordinate mismatches.
 
 The August 29, 2026 Konica Zoom-Hexanon audit added OHARA BAL15Y from the manufacturer's current `OHARA 24-10`
 datasheet. Its exact `557587` code and published dispersion constants close the 65–135mm f/4's only catalog gap,

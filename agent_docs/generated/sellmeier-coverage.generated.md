@@ -11,17 +11,17 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **656** lenses scanned
-- **645** visible lenses scanned
-- **433** lenses fully covered by trusted chromatic data
-- **431** visible lenses fully covered by trusted chromatic data
-- **427** lenses fully covered by strict Sellmeier data
-- **425** visible lenses fully covered by strict Sellmeier data
+- **659** lenses scanned
+- **648** visible lenses scanned
+- **436** lenses fully covered by trusted chromatic data
+- **434** visible lenses fully covered by trusted chromatic data
+- **430** lenses fully covered by strict Sellmeier data
+- **428** visible lenses fully covered by strict Sellmeier data
 - **6** lenses fully covered only after measured line-index data
 - **6** visible lenses fully covered only after measured line-index data
-- **6986 / 7526** non-air surfaces use strict catalog Sellmeier data
+- **7006 / 7546** non-air surfaces use strict catalog Sellmeier data
 - **92.8%** strict Sellmeier surface coverage overall
-- **7001 / 7526** non-air surfaces use trusted chromatic data
+- **7021 / 7546** non-air surfaces use trusted chromatic data
 - **93.0%** trusted chromatic coverage overall
 - **37 / 75** native e-line surfaces use name-verified catalog Sellmeier data
 
@@ -327,6 +327,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [HASSELBLAD HC 300mm f/4.5](../../src/lens-data/hasselblad/HasselbladHC300mmf45.data.ts) | 9/9 | 9 | 9/9 |
 | [HASSELBLAD HC Macro 120mm f/4](../../src/lens-data/hasselblad/HasselbladHC120mmf4Macro.data.ts) | 9/9 | 9 | 9/9 |
 | [HD PENTAX-DA 20-40mm f/2.8-4 ED Limited DC WR](../../src/lens-data/pentax/HDPentaxDA2040mmF284EDLimitedDCWR.data.ts) | 9/9 | 9 | 9/9 |
+| [KONICA FL-HEXANON AR 300mm f/6.3](../../src/lens-data/konica/KonicaFLHexanonAR300mmf63.data.ts) | 9/9 | 9 | 9/9 |
 | [KONICA ZOOM-HEXANON AR 35–70mm f/3.5](../../src/lens-data/konica/KonicaZoomHexanonAR3570mmf35.data.ts) | 9/9 | 9 | 9/9 |
 | [MAMIYA-SEKOR ZOOM E 28-50mm f/3.5-4.5](../../src/lens-data/mamiya/MamiyaSekorZoomE2850mmf3545.data.ts) | 9/9 | 9 | 9/9 |
 | [NIKON 1 NIKKOR 11-27.5mm f/3.5-5.6](../../src/lens-data/nikon/Nikon1Nikkor1127mmf3556.data.ts) | 9/9 | 9 | 9/9 |
@@ -400,6 +401,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [FUJIFILM FUJINON-Z 43-75mm f/3.5-4.5](../../src/lens-data/fujifilm/FujifilmFujinonZ4375mmf3545.data.ts) | 7/7 | 7 | 7/7 |
 | [FUJIFILM SUPER EBC FUJINON 45mm f/4 (Fujifilm GA645W/GA645Wi Professional)](../../src/lens-data/fujifilm/FujifilmGA645WidePro45mmf4.data.ts) | 7/7 | 7 | 7/7 |
 | [FUJIFILM SUPER EBC FUJINON 60mm f/4 (Fujifilm GA645 Professional)](../../src/lens-data/fujifilm/FujifilmGA645Pro60mmf4.data.ts) | 7/7 | 7 | 7/7 |
+| [KONICA HEXANON 60mm f/1.2 L](../../src/lens-data/konica/KonicaHexanon60mmf12.data.ts) | 7/7 | 7 | 7/7 |
 | [KONICA HEXAR 35mm f/2 (Konica Hexar AF)](../../src/lens-data/konica/KonicaHexar35mmf2.data.ts) | 7/7 | 7 | 7/7 |
 | [MAMIYA N 210mm f/8 L](../../src/lens-data/mamiya/Mamiya7210mmf8NL.data.ts) | 7/7 | 7 | 7/7 |
 | [MAMIYA SEKOR AF 55mm f/2.8](../../src/lens-data/mamiya/MamiyaSekorAF55mmf28.data.ts) | 7/7 | 7 | 7/7 |
@@ -491,6 +493,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [CARL ZEISS TESSAR 50mm f/3.5](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissTessar50mmf35.data.ts) | 4/4 | 4 | 4/4 |
 | [ENNA MÜNCHEN LITHAGON 35mm f/3.5](../../src/lens-data/enna-munchen/EnnaMunchenLithagon35mmf35.data.ts) | 4/4 | 4 | 4/4 |
 | [KODAK WIDE-FIELD EKTAR 100mm f/6.3](../../src/lens-data/kodak/KodakWideFieldEktar100mmf63.data.ts) | 4/4 | 4 | 4/4 |
+| [KONICA HEXANON 135mm f/3.5](../../src/lens-data/konica/KonicaHexanon135mmf35.data.ts) | 4/4 | 4 | 4/4 |
 | [NIKON AI NIKKOR 45mm f/2.8 P](../../src/lens-data/nikon/NikonAINikkor45mmf28.data.ts) | 4/4 | 4 | 4/4 |
 | [NIKON DODOTTO 400mm f/8](../../src/lens-data/nikon/NikonDodotto400mmf8.data.ts) | 4/4 | 4 | 4/4 |
 | [NIKON SERIES E 100mm f/2.8](../../src/lens-data/nikon/NikonSeriesE100mmf28.data.ts) | 4/4 | 4 | 4/4 |

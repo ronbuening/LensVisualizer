@@ -12,17 +12,17 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **656** lenses scanned
-- **7518** glass elements examined
-- **2264** elements have multiple coordinate-compatible candidates
-- **439** lens files are affected
+- **659** lenses scanned
+- **7538** glass elements examined
+- **2274** elements have multiple coordinate-compatible candidates
+- **442** lens files are affected
 - **208** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **194** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
-| Smallest reference-index residual | 1253 |
-| Evidence-source priority | 726 |
+| Smallest reference-index residual | 1261 |
+| Evidence-source priority | 728 |
 | Vendor context | 276 |
 | Stable canonical-name order | 7 |
 | Smallest Abbe residual | 2 |
@@ -516,8 +516,16 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `743493 (vendor/catalog identity unresolved)` | 1.74320 / 49.30 (d) | S-LAM60 — smallest d-line \|Δn\| (2.1e-6 vs 1.0e-4) | M-NBF1 (Hoya, code, alternate code row) | 1 | [HD PENTAX-DA 20-40mm f/2.8-4 ED Limited DC WR](../../src/lens-data/pentax/HDPentaxDA2040mmF284EDLimitedDCWR.data.ts) L21 |
 | `497816 (vendor/catalog identity unresolved)` | 1.49700 / 81.60 (d) | H-FK61 — smallest d-line \|Δn\| (1.1e-8 vs 1.6e-7) | FCD1 (Hoya, code, alternate code row)<br>S-FPL51 (Ohara, code, preferred code row) | 1 | [HD PENTAX-DA 20-40mm f/2.8-4 ED Limited DC WR](../../src/lens-data/pentax/HDPentaxDA2040mmF284EDLimitedDCWR.data.ts) L22 |
 | `847238 (vendor/catalog identity unresolved)` | 1.84666 / 23.80 (d) | J-SF03 — smallest d-line \|Δn\| (3.7e-8 vs 5.0e-8) | H-ZF52 (CDGM, code, alternate code row)<br>S-TIH53W (Ohara, code, alternate code row)<br>S-TIH53 (Ohara, code, preferred code row)<br>FDS90 (Hoya, code, alternate code row) | 1 | [HD PENTAX-DA 20-40mm f/2.8-4 ED Limited DC WR](../../src/lens-data/pentax/HDPentaxDA2040mmF284EDLimitedDCWR.data.ts) L26 |
+| `804396 class (supplier unresolved)` | 1.80440 / 39.60 (d) | S-LAH63Q — smallest d-line \|Δn\| (2.5e-7 vs 2.2e-6) | S-LAH63 (Ohara, code, preferred code row) | 1 | [KONICA FL-HEXANON AR 300mm f/6.3](../../src/lens-data/konica/KonicaFLHexanonAR300mmf63.data.ts) L3 |
+| `673322 dense-flint class; H-ZF2 catalog-equivalent coefficient proxy (production supplier unspecified)` | 1.67270 / 32.20 (d) | H-ZF2 — direct name evidence outranks six-digit code evidence. | E-FD5 (Hoya, code, preferred code row)<br>SF5 (Schott, code, alternate code row) | 1 | [KONICA HEXANON 135mm f/3.5](../../src/lens-data/konica/KonicaHexanon135mmf35.data.ts) L3 |
+| `648339 flint class; E-FD2 catalog-equivalent coefficient proxy (production supplier unspecified)` | 1.64769 / 33.90 (d) | E-FD2 — direct name evidence outranks six-digit code evidence. | SF2 (Schott, code, preferred code row) | 1 | [KONICA HEXANON 135mm f/3.5](../../src/lens-data/konica/KonicaHexanon135mmf35.data.ts) L4 |
 | `S-LAH65V / TAF3 class (OHARA/Hoya, 804/466)` | 1.80420 / 46.60 (d) | TAF3 — smallest d-line \|Δn\| (4.5e-7 vs 2.0e-4) | S-LAH65V (Ohara, name, vendor ✓)<br>S-LAH65 (Ohara, code, vendor ✓, preferred code row)<br>H-ZLaF50E (CDGM, code, vendor ✗, alternate code row)<br>J-LASF015 (Hikari, code, vendor ✗, alternate code row)<br>H-ZLaF50D (CDGM, code, vendor ✗, alternate code row) | 1 | [KONICA HEXANON 38mm f/2.8 (Konica C35)](../../src/lens-data/konica/KonicaHexanon38mmf28.data.ts) L1 |
 | `S-TIH10 / E-FD10 / N-SF10 class (728/283)` | 1.72825 / 28.30 (d) | E-FD10 — smallest d-line \|Δn\| (2.2e-7 vs 2.3e-7) | S-TIH10 (Ohara, name)<br>H-ZF4A (CDGM, code, preferred code row) | 1 | [KONICA HEXANON 38mm f/2.8 (Konica C35)](../../src/lens-data/konica/KonicaHexanon38mmf28.data.ts) L3 |
+| `773496 — vendor-neutral optical-glass coordinate class (patent vendor unresolved)` | 1.77250 / 49.60 (d) | J-LASF016 — smallest d-line \|Δn\| (1.7e-8 vs 6.4e-8) | N-LAF34 (Schott, code, alternate code row)<br>S-LAH66 (Ohara, code, preferred code row)<br>S-LAH66N (Ohara, code, alternate code row) | 3 | [KONICA HEXANON 60mm f/1.2 L](../../src/lens-data/konica/KonicaHexanon60mmf12.data.ts) L1 |
+| `847238 — vendor-neutral optical-glass coordinate class (patent vendor unresolved)` | 1.84666 / 23.80 (d) | J-SF03 — smallest d-line \|Δn\| (3.7e-8 vs 5.0e-8) | H-ZF52 (CDGM, code, alternate code row)<br>S-TIH53W (Ohara, code, alternate code row)<br>S-TIH53 (Ohara, code, preferred code row)<br>FDS90 (Hoya, code, alternate code row) | 1 | [KONICA HEXANON 60mm f/1.2 L](../../src/lens-data/konica/KonicaHexanon60mmf12.data.ts) L4 |
+| `699301 — vendor-neutral optical-glass coordinate class (patent vendor unresolved)` | 1.69895 / 30.10 (d) | E-FD15 — smallest d-line \|Δn\| (2.0e-7 vs 3.2e-6) | S-TIM35 (Ohara, code, preferred code row) | 1 | [KONICA HEXANON 60mm f/1.2 L](../../src/lens-data/konica/KonicaHexanon60mmf12.data.ts) L5 |
+| `804396 — vendor-neutral optical-glass coordinate class (patent vendor unresolved)` | 1.80440 / 39.60 (d) | S-LAH63Q — smallest d-line \|Δn\| (2.5e-7 vs 2.2e-6) | S-LAH63 (Ohara, code, preferred code row) | 1 | [KONICA HEXANON 60mm f/1.2 L](../../src/lens-data/konica/KonicaHexanon60mmf12.data.ts) L6 |
+| `806409 — vendor-neutral optical-glass coordinate class (patent vendor unresolved)` | 1.80610 / 40.90 (d) | P-LASF47 — smallest d-line \|Δn\| (1.2e-7 vs 2.2e-6) | S-LAH53 (Ohara, code, preferred code row) | 1 | [KONICA HEXANON 60mm f/1.2 L](../../src/lens-data/konica/KonicaHexanon60mmf12.data.ts) L7 |
 | `E-FD2 catalog-equivalent coefficient proxy (patent 648338; production supplier unspecified)` | 1.64769 / 33.80 (d) | E-FD2 — direct name evidence outranks six-digit code evidence. | S-TIM22 (Ohara, code, preferred code row)<br>H-ZF1 (CDGM, code, alternate code row) | 1 | [KONICA UC HEXANON AR 28mm f/1.8](../../src/lens-data/konica/KonicaUCHexanonAR28mmf18.data.ts) L2 |
 | `LAC10 catalog-equivalent coefficient proxy (patent 720503; production supplier unspecified)` | 1.72000 / 50.30 (d) | LAC10 — direct name evidence outranks six-digit code evidence. | J-LAK10 (Hikari, code, preferred code row) | 1 | [KONICA UC HEXANON AR 28mm f/1.8](../../src/lens-data/konica/KonicaUCHexanonAR28mmf18.data.ts) L4 |
 | `LAC8 catalog-equivalent coefficient proxy (patent 713539; production supplier unspecified)` | 1.71300 / 53.90 (d) | LAC8 — direct name evidence outranks six-digit code evidence. | MP-LAC8-30 (Hoya, code, alternate code row) | 1 | [KONICA UC HEXANON AR 28mm f/1.8](../../src/lens-data/konica/KonicaUCHexanonAR28mmf18.data.ts) L5 |
