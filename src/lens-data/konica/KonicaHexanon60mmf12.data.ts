@@ -21,8 +21,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ f/1.2 and design 58.263500438 mm / F1.24 are kept separate.              ║
  * ║                                                                            ║
  * ║ GLASS: the patent publishes d-line nd / νd only and names no vendor or    ║
- * ║ melt. Six-digit coordinate classes are therefore retained without        ║
- * ║ assigning a vendor glass. nC, nF, ng, and dPgF are intentionally omitted. ║
+ * ║ melt. Six-digit coordinate classes are retained with qualified catalog-   ║
+ * ║ equivalent coefficient proxies; nC, nF, ng, and dPgF remain omitted.      ║
  * ║                                                                            ║
  * ║ SEMI-DIAMETERS: not published. SDs are modeling inferences derived from   ║
  * ║ the F/1.24-calibrated marginal ray, 0.6-field paraxial ray sampling, the  ║
@@ -48,7 +48,7 @@ const LENS_DATA = {
     "60mm MARKETED / 58.2635mm DESIGN EFL",
     "f/1.2 MARKETED / F1.24 DESIGN",
     "2ω = 40.53° (PATENT)",
-    "FLOATING FOCUS — CONSTRAINED RECONSTRUCTION",
+    "OBJECTWARD FLOATING FOCUS — CONSTRAINED RECONSTRUCTION",
   ],
 
   focalLengthMarketing: 60,
@@ -74,7 +74,8 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.6,
       fl: 220.968637838,
-      glass: "773496 — vendor-neutral optical-glass coordinate class (patent vendor unresolved)",
+      glass:
+        "773496 class; J-LASF016 catalog-equivalent coefficient proxy (production supplier unspecified)",
       role: "Front positive meniscus; one of three positive menisci distributing the front-group power.",
     },
     {
@@ -85,7 +86,8 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.6,
       fl: 97.284870307,
-      glass: "773496 — vendor-neutral optical-glass coordinate class (patent vendor unresolved)",
+      glass:
+        "773496 class; J-LASF016 catalog-equivalent coefficient proxy (production supplier unspecified)",
       role: "Second positive meniscus in the front power-distribution sequence.",
     },
     {
@@ -96,7 +98,8 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.6,
       fl: 73.560040014,
-      glass: "773496 — vendor-neutral optical-glass coordinate class (patent vendor unresolved)",
+      glass:
+        "773496 class; J-LASF016 catalog-equivalent coefficient proxy (production supplier unspecified)",
       role: "Strong third positive meniscus ahead of the negative L4 meniscus.",
     },
     {
@@ -107,7 +110,7 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.8,
       fl: -33.097730032,
-      glass: "847238 — vendor-neutral optical-glass coordinate class (patent vendor unresolved)",
+      glass: "847238 class; J-SF03 catalog-equivalent coefficient proxy (production supplier unspecified)",
       role: "Negative front-group meniscus controlling power balance and Petzval contribution before the stop.",
     },
     {
@@ -118,7 +121,7 @@ const LENS_DATA = {
       nd: 1.69895,
       vd: 30.1,
       fl: -24.105889512,
-      glass: "699301 — vendor-neutral optical-glass coordinate class (patent vendor unresolved)",
+      glass: "699301 class; E-FD15 catalog-equivalent coefficient proxy (production supplier unspecified)",
       role: "Negative member of the cemented rear doublet immediately behind the stop.",
       cemented: "D1",
     },
@@ -130,7 +133,8 @@ const LENS_DATA = {
       nd: 1.8044,
       vd: 39.6,
       fl: 25.580512641,
-      glass: "804396 — vendor-neutral optical-glass coordinate class (patent vendor unresolved)",
+      glass:
+        "804396 class; S-LAH63Q catalog-equivalent coefficient proxy (production supplier unspecified)",
       role: "Positive member of the cemented rear doublet.",
       cemented: "D1",
     },
@@ -142,7 +146,7 @@ const LENS_DATA = {
       nd: 1.8061,
       vd: 40.9,
       fl: 68.48815946,
-      glass: "806409 — vendor-neutral optical-glass coordinate class (patent vendor unresolved)",
+      glass: "806409 class; P-LASF47 catalog-equivalent coefficient proxy (production supplier unspecified)",
       role: "Final positive rear-group element.",
     },
   ],
@@ -178,8 +182,8 @@ const LENS_DATA = {
   ],
 
   groups: [
-    { text: "FRONT", fromSurface: "1", toSurface: "8" },
-    { text: "REAR", fromSurface: "10", toSurface: "14" },
+    { text: "FRONT (+ / OBJECTWARD FOCUS)", fromSurface: "1", toSurface: "8" },
+    { text: "REAR (+ / OBJECTWARD FOCUS)", fromSurface: "10", toSurface: "14" },
   ],
   doublets: [{ text: "D1", fromSurface: "10", toSurface: "12" }],
 

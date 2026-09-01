@@ -46,11 +46,11 @@ The patent constrains both front indices to less than 1.55 and discusses fluorit
 
 ### L3–L5 — Cemented Negative–Positive–Negative Triplet
 
-**L3 — Negative meniscus:** `nd = 1.80440`, `νd = 39.6`. Glass: 804396 class (supplier unresolved). Standalone `f = −38.587 mm`.
+**L3 — Negative meniscus:** `nd = 1.80440`, `νd = 39.6`. Glass: 804396 class; S-LAH63Q coefficient proxy. Standalone `f = −38.587 mm`.
 
-**L4 — Biconvex positive:** `nd = 1.51118`, `νd = 50.9`. Glass: 511509 class (supplier unresolved). Standalone `f = +30.048 mm`.
+**L4 — Biconvex positive:** `nd = 1.51118`, `νd = 50.9`. Glass: 511509 class; KF8 coefficient proxy. Standalone `f = +30.048 mm`.
 
-**L5 — Biconcave negative:** `nd = 1.49831`, `νd = 65.0`. Glass: 498650 class (supplier unresolved). Standalone `f = −51.299 mm`.
+**L5 — Biconcave negative:** `nd = 1.49831`, `νd = 65.0`. Glass: 498650 class; BSL3 coefficient proxy. Standalone `f = −51.299 mm`.
 
 The central cemented triplet combines two negative members around a strong positive biconvex center element. Considered as an isolated cemented group, G3 remains negative with `f = −108.803 mm`; the individual standalone powers should not be confused with that net group result or with the group's in-situ contribution to the complete lens.
 
@@ -60,13 +60,13 @@ The patent gives explicit index and Abbe-number constraints across this triplet:
 
 **L6 — Biconcave negative:** `nd = 1.78650`, `νd = 50.1`. Glass: 787501 class; YGH52 coefficient proxy. Standalone `f = −29.419 mm`.
 
-**L7 — Biconvex positive:** `nd = 1.59270`, `νd = 35.4`. Glass: 593354 class (supplier unresolved). Standalone `f = +88.274 mm`.
+**L7 — Biconvex positive:** `nd = 1.59270`, `νd = 35.4`. Glass: 593354 class; FF5 coefficient proxy. Standalone `f = +88.274 mm`.
 
 L6 and L7 form a negative-positive cemented doublet after the design's largest air space. Its isolated net focal length is `−44.519 mm`, making G4 the strongest net-negative group in the isolated group comparison. Existing OHARA YGH52 closely reproduces L6's patent coordinates and supplies a qualified coefficient proxy; this does not establish the material actually used for the 1970 application or the production lens.
 
 ### L8 and L9 — Final Positive Cemented Doublet
 
-**L8 — Biconvex positive:** `nd = 1.59270`, `νd = 35.4`. Glass: 593354 class (supplier unresolved). Standalone `f = +30.333 mm`.
+**L8 — Biconvex positive:** `nd = 1.59270`, `νd = 35.4`. Glass: 593354 class; FF5 coefficient proxy. Standalone `f = +30.333 mm`.
 
 **L9 — Negative meniscus:** `nd = 1.81554`, `νd = 44.5`. Glass: 816445 class; HOYA TAFD10 coefficient proxy. Standalone `f = −36.005 mm`.
 
@@ -74,19 +74,19 @@ The last cemented pair combines a strong positive biconvex L8 with a negative me
 
 ## Glass Identification and Selection
 
-The validated data deliberately separates source coordinates from supplier attribution. Only the front pair has a production-source material identification; the remaining glasses are retained as coordinate classes or explicitly unmatched vintage material.
+The validated data deliberately separates source coordinates from supplier attribution. Only the front pair has a production-source material identification; the remaining glasses retain their patent coordinate classes while naming the selected catalog-equivalent coefficient curves as qualified proxies.
 
 | Elements | Stored glass identification | `nd` | `νd` | Status |
 |---|---|---:|---:|---|
-| L1, L2 | Fluorite (CaF₂ crystal; supplier unspecified) | 1.43389 | 94.7 | Material class supported by production literature |
-| L3 | 804396 class | 1.80440 | 39.6 | Supplier unresolved |
-| L4 | 511509 class | 1.51118 | 50.9 | Supplier unresolved |
-| L5 | 498650 class | 1.49831 | 65.0 | Supplier unresolved |
+| L1, L2 | Fluorite (CaF₂ crystal; supplier unspecified) | 1.43389 | 94.7 | Material class supported by production literature; APD tag inferred |
+| L3 | 804396 class; S-LAH63Q proxy | 1.80440 | 39.6 | Production supplier unspecified |
+| L4 | 511509 class; KF8 proxy | 1.51118 | 50.9 | Production supplier unspecified |
+| L5 | 498650 class; BSL3 proxy | 1.49831 | 65.0 | Production supplier unspecified |
 | L6 | 787501 class; YGH52 coefficient proxy | 1.78650 | 50.1 | Production supplier unspecified |
-| L7, L8 | 593354 class | 1.59270 | 35.4 | Supplier unresolved |
+| L7, L8 | 593354 class; FF5 proxy | 1.59270 | 35.4 | Production supplier unspecified |
 | L9 | 816445 class; TAFD10 coefficient proxy | 1.81554 | 44.5 | Production supplier unspecified |
 
-The patent supplies d-line refractive indices and Abbe numbers but no per-element `nC`, `nF`, `ng`, `PgF`, or `dPgF`. Accordingly, the data file does not encode those spectral fields. Existing YGH52 and the newly cataloged first-party HOYA TAFD10 row provide coordinate-compatible wavelength curves for L6 and L9 while retaining the patent coordinates and supplier uncertainty. The presence of fluorite and the patent's dispersion-related conditions support discussion of the design's chromatic strategy, but they do not by themselves establish apochromatic performance or provide enough data for a quantitative anomalous-partial-dispersion claim.
+The patent supplies d-line refractive indices and Abbe numbers but no per-element `nC`, `nF`, `ng`, `PgF`, or `dPgF`. Accordingly, the data file does not encode those spectral fields. CaF₂, S-LAH63Q, KF8, BSL3, YGH52, FF5, and the newly cataloged first-party HOYA TAFD10 row provide coordinate-compatible wavelength curves for all nine elements while retaining the patent coordinates and supplier uncertainty. L1 and L2 carry `apd: "inferred"` because the CaF₂ coordinate and Konica's two-fluorite production literature independently agree; that annotation is not a patent-published `dPgF` value. The design is not labeled apochromatic.
 
 ## Focus Mechanism
 
@@ -121,7 +121,7 @@ The LensVisualizer prescription uses a literal `s = 300.000` scaling of the pate
 
 The modeled aperture stop is coincident with the patent-defined first-surface tangent plane. Its physical semi-diameter is not a source dimension: `23.786091 mm` is inferred from the traced EFL and the published f/6.3, giving a modeled f-number of 6.3. The data keeps `apertureMarketing` and `apertureDesign` as separate fields even though both evaluate to 6.3 for this reconstruction.
 
-Surface semi-diameters are likewise modeling inferences because the patent does not tabulate them. They were constrained by the wide-open ray envelope, the patent's Figure 1 silhouette, positive edge thickness, actual spherical rim slope, shared-gap clearance, and off-axis containment. A 600-dpi Figure 1 review increases the L6–L7 doublet to 15.5 mm and reduces the visibly smaller L8–L9 doublet to 13.2 mm. The resulting geometry passes the surface and image-circle audits; the standard rendered off-axis bundles remain clear.
+Surface semi-diameters are likewise modeling inferences because the patent does not tabulate them. They were constrained by the wide-open ray envelope, the patent's Figure 1 silhouette, positive edge thickness, actual spherical rim slope, shared-gap clearance, and off-axis containment. A 600-dpi Figure 1 review separates optical rims from the nearby `d9`–`d13` leader lines and sets both rear cemented cells to 13.2 mm; this corrects the oversized L6–L7 silhouette while preserving the near-equal rear-cell heights drawn in the patent. The resulting geometry passes the surface and image-circle audits; the standard rendered off-axis bundles remain clear.
 
 The computed Petzval sum is `−1.88484911 × 10⁻⁴ mm⁻¹`, corresponding to a signed Petzval radius of approximately `−5305.46 mm`. Rescaled to the patent's normalized coordinates, the sum reproduces the printed Seidel-table value of approximately `−0.0565`. The front-pair condition, all eight patent inequalities, and the element standalone focal lengths also reproduce from the final TypeScript arrays.
 

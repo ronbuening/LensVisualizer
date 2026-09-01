@@ -35,7 +35,7 @@ The design's principal architectural distinction is therefore not simple geometr
 
 ### L1 — Positive Meniscus
 
-nd = 1.77250, νd = 49.6. Glass: 773496 vendor-neutral optical-glass coordinate class; vendor unresolved. Standalone f = +220.97 mm.
+nd = 1.77250, νd = 49.6. Glass: 773496 class; J-LASF016 coefficient proxy. Standalone f = +220.97 mm.
 
 L1 is the weakest of the three positive front menisci by standalone power. Its large clear aperture carries the highest axial ray heights in the front section, so the patent treats the distribution of positive power between L1 and L3 as important. In the discussion of the `f1/f3` condition, excessive relative power in L1 is associated with increased positive distortion, lateral chromatic aberration, and undercorrected spherical aberration at the large incident ray height. [¶0010]
 
@@ -43,7 +43,7 @@ The element should not be interpreted as contributing +220.97 mm focal behavior 
 
 ### L2 — Positive Meniscus
 
-nd = 1.77250, νd = 49.6. Glass: 773496 vendor-neutral optical-glass coordinate class; vendor unresolved. Standalone f = +97.28 mm.
+nd = 1.77250, νd = 49.6. Glass: 773496 class; J-LASF016 coefficient proxy. Standalone f = +97.28 mm.
 
 L2 continues the front positive-power distribution using the same d-line glass coordinates as L1 and L3. The patent does not assign a separate aberration-correction function to L2; instead, it describes the three positive menisci as a coordinated front section whose divided power reduces the severity of refraction at any one member. [¶0007]
 
@@ -51,7 +51,7 @@ Its isolated focal length is substantially shorter than L1's, but this standalon
 
 ### L3 — Positive Meniscus
 
-nd = 1.77250, νd = 49.6. Glass: 773496 vendor-neutral optical-glass coordinate class; vendor unresolved. Standalone f = +73.56 mm.
+nd = 1.77250, νd = 49.6. Glass: 773496 class; J-LASF016 coefficient proxy. Standalone f = +73.56 mm.
 
 L3 is the strongest of the three positive front menisci by standalone power. The patent's `f1/f3` condition directly limits the balance between L1 and L3. If too much of the front positive power is shifted toward L3, the patent states that the stronger refraction at L3 increases undercorrected spherical aberration; if the balance moves too far toward L1, distortion, lateral color, and spherical aberration become harder to control. [¶0010]
 
@@ -59,7 +59,7 @@ Together L1–L3 form the distributed positive front section described in ¶0007
 
 ### L4 — Negative Meniscus
 
-nd = 1.84666, νd = 23.8. Glass: 847238 vendor-neutral optical-glass coordinate class; vendor unresolved. Standalone f = −33.10 mm.
+nd = 1.84666, νd = 23.8. Glass: 847238 class; J-SF03 coefficient proxy. Standalone f = −33.10 mm.
 
 L4 is a strong negative meniscus positioned before the diaphragm. Its low Abbe number and high refractive index are directly present in the patent coordinates, but no vendor glass or partial-dispersion behavior is identified. The patent constrains `|f4|/f` to keep the negative power within a range that balances spherical aberration, sagittal coma, and Petzval curvature. [¶0012]
 
@@ -67,7 +67,7 @@ This element is also part of the stop-side negative-power pairing. Its rear surf
 
 ### L5 — Biconcave Negative, Cemented Doublet D1
 
-nd = 1.69895, νd = 30.1. Glass: 699301 vendor-neutral optical-glass coordinate class; vendor unresolved. Standalone f = −24.11 mm.
+nd = 1.69895, νd = 30.1. Glass: 699301 class; E-FD15 coefficient proxy. Standalone f = −24.11 mm.
 
 L5 is the negative member immediately behind the stop and the first component of the cemented L5+L6 doublet. Its object-side surface r10 is the rear-side negative surface paired by the patent's curvature-ratio condition with L4's rear surface r8. [¶0013]
 
@@ -75,7 +75,7 @@ As an isolated element in air L5 has strong negative power, but that number must
 
 ### L6 — Biconvex Positive, Cemented Doublet D1
 
-nd = 1.80440, νd = 39.6. Glass: 804396 vendor-neutral optical-glass coordinate class; vendor unresolved. Standalone f = +25.58 mm.
+nd = 1.80440, νd = 39.6. Glass: 804396 class; S-LAH63Q coefficient proxy. Standalone f = +25.58 mm.
 
 L6 is the positive member of the cemented rear doublet. Its strong positive standalone power nearly opposes L5's negative standalone power, leaving the pair weakly positive in first order. This distinction between isolated element power and cemented-pair power is important: the assembled pair is not equivalent to either element considered separately.
 
@@ -83,7 +83,7 @@ The patent's focusing discussion identifies the positive rear elements, includin
 
 ### L7 — Biconvex Positive
 
-nd = 1.80610, νd = 40.9. Glass: 806409 vendor-neutral optical-glass coordinate class; vendor unresolved. Standalone f = +68.49 mm.
+nd = 1.80610, νd = 40.9. Glass: 806409 class; P-LASF47 coefficient proxy. Standalone f = +68.49 mm.
 
 L7 is the final positive element of the rear group. In the patent's Gauss-type interpretation it completes the positive rear section after the cemented negative-positive pair. [¶0008]
 
@@ -91,19 +91,19 @@ Like L6, L7 is specifically implicated in the close-focus aberration mechanism d
 
 ## Glass Identification and Selection
 
-The patent publishes only d-line `nd` and `νd`; it names no glass manufacturer or melt and supplies no `nC`, `nF`, `ng`, `PgF`, or `dPgF`. The final data therefore uses vendor-neutral six-digit coordinate classes rather than assigning a public catalog glass that the source does not establish.
+The patent publishes only d-line `nd` and `νd`; it names no glass manufacturer or melt and supplies no `nC`, `nF`, `ng`, `PgF`, or `dPgF`. The final data therefore preserves vendor-neutral six-digit coordinate classes while explicitly identifying the selected catalog-equivalent coefficient curves as proxies, not production-glass claims.
 
 | Coordinate class | nd | νd | Elements | Data status |
 | --- | ---: | ---: | --- | --- |
-| 773496 | 1.77250 | 49.6 | L1, L2, L3 | Vendor unresolved |
-| 847238 | 1.84666 | 23.8 | L4 | Vendor unresolved |
-| 699301 | 1.69895 | 30.1 | L5 | Vendor unresolved |
-| 804396 | 1.80440 | 39.6 | L6 | Vendor unresolved |
-| 806409 | 1.80610 | 40.9 | L7 | Vendor unresolved |
+| 773496 | 1.77250 | 49.6 | L1, L2, L3 | J-LASF016 proxy; production supplier unspecified |
+| 847238 | 1.84666 | 23.8 | L4 | J-SF03 proxy; production supplier unspecified |
+| 699301 | 1.69895 | 30.1 | L5 | E-FD15 proxy; production supplier unspecified |
+| 804396 | 1.80440 | 39.6 | L6 | S-LAH63Q proxy; production supplier unspecified |
+| 806409 | 1.80610 | 40.9 | L7 | P-LASF47 proxy; production supplier unspecified |
 
 The patent imposes a material constraint on the positive elements by requiring the mean d-line refractive index of L1, L2, L3, L6, and L7 to exceed 1.70. It explains this as a way to avoid excessively small radii on the positive elements, thereby limiting spherical aberration and the positive Petzval sum. [¶0014]
 
-A cross-vendor catalog audit found multiple exact or near-exact coordinate matches for these `nd`/`νd` pairs, so a unique manufacturer assignment cannot be defended from the patent coordinates alone. The resolver nevertheless supplies coordinate-compatible catalog curves for all seven elements while the labels remain vendor-neutral. Because the patent contains no direct line-index or partial-dispersion data, the design is not labeled APO and no anomalous-partial-dispersion behavior is asserted.
+A cross-vendor catalog audit found multiple exact or near-exact coordinate matches for these `nd`/`νd` pairs, so a unique manufacturer assignment cannot be defended from the patent coordinates alone. The qualified J-LASF016, J-SF03, E-FD15, S-LAH63Q, and P-LASF47 proxies give all seven elements trusted wavelength-dependent curves and complete diagram color coverage while preserving supplier uncertainty. Because the patent contains no direct line-index or partial-dispersion data, the design is not labeled APO and no anomalous-partial-dispersion behavior is asserted.
 
 ## Focus Mechanism
 
