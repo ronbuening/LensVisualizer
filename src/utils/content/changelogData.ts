@@ -50,6 +50,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   },
   {
     date: "2026-08-26",
+    type: "feature",
+    summary: "Added searchable lens aliases and sourced contract-manufacturer details",
+  },
+  {
+    date: "2026-08-26",
     type: "lens",
     summary: "Added seven Canon EF patent-derived zoom, macro, and telephoto lens designs",
   },

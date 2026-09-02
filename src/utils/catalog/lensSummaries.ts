@@ -14,13 +14,15 @@
 
 import summariesJson from "../../generated/lens-summaries.json";
 import buildMeta from "../../generated/build-metadata.json";
-import type { OpticalConfigurationData } from "../../types/optics.js";
+import type { LensAliasData, LensManufacturerData, OpticalConfigurationData } from "../../types/optics.js";
 import type { LensMountId, ImageFormatId } from "./lensTaxonomy.js";
 
 export interface LensSummary {
   key: string;
   name: string;
   maker?: string;
+  aliases?: readonly LensAliasData[];
+  manufacturedBy?: readonly LensManufacturerData[];
   specs?: string[];
   focalLengthMarketing?: number | [number, number];
   apertureMarketing?: number;

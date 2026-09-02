@@ -29,10 +29,12 @@ import {
   comparePublicationEntries,
   getGitFileFreshnessAsync,
 } from "./build-metadata-lib.mjs";
-import { collectLensDataAsync } from "./lens-data-lib.mjs";
+import { collectLensDataAsync, deriveMakerSlug } from "./lens-data-lib.mjs";
 import { MAKER_PREFIXES } from "./maker-prefixes.mjs";
 import { buildAuthorMetadata, buildAssigneeMetadata } from "./author-metadata.mjs";
 import { assertPatentAssigneeValidity } from "./patent-assignee-validity.mjs";
+import { assertLensRelationshipValidity, relationshipRouteMetadata } from "./lens-relationship-validity.mjs";
+import { LENS_MOUNTS } from "../src/utils/catalog/lensTaxonomy.ts";
 
 const ROOT = join(import.meta.dirname, "..");
 const README_FILE = join(ROOT, "README.md");
@@ -55,6 +57,8 @@ const SUMMARY_FIELDS = [
   "key",
   "name",
   "maker",
+  "aliases",
+  "manufacturedBy",
   "specs",
   "focalLengthMarketing",
   "apertureMarketing",
@@ -154,10 +158,19 @@ async function main() {
     ]);
 
   assertPatentAssigneeValidity(lensSummaries);
-  const lenses = allLenses.filter((lens) => lens.visible !== false);
+  assertLensRelationshipValidity(lensSummaries, {
+    knownMountIds: new Set(LENS_MOUNTS.map((mount) => mount.id)),
+  });
+  const summaryByKey = new Map(lensSummaries.map((summary) => [summary.key, summary]));
+  const lenses = allLenses
+    .filter((lens) => lens.visible !== false)
+    .map((lens) => ({
+      ...lens,
+      ...relationshipRouteMetadata(summaryByKey.get(lens.key) ?? lens, lens.makerSlug, deriveMakerSlug),
+    }));
   assertFreshnessDiversity({ lenses, articles });
   const lensKeys = lenses.map((l) => l.key).sort();
-  const makerSlugs = [...new Set(lenses.map((l) => l.makerSlug))].sort();
+  const makerSlugs = [...new Set(lenses.flatMap((l) => l.makerSlugs))].sort();
   const mountIds = [...new Set(lenses.flatMap((l) => l.lensMountIds ?? []))].sort();
   const formatIds = [...new Set(lenses.flatMap((l) => (l.imageFormatId ? [l.imageFormatId] : [])))].sort();
   const authors = buildAuthorMetadata(lensSummaries);

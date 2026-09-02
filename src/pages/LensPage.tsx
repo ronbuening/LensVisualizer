@@ -23,6 +23,7 @@ import {
   SITE_URL,
 } from "../utils/catalog/lensMetadata.js";
 import { breadcrumbJsonLd } from "../utils/seo/structuredData.js";
+import LensIdentityRelations from "../components/content/LensIdentityRelations.js";
 
 const CONTENT_STYLE: React.CSSProperties = {
   maxWidth: 960,
@@ -125,6 +126,8 @@ export default function LensPage() {
                 </tbody>
               </table>
             )}
+
+            <LensIdentityRelations lens={lens} />
 
             {lens.focusDescription && (
               <section style={{ marginBottom: "1rem" }}>

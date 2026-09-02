@@ -352,6 +352,17 @@ describe("SSR render — maker page /makers/:maker", () => {
     expect(scripts).toContain('"@type":"CollectionPage"');
     expect(scripts).toContain('"@type":"BreadcrumbList"');
   });
+
+  it("separates branded aliases from contract-manufactured lenses", () => {
+    const samyang = render("/makers/samyang");
+    const fujifilm = render("/makers/fujifilm");
+
+    expect(samyang.html).toContain("Sold under this brand");
+    expect(samyang.html).toContain("ROKINON AF 18mm f/2.8 FE");
+    expect(fujifilm.html).toContain("Manufactured for other brands");
+    expect(fujifilm.html).toContain("HASSELBLAD HC 80mm f/2.8");
+    expect(fujifilm.html).toContain("Fujinon manufacturing for Hasselblad");
+  });
 });
 
 /* ── Mounts ── */

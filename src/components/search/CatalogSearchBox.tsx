@@ -43,8 +43,8 @@ function suggestionDetails(match: CatalogSearchMatch): { label: string; meta: st
     };
   }
   return {
-    label: match.data.name,
-    meta: "Lens",
+    label: match.matchedName,
+    meta: match.relationshipLabel ?? "Lens",
     to: canonicalPagePath(`/lens/${match.key}`),
   };
 }
@@ -112,7 +112,7 @@ export default function CatalogSearchBox({
       )}
       <form onSubmit={handleSubmit} role="search" style={{ display: "flex", gap: "0.5rem" }}>
         <label htmlFor="catalog-search-input" style={VISUALLY_HIDDEN}>
-          Search lenses, patents, and authors
+          Search lenses, aliases, manufacturers, patents, and authors
         </label>
         <input
           ref={inputRef}
@@ -124,7 +124,7 @@ export default function CatalogSearchBox({
             setSuggestionsOpen(event.target.value.trim().length > 0);
           }}
           onFocus={() => setSuggestionsOpen(normalizedQuery.length > 0)}
-          placeholder="Lens name, patent number, or author"
+          placeholder="Lens, alias, manufacturer, patent, or author"
           autoComplete="off"
           /* aria-expanded belongs on a combobox role this input does not claim;
              aria-controls only renders while its target exists. */

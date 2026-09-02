@@ -38,6 +38,23 @@ const LENS_DATA = {
   key: "samyang-af-18mm-f28-fe",
   maker: "Samyang",
   name: "SAMYANG AF 18mm f/2.8 FE",
+  aliases: [
+    {
+      maker: "Rokinon",
+      name: "ROKINON AF 18mm f/2.8 FE",
+      kind: "regional-name",
+      sources: [
+        {
+          label: "Rokinon product page",
+          url: "https://rokinon.com/collections/auto-focus/products/18mm-f2-8-af-compact-full-frame-sony-e",
+        },
+        {
+          label: "Rokinon brand information",
+          url: "https://rokinon.com/pages/about-us",
+        },
+      ],
+    },
+  ],
   subtitle: "WO 2021/246545 A1 — Example 1 / Samyang Optics",
   specs: [
     "9 elements / 8 groups",

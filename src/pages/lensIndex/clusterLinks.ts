@@ -9,6 +9,7 @@ export type LensLibraryBreadcrumbContext = { type: "mount"; id: LensMountId } | 
 
 export type LensBreadcrumbSource =
   | { type: "lenses"; returnTo: string; context?: LensLibraryBreadcrumbContext }
+  | { type: "maker"; slug: string; label: string }
   | { type: "mount"; id: LensMountId }
   | { type: "format"; id: ImageFormatId };
 
@@ -42,6 +43,13 @@ export function lensLinkFromMount(lensKey: string, mountId: LensMountId): LensLi
   return {
     to: canonicalPagePath(`/lens/${lensKey}`),
     state: { lensBreadcrumb: { type: "mount", id: mountId } },
+  };
+}
+
+export function lensLinkFromMaker(lensKey: string, makerSlug: string, makerLabel: string): LensLinkTarget {
+  return {
+    to: canonicalPagePath(`/lens/${lensKey}`),
+    state: { lensBreadcrumb: { type: "maker", slug: makerSlug, label: makerLabel } },
   };
 }
 

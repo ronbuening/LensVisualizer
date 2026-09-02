@@ -5,10 +5,12 @@ import {
   DEBUG_CATALOG_ENTRIES,
   catalogEntriesForView,
   groupByAssignee,
+  groupByMaker,
   groupByImageFormat,
   groupByInventor,
   groupByMount,
   matchesCustomFilter,
+  buildMakerOptions,
 } from "../../../../src/pages/lensIndex/catalog.js";
 import { CATALOG_KEYS } from "../../../../src/utils/catalog/lensCatalog.js";
 import type { CatalogLensEntry, FilterBounds } from "../../../../src/pages/lensIndex/types.js";
@@ -32,6 +34,15 @@ function entry(
     key,
     data: { key, name: key.toUpperCase() } as LensSummary,
     maker: { display: "Test", slug: "test" },
+    makerAssociations: [
+      {
+        maker: { display: "Test", slug: "test" },
+        role: "canonical",
+        displayName: key.toUpperCase(),
+        lensMounts: (overrides.lensMounts ?? []).map((mount) => mount.id),
+        sources: [],
+      },
+    ],
     focalRange: [50, 50],
     aperture: 2,
     patentYear: 2021,
@@ -92,9 +103,62 @@ describe("lens index catalog metadata filters", () => {
     ).toBe(false);
     expect(matchesCustomFilter(unknownFormat, defaultCustomFilter(TEST_BOUNDS), TEST_BOUNDS)).toBe(true);
   });
+
+  it("matches maker and mount filters against the same relationship", () => {
+    const related = entry("related", { lensMounts: [LENS_MOUNT_BY_ID["sony-fe"]] });
+    related.makerAssociations.push({
+      maker: { display: "Nikon", slug: "nikon" },
+      role: "alias",
+      displayName: "NIKON ALIAS 50mm f/2",
+      lensMounts: ["nikon-z"],
+      sources: [],
+    });
+    related.lensMounts = [LENS_MOUNT_BY_ID["sony-fe"], LENS_MOUNT_BY_ID["nikon-z"]];
+
+    expect(
+      matchesCustomFilter(
+        related,
+        { ...defaultCustomFilter(TEST_BOUNDS), makerSlugs: ["nikon"], lensMountIds: ["nikon-z"] },
+        TEST_BOUNDS,
+      ),
+    ).toBe(true);
+    expect(
+      matchesCustomFilter(
+        related,
+        { ...defaultCustomFilter(TEST_BOUNDS), makerSlugs: ["nikon"], lensMountIds: ["sony-fe"] },
+        TEST_BOUNDS,
+      ),
+    ).toBe(false);
+  });
 });
 
 describe("lens index catalog metadata grouping", () => {
+  it("counts and groups every associated maker once per canonical lens", () => {
+    const related = entry("related");
+    related.makerAssociations.push(
+      {
+        maker: { display: "Nikon", slug: "nikon" },
+        role: "alias",
+        displayName: "NIKON ALIAS 50mm f/2",
+        lensMounts: [],
+        sources: [],
+      },
+      {
+        maker: { display: "Nikon", slug: "nikon" },
+        role: "manufacturer",
+        displayName: related.data.name,
+        entity: "Nikon Corporation",
+        lensMounts: [],
+        sources: [],
+      },
+    );
+
+    expect(buildMakerOptions([related])).toEqual([
+      { display: "Nikon", slug: "nikon", count: 1 },
+      { display: "Test", slug: "test", count: 1 },
+    ]);
+    expect(groupByMaker([related]).map((group) => group.slug)).toEqual(["nikon", "test"]);
+  });
   it("duplicates multi-inventor lenses into every inventor group and preserves source-empty states", () => {
     const multiInventor = entry("multi-inventor");
     multiInventor.data.patentAuthors = ["Ada Inventor", "Grace Inventor"];

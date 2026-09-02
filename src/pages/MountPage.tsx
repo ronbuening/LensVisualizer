@@ -6,13 +6,7 @@ import { Navigate, Link, useParams } from "react-router";
 import SEOHead from "../components/SEOHead.js";
 import StaticPageShell from "../components/layout/StaticPageShell.js";
 import { LENS_MOUNT_BY_ID, isLensMountId } from "../utils/catalog/lensTaxonomy.js";
-import {
-  deriveMaker,
-  makerDisplayName,
-  mountCanonicalURL,
-  SITE_NAME,
-  SITE_URL,
-} from "../utils/catalog/lensMetadata.js";
+import { makerDisplayName, mountCanonicalURL, SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
 import { breadcrumbJsonLd, collectionPageJsonLd } from "../utils/seo/structuredData.js";
 import { getMountDetails } from "../utils/catalog/mountDetails.js";
 import { MOUNT_SPECS } from "../mounts/index.js";
@@ -22,16 +16,23 @@ import SidebarLayout from "../components/content/SidebarLayout.js";
 import { H1_STYLE, LENS_LINK_BASE_STYLE } from "../utils/style/pageStyles.js";
 import { lensLinkFromMount } from "./lensIndex/clusterLinks.js";
 import { lensesForMount } from "./lensIndex/catalog.js";
-import type { LensSummary } from "../utils/catalog/lensSummaries.js";
+import type { LensMountId } from "../utils/catalog/lensTaxonomy.js";
 import { catalogCollator } from "../utils/catalog/collation.js";
 import { pluralize } from "../utils/text.js";
+import { marketedNameForMount } from "../utils/catalog/lensRelationships.js";
 
 /** Makers (slug + display label) that have lenses for this mount, alphabetically. */
-function makersForMount(lenses: { data: LensSummary }[]): { slug: string; label: string }[] {
+function makersForMount(
+  lenses: ReturnType<typeof lensesForMount>,
+  mountId: LensMountId,
+): { slug: string; label: string }[] {
   const map = new Map<string, string>();
-  for (const { data } of lenses) {
-    const { slug } = deriveMaker(data.name, data.maker);
-    if (!map.has(slug)) map.set(slug, makerDisplayName(slug) ?? slug);
+  for (const entry of lenses) {
+    for (const association of entry.makerAssociations) {
+      if (!association.lensMounts.includes(mountId)) continue;
+      const { slug, display } = association.maker;
+      if (!map.has(slug)) map.set(slug, makerDisplayName(slug) ?? display);
+    }
   }
   return [...map.entries()]
     .map(([slug, label]) => ({ slug, label }))
@@ -49,7 +50,7 @@ export default function MountPage() {
   const details = getMountDetails(mountId);
   const mountSpec = MOUNT_SPECS[mountId];
   const diagramSpec = mountSpec?.mvpStatus === "not_applicable" ? undefined : mountSpec;
-  const mountMakers = makersForMount(lenses);
+  const mountMakers = makersForMount(lenses, mountId);
 
   const seoDescription = details
     ? `${details.summary} Explore ${lenses.length} patent-derived ${mount.label} lens diagrams with optical analysis.`
@@ -126,7 +127,7 @@ export default function MountPage() {
                   {...lensLinkFromMount(entry.key, mountId)}
                   style={{ ...LENS_LINK_BASE_STYLE, color: t.descLinkColor }}
                 >
-                  {entry.data.name}
+                  {marketedNameForMount(entry.data, mountId)}
                   {entry.data.specs && entry.data.specs.length > 0 && (
                     <span style={{ color: t.label, fontSize: "0.75rem", marginLeft: "0.5rem" }}>
                       — {entry.data.specs.slice(0, 3).join(", ")}

@@ -45,6 +45,26 @@ function MakerSections({
   theme: Theme;
   hrefForLens: (lensKey: string, context?: LensLibraryBreadcrumbContext) => LensLinkTarget;
 }) {
+  const presentationForMaker = (entry: MakerGroup["lenses"][number], makerSlug: string) => {
+    const associations = entry.makerAssociations.filter((association) => association.maker.slug === makerSlug);
+    const canonical = associations.find((association) => association.role === "canonical");
+    const aliases = associations.filter((association) => association.role === "alias");
+    if (canonical) {
+      return {
+        text: canonical.displayName,
+        meta: aliases.length > 0 ? `Also sold as ${aliases.map((alias) => alias.displayName).join(", ")}` : undefined,
+      };
+    }
+    if (aliases.length > 0) {
+      return { text: aliases[0].displayName, meta: `Alias of ${entry.data.name}` };
+    }
+    const manufacturer = associations.find((association) => association.role === "manufacturer");
+    return {
+      text: entry.data.name,
+      meta: manufacturer ? `Manufactured by ${manufacturer.entity ?? manufacturer.maker.display}` : undefined,
+    };
+  };
+
   return (
     <>
       {groups.map((group) => {
@@ -74,16 +94,22 @@ function MakerSections({
                 {details.summary}
               </p>
             )}
-            {group.lenses.map((entry) => (
-              <LensEntryLink
-                key={entry.key}
-                lensKey={entry.key}
-                text={entry.data.name}
-                meta={entry.data.specs && entry.data.specs.length > 0 ? entry.data.specs.slice(0, 2).join(", ") : null}
-                theme={theme}
-                hrefForLens={hrefForLens}
-              />
-            ))}
+            {group.lenses.map((entry) => {
+              const presentation = presentationForMaker(entry, group.slug);
+              return (
+                <LensEntryLink
+                  key={entry.key}
+                  lensKey={entry.key}
+                  text={presentation.text}
+                  meta={
+                    presentation.meta ??
+                    (entry.data.specs && entry.data.specs.length > 0 ? entry.data.specs.slice(0, 2).join(", ") : null)
+                  }
+                  theme={theme}
+                  hrefForLens={hrefForLens}
+                />
+              );
+            })}
           </section>
         );
       })}

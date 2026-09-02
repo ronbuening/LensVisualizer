@@ -25,6 +25,7 @@ import { lensDisplaySubtitle, lensPatentAttribution } from "../../utils/catalog/
 import type { RuntimeLens } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 import type { OffAxisMode, RayDensity } from "../../types/state.js";
+import LensIdentityRelations from "../content/LensIdentityRelations.js";
 
 interface DiagramHeaderProps {
   L: RuntimeLens;
@@ -188,6 +189,7 @@ const DiagramHeader = memo(
               </a>
             )}
           </div>
+          {!compact && <LensIdentityRelations lens={L.data} theme={t} compact />}
           <div style={{ display: "flex", alignItems: "baseline", gap: 6, marginTop: compact ? 2 : 3 }}>
             {displaySubtitle && (
               <span

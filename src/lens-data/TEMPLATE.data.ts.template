@@ -72,6 +72,10 @@ const LENS_DATA = {
    *                        Omit if identical to apertureMarketing.
    *  lensMounts            Optional canonical mount ids from src/utils/catalog/lensTaxonomy.ts.
    *                        A lens may declare multiple mounts; do not free-type display labels.
+   *  aliases               Optional exact alternate marketed identities of this prescription.
+   *                        Each needs a kind and at least one labeled public source URL.
+   *  manufacturedBy        Optional source-backed physical manufacturers. Do not infer from
+   *                        patentAssignees; use entity when the sourced name differs from maker.
    *  imageFormat           Optional single canonical format id from src/utils/catalog/lensTaxonomy.ts.
    *                        Used by lens index filters and image-field-aware analysis.
    *  patentNumber         Source patent publication/grant identifier, including jurisdiction
@@ -104,6 +108,20 @@ const LENS_DATA = {
   apertureMarketing:    1.8,
   apertureDesign:       1.85,           // omit if same as apertureMarketing
   lensMounts:           ["nikon-z"],     // optional; canonical ids only, e.g. ["nikon-z", "sony-fe"]
+  // aliases: [{
+  //   maker: "Alternate Brand",
+  //   name: "ALTERNATE BRAND 50mm f/1.8",
+  //   kind: "rebrand",                    // "rebrand" | "regional-name" | "cosmetic-variant"
+  //   // lensMounts: ["sony-fe"],         // omit to inherit top-level lensMounts
+  //   sources: [{ label: "Official product page", url: "https://example.com/product" }],
+  //   // note: "Short qualification only; detailed reasoning belongs in the analysis file.",
+  // }],
+  // manufacturedBy: [{
+  //   maker: "Contract Manufacturer",
+  //   // entity: "Historical legal or division name",
+  //   // lensMounts: ["nikon-z"],         // omit to inherit top-level lensMounts
+  //   sources: [{ label: "Manufacturing source", url: "https://example.com/source" }],
+  // }],
   imageFormat:          "135-full-frame", // optional; one canonical id only, e.g. "aps-c", "110", "4x5"
   patentNumber:         "US 10,571,651 B2",
   patentAuthors:        ["Hideki Sakai"],

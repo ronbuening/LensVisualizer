@@ -299,6 +299,88 @@ function validateLensMounts(value: unknown, errors: string[]): void {
   }
 }
 
+const LENS_ALIAS_KINDS = new Set(["rebrand", "regional-name", "cosmetic-variant"]);
+
+function validateRelationshipSources(value: unknown, label: string, errors: string[]): void {
+  if (!Array.isArray(value) || value.length === 0) {
+    errors.push(`"${label}.sources" must be a non-empty array`);
+    return;
+  }
+  const seenUrls = new Set<string>();
+  value.forEach((source, index) => {
+    const sourceLabel = `${label}.sources[${index}]`;
+    if (!source || typeof source !== "object" || Array.isArray(source)) {
+      errors.push(`"${sourceLabel}" must be an object`);
+      return;
+    }
+    const record = source as Record<string, unknown>;
+    if (typeof record.label !== "string" || record.label.trim() === "") {
+      errors.push(`"${sourceLabel}.label" must be a non-empty string`);
+    }
+    if (typeof record.url !== "string") {
+      errors.push(`"${sourceLabel}.url" must be an HTTP(S) URL`);
+      return;
+    }
+    try {
+      const parsed = new URL(record.url);
+      if (parsed.protocol !== "http:" && parsed.protocol !== "https:") throw new Error("unsupported protocol");
+    } catch {
+      errors.push(`"${sourceLabel}.url" must be an HTTP(S) URL`);
+    }
+    if (seenUrls.has(record.url)) errors.push(`"${label}.sources" must not contain duplicate URL "${record.url}"`);
+    seenUrls.add(record.url);
+  });
+}
+
+function validateLensRelationships(data: UntrustedLensData, errors: string[]): void {
+  const validateList = (field: "aliases" | "manufacturedBy") => {
+    const value = data[field];
+    if (value === undefined) return;
+    if (!Array.isArray(value) || value.length === 0) {
+      errors.push(`"${field}" must be a non-empty array when provided`);
+      return;
+    }
+    value.forEach((relationship, index) => {
+      const label = `${field}[${index}]`;
+      if (!relationship || typeof relationship !== "object" || Array.isArray(relationship)) {
+        errors.push(`"${label}" must be an object`);
+        return;
+      }
+      if (typeof relationship.maker !== "string" || relationship.maker.trim() === "") {
+        errors.push(`"${label}.maker" must be a non-empty string`);
+      }
+      if (field === "aliases") {
+        if (typeof relationship.name !== "string" || relationship.name.trim() === "") {
+          errors.push(`"${label}.name" must be a non-empty string`);
+        }
+        if (!LENS_ALIAS_KINDS.has(relationship.kind)) {
+          errors.push(`"${label}.kind" must be rebrand, regional-name, or cosmetic-variant`);
+        }
+      } else if (
+        relationship.entity !== undefined &&
+        (typeof relationship.entity !== "string" || relationship.entity.trim() === "")
+      ) {
+        errors.push(`"${label}.entity" must be a non-empty string when provided`);
+      }
+      if (
+        relationship.note !== undefined &&
+        (typeof relationship.note !== "string" || relationship.note.trim() === "")
+      ) {
+        errors.push(`"${label}.note" must be a non-empty string when provided`);
+      }
+      if (relationship.lensMounts !== undefined) {
+        const mountErrors: string[] = [];
+        validateLensMounts(relationship.lensMounts, mountErrors);
+        errors.push(...mountErrors.map((error) => error.replaceAll('"lensMounts', `"${label}.lensMounts`)));
+      }
+      validateRelationshipSources(relationship.sources, label, errors);
+    });
+  };
+
+  validateList("aliases");
+  validateList("manufacturedBy");
+}
+
 function validateYzNormal(value: unknown, label: string, errors: string[]): void {
   if (value === undefined) return;
   if (
@@ -665,6 +747,7 @@ export default function validateLensData(data: UntrustedLensData): string[] {
   if (data.projection !== undefined) validateProjection(data.projection, errors);
   if (data.lensMounts !== undefined) validateLensMounts(data.lensMounts, errors);
   if (data.imageFormat !== undefined) validateImageFormat(data.imageFormat, errors);
+  validateLensRelationships(data, errors);
 
   /* ── Early exit if surfaces/elements are missing — rest of checks depend on them ── */
   if (!Array.isArray(data.surfaces) || !Array.isArray(data.elements)) return errors;

@@ -282,6 +282,19 @@ describe("page, markdown, and breadcrumb coverage", () => {
     expect(screen.getByRole("link", { name: "APS-C" }).getAttribute("href")).toBe("/formats/aps-c/");
 
     cleanup();
+    renderBreadcrumb({
+      lensKey,
+      state,
+      initialEntry: {
+        pathname: `/lens/${lensKey}/`,
+        state: { lensBreadcrumb: { type: "maker", slug: "fujifilm", label: "Fujifilm" } },
+      },
+    });
+
+    expect(screen.getByRole("link", { name: "Makers" }).getAttribute("href")).toBe("/makers/");
+    expect(screen.getByRole("link", { name: "Fujifilm" }).getAttribute("href")).toBe("/makers/fujifilm/");
+
+    cleanup();
     renderBreadcrumb({ lensKey, state, initialEntry: `/lens/${lensKey}?from=mount&id=not-real` });
 
     expect(screen.getByRole("link", { name: "Makers" }).getAttribute("href")).toBe("/makers/");
