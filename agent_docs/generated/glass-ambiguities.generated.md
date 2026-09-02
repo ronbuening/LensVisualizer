@@ -12,17 +12,17 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **662** lenses scanned
-- **7576** glass elements examined
-- **2288** elements have multiple coordinate-compatible candidates
-- **445** lens files are affected
+- **665** lenses scanned
+- **7607** glass elements examined
+- **2302** elements have multiple coordinate-compatible candidates
+- **448** lens files are affected
 - **208** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **194** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
-| Smallest reference-index residual | 1264 |
-| Evidence-source priority | 739 |
+| Smallest reference-index residual | 1276 |
+| Evidence-source priority | 741 |
 | Vendor context | 276 |
 | Stable canonical-name order | 7 |
 | Smallest Abbe residual | 2 |
@@ -938,6 +938,9 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `620603 — dense crown class (catalog vendor unspecified)` | 1.62041 / 60.30 (d) | J-SK16 — smallest d-line \|Δn\| (1.0e-8 vs 3.5e-8) | N-SK16 (Schott, code, preferred code row)<br>S-BSM16 (Ohara, code, alternate code row) | 1 | [NIKON AI ZOOM-NIKKOR 80-200mm f/4.5](../../src/lens-data/nikon/NikonAINikkor80200mmf45.data.ts) L5a |
 | `J-LAK8 (HIKARI; 713540 match to patent 713539 class)` | 1.71300 / 53.90 (d) | J-LAK8 — direct name evidence outranks six-digit code evidence. | LAC8 (Hoya, code, vendor ✗, preferred code row)<br>MP-LAC8-30 (Hoya, code, vendor ✗, alternate code row) | 1 | [NIKON AI ZOOM-NIKKOR 80-200mm f/4.5](../../src/lens-data/nikon/NikonAINikkor80200mmf45.data.ts) L8 |
 | `518590 — crown class (catalog vendor unspecified)` | 1.51823 / 59.00 (d) | E-C3 — smallest d-line \|Δn\| (7.4e-8 vs 1.1e-6) | S-NSL3 (Ohara, code, preferred code row) | 1 | [NIKON AI ZOOM-NIKKOR 80-200mm f/4.5](../../src/lens-data/nikon/NikonAINikkor80200mmf45.data.ts) L9 |
+| `750350 — lanthanum flint class` | 1.74950 / 35.00 (d) | H-LaF4 — smallest d-line \|Δn\| (2.4e-8 vs 2.0e-7) | E-LAF7 (Hoya, code, alternate code row) | 1 | [NIKON AI ZOOM-NIKKOR ED 50-300mm f/4.5](../../src/lens-data/nikon/NikonAiZoomNikkorED50300mmf45.data.ts) L1 |
+| `713539 — lanthanum crown class` | 1.71300 / 53.90 (d) | LAC8 — smallest d-line \|Δn\| (1.8e-7 vs 3.0e-4) | MP-LAC8-30 (Hoya, code, alternate code row) | 3 | [NIKON AI ZOOM-NIKKOR ED 50-300mm f/4.5](../../src/lens-data/nikon/NikonAiZoomNikkorED50300mmf45.data.ts) L4 +1 files |
+| `805255 — dense flint class` | 1.80518 / 25.50 (d) | J-SF6 — smallest d-line \|Δn\| (3.3e-8 vs 4.4e-8) | H-ZF7LA (CDGM, code, preferred code row)<br>FD60 (Hoya, code, alternate code row) | 2 | [NIKON AI ZOOM-NIKKOR ED 50-300mm f/4.5](../../src/lens-data/nikon/NikonAiZoomNikkorED50300mmf45.data.ts) L7 |
 | `J-SF1 / E-FD1L class (717/295)` | 1.71736 / 29.50 (d) | J-SF1 — direct name evidence outranks six-digit code evidence. | SF1 (Schott, code, preferred code row)<br>S-TIH1 (Ohara, code, alternate code row) | 1 | [NIKON AI-S NIKKOR 50mm f/1.2](../../src/lens-data/nikon/NikonAISNikkor50mmf12.data.ts) L3 |
 | `J-LASF016 / TAF1 class (773/494 patent; catalog class 773/496)` | 1.77279 / 49.40 (d) | J-LASF016 — direct name evidence outranks alias evidence. | S-LAH66 (Ohara, alias)<br>N-LAF34 (Schott, code, alternate code row)<br>S-LAH66N (Ohara, code, alternate code row) | 2 | [NIKON AI-S NIKKOR 50mm f/1.2](../../src/lens-data/nikon/NikonAISNikkor50mmf12.data.ts) L5 |
 | `S-LAM60 / J-LAF010 / NBF1 class (744/495 patent; catalog class 743/493)` | 1.74430 / 49.50 (d) | NBF1 — smallest d-line \|Δn\| (1.0e-3 vs 1.1e-3) | S-LAM60 (Ohara, name)<br>M-NBF1 (Hoya, code, alternate code row) | 1 | [NIKON AI-S NIKKOR 50mm f/1.2](../../src/lens-data/nikon/NikonAISNikkor50mmf12.data.ts) L7 |
@@ -1043,6 +1046,10 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `S-FSL5 (OHARA) / N-FK5 (Schott)` | 1.48749 / 70.45 (d) | N-FK5 — smallest d-line \|Δn\| (3.7e-9 vs 6.5e-8) | S-FSL5 (Ohara, name, vendor ✓) | 1 | [NIKON PC-E MICRO-NIKKOR 45mm f/2.8 D ED](../../src/lens-data/nikon/NikonMicroNikkorPCE45mmf28D.data.ts) L33 |
 | `S-LAH65V (OHARA) / TAF3 (HOYA)` | 1.80400 / 46.58 (d) | S-LAH65V — smallest d-line \|Δn\| (5.0e-7 vs 2.0e-4) | TAF3 (Hoya, name, vendor ✓) | 1 | [NIKON PC-E MICRO-NIKKOR 45mm f/2.8 D ED](../../src/lens-data/nikon/NikonMicroNikkorPCE45mmf28D.data.ts) L34 |
 | `S-BSL7 (OHARA) / N-BK7 (Schott)` | 1.51633 / 64.14 (d) | S-BSL7 — smallest d-line \|Δn\| (7.5e-8 vs 4.7e-4) | N-BK7 (Schott, name, vendor ✓) | 1 | [NIKON PC-E NIKKOR 24mm f/3.5 D ED](../../src/lens-data/nikon/NikonPCENikkor24mmf35DED.data.ts) L24 |
+| `652585 — lanthanum crown class` | 1.65160 / 58.50 (d) | N-LAK7 — smallest d-line \|Δn\| (3.6e-7 vs 3.1e-6) | S-LAL7 (Ohara, code, preferred code row) | 2 | [NIKON PC-NIKKOR 35mm f/2.8](../../src/lens-data/nikon/NikonPCNikkor35mmf28.data.ts) L1 |
+| `673322 — SF5-class` | 1.67270 / 32.20 (d) | SF5 — direct name evidence outranks six-digit code evidence. | H-ZF2 (CDGM, code, alternate code row)<br>E-FD5 (Hoya, code, preferred code row) | 1 | [NIKON PC-NIKKOR 35mm f/2.8](../../src/lens-data/nikon/NikonPCNikkor35mmf28.data.ts) L3 |
+| `720503 — lanthanum crown class` | 1.72000 / 50.30 (d) | LAC10 — smallest d-line \|Δn\| (1.7e-6 vs 1.0e-5) | J-LAK10 (Hikari, code, preferred code row) | 1 | [NIKON PC-NIKKOR 35mm f/2.8](../../src/lens-data/nikon/NikonPCNikkor35mmf28.data.ts) L4 |
+| `728283 — SF10-class` | 1.72825 / 28.30 (d) | SF10 — direct name evidence outranks six-digit code evidence. | H-ZF4A (CDGM, code, preferred code row)<br>E-FD10 (Hoya, code, alternate code row) | 1 | [NIKON PC-NIKKOR 35mm f/2.8](../../src/lens-data/nikon/NikonPCNikkor35mmf28.data.ts) L6 |
 | `N-BK7 (SCHOTT) / 517642 crown class` | 1.51680 / 64.10 (d) | N-BK7 — direct name evidence outranks six-digit code evidence. | H-K9L (CDGM, code, vendor ✗, alternate code row)<br>H-K9LGT (CDGM, code, vendor ✗, alternate code row) | 2 | [NIKON R-UW AF FISHEYE-NIKKOR 13mm f/2.8](../../src/lens-data/nikon/NikonRUWAFNikkor13mmf28.data.ts) L1 |
 | `S-LAL14 (OHARA) / 697555 lanthanum crown class` | 1.69680 / 55.60 (d) | S-LAL14 — direct name evidence outranks six-digit code evidence. | J-LAK14 (Hikari, code, vendor ✗, alternate code row)<br>LAC14 (Hoya, code, vendor ✗, alternate code row) | 1 | [NIKON R-UW AF FISHEYE-NIKKOR 13mm f/2.8](../../src/lens-data/nikon/NikonRUWAFNikkor13mmf28.data.ts) L3 |
 | `N-SF6HT (SCHOTT) / 805254 dense flint class` | 1.80518 / 25.30 (d) | SF6 — Annotation vendor context matches Schott. | S-TIH6 (Ohara, code, vendor ✗, preferred code row) | 1 | [NIKON R-UW AF FISHEYE-NIKKOR 13mm f/2.8](../../src/lens-data/nikon/NikonRUWAFNikkor13mmf28.data.ts) L9 |
@@ -1064,6 +1071,8 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `SF10 / E-FD10 / S-TIH10 class (728/283)` | 1.72825 / 28.30 (d) | E-FD10 — smallest d-line \|Δn\| (2.2e-7 vs 2.3e-7) | S-TIH10 (Ohara, name)<br>SF10 (Schott, name)<br>H-ZF4A (CDGM, code, preferred code row) | 1 | [NIKON REFLEX-NIKKOR·C 500mm f/8](../../src/lens-data/nikon/NikonReflexNikkorC500mmf8.data.ts) L3 |
 | `S-BSM16 (OHARA) / N-SK16 class` | 1.62041 / 60.30 (d) | S-BSM16 — Annotation vendor context matches Ohara. | N-SK16 (Schott, name, vendor ✗) | 2 | [NIKON SERIES E 100mm f/2.8](../../src/lens-data/nikon/NikonSeriesE100mmf28.data.ts) L2 +1 files |
 | `S-TIH1 (OHARA) / SF1 class` | 1.71736 / 29.50 (d) | S-TIH1 — Annotation vendor context matches Ohara. | SF1 (Schott, name, vendor ✗) | 1 | [NIKON SERIES E 100mm f/2.8](../../src/lens-data/nikon/NikonSeriesE100mmf28.data.ts) L3 |
+| `744449 — lanthanum-flint class (vendor unresolved)` | 1.74400 / 44.90 (d) | H-LaF3B — smallest d-line \|Δn\| (1.0e-7 vs 2.8e-5) | N-LAF2 (Schott, code, alternate code row) | 1 | [NIKON SERIES E ZOOM 36-72mm f/3.5](../../src/lens-data/nikon/NikonSeriesEZoom3672mmf35.data.ts) L2 |
+| `620603 — crown class (vendor unresolved)` | 1.62041 / 60.30 (d) | J-SK16 — smallest d-line \|Δn\| (1.0e-8 vs 3.5e-8) | N-SK16 (Schott, code, preferred code row)<br>S-BSM16 (Ohara, code, alternate code row) | 2 | [NIKON SERIES E ZOOM 36-72mm f/3.5](../../src/lens-data/nikon/NikonSeriesEZoom3672mmf35.data.ts) L4 |
 | `BK7 / S-BSL7 class borosilicate crown (patent e-line index stored)` | 1.51871 / 64.10 (e) | S-BSL7 — direct name evidence outranks alias evidence. | N-BK7 (Schott, alias) | 1 | [NIKON ULTRA-MICRO-NIKKOR 29.5mm f/1.2](../../src/lens-data/nikon/NikonUltraMicroNikkor295mmf12.data.ts) L9 |
 | `717295 - flint class (vendor unresolved)` | 1.71736 / 29.48 (d) | SF1 — smallest d-line \|Δn\| (1.5e-7 vs 1.8e-6) | S-TIH1 (Ohara, code, alternate code row) | 3 | [NIKON ZOOM-NIKKOR 100-300mm f/5.6](../../src/lens-data/nikon/NikonAISZoomNikkor100300mmf56.data.ts) L11a |
 | `805254 - dense flint class (vendor unresolved)` | 1.80518 / 25.36 (d) | S-TIH6 — smallest d-line \|Δn\| (7.1e-7 vs 2.1e-6) | SF6 (Schott, code, alternate code row) | 2 | [NIKON ZOOM-NIKKOR 100-300mm f/5.6](../../src/lens-data/nikon/NikonAISZoomNikkor100300mmf56.data.ts) L21a |
