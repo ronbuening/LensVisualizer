@@ -70,7 +70,7 @@ identified separately where useful.
 
 ### G1 — D1 Cemented Pair: L1 and L2
 
-**L1 — Negative Meniscus.** `nd = 1.74950, νd = 35.0.` Glass: `750350 — lanthanum flint class`. Standalone
+**L1 — Negative Meniscus.** `nd = 1.74950, νd = 35.0.` Glass: `H-LaF4 catalog equivalent (patent 750350; production supplier unspecified)`. Standalone
 `f = -235.722 mm`.
 
 L1 is the negative member of the front cemented pair. Its relatively high index and moderate dispersion are paired with the
@@ -98,7 +98,7 @@ L3 is the air-spaced positive meniscus that completes G1. Together with D1 it br
 
 ### G2 — L4 Negative Meniscus
 
-`nd = 1.71300, νd = 53.9.` Glass: `713539 — lanthanum crown class`. Standalone `f = -68.991 mm`.
+`nd = 1.71300, νd = 53.9.` Glass: `LAC8 catalog equivalent (patent 713539; production supplier unspecified)`. Standalone `f = -68.991 mm`.
 
 L4 is the strong negative single element at the front of the second group. The patent describes G2 as a negative group whose
 linear imageward motion contributes directly to increasing focal length. Its position ahead of the cemented triplet gives the
@@ -109,10 +109,10 @@ group a strongly negative net EFL of -45.963 mm.
 **L5 — Positive Meniscus.** `nd = 1.66998, νd = 39.2.` Glass:
 `S-BAH32 catalog equivalent (patent 670392; production supplier unspecified)`. Standalone `f = +293.977 mm`.
 
-**L6 — Biconcave Negative.** `nd = 1.56384, νd = 60.8.` Glass: `N-SK11 (SCHOTT)`. Standalone
+**L6 — Biconcave Negative.** `nd = 1.56384, νd = 60.8.` Glass: `N-SK11 catalog equivalent (patent 564608; production supplier unspecified)`. Standalone
 `f = -48.195 mm`.
 
-**L7 — Positive Meniscus.** `nd = 1.80518, νd = 25.5.` Glass: `805255 — dense flint class`. Standalone
+**L7 — Positive Meniscus.** `nd = 1.80518, νd = 25.5.` Glass: `J-SF6 catalog equivalent (patent 805255; production supplier unspecified)`. Standalone
 `f = +90.587 mm`.
 
 The three standalone powers are not representative of the cemented assembly's net sign. With the published common interfaces,
@@ -143,7 +143,7 @@ shape-factor conditions (29) and (30) for these surfaces.
 **L10 — Biconvex Positive.** `nd = 1.52000, νd = 70.1.` Glass:
 `J-PKH1 catalog equivalent (patent 520701; production supplier unspecified)`. Standalone `f = +94.741 mm`.
 
-**L11 — Negative Meniscus.** `nd = 1.80518, νd = 25.5.` Glass: `805255 — dense flint class`. Standalone
+**L11 — Negative Meniscus.** `nd = 1.80518, νd = 25.5.` Glass: `J-SF6 catalog equivalent (patent 805255; production supplier unspecified)`. Standalone
 `f = -107.155 mm`.
 
 D2 computes to a weak positive cemented-unit EFL of +754.085 mm even though its two isolated elements have comparatively
@@ -153,7 +153,7 @@ stronger than the cemented pair alone, at +59.461 mm EFL.
 
 ### G4 — L12 Biconcave Negative
 
-`nd = 1.71300, νd = 53.9.` Glass: `713539 — lanthanum crown class`. Standalone and group `f = -75.004 mm`.
+`nd = 1.71300, νd = 53.9.` Glass: `LAC8 catalog equivalent (patent 713539; production supplier unspecified)`. Standalone and group `f = -75.004 mm`.
 
 L12 is both a single element and the entire patent G4. It is fixed during zoom and focus. The patent places emphasis on the
 shape and index of this negative relay component for spherical-aberration, coma, and Petzval balance. In Nikon's broader
@@ -161,7 +161,7 @@ production nomenclature it belongs to the rear master assembly rather than appea
 
 ### G5 — L13 Positive Meniscus
 
-`nd = 1.56732, νd = 42.8.` Glass: `567428 — flint class`. Standalone `f = +97.060 mm`.
+`nd = 1.56732, νd = 42.8.` Glass: `S-TIL26 catalog equivalent (patent 567428; production supplier unspecified)`. Standalone `f = +97.060 mm`.
 
 L13 forms the forward sub-group of G5 and carries nearly all of that forward sub-group's power. The patent requires the
 forward-subgroup focal length to remain between 0.7 and 1.0 times the focal length of G5 as a whole; Example 3 gives a ratio
@@ -178,7 +178,7 @@ shape and index as part of the rear relay's Petzval and coma balance.
 
 ### G5 — L15 Biconvex Positive
 
-`nd = 1.51823, νd = 59.0.` Glass: `S-NSL3 (OHARA)`. Standalone `f = +91.227 mm`.
+`nd = 1.51823, νd = 59.0.` Glass: `S-NSL3 catalog equivalent (patent 518590; production supplier unspecified)`. Standalone `f = +91.227 mm`.
 
 L15 is the final positive element. Together with L14 it forms the widely separated rear portion of G5; the 54.7 mm air space
 between the forward and rear portions is an explicit part of the patent's relay concept. The complete G5 has a computed EFL
@@ -193,16 +193,16 @@ labels describe spectral proxies, not production suppliers.
 
 | Data-file glass annotation | `nd` | `νd` | Elements | Identification status |
 | --- | ---: | ---: | --- | --- |
-| `750350 — lanthanum flint class` | 1.74950 | 35.0 | L1 | Coordinate/class annotation; vendor not asserted |
-| `J-FKH1 catalog equivalent (patent 500819)` | 1.50032 | 81.9 | L2 | Compatible ED proxy; Nikon identifies the production position as ED |
-| `J-PKH1 catalog equivalent (patent 520701)` | 1.52000 | 70.1 | L3, L8, L9, L10 | Compatible low-dispersion crown proxy |
-| `713539 — lanthanum crown class` | 1.71300 | 53.9 | L4, L12 | Coordinate/class annotation |
-| `S-BAH32 catalog equivalent (patent 670392)` | 1.66998 | 39.2 | L5 | Near-exact coefficient-backed proxy |
-| `N-SK11 (SCHOTT)` | 1.56384 | 60.8 | L6 | Exact current SCHOTT coordinate match |
-| `805255 — dense flint class` | 1.80518 | 25.5 | L7, L11 | Coordinate/class annotation |
-| `567428 — flint class` | 1.56732 | 42.8 | L13 | Coordinate/class annotation |
-| `J-LASFH2 catalog equivalent (patent 767466)` | 1.76684 | 46.6 | L14 | Compatible coefficient-backed proxy |
-| `S-NSL3 (OHARA)` | 1.51823 | 59.0 | L15 | OHARA coordinate match at the patent's rounded precision |
+| `H-LaF4 catalog equivalent (patent 750350; production supplier unspecified)` | 1.74950 | 35.0 | L1 | Coordinate-compatible spectral proxy; vendor not asserted |
+| `J-FKH1 catalog equivalent (patent 500819; production supplier unspecified)` | 1.50032 | 81.9 | L2 | Compatible ED proxy; Nikon identifies the production position as ED |
+| `J-PKH1 catalog equivalent (patent 520701; production supplier unspecified)` | 1.52000 | 70.1 | L3, L8, L9, L10 | Compatible low-dispersion crown proxy |
+| `LAC8 catalog equivalent (patent 713539; production supplier unspecified)` | 1.71300 | 53.9 | L4, L12 | Coordinate-compatible spectral proxy |
+| `S-BAH32 catalog equivalent (patent 670392; production supplier unspecified)` | 1.66998 | 39.2 | L5 | Near-exact coefficient-backed proxy |
+| `N-SK11 catalog equivalent (patent 564608; production supplier unspecified)` | 1.56384 | 60.8 | L6 | Exact coordinate-compatible spectral proxy |
+| `J-SF6 catalog equivalent (patent 805255; production supplier unspecified)` | 1.80518 | 25.5 | L7, L11 | Coordinate-compatible spectral proxy |
+| `S-TIL26 catalog equivalent (patent 567428; production supplier unspecified)` | 1.56732 | 42.8 | L13 | Coordinate-compatible spectral proxy |
+| `J-LASFH2 catalog equivalent (patent 767466; production supplier unspecified)` | 1.76684 | 46.6 | L14 | Compatible coefficient-backed proxy |
+| `S-NSL3 catalog equivalent (patent 518590; production supplier unspecified)` | 1.51823 | 59.0 | L15 | Coordinate match at the patent's rounded precision |
 
 SCHOTT's current N-SK11 data give `nd = 1.56384` and `νd = 60.80`, matching L6 exactly. OHARA lists S-NSL3 at
 `nd = 1.51823` and `νd = 58.90`, which rounds to the patent's 59.0 value for L15. The newly qualified J-FKH1, J-PKH1,
@@ -311,9 +311,13 @@ enter this sum, so it is common to all zoom states.
 
 The patent does not publish clear semi-diameters. The `sd` values in the data file are therefore modeling inferences derived
 from the verified physical stop, published field angles, representative marginal/chief-ray envelopes, the optical section,
-and geometry limits. They are not asserted as manufacturing apertures. Across the three infinity and three reconstructed
-close-focus endpoint states, the model retains positive representative off-axis clearance, positive element edge thickness,
-rim slopes below the project limit, and shared-band cross-gap intrusion below the configured 0.90 fraction.
+and geometry limits. They are not asserted as manufacturing apertures. A 600-dpi audit of Example 3's FIG. 3 found the
+original 45/45/44/44/42 mm G1 profile materially oversized relative to the median G2/G3 height and the 11.5-12.5 mm G5
+profile undersized relative to G4. The reviewed 35/35/34/34/33 mm G1 and 14/14/15.5/15.5/15.5/15.5 mm G5 profiles follow
+the patent's group-height progression more closely while retaining the existing G2-G4 rims. Across the three infinity and
+three reconstructed close-focus endpoint states, the model retains positive representative off-axis clearance, positive
+element edge thickness, rim slopes below the project limit, and shared-band cross-gap intrusion below the configured 0.90
+fraction.
 
 No plate, filter, dummy optical surface, or patent lens surface has been removed. The neutral `STO` plane only splits the
 published G3-to-G4 air gap at the stated diaphragm station. No source number was silently corrected, no uniform scale factor was

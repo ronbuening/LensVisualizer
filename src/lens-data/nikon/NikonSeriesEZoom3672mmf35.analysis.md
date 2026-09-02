@@ -86,7 +86,7 @@ historical production glass or supplier.
 
 ### L2 - Negative Meniscus
 
-`nd = 1.74400, νd = 44.9.` Glass: `744449 — lanthanum-flint class (vendor unresolved)`. Standalone
+`nd = 1.74400, νd = 44.9.` Glass: `H-LaF3B catalog equivalent (patent 744449; production supplier unspecified)`. Standalone
 `f = -118.431 mm`.
 
 L2 is a substantially weaker negative meniscus than L1. Its role at first order is to add negative power while spreading
@@ -112,7 +112,7 @@ from those two numbers alone.
 
 ### L4 - Biconvex Positive
 
-`nd = 1.62041, νd = 60.3.` Glass: `620603 — crown class (vendor unresolved)`. Standalone `f = +44.592 mm`.
+`nd = 1.62041, νd = 60.3.` Glass: `J-SK16 catalog equivalent (patent 620603; production supplier unspecified)`. Standalone `f = +44.592 mm`.
 
 L4 is the leading element of the positive rear group and the strongest standalone positive element in G2. Its biconvex
 form supplies a large part of the rear group's converging action immediately after the long variable zoom gap at the wide
@@ -123,7 +123,7 @@ farther back in G2. No unique vendor identity is asserted.
 
 ### L5 - Positive Meniscus
 
-`nd = 1.62041, νd = 60.3.` Glass: `620603 — crown class (vendor unresolved)`. Standalone `f = +52.950 mm`.
+`nd = 1.62041, νd = 60.3.` Glass: `J-SK16 catalog equivalent (patent 620603; production supplier unspecified)`. Standalone `f = +52.950 mm`.
 
 L5 is the positive meniscus immediately behind the modeled aperture stop. It uses the same refractive-index and Abbe
 coordinate as L4 but a different curvature distribution. At first order it extends the converging section of G2 while
@@ -180,11 +180,11 @@ unspecified.
 
 | Stored glass annotation | nd | νd | Elements | Data-level interpretation |
 | --- | ---: | ---: | --- | --- |
-| `NBFD3 catalog equivalent (patent 805395)` | 1.80454 | 39.5 | L1 | Near-exact coefficient-backed proxy |
-| `744449 — lanthanum-flint class (vendor unresolved)` | 1.74400 | 44.9 | L2 | Class-level historical coordinate only |
-| `J-LAFH3 catalog equivalent (patent 795284)` | 1.79504 | 28.4 | L3, L6 | Exact-index, coordinate-compatible proxy |
-| `620603 — crown class (vendor unresolved)` | 1.62041 | 60.3 | L4, L5 | Higher-Abbe crown-class coordinate |
-| `NBFD2 catalog equivalent (patent 796408)` | 1.79631 | 40.8 | L7, L8 | Coordinate-compatible coefficient-backed proxy |
+| `NBFD3 catalog equivalent (patent 805395; production supplier unspecified)` | 1.80454 | 39.5 | L1 | Near-exact coefficient-backed proxy |
+| `H-LaF3B catalog equivalent (patent 744449; production supplier unspecified)` | 1.74400 | 44.9 | L2 | Coordinate-compatible spectral proxy |
+| `J-LAFH3 catalog equivalent (patent 795284; production supplier unspecified)` | 1.79504 | 28.4 | L3, L6 | Exact-index, coordinate-compatible proxy |
+| `J-SK16 catalog equivalent (patent 620603; production supplier unspecified)` | 1.62041 | 60.3 | L4, L5 | Coordinate-compatible higher-Abbe crown proxy |
+| `NBFD2 catalog equivalent (patent 796408; production supplier unspecified)` | 1.79631 | 40.8 | L7, L8 | Coordinate-compatible coefficient-backed proxy |
 
 The palette alternates relatively high- and low-Abbe materials across both optical groups, giving the designer freedom
 to balance longitudinal and lateral color while also distributing refractive power. That is a structural inference from
