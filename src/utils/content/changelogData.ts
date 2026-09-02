@@ -20,6 +20,11 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-09-02",
+    type: "improvement",
+    summary: "Optimized and enhanced the universal relationship map",
+  },
+  {
+    date: "2026-09-02",
     type: "lens",
     summary: "Added Nikon AI 50-300mm, PC 35mm, and Series E 36-72mm lens designs",
   },

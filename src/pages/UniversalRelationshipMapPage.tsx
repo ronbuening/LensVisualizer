@@ -66,9 +66,11 @@ export default function UniversalRelationshipMapPage() {
         <>
           <h1 style={H1_STYLE}>Universal Relationship Map</h1>
           <p style={{ color: t.muted, fontSize: "0.85rem", lineHeight: 1.6, margin: "0 0 1rem", maxWidth: "52rem" }}>
-            This map draws the entire catalog at once: patents connect their inventors and assignees, while dated
-            successor, acquisition, subsidiary, and corporate-family records reconnect historical company names. Those
-            corporate links appear only here; the standard relationship map remains strictly patent-focused.
+            This map draws the entire catalog at once, organized into corporate-family and major-assignee neighborhoods.
+            Patents connect their inventors and assignees, while dated successor, acquisition, subsidiary, and
+            corporate-family records reconnect historical company names. Those corporate links appear only here; the
+            standard relationship map remains strictly patent-focused. Neighborhood placement prioritizes corporate
+            connections, then shared patents, then neighborhood size.
           </p>
 
           <div
@@ -94,7 +96,8 @@ export default function UniversalRelationshipMapPage() {
           </div>
 
           <p style={{ color: t.label, fontSize: "0.72rem", lineHeight: 1.5, margin: "0 0 0.8rem" }}>
-            Pinch or scroll to zoom, drag to pan, and select any node for details. Labels appear as you zoom in.
+            Soft halos group hub neighborhoods; dashed boxes mark disconnected networks. Pinch or scroll to zoom, drag
+            to pan, and select any node for details. Labels appear as you zoom in.
           </p>
 
           <ClientOnly
