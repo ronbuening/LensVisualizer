@@ -4,10 +4,11 @@
  * Connected components remain the outer grouping, but large patent networks are
  * partitioned into corporate-family and major-assignee neighborhoods before
  * they are drawn. Each neighborhood gets its own capacity-limited radial
- * layout, then a weighted hub graph arranges those neighborhoods as a compact
- * constellation. This keeps prolific assignees from turning an entire
- * component into one enormous ring while preserving every graph edge for the
- * renderer.
+ * layout, then a hierarchical-affinity hub graph arranges those neighborhoods
+ * as a compact constellation. Corporate links take priority over shared
+ * patents, which take priority over neighborhood size. This keeps prolific
+ * assignees from turning an entire component into one enormous ring while
+ * preserving every graph edge for the renderer.
  */
 
 import { catalogCollator } from "../../utils/catalog/collation.js";
@@ -16,6 +17,11 @@ import type {
   UniversalRelationshipGraph,
   UniversalRelationshipNode,
 } from "../../utils/catalog/universalRelationshipGraph.js";
+import {
+  buildConstellationAffinities,
+  compareConstellationClusterPriority,
+  orderConstellationOrbit,
+} from "./constellationAffinity.js";
 import { truncateLabel } from "./layout.js";
 
 export interface UniversalLayoutNode {
@@ -116,8 +122,8 @@ const COMPONENT_INSET = 12;
 const COMPONENT_HEADER_HEIGHT = 32;
 const CANVAS_PADDING = 24;
 const COMPONENT_GAP = 24;
-const MIN_RING_GAP = 54;
-const MIN_NODE_ARC = 28;
+const MIN_RING_GAP = 62;
+const MIN_NODE_ARC = 32;
 const MIN_HUB_PATENT_EDGES = 8;
 const CONSTELLATION_GAP = 28;
 const CONSTELLATION_ARC_GAP = 28;
@@ -415,66 +421,6 @@ function layoutCluster(
   };
 }
 
-function clusterConnectionWeights(
-  clusters: readonly LocalCluster[],
-  ownerById: ReadonlyMap<string, string>,
-  graph: UniversalRelationshipGraph,
-): Map<string, Map<string, number>> {
-  const weights = new Map(clusters.map((cluster) => [cluster.id, new Map<string, number>()]));
-  for (const edge of graph.edges) {
-    const fromCluster = ownerById.get(edge.from);
-    const toCluster = ownerById.get(edge.to);
-    if (
-      !fromCluster ||
-      !toCluster ||
-      fromCluster === toCluster ||
-      !weights.has(fromCluster) ||
-      !weights.has(toCluster)
-    ) {
-      continue;
-    }
-    weights.get(fromCluster)!.set(toCluster, (weights.get(fromCluster)!.get(toCluster) ?? 0) + 1);
-    weights.get(toCluster)!.set(fromCluster, (weights.get(toCluster)!.get(fromCluster) ?? 0) + 1);
-  }
-  return weights;
-}
-
-function totalConnectionWeight(clusterId: string, weights: ReadonlyMap<string, ReadonlyMap<string, number>>): number {
-  return [...(weights.get(clusterId)?.values() ?? [])].reduce((sum, weight) => sum + weight, 0);
-}
-
-function compareConstellationClusters(
-  left: LocalCluster,
-  right: LocalCluster,
-  weights: ReadonlyMap<string, ReadonlyMap<string, number>>,
-): number {
-  return (
-    totalConnectionWeight(right.id, weights) - totalConnectionWeight(left.id, weights) ||
-    right.nodeCount - left.nodeCount ||
-    right.size - left.size ||
-    catalogCollator.compare(left.anchorLabel, right.anchorLabel)
-  );
-}
-
-function greedyConstellationOrder(
-  clusters: readonly LocalCluster[],
-  weights: ReadonlyMap<string, ReadonlyMap<string, number>>,
-): LocalCluster[] {
-  if (clusters.length < 2) return [...clusters];
-  const remaining = [...clusters].sort((left, right) => compareConstellationClusters(left, right, weights));
-  const ordered = [remaining.shift()!];
-  while (remaining.length > 0) {
-    const previous = ordered.at(-1)!;
-    remaining.sort(
-      (left, right) =>
-        (weights.get(previous.id)?.get(right.id) ?? 0) - (weights.get(previous.id)?.get(left.id) ?? 0) ||
-        compareConstellationClusters(left, right, weights),
-    );
-    ordered.push(remaining.shift()!);
-  }
-  return ordered;
-}
-
 function constellationRingPositions(
   ordered: readonly LocalCluster[],
   minimumRadius: number,
@@ -517,16 +463,20 @@ function layoutClusterConstellation(
   graph: UniversalRelationshipGraph,
   componentIndex: number,
 ): Pick<LocalComponent, "width" | "height" | "nodes" | "clusters"> {
-  const weights = clusterConnectionWeights(localClusters, ownerById, graph);
-  const centerCluster = [...localClusters].sort((left, right) => compareConstellationClusters(left, right, weights))[0];
-  const centerByClusterId = new Map<string, { x: number; y: number }>([[centerCluster.id, { x: 0, y: 0 }]]);
-  const orbitingClusters = greedyConstellationOrder(
-    localClusters.filter((cluster) => cluster.id !== centerCluster.id),
-    weights,
+  const affinities = buildConstellationAffinities(
+    localClusters.map((cluster) => cluster.id),
+    ownerById,
+    graph,
   );
+  const rankedClusters = [...localClusters].sort((left, right) =>
+    compareConstellationClusterPriority(left, right, affinities),
+  );
+  const centerCluster = rankedClusters[0];
+  const centerByClusterId = new Map<string, { x: number; y: number }>([[centerCluster.id, { x: 0, y: 0 }]]);
+  const orbitingClusters = rankedClusters.slice(1);
   let previousOuterRadius = centerCluster.size / 2;
   for (let offset = 0, orbitIndex = 0; offset < orbitingClusters.length; orbitIndex++) {
-    const orbit = orbitingClusters.slice(offset, offset + MAX_HUBS_PER_ORBIT);
+    const orbit = orderConstellationOrbit(orbitingClusters.slice(offset, offset + MAX_HUBS_PER_ORBIT), affinities);
     const largestRadius = Math.max(...orbit.map((cluster) => cluster.size / 2));
     const minimumRadius = previousOuterRadius + CONSTELLATION_GAP + largestRadius;
     const ringLayout = constellationRingPositions(

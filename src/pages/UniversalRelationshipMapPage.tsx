@@ -69,7 +69,8 @@ export default function UniversalRelationshipMapPage() {
             This map draws the entire catalog at once, organized into corporate-family and major-assignee neighborhoods.
             Patents connect their inventors and assignees, while dated successor, acquisition, subsidiary, and
             corporate-family records reconnect historical company names. Those corporate links appear only here; the
-            standard relationship map remains strictly patent-focused.
+            standard relationship map remains strictly patent-focused. Neighborhood placement prioritizes corporate
+            connections, then shared patents, then neighborhood size.
           </p>
 
           <div

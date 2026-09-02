@@ -244,6 +244,66 @@ describe("layoutUniversalRelationshipGraph", () => {
     expect(distance(betaCenter, gammaCenter)).toBeLessThan(distance(alphaCenter, gammaCenter));
   });
 
+  it("centers by corporate connections, then shared patents, before neighborhood size", () => {
+    const alpha = partyNode("assignee:alpha", "Alpha Optics", "assignee");
+    const beta = partyNode("assignee:beta", "Beta Optics", "assignee");
+    const gamma = partyNode("assignee:gamma", "Gamma Optics", "assignee");
+    const delta = partyNode("assignee:delta", "Delta Optics", "assignee");
+    const alphaPatents = Array.from({ length: 20 }, (_, index) => patentNode(index + 1, "AH"));
+    const betaPatents = Array.from({ length: 8 }, (_, index) => patentNode(index + 1, "BH"));
+    const gammaPatents = Array.from({ length: 8 }, (_, index) => patentNode(index + 1, "GH"));
+    const deltaPatents = Array.from({ length: 8 }, (_, index) => patentNode(index + 1, "DH"));
+    const gammaDeltaAuthors = Array.from({ length: 5 }, (_, index) =>
+      partyNode(`author:gamma-delta-${index}`, `Gamma Delta ${index}`, "author"),
+    );
+    const betaGammaAuthor = partyNode("author:beta-gamma", "Beta Gamma", "author");
+    const nodes = [
+      alpha,
+      beta,
+      gamma,
+      delta,
+      betaGammaAuthor,
+      ...gammaDeltaAuthors,
+      ...alphaPatents,
+      ...betaPatents,
+      ...gammaPatents,
+      ...deltaPatents,
+    ];
+    const graph = makeGraph(nodes, [
+      ...alphaPatents.map((patent) => [patent.id, alpha.id] satisfies [string, string]),
+      ...betaPatents.map((patent) => [patent.id, beta.id] satisfies [string, string]),
+      ...gammaPatents.map((patent) => [patent.id, gamma.id] satisfies [string, string]),
+      ...deltaPatents.map((patent) => [patent.id, delta.id] satisfies [string, string]),
+      [betaPatents[0].id, betaGammaAuthor.id],
+      [gammaPatents[0].id, betaGammaAuthor.id],
+      ...gammaDeltaAuthors.flatMap(
+        (author, index) =>
+          [
+            [gammaPatents[index + 1].id, author.id],
+            [deltaPatents[index].id, author.id],
+          ] satisfies Array<[string, string]>,
+      ),
+    ]);
+    graph.edges.push({ id: "corporate-alpha-beta", from: alpha.id, to: beta.id, kind: "acquisition" });
+    graph.components = universalConnectedComponents(graph.nodes, graph.edges);
+
+    const layout = layoutUniversalRelationshipGraph(graph);
+    const centers = new Map(
+      layout.clusters.map((cluster) => [
+        cluster.anchorId,
+        { x: cluster.x + cluster.width / 2, y: cluster.y + cluster.height / 2 },
+      ]),
+    );
+    const betaCenter = centers.get(beta.id)!;
+    const betaDistances = [alpha.id, gamma.id, delta.id].map((anchorId) => {
+      const center = centers.get(anchorId)!;
+      return Math.hypot(center.x - betaCenter.x, center.y - betaCenter.y);
+    });
+
+    expect(layout.clusters).toHaveLength(4);
+    expect(Math.max(...betaDistances) - Math.min(...betaDistances)).toBeLessThan(1e-6);
+  });
+
   it("splits a prolific assignee's patents across capacity-limited rings", () => {
     const assignee = partyNode("assignee:prolific", "Prolific Optics", "assignee");
     const patents = Array.from({ length: 108 }, (_, index) => patentNode(index + 1));
@@ -259,7 +319,7 @@ describe("layoutUniversalRelationshipGraph", () => {
         Math.round(Math.hypot(layout.nodeById[patent.id].x - center.x, layout.nodeById[patent.id].y - center.y)),
       ),
     );
-    expect([...ringRadii].sort((left, right) => left - right)).toEqual([54, 108, 162, 216]);
+    expect([...ringRadii].sort((left, right) => left - right)).toEqual([62, 124, 186, 248]);
   });
 
   it("keeps every node inside its non-overlapping neighborhood bounds", () => {
