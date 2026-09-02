@@ -19,6 +19,11 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-09-02",
+    type: "lens",
+    summary: "Added Nikon 100-300mm, 200-400mm ED, and Medical-Nikkor 120mm designs",
+  },
+  {
     date: "2026-09-01",
     type: "lens",
     summary: "Added three Konica patent-derived prime and telephoto lens designs",
