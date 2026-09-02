@@ -42,6 +42,11 @@ export const MOVEMENT_TILT_ENVELOPE_DEG: [number, number] = [-15, 15];
 const IDENTITY_EPSILON = 1e-9;
 const DEG_TO_RAD = Math.PI / 180;
 
+/** Return whether a declared perspective-control axis has non-zero travel. */
+export function isMovementAxisEnabled([min, max]: [number, number]): boolean {
+  return max > min;
+}
+
 /** Canonical zero shift/tilt movement state. */
 export const ZERO_LENS_MOVEMENT: LensMovementState = Object.freeze({ shiftMm: 0, tiltDeg: 0 });
 

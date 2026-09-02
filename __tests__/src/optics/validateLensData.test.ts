@@ -303,6 +303,17 @@ describe("validateLensData", () => {
         }),
       ),
     ).toEqual([]);
+
+    expect(
+      validateLensData(
+        makeValid({
+          perspectiveControl: {
+            shiftRangeMm: [-11, 11],
+            tiltRangeDeg: [0, 0],
+          },
+        }),
+      ),
+    ).toEqual([]);
   });
 
   it("catches invalid perspectiveControl movement ranges", () => {
@@ -321,6 +332,11 @@ describe("validateLensData", () => {
     expect(errors.some((error) => error.includes("perspectiveControl.tiltRangeDeg"))).toBe(true);
     expect(errors.some((error) => error.includes("perspectiveControl.shiftStepMm"))).toBe(true);
     expect(errors.some((error) => error.includes("perspectiveControl.tiltStepDeg"))).toBe(true);
+
+    const noMovementErrors = validateLensData(
+      makeValid({ perspectiveControl: { shiftRangeMm: [0, 0], tiltRangeDeg: [0, 0] } }),
+    );
+    expect(noMovementErrors.some((error) => error.includes("must enable shift, tilt, or both"))).toBe(true);
   });
 
   it("accepts valid fisheye projection metadata", () => {

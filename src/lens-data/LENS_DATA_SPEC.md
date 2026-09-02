@@ -513,7 +513,7 @@ For a compact audit of hidden mirror fixture metadata, run `npm run generate:mir
 
 ## Perspective Control Movement (`perspectiveControl`)
 
-Only declare this field for lenses with real perspective-control mechanisms. When present, the UI shows signed SHIFT and TILT sliders, stores them in the URL as `shift` and `tilt`, moves the rendered lens/rays in the 2D meridional diagram, and keeps the sensor/IMG plane fixed. Analysis drawer diagnostics remain centered-lens calculations in v1 and display a notice when movement is active.
+Only declare this field for lenses with real perspective-control mechanisms. When present, the UI shows the supported signed SHIFT and/or TILT sliders, stores them in the URL as `shift` and `tilt`, moves the rendered lens/rays in the 2D meridional diagram, and keeps the sensor/IMG plane fixed. Analysis drawer diagnostics remain centered-lens calculations in v1 and display a notice when movement is active.
 
 ```javascript
 perspectiveControl: {
@@ -524,9 +524,10 @@ perspectiveControl: {
 }
 ```
 
-Validation requires both ranges to be finite ascending `[min, max]` tuples that include `0`. Include a short source comment in the lens file for the official movement limits.
+Validation requires both ranges to be finite ordered `[min, max]` tuples that include `0`. Use `[0, 0]` to disable an unsupported axis on a shift-only or tilt-only lens; at least one axis must have non-zero travel. Include a short source comment in the lens file for the official movement limits.
 
 Current enabled production lenses and source references:
+- Nikon PC-NIKKOR 35mm f/2.8: shift +/-11 mm, no production tilt, from Nikon Imaging's official PC-NIKKOR history: <https://imaging.nikon.com/imaging/information/story/0017/>
 - Nikon PC NIKKOR 19mm f/4E ED: shift +/-12 mm, tilt +/-7.5 deg, from Nikon Imaging's official product page: <https://imaging.nikon.com/imaging/lineup/lens/f-mount/specialpurpose/pc_pce/pc_19mmf_4e_ed/>
 - Nikon PC-E NIKKOR 24mm f/3.5D ED: shift +/-11.5 mm, tilt +/-8.5 deg, from Nikon USA's launch release: <https://www.nikonusa.com/press-room/nikons-new-wide-angle-pc-e-ni>
 - Nikon PC-E Micro-NIKKOR 45mm f/2.8D ED: shift +/-11.5 mm, tilt +/-8.5 deg, from Nikon Imaging's official product page: <https://imaging.nikon.com/imaging/lineup/lens/f-mount/specialpurpose/pc_pce/pce_45mmf_28ed/index.html>

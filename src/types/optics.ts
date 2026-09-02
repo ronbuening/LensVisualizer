@@ -201,6 +201,7 @@ export interface ResolvedAnnotation {
 }
 
 export interface PerspectiveControlConfig {
+  /** A [0, 0] range disables that movement axis for shift-only or tilt-only lenses. */
   shiftRangeMm: [number, number];
   tiltRangeDeg: [number, number];
   shiftStepMm?: number;
