@@ -224,6 +224,28 @@ describe("SharedSlidersBar", () => {
     expect(callbacks.onSharedTiltChange).toHaveBeenLastCalledWith(0);
   });
 
+  it("omits the tilt slider for shift-only perspective-control comparisons", () => {
+    const LA = lens({
+      name: "Shift-only PC",
+      perspectiveControl: { shiftRangeMm: [-11, 11], tiltRangeDeg: [0, 0] },
+    });
+    const movementPair: MovementPairResult = {
+      showMovement: true,
+      shiftA: 4,
+      shiftB: 0,
+      tiltA: 0,
+      tiltB: 0,
+      shiftRangeMm: [-11, 11],
+      tiltRangeDeg: [0, 0],
+      shiftStepMm: 0.1,
+      tiltStepDeg: 0.1,
+    };
+    renderSharedSliders({ LA, movementPair, sharedShiftMm: 4 });
+
+    expect(screen.getByText("SHIFT")).toBeTruthy();
+    expect(screen.queryByText("TILT")).toBeNull();
+  });
+
   it("renders dual-zoom union endpoints, marker positions, and quick f-stop callbacks", () => {
     const LA = lens({ name: "Zoom A", isZoom: true, zoomPositions: [24, 70], zoomEFLs: [24, 70] });
     const LB = lens({ name: "Zoom B", isZoom: true, zoomPositions: [28, 120], zoomEFLs: [28, 120] });

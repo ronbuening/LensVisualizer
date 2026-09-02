@@ -326,9 +326,9 @@ centered lens coordinates, then rendered lens geometry and ray segments are shif
 plane. This keeps zero movement byte-for-byte equivalent to the existing coordinate path while making active movement
 visible in the SVG.
 
-Only lenses that declare `perspectiveControl` get movement controls. Use `clampLensMovement()` before rendering or
-sharing movement values, and keep analysis helpers centered-lens unless a future task explicitly adds full moved-optics
-diagnostics.
+Only lenses that declare `perspectiveControl` get movement controls; a `[0, 0]` range disables an unsupported axis on
+shift-only or tilt-only designs. Use `clampLensMovement()` before rendering or sharing movement values, and keep analysis
+helpers centered-lens unless a future task explicitly adds full moved-optics diagnostics.
 
 ## Lens-Group Movement
 

@@ -98,9 +98,10 @@ perspectiveControl: {
 },
 ```
 
-Ranges must be finite, ascending, and include zero. Use official manufacturer sources when available and leave the source
+Ranges must be finite, ordered, and include zero. Use official manufacturer sources when available and leave the source
 URL in a nearby comment. The v1 movement layer is a 2D meridional visualization: it shifts/tilts rendered geometry and
 rays relative to the fixed IMG plane, while analysis drawer diagnostics remain centered-lens calculations.
+Use `[0, 0]` for an unsupported axis on a real shift-only or tilt-only lens; at least one axis must have non-zero travel.
 
 ### Mirror, Telescope, And Folded Lenses
 

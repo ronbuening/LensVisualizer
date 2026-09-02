@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   clampLensMovement,
   createLensMovementTransform,
+  isMovementAxisEnabled,
   isIdentityLensMovement,
   projectMovedRayToFixedImagePlane,
   transformMovedPoint,
@@ -35,6 +36,11 @@ describe("lensMovement", () => {
   it("detects identity movement", () => {
     expect(isIdentityLensMovement({ shiftMm: 0, tiltDeg: 0 })).toBe(true);
     expect(isIdentityLensMovement({ shiftMm: 0.01, tiltDeg: 0 })).toBe(false);
+  });
+
+  it("distinguishes enabled axes from an explicitly unsupported axis", () => {
+    expect(isMovementAxisEnabled([-11, 11])).toBe(true);
+    expect(isMovementAxisEnabled([0, 0])).toBe(false);
   });
 
   it("transforms points and slopes around the fixed image plane", () => {

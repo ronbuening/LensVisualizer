@@ -251,6 +251,12 @@ describe("computeMovementPair", () => {
     },
   } as unknown as RuntimeLens;
   const ordinary = { perspectiveControl: null } as unknown as RuntimeLens;
+  const shiftOnly = {
+    perspectiveControl: {
+      shiftRangeMm: [-11, 11],
+      tiltRangeDeg: [0, 0],
+    },
+  } as unknown as RuntimeLens;
 
   it("hides movement controls for two non-PC lenses", () => {
     const r = computeMovementPair(5, 5, ordinary, ordinary);
@@ -276,5 +282,14 @@ describe("computeMovementPair", () => {
     expect(r.tiltB).toBe(8);
     expect(r.shiftStepMm).toBe(0.1);
     expect(r.tiltStepDeg).toBe(0.1);
+  });
+
+  it("clamps unsupported tilt to zero for a shift-only lens", () => {
+    const r = computeMovementPair(8, 5, shiftOnly, ordinary);
+    expect(r.showMovement).toBe(true);
+    expect(r.shiftA).toBe(8);
+    expect(r.tiltA).toBe(0);
+    expect(r.shiftRangeMm).toEqual([-11, 11]);
+    expect(r.tiltRangeDeg).toEqual([0, 0]);
   });
 });
