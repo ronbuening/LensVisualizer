@@ -1,12 +1,12 @@
 ## Patent Reference and Design Identification
 
-- **Patent:** US 4,452,513 A
-- **Filed:** June 11, 1982
-- **Priority:** June 19, 1981 (Japan 56-93728)
-- **Granted:** June 5, 1984
-- **Inventor:** Yoshinari Hamanishi
-- **Assignee:** Nippon Kogaku K.K.
-- **Title:** *Zoom Lens Capable of Close Range Photography and Method of Focusing the Same to a Short Distance*
+**Patent:** US 4,452,513 A
+**Filed:** June 11, 1982
+**Priority:** June 19, 1981 (Japan 56-93728)
+**Granted:** June 5, 1984
+**Inventor:** Yoshinari Hamanishi
+**Assignee:** Nippon Kogaku K.K.
+**Title:** *Zoom Lens Capable of Close Range Photography and Method of Focusing the Same to a Short Distance*
 **Embodiment analyzed:** Example 3 / Third Embodiment
 
 The data model represents the project-selected correlation between the NIKON ZOOM-NIKKOR ED 200-400mm f/4 and
@@ -122,7 +122,7 @@ from which an apochromatic or anomalous-dispersion claim could be made.
 **L2a:** nd = 1.78797, νd = 47.5. Glass: 788475 — lanthanum-flint class (vendor unresolved). Standalone
 f = -130.363 mm.
 
-**L2b:** nd = 1.75520, νd = 27.6. Glass: 755276 — SF4 class (vendor unresolved). Standalone f = +83.901 mm.
+**L2b:** nd = 1.75520, νd = 27.6. Glass: 755276 — SF4 catalog equivalent (production supplier unspecified). Standalone f = +83.901 mm.
 
 **L2c:** nd = 1.51680, νd = 64.1. Glass: 517641 — BK7 class (vendor unresolved). Standalone f = -101.464 mm.
 
@@ -213,10 +213,10 @@ supplier-neutral spectral equivalent, not as a historical production-glass attri
 
 ### L45 — Rear cemented component
 
-**L45a:** nd = 1.73350, νd = 51.1. Glass: 734511 — lanthanum-crown class (vendor unresolved). Standalone
+**L45a:** nd = 1.73350, νd = 51.1. Glass: 734511 — TAC4 catalog equivalent (production supplier unspecified). Standalone
 f = -173.307 mm.
 
-**L45b:** nd = 1.58144, νd = 40.8. Glass: 581408 — light-flint class (vendor unresolved). Standalone
+**L45b:** nd = 1.58144, νd = 40.8. Glass: 581408 — PBL25 catalog equivalent (production supplier unspecified). Standalone
 f = +54.900 mm.
 
 Although L45a is negative as a standalone element, the much stronger positive L45b makes the cemented pair positive with
@@ -240,12 +240,12 @@ coordinate guard, without treating a modern catalog neighbor as proof of the his
 | 757317 — E-LAF11 catalog equivalent | 1.75692 | 31.7 | L11a, L3b | High-index, higher-dispersion partner; production supplier unspecified |
 | 498823 — J-FKH1 catalog equivalent | 1.49782 | 82.3 | L11b, L12, L3a, L41 | Very-low-dispersion positive class; production supplier unspecified |
 | 788475 — lanthanum-flint class | 1.78797 | 47.5 | L2a, L42 | High-index medium-dispersion negative glass class |
-| 755276 — SF4 class | 1.75520 | 27.6 | L2b | High-dispersion positive middle element of the G2 triplet |
+| 755276 — SF4 catalog equivalent | 1.75520 | 27.6 | L2b | High-dispersion positive middle element of the G2 triplet; production supplier unspecified |
 | 517641 — BK7 class | 1.51680 | 64.1 | L2c, L43 | Crown-class coordinate pair used in G2 and G4 |
 | 802447 — M-TAF31 catalog equivalent | 1.80218 | 44.7 | L22 | High-index negative singlet; production supplier unspecified |
 | 773494 — M-TAF1 catalog equivalent | 1.77279 | 49.4 | L44 | High-index rear negative element; production supplier unspecified |
-| 734511 — lanthanum-crown class | 1.73350 | 51.1 | L45a | Negative member of final cemented pair despite crown-class dispersion |
-| 581408 — light-flint class | 1.58144 | 40.8 | L45b | Strong positive rear partner in L45 |
+| 734511 — TAC4 catalog equivalent | 1.73350 | 51.1 | L45a | Negative member of final cemented pair; production supplier unspecified |
+| 581408 — PBL25 catalog equivalent | 1.58144 | 40.8 | L45b | Strong positive rear partner in L45; production supplier unspecified |
 
 The chromatic architecture is most explicit in G2. The patent deliberately combines the 47.5, 27.6, and 64.1 Abbe
 numbers across the two cemented interfaces of L21 and states that the dispersion and index differences are used to

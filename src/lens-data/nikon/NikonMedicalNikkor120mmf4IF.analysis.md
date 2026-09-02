@@ -1,13 +1,13 @@
 ## Patent Reference and Design Identification
 
-- **Patent:** US 4,437,734 A
-- **Application Number:** US06/294,524
-- **Priority:** August 27, 1980
-- **Filed:** August 20, 1981
-- **Granted:** March 20, 1984
-- **Inventor:** Yutaka Iizuka
-- **Assignee:** Nippon Kogaku K.K.
-- **Title:** *Lenses capable of close-up photography*
+**Patent:** US 4,437,734 A
+**Application Number:** US06/294,524
+**Priority:** August 27, 1980
+**Filed:** August 20, 1981
+**Granted:** March 20, 1984
+**Inventor:** Yutaka Iizuka
+**Assignee:** Nippon Kogaku K.K.
+**Title:** *Lenses capable of close-up photography*
 **Embodiment analyzed:** Example 1
 
 The prescription is the unscaled Example 1 design from US 4,437,734 A. The data file retains the patent's 121.168 mm design focal length separately from the marketed 120 mm designation and uses the patent's stated f/4 design aperture. The production correlation is fixed to the Nikon Medical-Nikkor 120mm f/4 IF, but it should be understood as a source-supported correlation rather than a Nikon statement that “Example 1” is the production prescription. [1, Example 1; claim 7]
@@ -58,9 +58,9 @@ The patent devotes explicit shape conditions to the two positive components of G
 
 ### D2 — L4 + L5, Moving Negative Focus Group G2
 
-**L4:** nd = 1.78470, νd = 26.1. Glass: 785261 — dense-flint class (vendor unresolved). f = +63.123150 mm.
+**L4:** nd = 1.78470, νd = 26.1. Glass: 785261 — SF56A catalog equivalent (production supplier unspecified). f = +63.123150 mm.
 
-**L5:** nd = 1.69680, νd = 55.6. Glass: 697556 — lanthanum-crown class (vendor unresolved). f = -28.958976 mm.
+**L5:** nd = 1.69680, νd = 55.6. Glass: 697556 — K-LaK14 catalog equivalent (production supplier unspecified). f = -28.958976 mm.
 
 L4 is individually positive and L5 strongly negative, but the cemented pair is net negative: D2 has a computed focal length of -52.500126 mm. Because D2 is the entire second functional group, its cemented-component power and G2 group power are the same.
 
@@ -70,7 +70,7 @@ The patent prefers a cemented negative second group and constrains its external 
 
 **L6:** nd = 1.71300, νd = 53.9. Glass: 713539 — lanthanum-crown class (vendor unresolved). f = +40.290880 mm.
 
-**L7:** nd = 1.72342, νd = 38.0. Glass: 723380 — barium dense-flint/BASF class (vendor unresolved). f = -42.149938 mm.
+**L7:** nd = 1.72342, νd = 38.0. Glass: 723380 — S-BAH28 catalog equivalent (production supplier unspecified). f = -42.149938 mm.
 
 Although the standalone powers are of opposite sign and similar magnitude, the cemented pair is net positive, with a computed focal length of +136.825725 mm. The patent describes the preferred first component of G3 as a cemented positive/negative meniscus pair with its convex side toward the object. [1, preferred third-group structure]
 
@@ -78,7 +78,7 @@ D3 begins the fixed rear functional group immediately behind the aperture stop. 
 
 ### L8 — Negative Meniscus in G3
 
-**L8:** nd = 1.78470, νd = 26.1. Glass: 785261 — dense-flint class (vendor unresolved). f = -103.109652 mm.
+**L8:** nd = 1.78470, νd = 26.1. Glass: 785261 — SF56A catalog equivalent (production supplier unspecified). f = -103.109652 mm.
 
 L8 is the second meniscus component of the patent's preferred G3 structure. It is a weak negative element compared with the strongly powered surfaces around it. The patent specifies this component as a negative meniscus with its convex side toward the image, placing it between the cemented front component and the final positive element. [1, preferred third-group structure]
 
@@ -92,7 +92,7 @@ The combination D3 + L8 + L9 yields the full computed G3 focal length of +105.17
 
 ## Glass Identification and Selection
 
-The patent publishes d-line `nd` and `νd` only. It does not name glass manufacturers and does not publish `nC`, `nF`, `ng`, `PgF`, or `dPgF`. [1, Example 1; claim 7] The data file therefore uses neutral six-digit/class annotations rather than assigning speculative vendor identities.
+The patent publishes d-line `nd` and `νd` only. It does not name glass manufacturers and does not publish `nC`, `nF`, `ng`, `PgF`, or `dPgF`. [1, Example 1; claim 7] The data file therefore preserves neutral six-digit coordinates and names catalog curves only for unambiguous compatible matches, without assigning production suppliers.
 
 Current catalogs also show why a vendor assignment would be unsafe: SUMITA K-LaK8 reproduces `nd = 1.71300`, `νd = 53.9` exactly, while OHARA S-LAL8 carries the same 713539 coordinate code at `nd = 1.71300`, `νd = 53.87`. These coordinate matches establish equivalence candidates, not the historical supplier. [4; 5]
 
@@ -100,9 +100,9 @@ Current catalogs also show why a vendor assignment would be unsafe: SUMITA K-LaK
 | --- | ---: | ---: | --- | --- |
 | 805255 — dense-flint class (vendor unresolved) | 1.80518 | 25.5 | L1 | High-index, low-Abbe member of D1 |
 | 713539 — lanthanum-crown class (vendor unresolved) | 1.71300 | 53.9 | L2, L3, L6 | Moderate-dispersion positive glass used repeatedly in G1 and G3 |
-| 785261 — dense-flint class (vendor unresolved) | 1.78470 | 26.1 | L4, L8 | High-index, low-Abbe glass used in G2 and G3 |
-| 697556 — lanthanum-crown class (vendor unresolved) | 1.69680 | 55.6 | L5 | Lower-dispersion partner in the moving cemented negative group |
-| 723380 — barium dense-flint/BASF class (vendor unresolved) | 1.72342 | 38.0 | L7 | Intermediate-dispersion negative member of D3 |
+| 785261 — SF56A catalog equivalent | 1.78470 | 26.1 | L4, L8 | High-index, low-Abbe glass used in G2 and G3; production supplier unspecified |
+| 697556 — K-LaK14 catalog equivalent | 1.69680 | 55.6 | L5 | Lower-dispersion partner in the moving cemented negative group; production supplier unspecified |
+| 723380 — S-BAH28 catalog equivalent | 1.72342 | 38.0 | L7 | Intermediate-dispersion negative member of D3; production supplier unspecified |
 | N-SK10 catalog equivalent (production supplier unspecified) | 1.62280 | 56.7 | L9 | Final positive crown-family element with coefficient-backed spectral modeling |
 
 All nine physical-glass elements now resolve to coordinate-compatible catalog curves while retaining the patent's authored indices. The glass palette clearly uses dispersion contrast within all three cemented components, but the available source data support only conventional achromatizing interpretations. No APO or anomalous-partial-dispersion claim is warranted from `nd`/`νd` alone.
@@ -143,15 +143,16 @@ For condition (4), `βmin` is the first-group lateral magnification in the paten
 
 ## Verification Summary
 
-The exact US 4,437,734 patent PDF was not present in the local `patents/` evidence set during the 2026-09-02 audit. The
-authored semi-diameters were therefore retained after clean surface-domain and image-circle audits rather than adjusted
-against a substituted web copy.
+The exact US 4,437,734 patent PDF was inspected at high resolution on PDF page 3, Fig. 3. Comparing optical rims rather
+than dimension leaders and annotations supports enlarging D3 (surfaces 9-11) to 18.0 mm and setting L8 (surfaces 12-13)
+to 14.2 mm. The moving G2 doublet remains at its geometry-safe ceiling: larger figure-derived candidates overlap the
+adjacent air-gap geometry even though the patent drawing makes that component appear broader.
 
 Independent reduced-angle tracing of the final TypeScript arrays gives an infinity EFL of 121.167614 mm and BFD of 58.798853 mm, matching the patent's 121.168 mm and 58.798 mm values within source rounding. An independently assembled ABCD matrix and two sequential basis-ray traces agree to stored precision.
 
 Surface-by-surface Petzval summation using `φ/(n·n′)` gives +0.000759599521 mm⁻¹, corresponding to a reciprocal radius of approximately 1316.48 mm. This is a computed paraxial quantity, not a patent-published specification.
 
-The patent does not publish clear semi-diameters. Every surface `sd` in the data file is therefore a modeling inference constrained by the optical section, the 43.28 mm image circle, ray containment, and current LensVisualizer geometry rules. The final geometry has positive edge thickness throughout; the minimum computed edge thickness is 1.050531 mm. The largest actual rim-slope angle is 60.31935°, and the tightest shared-band air-gap intrusion ratio is 0.897125 against the current 0.90 limit. Full-image-circle chief rays remain within the authored apertures at all three published focus states.
+The patent does not publish clear semi-diameters. Every surface `sd` in the data file is therefore a modeling inference constrained by the optical section, the 43.28 mm image circle, ray containment, and current LensVisualizer geometry rules. The revised geometry passes positive-edge-thickness, rim-slope, shared-gap, surface-domain, and image-circle checks. Full-image-circle chief rays remain within the authored apertures at all three published focus states.
 
 No uniform scaling has been applied. No sensor cover, filter, inactive dummy plane, flare-cutter plane, or mechanical part has been inserted. The removable 2× close-up attachment is intentionally excluded because it is not part of the Example 1 base prescription. No aspheric coefficients or unpublished spectral fields have been added.
 

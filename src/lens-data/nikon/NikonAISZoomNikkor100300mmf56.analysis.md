@@ -1,13 +1,13 @@
 ## Patent Reference and Design Identification
 
-- **Patent:** US 4,641,928 A
-- **Application Number:** US 593,924
-- **Priority:** March 30, 1983 (Japan 58-54913)
-- **Filed:** March 27, 1984
-- **Granted:** February 10, 1987
-- **Inventor:** Yoshinari Hamanishi
-- **Assignee:** Nippon Kogaku K.K.
-- **Title:** *Four-Group Telephoto Zoom Lens*
+**Patent:** US 4,641,928 A
+**Application Number:** US 593,924
+**Priority:** March 30, 1983 (Japan 58-54913)
+**Filed:** March 27, 1984
+**Granted:** February 10, 1987
+**Inventor:** Yoshinari Hamanishi
+**Assignee:** Nippon Kogaku K.K.
+**Title:** *Four-Group Telephoto Zoom Lens*
 **Embodiment analyzed:** Example 2
 
 The prescription modeled here is the second numerical embodiment of US 4,641,928 A. The patent describes a four-group zoom in which a positive first group G1 provides focusing, a negative second group G2 acts as the variator, a positive third group G3 compensates image-plane displacement, and a positive fourth group G4 acts as the relay system. Example 2 is the f/5.6 embodiment shown in Fig. 2A and repeated numerically in Claim 12. [1, Abstract; cols. 1–6; Fig. 2A; Claim 12]
@@ -44,7 +44,7 @@ The patent likewise publishes no clear semi-diameters. The authored apertures ar
 
 **L11a:** nd = 1.71736, νd = 29.48. Glass: 717295 — flint class (vendor unresolved). Standalone f = −197.811316 mm.
 
-**L11b:** nd = 1.48749, νd = 70.24. Glass: 487702 — crown class (vendor unresolved). Standalone f = +140.761830 mm.
+**L11b:** nd = 1.48749, νd = 70.24. Glass: 487702 — S-FSL5 catalog equivalent (production supplier unspecified). Standalone f = +140.761830 mm.
 
 L11a is a negative meniscus and L11b is a biconvex positive element. Their cemented combination is nevertheless positive, with a computed net focal length of +483.224613 mm. That distinction matters: neither standalone element power describes the behavior of the cemented component.
 
@@ -52,7 +52,7 @@ The patent specifically uses a negative-plus-positive cemented component at the 
 
 ### L12 — Positive Meniscus in G1
 
-**nd = 1.48749, νd = 70.24. Glass: 487702 — crown class (vendor unresolved). Standalone f = +176.748356 mm.**
+**nd = 1.48749, νd = 70.24. Glass: 487702 — S-FSL5 catalog equivalent (production supplier unspecified). Standalone f = +176.748356 mm.**
 
 L12 is the rear positive component of the focusing group. Together with the cemented L11 component it produces a computed G1 focal length of +129.910300 mm. The patent's supplemental conditions constrain L12 relative to the complete G1 so that focusing does not drive spherical aberration and astigmatism excessively at the ends of the zoom range. [1, col. 3]
 
@@ -70,7 +70,7 @@ The patent makes this cemented surface part of the variator's aberration-balanci
 
 ### L22 — Second Cemented Negative Variator Component
 
-**L22a:** nd = 1.71300, νd = 53.97. Glass: 713540 — lanthanum-crown class (vendor unresolved). Standalone f = −43.622977 mm.
+**L22a:** nd = 1.71300, νd = 53.97. Glass: 713540 — J-LAK8 catalog equivalent (production supplier unspecified). Standalone f = −43.622977 mm.
 
 **L22b:** nd = 1.80518, νd = 25.36. Glass: 805254 — dense flint class (vendor unresolved). Standalone f = +91.597298 mm.
 
@@ -114,7 +114,7 @@ With L41 and L42, L43 completes the +124.448648 mm G41 subgroup. The comparative
 
 ### L44 — Negative Meniscus Beginning G42
 
-**nd = 1.71300, νd = 53.97. Glass: 713540 — lanthanum-crown class (vendor unresolved). Standalone f = −51.301805 mm.**
+**nd = 1.71300, νd = 53.97. Glass: 713540 — J-LAK8 catalog equivalent (production supplier unspecified). Standalone f = −51.301805 mm.**
 
 L44 begins the rear relay subgroup G42 and is followed, across a 0.2 mm air gap, by L45. The patent describes L44 in the second embodiment as a negative meniscus convex toward the object side. [1, col. 5]
 
@@ -130,15 +130,15 @@ The patent's condition on `f41/f4` formalizes this balance between a relatively 
 
 ## Glass Identification and Selection
 
-The patent publishes refractive index at the d-line and Abbe number for each glass but does not identify manufacturers or catalog glass names. The data therefore stores coordinate classes rather than asserting a Nikon melt or a vendor-specific catalog identity.
+The patent publishes refractive index at the d-line and Abbe number for each glass but does not identify manufacturers or catalog glass names. The data therefore preserves those coordinates and names a catalog curve only when the compatible match is unambiguous; no label asserts a Nikon melt or production supplier.
 
 | Data-file glass label | nd | νd | Elements |
 |---|---:|---:|---|
 | 717295 — flint class (vendor unresolved) | 1.71736 | 29.48 | L11a, L3b, L42 |
-| 487702 — crown class (vendor unresolved) | 1.48749 | 70.24 | L11b, L12 |
+| 487702 — S-FSL5 catalog equivalent | 1.48749 | 70.24 | L11b, L12 |
 | 805254 — dense flint class (vendor unresolved) | 1.80518 | 25.36 | L21a, L22b |
 | 717481 — LAF3 catalog equivalent | 1.71700 | 48.12 | L21b |
-| 713540 — lanthanum-crown class (vendor unresolved) | 1.71300 | 53.97 | L22a, L44 |
+| 713540 — J-LAK8 catalog equivalent | 1.71300 | 53.97 | L22a, L44 |
 | 518603 — BALK3 catalog equivalent | 1.51835 | 60.34 | L3a |
 | 501565 — K10 catalog equivalent | 1.50137 | 56.46 | L41 |
 | 517641 — BK7-class crown (vendor unresolved) | 1.51680 | 64.12 | L43 |
@@ -146,7 +146,7 @@ The patent publishes refractive index at the d-line and Abbe number for each gla
 
 The most deliberate glass pairing occurs in G2. Both negative variator components combine glasses of different index and dispersion while reversing the positive/negative element order between L21 and L22. The patent's conditions on `n4 − n5` and `n7 − n6` explicitly use these index differences as part of the zoom-aberration balance. [1, col. 2]
 
-The patent itself supports d-line/Abbe-level glass identification only. Current authoritative catalogs provide coordinate-compatible curves for every row, including LAF3, BALK3, K10, and J-LF7 for the four positions that previously used Abbe-only dispersion. [4–6] These names are modeling equivalents selected within the catalog guard, not claims about Nikon's production melts or suppliers. The file contains no source-published `nC`, `nF`, `ng`, or `dPgF` values, and the prescription does not support an APO or anomalous-partial-dispersion claim.
+The patent itself supports d-line/Abbe-level glass identification only. Current authoritative catalogs provide coordinate-compatible curves for every row, including S-FSL5 and J-LAK8 for the newly explicit unique matches. [4–6] These names are modeling equivalents selected within the catalog guard, not claims about Nikon's production melts or suppliers. The file contains no source-published `nC`, `nF`, `ng`, or `dPgF` values, and the prescription does not support an APO or anomalous-partial-dispersion claim.
 
 ## Focus Mechanism
 
@@ -186,9 +186,9 @@ These values are calculations from the final modeled prescription, not numbers c
 
 ## Verification Summary
 
-The exact US 4,641,928 patent PDF was not present in the local `patents/` evidence set during the 2026-09-02 audit. The
-authored semi-diameters were therefore retained after clean surface-domain and image-circle audits rather than adjusted
-against a substituted web copy.
+The exact US 4,641,928 patent PDF was inspected at high resolution on PDF page 5, Fig. 2A. Comparing optical rims rather
+than brackets, labels, or leader lines supports enlarging L12 to a 30.0 mm semi-diameter and reducing the G3 compensator
+to 13.5 mm. The revised silhouette follows the source more closely while retaining the required ray and geometry margins.
 
 The final data file was retraced independently with reduced-angle sequential rays and an ABCD matrix cross-check. The two methods agree to floating-point precision for both published zoom endpoints.
 
@@ -203,7 +203,7 @@ The final data file was retraced independently with reduced-angle sequential ray
 
 The residuals are consistent with the precision of the printed radii and refractive indices. The final arrays also reproduce the patent's published group/component focal-length invariants within source-aware tolerances.
 
-Because the aperture stop and clear apertures are inferred rather than published, their geometry was checked separately. The smallest modeled element edge thickness is 0.654466 mm, the largest actual spherical rim-slope angle is 38.229424°, and the limiting shared-gap intrusion is 3.866782 mm against 4.050000 mm allowed. The full on-axis marginal fan clears every modeled surface at both zoom endpoints. At the default telephoto off-axis sample, peripheral vignetting begins at the front exterior aperture rather than at a cemented interface.
+Because the aperture stop and clear apertures are inferred rather than published, their geometry was checked separately. The revised apertures pass the surface-domain, positive-edge-thickness, rim-slope, shared-gap, and image-circle checks. The full on-axis marginal fan clears every modeled surface at both zoom endpoints. At the default telephoto off-axis sample, peripheral vignetting begins at the front exterior aperture rather than at a cemented interface.
 
 The stop and semi-diameter results establish a self-consistent visualization model; they do not convert those inferred dimensions into patent facts. No asphere departure, scaling transform, cover-glass correction, or internal close-focus reconstruction is applicable to this data set.
 
