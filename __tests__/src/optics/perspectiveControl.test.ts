@@ -8,6 +8,7 @@ const ENABLED_PC_KEYS = [
   "canon-tse-135mm-f4l",
   "fujifilm-gf-30mm-f56-ts",
   "nikon-pc-nikkor-19mm-f4e-ed",
+  "nikon-pc-nikkor-35mm-f28",
   "nikon-pc-e-nikkor-24-f35d-ed",
   "nikon-pce-micro-nikkor-45f28d",
 ] as const;
@@ -42,6 +43,10 @@ describe("perspectiveControl lens data", () => {
     expect(LENS_CATALOG["nikon-pc-nikkor-19mm-f4e-ed"].perspectiveControl).toMatchObject({
       shiftRangeMm: [-12, 12],
       tiltRangeDeg: [-7.5, 7.5],
+    });
+    expect(LENS_CATALOG["nikon-pc-nikkor-35mm-f28"].perspectiveControl).toMatchObject({
+      shiftRangeMm: [-11, 11],
+      tiltRangeDeg: [0, 0],
     });
     expect(LENS_CATALOG["nikon-pc-e-nikkor-24-f35d-ed"].perspectiveControl).toMatchObject({
       shiftRangeMm: [-11.5, 11.5],

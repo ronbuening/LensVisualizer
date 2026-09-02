@@ -92,6 +92,13 @@ describe("DiagramControls", () => {
     expect(screen.getByText("TILT")).toBeTruthy();
   });
 
+  it("shows only shift for the shift-only PC-Nikkor 35mm", () => {
+    renderControls(buildLens(LENS_CATALOG["nikon-pc-nikkor-35mm-f28"]));
+
+    expect(screen.getByText("SHIFT")).toBeTruthy();
+    expect(screen.queryByText("TILT")).toBeNull();
+  });
+
   it("shows an aberration-control slider when declared by lens data", () => {
     const { callbacks } = renderControls(buildLens(LENS_CATALOG["varisoft-rokkor-85f28"]));
 

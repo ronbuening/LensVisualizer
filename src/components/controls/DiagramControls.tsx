@@ -7,7 +7,7 @@ import { useCallback, useEffect } from "react";
 import { eflAtZoom, formatDist } from "../../optics/optics.js";
 import { fisheyeProjectionFocalLengthAtZoom, isFisheyeProjection } from "../../optics/projection.js";
 import { getGroupMovementAvailability } from "../../optics/groupMovement.js";
-import { perspectiveControlSteps } from "../../optics/lensMovement.js";
+import { isMovementAxisEnabled, perspectiveControlSteps } from "../../optics/lensMovement.js";
 import { snapToZeroStop } from "../../utils/style/sliderStops.js";
 import SliderControl from "./SliderControl.js";
 import useInteractionSignal from "../hooks/useInteractionSignal.js";
@@ -104,6 +104,8 @@ export default function DiagramControls({
 }: DiagramControlsProps) {
   const { interacting, beginInteraction, endInteraction, onChangeActivity } = useInteractionSignal();
   const pcSteps = L.perspectiveControl ? perspectiveControlSteps(L.perspectiveControl) : null;
+  const shiftEnabled = L.perspectiveControl ? isMovementAxisEnabled(L.perspectiveControl.shiftRangeMm) : false;
+  const tiltEnabled = L.perspectiveControl ? isMovementAxisEnabled(L.perspectiveControl.tiltRangeDeg) : false;
   const groupMovementAvailability = getGroupMovementAvailability(L);
 
   useEffect(() => {
@@ -378,7 +380,7 @@ export default function DiagramControls({
         </SliderControl>
       )}
 
-      {showSliders && L.perspectiveControl && pcSteps && (
+      {showSliders && L.perspectiveControl && pcSteps && shiftEnabled && (
         <SliderControl
           t={t}
           compact={compact}
@@ -399,7 +401,7 @@ export default function DiagramControls({
         />
       )}
 
-      {showSliders && L.perspectiveControl && pcSteps && (
+      {showSliders && L.perspectiveControl && pcSteps && tiltEnabled && (
         <SliderControl
           t={t}
           compact={compact}

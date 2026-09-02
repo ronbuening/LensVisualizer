@@ -44,7 +44,13 @@ const LENS_DATA = {
   maker: "Nikon",
   name: "NIKON PC-NIKKOR 35mm f/2.8",
   subtitle: "DE 1 497 540 A1 — Example III — 1968 7-group / 8-element production correlation",
-  specs: ["8 ELEMENTS / 7 GROUPS", "f = 34.8707 mm DESIGN / 35 mm MARKETED", "F/2.8", "2ω = 75° PATENT FIELD"],
+  specs: [
+    "8 ELEMENTS / 7 GROUPS",
+    "f = 34.8707 mm DESIGN / 35 mm MARKETED",
+    "F/2.8",
+    "2ω = 75° PATENT FIELD",
+    "±11 mm SHIFT / NO TILT",
+  ],
 
   focalLengthMarketing: 35,
   focalLengthDesign: 34.87067732544124,
@@ -63,6 +69,15 @@ const LENS_DATA = {
     kind: "rectilinear",
     fullFieldDeg: 75,
     maxTraceFieldDeg: 37.5,
+  },
+
+  // Nikon's PC-NIKKOR history identifies this 1968 8-element generation and explains that
+  // production omitted the trial-model tilt mechanism. The linked Nikon manual records 11 mm
+  // shift travel for the PC 35 mm mechanism: https://imaging.nikon.com/imaging/information/story/0017/
+  perspectiveControl: {
+    shiftRangeMm: [-11, 11],
+    tiltRangeDeg: [0, 0],
+    shiftStepMm: 0.1,
   },
 
   elements: [

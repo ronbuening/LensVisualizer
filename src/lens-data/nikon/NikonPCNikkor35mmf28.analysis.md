@@ -32,7 +32,7 @@ The front L1–L2 section is negative as a combined optical group, with computed
 
 The L4/L5 cemented pair illustrates that distinction particularly clearly. L4 alone is strongly positive and L5 alone is negative, but the cemented pair has a computed net EFL of **+31.3937 mm** in isolation. The pair therefore remains net positive even though its rear member is negative.
 
-The production lens belongs to Nikon's perspective-control line. Nikon's historical account describes PC-NIKKOR as a shift-based 35 mm SLR concept developed in connection with the Nikon F system. No numerical shift range is assigned to the modeled embodiment. The later same-name Nikon instruction manual available for comparison specifies 11 mm shift but also specifies a **7-element / 7-group** construction, so its mechanical limits are not treated as exact parameters of the selected 1968 eight-element optical generation.
+The production lens belongs to Nikon's perspective-control line. Nikon's historical account describes PC-NIKKOR as a shift-based 35 mm SLR concept developed in connection with the Nikon F system and identifies this 8-element / 7-group f/2.8 generation as the May 1968 successor. Nikon also explains that tilt was present on an early trial model but deliberately omitted from the production mechanism. The runtime model therefore exposes **±11 mm shift** and explicitly disables tilt. The travel limit is product-family mechanical metadata documented by Nikon's linked PC 35 mm manual, not a dimension derived from the fixed patent prescription; optical tracing remains the centered-lens calculation transformed by the viewer's perspective-control display layer.
 
 ## Element-by-Element Analysis
 
@@ -119,7 +119,7 @@ The selected patent example publishes only an infinity prescription. It contains
 
 The model records **0.3 m** as closest-focus catalog metadata from a later Nikon instruction manual for a same-name PC-Nikkor 35mm f/2.8. That manual also specifies a 7-element / 7-group optical construction, in direct conflict with the eight-element 1968 generation identified by Nikon's historical account and with the fixed patent embodiment used here. The 0.3 m value is therefore not used to infer group travel, back-focus change, magnification, or any finite-focus prescription for Example III.
 
-The later manual likewise documents shift mechanics, but its 11 mm movement limit is not encoded as a numerical perspective-control range for this data set because the optical revision is different. The centered optical prescription is the only modeled state.
+The later manual documents 11 mm shift travel, which is now encoded as product-family movement metadata so the viewer can demonstrate the PC function. It does not alter the patent prescription or introduce a decentered optical state into the source data. Tilt remains disabled because Nikon states that the production PC-NIKKOR omitted the trial-model tilt mechanism.
 
 ## Conditional Expressions
 

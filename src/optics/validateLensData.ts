@@ -58,8 +58,8 @@ function validateNumberRange(
     errors.push(`"perspectiveControl.${field}" must contain finite numbers`);
     return;
   }
-  if (min > 0 || max < 0 || min >= max) {
-    errors.push(`"perspectiveControl.${field}" must be an ascending range that includes 0`);
+  if (min > 0 || max < 0 || min > max) {
+    errors.push(`"perspectiveControl.${field}" must be an ordered range that includes 0`);
   }
 }
 
@@ -71,6 +71,16 @@ function validatePerspectiveControl(value: unknown, errors: string[]): void {
   const config = value as PerspectiveControlConfig;
   validateNumberRange(config, "shiftRangeMm", errors);
   validateNumberRange(config, "tiltRangeDeg", errors);
+  if (
+    Array.isArray(config.shiftRangeMm) &&
+    config.shiftRangeMm.length === 2 &&
+    Array.isArray(config.tiltRangeDeg) &&
+    config.tiltRangeDeg.length === 2 &&
+    config.shiftRangeMm[0] === config.shiftRangeMm[1] &&
+    config.tiltRangeDeg[0] === config.tiltRangeDeg[1]
+  ) {
+    errors.push(`"perspectiveControl" must enable shift, tilt, or both`);
+  }
   if (
     config.shiftStepMm !== undefined &&
     (typeof config.shiftStepMm !== "number" || !isFinite(config.shiftStepMm) || config.shiftStepMm <= 0)
