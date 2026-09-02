@@ -11,18 +11,18 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **659** lenses scanned
-- **648** visible lenses scanned
-- **436** lenses fully covered by trusted chromatic data
-- **434** visible lenses fully covered by trusted chromatic data
-- **430** lenses fully covered by strict Sellmeier data
-- **428** visible lenses fully covered by strict Sellmeier data
+- **662** lenses scanned
+- **651** visible lenses scanned
+- **439** lenses fully covered by trusted chromatic data
+- **437** visible lenses fully covered by trusted chromatic data
+- **433** lenses fully covered by strict Sellmeier data
+- **431** visible lenses fully covered by strict Sellmeier data
 - **6** lenses fully covered only after measured line-index data
 - **6** visible lenses fully covered only after measured line-index data
-- **7006 / 7546** non-air surfaces use strict catalog Sellmeier data
-- **92.8%** strict Sellmeier surface coverage overall
-- **7021 / 7546** non-air surfaces use trusted chromatic data
-- **93.0%** trusted chromatic coverage overall
+- **7044 / 7584** non-air surfaces use strict catalog Sellmeier data
+- **92.9%** strict Sellmeier surface coverage overall
+- **7059 / 7584** non-air surfaces use trusted chromatic data
+- **93.1%** trusted chromatic coverage overall
 - **37 / 75** native e-line surfaces use name-verified catalog Sellmeier data
 
 ## Native E-Line Catalog Matches
@@ -190,6 +190,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [NIKON AF ZOOM-NIKKOR 28-85mm f/3.5-4.5](../../src/lens-data/nikon/NikonAFZoomNikkor2885mmf3545.data.ts) | 15/15 | 15 | 15/15 |
 | [NIKON AF ZOOM-NIKKOR 35-70mm f/2.8D](../../src/lens-data/nikon/NikonAFZoomNikkor3570mmf28D.data.ts) | 15/15 | 15 | 15/15 |
 | [NIKON ZOOM-NIKKOR AUTO 80-200mm f/4.5](../../src/lens-data/nikon/NikonAutoZoomNikkor80200mmf45.data.ts) | 15/15 | 15 | 15/15 |
+| [NIKON ZOOM-NIKKOR ED 200-400mm f/4](../../src/lens-data/nikon/NikonAISZoomNikkorED200400mmf4.data.ts) | 15/15 | 15 | 15/15 |
 | [OLYMPUS ZUIKO 9-36mm f/2-2.4 (Olympus E-10 / E-20)](../../src/lens-data/olympus/OlympusZuiko936mmf224.data.ts) | 15/15 | 15 | 15/15 |
 | [OLYMPUS ZUIKO AUTO-ZOOM 85-250mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoZoom85250mmf5.data.ts) | 15/15 | 15 | 15/15 |
 | [PANASONIC LEICA DG SUMMILUX 12mm f/1.4 ASPH.](../../src/lens-data/panasonic/PanasonicDGSummilux12mmf14.data.ts) | 15/15 | 15 | 15/15 |
@@ -217,6 +218,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [NIKON AI AF ZOOM-NIKKOR 20-35mm f/2.8D IF](../../src/lens-data/nikon/NikonAFZoomNikkor2035mmf28DIF.data.ts) | 14/14 | 14 | 14/14 |
 | [NIKON NIKKOR Z 14-30mm f/4 S](../../src/lens-data/nikon/NikonNikkorZ1430mmf4S.data.ts) | 14/14 | 14 | 14/14 |
 | [NIKON NIKKOR Z 24-70mm f/4 S](../../src/lens-data/nikon/NikonNikkorZ2470mmf4S.data.ts) | 14/14 | 14 | 14/14 |
+| [NIKON ZOOM-NIKKOR 100-300mm f/5.6](../../src/lens-data/nikon/NikonAISZoomNikkor100300mmf56.data.ts) | 14/14 | 14 | 14/14 |
 | [OLYMPUS M.ZUIKO DIGITAL ED 12-40mm f/2.8 PRO](../../src/lens-data/olympus/OlympusMZuiko1240mmf28PRO.data.ts) | 14/14 | 14 | 14/14 |
 | [OLYMPUS OM-SYSTEM ZUIKO AUTO-ZOOM 65-200mm f/4](../../src/lens-data/olympus/OlympusZuikoAutoZoom65200mmf4.data.ts) | 14/14 | 14 | 14/14 |
 | [PANASONIC LEICA DG NOCTICRON 42.5mm f/1.2 ASPH POWER O.I.S.](../../src/lens-data/panasonic/PanasonicDGNocticron42mmf12.data.ts) | 14/14 | 14 | 14/14 |
@@ -336,6 +338,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [NIKON AF-S DX MICRO-NIKKOR 40mm f/2.8G](../../src/lens-data/nikon/NikonAFSDXMicroNikkor40mmf28G.data.ts) | 9/9 | 9 | 9/9 |
 | [NIKON AI NIKKOR 35mm f/1.4S](../../src/lens-data/nikon/NikonAINikkor35mmf14S.data.ts) | 9/9 | 9 | 9/9 |
 | [NIKON FISHEYE-NIKKOR 6mm f/5.6](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf56.data.ts) | 9/9 | 9 | 9/9 |
+| [NIKON MEDICAL-NIKKOR 120mm f/4 IF](../../src/lens-data/nikon/NikonMedicalNikkor120mmf4IF.data.ts) | 9/9 | 9 | 9/9 |
 | [NIKON NIKKOR-N 5cm f/1.1](../../src/lens-data/nikon/NikonN5cmf11.data.ts) | 9/9 | 9 | 9/9 |
 | [NIKON NIKKOR-N Auto 24mm f/2.8](../../src/lens-data/nikon/NikonNikkorAuto24f28.data.ts) | 9/9 | 9 | 9/9 |
 | [NIKON PC-E MICRO-NIKKOR 45mm f/2.8 D ED](../../src/lens-data/nikon/NikonMicroNikkorPCE45mmf28D.data.ts) | 9/9 | 9 | 9/9 |
