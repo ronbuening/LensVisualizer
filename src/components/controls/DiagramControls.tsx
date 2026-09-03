@@ -10,6 +10,7 @@ import { getGroupMovementAvailability } from "../../optics/groupMovement.js";
 import { isMovementAxisEnabled, perspectiveControlSteps } from "../../optics/lensMovement.js";
 import { snapToZeroStop } from "../../utils/style/sliderStops.js";
 import SliderControl from "./SliderControl.js";
+import SliderResetButton from "./SliderResetButton.js";
 import useInteractionSignal from "../hooks/useInteractionSignal.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
@@ -164,6 +165,16 @@ export default function DiagramControls({
     },
     [onChangeActivity, onTiltChange, pcSteps],
   );
+
+  const handleShiftReset = useCallback(() => {
+    handleShiftChange(0);
+    handlePointerUp();
+  }, [handlePointerUp, handleShiftChange]);
+
+  const handleTiltReset = useCallback(() => {
+    handleTiltChange(0);
+    handlePointerUp();
+  }, [handlePointerUp, handleTiltChange]);
 
   const infinityEFL = L.isZoom ? eflAtZoom(zoomT, L) : L.EFL;
   const projection = L.projection ?? { kind: "rectilinear" };
@@ -398,6 +409,7 @@ export default function DiagramControls({
           minLabel={signed(L.perspectiveControl.shiftRangeMm[0], 1, "mm")}
           maxLabel={signed(L.perspectiveControl.shiftRangeMm[1], 1, "mm")}
           flexBasis="190px"
+          action={<SliderResetButton axisLabel="shift" value={shiftMm} onReset={handleShiftReset} t={t} />}
         />
       )}
 
@@ -419,6 +431,7 @@ export default function DiagramControls({
           minLabel={signed(L.perspectiveControl.tiltRangeDeg[0], 1, "deg")}
           maxLabel={signed(L.perspectiveControl.tiltRangeDeg[1], 1, "deg")}
           flexBasis="190px"
+          action={<SliderResetButton axisLabel="tilt" value={tiltDeg} onReset={handleTiltReset} t={t} />}
         />
       )}
 

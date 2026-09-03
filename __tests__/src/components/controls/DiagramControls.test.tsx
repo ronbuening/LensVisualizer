@@ -17,6 +17,8 @@ function renderControls(
     focusT?: number;
     dynamicEFL?: number;
     showEffectiveFocalLength?: boolean;
+    shiftMm?: number;
+    tiltDeg?: number;
   } = {},
 ) {
   const callbacks = {
@@ -25,6 +27,7 @@ function renderControls(
     onShiftChange: vi.fn(),
     onTiltChange: vi.fn(),
     onOpenGroupMovement: vi.fn(),
+    onSliderPointerUp: vi.fn(),
     onToggleEffectiveFocalLength: vi.fn(),
   };
   return {
@@ -40,8 +43,8 @@ function renderControls(
         onAberrationChange={callbacks.onAberrationChange}
         focusT={options.focusT ?? 0}
         onFocusChange={callbacks.onFocusChange}
-        shiftMm={0}
-        tiltDeg={0}
+        shiftMm={options.shiftMm ?? 0}
+        tiltDeg={options.tiltDeg ?? 0}
         onShiftChange={callbacks.onShiftChange}
         onTiltChange={callbacks.onTiltChange}
         focusExpanded={options.focusExpanded ?? false}
@@ -62,7 +65,7 @@ function renderControls(
         onToggleEffectiveAperture={vi.fn()}
         apertureExpanded={false}
         onApertureExpandedChange={vi.fn()}
-        onSliderPointerUp={vi.fn()}
+        onSliderPointerUp={callbacks.onSliderPointerUp}
         showSliders={true}
         onOpenGroupMovement={callbacks.onOpenGroupMovement}
       />,
@@ -90,6 +93,8 @@ describe("DiagramControls", () => {
 
     expect(screen.getByText("SHIFT")).toBeTruthy();
     expect(screen.getByText("TILT")).toBeTruthy();
+    expect((screen.getByRole("button", { name: "Reset shift to center" }) as HTMLButtonElement).disabled).toBe(true);
+    expect((screen.getByRole("button", { name: "Reset tilt to center" }) as HTMLButtonElement).disabled).toBe(true);
   });
 
   it("shows only shift for the shift-only PC-Nikkor 35mm", () => {
@@ -97,6 +102,23 @@ describe("DiagramControls", () => {
 
     expect(screen.getByText("SHIFT")).toBeTruthy();
     expect(screen.queryByText("TILT")).toBeNull();
+    expect(screen.getByRole("button", { name: "Reset shift to center" })).toBeTruthy();
+    expect(screen.queryByRole("button", { name: "Reset tilt to center" })).toBeNull();
+  });
+
+  it("resets shift and tilt independently", () => {
+    const { callbacks } = renderControls(buildLens(LENS_CATALOG["nikon-pc-nikkor-19mm-f4e-ed"]), {
+      shiftMm: 4,
+      tiltDeg: -3,
+    });
+
+    fireEvent.click(screen.getByRole("button", { name: "Reset shift to center" }));
+    expect(callbacks.onShiftChange).toHaveBeenCalledWith(0);
+    expect(callbacks.onTiltChange).not.toHaveBeenCalled();
+
+    fireEvent.click(screen.getByRole("button", { name: "Reset tilt to center" }));
+    expect(callbacks.onTiltChange).toHaveBeenCalledWith(0);
+    expect(callbacks.onSliderPointerUp).toHaveBeenCalledTimes(2);
   });
 
   it("shows an aberration-control slider when declared by lens data", () => {
