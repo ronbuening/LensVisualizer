@@ -7,6 +7,7 @@
 
 import { GROUP_MOVEMENT_MODES, type GroupMovementMode } from "../types/groupMovement.js";
 import type { RuntimeLens, ResolvedAnnotation, VarRange } from "../types/optics.js";
+import { anchorLayoutToCamera } from "./cameraLayout.js";
 import { doLayout } from "./optics.js";
 
 const MOVEMENT_EPSILON_MM = 1e-6;
@@ -211,11 +212,10 @@ function anchoredSurfacePositions(
 ): AnchoredSurfacePositions {
   const ref = doLayout(0, 0, L);
   const cur = doLayout(focusT, zoomT, L, aberrationT);
-  /* Anchor to the infinity/default image plane so group positions show mechanical motion, not sensor drift. */
-  const dz = ref.imgZ - cur.imgZ;
+  const cameraLayout = anchorLayoutToCamera(ref, cur);
   return {
-    z: cur.z.map((z) => z + dz),
-    imagePlaneZ: ref.imgZ,
+    z: cameraLayout.z,
+    imagePlaneZ: cameraLayout.imgZ,
   };
 }
 

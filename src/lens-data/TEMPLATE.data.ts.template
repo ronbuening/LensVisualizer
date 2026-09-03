@@ -120,6 +120,12 @@ const LENS_DATA = {
   //   tiltRangeDeg: [-8.5, 8.5],
   //   shiftStepMm: 0.1,
   //   tiltStepDeg: 0.1,
+  //   // Camera-fixed fallback at the reference-state rear vertex; not a measured hinge location.
+  //   tiltPivot: {
+  //     frame: "camera",
+  //     basis: "rear-vertex-fallback",
+  //     zOffsetFromImagePlaneMm: -56.5,
+  //   },
   // },
 
   // Optional: declare non-rectilinear projection metadata for fisheyes.

@@ -294,11 +294,17 @@ describe("validateLensData", () => {
     expect(
       validateLensData(
         makeValid({
+          imageFormat: "135-full-frame",
           perspectiveControl: {
             shiftRangeMm: [-11.5, 11.5],
             tiltRangeDeg: [-8.5, 8.5],
             shiftStepMm: 0.1,
             tiltStepDeg: 0.1,
+            tiltPivot: {
+              frame: "camera",
+              basis: "rear-vertex-fallback",
+              zOffsetFromImagePlaneMm: -56.5,
+            },
           },
         }),
       ),
@@ -307,6 +313,7 @@ describe("validateLensData", () => {
     expect(
       validateLensData(
         makeValid({
+          imageFormat: "135-full-frame",
           perspectiveControl: {
             shiftRangeMm: [-11, 11],
             tiltRangeDeg: [0, 0],
@@ -314,6 +321,87 @@ describe("validateLensData", () => {
         }),
       ),
     ).toEqual([]);
+  });
+
+  it("requires a valid camera-frame pivot whenever tilt is enabled", () => {
+    const missing = validateLensData(
+      makeValid({
+        imageFormat: "135-full-frame",
+        perspectiveControl: { shiftRangeMm: [-11, 11], tiltRangeDeg: [-8.5, 8.5] },
+      }),
+    );
+    expect(missing.some((error) => error.includes('"perspectiveControl.tiltPivot"'))).toBe(true);
+
+    const malformed = validateLensData(
+      makeValid({
+        imageFormat: "135-full-frame",
+        perspectiveControl: {
+          shiftRangeMm: [-11, 11],
+          tiltRangeDeg: [-8.5, 8.5],
+          tiltPivot: {
+            frame: "lens",
+            basis: "current-stop",
+            zOffsetFromImagePlaneMm: Number.NaN,
+          },
+        },
+      }),
+    );
+    expect(malformed.some((error) => error.includes("tiltPivot.frame"))).toBe(true);
+    expect(malformed.some((error) => error.includes("tiltPivot.basis"))).toBe(true);
+    expect(malformed.some((error) => error.includes("tiltPivot.zOffsetFromImagePlaneMm"))).toBe(true);
+
+    for (const invalidOffset of [0, 1]) {
+      const nonObjectward = validateLensData(
+        makeValid({
+          imageFormat: "135-full-frame",
+          perspectiveControl: {
+            shiftRangeMm: [-11, 11],
+            tiltRangeDeg: [-8.5, 8.5],
+            tiltPivot: {
+              frame: "camera",
+              basis: "rear-vertex-fallback",
+              zOffsetFromImagePlaneMm: invalidOffset,
+            },
+          },
+        }),
+      );
+      expect(nonObjectward.some((error) => error.includes("must be a finite negative number"))).toBe(true);
+    }
+  });
+
+  it("requires image format, omits tilt pivots for shift-only lenses, and excludes generalized paths", () => {
+    const shiftOnly = {
+      shiftRangeMm: [-11, 11],
+      tiltRangeDeg: [0, 0],
+    };
+    const missingFormat = validateLensData(makeValid({ perspectiveControl: shiftOnly }));
+    expect(missingFormat.some((error) => error.includes('"imageFormat" is required'))).toBe(true);
+
+    const disabledTiltPivot = validateLensData(
+      makeValid({
+        imageFormat: "135-full-frame",
+        perspectiveControl: {
+          ...shiftOnly,
+          tiltPivot: {
+            frame: "camera",
+            basis: "rear-vertex-fallback",
+            zOffsetFromImagePlaneMm: -45,
+          },
+        },
+      }),
+    );
+    expect(disabledTiltPivot.some((error) => error.includes("must be omitted when tilt is disabled"))).toBe(true);
+
+    const generalizedPath = validateLensData(
+      makeValid({
+        imageFormat: "135-full-frame",
+        perspectiveControl: shiftOnly,
+        opticalPath: {},
+      }),
+    );
+    expect(generalizedPath.some((error) => error.includes('cannot be combined with generalized "opticalPath"'))).toBe(
+      true,
+    );
   });
 
   it("catches invalid perspectiveControl movement ranges", () => {

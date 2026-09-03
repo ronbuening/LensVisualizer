@@ -22,12 +22,12 @@ flowchart LR
     n_src_optics_src_optics_prescription["prescription/"]
     n_src_optics_src_optics_state["state/"]
     n_src_optics_src_optics_trace["trace/"]
-    n_src_optics_TypeScript_modules["TypeScript modules (34)"]
+    n_src_optics_TypeScript_modules["TypeScript modules (35)"]
   end
   n_external_src_types["src/types"]
   n_external_src_utils_catalog["src/utils/catalog"]
   n_external_src_utils_featureFlags_ts["src/utils/featureFlags.ts"]
-  n_src_optics_TypeScript_modules --> |23| n_external_src_types
+  n_src_optics_TypeScript_modules --> |24| n_external_src_types
   n_src_optics_TypeScript_modules --> |21| n_src_optics_src_optics_internal
   n_src_optics_TypeScript_modules --> |15| n_src_optics_src_optics_analysis
   n_src_optics_TypeScript_modules --> |8| n_src_optics_src_optics_glassCatalogEntries
@@ -46,9 +46,9 @@ flowchart LR
 
 ## Directory Overview
 
-- Direct source files: 34
+- Direct source files: 35
 - Direct subfolders: 13
-- Main outbound areas: src/types (23), src/optics/internal (21), src/optics/analysis (15), src/optics/compat.ts (11), src/optics/glassCatalogEntries (8), src/optics/optics.ts (8), src/optics/chromatic (7), src/optics/aberration (6), +25 more
+- Main outbound areas: src/types (24), src/optics/internal (21), src/optics/analysis (15), src/optics/compat.ts (11), src/optics/glassCatalogEntries (8), src/optics/optics.ts (8), src/optics/chromatic (7), src/optics/aberration (6), +26 more
 - External consumers: src/benchmarks, src/comparison, src/components/controls, src/components/diagram, src/components/display, src/components/hooks, src/components/layout, src/optics/aberration, +11 more
 
 ## Subfolders
@@ -77,6 +77,7 @@ flowchart LR
 | `analysisJobs.ts` | Analysis Jobs helper module | src/optics/analysis | none | analysisJobs |
 | `asphericComparison.ts` | Aspheric Comparison helper module | src/optics/internal, src/types | src/components/display | DepartureSample, computeAsphericDeparture, computeDepartureProfile, computeBestFitSphereR, peakAbsDeparture, rmsDeparture, nearestSurfaceForClick |
 | `buildLens.ts` | Build Lens module with default export | src/optics/compat.ts, src/optics/runtimeLens.ts | src/benchmarks, src/comparison, src/components/hooks | paraxialTrace, realTraceToStop, default |
+| `cameraLayout.ts` | Camera Layout helper module | src/types | src/optics/groupMovement.ts, src/optics/optics.ts | CameraAnchoredLayout, anchorLayoutToCamera |
 | `cardinalElements.ts` | Cardinal Elements helper module | src/optics/compat.ts | src/components/diagram (3), src/benchmarks, src/components/hooks, src/components/layout | computeCardinalElements, computeCardinalElementsAtState, CardinalDistance, CardinalElements, CardinalPoint |
 | `chiefRayDiagnostics.ts` | Chief Ray Diagnostics helper module | src/optics/compat.ts | none | getChiefRayDiagnostics, resetChiefRayDiagnostics, ChiefRayStatusCounts, ChiefRayStatus |
 | `chromaticRayFanScaling.ts` | Chromatic Ray Fan Scaling helper module | src/types | src/components/diagram (2) | REFERENCE_LOCA_MM, REFERENCE_FAN_IMAGE_HEIGHT_SPREAD_MM, ChromaticBarResult, computeChromaticBarOffsets, computeLocaBarOffsets |
@@ -91,11 +92,11 @@ flowchart LR
 | `glassCatalogAliases.ts` | Glass Catalog Aliases helper module | none | src/optics/glassCatalog.ts | GlassAliasKind, GlassAliasRecord, ALIAS_RECORDS, ALIASES |
 | `glassCatalogData.ts` | Glass Catalog Data helper module | src/optics/glassCatalogEntries (8), src/optics/glassCatalogTypes.ts (2) | src/optics/glassCatalog.ts | GlassEntry, DUPLICATE_CODE6_PRECEDENCE, RAW_CATALOG |
 | `glassCatalogTypes.ts` | Glass Catalog Types helper module | none | src/optics/glassCatalogEntries (8), src/optics/glassCatalog.ts, src/optics/glassCatalogData.ts | GlassEntry |
-| `groupMovement.ts` | Group Movement helper module | src/types (2), src/optics/optics.ts | src/comparison, src/components/controls, src/components/display, src/optics/analysis | LensMovementGroup, GroupMovementPoint, GroupMovementSeries, GroupMovementAvailability, GroupMovementProfile, getGroupMovementAvailability, isGroupMovementModeAvailable, firstAvailableGroupMovementMode, +2 more |
+| `groupMovement.ts` | Group Movement helper module | src/types (2), src/optics/cameraLayout.ts, src/optics/optics.ts | src/comparison, src/components/controls, src/components/display, src/optics/analysis | LensMovementGroup, GroupMovementPoint, GroupMovementSeries, GroupMovementAvailability, GroupMovementProfile, getGroupMovementAvailability, isGroupMovementModeAvailable, firstAvailableGroupMovementMode, +2 more |
 | `index.ts` | Barrel/registry module | src/optics/compat.ts, src/optics/types.ts | none | re-export * |
 | `layout.ts` | Layout helper module | src/optics/internal (3), src/types | src/optics/aberration (4), src/optics/analysis (2), src/optics/first-order (2), src/optics/chromatic, src/optics/optics.ts, +3 more | SVG_PATH_SUBDIVISIONS, FOCUS_INFINITY_THRESHOLD, renderSag, sagSlope, gapTrimHeight, slopeTrimHeight, thick, doLayout, +13 more |
 | `lensMovement.ts` | Lens Movement helper module | src/types | src/components/hooks (5), src/comparison (2), src/components/controls, src/components/diagram, src/components/layout, +1 more | LensMovementState, ResolvedLensMovement, LensMovementTransform, MOVEMENT_SHIFT_ENVELOPE_MM, MOVEMENT_TILT_ENVELOPE_DEG, isMovementAxisEnabled, ZERO_LENS_MOVEMENT, perspectiveControlSteps, +7 more |
-| `optics.ts` | Optics helper module | src/optics/compat.ts (4), src/optics/internal, src/optics/layout.ts, src/optics/opticsFormat.ts, src/optics/rayTrace.ts, +1 more | src/components/display (11), src/optics/analysis (8), src/components/hooks (6), src/comparison (3), src/components/diagram (3), +8 more | FLAT_R_THRESHOLD, conicPolySag, sag, sagSlopeRaw, FOCUS_INFINITY_THRESHOLD, SVG_PATH_SUBDIVISIONS, bAtZoom, epZRelStopAtZoom, +70 more |
+| `optics.ts` | Optics helper module | src/optics/compat.ts (4), src/optics/cameraLayout.ts, src/optics/internal, src/optics/layout.ts, src/optics/opticsFormat.ts, +2 more | src/components/display (11), src/optics/analysis (8), src/components/hooks (6), src/comparison (3), src/components/diagram (3), +8 more | FLAT_R_THRESHOLD, conicPolySag, sag, sagSlopeRaw, anchorLayoutToCamera, CameraAnchoredLayout, FOCUS_INFINITY_THRESHOLD, SVG_PATH_SUBDIVISIONS, +72 more |
 | `opticsFormat.ts` | Optics Format helper module | src/optics/layout.ts, src/types | src/optics/optics.ts | formatDist, formatPetzvalRadius |
 | `projection.ts` | Projection helper module | src/optics/compat.ts | src/components/controls (2), src/components/hooks, src/components/layout, src/optics/distortionAnalysis.ts, src/optics/pupilAberration.ts, +1 more | ABSOLUTE_HALF_FIELD_CEILING, MAX_FIELD_LAUNCH_DEG, TRACING_SAFETY_FACTOR, boundingSphereLaunchVector, distortionProjectionReferenceForLens, fisheyeProjectionFocalLengthAtZoom, fisheyeProjectionMaxTraceFieldAtZoom, isFisheyeProjection, +16 more |
 | `pupilAberration.ts` | Pupil Aberration helper module | src/optics/internal (3), src/optics/optics.ts (2), src/optics/layout.ts, src/optics/projection.ts, src/types | src/components/display, src/optics/analysis | PupilAberrationSample, PupilAberrationProfile, ExitPupilAberrationSample, ExitPupilAberrationProfile, PUPIL_ABERRATION_SAMPLE_COUNT, computePupilAberrationProfile, computeExitPupilAberrationProfile, BothPupilAberrationProfiles, +1 more |

@@ -521,10 +521,17 @@ perspectiveControl: {
   tiltRangeDeg: [-8.5, 8.5],    // [min, max] lens tilt in degrees; must include 0
   shiftStepMm: 0.1,             // optional; defaults to 0.1 mm
   tiltStepDeg: 0.1,             // optional; defaults to 0.1 deg
+  tiltPivot: {                   // required whenever tiltRangeDeg has non-zero travel
+    frame: "camera",
+    basis: "rear-vertex-fallback",
+    zOffsetFromImagePlaneMm: -56.5,
+  },
 }
 ```
 
 Validation requires both ranges to be finite ordered `[min, max]` tuples that include `0`. Use `[0, 0]` to disable an unsupported axis on a shift-only or tilt-only lens; at least one axis must have non-zero travel. Include a short source comment in the lens file for the official movement limits.
+
+For tilt-enabled lenses, `tiltPivot` defines a camera-fixed axial rotation reference. `zOffsetFromImagePlaneMm` is a signed millimeter offset from the canonical reference-state image plane (`focusT = 0`, `zoomT = 0`, `aberrationT = 0`), with negative values toward the object. Use `basis: "rear-vertex-fallback"` when the reference-state rear vertex is the fallback because the actual mechanical tilt axis is unpublished; this is a rendering reference, not a claim about the manufactured hinge. Use `basis: "mechanical-axis"` only for a directly sourced physical pivot. Shift-only lenses may omit `tiltPivot`.
 
 Current enabled production lenses and source references:
 - Nikon PC-NIKKOR 35mm f/2.8: shift +/-11 mm, no production tilt, from Nikon Imaging's official PC-NIKKOR history: <https://imaging.nikon.com/imaging/information/story/0017/>

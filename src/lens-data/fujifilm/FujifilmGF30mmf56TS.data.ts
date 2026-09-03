@@ -61,6 +61,12 @@ const LENS_DATA = {
     tiltRangeDeg: [-8.5, 8.5],
     shiftStepMm: 0.1,
     tiltStepDeg: 0.1,
+    // Reference-state rear vertex fallback; not a measured mechanical tilt hinge.
+    tiltPivot: {
+      frame: "camera",
+      basis: "rear-vertex-fallback",
+      zOffsetFromImagePlaneMm: -51.225604641350216,
+    },
   },
 
   elements: [

@@ -200,12 +200,27 @@ export interface ResolvedAnnotation {
   toSurface: number;
 }
 
+/** Camera-fixed axial reference used to make perspective-control tilt geometry deterministic. */
+export interface TiltPivot {
+  /** Pivot coordinates are expressed in the camera frame, whose image plane remains fixed. */
+  frame: "camera";
+  /**
+   * `rear-vertex-fallback` is a geometry fallback at the canonical reference state, not a claim
+   * about the manufactured hinge. Use `mechanical-axis` only with source-backed data.
+   */
+  basis: "mechanical-axis" | "rear-vertex-fallback";
+  /** Signed axial offset from the fixed image plane in mm; negative values lie objectward. */
+  zOffsetFromImagePlaneMm: number;
+}
+
 export interface PerspectiveControlConfig {
   /** A [0, 0] range disables that movement axis for shift-only or tilt-only lenses. */
   shiftRangeMm: [number, number];
   tiltRangeDeg: [number, number];
   shiftStepMm?: number;
   tiltStepDeg?: number;
+  /** Required by validation whenever tilt has non-zero travel; omitted for shift-only lenses. */
+  tiltPivot?: TiltPivot;
 }
 
 export interface RectilinearProjectionConfig {

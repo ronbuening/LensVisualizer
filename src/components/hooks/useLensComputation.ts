@@ -14,6 +14,7 @@ import { computeCardinalElementsAtState, type CardinalElements } from "../../opt
 import { computeElementShapes, createCoordinateTransforms } from "../../optics/diagramGeometry.js";
 import { clampLensMovement, createLensMovementTransform } from "../../optics/lensMovement.js";
 import {
+  anchorLayoutToCamera,
   computeAnalysisFieldGeometryAtState,
   doLayout,
   effectiveFNumber,
@@ -108,19 +109,19 @@ export default function useLensComputation({
    * the current layout so the image plane stays at a fixed SVG position
    * regardless of focus or zoom changes. */
   const ref = useMemo(() => (L ? doLayout(0, 0, L) : null), [L]);
-  const IMG_MM = ref ? ref.imgZ : 0;
   const cur = useMemo(() => (L ? doLayout(focusT, zoomT, L, aberrationT) : null), [focusT, zoomT, aberrationT, L]);
-  const dz = ref && cur ? IMG_MM - cur.imgZ : 0;
+  const cameraLayout = useMemo(() => (ref && cur ? anchorLayoutToCamera(ref, cur) : null), [ref, cur]);
+  const IMG_MM = cameraLayout ? cameraLayout.imgZ : 0;
   const zPosRef = useRef<number[]>([]);
   const zPos = useMemo((): number[] => {
-    const next = cur ? cur.z.map((v) => v + dz) : [];
+    const next = cameraLayout?.z ?? [];
     const prev = zPosRef.current;
     if (prev.length === next.length && next.every((v, i) => Math.abs(v - prev[i]) < 1e-9)) {
       return prev;
     }
     zPosRef.current = next;
     return next;
-  }, [cur, dz]);
+  }, [cameraLayout]);
 
   const movement = useMemo(() => clampLensMovement(L, { shiftMm, tiltDeg }), [L, shiftMm, tiltDeg]);
   const movementTransform = useMemo(() => createLensMovementTransform(IMG_MM, movement), [IMG_MM, movement]);

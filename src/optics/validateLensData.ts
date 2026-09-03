@@ -9,7 +9,7 @@
  * rather than throwing on the first problem.
  */
 
-import type { AsphericCoefficients, ImagePlaneData, PerspectiveControlConfig, SurfaceData } from "../types/optics.js";
+import type { AsphericCoefficients, ImagePlaneData, SurfaceData } from "../types/optics.js";
 import { ASPHERIC_COEFFICIENT_SCHEMA } from "../types/asphericSchema.js";
 import { isImageFormatId, isLensMountId } from "../utils/catalog/lensTaxonomy.js";
 import {
@@ -44,7 +44,7 @@ const OPTIONAL_ASPHERIC_COEFFICIENTS = ASPHERIC_COEFFICIENT_SCHEMA.filter((descr
 const KNOWN_ASPHERIC_COEFFICIENTS = new Set<string>(ASPHERIC_COEFFICIENT_SCHEMA.map((descriptor) => descriptor.key));
 
 function validateNumberRange(
-  config: PerspectiveControlConfig,
+  config: Record<string, unknown>,
   field: "shiftRangeMm" | "tiltRangeDeg",
   errors: string[],
 ): void {
@@ -63,14 +63,58 @@ function validateNumberRange(
   }
 }
 
+function isEnabledMovementRange(value: unknown): boolean {
+  return (
+    Array.isArray(value) &&
+    value.length === 2 &&
+    value.every((entry) => typeof entry === "number" && isFinite(entry)) &&
+    value[1] > value[0]
+  );
+}
+
+function validatePerspectiveControlTiltPivot(value: unknown, errors: string[]): void {
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
+    errors.push(`"perspectiveControl.tiltPivot" must be an object when tilt is enabled`);
+    return;
+  }
+
+  const pivot = value as Record<string, unknown>;
+  if (pivot.frame !== "camera") {
+    errors.push(`"perspectiveControl.tiltPivot.frame" must be "camera"`);
+  }
+  if (pivot.basis !== "mechanical-axis" && pivot.basis !== "rear-vertex-fallback") {
+    errors.push(`"perspectiveControl.tiltPivot.basis" must be "mechanical-axis" or "rear-vertex-fallback"`);
+  }
+  if (
+    typeof pivot.zOffsetFromImagePlaneMm !== "number" ||
+    !isFinite(pivot.zOffsetFromImagePlaneMm) ||
+    pivot.zOffsetFromImagePlaneMm >= 0
+  ) {
+    errors.push(`"perspectiveControl.tiltPivot.zOffsetFromImagePlaneMm" must be a finite negative number`);
+  }
+}
+
 function validatePerspectiveControl(value: unknown, errors: string[]): void {
   if (!value || typeof value !== "object" || Array.isArray(value)) {
     errors.push(`"perspectiveControl" must be an object when provided`);
     return;
   }
-  const config = value as PerspectiveControlConfig;
+  const config = value as Record<string, unknown>;
   validateNumberRange(config, "shiftRangeMm", errors);
   validateNumberRange(config, "tiltRangeDeg", errors);
+  if (isEnabledMovementRange(config.tiltRangeDeg)) {
+    validatePerspectiveControlTiltPivot(config.tiltPivot, errors);
+  } else if (config.tiltPivot !== undefined) {
+    validatePerspectiveControlTiltPivot(config.tiltPivot, errors);
+    if (
+      Array.isArray(config.tiltRangeDeg) &&
+      config.tiltRangeDeg.length === 2 &&
+      config.tiltRangeDeg[0] === 0 &&
+      config.tiltRangeDeg[1] === 0
+    ) {
+      errors.push(`"perspectiveControl.tiltPivot" must be omitted when tilt is disabled`);
+    }
+  }
   if (
     Array.isArray(config.shiftRangeMm) &&
     config.shiftRangeMm.length === 2 &&
@@ -671,7 +715,15 @@ export default function validateLensData(data: UntrustedLensData): string[] {
   if (data.visible !== undefined && typeof data.visible !== "boolean")
     errors.push(`"visible" must be a boolean (got ${typeof data.visible})`);
   if (data.opticalConfiguration !== undefined) validateOpticalConfiguration(data.opticalConfiguration, errors);
-  if (data.perspectiveControl !== undefined) validatePerspectiveControl(data.perspectiveControl, errors);
+  if (data.perspectiveControl !== undefined) {
+    validatePerspectiveControl(data.perspectiveControl, errors);
+    if (data.imageFormat === undefined) {
+      errors.push(`"imageFormat" is required when "perspectiveControl" is provided`);
+    }
+    if (data.opticalPath !== undefined) {
+      errors.push(`"perspectiveControl" cannot be combined with generalized "opticalPath" metadata`);
+    }
+  }
   if (data.projection !== undefined) validateProjection(data.projection, errors);
   if (data.lensMounts !== undefined) validateLensMounts(data.lensMounts, errors);
   if (data.imageFormat !== undefined) validateImageFormat(data.imageFormat, errors);
