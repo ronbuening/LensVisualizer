@@ -11,17 +11,17 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **665** lenses scanned
-- **654** visible lenses scanned
-- **442** lenses fully covered by trusted chromatic data
-- **440** visible lenses fully covered by trusted chromatic data
-- **436** lenses fully covered by strict Sellmeier data
-- **434** visible lenses fully covered by strict Sellmeier data
+- **668** lenses scanned
+- **657** visible lenses scanned
+- **445** lenses fully covered by trusted chromatic data
+- **443** visible lenses fully covered by trusted chromatic data
+- **439** lenses fully covered by strict Sellmeier data
+- **437** visible lenses fully covered by strict Sellmeier data
 - **6** lenses fully covered only after measured line-index data
 - **6** visible lenses fully covered only after measured line-index data
-- **7075 / 7615** non-air surfaces use strict catalog Sellmeier data
+- **7111 / 7651** non-air surfaces use strict catalog Sellmeier data
 - **92.9%** strict Sellmeier surface coverage overall
-- **7090 / 7615** non-air surfaces use trusted chromatic data
+- **7126 / 7651** non-air surfaces use trusted chromatic data
 - **93.1%** trusted chromatic coverage overall
 - **37 / 75** native e-line surfaces use name-verified catalog Sellmeier data
 
@@ -190,6 +190,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [NIKON AF ZOOM-NIKKOR 28-85mm f/3.5-4.5](../../src/lens-data/nikon/NikonAFZoomNikkor2885mmf3545.data.ts) | 15/15 | 15 | 15/15 |
 | [NIKON AF ZOOM-NIKKOR 35-70mm f/2.8D](../../src/lens-data/nikon/NikonAFZoomNikkor3570mmf28D.data.ts) | 15/15 | 15 | 15/15 |
 | [NIKON AI ZOOM-NIKKOR ED 50-300mm f/4.5](../../src/lens-data/nikon/NikonAiZoomNikkorED50300mmf45.data.ts) | 15/15 | 15 | 15/15 |
+| [NIKON AI-S ZOOM-NIKKOR 80-200mm f/2.8 ED](../../src/lens-data/nikon/NikonAISZoomNikkor80200mmf28ED.data.ts) | 15/15 | 15 | 15/15 |
 | [NIKON ZOOM-NIKKOR AUTO 80-200mm f/4.5](../../src/lens-data/nikon/NikonAutoZoomNikkor80200mmf45.data.ts) | 15/15 | 15 | 15/15 |
 | [NIKON ZOOM-NIKKOR ED 200-400mm f/4](../../src/lens-data/nikon/NikonAISZoomNikkorED200400mmf4.data.ts) | 15/15 | 15 | 15/15 |
 | [OLYMPUS ZUIKO 9-36mm f/2-2.4 (Olympus E-10 / E-20)](../../src/lens-data/olympus/OlympusZuiko936mmf224.data.ts) | 15/15 | 15 | 15/15 |
@@ -280,6 +281,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [NIKON AI AF-S NIKKOR ED 400mm f/2.8D II IF](../../src/lens-data/nikon/NikonAFSNikkor400mmf28DIFEDII.data.ts) | 11/11 | 11 | 11/11 |
 | [NIKON AI NIKKOR 24mm f/2](../../src/lens-data/nikon/NikonAINikkor24mmf2.data.ts) | 11/11 | 11 | 11/11 |
 | [Nikon AI Zoom-Nikkor 25-50mm f/4](../../src/lens-data/nikon/NikonAIZoomNikkor2550mmf4.data.ts) | 11/11 | 11 | 11/11 |
+| [NIKON NIKKOR 300mm f/2S IF-ED](../../src/lens-data/nikon/NikonAiSNikkor300mmf2IFED.data.ts) | 11/11 | 11 | 11/11 |
 | [NIKON NIKKOR Z 35mm f/1.8 S](../../src/lens-data/nikon/NikonZ35f18S.data.ts) | 11/11 | 11 | 11/11 |
 | [OLYMPUS M.ZUIKO DIGITAL ED 12mm f/2.0](../../src/lens-data/olympus/OlympusMZuiko12mmf2.data.ts) | 11/11 | 11 | 11/11 |
 | [OLYMPUS ZUIKO AUTO-W 18mm f/3.5](../../src/lens-data/olympus/OlympusZuikoAutoW18mmf35.data.ts) | 11/11 | 11 | 11/11 |
@@ -311,6 +313,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [NIKON AF-I NIKKOR 400mm f/2.8D IF-ED](../../src/lens-data/nikon/NikonAFINikkorED400mmf28DIF.data.ts) | 10/10 | 10 | 10/10 |
 | [NIKON AF-S NIKKOR 85mm f/1.4 G](../../src/lens-data/nikon/NikonNikkor85f14G.data.ts) | 10/10 | 10 | 10/10 |
 | [NIKON AI AF-S NIKKOR ED 600mm f/4D II IF](../../src/lens-data/nikon/NikonAFSNikkor600mmf4DIFEDII.data.ts) | 10/10 | 10 | 10/10 |
+| [NIKON AI NIKKOR ED 200mm f/2S IF](../../src/lens-data/nikon/NikonAiNikkor200mmf2IFED.data.ts) | 10/10 | 10 | 10/10 |
 | [Nikon AI-S Zoom-Nikkor 35–70mm f/3.5](../../src/lens-data/nikon/NikonAIZoomNikkor3570mmf35.data.ts) | 10/10 | 10 | 10/10 |
 | [NIKON R-UW AF MICRO-NIKKOR 50mm f/2.8](../../src/lens-data/nikon/NikonRUWMicroNikkor50mmf28.data.ts) | 10/10 | 10 | 10/10 |
 | [OLYMPUS OM J. ZUIKO AUTO-W 24mm f/2](../../src/lens-data/olympus/OlympusZuiko24mmf2J.data.ts) | 10/10 | 10 | 10/10 |

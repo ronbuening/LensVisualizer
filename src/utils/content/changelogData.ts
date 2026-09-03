@@ -29,6 +29,11 @@ export const CHANGELOG: ChangelogEntry[] = [
     summary: "Fixed tilt-shift diagrams and analyses to trace moved lenses against a fixed sensor",
   },
   {
+    date: "2026-09-03",
+    type: "lens",
+    summary: "Added Nikon 200mm f/2, 300mm f/2, and 80-200mm f/2.8 ED designs",
+  },
+  {
     date: "2026-09-02",
     type: "improvement",
     summary: "Optimized and enhanced the universal relationship map",
