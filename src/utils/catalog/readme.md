@@ -83,7 +83,7 @@ flowchart LR
 - Direct source files: 21
 - Direct subfolders: 0
 - Main outbound areas: same folder (40), src/types (11), src/generated (6), src/utils/seo (3), glob:../../lens-data/**/*.analysis.md, glob:../../lens-data/**/*.data.ts, src/comparison, src/lens-data/defaults.ts, +1 more
-- External consumers: src/benchmarks, src/comparison, src/components/content, src/components/controls, src/components/homepage, src/components/hooks, src/components/layout, src/components/relationshipMap, +29 more
+- External consumers: src/benchmarks, src/comparison, src/components/content, src/components/controls, src/components/homepage, src/components/hooks, src/components/layout, src/components/relationshipMap, +30 more
 
 ## Files
 
@@ -101,7 +101,7 @@ flowchart LR
 | `lensMetadata.ts` | Lens Metadata helper module | same folder (2), src/generated (2), src/comparison, src/types, src/utils/seo | src/components/homepage, src/components/layout, src/components/SEOHead.tsx, src/pages/ArticlePage.tsx, src/pages/ArticlesPage.tsx, +20 more | MakerInfo, deriveMaker, allMakerSlugs, makerDisplayName, lensPageTitle, lensPageDescription, lensCanonicalURL, makerCanonicalURL, +17 more |
 | `lensPatentMetadata.ts` | Lens Patent Metadata helper module | src/types | same folder, src/components/controls | LensPatentAttribution, lensPatentAttribution, lensDisplaySubtitle, lensPatentReference |
 | `lensSummaries.ts` | Lens Summaries helper module | src/generated (2), same folder, src/types | same folder (5), src/components/homepage (2), src/pages/lensIndex (2), src/pages/HomePage.tsx, src/pages/LensIndexPage.tsx, +4 more | LensSummary, LENS_SUMMARIES, ALL_SUMMARY_KEYS, SUMMARY_KEYS, DEBUG_SUMMARY_KEYS, isDebugSummaryKey, ALL_LENSES_BY_DATE, RECENT_LENS_KEYS, +1 more |
-| `lensTaxonomy.ts` | Lens Taxonomy helper module | none | src/pages/lensIndex (7), same folder (3), src/types (3), src/components/layout, src/optics/field, +5 more | LENS_MOUNTS, LensMountId, LensMountMetadata, LENS_MOUNT_BY_ID, isLensMountId, IMAGE_FORMATS, ImageFormatId, ImageFormatMetadata, +4 more |
+| `lensTaxonomy.ts` | Lens Taxonomy helper module | none | src/pages/lensIndex (7), same folder (3), src/types (3), src/components/layout, src/optics/field, +6 more | LENS_MOUNTS, LensMountId, LensMountMetadata, LENS_MOUNT_BY_ID, isLensMountId, IMAGE_FORMATS, ImageFormatId, ImageFormatMetadata, +4 more |
 | `makerDetails.ts` | Maker Details helper module | none | src/pages/lensIndex, src/pages/MakerPage.tsx, src/pages/MakersIndexPage.tsx | MakerDetails, MAKER_DETAILS, getMakerDetails |
 | `mountDetails.ts` | Mount Details helper module | same folder | src/pages/MountPage.tsx, src/pages/MountsIndexPage.tsx | MountDetails, MOUNT_DETAILS, getMountDetails |
 | `patentCatalog.ts` | Patent Catalog helper module | same folder (8), src/types | src/pages/PatentsIndexPage.tsx | aggregatePatentRecords, espacenetPatentUrl, isPatentPublicationNumber, patentJurisdiction, PatentJurisdiction, PatentRecord, PatentLens, PatentAssigneeGroup, +6 more |

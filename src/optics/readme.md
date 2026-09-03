@@ -19,6 +19,7 @@ flowchart LR
     n_src_optics_src_optics_internal["internal/"]
     n_src_optics_src_optics_math["math/"]
     n_src_optics_src_optics_mount["mount/"]
+    n_src_optics_src_optics_perspective["perspective/"]
     n_src_optics_src_optics_prescription["prescription/"]
     n_src_optics_src_optics_state["state/"]
     n_src_optics_src_optics_trace["trace/"]
@@ -47,9 +48,9 @@ flowchart LR
 ## Directory Overview
 
 - Direct source files: 35
-- Direct subfolders: 13
+- Direct subfolders: 14
 - Main outbound areas: src/types (24), src/optics/internal (21), src/optics/analysis (15), src/optics/compat.ts (11), src/optics/glassCatalogEntries (8), src/optics/optics.ts (8), src/optics/chromatic (7), src/optics/aberration (6), +26 more
-- External consumers: src/benchmarks, src/comparison, src/components/controls, src/components/diagram, src/components/display, src/components/hooks, src/components/layout, src/optics/aberration, +11 more
+- External consumers: src/benchmarks, src/comparison, src/components/controls, src/components/diagram, src/components/display, src/components/hooks, src/components/layout, src/optics/aberration, +12 more
 
 ## Subfolders
 
@@ -65,6 +66,7 @@ flowchart LR
 | [internal/](internal/readme.md) | private exact surface-tracing implementation details for the optics engine |
 | [math/](math/readme.md) | low-level vector, numerical, paraxial, surface profile, and intersection math |
 | [mount/](mount/readme.md) | pure mount-diagram geometry, SVG document emission, validation, styling, and JSON helpers |
+| [perspective/](perspective/readme.md) | src/optics/perspective source folder |
 | [prescription/](prescription/readme.md) | lens prescription normalization, variable gaps, labels, groups, dispersion, interactions, and aspheric helpers |
 | [state/](state/readme.md) | engine-native prepared optical state and cache helpers |
 | [trace/](trace/readme.md) | exact tracing adapters, path planning, folded diagnostics, stop tracing, and aperture/interactions primitives |
@@ -94,8 +96,8 @@ flowchart LR
 | `glassCatalogTypes.ts` | Glass Catalog Types helper module | none | src/optics/glassCatalogEntries (8), src/optics/glassCatalog.ts, src/optics/glassCatalogData.ts | GlassEntry |
 | `groupMovement.ts` | Group Movement helper module | src/types (2), src/optics/cameraLayout.ts, src/optics/optics.ts | src/comparison, src/components/controls, src/components/display, src/optics/analysis | LensMovementGroup, GroupMovementPoint, GroupMovementSeries, GroupMovementAvailability, GroupMovementProfile, getGroupMovementAvailability, isGroupMovementModeAvailable, firstAvailableGroupMovementMode, +2 more |
 | `index.ts` | Barrel/registry module | src/optics/compat.ts, src/optics/types.ts | none | re-export * |
-| `layout.ts` | Layout helper module | src/optics/internal (3), src/types | src/optics/aberration (4), src/optics/analysis (2), src/optics/first-order (2), src/optics/chromatic, src/optics/optics.ts, +3 more | SVG_PATH_SUBDIVISIONS, FOCUS_INFINITY_THRESHOLD, renderSag, sagSlope, gapTrimHeight, slopeTrimHeight, thick, doLayout, +13 more |
-| `lensMovement.ts` | Lens Movement helper module | src/types | src/components/hooks (5), src/comparison (2), src/components/controls, src/components/diagram, src/components/layout, +1 more | LensMovementState, ResolvedLensMovement, LensMovementTransform, MOVEMENT_SHIFT_ENVELOPE_MM, MOVEMENT_TILT_ENVELOPE_DEG, isMovementAxisEnabled, ZERO_LENS_MOVEMENT, perspectiveControlSteps, +7 more |
+| `layout.ts` | Layout helper module | src/optics/internal (3), src/types | src/optics/aberration (4), src/optics/analysis (2), src/optics/first-order (2), src/optics/chromatic, src/optics/optics.ts, +4 more | SVG_PATH_SUBDIVISIONS, FOCUS_INFINITY_THRESHOLD, renderSag, sagSlope, gapTrimHeight, slopeTrimHeight, thick, doLayout, +13 more |
+| `lensMovement.ts` | Lens Movement helper module | src/types | src/components/hooks (5), src/comparison (2), src/optics/perspective (2), src/components/controls, src/components/diagram, +2 more | LensMovementState, ResolvedLensMovement, LensMovementTransform, MOVEMENT_SHIFT_ENVELOPE_MM, MOVEMENT_TILT_ENVELOPE_DEG, isMovementAxisEnabled, ZERO_LENS_MOVEMENT, perspectiveControlSteps, +7 more |
 | `optics.ts` | Optics helper module | src/optics/compat.ts (4), src/optics/cameraLayout.ts, src/optics/internal, src/optics/layout.ts, src/optics/opticsFormat.ts, +2 more | src/components/display (11), src/optics/analysis (8), src/components/hooks (6), src/comparison (3), src/components/diagram (3), +8 more | FLAT_R_THRESHOLD, conicPolySag, sag, sagSlopeRaw, anchorLayoutToCamera, CameraAnchoredLayout, FOCUS_INFINITY_THRESHOLD, SVG_PATH_SUBDIVISIONS, +72 more |
 | `opticsFormat.ts` | Optics Format helper module | src/optics/layout.ts, src/types | src/optics/optics.ts | formatDist, formatPetzvalRadius |
 | `projection.ts` | Projection helper module | src/optics/compat.ts | src/components/controls (2), src/components/hooks, src/components/layout, src/optics/distortionAnalysis.ts, src/optics/pupilAberration.ts, +1 more | ABSOLUTE_HALF_FIELD_CEILING, MAX_FIELD_LAUNCH_DEG, TRACING_SAFETY_FACTOR, boundingSphereLaunchVector, distortionProjectionReferenceForLens, fisheyeProjectionFocalLengthAtZoom, fisheyeProjectionMaxTraceFieldAtZoom, isFisheyeProjection, +16 more |
@@ -105,6 +107,6 @@ flowchart LR
 | `runtimeLens.ts` | Runtime Lens module with default export | src/optics/internal (5), src/optics/dispersion.ts, src/optics/field, src/optics/math, src/optics/validateLensData.ts, +2 more | src/optics/buildLens.ts, src/optics/compat.ts, src/optics/prescription | default, buildLens, paraxialTrace, realTraceToStop |
 | `spectralLines.ts` | Spectral Lines helper module | none | src/optics/chromatic, src/optics/constants.ts, src/optics/glassCatalog.ts, src/optics/math | LINE_NM |
 | `stopObstruction.ts` | Stop Obstruction helper module | src/types | src/optics/optics.ts, src/optics/raySampling.ts | stopInnerBlockedSemiDiameter |
-| `types.ts` | Shared TypeScript types | src/optics/dispersion.ts, src/optics/glassCatalog.ts, src/types | src/components/display (13), src/optics/trace (12), src/optics/analysis (11), src/optics/math (5), src/optics/diagram (4), +9 more | Vec3, Ray3, Plane3, SurfaceProfile, CompiledSurfaceInteraction, CompiledRadialPhaseTerm, CompiledDiffractivePhase, CompiledSurface, +16 more |
+| `types.ts` | Shared TypeScript types | src/optics/dispersion.ts, src/optics/glassCatalog.ts, src/types | src/components/display (13), src/optics/perspective (12), src/optics/trace (12), src/optics/analysis (11), src/optics/math (6), +10 more | Vec3, Ray3, Plane3, SurfaceProfile, CompiledSurfaceInteraction, CompiledRadialPhaseTerm, CompiledDiffractivePhase, CompiledSurface, +16 more |
 | `validateLensData.ts` | Validate Lens Data module with default export | src/optics/internal (5), src/types (2), src/utils/catalog | src/optics/runtimeLens.ts, src/utils/state | LENS_KEY_PATTERN, default, validateLensData |
 | `vignetteAnalysis.ts` | Vignette Analysis helper module | src/optics/optics.ts (2), src/optics/analysis, src/optics/projection.ts, src/optics/raySampling.ts, src/types | src/components/display, src/optics/analysis | VignettingSample, computeVignettingCurve |
