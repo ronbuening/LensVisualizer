@@ -78,7 +78,7 @@ function PerspectiveDistortionGrid({ analysis, context, t }: PerspectiveDistorti
   const imageFormat = context.state.lens.source.imageFormat;
   if (!isImageFormatId(imageFormat)) return null;
   const format = IMAGE_FORMAT_BY_ID[imageFormat];
-  const width = 420;
+  const width = 320;
   const height = Math.max(150, width * (format.heightMm / format.widthMm));
   const padding = 12;
   const innerWidth = width - 2 * padding;
@@ -102,7 +102,7 @@ function PerspectiveDistortionGrid({ analysis, context, t }: PerspectiveDistorti
         viewBox={`0 0 ${width} ${height}`}
         role="img"
         aria-label="Zero-pose ideal, pose-ideal, and actual distortion grids clipped to the fixed sensor"
-        style={{ width: "100%", height: "auto", display: "block" }}
+        style={{ width: "100%", maxWidth: width, height: "auto", display: "block" }}
       >
         <title>Fixed-sensor perspective distortion grid</title>
         <defs>

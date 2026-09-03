@@ -31,6 +31,19 @@ const EXPECTED_TAB_CONTENT = {
   pupils: ["Perspective pupil analysis — lens and camera frames"],
 } as const satisfies Record<AnalysisTabId, readonly string[]>;
 
+const EXPECTED_COMPACT_CHART_LABELS = {
+  distortion: [
+    "Perspective distortion residual, signed fixed-sensor field from top through center to bottom",
+    "Zero-pose ideal, pose-ideal, and actual distortion grids clipped to the fixed sensor",
+  ],
+  vignetting: [
+    "Perspective vignetting and relative illumination, signed fixed-sensor field from top through center to bottom",
+  ],
+  pupils: [
+    "Apparent pupil displacement in the fixed camera frame, signed fixed-sensor field from top through center to bottom",
+  ],
+} as const;
+
 describe("AnalysisDrawerContent with a moved perspective-control lens", () => {
   it("renders every analysis tab from the physical pose or labels it as intrinsic", () => {
     const L = buildLens(LENS_CATALOG["nikon-pc-nikkor-19mm-f4e-ed"]);
@@ -76,6 +89,18 @@ describe("AnalysisDrawerContent with a moved perspective-control lens", () => {
       );
       for (const expected of EXPECTED_TAB_CONTENT[tab.id]) {
         expect(html, `${tab.id} should render ${expected}`).toContain(expected);
+      }
+
+      if (tab.id in EXPECTED_COMPACT_CHART_LABELS) {
+        const document = new DOMParser().parseFromString(html, "text/html");
+        for (const ariaLabel of EXPECTED_COMPACT_CHART_LABELS[tab.id as keyof typeof EXPECTED_COMPACT_CHART_LABELS]) {
+          const chart = document.querySelector<SVGSVGElement>(`svg[aria-label="${ariaLabel}"]`);
+          expect(chart, `${tab.id} should render the ${ariaLabel} chart`).not.toBeNull();
+          expect(chart?.viewBox.baseVal.width, `${ariaLabel} should use the regular analysis chart width`).toBe(320);
+          expect(chart?.style.maxWidth, `${ariaLabel} should not grow wider than regular analysis charts`).toBe(
+            "320px",
+          );
+        }
       }
     }
   });

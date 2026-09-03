@@ -20,7 +20,7 @@ interface PerspectiveSignedChartProps {
   t: Theme;
 }
 
-const WIDTH = 420;
+const WIDTH = 320;
 const HEIGHT = 190;
 const LEFT = 48;
 const RIGHT = 12;
@@ -51,7 +51,7 @@ export default function PerspectiveSignedChart({ title, valueLabel, series, t }:
         viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
         role="img"
         aria-label={`${title}, signed fixed-sensor field from top through center to bottom`}
-        style={{ width: "100%", height: "auto", display: "block" }}
+        style={{ width: "100%", maxWidth: WIDTH, height: "auto", display: "block" }}
       >
         <title>{title}</title>
         <desc>
