@@ -9,6 +9,7 @@ Generated `readme.md` and `improvementsuggestions.md` files are intentionally om
 ```mermaid
 flowchart LR
   subgraph n_src_optics_perspective["src/optics/perspective"]
+    n_src_optics_perspective_src_optics_perspective_analysis["analysis/"]
     n_src_optics_perspective_src_optics_perspective_chiefRay_ts["chiefRay.ts"]
     n_src_optics_perspective_src_optics_perspective_diagramFan_ts["diagramFan.ts"]
     n_src_optics_perspective_src_optics_perspective_diagramTrace_ts["diagramTrace.ts"]
@@ -75,9 +76,15 @@ flowchart LR
 ## Directory Overview
 
 - Direct source files: 14
-- Direct subfolders: 0
-- Main outbound areas: same folder (46), src/optics/math (13), src/optics/types.ts (12), src/types (7), src/optics/trace (5), src/optics/field (2), src/optics/lensMovement.ts (2), src/optics/chromatic, +3 more
-- External consumers: src/components/hooks, src/components/layout, src/optics/analysis, src/optics/lensMovement.ts
+- Direct subfolders: 1
+- Main outbound areas: same folder (47), src/optics/math (13), src/optics/types.ts (12), src/types (7), src/optics/trace (5), src/optics/field (2), src/optics/lensMovement.ts (2), src/optics/chromatic, +3 more
+- External consumers: src/components/display, src/components/hooks, src/components/layout, src/optics/analysis, src/optics/lensMovement.ts, src/optics/perspective
+
+## Subfolders
+
+| Folder | Role |
+| --- | --- |
+| [analysis/](analysis/readme.md) | src/optics/perspective/analysis source folder |
 
 ## Files
 
@@ -86,14 +93,14 @@ flowchart LR
 | `chiefRay.ts` | Chief Ray helper module | src/optics/math (2), same folder, src/optics/field, src/optics/types.ts, src/types | same folder (7) | PerspectiveFieldStatus, PerspectiveChiefRayOptions, PerspectiveChiefRayResult, solvePerspectiveChiefRay, perspectiveTraceStatus, isPerspectiveDirectionInsideProjectionDomain |
 | `diagramFan.ts` | Diagram Fan helper module | same folder (3), src/optics/types.ts, src/types | src/components/hooks (3), same folder | PerspectiveDiagramFanSample, PerspectiveDiagramFan, TracePerspectiveDiagramFanParams, tracePerspectiveDiagramFan, cameraDirectionForDiagramField |
 | `diagramTrace.ts` | Diagram Trace helper module | same folder, src/optics/types.ts, src/types | same folder (2) | PerspectiveDiagramTrace, PerspectiveDiagramTraceOptions, perspectiveTraceToDiagram, cameraPointToDiagram, perspectiveVectorLeadPoint |
-| `fieldGeometry.ts` | Field Geometry helper module | same folder (3), src/optics/math (2), src/optics/field, src/optics/first-order, src/optics/layout.ts, +2 more | same folder (5) | SensorUv, FieldPlaneFrame, PerspectiveProjectionReference, PerspectiveFieldSamplingError, requirePerspectiveImageFormatMetadata, resolvePerspectiveFocalLength, perspectiveProjectionReference, createFieldPlaneFrame, +11 more |
+| `fieldGeometry.ts` | Field Geometry helper module | same folder (3), src/optics/math (2), src/optics/field, src/optics/first-order, src/optics/layout.ts, +2 more | same folder (7) | SensorUv, FieldPlaneFrame, PerspectiveProjectionReference, PerspectiveFieldSamplingError, requirePerspectiveImageFormatMetadata, resolvePerspectiveFocalLength, perspectiveProjectionReference, createFieldPlaneFrame, +11 more |
 | `fieldResults.ts` | Field Results helper module | same folder (3), src/optics/types.ts | same folder | boundedFieldStatus, unavailableFieldSample |
-| `fieldSampling.ts` | Field Sampling helper module | same folder (13), src/optics/math, src/optics/types.ts | same folder (2) | PerspectiveFieldSamplingError, SensorUv, sampleCircularPupilBundle, sampleMeridionalPupilBundle, PerspectivePupilBundle, PerspectivePupilBundleRequest, PerspectivePupilPoint, PerspectivePupilRaySample, +10 more |
+| `fieldSampling.ts` | Field Sampling helper module | same folder (13), src/optics/math, src/optics/types.ts | same folder (10), src/optics/analysis | PerspectiveFieldSamplingError, SensorUv, sampleCircularPupilBundle, sampleMeridionalPupilBundle, PerspectivePupilBundle, PerspectivePupilBundleRequest, PerspectivePupilPoint, PerspectivePupilRaySample, +10 more |
 | `fieldTypes.ts` | Field Types helper module | same folder (5), src/optics/types.ts | same folder (2) | FieldSampleDomain, PerspectiveFieldRequest, FieldSample, PerspectiveFieldSamplingOptions |
-| `index.ts` | Barrel/registry module | same folder (8) | src/components/hooks (5), src/components/layout | re-export * |
+| `index.ts` | Barrel/registry module | same folder (9) | src/components/display (10), src/components/hooks (5), src/components/layout | re-export * |
 | `pose.ts` | Pose helper module | src/optics/lensMovement.ts, src/optics/math, src/optics/types.ts, src/types | same folder (3), src/optics/lensMovement.ts | CreatePerspectivePoseParams, PerspectivePose, PerspectivePoseError, createPerspectivePose |
 | `pupilBundle.ts` | Pupil Bundle helper module | same folder (3), src/optics/math, src/optics/types.ts, src/types | same folder (2) | PerspectivePupilRaySample, PerspectivePupilBundle, PerspectivePupilPoint, PerspectivePupilBundleRequest, sampleMeridionalPupilBundle, sampleCircularPupilBundle, pupilBundleForRequest |
 | `sensorBasis.ts` | Sensor Basis helper module | src/optics/math, src/optics/types.ts | same folder (3) | SensorBasis, SensorBasisError, createSensorBasis |
 | `sensorTarget.ts` | Sensor Target helper module | same folder (3), src/optics/math (2), src/optics/types.ts | same folder (2) | PerspectiveSensorLockSolveResult, SensorChiefSolve, solveChiefToSensorPoint |
-| `trace.ts` | Trace helper module | src/optics/trace (5), src/optics/math (3), same folder (2), src/optics/chromatic, src/optics/lensMovement.ts, +2 more | same folder (9), src/optics/analysis (2) | CreatePerspectiveTraceContextParams, PerspectiveTraceOptions, PerspectiveTraceResult, PerspectiveTraceContext, PerspectiveTraceUnsupportedError, createPerspectiveTraceContext, tracePerspectiveRay, tracePerspectiveMeridional, +1 more |
+| `trace.ts` | Trace helper module | src/optics/trace (5), src/optics/math (3), same folder (2), src/optics/chromatic, src/optics/lensMovement.ts, +2 more | same folder (17), src/optics/analysis (3) | CreatePerspectiveTraceContextParams, PerspectiveTraceOptions, PerspectiveTraceResult, PerspectiveTraceContext, PerspectiveTraceUnsupportedError, createPerspectiveTraceContext, tracePerspectiveRay, tracePerspectiveMeridional, +1 more |
 | `viewport.ts` | Viewport helper module | same folder, src/types | same folder | PerspectiveMovementViewportExtent, PerspectiveMovementViewportParams, computePerspectiveMovementViewportExtent |

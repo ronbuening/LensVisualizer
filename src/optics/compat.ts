@@ -279,6 +279,7 @@ export {
   AnalysisSectionUnavailableError,
   analysisSectionAvailability,
   assertAnalysisSectionAvailable,
+  assertCenteredAnalysisSectionAvailable,
   type AnalysisSectionAvailability,
   type AnalysisSectionId,
   type AnalysisSectionMode,

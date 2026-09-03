@@ -134,7 +134,7 @@ describe("analysis computation context", () => {
     );
   });
 
-  it("keys shift/tilt-only changes and fails closed for unmigrated active sections", () => {
+  it("keys shift/tilt-only changes and blocks legacy centered jobs for migrated sections", () => {
     const L = sharedSonnar50f15();
     const preparedState = prepareRuntimeState(L, 0, 0);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0);
@@ -174,13 +174,18 @@ describe("analysis computation context", () => {
     expect(shifted.perspectiveCacheKey).toBe(shiftedTrace.cacheKey);
     expect(new Set([centered.cacheKey, shifted.cacheKey, tilted.cacheKey]).size).toBe(3);
     expect(shifted.sectionAvailability("summary")).toMatchObject({ available: true, mode: "intrinsic" });
-    expect(shifted.sectionAvailability("distortion")).toMatchObject({ available: false, mode: "unavailable" });
+    expect(shifted.sectionAvailability("spherical-aberration")).toMatchObject({ available: true, mode: "intrinsic" });
+    expect(shifted.sectionAvailability("distortion")).toMatchObject({ available: true, mode: "perspective" });
     expect(() => shifted.computeDistortionCurve()).toThrow(AnalysisSectionUnavailableError);
-    expect(() => tilted.computeSphericalAberration()).toThrow(AnalysisSectionUnavailableError);
+    expect(() => tilted.computeChromaticAnalysis()).toThrow(AnalysisSectionUnavailableError);
+    expect(tilted.computeSphericalAberration()).toBe(tilted.computeSphericalAberration());
 
     const centeredSummary = centered.computeOpticalSummary();
     const shiftedSummary = shifted.computeOpticalSummary();
     expect(shiftedSummary).toEqual(centeredSummary);
     expect(shiftedSummary).not.toBe(centeredSummary);
+    expect(shifted.computeIntrinsicLongitudinalChromaticFocus()).toBe(
+      shifted.computeIntrinsicLongitudinalChromaticFocus(),
+    );
   });
 });

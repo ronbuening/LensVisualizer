@@ -17,6 +17,7 @@ import type { AnalysisComputationContext } from "../../../optics/compat.js";
 import type { RuntimeLens } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
 import type { FieldGeometryState } from "../../../optics/optics.js";
+import PerspectiveVignettingView from "./perspective/PerspectiveVignettingView.js";
 
 interface VignettingTabProps {
   L: RuntimeLens;
@@ -44,6 +45,43 @@ export default function VignettingTab({
   analysisContext,
 }: VignettingTabProps) {
   const preparedState = usePreparedAnalysisState({ L, focusT, zoomT, aberrationT, preparedState: preparedStateProp });
+  if (analysisContext?.movementActive) {
+    return <MovedVignettingContent analysisContext={analysisContext} t={t} />;
+  }
+  return (
+    <CenteredVignettingContent
+      t={t}
+      currentEPSD={currentEPSD}
+      currentPhysStopSD={currentPhysStopSD}
+      fieldGeometry={fieldGeometry}
+      preparedState={preparedState}
+      analysisContext={analysisContext}
+    />
+  );
+}
+
+function MovedVignettingContent({ analysisContext, t }: { analysisContext: AnalysisComputationContext; t: Theme }) {
+  const analysis = useMemo(() => analysisContext.computePerspectiveVignettingAnalysis(), [analysisContext]);
+  return <PerspectiveVignettingView analysis={analysis} t={t} />;
+}
+
+interface CenteredVignettingContentProps {
+  t: Theme;
+  currentEPSD: number;
+  currentPhysStopSD: number;
+  fieldGeometry?: FieldGeometryState | null;
+  preparedState: PreparedOpticalState;
+  analysisContext?: AnalysisComputationContext;
+}
+
+function CenteredVignettingContent({
+  t,
+  currentEPSD,
+  currentPhysStopSD,
+  fieldGeometry,
+  preparedState,
+  analysisContext,
+}: CenteredVignettingContentProps) {
   const samples = useMemo(
     () =>
       probe(

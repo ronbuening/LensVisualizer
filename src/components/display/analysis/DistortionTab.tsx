@@ -18,6 +18,7 @@ import type { AnalysisComputationContext } from "../../../optics/compat.js";
 import type { RuntimeLens } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
 import type { FieldGeometryState } from "../../../optics/optics.js";
+import PerspectiveDistortionView from "./perspective/PerspectiveDistortionView.js";
 
 interface DistortionTabProps {
   L: RuntimeLens;
@@ -45,6 +46,53 @@ export default function DistortionTab({
   analysisContext,
 }: DistortionTabProps) {
   const preparedState = usePreparedAnalysisState({ L, focusT, zoomT, aberrationT, preparedState: preparedStateProp });
+  if (analysisContext?.movementActive) {
+    return <MovedDistortionContent analysisContext={analysisContext} t={t} />;
+  }
+  return (
+    <CenteredDistortionContent
+      L={L}
+      t={t}
+      zoomT={zoomT}
+      dynamicEFL={dynamicEFL}
+      currentPhysStopSD={currentPhysStopSD}
+      fieldGeometry={fieldGeometry}
+      preparedState={preparedState}
+      analysisContext={analysisContext}
+    />
+  );
+}
+
+function MovedDistortionContent({ analysisContext, t }: { analysisContext: AnalysisComputationContext; t: Theme }) {
+  const analysis = useMemo(() => analysisContext.computePerspectiveDistortionAnalysis(), [analysisContext]);
+  const context = analysisContext.perspectiveTraceContext;
+  if (!context) {
+    return <div style={{ color: t.muted, fontSize: 10, padding: "8px 0" }}>Perspective trace context unavailable.</div>;
+  }
+  return <PerspectiveDistortionView analysis={analysis} context={context} t={t} />;
+}
+
+interface CenteredDistortionContentProps {
+  L: RuntimeLens;
+  t: Theme;
+  zoomT: number;
+  dynamicEFL: number;
+  currentPhysStopSD: number;
+  fieldGeometry?: FieldGeometryState | null;
+  preparedState: PreparedOpticalState;
+  analysisContext?: AnalysisComputationContext;
+}
+
+function CenteredDistortionContent({
+  L,
+  t,
+  zoomT,
+  dynamicEFL,
+  currentPhysStopSD,
+  fieldGeometry,
+  preparedState,
+  analysisContext,
+}: CenteredDistortionContentProps) {
   const samples = useMemo(
     () =>
       probe(

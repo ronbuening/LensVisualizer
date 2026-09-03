@@ -15,6 +15,7 @@ import buildLens from "../../../../../src/optics/buildLens.js";
 import LENS_DEFAULTS from "../../../../../src/lens-data/defaults.js";
 import {
   computeAnalysisFieldGeometryAtState,
+  anchorLayoutToCamera,
   doLayout,
   eflAtFocus,
   epAtZoom,
@@ -28,11 +29,16 @@ import DistortionTab from "../../../../../src/components/display/analysis/Distor
 import FocusBreathingTab from "../../../../../src/components/display/analysis/FocusBreathingTab.js";
 import OpticalSummaryTab from "../../../../../src/components/display/analysis/OpticalSummaryTab.js";
 import PupilAberrationTab from "../../../../../src/components/display/analysis/PupilAberrationTab.js";
+import VignettingTab from "../../../../../src/components/display/analysis/VignettingTab.js";
 import themes from "../../../../../src/utils/theme/themes.js";
 import Sonnar50f15Raw from "../../../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
 import NikonFisheye6mmf28Raw from "../../../../../src/lens-data/nikon/NikonFisheyeNikkor6mmf28.data.js";
 import type { DistortionSample } from "../../../../../src/optics/distortionAnalysis.js";
 import type { LensData, RuntimeLens } from "../../../../../src/types/optics.js";
+import { createAnalysisComputationContext, prepareRuntimeState } from "../../../../../src/optics/compat.js";
+import { INTERACTIVE_ANALYSIS_SAMPLING } from "../../../../../src/optics/analysis/analysisQuality.js";
+import { createPerspectiveTraceContext } from "../../../../../src/optics/perspective/index.js";
+import { LENS_CATALOG } from "../../../../../src/utils/catalog/lensCatalog.js";
 
 function build(raw: object): RuntimeLens {
   return buildLens({ ...LENS_DEFAULTS, ...raw } as LensData);
@@ -48,6 +54,124 @@ function apertureAt(L: RuntimeLens, zoomT: number, stopdownT: number) {
 }
 
 describe("analysis display tabs", () => {
+  it("renders moved distortion, vignetting, pupils, and summary in the fixed camera frame", () => {
+    const L = buildLens(LENS_CATALOG["nikon-pc-nikkor-19mm-f4e-ed"]);
+    const focusT = 0;
+    const zoomT = 0;
+    const dynamicEFL = eflAtFocus(focusT, zoomT, L);
+    const { currentPhysStopSD, currentEPSD } = apertureAt(L, zoomT, 0.35);
+    const fieldGeometry = computeAnalysisFieldGeometryAtState(focusT, zoomT, L);
+    const preparedState = prepareRuntimeState(L, focusT, zoomT);
+    const perspectiveTraceContext = createPerspectiveTraceContext({
+      preparedState,
+      movement: { shiftMm: 4, tiltDeg: 3 },
+      tiltPivot: L.perspectiveControl?.tiltPivot,
+    });
+    const analysisContext = createAnalysisComputationContext({
+      preparedState,
+      dynamicEFL,
+      currentEPSD,
+      currentPhysStopSD,
+      fieldGeometry,
+      analysisQuality: "interactive",
+      sampling: INTERACTIVE_ANALYSIS_SAMPLING,
+      perspectiveTraceContext,
+    });
+    const shared = {
+      L,
+      t: themes.dark,
+      focusT,
+      zoomT,
+      dynamicEFL,
+      currentEPSD,
+      currentPhysStopSD,
+      fieldGeometry,
+      preparedState,
+      analysisContext,
+    };
+
+    const distortion = renderToStaticMarkup(React.createElement(DistortionTab, shared));
+    expect(distortion).toContain("Perspective distortion — fixed sensor");
+    expect(distortion).toContain("Composition");
+    expect(distortion).toContain("Optical residual");
+    expect(distortion).toContain("Zero-pose ideal");
+    expect(distortion).toContain("Pose ideal / composition");
+    expect(distortion).toContain("Exact moved lens");
+    expect(distortion).toContain("TOP RESIDUAL");
+    expect(distortion).toContain("BOTTOM RESIDUAL");
+
+    const vignetting = renderToStaticMarkup(React.createElement(VignettingTab, shared));
+    expect(vignetting).toContain("absolute fixed-sensor flux");
+    expect(vignetting).toContain("the active center is not normalized to one");
+    expect(vignetting).toContain("Absolute geometric transmission");
+    expect(vignetting).toContain("Active / zero at same point");
+    expect(vignetting).toContain("TOP RI");
+    expect(vignetting).toContain("BOTTOM RI");
+
+    const pupils = renderToStaticMarkup(React.createElement(PupilAberrationTab, shared));
+    expect(pupils).toContain("lens and camera frames");
+    expect(pupils).toContain("Intrinsic / lens-local pupils");
+    expect(pupils).toContain("Apparent EP from posed intrinsic EP");
+    expect(pupils).toContain("Apparent XP from posed intrinsic XP");
+
+    const summary = renderToStaticMarkup(React.createElement(OpticalSummaryTab, shared));
+    expect(summary).toContain("Current Perspective Pose");
+    expect(summary).toContain("camera frame and sensor stay fixed");
+    expect(summary).toContain("Rear-vertex fallback");
+    expect(summary).toContain("CENTER BEST FOCUS");
+    expect(summary).toContain("First Order — Intrinsic / Lens-local");
+    expect(summary).toContain("Rigid perspective movement does not change focal length");
+  });
+
+  it("reports the camera-fixed sensor coordinate for a focused perspective lens", () => {
+    const L = buildLens(LENS_CATALOG["canon-tse-50f28l-macro"]);
+    const focusT = 1;
+    const zoomT = 0;
+    const referenceLayout = doLayout(0, 0, L);
+    const currentLayout = doLayout(focusT, zoomT, L);
+    const cameraLayout = anchorLayoutToCamera(referenceLayout, currentLayout);
+    const preparedState = prepareRuntimeState(L, focusT, zoomT);
+    const dynamicEFL = eflAtFocus(focusT, zoomT, L);
+    const { currentPhysStopSD, currentEPSD } = apertureAt(L, zoomT, 0.35);
+    const fieldGeometry = computeAnalysisFieldGeometryAtState(focusT, zoomT, L);
+    const perspectiveTraceContext = createPerspectiveTraceContext({
+      preparedState,
+      cameraZPos: cameraLayout.z,
+      movement: { shiftMm: 2, tiltDeg: 2 },
+      tiltPivot: L.perspectiveControl?.tiltPivot,
+    });
+    const analysisContext = createAnalysisComputationContext({
+      preparedState,
+      dynamicEFL,
+      currentEPSD,
+      currentPhysStopSD,
+      fieldGeometry,
+      analysisQuality: "interactive",
+      sampling: INTERACTIVE_ANALYSIS_SAMPLING,
+      perspectiveTraceContext,
+    });
+
+    expect(preparedState.imgZ).not.toBeCloseTo(perspectiveTraceContext.sensorPlane.point[2], 6);
+    const html = renderToStaticMarkup(
+      React.createElement(OpticalSummaryTab, {
+        L,
+        t: themes.dark,
+        focusT,
+        zoomT,
+        dynamicEFL,
+        currentEPSD,
+        currentPhysStopSD,
+        fieldGeometry,
+        preparedState,
+        analysisContext,
+      }),
+    );
+    const sensorMetric = html.slice(html.indexOf("FIXED SENSOR Z"), html.indexOf("FIXED SENSOR Z") + 600);
+
+    expect(sensorMetric).toContain(`${perspectiveTraceContext.sensorPlane.point[2].toFixed(1)} mm`);
+    expect(sensorMetric).toContain("camera frame");
+  });
+
   it("OpticalSummaryTab renders current-state first-order, aperture, and field metrics", () => {
     const L = build(Sonnar50f15Raw);
     const focusT = 0.5;

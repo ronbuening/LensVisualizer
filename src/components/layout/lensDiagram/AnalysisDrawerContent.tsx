@@ -63,27 +63,27 @@ export default function AnalysisDrawerContent({
 }: AnalysisDrawerContentProps) {
   // Defer all slider-derived inputs so analysis tabs only recompute when React
   // has idle time, keeping the main viewport responsive during drag.
-  const dFocusT = useDeferredValue(focusT);
-  const dZoomT = useDeferredValue(zoomT);
-  const dAberrationT = useDeferredValue(aberrationT);
-  const dEPSD = useDeferredValue(currentEPSD);
-  const dStopSD = useDeferredValue(currentPhysStopSD);
-  const dDynamicEFL = useDeferredValue(dynamicEFL);
-  const dFieldGeometry = useDeferredValue(fieldGeometry);
-  const dPerspectiveTraceContext = useDeferredValue(perspectiveTraceContext);
-  const deferredInputs = useMemo(
+  const currentAnalysisSnapshot = useMemo(
     () => ({
-      focusT: dFocusT,
-      zoomT: dZoomT,
-      aberrationT: dAberrationT,
-      currentEPSD: dEPSD,
-      currentPhysStopSD: dStopSD,
-      dynamicEFL: dDynamicEFL,
-      fieldGeometry: dFieldGeometry,
+      focusT,
+      zoomT,
+      aberrationT,
+      currentEPSD,
+      currentPhysStopSD,
+      dynamicEFL,
+      fieldGeometry,
+      perspectiveTraceContext,
     }),
-    [dFocusT, dZoomT, dAberrationT, dEPSD, dStopSD, dDynamicEFL, dFieldGeometry],
+    [focusT, zoomT, aberrationT, currentEPSD, currentPhysStopSD, dynamicEFL, fieldGeometry, perspectiveTraceContext],
   );
-  const analysisInputs = deferredInputs;
+  // Defer one immutable snapshot so scalar controls and the prepared perspective
+  // context can never transiently describe different slider states.
+  const analysisSnapshot = useDeferredValue(currentAnalysisSnapshot);
+  const deferredPerspectiveTraceContext = analysisSnapshot.perspectiveTraceContext;
+  const analysisInputs = useMemo(() => {
+    const { perspectiveTraceContext: _perspectiveTraceContext, ...inputs } = analysisSnapshot;
+    return inputs;
+  }, [analysisSnapshot]);
   const analysisQuality: AnalysisQuality = sliderInteracting ? "interactive" : "settled";
   const analysisSampling = useMemo(() => analysisSamplingForQuality(analysisQuality), [analysisQuality]);
   const preparedState = usePreparedAnalysisState({
@@ -100,10 +100,11 @@ export default function AnalysisDrawerContent({
         currentEPSD: analysisInputs.currentEPSD,
         currentPhysStopSD: analysisInputs.currentPhysStopSD,
         fieldGeometry: analysisInputs.fieldGeometry,
+        analysisQuality,
         sampling: analysisSampling,
-        perspectiveTraceContext: dPerspectiveTraceContext,
+        perspectiveTraceContext: deferredPerspectiveTraceContext,
       }),
-    [preparedState, analysisInputs, analysisSampling, dPerspectiveTraceContext],
+    [preparedState, analysisInputs, analysisQuality, analysisSampling, deferredPerspectiveTraceContext],
   );
   const projection = L.projection ?? { kind: "rectilinear" };
   const noticeStyle = {
@@ -180,11 +181,6 @@ export default function AnalysisDrawerContent({
       {fisheyeProjectionText && <div style={noticeStyle}>{fisheyeProjectionText}</div>}
       {foldedOpticsText && <div style={noticeStyle}>{foldedOpticsText}</div>}
       {foldedTraceDiagnosticsText && <div style={noticeStyle}>{foldedTraceDiagnosticsText}</div>}
-      {analysisContext.movementActive && (
-        <div style={noticeStyle}>
-          Tilt/shift is active. Movement-aware sections use fixed-sensor tracing; unmigrated sections are suppressed.
-        </div>
-      )}
       {content}
     </>
   );

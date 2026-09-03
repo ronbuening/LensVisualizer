@@ -8,3 +8,4 @@ export * from "./fieldSampling.js";
 export * from "./diagramTrace.js";
 export * from "./diagramFan.js";
 export * from "./viewport.js";
+export * from "./analysis/index.js";

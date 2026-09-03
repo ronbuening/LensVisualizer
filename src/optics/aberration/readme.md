@@ -68,16 +68,16 @@ flowchart LR
 - Direct source files: 7
 - Direct subfolders: 0
 - Main outbound areas: same folder (17), src/types (7), src/optics/field (6), src/optics/rayTrace.ts (6), src/optics/analysis (4), src/optics/layout.ts (4), src/optics/trace (2), src/optics/chromatic
-- External consumers: src/components/hooks, src/optics/aberrationAnalysis.ts, src/optics/analysis, src/optics/chromatic
+- External consumers: src/components/hooks, src/optics/aberrationAnalysis.ts, src/optics/analysis, src/optics/chromatic, src/optics/perspective
 
 ## Files
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
-| `bokeh.ts` | Bokeh helper module | same folder (3), src/optics/analysis, src/optics/field, src/optics/layout.ts, src/optics/rayTrace.ts, +1 more | same folder, src/optics/aberrationAnalysis.ts, src/optics/analysis | computeImagePlaneZAtFocus, computeBestFocusZ, buildBokehRadialProfile, classifyBokehBrightnessCharacter, computeBokehFieldFootprint, buildBokehDensityGrid, describeBokehDefocusSide, computeBokehPreview, +1 more |
+| `bokeh.ts` | Bokeh helper module | same folder (3), src/optics/analysis, src/optics/field, src/optics/layout.ts, src/optics/rayTrace.ts, +1 more | same folder, src/optics/aberrationAnalysis.ts, src/optics/analysis, src/optics/perspective | computeImagePlaneZAtFocus, computeBestFocusZ, buildBokehRadialProfile, classifyBokehBrightnessCharacter, computeBokehFieldFootprint, buildBokehDensityGrid, describeBokehDefocusSide, computeBokehPreview, +1 more |
 | `coma.ts` | Coma helper module | same folder (3), src/optics/analysis, src/optics/field, src/optics/rayTrace.ts, src/types | src/optics/aberrationAnalysis.ts | computeMeridionalComa, computeComaPreview, computeSagittalComa, computeComaPointCloudPreview, computeComaAnalysis |
 | `fieldCurvature.ts` | Field Curvature helper module | same folder (4), src/optics/analysis, src/optics/chromatic, src/optics/field, src/optics/layout.ts, +2 more | src/optics/aberrationAnalysis.ts | FieldCurvatureBundleResult, computeFieldCurvatureBundle, computeFieldCurvature |
 | `offAxis.ts` | Off Axis helper module | src/optics/field (2), same folder, src/optics/layout.ts, src/optics/rayTrace.ts, src/optics/trace, +1 more | same folder (4), src/components/hooks, src/optics/aberrationAnalysis.ts, src/optics/analysis, src/optics/chromatic | OffAxisFanOrientation, OffAxisDirection, OffAxisFieldGeometry, OffAxisVectorFieldGeometry, ProjectionAwareOffAxisFieldGeometry, OffAxisChiefRaySample, OffAxisTracedSample, OffAxisBundle, +11 more |
 | `shared.ts` | Shared helper module | src/optics/trace, src/types | same folder (4) | MARGINAL_FRACS, PROFILE_FRACS, SymmetricRealSample, TransverseFocusHit, RealRayHit, axialIntercept, imagePlaneIntercept, meridionalImagePlaneCoordinate, +9 more |
 | `spherical.ts` | Spherical helper module | same folder (6), src/optics/analysis, src/optics/field, src/optics/layout.ts, src/optics/rayTrace.ts, +1 more | src/optics/aberrationAnalysis.ts | computeSphericalAberration, computeSAProfile, computeSphericalAberrationBlurCharacter |
-| `types.ts` | Shared TypeScript types | src/optics/rayTrace.ts, src/types | same folder (4), src/optics/aberrationAnalysis.ts, src/optics/analysis | SAProfilePoint, SphericalAberrationBlurCharacterSample, SphericalAberrationBlurCharacterResult, SphericalAberrationResult, MeridionalComaSample, MeridionalComaResult, SagittalComaSample, SagittalComaResult, +34 more |
+| `types.ts` | Shared TypeScript types | src/optics/rayTrace.ts, src/types | same folder (4), src/optics/perspective (2), src/optics/aberrationAnalysis.ts, src/optics/analysis | SAProfilePoint, SphericalAberrationBlurCharacterSample, SphericalAberrationBlurCharacterResult, SphericalAberrationResult, MeridionalComaSample, MeridionalComaResult, SagittalComaSample, SagittalComaResult, +34 more |

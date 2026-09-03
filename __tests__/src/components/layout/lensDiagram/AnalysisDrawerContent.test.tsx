@@ -32,7 +32,13 @@ const {
   mockFocusBreathingTab: vi.fn(),
   mockPupilAberrationTab: vi.fn(),
   mockOpticalSummaryTab: vi.fn(),
-  mockPreparedState: { cacheKey: "test:0:0:0" },
+  mockPreparedState: {
+    cacheKey: "test:0:0:0",
+    lens: { key: "test-lens" },
+    focusT: 0,
+    zoomT: 0,
+    aberrationT: 0,
+  },
   mockPrepareRuntimeState: vi.fn(),
   mockVignettingTab: vi.fn(),
 }));
@@ -123,7 +129,25 @@ const baseProps = {
 };
 
 function perspectiveContext(cacheKey: string, active: boolean): PerspectiveTraceContext {
-  return { cacheKey, pose: { active } } as PerspectiveTraceContext;
+  return { cacheKey, pose: { active }, state: mockPreparedState } as unknown as PerspectiveTraceContext;
+}
+
+function preparedStateAt(focusT: number, zoomT = 0, aberrationT = 0) {
+  return {
+    ...mockPreparedState,
+    cacheKey: `test:${focusT}:${zoomT}:${aberrationT}`,
+    focusT,
+    zoomT,
+    aberrationT,
+  };
+}
+
+function perspectiveContextAt(cacheKey: string, focusT: number): PerspectiveTraceContext {
+  return {
+    cacheKey,
+    pose: { active: true },
+    state: preparedStateAt(focusT),
+  } as unknown as PerspectiveTraceContext;
 }
 
 describe("AnalysisDrawerContent", () => {
@@ -189,13 +213,60 @@ describe("AnalysisDrawerContent", () => {
     expect(mockPupilAberrationTab).toHaveBeenCalledTimes(1);
   });
 
-  it("suppresses centered-only analysis tabs while movement is active", () => {
+  it("routes active movement tabs through a perspective-aware analysis context", () => {
     const moved = perspectiveContext("perspective:shift=3:tilt=2", true);
     render(<AnalysisDrawerContent {...baseProps} activeTab="distortion" perspectiveTraceContext={moved} />);
 
-    expect(screen.getByText(/Tilt\/shift is active/)).toBeTruthy();
-    expect(screen.getByText(/centered-lens computation is suppressed/)).toBeTruthy();
-    expect(mockDistortionTab).not.toHaveBeenCalled();
+    expect(screen.getByText("Distortion")).toBeTruthy();
+    expect(screen.queryByText(/centered-lens computation is suppressed/)).toBeNull();
+    const context = mockDistortionTab.mock.calls.at(-1)?.[0].analysisContext as AnalysisComputationContext;
+    expect(context.perspectiveTraceContext).toBe(moved);
+    expect(context.sectionAvailability("distortion")).toMatchObject({ available: true, mode: "perspective" });
+  });
+
+  it("uses interactive perspective quality only while a slider is moving", () => {
+    const moved = perspectiveContext("perspective:shift=3:tilt=2", true);
+    const { rerender } = render(
+      <AnalysisDrawerContent {...baseProps} activeTab="distortion" perspectiveTraceContext={moved} sliderInteracting />,
+    );
+
+    const interactiveContext = mockDistortionTab.mock.calls.at(-1)?.[0].analysisContext as AnalysisComputationContext;
+    expect(interactiveContext.analysisQuality).toBe("interactive");
+    expect(interactiveContext.sampling).toMatchObject({ distortionCurveSampleCount: 9 });
+
+    rerender(
+      <AnalysisDrawerContent
+        {...baseProps}
+        activeTab="distortion"
+        perspectiveTraceContext={moved}
+        sliderInteracting={false}
+      />,
+    );
+
+    const settledContext = mockDistortionTab.mock.calls.at(-1)?.[0].analysisContext as AnalysisComputationContext;
+    expect(settledContext.analysisQuality).toBe("settled");
+    expect(settledContext.sampling).toEqual({});
+    expect(settledContext.cacheKey).not.toBe(interactiveContext.cacheKey);
+  });
+
+  it("retains the analysis context cache across unrelated rerenders", () => {
+    const moved = perspectiveContext("perspective:shift=3:tilt=2", true);
+    const { rerender } = render(
+      <AnalysisDrawerContent {...baseProps} activeTab="summary" perspectiveTraceContext={moved} />,
+    );
+    const first = mockOpticalSummaryTab.mock.calls.at(-1)?.[0].analysisContext as AnalysisComputationContext;
+
+    rerender(
+      <AnalysisDrawerContent
+        {...baseProps}
+        activeTab="summary"
+        perspectiveTraceContext={moved}
+        aberrationsExpanded={false}
+      />,
+    );
+    const second = mockOpticalSummaryTab.mock.calls.at(-1)?.[0].analysisContext as AnalysisComputationContext;
+
+    expect(second).toBe(first);
   });
 
   it("keeps intrinsic summary available and invalidates its context on shift/tilt-only changes", async () => {
@@ -219,6 +290,48 @@ describe("AnalysisDrawerContent", () => {
     const tiltedContext = mockOpticalSummaryTab.mock.calls.at(-1)?.[0].analysisContext as AnalysisComputationContext;
     expect(tiltedContext).not.toBe(shiftedContext);
     expect(tiltedContext.cacheKey).not.toBe(shiftedContext.cacheKey);
+  });
+
+  it("defers rapid slider changes as one coherent scalar and perspective snapshot", async () => {
+    mockPrepareRuntimeState.mockImplementation((_lens, focusT: number, zoomT: number, aberrationT: number) =>
+      preparedStateAt(focusT, zoomT, aberrationT),
+    );
+    const { rerender } = render(
+      <AnalysisDrawerContent
+        {...baseProps}
+        activeTab="summary"
+        perspectiveTraceContext={perspectiveContextAt("pose:0", 0)}
+      />,
+    );
+
+    rerender(
+      <AnalysisDrawerContent
+        {...baseProps}
+        activeTab="summary"
+        focusT={0.25}
+        dynamicEFL={51}
+        currentEPSD={9}
+        perspectiveTraceContext={perspectiveContextAt("pose:0.25", 0.25)}
+      />,
+    );
+    rerender(
+      <AnalysisDrawerContent
+        {...baseProps}
+        activeTab="summary"
+        focusT={0.75}
+        dynamicEFL={54}
+        currentEPSD={7}
+        perspectiveTraceContext={perspectiveContextAt("pose:0.75", 0.75)}
+      />,
+    );
+
+    await waitFor(() => {
+      const latest = mockOpticalSummaryTab.mock.calls.at(-1)?.[0].analysisContext as AnalysisComputationContext;
+      expect(latest.preparedState.focusT).toBe(0.75);
+      expect(latest.perspectiveTraceContext?.state.focusT).toBe(0.75);
+      expect(latest.dynamicEFL).toBe(54);
+      expect(latest.currentEPSD).toBe(7);
+    });
   });
 
   it("has exactly one renderer for every registered analysis tab and maps each tab to its component", () => {
