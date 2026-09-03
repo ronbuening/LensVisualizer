@@ -19,6 +19,11 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-09-03",
+    type: "fix",
+    summary: "Fixed tilt-shift diagrams and analyses to trace moved lenses against a fixed sensor",
+  },
+  {
     date: "2026-09-02",
     type: "improvement",
     summary: "Optimized and enhanced the universal relationship map",

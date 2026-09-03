@@ -80,7 +80,10 @@ Specialized optics modules are also public when work is in that domain:
 | `src/optics/projection.ts` | `projectionLaunchSlopeForField`, `projectionLaunchVectorForFieldAngles`, `launchSurfaceForFieldDeg` | Safe field launch logic, including fisheye/vector launches. |
 | `src/optics/glassCatalog.ts` | `resolveGlass`, `resolveGlassCandidates`, `resolveCompatibleGlass`, `explainCompatibleGlassResolution`, `evaluateSellmeier`, `evaluateCatalogAbbeNumber`, `allEntries`, `catalogSize`, `assertCatalogConsistent` | Glass lookup, coordinate-aware resolution and ambiguity diagnostics, and dispersion evaluation. |
 | `src/optics/dispersion.ts` | `makeSurfaceDispersion`, `buildSurfaceDispersionIndex`, `indexAt`, `summarizeDispersionQuality` | Per-surface chromatic index resolution. |
-| `src/optics/lensMovement.ts` | `ZERO_LENS_MOVEMENT`, `clampLensMovement`, `createLensMovementTransform`, `transformRayTraceResult` | Perspective-control shift/tilt transforms. |
+| `src/optics/lensMovement.ts` | `ZERO_LENS_MOVEMENT`, `clampLensMovement`, `isIdentityLensMovement`, `perspectiveControlSteps`, `createLensMovementTransform` | Perspective-control capability clamping and diagram adapters over the shared rigid pose. |
+| `src/optics/perspective/index.ts` | `createPerspectivePose`, `createPerspectiveTraceContext`, `solvePerspectiveChiefRay` | Bidirectional camera/lens frame transforms, fixed-sensor exact tracing, and moved-stop chief solving. |
+| `src/optics/perspective/index.ts` | `samplePerspectiveFields`, `sampleSceneLockedFields`, `sampleSensorLockedFields`, `zeroPoseSceneDirectionForSensorUv` | Ordered scene-/sensor-locked fixed-camera field sampling. Failed requests are retained with explicit statuses. |
+| `src/optics/perspective/index.ts` | `tracePerspectiveDiagramFan`, `perspectiveTraceToDiagram`, `computePerspectiveMovementViewportExtent` | Physical moved-lens ray-fan conversion and viewport extents for the SVG diagram. |
 | `src/optics/diagramGeometry.ts` | `createCoordinateTransforms`, `computeElementRenderDiagnostics`, `computeElementShapes` | Convert optical geometry into SVG-ready coordinates and element shapes. |
 | `src/optics/raySampling.ts` | `isHeavyLensForRayWork`, `rayFractionsForDensity`, `raySampleCountForDensity` | Display/analysis ray-sampling density helpers. |
 
@@ -92,6 +95,10 @@ state. Keep slider-dependent analysis out of `buildLens()`.
 | Module | Public Function Or Surface | Use |
 | --- | --- | --- |
 | `src/optics/analysisJobs.ts` and `src/optics/compat.ts` | `analysisJobs`, `analysisJobsForState2` | Grouped analysis job facades for runtime callers and prepared-state UI work across summary, aberration, bokeh, distortion, vignetting, and pupil analyses. |
+| `src/optics/analysis/analysisContext.ts` | `createAnalysisComputationContext` | Memoized per-panel analysis context. Carries the complete perspective trace context/cache key and routes active movement without centered-result fallback. |
+| `src/optics/analysis/analysisMovementSupport.ts` | `analysisSectionAvailability`, `assertAnalysisSectionAvailable`, `AnalysisSectionUnavailableError` | Granular intrinsic/perspective/unavailable classification for active-movement analysis sections. |
+| `src/optics/perspective/analysis/index.ts` | `computePerspectiveFocusAnalysis`, `computePerspectiveFieldAberrations`, `computePerspectiveChromaticAnalysis` | Sensor-locked blur/bokeh, field curvature/astigmatism/coma, and chromatic field analyses on the fixed sensor. |
+| `src/optics/perspective/analysis/index.ts` | `computePerspectiveDistortionAnalysis`, `computePerspectiveVignettingAnalysis`, `computePerspectivePupilAnalysis` | Scene-locked distortion plus sensor-locked vignetting and mixed intrinsic/apparent pupil analysis. |
 | `src/optics/aberrationAnalysis.ts` | `computeSphericalAberration`, `computeSAProfile`, `computeSphericalAberrationBlurCharacter` | Longitudinal spherical aberration and blur character. |
 | `src/optics/aberrationAnalysis.ts` | `computeComaAnalysis`, `computeMeridionalComa`, `computeSagittalComa`, `computeComaPreview`, `computeComaPointCloudPreview` | Coma analysis and preview point clouds. |
 | `src/optics/aberrationAnalysis.ts` | `computeFieldCurvature` | Tangential/sagittal field-curvature analysis. |

@@ -73,7 +73,8 @@ const LENS_DATA = {
    *  lensMounts            Optional canonical mount ids from src/utils/catalog/lensTaxonomy.ts.
    *                        A lens may declare multiple mounts; do not free-type display labels.
    *  imageFormat           Optional single canonical format id from src/utils/catalog/lensTaxonomy.ts.
-   *                        Used by lens index filters and image-field-aware analysis.
+   *                        Used by lens index filters and image-field-aware analysis; required for
+   *                        normalized fixed-sensor perspective-control sampling.
    *  patentNumber         Source patent publication/grant identifier, including jurisdiction
    *                        and published kind code. Do not include an example/table label.
    *  patentAuthors        Inventors in source order, one canonical personal name per entry.
@@ -88,9 +89,9 @@ const LENS_DATA = {
    *                        contains an extra complementary entry for a clear central plug
    *                        in the same mirror blank; document that split in the header.
    *  groupCount            Total number of air-separated groups.
-   *  perspectiveControl    Optional tilt/shift movement limits for real PC lenses only.
-   *                        Omit for ordinary lenses; defaults are no tilt/shift controls.
-   *                        Use official manufacturer sources for shift/tilt ranges.
+   *  perspectiveControl    Optional shift-Y/tilt-X limits and camera-frame pivot for real PC lenses.
+   *                        Omit for ordinary or folded lenses; defaults are no movement controls.
+   *                        Use official sources for ranges and a sourced mechanical pivot when known.
    *  projection            Optional projection metadata.
    *                        Omit for ordinary rectilinear lenses. Use for circular fisheyes
    *                        when the published focal length is a projection constant, or for
@@ -112,21 +113,33 @@ const LENS_DATA = {
   elementCount:         12,
   groupCount:           9,
 
-  // Optional: enable signed SHIFT/TILT controls for perspective-control lenses.
-  // The 2D diagram shifts/tilts the rendered lens and rays while keeping the IMG plane fixed.
-  // Analysis drawer diagnostics remain centered-lens calculations in the first movement pass.
+  // Optional: enable signed SHIFT/TILT controls for a real perspective-control lens.
+  // V1 means vertical lens shift (camera Y) and meridional tilt about camera X. The camera
+  // axis and sensor/IMG plane stay fixed; the intrinsic lens stack moves and rays are retraced.
+  // Declare imageFormat so scene-/sensor-locked movement analyses have physical sensor bounds.
+  // Use [0, 0] for an unsupported axis, and omit tiltPivot when tilt is disabled.
   // perspectiveControl: {
   //   shiftRangeMm: [-11.5, 11.5],
   //   tiltRangeDeg: [-8.5, 8.5],
   //   shiftStepMm: 0.1,
   //   tiltStepDeg: 0.1,
-  //   // Camera-fixed fallback at the reference-state rear vertex; not a measured hinge location.
+  //   // Required for non-zero tilt. This finite negative offset is measured objectward from
+  //   // the fixed image plane in the focusT=zoomT=aberrationT=0 reference layout. It remains
+  //   // camera-fixed at other states and must not follow the current rear vertex.
   //   tiltPivot: {
   //     frame: "camera",
+  //     // Use "mechanical-axis" only with a source-backed physical pivot. This fallback is
+  //     // deterministic trace/display geometry, not a claim about the manufactured hinge.
   //     basis: "rear-vertex-fallback",
   //     zOffsetFromImagePlaneMm: -56.5,
   //   },
   // },
+
+  // Movement analysis never substitutes centered results for unsolved rays. Intrinsic EFL,
+  // cardinals, Petzval, focus breathing, lens-axis SA, and lens-axis LoCA stay explicitly
+  // intrinsic; ray-based blur/field/chromatic/distortion/vignetting/pupil results use the
+  // fixed sensor or report unavailable. V1 has no mechanism rotation, swing, independent XY,
+  // or folded-path perspective control.
 
   // Optional: declare non-rectilinear projection metadata for fisheyes.
   // Use "fisheye-equidistant" (r = f·θ) or "fisheye-equisolid" (r = 2f·sin(θ/2),

@@ -16,6 +16,7 @@ import {
   type AberrationPanelScenarioResults,
   type BenchmarkEntry,
   type BenchmarkRunRecord,
+  type BenchmarkScenarioConfigSnapshot,
   type BenchmarkScenarioResults,
   type BenchmarkSkip,
   type BenchmarkStats,
@@ -27,6 +28,7 @@ export { buildBenchmarkReport, formatRunFileName } from "./benchmarkReport.js";
 import buildLens from "../optics/buildLens.js";
 import { analysisJobsForState2, createAnalysisComputationContext, prepareRuntimeState } from "../optics/compat.js";
 import {
+  anchorLayoutToCamera,
   computeAnalysisFieldGeometryAtState,
   computeChromaticRayFanSpread,
   conjugateK,
@@ -43,6 +45,20 @@ import {
 } from "../optics/optics.js";
 import { computeCardinalElementsAtState } from "../optics/cardinalElements.js";
 import { computeElementShapes, createCoordinateTransforms } from "../optics/diagramGeometry.js";
+import {
+  clampLensMovement,
+  createLensMovementTransform,
+  type LensMovementTransform,
+  type ResolvedLensMovement,
+} from "../optics/lensMovement.js";
+import {
+  cameraDirectionForDiagramField,
+  computePerspectiveMovementViewportExtent,
+  createPerspectiveTraceContext,
+  tracePerspectiveDiagramFan,
+  type PerspectiveDiagramFanSample,
+  type PerspectiveTraceContext,
+} from "../optics/perspective/index.js";
 import { obstructionAwareRayFractionsForDensity } from "../optics/raySampling.js";
 import {
   analysisSamplingForQuality,
@@ -89,7 +105,7 @@ declare const process:
  * focus-heavy optics, perspective-control movement, fisheye projection launch, a large
  * format wide zoom, a fully Sellmeier-covered APO zoom, and a folded mirror fixture.
  */
-const DEFAULT_LENS_KEYS = [
+export const DEFAULT_BENCHMARK_LENS_KEYS = [
   "canon-serenar-50f18",
   "apo-lanthar-50f2",
   "ricoh-gr3-28f28",
@@ -98,6 +114,7 @@ const DEFAULT_LENS_KEYS = [
   "sony-fe-70-200mm-f28-gm-ii",
   "canon-rf100f28-macro",
   "nikon-pc-nikkor-19mm-f4e-ed",
+  "canon-tse-50f28l-macro",
   "canon-ef-8-15mm-f4l-fisheye-usm",
   "fujifilm-gf-20-35mm-f4-r-wr",
   "leica-apo-vario-elmarit-sl-90-280-f28-4",
@@ -113,13 +130,14 @@ const DEFAULT_LENS_KEYS = [
  * in the same 0..1 ranges used by the viewer. The scenarios intentionally keep the
  * matrix small because each benchmark run renders many React trees and traces many rays.
  */
-const SCENARIOS = [
+export const BENCHMARK_SCENARIOS = [
   {
     id: "default",
     focusT: 0,
     zoomT: 0,
     aberrationT: 0,
     stopdownT: 0,
+    movement: { shiftMm: 0, tiltDeg: 0 },
     rayDensity: "normal" as RayDensity,
     rayTracksF: false,
     showOnAxis: true,
@@ -133,6 +151,7 @@ const SCENARIOS = [
     zoomT: 0.5,
     aberrationT: 0,
     stopdownT: 0.5,
+    movement: { shiftMm: 6, tiltDeg: 4 },
     rayDensity: "normal" as RayDensity,
     rayTracksF: true,
     showOnAxis: true,
@@ -146,6 +165,7 @@ const SCENARIOS = [
     zoomT: 1,
     aberrationT: 0,
     stopdownT: 0,
+    movement: { shiftMm: 0, tiltDeg: 0 },
     rayDensity: "dense" as RayDensity,
     rayTracksF: false,
     showOnAxis: true,
@@ -159,6 +179,7 @@ const SCENARIOS = [
     zoomT: 0.75,
     aberrationT: 0,
     stopdownT: 0.2,
+    movement: { shiftMm: -4, tiltDeg: -2.5 },
     rayDensity: "dense" as RayDensity,
     rayTracksF: false,
     showOnAxis: true,
@@ -166,13 +187,13 @@ const SCENARIOS = [
     showChromatic: true,
     analysisQuality: "interactive" as AnalysisQuality,
   },
-] as const;
+] as const satisfies readonly BenchmarkScenarioConfigSnapshot[];
 
-/** Union of the static scenario objects above. */
-type ScenarioConfig = (typeof SCENARIOS)[number];
+/** Input contract shared by persisted scenario metadata and runtime snapshots. */
+type ScenarioConfig = BenchmarkScenarioConfigSnapshot;
 
 /** Small serializable facts attached to a measured entry to prove the callback did real work. */
-type BenchmarkOutput = Record<string, number | string | boolean | null>;
+export type BenchmarkOutput = Record<string, number | string | boolean | null>;
 
 /** Metadata captured by the script wrapper before this SSR module is invoked. */
 interface BenchmarkMetadata {
@@ -201,7 +222,7 @@ export interface OpticsRenderingBenchmarkOptions extends BenchmarkMetadata {
  * coordinate transforms map millimeter coordinates into SVG pixels. Precomputing this
  * snapshot lets warm-path categories avoid rebuilding unrelated state.
  */
-interface ScenarioSnapshot {
+export interface ScenarioSnapshot {
   L: RuntimeLens;
   scenario: ScenarioConfig;
   focusT: number;
@@ -217,6 +238,10 @@ interface ScenarioSnapshot {
   IX: number;
   effectiveSC: number;
   shapes: ReturnType<typeof computeElementShapes>;
+  movement: ResolvedLensMovement;
+  movementTransform: LensMovementTransform;
+  lensAxis: [[number, number], [number, number]] | null;
+  perspectiveTraceContext: PerspectiveTraceContext;
   stopZ: number;
   currentPhysStopSD: number;
   currentEPSD: number;
@@ -228,11 +253,14 @@ interface ScenarioSnapshot {
 }
 
 /** Counts returned from ray work measurement. */
-interface RayWorkOutput extends BenchmarkOutput {
+export interface RayWorkOutput extends BenchmarkOutput {
   onAxisRays: number;
   offAxisRays: number;
   chromaticRays: number;
   hasChromaticRayFanSpread: boolean;
+  movementActive: boolean;
+  perspectiveFanSweeps: number;
+  perspectiveRaySamples: number;
 }
 
 /** Full ray outputs reused by SVG rendering so trace cost is not counted twice there. */
@@ -268,7 +296,7 @@ type AnalysisBenchmarkResults = Record<AnalysisBenchmarkCategory, BenchmarkEntry
 export async function runOpticsRenderingBenchmark(
   options: OpticsRenderingBenchmarkOptions,
 ): Promise<BenchmarkRunRecord> {
-  const lensKeys = options.lensKeys ?? [...DEFAULT_LENS_KEYS];
+  const lensKeys = options.lensKeys ?? [...DEFAULT_BENCHMARK_LENS_KEYS];
   validateLensKeys(lensKeys);
   const warmups = options.warmups ?? 1;
   const iterations = options.iterations ?? 3;
@@ -282,7 +310,8 @@ export async function runOpticsRenderingBenchmark(
       warmups,
       iterations,
       lensKeys,
-      scenarios: SCENARIOS.map((scenario) => scenario.id),
+      scenarios: BENCHMARK_SCENARIOS.map((scenario) => scenario.id),
+      scenarioSnapshots: BENCHMARK_SCENARIOS.map(copyScenarioConfig),
     },
     results: {},
     aberrationPanels: {},
@@ -301,7 +330,7 @@ export async function runOpticsRenderingBenchmark(
     record.aberrationPanels[lensKey] = {};
     const L = buildLens(LENS_CATALOG[lensKey]);
 
-    for (const scenario of SCENARIOS) {
+    for (const scenario of BENCHMARK_SCENARIOS) {
       const snapshot = buildScenarioSnapshot(L, scenario);
       const rayWork = computeRayWork(snapshot);
 
@@ -326,6 +355,32 @@ function validateLensKeys(lensKeys: readonly string[]): void {
   if (missing.length > 0) {
     throw new Error(`Benchmark lens key(s) not found in catalog: ${missing.join(", ")}`);
   }
+}
+
+/** Copies nested scenario inputs before persisting them in a benchmark record. */
+function copyScenarioConfig(scenario: ScenarioConfig): BenchmarkScenarioConfigSnapshot {
+  return {
+    ...scenario,
+    movement: { ...scenario.movement },
+  };
+}
+
+/** Build one benchmark snapshot without running the full timing matrix. */
+export function createBenchmarkScenarioSnapshot(lensKey: string, scenarioId: string): ScenarioSnapshot {
+  validateLensKeys([lensKey]);
+  const scenario = BENCHMARK_SCENARIOS.find((candidate) => candidate.id === scenarioId);
+  if (!scenario) throw new Error(`Benchmark scenario not found: ${scenarioId}`);
+  return buildScenarioSnapshot(buildLens(LENS_CATALOG[lensKey]), scenario);
+}
+
+/** Execute the scenario's ray work through the same path measured by the harness. */
+export function computeBenchmarkScenarioRayWork(snapshot: ScenarioSnapshot): RayWorkOutput {
+  return { ...computeRayWork(snapshot).output };
+}
+
+/** Execute the scenario's coarse analysis workload without recording timings. */
+export function computeBenchmarkScenarioAnalysisWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
+  return { ...computeAnalysisWork(snapshot) };
 }
 
 /**
@@ -358,6 +413,10 @@ function measureMainScenario(
         shapes: next.shapes.length,
         imageZ: next.IMG_MM,
         fieldGeometry: next.fieldGeometry ? "ok" : "missing",
+        movementActive: next.movement.active,
+        shiftMm: next.movement.shiftMm,
+        tiltDeg: next.movement.tiltDeg,
+        analysisQuality: next.scenario.analysisQuality,
       };
     }),
     rays: measure("rays", () => computeRayWork(snapshot).output),
@@ -403,10 +462,25 @@ function buildScenarioSnapshot(L: RuntimeLens, scenario: ScenarioConfig): Scenar
   const aberrationT = L.aberrationControl ? scenario.aberrationT : 0;
   const stopdownT = scenario.stopdownT;
   const ref = doLayout(0, 0, L);
-  const IMG_MM = ref.imgZ;
   const cur = doLayout(focusT, zoomT, L, aberrationT);
-  const dz = IMG_MM - cur.imgZ;
-  const zPos = cur.z.map((z) => z + dz);
+  const cameraLayout = anchorLayoutToCamera(ref, cur);
+  const IMG_MM = cameraLayout.imgZ;
+  const zPos = [...cameraLayout.z];
+  const movement = clampLensMovement(L, scenario.movement);
+  const movementTransform = createLensMovementTransform(IMG_MM, movement);
+  const movementViewportExtent = computePerspectiveMovementViewportExtent({
+    zPos,
+    maxSemiDiameterMm: L.maxSD,
+    rayLeadMm: L.rayLead,
+    imagePlaneZ: IMG_MM,
+    config: L.perspectiveControl,
+  });
+  const coordinateZExtent = movementViewportExtent
+    ? {
+        min: Math.min(0, IMG_MM, movementViewportExtent.z.min),
+        max: Math.max(0, IMG_MM, movementViewportExtent.z.max),
+      }
+    : undefined;
   const fieldGeometry = computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT);
   const { sx, sy, clampedRayEnd, CX, IX, effectiveSC } = createCoordinateTransforms({
     svgW: L.svgW,
@@ -416,8 +490,10 @@ function buildScenarioSnapshot(L: RuntimeLens, scenario: ScenarioConfig): Scenar
     lensShiftFrac: L.lensShiftFrac,
     imgMM: IMG_MM,
     scaleRatio: null,
+    zExtent: coordinateZExtent,
+    yExtent: movementViewportExtent?.y,
   });
-  const shapes = computeElementShapes(L, zPos, sx, sy);
+  const shapes = computeElementShapes(L, zPos, sx, sy, movementTransform.point);
   const currentFOPEN = fopenAtZoom(zoomT, L);
   const rawFNumber = L.FOPEN * Math.pow(L.maxFstop / L.FOPEN, stopdownT);
   const fNumber = Math.max(rawFNumber, currentFOPEN);
@@ -431,6 +507,12 @@ function buildScenarioSnapshot(L: RuntimeLens, scenario: ScenarioConfig): Scenar
   computeCardinalElementsAtState(L, focusT, zoomT, zPos, IMG_MM, aberrationT);
 
   const preparedState = prepareRuntimeState(L, focusT, zoomT, aberrationT);
+  const perspectiveTraceContext = createPerspectiveTraceContext({
+    preparedState,
+    cameraZPos: zPos,
+    movement: { shiftMm: movement.shiftMm, tiltDeg: movement.tiltDeg },
+    tiltPivot: movement.config?.tiltPivot,
+  });
   const analysisSampling = analysisSamplingForQuality(scenario.analysisQuality ?? "settled");
   const analysisContext = createAnalysisComputationContext({
     preparedState,
@@ -438,8 +520,11 @@ function buildScenarioSnapshot(L: RuntimeLens, scenario: ScenarioConfig): Scenar
     currentEPSD,
     currentPhysStopSD,
     fieldGeometry,
+    analysisQuality: scenario.analysisQuality ?? "settled",
     sampling: analysisSampling,
+    perspectiveTraceContext,
   });
+  const lensAxis = movement.active ? movementTransform.axis(zPos[0] - L.rayLead, IMG_MM) : null;
 
   return {
     L,
@@ -457,6 +542,10 @@ function buildScenarioSnapshot(L: RuntimeLens, scenario: ScenarioConfig): Scenar
     IX,
     effectiveSC,
     shapes,
+    movement,
+    movementTransform,
+    lensAxis,
+    perspectiveTraceContext,
     stopZ: zPos[L.stopIdx],
     currentPhysStopSD,
     currentEPSD,
@@ -483,13 +572,40 @@ function computeRayWork(snapshot: ScenarioSnapshot): RayWorkResult {
   const rays: RaySegment[] = [];
   const offAxisRays: RaySegment[] = [];
   const chromaticRays: ChromaticRaySegment[] = [];
+  let perspectiveFanSweeps = 0;
+  let perspectiveRaySamples = 0;
+  const tracePerspectiveFan = (
+    sceneDirectionCamera: readonly [number, number, number],
+    fractions: readonly number[],
+    channel?: ChromaticChannel,
+  ): PerspectiveDiagramFanSample[] => {
+    perspectiveFanSweeps++;
+    const fan = tracePerspectiveDiagramFan({
+      context: snapshot.perspectiveTraceContext,
+      sceneDirectionCamera,
+      pupilSemiDiameterMm: currentEPSD,
+      stopSemiDiameterMm: currentPhysStopSD,
+      fractions,
+      channel,
+    });
+    const samples = fan?.samples ?? [];
+    perspectiveRaySamples += samples.length;
+    return samples;
+  };
 
   if (scenario.showOnAxis) {
-    for (const f of obstructionAwareRayFractionsForDensity(L, L.rayFractions, scenario.rayDensity, currentEPSD)) {
-      const h = f * currentEPSD;
-      const uIn = scenario.rayTracksF ? h * focusK : 0;
-      const result = traceRay(h, uIn, zPos, focusT, zoomT, currentPhysStopSD, true, L, aberrationT);
-      rays.push(compileTraceSegment(snapshot, result));
+    const fractions = obstructionAwareRayFractionsForDensity(L, L.rayFractions, scenario.rayDensity, currentEPSD);
+    if (snapshot.movement.active) {
+      for (const sample of tracePerspectiveFan([0, 0, 1], fractions)) {
+        rays.push(compilePerspectiveTraceSegment(snapshot, sample));
+      }
+    } else {
+      for (const f of fractions) {
+        const h = f * currentEPSD;
+        const uIn = scenario.rayTracksF ? h * focusK : 0;
+        const result = traceRay(h, uIn, zPos, focusT, zoomT, currentPhysStopSD, true, L, aberrationT);
+        rays.push(compileTraceSegment(snapshot, result));
+      }
     }
   }
 
@@ -509,89 +625,140 @@ function computeRayWork(snapshot: ScenarioSnapshot): RayWorkResult {
         });
 
   if (offAxisGeometry) {
-    for (const f of obstructionAwareRayFractionsForDensity(L, L.offAxisFractions, scenario.rayDensity, currentEPSD)) {
-      const h = f * currentEPSD;
-      const uConverge = scenario.rayTracksF ? h * focusK : 0;
-      const result =
-        offAxisGeometry.kind === "vector"
-          ? traceRayVector(
-              offsetVectorFieldRay(offAxisGeometry.vectorLaunch, 0, h, uConverge),
-              zPos,
-              currentPhysStopSD,
-              true,
-              L,
-              focusT,
-              zoomT,
-              aberrationT,
-            )
-          : traceRay(
-              offAxisGeometry.yChief + h,
-              offAxisGeometry.uField + uConverge,
-              zPos,
-              focusT,
-              zoomT,
-              currentPhysStopSD,
-              true,
-              L,
-              aberrationT,
-            );
-      offAxisRays.push(
-        compileTraceSegment(snapshot, result, offAxisGeometry.useEdge ? offAxisGeometry.edgeEnd : undefined),
-      );
+    const fractions = obstructionAwareRayFractionsForDensity(L, L.offAxisFractions, scenario.rayDensity, currentEPSD);
+    if (snapshot.movement.active) {
+      const sceneDirection = cameraDirectionForDiagramField(offAxisGeometry.fieldAngleDeg);
+      for (const sample of tracePerspectiveFan(sceneDirection, fractions)) {
+        offAxisRays.push(compilePerspectiveTraceSegment(snapshot, sample));
+      }
+    } else {
+      for (const f of fractions) {
+        const h = f * currentEPSD;
+        const uConverge = scenario.rayTracksF ? h * focusK : 0;
+        const result =
+          offAxisGeometry.kind === "vector"
+            ? traceRayVector(
+                offsetVectorFieldRay(offAxisGeometry.vectorLaunch, 0, h, uConverge),
+                zPos,
+                currentPhysStopSD,
+                true,
+                L,
+                focusT,
+                zoomT,
+                aberrationT,
+              )
+            : traceRay(
+                offAxisGeometry.yChief + h,
+                offAxisGeometry.uField + uConverge,
+                zPos,
+                focusT,
+                zoomT,
+                currentPhysStopSD,
+                true,
+                L,
+                aberrationT,
+              );
+        offAxisRays.push(
+          compileTraceSegment(snapshot, result, offAxisGeometry.useEdge ? offAxisGeometry.edgeEnd : undefined),
+        );
+      }
     }
   }
 
   if (scenario.showChromatic) {
     const channels = filterChannels(true, true, true, false);
-    for (const f of obstructionAwareRayFractionsForDensity(L, L.rayFractions, scenario.rayDensity, currentEPSD)) {
-      const h = f * currentEPSD;
-      const uIn = scenario.rayTracksF ? h * focusK : 0;
-      for (const channel of channels) {
-        const result = traceRayChromatic(h, uIn, zPos, focusT, zoomT, currentPhysStopSD, true, L, channel, aberrationT);
-        chromaticRays.push(compileChromaticTraceSegment(snapshot, result, channel, "onAxis", f));
+    const onAxisFractions = obstructionAwareRayFractionsForDensity(L, L.rayFractions, scenario.rayDensity, currentEPSD);
+    if (snapshot.movement.active) {
+      const fans = new Map(
+        channels.map((channel) => [channel, tracePerspectiveFan([0, 0, 1], onAxisFractions, channel)]),
+      );
+      for (let index = 0; index < onAxisFractions.length; index++) {
+        for (const channel of channels) {
+          const sample = fans.get(channel)?.[index];
+          if (sample) chromaticRays.push(compilePerspectiveChromaticSegment(snapshot, sample, channel, "onAxis"));
+        }
+      }
+    } else {
+      for (const f of onAxisFractions) {
+        const h = f * currentEPSD;
+        const uIn = scenario.rayTracksF ? h * focusK : 0;
+        for (const channel of channels) {
+          const result = traceRayChromatic(
+            h,
+            uIn,
+            zPos,
+            focusT,
+            zoomT,
+            currentPhysStopSD,
+            true,
+            L,
+            channel,
+            aberrationT,
+          );
+          chromaticRays.push(compileChromaticTraceSegment(snapshot, result, channel, "onAxis", f));
+        }
       }
     }
 
     if (offAxisGeometry) {
-      for (const f of obstructionAwareRayFractionsForDensity(L, L.offAxisFractions, scenario.rayDensity, currentEPSD)) {
-        const h = f * currentEPSD;
-        const uConverge = scenario.rayTracksF ? h * focusK : 0;
-        for (const channel of channels) {
-          const result =
-            offAxisGeometry.kind === "vector"
-              ? traceRayVectorChromatic(
-                  offsetVectorFieldRay(offAxisGeometry.vectorLaunch, 0, h, uConverge),
-                  zPos,
-                  currentPhysStopSD,
-                  true,
-                  L,
-                  channel,
-                  focusT,
-                  zoomT,
-                  aberrationT,
-                )
-              : traceRayChromatic(
-                  offAxisGeometry.yChief + h,
-                  offAxisGeometry.uField + uConverge,
-                  zPos,
-                  focusT,
-                  zoomT,
-                  currentPhysStopSD,
-                  true,
-                  L,
-                  channel,
-                  aberrationT,
-                );
-          chromaticRays.push(
-            compileChromaticTraceSegment(
-              snapshot,
-              result,
-              channel,
-              "offAxis",
-              f,
-              offAxisGeometry.useEdge ? offAxisGeometry.edgeEnd : undefined,
-            ),
-          );
+      const offAxisFractions = obstructionAwareRayFractionsForDensity(
+        L,
+        L.offAxisFractions,
+        scenario.rayDensity,
+        currentEPSD,
+      );
+      if (snapshot.movement.active) {
+        const direction = cameraDirectionForDiagramField(offAxisGeometry.fieldAngleDeg);
+        const fans = new Map(
+          channels.map((channel) => [channel, tracePerspectiveFan(direction, offAxisFractions, channel)]),
+        );
+        for (let index = 0; index < offAxisFractions.length; index++) {
+          for (const channel of channels) {
+            const sample = fans.get(channel)?.[index];
+            if (sample) chromaticRays.push(compilePerspectiveChromaticSegment(snapshot, sample, channel, "offAxis"));
+          }
+        }
+      } else {
+        for (const f of offAxisFractions) {
+          const h = f * currentEPSD;
+          const uConverge = scenario.rayTracksF ? h * focusK : 0;
+          for (const channel of channels) {
+            const result =
+              offAxisGeometry.kind === "vector"
+                ? traceRayVectorChromatic(
+                    offsetVectorFieldRay(offAxisGeometry.vectorLaunch, 0, h, uConverge),
+                    zPos,
+                    currentPhysStopSD,
+                    true,
+                    L,
+                    channel,
+                    focusT,
+                    zoomT,
+                    aberrationT,
+                  )
+                : traceRayChromatic(
+                    offAxisGeometry.yChief + h,
+                    offAxisGeometry.uField + uConverge,
+                    zPos,
+                    focusT,
+                    zoomT,
+                    currentPhysStopSD,
+                    true,
+                    L,
+                    channel,
+                    aberrationT,
+                  );
+            chromaticRays.push(
+              compileChromaticTraceSegment(
+                snapshot,
+                result,
+                channel,
+                "offAxis",
+                f,
+                offAxisGeometry.useEdge ? offAxisGeometry.edgeEnd : undefined,
+              ),
+            );
+          }
         }
       }
     }
@@ -616,6 +783,9 @@ function computeRayWork(snapshot: ScenarioSnapshot): RayWorkResult {
       offAxisRays: offAxisRays.length,
       chromaticRays: chromaticRays.length,
       hasChromaticRayFanSpread: Boolean(chromaticRayFanSpread),
+      movementActive: snapshot.movement.active,
+      perspectiveFanSweeps,
+      perspectiveRaySamples,
     },
   };
 }
@@ -623,15 +793,36 @@ function computeRayWork(snapshot: ScenarioSnapshot): RayWorkResult {
 /**
  * Measures the coarse analysis workload used by the main `analysis` category.
  *
- * Folded optics intentionally skip the sequential field-analysis jobs that the UI also
- * guards. Mirror-safe pupil, bokeh, and best-focus work still runs so folded fixtures
- * remain represented in the benchmark record.
+ * Active perspective-control scenarios use the movement-aware accessors exclusively;
+ * centered and folded scenarios retain the established fast paths and guardrails.
  */
 function computeAnalysisWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
   const { L, analysisContext } = snapshot;
   const output: BenchmarkOutput = {};
   const summary = analysisContext.computeOpticalSummary();
   output.summarySurfaceCount = summary.surfaceCount;
+
+  if (snapshot.movement.active) {
+    const focus = analysisContext.computePerspectiveFocusAnalysis();
+    const fieldAberrations = analysisContext.computePerspectiveFieldAberrations();
+    const chromatic = analysisContext.computePerspectiveChromaticAnalysis();
+    const distortion = analysisContext.computePerspectiveDistortionAnalysis();
+    const vignetting = analysisContext.computePerspectiveVignettingAnalysis();
+    const pupils = analysisContext.computePerspectivePupilAnalysis();
+    output.perspectiveAnalysisJobs = 6;
+    output.legacyRayBasedAnalysisJobs = 0;
+    output.perspectiveFocusSamples = focus.samples.length;
+    output.perspectiveFieldCurvatureSamples = fieldAberrations.fieldCurvature.samples.length;
+    output.perspectiveComaSamples = fieldAberrations.coma.samples.length;
+    output.perspectiveChromaticSamples = chromatic.samples.length;
+    output.perspectiveDistortionSamples =
+      distortion.vertical.length + distortion.grid.rows.reduce((count, row) => count + row.length, 0);
+    output.perspectiveVignettingSamples = vignetting.samples.length;
+    output.perspectivePupilSamples = pupils.samples.length;
+    return output;
+  }
+
+  output.perspectiveAnalysisJobs = 0;
 
   if (!L.isFoldedOptics) {
     output.distortionSamples = analysisContext.computeDistortionCurve().length;
@@ -665,21 +856,95 @@ function measureAnalysisBreakdown(
     measureEntry(`${lensKey}:${scenario.id}:analysis.${category}`, fn, options);
   const foldedSkip = (category: AnalysisBenchmarkCategory): BenchmarkEntry =>
     skippedEntry(`${category} uses sequential field analysis guarded for folded optics`);
+  const movementSkip = (category: AnalysisBenchmarkCategory): BenchmarkEntry =>
+    skippedEntry(`${category} is replaced by movement-aware perspective analysis`);
+  const centeredSkip = (category: AnalysisBenchmarkCategory): BenchmarkEntry =>
+    skippedEntry(`${category} is not scheduled on the centered fast path`);
+  const centeredOrFolded = (category: AnalysisBenchmarkCategory, work: () => BenchmarkOutput): BenchmarkEntry => {
+    if (snapshot.movement.active) return movementSkip(category);
+    if (snapshot.L.isFoldedOptics && ["distortionCurve", "distortionGrid", "vignetting"].includes(category)) {
+      return foldedSkip(category);
+    }
+    return measure(category, work);
+  };
+  const perspective = (category: AnalysisBenchmarkCategory, work: () => BenchmarkOutput): BenchmarkEntry =>
+    snapshot.movement.active ? measure(category, work) : centeredSkip(category);
 
   return {
     summary: measure("summary", () => computeAnalysisSummaryWork(snapshot)),
-    distortionCurve: snapshot.L.isFoldedOptics
-      ? foldedSkip("distortionCurve")
-      : measure("distortionCurve", () => computeAnalysisDistortionCurveWork(snapshot)),
-    distortionGrid: snapshot.L.isFoldedOptics
-      ? foldedSkip("distortionGrid")
-      : measure("distortionGrid", () => computeAnalysisDistortionGridWork(snapshot)),
-    vignetting: snapshot.L.isFoldedOptics
-      ? foldedSkip("vignetting")
-      : measure("vignetting", () => computeAnalysisVignettingWork(snapshot)),
-    pupils: measure("pupils", () => computeAnalysisPupilsWork(snapshot)),
-    bokehPair: measure("bokehPair", () => computeAnalysisBokehPairWork(snapshot)),
-    bestFocus: measure("bestFocus", () => computeAnalysisBestFocusWork(snapshot)),
+    distortionCurve: centeredOrFolded("distortionCurve", () => computeAnalysisDistortionCurveWork(snapshot)),
+    distortionGrid: centeredOrFolded("distortionGrid", () => computeAnalysisDistortionGridWork(snapshot)),
+    vignetting: centeredOrFolded("vignetting", () => computeAnalysisVignettingWork(snapshot)),
+    pupils: centeredOrFolded("pupils", () => computeAnalysisPupilsWork(snapshot)),
+    bokehPair: centeredOrFolded("bokehPair", () => computeAnalysisBokehPairWork(snapshot)),
+    bestFocus: centeredOrFolded("bestFocus", () => computeAnalysisBestFocusWork(snapshot)),
+    perspectiveFocus: perspective("perspectiveFocus", () => computePerspectiveFocusWork(snapshot)),
+    perspectiveFieldAberrations: perspective("perspectiveFieldAberrations", () =>
+      computePerspectiveFieldAberrationsWork(snapshot),
+    ),
+    perspectiveChromatic: perspective("perspectiveChromatic", () => computePerspectiveChromaticWork(snapshot)),
+    perspectiveDistortion: perspective("perspectiveDistortion", () => computePerspectiveDistortionWork(snapshot)),
+    perspectiveVignetting: perspective("perspectiveVignetting", () => computePerspectiveVignettingWork(snapshot)),
+    perspectivePupils: perspective("perspectivePupils", () => computePerspectivePupilsWork(snapshot)),
+  };
+}
+
+/** Creates an uncached facade so each fine-grained benchmark times real job work. */
+function createFreshAnalysisContext(snapshot: ScenarioSnapshot): AnalysisComputationContext {
+  return createAnalysisComputationContext({
+    preparedState: snapshot.preparedState,
+    dynamicEFL: snapshot.dynamicEFL,
+    currentEPSD: snapshot.currentEPSD,
+    currentPhysStopSD: snapshot.currentPhysStopSD,
+    fieldGeometry: snapshot.fieldGeometry,
+    analysisQuality: snapshot.scenario.analysisQuality ?? "settled",
+    sampling: snapshot.analysisSampling,
+    perspectiveTraceContext: snapshot.perspectiveTraceContext,
+  });
+}
+
+function computePerspectiveFocusWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
+  const result = createFreshAnalysisContext(snapshot).computePerspectiveFocusAnalysis();
+  return { samples: result.samples.length, usableSamples: result.usableSampleCount };
+}
+
+function computePerspectiveFieldAberrationsWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
+  const result = createFreshAnalysisContext(snapshot).computePerspectiveFieldAberrations();
+  return {
+    fieldCurvatureSamples: result.fieldCurvature.samples.length,
+    comaSamples: result.coma.samples.length,
+    usableFieldCurvatureSamples: result.fieldCurvature.usableSampleCount,
+    usableComaSamples: result.coma.usableSampleCount,
+  };
+}
+
+function computePerspectiveChromaticWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
+  const result = createFreshAnalysisContext(snapshot).computePerspectiveChromaticAnalysis();
+  return { samples: result.samples.length, usableSamples: result.usableSampleCount };
+}
+
+function computePerspectiveDistortionWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
+  const result = createFreshAnalysisContext(snapshot).computePerspectiveDistortionAnalysis();
+  return {
+    verticalSamples: result.vertical.length,
+    gridSamples: result.grid.rows.reduce((count, row) => count + row.length, 0),
+    usableSamples: result.summary.usableCount,
+  };
+}
+
+function computePerspectiveVignettingWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
+  const result = createFreshAnalysisContext(snapshot).computePerspectiveVignettingAnalysis();
+  return {
+    samples: result.samples.length,
+    usableSamples: result.samples.filter((sample) => sample.status === "usable").length,
+  };
+}
+
+function computePerspectivePupilsWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
+  const result = createFreshAnalysisContext(snapshot).computePerspectivePupilAnalysis();
+  return {
+    samples: result.samples.length,
+    usableSamples: result.samples.filter((sample) => sample.status === "usable").length,
   };
 }
 
@@ -820,6 +1085,15 @@ function measureAberrationPanels(
     for (const category of ["fieldCurvature", "chromaticFieldCurvature", "fieldCurvatureBundle", "coma", "comaTab"]) {
       skips.push({ lensKey, scenarioId: scenario.id, category, reason: "Folded optics guard" });
     }
+  } else if (snapshot.movement.active) {
+    for (const category of ["fieldCurvature", "chromaticFieldCurvature", "fieldCurvatureBundle", "coma"]) {
+      skips.push({
+        lensKey,
+        scenarioId: scenario.id,
+        category,
+        reason: "Active movement uses the perspective field-aberration accessor",
+      });
+    }
   } else {
     data.fieldCurvature = measure("data", "fieldCurvature", () =>
       describeComputationOutput(
@@ -873,7 +1147,7 @@ function measureAberrationPanels(
   render.aberrationsTab = measure("render", "aberrationsTab", () => renderAberrationsTab(snapshot));
   render.sphericalSection = measure("render", "sphericalSection", () => renderSphericalSection(snapshot, values));
 
-  if (!snapshot.L.isFoldedOptics) {
+  if (!snapshot.L.isFoldedOptics && !snapshot.movement.active) {
     render.fieldCurvatureSection = measure("render", "fieldCurvatureSection", () =>
       renderFieldCurvatureSection(snapshot, values),
     );
@@ -890,6 +1164,22 @@ function measureAberrationPanels(
     render.sagittalComaSection = measure("render", "sagittalComaSection", () =>
       renderSagittalComaSection(snapshot, values),
     );
+  } else if (snapshot.movement.active) {
+    for (const category of [
+      "fieldCurvatureSection",
+      "astigmatismSection",
+      "comaPreviewSection",
+      "meridionalComaSection",
+      "sagittalComaSection",
+    ]) {
+      skips.push({
+        lensKey,
+        scenarioId: scenario.id,
+        category,
+        reason: "Legacy section props are replaced by movement-aware panel data",
+      });
+    }
+    render.comaTab = measure("render", "comaTab", () => renderComaTab(snapshot));
   }
 
   return { data, render, skips };
@@ -920,7 +1210,7 @@ function computeAberrationDataValues(snapshot: ScenarioSnapshot): AberrationData
     sphericalAberration,
     snapshot.analysisSampling,
   );
-  if (snapshot.L.isFoldedOptics) {
+  if (snapshot.L.isFoldedOptics || snapshot.movement.active) {
     return { sphericalAberration, saProfile, saBlurCharacter };
   }
   const fieldCurvatureBundle = analysisJobsForState2.computeFieldCurvatureBundle(
@@ -959,6 +1249,8 @@ function renderDiagram(snapshot: ScenarioSnapshot, rayWork: RayWorkResult): Benc
       CX={snapshot.CX}
       IX={snapshot.IX}
       effectiveSC={snapshot.effectiveSC}
+      movementTransform={snapshot.movementTransform}
+      lensAxis={snapshot.lensAxis}
       zPos={snapshot.zPos}
       IMG_MM={snapshot.IMG_MM}
       shapes={snapshot.shapes}
@@ -1143,6 +1435,24 @@ function compileTraceSegment(
   );
 }
 
+/** Compiles a camera-frame perspective trace without synthesizing an image-plane tail. */
+function compilePerspectiveTraceSegment(snapshot: ScenarioSnapshot, sample: PerspectiveDiagramFanSample): RaySegment {
+  const result = sample.diagramTrace.ray;
+  return compileRaySegment(
+    result.pts,
+    result.ghostPts,
+    result.u,
+    result.clipped,
+    snapshot.sx,
+    snapshot.sy,
+    snapshot.clampedRayEnd,
+    snapshot.IMG_MM,
+    undefined,
+    result.reachedImagePlane,
+    false,
+  );
+}
+
 /** Adds wavelength, axis, and aperture-fraction metadata to a compiled trace segment. */
 function compileChromaticTraceSegment(
   snapshot: ScenarioSnapshot,
@@ -1161,6 +1471,26 @@ function compileChromaticTraceSegment(
     y: result.y,
     u: result.u,
     z: result.reachedImagePlane ? snapshot.IMG_MM : snapshot.zPos[snapshot.L.N - 1],
+    clipped: result.clipped,
+  };
+}
+
+/** Adds chromatic metadata to a compiled physical moved-lens diagram trace. */
+function compilePerspectiveChromaticSegment(
+  snapshot: ScenarioSnapshot,
+  sample: PerspectiveDiagramFanSample,
+  channel: ChromaticChannel,
+  axis: ChromaticRaySegment["axis"],
+): ChromaticRaySegment {
+  const result = sample.diagramTrace.ray;
+  return {
+    ...compilePerspectiveTraceSegment(snapshot, sample),
+    channel,
+    axis,
+    fraction: sample.fraction,
+    y: result.y,
+    u: result.u,
+    z: sample.diagramTrace.returnPoint[0],
     clipped: result.clipped,
   };
 }

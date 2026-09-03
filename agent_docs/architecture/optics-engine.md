@@ -32,8 +32,9 @@ lens data; analysis tabs use current focus, zoom, and aperture state.
 | `src/optics/chromatic/` | Wavelength/index resolution, chromatic tracing, dispersion adapters, and quality summaries. |
 | `src/optics/diagram/` | SVG coordinate transforms, element shape/render diagnostics, aspheric overlay paths, second-surface mirror coating accents, and semantic diffractive-phase accents. |
 | `src/optics/analysis/` | Analysis facades and state-aware wrappers for summary metrics, aberration, distortion, vignetting, pupil, bokeh, group movement, and LCA display helpers. |
+| `src/optics/perspective/` | Fixed-camera rigid pose, exact moved-lens tracing, moved-stop chief solving, scene-/sensor-locked field sampling, diagram adapters, and movement-aware analysis primitives. |
 | `src/optics/buildLens.ts`, `src/optics/optics.ts`, focused `src/optics/*.ts` public modules | Stable import paths for app code and tests over the engine implementation. |
-| `lensMovement.ts` | Pure 2D perspective-control movement helpers for clamping shift/tilt and transforming rendered points/rays. |
+| `lensMovement.ts` | Perspective-control capability clamping and 2D display adapters over the shared rigid `PerspectivePose`. |
 | `groupMovement.ts` | Pure inferred lens-group axial movement profiles for focus, zoom, and combined overlay views. Uses fixed-image-plane anchoring and group-center positions relative to the focus plane. |
 | `validateLensData.ts` | Runtime lens-data validation. |
 | `projection.ts` | Projection model (rectilinear, fisheye-equidistant, fisheye-equisolid), forward/inverse maps, distortion residual reference, the `isFisheyeProjection` type guard for the recurring kind-fork, `projectionLaunchSlopeForField` (1D meridional `uField` from a field angle, with the 89° out-of-domain guard `MAX_FIELD_LAUNCH_DEG`), and its 2D companion `projectionLaunchVectorForFieldAngles` (azimuthal `(θ_x, θ_y)` → slopes + ideal image point). Also exposes the `LaunchSurface = "object-plane" \| "bounding-sphere"` discriminator, `launchSurfaceForFieldDeg(fieldDeg, projection)` selector, `ABSOLUTE_HALF_FIELD_CEILING`, `TRACING_SAFETY_FACTOR`, and `boundingSphereLaunchVector(epZ, θ_x, θ_y, R)` geometric helper for past-cap fisheye fields. |
@@ -321,14 +322,93 @@ height use generalized stop tracing rather than sequential `stopAt`, and folded 
 
 ## Perspective-Control Movement
 
-`lensMovement.ts` models v1 PC-lens movement as a 2D meridional display/ray layer: the optical trace is computed in the
-centered lens coordinates, then rendered lens geometry and ray segments are shifted/tilted relative to a fixed image
-plane. This keeps zero movement byte-for-byte equivalent to the existing coordinate path while making active movement
-visible in the SVG.
+Perspective-control optics use two frames rather than moving the complete diagram:
 
-Only lenses that declare `perspectiveControl` get movement controls; a `[0, 0]` range disables an unsupported axis on
-shift-only or tilt-only designs. Use `clampLensMovement()` before rendering or sharing movement values, and keep analysis
-helpers centered-lens unless a future task explicitly adds full moved-optics diagnostics.
+- The **camera frame** owns the fixed sensor plane and its orthonormal basis. For an axial sensor, `u` is camera `+x`
+  (right), `v` is camera `+y` (down/meridional), and the canonical normal is `+z` (imageward). The camera grid and axis
+  remain fixed.
+- The **intrinsic lens frame** owns the prepared prescription, stop, first-order pupils, cardinal points, and other
+  lens-local quantities. `PerspectivePose` maps points, directions, rays, and planes rigidly between the two frames.
+
+Positive shift translates the lens toward camera `-y`, matching the UI convention that optical/SVG `+y` is down.
+Positive tilt is the right-handed `Rx(+tiltDeg)` rotation about a camera-fixed line parallel to `x`, followed by the
+shift translation. The sensor never follows either movement.
+
+### Pivot Contract
+
+Every tilt-enabled `perspectiveControl` declaration has a `tiltPivot` in the camera frame. Its
+`zOffsetFromImagePlaneMm` is a finite negative distance from the fixed sensor/image plane; negative is objectward. The
+offset is authored from the canonical reference layout (`focusT = zoomT = aberrationT = 0`) and remains camera-fixed as
+focus or zoom moves the lens groups. It must not be recomputed from the current rear vertex.
+
+`basis: "mechanical-axis"` is permitted only for a directly sourced physical rotation axis.
+`basis: "rear-vertex-fallback"` means the canonical rear vertex supplied the deterministic reference because the
+mechanism axis is unpublished. The latter is deliberately a geometry fallback, not evidence about the manufactured
+hinge. Shift-only lenses omit the pivot. `createPerspectivePose()` rejects non-zero tilt without one; old standalone
+display helpers retain a zero-offset compatibility fallback, but lens data and the physical trace path do not rely on
+it.
+
+### Exact Trace And Field Sampling
+
+`createPerspectiveTraceContext()` binds one camera-anchored `PreparedOpticalState`, fixed sensor and sensor basis,
+clamped movement, and pivot. Its cache key includes the complete prepared geometry, sensor, basis, movement, and pivot,
+so shift- or tilt-only changes invalidate diagram and analysis results. The identity pose preserves the centered fast
+path.
+
+For active movement, a camera-space launch is transformed into the lens frame, exact-traced through the intrinsic
+prescription, transformed back into the camera frame, and extended to the fixed sensor. Diagram rays therefore show
+physical surface hits and fixed-sensor intercepts, not a rigidly transformed centered polyline. Chief rays are solved
+against the moved stop center, including a channel-specific solve for chromatic fans.
+
+The shared `FieldSample` contract keeps every requested point in input order and reports one of `usable`,
+`outside-projection-domain`, `chief-unreachable`, `clipped`, or `missed-sensor`. It carries the requested normalized
+sensor coordinate/point, camera- and lens-frame scene directions, zero-pose ideal, posed ideal, actual chief intercept,
+solve diagnostics, and optional pupil bundle. Normalized sensor `(u, v)` uses `[-1, +1]` at the declared image-format
+edges; validated `imageFormat` metadata is therefore required for perspective field sampling.
+
+Two field domains prevent analyses from accidentally changing the question while the lens moves:
+
+- **Scene-locked** sampling holds an arbitrary camera-space scene direction fixed. Its zero-pose ideal point is the
+  composition reference. Distortion uses this domain so movement-induced composition and residual optical distortion
+  remain distinguishable.
+- **Sensor-locked** sampling holds a physical point on the fixed sensor. The analytic posed-lens inversion is only a
+  seed; a two-coordinate solve adjusts the camera scene direction until the actual moved chief reaches the requested
+  sensor point through the moved stop. Blur, focus, bokeh, field aberrations, chromatic field behavior, vignetting, and
+  apparent pupils use this domain.
+
+The **posed ideal** is not taken from a real trace. It maps the intrinsic ideal image point and paraxial exit-pupil
+center into the camera frame, joins them, and intersects that line with the fixed sensor. This supplies a stable
+composition baseline between the zero-pose ideal and the exact traced intercept.
+
+### Analysis Metric Contract
+
+| Family | Frame and interpretation during active movement |
+| --- | --- |
+| EFL, cardinal elements, Petzval, focus breathing | Intrinsic lens-frame properties. They remain available and are explicitly labeled as intrinsic. |
+| Classical lens-axis spherical aberration and longitudinal chromatic aberration | Intrinsic lens-axis diagnostics. They are not presented as fixed-sensor movement effects. |
+| Blur, best focus, and bokeh | Sensor-locked footprints and focus offsets measured from the fixed sensor along its canonical normal. |
+| Field curvature, astigmatism, and coma | Sensor-locked tangential/sagittal focus and chief-relative spot metrics in fixed-sensor axes. |
+| Chromatic field analysis | Sensor-locked focus, transverse color, field blur, and retained channel-specific fans in the fixed sensor basis. |
+| Distortion | Scene-locked displacement in sensor `u/v`: composition = posed ideal - zero-pose ideal; optical residual = actual - posed ideal; total = actual - zero-pose ideal. |
+| Vignetting | Sensor-locked area-weighted aperture survival and transmitted flux. Active/zero comparisons use the same signed sensor coordinate and never renormalize to the active center. |
+| Pupils | Intrinsic EP/XP centers and sizes stay in the lens frame; their posed centers are rigid references. Field-dependent apparent pupils come from solved chief/bundle lines and report displacement in the fixed sensor basis. |
+
+Movement-aware reductions preserve mechanical pupil weights separately from Beer-Lambert transmission. Sensor-relative
+focus uses planes parallel to the fixed sensor; a positive normal offset follows the canonical sensor normal and a
+negative offset is lensward.
+
+Fallbacks must be honest. While movement is active, no ray-based section may silently reuse centered-lens results.
+Intrinsic sections stay visible with intrinsic labels. Unsolved samples retain their requested coordinate and explicit
+status, and an unsupported section is suppressed by the per-section availability registry. Active full traces through
+generalized/folded paths fail closed with `PerspectiveTraceUnsupportedError` rather than falling back to sequential
+math.
+
+### V1 Limits
+
+V1 models one vertical lens translation (`shift-Y`) and one meridional tilt about camera `X` (`tilt-X`). It does not
+model horizontal/independent XY shift, swing/tilt about `Y`, mechanism rotation, separately rotated shift and tilt axes,
+or a complete mechanical linkage. The sensor remains fixed and untilted. Full perspective-control tracing is limited
+to sequential optical paths; folded/generalized perspective-control systems are unsupported and remain guarded.
 
 ## Lens-Group Movement
 
