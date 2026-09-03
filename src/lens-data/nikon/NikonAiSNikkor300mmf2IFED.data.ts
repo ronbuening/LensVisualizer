@@ -60,30 +60,37 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
+      diagramLabel: "L1 / ED",
       label: "Element 1",
       type: "Biconvex Positive",
       nd: 1.49782,
       vd: 82.3,
       fl: 560.8003826612645,
       glass: "J-FKH1 catalog-equivalent coefficient proxy (patent 498823; production supplier unspecified)",
-      apd: false,
+      apd: "inferred",
+      apdNote:
+        "ED classification is inferred from the production IF-ED identity and the example's three repeated 1.49782/82.3 low-dispersion positions; J-FKH1 remains only a coordinate-compatible proxy.",
       role: "Front positive collector in G1.",
     },
     {
       id: 2,
       name: "L2",
+      diagramLabel: "L2 / ED",
       label: "Element 2",
       type: "Biconvex Positive",
       nd: 1.49782,
       vd: 82.3,
       fl: 342.46095917151587,
       glass: "J-FKH1 catalog-equivalent coefficient proxy (patent 498823; production supplier unspecified)",
-      apd: false,
+      apd: "inferred",
+      apdNote:
+        "ED classification is inferred from the production IF-ED identity and the example's three repeated 1.49782/82.3 low-dispersion positions; J-FKH1 remains only a coordinate-compatible proxy.",
       role: "Second positive collector in G1.",
     },
     {
       id: 3,
       name: "L3",
+      diagramLabel: "L3",
       label: "Element 3",
       type: "Biconcave Negative",
       nd: 1.7495,
@@ -96,18 +103,22 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L4",
+      diagramLabel: "L4 / ED",
       label: "Element 4",
       type: "Positive Meniscus",
       nd: 1.49782,
       vd: 82.3,
       fl: 513.5004025935488,
       glass: "J-FKH1 catalog-equivalent coefficient proxy (patent 498823; production supplier unspecified)",
-      apd: false,
+      apd: "inferred",
+      apdNote:
+        "ED classification is inferred from the production IF-ED identity and the example's three repeated 1.49782/82.3 low-dispersion positions; J-FKH1 remains only a coordinate-compatible proxy.",
       role: "Rear positive meniscus of G1.",
     },
     {
       id: 5,
       name: "L5",
+      diagramLabel: "L5",
       label: "Element 5",
       type: "Biconvex Positive",
       nd: 1.79504,
@@ -121,6 +132,7 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L6",
+      diagramLabel: "L6",
       label: "Element 6",
       type: "Biconcave Negative",
       nd: 1.51454,
@@ -134,6 +146,7 @@ const LENS_DATA = {
     {
       id: 7,
       name: "L7",
+      diagramLabel: "L7",
       label: "Element 7",
       type: "Biconcave Negative",
       nd: 1.4645,
@@ -146,6 +159,7 @@ const LENS_DATA = {
     {
       id: 8,
       name: "L8",
+      diagramLabel: "L8",
       label: "Element 8",
       type: "Biconcave Negative",
       nd: 1.68893,
@@ -159,6 +173,7 @@ const LENS_DATA = {
     {
       id: 9,
       name: "L9",
+      diagramLabel: "L9",
       label: "Element 9",
       type: "Biconvex Positive",
       nd: 1.6935,
@@ -172,6 +187,7 @@ const LENS_DATA = {
     {
       id: 10,
       name: "L10",
+      diagramLabel: "L10",
       label: "Element 10",
       type: "Negative Meniscus",
       nd: 1.69895,
@@ -185,6 +201,7 @@ const LENS_DATA = {
     {
       id: 11,
       name: "L11",
+      diagramLabel: "L11",
       label: "Element 11",
       type: "Biconvex Positive",
       nd: 1.6968,
@@ -233,9 +250,9 @@ const LENS_DATA = {
   ],
 
   groups: [
-    { text: "G1 +", fromSurface: "1", toSurface: "8" },
-    { text: "G2 − / FOCUS", fromSurface: "9", toSurface: "13" },
-    { text: "G3 +", fromSurface: "14", toSurface: "19" },
+    { text: "G1 (+) / FIXED", fromSurface: "1", toSurface: "8" },
+    { text: "G2 (−) / FOCUS → IMG", fromSurface: "9", toSurface: "13" },
+    { text: "G3 (+) / FIXED", fromSurface: "14", toSurface: "19" },
   ],
   doublets: [
     { text: "D1", fromSurface: "9", toSurface: "11" },

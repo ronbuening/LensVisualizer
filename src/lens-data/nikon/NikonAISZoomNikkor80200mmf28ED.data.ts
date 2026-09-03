@@ -57,6 +57,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1a",
+      diagramLabel: "L1a",
       label: "Element 1",
       type: "Negative Meniscus",
       nd: 1.7552,
@@ -70,31 +71,38 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L1b",
+      diagramLabel: "L1b / ED",
       label: "Element 2",
       type: "Biconvex Positive",
       nd: 1.50032,
       vd: 82.3,
       fl: 169.582622,
       glass: "J-FKH1 catalog-equivalent coefficient proxy (patent 500823; production supplier unspecified)",
-      apd: false,
+      apd: "inferred",
+      apdNote:
+        "ED classification is inferred from the production ED identity and the example's two repeated 1.50032/82.3 low-dispersion positions; J-FKH1 remains only a coordinate-compatible proxy.",
       cemented: "D1",
       role: "Low-dispersion positive member of the front cemented doublet; production ED identity is not assigned element-wise by the patent.",
     },
     {
       id: 3,
       name: "L2",
+      diagramLabel: "L2 / ED",
       label: "Element 3",
       type: "Positive Meniscus",
       nd: 1.50032,
       vd: 82.3,
       fl: 524.324084,
       glass: "J-FKH1 catalog-equivalent coefficient proxy (patent 500823; production supplier unspecified)",
-      apd: false,
+      apd: "inferred",
+      apdNote:
+        "ED classification is inferred from the production ED identity and the example's two repeated 1.50032/82.3 low-dispersion positions; J-FKH1 remains only a coordinate-compatible proxy.",
       role: "Second positive component of G1; shares the same low-dispersion patent coordinates as L1b.",
     },
     {
       id: 4,
       name: "L3a",
+      diagramLabel: "L3a",
       label: "Element 4",
       type: "Biconcave Negative",
       nd: 1.78797,
@@ -108,6 +116,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L3b",
+      diagramLabel: "L3b",
       label: "Element 5",
       type: "Biconvex Positive",
       nd: 1.7552,
@@ -121,6 +130,7 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L3c",
+      diagramLabel: "L3c",
       label: "Element 6",
       type: "Biconcave Negative",
       nd: 1.58144,
@@ -134,6 +144,7 @@ const LENS_DATA = {
     {
       id: 7,
       name: "L4",
+      diagramLabel: "L4",
       label: "Element 7",
       type: "Biconcave Negative",
       nd: 1.58913,
@@ -146,6 +157,7 @@ const LENS_DATA = {
     {
       id: 8,
       name: "L5a",
+      diagramLabel: "L5a",
       label: "Element 8",
       type: "Biconvex Positive",
       nd: 1.67025,
@@ -159,6 +171,7 @@ const LENS_DATA = {
     {
       id: 9,
       name: "L5b",
+      diagramLabel: "L5b",
       label: "Element 9",
       type: "Negative Meniscus",
       nd: 1.80518,
@@ -172,6 +185,7 @@ const LENS_DATA = {
     {
       id: 10,
       name: "L6",
+      diagramLabel: "L6",
       label: "Element 10",
       type: "Positive Meniscus",
       nd: 1.78797,
@@ -184,6 +198,7 @@ const LENS_DATA = {
     {
       id: 11,
       name: "L7",
+      diagramLabel: "L7",
       label: "Element 11",
       type: "Positive Meniscus",
       nd: 1.78797,
@@ -196,6 +211,7 @@ const LENS_DATA = {
     {
       id: 12,
       name: "L8",
+      diagramLabel: "L8",
       label: "Element 12",
       type: "Biconcave Negative",
       nd: 1.7552,
@@ -208,6 +224,7 @@ const LENS_DATA = {
     {
       id: 13,
       name: "L9",
+      diagramLabel: "L9",
       label: "Element 13",
       type: "Biconvex Positive",
       nd: 1.63854,
@@ -220,6 +237,7 @@ const LENS_DATA = {
     {
       id: 14,
       name: "L10",
+      diagramLabel: "L10",
       label: "Element 14",
       type: "Negative Meniscus",
       nd: 1.713,
@@ -232,6 +250,7 @@ const LENS_DATA = {
     {
       id: 15,
       name: "L11",
+      diagramLabel: "L11",
       label: "Element 15",
       type: "Biconvex Positive",
       nd: 1.61293,
@@ -304,10 +323,10 @@ const LENS_DATA = {
   zoomLabels: ["80mm", "200mm"],
 
   groups: [
-    { text: "G1 (+)", fromSurface: "1", toSurface: "5" },
-    { text: "G2 (-)", fromSurface: "6", toSurface: "11" },
-    { text: "G3 (+)", fromSurface: "12", toSurface: "14" },
-    { text: "G4 (+)", fromSurface: "15", toSurface: "26" },
+    { text: "G1 (+) / FOCUS → OBJ", fromSurface: "1", toSurface: "5" },
+    { text: "G2 (−) / ZOOM → IMG", fromSurface: "6", toSurface: "11" },
+    { text: "G3 (+) / ZOOM / REVERSES", fromSurface: "12", toSurface: "14" },
+    { text: "G4 (+) / FIXED", fromSurface: "15", toSurface: "26" },
   ],
 
   doublets: [

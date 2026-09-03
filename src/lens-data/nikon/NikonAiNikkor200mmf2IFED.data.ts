@@ -67,6 +67,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L11",
+      diagramLabel: "L11 / ED",
       label: "Front ED element 1",
       type: "Biconvex Positive",
       nd: 1.50032,
@@ -81,6 +82,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L12",
+      diagramLabel: "L12 / ED",
       label: "Front ED element 2",
       type: "Biconvex Positive",
       nd: 1.50032,
@@ -95,6 +97,7 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L13",
+      diagramLabel: "L13",
       label: "Front negative element",
       type: "Biconcave Negative",
       nd: 1.7552,
@@ -106,6 +109,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L21a",
+      diagramLabel: "L21a",
       label: "Focus cemented component front",
       type: "Positive Meniscus (cemented)",
       nd: 1.79504,
@@ -118,6 +122,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L21b",
+      diagramLabel: "L21b",
       label: "Focus cemented component rear",
       type: "Biconcave Negative (cemented)",
       nd: 1.4645,
@@ -130,6 +135,7 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L22",
+      diagramLabel: "L22",
       label: "Focus negative element",
       type: "Biconcave Negative",
       nd: 1.4645,
@@ -141,6 +147,7 @@ const LENS_DATA = {
     {
       id: 7,
       name: "L31",
+      diagramLabel: "L31",
       label: "Rear positive element",
       type: "Biconvex Positive",
       nd: 1.6935,
@@ -152,6 +159,7 @@ const LENS_DATA = {
     {
       id: 8,
       name: "L32a",
+      diagramLabel: "L32a",
       label: "Rear cemented component front",
       type: "Biconcave Negative (cemented)",
       nd: 1.59507,
@@ -164,6 +172,7 @@ const LENS_DATA = {
     {
       id: 9,
       name: "L32b",
+      diagramLabel: "L32b",
       label: "Rear cemented component rear",
       type: "Biconvex Positive (cemented)",
       nd: 1.6968,
@@ -176,6 +185,7 @@ const LENS_DATA = {
     {
       id: 10,
       name: "L33",
+      diagramLabel: "L33",
       label: "Rear Petzval-reducing element",
       type: "Negative Meniscus",
       nd: 1.4645,
@@ -221,16 +231,17 @@ const LENS_DATA = {
     "PUBLISHED internal-focus states from US 4,176,913 A Example 2: the complete negative middle group translates 17.000 mm imageward; D6 increases 41.201→58.201 mm while D11 decreases 22.912→5.912 mm, preserving D6+D11=64.113 mm. The patent labels the close endpoint β≈-0.1; this slider endpoint is not reconstructed from the production 2.5 m MFD.",
 
   groups: [
-    { text: "G1 FIXED +", fromSurface: "1", toSurface: "6" },
-    { text: "G2 FOCUS −", fromSurface: "7", toSurface: "11" },
-    { text: "G3 FIXED +", fromSurface: "12", toSurface: "18" },
+    { text: "G1 (+) / FIXED", fromSurface: "1", toSurface: "6" },
+    { text: "G2 (−) / FOCUS → IMG", fromSurface: "7", toSurface: "11" },
+    { text: "G3 (+) / FIXED", fromSurface: "12", toSurface: "18" },
   ],
   doublets: [
     { text: "L21", fromSurface: "7", toSurface: "9" },
     { text: "L32", fromSurface: "14", toSurface: "16" },
   ],
 
-  closeFocusM: 2.5,
+  // Computed object-to-image-plane distance at the patent's published 17 mm focus endpoint.
+  closeFocusM: 2.331245682553977,
   nominalFno: 2.000005314861276,
   fstopSeries: [2, 2.8, 4, 5.6, 8, 11, 16, 22],
   yScFill: 0.72,

@@ -54,7 +54,7 @@ Under the project's strict first-order terminology, the modeled system is not cl
 
 D1 is the cemented front component of G1. The first member is weakly negative by itself, while the second member is substantially positive. Their air-bounded cemented combination is net positive, with a computed component focal length of +298.793 mm. The combination therefore contributes positive power to G1 without requiring the high-dispersion first member to carry the whole converging function.
 
-The very large Abbe-number difference between the two members is an important material degree of freedom. The νd = 82.3 coordinate is strongly low-dispersion, but the patent neither names a vendor glass nor identifies which elements correspond to the production lens's ED designation. J-FKH1 is therefore used only as a coordinate-compatible spectral proxy. No secondary-spectrum or apochromatic claim follows from this coordinate alone.
+The very large Abbe-number difference between the two members is an important material degree of freedom. The νd = 82.3 coordinate is strongly low-dispersion. The production lens is explicitly designated ED, and the patent example contains exactly two occurrences of this distinct coordinate, at L1b and L2, so those two diagram positions are marked as an inferred ED/APD correlation. J-FKH1 remains only a coordinate-compatible spectral proxy: the assignment does not establish a historical production melt, and no secondary-spectrum or apochromatic claim follows from the coordinate alone.
 
 ### L2 — Positive Meniscus
 
@@ -156,7 +156,7 @@ The patent provides ten distinct d-line `nd`/`νd` coordinate pairs but no glass
 | J-LAK8 coefficient proxy (patent 713540) | 1.71300 | 54.0 | L10 |
 | E-F3 coefficient proxy (patent 613370) | 1.61293 | 37.0 | L11 |
 
-The most conspicuous low-dispersion coordinates are the two G1 members at `nd = 1.50032`, `νd = 82.3`. Nikon identifies the production lens as an ED lens [2][3], but the selected patent does not assign that production designation to specific elements or publish a glass trade name. J-FKH1 supplies coefficient-backed tracing within the catalog compatibility guard without making an element-level Nikon ED identification.
+The most conspicuous low-dispersion coordinates are the two G1 members at `nd = 1.50032`, `νd = 82.3`. Nikon identifies the production lens as an ED lens [2][3], and these are the example's only two occurrences of that coordinate. The viewer therefore uses an explicitly **inferred** element-level ED/APD correlation at L1b and L2. J-FKH1 supplies coefficient-backed tracing within the catalog compatibility guard without asserting that Nikon used that supplier or melt in production.
 
 No element in the final data carries patent-published `nC`, `nF`, `ng`, or `dPgF`. Coefficient-backed tracing now covers all fifteen elements through supplier-neutral proxies, but the analysis does not describe the design as apochromatic and does not assign anomalous partial dispersion to any element.
 
@@ -180,7 +180,7 @@ No separate floating component is introduced, and no production magnification cl
 
 The design distributes a wide range of Abbe numbers through all four principal groups rather than confining dispersion contrast to a single rear corrector. G1 combines νd = 27.6 with two νd = 82.3 members; G2 uses 47.5, 27.6, 40.8, and 61.2; G3 pairs 57.6 with 25.4; and G4 spans 27.6–55.5 among its distinct coordinates. This distribution gives the design several first-order chromatic balancing degrees of freedom while the zoom groups move.
 
-The two νd = 82.3 elements in G1 are the design's lowest-dispersion coordinates. Their placement in the focusing/front group is consistent with—but does not prove an element-level mapping to—the production lens's ED designation. The selected patent does not publish the spectral line indices needed to calculate partial-dispersion behavior from first principles. For that reason, the analysis confines itself to the published `nd`/`νd` structure and does not infer APO correction, fluorite-equivalent behavior, or a specific glass family.
+The two νd = 82.3 elements in G1 are the design's lowest-dispersion coordinates. Their count and placement provide the basis for the inferred element-level mapping to the production lens's ED designation. The selected patent does not publish the spectral line indices needed to calculate partial-dispersion behavior from first principles. For that reason, the analysis confines itself to the published `nd`/`νd` structure and does not infer APO correction, fluorite-equivalent behavior, or a production glass family.
 
 The cemented assemblies also matter to the chromatic strategy because their internal interfaces couple glasses with substantially different dispersions without adding air spacing. D1 combines νd = 27.6 and 82.3; T1 combines 47.5, 27.6, and 40.8; D2 combines 57.6 and 25.4. The exact chromatic residuals of those combinations require wavelength-dependent indices beyond the patent data retained here.
 
@@ -219,7 +219,7 @@ The stop result depends on the disclosed model rather than a patent stop coordin
 
 The surface-by-surface Petzval sum, using `φ/(n·n′)`, is `+0.000881944275488 mm⁻¹`, corresponding to a reciprocal signed radius of about 1133.858 mm. The inserted flat air stop contributes zero to this sum.
 
-The semi-diameter model passes the independent geometry checks used during data construction: minimum element edge thickness is 0.560071 mm, maximum actual spherical rim angle is 55.1193°, and the largest positive shared-gap sag intrusion is 0.864798 of the available gap. At the representative 0.60-field/0.83-pupil diagnostic, 80 and 140 mm remain within the authored apertures; at 200 mm the first clipping occurs at the exterior of G1 rather than at a cemented interface. These are validation properties of the visualization model, not patent-published mechanical dimensions or vignetting measurements.
+The semi-diameter model passes the independent geometry checks used during data construction: minimum element edge thickness is 0.560071 mm, maximum actual spherical rim angle is 55.1193°, and the largest positive shared-gap sag intrusion is 0.864798 of the available gap. A 600 dpi follow-up against Figure 5 retained the final optical-rim envelope; surface leaders and the G4 braces were excluded from the comparison. At the representative 0.60-field/0.83-pupil diagnostic, 80 and 140 mm remain within the authored apertures; at 200 mm the first clipping occurs at the exterior of G1 rather than at a cemented interface. These are validation properties of the visualization model, not patent-published mechanical dimensions or vignetting measurements.
 
 No sensor cover glass, filter, inactive dummy refracting plane, or mechanical part is included in the sequential optical model, and no omitted plate requires an air-equivalent rear-spacing correction. No scale factor is applied. All prescription dimensions remain at the published scale. All surfaces are spherical, so no conic convention or aspheric coefficient transformation is applicable.
 
