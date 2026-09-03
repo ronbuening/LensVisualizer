@@ -12,6 +12,7 @@ import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
 describe("useLensComputation", () => {
   const baseLensKey = "sonnar-50f15";
   const focusLensKey = "sony-fe-14mm-f18-gm";
+  const perspectiveLensKey = "canon-tse-50f28l-macro";
 
   it("returns a valid RuntimeLens and geometry for a known lens key", () => {
     const { result } = renderHook(() =>
@@ -278,5 +279,35 @@ describe("useLensComputation", () => {
     expect(r0.current.IMG_MM).toBe(r1.current.IMG_MM);
     // But surface positions should change with focus
     expect(r0.current.zPos).not.toEqual(r1.current.zPos);
+  });
+
+  it("binds moved display geometry and physical tracing to one fixed-camera perspective pose", () => {
+    const renderPerspective = (shiftMm: number, tiltDeg: number) =>
+      renderHook(() =>
+        useLensComputation({
+          lensKey: perspectiveLensKey,
+          focusT: 0,
+          zoomT: 0,
+          stopdownT: 0,
+          shiftMm,
+          tiltDeg,
+          scaleRatio: null,
+          panelId: "perspective-test",
+        }),
+      ).result.current;
+
+    const centered = renderPerspective(0, 0);
+    const moved = renderPerspective(4, 3);
+    const context = moved.perspectiveTraceContext!;
+    const localPoint: [number, number, number] = [0, 2, moved.zPos[0]];
+    const cameraPoint = context.pose.lensToCameraPoint(localPoint);
+
+    expect(context.pose.active).toBe(true);
+    expect(context.state.z).toEqual(moved.zPos);
+    expect(context.sensorPlane.point[2]).toBeCloseTo(moved.IMG_MM, 12);
+    expect(context.pose.tiltPivot).toEqual(moved.L!.perspectiveControl!.tiltPivot);
+    expect(Object.isFrozen(context.pose.tiltPivot)).toBe(true);
+    expect(moved.movementTransform.point(localPoint[2], localPoint[1])).toEqual([cameraPoint[2], cameraPoint[1]]);
+    expect(moved.effectiveSC).toBeCloseTo(centered.effectiveSC, 12);
   });
 });

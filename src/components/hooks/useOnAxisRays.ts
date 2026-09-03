@@ -8,10 +8,11 @@
  */
 import { useMemo } from "react";
 import { traceRay } from "../../optics/optics.js";
+import { tracePerspectiveDiagramFan } from "../../optics/perspective/diagramFan.js";
+import type { PerspectiveTraceContext } from "../../optics/perspective/index.js";
 import { obstructionAwareRayFractionsForDensity } from "../../optics/raySampling.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { RayDensity } from "../../types/state.js";
-import type { LensMovementTransform } from "../../optics/lensMovement.js";
 import { compileRaySegment } from "./raySegmentUtils.js";
 
 export interface RaySegment {
@@ -31,7 +32,7 @@ interface UseOnAxisRaysParams {
   sx: (z: number) => number;
   sy: (y: number) => number;
   clampedRayEnd: (lastZ: number, lastY: number, u: number, targetZ: number) => [number, number];
-  movementTransform?: LensMovementTransform;
+  perspectiveTraceContext?: PerspectiveTraceContext;
   currentPhysStopSD: number;
   currentEPSD: number;
   rayDensity: RayDensity;
@@ -55,7 +56,7 @@ export default function useOnAxisRays({
   sx,
   sy,
   clampedRayEnd,
-  movementTransform,
+  perspectiveTraceContext,
   currentPhysStopSD,
   currentEPSD,
   rayDensity,
@@ -67,11 +68,40 @@ export default function useOnAxisRays({
     if (!L) return { segments: [], error: null };
     try {
       const out: RaySegment[] = [];
-      for (const f of obstructionAwareRayFractionsForDensity(L, L.rayFractions, rayDensity, currentEPSD)) {
+      const fractions = obstructionAwareRayFractionsForDensity(L, L.rayFractions, rayDensity, currentEPSD);
+      if (perspectiveTraceContext?.pose.active) {
+        const fan = tracePerspectiveDiagramFan({
+          context: perspectiveTraceContext,
+          sceneDirectionCamera: [0, 0, 1],
+          pupilSemiDiameterMm: currentEPSD,
+          stopSemiDiameterMm: currentPhysStopSD,
+          fractions,
+        });
+        for (const sample of fan?.samples ?? []) {
+          const result = sample.diagramTrace.ray;
+          out.push(
+            compileRaySegment(
+              result.pts,
+              result.ghostPts,
+              result.u,
+              result.clipped,
+              sx,
+              sy,
+              clampedRayEnd,
+              IMG_MM,
+              undefined,
+              result.reachedImagePlane,
+              false,
+            ),
+          );
+        }
+        return { segments: out, error: null };
+      }
+
+      for (const f of fractions) {
         const h = f * currentEPSD;
         const uIn = rayTracksF ? h * focusK : 0;
-        const rawResult = traceRay(h, uIn, zPos, focusT, zoomT, currentPhysStopSD, true, L, aberrationT);
-        const result = movementTransform ? movementTransform.trace(rawResult) : rawResult;
+        const result = traceRay(h, uIn, zPos, focusT, zoomT, currentPhysStopSD, true, L, aberrationT);
         out.push(
           compileRaySegment(
             result.pts,
@@ -108,6 +138,6 @@ export default function useOnAxisRays({
     IMG_MM,
     lensKey,
     clampedRayEnd,
-    movementTransform,
+    perspectiveTraceContext,
   ]);
 }

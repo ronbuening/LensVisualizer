@@ -77,21 +77,21 @@ flowchart LR
 - Direct source files: 14
 - Direct subfolders: 0
 - Main outbound areas: same folder (46), src/optics/math (13), src/optics/types.ts (12), src/types (7), src/optics/trace (5), src/optics/field (2), src/optics/lensMovement.ts (2), src/optics/chromatic, +3 more
-- External consumers: none
+- External consumers: src/components/hooks, src/optics/lensMovement.ts
 
 ## Files
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
 | `chiefRay.ts` | Chief Ray helper module | src/optics/math (2), same folder, src/optics/field, src/optics/types.ts, src/types | same folder (7) | PerspectiveFieldStatus, PerspectiveChiefRayOptions, PerspectiveChiefRayResult, solvePerspectiveChiefRay, perspectiveTraceStatus, isPerspectiveDirectionInsideProjectionDomain |
-| `diagramFan.ts` | Diagram Fan helper module | same folder (3), src/optics/types.ts, src/types | same folder | PerspectiveDiagramFanSample, PerspectiveDiagramFan, TracePerspectiveDiagramFanParams, tracePerspectiveDiagramFan, cameraDirectionForDiagramField |
+| `diagramFan.ts` | Diagram Fan helper module | same folder (3), src/optics/types.ts, src/types | src/components/hooks (3), same folder | PerspectiveDiagramFanSample, PerspectiveDiagramFan, TracePerspectiveDiagramFanParams, tracePerspectiveDiagramFan, cameraDirectionForDiagramField |
 | `diagramTrace.ts` | Diagram Trace helper module | same folder, src/optics/types.ts, src/types | same folder (2) | PerspectiveDiagramTrace, PerspectiveDiagramTraceOptions, perspectiveTraceToDiagram, cameraPointToDiagram, perspectiveVectorLeadPoint |
 | `fieldGeometry.ts` | Field Geometry helper module | same folder (3), src/optics/math (2), src/optics/field, src/optics/first-order, src/optics/layout.ts, +2 more | same folder (5) | SensorUv, FieldPlaneFrame, PerspectiveProjectionReference, PerspectiveFieldSamplingError, requirePerspectiveImageFormatMetadata, resolvePerspectiveFocalLength, perspectiveProjectionReference, createFieldPlaneFrame, +11 more |
 | `fieldResults.ts` | Field Results helper module | same folder (3), src/optics/types.ts | same folder | boundedFieldStatus, unavailableFieldSample |
 | `fieldSampling.ts` | Field Sampling helper module | same folder (13), src/optics/math, src/optics/types.ts | same folder (2) | PerspectiveFieldSamplingError, SensorUv, sampleCircularPupilBundle, sampleMeridionalPupilBundle, PerspectivePupilBundle, PerspectivePupilBundleRequest, PerspectivePupilPoint, PerspectivePupilRaySample, +10 more |
 | `fieldTypes.ts` | Field Types helper module | same folder (5), src/optics/types.ts | same folder (2) | FieldSampleDomain, PerspectiveFieldRequest, FieldSample, PerspectiveFieldSamplingOptions |
-| `index.ts` | Barrel/registry module | same folder (8) | none | re-export * |
-| `pose.ts` | Pose helper module | src/optics/lensMovement.ts, src/optics/math, src/optics/types.ts, src/types | same folder (3) | CreatePerspectivePoseParams, PerspectivePose, PerspectivePoseError, createPerspectivePose |
+| `index.ts` | Barrel/registry module | same folder (8) | src/components/hooks (5) | re-export * |
+| `pose.ts` | Pose helper module | src/optics/lensMovement.ts, src/optics/math, src/optics/types.ts, src/types | same folder (3), src/optics/lensMovement.ts | CreatePerspectivePoseParams, PerspectivePose, PerspectivePoseError, createPerspectivePose |
 | `pupilBundle.ts` | Pupil Bundle helper module | same folder (3), src/optics/math, src/optics/types.ts, src/types | same folder (2) | PerspectivePupilRaySample, PerspectivePupilBundle, PerspectivePupilPoint, PerspectivePupilBundleRequest, sampleMeridionalPupilBundle, sampleCircularPupilBundle, pupilBundleForRequest |
 | `sensorBasis.ts` | Sensor Basis helper module | src/optics/math, src/optics/types.ts | same folder (3) | SensorBasis, SensorBasisError, createSensorBasis |
 | `sensorTarget.ts` | Sensor Target helper module | same folder (3), src/optics/math (2), src/optics/types.ts | same folder (2) | PerspectiveSensorLockSolveResult, SensorChiefSolve, solveChiefToSensorPoint |

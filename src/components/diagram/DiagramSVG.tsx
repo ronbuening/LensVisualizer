@@ -176,7 +176,10 @@ const DiagramSVG = memo(function DiagramSVG({
   ].filter((layer): layer is string => layer !== null);
   const description =
     `Cross-section of the ${L.data.elementCount ?? L.elements.length}-element ${lensDisplayName} with ray tracing` +
-    (shownLayers.length > 0 ? `, showing ${shownLayers.join(", ")}.` : "; all ray layers hidden.");
+    (shownLayers.length > 0 ? `, showing ${shownLayers.join(", ")}.` : "; all ray layers hidden.") +
+    (lensAxis
+      ? " The horizontal reference is the fixed camera axis; the secondary dashed line is the moved lens optical axis."
+      : "");
 
   return (
     <svg
@@ -213,6 +216,7 @@ const DiagramSVG = memo(function DiagramSVG({
       <DiagramGridAxisLayer lens={L} theme={t} CX={CX} effectiveSC={effectiveSC} sy={sy} />
       {lensAxis && (
         <line
+          aria-label="Moved lens optical axis"
           x1={sx(lensAxis[0][0])}
           y1={sy(lensAxis[0][1])}
           x2={sx(lensAxis[1][0])}
@@ -253,7 +257,7 @@ const DiagramSVG = memo(function DiagramSVG({
         sy={sy}
         IX={IX}
         effectiveSC={effectiveSC}
-        pointTransform={movementTransform?.point}
+        lensPointTransform={movementTransform?.point}
         zPos={zPos}
         IMG_MM={IMG_MM}
         shapes={shapes}
