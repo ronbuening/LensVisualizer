@@ -342,6 +342,8 @@ offset is authored from the canonical reference layout (`focusT = zoomT = aberra
 focus or zoom moves the lens groups. It must not be recomputed from the current rear vertex.
 
 `basis: "mechanical-axis"` is permitted only for a directly sourced physical rotation axis.
+`basis: "patent-principal-point-guidance"` means a patent directs the rotation center to a principal-point region, so
+the stored canonical principal point is source-guided but is not a dimensioned or measured production hinge.
 `basis: "rear-vertex-fallback"` means the canonical rear vertex supplied the deterministic reference because the
 mechanism axis is unpublished. The latter is deliberately a geometry fallback, not evidence about the manufactured
 hinge. Shift-only lenses omit the pivot. `createPerspectivePose()` rejects non-zero tilt without one; old standalone

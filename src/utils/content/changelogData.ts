@@ -20,6 +20,11 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-09-03",
+    type: "fix",
+    summary: "Corrected the Fujifilm GF30 tilt pivot from patent mechanism guidance",
+  },
+  {
+    date: "2026-09-03",
     type: "improvement",
     summary: "Added independent reset controls for tilt-shift movement axes",
   },

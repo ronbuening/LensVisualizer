@@ -552,6 +552,10 @@ plane, with negative values toward the object. Author the value from the canonic
 follow the current rear vertex.
 
 Use `basis: "mechanical-axis"` only when a reliable source publishes enough information to locate the physical axis.
+Use `basis: "patent-principal-point-guidance"` when a patent directs the rotation center to an optical principal point
+or nearby region but does not dimension or verify the production hinge. Store the canonical reference-state principal
+point explicitly and cite the patent paragraph/figure next to the lens data. This is stronger than a geometry fallback
+but must not be presented as a measured mechanical axis.
 Use `basis: "rear-vertex-fallback"` when the canonical reference-state rear vertex supplies the offset because the
 actual mechanism axis is unpublished. A fallback is a deterministic visualization/tracing reference, not a claim about
 the manufactured hinge; say so in the adjacent source comment. Tilt-enabled lenses must declare a pivot. Shift-only

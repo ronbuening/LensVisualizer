@@ -128,8 +128,9 @@ const LENS_DATA = {
   //   // camera-fixed at other states and must not follow the current rear vertex.
   //   tiltPivot: {
   //     frame: "camera",
-  //     // Use "mechanical-axis" only with a source-backed physical pivot. This fallback is
-  //     // deterministic trace/display geometry, not a claim about the manufactured hinge.
+  //     // Use "mechanical-axis" only with a source-backed physical pivot. Use
+  //     // "patent-principal-point-guidance" for a cited but non-dimensioned patent target.
+  //     // This rear-vertex fallback is deterministic geometry, not a hinge claim.
   //     basis: "rear-vertex-fallback",
   //     zOffsetFromImagePlaneMm: -56.5,
   //   },

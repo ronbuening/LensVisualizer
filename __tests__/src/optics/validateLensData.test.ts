@@ -313,6 +313,23 @@ describe("validateLensData", () => {
     expect(
       validateLensData(
         makeValid({
+          imageFormat: "44x33",
+          perspectiveControl: {
+            shiftRangeMm: [-15, 15],
+            tiltRangeDeg: [-8.5, 8.5],
+            tiltPivot: {
+              frame: "camera",
+              basis: "patent-principal-point-guidance",
+              zOffsetFromImagePlaneMm: -30.9009,
+            },
+          },
+        }),
+      ),
+    ).toEqual([]);
+
+    expect(
+      validateLensData(
+        makeValid({
           imageFormat: "135-full-frame",
           perspectiveControl: {
             shiftRangeMm: [-11, 11],

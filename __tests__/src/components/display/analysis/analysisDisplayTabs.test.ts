@@ -55,7 +55,7 @@ function apertureAt(L: RuntimeLens, zoomT: number, stopdownT: number) {
 
 describe("analysis display tabs", () => {
   it("renders moved distortion, vignetting, pupils, and summary in the fixed camera frame", () => {
-    const L = buildLens(LENS_CATALOG["nikon-pc-nikkor-19mm-f4e-ed"]);
+    const L = buildLens(LENS_CATALOG["fujifilm-gf-30mm-f56-ts"]);
     const focusT = 0;
     const zoomT = 0;
     const dynamicEFL = eflAtFocus(focusT, zoomT, L);
@@ -117,7 +117,7 @@ describe("analysis display tabs", () => {
     const summary = renderToStaticMarkup(React.createElement(OpticalSummaryTab, shared));
     expect(summary).toContain("Current Perspective Pose");
     expect(summary).toContain("camera frame and sensor stay fixed");
-    expect(summary).toContain("Rear-vertex fallback");
+    expect(summary).toContain("Patent-guided principal point");
     expect(summary).toContain("CENTER BEST FOCUS");
     expect(summary).toContain("First Order — Intrinsic / Lens-local");
     expect(summary).toContain("Rigid perspective movement does not change focal length");

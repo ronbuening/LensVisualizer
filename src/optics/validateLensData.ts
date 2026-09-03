@@ -82,8 +82,15 @@ function validatePerspectiveControlTiltPivot(value: unknown, errors: string[]): 
   if (pivot.frame !== "camera") {
     errors.push(`"perspectiveControl.tiltPivot.frame" must be "camera"`);
   }
-  if (pivot.basis !== "mechanical-axis" && pivot.basis !== "rear-vertex-fallback") {
-    errors.push(`"perspectiveControl.tiltPivot.basis" must be "mechanical-axis" or "rear-vertex-fallback"`);
+  if (
+    pivot.basis !== "mechanical-axis" &&
+    pivot.basis !== "patent-principal-point-guidance" &&
+    pivot.basis !== "rear-vertex-fallback"
+  ) {
+    errors.push(
+      `"perspectiveControl.tiltPivot.basis" must be "mechanical-axis", ` +
+        `"patent-principal-point-guidance", or "rear-vertex-fallback"`,
+    );
   }
   if (
     typeof pivot.zOffsetFromImagePlaneMm !== "number" ||

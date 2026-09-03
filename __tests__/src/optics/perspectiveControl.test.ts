@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import buildLens from "../../../src/optics/buildLens.js";
 import { anchorLayoutToCamera } from "../../../src/optics/cameraLayout.js";
+import { computeCardinalElementsAtState } from "../../../src/optics/cardinalElements.js";
 import { doLayout } from "../../../src/optics/optics.js";
 import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 
@@ -19,7 +20,7 @@ const TILT_PIVOT_OFFSETS = {
   "canon-tse-50f28l-macro": -55.96,
   "canon-tse-90mm-f28l-macro": -71.85725,
   "canon-tse-135mm-f4l": -78.33,
-  "fujifilm-gf-30mm-f56-ts": -51.225604641350216,
+  "fujifilm-gf-30mm-f56-ts": -30.9009,
   "nikon-pc-nikkor-19mm-f4e-ed": -56.38,
   "nikon-pc-e-nikkor-24-f35d-ed": -56.5,
   "nikon-pce-micro-nikkor-45f28d": -56.5,
@@ -88,21 +89,37 @@ describe("perspectiveControl lens data", () => {
     expect(ordinary.perspectiveControl).toBeNull();
   });
 
-  it("declares camera-fixed reference-state rear-vertex tilt-pivot fallbacks", () => {
+  it("declares camera-fixed sourced or explicitly fallback tilt pivots", () => {
     for (const [key, expectedOffset] of Object.entries(TILT_PIVOT_OFFSETS)) {
       const L = buildLens(LENS_CATALOG[key]);
       const pivot = L.perspectiveControl?.tiltPivot;
       const reference = doLayout(0, 0, L);
+      const expectedBasis =
+        key === "fujifilm-gf-30mm-f56-ts" ? "patent-principal-point-guidance" : "rear-vertex-fallback";
 
       expect(pivot).toMatchObject({
         frame: "camera",
-        basis: "rear-vertex-fallback",
+        basis: expectedBasis,
         zOffsetFromImagePlaneMm: expectedOffset,
       });
-      expect(pivot?.zOffsetFromImagePlaneMm).toBeCloseTo(reference.z.at(-1)! - reference.imgZ, 9);
+      if (expectedBasis === "rear-vertex-fallback") {
+        expect(pivot?.zOffsetFromImagePlaneMm).toBeCloseTo(reference.z.at(-1)! - reference.imgZ, 9);
+      }
     }
 
     expect(LENS_CATALOG["nikon-pc-nikkor-35mm-f28"].perspectiveControl?.tiltPivot).toBeUndefined();
+  });
+
+  it("places the Fujifilm patent-guided tilt center at the reference image-side principal point", () => {
+    const L = buildLens(LENS_CATALOG["fujifilm-gf-30mm-f56-ts"]);
+    const reference = doLayout(0, 0, L);
+    const cardinals = computeCardinalElementsAtState(L, 0, 0, reference.z, reference.imgZ, 0);
+    const pivot = L.perspectiveControl!.tiltPivot!;
+
+    expect(pivot.basis).toBe("patent-principal-point-guidance");
+    expect(pivot.zOffsetFromImagePlaneMm).toBe(-LENS_CATALOG["fujifilm-gf-30mm-f56-ts"].focalLengthDesign!);
+    expect(pivot.zOffsetFromImagePlaneMm).toBeCloseTo(cardinals!.points.rearPrincipal.z - reference.imgZ, 3);
+    expect(pivot.zOffsetFromImagePlaneMm).not.toBeCloseTo(reference.z.at(-1)! - reference.imgZ, 3);
   });
 
   it("keeps tilt pivots fixed in the camera frame while rear vertices follow modeled focus", () => {

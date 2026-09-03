@@ -5,7 +5,7 @@ import usePreparedAnalysisState from "./usePreparedAnalysisState.js";
 import type { PreparedOpticalState } from "../../../optics/types.js";
 import type { AnalysisComputationContext } from "../../../optics/compat.js";
 import type { FieldGeometryState } from "../../../optics/optics.js";
-import type { RuntimeLens } from "../../../types/optics.js";
+import type { RuntimeLens, TiltPivot } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
 
 interface OpticalSummaryTabProps {
@@ -179,12 +179,14 @@ function formatSignedDeg(value: number | null | undefined): string {
     : `${value >= 0 ? "+" : ""}${value.toFixed(2)}°`;
 }
 
-function formatPivotBasis(basis: "mechanical-axis" | "rear-vertex-fallback" | undefined): string {
+function formatPivotBasis(basis: TiltPivot["basis"] | undefined): string {
   return basis === "mechanical-axis"
     ? "Mechanical axis"
-    : basis === "rear-vertex-fallback"
-      ? "Rear-vertex fallback"
-      : "Shift only / no tilt pivot";
+    : basis === "patent-principal-point-guidance"
+      ? "Patent-guided principal point"
+      : basis === "rear-vertex-fallback"
+        ? "Rear-vertex fallback"
+        : "Shift only / no tilt pivot";
 }
 
 function formatFNumber(value: number | null): string {

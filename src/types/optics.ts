@@ -205,10 +205,11 @@ export interface TiltPivot {
   /** Pivot coordinates are expressed in the camera frame, whose image plane remains fixed. */
   frame: "camera";
   /**
-   * `rear-vertex-fallback` is a geometry fallback at the canonical reference state, not a claim
-   * about the manufactured hinge. Use `mechanical-axis` only with source-backed data.
+   * `mechanical-axis` is a directly sourced physical rotation axis.
+   * `patent-principal-point-guidance` is a patent-directed optical design target, not a measured
+   * production hinge. `rear-vertex-fallback` is a deterministic geometry fallback.
    */
-  basis: "mechanical-axis" | "rear-vertex-fallback";
+  basis: "mechanical-axis" | "patent-principal-point-guidance" | "rear-vertex-fallback";
   /** Signed axial offset from the fixed image plane in mm; negative values lie objectward. */
   zOffsetFromImagePlaneMm: number;
 }
