@@ -470,7 +470,7 @@ export default function LensDiagramPanel({
                 currentEPSD={currentEPSD}
                 currentPhysStopSD={currentPhysStopSD}
                 fieldGeometry={fieldGeometry}
-                movementActive={resolvedMovement.active}
+                perspectiveTraceContext={perspectiveTraceContext}
                 sliderInteracting={sliderInteracting}
                 aberrationsExpanded={aberrationsExpanded}
                 onAberrationsExpandedChange={adapters.onAberrationsExpandedChange}

@@ -9,6 +9,8 @@ import type { FieldGeometryState } from "../../../optics/optics.js";
 import { traceRay } from "../../../optics/optics.js";
 import { isFisheyeProjection, projectionValueAtZoom } from "../../../optics/projection.js";
 import type { AnalysisTabId } from "../../../types/state.js";
+import type { PerspectiveTraceContext } from "../../../optics/perspective/index.js";
+import type { AnalysisSectionId } from "../../../optics/compat.js";
 
 interface AnalysisDrawerContentProps {
   activeTab: AnalysisTabId;
@@ -22,13 +24,25 @@ interface AnalysisDrawerContentProps {
   currentEPSD: number;
   currentPhysStopSD: number;
   fieldGeometry?: FieldGeometryState | null;
-  movementActive?: boolean;
+  perspectiveTraceContext?: PerspectiveTraceContext | null;
   sliderInteracting?: boolean;
   aberrationsExpanded: boolean;
   onAberrationsExpandedChange: (expanded: boolean) => void;
 }
 
 const FOLDED_OPTICS_UNSUPPORTED_TABS = new Set<AnalysisTabId>(["chromatic", "coma", "distortion", "vignetting"]);
+
+const ANALYSIS_TAB_SECTIONS: Record<AnalysisTabId, readonly AnalysisSectionId[]> = {
+  summary: ["summary"],
+  aberrations: ["spherical-aberration", "field-curvature"],
+  chromatic: ["chromatic"],
+  coma: ["coma"],
+  bokeh: ["bokeh"],
+  distortion: ["distortion"],
+  breathing: ["breathing"],
+  vignetting: ["vignetting"],
+  pupils: ["pupils"],
+};
 
 export default function AnalysisDrawerContent({
   activeTab,
@@ -42,7 +56,7 @@ export default function AnalysisDrawerContent({
   currentEPSD,
   currentPhysStopSD,
   fieldGeometry = null,
-  movementActive = false,
+  perspectiveTraceContext = null,
   sliderInteracting = false,
   aberrationsExpanded,
   onAberrationsExpandedChange,
@@ -56,6 +70,7 @@ export default function AnalysisDrawerContent({
   const dStopSD = useDeferredValue(currentPhysStopSD);
   const dDynamicEFL = useDeferredValue(dynamicEFL);
   const dFieldGeometry = useDeferredValue(fieldGeometry);
+  const dPerspectiveTraceContext = useDeferredValue(perspectiveTraceContext);
   const deferredInputs = useMemo(
     () => ({
       focusT: dFocusT,
@@ -86,8 +101,9 @@ export default function AnalysisDrawerContent({
         currentPhysStopSD: analysisInputs.currentPhysStopSD,
         fieldGeometry: analysisInputs.fieldGeometry,
         sampling: analysisSampling,
+        perspectiveTraceContext: dPerspectiveTraceContext,
       }),
-    [preparedState, analysisInputs, analysisSampling],
+    [preparedState, analysisInputs, analysisSampling, dPerspectiveTraceContext],
   );
   const projection = L.projection ?? { kind: "rectilinear" };
   const noticeStyle = {
@@ -148,14 +164,25 @@ export default function AnalysisDrawerContent({
       refractive sequence, so the tab is hidden here instead of showing misleading pupil, field, or off-axis results.
     </div>
   );
+  const movementUnavailableSections = ANALYSIS_TAB_SECTIONS[activeTab].filter(
+    (section) => !analysisContext.sectionAvailability(section).available,
+  );
+  const movementUnsupported =
+    analysisContext.movementActive && movementUnavailableSections.length === ANALYSIS_TAB_SECTIONS[activeTab].length;
+  const movementUnsupportedContent = (
+    <div style={noticeStyle}>
+      This analysis tab is not available while tilt or shift is active. Its centered-lens computation is suppressed
+      until each section uses the fixed-sensor perspective trace context.
+    </div>
+  );
   const withAnalysisNotices = (content: ReactNode) => (
     <>
       {fisheyeProjectionText && <div style={noticeStyle}>{fisheyeProjectionText}</div>}
       {foldedOpticsText && <div style={noticeStyle}>{foldedOpticsText}</div>}
       {foldedTraceDiagnosticsText && <div style={noticeStyle}>{foldedTraceDiagnosticsText}</div>}
-      {movementActive && (
+      {analysisContext.movementActive && (
         <div style={noticeStyle}>
-          Tilt/shift is active. Analysis tabs use the centered-lens diagnostics in this first movement pass.
+          Tilt/shift is active. Movement-aware sections use fixed-sensor tracing; unmigrated sections are suppressed.
         </div>
       )}
       {content}
@@ -165,15 +192,17 @@ export default function AnalysisDrawerContent({
   return withAnalysisNotices(
     foldedUnsupported
       ? foldedUnsupportedContent
-      : ANALYSIS_TAB_RENDERERS[activeTab]({
-          L,
-          t,
-          zPos,
-          preparedState,
-          analysisContext,
-          inputs: analysisInputs,
-          aberrationsExpanded,
-          onAberrationsExpandedChange,
-        }),
+      : movementUnsupported
+        ? movementUnsupportedContent
+        : ANALYSIS_TAB_RENDERERS[activeTab]({
+            L,
+            t,
+            zPos,
+            preparedState,
+            analysisContext,
+            inputs: analysisInputs,
+            aberrationsExpanded,
+            onAberrationsExpandedChange,
+          }),
   );
 }

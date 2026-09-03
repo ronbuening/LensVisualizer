@@ -1,13 +1,15 @@
 // @vitest-environment jsdom
 
 import { afterEach, describe, expect, it, vi, beforeEach } from "vitest";
-import { cleanup, render, screen } from "@testing-library/react";
+import { cleanup, render, screen, waitFor } from "@testing-library/react";
 import AnalysisDrawerContent from "../../../../../src/components/layout/lensDiagram/AnalysisDrawerContent.js";
 import { ANALYSIS_TAB_RENDERERS } from "../../../../../src/components/layout/lensDiagram/analysisTabRenderers.js";
 import { ANALYSIS_TABS } from "../../../../../src/components/layout/lensDiagram/analysisTabs.js";
 import type { RuntimeLens } from "../../../../../src/types/optics.js";
 import type { AnalysisTabId } from "../../../../../src/types/state.js";
 import type { Theme } from "../../../../../src/types/theme.js";
+import type { PerspectiveTraceContext } from "../../../../../src/optics/perspective/index.js";
+import type { AnalysisComputationContext } from "../../../../../src/optics/compat.js";
 
 const {
   mockAberrationsPanel,
@@ -120,6 +122,10 @@ const baseProps = {
   onAberrationsExpandedChange: vi.fn(),
 };
 
+function perspectiveContext(cacheKey: string, active: boolean): PerspectiveTraceContext {
+  return { cacheKey, pose: { active } } as PerspectiveTraceContext;
+}
+
 describe("AnalysisDrawerContent", () => {
   afterEach(() => {
     cleanup();
@@ -181,6 +187,38 @@ describe("AnalysisDrawerContent", () => {
     expect(screen.getByText(/Folded mirror optical path detected/)).toBeTruthy();
     expect(screen.getByText("Pupils")).toBeTruthy();
     expect(mockPupilAberrationTab).toHaveBeenCalledTimes(1);
+  });
+
+  it("suppresses centered-only analysis tabs while movement is active", () => {
+    const moved = perspectiveContext("perspective:shift=3:tilt=2", true);
+    render(<AnalysisDrawerContent {...baseProps} activeTab="distortion" perspectiveTraceContext={moved} />);
+
+    expect(screen.getByText(/Tilt\/shift is active/)).toBeTruthy();
+    expect(screen.getByText(/centered-lens computation is suppressed/)).toBeTruthy();
+    expect(mockDistortionTab).not.toHaveBeenCalled();
+  });
+
+  it("keeps intrinsic summary available and invalidates its context on shift/tilt-only changes", async () => {
+    const shifted = perspectiveContext("perspective:shift=2:tilt=0", true);
+    const tilted = perspectiveContext("perspective:shift=0:tilt=2", true);
+    const { rerender } = render(
+      <AnalysisDrawerContent {...baseProps} activeTab="summary" perspectiveTraceContext={shifted} />,
+    );
+    const shiftedContext = mockOpticalSummaryTab.mock.calls.at(-1)?.[0].analysisContext as AnalysisComputationContext;
+
+    expect(screen.getByText("Summary")).toBeTruthy();
+    expect(shiftedContext.perspectiveTraceContext).toBe(shifted);
+    expect(shiftedContext.perspectiveCacheKey).toBe(shifted.cacheKey);
+    expect(shiftedContext.sectionAvailability("summary").mode).toBe("intrinsic");
+
+    rerender(<AnalysisDrawerContent {...baseProps} activeTab="summary" perspectiveTraceContext={tilted} />);
+    await waitFor(() => {
+      const latest = mockOpticalSummaryTab.mock.calls.at(-1)?.[0].analysisContext as AnalysisComputationContext;
+      expect(latest.perspectiveCacheKey).toBe(tilted.cacheKey);
+    });
+    const tiltedContext = mockOpticalSummaryTab.mock.calls.at(-1)?.[0].analysisContext as AnalysisComputationContext;
+    expect(tiltedContext).not.toBe(shiftedContext);
+    expect(tiltedContext.cacheKey).not.toBe(shiftedContext.cacheKey);
   });
 
   it("has exactly one renderer for every registered analysis tab and maps each tab to its component", () => {
