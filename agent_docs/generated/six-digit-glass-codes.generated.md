@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **668** lenses scanned
-- **1339** total code-only elements found
-- **1339** elements in this report
-- **213** distinct lens files affected
+- **674** lenses scanned
+- **1348** total code-only elements found
+- **1348** elements in this report
+- **217** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -36,16 +36,16 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 729547 | 17 | 15 | patents/US20150146044A1.pdf<br>patents/JP2013054269A.pdf<br>patents/JP2015011156A.pdf<br>patents/JPA 1994082698-000000.pdf | 2/17 rows have review records |
 | 516641 | 15 | 13 | patents/JPA 1991141313-000000.pdf<br>patents/US20220171174A1.pdf<br>patents/US20210033835A1.pdf<br>patents/US20160327774A1.pdf | 1/15 rows have review records |
 | 603607 | 14 | 12 | patents/US20150146044A1.pdf<br>patents/JPA 1991141313-000000.pdf<br>patents/JP2013054269A.pdf<br>patents/JPA 1999231209-000000.pdf | No review-record hit |
+| 805255 | 14 | 10 | patents/US20150146044A1.pdf<br>patents/US4223981.pdf<br>patents/US4437734.pdf<br>patents/US20130222925A1.pdf | 2/14 rows have review records |
 | 497815 | 13 | 6 | patents/JP2018049102A.pdf<br>patents/US6115188.pdf<br>patents/US20140098253A1.pdf<br>patents/US20210033835A1.pdf | No review-record hit |
 | 618634 | 13 | 11 | patents/US20160327774A1.pdf<br>patents/JP2016114800A.pdf<br>patents/JP2016006455A.pdf<br>patents/JPA 1994082698-000000.pdf | 2/13 rows have review records |
 | 755275 | 13 | 12 | patents/US4826301.pdf<br>patents/JPA 1981119109-000000.pdf<br>patents/JPA 1989039542-000000.pdf<br>patents/US6940655.pdf | 1/13 rows have review records |
 | 804465 | 13 | 8 | patents/US20020015231A1.pdf<br>patents/US20220171174A1.pdf<br>patents/US20100194930A1.pdf<br>patents/US8824059.pdf | No review-record hit |
+| 713539 | 12 | 10 | patents/JP_2000047107_A.pdf<br>patents/JPA 1987244010-000000.pdf<br>patents/US20050068636A1.pdf<br>patents/US_4260223_A.pdf | 4/12 rows have review records |
 | 720502 | 12 | 9 | patents/JP2018049102A.pdf<br>patents/US6115188.pdf<br>patents/US20110090576A1.pdf<br>patents/US20060023317A1.pdf | 2/12 rows have review records |
-| 713539 | 11 | 9 | patents/JP_2000047107_A.pdf<br>patents/JPA 1987244010-000000.pdf<br>patents/US20050068636A1.pdf<br>patents/US4437734.pdf | 4/11 rows have review records |
 | 583594 | 10 | 9 | patents/US4826301.pdf<br>patents/JP2013054269A.pdf<br>patents/US20140098253A1.pdf<br>patents/US20130335830A1.pdf | No review-record hit |
-| 805255 | 10 | 8 | patents/US20150146044A1.pdf<br>patents/US4223981.pdf<br>patents/US4437734.pdf<br>patents/US20130222925A1.pdf | 2/10 rows have review records |
+| 717295 | 10 | 6 | patents/JP2018049102A.pdf<br>patents/US20160327774A1.pdf<br>patents/JPA 1989039542-000000.pdf<br>patents/US4908639.pdf | No review-record hit |
 | 493836 | 9 | 4 | patents/JPA 1996327896-000000.pdf<br>patents/JP2004109559A.pdf<br>patents/JPA 1989039542-000000.pdf | All rows have review records |
-| 717295 | 9 | 5 | patents/JP2018049102A.pdf<br>patents/US20160327774A1.pdf<br>patents/JPA 1989039542-000000.pdf<br>patents/US4641928.pdf | No review-record hit |
 | 741527 | 9 | 4 | patents/US6940655.pdf<br>patents/US7359125.pdf<br>patents/US20050157403A1.pdf<br>patents/US20030133200A1.pdf | 1/9 rows have review records |
 | 589612 | 8 | 8 | patents/US20160327774A1.pdf<br>patents/US4452513.pdf<br>patents/US4223981.pdf<br>patents/US20170068075A1.pdf | No review-record hit |
 | 593670 | 8 | 5 | patents/US20200142168A1.pdf<br>patents/WO2020136749A1.pdf<br>patents/JP2025052870A.pdf<br>patents/JP2020086133A.pdf | 5/8 rows have review records |
@@ -110,6 +110,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 620363 | 3 | 2 | patents/JPA 2000019398-000000.pdf<br>patents/US20080212200A1.pdf | No review-record hit |
 | 652585 | 3 | 3 | patents/US20130308041A1.pdf | No review-record hit |
 | 654397 | 3 | 2 | patents/US20150146044A1.pdf<br>patents/US20110090576A1.pdf | No review-record hit |
+| 673322 | 3 | 3 | patents/JP2012181525A.pdf | No review-record hit |
 | 720437 | 3 | 2 | patents/US6115188.pdf<br>patents/US3459469.pdf | No review-record hit |
 | 741278 | 3 | 3 | patents/JP2018049102A.pdf<br>patents/US3459469.pdf<br>patents/JPWO2019187633A1.pdf | No review-record hit |
 | 743493 | 3 | 3 | patents/JP2016114800A.pdf<br>patents/JP2015011156A.pdf<br>patents/JPA 1994082698-000000.pdf | No review-record hit |
@@ -145,11 +146,11 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 613443 | 2 | 2 | patents/US20130308041A1.pdf<br>patents/US20210033835A1.pdf | No review-record hit |
 | 617540 | 2 | 1 | patents/JPA 1999030748-000000.pdf | No review-record hit |
 | 620586 | 2 | 1 | patents/US4303314.pdf | All rows have review records |
+| 626357 | 2 | 2 | patents/US20140098253A1.pdf | No review-record hit |
 | 627376 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
 | 633315 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
 | 639554 | 2 | 2 | patents/JP2021086024A.pdf<br>patents/WO2023181666A1.pdf | No review-record hit |
 | 658509 | 2 | 2 | patents/US20160327774A1.pdf<br>patents/US4812022.pdf | No review-record hit |
-| 673322 | 2 | 2 | patents/JP2012181525A.pdf | No review-record hit |
 | 690570 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
 | 702412 | 2 | 2 | patents/JP_2000047107_A.pdf<br>patents/US20110090576A1.pdf | No review-record hit |
 | 713538 | 2 | 1 | No patent number parsed from lens metadata | No review-record hit |
@@ -242,7 +243,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 624470 | 1 | 1 | patents/US7359125.pdf | All rows have review records |
 | 624584 | 1 | 1 | patents/JP2025052870A.pdf | All rows have review records |
 | 625533 | 1 | 1 | patents/US2721499.pdf | All rows have review records |
-| 626357 | 1 | 1 | patents/US20140098253A1.pdf | No review-record hit |
 | 626391 | 1 | 1 | patents/US4062630.pdf | All rows have review records |
 | 630346 | 1 | 1 | patents/JP2015041012A.pdf | All rows have review records |
 | 635232 | 1 | 1 | patents/US8081392.pdf | All rows explicitly disposed |
@@ -282,6 +282,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 693562 | 1 | 1 | patents/US2983193.pdf | All rows explicitly disposed |
 | 694312 | 1 | 1 | patents/WO2021199923A1.pdf | All rows have review records |
 | 697556 | 1 | 1 | patents/JPA 1975110330-000000.pdf | No review-record hit |
+| 699300 | 1 | 1 | patents/US_4260223_A.pdf | No review-record hit |
 | 700555 | 1 | 1 | patents/WO_2025263124_A1.pdf | All rows have review records |
 | 701301 | 1 | 1 | patents/US4277149.pdf | All rows have review records |
 | 712525 | 1 | 1 | patents/JP2021076829A.pdf | All rows explicitly disposed |
@@ -1600,6 +1601,20 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L48 (L48) | 37 | `741527 — vendor unresolved` | 1.74100 / 52.67 | LAK011 (trusted Sellmeier) | sellmeier | patents/US20030133200A1.pdf | No review-record hit |
 | L49 (L49) | 38 | `847238 — vendor unresolved` | 1.84666 / 23.78 | J-SF03 (trusted Sellmeier) | sellmeier | patents/US20030133200A1.pdf | No review-record hit |
 
+### [NIKON AI AF DC-NIKKOR 105mm f/2 D](../../src/lens-data/nikon/NikonAiAFDCNikkor105mmf2D.data.ts) - US 4,908,639 A
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L4 (Element 4) | 7 | `717295 — supplier-neutral optical glass code` | 1.71736 / 29.46 | SF1 (trusted Sellmeier) | sellmeier | patents/US4908639.pdf | No review-record hit |
+
+### [NIKON AI AF MICRO-NIKKOR 105mm f/2.8 S](../../src/lens-data/nikon/NikonAiAFMicroNikkor105mmf28S.data.ts)
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L3 (Element 3) | 5 | `673322 class (supplier-neutral)` | 1.67270 / 32.20 | H-ZF2 (trusted Sellmeier) | sellmeier | No patent number parsed from lens metadata | No review-record hit |
+| L4 (Element 4) | 7 | `626357 class (supplier-neutral)` | 1.62588 / 35.70 | E-F1 (trusted Sellmeier) | sellmeier | No patent number parsed from lens metadata | No review-record hit |
+| L7 (Element 7) | 12 | `805255 class (supplier-neutral)` | 1.80458 / 25.50 | H-ZF7LA (trusted Sellmeier) | sellmeier | No patent number parsed from lens metadata | No review-record hit |
+
 ### [NIKON AI AF VR ZOOM-NIKKOR 80-400mm f/4.5-5.6D ED](../../src/lens-data/nikon/NikonAFVRZoomNikkor80400mmf4556DED.data.ts) - US 6,141,156 A
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
@@ -1636,6 +1651,14 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L25 (Element 8 — L25) | 25 | `773495 — lanthanum crown / TAF class (vendor unresolved)` | 1.77279 / 49.50 | M-TAF1 (trusted Sellmeier) | sellmeier | patents/US5734508.pdf | No review-record hit |
 | L3R2 (Element 13 — L3R2) | 34A | `795454 — LaSF class (catalog-near; vendor unresolved)` | 1.79668 / 45.40 | TAF2 (trusted Sellmeier) | sellmeier | patents/US5734508.pdf | No review-record hit |
 
+### [NIKON AI AF ZOOM-NIKKOR 80-200mm f/2.8 ED](../../src/lens-data/nikon/NikonAFZoomNikkor80200mmf28ED.data.ts)
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L11 (L11) | 1 | `805255 flint class (catalog unresolved)` | 1.80458 / 25.50 | H-ZF7LA (trusted Sellmeier) | sellmeier | No patent number parsed from lens metadata | No review-record hit |
+| L24 (L24) | 10 | `805255 flint class (catalog unresolved)` | 1.80458 / 25.50 | H-ZF7LA (trusted Sellmeier) | sellmeier | No patent number parsed from lens metadata | No review-record hit |
+| L42b (L42b) | 22 | `805255 flint class (catalog unresolved)` | 1.80458 / 25.50 | H-ZF7LA (trusted Sellmeier) | sellmeier | No patent number parsed from lens metadata | No review-record hit |
+
 ### [NIKON AI AF-S ZOOM-NIKKOR 80-200mm f/2.8D IF-ED](../../src/lens-data/nikon/NikonAFSZoomNikkor80200mmf28DIFED.data.ts) - JP 2000-19398 A
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
@@ -1648,6 +1671,13 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L13 (Element 13) | 23 | `788475 — optical-position class (vendor unproven)` | 1.78797 / 47.47 | TAF4 (trusted Sellmeier) | sellmeier | patents/JPA 2000019398-000000.pdf | No review-record hit |
 | L15 (Element 15) | 26 | `620363 — optical-position class (vendor unproven)` | 1.62004 / 36.27 | E-F2 (trusted Sellmeier) | sellmeier | patents/JPA 2000019398-000000.pdf | No review-record hit |
 | L18 (Element 18) | 32 | `773495 — optical-position class (vendor unproven)` | 1.77279 / 49.45 | M-TAF1 (trusted Sellmeier) | sellmeier | patents/JPA 2000019398-000000.pdf | No review-record hit |
+
+### [NIKON AI MICRO-NIKKOR 55mm f/2.8](../../src/lens-data/nikon/NikonAiMicroNikkor55mmf28.data.ts) - US 4,260,223 A
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L2 (Element 2) | 3 | `713539 — lanthanum-crown coordinate class (supplier unresolved)` | 1.71300 / 53.90 | LAC8 (trusted Sellmeier) | sellmeier | patents/US_4260223_A.pdf | No review-record hit |
+| L4a (Element 4a) | 7 | `699300 — dense-flint coordinate class (supplier unresolved)` | 1.69895 / 30.00 | SF15 (trusted Sellmeier) | sellmeier | patents/US_4260223_A.pdf | No review-record hit |
 
 ### [NIKON AI NIKKOR 135mm f/2](../../src/lens-data/nikon/NikonAI135mmf2.data.ts) - US 4,062,630
 

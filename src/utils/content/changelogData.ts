@@ -19,6 +19,11 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-09-04",
+    type: "lens",
+    summary: "Added six Nikon AI and AI AF prime, macro, and zoom lens designs",
+  },
+  {
     date: "2026-09-03",
     type: "fix",
     summary: "Matched centered tilt-shift diagram scale to ordinary lenses",

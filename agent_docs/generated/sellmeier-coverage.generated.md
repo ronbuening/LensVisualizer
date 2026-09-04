@@ -11,18 +11,18 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **668** lenses scanned
-- **657** visible lenses scanned
-- **445** lenses fully covered by trusted chromatic data
-- **443** visible lenses fully covered by trusted chromatic data
-- **439** lenses fully covered by strict Sellmeier data
-- **437** visible lenses fully covered by strict Sellmeier data
+- **674** lenses scanned
+- **663** visible lenses scanned
+- **451** lenses fully covered by trusted chromatic data
+- **449** visible lenses fully covered by trusted chromatic data
+- **445** lenses fully covered by strict Sellmeier data
+- **443** visible lenses fully covered by strict Sellmeier data
 - **6** lenses fully covered only after measured line-index data
 - **6** visible lenses fully covered only after measured line-index data
-- **7111 / 7651** non-air surfaces use strict catalog Sellmeier data
-- **92.9%** strict Sellmeier surface coverage overall
-- **7126 / 7651** non-air surfaces use trusted chromatic data
-- **93.1%** trusted chromatic coverage overall
+- **7160 / 7700** non-air surfaces use strict catalog Sellmeier data
+- **93.0%** strict Sellmeier surface coverage overall
+- **7175 / 7700** non-air surfaces use trusted chromatic data
+- **93.2%** trusted chromatic coverage overall
 - **37 / 75** native e-line surfaces use name-verified catalog Sellmeier data
 
 ## Native E-Line Catalog Matches
@@ -156,6 +156,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [MINOLTA AF 28-70mm f/2.8 G](../../src/lens-data/minolta/MinoltaAF2870mmf28G.data.ts) | 16/16 | 16 | 16/16 |
 | [NIKON AF-S NIKKOR 400mm f/2.8E FL ED VR](../../src/lens-data/nikon/NikonAFSNIKKOR400mmf28EFLEDVR.data.ts) | 16/16 | 16 | 16/16 |
 | [NIKON AF-S NIKKOR 500mm f/4E FL ED VR](../../src/lens-data/nikon/NikonAFSNIKKOR500mmf4EFLEDVR.data.ts) | 16/16 | 16 | 16/16 |
+| [NIKON AI AF ZOOM-NIKKOR 80-200mm f/2.8 ED](../../src/lens-data/nikon/NikonAFZoomNikkor80200mmf28ED.data.ts) | 16/16 | 16 | 16/16 |
 | [NIKON AI AF ZOOM-NIKKOR 80-200mm f/2.8D ED](../../src/lens-data/nikon/NikonAIAFZoomNikkor80200mmf28DED.data.ts) | 16/16 | 16 | 16/16 |
 | [Nikon AI Zoom-Nikkor 35–105mm f/3.5–4.5S](../../src/lens-data/nikon/NikonAIZoomNikkor35105mmf3545.data.ts) | 16/16 | 16 | 16/16 |
 | [Nikon AI Zoom-Nikkor 50-135mm f/3.5S](../../src/lens-data/nikon/NikonAIZoomNikko50135mmf35S.data.ts) | 16/16 | 16 | 16/16 |
@@ -340,6 +341,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [NIKON 1 NIKKOR 32mm f/1.2](../../src/lens-data/nikon/Nikon1Nikkor32mmf12.data.ts) | 9/9 | 9 | 9/9 |
 | [NIKON AF-I NIKKOR 600mm f/4D IF-ED](../../src/lens-data/nikon/NikonAFINikkor600mmf4DIFED.data.ts) | 9/9 | 9 | 9/9 |
 | [NIKON AF-S DX MICRO-NIKKOR 40mm f/2.8G](../../src/lens-data/nikon/NikonAFSDXMicroNikkor40mmf28G.data.ts) | 9/9 | 9 | 9/9 |
+| [NIKON AI AF MICRO-NIKKOR 105mm f/2.8 S](../../src/lens-data/nikon/NikonAiAFMicroNikkor105mmf28S.data.ts) | 9/9 | 9 | 9/9 |
 | [NIKON AI NIKKOR 35mm f/1.4S](../../src/lens-data/nikon/NikonAINikkor35mmf14S.data.ts) | 9/9 | 9 | 9/9 |
 | [NIKON FISHEYE-NIKKOR 6mm f/5.6](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf56.data.ts) | 9/9 | 9 | 9/9 |
 | [NIKON MEDICAL-NIKKOR 120mm f/4 IF](../../src/lens-data/nikon/NikonMedicalNikkor120mmf4IF.data.ts) | 9/9 | 9 | 9/9 |
@@ -452,8 +454,12 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [MAMIYA-SEKOR MACRO C 80mm f/4](../../src/lens-data/mamiya/MamiyaSekorMacroC80mmf4.data.ts) | 6/6 | 6 | 6/6 |
 | [NIKON 1 NIKKOR 10mm f/2.8](../../src/lens-data/nikon/Nikon1Nikkor10mmf28.data.ts) | 6/6 | 6 | 6/6 |
 | [Nikon AF Nikkor 28mm f/2.8D](../../src/lens-data/nikon/NikonAFNikkor28mmf28D.data.ts) | 6/6 | 6 | 6/6 |
+| [NIKON AI AF DC-NIKKOR 105mm f/2 D](../../src/lens-data/nikon/NikonAiAFDCNikkor105mmf2D.data.ts) | 6/6 | 6 | 6/6 |
+| [NIKON AI AF NIKKOR 85mm f/1.8 S](../../src/lens-data/nikon/NikonAiAFNikkor85mmf18S.data.ts) | 6/6 | 6 | 6/6 |
+| [NIKON AI MICRO-NIKKOR 55mm f/2.8](../../src/lens-data/nikon/NikonAiMicroNikkor55mmf28.data.ts) | 6/6 | 6 | 6/6 |
 | [NIKON AI NIKKOR 135mm f/2](../../src/lens-data/nikon/NikonAI135mmf2.data.ts) | 6/6 | 6 | 6/6 |
 | [NIKON AI NIKKOR 28mm f/3.5](../../src/lens-data/nikon/NikonAI28mmf35.data.ts) | 6/6 | 6 | 6/6 |
+| [NIKON AI NIKKOR 50mm f/1.8 S](../../src/lens-data/nikon/NikonAINikkor50mmf18S.data.ts) | 6/6 | 6 | 6/6 |
 | [NIKON NIKKOR-H Auto 2.8cm f/3.5](../../src/lens-data/nikon/NikonNikkorH28mmf35.data.ts) | 6/6 | 6 | 6/6 |
 | [NIKON REFLEX-NIKKOR 500mm f/8 (New)](../../src/lens-data/nikon/NikonReflexNikkor500mmf8New.data.ts) | 6/6 | 6 | 6/6 |
 | [NIKON REFLEX-NIKKOR·C 500mm f/8](../../src/lens-data/nikon/NikonReflexNikkorC500mmf8.data.ts) | 6/6 | 6 | 6/6 |
