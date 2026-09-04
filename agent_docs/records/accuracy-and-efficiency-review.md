@@ -12,7 +12,7 @@ commit between steps. A step is not complete merely because its implementation h
 | 3 | Shared marked/geometric/working f-number and current-pupil aperture result | Complete |
 | 4 | Two-dimensional pupil-area and sensor-irradiance integration with explicit convergence status | Complete |
 | 5 | Source-backed spectral throughput, encounter-aware absorption and surface losses | Complete |
-| 6 | Opt-in optical path, wavefront, scalar Huygens PSF; initially centered on-axis sequential refraction | Pending |
+| 6 | Opt-in optical path, wavefront, scalar Huygens PSF; initially centered on-axis sequential refraction | Complete |
 | 7 | MTF, explicit spectral weights, Image Quality tab and unavailable states | Pending |
 | 8 | Reuse prepared states and first-order results, preserving bounded cache identity | Pending |
 | 9 | Cancellable worker analysis with stale-result rejection and synchronous reference path | Pending |
@@ -146,3 +146,21 @@ retention policy. No production optical behavior changed in step 1.
   83.44%, functions 93.78%, lines 94.72%. Typecheck, format and lint passed. The full normal suite passed before the final
   two integration regressions, which are included in the final coverage run. Build/SSR prerendered all 1243 routes.
 - Steps 6–11 remain pending. Scalar diffraction is not yet implemented.
+
+### Step 6 — optical path, wavefront and scalar diffraction
+
+- Added opt-in OPL postprocessing from exact physical hits, including refractive indices, repeated passes and the actual
+  final sensor segment. Ordinary diagram tracing does not acquire OPL overhead. Phase-surface delay remains unsupported.
+- Added axial sequential wavefront preparation with explicit finite/infinite source distance, actual transmitted pupil
+  rim, exit-plane ray-tube area/amplitude transformation, sourced or ideal throughput, reference OPD and piston-removed RMS.
+  Shared conservative surface bounds now serve both radiometry and wavefront preparation. Local phase steps above a
+  quarter wavelength are marked undersampled, not silently accepted as convergence.
+- Added scalar Huygens-Kirchhoff quadrature and PSF grids. A fixed zero-OPD peak reference preserves window energy and
+  retains incident-field intensity scale for later spectral sums. No crop is forced to unit energy. Center Strehl refers
+  to the current sensor plane and the same weighted pupil; no automatic best-focus optimization is implied.
+- Independent tests cover Airy/Bessel intensity and first zero, quadratic defocus, piston invariance, amplitude-squared
+  intensity, captured-window energy, explicit source changes, sequential sensor transfer and double-pass OPL.
+  Moved/folded/annular/phase/immersion and unresolved image-space caustic wavefront modes remain unavailable.
+- Typecheck, format, lint, full normal tests, full coverage and build passed: 302 files / 2800 tests. Coverage statements
+  92.07%, branches 83.47%, functions 93.80%, lines 94.76%. Production SSR prerendered all 1243 routes.
+- Steps 7–11 remain pending; the PSF/MTF UI, performance optimization and worker path are not yet implemented.

@@ -11,6 +11,7 @@ flowchart LR
   subgraph n_src_optics_prescription["src/optics/prescription"]
     n_src_optics_prescription_src_optics_prescription_aspheres_ts["aspheres.ts"]
     n_src_optics_prescription_src_optics_prescription_dispersion_ts["dispersion.ts"]
+    n_src_optics_prescription_src_optics_prescription_geometryBounds_ts["geometryBounds.ts"]
     n_src_optics_prescription_src_optics_prescription_groups_ts["groups.ts"]
     n_src_optics_prescription_src_optics_prescription_interactions_ts["interactions.ts"]
     n_src_optics_prescription_src_optics_prescription_labels_ts["labels.ts"]
@@ -30,11 +31,13 @@ flowchart LR
   n_src_optics_prescription_src_optics_prescription_variables_ts --> n_external_src_optics_math
   n_src_optics_prescription_src_optics_prescription_normalizeLensData_ts --> n_external_src_optics_runtimeLens_ts
   n_src_optics_prescription_src_optics_prescription_dispersion_ts --> n_external_src_optics_types_ts
+  n_src_optics_prescription_src_optics_prescription_geometryBounds_ts --> n_external_src_optics_types_ts
   n_src_optics_prescription_src_optics_prescription_groups_ts --> n_external_src_optics_types_ts
   n_src_optics_prescription_src_optics_prescription_interactions_ts --> n_external_src_optics_types_ts
   n_src_optics_prescription_src_optics_prescription_normalizeLensData_ts --> n_external_src_optics_types_ts
   n_src_optics_prescription_src_optics_prescription_aspheres_ts --> n_external_src_types
   n_src_optics_prescription_src_optics_prescription_dispersion_ts --> n_external_src_types
+  n_src_optics_prescription_src_optics_prescription_geometryBounds_ts --> n_external_src_types
   n_src_optics_prescription_src_optics_prescription_groups_ts --> n_external_src_types
   n_src_optics_prescription_src_optics_prescription_interactions_ts --> n_external_src_types
   n_src_optics_prescription_src_optics_prescription_labels_ts --> n_external_src_types
@@ -53,10 +56,10 @@ flowchart LR
 
 ## Directory Overview
 
-- Direct source files: 7
+- Direct source files: 8
 - Direct subfolders: 0
-- Main outbound areas: same folder (9), src/types (7), src/optics/math (4), src/optics/types.ts (4), src/lens-data/defaults.ts, src/optics/dispersion.ts, src/optics/runtimeLens.ts
-- External consumers: src/optics/chromatic, src/optics/compat.ts, src/optics/diagram, src/optics/field, src/optics/first-order, src/optics/internal, src/optics/state, src/optics/trace, +1 more
+- Main outbound areas: same folder (9), src/types (8), src/optics/types.ts (5), src/optics/math (4), src/lens-data/defaults.ts, src/optics/dispersion.ts, src/optics/runtimeLens.ts
+- External consumers: src/optics/analysis, src/optics/chromatic, src/optics/compat.ts, src/optics/diagram, src/optics/field, src/optics/first-order, src/optics/internal, src/optics/state, +2 more
 
 ## Files
 
@@ -64,6 +67,7 @@ flowchart LR
 | --- | --- | --- | --- | --- |
 | `aspheres.ts` | Aspheres helper module | same folder, src/types | same folder | compileAspheres |
 | `dispersion.ts` | Dispersion helper module | src/optics/dispersion.ts, src/optics/types.ts, src/types | same folder, src/optics/chromatic | compileSurfaceDispersions |
+| `geometryBounds.ts` | Geometry Bounds helper module | src/optics/types.ts, src/types | src/optics/analysis (2) | conservativeAxialBounds |
 | `groups.ts` | Groups helper module | same folder, src/optics/types.ts, src/types | same folder | compileElements, compileAnnotations |
 | `interactions.ts` | Interactions helper module | src/optics/math, src/optics/types.ts, src/types | same folder | yzNormalToVec3, compileSurfaceInteraction, resolvedImagePlaneToPlane3, imagePlaneDataToPlane3 |
 | `labels.ts` | Labels helper module | src/types | same folder (4) | Optics2LensNormalizationError, buildSurfaceLabelMap, resolveLabel |

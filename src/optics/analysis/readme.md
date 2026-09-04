@@ -27,12 +27,14 @@ flowchart LR
     n_src_optics_analysis_src_optics_analysis_sensorIrradiance_ts["sensorIrradiance.ts"]
     n_src_optics_analysis_src_optics_analysis_summary_ts["summary.ts"]
     n_src_optics_analysis_src_optics_analysis_vignetting_ts["vignetting.ts"]
+    n_src_optics_analysis_src_optics_analysis_wavefront_ts["wavefront.ts"]
   end
   n_external_src_optics_perspective["src/optics/perspective"]
   n_external_src_optics_chromatic["src/optics/chromatic"]
   n_external_src_optics_first_order["src/optics/first-order"]
-  n_external_src_types["src/types"]
   n_external_src_optics_aberration["src/optics/aberration"]
+  n_external_src_optics_trace["src/optics/trace"]
+  n_external_src_types["src/types"]
   n_external_src_optics_aberrationAnalysis_ts["src/optics/aberrationAnalysis.ts"]
   n_external_src_optics_constants_ts["src/optics/constants.ts"]
   n_external_src_optics_distortionAnalysis_ts["src/optics/distortionAnalysis.ts"]
@@ -41,22 +43,23 @@ flowchart LR
   n_external_src_optics_layout_ts["src/optics/layout.ts"]
   n_external_src_optics_math["src/optics/math"]
   n_external_src_optics_optics_ts["src/optics/optics.ts"]
+  n_external_src_optics_prescription["src/optics/prescription"]
   n_external_src_optics_pupilAberration_ts["src/optics/pupilAberration.ts"]
   n_external_src_optics_rayTrace_ts["src/optics/rayTrace.ts"]
-  n_external_src_optics_trace["src/optics/trace"]
-  n_external_src_optics_types_ts["src/optics/types.ts"]
   n_src_optics_analysis_src_optics_analysis_perspectiveAnalysisJobs_ts --> |8| n_external_src_optics_perspective
   n_src_optics_analysis_src_optics_analysis_chromatic_ts --> |4| n_external_src_optics_chromatic
   n_src_optics_analysis_src_optics_analysis_summary_ts --> |3| n_external_src_optics_first_order
-  n_src_optics_analysis_src_optics_analysis_sensorIrradiance_ts --> |3| n_external_src_types
   n_src_optics_analysis_src_optics_analysis_chromatic_ts --> |2| n_external_src_optics_aberration
   n_src_optics_analysis_src_optics_analysis_analysisContext_ts --> |2| n_external_src_optics_chromatic
+  n_src_optics_analysis_src_optics_analysis_wavefront_ts --> |2| n_external_src_optics_trace
   n_src_optics_analysis_src_optics_analysis_groupMovement_ts --> |2| n_external_src_types
+  n_src_optics_analysis_src_optics_analysis_sensorIrradiance_ts --> |2| n_external_src_types
   n_src_optics_analysis_src_optics_analysis_bokeh_ts --> n_external_src_optics_aberration
   n_src_optics_analysis_src_optics_analysis_aberrations_ts --> n_external_src_optics_aberrationAnalysis_ts
   n_src_optics_analysis_src_optics_analysis_analysisJobs_ts --> n_external_src_optics_chromatic
   n_src_optics_analysis_src_optics_analysis_perspectiveAnalysisJobs_ts --> n_external_src_optics_chromatic
   n_src_optics_analysis_src_optics_analysis_asphericComparison_ts --> n_external_src_optics_constants_ts
+  n_src_optics_analysis_src_optics_analysis_wavefront_ts --> n_external_src_optics_constants_ts
   n_src_optics_analysis_src_optics_analysis_distortion_ts --> n_external_src_optics_distortionAnalysis_ts
   n_src_optics_analysis_src_optics_analysis_chromatic_ts --> n_external_src_optics_field
   n_src_optics_analysis_src_optics_analysis_groupMovement_ts --> n_external_src_optics_groupMovement_ts
@@ -74,21 +77,19 @@ flowchart LR
   n_src_optics_analysis_src_optics_analysis_vignetting_ts --> n_external_src_optics_optics_ts
   n_src_optics_analysis_src_optics_analysis_analysisContext_ts --> n_external_src_optics_perspective
   n_src_optics_analysis_src_optics_analysis_analysisMovementSupport_ts --> n_external_src_optics_perspective
+  n_src_optics_analysis_src_optics_analysis_sensorIrradiance_ts --> n_external_src_optics_prescription
+  n_src_optics_analysis_src_optics_analysis_wavefront_ts --> n_external_src_optics_prescription
   n_src_optics_analysis_src_optics_analysis_pupilAberration_ts --> n_external_src_optics_pupilAberration_ts
   n_src_optics_analysis_src_optics_analysis_chromatic_ts --> n_external_src_optics_rayTrace_ts
   n_src_optics_analysis_src_optics_analysis_chromatic_ts --> n_external_src_optics_trace
-  n_src_optics_analysis_src_optics_analysis_sensorIrradiance_ts --> n_external_src_optics_trace
-  n_src_optics_analysis_src_optics_analysis_aberrations_ts --> n_external_src_optics_types_ts
-  n_src_optics_analysis_src_optics_analysis_analysisContext_ts --> n_external_src_optics_types_ts
-  n_src_optics_analysis_src_optics_analysis_analysisJobs_ts --> n_external_src_optics_types_ts
   n_src_optics_analysis_truncated["additional relationships omitted"]
 ```
 
 ## Directory Overview
 
-- Direct source files: 18
+- Direct source files: 19
 - Direct subfolders: 0
-- Main outbound areas: same folder (23), src/types (13), src/optics/types.ts (12), src/optics/perspective (10), src/optics/chromatic (8), src/optics/optics.ts (8), src/optics/aberration (3), src/optics/first-order (3), +11 more
+- Main outbound areas: same folder (23), src/optics/types.ts (13), src/types (13), src/optics/perspective (10), src/optics/chromatic (8), src/optics/optics.ts (8), src/optics/trace (4), src/optics/aberration (3), +12 more
 - External consumers: src/benchmarks, src/components/layout, src/optics/aberration, src/optics/analysisJobs.ts, src/optics/compat.ts, src/optics/distortionAnalysis.ts, src/optics/optics.ts, src/optics/vignetteAnalysis.ts
 
 ## Files
@@ -110,6 +111,7 @@ flowchart LR
 | `perspectiveAnalysisJobs.ts` | Perspective Analysis Jobs helper module | src/optics/perspective (8), same folder, src/optics/chromatic | same folder | PerspectiveAnalysisJobParams, PerspectiveAnalysisSamplingPlan, PerspectiveAnalysisJobs, perspectiveAnalysisSamplingPlan, createPerspectiveAnalysisJobs |
 | `preparedStateAdapters.ts` | Prepared State Adapters helper module | src/optics/types.ts | same folder (5) | zPosForPreparedAnalysis2 |
 | `pupilAberration.ts` | Pupil Aberration helper module | src/optics/optics.ts, src/optics/pupilAberration.ts, src/optics/types.ts, src/types | same folder, src/optics/compat.ts | PUPIL_ABERRATION_SAMPLE_COUNT_2, computeBothPupilAberrationProfilesForState2, computePupilAberrationProfile2, computeExitPupilAberrationProfile2, computeBothPupilAberrationProfiles2 |
-| `sensorIrradiance.ts` | Sensor Irradiance helper module | src/types (3), src/optics/math, src/optics/trace, src/optics/types.ts | src/optics/optics.ts, src/optics/vignetteAnalysis.ts | SensorIrradianceResult, SensorIrradianceOptions, integrateSensorIrradiance, computeSensorIrradiance |
+| `sensorIrradiance.ts` | Sensor Irradiance helper module | src/types (2), src/optics/math, src/optics/prescription, src/optics/trace, src/optics/types.ts | src/optics/optics.ts, src/optics/vignetteAnalysis.ts | SensorIrradianceResult, SensorIrradianceOptions, integrateSensorIrradiance, computeSensorIrradiance |
 | `summary.ts` | Summary helper module | src/optics/first-order (3), src/optics/layout.ts, src/optics/optics.ts, src/optics/types.ts | same folder, src/optics/compat.ts | OpticalSummaryMetrics2, computeOpticalSummaryForState2 |
 | `vignetting.ts` | Vignetting helper module | same folder (2), src/optics/optics.ts, src/optics/types.ts, src/optics/vignetteAnalysis.ts, src/types | same folder, src/optics/compat.ts | computeVignettingCurveForState2, computeVignettingCurve2 |
+| `wavefront.ts` | Wavefront helper module | src/optics/trace (2), src/optics/constants.ts, src/optics/prescription, src/optics/types.ts, src/types | src/optics/optics.ts | computeScalarWavefront |

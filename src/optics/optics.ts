@@ -97,3 +97,7 @@ export { apertureMetricsForState, resolveApertureStop, type ApertureMetrics } fr
 
 export { traceSpectralThroughput, throughputForTrace, dielectricReflectance } from "./trace/spectralThroughput.js";
 export { computeSensorIrradiance } from "./analysis/sensorIrradiance.js";
+
+export { opticalPathForTrace } from "./trace/opticalPath.js";
+export { computeScalarWavefront } from "./analysis/wavefront.js";
+export { computeHuygensPsf } from "./math/huygens.js";

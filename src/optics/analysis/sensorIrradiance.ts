@@ -6,7 +6,7 @@
  */
 
 import type { SensorIrradianceResult, SensorIrradianceOptions } from "../../types/optics.js";
-import { ASPHERIC_POLYNOMIAL_TERMS } from "../../types/asphericSchema.js";
+import { conservativeAxialBounds } from "../prescription/geometryBounds.js";
 import { createAreaWeightedCircularPupilPoints } from "../math/pupilSampling.js";
 import { traceGeneralized } from "../trace/generalizedTrace.js";
 import type { PreparedOpticalState, Ray3, Vec3 } from "../types.js";
@@ -98,22 +98,11 @@ export function computeSensorIrradiance(
     return unavailable("unsupported");
   if (!Number.isFinite(stopSemiDiameterMm) || stopSemiDiameterMm <= 0) return unavailable("failed");
 
-  // The conic denominator is >= 1 on its real domain. Absolute polynomial
-  // terms therefore give a conservative bound even for nonmonotonic aspheres.
-  let frontZ = Infinity;
-  let rearZ = -Infinity;
-  let radius = Math.abs(sensorHeightMm);
-  for (const surface of state.surfaces) {
-    let sagBound = surface.sd ** 2 / Math.abs(surface.R);
-    for (const term of ASPHERIC_POLYNOMIAL_TERMS) {
-      sagBound += Math.abs(surface.asphere?.[term.key] ?? 0) * surface.sd ** term.power;
-    }
-    frontZ = Math.min(frontZ, surface.z - sagBound);
-    rearZ = Math.max(rearZ, surface.z + sagBound);
-    radius = Math.max(radius, surface.sd);
-  }
-  const planeZ = rearZ + 1e-6;
-  if (!Number.isFinite(frontZ) || !Number.isFinite(planeZ) || planeZ >= state.imgZ) return unavailable("unsupported");
+  const bounds = conservativeAxialBounds(state);
+  if (!bounds || bounds.rearZ + 1e-6 >= state.imgZ) return unavailable("unsupported");
+  const { frontZ } = bounds;
+  const planeZ = bounds.rearZ + 1e-6;
+  const radius = Math.max(Math.abs(sensorHeightMm), bounds.radius);
   const reverse: PreparedOpticalState = {
     ...state,
     imgZ: frontZ - 1,

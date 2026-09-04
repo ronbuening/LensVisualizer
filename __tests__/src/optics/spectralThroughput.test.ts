@@ -7,6 +7,7 @@ import {
   traceSpectralThroughput,
 } from "../../../src/optics/trace/spectralThroughput.js";
 import { bulkTransmissionForTrace } from "../../../src/optics/trace/bulkAbsorption.js";
+import { opticalPathForTrace } from "../../../src/optics/trace/opticalPath.js";
 import {
   sampleSpectrum,
   sampleSurfaceThroughput,
@@ -149,6 +150,7 @@ describe("spectral direct-path throughput", () => {
     expect(throughput.status).toBe("complete");
     expect(throughput.transmission).toBeCloseTo(t ** 2 * 0.8 * Math.exp(-2), 12);
     expect(bulkTransmissionForTrace(state.lens.runtime, trace.hits)).toBeCloseTo(Math.exp(-2), 12);
+    expect(opticalPathForTrace(state, trace).toSensorMm).toBeCloseTo(35, 12);
     expect(traceSpectralThroughput(state, axial, 10, "uncoated").throughput.transmission).toBeNull();
   });
 

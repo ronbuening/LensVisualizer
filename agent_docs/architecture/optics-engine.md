@@ -578,3 +578,31 @@ The compatibility ray `transmission` field still means known **bulk** absorption
 through the chosen wavelength, and real folded hit records support repeated material encounters. Partial legacy folded
 hit records without directions retain no inferred loss. Full status/evidence comes from `traceSpectralThroughput`, not
 that legacy numeric field. Geometry in these primitives remains subject to the existing dispersion quality markers.
+
+## Scalar wavefront and Huygens PSF
+
+`trace/opticalPath.ts` is opt-in postprocessing of exact physical encounters: each segment contributes `n(lambda) * length`
+and the final segment reaches the real sensor. It uses physical hit positions rather than epsilon-advanced search
+origins. Normal display traces incur no added OPL work. Folded double-pass OPL has an analytic plate fixture; phase
+surfaces remain unavailable because geometric segment length alone is not their phase delay.
+
+`analysis/wavefront.ts` initially supports centered, axial, sequential refraction in image-space air. Source distance is
+explicit (`objectDistanceMm`, default infinity); changing focus does not silently change the source or refocus the PSF.
+It locates the physical transmitted pupil rim and samples equal-area radial strata, exploiting axial symmetry only.
+A shared conservative conic/polynomial enclosure places input and exit planes outside every surface. The exit-plane
+ray-tube Jacobian and input/output direction cosines preserve flux when converting input quadrature to field amplitude;
+power transmission enters as its square root. Nonmonotonic ray tubes/caustics, disconnected/annular pupils, moved/folded
+systems, tilted sensors, immersion, unsupported throughput and failed derivatives remain unavailable.
+
+OPD is relative to the axial reference at the selected sensor plane. Reported RMS removes piston with geometric exit-plane
+area weights. Adjacent radial OPD steps exceeding a quarter wavelength mark the wavefront undersampled; this local check
+is not a convergence proof. Refinement of the PSF itself and its image window remains necessary before using MTF.
+
+`math/huygens.ts` sums scalar wavelets with their real path differences and a Kirchhoff obliquity factor. It uses a fixed
+zero-OPD peak reference for the same weighted pupil, retaining that absolute reference scale for later incoherent spectral
+sums. It does **not** force a cropped PSF to unit energy. Window integral and center Strehl remain explicit; the latter is
+at the selected sensor, not an automatically optimized best focus. This is scalar diffraction and excludes polarization,
+full electromagnetic coatings, ghosts, scatter and sensor microlenses. See the
+[Ansys Huygens description](https://ansyshelp.ansys.com/public/Views/Secured/Zemax/v251/en/OpticStudio_User_Guide/OpticStudio_Help/topics/Huygens_PSF.html).
+Independent tests compare Airy/Bessel intensity, the first dark ring, quadratic defocus, piston invariance, amplitude/power
+scaling and finite-window energy. The Image Quality UI and MTF are introduced separately in step 7 of the approved record.
