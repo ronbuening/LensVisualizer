@@ -1,6 +1,6 @@
 /** Explicit axial scalar diffraction controls and convergence-qualified output. */
-import { useEffect, useMemo, useState } from "react";
-import { computeImageQuality } from "../../../optics/optics.js";
+import { useMemo, useState } from "react";
+import useImageQualityJob, { type ImageQualityRequest } from "./useImageQualityJob.js";
 import type { PreparedOpticalState } from "../../../optics/types.js";
 import type { ImageQualityOptions, ImageQualityResult } from "../../../types/imageQuality.js";
 import type { ThroughputModel } from "../../../types/optics.js";
@@ -129,21 +129,9 @@ export default function ImageQualityTab({
     }),
     [stopSemiDiameterMm, movementActive, weights, model, distance, rings, size, pitch],
   );
-  const [request, setRequest] = useState<{ state: PreparedOpticalState; options: ImageQualityOptions } | null>(null);
-  const [completed, setCompleted] = useState<{
-    request: NonNullable<typeof request>;
-    result: ImageQualityResult;
-  } | null>(null);
+  const [request, setRequest] = useState<ImageQualityRequest | null>(null);
   const current = request?.state === preparedState && request.options === options;
-  const result = current && completed?.request === request ? completed.result : null;
-  useEffect(() => {
-    if (!request || request.state !== preparedState || request.options !== options) return;
-    const timer = window.setTimeout(
-      () => setCompleted({ request, result: computeImageQuality(request.state, request.options) }),
-      0,
-    );
-    return () => window.clearTimeout(timer);
-  }, [request, preparedState, options]);
+  const result = useImageQualityJob(current ? request : null);
   const inputStyle = { width: 70, background: t.bg, color: t.body, border: `1px solid ${t.panelBorder}` };
   return (
     <div style={{ color: t.body, fontSize: 12, lineHeight: 1.6 }}>
@@ -189,7 +177,7 @@ export default function ImageQualityTab({
             : "Ideal interfaces and materials; no transmission loss."}
       </p>
       <label style={{ display: "block" }}>
-        Source distance (mm; 0 = infinity){" "}
+        Source distance from first vertex (mm; 0 = infinity){" "}
         <input
           aria-label="Source distance"
           type="number"
@@ -230,6 +218,11 @@ export default function ImageQualityTab({
       <button type="button" disabled={current && !result} onClick={() => setRequest({ state: preparedState, options })}>
         {current && !result ? "Computing…" : "Calculate image quality"}
       </button>
+      {current && !result && (
+        <button type="button" onClick={() => setRequest(null)}>
+          Cancel calculation
+        </button>
+      )}
       {result ? (
         <ImageQualityOutput result={result} t={t} />
       ) : (

@@ -15,7 +15,7 @@ commit between steps. A step is not complete merely because its implementation h
 | 6 | Opt-in optical path, wavefront, scalar Huygens PSF; initially centered on-axis sequential refraction | Complete |
 | 7 | MTF, explicit spectral weights, Image Quality tab and unavailable states | Complete |
 | 8 | Reuse prepared states and first-order results, preserving bounded cache identity | Complete |
-| 9 | Cancellable worker analysis with stale-result rejection and synchronous reference path | Pending |
+| 9 | Cancellable worker analysis with stale-result rejection and synchronous reference path | Complete |
 | 10 | Shared zoom interpolation and intersection kernel, preserving traversal semantics | Pending |
 | 11 | Separate glass report generation from meaningful regression assertions; one catalog inventory | Pending |
 
@@ -205,3 +205,21 @@ retention policy. No production optical behavior changed in step 1.
   94.79 ms versus 95.19 ms before (0.4% lower); analysis 93.06 versus 93.82 ms. These small differences do not establish
   an overall viewer speedup. The supported gain is the isolated PSF kernel; cache consolidation also bounds retention
   and removes duplicated preparation. Steps 9–11 remain pending.
+
+### Step 9 — cancellable module-worker diffraction
+
+- Moved Image Quality execution to a browser module worker. The structured-clone job carries source lens data, exact
+  focus/zoom/aberration values and all diffraction options; it rebuilds the prepared state and invokes the same pure
+  synchronous implementation used by reference tests. No prepared-state closures are sent across the worker boundary.
+- Input changes, cancellation and unmount terminate the worker. Request identity, monotonic ids and active-job guards
+  reject late replies and mismatched ids. Startup/runtime errors return explicit unavailable states. SSR does not create
+  workers, and browsers unable to start one do not silently run expensive work on the main thread.
+- Added protocol/reference equality, serialization, cancellation, stale-message, wrong-id, unmount and failure tests.
+  Updated the component tests to exercise worker delivery and retained explicit spectral/source/control assertions.
+- Live localhost check on Leica Summicron-R 50 mm at f/16 verified that a heavy job enters Computing and can be cancelled
+  back to idle. Nikon AI 50 mm wavefront failure remains explicitly unavailable instead of publishing invalid MTF.
+- The live Leica job also completed and displayed a provisional PSF with 1.04% pupil, 4.46% window and 0.08% sensor-grid
+  differences; MTF was correctly withheld because the window check failed. Visually inspected the SVG/labels.
+- Typecheck, format, lint, full tests, coverage and build passed: 307 files / 2819 tests. Coverage statements 92.19%,
+  branches 83.60%, functions 93.90%, lines 94.87%. The production worker asset was emitted and all 1243 routes
+  prerendered. Steps 10–11 remain pending.

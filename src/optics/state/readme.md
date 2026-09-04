@@ -35,7 +35,7 @@ flowchart LR
 - Direct source files: 3
 - Direct subfolders: 0
 - Main outbound areas: src/optics/types.ts (4), same folder (3), src/optics/prescription (2), src/types (2), src/optics/math
-- External consumers: src/optics/compat.ts, src/optics/diagram, src/optics/field, src/optics/first-order, src/optics/trace, src/optics/vignetteAnalysis.ts
+- External consumers: src/optics/compat.ts, src/optics/diagram, src/optics/field, src/optics/first-order, src/optics/trace, src/optics/vignetteAnalysis.ts, src/optics/workers
 
 ## Files
 
@@ -43,4 +43,4 @@ flowchart LR
 | --- | --- | --- | --- | --- |
 | `cache.ts` | Cache helper module | src/optics/types.ts | same folder (2) | PreparedStateCache, createPreparedStateCache |
 | `prepareState.ts` | Prepare State helper module | src/optics/types.ts (2), same folder, src/optics/math, src/optics/prescription, src/types | same folder | PrepareStateOptions, preparedStateCacheKey, prepareState |
-| `runtimeState.ts` | Runtime State helper module | same folder (2), src/optics/prescription, src/optics/types.ts, src/types | src/optics/first-order (3), src/optics/compat.ts, src/optics/diagram, src/optics/field, src/optics/trace, +1 more | prepareRuntimeState |
+| `runtimeState.ts` | Runtime State helper module | same folder (2), src/optics/prescription, src/optics/types.ts, src/types | src/optics/first-order (3), src/optics/compat.ts, src/optics/diagram, src/optics/field, src/optics/trace, +2 more | prepareRuntimeState |

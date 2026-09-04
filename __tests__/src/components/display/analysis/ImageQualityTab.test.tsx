@@ -7,10 +7,18 @@ import { prepareRuntimeState } from "../../../../../src/optics/compat.js";
 import { buildSimplePositiveElementLens } from "../../../optics/testLensFixtures.js";
 import type { ImageQualityResult } from "../../../../../src/types/imageQuality.js";
 const { compute } = vi.hoisted(() => ({ compute: vi.fn() }));
-vi.mock("../../../../../src/optics/optics.js", async (importOriginal) => ({
-  ...(await importOriginal<object>()),
-  computeImageQuality: compute,
-}));
+class FakeWorker {
+  onmessage: ((event: MessageEvent) => void) | null = null;
+  active = true;
+  postMessage(job: { id: number; options: unknown }) {
+    window.setTimeout(() => {
+      if (this.active) this.onmessage?.({ data: { id: job.id, result: compute(null, job.options) } } as MessageEvent);
+    }, 0);
+  }
+  terminate() {
+    this.active = false;
+  }
+}
 const result: ImageQualityResult = {
   status: "converged",
   reason: "Refinement passed",
@@ -34,9 +42,11 @@ afterEach(() => {
   cleanup();
   vi.useRealTimers();
   vi.clearAllMocks();
+  vi.unstubAllGlobals();
 });
 describe("Image Quality controls", () => {
   it("passes explicit controls and removes stale results when settings or lens state change", () => {
+    vi.stubGlobal("Worker", FakeWorker);
     vi.useFakeTimers();
     compute.mockReturnValue(result);
     const state = prepareRuntimeState(buildSimplePositiveElementLens(), 0, 0);

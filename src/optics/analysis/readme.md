@@ -89,7 +89,7 @@ flowchart LR
 - Direct source files: 20
 - Direct subfolders: 0
 - Main outbound areas: same folder (24), src/optics/types.ts (14), src/types (14), src/optics/perspective (10), src/optics/chromatic (8), src/optics/optics.ts (8), src/optics/first-order (4), src/optics/math (4), +12 more
-- External consumers: src/benchmarks, src/components/layout, src/optics/aberration, src/optics/analysisJobs.ts, src/optics/compat.ts, src/optics/distortionAnalysis.ts, src/optics/optics.ts, src/optics/vignetteAnalysis.ts
+- External consumers: src/benchmarks, src/components/layout, src/optics/aberration, src/optics/analysisJobs.ts, src/optics/compat.ts, src/optics/distortionAnalysis.ts, src/optics/optics.ts, src/optics/vignetteAnalysis.ts, +1 more
 
 ## Files
 
@@ -107,7 +107,7 @@ flowchart LR
 | `distortion.ts` | Distortion helper module | same folder (2), src/optics/distortionAnalysis.ts, src/optics/optics.ts, src/optics/types.ts, src/types | same folder, src/optics/compat.ts | computeDistortionCurveForState2, computeDistortionFieldGridForState2, computeDistortionCurve2, computeDistortionFieldGrid2 |
 | `fieldCurvature.ts` | Field Curvature helper module | same folder | none | computeFieldCurvature2, computeFieldCurvatureBundleForState2, computeFieldCurvatureForState2 |
 | `groupMovement.ts` | Group Movement helper module | src/types (2), src/optics/groupMovement.ts, src/optics/types.ts | src/optics/compat.ts | computeGroupMovementProfileForState2, computeGroupMovementProfile2, firstAvailableGroupMovementMode2, getGroupMovementAvailability2, inferLensMovementGroups2, isGroupMovementModeAvailable2 |
-| `imageQuality.ts` | Image Quality helper module | src/optics/math (2), same folder, src/optics/constants.ts, src/optics/first-order, src/optics/types.ts, +1 more | src/optics/optics.ts | combineSpectralPsfs, computeImageQuality |
+| `imageQuality.ts` | Image Quality helper module | src/optics/math (2), same folder, src/optics/constants.ts, src/optics/first-order, src/optics/types.ts, +1 more | src/optics/optics.ts, src/optics/workers | combineSpectralPsfs, computeImageQuality |
 | `perspectiveAnalysisJobs.ts` | Perspective Analysis Jobs helper module | src/optics/perspective (8), same folder, src/optics/chromatic | same folder | PerspectiveAnalysisJobParams, PerspectiveAnalysisSamplingPlan, PerspectiveAnalysisJobs, perspectiveAnalysisSamplingPlan, createPerspectiveAnalysisJobs |
 | `preparedStateAdapters.ts` | Prepared State Adapters helper module | src/optics/types.ts | same folder (5) | zPosForPreparedAnalysis2 |
 | `pupilAberration.ts` | Pupil Aberration helper module | src/optics/optics.ts, src/optics/pupilAberration.ts, src/optics/types.ts, src/types | same folder, src/optics/compat.ts | PUPIL_ABERRATION_SAMPLE_COUNT_2, computeBothPupilAberrationProfilesForState2, computePupilAberrationProfile2, computeExitPupilAberrationProfile2, computeBothPupilAberrationProfiles2 |
