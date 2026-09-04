@@ -163,7 +163,7 @@ The data file transcribes Example 1 at patent scale. The final surface distance 
 
 The patent places the aperture stop 4.425 mm in front of surface 8, so the original surface-7-to-surface-8 air space of 8.43 mm is split into $d_7 = 4.005\ \mathrm{mm}$ and $d_{STO} = 4.425\ \mathrm{mm}$. The physical stop semi-diameter used in the data file is 6.86 mm, computed from the patent F-number by tracing the paraxial entrance pupil.
 
-The variable gap is stored as `"13": [1.00, 24.13]`, matching the patent's infinity and -1.0x entries. The -0.5x value, 12.57 mm, is documented in the analysis but not encoded in the two-endpoint focus slider.
+The variable gap is stored as `"13": [1.00, 12.57, 24.13]`, matching the patent's infinity, -0.5x, and -1.0x entries as exact focus keyframes.
 
 Semi-diameters are inferred because the patent does not list them. The selected values preserve the published ray geometry closely enough for visualization while satisfying renderer limitations at the small-radius surfaces and narrow air gaps. These values should not be read as manufacturer-published clear apertures.
 

@@ -224,12 +224,13 @@ const LENS_DATA = {
    *  G5 moves −1.01 mm net (reversal: first toward image, then toward object).
    *  Total optical length (surface 1 → cover glass) is constant at 152.12 mm.
    */
+  focusPositions: [0, 0.21386551368720905, 1],
   var: {
-    "2": [9.65052, 1.41023], // G1↔G2  (G2 approach toward object shrinks this gap)
-    "7": [5.15475, 13.39504], // G2↔G3  (expands as G2 moves forward)
-    STO: [45.0101, 4.62225], // STO↔G4 (compresses as G4 moves forward)
-    "13": [0.8, 42.1999], // G4↔G5  (expands as G4 moves forward)
-    "16": [11.23909, 10.22703], // G5↔G6  (slight change, G5 reversal)
+    "2": [9.65052, 8.84413, 1.41023], // G1↔G2
+    "7": [5.15475, 5.96115, 13.39504], // G2↔G3
+    STO: [45.0101, 37.35039, 4.62225], // STO↔G4
+    "13": [0.8, 10.09897, 42.1999], // G4↔G5
+    "16": [11.23909, 9.59983, 10.22703], // G5↔G6 reversal
   },
 
   varLabels: [

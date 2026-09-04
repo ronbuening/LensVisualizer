@@ -219,14 +219,15 @@ const LENS_DATA = {
 
   asph: {},
 
-  /* ── Published internal-focus movement ──
-   * Prime-lens var endpoints are the published infinity and -1.002x states.
-   * At t = 15.216 / 30.242, linear interpolation reproduces the published -0.504x state:
+  /* ── Published internal-focus keyframes ──
+   * Infinity, -0.504x, and -1.002x are stored exactly.
+   * At the intermediate state:
    * d5 = 16.141 mm and (r8→STO) = 19.392 mm, hence total published d8 = 21.192 mm.
    */
+  focusPositions: [0, 0.7528436831570505, 1],
   var: {
-    "5": [0.925, 31.167],
-    "8": [34.608, 4.366],
+    "5": [0.925, 16.141, 31.167],
+    "8": [34.608, 19.392, 4.366],
   },
   varLabels: [
     ["5", "D5"],

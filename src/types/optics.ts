@@ -270,11 +270,11 @@ export interface ResolvedAberrationControlConfig extends Omit<AberrationControlC
   varLabels: [number, string][];
 }
 
-/** Variable gap range for prime lenses: [d_infinity, d_close] */
-export type PrimeVarRange = [number, number];
+/** Variable gap range for prime lenses: one thickness per normalized focus position. */
+export type PrimeVarRange = [number, number, ...number[]];
 
-/** Variable gap for zoom lenses: array of [d_infinity, d_close] per zoom position */
-export type ZoomVarRange = [number, number][];
+/** Variable gap for zoom lenses: one focus-thickness vector per zoom position. */
+export type ZoomVarRange = PrimeVarRange[];
 
 /** Variable gap: prime or zoom */
 export type VarRange = PrimeVarRange | ZoomVarRange;
@@ -334,6 +334,8 @@ export interface LensData {
   asph?: Record<string, AsphericCoefficients>;
   var?: Record<string, VarRange>;
   varLabels?: [string, string][];
+  /** Normalized focusT coordinates for each authored focus thickness; defaults to [0, 1]. */
+  focusPositions?: number[];
   groups?: AnnotationData[];
   doublets?: AnnotationData[];
   zoomPositions?: number[];
@@ -470,6 +472,7 @@ export interface RuntimeLens {
   readonly offAxisHeights: number[];
   readonly closeFocusM: number;
   readonly focusStep: number;
+  readonly focusPositions: readonly number[];
   readonly focusDescription?: string;
   readonly maxFstop: number;
   readonly apertureStep: number;

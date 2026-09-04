@@ -17,9 +17,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    d18: 17.54 / 15.39 /  7.93 /  1.10 mm                                  ║
  * ║    d23: 28.15 / 30.30 / 37.76 / 44.59 mm                                  ║
  * ║    d27: 67.54 / 67.54 / 67.54 / 67.54 mm                                  ║
- * ║  Current prime-focus `var` supports exact endpoints only; the runtime model ║
- * ║  therefore stores the exact ∞ and 1.0× rows and interpolates between them. ║
- * ║  The published intermediate rows are preserved above and in the audit.     ║
+ * ║  All four published rows are stored as exact focus keyframes. Runtime      ║
+ * ║  motion between them is piecewise-linear visualization.                    ║
  * ║                                                                              ║
  * ║  STOP / PUPIL NOTE:                                                         ║
  * ║  The patent specifies the stop plane (r18/SP) but not its diameter. The     ║
@@ -277,11 +276,12 @@ const LENS_DATA = {
 
   asph: {},
 
+  focusPositions: [0, 0.22912992694228013, 0.7323745404242055, 1],
   var: {
-    "12": [2.2, 31.58],
-    "17": [32.31, 2.93],
-    STO: [17.54, 1.1],
-    "23": [28.15, 44.59],
+    "12": [2.2, 5.19, 17.03, 31.58],
+    "17": [32.31, 29.32, 17.48, 2.93],
+    STO: [17.54, 15.39, 7.93, 1.1],
+    "23": [28.15, 30.3, 37.76, 44.59],
   },
 
   varLabels: [
@@ -306,7 +306,7 @@ const LENS_DATA = {
 
   closeFocusM: 0.48,
   focusDescription:
-    "PUBLISHED floating focus: L2 moves imageward and L3 moves objectward while the stop, L1, L4, and image plane remain fixed. Exact patent rows exist at infinity, 0.1×, 0.5×, and 1.0×; the current prime-focus schema stores the exact infinity and 1.0× endpoint spacings and interpolates between them.",
+    "PUBLISHED floating focus: L2 moves imageward and L3 moves objectward while the stop, L1, L4, and image plane remain fixed. The infinity, 0.1×, 0.5×, and 1.0× patent rows are exact focus keyframes.",
 
   nominalFno: 3.6,
   fstopSeries: [3.6, 4, 5.6, 8, 11, 16, 22, 32],

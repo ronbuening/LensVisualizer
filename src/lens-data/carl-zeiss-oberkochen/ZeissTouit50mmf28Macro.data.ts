@@ -21,10 +21,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    because the patent gives even powers only.                                       ║
  * ║                                                                                      ║
  * ║  NOTE ON FOCUS DATA:                                                                 ║
- * ║    The patent gives β = 0, -0.5, and -0.98 spacings. LensVisualizer's current       ║
- * ║    prime-focus var schema stores only infinity and close-focus endpoints. The       ║
- * ║    non-monotonic DD[18] path is therefore encoded as [1.52, 1.51]; the intermediate ║
- * ║    β = -0.5 value, 2.54 mm, is documented in the analysis but not interpolated.     ║
+ * ║    The patent's β = 0, -0.5, and -0.98 rows are exact focus keyframes, including    ║
+ * ║    the non-monotonic DD[18] path of 1.52 → 2.54 → 1.51 mm.                           ║
  * ║                                                                                      ║
  * ║  NOTE ON SEMI-DIAMETERS:                                                            ║
  * ║    The patent does not publish clear apertures. SD values here are conservative     ║
@@ -307,12 +305,13 @@ const LENS_DATA = {
     },
   },
 
+  focusPositions: [0, 0.7599103882848731, 1],
   var: {
-    "5": [1.6, 9.61],
-    "10": [9.1, 1.1],
-    STO: [12.68, 2.47],
-    "18": [1.52, 1.51],
-    "20": [1.85, 12.08],
+    "5": [1.6, 5.25, 9.61],
+    "10": [9.1, 5.45, 1.1],
+    STO: [12.68, 6.82, 2.47],
+    "18": [1.52, 2.54, 1.51],
+    "20": [1.85, 6.69, 12.08],
   },
   varLabels: [
     ["5", "DD[5] G1-G2"],

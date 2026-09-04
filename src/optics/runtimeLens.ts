@@ -366,6 +366,7 @@ export default function buildLens(data: LensData): RuntimeLens {
   const labelIdx = buildLabelIndex(S);
   const asphByIdx = buildAsphereIndex(data.asph, labelIdx);
   const varByIdx = buildVarIndex(data.var, labelIdx);
+  const focusPositions = Object.freeze([...(data.focusPositions ?? [0, 1])]);
   const aberrationControl = data.aberrationControl
     ? {
         label: data.aberrationControl.label,
@@ -579,6 +580,7 @@ export default function buildLens(data: LensData): RuntimeLens {
       offAxisHeights,
       closeFocusM: data.closeFocusM,
       focusStep: data.focusStep,
+      focusPositions,
       focusDescription: data.focusDescription,
       maxFstop: data.maxFstop,
       apertureStep: data.apertureStep,
@@ -882,7 +884,7 @@ export default function buildLens(data: LensData): RuntimeLens {
     zoomXpZRelLastSurfs = [];
     zoomXpSDs = [];
     for (let zi = 0; zi < nz; zi++) {
-      const tmpS = buildStateSurfaces(S, varByIdx, true, 0, zoomIndexToT(zi, nz));
+      const tmpS = buildStateSurfaces(S, varByIdx, true, 0, zoomIndexToT(zi, nz), {}, 0, focusPositions);
 
       /* EFL — capture y and u at last surface for exit pupil computation */
       const zMargLast = paraxialTrace(tmpS, 1, 0, { skipLastTransfer: true });
@@ -1058,6 +1060,7 @@ export default function buildLens(data: LensData): RuntimeLens {
     offAxisHeights,
     closeFocusM: data.closeFocusM,
     focusStep: data.focusStep,
+    focusPositions,
     focusDescription: data.focusDescription,
     maxFstop: data.maxFstop,
     apertureStep: data.apertureStep,

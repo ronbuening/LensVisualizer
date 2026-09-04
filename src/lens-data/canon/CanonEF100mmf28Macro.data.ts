@@ -12,8 +12,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ 48.74 mm at infinity / 0.5× / 1.0×. Groups I + II and the diaphragm       ║
  * ║ translate integrally toward the object while Group III and the image plane ║
  * ║ remain fixed. With R1 normalized as the axial origin, this is represented  ║
- * ║ by the single variable gap D14. The published 0.5× value is exactly the    ║
- * ║ midpoint of the authored infinity/1× endpoints.                            ║
+ * ║ by the single variable gap D14. All three rows are exact focus keyframes. ║
  * ║                                                                            ║
  * ║ Patent R9 is printed only as the diaphragm; data R = 1e15 is the schema's ║
  * ║ zero-power STO representation, not a patent-tabulated curvature.              ║
@@ -204,9 +203,10 @@ const LENS_DATA = {
 
   asph: {},
 
+  focusPositions: [0, 0.7995997649601272, 1],
   /* Published D14 states: 2.50 mm (∞), 25.62 mm (0.5×), 48.74 mm (1.0×). */
   var: {
-    "14": [2.5, 48.74],
+    "14": [2.5, 25.62, 48.74],
   },
   varLabels: [["14", "D14"]],
 

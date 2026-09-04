@@ -10,10 +10,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ 11 elements / 8 air-spaced groups / all-spherical.                         ║
  * ║                                                                            ║
  * ║ Focus status: PUBLISHED. G1+G2 move together; the stop and G3 move as a    ║
- * ║ second unit. The data endpoints are the patent's infinity and 0.20× states.║
- * ║ The published 0.10× state is independently verified in the audit but the   ║
- * ║ prime-lens schema has only endpoint pairs, so it is not a discrete control ║
- * ║ point. The production 0.25×/0.34 m endpoint is not reconstructed.          ║
+ * ║ second unit. Infinity, 0.10×, and 0.20× are exact focus keyframes.         ║
+ * ║ The production 0.25×/0.34 m endpoint is not reconstructed.                 ║
  * ║                                                                            ║
  * ║ Source corrections carried forward:                                       ║
  * ║ - Table 2 ZD0 at 0.00× is modeled as Infinity, not the printed 0.10.       ║
@@ -231,9 +229,10 @@ const LENS_DATA = {
 
   asph: {},
 
+  focusPositions: [0, 0.4792059482960617, 1],
   var: {
-    "11": [8.1, 22.74],
-    "20": [18.20898734177215, 28.208987341772154],
+    "11": [8.1, 14.29, 22.74],
+    "20": [18.20898734177215, 22.81898734177215, 28.208987341772154],
   },
 
   varLabels: [
@@ -255,7 +254,7 @@ const LENS_DATA = {
 
   closeFocusM: 0.34,
   focusDescription:
-    "PUBLISHED two-unit floating focus: G1+G2 move together while STO+G3 move independently. The data endpoints reproduce the patent infinity and 0.20× states; the published 0.10× state is audit-verified but not a discrete schema point. closeFocusM=0.34 m is the manufacturer product specification; no 0.25× internal state is reconstructed.",
+    "PUBLISHED two-unit floating focus: G1+G2 move together while STO+G3 move independently. The infinity, 0.10×, and 0.20× patent rows are exact focus keyframes. closeFocusM=0.34 m is the manufacturer product specification; no 0.25× internal state is reconstructed.",
 
   nominalFno: 0.93,
   fstopSeries: [0.95, 1.4, 2, 2.8, 4, 5.6, 8, 11, 16],

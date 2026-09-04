@@ -20,7 +20,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    BFD = 1.0 + 1.2/1.52301 + 4.93 ≈ 6.72 mm.                     ║
  * ║                                                                    ║
  * ║  CLOSE-FOCUS EXTRAPOLATION:                                        ║
- * ║    Patent publishes data at ∞ and 1000 mm only. Close-focus gap    ║
+ * ║    Patent ∞ and 1000 mm states are exact keyframes. Close gap      ║
  * ║    at MFD = 0.28 m solved via paraxial finite-conjugate trace.     ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
@@ -208,8 +208,9 @@ const LENS_DATA = {
    *  Patent: d9 = 2.32 (∞), 2.88 (1000 mm).
    *  MFD = 0.28 m: d9 ≈ 4.65 (solved via paraxial finite-conjugate trace).
    */
+  focusPositions: [0, 0.281750958383782, 1],
   var: {
-    "9A": [2.32, 4.65],
+    "9A": [2.32, 2.88, 4.65],
   },
   varLabels: [["9A", "BF"]],
 
@@ -225,7 +226,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.28,
-  focusDescription: "Front-group unit focus: G1 (L1–L5 + aperture stop) translates forward along the optical axis.",
+  focusDescription:
+    "Front-group unit focus: the patent 1000 mm state is exact before the constrained 0.28 m endpoint; G1 (L1–L5 plus stop) translates objectward.",
 
   /* ── Aperture configuration ── */
   nominalFno: 2.8,

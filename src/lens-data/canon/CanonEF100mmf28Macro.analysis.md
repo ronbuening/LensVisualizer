@@ -131,7 +131,7 @@ The focus status is **PUBLISHED**. No internal reconstruction is used. The paten
 | 0.5× | 25.62 mm | 23.12 mm | −0.500027 | 0.383781 m |
 | 1.0× | 48.74 mm | 46.24 mm | −1.000055 | 0.306871 m |
 
-The 0.5× spacing is exactly halfway between the infinity and 1.0× D14 values. Consequently, the data file's endpoint interpolation reproduces the patent's published intermediate state without a reconstructed movement law. The computed 1.0× subject-to-image distance of 0.306871 m is consistent with Canon's rounded 0.31 m marketed closest-focus specification.
+The 0.5× spacing is exactly halfway between the infinity and 1.0× D14 values in mechanical travel, but its inverse-distance slider coordinate is `focusT = 0.7995997649601272`. It is therefore stored as an explicit focus keyframe so both its spacing and displayed conjugate are exact. The computed 1.0× subject-to-image distance of 0.306871 m is consistent with Canon's rounded 0.31 m marketed closest-focus specification.
 
 This is not a floating system in the patent's sense: the first and second groups do not move independently. The front two groups and stop behave as one translating assembly while the rear group remains fixed. That choice directly addresses the patent's stated objective of avoiding the mechanical complexity and focus-drive burden associated with independently moving floating groups.
 

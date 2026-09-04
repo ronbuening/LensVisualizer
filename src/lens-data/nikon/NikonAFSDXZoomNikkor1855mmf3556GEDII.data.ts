@@ -18,8 +18,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                                                          ║
  * ║  Focus status: PUBLISHED. The data model stores the published infinity/closest endpoints.               ║
  * ║  Published intermediate beta=-0.025 D5 values, retained here for provenance, are                       ║
- * ║  45.43445 / 13.89826 / 1.67141 mm at wide / mid / tele. The LensData focus schema has endpoint       ║
- * ║  pairs only, so that intermediate source row is not a separate UI state.                                ║
+ * ║  45.43445 / 13.89826 / 1.67141 mm at wide / mid / tele. Their independently resolved inverse-distance ║
+ * ║  coordinates differ by zoom position, so one shared focus keyframe cannot represent the row exactly.   ║
  * ║  Closest endpoints independently solve to about 0.250 m from the focal plane. Nikon markets 0.28 m     ║
  * ║  and 0.31x; those production values are not used to alter the patent focus spacings.                    ║
  * ║                                                                                                          ║

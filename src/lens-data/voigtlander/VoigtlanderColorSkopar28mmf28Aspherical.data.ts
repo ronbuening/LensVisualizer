@@ -17,7 +17,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ remain unresolved. The correction is not presented as patent text.          ║
  * ║                                                                              ║
  * ║ FOCUS STATUS — CONSTRAINED_RECONSTRUCTION: the patent specifies rigid       ║
- * ║ whole-lens unit focus. Its published 180 mm object-space row is not the     ║
+ * ║ whole-lens unit focus. Its published 180 mm row is an exact keyframe, not   ║
  * ║ production 0.15 m endpoint. At a fixed 150 mm object-to-image distance,     ║
  * ║ Gaussian conjugacy has two reciprocal roots. The retained branch is         ║
  * ║ continuous from infinity: BF = 51.521596085898 mm and m = -0.441357849      ║
@@ -197,8 +197,9 @@ const LENS_DATA = {
   },
 
   /* ── Variable air spacing: rigid unit focus ── */
+  focusPositions: [0, 0.5867164672392103, 1],
   var: {
-    "14A": [38.498, 51.52159608589783],
+    "14A": [38.498, 43.33, 51.52159608589783],
   },
   varLabels: [["14A", "BF"]],
 
@@ -215,7 +216,7 @@ const LENS_DATA = {
   closeFocusM: 0.15,
   focusDescription:
     "CONSTRAINED_RECONSTRUCTION — rigid whole-lens unit focus with all internal gaps fixed. " +
-    "The patent publishes a 180 mm object-space state. At the production 0.15 m object-to-image distance, " +
+    "The patent's 180 mm object-space state is exact. At the production 0.15 m object-to-image distance, " +
     "the reciprocal |m| > 1 root is rejected; the branch continuous from infinity gives BF = 51.521596 mm " +
     "and m = -0.44136 (about 1:2.266).",
 

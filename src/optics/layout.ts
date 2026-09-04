@@ -108,6 +108,7 @@ export function thick(i: number, focusT: number, zoomT: number, L: RuntimeLens, 
     focusT,
     zoomT,
     aberrationT,
+    L.focusPositions,
   );
 }
 
@@ -152,6 +153,7 @@ export function stateSurfaces(focusT: number, zoomT: number, L: RuntimeLens, abe
     zoomT,
     L.aberrationControl?.varByIdx,
     aberrationT,
+    L.focusPositions,
   );
 }
 

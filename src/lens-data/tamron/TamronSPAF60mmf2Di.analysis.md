@@ -191,7 +191,7 @@ From infinity to 1:1:
 - The stop and G4 remain fixed.
 - The first-to-last-surface optical length remains constant.
 
-The 5:1 state confirms that neither moving group follows a simple linear interpolation with magnification. The project data format for a prime supports only infinity and close-focus endpoints, so the `.data.ts` file stores the infinity and 1:1 spacings. The published 5:1 state remains documented here for audit purposes.
+The 5:1 state confirms that neither moving group follows a simple linear interpolation with magnification. The `.data.ts` file stores infinity, 5:1, and 1:1 as exact focus keyframes; motion between them remains piecewise-linear visualization.
 
 The patent's optional discussion of an L3A/L3B differential trajectory (§0021–0022) does not apply to Embodiment 1's tabulated prescription: there is no variable internal spacing within G3. That behavior is explicit in Embodiment 3 through D(20), not in Embodiment 1.
 

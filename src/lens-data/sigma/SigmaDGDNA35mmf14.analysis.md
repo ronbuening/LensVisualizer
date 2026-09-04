@@ -279,11 +279,11 @@ The author's independent solution agrees with the patent: starting from the infi
 
 ### 5.3 Reconciliation with the Production MFD
 
-The patent's tabulated 1.47 m close-focus state does **not** correspond to the production lens's published 0.30 m MFD. This apparent discrepancy is consistent with — rather than evidence against — Example 1 being the production prescription. Japanese patents commonly tabulate one representative finite-focus state for aberration verification, leaving the actual MFD to be set by the production cam profile and mechanical travel range.
+The patent's tabulated 1.47 m state is stored as an exact focus keyframe but does **not** correspond to the production lens's published 0.30 m MFD. This apparent discrepancy is consistent with — rather than evidence against — Example 1 being the production prescription. Japanese patents commonly tabulate one representative finite-focus state for aberration verification, leaving the actual MFD to be set by the production cam profile and mechanical travel range.
 
 The author extrapolated the same prescription to the production MFD: at d_object = 176.05 mm (the object-to-S1 distance corresponding to a 0.30 m subject-to-image-plane separation, given the patent's tabulated optical path of 123.95 mm from S1 through to the image plane — which already includes the 20.96 mm BF), the L9 displacement required to maintain a focused image at the original image plane is **+6.86 mm**. This puts the close-focus values at d15 ≈ 10.85 mm and d17 ≈ 5.18 mm — both within the geometrical envelope (d17 stays positive, so L9 does not collide with L10) but well beyond the values exposed in the patent's tabulated state. The patent's published focus state therefore exercises only ~13 % of the production lens's full L9 travel. The production lens uses the same prescription with extended cam throw.
 
-This pattern — the patent tabulating one moderate close-focus state rather than the production MFD — is the convention used for Sigma's recent prime-lens patents and for related fast-prime patents from other manufacturers. It is *not* a sign that the production lens uses a different prescription.
+This pattern — the patent tabulating one moderate close-focus state rather than the production MFD — is the convention used for Sigma's recent prime-lens patents and for related fast-prime patents from other manufacturers. It is *not* a sign that the production lens uses a different prescription. The segments between the infinity, patent, and reconstructed endpoint keyframes are piecewise-linear visualization, not a claimed cam law.
 
 ### 5.4 Chromatic Behaviour during Focus
 

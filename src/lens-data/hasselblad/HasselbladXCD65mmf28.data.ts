@@ -225,8 +225,9 @@ const LENS_DATA = {
    *  Single variable gap: G1+Stop+G2 move as unit toward object; G3 fixed.
    *  Patent Fig. 3: d12 = 1.00 (infinity) → 14.46 (400 mm from S1, ≈ 0.50 m MFD from image plane).
    */
+  focusPositions: [0, 0.1758096778953822, 1],
   var: {
-    "12": [1.0, 14.46],
+    "12": [1.0, 3.02, 14.46],
   },
 
   varLabels: [["12", "BF"]],
@@ -247,7 +248,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.5,
-  focusDescription: "Front-group focus: G1, stop, and G2 move as a unit toward the object. G3 is fixed.",
+  focusDescription:
+    "Front-group focus: G1, stop, and G2 move as a unit toward the object while G3 remains fixed. The patent's infinity, 2400 mm, and 400 mm object-distance states are represented exactly.",
 
   /* ── Aperture configuration ── */
   nominalFno: 2.8,

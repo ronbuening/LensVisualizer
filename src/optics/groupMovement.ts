@@ -6,7 +6,7 @@
  */
 
 import { GROUP_MOVEMENT_MODES, type GroupMovementMode } from "../types/groupMovement.js";
-import type { RuntimeLens, ResolvedAnnotation, VarRange } from "../types/optics.js";
+import type { RuntimeLens, ResolvedAnnotation, VarRange, ZoomVarRange } from "../types/optics.js";
 import { anchorLayoutToCamera } from "./cameraLayout.js";
 import { doLayout } from "./optics.js";
 
@@ -64,27 +64,29 @@ interface GroupMovementOptions {
   aberrationT?: number;
 }
 
-function isZoomRange(range: VarRange): range is [number, number][] {
+function isZoomRange(range: VarRange): range is ZoomVarRange {
   return Array.isArray(range[0]);
 }
 
 function rangeHasFocusTravel(range: VarRange, isZoom: boolean): boolean {
   if (isZoom && isZoomRange(range)) {
-    return range.some(([dInfinity, dClose]) => Math.abs(dClose - dInfinity) > MOVEMENT_EPSILON_MM);
+    return range.some((focusThicknesses) =>
+      focusThicknesses.some((thickness) => Math.abs(thickness - focusThicknesses[0]) > MOVEMENT_EPSILON_MM),
+    );
   }
   if (!isZoom && !isZoomRange(range)) {
-    const [dInfinity, dClose] = range;
-    return Math.abs(dClose - dInfinity) > MOVEMENT_EPSILON_MM;
+    return range.some((thickness) => Math.abs(thickness - range[0]) > MOVEMENT_EPSILON_MM);
   }
   return false;
 }
 
 function rangeHasZoomTravel(range: VarRange, isZoom: boolean): boolean {
   if (!isZoom || !isZoomRange(range) || range.length < 2) return false;
-  const [firstInfinity, firstClose] = range[0];
-  return range.some(
-    ([dInfinity, dClose]) =>
-      Math.abs(dInfinity - firstInfinity) > MOVEMENT_EPSILON_MM || Math.abs(dClose - firstClose) > MOVEMENT_EPSILON_MM,
+  const firstFocusThicknesses = range[0];
+  return range.some((focusThicknesses) =>
+    focusThicknesses.some(
+      (thickness, focusIndex) => Math.abs(thickness - firstFocusThicknesses[focusIndex]) > MOVEMENT_EPSILON_MM,
+    ),
   );
 }
 

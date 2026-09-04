@@ -307,11 +307,12 @@ const LENS_DATA = {
    *  Patent Table 8: magnification 0.0 (infinity), −0.5×, −1.0× (1:1).
    *  Close focus distance: d_close column uses the −1.0× (1:1) values.
    */
+  focusPositions: [0, 0.8075766830717322, 1],
   var: {
-    "7A": [2.8, 22.17], // GR1 ↔ GR2 gap (d7)
-    "12": [22.92, 3.54], // GR2 ↔ GR3 gap (d12)
-    STO: [23.22, 5.0], // STO ↔ GR4 gap (d16)
-    "21": [7.49, 25.71], // GR4 ↔ GR5 gap (d21)
+    "7A": [2.8, 11.89, 22.17], // GR1 ↔ GR2 gap (d7)
+    "12": [22.92, 13.83, 3.54], // GR2 ↔ GR3 gap (d12)
+    STO: [23.22, 13.23, 5.0], // STO ↔ GR4 gap (d16)
+    "21": [7.49, 17.48, 25.71], // GR4 ↔ GR5 gap (d21)
   },
 
   varLabels: [

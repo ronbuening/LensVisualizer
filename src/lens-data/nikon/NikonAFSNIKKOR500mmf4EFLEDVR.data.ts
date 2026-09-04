@@ -9,7 +9,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  16 active elements / 12 air-separated groups; all surfaces spherical.     ║
  * ║                                                                            ║
  * ║  Focus status: PUBLISHED. G2 translates imageward while d11 + d16 remains  ║
- * ║  50.610 mm. The data endpoints are the patent infinity and near rows.      ║
+ * ║  50.610 mm. Infinity, intermediate, and near are exact focus keyframes.    ║
  * ║  The published intermediate row is reproduced by linear interpolation at   ║
  * ║  focus t = 0.2102460786 (d11 = 17.427, d16 = 33.183 mm).                  ║
  * ║                                                                            ║
@@ -382,10 +382,11 @@ const LENS_DATA = {
 
   asph: {},
 
-  /* ── Published internal-focus movement ── */
+  /* ── Published internal-focus keyframes ── */
+  focusPositions: [0, 0.23802029005870562, 1],
   var: {
-    "11": [14.505, 28.403],
-    "16": [36.105, 22.207],
+    "11": [14.505, 17.427, 28.403],
+    "16": [36.105, 33.183, 22.207],
   },
   varLabels: [
     ["11", "D11 (G1→G2)"],

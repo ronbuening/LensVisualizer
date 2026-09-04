@@ -912,6 +912,29 @@ export default function validateLensData(data: UntrustedLensData): string[] {
     }
   }
 
+  /* ── Focus interpolation positions ── */
+  const focusPositionCount =
+    Array.isArray(data.focusPositions) && data.focusPositions.length >= 2 ? data.focusPositions.length : 2;
+  if (data.focusPositions !== undefined) {
+    if (!Array.isArray(data.focusPositions) || data.focusPositions.length < 2) {
+      errors.push(`"focusPositions" must be an array of at least 2 normalized focus coordinates`);
+    } else {
+      if (!data.focusPositions.every((n: unknown) => typeof n === "number" && isFinite(n))) {
+        errors.push(`"focusPositions" must contain only finite numbers`);
+      } else {
+        if (data.focusPositions[0] !== 0 || data.focusPositions[data.focusPositions.length - 1] !== 1) {
+          errors.push(`"focusPositions" must begin at 0 (infinity) and end at 1 (close focus)`);
+        }
+        for (let i = 1; i < data.focusPositions.length; i++) {
+          if (data.focusPositions[i] <= data.focusPositions[i - 1]) {
+            errors.push(`"focusPositions" must be strictly increasing`);
+            break;
+          }
+        }
+      }
+    }
+  }
+
   /* ── Optional zoom fields ── */
   if (data.zoomStep !== undefined) {
     if (typeof data.zoomStep !== "number" || !isFinite(data.zoomStep) || data.zoomStep <= 0)
@@ -1052,24 +1075,36 @@ export default function validateLensData(data: UntrustedLensData): string[] {
       if (!surfaceLabels.has(label)) errors.push(`var key "${label}" does not match any surface label`);
       if (isZoom) {
         if (!Array.isArray(range) || range.length !== nz)
-          errors.push(`var["${label}"]: expected array of ${nz} [d_inf, d_close] pairs (one per zoom position)`);
+          errors.push(`var["${label}"]: expected ${nz} focus-thickness vectors (one per zoom position)`);
         else {
           for (let zi = 0; zi < nz; zi++) {
-            if (!Array.isArray(range[zi]) || range[zi].length !== 2)
-              errors.push(`var["${label}"][${zi}]: expected [d_infinity, d_close] array of length 2`);
-            else {
-              /* Non-negative thickness — negative gaps are physically impossible */
-              if (range[zi][0] < 0) errors.push(`var["${label}"][${zi}]: d_infinity=${range[zi][0]} is negative`);
-              if (range[zi][1] < 0) errors.push(`var["${label}"][${zi}]: d_close=${range[zi][1]} is negative`);
+            const focusThicknesses = range[zi];
+            if (!Array.isArray(focusThicknesses) || focusThicknesses.length !== focusPositionCount) {
+              errors.push(`var["${label}"][${zi}]: expected focus-thickness array of length ${focusPositionCount}`);
+            } else {
+              for (let fi = 0; fi < focusThicknesses.length; fi++) {
+                const thickness = focusThicknesses[fi];
+                if (typeof thickness !== "number" || !isFinite(thickness)) {
+                  errors.push(`var["${label}"][${zi}][${fi}]: thickness must be a finite number`);
+                } else if (thickness < 0) {
+                  errors.push(`var["${label}"][${zi}][${fi}]: thickness=${thickness} is negative`);
+                }
+              }
             }
           }
         }
       } else {
-        if (!Array.isArray(range) || range.length !== 2)
-          errors.push(`var["${label}"]: expected [d_infinity, d_close] array of length 2`);
-        else {
-          if (range[0] < 0) errors.push(`var["${label}"]: d_infinity=${range[0]} is negative`);
-          if (range[1] < 0) errors.push(`var["${label}"]: d_close=${range[1]} is negative`);
+        if (!Array.isArray(range) || range.length !== focusPositionCount) {
+          errors.push(`var["${label}"]: expected focus-thickness array of length ${focusPositionCount}`);
+        } else {
+          for (let fi = 0; fi < range.length; fi++) {
+            const thickness = range[fi];
+            if (typeof thickness !== "number" || !isFinite(thickness)) {
+              errors.push(`var["${label}"][${fi}]: thickness must be a finite number`);
+            } else if (thickness < 0) {
+              errors.push(`var["${label}"][${fi}]: thickness=${thickness} is negative`);
+            }
+          }
         }
       }
       /* Surface d should match the var infinity value at the first zoom position */

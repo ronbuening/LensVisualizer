@@ -153,7 +153,7 @@ Only two elements use high-index glass (nd ≥ 1.8): L12 and L31. The patent exp
 
 The XCD 2,8/65 uses a **front-group focusing** mechanism. Groups G1 and G2, together with the aperture stop, move as a rigid unit toward the object during focusing from infinity to close focus. Group G3 remains stationary relative to the image plane.
 
-This is a unit-focus arrangement with a single variable air gap:
+This is a unit-focus arrangement with a single variable air gap. All three patent rows are stored as exact focus keyframes:
 
 | Parameter | Infinity | 2400 mm | 400 mm (MFD) |
 |-----------|----------|---------|--------------|
@@ -166,7 +166,7 @@ The total focus travel from infinity to the closest object distance (400 mm from
 
 The focal length remains remarkably stable across the focus range (65.02 → 65.09 mm), varying by less than 0.1%. This stability is a consequence of G3's extremely weak net power: since G3 contributes negligibly to the system focal length, moving the high-power groups G1+G2 changes focus conjugation without materially altering the focal length.
 
-The patent describes this focusing arrangement as "integral" motion of G1, Stop, and G2 (¶0090). This is mechanically simpler than floating-element or multi-group focusing systems, and the single moving assembly makes it well-suited to the leaf-shutter integration required by Hasselblad's XCD lens architecture — the shutter mechanism, located near the aperture stop, moves with the focusing group rather than needing independent actuation.
+The patent describes this focusing arrangement as "integral" motion of G1, Stop, and G2 (¶0090). This is mechanically simpler than floating-element or multi-group focusing systems, and the single moving assembly makes it well-suited to the leaf-shutter integration required by Hasselblad's XCD lens architecture — the shutter mechanism, located near the aperture stop, moves with the focusing group rather than needing independent actuation. Piecewise-linear motion between the published states is a visualization approximation, not a claimed cam law.
 
 
 ## Aspherical Surfaces

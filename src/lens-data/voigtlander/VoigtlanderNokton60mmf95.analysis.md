@@ -193,8 +193,7 @@ published 0.20× state moves the rear stop/G3 unit 10.00 mm toward the object an
 the object, increasing the inter-unit gap by 14.64 mm. These translations are computed from the published variable
 spacings; they are not separately tabulated by the patent.
 
-The data file stores the infinity and 0.20× endpoints because the prime-lens schema accepts endpoint pairs. The
-published 0.10× state was independently verified but is not a discrete slider control point. Cosina specifies a 0.34 m
+The data file stores the infinity, 0.10×, and 0.20× rows as exact focus keyframes. Cosina specifies a 0.34 m
 minimum focus distance from the sensor and a 1:4 maximum reproduction ratio for the production lens. Example 2 does not
 publish the corresponding 0.25× internal spacings, so that production endpoint is not extrapolated or reconstructed.
 

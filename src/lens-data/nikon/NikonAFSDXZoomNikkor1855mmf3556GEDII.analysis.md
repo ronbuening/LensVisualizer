@@ -136,7 +136,7 @@ The patent publishes infinity, an intermediate `β = −0.025` state, and closes
 | Mid, 35.0 mm | 13.18951 | 13.89826 | 19.72380 | −0.23049 | 250.000853 mm |
 | Tele, 53.5 mm | 1.20774 | 1.67141 | 8.25968 | −0.38023 | 250.000736 mm |
 
-The current focus schema stores the published infinity and closest endpoints; the intermediate `β = −0.025` row remains provenance rather than a third UI focus state. No internal spacing was solved or invented to create a close-focus model.
+The data stores the published infinity and closest endpoints. The intermediate `β = −0.025` row resolves to different inverse-distance coordinates at the three zoom positions (`focusT ≈ 0.2963`, `0.1675`, and `0.1115`), so the shared focus-keyframe axis cannot represent all three rows exactly. It remains provenance rather than adding an internally inconsistent UI state. No internal spacing was solved or invented to create a close-focus model.
 
 The common computed object-to-focal-plane distance is approximately 0.250 m, which is why `closeFocusM` is 0.25 in the data. Nikon's production documentation instead gives 0.28 m at all zoom settings and the current product page gives a 0.31× maximum reproduction ratio. Those marketed values are retained as product context but are not used to alter the selected patent embodiment.
 

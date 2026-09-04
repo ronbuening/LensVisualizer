@@ -9,6 +9,7 @@ import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
 import buildLens from "../../../src/optics/buildLens.js";
 import { resolveCompatibleGlass } from "../../../src/optics/glassCatalog.js";
 import { computeGroupMovementProfile, getGroupMovementAvailability } from "../../../src/optics/groupMovement.js";
+import { thick } from "../../../src/optics/optics.js";
 import type { LensData, LensDataInput } from "../../../src/types/optics.js";
 
 const lenses = [nikkor50, micro55, zoom80200, nikkor85, micro105, dc105];
@@ -182,6 +183,26 @@ describe("2026-09-04 Nikon lens batch diagram metadata", () => {
       expect.closeTo(0, 8),
       expect.closeTo(0, 8),
       expect.closeTo(-4.7911, 9),
+    ]);
+  });
+
+  it("reproduces the Micro-Nikkor 105mm published intermediate focus state and reversing float", () => {
+    const L = runtimeLens(micro105);
+    const intermediateFocusT = 0.8113045208264971;
+    expect(L.focusPositions).toEqual([0, intermediateFocusT, 1]);
+    expect(thick(L.labelIdx["6"], intermediateFocusT, 0, L) + 5.5).toBeCloseTo(19.805, 10);
+    expect(thick(L.labelIdx["11"], intermediateFocusT, 0, L)).toBeCloseTo(31.432, 10);
+    expect(thick(L.labelIdx["15"], intermediateFocusT, 0, L)).toBeCloseTo(7.238, 10);
+
+    const shifts = computeGroupMovementProfile(L, "focus", {
+      focusT: intermediateFocusT,
+      zoomT: 0,
+    }).series.map(({ currentPoint }) => currentPoint.shiftMm);
+    expect(shifts).toEqual([
+      expect.closeTo(-21.686, 9),
+      expect.closeTo(-24.863, 9),
+      expect.closeTo(2.762, 9),
+      expect.closeTo(0, 8),
     ]);
   });
 });

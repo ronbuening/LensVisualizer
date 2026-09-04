@@ -9,6 +9,9 @@ import type { AberrationPositionRange, AberrationVarRange, VarRange } from "../.
 import { lerp } from "../math/numerics.js";
 import { resolveLabel } from "./labels.js";
 
+/** Implicit focus control positions for all legacy infinity/close ranges. */
+export const DEFAULT_FOCUS_POSITIONS: readonly number[] = Object.freeze([0, 1]);
+
 /**
  * Compile authored variable gaps from label keys to surface-index keys.
  *
@@ -50,13 +53,14 @@ export function compileVariableLabels(
 }
 
 /**
- * Resolve a variable gap at a normalized focus/aberration and zoom control.
+ * Resolve a variable gap at normalized focus and zoom controls.
  *
  * @param baseThickness - authored default thickness in mm
  * @param range - optional variable range
  * @param isZoom - whether the lens uses zoom-indexed ranges
- * @param controlT - normalized focus or aberration control
+ * @param controlT - normalized focus control
  * @param zoomT - normalized zoom control
+ * @param focusPositions - normalized focus coordinates aligned with each thickness vector
  * @returns current axial thickness in mm
  */
 export function resolveVariableThickness(
@@ -65,26 +69,31 @@ export function resolveVariableThickness(
   isZoom: boolean,
   controlT: number,
   zoomT: number,
+  focusPositions: readonly number[] = DEFAULT_FOCUS_POSITIONS,
 ): number {
   if (!range) return baseThickness;
   if (!isZoom) {
-    const [dInfinity, dClose] = range as [number, number];
-    return lerp(dInfinity, dClose, controlT);
+    return interpolateFocusThickness(range as readonly number[], focusPositions, controlT);
   }
 
-  const zoomRanges = range as [number, number][];
+  const zoomRanges = range as readonly (readonly number[])[];
   if (zoomRanges.length === 0) return baseThickness;
   if (zoomRanges.length === 1) {
-    const [dInfinity, dClose] = zoomRanges[0];
-    return lerp(dInfinity, dClose, controlT);
+    return interpolateFocusThickness(zoomRanges[0], focusPositions, controlT);
   }
 
   const position = zoomT * (zoomRanges.length - 1);
   const index = Math.min(Math.floor(position), zoomRanges.length - 2);
   const fraction = position - index;
-  const dInfinity = lerp(zoomRanges[index][0], zoomRanges[index + 1][0], fraction);
-  const dClose = lerp(zoomRanges[index][1], zoomRanges[index + 1][1], fraction);
-  return lerp(dInfinity, dClose, controlT);
+  if (focusPositions.length === 2) {
+    const dInfinity = lerp(zoomRanges[index][0], zoomRanges[index + 1][0], fraction);
+    const dClose = lerp(zoomRanges[index][1], zoomRanges[index + 1][1], fraction);
+    return lerp(dInfinity, dClose, controlT);
+  }
+  const { fromIndex, toIndex, fraction: focusFraction } = focusInterpolationSegment(focusPositions, controlT);
+  const fromThickness = lerp(zoomRanges[index][fromIndex], zoomRanges[index + 1][fromIndex], fraction);
+  const toThickness = lerp(zoomRanges[index][toIndex], zoomRanges[index + 1][toIndex], fraction);
+  return lerp(fromThickness, toThickness, focusFraction);
 }
 
 /**
@@ -128,6 +137,7 @@ export function resolveAberrationThickness(
  * @param focusT - normalized focus slider
  * @param zoomT - normalized zoom slider
  * @param aberrationT - normalized aberration spacing slider
+ * @param focusPositions - normalized focus coordinates aligned with each focus range
  * @returns current axial thickness in mm
  */
 export function resolveControlledThickness(
@@ -138,11 +148,47 @@ export function resolveControlledThickness(
   focusT: number,
   zoomT: number,
   aberrationT: number,
+  focusPositions: readonly number[] = DEFAULT_FOCUS_POSITIONS,
 ): number {
-  const focusThickness = resolveVariableThickness(baseThickness, focusRange, isZoom, focusT, zoomT);
+  const focusThickness = resolveVariableThickness(baseThickness, focusRange, isZoom, focusT, zoomT, focusPositions);
   if (!aberrationRange) return focusThickness;
   const aberrationThickness = resolveAberrationThickness(baseThickness, aberrationRange, isZoom, aberrationT, zoomT);
   return focusThickness + (aberrationThickness - baseThickness);
+}
+
+interface FocusInterpolationSegment {
+  fromIndex: number;
+  toIndex: number;
+  fraction: number;
+}
+
+function focusInterpolationSegment(focusPositions: readonly number[], controlT: number): FocusInterpolationSegment {
+  if (focusPositions.length <= 1) return { fromIndex: 0, toIndex: 0, fraction: 0 };
+
+  let toIndex = 1;
+  while (toIndex < focusPositions.length - 1 && controlT > focusPositions[toIndex]) toIndex++;
+  if (controlT > focusPositions[focusPositions.length - 1]) toIndex = focusPositions.length - 1;
+
+  const fromIndex = toIndex - 1;
+  const fromPosition = focusPositions[fromIndex];
+  const toPosition = focusPositions[toIndex];
+  return {
+    fromIndex,
+    toIndex,
+    fraction: (controlT - fromPosition) / (toPosition - fromPosition),
+  };
+}
+
+function interpolateFocusThickness(
+  thicknesses: readonly number[],
+  focusPositions: readonly number[],
+  controlT: number,
+): number {
+  if (thicknesses.length === 0) return 0;
+  if (thicknesses.length === 1) return thicknesses[0];
+  if (thicknesses.length === 2) return lerp(thicknesses[0], thicknesses[1], controlT);
+  const { fromIndex, toIndex, fraction } = focusInterpolationSegment(focusPositions, controlT);
+  return lerp(thicknesses[fromIndex], thicknesses[toIndex], fraction);
 }
 
 function interpolateAberrationPositionsAtZoom(
