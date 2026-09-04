@@ -653,6 +653,39 @@ describe("validateLensData", () => {
     expect(errors.some((e) => e.includes("length 2"))).toBe(true);
   });
 
+  it("accepts aligned multi-keyframe focus positions and prime spacings", () => {
+    const data = makeValid({
+      focusPositions: [0, 0.4, 1],
+      var: { STO: [2, 3, 4] },
+    });
+    expect(validateLensData(data)).toEqual([]);
+  });
+
+  it("catches invalid focus position coordinates", () => {
+    const invalidCases = [
+      [0.1, 0.5, 1],
+      [0, 0.5, 0.5, 1],
+      [0, Number.NaN, 1],
+      [0, 0.5, 0.9],
+    ];
+    for (const focusPositions of invalidCases) {
+      const errors = validateLensData(makeValid({ focusPositions, var: { STO: focusPositions.map(() => 2) } }));
+      expect(
+        errors.some((error) => error.includes("focusPositions")),
+        focusPositions.join(","),
+      ).toBe(true);
+    }
+  });
+
+  it("requires every prime focus range to align with focusPositions", () => {
+    const data = makeValid({
+      focusPositions: [0, 0.4, 1],
+      var: { STO: [2, 4] },
+    });
+    const errors = validateLensData(data);
+    expect(errors.some((error) => error.includes('var["STO"]') && error.includes("length 3"))).toBe(true);
+  });
+
   it("catches invalid varLabels reference", () => {
     const data = makeValid({
       varLabels: [["NOPE", "something"]],
@@ -1144,6 +1177,37 @@ describe("validateLensData — production lenses", () => {
  * ═══════════════════════════════════════════════════════════════════ */
 
 describe("validateLensData — zoom lens paths", () => {
+  it("accepts aligned focus keyframes at every zoom position", () => {
+    const data = makeValid({
+      nominalFno: [2, 2],
+      zoomPositions: [24, 70],
+      focusPositions: [0, 0.5, 1],
+      var: {
+        STO: [
+          [2, 3, 2],
+          [4, 6, 5],
+        ],
+      },
+    });
+    expect(validateLensData(data)).toEqual([]);
+  });
+
+  it("requires every zoom focus vector to align with focusPositions", () => {
+    const data = makeValid({
+      nominalFno: [2, 2],
+      zoomPositions: [24, 70],
+      focusPositions: [0, 0.5, 1],
+      var: {
+        STO: [
+          [2, 3, 2],
+          [4, 5],
+        ],
+      },
+    });
+    const errors = validateLensData(data);
+    expect(errors.some((error) => error.includes('var["STO"][1]') && error.includes("length 3"))).toBe(true);
+  });
+
   it("catches negative var thickness in zoom format", () => {
     const data = makeValid({
       zoomPositions: [24, 70],
@@ -1270,10 +1334,10 @@ describe("validateLensData — zoom lens paths", () => {
           [2, 3],
           [4, 5],
         ],
-      }, // only 2 pairs, needs 3
+      }, // only 2 focus vectors, needs 3
     });
     const errors = validateLensData(data);
-    expect(errors.some((e) => e.includes("3 [d_inf, d_close] pairs"))).toBe(true);
+    expect(errors.some((e) => e.includes("3 focus-thickness vectors"))).toBe(true);
   });
 
   it("catches zoomPositions with fewer than 2 entries", () => {
@@ -1294,18 +1358,18 @@ describe("validateLensData — zoom lens paths", () => {
     expect(errors.some((e) => e.includes("finite numbers"))).toBe(true);
   });
 
-  it("catches zoom var entry that is not a [d_inf, d_close] pair", () => {
+  it("catches zoom var entry that is not a focus-thickness vector", () => {
     const data = makeValid({
       zoomPositions: [24, 70],
       var: {
         STO: [
           [2, 3],
-          5, // not a pair
+          5, // not a focus vector
         ],
       },
     });
     const errors = validateLensData(data);
-    expect(errors.some((e) => e.includes("[d_infinity, d_close]"))).toBe(true);
+    expect(errors.some((e) => e.includes("focus-thickness array of length 2"))).toBe(true);
   });
 
   it("catches zoom var entry with wrong-length inner array", () => {
@@ -1319,7 +1383,7 @@ describe("validateLensData — zoom lens paths", () => {
       },
     });
     const errors = validateLensData(data);
-    expect(errors.some((e) => e.includes("[d_infinity, d_close]"))).toBe(true);
+    expect(errors.some((e) => e.includes("focus-thickness array of length 2"))).toBe(true);
   });
 });
 

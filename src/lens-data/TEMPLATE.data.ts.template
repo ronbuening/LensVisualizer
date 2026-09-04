@@ -423,11 +423,14 @@ const LENS_DATA = {
    *  Keyed by surface label.  Only include surfaces whose air gap changes during focus/zoom.
    *
    *  Prime lens format (no zoomPositions):
-   *    Each value is [d_at_infinity, d_at_close_focus].
+   *    Each value defaults to [d_at_infinity, d_at_close_focus].
+   *    For published intermediate states, add normalized `focusPositions` beginning
+   *    at 0 and ending at 1, then provide one thickness per focus position.
    *    The surface's `d` field should match var[label][0].
    *
    *  Zoom lens format (with zoomPositions):
-   *    Each value is an array of [d_inf, d_close] pairs, one per zoom position.
+   *    Each value is an array of focus-thickness vectors, one per zoom position.
+   *    Without `focusPositions`, each vector remains [d_inf, d_close].
    *    The surface's `d` field should match var[label][0][0].
    *    For zoom-only gaps (no focus change), use identical inf/close values:
    *      "5": [[1.0, 1.0], [3.0, 3.0]]
@@ -444,6 +447,8 @@ const LENS_DATA = {
     // Prime:  "17": [18.74, 22.59],                            // [d_infinity, d_close]
     // Zoom:   "17": [[18.74, 22.59], [16.00, 20.00], [19.50, 23.80]],  // one pair per zoom position
   },
+
+  // focusPositions: [0, 0.72, 1], // optional normalized focusT coordinates for 3+ published states
 
   varLabels: [
     // ["17", "BF"],             // [surface_label, display_text]

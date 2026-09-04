@@ -68,6 +68,7 @@ export function prepareState(
       focusT,
       zoomT,
       aberrationT,
+      lens.variables.focusPositions,
       surface.physicalIndex,
       lens.flags.isFoldedOptics,
     ),
@@ -125,6 +126,7 @@ function resolvePreparedThickness(
   focusT: number,
   zoomT: number,
   aberrationT: number,
+  focusPositions: readonly number[],
   surfaceIndex: number,
   allowNegativeThickness: boolean,
 ): number {
@@ -136,6 +138,7 @@ function resolvePreparedThickness(
     focusT,
     zoomT,
     aberrationT,
+    focusPositions,
   );
   if (!Number.isFinite(thickness) || (!allowNegativeThickness && thickness < 0)) {
     throw new Optics2PreparationError(

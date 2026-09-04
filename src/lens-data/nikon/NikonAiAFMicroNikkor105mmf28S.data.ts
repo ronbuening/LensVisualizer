@@ -16,13 +16,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║   beta = -0.5: d6=19.805, d11=31.432, d15=7.238,  Bf=43.966 mm           ║
  * ║   beta = -1.0: d6=17.682, d11=56.809, d15=10.000, Bf=43.966 mm           ║
  * ║                                                                            ║
- * ║ Runtime-focus disclosure: the current prime-lens `var` schema stores only  ║
- * ║ infinity and close-focus endpoint pairs. Those endpoints are transcribed   ║
- * ║ exactly. The published beta=-0.5 state is retained above and in the audit, ║
- * ║ but its non-linear G1/G2 motion and reversing d15 float cannot be encoded  ║
- * ║ as an exact runtime keyframe without a schema change. Runtime interpolation ║
- * ║ between endpoints is therefore a visualization interpolation, not a claim  ║
- * ║ that the source trajectory is linear.                                      ║
+ * ║ Runtime focus uses all three published states as exact keyframes. The       ║
+ * ║ beta=-0.5 focus position follows the viewer's inverse-distance convention: ║
+ * ║ 0.314 m / 0.387031 m = 0.8113045208264971. Interpolation between the       ║
+ * ║ published states remains a visualization interpolation, not a claim that   ║
+ * ║ the source trajectory is linear.                                           ║
  * ║                                                                            ║
  * ║ Stop: source gives 5.5 mm from surface 7 and common motion with G2. The    ║
  * ║ stop is modeled 5.5 mm object-side of surface 7, splitting published d6.   ║
@@ -228,11 +226,13 @@ const LENS_DATA = {
 
   var: {
     // d6 segment after inserting STO: published d6 minus the fixed 5.5 mm STO→surface 7 spacing.
-    "6": [17.482, 12.182],
-    "11": [3.807, 56.809],
-    // Source d15 reverses 10.000→7.238→10.000; the endpoint pair is equal in the current two-keyframe schema.
-    "15": [10.0, 10.0],
+    "6": [17.482, 14.305, 12.182],
+    "11": [3.807, 31.432, 56.809],
+    "15": [10.0, 7.238, 10.0],
   },
+
+  // Infinity, published beta=-0.5 at 0.387031 m, and life size at the 0.314 m catalog MFD.
+  focusPositions: [0, 0.8113045208264971, 1],
 
   varLabels: [
     ["6", "D6 (G1→STO)"],
@@ -253,8 +253,7 @@ const LENS_DATA = {
   focusDescription:
     "Published three-block floating focus to 1:1. G1 and G2 move objectward; G2 moves farther. " +
     "G3F (L7-L8) moves imageward at beta=-0.5 and returns at beta=-1.0; G3R and Bf remain fixed. " +
-    "The current prime var schema stores only infinity/close endpoint pairs, so the beta=-0.5 reversal is retained " +
-    "in the file header/audit but is not an exact runtime keyframe.",
+    "All three published configurations are exact runtime keyframes; interpolation between them is piecewise linear.",
 
   nominalFno: 2.86,
   fstopSeries: [2.86, 4, 5.6, 8, 11, 16, 22, 32],

@@ -9,7 +9,7 @@ import CanonRF24Raw from "../../../src/lens-data/canon/CanonRF24mmF14LVCM.data.j
 import CanonRF35Raw from "../../../src/lens-data/canon/CanonRF35mmF14LVCM.data.js";
 import NikonAfpDx70300Raw from "../../../src/lens-data/nikon/NikonAFPDX70300mmf4563G.data.js";
 import NikonZ100400Raw from "../../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.js";
-import { build, sharedSonnar50f15 } from "./testLensFixtures.js";
+import { build, buildVariableStopGapLens, sharedSonnar50f15 } from "./testLensFixtures.js";
 import type { RuntimeLens } from "../../../src/types/optics.js";
 
 describe("group movement optics helpers", () => {
@@ -61,6 +61,12 @@ describe("group movement optics helpers", () => {
     expect(availability).toEqual({ focus: true, zoom: true, combined: true });
     expect(profile.series.some((series) => series.secondarySamples && series.secondarySamples.length > 0)).toBe(true);
     expect(profile.maxAbsShiftMm).toBeGreaterThan(20);
+  });
+
+  it("detects focus travel that reverses to an unchanged close endpoint", () => {
+    const L = buildVariableStopGapLens([2, 5, 2], "test-reversing-focus-availability", [0, 0.5, 1]);
+
+    expect(getGroupMovementAvailability(L)).toEqual({ focus: true, zoom: false, combined: false });
   });
 
   it("preserves the published Canon RF VCM prime focus directions", () => {

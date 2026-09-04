@@ -93,6 +93,14 @@ describe("thick", () => {
     expect(thick(0, 1.0, 0, L)).toBe(10.0);
   });
 
+  it("interpolates prime focus keyframes piecewise and preserves a reversal", () => {
+    const L = buildVariableStopGapLens([5.0, 2.0, 10.0], "test-prime-focus-keyframes", [0, 0.25, 1]);
+    expect(thick(0, 0, 0, L)).toBe(5.0);
+    expect(thick(0, 0.25, 0, L)).toBe(2.0);
+    expect(thick(0, 0.625, 0, L)).toBe(6.0);
+    expect(thick(0, 1, 0, L)).toBe(10.0);
+  });
+
   it("interpolates zoom variable spacing", () => {
     const L = buildVariableStopGapLens([
       [2.0, 4.0],
@@ -112,6 +120,20 @@ describe("thick", () => {
     // zoomT=0.25, focusT=0.5 → between z0 and z1, mid focus
     // d_inf = 2 + (6-2)*0.5 = 4, d_close = 4 + (8-4)*0.5 = 6, result = 4 + (6-4)*0.5 = 5
     expect(thick(0, 0.5, 0.25, L)).toBe(5.0);
+  });
+
+  it("interpolates focus keyframes within bracketing zoom positions", () => {
+    const L = buildVariableStopGapLens(
+      [
+        [2.0, 5.0, 4.0],
+        [6.0, 9.0, 8.0],
+        [10.0, 13.0, 12.0],
+      ],
+      "test-zoom-focus-keyframes",
+      [0, 0.5, 1],
+    );
+    expect(thick(0, 0.5, 0.25, L)).toBe(7.0);
+    expect(thick(0, 0.75, 0.25, L)).toBe(6.5);
   });
 });
 

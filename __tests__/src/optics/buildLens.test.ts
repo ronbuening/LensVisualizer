@@ -309,6 +309,8 @@ describe("buildLens — RuntimeLens property shape", () => {
     expect(Array.isArray(L.groups)).toBe(true);
     expect(Array.isArray(L.doublets)).toBe(true);
     expect(Array.isArray(L.varLabels)).toBe(true);
+    expect(L.focusPositions).toEqual([0, 1]);
+    expect(Object.isFrozen(L.focusPositions)).toBe(true);
     expect(Array.isArray(L.rayFractions)).toBe(true);
     expect(Array.isArray(L.rayHeights)).toBe(true);
     expect(Array.isArray(L.offAxisFractions)).toBe(true);

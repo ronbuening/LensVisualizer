@@ -134,6 +134,7 @@ Keep it normalized even when the product's official styling varies by source:
 | `asph` | `object` | | Aspherical coefficients (see below) |
 | `var` | `object` | | Variable air gaps for focus (see below) |
 | `varLabels` | `array` | | Display labels for variable gaps |
+| `focusPositions` | `number[]` | `[0, 1]` | Optional normalized `focusT` coordinates for multi-keyframe focus interpolation |
 | `aberrationControl` | `object` | | Optional independent soft-focus or spherical-aberration-control slider (see below) |
 | `groups` | `array` | | Group annotations for SVG diagram |
 | `doublets` | `array` | | Cemented doublet annotations for SVG diagram |
@@ -933,9 +934,24 @@ varLabels: [
 ],
 ```
 
+The two-value form uses the implicit focus positions `[0, 1]`. To reproduce published intermediate focus states,
+declare their normalized `focusT` coordinates and provide one thickness per position:
+
+```javascript
+focusPositions: [0, 0.72, 1],
+var: {
+  "10": [5.49, 4.81, 5.89], // infinity, published intermediate state, close focus
+},
+```
+
+`focusPositions` follows the existing focus control: `0` is infinity and `1` is `closeFocusM`. When a published
+object-to-image distance is available, its coordinate is `closeFocusM / focusDistanceM`. Values between authored
+positions are piecewise-linearly interpolated and should not be presented as source-published mechanical positions.
+
 ### Zoom Lens Format (with `zoomPositions`)
 
-When `zoomPositions` is present, each `var` value becomes an array of `[d_infinity, d_close]` pairs — one per zoom position:
+When `zoomPositions` is present, each `var` value becomes an array of focus-thickness vectors — one per zoom position.
+Without explicit `focusPositions`, each vector remains the existing `[d_infinity, d_close]` pair:
 
 ```javascript
 zoomPositions: [24, 50, 70],   // 3 zoom positions
@@ -946,7 +962,7 @@ var: {
 },
 ```
 
-For zoom-only movements (no focus variation at that gap), use identical inf/close values:
+For zoom-only movements (no focus variation at that gap), repeat the same thickness at every focus position:
 
 ```javascript
   "5":  [[1.0, 1.0], [3.0, 3.0], [2.5, 2.5]],   // zoom only, no focus change
@@ -959,8 +975,10 @@ The surface's `d` field should equal `var[label][0][0]` (infinity focus at the f
 ### Rules
 
 - Keys must match existing surface labels
-- **Prime:** Each value is `[d_infinity, d_close]` — exactly 2 numbers
-- **Zoom:** Each value is an array of `[d_inf, d_close]` pairs, length matching `zoomPositions.length`
+- `focusPositions`, when present, must contain at least two finite values, begin at `0`, end at `1`, and be strictly increasing
+- **Prime:** Each value contains one thickness per focus position; without `focusPositions`, exactly two values are required
+- **Zoom:** Each value is an array with length matching `zoomPositions.length`; every inner focus vector must match `focusPositions` or the implicit two-position default
+- Every thickness must be finite and non-negative; the first value remains the infinity-focus thickness
 - `varLabels` entries must reference keys present in `var`
 
 ### Focus types by number of variable gaps
@@ -1167,6 +1185,9 @@ When transcribing from an optical patent:
 14. **Non-monotonic (reversing) groups** — Check whether any gap's spacing goes up then down (or vice versa) across zoom positions — e.g., `[28.12, 22.59, 27.71]`. This is handled automatically by piecewise-linear interpolation, but include enough zoom positions to bracket any reversals. Note reversals in the file header
 15. **EFL verification at each zoom position** — After transcribing all surfaces and variable gaps, verify the computed EFL at each zoom position (from `buildLens()` → `zoomEFLs`) against the patent's stated focal lengths. Mismatches usually indicate a transcription error in the variable gap table
 
+For prime or zoom lenses with three or more published focus states, use `focusPositions` and preserve every published
+spacing row. This supports non-linear and reversing focus travel without changing the zoom or aberration-control axes.
+
 ---
 
 ## Example: Minimal All-Spherical Singlet
@@ -1211,7 +1232,7 @@ zoomPositions: [24, 50, 70],
 zoomStep: 0.004,
 zoomLabels: ["Wide", "Tele"],
 
-// Variable air spacings — one [d_inf, d_close] pair per zoom position
+// Variable air spacings — one focus-thickness vector per zoom position
 var: {
   // Zoom-only gap: identical inf/close values at each position
   "5":  [[2.0, 2.0], [5.0, 5.0], [3.5, 3.5]],
