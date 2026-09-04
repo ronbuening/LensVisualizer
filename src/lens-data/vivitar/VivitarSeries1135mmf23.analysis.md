@@ -130,7 +130,7 @@ Vivitar’s owner’s manual prints the minimum distance as “3 ft. (.9m),” t
 
 Ponder & Best’s September 1974 sheet specifies 1:4.5 maximum magnification. That is about 5.14% greater than the 0.900 m paraxial magnification derived from the rounded patent table. The manufacturer value is retained as the production specification, but it is not used to rescale or alter Table II. The difference can arise from rounded product distances, production prescription or melt adjustments, and the distinction between paraxial and published reproduction-ratio conventions.
 
-The patent-range travel is 9.53 mm, or 7.05% of the infinity EFL. The extrapolated 0.900 m endpoint uses 20.2111 mm of objective travel. The latter is explicitly a production-distance model beyond the patent’s worked 10.40 mm gap endpoint.
+The patent-range travel is 9.53 mm, or 7.05% of the infinity EFL. Its 10.40 mm gap is stored as an exact focus keyframe. The extrapolated 0.900 m endpoint uses 20.2111 mm of objective travel and is explicitly a production-distance model beyond that published row. Interpolation between keyframes is approximate visualization.
 
 ## Chromatic Correction Strategy
 

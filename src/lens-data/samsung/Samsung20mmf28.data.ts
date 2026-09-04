@@ -163,8 +163,9 @@ const LENS_DATA = {
   },
 
   /* ── Published unit focus with uniform paraxial closure ── */
+  focusPositions: [0, 0.13341708242433023, 1],
   var: {
-    "11A": [24.72712949493723, 28.37412949493723],
+    "11A": [24.72712949493723, 25.06412949493723, 28.37412949493723],
   },
   varLabels: [["11A", "BF"]],
   focusDescription:

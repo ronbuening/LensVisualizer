@@ -310,9 +310,10 @@ const LENS_DATA = {
     },
   },
 
+  focusPositions: [0, 0.33549152620017336, 1],
   var: {
-    "23A": [3.3044, 1.6090594577],
-    "25": [2.0917, 3.7870405423],
+    "23A": [3.3044, 2.8751, 1.6090594577],
+    "25": [2.0917, 2.521, 3.7870405423],
   },
 
   varLabels: [
@@ -337,7 +338,7 @@ const LENS_DATA = {
 
   closeFocusM: 0.25,
   focusDescription:
-    "Single-element inner focus: G3 / L31 moves toward the object. The close endpoint extrapolates the patent kinematics to Sigma's published 0.25 m / 1:9.9 specification; the patent's own tabulated near state is beta = -1/40.",
+    "Single-element inner focus: G3 / L31 moves toward the object. The patent beta=-1/40 row is exact, followed by a constrained endpoint matching Sigma's published 0.25 m / 1:9.9 specification.",
 
   nominalFno: 1.4,
   fstopSeries: [1.4, 1.8, 2, 2.8, 4, 5.6, 8, 11, 16],

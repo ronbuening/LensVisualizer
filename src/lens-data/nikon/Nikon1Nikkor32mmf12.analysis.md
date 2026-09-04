@@ -134,7 +134,7 @@ The highest Abbe number is L12 at νd = 65.44. That is high for a conventional c
 
 ## Focus Mechanism and Data-File Translation
 
-The patent uses a two-group floating focus mechanism. From infinity to close focus, both G1 and G2 move toward the object, with G1 moving farther. The patent's variable-spacing table gives:
+The patent uses a two-group floating focus mechanism. From infinity to close focus, both G1 and G2 move toward the object, with G1 moving farther. All three rows in the patent's variable-spacing table are stored as exact focus keyframes:
 
 | Spacing | Infinity | Intermediate, β = -0.01 | Close, β = -0.07 | Change, infinity to close |
 |---|---:|---:|---:|---:|
@@ -146,7 +146,7 @@ The equality of the d14 and d17 changes shows the same 2:1 movement implied by t
 
 The data file deliberately does not include the patent's plane filter/sensor-cover stack, surfaces 18-23. That stack consists of three plane plates with nd = 1.5168 plus plane air gaps after surface 17. Per the LensVisualizer data convention, these plates are excluded and their optical path is folded into the final air-equivalent back-focus distance.
 
-For the data file, surface 17 therefore uses an infinity air-equivalent back focus of 14.15109 mm, the independently traced paraxial focus distance from surface 17 after removing the plates. The close-focus value is 15.92109 mm, preserving the patent's +1.77 mm focus shift. The physical patent d17 values of 10.20 mm and 11.97 mm are not used directly because they are distances only to the first plane plate, not to the rendered image plane.
+For the data file, surface 17 therefore uses an infinity air-equivalent back focus of 14.15109 mm, the independently traced paraxial focus distance from surface 17 after removing the plates. The intermediate and close values are 14.38109 mm and 15.92109 mm, preserving the patent's +0.23 mm and +1.77 mm shifts. The physical patent d17 values are not used directly because they are distances only to the first plane plate, not to the rendered image plane. Piecewise-linear movement between keyframes is only a visualization approximation.
 
 The production lens is specified by Nikon at a 0.45 m minimum focus distance with Close Range Correction and AF-S/SWM drive. The patent close-focus value β = -0.07 is consistent with that order of magnification for a 32.4 mm lens once front-principal-plane and mount offsets are considered.
 

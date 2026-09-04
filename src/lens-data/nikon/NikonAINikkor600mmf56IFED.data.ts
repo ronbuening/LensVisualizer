@@ -198,10 +198,11 @@ const LENS_DATA = {
   asph: {},
 
   /* ── Focus model ── */
+  focusPositions: [0, 0.7891907622974426, 1],
   var: {
     // Original patent d6 = S6→STO + STO→S7. STO is fixed; G2 moves imageward (rearward).
-    STO: [48.765, 59.190804222],
-    "11": [17.778, 7.352195778],
+    STO: [48.765, 56.769, 59.190804222],
+    "11": [17.778, 9.774, 7.352195778],
   },
   varLabels: [
     ["STO", "D6 (IF front gap)"],
@@ -217,7 +218,7 @@ const LENS_DATA = {
 
   closeFocusM: 5.5,
   focusDescription:
-    "CONSTRAINED_RECONSTRUCTION: functional G2 (L4–L6) translates imageward (rearward) 10.425804222 mm from infinity to the 5.5 m product endpoint. The patent's adjacent d6/d11 total is conserved exactly. Because the inferred aperture stop is fixed at the midpoint of d6, focus variation is stored on STO→S7 and S11→S12.",
+    "Functional G2 (L4–L6) translates imageward. The patent finite-focus row and constrained 5.5 m product endpoint are exact keyframes, and the adjacent d6/d11 total is conserved. Because the inferred aperture stop is fixed at the midpoint of d6, focus variation is stored on STO→S7 and S11→S12.",
 
   nominalFno: 5.6,
   fstopSeries: [5.6, 8, 11, 16, 22],

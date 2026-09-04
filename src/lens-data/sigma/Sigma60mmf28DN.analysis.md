@@ -138,14 +138,14 @@ The patent directly tabulates an infinity state and an 800 mm shooting-distance 
 
 The conservation of d6 + d10 confirms that G2 is the only moving optical group in the patent model. At the 800 mm state, the computed paraxial magnification is β ≈ −0.0816, or roughly 1:12.3. The effective focal length falls from 60.00 mm to 55.86 mm, matching the patent's tabulated close-state value and showing moderate focus breathing.
 
-Sigma's production specification gives a closer 0.50 m minimum focusing distance and 1:7.2 maximum magnification. The data file therefore does not use the patent's 800 mm state as the endpoint of the UI focus slider. Instead, it preserves the patent's one-degree internal focus model and solves the finite-conjugate condition at 0.50 m object-to-image distance. That gives:
+Sigma's production specification gives a closer 0.50 m minimum focusing distance and 1:7.2 maximum magnification. The data file stores the patent's 800 mm state as an exact keyframe, then preserves the patent's one-degree internal focus model and solves the finite-conjugate condition at 0.50 m object-to-image distance. That gives:
 
 | Spacing | Infinity | 0.50 m production endpoint solve | Change |
 |---|---:|---:|---:|
 | d6, stop → G2 | 10.1300 mm | 4.4302 mm | −5.6998 mm |
 | d10, G2 → G3 | 1.9400 mm | 7.6398 mm | +5.6998 mm |
 
-The same solve gives β ≈ −0.1390, agreeing with the published 1:7.2 magnification. This close-focus endpoint is a computed extension from the patent model constrained by Sigma's official MFD and magnification, not a directly printed patent table value.
+The same solve gives β ≈ −0.1390, agreeing with the published 1:7.2 magnification. This close-focus endpoint is a computed extension from the patent model constrained by Sigma's official MFD and magnification, not a directly printed patent table value. Motion between keyframes is piecewise-linear visualization.
 
 ## Aspherical Surfaces
 

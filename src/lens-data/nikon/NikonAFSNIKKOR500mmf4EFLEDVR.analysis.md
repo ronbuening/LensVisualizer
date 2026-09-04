@@ -189,7 +189,7 @@ The two variable gaps on either side of G2 conserve their sum at **50.610 mm** i
 | Intermediate | 17.427 | 33.183 | 2.922 | Patent Table 1; exactly reproduced at `t = 0.210246079` |
 | Near | 28.403 | 22.207 | 13.898 | Patent Table 1; data endpoint |
 
-Because the intermediate row lies exactly on the linear translation between the two data endpoints, no focus reconstruction is required. The focus status is **PUBLISHED**, not constrained or inferred.
+Because the intermediate row lies exactly on the same rigid translation as the two endpoints, no focus reconstruction is required. It is stored explicitly so the source spacing occurs at its correct inverse-distance slider coordinate. The focus status is **PUBLISHED**, not constrained or inferred.
 
 In the final FLG-free normalized model, the near state traces to transverse magnification **−0.153256072** and an object-to-focal-plane distance of **3.588203 m**. The source patent itself lists `β = -0.153`; Nikon's marketed minimum focus distance is rounded to 3.6 m. The small difference from the complete patent system's approximately 3.599 m traced distance is a consequence of the deliberately omitted FLG and rear-focus normalization, not a change in the published G2 motion.
 

@@ -130,7 +130,7 @@ The crown/flint classification follows dispersion rather than family-name intuit
 
 The patent's floating mechanism keeps L1-L2 stationary and advances the complete L3-L11 assembly toward them. The variable gap is $d_4$, between surfaces 4 and 5. Because the image plane remains fixed, the final back-focus gap increases by the same amount that $d_4$ decreases.
 
-The patent gives one close-focus state. The data file retains the same rigid-group kinematics but extends the movement to the manufacturer-published 0.25 m production endpoint.
+The patent gives one finite-focus state. The data file stores it exactly, retains the same rigid-group kinematics, and extends the movement to the manufacturer-published 0.25 m production endpoint.
 
 | State | $d_4$ (mm) | Rear-group advance (mm) | BFD (mm) | Object to first surface (mm) | Object to image plane (mm) | Paraxial magnification |
 |---|---:|---:|---:|---:|---:|---:|
@@ -140,7 +140,7 @@ The patent gives one close-focus state. The data file retains the same rigid-gro
 
 The patent states an object distance of 1.134 m and system magnification $\beta=-0.088$ for its close example on the $f=100$ scale. The independent matrix trace gives 1132.936 patent units from the first surface and magnification **-0.087588**, agreeing within the patent's rounding.
 
-After 0.18 scaling, that tabulated patent state corresponds to 203.929 mm from the first surface and 285.861 mm from object to image plane. It therefore does not reach the production lens's 0.25 m minimum focus. The final data endpoint is an explicit extrapolation of the patent's rigid floating-group motion, solved so that the object-to-image-plane distance is 250 mm.
+After 0.18 scaling, that tabulated patent state corresponds to 203.929 mm from the first surface and 285.861 mm from object to image plane. It therefore does not reach the production lens's 0.25 m minimum focus. The final data endpoint is an explicit extrapolation of the patent's rigid floating-group motion, solved so that the object-to-image-plane distance is 250 mm. Interpolation between the exact infinity, patent, and endpoint states is a visualization approximation.
 
 ## Chromatic Correction Strategy
 

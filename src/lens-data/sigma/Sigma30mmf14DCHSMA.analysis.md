@@ -128,7 +128,7 @@ The patent's published finite-conjugate check is at a 600 mm shooting distance:
 
 The equal-and-opposite change confirms a single rigid rear-group translation. Paraxial conjugate verification also shows that this patent state focuses at approximately 600.04 mm measured from the image plane, which is the usual photographic distance convention.
 
-For the accompanying data file, the focus slider is extended to Sigma's production minimum focusing distance of 0.30 m rather than stopped at the patent's 600 mm evaluation state. Solving the same rigid-G2 paraxial focus equation at a 300 mm image-plane-to-object distance gives a G2 travel of 4.5287 mm, d6 = 0.9203 mm, and BF = 42.9277 mm. The same calculation gives |β| = 0.1468, which agrees with Sigma's published 1:6.8 maximum magnification. These 0.30 m values are therefore a verified derived production-close model, not a patent-published spacing table.
+The patent's 600 mm row is stored as an exact keyframe. The focus slider then extends to Sigma's production minimum focusing distance of 0.30 m. Solving the same rigid-G2 paraxial focus equation at a 300 mm image-plane-to-object distance gives a G2 travel of 4.5287 mm, d6 = 0.9203 mm, and BF = 42.9277 mm. The same calculation gives |β| = 0.1468, which agrees with Sigma's published 1:6.8 maximum magnification. These 0.30 m values are therefore a verified derived production-close model, not a patent-published spacing table; interpolation between keyframes is approximate.
 
 ## Aspherical Surfaces
 

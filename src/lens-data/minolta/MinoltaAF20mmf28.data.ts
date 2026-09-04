@@ -14,7 +14,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  The production 0.25 m endpoint is solved with that single mechanism DOF and a fixed image plane:  ║
  * ║    D4: 9.349000000 → 6.411157394 mm; rear-group travel = 2.937842606 mm.                            ║
  * ║    BF: 35.829815933 → 38.767658539 mm, preserving the fixed image-plane station.                    ║
- * ║  The patent-published β = 0.1 state (D4 = 7.0094 mm after scaling) was separately reproduced.       ║
+ * ║  The patent-published β = 0.1 state (D4 = 7.0094 mm after scaling) is stored as a focus keyframe.   ║
  * ║                                                                                                      ║
  * ║  STOP MODEL                                                                                          ║
  * ║  Figure 10 locates the physical stop in the d12 air gap between r12 and r13 but gives no coordinate ║
@@ -217,9 +217,10 @@ const LENS_DATA = {
 
   asph: {},
 
+  focusPositions: [0, 0.8669314286221126, 1],
   var: {
-    "4": [9.349, 6.411157394],
-    "19": [35.829815933, 38.767658539],
+    "4": [9.349, 7.0094, 6.411157394],
+    "19": [35.829815933, 38.169415933, 38.767658539],
   },
 
   varLabels: [
@@ -236,7 +237,7 @@ const LENS_DATA = {
 
   closeFocusM: 0.25,
   focusDescription:
-    "CONSTRAINED_RECONSTRUCTION: the complete rear group Gr translates 2.937842606 mm toward the object from infinity to 0.25 m; D4 decreases from 9.349000000 to 6.411157394 mm while r19-to-IMG increases by the same amount to keep the image plane fixed. The patent-published beta=0.1 state is independently reproduced but is not used as the production close-focus endpoint.",
+    "CONSTRAINED_RECONSTRUCTION: the complete rear group Gr translates toward the object with the patent-published beta=0.1 state stored exactly before the reconstructed 0.25 m endpoint. D4 and r19-to-IMG change by equal and opposite amounts to keep the image plane fixed.",
 
   nominalFno: 2.8,
   fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],

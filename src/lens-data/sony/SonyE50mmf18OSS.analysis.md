@@ -138,7 +138,7 @@ L221 translates imageward as object distance decreases. The patent supplies thre
 | 0.025× | 2.630 mm | 10.994 mm | 13.624 mm | +0.834 mm imageward |
 | 0.142× row | 6.599 mm | 7.027 mm | 13.626 mm | +4.803 mm imageward |
 
-The small 0.002 mm spread in the summed adjacent gaps is consistent with the source table's three-decimal spacing precision. The intermediate 0.025× state lies on the same rigid-translation path to within 0.00059 mm when the two authored endpoint gaps are linearly interpolated.
+The small 0.002 mm spread in the summed adjacent gaps is consistent with the source table's three-decimal spacing precision. The intermediate 0.025× state lies on the same rigid-translation path to within 0.00059 mm of endpoint interpolation, but is stored explicitly so its spacing and inverse-distance slider position are both exact.
 
 Tracing the rounded prescription to the cover-normalized image plane gives approximately 0.1393× at the patent's row labeled 0.142× and an object-to-image conjugate of 456.98 mm. The data therefore stores `closeFocusM = 0.457` m as the model endpoint. The difference between traced and printed magnification is treated as source-precision rounding, not as a reason to alter the published spacings.
 

@@ -261,7 +261,7 @@ The inferred semi-diameter set was also checked numerically:
 | Maximum signed cross-gap sag fraction | 0.8890 < 0.90 |
 | Front-element semi-diameter | 34.5 mm < 36 mm filter radius |
 
-The data file's endpoint variable gaps reproduce the infinity and −1× patent states after scaling. The intermediate −1/2× state is documented here but is not stored as a third focus control point because the current prime-lens schema accepts only infinity and close-focus endpoints.
+The data file reproduces the infinity, −1/2×, and −1× patent rows as exact focus keyframes after scaling. Motion between those source states remains piecewise-linear visualization.
 
 ## Design Heritage and Context
 

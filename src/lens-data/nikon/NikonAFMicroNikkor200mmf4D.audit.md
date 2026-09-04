@@ -66,7 +66,7 @@ The source correspondence values for conditions (1)–(7) are 2.12, −1.65, 0.8
 - The prescription is used at native scale; no focal-length scale transformation is applied.
 - The patent publishes no aperture-stop position, stop diameter, or clear semi-diameters. Any `STO` and `sd` values are therefore disclosed modeling inferences.
 - The source caption “Variable Interval in Zooming” is a wording error for this fixed-focal-length prime. The three columns are focus states.
-- The prose says G1 moves objectward along a convex nonlinear path, but the numerical table returns d5 to 6.6432 mm at β = −1.0000 after an intermediate 14.2044 mm excursion. The numerical table is retained; the endpoint-only prime schema cannot represent that reversal exactly.
+- The prose says G1 moves objectward along a convex nonlinear path, but the numerical table returns d5 to 6.6432 mm at β = −1.0000 after an intermediate 14.2044 mm excursion. The numerical table is retained as an explicit focus keyframe, so the published reversal is represented exactly at all three source states.
 
 ## Fresh optical calculation
 

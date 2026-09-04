@@ -327,11 +327,12 @@ const LENS_DATA = {
    *  G1, STO, G4 are fixed relative to the image plane.
    *  Values: [d_infinity, d_close_focus (β = −1.0, 1:1 macro)].
    */
+  focusPositions: [0, 0.7710337641589593, 1],
   var: {
-    7: [3.662, 22.619],
-    12: [25.484, 6.528],
-    STO: [24.986, 4.245],
-    18: [2.206, 22.947],
+    7: [3.662, 12.98, 22.619],
+    12: [25.484, 16.167, 6.528],
+    STO: [24.986, 14.031, 4.245],
+    18: [2.206, 13.161, 22.947],
   },
 
   varLabels: [

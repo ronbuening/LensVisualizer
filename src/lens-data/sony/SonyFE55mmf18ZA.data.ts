@@ -228,12 +228,13 @@ const LENS_DATA = {
 
   /* ── Variable air spacings (inner focus) ──
    *  G2 (L21) translates along axis; D_STO and D_9A change.
-   *  Infinity gaps from patent Table 2. Close-focus gaps at MFD = 0.5 m
-   *  computed via paraxial inner-focus solve (gap sum = 16.48 mm conserved).
+   *  Patent infinity and beta=-0.033 states precede the reconstructed 0.5 m
+   *  endpoint (gap sum = 16.48 mm conserved).
    */
+  focusPositions: [0, 0.2855768087246185, 1],
   var: {
-    STO: [2.81, 8.08],
-    "9A": [13.67, 8.4],
+    STO: [2.81, 4.07, 8.08],
+    "9A": [13.67, 12.41, 8.4],
   },
   varLabels: [
     ["STO", "D7"],
@@ -254,7 +255,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.5,
-  focusDescription: "Inner focus — G2 (single element L21) translates via linear motor. G1, STO, and G3 fixed.",
+  focusDescription:
+    "Inner focus: the patent beta=-0.033 row is exact before the constrained 0.5 m endpoint. G2 (single element L21) translates while G1, STO, and G3 remain fixed.",
 
   /* ── Aperture configuration ── */
   nominalFno: 1.8,

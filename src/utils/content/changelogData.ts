@@ -20,6 +20,11 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-09-04",
+    type: "improvement",
+    summary: "Improved patent-based focus accuracy across 55 lens models",
+  },
+  {
+    date: "2026-09-04",
     type: "lens",
     summary: "Added six Nikon AI and AI AF prime, macro, and zoom lens designs",
   },

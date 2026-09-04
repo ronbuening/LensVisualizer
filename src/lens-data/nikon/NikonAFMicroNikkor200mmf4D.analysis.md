@@ -230,16 +230,15 @@ d14 gaps conserve their sum to 0.0001 mm, consistent with source rounding. At th
 7.5612 mm objectward; at the 1:1 endpoint, the tabulated d5 returns to its infinity value, so G1 has zero net endpoint
 displacement despite its intermediate excursion.
 
-This nonlinear G1 reversal is the one focus behavior that the current prime-lens data schema cannot display exactly. The
-schema stores only infinity and close-focus endpoint pairs and interpolates them linearly. The final data therefore retain
-the published infinity and 1:1 endpoints, with d5 equal at both ends, while the β = −0.5 source state is documented here.
+The nonlinear G1 reversal is stored explicitly as the β = −0.5 focus keyframe. The final data therefore reproduce all
+three published rows, including d5 returning to the same value at infinity and 1:1 after its intermediate excursion.
 No pseudo-zoom, aberration-control slider, or invented focus reconstruction is used to force the intermediate G1 excursion
 into the viewer.
 
-The G3 motion is much better behaved under the endpoint representation. The published β = −0.5 d8 value corresponds to
+The G3 motion is nearly linear across the keyframed representation. The published β = −0.5 d8 value corresponds to
 mechanical travel fraction 0.3941396 between the two endpoint d8 values; linear interpolation of d14 at that same
-fraction gives 32.522139 mm, only 0.000061 mm from the published 32.5222 mm. Thus the endpoint model preserves the
-paired G3 motion to source precision even though it cannot preserve G1's nonlinear reversal.
+fraction gives 32.522139 mm, only 0.000061 mm from the published 32.5222 mm. The explicitly authored middle row preserves
+both that paired G3 motion and G1's nonlinear reversal at the source state.
 
 The patent's 1:1 object distance is measured to the first optical vertex, not to the camera image plane. Adding the
 verified S1-to-image track gives 495.6603 mm object-to-image-plane distance at β = −1.0000, consistent with Nikon's

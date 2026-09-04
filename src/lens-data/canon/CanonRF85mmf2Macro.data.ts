@@ -233,9 +233,10 @@ const LENS_DATA = {
   /* ── Aspherical coefficients ── */
   asph: {},
 
-  /* ── Variable air spacings ── */
+  /* ── Published variable air spacings: infinity, β=-0.02, β=-0.5 ── */
+  focusPositions: [0, 0.0822777767555055, 1],
   var: {
-    "12": [2.52, 29.52], // [d_infinity, d_close (β = −0.5)]
+    "12": [2.52, 3.6, 29.52],
   },
   varLabels: [["12", "D12"]],
 

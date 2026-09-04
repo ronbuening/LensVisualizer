@@ -227,13 +227,14 @@ const LENS_DATA = {
   asph: {},
 
   /* ── Variable air spacings ──
-   * Base values are infinity focus. The close endpoint is the disclosed 0.25 m
-   * CONSTRAINED_RECONSTRUCTION with a fixed stop and X2/X1 = 0.6.
+   * Base values are infinity focus. The patent beta=-1/30 calibration and the
+   * 0.25 m CONSTRAINED_RECONSTRUCTION are stored as exact keyframes.
    */
+  focusPositions: [0, 0.44646544064147803, 1],
   var: {
-    "7": [6.47, 8.755470452006371],
-    STO: [4.5183, 3.147017728796178],
-    "13": [40.2685392405, 41.63982151171015],
+    "7": [6.47, 7.2576, 8.755470452006371],
+    STO: [4.5183, 4.0457, 3.147017728796178],
+    "13": [40.2685392405, 40.7411392405, 41.63982151171015],
   },
 
   varLabels: [
@@ -255,7 +256,7 @@ const LENS_DATA = {
 
   closeFocusM: 0.25,
   focusDescription:
-    "CONSTRAINED_RECONSTRUCTION: fixed-stop CRC focus; G1 and G2 move objectward at X2/X1 = 0.6 to 0.25 m.",
+    "Fixed-stop CRC focus: the patent beta=-1/30 calibration and constrained 0.25 m endpoint are exact keyframes; G1 and G2 move objectward at X2/X1 approximately 0.6.",
 
   nominalFno: 2.9,
   fstopSeries: [2.9, 4, 5.6, 8, 11, 16, 22],

@@ -153,7 +153,7 @@ No apochromatic claim is made from Abbe data alone. The design is better describ
 
 The patent describes a dual-group floating internal-focus system. L1 is fixed. L2 and L3 both move toward the object as focus shifts from infinity to the closer patent state, and they move by different amounts (¶0013-0014, ¶0054). The aperture stop remains a fixed spacing ahead of surface 18, so in mechanical terms it travels with L3.
 
-The patent's finite-focus table is not the production minimum focus distance. It gives only one finite state, labeled 撮影距離959mm. The corresponding variable spacings are:
+The patent's finite-focus table is not the production minimum focus distance. It gives one finite state, labeled 撮影距離959mm, which is stored as an exact keyframe. The corresponding variable spacings are:
 
 | Gap | Infinity (mm) | Patent finite state (mm) | Change (mm) | Interpretation |
 |---|---:|---:|---:|---|
@@ -163,7 +163,7 @@ The patent's finite-focus table is not the production minimum focus distance. It
 
 The motion is internally consistent: L2 moves 1.0557 mm objectward and L3 moves 0.5526 mm objectward, so the differential is 0.5031 mm, matching the increase in d16 to rounding. A finite-conjugate paraxial trace of the patent's 959 mm state gives magnification about -0.0247, or roughly 1:40. This is far from Sigma's product specification of 1:7.1.
 
-For the data file, the close-focus slider therefore does not use the patent's 959 mm table as if it were minimum focus. Instead, the L2:L3 motion ratio from the patent table is extended paraxially until the object-image distance is Sigma's official 0.276 m and the magnification is 0.1407, essentially 1:7.1. That gives the following data-file close-focus spacings:
+For the data file, the patent's 959 mm row is followed by a constrained endpoint rather than being treated as minimum focus. The L2:L3 motion ratio from the patent table is extended paraxially until the object-image distance is Sigma's official 0.276 m and the magnification is 0.1407, essentially 1:7.1. That gives the following data-file close-focus spacings:
 
 | Gap | Infinity (mm) | Data-file close value (mm) | Modeling basis |
 |---|---:|---:|---|
@@ -171,7 +171,7 @@ For the data file, the close-focus slider therefore does not use the patent's 95
 | d16 | 5.2496 | 8.0446 | Extrapolated L2-L3 differential = 2.7950 mm |
 | folded final air gap | 38.4492 | 41.5185 | Extrapolated L3 objectward motion = 3.0694 mm |
 
-This extrapolation is not patent-published. It is included because the project data model needs a close-focus state and Sigma's published MFD/magnification should govern product metadata. The patent-grounded finite state remains documented above.
+This extrapolation is not patent-published. It is included because the project data model needs a close-focus state and Sigma's published MFD/magnification should govern product metadata. The patent-grounded finite state is represented exactly; interpolation on either side is explicitly approximate.
 
 ## Aspherical Surfaces
 

@@ -253,8 +253,9 @@ const LENS_DATA = {
    *  Unit focus: entire G1 translates forward. Only gap D13 changes.
    *  D13 at infinity = 1.80 mm; at −0.5× (close focus, 26.7 cm) = 23.73 mm.
    */
+  focusPositions: [0, 0.6115561181433857, 1],
   var: {
-    "13A": [1.8, 23.73],
+    "13A": [1.8, 10.57, 23.73],
   },
   varLabels: [["13A", "BF"]],
 

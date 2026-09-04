@@ -168,7 +168,7 @@ The data file does not label the lens as apochromatic merely from Abbe numbers. 
 
 ## Focus Mechanism
 
-The focus system is a dual floating internal-focus design. L2 is a negative group that moves toward the image, while L3 is a positive group that moves toward the object. L1, the aperture stop, L4, L5, and L6 remain fixed relative to the image plane.
+The focus system is a dual floating internal-focus design. L2 is a negative group that moves toward the image, while L3 is a positive group that moves toward the object. L1, the aperture stop, L4, L5, and L6 remain fixed relative to the image plane. The infinity, half-life-size, and life-size rows are stored as exact focus keyframes.
 
 | Variable gap | Infinity | $|\beta|=0.5$ | $|\beta|=1.0$ | Interpretation |
 |---|---:|---:|---:|---|
@@ -179,7 +179,7 @@ The focus system is a dual floating internal-focus design. L2 is a negative grou
 
 L3's total close-focus travel is 20.02 mm. Dividing by the infinity focal length gives $|\Delta x_3/f| = 0.133$, matching the patent's condition (5) value of 0.13.
 
-The trace also confirms the breathing behavior expected from this kind of internal-focus macro. The patent's effective focal length changes from 150.00 mm at infinity to 106.51 mm at $|\beta| = 0.5$ and 78.23 mm at $|\beta| = 1.0$. This is not a transcription error; it is the normal consequence of using floating internal focus rather than unit extension for a life-size macro lens.
+The trace also confirms the breathing behavior expected from this kind of internal-focus macro. The patent's effective focal length changes from 150.00 mm at infinity to 106.51 mm at $|\beta| = 0.5$ and 78.23 mm at $|\beta| = 1.0$. This is not a transcription error; it is the normal consequence of using floating internal focus rather than unit extension for a life-size macro lens. Piecewise-linear motion between the three published states is a visualization approximation.
 
 ## Aspherical Surfaces
 
