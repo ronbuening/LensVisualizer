@@ -1257,3 +1257,29 @@ varLabels: [
 ```
 
 Each surface's `d` field must equal its first zoom position's infinity value — e.g., surface `"5"` has `d: 2.0` (matching `var["5"][0][0]`).
+
+## Sourced spectral throughput
+
+The direct-path throughput API distinguishes `ideal`, `uncoated`, and `authored` intensity models. `uncoated` means
+unpolarized dielectric Fresnel losses, with unspecified bulk absorption assumed zero; it is not a production coating
+claim. `authored` requires all encountered material and interface data and returns unavailable total transmission when
+anything is missing. `knownTransmission` is only the product of available factors, never a replacement for that total.
+
+An element may author `absorptionSpectrumPerMm: { source, wavelengthsNm, values }`. Values are non-negative
+Beer-Lambert **intensity** coefficients in inverse mm. The spectrum takes precedence over
+`absorptionCoefficientPerMm`; a request outside its wavelength range remains unknown rather than falling back to the
+scalar. Only explicitly sourced element data is used; matching a refractive glass catalog does not imply matching
+production transmission. Repeated traversals through an absorbing medium count their actual 3D path lengths separately.
+
+A surface may author `opticalThroughput: { source, kind, incidentSide, wavelengthsNm, incidenceAnglesDeg, values }`.
+`kind` is `transmission` for a refracting surface or `reflection` for a reflecting surface. `incidentSide` is `front`,
+`rear`, or `both`. Intensity fractions in `[0, 1]` are indexed `[wavelength][angle]`. Wavelengths must increase and be
+positive; incidence angles must increase within `[0, 90]`. Dimensions must match, and `source` must be non-empty.
+Bilinear interpolation stays within the authored domain: a normal-incidence-only measurement cannot be extrapolated to
+oblique rays. A same-index stop without a coating table creates no artificial Fresnel interface.
+
+Published internal transmittance at thickness `d` can be converted using `alpha = -ln(tauInternal) / d`; do not feed
+external slab transmission (which includes interface reflection) into this relation and then count those interfaces
+again. See [SCHOTT TIE-35](https://media.schott.com/api/public/content/3d5861d824f64033aafd5353a21f7603?v=d772e807).
+The uncoated model uses the exact [dielectric Fresnel equations](https://www.pbr-book.org/4ed/Reflection_Models/Specular_Reflection_and_Transmission).
+No production prescription received inferred throughput data in this implementation.

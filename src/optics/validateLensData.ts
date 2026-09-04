@@ -10,6 +10,7 @@
  */
 
 import type { AsphericCoefficients, ImagePlaneData, SurfaceData } from "../types/optics.js";
+import { validateThroughputTable } from "./math/spectralSampling.js";
 import { ASPHERIC_COEFFICIENT_SCHEMA } from "../types/asphericSchema.js";
 import { isImageFormatId, isLensMountId } from "../utils/catalog/lensTaxonomy.js";
 import {
@@ -827,6 +828,16 @@ export default function validateLensData(data: UntrustedLensData): string[] {
         errors.push(`surfaces[${i}] ("${s.label}"): diffractive is only valid on refracting surfaces`);
       }
     }
+    if (s.opticalThroughput !== undefined) {
+      errors.push(
+        ...validateThroughputTable(s.opticalThroughput, true).map(
+          (message) => `surfaces[${i}].opticalThroughput: ${message}`,
+        ),
+      );
+      const kind = s.interaction?.type === "reflect" ? "reflection" : "transmission";
+      if (s.opticalThroughput?.kind !== kind)
+        errors.push(`surfaces[${i}].opticalThroughput: kind must match the surface interaction`);
+    }
     if (s.stopPlacement !== undefined && s.stopPlacement !== "inside-element") {
       errors.push(`surfaces[${i}] ("${s.label}"): stopPlacement must be "inside-element" when provided`);
     }
@@ -840,12 +851,6 @@ export default function validateLensData(data: UntrustedLensData): string[] {
 
   /* ── Element IDs: unique ── */
   const elemIds = new Set<number>();
-  const usesGeneralizedOpticalPath = Boolean(
-    data.opticalPath ||
-    data.surfaces.some(
-      (surface: SurfaceData) => surface.interaction !== undefined && surface.interaction.type !== "refract",
-    ),
-  );
   for (let i = 0; i < data.elements.length; i++) {
     const e = data.elements[i];
     if (e.id === undefined || e.id === null) {
@@ -868,9 +873,11 @@ export default function validateLensData(data: UntrustedLensData): string[] {
     ) {
       errors.push(`elements[${i}]: absorptionCoefficientPerMm must be a finite non-negative number when provided`);
     }
-    if (e.absorptionCoefficientPerMm !== undefined && usesGeneralizedOpticalPath) {
+    if (e.absorptionSpectrumPerMm !== undefined) {
       errors.push(
-        `elements[${i}]: absorptionCoefficientPerMm is not supported for folded or generalized optical paths`,
+        ...validateThroughputTable(e.absorptionSpectrumPerMm, false).map(
+          (message) => `elements[${i}].absorptionSpectrumPerMm: ${message}`,
+        ),
       );
     }
   }

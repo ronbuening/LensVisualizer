@@ -143,7 +143,11 @@ export function tracePerspectiveRay(
     cameraReturnPoint,
     sensorIntersection,
     reachedSensor: sensorIntersection !== null,
-    transmission: bulkTransmissionForTrace(context.state.lens.runtime, localTrace.hits),
+    transmission: bulkTransmissionForTrace(
+      context.state.lens.runtime,
+      localTrace.hits,
+      options.channel ? CHANNEL_WAVELENGTH_NM_2[options.channel] : undefined,
+    ),
   };
 }
 

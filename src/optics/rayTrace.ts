@@ -116,7 +116,11 @@ function traceRayExactCore(
     y: result.y,
     u: result.uy,
     clipped: result.clipped,
-    transmission: bulkTransmissionForTrace(L, result.hits),
+    transmission: bulkTransmissionForTrace(
+      L,
+      result.hits,
+      channel ? CHROMATIC_CHANNEL_WAVELENGTH_NM[channel] : undefined,
+    ),
     reachedImagePlane: result.reachedImagePlane,
     diagnostics: result.diagnostics,
   };
@@ -206,7 +210,11 @@ function traceSkewRayExactCore(
     ux: result.ux,
     uy: result.uy,
     clipped: result.clipped,
-    transmission: bulkTransmissionForTrace(L, result.hits),
+    transmission: bulkTransmissionForTrace(
+      L,
+      result.hits,
+      channel ? CHROMATIC_CHANNEL_WAVELENGTH_NM[channel] : undefined,
+    ),
   };
 }
 
@@ -241,7 +249,11 @@ function traceSkewRayVectorExactCore(
     ux: result.ux,
     uy: result.uy,
     clipped: result.clipped,
-    transmission: bulkTransmissionForTrace(L, result.hits),
+    transmission: bulkTransmissionForTrace(
+      L,
+      result.hits,
+      channel ? CHROMATIC_CHANNEL_WAVELENGTH_NM[channel] : undefined,
+    ),
   };
 }
 
@@ -631,7 +643,11 @@ function traceRayVectorExactCore(
     y: result.y,
     u: result.uy,
     clipped: result.clipped,
-    transmission: bulkTransmissionForTrace(L, result.hits),
+    transmission: bulkTransmissionForTrace(
+      L,
+      result.hits,
+      channel ? CHROMATIC_CHANNEL_WAVELENGTH_NM[channel] : undefined,
+    ),
     reachedImagePlane: result.reachedImagePlane,
     diagnostics: result.diagnostics,
   };

@@ -94,3 +94,6 @@ export { stopInnerBlockedSemiDiameter } from "./stopObstruction.js";
 export { formatDist, formatPetzvalRadius } from "./opticsFormat.js";
 
 export { apertureMetricsForState, resolveApertureStop, type ApertureMetrics } from "./first-order/aperture.js";
+
+export { traceSpectralThroughput, throughputForTrace, dielectricReflectance } from "./trace/spectralThroughput.js";
+export { computeSensorIrradiance } from "./analysis/sensorIrradiance.js";

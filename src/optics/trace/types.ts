@@ -90,3 +90,11 @@ export interface TraceDiagnosticsInput {
   autoSteps: import("../../types/optics.js").FoldedPathAutoStepDiagnostics[];
   loopKey: string | null;
 }
+
+export interface MediumEncounterHit {
+  surfaceIndex?: number;
+  surfaceIdx?: number;
+  point: Vec3;
+  normal?: Vec3;
+  incidentDirection?: Vec3;
+}

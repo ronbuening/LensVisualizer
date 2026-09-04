@@ -317,7 +317,7 @@ function traceRayExactCore2(
   const rayLead = L.rayLead ?? 0;
   const origin: Vec3 = [0, y0 - u0 * rayLead, (zPos[0] ?? state.z[0] ?? 0) - rayLead];
   const result = traceEngineRay2(state, { origin, direction }, traceOptions(stopSD, ghost, channel, state, true));
-  return engineTraceToRuntimeRayResult(result, [origin[2], origin[1]], ghost, L);
+  return engineTraceToRuntimeRayResult(result, [origin[2], origin[1]], ghost, L, channel);
 }
 
 function traceSkewRayExactCore2(
@@ -338,7 +338,7 @@ function traceSkewRayExactCore2(
   const lead = L.rayLead ?? 0;
   const origin: Vec3 = [x0 - ux0 * lead, y0 - uy0 * lead, (state.z[0] ?? 0) - lead];
   const result = traceEngineRay2(state, { origin, direction }, traceOptions(stopSD, ghost, channel, state, true));
-  return engineTraceToRuntimeSkewResult(result, L);
+  return engineTraceToRuntimeSkewResult(result, L, channel);
 }
 
 function traceRayVectorExactCore2(
@@ -359,7 +359,7 @@ function traceRayVectorExactCore2(
     { origin: input.origin, direction: input.direction },
     input.launchBoundT === undefined ? options : { ...options, launchBoundT: input.launchBoundT },
   );
-  return engineTraceToRuntimeRayResult(result, vectorLeadPoint(input, result, L.rayLead ?? 0), ghost, L);
+  return engineTraceToRuntimeRayResult(result, vectorLeadPoint(input, result, L.rayLead ?? 0), ghost, L, channel);
 }
 
 function traceSkewRayVectorExactCore2(
@@ -380,7 +380,7 @@ function traceSkewRayVectorExactCore2(
     { origin: input.origin, direction: input.direction },
     input.launchBoundT === undefined ? options : { ...options, launchBoundT: input.launchBoundT },
   );
-  return engineTraceToRuntimeSkewResult(result, L);
+  return engineTraceToRuntimeSkewResult(result, L, channel);
 }
 
 function traceOptions(

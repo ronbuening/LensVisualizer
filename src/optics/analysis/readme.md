@@ -89,7 +89,7 @@ flowchart LR
 - Direct source files: 18
 - Direct subfolders: 0
 - Main outbound areas: same folder (23), src/types (13), src/optics/types.ts (12), src/optics/perspective (10), src/optics/chromatic (8), src/optics/optics.ts (8), src/optics/aberration (3), src/optics/first-order (3), +11 more
-- External consumers: src/benchmarks, src/components/layout, src/optics/aberration, src/optics/analysisJobs.ts, src/optics/compat.ts, src/optics/distortionAnalysis.ts, src/optics/vignetteAnalysis.ts
+- External consumers: src/benchmarks, src/components/layout, src/optics/aberration, src/optics/analysisJobs.ts, src/optics/compat.ts, src/optics/distortionAnalysis.ts, src/optics/optics.ts, src/optics/vignetteAnalysis.ts
 
 ## Files
 
@@ -110,6 +110,6 @@ flowchart LR
 | `perspectiveAnalysisJobs.ts` | Perspective Analysis Jobs helper module | src/optics/perspective (8), same folder, src/optics/chromatic | same folder | PerspectiveAnalysisJobParams, PerspectiveAnalysisSamplingPlan, PerspectiveAnalysisJobs, perspectiveAnalysisSamplingPlan, createPerspectiveAnalysisJobs |
 | `preparedStateAdapters.ts` | Prepared State Adapters helper module | src/optics/types.ts | same folder (5) | zPosForPreparedAnalysis2 |
 | `pupilAberration.ts` | Pupil Aberration helper module | src/optics/optics.ts, src/optics/pupilAberration.ts, src/optics/types.ts, src/types | same folder, src/optics/compat.ts | PUPIL_ABERRATION_SAMPLE_COUNT_2, computeBothPupilAberrationProfilesForState2, computePupilAberrationProfile2, computeExitPupilAberrationProfile2, computeBothPupilAberrationProfiles2 |
-| `sensorIrradiance.ts` | Sensor Irradiance helper module | src/types (3), src/optics/math, src/optics/trace, src/optics/types.ts | src/optics/vignetteAnalysis.ts | SensorIrradianceResult, SensorIrradianceOptions, integrateSensorIrradiance, computeSensorIrradiance |
+| `sensorIrradiance.ts` | Sensor Irradiance helper module | src/types (3), src/optics/math, src/optics/trace, src/optics/types.ts | src/optics/optics.ts, src/optics/vignetteAnalysis.ts | SensorIrradianceResult, SensorIrradianceOptions, integrateSensorIrradiance, computeSensorIrradiance |
 | `summary.ts` | Summary helper module | src/optics/first-order (3), src/optics/layout.ts, src/optics/optics.ts, src/optics/types.ts | same folder, src/optics/compat.ts | OpticalSummaryMetrics2, computeOpticalSummaryForState2 |
 | `vignetting.ts` | Vignetting helper module | same folder (2), src/optics/optics.ts, src/optics/types.ts, src/optics/vignetteAnalysis.ts, src/types | same folder, src/optics/compat.ts | computeVignettingCurveForState2, computeVignettingCurve2 |

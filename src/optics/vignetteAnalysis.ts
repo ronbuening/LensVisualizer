@@ -151,7 +151,12 @@ export function computeVignettingCurve(
     irradiance.push(
       chief.clipped
         ? { status: "failed", irradiancePerRadiance: null, estimatedRelativeError: null, sampleCount: 0 }
-        : computeSensorIrradiance(state, chief.y, currentPhysStopSD, { radialStrata: rings, azimuthalSamples: 16 }),
+        : computeSensorIrradiance(
+            state,
+            chief.reachedImagePlane ? chief.y : chief.y + chief.u * (state.imgZ - state.z[state.z.length - 1]),
+            currentPhysStopSD,
+            { radialStrata: rings, azimuthalSamples: 16 },
+          ),
     );
   }
 

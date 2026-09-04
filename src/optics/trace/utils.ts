@@ -7,6 +7,7 @@
 
 import type { PreparedOpticalState, Vec3 } from "../types.js";
 import { normalize } from "../math/vector.js";
+import { intersectRayPlane } from "../math/plane.js";
 import type { EngineTraceResult, TraceFailureReason, TraceHit } from "./types.js";
 import { buildTraceDiagnostics } from "./foldedDiagnostics.js";
 import type {
@@ -14,6 +15,22 @@ import type {
   FoldedPathClipEvent,
   FoldedPathTraceTermination,
 } from "../../types/optics.js";
+
+/** Sequential traces return at the last surface; generalized traces may already reach the sensor. */
+export function sensorPointForTrace(state: PreparedOpticalState, trace: EngineTraceResult): Vec3 | null {
+  if (trace.status !== "ok") return null;
+  if (trace.reachedImagePlane) return trace.terminalPoint;
+  if (
+    trace.diagnostics.terminationReason !== "sequential-return" ||
+    trace.hits.length !== state.surfaces.length ||
+    trace.terminalSurfaceIndex !== state.surfaces.length - 1
+  )
+    return null;
+  return (
+    intersectRayPlane({ origin: trace.terminalPoint, direction: trace.terminalDirection }, state.imagePlane)?.point ??
+    null
+  );
+}
 
 /**
  * Convert a normalized 3D ray direction to legacy skew slopes.

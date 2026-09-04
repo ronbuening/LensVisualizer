@@ -559,3 +559,22 @@ containing glass, and every interior surface inside a multi-surface element must
   optional point transform for perspective-control movement.
 
 Production tests treat excessive hidden render trim as a data-quality failure.
+
+## Spectral throughput
+
+`trace/spectralThroughput.ts` traces a selected existing C/d/F/g channel and reduces direct-path **power** transmission
+using the same spectral indices. `trace/encounterMedia.ts` identifies the material after each encounter, preserving the
+incident medium at a reflection and changing sides on reverse refraction. Bulk absorption and spectral analysis share
+this ownership rule. Stops do not split a homogeneous material into two unrelated media; cemented boundaries use the
+two actual glass indices. Tests pin normal/oblique Fresnel transmission and a twice-traversed absorbing plate.
+
+Three modes keep assumptions explicit: ideal lossless interfaces/materials; illustrative uncoated dielectric interfaces
+(with absent bulk loss assumed zero); and authored spectra/angular tables. Authored results retain missing element and
+surface identifiers and never publish partial known factors as total transmission. Metallic mirrors require authored
+reflectance; phase-surface efficiency is unsupported. Scattering, ghosts, polarization state and electromagnetic thin-film
+synthesis are not modeled. Surface/material tables are opt-in and never inferred from a catalog refractive-index match.
+
+The compatibility ray `transmission` field still means known **bulk** absorption only. Its spectral adapters now pass
+through the chosen wavelength, and real folded hit records support repeated material encounters. Partial legacy folded
+hit records without directions retain no inferred loss. Full status/evidence comes from `traceSpectralThroughput`, not
+that legacy numeric field. Geometry in these primitives remains subject to the existing dispersion quality markers.

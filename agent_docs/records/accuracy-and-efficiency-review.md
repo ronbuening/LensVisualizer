@@ -11,7 +11,7 @@ commit between steps. A step is not complete merely because its implementation h
 | 2 | Consistent calculated current/infinity EFL and breathing; authored values remain metadata | Complete |
 | 3 | Shared marked/geometric/working f-number and current-pupil aperture result | Complete |
 | 4 | Two-dimensional pupil-area and sensor-irradiance integration with explicit convergence status | Complete |
-| 5 | Source-backed spectral throughput, encounter-aware absorption and surface losses | Pending |
+| 5 | Source-backed spectral throughput, encounter-aware absorption and surface losses | Complete |
 | 6 | Opt-in optical path, wavefront, scalar Huygens PSF; initially centered on-axis sequential refraction | Pending |
 | 7 | MTF, explicit spectral weights, Image Quality tab and unavailable states | Pending |
 | 8 | Reuse prepared states and first-order results, preserving bounded cache identity | Pending |
@@ -123,3 +123,26 @@ retention policy. No production optical behavior changed in step 1.
   branches 83.19%, functions 93.75%, lines 94.67%. Production build/SSR prerendered all 1243 routes. The final annular and
   one-sided guards were additionally covered by the full coverage run; no UI/import behavior changed after the build.
 - Steps 5–11 remain pending. No spectral losses or wave optics are claimed by the ideal sensor result.
+
+### Step 5 — sourced spectral throughput and encounter media
+
+- Added opt-in sourced absorption spectra and wavelength/angle/incident-side interface tables. Validation requires
+  provenance, physical values, ordered axes and matching dimensions. Interpolation does not extrapolate or substitute
+  scalar absorption when a supplied spectrum is out of range. No production glass/coating identity was inferred.
+- Added ideal, illustrative uncoated dielectric, and authored direct-path power models. Authored totals remain nullable
+  with missing surface/material identifiers; the known-factor product is separately named. Metallic mirror reflection
+  requires authored evidence and phase-surface efficiency remains unsupported. UI controls for these modes are part of
+  step 7; no production PSF/MTF display exists yet.
+- Shared encounter-side medium ownership now handles reverse refraction and retains the material on reflection.
+  Known bulk-loss weights reach existing meridional/skew/vector/chromatic/perspective adapters at the selected wavelength.
+  Legacy partial folded hit records without directions retain their compatibility behavior; complete physical status
+  comes from the new throughput API. Real folded traces now support authored absorption and repeated traversals.
+- Follow-up integration correction: ordinary exact traces return at the last surface vertex. Spectral throughput now
+  projects the remaining distance to the actual image plane, and the step 4 field samples use sensor chief-ray height
+  rather than last-vertex height. Dedicated ordinary-trace and chart-wiring regressions protect both contracts.
+- Independent checks cover Fresnel normal/Brewster/TIR limits, oblique Beer-Lambert distance, both slab interfaces,
+  cemented glass-to-glass loss, double-pass absorbing glass plus mirror, missing angular/spectral/reverse-side evidence,
+  and wavelength propagation through public ray shapes. Full coverage: 301 files / 2793 tests; statements 92.07%, branches
+  83.44%, functions 93.78%, lines 94.72%. Typecheck, format and lint passed. The full normal suite passed before the final
+  two integration regressions, which are included in the final coverage run. Build/SSR prerendered all 1243 routes.
+- Steps 6–11 remain pending. Scalar diffraction is not yet implemented.

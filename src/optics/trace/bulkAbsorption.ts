@@ -5,54 +5,61 @@
  * with alpha in inverse millimeters and the traced 3D path length in millimeters.
  */
 
-import type { RuntimeLens } from "../../types/optics.js";
-import type { Vec3 } from "../types.js";
+import type { ElementData, RuntimeLens } from "../../types/optics.js";
+import { LINE_NM } from "../spectralLines.js";
+import { sampleSpectrum } from "../math/spectralSampling.js";
+import { mediumAfterEncounter, type MediumEncounterHit } from "./encounterMedia.js";
 
-interface AbsorptionTraceHit {
-  /** Engine tracer spelling. */
-  surfaceIndex?: number;
-  /** Runtime exact-tracer spelling retained by the compatibility facade. */
-  surfaceIdx?: number;
-  point: Vec3;
-}
+const ABSORPTION_BY_ELEMENT_ID = new WeakMap<RuntimeLens, ReadonlyMap<number, ElementData>>();
 
-const ABSORPTION_BY_ELEMENT_ID = new WeakMap<RuntimeLens, ReadonlyMap<number, number>>();
-
-function absorptionByElementId(L: RuntimeLens): ReadonlyMap<number, number> {
+function absorptionByElementId(L: RuntimeLens): ReadonlyMap<number, ElementData> {
   const cached = ABSORPTION_BY_ELEMENT_ID.get(L);
   if (cached) return cached;
-
-  const coefficients = new Map<number, number>();
+  const entries = new Map<number, ElementData>();
   for (const element of L.elements) {
-    const coefficient = element.absorptionCoefficientPerMm;
-    if (coefficient !== undefined && coefficient > 0) coefficients.set(element.id, coefficient);
+    if (element.absorptionCoefficientPerMm !== undefined || element.absorptionSpectrumPerMm)
+      entries.set(element.id, element);
   }
-  ABSORPTION_BY_ELEMENT_ID.set(L, coefficients);
-  return coefficients;
+  ABSORPTION_BY_ELEMENT_ID.set(L, entries);
+  return entries;
+}
+
+/** Null denotes missing spectral evidence, including wavelengths outside the authored range. */
+export function bulkAbsorptionCoefficient(L: RuntimeLens, elementId: number, wavelengthNm: number): number | null {
+  const element = absorptionByElementId(L).get(elementId);
+  return element?.absorptionSpectrumPerMm
+    ? sampleSpectrum(element.absorptionSpectrumPerMm, wavelengthNm)
+    : (element?.absorptionCoefficientPerMm ?? null);
 }
 
 /**
  * Compute bulk-material intensity transmission along an exact trace.
  *
- * The medium after a sequential surface is identified by that surface's `elemId`; therefore the
- * distance to the next hit is the path length through that element. Validation rejects authored
- * absorption on folded/generalized prescriptions until encounter-side medium accounting exists;
- * the folded guard below is a defensive fallback for manually constructed runtime fixtures.
+ * Tracks encounter-side material ownership, retaining the medium on reflection.
+ * This compatibility scalar multiplies only known losses. Use spectralThroughput
+ * for explicit unknown/coating status; this is never a measured total transmission.
  *
  * @param L - runtime lens containing element absorption coefficients
  * @param hits - exact surface hits in optical encounter order
  * @returns intensity transmission in `[0, 1]`
  */
-export function bulkTransmissionForTrace(L: RuntimeLens, hits: readonly AbsorptionTraceHit[]): number {
+export function bulkTransmissionForTrace(
+  L: RuntimeLens,
+  hits: readonly MediumEncounterHit[],
+  wavelengthNm: number = LINE_NM.d,
+): number {
   const coefficients = absorptionByElementId(L);
-  if (coefficients.size === 0 || hits.length < 2 || L.isFoldedOptics) return 1;
+  if (coefficients.size === 0 || hits.length < 2) return 1;
+  // Legacy partial hit records cannot establish reverse encounter sides.
+  if (L.isFoldedOptics && hits.some((hit) => !hit.normal || !hit.incidentDirection)) return 1;
 
   let transmission = 1;
+  let medium: number | null = null;
   for (let i = 0; i < hits.length - 1; i++) {
-    const surfaceIndex = hits[i].surfaceIndex ?? hits[i].surfaceIdx ?? -1;
-    const elementId = L.S[surfaceIndex]?.elemId ?? 0;
-    const coefficient = coefficients.get(elementId);
-    if (coefficient === undefined) continue;
+    medium = mediumAfterEncounter(L.S, hits[i], medium);
+    if (medium === null) continue;
+    const coefficient = bulkAbsorptionCoefficient(L, L.S[medium].elemId, wavelengthNm);
+    if (coefficient === null) continue;
 
     const from = hits[i].point;
     const to = hits[i + 1].point;

@@ -35,6 +35,37 @@ export interface SurfaceData {
   stopPlacement?: "inside-element";
   interaction?: SurfaceInteraction;
   diffractive?: DiffractivePhaseSurface;
+  /** Sourced intensity throughput for this encounter, within its published spectral/angular domain. */
+  opticalThroughput?: SurfaceThroughputTable;
+}
+
+export interface SpectralSamples {
+  source: string;
+  wavelengthsNm: number[];
+  values: number[];
+}
+
+export interface SurfaceThroughputTable {
+  source: string;
+  kind: "transmission" | "reflection";
+  incidentSide: "front" | "rear" | "both";
+  wavelengthsNm: number[];
+  incidenceAnglesDeg: number[];
+  /** Intensity fractions, indexed [wavelength][angle]. No extrapolation. */
+  values: number[][];
+}
+
+export type ThroughputModel = "ideal" | "uncoated" | "authored";
+
+export interface TraceThroughputResult {
+  model: ThroughputModel;
+  wavelengthNm: number;
+  status: "complete" | "assumed" | "incomplete" | "blocked" | "failed" | "unsupported";
+  transmission: number | null;
+  /** Product of available loss factors; not total throughput when information is missing. */
+  knownTransmission: number | null;
+  missingSurfaceIndexes: number[];
+  missingElementIds: number[];
 }
 
 export type SurfaceIncidentSide = "front" | "rear" | "both";
@@ -172,6 +203,8 @@ export interface ElementData {
   role?: string;
   /** Beer-Lambert intensity absorption coefficient in inverse millimeters. */
   absorptionCoefficientPerMm?: number;
+  /** Sourced Beer-Lambert intensity coefficients in inverse mm; takes precedence over the scalar. */
+  absorptionSpectrumPerMm?: SpectralSamples;
   apd?: "patent" | "inferred" | false;
   apdNote?: string;
   cemented?: string;

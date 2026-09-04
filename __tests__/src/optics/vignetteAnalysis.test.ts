@@ -1,4 +1,6 @@
-import { describe, it, expect } from "vitest";
+import * as sensorRadiometry from "../../../src/optics/analysis/sensorIrradiance.js";
+import { chiefRayImageHeightAccurate } from "../../../src/optics/optics.js";
+import { describe, it, expect, vi } from "vitest";
 import { computeVignettingCurve as computeVignettingCurveBase } from "../../../src/optics/vignetteAnalysis.js";
 import { computeAnalysisFieldGeometryAtState, doLayout, type FieldGeometryState } from "../../../src/optics/optics.js";
 import MinoltaSTFRaw from "../../../src/lens-data/minolta/MinoltaSTF135mmf28T45.data.js";
@@ -31,6 +33,24 @@ function computeVignettingCurve(
 }
 
 describe("computeVignettingCurve", () => {
+  it("uses the chief ray at the sensor rather than at the last surface vertex", () => {
+    const L = sharedSonnar50f15();
+    const { z } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0);
+    const capture = vi.spyOn(sensorRadiometry, "computeSensorIrradiance");
+    try {
+      const curve = computeVignettingCurveBase(L, z, 0, 0, currentEPSD, currentPhysStopSD, undefined, 0, {
+        vignettingFieldSampleCount: 3,
+        vignettingPupilSampleCount: 32,
+      });
+      expect(capture).toHaveBeenCalledTimes(3);
+      curve.forEach((sample, i) =>
+        expect(capture.mock.calls[i][1]).toBeCloseTo(chiefRayImageHeightAccurate(sample.fieldAngleDeg, z, 0, 0, L), 10),
+      );
+    } finally {
+      capture.mockRestore();
+    }
+  });
   /* ── Basic curve shape ── */
 
   it("returns at least 7 samples for Sonnar 50/1.5", () => {

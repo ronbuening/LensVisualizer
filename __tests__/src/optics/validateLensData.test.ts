@@ -78,7 +78,7 @@ describe("validateLensData", () => {
     }
   });
 
-  it("rejects authored bulk absorption on folded or generalized optical paths", () => {
+  it("accepts authored bulk absorption on generalized paths with encounter-aware tracing", () => {
     for (const generalizedOverride of [
       { opticalPath: { mode: "auto" } },
       {
@@ -91,11 +91,7 @@ describe("validateLensData", () => {
     ]) {
       const invalid = makeValid(generalizedOverride);
       (invalid.elements as Record<string, unknown>[])[0].absorptionCoefficientPerMm = 0.55;
-      expect(
-        validateLensData(invalid).some((error) =>
-          error.includes("absorptionCoefficientPerMm is not supported for folded or generalized optical paths"),
-        ),
-      ).toBe(true);
+      expect(validateLensData(invalid).some((error) => error.includes("absorptionCoefficientPerMm"))).toBe(false);
     }
   });
 
