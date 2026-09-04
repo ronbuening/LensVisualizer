@@ -12,17 +12,17 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **668** lenses scanned
-- **7643** glass elements examined
-- **2315** elements have multiple coordinate-compatible candidates
-- **451** lens files are affected
+- **674** lenses scanned
+- **7692** glass elements examined
+- **2329** elements have multiple coordinate-compatible candidates
+- **457** lens files are affected
 - **208** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **194** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
-| Smallest reference-index residual | 1264 |
-| Evidence-source priority | 766 |
+| Smallest reference-index residual | 1273 |
+| Evidence-source priority | 771 |
 | Vendor context | 276 |
 | Stable canonical-name order | 7 |
 | Smallest Abbe residual | 2 |
@@ -834,6 +834,11 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `805254 — vendor unresolved` | 1.80518 / 25.43 (d) | S-TIH6 — smallest d-line \|Δn\| (7.1e-7 vs 2.1e-6) | SF6 (Schott, code, alternate code row) | 2 | [NIKON AF-S VR ZOOM-NIKKOR 70-200mm f/2.8G IF-ED](../../src/lens-data/nikon/NikonAFSVRZoomNikkor70200mmf28GIFED.data.ts) L23 |
 | `804396 — vendor unresolved` | 1.80440 / 39.59 (d) | S-LAH63Q — smallest d-line \|Δn\| (2.5e-7 vs 2.2e-6) | S-LAH63 (Ohara, code, preferred code row) | 1 | [NIKON AF-S VR ZOOM-NIKKOR 70-200mm f/2.8G IF-ED](../../src/lens-data/nikon/NikonAFSVRZoomNikkor70200mmf28GIFED.data.ts) L24 |
 | `697555 — vendor unresolved` | 1.69680 / 55.52 (d) | J-LAK14 — smallest d-line \|Δn\| (1.3e-8 vs 2.3e-6) | LAC14 (Hoya, code, alternate code row)<br>S-LAL14 (Ohara, code, preferred code row) | 1 | [NIKON AF-S VR ZOOM-NIKKOR 70-200mm f/2.8G IF-ED](../../src/lens-data/nikon/NikonAFSVRZoomNikkor70200mmf28GIFED.data.ts) L42 |
+| `717295 — supplier-neutral optical glass code` | 1.71736 / 29.46 (d) | SF1 — smallest d-line \|Δn\| (1.5e-7 vs 1.8e-6) | S-TIH1 (Ohara, code, alternate code row) | 1 | [NIKON AI AF DC-NIKKOR 105mm f/2 D](../../src/lens-data/nikon/NikonAiAFDCNikkor105mmf2D.data.ts) L4 |
+| `673322 class (supplier-neutral)` | 1.67270 / 32.20 (d) | H-ZF2 — smallest d-line \|Δn\| (1.8e-7 vs 2.0e-7) | E-FD5 (Hoya, code, preferred code row)<br>SF5 (Schott, code, alternate code row) | 1 | [NIKON AI AF MICRO-NIKKOR 105mm f/2.8 S](../../src/lens-data/nikon/NikonAiAFMicroNikkor105mmf28S.data.ts) L3 |
+| `626357 class (supplier-neutral)` | 1.62588 / 35.70 (d) | E-F1 — smallest d-line \|Δn\| (1.6e-7 vs 1.8e-6) | S-TIM1 (Ohara, code, alternate code row) | 1 | [NIKON AI AF MICRO-NIKKOR 105mm f/2.8 S](../../src/lens-data/nikon/NikonAiAFMicroNikkor105mmf28S.data.ts) L4 |
+| `805255 class (supplier-neutral)` | 1.80458 / 25.50 (d) | H-ZF7LA — smallest d-line \|Δn\| (6.0e-4 vs 6.0e-4) | J-SF6 (Hikari, code, alternate code row)<br>FD60 (Hoya, code, alternate code row) | 1 | [NIKON AI AF MICRO-NIKKOR 105mm f/2.8 S](../../src/lens-data/nikon/NikonAiAFMicroNikkor105mmf28S.data.ts) L7 |
+| `720503 — J-LAK10 (HIKARI) coordinate-compatible spectral proxy; production supplier unresolved` | 1.72000 / 50.28 (d) | J-LAK10 — direct name evidence outranks six-digit code evidence. | LAC10 (Hoya, code, vendor ✗, alternate code row) | 1 | [NIKON AI AF NIKKOR 85mm f/1.8 S](../../src/lens-data/nikon/NikonAiAFNikkor85mmf18S.data.ts) L2 |
 | `805254 - dense-flint class (vendor unresolved; vd=25.41)` | 1.80518 / 25.41 (d) | SF6 — smallest d-line \|Δn\| (7.8e-8 vs 1.3e-6) | S-TIH6 (Ohara, code, preferred code row) | 2 | [NIKON AI AF VR ZOOM-NIKKOR 80-400mm f/4.5-5.6D ED](../../src/lens-data/nikon/NikonAFVRZoomNikkor80400mmf4556DED.data.ts) L11a |
 | `487704 - low-dispersion crown class (vendor unresolved)` | 1.48749 / 70.41 (d) | N-FK5 — smallest d-line \|Δn\| (3.7e-9 vs 4.1e-8) | H-QK3L (CDGM, code, alternate code row)<br>FK5 (Sumita, code, alternate code row)<br>FC5 (Hoya, code, alternate code row) | 5 | [NIKON AI AF VR ZOOM-NIKKOR 80-400mm f/4.5-5.6D ED](../../src/lens-data/nikon/NikonAFVRZoomNikkor80400mmf4556DED.data.ts) L12 |
 | `773495 - lanthanum-flint class (vendor unresolved)` | 1.77279 / 49.45 (d) | M-TAF1 — smallest d-line \|Δn\| (2.9e-4 vs 2.9e-4) | M-TAF105 (Hoya, code, preferred code row) | 1 | [NIKON AI AF VR ZOOM-NIKKOR 80-400mm f/4.5-5.6D ED](../../src/lens-data/nikon/NikonAFVRZoomNikkor80400mmf4556DED.data.ts) L32b |
@@ -848,6 +853,9 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `LAC8 (coordinate equivalent; patent code 713539)` | 1.71300 / 53.90 (d) | LAC8 — direct name evidence outranks six-digit code evidence. | MP-LAC8-30 (Hoya, code, alternate code row) | 1 | [NIKON AI AF ZOOM-NIKKOR 24-120mm f/3.5-5.6 D IF](../../src/lens-data/nikon/NikonAFNikkor24120mmf3556D.data.ts) L12 |
 | `773495 — lanthanum crown / TAF class (vendor unresolved)` | 1.77279 / 49.50 (d) | M-TAF1 — smallest d-line \|Δn\| (2.9e-4 vs 2.9e-4) | M-TAF105 (Hoya, code, preferred code row) | 2 | [NIKON AI AF ZOOM-NIKKOR 24-120mm f/3.5-5.6 D IF](../../src/lens-data/nikon/NikonAFNikkor24120mmf3556D.data.ts) L13 |
 | `517641 — BK7 class (vendor unresolved)` | 1.51680 / 64.10 (d) | N-BK7 — alias evidence outranks six-digit code evidence. | J-BK7A (Hikari, code, preferred code row) | 4 | [NIKON AI AF ZOOM-NIKKOR 24-120mm f/3.5-5.6 D IF](../../src/lens-data/nikon/NikonAFNikkor24120mmf3556D.data.ts) L3F1 +1 files |
+| `805255 flint class (catalog unresolved)` | 1.80458 / 25.50 (d) | H-ZF7LA — smallest d-line \|Δn\| (6.0e-4 vs 6.0e-4) | J-SF6 (Hikari, code, alternate code row)<br>FD60 (Hoya, code, alternate code row) | 3 | [NIKON AI AF ZOOM-NIKKOR 80-200mm f/2.8 ED](../../src/lens-data/nikon/NikonAFZoomNikkor80200mmf28ED.data.ts) L11 |
+| `517641 BK7-class crown (supplier unresolved)` | 1.51680 / 64.10 (d) | N-BK7 — alias evidence outranks six-digit code evidence. | J-BK7A (Hikari, code, preferred code row) | 1 | [NIKON AI AF ZOOM-NIKKOR 80-200mm f/2.8 ED](../../src/lens-data/nikon/NikonAFZoomNikkor80200mmf28ED.data.ts) L23 |
+| `487702 crown class (FK5 coordinate; supplier unresolved)` | 1.48749 / 70.20 (d) | FK5 — direct name evidence outranks six-digit code evidence. | S-FSL5 (Ohara, code, preferred code row) | 1 | [NIKON AI AF ZOOM-NIKKOR 80-200mm f/2.8 ED](../../src/lens-data/nikon/NikonAFZoomNikkor80200mmf28ED.data.ts) L42a |
 | `S-TIH6 catalog equivalent (production supplier not established; patent 805254)` | 1.80518 / 25.43 (d) | S-TIH6 — direct name evidence outranks six-digit code evidence. | SF6 (Schott, code, alternate code row) | 1 | [NIKON AI AF ZOOM-NIKKOR 80-200mm f/2.8D ED](../../src/lens-data/nikon/NikonAIAFZoomNikkor80200mmf28DED.data.ts) L1 |
 | `S-TIM1 catalog equivalent (production supplier not established; patent 626357)` | 1.62588 / 35.70 (d) | S-TIM1 — direct name evidence outranks six-digit code evidence. | E-F1 (Hoya, code, preferred code row) | 1 | [NIKON AI AF ZOOM-NIKKOR 80-200mm f/2.8D ED](../../src/lens-data/nikon/NikonAIAFZoomNikkor80200mmf28DED.data.ts) L4 |
 | `S-BAL41 catalog equivalent (production supplier not established; patent 564607)` | 1.56384 / 60.69 (d) | S-BAL41 — direct name evidence outranks six-digit code evidence. | J-SK11 (Hikari, code, alternate code row) | 2 | [NIKON AI AF ZOOM-NIKKOR 80-200mm f/2.8D ED](../../src/lens-data/nikon/NikonAIAFZoomNikkor80200mmf28DED.data.ts) L5 |
@@ -871,6 +879,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `E-LAF7 / S-LAM7 class (750/350-353)` | 1.74950 / 35.20 (d) | E-LAF7 — smallest d-line \|Δn\| (2.0e-7 vs 2.8e-6) | S-LAM7 (Ohara, name)<br>H-LaF4 (CDGM, code, preferred code row) | 1 | [Nikon AI Micro-Nikkor 105mm f/2.8S](../../src/lens-data/nikon/NikonAIMicroNikkor105mmf28S.data.ts) L13 |
 | `E-FD8 / S-TIM28 class (689/311-313)` | 1.68893 / 31.10 (d) | E-FD8 — smallest d-line \|Δn\| (2.1e-7 vs 8.0e-7) | S-TIM28 (Ohara, name) | 1 | [Nikon AI Micro-Nikkor 105mm f/2.8S](../../src/lens-data/nikon/NikonAIMicroNikkor105mmf28S.data.ts) L21a |
 | `TAF2 / J-LASF017 class (795/454; patent nd = 1.79668)` | 1.79668 / 45.50 (d) | J-LASF017 — smallest d-line \|Δn\| (1.7e-3 vs 2.2e-3) | TAF2 (Hoya, name) | 1 | [Nikon AI Micro-Nikkor 105mm f/2.8S](../../src/lens-data/nikon/NikonAIMicroNikkor105mmf28S.data.ts) L32 |
+| `713539 — lanthanum-crown coordinate class (supplier unresolved)` | 1.71300 / 53.90 (d) | LAC8 — smallest d-line \|Δn\| (1.8e-7 vs 3.0e-4) | MP-LAC8-30 (Hoya, code, alternate code row) | 1 | [NIKON AI MICRO-NIKKOR 55mm f/2.8](../../src/lens-data/nikon/NikonAiMicroNikkor55mmf28.data.ts) L2 |
 | `OHARA S-BAL35 / HOYA BACD5 (589/612)` | 1.58913 / 61.20 (d) | S-BAL35 — direct name evidence outranks six-digit code evidence. | SK5 (Sumita, code, vendor ✗, alternate code row) | 1 | [NIKON AI NIKKOR 135mm f/2](../../src/lens-data/nikon/NikonAI135mmf2.data.ts) L3 |
 | `HOYA E-FD1 / Schott SF1 (717/295)` | 1.71736 / 29.50 (d) | SF1 — direct name evidence outranks six-digit code evidence. | S-TIH1 (Ohara, code, vendor ✗, alternate code row) | 2 | [NIKON AI NIKKOR 135mm f/2](../../src/lens-data/nikon/NikonAI135mmf2.data.ts) L5 |
 | `LAFN7 / E-LAF7 class (750/350 lanthanum flint)` | 1.74950 / 35.00 (d) | E-LAF7 — direct name evidence outranks six-digit code evidence. | H-LaF4 (CDGM, code, preferred code row) | 1 | [NIKON AI NIKKOR 180mm f/2.8 ED](../../src/lens-data/nikon/NikonAINikkor180mmf28.data.ts) L2 |
@@ -890,6 +899,9 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `LAF2 / N-LAF2 class (744/449 lanthanum flint)` | 1.74400 / 44.90 (d) | N-LAF2 — direct name evidence outranks six-digit code evidence. | H-LaF3B (CDGM, code, preferred code row) | 1 | [NIKON AI NIKKOR 35mm f/2](../../src/lens-data/nikon/NikonAINikkor35mmf2.data.ts) L8 |
 | `S-LAH59 (OHARA; 816/466 class)` | 1.81600 / 46.63 (d) | S-LAH59 — direct name evidence outranks six-digit code evidence. | J-LASF09A (Hikari, code, vendor ✗, alternate code row)<br>TAF5 (Hoya, code, vendor ✗, alternate code row) | 1 | [NIKON AI NIKKOR 45mm f/2.8 P](../../src/lens-data/nikon/NikonAINikkor45mmf28.data.ts) L1 |
 | `S-LAH58 (OHARA; 883/408 class)` | 1.88300 / 40.77 (d) | S-LAH58 — direct name evidence outranks six-digit code evidence. | TAFD30 (Hoya, code, vendor ✗, alternate code row) | 1 | [NIKON AI NIKKOR 45mm f/2.8 P](../../src/lens-data/nikon/NikonAINikkor45mmf28.data.ts) L4 |
+| `717295 / SF1-class (supplier unresolved)` | 1.71714 / 29.49 (d) | SF1 — direct name evidence outranks six-digit code evidence. | S-TIH1 (Ohara, code, alternate code row) | 1 | [NIKON AI NIKKOR 50mm f/1.8 S](../../src/lens-data/nikon/NikonAINikkor50mmf18S.data.ts) L3 |
+| `648338 / SF2-class (supplier unresolved)` | 1.64831 / 33.80 (d) | SF2 — direct name evidence outranks six-digit code evidence. | H-ZF1 (CDGM, code, alternate code row)<br>E-FD2 (Hoya, code, alternate code row)<br>S-TIM22 (Ohara, code, preferred code row) | 1 | [NIKON AI NIKKOR 50mm f/1.8 S](../../src/lens-data/nikon/NikonAINikkor50mmf18S.data.ts) L4a |
+| `713539 / LAK8-class (supplier unresolved)` | 1.71313 / 53.94 (d) | LAC8 — smallest d-line \|Δn\| (1.3e-4 vs 1.7e-4) | MP-LAC8-30 (Hoya, code, alternate code row) | 1 | [NIKON AI NIKKOR 50mm f/1.8 S](../../src/lens-data/nikon/NikonAINikkor50mmf18S.data.ts) L5 |
 | `H-LaF4 catalog equivalent (patent 750350; production supplier unspecified)` | 1.74950 / 35.00 (d) | H-LaF4 — direct name evidence outranks six-digit code evidence. | E-LAF7 (Hoya, code, alternate code row) | 2 | [NIKON AI NIKKOR 600mm f/5.6 IF-ED](../../src/lens-data/nikon/NikonAINikkor600mmf56IFED.data.ts) L3 +1 files |
 | `H-K9L catalog equivalent (patent 517642; production supplier unspecified)` | 1.51680 / 64.20 (d) | H-K9L — direct name evidence outranks six-digit code evidence. | H-K9LGT (CDGM, code, alternate code row)<br>N-BK7 (Schott, code, preferred code row) | 1 | [NIKON AI NIKKOR 600mm f/5.6 IF-ED](../../src/lens-data/nikon/NikonAINikkor600mmf56IFED.data.ts) L5 |
 | `LaK–LaF border (HOYA TAF1 / Schott N-LAF34 class, 773-494)` | 1.77279 / 49.40 (d) | N-LAF34 — direct name evidence outranks alias evidence. | S-LAH66 (Ohara, alias, vendor ✗) | 1 | [NIKON AI NIKKOR 85mm f/1.4 S](../../src/lens-data/nikon/Nikon85f14AIS.data.ts) L1 |
