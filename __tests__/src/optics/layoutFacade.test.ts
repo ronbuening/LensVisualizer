@@ -61,10 +61,10 @@ describe("layout facade edge cases", () => {
     expect(eflAtFocus(0.5, 0, L)).toBeNaN();
   });
 
-  it("returns the marked f-number when the close-focus denominator collapses", () => {
+  it("does not let a marketing focus distance override the physical image-side cone", () => {
     const base = buildSimplePositiveElementLens();
     const L = { ...base, closeFocusM: eflAtFocus(1, 0, base) / 1000 };
-    expect(effectiveFNumber(2.8, 1, 0, L)).toBe(2.8);
+    expect(effectiveFNumber(2.8, 1, 0, L)).toBeCloseTo(effectiveFNumber(2.8, 1, 0, base), 12);
   });
 
   it("keeps effective f-number finite when pupil magnification inputs are degenerate", () => {

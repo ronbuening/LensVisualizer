@@ -21,7 +21,9 @@ describe("computeOpticalSummaryForState2", () => {
     expect(summary.currentEFLMm).toBeCloseTo(dynamicEFL, 6);
     expect(summary.infinityEFLMm).toBeCloseTo(L.EFL, 6);
     expect(summary.breathingPercent).not.toBeNull();
-    expect(summary.effectiveFNumber).toBeCloseTo(Math.abs(dynamicEFL) / (currentEPSD * 2), 6);
+    expect(summary.geometricFNumber).toBeCloseTo(Math.abs(dynamicEFL) / summary.entrancePupilDiameterMm!, 6);
+    expect(summary.effectiveFNumber).toBeGreaterThan(0);
+    expect(summary.apertureStatus).toBe("paraxial");
     expect(summary.halfFieldDeg).toBeCloseTo(fieldGeometry.halfFieldDeg, 6);
     expect(summary.fullFieldDeg).toBeCloseTo(fieldGeometry.halfFieldDeg * 2, 6);
     expect(summary.focusDistanceM).toBeCloseTo(L.closeFocusM / focusT, 6);

@@ -718,6 +718,28 @@ export default function validateLensData(data: UntrustedLensData): string[] {
     errors.push(`Missing or invalid required field: "nominalFno" (must be number or number[])`);
   }
 
+  if (data.wideOpenStopSemiDiameterMm !== undefined) {
+    const schedule = data.wideOpenStopSemiDiameterMm;
+    const values = Array.isArray(schedule) ? schedule : [schedule];
+    const stop = Array.isArray(data.surfaces) ? data.surfaces.find((surface) => surface?.label === "STO") : undefined;
+    if (
+      values.length === 0 ||
+      values.some(
+        (value) => typeof value !== "number" || !Number.isFinite(value) || value <= 0 || (stop && value > stop.sd),
+      )
+    ) {
+      errors.push(
+        '"wideOpenStopSemiDiameterMm" values must be positive, finite and no larger than the STO semi-diameter',
+      );
+    }
+    if (
+      Array.isArray(schedule) &&
+      (!Array.isArray(data.zoomPositions) || schedule.length !== data.zoomPositions.length)
+    ) {
+      errors.push('"wideOpenStopSemiDiameterMm" array must match zoomPositions');
+    }
+  }
+
   /* ── Optional boolean fields ── */
   if (data.visible !== undefined && typeof data.visible !== "boolean")
     errors.push(`"visible" must be a boolean (got ${typeof data.visible})`);

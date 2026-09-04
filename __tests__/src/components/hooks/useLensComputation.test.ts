@@ -4,6 +4,7 @@ import { describe, it, expect, vi } from "vitest";
 import { renderHook } from "@testing-library/react";
 import useLensComputation from "../../../../src/components/hooks/useLensComputation.js";
 import buildLens from "../../../../src/optics/buildLens.js";
+import { computeOpticalSummaryForState2, prepareRuntimeState } from "../../../../src/optics/compat.js";
 import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
 
 /* This test uses a real lens key from the catalog. The LENS_CATALOG is populated
@@ -145,6 +146,14 @@ describe("useLensComputation", () => {
     expect(r.currentEPSD).toBeGreaterThan(0);
     // Wide open: fNumber should equal currentFOPEN
     expect(r.fNumber).toBeCloseTo(r.currentFOPEN, 1);
+    const summary = computeOpticalSummaryForState2(
+      prepareRuntimeState(r.L!, 0, 0),
+      r.dynamicEFL,
+      r.currentEPSD,
+      r.currentPhysStopSD,
+    );
+    expect(summary.effectiveFNumber).toBeCloseTo(r.effectiveFNum, 10);
+    expect(summary.entrancePupilDiameterMm).toBeCloseTo(r.currentEPSD * 2, 8);
   });
 
   it("fNumber increases when stopped down", () => {

@@ -24,6 +24,7 @@ import {
   computeAnalysisFieldGeometryAtState,
   doLayout,
   effectiveFNumber,
+  resolveApertureStop,
   eflAtFocus,
   entrancePupilAtState,
   fopenAtZoom,
@@ -251,12 +252,13 @@ export default function useLensComputation({
    * f-number stays constant when zooming.  Clamp to currentFOPEN — the
    * lens can't open wider than the zoom position allows. */
   const rawFNumber = L ? L.FOPEN * Math.pow(L.maxFstop / L.FOPEN, stopdownT) : 1;
-  const fNumber = Math.max(rawFNumber, currentFOPEN);
-  const currentPhysStopSD = L ? (L.stopPhysSD * L.FOPEN) / fNumber : 0;
+  const apertureStop = L ? resolveApertureStop(L, zoomT, rawFNumber) : null;
+  const fNumber = apertureStop?.fNumber ?? 1;
+  const currentPhysStopSD = apertureStop?.stopSemiDiameterMm ?? 0;
   /* Use the current focus/zoom front-group magnification for pupil-dependent analyses. */
   const baseEPSD =
     L && fieldGeometry ? entrancePupilAtState(L.stopPhysSD, focusT, zoomT, L, fieldGeometry, aberrationT).epSD : 0;
-  const currentEPSD = L ? (baseEPSD * L.FOPEN) / fNumber : 0;
+  const currentEPSD = L && L.stopPhysSD > 0 ? (baseEPSD * currentPhysStopSD) / L.stopPhysSD : 0;
 
   /* ── Variable gap readouts ── */
   const varReadouts: VarReadout[] = L

@@ -92,3 +92,5 @@ export {
 } from "./rayTrace.js";
 export { stopInnerBlockedSemiDiameter } from "./stopObstruction.js";
 export { formatDist, formatPetzvalRadius } from "./opticsFormat.js";
+
+export { apertureMetricsForState, resolveApertureStop, type ApertureMetrics } from "./first-order/aperture.js";

@@ -8,7 +8,6 @@
 import type { LayoutResult, RuntimeLens } from "../types/optics.js";
 import { buildStateSurfaces, resolveControlledThickness } from "./internal/lensState.js";
 import { conicPolySag, sag, sagSlopeRaw } from "./internal/surfaceMath.js";
-import { eflAtFocus2 as eflAtFocus } from "./first-order/focusBreathing.js";
 
 /** Number of straight SVG segments used when rendering one surface profile. */
 export const SVG_PATH_SUBDIVISIONS: number = 96;
@@ -294,37 +293,4 @@ function lerpZoomArray(zoomT: number, arr: number[]): number {
 
 export { eflAtFocus2 as eflAtFocus } from "./first-order/focusBreathing.js";
 
-/**
- * Estimate effective f-number at the current focus state.
- *
- * Uses the same close-focus correction as the first-order helper:
- * `N_eff = N * (1 + |m| / p)`, where `p` is pupil magnification XP/EP.
- *
- * @param nominalFNumber - marked f-number for the current aperture
- * @param focusT - normalized focus slider
- * @param zoomT - normalized zoom slider
- * @param L - runtime lens object
- * @param aberrationT - normalized aberration spacing slider
- * @returns effective f-number
- */
-export function effectiveFNumber(
-  nominalFNumber: number,
-  focusT: number,
-  zoomT: number,
-  L: RuntimeLens,
-  aberrationT = 0,
-): number {
-  if (focusT < FOCUS_INFINITY_THRESHOLD) return nominalFNumber;
-
-  const efl = eflAtFocus(focusT, zoomT, L, aberrationT);
-  const focusDistMm = (L.closeFocusM / focusT) * 1000;
-  const denom = focusDistMm - efl;
-  if (Math.abs(denom) < 1e-10) return nominalFNumber;
-  const m = -efl / denom;
-
-  const epSD = L.isZoom ? epAtZoom(zoomT, L) : L.EP.epSD;
-  const xpSD = L.isZoom ? xpAtZoom(zoomT, L) : L.xpSD;
-  const p = Math.abs(epSD) > 1e-10 ? Math.abs(xpSD) / Math.abs(epSD) : 1;
-
-  return nominalFNumber * (1 + Math.abs(m) / (p > 1e-10 ? p : 1));
-}
+export { effectiveFNumber2 as effectiveFNumber } from "./first-order/fNumber.js";

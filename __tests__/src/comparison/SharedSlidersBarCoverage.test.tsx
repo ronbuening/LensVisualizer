@@ -324,10 +324,10 @@ describe("SharedSlidersBar", () => {
       onToggleEffectiveAperture,
     });
 
-    expect(screen.getByText("A eff. f/3.2")).toBeTruthy();
-    expect(screen.getByText("B eff. f/3.6")).toBeTruthy();
+    expect(screen.getByText("A working f/3.2")).toBeTruthy();
+    expect(screen.getByText("B working f/3.6")).toBeTruthy();
 
-    fireEvent.click(screen.getByText(/Show effective aperture/i));
+    fireEvent.click(screen.getByText(/Show working f-number/i));
     expect(onToggleEffectiveAperture).toHaveBeenCalledTimes(1);
   });
 

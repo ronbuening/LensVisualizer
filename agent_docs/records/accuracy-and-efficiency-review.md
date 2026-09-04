@@ -9,7 +9,7 @@ commit between steps. A step is not complete merely because its implementation h
 | --- | --- | --- |
 | 1 | Physical reference fixtures, full-suite coverage gate, test and performance baselines | Complete |
 | 2 | Consistent calculated current/infinity EFL and breathing; authored values remain metadata | Complete |
-| 3 | Shared marked/geometric/working f-number and current-pupil aperture result | Pending |
+| 3 | Shared marked/geometric/working f-number and current-pupil aperture result | Complete |
 | 4 | Two-dimensional pupil-area and sensor-irradiance integration with explicit convergence status | Pending |
 | 5 | Source-backed spectral throughput, encounter-aware absorption and surface losses | Pending |
 | 6 | Opt-in optical path, wavefront, scalar Huygens PSF; initially centered on-axis sequential refraction | Pending |
@@ -90,3 +90,18 @@ retention policy. No production optical behavior changed in step 1.
 - Typecheck, format check and lint passed; build/SSR prerendered all 1243 routes, sitemap and feeds successfully.
   A final type/format/lint check also covers the last display guard and its regression test.
 - Scope limit: this step does not change working-f-number semantics; that remains step 3.
+
+### Step 3 — physical aperture and working f-number
+
+- Added a shared physical-stop resolver and current-state paraxial aperture metrics. The image-side cone is solved from
+  the physical stop rim and image-plane center, including image-medium index. Geometric f-number remains EFL/EP diameter.
+- Viewer, comparison and Summary now use the same working-f-number calculation. The UI identifies it as paraxial;
+  folded/degenerate cones return unavailable. Current EP/XP sizes are calculated rather than reusing infinity pupil ratios.
+- Optional `wideOpenStopSemiDiameterMm` supports explicitly sourced iris schedules with positive, finite, bounded values
+  and matching zoom-array lengths. No production prescription was given an inferred schedule; default mapping is retained.
+- Independent tests cover infinity/1:1 thin-lens cones, immersion index, stop bounds, schedules and invalid/unsupported
+  states. A production Nikon 200 mm rear-cone reference and a real hook/Summary comparison protect integration.
+- Typecheck, format check, lint, normal tests, full coverage and production build passed. Both full suites: 298 files /
+  2767 tests. Coverage: statements 91.94%, branches 83.08%, functions 93.75%, lines 94.61%. All 1243 routes prerendered.
+- Remaining stages 4–11 are not implemented. A read-only reverse-order generalized-trace experiment succeeded for
+  an ordinary refractive lens and can inform step 4; it does not yet constitute a validated radiometric implementation.

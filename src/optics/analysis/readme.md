@@ -29,8 +29,8 @@ flowchart LR
   end
   n_external_src_optics_perspective["src/optics/perspective"]
   n_external_src_optics_chromatic["src/optics/chromatic"]
-  n_external_src_optics_aberration["src/optics/aberration"]
   n_external_src_optics_first_order["src/optics/first-order"]
+  n_external_src_optics_aberration["src/optics/aberration"]
   n_external_src_types["src/types"]
   n_external_src_optics_aberrationAnalysis_ts["src/optics/aberrationAnalysis.ts"]
   n_external_src_optics_constants_ts["src/optics/constants.ts"]
@@ -46,9 +46,9 @@ flowchart LR
   n_external_src_optics_types_ts["src/optics/types.ts"]
   n_src_optics_analysis_src_optics_analysis_perspectiveAnalysisJobs_ts --> |8| n_external_src_optics_perspective
   n_src_optics_analysis_src_optics_analysis_chromatic_ts --> |4| n_external_src_optics_chromatic
+  n_src_optics_analysis_src_optics_analysis_summary_ts --> |3| n_external_src_optics_first_order
   n_src_optics_analysis_src_optics_analysis_chromatic_ts --> |2| n_external_src_optics_aberration
   n_src_optics_analysis_src_optics_analysis_analysisContext_ts --> |2| n_external_src_optics_chromatic
-  n_src_optics_analysis_src_optics_analysis_summary_ts --> |2| n_external_src_optics_first_order
   n_src_optics_analysis_src_optics_analysis_groupMovement_ts --> |2| n_external_src_types
   n_src_optics_analysis_src_optics_analysis_bokeh_ts --> n_external_src_optics_aberration
   n_src_optics_analysis_src_optics_analysis_aberrations_ts --> n_external_src_optics_aberrationAnalysis_ts
@@ -87,7 +87,7 @@ flowchart LR
 
 - Direct source files: 17
 - Direct subfolders: 0
-- Main outbound areas: same folder (23), src/optics/types.ts (11), src/optics/perspective (10), src/types (10), src/optics/chromatic (8), src/optics/optics.ts (8), src/optics/aberration (3), src/optics/first-order (2), +11 more
+- Main outbound areas: same folder (23), src/optics/types.ts (11), src/optics/perspective (10), src/types (10), src/optics/chromatic (8), src/optics/optics.ts (8), src/optics/aberration (3), src/optics/first-order (3), +11 more
 - External consumers: src/benchmarks, src/components/layout, src/optics/aberration, src/optics/analysisJobs.ts, src/optics/compat.ts, src/optics/distortionAnalysis.ts, src/optics/vignetteAnalysis.ts
 
 ## Files
@@ -109,5 +109,5 @@ flowchart LR
 | `perspectiveAnalysisJobs.ts` | Perspective Analysis Jobs helper module | src/optics/perspective (8), same folder, src/optics/chromatic | same folder | PerspectiveAnalysisJobParams, PerspectiveAnalysisSamplingPlan, PerspectiveAnalysisJobs, perspectiveAnalysisSamplingPlan, createPerspectiveAnalysisJobs |
 | `preparedStateAdapters.ts` | Prepared State Adapters helper module | src/optics/types.ts | same folder (5) | zPosForPreparedAnalysis2 |
 | `pupilAberration.ts` | Pupil Aberration helper module | src/optics/optics.ts, src/optics/pupilAberration.ts, src/optics/types.ts, src/types | same folder, src/optics/compat.ts | PUPIL_ABERRATION_SAMPLE_COUNT_2, computeBothPupilAberrationProfilesForState2, computePupilAberrationProfile2, computeExitPupilAberrationProfile2, computeBothPupilAberrationProfiles2 |
-| `summary.ts` | Summary helper module | src/optics/first-order (2), src/optics/layout.ts, src/optics/optics.ts, src/optics/types.ts | same folder, src/optics/compat.ts | OpticalSummaryMetrics2, computeOpticalSummaryForState2 |
+| `summary.ts` | Summary helper module | src/optics/first-order (3), src/optics/layout.ts, src/optics/optics.ts, src/optics/types.ts | same folder, src/optics/compat.ts | OpticalSummaryMetrics2, computeOpticalSummaryForState2 |
 | `vignetting.ts` | Vignetting helper module | same folder (2), src/optics/optics.ts, src/optics/types.ts, src/optics/vignetteAnalysis.ts, src/types | same folder, src/optics/compat.ts | computeVignettingCurveForState2, computeVignettingCurve2 |

@@ -324,6 +324,8 @@ export interface LensData {
   opticalPath?: OpticalPathData;
   aberrationControl?: AberrationControlConfig;
   nominalFno?: number | number[];
+  /** Source-backed wide-open physical stop radius in mm; arrays align with zoomPositions. */
+  wideOpenStopSemiDiameterMm?: number | number[];
   closeFocusM: number;
   focusStep: number;
   maxFstop: number;
@@ -594,4 +596,13 @@ export interface ElementRenderDiagnostics {
   eid: number;
   front: SurfaceRenderDiagnostics;
   rear: SurfaceRenderDiagnostics;
+}
+
+/** Paraxial aperture measurements; null pupils include telecentric/infinite pupil planes. */
+export interface ApertureMetrics {
+  geometricFNumber: number | null;
+  workingFNumber: number | null;
+  entrancePupilSemiDiameterMm: number | null;
+  exitPupilSemiDiameterMm: number | null;
+  status: "paraxial" | "unsupported" | "degenerate";
 }

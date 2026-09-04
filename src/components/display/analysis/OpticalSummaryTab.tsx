@@ -114,7 +114,13 @@ export default function OpticalSummaryTab({
       </SummarySection>
 
       <SummarySection title="Aperture And Field" t={t}>
-        <AnalysisMetricRow label="Working f/#" value={formatFNumber(summary.effectiveFNumber)} t={t} />
+        <AnalysisMetricRow label="Geometric f/#" value={formatFNumber(summary.geometricFNumber)} t={t} />
+        <AnalysisMetricRow
+          label="Working f/#"
+          value={formatFNumber(summary.effectiveFNumber)}
+          note={summary.apertureStatus === "paraxial" ? "paraxial image-side cone" : "unavailable"}
+          t={t}
+        />
         <AnalysisMetricRow label="Entrance pupil" value={formatMm(summary.entrancePupilDiameterMm)} t={t} />
         <AnalysisMetricRow label="Physical stop" value={formatMm(summary.physicalStopDiameterMm)} t={t} />
         <AnalysisMetricRow label="Half field" value={formatDeg(summary.halfFieldDeg)} t={t} />

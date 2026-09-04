@@ -115,6 +115,14 @@ multi-order energy, interference, PSF/MTF, groove microstructure, scatter, or ch
 
 ## optics.ts
 
+`resolveApertureStop()` centralizes marked-aperture clamping and optional authored iris schedules.
+`apertureMetricsForState()` derives geometric f-number, current paraxial pupils and working f-number from the active
+physical stop and prepared image plane. Working f-number uses `1 / (2 n' |u'|)` for the axial paraxial ray constrained
+to the stop rim and sensor center. It is a first-order cone measurement, not a real-ray high-NA or transmission metric.
+Folded/degenerate cones report unavailable; they do not reuse a marked f-number. The runtime `effectiveFNumber()`
+compatibility wrapper and Summary use this same calculation. Its convention follows the paraxial limit of
+[Ansys's working f-number definition](https://ansyshelp.ansys.com/public/Views/Secured/Zemax/v26102/en/OpticStudio_User_Guide/OpticStudio_Help/topics/Working_F.html).
+
 `eflAtFocus()` calculates signed first-order EFL at every focus/zoom/aberration state, including infinity, using the
 same cardinal solver. It returns `NaN` for afocal or unsupported geometry; summary metrics convert this to `null` and
 the breathing tab displays an unavailable explanation. `calculatedFocalLengthForState()` is the nullable prepared-state

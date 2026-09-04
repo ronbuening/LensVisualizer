@@ -21,6 +21,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-09-04",
     type: "fix",
+    summary: "Unified working f-number readouts using the current paraxial image-side cone",
+  },
+  {
+    date: "2026-09-04",
+    type: "fix",
     summary: "Corrected calculated focal length and focus-breathing references and labels",
   },
   {

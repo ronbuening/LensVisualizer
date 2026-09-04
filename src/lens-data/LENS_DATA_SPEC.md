@@ -1071,6 +1071,14 @@ These are computed automatically and added to the frozen lens object:
 
 ### Variable-Aperture Zooms
 
+Optional `wideOpenStopSemiDiameterMm` supplies a source-backed physical iris radius in mm, either a scalar or an array
+aligned with `zoomPositions`. Values must be positive, finite and no larger than the authored `STO.sd`. Cite the source
+in the prescription notes; do not infer an iris schedule merely from marketed f-numbers. At a zoom state, the radius
+is linearly interpolated and scaled by `currentWideOpenFNumber / selectedMarkedFNumber`. Without this field, the existing
+`STO.sd * L.FOPEN / selectedMarkedFNumber` mapping remains unchanged. Stop schedules change the active iris, not the
+housing/surface clear radius. Working f-number is a separate paraxial image-side cone measurement; it need not equal
+the marked or geometric f-number.
+
 Zoom lenses with a variable maximum aperture (e.g., f/4.5-5.6) use an array for `nominalFno` with one value per zoom position:
 
 ```javascript

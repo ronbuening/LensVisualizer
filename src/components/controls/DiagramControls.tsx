@@ -23,7 +23,7 @@ interface VarReadout {
 
 /** Format f-number for display: one decimal below f/10, rounded above. */
 function fmtF(f: number): string {
-  return f < 10 ? f.toFixed(1) : String(Math.round(f));
+  return Number.isFinite(f) ? (f < 10 ? f.toFixed(1) : String(Math.round(f))) : "unavailable";
 }
 
 interface DiagramControlsProps {
@@ -442,7 +442,7 @@ export default function DiagramControls({
           useSideLayout={useSideLayout}
           label="APERTURE"
           labelMinWidth={85}
-          displayValue={`f/${fmtF(fNumber)}${showEffectiveAperture && effApertureDiffers ? ` (eff. f/${fmtF(effectiveFNum)})` : ""}`}
+          displayValue={`f/${fmtF(fNumber)}${showEffectiveAperture && effApertureDiffers ? ` (working f/${fmtF(effectiveFNum)})` : ""}`}
           displayValueStyle={{ minWidth: "3.5em" }}
           value={stopdownT}
           step={L.apertureStep}
@@ -469,7 +469,8 @@ export default function DiagramControls({
               >
                 {apertureReferenceLabel}{" "}
                 {Number.isFinite(apertureReferenceValue) ? `${apertureReferenceValue.toFixed(2)} mm` : "unavailable"} ·
-                EP {"\u2300"} {(baseEPSD * 2).toFixed(2)} mm · Stop {"\u2300"} {(currentPhysStopSD * 2).toFixed(2)} mm
+                EP {"\u2300"} {((baseEPSD * currentPhysStopSD * 2) / L.stopPhysSD).toFixed(2)} mm · Stop {"\u2300"}{" "}
+                {(currentPhysStopSD * 2).toFixed(2)} mm
               </div>
               <div
                 style={{
@@ -525,7 +526,7 @@ export default function DiagramControls({
                 }}
               >
                 <span style={{ opacity: showEffectiveAperture ? 1 : 0.5 }}>
-                  {showEffectiveAperture ? "\u2611" : "\u2610"} Show effective aperture
+                  {showEffectiveAperture ? "\u2611" : "\u2610"} Show working f-number (paraxial)
                 </span>
               </button>
             </>

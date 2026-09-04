@@ -279,6 +279,8 @@ const opticalSummary = {
   infinityEFLMm: 50,
   breathingPercent: 2,
   effectiveFNumber: 2.55,
+  geometricFNumber: 2.5,
+  apertureStatus: "paraxial",
   entrancePupilDiameterMm: 20,
   physicalStopDiameterMm: 10,
   halfFieldDeg: 12,

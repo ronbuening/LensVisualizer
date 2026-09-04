@@ -5,6 +5,7 @@
 import type { FieldGeometryState } from "../optics.js";
 import { FOCUS_INFINITY_THRESHOLD } from "../layout.js";
 import { calculatedFocalLengthForState, eflAtFocus2 } from "../first-order/focusBreathing.js";
+import { apertureMetricsForState } from "../first-order/aperture.js";
 import { computeCardinalElements2 } from "../first-order/cardinals.js";
 import type { PreparedOpticalState } from "../types.js";
 
@@ -19,6 +20,8 @@ export interface OpticalSummaryMetrics2 {
   infinityEFLMm: number | null;
   breathingPercent: number | null;
   effectiveFNumber: number | null;
+  geometricFNumber: number | null;
+  apertureStatus: "paraxial" | "unsupported" | "degenerate";
   entrancePupilDiameterMm: number | null;
   physicalStopDiameterMm: number | null;
   halfFieldDeg: number | null;
@@ -65,12 +68,10 @@ export function computeOpticalSummaryForState2(
     currentEFLMm !== null && infinityEFLMm !== null && Math.abs(infinityEFLMm) > 1e-9
       ? (100 * (currentEFLMm - infinityEFLMm)) / infinityEFLMm
       : null;
-  const entrancePupilDiameterMm = currentEPSD > 0 ? finiteOrNull(currentEPSD * 2) : null;
+  const aperture = apertureMetricsForState(state, currentPhysStopSD);
+  const epSD = aperture.entrancePupilSemiDiameterMm ?? currentEPSD;
+  const entrancePupilDiameterMm = epSD > 0 ? finiteOrNull(epSD * 2) : null;
   const physicalStopDiameterMm = currentPhysStopSD > 0 ? finiteOrNull(currentPhysStopSD * 2) : null;
-  const effectiveFNumber =
-    currentEFLMm !== null && entrancePupilDiameterMm !== null && entrancePupilDiameterMm > 1e-9
-      ? Math.abs(currentEFLMm) / entrancePupilDiameterMm
-      : null;
   const halfFieldDeg = finiteOrNull(fieldGeometry?.halfFieldDeg);
   const cardinals = computeCardinalElements2(state);
 
@@ -78,7 +79,9 @@ export function computeOpticalSummaryForState2(
     currentEFLMm,
     infinityEFLMm,
     breathingPercent,
-    effectiveFNumber,
+    effectiveFNumber: aperture.workingFNumber,
+    geometricFNumber: aperture.geometricFNumber,
+    apertureStatus: aperture.status,
     entrancePupilDiameterMm,
     physicalStopDiameterMm,
     halfFieldDeg,

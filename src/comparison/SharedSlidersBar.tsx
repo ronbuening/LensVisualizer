@@ -393,8 +393,22 @@ export default function SharedSlidersBar({
               {showEffectiveAperture &&
                 (Math.abs(effectiveFNumA - fNum) > 0.05 || Math.abs(effectiveFNumB - fNum) > 0.05) && (
                   <div style={{ marginTop: 6, display: "flex", gap: 16, fontSize: 9, color: t.spacingVal }}>
-                    <span>A eff. f/{effectiveFNumA < 10 ? effectiveFNumA.toFixed(1) : Math.round(effectiveFNumA)}</span>
-                    <span>B eff. f/{effectiveFNumB < 10 ? effectiveFNumB.toFixed(1) : Math.round(effectiveFNumB)}</span>
+                    <span>
+                      A working f/
+                      {Number.isFinite(effectiveFNumA)
+                        ? effectiveFNumA < 10
+                          ? effectiveFNumA.toFixed(1)
+                          : Math.round(effectiveFNumA)
+                        : "unavailable"}
+                    </span>
+                    <span>
+                      B working f/
+                      {Number.isFinite(effectiveFNumB)
+                        ? effectiveFNumB < 10
+                          ? effectiveFNumB.toFixed(1)
+                          : Math.round(effectiveFNumB)
+                        : "unavailable"}
+                    </span>
                   </div>
                 )}
               <button
@@ -415,7 +429,7 @@ export default function SharedSlidersBar({
                 }}
               >
                 <span style={{ opacity: showEffectiveAperture ? 1 : 0.5 }}>
-                  {showEffectiveAperture ? "\u2611" : "\u2610"} Show effective aperture
+                  {showEffectiveAperture ? "\u2611" : "\u2610"} Show working f-number (paraxial)
                 </span>
               </button>
             </>
