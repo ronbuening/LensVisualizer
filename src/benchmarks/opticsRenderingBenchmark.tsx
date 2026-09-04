@@ -471,9 +471,9 @@ function buildScenarioSnapshot(L: RuntimeLens, scenario: ScenarioConfig): Scenar
   const movementViewportExtent = computePerspectiveMovementViewportExtent({
     zPos,
     maxSemiDiameterMm: L.maxSD,
-    rayLeadMm: L.rayLead,
     imagePlaneZ: IMG_MM,
     config: L.perspectiveControl,
+    movement,
   });
   const coordinateZExtent = movementViewportExtent
     ? {

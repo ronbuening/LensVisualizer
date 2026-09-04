@@ -21,6 +21,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-09-03",
     type: "fix",
+    summary: "Matched centered tilt-shift diagram scale to ordinary lenses",
+  },
+  {
+    date: "2026-09-03",
+    type: "fix",
     summary: "Corrected the Fujifilm GF30 tilt pivot from patent mechanism guidance",
   },
   {

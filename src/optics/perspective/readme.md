@@ -51,6 +51,7 @@ flowchart LR
   n_src_optics_perspective_src_optics_perspective_fieldGeometry_ts --> n_external_src_optics_layout_ts
   n_src_optics_perspective_src_optics_perspective_pose_ts --> n_external_src_optics_lensMovement_ts
   n_src_optics_perspective_src_optics_perspective_trace_ts --> n_external_src_optics_lensMovement_ts
+  n_src_optics_perspective_src_optics_perspective_viewport_ts --> n_external_src_optics_lensMovement_ts
   n_src_optics_perspective_src_optics_perspective_fieldSampling_ts --> n_external_src_optics_math
   n_src_optics_perspective_src_optics_perspective_pose_ts --> n_external_src_optics_math
   n_src_optics_perspective_src_optics_perspective_pupilBundle_ts --> n_external_src_optics_math
@@ -69,7 +70,6 @@ flowchart LR
   n_src_optics_perspective_src_optics_perspective_trace_ts --> n_external_src_optics_types_ts
   n_src_optics_perspective_src_optics_perspective_chiefRay_ts --> n_external_src_types
   n_src_optics_perspective_src_optics_perspective_diagramFan_ts --> n_external_src_types
-  n_src_optics_perspective_src_optics_perspective_diagramTrace_ts --> n_external_src_types
   n_src_optics_perspective_truncated["additional relationships omitted"]
 ```
 
@@ -77,7 +77,7 @@ flowchart LR
 
 - Direct source files: 14
 - Direct subfolders: 1
-- Main outbound areas: same folder (47), src/optics/math (13), src/optics/types.ts (12), src/types (7), src/optics/trace (5), src/optics/field (2), src/optics/lensMovement.ts (2), src/optics/chromatic, +3 more
+- Main outbound areas: same folder (47), src/optics/math (13), src/optics/types.ts (12), src/types (7), src/optics/trace (5), src/optics/lensMovement.ts (3), src/optics/field (2), src/optics/chromatic, +3 more
 - External consumers: src/benchmarks, src/components/display, src/components/hooks, src/components/layout, src/optics/analysis, src/optics/lensMovement.ts, src/optics/perspective
 
 ## Subfolders
@@ -103,4 +103,4 @@ flowchart LR
 | `sensorBasis.ts` | Sensor Basis helper module | src/optics/math, src/optics/types.ts | same folder (3) | SensorBasis, SensorBasisError, createSensorBasis |
 | `sensorTarget.ts` | Sensor Target helper module | same folder (3), src/optics/math (2), src/optics/types.ts | same folder (2) | PerspectiveSensorLockSolveResult, SensorChiefSolve, solveChiefToSensorPoint |
 | `trace.ts` | Trace helper module | src/optics/trace (5), src/optics/math (3), same folder (2), src/optics/chromatic, src/optics/lensMovement.ts, +2 more | same folder (17), src/optics/analysis (3) | CreatePerspectiveTraceContextParams, PerspectiveTraceOptions, PerspectiveTraceResult, PerspectiveTraceContext, PerspectiveTraceUnsupportedError, createPerspectiveTraceContext, tracePerspectiveRay, tracePerspectiveMeridional, +1 more |
-| `viewport.ts` | Viewport helper module | same folder, src/types | same folder | PerspectiveMovementViewportExtent, PerspectiveMovementViewportParams, computePerspectiveMovementViewportExtent |
+| `viewport.ts` | Viewport helper module | same folder, src/optics/lensMovement.ts, src/types | same folder | PerspectiveMovementViewportExtent, PerspectiveMovementViewportParams, computePerspectiveMovementViewportExtent |

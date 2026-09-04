@@ -44,6 +44,9 @@ Key responsibilities:
 - Builds one `PerspectiveTraceContext` for supported perspective-control lenses from the camera-anchored layout,
   clamped movement, fixed sensor, and authored tilt pivot. The same context drives the diagram rays and analysis drawer
   so a shift- or tilt-only change invalidates both together.
+- Keeps centered perspective-control lenses at the ordinary lens scale. Active movement expands the coordinate bounds
+  only for the currently posed glass envelope, reducing scale as needed to prevent clipping without reserving every
+  authored movement extreme while the lens is centered.
 - Supports folded mirror runtime lenses by consuming `L.imagePlane`, `L.isFoldedOptics`, generalized ray endpoints, and
   obstruction-aware ray sampling instead of assuming the final surface's right-hand BFD is the only imaging plane.
 - Passes memoized field geometry into analysis drawer tabs.

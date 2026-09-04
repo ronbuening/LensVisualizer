@@ -308,6 +308,7 @@ describe("useLensComputation", () => {
     expect(context.pose.tiltPivot).toEqual(moved.L!.perspectiveControl!.tiltPivot);
     expect(Object.isFrozen(context.pose.tiltPivot)).toBe(true);
     expect(moved.movementTransform.point(localPoint[2], localPoint[1])).toEqual([cameraPoint[2], cameraPoint[1]]);
-    expect(moved.effectiveSC).toBeCloseTo(centered.effectiveSC, 12);
+    expect(centered.effectiveSC).toBeCloseTo(centered.L!.SC, 12);
+    expect(moved.effectiveSC).toBeLessThanOrEqual(centered.effectiveSC);
   });
 });

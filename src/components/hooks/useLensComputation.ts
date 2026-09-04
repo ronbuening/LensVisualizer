@@ -183,12 +183,12 @@ export default function useLensComputation({
         ? computePerspectiveMovementViewportExtent({
             zPos,
             maxSemiDiameterMm: L.maxSD,
-            rayLeadMm: L.rayLead,
             imagePlaneZ: IMG_MM,
             config: L.perspectiveControl,
+            movement,
           })
         : null,
-    [L, zPos, IMG_MM],
+    [L, zPos, IMG_MM, movement],
   );
 
   const coordinateZExtent = useMemo(() => {
