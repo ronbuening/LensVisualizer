@@ -44,9 +44,8 @@ export interface ScalarWavefrontOptions {
   azimuthalSamples?: number;
 }
 
-export interface ScalarPsf {
+export interface PsfGrid {
   status: "ok" | "unavailable";
-  wavelengthNm: number;
   size: number;
   pixelPitchMm: number;
   /** Row-major intensity relative to the same pupil with zero OPD at the reference point. */
@@ -56,4 +55,46 @@ export interface ScalarPsf {
   /** Sampled integral of the relative intensity. Not a claim that all diffracted energy was captured. */
   windowIntegralMm2: number;
   centerStrehl: number | null;
+}
+
+export interface ScalarPsf extends PsfGrid {
+  wavelengthNm: number;
+}
+
+export interface MtfSample {
+  frequencyPerMm: number;
+  horizontal: number;
+  vertical: number;
+}
+
+export interface SpectralWeight {
+  channel: ChromaticChannel;
+  weight: number;
+}
+
+export interface ImageQualityOptions {
+  stopSemiDiameterMm: number;
+  spectrum: readonly SpectralWeight[];
+  throughputModel?: ThroughputModel;
+  objectDistanceMm?: number;
+  radialStrata?: number;
+  azimuthalSamples?: number;
+  /** Odd base image dimension; refinement doubles window and then doubles sampling density. */
+  imageSize?: number;
+  pixelPitchMm?: number;
+  movementActive?: boolean;
+}
+
+export interface ImageQualityResult {
+  status: "converged" | "undersampled" | "unavailable" | "unsupported";
+  reason: string;
+  psf: PsfGrid | null;
+  mtf: MtfSample[];
+  spectrum: { channel: ChromaticChannel; wavelengthNm: number; weight: number; rmsOpdMm: number | null }[];
+  convergence: {
+    pupilDifference: number;
+    windowDifference: number;
+    imageSamplingDifference: number;
+    maxOpdStepWaves: number;
+  } | null;
 }

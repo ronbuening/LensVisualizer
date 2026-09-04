@@ -20,6 +20,7 @@ import themes from "../../../../../src/utils/theme/themes.js";
 import { apertureAt } from "../../../optics/testLensFixtures.js";
 
 const EXPECTED_TAB_CONTENT = {
+  imageQuality: ["not available while tilt or shift is active"],
   summary: ["Current Perspective Pose", "First Order — Intrinsic / Lens-local"],
   aberrations: ["Intrinsic Lens-Axis Spherical Aberration (Classical)", "Fixed-Sensor Field Focus &amp; Astigmatism"],
   chromatic: ["Intrinsic Lens-Axis LoCA (Classical)", "Fixed-Sensor Chromatic Focus, TCA &amp; Ray Fans"],
@@ -84,9 +85,10 @@ describe("AnalysisDrawerContent with a moved perspective-control lens", () => {
     for (const tab of ANALYSIS_TABS) {
       const html = renderToStaticMarkup(<AnalysisDrawerContent {...sharedProps} activeTab={tab.id} />);
 
-      expect(html, `${tab.id} should not fall back to the obsolete centered-analysis warning`).not.toContain(
-        "centered-lens computation is suppressed",
-      );
+      if (tab.id !== "imageQuality")
+        expect(html, `${tab.id} should not fall back to the obsolete centered-analysis warning`).not.toContain(
+          "centered-lens computation is suppressed",
+        );
       for (const expected of EXPECTED_TAB_CONTENT[tab.id]) {
         expect(html, `${tab.id} should render ${expected}`).toContain(expected);
       }

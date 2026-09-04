@@ -4,6 +4,7 @@ import type { PerspectiveTraceContext } from "../perspective/trace.js";
 
 /** Granular analysis families that can migrate to moved optics independently. */
 export type AnalysisSectionId =
+  | "image-quality"
   | "summary"
   | "spherical-aberration"
   | "field-curvature"

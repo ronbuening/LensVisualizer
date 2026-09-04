@@ -12,7 +12,7 @@ flowchart LR
     n_src_components_display_analysis_src_components_display_analysis_aberrations["aberrations/"]
     n_src_components_display_analysis_src_components_display_analysis_charts["charts/"]
     n_src_components_display_analysis_src_components_display_analysis_perspective["perspective/"]
-    n_src_components_display_analysis_React_components["React components (26)"]
+    n_src_components_display_analysis_React_components["React components (27)"]
     n_src_components_display_analysis_TypeScript_modules["TypeScript modules (3)"]
   end
   n_external_src_types["src/types"]
@@ -26,15 +26,15 @@ flowchart LR
   n_external_src_optics_distortionAnalysis_ts["src/optics/distortionAnalysis.ts"]
   n_external_src_optics_pupilAberration_ts["src/optics/pupilAberration.ts"]
   n_external_src_optics_vignetteAnalysis_ts["src/optics/vignetteAnalysis.ts"]
-  n_src_components_display_analysis_React_components --> |37| n_external_src_types
+  n_src_components_display_analysis_React_components --> |40| n_external_src_types
   n_src_components_display_analysis_React_components --> |16| n_src_components_display_analysis_src_components_display_analysis_charts
   n_src_components_display_analysis_React_components --> |15| n_external_src_optics_compat_ts
-  n_src_components_display_analysis_React_components --> |12| n_external_pkg_react
+  n_src_components_display_analysis_React_components --> |13| n_external_pkg_react
   n_src_components_display_analysis_React_components --> |11| n_external_src_optics_aberrationAnalysis_ts
   n_src_components_display_analysis_React_components --> |11| n_src_components_display_analysis_TypeScript_modules
-  n_src_components_display_analysis_React_components --> |9| n_external_src_optics_optics_ts
+  n_src_components_display_analysis_React_components --> |10| n_external_src_optics_optics_ts
+  n_src_components_display_analysis_React_components --> |9| n_external_src_optics_types_ts
   n_src_components_display_analysis_React_components --> |9| n_src_components_display_analysis_src_components_display_analysis_aberrations
-  n_src_components_display_analysis_React_components --> |8| n_external_src_optics_types_ts
   n_src_components_display_analysis_React_components --> |7| n_src_components_display_analysis_src_components_display_analysis_perspective
   n_src_components_display_analysis_TypeScript_modules --> |3| n_external_src_optics_compat_ts
   n_src_components_display_analysis_TypeScript_modules --> |3| n_external_src_types
@@ -51,9 +51,9 @@ flowchart LR
 
 ## Directory Overview
 
-- Direct source files: 29
+- Direct source files: 30
 - Direct subfolders: 3
-- Main outbound areas: src/components/display (63), src/types (40), src/optics/compat.ts (18), package:react (14), src/optics/aberrationAnalysis.ts (11), src/optics/types.ts (10), src/optics/optics.ts (9), src/utils/perfProbe.ts (4), +4 more
+- Main outbound areas: src/components/display (63), src/types (43), src/optics/compat.ts (18), package:react (15), src/optics/aberrationAnalysis.ts (11), src/optics/types.ts (11), src/optics/optics.ts (10), src/utils/perfProbe.ts (4), +4 more
 - External consumers: src/benchmarks, src/components/diagram, src/components/display, src/components/layout
 
 ## Subfolders
@@ -85,6 +85,7 @@ flowchart LR
 | `FieldCurvatureMeanPlot.tsx` | React component module | src/components/display, src/optics/aberrationAnalysis.ts, src/types | none | default, FieldCurvatureMeanPlot |
 | `FieldCurvaturePlot.tsx` | React component module | src/components/display, src/optics/aberrationAnalysis.ts, src/types | src/components/display (2) | default, FieldCurvaturePlot |
 | `FocusBreathingTab.tsx` | React component module | src/types (2), package:react, src/optics/optics.ts | src/components/layout | default, FocusBreathingTab |
+| `ImageQualityTab.tsx` | React component module | src/types (3), package:react, src/optics/optics.ts, src/optics/types.ts | src/components/layout | ImageQualityOutput, default, ImageQualityTab |
 | `LateralColorChart.tsx` | React component module | src/components/display (4), src/types (2), src/optics/compat.ts | src/components/display | default, LateralColorChart |
 | `LongitudinalChromaticFocusChart.tsx` | React component module | src/components/display (4), src/optics/compat.ts, src/types | src/components/display | default, LongitudinalChromaticFocusChart |
 | `MeridionalComaPlot.tsx` | React component module | src/components/display, src/optics/aberrationAnalysis.ts, src/types | src/components/display | default, MeridionalComaPlot |

@@ -12,6 +12,7 @@ flowchart LR
     n_src_optics_math_src_optics_math_diffractivePhase_ts["diffractivePhase.ts"]
     n_src_optics_math_src_optics_math_huygens_ts["huygens.ts"]
     n_src_optics_math_src_optics_math_intersection_ts["intersection.ts"]
+    n_src_optics_math_src_optics_math_mtf_ts["mtf.ts"]
     n_src_optics_math_src_optics_math_numerics_ts["numerics.ts"]
     n_src_optics_math_src_optics_math_paraxial_ts["paraxial.ts"]
     n_src_optics_math_src_optics_math_plane_ts["plane.ts"]
@@ -41,6 +42,7 @@ flowchart LR
   n_src_optics_math_src_optics_math_vector_ts --> n_external_src_optics_types_ts
   n_src_optics_math_src_optics_math_diffractivePhase_ts --> n_external_src_types
   n_src_optics_math_src_optics_math_huygens_ts --> n_external_src_types
+  n_src_optics_math_src_optics_math_mtf_ts --> n_external_src_types
   n_src_optics_math_src_optics_math_paraxial_ts --> n_external_src_types
   n_src_optics_math_src_optics_math_spectralSampling_ts --> n_external_src_types
   n_src_optics_math_src_optics_math_surfaceProfile_ts --> n_external_src_types
@@ -54,9 +56,9 @@ flowchart LR
 
 ## Directory Overview
 
-- Direct source files: 11
+- Direct source files: 12
 - Direct subfolders: 0
-- Main outbound areas: src/optics/types.ts (7), same folder (6), src/types (5), src/optics/constants.ts (4), src/optics/internal, src/optics/spectralLines.ts
+- Main outbound areas: src/optics/types.ts (7), same folder (6), src/types (6), src/optics/constants.ts (4), src/optics/internal, src/optics/spectralLines.ts
 - External consumers: src/components/display, src/optics/analysis, src/optics/field, src/optics/first-order, src/optics/internal, src/optics/optics.ts, src/optics/perspective, src/optics/prescription, +5 more
 
 ## Files
@@ -64,8 +66,9 @@ flowchart LR
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
 | `diffractivePhase.ts` | Diffractive Phase helper module | same folder, src/optics/spectralLines.ts, src/optics/types.ts, src/types | src/optics/trace (3), same folder, src/optics/internal, src/optics/prescription, src/optics/runtimeLens.ts | DEFAULT_PHASE_WAVELENGTH_NM, compileDiffractivePhase, radialPhaseOpticalPath, radialPhaseDerivative, diffractiveWavelengthScale, radialPhaseKick, diffractiveRefractedDirection, diffractiveParaxialPower, +1 more |
-| `huygens.ts` | Huygens helper module | src/optics/types.ts, src/types | src/optics/optics.ts | huygensIntensity, computeHuygensPsf |
+| `huygens.ts` | Huygens helper module | src/optics/types.ts, src/types | src/optics/analysis, src/optics/optics.ts | huygensIntensity, computeHuygensPsf |
 | `intersection.ts` | Intersection helper module | same folder (2), src/optics/constants.ts, src/optics/types.ts | src/optics/trace (2) | SurfaceIntersectionFailureReason, SurfaceIntersectionOptions, SurfaceIntersectionSuccess, SurfaceIntersectionFailure, SurfaceIntersectionResult, intersectSurfaceProfile |
+| `mtf.ts` | Mtf helper module | src/types | src/optics/analysis, src/optics/optics.ts | computeMtfFromPsf |
 | `numerics.ts` | Numerics helper module | none | src/optics/perspective (3), same folder, src/optics/first-order, src/optics/prescription, src/optics/state | isFiniteNumber, clamp, clamp01, lerp, nearlyEqual, normalizeControlT, formatCacheNumber |
 | `paraxial.ts` | Paraxial helper module | same folder, src/optics/constants.ts, src/optics/types.ts, src/types | src/optics/first-order (4), src/optics/field, src/optics/internal, src/optics/perspective | ParaxialSurface, ParaxialState, ParaxialTraceOptions, ParaxialTraceResult, transferParaxialRay2, interactParaxialSurface2, traceParaxialSurfaces2 |
 | `plane.ts` | Plane helper module | same folder, src/optics/types.ts | src/optics/perspective (3), src/optics/trace (2) | RayPlaneIntersection, RayPlaneIntersectionOptions, intersectRayPlane |

@@ -24,6 +24,7 @@ export const ANALYSIS_TAB_IDS = [
   "breathing",
   "vignetting",
   "pupils",
+  "imageQuality",
 ] as const;
 
 export type OffAxisMode = (typeof OFF_AXIS_MODES)[number];

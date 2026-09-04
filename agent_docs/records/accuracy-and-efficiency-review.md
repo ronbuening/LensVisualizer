@@ -13,7 +13,7 @@ commit between steps. A step is not complete merely because its implementation h
 | 4 | Two-dimensional pupil-area and sensor-irradiance integration with explicit convergence status | Complete |
 | 5 | Source-backed spectral throughput, encounter-aware absorption and surface losses | Complete |
 | 6 | Opt-in optical path, wavefront, scalar Huygens PSF; initially centered on-axis sequential refraction | Complete |
-| 7 | MTF, explicit spectral weights, Image Quality tab and unavailable states | Pending |
+| 7 | MTF, explicit spectral weights, Image Quality tab and unavailable states | Complete |
 | 8 | Reuse prepared states and first-order results, preserving bounded cache identity | Pending |
 | 9 | Cancellable worker analysis with stale-result rejection and synchronous reference path | Pending |
 | 10 | Shared zoom interpolation and intersection kernel, preserving traversal semantics | Pending |
@@ -164,3 +164,22 @@ retention policy. No production optical behavior changed in step 1.
 - Typecheck, format, lint, full normal tests, full coverage and build passed: 302 files / 2800 tests. Coverage statements
   92.07%, branches 83.47%, functions 93.80%, lines 94.76%. Production SSR prerendered all 1243 routes.
 - Steps 7–11 remain pending; the PSF/MTF UI, performance optimization and worker path are not yet implemented.
+
+### Step 7 — spectral PSF, MTF and Image Quality controls
+
+- Added incoherent spectral intensity sums on a common physical sensor grid with explicit C/d/F/g incident-intensity
+  weights and preserved wavelength/throughput scale. No illuminant or sensor-response spectrum is inferred.
+- Added horizontal/vertical Fourier slices in cycles/mm. MTF is published only after pupil refinement, expanded-window
+  energy/MTF and sensor-grid energy/MTF differences are at most 3%, with radial phase steps below one quarter wave.
+  Agreement is a numerical estimate, not a rigorous error bound. Unconverged PSFs remain explicitly provisional.
+- Registered the Image Quality tab, source-distance and transmission controls, sampling controls, SVG PSF/MTF output,
+  and movement/folded availability guards. Changing state/settings suppresses previous results; execution is explicit.
+  The temporary synchronous UI runner is replaced by the cancellable worker in step 9.
+- Independent tests cover Gaussian and circular-pupil MTF, DC/translation invariance, physical frequency units,
+  spectral intensity scaling, a fully converged refractive fixture and deliberate undersampling. Component tests cover
+  controls, unavailable states, stale-result suppression, unmount cancellation and exhaustive tab routing.
+- Live localhost smoke check verified the Nikon AI 50 mm tab, URL registration, explicit source controls and sourced
+  transmission returning unavailable instead of silently assuming coatings. The converged analytic pipeline currently
+  takes approximately 14.3 seconds in an isolated node probe; optimize and measure in step 8.
+- Typecheck, format, lint, full tests, coverage and production build passed: 304 files / 2812 tests. Coverage statements
+  92.14%, branches 83.58%, functions 93.86%, lines 94.83%. SSR prerendered all 1243 routes. Steps 8–11 remain pending.

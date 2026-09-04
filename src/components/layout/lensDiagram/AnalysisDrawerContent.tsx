@@ -30,9 +30,16 @@ interface AnalysisDrawerContentProps {
   onAberrationsExpandedChange: (expanded: boolean) => void;
 }
 
-const FOLDED_OPTICS_UNSUPPORTED_TABS = new Set<AnalysisTabId>(["chromatic", "coma", "distortion", "vignetting"]);
+const FOLDED_OPTICS_UNSUPPORTED_TABS = new Set<AnalysisTabId>([
+  "chromatic",
+  "coma",
+  "distortion",
+  "vignetting",
+  "imageQuality",
+]);
 
 const ANALYSIS_TAB_SECTIONS: Record<AnalysisTabId, readonly AnalysisSectionId[]> = {
+  imageQuality: ["image-quality"],
   summary: ["summary"],
   aberrations: ["spherical-aberration", "field-curvature"],
   chromatic: ["chromatic"],

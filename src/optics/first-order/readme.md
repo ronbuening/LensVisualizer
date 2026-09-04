@@ -61,7 +61,7 @@ flowchart LR
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
-| `aperture.ts` | Aperture helper module | src/optics/math (2), src/types (2), same folder, src/optics/layout.ts, src/optics/types.ts | same folder, src/optics/analysis, src/optics/optics.ts | ApertureMetrics, resolveApertureStop, apertureMetricsForState |
+| `aperture.ts` | Aperture helper module | src/optics/math (2), src/types (2), same folder, src/optics/layout.ts, src/optics/types.ts | src/optics/analysis (2), same folder, src/optics/optics.ts | ApertureMetrics, resolveApertureStop, apertureMetricsForState |
 | `cardinals.ts` | Cardinals helper module | same folder, src/optics/math, src/optics/prescription, src/optics/state, src/optics/trace, +2 more | same folder, src/optics/analysis, src/optics/compat.ts | CardinalPoint2, CardinalDistance2, CardinalElements2, computeCardinalElements2, buildCardinalElementsFromMatrix2, computeCardinalElementsAtState2 |
 | `fNumber.ts` | F Number helper module | same folder, src/optics/prescription, src/optics/state, src/types | src/optics/compat.ts, src/optics/layout.ts | effectiveFNumber2 |
 | `focusBreathing.ts` | Focus Breathing helper module | same folder, src/optics/prescription, src/optics/state, src/optics/types.ts, src/types | same folder, src/optics/analysis, src/optics/compat.ts, src/optics/layout.ts, src/optics/perspective | calculatedFocalLengthForState, eflAtFocus2 |

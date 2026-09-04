@@ -10,4 +10,5 @@ export const ANALYSIS_TABS = [
   { id: "breathing", label: "BREATHING" },
   { id: "vignetting", label: "VIGNETTING" },
   { id: "pupils", label: "PUPILS" },
+  { id: "imageQuality", label: "IMAGE QUALITY" },
 ] as const satisfies readonly AnalysisTab[];

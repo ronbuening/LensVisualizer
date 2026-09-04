@@ -101,3 +101,6 @@ export { computeSensorIrradiance } from "./analysis/sensorIrradiance.js";
 export { opticalPathForTrace } from "./trace/opticalPath.js";
 export { computeScalarWavefront } from "./analysis/wavefront.js";
 export { computeHuygensPsf } from "./math/huygens.js";
+
+export { computeImageQuality } from "./analysis/imageQuality.js";
+export { computeMtfFromPsf } from "./math/mtf.js";

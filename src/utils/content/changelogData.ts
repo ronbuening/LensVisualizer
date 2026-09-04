@@ -20,6 +20,12 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-09-04",
+    type: "feature",
+    summary:
+      "Added axial scalar PSF and convergence-checked MTF with explicit spectral weights and transmission models",
+  },
+  {
+    date: "2026-09-04",
     type: "fix",
     summary: "Added area-weighted vignetting and ideal sensor illumination with explicit sampling and model limits",
   },

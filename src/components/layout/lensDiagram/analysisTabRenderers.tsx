@@ -1,3 +1,4 @@
+import ImageQualityTab from "../../display/analysis/ImageQualityTab.js";
 import type { ReactNode } from "react";
 import AberrationsPanel from "../../display/analysis/AberrationsPanel.js";
 import BokehTab from "../../display/analysis/BokehTab.js";
@@ -39,6 +40,14 @@ export interface AnalysisTabRendererContext {
 type AnalysisTabRenderer = (context: AnalysisTabRendererContext) => ReactNode;
 
 export const ANALYSIS_TAB_RENDERERS: Record<AnalysisTabId, AnalysisTabRenderer> = {
+  imageQuality: ({ t, preparedState, analysisContext, inputs }) => (
+    <ImageQualityTab
+      t={t}
+      preparedState={preparedState}
+      stopSemiDiameterMm={inputs.currentPhysStopSD}
+      movementActive={analysisContext?.movementActive}
+    />
+  ),
   summary: ({ L, t, preparedState, analysisContext, inputs }) => (
     <OpticalSummaryTab
       L={L}

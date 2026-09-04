@@ -13,6 +13,7 @@ import type { AnalysisComputationContext } from "../../../../../src/optics/compa
 
 const {
   mockAberrationsPanel,
+  mockImageQualityTab,
   mockBokehTab,
   mockChromaticTab,
   mockComaTab,
@@ -25,6 +26,7 @@ const {
   mockVignettingTab,
 } = vi.hoisted(() => ({
   mockAberrationsPanel: vi.fn(),
+  mockImageQualityTab: vi.fn(),
   mockBokehTab: vi.fn(),
   mockChromaticTab: vi.fn(),
   mockComaTab: vi.fn(),
@@ -55,6 +57,13 @@ vi.mock("../../../../../src/components/display/analysis/AberrationsPanel.js", ()
   default: (props: Record<string, unknown>) => {
     mockAberrationsPanel(props);
     return <div>{`Aberrations:${String(props.expanded)}`}</div>;
+  },
+}));
+
+vi.mock("../../../../../src/components/display/analysis/ImageQualityTab.js", () => ({
+  default: (props: Record<string, unknown>) => {
+    mockImageQualityTab(props);
+    return <div>Image Quality</div>;
   },
 }));
 
@@ -339,6 +348,7 @@ describe("AnalysisDrawerContent", () => {
       AnalysisTabId,
       { mock: ReturnType<typeof vi.fn>; text: string; props: Record<string, unknown> }
     > = {
+      imageQuality: { mock: mockImageQualityTab, text: "Image Quality", props: { preparedState: mockPreparedState } },
       summary: { mock: mockOpticalSummaryTab, text: "Summary", props: { preparedState: mockPreparedState } },
       aberrations: {
         mock: mockAberrationsPanel,
