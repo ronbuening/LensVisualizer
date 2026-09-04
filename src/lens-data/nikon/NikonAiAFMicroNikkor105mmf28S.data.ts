@@ -73,6 +73,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
+      diagramLabel: "L1",
       label: "Element 1",
       type: "Positive Meniscus",
       nd: 1.6935,
@@ -86,6 +87,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L2",
+      diagramLabel: "L2",
       label: "Element 2",
       type: "Positive Meniscus",
       nd: 1.717,
@@ -99,6 +101,7 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L3",
+      diagramLabel: "L3",
       label: "Element 3",
       type: "Negative Meniscus",
       nd: 1.6727,
@@ -112,6 +115,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L4",
+      diagramLabel: "L4",
       label: "Element 4",
       type: "Plano-Concave Negative",
       nd: 1.62588,
@@ -126,6 +130,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L5",
+      diagramLabel: "L5",
       label: "Element 5",
       type: "Plano-Convex Positive",
       nd: 1.6935,
@@ -140,6 +145,7 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L6",
+      diagramLabel: "L6",
       label: "Element 6",
       type: "Biconvex Positive",
       nd: 1.6935,
@@ -153,6 +159,7 @@ const LENS_DATA = {
     {
       id: 7,
       name: "L7",
+      diagramLabel: "L7",
       label: "Element 7",
       type: "Positive Meniscus",
       nd: 1.80458,
@@ -166,26 +173,28 @@ const LENS_DATA = {
     {
       id: 8,
       name: "L8",
+      diagramLabel: "L8",
       label: "Element 8",
       type: "Biconcave Negative",
       nd: 1.80454,
       vd: 39.6,
       indexReference: "d",
       fl: -30.4224,
-      glass: "805396 class (supplier-neutral)",
+      glass: "805396 — NBFD3 (NIKON) coordinate-compatible spectral proxy; production supplier unresolved",
       apd: false,
       role: "Strong negative element completing the floating G3F subgroup.",
     },
     {
       id: 9,
       name: "L9",
+      diagramLabel: "L9",
       label: "Element 9",
       type: "Biconvex Positive",
       nd: 1.5168,
       vd: 64.1,
       indexReference: "d",
       fl: 80.1283,
-      glass: "517641 class (supplier-neutral)",
+      glass: "517641 — J-BK7A (HIKARI) coordinate-compatible spectral proxy; production supplier unresolved",
       apd: false,
       role: "Fixed positive rear element G3R ahead of the constant back focus.",
     },
@@ -232,9 +241,10 @@ const LENS_DATA = {
   ],
 
   groups: [
-    { text: "G1", fromSurface: "1", toSurface: "6" },
-    { text: "G2", fromSurface: "7", toSurface: "11" },
-    { text: "G3", fromSurface: "12", toSurface: "17" },
+    { text: "G1 (+) / FOCUS → OBJ", fromSurface: "1", toSurface: "6" },
+    { text: "G2 (+) / FOCUS → OBJ", fromSurface: "7", toSurface: "11" },
+    { text: "G3F (−) / REVERSING FLOAT", fromSurface: "12", toSurface: "15" },
+    { text: "G3R (+) / FIXED", fromSurface: "16", toSurface: "17" },
   ],
 
   doublets: [{ text: "D1", fromSurface: "7", toSurface: "9" }],

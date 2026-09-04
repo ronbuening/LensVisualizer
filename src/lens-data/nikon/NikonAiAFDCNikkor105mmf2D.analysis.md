@@ -60,7 +60,7 @@ The internal L2–L3 geometry remains fixed in all four patent states. Defocus c
 
 ### L3 — Negative Meniscus
 
-`nd = 1.688930, νd = 31.08. Glass: 689311 — supplier-neutral optical glass code. f = −42.522864 mm.`
+`nd = 1.688930, νd = 31.08. Glass: 689311 — S-TIM28 (OHARA) coordinate-compatible spectral proxy; production supplier unresolved. f = −42.522864 mm.`
 
 L3 is the strong negative member that makes the combined G2 group negative despite L2's positive standalone power. Its position after L2 and before the stop gives the moving G2 assembly the leverage required by the patent's spherical-aberration and coma control scheme.
 
@@ -76,7 +76,7 @@ GR is the moving focusing group described by the patent. L4 therefore participat
 
 ### L5 — Positive Meniscus
 
-`nd = 1.766840, νd = 46.80. Glass: 767468 — supplier-neutral optical glass code. f = +87.173975 mm.`
+`nd = 1.766840, νd = 46.80. Glass: 767468 — J-LASFH2 (HIKARI) coordinate-compatible spectral proxy; production supplier unresolved. f = +87.173975 mm.`
 
 L5 is the positive middle member of GR. Together with L6 it overcomes L4's negative standalone power and gives the moving rear group its positive net power. The element is air separated from both neighbors, so its listed focal length is an isolated single-element result rather than a cemented-group quantity.
 
@@ -98,9 +98,9 @@ The patent publishes only d-line refractive index and Abbe number. It does not i
 |---|---|---:|---:|---:|---|
 | L1 | 670575 — J-LAK02 spectral proxy; supplier unresolved | 1.670249 | 57.53 | +79.449492 | G1 |
 | L2 | 694537 — H-LaK6A spectral proxy; supplier unresolved | 1.693500 | 53.72 | +120.613524 | G2, positive member |
-| L3 | 689311 — supplier-neutral optical glass code | 1.688930 | 31.08 | −42.522864 | G2, negative member |
+| L3 | 689311 — S-TIM28 spectral proxy; supplier unresolved | 1.688930 | 31.08 | −42.522864 | G2, negative member |
 | L4 | 717295 — supplier-neutral optical glass code | 1.717360 | 29.46 | −62.157172 | GR, negative member |
-| L5 | 767468 — supplier-neutral optical glass code | 1.766840 | 46.80 | +87.173975 | GR, positive member |
+| L5 | 767468 — J-LASFH2 spectral proxy; supplier unresolved | 1.766840 | 46.80 | +87.173975 | GR, positive member |
 | L6 | 797454 — J-LASF017 spectral proxy; supplier unresolved | 1.796681 | 45.37 | +83.162594 | GR, positive member |
 
 The dispersion spread is visible in the published `nd`/`νd` pairs, but Abbe data alone is not sufficient to establish anomalous partial dispersion, apochromatic correction, or exact secondary-spectrum behavior. No APO or anomalous-dispersion claim is therefore made for this prescription.

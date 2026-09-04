@@ -175,12 +175,12 @@ The data file intentionally keeps its patent coordinates and treats compatible c
 | Data annotation | nd | νd | Elements | Interpretation used in the model |
 |---|---:|---:|---|---|
 | 805255 flint class (catalog unresolved) | 1.80458 | 25.5 | L11, L24, L42b | High-index, high-dispersion flint class |
-| 498826 ED crown class (supplier unresolved) | 1.49782 | 82.6 | L12, L13, L41 | Very low-dispersion positive glass; production-correlated with Nikon's three ED elements |
-| 626356 flint class (F1 coordinate; supplier unresolved) | 1.62588 | 35.6 | L21 | Flint-class member of D2 |
-| 564608 crown class (N-SK11 coordinate; supplier unresolved) | 1.56384 | 60.8 | L22, L32 | Crown-class glass used in G2 and G3 |
+| 498826 — J-FKH1 spectral proxy; supplier unresolved | 1.49782 | 82.6 | L12, L13, L41 | Very low-dispersion positive glass; production-correlated with Nikon's three ED elements |
+| 626356 — F1 spectral proxy; supplier unresolved | 1.62588 | 35.6 | L21 | Flint-class member of D2 |
+| 564608 — N-SK11 spectral proxy; supplier unresolved | 1.56384 | 60.8 | L22, L32 | Crown-class glass used in G2 and G3 |
 | 517641 BK7-class crown (supplier unresolved) | 1.51680 | 64.1 | L23 | Low-index crown member of D3 |
-| 713540 lanthanum-crown class (supplier unresolved) | 1.71300 | 54.0 | L25 | Higher-index rear negative member of G2 |
-| 518603 barium-lanthanum crown class (BALK3 coordinate; supplier unresolved) | 1.51835 | 60.3 | L31 | Positive compensator singlet |
+| 713540 — J-LAK8 spectral proxy; supplier unresolved | 1.71300 | 54.0 | L25 | Higher-index rear negative member of G2 |
+| 518603 — BALK3 spectral proxy; supplier unresolved | 1.51835 | 60.3 | L31 | Positive compensator singlet |
 | 757317 — E-LAF11 spectral proxy; supplier unresolved | 1.75692 | 31.7 | L33 | Negative member of D4 |
 | 487702 crown class (FK5 coordinate; supplier unresolved) | 1.48749 | 70.2 | L42a | Low-index, low-dispersion positive member of D5 |
 | 744451 — J-LAF2 spectral proxy; supplier unresolved | 1.74400 | 45.1 | L43 | Strong post-stop negative meniscus |
@@ -188,7 +188,7 @@ The data file intentionally keeps its patent coordinates and treats compatible c
 
 The three 498826 elements are the most conspicuous chromatic signature in the prescription. Their νd = 82.6 is far above the other materials in the example, and the selected production correlation is independently supported by Nikon's specification of three ED elements. Two are placed in G1, where the focusing group carries large front-aperture rays, and one is placed in the fixed relay G4.
 
-The data file does not attach `nC`, `nF`, `ng`, or `dPgF` to any element. It also marks every element `apd: false`. Consequently, the analysis does not describe the lens as apochromatic and does not claim anomalous partial dispersion. Nikon's production literature may discuss ED glass and chromatic correction, but the patent prescription itself provides only d-line index and Abbe-number information.
+The data file does not attach `nC`, `nF`, `ng`, or `dPgF` to any element. L12, L13, and L41 carry `apd: "inferred"` solely to display the production-correlated three-ED placement; their J-FKH1 curves remain coordinate-compatible spectral proxies, not historical supplier assignments or evidence of anomalous partial dispersion. Consequently, the analysis does not describe the lens as apochromatic and makes no anomalous-partial-dispersion claim from the patent's d-line index and Abbe-number data alone.
 
 ## Focus Mechanism
 

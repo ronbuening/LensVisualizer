@@ -4,7 +4,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ╔══════════════════════════════════════════════════════════════════════════════╗
  * ║ LENS DATA — NIKON AI NIKKOR 50mm f/1.8 S                                 ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
- * ║ Data source: US 4,234,242 A, Example 3 (Souichi Nakamura / Nippon Kogaku).║
+ * ║ Data source: US 4,234,242 A, Example 3 (Soichi Nakamura / Nippon Kogaku). ║
  * ║ Production correlation: Nikon Tale 60, AI Nikkor 50mm f/1.8S.             ║
  * ║ 6 elements / 5 air-separated groups; all spherical.                       ║
  * ║                                                                            ║
@@ -60,7 +60,7 @@ const LENS_DATA = {
   lensMounts: ["nikon-f"],
   imageFormat: "135-full-frame",
   patentNumber: "US 4,234,242 A",
-  patentAuthors: ["Souichi Nakamura"],
+  patentAuthors: ["Soichi Nakamura"],
   patentAssignees: ["Nippon Kogaku K.K."],
   patentYear: 1980,
   elementCount: 6,
@@ -70,18 +70,20 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
+      diagramLabel: "L1",
       label: "Element 1",
       type: "Positive Meniscus",
       nd: 1.76682,
       vd: 46.81,
       fl: 65.74265756390082,
-      glass: "J-LASFH2-class (supplier unresolved)",
+      glass: "767468 — J-LASFH2 (HIKARI) coordinate-compatible spectral proxy; production supplier unresolved",
       apd: false,
       role: "Front positive collector of functional group G1.",
     },
     {
       id: 2,
       name: "L2",
+      diagramLabel: "L2",
       label: "Element 2",
       type: "Positive Meniscus",
       nd: 1.79713,
@@ -95,6 +97,7 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L3",
+      diagramLabel: "L3",
       label: "Element 3",
       type: "Negative Meniscus",
       nd: 1.71714,
@@ -107,6 +110,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L4a",
+      diagramLabel: "L4a",
       label: "Element 4a",
       type: "Negative Meniscus",
       nd: 1.64831,
@@ -120,12 +124,13 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L4b",
+      diagramLabel: "L4b",
       label: "Element 4b",
       type: "Positive Meniscus",
       nd: 1.76682,
       vd: 46.81,
       fl: 28.855021625894715,
-      glass: "J-LASFH2-class (supplier unresolved)",
+      glass: "767468 — J-LASFH2 (HIKARI) coordinate-compatible spectral proxy; production supplier unresolved",
       apd: false,
       role: "Positive member of the weak-net-positive rear cemented pair.",
       cemented: "L4",
@@ -133,6 +138,7 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L5",
+      diagramLabel: "L5",
       label: "Element 5",
       type: "Biconvex Positive",
       nd: 1.71313,
@@ -147,7 +153,7 @@ const LENS_DATA = {
   surfaces: [
     { label: "1", R: 48.984, d: 3.395, nd: 1.76682, elemId: 1, sd: 18.5 },
     { label: "2", R: 1676.3465, d: 0.095, nd: 1.0, elemId: 0, sd: 17.3 },
-    { label: "3", R: 19.388, d: 4.025, nd: 1.79713, elemId: 2, sd: 17.2 },
+    { label: "3", R: 19.388, d: 4.025, nd: 1.79713, elemId: 2, sd: 14.5 },
     { label: "4", R: 33.2895, d: 1.26, nd: 1.0, elemId: 0, sd: 14.5 },
     { label: "5", R: 67.4705, d: 0.97, nd: 1.71714, elemId: 3, sd: 11.5 },
     { label: "6", R: 15.627, d: 5.54975, nd: 1.0, elemId: 0, sd: 11.5 },
@@ -170,8 +176,8 @@ const LENS_DATA = {
   varLabels: [["11", "BF"]],
 
   groups: [
-    { text: "G1", fromSurface: "1", toSurface: "6" },
-    { text: "G2", fromSurface: "7", toSurface: "11" },
+    { text: "G1 (+) / UNIT FOCUS → OBJ", fromSurface: "1", toSurface: "6" },
+    { text: "G2 (+) / UNIT FOCUS → OBJ", fromSurface: "7", toSurface: "11" },
   ],
 
   doublets: [{ text: "L4", fromSurface: "7", toSurface: "9" }],

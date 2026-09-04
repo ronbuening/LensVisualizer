@@ -91,7 +91,7 @@ The patent publishes refractive-index and Abbe-number coordinates but does not i
 |---|---:|---:|---|
 | L1 | 1.77279 | 49.4 | 773494 — M-TAF1 spectral proxy; supplier unresolved |
 | L2 | 1.71300 | 53.9 | 713539 — lanthanum-crown coordinate class (supplier unresolved) |
-| L3 | 1.61293 | 36.9 | 613369 — flint coordinate class (supplier unresolved) |
+| L3 | 1.61293 | 36.9 | 613369 — F3 spectral proxy; supplier unresolved |
 | L4a | 1.69895 | 30.0 | 699300 — dense-flint coordinate class (supplier unresolved) |
 | L4b | 1.74443 | 49.4 | 744494 — M-NBF1 spectral proxy; supplier unresolved |
 | L5 | 1.79668 | 45.4 | 797454 — J-LASF017 spectral proxy; supplier unresolved |
@@ -142,7 +142,7 @@ The reconstructed production close state gives EFL 55.608783310 mm, 250.00000000
 
 Surface-by-surface Petzval computation using `φ/(n·n′)` gives a scaled sum of +0.003089347446 mm⁻¹, corresponding to a radius magnitude of 323.692954 mm. The sequential reduced-angle trace and independent ABCD matrix agree to numerical precision, and both defined focus states preserve unit matrix determinant.
 
-The semi-diameter model passes the applicable edge-thickness, actual spherical rim-slope, and shared-gap intrusion checks at infinity and reconstructed 1:2 focus. A separate exact spherical/Snell ray proxy traced 22 representative on- and off-axis rays through both states; the minimum sampled clearance to an authored aperture was 1.260892 mm at the stop. These values verify the current modeling apertures but remain authoring inferences because the patent does not tabulate clear diameters.
+The semi-diameter model passes the applicable edge-thickness, actual spherical rim-slope, and shared-gap intrusion checks at infinity and reconstructed 1:2 focus. The L3 and cemented-L4 rims were enlarged after a direct Fig. 1A comparison to better reproduce the patent silhouette without changing any prescription coordinate or introducing a new traced-ray clip. A separate exact spherical/Snell ray proxy traced 22 representative on- and off-axis rays through both states; the minimum sampled clearance to an authored aperture was 1.260892 mm at the stop. These values verify the current modeling apertures but remain authoring inferences because the patent does not tabulate clear diameters.
 
 One source contradiction is retained explicitly. Table 1 prints the rear functional-group focal length as `f2 = 115.797` in normalized units, while claim 8 prints `115.777` for the same example. Independent group-matrix calculation gives 115.798796 normalized, supporting Table 1; the claim value is therefore treated as a source error rather than silently propagated. The printed G1 focal length of 208.824 differs from the prescription-derived 208.807510 by an amount consistent with the three-decimal prescription rounding.
 

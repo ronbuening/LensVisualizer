@@ -68,6 +68,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
+      diagramLabel: "L1",
       label: "Element 1",
       type: "Biconvex Positive",
       nd: 1.77279,
@@ -80,6 +81,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L2",
+      diagramLabel: "L2",
       label: "Element 2",
       type: "Positive Meniscus",
       nd: 1.713,
@@ -92,18 +94,20 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L3",
+      diagramLabel: "L3",
       label: "Element 3",
       type: "Negative Meniscus",
       nd: 1.61293,
       vd: 36.9,
       fl: -32.135825,
-      glass: "613369 — flint coordinate class (supplier unresolved)",
+      glass: "613369 — F3 (SUMITA) coordinate-compatible spectral proxy; production supplier unresolved",
       apd: false,
       role: "Negative rear element of G1.",
     },
     {
       id: 4,
       name: "L4a",
+      diagramLabel: "L4a",
       label: "Element 4a",
       type: "Biconcave Negative",
       nd: 1.69895,
@@ -117,6 +121,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L4b",
+      diagramLabel: "L4b",
       label: "Element 4b",
       type: "Biconvex Positive",
       nd: 1.74443,
@@ -130,6 +135,7 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L5",
+      diagramLabel: "L5",
       label: "Element 5",
       type: "Biconvex Positive",
       nd: 1.79668,
@@ -148,11 +154,11 @@ const LENS_DATA = {
     { label: "2", R: -600.4999, d: 0.1001, nd: 1, elemId: 0, sd: 14.6 },
     { label: "3", R: 18.99975, d: 3.7499, nd: 1.713, elemId: 2, sd: 13.5 },
     { label: "4", R: 31.40995, d: 1.04995, nd: 1, elemId: 0, sd: 9.2 },
-    { label: "5", R: 89.9998, d: 1.04995, nd: 1.61293, elemId: 3, sd: 9.2 },
-    { label: "6", R: 16.0886, d: 4.11565, nd: 1, elemId: 0, sd: 9 },
+    { label: "5", R: 89.9998, d: 1.04995, nd: 1.61293, elemId: 3, sd: 11 },
+    { label: "6", R: 16.0886, d: 4.11565, nd: 1, elemId: 0, sd: 11 },
     { label: "STO", R: 1e15, d: 3.1999, nd: 1, elemId: 0, sd: 7.417014298 },
-    { label: "7", R: -22.30525, d: 1.04995, nd: 1.69895, elemId: 4, sd: 8.8 },
-    { label: "8", R: 300.00025, d: 8.0498, nd: 1.74443, elemId: 5, sd: 9.3 },
+    { label: "7", R: -22.30525, d: 1.04995, nd: 1.69895, elemId: 4, sd: 10.5 },
+    { label: "8", R: 300.00025, d: 8.0498, nd: 1.74443, elemId: 5, sd: 10.5 },
     { label: "9", R: -25.00025, d: 0.1001, nd: 1, elemId: 0, sd: 12.7 },
     { label: "10", R: 190.0459, d: 3.7499, nd: 1.79668, elemId: 6, sd: 12.8 },
     { label: "11", R: -123.8391, d: 42.456380475, nd: 1, elemId: 0, sd: 13.4 },
@@ -171,8 +177,8 @@ const LENS_DATA = {
   ],
 
   groups: [
-    { text: "G1", fromSurface: "1", toSurface: "6" },
-    { text: "G2", fromSurface: "7", toSurface: "11" },
+    { text: "G1 (+) / FOCUS → OBJ", fromSurface: "1", toSurface: "6" },
+    { text: "G2 (+) / FOCUS → OBJ", fromSurface: "7", toSurface: "11" },
   ],
   doublets: [{ text: "L4", fromSurface: "7", toSurface: "9" }],
 

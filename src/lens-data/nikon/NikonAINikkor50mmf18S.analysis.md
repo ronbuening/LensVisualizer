@@ -7,14 +7,14 @@
 **Priority:** 1978-02-03 (Japan 53-10525)<br>
 **Filed:** 1979-01-30<br>
 **Granted:** 1980-11-18<br>
-**Inventor:** Souichi Nakamura<br>
+**Inventor:** Soichi Nakamura<br>
 **Assignee:** Nippon Kogaku K.K.<br>
 **Title:** *Gauss Type Photographic Lens*<br>
 **Embodiment analyzed:** Example 3
 
 The modeled prescription is the user-selected correlation between US 4,234,242 A, Example 3, and the NIKON AI NIKKOR
 50mm f/1.8 S. The patent itself does not identify a commercial model. The correlation instead rests on convergent evidence:
-Nikon identifies Souichi Nakamura as the designer of the AI Nikkor 50mm f/1.8S and describes it as a compact Gauss-type
+Nikon identifies Soichi Nakamura as the designer of the AI Nikkor 50mm f/1.8S and describes it as a compact Gauss-type
 lens; the patent is Nakamura's compact Gauss design from the same development period; both use six elements in five
 physical groups at f/1.8 and a 46° field; and both emphasize a narrow diaphragm space. Nikon further states that the
 Series E 50mm f/1.8 shared the same basic optics and that this basic optical design was later carried into the AI AF
@@ -77,6 +77,10 @@ the patent uses to control higher-order chromatic behavior. Conditions (7), (10)
 relationship and the curvatures around their air gap. The patent explicitly describes the intervening air lens as having
 a diverging action that contributes to chromatic and Petzval correction.
 
+The surface-3 semi-diameter is set to 14.5 mm, matching the rear L2 rim at surface 4. This removes the unsupported
+front-surface extension visible in the earlier rendering and follows the paired L2 rim drawn in Fig. 2; the value remains
+a figure-derived authoring inference because the patent does not tabulate clear apertures.
+
 ### L3 — Negative Meniscus
 
 `nd = 1.71714`, `νd = 29.49`. Glass: **717295 / SF1-class (supplier unresolved)**. Standalone
@@ -124,7 +128,7 @@ proxies without asserting production glass provenance.
 
 | Element(s) | `nd` / `νd` | Data-file glass label | Catalog-coordinate evidence |
 |---|---:|---|---|
-| L1, L4b | 1.76682 / 46.81 | J-LASFH2-class (supplier unresolved) | HIKARI J-LASFH2 is the closest audited coordinate match |
+| L1, L4b | 1.76682 / 46.81 | 767468 — J-LASFH2 spectral proxy; supplier unresolved | HIKARI J-LASFH2 is the unique compatible catalog match in the audited resolver window |
 | L2 | 1.79713 / 45.62 | 797456 — J-LASF017 spectral proxy; supplier unresolved | HIKARI J-LASF017 is within Δn = 0.00213 and Δν = 0.31 of the patent coordinate |
 | L3 | 1.71714 / 29.49 | 717295 / SF1-class (supplier unresolved) | SF1-family coordinates agree closely across several vendors |
 | L4a | 1.64831 / 33.8 | 648338 / SF2-class (supplier unresolved) | Several SF2-family glasses match; SUMITA SF12 is coordinate-exact in the audited catalog |
@@ -192,8 +196,8 @@ to a Petzval radius of +265.300205 mm. Geometry checks on the authored semi-diam
 acceptable actual rim slopes, and shared-gap sag intrusion below the current 0.90 limit; exact spherical ray traces also
 remained within all modeled apertures for the tested infinity and reconstructed close-focus bundles. These results
 validate the authored numerical model but do not convert the inferred stop placement or semi-diameters into source facts.
-Figure 2's common central rim supports the final 11.5 mm semi-diameter across surfaces 5–9, which also removes the two
-material-outline trims reported by the renderer diagnostics.
+Figure 2 supports the matched 14.5 mm L2 rim across surfaces 3–4 and the final 11.5 mm common central rim across surfaces
+5–9. Those choices also remove the two material-outline trims reported by the renderer diagnostics.
 
 ## Sources / References
 

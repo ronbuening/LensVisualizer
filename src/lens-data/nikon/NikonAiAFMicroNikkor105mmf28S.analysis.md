@@ -85,13 +85,13 @@ L7 is the positive first element of the floating G3F subgroup. Its high index an
 
 ### L8 — Biconcave Negative
 
-**nd = 1.80454, νd = 39.6. Glass: 805396 class (supplier-neutral). Standalone f = −30.4224 mm.**
+**nd = 1.80454, νd = 39.6. Glass: 805396 — NBFD3 (NIKON) coordinate-compatible spectral proxy; production supplier unresolved. Standalone f = −30.4224 mm.**
 
 L8 is the strongest negative standalone element in the rear converter. Paired with L7 at a fixed internal separation, it makes G3F negative with a focal length of −50.8502 mm. The subgroup's axial position relative to L9 changes non-monotonically with focus, rather than simply translating in one direction across the entire range.
 
 ### L9 — Biconvex Positive
 
-**nd = 1.51680, νd = 64.1. Glass: 517641 class (supplier-neutral). Standalone f = +80.1283 mm.**
+**nd = 1.51680, νd = 64.1. Glass: 517641 — J-BK7A (HIKARI) coordinate-compatible spectral proxy; production supplier unresolved. Standalone f = +80.1283 mm.**
 
 L9 is the fixed positive rear component G3R. It remains stationary with respect to the image plane in the three published focus states, while G3F changes its separation from it. The fixed surface-17-to-image distance of 43.966 mm is preserved throughout the published focus range.
 
@@ -106,8 +106,8 @@ The patent gives only d-line refractive indices and Abbe numbers. It does not id
 | 673322 | 1.67270 | 32.2 | L3 | Higher-dispersion negative-front-group coordinate |
 | 626357 | 1.62588 | 35.7 | L4 | Negative cemented-doublet coordinate |
 | 805255 | 1.80458 | 25.5 | L7 | Very high-index, low-Abbe rear-group coordinate |
-| 805396 | 1.80454 | 39.6 | L8 | Very high-index rear negative coordinate with higher νd than L7 |
-| 517641 | 1.51680 | 64.1 | L9 | Crown-like fixed rear positive coordinate |
+| 805396 / NBFD3 proxy | 1.80454 | 39.6 | L8 | Very high-index rear negative coordinate with higher νd than L7; production supplier unresolved |
+| 517641 / J-BK7A proxy | 1.51680 | 64.1 | L9 | Crown-like fixed rear positive coordinate; production supplier unresolved |
 
 A six-vendor coordinate audit found coefficient-backed catalog curves within the project's nd/νd compatibility window for every element. The selected curves are explicitly supplier-neutral spectral proxies because more than one vendor candidate can fit a patent coordinate. The patent supplies no line indices or partial-dispersion deviation, so the analysis does not assign anomalous partial dispersion or claim apochromatic correction.[4–9]
 
