@@ -20,6 +20,26 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-09-03",
+    type: "fix",
+    summary: "Matched centered tilt-shift diagram scale to ordinary lenses",
+  },
+  {
+    date: "2026-09-03",
+    type: "fix",
+    summary: "Corrected the Fujifilm GF30 tilt pivot from patent mechanism guidance",
+  },
+  {
+    date: "2026-09-03",
+    type: "improvement",
+    summary: "Added independent reset controls for tilt-shift movement axes",
+  },
+  {
+    date: "2026-09-03",
+    type: "fix",
+    summary: "Fixed tilt-shift diagrams and analyses to trace moved lenses against a fixed sensor",
+  },
+  {
+    date: "2026-09-03",
     type: "lens",
     summary: "Added Nikon 200mm f/2, 300mm f/2, and 80-200mm f/2.8 ED designs",
   },

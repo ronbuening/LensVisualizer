@@ -35,8 +35,9 @@ and homepage UI.
 | `RayToggles.tsx` | On-axis/off-axis toggle buttons with typed off-axis cycling. |
 | `CardinalControls.tsx` | Feature-flagged cardinal element and dimension overlay toggles. |
 | `ChromaticControls.tsx` | COLOR master toggle plus R/G/B channel buttons. |
-| `DiagramControls.tsx` | Zoom, focus, optional aberration-control, aperture, and movement sliders plus interaction-signal wiring. Focus/zoom sliders expose compact MOTION actions when modeled group movement is available. |
+| `DiagramControls.tsx` | Zoom, focus, optional aberration-control, aperture, and movement sliders plus interaction-signal wiring. Focus/zoom sliders expose compact MOTION actions when modeled group movement is available; shift/tilt sliders expose independent zero-reset actions. |
 | `SliderControl.tsx` | Reusable slider with label, value, endpoints, optional compact action slot, and optional collapsible content. |
+| `SliderResetButton.tsx` | Shared accessible zero-reset action for single-lens and comparison movement sliders. |
 | `CollapseButton.tsx` | Shared LESS/MORE toggle used by controls and legend. |
 | `LensSelector.tsx` | Portal-based custom lens dropdown with viewport positioning and Escape handling. |
 

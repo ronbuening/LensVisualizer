@@ -211,6 +211,8 @@ describe("SharedSlidersBar", () => {
 
     expect(screen.getByText("SHIFT")).toBeTruthy();
     expect(screen.getByText("TILT")).toBeTruthy();
+    expect(screen.getByRole("button", { name: "Reset shift to center" })).toBeTruthy();
+    expect(screen.getByRole("button", { name: "Reset tilt to center" })).toBeTruthy();
     expect(screen.getAllByRole("slider")).toHaveLength(4);
 
     fireEvent.change(screen.getAllByRole("slider")[0], { target: { value: "-2" } });
@@ -222,6 +224,38 @@ describe("SharedSlidersBar", () => {
     fireEvent.change(screen.getAllByRole("slider")[1], { target: { value: "-0.1" } });
     expect(callbacks.onSharedShiftChange).toHaveBeenLastCalledWith(0);
     expect(callbacks.onSharedTiltChange).toHaveBeenLastCalledWith(0);
+  });
+
+  it("resets shared shift and tilt independently", () => {
+    const LA = lens({
+      name: "PC A",
+      perspectiveControl: { shiftRangeMm: [-12, 12], tiltRangeDeg: [-7.5, 7.5] },
+    });
+    const movementPair: MovementPairResult = {
+      showMovement: true,
+      shiftA: 4,
+      shiftB: 0,
+      tiltA: -3,
+      tiltB: 0,
+      shiftRangeMm: [-12, 12],
+      tiltRangeDeg: [-7.5, 7.5],
+      shiftStepMm: 0.1,
+      tiltStepDeg: 0.1,
+    };
+    const { callbacks } = renderSharedSliders({
+      LA,
+      movementPair,
+      sharedShiftMm: 4,
+      sharedTiltDeg: -3,
+    });
+
+    fireEvent.click(screen.getByRole("button", { name: "Reset shift to center" }));
+    expect(callbacks.onSharedShiftChange).toHaveBeenCalledWith(0);
+    expect(callbacks.onSharedTiltChange).not.toHaveBeenCalled();
+
+    fireEvent.click(screen.getByRole("button", { name: "Reset tilt to center" }));
+    expect(callbacks.onSharedTiltChange).toHaveBeenCalledWith(0);
+    expect(callbacks.onSliderPointerUp).toHaveBeenCalledTimes(2);
   });
 
   it("omits the tilt slider for shift-only perspective-control comparisons", () => {
@@ -244,6 +278,8 @@ describe("SharedSlidersBar", () => {
 
     expect(screen.getByText("SHIFT")).toBeTruthy();
     expect(screen.queryByText("TILT")).toBeNull();
+    expect(screen.getByRole("button", { name: "Reset shift to center" })).toBeTruthy();
+    expect(screen.queryByRole("button", { name: "Reset tilt to center" })).toBeNull();
   });
 
   it("renders dual-zoom union endpoints, marker positions, and quick f-stop callbacks", () => {

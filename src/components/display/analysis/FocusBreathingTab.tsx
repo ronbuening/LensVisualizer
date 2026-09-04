@@ -249,9 +249,12 @@ export default function FocusBreathingTab({ L, t, focusT, zoomT, dynamicEFL }: F
   return (
     <div>
       <div style={{ marginBottom: 8, display: "grid", gap: 4 }}>
-        <span style={{ fontSize: 10.5, color: t.muted, transition: "color 0.3s" }}>Focus breathing</span>
+        <span style={{ fontSize: 10.5, color: t.muted, transition: "color 0.3s" }}>
+          Focus breathing — intrinsic / lens-local
+        </span>
         <span style={{ fontSize: 9, color: t.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
-          Effective focal length shift across the focus range at the current zoom position.
+          Effective focal length shift across the focus range at the current zoom position. Rigid lens tilt and shift do
+          not change this intrinsic curve.
         </span>
       </div>
       <FocusBreathingChart samples={samples} currentFocusT={focusT} t={t} />

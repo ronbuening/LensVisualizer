@@ -11,7 +11,7 @@ All comparison-mode files live in `src/comparison/`, a peer module alongside `sr
 | --- | --- |
 | `ComparisonContent.tsx` | Full comparison-mode content area. Wires `ComparisonLayout` and `SharedSlidersBar`; surfaces errors. |
 | `ComparisonLayout.tsx` | Side-by-side desktop or stacked mobile comparison panels. Passes prebuilt runtime lenses into each panel. |
-| `SharedSlidersBar.tsx` | Shared focus/aperture/zoom controls for comparison mode. |
+| `SharedSlidersBar.tsx` | Shared focus/aperture/zoom and perspective-movement controls for comparison mode, including independent shift/tilt reset actions. |
 | `SharedSliderSection.tsx` | Shared slider section UI. |
 | `SharedFStopQuickSelect.tsx` | F-stop quick-select UI for shared aperture controls. |
 | `useComparisonOrchestration.ts` | LensViewer integration hook: comparison mode, sticky sliders, enter/exit, and default-aperture effect. |

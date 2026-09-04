@@ -39,6 +39,7 @@ import type { Theme } from "../types/theme.js";
 import type { GroupMovementMode } from "../types/groupMovement.js";
 import SharedSliderSection from "./SharedSliderSection.js";
 import SharedFStopQuickSelect from "./SharedFStopQuickSelect.js";
+import SliderResetButton from "../components/controls/SliderResetButton.js";
 
 interface SharedSlidersBarProps {
   LA: RuntimeLens;
@@ -171,6 +172,14 @@ export default function SharedSlidersBar({
   const handleSharedTiltChange = (value: number) => {
     onSharedTiltChange(snapToZeroStop(value, movementPair?.tiltStepDeg ?? 0));
   };
+  const handleSharedShiftReset = () => {
+    handleSharedShiftChange(0);
+    onSliderPointerUp?.();
+  };
+  const handleSharedTiltReset = () => {
+    handleSharedTiltChange(0);
+    onSliderPointerUp?.();
+  };
   const signed = (value: number, digits: number, unit: string) =>
     `${value > 0 ? "+" : ""}${value.toFixed(digits)} ${unit}`;
   const motionButton = (mode: GroupMovementMode, label: string) => (
@@ -269,6 +278,9 @@ export default function SharedSlidersBar({
             sliderStep={movementPair.shiftStepMm}
             onSliderChange={handleSharedShiftChange}
             onPointerUp={onSliderPointerUp}
+            action={
+              <SliderResetButton axisLabel="shift" value={sharedShiftMm} onReset={handleSharedShiftReset} t={t} />
+            }
             readouts={
               <>
                 <span>
@@ -301,6 +313,7 @@ export default function SharedSlidersBar({
             sliderStep={movementPair.tiltStepDeg}
             onSliderChange={handleSharedTiltChange}
             onPointerUp={onSliderPointerUp}
+            action={<SliderResetButton axisLabel="tilt" value={sharedTiltDeg} onReset={handleSharedTiltReset} t={t} />}
             readouts={
               <>
                 <span>

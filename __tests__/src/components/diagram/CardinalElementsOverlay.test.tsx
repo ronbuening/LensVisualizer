@@ -141,6 +141,44 @@ describe("CardinalElementsOverlay", () => {
     expect(text).not.toContain("H/N");
   });
 
+  it("moves cardinal markers, sampled curves, and dimension geometry through the lens-local transform", () => {
+    const pointTransform = (z: number, y: number): [number, number] => [z + 10, y + z / 10];
+    const { container } = render(
+      <svg>
+        <CardinalElementsOverlay
+          lens={lens}
+          theme={themes.dark}
+          cardinals={baseCardinals}
+          sx={(z) => z + 100}
+          sy={(y) => 200 + y * 4}
+          pointTransform={pointTransform}
+          showCardinals={true}
+          showCardinalDimensions={true}
+        />
+      </svg>,
+    );
+
+    const focalLabel = Array.from(container.querySelectorAll("text")).find((node) => node.textContent === "F");
+    const focalMarker = focalLabel?.parentElement?.querySelector("circle");
+    expect(focalMarker?.getAttribute("cx")).toBe("65");
+    expect(Number(focalMarker?.getAttribute("cy"))).toBeCloseTo(182);
+
+    const eflLabel = Array.from(container.querySelectorAll("text")).find((node) =>
+      node.textContent?.startsWith("EFL "),
+    );
+    const eflLine = eflLabel?.parentElement?.querySelector("line");
+    expect(eflLine?.getAttribute("x1")).toBe("152");
+    expect(Number(eflLine?.getAttribute("y1"))).toBeCloseTo(286.8);
+    expect(eflLine?.getAttribute("x2")).toBe("202");
+    expect(Number(eflLine?.getAttribute("y2"))).toBeCloseTo(306.8);
+    expect(Number(eflLabel?.getAttribute("x"))).toBeCloseTo(177);
+    expect(Number(eflLabel?.getAttribute("y"))).toBeCloseTo(291.8);
+
+    const principalCurve = container.querySelector('path[stroke-dasharray="5,3"]');
+    expect(principalCurve?.getAttribute("d")).toContain("M");
+    expect(principalCurve?.getAttribute("d")).not.toContain("M105,120");
+  });
+
   it("honors cardinal and dimension sub-layer visibility", () => {
     const { container } = render(
       <svg>

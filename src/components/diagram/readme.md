@@ -10,7 +10,7 @@ Generated `readme.md` and `improvementsuggestions.md` files are intentionally om
 flowchart LR
   subgraph n_src_components_diagram["src/components/diagram"]
     n_src_components_diagram_src_components_diagram_sphericalAberration["sphericalAberration/"]
-    n_src_components_diagram_React_components["React components (23)"]
+    n_src_components_diagram_React_components["React components (24)"]
     n_src_components_diagram_TypeScript_modules["TypeScript modules (1)"]
   end
   n_external_src_types["src/types"]
@@ -24,8 +24,8 @@ flowchart LR
   n_external_src_utils_usePrefersReducedMotion_ts["src/utils/usePrefersReducedMotion.ts"]
   n_external_src_optics_chromatic["src/optics/chromatic"]
   n_external_src_optics_lensMovement_ts["src/optics/lensMovement.ts"]
-  n_src_components_diagram_React_components --> |29| n_external_src_types
-  n_src_components_diagram_React_components --> |23| n_external_pkg_react
+  n_src_components_diagram_React_components --> |31| n_external_src_types
+  n_src_components_diagram_React_components --> |24| n_external_pkg_react
   n_src_components_diagram_React_components --> |7| n_external_src_optics_dispersion_ts
   n_src_components_diagram_React_components --> |3| n_external_src_optics_cardinalElements_ts
   n_src_components_diagram_React_components --> |3| n_external_src_optics_optics_ts
@@ -41,9 +41,9 @@ flowchart LR
 
 ## Directory Overview
 
-- Direct source files: 24
+- Direct source files: 25
 - Direct subfolders: 1
-- Main outbound areas: src/types (30), package:react (23), same folder (18), src/optics/dispersion.ts (7), src/optics/cardinalElements.ts (3), src/optics/optics.ts (3), src/components/display (2), src/optics/chromaticRayFanScaling.ts (2), +4 more
+- Main outbound areas: src/types (32), package:react (24), same folder (19), src/optics/dispersion.ts (7), src/optics/cardinalElements.ts (3), src/optics/optics.ts (3), src/components/display (2), src/optics/chromaticRayFanScaling.ts (2), +4 more
 - External consumers: src/benchmarks, src/components/layout, src/components/markdown
 
 ## Subfolders
@@ -64,13 +64,14 @@ flowchart LR
 | `DiagramDefs.tsx` | React component module | package:react, src/types, src/utils/featureFlags.ts | same folder | default |
 | `DiagramElementLayer.tsx` | React component module | src/types (2), package:react, src/utils/featureFlags.ts | same folder | default |
 | `DiagramGridAxisLayer.tsx` | React component module | src/types (2), package:react | same folder | default |
-| `DiagramOverlayLayer.tsx` | React component module | same folder (5), src/types (2), package:react, src/optics/cardinalElements.ts, src/optics/dispersion.ts, +2 more | same folder | default |
+| `DiagramOverlayLayer.tsx` | React component module | same folder (6), src/types (2), package:react, src/optics/cardinalElements.ts, src/optics/dispersion.ts, +2 more | same folder | default |
 | `DiagramRayLayers.tsx` | React component module | src/types (3), same folder (2), package:react | same folder | default |
 | `DiagramSVG.tsx` | React component module | same folder (6), src/types (3), package:react, src/optics/cardinalElements.ts, src/optics/dispersion.ts, +2 more | src/benchmarks, src/components/layout | default |
 | `diagramSvgTypes.ts` | Diagram Svg Types helper module | src/types | same folder (3) | RaySegment, ChromaticRaySegment |
 | `ElementAnnotations.tsx` | React component module | src/types (2), package:react | same folder | default |
 | `EntrancePupilDiagram.tsx` | React component module | package:react | src/components/markdown | default |
 | `ExitPupilDiagram.tsx` | React component module | package:react | src/components/markdown | default |
+| `ImagePlaneOverlay.tsx` | React component module | src/types (2), package:react | same folder | default |
 | `LocaDiagram.tsx` | React component module | package:react | src/components/markdown | default |
 | `LocaInsetWidget.tsx` | React component module | src/types (2), package:react, same folder, src/optics/chromaticRayFanScaling.ts, src/optics/dispersion.ts | same folder (2) | default |
 | `MTFDiagram.tsx` | React component module | package:react | src/components/markdown | default |

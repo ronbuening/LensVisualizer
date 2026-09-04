@@ -13,7 +13,14 @@ import buildLens from "../../optics/buildLens.js";
 import { computeCardinalElementsAtState, type CardinalElements } from "../../optics/cardinalElements.js";
 import { computeElementShapes, createCoordinateTransforms } from "../../optics/diagramGeometry.js";
 import { clampLensMovement, createLensMovementTransform } from "../../optics/lensMovement.js";
+import { prepareRuntimeState } from "../../optics/compat.js";
 import {
+  computePerspectiveMovementViewportExtent,
+  createPerspectiveTraceContext,
+  type PerspectiveTraceContext,
+} from "../../optics/perspective/index.js";
+import {
+  anchorLayoutToCamera,
   computeAnalysisFieldGeometryAtState,
   doLayout,
   effectiveFNumber,
@@ -58,6 +65,7 @@ interface UseLensComputationResult {
   effectiveSC: number;
   movement: ResolvedLensMovement;
   movementTransform: LensMovementTransform;
+  perspectiveTraceContext: PerspectiveTraceContext | null;
   lensAxis: [[number, number], [number, number]] | null;
   shapes: ElementShape[];
   shapeError: unknown;
@@ -108,22 +116,38 @@ export default function useLensComputation({
    * the current layout so the image plane stays at a fixed SVG position
    * regardless of focus or zoom changes. */
   const ref = useMemo(() => (L ? doLayout(0, 0, L) : null), [L]);
-  const IMG_MM = ref ? ref.imgZ : 0;
   const cur = useMemo(() => (L ? doLayout(focusT, zoomT, L, aberrationT) : null), [focusT, zoomT, aberrationT, L]);
-  const dz = ref && cur ? IMG_MM - cur.imgZ : 0;
+  const cameraLayout = useMemo(() => (ref && cur ? anchorLayoutToCamera(ref, cur) : null), [ref, cur]);
+  const IMG_MM = cameraLayout ? cameraLayout.imgZ : 0;
   const zPosRef = useRef<number[]>([]);
   const zPos = useMemo((): number[] => {
-    const next = cur ? cur.z.map((v) => v + dz) : [];
+    const next = cameraLayout?.z ?? [];
     const prev = zPosRef.current;
     if (prev.length === next.length && next.every((v, i) => Math.abs(v - prev[i]) < 1e-9)) {
       return prev;
     }
     zPosRef.current = next;
     return next;
-  }, [cur, dz]);
+  }, [cameraLayout]);
 
   const movement = useMemo(() => clampLensMovement(L, { shiftMm, tiltDeg }), [L, shiftMm, tiltDeg]);
   const movementTransform = useMemo(() => createLensMovementTransform(IMG_MM, movement), [IMG_MM, movement]);
+  const preparedState = useMemo(
+    () => (L ? prepareRuntimeState(L, focusT, zoomT, aberrationT) : null),
+    [L, focusT, zoomT, aberrationT],
+  );
+  const perspectiveTraceContext = useMemo(
+    () =>
+      preparedState
+        ? createPerspectiveTraceContext({
+            preparedState,
+            cameraZPos: zPos,
+            movement: { shiftMm: movement.shiftMm, tiltDeg: movement.tiltDeg },
+            tiltPivot: movement.config?.tiltPivot,
+          })
+        : null,
+    [preparedState, zPos, movement],
+  );
   const lensAxis = useMemo(
     () => (movement.active && L && zPos.length > 0 ? movementTransform.axis(zPos[0] - L.rayLead, IMG_MM) : null),
     [L, IMG_MM, movement.active, movementTransform, zPos],
@@ -153,6 +177,28 @@ export default function useLensComputation({
     };
   }, [includeCardinalExtents, cardinalElements, L, zPos, IMG_MM]);
 
+  const movementViewportExtent = useMemo(
+    () =>
+      L
+        ? computePerspectiveMovementViewportExtent({
+            zPos,
+            maxSemiDiameterMm: L.maxSD,
+            imagePlaneZ: IMG_MM,
+            config: L.perspectiveControl,
+            movement,
+          })
+        : null,
+    [L, zPos, IMG_MM, movement],
+  );
+
+  const coordinateZExtent = useMemo(() => {
+    if (!cardinalZExtent && !movementViewportExtent) return null;
+    return {
+      min: Math.min(0, IMG_MM, cardinalZExtent?.min ?? Infinity, movementViewportExtent?.z.min ?? Infinity),
+      max: Math.max(0, IMG_MM, cardinalZExtent?.max ?? -Infinity, movementViewportExtent?.z.max ?? -Infinity),
+    };
+  }, [cardinalZExtent, movementViewportExtent, IMG_MM]);
+
   /* ── Coordinate transforms (optical mm → SVG pixels) ── */
   const { sx, sy, clampedRayEnd, CX, IX, effectiveSC } = useMemo(
     (): CoordinateTransforms =>
@@ -165,7 +211,8 @@ export default function useLensComputation({
             lensShiftFrac: L.lensShiftFrac,
             imgMM: IMG_MM,
             scaleRatio,
-            zExtent: cardinalZExtent,
+            zExtent: coordinateZExtent,
+            yExtent: movementViewportExtent?.y,
           })
         : {
             sx: (_z: number) => 0,
@@ -176,7 +223,7 @@ export default function useLensComputation({
             IX: 0,
             effectiveSC: 1,
           },
-    [L, IMG_MM, scaleRatio, cardinalZExtent],
+    [L, IMG_MM, scaleRatio, coordinateZExtent, movementViewportExtent],
   );
 
   /* ── Element shapes ── */
@@ -252,6 +299,7 @@ export default function useLensComputation({
     effectiveSC,
     movement,
     movementTransform,
+    perspectiveTraceContext,
     lensAxis,
     shapes,
     shapeError,

@@ -17,6 +17,7 @@ import type { AnalysisComputationContext } from "../../../optics/compat.js";
 import type { RuntimeLens } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
 import type { FieldGeometryState } from "../../../optics/optics.js";
+import PerspectivePupilView from "./perspective/PerspectivePupilView.js";
 
 interface PupilAberrationTabProps {
   L: RuntimeLens;
@@ -40,6 +41,32 @@ export default function PupilAberrationTab({
   analysisContext,
 }: PupilAberrationTabProps) {
   const preparedState = usePreparedAnalysisState({ L, focusT, zoomT, aberrationT, preparedState: preparedStateProp });
+  if (analysisContext?.movementActive) {
+    return <MovedPupilContent analysisContext={analysisContext} t={t} />;
+  }
+  return (
+    <CenteredPupilContent
+      t={t}
+      preparedState={preparedState}
+      fieldGeometry={fieldGeometry}
+      analysisContext={analysisContext}
+    />
+  );
+}
+
+function MovedPupilContent({ analysisContext, t }: { analysisContext: AnalysisComputationContext; t: Theme }) {
+  const analysis = useMemo(() => analysisContext.computePerspectivePupilAnalysis(), [analysisContext]);
+  return <PerspectivePupilView analysis={analysis} t={t} />;
+}
+
+interface CenteredPupilContentProps {
+  t: Theme;
+  fieldGeometry?: FieldGeometryState | null;
+  preparedState: PreparedOpticalState;
+  analysisContext?: AnalysisComputationContext;
+}
+
+function CenteredPupilContent({ t, fieldGeometry, preparedState, analysisContext }: CenteredPupilContentProps) {
   const profiles = useMemo(
     () =>
       analysisContext?.computeBothPupilAberrationProfiles() ??

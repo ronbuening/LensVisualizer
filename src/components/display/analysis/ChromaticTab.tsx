@@ -8,6 +8,7 @@ import LongitudinalChromaticFocusChart from "./LongitudinalChromaticFocusChart.j
 import { AnalysisEmptyState, AnalysisMetricRow } from "./analysisUi.js";
 import { formatUmMagnitude } from "./chromaticChartUtils.js";
 import usePreparedAnalysisState from "./usePreparedAnalysisState.js";
+import PerspectiveChromaticAnalysis from "./perspective/PerspectiveChromaticAnalysis.js";
 import type { AnalysisComputationContext } from "../../../optics/compat.js";
 import type { FieldGeometryState } from "../../../optics/optics.js";
 import type { PreparedOpticalState } from "../../../optics/types.js";
@@ -58,7 +59,57 @@ const metricsStyle = {
   fontSize: 9.5,
 };
 
-export default function ChromaticTab({
+export default function ChromaticTab(props: ChromaticTabProps) {
+  const { analysisContext, t } = props;
+  const perspectiveAnalysis = useMemo(
+    () => (analysisContext?.movementActive ? analysisContext.computePerspectiveChromaticAnalysis() : null),
+    [analysisContext],
+  );
+  const intrinsicLongitudinal = useMemo(
+    () => (analysisContext?.movementActive ? analysisContext.computeIntrinsicLongitudinalChromaticFocus() : null),
+    [analysisContext],
+  );
+
+  if (analysisContext?.movementActive) {
+    return (
+      <div style={{ padding: "8px 0" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 16, fontSize: 9.5 }}>
+          <section style={{ ...sectionStyle(t), borderTop: "none", paddingTop: 0 }}>
+            <span style={sectionTitleStyle(t)}>Intrinsic Lens-Axis LoCA (Classical)</span>
+            <span style={sectionCopyStyle(t)}>
+              This established on-axis longitudinal color result remains in the intrinsic lens frame. It describes the
+              lens itself and does not represent wavelength focus or transverse color on the stationary sensor after
+              tilt/shift.
+            </span>
+            <LongitudinalChromaticFocusChart result={intrinsicLongitudinal} t={t} />
+            <div style={metricsStyle}>
+              <AnalysisMetricRow
+                label="Intrinsic LoCA"
+                value={formatFiniteUm(intrinsicLongitudinal?.longitudinalSpreadUm)}
+                suffix={finiteUmSuffix(intrinsicLongitudinal?.longitudinalSpreadUm)}
+                note={
+                  intrinsicLongitudinal
+                    ? `${(intrinsicLongitudinal.marginalFraction * 100).toFixed(0)}% pupil, lens-local`
+                    : "lens-local"
+                }
+                t={t}
+              />
+            </div>
+          </section>
+          {perspectiveAnalysis ? (
+            <PerspectiveChromaticAnalysis result={perspectiveAnalysis} t={t} />
+          ) : (
+            <AnalysisEmptyState t={t}>Movement-aware chromatic analysis is unavailable.</AnalysisEmptyState>
+          )}
+        </div>
+      </div>
+    );
+  }
+
+  return <CenteredChromaticTab {...props} />;
+}
+
+function CenteredChromaticTab({
   L,
   t,
   focusT,

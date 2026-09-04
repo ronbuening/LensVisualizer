@@ -25,6 +25,8 @@ function polylinePoints(points: number[][]): string {
  * @param IMG_MM        — image plane z-position (mm)
  * @param endOverride   — if provided, used instead of clampedRayEnd for the final point
  *                        (e.g. edge-projection endpoint in off-axis mode)
+ * @param reachedImagePlane — whether the supplied points already reach the target plane
+ * @param extendUnreached — whether to synthesize a viewport-clamped final transfer
  */
 export function compileRaySegment(
   pts: number[][],
@@ -37,6 +39,7 @@ export function compileRaySegment(
   IMG_MM: number,
   endOverride?: number[],
   reachedImagePlane = false,
+  extendUnreached = true,
 ): RaySegment {
   const sp: number[][] = pts.map(([z, yy]) => [sx(z), sy(yy)]);
   let gp: number[][] = [];
@@ -51,7 +54,7 @@ export function compileRaySegment(
       gp.push([sx(firstGhost[0]), sy(firstGhost[1])]);
     }
   }
-  if (!clipped && !reachedImagePlane) {
+  if (!clipped && !reachedImagePlane && extendUnreached) {
     const last = pts[pts.length - 1];
     if (last) {
       sp.push(endOverride ?? clampedRayEnd(last[0], last[1], u, IMG_MM));

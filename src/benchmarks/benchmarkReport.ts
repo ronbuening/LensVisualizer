@@ -28,7 +28,32 @@ export type AnalysisBenchmarkCategory =
   | "vignetting"
   | "pupils"
   | "bokehPair"
-  | "bestFocus";
+  | "bestFocus"
+  | "perspectiveFocus"
+  | "perspectiveFieldAberrations"
+  | "perspectiveChromatic"
+  | "perspectiveDistortion"
+  | "perspectiveVignetting"
+  | "perspectivePupils";
+
+/** Persisted inputs for one benchmark scenario, including physical lens movement. */
+export interface BenchmarkScenarioConfigSnapshot {
+  id: string;
+  focusT: number;
+  zoomT: number;
+  aberrationT: number;
+  stopdownT: number;
+  movement: {
+    shiftMm: number;
+    tiltDeg: number;
+  };
+  rayDensity: "normal" | "dense" | "diagnostic";
+  rayTracksF: boolean;
+  showOnAxis: boolean;
+  showOffAxis: "off" | "trueAngle" | "edge";
+  showChromatic: boolean;
+  analysisQuality: "interactive" | "settled";
+}
 
 /** Distribution summary for finite numeric samples. */
 export interface NumericSummary {
@@ -81,7 +106,7 @@ export interface BenchmarkScenarioResults {
   layout: BenchmarkEntry;
   rays: BenchmarkEntry;
   analysis: BenchmarkEntry;
-  analysisBreakdown?: Record<AnalysisBenchmarkCategory, BenchmarkEntry>;
+  analysisBreakdown?: Partial<Record<AnalysisBenchmarkCategory, BenchmarkEntry>>;
   svgRender: BenchmarkEntry;
   totalCold?: BenchmarkEntry;
   totalWarm?: BenchmarkEntry;
@@ -125,6 +150,8 @@ export interface BenchmarkRunRecord {
     iterations: number;
     lensKeys: string[];
     scenarios: string[];
+    /** Optional schema-2 extension. Older records retain only the scenario ids above. */
+    scenarioSnapshots?: BenchmarkScenarioConfigSnapshot[];
   };
   /** Main pipeline results keyed by lens key, then scenario id. */
   results: Record<string, Record<string, BenchmarkScenarioResults>>;
@@ -170,6 +197,12 @@ const ANALYSIS_CATEGORIES: AnalysisBenchmarkCategory[] = [
   "pupils",
   "bokehPair",
   "bestFocus",
+  "perspectiveFocus",
+  "perspectiveFieldAberrations",
+  "perspectiveChromatic",
+  "perspectiveDistortion",
+  "perspectiveVignetting",
+  "perspectivePupils",
 ];
 
 /**

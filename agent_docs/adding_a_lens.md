@@ -95,12 +95,22 @@ perspectiveControl: {
   tiltRangeDeg: [-8.5, 8.5],
   shiftStepMm: 0.1,
   tiltStepDeg: 0.1,
+  // Camera-fixed fallback at the reference-state rear vertex; not a measured hinge location.
+  tiltPivot: {
+    frame: "camera",
+    basis: "rear-vertex-fallback",
+    zOffsetFromImagePlaneMm: -56.5,
+  },
 },
 ```
 
 Ranges must be finite, ordered, and include zero. Use official manufacturer sources when available and leave the source
-URL in a nearby comment. The v1 movement layer is a 2D meridional visualization: it shifts/tilts rendered geometry and
-rays relative to the fixed IMG plane, while analysis drawer diagnostics remain centered-lens calculations.
+URL in a nearby comment. Tilt-enabled records must also define a camera-frame `tiltPivot`; use the reference-state rear
+vertex as an explicitly labeled fallback when no physical hinge coordinate is published. If a patent directs the tilt
+center to a principal-point region without dimensioning the production hinge, use `patent-principal-point-guidance`
+with an adjacent paragraph/figure citation instead of labeling it as a mechanical axis. The v1 movement layer is a 2D
+meridional model: it physically retraces shifted/tilted lens geometry relative to the fixed IMG plane, and ray-based
+drawer diagnostics use the same moved-lens trace context.
 Use `[0, 0]` for an unsupported axis on a real shift-only or tilt-only lens; at least one axis must have non-zero travel.
 
 ### Mirror, Telescope, And Folded Lenses

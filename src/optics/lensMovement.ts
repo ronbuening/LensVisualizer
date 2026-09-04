@@ -1,12 +1,13 @@
 /**
  * Pure helpers for perspective-control lens movement.
  *
- * The v1 model keeps the optical prescription centered for tracing, then
- * displays the lens-space result in a shifted/tilted camera frame. The image
- * plane remains fixed, so exiting rays are projected to the original IMG line.
+ * Display geometry delegates to the same rigid pose used by exact
+ * perspective-control tracing. The image plane remains fixed in the camera
+ * frame while lens-local points, directions, and annotations move together.
  */
 
-import type { PerspectiveControlConfig, RayTraceResult, RuntimeLens } from "../types/optics.js";
+import type { PerspectiveControlConfig, RuntimeLens, TiltPivot } from "../types/optics.js";
+import { createPerspectivePose, type PerspectivePose } from "./perspective/pose.js";
 
 /** User-facing movement controls in physical shift millimeters and tilt degrees. */
 export interface LensMovementState {
@@ -24,8 +25,6 @@ export interface ResolvedLensMovement extends LensMovementState {
 export interface LensMovementTransform extends ResolvedLensMovement {
   point: (z: number, y: number) => [number, number];
   slope: (u: number) => number;
-  rayEnd: (lastZ: number, lastY: number, u: number, imagePlaneZ: number) => [number, number];
-  trace: (result: RayTraceResult) => RayTraceResult;
   axis: (zStart: number, zEnd: number) => [[number, number], [number, number]];
 }
 
@@ -40,7 +39,6 @@ const DEFAULT_TILT_STEP_DEG = 0.1;
 export const MOVEMENT_SHIFT_ENVELOPE_MM: [number, number] = [-25, 25];
 export const MOVEMENT_TILT_ENVELOPE_DEG: [number, number] = [-15, 15];
 const IDENTITY_EPSILON = 1e-9;
-const DEG_TO_RAD = Math.PI / 180;
 
 /** Return whether a declared perspective-control axis has non-zero travel. */
 export function isMovementAxisEnabled([min, max]: [number, number]): boolean {
@@ -106,8 +104,8 @@ export function clampLensMovement(
 /**
  * Transform an optical point into the shifted/tilted display frame.
  *
- * The image plane is the rotation pivot and remains fixed. Positive z is toward
- * image space; positive y renders downward, so positive lens shift is displayed upward.
+ * Positive z is toward image space; positive y renders downward, so positive
+ * lens shift is displayed upward. Tilt uses the supplied camera-frame pivot.
  *
  * @param z - optical z coordinate in mm
  * @param y - optical y coordinate in mm
@@ -120,15 +118,11 @@ export function transformMovedPoint(
   y: number,
   imagePlaneZ: number,
   movement: LensMovementState,
+  tiltPivot?: TiltPivot | null,
 ): [number, number] {
   if (isIdentityLensMovement(movement)) return [z, y];
-  const theta = movement.tiltDeg * DEG_TO_RAD;
-  const cos = Math.cos(theta);
-  const sin = Math.sin(theta);
-  const dz = z - imagePlaneZ;
-  /* Optical +Y renders downward in SVG space, so positive lens shift moves the lens upward on screen. */
-  const displayShiftY = -movement.shiftMm;
-  return [imagePlaneZ + dz * cos - y * sin, displayShiftY + dz * sin + y * cos];
+  const point = displayPose(imagePlaneZ, movement, tiltPivot).lensToCameraPoint([0, y, z]);
+  return [point[2], point[1]];
 }
 
 /**
@@ -138,14 +132,16 @@ export function transformMovedPoint(
  * @param movement - shift/tilt movement state
  * @returns rotated slope dy/dz, or signed Infinity for vertical display rays
  */
-export function transformMovedSlope(u: number, movement: LensMovementState): number {
+export function transformMovedSlope(
+  u: number,
+  movement: LensMovementState,
+  imagePlaneZ = 0,
+  tiltPivot?: TiltPivot | null,
+): number {
   if (isIdentityLensMovement(movement)) return u;
-  const theta = movement.tiltDeg * DEG_TO_RAD;
-  const cos = Math.cos(theta);
-  const sin = Math.sin(theta);
-  const dz = cos - u * sin;
-  if (Math.abs(dz) < 1e-12) return dySign(sin + u * cos) * Number.POSITIVE_INFINITY;
-  return (sin + u * cos) / dz;
+  const direction = displayPose(imagePlaneZ, movement, tiltPivot).lensToCameraDirection([0, u, 1]);
+  if (Math.abs(direction[2]) < 1e-12) return dySign(direction[1]) * Number.POSITIVE_INFINITY;
+  return direction[1] / direction[2];
 }
 
 function dySign(value: number): 1 | -1 {
@@ -153,81 +149,46 @@ function dySign(value: number): 1 | -1 {
 }
 
 /**
- * Project a transformed ray endpoint back to the fixed image plane.
- *
- * Movement is a display layer; the rendered ray must still terminate on the same
- * image-plane z coordinate used by the centered optical trace.
- *
- * @param lastZ - last transformed ray z coordinate in mm
- * @param lastY - last transformed ray y coordinate in mm
- * @param u - transformed meridional slope dy/dz
- * @param imagePlaneZ - fixed image-plane z coordinate in mm
- * @returns endpoint on the fixed image plane
- */
-export function projectMovedRayToFixedImagePlane(
-  lastZ: number,
-  lastY: number,
-  u: number,
-  imagePlaneZ: number,
-): [number, number] {
-  return [imagePlaneZ, lastY + (imagePlaneZ - lastZ) * u];
-}
-
-function mapPointArray(points: number[][], imagePlaneZ: number, movement: LensMovementState): number[][] {
-  if (isIdentityLensMovement(movement)) return points;
-  return points.map(([z, y]) => transformMovedPoint(z, y, imagePlaneZ, movement));
-}
-
-/**
- * Transform an entire ray trace into the moved display frame.
- *
- * The original trace remains centered-lens physics. Points and final slope are
- * rotated/shifted for display, and the final image height follows the moved ray.
- *
- * @param result - centered-lens ray trace result
- * @param imagePlaneZ - fixed image-plane z coordinate in mm
- * @param movement - shift/tilt movement state
- * @returns display-transformed trace result
- */
-export function transformRayTraceResult(
-  result: RayTraceResult,
-  imagePlaneZ: number,
-  movement: LensMovementState,
-): RayTraceResult {
-  if (isIdentityLensMovement(movement)) return result;
-  const lastLocalPoint = result.ghostPts[result.ghostPts.length - 1] ?? result.pts[result.pts.length - 1];
-  const finalZ = lastLocalPoint?.[0] ?? imagePlaneZ;
-  const [, finalY] = transformMovedPoint(finalZ, result.y, imagePlaneZ, movement);
-  return {
-    ...result,
-    pts: mapPointArray(result.pts, imagePlaneZ, movement),
-    ghostPts: mapPointArray(result.ghostPts, imagePlaneZ, movement),
-    y: finalY,
-    u: transformMovedSlope(result.u, movement),
-  };
-}
-
-/**
  * Create movement transform callbacks bound to one fixed image plane.
  *
  * @param imagePlaneZ - fixed image-plane z coordinate in mm
  * @param resolved - clamped movement state and capability metadata
- * @returns point, slope, ray-end, trace, and axis transform helpers
+ * @returns point, slope, and optical-axis transform helpers
  */
 export function createLensMovementTransform(
   imagePlaneZ: number,
   resolved: ResolvedLensMovement,
 ): LensMovementTransform {
   const movement = { shiftMm: resolved.shiftMm, tiltDeg: resolved.tiltDeg };
+  const tiltPivot = resolved.config?.tiltPivot;
+  const pose = displayPose(imagePlaneZ, movement, tiltPivot);
+  const point = (z: number, y: number): [number, number] => {
+    const moved = pose.lensToCameraPoint([0, y, z]);
+    return [moved[2], moved[1]];
+  };
   return {
     ...resolved,
-    point: (z, y) => transformMovedPoint(z, y, imagePlaneZ, movement),
-    slope: (u) => transformMovedSlope(u, movement),
-    rayEnd: (lastZ, lastY, u, targetZ) => projectMovedRayToFixedImagePlane(lastZ, lastY, u, targetZ),
-    trace: (result) => transformRayTraceResult(result, imagePlaneZ, movement),
-    axis: (zStart, zEnd) => [
-      transformMovedPoint(zStart, 0, imagePlaneZ, movement),
-      transformMovedPoint(zEnd, 0, imagePlaneZ, movement),
-    ],
+    point,
+    slope: (u) => {
+      const direction = pose.lensToCameraDirection([0, u, 1]);
+      return Math.abs(direction[2]) < 1e-12
+        ? dySign(direction[1]) * Number.POSITIVE_INFINITY
+        : direction[1] / direction[2];
+    },
+    axis: (zStart, zEnd) => [point(zStart, 0), point(zEnd, 0)],
   };
+}
+
+function displayPose(imagePlaneZ: number, movement: LensMovementState, tiltPivot?: TiltPivot | null): PerspectivePose {
+  // Standalone legacy helpers historically allowed sensor-plane tilt. Real
+  // perspective-control transforms always supply the validated lens metadata.
+  const compatibilityPivot =
+    Math.abs(movement.tiltDeg) > IDENTITY_EPSILON && !tiltPivot
+      ? ({ frame: "camera", basis: "rear-vertex-fallback", zOffsetFromImagePlaneMm: 0 } as const)
+      : tiltPivot;
+  return createPerspectivePose({
+    movement,
+    sensorPlane: { point: [0, 0, imagePlaneZ], normal: [0, 0, 1], label: "IMG" },
+    tiltPivot: compatibilityPivot,
+  });
 }

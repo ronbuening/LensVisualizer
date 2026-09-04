@@ -8,9 +8,10 @@
  */
 import { useMemo } from "react";
 import { offsetVectorFieldRay, traceRay, traceRayVector } from "../../optics/optics.js";
+import { cameraDirectionForDiagramField, tracePerspectiveDiagramFan } from "../../optics/perspective/diagramFan.js";
+import type { PerspectiveTraceContext } from "../../optics/perspective/index.js";
 import { obstructionAwareRayFractionsForDensity } from "../../optics/raySampling.js";
 import type { RuntimeLens } from "../../types/optics.js";
-import type { LensMovementTransform } from "../../optics/lensMovement.js";
 import type { RaySegment } from "./useOnAxisRays.js";
 import type { OffAxisMode, RayDensity } from "../../types/state.js";
 import { compileRaySegment } from "./raySegmentUtils.js";
@@ -26,7 +27,7 @@ interface UseOffAxisRaysParams {
   sx: (z: number) => number;
   sy: (y: number) => number;
   clampedRayEnd: (lastZ: number, lastY: number, u: number, targetZ: number) => [number, number];
-  movementTransform?: LensMovementTransform;
+  perspectiveTraceContext?: PerspectiveTraceContext;
   currentPhysStopSD: number;
   currentEPSD: number;
   rayDensity: RayDensity;
@@ -51,7 +52,7 @@ export default function useOffAxisRays({
   sx,
   sy,
   clampedRayEnd,
-  movementTransform,
+  perspectiveTraceContext,
   currentPhysStopSD,
   currentEPSD,
   rayDensity,
@@ -76,21 +77,44 @@ export default function useOffAxisRays({
         showOffAxis,
       });
       if (geometry === null) return { segments: [], error: null };
-      for (const f of obstructionAwareRayFractionsForDensity(L, L.offAxisFractions, rayDensity, currentEPSD)) {
+      const fractions = obstructionAwareRayFractionsForDensity(L, L.offAxisFractions, rayDensity, currentEPSD);
+      if (perspectiveTraceContext?.pose.active) {
+        const fan = tracePerspectiveDiagramFan({
+          context: perspectiveTraceContext,
+          sceneDirectionCamera: cameraDirectionForDiagramField(geometry.fieldAngleDeg),
+          pupilSemiDiameterMm: currentEPSD,
+          stopSemiDiameterMm: currentPhysStopSD,
+          fractions,
+        });
+        for (const sample of fan?.samples ?? []) {
+          const result = sample.diagramTrace.ray;
+          out.push(
+            compileRaySegment(
+              result.pts,
+              result.ghostPts,
+              result.u,
+              result.clipped,
+              sx,
+              sy,
+              clampedRayEnd,
+              IMG_MM,
+              undefined,
+              result.reachedImagePlane,
+              false,
+            ),
+          );
+        }
+        return { segments: out, error: null };
+      }
+
+      for (const f of fractions) {
         const h = f * currentEPSD;
         const uConverge = rayTracksF ? h * focusK : 0;
-        const rawResult =
+        const vectorInput =
+          geometry.kind === "vector" ? offsetVectorFieldRay(geometry.vectorLaunch, 0, h, uConverge) : null;
+        const result =
           geometry.kind === "vector"
-            ? traceRayVector(
-                offsetVectorFieldRay(geometry.vectorLaunch, 0, h, uConverge),
-                zPos,
-                currentPhysStopSD,
-                true,
-                L,
-                focusT,
-                zoomT,
-                aberrationT,
-              )
+            ? traceRayVector(vectorInput!, zPos, currentPhysStopSD, true, L, focusT, zoomT, aberrationT)
             : traceRay(
                 geometry.yChief + h,
                 geometry.uField + uConverge,
@@ -102,7 +126,6 @@ export default function useOffAxisRays({
                 L,
                 aberrationT,
               );
-        const result = movementTransform ? movementTransform.trace(rawResult) : rawResult;
         out.push(
           compileRaySegment(
             result.pts,
@@ -139,7 +162,7 @@ export default function useOffAxisRays({
     IMG_MM,
     lensKey,
     clampedRayEnd,
-    movementTransform,
+    perspectiveTraceContext,
     zoomT,
   ]);
 }

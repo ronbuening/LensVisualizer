@@ -510,7 +510,7 @@ function stateForRuntimeLens(L: RuntimeLens, focusT: number, zoomT: number, aber
  * the final air gap in that same coordinate frame; folded systems retain their
  * authored arbitrary image plane.
  */
-function stateWithRuntimeZ(state: PreparedOpticalState, zPos: readonly number[]): PreparedOpticalState {
+export function stateWithRuntimeZ(state: PreparedOpticalState, zPos: readonly number[]): PreparedOpticalState {
   let byZ = RUNTIME_Z_STATE_BY_BASE.get(state);
   if (!byZ) {
     byZ = new WeakMap();

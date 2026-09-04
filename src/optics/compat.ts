@@ -276,6 +276,15 @@ export {
   type AnalysisComputationContextParams,
 } from "./analysis/analysisContext.js";
 export {
+  AnalysisSectionUnavailableError,
+  analysisSectionAvailability,
+  assertAnalysisSectionAvailable,
+  assertCenteredAnalysisSectionAvailable,
+  type AnalysisSectionAvailability,
+  type AnalysisSectionId,
+  type AnalysisSectionMode,
+} from "./analysis/analysisMovementSupport.js";
+export {
   computeComaAnalysis2,
   computeComaAnalysisForState2,
   computeComaPointCloudPreview2,

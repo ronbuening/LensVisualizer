@@ -23,13 +23,14 @@ flowchart LR
   n_external_pkg_react["pkg:react"]
   n_external_src_components_hooks["src/components/hooks"]
   n_external_src_components_layout["src/components/layout"]
+  n_external_src_optics_compat_ts["src/optics/compat.ts"]
   n_external_src_optics_optics_ts["src/optics/optics.ts"]
   n_external_src_components_errors["src/components/errors"]
   n_external_src_optics_analysis["src/optics/analysis"]
   n_external_src_optics_cardinalElements_ts["src/optics/cardinalElements.ts"]
-  n_external_src_optics_compat_ts["src/optics/compat.ts"]
   n_external_src_optics_dispersion_ts["src/optics/dispersion.ts"]
   n_external_src_optics_lensMovement_ts["src/optics/lensMovement.ts"]
+  n_external_src_optics_perspective["src/optics/perspective"]
   n_external_src_optics_projection_ts["src/optics/projection.ts"]
   n_external_src_optics_types_ts["src/optics/types.ts"]
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_analysisTabRenderers_tsx --> |9| n_external_src_components_display
@@ -42,6 +43,7 @@ flowchart LR
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_panelModel_ts --> |2| n_external_src_components_hooks
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_DiagramViewport_tsx --> |2| n_external_src_components_layout
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_LensDiagramLoadedState_tsx --> |2| n_external_src_components_layout
+  n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_AnalysisDrawerContent_tsx --> |2| n_external_src_optics_compat_ts
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_AnalysisDrawerContent_tsx --> |2| n_external_src_optics_optics_ts
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_DiagramViewport_tsx --> |2| n_external_src_types
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_AnalysisDrawerContent_tsx --> n_external_pkg_react
@@ -53,11 +55,11 @@ flowchart LR
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_analysisTabs_ts --> n_external_src_components_layout
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_AnalysisDrawerContent_tsx --> n_external_src_optics_analysis
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_panelModel_ts --> n_external_src_optics_cardinalElements_ts
-  n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_AnalysisDrawerContent_tsx --> n_external_src_optics_compat_ts
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_analysisTabRenderers_tsx --> n_external_src_optics_compat_ts
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_DiagramViewport_tsx --> n_external_src_optics_dispersion_ts
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_panelModel_ts --> n_external_src_optics_lensMovement_ts
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_analysisTabRenderers_tsx --> n_external_src_optics_optics_ts
+  n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_AnalysisDrawerContent_tsx --> n_external_src_optics_perspective
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_AnalysisDrawerContent_tsx --> n_external_src_optics_projection_ts
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_analysisTabRenderers_tsx --> n_external_src_optics_types_ts
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_AnalysisDrawerContent_tsx --> n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_analysisTabRenderers_tsx
@@ -70,14 +72,14 @@ flowchart LR
 
 - Direct source files: 7
 - Direct subfolders: 0
-- Main outbound areas: src/components/display (13), src/types (12), src/components/layout (9), package:react (5), src/components/diagram (3), src/optics/optics.ts (3), src/components/hooks (2), src/optics/compat.ts (2), +7 more
+- Main outbound areas: src/components/display (13), src/types (12), src/components/layout (9), package:react (5), src/components/diagram (3), src/optics/compat.ts (3), src/optics/optics.ts (3), src/components/hooks (2), +8 more
 - External consumers: src/components/layout
 
 ## Files
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
-| `AnalysisDrawerContent.tsx` | React component module | src/types (3), src/optics/optics.ts (2), package:react, src/components/display, src/components/layout, +3 more | src/components/layout | default, AnalysisDrawerContent |
+| `AnalysisDrawerContent.tsx` | React component module | src/types (3), src/optics/compat.ts (2), src/optics/optics.ts (2), package:react, src/components/display, +4 more | src/components/layout | default, AnalysisDrawerContent |
 | `analysisTabRenderers.tsx` | React component module | src/components/display (9), src/types (3), package:react, src/optics/compat.ts, src/optics/optics.ts, +1 more | src/components/layout | AnalysisDrawerInputs, AnalysisTabRendererContext, ANALYSIS_TAB_RENDERERS |
 | `analysisTabs.ts` | Analysis Tabs helper module | src/components/layout | src/components/layout | ANALYSIS_TABS |
 | `DiagramViewport.tsx` | React component module | src/components/diagram (3), src/components/layout (3), package:react (2), src/types (2), src/components/display, +1 more | src/components/layout | default, DiagramViewport |

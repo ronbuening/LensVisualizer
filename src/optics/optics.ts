@@ -6,6 +6,7 @@
  */
 
 export { FLAT_R_THRESHOLD, conicPolySag, sag, sagSlopeRaw } from "./internal/surfaceMath.js";
+export { anchorLayoutToCamera, type CameraAnchoredLayout } from "./cameraLayout.js";
 export {
   FOCUS_INFINITY_THRESHOLD,
   SVG_PATH_SUBDIVISIONS,
