@@ -59,7 +59,7 @@ flowchart LR
 - Direct source files: 8
 - Direct subfolders: 0
 - Main outbound areas: same folder (9), src/types (8), src/optics/types.ts (5), src/optics/math (4), src/lens-data/defaults.ts, src/optics/dispersion.ts, src/optics/runtimeLens.ts
-- External consumers: src/optics/analysis, src/optics/chromatic, src/optics/compat.ts, src/optics/diagram, src/optics/field, src/optics/first-order, src/optics/internal, src/optics/state, +2 more
+- External consumers: src/optics/analysis, src/optics/chromatic, src/optics/compat.ts, src/optics/internal, src/optics/state
 
 ## Files
 
@@ -71,5 +71,5 @@ flowchart LR
 | `groups.ts` | Groups helper module | same folder, src/optics/types.ts, src/types | same folder | compileElements, compileAnnotations |
 | `interactions.ts` | Interactions helper module | src/optics/math, src/optics/types.ts, src/types | same folder | yzNormalToVec3, compileSurfaceInteraction, resolvedImagePlaneToPlane3, imagePlaneDataToPlane3 |
 | `labels.ts` | Labels helper module | src/types | same folder (4) | Optics2LensNormalizationError, buildSurfaceLabelMap, resolveLabel |
-| `normalizeLensData.ts` | Normalize Lens Data helper module | same folder (6), src/optics/math (2), src/lens-data/defaults.ts, src/optics/runtimeLens.ts, src/optics/types.ts, +1 more | src/optics/first-order (3), src/optics/chromatic (2), src/optics/compat.ts, src/optics/diagram, src/optics/field, +2 more | withLensDefaults, normalizeLensData, normalizeRuntimeLens |
+| `normalizeLensData.ts` | Normalize Lens Data helper module | same folder (6), src/optics/math (2), src/lens-data/defaults.ts, src/optics/runtimeLens.ts, src/optics/types.ts, +1 more | src/optics/chromatic (2), src/optics/compat.ts, src/optics/state | withLensDefaults, normalizeLensData, normalizeRuntimeLens |
 | `variables.ts` | Variables helper module | same folder, src/optics/math, src/types | same folder, src/optics/internal, src/optics/state | DEFAULT_FOCUS_POSITIONS, compileVariableGaps, compileVariableLabels, resolveVariableThickness, resolveAberrationThickness, resolveControlledThickness |

@@ -40,10 +40,10 @@ flowchart LR
   n_src_optics_TypeScript_modules --> |4| n_src_optics_src_optics_diagram
   n_src_optics_TypeScript_modules --> |4| n_src_optics_src_optics_field
   n_src_optics_TypeScript_modules --> |3| n_src_optics_src_optics_state
-  n_src_optics_TypeScript_modules --> |2| n_src_optics_src_optics_prescription
   n_src_optics_TypeScript_modules --> n_external_src_utils_catalog
   n_src_optics_TypeScript_modules --> n_external_src_utils_featureFlags_ts
   n_src_optics_TypeScript_modules --> n_src_optics_src_optics_perspective
+  n_src_optics_TypeScript_modules --> n_src_optics_src_optics_prescription
 ```
 
 ## Directory Overview
@@ -84,7 +84,7 @@ flowchart LR
 | `cardinalElements.ts` | Cardinal Elements helper module | src/optics/compat.ts | src/components/diagram (3), src/benchmarks, src/components/hooks, src/components/layout | computeCardinalElements, computeCardinalElementsAtState, CardinalDistance, CardinalElements, CardinalPoint |
 | `chiefRayDiagnostics.ts` | Chief Ray Diagnostics helper module | src/optics/compat.ts | none | getChiefRayDiagnostics, resetChiefRayDiagnostics, ChiefRayStatusCounts, ChiefRayStatus |
 | `chromaticRayFanScaling.ts` | Chromatic Ray Fan Scaling helper module | src/types | src/components/diagram (2) | REFERENCE_LOCA_MM, REFERENCE_FAN_IMAGE_HEIGHT_SPREAD_MM, ChromaticBarResult, computeChromaticBarOffsets, computeLocaBarOffsets |
-| `compat.ts` | Compat helper module | src/optics/analysis (13), src/optics/chromatic (4), src/optics/diagram (4), src/optics/field (3), src/optics/first-order (3), +6 more | src/components/display (15), src/components/layout (2), src/benchmarks, src/components/hooks, src/optics/buildLens.ts, +7 more | buildLens2, engineLensFromRuntime, prepareRuntimeState, doLayout2, thick2, eflAtZoom2, epAtZoom2, fopenAtZoom2, +173 more |
+| `compat.ts` | Compat helper module | src/optics/analysis (13), src/optics/chromatic (4), src/optics/diagram (4), src/optics/field (3), src/optics/first-order (3), +6 more | src/components/display (15), src/components/layout (2), src/benchmarks, src/components/hooks, src/optics/buildLens.ts, +7 more | prepareRuntimeState, buildLens2, engineLensFromRuntime, doLayout2, thick2, eflAtZoom2, epAtZoom2, fopenAtZoom2, +173 more |
 | `constants.ts` | Constants helper module | src/optics/internal, src/optics/spectralLines.ts, src/types | src/optics/math (4), src/optics/trace (4), src/optics/analysis (3), src/optics/diagram, src/optics/rayTrace.ts | DEFAULT_MAX_RIM_ANGLE_DEG, FLAT_R_THRESHOLD, MAX_RIM_SLOPE_TAN, VECTOR_EPSILON, INTERSECTION_TOLERANCE, INTERSECTION_MAX_ITERATIONS, INTERSECTION_BRACKET_SAMPLES, CHROMATIC_CHANNEL_WAVELENGTH_NM |
 | `diagramGeometry.ts` | Diagram Geometry helper module | src/optics/compat.ts | src/benchmarks, src/components/hooks | computeElementRenderDiagnostics, computeElementShapes, createCoordinateTransforms, DiagramPointTransform |
 | `dispersion.ts` | Dispersion helper module | src/optics/glassCatalog.ts, src/types | src/components/diagram (7), src/optics/chromatic (3), src/components/display, src/components/layout, src/optics/prescription, +2 more | normalLinePgF, DispersionQuality, SurfaceIndexFn, SurfaceDispersion, makeSurfaceDispersion, buildSurfaceDispersionIndex, summarizeDispersionQuality |
@@ -110,4 +110,4 @@ flowchart LR
 | `stopObstruction.ts` | Stop Obstruction helper module | src/types | src/optics/optics.ts, src/optics/raySampling.ts | stopInnerBlockedSemiDiameter |
 | `types.ts` | Shared TypeScript types | src/optics/dispersion.ts, src/optics/glassCatalog.ts, src/types | src/optics/perspective (20), src/components/display (14), src/optics/analysis (14), src/optics/trace (13), src/optics/math (7), +11 more | Vec3, Ray3, Plane3, SurfaceProfile, CompiledSurfaceInteraction, CompiledRadialPhaseTerm, CompiledDiffractivePhase, CompiledSurface, +16 more |
 | `validateLensData.ts` | Validate Lens Data module with default export | src/optics/internal (5), src/types (2), src/optics/math, src/utils/catalog | src/optics/runtimeLens.ts, src/utils/state | LENS_KEY_PATTERN, default, validateLensData |
-| `vignetteAnalysis.ts` | Vignette Analysis helper module | src/optics/analysis (2), src/optics/optics.ts (2), src/optics/math, src/optics/prescription, src/optics/projection.ts, +3 more | src/components/display, src/optics/analysis | VignettingSample, computeVignettingCurve |
+| `vignetteAnalysis.ts` | Vignette Analysis helper module | src/optics/analysis (2), src/optics/optics.ts (2), src/optics/math, src/optics/projection.ts, src/optics/raySampling.ts, +2 more | src/components/display, src/optics/analysis | VignettingSample, computeVignettingCurve |

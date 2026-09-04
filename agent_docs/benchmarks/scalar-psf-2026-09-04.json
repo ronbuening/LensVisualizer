@@ -1,0 +1,20 @@
+{
+  "createdAt": "2026-09-04T23:38:20.225Z",
+  "node": "v24.15.0",
+  "cpu": "Apple M4 Pro",
+  "size": 65,
+  "pitchMm": 0.003,
+  "wavelengthNm": 587.5618,
+  "waveletCount": 2048,
+  "referenceMs": [
+    376.7315,
+    375.135708,
+    370.65008299999977
+  ],
+  "optimizedMs": [
+    174.742167,
+    169.73291700000004,
+    169.33787500000017
+  ],
+  "maximumAbsoluteDifference": 1.3578582702677977e-11
+}

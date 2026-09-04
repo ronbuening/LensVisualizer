@@ -76,3 +76,14 @@ Each run records:
 The runner builds the benchmark module through Vite SSR so TypeScript, TSX, React, and `import.meta.glob` catalog imports
 resolve the same way they do in the app. It is intentionally opt-in and is not called by `test`, `build`, `lint`,
 metadata generation, glass reports, or mirror reports.
+
+## Scalar PSF kernel comparison
+
+Run the optimized grid and independent point evaluator on identical wavelets, without concurrent test/build jobs:
+
+```bash
+node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/benchmark-scalar-psf.mjs /tmp/scalar-psf.json
+```
+
+The JSON records all three timing samples, environment, sample grid and numerical disagreement. This kernel comparison
+excludes wavefront preparation, convergence refinements and React rendering; it is not an end-to-end UI benchmark.

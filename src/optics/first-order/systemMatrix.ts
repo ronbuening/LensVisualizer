@@ -32,17 +32,23 @@ export interface FirstOrderSystemMatrix {
  * @param state - prepared optical state for current focus/zoom/aberration sliders
  * @returns ABCD matrix and object/image-side refractive indices
  */
+const matrices = new WeakMap<PreparedOpticalState, FirstOrderSystemMatrix>();
+
 export function computeSystemMatrix2(state: PreparedOpticalState): FirstOrderSystemMatrix {
+  const cached = matrices.get(state);
+  if (cached) return cached;
   const marginal = traceParaxialSurfaces2(state.surfaces, 1, 0, { skipLastTransfer: true });
   const chief = traceParaxialSurfaces2(state.surfaces, 0, 1, { skipLastTransfer: true });
   const objectIndex = 1;
   const imageIndex = marginal.n;
-  return {
+  const result = Object.freeze({
     A: marginal.y,
     B: chief.y,
     C: imageIndex * marginal.u,
     D: imageIndex * chief.u,
     objectIndex,
     imageIndex,
-  };
+  });
+  matrices.set(state, result);
+  return result;
 }

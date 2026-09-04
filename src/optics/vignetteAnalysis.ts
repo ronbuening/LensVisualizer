@@ -12,8 +12,7 @@ import {
 } from "./optics.js";
 import { createAreaWeightedCircularPupilPoints } from "./math/pupilSampling.js";
 import { computeSensorIrradiance, type SensorIrradianceResult } from "./analysis/sensorIrradiance.js";
-import { normalizeRuntimeLens } from "./prescription/normalizeLensData.js";
-import { prepareState } from "./state/prepareState.js";
+import { prepareRuntimeState } from "./state/runtimeState.js";
 import { projectionLaunchSlopeForField } from "./projection.js";
 import type { FieldGeometryState } from "./optics.js";
 import { isHeavyLensForRayWork } from "./raySampling.js";
@@ -98,7 +97,7 @@ export function computeVignettingCurve(
   const rawGT: number[] = [];
   const rawIntensity: number[] = [];
   const irradiance: SensorIrradianceResult[] = [];
-  const state = prepareState(normalizeRuntimeLens(L), focusT, zoomT, aberrationT);
+  const state = prepareRuntimeState(L, focusT, zoomT, aberrationT);
   const rings = Math.max(2, Math.round(nPupil / 16));
   const pupilPoints = createAreaWeightedCircularPupilPoints(rings, 16);
 

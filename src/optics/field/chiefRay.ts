@@ -7,8 +7,7 @@
 
 import type { ParaxialTraceResult, RayTraceResult, RuntimeLens } from "../../types/optics.js";
 import { resolveImageFormatMetadata } from "../../utils/catalog/lensTaxonomy.js";
-import { normalizeRuntimeLens } from "../prescription/normalizeLensData.js";
-import { prepareState } from "../state/prepareState.js";
+import { prepareRuntimeState } from "../state/runtimeState.js";
 import type { Plane3, PreparedOpticalState, Ray3, Vec3 } from "../types.js";
 import { traceParaxialSurfaces2 } from "../math/paraxial.js";
 import { traceEngineRay2, traceRay2, traceRayVector2 } from "../trace/rayAdapters.js";
@@ -89,7 +88,7 @@ export function computeFieldGeometryAtState2(
   L: RuntimeLens,
   aberrationT = 0,
 ): FieldGeometryState2 {
-  const state = prepareState(normalizeRuntimeLens(L), focusT, zoomT, aberrationT);
+  const state = prepareRuntimeState(L, focusT, zoomT, aberrationT);
   const stopIndex = state.lens.stop.surfaceIndex;
   const delta = 1e-4;
 
@@ -243,7 +242,7 @@ export function traceParaxialRay2(
   zoomT: number,
   L: RuntimeLens,
 ): Pick<ParaxialTraceResult, "y" | "u"> {
-  const state = prepareState(normalizeRuntimeLens(L), focusT, zoomT, 0);
+  const state = prepareRuntimeState(L, focusT, zoomT, 0);
   const result = traceParaxialSurfaces2(state.surfaces, y0, u0, { skipLastTransfer: true });
   return { y: result.y, u: result.u };
 }
@@ -344,7 +343,7 @@ export function solveChiefRayBoundingSphere2(
   const direction = baseLaunch.direction;
   const baseOrigin = baseLaunch.origin;
   const uFieldEquivalent = Math.abs(cosTheta) > 1e-9 ? -sinTheta / cosTheta : NaN;
-  const state = prepareState(normalizeRuntimeLens(L), focusT, zoomT, aberrationT);
+  const state = prepareRuntimeState(L, focusT, zoomT, aberrationT);
   const stopIndex = state.lens.stop.surfaceIndex;
   const launchBoundT = baseLaunch.launchBoundT;
 
@@ -872,7 +871,7 @@ function computeChiefRaySolve2(
     return { yLaunch: paraxialYChief, uField, status: "converged", iterations: 0, launchSurface };
   }
 
-  const state = prepareState(normalizeRuntimeLens(L), focusT, zoomT, aberrationT);
+  const state = prepareRuntimeState(L, focusT, zoomT, aberrationT);
   const stopIndex = state.lens.stop.surfaceIndex;
   const heightAtStop = (yLaunch: number): number | null => {
     const result = traceStateSurfacesReal2(state, yLaunch, uField, { stopAt: stopIndex });
@@ -1051,12 +1050,12 @@ function foldedRayImagePlaneCoordinate2(trace: RayTraceResult, L: RuntimeLens): 
 }
 
 function zPositionsForState(focusT: number, zoomT: number, L: RuntimeLens, aberrationT: number): number[] {
-  const state = prepareState(normalizeRuntimeLens(L), focusT, zoomT, aberrationT);
+  const state = prepareRuntimeState(L, focusT, zoomT, aberrationT);
   return [...state.z];
 }
 
 function lastThicknessAtState(focusT: number, zoomT: number, L: RuntimeLens, aberrationT: number): number {
-  const state = prepareState(normalizeRuntimeLens(L), focusT, zoomT, aberrationT);
+  const state = prepareRuntimeState(L, focusT, zoomT, aberrationT);
   return state.surfaces[state.surfaces.length - 1]?.d ?? 0;
 }
 
@@ -1068,7 +1067,7 @@ function traceToImageReal2(
   L: RuntimeLens,
   aberrationT = 0,
 ): number {
-  const state = prepareState(normalizeRuntimeLens(L), focusT, zoomT, aberrationT);
+  const state = prepareRuntimeState(L, focusT, zoomT, aberrationT);
   const trace = traceStateSurfacesReal2(state, y0, u0, {});
   if (!Number.isFinite(trace.y) || trace.clipped) return NaN;
   if (state.lens.flags.isFoldedOptics && trace.reachedImagePlane) {

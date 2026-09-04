@@ -6,8 +6,7 @@
 
 import type { ChromaticChannel, RayTraceResult, RuntimeLens } from "../../types/optics.js";
 import { directionFromMeridionalSlope, directionFromSkewSlope } from "../math/vector.js";
-import { normalizeRuntimeLens } from "../prescription/normalizeLensData.js";
-import { prepareState } from "../state/prepareState.js";
+import { prepareRuntimeState as stateForRuntimeLens } from "../state/runtimeState.js";
 import type { CompiledStateSurface, PreparedOpticalState, Ray3, Vec3 } from "../types.js";
 import { shouldUseGeneralizedTrace, traceGeneralized } from "./generalizedTrace.js";
 import {
@@ -27,14 +26,6 @@ export interface VectorRayTraceInput2 {
   launchBoundT?: number;
 }
 
-interface PreparedStateCache {
-  byKey: Map<string, PreparedOpticalState>;
-  lastFocusT?: number;
-  lastZoomT?: number;
-  lastAberrationT?: number;
-  lastState?: PreparedOpticalState;
-}
-
 interface TraceOptionsCache {
   byKey: Map<string, TraceOptions>;
   lastStopSD?: number;
@@ -45,7 +36,6 @@ interface TraceOptionsCache {
 }
 
 const DIRECTION_CACHE_LIMIT = 4096;
-const PREPARED_STATE_BY_RUNTIME = new WeakMap<RuntimeLens, PreparedStateCache>();
 const RUNTIME_Z_STATE_BY_BASE = new WeakMap<PreparedOpticalState, WeakMap<readonly number[], PreparedOpticalState>>();
 const TRACE_OPTIONS_BY_STATE = new WeakMap<PreparedOpticalState, TraceOptionsCache>();
 const MERIDIONAL_DIRECTION_BY_SLOPE = new Map<number, Vec3>([[0, [0, 0, 1]]]);
@@ -426,6 +416,7 @@ function traceOptions(
     wavelengthNm: channel ? CHROMATIC_CHANNEL_WAVELENGTH_NM[channel] : undefined,
   };
   optionsCache.byKey.set(key, options);
+  if (optionsCache.byKey.size > 96) optionsCache.byKey.delete(optionsCache.byKey.keys().next().value!);
   optionsCache.lastStopSD = stopSD;
   optionsCache.lastGhost = ghost;
   optionsCache.lastChannel = channel;
@@ -465,41 +456,6 @@ function skewDirectionForSlopes(ux: number, uy: number): Vec3 {
   byUy.set(uy, direction);
   skewDirectionCacheSize += 1;
   return direction;
-}
-
-function stateForRuntimeLens(L: RuntimeLens, focusT: number, zoomT: number, aberrationT: number): PreparedOpticalState {
-  const engineLens = normalizeRuntimeLens(L);
-  let stateCache = PREPARED_STATE_BY_RUNTIME.get(L);
-  if (!stateCache) {
-    stateCache = { byKey: new Map() };
-    PREPARED_STATE_BY_RUNTIME.set(L, stateCache);
-  }
-  if (
-    stateCache.lastState &&
-    Object.is(stateCache.lastFocusT, focusT) &&
-    Object.is(stateCache.lastZoomT, zoomT) &&
-    Object.is(stateCache.lastAberrationT, aberrationT)
-  ) {
-    return stateCache.lastState;
-  }
-
-  const key = `${focusT}|${zoomT}|${aberrationT}`;
-  const cached = stateCache.byKey.get(key);
-  if (cached) {
-    stateCache.lastFocusT = focusT;
-    stateCache.lastZoomT = zoomT;
-    stateCache.lastAberrationT = aberrationT;
-    stateCache.lastState = cached;
-    return cached;
-  }
-
-  const state = prepareState(engineLens, focusT, zoomT, aberrationT);
-  stateCache.byKey.set(key, state);
-  stateCache.lastFocusT = focusT;
-  stateCache.lastZoomT = zoomT;
-  stateCache.lastAberrationT = aberrationT;
-  stateCache.lastState = state;
-  return state;
 }
 
 /**

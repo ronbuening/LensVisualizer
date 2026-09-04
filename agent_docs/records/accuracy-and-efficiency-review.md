@@ -14,7 +14,7 @@ commit between steps. A step is not complete merely because its implementation h
 | 5 | Source-backed spectral throughput, encounter-aware absorption and surface losses | Complete |
 | 6 | Opt-in optical path, wavefront, scalar Huygens PSF; initially centered on-axis sequential refraction | Complete |
 | 7 | MTF, explicit spectral weights, Image Quality tab and unavailable states | Complete |
-| 8 | Reuse prepared states and first-order results, preserving bounded cache identity | Pending |
+| 8 | Reuse prepared states and first-order results, preserving bounded cache identity | Complete |
 | 9 | Cancellable worker analysis with stale-result rejection and synchronous reference path | Pending |
 | 10 | Shared zoom interpolation and intersection kernel, preserving traversal semantics | Pending |
 | 11 | Separate glass report generation from meaningful regression assertions; one catalog inventory | Pending |
@@ -183,3 +183,25 @@ retention policy. No production optical behavior changed in step 1.
   takes approximately 14.3 seconds in an isolated node probe; optimize and measure in step 8.
 - Typecheck, format, lint, full tests, coverage and production build passed: 304 files / 2812 tests. Coverage statements
   92.14%, branches 83.58%, functions 93.86%, lines 94.83%. SSR prerendered all 1243 routes. Steps 8–11 remain pending.
+
+### Step 8 — bounded state reuse and measured arithmetic reduction
+
+- Moved runtime prepared-state ownership into one module, shared by tracing, chief-ray solves, diagram adapters,
+  vignetting and first-order entry points. Retains the last-input fast path, normalized exact control keys and a 96-state
+  LRU per runtime lens identity. Trace-option retention is also bounded. First-order system matrices are frozen and
+  reused per immutable prepared state; no UI-dependent state is moved into lens construction.
+- Huygens grids now prepare reference distances and axial separations once per pupil wavelet and use a guarded direct
+  Euclidean norm. The original point evaluator remains the reference, with asymmetric-pupil equivalence tests.
+  No angular symmetry approximation or weaker convergence threshold is introduced.
+- Isolated pre-change rendering benchmark: `runs/2026-09-04T23-33-48Z-150d961b.json`, clean step-seven tree, no warnings.
+  Median analysis 93.82 ms; median total warm 95.19 ms. No simultaneous test or build job ran during measurement.
+- `scalar-psf-2026-09-04.json` records reference medians 375.14 ms versus optimized 169.73 ms (approximately 2.21×)
+  for the same 65-square grid and 2048 wavelets. Maximum absolute normalized-intensity disagreement was 1.36e-11.
+  This is a kernel measurement, not an end-to-end PSF or UI speed claim.
+- Full normal tests and coverage passed: 305 files / 2815 tests; statements 92.18%, branches 83.59%, functions 93.91%,
+  lines 94.87%. Typecheck, format and lint passed after removing an unused facade import. Production build/SSR
+  prerendered all 1243 routes. The after-change rendering benchmark is running separately from these gates.
+- After-change rendering benchmark: `runs/2026-09-04T23-43-02Z-150d961b.json`, no warnings. Median warm workload
+  94.79 ms versus 95.19 ms before (0.4% lower); analysis 93.06 versus 93.82 ms. These small differences do not establish
+  an overall viewer speedup. The supported gain is the isolated PSF kernel; cache consolidation also bounds retention
+  and removes duplicated preparation. Steps 9–11 remain pending.

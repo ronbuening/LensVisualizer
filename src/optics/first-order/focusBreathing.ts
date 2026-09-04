@@ -1,8 +1,7 @@
 /** Current-state focal length calculated from the prescription, independent of catalog labels. */
 import type { RuntimeLens } from "../../types/optics.js";
 import type { PreparedOpticalState } from "../types.js";
-import { normalizeRuntimeLens } from "../prescription/normalizeLensData.js";
-import { prepareState } from "../state/prepareState.js";
+import { prepareRuntimeState } from "../state/runtimeState.js";
 import { computeCardinalElements2 } from "./cardinals.js";
 
 /** Calculated signed EFL in the engine axis convention; null means afocal or unsupported geometry. */
@@ -17,6 +16,6 @@ export function calculatedFocalLengthForState(state: PreparedOpticalState): numb
  * The numeric compatibility API uses NaN for unavailable power; reporting APIs use null.
  */
 export function eflAtFocus2(focusT: number, zoomT: number, L: RuntimeLens, aberrationT = 0): number {
-  const state = prepareState(normalizeRuntimeLens(L), focusT, zoomT, aberrationT);
+  const state = prepareRuntimeState(L, focusT, zoomT, aberrationT);
   return calculatedFocalLengthForState(state) ?? NaN;
 }

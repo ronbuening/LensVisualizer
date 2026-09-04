@@ -61,17 +61,43 @@ export function computeHuygensPsf(
     return empty;
   const idealPeak = huygensIntensity(wavelets, wavelengthNm, referencePoint, referencePoint, true);
   if (!Number.isFinite(idealPeak) || idealPeak <= 0) return empty;
+  // Reference distance and axial separation do not change across this sensor plane.
+  // Keep the public point evaluator as an independent scalar reference path.
+  const wavelengthMm = wavelengthNm * 1e-6;
+  const prepared = wavelets.map((w) => ({
+    x: w.point[0],
+    y: w.point[1],
+    dz: referencePoint[2] - w.point[2],
+    referenceDistance: Math.hypot(
+      referencePoint[0] - w.point[0],
+      referencePoint[1] - w.point[1],
+      referencePoint[2] - w.point[2],
+    ),
+    opd: w.opdMm,
+    area: w.amplitudeAreaMm2,
+    cosine: w.directionCosine,
+  }));
   const intensity: number[] = [];
   const middle = (size - 1) / 2;
   let sum = 0;
   for (let y = 0; y < size; y++) {
     for (let x = 0; x < size; x++) {
-      const value =
-        huygensIntensity(wavelets, wavelengthNm, referencePoint, [
-          referencePoint[0] + (x - middle) * pixelPitchMm,
-          referencePoint[1] + (y - middle) * pixelPitchMm,
-          referencePoint[2],
-        ]) / idealPeak;
+      const px = referencePoint[0] + (x - middle) * pixelPitchMm;
+      const py = referencePoint[1] + (y - middle) * pixelPitchMm;
+      let real = 0,
+        imaginary = 0;
+      for (const w of prepared) {
+        const dx = px - w.x,
+          dy = py - w.y;
+        const square = dx * dx + dy * dy + w.dz * w.dz;
+        const distance = Number.isFinite(square) && square > 0 ? Math.sqrt(square) : Math.hypot(dx, dy, w.dz);
+        if (w.dz <= 0 || distance <= 0) return empty;
+        const phase = (2 * Math.PI * (w.opd + distance - w.referenceDistance)) / wavelengthMm;
+        const amplitude = (w.area * (w.cosine + w.dz / distance)) / 2 / (wavelengthMm * distance);
+        real += amplitude * Math.cos(phase);
+        imaginary += amplitude * Math.sin(phase);
+      }
+      const value = (real * real + imaginary * imaginary) / idealPeak;
       if (!Number.isFinite(value)) return empty;
       intensity.push(value);
       sum += value;

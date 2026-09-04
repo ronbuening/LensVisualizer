@@ -24,12 +24,22 @@ export interface PreparedStateCache {
  *
  * @returns cache object for memoizing PreparedOpticalState instances by key
  */
-export function createPreparedStateCache(): PreparedStateCache {
+export function createPreparedStateCache(limit = 96): PreparedStateCache {
+  if (!Number.isInteger(limit) || limit < 1) throw new RangeError("Cache limit must be a positive integer");
   const cache = new Map<string, PreparedOpticalState>();
   return {
-    get: (cacheKey) => cache.get(cacheKey),
+    get: (cacheKey) => {
+      const state = cache.get(cacheKey);
+      if (state) {
+        cache.delete(cacheKey);
+        cache.set(cacheKey, state);
+      }
+      return state;
+    },
     set: (cacheKey, state) => {
+      cache.delete(cacheKey);
       cache.set(cacheKey, state);
+      if (cache.size > limit) cache.delete(cache.keys().next().value!);
     },
     clear: () => {
       cache.clear();
