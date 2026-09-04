@@ -40,6 +40,8 @@ export default defineConfig(({ isSsrBuild }) => ({
     exclude: [...configDefaults.exclude, "**/.claude/**"],
     coverage: {
       provider: "v8",
+      // Measured before the 2026-09-04 accuracy work. Never lower these to accommodate a regression.
+      thresholds: { statements: 91.88, branches: 82.9, functions: 93.72, lines: 94.58 },
       include: [
         "src/optics/**",
         "src/utils/**",

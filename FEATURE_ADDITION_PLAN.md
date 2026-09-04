@@ -1,5 +1,9 @@
 # Feature Addition Plan
 
+The approved 2026-09-04 optical accuracy, throughput and scalar PSF/MTF sequence is tracked in
+[`accuracy-and-efficiency-review.md`](agent_docs/records/accuracy-and-efficiency-review.md).
+Use that sequence for overlapping work; preserve the feature inventory and shipped history below.
+
 **This is the single source of truth for planned LensVisualizer features.** It absorbed the open
 items from `ANALYSIS_OPTIONS.md` and `MIRROR_LENS_FUTURE_ENHANCEMENTS.md` on 2026-07-06; the
 originals are archived verbatim under `agent_docs/records/` for history. Items marked (AO#n) came

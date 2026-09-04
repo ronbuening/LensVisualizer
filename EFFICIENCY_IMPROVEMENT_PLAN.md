@@ -1,5 +1,9 @@
 # Efficiency Improvement Plan
 
+The approved 2026-09-04 accuracy-first follow-up is tracked in
+[`accuracy-and-efficiency-review.md`](agent_docs/records/accuracy-and-efficiency-review.md).
+Its ordered work and validation gates supersede overlapping open performance items below; completed history remains here.
+
 Actionable cleanup and performance tasks for LensVisualizer, written so a junior engineer or a
 small-model agent can execute each one without further research. Findings come from a 2026-07-06
 audit; all file/line references and code excerpts below were verified against the working tree on

@@ -47,7 +47,7 @@ jobs:
           node-version: "24.15.0"
           cache: npm
       - run: npm ci
-      - run: npm run test
+      - run: npm run test:coverage
 
   audit:
     runs-on: ubuntu-latest
