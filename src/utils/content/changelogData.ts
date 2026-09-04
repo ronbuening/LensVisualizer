@@ -20,6 +20,11 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-09-04",
+    type: "fix",
+    summary: "Corrected calculated focal length and focus-breathing references and labels",
+  },
+  {
+    date: "2026-09-04",
     type: "improvement",
     summary: "Improved patent-based focus accuracy across 55 lens models",
   },

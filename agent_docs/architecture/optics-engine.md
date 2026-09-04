@@ -115,6 +115,13 @@ multi-order energy, interference, PSF/MTF, groove microstructure, scatter, or ch
 
 ## optics.ts
 
+`eflAtFocus()` calculates signed first-order EFL at every focus/zoom/aberration state, including infinity, using the
+same cardinal solver. It returns `NaN` for afocal or unsupported geometry; summary metrics convert this to `null` and
+the breathing tab displays an unavailable explanation. `calculatedFocalLengthForState()` is the nullable prepared-state
+entry point. Authored/build-time catalog values remain on `RuntimeLens` and the zoom metadata accessors; they are not
+substituted for unavailable calculated power. Breathing compares calculated current and infinity states at the same
+zoom and aberration settings. The runtime layout facade delegates to the same focal-length implementation.
+
 `src/optics/optics.ts` is the stable barrel for commonly consumed pure optics helpers. Continue importing from this
 stable path in app code unless working inside the engine itself. Import from deeper `src/optics/**` engine modules only
 for engine-native work or focused tests that need prepared-state APIs.

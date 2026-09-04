@@ -329,7 +329,7 @@ export default function DiagramControls({
                     transition: "color 0.3s",
                   }}
                 >
-                  EFL {dynamicEFL.toFixed(2)} mm
+                  EFL {Number.isFinite(dynamicEFL) ? `${dynamicEFL.toFixed(2)} mm` : "unavailable"}
                 </div>
               )}
             </>
@@ -467,8 +467,9 @@ export default function DiagramControls({
                   transition: "color 0.3s",
                 }}
               >
-                {apertureReferenceLabel} {apertureReferenceValue.toFixed(2)} mm · EP {"\u2300"}{" "}
-                {(baseEPSD * 2).toFixed(2)} mm · Stop {"\u2300"} {(currentPhysStopSD * 2).toFixed(2)} mm
+                {apertureReferenceLabel}{" "}
+                {Number.isFinite(apertureReferenceValue) ? `${apertureReferenceValue.toFixed(2)} mm` : "unavailable"} ·
+                EP {"\u2300"} {(baseEPSD * 2).toFixed(2)} mm · Stop {"\u2300"} {(currentPhysStopSD * 2).toFixed(2)} mm
               </div>
               <div
                 style={{

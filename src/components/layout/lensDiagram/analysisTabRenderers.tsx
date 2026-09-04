@@ -137,7 +137,14 @@ export const ANALYSIS_TAB_RENDERERS: Record<AnalysisTabId, AnalysisTabRenderer> 
     />
   ),
   breathing: ({ L, t, inputs }) => (
-    <FocusBreathingTab L={L} t={t} focusT={inputs.focusT} zoomT={inputs.zoomT} dynamicEFL={inputs.dynamicEFL} />
+    <FocusBreathingTab
+      L={L}
+      t={t}
+      focusT={inputs.focusT}
+      zoomT={inputs.zoomT}
+      aberrationT={inputs.aberrationT}
+      dynamicEFL={inputs.dynamicEFL}
+    />
   ),
   vignetting: ({ L, t, preparedState, analysisContext, inputs }) => (
     <VignettingTab

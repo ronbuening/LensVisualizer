@@ -3,7 +3,8 @@
  */
 
 import type { FieldGeometryState } from "../optics.js";
-import { FOCUS_INFINITY_THRESHOLD, eflAtZoom } from "../layout.js";
+import { FOCUS_INFINITY_THRESHOLD } from "../layout.js";
+import { calculatedFocalLengthForState, eflAtFocus2 } from "../first-order/focusBreathing.js";
 import { computeCardinalElements2 } from "../first-order/cardinals.js";
 import type { PreparedOpticalState } from "../types.js";
 
@@ -40,11 +41,11 @@ export interface OpticalSummaryMetrics2 {
  * Compute headline current-state optical metrics from prepared engine data.
  *
  * This is intentionally a read-only summary: it does not rebuild the RuntimeLens or
- * change any trace state. `dynamicEFL` and aperture values are supplied by the caller
- * because they depend on UI state that lives outside the prepared lens prescription.
+ * change any trace state. Aperture values are supplied by the caller. Focal length
+ * is derived from the prepared prescription so a catalog label cannot masquerade as calculated power.
  *
  * @param state - prepared optical state for current focus/zoom/aberration sliders
- * @param dynamicEFL - current effective focal length in mm
+ * @param _dynamicEFL - retained positional compatibility input; EFL is calculated from state
  * @param currentEPSD - entrance-pupil semi-diameter in mm
  * @param currentPhysStopSD - physical stop semi-diameter in mm
  * @param fieldGeometry - optional solved field geometry for current half-field reporting
@@ -52,14 +53,14 @@ export interface OpticalSummaryMetrics2 {
  */
 export function computeOpticalSummaryForState2(
   state: PreparedOpticalState,
-  dynamicEFL: number,
+  _dynamicEFL: number,
   currentEPSD: number,
   currentPhysStopSD: number,
   fieldGeometry?: FieldGeometryState,
 ): OpticalSummaryMetrics2 {
   const L = state.lens.runtime;
-  const currentEFLMm = finiteOrNull(dynamicEFL);
-  const infinityEFLMm = finiteOrNull(eflAtZoom(state.zoomT, L));
+  const currentEFLMm = calculatedFocalLengthForState(state);
+  const infinityEFLMm = finiteOrNull(eflAtFocus2(0, state.zoomT, L, state.aberrationT));
   const breathingPercent =
     currentEFLMm !== null && infinityEFLMm !== null && Math.abs(infinityEFLMm) > 1e-9
       ? (100 * (currentEFLMm - infinityEFLMm)) / infinityEFLMm

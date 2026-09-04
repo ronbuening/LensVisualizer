@@ -737,10 +737,10 @@ describe("centered aberration-control interpolation", () => {
  * value for eflAtFocus. */
 
 describe("eflAtFocus", () => {
-  it("returns static EFL at infinity focus for prime lenses", () => {
+  it("calculates the infinity power for prime lenses", () => {
     const L = buildLens({ ...LENS_DEFAULTS, ...ApoLantharRaw } as LensData);
-    expect(eflAtFocus(0, 0, L)).toBe(L.EFL);
-    expect(eflAtFocus(0.001, 0, L)).toBe(L.EFL); // below threshold
+    expect(eflAtFocus(0, 0, L)).toBeCloseTo(L.EFL, 10);
+    expect(Number.isFinite(eflAtFocus(0.001, 0, L))).toBe(true);
   });
 
   it("returns a different EFL at close focus for internal-focusing lenses", () => {

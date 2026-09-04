@@ -55,34 +55,15 @@ describe("layout facade edge cases", () => {
     expect(xpZRelLastSurfAtZoom(0.5, L)).toBe(Infinity);
   });
 
-  it("falls back to the catalog EFL when paraxial power is effectively zero", () => {
-    const L = {
-      isZoom: false,
-      EFL: 75,
-      S: [
-        { label: "1", R: 1e15, d: 5, nd: 1, sd: 10, elemId: 1 },
-        { label: "2", R: 1e15, d: 50, nd: 1, sd: 10, elemId: 1 },
-      ],
-      varByIdx: {},
-      aberrationControl: null,
-    } as unknown as RuntimeLens;
-
-    expect(eflAtFocus(0.5, 0, L)).toBe(75);
+  it("reports unavailable EFL when paraxial power is effectively zero", () => {
+    const base = buildSimplePositiveElementLens();
+    const L = { ...base, S: base.S.map((s) => ({ ...s, R: 1e15 })), EFL: 75 };
+    expect(eflAtFocus(0.5, 0, L)).toBeNaN();
   });
 
   it("returns the marked f-number when the close-focus denominator collapses", () => {
-    const L = {
-      isZoom: false,
-      EFL: 500,
-      closeFocusM: 0.5,
-      S: [
-        { label: "1", R: 1e15, d: 5, nd: 1, sd: 10, elemId: 1 },
-        { label: "2", R: 1e15, d: 50, nd: 1, sd: 10, elemId: 1 },
-      ],
-      varByIdx: {},
-      aberrationControl: null,
-    } as unknown as RuntimeLens;
-
+    const base = buildSimplePositiveElementLens();
+    const L = { ...base, closeFocusM: eflAtFocus(1, 0, base) / 1000 };
     expect(effectiveFNumber(2.8, 1, 0, L)).toBe(2.8);
   });
 

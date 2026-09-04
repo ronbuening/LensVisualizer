@@ -6,7 +6,7 @@
  */
 
 import { useMemo } from "react";
-import { eflAtFocus, eflAtZoom, formatDist } from "../../../optics/optics.js";
+import { eflAtFocus, formatDist } from "../../../optics/optics.js";
 import type { RuntimeLens } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
 
@@ -15,6 +15,7 @@ interface FocusBreathingTabProps {
   t: Theme;
   focusT: number;
   zoomT: number;
+  aberrationT?: number;
   dynamicEFL: number;
 }
 
@@ -28,15 +29,20 @@ interface BreathingSample {
 const SAMPLE_COUNT = 21;
 const MARGIN = { top: 24, right: 20, bottom: 42, left: 48 };
 
-function buildBreathingSamples(L: RuntimeLens, zoomT: number, currentFocusT: number): BreathingSample[] {
-  const infinityEFL = L.isZoom ? eflAtZoom(zoomT, L) : L.EFL;
+function buildBreathingSamples(
+  L: RuntimeLens,
+  zoomT: number,
+  currentFocusT: number,
+  aberrationT: number,
+): BreathingSample[] {
+  const infinityEFL = eflAtFocus(0, zoomT, L, aberrationT);
   const points = new Set<number>([0, 1, currentFocusT]);
   for (let i = 0; i < SAMPLE_COUNT; i++) points.add(i / (SAMPLE_COUNT - 1));
 
   return [...points]
     .sort((a, b) => a - b)
     .map((focusT) => {
-      const efl = eflAtFocus(focusT, zoomT, L);
+      const efl = eflAtFocus(focusT, zoomT, L, aberrationT);
       const breathingPercent = Math.abs(infinityEFL) > 1e-9 ? (100 * (efl - infinityEFL)) / infinityEFL : 0;
       return {
         focusT,
@@ -234,15 +240,25 @@ function FocusBreathingChart({
   );
 }
 
-export default function FocusBreathingTab({ L, t, focusT, zoomT, dynamicEFL }: FocusBreathingTabProps) {
-  const samples = useMemo(() => buildBreathingSamples(L, zoomT, focusT), [L, zoomT, focusT]);
-  const infinityEFL = L.isZoom ? eflAtZoom(zoomT, L) : L.EFL;
+export default function FocusBreathingTab({
+  L,
+  t,
+  focusT,
+  zoomT,
+  aberrationT = 0,
+  dynamicEFL,
+}: FocusBreathingTabProps) {
+  const samples = useMemo(() => buildBreathingSamples(L, zoomT, focusT, aberrationT), [L, zoomT, focusT, aberrationT]);
+  const infinityEFL = eflAtFocus(0, zoomT, L, aberrationT);
   const currentBreathingPercent = Math.abs(infinityEFL) > 1e-9 ? (100 * (dynamicEFL - infinityEFL)) / infinityEFL : 0;
   const closeSample = samples[samples.length - 1];
+  if (!Number.isFinite(infinityEFL) || !Number.isFinite(dynamicEFL) || samples.some((s) => !Number.isFinite(s.efl))) {
+    return <p style={{ color: t.muted }}>Calculated focal length is unavailable for this optical path.</p>;
+  }
   const breathingLabel =
     Math.abs(currentBreathingPercent) < 0.05
       ? "negligible"
-      : currentBreathingPercent < 0
+      : currentBreathingPercent > 0
         ? "narrower FOV"
         : "wider FOV";
 

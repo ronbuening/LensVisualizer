@@ -7,8 +7,8 @@ import OpticalSummaryTab from "../../../../../src/components/display/analysis/Op
 import PupilAberrationTab from "../../../../../src/components/display/analysis/PupilAberrationTab.js";
 import VignettingTab from "../../../../../src/components/display/analysis/VignettingTab.js";
 import themes from "../../../../../src/utils/theme/themes.js";
+import { buildSimplePositiveElementLens } from "../../../optics/testLensFixtures.js";
 import type { PreparedOpticalState } from "../../../../../src/optics/types.js";
-import type { RuntimeLens } from "../../../../../src/types/optics.js";
 
 const {
   mockComputeBothPupilAberrationProfiles,
@@ -54,7 +54,7 @@ vi.mock("../../../../../src/optics/compat.js", async () => {
 });
 
 const preparedState = mockPreparedState as PreparedOpticalState;
-const lens = { N: 2, EFL: 50, isZoom: false } as RuntimeLens;
+const lens = buildSimplePositiveElementLens();
 const fieldGeometry = { halfFieldDeg: 12, yRatio: 1, b: 1, epRatio: 1 };
 
 const distortionSamples = [
@@ -341,6 +341,23 @@ describe("prepared-state analysis tabs", () => {
     expect(mockPrepareRuntimeState).not.toHaveBeenCalled();
     expect(mockComputeDistortionCurve).toHaveBeenCalledWith(preparedState, 51, 5, fieldGeometry);
     expect(mockComputeDistortionFieldGrid).toHaveBeenCalledWith(preparedState, 5, fieldGeometry);
+  });
+
+  it("keeps unavailable focal length out of the distortion breathing readout", () => {
+    const html = renderToStaticMarkup(
+      React.createElement(DistortionTab, {
+        L: lens,
+        t: themes.dark,
+        focusT: 0,
+        zoomT: 0,
+        dynamicEFL: NaN,
+        currentPhysStopSD: 5,
+        fieldGeometry,
+        preparedState,
+      }),
+    );
+    expect(html).toContain("unavailable");
+    expect(html).not.toContain("NaN");
   });
 
   it("switches to projection-residual copy when the distortion reference is a fisheye projection", () => {

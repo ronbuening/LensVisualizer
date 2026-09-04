@@ -8,7 +8,7 @@ commit between steps. A step is not complete merely because its implementation h
 | Step | Deliverable | Status |
 | --- | --- | --- |
 | 1 | Physical reference fixtures, full-suite coverage gate, test and performance baselines | Complete |
-| 2 | Consistent calculated current/infinity EFL and breathing; authored values remain metadata | Pending |
+| 2 | Consistent calculated current/infinity EFL and breathing; authored values remain metadata | Complete |
 | 3 | Shared marked/geometric/working f-number and current-pupil aperture result | Pending |
 | 4 | Two-dimensional pupil-area and sensor-irradiance integration with explicit convergence status | Pending |
 | 5 | Source-backed spectral throughput, encounter-aware absorption and surface losses | Pending |
@@ -41,6 +41,8 @@ commit between steps. A step is not complete merely because its implementation h
 - Several first-order/chief-ray paths compile prepared state without the existing runtime cache.
 - Three copies of zoom interpolation and separate runtime/engine intersection kernels remain.
 - Eight glass scans generate files during tests; some report-only assertions cannot fail for incorrect classification.
+- Coverage also tries to parse Markdown under broad source globs, then excludes it after parse warnings. Step 11 should
+  restrict instrumentation to code extensions while proving the measured code coverage inventory stays unchanged.
 - Initial targeted review: 4 suites / 49 tests passed. This was not a full-suite or coverage baseline.
 
 ## Validation history
@@ -74,3 +76,17 @@ Median cell times: build 0.47 ms, layout 1.00 ms, rays 1.60 ms, analysis 77.95 m
 total warm 80.12 ms. This diagnostic run overlapped validation early on; it is not isolated performance evidence.
 Rerun an isolated before/after pair when implementing step 8. The runner pruned its oldest record under its documented
 retention policy. No production optical behavior changed in step 1.
+
+### Step 2 — calculated focal length
+
+- Both runtime entry points now use the same cardinal calculation at every focus/zoom/aberration state. The nullable
+  prepared-state helper reports unavailable power; the numeric compatibility API uses NaN. No catalog fallback.
+- Summary and breathing curves compare calculated states, including the same aberration setting. Authored labels remain
+  catalog metadata. Shorter EFL now reads wider FOV, and longer EFL narrower FOV in both breathing displays.
+- Added independent lensmaker, threshold continuity, free-space translation, folded cardinal and afocal regressions.
+  UI tests cover field-of-view labels and unavailable output. Existing golden traces were not re-pinned.
+- Full normal suite passed (297 files / 2752 tests), then the added unavailable-display regression passed separately;
+  full coverage includes all 2753 tests. Coverage: statements 91.88%, branches 82.99%, functions 93.72%, lines 94.58%.
+- Typecheck, format check and lint passed; build/SSR prerendered all 1243 routes, sitemap and feeds successfully.
+  A final type/format/lint check also covers the last display guard and its regression test.
+- Scope limit: this step does not change working-f-number semantics; that remains step 3.

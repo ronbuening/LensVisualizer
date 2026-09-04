@@ -8,7 +8,7 @@
 import { useMemo } from "react";
 import { analysisJobsForState2 } from "../../../optics/compat.js";
 import { probe } from "../../../utils/perfProbe.js";
-import { eflAtZoom } from "../../../optics/optics.js";
+import { eflAtFocus } from "../../../optics/optics.js";
 import DistortionChart from "./DistortionChart.js";
 import DistortionFieldGrid from "./DistortionFieldGrid.js";
 import { AnalysisMetricRow } from "./analysisUi.js";
@@ -144,10 +144,10 @@ function CenteredDistortionContent({
           ? "inward residual"
           : "pincushion"
         : "negligible";
-  const infinityEFL = L.isZoom ? eflAtZoom(zoomT, L) : L.EFL;
+  const infinityEFL = eflAtFocus(0, zoomT, L, preparedState.aberrationT);
   const breathingPercent = Math.abs(infinityEFL) > 1e-9 ? (100 * (dynamicEFL - infinityEFL)) / infinityEFL : 0;
   const breathingLabel =
-    Math.abs(breathingPercent) < 0.05 ? "negligible" : breathingPercent < 0 ? "narrower FOV" : "wider FOV";
+    Math.abs(breathingPercent) < 0.05 ? "negligible" : breathingPercent > 0 ? "narrower FOV" : "wider FOV";
 
   return (
     <div>
@@ -192,8 +192,12 @@ function CenteredDistortionContent({
         <AnalysisMetricRow label="Angle" value={`${edgeSample.fieldAngleDeg.toFixed(1)}°`} t={t} />
         <AnalysisMetricRow
           label="Breathing"
-          value={`${breathingPercent >= 0 ? "+" : ""}${breathingPercent.toFixed(1)}%`}
-          note={`(${breathingLabel})`}
+          value={
+            Number.isFinite(breathingPercent)
+              ? `${breathingPercent >= 0 ? "+" : ""}${breathingPercent.toFixed(1)}%`
+              : "unavailable"
+          }
+          note={Number.isFinite(breathingPercent) ? `(${breathingLabel})` : undefined}
           t={t}
         />
       </div>

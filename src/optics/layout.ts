@@ -8,7 +8,7 @@
 import type { LayoutResult, RuntimeLens } from "../types/optics.js";
 import { buildStateSurfaces, resolveControlledThickness } from "./internal/lensState.js";
 import { conicPolySag, sag, sagSlopeRaw } from "./internal/surfaceMath.js";
-import { traceSurfacesParaxial } from "./internal/traceSurfaces.js";
+import { eflAtFocus2 as eflAtFocus } from "./first-order/focusBreathing.js";
 
 /** Number of straight SVG segments used when rendering one surface profile. */
 export const SVG_PATH_SUBDIVISIONS: number = 96;
@@ -292,24 +292,7 @@ function lerpZoomArray(zoomT: number, arr: number[]): number {
   return arr[idx] + (arr[idx + 1] - arr[idx]) * frac;
 }
 
-/**
- * Compute current EFL from focus/zoom state using a paraxial basis ray.
- *
- * @param focusT - normalized focus slider
- * @param zoomT - normalized zoom slider
- * @param L - runtime lens object
- * @param aberrationT - normalized aberration spacing slider
- * @returns effective focal length in mm
- */
-export function eflAtFocus(focusT: number, zoomT: number, L: RuntimeLens, aberrationT = 0): number {
-  if (focusT < FOCUS_INFINITY_THRESHOLD && aberrationT === 0) {
-    return L.isZoom ? eflAtZoom(zoomT, L) : L.EFL;
-  }
-  const S = stateSurfaces(focusT, zoomT, L, aberrationT);
-  const trace = traceSurfacesParaxial(S, 1, 0, { skipLastTransfer: true });
-  if (Math.abs(trace.u) < 1e-15) return L.isZoom ? eflAtZoom(zoomT, L) : L.EFL;
-  return -1.0 / trace.u;
-}
+export { eflAtFocus2 as eflAtFocus } from "./first-order/focusBreathing.js";
 
 /**
  * Estimate effective f-number at the current focus state.
