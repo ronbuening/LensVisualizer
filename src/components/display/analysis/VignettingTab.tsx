@@ -107,6 +107,9 @@ function CenteredVignettingContent({
   }
 
   const edgeSample = samples[samples.length - 1];
+  const hasSensorCurve = samples.every((s) => s.sensorRelativeIllumination != null);
+  const sensorConverged = samples.every((s) => s.sensorIrradiance?.status === "converged");
+  const edgeRI = hasSensorCurve ? edgeSample.sensorRelativeIllumination! : edgeSample.relativeIllumination;
 
   return (
     <div>
@@ -116,6 +119,11 @@ function CenteredVignettingContent({
         </span>
       </div>
       <VignettingChart samples={samples} t={t} />
+      <p style={{ color: t.muted, fontSize: 9.5 }}>
+        {hasSensorCurve
+          ? `Ideal sensor illumination for uniform external radiance; excludes material and coating losses. ${sensorConverged ? "Sampling converged: successive integrals agree within 2%." : "Sampling has not converged; values are provisional."}`
+          : "Sensor illumination is unavailable for this state. The dashed curve is an area-weighted cos⁴ estimate including authored bulk absorption."}
+      </p>
       <div
         style={{
           display: "flex",
@@ -126,7 +134,11 @@ function CenteredVignettingContent({
         }}
       >
         <AnalysisMetricRow label="Edge GT" value={`${(edgeSample.geometricTransmission * 100).toFixed(1)}%`} t={t} />
-        <AnalysisMetricRow label="Edge RI" value={`${(edgeSample.relativeIllumination * 100).toFixed(1)}%`} t={t} />
+        <AnalysisMetricRow
+          label={hasSensorCurve ? "Edge sensor RI" : "Edge RI estimate"}
+          value={`${(edgeRI * 100).toFixed(1)}%`}
+          t={t}
+        />
         <AnalysisMetricRow label="Field" value={`${edgeSample.fieldAngleDeg.toFixed(1)}°`} t={t} />
       </div>
     </div>

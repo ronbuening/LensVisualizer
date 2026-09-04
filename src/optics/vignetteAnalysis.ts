@@ -1,25 +1,5 @@
-/**
- * Vignetting / relative illumination analysis — pure function for computing
- * illumination falloff across the field for the current lens state.
- *
- * Launches a dedicated dense meridional pupil sweep for each field angle,
- * counts the fraction of rays that survive aperture clipping (geometric
- * transmission), and applies authored bulk-material absorption plus cos⁴(θ)
- * to produce the photometric relative illumination metric.
- *
- * Assumptions / scope:
- *   - 1D meridional analysis only; no sagittal or full 2D pupil integration.
- *   - Chief-ray offset sets the pupil sweep center; pupil aberrations (shift
- *     of the entrance pupil with field angle) are not modeled.
- *   - cos⁴ factor is applied to the object-space field angle. Sensor
- *     obliquity, Fresnel reflection losses, and coating transmission are out
- *     of scope (see issue #299).
- *   - Result is normalized to on-axis = 1.0; any residual on-axis vignetting
- *     from the entrance pupil being slightly larger than the stop image is
- *     thus folded into the normalization.
- *
- * No React dependencies — fully testable in isolation.  Memoize from current
- * state in a React hook rather than embedding in a component.
+/** Two-dimensional pupil survival, a labelled cos-fourth estimate, and
+ * ideal sensor irradiance from reciprocal exact tracing. No React state.
  */
 
 import {
@@ -28,7 +8,12 @@ import {
   solveChiefRay,
   traceRay,
   traceRayVector,
+  traceSkewRay,
 } from "./optics.js";
+import { createAreaWeightedCircularPupilPoints } from "./math/pupilSampling.js";
+import { computeSensorIrradiance, type SensorIrradianceResult } from "./analysis/sensorIrradiance.js";
+import { normalizeRuntimeLens } from "./prescription/normalizeLensData.js";
+import { prepareState } from "./state/prepareState.js";
 import { projectionLaunchSlopeForField } from "./projection.js";
 import type { FieldGeometryState } from "./optics.js";
 import { isHeavyLensForRayWork } from "./raySampling.js";
@@ -49,20 +34,11 @@ export interface VignettingSample {
    * so on-axis = 1.0. Includes authored bulk absorption as well as vignetting.
    */
   relativeIllumination: number;
+  /** Physical sensor integral for uniform external radiance, without material/coating losses. */
+  sensorIrradiance?: SensorIrradianceResult;
+  sensorRelativeIllumination?: number | null;
 }
 
-/**
- * Number of rays per field sample for the dense pupil sweep.
- *
- * Issue #299 preferred starting point: 128, raised to 192 for better
- * resolution of sharp clipping transitions on extreme wide-angle meniscus
- * elements.  This is ~16× denser than the display ray fan.
- *
- * Heavy lenses (fisheyes, ≥32 surfaces, ≥50 mm SD, ≥40° half-field) halve this
- * to keep settled-compute time tolerable; the curve smoothness loss is minor
- * because clipping transitions on those lenses are dominated by element
- * geometry that the lower sampling still resolves.
- */
 const N_PUPIL_FULL = 192;
 const N_PUPIL_HEAVY = 96;
 
@@ -70,8 +46,8 @@ const N_PUPIL_HEAVY = 96;
  * Compute the vignetting / relative illumination curve for the current lens state.
  *
  * Samples the field from center (0°) to the current half-field edge at
- * FIELD_SAMPLES evenly-spaced angles.  At each angle N_PUPIL meridional rays
- * are traced across the entrance-pupil diameter and the surviving fraction is
+ * FIELD_SAMPLES evenly-spaced angles.  At each angle N_PUPIL area-weighted rays
+ * are traced across the circular entrance pupil and the surviving fraction is
  * recorded.
  *
  * @param L                  — runtime lens object (frozen, from buildLens)
@@ -121,6 +97,10 @@ export function computeVignettingCurve(
   /* ── Raw geometric transmission per field sample ── */
   const rawGT: number[] = [];
   const rawIntensity: number[] = [];
+  const irradiance: SensorIrradianceResult[] = [];
+  const state = prepareState(normalizeRuntimeLens(L), focusT, zoomT, aberrationT);
+  const rings = Math.max(2, Math.round(nPupil / 16));
+  const pupilPoints = createAreaWeightedCircularPupilPoints(rings, 16);
 
   for (let i = 0; i < fieldSamples; i++) {
     const fieldAngleDeg = (i / (fieldSamples - 1)) * halfFieldDeg;
@@ -129,21 +109,26 @@ export function computeVignettingCurve(
     if (launch.status === "out-of-domain" && !solve.vectorLaunch) {
       rawGT.push(0);
       rawIntensity.push(0);
+      irradiance.push({
+        status: "unsupported",
+        irradiancePerRadiance: null,
+        estimatedRelativeError: null,
+        sampleCount: 0,
+      });
       continue;
     }
 
     const uField = launch.uField;
     const yChief = solve.vectorLaunch ? NaN : solve.yLaunch;
 
-    /* Dense meridional pupil sweep: nPupil evenly-spaced fractions in [−1, +1] */
     let surviving = 0;
     let transmittedIntensity = 0;
-    for (let j = 0; j < nPupil; j++) {
-      const pupilFrac = -1 + (2 * j) / (nPupil - 1);
-      const pupilOffset = pupilFrac * currentEPSD;
+    for (const pupil of pupilPoints) {
+      const x = pupil.u * currentEPSD;
+      const y = pupil.v * currentEPSD;
       const trace = solve.vectorLaunch
         ? traceRayVector(
-            offsetVectorFieldRay(solve.vectorLaunch, 0, pupilOffset),
+            offsetVectorFieldRay(solve.vectorLaunch, x, y),
             zPos,
             currentPhysStopSD,
             true,
@@ -152,15 +137,22 @@ export function computeVignettingCurve(
             zoomT,
             aberrationT,
           )
-        : traceRay(yChief + pupilOffset, uField, zPos, focusT, zoomT, currentPhysStopSD, true, L, aberrationT);
+        : traceSkewRay(x, yChief + y, 0, uField, focusT, zoomT, currentPhysStopSD, true, L, aberrationT);
       if (!trace.clipped) {
-        surviving++;
-        transmittedIntensity += trace.transmission ?? 1;
+        surviving += pupil.weight;
+        transmittedIntensity += pupil.weight * (trace.transmission ?? 1);
       }
     }
-
-    rawGT.push(surviving / nPupil);
-    rawIntensity.push(transmittedIntensity / nPupil);
+    rawGT.push(surviving);
+    rawIntensity.push(transmittedIntensity);
+    const chief = solve.vectorLaunch
+      ? traceRayVector(solve.vectorLaunch, zPos, currentPhysStopSD, true, L, focusT, zoomT, aberrationT)
+      : traceRay(yChief, uField, zPos, focusT, zoomT, currentPhysStopSD, true, L, aberrationT);
+    irradiance.push(
+      chief.clipped
+        ? { status: "failed", irradiancePerRadiance: null, estimatedRelativeError: null, sampleCount: 0 }
+        : computeSensorIrradiance(state, chief.y, currentPhysStopSD, { radialStrata: rings, azimuthalSamples: 16 }),
+    );
   }
 
   /* ── Normalise to on-axis = 1.0 ── */
@@ -182,6 +174,11 @@ export function computeVignettingCurve(
       fieldAngleDeg,
       geometricTransmission: gt,
       relativeIllumination: ri,
+      sensorIrradiance: irradiance[i],
+      sensorRelativeIllumination:
+        (irradiance[0].irradiancePerRadiance ?? 0) > 0 && irradiance[i].irradiancePerRadiance !== null
+          ? irradiance[i].irradiancePerRadiance! / irradiance[0].irradiancePerRadiance!
+          : null,
     });
   }
 

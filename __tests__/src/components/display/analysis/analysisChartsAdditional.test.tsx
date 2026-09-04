@@ -134,7 +134,7 @@ describe("analysis chart coverage", () => {
 
     expect(container.querySelector("svg")?.getAttribute("viewBox")).toBe("0 0 420 260");
     expect(screen.getByText("Geometric")).toBeTruthy();
-    expect(screen.getByText("Relative (cos⁴)")).toBeTruthy();
+    expect(screen.getByText("Estimate (cos⁴)")).toBeTruthy();
     expect(screen.getByText("20°")).toBeTruthy();
     expect(screen.getByText("Field angle (°)")).toBeTruthy();
     expect(container.querySelectorAll("path")).toHaveLength(2);

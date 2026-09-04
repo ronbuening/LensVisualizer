@@ -30,27 +30,27 @@ flowchart LR
   n_external_src_utils_featureFlags_ts["src/utils/featureFlags.ts"]
   n_src_optics_TypeScript_modules --> |24| n_external_src_types
   n_src_optics_TypeScript_modules --> |20| n_src_optics_src_optics_internal
-  n_src_optics_TypeScript_modules --> |16| n_src_optics_src_optics_analysis
+  n_src_optics_TypeScript_modules --> |17| n_src_optics_src_optics_analysis
   n_src_optics_TypeScript_modules --> |8| n_src_optics_src_optics_glassCatalogEntries
   n_src_optics_TypeScript_modules --> |7| n_src_optics_src_optics_chromatic
   n_src_optics_TypeScript_modules --> |6| n_src_optics_src_optics_aberration
   n_src_optics_TypeScript_modules --> |6| n_src_optics_src_optics_first_order
   n_src_optics_TypeScript_modules --> |4| n_src_optics_src_optics_diagram
   n_src_optics_TypeScript_modules --> |4| n_src_optics_src_optics_field
+  n_src_optics_TypeScript_modules --> |3| n_src_optics_src_optics_state
   n_src_optics_TypeScript_modules --> |3| n_src_optics_src_optics_trace
-  n_src_optics_TypeScript_modules --> |2| n_src_optics_src_optics_state
+  n_src_optics_TypeScript_modules --> |2| n_src_optics_src_optics_math
+  n_src_optics_TypeScript_modules --> |2| n_src_optics_src_optics_prescription
   n_src_optics_TypeScript_modules --> n_external_src_utils_catalog
   n_src_optics_TypeScript_modules --> n_external_src_utils_featureFlags_ts
-  n_src_optics_TypeScript_modules --> n_src_optics_src_optics_math
   n_src_optics_TypeScript_modules --> n_src_optics_src_optics_perspective
-  n_src_optics_TypeScript_modules --> n_src_optics_src_optics_prescription
 ```
 
 ## Directory Overview
 
 - Direct source files: 35
 - Direct subfolders: 14
-- Main outbound areas: src/types (24), src/optics/internal (20), src/optics/analysis (16), src/optics/compat.ts (11), src/optics/glassCatalogEntries (8), src/optics/optics.ts (8), src/optics/chromatic (7), src/optics/aberration (6), +27 more
+- Main outbound areas: src/types (24), src/optics/internal (20), src/optics/analysis (17), src/optics/compat.ts (11), src/optics/glassCatalogEntries (8), src/optics/optics.ts (8), src/optics/chromatic (7), src/optics/aberration (6), +27 more
 - External consumers: src/benchmarks, src/comparison, src/components/controls, src/components/diagram, src/components/display, src/components/hooks, src/components/layout, src/optics/aberration, +12 more
 
 ## Subfolders
@@ -108,6 +108,6 @@ flowchart LR
 | `runtimeLens.ts` | Runtime Lens module with default export | src/optics/internal (5), src/optics/dispersion.ts, src/optics/field, src/optics/math, src/optics/validateLensData.ts, +2 more | src/optics/buildLens.ts, src/optics/compat.ts, src/optics/prescription | default, buildLens, paraxialTrace, realTraceToStop |
 | `spectralLines.ts` | Spectral Lines helper module | none | src/optics/chromatic, src/optics/constants.ts, src/optics/glassCatalog.ts, src/optics/math | LINE_NM |
 | `stopObstruction.ts` | Stop Obstruction helper module | src/types | src/optics/optics.ts, src/optics/raySampling.ts | stopInnerBlockedSemiDiameter |
-| `types.ts` | Shared TypeScript types | src/optics/dispersion.ts, src/optics/glassCatalog.ts, src/types | src/optics/perspective (20), src/components/display (13), src/optics/trace (12), src/optics/analysis (11), src/optics/math (6), +10 more | Vec3, Ray3, Plane3, SurfaceProfile, CompiledSurfaceInteraction, CompiledRadialPhaseTerm, CompiledDiffractivePhase, CompiledSurface, +16 more |
+| `types.ts` | Shared TypeScript types | src/optics/dispersion.ts, src/optics/glassCatalog.ts, src/types | src/optics/perspective (20), src/components/display (13), src/optics/analysis (12), src/optics/trace (12), src/optics/math (6), +10 more | Vec3, Ray3, Plane3, SurfaceProfile, CompiledSurfaceInteraction, CompiledRadialPhaseTerm, CompiledDiffractivePhase, CompiledSurface, +16 more |
 | `validateLensData.ts` | Validate Lens Data module with default export | src/optics/internal (5), src/types (2), src/utils/catalog | src/optics/runtimeLens.ts, src/utils/state | LENS_KEY_PATTERN, default, validateLensData |
-| `vignetteAnalysis.ts` | Vignette Analysis helper module | src/optics/optics.ts (2), src/optics/analysis, src/optics/projection.ts, src/optics/raySampling.ts, src/types | src/components/display, src/optics/analysis | VignettingSample, computeVignettingCurve |
+| `vignetteAnalysis.ts` | Vignette Analysis helper module | src/optics/analysis (2), src/optics/optics.ts (2), src/optics/math, src/optics/prescription, src/optics/projection.ts, +3 more | src/components/display, src/optics/analysis | VignettingSample, computeVignettingCurve |

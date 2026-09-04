@@ -21,6 +21,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-09-04",
     type: "fix",
+    summary: "Added area-weighted vignetting and ideal sensor illumination with explicit sampling and model limits",
+  },
+  {
+    date: "2026-09-04",
+    type: "fix",
     summary: "Unified working f-number readouts using the current paraxial image-side cone",
   },
   {

@@ -10,7 +10,7 @@ commit between steps. A step is not complete merely because its implementation h
 | 1 | Physical reference fixtures, full-suite coverage gate, test and performance baselines | Complete |
 | 2 | Consistent calculated current/infinity EFL and breathing; authored values remain metadata | Complete |
 | 3 | Shared marked/geometric/working f-number and current-pupil aperture result | Complete |
-| 4 | Two-dimensional pupil-area and sensor-irradiance integration with explicit convergence status | Pending |
+| 4 | Two-dimensional pupil-area and sensor-irradiance integration with explicit convergence status | Complete |
 | 5 | Source-backed spectral throughput, encounter-aware absorption and surface losses | Pending |
 | 6 | Opt-in optical path, wavefront, scalar Huygens PSF; initially centered on-axis sequential refraction | Pending |
 | 7 | MTF, explicit spectral weights, Image Quality tab and unavailable states | Pending |
@@ -105,3 +105,21 @@ retention policy. No production optical behavior changed in step 1.
   2767 tests. Coverage: statements 91.94%, branches 83.08%, functions 93.75%, lines 94.61%. All 1243 routes prerendered.
 - Remaining stages 4–11 are not implemented. A read-only reverse-order generalized-trace experiment succeeded for
   an ordinary refractive lens and can inform step 4; it does not yet constitute a validated radiometric implementation.
+
+### Step 4 — pupil area and sensor illumination
+
+- Replaced the meridional line sweep with equal-area disk quadrature and exact skew/vector rays. The shared sampler
+  also serves the existing perspective adapter. Retained cos-fourth values only as an explicitly labelled estimate.
+- Added reciprocal sensor radiometry for uniform external radiance with ideal interfaces in air. Its actual solid-angle
+  integral includes sensor obliquity and pupil geometry, with two-dimensional refinement and explicit unavailable/zero
+  sample/convergence states. Zero or failed axis references cannot be normalized to unity.
+- Independent fixtures cover disk-area moments, analytic disk irradiance at low/high NA, the far-field cos-fourth limit,
+  scale/rotation invariance, stopdown, failed integration and skew-ray reciprocity through refraction. UI tests distinguish
+  physical results, provisional sampling and fallback estimates. Existing production regression assertions remain.
+- Reverse intersection failure can expose surface/stop ordering geometry; Sonnar reverse rays provide a regression that
+  such failures remain unavailable instead of being counted as zero flux. Folded, phase, annular, one-sided, immersion
+  and tilted-sensor paths remain outside this new integral's validated scope. Active movement keeps its separate adapter.
+- Typecheck, format, lint, full tests and coverage passed: 300 files / 2780 tests. Final guard coverage: statements 92.01%,
+  branches 83.19%, functions 93.75%, lines 94.67%. Production build/SSR prerendered all 1243 routes. The final annular and
+  one-sided guards were additionally covered by the full coverage run; no UI/import behavior changed after the build.
+- Steps 5–11 remain pending. No spectral losses or wave optics are claimed by the ideal sensor result.

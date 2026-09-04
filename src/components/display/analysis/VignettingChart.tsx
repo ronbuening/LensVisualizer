@@ -29,13 +29,16 @@ export default function VignettingChart({ samples, t, width = 320, height = 220 
     return <AnalysisEmptyState t={t}>Not enough data to plot vignetting curve.</AnalysisEmptyState>;
   }
 
+  const hasSensorCurve = samples.every((s) => s.sensorRelativeIllumination != null);
+  const illumination = (s: VignettingSample) =>
+    hasSensorCurve ? s.sensorRelativeIllumination! : s.relativeIllumination;
   const area = createPlotArea(width, height);
   const { margin, plotW, plotH } = area;
 
   /* ── Axis ranges ── */
   const maxAngle = samples[samples.length - 1].fieldAngleDeg;
   /* Y-axis: 0 to slightly above max value (always ≥ 1.0) */
-  const allValues = samples.flatMap((s) => [s.geometricTransmission, s.relativeIllumination]);
+  const allValues = samples.flatMap((s) => [s.geometricTransmission, illumination(s)]);
   const yMax = Math.max(1.0, ...allValues) * 1.05;
   const yMin = 0;
 
@@ -52,7 +55,7 @@ export default function VignettingChart({ samples, t, width = 320, height = 220 
   const riPath = svgPath(
     samples,
     (s) => xScale(s.fieldAngleDeg),
-    (s) => yScale(s.relativeIllumination),
+    (s) => yScale(illumination(s)),
   );
 
   /* ── Axis tick values ── */
@@ -107,7 +110,7 @@ export default function VignettingChart({ samples, t, width = 320, height = 220 
         <circle
           key={`ri-${i}`}
           cx={xScale(s.fieldAngleDeg)}
-          cy={yScale(s.relativeIllumination)}
+          cy={yScale(illumination(s))}
           r={2}
           fill={t.rayOffWarm}
           opacity={0.8}
@@ -121,7 +124,7 @@ export default function VignettingChart({ samples, t, width = 320, height = 220 
         t={t}
         items={[
           { label: "Geometric", color: t.sliderAccent },
-          { label: "Relative (cos⁴)", color: t.rayOffWarm, dasharray: "4,3" },
+          { label: hasSensorCurve ? "Sensor (ideal)" : "Estimate (cos⁴)", color: t.rayOffWarm, dasharray: "4,3" },
         ]}
       />
     </SvgChartFrame>

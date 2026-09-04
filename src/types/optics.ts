@@ -606,3 +606,18 @@ export interface ApertureMetrics {
   exitPupilSemiDiameterMm: number | null;
   status: "paraxial" | "unsupported" | "degenerate";
 }
+
+export interface SensorIrradianceResult {
+  status: "converged" | "undersampled" | "no-transmission-sampled" | "failed" | "unsupported";
+  /** Irradiance per unit external radiance; ideal lossless interfaces. */
+  irradiancePerRadiance: number | null;
+  /** Difference between successive quadratures, not a rigorous error bound. */
+  estimatedRelativeError: number | null;
+  sampleCount: number;
+}
+
+export interface SensorIrradianceOptions {
+  radialStrata?: number;
+  azimuthalSamples?: number;
+  relativeTolerance?: number;
+}

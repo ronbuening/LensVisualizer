@@ -479,15 +479,25 @@ three functions accept an optional precomputed `FieldGeometryState`.
 
 ## Vignetting
 
-`vignetteAnalysis.ts` computes relative illumination using solved chief rays, adaptive field spacing
-(~3° spacing, min 7 samples), and dense meridional pupil sweeps. The per-field pupil sweep is 192 rays for
-rectilinear primes and 96 for heavy lenses (fisheye, ≥32 surfaces, ≥50 mm SD, or ≥40° half-field).
-`computeVignettingCurve()` accepts optional precomputed field geometry and traces `solve.vectorLaunch` for
-fisheye/past-cap fields when the scalar slope helper reports `out-of-domain`.
+`vignetteAnalysis.ts` uses equal-area circular pupil quadrature with skew/vector exact traces, adaptive
+field spacing (~3 degrees, minimum 7 fields), and 192 pupil points (96 for heavy lenses). The disk sampler in
+`math/pupilSampling.ts` is also used by the movement analysis. Projection-aware chief launch is preserved.
 
-`geometricTransmission` remains the normalized fraction of rays that survive clipping. `relativeIllumination` sums the
-surviving rays' bulk-transmission weights, applies `cos⁴(θ)`, and normalizes by the on-axis intensity. This separation is
-required for apodizers: absorption changes brightness without pretending that the mechanical aperture rejected a ray.
+`geometricTransmission` is area-weighted aperture survival normalized to the axis. The compatibility field
+`relativeIllumination` is explicitly a cos-fourth estimate including authored bulk absorption. It is not sensor radiometry.
+
+`analysis/sensorIrradiance.ts` independently integrates reciprocal paths from the actual sensor through an enclosing
+plane. Its weight is `cos(sensor) * cos(plane) * dA / distance^2`, equivalent to the irradiance integral
+[described in Physically Based Rendering](https://pbr-book.org/4ed/Radiometry%2C_Spectra%2C_and_Color/Working_with_Radiometric_Integrals).
+This is ideal-interface irradiance per uniform external radiance in air. It currently excludes coating and absorption
+losses. A conservative conic/polynomial sag bound encloses the complete prescription; unsafe bounds are unavailable.
+A second quadrature doubles both dimensions. The reported difference is a convergence estimate, not an error bound.
+Zero sampled transmission, solver failure, insufficient sampling and unsupported paths remain distinct. In particular,
+a missing surface bracket is not silently counted as physical clipping: crossing surface/stop geometry can cause it.
+
+The chart prefers the sensor result when all fields and the axis reference are usable, marks unconverged sampling,
+and otherwise explicitly labels the cos-fourth estimate. No failed or zero reference is normalized to unity. Folded,
+phase, tilted-sensor and immersion paths remain unsupported here; active movement retains its separate validated adapter.
 
 ## Pupil Aberration
 
