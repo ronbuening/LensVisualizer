@@ -5,6 +5,7 @@
  * implementation lives in focused prescription, state, trace, field, and analysis modules.
  */
 
+import { interpolateUniformSchedule } from "./math/uniformInterpolation.js";
 import buildRuntimeLens from "./runtimeLens.js";
 import type { LayoutResult, LensData, RuntimeLens } from "../types/optics.js";
 import type { EngineLens } from "./types.js";
@@ -108,10 +109,7 @@ export function fopenAtZoom2(zoomT: number, L: RuntimeLens): number {
 function interpolateZoomArray2(zoomT: number, values: readonly number[]): number {
   if (values.length === 1) return values[0];
   const t = Math.max(0, Math.min(1, Number.isFinite(zoomT) ? zoomT : 0));
-  const pos = t * (values.length - 1);
-  const idx = Math.min(Math.floor(pos), values.length - 2);
-  const frac = pos - idx;
-  return values[idx] + (values[idx + 1] - values[idx]) * frac;
+  return interpolateUniformSchedule(values, t);
 }
 
 export {

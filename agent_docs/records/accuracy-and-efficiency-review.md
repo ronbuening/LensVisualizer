@@ -16,7 +16,7 @@ commit between steps. A step is not complete merely because its implementation h
 | 7 | MTF, explicit spectral weights, Image Quality tab and unavailable states | Complete |
 | 8 | Reuse prepared states and first-order results, preserving bounded cache identity | Complete |
 | 9 | Cancellable worker analysis with stale-result rejection and synchronous reference path | Complete |
-| 10 | Shared zoom interpolation and intersection kernel, preserving traversal semantics | Pending |
+| 10 | Shared zoom interpolation and intersection kernel, preserving traversal semantics | Complete |
 | 11 | Separate glass report generation from meaningful regression assertions; one catalog inventory | Pending |
 
 ## Acceptance and limits
@@ -223,3 +223,22 @@ retention policy. No production optical behavior changed in step 1.
 - Typecheck, format, lint, full tests, coverage and build passed: 307 files / 2819 tests. Coverage statements 92.19%,
   branches 83.60%, functions 93.90%, lines 94.87%. The production worker asset was emitted and all 1243 routes
   prerendered. Steps 10–11 remain pending.
+
+### Step 10 — shared interpolation and bounded intersection math
+
+- Added a shared uniform schedule/segment primitive for runtime metadata, physical-stop schedules, focus/aberration
+  zoom gaps and the compatibility facade. Existing caller clamping/fallback policies and interpolation order remain.
+  Moved authored wide-open aperture metadata below layout, removing the aperture/layout/f-number import cycle.
+- Both surface adapters now use one bracket/Newton-bisection solver. Geometry evaluation, finite-value policies,
+  hit normals, failure labels and sequential/folded traversal remain in their respective adapters. Removed the
+  tautological intersection assignment whose two branches returned the same value.
+- Existing golden, intersection, aperture and prepared-state tests passed (78 targeted tests), plus independent spherical
+  sag/hit, interior-root, bounded-failure and interpolation references. No golden values were changed.
+- An initial extraction introduced per-call helper closures and slowed a 50,000-hit probe. Those closures were removed
+  before acceptance. Final isolated 500,000-hit samples against the step-nine implementation have median 198.40 ms
+  before / 198.42 ms after and identical accumulated hit distances; no speedup is claimed. Raw samples are in
+  `agent_docs/benchmarks/intersection-kernel-2026-09-04.json`. The probe used R=30 mm, vertex z=50 mm, axial rays at
+  radii 0–9.9 mm, maxT=100 mm, one warmup and three interleaved measured pairs on the same Node runtime.
+- Typecheck, format, lint, full tests, coverage and build passed: 308 files / 2822 tests. Coverage statements 92.18%,
+  branches 83.62%, functions 93.90%, lines 94.87%. All 1243 routes prerendered. Generated dependency diagnostics
+  returned from four cycles to the original three. Step 11 remains pending.

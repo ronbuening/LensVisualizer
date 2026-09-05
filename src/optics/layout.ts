@@ -5,6 +5,7 @@
  * diagram rendering and analysis panels.
  */
 
+import { interpolateUniformSchedule } from "./math/uniformInterpolation.js";
 import type { LayoutResult, RuntimeLens } from "../types/optics.js";
 import { buildStateSurfaces, resolveControlledThickness } from "./internal/lensState.js";
 import { conicPolySag, sag, sagSlopeRaw } from "./internal/surfaceMath.js";
@@ -165,7 +166,7 @@ export function stateSurfaces(focusT: number, zoomT: number, L: RuntimeLens, abe
  */
 export function eflAtZoom(zoomT: number, L: RuntimeLens): number {
   if (!L.isZoom) return L.EFL;
-  return lerpZoomArray(zoomT, L.zoomEFLs!);
+  return interpolateUniformSchedule(L.zoomEFLs!, zoomT);
 }
 
 /**
@@ -177,20 +178,10 @@ export function eflAtZoom(zoomT: number, L: RuntimeLens): number {
  */
 export function epAtZoom(zoomT: number, L: RuntimeLens): number {
   if (!L.isZoom) return L.EP.epSD;
-  return lerpZoomArray(zoomT, L.zoomEPs!);
+  return interpolateUniformSchedule(L.zoomEPs!, zoomT);
 }
 
-/**
- * Interpolate wide-open f-number for a zoom state.
- *
- * @param zoomT - normalized zoom slider, 0=wide and 1=tele
- * @param L - runtime lens object
- * @returns wide-open f-number
- */
-export function fopenAtZoom(zoomT: number, L: RuntimeLens): number {
-  if (!L.isZoom || !L.zoomFOPENs) return L.FOPEN;
-  return lerpZoomArray(zoomT, L.zoomFOPENs);
-}
+export { fopenAtZoom } from "./prescription/zoomMetadata.js";
 
 /**
  * Interpolate declared display half-field for a zoom state.
@@ -201,7 +192,7 @@ export function fopenAtZoom(zoomT: number, L: RuntimeLens): number {
  */
 export function halfFieldAtZoom(zoomT: number, L: RuntimeLens): number {
   if (!L.isZoom) return L.halfField;
-  return lerpZoomArray(zoomT, L.zoomHalfFields!);
+  return interpolateUniformSchedule(L.zoomHalfFields!, zoomT);
 }
 
 /**
@@ -216,7 +207,7 @@ export function halfFieldAtZoom(zoomT: number, L: RuntimeLens): number {
  */
 export function tracingHalfFieldAtZoom(zoomT: number, L: RuntimeLens): number {
   if (!L.isZoom) return L.tracingHalfField;
-  return lerpZoomArray(zoomT, L.zoomTracingHalfFields!);
+  return interpolateUniformSchedule(L.zoomTracingHalfFields!, zoomT);
 }
 
 /**
@@ -228,7 +219,7 @@ export function tracingHalfFieldAtZoom(zoomT: number, L: RuntimeLens): number {
  */
 export function yRatioAtZoom(zoomT: number, L: RuntimeLens): number {
   if (!L.isZoom) return L.EP.yRatio;
-  return lerpZoomArray(zoomT, L.zoomYRatios!);
+  return interpolateUniformSchedule(L.zoomYRatios!, zoomT);
 }
 
 /**
@@ -240,7 +231,7 @@ export function yRatioAtZoom(zoomT: number, L: RuntimeLens): number {
  */
 export function bAtZoom(zoomT: number, L: RuntimeLens): number {
   if (!L.isZoom) return L.B;
-  return lerpZoomArray(zoomT, L.zoomBs!);
+  return interpolateUniformSchedule(L.zoomBs!, zoomT);
 }
 
 /**
@@ -254,7 +245,7 @@ export function xpAtZoom(zoomT: number, L: RuntimeLens): number {
   if (!L.isZoom) return L.xpSD;
   const arr = L.zoomXpSDs!;
   if (arr.some((v) => !isFinite(v))) return Infinity;
-  return lerpZoomArray(zoomT, arr);
+  return interpolateUniformSchedule(arr, zoomT);
 }
 
 /**
@@ -266,7 +257,7 @@ export function xpAtZoom(zoomT: number, L: RuntimeLens): number {
  */
 export function epZRelStopAtZoom(zoomT: number, L: RuntimeLens): number {
   if (!L.isZoom) return L.epZRelStop;
-  return lerpZoomArray(zoomT, L.zoomEpZRelStops!);
+  return interpolateUniformSchedule(L.zoomEpZRelStops!, zoomT);
 }
 
 /**
@@ -280,15 +271,7 @@ export function xpZRelLastSurfAtZoom(zoomT: number, L: RuntimeLens): number {
   if (!L.isZoom) return L.xpZRelLastSurf;
   const arr = L.zoomXpZRelLastSurfs!;
   if (arr.some((v) => !isFinite(v))) return Infinity;
-  return lerpZoomArray(zoomT, arr);
-}
-
-function lerpZoomArray(zoomT: number, arr: number[]): number {
-  if (arr.length === 1) return arr[0];
-  const pos = zoomT * (arr.length - 1);
-  const idx = Math.min(Math.floor(pos), arr.length - 2);
-  const frac = pos - idx;
-  return arr[idx] + (arr[idx + 1] - arr[idx]) * frac;
+  return interpolateUniformSchedule(arr, zoomT);
 }
 
 export { eflAtFocus2 as eflAtFocus } from "./first-order/focusBreathing.js";

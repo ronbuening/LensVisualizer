@@ -3,7 +3,8 @@ import type { ApertureMetrics, RuntimeLens } from "../../types/optics.js";
 import type { PreparedOpticalState } from "../types.js";
 import { normalizeControlT } from "../math/numerics.js";
 import { traceParaxialSurfaces2 } from "../math/paraxial.js";
-import { fopenAtZoom } from "../layout.js";
+import { fopenAtZoom } from "../prescription/zoomMetadata.js";
+import { interpolateUniformSchedule } from "../math/uniformInterpolation.js";
 import { calculatedFocalLengthForState } from "./focusBreathing.js";
 
 export type { ApertureMetrics } from "../../types/optics.js";
@@ -17,12 +18,7 @@ export function resolveApertureStop(L: RuntimeLens, zoomT: number, markedFNumber
   const schedule = L.data.wideOpenStopSemiDiameterMm;
   let wideOpenStop = typeof schedule === "number" ? schedule : L.stopPhysSD;
   if (Array.isArray(schedule)) {
-    const position = t * (schedule.length - 1);
-    const index = Math.min(Math.floor(position), schedule.length - 2);
-    wideOpenStop =
-      schedule.length === 1
-        ? schedule[0]
-        : schedule[index] + (schedule[index + 1] - schedule[index]) * (position - index);
+    wideOpenStop = interpolateUniformSchedule(schedule, t);
   }
   const referenceFNumber = schedule === undefined ? L.FOPEN : wideOpenFNumber;
   return { fNumber, wideOpenFNumber, stopSemiDiameterMm: (wideOpenStop * referenceFNumber) / fNumber };

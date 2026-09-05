@@ -5,6 +5,7 @@
  * for RuntimeLens and prepared engine states.
  */
 
+import { uniformInterpolationSegment } from "../math/uniformInterpolation.js";
 import type { AberrationPositionRange, AberrationVarRange, VarRange } from "../../types/optics.js";
 import { lerp } from "../math/numerics.js";
 import { resolveLabel } from "./labels.js";
@@ -82,9 +83,7 @@ export function resolveVariableThickness(
     return interpolateFocusThickness(zoomRanges[0], focusPositions, controlT);
   }
 
-  const position = zoomT * (zoomRanges.length - 1);
-  const index = Math.min(Math.floor(position), zoomRanges.length - 2);
-  const fraction = position - index;
+  const { index, fraction } = uniformInterpolationSegment(zoomRanges.length, zoomT);
   if (focusPositions.length === 2) {
     const dInfinity = lerp(zoomRanges[index][0], zoomRanges[index + 1][0], fraction);
     const dClose = lerp(zoomRanges[index][1], zoomRanges[index + 1][1], fraction);
@@ -197,9 +196,7 @@ function interpolateAberrationPositionsAtZoom(
 ): AberrationPositionRange {
   if (zoomRanges.length === 0) return [0, 0];
   if (zoomRanges.length === 1) return zoomRanges[0];
-  const position = zoomT * (zoomRanges.length - 1);
-  const index = Math.min(Math.floor(position), zoomRanges.length - 2);
-  const fraction = position - index;
+  const { index, fraction } = uniformInterpolationSegment(zoomRanges.length, zoomT);
   const from = zoomRanges[index];
   const to = zoomRanges[index + 1];
   if (from.length === 3 && to.length === 3) {

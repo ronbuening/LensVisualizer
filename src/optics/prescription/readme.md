@@ -17,6 +17,7 @@ flowchart LR
     n_src_optics_prescription_src_optics_prescription_labels_ts["labels.ts"]
     n_src_optics_prescription_src_optics_prescription_normalizeLensData_ts["normalizeLensData.ts"]
     n_src_optics_prescription_src_optics_prescription_variables_ts["variables.ts"]
+    n_src_optics_prescription_src_optics_prescription_zoomMetadata_ts["zoomMetadata.ts"]
   end
   n_external_src_optics_math["src/optics/math"]
   n_external_src_lens_data_defaults_ts["src/lens-data/defaults.ts"]
@@ -25,10 +26,11 @@ flowchart LR
   n_external_src_optics_types_ts["src/optics/types.ts"]
   n_external_src_types["src/types"]
   n_src_optics_prescription_src_optics_prescription_normalizeLensData_ts --> |2| n_external_src_optics_math
+  n_src_optics_prescription_src_optics_prescription_variables_ts --> |2| n_external_src_optics_math
   n_src_optics_prescription_src_optics_prescription_normalizeLensData_ts --> n_external_src_lens_data_defaults_ts
   n_src_optics_prescription_src_optics_prescription_dispersion_ts --> n_external_src_optics_dispersion_ts
   n_src_optics_prescription_src_optics_prescription_interactions_ts --> n_external_src_optics_math
-  n_src_optics_prescription_src_optics_prescription_variables_ts --> n_external_src_optics_math
+  n_src_optics_prescription_src_optics_prescription_zoomMetadata_ts --> n_external_src_optics_math
   n_src_optics_prescription_src_optics_prescription_normalizeLensData_ts --> n_external_src_optics_runtimeLens_ts
   n_src_optics_prescription_src_optics_prescription_dispersion_ts --> n_external_src_optics_types_ts
   n_src_optics_prescription_src_optics_prescription_geometryBounds_ts --> n_external_src_optics_types_ts
@@ -43,6 +45,7 @@ flowchart LR
   n_src_optics_prescription_src_optics_prescription_labels_ts --> n_external_src_types
   n_src_optics_prescription_src_optics_prescription_normalizeLensData_ts --> n_external_src_types
   n_src_optics_prescription_src_optics_prescription_variables_ts --> n_external_src_types
+  n_src_optics_prescription_src_optics_prescription_zoomMetadata_ts --> n_external_src_types
   n_src_optics_prescription_src_optics_prescription_normalizeLensData_ts --> n_src_optics_prescription_src_optics_prescription_aspheres_ts
   n_src_optics_prescription_src_optics_prescription_normalizeLensData_ts --> n_src_optics_prescription_src_optics_prescription_dispersion_ts
   n_src_optics_prescription_src_optics_prescription_normalizeLensData_ts --> n_src_optics_prescription_src_optics_prescription_groups_ts
@@ -56,10 +59,10 @@ flowchart LR
 
 ## Directory Overview
 
-- Direct source files: 8
+- Direct source files: 9
 - Direct subfolders: 0
-- Main outbound areas: same folder (9), src/types (8), src/optics/types.ts (5), src/optics/math (4), src/lens-data/defaults.ts, src/optics/dispersion.ts, src/optics/runtimeLens.ts
-- External consumers: src/optics/analysis, src/optics/chromatic, src/optics/compat.ts, src/optics/internal, src/optics/state
+- Main outbound areas: same folder (9), src/types (9), src/optics/math (6), src/optics/types.ts (5), src/lens-data/defaults.ts, src/optics/dispersion.ts, src/optics/runtimeLens.ts
+- External consumers: src/optics/analysis, src/optics/chromatic, src/optics/compat.ts, src/optics/first-order, src/optics/internal, src/optics/layout.ts, src/optics/state
 
 ## Files
 
@@ -72,4 +75,5 @@ flowchart LR
 | `interactions.ts` | Interactions helper module | src/optics/math, src/optics/types.ts, src/types | same folder | yzNormalToVec3, compileSurfaceInteraction, resolvedImagePlaneToPlane3, imagePlaneDataToPlane3 |
 | `labels.ts` | Labels helper module | src/types | same folder (4) | Optics2LensNormalizationError, buildSurfaceLabelMap, resolveLabel |
 | `normalizeLensData.ts` | Normalize Lens Data helper module | same folder (6), src/optics/math (2), src/lens-data/defaults.ts, src/optics/runtimeLens.ts, src/optics/types.ts, +1 more | src/optics/chromatic (2), src/optics/compat.ts, src/optics/state | withLensDefaults, normalizeLensData, normalizeRuntimeLens |
-| `variables.ts` | Variables helper module | same folder, src/optics/math, src/types | same folder, src/optics/internal, src/optics/state | DEFAULT_FOCUS_POSITIONS, compileVariableGaps, compileVariableLabels, resolveVariableThickness, resolveAberrationThickness, resolveControlledThickness |
+| `variables.ts` | Variables helper module | src/optics/math (2), same folder, src/types | same folder, src/optics/internal, src/optics/state | DEFAULT_FOCUS_POSITIONS, compileVariableGaps, compileVariableLabels, resolveVariableThickness, resolveAberrationThickness, resolveControlledThickness |
+| `zoomMetadata.ts` | Zoom Metadata helper module | src/optics/math, src/types | src/optics/first-order, src/optics/layout.ts | fopenAtZoom |

@@ -5,6 +5,7 @@
  * failure reasons for regression tests and diagnostics.
  */
 
+import { solveBracketedRoot } from "../math/bracketedRoot.js";
 import type { AsphericCoefficients } from "../../types/optics.js";
 import { FLAT_R_THRESHOLD, conicPolySag, sagSlopeRaw } from "./surfaceMath.js";
 
@@ -161,52 +162,20 @@ export function intersectSagSurface(
   }
 
   const evalAt = (t: number): SurfaceEvaluation => evaluateSurface(ray.origin, direction, surfaceIdx, vertexZ, L, t);
-  const bracket = findBracket(evalAt, minT, maxT, tolerance, bracketSamples);
-  if (bracket.kind === "success") {
-    return makeSuccess(bracket.value, surfaceIdx, L, tolerance, refractiveIndex, bracket.iterations);
-  }
-  if (bracket.kind === "failure") {
-    return failure(surfaceIdx, bracket.failureReason, bracket.residual, bracket.iterations);
-  }
-
-  let { lo, hi, fLo } = bracket;
-  // Z-projected seed is meaningless when direction[2] ≈ 0 (bounding-sphere
-  // launch). Fall back to the bracket midpoint, which is a slower but always
-  // valid starting guess for the Newton iteration below.
-  const zProjectedSeed = Math.abs(direction[2]) > MIN_DZ ? (vertexZ - ray.origin[2]) / direction[2] : NaN;
-  const initialSeed =
-    isFinite(zProjectedSeed) && zProjectedSeed > lo && zProjectedSeed < hi ? zProjectedSeed : (lo + hi) / 2;
-  let t = clamp(initialSeed, lo, hi);
-
-  for (let iterations = 1; iterations <= maxIterations; iterations++) {
-    const current = evalAt(t);
-    if (!isFiniteEvaluation(current)) return failure(surfaceIdx, "noConvergedIntersection", null, iterations);
-    if (Math.abs(current.value) <= tolerance) {
-      return makeSuccess(current, surfaceIdx, L, tolerance, refractiveIndex, iterations);
-    }
-
-    if (sameSign(current.value, fLo)) {
-      lo = t;
-      fLo = current.value;
-    } else {
-      hi = t;
-    }
-
-    const newtonT = t - current.value / current.derivative;
-    t = isFinite(newtonT) && newtonT > lo && newtonT < hi ? newtonT : (lo + hi) / 2;
-  }
-
-  const finalEval = evalAt((lo + hi) / 2);
-  if (isFiniteEvaluation(finalEval) && Math.abs(finalEval.value) <= tolerance * 10) {
-    return makeSuccess(finalEval, surfaceIdx, L, tolerance, refractiveIndex, maxIterations);
-  }
-
-  return failure(
-    surfaceIdx,
-    "noConvergedIntersection",
-    isFiniteEvaluation(finalEval) ? finalEval.value : null,
+  const root = solveBracketedRoot(evalAt, {
+    minT,
+    maxT,
+    tolerance,
     maxIterations,
-  );
+    bracketSamples,
+    seed: Math.abs(direction[2]) > MIN_DZ ? (vertexZ - ray.origin[2]) / direction[2] : NaN,
+    validValue: isFiniteValueEvaluation,
+    validNewton: isFiniteEvaluation,
+    validFinalResidual: isFiniteEvaluation,
+  });
+  return root.kind === "success"
+    ? makeSuccess(root.value, surfaceIdx, L, tolerance, refractiveIndex, root.iterations)
+    : failure(surfaceIdx, root.failureReason, root.residual, root.iterations);
 }
 
 function intersectFlatSurface(
@@ -268,60 +237,15 @@ function evaluateSurface(
   return { t, x, y, z, radius, sag, slope, value, derivative };
 }
 
-type BracketResult =
-  | { kind: "success"; value: SurfaceEvaluation; iterations: number }
-  | { kind: "failure"; failureReason: SurfaceIntersectionFailureReason; residual: number | null; iterations: number }
-  | { kind: "bracket"; lo: number; hi: number; fLo: number };
-
-function findBracket(
-  evalAt: (t: number) => SurfaceEvaluation,
-  minT: number,
-  maxT: number,
-  tolerance: number,
-  bracketSamples: number,
-): BracketResult {
-  if (!isFinite(maxT)) return { kind: "failure", failureReason: "invalidBounds", residual: null, iterations: 0 };
-
-  const loEval = evalAt(minT);
-  if (!isFiniteValueEvaluation(loEval))
-    return { kind: "failure", failureReason: "noBracket", residual: null, iterations: 0 };
-  if (Math.abs(loEval.value) <= tolerance) return { kind: "success", value: loEval, iterations: 0 };
-
-  const hiEval = evalAt(maxT);
-  if (!isFiniteValueEvaluation(hiEval))
-    return { kind: "failure", failureReason: "noBracket", residual: null, iterations: 0 };
-  if (Math.abs(hiEval.value) <= tolerance) return { kind: "success", value: hiEval, iterations: 0 };
-  if (!sameSign(loEval.value, hiEval.value)) {
-    return { kind: "bracket", lo: minT, hi: maxT, fLo: loEval.value };
-  }
-
-  const samples = Math.max(2, Math.round(bracketSamples));
-  let prev = loEval;
-  let best = Math.abs(loEval.value) <= Math.abs(hiEval.value) ? loEval : hiEval;
-  for (let i = 1; i <= samples; i++) {
-    const t = minT + ((maxT - minT) * i) / samples;
-    const current = evalAt(t);
-    if (!isFiniteValueEvaluation(current)) continue;
-    if (Math.abs(current.value) < Math.abs(best.value)) best = current;
-    if (Math.abs(current.value) <= tolerance) return { kind: "success", value: current, iterations: i };
-    if (!sameSign(prev.value, current.value)) {
-      return { kind: "bracket", lo: prev.t, hi: current.t, fLo: prev.value };
-    }
-    prev = current;
-  }
-
-  return { kind: "failure", failureReason: "noBracket", residual: best.value, iterations: samples };
-}
-
 function makeSuccess(
   evaluation: SurfaceEvaluation,
   surfaceIdx: number,
   L: SurfaceIntersectionLens,
-  tolerance: number,
+  _tolerance: number,
   refractiveIndex: number | undefined,
   iterations: number,
 ): SurfaceIntersectionSuccess {
-  const t = Math.abs(evaluation.value) <= tolerance ? evaluation.t : evaluation.t;
+  const t = evaluation.t;
   return {
     ok: true,
     surfaceIdx,
@@ -343,10 +267,6 @@ function failure(
   iterations: number,
 ): SurfaceIntersectionFailure {
   return { ok: false, surfaceIdx, failureReason, residual, iterations };
-}
-
-function sameSign(a: number, b: number): boolean {
-  return a < 0 === b < 0;
 }
 
 function clamp(value: number, min: number, max: number): number {
