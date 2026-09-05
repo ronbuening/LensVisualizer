@@ -28,7 +28,7 @@
  * @param {boolean}  props.isWide                  — true when viewport is desktop-width
  */
 
-import { formatAperture } from "../components/controls/apertureFormatting.js";
+import { formatAperture, formatWorkingApertureNote } from "../components/controls/apertureFormatting.js";
 import { formatSharedFocusDist, sharedFNumber } from "./comparisonSliders.js";
 import type { FocusPairResult, AperturePairResult, ZoomPairResult, MovementPairResult } from "./comparisonSliders.js";
 import { formatDist, eflAtZoom } from "../optics/optics.js";
@@ -66,6 +66,8 @@ interface SharedSlidersBarProps {
   dynamicEflB: number;
   effectiveFNumA: number;
   effectiveFNumB: number;
+  workingApertureNoteA?: string;
+  workingApertureNoteB?: string;
   showEffectiveFocalLength: boolean;
   onToggleEffectiveFocalLength?: () => void;
   showEffectiveAperture: boolean;
@@ -99,6 +101,8 @@ export default function SharedSlidersBar({
   dynamicEflB,
   effectiveFNumA,
   effectiveFNumB,
+  workingApertureNoteA,
+  workingApertureNoteB,
   showEffectiveFocalLength,
   onToggleEffectiveFocalLength,
   showEffectiveAperture,
@@ -398,12 +402,22 @@ export default function SharedSlidersBar({
                     {formatAperture(
                       movementPair && (movementPair.shiftA !== 0 || movementPair.tiltA !== 0) ? null : effectiveFNumA,
                     )}
+                    <span style={{ display: "block", marginTop: 4, maxWidth: 280, lineHeight: 1.5 }}>
+                      {movementPair && (movementPair.shiftA !== 0 || movementPair.tiltA !== 0)
+                        ? formatWorkingApertureNote(null, true)
+                        : workingApertureNoteA}
+                    </span>
                   </span>
                   <span>
                     B working{" "}
                     {formatAperture(
                       movementPair && (movementPair.shiftB !== 0 || movementPair.tiltB !== 0) ? null : effectiveFNumB,
                     )}
+                    <span style={{ display: "block", marginTop: 4, maxWidth: 280, lineHeight: 1.5 }}>
+                      {movementPair && (movementPair.shiftB !== 0 || movementPair.tiltB !== 0)
+                        ? formatWorkingApertureNote(null, true)
+                        : workingApertureNoteB}
+                    </span>
                   </span>
                 </div>
               )}

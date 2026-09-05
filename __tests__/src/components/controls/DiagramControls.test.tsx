@@ -15,6 +15,7 @@ function renderControls(
   options: {
     focusExpanded?: boolean;
     effectiveFNum?: number;
+    workingApertureNote?: string;
     showEffectiveAperture?: boolean;
     apertureExpanded?: boolean;
     focusT?: number;
@@ -62,6 +63,7 @@ function renderControls(
         baseEPSD={L.EP.epSD}
         dynamicEFL={options.dynamicEFL ?? L.EFL}
         effectiveFNum={options.effectiveFNum ?? L.FOPEN}
+        workingApertureNote={options.workingApertureNote}
         showEffectiveFocalLength={options.showEffectiveFocalLength ?? false}
         onToggleEffectiveFocalLength={callbacks.onToggleEffectiveFocalLength}
         showEffectiveAperture={options.showEffectiveAperture ?? false}
@@ -78,6 +80,18 @@ function renderControls(
 }
 
 describe("DiagramControls", () => {
+  it("shows a valid working value and its clipping diagnostic with aperture details collapsed", () => {
+    const L = buildLens(LENS_CATALOG[Object.keys(LENS_CATALOG)[0]] as LensData);
+    renderControls(L, {
+      effectiveFNum: 1.83,
+      showEffectiveAperture: true,
+      apertureExpanded: false,
+      workingApertureNote: "Marginal ray clipped by modeled surface 6.",
+    });
+    expect(screen.getByText(/working f\/1.83/)).toBeTruthy();
+    expect(screen.getByText("Marginal ray clipped by modeled surface 6.")).toBeTruthy();
+  });
+
   it("hides the aperture slider for fixed-stop lenses", () => {
     renderControls(buildLens(LENS_CATALOG["zeiss-hologon-15f8"]));
 

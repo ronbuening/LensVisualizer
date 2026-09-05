@@ -47,6 +47,7 @@ export interface PanelComputedModel {
   aberrationReadouts: VarReadout[];
   dynamicEFL: number;
   effectiveFNum: number;
+  workingApertureNote: string;
   info: ElementData | null;
   act: number | null;
   sel: number | null;

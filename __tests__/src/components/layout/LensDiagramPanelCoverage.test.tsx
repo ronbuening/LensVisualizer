@@ -282,6 +282,9 @@ describe("LensDiagramPanel orchestration", () => {
   });
 
   it("wires loaded state, optional analysis content, and zoom reset", () => {
+    mocks.lensComputation.mockReturnValue(
+      computation({ workingApertureNote: "Marginal ray clipped by modeled surface 6." }),
+    );
     const state = makeState({
       panels: {
         ...makeState().panels,
@@ -301,6 +304,7 @@ describe("LensDiagramPanel orchestration", () => {
     expect(mocks.adapters.onZoomPanToggle).toHaveBeenCalledWith(false);
     expect(mocks.loadedState.mock.calls.at(-1)?.[0]).toMatchObject({
       computed: {
+        workingApertureNote: "Marginal ray clipped by modeled surface 6.",
         focusT: 0,
         zoomT: 0,
         stopdownT: 0,

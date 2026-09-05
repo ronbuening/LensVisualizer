@@ -196,6 +196,7 @@ export default function LensDiagramPanel({
     aberrationReadouts,
     dynamicEFL,
     effectiveFNum,
+    workingApertureNote,
     filterId,
   } = useLensComputation({
     lensKey,
@@ -376,6 +377,7 @@ export default function LensDiagramPanel({
             aberrationReadouts,
             dynamicEFL,
             effectiveFNum,
+            workingApertureNote,
             info: info ?? null,
             act,
             sel,

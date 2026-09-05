@@ -40,6 +40,7 @@ describe("useComparisonDisplayValues", () => {
     expect(result.current.dynamicEflA).toBeGreaterThan(0);
     expect(result.current.dynamicEflB).toBeGreaterThan(0);
     expect(result.current.effectiveFNumA).toBeNaN(); // The Sonnar stop-edge trace fails in this state.
+    expect(result.current.workingApertureNoteA).toContain("could not be traced");
     expect(result.current.effectiveFNumB).toBeGreaterThan(0);
   });
 

@@ -626,9 +626,15 @@ iris settings per prepared state. `workingFNumber` comes from exact marginal-ray
 diagnostics. The viewer, comparison helper and Summary use the same report. Image Quality retains the paraxial
 value only as its initial sensor-grid spacing heuristic; convergence is checked against the actual PSF.
 
-The baseline source is infinity. At finite focus, infer the source conjugate from the current prescription and
-sensor, independently of catalog distance labels; the marginal ray itself uses exact refraction. Explicit source
-distances are measured from the first vertex. Failed or clipped stop-edge rays return unavailable, and active
-perspective movement hides the centered working readout. No numerical clamp ties working f-number to the marked
-aperture, and no inferred stop geometry is changed to force agreement. See
-[the Plena source check and regression record](../records/real-working-aperture.md).
+The baseline source is infinity. At finite focus, use the diagram's continuous, infinity-referenced real-ray
+sensitivity estimate at the same zoom and aberration setting. This estimate is not a measured focus distance.
+Explicit source distances are measured from the first vertex. The first encountered surface bounds axial input
+launch; nearby rays may start at the object itself, and distant rays advance along the same source line.
+
+Conventional working f-number uses the exact stop-edge cone independently of other modeled clear apertures.
+`clippedSurfaceIndices` separately records physical rim clipping; null means the ray was not fully evaluated.
+Intersection/refraction failures and unsupported geometry remain unavailable. Single/comparison controls and
+Summary share diagnostic wording; active perspective movement suppresses the centered value and diagnostics.
+The separate paraxial sensor-cone metric retains its original sensor-center definition and PSF-grid heuristic.
+No numerical clamp ties working f-number to the marked aperture, and no inferred stop or rim is resized to force
+agreement. See [the source check and staged follow-up record](../records/real-working-aperture.md).

@@ -7,6 +7,7 @@
  * from rendering concerns.
  */
 
+import { formatWorkingApertureNote } from "../controls/apertureFormatting.js";
 import { useMemo, useRef } from "react";
 import { LENS_CATALOG } from "../../utils/catalog/lensCatalog.js";
 import buildLens from "../../optics/buildLens.js";
@@ -23,7 +24,7 @@ import {
   anchorLayoutToCamera,
   computeAnalysisFieldGeometryAtState,
   doLayout,
-  effectiveFNumber,
+  apertureMetricsForState,
   resolveApertureStop,
   eflAtFocus,
   entrancePupilAtState,
@@ -82,6 +83,7 @@ interface UseLensComputationResult {
   aberrationReadouts: VarReadout[];
   dynamicEFL: number;
   effectiveFNum: number;
+  workingApertureNote: string;
   filterId: string;
 }
 
@@ -281,10 +283,15 @@ export default function useLensComputation({
   );
 
   /* ── Real-ray working f-number for supported centered optics ── */
-  const effectiveFNum = useMemo(
-    () => (movement.active ? NaN : L ? effectiveFNumber(fNumber, focusT, zoomT, L, aberrationT) : fNumber),
-    [L, fNumber, focusT, zoomT, aberrationT, movement.active],
+  const apertureReport = useMemo(
+    () =>
+      L && !movement.active
+        ? apertureMetricsForState(prepareRuntimeState(L, focusT, zoomT, aberrationT), currentPhysStopSD)
+        : null,
+    [L, focusT, zoomT, aberrationT, currentPhysStopSD, movement.active],
   );
+  const effectiveFNum = movement.active ? NaN : L ? (apertureReport?.workingFNumber ?? NaN) : fNumber;
+  const workingApertureNote = formatWorkingApertureNote(apertureReport, movement.active);
 
   const filterId = `gl-${panelId}`;
 
@@ -317,6 +324,7 @@ export default function useLensComputation({
     aberrationReadouts,
     dynamicEFL,
     effectiveFNum,
+    workingApertureNote,
     filterId,
   };
 }

@@ -84,3 +84,19 @@ working f-number to the selected value.
   cones through a smaller clear aperture, a catalog rim, a cleared stopped-down ray, and an untraceable Sonnar rim.
 - Step 3 verification: typecheck, formatting, lint, 303 files / 2849 tests, and coverage passed.
   Coverage: statements 92.22%, branches 83.80%, functions 93.94%, lines 94.90%; floors unchanged.
+
+## Catalog follow-up: consistent diagnostics (step 4)
+
+- Single-view controls, shared comparison controls, and Summary now use one diagnostic formatter. A numeric
+  conventional cone can coexist with modeled clipping; failed traces and active movement have explicit reasons.
+  Clipping notes remain visible when aperture details are collapsed.
+- Both display hooks retrieve the shared immutable aperture report for values and notes. Summary explicitly labels
+  the retained paraxial sensor-center cone and infinity-calibrated source estimate, avoiding an implied identical
+  conjugate between that diagnostic and the real working calculation.
+- Added diagnostic tests and a collapsed-controls regression; existing comparison and Summary component checks pass.
+- Live browser checks verified APO-Lanthar f/1.92 with clipping surfaces 6/7/8 in both slider and Summary,
+  the same comparison readout alongside Plena f/1.83, and Fujifilm 30mm T/S close-focus f/5.87 in slider and Summary.
+  The browser check exposed a missing panel forwarding field; the internal field is now required and the panel
+  orchestration regression asserts it reaches the loaded view.
+- Step 4 verification: typecheck, formatting, lint, 304 files / 2855 tests, and coverage passed.
+  Coverage: statements 92.23%, branches 83.78%, functions 93.95%, lines 94.91%; floors unchanged.

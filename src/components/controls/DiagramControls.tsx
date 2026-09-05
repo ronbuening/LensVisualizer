@@ -49,6 +49,7 @@ interface DiagramControlsProps {
   baseEPSD: number;
   dynamicEFL: number;
   effectiveFNum: number;
+  workingApertureNote?: string;
   showEffectiveFocalLength: boolean;
   onToggleEffectiveFocalLength?: () => void;
   showEffectiveAperture: boolean;
@@ -88,6 +89,7 @@ export default function DiagramControls({
   baseEPSD,
   dynamicEFL,
   effectiveFNum,
+  workingApertureNote,
   showEffectiveFocalLength,
   onToggleEffectiveFocalLength,
   showEffectiveAperture,
@@ -454,6 +456,11 @@ export default function DiagramControls({
           expanded={apertureExpanded}
           onExpandedChange={onApertureExpandedChange}
         >
+          {showEffectiveAperture && workingApertureNote && (
+            <div style={{ marginTop: 6, fontSize: 9.5, lineHeight: 1.5, color: t.spacingVal }}>
+              {workingApertureNote}
+            </div>
+          )}
           {apertureExpanded && (
             <>
               <div

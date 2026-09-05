@@ -1,3 +1,4 @@
+import { formatWorkingApertureNote } from "../../controls/apertureFormatting.js";
 import { formatAperture } from "../../controls/apertureFormatting.js";
 import { useMemo, type ReactNode } from "react";
 import { analysisJobsForState2 } from "../../../optics/compat.js";
@@ -120,21 +121,28 @@ export default function OpticalSummaryTab({
           label="Working f/#"
           value={formatFNumber(perspectiveContext ? null : summary.effectiveFNumber)}
           note={
-            perspectiveContext
-              ? "unavailable for active movement"
-              : summary.apertureStatus === "ok"
-                ? "real marginal-ray cone"
-                : `unavailable: ${summary.apertureStatus}`
+            formatWorkingApertureNote(
+              {
+                status: summary.apertureStatus,
+                clippedSurfaceIndices: summary.apertureClippedSurfaceIndices,
+              },
+              !!perspectiveContext,
+            ) || "real stop-edge cone; clipping reported separately"
           }
           t={t}
         />
-        <AnalysisMetricRow label="Paraxial working f/#" value={formatFNumber(summary.paraxialWorkingFNumber)} t={t} />
+        <AnalysisMetricRow
+          label="Paraxial f/# at sensor"
+          value={formatFNumber(summary.paraxialWorkingFNumber)}
+          note="paraxial cone to sensor center; independent of the focus-tracking source estimate"
+          t={t}
+        />
         <AnalysisMetricRow
           label="Working source"
           value={
             summary.apertureObjectDistanceMm === Infinity ? "Infinity" : formatMm(summary.apertureObjectDistanceMm)
           }
-          note="from first vertex; finite source inferred from optical focus"
+          note="from first vertex; infinity-calibrated focus-tracking estimate"
           t={t}
         />
         <AnalysisMetricRow label="Paraxial entrance pupil" value={formatMm(summary.entrancePupilDiameterMm)} t={t} />

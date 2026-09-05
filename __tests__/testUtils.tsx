@@ -244,6 +244,7 @@ export function makeLensComputationResult(overrides: Record<string, unknown> = {
     varReadouts: [],
     dynamicEFL: 50,
     effectiveFNum: 2,
+    workingApertureNote: "",
     filterId: "filter-test",
     ...overrides,
   };

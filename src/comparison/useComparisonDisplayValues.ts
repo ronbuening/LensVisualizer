@@ -6,8 +6,10 @@
  * component focused on routing between the success and error UI states.
  */
 
+import { prepareRuntimeState } from "../optics/compat.js";
+import { formatWorkingApertureNote } from "../components/controls/apertureFormatting.js";
 import { useMemo } from "react";
-import { eflAtFocus, effectiveFNumber } from "../optics/optics.js";
+import { eflAtFocus, apertureMetricsForState, resolveApertureStop } from "../optics/optics.js";
 import { sharedFNumber } from "./comparisonSliders.js";
 import { isComparisonOk, type ComparisonLensesResult } from "./useComparisonMode.js";
 import type { AperturePairResult, FocusPairResult, ZoomPairResult } from "./comparisonSliders.js";
@@ -51,14 +53,30 @@ export default function useComparisonDisplayValues({
   const fNumA = LA ? LA.FOPEN * Math.pow(LA.maxFstop / LA.FOPEN, aperturePair?.stopdownA ?? 0) : sharedDisplayFNumber;
   const fNumB = LB ? LB.FOPEN * Math.pow(LB.maxFstop / LB.FOPEN, aperturePair?.stopdownB ?? 0) : sharedDisplayFNumber;
 
-  const effectiveFNumA = useMemo(
-    () => (LA ? effectiveFNumber(fNumA, focusA, zoomA, LA) : fNumA),
+  const apertureA = useMemo(
+    () =>
+      LA
+        ? apertureMetricsForState(
+            prepareRuntimeState(LA, focusA, zoomA),
+            resolveApertureStop(LA, zoomA, fNumA).stopSemiDiameterMm,
+          )
+        : null,
     [LA, fNumA, focusA, zoomA],
   );
-  const effectiveFNumB = useMemo(
-    () => (LB ? effectiveFNumber(fNumB, focusB, zoomB, LB) : fNumB),
+  const apertureB = useMemo(
+    () =>
+      LB
+        ? apertureMetricsForState(
+            prepareRuntimeState(LB, focusB, zoomB),
+            resolveApertureStop(LB, zoomB, fNumB).stopSemiDiameterMm,
+          )
+        : null,
     [LB, fNumB, focusB, zoomB],
   );
+  const effectiveFNumA = LA ? (apertureA?.workingFNumber ?? NaN) : fNumA;
+  const effectiveFNumB = LB ? (apertureB?.workingFNumber ?? NaN) : fNumB;
+  const workingApertureNoteA = formatWorkingApertureNote(apertureA);
+  const workingApertureNoteB = formatWorkingApertureNote(apertureB);
 
   return {
     ok,
@@ -68,5 +86,7 @@ export default function useComparisonDisplayValues({
     dynamicEflB,
     effectiveFNumA,
     effectiveFNumB,
+    workingApertureNoteA,
+    workingApertureNoteB,
   };
 }

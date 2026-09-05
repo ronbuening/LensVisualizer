@@ -57,6 +57,7 @@ flowchart LR
   n_src_components_controls_src_components_controls_DiagramHeader_tsx --> n_external_src_optics_optics_ts
   n_src_components_controls_src_components_controls_DiagramControls_tsx --> n_external_src_optics_projection_ts
   n_src_components_controls_src_components_controls_DiagramHeader_tsx --> n_external_src_optics_projection_ts
+  n_src_components_controls_src_components_controls_apertureFormatting_ts --> n_external_src_types
   n_src_components_controls_src_components_controls_CardinalControls_tsx --> n_external_src_types
   n_src_components_controls_src_components_controls_CollapseButton_tsx --> n_external_src_types
   n_src_components_controls_src_components_controls_HelpTooltipButton_tsx --> n_external_src_types
@@ -70,7 +71,6 @@ flowchart LR
   n_src_components_controls_src_components_controls_ChromaticControls_tsx --> n_external_src_utils_style
   n_src_components_controls_src_components_controls_CollapseButton_tsx --> n_external_src_utils_style
   n_src_components_controls_src_components_controls_DiagramControls_tsx --> n_external_src_utils_style
-  n_src_components_controls_src_components_controls_DiagramHeader_tsx --> n_external_src_utils_style
   n_src_components_controls_truncated["additional relationships omitted"]
 ```
 
@@ -78,14 +78,14 @@ flowchart LR
 
 - Direct source files: 11
 - Direct subfolders: 0
-- Main outbound areas: src/types (16), same folder (9), src/utils/style (8), package:react (7), src/components/content (2), src/optics/optics.ts (2), src/optics/projection.ts (2), src/utils/featureFlags.ts (2), +7 more
-- External consumers: src/comparison, src/components/display, src/components/layout, src/pages/AuthorsIndexPage.tsx
+- Main outbound areas: src/types (17), same folder (9), src/utils/style (8), package:react (7), src/components/content (2), src/optics/optics.ts (2), src/optics/projection.ts (2), src/utils/featureFlags.ts (2), +7 more
+- External consumers: src/comparison, src/components/display, src/components/hooks, src/components/layout, src/pages/AuthorsIndexPage.tsx
 
 ## Files
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
-| `apertureFormatting.ts` | Aperture Formatting helper module | none | same folder (2), src/comparison, src/components/display | formatAperture |
+| `apertureFormatting.ts` | Aperture Formatting helper module | src/types | same folder (2), src/comparison (2), src/components/display, src/components/hooks | formatAperture, formatWorkingApertureNote |
 | `CardinalControls.tsx` | React component module | src/types, src/utils/style | src/components/layout (2), same folder | default, CardinalControls |
 | `ChromaticControls.tsx` | React component module | src/types (2), src/optics/chromatic, src/utils/style | same folder | default, ChromaticControls |
 | `CollapseButton.tsx` | React component module | package:react, src/types, src/utils/style | same folder (2), src/components/display (2) | default, CollapseButton |

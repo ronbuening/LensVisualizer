@@ -22,9 +22,9 @@ flowchart LR
   n_external_src_optics_optics_ts["src/optics/optics.ts"]
   n_external_src_optics_types_ts["src/optics/types.ts"]
   n_external_src_utils_perfProbe_ts["src/utils/perfProbe.ts"]
+  n_external_src_components_controls["src/components/controls"]
   n_external_src_optics_chromatic["src/optics/chromatic"]
   n_external_src_optics_distortionAnalysis_ts["src/optics/distortionAnalysis.ts"]
-  n_external_src_components_controls["src/components/controls"]
   n_external_src_optics_pupilAberration_ts["src/optics/pupilAberration.ts"]
   n_external_src_optics_vignetteAnalysis_ts["src/optics/vignetteAnalysis.ts"]
   n_external_src_optics_workers["src/optics/workers"]
@@ -43,9 +43,9 @@ flowchart LR
   n_src_components_display_analysis_TypeScript_modules --> |3| n_external_src_optics_compat_ts
   n_src_components_display_analysis_TypeScript_modules --> |3| n_external_src_optics_types_ts
   n_src_components_display_analysis_React_components --> |3| n_external_src_utils_perfProbe_ts
+  n_src_components_display_analysis_React_components --> |2| n_external_src_components_controls
   n_src_components_display_analysis_React_components --> |2| n_external_src_optics_chromatic
   n_src_components_display_analysis_React_components --> |2| n_external_src_optics_distortionAnalysis_ts
-  n_src_components_display_analysis_React_components --> n_external_src_components_controls
   n_src_components_display_analysis_TypeScript_modules --> n_external_src_optics_chromatic
   n_src_components_display_analysis_React_components --> n_external_src_optics_pupilAberration_ts
   n_src_components_display_analysis_React_components --> n_external_src_optics_vignetteAnalysis_ts
@@ -93,7 +93,7 @@ flowchart LR
 | `LateralColorChart.tsx` | React component module | src/components/display (4), src/types (2), src/optics/compat.ts | src/components/display | default, LateralColorChart |
 | `LongitudinalChromaticFocusChart.tsx` | React component module | src/components/display (4), src/optics/compat.ts, src/types | src/components/display | default, LongitudinalChromaticFocusChart |
 | `MeridionalComaPlot.tsx` | React component module | src/components/display, src/optics/aberrationAnalysis.ts, src/types | src/components/display | default, MeridionalComaPlot |
-| `OpticalSummaryTab.tsx` | React component module | src/components/display (2), src/optics/compat.ts (2), src/types (2), package:react, src/components/controls, +2 more | src/components/layout | default, OpticalSummaryTab |
+| `OpticalSummaryTab.tsx` | React component module | src/components/controls (2), src/components/display (2), src/optics/compat.ts (2), src/types (2), package:react, +2 more | src/components/layout | default, OpticalSummaryTab |
 | `PupilAberrationChart.tsx` | React component module | src/components/display (3), src/optics/pupilAberration.ts, src/types | src/components/display | default, PupilAberrationChart |
 | `PupilAberrationTab.tsx` | React component module | src/components/display (4), src/optics/compat.ts (2), src/types (2), package:react, src/optics/optics.ts, +1 more | src/components/layout | default, PupilAberrationTab |
 | `SagittalComaPlot.tsx` | React component module | src/components/display, src/optics/aberrationAnalysis.ts, src/types | src/components/display | default, SagittalComaPlot |

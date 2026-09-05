@@ -34,6 +34,7 @@ flowchart LR
   n_external_src_optics_perspective["src/optics/perspective"]
   n_external_src_types["src/types"]
   n_external_src_utils_state["src/utils/state"]
+  n_external_src_components_controls["src/components/controls"]
   n_external_src_optics_aberration["src/optics/aberration"]
   n_external_src_optics_buildLens_ts["src/optics/buildLens.ts"]
   n_external_src_optics_cardinalElements_ts["src/optics/cardinalElements.ts"]
@@ -69,12 +70,12 @@ flowchart LR
   n_src_components_hooks_src_components_hooks_useOverlayState_ts --> n_external_pkg_react
   n_src_components_hooks_src_components_hooks_useRayTracing_ts --> n_external_pkg_react
   n_src_components_hooks_src_components_hooks_useViewBoxZoom_ts --> n_external_pkg_react
+  n_src_components_hooks_src_components_hooks_useLensComputation_ts --> n_external_src_components_controls
   n_src_components_hooks_src_components_hooks_offAxisRayUtils_ts --> n_external_src_optics_aberration
   n_src_components_hooks_src_components_hooks_useLensComputation_ts --> n_external_src_optics_buildLens_ts
   n_src_components_hooks_src_components_hooks_useLensComputation_ts --> n_external_src_optics_cardinalElements_ts
   n_src_components_hooks_src_components_hooks_useLensComputation_ts --> n_external_src_optics_compat_ts
   n_src_components_hooks_src_components_hooks_useLensComputation_ts --> n_external_src_optics_diagramGeometry_ts
-  n_src_components_hooks_src_components_hooks_offAxisRayUtils_ts --> n_external_src_optics_optics_ts
   n_src_components_hooks_truncated["additional relationships omitted"]
 ```
 
@@ -82,7 +83,7 @@ flowchart LR
 
 - Direct source files: 18
 - Direct subfolders: 0
-- Main outbound areas: package:react (18), src/types (15), same folder (13), src/optics/perspective (8), src/optics/optics.ts (7), src/optics/raySampling.ts (3), src/utils/state (3), src/optics/lensMovement.ts (2), +8 more
+- Main outbound areas: package:react (18), src/types (15), same folder (13), src/optics/perspective (8), src/optics/optics.ts (7), src/optics/raySampling.ts (3), src/utils/state (3), src/optics/lensMovement.ts (2), +9 more
 - External consumers: src/benchmarks, src/components/controls, src/components/display, src/components/layout, src/components/relationshipMap, src/components/search
 
 ## Files
@@ -98,7 +99,7 @@ flowchart LR
 | `useHeaderHeight.ts` | React hook module | package:react (2) | src/components/layout | default, useHeaderHeight |
 | `useInteractionSignal.ts` | React hook module | package:react | src/components/controls | InteractionSignal, default, useInteractionSignal |
 | `useLensAnalysisMarkdown.ts` | React hook module | package:react, src/utils/catalog, src/utils/featureFlags.ts | src/components/layout | default, useLensAnalysisMarkdown |
-| `useLensComputation.ts` | React hook module | src/optics/lensMovement.ts (2), src/optics/optics.ts (2), package:react, src/optics/buildLens.ts, src/optics/cardinalElements.ts, +5 more | src/components/layout | default, useLensComputation |
+| `useLensComputation.ts` | React hook module | src/optics/lensMovement.ts (2), src/optics/optics.ts (2), package:react, src/components/controls, src/optics/buildLens.ts, +6 more | src/components/layout | default, useLensComputation |
 | `useModalDialog.ts` | React hook module | package:react | src/components/layout (2) | default, useModalDialog |
 | `useOffAxisRays.ts` | React hook module | same folder (3), src/optics/perspective (2), src/types (2), package:react, src/optics/optics.ts, +1 more | same folder | default, useOffAxisRays |
 | `useOnAxisRays.ts` | React hook module | src/optics/perspective (2), src/types (2), package:react, same folder, src/optics/optics.ts, +1 more | same folder (4), src/benchmarks, src/components/layout | RaySegment, default, useOnAxisRays |

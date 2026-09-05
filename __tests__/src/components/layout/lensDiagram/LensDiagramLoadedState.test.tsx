@@ -112,6 +112,7 @@ function baseProps(overrides: Partial<LensDiagramLoadedStateProps> = {}): LensDi
       aberrationReadouts: [],
       dynamicEFL: 50,
       effectiveFNum: 2,
+      workingApertureNote: "",
       info: null,
       act: null,
       sel: null,
