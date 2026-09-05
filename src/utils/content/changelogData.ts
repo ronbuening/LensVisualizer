@@ -20,29 +20,8 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-09-05",
-    type: "fix",
-    summary: "Fixed working-aperture focus transitions and separated modeled clipping diagnostics",
-  },
-  {
-    date: "2026-09-04",
-    type: "feature",
-    summary:
-      "Added axial scalar PSF and convergence-checked MTF with explicit spectral weights and transmission models",
-  },
-  {
-    date: "2026-09-04",
-    type: "fix",
-    summary: "Added area-weighted vignetting and ideal sensor illumination with explicit sampling and model limits",
-  },
-  {
-    date: "2026-09-04",
-    type: "fix",
-    summary: "Unified aperture readouts using real marginal rays with separate paraxial diagnostics",
-  },
-  {
-    date: "2026-09-04",
-    type: "fix",
-    summary: "Corrected calculated focal length and focus-breathing references and labels",
+    type: "lens",
+    summary: "Added six Konica Hexanon AR prime and zoom lens designs",
   },
   {
     date: "2026-09-04",

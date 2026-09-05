@@ -8,7 +8,13 @@ catalog equivalent. If neither path is available, the engine falls back to parti
 dPgF-corrected indices, or the legacy Abbe approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **535 verified entries** in source as of September 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **554 verified entries** in source as of September 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+
+The September 5, 2026 six-lens Konica AR audit added legacy OHARA PBH23 from the manufacturer's
+`OHARA_260701.AGF` all-products catalog. Its published polynomial and exact `785262` code resolve the
+24mm f/2.8's L4. Qualified S-BAL35 and J-LAK7R curves resolve that lens's L2/L3 and L7 while retaining
+all patent coordinates and leaving production suppliers unspecified. All six additions are strict-complete;
+global coverage is 7201/7741 strict and 7216/7741 trusted surfaces, with zero coordinate mismatches.
 
 The September 1, 2026 Konica prime/telephoto audit added legacy HOYA TAFD10 from the manufacturer's first-party
 2026-07-07 obsolete-inclusive OpticStudio catalog. Its formula-3 polynomial and exact `816445` code recover the
