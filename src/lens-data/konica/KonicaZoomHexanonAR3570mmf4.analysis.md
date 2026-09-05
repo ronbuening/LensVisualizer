@@ -201,6 +201,10 @@ The finite-conjugate solutions satisfy the 0.8 m film-plane reference with resid
 movement is introduced, and no focus-drive mechanism is claimed because the cited sources do not establish one for this
 analysis.
 
+With the image plane held fixed, wide-to-tele zoom moves the front group 13.210962 mm toward the image and the
+rear group 19.869038 mm toward the object at infinity focus. Both paths remain monotonic through the middle
+state, matching Figure 1(a/b); the authored order is Wide → Middle → Tele.
+
 ## Conditional Expressions
 
 Example 1 satisfies the applicable patent conditions when evaluated from the final data and the source group focal
@@ -237,10 +241,12 @@ The surface-by-surface Petzval calculation uses $\phi/(n n')$ and gives a sum of
 
 The patent does not publish surface semi-diameters. The data file's semi-diameters are therefore inferred from the
 Y = 21.6 mm field, the modeled f/3.5 marginal and chief-ray envelopes, the Figure-1 optical-section proportions, and the
-current geometry constraints. The final model has a minimum computed edge thickness of 0.116342 mm, a maximum actual rim
-slope of 57.539353°, and a worst shared-band cross-gap intrusion fraction of 0.812554, below the configured 0.90 limit.
-The modeled 0.60-field bundles and reconstructed close-focus on-axis fans remain inside the authored clear apertures.
-These values validate the authored geometry; they are not source-published mechanical clear apertures.
+current geometry constraints. Direct measurement of the 600 dpi Figure 1(a) optical rims puts the front meniscus
+(patent L3, physical E4) near 14.5 mm and the final element (patent L7, physical E8) near 8.8 mm. Their modeled SDs
+are now 15.0/14.8 mm and 10.0/10.0 mm, respectively. The final element retains extra clearance because an 8.8 mm
+trial clips the default off-axis fan at intermediate and telephoto states. Surface and render diagnostics pass,
+and the modeled 0.60-field bundles remain contained across the tested zoom/focus grid. These inferred apertures
+are not patent-published mechanical dimensions.
 
 One apparent source-reading issue is explicitly resolved. Patent Table 1, PDF page 5, gives surface 10 as
 **R = +18.365 mm**. A low-resolution OCR reading of +183.65 mm is incompatible with the rendered page and changes the

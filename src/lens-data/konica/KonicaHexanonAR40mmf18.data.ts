@@ -61,7 +61,7 @@ const LENS_DATA = {
   apertureDesign: 1.8,
   lensMounts: ["konica-ar"],
   imageFormat: "135-full-frame",
-  patentNumber: "JP1979-030821",
+  patentNumber: "JP 1979-030821 A",
   patentAuthors: ["Toshiko Shimokura"],
   patentAssignees: ["Konishiroku Photo Industry Co., Ltd."],
   patentYear: 1979,

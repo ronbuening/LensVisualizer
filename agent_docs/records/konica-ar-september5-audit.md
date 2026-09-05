@@ -62,3 +62,79 @@ Existing published entries were left intact.
 - Production build passed: 1251 prerendered routes, sitemap and RSS feeds generated.
 - Visual inspection used rasterized paths from the production `computeElementShapes` SVG helper.
   Live browser verification was unavailable (`No browser is available`). Patents and scratch renders remain untracked.
+
+## Screenshot follow-up — 2026-09-05 UTC
+
+Reviewed all six user-supplied site screenshots against the same exact 600 dpi patent crops.
+The five prime-lens SD sets remain: their residual shape differences are within scan uncertainty
+or arise from bevels outside the optical rims. In particular, the 50mm clean figure/data ratios
+are 0.89–0.94 with normalized shape ratios 0.97–1.03, so another SD rescaling is unwarranted.
+The 21/24mm stepped front components and the 40mm stop-adjacent components retain optical
+clearance limits; copying their external bevels would misrepresent the optical surfaces.
+The 135mm's updated rear rim remains consistent with its drawing.
+
+The zoom's prior blanket SD retention was too broad: the front meniscus and final positive
+singlet require separate measurements away from nearby brackets. The follow-up reduces S6/S7
+from 18.9/18.7 to 15.0/14.8 mm and S14/S15 from 11.6/11.7 to 10.0/10.0 mm. The latter keeps
+ray clearance above the drawing's roughly 8.8 mm rim. See the sibling zoom audit for measurements,
+rejected trials, and render checks. Radii, glass coordinates, stop size, and spacings are unchanged.
+
+### Display and glass findings
+
+Four new patent numbers lacked the space after `JP` required by the existing publication-link
+and jurisdiction parsers. This explains both missing header links in the screenshots and incorrect
+`OTHER` jurisdiction assignment. Corrected the four records to `JP YYYY-NNNNNN A`; all six now
+produce links and classify under Japan. No shared parser or route key was changed.
+
+The 21mm diagram now uses `FRONT (L1–L4)`, `REAR (L5–L8)`, and `L6 (L6a+L6b)` consistently;
+its cemented-element badges identify `L6` too. Other element types, optical-power signs, counts,
+cemented pairs, stop annotations, and display names agree with the selected prescriptions.
+The prime MFD values remain product metadata. The zoom header continues to distinguish the
+marketed 35–70mm f/4 lens from the approximately 36–68mm f/3.5 patent model.
+
+All 41 physical elements still resolve to catalog curves. The largest absolute coordinate
+residuals are approximately 0.000004 in nd and 0.07 in vd, well inside the existing guards.
+There is no uncovered glass type in this batch to backfill. No coefficient, measured line index,
+production supplier, or APD tag was added in this follow-up.
+
+The four themes derive ordinary glass fill from patent nd: low-index at nd ≤ 1.6,
+standard at 1.6 < nd ≤ 1.78, and high-index above 1.78. The screenshots agree with those rules:
+
+| Lens | Low-index elements | High-index elements | Remaining elements |
+|---|---|---|---|
+| 21mm | none | L6b | standard |
+| 24mm | L2, L3 | L4, L6 | standard |
+| 40mm | L2 | L6 | standard |
+| 50mm | none | none | standard |
+| 135mm | L1, L2 | L4 | standard |
+| 35–70mm | none | L2b, L3, L6 | standard |
+
+No selected patent publishes partial-dispersion evidence supporting an APD badge. The ordinary
+index fills and the Abbe-number annotations are already complete; supplier-neutral equivalents
+remain distinct from production glass identities. Global strict/trusted coverage remains
+7201/7741 and 7216/7741, with zero catalog-coordinate mismatches.
+
+### Movement ordering
+
+The five primes expose neither focus nor zoom movement because no internal reconstruction is
+authored. The zoom exposes both. In the fixed camera/image-plane frame, close focus moves FRONT
+objectward by 5.490753 / 5.410155 / 5.394246 mm at wide/middle/tele while REAR stays fixed.
+At infinity focus, Wide → Middle → Tele moves FRONT imageward by 13.210962 mm and REAR
+objectward by 19.869038 mm overall. Sampled paths at infinity, middle, and close focus remain
+monotonic, consistent with Fig. 1(a/b). No variable table or direction required correction.
+
+Added regression coverage for publication links/jurisdiction, movement ordering, fixed rear-group
+focus position, and the refined zoom's ray clearance across five zoom and three focus positions.
+The changelog is unchanged as requested.
+
+### Follow-up verification
+
+- Zoom surface and image-circle audits: passed, zero undersized surfaces.
+- Focused batch/render diagnostics: 2 files / 10 tests passed.
+- Glass report regeneration: 8 files / 15 tests passed; coordinate mismatches remain zero.
+- Typecheck, format check, and lint: passed.
+- Full suite: 295 files / 2743 tests passed.
+- Production build: passed, 1251 prerendered routes; existing large-chunk warnings only.
+- User screenshots, exact patent crops, and rasterized production SVG paths were inspected;
+  live browser interaction was unavailable.
+- `git diff --check`: passed; ignored patent PDFs and scratch renders remain outside the commit.

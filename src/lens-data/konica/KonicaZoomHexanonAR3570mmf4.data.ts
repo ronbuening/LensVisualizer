@@ -64,7 +64,7 @@ const LENS_DATA = {
   apertureDesign: 3.5,
   lensMounts: ["konica-ar"],
   imageFormat: "135-full-frame",
-  patentNumber: "JP1982-019708 A",
+  patentNumber: "JP 1982-019708 A",
   patentAuthors: ["Tadashi Kojima", "Takashi Matsumaru"],
   patentAssignees: ["Konishiroku Photo Industry Co., Ltd."],
   patentYear: 1982,
@@ -190,14 +190,16 @@ const LENS_DATA = {
   ],
 
   /* ── Surface prescription ── */
+  // Fig. 1(a/b) optical rims: L3 ≈ 14.5 mm, L7 ≈ 8.8 mm. Rounded L3 SDs preserve
+  // the front/rear ratio; L7 stays at 10 mm to clear the default fan throughout zoom/focus.
   surfaces: [
     { label: "1", R: 470.801, d: 3.4, nd: 1.65844, elemId: 1, sd: 24.8 },
     { label: "2", R: -160.089, d: 0.1, nd: 1, elemId: 0, sd: 23.5 },
     { label: "3", R: 268.303, d: 4.3, nd: 1.62004, elemId: 2, sd: 23.2 },
     { label: "4", R: -85.825, d: 1.5, nd: 1.8061, elemId: 3, sd: 21.0 },
     { label: "5", R: 24.296, d: 7.8, nd: 1, elemId: 0, sd: 20.5 },
-    { label: "6", R: 29.32, d: 2.7, nd: 1.80518, elemId: 4, sd: 18.9 },
-    { label: "7", R: 43.862, d: 34.08, nd: 1, elemId: 0, sd: 18.7 },
+    { label: "6", R: 29.32, d: 2.7, nd: 1.80518, elemId: 4, sd: 15.0 },
+    { label: "7", R: 43.862, d: 34.08, nd: 1, elemId: 0, sd: 14.8 },
     { label: "8", R: 32.854, d: 4.2, nd: 1.65844, elemId: 5, sd: 13.2 },
     // Patent D9 is 3.00 mm. The stop is only localized to this interval, so the gap is split at a neutral midpoint.
     { label: "9", R: -128.495, d: 1.5, nd: 1, elemId: 0, sd: 12.5 },
@@ -206,8 +208,8 @@ const LENS_DATA = {
     { label: "11", R: 41.578, d: 2.3, nd: 1, elemId: 0, sd: 10.9 },
     { label: "12", R: -113.747, d: 1.5, nd: 1.80518, elemId: 7, sd: 10.6 },
     { label: "13", R: 17.273, d: 5.1, nd: 1, elemId: 0, sd: 10.6 },
-    { label: "14", R: 86.723, d: 3, nd: 1.62004, elemId: 8, sd: 11.6 },
-    { label: "15", R: -33.024, d: 40.729477566880206, nd: 1, elemId: 0, sd: 11.7 },
+    { label: "14", R: 86.723, d: 3, nd: 1.62004, elemId: 8, sd: 10.0 },
+    { label: "15", R: -33.024, d: 40.729477566880206, nd: 1, elemId: 0, sd: 10.0 },
   ],
 
   /* ── Aspherical coefficients ── */

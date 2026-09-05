@@ -49,7 +49,7 @@ const LENS_DATA = {
   apertureMarketing: 2.8,
   lensMounts: ["konica-ar"],
   imageFormat: "135-full-frame",
-  patentNumber: "JP1980-017129 A",
+  patentNumber: "JP 1980-017129 A",
   patentAuthors: ["Toshiko Shimokura"],
   patentAssignees: ["Konishiroku Photo Industry Co., Ltd."],
   patentYear: 1980,
@@ -141,7 +141,7 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 27.994101975887663,
       glass: "603607",
-      cemented: "G6",
+      cemented: "L6",
       role: "Positive component of the cemented sixth group.",
     },
     {
@@ -155,7 +155,7 @@ const LENS_DATA = {
       indexReference: "d",
       fl: -15.87003187654162,
       glass: "805254",
-      cemented: "G6",
+      cemented: "L6",
       role: "Negative component of the cemented sixth group; the cemented pair is net negative.",
     },
     {
@@ -214,10 +214,10 @@ const LENS_DATA = {
   varLabels: [],
 
   groups: [
-    { text: "FRONT G1–G4", fromSurface: "1", toSurface: "8" },
-    { text: "REAR G5–G8", fromSurface: "9", toSurface: "17" },
+    { text: "FRONT (L1–L4)", fromSurface: "1", toSurface: "8" },
+    { text: "REAR (L5–L8)", fromSurface: "9", toSurface: "17" },
   ],
-  doublets: [{ text: "G6", fromSurface: "11", toSurface: "13" }],
+  doublets: [{ text: "L6 (L6a+L6b)", fromSurface: "11", toSurface: "13" }],
 
   /* ── Focus configuration ── */
   closeFocusM: 0.2,

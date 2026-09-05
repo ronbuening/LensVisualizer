@@ -185,4 +185,4 @@ Nothing can be audited on these until the source is available.
 | [HexanonAR40mmf18](../src/lens-data/konica/KonicaHexanonAR40mmf18.audit.md) | done | Refined L1/L6; default ray fan retained |
 | [HexanonAR50mmf18](../src/lens-data/konica/KonicaHexanonAR50mmf18.audit.md) | done | Retained validated SDs after exact-figure review |
 | [HexanonAR135mmf35](../src/lens-data/konica/KonicaHexanonAR135mmf35.audit.md) | done | Enlarged L4 to match the optical rim |
-| [ZoomHexanonAR3570mmf4](../src/lens-data/konica/KonicaZoomHexanonAR3570mmf4.audit.md) | done | Retained validated SDs after exact-figure review |
+| [ZoomHexanonAR3570mmf4](../src/lens-data/konica/KonicaZoomHexanonAR3570mmf4.audit.md) | done | Screenshot follow-up: reduced L3/L7 optical rims; zoom/focus ray grid retained |

@@ -1067,7 +1067,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|---|---|
 | L4 (Element 4) | 6 | `Unmatched (high-index dense flint, 831/265)` | 1.83060 / 26.50 | No catalog entry | abbe | patents/US3615126.pdf | Explicit disposition in data |
 
-### [KONICA HEXANON AR 135mm f/3.5](../../src/lens-data/konica/KonicaHexanonAR135mmf35.data.ts) - JP1979-055423 A
+### [KONICA HEXANON AR 135mm f/3.5](../../src/lens-data/konica/KonicaHexanonAR135mmf35.data.ts) - JP 1979-055423 A
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
@@ -1076,7 +1076,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L3 (Element 3) | 5 | `762271 — dense-flint class (vendor unresolved)` | 1.76180 / 27.10 | PBH25 (trusted Sellmeier) | sellmeier | patents/JPA 1979055423-000000.pdf | No review-record hit |
 | L4 (Element 4) | 7 | `805254 — dense-flint class (vendor unresolved)` | 1.80518 / 25.40 | S-TIH6 (trusted Sellmeier) | sellmeier | patents/JPA 1979055423-000000.pdf | No review-record hit |
 
-### [KONICA HEXANON AR 21mm f/2.8](../../src/lens-data/konica/KonicaHexanonAR21mmf28.data.ts) - JP1980-017129 A
+### [KONICA HEXANON AR 21mm f/2.8](../../src/lens-data/konica/KonicaHexanonAR21mmf28.data.ts) - JP 1980-017129 A
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
@@ -1100,7 +1100,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L6 (Element 6) | 11 | `805254 — dense flint class (source vendor unspecified)` | 1.80518 / 25.40 | S-TIH6 (trusted Sellmeier) | sellmeier | patents/JPA 1980087117-000000.pdf | No review-record hit |
 | L8 (Element 8) | 15 | `697555 — lanthanum crown class (source vendor unspecified)` | 1.69680 / 55.50 | J-LAK14 (trusted Sellmeier) | sellmeier | patents/JPA 1980087117-000000.pdf | No review-record hit |
 
-### [KONICA HEXANON AR 40mm f/1.8](../../src/lens-data/konica/KonicaHexanonAR40mmf18.data.ts) - JP1979-030821
+### [KONICA HEXANON AR 40mm f/1.8](../../src/lens-data/konica/KonicaHexanonAR40mmf18.data.ts) - JP 1979-030821 A
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
@@ -1122,7 +1122,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L5 (Element 5) | 8 | `720437 — supplier-neutral code (patent nd=1.72000, vd=43.7)` | 1.72000 / 43.70 | S-LAM52 (trusted Sellmeier) | sellmeier | patents/JPA 1982108817-000000.pdf | No review-record hit |
 | L6 (Element 6) | 10 | `702412 — supplier-neutral code (patent nd=1.70154, vd=41.2)` | 1.70154 / 41.20 | BAFD7 (trusted Sellmeier) | sellmeier | patents/JPA 1982108817-000000.pdf | No review-record hit |
 
-### [KONICA ZOOM-HEXANON AR 35–70mm f/4](../../src/lens-data/konica/KonicaZoomHexanonAR3570mmf4.data.ts) - JP1982-019708 A
+### [KONICA ZOOM-HEXANON AR 35–70mm f/4](../../src/lens-data/konica/KonicaZoomHexanonAR3570mmf4.data.ts) - JP 1982-019708 A
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
