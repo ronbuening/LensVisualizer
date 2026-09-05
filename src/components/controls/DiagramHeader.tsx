@@ -14,7 +14,7 @@ import { formatAperture } from "./apertureFormatting.js";
 import { forwardRef, memo } from "react";
 import InventorLinks from "../content/InventorLinks.js";
 import PatentNumberLink from "../content/PatentNumberLink.js";
-import { eflAtZoom, formatDist } from "../../optics/optics.js";
+import { eflAtFocus, formatDist } from "../../optics/optics.js";
 import { fisheyeProjectionFocalLengthAtZoom, isFisheyeProjection } from "../../optics/projection.js";
 import { toggleGroup, toggleBtn, headerStrip } from "../../utils/style/styles.js";
 import CollapseButton from "./CollapseButton.js";
@@ -141,7 +141,7 @@ const DiagramHeader = memo(
     const patentAttribution = lensPatentAttribution(L.data);
     const compactFocalReadout = isFisheyeProjection(projection)
       ? `Proj f ${(fisheyeProjectionFocalLengthAtZoom(projection, zoomT) ?? L.apertureReferenceFocalLength).toFixed(1)}`
-      : `EFL ${L.isZoom ? eflAtZoom(zoomT, L).toFixed(1) : L.EFL.toFixed(1)}`;
+      : `EFL ${L.isZoom ? eflAtFocus(0, zoomT, L).toFixed(1) : L.EFL.toFixed(1)}`;
 
     return (
       <div
@@ -261,7 +261,7 @@ const DiagramHeader = memo(
                     fontVariantNumeric: "tabular-nums",
                   }}
                 >
-                  {L.isZoom && <span>{eflAtZoom(zoomT, L).toFixed(0)} mm</span>}
+                  {L.isZoom && <span>{eflAtFocus(0, zoomT, L).toFixed(0)} mm</span>}
                   <span>{formatDist(focusT, L)}</span>
                   <span>{formatAperture(fNumber)}</span>
                   <span>{compactFocalReadout}</span>

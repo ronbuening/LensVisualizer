@@ -3,6 +3,7 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { cleanup, fireEvent, render, screen, within } from "@testing-library/react";
 import DiagramControls from "../../../../src/components/controls/DiagramControls.js";
+import { eflAtFocus, eflAtZoom } from "../../../../src/optics/optics.js";
 import buildLens from "../../../../src/optics/buildLens.js";
 import themes from "../../../../src/utils/theme/themes.js";
 import type { LensData, RuntimeLens } from "../../../../src/types/optics.js";
@@ -18,6 +19,7 @@ function renderControls(
     workingApertureNote?: string;
     showEffectiveAperture?: boolean;
     apertureExpanded?: boolean;
+    zoomT?: number;
     focusT?: number;
     dynamicEFL?: number;
     showEffectiveFocalLength?: boolean;
@@ -41,7 +43,7 @@ function renderControls(
         t={themes.dark}
         compact={false}
         useSideLayout={false}
-        zoomT={0}
+        zoomT={options.zoomT ?? 0}
         onZoomChange={vi.fn()}
         aberrationT={0}
         onAberrationChange={callbacks.onAberrationChange}
@@ -249,4 +251,15 @@ it("shows unavailable working aperture even when the difference cannot be calcul
   const L = buildLens(LENS_CATALOG["nikon-z-135f18-plena"] as LensData);
   renderControls(L, { effectiveFNum: NaN, showEffectiveAperture: true });
   expect(screen.getByText("f/1.85 (working unavailable)")).toBeTruthy();
+});
+
+it("does not report interpolation error as focus breathing at intermediate zoom", () => {
+  const L = buildLens(LENS_CATALOG["konica-uc-zoom-hexanon-ar-80-200-f4"]);
+  const zoomT = 0.428,
+    infinity = eflAtFocus(0, zoomT, L);
+  expect(Math.abs(infinity - eflAtZoom(zoomT, L))).toBeGreaterThan(1);
+  renderControls(L, { zoomT, focusT: 0, dynamicEFL: infinity, showEffectiveFocalLength: true });
+  const box = screen.getByText("ZOOM").parentElement?.parentElement as HTMLElement;
+  expect(within(box).getByText(`${infinity.toFixed(0)} mm`)).toBeTruthy();
+  expect(within(box).queryByText(/eff\./)).toBeNull();
 });

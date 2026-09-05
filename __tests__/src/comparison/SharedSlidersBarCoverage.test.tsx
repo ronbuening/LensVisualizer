@@ -2,6 +2,7 @@
 
 import { cleanup, fireEvent, render, screen, within } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
+import { eflAtZoom } from "../../../src/optics/optics.js";
 import SharedSlidersBar from "../../../src/comparison/SharedSlidersBar.js";
 import themes from "../../../src/utils/theme/themes.js";
 import type { RuntimeLens } from "../../../src/types/optics.js";
@@ -115,6 +116,8 @@ function renderSharedSliders({
         aperturePair={aperturePair}
         zoomPair={zoomPair}
         movementPair={movementPair}
+        infinityEflA={LA.isZoom ? eflAtZoom(zoomPair?.zoomA ?? 0, LA) : LA.EFL}
+        infinityEflB={LB.isZoom ? eflAtZoom(zoomPair?.zoomB ?? 0, LB) : LB.EFL}
         dynamicEflA={dynamicEflA}
         dynamicEflB={dynamicEflB}
         effectiveFNumA={effectiveFNumA}

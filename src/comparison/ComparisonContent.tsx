@@ -78,14 +78,22 @@ export default function ComparisonContent({
   showEffectiveFocalLength,
   showEffectiveAperture,
 }: ComparisonContentProps) {
-  const { dynamicEflA, dynamicEflB, effectiveFNumA, effectiveFNumB, workingApertureNoteA, workingApertureNoteB } =
-    useComparisonDisplayValues({
-      comparisonLenses,
-      focusPair,
-      aperturePair,
-      zoomPair,
-      sharedStopdownT,
-    });
+  const {
+    infinityEflA,
+    infinityEflB,
+    dynamicEflA,
+    dynamicEflB,
+    effectiveFNumA,
+    effectiveFNumB,
+    workingApertureNoteA,
+    workingApertureNoteB,
+  } = useComparisonDisplayValues({
+    comparisonLenses,
+    focusPair,
+    aperturePair,
+    zoomPair,
+    sharedStopdownT,
+  });
 
   return (
     <div
@@ -160,6 +168,8 @@ export default function ComparisonContent({
             zoomPair={zoomPair}
             movementPair={movementPair}
             onSliderPointerUp={onSliderPointerUp}
+            infinityEflA={infinityEflA}
+            infinityEflB={infinityEflB}
             dynamicEflA={dynamicEflA}
             dynamicEflB={dynamicEflB}
             effectiveFNumA={effectiveFNumA}

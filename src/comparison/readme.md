@@ -23,8 +23,8 @@ flowchart LR
     n_src_comparison_src_comparison_useComparisonOrchestration_ts["useComparisonOrchestration.ts"]
     n_src_comparison_src_comparison_useStickySliders_ts["useStickySliders.ts"]
   end
-  n_external_src_types["src/types"]
   n_external_src_components_controls["src/components/controls"]
+  n_external_src_types["src/types"]
   n_external_src_utils_state["src/utils/state"]
   n_external_pkg_react["pkg:react"]
   n_external_pkg_react_router["pkg:react-router"]
@@ -35,9 +35,9 @@ flowchart LR
   n_external_src_optics_groupMovement_ts["src/optics/groupMovement.ts"]
   n_external_src_optics_lensMovement_ts["src/optics/lensMovement.ts"]
   n_external_src_optics_optics_ts["src/optics/optics.ts"]
+  n_src_comparison_src_comparison_SharedSlidersBar_tsx --> |3| n_external_src_components_controls
   n_src_comparison_src_comparison_SharedSlidersBar_tsx --> |3| n_external_src_types
   n_src_comparison_src_comparison_useComparisonOrchestration_ts --> |3| n_src_comparison_src_comparison_useComparisonMode_ts
-  n_src_comparison_src_comparison_SharedSlidersBar_tsx --> |2| n_external_src_components_controls
   n_src_comparison_src_comparison_ComparisonContent_tsx --> |2| n_external_src_types
   n_src_comparison_src_comparison_useStickySliders_ts --> |2| n_external_src_types
   n_src_comparison_src_comparison_comparisonURLSync_ts --> |2| n_external_src_utils_state
@@ -78,7 +78,7 @@ flowchart LR
 
 - Direct source files: 13
 - Direct subfolders: 0
-- Main outbound areas: same folder (26), src/types (14), package:react (7), src/components/controls (3), src/optics/optics.ts (3), src/utils/state (3), src/utils/style (3), src/optics/lensMovement.ts (2), +8 more
+- Main outbound areas: same folder (26), src/types (14), package:react (7), src/components/controls (4), src/optics/optics.ts (3), src/utils/state (3), src/utils/style (3), src/optics/lensMovement.ts (2), +8 more
 - External consumers: src/components/layout, src/pages/ComparePage.tsx, src/types, src/utils/catalog, src/utils/state
 
 ## Files
@@ -92,7 +92,7 @@ flowchart LR
 | `comparisonTypes.ts` | Comparison Types helper module | none | src/types | SharedSlidersSlice, ComparisonAction |
 | `comparisonURLSync.ts` | Comparison URLSync helper module | src/utils/state (2), src/types, src/utils/seo | src/pages/ComparePage.tsx, src/utils/catalog, src/utils/state | buildComparePath, comparePageTitle, comparePageDescription, compareCanonicalURL |
 | `SharedFStopQuickSelect.tsx` | React component module | package:react | same folder | default, SharedFStopQuickSelect |
-| `SharedSlidersBar.tsx` | React component module | same folder (4), src/types (3), src/components/controls (2), src/optics/groupMovement.ts, src/optics/lensMovement.ts, +2 more | same folder | default, SharedSlidersBar |
+| `SharedSlidersBar.tsx` | React component module | same folder (4), src/components/controls (3), src/types (3), src/optics/groupMovement.ts, src/optics/lensMovement.ts, +2 more | same folder | default, SharedSlidersBar |
 | `SharedSliderSection.tsx` | React component module | package:react, src/types, src/utils/style | same folder | default, SharedSliderSection |
 | `useComparisonDisplayValues.ts` | React hook module | same folder (3), package:react, src/components/controls, src/optics/compat.ts, src/optics/optics.ts | same folder | default, useComparisonDisplayValues |
 | `useComparisonMode.ts` | React hook module | same folder (2), package:react, src/optics/buildLens.ts, src/types, src/utils/catalog | same folder (4), src/components/layout | ComparisonLensesOk, ComparisonLensesResult, isComparisonOk, default, useComparisonMode |

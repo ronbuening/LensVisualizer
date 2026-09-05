@@ -28,10 +28,11 @@
  * @param {boolean}  props.isWide                  — true when viewport is desktop-width
  */
 
+import { formatZoomFocalLength, formatFocalLength } from "../components/controls/focalLengthFormatting.js";
 import { formatAperture, formatWorkingApertureNote } from "../components/controls/apertureFormatting.js";
 import { formatSharedFocusDist, sharedFNumber } from "./comparisonSliders.js";
 import type { FocusPairResult, AperturePairResult, ZoomPairResult, MovementPairResult } from "./comparisonSliders.js";
-import { formatDist, eflAtZoom } from "../optics/optics.js";
+import { formatDist } from "../optics/optics.js";
 import { getGroupMovementAvailability } from "../optics/groupMovement.js";
 import { isMovementAxisEnabled } from "../optics/lensMovement.js";
 import { snapToZeroStop } from "../utils/style/sliderStops.js";
@@ -62,6 +63,8 @@ interface SharedSlidersBarProps {
   aperturePair: AperturePairResult;
   zoomPair: ZoomPairResult | null;
   movementPair: MovementPairResult | null;
+  infinityEflA: number;
+  infinityEflB: number;
   dynamicEflA: number;
   dynamicEflB: number;
   effectiveFNumA: number;
@@ -97,6 +100,8 @@ export default function SharedSlidersBar({
   aperturePair,
   zoomPair,
   movementPair,
+  infinityEflA,
+  infinityEflB,
   dynamicEflA,
   dynamicEflB,
   effectiveFNumA,
@@ -128,15 +133,13 @@ export default function SharedSlidersBar({
 
   /* Zoom readout helpers — dual-zoom uses the shared focal length from
    * computeZoomPair; single-zoom reads from the one zoom lens directly. */
-  const infinityEflA = LA.isZoom ? eflAtZoom(zoomPair?.zoomA ?? 0, LA) : LA.EFL;
-  const infinityEflB = LB.isZoom ? eflAtZoom(zoomPair?.zoomB ?? 0, LB) : LB.EFL;
-  const focusedEflDiffersA = Math.abs(dynamicEflA - infinityEflA) > 0.1;
-  const focusedEflDiffersB = Math.abs(dynamicEflB - infinityEflB) > 0.1;
+  const focusedEflDiffersA = Number.isFinite(dynamicEflA) && Math.abs(dynamicEflA - infinityEflA) > 0.1;
+  const focusedEflDiffersB = Number.isFinite(dynamicEflB) && Math.abs(dynamicEflB - infinityEflB) > 0.1;
   const zoomReadoutA = LA.isZoom
-    ? `${infinityEflA.toFixed(0)} mm${showEffectiveFocalLength && focusedEflDiffersA ? ` (eff. ${dynamicEflA.toFixed(1)} mm)` : ""}`
+    ? formatZoomFocalLength(infinityEflA, dynamicEflA, showEffectiveFocalLength)
     : "\u2014";
   const zoomReadoutB = LB.isZoom
-    ? `${infinityEflB.toFixed(0)} mm${showEffectiveFocalLength && focusedEflDiffersB ? ` (eff. ${dynamicEflB.toFixed(1)} mm)` : ""}`
+    ? formatZoomFocalLength(infinityEflB, dynamicEflB, showEffectiveFocalLength)
     : "\u2014";
   const bothZoom = LA.isZoom && LB.isZoom;
   const zoomLens = LA.isZoom ? LA : LB.isZoom ? LB : null;
@@ -144,7 +147,7 @@ export default function SharedSlidersBar({
     bothZoom && zoomPair?.sharedFL
       ? zoomPair.sharedFL.toFixed(0)
       : zoomLens
-        ? eflAtZoom(sharedZoomT, zoomLens).toFixed(0)
+        ? (LA.isZoom ? infinityEflA : infinityEflB).toFixed(0)
         : "";
   /* Slider endpoints: dual-zoom uses the union range; single-zoom uses the lens's positions */
   const zoomMinLabel =
@@ -230,7 +233,9 @@ export default function SharedSlidersBar({
           <SharedSliderSection
             theme={t}
             label="ZOOM"
-            valueLabel={`${zoomEfl} mm`}
+            valueLabel={
+              bothZoom ? `Reference ${zoomEfl} mm` : formatFocalLength(LA.isZoom ? infinityEflA : infinityEflB, 0)
+            }
             minLabel={zoomMinLabel}
             maxLabel={zoomMaxLabel}
             sliderValue={sharedZoomT}

@@ -44,6 +44,8 @@ export default function useComparisonDisplayValues({
   const zoomA = zoomPair?.zoomA ?? 0;
   const zoomB = zoomPair?.zoomB ?? 0;
 
+  const infinityEflA = useMemo(() => (LA ? eflAtFocus(0, zoomA, LA) : NaN), [LA, zoomA]);
+  const infinityEflB = useMemo(() => (LB ? eflAtFocus(0, zoomB, LB) : NaN), [LB, zoomB]);
   const dynamicEflA = useMemo(() => (LA ? eflAtFocus(focusA, zoomA, LA) : 0), [LA, focusA, zoomA]);
   const dynamicEflB = useMemo(() => (LB ? eflAtFocus(focusB, zoomB, LB) : 0), [LB, focusB, zoomB]);
 
@@ -82,6 +84,8 @@ export default function useComparisonDisplayValues({
     ok,
     LA,
     LB,
+    infinityEflA,
+    infinityEflB,
     dynamicEflA,
     dynamicEflB,
     effectiveFNumA,

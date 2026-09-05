@@ -3,9 +3,10 @@
  * lens diagram. Extracted from LensDiagramPanel for separation of concerns.
  */
 
+import { formatFocalLength, formatZoomFocalLength } from "./focalLengthFormatting.js";
 import { formatAperture } from "./apertureFormatting.js";
-import { useCallback, useEffect } from "react";
-import { eflAtZoom, formatDist } from "../../optics/optics.js";
+import { useCallback, useEffect, useMemo } from "react";
+import { eflAtFocus, formatDist } from "../../optics/optics.js";
 import { fisheyeProjectionFocalLengthAtZoom, isFisheyeProjection } from "../../optics/projection.js";
 import { getGroupMovementAvailability } from "../../optics/groupMovement.js";
 import { isMovementAxisEnabled, perspectiveControlSteps } from "../../optics/lensMovement.js";
@@ -174,12 +175,16 @@ export default function DiagramControls({
     handlePointerUp();
   }, [handlePointerUp, handleTiltChange]);
 
-  const infinityEFL = L.isZoom ? eflAtZoom(zoomT, L) : L.EFL;
+  const infinityEFL = useMemo(() => eflAtFocus(0, zoomT, L, aberrationT), [L, zoomT, aberrationT]);
+  const zoomEndpoints = useMemo(
+    () => (L.isZoom ? [eflAtFocus(0, 0, L, aberrationT), eflAtFocus(0, 1, L, aberrationT)] : []),
+    [L, aberrationT],
+  );
   const projection = L.projection ?? { kind: "rectilinear" };
   const isFisheye = isFisheyeProjection(projection);
   const apertureReferenceLabel = isFisheye ? "Projection f" : "EFL";
   const apertureReferenceValue = fisheyeProjectionFocalLengthAtZoom(projection, zoomT) ?? dynamicEFL;
-  const eflChanged = Math.abs(dynamicEFL - infinityEFL) > 0.1;
+  const eflChanged = Number.isFinite(dynamicEFL) && Math.abs(dynamicEFL - infinityEFL) > 0.1;
   const availableFStops = [
     currentFOPEN,
     ...L.fstopSeries.filter((value) => value > currentFOPEN + 1e-6 && value <= L.maxFstop),
@@ -230,14 +235,14 @@ export default function DiagramControls({
           useSideLayout={useSideLayout}
           label="ZOOM"
           labelMinWidth={55}
-          displayValue={`${eflAtZoom(zoomT, L).toFixed(0)} mm${showEffectiveFocalLength && eflChanged ? ` (eff. ${dynamicEFL.toFixed(1)} mm)` : ""}`}
+          displayValue={formatZoomFocalLength(infinityEFL, dynamicEFL, showEffectiveFocalLength)}
           value={zoomT}
           step={L.zoomStep}
           onPointerDown={beginInteraction}
           onChange={handleZoomChange}
           onPointerUp={handlePointerUp}
-          minLabel={`${L.zoomPositions![0]} mm`}
-          maxLabel={`${L.zoomPositions![L.zoomPositions!.length - 1]} mm`}
+          minLabel={formatFocalLength(zoomEndpoints[0])}
+          maxLabel={formatFocalLength(zoomEndpoints[1])}
           flexBasis="200px"
           action={groupMovementAvailability.zoom ? motionButton("zoom", "zoom") : undefined}
         >

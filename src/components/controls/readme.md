@@ -15,6 +15,7 @@ flowchart LR
     n_src_components_controls_src_components_controls_CollapseButton_tsx["CollapseButton.tsx"]
     n_src_components_controls_src_components_controls_DiagramControls_tsx["DiagramControls.tsx"]
     n_src_components_controls_src_components_controls_DiagramHeader_tsx["DiagramHeader.tsx"]
+    n_src_components_controls_src_components_controls_focalLengthFormatting_ts["focalLengthFormatting.ts"]
     n_src_components_controls_src_components_controls_HelpTooltipButton_tsx["HelpTooltipButton.tsx"]
     n_src_components_controls_src_components_controls_LensSelector_tsx["LensSelector.tsx"]
     n_src_components_controls_src_components_controls_RayToggles_tsx["RayToggles.tsx"]
@@ -76,9 +77,9 @@ flowchart LR
 
 ## Directory Overview
 
-- Direct source files: 11
+- Direct source files: 12
 - Direct subfolders: 0
-- Main outbound areas: src/types (17), same folder (9), src/utils/style (8), package:react (7), src/components/content (2), src/optics/optics.ts (2), src/optics/projection.ts (2), src/utils/featureFlags.ts (2), +7 more
+- Main outbound areas: src/types (17), same folder (10), src/utils/style (8), package:react (7), src/components/content (2), src/optics/optics.ts (2), src/optics/projection.ts (2), src/utils/featureFlags.ts (2), +7 more
 - External consumers: src/comparison, src/components/display, src/components/hooks, src/components/layout, src/pages/AuthorsIndexPage.tsx
 
 ## Files
@@ -89,8 +90,9 @@ flowchart LR
 | `CardinalControls.tsx` | React component module | src/types, src/utils/style | src/components/layout (2), same folder | default, CardinalControls |
 | `ChromaticControls.tsx` | React component module | src/types (2), src/optics/chromatic, src/utils/style | same folder | default, ChromaticControls |
 | `CollapseButton.tsx` | React component module | package:react, src/types, src/utils/style | same folder (2), src/components/display (2) | default, CollapseButton |
-| `DiagramControls.tsx` | React component module | same folder (3), src/types (3), package:react, src/components/hooks, src/optics/groupMovement.ts, +4 more | src/components/layout | default, DiagramControls |
+| `DiagramControls.tsx` | React component module | same folder (4), src/types (3), package:react, src/components/hooks, src/optics/groupMovement.ts, +4 more | src/components/layout | default, DiagramControls |
 | `DiagramHeader.tsx` | React component module | same folder (5), src/types (3), src/components/content (2), package:react, src/optics/optics.ts, +4 more | src/components/layout | default |
+| `focalLengthFormatting.ts` | Focal Length Formatting helper module | none | same folder, src/comparison | formatFocalLength, formatZoomFocalLength |
 | `HelpTooltipButton.tsx` | React component module | package:react, package:react-dom, src/types | src/components/display | default, HelpTooltipButton |
 | `LensSelector.tsx` | React component module | package:react, src/components/layout, src/types, src/utils/style | src/components/layout, src/pages/AuthorsIndexPage.tsx | default, LensSelector |
 | `RayToggles.tsx` | React component module | src/types (2), package:react, src/utils/featureFlags.ts, src/utils/style | same folder | default, RayToggles |
