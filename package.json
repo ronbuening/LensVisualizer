@@ -18,7 +18,7 @@
     "test": "vitest run",
     "pretest:coverage": "node scripts/generate-build-metadata.mjs",
     "test:coverage": "vitest run --coverage",
-    "generate:glass-reports": "vitest run unresolvedGlassScan catalogMismatchScan glassRelabelCandidatesScan glassRelabelByLensScan glassAmbiguityScan sixDigitGlassCodeScan sellmeierCoverageScan glassCoverageOpportunitiesScan",
+    "generate:glass-reports": "node scripts/generate-glass-reports.mjs",
     "generate:mirror-reports": "vitest run mirrorFixtureAuthoringReport",
     "generate:mount-svgs": "vitest run mountSvgSpecificationsReport",
     "generate:sa-figure-svgs": "SA_FIGURE_SVGS_WRITE=1 vitest run sphericalAberrationStaticSvgs",
@@ -32,9 +32,10 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\" \"__tests__/**/*.{js,ts,tsx}\" \"scripts/**/*.mjs\" \"*.config.js\"",
-    "format:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\" \"__tests__/**/*.{js,ts,tsx}\" \"scripts/**/*.mjs\" \"*.config.js\"",
-    "seo:audit": "node scripts/seo-audit.mjs"
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\" \"__tests__/**/*.{js,ts,tsx}\" \"scripts/**/*.{mjs,ts}\" \"*.config.js\"",
+    "format:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\" \"__tests__/**/*.{js,ts,tsx}\" \"scripts/**/*.{mjs,ts}\" \"*.config.js\"",
+    "seo:audit": "node scripts/seo-audit.mjs",
+    "check:glass-reports": "node scripts/generate-glass-reports.mjs --check"
   },
   "dependencies": {
     "github-slugger": "^2.0.0",

@@ -13,12 +13,12 @@ Read this for test layout, coverage expectations, shared helpers, and where to a
 
 Coverage configuration lives in `vite.config.js` and includes:
 
-- `src/optics/**`
-- `src/utils/**`
-- `src/pages/**`
-- `src/routes/**`
-- `src/components/**`
-- `src/comparison/**`
+- `src/optics/**/*.{ts,tsx}`
+- `src/utils/**/*.{ts,tsx}`
+- `src/pages/**/*.{ts,tsx}`
+- `src/routes/**/*.{ts,tsx}`
+- `src/components/**/*.{ts,tsx}`
+- `src/comparison/**/*.{ts,tsx}`
 
 ## Test Layout
 
@@ -109,3 +109,14 @@ npm run benchmark:optics-rendering
 Use `npm run benchmark:optics-rendering -- --dry-run` when changing benchmark code and you only need to validate module
 loading, schema construction, and default lens keys. Use `--report-only` after changing report formatting so the
 Markdown report is regenerated from existing run JSON without creating another benchmark record.
+
+## Glass report checks
+
+`npm run generate:glass-reports` explicitly writes the nine authoring reports; `npm run check:glass-reports` verifies
+the available reports without writing them. Renderers under `scripts/glass-reports/` share one prepared lens inventory
+and one local-patent file listing. Vitest compares rendered output with tracked reports and retains independent
+classification, resolver-parity and queue-order assertions. It does not generate glass reports as a side effect.
+The three patent-dependent outputs retain their existing source-availability guard when local PDFs are absent.
+
+Coverage includes code extensions only, plus the glass-scan helper explicitly retained at its new tooling path. The original global floors remain enforced; narrowing the file globs removes
+Markdown parse attempts without removing measured code files.

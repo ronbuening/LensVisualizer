@@ -4,7 +4,7 @@ Elements whose `glass` annotation contains a six-digit glass code but no catalog
 This is the broad inventory: some rows may already resolve to trusted Sellmeier data by code,
 but the lens data still lacks a human-readable glass type.
 
-**Regenerate this file** by running `npm test -- sixDigitGlassCodeScan`.
+**Regenerate this file** by running `npm run generate:glass-reports`.
 Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary

@@ -76,6 +76,7 @@ npm run preview
 npm run test
 npm run test:coverage
 npm run generate:glass-reports
+npm run check:glass-reports # Verify available glass reports without writing files
 npm run generate:mirror-reports
 npm run generate:mount-svgs
 npm run generate:sa-figure-svgs     # Regenerate static spherical-aberration article figures from their components

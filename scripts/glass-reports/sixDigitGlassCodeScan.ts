@@ -1,3 +1,5 @@
+import { hasReviewRecord, reviewRecordStatus } from "./glassScanLib.js";
+import assert from "node:assert/strict";
 /**
  * Six-digit glass-code scanner.
  *
@@ -10,18 +12,17 @@
  *   2. the subset that does not have trusted Sellmeier data in the runtime
  *      dispersion cascade.
  *
- * Always passes — its job is to surface the data, not gate CI.
+ * Rendered by the explicit glass-report command; regression tests compare the output.
  *
- * Regenerate: `npm test -- sixDigitGlassCodeScan`
+ * Regenerate: `npm run generate:glass-reports`
  *
  * The reports embed match statuses against the untracked local `patents/` PDF
  * inventory, so the rewrite is skipped when that inventory is empty (fresh
  * worktrees, CI); the checked-in reports stay authoritative there.
  */
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import { describe, expect, it } from "vitest";
-import { evaluateSellmeier, LINE_NM, resolveCompatibleGlass, resolveGlass } from "../../../src/optics/glassCatalog.js";
-import type { DispersionQuality } from "../../../src/optics/dispersion.js";
+import { existsSync, readFileSync } from "node:fs";
+import { evaluateSellmeier, LINE_NM, resolveCompatibleGlass, resolveGlass } from "../../src/optics/glassCatalog.js";
+import type { DispersionQuality } from "../../src/optics/dispersion.js";
 import {
   extractPatentNumber,
   type PatentMatch,
@@ -32,9 +33,8 @@ import {
   patentInventory,
   walkLensSurfaces,
 } from "./glassScanLib.js";
-import type { LensData, RefractiveIndexReferenceLine } from "../../../src/types/optics.js";
+import type { RefractiveIndexReferenceLine } from "../../src/types/optics.js";
 
-const modules = import.meta.glob<{ default: LensData }>("../../../src/lens-data/**/*.data.ts", { eager: true });
 const REPORT_DIR = "agent_docs/generated";
 const REVIEWED_SIDECAR = "agent_docs/generated/six-digit-glass-codes-missing-sellmeier-reviewed.md";
 const MAX_RELEVANT_PATENTS = 4;
@@ -145,19 +145,6 @@ function hasAuditRecord(filePath: string, codes: readonly string[]): boolean {
   if (!existsSync(auditPath)) return false;
   const auditText = readFileSync(auditPath, "utf8");
   return codes.some((code) => auditText.includes(code));
-}
-
-type ReviewRecordFields = Pick<CodeOnlyElement, "explicitlyUnmatched" | "reviewedStatus" | "auditReviewed">;
-
-function hasReviewRecord(row: ReviewRecordFields): boolean {
-  return row.explicitlyUnmatched || row.reviewedStatus === "Reviewed sidecar hit" || row.auditReviewed;
-}
-
-function reviewRecordStatus(row: ReviewRecordFields): string {
-  if (row.explicitlyUnmatched) return "Explicit disposition in data";
-  if (row.reviewedStatus === "Reviewed sidecar hit") return row.reviewedStatus;
-  if (row.auditReviewed) return "Audit-log hit";
-  return "No review-record hit";
 }
 
 function summarizePatentStatus(rows: readonly CodeOnlyElement[]): string {
@@ -398,141 +385,130 @@ function renderReport(options: {
   return lines.join("\n") + "\n";
 }
 
-describe("six-digit glass-code scan", () => {
-  it("treats explicit unmatched annotations as self-recording review dispositions", () => {
-    expect(
-      hasReviewRecord({
-        explicitlyUnmatched: true,
-        reviewedStatus: "No reviewed-sidecar hit",
-        auditReviewed: false,
-      }),
-    ).toBe(true);
-    expect(
-      reviewRecordStatus({
-        explicitlyUnmatched: true,
-        reviewedStatus: "No reviewed-sidecar hit",
-        auditReviewed: false,
-      }),
-    ).toBe("Explicit disposition in data");
-  });
+import type { GlassLensModules } from "./glassScanLib.js";
 
-  it("emits reports for code-only glass annotations", () => {
-    const rows: CodeOnlyElement[] = [];
-    const patentFiles = patentInventory();
-    const reviewedSidecarText = existsSync(REVIEWED_SIDECAR) ? readFileSync(REVIEWED_SIDECAR, "utf8") : "";
-    let totalLenses = 0;
+export function renderSixDigitGlassCodeScan(modules: GlassLensModules, patentFiles = patentInventory()) {
+  const reports: Record<string, string> = {};
+  const emitReport = (path: string, text: string) => {
+    reports[path] = text;
+  };
 
-    totalLenses = walkLensSurfaces(modules, ({ filePath, data, L }) => {
-      const visible = data.visible !== false;
-      const patentNumber = extractPatentNumber(data.patentNumber, data.subtitle);
-      const localPatent = findLocalPatent(patentNumber, patentFiles);
-      const lensNonAirSurfaces = L.S.filter((surface) => surface.nd !== 1.0).length;
-      const lensSellmeierSurfaces = L.S.filter(
-        (surface, index) => surface.nd !== 1.0 && L.indexByIdx?.[index]?.quality === "sellmeier",
-      ).length;
+  const rows: CodeOnlyElement[] = [];
+  const reviewedSidecarText = existsSync(REVIEWED_SIDECAR) ? readFileSync(REVIEWED_SIDECAR, "utf8") : "";
+  let totalLenses = 0;
 
-      for (const element of L.elements) {
-        if (!element.glass || !isCodeOnlyGlassAnnotation(element.glass)) continue;
+  totalLenses = walkLensSurfaces(modules, ({ filePath, data, L }) => {
+    const visible = data.visible !== false;
+    const patentNumber = extractPatentNumber(data.patentNumber, data.subtitle);
+    const localPatent = findLocalPatent(patentNumber, patentFiles);
+    const lensNonAirSurfaces = L.S.filter((surface) => surface.nd !== 1.0).length;
+    const lensSellmeierSurfaces = L.S.filter(
+      (surface, index) => surface.nd !== 1.0 && L.indexByIdx?.[index]?.quality === "sellmeier",
+    ).length;
 
-        const surfaceRefs: SurfaceRef[] = [];
-        for (let i = 0; i < L.S.length; i++) {
-          const surface = L.S[i];
-          if (surface.nd === 1.0 || surface.elemId !== element.id) continue;
-          surfaceRefs.push({
-            label: surface.label ?? `surface[${i}]`,
-            quality: L.indexByIdx?.[i]?.quality ?? "constant",
-          });
-        }
+    for (const element of L.elements) {
+      if (!element.glass || !isCodeOnlyGlassAnnotation(element.glass)) continue;
 
-        const catalogEntry =
-          resolveCompatibleGlass(element.glass, element.nd, element.vd, element.indexReference) ??
-          resolveGlass(element.glass);
-        const catalogNd = catalogEntry ? evaluateSellmeier(catalogEntry, LINE_NM.d) : null;
-        const hasSellmeier = L.S.some(
-          (surface) =>
-            surface.nd !== 1.0 &&
-            surface.elemId === element.id &&
-            resolveCompatibleGlass(element.glass, surface.nd, element.vd, element.indexReference) !== null,
-        );
-        rows.push({
-          lensKey: data.key,
-          lensName: data.name ?? data.key,
-          visible,
-          patentNumber,
-          filePath,
-          elementId: element.id,
-          elementName: element.name,
-          elementLabel: element.label,
-          surfaceRefs,
-          glassString: element.glass,
-          codes: extractSixDigitCodes(element.glass),
-          storedNd: element.nd,
-          storedVd: element.vd,
-          indexReference: element.indexReference ?? "d",
-          catalogName: catalogEntry?.name ?? null,
-          catalogNd,
-          ndDiff: catalogNd === null ? null : catalogNd - element.nd,
-          hasSellmeier,
-          lensNonAirSurfaces,
-          lensSellmeierSurfaces,
-          explicitlyUnmatched: isExplicitlyUnmatched(element.glass),
-          localPatent,
-          reviewedStatus: reviewedSidecarStatus(filePath, extractSixDigitCodes(element.glass), reviewedSidecarText),
-          auditReviewed: hasAuditRecord(filePath, extractSixDigitCodes(element.glass)),
+      const surfaceRefs: SurfaceRef[] = [];
+      for (let i = 0; i < L.S.length; i++) {
+        const surface = L.S[i];
+        if (surface.nd === 1.0 || surface.elemId !== element.id) continue;
+        surfaceRefs.push({
+          label: surface.label ?? `surface[${i}]`,
+          quality: L.indexByIdx?.[i]?.quality ?? "constant",
         });
       }
-    });
 
-    const noSellmeierRows = rows.filter((row) => !row.hasSellmeier);
-
-    // Without the untracked local patents/ inventory, a rewrite would replace every
-    // localPatentStatus with environment-dependent "Missing ..." churn; keep the
-    // checked-in reports (generated where patents/ is populated) untouched instead.
-    if (patentFiles.length === 0) {
-      console.warn("sixDigitGlassCodeScan: no local patents/*.pdf references found; skipping report rewrite.");
-      expect(totalLenses).toBeGreaterThan(0);
-      return;
+      const catalogEntry =
+        resolveCompatibleGlass(element.glass, element.nd, element.vd, element.indexReference) ??
+        resolveGlass(element.glass);
+      const catalogNd = catalogEntry ? evaluateSellmeier(catalogEntry, LINE_NM.d) : null;
+      const hasSellmeier = L.S.some(
+        (surface) =>
+          surface.nd !== 1.0 &&
+          surface.elemId === element.id &&
+          resolveCompatibleGlass(element.glass, surface.nd, element.vd, element.indexReference) !== null,
+      );
+      rows.push({
+        lensKey: data.key,
+        lensName: data.name ?? data.key,
+        visible,
+        patentNumber,
+        filePath,
+        elementId: element.id,
+        elementName: element.name,
+        elementLabel: element.label,
+        surfaceRefs,
+        glassString: element.glass,
+        codes: extractSixDigitCodes(element.glass),
+        storedNd: element.nd,
+        storedVd: element.vd,
+        indexReference: element.indexReference ?? "d",
+        catalogName: catalogEntry?.name ?? null,
+        catalogNd,
+        ndDiff: catalogNd === null ? null : catalogNd - element.nd,
+        hasSellmeier,
+        lensNonAirSurfaces,
+        lensSellmeierSurfaces,
+        explicitlyUnmatched: isExplicitlyUnmatched(element.glass),
+        localPatent,
+        reviewedStatus: reviewedSidecarStatus(filePath, extractSixDigitCodes(element.glass), reviewedSidecarText),
+        auditReviewed: hasAuditRecord(filePath, extractSixDigitCodes(element.glass)),
+      });
     }
-
-    mkdirSync(REPORT_DIR, { recursive: true });
-
-    writeFileSync(
-      `${REPORT_DIR}/six-digit-glass-codes.generated.md`,
-      renderReport({
-        title: "Six-Digit Glass Code Elements",
-        description: [
-          "Elements whose `glass` annotation contains a six-digit glass code but no catalog-like glass type token.",
-          "This is the broad inventory: some rows may already resolve to trusted Sellmeier data by code,",
-          "but the lens data still lacks a human-readable glass type.",
-        ],
-        regenerateCommand: "npm test -- sixDigitGlassCodeScan",
-        rows,
-        totalLenses,
-        totalCodeOnlyElements: rows.length,
-      }),
-    );
-
-    writeFileSync(
-      `${REPORT_DIR}/six-digit-glass-codes-missing-sellmeier.generated.md`,
-      renderReport({
-        title: "Six-Digit Glass Code Elements Missing Sellmeier Data",
-        description: [
-          "Subset of [six-digit-glass-codes.generated.md](six-digit-glass-codes.generated.md) where no associated",
-          "element surface resolves to trusted catalog Sellmeier data through the reference-line safety net.",
-          "These are the highest-priority code-only rows for catalog additions, aliases, or explicit `Unmatched` notes.",
-        ],
-        regenerateCommand: "npm test -- sixDigitGlassCodeScan",
-        rows: noSellmeierRows,
-        totalLenses,
-        totalCodeOnlyElements: rows.length,
-        includePrioritizedUnreviewedQueue: true,
-      }),
-    );
-
-    const prioritized = prioritizedUnreviewedCodes(noSellmeierRows);
-    expect(prioritized.every((group) => group.rows.every((row) => !row.explicitlyUnmatched))).toBe(true);
-    expect(prioritized.every((group) => group.rows.every((row) => !hasReviewRecord(row)))).toBe(true);
-    expect(prioritized.map((group) => group.tier).join("")).toMatch(/^A*B*C*D*E*$/);
-    expect(totalLenses).toBeGreaterThan(0);
   });
-});
+
+  const noSellmeierRows = rows.filter((row) => !row.hasSellmeier);
+
+  // Without the untracked local patents/ inventory, a rewrite would replace every
+  // localPatentStatus with environment-dependent "Missing ..." churn; keep the
+  // checked-in reports (generated where patents/ is populated) untouched instead.
+  if (patentFiles.length === 0) {
+    console.warn(
+      "sixDigitGlassCodeScan: no local patents/*.pdf references found; skipping patent-dependent report output.",
+    );
+    assert(totalLenses > 0);
+    return;
+  }
+
+  emitReport(
+    `${REPORT_DIR}/six-digit-glass-codes.generated.md`,
+    renderReport({
+      title: "Six-Digit Glass Code Elements",
+      description: [
+        "Elements whose `glass` annotation contains a six-digit glass code but no catalog-like glass type token.",
+        "This is the broad inventory: some rows may already resolve to trusted Sellmeier data by code,",
+        "but the lens data still lacks a human-readable glass type.",
+      ],
+      regenerateCommand: "npm run generate:glass-reports",
+      rows,
+      totalLenses,
+      totalCodeOnlyElements: rows.length,
+    }),
+  );
+
+  emitReport(
+    `${REPORT_DIR}/six-digit-glass-codes-missing-sellmeier.generated.md`,
+    renderReport({
+      title: "Six-Digit Glass Code Elements Missing Sellmeier Data",
+      description: [
+        "Subset of [six-digit-glass-codes.generated.md](six-digit-glass-codes.generated.md) where no associated",
+        "element surface resolves to trusted catalog Sellmeier data through the reference-line safety net.",
+        "These are the highest-priority code-only rows for catalog additions, aliases, or explicit `Unmatched` notes.",
+      ],
+      regenerateCommand: "npm run generate:glass-reports",
+      rows: noSellmeierRows,
+      totalLenses,
+      totalCodeOnlyElements: rows.length,
+      includePrioritizedUnreviewedQueue: true,
+    }),
+  );
+
+  const prioritized = prioritizedUnreviewedCodes(noSellmeierRows);
+  assert(prioritized.every((group) => group.rows.every((row) => !row.explicitlyUnmatched)));
+  assert(prioritized.every((group) => group.rows.every((row) => !hasReviewRecord(row))));
+  assert.match(prioritized.map((group) => group.tier).join(""), /^A*B*C*D*E*$/);
+  assert(totalLenses > 0);
+
+  return reports;
+}

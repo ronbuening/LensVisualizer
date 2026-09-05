@@ -11,8 +11,8 @@
  * `UNRESOLVED_MARKER`, `glassTokens`, `normalLinePgF`) come from the engine.
  */
 import { existsSync, readdirSync } from "node:fs";
-import validateLensData from "../../../src/optics/validateLensData.js";
-import { buildSpectralIndex } from "../../../src/optics/internal/lensState.js";
+import validateLensData from "../../src/optics/validateLensData.js";
+import { buildSpectralIndex } from "../../src/optics/internal/lensState.js";
 import {
   assessCatalogGlassCompatibility,
   evaluateCatalogAbbeNumber,
@@ -20,10 +20,10 @@ import {
   GLASS_VD_TOLERANCE,
   UNRESOLVED_MARKER,
   type GlassEntry,
-} from "../../../src/optics/glassCatalog.js";
-import { buildSurfaceDispersionIndex, normalLinePgF, type SurfaceDispersion } from "../../../src/optics/dispersion.js";
-import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
-import type { ElementData, LensData, RefractiveIndexReferenceLine, SurfaceData } from "../../../src/types/optics.js";
+} from "../../src/optics/glassCatalog.js";
+import { buildSurfaceDispersionIndex, normalLinePgF, type SurfaceDispersion } from "../../src/optics/dispersion.js";
+import LENS_DEFAULTS from "../../src/lens-data/defaults.js";
+import type { ElementData, LensData, RefractiveIndexReferenceLine, SurfaceData } from "../../src/types/optics.js";
 
 /** ΔPgF spread that's plausible across melt variants. */
 export const PGF_TOLERANCE = 0.02;
@@ -67,10 +67,21 @@ export interface LensWalkContext {
  * lens (build correctness is tested elsewhere). Returns the number of lenses
  * visited.
  */
-export function walkLensSurfaces(
-  modules: Record<string, { default: LensData }>,
-  visitor: (context: LensWalkContext) => void,
-): number {
+export type GlassLensModules = Record<string, { default: LensData }>;
+const inventoryByModules = new WeakMap<GlassLensModules, { totalLenses: number; contexts: LensWalkContext[] }>();
+
+/** One immutable-module inventory is prepared for all reports in a run. */
+export function walkLensSurfaces(modules: GlassLensModules, visitor: (context: LensWalkContext) => void): number {
+  let inventory = inventoryByModules.get(modules);
+  if (!inventory) {
+    inventory = buildGlassInventory(modules);
+    inventoryByModules.set(modules, inventory);
+  }
+  inventory.contexts.forEach(visitor);
+  return inventory.totalLenses;
+}
+function buildGlassInventory(modules: GlassLensModules) {
+  const contexts: LensWalkContext[] = [];
   let totalLenses = 0;
   for (const [modulePath, mod] of Object.entries(modules)) {
     const raw = mod.default;
@@ -81,14 +92,14 @@ export function walkLensSurfaces(
     if (validateLensData(data).length > 0) continue;
     const S: SurfaceData[] = data.surfaces.map((s) => ({ ...s }));
     const indexByIdx = buildSurfaceDispersionIndex(S, data.elements, buildSpectralIndex(S, data.elements));
-    visitor({
+    contexts.push({
       modulePath,
       filePath: toRepoRelativeLensPath(modulePath),
       data,
       L: { S, elements: data.elements, indexByIdx },
     });
   }
-  return totalLenses;
+  return { totalLenses, contexts };
 }
 
 /** Convert a Vite module path into the repo-relative `src/lens-data/...` path. */
@@ -336,4 +347,19 @@ export function findCandidates(
       return Math.abs(a.ndDiff) - Math.abs(b.ndDiff);
     })
     .slice(0, 5);
+}
+
+export interface ReviewRecordFields {
+  explicitlyUnmatched: boolean;
+  reviewedStatus: string;
+  auditReviewed: boolean;
+}
+export function hasReviewRecord(row: ReviewRecordFields): boolean {
+  return row.explicitlyUnmatched || row.reviewedStatus === "Reviewed sidecar hit" || row.auditReviewed;
+}
+export function reviewRecordStatus(row: ReviewRecordFields): string {
+  if (row.explicitlyUnmatched) return "Explicit disposition in data";
+  if (row.reviewedStatus === "Reviewed sidecar hit") return row.reviewedStatus;
+  if (row.auditReviewed) return "Audit-log hit";
+  return "No review-record hit";
 }

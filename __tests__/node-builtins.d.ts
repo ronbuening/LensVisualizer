@@ -39,3 +39,12 @@ declare module "node:process" {
 declare module "node:url" {
   export function fileURLToPath(url: string | URL): string;
 }
+
+declare module "node:assert/strict" {
+  const assert: {
+    (value: unknown, message?: string): asserts value;
+    equal(actual: unknown, expected: unknown, message?: string): void;
+    match(value: string, expression: RegExp, message?: string): void;
+  };
+  export default assert;
+}

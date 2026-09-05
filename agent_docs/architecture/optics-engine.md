@@ -606,3 +606,14 @@ full electromagnetic coatings, ghosts, scatter and sensor microlenses. See the
 [Ansys Huygens description](https://ansyshelp.ansys.com/public/Views/Secured/Zemax/v251/en/OpticStudio_User_Guide/OpticStudio_Help/topics/Huygens_PSF.html).
 Independent tests compare Airy/Bessel intensity, the first dark ring, quadratic defocus, piston invariance, amplitude/power
 scaling and finite-window energy. The Image Quality UI and MTF are introduced separately in step 7 of the approved record.
+
+## Scalar image quality
+
+`computeScalarWavefront` and `computeImageQuality` operate on the current prepared state. Optical path and spectral
+throughput are opt-in, scalar Huygens PSFs preserve physical image-grid scale, and MTF is withheld until pupil, window
+and sensor-grid refinements agree. Unsupported geometry and incomplete authored throughput remain unavailable.
+
+The Image Quality tab submits serializable jobs to `src/optics/workers/imageQuality.worker.ts`; input changes and
+unmount terminate active work, and request ids reject stale messages. `computeImageQualityJob` remains the synchronous
+reference. Other analysis-job registry entries retain their synchronous APIs. Runtime adapters now share the bounded
+cache in `src/optics/state/runtimeState.ts`, and surface adapters share `src/optics/math/bracketedRoot.ts`.

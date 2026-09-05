@@ -4,7 +4,7 @@ Companion to [catalog-mismatches.generated.md](catalog-mismatches.generated.md).
 catalog mismatch, this report searches the catalog for a *better* candidate whose reference index and
 Abbe number both match within tolerance (Δn ±0.003, Δν ±2).
 
-**Regenerate** with `npm test -- glassRelabelCandidatesScan`.
+**Regenerate** with `npm run generate:glass-reports`.
 
 ## How to use this report
 

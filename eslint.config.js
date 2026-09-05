@@ -133,9 +133,9 @@ export default [
     },
   },
 
-  // TypeScript test files
+  // TypeScript tests and authoring tools
   {
-    files: ["__tests__/**/*.ts"],
+    files: ["__tests__/**/*.ts", "scripts/glass-reports/**/*.ts"],
     plugins: {
       "@typescript-eslint": tseslint.plugin,
     },

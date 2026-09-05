@@ -10,7 +10,7 @@ report exists so the team can decide per-case whether to relabel the glass, upda
 or accept the mismatch (some glass annotations in lens-data files are explicitly marked as guesses
 with words like "probable" or "approx").
 
-**Regenerate this file** by running `npm test -- catalogMismatchScan`.
+**Regenerate this file** by running `npm run generate:glass-reports`.
 
 ## Summary
 

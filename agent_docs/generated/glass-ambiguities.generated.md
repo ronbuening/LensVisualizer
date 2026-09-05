@@ -7,7 +7,7 @@ the selected row follows the same ordering used by `resolveCompatibleGlass`.
 Resolver priority is: direct name before alias before six-digit code; matching vendor context;
 smallest reference-index residual; smallest Abbe residual; annotation token order; duplicate-code precedence; canonical name.
 
-**Regenerate this file** by running `npm test -- glassAmbiguityScan`.
+**Regenerate this file** by running `npm run generate:glass-reports`.
 Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary

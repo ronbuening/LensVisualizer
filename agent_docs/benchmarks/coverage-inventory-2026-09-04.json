@@ -1,0 +1,80 @@
+{
+  "comparison": "Step 10 to step 11; same measured code inventory with one helper relocation",
+  "beforeCommit": "8db83ea2",
+  "beforeFileCount": 458,
+  "afterFileCount": 458,
+  "renames": [
+    {
+      "from": "__tests__/src/optics/glassScanLib.ts",
+      "to": "scripts/glass-reports/glassScanLib.ts"
+    }
+  ],
+  "removedAfterRename": [],
+  "addedAfterRename": [],
+  "normalizedInventorySha256": "de562df2888f1ed547334deb417fcad50ae67e322cca731263d65f1657339587",
+  "beforeTotals": {
+    "lines": {
+      "total": 14427,
+      "covered": 13688,
+      "skipped": 0,
+      "pct": 94.87
+    },
+    "statements": {
+      "total": 16710,
+      "covered": 15404,
+      "skipped": 0,
+      "pct": 92.18
+    },
+    "functions": {
+      "total": 3970,
+      "covered": 3728,
+      "skipped": 0,
+      "pct": 93.9
+    },
+    "branches": {
+      "total": 14079,
+      "covered": 11773,
+      "skipped": 0,
+      "pct": 83.62
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "afterTotals": {
+    "lines": {
+      "total": 14440,
+      "covered": 13701,
+      "skipped": 0,
+      "pct": 94.88
+    },
+    "statements": {
+      "total": 16726,
+      "covered": 15420,
+      "skipped": 0,
+      "pct": 92.19
+    },
+    "functions": {
+      "total": 3973,
+      "covered": 3731,
+      "skipped": 0,
+      "pct": 93.9
+    },
+    "branches": {
+      "total": 14090,
+      "covered": 11786,
+      "skipped": 0,
+      "pct": 83.64
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    }
+  },
+  "coverageThresholdsChanged": false
+}

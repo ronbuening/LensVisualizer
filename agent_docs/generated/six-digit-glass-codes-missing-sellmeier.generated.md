@@ -4,7 +4,7 @@ Subset of [six-digit-glass-codes.generated.md](six-digit-glass-codes.generated.m
 element surface resolves to trusted catalog Sellmeier data through the reference-line safety net.
 These are the highest-priority code-only rows for catalog additions, aliases, or explicit `Unmatched` notes.
 
-**Regenerate this file** by running `npm test -- sixDigitGlassCodeScan`.
+**Regenerate this file** by running `npm run generate:glass-reports`.
 Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary

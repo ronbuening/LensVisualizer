@@ -17,7 +17,7 @@ commit between steps. A step is not complete merely because its implementation h
 | 8 | Reuse prepared states and first-order results, preserving bounded cache identity | Complete |
 | 9 | Cancellable worker analysis with stale-result rejection and synchronous reference path | Complete |
 | 10 | Shared zoom interpolation and intersection kernel, preserving traversal semantics | Complete |
-| 11 | Separate glass report generation from meaningful regression assertions; one catalog inventory | Pending |
+| 11 | Separate glass report generation from meaningful regression assertions; one catalog inventory | Complete |
 
 ## Acceptance and limits
 
@@ -242,3 +242,27 @@ retention policy. No production optical behavior changed in step 1.
 - Typecheck, format, lint, full tests, coverage and build passed: 308 files / 2822 tests. Coverage statements 92.18%,
   branches 83.62%, functions 93.90%, lines 94.87%. All 1243 routes prerendered. Generated dependency diagnostics
   returned from four cycles to the original three. Step 11 remains pending.
+
+### Step 11 — report tooling, inventory reuse and meaningful test reduction
+
+- Moved the eight report-producing test bodies into explicit renderers under `scripts/glass-reports/`. The standalone
+  `generate:glass-reports` command owns writing; `check:glass-reports` and the regression tests compare without writing.
+  One prepared catalog inventory and one local patent listing serve the full report set. CLI rendering has no Vitest
+  dependency, and the TypeScript tools participate in typecheck, lint and formatting.
+- Retained resolver-selection parity, non-empty catalog checks, six-digit queue disposition/order assertions and the
+  independent material/index-reference/patent-matching fixtures. Removed the two always-true collection-size assertions,
+  consolidated identical review-disposition helpers, and removed their duplicate fixture assertion.
+- Two focused test files replace eight report test files. They check byte-for-byte freshness of every available report,
+  no test-time writes, inventory identity reuse and preservation of patent-dependent outputs when local PDFs are absent.
+  Source-dependent reports retain the existing missing-PDF guard; no source evidence or authoring finding was altered.
+- All nine generated reports match the step-ten versions byte-for-byte after normalizing only the changed regeneration
+  command. Updated active runbooks and the mirrored project instruction files for the explicit write/check commands.
+- Restricted coverage globs to `.ts`/`.tsx`; the original thresholds remain unchanged. File-inventory equality and final
+  coverage totals are checked below before accepting the change.
+- Verified the complete measured inventory remains 458 code files, accounting only for the helper relocation from
+  the test folder into report tooling. Explicitly retained that helper in coverage. The inventory hash, rename and
+  before/after totals are recorded in `agent_docs/benchmarks/coverage-inventory-2026-09-04.json`.
+- Final full normal and coverage suites passed: 302 files / 2816 tests, six fewer files and six fewer tests than step 10;
+  all optical regressions remain. Coverage statements 92.19%, branches 83.64%, functions 93.90%, lines 94.88%.
+  Typecheck, format and lint passed; the read-only report check verified all nine reports. Production build prerendered
+  all 1243 routes. All eleven approved steps are complete, with a validated commit for each step.

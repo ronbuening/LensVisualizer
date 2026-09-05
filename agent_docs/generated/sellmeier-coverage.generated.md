@@ -6,7 +6,7 @@ and its catalog coordinates agree with the authored prescription within Δn ±0.
 D-line rows compare C/d/F coordinates; native e-line rows compare C′/e/F′ and require an explicit name or alias.
 Trusted chromatic coverage additionally counts measured C/F/g line-index surfaces.
 
-**Regenerate this file** by running `npm test -- sellmeierCoverageScan`.
+**Regenerate this file** by running `npm run generate:glass-reports`.
 Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary

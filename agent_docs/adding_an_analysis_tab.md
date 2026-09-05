@@ -1,9 +1,9 @@
 # Adding an Analysis Drawer Tab
 
-Recipe for adding a new tab to the lens-viewer analysis drawer. Four registration points, all
+Recipe for adding a new tab to the lens-viewer analysis drawer. Registration points, all
 enforced by the type system — if `npm run typecheck` passes, the wiring is complete.
 
-## The Four Registration Points
+## Registration Points
 
 1. **Tab id** — `src/types/state.ts`: add your id string to the `ANALYSIS_TAB_IDS` const array
    (near the top of the file). This drives the `AnalysisTabId` union and the `isAnalysisTabId()`
@@ -19,6 +19,10 @@ enforced by the type system — if `npm run typecheck` passes, the wiring is com
 4. **Renderer** — `src/components/layout/lensDiagram/analysisTabRenderers.tsx`: add an entry to
    `ANALYSIS_TAB_RENDERERS`. It is a `Record<AnalysisTabId, AnalysisTabRenderer>`, so typecheck
    FAILS until you add your entry — this is the safety net.
+
+5. **Availability** — add the tab to `ANALYSIS_TAB_SECTIONS` in `AnalysisDrawerContent.tsx`. Register a new analysis
+   section in `analysisMovementSupport.ts` when needed, and suppress folded or moved computation until that path is
+   validated. Expensive jobs should follow the cancellable Image Quality worker pattern.
 
 ## What Your Renderer Receives
 
@@ -38,7 +42,7 @@ the prepared state / slider inputs you actually use.
 ## Rules
 
 - Optics math lives in a pure helper under `src/optics/analysis/` (named
-  `computeYourThingForState2(state, ...)` by convention), NOT in the component. The component
+  `computeYourThingForState(state, ...)` by convention), NOT in the component. The component
   formats and renders.
 - Slider-dependent values come from `preparedState`/`inputs` at render time — never bake them into
   `buildLens()`.

@@ -20,13 +20,13 @@ direct line indices when present, otherwise dPgF-corrected/plain Abbe or constan
 (`indexReference: "e"`) can resolve only through an explicit name or alias that reproduces C′/e/F′; d-line
 six-digit codes are ignored for those rows. The full per-surface mismatch list is auto-generated and lives in
 [catalog-mismatches.generated.md](generated/catalog-mismatches.generated.md). Regenerate it with
-`npm test -- catalogMismatchScan`. Candidate relabels live in
+`npm run generate:glass-reports`. Candidate relabels live in
 [glass-relabel-candidates.generated.md](generated/glass-relabel-candidates.generated.md), regenerated with
-`npm test -- glassRelabelCandidatesScan`; unresolved non-matching tokens live in
+`npm run generate:glass-reports`; unresolved non-matching tokens live in
 [unresolved-glass.generated.md](generated/unresolved-glass.generated.md), regenerated with
-`npm test -- unresolvedGlassScan`. The consolidated three-sweep queue is
+`npm run generate:glass-reports`. The consolidated three-sweep queue is
 [glass-coverage-opportunities.generated.md](generated/glass-coverage-opportunities.generated.md), regenerated with
-`npm test -- glassCoverageOpportunitiesScan`.
+`npm run generate:glass-reports`.
 
 For code-only rows, start with
 [six-digit-glass-codes-missing-sellmeier.generated.md](generated/six-digit-glass-codes-missing-sellmeier.generated.md).

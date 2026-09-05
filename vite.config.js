@@ -43,12 +43,14 @@ export default defineConfig(({ isSsrBuild }) => ({
       // Measured before the 2026-09-04 accuracy work. Never lower these to accommodate a regression.
       thresholds: { statements: 91.88, branches: 82.9, functions: 93.72, lines: 94.58 },
       include: [
-        "src/optics/**",
-        "src/utils/**",
-        "src/pages/**",
-        "src/routes/**",
-        "src/components/**",
-        "src/comparison/**",
+        "src/optics/**/*.{ts,tsx}",
+        "src/utils/**/*.{ts,tsx}",
+        "src/pages/**/*.{ts,tsx}",
+        "src/routes/**/*.{ts,tsx}",
+        "src/components/**/*.{ts,tsx}",
+        "src/comparison/**/*.{ts,tsx}",
+        // This helper was measured at its former __tests__/src/optics path. Preserve its coverage after moving it.
+        "scripts/glass-reports/glassScanLib.ts",
       ],
       exclude: [
         "src/comparison/comparisonTypes.ts",
