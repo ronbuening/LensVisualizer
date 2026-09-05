@@ -62,7 +62,7 @@ flowchart LR
 - Direct source files: 9
 - Direct subfolders: 0
 - Main outbound areas: same folder (9), src/types (9), src/optics/math (6), src/optics/types.ts (5), src/lens-data/defaults.ts, src/optics/dispersion.ts, src/optics/runtimeLens.ts
-- External consumers: src/optics/analysis, src/optics/chromatic, src/optics/compat.ts, src/optics/first-order, src/optics/internal, src/optics/layout.ts, src/optics/state
+- External consumers: src/optics/analysis, src/optics/chromatic, src/optics/compat.ts, src/optics/first-order, src/optics/internal, src/optics/layout.ts, src/optics/state, src/optics/trace
 
 ## Files
 
@@ -70,7 +70,7 @@ flowchart LR
 | --- | --- | --- | --- | --- |
 | `aspheres.ts` | Aspheres helper module | same folder, src/types | same folder | compileAspheres |
 | `dispersion.ts` | Dispersion helper module | src/optics/dispersion.ts, src/optics/types.ts, src/types | same folder, src/optics/chromatic | compileSurfaceDispersions |
-| `geometryBounds.ts` | Geometry Bounds helper module | src/optics/types.ts, src/types | src/optics/analysis (2) | conservativeAxialBounds |
+| `geometryBounds.ts` | Geometry Bounds helper module | src/optics/types.ts, src/types | src/optics/analysis (2), src/optics/trace | conservativeAxialBounds |
 | `groups.ts` | Groups helper module | same folder, src/optics/types.ts, src/types | same folder | compileElements, compileAnnotations |
 | `interactions.ts` | Interactions helper module | src/optics/math, src/optics/types.ts, src/types | same folder | yzNormalToVec3, compileSurfaceInteraction, resolvedImagePlaneToPlane3, imagePlaneDataToPlane3 |
 | `labels.ts` | Labels helper module | src/types | same folder (4) | Optics2LensNormalizationError, buildSurfaceLabelMap, resolveLabel |

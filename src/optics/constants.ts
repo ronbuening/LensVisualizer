@@ -27,3 +27,6 @@ export const CHROMATIC_CHANNEL_WAVELENGTH_NM: Readonly<Record<ChromaticChannel, 
   B: LINE_NM.F,
   V: LINE_NM.g,
 });
+
+/** Focus slider values below this threshold are treated as infinity. */
+export const FOCUS_INFINITY_THRESHOLD = 0.003;

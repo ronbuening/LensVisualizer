@@ -14,7 +14,7 @@ import { conicPolySag, sag, sagSlopeRaw } from "./internal/surfaceMath.js";
 export const SVG_PATH_SUBDIVISIONS: number = 96;
 const BISECT_ITERATIONS: number = 30;
 /** Focus slider values below this threshold are treated as infinity. */
-export const FOCUS_INFINITY_THRESHOLD: number = 0.003;
+export { FOCUS_INFINITY_THRESHOLD } from "./constants.js";
 
 /**
  * Compute rendered sag for a RuntimeLens surface.
