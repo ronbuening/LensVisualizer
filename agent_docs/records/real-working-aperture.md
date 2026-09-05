@@ -78,8 +78,8 @@ working f-number to the selected value.
 ## Catalog follow-up: conventional cone and clipping (step 3)
 
 - A fully traceable stop-edge ray now reports conventional real working f-number even if another modeled clear
-  aperture clips it. The same exact trace records a frozen list of clipping surface indices. No extrapolated
-  surfaces, ghost refractions, or paraxial replacement rays are used. Failed intersections/refractions remain unavailable.
+  aperture clips it. The same exact trace records a frozen list of clipping surface indices. No fallback
+  intersections, ghost refractions, or paraxial replacement rays are used. Failed intersections/refractions remain unavailable.
 - Summary and shared metrics carry clipping independently of numeric availability. Tests cover unchanged analytic
   cones through a smaller clear aperture, a catalog rim, a cleared stopped-down ray, and an untraceable Sonnar rim.
 - Step 3 verification: typecheck, formatting, lint, 303 files / 2849 tests, and coverage passed.
@@ -100,3 +100,19 @@ working f-number to the selected value.
   orchestration regression asserts it reaches the loaded view.
 - Step 4 verification: typecheck, formatting, lint, 304 files / 2855 tests, and coverage passed.
   Coverage: statements 92.23%, branches 83.78%, functions 93.95%, lines 94.91%; floors unchanged.
+
+## Catalog follow-up: reproducible final audit (step 5)
+
+- Added `npm run audit:working-aperture` with optional lens paths and JSON output. The full sweep covers 660
+  non-folded prescriptions / 34,368 settings, including zoom, focus-cutoff boundaries, and aperture.
+- The audit found an additional shared guard error for explicit image-plane surfaces. Accepting arrival at the
+  sensor (while rejecting traversal beyond it) restores Nikon Z 100–400 and Sony 28–70/2, with regressions.
+- Final audit: 33,620 valid cones (1,979 with separate modeled clipping), 364 trace failures, 160 invalid/virtual
+  source estimates, 224 unsupported phase cases; zero discontinuities, report disagreements, or execution errors.
+- See [the final audit and personal checks](working-aperture-catalog-audit.md) for reproduction and remaining limits.
+  The earlier per-stage numeric examples above are historical; Plena close focus now gives approximately f/2.02.
+- Final verification: typecheck, formatting, lint, 304 test files / 2858 tests, coverage, and production build passed.
+  Coverage: statements 92.24%, branches 83.79%, functions 93.95%, lines 94.91%; original floors unchanged.
+  Build prerendered 1243 routes; generated folder documentation is current and import cycles remain at three.
+  Audit CLI also passed a single-lens run and rejected missing output paths, unknown options, and missing inputs.
+  All five implementation stages are complete. Remaining model limitations are documented in the audit report.

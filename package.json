@@ -24,6 +24,7 @@
     "generate:sa-figure-svgs": "SA_FIGURE_SVGS_WRITE=1 vitest run sphericalAberrationStaticSvgs",
     "generate:holiday-branding": "node scripts/generate-holiday-branding.mjs",
     "audit:dependencies": "node scripts/audit-dependencies.mjs",
+    "audit:working-aperture": "node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-working-aperture.mjs",
     "audit:image-circle": "node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-image-circle.mjs",
     "audit:patent-figure": "node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-patent-figure.mjs",
     "audit:surface": "node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-surface-probe.mjs",

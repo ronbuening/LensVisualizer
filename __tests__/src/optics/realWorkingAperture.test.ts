@@ -1,3 +1,5 @@
+import Nikon100400 from "../../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.js";
+import Sony2870 from "../../../src/lens-data/sony/SonyFE2870mmf2GM.data.js";
 import LaunchCase0 from "../../../src/lens-data/fujifilm/FujifilmGF23mmf4.data.js";
 import LaunchCase1 from "../../../src/lens-data/fujifilm/FujifilmGF30mmf56TS.data.js";
 import LaunchCase2 from "../../../src/lens-data/fujifilm/FujifilmGF3264mmf4.data.js";
@@ -147,6 +149,37 @@ describe("real marginal-ray working aperture", () => {
     expect(apertureMetricsForState(state, stop / 2).clippedSurfaceIndices).toEqual([]);
     const sonn = build(Sonnar);
     expect(realWorkingApertureForState(prepareRuntimeState(sonn, 0, 0), sonn.stopPhysSD).status).toBe("failed");
+  });
+  it.each([Nikon100400, Sony2870])("accepts the explicit image-plane surface of $name", (data) => {
+    const L = build(data);
+    for (const zoom of [0, 0.5, 1])
+      for (const focus of [0, 1]) {
+        const state = prepareRuntimeState(L, focus, zoom);
+        expect(state.z.at(-1)).toBeCloseTo(state.imgZ, 9);
+        const result = realWorkingApertureForState(state, resolveApertureStop(L, zoom, 8).stopSemiDiameterMm);
+        expect(result.status).toBe("ok");
+        expect(result.fNumber).toBeGreaterThan(0);
+      }
+  });
+  it("preserves the cone when a neutral reporting plane is placed at the sensor", () => {
+    const state = planeState();
+    const withPlane = {
+      ...state,
+      surfaces: [
+        ...state.surfaces,
+        {
+          ...state.surfaces.at(-1)!,
+          physicalIndex: state.surfaces.length,
+          z: state.imgZ,
+          d: 0,
+        },
+      ],
+    };
+    const a = realWorkingApertureForState(state, 5, 100);
+    const b = realWorkingApertureForState(withPlane, 5, 100);
+    expect(b.status).toBe("ok");
+    expect(b.fNumber).toBeCloseTo(a.fNumber!, 10);
+    expect(realWorkingApertureForState({ ...withPlane, imgZ: state.imgZ - 1 }, 5, 100).status).toBe("unsupported");
   });
   it("does not substitute a finite value for failed, unsupported or degenerate geometry", () => {
     const state = planeState();

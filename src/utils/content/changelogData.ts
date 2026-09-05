@@ -19,6 +19,11 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-09-05",
+    type: "fix",
+    summary: "Fixed working-aperture focus transitions and separated modeled clipping diagnostics",
+  },
+  {
     date: "2026-09-04",
     type: "feature",
     summary:

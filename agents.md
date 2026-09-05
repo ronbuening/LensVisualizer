@@ -82,6 +82,7 @@ npm run generate:mount-svgs
 npm run generate:sa-figure-svgs     # Regenerate static spherical-aberration article figures from their components
 npm run generate:holiday-branding   # Recolor the base marks into public/branding/holiday/
 npm run audit:dependencies          # Fail on non-allowlisted high/critical npm advisories
+npm run audit:working-aperture     # centered aperture continuity, clipping, and shared-report audit
 npm run audit:image-circle          # semi-diameters that cannot cover their own image circle
 npm run audit:patent-figure         # measure a patent cross-section against a lens data file
 npm run audit:surface               # aspheric domain scan + validator with trial semi-diameters

@@ -128,7 +128,7 @@ export function realWorkingApertureForState(
   if (
     trace.terminalSurfaceIndex !== state.surfaces.length - 1 ||
     trace.terminalDirection[2] <= 0 ||
-    trace.terminalPoint[2] >= state.imgZ
+    trace.terminalPoint[2] > state.imgZ + 1e-9
   )
     return empty("unsupported");
   const numericalAperture = trace.finalMedium * Math.hypot(trace.terminalDirection[0], trace.terminalDirection[1]);

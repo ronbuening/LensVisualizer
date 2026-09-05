@@ -120,3 +120,11 @@ The three patent-dependent outputs retain their existing source-availability gua
 
 Coverage includes code extensions only, plus the glass-scan helper explicitly retained at its new tooling path. The original global floors remain enforced; narrowing the file globs removes
 Markdown parse attempts without removing measured code files.
+
+## Working-aperture catalog audit
+
+`npm run audit:working-aperture -- --output /private/tmp/aperture-catalog.json` checks the shared report over
+focus, zoom, and iris settings. Optional data-file paths restrict the run. It fails on execution errors,
+report disagreement, or a discontinuity across the former infinity cutoffs, while retaining explicit counts
+for model clipping, untraceable rays, invalid/virtual sources, and unsupported optics. It does not force every
+prescription to produce a numeric cone. See `agent_docs/records/working-aperture-catalog-audit.md`.
