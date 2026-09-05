@@ -525,6 +525,7 @@ const GLASS_CATALOG_SOURCE_ORDER = [
   "L-LAH91",
   "L-LAH84",
   "PBH25",
+  "PBH23",
   "YGH52",
   "BAM25",
   "BACD6",

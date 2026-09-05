@@ -175,3 +175,14 @@ Nothing can be audited on these until the source is available.
 | GFX100RF 35mm f/4 (front group) | `US_2025362482_A1.pdf` has no text layer | OCR — FIG. 5 defines `hE2` as a surface's effective radius, so the tables may publish clear apertures outright |
 | Sigma 10-18mm f/2.8 | 図8 printed as a thumbnail; <20 px per element edge at 600 dpi | a higher-resolution copy of JP 2024-104911 A |
 | Sigma 14-24mm f/2.8 | 図1 exists only as the front-page abstract drawing (the drawing section starts at 図3) | a higher-resolution copy of JP 2018-189733 A |
+
+## 2026-09-05 Konica AR additions - completed
+
+| Lens | Status | Result |
+| --- | --- | --- |
+| [HexanonAR21mmf28](../src/lens-data/konica/KonicaHexanonAR21mmf28.audit.md) | done | Retained validated SDs after exact-figure review |
+| [HexanonAR24mmf28](../src/lens-data/konica/KonicaHexanonAR24mmf28.audit.md) | done | Retained validated SDs after exact-figure review |
+| [HexanonAR40mmf18](../src/lens-data/konica/KonicaHexanonAR40mmf18.audit.md) | done | Refined L1/L6; default ray fan retained |
+| [HexanonAR50mmf18](../src/lens-data/konica/KonicaHexanonAR50mmf18.audit.md) | done | Retained validated SDs after exact-figure review |
+| [HexanonAR135mmf35](../src/lens-data/konica/KonicaHexanonAR135mmf35.audit.md) | done | Enlarged L4 to match the optical rim |
+| [ZoomHexanonAR3570mmf4](../src/lens-data/konica/KonicaZoomHexanonAR3570mmf4.audit.md) | done | Screenshot follow-up: reduced L3/L7 optical rims; zoom/focus ray grid retained |

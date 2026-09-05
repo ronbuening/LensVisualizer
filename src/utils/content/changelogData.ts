@@ -19,6 +19,11 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-09-05",
+    type: "lens",
+    summary: "Added six Konica Hexanon AR prime and zoom lens designs",
+  },
+  {
     date: "2026-09-04",
     type: "improvement",
     summary: "Improved patent-based focus accuracy across 55 lens models",
