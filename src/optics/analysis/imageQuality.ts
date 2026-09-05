@@ -145,11 +145,12 @@ export function computeImageQuality(state: PreparedOpticalState, options: ImageQ
       azimuthalSamples: azimuths * 2,
     });
     if (!["ok", "undersampled"].includes(base.status) || !["ok", "undersampled"].includes(refined.status)) {
-      const status = refined.status === "unsupported" ? "unsupported" : "unavailable";
+      const failed = !["ok", "undersampled"].includes(base.status) ? base : refined;
+      const status = failed.status === "unsupported" ? "unsupported" : "unavailable";
       return unavailable(
-        refined.status === "missing-throughput"
+        failed.status === "missing-throughput"
           ? "Sourced transmission is incomplete for this spectral or angular range."
-          : `Wavefront unavailable (${refined.status}).`,
+          : `Wavefront unavailable (${failed.status}); calculation stopped before sampling convergence checks.`,
         status,
       );
     }

@@ -84,7 +84,8 @@ export function computeScalarWavefront(state: PreparedOpticalState, options: Sca
     );
     if (throughput.status === "blocked") return { status: "blocked" as const };
     if (throughput.status === "incomplete") return { status: "missing-throughput" as const };
-    if (throughput.transmission === null) return { status: "failed" as const };
+    if (throughput.transmission === null)
+      return { status: "failed" as const, intersectionMiss: trace.failureReason === "noBracket" };
     const path = opticalPathForTrace(apertureState, trace, channel);
     if (path.toLastSurfaceMm === null || trace.terminalDirection[2] <= 0) return { status: "failed" as const };
     const distance = (exitZ - trace.terminalPoint[2]) / trace.terminalDirection[2];
@@ -117,8 +118,20 @@ export function computeScalarWavefront(state: PreparedOpticalState, options: Sca
     const sample = radialTrace(radius);
     if (sample.status === "blocked") {
       if (blockedRadius === null) blockedRadius = radius;
-    } else if (sample.status !== "ok") return empty(sample.status);
-    else if (blockedRadius !== null)
+    } else if (sample.status !== "ok") {
+      // An outer probe can miss a surface before reaching the already established
+      // aperture blocker. It contributes no wavelet. Keep scanning so a later
+      // transmitting island is still rejected; never forgive an inner-pupil miss
+      // or a failure while refining the actual transmitting boundary.
+      if (
+        blockedRadius !== null &&
+        sample.status === "failed" &&
+        "intersectionMiss" in sample &&
+        sample.intersectionMiss
+      )
+        continue;
+      return empty(sample.status);
+    } else if (blockedRadius !== null)
       return empty("unsupported"); // Disconnected pupil requires a different quadrature.
     else previousRadius = radius;
   }

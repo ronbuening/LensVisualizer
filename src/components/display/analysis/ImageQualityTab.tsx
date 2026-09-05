@@ -92,7 +92,11 @@ export function ImageQualityOutput({ result, t }: { result: ImageQualityResult; 
           </text>
         </svg>
       ) : (
-        <p>MTF unavailable until all sampling checks pass.</p>
+        <p>
+          {result.status === "undersampled"
+            ? "MTF unavailable until all sampling checks pass."
+            : "MTF unavailable because the wavefront or PSF could not be calculated."}
+        </p>
       )}
     </section>
   );

@@ -1,0 +1,65 @@
+import { afterEach, describe, expect, it, vi } from "vitest";
+import buildLens from "../../../src/optics/buildLens.js";
+import type { LensData } from "../../../src/types/optics.js";
+import defaults from "../../../src/lens-data/defaults.js";
+import data from "../../../src/lens-data/nikon/NikonZ105f28.data.js";
+import { prepareRuntimeState } from "../../../src/optics/compat.js";
+import { resolveApertureStop } from "../../../src/optics/first-order/aperture.js";
+import { computeScalarWavefront } from "../../../src/optics/analysis/wavefront.js";
+import * as spectral from "../../../src/optics/trace/spectralThroughput.js";
+
+const lens = buildLens({ ...defaults, ...data } as LensData);
+const state = prepareRuntimeState(lens, 0, 0);
+const options = {
+  stopSemiDiameterMm: resolveApertureStop(lens, 0, 2.89).stopSemiDiameterMm,
+  radialStrata: 32,
+  azimuthalSamples: 16,
+};
+afterEach(() => vi.restoreAllMocks());
+
+describe("transmitting pupil boundary", () => {
+  it.each([2.89, 4, 8])("retains the MC 105mm wavefront at f/%s despite outer surface misses", (fNumber) => {
+    const result = computeScalarWavefront(state, {
+      ...options,
+      stopSemiDiameterMm: resolveApertureStop(lens, 0, fNumber).stopSemiDiameterMm,
+    });
+    expect(result.status).toBe("ok");
+    expect(result.acceptedSampleCount).toBe(32 * 16);
+    expect(result.rmsOpdMm).toBeGreaterThan(0);
+  });
+
+  it("still rejects an intersection failure inside the transmitting pupil", () => {
+    const original = spectral.traceSpectralThroughput;
+    vi.spyOn(spectral, "traceSpectralThroughput").mockImplementation((...args) => {
+      const result = original(...args);
+      if (args[1].origin[0] > 1 && args[1].origin[0] < 2) {
+        result.trace = { ...result.trace, status: "failed", failureReason: "noBracket" };
+        result.throughput = { ...result.throughput, status: "failed", transmission: null };
+      }
+      return result;
+    });
+    expect(computeScalarWavefront(state, options).status).toBe("failed");
+  });
+
+  it("continues beyond outer misses to reject a disconnected transmitting island", () => {
+    const original = spectral.traceSpectralThroughput;
+    vi.spyOn(spectral, "traceSpectralThroughput").mockImplementation((...args) => {
+      if (args[1].origin[0] > 22) {
+        return original(args[0], { ...args[1], origin: [1, 0, args[1].origin[2]] }, args[2], args[3], args[4]);
+      }
+      return original(...args);
+    });
+    expect(computeScalarWavefront(state, options).status).toBe("unsupported");
+  });
+
+  it("does not hide missing transmission evidence beyond the first blocker", () => {
+    const original = spectral.traceSpectralThroughput;
+    vi.spyOn(spectral, "traceSpectralThroughput").mockImplementation((...args) => {
+      const result = original(...args);
+      if (args[1].origin[0] > 22)
+        result.throughput = { ...result.throughput, status: "incomplete", transmission: null };
+      return result;
+    });
+    expect(computeScalarWavefront(state, options).status).toBe("missing-throughput");
+  });
+});
