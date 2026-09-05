@@ -12,35 +12,41 @@ flowchart LR
     n_src_optics_state_src_optics_state_cache_ts["cache.ts"]
     n_src_optics_state_src_optics_state_prepareState_ts["prepareState.ts"]
     n_src_optics_state_src_optics_state_runtimeState_ts["runtimeState.ts"]
+    n_src_optics_state_src_optics_state_zoomReconstruction_ts["zoomReconstruction.ts"]
   end
-  n_external_src_optics_types_ts["src/optics/types.ts"]
   n_external_src_optics_math["src/optics/math"]
+  n_external_src_optics_types_ts["src/optics/types.ts"]
   n_external_src_optics_prescription["src/optics/prescription"]
   n_external_src_types["src/types"]
+  n_src_optics_state_src_optics_state_zoomReconstruction_ts --> |2| n_external_src_optics_math
   n_src_optics_state_src_optics_state_prepareState_ts --> |2| n_external_src_optics_types_ts
   n_src_optics_state_src_optics_state_prepareState_ts --> n_external_src_optics_math
   n_src_optics_state_src_optics_state_prepareState_ts --> n_external_src_optics_prescription
   n_src_optics_state_src_optics_state_runtimeState_ts --> n_external_src_optics_prescription
+  n_src_optics_state_src_optics_state_zoomReconstruction_ts --> n_external_src_optics_prescription
   n_src_optics_state_src_optics_state_cache_ts --> n_external_src_optics_types_ts
   n_src_optics_state_src_optics_state_runtimeState_ts --> n_external_src_optics_types_ts
+  n_src_optics_state_src_optics_state_zoomReconstruction_ts --> n_external_src_optics_types_ts
   n_src_optics_state_src_optics_state_prepareState_ts --> n_external_src_types
   n_src_optics_state_src_optics_state_runtimeState_ts --> n_external_src_types
   n_src_optics_state_src_optics_state_prepareState_ts --> n_src_optics_state_src_optics_state_cache_ts
   n_src_optics_state_src_optics_state_runtimeState_ts --> n_src_optics_state_src_optics_state_cache_ts
   n_src_optics_state_src_optics_state_runtimeState_ts --> n_src_optics_state_src_optics_state_prepareState_ts
+  n_src_optics_state_src_optics_state_prepareState_ts --> n_src_optics_state_src_optics_state_zoomReconstruction_ts
 ```
 
 ## Directory Overview
 
-- Direct source files: 3
+- Direct source files: 4
 - Direct subfolders: 0
-- Main outbound areas: src/optics/types.ts (4), same folder (3), src/optics/prescription (2), src/types (2), src/optics/math
-- External consumers: src/optics/compat.ts, src/optics/diagram, src/optics/field, src/optics/first-order, src/optics/trace, src/optics/vignetteAnalysis.ts, src/optics/workers
+- Main outbound areas: src/optics/types.ts (5), same folder (4), src/optics/math (3), src/optics/prescription (3), src/types (2)
+- External consumers: src/optics/compat.ts, src/optics/diagram, src/optics/field, src/optics/first-order, src/optics/layout.ts, src/optics/trace, src/optics/vignetteAnalysis.ts, src/optics/workers
 
 ## Files
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
 | `cache.ts` | Cache helper module | src/optics/types.ts | same folder (2) | PreparedStateCache, createPreparedStateCache |
-| `prepareState.ts` | Prepare State helper module | src/optics/types.ts (2), same folder, src/optics/math, src/optics/prescription, src/types | same folder | PrepareStateOptions, preparedStateCacheKey, prepareState |
-| `runtimeState.ts` | Runtime State helper module | same folder (2), src/optics/prescription, src/optics/types.ts, src/types | src/optics/first-order (3), src/optics/compat.ts, src/optics/diagram, src/optics/field, src/optics/trace, +2 more | prepareRuntimeState |
+| `prepareState.ts` | Prepare State helper module | same folder (2), src/optics/types.ts (2), src/optics/math, src/optics/prescription, src/types | same folder | PrepareStateOptions, preparedStateCacheKey, prepareState |
+| `runtimeState.ts` | Runtime State helper module | same folder (2), src/optics/prescription, src/optics/types.ts, src/types | src/optics/first-order (3), src/optics/compat.ts, src/optics/diagram, src/optics/field, src/optics/layout.ts, +3 more | prepareRuntimeState |
+| `zoomReconstruction.ts` | Zoom Reconstruction helper module | src/optics/math (2), src/optics/prescription, src/optics/types.ts | same folder | ZoomReconstructionReport, reconstructZoom |

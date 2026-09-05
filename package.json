@@ -36,7 +36,8 @@
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\" \"__tests__/**/*.{js,ts,tsx}\" \"scripts/**/*.{mjs,ts}\" \"*.config.js\"",
     "format:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\" \"__tests__/**/*.{js,ts,tsx}\" \"scripts/**/*.{mjs,ts}\" \"*.config.js\"",
     "seo:audit": "node scripts/seo-audit.mjs",
-    "check:glass-reports": "node scripts/generate-glass-reports.mjs --check"
+    "check:glass-reports": "node scripts/generate-glass-reports.mjs --check",
+    "audit:zoom": "node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-zoom-reconstruction.mjs"
   },
   "dependencies": {
     "github-slugger": "^2.0.0",

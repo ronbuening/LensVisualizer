@@ -10,6 +10,7 @@ import { clamp, formatCacheNumber, normalizeControlT } from "../math/numerics.js
 import type { PreparedStateCache } from "./cache.js";
 import type { CompiledStateSurface, EngineLens, Plane3, PreparedOpticalState } from "../types.js";
 import { Optics2PreparationError } from "../types.js";
+import { reconstructZoom } from "./zoomReconstruction.js";
 import { resolveControlledThickness } from "../prescription/variables.js";
 
 /** Optional prepared-state cache owned by the caller. */
@@ -73,6 +74,18 @@ export function prepareState(
       lens.flags.isFoldedOptics,
     ),
   );
+  const reconstruction = reconstructZoom(lens, zoomT);
+  if (reconstruction?.report.status === "reconstructed") {
+    thicknesses.forEach((d, i) => {
+      const adjusted = d + reconstruction.offsets[i];
+      // Clearances are solved across the authored focus range; retain the
+      // preparation contract even for custom prescriptions outside that model.
+      if (!Number.isFinite(adjusted) || adjusted < -1e-9) {
+        throw new Optics2PreparationError("invalid-thickness", `Reconstructed thickness for surface ${i} is invalid`);
+      }
+      thicknesses[i] = Math.max(0, adjusted);
+    });
+  }
   const z = buildZPositions(thicknesses);
   const defaultImgZ = z[z.length - 1] + thicknesses[thicknesses.length - 1];
   const imagePlane = resolveStateImagePlane(lens, defaultImgZ);
@@ -98,6 +111,7 @@ export function prepareState(
     imgZ: imagePlane.point[2],
     totalTrack: resolveTotalTrack(lens, frozenZ, imagePlane.point[2]),
     cacheKey,
+    ...(reconstruction ? { zoomReconstruction: reconstruction.report } : {}),
   });
   options.cache?.set(cacheKey, state);
   return state;

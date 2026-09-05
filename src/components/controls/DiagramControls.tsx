@@ -3,7 +3,8 @@
  * lens diagram. Extracted from LensDiagramPanel for separation of concerns.
  */
 
-import { formatFocalLength, formatZoomFocalLength } from "./focalLengthFormatting.js";
+import { formatFocalLength, formatZoomFocalLength, formatZoomReconstructionNote } from "./focalLengthFormatting.js";
+import { prepareRuntimeState } from "../../optics/compat.js";
 import { formatAperture } from "./apertureFormatting.js";
 import { useCallback, useEffect, useMemo } from "react";
 import { eflAtFocus, formatDist } from "../../optics/optics.js";
@@ -176,6 +177,7 @@ export default function DiagramControls({
   }, [handlePointerUp, handleTiltChange]);
 
   const infinityEFL = useMemo(() => eflAtFocus(0, zoomT, L, aberrationT), [L, zoomT, aberrationT]);
+  const zoomNote = formatZoomReconstructionNote(prepareRuntimeState(L, 0, zoomT).zoomReconstruction);
   const zoomEndpoints = useMemo(
     () => (L.isZoom ? [eflAtFocus(0, 0, L, aberrationT), eflAtFocus(0, 1, L, aberrationT)] : []),
     [L, aberrationT],
@@ -268,6 +270,7 @@ export default function DiagramControls({
               {showEffectiveFocalLength ? "\u2611" : "\u2610"} Show effective focal length
             </span>
           </button>
+          {zoomNote && <p style={{ fontSize: 10, color: t.desc }}>{zoomNote}</p>}
         </SliderControl>
       )}
 

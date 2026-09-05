@@ -11,3 +11,12 @@ export function formatZoomFocalLength(infinityMm: number, focusedMm: number, sho
     ? `${base} (eff. ${formatFocalLength(focusedMm)})`
     : base;
 }
+
+export function formatZoomReconstructionNote(
+  report?: import("../../optics/state/zoomReconstruction.js").ZoomReconstructionReport,
+): string {
+  if (!report || report.status === "source") return "";
+  if (report.status === "reconstructed")
+    return "Intermediate zoom motion is reconstructed from the source states and paraxial focus; it is not a measured cam curve.";
+  return "Intermediate zoom motion could not be reconstructed. The displayed spacing interpolation is unvalidated.";
+}

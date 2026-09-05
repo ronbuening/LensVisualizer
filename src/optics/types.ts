@@ -238,6 +238,7 @@ export interface CompiledStateSurface extends Omit<CompiledSurface, "d"> {
  * coordinate; folded systems may have an image plane whose normal is not +z.
  */
 export interface PreparedOpticalState {
+  zoomReconstruction?: Readonly<import("./state/zoomReconstruction.js").ZoomReconstructionReport>;
   lens: EngineLens;
   focusT: number;
   zoomT: number;

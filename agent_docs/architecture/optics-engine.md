@@ -160,6 +160,26 @@ Major public helpers:
 
 All trace/layout functions accept `zoomT`; prime lenses ignore it.
 
+### Intermediate zoom reconstruction
+
+`state/zoomReconstruction.ts` corrects the linear spacing estimate between stored zoom positions for ordinary centered
+zooms. Source positions remain exact. It infers rigid groups from changing air gaps in camera coordinates, leaves fixed
+groups fixed, and solves the smallest incremental group displacement satisfying two first-order targets: interpolated
+source EFL and interpolated source infinity-focus residual. Thus existing source defocus is preserved rather than
+silently repaired. Air-gap limits preserve nonnegative vertex spacing and sampled rim clearance across authored focus
+positions. The inferred infinity correction is also added at close focus, retaining each authored focus stroke.
+
+This is an estimated cam curve, not measured mechanical motion or an aberration optimization. It does not prove
+intermediate close-focus distances or production performance. Folded, tilted-surface and aberration-controlled zoom
+models remain unsupported; failed solves retain the spacing interpolation with an explicit unvalidated UI note.
+`PreparedOpticalState.zoomReconstruction` records status and residuals; single/comparison controls display provenance.
+The bounded correction cache depends on immutable engine identity and zoom, and is shared across focus settings.
+Runtime layout adapters consume the same prepared geometry as tracing and analysis. Build-time zoom metadata stays
+separate; current calculated focal lengths use `eflAtFocus()`.
+
+Run `npm run audit:zoom -- --output /tmp/zoom-audit.json` for dense catalog checks of source preservation, focus/focal
+constraints, focus strokes, rigid spacing, clearance and nearby-position continuity.
+
 ## Exact Surface Trace
 
 Exact tracing is the only trace path. `traceRay()`, `traceRayChromatic()`, `traceSkewRay()`,

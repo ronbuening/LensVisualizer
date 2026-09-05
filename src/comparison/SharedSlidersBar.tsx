@@ -63,6 +63,8 @@ interface SharedSlidersBarProps {
   aperturePair: AperturePairResult;
   zoomPair: ZoomPairResult | null;
   movementPair: MovementPairResult | null;
+  zoomReconstructionNoteA?: string;
+  zoomReconstructionNoteB?: string;
   infinityEflA: number;
   infinityEflB: number;
   dynamicEflA: number;
@@ -100,6 +102,8 @@ export default function SharedSlidersBar({
   aperturePair,
   zoomPair,
   movementPair,
+  zoomReconstructionNoteA,
+  zoomReconstructionNoteB,
   infinityEflA,
   infinityEflB,
   dynamicEflA,
@@ -149,18 +153,18 @@ export default function SharedSlidersBar({
       : zoomLens
         ? (LA.isZoom ? infinityEflA : infinityEflB).toFixed(0)
         : "";
-  /* Slider endpoints: dual-zoom uses the union range; single-zoom uses the lens's positions */
+  /* Slider endpoints: dual-zoom uses the union range; single-zoom uses calculated source-state EFLs */
   const zoomMinLabel =
     bothZoom && zoomPair?.minFL
       ? `${zoomPair.minFL.toFixed(0)} mm`
-      : zoomLens?.zoomPositions
-        ? `${zoomLens.zoomPositions[0]} mm`
+      : zoomLens?.zoomEFLs
+        ? formatFocalLength(zoomLens.zoomEFLs[0])
         : "";
   const zoomMaxLabel =
     bothZoom && zoomPair?.maxFL
       ? `${zoomPair.maxFL.toFixed(0)} mm`
-      : zoomLens?.zoomPositions
-        ? `${zoomLens.zoomPositions[zoomLens.zoomPositions.length - 1]} mm`
+      : zoomLens?.zoomEFLs
+        ? formatFocalLength(zoomLens.zoomEFLs[zoomLens.zoomEFLs.length - 1])
         : "";
   /* Common-point markers for dual-zoom (where one lens reaches its range boundary) */
   const showZoomCPLow = bothZoom && (zoomPair?.commonPointLow ?? 0) > 0.01;
@@ -250,27 +254,31 @@ export default function SharedSlidersBar({
               </>
             }
             footer={
-              <button
-                onClick={onToggleEffectiveFocalLength}
-                aria-pressed={showEffectiveFocalLength}
-                style={{
-                  marginTop: 6,
-                  fontSize: 9,
-                  color: t.desc,
-                  cursor: "pointer",
-                  userSelect: "none",
-                  background: "none",
-                  border: "none",
-                  padding: 0,
-                  fontFamily: "inherit",
-                  textAlign: "left",
-                  display: "block",
-                }}
-              >
-                <span style={{ opacity: showEffectiveFocalLength ? 1 : 0.5 }}>
-                  {showEffectiveFocalLength ? "\u2611" : "\u2610"} Show effective focal length
-                </span>
-              </button>
+              <>
+                <button
+                  onClick={onToggleEffectiveFocalLength}
+                  aria-pressed={showEffectiveFocalLength}
+                  style={{
+                    marginTop: 6,
+                    fontSize: 9,
+                    color: t.desc,
+                    cursor: "pointer",
+                    userSelect: "none",
+                    background: "none",
+                    border: "none",
+                    padding: 0,
+                    fontFamily: "inherit",
+                    textAlign: "left",
+                    display: "block",
+                  }}
+                >
+                  <span style={{ opacity: showEffectiveFocalLength ? 1 : 0.5 }}>
+                    {showEffectiveFocalLength ? "\u2611" : "\u2610"} Show effective focal length
+                  </span>
+                </button>
+                {zoomReconstructionNoteA && <p style={{ fontSize: 10, color: t.desc }}>A: {zoomReconstructionNoteA}</p>}
+                {zoomReconstructionNoteB && <p style={{ fontSize: 10, color: t.desc }}>B: {zoomReconstructionNoteB}</p>}
+              </>
             }
           />
         )}

@@ -79,6 +79,8 @@ export default function ComparisonContent({
   showEffectiveAperture,
 }: ComparisonContentProps) {
   const {
+    zoomReconstructionNoteA,
+    zoomReconstructionNoteB,
     infinityEflA,
     infinityEflB,
     dynamicEflA,
@@ -168,6 +170,8 @@ export default function ComparisonContent({
             zoomPair={zoomPair}
             movementPair={movementPair}
             onSliderPointerUp={onSliderPointerUp}
+            zoomReconstructionNoteA={zoomReconstructionNoteA}
+            zoomReconstructionNoteB={zoomReconstructionNoteB}
             infinityEflA={infinityEflA}
             infinityEflB={infinityEflB}
             dynamicEflA={dynamicEflA}

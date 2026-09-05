@@ -7,7 +7,7 @@
 
 import { interpolateUniformSchedule } from "./math/uniformInterpolation.js";
 import type { LayoutResult, RuntimeLens } from "../types/optics.js";
-import { buildStateSurfaces, resolveControlledThickness } from "./internal/lensState.js";
+import { prepareRuntimeState } from "./state/runtimeState.js";
 import { conicPolySag, sag, sagSlopeRaw } from "./internal/surfaceMath.js";
 
 /** Number of straight SVG segments used when rendering one surface profile. */
@@ -100,16 +100,7 @@ export function slopeTrimHeight(surfIdx: number, sd: number, maxSlopeTan: number
  * @returns current thickness in mm
  */
 export function thick(i: number, focusT: number, zoomT: number, L: RuntimeLens, aberrationT = 0): number {
-  return resolveControlledThickness(
-    L.S[i].d,
-    L.varByIdx[i],
-    L.aberrationControl?.varByIdx[i],
-    Boolean(L.isZoom),
-    focusT,
-    zoomT,
-    aberrationT,
-    L.focusPositions,
-  );
+  return prepareRuntimeState(L, focusT, zoomT, aberrationT).surfaces[i]?.d ?? 0;
 }
 
 /**
@@ -126,13 +117,14 @@ export function thick(i: number, focusT: number, zoomT: number, L: RuntimeLens, 
  * @returns surface z positions, current thicknesses, and image-plane z in mm
  */
 export function doLayout(focusT: number, zoomT: number, L: RuntimeLens, aberrationT = 0): LayoutResult {
-  const th = L.S.map((_: unknown, i: number) => thick(i, focusT, zoomT, L, aberrationT));
-  const z = [0];
-  for (let i = 0; i < th.length - 1; i++) z.push(z[i] + th[i]);
-  const defaultImgZ = z[z.length - 1] + th[th.length - 1];
-  const hasExplicitFoldedImagePlane =
+  const state = prepareRuntimeState(L, focusT, zoomT, aberrationT);
+  const explicitFoldedPlane =
     L.isFoldedOptics && (L.data?.opticalPath === undefined || L.data.opticalPath.imagePlane !== undefined);
-  return { z, th, imgZ: hasExplicitFoldedImagePlane ? L.imagePlane.z : defaultImgZ };
+  return {
+    z: [...state.z],
+    th: state.surfaces.map((s) => s.d),
+    imgZ: explicitFoldedPlane ? L.imagePlane.z : state.imgZ,
+  };
 }
 
 /**
@@ -145,16 +137,8 @@ export function doLayout(focusT: number, zoomT: number, L: RuntimeLens, aberrati
  * @returns copied surface records with current `d` values
  */
 export function stateSurfaces(focusT: number, zoomT: number, L: RuntimeLens, aberrationT = 0) {
-  return buildStateSurfaces(
-    L.S,
-    L.varByIdx,
-    Boolean(L.isZoom),
-    focusT,
-    zoomT,
-    L.aberrationControl?.varByIdx,
-    aberrationT,
-    L.focusPositions,
-  );
+  const state = prepareRuntimeState(L, focusT, zoomT, aberrationT);
+  return L.S.map((surface, i) => ({ ...surface, d: state.surfaces[i].d }));
 }
 
 /**

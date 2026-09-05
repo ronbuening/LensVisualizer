@@ -1071,6 +1071,12 @@ These are computed automatically and added to the frozen lens object:
 
 ### Variable-Aperture Zooms
 
+Intermediate zoom geometry is reconstructed in the shared prepared-state engine from the stored infinity positions.
+The solver preserves their calculated focal-length progression and focus residual, fixed groups and internal glass
+spacing. Close-focus strokes remain relative to that inferred infinity curve. Stored source stations are unchanged;
+intermediate motion is explicitly labeled as inferred, and unavailable reconstructions are labeled unvalidated.
+This does not establish a measured cam curve or validate intermediate aberrations or close-focus distances.
+
 Optional `wideOpenStopSemiDiameterMm` supplies a source-backed physical iris radius in mm, either a scalar or an array
 aligned with `zoomPositions`. Values must be positive, finite and no larger than the authored `STO.sd`. Cite the source
 in the prescription notes; do not infer an iris schedule merely from marketed f-numbers. At a zoom state, the radius

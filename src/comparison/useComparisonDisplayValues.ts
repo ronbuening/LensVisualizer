@@ -7,6 +7,7 @@
  */
 
 import { prepareRuntimeState } from "../optics/compat.js";
+import { formatZoomReconstructionNote } from "../components/controls/focalLengthFormatting.js";
 import { formatWorkingApertureNote } from "../components/controls/apertureFormatting.js";
 import { useMemo } from "react";
 import { eflAtFocus, apertureMetricsForState, resolveApertureStop } from "../optics/optics.js";
@@ -84,6 +85,12 @@ export default function useComparisonDisplayValues({
     ok,
     LA,
     LB,
+    zoomReconstructionNoteA: LA
+      ? formatZoomReconstructionNote(prepareRuntimeState(LA, 0, zoomA).zoomReconstruction)
+      : "",
+    zoomReconstructionNoteB: LB
+      ? formatZoomReconstructionNote(prepareRuntimeState(LB, 0, zoomB).zoomReconstruction)
+      : "",
     infinityEflA,
     infinityEflB,
     dynamicEflA,

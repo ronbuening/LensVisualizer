@@ -202,8 +202,10 @@ movement is introduced, and no focus-drive mechanism is claimed because the cite
 analysis.
 
 With the image plane held fixed, wide-to-tele zoom moves the front group 13.210962 mm toward the image and the
-rear group 19.869038 mm toward the object at infinity focus. Both paths remain monotonic through the middle
-state, matching Figure 1(a/b); the authored order is Wide → Middle → Tele.
+rear group 19.869038 mm toward the object at infinity focus. The stored positions progress in those directions through the middle
+state, matching Figure 1(a/b); the authored order is Wide → Middle → Tele. Between those positions the viewer
+reconstructs group motion from paraxial focus and focal-length constraints. The front group can turn slightly
+between samples; this inferred curve is not a patent-published cam profile.
 
 ## Conditional Expressions
 
