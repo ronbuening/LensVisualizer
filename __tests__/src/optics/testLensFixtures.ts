@@ -1,5 +1,5 @@
 import buildLens from "../../../src/optics/buildLens.js";
-import { epAtZoom, fopenAtZoom } from "../../../src/optics/optics.js";
+import { epAtZoom, resolveApertureStop } from "../../../src/optics/optics.js";
 import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
 import ApoLantharRaw from "../../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.js";
 import Nikkor105Raw from "../../../src/lens-data/nikon/NikonNikkor105f14E.data.js";
@@ -24,13 +24,9 @@ export function apertureAt(
   zoomT: number,
   stopdownT = 0,
 ): { currentPhysStopSD: number; currentEPSD: number } {
-  const currentFOPEN = fopenAtZoom(zoomT, L);
   const rawFNumber = L.FOPEN * Math.pow(L.maxFstop / L.FOPEN, stopdownT);
-  const fNumber = Math.max(rawFNumber, currentFOPEN);
-  return {
-    currentPhysStopSD: (L.stopPhysSD * L.FOPEN) / fNumber,
-    currentEPSD: (epAtZoom(zoomT, L) * L.FOPEN) / fNumber,
-  };
+  const currentPhysStopSD = resolveApertureStop(L, zoomT, rawFNumber).stopSemiDiameterMm;
+  return { currentPhysStopSD, currentEPSD: epAtZoom(zoomT, L) * (currentPhysStopSD / L.stopPhysSD) };
 }
 
 /* ── Shared pre-built production lenses ──────────────────────────────────

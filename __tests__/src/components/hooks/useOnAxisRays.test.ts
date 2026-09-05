@@ -4,7 +4,7 @@ import { describe, it, expect, vi } from "vitest";
 import { renderHook } from "@testing-library/react";
 import useOnAxisRays from "../../../../src/components/hooks/useOnAxisRays.js";
 import buildLens from "../../../../src/optics/buildLens.js";
-import { doLayout, entrancePupilAtState, fopenAtZoom } from "../../../../src/optics/optics.js";
+import { doLayout, entrancePupilAtState, resolveApertureStop } from "../../../../src/optics/optics.js";
 import { createCoordinateTransforms } from "../../../../src/optics/diagramGeometry.js";
 import { raySampleCountForDensity } from "../../../../src/optics/raySampling.js";
 import LENS_DEFAULTS from "../../../../src/lens-data/defaults.js";
@@ -30,12 +30,10 @@ function buildTestFixture(focusT = 0, zoomT = 0, stopdownT = 0) {
     imgMM: IMG_MM,
     scaleRatio: null,
   });
-  const currentFOPEN = fopenAtZoom(zoomT, L);
   const rawFNumber = L.FOPEN * Math.pow(L.maxFstop / L.FOPEN, stopdownT);
-  const fNumber = Math.max(rawFNumber, currentFOPEN);
-  const currentPhysStopSD = (L.stopPhysSD * L.FOPEN) / fNumber;
+  const currentPhysStopSD = resolveApertureStop(L, zoomT, rawFNumber).stopSemiDiameterMm;
   const baseEPSD = entrancePupilAtState(L.stopPhysSD, focusT, zoomT, L).epSD;
-  const currentEPSD = (baseEPSD * L.FOPEN) / fNumber;
+  const currentEPSD = baseEPSD * (currentPhysStopSD / L.stopPhysSD);
   return { L, zPos, IMG_MM, sx, sy, clampedRayEnd, currentPhysStopSD, currentEPSD };
 }
 

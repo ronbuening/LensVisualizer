@@ -48,3 +48,21 @@ Typecheck, format, lint and full coverage tests passed: 308 files / 2,898 tests.
 Next aperture finding: the legacy unscheduled-iris mapping uses the wide-end nominal f-number at every zoom. A six-point
 scan finds >1% unintended iris reduction in 105 of 225 zooms. The next stage corrects that shared mapping and records
 source/trace limitations exposed by opening the full modeled iris, without manufacturing a replacement cone value.
+
+## Stage 3 — current-zoom wide-open iris
+
+`resolveApertureStop` now scales the physical stop from the current zoom's wide-open marking. Variable-aperture zooms
+keep the full modeled iris when their wide-open f-number rises toward telephoto; explicit source-backed iris schedules
+remain authoritative. Viewer, comparison, Summary, benchmark and test helpers use the shared mapping. Removed the
+duplicate aperture helper from analysis-display tests. Existing prime and constant-aperture mappings remain unchanged.
+
+The catalog working-aperture audit passed: 666 non-folded models / 34,624 states, zero execution errors, shared-report
+regressions, threshold discontinuities or wide-open mapping violations. It separately reported 438 failed, 172 degenerate
+and 224 unsupported states. These are optical availability diagnostics, not passing performance estimates. A before/after
+six-position zoom scan found eight models where opening the previously reduced iris exposes an untraceable outer ray;
+those report unavailable rather than a substituted f-number. Surface/rim source review remains a separate data task.
+
+Typecheck, format, lint and full coverage passed: 308 files / 2,901 tests; coverage thresholds unchanged and passing.
+Live local-browser checks confirmed the Konica intermediate readouts and the Nikon AF-S 28–300 at telephoto:
+calculated 290 mm, selected design f/5.96, real working f/5.93, full modeled stop diameter 20.05 mm, with modeled rim
+clipping explicitly reported.

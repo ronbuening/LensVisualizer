@@ -7,7 +7,7 @@ import buildLens from "../../../../src/optics/buildLens.js";
 import {
   doLayout,
   entrancePupilAtState,
-  fopenAtZoom,
+  resolveApertureStop,
   halfFieldAtZoom,
   tracingHalfFieldAtZoom,
 } from "../../../../src/optics/optics.js";
@@ -45,11 +45,9 @@ function buildTestFixture(focusT = 0, zoomT = 0, data: LensData = Sonnar) {
     imgMM: IMG_MM,
     scaleRatio: null,
   });
-  const currentFOPEN = fopenAtZoom(zoomT, L);
-  const fNumber = currentFOPEN;
-  const currentPhysStopSD = (L.stopPhysSD * L.FOPEN) / fNumber;
+  const currentPhysStopSD = resolveApertureStop(L, zoomT, 0.1).stopSemiDiameterMm;
   const baseEPSD = entrancePupilAtState(L.stopPhysSD, focusT, zoomT, L).epSD;
-  const currentEPSD = (baseEPSD * L.FOPEN) / fNumber;
+  const currentEPSD = baseEPSD * (currentPhysStopSD / L.stopPhysSD);
   return { L, zPos, IMG_MM, sx, sy, clampedRayEnd, currentPhysStopSD, currentEPSD };
 }
 

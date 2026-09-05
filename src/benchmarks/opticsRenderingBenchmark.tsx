@@ -36,7 +36,7 @@ import {
   effectiveFNumber,
   eflAtFocus,
   entrancePupilAtState,
-  fopenAtZoom,
+  resolveApertureStop,
   offsetVectorFieldRay,
   traceRay,
   traceRayChromatic,
@@ -494,14 +494,12 @@ function buildScenarioSnapshot(L: RuntimeLens, scenario: ScenarioConfig): Scenar
     yExtent: movementViewportExtent?.y,
   });
   const shapes = computeElementShapes(L, zPos, sx, sy, movementTransform.point);
-  const currentFOPEN = fopenAtZoom(zoomT, L);
   const rawFNumber = L.FOPEN * Math.pow(L.maxFstop / L.FOPEN, stopdownT);
-  const fNumber = Math.max(rawFNumber, currentFOPEN);
-  const currentPhysStopSD = (L.stopPhysSD * L.FOPEN) / fNumber;
+  const { fNumber, stopSemiDiameterMm: currentPhysStopSD } = resolveApertureStop(L, zoomT, rawFNumber);
   const baseEPSD = fieldGeometry
     ? entrancePupilAtState(L.stopPhysSD, focusT, zoomT, L, fieldGeometry, aberrationT).epSD
     : L.EP.epSD;
-  const currentEPSD = (baseEPSD * L.FOPEN) / fNumber;
+  const currentEPSD = baseEPSD * (currentPhysStopSD / L.stopPhysSD);
   const dynamicEFL = eflAtFocus(focusT, zoomT, L, aberrationT);
   effectiveFNumber(fNumber, focusT, zoomT, L, aberrationT);
   computeCardinalElementsAtState(L, focusT, zoomT, zPos, IMG_MM, aberrationT);

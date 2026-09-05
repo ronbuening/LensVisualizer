@@ -1,3 +1,4 @@
+import { apertureAt } from "../../../optics/testLensFixtures.js";
 /**
  * Real-optics SSR renders of the analysis tabs. Although the copy strings
  * asserted here overlap with the mocked unit tests (AberrationsPanel.test.tsx,
@@ -18,8 +19,6 @@ import {
   anchorLayoutToCamera,
   doLayout,
   eflAtFocus,
-  epAtZoom,
-  fopenAtZoom,
 } from "../../../../../src/optics/optics.js";
 import AberrationsPanel from "../../../../../src/components/display/analysis/AberrationsPanel.js";
 import ChromaticTab from "../../../../../src/components/display/analysis/ChromaticTab.js";
@@ -42,15 +41,6 @@ import { LENS_CATALOG } from "../../../../../src/utils/catalog/lensCatalog.js";
 
 function build(raw: object): RuntimeLens {
   return buildLens({ ...LENS_DEFAULTS, ...raw } as LensData);
-}
-
-function apertureAt(L: RuntimeLens, zoomT: number, stopdownT: number) {
-  const currentFOPEN = fopenAtZoom(zoomT, L);
-  const rawFNumber = L.FOPEN * Math.pow(L.maxFstop / L.FOPEN, stopdownT);
-  const fNumber = Math.max(rawFNumber, currentFOPEN);
-  const currentPhysStopSD = (L.stopPhysSD * L.FOPEN) / fNumber;
-  const currentEPSD = (epAtZoom(zoomT, L) * L.FOPEN) / fNumber;
-  return { currentPhysStopSD, currentEPSD };
 }
 
 describe("analysis display tabs", () => {

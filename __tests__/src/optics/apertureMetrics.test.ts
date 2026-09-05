@@ -2,6 +2,9 @@ import { describe, expect, it } from "vitest";
 import { apertureMetricsForState, resolveApertureStop, effectiveFNumber } from "../../../src/optics/optics.js";
 import { computeOpticalSummaryForState2, prepareRuntimeState } from "../../../src/optics/compat.js";
 import { build, buildSimplePositiveElementLens } from "./testLensFixtures.js";
+import NikonZoom from "../../../src/lens-data/nikon/NikonNikkorAFS28300mmf3556G.data.js";
+import TamronZoom from "../../../src/lens-data/tamron/TamronB02818400mmf3563.data.js";
+import CanonZoom from "../../../src/lens-data/canon/CanonEF70300mmf4556DOISUSM.data.js";
 import Nikon200 from "../../../src/lens-data/nikon/NikonAiNikkor200mmf2IFED.data.js";
 import validateLensData from "../../../src/optics/validateLensData.js";
 
@@ -89,6 +92,22 @@ describe("current-state aperture metrics", () => {
     expect(() => resolveApertureStop(L, 0, NaN)).toThrow();
     expect(() => resolveApertureStop(L, Infinity, 2)).toThrow();
   });
+
+  it.each([NikonZoom, TamronZoom, CanonZoom])(
+    "keeps the full iris at every wide-open zoom marking for $key",
+    (data) => {
+      const L = build(data);
+      for (const zoomT of [0, 0.25, 0.428, 0.5, 0.75, 1]) {
+        const open = resolveApertureStop(L, zoomT, 0.1);
+        expect(open.stopSemiDiameterMm).toBe(L.stopPhysSD);
+        const stopped = resolveApertureStop(L, zoomT, open.fNumber * 2);
+        expect(stopped.stopSemiDiameterMm).toBe(L.stopPhysSD / 2);
+        const selected = resolveApertureStop(L, zoomT, 8);
+        expect(selected.fNumber).toBe(8);
+        expect(selected.stopSemiDiameterMm).toBeCloseTo((L.stopPhysSD * open.fNumber) / 8, 10);
+      }
+    },
+  );
 
   it("interpolates only an explicitly authored wide-open stop schedule", () => {
     const base = buildSimplePositiveElementLens();

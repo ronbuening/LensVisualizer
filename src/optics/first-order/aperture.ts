@@ -10,7 +10,7 @@ import { calculatedFocalLengthForState } from "./focusBreathing.js";
 
 export type { ApertureMetrics } from "../../types/optics.js";
 
-/** Map the marked aperture to a physical iris, retaining the historical mapping when no schedule is authored. */
+/** Map the marked aperture relative to wide open at the current zoom. */
 export function resolveApertureStop(L: RuntimeLens, zoomT: number, markedFNumber: number) {
   const t = normalizeControlT(zoomT, "zoomT");
   if (!Number.isFinite(markedFNumber) || markedFNumber <= 0) throw new RangeError("Marked f-number must be positive");
@@ -21,8 +21,9 @@ export function resolveApertureStop(L: RuntimeLens, zoomT: number, markedFNumber
   if (Array.isArray(schedule)) {
     wideOpenStop = interpolateUniformSchedule(schedule, t);
   }
-  const referenceFNumber = schedule === undefined ? L.FOPEN : wideOpenFNumber;
-  return { fNumber, wideOpenFNumber, stopSemiDiameterMm: (wideOpenStop * referenceFNumber) / fNumber };
+  // A slower telephoto marking describes the wide-open lens, not an iris closure.
+  // Only stopping down from that current marking reduces the physical opening.
+  return { fNumber, wideOpenFNumber, stopSemiDiameterMm: wideOpenStop * (wideOpenFNumber / fNumber) };
 }
 
 const apertureCache = new WeakMap<PreparedOpticalState, Map<number, ApertureMetrics>>();

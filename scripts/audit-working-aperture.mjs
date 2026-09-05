@@ -54,7 +54,14 @@ for (const file of files) {
       unavailable: [],
     };
     for (const zoom of L.isZoom ? [0, 0.5, 1] : [0]) {
-      const open = resolveApertureStop(L, zoom, 0.1).fNumber;
+      const wideOpen = resolveApertureStop(L, zoom, 0.1);
+      const open = wideOpen.fNumber;
+      if (
+        L.data.wideOpenStopSemiDiameterMm === undefined &&
+        Math.abs(wideOpen.stopSemiDiameterMm / L.stopPhysSD - 1) > 1e-12
+      ) {
+        regressions.push({ key: L.data.key, zoom, reason: "wide-open iris reduced by zoom marking" });
+      }
       const marked = [...new Set([open, Math.min(open * 2, L.maxFstop), Math.min(8, L.maxFstop), L.maxFstop])];
       for (const fNumber of marked) {
         const stop = resolveApertureStop(L, zoom, fNumber).stopSemiDiameterMm;
