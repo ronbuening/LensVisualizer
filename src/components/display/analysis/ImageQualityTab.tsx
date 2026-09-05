@@ -5,12 +5,13 @@ import type { PreparedOpticalState } from "../../../optics/types.js";
 import type { ImageQualityOptions, ImageQualityResult } from "../../../types/imageQuality.js";
 import type { ThroughputModel } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
+import { IMAGE_QUALITY_LIMITS } from "../../../optics/constants.js";
 
 export function ImageQualityOutput({ result, t }: { result: ImageQualityResult; t: Theme }) {
   const psf = result.psf;
   const buckets = Array<string>(32).fill("");
   if (psf) {
-    const peak = Math.max(...psf.intensity);
+    const peak = psf.intensity.reduce((maximum, v) => Math.max(maximum, v), 0);
     psf.intensity.forEach((v, i) => {
       const level = peak > 0 ? Math.round(31 * Math.sqrt(v / peak)) : 0;
       buckets[level] += `M${i % psf.size},${Math.floor(i / psf.size)}h1v1h-1z`;
@@ -27,7 +28,8 @@ export function ImageQualityOutput({ result, t }: { result: ImageQualityResult; 
           Pupil difference {(100 * result.convergence.pupilDifference).toFixed(2)}%; window difference{" "}
           {(100 * result.convergence.windowDifference).toFixed(2)}%; sensor-grid difference{" "}
           {(100 * result.convergence.imageSamplingDifference).toFixed(2)}%. Maximum radial phase step{" "}
-          {result.convergence.maxOpdStepWaves.toFixed(3)} waves.
+          {result.convergence.maxOpdStepWaves.toFixed(3)} waves. Limits: 3% for each comparison and 0.25 waves per
+          radial step.
         </p>
       )}
       {psf && (
@@ -49,7 +51,8 @@ export function ImageQualityOutput({ result, t }: { result: ImageQualityResult; 
           </svg>
           <figcaption>
             {((psf.size - 1) * psf.pixelPitchMm * 1000).toFixed(2)} µm across, centered on axis. Square-root intensity
-            display. {result.status !== "converged" && "Provisional PSF."}
+            display. {result.status !== "converged" && "Provisional PSF."} Base sensor spacing{" "}
+            {(psf.pixelPitchMm * 2000).toFixed(3)} µm; refined spacing {(psf.pixelPitchMm * 1000).toFixed(3)} µm.
           </figcaption>
         </figure>
       )}
@@ -117,6 +120,7 @@ export default function ImageQualityTab({
   const [model, setModel] = useState<ThroughputModel>("ideal");
   const [distance, setDistance] = useState(0);
   const [rings, setRings] = useState(32);
+  const [azimuths, setAzimuths] = useState(64);
   const [size, setSize] = useState(41);
   const [pitch, setPitch] = useState(0);
   const options = useMemo<ImageQualityOptions>(
@@ -127,11 +131,11 @@ export default function ImageQualityTab({
       throughputModel: model,
       objectDistanceMm: distance === 0 ? Infinity : distance,
       radialStrata: rings,
-      azimuthalSamples: 64,
+      azimuthalSamples: azimuths,
       imageSize: size,
       pixelPitchMm: pitch === 0 ? undefined : pitch / 1000,
     }),
-    [stopSemiDiameterMm, movementActive, weights, model, distance, rings, size, pitch],
+    [stopSemiDiameterMm, movementActive, weights, model, distance, rings, azimuths, size, pitch],
   );
   const [request, setRequest] = useState<ImageQualityRequest | null>(null);
   const current = request?.state === preparedState && request.options === options;
@@ -194,7 +198,19 @@ export default function ImageQualityTab({
       <label style={{ display: "block" }}>
         Pupil radial samples{" "}
         <select aria-label="Pupil radial samples" value={rings} onChange={(e) => setRings(Number(e.target.value))}>
-          {[16, 32, 64, 128].map((v) => (
+          {[16, 32, 64, 128, 256, IMAGE_QUALITY_LIMITS.radialStrata].map((v) => (
+            <option key={v}>{v}</option>
+          ))}
+        </select>
+      </label>
+      <label style={{ display: "block" }}>
+        Pupil angular samples{" "}
+        <select
+          aria-label="Pupil angular samples"
+          value={azimuths}
+          onChange={(e) => setAzimuths(Number(e.target.value))}
+        >
+          {[32, 64, 128, IMAGE_QUALITY_LIMITS.azimuthalSamples].map((v) => (
             <option key={v}>{v}</option>
           ))}
         </select>
@@ -202,7 +218,7 @@ export default function ImageQualityTab({
       <label style={{ display: "block" }}>
         Base window samples{" "}
         <select aria-label="Base window samples" value={size} onChange={(e) => setSize(Number(e.target.value))}>
-          {[17, 33, 41, 49, 65].map((v) => (
+          {[17, 33, 41, 49, 65, 97, IMAGE_QUALITY_LIMITS.imageSize].map((v) => (
             <option key={v}>{v}</option>
           ))}
         </select>
@@ -219,6 +235,10 @@ export default function ImageQualityTab({
           onChange={(e) => setPitch(Number(e.target.value))}
         />
       </label>
+      <p>
+        Radial and angular samples refine the pupil. More window samples enlarge the image area at the chosen spacing.
+        Highest settings can take several minutes; you can cancel a running calculation.
+      </p>
       <button type="button" disabled={current && !result} onClick={() => setRequest({ state: preparedState, options })}>
         {current && !result ? "Computing…" : "Calculate image quality"}
       </button>

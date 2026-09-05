@@ -69,8 +69,9 @@ describe("Image Quality controls", () => {
     for (const [label, value] of [
       ["Throughput model", "authored"],
       ["Source distance", "1000"],
-      ["Pupil radial samples", "64"],
-      ["Base window samples", "49"],
+      ["Pupil radial samples", "512"],
+      ["Pupil angular samples", "256"],
+      ["Base window samples", "129"],
       ["Sensor spacing", "2"],
       ["C · 656.27 nm weight", "0.5"],
     ])
@@ -81,8 +82,9 @@ describe("Image Quality controls", () => {
     expect(compute.mock.calls.at(-1)![1]).toMatchObject({
       throughputModel: "authored",
       objectDistanceMm: 1000,
-      radialStrata: 64,
-      imageSize: 49,
+      radialStrata: 512,
+      azimuthalSamples: 256,
+      imageSize: 129,
       pixelPitchMm: 0.002,
     });
     view.rerender(<ImageQualityTab {...props} stopSemiDiameterMm={0.2} />);
@@ -93,6 +95,22 @@ describe("Image Quality controls", () => {
     view.unmount();
     act(() => vi.runAllTimers());
     expect(compute).toHaveBeenCalledTimes(2);
+  });
+  it("renders the largest refined PSF without spreading its pixels into function arguments", () => {
+    render(
+      <ImageQualityOutput
+        result={{ ...result, psf: { ...result.psf!, size: 513, intensity: Array(513 ** 2).fill(1) } }}
+        t={mockTheme}
+      />,
+    );
+    expect(screen.getByLabelText("Axial scalar PSF")).toBeTruthy();
+  });
+  it("does not prescribe more samples after a wavefront calculation failure", () => {
+    render(
+      <ImageQualityOutput result={{ ...result, status: "unavailable", psf: null, convergence: null }} t={mockTheme} />,
+    );
+    expect(screen.getByText(/could not be calculated/)).toBeTruthy();
+    expect(screen.queryByText(/until all sampling checks pass/)).toBeNull();
   });
   it.each(["undersampled", "unavailable", "unsupported"] as const)(
     "withholds MTF for %s even if a caller supplies curve data",

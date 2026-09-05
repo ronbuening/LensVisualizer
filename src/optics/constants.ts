@@ -30,3 +30,6 @@ export const CHROMATIC_CHANNEL_WAVELENGTH_NM: Readonly<Record<ChromaticChannel, 
 
 /** Focus slider values below this threshold are treated as infinity. */
 export const FOCUS_INFINITY_THRESHOLD = 0.003;
+
+/** Base scalar diffraction limits; convergence doubles pupil density and refines the image grid. */
+export const IMAGE_QUALITY_LIMITS = Object.freeze({ radialStrata: 512, azimuthalSamples: 256, imageSize: 129 });

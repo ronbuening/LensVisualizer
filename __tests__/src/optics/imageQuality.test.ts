@@ -5,6 +5,7 @@ import { computeHuygensPsf } from "../../../src/optics/math/huygens.js";
 import { createAreaWeightedCircularPupilPoints } from "../../../src/optics/math/pupilSampling.js";
 import { prepareRuntimeState } from "../../../src/optics/compat.js";
 import { buildSimplePositiveElementLens } from "./testLensFixtures.js";
+import { computeScalarWavefront } from "../../../src/optics/analysis/wavefront.js";
 import type { ScalarPsf } from "../../../src/types/imageQuality.js";
 
 describe("PSF Fourier slices", () => {
@@ -132,6 +133,38 @@ describe("image quality availability and refinement", () => {
     expect(result.convergence!.windowDifference).toBeLessThan(0.03);
     expect(result.convergence!.imageSamplingDifference).toBeLessThan(0.03);
   });
+  it("preserves the refined PSF when coarser comparisons reuse aligned grid samples", () => {
+    const chosen = { ...options, radialStrata: 8, azimuthalSamples: 12, imageSize: 9, pixelPitchMm: 0.005 };
+    const result = computeImageQuality(state, chosen);
+    const wave = computeScalarWavefront(state, { ...chosen, radialStrata: 16, azimuthalSamples: 24 });
+    const independent = computeHuygensPsf(wave.wavelets, wave.wavelengthNm, wave.referencePoint, 33, 0.0025);
+    expect(result.psf?.status).toBe("ok");
+    expect(result.psf!.windowIntegralMm2).toBeCloseTo(independent.windowIntegralMm2, 12);
+    result.psf!.intensity.forEach((value, i) => expect(value).toBeCloseTo(independent.intensity[i], 8));
+  });
+  it.each([
+    { radialStrata: 512, azimuthalSamples: 8, imageSize: 5 },
+    { radialStrata: 2, azimuthalSamples: 256, imageSize: 5 },
+    { radialStrata: 2, azimuthalSamples: 8, imageSize: 129 },
+  ])("supports refinement at each expanded sampling limit: %j", (sampling) => {
+    const result = computeImageQuality(state, { ...options, ...sampling });
+    expect(result.psf?.status).toBe("ok");
+    expect(result.psf?.size).toBe(sampling.imageSize * 4 - 3);
+    expect(result.psf?.intensity.length).toBe((sampling.imageSize * 4 - 3) ** 2);
+  });
+  it.each([{ radialStrata: 513 }, { azimuthalSamples: 257 }, { imageSize: 131 }])(
+    "rejects requests beyond a refinable bound: %j",
+    (sampling) => {
+      expect(computeImageQuality(state, { ...options, ...sampling }).reason).toContain("supported bounds");
+    },
+  );
+  it("gives separate remedies for an unresolved window and radial phase", () => {
+    const smallWindow = computeImageQuality(state, { ...options, radialStrata: 32, imageSize: 5 });
+    expect(smallWindow.reason).toContain("increase base window samples");
+    const phase = computeImageQuality(state, { ...options, stopSemiDiameterMm: 5, radialStrata: 2, imageSize: 5 });
+    expect(phase.reason).toContain("Radial phase steps");
+    expect(phase.mtf).toEqual([]);
+  });
   it("does not silently replace movement or unknown throughput with centered ideal optics", () => {
     expect(computeImageQuality(state, { ...options, movementActive: true }).status).toBe("unsupported");
     expect(computeImageQuality(state, { ...options, throughputModel: "authored" }).reason).toContain("incomplete");
@@ -147,7 +180,7 @@ describe("image quality availability and refinement", () => {
         ],
       }).status,
     ).toBe("unavailable");
-    expect(computeImageQuality(state, { ...options, radialStrata: 256 }).status).toBe("unavailable");
+    expect(computeImageQuality(state, { ...options, radialStrata: 513 }).status).toBe("unavailable");
     expect(computeImageQuality(state, { ...options, pixelPitchMm: NaN }).status).toBe("unavailable");
   });
 });

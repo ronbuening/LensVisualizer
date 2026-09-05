@@ -3,7 +3,7 @@
  */
 import type { ScalarWavefront, ScalarWavefrontOptions } from "../../types/imageQuality.js";
 import type { PreparedOpticalState, Ray3, Vec3 } from "../types.js";
-import { CHROMATIC_CHANNEL_WAVELENGTH_NM } from "../constants.js";
+import { CHROMATIC_CHANNEL_WAVELENGTH_NM, IMAGE_QUALITY_LIMITS } from "../constants.js";
 import { conservativeAxialBounds } from "../prescription/geometryBounds.js";
 import { opticalPathForTrace } from "../trace/opticalPath.js";
 import { traceSpectralThroughput } from "../trace/spectralThroughput.js";
@@ -48,10 +48,10 @@ export function computeScalarWavefront(state: PreparedOpticalState, options: Sca
   if (
     !Number.isInteger(rings) ||
     rings < 2 ||
-    rings > 256 ||
+    rings > IMAGE_QUALITY_LIMITS.radialStrata * 2 ||
     !Number.isInteger(azimuths) ||
     azimuths < 8 ||
-    azimuths > 256 ||
+    azimuths > IMAGE_QUALITY_LIMITS.azimuthalSamples * 2 ||
     !(objectDistanceMm > 0) ||
     !Number.isFinite(options.stopSemiDiameterMm) ||
     options.stopSemiDiameterMm <= 0

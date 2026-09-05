@@ -1,6 +1,6 @@
 /** Axial scalar image quality with independent pupil, window and sensor-grid refinement. */
 import type { ImageQualityOptions, ImageQualityResult, PsfGrid, ScalarPsf } from "../../types/imageQuality.js";
-import { CHROMATIC_CHANNEL_WAVELENGTH_NM } from "../constants.js";
+import { CHROMATIC_CHANNEL_WAVELENGTH_NM, IMAGE_QUALITY_LIMITS } from "../constants.js";
 import { apertureMetricsForState } from "../first-order/aperture.js";
 import { computeHuygensPsf } from "../math/huygens.js";
 import { computeMtfFromPsf } from "../math/mtf.js";
@@ -69,6 +69,26 @@ function mtfDifference(a: PsfGrid, b: PsfGrid): number {
   );
 }
 
+/** Exact centered subsets of the refined grid, preserving its physical intensity scale. */
+function sampledWindow(psf: ScalarPsf, size: number, stride: number): ScalarPsf {
+  const offset = (psf.size - 1 - (size - 1) * stride) / 2;
+  const pixelPitchMm = psf.pixelPitchMm * stride;
+  const intensity =
+    psf.status === "ok"
+      ? Array.from(
+          { length: size * size },
+          (_, i) => psf.intensity[(offset + Math.floor(i / size) * stride) * psf.size + offset + (i % size) * stride],
+        )
+      : [];
+  return {
+    ...psf,
+    size,
+    pixelPitchMm,
+    intensity,
+    windowIntegralMm2: intensity.reduce((sum, v) => sum + v, 0) * pixelPitchMm ** 2,
+  };
+}
+
 export function computeImageQuality(state: PreparedOpticalState, options: ImageQualityOptions): ImageQualityResult {
   const unavailable = (reason: string, status: ImageQualityResult["status"] = "unavailable"): ImageQualityResult => ({
     status,
@@ -106,13 +126,13 @@ export function computeImageQuality(state: PreparedOpticalState, options: ImageQ
   if (
     !Number.isInteger(rings) ||
     rings < 2 ||
-    rings > 128 ||
+    rings > IMAGE_QUALITY_LIMITS.radialStrata ||
     !Number.isInteger(azimuths) ||
     azimuths < 8 ||
-    azimuths > 128 ||
+    azimuths > IMAGE_QUALITY_LIMITS.azimuthalSamples ||
     !Number.isInteger(size) ||
     size < 5 ||
-    size > 65 ||
+    size > IMAGE_QUALITY_LIMITS.imageSize ||
     size % 2 === 0
   )
     return unavailable("Sampling settings cannot be refined within the supported bounds.");
@@ -156,22 +176,31 @@ export function computeImageQuality(state: PreparedOpticalState, options: ImageQ
     }
     maxOpdStepWaves = Math.max(maxOpdStepWaves, refined.maxOpdStepWaves ?? Infinity);
     const weight = entry.weight / sumWeights;
+    const squareSymmetry = azimuths % 4 === 0;
     coarse.push({
-      psf: computeHuygensPsf(base.wavelets, base.wavelengthNm, base.referencePoint, size * 2 - 1, pitch),
+      psf: computeHuygensPsf(
+        base.wavelets,
+        base.wavelengthNm,
+        base.referencePoint,
+        size * 2 - 1,
+        pitch,
+        squareSymmetry,
+      ),
       weight,
     });
-    fine.push({
-      psf: computeHuygensPsf(refined.wavelets, refined.wavelengthNm, refined.referencePoint, size * 2 - 1, pitch),
-      weight,
-    });
-    window.push({
-      psf: computeHuygensPsf(refined.wavelets, refined.wavelengthNm, refined.referencePoint, size, pitch),
-      weight,
-    });
-    sensor.push({
-      psf: computeHuygensPsf(refined.wavelets, refined.wavelengthNm, refined.referencePoint, size * 4 - 3, pitch / 2),
-      weight,
-    });
+    const sensorPsf = computeHuygensPsf(
+      refined.wavelets,
+      refined.wavelengthNm,
+      refined.referencePoint,
+      size * 4 - 3,
+      pitch / 2,
+      squareSymmetry,
+    );
+    // Coarser sensor samples and the smaller window lie exactly on this grid.
+    // Reusing those values leaves all three independent comparisons intact.
+    fine.push({ psf: sampledWindow(sensorPsf, size * 2 - 1, 2), weight });
+    window.push({ psf: sampledWindow(sensorPsf, size, 2), weight });
+    sensor.push({ psf: sensorPsf, weight });
     channels.push({ channel: entry.channel, wavelengthNm: refined.wavelengthNm, weight, rmsOpdMm: refined.rmsOpdMm });
   }
   const c = combineSpectralPsfs(coarse),
@@ -192,11 +221,23 @@ export function computeImageQuality(state: PreparedOpticalState, options: ImageQ
     [pupilDifference, windowDifference, imageSamplingDifference].every(
       (v) => Number.isFinite(v) && v <= CONVERGENCE_TOLERANCE,
     ) && maxOpdStepWaves <= 0.25;
+  const advice: string[] = [];
+  if (!(pupilDifference <= CONVERGENCE_TOLERANCE))
+    advice.push("Pupil integration has not converged: increase pupil radial and angular samples.");
+  if (!(windowDifference <= CONVERGENCE_TOLERANCE))
+    advice.push(
+      "The image window is too small or unresolved: increase base window samples while keeping sensor spacing fixed.",
+    );
+  if (!(imageSamplingDifference <= CONVERGENCE_TOLERANCE))
+    advice.push(
+      "The sensor grid has not converged: reduce sensor spacing; increase base window samples to preserve the field of view.",
+    );
+  if (!(maxOpdStepWaves <= 0.25)) advice.push("Radial phase steps exceed 0.25 waves: increase pupil radial samples.");
   return {
     status: converged ? "converged" : "undersampled",
     reason: converged
       ? "Pupil, window and sensor-grid estimates agree within 3%; this is not a rigorous error bound."
-      : "Sampling has not converged. Increase pupil sampling or adjust the sensor spacing/window before using MTF.",
+      : advice.join(" "),
     psf: s,
     mtf: converged ? computeMtfFromPsf(s) : [],
     spectrum: channels,

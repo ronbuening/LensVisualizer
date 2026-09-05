@@ -126,3 +126,24 @@ describe("opt-in path and prepared wavefront", () => {
     ).toBe("unsupported");
   });
 });
+
+describe("symmetric scalar grid reuse", () => {
+  it("matches independent point integration for every pixel of a staggered, aberrated pupil", () => {
+    const state = prepareRuntimeState(buildSimplePositiveElementLens(), 0, 0);
+    const wave = computeScalarWavefront(state, { stopSemiDiameterMm: 1, radialStrata: 8, azimuthalSamples: 12 });
+    expect(wave.wavelets.length).toBe(96);
+    const size = 9,
+      pitch = 0.003;
+    const psf = computeHuygensPsf(wave.wavelets, wave.wavelengthNm, wave.referencePoint, size, pitch, true);
+    const peak = huygensIntensity(wave.wavelets, wave.wavelengthNm, wave.referencePoint, wave.referencePoint, true);
+    for (let i = 0; i < size * size; i++) {
+      const expected =
+        huygensIntensity(wave.wavelets, wave.wavelengthNm, wave.referencePoint, [
+          ((i % size) - 4) * pitch,
+          (Math.floor(i / size) - 4) * pitch,
+          state.imgZ,
+        ]) / peak;
+      expect(Math.abs(psf.intensity[i] - expected)).toBeLessThan(1e-8);
+    }
+  });
+});

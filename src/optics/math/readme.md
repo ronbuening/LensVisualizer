@@ -29,6 +29,7 @@ flowchart LR
   n_external_src_optics_spectralLines_ts["src/optics/spectralLines.ts"]
   n_external_src_optics_types_ts["src/optics/types.ts"]
   n_external_src_types["src/types"]
+  n_src_optics_math_src_optics_math_huygens_ts --> n_external_src_optics_constants_ts
   n_src_optics_math_src_optics_math_intersection_ts --> n_external_src_optics_constants_ts
   n_src_optics_math_src_optics_math_paraxial_ts --> n_external_src_optics_constants_ts
   n_src_optics_math_src_optics_math_surfaceProfile_ts --> n_external_src_optics_constants_ts
@@ -61,7 +62,7 @@ flowchart LR
 
 - Direct source files: 14
 - Direct subfolders: 0
-- Main outbound areas: same folder (7), src/optics/types.ts (7), src/types (6), src/optics/constants.ts (4), src/optics/internal, src/optics/spectralLines.ts
+- Main outbound areas: same folder (7), src/optics/types.ts (7), src/types (6), src/optics/constants.ts (5), src/optics/internal, src/optics/spectralLines.ts
 - External consumers: src/components/display, src/optics/analysis, src/optics/compat.ts, src/optics/field, src/optics/first-order, src/optics/internal, src/optics/layout.ts, src/optics/optics.ts, +7 more
 
 ## Files
@@ -70,7 +71,7 @@ flowchart LR
 | --- | --- | --- | --- | --- |
 | `bracketedRoot.ts` | Bracketed Root helper module | none | same folder, src/optics/internal, src/optics/trace | RootEvaluation, RootResult, solveBracketedRoot |
 | `diffractivePhase.ts` | Diffractive Phase helper module | same folder, src/optics/spectralLines.ts, src/optics/types.ts, src/types | src/optics/trace (3), same folder, src/optics/internal, src/optics/prescription, src/optics/runtimeLens.ts | DEFAULT_PHASE_WAVELENGTH_NM, compileDiffractivePhase, radialPhaseOpticalPath, radialPhaseDerivative, diffractiveWavelengthScale, radialPhaseKick, diffractiveRefractedDirection, diffractiveParaxialPower, +1 more |
-| `huygens.ts` | Huygens helper module | src/optics/types.ts, src/types | src/optics/analysis, src/optics/optics.ts | huygensIntensity, computeHuygensPsf |
+| `huygens.ts` | Huygens helper module | src/optics/constants.ts, src/optics/types.ts, src/types | src/optics/analysis, src/optics/optics.ts | huygensIntensity, computeHuygensPsf |
 | `intersection.ts` | Intersection helper module | same folder (3), src/optics/constants.ts, src/optics/types.ts | src/optics/trace (2) | SurfaceIntersectionFailureReason, SurfaceIntersectionOptions, SurfaceIntersectionSuccess, SurfaceIntersectionFailure, SurfaceIntersectionResult, intersectSurfaceProfile |
 | `mtf.ts` | Mtf helper module | src/types | src/optics/analysis, src/optics/optics.ts | computeMtfFromPsf |
 | `numerics.ts` | Numerics helper module | none | src/optics/perspective (3), same folder, src/optics/first-order, src/optics/prescription, src/optics/state | isFiniteNumber, clamp, clamp01, lerp, nearlyEqual, normalizeControlT, formatCacheNumber |

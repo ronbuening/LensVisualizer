@@ -1,6 +1,7 @@
 /** Scalar Huygens-Kirchhoff quadrature on a plane in image-space air. */
 import type { HuygensWavelet, ScalarPsf } from "../../types/imageQuality.js";
 import type { Vec3 } from "../types.js";
+import { IMAGE_QUALITY_LIMITS } from "../constants.js";
 
 /** Coherent amplitude sum; the resulting squared amplitude is intensity. */
 export function huygensIntensity(
@@ -38,6 +39,8 @@ export function computeHuygensPsf(
   referencePoint: Vec3,
   size = 65,
   pixelPitchMm = 0.001,
+  /** Caller guarantees reflection and quarter-turn symmetry about the reference axis. */
+  squareSymmetry = false,
 ): ScalarPsf {
   const empty: ScalarPsf = {
     status: "unavailable",
@@ -52,7 +55,7 @@ export function computeHuygensPsf(
   if (
     !Number.isInteger(size) ||
     size < 3 ||
-    size > 257 ||
+    size > IMAGE_QUALITY_LIMITS.imageSize * 4 - 3 ||
     size % 2 === 0 ||
     !Number.isFinite(pixelPitchMm) ||
     pixelPitchMm <= 0 ||
@@ -79,9 +82,22 @@ export function computeHuygensPsf(
   }));
   const intensity: number[] = [];
   const middle = (size - 1) / 2;
+  // Centered equal-angle rings with counts divisible by four have exact D4
+  // symmetry, including staggered rings. Reuse equal sensor points, without
+  // imposing that symmetry on arbitrary public wavelet inputs.
+  const symmetricValues = squareSymmetry ? new Map<number, number>() : null;
   let sum = 0;
   for (let y = 0; y < size; y++) {
     for (let x = 0; x < size; x++) {
+      const ax = Math.abs(x - middle),
+        ay = Math.abs(y - middle);
+      const symmetryKey = Math.max(ax, ay) * size + Math.min(ax, ay);
+      const cached = symmetricValues?.get(symmetryKey);
+      if (cached !== undefined) {
+        intensity.push(cached);
+        sum += cached;
+        continue;
+      }
       const px = referencePoint[0] + (x - middle) * pixelPitchMm;
       const py = referencePoint[1] + (y - middle) * pixelPitchMm;
       let real = 0,
@@ -99,6 +115,7 @@ export function computeHuygensPsf(
       }
       const value = (real * real + imaginary * imaginary) / idealPeak;
       if (!Number.isFinite(value)) return empty;
+      symmetricValues?.set(symmetryKey, value);
       intensity.push(value);
       sum += value;
     }
