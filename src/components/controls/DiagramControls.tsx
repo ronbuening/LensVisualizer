@@ -3,6 +3,7 @@
  * lens diagram. Extracted from LensDiagramPanel for separation of concerns.
  */
 
+import { formatAperture } from "./apertureFormatting.js";
 import { useCallback, useEffect } from "react";
 import { eflAtZoom, formatDist } from "../../optics/optics.js";
 import { fisheyeProjectionFocalLengthAtZoom, isFisheyeProjection } from "../../optics/projection.js";
@@ -19,11 +20,6 @@ import type { GroupMovementMode } from "../../types/groupMovement.js";
 interface VarReadout {
   label: string;
   val: string;
-}
-
-/** Format f-number for display: one decimal below f/10, rounded above. */
-function fmtF(f: number): string {
-  return Number.isFinite(f) ? (f < 10 ? f.toFixed(1) : String(Math.round(f))) : "unavailable";
 }
 
 interface DiagramControlsProps {
@@ -182,8 +178,10 @@ export default function DiagramControls({
   const apertureReferenceLabel = isFisheye ? "Projection f" : "EFL";
   const apertureReferenceValue = fisheyeProjectionFocalLengthAtZoom(projection, zoomT) ?? dynamicEFL;
   const eflChanged = Math.abs(dynamicEFL - infinityEFL) > 0.1;
-  const effApertureDiffers = Math.abs(effectiveFNum - fNumber) > 0.05;
-  const availableFStops = L.fstopSeries.filter((value) => value >= currentFOPEN - 0.1 && value <= L.maxFstop);
+  const availableFStops = [
+    currentFOPEN,
+    ...L.fstopSeries.filter((value) => value > currentFOPEN + 1e-6 && value <= L.maxFstop),
+  ];
   const hasApertureRange = L.maxFstop > currentFOPEN + 0.15;
   const showApertureControl = showSliders && (hasApertureRange || availableFStops.length > 1);
   const signed = (value: number, digits: number, unit: string) =>
@@ -442,14 +440,14 @@ export default function DiagramControls({
           useSideLayout={useSideLayout}
           label="APERTURE"
           labelMinWidth={85}
-          displayValue={`f/${fmtF(fNumber)}${showEffectiveAperture && effApertureDiffers ? ` (working f/${fmtF(effectiveFNum)})` : ""}`}
+          displayValue={`${formatAperture(fNumber)}${showEffectiveAperture ? ` (working ${formatAperture(effectiveFNum)})` : ""}`}
           displayValueStyle={{ minWidth: "3.5em" }}
           value={stopdownT}
           step={L.apertureStep}
           onPointerDown={beginInteraction}
           onChange={handleStopdownChange}
           onPointerUp={handlePointerUp}
-          minLabel={`f/${currentFOPEN.toFixed(1)}`}
+          minLabel={formatAperture(currentFOPEN)}
           maxLabel={`f/${L.maxFstop}`}
           flexBasis="220px"
           collapsible={true}
@@ -469,9 +467,13 @@ export default function DiagramControls({
               >
                 {apertureReferenceLabel}{" "}
                 {Number.isFinite(apertureReferenceValue) ? `${apertureReferenceValue.toFixed(2)} mm` : "unavailable"} ·
-                EP {"\u2300"} {((baseEPSD * currentPhysStopSD * 2) / L.stopPhysSD).toFixed(2)} mm · Stop {"\u2300"}{" "}
-                {(currentPhysStopSD * 2).toFixed(2)} mm
+                Paraxial EP {"\u2300"} {((baseEPSD * currentPhysStopSD * 2) / L.stopPhysSD).toFixed(2)} mm · Stop{" "}
+                {"\u2300"} {(currentPhysStopSD * 2).toFixed(2)} mm
               </div>
+              <p style={{ color: t.muted, fontSize: 9 }}>
+                Selected aperture uses the design calibration. Working f-number measures the real-ray cone; paraxial
+                estimates are listed separately in Summary.
+              </p>
               <div
                 style={{
                   marginTop: 6,
@@ -491,7 +493,7 @@ export default function DiagramControls({
                       handleStopdownChange(Math.log(n / L.FOPEN) / Math.log(L.maxFstop / L.FOPEN));
                       handlePointerUp();
                     }}
-                    aria-label={`Set aperture to f/${n}`}
+                    aria-label={`Set aperture to f/${Number(n.toFixed(2))}`}
                     style={{
                       background: "none",
                       border: "none",
@@ -503,7 +505,7 @@ export default function DiagramControls({
                       transition: "opacity 0.15s",
                     }}
                   >
-                    f/{n}
+                    f/{Number(n.toFixed(2))}
                   </button>
                 ))}
               </div>
@@ -526,7 +528,7 @@ export default function DiagramControls({
                 }}
               >
                 <span style={{ opacity: showEffectiveAperture ? 1 : 0.5 }}>
-                  {showEffectiveAperture ? "\u2611" : "\u2610"} Show working f-number (paraxial)
+                  {showEffectiveAperture ? "\u2611" : "\u2610"} Show working f-number (real rays)
                 </span>
               </button>
             </>

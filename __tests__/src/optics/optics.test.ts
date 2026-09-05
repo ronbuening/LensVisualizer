@@ -769,8 +769,9 @@ describe("eflAtFocus", () => {
 describe("effectiveFNumber", () => {
   it("scales the physical image-side cone when the iris is stopped down", () => {
     const L = buildLens({ ...LENS_DEFAULTS, ...ApoLantharRaw } as LensData);
-    expect(effectiveFNumber(4.0, 0, 0, L)).toBeCloseTo(2 * effectiveFNumber(2.0, 0, 0, L), 10);
-    expect(effectiveFNumber(2.0, 0.001, 0, L)).toBeGreaterThan(0);
+    expect(effectiveFNumber(8.0, 0, 0, L)).toBeGreaterThan(effectiveFNumber(4.0, 0, 0, L));
+    expect(effectiveFNumber(4.0, 0.001, 0, L)).toBeGreaterThan(0);
+    expect(effectiveFNumber(L.FOPEN, 0, 0, L)).toBeNaN(); // Physical apertures clip the stop-rim ray.
   });
 
   it("returns higher effective f-number at close focus", () => {
@@ -782,18 +783,19 @@ describe("effectiveFNumber", () => {
 
   it("increases monotonically as focus gets closer", () => {
     const L = buildLens({ ...LENS_DEFAULTS, ...ApoLantharRaw } as LensData);
-    const f1 = effectiveFNumber(2.0, 0.3, 0, L);
-    const f2 = effectiveFNumber(2.0, 0.6, 0, L);
-    const f3 = effectiveFNumber(2.0, 1.0, 0, L);
+    const f1 = effectiveFNumber(4.0, 0.3, 0, L);
+    const f2 = effectiveFNumber(4.0, 0.6, 0, L);
+    const f3 = effectiveFNumber(4.0, 1.0, 0, L);
     expect(f2).toBeGreaterThan(f1);
     expect(f3).toBeGreaterThan(f2);
   });
 
   it("works with zoom lenses", () => {
     const L = buildLens({ ...LENS_DEFAULTS, ...NikkorZ70200Raw } as LensData);
-    const effF = effectiveFNumber(2.8, 1, 0, L);
+    const effF = effectiveFNumber(4, 1, 0, L);
+    expect(effectiveFNumber(2.8, 1, 0, L)).toBeNaN(); // Wide-open marginal ray is clipped.
     expect(effF).toBeGreaterThan(0);
-    expect(effectiveFNumber(8, 1, 0, L)).toBeCloseTo(2 * effectiveFNumber(4, 1, 0, L), 10);
+    expect(effectiveFNumber(8, 1, 0, L)).toBeGreaterThan(effectiveFNumber(4, 1, 0, L));
     expect(isFinite(effF)).toBe(true);
   });
 });

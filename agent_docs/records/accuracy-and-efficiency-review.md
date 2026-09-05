@@ -266,3 +266,9 @@ retention policy. No production optical behavior changed in step 1.
   all optical regressions remain. Coverage statements 92.19%, branches 83.64%, functions 93.90%, lines 94.88%.
   Typecheck, format and lint passed; the read-only report check verified all nine reports. Production build prerendered
   all 1243 routes. All eleven approved steps are complete, with a validated commit for each step.
+
+## Working aperture follow-up
+
+The subsequent user-reported Plena discrepancy led to [real-ray working aperture reporting](real-working-aperture.md).
+The working readout now uses exact marginal rays, while the paraxial value introduced in step 3 remains a separately
+labeled diagnostic. The follow-up preserves inferred physical-stop geometry and records patent evidence and validation.

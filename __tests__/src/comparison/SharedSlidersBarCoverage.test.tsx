@@ -315,6 +315,12 @@ describe("SharedSlidersBar", () => {
     expect(onSliderPointerUp).toHaveBeenCalledTimes(1);
   });
 
+  it("shows small differences and unavailable working cones in comparison", () => {
+    renderSharedSliders({ showEffectiveAperture: true, effectiveFNumA: 1.83256, effectiveFNumB: NaN });
+    expect(screen.getByText("A working f/1.83")).toBeTruthy();
+    expect(screen.getByText("B working unavailable")).toBeTruthy();
+  });
+
   it("renders and toggles effective aperture readouts", () => {
     const onToggleEffectiveAperture = vi.fn();
     renderSharedSliders({

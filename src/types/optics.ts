@@ -631,13 +631,15 @@ export interface ElementRenderDiagnostics {
   rear: SurfaceRenderDiagnostics;
 }
 
-/** Paraxial aperture measurements; null pupils include telecentric/infinite pupil planes. */
+/** Shared aperture report; pupil sizes and geometric f-number are explicitly paraxial. */
 export interface ApertureMetrics {
   geometricFNumber: number | null;
   workingFNumber: number | null;
+  paraxialWorkingFNumber: number | null;
+  objectDistanceMm: number;
   entrancePupilSemiDiameterMm: number | null;
   exitPupilSemiDiameterMm: number | null;
-  status: "paraxial" | "unsupported" | "degenerate";
+  status: "ok" | "unsupported" | "degenerate" | "failed" | "clipped";
 }
 
 export interface SensorIrradianceResult {

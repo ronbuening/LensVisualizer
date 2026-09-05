@@ -21,7 +21,9 @@ export interface OpticalSummaryMetrics2 {
   breathingPercent: number | null;
   effectiveFNumber: number | null;
   geometricFNumber: number | null;
-  apertureStatus: "paraxial" | "unsupported" | "degenerate";
+  paraxialWorkingFNumber: number | null;
+  apertureObjectDistanceMm: number;
+  apertureStatus: import("../../types/optics.js").ApertureMetrics["status"];
   entrancePupilDiameterMm: number | null;
   physicalStopDiameterMm: number | null;
   halfFieldDeg: number | null;
@@ -80,6 +82,8 @@ export function computeOpticalSummaryForState2(
     infinityEFLMm,
     breathingPercent,
     effectiveFNumber: aperture.workingFNumber,
+    paraxialWorkingFNumber: aperture.paraxialWorkingFNumber,
+    apertureObjectDistanceMm: aperture.objectDistanceMm,
     geometricFNumber: aperture.geometricFNumber,
     apertureStatus: aperture.status,
     entrancePupilDiameterMm,

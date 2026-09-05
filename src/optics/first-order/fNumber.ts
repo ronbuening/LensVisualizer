@@ -1,9 +1,9 @@
-/** Runtime compatibility wrapper for the current paraxial image-side working f-number. */
+/** Runtime compatibility wrapper for the current real-ray image-side working f-number. */
 import type { RuntimeLens } from "../../types/optics.js";
 import { prepareRuntimeState } from "../state/runtimeState.js";
 import { apertureMetricsForState, resolveApertureStop } from "./aperture.js";
 
-/** Return the paraxial working f-number, or NaN when this path has no supported image-side cone. */
+/** Return the real-ray working f-number, or NaN when this path has no supported image-side cone. */
 export function effectiveFNumber2(
   nominalFNumber: number,
   focusT: number,

@@ -28,6 +28,7 @@
  * @param {boolean}  props.isWide                  — true when viewport is desktop-width
  */
 
+import { formatAperture } from "../components/controls/apertureFormatting.js";
 import { formatSharedFocusDist, sharedFNumber } from "./comparisonSliders.js";
 import type { FocusPairResult, AperturePairResult, ZoomPairResult, MovementPairResult } from "./comparisonSliders.js";
 import { formatDist, eflAtZoom } from "../optics/optics.js";
@@ -370,8 +371,8 @@ export default function SharedSlidersBar({
         <SharedSliderSection
           theme={t}
           label="APERTURE"
-          valueLabel={`f/${fNum < 10 ? fNum.toFixed(1) : Math.round(fNum)}`}
-          minLabel={`f/${widerFOPEN.toFixed(1)}`}
+          valueLabel={formatAperture(fNum)}
+          minLabel={formatAperture(widerFOPEN)}
           maxLabel={`f/${sharedMaxFstop}`}
           sliderValue={sharedStopdownT}
           onSliderChange={onSharedStopdownChange}
@@ -390,27 +391,22 @@ export default function SharedSlidersBar({
           }
           footer={
             <>
-              {showEffectiveAperture &&
-                (Math.abs(effectiveFNumA - fNum) > 0.05 || Math.abs(effectiveFNumB - fNum) > 0.05) && (
-                  <div style={{ marginTop: 6, display: "flex", gap: 16, fontSize: 9, color: t.spacingVal }}>
-                    <span>
-                      A working f/
-                      {Number.isFinite(effectiveFNumA)
-                        ? effectiveFNumA < 10
-                          ? effectiveFNumA.toFixed(1)
-                          : Math.round(effectiveFNumA)
-                        : "unavailable"}
-                    </span>
-                    <span>
-                      B working f/
-                      {Number.isFinite(effectiveFNumB)
-                        ? effectiveFNumB < 10
-                          ? effectiveFNumB.toFixed(1)
-                          : Math.round(effectiveFNumB)
-                        : "unavailable"}
-                    </span>
-                  </div>
-                )}
+              {showEffectiveAperture && (
+                <div style={{ marginTop: 6, display: "flex", gap: 16, fontSize: 9, color: t.spacingVal }}>
+                  <span>
+                    A working{" "}
+                    {formatAperture(
+                      movementPair && (movementPair.shiftA !== 0 || movementPair.tiltA !== 0) ? null : effectiveFNumA,
+                    )}
+                  </span>
+                  <span>
+                    B working{" "}
+                    {formatAperture(
+                      movementPair && (movementPair.shiftB !== 0 || movementPair.tiltB !== 0) ? null : effectiveFNumB,
+                    )}
+                  </span>
+                </div>
+              )}
               <button
                 onClick={onToggleEffectiveAperture}
                 aria-pressed={showEffectiveAperture}
@@ -429,7 +425,7 @@ export default function SharedSlidersBar({
                 }}
               >
                 <span style={{ opacity: showEffectiveAperture ? 1 : 0.5 }}>
-                  {showEffectiveAperture ? "\u2611" : "\u2610"} Show working f-number (paraxial)
+                  {showEffectiveAperture ? "\u2611" : "\u2610"} Show working f-number (real rays)
                 </span>
               </button>
             </>

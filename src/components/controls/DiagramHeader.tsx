@@ -10,6 +10,7 @@
  * height measurement and alignment in comparison mode.
  */
 
+import { formatAperture } from "./apertureFormatting.js";
 import { forwardRef, memo } from "react";
 import InventorLinks from "../content/InventorLinks.js";
 import PatentNumberLink from "../content/PatentNumberLink.js";
@@ -262,7 +263,7 @@ const DiagramHeader = memo(
                 >
                   {L.isZoom && <span>{eflAtZoom(zoomT, L).toFixed(0)} mm</span>}
                   <span>{formatDist(focusT, L)}</span>
-                  <span>f/{fNumber < 10 ? fNumber.toFixed(1) : Math.round(fNumber)}</span>
+                  <span>{formatAperture(fNumber)}</span>
                   <span>{compactFocalReadout}</span>
                 </div>
               )}

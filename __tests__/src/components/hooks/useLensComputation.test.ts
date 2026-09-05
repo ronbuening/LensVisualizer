@@ -152,7 +152,9 @@ describe("useLensComputation", () => {
       r.currentEPSD,
       r.currentPhysStopSD,
     );
-    expect(summary.effectiveFNumber).toBeCloseTo(r.effectiveFNum, 10);
+    expect(summary.effectiveFNumber).toBeNull();
+    expect(summary.apertureStatus).toBe("failed");
+    expect(r.effectiveFNum).toBeNaN();
     expect(summary.entrancePupilDiameterMm).toBeCloseTo(r.currentEPSD * 2, 8);
   });
 
@@ -199,7 +201,7 @@ describe("useLensComputation", () => {
   it("computes effective f-number", () => {
     const { result } = renderHook(() =>
       useLensComputation({
-        lensKey: baseLensKey,
+        lensKey: "nikon-z-135f18-plena",
         focusT: 0,
         zoomT: 0,
         stopdownT: 0,
@@ -208,8 +210,8 @@ describe("useLensComputation", () => {
       }),
     );
     expect(result.current.effectiveFNum).toBeGreaterThan(0);
-    // At infinity focus, effective f-number ≈ geometric f-number
-    expect(result.current.effectiveFNum).toBeCloseTo(result.current.fNumber, 0);
+    expect(result.current.fNumber).toBe(1.85);
+    expect(result.current.effectiveFNum).toBeCloseTo(1.8325628709, 7);
   });
 
   it("generates a filterId from panelId", () => {
@@ -312,6 +314,7 @@ describe("useLensComputation", () => {
     const cameraPoint = context.pose.lensToCameraPoint(localPoint);
 
     expect(context.pose.active).toBe(true);
+    expect(moved.effectiveFNum).toBeNaN();
     expect(context.state.z).toEqual(moved.zPos);
     expect(context.sensorPlane.point[2]).toBeCloseTo(moved.IMG_MM, 12);
     expect(context.pose.tiltPivot).toEqual(moved.L!.perspectiveControl!.tiltPivot);

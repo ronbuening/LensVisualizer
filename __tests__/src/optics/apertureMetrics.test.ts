@@ -22,16 +22,26 @@ function thinLensState(imageDistance: number) {
 }
 
 describe("current-state aperture metrics", () => {
+  it("shares immutable reports while bounding retained iris settings", () => {
+    const state = prepareRuntimeState(buildSimplePositiveElementLens(), 0, 0);
+    const original = apertureMetricsForState(state, 1);
+    expect(apertureMetricsForState(state, 1)).toBe(original);
+    expect(Object.isFrozen(original)).toBe(true);
+    for (let i = 2; i <= 18; i++) apertureMetricsForState(state, i / 2);
+    const recalculated = apertureMetricsForState(state, 1);
+    expect(recalculated).not.toBe(original);
+    expect(recalculated).toEqual(original);
+    expect(apertureMetricsForState({ ...state }, 1)).not.toBe(recalculated);
+  });
   it.each([
     [100, 10],
     [200, 20],
   ])("gives the physical cone for an image at %s mm", (distance, expected) => {
     const metrics = apertureMetricsForState(thinLensState(distance), 5);
-    expect(metrics.workingFNumber).toBeCloseTo(expected, 10);
+    expect(metrics.paraxialWorkingFNumber).toBeCloseTo(expected, 10);
     expect(metrics.geometricFNumber).toBeCloseTo(10, 10);
     expect(metrics.entrancePupilSemiDiameterMm).toBe(5);
     expect(metrics.exitPupilSemiDiameterMm).toBe(5);
-    expect(metrics.status).toBe("paraxial");
   });
 
   it("uses the same working f-number in Summary and the runtime viewer helper", () => {
@@ -45,7 +55,7 @@ describe("current-state aperture metrics", () => {
         stop.stopSemiDiameterMm,
       );
       expect(summary.effectiveFNumber).toBeCloseTo(effectiveFNumber(stop.fNumber, focusT, 0, L), 10);
-      expect(summary.effectiveFNumber).toBeCloseTo(3.8892718835256, 9);
+      expect(summary.paraxialWorkingFNumber).toBeCloseTo(3.8892718835256, 9);
     }
   });
 
@@ -54,7 +64,7 @@ describe("current-state aperture metrics", () => {
     const immersed = { ...state, surfaces: state.surfaces.map((s, i) => (i === 2 ? { ...s, nd: 1.5 } : s)) };
     const metrics = apertureMetricsForState(immersed, 5);
     expect(metrics.geometricFNumber).toBeCloseTo(30, 10);
-    expect(metrics.workingFNumber).toBeCloseTo(20, 10);
+    expect(metrics.paraxialWorkingFNumber).toBeCloseTo(20, 10);
   });
 
   it("does not invent a finite cone for degenerate or folded paths", () => {

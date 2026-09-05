@@ -1,10 +1,11 @@
-/** Shared physical-stop mapping and paraxial aperture measurements at the actual image plane. */
+/** Shared physical-stop mapping, real-ray working aperture and paraxial diagnostics. */
 import type { ApertureMetrics, RuntimeLens } from "../../types/optics.js";
 import type { PreparedOpticalState } from "../types.js";
 import { normalizeControlT } from "../math/numerics.js";
 import { traceParaxialSurfaces2 } from "../math/paraxial.js";
 import { fopenAtZoom } from "../prescription/zoomMetadata.js";
 import { interpolateUniformSchedule } from "../math/uniformInterpolation.js";
+import { realWorkingApertureForState } from "../trace/workingFNumber.js";
 import { calculatedFocalLengthForState } from "./focusBreathing.js";
 
 export type { ApertureMetrics } from "../../types/optics.js";
@@ -24,15 +25,34 @@ export function resolveApertureStop(L: RuntimeLens, zoomT: number, markedFNumber
   return { fNumber, wideOpenFNumber, stopSemiDiameterMm: (wideOpenStop * referenceFNumber) / fNumber };
 }
 
+const apertureCache = new WeakMap<PreparedOpticalState, Map<number, ApertureMetrics>>();
+
+/** Share immutable aperture reports across viewer and analysis, retaining at most 16 iris settings per state. */
+export function apertureMetricsForState(state: PreparedOpticalState, stopSemiDiameterMm: number): ApertureMetrics {
+  let cache = apertureCache.get(state);
+  if (!cache) {
+    cache = new Map();
+    apertureCache.set(state, cache);
+  }
+  const cached = cache.get(stopSemiDiameterMm);
+  if (cached) return cached;
+  const result = Object.freeze(computeApertureMetrics(state, stopSemiDiameterMm));
+  if (cache.size >= 16) cache.delete(cache.keys().next().value!);
+  cache.set(stopSemiDiameterMm, result);
+  return result;
+}
+
 /**
  * Solve the axial ray that passes the physical stop rim and the image-plane center.
  * W = 1/(2 n' |u'|) is explicitly paraxial, using the actual image-side cone instead of a thin-lens distance estimate.
  * Apertures elsewhere and pupil aberration are not included in this first-order measurement.
  */
-export function apertureMetricsForState(state: PreparedOpticalState, stopSemiDiameterMm: number): ApertureMetrics {
+function computeApertureMetrics(state: PreparedOpticalState, stopSemiDiameterMm: number): ApertureMetrics {
   const empty = (status: ApertureMetrics["status"]): ApertureMetrics => ({
     geometricFNumber: null,
     workingFNumber: null,
+    paraxialWorkingFNumber: null,
+    objectDistanceMm: Infinity,
     entrancePupilSemiDiameterMm: null,
     exitPupilSemiDiameterMm: null,
     status,
@@ -53,7 +73,7 @@ export function apertureMetricsForState(state: PreparedOpticalState, stopSemiDia
   const geometricFNumber = efl !== null && Number.isFinite(ep) && ep > 0 ? Math.abs(efl) / (2 * ep) : null;
   const imageSlope = (stopSemiDiameterMm * (a.u * imageB - b.u * imageA)) / determinant;
   const numericalAperture = Math.abs(a.n * imageSlope);
-  const workingFNumber =
+  const paraxialWorkingFNumber =
     Number.isFinite(numericalAperture) && numericalAperture > 1e-12 ? 1 / (2 * numericalAperture) : null;
   // Invert the first-surface -> stop matrix to image the stop through the rear optics.
   const stopDet = stopA.y * stopB.u - stopB.y * stopA.u;
@@ -62,11 +82,14 @@ export function apertureMetricsForState(state: PreparedOpticalState, stopSemiDia
   const marginalY = (a.y * stopB.u - b.y * stopA.u) / stopDet;
   const marginalU = (a.u * stopB.u - b.u * stopA.u) / stopDet;
   const xp = Math.abs(stopSemiDiameterMm * (marginalY - (chiefY / chiefU) * marginalU));
+  const real = realWorkingApertureForState(state, stopSemiDiameterMm);
   return {
     geometricFNumber,
-    workingFNumber,
+    workingFNumber: real.fNumber,
+    paraxialWorkingFNumber,
+    objectDistanceMm: real.objectDistanceMm,
     exitPupilSemiDiameterMm: Number.isFinite(xp) && xp > 0 ? xp : null,
     entrancePupilSemiDiameterMm: Number.isFinite(ep) && ep > 0 ? ep : null,
-    status: workingFNumber === null ? "degenerate" : "paraxial",
+    status: real.status,
   };
 }

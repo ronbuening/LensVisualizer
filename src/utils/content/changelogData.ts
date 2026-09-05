@@ -32,7 +32,7 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-09-04",
     type: "fix",
-    summary: "Unified working f-number readouts using the current paraxial image-side cone",
+    summary: "Unified aperture readouts using real marginal rays with separate paraxial diagnostics",
   },
   {
     date: "2026-09-04",

@@ -9,6 +9,7 @@ Generated `readme.md` and `improvementsuggestions.md` files are intentionally om
 ```mermaid
 flowchart LR
   subgraph n_src_components_controls["src/components/controls"]
+    n_src_components_controls_src_components_controls_apertureFormatting_ts["apertureFormatting.ts"]
     n_src_components_controls_src_components_controls_CardinalControls_tsx["CardinalControls.tsx"]
     n_src_components_controls_src_components_controls_ChromaticControls_tsx["ChromaticControls.tsx"]
     n_src_components_controls_src_components_controls_CollapseButton_tsx["CollapseButton.tsx"]
@@ -75,20 +76,21 @@ flowchart LR
 
 ## Directory Overview
 
-- Direct source files: 10
+- Direct source files: 11
 - Direct subfolders: 0
-- Main outbound areas: src/types (16), src/utils/style (8), package:react (7), same folder (7), src/components/content (2), src/optics/optics.ts (2), src/optics/projection.ts (2), src/utils/featureFlags.ts (2), +7 more
+- Main outbound areas: src/types (16), same folder (9), src/utils/style (8), package:react (7), src/components/content (2), src/optics/optics.ts (2), src/optics/projection.ts (2), src/utils/featureFlags.ts (2), +7 more
 - External consumers: src/comparison, src/components/display, src/components/layout, src/pages/AuthorsIndexPage.tsx
 
 ## Files
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
+| `apertureFormatting.ts` | Aperture Formatting helper module | none | same folder (2), src/comparison, src/components/display | formatAperture |
 | `CardinalControls.tsx` | React component module | src/types, src/utils/style | src/components/layout (2), same folder | default, CardinalControls |
 | `ChromaticControls.tsx` | React component module | src/types (2), src/optics/chromatic, src/utils/style | same folder | default, ChromaticControls |
 | `CollapseButton.tsx` | React component module | package:react, src/types, src/utils/style | same folder (2), src/components/display (2) | default, CollapseButton |
-| `DiagramControls.tsx` | React component module | src/types (3), same folder (2), package:react, src/components/hooks, src/optics/groupMovement.ts, +4 more | src/components/layout | default, DiagramControls |
-| `DiagramHeader.tsx` | React component module | same folder (4), src/types (3), src/components/content (2), package:react, src/optics/optics.ts, +4 more | src/components/layout | default |
+| `DiagramControls.tsx` | React component module | same folder (3), src/types (3), package:react, src/components/hooks, src/optics/groupMovement.ts, +4 more | src/components/layout | default, DiagramControls |
+| `DiagramHeader.tsx` | React component module | same folder (5), src/types (3), src/components/content (2), package:react, src/optics/optics.ts, +4 more | src/components/layout | default |
 | `HelpTooltipButton.tsx` | React component module | package:react, package:react-dom, src/types | src/components/display | default, HelpTooltipButton |
 | `LensSelector.tsx` | React component module | package:react, src/components/layout, src/types, src/utils/style | src/components/layout, src/pages/AuthorsIndexPage.tsx | default, LensSelector |
 | `RayToggles.tsx` | React component module | src/types (2), package:react, src/utils/featureFlags.ts, src/utils/style | same folder | default, RayToggles |

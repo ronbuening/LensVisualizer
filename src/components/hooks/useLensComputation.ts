@@ -280,10 +280,10 @@ export default function useLensComputation({
     [L, focusT, zoomT, aberrationT],
   );
 
-  /* ── Effective f-number (bellows factor correction at close focus) ── */
+  /* ── Real-ray working f-number for supported centered optics ── */
   const effectiveFNum = useMemo(
-    () => (L ? effectiveFNumber(fNumber, focusT, zoomT, L, aberrationT) : fNumber),
-    [L, fNumber, focusT, zoomT, aberrationT],
+    () => (movement.active ? NaN : L ? effectiveFNumber(fNumber, focusT, zoomT, L, aberrationT) : fNumber),
+    [L, fNumber, focusT, zoomT, aberrationT, movement.active],
   );
 
   const filterId = `gl-${panelId}`;

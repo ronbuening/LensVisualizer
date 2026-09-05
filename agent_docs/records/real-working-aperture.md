@@ -34,5 +34,19 @@ working f-number to the selected value.
 
 ## 2. Shared reporting and controls
 
-Pending: route the viewer and Summary through the shared real-ray result, retain explicitly labeled paraxial
-diagnostics, preserve f/1.85 display precision, verify comparison and unavailable states, and run final gates.
+- Viewer, comparison and Summary now use the same real-ray working result. Retained explicitly labeled paraxial
+  working/geometric f-numbers and pupil diameters, and exposed the inferred source distance in Summary.
+- Preserved design-aperture hundredths, including the slider endpoint and quick selection. Removed the misleading
+  f/1.8 quick choice on a prescription whose actual minimum is f/1.85. Enabled working readouts show small
+  differences and unavailable states, with no numerical clamp or silent paraxial fallback.
+- Bounded shared report retention to 16 iris settings per prepared state. Active movement suppresses the centered
+  working value. Scalar PSF keeps its previous paraxial spacing heuristic and its independent convergence checks.
+- Retained analytic paraxial regressions. Exact-ray tests now check nonlinear stop-down behavior and explicit
+  clipping/failure states; broad assumptions that every rim trace succeeds or scales linearly are no longer valid.
+- Live localhost checks passed for the Plena at infinity, closest focus and f/8, and for Plena/Leica comparison.
+  Verified slider/Summary agreement, the separate paraxial label, the precise f/1.85 compact header and the shared
+  aperture controls; inspected the comparison layout visually.
+- Stage 2 gates passed: typecheck, formatting, lint, full normal tests and final full coverage (303 files / 2828 tests).
+  Final coverage: statements 92.21%, branches 83.79%, functions 93.94%, lines 94.90%; thresholds unchanged.
+  Production build prerendered all 1243 routes. Generated folder documentation is current; import cycles remain at
+  the original three. Both implementation stages are complete.

@@ -617,3 +617,18 @@ The Image Quality tab submits serializable jobs to `src/optics/workers/imageQual
 unmount terminate active work, and request ids reject stale messages. `computeImageQualityJob` remains the synchronous
 reference. Other analysis-job registry entries retain their synchronous APIs. Runtime adapters now share the bounded
 cache in `src/optics/state/runtimeState.ts`, and surface adapters share `src/optics/math/bracketedRoot.ts`.
+
+## Working aperture reporting
+
+`first-order/aperture.ts` owns the shared physical iris mapping and an immutable report cached for at most 16
+iris settings per prepared state. `workingFNumber` comes from exact marginal-ray aiming in
+`trace/workingFNumber.ts`; `paraxialWorkingFNumber`, geometric f-number and pupil diameters remain first-order
+diagnostics. The viewer, comparison helper and Summary use the same report. Image Quality retains the paraxial
+value only as its initial sensor-grid spacing heuristic; convergence is checked against the actual PSF.
+
+The baseline source is infinity. At finite focus, infer the source conjugate from the current prescription and
+sensor, independently of catalog distance labels; the marginal ray itself uses exact refraction. Explicit source
+distances are measured from the first vertex. Failed or clipped stop-edge rays return unavailable, and active
+perspective movement hides the centered working readout. No numerical clamp ties working f-number to the marked
+aperture, and no inferred stop geometry is changed to force agreement. See
+[the Plena source check and regression record](../records/real-working-aperture.md).

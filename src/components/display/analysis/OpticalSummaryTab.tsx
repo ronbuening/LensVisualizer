@@ -1,3 +1,4 @@
+import { formatAperture } from "../../controls/apertureFormatting.js";
 import { useMemo, type ReactNode } from "react";
 import { analysisJobsForState2 } from "../../../optics/compat.js";
 import { AnalysisMetricRow } from "./analysisUi.js";
@@ -114,14 +115,29 @@ export default function OpticalSummaryTab({
       </SummarySection>
 
       <SummarySection title="Aperture And Field" t={t}>
-        <AnalysisMetricRow label="Geometric f/#" value={formatFNumber(summary.geometricFNumber)} t={t} />
+        <AnalysisMetricRow label="Paraxial geometric f/#" value={formatFNumber(summary.geometricFNumber)} t={t} />
         <AnalysisMetricRow
           label="Working f/#"
-          value={formatFNumber(summary.effectiveFNumber)}
-          note={summary.apertureStatus === "paraxial" ? "paraxial image-side cone" : "unavailable"}
+          value={formatFNumber(perspectiveContext ? null : summary.effectiveFNumber)}
+          note={
+            perspectiveContext
+              ? "unavailable for active movement"
+              : summary.apertureStatus === "ok"
+                ? "real marginal-ray cone"
+                : `unavailable: ${summary.apertureStatus}`
+          }
           t={t}
         />
-        <AnalysisMetricRow label="Entrance pupil" value={formatMm(summary.entrancePupilDiameterMm)} t={t} />
+        <AnalysisMetricRow label="Paraxial working f/#" value={formatFNumber(summary.paraxialWorkingFNumber)} t={t} />
+        <AnalysisMetricRow
+          label="Working source"
+          value={
+            summary.apertureObjectDistanceMm === Infinity ? "Infinity" : formatMm(summary.apertureObjectDistanceMm)
+          }
+          note="from first vertex; finite source inferred from optical focus"
+          t={t}
+        />
+        <AnalysisMetricRow label="Paraxial entrance pupil" value={formatMm(summary.entrancePupilDiameterMm)} t={t} />
         <AnalysisMetricRow label="Physical stop" value={formatMm(summary.physicalStopDiameterMm)} t={t} />
         <AnalysisMetricRow label="Half field" value={formatDeg(summary.halfFieldDeg)} t={t} />
         <AnalysisMetricRow label="Full field" value={formatDeg(summary.fullFieldDeg)} t={t} />
@@ -196,7 +212,7 @@ function formatPivotBasis(basis: TiltPivot["basis"] | undefined): string {
 }
 
 function formatFNumber(value: number | null): string {
-  return value === null ? "n/a" : `f/${value.toFixed(2)}`;
+  return formatAperture(value);
 }
 
 function formatSignedPercent(value: number | null): string {

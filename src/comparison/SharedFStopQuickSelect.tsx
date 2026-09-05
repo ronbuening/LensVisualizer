@@ -27,9 +27,12 @@ export default function SharedFStopQuickSelect({
   currentFNumber,
   onSelect,
 }: SharedFStopQuickSelectProps) {
-  const quickStops = [...new Set([...fstopSeriesA, ...fstopSeriesB])]
-    .sort((a, b) => a - b)
-    .filter((value) => value >= widerFopen - 0.1 && value <= sharedMaxFstop);
+  const quickStops = [
+    widerFopen,
+    ...[...new Set([...fstopSeriesA, ...fstopSeriesB])]
+      .sort((a, b) => a - b)
+      .filter((value) => value > widerFopen + 1e-6 && value <= sharedMaxFstop),
+  ];
 
   return (
     <div style={QUICK_SELECT_STYLE}>
@@ -37,7 +40,7 @@ export default function SharedFStopQuickSelect({
         <button
           key={value}
           onClick={() => onSelect(value)}
-          aria-label={`Set aperture to f/${value}`}
+          aria-label={`Set aperture to f/${Number(value.toFixed(2))}`}
           style={{
             background: "none",
             border: "none",
@@ -49,7 +52,7 @@ export default function SharedFStopQuickSelect({
             transition: "opacity 0.15s",
           }}
         >
-          f/{value}
+          f/{Number(value.toFixed(2))}
         </button>
       ))}
     </div>

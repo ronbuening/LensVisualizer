@@ -14,6 +14,9 @@ function renderControls(
   L: RuntimeLens,
   options: {
     focusExpanded?: boolean;
+    effectiveFNum?: number;
+    showEffectiveAperture?: boolean;
+    apertureExpanded?: boolean;
     focusT?: number;
     dynamicEFL?: number;
     showEffectiveFocalLength?: boolean;
@@ -58,12 +61,12 @@ function renderControls(
         currentPhysStopSD={L.stopPhysSD}
         baseEPSD={L.EP.epSD}
         dynamicEFL={options.dynamicEFL ?? L.EFL}
-        effectiveFNum={L.FOPEN}
+        effectiveFNum={options.effectiveFNum ?? L.FOPEN}
         showEffectiveFocalLength={options.showEffectiveFocalLength ?? false}
         onToggleEffectiveFocalLength={callbacks.onToggleEffectiveFocalLength}
-        showEffectiveAperture={false}
+        showEffectiveAperture={options.showEffectiveAperture ?? false}
         onToggleEffectiveAperture={vi.fn()}
-        apertureExpanded={false}
+        apertureExpanded={options.apertureExpanded ?? false}
         onApertureExpandedChange={vi.fn()}
         onSliderPointerUp={callbacks.onSliderPointerUp}
         showSliders={true}
@@ -218,4 +221,18 @@ describe("DiagramControls", () => {
     fireEvent.click(within(zoomBox).getByText(/Show effective focal length/i));
     expect(callbacks.onToggleEffectiveFocalLength).toHaveBeenCalledTimes(1);
   });
+});
+
+it("preserves design aperture precision and labels the real working cone separately", () => {
+  const L = buildLens(LENS_CATALOG["nikon-z-135f18-plena"] as LensData);
+  renderControls(L, { effectiveFNum: 1.83256287, showEffectiveAperture: true, apertureExpanded: true });
+  expect(screen.getByText("f/1.85 (working f/1.83)")).toBeTruthy();
+  expect(screen.getByRole("button", { name: "Set aperture to f/1.85" })).toBeTruthy();
+  expect(screen.queryByRole("button", { name: "Set aperture to f/1.8" })).toBeNull();
+  expect(screen.getByText(/Show working f-number \(real rays\)/)).toBeTruthy();
+});
+it("shows unavailable working aperture even when the difference cannot be calculated", () => {
+  const L = buildLens(LENS_CATALOG["nikon-z-135f18-plena"] as LensData);
+  renderControls(L, { effectiveFNum: NaN, showEffectiveAperture: true });
+  expect(screen.getByText("f/1.85 (working unavailable)")).toBeTruthy();
 });

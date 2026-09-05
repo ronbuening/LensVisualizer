@@ -35,7 +35,7 @@ describe("real marginal-ray working aperture", () => {
     expect(result.status).toBe("ok");
     expect(result.fNumber).toBeCloseTo(1.8325628709, 7);
     expect(result.fNumber).toBeLessThan(1.85); // Never clamp a calculated cone to the marked setting.
-    expect(apertureMetricsForState(state, stop.stopSemiDiameterMm).workingFNumber).toBeCloseTo(1.7747155345, 8);
+    expect(apertureMetricsForState(state, stop.stopSemiDiameterMm).paraxialWorkingFNumber).toBeCloseTo(1.7747155345, 8);
     const stopped = realWorkingApertureForState(state, stop.stopSemiDiameterMm / 2);
     expect(stopped.fNumber).toBeGreaterThan(result.fNumber!);
     const close = realWorkingApertureForState(prepareRuntimeState(L, 1, 0), stop.stopSemiDiameterMm);

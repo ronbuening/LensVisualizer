@@ -134,12 +134,12 @@ describe("DiagramHeader", () => {
   });
 
   it("hides desktop controls and Flickr search in compact comparison headers", () => {
-    renderHeader({ compact: true, minHeaderHeight: 88 });
+    renderHeader({ compact: true, minHeaderHeight: 88, fNumber: 1.85 });
 
     expect(screen.queryByText("flickr ↗")).toBeNull();
     expect(screen.queryByRole("button", { name: "COLOR" })).toBeNull();
     expect(screen.getByText(/EFL \d+\.\d/)).toBeTruthy();
-    expect(screen.getByText("f/2.0")).toBeTruthy();
+    expect(screen.getByText("f/1.85")).toBeTruthy();
   });
 
   it("uses fisheye projection focal length in compact readouts", () => {

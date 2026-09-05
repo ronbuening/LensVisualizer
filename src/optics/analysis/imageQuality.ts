@@ -116,7 +116,7 @@ export function computeImageQuality(state: PreparedOpticalState, options: ImageQ
     size % 2 === 0
   )
     return unavailable("Sampling settings cannot be refined within the supported bounds.");
-  const workingFNumber = apertureMetricsForState(state, options.stopSemiDiameterMm).workingFNumber;
+  const workingFNumber = apertureMetricsForState(state, options.stopSemiDiameterMm).paraxialWorkingFNumber;
   const pitch =
     options.pixelPitchMm ??
     (workingFNumber === null
