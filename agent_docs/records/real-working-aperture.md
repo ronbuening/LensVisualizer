@@ -50,3 +50,17 @@ working f-number to the selected value.
   Final coverage: statements 92.21%, branches 83.79%, functions 93.94%, lines 94.90%; thresholds unchanged.
   Production build prerendered all 1243 routes. Generated folder documentation is current; import cycles remain at
   the original three. Both implementation stages are complete.
+
+## Catalog follow-up: continuous source (step 1)
+
+- Replaced the aperture-only absolute Gaussian conjugate with the same infinity-referenced real-ray sensitivity
+  used by diagram focus tracking. The signed inverse distance is defined at the first vertex. Removed the
+  small-focus cutoff and cached estimates by prepared state; no catalog distance is treated as optical evidence.
+- Failed estimates remain invalid and virtual sources stay signed. Explicit source distances still bypass
+  inference. Existing Plena infinity and physical-stop calibration remain unchanged; the earlier close-focus
+  numbers above describe the superseded absolute-conjugate implementation.
+- Added tight boundary regressions for Plena and both Sonnar 50mm designs, and source agreement with diagram rays.
+- Step 1 verification: typecheck, formatting, lint, 303 test files / 2832 tests, and coverage passed.
+  Coverage: statements 92.22%, branches 83.79%, functions 93.94%, lines 94.90%; floors unchanged.
+  Screening all 660 non-folded catalog models at zoom 0 found zero >0.5% boundary jumps and zero
+  valid-to-unavailable boundary transitions (previously 18 and 97). Same-setting defocus references are tested.

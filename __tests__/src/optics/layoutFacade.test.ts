@@ -77,7 +77,7 @@ describe("layout facade edge cases", () => {
 
     const value = effectiveFNumber(2, 1, 0, L);
     expect(Number.isFinite(value)).toBe(true);
-    expect(value).toBeGreaterThan(2);
+    expect(value).toBeCloseTo(effectiveFNumber(2, 1, 0, base), 12);
   });
 
   it("computes spherical and aspheric sag through the render helpers", () => {

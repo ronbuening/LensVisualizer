@@ -29,6 +29,7 @@ flowchart LR
   n_external_src_optics_math["src/optics/math"]
   n_external_src_types["src/types"]
   n_external_src_optics_constants_ts["src/optics/constants.ts"]
+  n_external_src_optics_field["src/optics/field"]
   n_external_src_optics_prescription["src/optics/prescription"]
   n_external_src_optics_spectralLines_ts["src/optics/spectralLines.ts"]
   n_external_src_optics_state["src/optics/state"]
@@ -37,20 +38,20 @@ flowchart LR
   n_src_optics_trace_src_optics_trace_pathPlanner_ts --> |2| n_external_src_optics_math
   n_src_optics_trace_src_optics_trace_spectralThroughput_ts --> |2| n_external_src_optics_math
   n_src_optics_trace_src_optics_trace_utils_ts --> |2| n_external_src_optics_math
-  n_src_optics_trace_src_optics_trace_workingFNumber_ts --> |2| n_external_src_optics_math
   n_src_optics_trace_src_optics_trace_opticalPath_ts --> |2| n_external_src_types
   n_src_optics_trace_src_optics_trace_encounterMedia_ts --> |2| n_src_optics_trace_src_optics_trace_types_ts
   n_src_optics_trace_src_optics_trace_rayAdapters_ts --> n_external_src_optics_constants_ts
   n_src_optics_trace_src_optics_trace_runtimeRayResult_ts --> n_external_src_optics_constants_ts
   n_src_optics_trace_src_optics_trace_sequentialTrace_ts --> n_external_src_optics_constants_ts
   n_src_optics_trace_src_optics_trace_spectralThroughput_ts --> n_external_src_optics_constants_ts
-  n_src_optics_trace_src_optics_trace_workingFNumber_ts --> n_external_src_optics_constants_ts
+  n_src_optics_trace_src_optics_trace_workingFNumber_ts --> n_external_src_optics_field
   n_src_optics_trace_src_optics_trace_bulkAbsorption_ts --> n_external_src_optics_math
   n_src_optics_trace_src_optics_trace_encounterMedia_ts --> n_external_src_optics_math
   n_src_optics_trace_src_optics_trace_generalizedTrace_ts --> n_external_src_optics_math
   n_src_optics_trace_src_optics_trace_rayAdapters_ts --> n_external_src_optics_math
   n_src_optics_trace_src_optics_trace_sequentialTrace_ts --> n_external_src_optics_math
   n_src_optics_trace_src_optics_trace_types_ts --> n_external_src_optics_math
+  n_src_optics_trace_src_optics_trace_workingFNumber_ts --> n_external_src_optics_math
   n_src_optics_trace_src_optics_trace_workingFNumber_ts --> n_external_src_optics_prescription
   n_src_optics_trace_src_optics_trace_bulkAbsorption_ts --> n_external_src_optics_spectralLines_ts
   n_src_optics_trace_src_optics_trace_rayAdapters_ts --> n_external_src_optics_state
@@ -76,7 +77,7 @@ flowchart LR
 
 - Direct source files: 16
 - Direct subfolders: 0
-- Main outbound areas: same folder (40), src/optics/math (16), src/optics/types.ts (14), src/types (14), src/optics/constants.ts (5), src/optics/prescription, src/optics/spectralLines.ts, src/optics/state
+- Main outbound areas: same folder (40), src/optics/math (15), src/optics/types.ts (14), src/types (14), src/optics/constants.ts (4), src/optics/field, src/optics/prescription, src/optics/spectralLines.ts, +1 more
 - External consumers: src/optics/aberration, src/optics/analysis, src/optics/chromatic, src/optics/compat.ts, src/optics/field, src/optics/first-order, src/optics/internal, src/optics/optics.ts, +2 more
 
 ## Files
@@ -98,4 +99,4 @@ flowchart LR
 | `stopTrace.ts` | Stop Trace helper module | same folder (4), src/optics/types.ts | src/optics/compat.ts, src/optics/field | StopTraceOptions, TraceToStopResult, traceToStopViaGeneralized2 |
 | `types.ts` | Shared TypeScript types | src/optics/math, src/optics/types.ts, src/types | same folder (10), src/optics/field, src/optics/perspective | TraceFailureReason, TraceHit, EngineTraceResult, TraceOptions, TraceDiagnosticsInput, MediumEncounterHit |
 | `utils.ts` | Utils helper module | same folder (2), src/optics/math (2), src/optics/types.ts, src/types | same folder (5), src/optics/perspective | sensorPointForTrace, directionSlopes, projectCoordinateToZ, normalizeTraceDirection, finalizeTraceResult, clampTraceCount, resolveReturnVertexIndex |
-| `workingFNumber.ts` | Working FNumber helper module | src/optics/math (2), same folder, src/optics/constants.ts, src/optics/prescription, src/optics/types.ts | src/optics/first-order | RealWorkingAperture, apertureObjectDistance, realWorkingApertureForState |
+| `workingFNumber.ts` | Working FNumber helper module | same folder, src/optics/field, src/optics/math, src/optics/prescription, src/optics/types.ts | src/optics/first-order | RealWorkingAperture, apertureObjectDistance, realWorkingApertureForState |

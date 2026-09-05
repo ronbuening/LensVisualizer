@@ -2,8 +2,7 @@
 import type { PreparedOpticalState, Ray3 } from "../types.js";
 import { conservativeAxialBounds } from "../prescription/geometryBounds.js";
 import { traceSequential } from "./sequentialTrace.js";
-import { traceParaxialSurfaces2 } from "../math/paraxial.js";
-import { FOCUS_INFINITY_THRESHOLD } from "../constants.js";
+import { conjugateK2 } from "../field/chiefRay.js";
 import { solveBracketedRoot } from "../math/bracketedRoot.js";
 
 export interface RealWorkingAperture {
@@ -14,18 +13,15 @@ export interface RealWorkingAperture {
   objectDistanceMm: number;
 }
 
-/** Infer the finite axial conjugate from current geometry, independently of marketing focus labels.
- * The baseline focus position retains the prescription's infinity source even when its sensor is
- * displaced slightly from Gaussian focus by the author's aberration balancing.
+/** Share the diagram's infinity-calibrated real-ray sensitivity estimate.
+ * K is incoming slope divided by height at the first vertex, so 1/K is the
+ * axial source distance from that vertex. Negative (virtual) sources stay signed.
+ * This is a focus-tracking estimate, not an absolute Gaussian conjugate or a
+ * catalog focus-distance measurement. Explicit source arguments bypass it.
  */
 export function apertureObjectDistance(state: PreparedOpticalState): number {
-  if (state.focusT < FOCUS_INFINITY_THRESHOLD) return Infinity;
-  const a = traceParaxialSurfaces2(state.surfaces, 1, 0, { skipLastTransfer: true });
-  const b = traceParaxialSurfaces2(state.surfaces, 0, 1, { skipLastTransfer: true });
-  const gap = state.imgZ - state.z[state.z.length - 1];
-  const imageA = a.y + gap * a.u;
-  const imageB = b.y + gap * b.u;
-  return Math.abs(imageA) < 1e-12 ? Infinity : -imageB / imageA;
+  const k = conjugateK2(state.focusT, state.zoomT, state.lens.runtime, state.aberrationT);
+  return k === 0 ? Infinity : 1 / k;
 }
 
 /**

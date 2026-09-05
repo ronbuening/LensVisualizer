@@ -43,7 +43,7 @@ const CHIEF_RAY_RESIDUAL_TOLERANCE = 1e-7;
 const OBJECT_PLANE_BRACKET_SCAN_SAMPLES = 96;
 const BOUNDING_SPHERE_BRACKET_SCAN_SAMPLES = 96;
 const CONJUGATE_REFERENCE_PUPIL_FRACTION = 0.1;
-const FOCUS_INFINITY_THRESHOLD = 0.0001;
+const conjugateCache = new WeakMap<PreparedOpticalState, number>();
 
 /** Entrance-pupil geometry for current focus/zoom state. */
 export interface EntrancePupilState2 {
@@ -802,16 +802,21 @@ export function entrancePupilAtState2(
  * @returns relative conjugate correction, zero at infinity focus
  */
 export function conjugateK2(focusT: number, zoomT: number, L: RuntimeLens, aberrationT = 0): number {
-  if (focusT < FOCUS_INFINITY_THRESHOLD) return 0;
+  if (focusT === 0) return 0;
+  const state = prepareRuntimeState(L, focusT, zoomT, aberrationT);
+  const cached = conjugateCache.get(state);
+  if (cached !== undefined) return cached;
   const du = 1e-5;
   const currentEP = entrancePupilAtState2(L.stopPhysSD, focusT, zoomT, L, undefined, aberrationT).epSD;
-  const infinityEP = entrancePupilAtState2(L.stopPhysSD, 0, zoomT, L, undefined, 0).epSD;
+  const infinityEP = entrancePupilAtState2(L.stopPhysSD, 0, zoomT, L, undefined, aberrationT).epSD;
   const yRefCurrent = currentEP * conjugateReferencePupilFraction2(L, currentEP);
   const yRefInfinity = infinityEP * conjugateReferencePupilFraction2(L, infinityEP);
   const kt = realK2(yRefCurrent, du, focusT, zoomT, L, aberrationT);
-  const k0 = realK2(yRefInfinity, du, 0, zoomT, L, 0);
-  if (Number.isNaN(kt) || Number.isNaN(k0)) return 0;
-  return kt - k0;
+  const k0 = realK2(yRefInfinity, du, 0, zoomT, L, aberrationT);
+  // Preserve failed estimates rather than silently relabeling them infinity.
+  const k = kt - k0;
+  conjugateCache.set(state, k);
+  return k;
 }
 
 function conjugateReferencePupilFraction2(L: RuntimeLens, entrancePupilSemiDiameter: number): number {

@@ -4,6 +4,10 @@ import { prepareRuntimeState } from "../../../src/optics/state/runtimeState.js";
 import { apertureObjectDistance, realWorkingApertureForState } from "../../../src/optics/trace/workingFNumber.js";
 import { apertureMetricsForState, resolveApertureStop } from "../../../src/optics/first-order/aperture.js";
 import { createFlatProfile } from "../../../src/optics/math/surfaceProfile.js";
+import { conjugateK } from "../../../src/optics/optics.js";
+import Sonnar from "../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
+import SonnarF2 from "../../../src/lens-data/carl-zeiss-jena/ZeissJenaSonnar50f2.data.js";
+import DefocusNikkor from "../../../src/lens-data/nikon/NikonAiAFDCNikkor105mmf2D.data.js";
 import Plena from "../../../src/lens-data/nikon/NikonZ135f18.data.js";
 
 function planeState() {
@@ -40,14 +44,37 @@ describe("real marginal-ray working aperture", () => {
     expect(stopped.fNumber).toBeGreaterThan(result.fNumber!);
     const close = realWorkingApertureForState(prepareRuntimeState(L, 1, 0), stop.stopSemiDiameterMm);
     expect(close.fNumber).toBeGreaterThan(result.fNumber!);
-    expect(close.objectDistanceMm).toBeCloseTo(663.839442869, 6);
+    expect(close.objectDistanceMm).toBeCloseTo(1 / conjugateK(1, 0, L), 8);
   });
   it("derives finite conjugates from geometry independently of marketing distance", () => {
     const L = build(Plena);
     const state = prepareRuntimeState(L, 1, 0);
     const changed = { ...state, lens: { ...state.lens, runtime: { ...L, closeFocusM: 999 } } };
     expect(apertureObjectDistance(changed)).toBe(apertureObjectDistance(state));
-    expect(apertureObjectDistance({ ...state, focusT: 0.001 })).toBe(Infinity);
+    expect(apertureObjectDistance(prepareRuntimeState(L, 0, 0))).toBe(Infinity);
+  });
+  it.each([Plena, Sonnar, SonnarF2])("keeps $name continuous through the former infinity cutoffs", (data) => {
+    const L = build(data);
+    const stop = resolveApertureStop(L, 0, 8).stopSemiDiameterMm;
+    for (const boundary of [0.0001, 0.003]) {
+      const before = prepareRuntimeState(L, boundary - 1e-8, 0);
+      const after = prepareRuntimeState(L, boundary + 1e-8, 0);
+      const a = realWorkingApertureForState(before, stop);
+      const b = realWorkingApertureForState(after, stop);
+      expect(a.status).toBe("ok");
+      expect(b.status).toBe("ok");
+      expect(Math.abs(a.fNumber! - b.fNumber!)).toBeLessThan(1e-6);
+      expect(1 / a.objectDistanceMm).toBeCloseTo(conjugateK(before.focusT, 0, L), 14);
+    }
+    expect(conjugateK(1e-8, 0, L)).not.toBe(0);
+    expect(Math.abs(conjugateK(1e-8, 0, L))).toBeLessThan(1e-8);
+  });
+  it("references infinity at the same zoom and aberration setting", () => {
+    const L = build(DefocusNikkor);
+    for (const aberrationT of [-1, 0, 1]) {
+      expect(conjugateK(0, 0, L, aberrationT)).toBe(0);
+      expect(Math.abs(conjugateK(1e-8, 0, L, aberrationT))).toBeLessThan(1e-8);
+    }
   });
   it("reports clipping using physical apertures without a drawing clearance", () => {
     const state = planeState();
