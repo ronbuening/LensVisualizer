@@ -5,6 +5,16 @@
 import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
+  {
+    name: "PBH23",
+    vendor: "Ohara",
+    polynomial: [3.0554324, -0.010867434, 0.038522891, 0.0030173971, -0.0002129474, 0.000024864803],
+    nd: 1.784702,
+    vd: 26.216753,
+    code6: "785262",
+    source:
+      "OHARA_260701.AGF, discontinued PBH23 row, formula 1 polynomial; official OHARA all-products catalog https://oharacorp.com/wp-content/uploads/catalogs/OHARA_260701_CATALOG.zip (accessed 2026-09-05).",
+  },
   /* Phase 46: exact Konica patent-coordinate coverage from OHARA's current
    * first-party BAL15Y datasheet.
    */
