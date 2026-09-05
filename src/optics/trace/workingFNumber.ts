@@ -59,15 +59,19 @@ export function realWorkingApertureForState(
     return empty("unsupported");
   if (!(objectDistanceMm > 0) || !Number.isFinite(stopSemiDiameterMm) || stopSemiDiameterMm <= 0)
     return empty("degenerate");
-  const bounds = conservativeAxialBounds(state);
+  // Only the first encountered surface constrains the input plane. Rear aspheres
+  // can have enormous conservative envelopes despite a modest physical sag.
+  const bounds = conservativeAxialBounds({ surfaces: state.surfaces.slice(0, 1) });
   if (!bounds) return empty("unsupported");
-  const launchZ = bounds.frontZ - 1;
-  const sourceGap = objectDistanceMm + launchZ - state.z[0];
-  if (sourceGap <= 0) return empty("unsupported");
+  // For a nearby source, launch at the source itself. Otherwise advance along
+  // the same ray to the first-surface enclosure, avoiding far-source cancellation.
+  const lead = Math.min(state.z[0] - bounds.frontZ + 1, objectDistanceMm);
+  const launchZ = state.z[0] - lead;
+  const inverseDistance = 1 / objectDistanceMm;
   const stopIndex = state.lens.stop.surfaceIndex;
   const rayAt = (height: number): Ray3 => ({
-    origin: [height, 0, launchZ],
-    direction: objectDistanceMm === Infinity ? [0, 0, 1] : [height, 0, sourceGap],
+    origin: [height * (1 - lead * inverseDistance), 0, launchZ],
+    direction: [height * inverseDistance, 0, 1],
   });
   const evaluate = (height: number) => {
     const trace = traceSequential(state, rayAt(height), { stopAt: stopIndex + 1 });

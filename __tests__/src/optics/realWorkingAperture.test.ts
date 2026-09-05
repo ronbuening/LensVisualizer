@@ -1,3 +1,17 @@
+import LaunchCase0 from "../../../src/lens-data/fujifilm/FujifilmGF23mmf4.data.js";
+import LaunchCase1 from "../../../src/lens-data/fujifilm/FujifilmGF30mmf56TS.data.js";
+import LaunchCase2 from "../../../src/lens-data/fujifilm/FujifilmGF3264mmf4.data.js";
+import LaunchCase3 from "../../../src/lens-data/fujifilm/FujifilmGF55mmf17.data.js";
+import LaunchCase4 from "../../../src/lens-data/fujifilm/FujifilmGFX100RF35mmf4.data.js";
+import LaunchCase5 from "../../../src/lens-data/fujifilm/FujifilmX10023mmf2.data.js";
+import LaunchCase6 from "../../../src/lens-data/fujifilm/FujifilmX100V23mmf2.data.js";
+import LaunchCase7 from "../../../src/lens-data/fujifilm/FujifilmX7018mmf28.data.js";
+import LaunchCase8 from "../../../src/lens-data/fujifilm/FujifilmXF23mmf14RLMWR.data.js";
+import LaunchCase9 from "../../../src/lens-data/fujifilm/FujifilmXF23mmf2RWR.data.js";
+import LaunchCase10 from "../../../src/lens-data/fujifilm/FujifilmXF35mmf14R.data.js";
+import LaunchCase11 from "../../../src/lens-data/laowa/Laowa15mmf4Macro.data.js";
+import LaunchCase12 from "../../../src/lens-data/panasonic/PanasonicLumixG25mmf17.data.js";
+import LaunchCase13 from "../../../src/lens-data/sigma/Sigma2845mmf18DN.data.js";
 import { describe, expect, it } from "vitest";
 import { build, buildSimplePositiveElementLens } from "./testLensFixtures.js";
 import { prepareRuntimeState } from "../../../src/optics/state/runtimeState.js";
@@ -75,6 +89,42 @@ describe("real marginal-ray working aperture", () => {
       expect(conjugateK(0, 0, L, aberrationT)).toBe(0);
       expect(Math.abs(conjugateK(1e-8, 0, L, aberrationT))).toBeLessThan(1e-8);
     }
+  });
+  it.each([
+    LaunchCase0,
+    LaunchCase1,
+    LaunchCase2,
+    LaunchCase3,
+    LaunchCase4,
+    LaunchCase5,
+    LaunchCase6,
+    LaunchCase7,
+    LaunchCase8,
+    LaunchCase9,
+    LaunchCase10,
+    LaunchCase11,
+    LaunchCase12,
+    LaunchCase13,
+  ])("traces $name close-focus sources despite loose rear-surface bounds", (data) => {
+    const L = build(data);
+    const state = prepareRuntimeState(L, 1, 0);
+    const stop = resolveApertureStop(L, 0, 8).stopSemiDiameterMm;
+    const result = realWorkingApertureForState(state, stop);
+    expect(result.status).toBe("ok");
+    expect(result.fNumber).toBeGreaterThan(0);
+    expect(Number.isFinite(result.fNumber)).toBe(true);
+  });
+  it("preserves a ray cone when the source is nearer than the default launch plane", () => {
+    const result = realWorkingApertureForState(planeState(), 0.1, 0.5);
+    expect(result.status).toBe("ok");
+    expect(result.fNumber).toBeCloseTo(Math.hypot(0.5, 0.1) / 0.2, 8);
+  });
+  it("keeps finite sources stable as they approach infinity", () => {
+    const L = build(Plena);
+    const state = prepareRuntimeState(L, 0, 0);
+    const stop = resolveApertureStop(L, 0, 8).stopSemiDiameterMm;
+    const infinity = realWorkingApertureForState(state, stop, Infinity);
+    expect(realWorkingApertureForState(state, stop, 1e14).fNumber).toBeCloseTo(infinity.fNumber!, 7);
   });
   it("reports clipping using physical apertures without a drawing clearance", () => {
     const state = planeState();

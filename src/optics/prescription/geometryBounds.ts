@@ -2,7 +2,7 @@
 import { ASPHERIC_POLYNOMIAL_TERMS } from "../../types/asphericSchema.js";
 import type { PreparedOpticalState } from "../types.js";
 
-export function conservativeAxialBounds(state: PreparedOpticalState) {
+export function conservativeAxialBounds(state: Pick<PreparedOpticalState, "surfaces">) {
   let frontZ = Infinity,
     rearZ = -Infinity,
     radius = 0;

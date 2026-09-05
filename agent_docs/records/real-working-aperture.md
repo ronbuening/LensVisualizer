@@ -64,3 +64,13 @@ working f-number to the selected value.
   Coverage: statements 92.22%, branches 83.79%, functions 93.94%, lines 94.90%; floors unchanged.
   Screening all 660 non-folded catalog models at zoom 0 found zero >0.5% boundary jumps and zero
   valid-to-unavailable boundary transitions (previously 18 and 97). Same-setting defocus references are tested.
+
+## Catalog follow-up: finite-source launch (step 2)
+
+- The first encountered surface now determines the axial launch enclosure. Finite rays begin at the source
+  when it is nearer than that enclosure; otherwise they advance along the same source ray to the enclosure.
+  Heights are parameterized at the first vertex, avoiding cancellation for very distant finite sources.
+- All 14 reproduced close-focus cases now trace at selected f/8. Added near-source analytic cone and
+  far-source infinity-limit checks. No lens rims, stop dimensions, or global wavefront bounds changed.
+- Step 2 verification: typecheck, formatting, lint, 303 files / 2848 tests, and coverage passed.
+  Coverage: statements 92.22%, branches 83.80%, functions 93.94%, lines 94.90%; floors unchanged.
