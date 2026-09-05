@@ -168,7 +168,8 @@ All trace/layout functions accept `zoomT`; prime lenses ignore it.
 
 `state/zoomReconstruction.ts` corrects the linear spacing estimate between stored zoom positions for ordinary centered
 zooms. Source positions remain exact. It infers rigid groups from changing air gaps in camera coordinates, leaves fixed
-groups fixed, and solves the smallest incremental group displacement satisfying two first-order targets: interpolated
+groups fixed, and weights incremental displacements by each group's source travel. This prevents small normalization
+drift from giving a nearly fixed group the same freedom as the main variator. The solve satisfies two first-order targets: interpolated
 source EFL and interpolated source infinity-focus residual. Thus existing source defocus is preserved rather than
 silently repaired. Air-gap limits preserve nonnegative vertex spacing and sampled rim clearance across authored focus
 positions. The inferred infinity correction is also added at close focus, retaining each authored focus stroke.

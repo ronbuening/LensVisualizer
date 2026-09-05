@@ -180,7 +180,11 @@ describe("2026-09-03 Nikon legacy-lens batch metadata", () => {
       expect.closeTo(15.984, 7),
       expect.closeTo(0, 8),
     ]);
-    expect(Math.max(...zoomProfile.series[2].samples.map(({ shiftMm }) => shiftMm))).toBeCloseTo(22.038, 7);
+    // The patent fixes the sampled middle position, not the precise extremum
+    // of the inferred cam curve between the published zoom states.
+    const middle = zoomProfile.series[2].samples.find(({ zoomT }) => zoomT === 0.5)!;
+    expect(middle.shiftMm).toBeCloseTo(22.038, 7);
+    expect(middle.shiftMm).toBeGreaterThan(zoomProfile.series[2].samples.at(-1)!.shiftMm);
 
     const runtime300 = runtimeLens(nikkor300);
     expect(getGroupMovementAvailability(runtime300)).toEqual({ focus: true, zoom: false, combined: false });

@@ -106,6 +106,10 @@ function solveZoom(lens: EngineLens, zoomT: number): Reconstruction {
   const movable = starts
     .map((start, group) => ({ start, group, travel: toZ[start] - fromZ[start] }))
     .filter((g) => Math.abs(g.travel) > 1e-7);
+  // Source travel is a mechanical prior: tiny normalization drift must not
+  // give a nearly fixed group the same freedom as the main variator.
+  const maxTravel = Math.max(...movable.map((g) => Math.abs(g.travel)));
+  const weights = movable.map((g) => Math.abs(g.travel) / maxTravel);
   if (movable.length < 2) return finish("unavailable");
   const gapMinimum = base.map(() => 0);
   for (const i of [...boundaries, count - 1]) {
@@ -179,7 +183,12 @@ function solveZoom(lens: EngineLens, zoomT: number): Reconstruction {
     // source focus residual. Active clearance constraints keep rigid groups apart.
     const rows = [jacobian.map((c) => c[0]), jacobian.map((c) => c[1])];
     const targets = value.error.map((e) => -e);
-    let step = minimumNormStep(rows, targets);
+    const solveStep = () =>
+      minimumNormStep(
+        rows.map((row) => row.map((v, i) => v * weights[i])),
+        targets,
+      )?.map((v, i) => v * weights[i]);
+    let step = solveStep();
     const active = new Set<number>();
     for (let constraint = 0; step && constraint < shifts.length; constraint++) {
       const predicted = gaps(shifts.map((x, i) => x + step![i]));
@@ -193,7 +202,7 @@ function solveZoom(lens: EngineLens, zoomT: number): Reconstruction {
       });
       rows.push(row);
       targets.push(gapMinimum[violation] - value.d[violation]);
-      step = minimumNormStep(rows, targets);
+      step = solveStep();
     }
     if (!step) break;
     const maxStep = Math.max(...step.map(Math.abs));

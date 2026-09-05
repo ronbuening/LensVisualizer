@@ -92,6 +92,22 @@ describe("shared inferred zoom motion", () => {
     expect(thick(L.stopIdx, 0, t, L)).toBe(state.surfaces[L.stopIdx].d);
   });
 
+  it("does not amplify small back-focus normalization drift into large group motion", () => {
+    const L = buildLens(Konica),
+      zoomT = 0.428;
+    const state = prepareRuntimeState(L, 0, zoomT);
+    const base = raw(state, 0, zoomT);
+    const left = raw(state, 0, 0),
+      right = raw(state, 0, 1);
+    const normalizationTravel = Math.abs(right.at(-1)! - left.at(-1)!);
+    expect(normalizationTravel).toBeLessThan(0.02);
+    // The front and rear assemblies are almost stationary in the source states.
+    // Their small numerical drift must not make them free compensators.
+    expect(Math.abs(state.surfaces.at(-1)!.d - base.at(-1)!)).toBeLessThan(normalizationTravel);
+    expect(Math.abs(state.imgZ - base.reduce((sum, d) => sum + d, 0))).toBeLessThan(normalizationTravel);
+    expect(apertureMetricsForState(state, L.stopPhysSD).workingFNumber).toBeCloseTo(4.02, 2);
+  });
+
   it("remains continuous on both sides of source zoom stations", () => {
     const L = buildLens(Tamron),
       count = L.zoomPositions!.length;

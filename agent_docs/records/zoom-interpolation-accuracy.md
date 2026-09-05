@@ -66,3 +66,36 @@ Typecheck, format, lint and full coverage passed: 308 files / 2,901 tests; cover
 Live local-browser checks confirmed the Konica intermediate readouts and the Nikon AF-S 28–300 at telephoto:
 calculated 290 mm, selected design f/5.96, real working f/5.93, full modeled stop diameter 20.05 mm, with modeled rim
 clipping explicitly reported.
+
+## Stage 4 — preserve nearly fixed groups
+
+Final browser review exposed a numerical modeling issue: tiny source back-focus normalization drift made nearly fixed
+groups eligible for the same correction magnitude as large-travel variators. The shared solver now weights incremental
+motion by each group's source travel. Exact stationary groups remain fixed; nearly stationary groups receive a strong
+motion constraint. This is an explicit inference from the source positions, with no lens-name exception or mechanical
+cam claim. A regression protects the Konica front/rear assemblies from amplified normalization drift. The Nikon 80–200
+source test pins the published middle position and reversal rather than assuming it is the exact maximum of an
+unpublished continuous cam curve.
+
+Final catalog checks: 225 zooms / 30,681 intermediate positions, zero reconstruction/clearance/continuity errors;
+maximum added focus error 3.75e-8 mm and EFL error 5.05e-8 mm. Working-aperture audit: 666 non-folded prescriptions /
+34,624 states, zero execution or shared-contract regressions (33,802 available, 438 failed, 160 degenerate, 224
+unsupported; 2,227 available reports separately identify rim clipping).
+
+Final quality gates: 308 files / 2,902 tests passed; typecheck, format and lint passed. Coverage: statements 92.31%,
+branches 83.90%, functions 94.02%, lines 94.93%, above the unchanged thresholds. Build and prerender passed for
+1,251 routes. Live local-browser verification of the original Konica zoom 0.428 case: slider 132 mm, calculated
+131.76 mm, selected f/4.0, working f/4.02, unchanged physical stop diameter 31.42 mm; reconstructed-motion note visible.
+
+Personal smoke checks:
+
+1. Konica UC 80–200 at infinity, approximately 132 mm: calculated EFL about 131.76 mm, working aperture about f/4.02.
+   Turning on the effective-focal-length display should not introduce a second focal value at infinity.
+2. Sweep several zooms through source and intermediate positions. Source positions stay exact; intermediate positions
+   show the reconstruction note. Watch the diagram and Motion plot for jumps or amplified motion in nearly fixed groups.
+3. Nikon AF-S 28–300 at telephoto, wide open: selected design f/5.96 and working about f/5.93, with a full modeled
+   20.05 mm stop diameter. Modeled surface clipping remains explicitly reported.
+4. On variable-aperture zooms, sweep wide open from wide to tele, then select a smaller aperture. Wide-open changes
+   should not themselves close the iris; stopping down should reduce it. Check single and comparison views.
+5. Move focus away from infinity and back. Calculated breathing can appear at close focus and should disappear at
+   infinity. Working f-number can differ from the selected design setting; unsupported or failed rays remain unavailable.
