@@ -281,6 +281,7 @@ const opticalSummary = {
   effectiveFNumber: 2.55,
   geometricFNumber: 2.5,
   apertureStatus: "ok",
+  apertureClippedSurfaceIndices: [],
   paraxialWorkingFNumber: 2.55,
   apertureObjectDistanceMm: Infinity,
   entrancePupilDiameterMm: 20,

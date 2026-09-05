@@ -6,9 +6,10 @@ import { conjugateK2 } from "../field/chiefRay.js";
 import { solveBracketedRoot } from "../math/bracketedRoot.js";
 
 export interface RealWorkingAperture {
-  status: "ok" | "unsupported" | "degenerate" | "failed" | "clipped";
+  status: "ok" | "unsupported" | "degenerate" | "failed";
   fNumber: number | null;
   numericalAperture: number | null;
+  clippedSurfaceIndices: readonly number[] | null;
   /** Axial source distance measured from the first vertex, in mm. */
   objectDistanceMm: number;
 }
@@ -27,8 +28,9 @@ export function apertureObjectDistance(state: PreparedOpticalState): number {
 /**
  * Aim a ray from the axial source at the stop rim, then use its exact outgoing cone:
  * Nw = 1/(2 n' sin(theta')). Uses prescription reference indices, not a coating/exposure model.
- * Other apertures are checked with no drawing margin. A clipped rim is explicitly unavailable;
- * it is never silently replaced by a smaller ray or a paraxial estimate.
+ * Conventional working f-number uses the stop-edge cone independently of other
+ * clear apertures. Record physical rim clipping separately, without drawing margins.
+ * Intersection/refraction failures never use extrapolated or paraxial substitute rays.
  */
 export function realWorkingApertureForState(
   state: PreparedOpticalState,
@@ -39,6 +41,7 @@ export function realWorkingApertureForState(
     status,
     fNumber: null,
     numericalAperture: null,
+    clippedSurfaceIndices: null,
     objectDistanceMm,
   });
   if (
@@ -119,10 +122,9 @@ export function realWorkingApertureForState(
   const trace = traceSequential(strictState, rayAt(solved.value.t), {
     checkSemiDiameter: true,
     stopSemiDiameter: stopSemiDiameterMm,
-    stopOnClip: true,
+    stopOnClip: false,
   });
   if (trace.failureReason) return empty("failed");
-  if (trace.status === "clipped") return empty("clipped");
   if (
     trace.terminalSurfaceIndex !== state.surfaces.length - 1 ||
     trace.terminalDirection[2] <= 0 ||
@@ -131,5 +133,13 @@ export function realWorkingApertureForState(
     return empty("unsupported");
   const numericalAperture = trace.finalMedium * Math.hypot(trace.terminalDirection[0], trace.terminalDirection[1]);
   if (!Number.isFinite(numericalAperture) || numericalAperture <= 1e-12) return empty("degenerate");
-  return { status: "ok", fNumber: 1 / (2 * numericalAperture), numericalAperture, objectDistanceMm };
+  return {
+    status: "ok",
+    fNumber: 1 / (2 * numericalAperture),
+    numericalAperture,
+    objectDistanceMm,
+    clippedSurfaceIndices: Object.freeze(
+      trace.hits.filter((hit) => hit.clipReason === "semi-diameter").map((hit) => hit.surfaceIndex),
+    ),
+  };
 }

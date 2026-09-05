@@ -56,6 +56,7 @@ function computeApertureMetrics(state: PreparedOpticalState, stopSemiDiameterMm:
     entrancePupilSemiDiameterMm: null,
     exitPupilSemiDiameterMm: null,
     status,
+    clippedSurfaceIndices: null,
   });
   if (state.lens.flags.isFoldedOptics) return empty("unsupported");
   if (!Number.isFinite(stopSemiDiameterMm) || stopSemiDiameterMm <= 0) return empty("degenerate");
@@ -91,5 +92,6 @@ function computeApertureMetrics(state: PreparedOpticalState, stopSemiDiameterMm:
     exitPupilSemiDiameterMm: Number.isFinite(xp) && xp > 0 ? xp : null,
     entrancePupilSemiDiameterMm: Number.isFinite(ep) && ep > 0 ? ep : null,
     status: real.status,
+    clippedSurfaceIndices: real.clippedSurfaceIndices,
   };
 }

@@ -74,3 +74,13 @@ working f-number to the selected value.
   far-source infinity-limit checks. No lens rims, stop dimensions, or global wavefront bounds changed.
 - Step 2 verification: typecheck, formatting, lint, 303 files / 2848 tests, and coverage passed.
   Coverage: statements 92.22%, branches 83.80%, functions 93.94%, lines 94.90%; floors unchanged.
+
+## Catalog follow-up: conventional cone and clipping (step 3)
+
+- A fully traceable stop-edge ray now reports conventional real working f-number even if another modeled clear
+  aperture clips it. The same exact trace records a frozen list of clipping surface indices. No extrapolated
+  surfaces, ghost refractions, or paraxial replacement rays are used. Failed intersections/refractions remain unavailable.
+- Summary and shared metrics carry clipping independently of numeric availability. Tests cover unchanged analytic
+  cones through a smaller clear aperture, a catalog rim, a cleared stopped-down ray, and an untraceable Sonnar rim.
+- Step 3 verification: typecheck, formatting, lint, 303 files / 2849 tests, and coverage passed.
+  Coverage: statements 92.22%, branches 83.80%, functions 93.94%, lines 94.90%; floors unchanged.

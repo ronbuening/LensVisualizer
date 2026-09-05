@@ -23,6 +23,7 @@ export interface OpticalSummaryMetrics2 {
   geometricFNumber: number | null;
   paraxialWorkingFNumber: number | null;
   apertureObjectDistanceMm: number;
+  apertureClippedSurfaceIndices: readonly number[] | null;
   apertureStatus: import("../../types/optics.js").ApertureMetrics["status"];
   entrancePupilDiameterMm: number | null;
   physicalStopDiameterMm: number | null;
@@ -86,6 +87,7 @@ export function computeOpticalSummaryForState2(
     apertureObjectDistanceMm: aperture.objectDistanceMm,
     geometricFNumber: aperture.geometricFNumber,
     apertureStatus: aperture.status,
+    apertureClippedSurfaceIndices: aperture.clippedSurfaceIndices,
     entrancePupilDiameterMm,
     physicalStopDiameterMm,
     halfFieldDeg,

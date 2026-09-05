@@ -21,6 +21,7 @@ import { createFlatProfile } from "../../../src/optics/math/surfaceProfile.js";
 import { conjugateK } from "../../../src/optics/optics.js";
 import Sonnar from "../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
 import SonnarF2 from "../../../src/lens-data/carl-zeiss-jena/ZeissJenaSonnar50f2.data.js";
+import ApoLanthar from "../../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.js";
 import DefocusNikkor from "../../../src/lens-data/nikon/NikonAiAFDCNikkor105mmf2D.data.js";
 import Plena from "../../../src/lens-data/nikon/NikonZ135f18.data.js";
 
@@ -129,7 +130,23 @@ describe("real marginal-ray working aperture", () => {
   it("reports clipping using physical apertures without a drawing clearance", () => {
     const state = planeState();
     state.surfaces[1] = { ...state.surfaces[1], sd: 2 };
-    expect(realWorkingApertureForState(state, 5, 100).status).toBe("clipped");
+    const result = realWorkingApertureForState(state, 5, 100);
+    expect(result.status).toBe("ok");
+    expect(result.clippedSurfaceIndices).toEqual([1]);
+    expect(result.fNumber).toBeCloseTo(realWorkingApertureForState(planeState(), 5, 100).fNumber!, 10);
+    expect(Object.isFrozen(result.clippedSurfaceIndices)).toBe(true);
+  });
+  it("retains a conventional working cone while diagnosing a catalog rim", () => {
+    const L = build(ApoLanthar);
+    const state = prepareRuntimeState(L, 0, 0);
+    const stop = resolveApertureStop(L, 0, L.FOPEN).stopSemiDiameterMm;
+    const open = apertureMetricsForState(state, stop);
+    expect(open.status).toBe("ok");
+    expect(open.workingFNumber).toBeGreaterThan(0);
+    expect(open.clippedSurfaceIndices).toContain(5);
+    expect(apertureMetricsForState(state, stop / 2).clippedSurfaceIndices).toEqual([]);
+    const sonn = build(Sonnar);
+    expect(realWorkingApertureForState(prepareRuntimeState(sonn, 0, 0), sonn.stopPhysSD).status).toBe("failed");
   });
   it("does not substitute a finite value for failed, unsupported or degenerate geometry", () => {
     const state = planeState();

@@ -771,7 +771,7 @@ describe("effectiveFNumber", () => {
     const L = buildLens({ ...LENS_DEFAULTS, ...ApoLantharRaw } as LensData);
     expect(effectiveFNumber(8.0, 0, 0, L)).toBeGreaterThan(effectiveFNumber(4.0, 0, 0, L));
     expect(effectiveFNumber(4.0, 0.001, 0, L)).toBeGreaterThan(0);
-    expect(effectiveFNumber(L.FOPEN, 0, 0, L)).toBeNaN(); // Physical apertures clip the stop-rim ray.
+    expect(effectiveFNumber(L.FOPEN, 0, 0, L)).toBeGreaterThan(0); // Clipping is reported separately.
   });
 
   it("returns higher effective f-number at close focus", () => {
@@ -793,7 +793,7 @@ describe("effectiveFNumber", () => {
   it("works with zoom lenses", () => {
     const L = buildLens({ ...LENS_DEFAULTS, ...NikkorZ70200Raw } as LensData);
     const effF = effectiveFNumber(4, 1, 0, L);
-    expect(effectiveFNumber(2.8, 1, 0, L)).toBeNaN(); // Wide-open marginal ray is clipped.
+    expect(effectiveFNumber(2.8, 1, 0, L)).toBeGreaterThan(0); // Conventional stop-edge cone.
     expect(effF).toBeGreaterThan(0);
     expect(effectiveFNumber(8, 1, 0, L)).toBeGreaterThan(effectiveFNumber(4, 1, 0, L));
     expect(isFinite(effF)).toBe(true);

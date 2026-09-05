@@ -639,7 +639,9 @@ export interface ApertureMetrics {
   objectDistanceMm: number;
   entrancePupilSemiDiameterMm: number | null;
   exitPupilSemiDiameterMm: number | null;
-  status: "ok" | "unsupported" | "degenerate" | "failed" | "clipped";
+  /** Zero-based physical surfaces clipping the stop-edge ray; null when not fully traced. */
+  clippedSurfaceIndices: readonly number[] | null;
+  status: "ok" | "unsupported" | "degenerate" | "failed";
 }
 
 export interface SensorIrradianceResult {
