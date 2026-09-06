@@ -20,3 +20,11 @@ Normalized assignee metadata to the catalog spelling `Canon Inc.` where needed. 
 ### Validation
 
 `audit:image-circle` and `audit:surface` pass. The full-catalog rendering diagnostics cover hidden SD trims and cross-gap collisions. Static outlines from the production SVG path builder were visually compared with the patent. A five-zoom/three-focus render-diagnostic sweep found no material trims. Browser access was unavailable; no live UI verification is claimed. See the batch record for final repository gates.
+
+## 2026-09-06 UTC — screenshot follow-up
+
+Rechecked Fig. 11 against the screenshot; retained published effective-diameter halves. Removed invented D-series cemented-pair callouts. L2/L3 now carry inferred UD/APD tags: Canon lists two UD elements plus one Hi-UD element, while these two patent rows uniquely have νd=81.5. The production-to-patent element mapping and supplier remain unconfirmed. The third Hi-UD member is not assigned without adequate placement evidence.
+
+Camera-fixed wide→tele: B1/B3/B4/B5/B6 move objectward; B2 moves imageward. B3/B5 travel together. The patent's late-tele B6 reversal is not numerically sampled by the three published stations and remains an acknowledged interpolation limitation. B6 is the source focus group, but finite-focus movement remains unavailable, rather than invented from production MFD.
+
+Surface/image-circle audits and the source-station, dispersion, and render-clearance regressions validate this follow-up; final repository gates are recorded in the batch record.

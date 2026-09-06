@@ -28,3 +28,13 @@ Normalized assignee metadata to the catalog spelling `Canon Inc.` where needed. 
 ### Validation
 
 `audit:image-circle` and `audit:surface` pass. The full-catalog rendering diagnostics cover hidden SD trims and cross-gap collisions. Static outlines from the production SVG path builder were visually compared with the patent. A five-zoom/three-focus render-diagnostic sweep found no material trims. Browser access was unavailable; no live UI verification is claimed. See the batch record for final repository gates.
+
+## 2026-09-06 UTC — screenshot follow-up
+
+Rechecked Fig. 1 against the screenshot and retained the enlarged L11/L12/L31 rims plus the validated central apertures. The numbered 24/27 cemented assemblies are genuine patent callouts and remain visible.
+
+Backfilled all five Example-1 θgF ratios from PDF pp. 12–13 as normal-line deviations: L11 −0.0043296; L21 −0.0069518; L22/L26 −0.0024254; L23 +0.0084492. Absolute spectral line indices remain unauthored. L23 receives a patent-backed APD tag and a dPgF-corrected Abbe model; its special SnO-rich candidate family has no defensible public Sellmeier identity. Strict catalog coverage remains 7/8.
+
+Camera-fixed L1 reverses at mid (+2.63 then −1.61 mm relative to wide), L2 moves objectward, L3 imageward. The independently moving stop is preserved. No finite-focus table is published and no focus travel is fabricated.
+
+Surface/image-circle audits and the source-station, dispersion, and render-clearance regressions validate this follow-up; final repository gates are recorded in the batch record.

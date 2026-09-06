@@ -25,3 +25,40 @@ Global coverage: 7,277/7,820 strict and 7,292/7,820 trusted surfaces, zero catal
 - Browser access was unavailable; static geometry review is not a live UI interaction check.
 
 Local patent PDFs remain unchanged and untracked. No production deployment or push was performed.
+
+## Screenshot follow-up — 2026-09-06 UTC
+
+Compared the six supplied site screenshots directly with the exact source figures listed in the per-lens audits. Refined EF 35mm S1/S2 to 25.2/25.2 mm, S5/S6 to 15.2/12.6 mm, Gis to 10.5/10.5 mm, and S18A/S19 to 11.9/11.9 mm. Rejected smaller central/cemented rims after exact-ray clipping, and rejected enlarging S3/S4 after cross-gap validation. Updated the final-asphere departure to −302.422 µm. Static production paths confirm the accepted outline changes; browser interaction remains unavailable.
+
+The other five lenses retain their reviewed SDs. Their published effective-diameter halves or already refined optical rims provide stronger evidence than contaminated automated readings. Removed synthetic J/C/D cemented-pair callouts from the diagrams while preserving cemented metadata. Source labels Lc, Gis, L5B / IS, and the G9 X numbered assemblies remain. Production display names, asphere counts, stop positions, group powers, and mount/format tags were reviewed and retained.
+
+Four UD-class elements now have inferred APD colors: EF 70-300mm E3, EF-S 18-135mm E2, and G3 X L2/L3. These reflect source coordinates plus Canon production counts, not confirmed production element numbers or suppliers. Canon sources: [70-300mm](https://global.canon/en/c-museum/product/ef459.html), [18-135mm](https://global.canon/en/c-museum/product/ef418.html), and [G3 X launch release](https://www.canon.com.hk/tc/corporate/press_release/pressReleaseDetails.do?prmid=11029). The G3 X's third, Hi-UD production element remains unassigned without sufficient placement evidence.
+
+G9 X Example 1 publishes five θgF values on PDF pp. 12–13. Converted all five to dPgF using the normal-line baseline, retaining patent authority over catalog curves at the violet channel. L23 now has a patent-backed APD tag and partial-dispersion-corrected Abbe model. No absolute line indices or full Sellmeier curve were invented.
+
+Further catalog investigation did not establish a safe new entry. The two EF-M 1.52996/55.8 media remain unidentified. [Polyanskiy's published ZEONEX E48R fit](https://refractiveindex.info/?shelf=other&book=ZeonexE48R&page=Sultanova) to [Sultanova et al. (2009)](https://przyrbwn.icm.edu.pl/APP/PDF/116/a116z442.pdf) has B1=1.2969, C1=0.011721 and evaluates to nd=1.53051594, νd=51.79195. It fails the patent-coordinate compatibility guard; no polymer assignment or replacement coefficients were introduced. G9 X L23's special high-dispersion glass remains without an identified public curve.
+
+### Travel review
+
+All shifts use a fixed image plane, positive imageward. Published source stations are preserved; intermediate and finite-focus reconstructions retain their existing status.
+
+| Lens | Zoom review | Near-focus direction |
+| --- | --- | --- |
+| EF 35mm | Fixed focal length; L1 fixed | L2 objectward |
+| EF 70-300mm II | L1/L3/L4/L5 objectward; L2a/L2b/L6 fixed within 0.01 mm table rounding | L5 imageward |
+| EF-M 15-45mm | L1 reverses at mid; L2/L3/L4 objectward; L5 fixed | L3 imageward |
+| EF-S 18-135mm | L2 reverses at mid; other groups objectward; L3/L5 linked | Negative L4 objectward |
+| G3 X | B2 imageward; other groups objectward; B3/B5 linked | B6 identified, travel unavailable |
+| G9 X | L1 reverses at mid; L2 objectward; L3 imageward; stop independent | Unavailable |
+
+EF-S Fig. 13 appears to transpose the L3/L4 printed labels relative to ¶0088 and the numerical order. Retained the positive-then-negative numerical sequence and the focus arrow next to the negative singlet, documenting the discrepancy. The G3 X drawing's late-tele B6 reversal lacks a numerical keyframe; three-station reconstruction cannot reproduce that small unsampled reversal. No invented keyframe was added.
+
+The screenshot follow-up adds no changelog entry and leaves the existing entry untouched.
+
+### Follow-up verification
+
+- Typecheck, Prettier format check, and ESLint passed.
+- Full Vitest run: 296 files / 2,747 tests passed, including four new source-station/dispersion/render regressions.
+- All six surface and image-circle audits passed; 90 sampled focus/zoom render states had zero hidden SD trims.
+- Glass reports regenerated: 8 files / 15 tests passed; output unchanged. Batch strict coverage remains 76/79, global strict/trusted 7,277/7,820 and 7,292/7,820, with zero catalog-coordinate mismatches. The report classifies dPgF-corrected Abbe dispersion as Abbe, so the G9 X improvement does not inflate coverage.
+- Production build passed and prerendered 1,260 routes, including sitemap and RSS generation. Existing chunk-size advisory only.

@@ -30,8 +30,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ is not source-published aperture data.                                     ║
  * ║                                                                            ║
  * ║ Example 1 publishes nd, νd, and selected θgF, but not absolute nC/nF/ng or ║
- * ║ dPgF. θgF is not dPgF; those optional spectral fields are therefore not     ║
- * ║ invented here. Catalog names below are coordinate equivalents/classes, not  ║
+ * ║ dPgF. Published θgF is converted using dPgF = θgF − (0.6438 − 0.001682νd). ║
+ * ║ Absolute line indices remain unauthored. Catalog labels are proxies, not   ║
  * ║ claims of Canon procurement identity.                                      ║
  * ╚══════════════════════════════════════════════════════════════════════════════╝
  *
@@ -80,6 +80,8 @@ const LENS_DATA = {
       type: "Biconcave Negative (2× Asph)",
       nd: 1.88202,
       vd: 37.2,
+      // Example 1: θgF = 0.5769; deviation from the Schott normal line.
+      dPgF: 0.5769 - (0.6438 - 0.001682 * 37.2),
       fl: -11.915422131010626,
       glass: "M-TAFD307 (coordinate-compatible spectral proxy; production supplier unspecified)",
       apd: false,
@@ -106,6 +108,8 @@ const LENS_DATA = {
       type: "Positive Meniscus (2× Asph)",
       nd: 1.85135,
       vd: 40.1,
+      // Example 1: θgF = 0.5694; deviation from the Schott normal line.
+      dPgF: 0.5694 - (0.6438 - 0.001682 * 40.1),
       fl: 13.656939131099804,
       glass: "TAFD305 class (HOYA MP/MC-TAFD305 coordinate equivalent; vendor unproven)",
       apd: false,
@@ -119,6 +123,8 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.91082,
       vd: 35.3,
+      // Example 1: θgF = 0.582; deviation from the Schott normal line.
+      dPgF: 0.582 - (0.6438 - 0.001682 * 35.3),
       fl: 14.650049860248473,
       glass: "TAFD35 class (HOYA TAFD35 coordinate equivalent; vendor unproven)",
       apd: false,
@@ -133,9 +139,12 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.8466,
       vd: 20.6,
+      // Example 1: θgF = 0.6176; deviation from the Schott normal line.
+      dPgF: 0.6176 - (0.6438 - 0.001682 * 20.6),
       fl: -8.141762024117629,
       glass: "Unmatched (special high-dispersion glass; patent points to an SnO-rich JP2012-193065 class)",
-      apd: false,
+      apd: "patent",
+      apdNote: "Example 1 publishes θgF = 0.6176 at νd = 20.6 (ΔPgF = +0.0084492); paragraphs 0051–0052 constrain this special negative glass. No commercial supplier is identified.",
       role: "High-dispersion negative member G2n of cemented doublet 24.",
       cemented: "D24",
     },
@@ -161,6 +170,8 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.91082,
       vd: 35.3,
+      // Example 1: θgF = 0.582; deviation from the Schott normal line.
+      dPgF: 0.582 - (0.6438 - 0.001682 * 35.3),
       fl: 16.407487067032825,
       glass: "TAFD35 class (HOYA TAFD35 coordinate equivalent; vendor unproven)",
       apd: false,

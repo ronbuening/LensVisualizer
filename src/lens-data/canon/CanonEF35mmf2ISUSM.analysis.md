@@ -69,7 +69,7 @@ Because E3 moves with the complete L2 unit during focus, its separations to E4 a
 
 E4 is one of the strongest positive standalone elements in the design. It follows the negative E3 and precedes the supplementary cemented pair Lc. The patent's architecture requires a positive lens in this position before Lc and the aperture diaphragm (¶0033).
 
-E4's high refractive index allows substantial positive power in a short axial thickness. The data do not assign a vendor glass, and no vendor-specific dispersion model is implied by the 883408 coordinate label.
+E4's high refractive index allows substantial positive power in a short axial thickness. The data do not assign a vendor glass, and the 883408 coordinate label resolves to a catalog-equivalent dispersion curve without identifying the production supplier.
 
 ### E5/E6 — Cemented Lc: Positive Meniscus + Biconcave Negative
 
@@ -175,7 +175,7 @@ The patent's `k` maps directly to the standard conic constant `K`; therefore `K 
 
 A10 and A12 are not tabulated for Example 1 and are represented as zero; A14 is the schema-required zero term beyond the published polynomial. No uniform scale was applied (`s = 1.000000`), so the patent radii, spacings, image-plane coordinates, and asphere coefficients remain unscaled. Consequently, no `A_p/s^(p-1)` coefficient transformation is required, and K remains unchanged.
 
-The patent does not publish clear apertures or semi-diameters. S18A's authored `sd = 14.5 mm` is therefore a validated modeling inference, not a source dimension. At that semi-diameter the verified polynomial departure is **−0.695614 mm** from the K=0 spherical base, and the actual modeled rim-slope angle is 20.187°.
+The patent does not publish clear apertures or semi-diameters. S18A's authored `sd = 11.9 mm` is therefore a validated modeling inference, not a source dimension. At that semi-diameter the verified polynomial departure is **−0.302422 mm** from the K=0 spherical base, and the actual modeled rim-slope angle is 13.255°.
 
 The dominant negative A4 term drives the rim toward more negative sag relative to the spherical base; the positive A6 term partially offsets that change and the negative A8 term reinforces it at higher radial order. The patent links the final positive asphere to reduced sagittal image-plane tilt at the periphery (¶0049). Canon identifies the production lens's single asphere as glass-molded, but does not publish the production asphere coefficients on its product page.
 
@@ -213,7 +213,7 @@ Surface-by-surface Petzval evaluation using `φ/(n·n′)` gives a sum of **0.00
 
 The patent publishes the location of the aperture diaphragm as S12 but does not publish its diameter. The authored physical stop semi-diameter, **9.767427 mm**, is inferred from the verified F2.05 pupil geometry. The patent likewise publishes no surface semi-diameters. All authored `sd` values are model-derived from the stop/pupil solution, exact meridional ray envelopes, the patent's 21.64 mm image height and 32.10° half field, the reconstructed 0.24 m state, and Fig. 1 proportions.
 
-Those modeled apertures were checked at infinity and at the reconstructed close-focus state. The worst verified element edge thickness is 0.284133 mm, the maximum actual rim angle is 48.150°, the smallest margin to the current shared-band cross-gap policy is 0.082834 mm, and the minimum tested representative exact-ray semi-diameter margin is 0.256738 mm. These values validate the authored apertures; they are not patent clear-aperture specifications.
+The screenshot-led 600-dpi Fig. 1 review refined S1/S2 to 25.2 mm, S5/S6 to 15.2/12.6 mm, Gis to 10.5 mm, and S18A/S19 to 11.9 mm. The front meniscus and final asphere now have level rims closer to the drawing. S5/S6 excludes the drawn mounting flange. Smaller central and rear cemented-pair rims were rejected because they clipped rays, including at the internal cemented interface. The retained apertures pass surface validation, image-circle coverage, and render diagnostics through infinity/close focus. The default infinity 0.6-field, ±0.75-pupil fan remains clear; full-field vignetting is still possible. These are modeling apertures, not patent clear-aperture specifications.
 
 No sensor cover glass, filter, inactive dummy plane, flare cutter, blocker, mirror, or other mechanical plane appears in the Example-1 numerical prescription, so no such optical plate was omitted or replaced by an air-equivalent spacing. No patent numerical value was corrected. Machine-extracted text contains OCR defects, but the modeled values correspond to the rendered source table rather than to those OCR errors.
 

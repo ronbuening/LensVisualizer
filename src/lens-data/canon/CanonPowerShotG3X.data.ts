@@ -95,6 +95,8 @@ const LENS_DATA = {
       vd: 81.5,
       fl: 93.598338,
       glass: "S-FPL51 (coordinate-compatible spectral proxy; production supplier unspecified)",
+      apd: "inferred",
+      apdNote: "UD-class assignment inferred from the patent 1.49700/81.5 coordinate and Canon production UD count; neither the production element number nor supplier is confirmed.",
       role: "Positive member of the B1 front cemented pair.",
       cemented: "D1",
     },
@@ -107,6 +109,8 @@ const LENS_DATA = {
       vd: 81.5,
       fl: 106.805221,
       glass: "S-FPL51 (coordinate-compatible spectral proxy; production supplier unspecified)",
+      apd: "inferred",
+      apdNote: "UD-class assignment inferred from the patent 1.49700/81.5 coordinate and Canon production UD count; neither the production element number nor supplier is confirmed.",
       role: "Rear positive singlet of B1.",
     },
     {
@@ -423,13 +427,7 @@ const LENS_DATA = {
     { text: "B5", fromSurface: "24", toSurface: "30" },
     { text: "B6 (FOCUS)", fromSurface: "31A", toSurface: "33" },
   ],
-  doublets: [
-    { text: "D1", fromSurface: "1", toSurface: "3" },
-    { text: "D2", fromSurface: "15", toSurface: "17" },
-    { text: "D3", fromSurface: "21A", toSurface: "23" },
-    { text: "D4", fromSurface: "26", toSurface: "28" },
-    { text: "D5", fromSurface: "31A", toSurface: "33" },
-  ],
+  doublets: [],
 
   /* ── Focus configuration ── */
   closeFocusM: 0.05,

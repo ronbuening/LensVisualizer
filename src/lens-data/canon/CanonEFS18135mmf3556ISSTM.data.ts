@@ -90,6 +90,8 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 116.09107434609513,
       glass: "497816 — ED fluorophosphate class",
+      apd: "inferred",
+      apdNote: "UD-class assignment inferred from the patent 1.49700/81.5 coordinate and Canon production UD count; neither the production element number nor supplier is confirmed.",
       cemented: "C1",
       role: "Low-dispersion positive partner in the front cemented pair.",
     },
@@ -371,16 +373,10 @@ const LENS_DATA = {
     { text: "L2 (−)", fromSurface: "7", toSurface: "13" },
     { text: "L3 (+)", fromSurface: "14", toSurface: "15" },
     { text: "L4 (− / FOCUS)", fromSurface: "16", toSurface: "17" },
-    { text: "L5 (+; L5B IS)", fromSurface: "18", toSurface: "26" },
+    { text: "L5 (+)", fromSurface: "18", toSurface: "26" },
     { text: "L6 (+)", fromSurface: "27A", toSurface: "29" },
   ],
-  doublets: [
-    { text: "C1", fromSurface: "2", toSurface: "4" },
-    { text: "C2", fromSurface: "11", toSurface: "13" },
-    { text: "C3", fromSurface: "21", toSurface: "23" },
-    { text: "C4 / L5B", fromSurface: "24", toSurface: "26" },
-    { text: "C5 / L6", fromSurface: "27A", toSurface: "29" },
-  ],
+  doublets: [{ text: "L5B / IS", fromSurface: "24", toSurface: "26" }],
 
   closeFocusM: 0.39,
   focusDescription:

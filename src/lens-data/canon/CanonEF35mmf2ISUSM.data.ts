@@ -21,9 +21,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  Semi-diameters are not published. They are modeling inferences derived  ║
  * ║  from the f/2.05 stop/pupil solution, exact meridional ray envelopes at  ║
  * ║  infinity and close focus, the published 21.64 mm image height, and Fig. ║
- * ║  1 proportions. S15 is intentionally smaller than the cemented S16/S17  ║
- * ║  junction band so high-field vignetting occurs at an external face       ║
- * ║  rather than inside the cemented pair.                                   ║
+ * ║  1 optical rims (600-dpi review). Larger central/cemented rims retain    ║
+ * ║  ray clearance; these source-unpublished apertures remain inferences.   ║
  * ║                                                                            ║
  * ║  Glass labels are conservative six-digit/code-family identifiers. The    ║
  * ║  patent gives nd/vd only and does not identify vendors; no nC/nF/ng or   ║
@@ -179,25 +178,25 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 107.841, d: 2, nd: 1.48749, elemId: 1, sd: 25.5 },
-    { label: "2", R: 36.325, d: 3.37, nd: 1, elemId: 0, sd: 21 },
+    { label: "1", R: 107.841, d: 2, nd: 1.48749, elemId: 1, sd: 25.2 },
+    { label: "2", R: 36.325, d: 3.37, nd: 1, elemId: 0, sd: 25.2 },
     { label: "3", R: 60.9, d: 4.53, nd: 1.7725, elemId: 2, sd: 21 },
     { label: "4", R: 253.393, d: 9.91, nd: 1, elemId: 0, sd: 21 },
-    { label: "5", R: 478.362, d: 1.5, nd: 1.58144, elemId: 3, sd: 16.4 },
-    { label: "6", R: 19.063, d: 9.05, nd: 1, elemId: 0, sd: 14.2 },
+    { label: "5", R: 478.362, d: 1.5, nd: 1.58144, elemId: 3, sd: 15.2 },
+    { label: "6", R: 19.063, d: 9.05, nd: 1, elemId: 0, sd: 12.6 },
     { label: "7", R: 32.422, d: 4.55, nd: 1.883, elemId: 4, sd: 14.1 },
     { label: "8", R: -98.623, d: 3.98, nd: 1, elemId: 0, sd: 14.1 },
     { label: "9", R: -54.46, d: 3.64, nd: 1.883, elemId: 5, sd: 13 },
     { label: "10", R: -20.463, d: 1, nd: 1.61293, elemId: 6, sd: 13 },
     { label: "11", R: 63.422, d: 3.24, nd: 1, elemId: 0, sd: 11.2 },
     { label: "STO", R: 1e15, d: 2.68, nd: 1, elemId: 0, sd: 9.767426625218043 },
-    { label: "13", R: 69.18, d: 2.29, nd: 1.6968, elemId: 7, sd: 11.1 },
-    { label: "14", R: -128.073, d: 5.46, nd: 1, elemId: 0, sd: 11.1 },
+    { label: "13", R: 69.18, d: 2.29, nd: 1.6968, elemId: 7, sd: 10.5 },
+    { label: "14", R: -128.073, d: 5.46, nd: 1, elemId: 0, sd: 10.5 },
     { label: "15", R: -15.746, d: 0.95, nd: 1.738, elemId: 8, sd: 10.5 },
     { label: "16", R: -131.434, d: 4.37, nd: 1.59522, elemId: 9, sd: 12.2 },
     { label: "17", R: -18.862, d: 0.2, nd: 1, elemId: 0, sd: 12.4 },
-    { label: "18A", R: -91.82, d: 3.48, nd: 1.58313, elemId: 10, sd: 14.5 },
-    { label: "19", R: -23.365, d: 38.3, nd: 1, elemId: 0, sd: 14.5 },
+    { label: "18A", R: -91.82, d: 3.48, nd: 1.58313, elemId: 10, sd: 11.9 },
+    { label: "19", R: -23.365, d: 38.3, nd: 1, elemId: 0, sd: 11.9 },
   ],
 
   asph: {
@@ -224,11 +223,10 @@ const LENS_DATA = {
   groups: [
     { text: "L1 (FIXED)", fromSurface: "1", toSurface: "4" },
     { text: "L2 (FOCUS)", fromSurface: "5", toSurface: "19" },
-    { text: "Gis", fromSurface: "13", toSurface: "14" },
   ],
   doublets: [
     { text: "Lc", fromSurface: "9", toSurface: "11" },
-    { text: "J2", fromSurface: "15", toSurface: "17" },
+    { text: "Gis", fromSurface: "13", toSurface: "14" },
   ],
 
   closeFocusM: 0.24,

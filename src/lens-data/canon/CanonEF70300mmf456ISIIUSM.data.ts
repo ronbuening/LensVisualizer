@@ -90,6 +90,8 @@ const LENS_DATA = {
       vd: 81.5,
       fl: 141.266842,
       glass: "S-FPL51 (coordinate-compatible OHARA spectral proxy; production supplier unspecified)",
+      apd: "inferred",
+      apdNote: "UD-class assignment inferred from the patent 1.49700/81.5 coordinate and Canon production UD count; neither the production element number nor supplier is confirmed.",
       cemented: "J1",
     },
     {
@@ -323,13 +325,7 @@ const LENS_DATA = {
     { text: "L5 (- / FOCUS)", fromSurface: "26", toSurface: "28" },
     { text: "L6 (-)", fromSurface: "29", toSurface: "30" },
   ],
-  doublets: [
-    { text: "J1", fromSurface: "3", toSurface: "5" },
-    { text: "J2", fromSurface: "6", toSurface: "8" },
-    { text: "J3", fromSurface: "9", toSurface: "11" },
-    { text: "J4", fromSurface: "17", toSurface: "19" },
-    { text: "J5", fromSurface: "26", toSurface: "28" },
-  ],
+  doublets: [],
 
   focusDescription:
     "CONSTRAINED_RECONSTRUCTION: the patent publishes infinity-focus zoom states only. Close focus at 1.2 m is a code-solved L5-only imageward translation constrained to conserve D25 + D28 at each zoom position; L5 travel is +2.287968 / +4.496202 / +12.930456 mm at 72 / 144 / 290 mm.",

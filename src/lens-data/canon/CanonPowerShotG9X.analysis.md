@@ -33,7 +33,7 @@ The patent states that L2 performs the principal zooming action, L1 compensates 
 
 L11 is the negative front element of L1 and carries aspherical surfaces 1A and 2A. The patent identifies the corresponding lens 11 as the negative member G1n and states that both of its surfaces are aspherical (¶0049). Its large negative standalone power is moderated in the assembled first zoom group by the following positive meniscus L12.
 
-The patent's chromatic discussion assigns L11 a role beyond simple negative power. It uses the difference in Abbe number between the two L1 elements to control primary axial chromatic aberration at the telephoto end and lateral chromatic aberration at the wide end, while its specified partial-dispersion ratio participates in secondary-spectrum correction (¶0050). The data does not label L11 as an anomalous-partial-dispersion glass because no `dPgF` or absolute line indices are published for this element.
+The patent's chromatic discussion assigns L11 a role beyond simple negative power. It uses the difference in Abbe number between the two L1 elements to control primary axial chromatic aberration at the telephoto end and lateral chromatic aberration at the wide end, while its specified partial-dispersion ratio participates in secondary-spectrum correction (¶0050). Its published θgF = 0.5769 is retained through a derived `dPgF = −0.0043296`. This small normal-line deviation alone is not used to assign an APD diagram tag.
 
 ### L12 — Positive Meniscus
 
@@ -105,7 +105,7 @@ The data uses catalog-equivalent class labels only where the stored nd/νd coord
 | L25 | 699301 class | 1.69895 | 30.1 | Multiple catalog equivalents; vendor unproven |
 | L31 | BACD15 class | 1.62263 | 58.2 | HOYA MP-BACD15 coordinate equivalent; vendor unproven |
 
-Example 1 publishes nd and νd for every element and θgF for selected elements. It does not publish absolute nC, nF, or ng values, and θgF is not the anomalous-partial-dispersion deviation `dPgF`. Consequently the data file contains no authored nC, nF, ng, or dPgF fields and marks every element `apd: false`. The analysis therefore makes no APO or anomalous-dispersion performance claim.
+Example 1 publishes nd and νd for every element and θgF for five elements (PDF pp. 12–13). The data converts these ratios using `dPgF = θgF − (0.6438 − 0.001682 × νd)`: L11 −0.0043296, L21 −0.0069518, L22/L26 −0.0024254, and L23 +0.0084492. These are derived from patent measurements, not copied from catalog proxies. Absolute nC/nF/ng remain unauthored. L23 receives a patent-backed APD tag for the special material constrained in ¶¶0051–0052; this is not an APO performance classification or a supplier identification.
 
 L23 is the most important identification limit. Its nd is close to several ordinary high-index flints, but its νd = 20.6 is substantially lower than the roughly 23.8 class represented by common catalog glasses near the same index. The patent's own reference to an SnO-rich material is consistent with keeping this element as a special, unmatched glass instead of relabeling it to a conventional catalog flint.
 
@@ -147,7 +147,7 @@ The patent is specifically concerned with primary axial chromatic aberration and
 
 Within L1, the patent combines the negative L11 and positive L12 with a large dispersion contrast and uses the published partial-dispersion characteristic of L11 as part of the secondary-spectrum balance (¶0050). Within L2, positive power is divided between L21 and L22, while the negative L23 provides the specially constrained material behavior. The second cemented pair L25+L26 adds another chromatic degree of freedom. The patent explicitly describes the two cemented assemblies as beneficial for axial chromatic and secondary-spectrum correction at the telephoto end (¶0053).
 
-These statements describe the patent's intended correction strategy. The data does not contain sufficient line-index or `dPgF` information to independently model anomalous partial dispersion for the unmatched glass, so the analysis does not elevate the strategy to an APO classification.
+These statements describe the patent's intended correction strategy. The published θgF now corrects the violet-channel partial dispersion even for unmatched L23. Its C/F indices still use the nd/νd approximation, and no full spectral curve is available for that material. This improvement does not establish an APO classification.
 
 ## Conditional Expressions
 

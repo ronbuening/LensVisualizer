@@ -334,7 +334,7 @@ const LENS_DATA = {
     { text: "L5", fromSurface: "19", toSurface: "20" },
   ],
 
-  doublets: [{ text: "D1", fromSurface: "9", toSurface: "11" }],
+  doublets: [],
 
   closeFocusM: 0.25,
   focusDescription:
