@@ -9,9 +9,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **680** lenses scanned (**669** visible)
-- **7201 / 7741** non-air surfaces use strict catalog Sellmeier data (93.0%)
-- **7216 / 7741** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.2%)
+- **686** lenses scanned (**675** visible)
+- **7277 / 7820** non-air surfaces use strict catalog Sellmeier data (93.1%)
+- **7292 / 7820** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.2%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **225** code-only missing-Sellmeier elements in Sweep 2: **1** active unreviewed, **101** self-recording explicit dispositions, **0** dispositions missing any review record
@@ -70,6 +70,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [NIKON NIKKOR-N AUTO 28mm f/2](../../src/lens-data/nikon/NikonNikkorN28mmf2.data.ts) | US 3,736,049 | [PDF](../../patents/US3736049.pdf) | 88.9% (8/9) | 88.9% (8/9) | 1 | 14 [glass] (Element 8: `Discontinued LaF/LaK type (1970s)`) | abbe: 1 |
 | [PENTAX FA 31mm f/1.8 AL Limited](../../src/lens-data/pentax/PentaxFA31mmf18ALLtd.data.ts) | US 6,560,042 B2 | [PDF](../../patents/US6560042.pdf) | 88.9% (8/9) | 88.9% (8/9) | 1 | 13 [glass] (Element 8: `Unmatched (728403 lanthanum flint; no public coefficient row inside the d-line safety window)`) | abbe: 1 |
 | [SONY DT 16-50mm f/2.8 SSM](../../src/lens-data/sony/SonyDT1650mmf28SSM.data.ts) | US 2012/0307129 A1 | [PDF](../../patents/US20120307129A1.pdf) | 88.9% (16/18) | 88.9% (16/18) | 2 | 6A [glass] (G4 compound layer: `Unmatched (compound-asphere layer; material unspecified by patent)`)<br>26 [glass] (G13 compound layer: `Unmatched (compound-asphere layer; material unspecified by patent)`) | abbe: 2 |
+| [CANON 10.2-30.6mm f/2-4.9 (Canon PowerShot G9 X)](../../src/lens-data/canon/CanonPowerShotG9X.data.ts) | JP 2016-161889 A | [PDF](../../patents/JP2016161889A.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 9 [glass] (L23 (G2n): `Unmatched (special high-dispersion glass; patent points to an SnO-rich JP2012-193065 class)`) | abbe: 1 |
 | [CARL ZEISS PRO-TESSAR 35mm f/3.2](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissProTessar35mmf32.data.ts) | DE 1,089,183 | [PDF](../../patents/DE_1089183_B.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 12 [glass] (Element 7 (L_VIII): `LLF7 (Schott)`) | abbe: 1 |
 | [FUJIFILM FUJINON 23mm f/2 (Fujifilm X100)](../../src/lens-data/fujifilm/FujifilmX10023mmf2.data.ts) | US 2012/0069456 A1 | [PDF](../../patents/US20120069456A1.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 10A [glass] (Element 6: `Unmatched (569586 patent molded crown; no exact public catalog identity)`) | abbe: 1 |
 | [MAMIYA SEKOR AF 150mm f/2.8 IF D](../../src/lens-data/mamiya/MamiyaSekorDAF150mmf28IF.data.ts) | JP 2001-183581 A | [PDF](../../patents/JP_2001183581_A.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 13 [glass] (Element 7: `Unmatched (nd=1.806098, νd=40.34; no exact current catalog identity)`) | abbe: 1 |
@@ -87,6 +88,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [LEICA SUMMILUX 28mm f/1.7 ASPH. (Leica Q, Q2, Q3)](../../src/lens-data/leica/Leica28mmf17.data.ts) | US 2016/0266350 A1 | [PDF](../../patents/US20160266350A1.pdf) | 81.8% (9/11) | 81.8% (9/11) | 2 | 12A [glass] (Element 6: `877370 — high-index lanthanum glass (patent nd=1.87722, nu_d=37.0)`)<br>20A [glass] (Element 11: `Unmatched (patent nd=1.68250, νd=33.00; prior H-ZF52A annotation rejected on dispersion)`) | abbe: 2 |
 | [AGFA COLOR-MAGNOLAR II 100mm f/4.5](../../src/lens-data/agfa/AgfaColorMagnolarII100mmf45.data.ts) | GB 775,944 | [PDF](../../patents/GB_775944_A.pdf) | 80.0% (4/5) | 60.0% (3/5) | 1 | 4 [glass] (Element 3: `Unmatched (540/509 crown-flint-boundary glass; no public catalog match located)`) | abbe: 1 |
 | [SAMSUNG 30mm f/2](../../src/lens-data/samsung/Samsung30mmf2.data.ts) | US 2010/0149663 A1 | [PDF](../../patents/US20100149663A1.pdf) | 80.0% (4/5) | 80.0% (4/5) | 1 | 3 [glass] (Element 2: `Unmatched (684316 dense-flint class; vendor unresolved)`) | abbe: 1 |
+| [CANON EF-M 15-45mm f/3.5-6.3 IS STM](../../src/lens-data/canon/CanonEFM1545mmf3563ISSTM.data.ts) | JP 2016-118658 A | [PDF](../../patents/JP2016118658A.pdf) | 80.0% (8/10) | 80.0% (8/10) | 2 | 3A [glass] (Element 2: `Unmatched (nd=1.52996, nu_d=55.8; no exact defensible public-catalog identity found)`)<br>17A [glass] (Element 9: `Unmatched (nd=1.52996, nu_d=55.8; no exact defensible public-catalog identity found)`) | abbe: 2 |
 | [Nikon AI Micro-Nikkor 105mm f/2.8S](../../src/lens-data/nikon/NikonAIMicroNikkor105mmf28S.data.ts) | US 4,392,724 | [PDF](../../patents/US4392724.pdf) | 80.0% (8/10) | 80.0% (8/10) | 2 | 12 [glass] (L31 G3 positive meniscus: `Unmatched (595/355 vintage flint; near FF5 / S-FTM16 class but higher nd)`)<br>16 [glass] (L33 G3 positive reconverger: `Unmatched (595/355 vintage flint; near FF5 / S-FTM16 class but higher nd)`) | abbe: 2 |
 
 ## Near-Complete Visible Lenses - Non-Glass or Mixed-Material Gaps
