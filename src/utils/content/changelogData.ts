@@ -19,6 +19,11 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-09-06",
+    type: "lens",
+    summary: "Added six Canon EF, EF-S, EF-M, and PowerShot lens designs",
+  },
+  {
     date: "2026-09-05",
     type: "lens",
     summary: "Added six Konica Hexanon AR prime and zoom lens designs",

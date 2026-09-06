@@ -186,3 +186,8 @@ Nothing can be audited on these until the source is available.
 | [HexanonAR50mmf18](../src/lens-data/konica/KonicaHexanonAR50mmf18.audit.md) | done | Retained validated SDs after exact-figure review |
 | [HexanonAR135mmf35](../src/lens-data/konica/KonicaHexanonAR135mmf35.audit.md) | done | Enlarged L4 to match the optical rim |
 | [ZoomHexanonAR3570mmf4](../src/lens-data/konica/KonicaZoomHexanonAR3570mmf4.audit.md) | done | Screenshot follow-up: reduced L3/L7 optical rims; zoom/focus ray grid retained |
+
+
+## 2026-09-06 — six Canon additions
+
+Reviewed EF 35mm f/2 IS USM, EF 70-300mm IS II USM, EF-M 15-45mm IS STM, EF-S 18-135mm IS STM, PowerShot G3 X, and PowerShot G9 X against their exact local patent figures at 600 dpi. Enlarged only G9 X L11/L12/L31 to 9.4/8.5/9.0 mm; retained source-backed or geometry-constrained SDs elsewhere. All six pass surface and image-circle audits. Per-lens `*.audit.md` files and [the batch record](records/canon-six-lens-september-2026-audit.md) preserve measurements, rejected automatic readings, glass outcomes, and validation.
