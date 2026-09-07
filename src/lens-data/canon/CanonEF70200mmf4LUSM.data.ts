@@ -37,13 +37,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ all six authored zoom/focus endpoint states are checked by the independent ║
  * ║ verification artifact.                                                     ║
  * ║                                                                            ║
- * ║ Spectral fields: the patent publishes nd/vd only. nC/nF/ng below are       ║
- * ║ catalog-derived current surrogate line indices, not patent-sourced melt  ║
- * ║ identities. dPgF is computed from those line indices against the Schott     ║
- * ║ normal line                                                                 ║
- * ║ PgF(normal) = 0.6438 - 0.001682*vd. Vendor/class ambiguity is retained in  ║
- * ║ the glass labels. S-TIH53WN is explicitly a current spectral surrogate;    ║
- * ║ OHARA introduced its modified dispersion in 2025, long after this patent. ║
+ * ║ Spectral model: the patent publishes nd/vd only. Compatible catalog curves   ║
+ * ║ provide dispersion; no surrogate line indices are marked as measured data.  ║
+ * ║ S-TIH53WN is a current proxy introduced in 2025, not a historical identity.  ║
+ * ║ Fluorite/UD APD tags are inferred from production correlation, not published ║
+ * ║ partial-dispersion measurements of these patent elements.                   ║
  * ║                                                                            ║
  * ║ Product source: https://global.canon/en/c-museum/product/ef356.html        ║
  * ║ Patent text: https://patents.google.com/patent/JP2000284174A/ja            ║
@@ -93,10 +91,6 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 504.97860448150544,
       glass: "S-FSL5 (OHARA) class",
-      nC: 1.48534,
-      nF: 1.49228,
-      ng: 1.49596,
-      dPgF: 0.004586226,
       role: "L1a fixed front positive singlet.",
     },
     {
@@ -109,10 +103,6 @@ const LENS_DATA = {
       indexReference: "d",
       fl: -232.7745541646512,
       glass: "S-TIH18 (OHARA) class",
-      nC: 1.71437,
-      nF: 1.73905,
-      ng: 1.75399,
-      dPgF: 0.01071332,
       role: "First element of the translating L1b focus subgroup.",
     },
     {
@@ -124,12 +114,10 @@ const LENS_DATA = {
       vd: 95.1,
       indexReference: "d",
       fl: 185.1837114353476,
-      glass: "Synthetic fluorite (CaF2; Canon Optron spectral surrogate)",
-      nC: 1.43246,
-      nF: 1.43701,
-      ng: 1.43947,
-      dPgF: 0.057086661,
+      glass: "Synthetic fluorite (CaF2) coordinate-compatible spectral surrogate; material inferred",
       role: "Fluorite-correlated positive element in L1b.",
+      apd: "inferred",
+      apdNote: "Fluorite element inferred from Canon production correlation and compatible catalog dispersion; the patent publishes no partial-dispersion measurement or supplier identity.",
     },
     {
       id: 4,
@@ -141,11 +129,9 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 151.5526516535952,
       glass: "S-FPL51 (OHARA) / FCD1-class UD glass",
-      nC: 1.49514,
-      nF: 1.50123,
-      ng: 1.50451,
-      dPgF: 0.031938129,
       role: "Low-dispersion positive element completing L1b.",
+      apd: "inferred",
+      apdNote: "UD element inferred from Canon production correlation and compatible catalog dispersion; the patent publishes no partial-dispersion measurement or supplier identity.",
     },
     {
       id: 5,
@@ -157,10 +143,6 @@ const LENS_DATA = {
       indexReference: "d",
       fl: -40.04080045244512,
       glass: "804466 LASF class (HIKARI J-LASF015 spectral surrogate)",
-      nC: 1.798824,
-      nF: 1.816078,
-      ng: 1.825697,
-      dPgF: -0.007924886,
       role: "Front negative element of variator L2.",
     },
     {
@@ -173,10 +155,6 @@ const LENS_DATA = {
       indexReference: "d",
       fl: -48.772065290787715,
       glass: "S-BSL7 (OHARA) / N-BK7 class",
-      nC: 1.51386,
-      nF: 1.52191,
-      ng: 1.52621,
-      dPgF: -0.001755029,
       cemented: "D1",
       role: "Negative member of the L2 cemented pair.",
     },
@@ -190,10 +168,6 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 44.06754209338408,
       glass: "S-TIH53WN (OHARA) class; current spectral surrogate",
-      nC: 1.83653,
-      nF: 1.87201,
-      ng: 1.89403,
-      dPgF: 0.016963862,
       cemented: "D1",
       role: "Positive high-index member of the L2 cemented pair.",
     },
@@ -206,11 +180,7 @@ const LENS_DATA = {
       vd: 35,
       indexReference: "d",
       fl: -123.02931910317324,
-      glass: "750350 LAFN7/LAF7 class (SCHOTT LAFN7 spectral surrogate)",
-      nC: 1.74319,
-      nF: 1.76464,
-      ng: 1.77713,
-      dPgF: -0.002729718,
+      glass: "LAFN7 (SCHOTT) coordinate-compatible spectral surrogate; supplier unspecified",
       role: "Rear negative singlet of variator L2.",
     },
     {
@@ -223,10 +193,6 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 42.10619768711282,
       glass: "S-BSM15 (OHARA) class",
-      nC: 1.61974,
-      nF: 1.63045,
-      ng: 1.6363,
-      dPgF: 0.000243607,
       cemented: "D2",
       role: "Positive member of compensator L3.",
     },
@@ -240,10 +206,6 @@ const LENS_DATA = {
       indexReference: "d",
       fl: -69.68168623172724,
       glass: "762401 lanthanum-flint class (OHARA S-LAM55 spectral surrogate)",
-      nC: 1.75639,
-      nF: 1.77539,
-      ng: 1.78634,
-      dPgF: -0.000036011,
       cemented: "D2",
       role: "Negative member of compensator L3.",
     },
@@ -257,10 +219,6 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 62.58129794709216,
       glass: "603607 barium-crown class (OHARA S-BSM14 spectral surrogate)",
-      nC: 1.60008,
-      nF: 1.61002,
-      ng: 1.61541,
-      dPgF: 0.000450001,
       role: "Front positive singlet of fixed relay L4.",
     },
     {
@@ -273,12 +231,10 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 62.25992084324545,
       glass: "S-FPL51 (OHARA) / FCD1-class UD glass",
-      nC: 1.49514,
-      nF: 1.50123,
-      ng: 1.50451,
-      dPgF: 0.031938129,
       cemented: "D3",
       role: "Low-dispersion positive member of the relay cemented pair.",
+      apd: "inferred",
+      apdNote: "UD element inferred from Canon production correlation and compatible catalog dispersion; the patent publishes no partial-dispersion measurement or supplier identity.",
     },
     {
       id: 13,
@@ -289,11 +245,7 @@ const LENS_DATA = {
       vd: 39.6,
       indexReference: "d",
       fl: -40.06897146924538,
-      glass: "804396 LASF class (HIKARI J-LASF013 spectral surrogate)",
-      nC: 1.798372,
-      nF: 1.818682,
-      ng: 1.830298,
-      dPgF: -0.005240973,
+      glass: "J-LASF013 (HIKARI) coordinate-compatible spectral surrogate; supplier unspecified",
       cemented: "D3",
       role: "Negative high-index member of the relay cemented pair.",
     },
@@ -307,10 +259,6 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 117.6441505848965,
       glass: "603607 barium-crown class (OHARA S-BSM14 spectral surrogate)",
-      nC: 1.60008,
-      nF: 1.61002,
-      ng: 1.61541,
-      dPgF: 0.000450001,
       role: "Positive relay singlet.",
     },
     {
@@ -323,10 +271,6 @@ const LENS_DATA = {
       indexReference: "d",
       fl: -75.16362790775038,
       glass: "697555 lanthanum-crown class (OHARA S-LAL14 spectral surrogate)",
-      nC: 1.69297,
-      nF: 1.70552,
-      ng: 1.71234,
-      dPgF: -0.006972245,
       role: "Rear negative relay singlet.",
     },
     {
@@ -339,10 +283,6 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 208.66537800636974,
       glass: "593353 flint class (OHARA S-FTM16 spectral surrogate)",
-      nC: 1.58779,
-      nF: 1.60458,
-      ng: 1.61454,
-      dPgF: 0.008801664,
       role: "Final positive relay singlet.",
     },
   ],
@@ -352,12 +292,12 @@ const LENS_DATA = {
   surfaces: [
     { label: "1", R: 175.317, d: 3.7, nd: 1.48749, elemId: 1, sd: 26 },
     { label: "2", R: 604.892, d: 14.82, nd: 1, elemId: 0, sd: 25.6 },
-    { label: "3", R: 89.957, d: 2.1, nd: 1.721507, elemId: 2, sd: 23.5 },
-    { label: "4", R: 58.007, d: 0.1, nd: 1, elemId: 0, sd: 20 },
-    { label: "5", R: 59.256, d: 5.3, nd: 1.43387, elemId: 3, sd: 20 },
-    { label: "6", R: 219.639, d: 0.15, nd: 1, elemId: 0, sd: 21.8 },
-    { label: "7", R: 81.599, d: 4.9, nd: 1.496999, elemId: 4, sd: 21.8 },
-    { label: "8", R: -959.561, d: 1.9, nd: 1, elemId: 0, sd: 21.5 },
+    { label: "3", R: 89.957, d: 2.1, nd: 1.721507, elemId: 2, sd: 25.8 },
+    { label: "4", R: 58.007, d: 0.1, nd: 1, elemId: 0, sd: 21 },
+    { label: "5", R: 59.256, d: 5.3, nd: 1.43387, elemId: 3, sd: 21 },
+    { label: "6", R: 219.639, d: 0.15, nd: 1, elemId: 0, sd: 25.8 },
+    { label: "7", R: 81.599, d: 4.9, nd: 1.496999, elemId: 4, sd: 24.2 },
+    { label: "8", R: -959.561, d: 1.9, nd: 1, elemId: 0, sd: 24.2 },
     { label: "9", R: -191.294, d: 1.4, nd: 1.804, elemId: 5, sd: 14 },
     { label: "10", R: 38.833, d: 4.44, nd: 1, elemId: 0, sd: 13.8 },
     { label: "11", R: -70.462, d: 1.4, nd: 1.51633, elemId: 6, sd: 13.2 },
@@ -419,7 +359,8 @@ const LENS_DATA = {
     "CONSTRAINED_RECONSTRUCTION: patent-published inner focus translates L1b (R3-R8) rigidly objectward. Close-focus D2/D8 endpoints are code-solved at Canon's 1.2 m MFD with the fixed common image plane; D2 decreases by the same amount D8 increases. D15 and D18 are zoom-only.",
 
   groups: [
-    { text: "L1", fromSurface: "1", toSurface: "8" },
+    { text: "L1a FIXED", fromSurface: "1", toSurface: "2" },
+    { text: "L1b FOCUS", fromSurface: "3", toSurface: "8" },
     { text: "L2", fromSurface: "9", toSurface: "15" },
     { text: "L3", fromSurface: "16", toSurface: "18" },
     { text: "L4", fromSurface: "20", toSurface: "30" },

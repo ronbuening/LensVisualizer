@@ -213,27 +213,27 @@ The rear spacing after r41 is not a patent movement row. The data file uses a co
 
 ## Glass Identification and Selection
 
-The patent gives `n` and `ν` values but does not name glass manufacturers. The data file therefore treats the patent coordinates as authoritative and stores catalog names only as spectral surrogates. The modeled `nC`, `nF`, `ng`, and `dPgF` values come from those surrogates and enable wavelength-dependent calculations; they are not source-published line indices and do not identify the production melt.
+The patent gives `n` and `ν` values but does not name glass manufacturers. Patent coordinates remain authoritative; catalog names select compatible spectral surrogates. No catalog line indices are copied into the prescription, where they would incorrectly take precedence as measured data. The runtime uses the catalog dispersion curves directly, without asserting a production melt identity.
 
-| Patent coordinate class | Spectral surrogate | Patent nd / νd | Elements | Modeled dPgF |
-|---|---|---:|---|---:|
-| 750353 | OHARA S-LAM7 | 1.74950 / 35.3 | L1 | +0.00267 |
-| 497816 | OHARA S-FPL51 | 1.49700 / 81.5 | L2, L3, L10, L19 | +0.03187 |
-| 847238 | OHARA S-TIH53 | 1.84666 / 23.8 | L4, L8, L12, L14, L16 | +0.01656 |
-| 487702/704 | OHARA S-FSL5 | 1.48749 / 70.2 | L5, L7 | +0.00454 |
-| 806409 | OHARA S-LAH53 | 1.80610 / 40.9 | L6 | -0.00655 |
-| 713539 | OHARA S-LAL8 | 1.71299 / 53.9 | L9 | -0.00782 |
-| 667330 | OHARA S-TIM39 legacy | 1.66680 / 33.0 | L11 | +0.00685 |
-| 773496 | OHARA S-LAH66 | 1.77250 / 49.6 | L13 | -0.00803 |
-| 603607 | OHARA S-BSM14 | 1.60311 / 60.6 | L15 | +0.00038 |
-| 694532 | OHARA L-LAL13 | 1.69350 / 53.2 | L17, L18 | -0.00600 |
-| 834372 | OHARA S-LAH60 | 1.83400 / 37.2 | L20, L21 | -0.00369 |
+| Patent coordinate class | Spectral surrogate | Patent nd / νd | Elements |
+|---|---|---:|---|
+| 750353 | OHARA S-LAM7 | 1.74950 / 35.3 | L1 |
+| 497816 | OHARA S-FPL51 | 1.49700 / 81.5 | L2, L3, L10, L19 |
+| 847238 | OHARA S-TIH53 | 1.84666 / 23.8 | L4, L8, L12, L14, L16 |
+| 487702/704 | OHARA S-FSL5 | 1.48749 / 70.2 | L5, L7 |
+| 806409 | OHARA S-LAH53 | 1.80610 / 40.9 | L6 |
+| 713539 | OHARA S-LAL8 | 1.71299 / 53.9 | L9 |
+| 667330 | OHARA S-TIM39 legacy | 1.66680 / 33.0 | L11 |
+| 773496 | OHARA S-LAH66 | 1.77250 / 49.6 | L13 |
+| 603607 | OHARA S-BSM14 | 1.60311 / 60.6 | L15 |
+| 694532 | OHARA L-LAL13 | 1.69350 / 53.2 | L17, L18 |
+| 834372 | OHARA S-LAH60 | 1.83400 / 37.2 | L20, L21 |
 
 An independent catalog comparison gives maximum coordinate residuals of `|Δnd| = 0.00001` and `|Δνd| < 0.06`, which are sufficiently small for the stated surrogate purpose. The unusually high-Abbe 1.49700/81.5 coordinate is repeated in four positive elements across g1, g4, and g5C, while the very low-Abbe 1.84666/23.8 coordinate appears repeatedly in opposing positive and negative roles. That wide dispersion spread provides substantial chromatic design freedom throughout the zoom rather than concentrating correction in a single doublet.
 
 All 21 elements now resolve to coordinate-compatible catalog Sellmeier curves. The discontinued S-TIM39 entry uses the manufacturer's formula-2 coefficients from [OHARA_260701.AGF](https://oharacorp.com/wp-content/uploads/catalogs/OHARA_260701_CATALOG.zip); its catalog Abbe number is 33.054985, while the patent's 33.0 is retained.
 
-The stored `dPgF` values are derived from the surrogate line indices using the SCHOTT normal-line definition of ΔPg,F. Because those line indices are modeled rather than patent-published, the analysis does not claim that the production lens uses the named OHARA glasses, nor does it claim apochromatic correction from the surrogate assignments alone.
+The catalog curves support chromatic modeling. They do not identify the production supplier or justify assigning Canon UD branding to these patent elements: the correlated patent and production lens have different element counts.
 
 ## Focus Mechanism
 
@@ -249,7 +249,7 @@ Chromatic correction is distributed through most of the system. The most conspic
 
 The two cemented groups illustrate different uses of this contrast. D1 combines a high-Abbe negative L7 with a low-Abbe positive L8 and has only weak positive net power despite the much stronger standalone powers of its members. D2 combines low-Abbe positive L16 with intermediate-Abbe negative L17 and is negative as a cemented pair before the additional negative L18 is added to g5B.
 
-The data's surrogate line indices and `dPgF` values permit more realistic spectral tracing than an Abbe-only model, but the spectral layer must be interpreted as catalog-backed modeling. The patent itself does not publish `nC`, `nF`, `ng`, `PgF`, or supplier names for Numerical Example 1. Consequently the analysis does not assign Canon UD branding to specific patent elements and does not use the surrogate data to assert an APO classification.
+The compatible catalog dispersion curves permit more realistic spectral tracing than an Abbe-only model, but the spectral layer must be interpreted as catalog-backed modeling. The patent itself does not publish `nC`, `nF`, `ng`, `PgF`, or supplier names for Numerical Example 1. Consequently the analysis does not assign Canon UD branding to specific patent elements and does not use the surrogate data to assert an APO classification.
 
 ## Image Stabilization
 
@@ -264,7 +264,7 @@ The data file models only the centered reference prescription. It does not add a
 The patent constrains the rear relay with three power-ratio conditions and one back-focus condition. The independent calculations below use isolated g5A/g5B/g5C subassembly powers from the final data file, the recomputed wide-state EFL, and the normalized r41-to-image BFD at the tele state.
 
 | Condition | Patent requirement | Computed | Patent Table 5 | Result |
-|---|---|---:|---:|---|
+|---|---|---:|---:|
 | (1) `f5A/f5B` | `-2.5 < x < -1.0` | -1.738290 | -1.738 | Pass |
 | (2) `f5C/f5B` | `-2.5 < x < -1.0` | -1.969759 | -1.970 | Pass |
 | (3) `f5B/fw` | `-1.0 < x < -0.1` | -0.412700 | -0.413 | Pass |
@@ -278,7 +278,7 @@ The final data file was independently checked by sequential reduced-angle y-ν t
 
 The patent gives the stop station but not its clear radius. The modeled stop semi-diameter is therefore an inference: 17.778959714 mm, calibrated once at the wide state to the patent's f/2.9. Keeping that same physical stop gives modeled f-numbers of 2.900000, 2.900088, and 2.900295 across the three states. Canon's marketed f/2.8 remains separate product metadata.
 
-Numerical Example 1 also omits clear semi-diameters. The surface `sd` values are modeling apertures derived from the calibrated marginal bundle, full-frame chief-ray containment, off-axis pupil samples, the patent section drawing, and the production barrel envelope. A 600 dpi audit of Figure 1 on local PDF page 10 refined the first element to a 34.0 mm common rim and the final element to 19.5 mm, following the optical outlines rather than the group brackets. The remaining apertures retain their ray-envelope and geometry constraints. Surface and image-circle audits pass after these changes. The data therefore uses `gapSagFrac = 0.95`; this is a geometry-policy requirement, not a layout adjustment used to conceal invalid surfaces.
+Numerical Example 1 also omits clear semi-diameters. The surface `sd` values are modeling apertures derived from the calibrated marginal bundle, full-frame chief-ray containment, off-axis pupil samples, the patent section drawing, and the production barrel envelope. A 600 dpi audit of Figure 1 on local PDF page 10 refined the first element to a 34.0 mm common rim and the final element to 19.5 mm, following the optical outlines rather than the group brackets. A second live-site comparison also reduced r5/r6 to 34 mm and r7 to 26 mm, bringing the front and focus-unit outlines closer to the figure without losing previously transmitted sample rays. The remaining apertures retain their ray-envelope and geometry constraints. Surface and image-circle audits pass after these changes. The data therefore uses `gapSagFrac = 0.95`; this is a geometry-policy requirement, not a layout adjustment used to conceal invalid surfaces.
 
 The paraxial Petzval sum, evaluated surface by surface as `φ/(n·n′)`, is +0.001285839 mm⁻¹, with reciprocal +777.702 mm. This is a first-order Petzval quantity rather than a measured field-curvature radius.
 

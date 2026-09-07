@@ -68,11 +68,11 @@ The element moves rigidly with E3 and E4 during focusing. It has no independent 
 
 ### E3 — Positive Meniscus, Fluorite-Correlated L1b Element
 
-`nd = 1.433870, νd = 95.1. Glass: Synthetic fluorite (CaF2; Canon Optron spectral surrogate). Standalone f = +185.184 mm.`
+`nd = 1.433870, νd = 95.1. Glass: Synthetic fluorite (CaF2; catalog spectral surrogate). Standalone f = +185.184 mm.`
 
 E3 is the central positive member of L1b. Its patent `nd/νd` pair lies very close to current optical-grade CaF2 data. Canon separately states that the production lens contains one synthetic crystalline fluorite element; the identification of E3 as the corresponding element is therefore a production-correlation inference rather than a material name published in the patent.
 
-The data file stores Canon Optron CaF2 line indices as a current spectral surrogate (`nC = 1.43246`, `nF = 1.43701`, `ng = 1.43947`, `dPgF = +0.057086661`). These values support spectral modeling but are not evidence for the exact historical melt used in 1999.
+The spectral model resolves the shared CaF2 catalog curve (Daimon and Masumura room-temperature fit). The material assignment and purple APD tag are inferred; neither represents a patent-published partial-dispersion measurement.
 
 ### E4 — Biconvex Positive, Low-Dispersion L1b Element
 
@@ -97,7 +97,7 @@ The data file uses J-LASF015 only as the current spectral surrogate for the 8044
 
 E6 is biconcave and negative; E7 is biconvex and positive. They share the R12 cemented interface, which belongs to downstream element E7 in the data model. The individual powers are nearly balanced, and the actual cemented pair is only weakly positive: +417.738 mm net focal length. This cemented net power is distinct from either standalone element focal length and from the complete L2 group power of -31.387 mm.
 
-The E7 glass annotation is intentionally conservative. Its `nd/νd` pair is very close to current S-TIH53WN, but OHARA introduced the modified-dispersion `WN` version in 2025. Its line indices and `dPgF` are therefore used only as a present-day spectral surrogate; the data does not claim that S-TIH53WN was the historical Canon material.
+The E7 glass annotation is intentionally conservative. Its `nd/νd` pair is very close to current S-TIH53WN, but OHARA introduced the modified-dispersion `WN` version in 2025. Its catalog curve is therefore used only as a present-day spectral surrogate; the data does not claim that S-TIH53WN was the historical Canon material.
 
 ### E8 — Negative Meniscus, Rear Variator Element
 
@@ -105,7 +105,7 @@ The E7 glass annotation is intentionally conservative. Its `nd/νd` pair is very
 
 E8 is the rear negative singlet of L2. Together with the much stronger negative E5, it ensures that the complete variator remains strongly negative despite the weak positive net power of D1.
 
-The `750350` class label is retained because the d-line pair is compatible with more than one vendor family at patent precision. The SCHOTT LAFN7 line data in the file is a spectral surrogate, not a historical vendor attribution.
+The 750350 coordinate is compatible with more than one vendor family at patent precision. The label explicitly selects the SCHOTT LAFN7 catalog curve as a spectral surrogate while leaving the historical supplier unspecified.
 
 ### D2 — E9 + E10, Positive Compensator L3
 
@@ -122,7 +122,7 @@ This pair's positive net power agrees with the patent's preferred L3 description
 
 E11 is the first refractive element after the aperture stop and begins the fixed L4 relay. Its relatively strong positive standalone power contributes to converting the beam leaving the moving front groups into the final image-forming relay.
 
-The 603607 annotation is class-level because the patent supplies only the d-line coordinates. S-BSM14 supplies the current line-index surrogate used by the model.
+The 603607 annotation is class-level because the patent supplies only the d-line coordinates. S-BSM14 supplies the current catalog-curve surrogate used by the model.
 
 ### D3 — E12 + E13, Negative Cemented Relay Pair
 
@@ -159,19 +159,19 @@ Example 1 does not publish a D30 back-focus distance. The air space after E16 is
 
 ## Glass Identification and Selection
 
-JP2000284174A defines `Ni` and `νi` as d-line refractive index and Abbe number (¶0056) but does not name glass manufacturers or publish per-element C-, F-, or g-line indices. The exact `nd/νd` pairs below are patent data; the named glasses and line-index sets are current catalog matches or surrogates used by the data model. They should not be read as proof of the 1999 production melts.
+JP2000284174A defines `Ni` and `νi` as d-line refractive index and Abbe number (¶0056) but does not name glass manufacturers or publish per-element C-, F-, or g-line indices. The exact `nd/νd` pairs below are patent data; the named glasses and dispersion curves are current catalog matches or surrogates used by the data model. They should not be read as proof of the 1999 production melts.
 
 | Elements | Patent `nd / νd` | Data-file glass annotation | Spectral/model status |
 |---|---|---|---|
-| E1 | 1.487490 / 70.2 | S-FSL5 (OHARA) class | Current OHARA line-index surrogate |
-| E2 | 1.721507 / 29.2 | S-TIH18 (OHARA) class | Current OHARA line-index surrogate |
-| E3 | 1.433870 / 95.1 | Synthetic fluorite (CaF2; Canon Optron spectral surrogate) | Strong CaF2 coordinate match; production correlation inference |
-| E4, E12 | 1.496999 / 81.5 | S-FPL51 (OHARA) / FCD1-class UD glass | Current low-dispersion line-index surrogate; vendor unresolved |
+| E1 | 1.487490 / 70.2 | S-FSL5 (OHARA) class | Current OHARA catalog-curve surrogate |
+| E2 | 1.721507 / 29.2 | S-TIH18 (OHARA) class | Current OHARA catalog-curve surrogate |
+| E3 | 1.433870 / 95.1 | Synthetic fluorite (CaF2; catalog spectral surrogate) | Strong CaF2 coordinate match; production correlation inference |
+| E4, E12 | 1.496999 / 81.5 | S-FPL51 (OHARA) / FCD1-class UD glass | Current low-dispersion catalog-curve surrogate; vendor unresolved |
 | E5 | 1.804000 / 46.6 | 804466 LASF class | HIKARI J-LASF015 spectral surrogate |
-| E6 | 1.516330 / 64.1 | S-BSL7 (OHARA) / N-BK7 class | Current crown line-index surrogate |
+| E6 | 1.516330 / 64.1 | S-BSL7 (OHARA) / N-BK7 class | Current crown catalog-curve surrogate |
 | E7 | 1.846658 / 23.9 | S-TIH53WN (OHARA) class | Current spectral surrogate only; `WN` dispersion dates from 2025 |
 | E8 | 1.749500 / 35.0 | 750350 LAFN7/LAF7 class | SCHOTT LAFN7 spectral surrogate; vendor unresolved |
-| E9 | 1.622992 / 58.2 | S-BSM15 (OHARA) class | Current OHARA line-index surrogate |
+| E9 | 1.622992 / 58.2 | S-BSM15 (OHARA) class | Current OHARA catalog-curve surrogate |
 | E10 | 1.762001 / 40.1 | 762401 lanthanum-flint class | OHARA S-LAM55 spectral surrogate |
 | E11, E14 | 1.603112 / 60.6 | 603607 barium-crown class | OHARA S-BSM14 spectral surrogate |
 | E13 | 1.804398 / 39.6 | 804396 LASF class | HIKARI J-LASF013 spectral surrogate |
@@ -180,7 +180,7 @@ JP2000284174A defines `Ni` and `νi` as d-line refractive index and Abbe number 
 
 The low-dispersion correlation is particularly significant. Canon states that the production EF70-200mm f/4L USM uses one synthetic crystalline fluorite element and two UD elements to suppress secondary spectrum. The patent example supplies exactly one very-low-index/high-Abbe element at E3 and two identical high-Abbe glass elements at E4 and E12. The numerical correspondence supports the production match, but the patent does not label these materials as “fluorite” or “UD.”
 
-The data file carries `nC`, `nF`, `ng`, and `dPgF` directly on all elements so the spectral model does not fall back to Abbe-only dispersion where a current catalog surrogate is available. These fields are catalog-derived. In particular, E3 uses Canon Optron CaF2 line indices, E4/E12 use current S-FPL51 line indices, and E7 uses current S-TIH53WN line indices. The E7 surrogate must not be interpreted historically because OHARA announced S-TIH53WN's modified dispersion in 2025.
+All 16 elements resolve to compatible catalog dispersion curves. Catalog-derived line indices are not copied into the prescription: doing so would override the catalog model and incorrectly label their quality as measured line indices. E8 selects SCHOTT LAFN7 and E13 selects HIKARI J-LASF013 explicitly; both curves were backfilled from their manufacturers' datasheets. E3 resolves the shared CaF2 curve, E4/E12 resolve S-FPL51, and E7 resolves S-TIH53WN. The last is a current spectral surrogate introduced in 2025, not a historical supplier identification.
 
 No apochromatic classification is assigned. The available line data is sufficient for modeled chromatic tracing, but much of it is surrogate data attached to class-level glass identifications rather than confirmed historical melts.
 
@@ -206,7 +206,7 @@ The patent frames control of chromatic-aberration variation as one of the design
 
 The production correlation places the very-high-Abbe E3 in the moving L1b focus subgroup and one of the two UD-class `1.496999 / 81.5` elements, E4, immediately behind it. A second UD-class element, E12, appears in the fixed relay as the positive member of the negative D3 cemented pair. This distributes low-dispersion positive power between the front focusing assembly and the rear relay rather than concentrating both UD-class elements in one air-spaced group.
 
-Current catalog-surrogate line data makes that dispersion contrast explicit in the model. E3's Canon Optron CaF2 surrogate carries `dPgF = +0.057086661`, while the S-FPL51 surrogates at E4 and E12 carry `dPgF = +0.031938129`. Those values belong to the surrogate catalogs, not to patent-published melts. They support chromatic ray-trace behavior in LensVisualizer but do not establish the exact partial-dispersion characteristics of the historical production glasses.
+The current CaF2 and S-FPL51 catalog curves provide wavelength-dependent tracing. E3, E4, and E12 carry inferred APD tags, supported by their compatible dispersion and the matching production construction. These tags do not assert patent-published partial dispersion, a historical supplier, or apochromatic correction.
 
 Canon's statement that the production fluorite and UD elements suppress secondary spectrum is a manufacturer product claim. The present analysis does not elevate that statement into an APO classification and does not assume that every class-level catalog surrogate reproduces the original Canon material dispersion exactly.
 
@@ -240,7 +240,7 @@ The aperture-stop position is published, but its diameter is not. The inferred f
 
 The surface-by-surface Petzval sum, using `φ/(n·n′)` at each refracting surface, is +0.001149444422 mm⁻¹, corresponding to a reciprocal magnitude of 869.986 mm. This is a computed first-order quantity, not a patent-published field-curvature radius.
 
-Semi-diameters are not published in Numerical Example 1. The data values are inferred from marginal/chief-ray envelopes, the patent and Canon optical sections, and geometry constraints. A 600 dpi audit of Figure 1 on local PDF page 8 enlarged the final three elements to common rims of 15.3, 15.8, and 16.4 mm respectively. Their measured optical rims were approximately 15.3, 15.9, and 16.4 mm. Surface and image-circle checks pass with the default 0.90-gap policy. The tightly spaced front elements retain their geometry-constrained apertures; these inferred values are not production mechanical dimensions. All 16 elements resolve to qualified catalog Sellmeier curves without identifying historical suppliers.
+Semi-diameters are not published in Numerical Example 1. The data values are inferred from marginal/chief-ray envelopes, the patent and Canon optical sections, and geometry constraints. A 600 dpi audit of Figure 1 on local PDF page 8 enlarged the final three elements to common rims of 15.3, 15.8, and 16.4 mm respectively. Their measured optical rims were approximately 15.3, 15.9, and 16.4 mm. Surface and image-circle checks pass with the default 0.90-gap policy. A second live-site comparison refined L1b: r3/r6 = 25.8 mm, r4/r5 = 21 mm, and r7/r8 = 24.2 mm. The r4/r5 shared rim remains constrained by its 0.1 mm air gap; extending it to the outer silhouette would violate cross-gap geometry. These inferred values are not production mechanical dimensions. All 16 elements resolve to qualified catalog Sellmeier curves without identifying historical suppliers.
 
 The selected example contains no conic or polynomial asphere, so no asphere convention or coefficient transformation applies. No scaling is applied, and there is no sensor-cover or filter plate whose optical effect needs to be folded into the rear spacing.
 
@@ -250,8 +250,8 @@ The selected example contains no conic or polynomial asphere, so no asphere conv
 - Canon U.S.A., “EF 70-200mm f/4L USM” support specifications, confirming 70–200 mm f/4, 16 elements in 13 groups, inner focusing with USM, and 1.2 m closest focus: <https://www.usa.canon.com/support/p/ef-70-200mm-f-4l-usm>
 - JP2000284174A, “ズームレンズ,” Canon Inc., Numerical Example 1, patent prescription and mechanism: <https://patents.google.com/patent/JP2000284174A/ja>
 - US6429978B2, Canon Inc., inventor/assignment record identifying the same Canon optical inventor `西尾 彰宏` as Akihiro Nishio; used only to normalize the Latin-script inventor name: <https://patents.google.com/patent/US6429978B2/en>
-- OHARA INC., current optical-glass catalog, used for the S-FSL5, S-TIH18, S-FPL51, S-BSL7, S-BSM15, S-BSM14, S-LAL14, S-FTM16, and other current line-index surrogates: <https://www.ohara-inc.co.jp/en/product/01000/>
+- OHARA INC., current optical-glass catalog, used for the S-FSL5, S-TIH18, S-FPL51, S-BSL7, S-BSM15, S-BSM14, S-LAL14, S-FTM16, and other current catalog-curve surrogates: <https://www.ohara-inc.co.jp/en/product/01000/>
 - OHARA INC., “Introducing S-TIH53WN, S-LAH66N, and S-LAL18N,” 2025-01-30, documenting that S-TIH53WN is a modified-dispersion glass introduced long after the selected patent: <https://www.ohara-inc.co.jp/en/news/2025/0127/14998/>
 - HIKARI, J-LASF catalog, used for current 804466/J-LASF015 and 804396/J-LASF013 class surrogates: <https://www.hikari-g.co.jp/optical_glass/general_optical_glass/j-lasf/>
-- SCHOTT, LAFN7 optical-glass datasheet, used for the E8 current line-index surrogate: <https://media.schott.com/api/public/content/c842d31345bc40ae86b67732d6eb4eea>
-- Canon Optron, “Fluorite CaF2,” current optical-crystal refractive-index and dispersion data used as the E3 spectral surrogate: <https://optron.canon/ja/img/fluorite/pamphlet_caf2_en.pdf>
+- SCHOTT, LAFN7 optical-glass datasheet, used for the E8 current catalog-curve surrogate: <https://media.schott.com/api/public/content/c842d31345bc40ae86b67732d6eb4eea>
+- Canon Optron, “Fluorite CaF2,” optical-crystal reference supporting the CaF2 material correlation: <https://optron.canon/ja/img/fluorite/pamphlet_caf2_en.pdf>

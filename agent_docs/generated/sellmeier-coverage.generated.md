@@ -2330,7 +2330,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 1 | Element 1 | abbe | `LaK9 (Schott / Leitz)` | No catalog match |
 | 3 | Element 2 | abbe | `≈BaF10 (Leitz proprietary)` | Explicit unmatched/proprietary annotation |
 | 5 | Element 3 | abbe | `747274 - dense flint (patent nd=1.74710, vd=27.40; no exact public catalog match)` | No catalog match |
-| 7 | Element 4 | abbe | `≈LAFN7 (lanthanum flint)` | No catalog match |
+| 7 | Element 4 | abbe | `Unmatched lanthanum flint (patent nd=1.7546, vd=34.7; outside LAFN7 compatibility)` | Explicit unmatched/proprietary annotation |
 
 ### [VOIGTLÄNDER DYNAR 100mm f/6](../../src/lens-data/voigtlander/VoigtlanderDynarF6.data.ts) - 0.0% trusted (0/5); 0.0% Sellmeier (0/5) - US 765,006 A
 

@@ -73,7 +73,7 @@ describe("Nikon AF-S DX zoom batch metadata", () => {
       "H-ZLaF50D",
       "J-LAFH3",
       "H-ZLaF50D",
-      "S-LAH63Q",
+      "J-LASF013", // Added vendor curve is the closest 804396 coordinate match.
       "J-FKH1",
       "N-FK5",
       "J-SF03",

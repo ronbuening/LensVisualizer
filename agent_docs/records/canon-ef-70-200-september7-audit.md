@@ -59,3 +59,85 @@ relaxed. The f/2.8L IS retains its supplied 0.95 gap policy for r12/r13 and r15/
 - `npm run test` passed: 296 files / 2,747 tests.
 - `npm run build` passed: 1,264 prerendered routes, sitemap, and RSS feeds.
 - `git diff --check` passed; ignored patent PDFs remain outside the commit.
+
+## Second live-site review
+
+Reviewed the actual SVG diagrams at `http://localhost:5173` in the in-app browser,
+with wide/tele zoom states and chromatic rays enabled. Compared f/2.8L IS against
+Figures 1 and 2 (PDF pp10–11), f/4L IS against Figure 1(a)/(b) (p10), and f/4L
+against Figure 1 and its movement arrows (p8; no separate tele section published).
+Optical rims were checked against the 600 dpi crops above; f/4L IS tele was also
+rendered at 600 dpi. Numeric element labels are model identifiers; patent group
+labels, stop, cemented-pair spans, and fixed image-plane placement were checked.
+
+Additional accepted SD refinements, relative to the first audit:
+
+| Lens | Surface SD changes (mm) | Reason |
+| --- | --- | --- |
+| f/2.8L IS | r5/r6: 35.5/35 → 34/34; r7: 29 → 26 | Reduce oversize front/focus rims toward the source section |
+| f/4L IS | r25/r26: 11.1 → 12.8; r29: 11.1 → 12.5 | Match Gm outer rims; retain r27/r28 at 11.1 for D27 clearance |
+| f/4L | r3/r6: 23.5/21.8 → 25.8/25.8; r4/r5: 20 → 21; r7/r8: 21.8/21.5 → 24.2/24.2 | Restore the taller L1b outline while retaining the tight D4 shared-rim limit |
+
+### Movement and visible metadata
+
+- Split f/4L L1 into `L1a FIXED` and `L1b FOCUS`. The prior chart combined a
+  fixed surface with the moving subgroup and reported only 6.77 mm travel. The
+  live chart now reports the full 13.54 mm; the focus slider visibly translates
+  only L1b objectward. Its 13.53–13.54 mm endpoints remain explicitly reconstructed.
+- Preserved all source zoom stations and their order. f/4L L2 moves imageward
+  39.35 mm; L3 moves 15.22 mm by the middle station, then reverses 0.33 mm.
+  f/4L IS L2 moves imageward 34.11 mm; L3 reaches 8.813 mm, then reverses
+  6.854 mm. This reversal was also inspected using the live middle/tele slider.
+- f/2.8L IS g2/g3/g4 move imageward 27.78/43.53/11.09 mm relative to R1.
+  Its fixed-camera chart retains the existing 0.0131 mm BFD rounding residual.
+- Exposed f/4L IS relay subgroups `Gf (+)`, `Gm IS (-)`, and `Gr (+)` as shown
+  in the patent. Both IS lenses correctly keep their unsupported focus slider
+  disabled; no finite-focus spacing was invented.
+- Added inferred APD tags for f/4L E3/E4/E12 and f/4L IS E3/E4/E13, supported
+  by the fluorite/UD production correlation and compatible catalog dispersion.
+  Confirmed purple coloring and `APD (INFERRED)` inspector text. No patent APD
+  measurement or production supplier is asserted. The 21/19 f/2.8 patent design
+  retains its separate production-correlation limitation and no branded UD tags.
+
+### Dispersion root cause and catalog additions
+
+The first audit's 57/57 total counted compatible catalog names, but 37 elements
+still copied surrogate C/F/g indices into fields the runtime treats as measured.
+Thus only 20/57 actually used catalog curves. Removed those copied fields and
+surrogate dPgF values from the two affected prescriptions; all 57/57 now use the
+catalog model in the runtime and live inspector. Patent nd/vd remain unchanged.
+
+Added two previously absent vendor curves, with coefficients transcribed directly:
+
+- [SCHOTT LAFN7 datasheet](https://media.schott.com/api/public/content/c842d31345bc40ae86b67732d6eb4eea?v=02357659),
+  three-term Sellmeier, nd 1.74950 / vd 34.95, code 750350.
+- [Nikon/Hikari J-LASF013 datasheet](https://www.nikon.com/business/components/lineup/materials/optical-glass/catalog/pdf/J-LASF013.pdf),
+  nine-term power series, nd 1.804400 / vd 39.61, code 804396.
+
+The f/4L E8/E13 labels now select those exact stated surrogates instead of
+implicitly selecting H-LaF4/S-LAH63 through competing coordinate tokens.
+Both live inspectors reproduce the vendor C/F/g lines. CaF2 uses the shared
+Daimon/Masumura catalog curve; removed the stale Canon Optron curve attribution.
+All f/4L IS catalog names now explicitly state surrogate/supplier uncertainty.
+
+Catalog side effects were audited. New LAFN7 exposes the older Leica ELCAN
+50mm f/2 E4 approximate label as outside nd tolerance (0.0051 mismatch). Its
+annotation/notes now explicitly retain unmatched lanthanum flint and the existing
+Abbe model. J-LASF013 is the closer coordinate match for some existing 804396
+classes; updated the Nikon DX regression expectation to reflect that selection.
+Global strict coverage remains 7,334/7,877 (93.1%), with zero catalog mismatches.
+
+### Follow-up verification
+
+- Surface and image-circle audits pass for all three lenses.
+- 72,090 d-line rays: five zoom positions, both focus endpoints, and axial/half/full
+  sampled fields, with an identical launch grid before/after. No previously
+  transmitted rays became clipped; f/4L IS gained 108 and f/4L gained 191 samples.
+  This is a regression comparison, not a claim of unvignetted full-pupil coverage.
+- No hidden rendering trims across all 30 sampled lens states.
+- Added regression coverage for actual runtime dispersion quality, vendor spectral
+  lines, inferred APD provenance, complete focus travel, and compensator reversal.
+- No additional changelog entry; the original UTC-dated batch entry is unchanged.
+- Final TypeScript, formatting, and lint checks passed. Full Vitest suite passed:
+  297 files / 2,757 tests. Final production build passed with 1,264 prerendered
+  routes, sitemap, and RSS. Glass reports passed 8 files / 15 tests.
