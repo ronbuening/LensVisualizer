@@ -12,18 +12,18 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **686** lenses scanned
-- **7812** glass elements examined
-- **2387** elements have multiple coordinate-compatible candidates
-- **468** lens files are affected
-- **208** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
-- **194** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
+- **689** lenses scanned
+- **7869** glass elements examined
+- **2415** elements have multiple coordinate-compatible candidates
+- **471** lens files are affected
+- **233** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
+- **219** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
-| Smallest reference-index residual | 1331 |
-| Evidence-source priority | 771 |
-| Vendor context | 276 |
+| Smallest reference-index residual | 1334 |
+| Evidence-source priority | 793 |
+| Vendor context | 279 |
 | Stable canonical-name order | 7 |
 | Smallest Abbe residual | 2 |
 
@@ -213,6 +213,22 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `603606/603607 SK14/BSM14 crown class (vendor unresolved)` | 1.60311 / 60.60 (d) | N-SK14 — alias evidence outranks six-digit code evidence. | S-BSM14 (Ohara, code, preferred code row)<br>BACD14 (Hoya, code, alternate code row)<br>J-SK14 (Hikari, code, alternate code row) | 2 | [CANON EF 600mm f/4 L IS USM](../../src/lens-data/canon/CanonEF600mmf4LISUSM.data.ts) L3a-2 |
 | `804466 lanthanum class (vendor unresolved)` | 1.80400 / 46.60 (d) | H-ZLaF50D — smallest d-line \|Δn\| (7.2e-9 vs 1.9e-8) | J-LASF015 (Hikari, code, alternate code row)<br>H-ZLaF50E (CDGM, code, alternate code row)<br>S-LAH65 (Ohara, code, preferred code row) | 1 | [CANON EF 600mm f/4 L IS USM](../../src/lens-data/canon/CanonEF600mmf4LISUSM.data.ts) L3b-3 |
 | `750350 lanthanum-flint class (vendor unresolved)` | 1.74950 / 35.00 (d) | H-LaF4 — smallest d-line \|Δn\| (2.4e-8 vs 2.0e-7) | E-LAF7 (Hoya, code, alternate code row) | 1 | [CANON EF 600mm f/4 L IS USM](../../src/lens-data/canon/CanonEF600mmf4LISUSM.data.ts) L3c-2 |
+| `750353 coordinate class (spectral surrogate: OHARA S-LAM7)` | 1.74950 / 35.30 (d) | S-LAM7 — direct name evidence outranks six-digit code evidence. | J-LAF7 (Hikari, code, vendor ✗, alternate code row) | 1 | [CANON EF 70-200mm f/2.8L IS USM](../../src/lens-data/canon/CanonEF70200mmf28LISUSM.data.ts) L1 |
+| `497816 fluorophosphate-crown coordinate class (spectral surrogate: OHARA S-FPL51)` | 1.49700 / 81.50 (d) | S-FPL51 — direct name evidence outranks six-digit code evidence. | H-FK61 (CDGM, code, vendor ✗, alternate code row)<br>FCD1 (Hoya, code, vendor ✗, alternate code row) | 4 | [CANON EF 70-200mm f/2.8L IS USM](../../src/lens-data/canon/CanonEF70200mmf28LISUSM.data.ts) L2 |
+| `847238 dense-flint coordinate class (spectral surrogate: OHARA S-TIH53)` | 1.84666 / 23.80 (d) | S-TIH53 — direct name evidence outranks six-digit code evidence. | S-TIH53W (Ohara, code, vendor ✓, alternate code row)<br>J-SF03 (Hikari, code, vendor ✗, alternate code row)<br>H-ZF52 (CDGM, code, vendor ✗, alternate code row)<br>FDS90 (Hoya, code, vendor ✗, alternate code row) | 5 | [CANON EF 70-200mm f/2.8L IS USM](../../src/lens-data/canon/CanonEF70200mmf28LISUSM.data.ts) L4 |
+| `806409 lanthanum-flint coordinate class (spectral surrogate: OHARA S-LAH53)` | 1.80610 / 40.90 (d) | S-LAH53 — direct name evidence outranks six-digit code evidence. | P-LASF47 (Schott, code, vendor ✗, alternate code row) | 1 | [CANON EF 70-200mm f/2.8L IS USM](../../src/lens-data/canon/CanonEF70200mmf28LISUSM.data.ts) L6 |
+| `713539 lanthanum-crown coordinate class (spectral surrogate: OHARA S-LAL8)` | 1.71299 / 53.90 (d) | S-LAL8 — direct name evidence outranks six-digit code evidence. | LAC8 (Hoya, code, vendor ✗, preferred code row)<br>MP-LAC8-30 (Hoya, code, vendor ✗, alternate code row) | 1 | [CANON EF 70-200mm f/2.8L IS USM](../../src/lens-data/canon/CanonEF70200mmf28LISUSM.data.ts) L9 |
+| `773496 lanthanum-flint coordinate class (spectral surrogate: OHARA S-LAH66)` | 1.77250 / 49.60 (d) | S-LAH66 — direct name evidence outranks six-digit code evidence. | S-LAH66N (Ohara, code, vendor ✓, alternate code row)<br>J-LASF016 (Hikari, code, vendor ✗, alternate code row)<br>N-LAF34 (Schott, code, vendor ✗, alternate code row) | 1 | [CANON EF 70-200mm f/2.8L IS USM](../../src/lens-data/canon/CanonEF70200mmf28LISUSM.data.ts) L13 |
+| `603607 dense-crown coordinate class (spectral surrogate: OHARA S-BSM14)` | 1.60311 / 60.60 (d) | S-BSM14 — direct name evidence outranks six-digit code evidence. | J-SK14 (Hikari, code, vendor ✗, alternate code row)<br>BACD14 (Hoya, code, vendor ✗, alternate code row) | 1 | [CANON EF 70-200mm f/2.8L IS USM](../../src/lens-data/canon/CanonEF70200mmf28LISUSM.data.ts) L15 |
+| `694532 lanthanum-crown coordinate class (spectral surrogate: OHARA L-LAL13)` | 1.69350 / 53.20 (d) | L-LAL13 — direct name evidence outranks six-digit code evidence. | S-LAL13 (Ohara, code, vendor ✓, preferred code row)<br>M-LAC130 (Hoya, code, vendor ✗, alternate code row) | 2 | [CANON EF 70-200mm f/2.8L IS USM](../../src/lens-data/canon/CanonEF70200mmf28LISUSM.data.ts) L17 |
+| `847239 — high-index flint class (vendor unresolved)` | 1.84666 / 23.93 (d) | S-NPH53 — smallest d-line \|Δn\| (3.2e-7 vs 7.7e-7) | S-TIH53WN (Ohara, code, alternate code row)<br>PBH53 (Ohara, code, alternate code row) | 1 | [CANON EF 70-200mm f/4L IS USM](../../src/lens-data/canon/CanonEF70200mmf4LISUSM.data.ts) L2-3 |
+| `S-FPL51 (OHARA) / FCD1-class UD glass` | 1.49700 / 81.50 (d) | S-FPL51 — Annotation vendor context matches Ohara. | FCD1 (Hoya, name, vendor ✗) | 2 | [CANON EF 70-200mm f/4L USM](../../src/lens-data/canon/CanonEF70200mmf4LUSM.data.ts) E4 |
+| `804466 LASF class (HIKARI J-LASF015 spectral surrogate)` | 1.80400 / 46.60 (d) | J-LASF015 — direct name evidence outranks six-digit code evidence. | H-ZLaF50D (CDGM, code, vendor ✗, alternate code row)<br>H-ZLaF50E (CDGM, code, vendor ✗, alternate code row)<br>S-LAH65 (Ohara, code, vendor ✗, preferred code row) | 1 | [CANON EF 70-200mm f/4L USM](../../src/lens-data/canon/CanonEF70200mmf4LUSM.data.ts) E5 |
+| `S-BSL7 (OHARA) / N-BK7 class` | 1.51633 / 64.10 (d) | S-BSL7 — Annotation vendor context matches Ohara. | N-BK7 (Schott, name, vendor ✗) | 2 | [CANON EF 70-200mm f/4L USM](../../src/lens-data/canon/CanonEF70200mmf4LUSM.data.ts) E6 +1 files |
+| `750350 LAFN7/LAF7 class (SCHOTT LAFN7 spectral surrogate)` | 1.74950 / 35.00 (d) | H-LaF4 — smallest d-line \|Δn\| (2.4e-8 vs 2.0e-7) | E-LAF7 (Hoya, code, vendor ✗, alternate code row) | 1 | [CANON EF 70-200mm f/4L USM](../../src/lens-data/canon/CanonEF70200mmf4LUSM.data.ts) E8 |
+| `603607 barium-crown class (OHARA S-BSM14 spectral surrogate)` | 1.60311 / 60.60 (d) | S-BSM14 — direct name evidence outranks six-digit code evidence. | BACD14 (Hoya, code, vendor ✗, alternate code row)<br>J-SK14 (Hikari, code, vendor ✗, alternate code row) | 2 | [CANON EF 70-200mm f/4L USM](../../src/lens-data/canon/CanonEF70200mmf4LUSM.data.ts) E11 |
+| `804396 LASF class (HIKARI J-LASF013 spectral surrogate)` | 1.80440 / 39.60 (d) | S-LAH63 — smallest d-line \|Δn\| (1.9e-7 vs 2.2e-6) | S-LAH63Q (Ohara, code, vendor ✗, alternate code row) | 1 | [CANON EF 70-200mm f/4L USM](../../src/lens-data/canon/CanonEF70200mmf4LUSM.data.ts) E13 |
+| `697555 lanthanum-crown class (OHARA S-LAL14 spectral surrogate)` | 1.69680 / 55.50 (d) | S-LAL14 — direct name evidence outranks six-digit code evidence. | J-LAK14 (Hikari, code, vendor ✗, alternate code row)<br>LAC14 (Hoya, code, vendor ✗, alternate code row) | 1 | [CANON EF 70-200mm f/4L USM](../../src/lens-data/canon/CanonEF70200mmf4LUSM.data.ts) E15 |
 | `847239 class (vendor unresolved; multiple catalog equivalents)` | 1.84666 / 23.90 (d) | S-NPH53 — smallest d-line \|Δn\| (3.2e-7 vs 7.7e-7) | S-TIH53WN (Ohara, code, alternate code row)<br>PBH53 (Ohara, code, alternate code row) | 1 | [CANON EF 70-300mm f/4.5-5.6 DO IS USM](../../src/lens-data/canon/CanonEF70300mmf4556DOISUSM.data.ts) E6 |
 | `FCD505 / FCD515 class (HOYA)` | 1.59282 / 68.60 (d) | FCD515 — smallest d-line \|Δn\| (4.3e-6 vs 6.8e-6) | FCD505 (Hoya, name, vendor ✓) | 2 | [CANON EF 8-15mm f/4 L Fisheye USM](../../src/lens-data/canon/CanonEF815mmf4LFisheye.data.ts) L2 |
 | `S-LAH58 (OHARA) / TAFD33 class` | 1.88300 / 40.80 (d) | S-LAH58 — Annotation vendor context matches Ohara. | TAFD33 (Hoya, name, vendor ✗) | 3 | [CANON EF 8-15mm f/4 L Fisheye USM](../../src/lens-data/canon/CanonEF815mmf4LFisheye.data.ts) L6 |
@@ -270,6 +286,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `S-TIH6 / Schott SF6 (805254)` | 1.80518 / 25.40 (d) | SF6 — Annotation vendor context matches Schott. | S-TIH6 (Ohara, name, vendor ✗) | 1 | [CANON FD 50mm f/1.2 L](../../src/lens-data/canon/CanonFD50mmf12L.data.ts) L4 |
 | `OHARA S-LAH59 (816466)` | 1.81600 / 46.60 (d) | S-LAH59 — direct name evidence outranks six-digit code evidence. | J-LASF09A (Hikari, code, vendor ✗, alternate code row)<br>TAF5 (Hoya, code, vendor ✗, alternate code row) | 1 | [CANON FD 50mm f/1.2 L](../../src/lens-data/canon/CanonFD50mmf12L.data.ts) L5 |
 | `E-FEL1 (Hoya; S-TIL1 equivalent)` | 1.54814 / 45.80 (d) | E-FEL1 — Annotation vendor context matches Hoya. | S-TIL1 (Ohara, name, vendor ✗) | 1 | [CANON NEW FD 14mm f/2.8 L](../../src/lens-data/canon/CanonNewFD14mmf28L.data.ts) L7 |
+| `Dense flint 667/330 (modern CDGM H-ZF39 equivalent; historical supplier unconfirmed)` | 1.66680 / 33.00 (d) | H-ZF39 — direct name evidence outranks six-digit code evidence. | S-TIM39 (Ohara, code, vendor ✗, preferred code row) | 1 | [CANON NEW FD 14mm f/2.8 L](../../src/lens-data/canon/CanonNewFD14mmf28L.data.ts) L10 |
 | `FK fluorosilicate crown class (487/701; N-FK5/S-FSL5 class)` | 1.48749 / 70.10 (d) | N-FK5 — smallest d-line \|Δn\| (3.7e-9 vs 6.5e-8) | S-FSL5 (Ohara, name) | 4 | [CANON NEW FD 150-600mm f/5.6L](../../src/lens-data/canon/CanonFD150600mmf56L.data.ts) L1 |
 | `LaSF dense lanthanum flint class (806/409; S-LAH53 class)` | 1.80610 / 40.90 (d) | S-LAH53 — direct name evidence outranks six-digit code evidence. | P-LASF47 (Schott, code, alternate code row) | 1 | [CANON NEW FD 150-600mm f/5.6L](../../src/lens-data/canon/CanonFD150600mmf56L.data.ts) L4 |
 | `BK7 / S-BSL7 borosilicate crown class (516/641)` | 1.51633 / 64.10 (d) | S-BSL7 — direct name evidence outranks alias evidence. | N-BK7 (Schott, alias)<br>K-BK7 (Sumita, code, alternate code row) | 1 | [CANON NEW FD 150-600mm f/5.6L](../../src/lens-data/canon/CanonFD150600mmf56L.data.ts) L7 |
@@ -1177,6 +1194,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `S-BAL35 class (OHARA; SK5 / 589/610 equivalent)` | 1.58910 / 61.00 (d) | S-BAL35 — Annotation vendor context matches Ohara. | SK5 (Sumita, name, vendor ✗) | 2 | [OLYMPUS ZUIKO AUTO-FISHEYE 8mm f/2.8](../../src/lens-data/olympus/OlympusZuikoAutoFisheye8mmf28.data.ts) L1 |
 | `S-TIH11 class (OHARA; SF11 / 785/256 equivalent)` | 1.78470 / 25.60 (d) | S-TIH11 — Annotation vendor context matches Ohara. | SF11 (Schott, name, vendor ✗)<br>J-SF11 (Hikari, code, vendor ✗, preferred code row) | 1 | [OLYMPUS ZUIKO AUTO-FISHEYE 8mm f/2.8](../../src/lens-data/olympus/OlympusZuikoAutoFisheye8mmf28.data.ts) L2 |
 | `J-LAK02 class (Hikari; 670/573)` | 1.67000 / 57.30 (d) | J-LAK02 — direct name evidence outranks six-digit code evidence. | S-LAL52 (Ohara, code, vendor ✗, preferred code row) | 1 | [OLYMPUS ZUIKO AUTO-FISHEYE 8mm f/2.8](../../src/lens-data/olympus/OlympusZuikoAutoFisheye8mmf28.data.ts) L4 |
+| `H-ZF39 class (CDGM; 667/330)` | 1.66680 / 33.00 (d) | H-ZF39 — direct name evidence outranks six-digit code evidence. | S-TIM39 (Ohara, code, vendor ✗, preferred code row) | 1 | [OLYMPUS ZUIKO AUTO-FISHEYE 8mm f/2.8](../../src/lens-data/olympus/OlympusZuikoAutoFisheye8mmf28.data.ts) L5 |
 | `N-SF66 class (SCHOTT; 923/209 very dense flint)` | 1.92290 / 20.90 (d) | N-SF66 — direct name evidence outranks six-digit code evidence. | PBH21 (Ohara, code, vendor ✗, alternate code row)<br>E-FDS1 (Hoya, code, vendor ✗, alternate code row) | 1 | [OLYMPUS ZUIKO AUTO-FISHEYE 8mm f/2.8](../../src/lens-data/olympus/OlympusZuikoAutoFisheye8mmf28.data.ts) L9 |
 | `F5 (603/380)` | 1.60342 / 38.01 (d) | F5 — direct name evidence outranks six-digit code evidence. | J-F5 (Hikari, code, alternate code row)<br>E-F5 (Hoya, code, alternate code row) | 1 | [OLYMPUS ZUIKO AUTO-MACRO 50mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoMacro50mmf2.data.ts) L1 |
 | `S-LAL18 (OHARA; 729/547)` | 1.72916 / 54.68 (d) | S-LAL18 — direct name evidence outranks six-digit code evidence. | TAC8 (Hoya, code, vendor ✗, alternate code row) | 1 | [OLYMPUS ZUIKO AUTO-MACRO 50mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoMacro50mmf2.data.ts) L2 |
@@ -1351,7 +1369,6 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `S-FPL51 (OHARA) / FCD1 class ED` | 1.49700 / 81.60 (d) | S-FPL51 — Annotation vendor context matches Ohara. | FCD1 (Hoya, name, vendor ✗) | 2 | [PENTAX SMC PENTAX-A★ 200mm f/4 MACRO ED](../../src/lens-data/pentax/PentaxA200mmf4MacroED.data.ts) L2 |
 | `S-TIM3 (OHARA, 613/370 flint)` | 1.61293 / 37.00 (d) | S-TIM3 — direct name evidence outranks six-digit code evidence. | E-F3 (Hoya, code, vendor ✗, alternate code row) | 1 | [PENTAX SMC PENTAX-A★ 200mm f/4 MACRO ED](../../src/lens-data/pentax/PentaxA200mmf4MacroED.data.ts) L5 |
 | `S-LAL8 (OHARA) / N-LAK8 class` | 1.71300 / 53.80 (d) | S-LAL8 — Annotation vendor context matches Ohara. | N-LAK8 (Schott, name, vendor ✗) | 1 | [PENTAX SMC PENTAX-A★ 200mm f/4 MACRO ED](../../src/lens-data/pentax/PentaxA200mmf4MacroED.data.ts) L9 |
-| `S-BSL7 (OHARA) / N-BK7 class` | 1.51633 / 64.10 (d) | S-BSL7 — Annotation vendor context matches Ohara. | N-BK7 (Schott, name, vendor ✗) | 1 | [PENTAX SMC PENTAX-A★ 200mm f/4 MACRO ED](../../src/lens-data/pentax/PentaxA200mmf4MacroED.data.ts) L10 |
 | `N-SK16 / S-BSM16 class` | 1.62041 / 60.30 (d) | N-SK16 — smallest d-line \|Δn\| (3.5e-8 vs 9.1e-7) | S-BSM16 (Ohara, name) | 1 | [PENTAX SMC PENTAX-FA 28mm f/2.8 Soft](../../src/lens-data/pentax/PentaxFA28mmf28Soft.data.ts) E2 |
 | `S-LAH66 / N-LAF34 / TAF1 class` | 1.77250 / 49.60 (d) | N-LAF34 — smallest d-line \|Δn\| (6.4e-8 vs 1.1e-6) | S-LAH66 (Ohara, name) | 2 | [PENTAX SMC PENTAX-FA 28mm f/2.8 Soft](../../src/lens-data/pentax/PentaxFA28mmf28Soft.data.ts) E3 |
 | `741278 class (vendor unspecified)` | 1.74077 / 27.70 (d) | E-FD13 — smallest d-line \|Δn\| (2.3e-7 vs 1.2e-6) | S-TIH13 (Ohara, code, preferred code row) | 1 | [PENTAX SUPER-TAKUMAR 135mm f/2.5](../../src/lens-data/pentax/PentaxSuperTakumar135mmf2.5.data.ts) L1 |

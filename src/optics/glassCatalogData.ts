@@ -68,6 +68,7 @@ const GLASS_CATALOG_SOURCE_ORDER = [
   "S-LAH88",
   "S-PHM53",
   "S-TIH14",
+  "S-TIM39",
   "S-TIM35",
   "S-FPL52",
   "S-TIM25",

@@ -19,6 +19,11 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-09-07",
+    type: "lens",
+    summary: "Added Canon EF 70-200mm f/2.8L IS, f/4L IS, and f/4L USM lens designs",
+  },
+  {
     date: "2026-09-06",
     type: "lens",
     summary: "Added six Canon EF, EF-S, EF-M, and PowerShot lens designs",
