@@ -5,6 +5,27 @@
 import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const HIKARI_GLASS_ENTRIES: readonly GlassEntry[] = [
+  {
+    name: "J-LASF013",
+    vendor: "Hikari",
+    powerSeries: [
+      [3.1635095, 0],
+      [-0.0145894059, 2],
+      [-0.000212587159, 4],
+      [0.0315033746, -2],
+      [0.000585519102, -4],
+      [0.0000585508847, -6],
+      [-0.00000344096993, -8],
+      [0.000000317840715, -10],
+      [0, -12],
+    ],
+    nd: 1.8044,
+    vd: 39.61,
+    PgF: 0.5719,
+    code6: "804396",
+    source:
+      "Nikon/Hikari J-LASF013 datasheet (2022-07-01 revision), vendor nine-term power series; https://www.nikon.com/business/components/lineup/materials/optical-glass/catalog/pdf/J-LASF013.pdf (accessed 2026-09-07).",
+  },
   /* Phase 94: first-party rows completing the Nikon AF-S DX 55-200mm. */
   {
     name: "J-SK14",

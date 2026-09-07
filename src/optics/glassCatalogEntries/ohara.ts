@@ -6,6 +6,17 @@ import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
   {
+    name: "S-TIM39",
+    vendor: "Ohara",
+    B: [1.47008105, 0.224752746, 2.44968592],
+    C: [0.0102900432, 0.0541276904, 237.43494],
+    nd: 1.6668,
+    vd: 33.054985,
+    code6: "667330",
+    source:
+      "OHARA_260701.AGF, discontinued S-TIM39 row, formula 2 Sellmeier; official OHARA all-products catalog https://oharacorp.com/wp-content/uploads/catalogs/OHARA_260701_CATALOG.zip (accessed 2026-09-07).",
+  },
+  {
     name: "PBH23",
     vendor: "Ohara",
     polynomial: [3.0554324, -0.010867434, 0.038522891, 0.0030173971, -0.0002129474, 0.000024864803],

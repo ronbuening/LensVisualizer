@@ -5,6 +5,18 @@
 import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const SCHOTT_GLASS_ENTRIES: readonly GlassEntry[] = [
+  {
+    name: "LAFN7",
+    vendor: "Schott",
+    B: [1.66842615, 0.298512803, 1.0774376],
+    C: [0.010316, 0.0469216348, 82.5078509],
+    nd: 1.7495,
+    vd: 34.95,
+    PgF: 0.5825,
+    code6: "750350",
+    source:
+      "SCHOTT LAFN7 datasheet (2014-02-01), vendor Sellmeier constants; https://media.schott.com/api/public/content/c842d31345bc40ae86b67732d6eb4eea?v=02357659 (accessed 2026-09-07).",
+  },
   /* Phase 91: official N-KF9 datasheet recovered while auditing the Canon
    * EF 100-300mm f/5.6 patent coordinate 523508.
    */

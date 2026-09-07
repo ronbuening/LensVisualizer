@@ -37,6 +37,10 @@ This file tracks the second bucket plus any cases from the first bucket that nee
   unreviewed rows, **99** self-recording explicit unmatched/unidentified dispositions, and **0** dispositions missing a review record.
 - The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work; for patent-by-patent execution, start from [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md).
 
+## September 2026 LAFN7 catalog addition
+
+Adding the official SCHOTT LAFN7 curve exposed the existing approximate LAFN7 label on Leica ELCAN 50mm f/2 E4. Its authored 1.7546/34.7 coordinate differs from LAFN7 by 0.0051 in nd, outside the 0.003 limit; no catalog candidate passes. The annotation now explicitly retains an unmatched lanthanum-flint class, preserving its existing Abbe model and prescription. Source line-index recovery remains an opportunity.
+
 ## Resolved Phase 103 — August 2026 patent-coordinate recovery
 
 - Rendered and visually checked sixteen local patent tables, then assigned existing coefficient-backed curves to 21
