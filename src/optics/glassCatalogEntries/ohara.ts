@@ -631,6 +631,18 @@ export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source: "Ohara AGF (ohara_2017-11-30.agf) via refractiveindex.info. Fluorophosphate crown with +ΔPgF.",
   },
   {
+    name: "S-BAL11",
+    vendor: "Ohara",
+    B: [8.21314256e-1, 6.12586478e-1, 1.24859637],
+    C: [3.51436131e-3, 1.79762375e-2, 1.3345667e2],
+    nd: 1.572501,
+    vd: 57.74,
+    PgF: 0.5456,
+    code6: "573578",
+    source:
+      "OHARA 02-06 S-BAL11 datasheet, dispersion constants and C/d/F/g indices; https://oharacorp.com/wp-content/uploads/2023/06/esbal11.pdf (accessed 2026-09-08). Supplier-neutral equivalent for patent coordinates, not a production melt attribution.",
+  },
+  {
     name: "S-BAL35",
     vendor: "Ohara",
     B: [0.941357273, 0.546174895, 1.16168917],

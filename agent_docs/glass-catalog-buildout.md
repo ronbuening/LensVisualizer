@@ -8,7 +8,14 @@ catalog equivalent. If neither path is available, the engine falls back to parti
 dPgF-corrected indices, or the legacy Abbe approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **554 verified entries** in source as of September 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **558 verified entries** in source as of September 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+
+The September 8, 2026 Canon audit added OHARA S-BAL11 from the first-party OHARA 02-06 datasheet,
+including independent C/d/F/g regression pins. Its published 573578 code resolves the original EF-S 18–55mm's E5.
+Qualified existing S-TIM27 and S-BAL35 curves resolve the EF 50mm f/1.2L's G13 and EF 70–300mm IS's E13.
+All patent coordinates and supplier uncertainty are retained. Batch strict coverage improves from 30/34 to 33/34;
+the EF-S asphere's 583302 medium remains unresolved. Global strict/trusted coverage is 7367/7911 and 7382/7911,
+with zero catalog-coordinate mismatches.
 
 The September 5, 2026 six-lens Konica AR audit added legacy OHARA PBH23 from the manufacturer's
 `OHARA_260701.AGF` all-products catalog. Its published polynomial and exact `785262` code resolve the

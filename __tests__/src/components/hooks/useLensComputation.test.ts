@@ -147,6 +147,35 @@ describe("useLensComputation", () => {
     expect(r.fNumber).toBeCloseTo(r.currentFOPEN, 1);
   });
 
+  it.each(["canon-ef-70-300mm-f4-56-is-usm", "canon-ef-s-18-55mm-f3p5-5p6"])(
+    "%s keeps the full iris at every zoom's wide-open setting",
+    (lensKey) => {
+      const { result, rerender } = renderHook(
+        ({ zoomT, stopdownT }) =>
+          useLensComputation({
+            lensKey,
+            focusT: 0,
+            zoomT,
+            stopdownT,
+            scaleRatio: null,
+            panelId: "zoom-aperture",
+          }),
+        { initialProps: { zoomT: 0, stopdownT: 0 } },
+      );
+      const iris = result.current.L!.stopPhysSD;
+      for (const zoomT of [0, 0.5, 1]) {
+        rerender({ zoomT, stopdownT: 0 });
+        expect(result.current.currentPhysStopSD).toBeCloseTo(iris, 10);
+        expect(result.current.currentEPSD).toBeCloseTo(result.current.baseEPSD, 10);
+        const L = result.current.L!;
+        const stopdownT = Math.log(8 / L.FOPEN) / Math.log(L.maxFstop / L.FOPEN);
+        rerender({ zoomT, stopdownT });
+        expect(result.current.fNumber).toBeCloseTo(8, 10);
+        expect(result.current.currentPhysStopSD).toBeCloseTo((iris * result.current.currentFOPEN) / 8, 10);
+      }
+    },
+  );
+
   it("fNumber increases when stopped down", () => {
     const { result: wide } = renderHook(() =>
       useLensComputation({
