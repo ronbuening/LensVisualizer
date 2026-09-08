@@ -64,7 +64,7 @@ const LENS_DATA = {
   groupCount: 10,
 
   focusDescription:
-    "NO_INTERNAL_RECONSTRUCTION — Numerical Example 1 publishes infinity-focus zoom spacings only. The production 1.5 m closest-focus distance is retained as metadata, but all authored focus pairs are identical so no internal finite-focus motion is invented.",
+    "Focus travel is unavailable: the patent publishes infinity-focus zoom states only. The 1.5 m limit is a production specification; no internal focus motion is modeled.",
 
   /* ── Elements ── */
   elements: [
@@ -263,6 +263,7 @@ const LENS_DATA = {
     },
   ],
 
+  // Live Fig. 1 review: shared L3 rear-doublet and L5 rims avoid artificial taper.
   // Fig. 1 (p. 16), inspected at 600 dpi: L6 optical rims are about 13.5 mm.
   // Use a common 13.4 mm clear rim; all source states retain edge and gap clearance.
   /* ── Surface prescription ── */
@@ -279,17 +280,17 @@ const LENS_DATA = {
     { label: "10", R: -366.719, d: 30.37, nd: 1.0, elemId: 0, sd: 13.5 },
     { label: "11", R: 60.128, d: 4.6, nd: 1.497, elemId: 7, sd: 14.1 },
     { label: "12", R: -73.825, d: 0.2, nd: 1.0, elemId: 0, sd: 14.1 },
-    { label: "13", R: 59.578, d: 4.7, nd: 1.48749, elemId: 8, sd: 13.8 },
-    { label: "14", R: -59.578, d: 1.5, nd: 1.834, elemId: 9, sd: 13.6 },
-    { label: "15", R: 1e15, d: 4.4, nd: 1.0, elemId: 0, sd: 13.4 },
+    { label: "13", R: 59.578, d: 4.7, nd: 1.48749, elemId: 8, sd: 14.1 },
+    { label: "14", R: -59.578, d: 1.5, nd: 1.834, elemId: 9, sd: 14.1 },
+    { label: "15", R: 1e15, d: 4.4, nd: 1.0, elemId: 0, sd: 14.1 },
     { label: "STO", R: 1e15, d: 4.31, nd: 1.0, elemId: 0, sd: 12.4665706 },
     { label: "17", R: -55.58, d: 2.8, nd: 1.51633, elemId: 10, sd: 12.6 },
     { label: "18", R: -122.975, d: 23.91, nd: 1.0, elemId: 0, sd: 12.6 },
-    { label: "19", R: 155.0, d: 4.4, nd: 1.60311, elemId: 11, sd: 12.8 },
-    { label: "20", R: -39.321, d: 1.8, nd: 1.80518, elemId: 12, sd: 12.8 },
-    { label: "21", R: -76.835, d: 0.2, nd: 1.0, elemId: 0, sd: 12.9 },
-    { label: "22", R: 63.185, d: 2.8, nd: 1.58913, elemId: 13, sd: 12.9 },
-    { label: "23", R: 1e15, d: 19.91, nd: 1.0, elemId: 0, sd: 12.7 },
+    { label: "19", R: 155.0, d: 4.4, nd: 1.60311, elemId: 11, sd: 13.4 },
+    { label: "20", R: -39.321, d: 1.8, nd: 1.80518, elemId: 12, sd: 13.4 },
+    { label: "21", R: -76.835, d: 0.2, nd: 1.0, elemId: 0, sd: 13.4 },
+    { label: "22", R: 63.185, d: 2.8, nd: 1.58913, elemId: 13, sd: 13.4 },
+    { label: "23", R: 1e15, d: 19.91, nd: 1.0, elemId: 0, sd: 13.4 },
     { label: "24", R: -47.006, d: 1.5, nd: 1.7725, elemId: 14, sd: 13.4 },
     { label: "25", R: 43.075, d: 2.9, nd: 1.80518, elemId: 15, sd: 13.4 },
     { label: "26", R: 180.0, d: 42.530264, nd: 1.0, elemId: 0, sd: 13.4 },

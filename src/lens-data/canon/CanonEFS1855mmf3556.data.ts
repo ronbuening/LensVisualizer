@@ -85,6 +85,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "E1",
+      diagramLabel: "E1",
       label: "Element 1",
       type: "Biconvex Positive",
       nd: 1.51633,
@@ -97,6 +98,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "E2",
+      diagramLabel: "E2",
       label: "Element 2",
       type: "Negative Meniscus",
       nd: 1.622992,
@@ -109,6 +111,7 @@ const LENS_DATA = {
     {
       id: 3,
       name: "E3",
+      diagramLabel: "E3",
       label: "Element 3",
       type: "Biconcave Negative",
       nd: 1.622992,
@@ -121,6 +124,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "E4",
+      diagramLabel: "E4",
       label: "Element 4",
       type: "Positive Meniscus",
       nd: 1.84666,
@@ -133,6 +137,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "E5",
+      diagramLabel: "E5",
       label: "Element 5",
       type: "Biconvex Positive",
       nd: 1.572501,
@@ -145,6 +150,7 @@ const LENS_DATA = {
     {
       id: 6,
       name: "E6",
+      diagramLabel: "E6",
       label: "Element 6",
       type: "Negative Meniscus",
       nd: 1.84666,
@@ -158,6 +164,7 @@ const LENS_DATA = {
     {
       id: 7,
       name: "E7",
+      diagramLabel: "E7",
       label: "Element 7",
       type: "Biconvex Positive",
       nd: 1.48749,
@@ -171,6 +178,7 @@ const LENS_DATA = {
     {
       id: 8,
       name: "E8",
+      diagramLabel: "E8",
       label: "Element 8",
       type: "Biconcave Negative",
       nd: 1.620041,
@@ -184,6 +192,7 @@ const LENS_DATA = {
     {
       id: 9,
       name: "E9",
+      diagramLabel: "E9",
       label: "Element 9",
       type: "Positive Meniscus",
       nd: 1.755199,
@@ -197,6 +206,7 @@ const LENS_DATA = {
     {
       id: 10,
       name: "E10",
+      diagramLabel: "E10",
       label: "Element 10",
       type: "Weak Negative Meniscus (1x Asph)",
       nd: 1.58306,
@@ -209,6 +219,7 @@ const LENS_DATA = {
     {
       id: 11,
       name: "E11",
+      diagramLabel: "E11",
       label: "Element 11",
       type: "Positive Meniscus",
       nd: 1.51633,
@@ -220,6 +231,7 @@ const LENS_DATA = {
     },
   ],
 
+  // Live Fig. 13 review: align L2b rims; keep R17 below the telephoto cross-gap limit.
   // Fig. 13 (p. 18), inspected at 600 dpi: restore the larger front-group rims.
   // R4 stops at 11.8 mm to preserve R4-R5 clearance; the outer drawn flange is mechanical.
   /* ── Surface prescription ── */
@@ -233,14 +245,14 @@ const LENS_DATA = {
     { label: "R7", R: 20.119, d: 2.9, nd: 1.84666, elemId: 4, sd: 12 },
     { label: "R8", R: 35.644, d: 32.31, nd: 1.0, elemId: 0, sd: 12 },
     { label: "R9", R: 131.721, d: 1.7, nd: 1.572501, elemId: 5, sd: 7.6 },
-    { label: "R10", R: -44.181130175128175, d: 2.9, nd: 1.0, elemId: 0, sd: 7.5 },
+    { label: "R10", R: -44.181130175128175, d: 2.9, nd: 1.0, elemId: 0, sd: 7.6 },
     { label: "STO", R: 1e15, d: 2.5, nd: 1.0, elemId: 0, sd: 6.26423971036203 },
     { label: "R12", R: 16.312, d: 0.8, nd: 1.84666, elemId: 6, sd: 7.8 },
-    { label: "R13", R: 11.532, d: 4.75, nd: 1.48749, elemId: 7, sd: 7.6 },
-    { label: "R14", R: -57.613, d: 1.62, nd: 1.0, elemId: 0, sd: 7.6 },
-    { label: "R15", R: -33.004, d: 0.8, nd: 1.620041, elemId: 8, sd: 7.5 },
+    { label: "R13", R: 11.532, d: 4.75, nd: 1.48749, elemId: 7, sd: 7.8 },
+    { label: "R14", R: -57.613, d: 1.62, nd: 1.0, elemId: 0, sd: 7.8 },
+    { label: "R15", R: -33.004, d: 0.8, nd: 1.620041, elemId: 8, sd: 7.7 },
     { label: "R16", R: 11.18, d: 3.2, nd: 1.755199, elemId: 9, sd: 7.7 },
-    { label: "R17", R: 27.194, d: 7.72, nd: 1.0, elemId: 0, sd: 7.4 },
+    { label: "R17", R: 27.194, d: 7.72, nd: 1.0, elemId: 0, sd: 7.6 },
     { label: "R18", R: -140.794, d: 1.5, nd: 1.58306, elemId: 10, sd: 9.8 },
     { label: "R19A", R: -144.846, d: 0.12, nd: 1.0, elemId: 0, sd: 9.9 },
     { label: "R20", R: -664.185, d: 4.16, nd: 1.51633, elemId: 11, sd: 10.2 },
@@ -309,7 +321,7 @@ const LENS_DATA = {
   /* ── Focus configuration ── */
   closeFocusM: 0.28,
   focusDescription:
-    "CONSTRAINED_RECONSTRUCTION: L1 focuses by moving objectward. Close-focus D8 values are code-solved at Canon's 0.28 m focal-plane-referenced MFD with the image plane and L2-L4 fixed; all other authored close gaps equal their infinity values.",
+    "L1 moves toward the object for closer focus; L2–L4 stay fixed. Travel to 0.28 m is reconstructed from the patent’s focusing mechanism and Canon’s minimum focus distance.",
 
   /* ── Aperture configuration ── */
   nominalFno: [3.59, 4.42103340096855, 5.99],

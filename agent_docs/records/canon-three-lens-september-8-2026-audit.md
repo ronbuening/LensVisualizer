@@ -39,3 +39,15 @@ Prepended one lens changelog entry dated **2026-09-08**, verified against **2026
 - Browser review: all three pages rendered successfully; both zoom endpoints were inspected for each zoom lens. The 50mm title and Japanese patent links display correctly.
 - Final typecheck, formatting, lint, and all 298 test files / 2,761 tests passed. Production build prerendered 1,267 pages and generated sitemap/RSS successfully; only the existing bundle-size advisory remained.
 - Staged whitespace review replaced supplied Markdown trailing-space breaks with equivalent backslash hard breaks. Patent PDFs and temporary renders are excluded from the commit.
+
+## Second live-site review
+
+- Straightened EF 50mm G11/G12 and NL2 rims; increased S6 to 16.5 mm while retaining the G13 front clearance cap.
+- Aligned EF 70–300mm S13–S15 at 14.1 mm and S19–S23 at 13.4 mm. Rejected larger front-doublet and L2 common rims because they failed edge-thickness/gap checks.
+- Aligned EF-S L2b at 7.8 mm and refined R10/R15/R17. R17 remains capped at 7.6 mm by telephoto clearance. Added consistent E1–E11 diagram labels.
+- Shortened visible focus descriptions while retaining full source/reconstruction detail in the analyses.
+- Verified source-station focus/zoom ordering against the patent figures and camera-fixed group motion. Regression checks preserve the EF-S front-group reversal, 50mm unit-focus direction, nearly fixed 70–300mm L2/L4 groups, and unavailable 70–300mm focus travel.
+- Live zoom review exposed a shared viewer/benchmark aperture scaling bug: multiplying by the wide-angle `L.FOPEN` stopped down a telephoto state that the controls called wide-open. Both paths now use `currentFOPEN`, preserving the full runtime iris at each zoom's wide-open marking. Regression checks cover both variable-aperture additions and fixed f/8 selection. The change also applies to comparison panels through the shared hook.
+- Further 583302 research rejected the published polycarbonate fit (nd 1.584763, vd 27.8583) because vd differs by 2.3417. No catalog tolerance was loosened and no unverified resin/melt was assigned. Coverage remains 33/34; the 70–300mm's unique high-Abbe E7 retains its production-correlated inferred UD tag. Other element colors derive from authored nd and have no missing APD evidence that would justify recoloring.
+- No additional changelog entry.
+- Final verification: typecheck, format, lint, all 298 test files / 2,765 tests, and the production build passed (1,267 prerendered pages). All three surface/image-circle audits passed. Live local-site checks covered focus endpoints and wide/middle/tele zoom states, confirming full wide-open iris diameters of 24.93 mm (70–300mm) and 12.53 mm (EF-S); the existing bundle-size advisory remains.

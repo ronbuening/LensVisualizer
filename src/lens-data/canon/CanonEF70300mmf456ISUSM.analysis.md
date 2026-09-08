@@ -344,3 +344,7 @@ facts.
 Figure 1 on page 16 was inspected at 600 dpi. The final L6 doublet has optical rims near 13.5 mm; surfaces 24–26 now share a 13.4 mm semi-diameter instead of 11.5 mm. Other rims remain within drawing uncertainty and are retained. The S-BAL35 catalog-equivalent curve resolves E13 (patent 589611), giving 15/15 coefficient-backed glass media without identifying a production supplier or changing patent nd/νd.
 
 Canon documents one UD element on its [Camera Museum page](https://global.canon/en/c-museum/product/ef388.html). E7, the unique νd = 81.5 position, now carries an `inferred` APD/UD diagram tag. Its placement is a production correlation; no patent partial-dispersion value or measured APO performance is implied.
+
+## Live-diagram follow-up
+
+The second live-site comparison aligned the rear L3 doublet at 14.1 mm (S13–S15) and the L5 elements at 13.4 mm (S19–S23). The front doublet and L2 clear rims are retained: common 28.5 mm front-doublet rims produced negative edge thickness, and a common 13.4 mm L2 rim violated the S7–S8 gap limit. At the three source zoom stations, L1/L3/L5/L6 move objectward while L2 and L4 remain fixed to the precision of the printed spacing table. Finite-focus travel stays disabled. The E7 inferred UD tag and all 15 compatible dispersion curves are retained.

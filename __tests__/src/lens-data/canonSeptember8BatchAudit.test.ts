@@ -6,6 +6,7 @@ import defaults from "../../../src/lens-data/defaults.js";
 import buildLens from "../../../src/optics/buildLens.js";
 import { computeElementRenderDiagnostics } from "../../../src/optics/diagramGeometry.js";
 import { resolveCompatibleGlass } from "../../../src/optics/glassCatalog.js";
+import { computeGroupMovementProfile, getGroupMovementAvailability } from "../../../src/optics/groupMovement.js";
 import { doLayout } from "../../../src/optics/optics.js";
 import type { LensData, LensDataInput } from "../../../src/types/optics.js";
 import { isPatentPublicationNumber, patentJurisdiction } from "../../../src/utils/catalog/patentRecords.js";
@@ -32,6 +33,47 @@ describe("September 8 Canon patent batch", () => {
     expect(resolveCompatibleGlass(ef70.elements[12].glass, 1.58913, 61.1)?.name).toBe("S-BAL35");
     expect(resolveCompatibleGlass(efs.elements[4].glass, 1.572501, 57.8)?.name).toBe("S-BAL11");
     expect(ef70.elements[6].apd).toBe("inferred");
+  });
+
+  it("preserves ordered source zoom travel, including the EF-S front-group reversal", () => {
+    const cases: [LensDataInput, number[][]][] = [
+      [
+        ef70,
+        [
+          [-30.742651, -0.012651, -10.312651, -0.002651, -6.262651, -11.532651],
+          [-54.383676, 0.016324, -27.493676, 0.016324, -6.963676, -23.493676],
+        ],
+      ],
+      [
+        efs,
+        [
+          [8.540326, -11.639674, -8.929674, -11.629674],
+          [-0.135641, -30.395641, -24.105641, -30.385641],
+        ],
+      ],
+    ];
+    for (const [lens, expected] of cases) {
+      const L = buildLens({ ...defaults, ...lens } as LensData);
+      for (const [i, zoomT] of [0.5, 1].entries()) {
+        const profile = computeGroupMovementProfile(L, "zoom", { focusT: 0, zoomT });
+        expect(profile.series).toHaveLength(expected[i].length);
+        profile.series.forEach((series, j) => expect(series.currentPoint.shiftMm).toBeCloseTo(expected[i][j], 5));
+      }
+    }
+  });
+
+  it("focuses objectward with the published moving unit and disables unavailable travel", () => {
+    const prime = buildLens({ ...defaults, ...ef50 } as LensData);
+    const zoom = buildLens({ ...defaults, ...efs } as LensData);
+    for (const zoomT of [0, 0.5, 1]) {
+      for (const series of computeGroupMovementProfile(prime, "focus", { focusT: 1, zoomT }).series)
+        expect(series.currentPoint.shiftMm).toBeCloseTo(-7.067215, 6);
+      const frontFocus = computeGroupMovementProfile(zoom, "focus", { focusT: 1, zoomT }).series;
+      expect(frontFocus[0].currentPoint.shiftMm).toBeLessThan(-3.3);
+      for (const series of frontFocus.slice(1)) expect(series.currentPoint.shiftMm).toBeCloseTo(0, 8);
+    }
+    expect(getGroupMovementAvailability(buildLens({ ...defaults, ...ef70 } as LensData)).focus).toBe(false);
+    expect(getGroupMovementAvailability(prime).zoom).toBe(false);
   });
 
   it("keeps patent-refined rims free of hidden renderer trims across focus and zoom", () => {

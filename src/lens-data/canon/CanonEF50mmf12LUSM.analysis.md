@@ -194,3 +194,7 @@ No numerical patent value is intentionally corrected. OCR/readback ambiguities w
 ## September 2026 catalog audit
 
 The S-TIM27 catalog curve now models the 640345 position: its evaluated nd = 1.6397988 and νd = 34.4664 closely match the patent. All eight elements have compatible coefficient-backed dispersion. This is a catalog-equivalent model, not a production-supplier identification; patent coordinates remain authoritative. Figure 1 on page 16 was inspected at 600 dpi. Its optical rims agree with the existing SDs within drawing uncertainty, so they are retained.
+
+## Live-diagram follow-up
+
+The second live-site comparison straightened G11/G12 and the second cemented pair: S2 is now 22.0 mm, S4 20.0 mm, S6 16.5 mm, and S11 18.9 mm. Other radii remain unchanged, including the 19.0 mm asphere aperture. These optical-rim refinements reduce artificial taper without copying mechanical steps. A larger 18.5 mm G13 front rim was rejected by the cross-gap rule. The source whole-unit focus direction remains objectward, with both GF and GR moving by the same reconstructed 7.067215 mm.

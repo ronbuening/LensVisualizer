@@ -252,11 +252,12 @@ export default function useLensComputation({
    * lens can't open wider than the zoom position allows. */
   const rawFNumber = L ? L.FOPEN * Math.pow(L.maxFstop / L.FOPEN, stopdownT) : 1;
   const fNumber = Math.max(rawFNumber, currentFOPEN);
-  const currentPhysStopSD = L ? (L.stopPhysSD * L.FOPEN) / fNumber : 0;
+  // Stop-down is relative to this zoom state: its wide-open marking retains the full iris.
+  const currentPhysStopSD = L ? (L.stopPhysSD * currentFOPEN) / fNumber : 0;
   /* Use the current focus/zoom front-group magnification for pupil-dependent analyses. */
   const baseEPSD =
     L && fieldGeometry ? entrancePupilAtState(L.stopPhysSD, focusT, zoomT, L, fieldGeometry, aberrationT).epSD : 0;
-  const currentEPSD = L ? (baseEPSD * L.FOPEN) / fNumber : 0;
+  const currentEPSD = L ? (baseEPSD * currentFOPEN) / fNumber : 0;
 
   /* ── Variable gap readouts ── */
   const varReadouts: VarReadout[] = L

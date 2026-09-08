@@ -179,19 +179,20 @@ const LENS_DATA = {
     },
   ],
 
+  // Live Fig. 1 review: common G11/G12 and NL2+PL2 rims; G13 rear capped at 16.5 mm.
   /* ── Surface prescription: JP2007333790A Numerical Example 1 ── */
   surfaces: [
     { label: "1", R: 61.844, d: 4.99, nd: 1.772499, elemId: 1, sd: 22.0 },
-    { label: "2", R: 411.251, d: 0.24, nd: 1.0, elemId: 0, sd: 21.7 },
+    { label: "2", R: 411.251, d: 0.24, nd: 1.0, elemId: 0, sd: 22 },
     { label: "3", R: 28.537, d: 5.34, nd: 1.834807, elemId: 2, sd: 20.0 },
-    { label: "4", R: 41.757, d: 1.14, nd: 1.0, elemId: 0, sd: 18.2 },
+    { label: "4", R: 41.757, d: 1.14, nd: 1.0, elemId: 0, sd: 20 },
     { label: "5", R: 54.433, d: 2.16, nd: 1.639799, elemId: 3, sd: 17.95 },
-    { label: "6", R: 19.579, d: 12.95, nd: 1.0, elemId: 0, sd: 15.8 },
+    { label: "6", R: 19.579, d: 12.95, nd: 1.0, elemId: 0, sd: 16.5 },
     { label: "STO", R: 1e15, d: 7.41, nd: 1.0, elemId: 0, sd: 14.591344 },
     { label: "8", R: -23.181, d: 1.4, nd: 1.72825, elemId: 4, sd: 16.75 },
     { label: "9", R: 196.367, d: 7.64, nd: 1.882997, elemId: 5, sd: 16.75 },
     { label: "10", R: -29.011, d: 0.45, nd: 1.0, elemId: 0, sd: 16.75 },
-    { label: "11", R: -27.438, d: 1.5, nd: 1.698947, elemId: 6, sd: 18.7 },
+    { label: "11", R: -27.438, d: 1.5, nd: 1.698947, elemId: 6, sd: 18.9 },
     { label: "12", R: 442.408, d: 6.48, nd: 1.834807, elemId: 7, sd: 18.9 },
     { label: "13", R: -41.024, d: 0.15, nd: 1.0, elemId: 0, sd: 18.9 },
     { label: "14A", R: 146.157, d: 5.87, nd: 1.804, elemId: 8, sd: 19.0 },
@@ -230,10 +231,7 @@ const LENS_DATA = {
   /* ── Focus configuration ── */
   closeFocusM: 0.45,
   focusDescription:
-    "CONSTRAINED_RECONSTRUCTION: patent-published whole-lens/unit focus with all internal gaps fixed. " +
-    "The close state changes only the last-surface-to-image gap from authored D15 = 38.88 mm to 45.947215 mm, " +
-    "solved from Canon's 0.45 m MFD under an object-to-image-plane distance assumption; " +
-    "this state is not patent-published.",
+    "The whole optical unit moves toward the object for closer focus. The 7.07 mm travel to 0.45 m is reconstructed; the patent specifies unit focusing but gives no close-focus spacing table.",
 
   /* ── Aperture configuration ── */
   nominalFno: 1.25,
