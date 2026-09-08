@@ -14,7 +14,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * wide-open ray path. Retain unavailable real-ray results rather than
  * changing source powers, enlarging trimmed rims or silently closing the iris.
  * Semi-diameters include earlier rendering trims below published Ri.
- * The source sensor-cover plate is modeled separately from the 11 lens elements.
+ * Sensor cover glass is omitted by diagram convention. Its physical thickness
+ * is included in the final air spacing; this does not model plate refraction.
  * See the companion audit and analysis for the remaining limitations.
  */
 
@@ -176,18 +177,6 @@ const LENS_DATA = {
       glass: "L-BAL42 (OHARA), probable",
       role: "Sole Gr3 element — dedicated field flattener and final wavefront corrector. Concave-toward-object per patent condition (7). L-prefix = PGM glass. Largest departures in design: S20A −674 µm, S21A −850 µm (scaled).",
     },
-    // Source surfaces 22–23: sensor stack, outside the 11-element lens count.
-    {
-      id: 12,
-      name: "CG",
-      label: "Sensor cover plate",
-      type: "Plane-parallel plate",
-      nd: 1.5168,
-      vd: 64.13,
-      fl: 1e15,
-      glass: "S-BSL7 (catalog coordinate equivalent; supplier unspecified)",
-      role: "Patent sensor-cover model, fixed relative to the image plane. Not an additional powered lens element; the patent does not identify the production filter stack.",
-    },
   ],
 
   surfaces: [
@@ -236,10 +225,8 @@ const LENS_DATA = {
     // ── Gr3 (negative, moves toward image during close focus) ──────
     // L31 — negative meniscus, 2× aspherical (concave object side)
     { label: "20A", R: -42.24268447837, d: 1.84796437659, nd: 1.58313, elemId: 11, sd: 12.46819338422 },
-    // Source d21 is air to the cover glass, not the total distance to the sensor.
-    { label: "21A", R: -154.4007633588, d: 16.72073791349, nd: 1.0, elemId: 0, sd: 12.91348600509 },
-    { label: "22", R: 1e15, d: 1.647582697201, nd: 1.5168, elemId: 12, sd: 26.71755725191 },
-    { label: "23", R: 1e15, d: 0.9462468193384, nd: 1.0, elemId: 0, sd: 26.71755725191 },
+    // Preserve physical sensor position: source d21 + omitted plate 0.074 + BF 0.0425, all ×s.
+    { label: "21A", R: -154.4007633588, d: 19.31456743003, nd: 1.0, elemId: 0, sd: 12.91348600509 },
   ],
 
   asph: {
@@ -299,18 +286,18 @@ const LENS_DATA = {
     },
   },
 
-  // Three variable gaps: STO→Gr2, Gr2→Gr3, Gr3→cover glass
+  // Three variable gaps: STO→Gr2, Gr2→Gr3, Gr3→image
   // [d_infinity, d_close_focus]
-  // The cover plate thickness and its rear-to-image gap remain fixed.
+  // The omitted plate thickness and rear gap are included in the final spacing.
   var: {
     STO: [11.44402035623, 6.300890585242],
     "19A": [5.098600508906, 14.82824427481],
-    "21A": [16.72073791349, 12.13422391858],
+    "21A": [19.31456743003, 14.72805343511],
   },
   varLabels: [
     ["STO", "D13"],
     ["19A", "D19"],
-    ["21A", "D21→CG"],
+    ["21A", "BF"],
   ],
 
   groups: [

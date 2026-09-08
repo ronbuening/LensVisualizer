@@ -64,3 +64,7 @@ Patent: JP 2019-090947 A, Example 4
 - Restored source surfaces 22–23: t=0.074×s, nd=1.51680, vd=64.13, Ri=1.2×s, followed by BF=0.0425×s. Surface 21 now carries only the source air gap [0.751, 0.545]×s. The plate stays fixed with the sensor and does not change Gaussian EFL.
 - Kept the production count at 11 lens elements, with the additional modeled sensor plate labeled CG. The catalog glass coordinate equivalent does not identify a production supplier.
 - Aligned nominal aperture calibration / first stop with the source f/1.85 while retaining marketed f/1.8. The source focus-dependent stop radius is still not modeled; no source-backed correction to the Gr1 power or wide-open surface intersection was found.
+
+### Sensor-plate removal — diagram convention
+
+At the user's request, removed the sensor-cover element and surfaces 22–23. Restored the final physical air-spacing endpoints to [0.8675, 0.6615]×s and the BF label, preserving the sensor position. The plate's refraction is deliberately omitted. Physical scaling, source f/1.85 calibration and the explicit source limitations are retained. Removed the plate-only regression and retained checks for eleven elements, final lens surface 21A and both sensor-spacing endpoints.

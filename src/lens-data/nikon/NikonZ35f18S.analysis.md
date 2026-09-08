@@ -233,7 +233,7 @@ The glass identification as L-BAL42 is rated as probable. Like L23, the "L-" pre
 
 ### 3.5 Cover Glass / Filter Stack
 
-Source surfaces 22–23 are now traced as a separate parallel plate (nd = 1.51680, νd = 64.13, thickness 1.64758 mm), with a 0.94625 mm air gap from its rear to the image plane. This replaces the former approximation that treated the entire plate thickness as air. The plate remains fixed during focusing and is outside the production lens's 11-element count. It represents the patent sensor-stack model; the production filter stack is not identified. A parallel plate does not change the Gaussian EFL, so this correction cannot resolve the remaining 3.3% power discrepancy.
+The patent includes a parallel plate (nd = 1.51680, νd = 64.13, thickness 1.64758 mm) followed by a 0.94625 mm air gap to the image plane. Sensor cover plates are omitted from these diagrams, so the model ends at lens surface 21A and includes those physical distances in the final air spacing. This preserves the sensor position and focus-group travel but does not reproduce the plate's refraction or aberrations. Omitting a parallel plate does not change the Gaussian EFL; the remaining 3.3% power discrepancy is separate.
 
 ---
 
