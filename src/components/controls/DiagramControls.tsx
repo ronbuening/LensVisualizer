@@ -280,7 +280,7 @@ export default function DiagramControls({
           onChange={handleFocusChange}
           onPointerUp={handlePointerUp}
           minLabel={"\u221e"}
-          maxLabel={`${L.closeFocusM} m`}
+          maxLabel={formatDist(1, L)}
           disabled={!groupMovementAvailability.focus}
           disabledReason="No modeled focus travel data"
           flexBasis="260px"

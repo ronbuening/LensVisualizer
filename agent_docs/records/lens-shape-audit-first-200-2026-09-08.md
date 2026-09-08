@@ -13,14 +13,14 @@
 
 ## Progress
 
-1 / 200 completed. Next: lens 2, `fujifilm-xf50-f1`.
+2 / 200 completed. Next: lens 3, `nokton-50f1`.
 
 ## Frozen queue
 
 | # | Lens key | First added (UTC) | Data file | Status |
 |---|---|---|---|---|
 | 1 | apo-lanthar-50f2 | 2026-03-18T18:51:44.000Z | `src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.ts` | Complete — changed |
-| 2 | fujifilm-xf50-f1 | 2026-03-18T18:51:44.000Z | `src/lens-data/fujifilm/FujifilmXF50f1.data.ts` | Pending |
+| 2 | fujifilm-xf50-f1 | 2026-03-18T18:51:44.000Z | `src/lens-data/fujifilm/FujifilmXF50f1.data.ts` | Complete — changed |
 | 3 | nokton-50f1 | 2026-03-18T18:51:44.000Z | `src/lens-data/voigtlander/VoigtlanderNokton50f1.data.ts` | Pending |
 | 4 | nikkor-z-50f18s | 2026-03-18T20:29:17.000Z | `src/lens-data/nikon/NikonNikkorZ50f18S.data.ts` | Pending |
 | 5 | nikkor-105-f14e-ed | 2026-03-19T03:19:39.000Z | `src/lens-data/nikon/NikonNikkor105f14E.data.ts` | Pending |
@@ -226,6 +226,8 @@
 |---|---|---|---|
 | 1 | APO-LANTHAR 50mm f/2 | `VoigtlanderApoLanthar50f2.data.ts`: ASP19 A6 sign, rear SD 11→15 mm, close focus 0.37→0.45495 m, three movement groups, supplier-neutral glass/APD labels and S-LAH65V compatibility; companion analysis rewritten against evidence; `DiagramControls.tsx`: label wide-open EP explicitly | Local `patents/JP2021043376A.pdf`, Table 5 p.27, Fig.10 p.48, §§0092–0098; production and corrected local live viewer |
 
+| 2 | Fujifilm XF 50mm f/1.0 | `FujifilmXF50f1.data.ts`: aspheric rims 10.7/9.9→13 mm, patent nominal aperture, air-equivalent rear gaps/reference distance, focus arrow/gap labels, all 12 partial-dispersion ratios, supplier-neutral glass labels; analysis and asphere tests synchronized; shared focus endpoint formatting | Local `patents/US20210231927A1.pdf`, Fig.7 p.8, Tables 9–12 p.80, §§0212–0213 p.79; live production/local views |
+
 ## Lens 1 verification
 
 - Production and local browser inspection performed; infinity, midpoint, close focus, tracking rays, dimensions, movement chart, f/16 and pupil readout checked.
@@ -238,7 +240,13 @@
 
 ## Follow-ups
 
-- Continue with lens 2, `src/lens-data/fujifilm/FujifilmXF50f1.data.ts`, exact local source `patents/US20210231927A1.pdf`, Example 3.
+- Continue with lens 3, `src/lens-data/voigtlander/VoigtlanderNokton50f1.data.ts`, exact local source `patents/JP2023063766A.pdf`, Example 1.
 - Lens 1 commit can be located with `git log --oneline --grep="audit APO-LANTHAR 50mm f/2"`.
 - Local validation server: `http://127.0.0.1:5175/` (Vite); production: `https://surfaceandstop.com/`.
 - Browser tables can initially show SSR-only content; wait for hydration before judging missing controls.
+
+## Lens 2 verification
+
+- Surface/image-circle audits passed; focused runtime dispersion, plate-equivalence, group motion, hidden-trim/asphere/control checks passed (39 tests).
+- Full typecheck, format, lint passed; 2,771 tests / 300 files passed; build prerendered 1,267 routes. Glass reports passed (15 tests), no report diffs.
+- Shared motion chart label clipping is visible with long authored group names; inspect this display limitation before final batch delivery.
