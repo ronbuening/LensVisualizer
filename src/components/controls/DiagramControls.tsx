@@ -21,9 +21,11 @@ interface VarReadout {
   val: string;
 }
 
-/** Format f-number for display: one decimal below f/10, rounded above. */
+/** Preserve hundredth-stop patent apertures while keeping whole stops compact. */
 function fmtF(f: number): string {
-  return f < 10 ? f.toFixed(1) : String(Math.round(f));
+  const rounded = Math.round(f * 100) / 100;
+  if (Number.isInteger(rounded)) return rounded < 10 ? rounded.toFixed(1) : String(rounded);
+  return rounded.toFixed(2).replace(/0$/, "");
 }
 
 interface DiagramControlsProps {
@@ -183,7 +185,10 @@ export default function DiagramControls({
   const apertureReferenceValue = fisheyeProjectionFocalLengthAtZoom(projection, zoomT) ?? dynamicEFL;
   const eflChanged = Math.abs(dynamicEFL - infinityEFL) > 0.1;
   const effApertureDiffers = Math.abs(effectiveFNum - fNumber) > 0.05;
-  const availableFStops = L.fstopSeries.filter((value) => value >= currentFOPEN - 0.1 && value <= L.maxFstop);
+  const availableFStops = [
+    currentFOPEN,
+    ...L.fstopSeries.filter((value) => value > currentFOPEN + 0.001 && value <= L.maxFstop),
+  ];
   const hasApertureRange = L.maxFstop > currentFOPEN + 0.15;
   const showApertureControl = showSliders && (hasApertureRange || availableFStops.length > 1);
   const signed = (value: number, digits: number, unit: string) =>
@@ -449,7 +454,7 @@ export default function DiagramControls({
           onPointerDown={beginInteraction}
           onChange={handleStopdownChange}
           onPointerUp={handlePointerUp}
-          minLabel={`f/${currentFOPEN.toFixed(1)}`}
+          minLabel={`f/${fmtF(currentFOPEN)}`}
           maxLabel={`f/${L.maxFstop}`}
           flexBasis="220px"
           collapsible={true}

@@ -37,8 +37,8 @@ describe("group movement optics helpers", () => {
     expect(getGroupMovementAvailability(L).focus).toBe(true);
     for (const series of profile.series) {
       const closePoint = series.samples.find((point) => Math.abs(point.focusT - 1) < 1e-9);
-      expect(closePoint?.shiftMm).toBeLessThan(-2.9);
-      expect(closePoint?.shiftMm).toBeGreaterThan(-3.1);
+      // Independent finite-conjugate result for the corrected 0.9 m endpoint.
+      expect(closePoint?.shiftMm).toBeCloseTo(-3.1474798041, 8);
       expect(closePoint?.positionMm).toBeLessThan(0);
     }
   });

@@ -13,17 +13,17 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **692** lenses scanned
-- **7903** glass elements examined
-- **2432** elements have multiple coordinate-compatible candidates
-- **474** lens files are affected
-- **207** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
+- **7904** glass elements examined
+- **2424** elements have multiple coordinate-compatible candidates
+- **472** lens files are affected
+- **208** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **194** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
-| Smallest reference-index residual | 1352 |
-| Evidence-source priority | 792 |
-| Vendor context | 279 |
+| Smallest reference-index residual | 1351 |
+| Evidence-source priority | 788 |
+| Vendor context | 276 |
 | Stable canonical-name order | 7 |
 | Smallest Abbe residual | 2 |
 
@@ -805,7 +805,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `487704 — fluor-crown class (closest FC5, HOYA; vendor unproven)` | 1.48749 / 70.45 (d) | FC5 — direct name evidence outranks six-digit code evidence. | N-FK5 (Schott, code, vendor ✗, preferred code row)<br>H-QK3L (CDGM, code, vendor ✗, alternate code row)<br>FK5 (Sumita, code, vendor ✗, alternate code row) | 1 | [NIKON AF-S FISHEYE NIKKOR 8-15mm f/3.5-4.5E ED](../../src/lens-data/nikon/NikonAFSFisheye815mmf3545EED.data.ts) L213 |
 | `K-SK18 (Sumita, patent nd/vd match) / S-BSM18 (OHARA)` | 1.63854 / 55.48 (d) | S-BSM18 — smallest d-line \|Δn\| (7.9e-7 vs 1.9e-6) | K-SK18 (Sumita, name, vendor ✓) | 1 | [NIKON AF-S MICRO-NIKKOR 60mm f/2.8 G ED](../../src/lens-data/nikon/NikonAFSMicroNikkor60f28G.data.ts) L2 |
 | `S-BSL7 (OHARA) / N-BK7 (Schott)` | 1.51612 / 64.03 (d) | S-BSL7 — smallest d-line \|Δn\| (2.1e-4 vs 6.8e-4) | N-BK7 (Schott, name, vendor ✓) | 1 | [NIKON AF-S MICRO-NIKKOR 60mm f/2.8 G ED](../../src/lens-data/nikon/NikonAFSMicroNikkor60f28G.data.ts) L4 |
-| `S-BSL7 (Ohara) / N-BK7 equiv.` | 1.51680 / 63.88 (d) | S-BSL7 — Annotation vendor context matches Ohara. | N-BK7 (Schott, name, vendor ✗) | 1 | [NIKON AF-S NIKKOR 105mm f/1.4 E ED](../../src/lens-data/nikon/NikonNikkor105f14E.data.ts) L22 |
+| `S-BSL7 (Ohara) / N-BK7 equiv.; catalog equivalent, production supplier unspecified` | 1.51680 / 63.88 (d) | S-BSL7 — Annotation vendor context matches Ohara. | N-BK7 (Schott, name, vendor ✗) | 1 | [NIKON AF-S NIKKOR 105mm f/1.4E ED](../../src/lens-data/nikon/NikonNikkor105f14E.data.ts) L22 |
 | `S-TIH1 (OHARA; exact 717295 coordinate)` | 1.71736 / 29.53 (d) | S-TIH1 — direct name evidence outranks six-digit code evidence. | SF1 (Schott, code, vendor ✗, preferred code row) | 1 | [NIKON AF-S NIKKOR 120-300mm f/2.8 E FL ED SR VR](../../src/lens-data/nikon/NikonNikkorAFS120300mmf28.data.ts) L22 |
 | `697555 — lanthanum crown (patent coordinate; vendor unresolved)` | 1.69680 / 55.52 (d) | J-LAK14 — smallest d-line \|Δn\| (1.3e-8 vs 2.3e-6) | LAC14 (Hoya, code, alternate code row)<br>S-LAL14 (Ohara, code, preferred code row) | 2 | [NIKON AF-S NIKKOR 120-300mm f/2.8 E FL ED SR VR](../../src/lens-data/nikon/NikonNikkorAFS120300mmf28.data.ts) L23 +1 files |
 | `S-LAH99 / TAFD55 (001291, HRI)` | 2.00100 / 29.12 (d) | S-LAH99 — smallest d-line \|Δn\| (3.6e-10 vs 3.0e-6) | TAFD55 (Hoya, name) | 2 | [NIKON AF-S NIKKOR 120-300mm f/2.8 E FL ED SR VR](../../src/lens-data/nikon/NikonNikkorAFS120300mmf28.data.ts) L51 |
@@ -1110,9 +1110,6 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `N-BK7 (Schott) / S-BSL7 (OHARA)` | 1.51680 / 64.14 (d) | N-BK7 — smallest d-line \|Δn\| (3.5e-8 vs 4.7e-4) | S-BSL7 (Ohara, name, vendor ✓) | 1 | [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../../src/lens-data/nikon/NikonZ105f28.data.ts) L46 |
 | `S-TIM22 (OHARA, 648338)` | 1.64830 / 33.80 (d) | S-TIM22 — direct name evidence outranks six-digit code evidence. | H-ZF1 (CDGM, code, vendor ✗, alternate code row)<br>E-FD2 (Hoya, code, vendor ✗, alternate code row) | 1 | [NIKON NIKKOR-N 5cm f/1.1](../../src/lens-data/nikon/NikonN5cmf11.data.ts) L5 |
 | `E-F1 (HOYA, 626357)` | 1.62590 / 35.60 (d) | E-F1 — direct name evidence outranks six-digit code evidence. | S-TIM1 (Ohara, code, vendor ✗, alternate code row) | 1 | [NIKON NIKKOR-N 5cm f/1.1](../../src/lens-data/nikon/NikonN5cmf11.data.ts) L8 |
-| `SK16 (Schott) / S-BSM16 (Ohara)` | 1.62041 / 60.30 (d) | S-BSM16 — direct name evidence outranks alias evidence. | N-SK16 (Schott, alias, vendor ✓) | 4 | [NIKON NIKKOR-N Auto 24mm f/2.8](../../src/lens-data/nikon/NikonNikkorAuto24f28.data.ts) L1 |
-| `F2 (Schott) / S-TIM2 (Ohara)` | 1.62004 / 36.30 (d) | F2 — smallest d-line \|Δn\| (1.4e-7 vs 8.4e-7) | S-TIM2 (Ohara, name, vendor ✓) | 1 | [NIKON NIKKOR-N Auto 24mm f/2.8](../../src/lens-data/nikon/NikonNikkorAuto24f28.data.ts) L4 |
-| `S-TIH23 (OHARA, patent nd/vd match; SF11 family)` | 1.78470 / 26.10 (d) | S-TIH23 — Annotation vendor context matches Ohara. | SF11 (Schott, name, vendor ✗) | 2 | [NIKON NIKKOR-N Auto 24mm f/2.8](../../src/lens-data/nikon/NikonNikkorAuto24f28.data.ts) L6 |
 | `E-LASF016 (Hikari) / J-LASF016 / LACL60 class` | 1.77250 / 49.50 (d) | J-LASF016 — smallest d-line \|Δn\| (1.7e-8 vs 9.8e-7) | E-LASF016 (Hikari, name, vendor ✓) | 1 | [NIKON NIKKOR-N AUTO 28mm f/2](../../src/lens-data/nikon/NikonNikkorN28mmf2.data.ts) L4 |
 | `BK7 (Schott) / S-BSL7 (OHARA)` | 1.51680 / 64.20 (d) | S-BSL7 — direct name evidence outranks alias evidence. | N-BK7 (Schott, alias, vendor ✓) | 2 | [NIKON NIKKOR-N AUTO 28mm f/2](../../src/lens-data/nikon/NikonNikkorN28mmf2.data.ts) L5 |
 | `620603 — SK16 / BSM16 / BACD16 class` | 1.62010 / 60.10 (d) | N-SK16 — alias evidence outranks six-digit code evidence. | J-SK16 (Hikari, code, alternate code row)<br>S-BSM16 (Ohara, code, alternate code row) | 1 | [NIKON NIKKOR-O 2.1cm f/4](../../src/lens-data/nikon/NikonNikkorO21mmf4.data.ts) L1 |
@@ -1754,7 +1751,6 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `E-FD5 (HOYA, patent nd/vd match) / SF5-class dense flint` | 1.67270 / 32.20 (d) | E-FD5 — Annotation vendor context matches Hoya. | SF5 (Schott, name, vendor ✗) | 1 | [VOIGTLÄNDER MACRO APO-LANTHAR 125mm f/2.5 SL](../../src/lens-data/voigtlander/VoigtlanderMacroApoLanthar125mmf25.data.ts) L44 |
 | `S-BSL7 (OHARA) / K-BK7 (Sumita)` | 1.51680 / 64.20 (d) | S-BSL7 — smallest d-line \|Δn\| (4.7e-4 vs 4.7e-4) | K-BK7 (Sumita, name, vendor ✓) | 2 | [VOIGTLÄNDER MACRO APO-LANTHAR 125mm f/2.5 SL](../../src/lens-data/voigtlander/VoigtlanderMacroApoLanthar125mmf25.data.ts) L51 |
 | `E-FD2 (HOYA, patent nd/vd match) / S-TIM22 class` | 1.64769 / 33.80 (d) | E-FD2 — Annotation vendor context matches Hoya. | S-TIM22 (Ohara, name, vendor ✗) | 1 | [VOIGTLÄNDER NOKTON 35mm f/1.2 Aspherical](../../src/lens-data/voigtlander/VoigtlanderNokton35mmf12.data.ts) L3b |
-| `SF6 / S-TIH6 (OHARA)` | 1.80518 / 25.46 (d) | S-TIH6 — Annotation vendor context matches Ohara. | SF6 (Schott, name, vendor ✗) | 1 | [VOIGTLÄNDER NOKTON 50mm f/1.0](../../src/lens-data/voigtlander/VoigtlanderNokton50f1.data.ts) L3 |
 | `S-NBH5 (OHARA) / N-KZFS5 (Schott) / E-ADF50 class` | 1.65412 / 39.68 (d) | N-KZFS5 — smallest d-line \|Δn\| (4.4e-7 vs 4.8e-6) | S-NBH5 (Ohara, name, vendor ✓) | 1 | [VOIGTLÄNDER NOKTON 50mm f/1.2 X-Mount](../../src/lens-data/voigtlander/VoigtlanderNoktonX50mmf12.data.ts) L32 |
 | `883408 — dense lanthanum glass class (vendor unresolved)` | 1.88300 / 40.80 (d) | S-LAH58 — smallest d-line \|Δn\| (3.0e-6 vs 3.9e-6) | TAFD30 (Hoya, code, alternate code row) | 2 | [VOIGTLÄNDER NOKTON Vintage Line 50mm f/1.5 Aspherical II VM](../../src/lens-data/voigtlander/VoigtlanderNokton50mmf15AsphericalVM.data.ts) L1 |
 | `729547 — lanthanum crown class (vendor unresolved)` | 1.72916 / 54.67 (d) | TAC8 — smallest d-line \|Δn\| (6.0e-8 vs 3.1e-6) | S-LAL18 (Ohara, code, preferred code row) | 1 | [VOIGTLÄNDER NOKTON Vintage Line 50mm f/1.5 Aspherical II VM](../../src/lens-data/voigtlander/VoigtlanderNokton50mmf15AsphericalVM.data.ts) L2 |

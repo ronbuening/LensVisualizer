@@ -64,3 +64,34 @@ Patent: WO2019/220618 A1, Example 9
 - `npm run format:check` — passed.
 - `npm run lint` — passed.
 - `npm run test` — passed (116 files, 1507 tests; expected error-boundary console traces emitted by tests).
+
+## 2026-09-08 — First-hosted audit source preparation (lens 4, incomplete)
+
+Primary source inspected directly: local `patents/WO2019220618A1.pdf` (203-page scanned WIPO publication). Title page confirms Saburo Masugi and Tomoyuki Sashima, WO 2019/220618 A1 (without a JP jurisdiction prefix), filed 2018-05-18, published 2019-11-21. Example 9 prose is PDF p50, Table 9 spans pp51–53, Figure 17 is p154. Scratch renders under `/tmp/z50-*` are not committed evidence assets.
+
+- All stored surface radii, infinity thicknesses and glass nd/νd match Table 9 on pp51–52. Asphere coefficients at 6, 16 and 17 also match. Patent κ=1 is stored as standard K=0; recheck the original sag equation before final sign-off.
+- Source D0 at close is 307.67 mm (object to first surface); TL is 92.330 mm, giving the current physical object-image distance 400.000 mm. D12=10.320→2.409, D19=6.356→14.267 and D26=1.000 at both stations. G2 moves 7.911 mm objectward with G1/G3 fixed, confirmed by ¶0124 and Figure 17.
+- Source surface 13 is a dummy plane followed by 2.700 mm air. Current `STO→G2` label reports only D12 and is 2.7 mm short of the actual optical gap. Per the current data contract, merge the dummy plane's gap into STO: 13.020→5.109 mm, leaving group travel unchanged.
+- Current surfaces 25–26 retain the sensor filter in conflict with the current data contract. Planned omission must replace rear gap with 10.5 + 1.6/1.5168 + 1 = 12.554852320675106 mm. Resulting air-equivalent track is 91.78485232067513 mm; preserve D0 by setting model closeFocusM to 0.39945485232067507, while explaining the physical source distance is 0.4 m. Table BFa=12.554 is independently rounded.
+- Surface 6A has nd=1.56093 and a 0.100 mm layer; Table 9 also supplies νd=36.6, which is currently absent from runtime element metadata. It has elemId=0, so the renderer omits that outer asphere: `buildElementSpans()` starts L14 at surface 7 and ends at 8. A separate thin-layer element record, consistent with existing Sony hybrid models, can preserve both the layer's dispersion and rendered profile. Its polymer identity remains inferred, since Table 9 gives optical constants, not chemistry. Production 12-element count must remain separate from modeled media count.
+- Figure 17 clearly includes the outer L14 asphere and the G2 objectward arrow. Exact rim measurement and live comparison remain pending; no SD change selected from this preliminary render.
+- Structured inventor Sashima already matches the title page; header comment Koshima does not. `patentNumber` currently has an incorrect leading JP. The f-stop series starts at marketing f/1.8 despite model f/1.85; inspect the live aperture endpoints before choosing the correction.
+- No production changes made for lens 4 yet. Browser access remains unavailable because the Mac is locked. This is source preparation, not a completed audit; live comparison, implementation and batch gates remain required.
+
+### Implementation and resumed live review
+
+- Production inspected at infinity and close focus after manual unlock. Confirmed missing surface-6 asphere, incorrect JP-prefixed link, abbreviated gap readout and f/1.9 display for the f/1.85 prescription.
+- Added L14a as explicit modeled medium (id 13), preserving nd=1.56093, νd=36.6, 0.100 mm thickness and the existing aspheric coefficients. Its polymer identity remains unspecified. Production count remains 12; the bonded layer is explained separately. Runtime layer dispersion now uses source Abbe data instead of an unowned-medium fallback.
+- Applied dummy-plane merge and air-equivalent filter omission as described above, without changing patent G2 motion. Corrected author spelling in comments/analysis and WO publication link. Clarified supplier-equivalent FDS18 labels and removed unsupported manufacturing certainty for the thin layer.
+- Corrected shared aperture formatting to preserve hundredths (f/1.85 and f/1.03 instead of f/1.9 and f/1.0); whole-number stops keep existing compact formatting. Minimum slider label uses the same formatter. NIKKOR's first stop button now agrees with its f/1.85 model aperture.
+- Local infinity and close views confirm the restored outer asphere, corrected WO link, f/1.85 display and actual STO→G2 gaps 13.02/5.11 mm. Targeted surface probe passes; no hidden trimming at focus 0, 0.5 or 1. Regression tests authored; tests and full gates deferred to batch boundary per user instruction.
+- Remaining review: exact high-DPI rim comparison and source sag-equation page; inspect intermediate focus/aperture and motion chart after final adjustments. This lens is not yet marked complete.
+
+- Figure 17 re-rendered at 600 dpi. The approximately 3487 px first-to-last vertex separation represents 79.230 mm, about 0.02272 mm/px. L21 optical front rim is ~10.9 mm (shoulder ~12.2 mm); L22 rims ~13.9 mm. Revised surfaces 14/15 from 13/13 to 11.5/12.3 mm and 16A/17A from 16/16 to 14.5/14.5 mm, retaining modest allowance above drawn optical rims. Targeted surface and image-circle probes pass (0 undersized). Other rim estimates remain within the existing modest ray-envelope allowances.
+- Updated midpoint/f16 live view shows the narrower focusing group without overlap. Motion chart confirms only G2 moves, maximum travel 7.91 mm; G1/G3 remain fixed. f/1.85 endpoint and f/16 maximum are readable.
+- Source limitation to resolve before final batch sign-off: ¶0061 on PDF pp19–20 refers to equation (A), but the equation itself is absent from the inspected PDF pages and Google Patents transcription. Existing κ=1→K=0 convention is retained; coefficients are visually verified. Find a family/source copy showing equation (A), or explicitly retain this as an unresolved source limitation rather than claim the equation was reverified.
+
+
+### Batch follow-up
+
+Source follow-up: national grant JP7131609B2 (Google Patents original, stored locally) pp11–12 also omits equation (A). Existing conic conversion is retained as an explicitly unresolved interpretation in the public analysis. This limitation remains in the follow-up ledger.

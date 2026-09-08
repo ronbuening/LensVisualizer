@@ -14,6 +14,7 @@ function renderControls(
   L: RuntimeLens,
   options: {
     focusExpanded?: boolean;
+    apertureExpanded?: boolean;
     focusT?: number;
     dynamicEFL?: number;
     showEffectiveFocalLength?: boolean;
@@ -23,6 +24,7 @@ function renderControls(
 ) {
   const callbacks = {
     onAberrationChange: vi.fn(),
+    onStopdownChange: vi.fn(),
     onFocusChange: vi.fn(),
     onShiftChange: vi.fn(),
     onTiltChange: vi.fn(),
@@ -52,7 +54,7 @@ function renderControls(
         varReadouts={[]}
         aberrationReadouts={[]}
         stopdownT={0}
-        onStopdownChange={vi.fn()}
+        onStopdownChange={callbacks.onStopdownChange}
         fNumber={L.FOPEN}
         currentFOPEN={L.FOPEN}
         currentPhysStopSD={L.stopPhysSD}
@@ -63,7 +65,7 @@ function renderControls(
         onToggleEffectiveFocalLength={callbacks.onToggleEffectiveFocalLength}
         showEffectiveAperture={false}
         onToggleEffectiveAperture={vi.fn()}
-        apertureExpanded={false}
+        apertureExpanded={options.apertureExpanded ?? false}
         onApertureExpandedChange={vi.fn()}
         onSliderPointerUp={callbacks.onSliderPointerUp}
         showSliders={true}
@@ -75,6 +77,21 @@ function renderControls(
 }
 
 describe("DiagramControls", () => {
+  it.each([1.03, 1.45, 1.85])("preserves patent aperture precision for f/%s", (nominalFno) => {
+    const L = buildLens({ ...LENS_CATALOG["sonnar-50f15"], nominalFno });
+    renderControls(L);
+    expect(screen.getAllByText(`f/${nominalFno}`)).not.toHaveLength(0);
+    expect(screen.queryByText(`f/${nominalFno.toFixed(1)}`)).toBeNull();
+  });
+
+  it("offers the actual wide-open aperture without a faster, unreachable shortcut", () => {
+    const L = buildLens(LENS_CATALOG["fujifilm-xf50-f1"]);
+    const { callbacks } = renderControls(L, { apertureExpanded: true });
+    expect(screen.queryByRole("button", { name: "Set aperture to f/1" })).toBeNull();
+    fireEvent.click(screen.getByRole("button", { name: "Set aperture to f/1.03" }));
+    expect(callbacks.onStopdownChange).toHaveBeenCalledWith(0);
+  });
+
   it("hides the aperture slider for fixed-stop lenses", () => {
     renderControls(buildLens(LENS_CATALOG["zeiss-hologon-15f8"]));
 

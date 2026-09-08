@@ -9,10 +9,10 @@ or per-lens patent backfills.
 ## Summary
 
 - **692** lenses scanned
-- **7911** non-air surfaces examined
-- **7918** element glass declarations examined
-- **241** non-explicit-unmatched annotations did not resolve
-- **112** distinct unresolved glass-like tokens found
+- **7910** non-air surfaces examined
+- **7919** element glass declarations examined
+- **234** non-explicit-unmatched annotations did not resolve
+- **113** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -127,6 +127,7 @@ or per-lens patent backfills.
 | KF5 | 1 | 1 | |
 | KZF4 | 1 | 1 | |
 | L5 | 1 | 1 | |
+| LAF2 | 1 | 1 | |
 | LF7-CLASS | 1 | 1 | |
 | LLF7 | 1 | 1 | |
 | N3 | 1 | 1 | |
@@ -606,6 +607,10 @@ or per-lens patent backfills.
 ### L5 — 1 occurrence
 
 - [LEICA SUMMICRON-M 50mm f/2](../../src/lens-data/leica/LeicaSummicronV550mmf2.data.ts) 10: `Lanthanum crown (same glass as L5)`
+
+### LAF2 — 1 occurrence
+
+- [NIKON NIKKOR-N Auto 24mm f/2.8](../../src/lens-data/nikon/NikonNikkorAuto24f28.data.ts) 15: `LAF2 equivalent (catalog comparison; supplier unspecified)`
 
 ### LF7-CLASS — 1 occurrence
 

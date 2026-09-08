@@ -2,14 +2,14 @@
 
 ## Patent Reference and Design Identification
 
-**Patent:** JP WO2019/220618 A1
-**Inventors:** Saburo Masugi, Tomoyuki Koshima
+**Patent:** WO 2019/220618 A1
+**Inventors:** Saburo Masugi, Tomoyuki Sashima
 **Applicant:** Nikon Corporation
 **Filed:** May 18, 2018 (PCT/JP2018/019269)
 **Title:** Optical System, Optical Apparatus, and Method of Manufacturing Optical System
 **Embodiment analyzed:** Example 9 (第9実施例)
 
-This analysis is based on **Example 9 (第9実施例)** of Japanese patent publication **JP WO2019/220618 A1**, filed by Nikon Corporation on May 18, 2018 (PCT/JP2018/019269), with inventors Saburo Masugi and Tomoyuki Koshima. The patent covers an optical system, optical apparatus, and method of manufacturing the optical system, classified under IPC G02B 13/00 and G02B 13/18.
+This analysis is based on **Example 9 (第9実施例)** of international patent publication **WO 2019/220618 A1**, filed by Nikon Corporation on May 18, 2018 (PCT/JP2018/019269), with inventors Saburo Masugi and Tomoyuki Sashima. The patent covers an optical system, optical apparatus, and method of manufacturing the optical system, classified under IPC G02B 13/00 and G02B 13/18.
 
 Example 9 corresponds to the production NIKKOR Z 50mm f/1.8 S based on the following confirmation criteria:
 
@@ -61,12 +61,12 @@ G1 consists of six elements arranged from the object side:
    A lanthanum crown glass element that provides positive power and continues the light convergence initiated by the cemented pair. Its meniscus shape helps control the angle of incidence on subsequent surfaces, reducing higher-order spherical aberration.
 
 3. **L14 — Composite Aspherical Element** (Surfaces 6–8)
-   - Thin aspherical layer on object side (nd = 1.56093, νd = 36.6, thickness = 0.100 mm) — likely UV-curing resin; see discussion below
+   - Thin aspherical layer on object side (nd = 1.56093, νd = 36.6, thickness = 0.100 mm) — composition unspecified; see discussion below
    - Lanthanum dense flint glass body, meniscus convex toward object (nd = 1.80400, νd = 46.6)
 
-   This is the **first of two aspherical elements** in the system. The patent prescription data shows two consecutive surfaces with distinct optical materials forming this element: a 0.100 mm layer of nd = 1.56093, νd = 36.6 on the aspherical object side, followed by a 5.622 mm glass body of nd = 1.80400, νd = 46.6. The patent text itself (paragraph 0125) states only that the object-side surface is aspherical and does not specify the manufacturing method. However, the prescription data strongly suggests a **composite (hybrid) aspherical construction** — a thin layer of UV-curing optical resin molded to an aspherical profile on the surface of a conventional glass substrate — based on three observations: (1) the 0.100 mm thickness is far too thin to be a self-supporting glass element; (2) the material nd = 1.56093, νd = 36.6 does not match any catalogued optical glass from the major suppliers (Ohara, Schott, Hoya, CDGM), but falls squarely within the typical range of UV-curing optical resins (nd ≈ 1.50–1.57, νd ≈ 33–42); and (3) this identical material appears across numerous examples in the patent, always as an extremely thin layer on aspherical surfaces, consistent with a single proprietary resin formulation used as a standard manufacturing process. This identification, while inferential, represents the standard interpretation any optical engineer would give this prescription pattern and is consistent with Nikon's documented use of "compound-type aspherical lens elements" elsewhere in their product lines.
+   This is the **first of two aspherical elements**. Table 9 gives a 0.100 mm layer (nd = 1.56093, νd = 36.6) followed by a 5.622 mm substrate (nd = 1.80400, νd = 46.6). Paragraph 0125 identifies the object-side asphere but does not name the layer's chemistry, supplier or manufacturing process. Composite construction is inferred from the thin bonded layer. The model renders and traces that layer separately, retaining its published dispersion; it does not identify a particular UV-curing resin. The extra modeled medium does not change the production count of twelve lens elements.
 
-   The aspherical surface primarily targets **spherical aberration and coma** at wide apertures, operating on the converging marginal ray bundle before the aperture stop. The aspherical coefficients for surface 6 are (note: κ = 1 denotes a spherical base in this patent's convention; see equation discussion in the Aspherical Surface Analysis section):
+   The aspherical surface primarily targets **spherical aberration and coma** at wide apertures, operating on the converging marginal ray bundle before the aperture stop. The aspherical coefficients for surface 6 are (note: the model interprets κ = 1 as a spherical base; see the source limitation in the Aspherical Surface Analysis section):
 
    - κ = 1.00000 (sphere)
    - A4 = −4.74106 × 10⁻⁷
@@ -94,7 +94,7 @@ G2 consists of three elements:
 5. **L21 — Biconcave Negative Lens** (Surfaces 14–15)
    - nd = 1.64769, νd = 33.7
 
-   This is a diverging element placed at the front of the focusing group. The patent (paragraph 0024) emphasizes that placing a negative lens at the object-most position of G2 is desirable for correcting field curvature. As the focusing group moves, the ray geometry through this element changes, and its negative power helps maintain a flat field across the image plane at varying focus distances. Surface 13 is a virtual (dummy) surface with zero thickness used as a reference plane in the optical design data.
+   This is a diverging element placed at the front of the focusing group. The patent (paragraph 0024) emphasizes that placing a negative lens at the object-most position of G2 is desirable for correcting field curvature. As the focusing group moves, the ray geometry through this element changes, and its negative power helps maintain a flat field across the image plane at varying focus distances. Surface 13 is a virtual plane followed by 2.700 mm of air in Table 9. The model omits this plane and adds that spacing to D12.
 
 6. **L22 — Biconvex Positive Lens, Double Aspherical** (Surfaces 16–17)
    - nd = 1.77377, νd = 47.2
@@ -129,12 +129,12 @@ G2 consists of three elements:
 | Parameter | Infinity | Close Focus (β = −0.1565) |
 |-----------|----------|---------------------------|
 | Object distance (D0) | ∞ | 307.67 mm |
-| Stop-to-G2 gap (D12) | 10.320 mm | 2.409 mm |
+| Stop-to-G2 optical gap (D12 + D13) | 13.020 mm | 5.109 mm |
 | G2-to-G3 gap (D19) | 6.356 mm | 14.267 mm |
 | Total focus travel | — | 7.911 mm |
 | Overall object distance | ∞ | 400.0 mm (0.40 m) |
 
-During focusing from infinity to close range, G2 moves 7.911 mm toward the object along the optical axis. The gap between the aperture stop and G2 contracts from 10.320 mm to 2.409 mm, while the gap between G2 and G3 expands correspondingly. G1 and G3 remain fixed. This inner-focus architecture eliminates any change in the lens's physical length and prevents the front element from rotating — both important for filter use and weather sealing.
+During focusing from infinity to close range, G2 moves 7.911 mm toward the object along the optical axis. The gap between the aperture stop and G2 contracts from 13.020 mm to 5.109 mm, while the gap between G2 and G3 expands correspondingly. G1 and G3 remain fixed. This inner-focus architecture eliminates any change in the lens's physical length and prevents the front element from rotating — both important for filter use and weather sealing.
 
 ### Third Lens Group (G3) — Negative Power, Fixed
 
@@ -154,7 +154,7 @@ G3 consists of three elements:
 
    The final optical element is a simple plano-concave diverging lens. Its flat rear surface (R = ∞) simplifies manufacturing and mounting. This element acts as a **field flattener**, counteracting the natural Petzval curvature of the positive-power system. The negative rear group is a hallmark of modern mirrorless lens design made possible by the short flange distance — with F-mount SLR lenses, the mirror box precluded placing negative elements this close to the image plane. The close proximity to the sensor means L33 operates on nearly-focused ray bundles, allowing it to flatten the field without introducing significant new aberrations.
 
-**Optical Filter (FL)** — Surfaces 25–26, a 1.600 mm thick plate of nd = 1.51680, νd = 64.1 (standard BK7-equivalent glass). This represents the exchangeable optical filter described in the patent — in the production lens, this corresponds to the combined thickness of the camera's IR-cut filter and sensor cover glass.
+**Optical Filter (FL)** — Source surfaces 25–26 describe a 1.600 mm plate of nd = 1.51680 and νd = 64.1. The model omits the filter under the site's lens-only convention. The final gap becomes 10.5 + 1.6/1.5168 + 1 = 12.554852321 mm, retaining the source's paraxial propagation. The source physical track is 92.330 mm; the modeled air-equivalent track is 91.784852321 mm. At close focus, D0 remains 307.67 mm, so the model's object-to-image distance is 399.454852321 mm rather than the source physical 400 mm. The control rounds both to 40 cm. This conversion is paraxial; omitting the plate does not preserve its higher-order aberrations.
 
 ---
 
@@ -170,11 +170,11 @@ The lens contains three aspherical surfaces distributed across two elements:
 
 Surface 17 carries by far the largest aspherical departure (its A4 coefficient is roughly 30× and 75× larger than surfaces 6 and 16, respectively). This makes it the primary aspherical corrector in the system. Its placement on the image side of L22 within the focusing group is strategically important: as G2 translates during focusing, the aspherical correction automatically adapts to the changing ray geometry.
 
-The aspherical surface equation used in the patent is the even polynomial form (paragraph 0061):
+The model retains the following even-polynomial interpretation of the patent coefficients:
 
 X(y) = (C·y²) / [1 + √(1 − κ·C²·y²)] + A₄y⁴ + A₆y⁶ + A₈y⁸ + A₁₀y¹⁰
 
-where X(y) is the sag at height y from the axis, C = 1/R is the paraxial curvature, κ is the conic constant, and Aᵢ are the aspherical coefficients. **Convention note:** This patent uses the convention where κ appears directly under the radical (not as 1+κ). In this convention, κ = 1 denotes a spherical base surface and κ = 0 a paraboloid. All three aspherical surfaces in Example 9 have κ = 1.00000 — meaning they are polynomial departures from a spherical base. This differs from the Zemax/ISO convention where K = 0 is a sphere; the conversion is K_Zemax = κ_patent − 1.
+where X(y) is the sag at height y from the axis, C = 1/R is the paraxial curvature, κ is the conic constant, and Aᵢ are the aspherical coefficients. **Convention limitation:** The model assumes κ appears directly under the radical (not as 1+κ). In this convention, κ = 1 denotes a spherical base surface and κ = 0 a paraboloid. All three aspherical surfaces in Example 9 list κ = 1.00000; the retained interpretation makes them polynomial departures from a spherical base. This differs from the Zemax/ISO convention where K = 0 is a sphere; the conversion is K_Zemax = κ_patent − 1. The inspected WO 2019/220618 A1 pp19–20 and national grant JP 7131609 B2 pp11–12 refer to equation (A) in ¶0061, but the equation itself is absent from both inspected publications. The numerical coefficients were verified against Table 9; the conic convention remains a source-verification follow-up, not a newly verified patent fact.
 
 ---
 
@@ -205,7 +205,7 @@ This glass type appears in four elements: L16, L21, L32, and L33. Its moderate-h
 | L11 | 1.67270 | 32.2 | Dense flint (S-TIM25 class) | Front negative corrector |
 | L12 | 1.94595 | 18.0 | FDS18 / 946180 ultra-high-index short flint | Chromatic correction, high-power cemented surface |
 | L13 | 1.72916 | 54.6 | Lanthanum crown (S-LAL18 class) | Positive convergence |
-| L14 layer | 1.56093 | 36.6 | Probable UV-curing optical resin (inferred) | Aspherical layer on glass substrate |
+| L14 layer | 1.56093 | 36.6 | Thin-layer medium; composition unspecified | Aspherical layer on glass substrate |
 | L14 glass | 1.80400 | 46.6 | Lanthanum dense flint (S-LAH65V class) | Aspherical convergence element |
 | L15 | 1.59319 | 67.9 | ED glass (S-FPM2 / FCD505 class) | Primary chromatic correction |
 | L16 | 1.64769 | 33.7 | Dense flint (S-TIM22 class) | Achromatizing partner to L15 |
@@ -259,6 +259,6 @@ The inner-focus design also means the lens maintains a constant physical length 
 
 ## References
 
-1. JP WO2019/220618 A1. "Optical System, Optical Apparatus, and Method for Manufacturing Optical System." Nikon Corporation. Filed 2018-05-18, Published 2019-11-21.
+1. WO 2019/220618 A1. "Optical System, Optical Apparatus, and Method for Manufacturing Optical System." Nikon Corporation. Filed 2018-05-18, Published 2019-11-21.
 2. JP 2012-234169 A. Referenced as prior art (inner-focus single focal length optical system).
 3. Nikon Corporation. "NIKKOR Z 50mm f/1.8 S" product specifications. Nikon Imaging.

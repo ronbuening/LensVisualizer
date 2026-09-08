@@ -8,12 +8,12 @@
 - Queue is frozen at the baseline; later changes must not reorder it. Hidden reference fixtures excluded.
 - Primary evidence: ignored local `patents/` PDFs; missing publications may be retrieved from Google Patents, Espacenet, or national authorities as explicitly authorized. Never stage patents or scratch renders.
 - Check the exact example, all prescription/asphere/glass rows, optical rims and dimensions, stop, focus/zoom endpoints and intermediate motion, slider labels, surfaced metadata, inspectors and analysis notes. Distinguish patent values, derived quantities, catalog proxies, estimates, and unknowns.
-- Inspect production in a browser before changes and the local live app after changes. Commit each lens separately, including its audit log and this record. No-change audits still receive a record commit.
-- Required gates per lens: surface and image-circle audits; typecheck, format check, lint, tests; build for lens data/content changes; glass reports when glass changes.
+- Inspect production in a browser before changes and the local live app after changes. User revised the cadence on 2026-09-08: commit in batches of ten lenses, including individual audit logs and this record. Preserve the existing commits for lenses 1–2; the next commit completes lenses 3–10, followed by batches 11–20, 21–30, and so on. Record no-change findings within the batch.
+- Run the validation gates at each batch boundary: surface and image-circle audits for the batch lenses; typecheck, format check, lint and tests; build for lens data/content changes; glass reports when glass changes. Use targeted geometry probes during source review when needed to resolve a proposed change. Complete live visual checks before committing each batch.
 
 ## Progress
 
-2 / 200 completed. Next: lens 3, `nokton-50f1`.
+10 / 200 have received source and live-view review. Lenses 1–2 are committed; changes for lenses 3–10 passed batch gates and are ready for the batch commit. Lens 4 retains one explicitly documented source limitation: equation (A) is absent from both inspected WO and JP grant copies, so its existing conic interpretation is not independently reverified. No remaining lenses are claimed complete.
 
 ## Frozen queue
 
@@ -21,14 +21,14 @@
 |---|---|---|---|---|
 | 1 | apo-lanthar-50f2 | 2026-03-18T18:51:44.000Z | `src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.ts` | Complete — changed |
 | 2 | fujifilm-xf50-f1 | 2026-03-18T18:51:44.000Z | `src/lens-data/fujifilm/FujifilmXF50f1.data.ts` | Complete — changed |
-| 3 | nokton-50f1 | 2026-03-18T18:51:44.000Z | `src/lens-data/voigtlander/VoigtlanderNokton50f1.data.ts` | Pending |
-| 4 | nikkor-z-50f18s | 2026-03-18T20:29:17.000Z | `src/lens-data/nikon/NikonNikkorZ50f18S.data.ts` | Pending |
-| 5 | nikkor-105-f14e-ed | 2026-03-19T03:19:39.000Z | `src/lens-data/nikon/NikonNikkor105f14E.data.ts` | Pending |
-| 6 | heliar-symmetric-1902 | 2026-03-19T15:57:01.000Z | `src/lens-data/voigtlander/VoigtlanderHeliar.data.ts` | Pending |
-| 7 | zeiss-tessar-144f55 | 2026-03-19T17:26:00.000Z | `src/lens-data/carl-zeiss-jena/ZeissTessar144f55.data.ts` | Pending |
-| 8 | bertele-sonnar-50f2-scaled | 2026-03-19T20:18:30.000Z | `src/lens-data/carl-zeiss-jena/ZeissJenaSonnar50f2.data.ts` | Pending |
-| 9 | sonnar-50f15 | 2026-03-19T21:05:31.000Z | `src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.ts` | Pending |
-| 10 | nikkor-24f28 | 2026-03-20T00:08:09.000Z | `src/lens-data/nikon/NikonNikkorAuto24f28.data.ts` | Pending |
+| 3 | nokton-50f1 | 2026-03-18T18:51:44.000Z | `src/lens-data/voigtlander/VoigtlanderNokton50f1.data.ts` | Reviewed — gates passed |
+| 4 | nikkor-z-50f18s | 2026-03-18T20:29:17.000Z | `src/lens-data/nikon/NikonNikkorZ50f18S.data.ts` | Reviewed — gates passed; source limitation retained |
+| 5 | nikkor-105-f14e-ed | 2026-03-19T03:19:39.000Z | `src/lens-data/nikon/NikonNikkor105f14E.data.ts` | Reviewed — gates passed |
+| 6 | heliar-symmetric-1902 | 2026-03-19T15:57:01.000Z | `src/lens-data/voigtlander/VoigtlanderHeliar.data.ts` | Reviewed — gates passed |
+| 7 | zeiss-tessar-144f55 | 2026-03-19T17:26:00.000Z | `src/lens-data/carl-zeiss-jena/ZeissTessar144f55.data.ts` | Reviewed — gates passed |
+| 8 | bertele-sonnar-50f2-scaled | 2026-03-19T20:18:30.000Z | `src/lens-data/carl-zeiss-jena/ZeissJenaSonnar50f2.data.ts` | Reviewed — gates passed |
+| 9 | sonnar-50f15 | 2026-03-19T21:05:31.000Z | `src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.ts` | Reviewed — gates passed |
+| 10 | nikkor-24f28 | 2026-03-20T00:08:09.000Z | `src/lens-data/nikon/NikonNikkorAuto24f28.data.ts` | Reviewed — gates passed |
 | 11 | nikkor-z50f12 | 2026-03-20T00:15:38.000Z | `src/lens-data/nikon/NikonNikkorZ50f12.data.ts` | Pending |
 | 12 | ricoh-gr1-28f28 | 2026-03-20T17:28:09.000Z | `src/lens-data/ricoh/RicohGR28f28.data.ts` | Pending |
 | 13 | ricoh-gr3-28f28 | 2026-03-20T18:45:40.000Z | `src/lens-data/ricoh/RicohGR328f28.data.ts` | Pending |
@@ -240,7 +240,7 @@
 
 ## Follow-ups
 
-- Continue with lens 3, `src/lens-data/voigtlander/VoigtlanderNokton50f1.data.ts`, exact local source `patents/JP2023063766A.pdf`, Example 1.
+- After committing the first batch, continue lens 11, `NikonNikkorZ50f12.data.ts`. Keep the frozen queue order.
 - Lens 1 commit can be located with `git log --oneline --grep="audit APO-LANTHAR 50mm f/2"`.
 - Local validation server: `http://127.0.0.1:5175/` (Vite); production: `https://surfaceandstop.com/`.
 - Browser tables can initially show SSR-only content; wait for hydration before judging missing controls.
@@ -250,3 +250,32 @@
 - Surface/image-circle audits passed; focused runtime dispersion, plate-equivalence, group motion, hidden-trim/asphere/control checks passed (39 tests).
 - Full typecheck, format, lint passed; 2,771 tests / 300 files passed; build prerendered 1,267 routes. Glass reports passed (15 tests), no report diffs.
 - Shared motion chart label clipping is visible with long authored group names; inspect this display limitation before final batch delivery.
+
+## Shared display corrections in the first batch
+
+- `LensGroupMovementOverlay.tsx`: label margin now expands with authored group-name length; live Sonnar f/2 chart rechecked and complete names fit without clipping or axis-title overlap. The XF50 stationary/focus labels were also rechecked live and fit.
+- `DiagramControls.test.tsx`: added regression coverage for retaining patent aperture values f/1.03, f/1.45 and f/1.85. Focused tests passed; full batch gates running.
+
+## Lenses 3–10 change ledger
+
+| # | Lens | Adjustments and locations | Verification resource |
+|---|---|---|---|
+| 3 | Nokton 50mm f/1 | Data/analysis: rear and aspheric rims; inferred 0.45 m unit-focus travel 7.3949 mm; neutral glass and production/model distinctions | Reviewed — gates passed |
+| 4 | NIKKOR Z 50mm f/1.8 S | Data/analysis: restored thin aspheric layer; WO link and inventor spelling; merged dummy plane; air-equivalent sensor-filter omission; actual gap labels; G2 rims; f/1.85 display | Reviewed — gates passed; source limitation retained |
+| 5 | NIKKOR 105mm f/1.4E | Data/analysis: source f/1.45; 14 partial-dispersion ratios; neutral glass labels; S13/S14 rims 23.5/22.5 mm; verified imageward 12 mm G2 travel | Reviewed — gates passed |
+| 6 | Heliar | Data/analysis: historical index/dispersion distinctions; inferred unit travel 12.7177 mm for 1 m object-image distance; source glass-role correction | Reviewed — gates passed |
+| 7 | Tessar 144mm f/5.5 | Data/analysis: first thickness 5.472→4.752 mm, first nd 1.6132→1.61132; computed EFL/BF and 2 m travel; front/rear rims; supplier-neutral labels | Reviewed — gates passed |
+| 8 | Sonnar 50mm f/2 | Data/analysis: optical rims, 0.9 m unit-focus travel; removed copied catalog line indices and unsupported APD/historical glass identity | Reviewed — gates passed |
+| 9 | Sonnar 50mm f/1.5 | Data/analysis: 42° source field; BF35.2→22.0385 mm and 0.9 m focus travel; figure-derived rims; inferred stop repositioned to clear L4; neutral glass labels | Reviewed — gates passed |
+| 10 | NIKKOR-N 24mm f/2.8 | Data/analysis: exact source precision; two CRC movement groups; finite-conjugate travel with estimated 0.70 mm contraction; glass/blank Abbe-cell distinctions and rims | Reviewed — gates passed |
+
+### Batch RCA and retained limitations
+
+- The initial full run had four failures. After the stop correction, an additional ghost-ray fixture that depended on the erroneous stop intersection was changed to deliberately close the iris; its clipping assertion remains. Corrected tests distinguish declared vs tracing field limits, use the independently solved 0.9 m travel, permit catalog d-line rounding, and test Petzval curvature independently of astigmatic best focus. The underlying optics were not changed to satisfy obsolete expectations.
+- Sonnar f/1.5 intermediate rays failed with `noBracket` because the old inferred stop was behind the actual curved exit intersection. The 6.3/0.65 mm gap split clears the S6 rim without changing the patent 6.95 mm total. Quarter/half/three-quarter pupil rays now transmit; entrance-rim clipping remains represented. Added a regression for stop clearance and transmission.
+- Heliar has no canonical image-format id and is skipped by the image-circle command. Applying that same conservative floor explicitly to the patent's 40 mm image semi-height gives no positive floor: all surfaces are at least 85.52 mm ahead of the image. This is a proxy check, not proof of corner performance.
+- Z50 equation (A) remains absent in the inspected WO pages and JP7131609B2 grant pp11–12. Google Patents lists the grant as the JP family member; its PDF was retrieved into ignored patents/. The public analysis now states that κ=1→K=0 is a retained interpretation, not verified from a visible equation.
+- The shared aperture shortcuts now include the actual current wide-open aperture and omit faster unreachable values (for example f/1 on the f/1.03 XF50 model). Added a click regression checking the 1.03 shortcut maps to the wide-open slider state.
+- Consolidated public changelog entry remains due at final audit delivery, before merge; do not add an entry per lens or per batch.
+
+- Final batch tests: 2,800 passed in 308 files. Typecheck, format check and lint passed; final ghost-test edit also passed focused formatting/lint. Build passed: 1,267 routes prerendered; sitemap and feeds generated. Sonnar stop revision passed surface/image-circle probes and repeated infinity/midpoint/close/f16 live checks (stop diameter now 18.67 mm wide open and 1.75 mm at f/16).
