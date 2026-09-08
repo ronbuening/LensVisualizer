@@ -9,12 +9,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **689** lenses scanned (**678** visible)
-- **7334 / 7877** non-air surfaces use strict catalog Sellmeier data (93.1%)
-- **7349 / 7877** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.3%)
+- **692** lenses scanned (**681** visible)
+- **7367 / 7911** non-air surfaces use strict catalog Sellmeier data (93.1%)
+- **7382 / 7911** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.3%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
-- **225** code-only missing-Sellmeier elements in Sweep 2: **1** active unreviewed, **101** self-recording explicit dispositions, **0** dispositions missing any review record
+- **226** code-only missing-Sellmeier elements in Sweep 2: **1** active unreviewed, **102** self-recording explicit dispositions, **0** dispositions missing any review record
 - **0** unresolved named-token elements in Sweep 2B, producing **0** token occurrences across **0** distinct tokens
 - **0** Tier A proprietary backfill rows in Sweep 3
 
@@ -57,6 +57,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [NIKON NIKKOR Z 85mm f/1.8 S](../../src/lens-data/nikon/NikonZ85f18S.data.ts) | JP 2020-173366 A | Missing from untracked local patents/ references (JP2020173366A, JP2020173366, 2020173366, JPA2020173366000000) | 91.7% (11/12) | 91.7% (11/12) | 1 | 3 [glass] (Element 2: `Fluorophosphate crown (ED)`) | abbe: 1 |
 | [PANASONIC LEICA DG SUMMILUX 9mm f/1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG9mmf17.data.ts) | US 2023/0367186 A1 | [PDF](../../patents/US20230367186A1.pdf) | 91.7% (11/12) | 91.7% (11/12) | 1 | 3A [glass] (Element 2: `534556 — moldable crown (patent nd=1.53380, nu_d=55.6)`) | abbe: 1 |
 | [SONY PLANAR T* FE 50mm f/1.4 ZA](../../src/lens-data/sony/SonyPlanarFE50mmf14ZA.data.ts) | WO 2017/138250 A1 | [PDF](../../patents/JPWO2017138250A1.pdf) | 91.7% (11/12) | 91.7% (11/12) | 1 | 12 [glass] (Element 7: `Unmatched (995293 ultra-high-index heavy flint; no public coefficient row inside the d-line safety window)`) | abbe: 1 |
+| [CANON EF-S 18-55mm f/3.5-5.6](../../src/lens-data/canon/CanonEFS1855mmf3556.data.ts) | JP 2005-092056 A | [PDF](../../patents/JP_2005092056_A.pdf) | 90.9% (10/11) | 90.9% (10/11) | 1 | R18 [glass] (Element 10: `Unmatched (nd=1.583060, vd=30.2; coordinate class 583302)`) | abbe: 1 |
 | [CANON EF-S 18-55mm f/3.5-5.6 IS](../../src/lens-data/canon/CanonEFS1855mmf3556IS.data.ts) | US 2007/0058265 A1 | [PDF](../../patents/US20070058265A1.pdf) | 90.9% (10/11) | 90.9% (10/11) | 1 | 18 [glass] (Element 10: `Unmatched (583/302 flint; obsolete HOYA E-F3-class candidate)`) | abbe: 1 |
 | [NIKON AI AF-S NIKKOR ED 500mm f/4D IF](../../src/lens-data/nikon/NikonAFSNikkor500mmf4DIFED.data.ts) | US 5,745,306 A | [PDF](../../patents/US5745306.pdf) | 90.9% (10/11) | 90.9% (10/11) | 1 | 7 [glass] (L13: `Unmatched (nd=1.802180, νd=44.69)`) | abbe: 1 |
 | [OLYMPUS OM ZUIKO AUTO-W 21mm f/2](../../src/lens-data/olympus/OlympusZuikoAuto21mmf2.data.ts) | US 4,210,388 | [PDF](../../patents/US4210388.pdf) | 90.9% (10/11) | 90.9% (10/11) | 1 | 12 [glass] (Element 6: `593348 — LF7-class light flint (no exact public catalog match)`) | abbe: 1 |
