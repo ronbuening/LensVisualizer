@@ -9,16 +9,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  10 elements / 8 groups, 2 double-sided aspherics (4 surfaces).    ║
  * ║  Focus: floating focus (F36 scheme — 3 variable air gaps).         ║
  * ║                                                                    ║
- * ║  NOTE ON APD ELEMENTS:                                             ║
- * ║    Elements 3 and 4 have patent-listed dPgF values (+0.0376 and    ║
- * ║    +0.0195 respectively).  Elements 1, 5, and 6 are inferred APD   ║
- * ║    from the E-mount manufacturer spec of 5 APD elements; their     ║
- * ║    glasses resist identification across all standard catalogs.     ║
- * ║                                                                    ║
- * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    The patent does not specify clear apertures.  SDs are estimated ║
- * ║    from f/1.93 entrance pupil geometry (EP SD ≈ 12.8 mm) with     ║
- * ║    8–12% mechanical clearance.  These are approximations.          ║
+ * ║  Table 5 lists dPgF only for elements 3 and 4. Supplier identity   ║
+ * ║  and APD status of the other elements are not established.        ║
+ * ║  SDs are estimates: Fig. 10 optical rims support 15 mm for LE;   ║
+ * ║  other rims retain their conservative approximations.            ║
+ * ║  2026-09-08: corrected ASP19 A6 sign from rendered Table 5.       ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -34,11 +29,11 @@ const LENS_DATA = {
     "F/1.93",
     "2ω ≈ 47.4°",
     "4 ASPHERICAL SURFACES",
-    "5 APD ELEMENTS (Z/E-MOUNT)",
+    "2 PATENT-LISTED APD ELEMENTS",
   ],
 
   focalLengthMarketing: 50,
-  focalLengthDesign: 49.3,
+  focalLengthDesign: 49.28,
   apertureMarketing: 2.0,
   apertureDesign: 1.93,
   lensMounts: ["nikon-z", "sony-fe"],
@@ -60,8 +55,9 @@ const LENS_DATA = {
       nd: 1.54373,
       vd: 47.65,
       fl: -45.5,
-      glass: "Unmatched (likely Sumita proprietary)",
-      apd: "inferred",
+      glass: "Unmatched (patent glass; supplier unspecified)",
+      apd: false,
+      apdNote: "Not specified in patent Table 5; manufacturer counts do not identify this element.",
       role: "Front diverging element; opening bracket of front Gc group — widens beam to reduce incidence angles downstream",
     },
     {
@@ -72,9 +68,9 @@ const LENS_DATA = {
       nd: 1.85249,
       vd: 42.08,
       fl: 74.5,
-      glass: "Unmatched (dense lanthanum; nd=1.852/νd=42.1 unregistered across OHARA, Schott, Hoya, Sumita public catalogs)",
+      glass: "Unmatched (patent nd=1.85249, νd=42.08; supplier unspecified)",
       apd: false,
-      role: "Primary monochromatic corrector; double-sided aspheric on high-index lanthanum glass — 217 µm rear departure",
+      role: "Double-sided aspheric positive meniscus; calculated rear departure +358 µm at the estimated 14.5 mm rim",
     },
     {
       id: 3,
@@ -84,9 +80,9 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.61,
       fl: 60.0,
-      glass: "S-FPL51 / N-PK52A (universal)",
+      glass: "S-FPL51 / N-PK52A (catalog-compatible equivalents; supplier unspecified)",
       apd: "patent",
-      role: "Primary chromatic powerhouse; fluorophosphate crown, dPgF = +0.0376 — attacks secondary spectrum",
+      role: "Positive low-dispersion element; patent dPgF = +0.0376 supports secondary-spectrum correction",
       dPgF: 0.0376, apdNote: "dPgF = +0.0376 (patent-listed)",
     },
     {
@@ -97,9 +93,9 @@ const LENS_DATA = {
       nd: 1.59282,
       vd: 68.62,
       fl: 55.0,
-      glass: "FCD505 (HOYA) / K-GFK68 (Sumita)",
+      glass: "FCD505 (catalog-compatible model; supplier unspecified)",
       apd: "patent",
-      role: "Secondary chromatic correction; Sumita fluorophosphate crown, dPgF = +0.0195 — power-sharing partner to Lfb",
+      role: "Positive element with patent dPgF = +0.0195; shares positive power with Lfb",
       dPgF: 0.0195, apdNote: "dPgF = +0.0195 (patent-listed)",
     },
     {
@@ -110,8 +106,9 @@ const LENS_DATA = {
       nd: 1.51322,
       vd: 57.22,
       fl: -67.6,
-      glass: "Unmatched (likely Sumita proprietary)",
-      apd: "inferred",
+      glass: "Unmatched (patent glass; supplier unspecified)",
+      apd: false,
+      apdNote: "Not specified in patent Table 5; manufacturer counts do not identify this element.",
       role: "Closing bracket of front Gc group; last element before stop — boundary for focus adjustment",
     },
     {
@@ -122,8 +119,9 @@ const LENS_DATA = {
       nd: 1.70269,
       vd: 34.87,
       fl: -23.8,
-      glass: "Unmatched (KZFS-adjacent, dPgF ≈ −0.01 est.)",
-      apd: "inferred",
+      glass: "Unmatched (patent nd=1.70269, νd=34.87; partial dispersion unspecified)",
+      apd: false,
+      apdNote: "Not specified in patent Table 5; manufacturer counts do not identify this element.",
       role: "Doublet Jb negative partner; first post-stop element — chromatic correction via Δνd ≈ 12.3 with Lrc",
       cemented: "Jb",
     },
@@ -135,7 +133,7 @@ const LENS_DATA = {
       nd: 1.79334,
       vd: 47.18,
       fl: 23.4,
-      glass: "Unmatched (S-LAH64-type lanthanum; nd=1.793/νd=47.2; S-LAH64 not in catalog)",
+      glass: "Unmatched (patent nd=1.79334, νd=47.18; supplier unspecified)",
       apd: false,
       role: "Doublet Jb positive partner; high-index lanthanum glass — drives primary chromatic correction in rear group",
       cemented: "Jb",
@@ -148,7 +146,7 @@ const LENS_DATA = {
       nd: 1.80258,
       vd: 46.6,
       fl: 26.3,
-      glass: "Unmatched (lanthanum; nd=1.803/νd=46.6; S-LAH65V catalog nd=1.804 exceeds 1e-4 tolerance)",
+      glass: "S-LAH65V (catalog-compatible model; supplier unspecified)",
       apd: false,
       role: "Doublet Ja positive partner; Δnd ≈ 0.249 with Lra drives monochromatic correction (sphere + coma)",
       cemented: "Ja",
@@ -161,9 +159,9 @@ const LENS_DATA = {
       nd: 1.55362,
       vd: 45.38,
       fl: -31.4,
-      glass: "Unmatched (conventional)",
+      glass: "Unmatched (patent nd=1.55362, νd=45.38; supplier unspecified)",
       apd: false,
-      role: "Doublet Ja negative partner; low index creates large Δnd step — monochromatic correction only (Δνd ≈ 1.2)",
+      role: "Doublet Ja negative partner; large index contrast and small Abbe-number difference with Lrb",
       cemented: "Ja",
     },
     {
@@ -174,15 +172,15 @@ const LENS_DATA = {
       nd: 1.51633,
       vd: 64.06,
       fl: -96.2,
-      glass: "S-BSL7 / N-BK7 (universal)",
+      glass: "S-BSL7 / N-BK7 (catalog-compatible equivalents; supplier unspecified)",
       apd: false,
-      role: "Aspheric field corrector; isolated by 12.5 mm air gap — 800 µm rear departure on cheapest, most moldable glass",
+      role: "Aspheric field corrector after a 12.49 mm gap; calculated rear departure −1532 µm at the estimated 15 mm rim",
     },
   ],
 
   /* ── Surface prescription — JP2021-43376A Table 5, Example 5 ──
-   *  Semi-diameters estimated from f/1.93 EP geometry (EP SD ≈ 12.8 mm)
-   *  with 8–12% mechanical clearance.  Patent does not specify SDs.
+   *  Patent does not specify SDs. Conservative existing rims retained except
+   *  LE: 15 mm estimated from Fig. 10 optical endpoints (page 48, 600 dpi).
    */
   surfaces: [
     { label: "1", R: -37.07, d: 1.7, nd: 1.54373, elemId: 1, sd: 15.0 },
@@ -202,8 +200,8 @@ const LENS_DATA = {
     { label: "15", R: 40.672, d: 6.63, nd: 1.80258, elemId: 8, sd: 13.0 },
     { label: "16", R: -40.724, d: 1.6, nd: 1.55362, elemId: 9, sd: 12.0 },
     { label: "17", R: 30.835, d: 12.49, nd: 1.0, elemId: 0, sd: 12.0 },
-    { label: "18A", R: -34.164, d: 2.6, nd: 1.51633, elemId: 10, sd: 11.0 },
-    { label: "19A", R: -112.348, d: 15.0, nd: 1.0, elemId: 0, sd: 11.0 },
+    { label: "18A", R: -34.164, d: 2.6, nd: 1.51633, elemId: 10, sd: 15.0 },
+    { label: "19A", R: -112.348, d: 15.0, nd: 1.0, elemId: 0, sd: 15.0 },
   ],
 
   /* ── Aspherical coefficients — Patent Table 5, Example 5 ──
@@ -242,7 +240,7 @@ const LENS_DATA = {
     "19A": {
       K: 0,
       A4: -5.6981e-5,
-      A6: -1.8942e-7,
+      A6: 1.8942e-7,
       A8: -4.8687e-10,
       A10: 7.6837e-13,
       A12: 0,
@@ -253,7 +251,9 @@ const LENS_DATA = {
   /* ── Variable air spacings — F36 focus scheme ──
    *  F36 moves: front group, Jb, and Ja+LE as 3 separate groups.
    *  Variable gaps: ZD10 (pre-stop), ZD14 (between doublets), ZD19 (BFD).
-   *  Object distance: ∞ → 370 mm (0.37 m).
+   *  Object-to-first-surface distance: ∞ → 370 mm.
+   *  F36 track = 84.95 mm; object-to-image endpoint = 454.95 mm.
+   *  Intermediate states interpolate the two source endpoints.
    */
   var: {
     10: [5.49, 5.89],
@@ -270,7 +270,8 @@ const LENS_DATA = {
   /* ── Group and doublet annotations ── */
   groups: [
     { text: "FRONT (101)", fromSurface: "1", toSurface: "10" },
-    { text: "REAR (102)", fromSurface: "12", toSurface: "19A" },
+    { text: "Jb (102)", fromSurface: "12", toSurface: "14" },
+    { text: "Ja + LE (102)", fromSurface: "15", toSurface: "19A" },
   ],
 
   doublets: [
@@ -279,9 +280,9 @@ const LENS_DATA = {
   ],
 
   /* ── Focus configuration ── */
-  closeFocusM: 0.37,
+  closeFocusM: 0.45495,
   focusDescription:
-    "Floating focus (F36 scheme) — front group, Jb, and Ja+LE move independently. Three variable air gaps adjust to maintain quasi-symmetric aberration balance.",
+    "Patent F36 floating focus: front group, Jb, and Ja+LE move 8.94, 8.54, and 5.53 mm toward the object. Close endpoint is 0.455 m from the image plane (370 mm from surface 1). Intermediate motion is interpolated.",
 
   /* ── Aperture configuration ── */
   nominalFno: 1.93,

@@ -467,7 +467,7 @@ export default function DiagramControls({
                   transition: "color 0.3s",
                 }}
               >
-                {apertureReferenceLabel} {apertureReferenceValue.toFixed(2)} mm · EP {"\u2300"}{" "}
+                {apertureReferenceLabel} {apertureReferenceValue.toFixed(2)} mm · Wide-open EP {"\u2300"}{" "}
                 {(baseEPSD * 2).toFixed(2)} mm · Stop {"\u2300"} {(currentPhysStopSD * 2).toFixed(2)} mm
               </div>
               <div

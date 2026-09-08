@@ -19,9 +19,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 - **458** visible lenses fully covered by strict Sellmeier data
 - **6** lenses fully covered only after measured line-index data
 - **6** visible lenses fully covered only after measured line-index data
-- **7367 / 7911** non-air surfaces use strict catalog Sellmeier data
+- **7368 / 7911** non-air surfaces use strict catalog Sellmeier data
 - **93.1%** strict Sellmeier surface coverage overall
-- **7382 / 7911** non-air surfaces use trusted chromatic data
+- **7383 / 7911** non-air surfaces use trusted chromatic data
 - **93.3%** trusted chromatic coverage overall
 - **37 / 75** native e-line surfaces use name-verified catalog Sellmeier data
 
@@ -762,14 +762,14 @@ Fully strict and line-index-complete trusted lenses are listed above; this table
 | 194 | [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) | 41.2% | 41.2% | 7/17 | 7/17 | 10 | abbe: 10 |
 | 195 | [LEICA ELMAR-M 135mm f/4](../../src/lens-data/leica/LeicaElmarM135mmf4.data.ts) | 40.0% | 40.0% | 2/5 | 2/5 | 3 | abbe: 3 |
 | 196 | [VOIGTLÄNDER HELIAR (Symmetric) f/4](../../src/lens-data/voigtlander/VoigtlanderHeliar.data.ts) | 40.0% | 40.0% | 2/5 | 2/5 | 3 | abbe: 3 |
+| 197 | [VOIGTLÄNDER APO-LANTHAR 50mm f/2.0 Aspherical](../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.ts) | 40.0% | 40.0% | 4/10 | 4/10 | 6 | abbe: 6 |
 |  | **35-39.9% coverage** |  |  |  |  |  |  |
-| 197 | [RODENSTOCK APO-SIRONAR-W 150mm f/5.6](../../src/lens-data/rodenstock/RodenstockApoSironarW150mmf56.data.ts) | 37.5% | 37.5% | 3/8 | 3/8 | 5 | abbe: 5 |
-| 198 | [SONY FE 14mm f/1.8 GM](../../src/lens-data/sony/SonyFE14mmf18GM.data.ts) | 35.7% | 35.7% | 5/14 | 5/14 | 9 | abbe: 9 |
+| 198 | [RODENSTOCK APO-SIRONAR-W 150mm f/5.6](../../src/lens-data/rodenstock/RodenstockApoSironarW150mmf56.data.ts) | 37.5% | 37.5% | 3/8 | 3/8 | 5 | abbe: 5 |
+| 199 | [SONY FE 14mm f/1.8 GM](../../src/lens-data/sony/SonyFE14mmf18GM.data.ts) | 35.7% | 35.7% | 5/14 | 5/14 | 9 | abbe: 9 |
 |  | **30-34.9% coverage** |  |  |  |  |  |  |
-| 199 | [LEICA MACRO-ELMARIT-R 60mm f/2.8](../../src/lens-data/leica/LeicaMacroElmaritR60mmf28.data.ts) | 33.3% | 33.3% | 2/6 | 2/6 | 4 | abbe: 4 |
-| 200 | [PENTAX DA 70mm f/2.4 Limited](../../src/lens-data/pentax/PentaxDA70mmf24Limited.data.ts) | 33.3% | 33.3% | 2/6 | 2/6 | 4 | abbe: 4 |
-| 201 | [VOIGTLÄNDER ULTRON 50mm f/2](../../src/lens-data/voigtlander/VoigtlanderUltron50f2.data.ts) | 33.3% | 33.3% | 2/6 | 2/6 | 4 | abbe: 4 |
-| 202 | [VOIGTLÄNDER APO-LANTHAR 50mm f/2.0 Aspherical](../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.ts) | 30.0% | 30.0% | 3/10 | 3/10 | 7 | abbe: 7 |
+| 200 | [LEICA MACRO-ELMARIT-R 60mm f/2.8](../../src/lens-data/leica/LeicaMacroElmaritR60mmf28.data.ts) | 33.3% | 33.3% | 2/6 | 2/6 | 4 | abbe: 4 |
+| 201 | [PENTAX DA 70mm f/2.4 Limited](../../src/lens-data/pentax/PentaxDA70mmf24Limited.data.ts) | 33.3% | 33.3% | 2/6 | 2/6 | 4 | abbe: 4 |
+| 202 | [VOIGTLÄNDER ULTRON 50mm f/2](../../src/lens-data/voigtlander/VoigtlanderUltron50f2.data.ts) | 33.3% | 33.3% | 2/6 | 2/6 | 4 | abbe: 4 |
 | 203 | [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) | 30.0% | 30.0% | 6/20 | 6/20 | 14 | abbe: 14 |
 |  | **25-29.9% coverage** |  |  |  |  |  |  |
 | 204 | [LEICA ELMARIT-R 35mm f/2.8](../../src/lens-data/leica/LeicaElmaritR35mmf28.data.ts) | 28.6% | 28.6% | 2/7 | 2/7 | 5 | abbe: 5 |
@@ -2167,6 +2167,17 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 4 | Element c (central) | abbe | `Light Flint (LF, same glass as elements a/a′)` | No catalog match |
 | 7 | Element a′ (rear) | abbe | `Light Flint (LF, same glass as elements a/c)` | No catalog match |
 
+### [VOIGTLÄNDER APO-LANTHAR 50mm f/2.0 Aspherical](../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.ts) - 40.0% trusted (4/10); 40.0% Sellmeier (4/10) - JP 2021-043376 A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `Unmatched (patent glass; supplier unspecified)` | Explicit unmatched/proprietary annotation |
+| 3A | Element 2 | abbe | `Unmatched (patent nd=1.85249, νd=42.08; supplier unspecified)` | Explicit unmatched/proprietary annotation |
+| 9 | Element 5 | abbe | `Unmatched (patent glass; supplier unspecified)` | Explicit unmatched/proprietary annotation |
+| 12 | Element 6 | abbe | `Unmatched (patent nd=1.70269, νd=34.87; partial dispersion unspecified)` | Explicit unmatched/proprietary annotation |
+| 13 | Element 7 | abbe | `Unmatched (patent nd=1.79334, νd=47.18; supplier unspecified)` | Explicit unmatched/proprietary annotation |
+| 16 | Element 9 | abbe | `Unmatched (patent nd=1.55362, νd=45.38; supplier unspecified)` | Explicit unmatched/proprietary annotation |
+
 ### [RODENSTOCK APO-SIRONAR-W 150mm f/5.6](../../src/lens-data/rodenstock/RodenstockApoSironarW150mmf56.data.ts) - 37.5% trusted (3/8); 37.5% Sellmeier (3/8) - DE 3,907,928 A1
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
@@ -2217,18 +2228,6 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 7 | Element 4 | abbe | `F/BaF type (barium flint)` | No catalog match |
 | 8 | Element 5 | abbe | `LaK9 type (high-index crown — possibly La₂O₃ or ThO₂ formulation)` | No catalog match |
 | 10 | Element 6 | abbe | `LaF type (high-index lanthanum flint or thorium flint)` | No catalog match |
-
-### [VOIGTLÄNDER APO-LANTHAR 50mm f/2.0 Aspherical](../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.ts) - 30.0% trusted (3/10); 30.0% Sellmeier (3/10) - JP 2021-043376 A
-
-| Surface | Element | Runtime quality | Glass annotation | Reason |
-|---|---|---|---|---|
-| 1 | Element 1 | abbe | `Unmatched (likely Sumita proprietary)` | Explicit unmatched/proprietary annotation |
-| 3A | Element 2 | abbe | `Unmatched (dense lanthanum; nd=1.852/νd=42.1 unregistered across OHARA, Schott, Hoya, Sumita public catalogs)` | Explicit unmatched/proprietary annotation |
-| 9 | Element 5 | abbe | `Unmatched (likely Sumita proprietary)` | Explicit unmatched/proprietary annotation |
-| 12 | Element 6 | abbe | `Unmatched (KZFS-adjacent, dPgF ≈ −0.01 est.)` | Explicit unmatched/proprietary annotation |
-| 13 | Element 7 | abbe | `Unmatched (S-LAH64-type lanthanum; nd=1.793/νd=47.2; S-LAH64 not in catalog)` | Explicit unmatched/proprietary annotation |
-| 15 | Element 8 | abbe | `Unmatched (lanthanum; nd=1.803/νd=46.6; S-LAH65V catalog nd=1.804 exceeds 1e-4 tolerance)` | Explicit unmatched/proprietary annotation |
-| 16 | Element 9 | abbe | `Unmatched (conventional)` | Explicit unmatched/proprietary annotation |
 
 ### [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) - 30.0% trusted (6/20); 30.0% Sellmeier (6/20) - WO 2025/263124 A1
 

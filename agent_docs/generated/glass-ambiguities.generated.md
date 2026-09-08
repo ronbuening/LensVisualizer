@@ -14,14 +14,14 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 - **692** lenses scanned
 - **7903** glass elements examined
-- **2433** elements have multiple coordinate-compatible candidates
+- **2432** elements have multiple coordinate-compatible candidates
 - **474** lens files are affected
-- **208** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
+- **207** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **194** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
-| Smallest reference-index residual | 1353 |
+| Smallest reference-index residual | 1352 |
 | Evidence-source priority | 792 |
 | Vendor context | 279 |
 | Stable canonical-name order | 7 |
@@ -1738,8 +1738,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `H-K9LGT (CDGM) equivalent — 517642` | 1.51680 / 64.20 (d) | H-K9LGT — direct name evidence outranks six-digit code evidence. | H-K9L (CDGM, code, vendor ✓, alternate code row)<br>N-BK7 (Schott, code, vendor ✗, preferred code row) | 1 | [VOIGTLÄNDER APO-LANTHAR 28mm f/2 Aspherical VM](../../src/lens-data/voigtlander/VoigtlanderAPOLanthar28mmf2Aspherical.data.ts) L9 |
 | `TAFD55 (HOYA) equivalent — 001291` | 2.00100 / 29.13 (d) | TAFD55 — direct name evidence outranks six-digit code evidence. | S-LAH99 (Ohara, code, vendor ✗, preferred code row) | 1 | [VOIGTLÄNDER APO-LANTHAR 28mm f/2 Aspherical VM](../../src/lens-data/voigtlander/VoigtlanderAPOLanthar28mmf2Aspherical.data.ts) L11 |
 | `S-NBH8 (OHARA) equivalent — 720347` | 1.72047 / 34.71 (d) | S-NBH8 — direct name evidence outranks six-digit code evidence. | N-KZFS8 (Schott, code, vendor ✗, preferred code row) | 2 | [VOIGTLÄNDER APO-LANTHAR 28mm f/2 Aspherical VM](../../src/lens-data/voigtlander/VoigtlanderAPOLanthar28mmf2Aspherical.data.ts) L13f |
-| `FCD505 (HOYA) / K-GFK68 (Sumita)` | 1.59282 / 68.62 (d) | FCD505 — smallest d-line \|Δn\| (6.8e-6 vs 4.2e-4) | K-GFK68 (Sumita, name, vendor ✓) | 1 | [VOIGTLÄNDER APO-LANTHAR 50mm f/2.0 Aspherical](../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.ts) Lfc |
-| `S-BSL7 / N-BK7 (universal)` | 1.51633 / 64.06 (d) | S-BSL7 — smallest d-line \|Δn\| (7.5e-8 vs 4.7e-4) | N-BK7 (Schott, name) | 1 | [VOIGTLÄNDER APO-LANTHAR 50mm f/2.0 Aspherical](../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.ts) LE |
+| `S-BSL7 / N-BK7 (catalog-compatible equivalents; supplier unspecified)` | 1.51633 / 64.06 (d) | S-BSL7 — smallest d-line \|Δn\| (7.5e-8 vs 4.7e-4) | N-BK7 (Schott, name) | 1 | [VOIGTLÄNDER APO-LANTHAR 50mm f/2.0 Aspherical](../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.ts) LE |
 | `487704 — low-dispersion crown; vendor identity not unique` | 1.48749 / 70.44 (d) | N-FK5 — smallest d-line \|Δn\| (3.7e-9 vs 4.1e-8) | H-QK3L (CDGM, code, alternate code row)<br>FK5 (Sumita, code, alternate code row)<br>FC5 (Hoya, code, alternate code row) | 1 | [VOIGTLÄNDER APO-LANTHAR 50mm f/3.5 (Type II) VM](../../src/lens-data/voigtlander/VoigtlanderAPOLanthar50mmf35VM.data.ts) L1 |
 | `883408 — high-index lanthanum crown; vendor identity not unique` | 1.88300 / 40.81 (d) | S-LAH58 — smallest d-line \|Δn\| (3.0e-6 vs 3.9e-6) | TAFD30 (Hoya, code, alternate code row) | 1 | [VOIGTLÄNDER APO-LANTHAR 50mm f/3.5 (Type II) VM](../../src/lens-data/voigtlander/VoigtlanderAPOLanthar50mmf35VM.data.ts) L2 |
 | `729547 — lanthanum crown; vendor identity not unique` | 1.72916 / 54.67 (d) | TAC8 — smallest d-line \|Δn\| (6.0e-8 vs 3.1e-6) | S-LAL18 (Ohara, code, preferred code row) | 1 | [VOIGTLÄNDER APO-LANTHAR 50mm f/3.5 (Type II) VM](../../src/lens-data/voigtlander/VoigtlanderAPOLanthar50mmf35VM.data.ts) L3 |
