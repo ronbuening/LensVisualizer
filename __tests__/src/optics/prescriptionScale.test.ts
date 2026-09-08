@@ -4,6 +4,7 @@ import { apertureMetricsForState, doLayout, eflAtFocus, resolveApertureStop } fr
 import { prepareRuntimeState } from "../../../src/optics/state/runtimeState.js";
 import { conicPolySag } from "../../../src/optics/internal/surfaceMath.js";
 import type { LensData } from "../../../src/types/optics.js";
+import { traceSequential } from "../../../src/optics/trace/sequentialTrace.js";
 import defaults from "../../../src/lens-data/defaults.js";
 import z35 from "../../../src/lens-data/nikon/NikonZ35f18S.data.js";
 import ai135 from "../../../src/lens-data/nikon/NikonAI135mmf2.data.js";
@@ -59,6 +60,32 @@ describe("physical prescription units", () => {
     const infinity = doLayout(0, 0, AI135);
     const close = doLayout(1, 0, AI135);
     expect(close.z[0] - close.imgZ - (infinity.z[0] - infinity.imgZ)).toBeCloseTo(-18.09, 7);
+  });
+
+  it("traces the source sensor plate as glass and keeps it fixed during floating focus", () => {
+    const scale = 35 / 1.572;
+    const infinity = prepareRuntimeState(Z35, 0, 0);
+    const close = prepareRuntimeState(Z35, 1, 0);
+    const front = infinity.surfaces.findIndex((s) => s.label === "22");
+    const rear = front + 1;
+    expect(infinity.surfaces[front].d).toBeCloseTo(0.074 * scale, 10);
+    expect(infinity.surfaces[rear].d).toBeCloseTo(0.0425 * scale, 10);
+    expect(close.z[front] - close.imgZ).toBeCloseTo(infinity.z[front] - infinity.imgZ, 9);
+    expect(Z35.vdByIdx[front]).toBe(64.13);
+    expect(Z35.FOPEN).toBeCloseTo(1.85, 10);
+    expect(z35.apertureMarketing).toBe(1.8);
+
+    const ray = traceSequential(infinity, { origin: [2, 0, -1], direction: [0, 0, 1] });
+    expect(ray.status).toBe("ok");
+    const entry = ray.hits[front];
+    const exit = ray.hits[rear];
+    // Parallel faces preserve the external angle but reduce the internal slope.
+    expect(entry.incidentDirection![0] / entry.outgoingDirection![0]).toBeCloseTo(1.5168, 9);
+    expect(exit.outgoingDirection![0]).toBeCloseTo(entry.incidentDirection![0], 10);
+    expect(exit.point[0] - entry.point[0]).toBeCloseTo(
+      (0.074 * scale * entry.outgoingDirection![0]) / entry.outgoingDirection![2],
+      10,
+    );
   });
 
   it("reports real-ray availability honestly at infinity, intermediate and close focus", () => {

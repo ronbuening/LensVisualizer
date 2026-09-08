@@ -153,7 +153,7 @@ The patent values (nd = 1.83441, νd = 37.28) exactly match HOYA M-NBFD10. The m
 
 ### 3.2 Aperture Stop
 
-The aperture stop is positioned between Gr1 and Gr2 and is fixed relative to Gr1 and the image plane during focusing. Its semi-diameter decreases from 11.87 mm at infinity to 11.33 mm at MFD, indicating that the iris adjusts slightly during focus (consistent with Nikon's electronic aperture control). Nikon specifies a 9-blade rounded diaphragm.
+The aperture stop is positioned between Gr1 and Gr2 and is fixed relative to Gr1 and the image plane during focusing. The patent lists semi-diameters of 11.87 mm at infinity and 11.33 mm at MFD after scaling. The current aperture control uses the f/1.85 design calibration and a fixed physical iris for each selected setting; it does not reproduce that source focus-dependent iris schedule. Those source radii should not be read as a verified production aperture mechanism. Nikon specifies a 9-blade rounded diaphragm.
 
 Placing the stop between two positive groups (Gr1 ahead, Gr2 behind) creates a quasi-symmetric arrangement around the iris. This is advantageous for coma suppression — the patent explicitly notes that having positive groups facing each other across the stop helps reduce coma.
 
@@ -233,7 +233,7 @@ The glass identification as L-BAL42 is rated as probable. Like L23, the "L-" pre
 
 ### 3.5 Cover Glass / Filter Stack
 
-A single parallel plate (nd = 1.51680, νd = 64.13, thickness ≈ 1.65 mm scaled) models the combined cover glass and IR-cut/OLPF stack in front of the sensor. The BF (cover glass rear to image) is ≈ 0.95 mm scaled.
+Source surfaces 22–23 are now traced as a separate parallel plate (nd = 1.51680, νd = 64.13, thickness 1.64758 mm), with a 0.94625 mm air gap from its rear to the image plane. This replaces the former approximation that treated the entire plate thickness as air. The plate remains fixed during focusing and is outside the production lens's 11-element count. It represents the patent sensor-stack model; the production filter stack is not identified. A parallel plate does not change the Gaussian EFL, so this correction cannot resolve the remaining 3.3% power discrepancy.
 
 ---
 

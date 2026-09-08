@@ -19,6 +19,11 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-09-08",
+    type: "fix",
+    summary: "Corrected physical scale for the Nikon Z 35mm f/1.8 S and AI 135mm f/2 models",
+  },
+  {
     date: "2026-09-05",
     type: "lens",
     summary: "Added six Konica Hexanon AR prime and zoom lens designs",

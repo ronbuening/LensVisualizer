@@ -97,8 +97,20 @@ describe("exact surface trace catalog smoke coverage", () => {
   it("traces finite representative exact rays across every visible catalog lens", () => {
     expect(CATALOG_KEYS.length).toBeGreaterThan(0);
 
+    const scaleOutliers: { key: string; ratio: number }[] = [];
     for (const key of CATALOG_KEYS) {
       const L = buildCatalogLens(key);
+      // Reuse this catalog build. A self-consistent normalized prescription
+      // passes Gaussian-vs-design validation but still has the wrong physical units.
+      const marketing = Array.isArray(L.data.focalLengthMarketing)
+        ? L.data.focalLengthMarketing[0]
+        : L.data.focalLengthMarketing;
+      const design = Array.isArray(L.data.focalLengthDesign) ? L.data.focalLengthDesign[0] : L.data.focalLengthDesign;
+      if (marketing) {
+        // The projection-aware reference also covers prescriptions without a design label.
+        const ratio = (design ?? L.apertureReferenceFocalLength) / marketing;
+        if (ratio < 0.8 || ratio > 1.25) scaleOutliers.push({ key, ratio });
+      }
       for (const zoomT of zoomSamples(L)) {
         const layout = doLayout(0, zoomT, L);
         const y0 = catalogSmokeTraceHeight(L, zoomT);
@@ -126,6 +138,14 @@ describe("exact surface trace catalog smoke coverage", () => {
         }
       }
     }
+    // Source-reviewed exceptions, not automatic rescaling rules. Pin the ratio
+    // so an unrelated unit change cannot hide behind an exception key.
+    expect(scaleOutliers.sort((a, b) => a.key.localeCompare(b.key))).toEqual([
+      { key: "canon-ef-100-300mm-f5-6", ratio: expect.closeTo(69.2066329268 / 100, 8) },
+      // Canon includes the patent's extra 69 mm station outside its marketed range.
+      { key: "olympus-zuiko-auto-w-21mm-f2", ratio: expect.closeTo(28.49 / 21, 8) },
+      // Olympus is already scaled by 0.21; its source power discrepancy is unresolved.
+    ]);
   });
 
   it("traces hidden optical-configuration members the visible smoke loop skips", () => {

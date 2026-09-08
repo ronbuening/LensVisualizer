@@ -15,3 +15,13 @@ Z35 source Table 2 states 1.572, but its prescription computes 1.623730 before s
 ## Verification
 
 Stage 1: typecheck, format check, lint, all 2,906 tests (309 files), production build/prerender (1,251 routes), and the two-lens working-aperture audit passed.
+
+## Stage 2: source plate and catalog guard
+
+Restored Z35 source surfaces 22–23, including the glass index, dispersion, plate thickness and rear air gap. Source plate geometry remains fixed during focus. Updated aperture calibration to source f/1.85 while preserving marketing f/1.8. Added a visible focus-description note for the unresolved prescription limitation. The source focus-dependent iris schedule remains unmodeled.
+
+Extended the existing full-catalog exact-trace sweep with design-versus-marketing unit checks, reusing its lens builds instead of adding a redundant catalog pass. Existing Gaussian-versus-design validation supplies the complementary geometry check. The broad 0.8–1.25 screening band is a unit-error detector, not an accuracy tolerance. Bounded exceptions retain the reviewed Canon extra-wide zoom station and Olympus source-power discrepancy; fisheye projection constants remain distinct from Gaussian EFL.
+
+Added physical sensor-plate position and Snell-law regressions. Stage 2: typecheck, format check, lint and full coverage run passed (2,907 tests in 309 files). Coverage: statements 92.31%, branches 83.90%, functions 94.02%, lines 94.93%; all existing floors preserved. Production build/prerender passed for 1,251 routes; glass reports regenerated with zero catalog-coordinate mismatches. Catalog working-aperture audit: 666 lenses, 34,624 states, five folded systems skipped, zero execution errors/regressions. Existing unavailable/clipped states remain explicit.
+
+Local browser verification confirmed Z35 infinity EFL 36.15 mm and close-focus EFL 31.25 mm, the visible source limitation, wide-open working aperture unavailable, and f/4 working approximately f/4.03. The restored sensor plate renders separately behind the eleven lens elements.
