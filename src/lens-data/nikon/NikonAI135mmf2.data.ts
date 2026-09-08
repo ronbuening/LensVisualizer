@@ -6,15 +6,16 @@
  * Type:        Tele-Sonnar / Ernostar variant — 6 elements in 4 groups
  * Production:  NEW Nikkor 135mm f/2 (1976) → Ai Nikkor 135mm f/2 (1977) → Ai-S Nikkor 135mm f/2 (1981)
  *
- * Prescription is at patent scale (f = 100 mm). The production lens is
- * uniformly scaled by ×1.35 to f = 135 mm. All R, d, sd values below
- * are at patent scale.
+ * Prescription source scale is f = 100 mm. All R, d, sd, element fl and
+ * focus gaps below are converted to a 135 mm physical model by s = 1.35.
+ * The flat-radius sentinel is unchanged; refractive indices do not scale.
+ * Production correspondence is inferred, not manufacturer-confirmed.
  *
  * Focusing:    Unit focus (entire optical assembly translates).
  *              Only the back focal distance changes.
- * Stop:        Between Groups II and III (d₅ gap, 2.59 mm).
+ * Stop:        Between Groups II and III (source d₅ gap, 2.59 mm).
  *              Patent does not specify; inferred from Fig. 1 iris placement.
- *              Split as 2.09 mm (r₅ → STO) + 0.50 mm (STO → r₆).
+ *              Source split as 2.09 mm (r₅ → STO) + 0.50 mm (STO → r₆).
  *
  * Glass IDs are inferential from nd/νd catalog matching; see analysis.
  */
@@ -34,7 +35,7 @@ const LENS_DATA = {
   ],
 
   focalLengthMarketing: 135,
-  focalLengthDesign: 100,
+  focalLengthDesign: 135,
   apertureMarketing: 2,
   apertureDesign: 2,
   lensMounts: ["nikon-f"],
@@ -54,7 +55,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.717,
       vd: 48.1,
-      fl: 98.1,
+      fl: 132.435,
       glass: "S-LAM3 (OHARA)",
       role: "Front positive meniscus — primary converging element, bears full EP diameter",
     },
@@ -65,7 +66,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.62606,
       vd: 39.1,
-      fl: -94.9,
+      fl: -128.115,
       glass: "626391 — barium flint (patent coordinate; vendor unresolved)",
       cemented: "D1",
       role: "Flint component of achromatic doublet (Group II); Δν = 22.1 vs L3",
@@ -77,7 +78,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.58913,
       vd: 61.2,
-      fl: 42.1,
+      fl: 56.835,
       glass: "OHARA S-BAL35 / HOYA BACD5 (589/612)",
       cemented: "D1",
       role: "Crown component of achromatic doublet (Group II); strongest positive element in system",
@@ -89,7 +90,7 @@ const LENS_DATA = {
       type: "Plano-Convex Positive",
       nd: 1.74,
       vd: 28.2,
-      fl: 47.0,
+      fl: 63.45,
       glass: "FD3 (HOYA catalog-equivalent; production supplier unspecified)",
       cemented: "D2",
       role: "Dense flint positive in monochromatic correction doublet (Group III); near-isochromatic with L5",
@@ -101,7 +102,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.71736,
       vd: 29.5,
-      fl: -19.0,
+      fl: -25.65,
       glass: "HOYA E-FD1 / Schott SF1 (717/295)",
       cemented: "D2",
       role: "Dense flint negative in monochromatic correction doublet; g-line spherical aberration corrector",
@@ -113,7 +114,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.71736,
       vd: 29.5,
-      fl: 98.2,
+      fl: 132.57,
       glass: "HOYA E-FD1 / Schott SF1 (717/295)",
       role: "Rear positive element — field curvature and astigmatism control; same glass as L5",
     },
@@ -121,31 +122,31 @@ const LENS_DATA = {
 
   surfaces: [
     // ── Group I: L1 ──
-    { label: "1", R: 58.015, d: 8.22, nd: 1.717, elemId: 1, sd: 25.9 },
-    { label: "2", R: 311.111, d: 0.37, nd: 1.0, elemId: 0, sd: 25.0 },
+    { label: "1", R: 78.32025, d: 11.097, nd: 1.717, elemId: 1, sd: 34.965 },
+    { label: "2", R: 419.99985, d: 0.4995, nd: 1.0, elemId: 0, sd: 33.75 },
 
     // ── Group II: L2 + L3 cemented doublet (D1) ──
-    { label: "3", R: 38.148, d: 2.74, nd: 1.62606, elemId: 2, sd: 25.0 },
-    { label: "4", R: 22.593, d: 13.26, nd: 1.58913, elemId: 3, sd: 20.3 },
-    { label: "5", R: 200.0, d: 2.09, nd: 1.0, elemId: 0, sd: 18.7 },
+    { label: "3", R: 51.4998, d: 3.699, nd: 1.62606, elemId: 2, sd: 33.75 },
+    { label: "4", R: 30.50055, d: 17.901, nd: 1.58913, elemId: 3, sd: 27.405 },
+    { label: "5", R: 270, d: 2.8215, nd: 1.0, elemId: 0, sd: 25.245 },
 
     // ── Aperture stop (STO position inferred from Fig. 1 iris placement) ──
-    { label: "STO", R: 1e15, d: 0.5, nd: 1.0, elemId: 0, sd: 16.2 },
+    { label: "STO", R: 1e15, d: 0.675, nd: 1.0, elemId: 0, sd: 21.87 },
 
     // ── Group III: L4 + L5 cemented doublet (D2) ──
-    { label: "6", R: 1e15, d: 8.89, nd: 1.74, elemId: 4, sd: 17.2 },
-    { label: "7", R: -34.815, d: 1.19, nd: 1.71736, elemId: 5, sd: 14.1 },
-    { label: "8", R: 22.797, d: 25.11, nd: 1.0, elemId: 0, sd: 13.7 },
+    { label: "6", R: 1e15, d: 12.0015, nd: 1.74, elemId: 4, sd: 23.22 },
+    { label: "7", R: -47.00025, d: 1.6065, nd: 1.71736, elemId: 5, sd: 19.035 },
+    { label: "8", R: 30.77595, d: 33.8985, nd: 1.0, elemId: 0, sd: 18.495 },
 
     // ── Group IV: L6 ──
-    { label: "9", R: 63.661, d: 8.89, nd: 1.71736, elemId: 6, sd: 9.3 },
-    { label: "10", R: 624.694, d: 29.22, nd: 1.0, elemId: 0, sd: 8.8 },
+    { label: "9", R: 85.94235, d: 12.0015, nd: 1.71736, elemId: 6, sd: 12.555 },
+    { label: "10", R: 843.3369, d: 39.447, nd: 1.0, elemId: 0, sd: 11.88 },
   ],
 
   asph: {},
 
   var: {
-    "10": [29.22, 42.62],
+    "10": [39.447, 57.537],
   },
   varLabels: [["10", "BF"]],
   focusDescription: "Unit focusing — entire optical assembly translates forward; only BFD changes",

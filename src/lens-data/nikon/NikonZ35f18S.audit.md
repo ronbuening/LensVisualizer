@@ -51,3 +51,10 @@ Patent: JP 2019-090947 A, Example 4
   predated the coefficient-backed FCD515 row used by the current catalog.
 - Relabeled L22 as an FCD515 catalog equivalent. The patent does not identify a production supplier, and the existing
   patent-backed APD metadata remains unchanged.
+
+## 2026-09-08 — Physical-unit conversion and source discrepancy review
+
+- Applied s = 35/1.572 to all radii, thicknesses, retained rim sizes, element focal lengths and focus gaps; divided A_p by s^(p−1), preserving K and glass indices. Flat-radius sentinels remain flat.
+- Source: JP 2019-090947 A PDF pages 17–18, Example 4 / Table 2; US 11,768,360 B2 repeats the prescription. Source radii, thicknesses, indices and six coefficient sets agree with the stored prescription before scaling.
+- Calculated EFL 36.151757 mm at infinity, 31.245676 mm at close focus. Retained the separate 35 mm design reference. The 3.3% power discrepancy is unresolved, not established as rounding.
+- The full-aperture ray encounters incompatible front-group profiles (surface 5 → 6). Existing rim trims do not correct the prescription. No unsupported power correction, rim inflation or iris reduction was made.

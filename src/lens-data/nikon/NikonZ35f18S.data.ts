@@ -1,31 +1,21 @@
 import type { LensDataInput } from "../../types/optics.js";
 
 /**
- * ╔══════════════════════════════════════════════════════════════════════╗
- * ║          LENS DATA — NIKON NIKKOR Z 35mm f/1.8 S                  ║
- * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Data source: JP 2019-090947A Example 4 (Yamada, Imashima,        ║
- * ║    Tatsuno, Sato; Konica Minolta / Nikon joint filing).           ║
- * ║  Wide-angle fast prime, positive–positive–negative 3-group design ║
- * ║  with floating focus (Gr2 + Gr3 independently driven).            ║
- * ║  11 elements / 9 groups, 3 aspherical elements (6 asph surfaces), ║
- * ║  2 ED elements.                                                    ║
- * ║                                                                    ║
- * ║  Prescription is at patent-normalized scale (f = 1.572 mm).       ║
- * ║  Scale factor to 35 mm production: 22.26×.                        ║
- * ║                                                                    ║
- * ║  NOTE ON EFL DISCREPANCY:                                          ║
- * ║    Independent paraxial ray trace yields EFL = 1.624 mm, a 3.3%   ║
- * ║    discrepancy vs. the patent-stated 1.572 mm. The error is       ║
- * ║    concentrated in Gr1 (computed f₁ = 2.168 vs. patent 2.089 mm), ║
- * ║    consistent with accumulated rounding across 12 Gr1 surfaces.   ║
- * ║    Gr2 and Gr3 match patent Table 2 to <0.1%.                     ║
- * ║                                                                    ║
- * ║  Cover glass (nd = 1.517, t = 0.074) excluded; its optical path   ║
- * ║  is folded into the back focal distance.                           ║
- * ║                                                                    ║
- * ║  Semi-diameters from patent Ri (有効半径) column.                   ║
- * ╚══════════════════════════════════════════════════════════════════════╝
+ * Nikon NIKKOR Z 35mm f/1.8 S — JP 2019-090947 A, Example 4.
+ * Published prescription f = 1.572; physical model scale s = 35 / 1.572.
+ * All R, d, sd, element fl and variable gaps below are millimetres after
+ * scaling. A_p = A_p,patent / s^(p-1); K and refractive indices are unchanged.
+ * The flat-radius sentinel is retained. This is a production-size model,
+ * not independent confirmation of the manufactured prescription.
+ *
+ * Source limitation: the table computes EFL 36.15176 mm at infinity, not
+ * the scaled stated 35 mm. Gr1 disagrees with Table 2; the cause remains
+ * unresolved. Published front-group surfaces also intersect along the
+ * wide-open ray path. Retain unavailable real-ray results rather than
+ * changing source powers, enlarging trimmed rims or silently closing the iris.
+ * Semi-diameters include earlier rendering trims below published Ri.
+ * Cover glass is omitted here; its physical thickness is included in BF.
+ * See the companion audit and analysis for the remaining limitations.
  */
 
 const LENS_DATA = {
@@ -36,7 +26,7 @@ const LENS_DATA = {
   specs: ["35mm", "f/1.8", "11 elements / 9 groups", "3 Asph · 2 ED", "Z-mount"],
 
   focalLengthMarketing: 35,
-  focalLengthDesign: 1.572,
+  focalLengthDesign: 35,
   apertureMarketing: 1.8,
   apertureDesign: 1.85,
   lensMounts: ["nikon-z"],
@@ -59,7 +49,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.5168,
       vd: 64.13,
-      fl: -2.12,
+      fl: -47.2010178117,
       glass: "S-BSL7 (OHARA)",
       role: "Front field-widening negative meniscus; concave image side. Expands angular acceptance for 63° field coverage at the wide aperture.",
     },
@@ -70,7 +60,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.95375,
       vd: 32.33,
-      fl: 1.45,
+      fl: 32.28371501272,
       glass: "S-LAH98 (OHARA)",
       cemented: "D1",
       role: "Ultra-high-index La flint (nd = 1.954, highest in design). Strong positive power with manageable curvatures for SA control at f/1.8.",
@@ -82,7 +72,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.60342,
       vd: 38.03,
-      fl: -2.05,
+      fl: -45.64249363868,
       glass: "S-TIM5 (OHARA)",
       cemented: "D1",
       role: "Light titanium flint in D1 doublet. Modest Δνd (5.7) — doublet prioritizes monochromatic aberration correction over chromatic.",
@@ -94,7 +84,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.68893,
       vd: 31.16,
-      fl: -1.06,
+      fl: -23.60050890585,
       glass: "S-TIM28 (OHARA)",
       cemented: "D2",
       role: "Dense titanium flint in D2 doublet. Meaningful chromatic correction (Δνd ≈ 9.6) and strong negative power.",
@@ -106,7 +96,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.8515,
       vd: 40.78,
-      fl: 1.08,
+      fl: 24.04580152672,
       glass: "S-LAH89 (OHARA)",
       cemented: "D2",
       role: "Equi-convex (|R₇| = |R₈|) high-index La crown. Primary positive-power workhorse in Gr1; optimal shape for minimizing SA.",
@@ -118,7 +108,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.497,
       vd: 81.61,
-      fl: 1.84,
+      fl: 40.96692111959,
       glass: "S-FPL51 (OHARA)",
       apd: "inferred",
       dPgF: 0.028, apdNote: "ΔPgF = +0.028 (OHARA catalog θgF = 0.5375). Fluorophosphate ED crown with very high νd = 81.6.",
@@ -131,7 +121,7 @@ const LENS_DATA = {
       type: "Neg. Meniscus (2× Asph)",
       nd: 1.83441,
       vd: 37.28,
-      fl: -4.6,
+      fl: -102.417302799,
       glass: "M-NBFD10 (HOYA; exact molded-glass coordinate match)",
       role: "Last element before stop; 2× aspherical surfaces provide fine control of residual SA and coma accumulated through the preceding six elements. Asph departures: S11A +39 µm, S12A +122 µm (scaled).",
     },
@@ -144,7 +134,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.61293,
       vd: 36.94,
-      fl: -1.96,
+      fl: -43.63867684478,
       glass: "S-TIM3 (OHARA)",
       role: "First element of focus group, behind stop. Concave-toward-object shape gently diverges the converging beam from Gr1, suppressing abrupt aberration changes during focus.",
     },
@@ -155,7 +145,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.59282,
       vd: 68.62,
-      fl: 1.46,
+      fl: 32.50636132316,
       glass: "FCD515 (HOYA catalog equivalent; production supplier unspecified)",
       apd: "patent",
       dPgF: 0.019, apdNote:
@@ -169,7 +159,7 @@ const LENS_DATA = {
       type: "Pos. Meniscus (2× Asph)",
       nd: 1.6935,
       vd: 53.2,
-      fl: 6.06,
+      fl: 134.9236641221,
       glass: "L-LAL13 (OHARA)",
       role: "Weak positive meniscus (convex image side); primary role is aberration correction, not power. 2× aspherical surfaces manage field curvature variation during focus. L-prefix = PGM glass. Asph departures: S18A −530 µm, S19A +218 µm (scaled).",
     },
@@ -182,7 +172,7 @@ const LENS_DATA = {
       type: "Neg. Meniscus (2× Asph)",
       nd: 1.58313,
       vd: 59.46,
-      fl: -4.51,
+      fl: -100.4134860051,
       glass: "L-BAL42 (OHARA), probable",
       role: "Sole Gr3 element — dedicated field flattener and final wavefront corrector. Concave-toward-object per patent condition (7). L-prefix = PGM glass. Largest departures in design: S20A −674 µm, S21A −850 µm (scaled).",
     },
@@ -191,76 +181,76 @@ const LENS_DATA = {
   surfaces: [
     // ── Gr1 (fixed) ────────────────────────────────────────────────
     // L11 — negative meniscus
-    { label: "1", R: 4.6232, d: 0.102, nd: 1.5168, elemId: 1, sd: 0.832 },
-    { label: "2", R: 0.8784, d: 0.354, nd: 1.0, elemId: 0, sd: 0.673 },
+    { label: "1", R: 102.9338422392, d: 2.270992366412, nd: 1.5168, elemId: 1, sd: 18.52417302799 },
+    { label: "2", R: 19.5572519084, d: 7.881679389313, nd: 1.0, elemId: 0, sd: 14.98409669211 },
 
     // D1: L12 (biconvex) + L13 (biconcave), cemented
-    { label: "3", R: 4.073, d: 0.258, nd: 1.95375, elemId: 2, sd: 0.48 },
-    { label: "4", R: -2.029, d: 0.083, nd: 1.60342, elemId: 3, sd: 0.48 },
-    { label: "5", R: 3.2358, d: 0.108, nd: 1.0, elemId: 0, sd: 0.4 },
+    { label: "3", R: 90.68384223919, d: 5.74427480916, nd: 1.95375, elemId: 2, sd: 10.68702290076 },
+    { label: "4", R: -45.17493638677, d: 1.84796437659, nd: 1.60342, elemId: 3, sd: 10.68702290076 },
+    { label: "5", R: 72.04389312977, d: 2.404580152672, nd: 1.0, elemId: 0, sd: 8.905852417303 },
 
     // D2: L14 (biconcave) + L15 (biconvex equi-convex), cemented
     // SD trimmed from the rough estimate so the very tight D1→D2 gap clears
     // the adjacent sag profiles while preserving the patent air spacing.
-    { label: "6", R: -1.2945, d: 0.172, nd: 1.68893, elemId: 4, sd: 0.462 },
-    { label: "7", R: 1.7517, d: 0.329, nd: 1.8515, elemId: 5, sd: 0.462 },
-    { label: "8", R: -1.7517, d: 0.018, nd: 1.0, elemId: 0, sd: 0.462 },
+    { label: "6", R: -28.8215648855, d: 3.82951653944, nd: 1.68893, elemId: 4, sd: 10.28625954198 },
+    { label: "7", R: 39.00095419847, d: 7.325063613232, nd: 1.8515, elemId: 5, sd: 10.28625954198 },
+    { label: "8", R: -39.00095419847, d: 0.4007633587786, nd: 1.0, elemId: 0, sd: 10.28625954198 },
 
     // L16 — biconvex positive, ED #1 (S-FPL51)
-    { label: "9", R: 1.1917, d: 0.368, nd: 1.497, elemId: 6, sd: 0.47 },
-    { label: "10", R: -3.5528, d: 0.009, nd: 1.0, elemId: 0, sd: 0.45 },
+    { label: "9", R: 26.53276081425, d: 8.193384223919, nd: 1.497, elemId: 6, sd: 10.46437659033 },
+    { label: "10", R: -79.10178117048, d: 0.2003816793893, nd: 1.0, elemId: 0, sd: 10.01908396947 },
 
     // L17 — negative meniscus, 2× aspherical
-    { label: "11A", R: 4.1556, d: 0.057, nd: 1.83441, elemId: 7, sd: 0.48 },
-    { label: "12A", R: 1.9836, d: 0.187, nd: 1.0, elemId: 0, sd: 0.46 },
+    { label: "11A", R: 92.52290076336, d: 1.269083969466, nd: 1.83441, elemId: 7, sd: 10.68702290076 },
+    { label: "12A", R: 44.1641221374, d: 4.163486005089, nd: 1.0, elemId: 0, sd: 10.2417302799 },
 
     // ── Aperture stop (fixed with Gr1) ─────────────────────────────
-    // STO position inferred from patent surface 13; gap split is d12A = 0.187 (Gr1 rear to STO), d_STO = 0.514 (STO to Gr2 front at ∞)
-    { label: "STO", R: 1e15, d: 0.514, nd: 1.0, elemId: 0, sd: 0.533 },
+    // STO position inferred from patent surface 13; source-scale gap split: d12A = 0.187, d_STO = 0.514 at infinity
+    { label: "STO", R: 1e15, d: 11.44402035623, nd: 1.0, elemId: 0, sd: 11.86704834606 },
 
     // ── Gr2 (positive, moves toward object during close focus) ─────
     // L21 — negative meniscus, concave object side
-    { label: "14", R: -0.9917, d: 0.062, nd: 1.61293, elemId: 8, sd: 0.4 },
-    { label: "15", R: -5.779, d: 0.012, nd: 1.0, elemId: 0, sd: 0.42 },
+    { label: "14", R: -22.0798346056, d: 1.380407124682, nd: 1.61293, elemId: 8, sd: 8.905852417303 },
+    { label: "15", R: -128.667302799, d: 0.2671755725191, nd: 1.0, elemId: 0, sd: 9.351145038168 },
 
     // L22 — biconvex positive, ED #2 (fluorophosphate crown)
-    { label: "16", R: 2.1244, d: 0.282, nd: 1.59282, elemId: 9, sd: 0.44 },
-    { label: "17", R: -1.3918, d: 0.209, nd: 1.0, elemId: 0, sd: 0.46 },
+    { label: "16", R: 47.2989821883, d: 6.278625954198, nd: 1.59282, elemId: 9, sd: 9.796437659033 },
+    { label: "17", R: -30.98791348601, d: 4.653307888041, nd: 1.0, elemId: 0, sd: 10.2417302799 },
 
     // L23 — positive meniscus, 2× aspherical (convex image side)
-    { label: "18A", R: -8.4171, d: 0.098, nd: 1.6935, elemId: 10, sd: 0.5 },
-    { label: "19A", R: -2.8176, d: 0.229, nd: 1.0, elemId: 0, sd: 0.52 },
+    { label: "18A", R: -187.4036259542, d: 2.181933842239, nd: 1.6935, elemId: 10, sd: 11.13231552163 },
+    { label: "19A", R: -62.73282442748, d: 5.098600508906, nd: 1.0, elemId: 0, sd: 11.57760814249 },
 
     // ── Gr3 (negative, moves toward image during close focus) ──────
     // L31 — negative meniscus, 2× aspherical (concave object side)
-    { label: "20A", R: -1.8973, d: 0.083, nd: 1.58313, elemId: 11, sd: 0.56 },
+    { label: "20A", R: -42.24268447837, d: 1.84796437659, nd: 1.58313, elemId: 11, sd: 12.46819338422 },
     // d21: patent 0.751 + cover glass 0.074 + BF 0.0425 = 0.8675 total to image
-    { label: "21A", R: -6.9348, d: 0.8675, nd: 1.0, elemId: 0, sd: 0.58 },
+    { label: "21A", R: -154.4007633588, d: 19.31456743003, nd: 1.0, elemId: 0, sd: 12.91348600509 },
   ],
 
   asph: {
     "11A": {
       K: -4.9288,
-      A4: -9.582e-2,
-      A6: 5.043e-1,
-      A8: -4.618e-1,
+      A4: -8.681797634597e-06,
+      A6: 9.217464102652e-08,
+      A8: -1.702728518859e-10,
       A10: 0,
       A12: 0,
       A14: 0,
     },
     "12A": {
       K: -0.4693,
-      A4: -8.355e-2,
-      A6: 5.689e-1,
-      A8: -2.913e-1,
+      A4: -7.570070886773e-06,
+      A6: 1.039820608368e-07,
+      A8: -1.074068465881e-10,
       A10: 0,
       A12: 0,
       A14: 0,
     },
     "18A": {
       K: 15.3255,
-      A4: -2.063e-1,
-      A6: 6.89e-2,
+      A4: -1.869186862886e-05,
+      A6: 1.259336261497e-08,
       A8: 0,
       A10: 0,
       A12: 0,
@@ -268,17 +258,17 @@ const LENS_DATA = {
     },
     "19A": {
       K: -0.9347,
-      A4: -2.416e-3,
-      A6: 1.158e-1,
-      A8: 1.983e-1,
-      A10: -1.13e-1,
+      A4: -2.189023490418e-07,
+      A6: 2.116562250817e-08,
+      A8: 7.311629824377e-11,
+      A10: -8.405023260405e-14,
       A12: 0,
       A14: 0,
     },
     "20A": {
       K: -0.1889,
-      A4: -1.143e-1,
-      A6: -1.549e-1,
+      A4: -1.03561831521e-05,
+      A6: -2.831221870912e-08,
       A8: 0,
       A10: 0,
       A12: 0,
@@ -286,10 +276,10 @@ const LENS_DATA = {
     },
     "21A": {
       K: 0,
-      A4: -9.359e-2,
-      A6: -1.873e-1,
-      A8: 1.909e-1,
-      A10: -1.298e-1,
+      A4: -8.479747867063e-06,
+      A6: -3.423420635389e-08,
+      A8: 7.038780299917e-11,
+      A10: -9.654619638943e-14,
       A12: 0,
       A14: 0,
     },
@@ -299,9 +289,9 @@ const LENS_DATA = {
   // [d_infinity, d_close_focus]
   // d_close includes cover glass folded into BF for surface 21A
   var: {
-    STO: [0.514, 0.283],
-    "19A": [0.229, 0.666],
-    "21A": [0.8675, 0.6615],
+    STO: [11.44402035623, 6.300890585242],
+    "19A": [5.098600508906, 14.82824427481],
+    "21A": [19.31456743003, 14.72805343511],
   },
   varLabels: [
     ["STO", "D13"],

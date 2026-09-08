@@ -15,7 +15,7 @@ The NIKKOR Z 35mm f/1.8 S was one of the three launch lenses for Nikon's Z-mount
 
 The patent JP 2019-090947A is a joint filing by Konica Minolta and Nikon (a collaboration that has produced several Z-mount lens designs). It presents four numerical examples of a positive–positive–negative three-group imaging lens with floating focus. Example 4 matches the production NIKKOR Z 35mm f/1.8 S across all verifiable parameters.
 
-The prescription in the patent is normalized to a design EFL of 1.572 mm. All dimensional quantities in this analysis are presented both in normalized form and scaled to the 35 mm production focal length, using a scale factor of 22.26×.
+The prescription in the patent is normalized to a design EFL of 1.572 mm. All dimensional quantities in this analysis are presented both in normalized form and scaled to the 35 mm production focal length, using a scale factor of **35 / 1.572 = 22.2646310433×**. The runtime prescription now stores physical millimetres, including the asphere coefficient transformation A_p / s^(p−1). The calculated EFL is **36.15 mm at infinity and 31.25 mm at the close-focus keyframe**; the design reference remains 35 mm. These are model results, not measured production-lens breathing.
 
 ---
 
@@ -338,13 +338,13 @@ The lens was one of the first three NIKKOR Z lenses, alongside the Z 24–70mm f
 
 ## 9. Methodology and Limitations
 
-All numerical results in this analysis were computed via Python paraxial ray trace from the patent's EX4 prescription. The computed system EFL (1.624 mm) differs from the patent's stated value (1.572 mm) by approximately 3.3%. This discrepancy is concentrated entirely in Group 1: the independently computed Gr1 focal length (2.168 mm) differs from the patent's Table 2 value (2.089 mm) by 3.8%, consistent with accumulated rounding errors across Gr1's 12 refracting surfaces. By contrast, the computed Gr2 and Gr3 focal lengths match the patent's Table 2 values to better than 0.1% (f₂ = 2.511 vs 2.512; f₃ = −4.506 vs −4.507), providing confidence in the trace methodology. All scaled dimensional quantities in this document use the patent-stated EFL of 1.572 mm (scale factor 22.26×) rather than the computed value. Element focal lengths are thick-lens computations using paraxial surface powers.
+All numerical results in this analysis were computed via Python paraxial ray trace from the patent's EX4 prescription. The computed system EFL (1.624 mm) differs from the patent's stated value (1.572 mm) by approximately 3.3%. This discrepancy is concentrated entirely in Group 1: the independently computed Gr1 focal length (2.168 mm) differs from the patent's Table 2 value (2.089 mm) by 3.8%, with no verified explanation in the published source. Rechecking the JP table and its US 11,768,360 B2 family counterpart found the same values; the earlier rounding explanation was not established. By contrast, the computed Gr2 and Gr3 focal lengths match the patent's Table 2 values to better than 0.1% (f₂ = 2.511 vs 2.512; f₃ = −4.506 vs −4.507), providing confidence in the trace methodology. All scaled dimensional quantities in this document use the patent-stated EFL of 1.572 mm (scale factor 22.26×) rather than the computed value. Element focal lengths are thick-lens computations using paraxial surface powers.
 
 Aspherical departures are computed at the patent's semi-diameter values using the full sag equation with conic constant and even-order polynomial coefficients. The patent provides coefficients through A₁₂ for all aspherical surfaces; the highest non-zero order varies by surface (A₈ for surfaces 11, 12; A₆ for surfaces 18, 20; A₁₀ for surfaces 19, 21).
 
 Glass identifications are made against the OHARA 2018 pocket catalog (Oct. 2018) and corroborated with refractiveindex.info Zemax catalog data (2017-11). Confidence tiers: "exact match" (Δnd < 0.001, Δνd < 0.1), "near-match" (Δnd < 0.001, Δνd < 0.2), and "family-level" (compositional family identified but no single catalog glass matches within tolerances). One element (L22) could not be identified to better than family level.
 
-Semi-diameters are taken directly from the patent's "Ri" (有効半径) column and are not independently computed.
+The runtime semi-diameters include prior rendering trims below the patent's "Ri" (有効半径) column. Those trims do not repair the published surface geometry: a wide-open ray reaches a crossing of the front-group profiles between surfaces 5 and 6 before reaching the iris. Consequently, the full-aperture working f-number remains unavailable. Stopped-down results are computations of this unresolved prescription, not validated performance of the commercial lens.
 
 ---
 
