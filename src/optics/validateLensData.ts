@@ -697,6 +697,41 @@ export default function validateLensData(data: UntrustedLensData): string[] {
     if (!Array.isArray(data[f]) || data[f].length === 0) errors.push(`Missing or empty required array field: "${f}"`);
   }
 
+  if (
+    data.zoomApertureModel !== undefined &&
+    (data.zoomApertureModel !== "from-nominal-fno" ||
+      !Array.isArray(data.zoomPositions) ||
+      data.zoomPositions.length < 2)
+  ) {
+    errors.push('"zoomApertureModel" must be "from-nominal-fno" on a zoom lens');
+  }
+  if (data.zoomStopSemiDiameters !== undefined) {
+    if (
+      !Array.isArray(data.zoomStopSemiDiameters) ||
+      !Array.isArray(data.zoomPositions) ||
+      data.zoomPositions.length < 2 ||
+      data.zoomStopSemiDiameters.length !== data.zoomPositions.length ||
+      data.zoomStopSemiDiameters.some((radius) => !Number.isFinite(radius) || radius <= 0) ||
+      data.zoomApertureModel !== undefined
+    ) {
+      errors.push(
+        "zoomStopSemiDiameters requires one positive finite radius per zoom station and no inferred aperture model",
+      );
+    }
+  }
+  if (data.zoomCloseFocusM !== undefined) {
+    if (
+      !Array.isArray(data.zoomCloseFocusM) ||
+      !Array.isArray(data.zoomPositions) ||
+      data.zoomPositions.length < 2 ||
+      data.zoomCloseFocusM.length !== data.zoomPositions.length
+    ) {
+      errors.push('"zoomCloseFocusM" must match the authored zoom stations');
+    } else if (data.zoomCloseFocusM.some((value: number) => !Number.isFinite(value) || value <= 0)) {
+      errors.push('"zoomCloseFocusM" values must be positive finite distances');
+    }
+  }
+
   /* ── nominalFno: required, number or number[] (for variable-aperture zooms) ── */
   if (typeof data.nominalFno === "number") {
     if (!isFinite(data.nominalFno)) errors.push(`"nominalFno" must be a finite number`);

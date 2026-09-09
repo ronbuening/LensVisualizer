@@ -1,20 +1,10 @@
 import type { LensDataInput } from "../../types/optics.js";
 
-/**
- * ╔══════════════════════════════════════════════════════════════════════╗
- * ║           LENS DATA — NIKON NIKKOR Z 58mm f/0.95 S Noct           ║
- * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Data source: WO2019/229849 A1 Example 1 (Nikon Corporation).     ║
- * ║  Modified double-Gauss with extended front corrector and rear      ║
- * ║  field-flattening group.  Manual focus only.                       ║
- * ║  17 elements / 10 groups, 3 aspherical surfaces.                  ║
- * ║  Focus: unit extension of entire front group GF (13 elements).    ║
- * ║                                                                    ║
- * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    Estimated from marginal + chief ray paraxial trace at f/0.98   ║
- * ║    (design FNo) and 2ω = 39.96° (half-field 19.98°), with 5%     ║
- * ║    mechanical clearance margin.  Patent does not list SDs.         ║
- * ╚══════════════════════════════════════════════════════════════════════╝
+/** WO2019229849A1 Example 1; original table pp.21–23, equation p.20, Figure1 p.46.
+ * Source surfaces/aspheres retained except separate filter rows29–30 omitted.
+ * Final gap includes their equivalent-air propagation; compound lens members remain.
+ * Figure rims exclude mechanical shoulders, with constrained facing S3/S4 optical radii.
+ * Catalog names identify inferred coordinate counterparts, not production suppliers.
  */
 
 const LENS_DATA = {
@@ -23,7 +13,7 @@ const LENS_DATA = {
   maker: "Nikon",
   name: "NIKON NIKKOR Z 58mm f/0.95 S Noct",
   subtitle: "WO2019/229849 A1 EXAMPLE 1 — NIKON / TSUBONOYA, HARADA, TAKE",
-  specs: ["17 ELEMENTS / 10 GROUPS", "f ≈ 59.6 mm", "F/0.95 (design F/0.98)", "2ω ≈ 40.0°", "3 ASPHERICAL SURFACES"],
+  specs: ["17 ELEMENTS / 10 GROUPS", "f = 59.62 mm", "F/0.98", "2ω = 39.96°", "3 ASPHERICAL SURFACES"],
 
   /* ── Explicit metadata fields ── */
   focalLengthMarketing: 58,
@@ -48,11 +38,11 @@ const LENS_DATA = {
       type: "Biconvex Positive (1× Asph)",
       nd: 1.90265,
       vd: 35.77,
-      fl: 107.0,
-      glass: "903358 class; J-LASFH9 catalog spectral proxy (production supplier unspecified)",
+      fl: 106.97,
+      glass: "903358 class; J-LASFH9 catalog spectral proxy (production supplier unspecified) (inferred coordinate counterpart)",
       apd: false,
       cemented: "Da",
-      role: "Front positive element with CNC-ground aspherical surface; begins beam convergence while correcting high-order SA at f/0.95",
+      role: "Front positive member of cemented Da with an aspheric object-side surface.",
     },
     {
       id: 2,
@@ -61,12 +51,12 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.552981,
       vd: 55.07,
-      fl: -85.7,
-      glass: "553551 class; J-KZFH4 catalog spectral proxy (patent dPgF retained)",
-      apd: "inferred",
-      dPgF: -0.0065, apdNote: "θgF = 0.54467, ΔPgF = −0.0065",
+      fl: -85.70,
+      glass: "553551 class; J-KZFH4 catalog spectral proxy (patent dPgF retained) (inferred coordinate counterpart)",
+      apd: "patent",
+      dPgF: -0.00650226, apdNote: "Patent PgF=0.54467; deviation from runtime normal line 0.6438−0.001682νd is −0.00650226",
       cemented: "Da",
-      role: "Negative anomalous-dispersion element; seeds Petzval correction and suppresses secondary spectrum in G1",
+      role: "Negative member of Da; source partial dispersion lies below the runtime normal line.",
     },
     {
       id: 3,
@@ -75,12 +65,12 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.61266,
       vd: 44.46,
-      fl: -96.7,
-      glass: "KZFS-type (near N-KZFS4 / S-NBM51)",
-      apd: "inferred",
-      dPgF: -0.0051, apdNote: "θgF = 0.56396, ΔPgF = −0.0051",
+      fl: -96.72,
+      glass: "KZFS-type (near N-KZFS4 / S-NBM51) (inferred coordinate counterpart)",
+      apd: "patent",
+      dPgF: -0.00505828, apdNote: "Patent PgF=0.56396; deviation from runtime normal line is −0.00505828",
       cemented: "Db",
-      role: "Diverging element of second G1 doublet; forms air lens La1 with L12; KZFS glass attacks secondary spectrum",
+      role: "Negative member of Db; shares source glass coordinates and partial dispersion with L25.",
     },
     {
       id: 4,
@@ -89,11 +79,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.59319,
       vd: 67.9,
-      fl: 126.5,
-      glass: "ED phosphate crown (near S-FPM2 / FCD10; used ×3)",
+      fl: 126.47,
+      glass: "Coordinate counterpart (near S-FPM2 / FCD10; used ×3) (inferred coordinate counterpart)",
       apd: false,
       cemented: "Db",
-      role: "ED positive element; low dispersion counterbalances L13 KZFS glass for primary and secondary chromatic correction",
+      role: "Positive member of Db; shares source coordinates with L22 and L23.",
     },
     {
       id: 5,
@@ -102,10 +92,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.8485,
       vd: 43.79,
-      fl: 83.2,
-      glass: "J-LASFH22 (Hikari, patent nd/vd match)",
+      fl: 83.24,
+      glass: "J-LASFH22 (Hikari, patent nd/vd match) (inferred coordinate counterpart)",
       apd: false,
-      role: "First element of master group G2; strong positive power via high-index gentle curvatures",
+      role: "Positive singlet at the entrance to G2.",
     },
     {
       id: 6,
@@ -114,10 +104,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.59319,
       vd: 67.9,
-      fl: 115.2,
-      glass: "593679 ED class; J-PSKH1 catalog spectral proxy (production supplier unspecified)",
+      fl: 115.19,
+      glass: "593679 class; J-PSKH1 catalog spectral proxy (production supplier unspecified) (inferred coordinate counterpart)",
       apd: false,
-      role: "ED singlet continuing positive power buildup; nearly plano-convex form minimises pre-stop coma",
+      role: "Positive singlet with a weak but finite rear curvature.",
     },
     {
       id: 7,
@@ -126,11 +116,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.59319,
       vd: 67.9,
-      fl: 123.5,
-      glass: "593679 ED class; J-PSKH1 catalog spectral proxy (production supplier unspecified)",
+      fl: 123.54,
+      glass: "593679 class; J-PSKH1 catalog spectral proxy (production supplier unspecified) (inferred coordinate counterpart)",
       apd: false,
       cemented: "Jc",
-      role: "Positive element of pre-stop cemented doublet; ED glass provides chromatic correction",
+      role: "Positive member of cemented Jc before the stop.",
     },
     {
       id: 8,
@@ -139,12 +129,12 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.738,
       vd: 32.33,
-      fl: -42.6,
-      glass: "High-dispersion flint (near S-NBH53V; used ×2)",
-      apd: "inferred",
-      dPgF: 0, apdNote: "θgF = 0.58997, ΔPgF ≈ 0 (on normal line); satisfies patent cond. (4)",
+      fl: -42.61,
+      glass: "High-dispersion flint (near S-NBH53V; used ×2) (inferred coordinate counterpart)",
+      apd: false,
+      dPgF: 0.00054906, apdNote: "Patent PgF=0.58997; deviation from runtime normal line is +0.00054906, near normal",
       cemented: "Jc",
-      role: "Primary Petzval corrector; strong negative power near stop; forms object-side boundary of air lens La2",
+      role: "Negative member of Jc; source partial dispersion is near the runtime normal line.",
     },
     {
       id: 9,
@@ -153,12 +143,12 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.61266,
       vd: 44.46,
-      fl: -46.7,
-      glass: "613445 class; J-KZFH1 catalog spectral proxy (patent dPgF retained)",
-      apd: "inferred",
-      dPgF: -0.0051, apdNote: "θgF = 0.56396, ΔPgF = −0.0051",
+      fl: -46.66,
+      glass: "613445 class; J-KZFH1 catalog spectral proxy (patent dPgF retained) (inferred coordinate counterpart)",
+      apd: "patent",
+      dPgF: -0.00505828, apdNote: "Patent PgF=0.56396; deviation from runtime normal line is −0.00505828",
       cemented: "Jd",
-      role: "Post-stop Petzval corrector; quasi-symmetric with L24 about stop; KZFS glass continues secondary spectrum correction",
+      role: "Negative member of Jd after the stop; shares source coordinates with L13.",
     },
     {
       id: 10,
@@ -167,11 +157,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.49782,
       vd: 82.57,
-      fl: 72.8,
-      glass: "Super-ED fluorophosphate (near S-FPL51 / FCD1)",
+      fl: 72.81,
+      glass: "Coordinate counterpart (near S-FPL51 / FCD1) (inferred coordinate counterpart)",
       apd: false,
       cemented: "Jd",
-      role: "Lowest-dispersion element (νd = 82.57); counterbalances multiple high-dispersion elements for deep secondary spectrum correction",
+      role: "Positive member of Jd with the highest source Abbe number in this example.",
     },
     {
       id: 11,
@@ -180,10 +170,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.883,
       vd: 40.69,
-      fl: 50.6,
-      glass: "S-LAH58 (OHARA); used ×3",
+      fl: 50.56,
+      glass: "S-LAH58 (OHARA); used ×3 (inferred coordinate counterpart)",
       apd: false,
-      role: "Strongest positive singlet in G2; high-index LaH allows strong power with moderate curvatures",
+      role: "Positive singlet in G2; shares source glass coordinates with L31 and L33.",
     },
     {
       id: 12,
@@ -192,11 +182,11 @@ const LENS_DATA = {
       type: "Biconvex Positive (1× Asph)",
       nd: 1.95375,
       vd: 32.33,
-      fl: 51.8,
-      glass: "S-LAH98 (OHARA) / TAFD45 (HOYA)",
+      fl: 51.79,
+      glass: "S-LAH98 (OHARA) / TAFD45 (HOYA) (inferred coordinate counterpart)",
       apd: false,
       cemented: "De",
-      role: "Second CNC-ground asphere; highest nd in design (1.954); enables strong post-stop convergence",
+      role: "Positive member of De with an aspheric front face and the highest source index.",
     },
     {
       id: 13,
@@ -205,12 +195,12 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.738,
       vd: 32.33,
-      fl: -40.9,
-      glass: "738323 class; J-KZFH9 catalog spectral proxy (patent dPgF retained)",
-      apd: "inferred",
-      dPgF: 0, apdNote: "θgF = 0.58997, ΔPgF ≈ 0; satisfies patent cond. (4)",
+      fl: -40.94,
+      glass: "738323 class; J-KZFH9 catalog spectral proxy (patent dPgF retained) (inferred coordinate counterpart)",
+      apd: false,
+      dPgF: 0.00054906, apdNote: "Patent PgF=0.58997; deviation from runtime normal line is +0.00054906, near normal",
       cemented: "De",
-      role: "Last element of GF; completes quasi-symmetric pair with L24; rear surface defines variable focus gap D22",
+      role: "Negative member of De; its rear face bounds the variable D22 focus gap.",
     },
     {
       id: 14,
@@ -219,11 +209,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.883,
       vd: 40.69,
-      fl: 50.7,
-      glass: "S-LAH58 (OHARA; same as L27)",
+      fl: 50.71,
+      glass: "S-LAH58 (OHARA; same as L27) (inferred coordinate counterpart)",
       apd: false,
       cemented: "Df",
-      role: "Positive element of first GR doublet; provides convergence and field-flattening in fixed rear assembly",
+      role: "Positive member of the first fixed rear doublet Df.",
     },
     {
       id: 15,
@@ -232,11 +222,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.69895,
       vd: 30.13,
-      fl: -47.5,
-      glass: "E-FD15 (HOYA, patent nd/vd match)",
+      fl: -47.48,
+      glass: "E-FD15 (HOYA, patent nd/vd match) (inferred coordinate counterpart)",
       apd: false,
       cemented: "Df",
-      role: "Highest-dispersion element in design (νd = 30.13); achromatisation within GR doublet Df",
+      role: "Negative member of Df with the lowest source Abbe number in this example.",
     },
     {
       id: 16,
@@ -245,11 +235,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.883,
       vd: 40.69,
-      fl: 46.2,
-      glass: "S-LAH58 (OHARA; same as L27)",
+      fl: 46.23,
+      glass: "S-LAH58 (OHARA; same as L27) (inferred coordinate counterpart)",
       apd: false,
       cemented: "Dg",
-      role: "Strongest positive element in GR; final convergence stage; strong curvatures correct sagittal coma at field edges",
+      role: "Positive member of the final fixed doublet Dg.",
     },
     {
       id: 17,
@@ -258,50 +248,47 @@ const LENS_DATA = {
       type: "Biconcave Negative (1× Asph)",
       nd: 1.765538,
       vd: 46.76,
-      fl: -50.2,
-      glass: "Q-LASFPH2S (Hikari, patent nd/vd match)",
+      fl: -50.18,
+      glass: "Q-LASFPH2S (Hikari, patent nd/vd match) (inferred coordinate counterpart)",
       apd: false,
       cemented: "Dg",
-      role: "Last optical element; rear aspherical surface (14th-order) provides final field-edge correction; PGM or hybrid manufacturing (inferred)",
+      role: "Final negative member with a fourteenth-order aspheric exit surface; fabrication method is unspecified.",
     },
   ],
 
   /* ── Surface prescription ── */
   surfaces: [
     // ── G1 (front corrector, negative): doublet Da (L11+L12), doublet Db (L13+L14) ──
-    { label: "1A", R: 108.488, d: 7.65, nd: 1.90265, elemId: 1, sd: 31.9 }, // L11 front [asph]
-    { label: "2", R: -848.55, d: 2.8, nd: 1.552981, elemId: 2, sd: 30.9 }, // L11→L12 junction
+    { label: "1A", R: 108.488, d: 7.65, nd: 1.90265, elemId: 1, sd: 33.5 }, // L11 front [asph]
+    { label: "2", R: -848.55, d: 2.8, nd: 1.552981, elemId: 2, sd: 33 }, // L11→L12 junction
     { label: "3", R: 50.252, d: 18.12, nd: 1.0, elemId: 0, sd: 28.7 }, // L12 rear → air
-    { label: "4", R: -60.72, d: 2.8, nd: 1.61266, elemId: 3, sd: 31.4 }, // L13 front
-    { label: "5", R: 2497.5, d: 9.15, nd: 1.59319, elemId: 4, sd: 32.0 }, // L13→L14 junction
-    { label: "6", R: -77.239, d: 0.4, nd: 1.0, elemId: 0, sd: 34.2 }, // L14 rear → air
+    { label: "4", R: -60.72, d: 2.8, nd: 1.61266, elemId: 3, sd: 28.7 }, // L13 front
+    { label: "5", R: 2497.5, d: 9.15, nd: 1.59319, elemId: 4, sd: 33 }, // L13→L14 junction
+    { label: "6", R: -77.239, d: 0.4, nd: 1.0, elemId: 0, sd: 33 }, // L14 rear → air
     // ── G2 (master group, positive): L21, L22, Jc (L23+L24), [STO], Jd (L25+L26), L27, De (L28+L29) ──
-    { label: "7", R: 113.763, d: 10.95, nd: 1.8485, elemId: 5, sd: 34.2 }, // L21 front
-    { label: "8", R: -178.06, d: 0.4, nd: 1.0, elemId: 0, sd: 33.4 }, // L21 rear → air
-    { label: "9", R: 70.659, d: 9.74, nd: 1.59319, elemId: 6, sd: 33.2 }, // L22 front
-    { label: "10", R: -1968.5, d: 0.2, nd: 1.0, elemId: 0, sd: 29.7 }, // L22 rear → air
+    { label: "7", R: 113.763, d: 10.95, nd: 1.8485, elemId: 5, sd: 35.3 }, // L21 front
+    { label: "8", R: -178.06, d: 0.4, nd: 1.0, elemId: 0, sd: 35.3 }, // L21 rear → air
+    { label: "9", R: 70.659, d: 9.74, nd: 1.59319, elemId: 6, sd: 32.3 }, // L22 front
+    { label: "10", R: -1968.5, d: 0.2, nd: 1.0, elemId: 0, sd: 32.3 }, // L22 rear → air
     { label: "11", R: 289.687, d: 8.0, nd: 1.59319, elemId: 7, sd: 29.5 }, // L23 front
-    { label: "12", R: -97.087, d: 2.8, nd: 1.738, elemId: 8, sd: 26.3 }, // L23→L24 junction
-    { label: "13", R: 47.074, d: 8.7, nd: 1.0, elemId: 0, sd: 25.3 }, // L24 rear → air
-    { label: "STO", R: 1e15, d: 5.29, nd: 1.0, elemId: 0, sd: 23.4 }, // Aperture stop (patent surface 14)
-    { label: "15", R: -95.23, d: 2.2, nd: 1.61266, elemId: 9, sd: 22.3 }, // L25 front
-    { label: "16", R: 41.204, d: 11.55, nd: 1.49782, elemId: 10, sd: 22.2 }, // L25→L26 junction
-    { label: "17", R: -273.092, d: 0.2, nd: 1.0, elemId: 0, sd: 22.1 }, // L26 rear → air
-    { label: "18", R: 76.173, d: 9.5, nd: 1.883, elemId: 11, sd: 22.1 }, // L27 front
-    { label: "19", R: -101.575, d: 0.2, nd: 1.0, elemId: 0, sd: 20.5 }, // L27 rear → air
-    { label: "20A", R: 176.128, d: 7.45, nd: 1.95375, elemId: 12, sd: 20.4 }, // L28 front [asph]
-    { label: "21", R: -67.221, d: 1.8, nd: 1.738, elemId: 13, sd: 18.1 }, // L28→L29 junction
-    { label: "22", R: 55.51, d: 2.68, nd: 1.0, elemId: 0, sd: 17.4 }, // L29 rear → D22 [variable]
+    { label: "12", R: -97.087, d: 2.8, nd: 1.738, elemId: 8, sd: 29.5 }, // L23→L24 junction
+    { label: "13", R: 47.074, d: 8.7, nd: 1.0, elemId: 0, sd: 25 }, // L24 rear → air
+    { label: "STO", R: 1e15, d: 5.29, nd: 1.0, elemId: 0, sd: 24.8 }, // Aperture stop (patent surface 14)
+    { label: "15", R: -95.23, d: 2.2, nd: 1.61266, elemId: 9, sd: 24.8 }, // L25 front
+    { label: "16", R: 41.204, d: 11.55, nd: 1.49782, elemId: 10, sd: 24.8 }, // L25→L26 junction
+    { label: "17", R: -273.092, d: 0.2, nd: 1.0, elemId: 0, sd: 24.8 }, // L26 rear → air
+    { label: "18", R: 76.173, d: 9.5, nd: 1.883, elemId: 11, sd: 25.5 }, // L27 front
+    { label: "19", R: -101.575, d: 0.2, nd: 1.0, elemId: 0, sd: 25.5 }, // L27 rear → air
+    { label: "20A", R: 176.128, d: 7.45, nd: 1.95375, elemId: 12, sd: 23.3 }, // L28 front [asph]
+    { label: "21", R: -67.221, d: 1.8, nd: 1.738, elemId: 13, sd: 22.8 }, // L28→L29 junction
+    { label: "22", R: 55.51, d: 2.68, nd: 1.0, elemId: 0, sd: 19.5 }, // L29 rear → D22 [variable]
     // ── GR (rear corrector, weakly positive): doublet Df (L31+L32), doublet Dg (L33+L34) ──
-    { label: "23", R: 71.413, d: 6.35, nd: 1.883, elemId: 14, sd: 16.3 }, // L31 front
-    { label: "24", R: -115.025, d: 1.81, nd: 1.69895, elemId: 15, sd: 14.2 }, // L31→L32 junction
-    { label: "25", R: 46.943, d: 0.8, nd: 1.0, elemId: 0, sd: 13.8 }, // L32 rear → air
-    { label: "26", R: 55.281, d: 9.11, nd: 1.883, elemId: 16, sd: 14.2 }, // L33 front
-    { label: "27", R: -144.041, d: 3.0, nd: 1.765538, elemId: 17, sd: 15.2 }, // L33→L34 junction
-    { label: "28A", R: 52.858, d: 14.5, nd: 1.0, elemId: 0, sd: 15.6 }, // L34 rear [asph] → air to filter
-    // ── Filter group (not optical elements) ──
-    { label: "29", R: 1e15, d: 1.6, nd: 1.5168, elemId: 0, sd: 21.9 }, // Filter front
-    { label: "30", R: 1e15, d: 1.0, nd: 1.0, elemId: 0, sd: 22.3 }, // Filter rear → image
+    { label: "23", R: 71.413, d: 6.35, nd: 1.883, elemId: 14, sd: 19.5 }, // L31 front
+    { label: "24", R: -115.025, d: 1.81, nd: 1.69895, elemId: 15, sd: 19.5 }, // L31→L32 junction
+    { label: "25", R: 46.943, d: 0.8, nd: 1.0, elemId: 0, sd: 19.5 }, // L32 rear → air
+    { label: "26", R: 55.281, d: 9.11, nd: 1.883, elemId: 16, sd: 19.2 }, // L33 front
+    { label: "27", R: -144.041, d: 3.0, nd: 1.765538, elemId: 17, sd: 19.2 }, // L33→L34 junction
+    { label: "28A", R: 52.858, d: 16.554852320675106, nd: 1.0, elemId: 0, sd: 19.2 }, // L34 rear [asph] → equivalent air to image: 14.5 + 1.6/1.5168 + 1
   ],
 
   /* ── Aspherical coefficients ── */
@@ -364,13 +351,13 @@ const LENS_DATA = {
   ],
 
   /* ── Focus configuration ── */
-  closeFocusM: 0.5,
+  closeFocusM: 0.4993674976187823,
   focusDescription:
-    "Unit extension of entire front group GF (13 elements, surfaces 1A–22). GF translates 18.6 mm toward object for 0.5 m close focus. GR fixed. Manual focus only (~320° focus throw).",
+    "Source near station beta−0.194 corresponds to about 49.94 cm in the filter-omitted model. GF and stop move 18.61 mm objectward; GR stays fixed. Intermediate motion is interpolated.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 0.95,
-  fstopSeries: [0.95, 1.0, 1.1, 1.2, 1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
+  nominalFno: 0.98,
+  fstopSeries: [0.98, 1.0, 1.1, 1.2, 1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
 
   /* ── Layout tuning ── */
   scFill: 0.55,

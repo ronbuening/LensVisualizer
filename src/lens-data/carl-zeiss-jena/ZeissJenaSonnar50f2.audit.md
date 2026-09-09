@@ -29,3 +29,13 @@ Catalog version: local working tree, 2026-06-25
 ### Verification
 
 - Temporary Zeiss Jena diagnostic test - passed after the glass-label and FK3 APD updates; runtime trim diagnostics empty for this lens.
+
+## 2026-09-08 — First-hosted audit (lens 8, in progress)
+
+- Original local US1998704.pdf Fig.1 p1 and Example I p2 visually inspected; 600 dpi figure crop retained temporarily. All radii, glass/air thicknesses and source nD/ν match the chosen 0.5 scale, including L4 1.6890.
+- Production live view inspected. Figure-scaled rims were noticeably larger than authored geometry, especially the rear doublet: first-to-last span about975px/30.1mm; front halfheight540px≈16.7, triplet430px≈13.3, rear325px≈9.7. Set front 16/16, triplet entry/shared 13/13, rear doublet 9.7/9.7/9.7. Surface probe passes; batch hidden-trim and image-circle checks pending.
+- Glass labels made supplier-neutral; removed copied catalog nC/nF/ng overrides from FK3/N-SF8 and insignificant FK3 inferred-APD highlight. Catalog curves remain comparisons, not source measurements.
+- Inferred 0.90m endpoint solved by complete paraxial propagation: BF27.3398042394, extension3.1598042394 from rounded BF24.18. Patent no finite focus or exact stop position; split2.5/5.0 remains inferred within published7.5 gap. Analysis rewritten with source/model distinctions.
+- Local live check and batch gates pending.
+- Local infinity, close, midpoint and f16 checked: BF24.18/27.34/25.76; stop diameter1.89 at f16; all three groups move objectward3.16mm, zoom disabled. Shared movement chart clips long labels (also seen on XF50); fix required before batch commit. No visible element overlap. Source assembly sum is30.1mm; earlier29.1 measurement note corrected (focus calculation already summed the correct prescription).
+- SK16 label removed after direct catalog check: N-SK16 has nd1.62041 versus patent1.6185; no exact historical identity established. L1 now unmatched crown medium. Tests authored; batch execution pending.

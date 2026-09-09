@@ -128,11 +128,12 @@ describe("useOffAxisRays", () => {
     expect(result.current.segments.length).toBe(L.offAxisFractions.length);
     for (const seg of result.current.segments) {
       expect(Array.isArray(seg.sp)).toBe(true);
-      expect(seg.sp.length).toBeGreaterThanOrEqual(2);
+      // A ray intercepted at entry can have only its launch point solid.
+      expect(seg.sp.length + seg.gp.length).toBeGreaterThanOrEqual(2);
     }
   });
 
-  it("keeps rectilinear off-axis rendering on the tracing-half-field safety scale", () => {
+  it("limits rectilinear rays to the smaller of declared and tracing half fields", () => {
     const { L, zPos, IMG_MM, sx, sy } = buildTestFixture();
     const geometry = computeOffAxisTraceGeometry({
       L,
@@ -146,8 +147,11 @@ describe("useOffAxisRays", () => {
     });
 
     expect(geometry?.kind).toBe("slope");
-    expect(geometry?.fieldAngleDeg).toBeCloseTo(tracingHalfFieldAtZoom(0, L) * L.offAxisFieldFrac, 5);
-    expect(geometry?.fieldAngleDeg).toBeLessThan(halfFieldAtZoom(0, L) * L.offAxisFieldFrac);
+    expect(geometry?.fieldAngleDeg).toBeCloseTo(
+      Math.min(halfFieldAtZoom(0, L), tracingHalfFieldAtZoom(0, L)) * L.offAxisFieldFrac,
+      5,
+    );
+    expect(geometry?.fieldAngleDeg).toBeCloseTo(21 * L.offAxisFieldFrac, 5);
   });
 
   it("keeps Nikon 500mm PF off-axis geometry inside its smaller declared field", () => {

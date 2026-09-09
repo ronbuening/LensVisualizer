@@ -19,6 +19,11 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-09-09",
+    type: "fix",
+    summary: "Reviewed and corrected the oldest 40 lens diagrams, prescriptions, and movements",
+  },
+  {
     date: "2026-09-08",
     type: "lens",
     summary: "Added Canon EF 50mm f/1.2L USM, EF 70-300mm IS USM, and EF-S 18-55mm lens designs",

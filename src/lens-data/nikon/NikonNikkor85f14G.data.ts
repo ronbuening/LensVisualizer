@@ -1,22 +1,12 @@
 import type { LensDataInput } from "../../types/optics.js";
 
 /**
- * ╔══════════════════════════════════════════════════════════════════════╗
- * ║           LENS DATA — NIKON AF-S NIKKOR 85mm f/1.4G               ║
- * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Data source: US 8,767,319 B2 Example 1 (Konica Minolta / Nikon). ║
- * ║  Inner-focus large-aperture medium-telephoto; all-spherical.       ║
- * ║  10 elements / 9 groups, 0 aspherical surfaces.                   ║
- * ║  Focus: Inner focus — Gr2 (4 elements + aperture stop) translates ║
- * ║    9.6 mm toward the object.  Gr1 and Gr3 are stationary.         ║
- * ║                                                                    ║
- * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    Not listed in patent.  Estimated from paraxial marginal + chief ║
- * ║    ray trace at f/1.45, with ~8–10% mechanical clearance.  Front   ║
- * ║    element SD constrained by 77 mm production filter thread.       ║
- * ║    All SDs validated against edge thickness, sd/|R|, and cross-gap ║
- * ║    overlap constraints.                                            ║
- * ╚══════════════════════════════════════════════════════════════════════╝
+ * US 8,767,319 B2, Example 1 / Figure 1, source f/1.450.
+ * Ten elements, nine air-separated components; three positive motion groups.
+ * Gr2 and its stop move 9.600 mm objectward; Gr1 and Gr3 stay fixed.
+ * Semi-diameters remain inferred: the figure's front rim is smaller than
+ * the entrance pupil required by the source f-number (see analysis/audit).
+ * Source BF=41.050 mm is already air-equivalent; no cover/filter is added.
  */
 
 const LENS_DATA = {
@@ -25,7 +15,7 @@ const LENS_DATA = {
   maker: "Nikon",
   name: "NIKON AF-S NIKKOR 85mm f/1.4 G",
   subtitle: "US 8,767,319 B2 EXAMPLE 1 — KONICA MINOLTA / NIKON",
-  specs: ["10 ELEMENTS / 9 GROUPS", "f = 85.0 mm", "F/1.4", "2ω ≈ 28.6°", "ALL SPHERICAL"],
+  specs: ["10 ELEMENTS / 9 GROUPS", "f = 85.0 mm", "F/1.45 (PATENT)", "2ω = 28.666°", "ALL SPHERICAL"],
 
   focalLengthMarketing: 85,
   focalLengthDesign: 85.0,
@@ -50,7 +40,7 @@ const LENS_DATA = {
       nd: 1.62041,
       vd: 60.3,
       fl: 106.6,
-      glass: "S-BSM16 (OHARA)",
+      glass: "S-BSM16 (OHARA, inferred coordinate counterpart)",
       apd: false,
       role: "Front positive meniscus — collects the f/1.4 beam and begins convergence",
     },
@@ -62,7 +52,7 @@ const LENS_DATA = {
       nd: 1.804,
       vd: 46.6,
       fl: 133.9,
-      glass: "S-LAH65V (OHARA)",
+      glass: "S-LAH65V (OHARA, inferred coordinate counterpart)",
       apd: false,
       role: "High-index positive meniscus — continues convergence with low Petzval contribution",
     },
@@ -74,7 +64,7 @@ const LENS_DATA = {
       nd: 1.8061,
       vd: 33.3,
       fl: -52.2,
-      glass: "NBFD15 (HOYA)",
+      glass: "NBFD15 (HOYA, inferred coordinate counterpart)",
       apd: false,
       role: "Negative meniscus — Gr1 chromatic/field correction; diverges beam into Gr1–Gr2 gap",
     },
@@ -86,7 +76,7 @@ const LENS_DATA = {
       nd: 1.83481,
       vd: 42.7,
       fl: 139.4,
-      glass: "S-LAH55V (OHARA)",
+      glass: "S-LAH55V (OHARA, inferred coordinate counterpart)",
       apd: false,
       role: "First positive in focusing group — re-converges beam from Gr1; f21/f22 ratio sets SA balance",
     },
@@ -98,7 +88,7 @@ const LENS_DATA = {
       nd: 1.69895,
       vd: 30.1,
       fl: -35.7,
-      glass: "S-TIM35 (OHARA)",
+      glass: "S-TIM35 (OHARA, inferred coordinate counterpart)",
       apd: false,
       role: "Only negative in Gr2 — chromatic correction and residual spherical aberration control (patent conditional (1))",
     },
@@ -110,7 +100,7 @@ const LENS_DATA = {
       nd: 1.883,
       vd: 40.8,
       fl: 96.8,
-      glass: "S-LAH58 (OHARA)",
+      glass: "S-LAH58 (OHARA, inferred coordinate counterpart)",
       apd: false,
       role: "Post-negative positive meniscus — begins re-convergence after L22 divergence",
     },
@@ -122,7 +112,7 @@ const LENS_DATA = {
       nd: 1.72916,
       vd: 54.7,
       fl: 45.1,
-      glass: "S-LAL18 (OHARA)",
+      glass: "S-LAL18 (OHARA, inferred coordinate counterpart)",
       apd: false,
       role: "Strong biconvex — primary crown element of Gr2 achromatic pair with L22; highest Abbe number in Gr2",
     },
@@ -134,7 +124,7 @@ const LENS_DATA = {
       nd: 1.90366,
       vd: 31.3,
       fl: 92.1,
-      glass: "S-LAH95 (OHARA)",
+      glass: "S-LAH95 (OHARA, inferred coordinate counterpart)",
       apd: false,
       role: "Highest-index element — first half of L3N cemented doublet; sets refractive index difference at cement surface for SA tuning",
       cemented: "L3N",
@@ -147,9 +137,9 @@ const LENS_DATA = {
       nd: 1.64769,
       vd: 33.8,
       fl: -33.4,
-      glass: "S-TIM22 (OHARA)",
+      glass: "S-TIM22 (OHARA, inferred coordinate counterpart)",
       apd: false,
-      role: "Second half of L3N doublet — cement surface (|Δn| = 0.256) provides controlled residual SA for bokeh character",
+      role: "Second half of L3N doublet — cement surface (|Δn| = 0.256) changes the doublet power and spherical-aberration contribution",
       cemented: "L3N",
     },
     {
@@ -160,7 +150,7 @@ const LENS_DATA = {
       nd: 1.834,
       vd: 37.2,
       fl: 52.4,
-      glass: "S-LAH60V (OHARA)",
+      glass: "S-LAH60V (OHARA, inferred coordinate counterpart)",
       apd: false,
       role: "Equi-biconvex (R = ±85.957) — exit angle control and field correction; symmetric shape minimizes coma",
     },
@@ -220,20 +210,15 @@ const LENS_DATA = {
   doublets: [{ text: "L3N", fromSurface: "16", toSurface: "18" }],
 
   /* ── Focus configuration ── */
-  closeFocusM: 0.85,
+  closeFocusM: 0.84537,
   focusDescription:
-    "Inner focus — Gr2 translates 9.6 mm toward object.  Gr1 and Gr3 stationary.  Total track constant at 126.4 mm.",
+    "Inner focus — Gr2 and the aperture stop translate 9.6 mm toward the object; Gr1 and Gr3 stay fixed. Source near distance: 719.0 mm before the first vertex, or 0.84537 m to the image plane. Track 126.370 mm.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 1.4,
-  fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
+  nominalFno: 1.45,
+  fstopSeries: [1.45, 2, 2.8, 4, 5.6, 8, 11, 16],
 
-  /* ── Off-axis ray tuning ──
-   *  Default offAxisFractions (±0.75) places the upper marginal ray at
-   *  yChief + 0.75×epSD ≈ 11.4 + 22.8 = 34.1 mm, which exceeds the front
-   *  element SD of 32 mm and causes an immediate ghost that traverses the
-   *  entire lens.  Cap at ±0.6 (→ y0_max ≈ 29.6 mm) for a clean trace.
-   */
+  // Sampling choice only, not a patent pupil or clear-aperture measurement.
   offAxisFractions: [-0.6, -0.3, 0, 0.3, 0.6],
 
   /* ── Layout tuning ── */

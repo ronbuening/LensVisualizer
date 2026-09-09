@@ -1,23 +1,10 @@
 import type { LensDataInput } from "../../types/optics.js";
 
-/**
- * ╔══════════════════════════════════════════════════════════════════════╗
- * ║           LENS DATA — NIKON NIKKOR Z 28mm f/2.8                    ║
- * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Data source: WO 2022/071249 A1 Example 2 (Table 2)               ║
- * ║  (Nikon / SHIMADA, Toshiyuki).                                     ║
- * ║  Compact wide-angle prime for Nikon Z-mount.                       ║
- * ║  9 elements / 8 groups, 3 aspherical surfaces on 2 elements.      ║
- * ║  Focus: Floating inner-focus (GF1 = G2, GF2 = G3).               ║
- * ║  G1 and G4 fixed; aperture stop fixed between G1 and G2.          ║
- * ║                                                                    ║
- * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    Patent does not list semi-diameters. Initial SDs estimated via  ║
- * ║    paraxial marginal + chief ray trace at full field (ω = 38°),   ║
- * ║    with distortion correction factor and 10% mechanical clearance. ║
- * ║    G2 and G3 SDs then reduced to satisfy positive edge thickness, ║
- * ║    shared rim-slope, and cross-gap render diagnostics.            ║
- * ╚══════════════════════════════════════════════════════════════════════╝
+/** WO2022071249A1 Example2, Table2 pp.26–28 and Figure3 p.47.
+ * Three source conics use kappa=1+K (equation p.20); K=0 is verified.
+ * Nine source elements are ten modeled media because L24 includes a resin layer.
+ * Filter20–21 stays omitted; final air-equivalent distance is11.223+1.6/1.5168+0.86.
+ * Optical rims are inferred from Figure3 at600dpi, excluding shoulders and callouts.
  */
 
 const LENS_DATA = {
@@ -26,12 +13,12 @@ const LENS_DATA = {
   maker: "Nikon",
   name: "NIKON NIKKOR Z 28mm f/2.8",
   subtitle: "WO 2022/071249 A1 Example 2 — Nikon / SHIMADA",
-  specs: ["9 ELEMENTS / 8 GROUPS", "f ≈ 28.8 mm", "F/2.8", "2ω ≈ 76.1°", "3 ASPHERICAL SURFACES"],
+  specs: ["9 ELEMENTS / 8 GROUPS", "f = 28.824 mm", "F/2.909", "2ω = 76.058°", "3 ASPHERICAL SURFACES"],
 
   focalLengthMarketing: 28,
-  focalLengthDesign: 28.8,
+  focalLengthDesign: 28.824,
   apertureMarketing: 2.8,
-  apertureDesign: 2.8,
+  apertureDesign: 2.909,
   lensMounts: ["nikon-z"],
   imageFormat: "135-full-frame",
   patentNumber: "WO 2022/071249 A1",
@@ -44,7 +31,7 @@ const LENS_DATA = {
   /* ── Elements ──
    *  Nikon counts 9 physical elements in 8 groups.
    *  The data format requires separate entries for the L24 glass body and resin
-   *  layer (different nd), plus the sensor cover glass — yielding 11 entries total.
+   *  layer (different nd), yielding 10 entries total. The separate filter is excluded.
    *
    *  Group structure: G1(+) — S — G2(+, GF1) — G3(+, GF2) — G4(−) — [FL]
    */
@@ -56,7 +43,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.53172,
       vd: 48.78,
-      fl: -26.8,
+      fl: -26.74,
       glass: "532488 class; J-LLF6 catalog spectral proxy (production supplier unspecified)",
       apd: false,
       role: "Front negative — controls astigmatism, contributes to Petzval correction",
@@ -68,8 +55,8 @@ const LENS_DATA = {
       type: "Plano-Convex Positive",
       nd: 1.804,
       vd: 46.6,
-      fl: 24.4,
-      glass: "S-LAH65V (OHARA)",
+      fl: 24.39,
+      glass: "S-LAH65V (OHARA, inferred coordinate counterpart)",
       apd: false,
       role: "Dominant positive power in G1; convex front, flat rear",
     },
@@ -81,7 +68,7 @@ const LENS_DATA = {
       nd: 2.001,
       vd: 29.12,
       fl: 10.6,
-      glass: "S-LAH99 (OHARA, patent nd/vd match)",
+      glass: "S-LAH99 (OHARA, inferred coordinate counterpart)",
       apd: false,
       cemented: "D1",
       role: "Primary positive power — ultra-high index (nd = 2.001) reduces Petzval sum",
@@ -93,8 +80,8 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.80518,
       vd: 25.45,
-      fl: -13.2,
-      glass: "S-TIH6 (OHARA, patent nd/vd match)",
+      fl: -13.17,
+      glass: "S-TIH6 (OHARA, inferred coordinate counterpart)",
       apd: false,
       cemented: "D1",
       role: "Cemented to L21 — corrects SA and coma at the cemented interface",
@@ -106,7 +93,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.80809,
       vd: 22.74,
-      fl: -22.2,
+      fl: -22.25,
       glass: "808227 class; J-SFH1 catalog spectral proxy (production supplier unspecified)",
       apd: false,
       role: "High-dispersion negative — SA correction and lateral color control",
@@ -118,8 +105,8 @@ const LENS_DATA = {
       type: "Plano-Convex Positive",
       nd: 1.804,
       vd: 46.6,
-      fl: 21.8,
-      glass: "S-LAH65V (OHARA)",
+      fl: 21.77,
+      glass: "S-LAH65V (OHARA, inferred coordinate counterpart)",
       apd: false,
       cemented: "H1",
       role: "Hybrid asphere glass body — flat front, positive rear; same glass as L12 and L32",
@@ -131,8 +118,8 @@ const LENS_DATA = {
       type: "Pos. Meniscus (1× Asph)",
       nd: 1.56093,
       vd: 36.64,
-      fl: 413.6,
-      glass: "UV-curing resin (proprietary)",
+      fl: 397.37,
+      glass: "Resin layer (source coordinate; formulation unspecified)",
       apd: false,
       cemented: "H1",
       role: "Aspherical resin layer — SA and coma correction; image-side surface is aspherical",
@@ -144,10 +131,10 @@ const LENS_DATA = {
       type: "Neg. Meniscus (2× Asph)",
       nd: 1.53113,
       vd: 55.73,
-      fl: -1033.0,
-      glass: "S-BAL 41 (OHARA)",
+      fl: -1032.75,
+      glass: "531557 — source optical material (unmatched; supplier unspecified)",
       apd: false,
-      role: "Near-zero-power aspherical corrector plate — both surfaces asph; field-dependent aberration correction",
+      role: "Weak negative aspherical lens — both surfaces asph; field-dependent aberration correction",
     },
     {
       id: 9,
@@ -156,8 +143,8 @@ const LENS_DATA = {
       type: "Plano-Convex Positive",
       nd: 1.804,
       vd: 46.6,
-      fl: 45.8,
-      glass: "S-LAH65V (OHARA)",
+      fl: 45.83,
+      glass: "S-LAH65V (OHARA, inferred coordinate counterpart)",
       apd: false,
       role: "Dominant positive power in G3; flat front, powered rear; same glass as L12 and L24g",
     },
@@ -168,8 +155,8 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.64769,
       vd: 33.73,
-      fl: -44.3,
-      glass: "S-TIM22 (OHARA)",
+      fl: -44.28,
+      glass: "S-TIM22 (OHARA, inferred coordinate counterpart)",
       apd: false,
       role: "Rear negative field flattener — Petzval correction, lateral color, exit pupil control",
     },
@@ -186,37 +173,37 @@ const LENS_DATA = {
    *    Patent 6–13* = surfaces "6"–"13A" (G2)
    *    Patent 14*–17 = surfaces "14A"–"17" (G3)
    *    Patent 18–19 = surfaces "18"–"19" (G4)
-   *    Patent 20–21 = cover glass (excluded; modeled separately in camera body)
+   *    Patent 20–21 = filter (excluded; equivalent air spacing retained)
    */
   surfaces: [
     // ── G1 — Front group (positive, f = +187.2 mm) ──
-    { label: "1", R: -67.65263, d: 0.8, nd: 1.53172, elemId: 1, sd: 8.5 }, // L11 front
-    { label: "2", R: 18.07229, d: 1.03, nd: 1.0, elemId: 0, sd: 8.0 }, // L11 rear → air
-    { label: "3", R: 19.61204, d: 2.3, nd: 1.804, elemId: 2, sd: 7.5 }, // L12 front
-    { label: "4", R: 1e15, d: 1.0, nd: 1.0, elemId: 0, sd: 6.5 }, // L12 rear → air
+    { label: "1", R: -67.65263, d: 0.8, nd: 1.53172, elemId: 1, sd: 6.7 }, // L11 front
+    { label: "2", R: 18.07229, d: 1.03, nd: 1.0, elemId: 0, sd: 6.2 }, // L11 rear → air
+    { label: "3", R: 19.61204, d: 2.3, nd: 1.804, elemId: 2, sd: 6.2 }, // L12 front
+    { label: "4", R: 1e15, d: 1.0, nd: 1.0, elemId: 0, sd: 6.2 }, // L12 rear → air
 
     // ── Aperture stop (patent surface 5, between G1 and G2) ──
     { label: "STO", R: 1e15, d: 4.85, nd: 1.0, elemId: 0, sd: 5.1 }, // D5, variable
 
     // ── G2 — First focusing group / GF1 (positive, f = +34.7 mm) ──
-    { label: "6", R: 39.03942, d: 3.0, nd: 2.001, elemId: 3, sd: 7.0 }, // L21 front
-    { label: "7", R: -14.018, d: 0.7, nd: 1.80518, elemId: 4, sd: 7.5 }, // L21→L22 junction
-    { label: "8", R: 44.52125, d: 3.457, nd: 1.0, elemId: 0, sd: 7.0 }, // L22 rear → air
-    { label: "9", R: -11.08066, d: 0.9, nd: 1.80809, elemId: 5, sd: 9.5 }, // L23 front
-    { label: "10", R: -29.93301, d: 0.15, nd: 1.0, elemId: 0, sd: 11.5 }, // L23 rear → air
-    { label: "11", R: 1e15, d: 6.55, nd: 1.804, elemId: 6, sd: 13.0 }, // L24g front (flat)
-    { label: "12", R: -17.50329, d: 0.14, nd: 1.56093, elemId: 7, sd: 13.5 }, // L24g/resin junction
-    { label: "13A", R: -16.27553, d: 4.45, nd: 1.0, elemId: 0, sd: 13.5 }, // L24r rear (asph) → air — D13, variable
+    { label: "6", R: 39.03942, d: 3.0, nd: 2.001, elemId: 3, sd: 6 }, // L21 front
+    { label: "7", R: -14.018, d: 0.7, nd: 1.80518, elemId: 4, sd: 6 }, // L21→L22 junction
+    { label: "8", R: 44.52125, d: 3.457, nd: 1.0, elemId: 0, sd: 6.4 }, // L22 rear → air
+    { label: "9", R: -11.08066, d: 0.9, nd: 1.80809, elemId: 5, sd: 6.9 }, // L23 front
+    { label: "10", R: -29.93301, d: 0.15, nd: 1.0, elemId: 0, sd: 8.2 }, // L23 rear → air
+    { label: "11", R: 1e15, d: 6.55, nd: 1.804, elemId: 6, sd: 11 }, // L24g front (flat)
+    { label: "12", R: -17.50329, d: 0.14, nd: 1.56093, elemId: 7, sd: 11 }, // L24g/resin junction
+    { label: "13A", R: -16.27553, d: 4.45, nd: 1.0, elemId: 0, sd: 11 }, // L24r rear (asph) → air — D13, variable
 
     // ── G3 — Second focusing group / GF2 (positive, f = +46.6 mm) ──
-    { label: "14A", R: -26.85154, d: 2.0, nd: 1.53113, elemId: 8, sd: 18.5 }, // L31 front (asph)
-    { label: "15A", R: -28.96313, d: 0.2, nd: 1.0, elemId: 0, sd: 19.5 }, // L31 rear (asph) → air
-    { label: "16", R: 1e15, d: 4.5, nd: 1.804, elemId: 9, sd: 17.0 }, // L32 front (flat)
-    { label: "17", R: -36.85132, d: 3.7, nd: 1.0, elemId: 0, sd: 17.5 }, // L32 rear → air — D17, variable
+    { label: "14A", R: -26.85154, d: 2.0, nd: 1.53113, elemId: 8, sd: 12.3 }, // L31 front (asph)
+    { label: "15A", R: -28.96313, d: 0.2, nd: 1.0, elemId: 0, sd: 13.1 }, // L31 rear (asph) → air
+    { label: "16", R: 1e15, d: 4.5, nd: 1.804, elemId: 9, sd: 14.3 }, // L32 front (flat)
+    { label: "17", R: -36.85132, d: 3.7, nd: 1.0, elemId: 0, sd: 14.3 }, // L32 rear → air — D17, variable
 
     // ── G4 — Rear negative group (fixed, f = −44.3 mm) ──
-    { label: "18", R: -34.46648, d: 1.2, nd: 1.64769, elemId: 10, sd: 20.0 }, // L41 front
-    { label: "19", R: 173.14403, d: 11.223, nd: 1.0, elemId: 0, sd: 20.0 }, // L41 rear → image plane (BFD; cover glass modeled separately in camera body)
+    { label: "18", R: -34.46648, d: 1.2, nd: 1.64769, elemId: 10, sd: 14.6 }, // L41 front
+    { label: "19", R: 173.14403, d: 13.137852320675105, nd: 1.0, elemId: 0, sd: 16.1 }, // L41 rear → image plane (BFD; omitted filter represented by equivalent air spacing)
   ],
 
   /* ── Aspherical coefficients ──
@@ -271,7 +258,7 @@ const LENS_DATA = {
   varLabels: [
     ["STO", "D5"],
     ["13A", "D13"],
-    ["17", "BF"],
+    ["17", "D17"],
   ],
 
   /* ── Group and doublet annotations ── */
@@ -290,12 +277,12 @@ const LENS_DATA = {
   /* ── Focus configuration ── */
   closeFocusM: 0.19,
   focusDescription:
-    "Floating inner-focus: G2 (GF1) and G3 (GF2) move toward the object with differential travel (1.68 mm and 4.79 mm respectively). G1, aperture stop, and G4 remain fixed.",
+    "Source near station: 19 cm including the original filter path. G2 and G3 move 1.681 mm and 4.792 mm objectward; G1, stop and G4 stay fixed. Intermediate motion is interpolated.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 2.8,
+  nominalFno: 2.909,
   maxFstop: 16,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16],
+  fstopSeries: [2.909, 4, 5.6, 8, 11, 16],
 
   /* ── Layout tuning ── */
   scFill: 0.5,

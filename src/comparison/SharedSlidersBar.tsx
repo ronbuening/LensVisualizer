@@ -351,13 +351,13 @@ export default function SharedSlidersBar({
           readouts={
             <>
               <span>
-                A: {formatDist(focusPair.focusA, LA)}
+                A: {formatDist(focusPair.focusA, LA, zoomPair?.zoomA)}
                 {focusPair.focusA > 0.003 && focusedEflDiffersA && (
                   <span style={{ opacity: 0.7 }}> ({dynamicEflA.toFixed(1)} mm)</span>
                 )}
               </span>
               <span>
-                B: {formatDist(focusPair.focusB, LB)}
+                B: {formatDist(focusPair.focusB, LB, zoomPair?.zoomB)}
                 {focusPair.focusB > 0.003 && focusedEflDiffersB && (
                   <span style={{ opacity: 0.7 }}> ({dynamicEflB.toFixed(1)} mm)</span>
                 )}

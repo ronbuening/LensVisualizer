@@ -1461,7 +1461,7 @@ describe("computeFieldCurvature", () => {
     }
   });
 
-  it("produces Petzval shift in same direction as tangential/sagittal shifts for a converging system", () => {
+  it("places positive-Petzval curvature toward the lens independently of astigmatic focus", () => {
     const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
@@ -1477,15 +1477,13 @@ describe("computeFieldCurvature", () => {
     expect(f50).toBeDefined();
     expect(f50!.usable).toBe(true);
 
-    // For a converging system with inward Petzval curvature, the Petzval surface and the
-    // T/S field curves should all shift in the same direction at off-axis fields.
-    // The Petzval shift sign must agree with the tangential shift sign.
+    // A positive Petzval sum fixes the curvature direction; astigmatism can
+    // put tangential or sagittal best focus on the other side of the image plane.
     const pShift = f50!.petzvalShiftMm;
-    const tShift = f50!.tangentialShiftMm;
-    // All three should have the same sign for a typical converging system
-    expect(Math.sign(pShift)).toBe(Math.sign(tShift));
-    // Petzval shift should be non-trivially negative (toward lens) for a converging system
     expect(pShift).toBeLessThan(-0.01);
+    const radius = 1 / L.petzvalSum;
+    // The shifted point lies on the Petzval circle centered at z = -radius.
+    expect((radius + pShift) ** 2 + f50!.chiefImageHeight ** 2).toBeCloseTo(radius ** 2, 8);
   });
 
   it("produces astigmatic difference as S minus T (signed convention)", () => {

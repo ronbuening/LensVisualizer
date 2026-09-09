@@ -3,13 +3,14 @@
 **Patent:** US 2021/0231927 A1 — *Imaging Lens and Imaging Apparatus*
 **Inventors:** Daiki Kawamura, Michio Cho (Fujifilm Corporation)
 **Filed:** January 22, 2021 (priority: JP 2020-012799, January 29, 2020)
-**Production example:** Example 3
+**Published:** July 29, 2021
+**Embodiment analyzed:** Example 3
 
 ---
 
-## 1. Identification of Example 3 as the Production Design
+## 1. Patent Reference and Design Identification
 
-The patent contains 20 numerical examples. Example 3 matches the production XF 50mm f/1.0 R WR on every published specification:
+The patent contains 20 numerical examples. Example 3 is the patent model associated with the XF 50mm f/1.0 R WR. The structural agreement supports this association, but does not establish an identical manufacturing prescription:
 
 | Parameter | Example 3 (patent) | XF 50mm f/1.0 (Fujifilm) |
 |---|---|---|
@@ -32,7 +33,7 @@ The 0.451 mm difference between the patent EFL (49.549 mm) and the marketed foca
 The lens is a two-group prime design:
 
 - **First lens group (G1):** 7 elements (L1a–L1g), positive power (f₁ ≈ +114.5 mm), stationary during focus. Contains one cemented doublet (L1e+L1f).
-- **Aperture stop (St):** Located between G1 and G2. Stationary. Stop semi-diameter ≈ 13.9 mm.
+- **Aperture stop (St):** Located between G1 and G2. Stationary. The modeled stop is derived from the patent f/1.03 aperture.
 - **Second lens group (G2):** 5 elements (L2a–L2e), positive power (f₂ ≈ +34.9 mm), moves toward the object during focus. Contains two cemented doublets (L2b+L2c, L2d+L2e).
 
 The f₁/f ratio of 2.31 and f₂/f ratio of 0.70 yield f₁/f₂ ≈ 3.28, placing most of the convergence burden on G2 relative to G1.
@@ -73,7 +74,7 @@ All element shapes are derived from the sign convention: R > 0 = convex toward o
 
 **Role:** L1a is the concave-fronted negative element at the front of the production lens. As the first unit (Gs1) of the wide-conversion sub-structure, it diverges the on-axis beam before L1b reconverges it. The patent (¶0151) explains that this configuration reduces the angle of the maximum-field principal ray relative to the optical axis, suppressing sagittal coma. The concave front surface also helps correct spherical aberration (¶0153).
 
-**Glass:** nd = 1.54072, νd = 47.23 — exact match to **OHARA S-TIL2** (titanium light flint). High-confidence identification.
+**Glass:** nd = 1.54072, νd = 47.23 — compatible with the **S-TIL2** catalog curve. This is a computational equivalent; the patent does not identify the supplier.
 
 ### 3.2 — Element 2 (L1b): Biconvex Positive — ED Glass ①
 
@@ -113,7 +114,7 @@ All element shapes are derived from the sign convention: R > 0 = convex toward o
 
 **Role:** This is the **LA positive lens** — the patent's core innovation element. It satisfies the patent's conditional expressions (1): 1.86 < NdA = 1.959 < 2.2, (2): 10 < νdA = 17.47 < 35. The strongly anomalous partial dispersion (ΔθgF = +0.047) provides controlled secondary spectrum that partially cancels the residual secondary spectrum from the ED elements. The very high refractive index prevents the radius of curvature from becoming excessively small despite the lens's relatively weak individual power.
 
-**Glass:** nd = 1.95906, νd = 17.47, θgF = 0.65993 — exact match across all three constants to **OHARA S-NPH3** (high-density lanthanum flint). High-confidence identification.
+**Glass:** nd = 1.95906, νd = 17.47, θgF = 0.65993 — compatible with the **S-NPH3** catalog curve. Supplier identity is not established by coordinate compatibility.
 
 ### 3.5 — Elements 5–6 (L1e + L1f): Cemented Doublet D1
 
@@ -186,7 +187,7 @@ All element shapes are derived from the sign convention: R > 0 = convex toward o
 | A19 | −2.9072588E−20 | 9.0040531E−21 |
 | A20 | 1.1528202E−21 | −8.3059544E−22 |
 
-At the data-file semi-diameters, the exact profiles depart from their spherical bases by +1230.181 µm (S15A, 10.7 mm) and +632.133 µm (S16A, 9.9 mm).
+At the data-file semi-diameters, the exact profiles depart from their spherical bases by +3264.713 µm (S15A, 13.0 mm) and +2106.477 µm (S16A, 13.0 mm).
 
 ### 3.8 — Elements 9–10 (L2b + L2c): Cemented Doublet D2
 
@@ -213,9 +214,9 @@ The lens employs **inner focusing** with G2 as the sole moving group:
 | Parameter | Infinity focus | Close focus (0.7 m) | Change |
 |---|---|---|---|
 | DD[14] (Stop → G2) | 11.466 mm | 7.025 mm | −4.441 mm |
-| DD[22] (G2 → image) | 14.401 mm | 18.842 mm | +4.441 mm |
+| DD[22] (G2 → sensor plate) | 14.401 mm | 18.842 mm | +4.441 mm |
 
-G2 moves **4.441 mm toward the object** when focusing from infinity to 0.7 m. The sum of gap changes is exactly zero, confirming the total track length is constant and all motion is internal. At close focus, the effective f-number increases from 1.03 to 1.16 (approximately ⅓-stop loss), and the half-field angle drops marginally from 15.7° to 15.6° — indicating minimal focus breathing.
+G2 moves **4.441 mm toward the object** when focusing from infinity to 0.7 m. The sum of gap changes is exactly zero, confirming the total track length is constant and all motion is internal. The patent defines the close distance from object to the physical image plane (§0213). The viewer omits the sensor plate and uses its paraxial air equivalent, so its corresponding reference-plane endpoint is 0.699028956 m. Intermediate movement is interpolated between the two source rows. Current effective aperture and breathing are calculated by the viewer; they are not extra published focus stations.
 
 **Image circle coverage:** At infinity, f × tan(15.7°) = 13.93 mm image height, yielding a 27.9 mm image diagonal. The Fujifilm X-mount APS-C sensor diagonal is 28.2 mm, so coverage is tight with expected vignetting at extreme corners at f/1.0.
 
@@ -235,11 +236,9 @@ The two negative lenses with the smallest Abbe numbers in G1 (L1f: νd = 20.36, 
 
 ## 6. Semi-Diameter Estimation
 
-Semi-diameters are not listed in the patent and were estimated by combined marginal + chief ray trace at f/1.03 and ω = 15.7°. The entrance pupil semi-diameter is EP/2 = f/(2·FNo) ≈ 24.05 mm; the stop semi-diameter (marginal ray height at the stop) is ≈ 13.9 mm.
+The patent does not list clear apertures. Figure 7 was inspected at 600 dpi, including the curved optical endpoints rather than surrounding rays, arrows, brackets, or flat mounting steps. The aspheric element was undersized relative to the rear doublets. Its two display rims now use a conservative 13 mm estimate, and the exact aspheric domain, edge thickness, adjacent gaps, and rendered trim are checked at that height. Other semi-diameters remain estimates within the figure's useful precision.
 
-Front-group semi-diameters are constrained by the production lens's 77 mm filter thread (inner clear aperture ≈ 73–74 mm, SD ≈ 36–37 mm). The computed full-field rim ray semi-diameters at the front surfaces exceed 40 mm, confirming that the production lens vignettes at the field edge at f/1.0 — consistent with known behavior. The data file uses marginal-ray-based SDs with partial chief-ray contribution, accepting vignetting at the field edge.
-
-Rear-group semi-diameters are constrained by edge thickness requirements on the biconvex elements (L2b, L2d), which limit their usable aperture to SD ≈ 15–16 mm despite full rim rays reaching SD ≈ 19 mm.
+The figure is a comparison source, not a manufacturing drawing. Ray-envelope or filter-thread estimates do not establish production clear apertures or measured corner vignetting.
 
 ---
 
@@ -247,7 +246,7 @@ Rear-group semi-diameters are constrained by edge thickness requirements on the 
 
 The companion `.data.ts` file is at patent scale (f ≈ 49.549 mm, not rescaled to marketed 50 mm). Key limitations relative to the full patent prescription:
 
-1. **Back focal distance includes PP equivalent:** The last surface d = DD[22] + 2.850 (PP glass) + 1.000 (air) = 18.251 mm at infinity. The parallel plate (PP) itself is not modeled as separate surfaces.
+1. **Air-equivalent back distance:** The sensor plate is omitted by the lens-data contract. Its 2.850 mm thickness at nd = 1.51680 becomes 2.850 / 1.51680 mm of air. Thus the final gap is DD[22] + 2.850 / 1.51680 + 1.000 = 17.279955696 mm at infinity and 21.720955696 mm close. The former 18.251 / 22.692 mm gaps incorrectly treated glass as air. This conversion preserves paraxial propagation but does not reproduce the omitted plate’s nonparaxial or chromatic aberrations.
 
 2. **Variable gaps:** Two gaps change during focus — the stop-to-G2 gap ("STO") and the back focal distance ("22"). Their changes cancel exactly (−4.441 + 4.441 = 0).
 
@@ -262,8 +261,14 @@ The XF 50mm f/1.0 R WR is a 12-element, 9-group inner-focus prime with an f/1.0 
 - A **single doubly-aspherical element** (L2a) immediately behind the stop, carrying 20th-order polynomial figuring for residual aberration correction.
 - A **lightweight 5-element focusing group** with two cemented doublets for chromatic stability across the focus range.
 
-The design is all-glass, all-refractive — no diffractive surfaces, no hybrid resin aspherics, and no fluorite. Verified glass identifications remain L1a = OHARA S-TIL2 and L1d = OHARA S-NPH3. L1b/L1c use J-PSKH1 and L1f uses S-NPH4 only as coordinate-compatible spectral proxies; these improve chromatic tracing without asserting Fujifilm's production suppliers.
+The numerical example is refractive. L1a and L1d use S-TIL2 and S-NPH3 catalog-compatible models; the patent does not establish suppliers or manufacturing methods. L1b/L1c use J-PSKH1 and L1f uses S-NPH4 only as coordinate-compatible spectral proxies; these improve chromatic tracing without asserting Fujifilm's production suppliers.
 
 ---
 
 *Analysis based on US 2021/0231927 A1, Example 3. EFL independently confirmed at 49.549 mm via paraxial ray trace. Element focal lengths are thin-lens values; doublet focal lengths are thick-lens values from subsystem ray traces. Semi-diameters estimated from combined marginal + chief ray trace with physical constraints.*
+
+## Partial-Dispersion Convention and Sources
+
+Table 9 (PDF page 80) publishes θgF for every lens element. The runtime stores ΔPgF relative to its own normal line, so the data uses `ΔPgF = θgF − (0.6438 − 0.001682 × νd)`. This recovers every published ratio without substituting the rounded ΔθgF values discussed above, which use a different reference convention. In particular, LB/LC use 0.01575884 and LA uses 0.04551454 in the runtime. The two ED badges now denote patent-supported dispersion evidence. Numerical ratios do not by themselves identify a supplier.
+
+Primary source: local `patents/US20210231927A1.pdf`, Figure 7 (page 8), Tables 9–12 (page 80), §§0212–0213 (page 79). [Publication on Google Patents](https://patents.google.com/patent/US20210231927A1/en). The exact odd/even coefficient rows and all prescription radii, thicknesses and indices were retained. Catalog curves remain qualified proxies; authored patent ratios override their g-line partial dispersion.

@@ -47,3 +47,13 @@ Patent: WO 2024/147268 A1
   S-LAH63Q, S-LAH55VS, NBFD30, and J-LASF09A.
 - Patent-authored partial dispersion is retained for both NBFD25-proxied elements; ambiguous candidates remain
   unassigned and no production supplier is inferred.
+
+## 2026-09-08 — First-hosted audit, lens 18
+
+- Inspected original ignored `patents/WO2024147268A1.pdf`: title p. 1, equation (a) and Table 1 pp. 20–22, dispersion conditions pp. 56–57, Figure 1 p. 66 rendered at 600 dpi. Earlier missing-source dispositions are superseded.
+- Corrected source K=1 to standard K=0; retained all four polynomial coefficients and source R/d/nd/ν rows. Replaced the physical rear-stack sum with 11.4681 + 1.6/1.5168 + 1.3712 = 13.8941523 mm air-equivalent BFD. The finite source station gives β≈−0.200007 and inferred physical object-image distance 0.8245544 m.
+- Refined drawing-derived rims using 133.0137 mm glass span. Automated RIM readback misidentified L1 and L6 leader ink; original high-resolution optical edges govern those measurements. Retained surface 29 at 19.3 mm: a 21.1 mm trial failed the 29→30 clearance gate (4.61 mm combined sag versus 3.872 mm allowed intrusion). Source drawing extents remain approximate, not asserted clear apertures.
+- Converted source normal-line departures to engine dPgF: L1 +0.0343957; L5/L9 +0.0092593. Source precision remains three decimals. Removed approximate L8 override; qualified all catalog counterparts and unsupported production SR/ED, PGM and dual-STM claims. Recalculated all 16 isolated element focal lengths.
+- Kept opposite-direction G2/G4 gap endpoints, labeled each group boundary, preserved f/1.85 in the aperture shortcut. Rewrote analysis around source values and explicit inferences.
+- Production baseline inspected live. Local infinity, near and half-focus/f16 states inspected: near EFL 98.82 mm, 82 cm distance, five-group movement chart with maximum travel 13.60 mm; half-focus 1.65 m/EFL 113.79 mm and stop diameter 4.96 mm at f16. Fixed groups and disabled zoom chart confirmed.
+- Surface and image-circle audits passed; four patent regression tests passed (matrix conjugates, normal-line conversion, group motion and five-state render diagnostics). Full gates and commit remain at the 11–20 batch boundary.

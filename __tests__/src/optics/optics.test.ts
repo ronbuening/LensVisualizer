@@ -618,11 +618,11 @@ describe("traceRay — Sonnar 50 f/1.5 production lens", () => {
   });
 
   it("ghost mode returns rendering points even when clipped", () => {
-    // Use a marginal ray that hits several surfaces before missing a later one.
+    // Deliberately close the iris around an otherwise transmitting pupil ray.
     const h = 0.7 * L.EP.epSD;
-    const { clipped, pts, ghostPts } = traceRay(h, 0, zPos, 0, 0, L.stopPhysSD, true, L);
+    const { clipped, pts, ghostPts } = traceRay(h, 0, zPos, 0, 0, L.stopPhysSD * 0.1, true, L);
     expect(clipped).toBe(true);
-    // Preceding valid hits still render even though tracing stops at the miss.
+    // Preceding valid hits and the clipped span remain available to render.
     expect(pts.length + ghostPts.length).toBeGreaterThan(1);
   });
 

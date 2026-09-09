@@ -70,3 +70,14 @@ Patent: US 5,640,277
   the patent's `1.74810 / 52.30` coordinate.
 - Relabeled L8 as an E-LAKH1 catalog equivalent and synchronized the analysis. This supersedes the earlier
   current-catalog no-match disposition but does not identify Nikon's production supplier; no geometry or APD claim changed.
+
+## 2026-09-08 — First-hosted audit, lens 24
+
+- Original `patents/US5640277.pdf`: titlep.1, Figure4p.5 at600dpi, Figure5p.6, Example2 numeric table/textp.34. All20 surface rows and ten glass coordinates verified. No source geometry or focus gaps changed.
+- Corrected element/component counts9/8→10/9. Example2 has split L1 singlets and a two-element L6; the prior production identification miscounted these. Catalog association now explicitly a patent candidate, not an asserted production match. Added publication suffixA; retained canonical author spellingKouichi, noting sourceKoichi in analysis.
+- Source aperture1.43 replaces1.4 in controls/specs; Figure5 full fieldapproximately28.6° replaces28°30′. Marketing aperture remains1.4.
+- All ten isolated focal lengths recalculated; notably L2 371.4→261.8mm and L8 1341.8→1300.2mm. Glass names qualified; L1b uses compatible inferred J-PSKH1. Source indices/Abbe numbers retained.
+- G2 and stop travel10.3438mm objectward, outer groups fixed. D18 incorrectly labeledBF→G2–G3. ActualBF38.1199mm fixed. Matrix reproduces84.999905mm infinity EFL, nearβ−0.100001884 and inferred0.955706213m object-image distance; near slider0.85→0.955706213m. Source contains no cover/filter surface.
+- Figure4-derived inferred rims adopted: front36mm, second32.5mm, L2 28mm, L3 23.5mm, G2 18/17.5/17.3mm, rear17.3mm. Crossing-ray/callout envelopes excluded; thin front components constrain usable rims.
+- **Follow-up:** render diagnostics caught S12/S14 being trimmed1.62/1.42mm around the stop despite surface validator passing. Both declared radii set15.8mm, below the measured15.8767mm rendering clearance, so no hidden trimming remains. This is a recorded figure-versus-clearance limitation, not an exact rim match on those two surfaces.
+- Production and local infinity/near/half-focus/f16 verified. Local announces10elements, f1.43; near96cm/EFL80.40; midpoint1.91m, gaps12.63/6.37 and f16 stop2.65mm. Three source/geometry/glass tests pass. Surface/image-circle checks pass; full21–30 gates/commit pending.

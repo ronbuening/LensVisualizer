@@ -59,3 +59,14 @@ Patent: WO 2021/241230 A1
 - HIKARI J-KZFH4 (`1.552981 / 55.07`) is the exact coefficient-backed catalog equivalent. The label leaves the
   production supplier unspecified.
 - Strict and trusted catalog coverage are now complete at `17/17`; no geometry changed.
+
+## 2026-09-08 — First-hosted audit, lens 11
+
+- Source: local WO2021241230A1.pdf, title p1, equation (a) p26, Table1 pp28–31, Fig1 p63. Source is now available; older source-blocker notes above are historical.
+- All R/d/nd/vd rows visually cross-checked. Retained dummy-plane collapse −3+3.1=0.1 mm. Replaced incomplete 10.81 mm last gap with 10.81+1.6/1.5168+d36 = 12.5668523/12.5658523 mm. Source d0=467.50 mm gives modeled close distance 630.2598523 mm, replacing the unsupported 0.45 m label. Source FNO1.23 now controls the iris.
+- Equation (a) prints 1−κy²/r². Corrected K to κ−1: 14.2295, −1.1159, 8.4794. Restored source A16 terms −2.27720e−22 and +1.17040e−21; at h18 these add −0.0276542 and +0.1421328 mm, respectively. All other aspheric coefficients match Table1.
+- Figure1 at 600 dpi, rotated 270 degrees for reading: first/last optical vertex span about2771px for150.194mm. Front rims approximately28–31.5mm; rear about19–20mm. Revised the former small unsupported SDs accordingly. Rejected S4=28.5 because S4/S5 combined sag17.39 exceeds14.859mm allowance; S4=26.5 passes. Rejected rear S31/S32A=19.5 and18; retained S31=17.75,S32A=18 to respect7.76mm gap. Other selected values in data. No hidden trimming at infinity/midpoint/close.
+- Corrected FCD505/S-FPM2 mixed labels to existing J-PSKH4 (L14–L17 and approximate L31) and J-PSKH1 (L18/L22) catalog counterparts. All17 elements resolve within existing compatibility rules. Kept original patent indices/Abbe values and explicit supplier-neutral labels. Only J-PSKH1 pair retains inferred APD; ν≈67 alone no longer marks the other five elements APD.
+- Rewrote public analysis with the correct source station, conic convention, filter omission, source/catalog distinctions, and constrained rim estimates. Removed unsupported production-motor and exact-production-prescription claims.
+- Production infinity/close/motion chart inspected before edits. Local infinity/close/midpoint/f16 inspected after: f1.23/16, close63cm, named gaps19.16/2/1.9→11.44/3.58/8.04, midpoint15.30/2.79/4.97, BF12.57, EFL51.29→47.51 (mid49.35). Chart shows distinct F1/F2 objectward movements7.727/6.143mm with zoom disabled. Stop40.85mm wide open and3.14mm atf16. No overlapping glass in the live diagram.
+- Surface and image-circle probes pass. Five focused regressions pass: independent sag pins, preserved finite object leg, independent group motion, glass counterpart resolution, hidden-rim trimming. Full tests/build/glass reports remain for batch11–20.

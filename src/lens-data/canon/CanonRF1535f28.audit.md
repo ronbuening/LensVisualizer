@@ -44,3 +44,9 @@ Patent: US 2020/0257181 A1, Numerical Example 1
   1.83400 / 37.20 and its R/d row is unchanged.
 - S19 `S-LAH55V (OHARA)` -> `S-LAH60 (OHARA)`, the exact same-vendor coordinate family. Synchronized the L11
   analysis table, IS-doublet text, and source list.
+
+## 2026-09-09 — First-added diagram audit, lens 40
+
+Original Example 1/pages 14–15 and Figures 1A–1B/page 2 verified. Restored A16 on S1/S3/S27, correcting an obsolete engine-limit claim and a large error in the stated omission size. Restored source SD=diameter/2 except S3 18.10 versus source 18.225 for the renderer clearance margin. Published iris diameters now drive a validated explicit zoom schedule; first preset f/2.91. Source prescription, six aspheres' other terms, source element FLs and zoom gaps retained. Qualified glass, removed unsupported APD/chemistry/coating claims and disclosed disabled finite focus. No cover glass/filter exists; omitted S21 flare-diaphragm clipping remains explicitly unmodeled.
+
+Live wide/middle/tele, f/22 and zoom chart checked; physical source iris diameters reproduced. Added SP diagram annotation. Surface/image-circle and three focused regression tests pass after fixing a test-only floating-point equality.

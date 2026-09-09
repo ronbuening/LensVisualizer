@@ -1,5 +1,10 @@
 # Testing Architecture
 
+## Audit test retention
+
+Tests and scripts written to verify a patent audit are temporary by default. Do not retain them unless absolutely necessary to prevent a specific regression in shared engine, UI, or data-contract behavior that existing tests cannot cover. Do not commit per-lens snapshots of prescription values, glass labels, calculated powers, rims, or motion merely to restate audited data. Run the existing catalog validators and audit commands; record sources, calculations, results and limitations in the companion `.audit.md` and task record. If an essential shared regression test is needed, add the smallest case to the existing subsystem suite, prefer a synthetic input over patent-specific constants, and document why it must remain. Remove temporary audit tests before delivery; historical test counts in audit logs describe the checks run at that time.
+
+
 Read this for test layout, coverage expectations, shared helpers, and where to add focused regression coverage.
 
 ## Test Stack

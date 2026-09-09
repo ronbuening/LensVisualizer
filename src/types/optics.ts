@@ -325,6 +325,12 @@ export interface LensData {
   aberrationControl?: AberrationControlConfig;
   nominalFno?: number | number[];
   closeFocusM: number;
+  /** Object-to-image close distances at the authored zoom stations, in metres. */
+  zoomCloseFocusM?: number[];
+  /** Published physical iris semi-diameters in mm, one per source zoom station. */
+  zoomStopSemiDiameters?: number[];
+  /** Infer physical iris radii at source zoom stations from their nominal f-numbers. */
+  zoomApertureModel?: "from-nominal-fno";
   focusStep: number;
   maxFstop: number;
   apertureStep: number;
@@ -471,6 +477,7 @@ export interface RuntimeLens {
   readonly offAxisFractions: number[];
   readonly offAxisHeights: number[];
   readonly closeFocusM: number;
+  readonly zoomCloseFocusM?: readonly number[];
   readonly focusStep: number;
   readonly focusPositions: readonly number[];
   readonly focusDescription?: string;
@@ -492,6 +499,7 @@ export interface RuntimeLens {
   readonly zoomXpZRelLastSurfs: number[] | null;
   readonly zoomXpSDs: number[] | null;
   readonly zoomFOPENs: number[] | null;
+  readonly zoomStopSDs?: readonly number[] | null;
   readonly zoomStep: number;
   readonly zoomLabels: string[] | null;
   readonly labelIdx: Record<string, number>;

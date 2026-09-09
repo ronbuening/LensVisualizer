@@ -58,6 +58,7 @@ rear spacing to the documented air-equivalent distance instead of leaving the pr
 | `surfaces` | `array` | Optical surfaces (min 1); ordinary lenses list front to rear, while folded models may use signed displacements and explicit path order |
 | `nominalFno` | `number \| number[]` | Nominal f-number — single value for primes/constant-aperture zooms, or array (one per zoom position) for variable-aperture zooms (e.g. `[4.5, 5.76]`) |
 | `closeFocusM` | `number` | Minimum focus distance in meters |
+| `zoomCloseFocusM` | `number[]` (optional) | Positive object-to-image endpoint distances matching `zoomPositions`; overrides the scalar at each zoom station |
 | `fstopSeries` | `array` | F-stop values for quick-select UI buttons |
 
 ### Required but have defaults (from `defaults.ts`)
@@ -943,6 +944,12 @@ var: {
   "10": [5.49, 4.81, 5.89], // infinity, published intermediate state, close focus
 },
 ```
+
+`zoomStopSemiDiameters: [8.26, 10.465, 13.325]` supplies published physical iris radii in mm, one per source zoom station. Values must be positive and finite. The first radius is the baseline iris; intermediate radii are interpolated and focus retains the current zoom iris. Do not combine this source schedule with `zoomApertureModel`.
+
+`zoomApertureModel: "from-nominal-fno"` opts a zoom into a physical iris schedule inferred from the source station f-numbers. The builder traces each nominal infinity entrance-pupil radius to the stop and retains that station radius. Intermediate radii are interpolated; focus keeps the current zoom radius. This is a calculated aperture model, not a patent-published diameter schedule, and must be identified as inferred in the analysis. Omission retains the existing fixed physical iris.
+
+`zoomCloseFocusM` preserves zoom-dependent near-focus conjugates when a patent publishes different object distances at its zoom stations (for example, states at approximately constant magnification). Supply one positive finite distance in metres per `zoomPositions` entry. Distances between stations interpolate in the same normalized zoom coordinates; labels at intermediate focus use inverse-distance interpolation and remain estimates. Source-derived endpoints should be identified as calculated in the analysis. Single-lens labels, breathing, summary, effective-f-number estimates and comparison focus mapping use the current zoom endpoint. Omit the field for the existing scalar behavior.
 
 `focusPositions` follows the existing focus control: `0` is infinity and `1` is `closeFocusM`. When a published
 object-to-image distance is available, its coordinate is `closeFocusM / focusDistanceM`. Values between authored

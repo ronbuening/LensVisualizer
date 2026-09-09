@@ -97,20 +97,20 @@ export default function useComparisonMode({
   }, [comparisonLenses, scaleMode]);
 
   /* ── Per-lens slider values from shared positions ── */
+  const zoomPair = useMemo(() => {
+    if (!isComparisonOk(comparisonLenses)) return null;
+    return computeZoomPair(sharedZoomT, comparisonLenses.LA, comparisonLenses.LB);
+  }, [sharedZoomT, comparisonLenses]);
+
   const focusPair = useMemo(() => {
     if (!isComparisonOk(comparisonLenses)) return null;
-    return computeFocusPair(sharedFocusT, comparisonLenses.LA, comparisonLenses.LB);
-  }, [sharedFocusT, comparisonLenses]);
+    return computeFocusPair(sharedFocusT, comparisonLenses.LA, comparisonLenses.LB, zoomPair?.zoomA, zoomPair?.zoomB);
+  }, [sharedFocusT, comparisonLenses, zoomPair]);
 
   const aperturePair = useMemo(() => {
     if (!isComparisonOk(comparisonLenses)) return null;
     return computeAperturePair(sharedStopdownT, comparisonLenses.LA, comparisonLenses.LB);
   }, [sharedStopdownT, comparisonLenses]);
-
-  const zoomPair = useMemo(() => {
-    if (!isComparisonOk(comparisonLenses)) return null;
-    return computeZoomPair(sharedZoomT, comparisonLenses.LA, comparisonLenses.LB);
-  }, [sharedZoomT, comparisonLenses]);
 
   const movementPair = useMemo(() => {
     if (!isComparisonOk(comparisonLenses)) return null;

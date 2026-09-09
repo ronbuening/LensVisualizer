@@ -5,6 +5,8 @@
  * validating state-dependent thicknesses before tracing.
  */
 
+import { wideOpenStopAtZoom } from "../apertureStop.js";
+
 import type { AberrationVarRange, VarRange } from "../../types/optics.js";
 import { clamp, formatCacheNumber, normalizeControlT } from "../math/numerics.js";
 import type { PreparedStateCache } from "./cache.js";
@@ -81,6 +83,10 @@ export function prepareState(
       Object.freeze({
         ...surface,
         base: surface,
+        sd:
+          index === lens.stop.surfaceIndex && lens.runtime.zoomStopSDs
+            ? wideOpenStopAtZoom(zoomT, lens.runtime)
+            : surface.sd,
         d: thicknesses[index],
         z: z[index],
       }),

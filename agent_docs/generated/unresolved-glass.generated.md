@@ -9,10 +9,10 @@ or per-lens patent backfills.
 ## Summary
 
 - **692** lenses scanned
-- **7911** non-air surfaces examined
+- **7908** non-air surfaces examined
 - **7918** element glass declarations examined
-- **241** non-explicit-unmatched annotations did not resolve
-- **112** distinct unresolved glass-like tokens found
+- **227** non-explicit-unmatched annotations did not resolve
+- **113** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -43,7 +43,6 @@ or per-lens patent backfills.
 | 819287 | 2 | 2 | |
 | E48R | 2 | 1 | |
 | LAF10 | 2 | 1 | |
-| LAK9 | 2 | 2 | |
 | 499801 | 1 | 1 | |
 | 507589 | 1 | 1 | |
 | 514530 | 1 | 1 | |
@@ -127,6 +126,8 @@ or per-lens patent backfills.
 | KF5 | 1 | 1 | |
 | KZF4 | 1 | 1 | |
 | L5 | 1 | 1 | |
+| LAF2 | 1 | 1 | |
+| LAK9 | 1 | 1 | |
 | LF7-CLASS | 1 | 1 | |
 | LLF7 | 1 | 1 | |
 | N3 | 1 | 1 | |
@@ -270,11 +271,6 @@ or per-lens patent backfills.
 - [CARL ZEISS CONTAREX PLANAR 55mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissContarexPlanar55mmf14.data.ts) 7: `LaF10 (Schott 784438)`
 - [CARL ZEISS CONTAREX PLANAR 55mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissContarexPlanar55mmf14.data.ts) 9: `LaF10 (Schott 784438)`
 
-### LAK9 — 2 occurrences
-
-- [LEICA ELCAN 50mm f/2](../../src/lens-data/leica/LeicaElcan50mmf2.data.ts) 1: `LaK9 (Schott / Leitz)`
-- [VOIGTLÄNDER ULTRON 50mm f/2](../../src/lens-data/voigtlander/VoigtlanderUltron50f2.data.ts) 8: `LaK9 type (high-index crown — possibly La₂O₃ or ThO₂ formulation)`
-
 ### 499801 — 1 occurrence
 
 - [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) 1: `FPL51 class (499/801, OHARA family)`
@@ -341,7 +337,7 @@ or per-lens patent backfills.
 
 ### 603564 — 1 occurrence
 
-- [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) 34: `603564 — medium crown (patent nd=1.60342, νd≈56.4; no exact public catalog match)`
+- [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) 34: `603564 — inferred vd and unresolved identity; patent gives nd only`
 
 ### 607492 — 1 occurrence
 
@@ -421,7 +417,7 @@ or per-lens patent backfills.
 
 ### 738493 — 1 occurrence
 
-- [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) 45: `738493 — lanthanum crown (patent nd=1.73800, νd≈49.3; no exact public catalog match)`
+- [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) 45: `738493 — inferred vd and unresolved identity; patent gives nd only`
 
 ### 744494 — 1 occurrence
 
@@ -606,6 +602,14 @@ or per-lens patent backfills.
 ### L5 — 1 occurrence
 
 - [LEICA SUMMICRON-M 50mm f/2](../../src/lens-data/leica/LeicaSummicronV550mmf2.data.ts) 10: `Lanthanum crown (same glass as L5)`
+
+### LAF2 — 1 occurrence
+
+- [NIKON NIKKOR-N Auto 24mm f/2.8](../../src/lens-data/nikon/NikonNikkorAuto24f28.data.ts) 15: `LAF2 equivalent (catalog comparison; supplier unspecified)`
+
+### LAK9 — 1 occurrence
+
+- [LEICA ELCAN 50mm f/2](../../src/lens-data/leica/LeicaElcan50mmf2.data.ts) 1: `LaK9 (Schott / Leitz)`
 
 ### LF7-CLASS — 1 occurrence
 

@@ -9,6 +9,7 @@
 
 import { useMemo, useRef } from "react";
 import { LENS_CATALOG } from "../../utils/catalog/lensCatalog.js";
+import { wideOpenStopAtZoom } from "../../optics/apertureStop.js";
 import buildLens from "../../optics/buildLens.js";
 import { computeCardinalElementsAtState, type CardinalElements } from "../../optics/cardinalElements.js";
 import { computeElementShapes, createCoordinateTransforms } from "../../optics/diagramGeometry.js";
@@ -253,10 +254,11 @@ export default function useLensComputation({
   const rawFNumber = L ? L.FOPEN * Math.pow(L.maxFstop / L.FOPEN, stopdownT) : 1;
   const fNumber = Math.max(rawFNumber, currentFOPEN);
   // Stop-down is relative to this zoom state: its wide-open marking retains the full iris.
-  const currentPhysStopSD = L ? (L.stopPhysSD * currentFOPEN) / fNumber : 0;
+  const wideOpenStopSD = L ? wideOpenStopAtZoom(zoomT, L) : 0;
+  const currentPhysStopSD = L ? (wideOpenStopSD * currentFOPEN) / fNumber : 0;
   /* Use the current focus/zoom front-group magnification for pupil-dependent analyses. */
   const baseEPSD =
-    L && fieldGeometry ? entrancePupilAtState(L.stopPhysSD, focusT, zoomT, L, fieldGeometry, aberrationT).epSD : 0;
+    L && fieldGeometry ? entrancePupilAtState(wideOpenStopSD, focusT, zoomT, L, fieldGeometry, aberrationT).epSD : 0;
   const currentEPSD = L ? (baseEPSD * currentFOPEN) / fNumber : 0;
 
   /* ── Variable gap readouts ── */

@@ -1,33 +1,12 @@
 import type { LensDataInput } from "../../types/optics.js";
 
-/**
- * ╔══════════════════════════════════════════════════════════════════════════╗
- * ║           LENS DATA — VOIGTLÄNDER ULTRON 50mm f/2                      ║
- * ╠══════════════════════════════════════════════════════════════════════════╣
- * ║  Data source: US 2,627,204 Example II (A. W. Tronnier / Voigtländer). ║
- * ║  Modified double-Gauss with air-spaced front inner pair.               ║
- * ║  6 elements / 5 groups, 0 aspherical surfaces.                        ║
- * ║  Focus: unit focus (entire lens translates; BFD changes).             ║
- * ║                                                                        ║
- * ║  NOTE ON SCALING:                                                      ║
- * ║    Patent at f=1.0; all R, d, sd values scaled ×50 to f≈50 mm         ║
- * ║    production focal length.  Figures in the patent are drawn at        ║
- * ║    f=150 mm.                                                           ║
- * ║                                                                        ║
- * ║  NOTE ON SEMI-DIAMETERS:                                               ║
- * ║    Patent does not list SDs.  Estimated from paraxial marginal ray     ║
- * ║    heights at f/2.0 plus 10–12% mechanical clearance, with cross-     ║
- * ║    checks against edge thickness, sd/|R| ratio, and cross-gap         ║
- * ║    overlap constraints.  The Voigtländer Prominent lens mount and     ║
- * ║    40.5 mm filter thread constrain the maximum front element SD.      ║
- * ║                                                                        ║
- * ║  NOTE ON d₂ TYPO:                                                     ║
- * ║    The Claim 4 table gives d₂ = 0.08393; the Example II table gives   ║
- * ║    d₂ = 0.06395.  Paraxial ray trace confirms d₂ = 0.06395           ║
- * ║    reproduces the patent's stated EFL and BFD (errors < 0.02%),       ║
- * ║    while d₂ = 0.08393 yields a 7.5% BFD error.  The Claim 4 value    ║
- * ║    is a typographical error — likely a digit transposition.            ║
- * ╚══════════════════════════════════════════════════════════════════════════╝
+/** US2627204 Example II, table p.6 and Figure3 p.2, normalized prescription scaled50×.
+ * Rounded radii, thicknesses and source stop split retained. Example II d2=.06395
+ * is preferred over conflicting claim4=.08393 because it reproduces source power/back focus.
+ * Optical-rim comparison at600dpi does not justify changing the existing approximate SDs.
+ * Unit focusing to an assumed1m object-image distance is reconstructed, not a patent station.
+ * Commercial glass names are coordinate proxies; source chemistry and suppliers are unknown.
+ * No cover glass or filter belongs to this prescription.
  */
 
 const LENS_DATA = {
@@ -36,13 +15,15 @@ const LENS_DATA = {
   maker: "Voigtländer",
   name: "VOIGTLÄNDER ULTRON 50mm f/2",
   subtitle: "US 2,627,204 EXAMPLE II — VOIGTLÄNDER / A. W. TRONNIER",
-  specs: ["6 ELEMENTS / 5 GROUPS", "f ≈ 50.0 mm", "F/2.0", "2ω ≈ 46.8° (35mm)", "ALL SPHERICAL"],
+  specs: ["6 ELEMENTS / 5 GROUPS", "f ≈ 50.0 mm", "F/2.0", "2ω ≈ 46.8° (35mm)", "PATENT FIELD 55°", "ALL SPHERICAL"],
 
   /* ── Explicit metadata ── */
   focalLengthMarketing: 50,
-  focalLengthDesign: 50.003,
+  focalLengthDesign: 50,
   apertureMarketing: 2.0,
-  patentNumber: "US 2,627,204",
+  apertureDesign: 2.0,
+  imageFormat: "135-full-frame",
+  patentNumber: "US 2,627,204 A",
   patentAuthors: ["Albrecht Wilhelm Tronnier"],
   patentAssignees: ["Voigtländer & Sohn AG"],
   patentYear: 1953,
@@ -58,8 +39,8 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.62139,
       vd: 60.3,
-      fl: 77.8,
-      glass: "SK16 type (dense barium crown)",
+      fl: 77.79,
+      glass: "N-SK16 coordinate proxy (source nd=1.62139, νd=60.3; production supplier unspecified)",
       apd: false,
       role: "Front collective element — gathers light with modest positive power and minimal spherical aberration contribution.",
     },
@@ -70,8 +51,8 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.65953,
       vd: 57.0,
-      fl: 53.6,
-      glass: "High-index crown (SSK/LaK type — possibly La₂O₃ or ThO₂ formulation)",
+      fl: 53.58,
+      glass: "K-LaK11 coordinate proxy (catalog nd=1.65830, νd=57.3; source 1.65953/57.0; supplier unspecified)",
       apd: false,
       role: "Strongest positive element in front half — carries the most effective converging curvature on the object side.",
     },
@@ -82,8 +63,8 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.64691,
       vd: 33.9,
-      fl: -29.9,
-      glass: "SF2 type (dense flint)",
+      fl: -29.88,
+      glass: "SF2 coordinate proxy (source nd=1.64691, νd=33.9; production supplier unspecified)",
       apd: false,
       role: "Strongest diverging element in front half — air-spaced from L2 (the Ultron's structural signature).",
     },
@@ -94,8 +75,8 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.63652,
       vd: 35.5,
-      fl: -15.3,
-      glass: "F/BaF type (barium flint)",
+      fl: -15.34,
+      glass: "S-TIM6 coordinate proxy (catalog nd=1.636358, νd=35.391923; source 1.63652/35.5; supplier unspecified)",
       apd: false,
       cemented: "D1",
       role: "Post-diaphragm diverging flint — lowest index on image side, creating the 'index valley' central to Tronnier's coma correction.",
@@ -107,8 +88,8 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.69347,
       vd: 53.5,
-      fl: 18.7,
-      glass: "LaK9 type (high-index crown — possibly La₂O₃ or ThO₂ formulation)",
+      fl: 18.75,
+      glass: "LAC13 coordinate proxy (catalog nd=1.69350, νd=53.34; source 1.69347/53.5; supplier unspecified)",
       apd: false,
       cemented: "D1",
       role: "Thickest element — provides strong converging power and achromatism with L4 across the cemented junction.",
@@ -120,8 +101,8 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.72381,
       vd: 38.0,
-      fl: 45.6,
-      glass: "LaF type (high-index lanthanum flint or thorium flint)",
+      fl: 45.62,
+      glass: "S-BAH28 coordinate proxy (catalog nd=1.72342, νd=37.955602; source 1.72381/38.0; supplier unspecified)",
       apd: false,
       role: "Rear collective element — highest index in the system, satisfying Tronnier's progressive-index condition.",
     },
@@ -154,7 +135,7 @@ const LENS_DATA = {
    *  Only the back focal distance (last surface to image) changes.
    */
   var: {
-    "11": [34.86, 37.492],
+    "11": [34.86, 37.62656437420401],
   },
 
   varLabels: [["11", "BF"]],
@@ -171,7 +152,7 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 1.0,
-  focusDescription: "Unit focus — entire lens translates via body-mounted helicoid (Voigtländer Prominent).",
+  focusDescription: "Reconstructed unit focus to an assumed 1 m object-to-image distance: all six elements and the stop move 2.766564 mm objectward. The patent tabulates infinity only; intermediate extension is interpolated.",
 
   /* ── Aperture configuration ── */
   nominalFno: 2.0,

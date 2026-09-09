@@ -83,8 +83,8 @@ const BACKFILLS: readonly (readonly [name: string, lens: BackfillLens, cases: re
     "Fujifilm XF50mm f/1.0",
     FujifilmXF50,
     [
-      ["15A", 10.7, 1230.181],
-      ["16A", 9.9, 632.133],
+      ["15A", 13.0, 3264.713],
+      ["16A", 13.0, 2106.477],
     ],
   ],
   [

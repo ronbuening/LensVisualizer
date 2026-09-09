@@ -75,3 +75,30 @@ Updated [VoigtlanderApoLanthar50f2.analysis.md](VoigtlanderApoLanthar50f2.analys
 - Rechecked Example 5, Table 5 on rendered page 27. The stored R, d, nd, vd, aspheric coefficients, and F36 variable gaps remain consistent with the patent.
 - Patent-listed `dPgF` values are present only for L3/L4, and the data file already carries those values. No additional APD, high-index, or glass-label updates were available from the patent.
 - The patent table does not publish semidiameters, so the existing SDs remain derived display clearances.
+
+## 2026-09-08 — Oldest-first live diagram audit, lens 1 of 200
+
+Source: exact local `patents/JP2021043376A.pdf`, Table 5 p.27 and Figure 10 p.48, plus §§0092–0098. Table and optical outline inspected at 600 dpi. This pass supersedes the earlier claim that every aspheric coefficient was correct.
+
+| Item | Before | After | Evidence |
+|---|---|---|---|
+| Surface 19A A6 | −1.8942e−7 | +1.8942e−7 | Original Table 5 clearly prints a positive coefficient; independent departure at h=10 mm is −421.3933 µm |
+| LE surfaces 18A/19A sd | 11/11 mm | 15/15 mm, estimated | Fig.10 optical endpoints: approximately 15.2 mm; first and last elements have comparable optical heights |
+| Focus distance | 0.37 m | 0.45495 m | ZD0=370 mm object-to-first-surface + F36 track 84.95 mm |
+| Movement annotations | Two optical groups; rear chart averaged separate motions | Three F36 assemblies: front 101, Jb, Ja+LE | §0095; independent camera-fixed travel −8.94, −8.54, −5.53 mm |
+| APD header/badges | Five APD elements; three inferred assignments | Two patent-listed; other element-specific APD status unspecified | Table 5 gives dPgF only for elements 3/4 |
+| Glass labels | Supplier assertions and obsolete catalog-tolerance descriptions | Supplier-neutral equivalents/unresolved labels; element 8 uses compatible S-LAH65V | Table 5 names no supplier; current shared catalog accepts element 8 coordinates without tolerance changes |
+| Asphere roles/analysis | Wrong departure values and supplier/process conjecture | Recomputed departures at displayed rims; source-grounded analysis | Corrected Table 5 polynomial and estimated rim heights |
+| Shared aperture readout | `EP` appeared current although diameter stayed constant at f/16 | `Wide-open EP` | Browser check and `DiagramControls` reads `baseEPSD`; physical stop readout already updates correctly |
+
+Retained: all R/d/nd/vd rows, the other 15 aspheric coefficients, F36 gaps, and remaining rim estimates. Focal-length metadata now preserves the published 49.28 mm. Infinity track 76.01 mm; F36 track 84.95 mm. The stop follows Jb (fixed ZD11). Intermediate F36 positions are interpolated, not separate patent schemes.
+
+Figure screening used page 48 crop `0.581,0.555,0.77,0.625` at 600 dpi. Automatic ENV/RIM readings near Lfd and the rear doublets include leader lines; visual optical-rim checks supersede those contaminated rows. At 71.47 µm/px, LE's approximately 427 px full optical height gives 15.26 mm semi-height. Conservative 15 mm passes domain, edge-thickness, air-gap and hidden-trim checks. No attempt was made to copy mechanical steps into clear apertures.
+
+Live production inspected at `/lens/apo-lanthar-50f2/`, including infinity/close focus. Corrected local viewer checked at infinity, midpoint, and close focus; F36 readouts are [5.49, 0.56, 15.00], [5.69, 2.065, 17.765], [5.89, 3.57, 20.53] mm. The motion chart now shows three groups. Tracking-focus rays and dimension overlays render; aperture f/16 reduces the physical stop. Diagram BFD is the computed paraxial back focus at the current prescription, distinct from the authored image-plane gap `BF`.
+
+Verification: surface and image-circle audits passed; focused ASP19/F36/hidden-trim regression passed (3 tests); glass reports passed (15 tests), with zero catalog mismatches and coverage improving from 3/10 to 4/10 elements. Full repository gates and final commit status are recorded in the batch record.
+
+Unresolved source limits: no numerical SDs, no intermediate F36 cam law, no verified production prescription or glass supplier, and no partial-dispersion data for the other eight elements. These limits are now explicit in the analysis and focus description.
+
+Independent paraxial y–ν matrix check: EFL 49.2827886 mm at infinity and 49.4662068 mm at F36. Rounded F36 spacings solve to 370.1693 mm from surface 1, consistent with the printed 370 mm endpoint to table precision. The published spacing values were retained.

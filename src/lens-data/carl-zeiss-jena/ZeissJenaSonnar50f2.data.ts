@@ -1,26 +1,10 @@
 import type { LensDataInput } from "../../types/optics.js";
 
 /**
- * ╔══════════════════════════════════════════════════════════════════════╗
- * ║           LENS DATA — CARL ZEISS JENA SONNAR 50mm f/2             ║
- * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Data source: US Patent 1,998,704 Example I (Bertele / Zeiss Ikon) ║
- * ║  SCALED 0.5× from the patent's normalized f=100mm prescription     ║
- * ║  to the production focal length of ~50mm for 35mm format.          ║
- * ║  All radii, thicknesses, semi-diameters, and focal lengths are     ║
- * ║  exactly half the patent values.  Refractive indices and Abbe      ║
- * ║  numbers are unchanged (they are material properties).             ║
- * ║                                                                    ║
- * ║  Classic Sonnar: 6 elements / 3 groups, all-spherical.             ║
- * ║  Focus: unit focus (entire lens translates, BFD changes).          ║
- * ║                                                                    ║
- * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    Scaled from values estimated via paraxial marginal ray trace    ║
- * ║    at f/2 with ~10% mechanical clearance on the 100mm design.     ║
- * ║                                                                    ║
- * ║  OCR CORRECTION: nd of L4 confirmed as 1.6890 (not 1.6390).       ║
- * ║    Verified by EFL convergence: 1.6890 → EFL=50.015mm (correct).  ║
- * ╚══════════════════════════════════════════════════════════════════════╝
+ * US 1,998,704 Example I, f=100 dimensions scaled by 0.5.
+ * Patent Fig.1 and Example I table checked against the original PDF.
+ * Radii/thicknesses and optical constants are sourced; rims, stop placement,
+ * and finite focus are inferred. Patent nD is approximated as modern nd.
  */
 
 const LENS_DATA = {
@@ -46,7 +30,7 @@ const LENS_DATA = {
 
   /* ── Elements ──
    *  Six elements in three groups: 1-3-2 (singlet, cemented triplet, cemented doublet).
-   *  Focal lengths are half the patent values.
+   *  Isolated element focal lengths are calculated at the chosen scale.
    */
   elements: [
     {
@@ -57,9 +41,9 @@ const LENS_DATA = {
       nd: 1.6185,
       vd: 60.5,
       fl: 73.0,
-      glass: "SK16 (Schott dense crown)",
+      glass: "Unmatched crown medium (patent optical constants; supplier unspecified)",
       apd: false,
-      role: "Front collecting meniscus — primary positive power for the front group. Low-dispersion SK16 minimizes chromatic contribution.",
+      role: "Front collecting meniscus — primary positive power for the front group. Its low-dispersion medium contributes to the chromatic balance.",
     },
     {
       id: 2,
@@ -69,7 +53,7 @@ const LENS_DATA = {
       nd: 1.6711,
       vd: 47.3,
       fl: 38.1,
-      glass: "Unmatched (vintage Schott/Jena barium light flint, patent nd=1.6711, νd=47.3)",
+      glass: "Unmatched (patent medium; supplier unspecified, patent nd=1.6711, νd=47.3)",
       apd: false,
       role: "Triplet entry — strongest positive element. Generates higher-order SA to balance zonal correction at f/2.",
       cemented: "T1",
@@ -82,13 +66,8 @@ const LENS_DATA = {
       nd: 1.4645,
       vd: 65.7,
       fl: 87.0,
-      glass: "FK3 (Schott fluorite crown)",
-      apd: "inferred",
-      apdNote: "SCHOTT FK3 inquiry-glass data: ΔPg,F = -0.0003.",
-      dPgF: -0.0003,
-      nC: 1.46232,
-      nF: 1.46939,
-      ng: 1.47315,
+      glass: "FK3 equivalent (catalog comparison; supplier unspecified)",
+      apd: false,
       role: "Low-index spacer — the key Sonnar innovation. nd=1.465 approaches cement index, creating quasi-air-space correction without reflective surfaces.",
       cemented: "T1",
     },
@@ -100,11 +79,8 @@ const LENS_DATA = {
       nd: 1.689,
       vd: 31.2,
       fl: -15.8,
-      glass: "N-SF8 / SF8 equivalent (Schott, patent nd=1.6890, νd=31.2)",
+      glass: "N-SF8 equivalent (catalog comparison; supplier unspecified, patent nd=1.6890, νd=31.2)",
       apd: false,
-      nC: 1.68254,
-      nF: 1.70455,
-      ng: 1.71775,
       role: "Strongest diverging element. High-dispersion flint provides chromatic correction, Petzval flattening, and coma control via the strongly curved r6 surface.",
       cemented: "T1",
     },
@@ -116,7 +92,7 @@ const LENS_DATA = {
       nd: 1.5647,
       vd: 55.8,
       fl: -32.2,
-      glass: "Unmatched (vintage Schott/Jena BaK4-class barium crown, patent nd=1.5647, νd=55.8)",
+      glass: "Unmatched (patent medium; supplier unspecified, patent nd=1.5647, νd=55.8)",
       apd: false,
       role: "Rear doublet dispersing element — lower index than L6 (Δnd=0.106) per patent claim. Forms the 'collecting cemented face' with its hollow side toward the image.",
       cemented: "D1",
@@ -129,25 +105,25 @@ const LENS_DATA = {
       nd: 1.6711,
       vd: 47.3,
       fl: 19.6,
-      glass: "Unmatched (vintage Schott/Jena barium light flint, patent nd=1.6711, νd=47.3)",
+      glass: "Unmatched (patent medium; supplier unspecified, patent nd=1.6711, νd=47.3)",
       apd: false,
-      role: "Rear doublet collecting element — same glass as L2 for manufacturing economy. Second strongest positive element, provides principal rear-group power.",
+      role: "Rear doublet collecting element — same source optical constants as L2. Second strongest positive element, provides principal rear-group power.",
       cemented: "D1",
     },
   ],
 
   /* ── Surface prescription ──
-   *  All linear dimensions (R, d, sd) are exactly 0.5× the patent values.
+   *  Published radii and glass/air thicknesses are scaled by 0.5; SDs are inferred.
    *  Nine optical surfaces plus the aperture stop.
    */
   surfaces: [
     /* ── Group 1: Front singlet (L1) ── */
-    { label: "1", R: 28.5, d: 4.0, nd: 1.6185, elemId: 1, sd: 13.5 }, // L1 front
-    { label: "2", R: 73.15, d: 0.2, nd: 1.0, elemId: 0, sd: 13.0 }, // L1 rear → air
+    { label: "1", R: 28.5, d: 4.0, nd: 1.6185, elemId: 1, sd: 16.0 }, // L1 front
+    { label: "2", R: 73.15, d: 0.2, nd: 1.0, elemId: 0, sd: 16.0 }, // L1 rear → air
 
     /* ── Group 2: Cemented triplet (L2 + L3 + L4) ── */
-    { label: "3", R: 18.1, d: 5.0, nd: 1.6711, elemId: 2, sd: 12.0 }, // L2 front
-    { label: "4", R: 55.0, d: 3.0, nd: 1.4645, elemId: 3, sd: 10.5 }, // L2→L3 junction
+    { label: "3", R: 18.1, d: 5.0, nd: 1.6711, elemId: 2, sd: 13.0 }, // L2 front
+    { label: "4", R: 55.0, d: 3.0, nd: 1.4645, elemId: 3, sd: 13.0 }, // L2→L3 junction
     { label: "5", R: -150.0, d: 3.4, nd: 1.689, elemId: 4, sd: 9.5 }, // L3→L4 junction
     { label: "6", R: 11.85, d: 2.5, nd: 1.0, elemId: 0, sd: 8.25 }, // L4 rear → air
 
@@ -155,9 +131,9 @@ const LENS_DATA = {
     { label: "STO", R: 1e15, d: 5.0, nd: 1.0, elemId: 0, sd: 7.4 }, // physical stop SD
 
     /* ── Group 3: Cemented doublet (L5 + L6) ── */
-    { label: "7", R: 100.0, d: 1.0, nd: 1.5647, elemId: 5, sd: 7.25 }, // L5 front
-    { label: "8", R: 15.35, d: 6.0, nd: 1.6711, elemId: 6, sd: 7.1 }, // L5→L6 junction
-    { label: "9", R: -76.32, d: 24.18, nd: 1.0, elemId: 0, sd: 6.5 }, // L6 rear → image (d = BFD)
+    { label: "7", R: 100.0, d: 1.0, nd: 1.5647, elemId: 5, sd: 9.7 }, // L5 front
+    { label: "8", R: 15.35, d: 6.0, nd: 1.6711, elemId: 6, sd: 9.7 }, // L5→L6 junction
+    { label: "9", R: -76.32, d: 24.18, nd: 1.0, elemId: 0, sd: 9.7 }, // L6 rear → image (d = BFD)
   ],
 
   /* ── Aspherical coefficients ──
@@ -167,14 +143,14 @@ const LENS_DATA = {
 
   /* ── Variable air spacings (focus mechanism) ──
    *  Unit focus: entire lens translates as a rigid assembly.
-   *  At close focus (0.9m): extension = 50²/(900−50) = 2.94mm
-   *  BFD_close = 24.18 + 2.94 = 27.12mm
+   *  Inferred 0.9 m object-to-image endpoint from complete paraxial propagation.
+   *  The source publishes no focus range or movement schedule.
    */
   var: {
-    9: [24.18, 27.12],
+    9: [24.18, 27.33980423943688],
   },
 
-  varLabels: [["9", "BF"]],
+  varLabels: [["9", "BF (modeled)"]],
 
   /* ── Group and doublet annotations ── */
   groups: [
@@ -191,7 +167,7 @@ const LENS_DATA = {
   /* ── Focus configuration ── */
   closeFocusM: 0.9,
   focusDescription:
-    "Unit focus — entire optical assembly translates via Contax body helicoid. No internal moving groups.",
+    "Inferred unit focus — all optics and the stop move objectward 3.16 mm at the modeled 0.90 m object-to-image endpoint. No focus schedule is published; intermediate distance labels are approximate.",
 
   /* ── Aperture configuration ── */
   nominalFno: 2.0,

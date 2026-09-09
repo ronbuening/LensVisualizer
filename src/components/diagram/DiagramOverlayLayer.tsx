@@ -5,6 +5,8 @@
  * markers, badge overlays, and flash effect into one compositional layer.
  */
 
+import { wideOpenStopAtZoom } from "../../optics/apertureStop.js";
+
 import { memo } from "react";
 import usePrefersReducedMotion from "../../utils/usePrefersReducedMotion.js";
 import {
@@ -115,8 +117,8 @@ const DiagramOverlayLayer = memo(function DiagramOverlayLayer({
         sx={sx}
         sy={sy}
         stopZ={stopZ}
-        stopPhysSD={L.stopPhysSD}
-        stopHousingSD={L.stopHousingSD}
+        stopPhysSD={wideOpenStopAtZoom(zoomT, L)}
+        stopHousingSD={Math.max(L.stopHousingSD, ...(L.zoomStopSDs ?? []))}
         currentPhysStopSD={currentPhysStopSD}
         innerBlockedSD={stopInnerBlockedSD}
         bladeStubFrac={L.bladeStubFrac}

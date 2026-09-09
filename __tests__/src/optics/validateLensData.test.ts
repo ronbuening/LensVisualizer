@@ -1528,3 +1528,39 @@ describe("validateLensData — rim slope check", () => {
     expect(errors.some((e) => e.includes("rim slope"))).toBe(true);
   });
 });
+
+// These guards cover new shared data contracts, not per-lens prescription snapshots.
+describe("zoom source schedules", () => {
+  it("rejects malformed physical iris schedules and conflicting inferred schedules", () => {
+    for (const zoomStopSemiDiameters of [[8], [8, 0, 12], [8, NaN, 12]]) {
+      expect(
+        validateLensData(makeValid({ zoomPositions: [20, 35, 50], zoomStopSemiDiameters })).some((e) =>
+          e.includes("zoomStopSemiDiameters"),
+        ),
+      ).toBe(true);
+    }
+    expect(
+      validateLensData(
+        makeValid({
+          zoomPositions: [20, 35, 50],
+          zoomStopSemiDiameters: [8, 10, 12],
+          zoomApertureModel: "from-nominal-fno",
+        }),
+      ).some((e) => e.includes("zoomStopSemiDiameters")),
+    ).toBe(true);
+  });
+  it("rejects malformed zoom focus endpoints and unknown aperture models", () => {
+    for (const zoomCloseFocusM of [[1], [1, -1, 2], [1, Infinity, 2]]) {
+      expect(
+        validateLensData(makeValid({ zoomPositions: [20, 35, 50], zoomCloseFocusM })).some((e) =>
+          e.includes("zoomCloseFocusM"),
+        ),
+      ).toBe(true);
+    }
+    expect(
+      validateLensData(makeValid({ zoomPositions: [20, 35, 50], zoomApertureModel: "unknown" })).some((e) =>
+        e.includes("zoomApertureModel"),
+      ),
+    ).toBe(true);
+  });
+});

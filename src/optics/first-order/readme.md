@@ -15,6 +15,7 @@ flowchart LR
     n_src_optics_first_order_src_optics_first_order_pupils_ts["pupils.ts"]
     n_src_optics_first_order_src_optics_first_order_systemMatrix_ts["systemMatrix.ts"]
   end
+  n_external_src_optics_focusDistance_ts["src/optics/focusDistance.ts"]
   n_external_src_optics_layout_ts["src/optics/layout.ts"]
   n_external_src_optics_math["src/optics/math"]
   n_external_src_optics_prescription["src/optics/prescription"]
@@ -22,6 +23,7 @@ flowchart LR
   n_external_src_optics_trace["src/optics/trace"]
   n_external_src_optics_types_ts["src/optics/types.ts"]
   n_external_src_types["src/types"]
+  n_src_optics_first_order_src_optics_first_order_fNumber_ts --> n_external_src_optics_focusDistance_ts
   n_src_optics_first_order_src_optics_first_order_fNumber_ts --> n_external_src_optics_layout_ts
   n_src_optics_first_order_src_optics_first_order_focusBreathing_ts --> n_external_src_optics_layout_ts
   n_src_optics_first_order_src_optics_first_order_cardinals_ts --> n_external_src_optics_math
@@ -47,7 +49,7 @@ flowchart LR
 
 - Direct source files: 5
 - Direct subfolders: 0
-- Main outbound areas: src/optics/math (4), src/optics/types.ts (3), src/types (3), same folder (2), src/optics/layout.ts (2), src/optics/prescription (2), src/optics/state (2), src/optics/trace
+- Main outbound areas: src/optics/math (4), src/optics/types.ts (3), src/types (3), same folder (2), src/optics/layout.ts (2), src/optics/prescription (2), src/optics/state (2), src/optics/focusDistance.ts, +1 more
 - External consumers: src/optics/analysis, src/optics/compat.ts, src/optics/perspective
 
 ## Files
@@ -55,7 +57,7 @@ flowchart LR
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
 | `cardinals.ts` | Cardinals helper module | same folder, src/optics/math, src/optics/prescription, src/optics/state, src/optics/trace, +2 more | src/optics/analysis, src/optics/compat.ts | CardinalPoint2, CardinalDistance2, CardinalElements2, computeCardinalElements2, buildCardinalElementsFromMatrix2, computeCardinalElementsAtState2 |
-| `fNumber.ts` | F Number helper module | same folder, src/optics/layout.ts, src/types | src/optics/compat.ts | effectiveFNumber2 |
+| `fNumber.ts` | F Number helper module | same folder, src/optics/focusDistance.ts, src/optics/layout.ts, src/types | src/optics/compat.ts | effectiveFNumber2 |
 | `focusBreathing.ts` | Focus Breathing helper module | src/optics/layout.ts, src/optics/math, src/optics/prescription, src/optics/state, src/types | same folder, src/optics/compat.ts, src/optics/perspective | eflAtFocus2 |
 | `pupils.ts` | Pupils helper module | src/optics/math, src/optics/types.ts | src/optics/perspective (3) | FirstOrderPupilState, entrancePupilFromStop2, paraxialPupilGeometry2 |
 | `systemMatrix.ts` | System Matrix helper module | src/optics/math, src/optics/types.ts | same folder | FirstOrderSystemMatrix, computeSystemMatrix2 |

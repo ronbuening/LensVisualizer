@@ -8,6 +8,7 @@ import {
   sharedFNumber,
   snapToCommon,
 } from "../../../src/comparison/comparisonSliders.js";
+import { formatDist } from "../../../src/optics/optics.js";
 import type { RuntimeLens } from "../../../src/types/optics.js";
 
 /* ── Mock lens objects (only the fields these functions use) ── */
@@ -291,5 +292,18 @@ describe("computeMovementPair", () => {
     expect(r.tiltA).toBe(0);
     expect(r.shiftRangeMm).toEqual([-11, 11]);
     expect(r.tiltRangeDeg).toEqual([0, 0]);
+  });
+});
+
+describe("zoom-dependent focus distance", () => {
+  it("uses the current zoom endpoint for labels and comparison clamping", () => {
+    const zoom = { ...lensA, isZoom: true, zoomCloseFocusM: [0.5, 1, 2] } as RuntimeLens;
+    const prime = { ...lensB, closeFocusM: 1 } as RuntimeLens;
+    expect(formatDist(1, zoom, 0)).toBe("50 cm");
+    expect(formatDist(1, zoom, 0.5)).toBe("1.00 m");
+    expect(formatDist(1, zoom, 1)).toBe("2.00 m");
+    const pair = computeFocusPair(0.5, zoom, prime, 1, 0);
+    expect(pair.focusA).toBe(1);
+    expect(pair.focusB).toBe(0.5);
   });
 });
