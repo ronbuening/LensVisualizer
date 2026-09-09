@@ -18,7 +18,7 @@ The correlation rests on several convergent points:
 2. The production lens is specified as **7 elements in 6 groups**. Example 4 contains the same seven elements and six air-separated optical groups.
 3. Samyang specifies **two aspherical lenses**. Example 4 likewise places aspheric surfaces on two physical elements: L2 has surface 3A, while L7 has surfaces 13A and 14A. Thus three aspherical surfaces occur on two aspherical elements.
 4. Samyang specifies a 0.35 m minimum focusing distance and 0.12× maximum magnification. The patent close state gives a magnification of 0.123. Although its column heading says `TL=0.3m`, the published D0 plus OAL equals 348.5219835 mm, consistent with approximately 0.35 m measured from image sensor to object.
-5. Samyang's instruction manual explicitly describes the production lens as an **inner-focus** design. Example 4 focuses by translating the two-element G2 group while G1 and G3 remain fixed.
+5. Samyang's instruction manual explicitly describes the production lens as an **inner-focus** design. Example 4 focuses by translating the two-element G24 group while G14 and G34 remain fixed.
 6. Samyang announced the AF 35mm F2.8 FE on 2017-06-05 and stated global availability from July 2017. The patent application followed on 2018-06-05, so the filing chronology is compatible with a post-release patent filing for the same optical concept.
 
 Samyang also markets one HR element in the production lens. No HR designation is assigned to an individual element here because the patent's refractive-index coordinates are internally mixed and the final data file deliberately avoids an unsupported vendor/material identity.
@@ -29,21 +29,21 @@ The patent's rendered Example 4 optical section is Figure 7. Paragraph ¶0113 ca
 
 Example 4 is a compact, rectilinear, three-functional-group inner-focus prime. Its seven elements form six air-separated optical groups: L1 / L2 / L3 / L4 / cemented L5+L6 / L7. The patent then organizes those physical groups into three functional groups:
 
-- **G1:** fixed front group, L1+L2, with the aperture stop immediately behind it.
-- **G2:** translating two-element focusing group, L3+L4.
-- **G3:** fixed rear group, cemented L5+L6 followed by L7.
+- **G14:** fixed front group, L1+L2, with the aperture stop immediately behind it.
+- **G24:** translating two-element focusing group, L3+L4.
+- **G34:** fixed rear group, cemented L5+L6 followed by L7.
 
 Independent first-order matrices from the final data file give the following functional-group powers at infinity, using each functional group between in-air boundaries:
 
 | Functional group | Power (mm⁻¹) | Standalone group EFL (mm) | Sign |
 |---|---:|---:|---|
-| G1 | +0.038561460 | +25.932628 | Positive |
-| G2 | −0.030354919 | −32.943590 | Negative |
-| G3 | +0.020250513 | +49.381466 | Positive |
+| G14 | +0.038561460 | +25.932628 | Positive |
+| G24 | −0.030354919 | −32.943590 | Negative |
+| G34 | +0.020250513 | +49.381466 | Positive |
 
 These computed signs matter because patent ¶0059 describes G14, G24, and G34 as negative. The Example 4 numerical prescription instead gives **positive / negative / positive**. The numerical prescription governs the model and this analysis; the contradictory prose remains documented as a patent source error.
 
-The principal architectural choice is the small moving G2 group. The patent repeatedly emphasizes internal focusing with fixed outer groups (¶0051, ¶0074, ¶0124). Placing the focusing group close to the stop reduces the required clear diameter of the moving optics and therefore reduces the mass that the autofocus actuator must move (¶0073–¶0074). In the modeled infinity state, G2 is itself negative despite containing one negative and one weak positive element.
+The principal architectural choice is the small moving G24 group. The patent repeatedly emphasizes internal focusing with fixed outer groups (¶0051, ¶0074, ¶0124). Placing the focusing group close to the stop reduces the required clear diameter of the moving optics and therefore reduces the mass that the autofocus actuator must move (¶0073–¶0074). In the modeled infinity state, G24 is itself negative despite containing one negative and one weak positive element.
 
 The aperture stop is explicitly published as surface 5 and is normalized to the single LensVisualizer label `STO`. Its axial placement is a source fact; its semi-diameter is not. The authored `STO.sd = 6.073525663 mm` is a modeling inference back-solved from the verified infinity prescription and F/2.899, not a patent aperture dimension.
 
@@ -59,7 +59,7 @@ The focal lengths below are **standalone element focal lengths in air**, recompu
 
 **nd = 1.73432, νd = 28.32. Glass: Unmatched (728283-728285 class; mixed e-line-like n / d-line νd). f = −40.101460 mm.**
 
-L1 is the front member of fixed G1. Patent ¶0060 describes L14 as a negative meniscus convex toward the image side. Its standalone negative power establishes a divergent front contribution before the much stronger positive L2. The combined G1 matrix is nevertheless positive, so L1 should not be interpreted as defining the sign of the complete front functional group.
+L1 is the front member of fixed G14. Patent ¶0060 describes L14 as a negative meniscus convex toward the image side. Its standalone negative power establishes a divergent front contribution before the much stronger positive L2. The combined G14 matrix is nevertheless positive, so L1 should not be interpreted as defining the sign of the complete front functional group.
 
 The patent's design rationale places a negative first element at the front of the wide-angle system (¶0053). In the complete prescription, that negative contribution is balanced immediately by L2 and by the stop position behind L2.
 
@@ -67,7 +67,7 @@ The patent's design rationale places a negative first element at the front of th
 
 **nd = 1.77641, νd = 49.70. Glass: Unmatched (773496 class; mixed e-line-like n / d-line νd). f = +16.606041 mm.**
 
-L2 is the strong positive member of fixed G1. Its object-side surface, 3A, is aspherical; the rear surface is spherical. The strong standalone positive power of L2 outweighs L1 within G1, producing the computed positive G1 power of +0.038561460 mm⁻¹.
+L2 is the strong positive member of fixed G14. Its object-side surface, 3A, is aspherical; the rear surface is spherical. The strong standalone positive power of L2 outweighs L1 within G14, producing the computed positive G14 power of +0.038561460 mm⁻¹.
 
 The patent states that an asphere near the aperture stop can be used to correct spherical aberration and coma (¶0080). Surface 3A occupies exactly that location in Example 4, immediately in front of the stop-side air space. That patent statement supports the correction role; the data file does not attempt to apportion a numeric aberration budget to this surface.
 
@@ -75,7 +75,7 @@ The patent states that an asphere near the aperture stop can be used to correct 
 
 **nd = 1.62408, νd = 36.30. Glass: Unmatched (620363-620364 class; mixed e-line-like n / d-line νd). f = −22.623692 mm.**
 
-L3 is the first member of translating G2. Its standalone power is negative and substantially stronger in magnitude than the positive standalone power of L4. The pair therefore remains net negative in its in-air functional-group matrix.
+L3 is the first member of translating G24. Its standalone power is negative and substantially stronger in magnitude than the positive standalone power of L4. The pair therefore remains net negative in its in-air functional-group matrix.
 
 The patent places the focusing group close to the stop to control its diameter and moving mass (¶0073–¶0074). L3's front surface is only weakly curved, while its rear surface is much stronger; the resulting negative element is part of a focus group designed to move as a rigid two-element unit rather than as an independently floating element.
 
@@ -83,7 +83,7 @@ The patent places the focusing group close to the stop to control its diameter a
 
 **nd = 1.93323, νd = 20.88. Glass: Unmatched (923209 class; mixed e-line-like n / d-line νd). f = +71.203757 mm.**
 
-L4 is the second element of G2. Its standalone positive power is comparatively weak, so the L3+L4 focus group remains net negative. The two lenses translate together; no independent L3/L4 spacing change is published or modeled.
+L4 is the second element of G24. Its standalone positive power is comparatively weak, so the L3+L4 focus group remains net negative. The two lenses translate together; no independent L3/L4 spacing change is published or modeled.
 
 Patent ¶0078 describes the two focus-group glasses as a dispersion pair intended to help restrain chromatic change during focusing. The final data preserves the published Abbe values, but no element-level line indices or anomalous-partial-dispersion data are available. Accordingly, this analysis records the patent's intended chromatic role without claiming apochromatic or anomalous-dispersion behavior.
 
@@ -91,7 +91,7 @@ Patent ¶0078 describes the two focus-group glasses as a dispersion pair intende
 
 **nd = 1.83945, νd = 42.72. Glass: Unmatched (835427-835431 class; mixed e-line-like n / d-line νd). f = +9.779848 mm.**
 
-L5 is the strong positive component of the cemented L5+L6 pair in fixed G3. Its standalone power is +0.102251075 mm⁻¹, the largest positive standalone element power in the modeled prescription.
+L5 is the strong positive component of the cemented L5+L6 pair in fixed G34. Its standalone power is +0.102251075 mm⁻¹, the largest positive standalone element power in the modeled prescription.
 
 At surface 11, L5 is cemented directly to L6. In the data model that cemented interface correctly carries the downstream L6 index and `elemId`; there is no synthetic cement layer.
 
@@ -101,13 +101,13 @@ At surface 11, L5 is cemented directly to L6. In the data model that cemented in
 
 L6 is the negative partner of L5. The individual powers must not be confused with the power of the cemented pair: L5 alone is strongly positive, L6 alone is negative, while the **cemented L5+L6 combination is net positive**, with computed power +0.030816744 mm⁻¹ and standalone cemented-group EFL +32.449891 mm.
 
-Patent ¶0054 explicitly assigns the cemented pair a chromatic-correction role. That source statement is retained, but the lack of validated spectral-line data prevents a stronger claim about secondary-spectrum correction. When L7 and the following spacing are included, the complete functional G3 remains positive at +0.020250513 mm⁻¹.
+Patent ¶0054 explicitly assigns the cemented pair a chromatic-correction role. That source statement is retained, but the lack of validated spectral-line data prevents a stronger claim about secondary-spectrum correction. When L7 and the following spacing are included, the complete functional G34 remains positive at +0.020250513 mm⁻¹.
 
 ### L7 — Negative Meniscus with Two Aspherical Surfaces
 
 **nd = 1.69385, νd = 31.19. Glass: Unmatched (689311-689313 class; mixed e-line-like n / d-line νd). f = −86.873115 mm.**
 
-L7 is the final physical element and is fixed during focusing. Patent ¶0060 describes it as a meniscus convex toward the image side. Its standalone negative power is weak relative to the preceding positive cemented doublet, so the complete G3 remains net positive.
+L7 is the final physical element and is fixed during focusing. Patent ¶0060 describes it as a meniscus convex toward the image side. Its standalone negative power is weak relative to the preceding positive cemented doublet, so the complete G34 remains net positive.
 
 The patent assigns L7 a field-flattening role (¶0054) and places the rear-most aspheric element near the image side to improve astigmatism and distortion control (¶0079). Both surfaces, 13A and 14A, are aspherical in Example 4. Paragraph ¶0065 also explains the image-side convex form as a way to spread light reflected from sensor-side cover glass and thereby reduce a potential ghost path. These are patent-stated design intentions; the analysis does not infer a measured flare or field-curvature performance value from them.
 
@@ -131,15 +131,15 @@ The patent does not publish element-level `nC`, `nF`, `ng`, `PgF`, or `dPgF`. Co
 
 ## Focus Mechanism
 
-Example 4 uses a **published inner-focus** mechanism; no constrained reconstruction is present. G1 and G3 remain fixed, while G2 (L3+L4) translates toward the image side as object distance decreases. The two variable air spaces are the stop-to-G2 gap D1 and the G2-to-G3 gap D2.
+Example 4 uses a **published inner-focus** mechanism; no constrained reconstruction is present. G14 and G34 remain fixed, while G24 (L3+L4) translates toward the image side as object distance decreases. The two variable air spaces are the stop-to-G24 gap D1 and the G24-to-G34 gap D2.
 
-| Published focus state | D1 = STO→L3 (mm) | D2 = L4→G3 (mm) | D1 + D2 (mm) | Published |MAG| |
+| Published focus state | D1 = STO→L3 (mm) | D2 = L4→G34 (mm) | D1 + D2 (mm) | Published |MAG| |
 |---|---:|---:|---:|---:|
 | Infinity | 2.000000000 | 3.665607050 | 5.665607050 | — |
 | Intermediate (`MAG=-1/40`) | 2.523725915 | 3.141881136 | 5.665607051 | 0.025 |
 | Close row (`TL=0.3m` heading) | 4.638416687 | 1.027190363 | 5.665607050 | 0.123 |
 
-The infinity-to-close G2 translation is **2.638416687 mm toward the image side**. The maximum spread in D1+D2 over the three published states is only 1.0×10⁻⁹ mm at the printed precision, so the two changing gaps describe a rigidly translating focus group rather than a floating change of internal G2 geometry. Independent conjugate tracing gives a maximum solved image-distance variation from surface 14A of 0.000111 mm across the same three source states, supporting the fixed-image internal-focus interpretation.
+The infinity-to-close G24 translation is **2.638416687 mm toward the image side**. The maximum spread in D1+D2 over the three published states is only 1.0×10⁻⁹ mm at the printed precision, so the two changing gaps describe a rigidly translating focus group rather than a floating change of internal G24 geometry. Independent conjugate tracing gives a maximum solved image-distance variation from surface 14A of 0.000111 mm across the same three source states, supporting the fixed-image internal-focus interpretation.
 
 The intermediate data-file focus coordinate `focusT = 0.237653048385` is a normalized UI mapping derived from the current LensVisualizer distance convention. It is not a patent-published mechanical coordinate. The underlying D1/D2 values themselves are published.
 

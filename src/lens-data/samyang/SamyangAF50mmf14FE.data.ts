@@ -280,7 +280,7 @@ const LENS_DATA = {
   /* ── Focus configuration ── */
   closeFocusM: 0.45,
   focusDescription:
-    "CONSTRAINED_RECONSTRUCTION: L7/G2 alone translates imageward; G1 and G3 remain fixed. The close state is code-solved for the marketed 0.45 m MFD with the fixed sensor/reference plane and D1 + D2 conserved, rather than copying the patent row that changes an image-side spacing.",
+    "Reconstructed inner focus: L7–1/G2 moves imageward while G1 and G3 remain fixed. The modeled close state focuses at the marketed 0.45 m distance with a fixed image plane. The patent’s close row changes an image-side spacing, so this endpoint is calculated rather than directly published.",
 
   /* ── Aperture configuration ── */
   nominalFno: 1.44,

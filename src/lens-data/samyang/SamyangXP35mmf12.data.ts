@@ -10,7 +10,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  12 elements / 10 groups, 4 aspherical surfaces on 2 elements.    ║
  * ║                                                                    ║
  * ║  Focus status: PUBLISHED.                                         ║
- * ║  G1 is fixed. G2 and G3 move independently objectward from        ║
+ * ║  G13 is fixed. G23 and G33 move independently objectward from        ║
  * ║  infinity to the patent's nearest / maximum-magnification state.  ║
  * ║  Published endpoint gaps are used directly; no intermediate       ║
  * ║  focus reconstruction is authored. closeFocusM is normalized to   ║
@@ -29,7 +29,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  derived from exact d-line marginal/chief-ray envelopes at both   ║
  * ║  published focus states, checked at the viewer's 0.6-field ray    ║
  * ║  bundle, and cross-checked against patent Fig. 5. Surface 15 was  ║
- * ║  given additional mechanical clearance to preserve the G2 rear    ║
+ * ║  given additional mechanical clearance to preserve the G23 rear    ║
  * ║  silhouette shown in Fig. 5.                                      ║
  * ║                                                                    ║
  * ║  The physical stop diameter is not published. STO.sd is a         ║
@@ -102,6 +102,8 @@ const LENS_DATA = {
       vd: 81.61,
       fl: -125.127786,
       glass: "497816 — low-dispersion crown class (vendor unspecified)",
+      apd: "inferred",
+      apdNote: "Samyang’s XP construction marks the second element ED; inferred through the Example 3/product correlation. No patent partial-dispersion measurement or supplier identity is implied.",
     },
     {
       id: 3,
@@ -157,7 +159,7 @@ const LENS_DATA = {
       vd: 53.94,
       fl: 43.428181,
       glass: "713539 — lanthanum crown class (vendor unspecified)",
-      cemented: "D1",
+      cemented: "C1",
     },
     {
       id: 8,
@@ -169,7 +171,7 @@ const LENS_DATA = {
       vd: 28.32,
       fl: -29.46537,
       glass: "728283 — flint class (vendor unspecified)",
-      cemented: "D1",
+      cemented: "C1",
     },
     {
       id: 9,
@@ -192,7 +194,7 @@ const LENS_DATA = {
       vd: 81.61,
       fl: 29.623573,
       glass: "497816 — low-dispersion crown class (vendor unspecified)",
-      cemented: "D2",
+      cemented: "C2",
     },
     {
       id: 11,
@@ -204,7 +206,7 @@ const LENS_DATA = {
       vd: 35.45,
       fl: -36.266196,
       glass: "593354 — flint class (vendor unspecified)",
-      cemented: "D2",
+      cemented: "C2",
     },
     {
       id: 12,
@@ -294,28 +296,27 @@ const LENS_DATA = {
     "23A": [38.162369751054854, 45.16870875105485],
   },
   varLabels: [
-    ["10", "D1 (G1–G2)"],
-    ["15", "D2 (G2–STO)"],
+    ["10", "D1 (G13–G23)"],
+    ["15", "D2 (G23–STO)"],
     ["23A", "BF (air-equivalent)"],
   ],
 
   groups: [
-    { text: "G1", fromSurface: "1", toSurface: "10" },
-    { text: "G2", fromSurface: "11", toSurface: "15" },
-    { text: "G3", fromSurface: "17A", toSurface: "23A" },
+    { text: "G13", fromSurface: "1", toSurface: "10" },
+    { text: "G23", fromSurface: "11", toSurface: "15" },
+    { text: "G33", fromSurface: "17A", toSurface: "23A" },
   ],
   doublets: [
-    { text: "D1", fromSurface: "13", toSurface: "15" },
-    { text: "D2", fromSurface: "19", toSurface: "21" },
+    { text: "C1", fromSurface: "13", toSurface: "15" },
+    { text: "C2", fromSurface: "19", toSurface: "21" },
   ],
 
   /* ── Focus configuration ── */
   closeFocusM: 0.3398906537510548,
   focusDescription:
-    "PUBLISHED two-state floating internal focus. G1 remains fixed; G2 and G3 move independently objectward. " +
-    "The close endpoint is the patent maximum-magnification state. closeFocusM = 0.339890653751 m is the " +
-    "plate-omitted, reference-plane-normalized object-to-IMG distance that preserves the patent near " +
-    "D0 = 175.678043 mm. The omitted rear optical plate is represented by the air-equivalent 23A-to-IMG spacing.",
+    "Published floating internal focus: G23 and G33 move objectward by 5.796 and 6.962 mm relative to G13. " +
+    "G13 is mechanically fixed in the patent. The preserved image-reference spacing adds a 0.044 mm common " +
+    "objectward shift in the fixed-image-plane chart. The nearest published state corresponds to about 0.34 m.",
 
   /* ── Aperture configuration ── */
   nominalFno: 1.254,

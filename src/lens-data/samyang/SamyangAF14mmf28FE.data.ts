@@ -111,6 +111,8 @@ const LENS_DATA = {
       vd: 81.61,
       fl: -44.719374,
       glass: "497816 - low-dispersion ED crown class",
+      apd: "inferred",
+      apdNote: "Samyang’s production construction marks this position ED; inferred through the patent/product correlation. The patent supplies no partial-dispersion measurement or supplier identity.",
       role: "Low-dispersion negative meniscus closing the fixed G11 group.",
     },
     {
@@ -237,6 +239,8 @@ const LENS_DATA = {
       vd: 81.61,
       fl: 22.430314,
       glass: "497816 - low-dispersion ED crown class",
+      apd: "inferred",
+      apdNote: "Samyang’s production construction marks this position ED; inferred through the patent/product correlation. The patent supplies no partial-dispersion measurement or supplier identity.",
       cemented: "C3",
       role: "Low-dispersion positive rear member of the final cemented doublet.",
     },

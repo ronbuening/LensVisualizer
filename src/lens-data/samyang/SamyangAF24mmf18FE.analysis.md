@@ -143,7 +143,7 @@ The patent provides `nd` and `νd` coordinates but names no glass manufacturer. 
 
 The final data contains no authored `nC`, `nF`, `ng`, or `dPgF` fields. That omission is deliberate. Example 1 publishes only d-line index and Abbe number; it does not publish the line indices or partial-dispersion quantities required to justify an apochromatic or anomalous-partial-dispersion claim. Although the patent's ray-fan figure is plotted at C, d, and F wavelengths, those plots do not supply per-element spectral indices.
 
-The two 497816 elements are the strongest candidates for the production lens's marketed two ED elements because the coordinate is repeated and has the highest `νd` in the prescription. That is a production-correlation inference, not a patent material designation. The final data therefore keeps the label at the vendor-neutral **low-dispersion crown class** level and does not promote either element to a specific OHARA, HOYA, SCHOTT, HIKARI, CDGM, Sumita, or ED material identity without additional provenance.
+The two 497816 elements are the strongest candidates for the production lens's marketed two ED elements because the coordinate is repeated and has the highest `νd` in the prescription. That is a production-correlation inference, not a patent material designation. The official construction drawing additionally marks the fifth and tenth element positions ED. The final data keeps the vendor-neutral **low-dispersion crown class** labels and adds inferred ED/APD display tags at L51/L101 through that product correlation. No patent-measured anomalous partial dispersion or specific supplier identity is asserted. Construction source: <https://www.lksamyang.com/upload/editor/1630727300>.
 
 ## Focus Mechanism
 

@@ -12,7 +12,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ and 0.123 close-state magnification.                                                 ║
  * ║                                                                                      ║
  * ║ 7 elements / 6 air-separated groups; 3 aspherical surfaces on L2 and L7.             ║
- * ║ Focus status: PUBLISHED. G2 (L3+L4) translates; G1 and G3 are fixed.                 ║
+ * ║ Focus status: PUBLISHED. G24 (L3+L4) translates; G14 and G34 are fixed.                 ║
  * ║ D1/D2 preserve all three Table 12 states and D1+D2 is constant to printed precision. ║
  * ║                                                                                      ║
  * ║ FILTER / REAR PLANE: Patent surfaces 15-16 are a plane-parallel Filter and are       ║
@@ -87,7 +87,7 @@ const LENS_DATA = {
       vd: 28.32,
       fl: -40.10146,
       glass: "Unmatched (728283-728285 class; mixed e-line-like n / d-line νd)",
-      role: "Fixed G1 front negative meniscus.",
+      role: "Fixed G14 front negative meniscus.",
     },
     {
       id: 2,
@@ -99,7 +99,7 @@ const LENS_DATA = {
       vd: 49.7,
       fl: 16.606041,
       glass: "Unmatched (773496 class; mixed e-line-like n / d-line νd)",
-      role: "Fixed G1 positive element; object-side surface 3A is aspherical.",
+      role: "Fixed G14 positive element; object-side surface 3A is aspherical.",
     },
     {
       id: 3,
@@ -111,7 +111,7 @@ const LENS_DATA = {
       vd: 36.3,
       fl: -22.623692,
       glass: "Unmatched (620363-620364 class; mixed e-line-like n / d-line νd)",
-      role: "First element of the translating two-element inner-focus group G2.",
+      role: "First element of the translating two-element inner-focus group G24.",
     },
     {
       id: 4,
@@ -123,7 +123,7 @@ const LENS_DATA = {
       vd: 20.88,
       fl: 71.203757,
       glass: "Unmatched (923209 class; mixed e-line-like n / d-line νd)",
-      role: "Second element of the translating two-element inner-focus group G2.",
+      role: "Second element of the translating two-element inner-focus group G24.",
     },
     {
       id: 5,
@@ -135,7 +135,7 @@ const LENS_DATA = {
       vd: 42.72,
       fl: 9.779848,
       glass: "Unmatched (835427-835431 class; mixed e-line-like n / d-line νd)",
-      role: "Positive component of the fixed G3 cemented doublet.",
+      role: "Positive component of the fixed G34 cemented doublet.",
       cemented: "J1",
     },
     {
@@ -148,7 +148,7 @@ const LENS_DATA = {
       vd: 33.84,
       fl: -12.712037,
       glass: "Unmatched (648337-648339 class; mixed e-line-like n / d-line νd)",
-      role: "Negative component of the fixed G3 cemented doublet.",
+      role: "Negative component of the fixed G34 cemented doublet.",
       cemented: "J1",
     },
     {
@@ -223,15 +223,15 @@ const LENS_DATA = {
   ],
 
   groups: [
-    { text: "G1", fromSurface: "1", toSurface: "4" },
-    { text: "G2 (FOCUS)", fromSurface: "6", toSurface: "9" },
-    { text: "G3", fromSurface: "10", toSurface: "14A" },
+    { text: "G14", fromSurface: "1", toSurface: "4" },
+    { text: "G24 (FOCUS)", fromSurface: "6", toSurface: "9" },
+    { text: "G34", fromSurface: "10", toSurface: "14A" },
   ],
   doublets: [{ text: "J1", fromSurface: "10", toSurface: "12" }],
 
   closeFocusM: 0.35,
   focusDescription:
-    "PUBLISHED inner focus: L3+L4 (G2) translates toward image space while G1/G3 remain fixed. Table 12 D1/D2 states are preserved at infinity, MAG=-1/40, and the raw close row headed TL=0.3m. The close heading is internally inconsistent with D0+OAL≈0.3485m and Samyang's 0.35m sensor-to-object MFD; no spacing is reconstructed.",
+    "PUBLISHED inner focus: L34 + L44 (G24) translates toward image space while G14/G34 remain fixed. Table 12 D1/D2 states are preserved at infinity, MAG=-1/40, and the raw close row headed TL=0.3m. The close heading is internally inconsistent with D0+OAL≈0.3485m and Samyang's 0.35m sensor-to-object MFD; no spacing is reconstructed.",
 
   nominalFno: 2.899,
   fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],

@@ -195,3 +195,5 @@ Only the 5A and 6A semi-diameters are directly published by the patent. All othe
 4. **HOYA Optics Division, Designation of Glass Types.** Six-digit nd/νd glass-code convention and class nomenclature: <https://www.hoya-opticalworld.com/english/technical/001.html>
 5. **OHARA Corporation, S-TIH / S-NPH Glass Types.** Current public catalog coordinates for dense-flint-class candidates: <https://oharacorp.com/glass-type/s-tih-s-nph/>
 6. **SCHOTT Advanced Optics, Optical Glass.** Current public catalog coordinates for N-SF66 and related glass types: <https://www.us.schott.com/shop/advanced-optics/en/search/>
+
+The live-site follow-up added inferred ED/APD display tags at L41 and L141, matching the official construction: <https://www.lksamyang.com/upload/editor/1586076857>. These visual tags do not supply measured partial dispersion or identify a production melt.

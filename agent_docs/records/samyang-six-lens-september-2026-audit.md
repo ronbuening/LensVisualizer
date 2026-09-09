@@ -47,3 +47,46 @@ and AF 14mm L7 remain explicitly unresolved. Catalog count: 559 entries.
   (`2026-09-09T13:28:23Z`) before authoring.
 - Temporary scripts/renders stayed in `/tmp`; patent PDFs remain ignored and are not committed.
 - Visual verification used the actual SVG shape engine offline, not a live browser session.
+
+
+## Live-site follow-up — 2026-09-09
+
+Revisited all six routes in the local Vite site through the in-app browser. Compared rendered optical rims
+against the same exact 600 dpi patent figures (AF 14 Fig. 1; AF 24/1.8 Fig. 1; AF 24/2.8 Fig. 1;
+AF 35 Fig. 7; AF 50 Fig. 1; XP Fig. 5). No further SD change was justified: the remaining small
+shape differences are within figure precision or are the previously documented ray/gap constraints.
+Stops, asphere markers, cemented spans, element types, Abbe labels, and product display names were reviewed.
+
+Verified infinity-to-near slider direction on every lens. AF 14, AF 35, and AF 50 focus imageward;
+both AF 24 lenses focus objectward; XP G23/G33 focus objectward with G33 traveling farther.
+All six are primes and have no optical zoom schedule. XP's motion chart correctly orders source start/end
+states, but its retained image-reference normalization adds a common −0.043978 mm shift. Its focus
+text now distinguishes that shift from mechanical motion and reports the relative 5.795765/6.962361 mm
+travel. No source spacing or reconstruction was changed.
+
+Changed AF 35 functional-group labels to G14/G24/G34 and XP labels to G13/G23/G33 to match their
+selected patent embodiments. XP cemented pairs now use C1/C2 so that they do not duplicate its D1/D2 air-gap
+labels. AF 50's visible description states the reconstructed status in readable prose.
+
+Inspected the manufacturer's actual color construction drawings in the browser:
+
+- AF 14: <https://www.lksamyang.com/upload/editor/1586076857> — ED at elements 4/14.
+- AF 24/1.8: <https://www.lksamyang.com/upload/editor/1630727300> — ED at elements 5/10.
+- XP: <https://www.lksamyang.com/upload/editor/1568170384> — ED at element 2, resolving the earlier ambiguity.
+
+Added five inferred ED/APD display tags, with provenance notes. Manufacturer HR positions already receive
+the generic high-index color from their patent indices. These tags are product-correlation inferences;
+they do not assert patent-measured anomalous partial dispersion or a production supplier. No spectral
+values or dispersion coefficients were invented. Re-scanning the full current catalog found no additional
+compatible curves for AF 14 L7 or AF 50 L3/L7. AF 35's mixed source coordinates still preclude a defensible
+catalog assignment, even where a nearby d-line pair passes the loose coordinate guard. Batch coverage
+remains 50/60; no new catalog type is supported by the additional evidence.
+
+The existing changelog entry is unchanged, as requested. No temporary per-lens tests or patent files are staged.
+
+
+Final follow-up verification: all 298 test files / 2,777 tests passed; typecheck, formatting, lint,
+and the 1,276-route production build passed. All six surface and image-circle audits passed. The live
+inspector displayed the new inferred provenance and compatible Sellmeier source, and final browser
+renders showed the corrected colors/group labels. Temporary source-state movement calculations confirmed
+monotonic travel at every published keyframe (including AF 14's 0.000001 mm printed-rounding residual).
