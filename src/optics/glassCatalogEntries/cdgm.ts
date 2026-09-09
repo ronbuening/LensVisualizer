@@ -5,6 +5,17 @@
 import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const CDGM_GLASS_ENTRIES: readonly GlassEntry[] = [
+  {
+    name: "H-LaF7",
+    vendor: "CDGM",
+    B: [1.85620526, 1.38494652, 0.223526441],
+    C: [0.0109606128, 114.47738, 0.0505771615],
+    nd: 1.78179,
+    vd: 37.09,
+    code6: "782371",
+    source:
+      "CDGM H-LaF7 optical glass data sheet, K1-L3 Sellmeier constants and independent C/d/F/g indices; https://www.cdgmgd.com/webapp/pdf/H-LaF7.pdf (accessed 2026-09-09).",
+  },
   /* Phase 45 first-party named-token audit additions (July 29, 2026). */
   {
     name: "H-BaF6",
