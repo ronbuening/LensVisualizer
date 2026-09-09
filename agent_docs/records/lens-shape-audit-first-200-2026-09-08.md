@@ -460,3 +460,10 @@ Production/revised live wide, middle and tele geometry, f/16, disabled focus and
 Verified original US20200257181A1.pdf Example 1/pages 14–15, Figures 1A–1B/page 2 at 600 dpi and source equation. Restored A16 coefficients on S1/S3/S27; at published rims their contributions are +2.34136/−0.36070/−0.000160 mm, correcting the old negligible-error assertion. Source SDs restored except S3 18.10 versus published 18.225 for the renderer's 90% clearance policy. Source iris diameters 16.52/20.93/26.65 now drive the physical stop directly through validated zoomStopSemiDiameters. Source prescription, element focal lengths and remaining asphere coefficients retained. No filter/cover glass; omitted S21 flare clipping remains disclosed. Qualified glass and removed APD/coating/chemistry claims; focus disabled and source limitations surfaced. Added an SP annotation for the independently moving stop (the movement chart displays glass groups only).
 
 Production/revised wide/middle/tele, f/22 and zoom chart reviewed. Live EFL 15.45/24.00/33.95 mm, wide/tele stop diameters exactly 16.52/26.65 mm, middle f/22 stop 2.77 mm, maximum glass-group travel 23.07 mm. Surface/image-circle and three focused tests pass, including schedule validation and A16 significance. Full batch 31–40 gates/commit pending.
+
+
+## PR 704 dependency-audit repair — 2026-09-09
+
+CI run 34353413506 failed the dependency audit on GHSA-2883-xcg3-v3hh, a high-severity CPU-exhaustion advisory affecting js-yaml versions below 4.3.2. The installed chain was eslint → @eslint/eslintrc → js-yaml 4.3.1. Updated only the js-yaml lockfile entry to 4.3.2; package.json and the audit allowlist are unchanged. The live registry-backed `npm run audit:dependencies` passes. Three moderate Vitest-related package findings remain outside the high/critical gate and were not part of this repair. The 200-lens audit remains paused at 40.
+
+Validation: typecheck, format and lint passed; all 2,776 tests in 298 files passed. The live dependency audit passed. No audit-specific tests were added.
