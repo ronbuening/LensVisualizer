@@ -71,8 +71,6 @@ Kept only while a living doc or a lens `*.audit.md` sidecar links them; see [`re
 - [record] [`records/mirror-lens-tracing-and-authoring.md`](records/mirror-lens-tracing-and-authoring.md) — historical mirror/folded implementation notes
 - [record] [`records/optics-2-stage-05-performance.md`](records/optics-2-stage-05-performance.md) — trace performance stage record
 - [record] [`records/react-types-downgrade-2026-07-07.md`](records/react-types-downgrade-2026-07-07.md) — resolved React 18-era types mismatch
-- [record] [`records/analysis-options-roadmap-archive.md`](records/analysis-options-roadmap-archive.md) — archived analysis-options roadmap, absorbed into the feature plan
-- [record] [`records/mirror-lens-future-enhancements-archive.md`](records/mirror-lens-future-enhancements-archive.md) — archived mirror/folded backlog, absorbed into the feature plan
 
 ## Generated reports and benchmarks
 
