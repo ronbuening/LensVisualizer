@@ -8,7 +8,14 @@ catalog equivalent. If neither path is available, the engine falls back to parti
 dPgF-corrected indices, or the legacy Abbe approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **558 verified entries** in source as of September 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **559 verified entries** in source as of September 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+
+The September 9, 2026 Samyang audit added CDGM H-LaF7 from the manufacturer's first-party datasheet,
+with independent C/d/F/g regression anchors. Seven additional elements now use existing compatible curves:
+P-LASF47, S-BAL35, J-BK7A, S-TIM35, K-VC80(M), E-FD8, and L-LAH85V. Batch strict coverage rises from
+42/60 to 50/60; global strict/trusted coverage is 7419/7968 and 7434/7968, with zero coordinate mismatches.
+The AF 35mm f/2.8's seven mixed-coordinate pairs and three other unsupported positions remain unresolved.
+All source indices and production-supplier uncertainty are preserved.
 
 The September 8, 2026 Canon audit added OHARA S-BAL11 from the first-party OHARA 02-06 datasheet,
 including independent C/d/F/g regression pins. Its published 573578 code resolves the original EF-S 18–55mm's E5.

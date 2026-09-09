@@ -320,6 +320,16 @@ describe("glass catalog", () => {
     expect(evaluateSellmeier(lasf02!, LINE_NM.e)).toBeCloseTo(1.804034, 6);
   });
 
+  it("reproduces the official CDGM H-LaF7 line-index table", () => {
+    const glass = resolveGlass("H-LaF7");
+    expect(glass?.vendor).toBe("CDGM");
+    expect(evaluateSellmeier(glass!, LINE_NM.C)).toBeCloseTo(1.775589, 6);
+    expect(evaluateSellmeier(glass!, LINE_NM.d)).toBeCloseTo(1.78179, 6);
+    expect(evaluateSellmeier(glass!, LINE_NM.F)).toBeCloseTo(1.796666, 6);
+    expect(evaluateSellmeier(glass!, LINE_NM.g)).toBeCloseTo(1.808925, 6);
+    expect(resolveGlass("782371")?.name).toBe("H-LaF7");
+  });
+
   it("reproduces the official CDGM H-ZLaF50E line-index table", () => {
     const glass = resolveGlass("H-ZLaF50E");
     expect(glass?.vendor).toBe("CDGM");

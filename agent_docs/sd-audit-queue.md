@@ -193,3 +193,12 @@ Nothing can be audited on these until the source is available.
 Reviewed EF 35mm f/2 IS USM, EF 70-300mm IS II USM, EF-M 15-45mm IS STM, EF-S 18-135mm IS STM, PowerShot G3 X, and PowerShot G9 X against their exact local patent figures at 600 dpi. Enlarged only G9 X L11/L12/L31 to 9.4/8.5/9.0 mm; retained source-backed or geometry-constrained SDs elsewhere. All six pass surface and image-circle audits. Per-lens `*.audit.md` files and [the batch record](records/canon-six-lens-september-2026-audit.md) preserve measurements, rejected automatic readings, glass outcomes, and validation.
 
 Screenshot follow-up: refined EF 35mm S1/S2, S5/S6, Gis, and S18A/S19 optical rims. Retained larger central/cemented apertures where diagram-sized trials clipped rays. The other five prescriptions retain their reviewed SDs; see the appended per-lens audits.
+
+## 2026-09-09 — new Samyang batch
+
+- Samyang AF14mmf28FE: reviewed; [evidence and disposition](../src/lens-data/samyang/SamyangAF14mmf28FE.audit.md).
+- Samyang AF24mmf18FE: reviewed; [evidence and disposition](../src/lens-data/samyang/SamyangAF24mmf18FE.audit.md).
+- Samyang AF24mmf28FE: reviewed; [evidence and disposition](../src/lens-data/samyang/SamyangAF24mmf28FE.audit.md).
+- Samyang AF35mmf28FE: reviewed; [evidence and disposition](../src/lens-data/samyang/SamyangAF35mmf28FE.audit.md).
+- Samyang AF50mmf14FE: reviewed; [evidence and disposition](../src/lens-data/samyang/SamyangAF50mmf14FE.audit.md).
+- Samyang XP35mmf12: reviewed; [evidence and disposition](../src/lens-data/samyang/SamyangXP35mmf12.audit.md).
