@@ -9,12 +9,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **692** lenses scanned (**681** visible)
-- **7369 / 7908** non-air surfaces use strict catalog Sellmeier data (93.2%)
-- **7384 / 7908** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.4%)
+- **698** lenses scanned (**687** visible)
+- **7419 / 7968** non-air surfaces use strict catalog Sellmeier data (93.1%)
+- **7434 / 7968** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.3%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
-- **227** code-only missing-Sellmeier elements in Sweep 2: **1** active unreviewed, **103** self-recording explicit dispositions, **0** dispositions missing any review record
+- **236** code-only missing-Sellmeier elements in Sweep 2: **1** active unreviewed, **112** self-recording explicit dispositions, **0** dispositions missing any review record
 - **0** unresolved named-token elements in Sweep 2B, producing **0** token occurrences across **0** distinct tokens
 - **0** Tier A proprietary backfill rows in Sweep 3
 
@@ -46,6 +46,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [NIKON AF-P DX NIKKOR 70-300mm f/4.5-6.3 G ED VR](../../src/lens-data/nikon/NikonAFPDX70300mmf4563G.data.ts) | US 2021/0026133 A1 | [PDF](../../patents/US20210026133A1.pdf) | 92.9% (13/14) | 92.9% (13/14) | 1 | 3 [glass] (L12: `612313 — anomalous-dispersion flint class (patent nd=1.61155, νd=31.26, θgF=0.618; no exact public catalog match)`) | abbe: 1 |
 | [NIKON AF-S DX ZOOM-NIKKOR 17-55mm f/2.8G IF-ED](../../src/lens-data/nikon/NikonAFSDXZoomNikkor1755mmf28GIFED.data.ts) | US 2005/0013015 A1 | [PDF](../../patents/US20050013015A1.pdf) | 92.9% (13/14) | 92.9% (13/14) | 1 | 11A [glass] (Element 7: `Unmatched (740493; nd=1.739929, vd=49.25)`) | abbe: 1 |
 | [NIKON AF-S NIKKOR 105mm f/1.4E ED](../../src/lens-data/nikon/NikonNikkor105f14E.data.ts) | WO 2019/116563 A1 | [PDF](../../patents/JPWO2019116563A1.pdf) | 92.9% (13/14) | 92.9% (13/14) | 1 | 8 [glass] (Element 5: `Unmatched APD medium (patent optical constants; supplier unspecified)`) | abbe: 1 |
+| [SAMYANG AF 14mm f/2.8 FE](../../src/lens-data/samyang/SamyangAF14mmf28FE.data.ts) |  | No patent number parsed from lens metadata | 92.9% (13/14) | 92.9% (13/14) | 1 | 12A [glass] (Element 7: `Unmatched (nd=1.877950, vd=37.3)`) | abbe: 1 |
 | [CANON EF-M 18-55mm f/3.5-5.6 IS STM](../../src/lens-data/canon/CanonEFM1855mmf3556ISSTM.data.ts) | US 2013/0335830 A1 | [PDF](../../patents/US20130335830A1.pdf) | 92.3% (12/13) | 92.3% (12/13) | 1 | 22 [glass] (Element 12: `Unmatched (nd=1.52996, nu_d=55.8; code 530558)`) | abbe: 1 |
 | [CANON RF 24-105mm f/4-7.1 IS STM](../../src/lens-data/canon/CanonRF24105mmf471ISSTM.data.ts) | US 2021/0003831 A1 | [PDF](../../patents/US20210003831A1.pdf) | 92.3% (12/13) | 92.3% (12/13) | 1 | 22A [glass] (Element 12 / B5: `Unmatched (1.53110/55.9; no exact public catalog match)`) | abbe: 1 |
 | [NIKON AI ZOOM-NIKKOR 80-200mm f/4](../../src/lens-data/nikon/NikonAINikkor80200mmf4.data.ts) | US 4,452,513 | [PDF](../../patents/US4452513.pdf) | 92.3% (12/13) | 92.3% (12/13) | 1 | 19 [glass] (G4 rear negative: `797455 — dense lanthanum glass class (catalog unresolved)`) | abbe: 1 |

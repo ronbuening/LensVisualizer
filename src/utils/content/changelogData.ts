@@ -20,6 +20,11 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-09-09",
+    type: "lens",
+    summary: "Added six Samyang AF and XP prime lens designs with audited diagrams and glass",
+  },
+  {
+    date: "2026-09-09",
     type: "fix",
     summary: "Reviewed and corrected the oldest 40 lens diagrams, prescriptions, and movements",
   },
