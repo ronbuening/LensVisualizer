@@ -50,6 +50,11 @@ changes. Do not hand-edit generated reports. A lens is integrated only when the 
 silhouette, stop/pupil behavior, representative rays, focus/zoom endpoints, and analysis prose all agree with the
 documented model.
 
+Do not add per-lens or per-batch test files, and remove any temporary verification tests before delivery; the corpus
+sweeps already validate every lens, and audited values belong in the `*.audit.md` log rather than in test assertions.
+Only a shared engine, UI, or data-contract regression justifies a new test, added as a minimal synthetic case to the
+matching subsystem suite (see `agent_docs/architecture/testing.md`).
+
 ## Sources of Truth
 
 - [`../src/lens-data/LENS_DATA_SPEC.md`](../src/lens-data/LENS_DATA_SPEC.md)

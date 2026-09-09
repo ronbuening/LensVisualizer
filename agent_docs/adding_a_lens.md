@@ -6,7 +6,8 @@
 2. Fill in the lens data following the template's inline field documentation
 3. Optionally add `src/lens-data/YourLens.analysis.md` beside the data file for the description panel
 4. Run `npm run typecheck && npm run format:check && npm run test` to verify types, formatting, and validation pass
-5. Done — the lens pipeline auto-registers all `src/lens-data/**/*.data.ts` files
+5. Done — the lens pipeline auto-registers all `src/lens-data/**/*.data.ts` files. Do not add a test file for the lens;
+   the corpus sweeps already cover it (see Validation below)
 6. `npm run generate:metadata` and `npm run build` automatically move any root-level lens files into the correct maker folder and rewrite the `LensDataInput` import for the nested path
 
 No manual imports or catalog edits required.
@@ -202,6 +203,12 @@ and conic height limits (K > 0). Rare designs with the aperture stop physically 
 Corpus tests add policy checks beyond the runtime validator, including structured patent metadata, the analysis-file
 metadata/section floor, catalog integrity, and production render diagnostics. Passing a single `buildLens()` call is
 therefore necessary but not the complete integration gate.
+
+Those corpus sweeps are the only tests a new lens needs. Do not commit a per-lens or per-batch test file that restates
+the transcription (names, glass resolutions, semi-diameters, labels, movement shifts, focus directions); any temporary
+test written while checking the batch must be removed before committing. If the work exposes a shared engine, UI, or
+data-contract bug, add the smallest synthetic case to the matching subsystem suite instead. The policy and the list of
+corpus sweeps are in [architecture/testing.md](architecture/testing.md).
 
 ### Zoom Lenses
 

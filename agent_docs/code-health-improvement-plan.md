@@ -243,7 +243,10 @@ Steps:
 1. New catalog-invariant test (mimic `__tests__/src/utils/catalog/lensSummaries.test.ts` style):
    every configuration group has ≥2 members, unique `order`s, exactly one visible member.
 2. New `__tests__/src/lens-data/nikon/nikon180400TcParity.test.ts`: for surfaces 1–45 assert `R`,
-   infinity-focus `d`, `nd`, and `sd` of TC-IN equal TC-OUT.
+   infinity-focus `d`, `nd`, and `sd` of TC-IN equal TC-OUT. (Consolidated on 2026-09-09 with the Canon
+   200-400 extender parity test into the table-driven
+   `__tests__/src/lens-data/opticalConfigurationParity.test.ts`, which requires a contract entry for every
+   `opticalConfiguration` group.)
 
 Verification: gate passes; editing one shared surface in only one file fails the parity test.
 
@@ -1287,8 +1290,8 @@ Steps: one `interactRefractiveSurface(direction, normal, point, n, nn, surface, 
 `trace/interactions.ts` (mimic `phaseRefractedDirection`) returning
 `{ direction } | { failureReason, clipReason }`; use at all four sites. Do NOT attempt tracer-stack
 unification here.
-Verification: gate passes; golden suite + Nikon PF parity test
-(`NikonAFSNikkor500mmf56EPFEDVR.test.ts` ~65–100) green; N6's new golden entries green.
+Verification: gate passes; golden suite + the sequential diffractive parity test
+(`__tests__/src/optics/diffractiveTrace.test.ts`) green; N6's new golden entries green.
 
 ### G3. Unify the twin paraxial engines
 

@@ -108,7 +108,7 @@ Read only the relevant focused doc before changing that area:
 - `agent_docs/architecture/mount-diagrams.md` - mount interface diagrams: data (`src/mounts/`), engine, renderer, pages, generator
 - `agent_docs/architecture/state-and-utilities.md` - reducer state, preferences, URL sync, themes, metadata helpers
 - `agent_docs/architecture/comparison.md` - comparison mode, shared sliders, compare URLs
-- `agent_docs/architecture/testing.md` - test layout and regression expectations
+- `agent_docs/architecture/testing.md` - test layout, regression expectations, and per-lens test retention policy
 - `agent_docs/glass-catalog-buildout.md` - chromatic dispersion catalog, resolver, and how to add Sellmeier entries safely
 - `agent_docs/glass-relabel-followup.md` - per-lens catalog mismatch relabel queue and audit workflow pointers
 - `agent_docs/odd-asphere-backfill.md` - per-lens queue for replacing even-order asphere refits with exact patent odd-order coefficients
@@ -173,6 +173,10 @@ Read only the relevant focused doc before changing that area:
 - Keep perspective-control movement in `src/optics/lensMovement.ts` unless explicitly upgrading full moved-optics analysis.
 - Update all four theme variants when changing theme color tokens.
 - Lens data and content are auto-discovered; avoid manual catalog/route edits unless changing the pipeline itself.
+- Do not commit per-lens or per-batch test files. The corpus sweeps already validate every catalog lens, so remove
+  temporary audit/verification tests before committing; only a shared engine, UI, or data-contract regression justifies
+  a new test, added as the smallest synthetic case to the matching subsystem suite (see
+  `agent_docs/architecture/testing.md`).
 - Lens mount and image-format metadata use canonical ids from `src/utils/catalog/lensTaxonomy.ts`; see
   `src/lens-data/LENS_MOUNT_FORMAT_OPTIONS.md` and do not free-type labels.
 - Mount interface diagrams are authored in `src/mounts/*.mount.ts` (`satisfies MountSpecInput`), rendered by the

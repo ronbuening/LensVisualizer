@@ -161,15 +161,16 @@ short of it — losing a millimetre here is correct, not a compromise.
 Edit the `sd` values in the `*.data.ts` surface table, and update the file's `NOTE ON SEMI-DIAMETERS` header block to
 say what changed and why.
 
-**If any surface you changed is aspheric and its rim departure is quoted anywhere, three files move together:**
+**If any surface you changed is aspheric and its rim departure is quoted anywhere, two files move together:**
 
 1. `*.data.ts` — the `sd`.
 2. `*.analysis.md` — every "at the data-file semi-diameters … µm" sentence. Recompute with
    `npm run audit:surface -- <file> --scan <label> <newSd>` and read the departure at the last row, or compute it at
    exactly the new height.
-3. `__tests__/src/lens-data/oddAsphereBackfill.test.ts` — the height and expected value in the assertion.
 
-Missing any one of these leaves the repo self-inconsistent; the test will catch #3 but nothing catches #2.
+Nothing automated checks #2, so recompute it every time and note the new values in the `*.audit.md` log. Do not add a
+per-lens departure test to close that gap; see the retention policy in
+[architecture/testing.md](architecture/testing.md).
 
 ## Step 8 — Verify
 

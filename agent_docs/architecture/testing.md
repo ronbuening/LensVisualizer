@@ -1,11 +1,7 @@
 # Testing Architecture
 
-## Audit test retention
-
-Tests and scripts written to verify a patent audit are temporary by default. Do not retain them unless absolutely necessary to prevent a specific regression in shared engine, UI, or data-contract behavior that existing tests cannot cover. Do not commit per-lens snapshots of prescription values, glass labels, calculated powers, rims, or motion merely to restate audited data. Run the existing catalog validators and audit commands; record sources, calculations, results and limitations in the companion `.audit.md` and task record. If an essential shared regression test is needed, add the smallest case to the existing subsystem suite, prefer a synthetic input over patent-specific constants, and document why it must remain. Remove temporary audit tests before delivery; historical test counts in audit logs describe the checks run at that time.
-
-
-Read this for test layout, coverage expectations, shared helpers, and where to add focused regression coverage.
+Read this for test layout, coverage expectations, shared helpers, the per-lens test retention policy, and where to add
+focused regression coverage.
 
 ## Test Stack
 
@@ -39,6 +35,32 @@ Keep tests that cover generated metadata, build scripts, or public assets in the
 - `__tests__/scripts/`
 - `__tests__/public/`
 
+`__tests__/src/lens-data/` holds only corpus-wide data-contract sweeps that walk every catalog lens. It has no
+per-maker subfolders and no per-lens files; see the retention policy below.
+
+## Per-Lens And Audit Test Retention
+
+Tests written while authoring, auditing, or batch-importing lens data are temporary by default. The corpus sweeps listed
+under "What Tests Cover" already build, validate, trace, and policy-check every catalog lens, so a new or re-audited lens
+needs no test of its own.
+
+- Do not commit per-lens or per-batch test files that restate audited data: display names, resolved glass names,
+  semi-diameters, group and element labels, movement shifts, focus directions, spacing endpoints, or coefficient
+  departures. Restating a transcription in a test does not verify it against the source; it only freezes it and adds
+  a second place to edit on every correction.
+- Verify a batch with the existing tools instead: `npm run test` for the corpus sweeps, `npm run audit:image-circle`,
+  `npm run audit:patent-figure`, `npm run audit:surface`, and `npm run generate:glass-reports`. Record sources,
+  calculations, results, and limitations in the companion `*.audit.md` and the task record. Historical test counts in
+  audit logs describe the checks run at that time.
+- Keep a test only when it guards shared engine, UI, or data-contract behavior that existing suites cannot cover. Add
+  the smallest case to the matching subsystem suite, prefer a synthetic prescription from
+  `__tests__/src/optics/testLensFixtures.ts` over patent constants, and say in a comment why it must remain. A real lens
+  may serve as the fixture for a general behavior when no synthetic input can (the diffractive and aberration-control
+  suites do this); the test name and assertions then describe the behavior, not the lens.
+- A new corpus-wide contract belongs in `__tests__/src/lens-data/` as an offender-collecting sweep over `LENS_CATALOG`,
+  never as a file scoped to one maker or one lens.
+- Remove temporary verification tests before committing.
+
 ## Shared Test Helpers
 
 Shared browser/router helpers remain at `__tests__/testUtils.tsx`. They cover:
@@ -55,12 +77,22 @@ Shared browser/router helpers remain at `__tests__/testUtils.tsx`. They cover:
 - localStorage seeding.
 - `history.replaceState` mocking.
 
+Optics tests share `__tests__/src/optics/testLensFixtures.ts`: the canonical `build()` wrapper, `apertureAt()`, six
+lazily memoized production lenses, and synthetic single-element fixtures for layout, keyframe, TIR, ghost, and miss cases.
+
 ## What Tests Cover
 
 Existing tests cover:
 
 - Pure optics functions and edge cases.
 - Lens build and data validation.
+- Corpus sweeps over every catalog lens: the full-catalog `validateLensData` pass (`validateLensData.test.ts`), render
+  trim and cross-gap diagnostics (`elementRenderDiagnostics.test.ts`), finite/unclipped representative rays
+  (`exactTraceCatalog.test.ts`), catalog and summary invariants under `__tests__/src/utils/catalog/`, and the
+  data-contract sweeps under `__tests__/src/lens-data/`: structured patent metadata (`patentMetadata.test.ts`), the
+  analysis-file metadata/section floor (`analysisFiles.test.ts`), exact focus-keyframe reproduction
+  (`focusKeyframes.test.ts`), and shared-prescription parity across switchable configuration groups
+  (`opticalConfigurationParity.test.ts`, which requires a contract entry for every `opticalConfiguration` group).
 - Golden-value trace regressions (`exactTraceGoldenValues.test.ts`): pinned EFL, image-plane, marginal/skew ray, fisheye
   chief-ray, and folded-fixture values for reference designs, plus Schott datasheet anchors for N-BK7/SF6 in
   `dispersion.test.ts`. These complement the finite/unclipped catalog smoke test — if a pin moves, absolute trace or
@@ -69,6 +101,10 @@ Existing tests cover:
   automatic Newtonian path resolution, side/front/back image-plane termination, second-surface coating accents, folded
   analysis guardrails, off-axis chief-ray/image-plane accuracy, meridional symmetry, and analytic focal/back-focus
   anchors.
+- Diffractive phase surfaces: the analytic folded plate fixture (`foldedDiffractiveTrace.test.ts`) and the sequential
+  engine contracts on the production Phase Fresnel design (`diffractiveTrace.test.ts`).
+- The aberration-control ring (`aberrationControl.test.ts`): two-position and centered thickness resolution, and the
+  ring reaching spherical, field, coma, bokeh, pupil, and chromatic analysis paths.
 - Aberration, distortion, vignetting, pupil aberration, bokeh, and diagram geometry.
 - Catalog/metadata utilities.
 - Reducer, preferences, URL sync, feature flags, and page-theme hooks.

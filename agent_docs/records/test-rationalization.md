@@ -151,3 +151,58 @@ All plan phases (0–8) are committed. Final numbers vs the pre-branch baseline:
 - Phases 2–8 of the approved plan: shared optics fixtures/hoisting, provably-subsumed deletions, mount
   `describe.each` restructure, zoom/pupil/dispersion clusters, UI/state clusters, entryServer/data merges,
   measured vitest config experiment.
+
+## Pass 2 — per-lens and batch test removal (2026-09-09, branch: ronbuening/TestRationalization)
+
+### Summary
+
+- Removed the per-lens and per-batch test files that restated audited lens data, ported the general engine checks
+  they carried into subsystem suites, and made the retention policy explicit in CLAUDE.md and the lens docs. The
+  policy paragraph pasted above the intro of two docs in #704 now lives as a proper section of
+  `agent_docs/architecture/testing.md`.
+
+### Changes
+
+- Deleted 21 batch/audit snapshot files under `__tests__/src/lens-data/` (Canon, Konica, Minolta, Nikon, Sony, and
+  Tamron batches added 2026-08-10 → 2026-09-08) plus the per-lens `oddAsphereBackfill`, `sigmaSemiDiameterGeometry`,
+  `canonRF24105Focus`, and `portraitHeliarAberrationControl` files, and the now-empty per-maker subfolders. These
+  pinned display names, resolved glass names, semi-diameters, group labels, movement shifts, focus directions, and
+  coefficient departures for specific lenses — transcription freezes, not behavior checks.
+- Ported general behavior into feature suites before deleting the carriers:
+  - `minoltaVarisoftFocus` → `__tests__/src/optics/aberrationControl.test.ts`: two-position and centered ring
+    thickness resolution derived from the authored ranges (the centered form still overrides the Varisoft block with
+    one increasing and one decreasing triple, which also covers the retired Portrait Heliar direction test) plus the
+    six analysis-path checks; the two Varisoft-only data assertions were dropped.
+  - `NikonAFSNikkor500mmf56EPFEDVR` → `__tests__/src/optics/diffractiveTrace.test.ts`: compat/prepared parity per
+    channel, same-index phase plate stays active, typed non-propagating-order failure. Its EFL and spacing pins were
+    already covered by the diffractive entry in `exactTraceGoldenValues.test.ts`.
+  - `fujifilmXF56Focus` → an `it.each` in the `conjugateK` describe of `optics.test.ts`: independent near-axis
+    image-height solve agreement across the five shared fixtures at focusT 0.5 and 1 (the 2026-04 XF 56 regression
+    guard, without the lens constant).
+- Consolidated `nikon180400TcParity` and `canon200400ExtenderParity` into the table-driven
+  `__tests__/src/lens-data/opticalConfigurationParity.test.ts`. It derives groups from `LENS_CATALOG`, fails when a
+  configuration group has no contract entry, and checks leading-surface parity, the single insertion gap, trailing
+  reuse (with or without re-solved spacings), and infinity/close `var` alignment per contract.
+- `focusKeyframePatentAudit` → `__tests__/src/lens-data/focusKeyframes.test.ts`: kept the corpus keyframe-exactness
+  sweep (now over `LENS_CATALOG`, offender-collecting), dropped the five per-lens `var` pins.
+- Pruned per-lens pins from shared suites: the Canon RF VCM focus-direction and label tests in
+  `groupMovement.test.ts`, the shift/tilt-limit snapshot in `perspectiveControl.test.ts`, and two
+  `elementRenderDiagnostics.test.ts` cases subsumed by the full-catalog sweeps in the same file.
+- The Sigma-only geometry policy was run against the whole corpus before deletion: it fails on Vivitar and
+  Voigtländer lenses, so it was a maker-specific tolerance rather than a general contract. The full-catalog
+  validator and render-diagnostics sweeps remain the geometry gate.
+- Docs: retention policy section in `agent_docs/architecture/testing.md` (with the corpus sweeps enumerated under
+  "What Tests Cover"), a Core Working Rule in CLAUDE.md/agents.md, and pointers in `adding_a_lens.md`,
+  `lens-data-integration-handoff.md`, `lens-patent-audit.md`, and `testing_recipes.md`. `odd-asphere-backfill.md`
+  and the patent-figure SD audit docs no longer instruct updating a departure test; `npm run audit:surface` is the
+  recompute step.
+
+### Verification
+
+- `npm run typecheck && npm run format:check && npm run lint && npm run test` — passed.
+- Suite size: 298 files / 2,777 tests → 271 files / 2,626 tests (−27 files, −151 tests), all passing.
+
+### Follow-ups
+
+- Historical records and `*.audit.md` logs still name the retired files; they describe the checks run at that time and
+  were left untouched per `record_keeping.md`.

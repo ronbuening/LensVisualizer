@@ -283,5 +283,6 @@ Still open, and larger than this audit:
 2. Consider promoting the coverage floor to a regression test once Section A is drained, so new lens data cannot
    reintroduce the fault.
 3. Source `JP 2015-161792 A`, and OCR the two image-only US applications.
-4. When a lens with quoted rim departures has its `sd` changed, the analysis prose, the `oddAsphereBackfill.test.ts`
-   assertion and the data file all have to move together — three places, easy to miss.
+4. When a lens with quoted rim departures has its `sd` changed, the analysis prose and the data file have to move
+   together — nothing automated checks the prose, so recompute it with `npm run audit:surface` every time. (The
+   per-lens departure test that once pinned these values was retired on 2026-09-09 under the test retention policy.)

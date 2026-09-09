@@ -73,6 +73,11 @@ asserting the error message mentions the failing rule. Find existing examples wi
 
 ## What NOT To Do
 
+- Don't add per-lens or per-batch test files. New or re-audited lenses are covered by the corpus sweeps
+  (`validateLensData`, `elementRenderDiagnostics`, `exactTraceCatalog`, and `__tests__/src/lens-data/`); a test that
+  pins one lens's names, glass, semi-diameters, labels, or movement values only freezes the transcription. Temporary
+  verification tests come out before committing. If a batch exposes a shared engine or data-contract bug, add the
+  smallest synthetic case to the subsystem suite (policy: `agent_docs/architecture/testing.md`).
 - Don't add benchmark-style timing assertions to normal tests — performance measurement lives in
   `npm run benchmark:optics-rendering` (intentionally excluded from the test gate).
 - Don't snapshot large SVG trees for optics correctness; assert specific numbers/attributes.
