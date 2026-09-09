@@ -15,7 +15,7 @@ function summary(overrides: Partial<LensSummary> & Pick<LensSummary, "key" | "na
 }
 
 describe("aggregatePatentRecords — party display order", () => {
-  /* Sanctioned by the code-health plan (C1 step 3 / U3 step 4): per-patent
+  /* Sanctioned in agent_docs/decisions.md (party display order): per-patent
      inventor/assignee display order is lens-file source order, first occurrence
      wins across merged lenses. Only identity-level lists sort. */
   it("preserves lens-file source order for merged authors and assignees", () => {

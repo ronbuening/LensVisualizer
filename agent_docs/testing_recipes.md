@@ -5,11 +5,11 @@ Copy-paste-ready patterns for writing tests. Layout and coverage expectations ar
 
 ## Ground Rules
 
-- Test files mirror the source tree under `__tests__/`:
-  `src/foo/bar.ts` → `__tests__/src/foo/bar.test.ts`. Never co-locate tests with source.
+- Test files mirror the source tree under `__tests__/` (`src/<dir>/<name>.ts` → `__tests__/src/<dir>/<name>.test.ts`);
+  layout details are in `agent_docs/architecture/testing.md`. Never co-locate tests with source.
 - Component tests need the jsdom pragma as the FIRST line of the file:
   `// @vitest-environment jsdom`
-- Run a single file while iterating: `npx vitest run __tests__/src/foo/bar.test.ts`
+- Run a single file while iterating: `npx vitest run __tests__/src/<dir>/<name>.test.ts`
   (or `npm test -- <pattern>`). Full gate: `npm run test`.
 - Optics tests: build real lenses with `buildLens()` from catalog data or a minimal inline
   prescription — don't hand-mock `RuntimeLens` objects; helpers cache by object identity and
@@ -52,12 +52,9 @@ import { renderWithLensContext } from "../../../testUtils.js";
 // import the component and the initial-state factory used by existing sibling tests
 ```
 
-Before writing state setup by hand, open an existing test of a sibling component (grep
-`renderWithLensContext` under `__tests__/`) and copy how it builds `LensState` — there is an
-initial-state factory; don't construct the state object literal yourself.
-
-Assert on behavior/content (`getByText`, role queries, `container.querySelector("svg")`), not on
-inline style strings.
+Build `LensState` with `makeTestLensState` (grep `renderWithLensContext` under `__tests__/` for a sibling to
+copy) rather than a hand-written state literal. Assert on behavior/content (`getByText`, role queries,
+`container.querySelector("svg")`), not on inline style strings.
 
 ## Recipe: Reducer / URL-State Round-Trip
 
@@ -73,15 +70,9 @@ asserting the error message mentions the failing rule. Find existing examples wi
 
 ## What NOT To Do
 
-- Don't add per-lens or per-batch test files. New or re-audited lenses are covered by the corpus sweeps
-  (`validateLensData`, `elementRenderDiagnostics`, `exactTraceCatalog`, and `__tests__/src/lens-data/`); a test that
-  pins one lens's names, glass, semi-diameters, labels, or movement values only freezes the transcription. Temporary
-  verification tests come out before committing. If a batch exposes a shared engine or data-contract bug, add the
-  smallest synthetic case to the subsystem suite (policy: `agent_docs/architecture/testing.md`).
-- Don't add benchmark-style timing assertions to normal tests — performance measurement lives in
-  `npm run benchmark:optics-rendering` (intentionally excluded from the test gate).
+- Per-lens or per-batch test files: see "Per-Lens And Audit Test Retention" in `agent_docs/architecture/testing.md`.
+- Don't add benchmark-style timing assertions to normal tests; performance measurement lives in
+  `npm run benchmark:optics-rendering`, which is excluded from the test gate.
 - Don't snapshot large SVG trees for optics correctness; assert specific numbers/attributes.
 - Don't mock modules from `src/optics/` in component tests unless the computation is genuinely
   too heavy — prefer a small real lens.
-- Generated-report scan tests (`unresolvedGlassScan` etc.) write files under
-  `agent_docs/generated/` — regenerate, don't hand-edit those outputs.

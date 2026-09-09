@@ -1,6 +1,8 @@
 # State And Utilities Architecture
 
-Read this for reducer state, preferences, URL sync, contexts, theme tokens, metadata utilities, and general shared helpers.
+Read this for reducer state, preferences, URL sync, contexts, theme tokens, metadata utilities, and general shared
+helpers. Per-folder inventories live in the generated `src/utils/**/readme.md` files; this document keeps the behavior
+that is not visible from a module's exports.
 
 ## State Shape
 
@@ -18,22 +20,23 @@ Lens viewer state is split into these slices:
 `src/types/state.ts` owns the type definitions, literal unions, and runtime guards for tab/view/mode strings. Invalid
 persisted or URL-provided strings should be normalized at the boundary.
 
-## Reducer And Persistence
+## Reducer, Persistence, And URL Sync
 
 State modules live under `src/utils/state/`.
 
-| Module | Purpose |
-| --- | --- |
-| `lensReducer.ts` | Pure reducer and initial-state derivation. Guards invalid analysis tab, view, and off-axis values. The `APPLY_URL_VIEW_STATE` action hydrates panels and sliders from the URL using the `VIEW_STATE_FIELDS` table from `lensViewUrlState.ts`. |
-| `useLensState.ts` | `useReducer` wrapper with preference and URL initialization. Calls `parseLensViewQuery` once and `parseLensKeysFromSearch` for catalog-validated lens-key resolution. |
-| `preferences.ts` | localStorage load/save with runtime fallback guards. |
-| `usePreferences.ts` | Persists reducer state back to localStorage. |
-| `useURLSync.ts` | Single 100 ms-debounced URL writer plus `popstate` hydration, route/legacy identity handling, and one-time zoom init. Route pages preserve `/lens/:slug` and `/compare/:slugA/:slugB`; legacy homepage query URLs are kept for backward compatibility. |
-| `lensViewUrlState.ts` | Pure parser/builder for shareable route query state. Owns the canonical `VIEW_STATE_FIELDS` table for reducer-hydrated panel booleans/selection; adding a shareable field also requires parser/build keys plus matching `URLState` and `PanelsSlice` additions. |
-| `lensViewUrlSync.ts` | Bridges reducer `LensState` to the URL surface and converts focal length ↔ `zoomT` against the loaded lens(es). |
-| `parseComparisonParams.ts` | Legacy comparison query parsing (kept for backward compat). Also exports `parseLensKeysFromSearch` for callers that have already parsed view state. |
-| `zoomConversion.ts` | Focal length to/from zoom slider conversion. |
-| `authorSortPreference.ts` | Guarded localStorage persistence for the author directory's alphabetical/patent-count sort. |
+- `lensReducer.ts` guards invalid analysis tab, view, and off-axis values. Its `APPLY_URL_VIEW_STATE` action hydrates
+  panels and sliders from the URL using the `VIEW_STATE_FIELDS` table owned by `lensViewUrlState.ts`.
+- `useLensState.ts` wraps `useReducer` with preference and URL initialization; it calls `parseLensViewQuery` once and
+  `parseLensKeysFromSearch` for catalog-validated lens-key resolution.
+- `useURLSync.ts` is the single 100 ms-debounced URL writer plus `popstate` hydration, route/legacy identity handling,
+  and one-time zoom init. Route pages preserve `/lens/:slug` and `/compare/:slugA/:slugB`; legacy homepage query URLs
+  are kept for backward compatibility.
+- `lensViewUrlState.ts` is the pure parser/builder and single source of truth for shareable query state. To add a
+  shareable field, follow `agent_docs/adding_url_state.md`.
+- `lensViewUrlSync.ts` bridges reducer `LensState` to the URL surface and converts focal length to and from `zoomT`
+  against the loaded lens(es) through `zoomConversion.ts`.
+- `parseComparisonParams.ts` parses legacy comparison query URLs and is kept for backward compatibility.
+- `preferences.ts` / `usePreferences.ts` load and persist localStorage preferences behind runtime fallback guards.
 
 `rayDensity` is a local preference, not a shareable URL parameter. Keep its runtime guard in `src/types/state.ts`,
 load/save handling in `preferences.ts` / `usePreferences.ts`, and reducer field guard in sync when adding density modes.
@@ -49,6 +52,7 @@ shareable view state:
 - Single-lens optical configuration uses `cfg`; the parser accepts only a bounded catalog-key shape, and lens-aware
   initialization/popstate handling validates it against the canonical lens's `opticalConfiguration` group. Invalid,
   stale, and cross-group values fall back to the canonical prescription and disappear on the next URL write.
+  Comparison identity stays in `/compare/:slugA/:slugB`, so `cfg` is ignored and omitted in compare mode.
 - Single-lens selection uses `el`; comparison selection uses `a_el` and `b_el`.
 - Overlay flags: `gm` (Abbe/glass-map modal), `chr` (chromatic-aberration overlay), `ptz` (Petzval-curvature overlay),
   `mv` (lens-group movement overlay mode: `focus`, `zoom`, or `combined`), `ad` (analysis drawer); `tab` names the
@@ -62,94 +66,53 @@ shareable view state:
   because the cam meaning is lens-specific.
 - `ai` is reserved for future analysis-tab item state and should not be used until a concrete tab item UI exists.
 - Ray density intentionally stays out of this URL surface and persists only through localStorage preferences.
-- Comparison configuration identity stays in `/compare/:slugA/:slugB`, so `cfg` is ignored and omitted in compare mode.
 
 `useOverlayState` keeps only the aspheric-comparison element open state (per-element modal lifecycle that does not
 belong in a shareable URL). All other diagram overlays live in the panels slice.
 
 ## Contexts
 
-`src/utils/state/LensContext.ts` exports:
-
-- `LensStateContext`
-- `LensDispatchContext`
-- `PanelStateContext`
-- `usePanelCtx`
-
-The panels context value is `state.panels` directly. The reducer preserves this object across slider dispatches, which
-keeps panel consumers from rerendering unnecessarily during slider changes.
+`src/utils/state/LensContext.ts` exports `LensStateContext`, `LensDispatchContext`, `PanelStateContext`, and the
+`useLensCtx` / `useLensDispatch` / `usePanelCtx` hooks. The panels context value is `state.panels` directly; the reducer
+preserves this object across slider dispatches, which keeps panel consumers from rerendering during slider changes.
 
 ## Theme System
 
-Theme modules live under `src/utils/theme/`.
-
-| Module | Purpose |
-| --- | --- |
-| `themes.ts` | Theme factory and four theme definitions: dark, light, darkHC, lightHC. |
-| `themeConstants.ts` | Shared theme-toggle icons/labels. |
-| `themePreferences.ts` | Theme-mode conversion and system dark/high-contrast resolution. |
-| `usePageTheme.ts` | Resolves page theme from prefs and media query state. |
-| `usePageThemeToggle.ts` | Adds dark/high-contrast toggle cycling for static pages. |
-
-When adding or changing color tokens, update all four theme definitions.
+Theme modules live under `src/utils/theme/`. `themes.ts` builds the four variants (dark, light, darkHC, lightHC) from
+one factory; `themePreferences.ts` resolves theme mode against system dark/high-contrast media queries, and
+`usePageTheme.ts` / `usePageThemeToggle.ts` resolve and cycle the theme for static pages. When adding or changing color
+tokens, update all four theme definitions; see `agent_docs/theme_tokens.md`.
 
 ## Catalog And Metadata Utilities
 
-Catalog and metadata modules live under `src/utils/catalog/`, content registries live under `src/utils/content/`, and
-JSON-LD helpers live under `src/utils/seo/`.
+Catalog modules live under `src/utils/catalog/`, content registries under `src/utils/content/`, and JSON-LD helpers under
+`src/utils/seo/`. The relationships worth knowing:
 
-| Module | Purpose |
-| --- | --- |
-| `lensCatalog.ts` | Auto-registers lens data and lens analysis markdown via `import.meta.glob`. |
-| `lensSummaries.ts` | Generated lightweight lens metadata and freshness lists for index-style pages that must not ship prescriptions. |
-| `lensTaxonomy.ts` | Canonical lens mount ids and image-format dimensions used by lens data and the lens index. |
-| `lensMetadata.ts` | SEO metadata, maker extraction, page titles/descriptions, canonical URLs, JSON-LD helpers. |
-| `lensPatentMetadata.ts` | Patent subtitle, inventor attribution, and patent-reference derivation (re-exported by `lensMetadata.ts`). |
-| `authorCatalog.ts` | Generated inventor directory: slug/name lookup, patents per party, assignee/co-author grouping. |
-| `assigneeCatalog.ts` | Generated assignee directory with slug and name lookup. |
-| `authorAssignees.ts` | Author directory entries stratified by assignee, plus the assignee filter used by `/authors`. |
-| `authorBiographies.ts` | Curated inventor biographies with sources, keyed by author name. |
-| `patentRecords.ts` | Pure patent-record aggregation and jurisdiction labels — the shared leaf under `patentCatalog.ts` and `authorCatalog.ts` (no module-scope index). |
-| `patentCatalog.ts` | Patent index built from lens summaries: records, country/assignee groups, Espacenet URLs (re-exports the leaf's aggregator). |
-| `searchCatalog.ts` | Ranked lens-name/patent-number/author search over generated metadata. |
-| `relationshipGraph.ts` | Focus-party patent relationship graph consumed by the relationship map page. |
-| `makerDetails.ts` | Maker display names, descriptions, and metadata. |
-| `mountDetails.ts` | Mount display names, descriptions, and metadata. |
-| `imageFormatDetails.ts` | Image-format display names, dimensions, descriptions, and metadata. |
-| `homepageContent.ts` | Generated homepage/article/lens content registries. |
-| `changelogData.ts` | Update-history entries rendered on `/updates`. |
-| `changelogHelpers.ts` | Changelog grouping and archive helpers. |
-| `structuredData.ts` | JSON-LD structured-data helpers. |
-
-## Style Utilities
-
-Style modules live under `src/utils/style/`.
-
-| Module | Purpose |
-| --- | --- |
-| `pageStyles.ts` | Shared static-page base styles and fallback link styles. |
-| `sliderStops.ts` | Slider stop helpers and shared stop collections. |
-| `styles.ts` | Shared inline style factories and static style constants. |
+- `lensCatalog.ts` auto-registers lens data and companion analysis markdown via `import.meta.glob`; do not edit the
+  catalog by hand.
+- `lensSummaries.ts` is generated lightweight metadata (plus freshness lists) for index-style pages, search, and the
+  author/assignee/patent catalogs, which must never ship full prescriptions.
+- `lensTaxonomy.ts` owns the canonical mount and image-format ids (`src/lens-data/LENS_MOUNT_FORMAT_OPTIONS.md`);
+  `makerDetails.ts`, `mountDetails.ts`, and `imageFormatDetails.ts` hold the display metadata for taxonomy pages.
+- `patentRecords.ts` is the pure, index-free leaf shared by `patentCatalog.ts` and `authorCatalog.ts`;
+  `lensPatentMetadata.ts` is re-exported by `lensMetadata.ts` so lens pages and cards share patent subtitles.
+- `src/utils/content/changelogData.ts` is the hand-maintained update history (rules in `agent_docs/changelog.md`);
+  `src/utils/seo/siteUrls.ts` normalizes page URLs to Cloudflare Pages' trailing-slash direct-`200` form while
+  preserving static-file URLs.
 
 ## Other Shared Utilities
 
-| Module | Purpose |
-| --- | --- |
-| `featureFlags.ts` | Feature flag controls. |
-| `errorReporting.ts` | Builds prefilled GitHub issue URLs with component, lens, stack, and browser context. |
-| `errorBeacon.ts` | Reports boundary, window, and rejection errors as privacy-sanitized GoatCounter events; startup events wait briefly for the async analytics script instead of being dropped. |
-| `useMediaQuery.ts` | Responsive breakpoint hook. |
-| `appConfig.ts` | Application-level constants. |
-| `perfProbe.ts` | Dev-only timing wrapper that logs a `console.table` summary every 10 calls; no-op in production. |
+- `src/utils/errorReporting.ts` builds the prefilled GitHub issue URLs used by every `ErrorDisplay`.
+- `src/utils/errorBeacon.ts` reports boundary, window, and rejection errors as privacy-sanitized GoatCounter events;
+  startup events wait briefly for the async analytics script instead of being dropped.
+- `src/utils/perfProbe.ts` is a dev-only timing wrapper that logs a `console.table` summary every 10 calls; no-op in
+  production.
+- `src/utils/style/` holds the shared inline style factories, slider stop collections, and static-page base styles;
+  reuse them before adding local style constants.
 
 ## Type System
 
-Definitions live in `src/types/`:
-
-- `optics.ts` - `LensData`, `LensDataInput`, `RuntimeLens`, `PerspectiveControlConfig`, surfaces, elements, rays,
-  transforms, chromatic data.
-- `state.ts` - `LensState`, reducer actions, preferences, URL state, display/ray/panel unions and guards.
-- `theme.ts` - theme tokens, closures, and variants.
-- `index.ts` - barrel re-exports.
-
-Lens data files use `satisfies LensDataInput` for compile-time validation and are also validated at runtime.
+Definitions live in `src/types/`: `optics.ts` (lens data, runtime lens, surfaces, elements, rays, transforms,
+chromatic data), `state.ts` (reducer state, actions, preferences, URL state, display/ray/panel unions and guards),
+`theme.ts` (tokens, closures, variants), and `index.ts` (barrel). Lens data files use `satisfies LensDataInput` for
+compile-time validation and are also validated at runtime.

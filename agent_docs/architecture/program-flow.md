@@ -1,51 +1,8 @@
 # Program Flow
 
-High-level data and control flow for LensVisualizer. Use this as a map before jumping into the focused architecture docs.
-
-## Build And Deploy Pipeline
-
-The production site is static output from Vite plus prerendered route HTML. Cloudflare Pages serves the generated
-`dist/` directory. Route patterns live in `routeManifest.tsx`; concrete routes for prerendering, the sitemap, and SEO
-audits are enumerated in `src/generated/build-metadata.json`.
-
-```mermaid
-flowchart TD
-  subgraph Source[Source content]
-    LensData[src/lens-data maker data files]
-    LensNotes[src/lens-data analysis markdown]
-    Articles[src/content markdown articles]
-    MakerPrefixes[scripts/maker-prefixes.mjs]
-    RouteManifest[src/routes/routeManifest.tsx]
-    App[src pages components optics utilities]
-  end
-
-  LensData --> Organize[scripts/organize-lens-data.mjs]
-  Organize --> Metadata[scripts/generate-build-metadata.mjs]
-  LensNotes --> Metadata
-  Articles --> Metadata
-  MakerPrefixes --> Metadata
-  Metadata --> Generated[src/generated build metadata]
-  Generated --> ConcreteRoutes[concrete prerender routes and freshness]
-
-  App --> ViteClient[Vite client build]
-  Generated --> ViteClient
-  RouteManifest --> ViteClient
-  ViteClient --> Dist[dist static assets]
-
-  App --> ViteSSR[Vite SSR build of src/entry-server.tsx]
-  RouteManifest --> ViteSSR
-  ViteSSR --> SSRBundle[dist-server entry-server.js]
-  Generated --> Prerender[scripts/prerender.mjs]
-  ConcreteRoutes --> Prerender
-  SSRBundle --> Prerender
-  Prerender --> Coverage[manifest coverage validation]
-  Coverage --> HTML[prerendered route HTML and 404.html]
-  HTML --> Dist
-
-  Generated --> Sitemap
-  Sitemap --> Dist
-  Dist --> Cloudflare[Cloudflare Pages]
-```
+High-level data and control flow for LensVisualizer. Use this as a map before jumping into the focused architecture
+docs: the build/deploy pipeline and content registries are described in `routing-and-content.md`, viewer wiring in
+`viewer-and-diagram.md`, and the engine in `optics-engine.md`.
 
 ## Route And Page Shell
 
@@ -93,52 +50,10 @@ flowchart TD
   ClientOnly --> Viewer[src/components/layout/LensViewer.tsx]
 ```
 
-## Lens Viewer Runtime
-
-`LensViewer` owns the interactive session around one runtime lens. Controls dispatch state updates, URL sync preserves
-shareable view state, and the diagram panel recomputes derived optical output from the current state.
-
-```mermaid
-flowchart LR
-  LensPage[LensPage or ComparePage ClientOnly] --> LensViewer[src/components/layout/LensViewer.tsx]
-  LensViewer --> StateHook[src/utils/state/useLensState.ts]
-  StateHook --> Reducer[src/utils/state/lensReducer.ts]
-  StateHook --> Preferences[src/utils/state/usePreferences.ts]
-  LensViewer --> UrlSync[src/utils/state/useURLSync.ts]
-  UrlSync --> UrlState[src/utils/state/lensViewUrlState.ts]
-  LensViewer --> CompareOrchestration[src/comparison/useComparisonOrchestration.ts]
-  LensViewer --> OverlayHook[src/components/hooks/useOverlays.ts]
-
-  Reducer --> Context[src/utils/state/LensContext.ts]
-  Preferences --> Context
-  UrlSync --> Context
-  CompareOrchestration --> Context
-  OverlayHook --> Context
-  Context --> Chrome[src/components/layout/lensViewer/ViewerChrome.tsx]
-  Context --> Content[src/components/layout/lensViewer/ViewerContent.tsx]
-  Context --> ViewerOverlays[src/components/layout/lensViewer/ViewerOverlays.tsx]
-
-  Chrome --> Controls[src/components/controls]
-  Content --> SingleLens[src/components/layout/SingleLensContent.tsx]
-  Content --> CompareContent[src/comparison/ComparisonContent.tsx]
-  SingleLens --> DiagramPanel[src/components/layout/LensDiagramPanel.tsx]
-  SingleLens --> Description[src/components/layout/DescriptionPanel.tsx]
-  CompareContent --> CompareLayout[src/comparison/ComparisonLayout.tsx]
-  CompareContent --> SharedSliders[src/comparison/SharedSlidersBar.tsx]
-  CompareLayout --> DiagramPanel
-  DiagramPanel --> Drawer[Analysis drawer]
-
-  Controls --> Actions[lens view ray theme actions]
-  SharedSliders --> Actions
-  Actions --> Reducer
-  Reducer --> UrlSync
-  DiagramPanel --> Drawer
-```
-
 ## Diagram Computation
 
-The diagram is still SVG-only. Hook output is assembled into layers, then `DiagramSVG` renders lens geometry, stops,
-rays, overlays, labels, error tiers, and analysis affordances.
+The diagram is SVG-only. Hook output is assembled into layers, then `DiagramSVG` renders lens geometry, stops, rays,
+overlays, labels, error tiers, and analysis affordances.
 
 ```mermaid
 flowchart TD
@@ -181,8 +96,8 @@ flowchart TD
 
 ## Optics And Analysis Engine
 
-Most optical code is pure and receives the runtime lens object plus current viewer state. Analysis tabs should compute
-from slider state at render time instead of caching slider-dependent results in `buildLens()`.
+Most optical code is pure and receives the runtime lens object plus current viewer state. Analysis tabs compute from
+slider state at render time instead of caching slider-dependent results in `buildLens()`.
 
 ```mermaid
 flowchart TD
@@ -191,7 +106,7 @@ flowchart TD
   Inputs --> Field[src/optics/fieldGeometry.ts]
   Inputs --> Movement[src/optics/lensMovement.ts]
   Inputs --> Prepared[src/optics/compat.ts prepareRuntimeState]
-  Runtime --> Prepared[src/optics/compat.ts prepareRuntimeState]
+  Runtime --> Prepared
 
   Projection --> TraceCore[src/optics/rayTrace.ts]
   Field --> TraceCore
@@ -214,41 +129,8 @@ flowchart TD
   AnalysisJobs --> Cardinal[src/optics/cardinalElements.ts]
   AnalysisJobs --> Groups[src/optics/groupMovement.ts]
 
-  Aberrations --> DrawerTabs[src/components/display analysis tabs]
-  Distortion --> DrawerTabs
-  Vignetting --> DrawerTabs
-  Pupils --> DrawerTabs
-  Bokeh --> DrawerTabs
-  Cardinal --> DrawerTabs
-  Groups --> DrawerTabs
+  Aberrations & Distortion & Vignetting & Pupils & Bokeh & Cardinal & Groups --> DrawerTabs[src/components/display analysis tabs]
   RayResults --> DiagramLayers[Diagram ray layers and overlays]
   Movement --> DiagramLayers
   DrawerTabs --> Renderers[src/components/layout/lensDiagram/analysisTabRenderers.tsx]
-```
-
-## Catalog And Content Feedback Loops
-
-Lens data and markdown content are auto-discovered. Generated metadata feeds route listings and SEO, while runtime lens
-construction validates prescription details and glass identifiers when a viewer needs the lens.
-
-```mermaid
-flowchart LR
-  LensFiles[src/lens-data data files] --> Catalog[src/utils/catalog/lensCatalog.ts]
-  LensFiles --> Metadata[scripts/generate-build-metadata.mjs]
-  AnalysisFiles[src/lens-data analysis markdown] --> Metadata
-  Articles[src/content markdown] --> Metadata
-  Metadata --> Generated[src/generated build metadata]
-  Metadata --> Routes[concrete route list]
-
-  Generated --> LensIndex[src/pages/lensIndex filters and results]
-  Generated --> SEO[SEO metadata, freshness, homepage, updates]
-  Routes --> Prerender[scripts/prerender.mjs]
-  Routes --> Sitemap[scripts/generate-sitemap.mjs]
-
-  Catalog --> BuildLens[src/optics/buildLens.ts]
-  BuildLens --> Runtime[RuntimeLens]
-  Runtime --> Viewer[LensViewer]
-  AnalysisFiles --> Markdown[ThemedMarkdown lens notes]
-  Articles --> Markdown
-  Markdown --> SEO
 ```

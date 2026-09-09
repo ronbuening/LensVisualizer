@@ -1,45 +1,26 @@
 # UI Components Architecture
 
-Read this for shared controls, display components, content components, markdown rendering, analysis drawer tabs, charts,
-and homepage UI.
+Read this for the non-obvious behavior and cross-component rules of shared controls, display components, content
+components, markdown rendering, analysis drawer tabs, charts, and homepage UI. Per-folder inventories live in the
+generated `src/components/**/readme.md` files; viewer orchestration and the SVG diagram layers are covered by
+[`viewer-and-diagram.md`](viewer-and-diagram.md).
 
 > Mount interface diagram components are in `src/components/mount/` (`MountDiagram`, `MountDiagramPanel`); the maker
 > and mount pages cross-link via `src/components/content/LinkListSidebar.tsx` (also used, with `#anchor` items, for
 > the lens-library group-navigation sidebar), placed by `src/components/content/SidebarLayout.tsx`. See
 > [`mount-diagrams.md`](mount-diagrams.md).
 
-## Layout And Navigation Components
+## Navigation And Search
 
-| Module | Purpose |
-| --- | --- |
-| `lensViewer/ViewerChrome.tsx` | Viewer breadcrumb, selectors, comparison buttons, ray/cardinal controls, and view toggles. |
-| `lensViewer/ViewerContent.tsx` | Switches between `SingleLensContent` and comparison-mode content. |
-| `lensViewer/ViewerOverlays.tsx` | Site/author/primer modals and mobile about footer. |
-| `TopBar.tsx` | Lens selectors, compare button, and about buttons. |
-| `ControlsBar.tsx` | Theme/ray/ray-density/chromatic/scale toggles with compact and full modes. |
-| `ViewToggleBar.tsx` | Generic view-mode toggle used by mobile and desktop layouts. |
-| `OverlayModal.tsx` | Generic backdrop/modal/close button. |
-| `DropdownPanel.tsx` | Portal-based dropdown panel for settings/theme overlays. |
-| `PageNavBar.tsx` | Shared navigation bar for static pages. |
-| `StaticPageShell.tsx` | Shared shell for static pages with breadcrumbs, theme toggles, and page base layout. |
-| `BreadcrumbBar.tsx` | Lens page breadcrumb navigation. |
-| `SingleLensContent.tsx` | Single-lens diagram and description composition. |
-| `search/CatalogSearchBox.tsx` | Shared search form with direct exact-match routing and optional live suggestions. |
-| `search/CatalogSearchResults.tsx` | Grouped lens-name, patent-number, and author results for `/search`. |
+- `src/components/search/CatalogSearchBox.tsx` navigates an exact lens-name/patent/author hit straight to its page and
+  sends every other query to `/search?q=`. The homepage mounts it below the hero; `PageNavBar` and the viewer's
+  `BreadcrumbBar` provide a persistent Search link on every other route.
+- `SidebarLayout` is a sticky column on wide viewports (>= 1200 px) and stacks above the content on narrow ones; the
+  stacked layout is the SSR/first-render default so crawlers see the links.
+- `DropdownPanel` (used by `LensSelector`) and `HelpTooltipButton` render through portals with viewport positioning and
+  Escape handling; reuse them instead of adding inline dropdowns.
 
 ## Controls
-
-| Module | Purpose |
-| --- | --- |
-| `DiagramHeader.tsx` | Title/spec header with patent-inventor links, plus ray mode, ray density, and chromatic controls; memoized and ref-forwarding. |
-| `RayToggles.tsx` | On-axis/off-axis toggle buttons with typed off-axis cycling. |
-| `CardinalControls.tsx` | Feature-flagged cardinal element and dimension overlay toggles. |
-| `ChromaticControls.tsx` | COLOR master toggle plus R/G/B channel buttons. |
-| `DiagramControls.tsx` | Zoom, focus, optional aberration-control, aperture, and movement sliders plus interaction-signal wiring. Focus/zoom sliders expose compact MOTION actions when modeled group movement is available; shift/tilt sliders expose independent zero-reset actions. |
-| `SliderControl.tsx` | Reusable slider with label, value, endpoints, optional compact action slot, and optional collapsible content. |
-| `SliderResetButton.tsx` | Shared accessible zero-reset action for single-lens and comparison movement sliders. |
-| `CollapseButton.tsx` | Shared LESS/MORE toggle used by controls and legend. |
-| `LensSelector.tsx` | Portal-based custom lens dropdown with viewport positioning and Escape handling. |
 
 Companion `*.analysis.md` content and its desktop/mobile view controls are gated by `ENABLE_ANALYSIS_VIEW`. When the
 flag is disabled, individual lens pages remain diagram-only and do not load or advertise the companion markdown.
@@ -56,133 +37,70 @@ Lens-specific aberration controls are declared by `LensData.aberrationControl`. 
 present, using the data-provided label, endpoint labels, optional center label, step, and readout labels. Controls with
 a center label use signed `-1..1` travel with the center/default at `0`; controls without one retain `0..1` travel.
 
-## Display Components
+`DiagramControls` focus/zoom sliders expose a compact MOTION action (through `SliderControl`'s action slot) only when
+modeled group movement is available. Shift/tilt sliders expose independent zero-reset actions through the shared
+`SliderResetButton`, which comparison mode's shared sliders reuse.
 
-| Module | Purpose |
-| --- | --- |
-| `ElementInspector.tsx` | Selected element properties, glass, aspheric data, and chromatic data. Renders a "Compare to sphere →" link for aspheric elements via the optional `onOpenAsphericCompare` prop. |
-| `DiagramLegend.tsx` | Legend with swatches, ray descriptions, and aberration readouts. |
-| `AbbeDiagram.tsx` | Abbe glass map on Vd x Nd axes. |
-| `AboutButtonRow.tsx` | Shared about button group. |
-| `AboutFooter.tsx` | Mobile footer delegating to `AboutButtonRow`. |
-| `DescriptionPanel.tsx` | Lens markdown description panel using `ThemedMarkdown`. |
-| `ThemedMarkdown.tsx` | Shared article/description markdown renderer. |
+## Display And Content Components
 
-## Content Components
-
-`src/components/content/` contains reusable article/archive/update UI that is shared by pages and the homepage:
-
-| Module | Purpose |
-| --- | --- |
-| `ArticleCard.tsx` / `ArticleList.tsx` | Article cards and lists used by homepage and archives. |
-| `ArticleTOC.tsx` | Floating article table-of-contents with scrollspy; opt-in via `toc: true`. |
-| `SeriesCard.tsx` | Archive card for article series. |
-| `ChangelogList.tsx` | Date-grouped changelog list with type badges, rendered by `/updates`. |
-| `LinkListSidebar.tsx` | Bordered navigational panel of router/`#anchor` links (maker↔mount cross-links, lens-library group nav). Renders the panel only. |
-| `SidebarLayout.tsx` | Places a sidebar beside the content as a sticky column on wide viewports (≥1200 px) and stacks it above the content on narrow ones; stacked layout is the SSR/first-render default for crawlable links. |
+`ElementInspector` renders its "Compare to sphere" link for aspheric elements only when the optional
+`onOpenAsphericCompare` prop is supplied. `DescriptionPanel` renders lens notes through `ThemedMarkdown`'s `description`
+variant. `ArticleTOC` (in `src/components/content/`) is opt-in per article via `toc: true` frontmatter.
 
 ## Analysis Drawer
 
-The analysis drawer is opened from `DiagramViewport` and controlled by `analysisDrawerOpen` / `analysisDrawerTab` in the
-panels slice.
-
-Desktop uses vertical tabs on the left; mobile uses horizontal tabs on top. Tab content unmounts when the drawer is
-closed, preventing hidden analysis work during slider drag.
+The drawer is opened from `DiagramViewport` and controlled by `analysisDrawerOpen` / `analysisDrawerTab` in the panels
+slice. Desktop uses vertical tabs on the left; mobile uses horizontal tabs on top. Tab content unmounts when the drawer
+is closed, preventing hidden analysis work during slider drag.
 
 Analysis tabs use stable `src/optics/*` imports only. The temporary engine selector has been removed; do not add a
 user-facing or developer-only old-vs-new selector back to analysis components.
 
 `AnalysisDrawerContent` owns global analysis notices. It shows a folded-optics notice for `L.isFoldedOptics`, allows the
 mirror-safe aberrations path, and replaces complex tabs that still assume a sequential front-to-rear paraxial model with
-an explicit unsupported message. When adapting a tab for mirror systems, remove it from the folded unsupported set only
-after its math uses generalized stop/image-plane ray intersections, has fixture-backed tests, and has clear UI copy for
-folded image-plane conventions.
+an explicit unsupported message. Remove a tab from the folded unsupported set only after its math uses generalized
+stop/image-plane ray intersections, has fixture-backed tests, and has clear UI copy for folded image-plane conventions.
 
-New analysis tabs require:
-
-1. Add tab metadata in `src/components/layout/lensDiagram/analysisTabs.ts`.
-2. Create tab content under `src/components/display/analysis/`.
-3. Add the renderer mapping in `src/components/layout/lensDiagram/analysisTabRenderers.tsx`.
-4. Add reducer/URL/persistence typing only if the tab can be externally addressed.
-
-## Analysis Display Modules
-
-| Module | Purpose |
-| --- | --- |
-| `analysis/AberrationsPanel.tsx` | Thin container wiring shared data hooks into spherical, field-curve, astigmatism, and coma sections. |
-| `analysis/aberrations/` | Presentational aberration sections and focused data hooks. |
-| `analysis/OpticalSummaryTab.tsx` | Current-state summary tab for prepared-state first-order, aperture, field, and image-plane metrics. |
-| `analysis/ComaTab.tsx` | Coma drawer tab. |
-| `analysis/BokehTab.tsx` | Bokeh drawer tab using the prepared-state preview pair and shared preview content. |
-| `analysis/DistortionTab.tsx` | Distortion tab; consumes deferred/frozen analysis inputs through `analysisJobsForState2`. |
-| `analysis/DistortionFieldGrid.tsx` | Traced chief-ray field grid against ideal rectilinear grid. |
-| `analysis/FocusBreathingTab.tsx` | Dynamic focal-length/focus breathing readouts. |
-| `analysis/VignettingTab.tsx` | Vignetting/relative illumination tab; consumes deferred/frozen inputs through `analysisJobsForState2`. |
-| `analysis/PupilAberrationTab.tsx` | Entrance/exit pupil shift tab. |
-| `analysis/BokehPreviewGrid.tsx` | SVG blur-brightness and surviving-pupil grid. |
+To add a tab, follow the four registration points in `agent_docs/adding_an_analysis_tab.md`. `AberrationsPanel` is a
+thin container over the section components and data hooks in `src/components/display/analysis/aberrations/`; the
+distortion and vignetting tabs consume deferred/frozen inputs through `analysisJobsForState2`.
 
 ## Display Overlays
 
-`src/components/display/overlays/` holds diagram/modal overlays whose lifecycle is managed by viewer state:
-
-| Module | Purpose |
-| --- | --- |
-| `AsphericComparisonOverlay.tsx` | Modal content for aspheric deviation analysis. Renders the element with aspheric (solid) and spherical-replacement (dashed) profiles overlaid, with an exaggeration slider, zoom/pan, and click-to-measure sag delta. Opened from `ElementInspector`; state managed in `useOverlayState` - the only overlay that lives outside the URL-shareable panels slice. |
-| `LensGroupMovementOverlay.tsx` | Diagram overlay for inferred focus/zoom/combined lens-group movement. It stacks groups vertically, uses the fixed focus plane as x=0, and keeps unavailable modes visible but disabled in the side radio rail. |
+`src/components/display/overlays/` holds diagram/modal overlays whose lifecycle is managed by viewer state.
+`AsphericComparisonOverlay.tsx` overlays the aspheric (solid) and best-fit-sphere (dashed) profiles with an exaggeration
+slider, zoom/pan, and click-to-measure sag delta; it is opened from `ElementInspector` and its state lives in
+`useOverlayState`, the only overlay outside the URL-shareable panels slice. `LensGroupMovementOverlay.tsx` stacks
+inferred focus/zoom/combined groups vertically, uses the fixed focus plane as x=0, and keeps unavailable modes visible
+but disabled in the side radio rail.
 
 ## Shared Chart Primitives
 
-Use `src/components/display/analysis/charts/` before adding chart-local SVG axis or tick math.
-
-| Module | Purpose |
-| --- | --- |
-| `chartMath.ts` | Linear scales, plot area, symmetric domains, ticks, polyline/path generation, compact formatters. |
-| `SvgChartFrame.tsx` | Plot frame, grid lines, axes, reference lines, labels, and legend helper. |
-| `analysis/analysisUi.tsx` | Shared compact metric/readout rows and empty states. |
-
-Current chart consumers include distortion, vignetting, pupil aberration, and field curvature. `StandardFieldCurvaturePlot`
-is a compatibility wrapper around the configurable `FieldCurvaturePlot`.
+Use `src/components/display/analysis/charts/` (`chartMath.ts` scales/ticks/paths, `SvgChartFrame.tsx` frame/axes/legend)
+and the metric/empty-state rows in `src/components/display/analysis/analysisUi.tsx` before adding chart-local SVG axis or
+tick math. `StandardFieldCurvaturePlot` is a compatibility wrapper around the configurable `FieldCurvaturePlot`.
 
 ## Relationship Map Components
 
-`src/components/relationshipMap/` renders the patent relationship map at `/relationships`, mirroring the mount-diagram
-engine/renderer split: `layout.ts` is a pure, React-free geometry engine that maps a `RelationshipGraph` (from
-`src/utils/catalog/relationshipGraph.ts`) to a deterministic, collision-free two-ring radial layout; `RelationshipMap.tsx`
-renders that layout as inline SVG (edges → nodes → labels) with `useViewBoxZoom` pan/zoom, hover edge highlighting, and
-colorblind-safe role shapes (circle inventor / square assignee), translating node clicks into recenter/select callbacks
-rather than navigating from inside the `<svg>`. `RelationshipEntityPicker.tsx` is the searchable inventor/assignee chooser
-(full grid + compact dropdown) and `PatentDetailCard.tsx` is the selected-patent panel (a deliberate copy of `AuthorPage`'s
-local `PatentCard` whose party names recenter the map instead of linking to author pages). The page owns URL/`focus` state.
+`src/components/relationshipMap/` mirrors the mount-diagram engine/renderer split. `layout.ts` is a pure, React-free
+engine that maps a `RelationshipGraph` (from `src/utils/catalog/relationshipGraph.ts`) to a deterministic,
+collision-free two-ring radial layout; `RelationshipMap.tsx` renders it as inline SVG (edges, then nodes, then labels)
+with `useViewBoxZoom` pan/zoom, hover edge highlighting, and colorblind-safe role shapes (circle inventor / square
+assignee), turning node clicks into recenter/select callbacks rather than navigating from inside the `<svg>`.
+`PatentDetailCard.tsx` is a deliberate copy of `AuthorPage`'s local `PatentCard` whose party names recenter the map
+instead of linking out. The page owns URL `focus` state.
 
-The catalog-wide `/relationships/universal` route uses `universalRelationshipGraph.ts` and the pure
+The catalog-wide `/relationships/universal` route uses `src/utils/catalog/universalRelationshipGraph.ts` and the pure
 `universalLayout.ts` engine. Connected components are partitioned into corporate-family hubs and standalone assignees
-with at least eight patent-assignment edges; components without a qualifying hub fall back to their highest-degree node.
-Each graph node is assigned to its nearest deterministic hub and laid out in capacity-limited local rings. The layout then
-contracts those neighborhoods into a hierarchical-affinity hub graph. Center, orbit, and angular-neighbor selection use
-lexicographic priority: corporate-history edge count first, unique cross-neighborhood patent count second, and
-neighborhood node count third. Circular insertion keeps the strongest pairs adjacent, while compact collision-free
-orbits preserve the halo boundaries. `UniversalRelationshipMap.tsx` renders those soft labeled halos inside each
-disconnected-network boundary, keeps all original edges at the same edge-kind brightness within and between
-neighborhoods, and renders nodes above both boundary layers.
+with at least eight patent-assignment edges (falling back to the highest-degree node); each node joins its nearest
+deterministic hub in capacity-limited local rings, and the neighborhoods are contracted into a hierarchical-affinity hub
+graph. Center, orbit, and angular-neighbor selection use lexicographic priority: corporate-history edge count, then
+unique cross-neighborhood patent count, then neighborhood node count. `UniversalRelationshipMap.tsx` renders labeled
+halos inside each disconnected-network boundary, keeps every edge at its edge-kind brightness within and between
+neighborhoods, and draws nodes above both boundary layers.
 
 ## Markdown Renderer
 
-`ThemedMarkdown` supports both `article` and `description` variants:
-
-- Article variant: heading IDs, React Router internal links, special image renderers, GFM, math, and table styling.
-- Description variant: compact typography, themed colors, GFM, math, and safe external links.
-
+`ThemedMarkdown` has an `article` variant (heading IDs, React Router internal links, special image renderers, GFM,
+math, table styling) and a `description` variant (compact typography, themed colors, GFM, math, safe external links).
 Keep article-specific behavior in the renderer rather than duplicating markdown component maps in pages.
-
-## Homepage Components
-
-| Module | Purpose |
-| --- | --- |
-| `HeroSection.tsx` | Homepage hero and primary calls to action. |
-| `RecentLenses.tsx` | Recently added lens cards. |
-| `QuickNavCards.tsx` | Navigation cards for lenses, makers, and articles. |
-| `IndexNavBar.tsx` | Compact homepage bar linking the mount, format, author, and article indexes. |
-| `HomeFooter.tsx` | Homepage footer with about links and credits. |
-
-The homepage mounts `CatalogSearchBox` directly below the hero. `PageNavBar` and the viewer's `BreadcrumbBar` both
-provide a persistent Search link on every other route.
