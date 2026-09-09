@@ -29,3 +29,14 @@ Patent: JP2017-227799A, Example 1
 - Visually rechecked Example 1 in local `patents/JP2017227799A.pdf`; L14 remains `1.56883 / 56.0`, code 569560.
 - Schott N-BAK4 reproduces the coordinate and already has coefficient-backed catalog coverage in the project.
 - Relabeled L14 as an N-BAK4 catalog equivalent while leaving Nikon's production supplier unspecified. The UV-cured composite element remains intentionally non-Sellmeier; no geometry changed.
+
+## 2026-09-08 — Source and live-view audit
+
+Original local JP2017227799A Example1: all27 rows pp.14–15, four conics/22 polynomial coefficients and equation p.13 verified; Figure1 p.21 rendered600dpi. Source uses1+K, so no conic changes. BF already air-equivalent under paragraph62; no cover/filter conversion or added planes. Retained the0.05mm compound resin layer, which is part of L12.
+
+- Source object leg105.61 plus near track144.40 gives0.25001m object-to-image, replacing0.28m. Published D12/BF endpoints retained including0.02mm residual; fixed-image Gr2/stop motion−6.30mm and Gr1−0.02mm documented. Matrix gives105.570861mm near object leg, beta−.219053524; infinity EFL28.409897 and track144.38 reproduce summary.
+- Figure-supported rims refined using105.91mm vertex span, separating front mechanical shoulders from optical arcs. Resin exit remains21.8mm because23mm trial gives negative0.203mm edge. This limitation remains follow-up. Adopted rims pass surface/image-circle and renderer no-trim checks.
+- All isolated medium powers recalculated (source-listed L14/L15/L16 match). Source28.41/75.42 labels and f1.45 shortcut corrected. Glass names are inferred counterparts, unsupported ED/APD/production/process claims removed. Source pre-stop L24 PgF.5899 retained via runtime dPgF.0004286; copiedL23/L27 departures.014 removed.
+- Three source regressions pass. Production baseline and local infinity/near/half/f16 viewed. Near25cm D12 1.42 BF44.77 EFL27.79; half50cm D12 4.56 BF41.62 EFL28.10; f16 stop2.42mm. Resin interface and both motion groups remain visible.
+
+Batch21–30 full checks and commit pending.

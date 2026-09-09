@@ -13,7 +13,7 @@
 
 ## Progress
 
-20 / 200 have received source and live-view review. Lenses 1–10 are committed (lenses 3–10: `743644d1`); lenses 11–20 have completed review and all batch gates. Lens 4 retains one explicitly documented source limitation: equation (A) is absent from both inspected WO and JP grant copies, so its existing conic interpretation is not independently reverified. No remaining lenses are claimed complete.
+30 / 200 have received source and live-view review. Lenses 1–20 are committed (lenses 3–10: `743644d1`; lenses 11–20: `785c35a2`). Lenses 21–30 form the next validated commit. Source limitations remain explicit: lens 4's unavailable equation; figure/geometry limits in 21–22, 24–25, 27, 29–30; lens 26's table/summary discrepancy; and lens 28's unresolved L31 material. No later lenses are claimed complete.
 
 ## Frozen queue
 
@@ -33,22 +33,22 @@
 | 12 | ricoh-gr1-28f28 | 2026-03-20T17:28:09.000Z | `src/lens-data/ricoh/RicohGR28f28.data.ts` | Complete — changed |
 | 13 | ricoh-gr3-28f28 | 2026-03-20T18:45:40.000Z | `src/lens-data/ricoh/RicohGR328f28.data.ts` | Complete — source inference retained |
 | 14 | ricoh-gr4-28f28 | 2026-03-20T18:58:35.000Z | `src/lens-data/ricoh/RicohGR428f28.data.ts` | Complete — changed |
-| 15 | nikkor-z-70-200f28 | 2026-03-21T01:23:07.000Z | `src/lens-data/nikon/NikonNikkorZ70200f28.data.ts` | Reviewed — source TL conflict; batch gates pending |
-| 16 | nikkor-z-24-70-f28 | 2026-03-23T02:11:54.000Z | `src/lens-data/nikon/NikonZ2470f28.data.ts` | Reviewed; batch gates pending |
-| 17 | nikon-z-mc-105f28 | 2026-03-23T02:29:12.000Z | `src/lens-data/nikon/NikonZ105f28.data.ts` | Reviewed; batch gates pending |
+| 15 | nikkor-z-70-200f28 | 2026-03-21T01:23:07.000Z | `src/lens-data/nikon/NikonNikkorZ70200f28.data.ts` | Committed — changed; source limitations documented |
+| 16 | nikkor-z-24-70-f28 | 2026-03-23T02:11:54.000Z | `src/lens-data/nikon/NikonZ2470f28.data.ts` | Committed — changed; source limitations documented |
+| 17 | nikon-z-mc-105f28 | 2026-03-23T02:29:12.000Z | `src/lens-data/nikon/NikonZ105f28.data.ts` | Committed — changed; source limitations documented |
 | 18 | nikon-z-135f18-plena | 2026-03-23T03:27:14.000Z | `src/lens-data/nikon/NikonZ135f18.data.ts` | Complete — changed |
 | 19 | fujifilm-xf80-f28-macro | 2026-03-23T04:13:56.000Z | `src/lens-data/fujifilm/FujifilmXF80f28.data.ts` | Complete — changed |
 | 20 | nikon-z-26f28 | 2026-03-23T04:13:56.000Z | `src/lens-data/nikon/NikonZ26f28.data.ts` | Complete — changed |
-| 21 | nikon-micro-60f28g | 2026-03-23T16:37:23.000Z | `src/lens-data/nikon/NikonAFSMicroNikkor60f28G.data.ts` | Pending |
-| 22 | nikkor-85f14g | 2026-03-24T11:40:43.000Z | `src/lens-data/nikon/NikonNikkor85f14G.data.ts` | Pending |
-| 23 | nikkor-af-s-58f14g | 2026-03-24T14:53:42.000Z | `src/lens-data/nikon/Nikon58f14GDesignCandidate.data.ts` | Pending |
-| 24 | nikkor-85f14d | 2026-03-25T00:15:56.000Z | `src/lens-data/nikon/Nikon85f14D.data.ts` | Pending |
-| 25 | nikkor-85f14-ais | 2026-03-25T00:22:32.000Z | `src/lens-data/nikon/Nikon85f14AIS.data.ts` | Pending |
-| 26 | nikkor-z-85f18s | 2026-03-25T00:26:08.000Z | `src/lens-data/nikon/NikonZ85f18S.data.ts` | Pending |
-| 27 | nikon-afs-28f14e | 2026-03-25T22:50:59.000Z | `src/lens-data/nikon/NikonAFS28f14E.data.ts` | Pending |
-| 28 | nikkor-z-28f28 | 2026-03-25T23:53:37.000Z | `src/lens-data/nikon/NikonZ28f28.data.ts` | Pending |
-| 29 | nikkor-28f14d | 2026-03-26T00:25:20.000Z | `src/lens-data/nikon/NikonAF28f14D.data.ts` | Pending |
-| 30 | nikon-z-58f095-noct | 2026-03-26T03:35:48.000Z | `src/lens-data/nikon/NikonZ58f095SNoct.data.ts` | Pending |
+| 21 | nikon-micro-60f28g | 2026-03-23T16:37:23.000Z | `src/lens-data/nikon/NikonAFSMicroNikkor60f28G.data.ts` | Reviewed — rim limitation; batch gates pending |
+| 22 | nikkor-85f14g | 2026-03-24T11:40:43.000Z | `src/lens-data/nikon/NikonNikkor85f14G.data.ts` | Reviewed — rim limitation; batch gates pending |
+| 23 | nikkor-af-s-58f14g | 2026-03-24T14:53:42.000Z | `src/lens-data/nikon/Nikon58f14GDesignCandidate.data.ts` | Reviewed — changed; batch gates pending |
+| 24 | nikkor-85f14d | 2026-03-25T00:15:56.000Z | `src/lens-data/nikon/Nikon85f14D.data.ts` | Reviewed — rim limitation; batch gates pending |
+| 25 | nikkor-85f14-ais | 2026-03-25T00:22:32.000Z | `src/lens-data/nikon/Nikon85f14AIS.data.ts` | Reviewed — rim limitation; batch gates pending |
+| 26 | nikkor-z-85f18s | 2026-03-25T00:26:08.000Z | `src/lens-data/nikon/NikonZ85f18S.data.ts` | Reviewed — source summary conflict; batch gates pending |
+| 27 | nikon-afs-28f14e | 2026-03-25T22:50:59.000Z | `src/lens-data/nikon/NikonAFS28f14E.data.ts` | Reviewed — resin rim limitation; batch gates pending |
+| 28 | nikkor-z-28f28 | 2026-03-25T23:53:37.000Z | `src/lens-data/nikon/NikonZ28f28.data.ts` | Reviewed — material unresolved; batch gates pending |
+| 29 | nikkor-28f14d | 2026-03-26T00:25:20.000Z | `src/lens-data/nikon/NikonAF28f14D.data.ts` | Reviewed; batch validated |
+| 30 | nikon-z-58f095-noct | 2026-03-26T03:35:48.000Z | `src/lens-data/nikon/NikonZ58f095SNoct.data.ts` | Reviewed; batch validated |
 | 31 | ultron-50f2 | 2026-03-26T03:46:55.000Z | `src/lens-data/voigtlander/VoigtlanderUltron50f2.data.ts` | Pending |
 | 32 | ultron-28f2-asph | 2026-03-26T11:21:39.000Z | `src/lens-data/voigtlander/VoigtlanderUltron28f2.data.ts` | Pending |
 | 33 | canon-rf100f28-macro | 2026-03-26T20:02:38.000Z | `src/lens-data/canon/CanonRF100f28.data.ts` | Pending |
@@ -290,9 +290,9 @@ All ten source and live-view reviews are complete. Individual `*.audit.md` files
 | 12 | Ricoh GR1 28mm f/2.8 | Rim proportions; equivalent BF 17.218034 mm; inferred 0.35 m unit travel 2.76229 mm; f/2.86 shortcut; glass provenance | US5760973: Figure 1 p. 2, equation p. 15, Example 1 p. 16 |
 | 13 | Ricoh GR III | S2 A6 exponent; Figure 5 rims; documented source filter-order repair and equivalent BF; inferred 0.10 m unit focus; 18.28 mm and f/2.87 labels | US20190154946A1 Example 5 and Figures 5/23, independently checked in US10948683B2 |
 | 14 | Ricoh GR IV | Figure 2 rims; equivalent omitted-plate gap; inferred 0.12 m front-focus station; f/2.89; corrected focus direction and conflicting source glass-name interpretations | JP2025069516A Example 2, Tables 5/6, Figure 2, equation paragraph 88, motion paragraph 35 |
-| 15 | NIKKOR Z 70–200mm f/2.8 | Two conics; source station FNOs; near distance about 1 m; Takeru Uehara attribution; figure rims and all isolated focal lengths; glass provenance and source TL conflict | WO2020105104A1: equation p. 19, Table 1 pp. 22–25, Figure 1 p. 64 |
-| 16 | NIKKOR Z 24–70mm f/2.8 | Four conics; true 50 mm middle station and gaps; zoom-only BF; f/2.92; source-derived zoom focus endpoints and inferred physical iris schedule; rims, labels and glass provenance | WO2020136749A1: equation p. 30, Table 1 pp. 34–37, Figure 4 p. 83 |
-| 17 | NIKKOR Z MC 105mm f/2.8 | Source finite distances 0.376121/0.287563 m and keyframe; f/2.89; partial-dispersion normal-line conversion; all isolated powers; rims and glass qualifications | WO2022097401A1: equation p. 25, Table 1 pp. 27–29, Figure 1 p. 55 |
+| 15 | NIKKOR Z 70–200mm f/2.8 | Two conics; source station FNOs; near distance about 1 m; Takeru Uehara attribution; figure rims and all isolated focal lengths; glass provenance and source TL conflict | Committed — changed; source limitations documented |
+| 16 | NIKKOR Z 24–70mm f/2.8 | Four conics; true 50 mm middle station and gaps; zoom-only BF; f/2.92; source-derived zoom focus endpoints and inferred physical iris schedule; rims, labels and glass provenance | Committed — changed; source limitations documented |
+| 17 | NIKKOR Z MC 105mm f/2.8 | Source finite distances 0.376121/0.287563 m and keyframe; f/2.89; partial-dispersion normal-line conversion; all isolated powers; rims and glass qualifications | Committed — changed; source limitations documented |
 | 18 | NIKKOR Z 135mm Plena | Conic; equivalent rear-filter spacing; inferred near distance 0.824554 m; rims, isolated powers, normal-line conversion, material claims and f/1.85 shortcut | WO2024147268A1: equation/Table 1 pp. 20–22, conditions pp. 56–57, Figure 1 p. 66 |
 | 19 | Fujifilm XF80 macro | Missing equivalent cover-plate distance; f/2.88; inferred life-size conjugate; rims and isolated powers; glass/OIS provenance | US20180246292A1: Figure 1 p. 2, paragraphs 75–81 p. 39, Tables 1–4 p. 40 |
 | 20 | NIKKOR Z26 | Four conics; restored S10 A16/A18; f/2.90; six air-separated components; rims and glass/resin provenance; inferred 0.20 m station | WO2023190222A1: paragraphs 195–210 pp. 33–34, Table 1 pp. 35–36, Figure 1 p. 63 |
@@ -321,3 +321,64 @@ All ten lenses passed source-specific regressions, surface/image-circle audits a
 The initial full run identified missing metadata blocks in the Z50 and GR1 notes; both were corrected. The glass report also caught two incompatible S-BAL41 labels introduced during this batch. Both now use inferred M-BACD12, with explicit compatible-resolver regressions. Final checks above include these corrections.
 
 This revision is the validated 11–20 batch checkpoint. Changelog publication remains consolidated at the final audit milestone as recorded above. Next work follows the frozen queue at lens 21.
+
+## Batch 21–30
+
+Lens 21 (Micro-Nikkor 60G) is in progress against original local US7898744.pdf Example 2. Equation on p.21 uses source K in 1−K(h/r)²; both stored conics need the standard K=source−1 conversion. Table2 pp.22–23 preserves three macro stations. Independent source matrices give near distances0.2294494/0.1772020m and β−0.4999545/−0.9999785, rather than the current0.185m endpoint. Exact Figure3 p.4 rendered at600dpi. Public analysis, corrected data/rims and local UI still pending; do not count21 reviewed yet.
+
+### Lens21 reviewed — Micro-Nikkor60G
+
+Local US7898744 Example2/Figure3/Table2 verified and production/local UI checked. Corrected both source-conic conversions, D17 label, source-derived finite-focus labels/keyframe, aperture shortcut and unsupported glass/process/production claims; refined figure-supported rims. Four source tests plus surface/image-circle checks pass. L4/G4 figure-versus-clearance mismatch is explicitly queued in its audit log; conservative rims retained. No cover/filter surfaces in the source. Batch21–30 commit pending.
+
+### Lens22 reviewed — AF-S Nikkor85G
+
+Local US8767319 Example1/Figure1 verified. Source aperture1.45, field28.666° and near0.84537m replace rounded marketing values in numerical surfaces; stop motion, geometry and glass coordinates verified. Qualified catalog counterparts and revised unsupported analysis claims. Three regressions and surface/image-circle audits pass; production/local infinity, near and half-focus/f16 checked. Figure front rim conflicts with the source aperture's minimum pupil diameter, so working semi-diameters remain and the source discrepancy is queued for follow-up. BF already air-equivalent; no cover/filter added. Batch21–30 commit pending.
+
+### Lens23 reviewed — 58mm design candidate
+
+Original JP2013019993 Example2 checked. Correct source conics retained; numerical f58.0216/f1.45/field41.72 corrected, optical rims refined to the exact figure, candidate status surfaced, unsupported production/drive claims removed. Ldn now uses inferred J-LLF6; finite focus is explicitly reconstructed. Four regressions and surface/image-circle checks pass; production/local infinity/near/half/f16 verified. No cover/filter belongs to Example2. Batch21–30 gates/commit pending.
+
+### Lens24 reviewed — 85mm D candidate
+
+Original US5640277 Example2 checked: ten elements/nine components corrected, source aperture1.43 and near0.955706m applied, D18 internal gap relabeled, all isolated element powers recalculated and glass names qualified. Figure-derived rims refined; S12/S14 kept at15.8mm to avoid hidden stop-adjacent trimming (follow-up documented). Source contains no cover/filter. Three regressions, surface/image-circle and production/local live checks pass; batch21–30 gates/commit pending.
+
+### Lens25 reviewed — AI-S85mm
+
+Retrieved original US4396256 from Google Patents; verified Embodiment1 scaled85×, Figure1 and floating-focus text. Refined front/rear rims, recalculated isolated powers, qualified glasses and corrected moving-body annotations. Reconstructed extension now matches the assumed0.85 m endpoint while preserving the explicitly assumed2 mm floating differential. No cover/filter is present. Three regressions plus surface/image-circle and production/local infinity/near/midpoint/f16/motion-chart checks pass. Other drawing rims retain documented edge/clearance limitations. Batch21–30 gates/commit pending.
+
+### Lens26 reviewed — Z85mm
+
+Retrieved original JP2020173366A, verified Example3 and Figure3. Corrected omitted-plate equivalent spacing, figure rims, D13 label, f1.85 and isolated element powers; qualified catalog proxies and removed unsupported APD/production claims. Explicit source0.8m focus station retained; table/summary EFL and track contradictions documented. Three regressions plus surface/image-circle and production/local infinity/near/half/f16 checks pass. Batch21–30 gates/commit pending.
+
+### Lens27 reviewed — AF-S28mm f1.4E
+
+Original JP2017227799A Example1 and Figure1 verified. Retained all source surfaces/aspheres and compound resin; BF already air-equivalent. Corrected source near0.25001m, figure rims, isolated powers, f1.45 shortcut and neutral glass claims; preserved L24 source PgF via runtime-normal-line conversion. Resin exit retains documented figure/edge-thickness limit. Three regressions plus surface/image-circle and production/local infinity/near/half/f16 checks pass. Batch21–30 gates/commit pending.
+
+### Lens28 reviewed — Z28mm
+
+Original WO2022071249A1 Example2 verified, including scan-resolved OCR discrepancy; all aspheres retained. Corrected omitted-filter equivalent gap, optical rims, D17/f2.909 labels and isolated medium powers. Resin retained; incompatible L31 glass label replaced by unresolved source coordinate. Three regressions, surface/image-circle and production/local infinity/near/half/f16 checks pass. Batch21–30 gates/commit pending.
+
+### Lens29 source review — AF28mm f1.4D; live check pending
+
+US5315441 Embodiment1 Table1/equation and Figure1 verified. Corrected conic convention, figure rims with two documented constraints, inferred stop split, near39.7cm/source-f1.41 labels, shape labels, isolated powers and glass/process qualifications. No cover/filter rows. Three regressions and surface/image-circle checks pass. Production baseline inspected; local live review is pending because the Mac is locked. Not included in completed count.
+
+### Lens30 in progress — Z58mm Noct
+
+WO2019229849A1 Example1, original scanned table/equation pp.20–23 inspected. Found legacy filter rows29–30 that violate the lens specification; remove them with equivalent rear air14.5+1.6/1.5168+1=16.5548523206751mm (source rounded16.55). No live baseline yet: Mac locked. Filter omission, figure/material/motion source review and three regressions plus surface/image-circle checks now pass. Facing S3/S4 retain an explicit clearance limitation. Production/local live checks and batch gates/commit remain pending; not marked complete.
+
+### Batch21–30 validation, before live completion
+
+On 2026-09-08, full suite passed2877 tests in328 files. Typecheck passed after adding a numeric accumulator type to the58mm candidate's source-sag regression. Format check and lint passed. Glass report generation and its15 tests in8 files passed. Build prerendered1267 routes with1043 sitemap URLs and224 noindex exclusions; existing nonfatal chunk-size warning remains. Individual surface/image-circle checks passed for the ten lenses. Live verification of29–30 remains pending on the locked Mac, so the batch is not committed or counted complete. Generated reports and build-maintained line references accompany the eventual batch commit.
+
+### Lens31 evidence preparation — Ultron50mm
+
+Missing original US2627204.pdf retrieved from Google Patents (https://patentimages.storage.googleapis.com/b9/af/79/9003ea70ba704d/US2627204.pdf), kept ignored. ExampleII table p.6 and Figure3 p.2 inspected, figure rendered600dpi. Existing choice of ExampleII d2=.06395 over conflicting claim4=.08393 is source-grounded; source field55° differs from the hosted35mm-format46.8° crop label and needs explicit distinction. No source cover/filter. No production edits or completed status yet; browser baseline unavailable while Mac locked.
+
+
+### Batch 21–30 live completion — 2026-09-09
+
+Browser access restored. Lens 29 local infinity/near/midpoint/f16 and motion chart inspected: near40cm, D2=10.38, Stop–G3=7.55, D16=.85, BF=41.63mm; midpoint79cm, EFL29.04mm, f16 stop2.59mm. G1 fixed, three source moving groups visible, maximum travel3.88mm.
+
+Lens 30 production baseline and local infinity/near/midpoint/f16/motion chart inspected: source aperture.98; near50cm, D22=21.29, EFL62.75mm; midpoint100cm, D22=11.98, EFL61.14mm, f16 stop2.93mm. G1/G2 move together18.61mm and GR stays fixed; excluded filter has no modeled surfaces. Both live reviews agree with source regressions and documented rim limitations.
+
+All ten lenses now have source and live review. The preceding validation results remain applicable: no implementation changed after those checks; only audit completion records were appended. This batch commit includes the ten data/analysis/audit pairs, their ten regression files, generated glass reports and this record. Lens 31 has source preparation only.

@@ -33,3 +33,15 @@ Patent: WO 2022/071249 A1
   J-LLF6 reproduces L11 at `1.53172 / 48.78`, while J-SFH1 reproduces L23 at `1.80809 / 22.74`; both now supply
   qualified spectral proxies without assigning Nikon's production supplier.
 - Synchronized the analysis. No prescription, APD, or geometry changed.
+
+## 2026-09-08 — Source and live-view review
+
+Local original WO2022071249A1 Example2: equation(A) p.20, Table2 pp.26–28 and Figure3 p.47 (600dpi). All19 modeled source rows,10 medium coordinates,3 conics and16 nonzero asphere coefficients verified. Sourcekappa1→standardK0 retained. S14 A8−6.64821e−10 is correct in the scan; English OCR−6.68421e−10 rejected.
+
+- Separate filter20–21 omitted; correct final equivalent-air gap11.223→13.137852320675106mm, consistent with sourceBfa13.138. Removed stale claims that the camera model supplied the missing plate/gap. L24 compound resin remains.
+- SourceFNO2.909, f28.824, fullfield76.058 surfaced; D17 relabeled from BF. Source0.19m physical object-image label retained; equivalent-air model gives0.189450650m and beta−.203245665. Sourcegap arrays conserve13mm and give G2/G3 objectward1.681/4.792mm, outer groups/stop fixed.
+- Optical rims refined from40.927mm vertex-span calibration, excluding mechanical shoulders and callouts. No runtime trimming at0/.5/1. Surface/image-circle audits pass. All isolated medium focal lengths recalculated.
+- L31 source1.53113/55.73 incompatible with oldS-BAL41. Keptunmatched531557; catalog/exact-coordinate web search did not establish a compatible commercial name. BSC6 index is similar but dispersion incompatible. Resin supplier/curing method and production/process claims removed or qualified.
+- Three source regressions pass. Production baseline and local infinity/near/half/f16 inspected: near19cm D5/D13/D17=3.17/1.34/8.49 EFL24.89; half38cm gaps4.01/2.89/6.10 EFL26.76; f16 stop1.87mm.
+
+UnresolvedL31 material remains follow-up. Batch21–30 fullgates/commit pending.

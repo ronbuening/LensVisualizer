@@ -1,311 +1,120 @@
-# Nikon AF-S NIKKOR 58mm f/1.4G — Patent Analysis
+# Nikon AF-S NIKKOR 58mm f/1.4G — Design Candidate
+
+## Patent Reference and Design Identification
 
 **Patent:** JP 2013-019993 A
-**Inventor:** Haruo Sato (佐藤治夫), Nikon Corporation
+
+**Inventor:** Haruo Sato (佐藤 治夫)
+
 **Assignee:** Nikon Corporation
-**Filed:** July 8, 2011
+
+**Filed:** July 8, 2011 (JP 2011-151822)
+
 **Published:** January 31, 2013
-**Embodiment analyzed:** Example 2 (OS2)
-**Production Lens:** AF-S NIKKOR 58mm f/1.4G, announced October 2013
 
----
+**Embodiment analyzed:** Example 2 (OS2), Figure 3, Tables 4 and 5.
 
-## 1. Production Example Identification
+This is a patent design candidate associated with the catalog's 58mm product name, not an established production prescription. The source has nine elements in five air-separated components and four optical groups. No production modification, such as splitting a cemented pair, is established by the patent.
 
-Patent JP2013-019993A contains four numerical examples. The production AF-S NIKKOR 58mm f/1.4G is most closely represented by **Example 2 (OS2)**, identified through the following convergent criteria:
+Table 4 specifies f=58.0216mm, FNO1.450, half-field20.86°, image height21.6mm, total track92.20380mm and BF38.70000mm. Numerical controls use f/1.45; f/1.4 remains the marketing designation.
 
-| Criterion | Production (Nikon) | Example 2 | Match |
-|---|---|---|---|
-| Focal length | 58 mm | 58.0216 mm | ✓ |
-| Maximum aperture | f/1.4 | f/1.450 | ✓ (patent convention rounds to f/1.4) |
-| Half-field angle | ~20.4° (2ω = 40°50') | ω = 20.86° | Close |
-| Element count | 9 | 9 | ✓ |
-| Aspherical elements | 2 | 2 | ✓ |
-| Asphere locations | Front element + rear element (blue in Nikon diagram) | Surface 1 (La front) + Surface 15 (Ldp2 rear) | ✓ |
-| Image circle | FX (43.2 mm Ø) | Y = 21.6 mm (43.2 mm Ø) | ✓ |
+## Optical Architecture
 
-**Example 4** (f = 51.6 mm) was eliminated immediately by its substantially different focal length. **Example 1** was eliminated because its aspherical surfaces are on surfaces 5 (inside the second-group cemented doublet) and 15 (rear triplet), which does not match the Nikon lens construction diagram showing the *front* element highlighted as aspherical. **Example 3** has only 8 elements (it omits the cemented doublet in group Gb, using a single positive meniscus instead), which does not match the production specification of 9 elements.
+The four groups have source focal lengths +90.95005, −104.24131, −84.89588 and +35.19680mm. Ga is the front positive aspherical singlet. Gb combines the cemented Lb1 pair with negative meniscus Lb2. Gc is a negative cemented pair after the stop. Gd is a positive cemented triplet with an aspherical exit surface.
 
-### The Group-Count Discrepancy
+The cemented pairs and triplet remain intact. Surface8 is the stop, so there are15 source surfaces including the stop, not an additional sixteenth surface. Group roles below are qualitative optical interpretations; individual focal lengths are isolated-medium calculations in air.
 
-The patent organizes the design into **4 lens groups** (Ga, Gb, Gc, Gd), which is the patent's own structural designation. However, within this 4-group framework, Gb contains two air-separated components (the cemented doublet Lb1 and the singlet Lb2), giving **5 air-separated lens components** overall: La | Lb1(cemented) | Lb2 | Lc(cemented) | Ld(triplet). Nikon specifies the production lens as 9 elements in **6 groups**, where "groups" in Nikon's published specifications means air-separated components.
+## Element-by-Element Analysis
 
-The most parsimonious explanation for the 5→6 group discrepancy is that Nikon split the Lb1 cemented doublet (Lb1p + Lb1n) in the production design into two air-separated elements:
+### La — Pos. Meniscus (1× Asph)
 
-- **Patent Example 2:** La | Lb1(cemented doublet) | Lb2 | Lc(cemented doublet) | Ld(cemented triplet) = 5 air-separated components
-- **Inferred production:** La | Lb1p(singlet) | Lb1n(singlet) | Lb2 | Lc(cemented doublet) | Ld(cemented triplet) = 6 air-separated components
+nd = 1.74443, νd = 49.53. Glass: Unidentified glass (nd 1.74443, vd 49.53). Isolated-in-air focal length ≈ +91.0 mm.
 
-This modification is common in Nikon's production process — breaking a cemented junction provides manufacturing flexibility and may improve chromatic correction at the cost of an additional air–glass reflection (mitigated by Nano Crystal Coat).
+Front positive collector with aspherical correction for spherical aberration and lower coma. Ga (Group 1, positive).
 
-The cameragossip.github.io patent database notes that "this patent does not appear to match the production lens exactly — in particular the second aspherical element in the production lens is different from the one in the patent." This suggests additional production changes beyond the doublet split.
+### Lb1p — Positive Meniscus
 
----
+nd = 1.75500, νd = 52.34. Glass: J-LASKH2 (Hikari, inferred coordinate counterpart). Isolated-in-air focal length ≈ +59.8 mm.
 
-## 2. Design Architecture
+Front element of cemented chromatic corrector doublet. Gb (Group 2, negative).
 
-The lens is a **modified Gauss type** with a positive–negative–negative–positive four-group structure, specifically optimized for sagittal coma correction — the same objective that drove Yoshiyuki Shimizu's design of the legendary Ai Noct-NIKKOR 58mm f/1.2 in 1977. The patent describes this as an improvement on the classical Gauss/Xenotar arrangement, which is known to suffer from coma (particularly sagittal coma) at large apertures.
+### Lb1n — Negative Meniscus
 
-From object to image, the four groups are:
+nd = 1.48749, νd = 70.31. Glass: S-FSL5 (OHARA, inferred coordinate counterpart). Isolated-in-air focal length ≈ -99.0 mm.
 
-| Group | Patent Designation | Power | Elements | Role |
-|---|---|---|---|---|
-| Ga | First Lens Group | Positive | La | Front positive collector |
-| Gb | Second Lens Group | Negative | Lb1 (cemented doublet) + Lb2 | Negative diverging group; controls field curvature and Petzval sum |
-| Gc | Third Lens Group | Negative | Lc (cemented doublet) | Post-stop corrector; sagittal coma and field curvature balance |
-| Gd | Fourth Lens Group | Positive | Ld (cemented triplet) | Rear positive power with strong aberration correction |
+Rear element of chromatic corrector doublet; low dispersion controls primary color. Gb.
 
-The aperture stop is located between Gb and Gc (between surfaces 7 and 9, at surface 8), which the patent identifies as favorable for correcting lateral chromatic aberration and distortion (paragraph 0064).
+### Lb2 — Negative Meniscus
 
-### Group Focal Lengths (Verified by Paraxial Ray Trace)
+nd = 1.68893, νd = 31.16. Glass: E-FD8 (HOYA, inferred coordinate counterpart). Isolated-in-air focal length ≈ -51.6 mm.
 
-| Group | Computed f (mm) | Patent stated f (mm) | f/f₀ |
-|---|---|---|---|
-| Ga | +90.950 | +90.950 | 1.568 |
-| Gb | −104.241 | −104.241 | −1.797 |
-| Gc | −84.896 | −84.896 | −1.463 |
-| Gd | +35.197 | +35.197 | 0.607 |
-| **System** | **58.022** | **58.022** | **1.000** |
+Classical Gauss diverging meniscus; strongest negative element in front half. Petzval field flattening. Gb.
 
-The strong positive power of Gd (fd/f₀ = 0.607) relative to the gentle Ga (fa/f₀ = 1.568) produces a strongly asymmetric power distribution. This is characteristic of modified Gauss designs optimized for wide-aperture performance: the rear group does the heavy lifting in converging the beam, while the weaker front group controls the entrance pupil without introducing excessive aberration.
+### Lcn — Biconcave Negative
 
----
+nd = 1.72825, νd = 28.46. Glass: H-ZF4A (CDGM, inferred coordinate counterpart). Isolated-in-air focal length ≈ -22.3 mm.
 
-## 3. Element-by-Element Analysis
+Front element of post-stop corrector doublet; high dispersion for chromatic balancing. Gc (Group 3, negative).
 
-### Element 1 — La: Front Positive Meniscus (1× Aspherical)
+### Lcp — Biconvex Positive
 
-- **Surfaces:** 1A (aspherical, R = +52.858), 2 (R = +229.348)
-- **Glass:** nd = 1.74443, νd = 49.53 → **Sumita K-LaKn2** (Δνd = 0.01), **HIKARI E-LAF7** (Δνd = 0.04), or **OHARA S-LAH55** (Δνd = 0.08). All are lanthanum dense flint types. No exact Schott catalog match exists at this nd/νd combination; the earlier identification as "LASF35" was incorrect (Schott LASF35 has νd ≈ 44.8, a 4.7 unit discrepancy).
-- **Shape:** Positive meniscus, convex to object
-- **Focal length:** +91.0 mm
-- **Aspherical surface:** Front (object-side), patent κ = 0.5721, standard K = −0.4279 (prolate ellipsoid)
+nd = 1.88300, νd = 40.77. Glass: S-LAH58 (OHARA, inferred coordinate counterpart). Isolated-in-air focal length ≈ +32.0 mm.
 
-**Role:** La serves as the primary light-gathering element and the first of two aspherical correctors. Its meniscus shape with gentle curvature (weakened by the high refractive index) reduces the ray bending at each surface, which is the classical approach to controlling sagittal coma in fast Gauss-type lenses. The aspherical front surface corrects residual spherical aberration and lower coma generated by the steep marginal rays entering an f/1.4 system.
+Rear element of post-stop corrector; nd = 1.883 drives Petzval correction. Gc.
 
-The patent specifically identifies the front aspherical surface as important for correcting "lower coma, sagittal coma, and spherical aberration" (paragraph 0065).
+### Ldp1 — Biconvex Positive
 
-### Elements 2–3 — Lb1: Cemented Positive Doublet
+nd = 1.88300, νd = 40.66. Glass: S-LAH58 (OHARA, approximate coordinate counterpart). Isolated-in-air focal length ≈ +37.1 mm.
 
-- **Surfaces:** 3 (R = +40.374), 4 (junction, R = +354.974), 5 (R = +42.413)
-- **Lb1p glass:** nd = 1.75500, νd = 52.34 → **Hikari J-LASKH2** (exact match) or **Schott N-LAK33B**
-- **Lb1n glass:** nd = 1.48749, νd = 70.31 → **OHARA S-FSL5** (exact match) or **Schott FK5** (Δνd = 0.07)
-- **Shape:** Lb1p is a positive meniscus (convex to object); Lb1n is a negative meniscus
-- **Combined focal length:** +134.3 mm (net positive, as a cemented component)
+Front positive of rear power triplet; high index for Petzval control. Gd (Group 4, positive).
 
-**Role:** This cemented doublet acts as a chromatic corrector within the front half of the lens. The large Abbe number difference (Δνd ≈ 18) between the lanthanum crown Lb1p and the low-dispersion FK5-type Lb1n provides lateral chromatic aberration correction for the converging beam. The nearly flat junction surface (R = +355 mm) means the two glasses contribute power primarily at the outer surfaces, with the junction serving as a color-correcting interface with minimal power contribution.
+### Ldn — Biconcave Negative
 
-As discussed in Section 1, the production lens likely separates these two elements with a small air gap.
+nd = 1.53172, νd = 48.78. Glass: J-LLF6 (Hikari, inferred coordinate counterpart). Isolated-in-air focal length ≈ -41.4 mm.
 
-### Element 4 — Lb2: Negative Meniscus
+Central negative of rear triplet; symmetric biconcave shape factor ≈ 0 optimizes coma and spherical aberration balance. Gd.
 
-- **Surfaces:** 6 (R = +290.847), 7 (R = +31.636)
-- **Glass:** nd = 1.68893, νd = 31.16 → **HOYA E-FD8** (exact match) or **OHARA S-TIM28**
-- **Shape:** Negative meniscus, convex to object, with a strongly curved rear surface
-- **Focal length:** −51.6 mm
+### Ldp2 — Biconvex Positive (1× Asph)
 
-**Role:** Lb2 is the classical "diverging meniscus" of the front Gauss half. Its strong negative power (the strongest individual element in the front half) works against the positive power of Ga and Lb1 to flatten the Petzval field and generate the characteristic Gauss-type beam divergence ahead of the aperture stop. The steep rear surface (R = 31.6 mm) is the most sharply curved surface in the front group and is the primary source of higher-order coma and spherical aberration contributions from Gb.
+nd = 1.74443, νd = 49.53. Glass: Unidentified glass (same source coordinates as La). Isolated-in-air focal length ≈ +38.6 mm.
 
-### Elements 5–6 — Lc: Cemented Negative Doublet
+Rear positive of triplet with aspherical exit surface; corrects upper coma, sagittal coma, spherical aberration, and distortion. Gd.
 
-- **Surfaces:** 9 (R = −30.787), 10 (junction, R = +35.143), 11 (R = −131.141)
-- **Lcn glass:** nd = 1.72825, νd = 28.46 → **CDGM H-ZF4A** or **OHARA S-TIH10**
-- **Lcp glass:** nd = 1.88300, νd = 40.77 → **OHARA S-LAH58** (exact match) or **Schott N-LASF44** (Δνd = 0.01)
-- **Shape:** Lcn is a biconcave negative; Lcp is a biconvex positive
-- **Combined focal length:** −84.9 mm (net negative)
+## Glass Identification and Selection
 
-**Role:** Lc is the first group after the aperture stop. Its concave-toward-object front surface (R = −30.8 mm) is the steepest surface in the entire system and is critical for sagittal coma correction. The patent devotes considerable attention to the shape factor of this doublet (conditional expression 4, paragraph 0040), requiring it to form an image-side convex meniscus overall.
+The patent gives nd/νd, not commercial glass names. La and Ldp2 share1.74443/49.53 and remain unidentified. Other names are inferred catalog counterparts. Ldp1's source νd40.66 differs from the40.77 counterpart used for Lcp, so its S-LAH58 assignment is approximate; the source values remain unchanged.
 
-The refractive index step at the cemented junction is Ncp − Ncn = +0.1548 (the patent's conditional expression 2). The patent requires this difference to be positive, meaning the higher-index glass (S-LAH58) is on the image side. This configuration reduces the Petzval sum while maintaining the correct sign of chromatic correction at the junction.
+Ldn now has a compatible inferred J-LLF6 counterpart at1.53172/48.78. The earlier unmatched KZFS2-family and positive-ΔPgF assertions were unsupported. The new label enables the compatible catalog dispersion curve without asserting a patent-measured APD value or historical supplier. The prior inferred-APD flag is removed.
 
-### Elements 7–8–9 — Ld: Cemented Positive Triplet (1× Aspherical)
+## Focus Mechanism
 
-- **Surfaces:** 12 (R = +118.766), 13 (junction, R = −44.232), 14 (junction, R = +44.268), 15A (aspherical, R = −77.294)
-- **Ldp1 glass:** nd = 1.88300, νd = 40.66 → **OHARA S-LAH64** (exact match). Note: this is a *different* catalog glass from Lcp's S-LAH58 (νd = 40.77), not a melt variation — S-LAH64 has a distinct composition.
-- **Ldn glass:** nd = 1.53172, νd = 48.78 → KZFS2-type short flint; public OHARA S-NBM51 is not an nd/νd match.
-- **Ldp2 glass:** nd = 1.74443, νd = 49.53 → Same glass as La (Sumita K-LaKn2 / HIKARI E-LAF7 / OHARA S-LAH55)
-- **Combined focal length:** +35.2 mm (strong net positive)
-- **Aspherical surface:** Surface 15 (rear), patent κ = 14.1597, standard K = +13.1597 (oblate ellipsoid)
+Paragraph75 describes focusing by extending all groups, while allowing alternative internal focusing arrangements. The viewer uses unit movement including the stop. Example2 supplies only the infinity prescription; no finite station or specific drive mechanism is given.
 
-**Role:** The cemented triplet Ld is the optical engine of this design. With a focal length of only 35.2 mm — less than the system focal length — it provides the dominant positive power that converges the beam to the image plane. Its positive–negative–positive (PNP) sandwich structure is the patent's central innovation.
+The existing0.58m endpoint is a modeling choice. Its rear gap increases38.700→46.003mm, moving every optical surface7.303mm objectward relative to the fixed image plane. Independent paraxial propagation gives0.579976m object-to-image distance and magnification approximately−0.125866, consistent with the endpoint to0.025mm. This is a reconstructed station, not a quoted patent minimum-focus distance. Intermediate motion is interpolated.
 
-The patent's conditional expression 1 specifies that the average refractive index of the two positive elements must exceed the negative element's index by 0.01–0.50 (actual value: 0.2820). This ensures a strongly negative contribution to the Petzval sum from within the triplet, counteracting the overall positive power's tendency to curve the field inward.
+## Aspherical Surfaces
 
-The central negative element Ldn uses a KZFS2-type short flint with anomalous partial dispersion. Paired with the high-index lanthanum positive elements, the triplet achieves partial-dispersion balancing that reduces secondary spectrum within the rear group. This is consistent with the production lens's reported absence of purple fringing.
+Paragraph84 equation(a) uses1−κh²/R² under the square root. The standard conic constant is K=κ−1. Both stored conversions already agree with the original equation and remain unchanged.
 
-The conditional expression 3 specifies the shape factor of Ldn: (rd2 + rd1)/(rd2 − rd1) = 0.0004, which means rd1 ≈ −rd2 — essentially a symmetric biconcave lens. The patent states this is optimal for simultaneously correcting spherical aberration, meridional coma, and sagittal coma (paragraph 0035).
+| Parameter | S1A | S15A |
+|---|---:|---:|
+| Source κ | 0.5721 | 14.1597 |
+| Standard K | −0.4279 | 13.1597 |
+| A4 | 1.10084e−7 | 8.65514e−6 |
+| A6 | 6.21998e−10 | 4.15194e−9 |
+| A8 | −4.25694e−13 | 1.25812e−11 |
+| A10 | 0 | 1.22728e−14 |
+| A12, A14 | 0 | 0 |
 
----
+The rear conic has a finite domain near20.54mm radius; its adopted rim remains inside it. The source does not choose a particular asphere manufacturing process for Example2.
 
-## 4. Glass Selection Strategy
+## Diagram Dimensions and Modeling Limits
 
-The nine elements use **seven distinct glass types** (corrected from the original count of six):
+Figure3 was inspected at600dpi, using the53.5038mm first-to-last vertex span for scale. Inferred optical radii are approximately23.5mm for La,19.8mm for Lb1,16.9mm for Lb2 and16.8mm for both rear cemented assemblies. Optical rims were separated from label leaders and group brackets; several automated envelope readings were contaminated by those annotations. These dimensions replace earlier ray-based estimates and pass surface-clearance and image-circle checks. They are not published clear-aperture measurements.
 
-| Glass Type | Elements | nd | νd | Catalog Match | Role |
-|---|---|---|---|---|---|
-| Lanthanum dense flint | La, Ldp2 | 1.74443 | 49.53 | Sumita K-LaKn2 / HIKARI E-LAF7 | Aspherical substrates |
-| Lanthanum crown | Lb1p | 1.75500 | 52.34 | Hikari J-LASKH2 / Schott N-LAK33B | Low-aberration positive power |
-| Fluorine crown | Lb1n | 1.48749 | 70.31 | OHARA S-FSL5 | Chromatic correction |
-| Dense flint | Lb2 | 1.68893 | 31.16 | HOYA E-FD8 / OHARA S-TIM28 | Petzval field flattening |
-| Dense flint (high) | Lcn | 1.72825 | 28.46 | CDGM H-ZF4A / OHARA S-TIH10 | Chromatic balancing |
-| High-index lanthanum | Lcp | 1.88300 | 40.77 | OHARA S-LAH58 | Petzval correction |
-| High-index lanthanum | Ldp1 | 1.88300 | 40.66 | OHARA S-LAH64 | Petzval correction |
-| Short flint (APD) | Ldn | 1.53172 | 48.78 | Unmatched KZFS2-type | Secondary spectrum control |
-
-**Key correction from earlier analysis:** The La/Ldp2 glass was previously identified as "Schott LASF35," which has νd ≈ 44.8 — a 4.7-unit Abbe number discrepancy. The correct match is Sumita K-LaKn2 (νd = 49.52, Δνd = 0.01) or HIKARI E-LAF7. Nikon frequently sources specialty glasses from Japanese suppliers including Sumita and HIKARI, making these identifications plausible. However, Nikon may also use in-house or custom-melt glasses not available in public catalogs; all identifications remain inferential.
-
-**Additional correction:** Lcp (S-LAH58, νd = 40.77) and Ldp1 (S-LAH64, νd = 40.66) are **distinct catalog glasses** with different compositions, not melt variations of the same type as previously suggested. The 0.11 νd difference corresponds to a meaningful dispersion difference relevant to chromatic balancing within the rear triplet.
-
-The design uses no ED glass (νd > 80), consistent with Nikon's marketing — the lens carries no ED designation. Chromatic correction relies on the FK5-type glass in Lb1n (νd = 70.3) for primary color, and the anomalous-dispersion KZFS2-type glass in Ldn for secondary spectrum control within the rear triplet.
-
----
-
-## 5. Aspherical Surface Analysis
-
-### Surface 1A (La front)
-
-| Parameter | Value |
-|---|---|
-| Base radius | R = +52.8577 mm |
-| Patent conic | κ = 0.5721 |
-| Standard conic | K = −0.4279 (prolate ellipsoid) |
-| A4 | +1.10084 × 10⁻⁷ |
-| A6 | +6.21998 × 10⁻¹⁰ |
-| A8 | −4.25694 × 10⁻¹³ |
-| A10–A14 | 0 |
-
-**Conic convention note:** The patent uses κ in the sag discriminant as 1 − κ(y/r)², while the standard optical convention uses 1 − (1+K)(h/R)². Therefore κ = (1+K), and K = κ − 1. The value K = −0.4279 describes a prolate ellipsoid — a surface slightly flatter at the rim than a sphere, tending toward a paraboloid. The low-order aspheric coefficients (A4 ≈ 10⁻⁷) are very small, indicating that the conic departure does most of the correction work.
-
-### Surface 15A (Ldp2 rear)
-
-| Parameter | Value |
-|---|---|
-| Base radius | R = −77.2943 mm |
-| Patent conic | κ = 14.1597 |
-| Standard conic | K = +13.1597 (oblate ellipsoid) |
-| A4 | +8.65514 × 10⁻⁶ |
-| A6 | +4.15194 × 10⁻⁹ |
-| A8 | +1.25812 × 10⁻¹¹ |
-| A10 | +1.22728 × 10⁻¹⁴ |
-| A12–A14 | 0 |
-
-The very large K = +13.16 (oblate ellipsoid) means the surface curves more steeply toward the rim than a sphere. For this concave surface (R < 0), the increased concavity at the rim means the surface contributes increasingly negative power at higher ray heights, directly correcting the positive spherical aberration that the strong Gd power would otherwise produce. The A4 coefficient (about 80× larger than Surface 1A's) adds further sag in the same direction.
-
-**Conic height limit:** The oblate conic has a geometric height limit h_max = |R| / √(1+K) = 77.29 / √14.16 ≈ 20.5 mm. The data file enforces sd ≤ 0.98 × 20.5 = 20.1 mm at this surface. The estimated physical semi-diameter (17.6 mm) is well within this limit, but the unvignetted paraxial ray height at full field (24.9 mm) exceeds it — confirming that significant natural vignetting occurs at this surface at full aperture, consistent with the ~2.5-stop corner vignetting reported by reviewers.
-
-The patent notes that having one aspherical surface on each side of the aperture stop is "effective for correcting aberrations caused by large aperture, including spherical aberration, sagittal coma, and meridional coma" (paragraph 0067).
-
----
-
-## 6. Focusing Mechanism
-
-### Patent Description
-
-The patent states that the Examples use **whole-system extension** (unit focus) for infinity-to-close focusing (paragraph 0075). However, the patent also explicitly notes that rear-focus or internal-focus designs using Gc or Gd are applicable (paragraph 0075).
-
-### Production Implementation
-
-The production AF-S NIKKOR 58mm f/1.4G uses **unit focus** — the entire optical assembly translates forward inside a fixed-length barrel, driven by a Silent Wave Motor (SWM). The NikonForums review confirms: "Focusing is not internal, so at the minimum focusing distance, the front element moves forward by about one centimeter." The PhotographyLife review corroborates this with the same observation. Note that some third-party descriptions (notably B&H Photo) incorrectly describe the lens as using "internal focusing," but this appears to be a misuse of the term.
-
-### Computed Focus Extension
-
-Paraxial ray tracing through the Example 2 prescription yields a unit-focus extension of **≈ 7.3 mm** for the production close-focus distance of 0.58 m. This is consistent with the reviewer observation of "about one centimeter" of front element travel, which would include some additional mechanical clearance. At close focus:
-
-| Parameter | Infinity | Close focus (0.58 m) |
-|---|---|---|
-| BFD (last surface to image) | 38.700 mm | 46.003 mm |
-| Object distance from S1 | ∞ | ~480 mm |
-| Focus extension (Δ) | — | +7.30 mm |
-
-Since the patent provides no variable-gap data (no tables of spacing changes at close focus), and no Nikon technical documentation confirms or denies the presence of floating elements, the unit-focus identification is based on behavioral observation and the patent's own description.
-
----
-
-## 7. Conditional Expressions (Verified)
-
-All eight conditional expressions were independently verified using paraxial ray trace computation. Every value matches the patent's Table 6 to the stated precision.
-
-| Condition | Expression | Range | Computed Value | Status |
-|---|---|---|---|---|
-| (1) | ((Ndp1+Ndp2)/2) − Ndn | 0.01 – 0.50 | 0.2820 | ✓ |
-| (2) | Ncp − Ncn | 0.000 – 0.500 | 0.1548 | ✓ |
-| (3) | (rd2+rd1)/(rd2−rd1) | −1.0 – 2.0 | 0.0004 | ✓ |
-| (4) | (rc2−rc1)/(rc2+rc1) | 0.00 – 1.00 | 0.6197 | ✓ |
-| (5) | fd/f₀ | 0.10 – 4.00 | 0.6066 | ✓ |
-| (6) | fa/f₀ | 1.00 – 10.0 | 1.5675 | ✓ |
-| (7) | (−fb)/f₀ | 0.30 – 30.0 | 1.7966 | ✓ |
-| (8) | (−fc)/f₀ | 0.3 – 30.0 | 1.4632 | ✓ |
-
----
-
-## 8. Semi-Diameter Estimation
-
-The patent does not list semi-diameters. SDs were estimated via a two-step paraxial process:
-
-1. **Marginal ray at full aperture** (y = 20.0 mm at surface 1, u = 0) traced through all surfaces to establish the on-axis beam footprint.
-2. **Chief ray at 0.6× full field** (ω = 12.5°) traced to establish the off-axis beam contribution within the expected vignetting-free zone of a fast f/1.4 design.
-3. **SD = (|y_marginal| + |y_chief_0.6|) × clearance factor**, capped by edge-thickness positivity (ET > 0.3 mm for all elements) and the conic height limit at surface 15A.
-
-Key physical constraints incorporated:
-
-- **Filter thread:** 72 mm → maximum front element SD ≈ 33 mm
-- **F-mount throat:** 44 mm → maximum rear element SD ≈ 22 mm
-- **S15A conic limit:** sd ≤ 20.1 mm (0.98 × |R|/√(1+K))
-- **Edge thickness:** all elements verified ET > 0.3 mm at their assigned SDs
-
-The resulting SDs produce moderate natural vignetting at the field edges, consistent with the ~2.5-stop corner vignetting measured in the production lens at f/1.4.
-
----
-
-## 9. Design Philosophy and Context
-
-The AF-S NIKKOR 58mm f/1.4G is Nikon's spiritual successor to the Ai Noct-NIKKOR 58mm f/1.2, designed by Yoshiyuki Shimizu in 1977. Both lenses share the 58 mm focal length (a deliberate choice to ease back-focus constraints on the Gauss design) and prioritize sagittal coma correction for point-source rendering at wide apertures.
-
-The 58mm f/1.4G's design philosophy — as noted by both Nikon's marketing and independent reviewers — deliberately retains some residual spherical aberration at f/1.4 to create a characteristic soft rendering wide open that sharpens progressively on stopping down. This is consistent with the patent's aberration curves (Figure 4), which show modest spherical aberration at full aperture. The design achieves this while aggressively correcting sagittal coma, which produces the lens's signature ability to render point light sources as clean points even at the field edges at f/1.4.
-
-The inventor, Haruo Sato, is one of Nikon's optical designers associated with the "NIKKOR: The Thousand and One Nights" series. The 58mm f/1.4G represents his application of modern aspherical and high-index glass technology to the classical Gauss problem that Shimizu first attacked with a single hand-polished aspherical surface decades earlier.
-
----
-
-## 10. Element Focal Lengths (Computed)
-
-| Element | Type | Focal Length (mm) |
-|---|---|---|
-| La | Singlet | +91.0 |
-| Lb1 | Cemented doublet | +134.3 |
-| — Lb1p alone | Singlet | +59.8 |
-| — Lb1n alone | Singlet | −99.0 |
-| Lb2 | Singlet | −51.6 |
-| Lc | Cemented doublet | −84.9 |
-| — Lcn alone | Singlet | −22.3 |
-| — Lcp alone | Singlet | +32.0 |
-| Ld | Cemented triplet | +35.2 |
-| — Ldp1 alone | Singlet | +37.1 |
-| — Ldn alone | Singlet | −41.4 |
-| — Ldp2 alone | Singlet | +38.6 |
-
----
+Example2 has no cover/filter rows. Its38.7mm rear gap is retained, with no extra sensor-glass surfaces. The candidate association and reconstructed finite focusing remain explicitly distinct from the patent's numerical infinity data.
 
 ## Sources
 
-1. **JP 2013-019993 A** — Patent publication, Japan Patent Office (2013.01.31). Inventor: Sato Haruo. Assignee: Nikon Corporation.
-2. **Nikon USA product specifications** — AF-S NIKKOR 58mm f/1.4G, nikonusa.com/p/af-s-nikkor-58mm-f14g/2210/overview.
-3. **Nikon product page, AF-S NIKKOR 50mm f/1.4G** — "Although all lens groups shift during focusing, the lens barrel length does not change." imaging.nikon.com.
-4. **cameragossip.github.io** — Nikon Nikkor Lens Patent Database, last updated September 2025.
-5. **DPReview** — "Nikon AF-S Nikkor 58mm f/1.4G review," dpreview.com (2013).
-6. **NikonForums** — "AF-S Nikkor 58mm F1.4G Review": "Focusing is not internal, so at the minimum focusing distance, the front element moves forward by about one centimeter."
-7. **Thom Hogan (DSLRBodies)** — "Nikon 58mm f/1.4G AF-S Lens Review."
-8. **Nikon "NIKKOR — The Thousand and One Nights"** — Tale 16 (Ai Noct-NIKKOR 58mm f/1.2), Tale 40 (Nikkor-S Auto 5.8cm f/1.4). imaging.nikon.com.
-9. **OHARA Optical Glass Catalog** — Glass identification reference (S-LAH58, S-LAH64, S-FSL5, S-TIH10, S-TIM28).
-10. **Schott Optical Glass Catalog** — Glass identification reference (N-LAK33B, FK5, N-LASF44, KZFS2).
-11. **Sumita, Hikari, HOYA, and CDGM optical glass catalogs** — Glass identification reference (K-LaKn2, J-LASKH2, E-FD8, H-ZF4A).
-
----
-
-## Revision History
-
-- **v2 (current):** Corrected glass identification for La/Ldp2 — removed incorrect "LASF35" attribution (νd mismatch of 4.7 units), replaced with Sumita K-LaKn2 / HIKARI E-LAF7 / OHARA S-LAH55. Corrected Ldp1 glass identification from "same as Lcp" to OHARA S-LAH64 (distinct catalog entry from S-LAH58). Added computed focus extension data (Section 6). Added semi-diameter estimation methodology (Section 8). Added element focal length table (Section 10). Added conic constant convention note throughout.
-- **v1:** Initial analysis from patent JP2013-019993A Example 2.
-
----
-
-*Analysis prepared from patent JP2013-019993A Example 2 with independent numerical verification via paraxial ray trace. Glass identifications are inferential based on nd/νd catalog matching and should not be taken as confirmed production glass types. The production lens may differ from the patent example in details including the cemented/air-spaced status of the Lb1 doublet and the precise aspherical coefficients.*
+- [JP2013-019993A](https://patents.google.com/patent/JP2013019993A/ja): original local PDF; titlep.1, focus paragraph75p.12, equation(a)p.13, Tables4–5p.17, Figure3p.23.
+- Local glass catalog: inferred coordinate counterparts, including Hikari J-LLF6; not patent supplier identifications.
