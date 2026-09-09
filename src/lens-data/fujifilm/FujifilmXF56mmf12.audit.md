@@ -25,11 +25,3 @@ Patent: US 2015/0212302 A1, Example 3
 ### Phase 4 - Analysis sync
 
 - Updated the L15/L16 narratives and glass summary table to remove the uncertain-code interpretation.
-
-### Verification
-
-- `npm run generate:glass-reports` - passed.
-- `npm run typecheck` - passed.
-- `npm run format:check` - passed.
-- `npm run lint` - passed.
-- `npm run test` - passed, 131 test files / 1666 tests.

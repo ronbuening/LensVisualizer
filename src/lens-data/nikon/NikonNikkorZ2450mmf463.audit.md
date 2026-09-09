@@ -31,10 +31,6 @@ Patent: JP 2021-189377 A, Example 1
 
 - Updated `NikonNikkorZ2450mmf463.analysis.md` to describe the BAFD7/S-BAH27/NBFD12 relabel, the M-BACD12 property-class limitation, and the inferred APD status of the two ED elements.
 
-### Verification
-
-- Pending full Nikon batch verification.
-
 ## 2026-07-29 - Catalog-coordinate correction
 
 - Corrected L1c from modern `S-NPH2` to historical OHARA `PBH21`, the exact 923209 coordinate.

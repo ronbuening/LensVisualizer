@@ -13,8 +13,6 @@ Patent: JP2013-019993A
 | Lb2 / row 6 | 1.68893 / 31.16 | `S-TIH4 / N-SF8 (dense flint)` | `E-FD8 (HOYA, patent nd/vd match) / S-TIM28` | HOYA E-FD8 clears the prior S-TIH4 mismatch. |
 | Lcn / row 9 | 1.72825 / 28.46 | `S-TIH11 / N-SF10 (dense flint)` | `H-ZF4A (CDGM, patent nd/vd match) / S-TIH10` | CDGM H-ZF4A is the exact resolver candidate; S-TIH10 is the OHARA family equivalent. |
 
-- `npm run generate:glass-reports` passed; this lens no longer appears in the catalog-mismatch reports.
-
 ## 2026-05-20 - Patent unavailable disposition
 
 - The requested local patent review could not be completed because the untracked `patents/` folder does not contain a JP2013-019993A PDF.

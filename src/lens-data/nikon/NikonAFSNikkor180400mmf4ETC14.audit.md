@@ -52,14 +52,6 @@ The new J-LASFH24 row also resolves the previously reviewed `902253` element in 
 that lens from 15/16 to 16/16 strict and trusted coverage. Regenerated global coverage is 4993/5672 strict and
 5004/5672 trusted, with zero catalog-coordinate mismatches.
 
-## Verification
-
-- Both stored prescriptions pass the full surface validator.
-- Both image-circle audits report zero undersized surfaces.
-- Catalog dispersion tests pass for all 462 entries.
-- Duplicate six-digit-code precedence remains stable for J-SK12, J-LAK14, and J-LASF016 coordinate families.
-- The full generated glass-report suite reports zero catalog mismatches.
-
 ## Retained sources
 
 - WO 2019/131993 A1, Example 1, Tables 8–11, Figures 7–10.

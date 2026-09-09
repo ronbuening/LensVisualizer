@@ -33,12 +33,3 @@ record. The three patent special-glass roles remain separate from Nikon's produc
 
 - Corrected the production display name to Nikon's `f/2.8G` designation spacing.
 - Updated the companion analysis with the refined rim and supplier-neutral glass-proxy rationale.
-
-### Verification
-
-- Stored prescription and image-circle audits passed.
-- Generated glass-report suite passed (8 files, 15 tests); coverage is 13/14.
-- Full typecheck, formatting, lint, and test gates passed (266 files, 2,560 tests).
-- Production build and prerender passed (1,218 routes).
-- In-app browser screenshots were unavailable; visual comparison used the exact 600 dpi patent figure and the runtime
-  SVG geometry.

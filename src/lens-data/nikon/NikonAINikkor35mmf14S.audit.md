@@ -11,10 +11,6 @@ Patent: US 3,576,360, Embodiment 1 / FIG. 1 / Claim 2
 - Current SDs preserve that refined shape: a large fast-wide front section, controlled central/post-stop diameters, and a rear group that stays clear without inflating the patent silhouette.
 - No new SD values changed in this pass. The K10 glass label remains explicitly unmatched because the project has no coefficient-backed legacy K10 entry.
 
-### Verification
-
-- `npm test -- elementRenderDiagnostics`
-
 ## 2026-08-07 — Legacy K10 catalog recovery
 
 - Visually rechecked US 3,576,360 Embodiment 1: L4 remains `nd=1.50137`, `νd=56.5`.

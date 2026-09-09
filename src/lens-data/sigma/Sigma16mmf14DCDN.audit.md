@@ -23,10 +23,6 @@ Patent: JP 2018-205527 A, Numerical Example 1
 - No patent line-index or partial-dispersion data was available beyond nd/vd.
 - Existing top-level metadata, mount metadata, image format, element/group counts, and focus description were retained.
 
-### Phase 4 - Analysis sync
-
-- No analysis text changes were required during this audit.
-
 ## 2026-06-23 - Sigma-folder patent glass sweep
 
 ### Phase 1 - Glass corrections
@@ -53,7 +49,3 @@ Patent: JP 2018-205527 A, Numerical Example 1
 ### Phase 4 - Analysis sync
 
 - Updated the companion analysis prose and glass summary table for L18, L19, L21/L31, L22, and L43.
-
-### Verification
-
-- `npm run generate:glass-reports`

@@ -29,10 +29,6 @@ Patent: US 4,189,212, Example 8 / Claim 20.
 
 - Current analysis sidecar already matches the audited data: it documents the r11 sign correction, the zoom-cammed aperture approximation, code-only glass status, and SD-estimate provenance.
 
-### Verification
-
-- Pending batch verification after the Nikon audit pass.
-
 ## 2026-08-07 — Legacy K10 catalog recovery
 
 - The official Schott K10 datasheet supplies Sellmeier coefficients for `nd=1.50137`, `νd=56.41`, code 501564.

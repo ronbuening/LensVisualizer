@@ -7,7 +7,6 @@
 - Verification: surface and image-circle audits passed before editing; final results and shared quality gates are recorded in [the batch record](../../../agent_docs/records/konica-ar-september5-audit.md).
 - Visual check: inspected the patent crop and rasterized paths produced by the production SVG geometry helper. Live browser verification was unavailable (`No browser is available`).
 
-
 ## 2026-09-05 UTC screenshot follow-up
 
 The screenshot and exact Fig. 1 crop support retaining the SDs, including the tapered optical

@@ -7,7 +7,6 @@ Catalog version: local working tree, 2026-05-19
 
 - Added HOYA NBFD29 from HOYA's first-party optical-glass PDF (`NBFD29`, code 770-297, nd=1.77047, vd=29.74, PgF=0.5951, formula-3 A0-A5 constants) to the runtime catalog.
 - Relabeled L8 / S14 from `Heavy flint (770/297)` to `NBFD29 (HOYA, 770297)`.
-- `npm test -- dispersion` and `npm run generate:glass-reports` passed; L8 now uses trusted Sellmeier data.
 
 ## 2026-05-19 - Full patent audit and glass relabel
 
@@ -57,9 +56,6 @@ Catalog version: local working tree, 2026-05-19
 - Updated the element narratives and glass-budget note for the newly resolved catalog labels.
 - Left the L8 / 770297 row code-only in this May pass; the 2026-06-04 source pass later resolved it as HOYA NBFD29.
 
-### Verification
+### Report status
 
-- `npm run generate:glass-reports` — passed; at the time RF24-105 remained in the six-digit missing-Sellmeier report only for L8 / 770297. The 2026-06-04 report run clears that row.
-- `npm run typecheck` — passed.
-- `npm run format:check` — passed.
-- `npm run test` — passed (131 files, 1666 tests; expected error-boundary console output only).
+- At the time RF24-105 remained in the six-digit missing-Sellmeier report only for L8 / 770297. The 2026-06-04 report run clears that row.

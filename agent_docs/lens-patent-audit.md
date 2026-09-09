@@ -227,10 +227,9 @@ Catalog version: <commit short SHA, optional>
 - Updated `Lens.analysis.md` §G2 narrative: "Super ED" → "ED (νd = 82.6)"; removed "S-FPL53 / FCD100" reference.
 - Removed unsupported "true APO" claim — current spectral data justifies "well-corrected achromat" only.
 
-### Verification
+### Follow-ups
 
-- `npm run typecheck && npm run test` — passed.
-- `npm test -- catalogMismatchScan` — 2 mismatches remaining on this lens (surfaces 12, 14), both flagged as patent verification needed.
+- Surfaces 12 and 14 still mismatch the catalog; both need the patent's glass table before relabeling.
 ```
 
 ### What goes in the log
@@ -238,7 +237,6 @@ Catalog version: <commit short SHA, optional>
 - Per-field before/after values, not narrative descriptions of changes.
 - The patent paragraph or table reference for each justification.
 - The queue row status for each flagged surface: resolved, intentionally left unmatched, added to catalog-buildout, or deferred with reason.
-- Verification commands run and their result.
 - Outstanding follow-ups (mismatches not resolved this pass, missing patent embodiments, etc.).
 
 ### What does not go in the log
@@ -246,6 +244,8 @@ Catalog version: <commit short SHA, optional>
 - Code diffs or full file contents — git captures those.
 - General commentary about the design — that belongs in `*.analysis.md`.
 - Subjective claims without a citation — the log is forensic, not interpretive.
+- Verification commands, pass counts, or CI output — CI and git hold those (`agent_docs/documentation-policy.md`).
+  `__tests__/docDrift.test.ts` fails on a `Verification` heading or a bare `npm run` / `npm test` bullet in any log.
 
 ## Verification
 

@@ -11,10 +11,6 @@ Patent: DE 27 29 831 B1, sole numerical example in Claim 1
 - The drawing shows broad outer elements, narrow inner groups near the aperture, and rear symmetry around the stop. Stored SDs follow that pattern: 12.15 mm at the outer surfaces, 6.9-7.7 mm through the inner groups, and a 6.933 mm stop.
 - No SD values changed. Current values remain inferred from the patent drawing, the f' = 100 normalization, and renderer geometry checks.
 
-### Verification
-
-- `npm test -- elementRenderDiagnostics`
-
 ## 2026-07-30 - Reference-line metadata
 
 - Added `indexReference: "e"` to all six elements because the stored `nd` / `vd` slots preserve patent

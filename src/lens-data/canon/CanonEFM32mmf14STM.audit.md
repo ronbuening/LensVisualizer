@@ -34,11 +34,9 @@ Catalog version: local working tree, 2026-05-19
 - Updated the LF/LR doublet prose to include the newly stored derived dPgF values.
 - Updated the glass-identification table to note that L8 retains the unmatched 675348 code but now has a derived partial-dispersion value.
 
-### Verification
+### Report status
 
-- `npm run generate:glass-reports` - passed; the unresolved 675348 row remains in `six-digit-glass-codes-missing-sellmeier.generated.md` because no coefficient-backed public catalog match was found.
-- `npm run typecheck` - passed.
-- `npm run format:check` - passed.
+- The unresolved 675348 row remains in `six-digit-glass-codes-missing-sellmeier.generated.md` because no coefficient-backed public catalog match was found.
 
 ## 2026-08-07 - Partial-dispersion ambiguity audit
 

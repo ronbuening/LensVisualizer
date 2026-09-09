@@ -25,14 +25,6 @@ Patent: US 2020/0166735 A1, Example 11
 
 - Updated the glass-identification table to mark L21 with an explicit unbroken 808409 token. That token now resolves through the Sweep 2 catalog entry.
 
-### Verification
-
-- `npm run generate:glass-reports` - passed.
-- `npm run typecheck` - passed.
-- `npm run format:check` - passed.
-- `npm run lint` - passed.
-- `npm run test` - passed, 131 test files / 1666 tests.
-
 ## 2026-06-25 - Catalog backfill follow-up
 
 | Element / surface | Field | Before | After | Justification |

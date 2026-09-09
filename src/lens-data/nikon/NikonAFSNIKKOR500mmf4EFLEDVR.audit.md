@@ -16,9 +16,3 @@ Patent: JP 2015-215560 A, Example 1, Fig. 1 (PDF page 18)
 - Resolved patent coordinate `553551` to the exact-coordinate J-KZFH4 catalog curve while explicitly retaining its post-filing status and declining to assert it as the historical glass identity.
 - Restored the source group labels G2 and G3b while keeping focus and VR roles in metadata.
 - Confirmed published G2 travel is 13.898 mm imageward from infinity to the near endpoint. This prime lens has no zoom travel.
-
-### Verification
-
-- Per-lens image-circle audit: passed with 0 undersized surfaces.
-- Per-lens surface validator and regenerated glass-report suite: passed.
-- `npm run typecheck`, `npm run format:check`, `npm run lint`, `npm run test` (2,493 tests), and `npm run build` (1,112 prerendered routes): passed.

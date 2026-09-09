@@ -22,8 +22,3 @@ The remaining profiles follow Figure 9 within the drawing tolerance. Leader curv
 ### Motion
 
 - Rechecked the two source endpoints. The modeled order is 36.0 mm wide to 68.5 mm tele: the front/rear-group gap contracts from 41.111 to 3.821 mm while the solved infinity back focus increases. Focus pairs remain identical because Example 3 publishes no close-focus cam law.
-
-### Verification
-
-- `audit:surface` accepted the revised L7 rim.
-- `audit:image-circle` reported zero undersized surfaces.

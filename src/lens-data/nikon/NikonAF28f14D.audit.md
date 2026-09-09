@@ -23,10 +23,6 @@ Reviewed local untracked patent file `patents/US5315441.pdf`, Embodiment 1 / Tab
 - US 5,315,441 does not publish per-surface clear apertures or effective diameters for Embodiment 1.
 - Current SDs remain documented renderer estimates. They make rational sense against FIG. 1: a large front retrofocus meniscus, broad G2 positive cell, a stop constrained near `sd = 13.6 mm`, and re-expansion through the aspherical G3/G4 rear groups without exceeding sag or edge-thickness limits.
 
-### Verification
-
-- Pending batch verification after the current Nikon audit pass.
-
 ## 2026-07-29 Glass Coverage Follow-up
 
 - Relabeled L8b from an unresolved very-dense-flint note to coefficient-backed Hikari J-SFH2.

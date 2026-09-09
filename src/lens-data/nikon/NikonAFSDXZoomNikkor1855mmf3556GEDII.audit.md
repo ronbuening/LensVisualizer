@@ -27,12 +27,3 @@ annotation does not assert a composition, supplier, melt, or unreported partial-
 
 - Corrected the production display name to Nikon's `f/3.5-5.6G` designation spacing.
 - Updated the companion analysis with the inferred ED-role discipline and refined-rim verification wording.
-
-### Verification
-
-- Stored prescription and image-circle audits passed.
-- Generated glass-report suite passed (8 files, 15 tests); coverage is 7/8, with only resin unresolved.
-- Full typecheck, formatting, lint, and test gates passed (266 files, 2,560 tests).
-- Production build and prerender passed (1,218 routes).
-- In-app browser screenshots were unavailable; visual comparison used the exact 600 dpi patent figure and the runtime
-  SVG geometry.

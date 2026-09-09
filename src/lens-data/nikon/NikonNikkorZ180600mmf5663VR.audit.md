@@ -45,9 +45,3 @@ Patent: WO 2024/062958 A1, Example 2 / Figure 5 / Tables 5–8
 - Strict and trusted chromatic coverage rise from 24/26 to 25/26 elements. The only remaining fallback is the explicitly
   identified optical-resin layer, which is not a missing optical-glass catalog type.
 - The analysis glass table and L7 narrative were synchronized with the data file.
-
-### Verification
-
-- `npm run test -- dispersion.test.ts`
-- `npm run generate:glass-reports`
-- Full repository gates are recorded in the integration commit.

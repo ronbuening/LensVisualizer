@@ -49,12 +49,8 @@ Confirmed without data-file changes:
 - Replaced stale S-FPL52 wording with S-FPL51-class wording for L13, L35, L37, and L38.
 - Softened the L13 anomalous-dispersion claim: the patent table supports ED-class glass there by nd/νd and the production four-ED-element spec, while the patent's rear-group "specific lens" condition is what explicitly covers the rear ED elements.
 
-### Verification
+### Report status
 
-- `npm run typecheck` — passed.
-- `npm run format:check` — passed.
-- `npm run lint` — passed.
-- `npm run test` — passed in `/tmp/lv-audit-run.5rqKAY` against a temporary copy of the workspace, so report-generating tests did not rewrite generated docs in the real checkout.
 - Temporary generated `catalog-mismatches.generated.md` and `glass-relabel-candidates.generated.md` no longer list `NikonZ1424f28S`.
 - Temporary `unresolved-glass.generated.md` lists the intended patent-code fallbacks `738323` and `850270`.
 

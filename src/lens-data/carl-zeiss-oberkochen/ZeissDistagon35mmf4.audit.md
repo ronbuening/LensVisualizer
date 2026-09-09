@@ -22,18 +22,6 @@ Catalog version: local working tree, 2026-06-25
 - No APD metadata was added. The patent provides no line-index or partial-dispersion data.
 - High-index status is already expressed in the dense-flint/lanthanum glass labels and roles for LIII, LIV, LV, and LVII.
 
-### Phase 4 - Analysis sync
-
-- No analysis prose change was required. The existing analysis describes the high-index rear triplet and the absence of patent clear apertures.
-
-### Verification
-
-- `npm run generate:glass-reports` - passed (7 files, 7 tests); generated report state retained.
-- `npm run typecheck` - passed.
-- `npm run format:check` - passed.
-- `npm run test -- __tests__/src/lens-data/lensDataTyping.test.ts __tests__/src/optics/validateLensData.test.ts __tests__/src/optics/buildLens.test.ts` - passed (3 files, 143 tests).
-- `npm run test` - failed outside this audit's edits: stale/generated route metadata is missing Rodenstock lens routes, and the existing Sonnar 50/1.5 skew-ray chromatic assertion differs by 0.0011856 mm.
-
 ## 2026-08-07 - Legacy K10 catalog recovery
 
 - The official Schott K10 datasheet supplies Sellmeier coefficients for LII's patent coordinate (`nd=1.50137`, `νd=56.41`, code 501564).

@@ -40,7 +40,6 @@ Patent: US 4,699,475, Seventh Embodiment / Table 7
 - The element `nd`/`vd` values match Table 7.
 - Exact or close catalog-class labels were retained where the patent-rounded values support them.
 - L8/L16 (`796/409`) and L14 (`518/603`) remain intentionally unresolved because no coefficient-backed public catalog entry was verified for those exact values.
-- `npm run generate:glass-reports` passed with these entries represented as unresolved coverage items, not catalog mismatches.
 
 ## 2026-07-29 — `796409` coefficient-source review
 

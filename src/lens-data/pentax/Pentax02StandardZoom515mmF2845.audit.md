@@ -13,8 +13,6 @@ Patent: US 8,824,059 B2, Numerical Embodiment 1
 - Retained five coefficient-backed materials, the correctly classified resin layer, and three explicit unmatched
   coordinate rows. No unresolved row has a unique public catalog match.
 - Local viewer QA confirmed all nine material labels, including the hybrid pair, without diagram errors.
-- `npm run generate:glass-reports` passed (8 files, 14 tests); the image-circle audit, typecheck, format check, lint,
-  2,947-test suite, and production build also passed (1,052 routes prerendered).
 
 ## 2026-08-08 - Integration, semi-diameter, identity, and glass audit
 
@@ -26,7 +24,3 @@ Patent: US 8,824,059 B2, Numerical Embodiment 1
 - Confirmed coefficient-backed catalog dispersion for five of nine materials. The compound resin and the three
   explicitly unmatched patent coordinates remain on the Abbe fallback because no unique public coefficient source
   supports a stronger classification.
-- `npm run audit:image-circle -- src/lens-data/pentax/Pentax02StandardZoom515mmF2845.data.ts` passed.
-- `npm run generate:glass-reports` passed (8 files, 14 tests).
-- `npm run typecheck`, `npm run format:check`, `npm run lint`, and `npm run test` passed (2,947 tests).
-- `npm run build` passed; 1,052 routes prerendered.

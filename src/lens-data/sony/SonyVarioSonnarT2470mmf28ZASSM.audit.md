@@ -24,11 +24,6 @@ or adding a new catalog entry.
 The display name was checked against Sony model SAL2470Z and retained as
 `SONY VARIO-SONNAR T* 24-70mm f/2.8 ZA SSM`.
 
-### Verification
-
-- `npm run audit:image-circle -- ./src/lens-data/sony/SonyVarioSonnarT2470mmf28ZASSM.data.ts`
-- `npm run audit:patent-figure -- ./src/lens-data/sony/SonyVarioSonnarT2470mmf28ZASSM.data.ts patents/US20080198475A1-2.pdf 6 0.17,0.35,0.90,0.70`
-
 ## 2026-08-12 — Display screenshot follow-up
 
 The rendered site screenshot was compared directly with Patent Figure 9. The apparent G4 and rear-triplet diameter

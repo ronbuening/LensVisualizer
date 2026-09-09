@@ -10,11 +10,6 @@ Patent: JPH04238311A, Example 5
 - Romanized the inventor metadata from `佐藤 進` to `Susumu Sato`, retaining the Japanese form in the analysis. This resolves the metadata test failure and matches the same inventor's romanization in JPH04294310A.
 - Normalized the display name to `NIKON AF-I NIKKOR 600mm f/4D IF-ED`.
 
-### Verification
-
-- `npm run audit:image-circle -- src/lens-data/nikon/NikonAFINikkor600mmf4DIFED.data.ts`
-- Full repository checks are recorded in the integrating commit.
-
 ## 2026-08-18 — Screenshot follow-up
 
 - Compared the supplied site screenshot directly with Figure 9. The front collector, compact focus group, and single rear element remain a close silhouette match; no additional SD edit was justified.

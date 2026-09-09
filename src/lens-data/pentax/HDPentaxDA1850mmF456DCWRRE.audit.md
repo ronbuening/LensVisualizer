@@ -24,8 +24,3 @@ The revised surface 5A polynomial departure and total sag were recomputed at the
 ### Motion
 
 - Rechecked wide/middle/tele order and all published 300 mm focus rows. G1b moves objectward at every station: D2 decreases and D7 increases by the same amount. The infinity and close arrays remain correctly ordered `[infinity, close]`.
-
-### Verification
-
-- `audit:surface` accepted the revised prescription.
-- `audit:image-circle` reported zero undersized surfaces.

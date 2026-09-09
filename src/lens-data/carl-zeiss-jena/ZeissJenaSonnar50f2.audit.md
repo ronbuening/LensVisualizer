@@ -26,10 +26,6 @@ Catalog version: local working tree, 2026-06-25
 - The patent does not publish semi-diameters or exact stop position inside the L4-L5 air gap. Existing SDs and the stop split remain plausible against the drawing and runtime layout.
 - Runtime element-render diagnostics showed no hidden trim warnings, so no SD changes were made.
 
-### Verification
-
-- Temporary Zeiss Jena diagnostic test - passed after the glass-label and FK3 APD updates; runtime trim diagnostics empty for this lens.
-
 ## 2026-09-08 — First-hosted audit (lens 8, in progress)
 
 - Original local US1998704.pdf Fig.1 p1 and Example I p2 visually inspected; 600 dpi figure crop retained temporarily. All radii, glass/air thicknesses and source nD/ν match the chosen 0.5 scale, including L4 1.6890.

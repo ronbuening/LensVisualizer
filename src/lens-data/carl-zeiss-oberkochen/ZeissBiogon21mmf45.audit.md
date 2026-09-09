@@ -28,12 +28,9 @@ Catalog version: local working tree, 2026-05-19
 
 - Updated the L4 table/prose to use K-SK7 while leaving the remaining unmatched legacy glass codes unresolved.
 
-### Verification
+### Report status
 
-- `npm run generate:glass-reports` — passed; the SK7/607595 row is cleared, while L1 / 504667, L5 / 561575, L6 / 625533, and L8 / 642581 remain in the six-digit missing-Sellmeier report as unresolved legacy codes.
-- `npm run typecheck` — passed.
-- `npm run format:check` — passed.
-- `npm run test` — passed (131 files, 1666 tests; expected error-boundary console output only).
+- The SK7/607595 row is cleared, while L1 / 504667, L5 / 561575, L6 / 625533, and L8 / 642581 remain in the six-digit missing-Sellmeier report as unresolved legacy codes.
 
 ## 2026-06-25 - APD, high-index, and semi-diameter audit
 
@@ -53,18 +50,6 @@ Catalog version: local working tree, 2026-05-19
 
 - `apd: false` remains appropriate for all elements. The patent provides no line-index or partial-dispersion information.
 - High-index crown status in the rear meniscus and cemented interface remains documented in the glass labels and analysis prose.
-
-### Phase 4 - Analysis sync
-
-- No analysis prose change was required for this pass.
-
-### Verification
-
-- `npm run generate:glass-reports` - passed (7 files, 7 tests); generated report state retained.
-- `npm run typecheck` - passed.
-- `npm run format:check` - passed.
-- `npm run test -- __tests__/src/lens-data/lensDataTyping.test.ts __tests__/src/optics/validateLensData.test.ts __tests__/src/optics/buildLens.test.ts` - passed (3 files, 143 tests).
-- `npm run test` - failed outside this audit's edits: stale/generated route metadata is missing Rodenstock lens routes, and the existing Sonnar 50/1.5 skew-ray chromatic assertion differs by 0.0011856 mm.
 
 ## 2026-08-11 — Phase 92 HOYA PC1 recovery
 

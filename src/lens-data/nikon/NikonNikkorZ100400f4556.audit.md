@@ -42,14 +42,6 @@ The patent lists d-line refractive indices only; vd values remain catalog/code i
 - Updated the standard-glass table for L4, L6, L9, L10, L14-L17, L19-L23, and L25 so the prose matches the audited data file.
 - Corrected the companion data-file reference in the analysis header.
 
-### Verification
-
-- `npm test -- catalogMismatchScan glassRelabelCandidatesScan` - passed.
-- `npm run typecheck` - passed.
-- `npm run format:check` - passed.
-- `npm run lint` - passed.
-- `npm run test` - passed (116 files, 1507 tests).
-
 ## 2026-05-19 — Six-digit glass-code backfill review
 
 Reviewed `patents/JP2022092388A.pdf`, Example 1 / Table 1. The remaining code-only rows checked in this pass were L9 / S14 (`855399`, nd=1.854505), L17 / S31 (`553555`, nd=1.552981), L19 / S34 (`603564`, nd=1.603420), L23 / S41 (`903354`, nd=1.902650), and L25 / S45 (`738493`, nd=1.738000).

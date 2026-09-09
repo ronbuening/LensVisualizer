@@ -35,10 +35,6 @@ The patent gives only `nd`/`νd` rows. It has no `θgF`, `Pg,F`, or line-index t
 - Updated the glass-identification section and group tables in `NikonNikkorAFS80400mmf4556G.analysis.md`.
 - Removed unsupported anomalous-dispersion wording from L56; it remains a low-dispersion crown partner with `apd: false`.
 
-### Verification
-
-- Pending batch verification after the current Nikon audit pass.
-
 ## 2026-07-29 - Remaining catalog-mismatch audit
 
 - Rechecked US 2020/0049962 A1 Example 1 surface 6; stored `R`, `d`, `nd=1.80100`, and `νd=34.90` agree with the patent.

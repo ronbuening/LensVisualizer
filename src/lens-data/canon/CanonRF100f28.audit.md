@@ -42,15 +42,6 @@ Catalog version: 952b877
 - Regenerated `agent_docs/generated/catalog-mismatches.generated.md` and `agent_docs/generated/glass-relabel-candidates.generated.md`; this lens no longer appears in either report.
 - Regenerated `agent_docs/generated/unresolved-glass.generated.md`; only the intentional 946180 and 764485 code-based labels remain for this lens.
 
-### Verification
-
-- `npm test -- catalogMismatchScan glassRelabelCandidatesScan` - passed.
-- `npm test -- unresolvedGlassScan` - passed.
-- `npm run typecheck` - passed.
-- `npm run format:check` - passed.
-- `npm run lint` - passed.
-- `npm run test` - passed (120 files, 1566 tests; expected error-boundary console traces were emitted by tests).
-
 ## 2026-09-09 — First-added audit, lens 33
 
 Rechecked original JP2021047297A pp. 9–11 and Figure 1 (p. 17, 600 dpi). Retained all 31 source radii/gaps, 17 nd/vd pairs and source individual focal lengths. Restored published half-diameters, with explicitly documented S17/S18 renderer limits 13.25 mm (source 13.49/13.46). BF14.66 is already air-equivalent under paragraph52; no plate/filter rows. Corrected initial aperture2.8→2.92, calculated close-focus0.26→0.254657653m and middle keyframe0.693003→0.678763516. Preserved the source middle-station0.01mm rounding difference. Qualified catalog names and removed unsupported supplier/chemistry/design-intent claims; elements11/12 now name compatible FDS18/S-LAH96. Normal SA setting is explicit; no unsupported all-focus SA adjustment claim. Original scan confirms the second0.5× SA configuration's d15+d20 sum discrepancy, left as follow-up. Production baseline inspected. Surface/image-circle and no-hidden-trim probes pass; local interaction review completed: infinity, closest focus, intermediate focus 0.68, f/32 and motion chart (25.33 mm maximum travel). Three source/geometry tests pass; batch gates pending. Figure 1(C) does not reproduce the numerical closest-focus group separations, retained as a further source limitation.

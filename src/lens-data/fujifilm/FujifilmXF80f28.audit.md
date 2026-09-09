@@ -55,15 +55,6 @@ Patent: US 2018/0246292 A1 — Example 1
 - Removed the unsupported HOYA NBFD3 nearest-match claim for L2b.
 - Updated the inferred third ED element from S-FPM2 to S-FPM3.
 
-### Verification
-
-- `npm run typecheck` — passed.
-- `npm run format:check` — passed.
-- `npm run lint` — passed.
-- `npm run test` — passed, 120 test files / 1566 tests.
-- `npm test -- catalogMismatchScan glassRelabelCandidatesScan` — passed; regenerated output removed `FujifilmXF80f28` from both generated reports.
-- Generated report files were restored afterward to keep the working tree scoped to this lens.
-
 ### Outstanding follow-ups
 
 - `agent_docs/glass-relabel-followup.md` still contains the global S-FPM2/XF80 queue row. It was not edited because this audit was requested to avoid non-lens files.
@@ -90,14 +81,6 @@ Patent: US 2018/0246292 A1 — Example 1
 ### Phase 4 - Analysis sync
 
 - Updated the L2b narrative and glass table to identify OHARA S-NBH52.
-
-### Verification
-
-- `npm run generate:glass-reports` - passed.
-- `npm run typecheck` - passed.
-- `npm run format:check` - passed.
-- `npm run lint` - passed.
-- `npm run test` - passed, 131 test files / 1666 tests.
 
 ## 2026-09-08 — First-hosted audit, lens 19
 

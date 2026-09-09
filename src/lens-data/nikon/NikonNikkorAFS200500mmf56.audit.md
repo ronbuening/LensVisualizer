@@ -36,13 +36,9 @@ Patent: JP 2014-209144 A, Example 2
 
 - Updated the analysis glass table and element narratives for L1, L2, L3, L4, L6, L8, L9, L10, L11, L15, L18, and L19 so prose matches the data file.
 
-### Verification
+### Report status
 
-- `npm test -- catalogMismatchScan glassRelabelCandidatesScan unresolvedGlassScan` — passed. This lens no longer appears in the catalog-mismatch or relabel-candidate reports; the unresolved report intentionally lists L2/L3 `498826`, L6 `517522`, and L10 `658509` code annotations.
-- `npm run typecheck` — passed.
-- `npm run format:check` — passed.
-- `npm run lint` — passed.
-- `npm run test` — passed.
+- This lens no longer appears in the catalog-mismatch or relabel-candidate reports; the unresolved report intentionally lists L2/L3 `498826`, L6 `517522`, and L10 `658509` code annotations.
 
 ## 2026-05-19 — Six-digit glass-code backfill review
 

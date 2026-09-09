@@ -11,11 +11,6 @@ Patent: JPH04294310A, Example 1
 - Completed physical-glass coverage with checked equivalents, including OHARA `S-LAL52` for L22.
 - Normalized the display name to `NIKON AF-I NIKKOR 300mm f/2.8D IF-ED`.
 
-### Verification
-
-- `npm run audit:image-circle -- src/lens-data/nikon/NikonAFINikkor300mmf28DIFED.data.ts`
-- Full repository checks are recorded in the integrating commit.
-
 ## 2026-08-18 — Screenshot follow-up
 
 - Compared the supplied site screenshot directly with Figure 1 again. The front collector, stepped G2 diameter, and G3 outline remain proportionally consistent; the automated silhouette scan was affected by figure annotations, and visual confirmation did not justify another SD change.

@@ -34,13 +34,3 @@ both authored focus endpoints.
 - The bonded synthetic resin remains intentionally Abbe-modeled.
 - L10 at 1.58636 / 60.9 remains explicitly unmatched. Nearby barium-crown catalog rows are not exact enough to justify
   a coefficient-backed identity.
-
-### Verification
-
-- `npm run audit:surface -- src/lens-data/pentax/PentaxDFA64535mmf35AL.data.ts` - passed.
-- `npm run audit:image-circle -- src/lens-data/pentax/PentaxDFA64535mmf35AL.data.ts` - passed.
-- `npm test -- dispersion.test.ts` - passed (49 tests).
-- `npm run generate:glass-reports` - passed (7 report tests).
-- `npm run typecheck && npm run format:check && npm run lint && npm run test` - passed (2450 tests; lint retained
-  three unrelated pre-existing warnings).
-- `npm run build` - passed; 963 routes prerendered.

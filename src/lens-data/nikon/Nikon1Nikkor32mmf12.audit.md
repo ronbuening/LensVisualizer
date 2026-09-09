@@ -21,7 +21,3 @@ Reviewed local untracked patent file `patents/WO2014061226A1.pdf`, Example 1 / T
 
 - WO 2014/061226 A1 does not publish per-surface clear apertures or effective diameters for Example 1.
 - Current SDs remain renderer clear-aperture estimates. They make rational sense against the patent figure: large f/1.24 front positives, a constricted stop at `sd = 7.41 mm`, and a rear re-expansion through the powered G2 doublet while maintaining edge thickness and sag clearance.
-
-### Verification
-
-- Pending batch verification after the current Nikon audit pass.

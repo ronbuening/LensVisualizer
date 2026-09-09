@@ -15,23 +15,6 @@ Patent: US 4,364,643, Embodiment 3
 - The patent is normalized at f=1 and does not publish clear apertures. Existing SDs remain estimates from f/1.2 marginal rays, mechanical clearance, and the R6 rim cap.
 - Retained the inferred stop location centered in the D6 air gap from Fig. 3.
 
-### Phase 3 - Spectral / metadata enrichment
-
-- No fluorite, ED/UD, APD, theta_gF, dPgF, or line-index table was found.
-- No APD metadata was added.
-
-### Phase 4 - Analysis sync
-
-- No analysis changes needed.
-
-### Verification
-
-- `npm run generate:glass-reports` - passed (7 files, 7 tests).
-- `npm run typecheck` - passed before and after metadata regeneration.
-- `npm run format:check` - passed.
-- `npm run lint` - passed.
-- `npm run test` - initially exposed stale generated route metadata; after `npm run generate:metadata`, passed (183 files, 2212 tests).
-
 ## 2026-08-18 - Embodiment 3 L6 coefficient backfill
 
 - Visually rechecked Embodiment 3 on rendered pages 7–8 of `patents/US4364643.pdf`; L6 is confirmed at

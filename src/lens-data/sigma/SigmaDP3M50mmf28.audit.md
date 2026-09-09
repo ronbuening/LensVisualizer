@@ -28,12 +28,6 @@ Patent: JP 2014-126652 A, Example 3
 
 - Updated element prose and the glass selection summary for L1, L2, L4, L5, and L9.
 
-### Verification
-
-- `npm test -- dispersion` — passed.
-- `npm run typecheck` — passed.
-- `npm run generate:glass-reports` — passed; lens removed from the relabel-by-lens queue.
-
 ## 2026-05-31 - Catalog mismatch remainder audit
 
 ### Phase 1 - Glass correction

@@ -37,14 +37,3 @@ clearance allowance controls any surface that needs more aperture.
 
 The lens now has coefficient-backed dispersion on all 11 glass elements. The two ED identifications remain
 classifications based on the patent coordinates and product correlation, not claimed melt identities.
-
-### Verification
-
-- `npm run audit:surface -- src/lens-data/pentax/PentaxDFA64590mmf28EDAWSRMacro.data.ts` - passed.
-- `npm run audit:image-circle -- src/lens-data/pentax/PentaxDFA64590mmf28EDAWSRMacro.data.ts` - passed.
-- Normal-density axial and 0.60-field ray fans remain unclipped at infinity and the published close endpoint.
-- `npm test -- dispersion.test.ts` - passed (49 tests).
-- `npm run generate:glass-reports` - passed (7 report tests).
-- `npm run typecheck && npm run format:check && npm run lint && npm run test` - passed (2450 tests; lint retained
-  three unrelated pre-existing warnings).
-- `npm run build` - passed; 963 routes prerendered.

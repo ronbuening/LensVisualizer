@@ -13,8 +13,6 @@ Patent: WO2019/229849 A1
 | L32 / row 24 | 1.69895 / 30.13 | `Dense flint (near S-NBH52V)` | `E-FD15 (HOYA, patent nd/vd match)` | HOYA E-FD15 round-trips the stored patent pair. |
 | L34 / row 27 | 1.765538 / 46.76 | `Lanthanum crown (no confirmed catalog match; near TAFD5F)` | `Q-LASFPH2S (Hikari, patent nd/vd match)` | Nikon/Hikari Q-LASFPH2S clears the prior unmatched label. |
 
-- `npm run generate:glass-reports` passed; this lens no longer appears in the catalog-mismatch reports.
-
 ## 2026-05-20 - Patent unavailable disposition
 
 - The requested local patent review could not be completed because the untracked `patents/` folder does not contain a WO2019/229849 A1 PDF.

@@ -27,12 +27,6 @@ Patent: US 7,289,274 B1, Embodiment 5 / Table 5
 
 - Updated element narratives, glass palette rows, and source catalog references for the corrected labels.
 
-### Verification
-
-- `npm test -- glassRelabelByLensScan` passed; this lens no longer appears in the relabel queue.
-- `npm run typecheck` passed.
-- `npm run test` passed.
-
 ## 2026-06-23 - Pentax folder patent audit
 
 - Rechecked local patent file `patents/US7289274B1.pdf` and reviewed the first drawing sheet.

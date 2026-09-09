@@ -38,14 +38,6 @@ Catalog version: local working tree, 2026-05-02
 - Updated the element narrative for L21, L31, L32, L34, L43, L44, L51, L52, and L62 to match the corrected labels.
 - Replaced summary references to S-LAH79, S-NPH53, TAFD33, TAFD37, and S-TIM22 where those names were no longer supported by the audited data file.
 
-### Verification
-
-- `npm test -- catalogMismatchScan glassRelabelCandidatesScan` — passed; this lens no longer appears in either generated report.
-- `npm run typecheck` — passed.
-- `npm run format:check` — passed.
-- `npm run lint` — passed.
-- `npm run test` — passed (116 files, 1507 tests; expected error-boundary console errors emitted by tests).
-
 ## 2026-05-19 — Six-digit glass-code backfill review
 
 Reviewed `patents/JPWO2020157904A1.pdf`, Example 1 / Table 1. The L62 / surface 34 row gives nd=1.683760 and νd=37.57, code `684376`.

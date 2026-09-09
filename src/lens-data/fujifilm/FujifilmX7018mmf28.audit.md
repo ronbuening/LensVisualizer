@@ -8,7 +8,6 @@ Patent: US 2017/0075089 A1
 - Updated surface 1 to `S-FTM16 (OHARA)` for nd=1.59270, vd=35.31.
 - Updated surface 5 to `S-TIM35 (OHARA)` for nd=1.69895, vd=30.13.
 
-
 ## 2026-07-24 - Patent-figure semi-diameter audit
 
 | Surface | Field | Before | After | Justification |

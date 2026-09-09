@@ -15,8 +15,6 @@ Patent: WO 2021/241230 A1
 | L32 / row 26 | 1.76450 / 49.1 | `S-NBH56 (OHARA)` | `S-LAH96 (OHARA, patent nd/vd match)` | OHARA S-LAH96 round-trips the stored patent pair. |
 | L42 / row 30 | 1.90265 / 35.8 | `S-LAH79 (OHARA)` | `J-LASFH9 (Hikari, patent nd/vd match)` | Hikari J-LASFH9 clears the prior S-LAH79 mismatch. |
 
-- `npm run generate:glass-reports` passed; this lens no longer appears in the catalog-mismatch reports.
-
 ## 2026-05-20 — Patent unavailable disposition
 
 ### Phase 1 — Glass corrections
@@ -31,15 +29,6 @@ Patent: WO 2021/241230 A1
 ### Phase 3 — Spectral / metadata enrichment
 
 - Deferred.
-
-### Phase 4 — Analysis sync
-
-- No analysis changes made.
-
-### Verification
-
-- `npm run generate:glass-reports` — passed; this lens remains in `catalog-mismatches.generated.md` and `glass-relabel-by-lens.generated.md` pending patent review.
-- `npm run typecheck`, `npm run format:check`, `npm run lint`, and `npm run test` — passed.
 
 ## 2026-05-31 — First-10 mismatch queue recheck
 

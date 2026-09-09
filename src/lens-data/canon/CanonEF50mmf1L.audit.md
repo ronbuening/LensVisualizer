@@ -47,13 +47,6 @@ Updated [CanonEF50mmf1L.analysis.md](CanonEF50mmf1L.analysis.md):
 - §5 L2 section: glass line updated from "S-BSM14 type" to "S-LAL14 (OHARA)".
 - §4.2 rationale: "barium dense crown (L2)" → "lanthanum crown (L2)".
 
-### Verification
-
-```
-npm run typecheck && npm run format:check && npm run lint && npm run test
-```
-All passed. Catalog mismatch scan: canon-ef-50f10l surfaces 1 and 3 no longer appear in the mismatch report after relabeling.
-
 ## 2026-05-20 — Glass relabel follow-up
 
 ### Patent evidence

@@ -56,9 +56,3 @@ Reviewed `patents/US5528428.pdf`, Embodiment 3 / Table 3. The relevant six-digit
 - The Nikonos RS fisheye family filing [JPH07-084180 A](https://patents.google.com/patent/JPH0784180A/ja) identifies its inventor with the same `元壽 毛利` characters. US 5,579,169 and [Nikon's own designer history](https://imaging.nikon.com/imaging/information/story/0088/) use the Motohisa Mouri romanization.
 - Canonicalized `patentAuthors` from `Motohisa Mori` to `Motohisa Mouri`, merging two records for the same Nikon designer. The subtitle and analysis use the canonical form while the source banner preserves the US patent's spelling.
 - No optical prescription, focus, aperture, semi-diameter, glass, or movement data changed.
-
-### Verification
-
-- `npm run generate:metadata` — passed; the combined inventor-identity pass reduced the generated catalog from 391 to 389 author records.
-- `npm run typecheck && npm run format:check && npm run lint && npm run test` — passed (249 files, 2,962 tests).
-- `npm run build` — passed; 1,070 routes prerendered and sitemap and RSS feeds generated.

@@ -27,15 +27,6 @@ Patent: JPWO2019116563A1 / WO2019/116563 A1, Example 3
 
 - Updated L14, L35/L36, L37, glass-map summary, achromatization text, and source list.
 
-### Verification
-
-- `npm test -- dispersion` — passed.
-- `npm run typecheck` — passed.
-- `npm run generate:glass-reports` — passed; lens removed from the relabel-by-lens queue.
-- `npm run lint` — passed.
-- `npm run format:check` — passed.
-- `git diff --check` — passed.
-
 ## 2026-08-21 — Near/close glass-candidate review
 
 - Rechecked WO 2019/116563 A1's L33 coordinate and partial dispersion, then assigned Hikari J-SF1 as a

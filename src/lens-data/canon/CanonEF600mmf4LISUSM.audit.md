@@ -31,12 +31,6 @@ Patent: US 6,115,188 A, Numerical Example 22 / Figure 85
 - Normalized the structured assignee to the repository-wide `Canon Inc.` spelling; the analysis retains the patent's
   printed Canon Kabushiki Kaisha wording.
 
-### Verification
-
-- `npm run audit:surface -- src/lens-data/canon/CanonEF600mmf4LISUSM.data.ts` - passed.
-- `npm run audit:image-circle -- src/lens-data/canon/CanonEF600mmf4LISUSM.data.ts` - passed, 0 undersized.
-- `npm run generate:glass-reports` - passed, 8 files / 15 tests.
-
 ## 2026-08-21 - Diagram-label and movement follow-up
 
 ### Patent-figure review
@@ -52,8 +46,3 @@ Patent: US 6,115,188 A, Numerical Example 22 / Figure 85
   position. No `dPgF` was invented because Example 22 publishes no partial-dispersion row.
 - Confirmed that L2 translates 18.829163964 mm imageward from infinity to the modeled 5.5 m state, while L1/L3 remain
   fixed. This prime lens has no zoom travel.
-
-### Verification
-
-- `npm run audit:surface -- src/lens-data/canon/CanonEF600mmf4LISUSM.data.ts` - passed.
-- `npm run audit:image-circle -- src/lens-data/canon/CanonEF600mmf4LISUSM.data.ts` - passed, 0 undersized.

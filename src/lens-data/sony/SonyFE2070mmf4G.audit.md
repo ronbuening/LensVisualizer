@@ -7,7 +7,6 @@ Patent: WO 2023/153076 A1, Example 8
 - Added HOYA NBFD25 from HOYA's first-party optical-glass PDF (`NBFD25`, code 855-252, nd=1.85451, vd=25.15, PgF=0.6103, formula-3 A0-A5 constants) to the runtime catalog.
 - Relabeled L44 from `Dense flint class (855/252)` to `NBFD25 (HOYA, 855252)`.
 - Resolver support for slash-form codes also lets the existing catalog-backed `593/670` and `720/347` rows resolve from their current annotations.
-- `npm test -- dispersion` and `npm run generate:glass-reports` passed.
 
 ## 2026-05-20 - Glass relabel pass
 

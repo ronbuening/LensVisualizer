@@ -36,7 +36,6 @@ Patent: US 716,035
 - Midpoint/f16/movement-chart checks complete: BF 91.88, stop diameter 5.24, all three groups travel objectward 12.72 mm, zoom disabled. No visual overlap. The wide-open EP 25.61 readout comes from local pupil magnification (`entrancePupilAtState2`, stopSD/yRatio); the iris itself is derived by tracing the nominal EFL/(2 FNO) ray. Analysis distinguishes this calculated pupil estimate from the source opening of 25.
 - Image-circle audit reports skipped because this normalized example has no canonical imageFormat. This is not a coverage pass. The source 80-unit circle is recorded in the analysis; explicit 40-unit image-height coverage must be checked separately before batch completion.
 
-
 ### Batch follow-up
 
 Explicit image-circle proxy check with source semi-height 40 mm: minimum distance ahead of image is 85.52 mm, so Y minus distance times max(1,Y/f) is non-positive at every surface. No floor violation; this does not establish corner performance.

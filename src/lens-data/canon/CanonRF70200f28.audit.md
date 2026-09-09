@@ -41,14 +41,6 @@ Patent: JP2021-056407A, Numerical Example 3 (Canon / Nakahara, Iwamoto)
 - Updated G1, G2, G4, G5, and G7 narratives to match the audited glass annotations.
 - Retained the existing UD/Super UD and aspherical discussion. No APO claims were added.
 
-### Verification
-
-- `npm test -- catalogMismatchScan glassRelabelCandidatesScan` - passed; Canon RF 70-200 no longer appears in either generated mismatch report.
-- `npm run typecheck` - passed.
-- `npm run format:check` - passed.
-- `npm run lint` - passed.
-- `npm run test` - passed (116 test files, 1507 tests).
-
 ## 2026-09-09 — First-added diagram audit, lens 39
 
 Original Example 3/pages 15–16 and Figure 5/page 23 (600 dpi) checked. Source prescription and aspheres retained; existing SD estimates agree with optical rims after rejecting bracket/leader contamination. No cover-glass or filter rows exist. Corrected focus attribution from G6/G7 to source G4/G6; finite-focus spacings remain unpublished and disabled. Removed unsupported motor, molding, coating and chemistry claims; qualified compatible glass names and removed two unsupported dPgF overrides plus five APD badges. Recalculated isolated element focal lengths. Restored source aperture schedule 2.89/2.89/2.91 with explicitly inferred zoom iris radii. Source rounding differences remain documented.

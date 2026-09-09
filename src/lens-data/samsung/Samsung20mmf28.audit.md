@@ -44,16 +44,6 @@ identifies Samsung's production supplier.
   “20mm F2.8”; NX remains correctly represented by `lensMounts: ["samsung-nx"]`.
 - Updated the companion analysis to use the catalog-equivalent glass labels and to keep supplier/APO claims bounded.
 
-### Verification
-
-- `npm run audit:patent-figure -- src/lens-data/samsung/Samsung20mmf28.data.ts patents/US20120056976A1.pdf 2 0.20,0.42,0.54,0.70` — completed; final disposition uses the hand-read rims documented above because labels contaminated automated candidates.
-- `npm run audit:image-circle -- src/lens-data/samsung/Samsung20mmf28.data.ts` — 1 checked, 0 undersized, 0 skipped.
-- `npm run audit:surface -- src/lens-data/samsung/Samsung20mmf28.data.ts` — no validation errors.
-- `npm run generate:glass-reports` — all 13 report tests passed; lens coverage remains 5/6 with no mismatch.
-- `npm run typecheck`, `npm run format:check`, and `npm run lint` — passed.
-- `npm run test` — 220 files / 2591 tests passed.
-- `npm run build` — passed; 1008 routes prerendered.
-
 ## 2026-08-18 - L6 coefficient backfill
 
 - Visually rechecked Example 1 / Table 1 on rendered page 17 of `patents/US20120056976A1.pdf`; L6 is confirmed at

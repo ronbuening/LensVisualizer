@@ -10,7 +10,3 @@ Patent: US 7,161,746 B2, Example 9 / Table 9 / FIG. 17
 - The patent discusses front-lens diameter as a design constraint but does not publish full clear semi-diameters for Example 9.
 - FIG. 17 labels seven lens components, with cemented components accounting for the data file's 10 glass elements / 7 groups. Stored SDs match the figure hierarchy: a very large front L1 at 18 mm, stepped-down front-group elements through 6.4-14.6 mm, a 6.0 mm stop, and a compact rear G2 expanding to 10.3 mm at the final element.
 - No SD values changed. Current values remain inferred from FIG. 17 and constrained by the signed-sag and cross-gap checks documented in the data header.
-
-### Verification
-
-- `npm test -- elementRenderDiagnostics`

@@ -20,19 +20,9 @@ Patent: DE 26 35 415 B1 / DT 26 35 415 B1, Example 1
 - Re-rendered and visually checked `patents/DE_2635415_B1.pdf`; page 2 confirms Example 1 radii, spacings, `n_e`, and `ν_e` values used by the data file.
 - No radius, spacing, semi-diameter, focal-length, or focus-gap changes were made in this pass.
 
-### Phase 3 — Spectral / Metadata Enrichment
-
-- No new `nC`, `nF`, `ng`, or `dPgF` data was available in the local patent PDF; it lists `n_e/ν_e` only.
-
 ### Phase 4 — Analysis Sync
 
 - Updated the companion analysis so all six element descriptions and the glass-identification table distinguish patent e-line class comparisons from d-line catalog identities.
-
-### Verification
-
-- `npm test -- dispersion` — passed.
-- `npm run generate:glass-reports` — passed; `catalog-mismatches.generated.md` now reports 0 mismatches.
-- `npm run typecheck && npm run format:check && npm run lint && npm run test` — passed.
 
 ## 2026-07-30 - Reference-line metadata
 

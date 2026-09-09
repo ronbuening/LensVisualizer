@@ -18,12 +18,6 @@ Patent: US 2006/0023317 A1, Numerical Embodiment 1, Figure 1
 - Replaced free-text `nd/vd` descriptions with the patent-derived vendor-neutral six-digit coordinate classes for all 17 elements.
 - Existing verified catalog curves resolve all 17 classes within the coordinate guard. No production supplier or melt is asserted, and no catalog tolerance was changed.
 
-### Verification
-
-- `npm run audit:surface -- src/lens-data/canon/CanonEFS1785mmf456ISUSM.data.ts` — passed.
-- `npm run audit:image-circle -- src/lens-data/canon/CanonEFS1785mmf456ISUSM.data.ts` — passed with 0 undersized surfaces.
-- `npm run generate:glass-reports` — passed; strict and trusted coverage are 17/17.
-
 ## 2026-08-25 — Screenshot and movement follow-up
 
 - Rechecked Figure 1 at 600 dpi against the supplied site render. The current E5 correction remains source-faithful. The front rim's rectangular step is a mechanical blank rather than a larger optical aperture, and the movement arrows, group brackets, and G5b leader lines make the remaining automated overreads unsuitable for SD changes.

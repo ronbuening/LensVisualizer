@@ -11,8 +11,6 @@ Patent: WO 2024/147268 A1
 |---|---|---|---|---|
 | L14 / row 26 | 1.78590 / 44.17 | `Lanthanum flint (near S-LAM55)` | `S-LAH51 (OHARA, patent nd/vd match)` | OHARA S-LAH51 round-trips the stored patent pair. |
 
-- `npm run generate:glass-reports` passed; this lens no longer appears in the catalog-mismatch reports.
-
 ## 2026-05-20 — Patent unavailable disposition
 
 - The requested local patent review could not be completed because the untracked `patents/` folder does not contain `WO 2024/147268 A1`.

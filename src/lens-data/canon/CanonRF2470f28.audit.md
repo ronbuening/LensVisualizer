@@ -36,14 +36,6 @@ Catalog version: ab3a508
 - Synced the pre-existing S-LAL18 correction for Elements 3 and 7; the analysis still referred to S-LAL14.
 - Reworded unsupported exact-catalog claims for patent-only code labels and updated the ultra-high-index / PGM discussion.
 
-### Verification
-
-- `npm run typecheck` - passed.
-- `npm run format:check` - passed.
-- `npm run lint` - passed.
-- `npm run test -- buildLens lensDataTyping` - passed, 2 files / 59 tests.
-- Full `npm run test` and generated catalog scans were not run because those scanner tests rewrite global generated reports outside this lens audit's file scope.
-
 ## 2026-09-09 — First-added diagram audit, lens 38
 
 Original Example 5 (PDF page 23), Figure 9 (page 10 at 600 dpi) and paragraphs 0084–0089/0093 checked. Restored all published effective diameters/2, corrected isolated element focal lengths and f/2.91 preset, qualified glass labels, and removed unsupported APD/molding/chemistry. Source radii, gaps, nd/vd and all five asphere coefficient sets remain unchanged. No filter or cover glass exists in this example.

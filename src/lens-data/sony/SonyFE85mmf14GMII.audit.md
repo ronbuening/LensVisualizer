@@ -7,7 +7,6 @@ Catalog version: bb70259
 
 - Added HOYA NBFD29 from HOYA's first-party optical-glass PDF (`NBFD29`, code 770-297, nd=1.77047, vd=29.74, PgF=0.5951, formula-3 A0-A5 constants) to the runtime catalog.
 - Relabeled L9 / S16 from code-only `770297` to `NBFD29 (HOYA, 770297)`.
-- `npm test -- dispersion` and `npm run generate:glass-reports` passed; L9 now uses trusted Sellmeier data.
 
 ## 2026-05-10 — Patent prescription and glass-label audit
 
@@ -56,15 +55,6 @@ Catalog version: bb70259
 - Updated the glass-identification table and chromatic-correction narrative: L8 is now S-PHM52 (618/634), and L9/L12/L14 are patent-code-only glasses.
 - Removed the Hoya PCD51 / HIKARI J-PSKH4 cross-reference, which belonged to the incorrect 593/670 transcription.
 - Updated the verification summary and OHARA source list.
-
-### Verification
-
-- `npm test -- catalogMismatchScan glassRelabelCandidatesScan` before edits — passed; this lens appeared in the generated mismatch/candidate reports.
-- `npm test -- catalogMismatchScan glassRelabelCandidatesScan` after edits — passed; `SonyFE85mmf14GMII` no longer appears in `catalog-mismatches.generated.md` or `glass-relabel-candidates.generated.md`.
-- `npm run typecheck` — passed.
-- `npm run format:check` — passed.
-- `npm run lint` — passed.
-- `npm run test` — passed, 120 files / 1566 tests. Console output includes expected error-boundary stack traces from `errorBoundaries.test.tsx`.
 
 ### Outstanding follow-ups
 

@@ -46,14 +46,6 @@ Catalog version: local working tree, 2026-05-04
 - Removed catalog-specific APD claims for L32 and L52; retained ED identification only as an nd/vd-position inference.
 - Updated the manufacturing/asphere notes so non-catalog labels are described by patent code and nd/vd rather than unresolved OHARA suffix names.
 
-### Verification
-
-- `npm test -- catalogMismatchScan glassRelabelCandidatesScan` - passed; this lens no longer appears in either generated report.
-- `npm run typecheck` - passed.
-- `npm run format:check` - passed.
-- `npm run lint` - passed.
-- `npm run test` - passed (116 files, 1507 tests; expected error-boundary console errors emitted by tests).
-
 ## 2026-05-19 — Six-digit glass-code backfill review
 
 Reopened `patents/WO2020136749A1.pdf`, Example 1 / Table 1. The reviewed missing-Sellmeier rows were L21 / S6 (`744495`, nd=1.74389, νd=49.53), L42 / S20 (`498826`, nd=1.49782, νd=82.57), L61 / S26 (`792450`, nd=1.79189, νd=45.04), and L72 / S30 (`852402`, nd=1.85207, νd=40.15).
@@ -74,7 +66,6 @@ Changes made:
 - Rechecked local `patents/WO2020136749A1.pdf`, Example 1 / Table 1, against the prior transcription: L21 remains `1.74389 / 49.53` and L72 remains `1.85207 / 40.15`.
 - Relabeled L21 to Hoya M-NBF1 (`1.743300 / 49.326`) and L72 to Hoya M-TAFD305 (`1.851348 / 40.104`) as coefficient-backed catalog equivalents.
 - Patent codes `744495` and `852402` and the unspecified production supplier remain explicit. L61 stays unresolved; no geometry, asphere, or APD metadata changed.
-
 
 ## 2026-09-08 — First-hosted catalog audit, lens 16
 

@@ -27,14 +27,6 @@ Patent: US 2002/0075570 A1, Embodiment 1
 - Updated the L3 narrative, glass table, and chromatic-strategy text for E-FD8.
 - Updated L7 to keep an explicit unbroken 561453 unresolved token.
 
-### Verification
-
-- `npm run generate:glass-reports` - passed.
-- `npm run typecheck` - passed.
-- `npm run format:check` - passed.
-- `npm run lint` - passed.
-- `npm run test` - passed, 131 test files / 1666 tests.
-
 ## 2026-05-31 - Catalog-mismatch second-batch recheck
 
 Reviewed the local untracked file `patents/US20020075570A1.pdf`, Embodiment 1 / Table 1.

@@ -29,10 +29,3 @@ Patent: US 5,745,306 A, Example 3 / Figure 7
 ### Phase 4 — Analysis sync
 
 - Synchronized the product title, explicit qualified glass labels, supplier caveats, and ED inference wording in the companion analysis.
-
-### Verification
-
-- `npm run audit:surface -- src/lens-data/nikon/NikonAFSNikkor600mmf4DIFEDII.data.ts` — passed.
-- `npm run audit:image-circle -- src/lens-data/nikon/NikonAFSNikkor600mmf4DIFEDII.data.ts` — 0 undersized.
-- `npm run generate:glass-reports` — passed; Sellmeier coverage remains 10/10.
-- Full repository checks are recorded in the integrating commit.

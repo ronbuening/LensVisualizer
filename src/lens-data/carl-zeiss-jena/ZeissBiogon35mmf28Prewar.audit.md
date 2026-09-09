@@ -25,10 +25,6 @@ Catalog version: local working tree, 2026-06-25
 - Rechecked the diagram proportions against the patent drawing: the conservative front/rear SD taper and inferred mid-gap stop remain visually rational.
 - Runtime element-render diagnostics showed no hidden trim warnings over the infinity layout, so no SD changes were made.
 
-### Verification
-
-- Temporary Zeiss Jena diagnostic test - passed; runtime trim diagnostics empty for this lens.
-
 ## 2026-07-30 - `672472` catalog-equivalent review
 
 - Rendered and visually rechecked the single worked example. L1, L2, and L6 remain `nd = 1.6716`, `vd = 47.2`.

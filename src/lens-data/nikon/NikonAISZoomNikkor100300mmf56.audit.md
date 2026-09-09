@@ -29,10 +29,3 @@ class-level labels, and no production supplier, historical melt, or anomalous-di
 - Expanded G1-G4 captions with signed power and functional roles.
 - Verified the published wide-to-tele ordering: G2 moves 52.300 mm imageward, G3 moves 15.898 mm imageward, and G1/G4
   remain fixed. The unavailable quantitative focus reconstruction remains disabled.
-
-### Verification
-
-- Surface-domain and image-circle audits passed.
-- Generated glass-report suite passed; compatible Sellmeier coverage is 14/14.
-- Focused metadata and movement regression tests passed.
-- Full repository gates and production build passed.
