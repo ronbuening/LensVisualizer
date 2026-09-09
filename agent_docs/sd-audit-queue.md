@@ -1,13 +1,15 @@
 # Semi-Diameter Audit Queue
 
-Work list for the semi-diameter / cross-section audit. Follow
-[patent-figure-sd-audit-procedure.md](patent-figure-sd-audit-procedure.md) for each row; the completed first pass is
-written up in [patent-figure-sd-audit.md](patent-figure-sd-audit.md).
+Open work for the semi-diameter / cross-section audit. Follow
+[patent-figure-sd-audit-procedure.md](patent-figure-sd-audit-procedure.md) for each row. The queue holds only open
+rows: when a lens is finished, log the evidence in its `*.audit.md` sidecar and delete the row here. The first pass
+that seeded Sections B and C is written up in
+[records/patent-figure-sd-audit-2026-07.md](records/patent-figure-sd-audit-2026-07.md).
 
 Take **Section A top-down** — those rows have physics behind them. Section B is figure-evidence only and is lower
 value per hour.
 
-Status values: `todo` · `in progress` · `done` · `blocked (reason)` · `no change (reason)`.
+Status values: `todo` · `in progress` · `blocked (reason)` · `partial (what remains)`.
 
 ## Section A — surfaces below the image-circle floor
 
@@ -36,8 +38,6 @@ rear elements, so those need a real chief-ray trace before anything is touched, 
 | RODENSTOCK GRANDAGON-N 75mm f/4.5 | `rodenstock/RodenstockGrandagonN75mmf45.data.ts` | DE 2444954 A1 | yes | 11 (16.80 < 21.57), 12 (21.00 < 25.04) | 4.77 mm | todo — **wide** |
 | SCHNEIDER TECHNIKA SUPER-ANGULON 75mm f/8 | `schneider-kreuznach/SchneiderTechnikaSuperAngulon75mmf8.data.ts` | JP S42-023896 | yes (`JPB 1967023896-000000.pdf`) | 9 (15.80 < 19.87), 10 (19.75 < 21.63) | 4.07 mm | todo — **wide** |
 
-Four lenses were cleared from this section on 2026-07-24: X100, X100V, X70, GFX100RF.
-
 ### Not covered by the check
 
 `npm run audit:image-circle` skips 29 of 470 lenses: five production folded designs (the axial gap to the image plane
@@ -49,18 +49,18 @@ Filling in `imageFormat` where the format is unambiguous — see
 
 Measured during the first pass but **not acted on**: the evidence is photogrammetry only, at ±10–15%. `median` is
 whole-lens scale agreement; the listed elements are each element's ratio ÷ that median, so 1.00 would be a correct
-shape. Full context and figure-sheet references in [patent-figure-sd-audit.md](patent-figure-sd-audit.md).
+shape. Full context and figure-sheet references in
+[records/patent-figure-sd-audit-2026-07.md](records/patent-figure-sd-audit-2026-07.md).
 
 | Lens | median fig/data | Deviating elements | Status |
 |---|---|---|---|
-| GF 45mm f/2.8 | 0.96 | none beyond ±11% | no change (matches) |
 | XF 50mm f/1.0 | 0.99 | L2a 2.02, L2b/L2c 1.41, L1d 0.68 | todo |
 | GF 35-70mm | 0.99 | L31 1.51, L32 1.71, L11 0.79 | todo |
 | GF 100-200mm | 1.03 | L46 2.68, L47 2.31, L31–L33 ≈1.5, L13 0.59 | todo |
 | GF 23mm f/4 | 1.03 | L12 1.26, L11 1.17, L16 0.78 | todo |
 | XF 33mm f/1.4 | 1.04 | L22–L26 1.35–1.78, G1 all ≈0.80 | todo |
 | XF 23mm f/2 | 1.09 | L31 1.41, L32 1.41 | todo |
-| GFX100RF 35mm f/4 | 1.11 | front group unmeasurable (bracket contamination) | partial (rear fixed) |
+| GFX100RF 35mm f/4 | 1.11 | front group unmeasurable (bracket contamination) | partial (rear fixed; front group is a Section C blocker) |
 | XF 60mm f/2.4 | 1.12 | L11 0.80, L12 0.78, L22 1.19, L23 1.17 | todo |
 | XF 18mm f/2 | 1.16 | L8 1.80, L6 1.31 | todo |
 | GF 32-64mm | 1.20 | L32 1.78, L21g 1.41, L11/L12 ≈0.78 | todo |
@@ -77,93 +77,6 @@ under-counts chief-ray height near the image. Fixing it lens-by-lens off drawing
 re-deriving these from a real full-field chief-ray trace would settle the whole section at once and is probably the
 better investment.
 
-### Completed Nikon additions
-
-| Lens | Figure screen | Status |
-|---|---|---|
-| AF-S DX Zoom-Nikkor 12-24mm f/4 G IF-ED | Median 1.004; revised L2/L3 0.89 and L4 0.86 after normalization | done 2026-07-29; resin boundary capped by edge/sag validation |
-| AI AF Zoom-Nikkor 24-120mm f/3.5-5.6 D IF | Automated crop contaminated by dense labels/brackets; 300 dpi hand measurements used | done 2026-07-29; published 17A/34A apertures retained |
-| AF Zoom-Nikkor 28-200mm f/3.5-5.6 G IF-ED | Median 1.113; revised L12/L21 each 1.00 after normalization | done 2026-07-29 |
-| AF-S NIKKOR 500mm f/5.6E PF ED VR | Figure 3 at 600 dpi / 7.5 px/mm; tightened L15/L16, G2, C31, VR1, and CL31 outlines | done 2026-08-03; zero image-circle-floor failures |
-| AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR | Figures 7/9; rear master pair measured about 12.9 mm, engaged Lx7/Lx8 enlarged to validated figure envelope | done 2026-08-03; both TC states have zero image-circle-floor failures |
-| AI AF-S Zoom-Nikkor 80-200mm f/2.8D IF-ED | JP 2000-19398 Figure 1 at 300 dpi plus supplied site screenshot | done 2026-08-14; L43-equivalent relay reduced to 10.6/10.4 mm |
-| AI AF Zoom-Nikkor 18-35mm f/3.5-4.5D IF-ED | US 2001/0030812 Figure 4A at 300 dpi plus supplied site screenshot | no further change 2026-08-14; integration L13/L14 correction retained |
-| AI AF VR Zoom-Nikkor 80-400mm f/4.5-5.6D ED | US 6,141,156 Figure 7 at 300 dpi plus supplied site screenshot | no change 2026-08-14; modeled group taper matches |
-| AF-S VR Zoom-Nikkor 70-200mm f/2.8G IF-ED | US 2003/0133200 Figure 1 at 300 dpi plus supplied site screenshot | done 2026-08-14; L47 restored to the final pair's near-equal aperture |
-| AF-S VR Zoom-Nikkor 24-120mm f/3.5-5.6G IF-ED | US 2004/0218274 Figure 5 at 300 dpi plus supplied site screenshot | no further change 2026-08-14; compact L33 correction retained |
-| AF-S VR Zoom-Nikkor 200-400mm f/4G IF-ED | US 2005/0157403 Figure 1 at 300 dpi plus supplied site screenshot | no change 2026-08-14; modeled taper matches |
-| AF-S DX Micro-Nikkor 85mm f/3.5G ED VR | US 2009/0190220 Figure 2 at 600 dpi plus supplied site screenshot | done 2026-08-18; D1 and D4 restored to the patent's neighboring-group height order |
-
-### Completed Tamron additions
-
-| Lens | Figure screen | Status |
-|---|---|---|
-| SP 70-300mm f/4-5.6 Di VC USD | US 8,228,605 Figure 12 at 300 dpi | no change 2026-08-10; modeled taper matches |
-| 28-300mm f/3.5-6.3 Di VC PZD | JP 2013-254160 Figure 37 at 300 dpi | no change 2026-08-10; deviations below evidence threshold |
-| 70-180mm f/2.8 Di III VXD | JP 2021-43375 Figure 1 plus published effective diameters | no change 2026-08-10; source `phi/2` values retained |
-| 50-300mm f/4.5-6.3 Di III VC VXD | US 2024/0295723 Figure 1 at 300 dpi | done 2026-08-10; G2-G5 enlarged within geometry limits |
-| 18-400mm f/3.5-6.3 Di II VC HLD | JP 2017-116646 Figure 1 at 300 dpi | done 2026-08-10; front G2 enlarged to validated limit |
-| SP 24-70mm f/2.8 Di VC USD | US 8,810,918 Figure 22 at 300 dpi | no change 2026-08-10; modeled taper matches |
-| SP AF 70-200mm f/2.8 Di LD [IF] MACRO (A001) | US 2008/0212200 Figure 1 at 300 dpi | done 2026-08-14; L16-L18 enlarged to 16.0 / 17.0 / 18.0 mm |
-| AF 28-200mm Super XR f/3.8-5.6 Aspherical [IF] MACRO (A03) | US 6,437,923 Figure 1 at 300 dpi | no change 2026-08-14; modeled taper matches |
-| AF 28-300mm f/3.5-6.3 XR Di LD Aspherical [IF] MACRO (A061) | US 2003/0156333 Figure 1 at 300 dpi | no change 2026-08-14; modeled taper matches |
-| SP AF 200-500mm f/5-6.3 Di LD [IF] (A08) | JP 2003-344768 Figure 1 at 300 dpi | no change 2026-08-14; modeled taper matches |
-| 18-200mm f/3.5-6.3 Di III VC (B011) | JP 2012-181525 Figure 1 at 600 dpi | no change 2026-08-14; modeled taper matches |
-| 14-150mm f/3.5-5.8 Di III (C001) | US 2014/0347522 Figure 9 at 300 dpi | no change 2026-08-14; modeled taper matches |
-| SP 70-200mm f/2.8 Di VC USD (A009) | US 8,867,144 Figure 1 at 300 dpi | no change 2026-08-14; all three zoom rows match |
-| SP 150-600mm f/5-6.3 Di VC USD (A011) | US 10,545,321 Figure 13 at 300 dpi | done 2026-08-14; L18-L20 enlarged to 14.0 / 14.5 / 15.0 mm |
-| SP AF 28-75mm f/2.8 XR Di LD Aspherical [IF] MACRO (A09) | US 7,075,731 Figure 1 at 300 dpi | no change 2026-08-14; modeled taper matches |
-
-### Completed Sony additions
-
-| Lens | Figure screen | Status |
-|---|---|---|
-| E PZ 16-50mm f/3.5-5.6 OSS | US 2015/0316753 A9 Figure 1 at 300 dpi; L1 drawn near 12.5 mm | done 2026-08-11; L1 enlarged to validator-safe 12.2/11.8 mm |
-| FE PZ 16-35mm f/4 G | JP 2023-44106 A Figure 53; patent effective diameters retained | no change 2026-08-11; zero image-circle-floor failures |
-| Vario-Sonnar T* 24-70mm f/2.8 ZA SSM | US 2008/0198475 A1 Figure 9; clean-row median 1.019 | no change 2026-08-11; reliable deviations below threshold |
-| DT 16-50mm f/2.8 SSM | US 2012/0307129 A1 Figure 2 at 300 dpi plus supplied site screenshot | no change 2026-08-13; modeled taper matches the patent section |
-| E 18-200mm f/3.5-6.3 OSS LE | US 8,553,339 B2 Figure 1 at 300 dpi plus supplied site screenshot | done 2026-08-13; front pair and meniscus tightened for Figure 1 and 62 mm barrel; second review retained the remaining SDs |
-| E 50mm f/1.8 OSS | JP 2012-242690 A Figure 8 at 300/600 dpi plus supplied site screenshot | done 2026-08-13; L211-L214, L215-L216, L221, and L232 envelopes tightened conservatively against the figure while preserving f/1.85 and OSS/focus clearance |
-
-### Completed Voigtländer additions
-
-| Lens | Figure screen | Status |
-|---|---|---|
-| PORTRAIT HELIAR 75mm f/1.8 | Figure 5 automated and 300 dpi readings agreed on 18.7 / 15.0 / 13.2 mm group envelopes | done 2026-07-31; zero image-circle-floor failures |
-| ULTRON 27mm f/2 | Figure 1 leader lines required 300 dpi hand measurements; existing within-element rim ratios retained | done 2026-07-31; zero image-circle-floor failures |
-| COLOR-SKOPAR 35mm f/3.5 Aspherical VM | Figure 1 hand measurements tightened G1–G3; aspheric rear group retained at its validated limits | done 2026-07-31; zero image-circle-floor failures |
-| APO-LANTHAR 28mm f/2 Aspherical VM | Figure 3 relative-height pass set L10–L16 to 9.5 / 8.5 / 8.6 / 9.0 / 10.4 / 10.6 / 12.0 mm envelopes | done 2026-08-01; zero image-circle-floor failures |
-| APO-ULTRON 90mm f/2 VM | Figure 1 relative-height pass set the L11–L31 taper to 23.0 / 21.0 / 18.5 / 16.5 / 16.0 / 12.3 / 12.0 mm | done 2026-08-01; zero image-circle-floor failures |
-| COLOR-SKOPAR 28mm f/2.8 Aspherical | Exact Example 3 Figure 6 hand measurements set L1/J1 to an 8.1 / 6.2 mm equal-rim envelope | done 2026-08-01; zero image-circle-floor failures |
-| COLOR-HELIAR 105mm f/3.5 | US 2,645,156 A Figure 2 at 600 dpi; compacted rear doublet to 15.5 mm | done 2026-08-05; zero image-circle-floor failures |
-| COLOR-SKOPAR 105mm f/3.5 | US 2,573,511 A Figure 1 at 600 dpi; opened small and rear groups to 14.0 / 15.5 mm | done 2026-08-05; zero image-circle-floor failures |
-| DYNAR 100mm f/6 | US 765,006 A at 600 dpi; equalized the three group envelopes within edge limits | done 2026-08-05; no image format, local validation passed |
-| HELIAR f/4.5 second asymmetric form | DE 143889 C drawing sheet at 600 dpi; enlarged central and rear groups | done 2026-08-05; no image format, local validation passed |
-| NOKTON 50mm f/1.5 | US 2,646,721 Figure 2 at 600 dpi; restored front-to-center scale break | done 2026-08-05; zero image-circle-floor failures |
-| TELOMAR 100mm f/5.5 | US 2,662,446 A Figure 3 at 600 dpi; equalized rear doublet at 11.0 mm | done 2026-08-05; zero image-circle-floor failures |
-
-### Completed Pentax additions
-
-| Lens | Figure screen | Status |
-|---|---|---|
-| HD DA 16-85mm f/3.5-5.6 ED DC WR | JP 2016-114800 Figure 1 at 600 dpi; restored the front/rear group taper and enlarged hybrid L21 to its safe limit | done 2026-08-14; zero image-circle-floor failures |
-| HD DA 18-50mm f/4-5.6 DC WR RE | JP 2016-6455 Figure 10 at 600 dpi; enlarged hybrid L12 and L13 | done 2026-08-14; zero image-circle-floor failures |
-| HD DA 20-40mm f/2.8-4 ED Limited DC WR | JP 2015-11156 Figure 1 at 600 dpi; radial drawing scale is not dimensionally uniform | no change 2026-08-14; modeled taper matches |
-| HD DA645 28-45mm f/4.5 ED AW SR | JP 2015-87681 Figure 1 at 600 dpi; normalized deviations remain within drawing tolerance | no change 2026-08-14; modeled taper matches |
-| HD D FA 150-450mm f/4.5-5.6 ED DC AW | US 2016/0327774 Figure 1 at 600 dpi; final L54 restored near the L51-L53 envelope | done 2026-08-14; zero image-circle-floor failures |
-| SMC PENTAX-A ZOOM 35-70mm f/4 | US 4,812,022 Figure 9 at 300 dpi; final L7 reduced to the distinctly smaller source profile | done 2026-08-14; zero image-circle-floor failures |
-
-### Completed Canon additions
-
-| Lens | Figure screen | Status |
-|---|---|---|
-| EF 70-300mm f/4.5-5.6 DO IS USM | JP 2004-317867 Figure 1 at 600 dpi; median figure/data ratio 0.976 | no change 2026-08-19; reliable group deviations remained below 15% |
-| EF 400mm f/2.8 L IS II USM | US 2011/0090576 Figure 3 at 600 dpi; contaminated rear rows checked manually | no change 2026-08-19; optical rims remained within about 20% |
-| RF 100-500mm f/4.5-7.1 L IS USM | US 2021/0003832 Figure 3 at 600 dpi; terminal cemented group measured about 17.0-17.5 mm | done 2026-08-19; L82/L83 enlarged to 17.2/17.5/17.9 mm and screenshot recheck found no further >25% deviation |
-| EF 400mm f/2.8 L IS III USM | US 2019/0041605 Figure 2A at 600 dpi; reliable rows within about 14% | no change 2026-08-20; contaminated labels checked manually and modeled silhouette retained |
-| RF 600mm f/11 IS STM | JP 2020-173349 Figure 1 at 600 dpi; E3 measured 12.2 mm and E4 bracketed at 10.9-12.7 mm | done 2026-08-20; E3/E4 tightened to 12.2/12.7 mm with zero image-circle-floor failures |
-| RF 800mm f/11 IS STM | JP 2020-173349 Figure 2 at 600 dpi; dense DOE/stop/focus annotation checked manually | done 2026-08-20; clean E5 row increased from 13.5 to 16.1 mm with zero image-circle-floor failures |
-
 ## Section C — source blockers
 
 Nothing can be audited on these until the source is available.
@@ -176,29 +89,10 @@ Nothing can be audited on these until the source is available.
 | Sigma 10-18mm f/2.8 | 図8 printed as a thumbnail; <20 px per element edge at 600 dpi | a higher-resolution copy of JP 2024-104911 A |
 | Sigma 14-24mm f/2.8 | 図1 exists only as the front-page abstract drawing (the drawing section starts at 図3) | a higher-resolution copy of JP 2018-189733 A |
 
-## 2026-09-05 Konica AR additions - completed
+## In-progress diagram sweep
 
-| Lens | Status | Result |
-| --- | --- | --- |
-| [HexanonAR21mmf28](../src/lens-data/konica/KonicaHexanonAR21mmf28.audit.md) | done | Retained validated SDs after exact-figure review |
-| [HexanonAR24mmf28](../src/lens-data/konica/KonicaHexanonAR24mmf28.audit.md) | done | Retained validated SDs after exact-figure review |
-| [HexanonAR40mmf18](../src/lens-data/konica/KonicaHexanonAR40mmf18.audit.md) | done | Refined L1/L6; default ray fan retained |
-| [HexanonAR50mmf18](../src/lens-data/konica/KonicaHexanonAR50mmf18.audit.md) | done | Retained validated SDs after exact-figure review |
-| [HexanonAR135mmf35](../src/lens-data/konica/KonicaHexanonAR135mmf35.audit.md) | done | Enlarged L4 to match the optical rim |
-| [ZoomHexanonAR3570mmf4](../src/lens-data/konica/KonicaZoomHexanonAR3570mmf4.audit.md) | done | Screenshot follow-up: reduced L3/L7 optical rims; zoom/focus ray grid retained |
-
-
-## 2026-09-06 — six Canon additions
-
-Reviewed EF 35mm f/2 IS USM, EF 70-300mm IS II USM, EF-M 15-45mm IS STM, EF-S 18-135mm IS STM, PowerShot G3 X, and PowerShot G9 X against their exact local patent figures at 600 dpi. Enlarged only G9 X L11/L12/L31 to 9.4/8.5/9.0 mm; retained source-backed or geometry-constrained SDs elsewhere. All six pass surface and image-circle audits. Per-lens `*.audit.md` files and [the batch record](records/canon-six-lens-september-2026-audit.md) preserve measurements, rejected automatic readings, glass outcomes, and validation.
-
-Screenshot follow-up: refined EF 35mm S1/S2, S5/S6, Gis, and S18A/S19 optical rims. Retained larger central/cemented apertures where diagram-sized trials clipped rays. The other five prescriptions retain their reviewed SDs; see the appended per-lens audits.
-
-## 2026-09-09 — new Samyang batch
-
-- Samyang AF14mmf28FE: reviewed; [evidence and disposition](../src/lens-data/samyang/SamyangAF14mmf28FE.audit.md).
-- Samyang AF24mmf18FE: reviewed; [evidence and disposition](../src/lens-data/samyang/SamyangAF24mmf18FE.audit.md).
-- Samyang AF24mmf28FE: reviewed; [evidence and disposition](../src/lens-data/samyang/SamyangAF24mmf28FE.audit.md).
-- Samyang AF35mmf28FE: reviewed; [evidence and disposition](../src/lens-data/samyang/SamyangAF35mmf28FE.audit.md).
-- Samyang AF50mmf14FE: reviewed; [evidence and disposition](../src/lens-data/samyang/SamyangAF50mmf14FE.audit.md).
-- Samyang XP35mmf12: reviewed; [evidence and disposition](../src/lens-data/samyang/SamyangXP35mmf12.audit.md).
+The oldest-200 hosted-diagram audit (patent and live-view review of each lens, semi-diameters included) is paused at
+lens 40 of 200. Its frozen queue, resume instructions and open follow-ups live in
+[records/lens-shape-audit-first-200-2026-09-08.md](records/lens-shape-audit-first-200-2026-09-08.md); resume there,
+not here. When that sweep reaches a lens that also sits in Sections A–C, work it from this queue's row and then delete
+the row.

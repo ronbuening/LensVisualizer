@@ -29,8 +29,8 @@ git log first).
 - Gate before PR: `npm run typecheck && npm run format:check && npm run lint && npm run test`,
   plus `npm run build` if routes/metadata/SEO are touched. User-visible features get a changelog
   entry per `agent_docs/changelog.md`.
-- When a feature ships: check its box here and note it in your branch record
-  (`agent_docs/record_keeping.md`).
+- When a feature ships: check its box here and describe the outcome in the PR
+  (`agent_docs/documentation-policy.md`); do not add a per-branch record.
 
 Effort scale (inherited from the analysis roadmap): **S** 0.5–1 day · **M** 2–4 days ·
 **L** 1–2 weeks · **XL** multi-week.
@@ -80,7 +80,8 @@ Verified in code on 2026-07-06:
 - **Rotationally symmetric diffractive phase surfaces** — surface-local radial optical-path polynomials now drive
   wavelength-aware paraxial, Petzval, sequential, skew, and generalized exact tracing, with PF/DO authoring support,
   semantic diagram disclosure, and the Nikon AF-S NIKKOR 500mm f/5.6 E PF ED VR production lens. See
-  [`agent_docs/diffractive-phase-surfaces-plan.md`](agent_docs/diffractive-phase-surfaces-plan.md). (F26.)
+  the "Diffractive Phase Surfaces" section of
+  [`agent_docs/architecture/optics-engine.md`](agent_docs/architecture/optics-engine.md). (F26.)
 
 ---
 
@@ -377,8 +378,9 @@ URL state, Back retraces the exploration); clicking a patent opens a detail card
 derived lens diagrams. Requires build-generated assignee slugs alongside the existing author
 index. No new dependencies; deterministic radial layout, no force simulation.
 
-Full self-contained spec (milestones, files, data contracts, layout math, tests, verification):
-`agent_docs/records/relationship-map-plan.md`. Follow that document; this entry only tracks status.
+Shipped 2026-07-22; the outcome record is `agent_docs/records/relationship-map-2026-07-22.md`. The original
+self-contained spec was deleted in the 2026-09 documentation rationalization and remains in git history as
+`agent_docs/records/relationship-map-plan.md`.
 
 ---
 

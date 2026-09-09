@@ -88,7 +88,7 @@ For every element with a `glass:` annotation:
    - **Patent provides no glass identifier, only (nd, vd)** → keep the existing annotation if it round-trips within tolerance; otherwise search refractiveindex.info/manufacturer catalogs for that exact `nd`/`νd` pair and use the per-lens candidate list to find a catalog-equivalent label only when the row is unique enough to defend in the audit log. If no sourceable match exists and the candidate list is ambiguous, mark as `Unmatched (designer attribution to X inconsistent with stored nd/vd)` or use a 6-digit code annotation when one is known.
 4. **Never** relax the catalog round-trip tolerance (1e-4 in `assertCatalogConsistent`). If a catalog entry doesn't round-trip, fix the catalog source per [glass-catalog-buildout.md](glass-catalog-buildout.md) — do not mask the failure by mislabeling the lens.
 
-Common patterns and their preferred resolutions are tabulated under "Most-frequent patterns" in [glass-relabel-followup.md](glass-relabel-followup.md).
+Common patterns and their preferred resolutions are listed under "Decision rules for recurring patterns" in [glass-relabel-followup.md](glass-relabel-followup.md).
 
 Phase 1 refinement from the per-lens queue: when several surfaces share the same stored `nd`/`vd`, resolve them as a set. A repeated high-confidence candidate is stronger evidence than an isolated row; a repeated ambiguous candidate is a sign to inspect the patent's glass-code column before editing.
 
@@ -118,7 +118,7 @@ For aspherics, verify the `asph` block:
 - Conic constant convention. Some patents use `κ = 1 + K` (treat κ = 1 as K = 0). The patent text near the asph table usually states the convention explicitly.
 - Coefficient sign and magnitude — copy verbatim, including scientific notation. Watch for missing exponents (e.g. `1.5e-7` mis-typed as `1.5`).
 - Set unused required slots (A4–A14) to `0`, not omitted. A16/A18/A20 are optional; omit when absent in the patent.
-- Odd orders A3–A19 are supported and optional — transcribe them verbatim when the patent lists non-zero values; omit zero-valued odd terms. Older data files may still carry even-order least-squares refits from before odd-order support; the replacement queue is `agent_docs/odd-asphere-backfill.md`.
+- Odd orders A3–A19 are supported and optional — transcribe them verbatim when the patent lists non-zero values; omit zero-valued odd terms. If the file still carries an even-order least-squares refit of an odd-term patent surface, replace it with the exact coefficients per [LENS_DATA_SPEC.md](../src/lens-data/LENS_DATA_SPEC.md) § Aspherical Coefficients.
 
 For zoom lenses, additionally verify:
 
@@ -255,12 +255,7 @@ After every audit, run:
 npm run typecheck && npm run format:check && npm run lint && npm run test
 ```
 
-Tests and scripts written to check the audit are temporary. Do not commit per-lens snapshots of prescription values,
-glass labels, calculated powers, rims, or motion that merely restate the audited data; the corpus sweeps already
-validate every catalog lens, and the `*.audit.md` log is where sources, calculations, results, and limitations belong.
-Keep a test only when it guards shared engine, UI, or data-contract behavior that existing suites cannot cover, and then
-add the smallest synthetic case to the matching subsystem suite. The full policy is in
-[architecture/testing.md](architecture/testing.md) under "Per-Lens And Audit Test Retention".
+Do not keep per-lens audit tests; see `agent_docs/architecture/testing.md` § Per-Lens And Audit Test Retention.
 
 If glass annotations changed, regenerate the catalog scans and confirm the lens drops off the affected mismatch lists:
 
@@ -274,7 +269,7 @@ After regeneration, check the lens section in [glass-relabel-by-lens.generated.m
 - If rows remain, copy the remaining surface numbers and reasons into the audit log.
 - If the row moved from candidate-backed to no-candidate, treat that as evidence that the new annotation resolved one mismatch but exposed a catalog gap.
 
-If the audit relabeled a surface that the historical global followup queue tracked, move the row from "Pending" to "Resolved this session" in [glass-relabel-followup.md](glass-relabel-followup.md).
+If the audit relabeled a surface that [glass-relabel-followup.md](glass-relabel-followup.md) still lists as open, delete that row; the queue holds only open items.
 
 If the audit was on a lens listed in [proprietary-glass-backfill.md](proprietary-glass-backfill.md) Tier A and
 successfully populated the direct `dPgF`/line-index fields, delete the row from that table.
@@ -293,7 +288,7 @@ The log's purpose is forensic: future-you should be able to reconstruct which pa
 
 - [adding_a_lens.md](adding_a_lens.md) — workflow for new lens files (what this guide assumes is already complete).
 - [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md) — auto-generated per-lens relabel queue for patent-audit execution; the primary queue this audit drains.
-- [glass-relabel-followup.md](glass-relabel-followup.md) — historical follow-up notes and most-frequent mismatch patterns.
+- [glass-relabel-followup.md](glass-relabel-followup.md) — relabel queue status, closed families, and decision rules for recurring patterns.
 - [glass-catalog-buildout.md](glass-catalog-buildout.md) — adding new vendor Sellmeier entries when Phase 1 needs one.
 - [proprietary-glass-backfill.md](proprietary-glass-backfill.md) — line-index backfill workflow when Phase 3 picks up `nC`/`nF`/`ng` from the patent.
 - [catalog-mismatches.generated.md](generated/catalog-mismatches.generated.md) — auto-generated raw mismatch list (regenerate first).

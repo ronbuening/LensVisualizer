@@ -1,5 +1,7 @@
 # Patent-Figure Semi-Diameter Audit — 2026-07-24
 
+Historical report (2026-07-24). Open follow-ups live in `agent_docs/sd-audit-queue.md`; the procedure is `agent_docs/patent-figure-sd-audit-procedure.md`.
+
 An audit of the semi-diameters and rendered cross-section proportions of the 23 lenses touched by the
 odd-order asphere backfill (commits `3921bc60`..`2e0583b0`), checked against the local patent PDFs in
 `patents/`.
@@ -10,10 +12,11 @@ are drawn out to, and the resulting cross-sections, agree with the patents?
 
 Companion references:
 
-- [odd-asphere-backfill.md](odd-asphere-backfill.md) — the backfill queue these lenses came from.
-- [lens-patent-audit.md](lens-patent-audit.md) — the standing per-lens audit procedure (Phase 2 covers `sd`).
+- The odd-order asphere backfill queue these lenses came from (July 2026; retired once complete — the coefficient
+  workflow now lives in [LENS_DATA_SPEC.md](../../src/lens-data/LENS_DATA_SPEC.md) § Aspherical Coefficients).
+- [lens-patent-audit.md](../lens-patent-audit.md) — the standing per-lens audit procedure (Phase 2 covers `sd`).
 - `src/lens-data/TEMPLATE.data.ts.template` — Semi-Diameter Guidelines, and
-  [LENS_DATA_SPEC.md](../src/lens-data/LENS_DATA_SPEC.md) §"Semi-diameters", which is the rule this audit applies:
+  [LENS_DATA_SPEC.md](../../src/lens-data/LENS_DATA_SPEC.md) §"Semi-diameters", which is the rule this audit applies:
   _"Use patent values if listed; otherwise estimate from entrance pupil geometry… If the manufacturer publishes a
   cross-section diagram, use it to refine front-group SDs… and adjust conservatively."_
 
@@ -269,8 +272,8 @@ The three checks are now repeatable commands, and the remaining work is queued:
 - `npm run audit:image-circle` — the coverage floor, over the whole catalog or named files.
 - `npm run audit:patent-figure` — the ENV/RIM photogrammetry.
 - `npm run audit:surface` — aspheric domain scan plus the validator with trial semi-diameters.
-- [patent-figure-sd-audit-procedure.md](patent-figure-sd-audit-procedure.md) — the step-by-step runbook.
-- [sd-audit-queue.md](sd-audit-queue.md) — the work queue.
+- [patent-figure-sd-audit-procedure.md](../patent-figure-sd-audit-procedure.md) — the step-by-step runbook.
+- [sd-audit-queue.md](../sd-audit-queue.md) — the work queue.
 
 Run catalog-wide, the coverage floor flags twelve more lenses beyond the four fixed here (eight of them ultra-wides
 where the check's exit-pupil approximation is not trustworthy). Those are Section A of the queue.

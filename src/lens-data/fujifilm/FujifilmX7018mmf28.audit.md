@@ -31,4 +31,4 @@ Patent: US 2017/0075089 A1
   `__tests__/src/lens-data/oddAsphereBackfill.test.ts` updated to match.
 - Verification: `npm run typecheck` passed; `npm run test` 2440 tests passed; cross-section re-rendered
   and compared with FIG. 1.
-- Full method and per-lens results: agent_docs/patent-figure-sd-audit.md.
+- Full method and per-lens results: agent_docs/records/patent-figure-sd-audit-2026-07.md.

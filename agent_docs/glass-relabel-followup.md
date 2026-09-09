@@ -1,710 +1,95 @@
 # Glass Relabel Follow-up Queue
 
-A focused per-lens worklist for the remaining catalog mismatches surfaced by the dispersion cascade. Companion to:
-
-- [catalog-mismatches.generated.md](generated/catalog-mismatches.generated.md) — the auto-generated raw mismatch list (regenerate with `npm test -- catalogMismatchScan`).
-- [glass-relabel-candidates.generated.md](generated/glass-relabel-candidates.generated.md) — the auto-generated candidate report grouping mismatches by `(stored nd, stored vd)` and showing each group's catalog candidates within tolerance (regenerate with `npm test -- glassRelabelCandidatesScan`).
-- [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md) — the auto-generated per-lens work queue that combines mismatch rows and candidate suggestions for patent-audit passes (regenerate with `npm test -- glassRelabelByLensScan`).
-- [glass-ambiguities.generated.md](generated/glass-ambiguities.generated.md) — the auto-generated audit of annotations with multiple coordinate-compatible catalog rows, including the selected row and runtime tie-break explanation (regenerate with `npm test -- glassAmbiguityScan`).
-- [unresolved-glass.generated.md](generated/unresolved-glass.generated.md) — the auto-generated unresolved-token report for glass strings that never resolve through `resolveGlass` (regenerate with `npm test -- unresolvedGlassScan`).
-- [glass-catalog-buildout.md](glass-catalog-buildout.md) — Sellmeier sourcing playbook (where to find vendor data, the round-trip test, etc.).
-- [proprietary-glass-backfill.md](proprietary-glass-backfill.md) — workflow for patent-sourced `nC`/`nF`/`ng` line indices on truly proprietary glasses.
-
-Regenerate all glass reports together with `npm run generate:glass-reports`.
-
-## How this queue is structured
-
-The candidate scan splits mismatches into two buckets:
-
-1. **Has at least one candidate within tolerance** — the (nd, vd) pair matches some catalog entry; relabel is mechanical.
-2. **No candidate within tolerance** — the (nd, vd) pair doesn't match any catalog entry; needs patent verification or the glass is genuinely proprietary.
-
-This file tracks the second bucket plus any cases from the first bucket that need authorial judgment (multiple candidates, or relabeling would change the lens-data file's narrative — e.g. the analysis.md companion file says "S-LAH79" and the candidate suggestion would invalidate that).
-
-## Current Status (August 2026, current catalog)
-
-- Catalog: verified entries in `src/optics/glassCatalogData.ts` — `catalogSize()` is the live count; the
-  generated glass reports carry the number at their generation date. (A hand-bumped figure here went stale.)
-- `catalog-mismatches.generated.md` and `glass-relabel-by-lens.generated.md` report **0** remaining
-  dispersion-coordinate mismatches across **0** lens files. The mismatch report separately records **30 / 75**
-  native e-line surfaces resolved through explicit names or aliases.
-- `sellmeier-coverage.generated.md` reports **589** lenses, **6653** non-air surfaces, **6040** strict catalog
-  Sellmeier surfaces (**90.8%**), and **6054** trusted chromatic surfaces (**91.0%**).
-- **353** visible lenses are fully covered by strict Sellmeier data and **358** are fully covered by trusted chromatic data.
-- `unresolvedGlassScan` reports **312** non-explicit-unmatched annotations and **152** distinct unresolved glass-like
-  tokens. The residual total is code/prose inventory rather than a catalog-coordinate mismatch queue.
-- The missing-Sellmeier six-digit report contains **229** code-only elements across **89** lens files, with **0** active
-  unreviewed rows, **99** self-recording explicit unmatched/unidentified dispositions, and **0** dispositions missing a review record.
-- The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work; for patent-by-patent execution, start from [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md).
-
-## September 2026 LAFN7 catalog addition
-
-Adding the official SCHOTT LAFN7 curve exposed the existing approximate LAFN7 label on Leica ELCAN 50mm f/2 E4. Its authored 1.7546/34.7 coordinate differs from LAFN7 by 0.0051 in nd, outside the 0.003 limit; no catalog candidate passes. The annotation now explicitly retains an unmatched lanthanum-flint class, preserving its existing Abbe model and prescription. Source line-index recovery remains an opportunity.
-
-## Resolved Phase 103 — August 2026 patent-coordinate recovery
-
-- Rendered and visually checked sixteen local patent tables, then assigned existing coefficient-backed curves to 21
-  elements while retaining source coordinates and supplier uncertainty.
-- Added patent-authored `dPgF` to all fourteen Fujifilm GF 20-35mm glass rows from Table 28 θgF values.
-- Strict/trusted coverage rose to 6040/6054 of 6653 surfaces. The visible strict/trusted complete counts rose to
-  353/358, and the explicit missing-Sellmeier queue fell to 99 elements across 89 lens files.
-- This pass supersedes the older Phase 61 Enna J-K3 deferral and the Phase 51 Canon RF 50mm H-ZBaF4 deferral. J-K3
-  is now used as a qualified coordinate equivalent; H-ZBaF4 supplies Canon's baseline curve while the patent-authored
-  `dPgF` remains authoritative at g.
-
-## Resolved Phase 95 — August 2026 exact native e-line follow-up
-
-- Rendered four additional local patent tables and verified F5, F2, and two SF5 rows against the catalog's computed
-  C′/e/F′ coordinates.
-- Upgraded one surface each in the Leica Elmar-M 135mm, Leica Elmarit-R 28mm, Leica Elmarit-M 135mm, and
-  Rodenstock Grandagon-N 65mm. Native e-line coverage rises from 26/75 to 30/75.
-- Retained N-LAF21, N-SF8, and K5 class annotations as explicit unmatched rows because those modern curves are only
-  near matches. The mismatch and active unreviewed queues remain empty.
-
-## Resolved Phase 94 — August 2026 first-party Hikari and native e-line recovery
-
-- Added Hikari J-SK14 and J-LASF02 from the retained manufacturer workbook, completing two named gaps in the Nikon
-  AF-S DX 55-200mm.
-- Rechecked three local patent tables and removed obsolete explicit-unmatched guards only where current catalog
-  coefficients reproduce the authored d- or e-line coordinates: J-LASFH2 in the Nikon R-UW Micro; SF10, SF11, and
-  SF2 in the Leica Summicron-R 50mm; and five Schott rows in the Schneider Super-Symmar XL 110mm.
-- Eleven surfaces gain full curves. Global strict coverage rises to 5496/6129, native e-line coverage to 26/75, and
-  the strict-complete lens count to 316; the mismatch and active unreviewed queues remain empty.
-
-## Resolved Phase 93 — August 2026 Hikari SF catalog recovery
-
-- Added first-party Hikari J-SF1, J-SF6, J-SF10, and J-SF11 power-series rows and removed their cross-vendor aliases.
-- Assigned J-SF6 to two patent `805255` positions in the Nikon AI AF 80-200mm f/2.8D ED and E-LAF11 to the Nikon
-  Dodotto 400's patent `757316` position. Corrected the PC-E Micro-Nikkor 45mm documentation to reflect the same
-  existing E-LAF11 match.
-- Added three strict/trusted surfaces, completed the Dodotto, and retained the production-supplier caveat on every
-  patent-coordinate assignment. The mismatch and active unreviewed queues remain empty.
-
-## Resolved Phase 92 — August 2026 legacy HOYA and six-digit recovery
-
-- Visually rechecked fourteen patent prescriptions and compared their d-line coordinates with HOYA's official
-  obsolete-inclusive catalog.
-- Added NBFD2, BACED1, PC1, PC2, F7, FL4, FL1, and BAFD3, then combined them with existing J-LAFH3 and
-  E-FD13 to upgrade twenty-two surfaces while leaving every production supplier unspecified.
-- Completed seven more prescriptions and raised global coverage to 5482/6129 strict and 5493/6129 trusted;
-  313 lenses are strict-complete and 318 trusted-complete, with zero coordinate mismatches and zero active unreviewed
-  code-only rows.
-
-## Resolved Phase 91 — August 2026 near-complete visible-lens audit
-
-- Rendered the relevant tables in seven ignored local patent PDFs and compared native d/e-line coordinates and the
-  available patent partial-dispersion anchor with current coefficient-backed catalog rows.
-- Assigned FCD515, PBH25, S-TIL6, S-LAL52, D-K59, J-SFH2, and FEL3 catalog equivalents across eight surfaces while
-  leaving every production supplier unspecified.
-- Completed the Nikon Z 35mm f/1.8, Olympus 24mm f/2.8, Nikon Micro 105mm, Hasselblad HC 150mm, Fujifilm XF 35mm,
-  and both Rodenstock Grandagon-N prescriptions. The Nikon 20-35mm improves to 13/14; its L31a remains unmatched.
-- Global coverage is 5460/6129 strict and 5471/6129 trusted; 306 lenses are strict-complete and 311 trusted-complete,
-  with zero coordinate mismatches and zero active unreviewed code-only rows.
-
-## Resolved Phase 90 — August 2026 Minolta glass-opportunity audit
-
-- Visually rechecked the twelve active six-digit rows against four ignored local patent PDFs; every source publishes
-  d-line index and Abbe number only, with no supplier or secondary spectral data.
-- Applied existing FF8, K-SSK1, N-SK16-family, S-LAL58, and N-KZFS8 curves to five compatible surfaces while
-  preserving the patent coordinates and leaving production suppliers unspecified.
-- Recorded explicit unmatched dispositions for the seven rows outside the compatibility guard. Global coverage is
-  5452/6129 strict and 5463/6129 trusted; the active unreviewed queue and coordinate-mismatch queue are both empty.
-
-## Resolved Phase 88 — August 2026 Nikon/Ricoh lens-batch audit
-
-- Added Hikari J-SF7, J-SF03, J-LASF015, and J-LASFH21 from Nikon/Hikari's first-party 2023 workbook and OHARA
-  L-LAH87, L-LAH94, S-TIH57, and S-TIM1 from the manufacturer's 2026 all-products Zemax catalog.
-- Assigned compatible existing catalog curves to rounded patent coordinates in the Nikon 20-35mm and 80-200mm
-  zooms while preserving each patent coordinate and leaving every production supplier unspecified.
-- Upgraded twenty-one newly added surfaces; the Ricoh A16 and GR DIGITAL III become strict-complete, while the
-  remaining Nikon gaps are explicitly unmatched after the public-catalog recheck.
-- Global coverage is 5288/5952 strict and 5299/5952 trusted; 296 lenses are strict-complete and 301 trusted-complete,
-  with zero coordinate mismatches and zero active unreviewed code-only rows.
-
-## Resolved Phase 86 — August 2026 catalog-coordinate and disposition audit
-
-- Added OHARA L-LAH91, L-LAH84, PBH25, YGH52, and BAM25 plus HOYA BACD6 and FL57 from the manufacturers'
-  official 2026 Zemax catalogs.
-- Combined them with existing M-TAF1, M-TAFD51, and N-BAK4 curves to upgrade thirteen surfaces across twelve
-  patent-derived prescriptions, completing nine lenses while leaving every production supplier unspecified.
-- Visually verified the affected patent tables and explicitly audited the Nikon 180-400mm's nine remaining six-digit
-  classes against official OHARA, HOYA, and HIKARI data; none has a candidate inside both runtime tolerances.
-- Global coverage is 5166/5814 strict and 5177/5814 trusted; 290 lenses are strict-complete and 295 trusted-complete,
-  with zero catalog-coordinate mismatches and zero active unreviewed code-only rows.
-
-## Resolved Phase 85 — August 2026 legacy visible-lens catalog audit
-
-- Recovered eight exact HOYA legacy curves from the manufacturer's official obsolete-inclusive catalog: BAF5, FEL3,
-  CF2, FD3, FC3, BSC6, BAF22, and LAFL4.
-- Combined them with existing P-SK57Q1, J-KZFH4, K10, FCD515, and BAF12 curves to upgrade fourteen patent-derived
-  surfaces while leaving every unproved production supplier unspecified.
-- Completed eleven prescriptions: Panasonic S Pro 70-200mm f/2.8; Nikon Z 50mm f/1.2, AI 35mm f/1.4, and AI
-  135mm f/2; Canon FD 28mm f/2.8 and Serenar 100mm f/3.5; Schneider Super-Angulon 90mm and Technika
-  Super-Angulon 75mm; Olympus 50mm f/2 Macro; and Vivitar Series 1 200mm and 35-85mm.
-- Global coverage is 5153/5814 strict and 5164/5814 trusted; 281 lenses are strict-complete and 286 trusted-complete,
-  with zero catalog-coordinate mismatches.
-
-## Resolved Phase 84 — August 2026 near-complete visible-lens audit
-
-- Audited the strongest near-complete candidates against seven ignored local patent PDFs, accepting exact or rounded
-  spectral equivalents while leaving production suppliers unspecified.
-- Completed the Canon Serenar 50mm f/1.8, Nikon L35AF 35mm f/2.8, Sigma DP3 Merrill 50mm f/2.8, Sigma 35mm
-  f/1.4 DG DN Art, Sony Planar T* 50mm f/1.4 ZA SSM, and Sony Sonnar T* E 24mm f/1.8 ZA.
-- Added official legacy Schott K10 coefficients, which also complete the Carl Zeiss B-Distagon 35mm f/4 and Olympus
-  F.Zuiko Auto-T 200mm f/5. The Voigtländer Nokton 50mm f/1.0 improves to 8/9; its non-identical 808406 rear glass
-  remains unmatched.
-- Global coverage is 5139/5814 strict and 5150/5814 trusted; 270 lenses are strict-complete and 275 trusted-complete,
-  with zero catalog-coordinate mismatches.
-
-## Resolved Phase 83 — August 2026 spectral ambiguity audit
-
-- Audited all multi-candidate catalog annotations against authored patent `dPgF` and complete C/F/g line indices.
-- Changed catalog-backed dispersion so authored d-line `dPgF` remains authoritative at g; the ambiguity report now
-  quantifies 127 protected dPgF elements and 138 complete-line-index elements.
-- Relabeled Canon EF-M 32mm L5 to FCD515, Panasonic S Pro 50mm L1 to E-FDS1, and Sigma APO Macro 180mm L11 to
-  N-BK7 from their ignored local patent tables, retaining catalog-equivalent wording and unspecified suppliers.
-- Global coverage remains 5123/5814 strict and 5134/5814 trusted, with zero catalog-coordinate mismatches.
-
-## Resolved Phase 82 — August 2026 Angénieux glass audit
-
-- Added Sumita K-SFLD11 and SSK2 from the manufacturer's discontinued-inclusive 2025 all-glass catalog and Schott
-  P-LASF47 from the official March 2018 collection datasheet.
-- Applied class-consistent catalog-equivalent labels throughout the Angénieux R1, R11, and DEM 180mm APO while
-  preserving each patent coordinate and leaving every production supplier unspecified.
-- The three lenses are now fully strict-covered; global coverage is 5085/5774 strict and 5096/5774 trusted, with
-  zero catalog-coordinate mismatches.
-
-## Resolved Phase 81 — August 2026 Hikari new-lens coverage
-
-- Added J-BAF10, J-SK16, J-F5, J-SF8, J-LAF2, J-LAF7, and J-LASFH2 from Hikari's first-party June 2025
-  formula-3 pages.
-- Closed the named-glass gaps in the new Nikon 8-15mm fisheye zoom and DC-Nikkor 135mm prescriptions.
-- Applied compatible existing Hikari curves to the Nikon 16mm fisheye's four code-only rows, the DC-Nikkor's final
-  `797454` row, and the Angénieux R11's repeated `620602` rows. Every label retains its patent coordinate and leaves
-  production-supplier identity unspecified.
-- The three new Nikon lenses are fully strict-covered, global coverage is 5072/5774 strict and 5083/5774 trusted,
-  and the mismatch queue remains empty.
-
-## Resolved Phase 70 — July 2026 K-LaSFn23 catalog addition
-
-- Added SUMITA K-LaSFn23 from the manufacturer's Ver. 14.01.00 per-glass datasheet.
-- Relabeled Panasonic LUMIX S PRO 16-35mm f/4 L12 as a coefficient-backed catalog equivalent while retaining the
-  patent index and leaving the production supplier unspecified.
-- Regenerated all glass reports; the active mismatch and unresolved named-token queues remain empty.
-
-## Resolved Phase 69 — July 2026 review-record and material classification
-
-The report generators now recognize an explicit `Unmatched`, `Unknown`, `Proprietary`, or `Unidentified` lens-data
-annotation as a review record in its own right. This closes the 52 recordkeeping-only rows that previously appeared to
-need duplicate sidecar or companion-audit entries even though the data already preserved the disposition. The full
-260-row missing-Sellmeier inventory remains available, but its active queue and missing-review count are both zero.
-
-The near-complete visible-lens report is now split by material. Glass-only gaps remain catalog candidates; resin,
-cement, plastic, liquid, unannotated, and mixed-material rows are listed separately with per-surface material labels.
-The regenerated queue contains 85 glass-only lenses and 40 non-glass or mixed-material lenses. This prevents
-compound-asphere layers and other non-glass media from inflating the optical-glass catalog queue. Coverage and
-catalog counts are unchanged.
-
-## Resolved Phase 68 — July 2026 named-token closure
-
-The full named-token queue was compared with first-party OHARA, HOYA, Hikari, SUMITA, CDGM, and Schott-backed
-catalog coordinates. Eight missing coefficient rows were added:
-
-| Vendor | Added rows |
-|---|---|
-| Hikari | J-LAF04 |
-| OHARA | S-BAL50 |
-| HOYA | FCD600, NBFD26 |
-| CDGM | H-BaF6, H-K9L, H-ZF1, H-LaF6LA |
-
-Forty-one element annotations were updated. Names whose official row was incompatible with the patent coordinate
-were not added as aliases; they were replaced by coordinate-compatible catalog equivalents or explicit unmatched
-dispositions. Every equivalent states that the production supplier is unspecified. This completed Canon EF 50mm
-f/1.0, Fujifilm XF 56mm f/1.2, Hasselblad HC Macro 120mm, Olympus OM 24mm f/2, and several other near-complete
-prescriptions. Sweep 2B is now empty, catalog mismatches remain at zero, and strict/trusted coverage gained 39/37
-surfaces respectively.
-
-## Resolved Phase 67 — July 2026 incompatible named-token correction
-
-Five OHARA-style annotations were compared against the official 2026 all-products catalog and found to name entirely
-different glasses. Patent prescription checks retained the authored d-line coordinates but identified no production
-supplier. Existing coefficient rows provide safe optical equivalents for all six affected elements:
-
-| Prior name | Patent coordinate | Compatible curve | Affected elements |
-|---|---:|---|---|
-| S-LAM73 | 1.85659 / 40.1 | OHARA L-LAH85V | Sony FE 28-70mm L51, L73 |
-| L-BBH1 | 1.68863 / 31.2 | HOYA E-FD8 | Hasselblad XCD 90V L9 |
-| L-LAH83 | 1.77074 / 49.5 | HOYA M-TAF1 | Panasonic Leica 15mm L8 |
-| L-PHL1 | 1.58313 / 59.5 | HOYA M-BACD12 | Panasonic 20-60mm L10 |
-| L-LAH85 | 1.77503 / 47.3 | HOYA M-TAF401 | Nikon Z 35mm f/1.2 L32 |
-
-Every replacement is labeled as a catalog equivalent with production supplier unspecified. The analysis sidecars no
-longer infer composition or molding process from the rejected names. Six surfaces gained strict/trusted dispersion,
-the Hasselblad lens became fully covered, and the named-token queue fell from 47 to 41 elements.
-
-## Resolved Phase 66 — July 2026 Olympus legacy-catalog recovery
-
-The primary US 4,025,167 scan was retrieved, rendered, and checked visually, clearing the last source blocker.
-Embodiment 2 confirms Olympus 85-250mm L4/L7 at `1.56873 / 63.2` and L10 at `1.49831 / 65.0`. OHARA's official
-obsolete-inclusive all-products AGF contains exact discontinued rows: BAL22 publishes code `569632` and round-trips
-to `1.5687286 / 63.162358`; BSL3 publishes code `498650` and round-trips to `1.4983080 / 65.026785`.
-
-Both vendor polynomials were added to the catalog, and all three elements now use catalog-equivalent labels with the
-production supplier unspecified. The Olympus prescription is now 15/15 strict and trusted, raising global coverage
-to 4670/4682 surfaces and fully covered lens counts to 227/232. The prioritized six-digit source queue is empty.
-
-## Resolved Phase 65 — July 2026 Nikon 834374 family recovery
-
-US 5,734,508 Working Example 1 / Table 1 was rendered and checked visually, confirming Nikon AF 24-120mm L3R3 at
-`1.83400 / 37.4`. Legacy HOYA NBFD10 publishes the exact d-line index and `νd = 37.34`; SUMITA K-LaSFn14 and OHARA
-S-LAH60 independently corroborate the same `1.83400 / 37.x` family. The one-digit code difference reflects the
-patent's one-decimal Abbe rounding.
-
-L3R3 now uses NBFD10 as a coefficient-backed catalog equivalent while leaving Nikon's production supplier
-unspecified. Strict/trusted coverage rose to 4667/4679 surfaces, and the lens improved from 11/16 to 12/16 covered
-elements. The active queue now contains only the three Olympus elements across two code families.
-
-## Resolved Phase 64 — July 2026 Sony 792257 reference-line review
-
-JP 2023-039817 A Example 2 / Table 6 was rendered and checked visually, confirming Sony FE 70-200mm GM II L41
-under the explicit `ndi` / `νdi` headings at `1.79191 / 25.7`. The patent publishes no supplier, secondary line
-index, or partial dispersion, and current first-party coefficient catalogs contain no d-line row inside the runtime
-compatibility window.
-
-Hikari J-SF11 presents a tempting but invalid numerical coincidence: `1.791929` is its published e-line index, while
-its d-line index is `1.784720`. The L41 label is now explicitly unmatched rather than mixing reference systems.
-Coverage remains 4666 strict / 4678 trusted surfaces. The active queue fell to four elements across three code
-families.
-
-## Resolved Phase 63 — July 2026 Sony 678322 source review
-
-WO 2021/200206 A1 Example 2 / Table 6 was rendered and checked visually, confirming Sony FE 12-24mm L22 at
-`1.67764 / 32.2`. The patent publishes no supplier, secondary line index, or partial dispersion. The expanded
-first-party coefficient catalogs contain no row inside the runtime compatibility window; SF5/N-SF5 and their
-cross-vendor equivalents are centered near `1.6727 / 32.2`, missing the patent d-line index by about `0.0049`.
-
-The unsupported Schott SF-family attribution was removed, and L22 now carries an explicit unmatched `678322`
-dense-flint annotation on its patent Abbe fallback. Coverage remains 4666 strict / 4678 trusted surfaces. The active
-queue fell to five elements across four code families.
-
-## Resolved Phase 62 — July 2026 Pentax shared-family recovery
-
-US 2018/0164556 A1 Numerical Example 1 / Table 1 was rendered and checked visually, confirming Pentax HD DA* 11-18mm
-L14 at `1.54732 / 46.0`. The patent names no supplier and provides no secondary line indices, but four independent
-vendor catalogs converge on the same LLF1-family curve around `1.54814 / 45.8–45.9`: OHARA PBL1/S-TIL1, HOYA
-E-FEL1, Schott LLF1, and SUMITA LLF1.
-
-HOYA E-FEL1 has the smallest Abbe residual, and its curve differs from Schott LLF1 and OHARA S-TIL1 by at most about
-`0.000032` at the evaluated trace lines. L14 now uses E-FEL1 as a coefficient-backed catalog equivalent with the
-production supplier unspecified. Strict/trusted coverage rose to 4666/4678 surfaces, the lens improved from 10/16 to
-11/16 covered elements, and the active queue fell to six elements across five code families.
-
-## Resolved Phase 61 — July 2026 Enna legacy-crown source review
-
-DE 1 228 820 B's sole claim table was rendered and checked visually, confirming Enna Lithagon 24mm L4 at
-`1.51895 / 57.3`. The patent names neither a glass supplier nor a catalog identity and supplies no independent line
-index or partial-dispersion anchor. OHARA NSL2/NSL3, HOYA E-C3, and SUMITA K3 all provide nearby coefficient-backed
-crown curves, but selecting one would be speculative.
-
-The unsupported `K4-class` attribution was replaced at that time by an explicit unmatched `519573` crown annotation, preserving
-the patent-coordinate Abbe fallback. The report parser now retains internal spaces in legacy patent numbers, so this
-lens resolves to `patents/DE_1228820_B.pdf` rather than an unrelated filename containing the previously parsed
-single digit. Phase 103 later assigned the compatible J-K3 curve while retaining supplier uncertainty. Coverage was
-unchanged at 4665 strict / 4677 trusted surfaces in this historical pass; the active queue fell to seven elements across
-six families.
-
-## Resolved Phase 60 — July 2026 SUMITA molding-state recovery
-
-US 7,301,711 B2 Embodiment 6 / Table 6 was rendered and checked visually, confirming both Pentax DA* 16-50mm
-`586609` substrates at `1.58636 / 60.9`. SUMITA's discontinued-inclusive first-party catalog contains a distinct
-K-SKLD5(M) molding-state row at `1.58606 / 61.0`; its vendor polynomial round-trips to `1.586058 / 60.977`, safely
-inside the d-line matching window. The normalized `K-SKLD5-M` catalog entry intentionally omits the reused base-glass
-product code `589612`, so only explicit name evidence can resolve it.
-
-L32 and L44 now use that coefficient-backed catalog equivalent with the production supplier unspecified. Strict and
-trusted coverage each rose by two surfaces to 4665 and 4677, and the lens moved from 81.3% to 93.8% coverage. The
-remaining active queue contains eight elements across seven code families, all in Tiers D and E.
-
-## Resolved Phase 59 — July 2026 Tier-A source review
-
-Pentax FA 31mm L8's `728403` coordinate was rechecked in all three US 6,560,042 B2 embodiments, including a rendered
-Table 3. Expanded current and discontinued-inclusive first-party catalogs contain no coefficient row inside the
-runtime safety window. HOYA M-LAF81 and OHARA L-LAM69 are both `1.73077 / 40.50`, missing the d-line index limit by
-about `0.00027`, so the prescription remains on its patent Abbe fallback with an explicit unmatched annotation.
-
-Sony Planar FE 50mm L21's `995293` coordinate was then confirmed visually in WO 2017/138250 A1 Example 2 / Table 6.
-No line-index or partial-dispersion data accompanies it. OHARA S-LAH99, HOYA TAFD55, and Hikari J-LASFH16 all miss
-the patent d-line index by about `+0.00598`, while the prior tentative CDGM H-ZLaF92 attribution is plainly
-coordinate-incompatible. The unsupported vendor and composition claims were removed, and L21 is now explicitly
-unmatched.
-
-The active queue is now 10 elements across eight code families, with no Tier-A rows remaining. `728403` and `995293`
-remain visible in the full inventory with review records but cannot crowd the remaining source targets.
-
-## Resolved Phase 58 — July 2026 prioritized six-digit review queue
-
-The six-digit missing-Sellmeier report now filters reviewed-sidecar hits and explicit unmatched/proprietary
-dispositions out of its active review queue. Companion audit logs are also indexed, preventing already-audited rows
-from reappearing merely because the manual sidecar was not synchronized. The remaining 12 elements are grouped into
-10 code families and ranked in deterministic A-E tiers: visible-lens completion with a local patent, near-complete
-visible-lens impact, repeated impact with a local patent, single local-patent rows, then source-blocked rows.
-
-Two A-tier codes could each complete one visible lens if patent review and first-party coefficient data establish a
-safe identity; one C-tier code covers two elements in one lens. The full frequency and per-lens inventories remain
-below the new queue for audit context, and the consolidated opportunity report now shows only active unreviewed rows
-in Sweep 2. This was a prioritization/tooling pass, so catalog and coverage totals did not change.
-
-## Resolved Phase 57 — July 2026 native e-line catalog compatibility
-
-The resolver now derives catalog `ne` and `νe` from C′/e/F′ for elements marked `indexReference: "e"`. Only explicit
-catalog names and aliases are eligible; d-line six-digit codes and explicit `Unmatched` annotations cannot opt in.
-Once matched, the catalog curve supplies the shared physical C/d/F/g trace wavelengths, while an unmatched e-line
-fallback still preserves authored ne in its reference channel.
-
-Sixteen of 75 e-line surfaces now use name-verified catalog curves. The generated coverage report lists every recovered
-row and its authored/catalog ne/νe round trip. Strict and trusted coverage each rose by 16 surfaces to 4663 and 4675,
-with no new mismatches and no change to the already-complete lens totals.
-
-## Resolved Phase 56 — July 2026 first-party exact-name recovery
-
-Hikari J-BAF3 and CDGM H-ZF2/H-ZLaF75B were transcribed from current first-party coefficient sources. The CDGM
-datasheets were rendered and checked visually before their Sellmeier constants were added. The historical bare BAF3
-name remains usable through a canonical J-BAF3 alias, and code-only `673322` annotations retain their prior
-cross-vendor precedence.
-
-Fujifilm GF 120mm L14's nonexistent S-LAH85V label was replaced with a compatible OHARA L-LAH85V catalog
-equivalent while explicitly leaving the production supplier unknown. Together, the four recovered surfaces complete
-the Nikon AF 20mm f/2.8D, Fujifilm GF 120mm, and Laowa 24mm Probe. Strict/trusted coverage rose to 4647/4659
-surfaces, with 226/231 fully covered lenses and zero catalog mismatches.
-
-## Resolved Phase 55 — July 2026 reference-line safety
-
-The schema now records native e-line coordinates with `ElementData.indexReference: "e"`. The catalog resolver and all
-coordinate-aware reports refuse to compare those values with d-line catalog coordinates, so an e-line family name or
-six-digit-looking annotation can no longer borrow a d-line Sellmeier curve accidentally.
-
-Seventy-five surfaces across twelve audited prescriptions were marked. Sixteen had previously passed the purely
-numeric d-line window; removing those false substitutions reduced the honest strict/trusted totals without changing
-the fully covered lens counts. Native e-line rows are excluded from mismatch and relabel queues because they require a
-source-backed e-to-d conversion, direct line indices, or a future e-line-aware catalog path—not a nearest d-line name.
-
-## Resolved Phase 54 — July 2026 compatible-equivalent recovery
-
-Rendered patent tables confirmed five d-line surfaces suitable for coefficient-backed equivalents already in the
-catalog. Nikon AF 35-70mm f/2.8D L2/L3 now use discontinued OHARA S-LAL52, supported by compatible nd/νd and an
-independent patent g-line anchor. Canon EF 11-24mm E2/E3 now use OHARA S-BAL42 and HOYA M-TAFD305 inside the
-runtime safety window. Sigma 85mm f/1.4 Art L9 now uses exact-coordinate HOYA TAF3D, whose computed PgF also
-reproduces the patent value; the prior TAF105 name was a different glass.
-
-All annotations remain catalog equivalents with production suppliers unspecified. Strict and trusted coverage each
-rose by five surfaces, and all three affected lenses became fully covered without introducing a catalog mismatch.
-
-## Resolved Phase 53 — July 2026 remaining SUMITA archive matches
-
-Nine first-party legacy rows were transcribed from SUMITA's discontinued-inclusive all-glass catalog: BAK2, BK4,
-F4, KF8, BAK1, F3, BAF12, LAFN10, and K-LaSKn1. They upgrade eleven surfaces across eight audited prescriptions,
-including both halves of the Olympus 21mm f/2 split F4 element. All annotations identify the SUMITA row as a catalog
-equivalent and leave the production supplier unspecified.
-
-The expansion also exposed one unsafe prose match: Pentax DA 70mm L5 used `BaK2-class` for the distinct `544601`
-coordinate. That row is now explicitly unmatched so it cannot inherit SUMITA BAK2's `540597` curve. The net result is
-zero catalog mismatches, strict coverage rising from 4643 to 4654 surfaces, trusted coverage from 4655 to 4666, and
-three more fully covered lenses in each measure.
-
-## Resolved Phase 52 — July 2026 legacy-family recovery and near-complete audit
-
-SUMITA BALK3, KF3, and LLF4 were transcribed from the vendor's discontinued-inclusive all-glass AGF, expanding the
-catalog from 416 to 419 entries. The three rows resolve thirteen surfaces across the `518603`, `515546`, and `561453`
-families. BALK3 also reproduces the independent mercury-g index stored on the Nikon AF 35-70mm f/2.8D, while LLF4
-reproduces the Hasselblad HC 150mm patent's helium-e index exactly. All relabels are optical catalog equivalents and
-leave the production supplier unspecified.
-
-The near-complete-lens review added four more safe surfaces from existing rows: Sony FE 24-70mm GM II `770494` now
-uses HOYA MC-TAF101-100, Olympus Macro 90mm `744447` uses OHARA S-LAM2, and two Nikon `670576` rows use
-discontinued OHARA S-LAL52. Canon FD 150-600mm `534555`, Fujifilm XF 16-55mm `685309`, Nikon Z DX 50-250mm
-`902253`, and Olympus Macro 50mm `683447` remain explicit unmatched after source review. Sony FE 14mm `856401`
-also remains unmatched because its patent value is helium-e-line data and the nearby catalog candidate is d-line.
-
-This pass added seventeen strict Sellmeier surfaces and sixteen trusted chromatic surfaces. Strict coverage rose from
-4626 to 4643, trusted coverage from 4639 to 4655, and four additional lenses became fully covered in each measure.
-The generated sidecar now marks every representative row in the five targeted incomplete code families as reviewed.
-
-## Resolved Phase 51 — July 2026 source-backed legacy catalog tranche
-
-SUMITA SK3 and CDGM H-ZBaF4 were transcribed from first-party coefficient sources, expanding the catalog from 414 to
-416 entries. SK3 safely resolves the matching Rodenstock Grandagon-N 75mm and 90mm elements as catalog equivalents
-while leaving the historical production supplier unspecified. The two rows add two strict Sellmeier surfaces and one
-net trusted surface because the 75mm element already stored measured C/F/g line indices.
-
-CDGM H-ZBaF4 was not forced onto Canon's nearby `1.66565 / 35.6` elements. Its official datasheet publishes code
-`664355`, `PgF = 0.5895`, and `ΔPgF = +0.0042`; Canon RF 20mm G10 instead has patent `θgF = 0.5824` and
-`ΔθgF ≈ -0.0026`. G10/G16 are now explicitly unmatched so the runtime retains the patent fallback. Canon RF 50mm
-code `666356` was likewise reviewed and retained at that time because its code, index, and patent-family
-`ΔθgF = -0.0018` differ from the CDGM row. Phase 103 later used H-ZBaF4 as a qualified baseline curve after confirming
-that authored patent `dPgF` remains authoritative at g. Strict coverage rose from 4624 to 4626 and trusted coverage
-from 4638 to 4639 in this historical pass.
-
-## Resolved Phase 50 — July 2026 exact catalog-equivalent recovery
-
-Four patent-coordinate groups were rechecked against rendered local patent tables and newly available catalog rows.
-Nikon AF-S 200-500mm E14 now uses discontinued HOYA NBFD10 for the exact `1.83400 / 37.34`, code `834373`
-coordinate, completing the lens's strict and trusted coverage. Nikon Z DX 16-50mm L21 uses HOYA M-NBFD10 for its
-exact `1.83441 / 37.28` variant. Laowa 24mm Probe L1/L25 use HOYA TAFD5F for `1.83481 / 42.72`, replacing an
-unsupported CDGM H-ZLaF4A supplier claim, and Canon Serenar 28mm L3 uses HOYA E-F8 for its printed
-`1.5955 / 39.2` coordinate instead of the unsupported Schott F7 attribution.
-
-All four annotations describe catalog equivalents and leave the production supplier unspecified. The pass added four
-net strict and trusted surfaces because Nikon Z DX L21's unbroken code already resolved through the duplicate-code
-resolver. Strict coverage rose from 4620 to 4624 surfaces, trusted coverage from 4634 to 4638, and one additional lens
-became fully covered in each measure.
-
-## Resolved Phase 49 — July 2026 high-frequency code-family review
-
-Six recurring coordinate families were audited against their local patent rows and the full coefficient-backed
-catalog. Nikon `797454` (`1.79668 / 45.37–45.4`) now uses Hikari J-LASF017 as a catalog equivalent across six
-elements in five files. Canon/Olympus `773497` (`1.77250 / 49.66–49.7`) now uses Schott N-LAF34 across five
-elements in three files, and three vintage Zeiss `672472` elements (`1.6716 / 47.2`) now use Schott N-BAF10. Each
-annotation leaves the production supplier unidentified and stays inside the resolver's coordinate safety window.
-
-Three other families remain explicitly unmatched after the same review: Olympus `504668` (`1.50378 / 66.8`),
-Nikon `748523` (`1.74810 / 52.30`), and Sony `961323` (`1.96073 / 32.3`). Their nearest public coefficient rows
-miss the d-line tolerance, so no supplier or partial-dispersion identity was inferred. The generated review sidecar
-now marks every representative row complete.
-
-This pass added fourteen strict and trusted surfaces without adding catalog entries. Strict coverage rose from 4606
-to 4620 surfaces, trusted coverage from 4620 to 4634, and one additional lens became fully covered in each measure.
-
-## Resolved Phase 48 — July 2026 unsafe named-token cleanup
-
-The four `S-NPH7` annotations were audited independently. Canon RF 135mm L14 now uses TAFD40 for the exact 001255
-coordinate; Canon RF 50mm G3 uses S-LAH99 for 001291, with its patent-derived PgF also favoring the OHARA row over
-the same-coordinate HOYA alternative; and Panasonic 20-60mm L11 uses historical PBH21 for 923209. Sony 28-70mm
-L71 remains explicitly unmatched at `2.00009 / 16.5` because no public coefficient row reproduces that extreme
-coordinate.
-
-The two plain `H-LAF3` annotations split the same way: Laowa 15mm L7b now uses exact-coordinate N-LASF44 (804465),
-while Nikon 24-200mm L61 remains explicitly unmatched because the nearest public row does not reproduce both patent
-coordinates closely enough. Canon RF 20mm G4 now uses exact-coordinate N-LAK33B (755523), and Laowa 58mm L4 uses
-exact-coordinate TAC8 (729547), removing both unsupported `H-LAK53A` supplier claims. Every catalog relabel is
-described as an equivalent with the production supplier left unidentified.
-
-This pass added six strict and six trusted surfaces without adding catalog entries. Strict coverage rose from 4600
-to 4606 surfaces, trusted coverage from 4614 to 4620, and one additional lens became fully covered in each measure.
-
-## Resolved Phase 47 — July 2026 legacy-name recovery
-
-Two Canon Serenar historical `SK18` elements now use coefficient-backed SUMITA K-SK18 as a catalog equivalent, and
-the Carl Zeiss Tessar 50mm f/3.5 plus Olympus Zuiko Auto-Zoom 85-250mm f/5 each use coefficient-backed HOYA E-F8
-for their exact `1.59551 / 39.2` F8-class coordinate. All four annotations leave the original supplier unspecified.
-The Nikon Ultra-Micro 29.5mm F8-class row remains unresolved because it stores an e-line index; it now carries an
-explicit `Unmatched` marker to prevent accidental d-line resolution.
-
-## Resolved Phase 46 — July 2026 high-frequency code-family review
-
-The five Minolta lenses using `670571` now resolve ten elements through coefficient-backed discontinued OHARA
-S-LAL52. The vendor row reproduces the patent d-line index and differs by only `+0.258` in Abbe number; every
-annotation calls it a catalog equivalent and leaves the production supplier unspecified.
-
-The next two families were source-reviewed but deliberately not relabeled. Six Nikon files use `796409`
-(`1.79631 / 40.90`), for which official OHARA, HOYA, Hikari, and Sumita coefficient catalogs contain no exact row.
-Two Minolta files use proprietary `493836` fluorophosphate glass (`1.49310 / 83.55–83.58`); the 200mm patent provides
-`theta_gF = 0.539`, already captured as `dPgF`, but neither patent establishes a public catalog identity. Their
-generated-report sidecar rows now record the completed review so future passes do not reopen them without new sources.
-
-## Resolved Phase 45 — July 2026 resolver hardening and sourced coverage
-
-The runtime resolver now examines every explicit name, alias, and six-digit-code candidate in a glass annotation
-instead of rejecting the annotation solely because its first token is incompatible. Duplicate-code rows are
-disambiguated using vendor context and the authored nd/νd coordinates while the legacy single-result resolver remains
-deterministic for existing callers.
-
-Seven exact vendor rows were added from first-party coefficient sources, and OHARA S-BSL7's coefficients/code were
-corrected. These changes added nine strict Sellmeier surfaces and seven trusted chromatic surfaces, completed three
-additional strict lenses and two additional trusted lenses, and left the mismatch queue at zero. The separate
-code-only queue now contains 307 missing-Sellmeier elements. The named-token queue is reported more precisely as 76
-unresolved elements producing 78 token occurrences across 66 distinct tokens; the old 84 figure counted token
-occurrences as though they were elements.
-
-## Resolved Phase 44 — July 2026 complete mismatch audit
-
-All 69 surfaces in the regenerated mismatch queue were rechecked against local patent prescriptions and available
-vendor catalog data. No catalog rows were added: the 407-entry catalog already contained the defensible exact
-matches. The audit increased strict Sellmeier coverage from 4535 to 4572 surfaces and trusted coverage from 4551 to
-4588 surfaces while eliminating every unsafe catalog resolution.
-
-| Disposition | Surfaces | Result |
-|---|---:|---|
-| Catalog-resolved relabel, including safe code aliases | 37 | Correct vendor/catalog rows now supply spectral coefficients; examples include S-LAH60, S-NSL36, S-TIM25, J-LAF016, S-LAH65, historical PBH21, and exact code aliases. |
-| Code-first, unresolved | 5 | Patent coordinates are preserved without a production-supplier claim or a borrowed spectral model. |
-| Explicit `Unmatched` | 27 | E-line-authored, coarsely rounded, vintage, proprietary, or otherwise non-unique rows now stay on the Abbe fallback rather than borrowing a false catalog spectrum. |
-| **Total** | **69** | **0 remaining mismatch surfaces across 0 lenses.** |
-
-Every changed lens has a synchronized `*.analysis.md` sidecar and dated `*.audit.md` entry recording the surface,
-old/new label, patent example or table, and retained R/d/nd/νd evidence. No prescription geometry changed.
-
-Remaining work is no longer a mismatch blocker. The separate coverage reports still contain honest code-only and
-unresolved-token opportunities, which require new coefficient sources or patent line-index evidence rather than
-relabeling guesses. Use the Current Status and Phase 45 sections above for current counts.
-
-## Resolved Phase 43 — July 2026 catalog expansion and stricter matching
-
-The official HOYA/OHARA all-products catalogs supplied 33 additional coefficient-backed rows. Exact-coordinate
-relabels then corrected historical PBH21 rows previously called modern S-NPH2, plus L-LAH90, TAFD40L-W, S-NPH1,
-S-BSM15, S-TIM6, and L-LAL13 assignments. With those rows available, runtime matching tightened to nd ±0.003 and
-νd ±2 without losing aggregate coverage: strict Sellmeier coverage rose from 4499 to 4535 surfaces.
-
-| Lens file(s) | Surface(s) | Old annotation | New annotation | Justification |
-|---|---|---|---|---|
-| Canon RF 15-35, RF 28-70 STM, RF 85/1.2, RF 85/2; Nikon Z 16-50, 24-50, 24-120, 24-200, 85/1.8; Panasonic S Pro 50/1.4; Sigma 40/1.4; Sony E 18-55, FE 85 GM II, FE 90 Macro | 16 elements | `S-NPH2` at 1.92286 / 20.88–20.90 | historical `PBH21` | PBH21 is the exact 923209 row; modern S-NPH2 has νd ≈ 18.90. |
-| Nikon AF-S 28mm f/1.4 E | L26 | `S-LAH60V` | `L-LAH90` | Exact 1.83220 / 40.10 OHARA row. |
-| Sony FE 24-70mm f/2.8 GM II | L24 | `S-LAH79` | `TAFD40L-W` | Exact 2.00069 / 25.46 HOYA row. |
-| Fujifilm XF 23mm f/1.4 R | L123, L25 | `S-TIH6` | `S-NPH1` | Exact 1.80809 / 22.76 OHARA row. |
-| Nikon Nikkor-N Auto 28mm f/2 | L1, L3 | `SK16` | `S-BSM15` | Exact 1.62299 / 58.17 OHARA row; the old SK16 assignment was a different coordinate. |
-| Canon FD 50mm f/1.2 L | L3 | `S-TIM27` | `S-TIM6` | Exact 1.63636 / 35.39 OHARA row. |
-| Nikon Z 35mm f/1.8 S | L23 | probable `L-LAL14` | `L-LAL13` | Exact 1.69350 / 53.19 low-Tg OHARA row. |
-
-## Resolved Phase 42 — July 2026 dispersion-aware follow-up
-
-| Lens file(s) | Surface(s) | Old annotation | New annotation | Justification |
-|---|---|---|---|---|
-| Fujifilm XF 50mm f/1.0 | L1a | `S-FPM3` | `S-TIL2` | Exact 1.54072 / 47.23 OHARA coordinate; S-FPM3 has νd = 74.70. |
-| Sigma 40mm f/1.4 Art | L6, L16 | `M-FCD500`; `S-NBH56` | `FCD705`; `M-TAFD305` | Both replacements exactly match the authored nd/νd pairs and retain the source-family/manufacturing context. |
-| Canon Serenar 28mm f/3.5 | L2 | `SK16` | `E-BAF8` | Exact 1.62370 / 47.00 coordinate; N-SK16 is a same-index but much lower-dispersion crown. |
-| Canon RF 24-240mm | L12 | `S-LAM3 type (720/437)` | `S-LAM52` | Exact embedded-code and 1.72000 / 43.69 coordinate match. |
-| Olympus Zuiko Auto-Macro 50mm f/2 | L2 | `S-LAL59 (729/547)` | `S-LAL18` | Exact embedded-code and 1.72916 / 54.68 coordinate match. |
-| Fujifilm GF 80mm f/1.7; GF 120mm f/4 Macro | L11; L23 | `S-NBH55`; `S-LAH52Q` | `S-LAH52Q`; `S-NBH55` | Corrects a swapped pair of near-equal-index OHARA glasses whose Abbe numbers differ by more than 12. |
-
-The runtime and generated reports require both nd and νd compatibility before catalog Sellmeier
-data is trusted. This exposed 40 previously hidden same-index dispersion mismatches; the exact low-ambiguity rows above
-were corrected, while the remaining cases stay on the Abbe fallback and in the generated relabel queue. Phase 43
-subsequently tightened the window from nd ±0.005 / νd ±3 to nd ±0.003 / νd ±2.
-
-## Resolved Phase 41 — July 2026 mismatch and coverage follow-up
-
-| Lens file(s) | Surface(s) | Old annotation | New annotation | Justification |
-|---|---|---|---|---|
-| [HasselbladHC120mmf4Macro.data.ts](../src/lens-data/hasselblad/HasselbladHC120mmf4Macro.data.ts) | L8 | `NBFD10 (HOYA)` | `S-LAH63 (OHARA coordinate match)` | Removes a false catalog match; S-LAH63 exactly matches the stored 1.80440 / 39.6 coordinate. |
-| [NikonUltraMicroNikkor295mmf12.data.ts](../src/lens-data/nikon/NikonUltraMicroNikkor295mmf12.data.ts) | L4 | `SF8 class...` | `Unmatched SF8-class...` | The patent stores an e-line index; explicit unmatched status prevents comparison to and application of a d-line catalog row. |
-| Nikon AF Micro 200mm and AF Zoom-Micro 70–180mm | L1, L7; L15 | unresolved `804339` descriptions | `E-LAFH2 (Hikari; patent code 804339)` | Exact Hikari code and 1.80384 / 33.89 coordinate. |
-| Nikon AF Zoom-Micro 70–180mm, AF 28–80mm, AF 28mm f/1.4D, and R-UW Micro 50mm | five elements at 1.86074 / 23.0–23.01 | unresolved/code-only dense-flint descriptions | `J-SFH2 (Hikari)` | Current J-SFH2 retains the exact index; code and rounded Abbe number differ by only the final digit. |
-| Canon RF 50mm f/1.4, Fujifilm XF 23mm f/2.8, Sigma 17–40mm f/1.8 | three NBFD32 elements | named but unresolved NBFD32 | catalog-backed `NBFD32` | Official HOYA formula-3 coefficients, code 730322, and exact 1.73037 / 32.23 coordinate. |
-| Nikon AF-S 200–500mm, Nikon AF-S 120–300mm, Sigma 85mm Art | three stale E-ADF10 guesses | `E-ADF10` | E-FD2, S-TIH1, S-NBM51 respectively | Each replacement matches the stored six-digit coordinate exactly; actual E-ADF10 is the distinct 613444 row. |
-| Sigma 105mm f/1.4 Art | L4 | named but unresolved `E-ADF10` | catalog-backed `E-ADF10` | Official HOYA obsolete-glass AGF polynomial at exact 1.61310 / 44.36 and code 613444. |
-
-## Resolved Phase 3 — high-confidence relabels (audit trail)
-
-| Lens file | Surface(s) | Old annotation | New annotation | Justification |
-|---|---|---|---|---|
-| [NikonNikkorAFS2470mmf28E.data.ts](../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) | nd=1.90366 | `S-LAH79 (OHARA)` | `S-LAH95 (OHARA)` | Code 904/313 = S-LAH95; stored nd matches exactly. |
-| [NikonNikkorAFS2470mmf28E.data.ts](../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) | nd=1.7725 | `S-LAH52 (OHARA)` | `S-LAH66 (OHARA)` | S-LAH52 has nd=1.800; stored nd=1.7725 matches S-LAH66 (1.7725) exactly. |
-| [NikonNikkorAFS2470mmf28E.data.ts](../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) | nd=1.816 | `S-LAH66 (OHARA)` | `S-LAH59 (OHARA)` | S-LAH59 has nd=1.816; stored matches exactly. |
-| [NikonNikkorAFS2470mmf28E.data.ts](../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) | nd=1.603 | `S-PHM52 (OHARA)` | `S-PHM53 (OHARA)` | S-PHM53 has nd=1.603001; Δnd=0, Δvd=0.04 — perfect match. |
-| [NikonNikkorAFS2470mmf28E.data.ts](../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) | nd=1.83481 | `S-LAH63 (OHARA)` | `S-LAH55 (OHARA)` | S-LAH55 nd=1.834807; stored matches. Default non-V. |
-| [FujifilmXF56mmf12.data.ts](../src/lens-data/fujifilm/FujifilmXF56mmf12.data.ts) | L7, L15, L17 (nd=1.883) | `S-LAH66 (OHARA)` | `S-LAH58 (OHARA)` | S-LAH66 nd=1.772; stored nd=1.883 matches S-LAH58 (1.883) exactly. |
-| [NikonNikkorAFS1424mmf28.data.ts](../src/lens-data/nikon/NikonNikkorAFS1424mmf28.data.ts) | nd=1.8044 | `S-LAH66 (OHARA)` | `S-LAH63 (OHARA)` | S-LAH63 nd=1.8044; exact match. |
-| [NikonNikkorAFS1424mmf28.data.ts](../src/lens-data/nikon/NikonNikkorAFS1424mmf28.data.ts) | nd=1.772789 | `S-LAH59 (OHARA)` | `S-LAH66 (OHARA)` | S-LAH66 nd=1.7725; Δnd=0.0003. |
-| [NikonNikkorAFS1424mmf28.data.ts](../src/lens-data/nikon/NikonNikkorAFS1424mmf28.data.ts) | nd=1.8061 | `S-LAH58 (OHARA)` | `S-LAH53 (OHARA)` | S-LAH53 nd=1.806098; Δnd=0.0001. |
-| [CanonRF24105mmf4L.data.ts](../src/lens-data/canon/CanonRF24105mmf4L.data.ts) | L12, L31 (nd=1.804) | `S-LAL18 (OHARA)` | `S-LAH65V (OHARA)` | S-LAH65V nd=1.804; exact match. S-LAL18 nd=1.729 (wrong). |
-| [CanonRF24105mmf4L.data.ts](../src/lens-data/canon/CanonRF24105mmf4L.data.ts) | nd=2.00069 | `S-NPH53 (OHARA)` / later `S-LAH79 (OHARA)` | `TAFD40 (HOYA)` | 2026-05 audit found the patent row lists nd=2.00069, vd=25.5; TAFD40 now round-trips exactly, while S-LAH79 does not. |
-| [NikonZ28f28.data.ts](../src/lens-data/nikon/NikonZ28f28.data.ts) | L3, L11, L16 (nd=1.804) | `S-LAH55V (OHARA)` | `S-LAH65V (OHARA)` | S-LAH55V nd=1.835; stored nd=1.804 matches S-LAH65V exactly. |
-| [NikonZ28f28.data.ts](../src/lens-data/nikon/NikonZ28f28.data.ts) | nd≈1.808 | `S-NPH 1 (OHARA)` | `S-NPH1 (OHARA)` | Space in name prevented catalog resolution; fixed. |
-| [NikonZ28f28.data.ts](../src/lens-data/nikon/NikonZ28f28.data.ts) | nd≈1.762 | `S-TIH 14 (OHARA)` | `S-TIH14 (OHARA)` | Same — space in name fix. |
-| [CanonRF2450mmf463.data.ts](../src/lens-data/canon/CanonRF2450mmf463.data.ts) | 699/301 | `S-TIH6 (OHARA 699/301)` | `S-TIM35 (OHARA 699/301)` | Code 699301 = S-TIM35; stored nd=1.699 matches. |
-| [CanonRF2450mmf463.data.ts](../src/lens-data/canon/CanonRF2450mmf463.data.ts) | 904/313 | `S-LAH55V (OHARA 904/313)` | `S-LAH95 (OHARA 904/313)` | Code 904313 = S-LAH95. |
-| [CanonRF2450mmf463.data.ts](../src/lens-data/canon/CanonRF2450mmf463.data.ts) | 847/239 | `S-TIH53 (OHARA 847/239)` | `S-NPH53 (OHARA 847/239)` | Code 847239 = S-NPH53 (847238 = S-TIH53). |
-| [CanonRF2450mmf463.data.ts](../src/lens-data/canon/CanonRF2450mmf463.data.ts) | 773/496 | `S-LAH53 (OHARA 773/496)` | `S-LAH66 (OHARA 773/496)` | Code 773496 = S-LAH66. |
-| [CanonRF24240mmf463.data.ts](../src/lens-data/canon/CanonRF24240mmf463.data.ts) | 903/313 | `S-LAH79 type (903/313)` | `S-LAH95 type (903/313)` | Code matches S-LAH95. |
-| [CanonRF24240mmf463.data.ts](../src/lens-data/canon/CanonRF24240mmf463.data.ts) | 773/496 | `S-LAL54 type (773/496)` | `S-LAH66 type (773/496)` | No S-LAL54 exists; code matches S-LAH66. |
-| Multiple (9 files) | nd=1.90366 | various → `S-LAH79/S-LAH65V/S-NPH53/S-LAH58` | `S-LAH95 (OHARA)` | CanonRF24240, FujifilmXF1655, NikonAFS200500, NikonNikkorPCE19, NikonNikkorZ24120, NikonNikkor85f14G, NikonNikkorAFS80400, LeicaAPO43mmf2. |
-| [NikonAF28f14D.data.ts](../src/lens-data/nikon/NikonAF28f14D.data.ts) | L2, L12 (nd=1.77279) | `LaM type (near S-LAM66)` | `S-LAH66 (OHARA)` | S-LAH66 nd=1.7725; Δnd=0.0003. |
-| [NikonAF28f14D.data.ts](../src/lens-data/nikon/NikonAF28f14D.data.ts) | L5, L10 (nd=1.80411) | `LaH type (near S-LAH55)` | `S-LAH65V (OHARA)` | S-LAH65V nd=1.804; Δnd=0.0001. |
-| Various (S-LAH66) | multiple | `S-LAH55V/S-LAM66/S-LAH59/S-LAH53/S-LAM66/S-LAH53` | `S-LAH66 (OHARA)` | CanonRF2870mmf2L, NikonAFS28f14E, Leica28mmf17, RicohGR428, NikonNikkorZ24120, NikonNikkorPCE19, NikonNikkorAFS2470mmf28E, OlympusZuikoAutoS50. |
-| Various (S-LAH58) | nd=1.883 | `S-LAH66 (OHARA)` / `S-LAH79 (OHARA)` | `S-LAH58 (OHARA)` | NikonNikkorZ1430mmf4S, LeicaAPO35mmf2. |
-| [CanonRF85mmf2Macro.data.ts](../src/lens-data/canon/CanonRF85mmf2Macro.data.ts) | nd=1.804 | `TAFD30 (HOYA)` | `S-LAH65V (OHARA)` | nd=1.804 matches S-LAH65V exactly; TAFD30 nd=1.883. |
-| [NikonPCENikkor24mmf35DED.data.ts](../src/lens-data/nikon/NikonPCENikkor24mmf35DED.data.ts) | L1, L16 (nd=1.804) | `S-LAH58 (OHARA)` | `S-LAH65V (OHARA)` | S-LAH58 nd=1.883; stored nd=1.804 matches S-LAH65V. |
-| [NikonZ26f28.data.ts](../src/lens-data/nikon/NikonZ26f28.data.ts) | nd=1.816 | `S-LAL18 (OHARA)` | `S-LAH59 (OHARA)` | S-LAH59 nd=1.816; exact match. |
-| [NikonNikkorZ1430mmf4S.data.ts](../src/lens-data/nikon/NikonNikkorZ1430mmf4S.data.ts) | nd=1.816 | `S-LAH63 (OHARA)` | `S-LAH59 (OHARA)` | S-LAH63 nd=1.804; stored nd=1.816 matches S-LAH59. |
-| [OlympusZuikoAutoS50mmf12.data.ts](../src/lens-data/olympus/OlympusZuikoAutoS50mmf12.data.ts) | nd=1.83481 | `S-LAH58 (OHARA) / TAFD5 (HOYA)` | `S-LAH55 (OHARA) / TAFD5 (HOYA)` | Stored nd matches S-LAH55; default non-V. |
-| [OlympusZuikoAutoS50mmf12.data.ts](../src/lens-data/olympus/OlympusZuikoAutoS50mmf12.data.ts) | nd=1.7725 | `S-LAH51 (OHARA) / TAF1 (HOYA)` | `S-LAH66 (OHARA) / TAF1 (HOYA)` | TAF1 = nd=1.7725; matches S-LAH66. S-LAH51 nd=1.786 (wrong). |
-| [NikonNikkorZ100400f4556.data.ts](../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) | nd=1.8044 | `S-LAH55V (OHARA)` | `S-LAH63 (OHARA)` | S-LAH63 nd=1.8044; exact match. |
-| [NikonNikkorZ100400f4556.data.ts](../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) | nd=1.8061 | `S-LAH55 (OHARA) †` | `S-LAH53 (OHARA)` | S-LAH53 nd=1.806098; Δnd=0.0001. |
-| [NikonNikkorAFS200500mmf56.data.ts](../src/lens-data/nikon/NikonNikkorAFS200500mmf56.data.ts) | nd=1.83481 | `S-LAH58 (OHARA)` | `S-LAH55 (OHARA)` | Stored nd=1.835 matches S-LAH55; default non-V. |
-| [NikonNikkorZ70200f28.data.ts](../src/lens-data/nikon/NikonNikkorZ70200f28.data.ts) | 6 surfaces (nd=1.498) | `S-FPL52 — ED (498-826)` | `S-FPL51 — ED (498-826)` | Code 498826 ≈ S-FPL51/FCD1 territory; stored nd=1.498, S-FPL52 catalog nd=1.456. |
-| [NikonZ1424f28S.data.ts](../src/lens-data/nikon/NikonZ1424f28S.data.ts) | 4 surfaces (nd=1.498) | `S-FPL52 (OHARA) — ED` | `S-FPL51 (OHARA) — ED` | Same as above. |
-
-## Resolved Phase 2 — high-confidence relabels (audit trail)
-
-| Lens file | Surface | Old annotation | New annotation | Justification |
-|---|---|---|---|---|
-| [NikonNikkorAFS2470mmf28E.data.ts](../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) | L44 | `S-FPL53 (OHARA) — Super ED` | `S-FPL51 (OHARA) — ED` | Stored nd=1.49782, vd=82.6 matches S-FPL51 (1.497, 81.55) to Δnd=0.0008, Δvd=1.05; S-FPL53 has vd=94.95 (off by 12+ Abbe units). |
-| [NikonNikkorZ100400f4556.data.ts](../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) | 5 surfaces | `S-FPL53 (OHARA)` | `S-FPL51 (OHARA)` | All 5 surfaces have nd=1.49782, vd=81.10 — matches S-FPL51 to Δvd<0.5. |
-| [NikonNikkorZ24120mmf4S.data.ts](../src/lens-data/nikon/NikonNikkorZ24120mmf4S.data.ts) | 3 surfaces | `S-FPL53 (OHARA)` | `S-FPL51 (OHARA)` | All 3 surfaces have nd=1.49782, vd=82.57 — matches S-FPL51 to Δvd~1.0. |
-| [NikonNikkorZ50f18S.data.ts](../src/lens-data/nikon/NikonNikkorZ50f18S.data.ts) | L23 | `S-FPL53 / FCD100 class (super-ED…)` | `S-FPL51 / FCD1 class (ED fluorophosphate, νd = 82.6)` | Same — stored vd=82.6 matches FPL51/FCD1, not FPL53/FCD100. |
-| [CanonRF2470f28.data.ts](../src/lens-data/canon/CanonRF2470f28.data.ts) | L4, L11 | `S-LAL14 (OHARA)` | `S-LAL18 (OHARA)` | Stored nd=1.72916, vd=54.7 matches S-LAL18 (1.72916, 54.68) exactly; S-LAL14 has vd=55.53. |
-| [NikonAFS28f14E.data.ts](../src/lens-data/nikon/NikonAFS28f14E.data.ts) | L21 | `S-LAL14 (OHARA)` | `S-LAL18 (OHARA)` | Same as above. |
-| [NikonNikkor85f14G.data.ts](../src/lens-data/nikon/NikonNikkor85f14G.data.ts) | L7 | `S-LAL14 (OHARA)` | `S-LAL18 (OHARA)` | Same as above. |
-| [NikonAFS28f14E.data.ts](../src/lens-data/nikon/NikonAFS28f14E.data.ts) | L12 | `S-BAL42 (OHARA)` | `N-LAK8 (Schott)` | Stored nd=1.713, vd=53.9 matches N-LAK8 (1.713, 53.83) exactly; S-BAL42 has nd=1.583. |
-| [NikonZ26f28.data.ts](../src/lens-data/nikon/NikonZ26f28.data.ts) | L7 | `S-TIH6 (OHARA)` | `SF4 (Schott)` | Stored nd=1.7552, vd=27.6 matches SF4 (1.7552, 27.58) exactly; S-TIH6 has nd=1.805. |
-
-## Pending — actionable relabels (single catalog candidate, vd matches)
-
-None remain in the current mismatch queue. If a future report introduces rows, run
-[glass-relabel-candidates.generated.md](generated/glass-relabel-candidates.generated.md) and tackle candidates one
-lens at a time, cross-checking the analysis sidecar and patent narrative.
-
-Non-trivial cases worth special note:
-
-- **S-LAH55 vs S-LAH55V** (e.g. nd=1.83481, vd=42.7): both round-trip the same nd; choice changes secondary-spectrum behavior. Default to S-LAH55 (non-V) when the patent doesn't specify a vacuum-melt variant.
-- **S-LAH58 vs TAFD30** (e.g. nd=1.88300, vd=40.8): identical published nd/vd; pick by family hint in the original annotation (OHARA vs HOYA).
-- **FCD1 vs S-FPL51** (e.g. nd=1.49700, vd=81.55): catalog-equivalent ED glasses; pick by vendor consistency with rest of the lens.
-- **S-LAM66 → S-LAH66** suggestions (e.g. nd=1.77279, vd=49.4 in NikonAF28f14D): the analysis text references "near OHARA S-LAM66" but the (nd, vd) pair matches S-LAH66 exactly. Update the analysis narrative alongside the data file when relabeling.
-
-## Pending — patent verification needed (no catalog candidate within tolerance)
-
-None remain in the current mismatch queue. For any future (nd, vd) group without a candidate inside the
-Δnd=0.003 / Δvd=2.0 window, the right resolution is to:
-
-1. Open the lens patent prescription tables.
-2. Identify the correct glass at the cited surface (often listed by code or by vendor part number).
-3. If the correct glass is in our catalog, relabel.
-4. If the correct glass is NOT in our catalog, decide whether to:
-   - Add it (only if it's used across multiple lens files — see [glass-catalog-buildout.md](glass-catalog-buildout.md)).
-   - Mark the annotation as `Unmatched (...reason)` so the resolver stops trying. The dispersion cascade will use the Abbe approximation.
-
-The `Unmatched (…)` form is preferred for genuinely-proprietary glass (Sumita custom melts, vintage Leitz, designer-attributed approximations). It is honest about the data quality and surfaces in the LCA badge as "Abbe approx".
-
-### Historical high-frequency patterns (groups, not individual surfaces)
-
-These patterns explain why many mismatches exist, but they are not the current worklist. Several once-missing glasses
-have since been added to the catalog; rerun the generated reports and trust the report row for the current candidate
-state.
-
-| Pattern | Surfaces | Notes |
-|---|---|---|
-| `S-LAH79` mislabel with stored nd≈1.90366 / vd≈31.3 | ~10 | Real S-LAH79 is 2.003/28.3. Stored values point to a nearby high-index lanthanum family; current reports may now surface catalogued candidates, but the patent should settle the label. |
-| `S-LAH79` mislabel with stored nd≈1.95375 / vd≈32.3 | ~13 | Same family; possibly OHARA S-LAH98 / S-NBH52 / E-FDS3. Check the current candidate report before deciding whether to relabel or mark unmatched. |
-| `S-NPH2` mislabel with stored nd≈2.001 / vd≈29.1 | ~5 | Real S-NPH2 is 1.923/18.9. Stored values closer to S-LAH79 (2.003/28.3) — already in catalog (Δnd ≈ 0.003 — borderline tolerance). |
-| `S-NPH2` mislabel with stored nd≈2.05090 / vd≈26.9 | ~2 | Above S-LAH79's nd; could be OHARA S-NBH56 / E-FDS4 (newer ultra-high-index flints, not in catalog). |
-| `S-LAH58` mislabel with stored nd≈1.91082 / vd≈35.2 | ~6 | Real S-LAH58 is 1.883/40.8. Stored values match S-LAH59 / S-LAH60 / S-LAH63V (none in catalog). |
-| `S-LAH66` mislabel with stored nd≈1.85150 / vd≈40.8 | 3 | (CanonRF2870mmf28 surface 8 etc.) Real S-LAH66 is 1.7725/49.6. Stored matches S-LAH51 (1.787) or S-LAH52 (1.797) — neither in catalog within tolerance. |
-| `S-PHM52` mislabel with stored nd≈1.60-1.603 / vd≈55-67 | ~3 | Real S-PHM52 is 1.618/63.3. Closer matches: OHARA L-PHM52 (lead-free variant of S-PHM52, slightly different nd) — not in catalog. |
-| `S-BAL42` mislabel with stored nd≈1.531-1.589 (varies) | ~4 | Real S-BAL42 is 1.583/59.4. Each surface is a different glass; needs per-lens patent lookup. |
-| `S-BSL7` mislabel with stored nd≈1.60311 or 1.63854 | 3 | Real S-BSL7 is 1.516/64.1. Stored values are unrelated; the original annotations are clearly wrong. Likely barium crowns; needs per-lens lookup. |
-| `S-FPM2` mislabel (FujifilmXF80f28 surface 23) with stored nd=1.53775, vd=74.7 | 1 | Real S-FPM2 is 1.595/67.7. Stored values fit a long-Abbe fluorophosphate not in catalog (possibly S-FPL55 or HIKARI E-F2). |
-| `S-LAH63` mislabel (NikonNikkorZ100400 surface 45 etc.) | 2 | Real S-LAH63 is 1.804/39.6. Stored 1.738/49.3 matches S-LAH71 / S-LAH72 (not in catalog). |
-| `SF4` / `SF6` mislabel (NikonNikkorSAuto50mmf14, LeicaElcan50mmf2) | ~3 | Vintage lead flints; the "≈SF4" / "SF4 / PBM5" notation in the original lens-data is explicit speculation. Best resolution: relabel as `Unmatched (≈SF4 family, vintage lead flint, no exact catalog match)`. |
-| `BSC7 (HOYA)` in OlympusZuikoAutoMacro90mmf2 surface 17 (stored nd=1.65160) | 1 | BSC7 is BK7-equivalent (nd=1.516); stored 1.652 matches S-NBH5 (1.654) very closely. The annotation is wrong; relabel candidate `S-NBH5 (OHARA, vd~39.7)` if the patent supports KZFS-class. |
-
-## Workflow for a single follow-up
-
-Follow the four-phase procedure in [lens-patent-audit.md](lens-patent-audit.md). It covers patent sourcing, glass relabeling, retained-information audit, dPgF/line-index enrichment, analysis-file sync, and the per-lens `*.audit.md` log convention. When the audit completes, move the row from this followup file to its "Resolved this session" table.
-
-## Why this is per-lens authoring work, not a one-shot migration
-
-The original annotations were authored by reading patent prescriptions or the lens vendor's published data. Most mismatches reflect a **mismatch between the author's named-glass guess and the actual published nd/vd** — usually because the author picked the closest *named* OHARA glass when the actual glass was an older/newer variant or a different vendor's equivalent. Resolving each requires:
-
-- The original patent (often in Japanese; J-PlatPat is the authoritative source for JP).
-- Cross-vendor glass lookup tables (Schott ↔ Ohara ↔ Hoya equivalents).
-- Judgment about whether the analysis.md narrative needs updating alongside the data file.
-
-This is exactly the work that the `glass:` annotation field was designed to capture — and the catalog cascade now exposes when the field doesn't match the stored prescription. The right cadence is one lens at a time, ideally as part of authoring or revisiting each lens.
+The per-lens worklist for catalog mismatches surfaced by the dispersion cascade: surfaces whose `glass` annotation
+resolves to a vendor catalog row but whose stored `(nd, νd)` sits outside the runtime window (nd ±0.003, νd ±2), so
+the resolver rejects the curve and falls back to line indices, `dPgF`-corrected Abbe, or plain Abbe. This file holds
+only open judgment calls and the closed decisions that must not be redone; the generated reports are the live queue.
+
+## Generated reports
+
+- [catalog-mismatches.generated.md](generated/catalog-mismatches.generated.md) — raw per-surface mismatch list.
+- [glass-relabel-candidates.generated.md](generated/glass-relabel-candidates.generated.md) — mismatches grouped by
+  `(stored nd, stored vd)` with every catalog candidate inside tolerance; this is the mechanical-relabel bucket.
+- [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md) — the same rows keyed by lens
+  file, which is the order to work them in during a patent audit.
+
+Groups with no candidate inside tolerance, and candidate-backed groups that would change a lens's narrative (several
+candidates, or an `*.analysis.md` that names the old glass), land here for authorial judgment. Regenerate every glass
+report with `npm run generate:glass-reports`; [README.md](README.md) lists each report and its scan. Sellmeier
+sourcing lives in [glass-catalog-buildout.md](glass-catalog-buildout.md); patent line-index backfill for truly
+proprietary glass lives in [proprietary-glass-backfill.md](proprietary-glass-backfill.md).
+
+## Status
+
+- Pending — actionable relabels (single catalog candidate, νd matches): **none remain.**
+- Pending — patent verification needed (no candidate within tolerance): **none remain.**
+- Read live counts (catalog size, mismatch rows, Sellmeier coverage) from the generated reports and `catalogSize()`
+  in `src/optics/glassCatalogData.ts`; figures hand-copied into this file went stale before.
+
+## Open items
+
+- **Leica ELCAN 50mm f/2 E4 — LAFN7 (2026-09).** Adding the official SCHOTT LAFN7 curve exposed the approximate LAFN7
+  label in `src/lens-data/leica/LeicaElcan50mmf2.data.ts`. Its authored 1.7546 / 34.7 differs from LAFN7 by 0.0051
+  in nd, outside the 0.003 limit, and no catalog candidate passes. The annotation is now an explicit unmatched
+  lanthanum flint on its existing Abbe model. Closing it needs source line indices; Leitz mil-spec documentation is
+  sparse, so this may stay open indefinitely.
+
+## Closed families — do not re-audit
+
+Engine and reporting decisions:
+
+- Runtime catalog window is nd ±0.003 / νd ±2 (tightened 2026-07); do not loosen it to rescue a label.
+- Native e-line rows (`indexReference: "e"`) resolve only through explicit names or aliases that reproduce C′/e/F′; d-line six-digit codes never opt in (2026-07).
+- Authored patent `dPgF` stays authoritative at g even when a catalog curve supplies C/d/F (2026-08).
+- An explicit `Unmatched` / `Unknown` / `Proprietary` / `Unidentified` annotation is its own review record; no sidecar or audit-log duplicate is needed (2026-07).
+- An official vendor name whose coordinates conflict with the patent is never added as an alias; it is replaced by a coordinate-compatible equivalent with the production supplier left unspecified (2026-07).
+
+Relabeled to catalog equivalents (production supplier unspecified unless the patent names one):
+
+- OHARA S-LAH ladder by stored nd (2026-05/06): 1.90366 → S-LAH95; 1.883 → S-LAH58; 1.8044 → S-LAH63; 1.804 → S-LAH65V; 1.816 → S-LAH59; 1.8061 → S-LAH53; 1.7725 → S-LAH66; 1.83481 → S-LAH55 (non-V default); 2.00069 / 25.5 → TAFD40.
+- ED rows at 1.498 / 81–83 → S-FPL51, not S-FPL53; 1.72916 / 54.7 → S-LAL18, not S-LAL14 (2026-05).
+- `S-NPH2` at 1.92286 / 20.9 → historical PBH21 across 16 elements; `S-NPH7` split into TAFD40 (001255), S-LAH99 (001291), PBH21 (923209) (2026-07).
+- Exact-coordinate swaps (2026-07): S-FPM3 → S-TIL2; M-FCD500 → FCD705; S-NBH56 → M-TAFD305; SK16 → E-BAF8 (Serenar 28) and S-BSM15 (Nikkor-N 28/2); S-LAM3 → S-LAM52; S-LAL59 → S-LAL18; S-TIM27 → S-TIM6; L-LAL14 → L-LAL13; S-LAH60V → L-LAH90; S-LAH79 → TAFD40L-W; S-TIH6 → S-NPH1; Fujifilm GF 80 / GF 120 S-NBH55 ↔ S-LAH52Q un-swapped.
+- Named-token corrections (2026-07): S-LAM73 → L-LAH85V; L-BBH1 → E-FD8; L-LAH83 → M-TAF1; L-PHL1 → M-BACD12; L-LAH85 → M-TAF401; S-LAH85V → L-LAH85V; stale E-ADF10 → E-FD2 / S-TIH1 / S-NBM51; `804339` → E-LAFH2; 1.86074 / 23.0 → J-SFH2; Sigma 85 Art TAF105 → TAF3D.
+- Six-digit families (2026-07 to 2026-08): `797454` → J-LASF017; `773497` → N-LAF34; `672472` → N-BAF10; `670571` / `670576` → S-LAL52; `796409` → NBFD2; `834373` / `834374` → NBFD10 and 1.83441 / 37.28 → M-NBFD10; `515546` → KF3; `518603` → BALK3; `561453` → LLF4; `586609` → K-SKLD5(M); `547460` → E-FEL1; `569632` → BAL22; `498650` → BSL3; `519573` → J-K3; `805255` → J-SF6; `757316` → E-LAF11.
+- Single-lens relabels (2026-07 to 2026-08): Laowa 15 L7b → N-LASF44; Canon RF 20 G4 → N-LAK33B; Laowa 58 L4 → TAC8; Laowa 24 Probe L1/L25 → TAFD5F; Serenar 28 L3, Zeiss Tessar 50, Olympus 85-250 F8-class → E-F8; Serenar SK18 → K-SK18; Canon EF 11-24 E2/E3 → S-BAL42 / M-TAFD305; Sony FE 24-70 GM II `770494` → MC-TAF101-100; Olympus Macro 90 `744447` → S-LAM2; Canon EF-M 32 L5 → FCD515; Panasonic S Pro 50 L1 → E-FDS1; Sigma APO Macro 180 L11 → N-BK7; Panasonic S PRO 16-35 L12 → K-LaSFn23.
+- Canon RF 50mm `666356` uses CDGM H-ZBaF4 as the baseline curve with the patent `dPgF` authoritative at g; Fujifilm GF 20-35 carries patent `dPgF` on all 14 rows (2026-08).
+- Vendor rows added 2026-07 to 2026-08 from first-party sources (Hikari J-*, HOYA legacy/obsolete, OHARA L-LAH* and discontinued AGF rows, SUMITA discontinued-inclusive, CDGM, Schott K10 / P-LASF47) live in `src/optics/glassCatalogEntries/`; check there before re-transcribing.
+
+Explicitly unmatched after source review (a new source is needed, not another catalog pass):
+
+- Minolta `493836` fluorophosphate (4 files / 9 elements) — proprietary; the AF 200mm keeps its patent `dPgF` (2026-07).
+- Olympus `504668` (1.50378 / 66.8); Nikon `748523` (1.74810 / 52.30); Sony `961323` (1.96073 / 32.3) (2026-07).
+- Pentax FA 31 `728403` L8 (M-LAF81 / L-LAM69 miss nd by 0.00027); Sony Planar FE 50 `995293` L21 (2026-07).
+- Sony FE 12-24 `678322` L22 (SF5 misses nd by 0.0049); Sony FE 70-200 GM II `792257` L41 — Hikari J-SF11's 1.791929 is its e-line index, not a match (2026-07).
+- Canon RF 20 G10/G16 at 1.66565 / 35.6 — the patent θgF contradicts H-ZBaF4 (2026-07).
+- Pentax DA 70 L5 `544601` (not BaK2); Canon FD 150-600 `534555`; Fujifilm XF 16-55 `685309`; Nikon Z DX 50-250 `902253`; Olympus Macro 50 `683447`; Sony 28-70 L71 at 2.00009 / 16.5; Nikon 24-200 L61 H-LAF3 (2026-07).
+- E-line rows that must not borrow d-line curves: Sony FE 14 `856401` (Ne); Nikon Ultra-Micro 29.5 F8/SF8-class (2026-07).
+- Voigtländer Nokton 50/1.0 `808406`; Nikon 20-35 L31a; the Nikon 180-400's nine remaining six-digit classes; seven Minolta rows outside the guard; N-LAF21 / N-SF8 / K5 class annotations, which are near matches only (2026-08).
+
+## Decision rules for recurring patterns
+
+- No candidate inside Δnd 0.003 / Δνd 2.0: open the patent prescription table, identify the glass at that surface
+  (code or vendor part number), relabel if it is in the catalog, otherwise add it only when several lens files need
+  it (see [glass-catalog-buildout.md](glass-catalog-buildout.md)) or mark it `Unmatched (…reason)`. Prefer
+  `Unmatched` for Sumita custom melts, vintage Leitz glass, and designer-attributed approximations; it surfaces
+  honestly as "Abbe approx" in the LCA badge.
+- **S-LAH55 vs S-LAH55V** (1.83481 / 42.7): same nd, different secondary spectrum; default to S-LAH55 unless the
+  patent names the vacuum-melt variant.
+- **S-LAH58 vs TAFD30** (1.88300 / 40.8): identical published coordinates; pick by the vendor family hinted in the
+  original annotation.
+- **FCD1 vs S-FPL51** (1.49700 / 81.55): catalog-equivalent ED glasses; pick for vendor consistency within the lens.
+- Relabeling a glass that the `*.analysis.md` names (for example "near OHARA S-LAM66" where the coordinate is
+  S-LAH66) means updating that narrative in the same change.
+
+## Workflow
+
+Follow the four-phase procedure in [lens-patent-audit.md](lens-patent-audit.md): patent sourcing, relabel,
+retained-information audit, `dPgF` / line-index enrichment, analysis-file sync, and the per-lens `*.audit.md` log.
+When an audit closes a row here, delete it; add a one-line entry to the closed list above only when a future agent
+could plausibly redo the work.
+
+Most original annotations were the author's closest *named* OHARA guess; the cascade now exposes where that guess
+disagrees with the published nd/νd. Resolving one needs the patent (J-PlatPat for JP filings), cross-vendor
+equivalence tables, and a judgment about the analysis narrative, so it is one-lens-at-a-time authoring work, not a
+bulk migration.
