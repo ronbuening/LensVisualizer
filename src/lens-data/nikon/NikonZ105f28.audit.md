@@ -79,3 +79,33 @@ Patent: WO 2022/097401 A1, expected source for the current prescription
   (946180), while retaining the patent's unspecified supplier. HOYA E-FDS3 is 2.10420 / 17.02;
   FDS18 exactly matches 1.94595 / 17.98.
 - Synchronized the glass-identification table. No prescription geometry changed.
+
+
+## 2026-09-08 — First-hosted audit, lens 17
+
+The source PDF is now present; earlier missing-source blockers are superseded.
+WO2022097401A1 original PDF title1, equation(B)25, Table1 pp27–29,
+Figure1 p55 inspected (figure600dpi).
+
+- All28surface radii/thicknesses/indices and the full asphere retained after
+  source verification. Source κ1 mapsstandardK0. All three source focus
+  states retained; close distance0.29→0.287563m and middle coordinate revised
+  using sourceD0 plus149.375mm optical track. Magnifications independently
+  reproduced−0.500011/−1.000009.
+- SourceθgF0.6103 onL12/L32 converted to engine dPgF0.0088023; copied
+  patent deviation0.0095 used a different normal line. Removed unsupported
+  third-ED/APD badge fromL44. All catalog labels qualified as inferred;
+  existing numerical-compatible curves named and source nd/νd preserved.
+- All16isolated focal lengths recomputed, correcting numerous stale values
+  (includingL43+138.6→+107.2mm). Gap labels identify groups.
+- Fig1 rims recalibrated: front23.2mm, internalrims refined, rear asphere18.3mm.
+  Surface and imagecircle audits pass. Source infinity aperture2.89 replaces2.8;
+  unreachable22/32shortcuts removed. Finite sourceFNO3.68/4.65 documented
+  separately from the viewer's approximate effective-aperture calculation.
+- Public analysis rewritten with source/model distinctions and no unverified
+  production ED, glass supplier, manufacturing or working-distance assertions.
+- Liveproductionbaseline and local∞/life-size/nearhalf-life-size/f16 inspected.
+  Focuschart4groups/max20.74mm, G2/G3opposed and G1/G4fixed; stopfixed.
+  EFL49.28 at29cm; EFL70.48 at38cm; f16iris4.63mm diameter.
+
+Four focused physical regressions and TypeScript pass. Full batch gates due at20.

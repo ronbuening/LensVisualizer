@@ -1,29 +1,14 @@
 import type { LensDataInput } from "../../types/optics.js";
 
 /**
- * ╔══════════════════════════════════════════════════════════════════════╗
- * ║           LENS DATA — RICOH GR IV 18.3mm f/2.8                     ║
- * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Data source: JP2025-069516A Example 2 (Ricoh / Takahiro Nakayama) ║
- * ║  Quasi-symmetric positive–negative wide-angle for APS-C compact.   ║
- * ║  7 elements / 5 groups, 5 aspherical surfaces (3 asph elements).   ║
- * ║  Focus: G1+G2 translate forward as unit; G3 fixed to sensor.        ║
- * ║                                                                    ║
- * ║  NOTE ON SCALING:                                                  ║
- * ║    No scaling applied — patent prescription is at production       ║
- * ║    focal length (f ≈ 18.35 mm).                                   ║
- * ║                                                                    ║
- * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    Patent does not list SDs.  Estimated via paraxial marginal +    ║
- * ║    chief ray trace at 38° half-field with 10% mechanical           ║
- * ║    clearance, then reduced where edge thickness constraints         ║
- * ║    require (L13 biconvex limits junction SD to ≤ 5.2 mm).         ║
- * ║                                                                    ║
- * ║  NOTE ON GLASS — PATENT TYPO:                                      ║
- * ║    L23 is listed as "S-TIM35" in the patent, but its nd/vd        ║
- * ║    (1.76802/49.24) fit the HOYA M-TAF101 / MC-TAF101 class.       ║
- * ║    S-TIM35 (1.69895/30.13) is used on L22.  This is a copy error. ║
- * ╚══════════════════════════════════════════════════════════════════════╝
+ * JP2025-069516A, Example 2: Table 5/6 p18, Fig. 2 p31, equation p15.
+ * No scaling. Clear rims are estimates from the 600 dpi optical outlines.
+ * The two omitted plane plates require an equivalent air gap:
+ * 6.976 + 0.77/1.562 + 0.30 + 0.70/1.50 + 0.70 = 8.935624413 mm.
+ * Paragraph 0035 supports objectward integral G1/G2 motion with fixed G3.
+ * The finite 0.12 m object-to-image station is inferred, not tabulated.
+ * Table 5 names S-TIM35 for L23 and M-TAF101 for L31, conflicting with
+ * their nd/vd. Preserve coordinates and label catalog counterparts as inferred.
  */
 
 const LENS_DATA = {
@@ -125,9 +110,9 @@ const LENS_DATA = {
       nd: 1.76802,
       vd: 49.24,
       fl: 127.7,
-      glass: "MC-TAF101-100 (HOYA) / M-TAF101 class",
+      glass: "MC-TAF101-100 (inferred catalog counterpart)",
       apd: false,
-      role: "Weak positive meniscus — fine-tunes off-axis aberrations far from stop. Corrected Hoya M/MC-TAF-class label makes glass molding plausible for its two aspherical surfaces.",
+      role: "Weak positive meniscus with two aspheres. Patent S-TIM35 name conflicts with nd/vd; MC-TAF101-100 is an inferred catalog counterpart, not verified source identity.",
     },
     {
       id: 7,
@@ -137,9 +122,9 @@ const LENS_DATA = {
       nd: 1.80139,
       vd: 45.45,
       fl: -46.1,
-      glass: "M-TAF31 (HOYA; PGM, 801455)",
+      glass: "M-TAF31 (inferred catalog counterpart)",
       apd: false,
-      role: "Fixed negative rear element (G3) — field flattener and distortion corrector. HOYA M-series PGM glass, both surfaces heavily aspherical (>1 mm departure).",
+      role: "Fixed negative rear element (G3), with two aspheres. Patent M-TAF101 name conflicts with nd/vd; M-TAF31 is an inferred catalog counterpart, not verified source identity.",
     },
   ],
 
@@ -153,23 +138,23 @@ const LENS_DATA = {
    */
   surfaces: [
     //                                                                         ┌─ G1 ─────────────────────────────
-    { label: "1", R: 13.353, d: 0.7, nd: 1.68948, elemId: 1, sd: 7.8 }, // L11 front (spherical)
-    { label: "2A", R: 11.258, d: 2.4, nd: 1.0, elemId: 0, sd: 6.2 }, // L11 rear → air (aspherical)
+    { label: "1", R: 13.353, d: 0.7, nd: 1.68948, elemId: 1, sd: 6.0 }, // L11 front (spherical)
+    { label: "2A", R: 11.258, d: 2.4, nd: 1.0, elemId: 0, sd: 6.0 }, // L11 rear → air (aspherical)
     { label: "3", R: -17.988, d: 0.65, nd: 1.5927, elemId: 2, sd: 5.0 }, // L12 front
-    { label: "4", R: 7.957, d: 2.64, nd: 1.883, elemId: 3, sd: 5.2 }, // L12→L13 junction — elemId: L13
-    { label: "5", R: -29.283, d: 1.14, nd: 1.0, elemId: 0, sd: 4.3 }, // L13 rear → air
+    { label: "4", R: 7.957, d: 2.64, nd: 1.883, elemId: 3, sd: 5.0 }, // L12→L13 junction — elemId: L13
+    { label: "5", R: -29.283, d: 1.14, nd: 1.0, elemId: 0, sd: 4.6 }, // L13 rear → air
     //                                                                         └─ G1 ─────────────────────────────
     { label: "STO", R: 1e15, d: 1.2, nd: 1.0, elemId: 0, sd: 3.2 }, // aperture stop
     //                                                                         ┌─ G2 ─────────────────────────────
-    { label: "7", R: 16.939, d: 2.6, nd: 1.883, elemId: 4, sd: 4.0 }, // L21 front
+    { label: "7", R: 16.939, d: 2.6, nd: 1.883, elemId: 4, sd: 4.5 }, // L21 front
     { label: "8", R: -9.407, d: 0.5, nd: 1.69895, elemId: 5, sd: 4.6 }, // L21→L22 junction — elemId: L22
     { label: "9", R: 17.906, d: 1.55, nd: 1.0, elemId: 0, sd: 4.6 }, // L22 rear → air
-    { label: "10A", R: -15.696, d: 1.35, nd: 1.76802, elemId: 6, sd: 5.8 }, // L23 front (aspherical)
-    { label: "11A", R: -13.531, d: 3.1, nd: 1.0, elemId: 0, sd: 6.5 }, // L23 rear → air (aspherical) — D23 gap
+    { label: "10A", R: -15.696, d: 1.35, nd: 1.76802, elemId: 6, sd: 5.5 }, // L23 front (aspherical)
+    { label: "11A", R: -13.531, d: 3.1, nd: 1.0, elemId: 0, sd: 5.5 }, // L23 rear → air (aspherical) — D23 gap
     //                                                                         └─ G2 ─────────────────────────────
     //                                                                         ┌─ G3 (fixed) ─────────────────────
     { label: "12A", R: -26.27, d: 0.75, nd: 1.80139, elemId: 7, sd: 8.0 }, // L31 front (aspherical)
-    { label: "13A", R: -91.182, d: 8.94, nd: 1.0, elemId: 0, sd: 8.5 }, // L31 rear → image (aspherical) — BFD
+    { label: "13A", R: -91.182, d: 8.935624413145538, nd: 1.0, elemId: 0, sd: 8.0 }, // L31 rear → image (aspherical) — BFD
     //                                                                         └─ G3 (fixed) ─────────────────────
   ],
 
@@ -229,13 +214,13 @@ const LENS_DATA = {
    *  Front focus: G1+G2 (surfaces 1–11A) translate forward for close focus.
    *  G3 (surfaces 12A–13A) is fixed relative to the sensor.
    *  Only the D23 air gap (surface 11A) changes.
-   *  Paraxial trace at 0.12 m: G1+G2 extend +2.07 mm, D23 increases to 5.17 mm.
+   *  Full paraxial object-to-image 0.12 m scenario: D23 = 5.945331457 mm.
    */
   var: {
-    "11A": [3.1, 5.17], // [d_infinity, d_close_0.12m]
+    "11A": [3.1, 5.945331456739211], // [d_infinity, d_close_0.12m]
   },
 
-  varLabels: [["11A", "D23"]],
+  varLabels: [["11A", "D23 (modeled)"]],
 
   /* ── Group and doublet annotations ── */
   groups: [
@@ -252,12 +237,12 @@ const LENS_DATA = {
   /* ── Focus configuration ── */
   closeFocusM: 0.12,
   focusDescription:
-    "Front focus — G1+G2 translate forward as a unit for close focus (D23 increases from 3.10 to 5.17 mm). G3 remains fixed. Macro mode: 0.12 m.",
+    "G1+G2 move toward the object; G3 stays fixed. The 0.12 m object-to-image endpoint is an inferred paraxial scenario.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 2.8,
+  nominalFno: 2.89,
   maxFstop: 16,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16],
+  fstopSeries: [2.89, 4, 5.6, 8, 11, 16],
 
   /* ── Layout tuning ──
    *  Compact wide-angle with large rear element — needs moderate fill

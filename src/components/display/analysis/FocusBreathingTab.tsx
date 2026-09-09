@@ -42,7 +42,7 @@ function buildBreathingSamples(L: RuntimeLens, zoomT: number, currentFocusT: num
         focusT,
         efl,
         breathingPercent,
-        distanceLabel: formatDist(focusT, L),
+        distanceLabel: formatDist(focusT, L, zoomT),
       };
     });
 }
@@ -310,7 +310,7 @@ export default function FocusBreathingTab({ L, t, focusT, zoomT, dynamicEFL }: F
               transition: "color 0.3s",
             }}
           >
-            {formatDist(focusT, L)}
+            {formatDist(focusT, L, zoomT)}
           </span>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>

@@ -37,3 +37,12 @@ Patent: US 5,760,973
 
 - Rechecked the local `patents/` folder while finishing the remaining catalog-mismatch rows. A US 5,760,973 PDF is still not present.
 - No glass labels or SDs were changed, and no figure comparison could be performed from the local untracked patent set.
+
+## 2026-09-08 — First-hosted audit, lens 12
+
+- Local US5760973.pdf: title p1, Fig1 p2, sag equation p15, Example1 table p16. Author/assignee metadata agrees. All R/d/nd/vd and two aspheric coefficient sets visually match. Equation explicitly contains 1+K, so stored conics are correct.
+- Source gives no last image gap or finite-focus schedule. Independent paraxial EFL28.1057416, assembly18.24mm, BF17.2180339. Full0.35m object-image solve gives closeBF19.9803240, extension2.7622901mm. Replaced old2.45mm extension and marked the schedule/slider gap inferred. Preserved source stop split0.8/2.41mm.
+- Shared Figure1 represents Examples1–3. It supports a smaller front and larger rear component but is not an exact numerical SD reference. Revised S1/S2 from8/7.5→6.5/6.2; S7–S9 from5.5→6.3; S10 from5.8→6.5; S12 from7.8→8.0. Retained S11A6.9: trial7.2 fails slope guard, and S10trial6.8 infringes gap clearance. Final surface and image-circle probes pass; zero hidden trims at∞/mid/close.
+- Supplier-neutral single catalog counterparts replace mixed vendor labels. All7 resolve; no patent APD claims. f2.86 first shortcut replaces2.8; removed unavailablef22 shortcut above the existingf16 UI limit. Analysis rewritten with source/inference and figure-sharing limitations.
+- Production∞/close/motion chart inspected before edits. Local∞/close/midpoint/f16 reviewed after: BF17.22/19.98/18.60, focus35cm/70cm, f2.86/f16; all4groups move2.76mm objectward with zoom disabled. Stop9.34mm wide open and1.67mm atf16. Revised silhouette retains larger final component and no overlap.
+- Three focused regressions pass for finite conjugate, fixed-camera rigid travel, and untrimmed rims. Full gates/glass reports remain for batch11–20.

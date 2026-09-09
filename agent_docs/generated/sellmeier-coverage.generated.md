@@ -1290,7 +1290,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 14A | Element 8a (resin) | abbe | `UV-curing resin (composite asphere)` | No catalog match |
+| 14A | Element 8a (resin) | abbe | `Resin layer (patent composite asphere; chemistry and supplier unspecified)` | No catalog match |
 
 ### [NIKON NIKKOR-N Auto 24mm f/2.8](../../src/lens-data/nikon/NikonNikkorAuto24f28.data.ts) - 88.9% trusted (8/9); 88.9% Sellmeier (8/9) - US 3,622,227
 

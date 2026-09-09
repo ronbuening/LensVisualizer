@@ -92,6 +92,14 @@ describe("DiagramControls", () => {
     expect(callbacks.onStopdownChange).toHaveBeenCalledWith(0);
   });
 
+  it("rounds a precise patent shortcut label while retaining its numeric endpoint", () => {
+    const L = buildLens({ ...LENS_CATALOG["sonnar-50f15"], nominalFno: 2.88277 });
+    const { callbacks } = renderControls(L, { apertureExpanded: true });
+    fireEvent.click(screen.getByRole("button", { name: "Set aperture to f/2.88" }));
+    expect(callbacks.onStopdownChange).toHaveBeenCalledWith(0);
+    expect(screen.queryByText("f/2.88277")).toBeNull();
+  });
+
   it("hides the aperture slider for fixed-stop lenses", () => {
     renderControls(buildLens(LENS_CATALOG["zeiss-hologon-15f8"]));
 

@@ -1,31 +1,11 @@
 import type { LensDataInput } from "../../types/optics.js";
 
 /**
- * ╔══════════════════════════════════════════════════════════════════════╗
- * ║           LENS DATA — NIKKOR Z 135mm f/1.8 S Plena                ║
- * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Data source: WO 2024/147268 A1 Example 1 (Nikon / Muratani).    ║
- * ║  Telephoto prime for Nikon Z mount; f ≈ 132.3 mm, F/1.85.        ║
- * ║  16 elements / 14 groups, 1 aspherical surface.                   ║
- * ║  Focus: floating inner focus — G2 (L7) and G4 (L13) move in      ║
- * ║    opposite directions along axis.  Dual STM drive.               ║
- * ║                                                                    ║
- * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    SDs estimated from combined marginal + chief ray trace at       ║
- * ║    f/1.85, full field (Y = 21.70 mm), with 8% mechanical          ║
- * ║    clearance.  Capped to sd/|R| ≤ 0.85 where needed.  Cemented   ║
- * ║    junction SDs matched.  Not patent-listed.                       ║
- * ║    Previous fixes: surface "9" (L5 rear) 38→25 mm and STO 36→25  ║
- * ║    mm to prevent stop/L5 collision.  Surfaces "13"/"14" (L7)      ║
- * ║    capped to 20 mm to prevent L7/L8 close-focus overlap           ║
- * ║    (intrusion 6.7 mm vs 8.51 mm gap at close focus).              ║
- * ║    Tweaked to match production lens cross-section: surfaces "4"   ║
- * ║    and "6" (air gaps between front menisci) reduced from 42/43.5  ║
- * ║    to 39/38 mm; L6 asph (surfs "11A"/"12") 28.5→27 mm; L7 focus  ║
- * ║    group (surfs "13"/"14") restored to 20 mm; L8 (surfs "15"/    ║
- * ║    "16") 28/27.5→26.5/26 mm.  Surf "29" constrained to 21 mm by  ║
- * ║    tight L15→L16 gap (sag limit: 4.73 mm at gap = 4.302 mm).     ║
- * ╚══════════════════════════════════════════════════════════════════════╝
+ * WO 2024/147268 A1, Example 1: Table 1 (PDF pp. 20–22), Figure 1 (p. 66).
+ * Source radii, thicknesses and glass coordinates; drawing-derived optical rims.
+ * Equation (a) uses 1−K: its K=1 becomes standard conic K=0.
+ * The rear 1.6 mm filter is omitted using air-equivalent axial spacing.
+ * Catalog names are dispersion proxies, not established production materials.
  */
 
 const LENS_DATA = {
@@ -58,11 +38,12 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.66382,
       vd: 27.35,
-      fl: 189.8,
-      glass: "Nikon SR glass; J-SFH4 catalog-equivalent spectral proxy (production material unspecified)",
+      fl: 183.8,
+      glass: "J-SFH4 (inferred catalog counterpart; production material unspecified)",
       apd: "patent",
-      dPgF: 0.035, apdNote: "ΔPgF = +0.035 (patent cond. 14); θgF = 0.632",
-      role: "Front SR element — pre-corrects secondary spectrum at maximum beam diameter. Anomalous dispersion 3× larger than standard S-TIH6 at same nd/νd.",
+      dPgF: 0.0343957,
+      apdNote: "Patent condition 14 gives departure +0.035 from its 0.6415−0.00162ν normal line; converted to the engine normal line. Source precision is three decimals.",
+      role: "Front positive meniscus with source anomalous partial dispersion.",
     },
     {
       id: 2,
@@ -71,11 +52,11 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.49782,
       vd: 82.57,
-      fl: 225.2,
-      glass: "ED fluorophosphate (near S-FPL51)",
+      fl: 221.3,
+      glass: "J-FKH1 (inferred catalog counterpart; production material unspecified)",
       apd: "inferred",
-      apdNote: "High-νd fluorophosphate; strong positive ΔPgF typical of ED glass",
-      role: "Distributed positive power; first of three identical ED meniscuses that progressively converge the marginal ray.",
+      apdNote: "Catalog counterpart dispersion is inferred from nd/νd; no production material or ED designation is established.",
+      role: "Positive low-dispersion meniscus in G1.",
     },
     {
       id: 3,
@@ -84,11 +65,11 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.49782,
       vd: 82.57,
-      fl: 298.6,
-      glass: "ED fluorophosphate (near S-FPL51)",
+      fl: 294.8,
+      glass: "J-FKH1 (inferred catalog counterpart; production material unspecified)",
       apd: "inferred",
-      apdNote: "Same glass as L2",
-      role: "Distributed positive power — second ED meniscus. Weakest of the three (fl = +298.6 mm).",
+      apdNote: "Catalog counterpart dispersion is inferred from nd/νd; no production material or ED designation is established.",
+      role: "Positive low-dispersion meniscus in G1.",
     },
     {
       id: 4,
@@ -97,11 +78,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.49782,
       vd: 82.57,
-      fl: 103.1,
-      glass: "ED fluorophosphate (near S-FPL51)",
+      fl: 103.5,
+      glass: "J-FKH1 (inferred catalog counterpart; production material unspecified)",
       apd: "inferred",
-      apdNote: "Same glass as L2, L3",
-      role: "Strongest ED element (fl = +103.1 mm). Cemented to L5 forming a net-negative doublet (fl ≈ −138 mm) for achromatic + Petzval correction.",
+      apdNote: "Catalog counterpart dispersion is inferred from nd/νd; no production material or ED designation is established.",
+      role: "Positive member of cemented doublet D1.",
       cemented: "D1",
     },
     {
@@ -111,11 +92,12 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.85451,
       vd: 25.15,
-      fl: -55.0,
-      glass: "855252 anomalous-flint class; NBFD25 catalog spectral proxy (patent dPgF retained)",
+      fl: -54.9,
+      glass: "NBFD25 (inferred catalog counterpart; production material unspecified)",
       apd: "patent",
-      dPgF: 0.01, apdNote: "ΔPgF = +0.010 (patent cond. 17)",
-      role: "Negative partner in L4+L5 cemented doublet — dominant negative power gives doublet net fl ≈ −138 mm.",
+      dPgF: 0.0092593,
+      apdNote: "Patent condition 17 gives departure +0.010 from its 0.6415−0.00162ν normal line; converted to the engine normal line. Source precision is three decimals.",
+      role: "Negative member of cemented doublet D1.",
       cemented: "D1",
     },
     {
@@ -125,10 +107,10 @@ const LENS_DATA = {
       type: "Pos. Meniscus (1× Asph)",
       nd: 1.5168,
       vd: 64.14,
-      fl: 234.1,
-      glass: "N-BK7 / S-BSL7 (PGM asphere)",
+      fl: 233.6,
+      glass: "N-BK7 (inferred catalog counterpart; production material unspecified)",
       apd: false,
-      role: "Sole aspherical element — immediately post-stop. Front asphere corrects high-order spherical aberration and coma. ~175 µm departure at rim.",
+      role: "Positive meniscus with the source single aspherical surface.",
     },
     {
       id: 7,
@@ -137,10 +119,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.6968,
       vd: 55.52,
-      fl: -68.8,
+      fl: -69.1,
       glass: "697555 — lanthanum crown (patent coordinate; vendor unresolved)",
       apd: false,
-      role: "Focus group 1 (Gfo / G2). Moves toward image during close focus. Single-element construction minimises weight for fast AF.",
+      role: "Negative G2 focus element; moves toward the image.",
     },
     {
       id: 8,
@@ -149,12 +131,11 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.80809,
       vd: 22.74,
-      fl: 172.4,
-      glass: "S-NPH1-type phosphate flint (anomalous dispersion)",
+      fl: 168.9,
+      glass: "S-NPH1 (inferred catalog counterpart; production material unspecified)",
       apd: "inferred",
-      dPgF: 0.029, apdNote:
-        "ΔPgF ≈ +0.029 (est. from OHARA S-NPH1 catalog, ΔPgF = +0.0261 on OHARA normal line). Not ED — anomalous dispersion from the high-dispersion side of the Abbe diagram.",
-      role: "Anomalous-dispersion high-index flint. Strong positive ΔPgF at very low νd balances chromatic contributions of front-group ED elements from the opposite side of the Abbe diagram. Concave to object — unusual orientation.",
+      apdNote: "Catalog counterpart dispersion is inferred from nd/νd; no production material or ED designation is established.",
+      role: "Positive high-dispersion meniscus in fixed G3.",
     },
     {
       id: 9,
@@ -163,11 +144,12 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.85451,
       vd: 25.15,
-      fl: -62.7,
-      glass: "855252 anomalous-flint class; NBFD25 catalog spectral proxy (patent dPgF retained)",
+      fl: -62.5,
+      glass: "NBFD25 (inferred catalog counterpart; production material unspecified)",
       apd: "patent",
-      dPgF: 0.01, apdNote: "ΔPgF = +0.010 (same glass as L5, patent cond. 17)",
-      role: "Negative partner in L9+L10 cemented doublet (net fl ≈ −80 mm). Provides Petzval correction + local chromatic balancing in G3.",
+      dPgF: 0.0092593,
+      apdNote: "Patent condition 17 gives departure +0.010 from its 0.6415−0.00162ν normal line; converted to the engine normal line. Source precision is three decimals.",
+      role: "Negative member of cemented doublet D2.",
       cemented: "D2",
     },
     {
@@ -177,12 +159,11 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.59319,
       vd: 67.9,
-      fl: 276.3,
-      glass: "ED fluorophosphate crown (near S-FPM2)",
+      fl: 272.0,
+      glass: "J-PSKH1 (inferred catalog counterpart; production material unspecified)",
       apd: "inferred",
-      apdNote:
-        "4th ED element per Nikon product spec. νd = 67.9 consistent with fluorophosphate family; nd/νd near OHARA S-FPM2 (1.59522/67.74).",
-      role: "4th ED element — positive partner in L9+L10 cemented doublet. Fluorophosphate crown provides anomalous partial dispersion to complement L9's anomalous flint for local secondary spectrum correction within G3.",
+      apdNote: "Catalog counterpart dispersion is inferred from nd/νd; no production material or ED designation is established.",
+      role: "Positive member of cemented doublet D2.",
       cemented: "D2",
     },
     {
@@ -192,10 +173,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.8044,
       vd: 39.61,
-      fl: 48.9,
-      glass: "804396 class; S-LAH63Q catalog spectral proxy (production supplier unspecified)",
+      fl: 50.1,
+      glass: "S-LAH63Q (inferred catalog counterpart; production material unspecified)",
       apd: false,
-      role: "Strongest element in entire system (Pr / Pfoi). fl = +48.9 mm — the workhorse power element of the rear group. fPr/|fr| = 0.221.",
+      role: "Strong positive singlet in fixed G3.",
     },
     {
       id: 12,
@@ -204,10 +185,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.83481,
       vd: 42.73,
-      fl: -173.1,
-      glass: "835427 class; S-LAH55VS catalog spectral proxy (production supplier unspecified)",
+      fl: -174.7,
+      glass: "S-LAH55VS (inferred catalog counterpart; production material unspecified)",
       apd: false,
-      role: "Field-flattening corrector following L11. L11+L12 pair corrects Petzval sum and field curvature.",
+      role: "Negative singlet in fixed G3.",
     },
     {
       id: 13,
@@ -216,10 +197,10 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.85883,
       vd: 30.0,
-      fl: 127.6,
-      glass: "859300 class; NBFD30 catalog spectral proxy (production supplier unspecified)",
+      fl: 126.8,
+      glass: "NBFD30 (inferred catalog counterpart; production material unspecified)",
       apd: false,
-      role: "Focus group 2 (G4). Moves toward object during close focus — counter-directional to G2. Positive power compensates G2's divergence.",
+      role: "Positive G4 focus element; moves toward the object.",
     },
     {
       id: 14,
@@ -228,10 +209,10 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.7859,
       vd: 44.17,
-      fl: -71.1,
-      glass: "S-LAH51 (OHARA, patent nd/vd match)",
+      fl: -71.0,
+      glass: "S-LAH51 (inferred catalog counterpart; production material unspecified)",
       apd: false,
-      role: "Primary negative power of G5. Creates divergent exit cone for oversized image circle — the core of the Plena's low-vignetting design.",
+      role: "Negative singlet in fixed G5.",
     },
     {
       id: 15,
@@ -240,10 +221,10 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.84666,
       vd: 23.78,
-      fl: 88.8,
-      glass: "Dense short flint (≈ S-TIH53)",
+      fl: 86.9,
+      glass: "S-TIH53 (inferred catalog counterpart; production material unspecified)",
       apd: false,
-      role: "Chromatic corrector within G5 — balances L14 and L16 dispersion contributions.",
+      role: "Positive singlet in fixed G5.",
     },
     {
       id: 16,
@@ -253,64 +234,64 @@ const LENS_DATA = {
       nd: 1.816,
       vd: 46.59,
       fl: -89.0,
-      glass: "816466 class; J-LASF09A catalog spectral proxy (production supplier unspecified)",
+      glass: "J-LASF09A (inferred catalog counterpart; production material unspecified)",
       apd: false,
-      role: "Final optical element (Li1). Nearly-flat rear surface (R ≈ −2373 mm). Divergent exit maintains the oversized image circle.",
+      role: "Negative rear singlet in fixed G5.",
     },
   ],
 
   /* ── Surface prescription ── */
   surfaces: [
     /* ── G1: Front group — L1 through L6 ── */
-    { label: "1", R: 73.0739, d: 8.258, nd: 1.66382, elemId: 1, sd: 42.0 }, // L1 front (SR)
-    { label: "2", R: 173.9425, d: 1.0, nd: 1.0, elemId: 0, sd: 41.5 }, // L1 rear → air
-    { label: "3", R: 75.0, d: 8.0959, nd: 1.49782, elemId: 2, sd: 39 }, // L2 front (ED)
-    { label: "4", R: 226.5221, d: 1.0, nd: 1.0, elemId: 0, sd: 39.0 }, // L2 rear → air
-    { label: "5", R: 94.0, d: 6.1837, nd: 1.49782, elemId: 3, sd: 39.5 }, // L3 front (ED)
-    { label: "6", R: 255.73, d: 1.0, nd: 1.0, elemId: 0, sd: 38.0 }, // L3 rear → air
-    { label: "7", R: 55.0, d: 10.248, nd: 1.49782, elemId: 4, sd: 30.5 }, // L4 front (ED, cemented D1)
-    { label: "8", R: -766.4853, d: 2.1, nd: 1.85451, elemId: 5, sd: 30.5 }, // L4→L5 junction — elemId: 5
-    { label: "9", R: 50.025, d: 8.2444, nd: 1.0, elemId: 0, sd: 25.0 }, // L5 rear → air
+    { label: "1", R: 73.0739, d: 8.258, nd: 1.66382, elemId: 1, sd: 37.9 }, // L1 front (SR)
+    { label: "2", R: 173.9425, d: 1.0, nd: 1.0, elemId: 0, sd: 37.9 }, // L1 rear → air
+    { label: "3", R: 75.0, d: 8.0959, nd: 1.49782, elemId: 2, sd: 35.9 }, // L2 front (ED)
+    { label: "4", R: 226.5221, d: 1.0, nd: 1.0, elemId: 0, sd: 35.9 }, // L2 rear → air
+    { label: "5", R: 94.0, d: 6.1837, nd: 1.49782, elemId: 3, sd: 33.4 }, // L3 front (ED)
+    { label: "6", R: 255.73, d: 1.0, nd: 1.0, elemId: 0, sd: 33.4 }, // L3 rear → air
+    { label: "7", R: 55.0, d: 10.248, nd: 1.49782, elemId: 4, sd: 28.9 }, // L4 front (ED, cemented D1)
+    { label: "8", R: -766.4853, d: 2.1, nd: 1.85451, elemId: 5, sd: 28.9 }, // L4→L5 junction — elemId: 5
+    { label: "9", R: 50.025, d: 8.2444, nd: 1.0, elemId: 0, sd: 27.4 }, // L5 rear → air
 
     /* ── Aperture stop ── */
-    { label: "STO", R: 1e15, d: 2.1, nd: 1.0, elemId: 0, sd: 25.0 }, // Patent surface 10
+    { label: "STO", R: 1e15, d: 2.1, nd: 1.0, elemId: 0, sd: 25 }, // Patent surface 10
 
     /* ── L6 (aspherical) ── */
-    { label: "11A", R: 105.9598, d: 4.7, nd: 1.5168, elemId: 6, sd: 27.0 }, // L6 front — aspherical
-    { label: "12", R: 853.548, d: 1.749, nd: 1.0, elemId: 0, sd: 27.0 }, // L6 rear → air (D12, variable)
+    { label: "11A", R: 105.9598, d: 4.7, nd: 1.5168, elemId: 6, sd: 21.8 }, // L6 front — aspherical
+    { label: "12", R: 853.548, d: 1.749, nd: 1.0, elemId: 0, sd: 21.8 }, // L6 rear → air (D12, variable)
 
     /* ── G2: Focus group 1 — L7 ── */
-    { label: "13", R: 221.6993, d: 2.1, nd: 1.6968, elemId: 7, sd: 20.0 }, // L7 front
-    { label: "14", R: 39.4223, d: 22.105, nd: 1.0, elemId: 0, sd: 20.0 }, // L7 rear → air (D14, variable)
+    { label: "13", R: 221.6993, d: 2.1, nd: 1.6968, elemId: 7, sd: 20.2 }, // L7 front
+    { label: "14", R: 39.4223, d: 22.105, nd: 1.0, elemId: 0, sd: 20.2 }, // L7 rear → air (D14, variable)
 
     /* ── G3: Fixed rear corrector — L8 through L12 ── */
-    { label: "15", R: -164.438, d: 4.0545, nd: 1.80809, elemId: 8, sd: 26.5 }, // L8 front
-    { label: "16", R: -75.4132, d: 0.1, nd: 1.0, elemId: 0, sd: 26.0 }, // L8 rear → air
-    { label: "17", R: -160.7346, d: 2.1, nd: 1.85451, elemId: 9, sd: 26.5 }, // L9 front (cemented D2)
-    { label: "18", R: 80.412, d: 3.2958, nd: 1.59319, elemId: 10, sd: 26.5 }, // L9→L10 junction — elemId: 10
-    { label: "19", R: 157.8647, d: 0.7213, nd: 1.0, elemId: 0, sd: 26.0 }, // L10 rear → air
-    { label: "20", R: 64.0655, d: 9.2661, nd: 1.8044, elemId: 11, sd: 25.5 }, // L11 front (Pr)
-    { label: "21", R: -101.7863, d: 0.1, nd: 1.0, elemId: 0, sd: 24.5 }, // L11 rear → air
-    { label: "22", R: 195.9905, d: 2.2, nd: 1.83481, elemId: 12, sd: 24.0 }, // L12 front
-    { label: "23", R: 83.1844, d: 9.528, nd: 1.0, elemId: 0, sd: 23.5 }, // L12 rear → air (D23, variable)
+    { label: "15", R: -164.438, d: 4.0545, nd: 1.80809, elemId: 8, sd: 21.1 }, // L8 front
+    { label: "16", R: -75.4132, d: 0.1, nd: 1.0, elemId: 0, sd: 21.1 }, // L8 rear → air
+    { label: "17", R: -160.7346, d: 2.1, nd: 1.85451, elemId: 9, sd: 21.8 }, // L9 front (cemented D2)
+    { label: "18", R: 80.412, d: 3.2958, nd: 1.59319, elemId: 10, sd: 21.8 }, // L9→L10 junction — elemId: 10
+    { label: "19", R: 157.8647, d: 0.7213, nd: 1.0, elemId: 0, sd: 21.8 }, // L10 rear → air
+    { label: "20", R: 64.0655, d: 9.2661, nd: 1.8044, elemId: 11, sd: 22.9 }, // L11 front (Pr)
+    { label: "21", R: -101.7863, d: 0.1, nd: 1.0, elemId: 0, sd: 22.9 }, // L11 rear → air
+    { label: "22", R: 195.9905, d: 2.2, nd: 1.83481, elemId: 12, sd: 22.4 }, // L12 front
+    { label: "23", R: 83.1844, d: 9.528, nd: 1.0, elemId: 0, sd: 22.4 }, // L12 rear → air (D23, variable)
 
     /* ── G4: Focus group 2 — L13 ── */
-    { label: "24", R: 85.105, d: 4.4549, nd: 1.85883, elemId: 13, sd: 23.5 }, // L13 front
-    { label: "25", R: 380.6074, d: 3.5, nd: 1.0, elemId: 0, sd: 23.5 }, // L13 rear → air (D25, variable)
+    { label: "24", R: 85.105, d: 4.4549, nd: 1.85883, elemId: 13, sd: 21.8 }, // L13 front
+    { label: "25", R: 380.6074, d: 3.5, nd: 1.0, elemId: 0, sd: 21.8 }, // L13 rear → air (D25, variable)
 
     /* ── G5: Rear diverging group — L14 through L16 ── */
-    { label: "26", R: -542.5119, d: 2.1, nd: 1.7859, elemId: 14, sd: 24.0 }, // L14 front
-    { label: "27", R: 62.2755, d: 1.0, nd: 1.0, elemId: 0, sd: 24.0 }, // L14 rear → air
-    { label: "28", R: 51.4253, d: 5.3074, nd: 1.84666, elemId: 15, sd: 24.0 }, // L15 front
+    { label: "26", R: -542.5119, d: 2.1, nd: 1.7859, elemId: 14, sd: 21.1 }, // L14 front
+    { label: "27", R: 62.2755, d: 1.0, nd: 1.0, elemId: 0, sd: 21.1 }, // L14 rear → air
+    { label: "28", R: 51.4253, d: 5.3074, nd: 1.84666, elemId: 15, sd: 21.1 }, // L15 front
     { label: "29", R: 162.7875, d: 4.3017, nd: 1.0, elemId: 0, sd: 19.3 }, // L15 rear → air
-    { label: "30", R: -70.4474, d: 2.1, nd: 1.816, elemId: 16, sd: 25.0 }, // L16 front
-    { label: "31", R: -2372.9554, d: 14.4393, nd: 1.0, elemId: 0, sd: 25.0 }, // L16 rear → image (BFD incl. filter)
+    { label: "30", R: -70.4474, d: 2.1, nd: 1.816, elemId: 16, sd: 21.1 }, // L16 front
+    { label: "31", R: -2372.9554, d: 13.894152320675106, nd: 1.0, elemId: 0, sd: 21.1 }, // L16 rear → image (air-equivalent BFD; omitted source filter: 1.6 mm, nd 1.5168)
   ],
 
   /* ── Aspherical coefficients ── */
   asph: {
     "11A": {
-      K: 1.0,
+      K: 0,
       A4: -1.741e-6,
       A6: -1.13e-10,
       A8: -2.868e-14,
@@ -329,10 +310,10 @@ const LENS_DATA = {
   },
 
   varLabels: [
-    ["12", "D12"],
-    ["14", "D14"],
-    ["23", "D23"],
-    ["25", "D25"],
+    ["12", "G1–G2 (D12)"],
+    ["14", "G2–G3 (D14)"],
+    ["23", "G3–G4 (D23)"],
+    ["25", "G4–G5 (D25)"],
   ],
 
   /* ── Group and doublet annotations ── */
@@ -350,13 +331,13 @@ const LENS_DATA = {
   ],
 
   /* ── Focus configuration ── */
-  closeFocusM: 0.82,
+  closeFocusM: 0.8245543747338308,
   focusDescription:
-    "Floating inner focus: G2 (L7, negative) moves toward image, G4 (L13, positive) moves toward object. Counter-directional movement maintains aberration balance. Dual STM stepping motors. Total variable gap sum constant at 36.882 mm.",
+    "Source focus: G2 (negative L7) moves imageward 13.597 mm and G4 (positive L13) objectward 6.184 mm. Other groups remain fixed within 0.001 mm table rounding. Near distance is inferred from the finite conjugate, including the omitted filter thickness.",
 
   /* ── Aperture configuration ── */
   nominalFno: 1.85,
-  fstopSeries: [1.8, 2, 2.5, 2.8, 3.5, 4, 5.6, 8, 11, 16],
+  fstopSeries: [1.85, 2, 2.5, 2.8, 3.5, 4, 5.6, 8, 11, 16],
 
   /* ── Layout tuning ── */
   scFill: 0.5,

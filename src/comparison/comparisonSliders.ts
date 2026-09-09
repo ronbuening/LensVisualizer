@@ -6,6 +6,7 @@
  * different maximum apertures) with clamping past common points.
  */
 
+import { closeFocusAtZoom } from "../optics/focusDistance.js";
 import type { RuntimeLens } from "../types/optics.js";
 import { FOCUS_INFINITY_THRESHOLD } from "../optics/optics.js";
 import { clampLensMovement, perspectiveControlSteps } from "../optics/lensMovement.js";
@@ -57,9 +58,15 @@ export interface MovementPairResult {
  * sharedT: 0 = infinity, 1 = closest-focusing lens's min distance
  * The "common point" is where the less-capable lens hits its close-focus limit.
  */
-export function computeFocusPair(sharedT: number, LA: RuntimeLens, LB: RuntimeLens): FocusPairResult {
-  const closA: number = LA.closeFocusM;
-  const closB: number = LB.closeFocusM;
+export function computeFocusPair(
+  sharedT: number,
+  LA: RuntimeLens,
+  LB: RuntimeLens,
+  zoomA = 0,
+  zoomB = 0,
+): FocusPairResult {
+  const closA: number = closeFocusAtZoom(zoomA, LA);
+  const closB: number = closeFocusAtZoom(zoomB, LB);
   const minClose: number = Math.min(closA, closB);
   const maxClose: number = Math.max(closA, closB);
 

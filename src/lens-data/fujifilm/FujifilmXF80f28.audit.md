@@ -98,3 +98,15 @@ Patent: US 2018/0246292 A1 — Example 1
 - `npm run format:check` - passed.
 - `npm run lint` - passed.
 - `npm run test` - passed, 131 test files / 1666 tests.
+
+## 2026-09-08 — First-hosted audit, lens 19
+
+- Original local `patents/US20180246292A1.pdf` inspected: title p. 1; exact Example 1 Figure 1 p. 2 at 600 dpi (title drawing is Example 8); paragraphs 75–81 p. 39; Tables 1–4 and asphere equation p. 40.
+- All source R/d/nd/ν and both K=0 aspheres/A4–A20 checked and retained. Restored omitted rear plate's air-equivalent distance: 27.42 + 2.85/1.5168 + 1 = 30.2989557 mm. No cover/filter surfaces added. This fixes a 2.87896 mm axial shortfall.
+- Nominal f/2.8 → source f/2.88; source life-size f/3.99 documented as finite-conjugate information, distinct from nominal control. Reconstructed physical near distance 0.2464293 m and β≈−1.000957 from rounded source gaps. Existing imageward G2 15.35 mm and objectward G3 15.95 mm retained; stationary stop/G1/G4 verified.
+- Refined figure-derived rims using 108.91 mm glass span; retained S5 15.7, S11 10.2 and S23 10 mm clearance bounds. Larger drawing-rim trials failed gaps 4→5 (0.82/0.639 mm), 10→11 (4.46/2.88 mm) and 22→23 (1.95/1.404 mm). These are explicit optical-clearance limitations, not source-listed diameters.
+- Qualified all 16 catalog glass labels and inferred APD; removed unestablished production ED/Super ED, calcium-fluoride and five-stop performance claims. Recomputed isolated thick-element focal lengths. Public notes explain that the axial viewer does not simulate the patent's lateral G4a OIS movement.
+- Production baseline and local infinity/near/half-focus/f16 inspected live: f/2.88 shortcut, near 25 cm/EFL59.26, five-row chart with maximum travel15.95 mm and fixed G4a/G4b; half-focus49 cm/EFL76.04 and f16 stop diameter3.52 mm. Rims render without hidden clipping at five sampled focus states.
+- Surface and image-circle audits passed; three source regression tests passed; TypeScript passed. Full batch gates/commit follow lens20.
+
+- Batch glass-report RCA: the named S-BAL41 catalog entry is incompatible with the source 1.58313/59.46–59.5 coordinate. Replaced the misleading label with inferred M-BACD12, which preserves the source values and resolves compatibly. Added an explicit resolver regression; the regenerated catalog-mismatch report is empty.

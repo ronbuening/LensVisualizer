@@ -5,6 +5,7 @@
  * diagram rendering and analysis panels.
  */
 
+import { closeFocusAtZoom } from "./focusDistance.js";
 import type { LayoutResult, RuntimeLens } from "../types/optics.js";
 import { buildStateSurfaces, resolveControlledThickness } from "./internal/lensState.js";
 import { conicPolySag, sag, sagSlopeRaw } from "./internal/surfaceMath.js";
@@ -334,7 +335,7 @@ export function effectiveFNumber(
   if (focusT < FOCUS_INFINITY_THRESHOLD) return nominalFNumber;
 
   const efl = eflAtFocus(focusT, zoomT, L, aberrationT);
-  const focusDistMm = (L.closeFocusM / focusT) * 1000;
+  const focusDistMm = (closeFocusAtZoom(zoomT, L) / focusT) * 1000;
   const denom = focusDistMm - efl;
   if (Math.abs(denom) < 1e-10) return nominalFNumber;
   const m = -efl / denom;

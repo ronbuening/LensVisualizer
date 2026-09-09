@@ -278,14 +278,14 @@ export default function DiagramControls({
           useSideLayout={useSideLayout}
           label="FOCUS"
           labelMinWidth={85}
-          displayValue={formatDist(focusT, L)}
+          displayValue={formatDist(focusT, L, zoomT)}
           value={focusT}
           step={L.focusStep}
           onPointerDown={beginInteraction}
           onChange={handleFocusChange}
           onPointerUp={handlePointerUp}
           minLabel={"\u221e"}
-          maxLabel={formatDist(1, L)}
+          maxLabel={formatDist(1, L, zoomT)}
           disabled={!groupMovementAvailability.focus}
           disabledReason="No modeled focus travel data"
           flexBasis="260px"
@@ -472,7 +472,7 @@ export default function DiagramControls({
                   transition: "color 0.3s",
                 }}
               >
-                {apertureReferenceLabel} {apertureReferenceValue.toFixed(2)} mm · Wide-open EP {"\u2300"}{" "}
+                {apertureReferenceLabel} {apertureReferenceValue.toFixed(2)} mm · Est. wide-open EP {"\u2300"}{" "}
                 {(baseEPSD * 2).toFixed(2)} mm · Stop {"\u2300"} {(currentPhysStopSD * 2).toFixed(2)} mm
               </div>
               <div
@@ -494,7 +494,7 @@ export default function DiagramControls({
                       handleStopdownChange(Math.log(n / L.FOPEN) / Math.log(L.maxFstop / L.FOPEN));
                       handlePointerUp();
                     }}
-                    aria-label={`Set aperture to f/${n}`}
+                    aria-label={`Set aperture to f/${fmtF(n)}`}
                     style={{
                       background: "none",
                       border: "none",
@@ -506,7 +506,7 @@ export default function DiagramControls({
                       transition: "opacity 0.15s",
                     }}
                   >
-                    f/{n}
+                    f/{fmtF(n)}
                   </button>
                 ))}
               </div>

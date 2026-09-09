@@ -4,6 +4,7 @@
  * Keeps f-number reporting consistent with focus breathing and zoom interpolation.
  */
 
+import { closeFocusAtZoom } from "../focusDistance.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import { FOCUS_INFINITY_THRESHOLD } from "../layout.js";
 import { eflAtFocus2 } from "./focusBreathing.js";
@@ -31,7 +32,7 @@ export function effectiveFNumber2(
 ): number {
   if (focusT < FOCUS_INFINITY_THRESHOLD) return nominalFNumber;
   const efl = eflAtFocus2(focusT, zoomT, L, aberrationT);
-  const focusDistMm = (L.closeFocusM / focusT) * 1000;
+  const focusDistMm = (closeFocusAtZoom(zoomT, L) / focusT) * 1000;
   const denom = focusDistMm - efl;
   if (Math.abs(denom) < 1e-10) return nominalFNumber;
   /* Thin-lens magnification estimate using object distance measured from the image-side focal reference. */

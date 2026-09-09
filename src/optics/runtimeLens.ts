@@ -579,6 +579,7 @@ export default function buildLens(data: LensData): RuntimeLens {
       offAxisFractions: data.offAxisFractions,
       offAxisHeights,
       closeFocusM: data.closeFocusM,
+      zoomCloseFocusM: data.zoomCloseFocusM,
       focusStep: data.focusStep,
       focusPositions,
       focusDescription: data.focusDescription,
@@ -863,6 +864,8 @@ export default function buildLens(data: LensData): RuntimeLens {
    *  - zoomYRatios:   marginal ray height ratio at stop (for EP scaling)
    *  - zoomBs:        chief ray height at stop (for off-axis ray placement)
    */
+  const zoomStopSDs: number[] | null =
+    data.zoomApertureModel === "from-nominal-fno" && isZoom && !preserveAuthoredStopSD ? [] : null;
   let zoomEFLs: number[] | null = null,
     zoomEPs: number[] | null = null,
     zoomHalfFields: number[] | null = null,
@@ -899,6 +902,7 @@ export default function buildLens(data: LensData): RuntimeLens {
       const zNomEP = zApertureReferenceFocalLength / (2 * zNomFno);
       const zRealY = realTraceToStop(tmpS, asphByIdx, zNomEP, 0, stopIdx);
       if (isFinite(zRealY) && Math.abs(zRealY) > 1e-15) tmpS[stopIdx].sd = zRealY;
+      zoomStopSDs?.push(Math.abs(isFinite(zRealY) && Math.abs(zRealY) > 1e-15 ? zRealY : zNomEP * epT.y));
       zoomEPs.push(zNomEP);
       zoomYRatios.push(epT.y);
 
@@ -1025,7 +1029,7 @@ export default function buildLens(data: LensData): RuntimeLens {
     apertureReferenceFocalLength,
     EP,
     B,
-    FOPEN,
+    FOPEN: zoomFOPENs ? Math.min(...zoomFOPENs) : FOPEN,
     halfField,
     tracingHalfField,
     petzvalSum,
@@ -1059,6 +1063,7 @@ export default function buildLens(data: LensData): RuntimeLens {
     offAxisFractions: data.offAxisFractions,
     offAxisHeights,
     closeFocusM: data.closeFocusM,
+    zoomCloseFocusM: data.zoomCloseFocusM,
     focusStep: data.focusStep,
     focusPositions,
     focusDescription: data.focusDescription,
@@ -1080,6 +1085,7 @@ export default function buildLens(data: LensData): RuntimeLens {
     zoomXpZRelLastSurfs,
     zoomXpSDs,
     zoomFOPENs,
+    zoomStopSDs,
     zoomStep: data.zoomStep || 0.004,
     zoomLabels: data.zoomLabels || null,
     labelIdx,
