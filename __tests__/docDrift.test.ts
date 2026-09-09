@@ -10,6 +10,8 @@ const agentDocsRoot = join(repoRoot, "agent_docs");
 /** Docs whose backtick-quoted repo paths must resolve to real files or directories. */
 const GUARDED_DOC_PATHS = [
   "CLAUDE.md",
+  "README.md",
+  "CONTRIBUTING.md",
   "agent_docs/README.md",
   "agent_docs/architecture.md",
   "agent_docs/workflow.md",
@@ -283,6 +285,29 @@ describe("doc drift guards", () => {
     expect(
       orphaned,
       "agent_docs/records/*.md must be linked from a living doc or a *.audit.md log; otherwise delete it (agent_docs/documentation-policy.md)",
+    ).toEqual([]);
+  });
+
+  for (const docPath of ["README.md", "CONTRIBUTING.md"]) {
+    it(`resolves every local link in ${docPath}`, () => {
+      const targets = markdownLinkTargets(readFileSync(join(repoRoot, docPath), "utf-8"));
+      const missing = targets.filter((target) => !existsSync(join(repoRoot, target)));
+      expect(missing, `${docPath} links to paths that do not exist`).toEqual([]);
+    });
+  }
+
+  it("keeps lens audit logs free of verification transcripts", () => {
+    const transcriptLine =
+      /^(?:#{2,6}\s+(?:Verification|Validation)\s*$|\s*[-*]\s+`?(?:npm (?:run|test)\b|npx vitest\b))/;
+    const offenders = filesMatching("src/lens-data", (name) => name.endsWith(".audit.md")).flatMap((path) => {
+      const hit = readFileSync(join(repoRoot, path), "utf-8")
+        .split("\n")
+        .find((line) => transcriptLine.test(line));
+      return hit === undefined ? [] : [`${path}: ${hit.trim()}`];
+    });
+    expect(
+      offenders,
+      "*.audit.md logs hold decisions and sources, not verification transcripts (agent_docs/lens-patent-audit.md)",
     ).toEqual([]);
   });
 

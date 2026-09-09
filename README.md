@@ -27,7 +27,7 @@ LensVisualizer is the source repository for the site.
 No installation is needed to use the site:
 
 1. Open the [lens library](https://surfaceandstop.com/lenses) and choose a design.
-2. Move the focus, aperture, and—when available—zoom controls to see the prescription update.
+2. Move the focus, aperture, and, when available, zoom controls to see the prescription update.
 3. Select a glass element to inspect its surfaces, material data, and role.
 4. Open **Aberrations & Distortions** for summary, chromatic, coma, bokeh, distortion, breathing, vignetting, and
    pupil views.
@@ -46,9 +46,9 @@ plain-language optics primers.
 | Design comparison | Side-by-side lenses with shared controls and shareable comparison URLs |
 | Catalog research | Browsing and filtering by maker, focal length, patent year, inventor, assignee, mount, and image format |
 | Specialized systems | Projection-aware fisheyes, perspective-control movement, aspheric comparison, and reference models for folded or obstructed optical paths |
-| Supporting references | Articles, optical primers, patent relationships, glass data, and programmatic camera/lens mount diagrams |
+| Supporting references | Articles, optics primers, patent relationships, glass data, and programmatic camera/lens mount diagrams |
 
-## Catalog and model scope
+## Catalog scope
 
 - `687` visible lens pages are currently published from [`src/lens-data/`](src/lens-data/).
 - Lens and article content is auto-discovered; generated metadata keeps routes, search data, sitemap entries, and the
@@ -56,10 +56,18 @@ plain-language optics primers.
 - The site is prerendered so lens, maker, inventor, patent, mount, format, comparison, and article pages remain
   crawlable and directly linkable.
 
+## How accurate is this?
+
 The models are reconstructions of published patent embodiments. A patent may describe multiple examples, an
 experimental design, or a prescription that differs from the final production lens. Analysis in the viewer is computed
-from the published data and selected state; it is not a measurement of a physical sample or a substitute for laboratory
-testing. Source metadata on each lens page is the best place to judge a model's provenance.
+from the published data and the selected state; it is not a measurement of a physical sample or a substitute for
+laboratory testing.
+
+Every lens page carries its source metadata (patent number, embodiment, inventors, assignee), and each prescription is
+re-checked against its patent using the procedure in [`agent_docs/lens-patent-audit.md`](agent_docs/lens-patent-audit.md),
+with the findings kept beside the data as `*.audit.md` logs. Where a value is inferred rather than published, the lens
+notes say so. Glass identities are resolved against a dispersion catalog and labelled as unmatched when the stored
+values cannot support a public name.
 
 ## Run it locally
 
@@ -93,7 +101,8 @@ Open `http://localhost:5173`.
 | `npm run test` | Run the Vitest suite |
 | `npm run seo:audit` | Audit the built site for metadata, links, sitemap coverage, and 404 behavior |
 
-See [`package.json`](package.json) for specialized audit, report-generation, and benchmark commands.
+The full script inventory, including audits, report generation, and benchmarks, is in
+[`agent_docs/workflow.md`](agent_docs/workflow.md).
 
 ## Architecture at a glance
 
@@ -102,48 +111,23 @@ prepares the current focus/zoom/aperture state, traces rays, and computes analys
 data as inline SVG and synchronize shareable state with the URL. The production build prerenders public routes and
 generates the sitemap for deployment to Cloudflare Pages.
 
-```text
-src/
-  components/  Viewer controls, SVG layers, charts, overlays, and page chrome
-  content/     Public articles and optics primers
-  lens-data/   Patent-derived prescriptions and lens analysis notes
-  mounts/      Camera/lens mount diagram specifications
-  optics/      Pure tracing, prescription, projection, and analysis code
-  pages/       Route-level pages
-  routes/      Shared client and prerender route manifest
-  utils/       Catalog, metadata, SEO, state, URL, and theme helpers
-scripts/       Metadata, build, prerender, sitemap, audit, and report tools
-__tests__/     Optics, UI, routing, catalog, and build regression tests
-```
-
-For subsystem boundaries and program flow, see the [architecture index](agent_docs/architecture.md).
+The directory map and per-subsystem notes live in the [architecture index](agent_docs/architecture.md).
 
 ## Contributing
 
-Bug reports, documentation fixes, lens corrections, and new prescriptions are welcome. Read
-[`CONTRIBUTING.md`](CONTRIBUTING.md) for setup, quality checks, and the pull-request checklist.
+Bug reports, documentation fixes, lens corrections, and new prescriptions are welcome.
 
+- [`CONTRIBUTING.md`](CONTRIBUTING.md) covers setup, the per-task guides, quality checks, and the pull-request checklist.
+- [`agent_docs/README.md`](agent_docs/README.md) is the tagged index of every architecture, recipe, policy, and queue doc.
+- [`SECURITY.md`](SECURITY.md) explains how to report a vulnerability.
 - [Request a lens](https://github.com/ronbuening/LensVisualizer/issues/new?labels=new+lens&title=New%20Lens%3A%20&body=Patent%20%23%3A%20)
-- [Report a bug or propose an improvement](https://github.com/ronbuening/LensVisualizer/issues/new)
-- [Add a lens](agent_docs/adding_a_lens.md)
+  or [report a bug](https://github.com/ronbuening/LensVisualizer/issues/new).
 
-## Documentation
-
-### For site visitors
+## Guides on the site
 
 - [Getting Started](https://surfaceandstop.com/articles/start-here)
 - [About Surface & Stop](https://surfaceandstop.com/articles/about-site)
 - [How Camera Lenses Work](https://surfaceandstop.com/articles/optics-primer)
 - [Understanding Aberrations](https://surfaceandstop.com/articles/aberrations-primer)
-
-### For contributors and maintainers
-
-- [Contributor guide](CONTRIBUTING.md)
-- [Security policy and vulnerability reporting](SECURITY.md)
-- [Agent/developer docs index](agent_docs/README.md)
-- [Lens data format](src/lens-data/LENS_DATA_SPEC.md)
-- [Lens analysis format](src/lens-data/LENS_ANALYSIS_SPEC.md)
-- [Mount diagram format](src/mounts/MOUNT_SVG_SPEC.md)
-- [Project workflow](agent_docs/workflow.md)
 
 Surface & Stop was created by [Ron Buening](https://ronbuening.com/).
