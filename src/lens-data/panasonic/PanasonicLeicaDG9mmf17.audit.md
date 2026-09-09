@@ -19,18 +19,9 @@ Patent: US 2023/0367186 A1, Example 1
 - Confirmed flagged rows against local `patents/US20230367186A1.pdf`, Table 1A. Stored nd/vd values matched the patent.
 - Non-flagged prescription fields were not fully rekeyed in this queue pass.
 
-### Phase 3 — Spectral / metadata enrichment
-
-- No catalog entries added; selected catalog-backed labels were already present in the project catalog.
-
 ### Phase 4 — Analysis sync
 
 - Updated affected element narratives, glass table, chromatic-correction prose, asphere list, and source note.
-
-### Verification
-
-- `npm run generate:glass-reports` — passed; lens cleared from both glass mismatch queues.
-- `npm run typecheck`, `npm run format:check`, `npm run lint`, and `npm run test` — passed.
 
 ## 2026-06-24 - Systematic patent-table audit
 

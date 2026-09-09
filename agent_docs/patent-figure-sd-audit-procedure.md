@@ -1,14 +1,10 @@
 # Procedure — Semi-Diameter Audit Against a Patent Figure
 
-## Audit test retention
-
-Tests and scripts written to verify a patent audit are temporary by default. Do not retain them unless absolutely necessary to prevent a specific regression in shared engine, UI, or data-contract behavior that existing tests cannot cover. Do not commit per-lens snapshots of prescription values, glass labels, calculated powers, rims, or motion merely to restate audited data. Run the existing catalog validators and audit commands; record sources, calculations, results and limitations in the companion `.audit.md` and task record. If an essential shared regression test is needed, add the smallest case to the existing subsystem suite, prefer a synthetic input over patent-specific constants, and document why it must remain. Remove temporary audit tests before delivery; historical test counts in audit logs describe the checks run at that time.
-
-
 A step-by-step runbook for auditing one lens's semi-diameters (`sd`) and cross-section proportions against its
 patent. Follow it in order. Each step says what to run, what the output means, and when to stop.
 
-Worked example of the whole thing: [patent-figure-sd-audit.md](patent-figure-sd-audit.md).
+Worked example of the whole thing (historical, 2026-07-24):
+[records/patent-figure-sd-audit-2026-07.md](records/patent-figure-sd-audit-2026-07.md).
 Work queue: [sd-audit-queue.md](sd-audit-queue.md).
 
 ## What you are deciding
@@ -27,6 +23,21 @@ Change an `sd` only when you have one of these:
 
 Anything inside ~15% is noise. Leave it and say so in the log.
 
+## Scope
+
+This is a rendering and ray-clearance audit of `sd` only. It is not a licence to change `R`, `d`, `nd`, glass labels
+or focus mechanics — those need the separate patent-table pass in [lens-patent-audit.md](lens-patent-audit.md). If a
+figure fit exposes a suspect glass label, audit it in the same pass only when the patent table settles it, then run
+`npm run generate:glass-reports` and keep the regenerated reports in the commit only if they changed.
+
+Two rules to hold throughout:
+
+- **Table truth beats diagram inference.** If the patent publishes effective diameters, use them (`sd` = φ/2) and say
+  so in the header. Otherwise the header says "estimated" or "inferred" and names the inputs used.
+- **Do not invent focus mechanics from a static figure.** CRC, floating and internal-focus spacings the patent does
+  not tabulate stay fixed, or get a clearly labelled approximation from manufacturer MFD/reproduction data; a
+  cross-section sheet is not evidence for either.
+
 ## Prerequisites
 
 - The patent PDF in `patents/`. If it is not there, **stop** and record that as a blocker — do not substitute a
@@ -34,6 +45,10 @@ Anything inside ~15% is noise. Leave it and say so in the log.
 - `pdftoppm` (poppler) on PATH: `which pdftoppm`.
 - Know which embodiment the lens is: the `subtitle` field says e.g. `US 2014/0247506 A1 EXAMPLE 1`. Example 3 means
   you need Example 3's cross-section sheet, not Example 1's.
+- Know the scale factor. If the prescription was uniformly scaled (patent f = 100, production f = 50, …), every `sd`
+  decision scales by the same factor as `R` and `d`.
+- Treat manufacturer constraints — filter thread, barrel diameter, image format, reproduction ratio — as **outer
+  bounds** only. A 52 mm filter thread does not mean the front surfaces reach that radius.
 
 ## Step 1 — Image-circle floor (always do this first)
 
@@ -129,6 +144,8 @@ curve ends — not the outer rectangle.
 ## Step 5 — Choose the new values
 
 - Scale every surface of an element by the same factor, so the author's front/rear relationship survives.
+- Work by element neighbourhood, not isolated rows: front and rear surfaces of one element change smoothly unless it
+  is a strong meniscus, a cemented junction, or the figure shows a real step or bevel.
 - Round to 0.1 mm.
 - Do not change `STO` — the stop semi-diameter derives the entrance pupil and therefore the f-number.
 - Where the figure and the floor disagree, take the larger, and say why in the log.
@@ -159,24 +176,35 @@ short of it — losing a millimetre here is correct, not a compromise.
 ## Step 7 — Apply the edit
 
 Edit the `sd` values in the `*.data.ts` surface table, and update the file's `NOTE ON SEMI-DIAMETERS` header block to
-say what changed and why.
+say what changed and why — "from patent effective diameters", "estimated from FIG. n", or "inferred from …". If the
+pass changed a focus assumption, a glass classification, or a previously stated mechanical interpretation, update the
+`*.analysis.md` prose to match.
 
-**If any surface you changed is aspheric and its rim departure is quoted anywhere, three files move together:**
+**If any surface you changed is aspheric and its rim departure is quoted anywhere, two files move together:**
 
 1. `*.data.ts` — the `sd`.
 2. `*.analysis.md` — every "at the data-file semi-diameters … µm" sentence. Recompute with
    `npm run audit:surface -- <file> --scan <label> <newSd>` and read the departure at the last row, or compute it at
    exactly the new height.
-3. `__tests__/src/lens-data/oddAsphereBackfill.test.ts` — the height and expected value in the assertion.
 
-Missing any one of these leaves the repo self-inconsistent; the test will catch #3 but nothing catches #2.
+Nothing automated checks #2, so recompute it every time and note the new values in the `*.audit.md` log.
 
 ## Step 8 — Verify
 
+Between edits on one lens the narrow checks are enough:
+
 ```bash
 npm run audit:image-circle -- ./src/lens-data/<maker>/<Lens>.data.ts
+npm test -- buildLens elementRenderDiagnostics
+```
+
+Before committing, run the full gate:
+
+```bash
 npm run typecheck && npm run format:check && npm run lint && npm run test
 ```
+
+Do not keep per-lens audit tests; see `agent_docs/architecture/testing.md` § Per-Lens And Audit Test Retention.
 
 Then look at the rendered cross-section and compare it with the figure — this is the actual deliverable, and a
 number can be right while the picture is wrong:
@@ -197,7 +225,11 @@ Append a dated section to the sibling `*.audit.md` (create it if absent — see
 - anything you could not do and why,
 - the verification commands you ran.
 
-Then update the lens's row in [sd-audit-queue.md](sd-audit-queue.md).
+The `*.audit.md` is for a formal audit pass; for a lens still being authored, the data-file header plus the analysis
+file carry the SD rationale.
+
+Then delete the lens's row from [sd-audit-queue.md](sd-audit-queue.md) — the queue holds only open rows, and the
+sidecar is the evidence.
 
 ## Pitfalls, with symptoms
 
@@ -208,7 +240,7 @@ Then update the lens's row in [sd-audit-queue.md](sd-audit-queue.md).
 | Front elements read far too big on a figure with rays | entering bundle straddles the axis outside the glass | trust RIM, confirm by zoom |
 | Figure value impossible (bigger than \|R\|) | you are reading a bracket or a neighbouring element | re-crop, or measure that element by hand |
 | Validator rejects a value the figure clearly shows | the drawing includes a mounting flange | use the optical extent |
-| Aspheric departure sanity-checks stop making sense after the edit | quoted departures still reference the old heights | Step 7, all three files |
+| Aspheric departure sanity-checks stop making sense after the edit | quoted departures still reference the old heights | Step 7, both files |
 
 ## When to stop and just write it down
 

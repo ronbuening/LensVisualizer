@@ -6,14 +6,10 @@ Patent: US 5,917,663, Example 2
 
 ### Phase 2 - Retained-information audit
 
-- Reviewed the existing semi-diameter reference-pass notes in `agent_docs/semi-diameter-patent-diagram-audits.md` for this lens and the local source mapping to US 5,917,663 Example 2.
+- Reviewed the semi-diameter reference-pass notes for this lens (the reference-pass guide has since been folded into `agent_docs/patent-figure-sd-audit-procedure.md`) and the local source mapping to US 5,917,663 Example 2.
 - This lens was part of the successful reference pass: the rear group after the stop had already been narrowed so the stored clear apertures match the patent diagram and keep the CRC interval discussion honest.
 - Current SDs preserve that refined shape: broad retrofocus front elements, a smaller stop, and a deliberately narrowed post-stop/rear group.
 - No new SD values changed in this pass. L7/L8 glass remains explicitly documented as unresolved J-LAK02-class fallback material, independent of this SD audit.
-
-### Verification
-
-- `npm test -- elementRenderDiagnostics`
 
 ## 2026-08-21 — Hikari catalog follow-up
 

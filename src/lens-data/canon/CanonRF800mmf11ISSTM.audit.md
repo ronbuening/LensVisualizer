@@ -27,8 +27,3 @@ The revised prescription passes the surface validator and image-circle floor.
 - Corrected the first inventor from the transcription error `橋谷 真樹` to the front-page spelling `横谷 真樹`, then stored the family-publication romanizations Maki Yokoya and Tomohiro Ino for repository metadata parity.
 - Normalized the front diffractive pair's diagram/cemented label to `DOE` and the site spec to `S4 DIFFRACTIVE PHASE SURFACE`.
 - Verified the Figure 2 focus arrow and paragraph 0036 against the runtime motion profile: only L2 moves, by -17.177214630 mm objectward; the lens has no zoom travel.
-
-### Verification
-
-- `npm run audit:surface -- src/lens-data/canon/CanonRF800mmf11ISSTM.data.ts` - passed.
-- `npm run audit:image-circle -- src/lens-data/canon/CanonRF800mmf11ISSTM.data.ts` - passed, 0 undersized.

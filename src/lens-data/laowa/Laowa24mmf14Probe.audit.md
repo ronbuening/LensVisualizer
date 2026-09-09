@@ -19,18 +19,9 @@ Patent: CN 210573001 U, Example 1
 - Confirmed flagged rows against local `patents/CN210573001U.pdf`, Example 1 tables. Stored nd/vd values matched the patent.
 - Non-flagged prescription fields were not fully rekeyed in this queue pass.
 
-### Phase 3 — Spectral / metadata enrichment
-
-- No catalog entries added; selected labels already resolve or fall through through known code-based classes.
-
 ### Phase 4 — Analysis sync
 
 - Updated the analysis glass summary and affected element notes for the swapped 923/209 and 805/255 classes.
-
-### Verification
-
-- `npm run generate:glass-reports` — passed; lens cleared from both glass mismatch queues.
-- `npm run typecheck`, `npm run format:check`, `npm run lint`, and `npm run test` — passed.
 
 ## 2026-06-24 — Full local patent audit
 
@@ -50,15 +41,6 @@ Patent: CN 210573001 U, Example 1
 ### Phase 3 — Spectral / metadata enrichment
 
 - The patent publishes only nd and vd. No nC, nF, ng, PgF, theta_gF, dPgF, or Sellmeier coefficient source was found in the local patent.
-
-### Phase 4 — Analysis sync
-
-- No analysis text changes were required for this pass.
-
-### Verification
-
-- `npm run generate:glass-reports` — passed.
-- `npm run typecheck`, `npm run format:check`, `npm run lint`, `npm run test`, and `npm run build` — passed.
 
 ## 2026-07-30 — TAFD5F catalog-equivalent recovery
 

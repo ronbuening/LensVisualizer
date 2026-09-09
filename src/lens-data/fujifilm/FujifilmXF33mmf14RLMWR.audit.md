@@ -11,10 +11,6 @@ Patent: US 2022/0276464 A1, Example 3
 - Stored SDs follow that taper: G1 is 17.0-18.8 mm, G2 contracts from about 13.4 mm near the stop to roughly 8.94-11.6 mm through the moving group, and G3 remains about 10.7-11.6 mm.
 - No SD values changed. Current values remain inferred from the patent figure, f/1.4 stop geometry, moving-group ray envelope, edge thickness, and cross-gap sag clearance.
 
-### Verification
-
-- `npm test -- elementRenderDiagnostics`
-
 ## 2026-08-18 — L26 L-LAH85V coefficient assignment
 
 - Visually rechecked `patents/US20220276464A1.pdf`, PDF page 38, Example 3. L26 remains `nd = 1.85343`, `νd = 40.55`.

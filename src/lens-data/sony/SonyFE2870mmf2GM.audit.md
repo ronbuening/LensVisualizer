@@ -39,14 +39,6 @@ The patent prescription table [Table 1], PDF page 24, publishes refractive index
 - Updated element narratives and glass tables to replace the mismatching OHARA labels with patent-code labels for L12, L21, L22, L23, L24, L31, L33, L44, L45, and L72.
 - Reworded remaining "exact match" claims for provisional OHARA labels whose identity is inferred from the patent's nd/vd pair.
 
-### Verification
-
-- `npm test -- catalogMismatchScan glassRelabelCandidatesScan unresolvedGlassScan` — passed; regenerated report output shows this lens removed from `catalog-mismatches.generated.md`.
-- `npm run typecheck` — passed.
-- `npm run format:check` — passed.
-- `npm run lint` — passed.
-- `npm run test` — passed, 129 files / 1664 tests.
-
 ## 2026-05-31 - Catalog mismatch remainder audit
 
 ### Phase 1 - Glass correction

@@ -22,8 +22,3 @@ The remaining group envelopes agree with Figures 1 and 4 within the drawing tole
 ### Motion
 
 - Rechecked the 153.5 / 260 / 440 mm ordering and all reconstructed 2.0 m rows. Wide-to-tele group travel follows the patent without reversal; close focus moves negative G5 imageward, increasing D26 while decreasing BF by the same amount.
-
-### Verification
-
-- `audit:surface` accepted the 12.4 mm surface pair.
-- `audit:image-circle` reported zero undersized surfaces.

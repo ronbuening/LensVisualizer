@@ -10,8 +10,6 @@
   image-circle floor.
 - Retained the submitted SDs. The trustworthy measurements do not show a greater-than-25% mismatch; several apparent
   outliers are neighboring rims or leader-line intersections rather than independent lens edges.
-- `npm run audit:image-circle -- src/lens-data/panasonic/PanasonicLumixS24105mmf4MacroOIS.data.ts` passed with no
-  undersized surfaces.
 
 ### Glass
 

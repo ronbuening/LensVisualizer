@@ -4,6 +4,7 @@ import {
   sagSlope,
   thick,
   doLayout,
+  entrancePupilAtState,
   formatDist,
   traceRay,
   traceRayChromatic,
@@ -639,6 +640,38 @@ describe("traceRay — Sonnar 50 f/1.5 production lens", () => {
 });
 
 /* ── conjugateK with real-ray trace ── */
+
+/** Image height at the sensor for a meridional ray launched at height h with slope h·k. */
+function imageHeightAtSensor(L: RuntimeLens, focusT: number, h: number, k: number): number | null {
+  const { z, imgZ } = doLayout(focusT, 0, L);
+  const ray = traceRay(h, h * k, z, focusT, 0, L.stopPhysSD, true, L);
+  const imageHeight = ray.y + ray.u * (imgZ - z[L.N - 1]);
+  return isFinite(imageHeight) ? imageHeight : null;
+}
+
+/** Bisect the launch slope-per-height that lands the ray on the axis at the sensor. */
+function solveKForImageHeight(L: RuntimeLens, focusT: number, h: number): number | null {
+  let lo = -0.05;
+  let hi = 0.05;
+  let loHeight = imageHeightAtSensor(L, focusT, h, lo);
+  const hiHeight = imageHeightAtSensor(L, focusT, h, hi);
+  if (loHeight === null || hiHeight === null || Math.sign(loHeight) === Math.sign(hiHeight)) return null;
+
+  for (let i = 0; i < 60; i++) {
+    const mid = (lo + hi) / 2;
+    const midHeight = imageHeightAtSensor(L, focusT, h, mid);
+    if (midHeight === null) return null;
+    if (Math.abs(midHeight) < 1e-9) return mid;
+    if (Math.sign(midHeight) === Math.sign(loHeight)) {
+      lo = mid;
+      loHeight = midHeight;
+    } else {
+      hi = mid;
+    }
+  }
+  return (lo + hi) / 2;
+}
+
 describe("conjugateK", () => {
   const allLenses: [string, RuntimeLens][] = [
     ["ApoLanthar50f2", buildLens({ ...LENS_DEFAULTS, ...ApoLantharRaw } as LensData)],
@@ -672,6 +705,19 @@ describe("conjugateK", () => {
     for (const t of [0.25, 0.5, 0.75]) {
       const K = conjugateK(t, 0, L);
       expect(isFinite(K), `${name}: conjugateK(${t}) must be finite`).toBe(true);
+    }
+  });
+
+  /* Independent check of the tracked-focus slope: bisect the launch
+   * slope-per-height that lands a near-axis ray on the axis at the sensor and
+   * require conjugateK to agree. Guards the near-minimum-focus regression first
+   * seen on the Fujifilm XF 56 mm (2026-04) without pinning a lens constant. */
+  it.each(allLenses)("%s: conjugateK agrees with an independent near-axis image-height solve", (name, L) => {
+    for (const focusT of [0.5, 1]) {
+      const h = 0.1 * entrancePupilAtState(L.stopPhysSD, focusT, 0, L).epSD;
+      const solved = solveKForImageHeight(L, focusT, h);
+      expect(solved, `${name}: focusT=${focusT} should bracket a near-axis solve`).not.toBeNull();
+      expect(conjugateK(focusT, 0, L), `${name}: focusT=${focusT}`).toBeCloseTo(solved!, 4);
     }
   });
 

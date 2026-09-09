@@ -28,10 +28,3 @@ Patent: US 2018/0031811 A1, Example 4 / Figure 11
 ### Phase 4 — Analysis sync
 
 - Synchronized the explicit qualified glass labels and clarified that catalog coefficients provide runtime color coverage without becoming patent-authored spectral evidence.
-
-### Verification
-
-- `npm run audit:surface -- src/lens-data/nikon/NikonAFSNikkor600mmf4EFLEDVR.data.ts` — passed.
-- `npm run audit:image-circle -- src/lens-data/nikon/NikonAFSNikkor600mmf4EFLEDVR.data.ts` — 0 undersized.
-- `npm run generate:glass-reports` — passed; Sellmeier coverage remains 17/17.
-- Full repository checks are recorded in the integrating commit.

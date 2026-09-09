@@ -25,10 +25,6 @@ Catalog version: local working tree, 2026-06-25
 - Confirmed the front surface sign is positive from the drawing and element shape.
 - The patent drawing does not publish numeric semi-diameters. Existing SDs remain rational against the drawing, f/5.5 aperture, and 60-degree patent field note; runtime element-render diagnostics showed no hidden trim warnings.
 
-### Verification
-
-- Temporary Zeiss Jena diagnostic test - passed; runtime trim diagnostics empty for this lens.
-
 ## 2026-09-08 — First-hosted audit source review (lens 7, incomplete)
 
 - Primary source: local `patents/US721240.pdf`, 4 pages. PDF p2 names assignee the firm of Carl Zeiss and states normalized dimensions, f/5.5, approximately 60° field. PDF p3 is the numerical table. Rendered its exact table at 600 dpi (`/tmp/tessar-table600.png`).
@@ -42,7 +38,6 @@ Catalog version: local working tree, 2026-06-25
 - Companion analysis rewritten against the original PDF; removed unsupported historical glass identities, stale source numbers and claims that a Gaussian/thick-lens distinction explains the focal-length discrepancy. Exact source D/F/G′ values and absent C-line/estimated Abbe limits are explicit.
 - Local live infinity/close/midpoint/f16/motion-chart review complete: EFL 142.80; BF 130.50/142.49/136.50; motion 11.99 mm objectward for both patent assemblies; zoom disabled; f16 stop diameter 7.97. No visible element overlap. Three optical groups remain summarized separately from the patent's two diaphragm-separated assemblies in the analysis.
 - Added independent close-conjugate, unit-motion and hidden-trim regression tests; execution remains pending at the batch boundary.
-
 
 ### Batch follow-up
 

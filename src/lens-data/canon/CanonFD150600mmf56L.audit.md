@@ -11,10 +11,6 @@ Patent: US 4,110,006, Example 4
 - Stored SDs follow that structure: front collector surfaces are near 58-59 mm, the following fixed/focus front sub-groups are near 41-43.5 mm, the variator/compensator groups are near 21-23 mm, and the rear imaging group tapers to 15.5 mm.
 - No SD values changed. Current values remain inferred renderer clear apertures, not patent-published mechanical diameters.
 
-### Verification
-
-- `npm test -- elementRenderDiagnostics`
-
 ## 2026-07-30 - `773497` catalog-equivalent review
 
 - Rendered and visually rechecked Example 4. L3 remains `nd = 1.77250`, `vd = 49.7`.

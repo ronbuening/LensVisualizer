@@ -11,10 +11,6 @@ Patent: US 2016/0154221 A1, Example 1
 - Stored SDs match that outline: G1 starts at 21.7-25.2 mm, G2-G5 stay mostly in the 8.8-11.4 mm range, and the stop is 9.1 mm.
 - No SD values changed. Current values remain inferred from the patent figure, infinity zoom-state ray envelopes, f/2.8 stop geometry, edge thickness, and cross-gap sag clearance.
 
-### Verification
-
-- `npm test -- elementRenderDiagnostics`
-
 ## 2026-07-29 - Remaining unmatched-glass disposition
 
 - Rechecked Example 1 in local `patents/US20160154221A1.pdf`; S13A remains 1.68458 / 30.88 and its R/d/asphere

@@ -29,9 +29,3 @@ Patent: US 2015/0168697 A1, Example 4
 ### Phase 4 - Analysis sync
 
 - Updated element narratives and glass summary rows for the corrected labels.
-
-### Verification
-
-- `npm test -- glassRelabelByLensScan` passed; this lens no longer appears in the relabel queue.
-- `npm run typecheck` passed.
-- `npm run test` passed.

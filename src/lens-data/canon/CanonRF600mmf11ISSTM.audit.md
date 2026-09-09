@@ -29,8 +29,3 @@ The pupil-calibrated stop remains 8.31053 mm. The revised prescription passes th
 - Verified the front-page inventors 横谷 真樹 and 井野 友裕 and stored the family-publication romanizations Maki Yokoya and Tomohiro Ino.
 - Normalized the front diffractive pair's diagram/cemented label to `DOE`, matching the patent terminology while retaining Canon's product-level `DO` wording in the analysis sources.
 - Verified the Figure 1 focus arrow and paragraph 0036 against the runtime motion profile: only L2 moves, by -14.94 mm objectward; the lens has no zoom travel.
-
-### Verification
-
-- `npm run audit:surface -- src/lens-data/canon/CanonRF600mmf11ISSTM.data.ts` - passed.
-- `npm run audit:image-circle -- src/lens-data/canon/CanonRF600mmf11ISSTM.data.ts` - passed, 0 undersized.

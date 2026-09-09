@@ -33,15 +33,6 @@ Patent: JP 2018-189733 A, Numerical Example 1
 - Updated the element narratives and glass-identification table for L3, L8, L9, and L17.
 - Updated confidence notes where class-level labels became catalog-backed matches.
 
-### Verification
-
-- `npm test -- dispersion.test.ts` - passed.
-- `npm run generate:glass-reports` - passed; this lens is now 17/17 Sellmeier-covered.
-- `npm run typecheck` - passed.
-- `npm run format:check` - passed.
-- `npm run lint` - passed.
-- `npm run test` - passed.
-
 ## 2026-05-31 - APD display-key correction
 
 ### Patent evidence
@@ -59,11 +50,3 @@ Patent: JP 2018-189733 A, Numerical Example 1
 ### Analysis sync
 
 - Added a display-key note distinguishing retained patent partial-dispersion data from the narrower visual APD key.
-
-### Verification
-
-- `npm run generate:glass-reports` - passed.
-- `npm run typecheck` - passed.
-- `npm run format:check` - passed.
-- `npm run lint` - passed.
-- `npm run test` - passed.

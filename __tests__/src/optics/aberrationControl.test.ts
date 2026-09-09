@@ -1,5 +1,11 @@
 import { describe, expect, it } from "vitest";
-import buildLens from "../../../../src/optics/buildLens.js";
+import { computeBokehPreviewPair } from "../../../src/optics/aberration/bokeh.js";
+import {
+  computeComaAnalysis,
+  computeFieldCurvature,
+  computeSAProfile,
+  computeSphericalAberration,
+} from "../../../src/optics/aberrationAnalysis.js";
 import {
   computeAnalysisFieldGeometryAtState,
   computeChromaticRayFanSpread,
@@ -7,52 +13,49 @@ import {
   entrancePupilAtState,
   thick,
   traceRayChromatic,
-  traceToImage,
-} from "../../../../src/optics/optics.js";
-import {
-  computeComaAnalysis,
-  computeFieldCurvature,
-  computeSAProfile,
-  computeSphericalAberration,
-} from "../../../../src/optics/aberrationAnalysis.js";
-import { computeBokehPreviewPair } from "../../../../src/optics/aberration/bokeh.js";
-import { computeBothPupilAberrationProfiles } from "../../../../src/optics/pupilAberration.js";
-import LENS_DEFAULTS from "../../../../src/lens-data/defaults.js";
-import MinoltaVarisoftRaw from "../../../../src/lens-data/minolta/MinoltaVarisoft85mmf28.data.js";
-import type { ChromaticChannel, LensData, RuntimeLens } from "../../../../src/types/optics.js";
+} from "../../../src/optics/optics.js";
+import { computeBothPupilAberrationProfiles } from "../../../src/optics/pupilAberration.js";
+import MinoltaVarisoftRaw from "../../../src/lens-data/minolta/MinoltaVarisoft85mmf28.data.js";
+import type { ChromaticChannel, RuntimeLens } from "../../../src/types/optics.js";
+import { build } from "./testLensFixtures.js";
 
-function buildMinoltaVarisoft(): RuntimeLens {
-  return buildLens({ ...LENS_DEFAULTS, ...MinoltaVarisoftRaw } as LensData);
+/**
+ * `aberrationControl` — the soft-focus / spherical-aberration ring.
+ *
+ * The ring is a third slider axis (`aberrationT`) that has to reach every
+ * thickness-dependent analysis path independently of focus and zoom. The
+ * Minolta Varisoft is the catalog's canonical two-position control and serves
+ * as the fixture; the centered under/sharp/over form is exercised by overriding
+ * its control block. Expected values come from the authored control ranges, so
+ * nothing here pins a lens-specific constant.
+ */
+
+const VARISOFT = build(MinoltaVarisoftRaw);
+const CONTROL = MinoltaVarisoftRaw.aberrationControl;
+
+/** Centered variant: `[minimum, center, maximum]` triples around the authored sharp spacings. */
+function centeredVar(): Record<string, [number, number, number]> {
+  const sharpD = (label: string) => MinoltaVarisoftRaw.surfaces.find((surface) => surface.label === label)!.d;
+  const sharpB0 = sharpD("9");
+  const sharpBfd = sharpD("11");
+  return {
+    // One increasing and one decreasing triple, so both ring directions are covered.
+    "9": [sharpB0 - 0.5, sharpB0, sharpB0 + 5],
+    "11": [sharpBfd + 1, sharpBfd, sharpBfd - 10],
+  };
 }
 
 function buildCenteredVarisoft(): RuntimeLens {
-  return buildLens({
-    ...LENS_DEFAULTS,
+  return build({
     ...MinoltaVarisoftRaw,
     aberrationControl: {
-      ...MinoltaVarisoftRaw.aberrationControl,
+      ...CONTROL,
       minLabel: "UNDER",
       centerLabel: "SHARP",
       maxLabel: "OVER",
-      var: {
-        "9": [1.5, 2.074, 6.962],
-        "11": [65, 64.427, 53.951],
-      },
+      var: centeredVar(),
     },
-  } as LensData);
-}
-
-function surfaceIndex(L: RuntimeLens, label: string): number {
-  const index = L.S.findIndex((surface) => surface.label === label);
-  expect(index, `surface ${label} should exist`).toBeGreaterThanOrEqual(0);
-  return index;
-}
-
-function fixedImagePlanePositions(L: RuntimeLens, focusT: number): number[] {
-  const ref = doLayout(0, 0, L);
-  const cur = doLayout(focusT, 0, L);
-  const dz = ref.imgZ - cur.imgZ;
-  return cur.z.map((z) => z + dz);
+  });
 }
 
 function analysisState(L: RuntimeLens, focusT: number, aberrationT: number) {
@@ -81,75 +84,43 @@ function locaAt(L: RuntimeLens, aberrationT: number) {
   return computeChromaticRayFanSpread(rays, doLayout(0, 0, L, aberrationT).imgZ, lastSurfZ);
 }
 
-describe("Minolta Varisoft 85mm f/2.8 focus model", () => {
-  it("advances Group AI while keeping AII, B, BFD, and dB0 fixed", () => {
-    const L = buildMinoltaVarisoft();
-    const dA7 = surfaceIndex(L, "7");
-    const dB0 = surfaceIndex(L, "9");
-    const bfd = surfaceIndex(L, "11");
+describe("aberrationControl thickness resolution", () => {
+  it("drives the controlled spacings from the ring, independently of focus travel", () => {
+    const L = VARISOFT;
+    expect(L.aberrationControl?.label).toBe(CONTROL.label);
 
-    expect(thick(dA7, 1, 0, L)).toBeGreaterThan(thick(dA7, 0, 0, L));
-    expect(thick(dB0, 1, 0, L)).toBeCloseTo(thick(dB0, 0, 0, L), 8);
-    expect(thick(bfd, 1, 0, L)).toBeCloseTo(thick(bfd, 0, 0, L), 8);
-
-    const infinityZ = fixedImagePlanePositions(L, 0);
-    const closeZ = fixedImagePlanePositions(L, 1);
-    const focusTravel = thick(dA7, 1, 0, L) - thick(dA7, 0, 0, L);
-
-    for (const label of ["1", "STO", "7"]) {
-      const index = surfaceIndex(L, label);
-      expect(closeZ[index], `${label} should move objectward by the dA7 increase`).toBeCloseTo(
-        infinityZ[index] - focusTravel,
-        8,
-      );
+    for (const [label, [normal, maximum]] of Object.entries(CONTROL.var)) {
+      const index = L.labelIdx[label];
+      expect(thick(index, 0, 0, L, 0), `${label} at ring 0`).toBeCloseTo(normal, 8);
+      expect(thick(index, 0, 0, L, 1), `${label} at ring 1`).toBeCloseTo(maximum, 8);
+      expect(thick(index, 1, 0, L, 1), `${label} at ring 1, close focus`).toBeCloseTo(maximum, 8);
     }
 
-    for (const label of ["8", "10", "11"]) {
-      const index = surfaceIndex(L, label);
-      expect(closeZ[index], `${label} should remain fixed during focus`).toBeCloseTo(infinityZ[index], 8);
+    // Focus-only spacings must not move with the ring.
+    for (const label of Object.keys(MinoltaVarisoftRaw.var).filter((key) => !(key in CONTROL.var))) {
+      const index = L.labelIdx[label];
+      expect(thick(index, 0, 0, L, 1), `${label} should ignore the ring`).toBeCloseTo(thick(index, 0, 0, L, 0), 8);
     }
-  });
-
-  it("matches the patent close-focus magnification when dA7 is widened", () => {
-    const L = buildMinoltaVarisoft();
-    const magnification = traceToImage(1, 0, 1, 0, L);
-    const raySensitivity = traceToImage(0, 1, 1, 0, L);
-
-    expect(magnification).toBeCloseTo(-0.11, 2);
-    expect(-raySensitivity / magnification).toBeGreaterThan(0);
-  });
-
-  it("drives the soft-focus ring separately from focus travel", () => {
-    const L = buildMinoltaVarisoft();
-    const dA7 = surfaceIndex(L, "7");
-    const dB0 = surfaceIndex(L, "9");
-    const bfd = surfaceIndex(L, "11");
-
-    expect(L.aberrationControl?.label).toBe("SOFT");
-    expect(thick(dB0, 0, 0, L, 1)).toBeCloseTo(6.962, 8);
-    expect(thick(bfd, 0, 0, L, 1)).toBeCloseTo(53.951, 8);
-    expect(thick(dA7, 0, 0, L, 1)).toBeCloseTo(thick(dA7, 0, 0, L, 0), 8);
-
-    const softParaxialFocus = traceToImage(1, 0, 0, 0, L, 1);
-    expect(softParaxialFocus).toBeCloseTo(0, 2);
   });
 
   it("supports under/sharp/over travel while keeping sharp as the default", () => {
     const L = buildCenteredVarisoft();
-    const dB0 = surfaceIndex(L, "9");
-    const bfd = surfaceIndex(L, "11");
+    const ranges = centeredVar();
 
     expect(L.aberrationControl?.centerLabel).toBe("SHARP");
-    expect(thick(dB0, 0, 0, L)).toBeCloseTo(2.074, 8);
-    expect(thick(bfd, 0, 0, L)).toBeCloseTo(64.427, 8);
-    expect(thick(dB0, 0, 0, L, -1)).toBeCloseTo(1.5, 8);
-    expect(thick(bfd, 0, 0, L, -1)).toBeCloseTo(65, 8);
-    expect(thick(dB0, 0, 0, L, 1)).toBeCloseTo(6.962, 8);
-    expect(thick(bfd, 0, 0, L, 1)).toBeCloseTo(53.951, 8);
+    for (const [label, [minimum, center, maximum]] of Object.entries(ranges)) {
+      const index = L.labelIdx[label];
+      expect(thick(index, 0, 0, L), `${label} default`).toBeCloseTo(center, 8);
+      expect(thick(index, 0, 0, L, 0), `${label} at ring 0`).toBeCloseTo(center, 8);
+      expect(thick(index, 0, 0, L, -1), `${label} at ring -1`).toBeCloseTo(minimum, 8);
+      expect(thick(index, 0, 0, L, 1), `${label} at ring 1`).toBeCloseTo(maximum, 8);
+    }
   });
+});
 
-  it("applies the soft-focus ring to spherical aberration diagnostics", () => {
-    const L = buildMinoltaVarisoft();
+describe("aberrationControl analysis plumbing", () => {
+  it("applies the ring to spherical aberration diagnostics", () => {
+    const L = VARISOFT;
     const sharp = analysisState(L, 0, 0);
     const soft = analysisState(L, 0, 1);
 
@@ -160,7 +131,7 @@ describe("Minolta Varisoft 85mm f/2.8 focus model", () => {
     expectMeaningfulDifference(
       softSA!.longitudinalSaMm,
       sharpSA!.longitudinalSaMm,
-      "soft ring should change longitudinal spherical aberration",
+      "ring should change longitudinal spherical aberration",
     );
 
     const sharpProfile = computeSAProfile(L, sharp.zPos, 0, 0, sharp.currentEPSD, sharp.currentPhysStopSD, 0);
@@ -170,12 +141,12 @@ describe("Minolta Varisoft 85mm f/2.8 focus model", () => {
     expectMeaningfulDifference(
       softProfile.at(-1)!.transverseSaMm,
       sharpProfile.at(-1)!.transverseSaMm,
-      "soft ring should change the spherical aberration profile",
+      "ring should change the spherical aberration profile",
     );
   });
 
-  it("applies the soft-focus ring to field curvature, astigmatism, and Petzval placement", () => {
-    const L = buildMinoltaVarisoft();
+  it("applies the ring to field curvature, astigmatism, and Petzval placement", () => {
+    const L = VARISOFT;
     const sharp = analysisState(L, 0, 0);
     const soft = analysisState(L, 0, 1);
 
@@ -191,22 +162,22 @@ describe("Minolta Varisoft 85mm f/2.8 focus model", () => {
     expectMeaningfulDifference(
       softEdge!.tangentialShiftMm,
       sharpEdge!.tangentialShiftMm,
-      "soft ring should change tangential field curvature",
+      "ring should change tangential field curvature",
     );
     expectMeaningfulDifference(
       softEdge!.astigmaticDifferenceMm,
       sharpEdge!.astigmaticDifferenceMm,
-      "soft ring should change astigmatic field split",
+      "ring should change astigmatic field split",
     );
     expectMeaningfulDifference(
       softEdge!.petzvalBestFocusZ,
       sharpEdge!.petzvalBestFocusZ,
-      "soft ring should reposition the Petzval reference relative to the current image plane",
+      "ring should reposition the Petzval reference relative to the current image plane",
     );
   });
 
-  it("applies the soft-focus ring to coma diagnostics", () => {
-    const L = buildMinoltaVarisoft();
+  it("applies the ring to coma diagnostics", () => {
+    const L = VARISOFT;
     const sharp = analysisState(L, 0, 0);
     const soft = analysisState(L, 0, 1);
 
@@ -222,12 +193,12 @@ describe("Minolta Varisoft 85mm f/2.8 focus model", () => {
     expectMeaningfulDifference(
       softField!.rmsRadiusMm,
       sharpField!.rmsRadiusMm,
-      "soft ring should change the coma point-cloud footprint",
+      "ring should change the coma point-cloud footprint",
     );
   });
 
-  it("applies the soft-focus ring to bokeh previews", () => {
-    const L = buildMinoltaVarisoft();
+  it("applies the ring to bokeh previews", () => {
+    const L = VARISOFT;
     const sharp = analysisState(L, 0.5, 0);
     const soft = analysisState(L, 0.5, 1);
 
@@ -240,15 +211,11 @@ describe("Minolta Varisoft 85mm f/2.8 focus model", () => {
     const softCenter = softBokeh.infinity!.fields.find((field) => field.usable && field.fieldFraction === 0);
     expect(sharpCenter).toBeTruthy();
     expect(softCenter).toBeTruthy();
-    expectMeaningfulDifference(
-      softCenter!.rmsRadiusMm,
-      sharpCenter!.rmsRadiusMm,
-      "soft ring should change bokeh blur size",
-    );
+    expectMeaningfulDifference(softCenter!.rmsRadiusMm, sharpCenter!.rmsRadiusMm, "ring should change bokeh blur size");
   });
 
-  it("applies the soft-focus ring to pupil aberration diagnostics", () => {
-    const L = buildMinoltaVarisoft();
+  it("applies the ring to pupil aberration diagnostics", () => {
+    const L = VARISOFT;
     const sharp = analysisState(L, 0, 0);
     const soft = analysisState(L, 0, 1);
 
@@ -257,17 +224,17 @@ describe("Minolta Varisoft 85mm f/2.8 focus model", () => {
     expectMeaningfulDifference(
       softPupils.maxAbsEpShiftMm,
       sharpPupils.maxAbsEpShiftMm,
-      "soft ring should change entrance-pupil aberration",
+      "ring should change entrance-pupil aberration",
     );
     expectMeaningfulDifference(
       softPupils.maxAbsXpShiftMm,
       sharpPupils.maxAbsXpShiftMm,
-      "soft ring should change exit-pupil aberration",
+      "ring should change exit-pupil aberration",
     );
   });
 
-  it("applies the soft-focus ring to LoCA", () => {
-    const L = buildMinoltaVarisoft();
+  it("applies the ring to longitudinal chromatic aberration", () => {
+    const L = VARISOFT;
     const sharpLoca = locaAt(L, 0);
     const softLoca = locaAt(L, 1);
     expect(sharpLoca).not.toBeNull();
@@ -275,7 +242,7 @@ describe("Minolta Varisoft 85mm f/2.8 focus model", () => {
     expectMeaningfulDifference(
       softLoca!.axialInterceptSpreadMm,
       sharpLoca!.axialInterceptSpreadMm,
-      "soft ring should change longitudinal CA",
+      "ring should change longitudinal CA",
     );
   });
 });

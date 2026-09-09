@@ -17,10 +17,6 @@ Removed proxy-derived nC/nF/ng/dPgF fields from the elements: the patent publish
 
 Normalized assignee metadata to the catalog spelling `Canon Inc.` where needed. Display names follow the data specification, including hyphenated ranges and parenthetical product-case camera names.
 
-### Validation
-
-`audit:image-circle` and `audit:surface` pass. The full-catalog rendering diagnostics cover hidden SD trims and cross-gap collisions. Static outlines from the production SVG path builder were visually compared with the patent. A five-zoom/three-focus render-diagnostic sweep found no material trims. Browser access was unavailable; no live UI verification is claimed. See the batch record for final repository gates.
-
 ## 2026-09-06 UTC — screenshot follow-up
 
 Rechecked Fig. 9 optical rims against the screenshot. Retained the published effective-diameter halves; no supported improvement survived the source/clearance comparison. Removed invented J-series cemented-pair diagram callouts, preserving the underlying cemented metadata. E3 now has an inferred UD/APD color tag, supported by its 1.49700/81.5 coordinate and Canon's one-UD production count, not an asserted OHARA production identity.

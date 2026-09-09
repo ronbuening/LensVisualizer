@@ -19,15 +19,3 @@ Patent: US 2012/0013996 A1, Numerical Example 1
 
 - Retained patent APD metadata and structured `dPgF` values on L2, L3, and L13.
 - No additional line-index values were present in the source table.
-
-### Phase 4 - Analysis sync
-
-- No analysis changes needed.
-
-### Verification
-
-- `npm run generate:glass-reports` - passed (7 files, 7 tests).
-- `npm run typecheck` - passed before and after metadata regeneration.
-- `npm run format:check` - passed.
-- `npm run lint` - passed.
-- `npm run test` - initially exposed stale generated route metadata; after `npm run generate:metadata`, passed (183 files, 2212 tests).

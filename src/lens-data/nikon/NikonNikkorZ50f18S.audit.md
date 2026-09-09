@@ -57,14 +57,6 @@ Patent: WO2019/220618 A1, Example 9
 - Updated `NikonNikkorZ50f18S.analysis.md` glass narrative and complete glass map for the corrected S-TIM25, S-TIM22, 946/180, 774/472, S-FPM2/FCD505, and S-FPL51/FCD1 classifications.
 - Removed unsupported S-FPL53/FCD100 and “Super ED” wording for L23.
 
-### Verification
-
-- `npm test -- catalogMismatchScan glassRelabelCandidatesScan` — passed; this lens no longer appears in either generated report.
-- `npm run typecheck` — passed.
-- `npm run format:check` — passed.
-- `npm run lint` — passed.
-- `npm run test` — passed (116 files, 1507 tests; expected error-boundary console traces emitted by tests).
-
 ## 2026-09-08 — First-hosted audit source preparation (lens 4, incomplete)
 
 Primary source inspected directly: local `patents/WO2019220618A1.pdf` (203-page scanned WIPO publication). Title page confirms Saburo Masugi and Tomoyuki Sashima, WO 2019/220618 A1 (without a JP jurisdiction prefix), filed 2018-05-18, published 2019-11-21. Example 9 prose is PDF p50, Table 9 spans pp51–53, Figure 17 is p154. Scratch renders under `/tmp/z50-*` are not committed evidence assets.
@@ -90,7 +82,6 @@ Primary source inspected directly: local `patents/WO2019220618A1.pdf` (203-page 
 - Figure 17 re-rendered at 600 dpi. The approximately 3487 px first-to-last vertex separation represents 79.230 mm, about 0.02272 mm/px. L21 optical front rim is ~10.9 mm (shoulder ~12.2 mm); L22 rims ~13.9 mm. Revised surfaces 14/15 from 13/13 to 11.5/12.3 mm and 16A/17A from 16/16 to 14.5/14.5 mm, retaining modest allowance above drawn optical rims. Targeted surface and image-circle probes pass (0 undersized). Other rim estimates remain within the existing modest ray-envelope allowances.
 - Updated midpoint/f16 live view shows the narrower focusing group without overlap. Motion chart confirms only G2 moves, maximum travel 7.91 mm; G1/G3 remain fixed. f/1.85 endpoint and f/16 maximum are readable.
 - Source limitation to resolve before final batch sign-off: ¶0061 on PDF pp19–20 refers to equation (A), but the equation itself is absent from the inspected PDF pages and Google Patents transcription. Existing κ=1→K=0 convention is retained; coefficients are visually verified. Find a family/source copy showing equation (A), or explicitly retain this as an unresolved source limitation rather than claim the equation was reverified.
-
 
 ### Batch follow-up
 

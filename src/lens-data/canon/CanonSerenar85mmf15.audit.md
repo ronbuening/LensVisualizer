@@ -27,13 +27,6 @@ Catalog version: local working tree, 2026-05-19
 
 - Updated the L2/L7 prose, L4 glass note, glass summary table, and source note for the public coefficient-backed matches.
 
-### Verification
-
-- `npm run generate:glass-reports` — passed; Serenar 85mm is absent from the current six-digit missing-Sellmeier, unresolved-glass, catalog-mismatch, and relabel-by-lens queues for the corrected rows.
-- `npm run typecheck` — passed.
-- `npm run format:check` — passed.
-- `npm run test` — passed (131 files, 1666 tests; expected error-boundary console output only).
-
 ## 2026-08-18 - Remaining Example 1 coefficient backfill
 
 - Visually rechecked the Example 1 table on rendered page 3 of `patents/US2645973.pdf`; it confirms L5 at

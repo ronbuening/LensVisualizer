@@ -914,6 +914,21 @@ Z(h) = (h²/R) / [1 + √(1 − (1+K)·(h/R)²)] + A4·h⁴ + A6·h⁶ + A8·h�
 - For all-spherical designs: `asph: {}`
 - **Conic limit:** When K > 0 (hyperboloid), the surface semi-diameter must satisfy sd < |R| / √(1+K). The validator enforces sd ≤ 0.98 × this limit.
 
+**Replacing an even-order refit with exact patent coefficients.** Odd-order support landed in July 2026; a file that
+predates it may still hold a least-squares even-order refit of an odd-term patent surface. To replace one:
+
+1. Transcribe the full coefficient table for the exact example — from the `*.analysis.md` if it preserved it, else from
+   the patent. Never backfill from a "leading coefficients" summary.
+2. Convert the conic as above (K = KA − 1). For a uniformly scaled prescription, rescale each term with
+   `Aₙ(scaled) = Aₙ(patent) / s^(n−1)` (see **Scaling** under Data Sourcing Checklist).
+3. Replace the refit `asph` block: keep A4–A14 (as `0` when unused), add the non-zero odd terms, omit zero odd terms.
+4. Update the data-file header note and remove any "renderer is even-order only" / refit statements from the analysis,
+   keeping the patent tables there as the canonical source.
+5. Recompute every rim departure the analysis quotes with `npm run audit:surface -- <file> --scan <label> <sd>`, record
+   the values in the analysis prose and the `*.audit.md` log, then run `npm run typecheck && npm run test` — the
+   catalog validation and render-diagnostics sweeps cover the new coefficients; do not add a per-lens test.
+6. Visually check the lens page: cross-section, wide-open rays, and the aspheric-compare overlay.
+
 ---
 
 ## Variable Air Spacings (`var`)

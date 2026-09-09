@@ -34,13 +34,3 @@ the surface-geometry and image-circle gates.
 
 The lens improves to 17/19 coefficient-backed material layers. The two remaining Abbe rows are the bonded resin
 layers.
-
-### Verification
-
-- `npm run audit:surface -- src/lens-data/pentax/PentaxDA1770mmf4ALSDM.data.ts` - passed.
-- `npm run audit:image-circle -- src/lens-data/pentax/PentaxDA1770mmf4ALSDM.data.ts` - passed.
-- `npm test -- dispersion.test.ts` - passed (49 tests).
-- `npm run generate:glass-reports` - passed (7 report tests).
-- `npm run typecheck && npm run format:check && npm run lint && npm run test` - passed (2450 tests; lint retained
-  three unrelated pre-existing warnings).
-- `npm run build` - passed; 963 routes prerendered.

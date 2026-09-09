@@ -27,9 +27,3 @@ Patent: JP 2017-161685 A, Example 1
 ### Phase 4 - Analysis sync
 
 - Updated the analysis file's element narratives and glass palette for E-FD2, S-LAH55V, S-FTM16, S-NSL36, and TAFD35.
-
-### Verification
-
-- `npm test -- glassRelabelByLensScan` passed; this lens no longer appears in the relabel queue.
-- `npm run typecheck` passed.
-- `npm run test` passed.

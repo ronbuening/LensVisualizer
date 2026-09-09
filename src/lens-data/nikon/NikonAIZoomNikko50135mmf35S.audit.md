@@ -26,14 +26,6 @@ Patent: US 4,497,547, Example 1
 - The patent gives `nd`/`vd` only. No ED/APD claim, line-index table, partial-dispersion table, or aspherical data was found.
 - No APD flags were added.
 
-### Phase 4 - Analysis sync
-
-- No analysis file changes were needed.
-
-### Verification
-
-- Pending full Nikon batch verification.
-
 ## 2026-07-30 - Patent 670576 catalog-equivalent recovery
 
 - Rechecked 3L1 against the patent row `nd = 1.67025`, `vd = 57.6`.

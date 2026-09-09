@@ -21,18 +21,9 @@ Patent: JP 2023-039817 A, Example 2
 - Confirmed the flagged glass rows against local `patents/JP2023039817A.pdf`, Table 6. Stored nd/vd values matched the patent rows, so only labels changed.
 - Non-flagged prescription fields were not fully rekeyed in this queue pass.
 
-### Phase 3 — Spectral / metadata enrichment
-
-- No catalog entries added. Patent-code labels preserve future upgrade paths for unsourced glasses.
-
 ### Phase 4 — Analysis sync
 
 - Updated the companion analysis file to remove unsupported exact-match claims for L32/L52/L53, L54/L55, L61, and L62.
-
-### Verification
-
-- `npm run generate:glass-reports` — passed; lens cleared from `catalog-mismatches.generated.md` and `glass-relabel-by-lens.generated.md`.
-- `npm run typecheck`, `npm run format:check`, `npm run lint`, and `npm run test` — passed.
 
 ## 2026-06-23 - Sony folder patent audit / APD + SD review
 
@@ -81,14 +72,6 @@ Patent: JP 2023-039817 A, Example 2
 
 - Updated the L41 narrative and glass table to document the source-confirmed d-line coordinate and the rejected
   reference-line coincidence.
-
-### Verification
-
-- `npm run generate:glass-reports` — passed (8 files / 10 tests); active source queue reduced to four elements
-  across three code families.
-- `npm test -- dispersion.test.ts lensDataTyping.test.ts validateLensData.test.ts buildLens.test.ts` — passed
-  (4 files / 237 tests).
-- `npm run typecheck`, `npm run format:check`, and `git diff --check` — passed.
 
 ## 2026-08-18 — Ohara L-BAL43 coefficient assignment
 

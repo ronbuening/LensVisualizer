@@ -8,4 +8,3 @@ Patent: US 2019/0265504 A1
 - Updated the 911/353 L5 row to `TAFD35 (HOYA)`.
 - Updated the 800/298 L7 and L19 rows to `S-NBH55 (OHARA)`.
 - The lens is now fully covered by trusted Sellmeier data.
-

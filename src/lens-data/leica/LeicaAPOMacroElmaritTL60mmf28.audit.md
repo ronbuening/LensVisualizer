@@ -27,15 +27,6 @@ Patent: JP 2016-090725 A, Example 9
 
 - Updated Example-selection prose, L12/L22/L23/L31 element notes, glass summary, asphere-substrate text, and source list.
 
-### Verification
-
-- `npm test -- dispersion` — passed.
-- `npm run typecheck` — passed.
-- `npm run generate:glass-reports` — passed; lens removed from the relabel-by-lens queue.
-- `npm run lint` — passed.
-- `npm run format:check` — passed.
-- `git diff --check` — passed.
-
 ## 2026-06-24 — Folder audit recheck
 
 - Rechecked local `patents/JP2016090725A.pdf` OCR for Example 9 against the current data file, including the surface table, asphere-bearing rows, and cover-glass exclusion already documented in the analysis.

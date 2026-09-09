@@ -14,14 +14,11 @@ Patent: WO 2022/097401 A1, expected source for the current prescription
 | L8 / S17 | 1.59319 / 67.90 | `S-FPM3 (OHARA)` | `J-PSKH1 (Hikari, patent nd/vd match)` | Same glass as L2. |
 | L9 / S19 | 1.95375 / 32.33 | `S-LAH79 (OHARA)` | `S-LAH98 (OHARA, patent nd/vd match)` | OHARA S-LAH98 clears the prior S-LAH79 mismatch. |
 
-- `npm run generate:glass-reports` passed; this lens no longer appears in the catalog-mismatch reports.
-
 ## 2026-06-04 — Sweep 2 manufacturer catalog source pass
 
 - Added HOYA NBFD25 from HOYA's first-party optical-glass PDF (`NBFD25`, code 855-252, nd=1.85451, vd=25.15, PgF=0.6103, formula-3 A0-A5 constants) to the runtime catalog.
 - Relabeled L12 and L32 from code-only `855252` annotations to `NBFD25 (HOYA, 855252)`.
 - The local patent PDF is still absent from `patents/`; this pass did not use it for geometry/table verification.
-- `npm test -- dispersion` and `npm run generate:glass-reports` passed; L12/L32 now use trusted Sellmeier data from the public manufacturer source.
 
 ## 2026-05-20 — Six-digit missing-Sellmeier code review
 
@@ -79,7 +76,6 @@ Patent: WO 2022/097401 A1, expected source for the current prescription
   (946180), while retaining the patent's unspecified supplier. HOYA E-FDS3 is 2.10420 / 17.02;
   FDS18 exactly matches 1.94595 / 17.98.
 - Synchronized the glass-identification table. No prescription geometry changed.
-
 
 ## 2026-09-08 — First-hosted audit, lens 17
 

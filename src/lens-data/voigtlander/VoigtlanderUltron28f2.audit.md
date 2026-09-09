@@ -23,8 +23,6 @@ Patent: JP2022-100641A
 | L4 / row 6 | 1.91082 / 35.25 | `S-LAH58 (OHARA)` | `TAFD35 (HOYA, patent nd/vd match)` | Same glass as L3. |
 | L5 / row 7 | 1.76182 / 26.61 | `E-FD15 (HOYA) / N-SF14 (Schott)` | `S-TIH14 (OHARA, patent nd/vd match)` | OHARA S-TIH14 clears the prior E-FD15 mismatch. |
 
-- `npm run generate:glass-reports` passed; this lens no longer appears in the catalog-mismatch reports.
-
 ## 2026-05-20 - Patent unavailable disposition
 
 - The requested local patent review could not be completed because the untracked `patents/` folder does not contain a JP2022-100641A PDF.

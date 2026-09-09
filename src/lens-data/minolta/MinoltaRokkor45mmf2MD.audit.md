@@ -19,4 +19,3 @@ Patent: US 4,277,149, Table 7
 
 - The patent gives no clear-aperture table.
 - Existing SDs remain inferred from the f/2 Gauss-type envelope and drawing proportions. The front positive group, stop region, and rear group apertures remain visually and optically plausible, so no SD edits were made.
-

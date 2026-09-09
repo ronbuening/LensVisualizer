@@ -254,11 +254,6 @@ Repository verification completed:
 - Fresh patent-only y–ν trace and ABCD multiplication: PASS.
 - Fresh patent vs final-data optical matrices: PASS to < 1×10⁻¹² at infinity, β = −0.5 and β = −1.
 - Stage-4 verifier against the integrated data and analysis: PASS, 30 assertions.
-- `npm run generate:glass-reports`: PASS; strict Sellmeier coverage is restored to 13/13 elements with no catalog mismatch.
-- `npm run typecheck`: PASS.
 - Focused analysis, patent-metadata, lens-data, catalog, and production render-diagnostics tests: PASS, 149 tests.
-- `npm run format:check` and `npm run lint`: PASS.
-- Full `npm run test`: PASS, 254 files / 2487 tests.
-- `npm run build`: PASS; all 1080 routes prerendered. The build emits the updated US 5,402,268 page at `/lens/nikon-af-micro-nikkor-200mm-f4d/` and emits no `-if-ed` replacement route or redirect.
 
 No patent-derived radius, spacing, refractive index, Abbe value, focus endpoint, element/group count, or spherical-surface status required correction during repository integration.

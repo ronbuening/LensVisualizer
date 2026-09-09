@@ -41,16 +41,6 @@ US 3,615,125 publishes infinity-focus zoom kinematics but no close-focus prescri
 constraint that distinguishes unit, front-group, internal, or floating focus. The production 1.8 m endpoint remains
 catalog metadata and close focus remains unmodeled, as disclosed in the data and analysis.
 
-### Verification
-
-- `npm run audit:surface -- src/lens-data/nikon/NikonAutoZoomNikkor80200mmf45.data.ts` — passed.
-- `npm test -- elementRenderDiagnostics.test.ts` — passed, including hidden-trim and cross-gap checks.
-- `npm run generate:glass-reports` — passed; coverage increased from 11/15 to 13/15 trusted and Sellmeier.
-- `npm run typecheck`, `npm run format:check`, and `npm run lint` — passed; lint reports three unrelated existing
-  warnings and no errors.
-- `npm run test` — passed, 207 files / 2440 tests.
-- `npm run build` — passed, including prerender and sitemap generation for 947 routes.
-
 ## 2026-07-29 — S-APL1 catalog backfill
 
 - Replaced L5's provisional vendor-unresolved `517696` wording with `S-APL1 (OHARA; 517696)`.

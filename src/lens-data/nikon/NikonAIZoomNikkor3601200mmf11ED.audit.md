@@ -23,7 +23,6 @@ Patent: US 3,743,384, Example I / Claim 4
 - Stored `nd`/`vd` values match Example I.
 - The repeated `486/815` low-dispersion material remains explicitly unmatched. The patent describes a special/quartzite-type material but does not publish C-, F-, or g-line indices or a modern catalog name.
 - Other unresolved historical pairs (`613/369`, `515/546`, `639/450`, `501/565`, `744/494`) remain code/family-level descriptions pending a coefficient-backed catalog source.
-- `npm run generate:glass-reports` passed with unresolved rows tracked as coverage opportunities.
 
 ## 2026-07-30 SUMITA KF3 coefficient recovery
 

@@ -28,12 +28,6 @@ Patent: US 6,445,511 B1, Embodiment 3 / Table 3
 
 - Updated the analysis file's element descriptions and glass identification table.
 
-### Verification
-
-- `npm test -- glassRelabelByLensScan` passed; this lens no longer appears in the relabel queue.
-- `npm run typecheck` passed.
-- `npm run test` passed.
-
 ## 2026-05-19 - Missing-Sellmeier queue follow-up
 
 ### Phase 1 - Glass corrections
@@ -56,14 +50,6 @@ Patent: US 6,445,511 B1, Embodiment 3 / Table 3
 ### Phase 4 - Analysis sync
 
 - Updated the L10 narrative and glass-identification table to identify OHARA S-TIH3.
-
-### Verification
-
-- `npm run generate:glass-reports` - passed.
-- `npm run typecheck` - passed.
-- `npm run format:check` - passed.
-- `npm run lint` - passed.
-- `npm run test` - passed, 131 test files / 1666 tests.
 
 ## 2026-06-24 - APD, high-index, and SD audit
 

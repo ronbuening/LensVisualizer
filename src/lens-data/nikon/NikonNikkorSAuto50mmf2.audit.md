@@ -36,13 +36,3 @@ needed for this lens.
 - A finite-conjugate paraxial solve changes only final BF: 37.562468604 mm at infinity to 42.591705543 mm at 0.6 m, an
   inferred extension of 5.029236939 mm.
 - The data and analysis explicitly label this state **inferred unit focus**.
-
-### Verification
-
-- `npm run audit:surface -- src/lens-data/nikon/NikonNikkorSAuto50mmf2.data.ts` — passed.
-- `npm test -- elementRenderDiagnostics.test.ts` — passed, including hidden-trim and cross-gap checks.
-- `npm run generate:glass-reports` — passed; coverage is 7/7 trusted and 7/7 Sellmeier.
-- `npm run typecheck`, `npm run format:check`, and `npm run lint` — passed; lint reports three unrelated existing
-  warnings and no errors.
-- `npm run test` — passed, 207 files / 2440 tests.
-- `npm run build` — passed, including prerender and sitemap generation for 947 routes.

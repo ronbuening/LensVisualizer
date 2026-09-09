@@ -17,8 +17,3 @@ No SD change was justified. A 600 dpi Figure 1 comparison gave a whole-lens figu
 ### Motion
 
 - Rechecked all three zoom stations and the constrained close-focus rows. Wide-to-tele order remains 28.699 / 34.999 / 43.874 mm; G2 and G4 move objectward, G1 moves slightly imageward, and G3 remains fixed to source rounding. Close focus moves G2a imageward by increasing d9 while decreasing d14 by the same amount.
-
-### Verification
-
-- `audit:image-circle` reported zero undersized surfaces.
-- The unchanged prescription passes the shared lens validator.

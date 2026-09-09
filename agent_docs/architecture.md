@@ -1,7 +1,8 @@
 # Architecture - LensVisualizer
 
 This file is the architecture index. Read only the focused document that matches the work you are doing, then follow
-links outward if the change crosses subsystem boundaries.
+links outward if the change crosses subsystem boundaries. Cross-cutting rules live in `CLAUDE.md` (Core Working Rules);
+the tagged doc index lives in `README.md`.
 
 ## Read This First
 
@@ -11,15 +12,15 @@ links outward if the change crosses subsystem boundaries.
   [`architecture/viewer-and-diagram.md`](architecture/viewer-and-diagram.md).
 - For reusable UI, controls, markdown rendering, analysis drawer tabs, charts, and display components, read
   [`architecture/ui-components.md`](architecture/ui-components.md).
-- For optical math, ray tracing, aberrations, vignetting, distortion, bokeh, validation, and diagram geometry, read
-  [`architecture/optics-engine.md`](architecture/optics-engine.md).
+- For optical math, ray tracing, aberrations, vignetting, distortion, bokeh, validation, diffractive surfaces, and
+  diagram geometry, read [`architecture/optics-engine.md`](architecture/optics-engine.md).
 - For camera/lens mount interface diagrams (mount data, the polar geometry/renderer, the `/mounts` pages, the maker
   mounts sidebar, and the SVG generator), read [`architecture/mount-diagrams.md`](architecture/mount-diagrams.md).
 - For reducer state, persisted preferences, URL sync, contexts, theme tokens, and shared utility modules, read
   [`architecture/state-and-utilities.md`](architecture/state-and-utilities.md).
 - For comparison mode, shared sliders, normalized scale, and compare-route synchronization, read
   [`architecture/comparison.md`](architecture/comparison.md).
-- For test layout, coverage expectations, and shared test helpers, read
+- For test layout, coverage expectations, shared test helpers, and the per-lens test retention policy, read
   [`architecture/testing.md`](architecture/testing.md).
 - For a high-level Mermaid data/control-flow diagram, read
   [`architecture/program-flow.md`](architecture/program-flow.md).
@@ -49,53 +50,54 @@ LensVisualizer is a React + TypeScript app with an SVG-first optical diagram and
   [`architecture/mount-diagrams.md`](architecture/mount-diagrams.md).
 - `scripts/` owns prerender, sitemap, metadata, lens-data organization, and SEO audit build helpers.
 
-## Cross-Cutting Rules
+## Project Map
 
-- Keep optics helpers pure and pass the runtime lens object `L` explicitly; do not introduce module-level optical state.
-- Exact surface tracing is the only trace path; do not reintroduce a trace-mode flag, `RayTraceOptions`, or
-  per-lens rollout state.
-- Keep fisheye/ultra-wide launch logic centralized in `src/optics/projection.ts` and `solveChiefRay`; avoid inline
-  `Math.tan(field)` launch math in analysis modules.
-- Keep mirror/folded optics on the generalized path model: `LensData.opticalPath` resolves hit order and image plane,
-  `SurfaceData.interaction` controls refract/reflect/block behavior, `innerSd` controls annular apertures, and ordinary
-  lenses must retain their no-`opticalPath` sequential defaults. Folded stop/chief-ray solves must use generalized
-  tracing and path-aware image-plane math rather than sequential `stopAt` shortcuts.
-- Keep folded-system complex analysis guarded until the specific path is mirror-safe. Axial cardinal overlays and
-  mirror-safe spherical/blur/pupil paths are adapted; the drawer guards coma, distortion, and vignetting, while
-  folded field curvature/astigmatism remains section-guarded inside the Aberrations tab until fixture-backed validation
-  says otherwise.
-- Keep analysis computations slider-state-aware. Do not move state-dependent analysis into `buildLens()`, which is build-time
-  and infinity/default-state oriented.
-- Keep perspective-control movement in the dedicated 2D movement layer (`src/optics/lensMovement.ts`) unless the analysis
-  itself is explicitly being upgraded for shifted/tilted optics. v1 analysis tabs remain centered-lens diagnostics.
-- Use shared chart helpers in `src/components/display/analysis/charts/` before adding bespoke SVG axes or tick math.
-- Use `ThemedMarkdown` for article and lens-description markdown so link handling, math, tables, and special images stay
-  consistent.
-- Add new analysis drawer tabs by updating `analysisTabs.ts`, adding tab content under
-  `src/components/display/analysis/`, and wiring it in `AnalysisDrawerContent.tsx`.
-- When adding route patterns, update the route manifest and metadata/prerender pipeline together.
-- When changing theme colors, update all four theme variants.
+Full directory tree; `__tests__/docDrift.test.ts` fails when a `src/` or `src/components/` directory is missing here.
+The generated `src/**/readme.md` files carry per-folder import graphs and file inventories.
 
-## Related Docs
+```text
+src/main.tsx              - React entry point
+src/router.tsx            - Browser router from src/routes/routeManifest.tsx
+src/entry-server.tsx      - SSR entry point for prerendering
+src/routes/               - Shared route manifest
+src/generated/            - Build-generated metadata and maker-prefix JSON (gitignored)
+src/pages/                - Route-level page components
+src/pages/lensIndex/      - Lens library filtering/results module
+src/components/           - React UI components and hooks
+  content/                - Article/archive/changelog cards, lists, and TOC
+  controls/               - Sliders, toggles, shared controls
+  diagram/                - SVG diagram rendering layers
+  display/                - Inspectors, charts, analysis tabs, overlays
+    analysis/             - Analysis drawer tabs, charts, and section components
+    overlays/             - Diagram/modal overlays such as bokeh and aspheric compare
+  errors/                 - Error boundaries and shared error display
+  homepage/               - Home page sections
+  hooks/                  - Viewer computation and interaction hooks
+  layout/                 - LensViewer, diagram panels, page chrome
+    lensDiagram/          - Per-panel diagram viewport, drawer, and control wiring
+    lensViewer/           - Viewer-level chrome, content layout, and header helpers
+  markdown/               - Shared markdown renderer
+  mount/                  - Mount interface diagram components (MountDiagram, panel)
+  relationshipMap/        - patent relationship map (radial layout engine + SVG renderer + picker)
+  search/                 - Catalog search box and results list
+src/comparison/           - Comparison mode feature module
+src/optics/               - Pure optical engine and analysis helpers
+  math/ trace/ field/     - Vector math, exact tracing, projection-aware field launch
+  prescription/ state/    - Lens normalization and prepared optical state
+  analysis/ aberration/   - State-aware analysis adapters and aberration helpers
+  mount/                  - Mount diagram geometry + deterministic SVG renderer
+src/types/                - Shared TypeScript types
+src/utils/                - State, URL sync, themes, catalog, SEO, metadata utilities
+src/lens-data/            - Auto-registered `*.data.ts` prescriptions, `*.analysis.md` notes, `*.audit.md` logs
+src/mounts/               - Mount diagram `*.mount.ts` specs, barrel, schema, and authoring guide
+src/content/              - Auto-registered markdown articles and static content
+src/benchmarks/           - Optics/render benchmark harness (npm run benchmark:optics-rendering)
+scripts/                  - Metadata, folder-readme, prerender, sitemap, SEO, and lens-data build helpers
+__tests__/                - Vitest unit/component/script tests
+agent_docs/               - Focused architecture, recipe, policy, queue, and generated-report docs
+```
 
-- [`adding_a_lens.md`](adding_a_lens.md) - lens data workflow and validation troubleshooting.
-- [`lens-mount-format-backfill.md`](lens-mount-format-backfill.md) - mount/format metadata backfill status.
-- [`architecture/mount-diagrams.md`](architecture/mount-diagrams.md) - mount interface diagram data, engine, pages, and generator.
-- [`glass-catalog-buildout.md`](glass-catalog-buildout.md) - glass catalog expansion and sourcing playbook.
-- [`glass-relabel-followup.md`](glass-relabel-followup.md) - per-lens glass mismatch relabel queue.
-- [`proprietary-glass-backfill.md`](proprietary-glass-backfill.md) - patent line-index backfill workflow.
-- [`generated/`](generated/) - generated glass and mirror fixture reports; regenerate glass reports with
-  `npm run generate:glass-reports` and hidden mirror fixture reports with `npm run generate:mirror-reports`.
-- [`adding_an_article.md`](adding_an_article.md) - content authoring, frontmatter, TOC, and series behavior.
-- [`workflow.md`](workflow.md) - checks, CI, deployment, and commit flow.
-- [`records/mirror-lens-tracing-and-authoring.md`](records/mirror-lens-tracing-and-authoring.md) - historical
-  mirror/folded implementation notes.
-- [`../FEATURE_ADDITION_PLAN.md`](../FEATURE_ADDITION_PLAN.md) - planned features, including the mirror/folded backlog (M-series).
-- [`architecture/program-flow.md`](architecture/program-flow.md) - high-level Mermaid program flow.
-- [`architecture/public-functions.md`](architecture/public-functions.md) - stable project-internal functions, types, and import boundaries.
-- [`code_conventions.md`](code_conventions.md) - TypeScript, naming, formatting, and architecture constraints.
-- [`commenting_guide.md`](commenting_guide.md) - project commenting standards.
-- [`gotchas.md`](gotchas.md) - non-obvious constraints and failure modes.
+## Historical Records
 
-Files under [`records/`](records/) are historical branch/task snapshots. Use them for context archaeology, not as the
-current source of architecture or workflow truth.
+- [`records/mirror-lens-tracing-and-authoring.md`](records/mirror-lens-tracing-and-authoring.md) - mirror/folded
+  implementation notes from the original rollout; `architecture/optics-engine.md` is the current source of truth.

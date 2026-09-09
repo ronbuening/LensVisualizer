@@ -7,21 +7,18 @@ All comparison-mode files live in `src/comparison/`, a peer module alongside `sr
 
 ## Modules
 
+The full inventory is in `src/comparison/readme.md`; these are the modules with cross-module contracts.
+
 | Module | Purpose |
 | --- | --- |
 | `ComparisonContent.tsx` | Full comparison-mode content area. Wires `ComparisonLayout` and `SharedSlidersBar`; surfaces errors. |
 | `ComparisonLayout.tsx` | Side-by-side desktop or stacked mobile comparison panels. Passes prebuilt runtime lenses into each panel. |
 | `SharedSlidersBar.tsx` | Shared focus/aperture/zoom and perspective-movement controls for comparison mode, including independent shift/tilt reset actions. |
-| `SharedSliderSection.tsx` | Shared slider section UI. |
-| `SharedFStopQuickSelect.tsx` | F-stop quick-select UI for shared aperture controls. |
 | `useComparisonOrchestration.ts` | LensViewer integration hook: comparison mode, sticky sliders, enter/exit, and default-aperture effect. |
 | `useComparisonMode.ts` | Runtime lens building, per-lens slider mapping, normalized scale ratios, and header-height alignment. |
-| `useComparisonDisplayValues.ts` | Display values derived from shared comparison state. |
 | `useStickySliders.ts` | Sticky shared-slider state machine. |
 | `comparisonSliders.ts` | Pure mapping between shared slider positions and per-lens focus/aperture/zoom values. |
-| `comparisonReducer.ts` | Comparison sub-reducer. |
 | `comparisonURLSync.ts` | Compare pathname building and compare-route SEO metadata. |
-| `comparisonTypes.ts` | Shared slider and comparison action types. |
 
 ## Runtime Lens Reuse
 
@@ -44,12 +41,13 @@ in comparison orchestration and passed into diagram panels as explicit per-panel
 
 ## URL Sync
 
-Compare routes use `/compare/:slugA/:slugB`; lens identity does not move into query params. Shared sliders use the
-stable `focus`, `aperture`, `zoom`, `shift`, and `tilt` params. Shared overlay/view state uses the v1 params from
-`lensViewUrlState.ts`: `gm`, `lca`, `ptz`, `ad`, and `tab` apply to both panes, while selected elements are
-pane-specific via `a_el` and `b_el`. URL helpers live in `comparisonURLSync.ts`,
-`src/utils/state/parseComparisonParams.ts`, and `src/utils/state/lensViewUrlState.ts`. All URL writes flow through one
-100 ms-debounced callback in `src/utils/state/useURLSync.ts`.
+Compare routes use `/compare/:slugA/:slugB`; lens identity never moves into query params. Shared sliders use the stable
+`focus`, `aperture`, `zoom`, `shift`, and `tilt` params, and shared overlay/view state uses the v1 params from
+`src/utils/state/lensViewUrlState.ts`: `gm`, `chr`, `ptz`, `mv`, `ad`, and `tab` apply to both panes, while selected elements
+are pane-specific via `a_el` and `b_el`. Path building and compare-route SEO metadata live in `comparisonURLSync.ts`,
+legacy query URLs parse through `src/utils/state/parseComparisonParams.ts`, and all URL writes flow through the one
+debounced callback in `src/utils/state/useURLSync.ts`. To add a shareable field, including a pane-specific `a_`/`b_`
+variant, follow `agent_docs/adding_url_state.md`.
 
 Compare identity may be a hidden member of a visible lens's `opticalConfiguration` group. The selector allow-list is
 the visible catalog plus those group members; unrelated hidden debug/reference fixtures remain unavailable. This makes

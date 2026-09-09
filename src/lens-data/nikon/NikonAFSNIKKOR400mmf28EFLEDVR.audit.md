@@ -15,9 +15,3 @@ Patent: JP 2015-215559 A, Example 1, Fig. 1 (PDF page 45)
 - Added the official `2 FLUORITE + 2 ED` display specification. L11/L12 are the source-and-production-correlated fluorite elements; L15/L31 are the two inferential ED positions in this embodiment.
 - Restored the source group labels G2 and G3b; focus and VR roles remain in group metadata rather than crowding the diagram.
 - Confirmed published G2 travel is 15.400 mm imageward toward near focus. The source's +0.024 mm Bf endpoint change remains preserved and documented. This prime lens has no zoom travel.
-
-### Verification
-
-- Per-lens image-circle audit: passed with 0 undersized surfaces.
-- Per-lens surface validator and regenerated glass-report suite: passed.
-- `npm run typecheck`, `npm run format:check`, `npm run lint`, `npm run test` (2,493 tests), and `npm run build` (1,112 prerendered routes): passed.

@@ -8,7 +8,6 @@ Patent: US 2023/0213745 A1, Example 4 (Nakada / Canon)
 
 - Added HOYA NBFD29 from HOYA's first-party optical-glass PDF (`NBFD29`, code 770-297, nd=1.77047, vd=29.74, PgF=0.5951, formula-3 A0-A5 constants) to the runtime catalog.
 - Relabeled L4 / S6 and L6 / S9 from code-only `770297` annotations to `NBFD29 (HOYA, 770297)`.
-- `npm test -- dispersion` and `npm run generate:glass-reports` passed; these rows now use trusted Sellmeier data.
 
 ---
 
@@ -113,11 +112,6 @@ Updated `CanonRF135f18.analysis.md` to match Phase 1 glass relabels:
 - §12 design summary: same change.
 
 No APO language added or removed — no dPgF or line-index data available from this patent.
-
-### Verification
-
-- `npm run typecheck` — passed (0 errors). ✓
-- `npm run test` — 116 test files, 1504 tests, all passed. ✓
 
 ### Outstanding follow-ups
 

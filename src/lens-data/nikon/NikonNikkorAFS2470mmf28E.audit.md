@@ -42,14 +42,6 @@ Catalog version: 952b877, local working tree
 - Replaced the unsupported S-FPL53/Super-ED wording with S-FPL51/FCD1-class ED wording.
 - Removed unsupported APD/proprietary-catalog implications for code-labeled glasses where the patent gives only nd/vd.
 
-### Verification
-
-- `npm test -- catalogMismatchScan glassRelabelCandidatesScan` - passed; NikonNikkorAFS2470mmf28E no longer appears in either generated mismatch report.
-- `npm run typecheck` - passed.
-- `npm run format:check` - passed.
-- `npm run lint` - passed.
-- `npm run test` - passed (120 files, 1566 tests; expected error-boundary console errors emitted by tests).
-
 ## 2026-05-19 — Six-digit glass-code backfill review
 
 Reviewed `patents/US20200142168A1.pdf`, Example 1 / Table 1. L11 / surface 1 remains the only reviewed missing-Sellmeier row for this pass: nd=1.74389, νd=49.50, code `744495`.

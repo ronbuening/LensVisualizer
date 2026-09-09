@@ -30,4 +30,3 @@ Patent: US 4,303,314, Embodiment 3 / Claim 4
 
 - L1/L2 intentionally remain Abbe-only unresolved `620586` entries until a coefficient-backed glass source is added.
 - L4 uses a code-based dense-flint label with line-index backfill rather than claiming a verified Nikon/SCHOTT procurement source.
-- `npm run generate:glass-reports` passed with these entries recorded as unresolved code coverage, not catalog mismatches.

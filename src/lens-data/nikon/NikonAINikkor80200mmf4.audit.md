@@ -40,19 +40,6 @@ The visible display name was corrected from `NIKON AI ZOOM-NIKKOR 80-200mm f/4 S
 - Removed the erroneous `S` suffix from the visible lens name.
 - Updated the L42 narrative, glass table, coverage disclosure, FIG. 3 SD notes, and catalog source.
 
-### Verification
-
-- `npm run audit:surface -- ./src/lens-data/nikon/NikonAINikkor80200mmf4.data.ts` — passed.
-- `npm run audit:image-circle -- ./src/lens-data/nikon/NikonAINikkor80200mmf4.data.ts` — 0 undersized.
-- `npm run audit:patent-figure -- ... US4452513.pdf 3 ... --rot90 --dpi=300` — rerun after the SD correction.
-- `npm test -- dispersion.test.ts` — passed (47 tests).
-- `npm run generate:glass-reports` — passed (7 report scans).
-- `npm run typecheck` — passed.
-- `npm run format:check` — passed.
-- `npm run lint` — passed with 3 pre-existing warnings.
-- `npm run test` — passed (207 files, 2440 tests).
-- `npm run build` — passed (942 routes prerendered).
-
 ## 2026-07-30 - Patent 670576 catalog-equivalent recovery
 
 - Rechecked L41 against the patent row `nd = 1.67025`, `vd = 57.6`.

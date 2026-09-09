@@ -1,7 +1,7 @@
 # Viewer And Diagram Architecture
 
 Read this for `LensViewer`, `LensDiagramPanel`, diagram composition, slider plumbing, zoom/pan, and diagram-level error
-handling.
+handling. Shared controls, analysis tabs, and overlays are covered by [`ui-components.md`](ui-components.md).
 
 ## LensViewer Orchestration
 
@@ -55,19 +55,16 @@ Key responsibilities:
 
 ## Computation Hooks
 
-| Hook | Purpose |
+Hooks live in `src/components/hooks/`. The ones with non-obvious contracts:
+
+| Hook | Behavior |
 | --- | --- |
 | `useLensComputation.ts` | Lens building/reuse, camera-anchored layout, rigid lens pose, element shapes, aperture, current-state field geometry, and the shared fixed-sensor `PerspectiveTraceContext`. It imports stable optics modules directly; there is no old-vs-new selector. Stabilizes `zPos` by element-wise comparison. |
 | `useRayTracing.ts` | Orchestrates on-axis, off-axis, and chromatic ray hooks, applies ray density, and reports the first ray error. With active PC movement, its children trace through the physically posed lens and project the exiting rays onto the fixed sensor. Folded systems receive generalized trace results terminating on `L.imagePlane`; missed surfaces stop tracing while preserving preceding display hits. |
-| `useOnAxisRays.ts` | Computes density-derived on-axis ray fan segments, solving through the moved stop when PC movement is active and using obstruction-aware sampling for folded mirror systems. |
-| `useOffAxisRays.ts` | Computes density-derived visible off-axis rays using camera-space scene directions, state-aware field geometry, and folded image-plane termination where applicable. |
-| `offAxisRayUtils.ts` | Shared off-axis tracing geometry and optional edge-projection endpoint logic for monochrome and chromatic fans. |
-| `useChromaticRays.ts` | Computes density-derived axial and off-axis chromatic R/G/B tracing plus axial LCA/TCA spread. Active PC movement solves and traces each channel through the moved stop rather than reusing a centered or green chief ray. |
-| `useFlashOverlay.ts` | Sticky-slider flash animation state. |
-| `useSideLayoutDetection.ts` | ResizeObserver overflow detection with hysteresis. |
-| `useDispatchAdapters.ts` | Stable named dispatch callback adapters for children. |
-| `useOverlayState.ts` | Aspheric-compare modal state with lens-key reset (`asphCompareElementId`, `openAsphCompare(eid)`, `closeAsphCompare`). Abbe/glass-map, LCA, Petzval, bokeh, and analysis-drawer state are reducer-backed so they can be encoded in shareable URLs. |
-| `useHeaderHeight.ts` | Header ResizeObserver height tracking for multi-panel alignment. |
+| `useOnAxisRays.ts` | Density-derived on-axis ray fan segments, solving through the moved stop when PC movement is active and using obstruction-aware sampling for folded mirror systems. |
+| `useOffAxisRays.ts` / `offAxisRayUtils.ts` | Density-derived visible off-axis rays using camera-space scene directions, state-aware field geometry, and folded image-plane termination; the utils share tracing geometry and optional edge-projection endpoints with the chromatic fans. |
+| `useChromaticRays.ts` | Density-derived axial and off-axis chromatic R/G/B tracing plus axial LoCA and off-axis fan spread. Active PC movement solves and traces each channel through the moved stop rather than reusing a centered or green chief ray. |
+| `useOverlayState.ts` | Aspheric-compare modal state with lens-key reset (`asphCompareElementId`, `openAsphCompare(eid)`, `closeAsphCompare`). Abbe/glass-map, chromatic, Petzval, bokeh, and analysis-drawer state are reducer-backed so they can be encoded in shareable URLs. |
 | `useViewBoxZoom.ts` | SVG viewBox zoom/pan with wheel, drag, pinch, and keyboard support. |
 
 ## Diagram Layout Components
@@ -76,32 +73,27 @@ Key responsibilities:
 | --- | --- |
 | `LensDiagramLoadedState.tsx` | Loaded panel composition after build/layout succeeds. |
 | `LensDiagramErrorState.tsx` | Build/shape/ray error presentation. |
-| `DiagramViewport.tsx` | SVG viewport wrapper with LCA/Petzval/group-movement overlay gating, zoom/pan toggle, and keyboard shortcut handling. |
+| `DiagramViewport.tsx` | SVG viewport wrapper with chromatic/Petzval/group-movement overlay gating, zoom/pan toggle, and keyboard shortcut handling. |
 | `AnalysisDrawerContent.tsx` | Prepares/defer-freezes slider-derived analysis inputs and the perspective trace context, owns global notices, and delegates tab rendering through `analysisTabRenderers.tsx`. Active movement routes ray-based sections to fixed-sensor adapters, labels intrinsic-only results, and suppresses any unsupported section instead of showing centered-lens output. Folded systems likewise gate tabs that still assume sequential front-to-rear paraxial math. |
-| `analysisTabRenderers.tsx` | Maps analysis tab ids to concrete tab components and passes the prepared optical state plus shared inputs. |
-| `DiagramControlPanel.tsx` | Sliders, inspector, legend, and analysis launch button. |
-| `analysisTabs.ts` | Typed analysis tab metadata shared by trigger and drawer. |
 
 ## SVG Diagram Components
+
+Layers live in `src/components/diagram/`.
 
 | Module | Purpose |
 | --- | --- |
 | `DiagramSVG.tsx` | Top-level SVG renderer. Keeps the camera grid, camera axis, and sensor fixed while rendering a distinct moved-lens axis; accepts viewBox override and zoom handlers and is wrapped in `React.memo`. |
-| `DiagramDefs.tsx` | Shared SVG defs, gradients, filters, and markers. |
 | `DiagramGridAxisLayer.tsx` | Camera-fixed grid and horizontal camera-axis reference. |
 | `DiagramElementLayer.tsx` | Lens element paths, aspheric overlays, and surface accents. Annular elements use even-odd fill, tilted flat mirrors render from `interaction.normal`, and second-surface mirror coatings render as dashed substrate accents. |
 | `DiagramRayLayers.tsx` | On-axis, off-axis, and chromatic ray layers. When chromatic mode is active, it hides monochrome layers and lets ON-AXIS/OFF-AXIS gate the chromatic axial/off-axis groups. Folded ray polylines follow the generalized tracer rather than surface-list order. |
-| `RayPolylines.tsx` | Consolidated ray segment polyline rendering. Ray segment compilation displays clipped ghost rays only from the last solid point to the first clipped point, keeping zoomed SVG bounds finite. |
+| `RayPolylines.tsx` | Consolidated ray segment polyline rendering. Clipped ghost rays display only from the last solid point to the first clipped point, keeping zoomed SVG bounds finite. |
 | `DiagramOverlayLayer.tsx` | Composes fixed-camera and lens-local overlays. The stop, pupils, element annotations, cardinal markers/dimensions, and folded hit labels follow the rigid lens pose; the sensor/image-plane overlay does not. |
 | `ImagePlaneOverlay.tsx` | Camera-fixed sensor/image-plane line and label, including explicit folded-system planes that may be in front of, behind, or above the axial layout. It never receives the lens movement transform. |
-| `ApertureStop.tsx` | Aperture stop blades and STO label. |
 | `CardinalElementsOverlay.tsx` | Feature-flagged intrinsic F/F′, H/H′, N/N′ and axial span overlay, rigidly posed with the lens for display. |
-| `ElementAnnotations.tsx` | Element numbers, Abbe badges, group/doublet labels. |
-| `LCAInsetWidget.tsx` | Magnified LCA inset with fixed-reference scale. |
-| `LCAOverlayContent.tsx` | Enlarged LCA overlay content. |
-| `PetzvalOverlayContent.tsx` | Enlarged Petzval overlay content. |
-| `PetzvalSumBadge.tsx` | Diagram badge for Petzval sum and field radius. |
-| `PanelOverlay.tsx` | Panel-scoped absolute overlay for diagram-level measure overlays, including LCA, Petzval, and lens-group movement. |
+| `LocaInsetWidget.tsx` | Magnified longitudinal-chromatic (LoCA) inset on a fixed reference scale, so worse-corrected lenses show wider bars. |
+| `ChromaticFanSpreadWidget.tsx` | Magnified inset of the displayed off-axis chromatic ray-fan spread relative to the G/d-line reference, sharing the LoCA inset's visual language. |
+| `ChromaticOverlayContent.tsx` / `PetzvalOverlayContent.tsx` | Enlarged chromatic (axial color plus off-axis fan spread) and Petzval overlay content rendered inside `PanelOverlay`. |
+| `PanelOverlay.tsx` (in `layout/`) | Panel-scoped absolute overlay for diagram-level measure overlays: chromatic, Petzval, and lens-group movement. |
 
 ## Perspective-Control Frame Boundary
 
@@ -130,9 +122,5 @@ key, browser user agent, and component stack when available.
 ## Zoom/Pan Mode
 
 `useViewBoxZoom` manages SVG viewBox state for infinite-resolution zoom and pan. `DiagramViewport` activates it via a
-toggle button, hides unrelated controls, and shows persistent Reset/Cancel buttons. Keyboard shortcuts:
-
-- `+` / `-` zoom.
-- Arrow keys pan.
-- `Escape` cancels zoom/pan.
-- `0` resets viewBox.
+toggle button, hides unrelated controls, and shows persistent Reset/Cancel buttons. Keyboard shortcuts: `+` / `-` zoom,
+arrow keys pan, `Escape` cancels zoom/pan, `0` resets the viewBox.

@@ -22,11 +22,3 @@ coordinates remain class-level rather than asserting a historical production sup
 - Normalized G1-G4 captions with signed power and functional roles.
 - Verified 200-to-400 mm zoom travel: G2 moves 60.631 mm imageward and G3 moves 7.489 mm imageward while G4 remains
   fixed. At 200 mm, close focus moves G1 22.538873 mm objectward while G2-G4 remain fixed.
-
-### Verification
-
-- Surface-domain and image-circle audits passed; the 600 dpi patent-figure comparison completed and the retained rims
-  remain the closest geometry-safe proportions.
-- Generated glass-report suite passed; compatible Sellmeier coverage is 15/15.
-- Focused metadata and movement regression tests passed.
-- Full repository gates and production build passed.

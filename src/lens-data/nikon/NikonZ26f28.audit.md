@@ -11,8 +11,6 @@ Patent: WO 2023/190222 A1
 |---|---|---|---|---|
 | L2 / row 4 | 1.59270 / 35.3 | `S-TIM2 (OHARA)` | `S-FTM16 (OHARA, patent nd/vd match)` | OHARA S-FTM16 clears the prior S-TIM2 mismatch. |
 
-- `npm run generate:glass-reports` passed; this lens no longer appears in the catalog-mismatch reports.
-
 ## 2026-05-20 — Patent unavailable disposition
 
 - The requested local patent review could not be completed because the untracked `patents/` folder does not contain `WO 2023/190222 A1`.

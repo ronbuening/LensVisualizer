@@ -39,15 +39,10 @@ Catalog version: bb70259
 - Corrected the close-focus note: the patent lacks close-focus spacing tables, but the data file estimates D27/D29 close-focus travel from Canon's 0.45 m MFD rather than coding all variable gaps as identical zoom-only pairs.
 - Updated the glass summary table and removed the outdated claim that all 12 glass families were exact named catalog matches.
 
-### Verification
+### Report status
 
-- `npm test -- catalogMismatchScan glassRelabelCandidatesScan` — passed after edits.
 - Generated mismatch reports: this lens no longer appears in `catalog-mismatches.generated.md` or `glass-relabel-candidates.generated.md`.
 - `unresolved-glass.generated.md` still lists L8 (`911353`) and L17 (`764491`) as expected code-based fallbacks.
-- `npm run typecheck` — passed.
-- `npm run format:check` — passed.
-- `npm run lint` — passed.
-- `npm run test` — passed (120 files, 1566 tests; expected error-boundary stack traces printed during the run).
 
 ## 2026-08-07 — L-LAH91 catalog recovery
 

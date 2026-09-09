@@ -47,11 +47,6 @@ Patent: JP 2025-052870 A, Example 1
 
 - Updated the companion analysis names for L13, L14, L15, L19, L21, and L43.
 
-### Verification
-
-- `npm test -- dispersion`
-- `npm test -- glassRelabelByLensScan`
-
 ## 2026-06-04 - Sweep 3 patent dPgF backfill
 
 Local patent source: `patents/JP2025052870A.pdf` (untracked local file).

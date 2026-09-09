@@ -23,7 +23,6 @@ Patent: US 2,896,506, Claim 3
 - Stored `nd`/`vd` values match Claim 3.
 - Current Nikon J-series matches were retained for L1, L4, L5, L6, and L7 where the class assignment is defensible.
 - L2 (`662/577`) and L3 (`621/380`) remain intentionally unmatched vintage glasses because no exact coefficient-backed current catalog match was verified.
-- `npm run generate:glass-reports` passed with the unresolved L2/L3 rows tracked in coverage reports.
 
 ## 2026-08-21 — HOYA F9 legacy-curve recovery
 

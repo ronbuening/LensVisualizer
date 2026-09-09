@@ -15,10 +15,6 @@ Strict catalog coverage: 16/16 before, 16/16 after. All patent nd/vd coordinates
 
 Normalized assignee metadata to the catalog spelling `Canon Inc.` where needed. Display names follow the data specification, including hyphenated ranges and parenthetical product-case camera names.
 
-### Validation
-
-`audit:image-circle` and `audit:surface` pass. The full-catalog rendering diagnostics cover hidden SD trims and cross-gap collisions. Static outlines from the production SVG path builder were visually compared with the patent. A five-zoom/three-focus render-diagnostic sweep found no material trims. Browser access was unavailable; no live UI verification is claimed. See the batch record for final repository gates.
-
 ## 2026-09-06 UTC — screenshot follow-up
 
 Rechecked Fig. 13 optical rims, preserving the published effective-diameter halves. Replaced artificial C-series callouts with the source L5B / IS subgroup label and shortened the parent L5 label. E2 now carries an inferred UD/APD color tag supported by the 1.49700/81.5 coordinate and Canon's one-UD production count; no supplier identity is asserted.

@@ -10,47 +10,14 @@ validation, and diagram geometry.
 
 `src/optics/` is the authoritative optics engine. Stable app and test imports should use the public files in
 `src/optics/*` where practical, while engine-native work can import focused submodules such as `src/optics/trace/`,
-`src/optics/field/`, and `src/optics/state/`. The Stage 05 rollback/parity safe window is closed: old engine files,
-parity-only tests, and the old-vs-new benchmark harness have been removed.
+`src/optics/field/`, and `src/optics/state/`. Per-module purposes live in `src/optics/readme.md` and each file's header
+JSDoc; this document covers the conventions that span modules.
 
 Pure optics modules have no React dependencies. Helpers accept the runtime lens object `L` or a
 `PreparedOpticalState` plus slider-derived state explicitly. Do not introduce hidden module-level optical state.
 
 State-dependent analysis must remain outside `buildLens()`. `buildLens()` constructs build-time/runtime constants from
 lens data; analysis tabs use current focus, zoom, and aperture state.
-
-## Core Modules
-
-| Module | Purpose |
-| --- | --- |
-| `src/optics/prescription/` | Lens-data normalization, runtime-lens conversion, labels, variables, aspheres, interactions, groups, and dispersion descriptors. |
-| `src/optics/state/` | `PreparedOpticalState` compilation and caches for current focus/zoom/aberration state. Caches must include every optical input that changes results. |
-| `src/optics/math/` | Vector math, paraxial stepping, surface profiles, diffractive phase-polynomial evaluation, and surface intersection routines. Engine-native failures use typed statuses. |
-| `src/optics/trace/` | Sequential and generalized/folded exact tracing, aperture checks, stop tracing, runtime result adapters, and folded diagnostics. |
-| `src/optics/field/` | Projection-aware field launch, chief-ray solving, entrance-pupil state, field/image-height inversion, and chief-ray diagnostics. |
-| `src/optics/first-order/` | System matrix, cardinal elements, focus breathing, effective f-number, and first-order pupil helpers. |
-| `src/optics/chromatic/` | Wavelength/index resolution, chromatic tracing, dispersion adapters, and quality summaries. |
-| `src/optics/diagram/` | SVG coordinate transforms, element shape/render diagnostics, aspheric overlay paths, second-surface mirror coating accents, and semantic diffractive-phase accents. |
-| `src/optics/analysis/` | Analysis facades and state-aware wrappers for summary metrics, aberration, distortion, vignetting, pupil, bokeh, group movement, and LCA display helpers. |
-| `src/optics/perspective/` | Fixed-camera rigid pose, exact moved-lens tracing, moved-stop chief solving, scene-/sensor-locked field sampling, diagram adapters, and movement-aware analysis primitives. |
-| `src/optics/buildLens.ts`, `src/optics/optics.ts`, focused `src/optics/*.ts` public modules | Stable import paths for app code and tests over the engine implementation. |
-| `lensMovement.ts` | Perspective-control capability clamping and 2D display adapters over the shared rigid `PerspectivePose`. |
-| `groupMovement.ts` | Pure inferred lens-group axial movement profiles for focus, zoom, and combined overlay views. Uses fixed-image-plane anchoring and group-center positions relative to the focus plane. |
-| `validateLensData.ts` | Runtime lens-data validation. |
-| `projection.ts` | Projection model (rectilinear, fisheye-equidistant, fisheye-equisolid), forward/inverse maps, distortion residual reference, the `isFisheyeProjection` type guard for the recurring kind-fork, `projectionLaunchSlopeForField` (1D meridional `uField` from a field angle, with the 89° out-of-domain guard `MAX_FIELD_LAUNCH_DEG`), and its 2D companion `projectionLaunchVectorForFieldAngles` (azimuthal `(θ_x, θ_y)` → slopes + ideal image point). Also exposes the `LaunchSurface = "object-plane" \| "bounding-sphere"` discriminator, `launchSurfaceForFieldDeg(fieldDeg, projection)` selector, `ABSOLUTE_HALF_FIELD_CEILING`, `TRACING_SAFETY_FACTOR`, and `boundingSphereLaunchVector(epZ, θ_x, θ_y, R)` geometric helper for past-cap fisheye fields. |
-| `chiefRayDiagnostics.ts` | Structured counter for chief-ray solve outcomes. `recordChiefRayStatus(lensKey, status)` is wired into `solveChiefRay`; `getChiefRayDiagnostics()` returns a `Map<lensKey, { converged, paraxial-fallback, bracket-failed, out-of-domain }>` snapshot for audit scripts. Dev-only `console.warn` for fallbacks is preserved. |
-| `raySampling.ts` | Viewport ray-density sampling for normal/dense/diagnostic ray fans, including obstruction-aware sampling for folded annular systems, plus `isHeavyLensForRayWork(L)` — the shared heuristic for heavy-lens density downgrades (fisheye OR `N ≥ 32` OR `maxSD ≥ 50 mm` OR `halfField ≥ 40°`). |
-| `stopObstruction.ts` | Shared stop-obstruction inference for annular stop display and ray sampling. Prefers authored `STO.innerSd`, then folded central blockers and annular mirror holes, while ignoring ring blockers whose center remains clear. |
-| `chromaticRayFanScaling.ts` | Fixed-reference chromatic ray-fan and LOCA bar offset scaling. |
-| `analysisJobs.ts` | Runtime and prepared-state analysis job facades. Currently synchronous; prepared for module-worker migration. |
-| `cardinalElements.ts` | State-aware first-order/cardinal element calculations for F/F′, H/H′, N/N′ and axial spans. |
-| `distortionAnalysis.ts` | Rectilinear distortion curve and traced 2D field grid. |
-| `vignetteAnalysis.ts` | Vignetting / relative illumination curve. |
-| `pupilAberration.ts` | Entrance and exit pupil aberration profiles. |
-| `asphericComparison.ts` | Aspheric surface deviation: best-fit sphere solver, departure profiles, peak/RMS metrics, and click-surface routing. |
-| `aberrationAnalysis.ts` | Public barrel for decomposed aberration modules. |
-| `aberration/` | Spherical aberration, coma, field curvature, bokeh, off-axis, shared sampling/types. |
-| `internal/` | Shared surface math, multi-surface tracing, and zoom/state derivation. |
 
 ## buildLens.ts
 
@@ -89,61 +56,34 @@ value so rendered ray bundles stay safely within what real surfaces can carry.
 
 `paraxialTrace()` is exported for low-level first-order tracing tests.
 
-### Diffractive Phase Surfaces
-
-An optional `SurfaceData.diffractive` field represents a rotationally symmetric optical-path polynomial for Nikon PF,
-Canon DO, and equivalent kinoform interfaces. The public authoring contract is documented in
-`src/lens-data/LENS_DATA_SPEC.md`; `src/optics/math/diffractivePhase.ts` owns compilation and the shared physical
-convention.
-
-- `W(h) = Σ Cp h^p` is optical path in millimeters, not geometric sag. Phase data never changes intersections,
-  surface normals, lens outlines, or edge-thickness validation.
-- Paraxial construction, Petzval, sequential exact tracing, generalized/folded tracing, and the temporary internal
-  compatibility tracer all use the same phase kernel. A phase interface remains active even when its two media have
-  the same refractive index.
-- Monochrome construction and tracing use the d line. Chromatic adapters pass the selected channel wavelength, so the
-  phase contribution scales by `diffractionOrder × wavelength / referenceWavelengthNm` in addition to ordinary glass
-  dispersion.
-- The exact interaction applies the tangent-plane projection of the authored global radial derivative through
-  generalized Snell momentum. A non-propagating authored order returns the typed
-  `nonPropagatingDiffractionOrder` / `non-propagating-diffraction-order` failure.
-- Normal surfaces retain the cheap `diffractive === null` fast path. Compiled sparse terms are frozen once during
-  normalization and evaluated without per-hit arrays or closures.
-
-The geometric-ray feature models only the authored diffraction order. It does not simulate blaze efficiency,
-multi-order energy, interference, PSF/MTF, groove microstructure, scatter, or characteristic PF flare.
-
 ## optics.ts
 
 `src/optics/optics.ts` is the stable barrel for commonly consumed pure optics helpers. Continue importing from this
 stable path in app code unless working inside the engine itself. Import from deeper `src/optics/**` engine modules only
 for engine-native work or focused tests that need prepared-state APIs.
 
-Major public helpers:
+It groups sag/layout helpers (`sag()`, `renderSag()`, `sagSlope()`, `doLayout()`, `gapTrimHeight()`, `thick()`), the
+exact trace adapters (`traceRay()`, `traceSkewRay()`, `traceToImage()`, `traceRayChromatic()`, `traceParaxialRay()`),
+zoom interpolation (`eflAtZoom()`, `epAtZoom()`, `halfFieldAtZoom()`, `tracingHalfFieldAtZoom()`, `bAtZoom()`, and the
+other `*AtZoom()` interpolators), and current-state pupil/field geometry (`entrancePupilAtState()`,
+`computeFieldGeometryAtState()`). All trace/layout functions accept `zoomT`; prime lenses ignore it.
 
-- Sag curves: `sag()`, `renderSag()`, `sagSlope()`, `sagSlopeRaw()`.
-- Layout: `doLayout()`, `gapTrimHeight()`, `thick()`.
-- Ray tracing: `traceRay()`, `traceSkewRay()`, `traceToImage()`.
-- Current-state paraxial references: `traceParaxialRay()`.
-- Chromatic tracing: `wavelengthNd()`, `traceRayChromatic()`, `computeChromaticSpread()`.
-- Zoom interpolation: `eflAtZoom()`, `epAtZoom()`, `fopenAtZoom()`, `halfFieldAtZoom()`,
-  `tracingHalfFieldAtZoom()`, `yRatioAtZoom()`, `bAtZoom()`.
-- Current-state pupil geometry: `entrancePupilAtState(stopSD, focusT, zoomT, L, geometry?)`.
-- Current-state field geometry: `computeFieldGeometryAtState()`.
-- Chief ray solving: `solveChiefRay()` returns a typed `ChiefRaySolveResult` (`converged` / `paraxial-fallback`
-  / `bracket-failed` / `out-of-domain` + iteration count + `launchSurface: "object-plane" \| "bounding-sphere"`),
-  memoized per-lens via `WeakMap` keyed on focusT / zoomT / aberrationT / fieldAngleDeg / launchSurface. The solver dispatches on `launchSurfaceForFieldDeg(fieldDeg, projection)`:
-  **fisheye projections always route through `solveChiefRayBoundingSphere`** regardless of angle, exercising
-  the bounding-sphere code on every fisheye solve in the catalog. Rectilinear projections keep cap-based dispatch:
-  object-plane below
-  `MAX_FIELD_LAUNCH_DEG` (89°), bounding-sphere at/above. The bounding-sphere bisection varies the
-  EP-crossing y `yEP` and traces directly via `traceExactSurfaceStackVector`; both paths return `yLaunch`
-  projected to z=0 for semantic consistency. Callers that only need a scalar launch height should read
-  `solve.yLaunch`; new analysis code should still inspect `solve.status` and `solve.vectorLaunch` instead of
-  assuming every field has a finite slope.
-- Utilities: `conjugateK()`, `formatDist()`, `formatPetzvalRadius()`.
+### Chief-Ray Solving
 
-All trace/layout functions accept `zoomT`; prime lenses ignore it.
+`solveChiefRay()` returns a typed `ChiefRaySolveResult` (`converged` / `paraxial-fallback` / `bracket-failed` /
+`out-of-domain`, iteration count, and `launchSurface: "object-plane" | "bounding-sphere"`), memoized per lens via a
+`WeakMap` keyed on focusT / zoomT / aberrationT / fieldAngleDeg / launchSurface. The solver dispatches on
+`launchSurfaceForFieldDeg(fieldDeg, projection)`: **fisheye projections always route through
+`solveChiefRayBoundingSphere`** regardless of angle, so every fisheye solve in the catalog exercises the bounding-sphere
+code. Rectilinear projections keep cap-based dispatch: object-plane below `MAX_FIELD_LAUNCH_DEG` (89°), bounding-sphere
+at/above. The bounding-sphere bisection varies the EP-crossing height `yEP` and traces directly via
+`traceExactSurfaceStackVector`; both paths return `yLaunch` projected to z=0 for semantic consistency. Callers that only
+need a scalar launch height should read `solve.yLaunch`; new analysis code should still inspect `solve.status` and
+`solve.vectorLaunch` instead of assuming every field has a finite slope.
+
+Every solve outcome is counted through `recordChiefRayStatus2()` in `src/optics/field/chiefRayCache.ts`;
+`src/optics/chiefRayDiagnostics.ts` is a re-export barrel that exposes the per-lens status-count snapshot as
+`getChiefRayDiagnostics()` / `resetChiefRayDiagnostics()` for audit scripts and tests.
 
 ## Exact Surface Trace
 
@@ -159,7 +99,7 @@ surface points after a miss. Aperture/semi-diameter clips remain distinct from m
 real clipped hit points, and the diagram display layer renders only the first clipped span so zoomed SVG
 bounds stay finite.
 
-The exact tracer in `internal/exactSurfaceTrace.ts` exposes two entry points:
+The exact tracer in `internal/exactSurfaceTrace.ts` exposes these entry points:
 
 - `traceExactSurfaceStack({ x0, y0, ux0, uy0 }, options)` — slope launch, normalizes
   `[ux0, uy0, 1]` into a `Vector3` direction and applies the configured lead distance.
@@ -203,6 +143,71 @@ The implementation is geometric-radiometric, not wave-optical. It models a sourc
 coefficient along the actual glass path. It does not infer a product T-number or model wavelength-dependent ND response,
 coatings, Fresnel loss, diffraction, scatter, or flare. The Minolta AF 135mm f/2.8 [T4.5] STF is the catalog reference:
 its 0.300 mm axial L5 path at `α = 0.55 mm⁻¹` yields `exp(-0.55 × 0.300) = 0.8478937041`.
+
+## Diffractive Phase Surfaces
+
+`SurfaceData.diffractive` attaches a rotationally symmetric optical-path polynomial to a refracting surface. It models
+Nikon PF, Canon DO, and equivalent patent-described kinoform interfaces as one authored diffraction order; the lens-data
+authoring rules and a filled example live in `src/lens-data/LENS_DATA_SPEC.md`.
+
+### Data Contract
+
+- Authored form (`src/types/optics.ts`): `DiffractivePhaseSurface` is `{ kind: "radial-polynomial",
+  referenceWavelengthNm, diffractionOrder, terms }`, each `RadialPhaseTerm` being `{ radialPower, coefficient }`. `kind`
+  is a discriminator so other phase forms can be added without touching existing data.
+- Runtime form (`src/optics/types.ts`): normalization calls `compileDiffractivePhase()` once per surface and stores a
+  frozen `CompiledDiffractivePhase` (`quadraticCoefficient`, per-term `derivativeCoefficient`, original `source`) on
+  `CompiledSurface.diffractive`, or `null` for ordinary surfaces. Tracers test that `null` first, so only phase surfaces
+  evaluate the polynomial, and the hot path allocates no per-hit arrays or closures.
+- `validateLensData.ts` enforces the canonical shape before any polynomial is evaluated: `referenceWavelengthNm` finite
+  in `[100, 2000]`; `diffractionOrder` a non-zero integer in `[-16, 16]`; 1–16 `terms` with unique, strictly
+  increasing integer `radialPower` in `[2, 32]`; every `coefficient` finite and non-zero. `diffractive` is rejected on
+  `"reflect"` and `"block"` interactions, is per-surface data that is never merged as a lens-wide default, and, when
+  omitted, leaves every existing lens and golden value unchanged.
+
+### Physical Convention
+
+`src/optics/math/diffractivePhase.ts` owns the kernel shared by every first-order and exact path:
+
+```text
+W(h)     = Σ Cp · h^p                              [mm, with h = hypot(x, y) in mm]
+dW/dh    = Σ p · Cp · h^(p-1)                      [dimensionless]
+scale(λ) = diffractionOrder · λ / referenceWavelengthNm
+kick     = scale(λ) · dW/dh                        [tangential optical momentum]
+phiD(λ)  = -2 · C2 · scale(λ)                      [equivalent paraxial power]
+```
+
+- `W(h)` is optical path, not sag. Phase data never changes intersection geometry, surface normals, element outlines,
+  render trim, edge-thickness or rim-slope validation, or the material sequence. A phase surface keeps its ordinary
+  spherical or aspheric profile and is not added to `asph`.
+- `interactParaxialSurface2()` in `math/paraxial.ts` adds `diffractiveParaxialPower()` to the refractive surface power,
+  so every `buildLens()` first-order quantity (EFL/BFD, pupils, zoom construction, focus recalculation) includes the
+  phase term. `diffractivePetzvalContribution()` adds the thin-surface term `phiD / (nBefore · nAfter)` to the Petzval
+  sum.
+- Exact tracing applies `diffractiveRefractedDirection()`: generalized Snell adds `kick` along the tangent-plane
+  projection of the global radial unit vector to the incident tangential momentum, then takes the positive transmitted
+  normal component. That projection is the derivative of authored `h` on the curved interface and is not
+  renormalized; it is exactly zero on axis and keeps the same global radial sign from either side, so a reversed ray
+  retraces its path.
+- `interactRefractiveSurface()` in `trace/interactions.ts` is the single refract-or-fail step shared by the sequential
+  tracer, the generalized/folded tracer, and `internal/exactSurfaceTrace.ts`. It runs the phase kernel even when
+  `nIn === nOut` (phase plates must not fall into the same-index skip), and when `|pT,out| > nOut` it returns the typed
+  `nonPropagatingDiffractionOrder` failure / `non-propagating-diffraction-order` clip reason instead of fabricating a
+  ray.
+- Wavelength is explicit. Trace options carry `wavelengthNm`, defaulting to `DEFAULT_PHASE_WAVELENGTH_NM` (the d line)
+  for monochrome construction and tracing; chromatic adapters set it from `CHROMATIC_CHANNEL_WAVELENGTH_NM[channel]`
+  rather than inferring it from the index callback. A channel uniquely determines its wavelength, so the channel
+  already in the trace cache identity covers it; any future arbitrary-wavelength option must extend that key.
+  Diffractive power therefore scales with λ, opposite to glass dispersion, and both mechanisms act in every chromatic
+  trace.
+
+### Display And Scope
+
+`computeElementShapes()` emits a `"diffractive-phase"` surface accent, consumed by the diagram element layer, legend,
+and element inspector, so the interface is marked without drawing groove microstructure; the rendered outline stays the
+authored prescription. The model is geometric-ray only: it does not simulate blaze efficiency, multi-order energy split,
+interference, PSF/MTF, scatter, or characteristic PF flare, and it has no freeform, decentered, or user-selectable-order
+surfaces.
 
 ## Mirror And Folded Optical Paths
 
@@ -273,7 +278,9 @@ density-specific arrays to lens files.
 
 For folded systems, `obstructionAwareRayFractionsForDensity()` scans usable pupil bands so visible on-axis/off-axis rays
 avoid central blockers and annular mirror holes automatically. Do not work around a secondary obstruction by hand-editing
-`rayFractions`; fix the physical blocker or `innerSd` data instead.
+`rayFractions`; fix the physical blocker or `innerSd` data instead. `stopObstruction.ts` infers the annular stop
+obstruction identically for stop display and sampling: authored `STO.innerSd` first, then folded central blockers and
+annular mirror holes, ignoring ring blockers whose center stays clear.
 
 `raySampling.ts` also exports `isHeavyLensForRayWork(L)` — the shared heaviness heuristic. `LensDiagramPanel`
 uses it to downgrade interactive diagram ray density during slider drag; analysis modules use it to halve
@@ -282,19 +289,14 @@ helper instead of reimplementing the criteria.
 
 ## Performance And Rollback
 
-Stage 05 benchmark results remain as a historical record in
-`agent_docs/records/optics-2-stage-05-performance.md`. The comparison harness and old engine references were removed
-when the migration safe window closed. Future performance work should use focused benchmarks or production profiling
-against the current `src/optics` engine; do not reintroduce an in-tree old-vs-new selector.
+Focused benchmarks live under `agent_docs/benchmarks/` and run manually with `npm run benchmark:optics-rendering`. Each
+real run writes one permanent JSON record under `agent_docs/benchmarks/runs/`, and
+`agent_docs/benchmarks/benchmark-report.md` summarizes the latest records. The benchmark covers lens building,
+current-state layout, ray tracing, generic analysis work, static SVG rendering, and aberration-panel data/rendering.
 
-Current focused benchmarks live under `agent_docs/benchmarks/` and are run manually with
-`npm run benchmark:optics-rendering`. Each real run writes one permanent JSON record under
-`agent_docs/benchmarks/runs/`, and `agent_docs/benchmarks/benchmark-report.md` summarizes the latest 10 records. The
-benchmark covers lens building, current-state layout, ray tracing, generic analysis work, static SVG rendering, and
-aberration-panel data/rendering categories.
-
-Rollback is now a normal git-level revert of the migration commit or a focused fix to the current engine with regression
-coverage. There are no retained `*Legacy.ts` engine files to switch back to.
+The engine-migration baseline is kept in `agent_docs/records/optics-2-stage-05-performance.md`. There is no in-tree
+old-vs-new engine selector or `*Legacy.ts` fallback: performance work profiles the current `src/optics` engine
+directly, and rollback is an ordinary git revert or a focused fix with regression coverage.
 
 ## Cardinal Elements
 
@@ -317,8 +319,8 @@ Use explicit naming:
 Visible off-axis rays, chromatic off-axis rays, distortion, vignetting, pupil aberration, coma, and bokeh use the
 state-aware solved-chief-ray path where current focus/zoom can move pupil geometry. Folded callers that need the stop
 height use generalized stop tracing rather than sequential `stopAt`, and folded image-plane coordinates use the same
-  plane-normal intersection helper as sequential callers. Keep paraxial behavior only where the UI or test explicitly
-  needs first-order comparison.
+plane-normal intersection helper as sequential callers. Keep paraxial behavior only where the UI or test explicitly
+needs first-order comparison.
 
 ## Perspective-Control Movement
 
@@ -332,7 +334,8 @@ Perspective-control optics use two frames rather than moving the complete diagra
 
 Positive shift translates the lens toward camera `-y`, matching the UI convention that optical/SVG `+y` is down.
 Positive tilt is the right-handed `Rx(+tiltDeg)` rotation about a camera-fixed line parallel to `x`, followed by the
-shift translation. The sensor never follows either movement.
+shift translation. The sensor never follows either movement. `lensMovement.ts` clamps user movement to the declared
+`perspectiveControl` capability and supplies the 2D display adapters over that same rigid pose.
 
 ### Pivot Contract
 
@@ -429,16 +432,10 @@ Because that barrel is consumed by prepared-state analysis adapters, implementat
 Keep those public barrels stable for app/test callers, but avoid using them inside the re-exported aberration modules so
 `compat.ts` and `aberrationAnalysis.ts` do not form an initialization cycle.
 
-Important functions:
-
-- `computeSphericalAberration()` traces marginal rays and compares axial intercepts against near-axis references.
-- `computeSAProfile()` samples the pupil zones for the spherical-aberration fan.
-- `computeSphericalAberrationBlurCharacter()` classifies front/rear defocus disks around best focus.
-- `computeComaPointCloudPreview()` returns chief-ray-referenced coma spot clouds and metrics.
-- `computeComaAnalysis()` shares state-aware chief-ray geometry across tangential, sagittal, and circular pupil samples.
-- `computeSagittalComa()` traces sagittal pupil fan x-intercept spread.
-- `computeFieldCurvature()` computes parabasal and real-ray tangential/sagittal field curves plus Petzval reference;
-  optional chromatic mode adds R/G/B field curves and focus spread.
+Entry points: `computeSphericalAberration()`, `computeSAProfile()`, and `computeSphericalAberrationBlurCharacter()` for
+axial behaviour; `computeComaAnalysis()`, `computeComaPointCloudPreview()`, and `computeSagittalComa()` for
+chief-ray-referenced coma; and `computeFieldCurvature()` for parabasal and real-ray tangential/sagittal curves plus the
+Petzval reference, with an optional chromatic mode that adds per-channel field curves and focus spread.
 
 Sign convention: negative spherical aberration means undercorrected; positive means overcorrected. Keep copy, tests, and
 primers aligned to that convention.
@@ -447,26 +444,25 @@ primers aligned to that convention.
 
 `distortionAnalysis.ts` computes:
 
-- `computeDistortionCurve()` - 21-sample 1D distortion curve from center to edge. Residual is measured against
-  the lens's declared projection (rectilinear, fisheye-equidistant, or fisheye-equisolid), not always
-  rectilinear. The image-height solver uses `chiefRayImageHeightAccurate`, so it can consume vector chief rays
-  when `solveChiefRay` returns a bounding-sphere launch.
+- `computeDistortionCurve()` - 1D distortion curve from center to edge. Residual is measured against the lens's
+  declared projection (rectilinear, fisheye-equidistant, or fisheye-equisolid), not always rectilinear. The
+  image-height solver uses `chiefRayImageHeightAccurate`, so it can consume vector chief rays when `solveChiefRay`
+  returns a bounding-sphere launch.
 - `computeDistortionFieldGrid()` - traced 2D chief-ray field grid. The internal `resolveDistortionGridLaunch`
-  helper forks on `reference.projectionReference.kind`: rectilinear uses the existing image-space Cartesian
-  sampler + inverse-map (bit-identical to pre-PR-6 behavior); fisheye kinds sample angular Cartesian and
-  forward-map through `projectionLaunchVectorForFieldAngles`. Cells inside the slope cap use the slope/skew path;
-  out-of-domain angular cells trace through `computeBoundingSphereVectorFieldLaunch` + `traceSkewRayVector`.
-- `computeDistortionReference()` - near-axis reference setup; picks `rectilinear`, `fisheye-equidistant`, or
-  `fisheye-equisolid` based on `L.projection.kind` via `distortionProjectionReferenceForLens()`.
+  helper forks on `reference.projectionReference.kind`: rectilinear uses the image-space Cartesian sampler +
+  inverse-map; fisheye kinds sample angular Cartesian and forward-map through
+  `projectionLaunchVectorForFieldAngles`. Cells inside the slope cap use the slope/skew path; out-of-domain angular
+  cells trace through `computeBoundingSphereVectorFieldLaunch` + `traceSkewRayVector`.
+- `computeDistortionReference()` - near-axis reference setup; picks the projection reference from
+  `L.projection.kind` via `distortionProjectionReferenceForLens()`.
 
-The per-field pupil correction table size halves on heavy lenses (17 → 9) via `isHeavyLensForRayWork`. All
-three functions accept an optional precomputed `FieldGeometryState`.
+The per-field pupil correction sample count halves on heavy lenses via `isHeavyLensForRayWork`. All three functions
+accept an optional precomputed `FieldGeometryState`.
 
 ## Vignetting
 
-`vignetteAnalysis.ts` computes relative illumination using solved chief rays, adaptive field spacing
-(~3° spacing, min 7 samples), and dense meridional pupil sweeps. The per-field pupil sweep is 192 rays for
-rectilinear primes and 96 for heavy lenses (fisheye, ≥32 surfaces, ≥50 mm SD, or ≥40° half-field).
+`vignetteAnalysis.ts` computes relative illumination using solved chief rays, adaptive field spacing, and dense
+meridional pupil sweeps whose per-field ray count halves for `isHeavyLensForRayWork` lenses.
 `computeVignettingCurve()` accepts optional precomputed field geometry and traces `solve.vectorLaunch` for
 fisheye/past-cap fields when the scalar slope helper reports `out-of-domain`.
 
@@ -476,25 +472,19 @@ required for apodizers: absorption changes brightness without pretending that th
 
 ## Pupil Aberration
 
-`pupilAberration.ts` provides:
-
-- `computePupilAberrationProfile()` - entrance pupil z-shift per field angle from solved/paraxial chief-ray launch ratio.
-- `computeExitPupilAberrationProfile()` - exit pupil z per field angle from full-system chief-ray back-projection.
-- `computeBothPupilAberrationProfiles()` - combined single-loop version that shares the per-angle bisection call.
-
-Prefer `computeBothPupilAberrationProfiles()` in UI code. All accept optional precomputed field geometry.
+`pupilAberration.ts` provides `computePupilAberrationProfile()` (entrance pupil z-shift per field angle from the
+solved/paraxial chief-ray launch ratio), `computeExitPupilAberrationProfile()` (exit pupil z from full-system chief-ray
+back-projection), and `computeBothPupilAberrationProfiles()`, which shares one per-angle bisection across both. Prefer
+the combined helper in UI code. All accept optional precomputed field geometry.
 Exit-pupil back-projection uses vector chief rays when available; entrance-pupil correction ratios remain tied
 to finite slope launches and fall back to neutral correction when no scalar reference exists.
 
 ## Bokeh
 
-`aberration/bokeh.ts` traces circular pupil bundles at infinity and near-focus optics:
-
-- `computeBokehPreviewPair()` - paired infinity/near-focus entry point.
-- `computeBokehPreview()` - one preview grid for a supplied image-plane position.
-- `computeBokehFieldFootprint()` - per-field point cloud, surviving pupil footprint, and radial blur profile.
-- `buildBokehRadialProfile()` - annular brightness profile.
-- `buildBokehDensityGrid()` - retained for future full-density/PSF visualizations.
+`aberration/bokeh.ts` traces circular pupil bundles at infinity and near focus. `computeBokehPreviewPair()` is the
+paired infinity/near-focus entry point over `computeBokehPreview()`; `computeBokehFieldFootprint()` returns the
+per-field point cloud, surviving pupil footprint, and radial blur profile; `buildBokehRadialProfile()` and
+`buildBokehDensityGrid()` derive summaries from that cloud.
 
 The traced image-plane point cloud is the source of truth; radial profiles are derived summaries. Off-axis bokeh
 footprints use projection-aware field geometry and vector launches for fisheye/past-cap fields when available.
@@ -507,15 +497,11 @@ rather than usable structures containing non-finite metrics.
 
 ## Aspheric Comparison
 
-`asphericComparison.ts` provides pure helpers for analysing how much an aspheric surface departs from a sphere:
-
-- `computeBestFitSphereR(R_base, asph, sd)` — golden-section search for the radius that minimises RMS sag deviation across the clear aperture. Falls back to `R_base` for flat surfaces.
-- `computeAsphericDeparture(h, R_sphere, R_aspheric, asph)` — Δsag at a single radius.
-- `computeDepartureProfile(R_sphere, R_aspheric, asph, sd)` — sampled radial profile for rendering and metrics.
-- `peakAbsDeparture(profile)` / `rmsDeparture(profile)` — aggregate departure metrics displayed in the overlay footer.
-- `nearestSurfaceForClick(clickZ, surfaces)` — routes a click coordinate to the nearest aspheric surface for click-to-measure.
-
-These functions feed `AsphericComparisonOverlay.tsx` exclusively and must not be called from `buildLens()`.
+`asphericComparison.ts` provides pure helpers for how far an aspheric surface departs from its best-fit sphere:
+`computeBestFitSphereR()` (golden-section RMS-sag minimiser that falls back to the base radius for flat surfaces),
+`computeAsphericDeparture()`, `computeDepartureProfile()`, `peakAbsDeparture()` / `rmsDeparture()`, and
+`nearestSurfaceForClick()` for click-to-measure routing. They feed `AsphericComparisonOverlay.tsx` exclusively and must
+not be called from `buildLens()`.
 
 ## Validation And Rendering Geometry
 

@@ -46,13 +46,3 @@ classification. `apd: false` remains appropriate because the patent provides no 
 - Changed `SAMSUNG NX 45mm f/1.8` to `SAMSUNG 45mm f/1.8`. Samsung's EX-S45ANB support page calls the product
   “45mm F1.8”; NX remains correctly represented by `lensMounts: ["samsung-nx"]`.
 - Updated the companion analysis to use the catalog-equivalent glass labels and to keep supplier/APO claims bounded.
-
-### Verification
-
-- `npm run audit:patent-figure -- src/lens-data/samsung/Samsung45mmf18.data.ts patents/US20130314588A1.pdf 2 0.22,0.36,0.64,0.565` — envelope and rim estimates agreed for all seven elements.
-- `npm run audit:image-circle -- src/lens-data/samsung/Samsung45mmf18.data.ts` — 1 checked, 0 undersized, 0 skipped.
-- `npm run audit:surface -- src/lens-data/samsung/Samsung45mmf18.data.ts` — no validation errors.
-- `npm run generate:glass-reports` — all 13 report tests passed; lens coverage is 5/7 with no mismatch.
-- `npm run typecheck`, `npm run format:check`, and `npm run lint` — passed.
-- `npm run test` — 220 files / 2591 tests passed.
-- `npm run build` — passed; 1008 routes prerendered.

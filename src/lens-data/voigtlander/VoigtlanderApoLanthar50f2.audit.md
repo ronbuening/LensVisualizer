@@ -52,11 +52,6 @@ Updated [VoigtlanderApoLanthar50f2.analysis.md](VoigtlanderApoLanthar50f2.analys
 - §7 Firmly Established items 3, 4, 5: Updated with specifics on catalog tolerance.
 - §3.1 APD diagram: Updated element 3 and 4 glass labels.
 
-### Verification
-
-- `npm run typecheck` — passed.
-- `npm run test` — 1504 tests passed, 116 test files.
-
 ### Outstanding
 
 - The codebase's K-GFK68 catalog entry (nd=1.5924 from 2017 Sumita AGF) disagrees with the current Sumita catalog (nd=1.59282). Consider updating K-GFK68 Sellmeier coefficients from the current Sumita AGF/datasheet if available. Until then, FCD505 (Hoya) serves as the round-trip-valid proxy.

@@ -32,12 +32,6 @@ Patent: US 2019/0041605 A1, Numerical Data 4 / Figure 4A
 - Normalized the structured assignee to the repository-wide `Canon Inc.` spelling; the analysis retains the patent's
   printed Canon Kabushiki Kaisha wording.
 
-### Verification
-
-- `npm run audit:surface -- src/lens-data/canon/CanonEF600mmf4LISIIIUSM.data.ts` - passed.
-- `npm run audit:image-circle -- src/lens-data/canon/CanonEF600mmf4LISIIIUSM.data.ts` - passed, 0 undersized.
-- `npm run generate:glass-reports` - passed, 8 files / 15 tests.
-
 ## 2026-08-21 - Diagram-label, movement, and chromatic follow-up
 
 ### Patent-figure review
@@ -56,9 +50,3 @@ Patent: US 2019/0041605 A1, Numerical Data 4 / Figure 4A
   Coverage improves from 14/16 to 16/16 without changing the patent nd/νd coordinates or asserting a production melt.
 - Confirmed that E8/L2 translates 18.906939851 mm imageward from infinity to the modeled 4.2 m state, while L1/L3
   remain fixed. This prime lens has no zoom travel; L3B's only source-described motion is transverse IS.
-
-### Verification
-
-- `npm run audit:surface -- src/lens-data/canon/CanonEF600mmf4LISIIIUSM.data.ts` - passed.
-- `npm run audit:image-circle -- src/lens-data/canon/CanonEF600mmf4LISIIIUSM.data.ts` - passed, 0 undersized.
-- `npm run generate:glass-reports` - passed, 8 files / 15 tests; 16/16 strict and trusted coverage, 0 mismatches.

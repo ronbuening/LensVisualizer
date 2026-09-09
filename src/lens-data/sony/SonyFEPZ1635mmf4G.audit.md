@@ -21,11 +21,6 @@ catalog expansion was needed.
 The display name was checked against Sony model SELP1635G and retained as `SONY FE PZ 16-35mm f/4 G`. The three inventor
 names were romanized to the repository's canonical spellings: Kohei Uemura, Tetsuichiro Okumura, and Naoki Miyagawa.
 
-### Verification
-
-- `npm run audit:image-circle -- ./src/lens-data/sony/SonyFEPZ1635mmf4G.data.ts`
-- `npm run audit:patent-figure -- ./src/lens-data/sony/SonyFEPZ1635mmf4G.data.ts patents/JP2023044106A.pdf 91 0.14,0.57,0.46,0.69`
-
 ## 2026-08-12 — Display screenshot follow-up
 
 The rendered site screenshot was compared directly with Patent Figure 53 at the wide state. The silhouette remains

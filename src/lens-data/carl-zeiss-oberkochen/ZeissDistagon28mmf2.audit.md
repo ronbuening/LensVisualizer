@@ -21,15 +21,3 @@ Catalog version: local working tree, 2026-06-25
 
 - No `apd` flags were added. The patent has no partial-dispersion data and the retained glass labels are historical/class matches rather than APD material identifications.
 - High-index status is retained in the glass names and role prose for the dense-flint and lanthanum-class elements.
-
-### Phase 4 - Analysis sync
-
-- No analysis prose change was required. The analysis already documents the missing local patent PDF, the inferred SD methodology, and the status of the glass labels as catalog-near rather than patent-printed names.
-
-### Verification
-
-- `npm run generate:glass-reports` - passed (7 files, 7 tests); generated report state retained.
-- `npm run typecheck` - passed.
-- `npm run format:check` - passed.
-- `npm run test -- __tests__/src/lens-data/lensDataTyping.test.ts __tests__/src/optics/validateLensData.test.ts __tests__/src/optics/buildLens.test.ts` - passed (3 files, 143 tests).
-- `npm run test` - failed outside this audit's edits: stale/generated route metadata is missing Rodenstock lens routes, and the existing Sonnar 50/1.5 skew-ray chromatic assertion differs by 0.0011856 mm.

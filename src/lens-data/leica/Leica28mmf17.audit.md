@@ -19,18 +19,9 @@ Patent: US 2016/0266350 A1, Example 1
 - Confirmed flagged nd/vd rows against local `patents/US20160266350A1.pdf`. Stored nd/vd values matched the patent.
 - Non-flagged prescription fields were not fully rekeyed in this queue pass.
 
-### Phase 3 — Spectral / metadata enrichment
-
-- No catalog entries added; selected matches already resolve through the project catalog, except L6's patent-code fallback.
-
 ### Phase 4 — Analysis sync
 
 - Updated the companion analysis entries for L1, L4, L5, and L8.
-
-### Verification
-
-- `npm run generate:glass-reports` — passed; lens cleared from both glass mismatch queues.
-- `npm run typecheck`, `npm run format:check`, `npm run lint`, and `npm run test` — passed.
 
 ## 2026-06-24 — Folder audit recheck
 

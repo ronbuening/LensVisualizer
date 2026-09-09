@@ -19,15 +19,6 @@ Patent: US 7,359,125 B2, Example 1
 - Confirmed flagged rows against local `patents/US7359125.pdf`, Table 1 text extraction. Stored nd/vd values matched the patent.
 - Non-flagged prescription fields were not fully rekeyed in this queue pass.
 
-### Phase 3 — Spectral / metadata enrichment
-
-- No catalog entries added. Patent-code labels preserve future upgrade paths for the unmatched rows.
-
 ### Phase 4 — Analysis sync
 
 - Updated the companion analysis notes and glass table for the relabeled rows.
-
-### Verification
-
-- `npm run generate:glass-reports` — passed; lens cleared from both glass mismatch queues.
-- `npm run typecheck`, `npm run format:check`, `npm run lint`, and `npm run test` — passed.

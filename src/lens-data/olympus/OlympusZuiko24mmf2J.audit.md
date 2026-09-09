@@ -10,7 +10,3 @@ Patent: US 3,830,559, Example 1
 - The patent publishes constructional data, but no full per-surface clear-aperture table. The stop position remains inferred from the FIG. 1 placement between components III and IV.
 - FIG. 1 shows a large retrofocus front component, a narrowed middle/stop region, and a rear group that grows but remains smaller than the front. Stored SDs follow that silhouette: 21.0-10.0 mm through the front/middle sequence, an 8.1 mm stop, and 10.0-13.0 mm through the rear group.
 - No SD values changed. Current values remain inferred from FIG. 1, off-axis ray clearance, and edge/sag constraints.
-
-### Verification
-
-- `npm test -- elementRenderDiagnostics`

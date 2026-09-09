@@ -23,10 +23,6 @@ Reviewed local untracked patent file `patents/US4690517.pdf`, Table 1 / First Em
 - Current SDs therefore remain visualization estimates derived from pupil/ray envelopes, edge-thickness sanity, adjacent-surface proportions, and cross-gap sag clearance.
 - The SD progression is rational against the patent drawing: large front clear aperture for the 94° retrofocus front group, a narrowed stop region, and a modest re-expansion through the rear positive relay.
 
-### Verification
-
-- Pending batch verification after the current Nikon audit pass.
-
 ## 2026-07-30 Hikari Catalog Recovery
 
 - Added Hikari's official 2023 J-BAF3 power-series row for L6. The catalog publishes nd = 1.582670,

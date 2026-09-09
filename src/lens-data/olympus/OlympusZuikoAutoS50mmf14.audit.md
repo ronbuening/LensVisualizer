@@ -25,4 +25,3 @@ Patent: US 4,094,588, Example 1
 - Public catalog search resolved `581408` and `694533` to coefficient-backed entries already in the catalog.
 - Search for `694508` found no exact coefficient-backed public match, so the same L2/L7 glass remains code-labeled.
 - Updated the analysis element notes and glass-selection table.
-

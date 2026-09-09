@@ -15,23 +15,6 @@ Patent: DE 1,022,027 B
 - The patent does not publish clear apertures or a separate stop position. Existing SDs and the stop location remain conservative renderer-safe estimates.
 - Retained the unscaled f=100 mm patent prescription and existing paraxial audit values in the file header.
 
-### Phase 3 - Spectral / metadata enrichment
-
-- No fluorite, ED/UD, APD, theta_gF, dPgF, or line-index table was found.
-- No APD metadata was added.
-
-### Phase 4 - Analysis sync
-
-- No analysis changes needed.
-
-### Verification
-
-- `npm run generate:glass-reports` - passed (7 files, 7 tests).
-- `npm run typecheck` - passed before and after metadata regeneration.
-- `npm run format:check` - passed.
-- `npm run lint` - passed.
-- `npm run test` - initially exposed stale generated route metadata; after `npm run generate:metadata`, passed (183 files, 2212 tests).
-
 ## 2026-08-07 - Legacy CF2 catalog recovery
 
 - Visually rechecked DE 1,022,027 B: Member III remains `nd=1.5263`, `νd=51.0`, code 526510.

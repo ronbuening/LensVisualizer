@@ -13,8 +13,6 @@ Patent: US 9,784,950 B2, Numerical Embodiment 1
 - Rechecked the visible glass tags, doublet labels, group signs, stop, pupils, image-plane marker, official hyphenated
   display name, and headline specifications. All 14 elements retain exact, coefficient-backed OHARA identities.
 - Local viewer QA confirmed all 14 element labels and the corrected rear-group silhouette without diagram errors.
-- `npm run generate:glass-reports` passed (8 files, 14 tests); the surface and image-circle audits, typecheck, format
-  check, lint, 2,947-test suite, and production build also passed (1,052 routes prerendered).
 
 ## 2026-08-08 - Integration, semi-diameter, identity, and glass audit
 
@@ -25,7 +23,3 @@ Patent: US 9,784,950 B2, Numerical Embodiment 1
 - Normalized the structured patent assignee from all caps to `Ricoh Imaging Company, Ltd.`, resolving the metadata
   convention test failure.
 - Confirmed coefficient-backed catalog dispersion on all 14 glass elements; no new glass row is required.
-- `npm run audit:image-circle -- src/lens-data/pentax/Pentax06TelephotoZoom1545mmF28.data.ts` passed.
-- `npm run generate:glass-reports` passed (8 files, 14 tests).
-- `npm run typecheck`, `npm run format:check`, `npm run lint`, and `npm run test` passed (2,947 tests).
-- `npm run build` passed; 1,052 routes prerendered.

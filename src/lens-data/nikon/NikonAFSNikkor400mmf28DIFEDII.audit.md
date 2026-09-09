@@ -14,9 +14,3 @@ Patent: US 6,239,919 B1, Example 4, Fig. 10 (PDF page 11)
 - Corrected the display name and suffix styling to Nikon's official ordering: `NIKON AI AF-S NIKKOR ED 400mm f/2.8D II IF`.
 - Marked active positions 1, 2, and 5 as inference-qualified ED elements, matching Nikon's published three-ED layout without inventing patent partial-dispersion values.
 - Confirmed the reconstructed production endpoint moves negative G2 12.333140 mm imageward; the patent's own 3.8 m row gives 10.85845 mm in the same direction. This prime lens has no zoom travel.
-
-### Verification
-
-- Per-lens image-circle audit: passed with 0 undersized surfaces.
-- Per-lens surface validator and regenerated glass-report suite: passed.
-- `npm run typecheck`, `npm run format:check`, `npm run lint`, `npm run test` (2,493 tests), and `npm run build` (1,112 prerendered routes): passed.

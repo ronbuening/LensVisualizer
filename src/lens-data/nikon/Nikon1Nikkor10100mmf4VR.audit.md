@@ -10,7 +10,3 @@ Patent: US 2020/0348497 A1, Example 8 / Table 8
 - The patent publishes the Example 8 prescription, zoom data, and moving-group description, but no full per-surface clear-aperture or semi-diameter table.
 - FIG. 18 shows a broad three-element G1, compact G2/G3 groups, and a dense rear G4/VR group. Stored SDs preserve that hierarchy: roughly 19.8-20.2 mm through G1, about 5.3-6.25 mm through the compact middle/rear moving groups, and a stop SD of 4.85 mm.
 - No SD values changed. Current values remain figure-derived rendering estimates constrained by paraxial ray clearance, edge thickness, and cross-gap sag checks.
-
-### Verification
-
-- `npm test -- elementRenderDiagnostics`

@@ -28,11 +28,6 @@ Patent: JP 2020-118807 A, Example A
 
 - Updated the companion analysis glass table, asphere notes, and element narratives for the relabeled elements.
 
-### Verification
-
-- `npm test -- dispersion`
-- `npm test -- glassRelabelByLensScan`
-
 ## 2026-05-31 — M-TAFD305 catalog side-effect cleanup
 
 ### Context

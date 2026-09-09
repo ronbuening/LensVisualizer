@@ -28,10 +28,6 @@ Catalog version: local working tree, 2026-06-25
 - Reconfirmed r8 positive from the patent drawing and EFL convergence.
 - The patent does not publish semi-diameters. Existing SDs remain rational against the rendered cross-section and the runtime layout; no hidden trim diagnostics were reported.
 
-### Verification
-
-- Temporary Zeiss Jena diagnostic test - passed after the glass-label updates; runtime trim diagnostics empty for this lens.
-
 ## 2026-09-08 — First-hosted audit (lens 9, in progress)
 
 - Original US1975678.pdf numerical table p2 inspected at 600 dpi. The unusual L3 index is indeed 1.4075; retain it, do not substitute 1.4675 based on lower-resolution appearance or plausible glass matching. R8 is explicitly positive. Radii, thicknesses, index and Abbe values match current scaled prescription.
@@ -40,7 +36,6 @@ Catalog version: local working tree, 2026-06-25
 - Removed historical supplier assertions and catalog nC/nF/ng overrides on N-SF8. Remaining rims, analysis, live local review and batch gates pending.
 - Fig.1 at600dpi: approximately1310px first-to-last vertex span represents40.15mm; central triplet optical rim near460px≈14.1mm, exit near320px≈9.8mm, rear entrance near330px≈10.1mm, final rim near400px≈12.3mm. Increased S3/S4/S5 to14, S6 to9.9, S7/S8 to10, S10 to12.3; retained front18/17 allowance and steep cemented S9=9.5. Surface probe passes. Image-circle probe passed before this enlargement; final hidden-trim/coverage checks pending.
 - Analysis rewritten; local infinity/close/midpoint/f16/movement chart reviewed. Corrected image plane now coincides with the paraxial ray focus. BF22.04/25.19/23.61; unit motion3.15mm objectward; f16 stop1.87mm; chart labels fit. Full-aperture outer-ray termination remains visible and must be assessed during batch ray/geometry checks; no iris reduction used. Regression tests authored, batch execution pending.
-
 
 ### Batch follow-up
 

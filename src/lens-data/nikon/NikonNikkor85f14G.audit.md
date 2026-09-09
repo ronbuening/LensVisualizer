@@ -8,7 +8,6 @@ Patent: US 8,767,319 B2
 - Updated L13 to `NBFD15 (HOYA)`, L22 to `S-TIM35 (OHARA)`, and L32 to `S-TIM22 (OHARA)`.
 - The lens is now fully covered by trusted Sellmeier data.
 
-
 ## 2026-09-08 — First-hosted audit, lens 22
 
 - Original local `patents/US8767319.pdf`: title p.1, Figure1 p.3 at600dpi, Example1 numerical data and air-equivalent BF convention p.17. All20 radii/thicknesses and all ten glass coordinates agree; all surfaces spherical. Source group focal lengths and individual focal lengths independently reproduced.

@@ -40,12 +40,3 @@ for L32, L51, and L52, not as supplier or melt provenance.
 
 - Confirmed Nikon's `f/3.5-4.5G` production designation spacing was already correct.
 - Updated the companion analysis with the refined rim, catalog proxies, and inferred ED-role discipline.
-
-### Verification
-
-- Stored prescription and image-circle audits passed.
-- Generated glass-report suite passed (8 files, 15 tests); coverage is 15/16, with only resin unresolved.
-- Full typecheck, formatting, lint, and test gates passed (266 files, 2,560 tests).
-- Production build and prerender passed (1,218 routes).
-- In-app browser screenshots were unavailable; visual comparison used the exact 600 dpi patent figure and the runtime
-  SVG geometry.

@@ -12,8 +12,6 @@
 - Increased L17's rear rim at surface 30 from `11.1` to `12.0` mm while retaining its gap-constrained front rim.
 - A trial increase of the constrained inner rims was rejected by the surface validator because it would have introduced
   cross-gap overlap. The final tapered outlines preserve the existing physical clearances.
-- `npm run audit:surface -- src/lens-data/panasonic/PanasonicLumixSPro70200mmf4OIS.data.ts` and
-  `npm run audit:image-circle -- src/lens-data/panasonic/PanasonicLumixSPro70200mmf4OIS.data.ts` passed.
 
 ### Glass
 

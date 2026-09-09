@@ -10,10 +10,6 @@ The data file cites `JPWO2015/141574A1`, Example 2. I checked the local untracke
 - The generated coverage report shows several Hikari J-series Abbe-only rows, so this lens should be revisited once the cited patent PDF is available and the glass table can be checked directly.
 - Current semi-diameters remain documented estimates because the data header already notes that the patent table omits clear apertures.
 
-### Verification
-
-- Pending batch verification after the current Nikon audit pass.
-
 ## 2026-08-11 — Phase 94 Hikari catalog completion
 
 - Added the first-party Hikari J-SK14 (`603607`) and J-LASF02 (`800421`) nine-term power-series rows from the

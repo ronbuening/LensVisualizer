@@ -16,8 +16,6 @@ Patent: US 7,106,520 B2, Embodiment 8
 - Retained 12 coefficient-backed material curves, the explicitly unmatched L13 coordinate, and the L41 resin model;
   neither unresolved medium has a defensible public glass-catalog identity.
 - Local viewer QA confirmed the new labels and corrected L11 silhouette without diagram errors.
-- `npm run generate:glass-reports` passed (8 files, 14 tests); the surface and image-circle audits, typecheck, format
-  check, lint, 2,947-test suite, and production build also passed (1,052 routes prerendered).
 
 ## 2026-08-08 - Integration, semi-diameter, identity, and glass audit
 
@@ -27,7 +25,3 @@ Patent: US 7,106,520 B2, Embodiment 8
 - Normalized the display name from the duplicated `PENTAX SMC PENTAX-DA` form to `PENTAX SMC DA`.
 - Confirmed coefficient-backed catalog dispersion for 12 of 14 materials. L13 remains explicitly unmatched and the
   L41 hybrid layer remains resin; neither has a defensible public glass-catalog coefficient assignment.
-- `npm run audit:image-circle -- src/lens-data/pentax/PentaxDA1645mmF4EDAL.data.ts` passed.
-- `npm run generate:glass-reports` passed (8 files, 14 tests).
-- `npm run typecheck`, `npm run format:check`, `npm run lint`, and `npm run test` passed (2,947 tests).
-- `npm run build` passed; 1,052 routes prerendered.

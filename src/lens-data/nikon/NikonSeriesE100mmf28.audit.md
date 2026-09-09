@@ -37,4 +37,3 @@ Patent: US 4,303,314, Embodiment 1 / Claim 2
 
 - L1 now preserves the patent `613586` pair with authored line-index backfill.
 - L2, L3, and L4 retain their existing catalog-backed/class labels because their stored `nd`/`vd` values match the patent and resolve consistently.
-- `npm run generate:glass-reports` and the targeted failing tests passed after this correction.

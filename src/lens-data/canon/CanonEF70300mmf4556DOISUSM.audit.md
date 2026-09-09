@@ -35,11 +35,3 @@ Patent: JP 2004-317867 A, Numerical Example 1
 ### Identity and metadata
 
 - Verified the display name against Canon's product identity and the repository's spacing policy. `CANON EF 70-300mm f/4.5-5.6 DO IS USM` remains correct.
-
-### Verification
-
-- `npm run audit:surface -- src/lens-data/canon/CanonEF70300mmf4556DOISUSM.data.ts` - passed.
-- `npm run audit:image-circle -- src/lens-data/canon/CanonEF70300mmf4556DOISUSM.data.ts` - passed, 0 undersized.
-- `npm run generate:glass-reports` - passed, 8 files / 15 tests.
-- `npx tsc --noEmit` and targeted Prettier check - passed.
-- Focused analysis, metadata, buildLens, movement, dispersion, and Sellmeier coverage tests - passed, 6 files / 147 tests.
