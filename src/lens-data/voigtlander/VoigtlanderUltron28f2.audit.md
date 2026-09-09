@@ -40,3 +40,14 @@ Patent: JP2022-100641A
 - Located and visually checked `patents/JP2022100641A.pdf`, PDF page 7. Element 9 remains patent code `630581`, `nd = 1.63058`, `νd = 58.1`.
 - Hikari J-PSKH8 is within the runtime catalog-equivalent window (`Δnd = -0.001530`, `Δνd = +1.05`).
 - Relabeled element 9 as a J-PSKH8 optical equivalent while leaving the production supplier unspecified. No prescription or asphere geometry changed.
+
+## 2026-09-09 — Source and live-view audit
+
+JP2022100641A Example 1: table p.7, equation/definitions p.8 and Figure1 p.16 at600dpi. Retrieved JP7546909B2 grant to check malformed ASP18 A6; its table p.6 repeats −336E−07. Existing −3.36e−7 remains an inferred decimal repair, not a verified correction. Other source radii, thicknesses, glass coordinates, conics/polynomials and source-listed element FL retained.
+
+- Subtitle author corrected to match verified Yoshihisa Yomogida/Yuki Shibata metadata. Removed unsupported APD headline and L7/L9 badges; qualified catalog counterparts and production/process claims. Added explicit source aperture2/full-frame format. Approximate SDs retained after original-figure review; no hidden trimming at0/.5/1, surface/image-circle checks pass.
+- Source near distance430+60.2274+1.93=492.1574mm is now explicit. Printed table instead gives EFL28.579770mm, near beta−.06511085 and object-image509.816690mm; grant repeats the conflict. No gap/radius adjusted to force agreement. Source L9 FL−100 retained while noting derived−98.901619mm.
+- Figure101 filter/cover omitted. Source lacks its thickness/index, so no independently documented air-equivalent conversion is possible; retained published ZD18 distance and recorded the limitation.
+- Three source regressions pass. Production baseline and local infinity/near/midpoint/f22 inspected: near49cm/BF20.33, midpoint98cm/BF19.36, EFL28.58 unchanged, f22 stop1.36mm. All lenses/stop translate1.93mm together.
+
+Follow-up: ASP18 A6, table/summary finite-conjugate mismatch and unspecified plate path. These remain qualified limitations, not fully verified patent reconstruction. Batch31–40 gates/commit pending.

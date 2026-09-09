@@ -43,3 +43,11 @@ Catalog version: ab3a508
 - `npm run lint` - passed.
 - `npm run test -- buildLens lensDataTyping` - passed, 2 files / 59 tests.
 - Full `npm run test` and generated catalog scans were not run because those scanner tests rewrite global generated reports outside this lens audit's file scope.
+
+## 2026-09-09 — First-added diagram audit, lens 38
+
+Original Example 5 (PDF page 23), Figure 9 (page 10 at 600 dpi) and paragraphs 0084–0089/0093 checked. Restored all published effective diameters/2, corrected isolated element focal lengths and f/2.91 preset, qualified glass labels, and removed unsupported APD/molding/chemistry. Source radii, gaps, nd/vd and all five asphere coefficient sets remain unchanged. No filter or cover glass exists in this example.
+
+Source limitation: numerical zoom data give L2 +0.36 mm net imageward motion despite the all-objectward narrative/arrows. Numerical tables are retained. Finite-focus motion is unpublished and disabled; corrected the former claim that L6 focus would change BF. Centered IS and legacy retail near-distance metadata are explicitly distinguished from modeled patent data.
+
+Added the explicitly inferred zoom iris schedule from source station f-numbers; focus retains the current zoom iris. This corrects fixed-iris telephoto aperture mismatch without claiming a source physical-stop schedule. Regression verification passes.

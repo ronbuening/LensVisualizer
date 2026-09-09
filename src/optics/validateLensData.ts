@@ -705,6 +705,20 @@ export default function validateLensData(data: UntrustedLensData): string[] {
   ) {
     errors.push('"zoomApertureModel" must be "from-nominal-fno" on a zoom lens');
   }
+  if (data.zoomStopSemiDiameters !== undefined) {
+    if (
+      !Array.isArray(data.zoomStopSemiDiameters) ||
+      !Array.isArray(data.zoomPositions) ||
+      data.zoomPositions.length < 2 ||
+      data.zoomStopSemiDiameters.length !== data.zoomPositions.length ||
+      data.zoomStopSemiDiameters.some((radius) => !Number.isFinite(radius) || radius <= 0) ||
+      data.zoomApertureModel !== undefined
+    ) {
+      errors.push(
+        "zoomStopSemiDiameters requires one positive finite radius per zoom station and no inferred aperture model",
+      );
+    }
+  }
   if (data.zoomCloseFocusM !== undefined) {
     if (
       !Array.isArray(data.zoomCloseFocusM) ||

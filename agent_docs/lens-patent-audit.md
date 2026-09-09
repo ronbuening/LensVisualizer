@@ -1,5 +1,10 @@
 # Lens Patent Audit
 
+## Audit test retention
+
+Tests and scripts written to verify a patent audit are temporary by default. Do not retain them unless absolutely necessary to prevent a specific regression in shared engine, UI, or data-contract behavior that existing tests cannot cover. Do not commit per-lens snapshots of prescription values, glass labels, calculated powers, rims, or motion merely to restate audited data. Run the existing catalog validators and audit commands; record sources, calculations, results and limitations in the companion `.audit.md` and task record. If an essential shared regression test is needed, add the smallest case to the existing subsystem suite, prefer a synthetic input over patent-specific constants, and document why it must remain. Remove temporary audit tests before delivery; historical test counts in audit logs describe the checks run at that time.
+
+
 A standard procedure for reviewing an existing `*.data.ts` file against its source patent, correcting mismatched glass annotations, auditing retained values, enriching spectral data, and syncing the companion `*.analysis.md`. Every audit produces a per-lens `*.audit.md` log that records what changed and why.
 
 This is the procedure to follow when working a lens off the [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md), [glass-relabel-followup.md](glass-relabel-followup.md), or [proprietary-glass-backfill.md](proprietary-glass-backfill.md) queues, or any time a lens is revisited with the patent in hand.

@@ -89,3 +89,9 @@ Figure / SD check:
   (`Δnd = 0.000000`, `Δνd = +0.325`).
 - The patent codes remain in each label and the production supplier remains unspecified. L19 (`603564`) and L25
   (`738493`) remain unresolved because the current catalog does not provide comparably strong equivalents.
+
+## 2026-09-09 — First-added audit, lens36
+
+Table1 pp14–15 and Figures1–2 p26 at600dpi reviewed. Removed filterelement26/source47–48; BF29.62→30.6748523207mm includes1.6/1.5168 equivalentair. Retained all source R/d/nd and four endpoint gapsets. Corrected D42 labelBF→D42, sourcezoomlabels103.09/388.17mm, sourceapertures4.58/5.76 (figuretele5.75 discrepancyrecorded), nearlabel0.75→0.98m from sourceD0+track. Corrected G6teletravelclaim0.4→30.999mm (relativeD38change0.382mm). All vdremaininferred; removed unsupportedED/SuperED/APD/chemistryclaims and qualifiedcataloglabels; L19/L25remainunresolved. Restored smallerrearopticalrimsS31–33=13.2,S34–35=13,S36–42=11.2mm, otherSDretained. Wrong-rotation screen andVRbracketover-read discarded. Surface/imagecircle and9-state nohidden-trimprobe pass. Productionbaseline inspected; localwide/tele∞/near plusmidzoom/midfocus, f32 andfocus/zoom motionchartscomplete. Three regressiontests pass. EFL103.08/91.84mm wide and388.15/158.38mm tele; mid161.89mm; midfocusmotion20.35mm, zoommotion50.00mm, f32stop4.60mm. Batch31–40gatespending.
+
+Added the explicitly inferred zoom iris schedule from source station f-numbers; focus retains the current zoom iris. This corrects fixed-iris telephoto aperture mismatch without claiming a source physical-stop schedule. Regression verification passes.

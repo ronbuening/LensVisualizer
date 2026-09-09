@@ -1,235 +1,102 @@
-# Patent Analysis: JP2022-92388A — NIKKOR Z 100-400mm f/4.5-5.6 VR S
+# Nikon Nikkor Z 100–400mm f/4.5–5.6 VR S
 
-> **Companion data file:** `NikonNikkorZ100400f4556.data.ts` — zoom lens prescription for interactive SVG renderer.
-
-## Patent Overview
+## Patent Reference
 
 **Patent:** JP2022-92388A (Kokai / Unexamined)
+
 **Filed:** December 10, 2020
+
 **Published:** June 22, 2022
+
 **Applicant:** Nikon Corporation (株式会社ニコン)
+
 **Inventor:** Hiroshi Yabumoto (籔本 洋)
-**Title:** Optical System, Optical Apparatus, and Method for Manufacturing Optical System
-**IPC:** G02B 15/22, G02B 13/02, G02B 15/20
-**Prior art:** WO2013/027364
-**Embodiment analyzed:** Example 1
 
-This patent discloses a zoom optical system with multiple focusing groups that move along different trajectories during focus, optimized for telephoto zoom lenses covering the super-telephoto range. Four numerical examples are provided. **Example 1** is the principal subject of this analysis and is a strong candidate for the production NIKKOR Z 100-400mm f/4.5-5.6 VR S, as demonstrated by the convergent evidence below.
+JP 2022-092388 A, Hiroshi Yabumoto, Nikon, Example 1, Table 1 (PDF pp. 14–15). Figure 1 shows the wide and tele cross-sections; Figure 2 shows aberrations and finite-object annotations (PDF p. 26). The marketing association does not establish identical production glass or mechanics.
 
----
+The source focal endpoints are 103.09 and 388.17 mm. Figure 2(a) labels wide infinity FNO=4.58; Table 1 gives tele Fnot=5.76, while Figure 2(c) says 5.75. The viewer uses 4.58/5.76 and preserves this small source disagreement. Retail markings 100–400 mm and f/4.5–5.6 remain separate metadata. The numerical table image height is 21.70 mm, whereas aberration figures label 21.63 mm.
 
-## Production Identification: Evidence for Example 1 → NIKKOR Z 100-400mm f/4.5-5.6 VR S
+## Architecture
 
-The following convergent criteria identify Example 1 as the basis for the production design:
+Twenty-five spherical lenses form twenty air-separated components in seven functional groups. G1 and G2 are positive, G3 negative, G4 positive, G5 and G6 negative focusing groups, and G7 positive. Five cemented components include the L17/L18 stabilization doublet; lateral stabilization is not simulated in the centered diagram. The source stop is surface 26 inside G4. The source filter is excluded from both geometry and element inventory.
 
-1. **Element and group count.** The patent prescription yields exactly **25 elements in 20 air-separated groups**, matching Nikon's published specification.
+## Element by element
 
-2. **Special dispersion elements.** The prescription contains exactly **6 elements with nd ≈ 1.498 or 1.487 (ED glass)** and **2 elements with nd ≈ 1.437 (Super ED glass)**, totaling 8 special dispersion elements — matching Nikon's official specification of "6 ED elements, 2 Super ED elements." (*Note: several third-party reviews erroneously reverse this count to "6 Super ED + 2 ED." The correct breakdown per Nikon's own product pages is 6 ED + 2 Super ED.*)
-
-3. **All-spherical design.** No aspherical coefficient tables appear for Example 1. This matches the confirmed production lens, which contains **no aspherical elements** — unusual for a modern S-line NIKKOR and noted by multiple reviewers.
-
-4. **Focal length and f-number.** The patent gives f_t = 388.17 mm (tele) and f_w = 103.09 mm (wide), with F_not = 5.76. The production lens is marketed as 100–400 mm f/4.5–5.6. Independent paraxial ray trace confirms the wide-end f-number is **f/4.50**, matching the production specification exactly. The slight focal length discrepancy (zoom ratio 3.77× vs. marketed 4.0×) is typical of patent-to-production optimization; Nikon's final production tuning adjusts the zoom cam to reach the marketed endpoints.
-
-5. **Optical total length.** TL_t = 284.55 mm at the tele end. The production lens measures 222 mm in barrel length at 100 mm, extending to ~272 mm at 400 mm — consistent with the variable-gap analysis showing ~50 mm of total group movement during zooming.
-
-6. **Internal floating focus with two adjacent negative groups.** The patent specifies G5 and G6 as the focus groups, both negative, adjacently positioned — matching Nikon's description of a "Multi-Focus Stepping Motor AF System" with two STM motors moving in sync.
-
-7. **VR group.** The patent identifies the L17+L18 cemented doublet as the vibration reduction group (f_vr / f_t = 0.202), consistent with the production lens's in-barrel VR system.
-
-8. **Filing chronology.** Filed December 2020; the NIKKOR Z 100-400mm was announced October 2021, with sales beginning early 2022.
-
----
-
-## System Architecture
-
-### Zoom Group Structure
-
-The lens follows a **seven-group zoom architecture** that forms a double-telephoto configuration at the tele end:
-
-| Zoom Group | Elements | Power | Focal Length (mm) | Role |
+| Element | Source nd | Inferred vd | Calculated isolated focal length (mm) | Description |
 |---|---|---|---|---|
-| G1 (Front A) | L1, L2 | Positive | +220.2 | Primary light-gathering; front positive group |
-| G2 (Front B) | L3–L5 | Positive | +412.7 | Second positive group; achromatic variator |
-| G3 (Variator) | L6–L10 | Negative | −37.7 | Primary zoom variator |
-| G4 (Relay) | L11–L19 + Stop | Positive | +46.0 | Image relay, stop, VR housing |
-| G5 (Focus A) | L20+L21 | Negative | −81.7 | First focusing group |
-| G6 (Focus B) | L22, L23 | Negative | −153.3 | Second focusing group |
-| G7 (Field) | L24, L25 | Positive | +502.7 | Field flattener / teleconverter interface |
+| L1 | 1.48749 | 70.4 | 477.6 | Positive front singlet of G1 |
+| L2 | 1.437001 | 95 | 407.5 | Plano-convex rear singlet of G1 |
+| L3 | 1.49782 | 81.1 | 116.2 | Positive front element of cemented doublet D1 in G2 |
+| L4 | 1.8044 | 39.6 | -65.7 | Negative rear element of cemented doublet D1 |
+| L5 | 1.437001 | 95 | 115.4 | Positive singlet in G2 |
+| L6 | 1.720467 | 50.2 | 63.4 | Positive front element of cemented doublet D2 in G3 |
+| L7 | 1.49782 | 81.1 | -56.1 | Negative rear element of cemented doublet D2 |
+| L8 | 1.741 | 52.6 | -42 | Negative front element of cemented doublet D3 |
+| L9 | 1.854505 | 39.9 | 65.1 | Positive rear element of cemented doublet D3 |
+| L10 | 1.755 | 52.3 | -62.4 | Negative singlet in G3 |
+| L11 | 1.59319 | 60.5 | 129.2 | Positive singlet in G4 |
+| L12 | 1.49782 | 81.1 | 129.7 | Plano-convex singlet in G4 |
+| L13 | 1.49782 | 81.1 | 96.9 | Plano-convex singlet in G4 |
+| L14 | 1.8061 | 40.9 | -110.1 | Negative singlet before the stop in G4 |
+| L15 | 1.80809 | 22.8 | 142 | Positive meniscus after the stop in G4 |
+| L16 | 2.00069 | 25.5 | -46.9 | Negative meniscus in G4 |
+| L17 | 1.552981 | 55.5 | 42.7 | Positive front element of the source VR doublet; centered here |
+| L18 | 1.95375 | 32.3 | -92.6 | Negative rear element of the source VR doublet; centered here |
+| L19 | 1.60342 | 56.4 | 77 | Positive meniscus at rear of G4 |
+| L20 | 1.85026 | 32.3 | 71.2 | Positive element of the G5 focusing doublet |
+| L21 | 1.72916 | 54.7 | -37.5 | Negative element of the G5 focusing doublet |
+| L22 | 1.654115 | 39.7 | 70.4 | Positive singlet in G6 focusing group |
+| L23 | 1.90265 | 35.4 | -46.5 | Negative singlet in G6 focusing group |
+| L24 | 1.49782 | 81.1 | -75.3 | Negative singlet in G7 |
+| L25 | 1.738 | 49.3 | 66.7 | Positive meniscus in G7 |
 
-At the telephoto end, the system forms what the patent terms a **"double telephoto"** (ダブルテレフォト) configuration (¶0066). The first stage is the classical positive-front/negative-rear arrangement formed by G1+G2 (positive) and G3 (negative). The second stage is formed by G4 (positive) and the net-negative rear section G5+G6+G7. The combined telephoto ratio is TL_t / f_t = 0.733, achieving a 27% reduction in physical length relative to focal length.
+All radii, thicknesses, source refractive indices and existing calculated individual focal lengths are retained. The individual focal lengths agree with a fresh thick-lens calculation to the stored one-decimal precision.
 
-### Zoom Mechanism
+## Glass
 
-During zoom from wide (103 mm) to tele (388 mm), all six variable gaps change. Three — D4, D9, and D17 — vary only with zoom. The remaining three — D35, D38, D42 — vary with both zoom and focus.
+This patent lists nd only: it does not provide Abbe numbers, glass names or partial dispersion. Every stored vd and catalog counterpart is therefore an inference. The existing inferred vd values remain unchanged so their uncertainty is not concealed by a new guess. Labels now explicitly state this limitation. Catalog compatibility with the assumed nd/vd pair is not independent confirmation of that vd, supplier, chemistry or production identity.
 
-| Gap | After | Wide ∞ (mm) | Tele ∞ (mm) | Change |
+The former claims of six ED and two Super ED elements and inferred APD badges are removed. Compatible catalog labels are available for most retained pairs, including S-LAL10, TAC2, TAFD40L-W and S-LAH71 for earlier code-only rows. Elements 19 and 25 remain unresolved with inferred codes 603564 and 738493. Chromatic calculations depend on these unverified dispersion assumptions.
+
+## Focus
+
+The six source gap arrays are preserved, including all four combinations of wide/tele and infinity/near:
+
+| Gap | Wide infinity | Wide near | Tele infinity | Tele near |
 |---|---|---|---|---|
-| D4 | L2 (G1→G2) | 1.500 | 51.500 | +50.000 |
-| D9 | L5 (G2→G3) | 1.300 | 25.600 | +24.300 |
-| D17 | L10 (G3→G4) | 43.095 | 2.100 | −40.995 |
+| D4 | 1.5 | 1.5 | 51.5 | 51.5 |
+| D9 | 1.3 | 1.3 | 25.6 | 25.6 |
+| D17 | 43.095 | 43.095 | 2.1 | 2.1 |
+| D35 | 3.2 | 4.59 | 3.467 | 34.084 |
+| D38 | 14.3 | 22.618 | 8.8 | 9.182 |
+| D42 | 26.984 | 17.275 | 48.913 | 17.915 |
 
-The total sum of all six variable gaps increases from 90.4 mm (wide) to 140.4 mm (tele) at infinity focus — a net increase of exactly 50.0 mm, corresponding to the physical barrel extension observed during zooming.
+All distances are millimetres. D42 is the gap before G7, not back focus; its displayed BF label is corrected to D42. The lens-to-image equivalent rear gap is fixed at 29.62 + 1.60/1.5168 = 30.6748523207 mm. Source filter element 26 and surfaces 47–48 are removed; the plane-parallel filter is not drawn or assigned a glass badge.
 
-### Focus Mechanism
+G5 advances 1.390 mm at wide and 30.617 mm at tele relative to preceding G4. G6 advances 9.708 mm and 30.999 mm, respectively: its travel is the sum of changes in D35 and D38. The former claim that G6 moves only 0.4 mm at tele confused relative separation with absolute group movement. The three focus gaps change their total by −0.001 mm at wide and +0.001 mm at tele, retained source rounding. With the camera image fixed, the corresponding G5/G6 travels are 1.391/9.709 mm and 30.616/30.998 mm.
 
-Focus is accomplished by moving G5 and G6 along different axial trajectories — a **floating focus** system with two negative groups:
+Figure 2's near annotations give front-object distances D0=745.5 mm at wide and 695.5 mm at tele. Adding the respective mechanical prescription tracks gives approximately 0.98 m image-to-object distance at both ends. The former 0.75 m focus label is replaced by this rounded source-derived endpoint. Independent paraxial calculations of the rounded prescription with omitted-filter equivalent air give 0.978921337 m and 0.978785573 m, with magnifications −0.122931774 and −0.381930549. Figure annotations instead round to −0.1228 and −0.3812; these differences remain explicit.
 
-| Gap | After | Tele ∞ (mm) | Tele CF (mm) | Δ (mm) |
-|---|---|---|---|---|
-| D35 | L19 (G4→G5) | 3.467 | 34.084 | +30.617 |
-| D38 | L21 (G5→G6) | 8.800 | 9.182 | +0.382 |
-| D42 | L23 (G6→G7) | 48.913 | 17.915 | −30.998 |
+### Zoom
 
-Both G5 and G6 move toward the image during close focus (+30.6 and +0.4 mm respectively at tele), while the back focal distance (D42) decreases by 31 mm. The total focus-gap sum remains constant within each zoom position (61.18 mm at tele, 44.48 mm at wide, regardless of focus distance), confirming **true internal focusing**.
+The viewer retains the two published zoom stations. The optical assembly extends by approximately 50 mm from wide to tele while G7 remains fixed relative to the image. All zoom group trajectories follow cumulative changes of the source gaps; the stop follows G4. Intermediate zoom configurations are reconstructed rather than independently published prescriptions. The slider labels now identify source focal stations 103.09/388.17 mm. Calculated infinity EFLs are 103.084819 and 388.148142 mm. Table 1's tele total length 284.55 mm differs from the 284.590 mm mechanical sum and the 284.044852 mm equivalent-air sum; no spacings are altered to force agreement.
 
-The production lens achieves minimum focus distances of 0.75 m at 100 mm and 0.98 m at 400 mm (per Nikon's specification).
+## Aspheres
 
----
+None in Example 1.
 
-## Aspherical Surfaces
+## Semi-diameter notes
 
-**Example 1 contains no aspherical surfaces.** This is confirmed both by the absence of any aspherical coefficient table in the patent text and by Nikon's published specifications.
+Figure 1(a)/(b) was inspected at 600 dpi, using the roughly 203.37 mm wide lens-only vertex span. A rotated photogrammetry screen and direct optical-rim inspection agree that the focusing groups were oversized: the source rims are about 11.1–11.3 mm versus 15–16.5 mm stored. Surfaces 36–42 now use 11.2 mm. The adjacent L19 rims are about 13 mm versus 17–17.5 mm; surfaces 34–35 now use 13 mm. The VR doublet's optical rims support about 13.2 mm, now used at surfaces 31–33 instead of 15–17.5 mm.
 
----
-
-## Glass Identification
-
-**Methodological limitation:** This patent provides only nd for each element — the Abbe number (νd) is not listed. Where no exact catalog glass is available, the companion data file uses a six-digit nd/vd code annotation instead of forcing a mismatched catalog name.
-
-### Super ED Elements (2 total)
-
-| Element | nd | Catalog Match | νd (est.) | Group |
-|---|---|---|---|---|
-| **L2** | 1.437001 | Near S-FPL55 (OHARA) | ~95 | G1 |
-| **L5** | 1.437001 | Near S-FPL55 (OHARA) | ~95 | G2 |
-
-### ED Elements (6 total)
-
-| Element | nd | Catalog Match | νd (est.) | Group |
-|---|---|---|---|---|
-| **L1** | 1.487490 | N-FK5 / S-FSL5 | 70.4 | G1 |
-| **L3** | 1.497820 | S-FPL51 (OHARA) | 81.1 | G2 |
-| **L7** | 1.497820 | S-FPL51 (OHARA) | 81.1 | G3 |
-| **L12** | 1.497820 | S-FPL51 (OHARA) | 81.1 | G4 |
-| **L13** | 1.497820 | S-FPL51 (OHARA) | 81.1 | G4 |
-| **L24** | 1.497820 | S-FPL51 (OHARA) | 81.1 | G7 |
-
-### Standard Glass Elements (17 total)
-
-| Element | nd | Catalog Match | νd (est.) | Power | Group |
-|---|---|---|---|---|---|
-| L4 | 1.804400 | S-LAH63 | 39.6 | Negative | G2 |
-| L6 | 1.720467 | 720502 code; no exact catalog match | 50.2 | Positive | G3 |
-| L8 | 1.741000 | 741526 code; no exact catalog match | 52.6 | Negative | G3 |
-| L9 | 1.854505 | L-LAH85V catalog equivalent (patent 855399) | 39.9 | Positive | G3 |
-| L10 | 1.755000 | S-LAH97 | 52.3 | Negative | G3 |
-| L11 | 1.593190 | FCD600 | 60.5 | Positive | G4 |
-| L14 | 1.806100 | S-LAH53 | 40.9 | Negative | G4 |
-| L15 | 1.808090 | S-NPH1 | 22.8 | Positive | G4 |
-| L16 | 2.000690 | 001255 code; no exact catalog match | 25.5 | Negative | G4 |
-| L17 | 1.552981 | J-KZFH4 catalog equivalent (patent 553555) | 55.5 | Positive | G4 (VR) |
-| L18 | 1.953750 | S-LAH98 | 32.3 | Negative | G4 (VR) |
-| L19 | 1.603420 | 603564 code; no exact public catalog match | 56.4 | Positive | G4 |
-| L20 | 1.850260 | 850323 code; no exact catalog match | 32.3 | Positive | G5 |
-| L21 | 1.729160 | S-LAL18 | 54.7 | Negative | G5 |
-| L22 | 1.654115 | S-NBH5 | 39.7 | Positive | G6 |
-| L23 | 1.902650 | J-LASFH9 catalog equivalent (patent 903354) | 35.4 | Negative | G6 |
-| L25 | 1.738000 | 738493 code; no exact public catalog match | 49.3 | Positive | G7 |
-
-The named catalog rows are coefficient-backed optical equivalents; they do not establish the production supplier. Remaining code-based entries retain the inferred nd/vd pair without forcing a mismatched Sellmeier catalog resolution.
-
----
-
-## Element-by-Element Focal Lengths
-
-Computed from the patent prescription using the thick-lens formula.
-
-| Element | nd | Type | f (mm) | Cemented Group | Group |
-|---|---|---|---|---|---|
-| L1 | 1.48749 | Biconvex positive | +477.6 | — | G1 |
-| L2 | 1.43700 | Plano-convex positive | +407.5 | — | G1 |
-| L3 | 1.49782 | Biconvex positive | +116.2 | D1 (f = −166.7) | G2 |
-| L4 | 1.80440 | Biconcave negative | −65.7 | D1 | G2 |
-| L5 | 1.43700 | Biconvex positive | +115.4 | — | G2 |
-| L6 | 1.72047 | Biconvex positive | +63.4 | D2 (f = −626.0) | G3 |
-| L7 | 1.49782 | Biconcave negative | −56.1 | D2 | G3 |
-| L8 | 1.74100 | Biconcave negative | −42.0 | D3 (f = −118.5) | G3 |
-| L9 | 1.85451 | Positive meniscus | +65.1 | D3 | G3 |
-| L10 | 1.75500 | Biconcave negative | −62.4 | — | G3 |
-| L11 | 1.59319 | Biconvex positive | +129.2 | — | G4 |
-| L12 | 1.49782 | Plano-convex positive | +129.7 | — | G4 |
-| L13 | 1.49782 | Plano-convex positive | +96.9 | — | G4 |
-| L14 | 1.80610 | Biconcave negative | −110.1 | — | G4 |
-| L15 | 1.80809 | Positive meniscus | +142.0 | — | G4 |
-| L16 | 2.00069 | Negative meniscus | −46.9 | — | G4 |
-| L17 | 1.55298 | Biconvex positive | +42.7 | VR (f = +78.6) | G4 |
-| L18 | 1.95375 | Negative meniscus | −92.6 | VR | G4 |
-| L19 | 1.60342 | Positive meniscus | +77.0 | — | G4 |
-| L20 | 1.85026 | Biconvex positive | +71.2 | D5 (f = −81.7) | G5 |
-| L21 | 1.72916 | Biconcave negative | −37.5 | D5 | G5 |
-| L22 | 1.65412 | Biconvex positive | +70.4 | — | G6 |
-| L23 | 1.90265 | Biconcave negative | −46.5 | — | G6 |
-| L24 | 1.49782 | Biconcave negative | −75.3 | — | G7 |
-| L25 | 1.73800 | Positive meniscus | +66.7 | — | G7 |
-
----
-
-## Patent Conditional Expressions — Example 1 Values
-
-| Cond. | Expression | Value | Range | Purpose |
-|---|---|---|---|---|
-| (1) | Σ\|γᵢ\| × (5.76/F_not) | 6.419 | 4.00–10.00 | Focus sensitivity control |
-| (2) | \|γ\|_max / \|γ\|_min | 4.305 | 0.10–10.00 | Focus group balance |
-| (3) | ω_t | 3.10° | 2.20°–13.00° | Half-angle at tele |
-| (4) | TL_t / f_t | 0.733 | 0.40–0.90 | Telephoto ratio |
-| (5) | Σ\|γᵢ\| × (5.76/F_not) × (Y_max/21.63) | 6.419 | 4.00–10.00 | Sensor-normalized sensitivity |
-| (6) | (−f_F1) / FD | 9.289 | > 2.00 | Focus group spacing ratio |
-| (7) | f_F1 / f_F2 | 0.533 | 0.30–1.00 | Focus group power ratio |
-| (8) | β_F1 / β_F2 | 1.217 | 0.85–1.40 | Focus group magnification ratio |
-| (9) | f_vr / f_t | 0.202 | 0.10–0.30 | VR group sensitivity |
-| (10) | f_t / f_w | 3.765 | 2.00–20.00 | Zoom ratio |
-| (11) | −(MV1+MV2+MV3) / TL_t | 0.149 | 0.10–0.30 | Zoom travel efficiency |
-
----
-
-## Numerical Verification
-
-Independently computed from the patent prescription using a paraxial ABCD matrix ray trace:
-
-| Quantity | Computed | Patent | Δ |
-|---|---|---|---|
-| System EFL (tele ∞) | 388.15 mm | 388.17 mm | −0.02 mm |
-| System EFL (wide ∞) | 103.08 mm | 103.09 mm | −0.01 mm |
-| F-number (tele) | f/5.76 | 5.76 | exact |
-| F-number (wide) | f/4.50 | — (not stated) | matches production spec |
-| Total track (tele ∞) | 284.59 mm | 284.55 mm | +0.04 mm |
-| G1 focal length | +220.226 mm | +220.226 mm | < 0.001 mm |
-| G2 focal length | +412.745 mm | +412.716 mm | +0.029 mm |
-| G3 focal length | −37.714 mm | −37.713 mm | −0.001 mm |
-| G4 focal length | +45.972 mm | +45.972 mm | < 0.001 mm |
-| G5 focal length | −81.739 mm | −81.740 mm | +0.001 mm |
-| G6 focal length | −153.341 mm | −153.334 mm | −0.007 mm |
-| G7 focal length | +502.736 mm | +502.735 mm | +0.001 mm |
-
-The wide-end f-number was **not stated in the patent** but was independently verified as f/4.50 by paraxial ray trace — matching the production specification exactly.
-
----
-
-## Semi-Diameter Estimation
-
-The patent does not provide semi-diameters. For the companion `.data.ts` file, semi-diameters were estimated by paraxial ray trace at both zoom positions using the reduced-angle ABCD method:
-
-1. Marginal ray traced from the entrance pupil edge (scaled to match the target f-number at each zoom position).
-2. Chief ray constructed to pass through the stop center at the full-field angle.
-3. Unvignetted SD at each surface = |y_marginal| + |y_chief|, with 10% mechanical clearance.
-4. Maximum of wide and tele configurations taken.
-5. Front-group surfaces (1–9) capped at the physical barrel constraint of the 77 mm filter thread (~37.5 mm max SD). Computed unvignetted tele-end SDs for the front elements reach ~59 mm, confirming significant tele-end vignetting typical of variable-aperture telephoto zooms.
-
----
+The automatic screen over-read the VR bracket as 36 mm glass; that number is rejected after direct inspection. An initial screen used the wrong rotation and is also rejected. Other existing rims remain within drawing tolerance or below the strong-revision threshold and are retained as estimates. Surface validation and image-circle coverage pass. A three-by-three grid of zoom/focus states shows no hidden rim trimming after these changes. Passing d-line geometry checks does not remove the uncertainty in inferred dispersion.
 
 ## Sources
 
-1. JP2022-92388A, "Optical System, Optical Apparatus, and Method for Manufacturing Optical System," Nikon Corporation, filed 2020-12-10, published 2022-06-22. Inventor: Hiroshi Yabumoto.
-2. Nikon product page: "NIKKOR Z 100-400mm f/4.5-5.6 VR S — 25 elements in 20 groups (including 6 ED glass and 2 Super ED glass elements)."
-3. OHARA Optical Glass Catalog (glass identification reference for nd/νd matching).
-4. SCHOTT Optical Glass Catalog (glass identification reference for nd/νd matching).
+- Local original patents/JP2022092388A.pdf: Table 1 pp. 14–15; Figures 1–2 p. 26; focus and VR paragraphs 98–99.
+- [JP 2022-092388 A patent record](https://patents.google.com/patent/JP2022092388A/en).
+- Local glass catalog for counterparts compatible with explicitly inferred vd values.
+
+## Inferred zoom iris
+
+The viewer infers physical iris radii at the source zoom stations from their nominal infinity f-numbers. This corrects the previous fixed-iris behavior, which did not reproduce the stated telephoto aperture. Intermediate iris radii are interpolated and focus retains the current zoom iris. This is a calculated model, not a patent-published physical iris schedule.

@@ -627,7 +627,9 @@ export default function buildLens(data: LensData): RuntimeLens {
   const baseNomFno = Array.isArray(data.nominalFno) ? data.nominalFno[0] : data.nominalFno!;
   const nominalEPSD = apertureReferenceFocalLength / (2 * baseNomFno);
   const nomRealY = realTraceToStop(S, asphByIdx, nominalEPSD, 0, stopIdx);
-  if (!preserveAuthoredStopSD) {
+  if (data.zoomStopSemiDiameters) {
+    S[stopIdx].sd = data.zoomStopSemiDiameters[0];
+  } else if (!preserveAuthoredStopSD) {
     S[stopIdx].sd = isFinite(nomRealY) && Math.abs(nomRealY) > 1e-15 ? nomRealY : nominalEPSD * nomYRatio;
   }
 
@@ -865,7 +867,9 @@ export default function buildLens(data: LensData): RuntimeLens {
    *  - zoomBs:        chief ray height at stop (for off-axis ray placement)
    */
   const zoomStopSDs: number[] | null =
-    data.zoomApertureModel === "from-nominal-fno" && isZoom && !preserveAuthoredStopSD ? [] : null;
+    (data.zoomStopSemiDiameters || (data.zoomApertureModel === "from-nominal-fno" && !preserveAuthoredStopSD)) && isZoom
+      ? []
+      : null;
   let zoomEFLs: number[] | null = null,
     zoomEPs: number[] | null = null,
     zoomHalfFields: number[] | null = null,
@@ -901,8 +905,12 @@ export default function buildLens(data: LensData): RuntimeLens {
       const zApertureReferenceFocalLength = fisheyeProjectionFocalLengthAtZoom(projection, zZoomT) ?? zEfl;
       const zNomEP = zApertureReferenceFocalLength / (2 * zNomFno);
       const zRealY = realTraceToStop(tmpS, asphByIdx, zNomEP, 0, stopIdx);
-      if (isFinite(zRealY) && Math.abs(zRealY) > 1e-15) tmpS[stopIdx].sd = zRealY;
-      zoomStopSDs?.push(Math.abs(isFinite(zRealY) && Math.abs(zRealY) > 1e-15 ? zRealY : zNomEP * epT.y));
+      const stationStopSD =
+        data.zoomStopSemiDiameters?.[zi] ??
+        Math.abs(isFinite(zRealY) && Math.abs(zRealY) > 1e-15 ? zRealY : zNomEP * epT.y);
+      if (data.zoomStopSemiDiameters) tmpS[stopIdx].sd = stationStopSD;
+      else if (isFinite(zRealY) && Math.abs(zRealY) > 1e-15) tmpS[stopIdx].sd = zRealY;
+      zoomStopSDs?.push(stationStopSD);
       zoomEPs.push(zNomEP);
       zoomYRatios.push(epT.y);
 

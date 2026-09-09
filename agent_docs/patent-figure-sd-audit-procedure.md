@@ -1,5 +1,10 @@
 # Procedure — Semi-Diameter Audit Against a Patent Figure
 
+## Audit test retention
+
+Tests and scripts written to verify a patent audit are temporary by default. Do not retain them unless absolutely necessary to prevent a specific regression in shared engine, UI, or data-contract behavior that existing tests cannot cover. Do not commit per-lens snapshots of prescription values, glass labels, calculated powers, rims, or motion merely to restate audited data. Run the existing catalog validators and audit commands; record sources, calculations, results and limitations in the companion `.audit.md` and task record. If an essential shared regression test is needed, add the smallest case to the existing subsystem suite, prefer a synthetic input over patent-specific constants, and document why it must remain. Remove temporary audit tests before delivery; historical test counts in audit logs describe the checks run at that time.
+
+
 A step-by-step runbook for auditing one lens's semi-diameters (`sd`) and cross-section proportions against its
 patent. Follow it in order. Each step says what to run, what the output means, and when to stop.
 

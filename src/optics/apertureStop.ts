@@ -1,4 +1,4 @@
-/** Physical wide-open iris for lenses with an explicit inferred zoom-aperture model. */
+/** Physical wide-open iris for lenses with a published or inferred zoom iris schedule. */
 import type { RuntimeLens } from "../types/optics.js";
 
 export function wideOpenStopAtZoom(zoomT: number, L: RuntimeLens): number {
