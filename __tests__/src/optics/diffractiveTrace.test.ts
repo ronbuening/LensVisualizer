@@ -1,69 +1,42 @@
 import { describe, expect, it } from "vitest";
-import buildLens, { paraxialTrace } from "../../../../src/optics/buildLens.js";
-import { prepareRuntimeState } from "../../../../src/optics/compat.js";
+import PfRaw from "../../../src/lens-data/nikon/NikonAFSNikkor500mmf56EPFEDVR.data.js";
+import { prepareRuntimeState } from "../../../src/optics/compat.js";
+import { compileDiffractivePhase } from "../../../src/optics/math/diffractivePhase.js";
 import {
   doLayout,
   traceRay as tracePreparedRay,
   traceRayChromatic as tracePreparedRayChromatic,
   traceSkewRay as tracePreparedSkewRay,
   traceSkewRayChromatic as tracePreparedSkewRayChromatic,
-} from "../../../../src/optics/optics.js";
+} from "../../../src/optics/optics.js";
 import {
   traceRay as traceCompatibilityRay,
   traceRayChromatic as traceCompatibilityRayChromatic,
   traceSkewRay as traceCompatibilitySkewRay,
   traceSkewRayChromatic as traceCompatibilitySkewRayChromatic,
-} from "../../../../src/optics/rayTrace.js";
-import data from "../../../../src/lens-data/nikon/NikonAFSNikkor500mmf56EPFEDVR.data.js";
-import LENS_DEFAULTS from "../../../../src/lens-data/defaults.js";
-import { compileDiffractivePhase } from "../../../../src/optics/math/diffractivePhase.js";
-import { findNearestGeneralizedSurfaceHit } from "../../../../src/optics/trace/pathPlanner.js";
-import { traceSequential } from "../../../../src/optics/trace/sequentialTrace.js";
-import type { LensData } from "../../../../src/types/optics.js";
+} from "../../../src/optics/rayTrace.js";
+import { findNearestGeneralizedSurfaceHit } from "../../../src/optics/trace/pathPlanner.js";
+import { traceSequential } from "../../../src/optics/trace/sequentialTrace.js";
+import { build } from "./testLensFixtures.js";
 
-function build(raw: object) {
-  return buildLens({ ...LENS_DEFAULTS, ...raw } as LensData);
-}
+/**
+ * Diffractive phase surface in an ordinary sequential path.
+ *
+ * `foldedDiffractiveTrace.test.ts` pins the analytic phase kick on the hidden
+ * folded fixture and `exactTraceGoldenValues.test.ts` pins the production
+ * Phase Fresnel lens's first-order and per-channel numbers. This file covers
+ * the remaining engine contracts around a sequential diffractive surface,
+ * using the catalog's only production diffractive design as the fixture: the
+ * compatibility and prepared tracers agree at every channel, a same-index
+ * phase plate is never skipped as a passive surface, and a diffraction order
+ * that cannot propagate fails with a typed reason instead of NaN geometry.
+ */
 
-describe("Nikon AF-S NIKKOR 500mm f/5.6E PF ED VR", () => {
-  it("reproduces the patent Example 2 first-order prescription with PF power", () => {
-    const L = build(data);
-    expect(L.N).toBe(33);
-    expect(L.data.elementCount).toBe(19);
-    expect(L.elements).toHaveLength(21);
-    expect(L.EFL).toBeCloseTo(489.709445, 2);
-    const finalParaxialRay = paraxialTrace(L.S, 1, 0, { skipLastTransfer: true });
-    expect(-finalParaxialRay.y / finalParaxialRay.u).toBeCloseTo(64.398175, 2);
-    expect(L.totalTrack).toBeCloseTo(279.32418, 3);
-    expect(L.FOPEN).toBeCloseTo(5.75019, 5);
-    expect(L.S[L.labelIdx["8"]].diffractive?.terms).toHaveLength(2);
-  });
+const PHASE_SURFACE_LABEL = "8";
+const L = build(PfRaw);
 
-  it("preserves the published close-focus spacing endpoints", () => {
-    const L = build(data);
-    const infinity = doLayout(0, 0, L);
-    const close = doLayout(1, 0, L);
-    expect(infinity.th[L.labelIdx["12"]]).toBeCloseTo(22.24696, 5);
-    expect(close.th[L.labelIdx["12"]]).toBeCloseTo(39.16215, 5);
-    expect(close.th[L.labelIdx["15"]]).toBeCloseTo(15.39786, 5);
-    expect(close.th[L.labelIdx["34"]]).toBeCloseTo(64.43514, 5);
-  });
-
-  it("shows the independently verified first-order contribution of the PF surface", () => {
-    const withoutPhase = structuredClone(data);
-    const phaseSurface = withoutPhase.surfaces.find((surface) => surface.label === "8")!;
-    delete phaseSurface.diffractive;
-
-    const L = build(data);
-    const refractiveOnly = build(withoutPhase);
-    expect(refractiveOnly.EFL).toBeCloseTo(538.940703, 2);
-    const finalRefractiveRay = paraxialTrace(refractiveOnly.S, 1, 0, { skipLastTransfer: true });
-    expect(-finalRefractiveRay.y / finalRefractiveRay.u).toBeCloseTo(79.501045, 2);
-    expect(refractiveOnly.EFL - L.EFL).toBeCloseTo(49.231258, 2);
-  });
-
+describe("sequential diffractive surface", () => {
   it("keeps compatibility and prepared exact traces aligned at every chromatic channel", () => {
-    const L = build(data);
     const layout = doLayout(0, 0, L);
     const args = [20, 0, layout.z, 0, 0, L.stopPhysSD, false, L] as const;
     const compatibility = traceCompatibilityRay(...args);
@@ -101,19 +74,20 @@ describe("Nikon AF-S NIKKOR 500mm f/5.6E PF ED VR", () => {
   });
 
   it("keeps a same-index phase plate active in automatic generalized path selection", () => {
-    const sameIndexData = structuredClone(data);
-    const phaseSurface = sameIndexData.surfaces.find((surface) => surface.label === "8")!;
-    phaseSurface.nd = 1.5278;
-    const L = build(sameIndexData);
-    const state = prepareRuntimeState(L, 0, 0);
-    const phaseSurfaceIndex = L.labelIdx["8"];
+    const sameIndexData = structuredClone(PfRaw);
+    const phaseSurface = sameIndexData.surfaces.find((surface) => surface.label === PHASE_SURFACE_LABEL)!;
+    const precedingIndex = sameIndexData.surfaces[sameIndexData.surfaces.indexOf(phaseSurface) - 1].nd;
+    phaseSurface.nd = precedingIndex;
+    const sameIndex = build(sameIndexData);
+    const state = prepareRuntimeState(sameIndex, 0, 0);
+    const phaseSurfaceIndex = sameIndex.labelIdx[PHASE_SURFACE_LABEL];
     const phaseZ = state.surfaces[phaseSurfaceIndex].z;
     const candidate = findNearestGeneralizedSurfaceHit(
       [0, 5, phaseZ - 5],
       [0, 0, 1],
       state,
       undefined,
-      1.5278,
+      precedingIndex,
       undefined,
       -1,
       new Set([phaseSurfaceIndex]),
@@ -124,9 +98,8 @@ describe("Nikon AF-S NIKKOR 500mm f/5.6E PF ED VR", () => {
   });
 
   it("reports a typed failure when the authored diffraction order cannot propagate", () => {
-    const L = build(data);
     const state = prepareRuntimeState(L, 0, 0);
-    const phaseSurfaceIndex = L.labelIdx["8"];
+    const phaseSurfaceIndex = L.labelIdx[PHASE_SURFACE_LABEL];
     const extremePhase = compileDiffractivePhase({
       kind: "radial-polynomial",
       referenceWavelengthNm: 587.6,
