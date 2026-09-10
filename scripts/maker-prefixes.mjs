@@ -46,6 +46,7 @@ export const MAKER_PREFIXES = [
   { prefix: "SONY", display: "Sony", slug: "sony" },
   { prefix: "TAMRON", display: "Tamron", slug: "tamron" },
   { prefix: "TOKINA", display: "Tokina", slug: "tokina" },
+  { prefix: "VILTROX", display: "Viltrox", slug: "viltrox" },
   { prefix: "VIVITAR", display: "Vivitar", slug: "vivitar" },
   { prefix: "YASHICA", display: "Yashica", slug: "yashica" },
   { prefix: "YASHINON", display: "Yashica", slug: "yashica" },

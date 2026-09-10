@@ -254,6 +254,20 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
     notableDesigns:
       "Tiefenbildner-Imagon, Heligon, Ysarex, Grandagon-N, Apo-Grandagon, Sironar-N, Apo-Sironar-S, Apo-Ronar, Rodagon, HR Digaron-W, HR Digaron-S",
   },
+  /* Viltrox company profile and manufacturer press release, accessed 2026-09-10:
+   * https://viltrox.com/pages/about-us
+   * https://prtimes.jp/main/html/rd/p/000000001.000157861.html
+   */
+  viltrox: {
+    founded: 2009,
+    headquarters: "Shenzhen, China",
+    summary:
+      "Chinese maker of photographic and cinema lenses, lens adapters, monitors, and lighting equipment, with autofocus primes for APS-C and full-frame mirrorless cameras.",
+    history:
+      "Viltrox is the imaging-equipment brand of Shenzhen Jueying Technology Co., Ltd., founded in 2009 in Shenzhen. Its range includes photographic accessories and interchangeable lenses for mirrorless camera systems. The AF prime-lens lineup spans compact everyday lenses and large-aperture designs, including the APS-C 27mm f/1.2 and 75mm f/1.2 PRO lenses.",
+    notableDesigns:
+      "AF 27mm f/1.2 PRO, AF 75mm f/1.2 PRO, AF 33mm f/1.4, AF 56mm f/1.4, AF 35mm f/1.8 FE, AF 50mm f/1.8 FE",
+  },
   vivitar: {
     founded: 1938,
     headquarters: "Santa Monica, California, USA (marketing brand; lenses manufactured in Japan)",

@@ -19,6 +19,11 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-09-10",
+    type: "lens",
+    summary: "Added six Viltrox AF primes from 27mm to 75mm with audited patent diagrams and glass",
+  },
+  {
     date: "2026-09-09",
     type: "lens",
     summary: "Added six Samyang AF and XP prime lens designs with audited diagrams and glass",

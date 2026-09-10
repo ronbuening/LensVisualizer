@@ -12,18 +12,18 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **698** lenses scanned
-- **7963** glass elements examined
-- **2379** elements have multiple coordinate-compatible candidates
-- **458** lens files are affected
-- **208** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
-- **194** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
+- **704** lenses scanned
+- **8035** glass elements examined
+- **2391** elements have multiple coordinate-compatible candidates
+- **461** lens files are affected
+- **209** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
+- **195** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
-| Smallest reference-index residual | 1341 |
-| Evidence-source priority | 767 |
-| Vendor context | 262 |
+| Smallest reference-index residual | 1351 |
+| Evidence-source priority | 766 |
+| Vendor context | 265 |
 | Stable canonical-name order | 7 |
 | Smallest Abbe residual | 2 |
 
@@ -422,7 +422,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `S-FPL51 / FCD1 class (ED fluorophosphate, 497/816)` | 1.49700 / 81.59 (d) | FCD1 — smallest d-line \|Δn\| (1.6e-7 vs 7.1e-7) | S-FPL51 (Ohara, name)<br>H-FK61 (CDGM, code, alternate code row) | 2 | [FUJIFILM FUJINON GF 23mm f/4 R LM WR](../../src/lens-data/fujifilm/FujifilmGF23mmf4.data.ts) L13 |
 | `S-NBH5 / N-KZFS5 class (654/397)` | 1.65412 / 39.73 (d) | N-KZFS5 — smallest d-line \|Δn\| (4.4e-7 vs 4.8e-6) | S-NBH5 (Ohara, name)<br>BPH5 (Ohara, code, alternate code row) | 1 | [FUJIFILM FUJINON GF 23mm f/4 R LM WR](../../src/lens-data/fujifilm/FujifilmGF23mmf4.data.ts) L14 |
 | `S-TIH53 (OHARA) / FDS90 class` | 1.84666 / 23.78 (d) | S-TIH53 — Annotation vendor context matches Ohara. | FDS90 (Hoya, name, vendor ✗) | 1 | [FUJIFILM FUJINON GF 23mm f/4 R LM WR](../../src/lens-data/fujifilm/FujifilmGF23mmf4.data.ts) L15 |
-| `TAFD40 (HOYA) / H-ZLaF90 class (001/255)` | 2.00069 / 25.43 (d) | TAFD40 — direct name evidence outranks six-digit code evidence. | TAFD40L-W (Hoya, code, vendor ✓, alternate code row) | 1 | [FUJIFILM FUJINON GF 23mm f/4 R LM WR](../../src/lens-data/fujifilm/FujifilmGF23mmf4.data.ts) L16 |
+| `TAFD40 (HOYA) / H-ZLaF90 class (001/255)` | 2.00069 / 25.43 (d) | TAFD40 — Annotation vendor context matches Hoya. | H-ZLaF90 (CDGM, name, vendor ✗)<br>TAFD40L-W (Hoya, code, vendor ✓, alternate code row) | 1 | [FUJIFILM FUJINON GF 23mm f/4 R LM WR](../../src/lens-data/fujifilm/FujifilmGF23mmf4.data.ts) L16 |
 | `S-NBH8 (OHARA) / N-KZFS8 class` | 1.72047 / 34.71 (d) | S-NBH8 — Annotation vendor context matches Ohara. | N-KZFS8 (Schott, name, vendor ✗) | 1 | [FUJIFILM FUJINON GF 23mm f/4 R LM WR](../../src/lens-data/fujifilm/FujifilmGF23mmf4.data.ts) L32 |
 | `S-TIM5 (OHARA) / F5 class` | 1.60342 / 38.03 (d) | S-TIM5 — Annotation vendor context matches Ohara. | F5 (Schott, name, vendor ✗) | 1 | [FUJIFILM FUJINON GF 23mm f/4 R LM WR](../../src/lens-data/fujifilm/FujifilmGF23mmf4.data.ts) L34 |
 | `487/704 low-dispersion crown (S-FSL5 class; patent-listed)` | 1.48749 / 70.44 (d) | S-FSL5 — direct name evidence outranks six-digit code evidence. | N-FK5 (Schott, code, preferred code row)<br>H-QK3L (CDGM, code, alternate code row)<br>FK5 (Sumita, code, alternate code row)<br>FC5 (Hoya, code, alternate code row) | 2 | [FUJIFILM FUJINON GF 30mm f/5.6 T/S](../../src/lens-data/fujifilm/FujifilmGF30mmf56TS.data.ts) L16 |
@@ -1184,6 +1184,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `S-TIH53 / FDS90 class (847/238 dense flint)` | 1.84666 / 23.80 (d) | S-TIH53 — smallest d-line \|Δn\| (3.2e-7 vs 3.2e-6) | FDS90 (Hoya, name)<br>J-SF03 (Hikari, code, alternate code row)<br>H-ZF52 (CDGM, code, alternate code row)<br>S-TIH53W (Ohara, code, alternate code row) | 1 | [PANASONIC LUMIX G 14mm f/2.5 II ASPH](../../src/lens-data/panasonic/PanasonicG14mmf25II.data.ts) L3 |
 | `S-LAH58 / TAFD30 class (883/408 lanthanum dense flint)` | 1.88300 / 40.80 (d) | S-LAH58 — smallest d-line \|Δn\| (3.0e-6 vs 3.9e-6) | TAFD30 (Hoya, name) | 1 | [PANASONIC LUMIX G 14mm f/2.5 II ASPH](../../src/lens-data/panasonic/PanasonicG14mmf25II.data.ts) L4 |
 | `S-BAL42 / L-BAL42 / M-BACD12 class (583/594 barium crown; patent nd=1.58250)` | 1.58250 / 59.40 (d) | S-BAL42 — smallest d-line \|Δn\| (6.3e-4 vs 6.3e-4) | M-BACD12 (Hoya, name)<br>J-SK12 (Hikari, code, alternate code row) | 1 | [PANASONIC LUMIX G 14mm f/2.5 II ASPH](../../src/lens-data/panasonic/PanasonicG14mmf25II.data.ts) L5 |
+| `TAFD40 (Hoya) / H-ZLaF90 class` | 2.00069 / 25.50 (d) | TAFD40 — Annotation vendor context matches Hoya. | H-ZLaF90 (CDGM, name, vendor ✗) | 1 | [PANASONIC LUMIX G 25mm f/1.7 ASPH.](../../src/lens-data/panasonic/PanasonicLumixG25mmf17.data.ts) L1 |
 | `E-CF6 (Hoya) / S-NSL36 class` | 1.51742 / 52.10 (d) | E-CF6 — Annotation vendor context matches Hoya. | S-NSL36 (Ohara, name, vendor ✗) | 1 | [PANASONIC LUMIX G 25mm f/1.7 ASPH.](../../src/lens-data/panasonic/PanasonicLumixG25mmf17.data.ts) L2 |
 | `TAC8 (Hoya) / S-LAL18 class` | 1.72916 / 54.70 (d) | TAC8 — Annotation vendor context matches Hoya. | S-LAL18 (Ohara, name, vendor ✗) | 1 | [PANASONIC LUMIX G 25mm f/1.7 ASPH.](../../src/lens-data/panasonic/PanasonicLumixG25mmf17.data.ts) L4 |
 | `TAF3 (Hoya) / N-LASF44 class` | 1.80420 / 46.50 (d) | TAF3 — Annotation vendor context matches Hoya. | N-LASF44 (Schott, name, vendor ✗) | 1 | [PANASONIC LUMIX G 25mm f/1.7 ASPH.](../../src/lens-data/panasonic/PanasonicLumixG25mmf17.data.ts) L5 |
@@ -1381,6 +1382,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `697555 class (vendor not identified by patent)` | 1.69680 / 55.46 (d) | J-LAK14 — smallest d-line \|Δn\| (1.3e-8 vs 2.3e-6) | LAC14 (Hoya, code, alternate code row)<br>S-LAL14 (Ohara, code, preferred code row) | 1 | [SAMYANG AF 50mm f/1.4 FE](../../src/lens-data/samyang/SamyangAF50mmf14FE.data.ts) L5 |
 | `883408 class (vendor not identified by patent)` | 1.88300 / 40.80 (d) | S-LAH58 — smallest d-line \|Δn\| (3.0e-6 vs 3.9e-6) | TAFD30 (Hoya, code, alternate code row) | 1 | [SAMYANG AF 50mm f/1.4 FE](../../src/lens-data/samyang/SamyangAF50mmf14FE.data.ts) L6 |
 | `569560 class (vendor not identified by patent)` | 1.56883 / 56.04 (d) | BAC4 — smallest d-line \|Δn\| (9.0e-7 vs 2.5e-6) | N-BAK4 (Schott, code, preferred code row) | 1 | [SAMYANG AF 50mm f/1.4 FE](../../src/lens-data/samyang/SamyangAF50mmf14FE.data.ts) L9 |
+| `TAFD40 (HOYA) / H-ZLaF90 class` | 2.00069 / 25.46 (d) | TAFD40 — Annotation vendor context matches Hoya. | H-ZLaF90 (CDGM, name, vendor ✗) | 1 | [SAMYANG AF 85mm f/1.4 FE](../../src/lens-data/samyang/SamyangAF85mmf14.data.ts) L1 |
 | `FDS90 (HOYA) / S-TIH53 class` | 1.84666 / 23.78 (d) | FDS90 — Annotation vendor context matches Hoya. | S-TIH53 (Ohara, name, vendor ✗) | 1 | [SAMYANG AF 85mm f/1.4 FE](../../src/lens-data/samyang/SamyangAF85mmf14.data.ts) L3 |
 | `LAC8 (HOYA) / S-LAL8 class` | 1.71300 / 53.94 (d) | LAC8 — Annotation vendor context matches Hoya. | S-LAL8 (Ohara, name, vendor ✗) | 2 | [SAMYANG AF 85mm f/1.4 FE](../../src/lens-data/samyang/SamyangAF85mmf14.data.ts) L5 |
 | `E-FD4 (HOYA) / S-TIH4 class` | 1.75520 / 27.53 (d) | E-FD4 — Annotation vendor context matches Hoya. | S-TIH4 (Ohara, name, vendor ✗) | 2 | [SAMYANG AF 85mm f/1.4 FE](../../src/lens-data/samyang/SamyangAF85mmf14.data.ts) L6 |
@@ -1683,6 +1685,15 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `620363 coordinate class (vendor unresolved)` | 1.62004 / 36.30 (d) | E-F2 — smallest d-line \|Δn\| (1.5e-7 vs 8.4e-7) | S-TIM2 (Ohara, code, preferred code row) | 2 | [TAMRON SP AF 70-200mm f/2.8 Di LD [IF] MACRO](../../src/lens-data/tamron/TamronA00170200mmf28.data.ts) L15 |
 | `834373 coordinate class (vendor unresolved)` | 1.83400 / 37.30 (d) | NBFD10 — smallest d-line \|Δn\| (5.6e-7 vs 4.1e-4) | M-NBFD10 (Hoya, code, preferred code row) | 1 | [TAMRON SP AF 70-200mm f/2.8 Di LD [IF] MACRO](../../src/lens-data/tamron/TamronA00170200mmf28.data.ts) L16 |
 | `806333 coordinate class (vendor unresolved)` | 1.80610 / 33.30 (d) | J-LASFH6 — smallest d-line \|Δn\| (2.6e-8 vs 6.1e-7) | NBFD15 (Hoya, code, preferred code row) | 1 | [TAMRON SP AF 70-200mm f/2.8 Di LD [IF] MACRO](../../src/lens-data/tamron/TamronA00170200mmf28.data.ts) L17 |
+| `729547 — high-index crown class (vendor unproven)` | 1.73000 / 54.67 (d) | TAC8 — smallest d-line \|Δn\| (8.4e-4 vs 8.4e-4) | S-LAL18 (Ohara, code, preferred code row) | 2 | [VILTROX AF 33mm f/1.4 E](../../src/lens-data/viltrox/ViltroxAF33mmf14E.data.ts) L12 |
+| `923209 — high-index flint class (vendor unproven)` | 1.92000 / 20.88 (d) | E-FDS1 — smallest d-line \|Δn\| (2.9e-3 vs 2.9e-3) | N-SF66 (Schott, code, preferred code row)<br>PBH21 (Ohara, code, alternate code row) | 1 | [VILTROX AF 33mm f/1.4 E](../../src/lens-data/viltrox/ViltroxAF33mmf14E.data.ts) L23 |
+| `741527 — high-index crown class (vendor unproven)` | 1.74000 / 52.67 (d) | S-LAL61 — smallest d-line \|Δn\| (1.0e-3 vs 1.0e-3) | LAK011 (Hikari, code, preferred code row) | 1 | [VILTROX AF 33mm f/1.4 E](../../src/lens-data/viltrox/ViltroxAF33mmf14E.data.ts) L41 |
+| `620363 — flint class (vendor unresolved)` | 1.62000 / 36.30 (d) | E-F2 — smallest d-line \|Δn\| (4.0e-5 vs 4.1e-5) | S-TIM2 (Ohara, code, preferred code row) | 1 | [VILTROX AF 50mm f/1.8 FE](../../src/lens-data/viltrox/ViltroxAF50mmf18FE.data.ts) L15 |
+| `648338 class (vendor unresolved)` | 1.65000 / 33.84 (d) | H-ZF1 — smallest d-line \|Δn\| (2.3e-3 vs 2.3e-3) | E-FD2 (Hoya, code, alternate code row)<br>S-TIM22 (Ohara, code, preferred code row) | 1 | [VILTROX AF 56mm f/1.4 E](../../src/lens-data/viltrox/ViltroxAF56mmf14E.data.ts) L11 |
+| `729547 class (vendor unresolved)` | 1.73000 / 54.68 (d) | TAC8 — smallest d-line \|Δn\| (8.4e-4 vs 8.4e-4) | S-LAL18 (Ohara, code, preferred code row) | 1 | [VILTROX AF 56mm f/1.4 E](../../src/lens-data/viltrox/ViltroxAF56mmf14E.data.ts) L12 |
+| `717295 class (vendor unresolved)` | 1.72000 / 29.51 (d) | S-TIH1 — smallest d-line \|Δn\| (2.6e-3 vs 2.6e-3) | SF1 (Schott, code, preferred code row) | 1 | [VILTROX AF 56mm f/1.4 E](../../src/lens-data/viltrox/ViltroxAF56mmf14E.data.ts) L14 |
+| `699301 class (vendor unresolved)` | 1.70000 / 30.05 (d) | E-FD15 — smallest d-line \|Δn\| (1.1e-3 vs 1.1e-3) | S-TIM35 (Ohara, code, preferred code row) | 1 | [VILTROX AF 56mm f/1.4 E](../../src/lens-data/viltrox/ViltroxAF56mmf14E.data.ts) L21 |
+| `729547 class (vendor unresolved)` | 1.73000 / 54.67 (d) | TAC8 — smallest d-line \|Δn\| (8.4e-4 vs 8.4e-4) | S-LAL18 (Ohara, code, preferred code row) | 1 | [VILTROX AF 56mm f/1.4 E](../../src/lens-data/viltrox/ViltroxAF56mmf14E.data.ts) L31 |
 | `SF6 class (SCHOTT legacy; patent 805/255)` | 1.80518 / 25.50 (d) | SF6 — direct name evidence outranks six-digit code evidence. | J-SF6 (Hikari, code, vendor ✗, alternate code row)<br>H-ZF7LA (CDGM, code, vendor ✗, preferred code row)<br>FD60 (Hoya, code, vendor ✗, alternate code row) | 1 | [VIVITAR SERIES 1 135mm f/2.3 AUTO TELEPHOTO](../../src/lens-data/vivitar/VivitarSeries1135mmf23.data.ts) L3 |
 | `N-SSK2 class (SCHOTT; patent 622/531)` | 1.62230 / 53.10 (d) | N-SSK2 — direct name evidence outranks six-digit code evidence. | SSK2 (Sumita, code, vendor ✗, preferred code row) | 1 | [VIVITAR SERIES 1 135mm f/2.3 AUTO TELEPHOTO](../../src/lens-data/vivitar/VivitarSeries1135mmf23.data.ts) L5 |
 | `BSC7 (HOYA) / N-BK7 (Schott)` | 1.51680 / 64.20 (d) | N-BK7 — direct name evidence outranks alias evidence. | S-BSL7 (Ohara, alias, vendor ✗) | 1 | [VIVITAR SERIES 1 200mm f/3.0 VMC](../../src/lens-data/vivitar/VivitarSeries1200mmf3.data.ts) L2 |
