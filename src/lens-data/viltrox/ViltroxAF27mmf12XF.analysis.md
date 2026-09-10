@@ -258,7 +258,7 @@ There is no focus reconstruction, zoom model, folded path, filter, inactive dumm
 
 ### Patent-figure SD review (2026-09-10 UTC)
 
-Reviewed the local `patents/CN115840281A.pdf`, PDF page 33, Figure 4-1, at 600 dpi. The existing SDs were retained: direct optical-rim inspection did not establish a figure discrepancy large enough to override the ray-clearance and physical-geometry constraints. Labels, group brackets, and focus arrows were excluded from the comparison. All semi-diameters remain modeling inferences. Surface and image-circle audits were run for this prescription.
+Reviewed the local `patents/CN115840281A.pdf`, PDF page 33, Figure 4-1, at 600 dpi. Front-pair semi-diameters follow the optical rims of Figure 4-1: S1/S2 23.5 mm, S3 20.1 mm and S4 15.5 mm. The wider rims exclude the mechanical blank around the rear of L12 and remain inferred rather than patent-tabulated apertures. Labels, group brackets, and focus arrows were excluded from the comparison. All semi-diameters remain modeling inferences. Surface and image-circle audits were run for this prescription.
 
 ## Sources and References
 

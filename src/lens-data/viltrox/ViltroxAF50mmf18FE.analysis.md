@@ -47,15 +47,15 @@ Because L11 is followed by a strongly positive L12 rather than functioning as an
 
 ### L12 — Biconvex Positive
 
-`nd = 1.80, νd = 46.6. Glass: Unmatched (nearest 804466 high-index lanthanum family; patent nd≈1.80, νd≈46.6). f = +30.977957 mm.`
+`nd = 1.80, νd = 46.6. Glass: M-TAF31 (approximate spectral proxy; patent nd/νd retained; supplier unresolved). f = +30.977957 mm.`
 
 L12 is the strongest positive element in G1 by standalone focal length. Its high refractive index allows substantial positive power without requiring extreme surface curvature. Together with L13 and L14 it provides the positive core that offsets L11 and L15.
 
-The nearest public catalog family is around code 804466, but its refractive-index residual exceeds the project's direct catalog-resolution window against the rounded patent coordinate. The element therefore remains explicitly unmatched rather than being promoted to a named vendor glass.
+M-TAF31 provides an approximate spectral curve within the catalog compatibility window (catalog nd 1.80139, νd 45.45; patent 1.80, 46.6). This is a modeling proxy, not a supplier identification or a replacement for the patent coordinates. The closer-Abbe 804466 family remains outside the refractive-index window.
 
 ### L13 — Plano-Convex Positive
 
-`nd = 1.80, νd = 46.6. Glass: Unmatched (nearest 804466 high-index lanthanum family; patent nd≈1.80, νd≈46.6). f = +121.875000 mm.`
+`nd = 1.80, νd = 46.6. Glass: M-TAF31 (approximate spectral proxy; patent nd/νd retained; supplier unresolved). f = +121.875000 mm.`
 
 L13 shares the same published `nd` and `νd` coordinates as L12 but carries much weaker positive standalone power. Its plano rear surface and moderate front curvature make it a lower-power contributor within the positive central section of G1.
 
@@ -121,11 +121,11 @@ In combination with negative L42, L41 leaves G4 net positive. The patent identif
 
 ### L42 — Negative Meniscus
 
-`nd = 1.67, νd = 33.1. Glass: Unmatched (nd≈1.67, νd≈33.1 dense flint). f = -65.410752 mm.`
+`nd = 1.67, νd = 33.1. Glass: N-SF5 (approximate spectral proxy; patent nd/νd retained; supplier unresolved). f = -65.410752 mm.`
 
 L42 is the final powered element and supplies negative standalone power behind L41. Its moderate-high refractive index and relatively low Abbe number provide a strong contrast to L41's high-`νd` material.
 
-The available public catalog coordinates did not support assigning a specific dense-flint name while preserving both the stored `nd` and `νd`. It remains explicitly unmatched rather than being forced to a nearby catalog glass. The positive L41 plus negative L42 combination yields the verified positive G4 focal length of +122.574172 mm.
+N-SF5 supplies a compatible approximate spectral curve while the authored patent coordinates remain unchanged. The positive L41 plus negative L42 combination yields the verified positive G4 focal length of +122.574172 mm.
 
 ## Glass Identification and Selection
 
@@ -134,8 +134,8 @@ The patent publishes only d-line refractive indices and Abbe numbers. Catalog cu
 | Element | Patent nd / νd | Runtime catalog curve |
 | --- | --- | --- |
 | L11 | 1.63 / 35.7 | Unmatched; patent Abbe fallback |
-| L12 | 1.8 / 46.6 | Unmatched; patent Abbe fallback |
-| L13 | 1.8 / 46.6 | Unmatched; patent Abbe fallback |
+| L12 | 1.8 / 46.6 | M-TAF31; approximate spectral proxy |
+| L13 | 1.8 / 46.6 | M-TAF31; approximate spectral proxy |
 | L14 | 1.85 / 23.8 | Unmatched; patent Abbe fallback |
 | L15 | 1.62 / 36.3 | E-F2 |
 | L21 | 1.65 / 33.8 | SF2 |
@@ -143,9 +143,11 @@ The patent publishes only d-line refractive indices and Abbe numbers. Catalog cu
 | L23 | 1.81 / 41 | K-VC89 |
 | L31 | 1.5 / 81.6 | J-FK01A |
 | L41 | 1.51 / 81.4 | Unmatched; patent Abbe fallback |
-| L42 | 1.67 / 33.1 | Unmatched; patent Abbe fallback |
+| L42 | 1.67 / 33.1 | N-SF5; approximate spectral proxy |
 
-5/11 elements resolve to catalog dispersion. Explicitly unmatched elements retain the patent-derived Abbe fallback. No APO or patent-backed anomalous-partial-dispersion claim follows from the proxy assignments.
+N-SF5 supplies the L42 spectral proxy at catalog nd 1.67271 / νd 32.25 versus patent 1.67 / 33.1. These three additional curves improve wavelength coverage while retaining uncertainty from the rounded patent coordinates. No partial-dispersion or production-glass identity is inferred.
+
+8/11 elements resolve to catalog dispersion. Explicitly unmatched elements retain the patent-derived Abbe fallback. No APO or patent-backed anomalous-partial-dispersion claim follows from the proxy assignments.
 
 ## Focus Mechanism
 

@@ -10,11 +10,11 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **704** lenses scanned
-- **1513** total code-only elements found
-- **251** elements in this report
+- **1511** total code-only elements found
+- **249** elements in this report
 - **95** distinct lens files affected
 - **1** active unreviewed elements have no review-record hit or explicit disposition
-- **127** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
+- **125** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
 - **0** dispositions lack any review record
 
 ## Prioritized Unreviewed Queue
@@ -36,7 +36,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 486815 | 5 | 1 | patents/US3743384.pdf | All rows explicitly disposed |
 | 847238 | 5 | 3 | patents/CN211826699U.pdf<br>patents/CN211955966U.pdf<br>patents/CN114755806A.pdf | All rows explicitly disposed |
 | 662561 | 4 | 1 | patents/GB_850117_A.pdf | All rows have review records |
-| 804466 | 4 | 2 | patents/JP2015166834A.pdf<br>patents/CN211955966U.pdf | All rows explicitly disposed |
 | 835427 | 4 | 3 | patents/JP2015166834A.pdf<br>patents/CN114755806A.pdf | All rows explicitly disposed |
 | 863252 | 4 | 2 | patents/WO2021199923A1.pdf<br>patents/WO_2025263124_A1.pdf | All rows have review records |
 | 777297 | 3 | 3 | patents/WO2021199923A1.pdf<br>patents/WO_2025263124_A1.pdf<br>patents/JP2023039817A.pdf | All rows have review records |
@@ -59,6 +58,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 781445 | 2 | 2 | patents/US4277149.pdf<br>patents/US4182550.pdf | All rows have review records |
 | 781446 | 2 | 2 | patents/JPA 1987244010-000000.pdf<br>patents/JP2004109559A.pdf | All rows have review records |
 | 804238 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
+| 804466 | 2 | 1 | patents/JP2015166834A.pdf | All rows explicitly disposed |
 | 806418 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
 | 807316 | 2 | 2 | patents/US4764000.pdf<br>patents/US4871239.pdf | All rows have review records |
 | 813252 | 2 | 1 | patents/US3591257.pdf | All rows have review records |
@@ -918,8 +918,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L11 (Element 1 (L11)) | 1 | `Unmatched (nearest 626357 flint family; patent nd≈1.63, νd≈35.7)` | 1.63000 / 35.70 | No catalog entry | abbe | patents/CN211955966U.pdf | Explicit disposition in data |
-| L12 (Element 2 (L12)) | 3 | `Unmatched (nearest 804466 high-index lanthanum family; patent nd≈1.80, νd≈46.6)` | 1.80000 / 46.60 | No catalog entry | abbe | patents/CN211955966U.pdf | Explicit disposition in data |
-| L13 (Element 3 (L13)) | 5 | `Unmatched (nearest 804466 high-index lanthanum family; patent nd≈1.80, νd≈46.6)` | 1.80000 / 46.60 | No catalog entry | abbe | patents/CN211955966U.pdf | Explicit disposition in data |
 | L14 (Element 4 (L14)) | 7 | `Unmatched (nearest 847238 dense-flint family; patent nd≈1.85, νd≈23.8)` | 1.85000 / 23.80 | No catalog entry | abbe | patents/CN211955966U.pdf | Explicit disposition in data |
 
 ### [VILTROX AF 75mm f/1.2 PRO](../../src/lens-data/viltrox/ViltroxAF75mmf12STMEDIF.data.ts) - CN 114755806 A

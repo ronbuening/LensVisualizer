@@ -33,7 +33,8 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 /* SD review: CN115840281A, PDF p. 33, Fig. 4-1, 600 dpi, 2026-09-10 UTC.
- * Optical-rim proportions reviewed; existing geometry-limited inferred SDs retained.
+ * Front-pair optical rims measured from Fig. 4-1: S1/S2 23.5 mm, S3 20.1 mm, S4 15.5 mm.
+ * Remaining geometry-limited inferred SDs retained; mechanical blank edges excluded.
  * Catalog names denote compatible spectral proxies; patent nd/vd and supplier uncertainty are retained.
  */
 const LENS_DATA = {
@@ -243,10 +244,10 @@ const LENS_DATA = {
 
   /* ── Surface prescription ── */
   surfaces: [
-    { label: "1", R: 48.6, d: 5.5, nd: 1.923, elemId: 1, sd: 20.0 },
-    { label: "2", R: 114.854, d: 0.15, nd: 1.0, elemId: 0, sd: 18.5 },
-    { label: "3", R: 44.69, d: 1.2, nd: 1.497, elemId: 2, sd: 17.0 },
-    { label: "4", R: 17.276, d: 12.73, nd: 1.0, elemId: 0, sd: 14.0 },
+    { label: "1", R: 48.6, d: 5.5, nd: 1.923, elemId: 1, sd: 23.5 },
+    { label: "2", R: 114.854, d: 0.15, nd: 1.0, elemId: 0, sd: 23.5 },
+    { label: "3", R: 44.69, d: 1.2, nd: 1.497, elemId: 2, sd: 20.1 },
+    { label: "4", R: 17.276, d: 12.73, nd: 1.0, elemId: 0, sd: 15.5 },
     { label: "5", R: -38.008, d: 1.2, nd: 1.541, elemId: 3, sd: 13.5 },
     { label: "6", R: 24.93, d: 7.214, nd: 2.001, elemId: 4, sd: 13.5 },
     { label: "7", R: -90.666, d: 0.2, nd: 1.0, elemId: 0, sd: 13.0 },

@@ -95,7 +95,7 @@ const LENS_DATA = {
       nd: 1.8,
       vd: 46.6,
       fl: 30.977957,
-      glass: "Unmatched (nearest 804466 high-index lanthanum family; patent nd≈1.80, νd≈46.6)",
+      glass: "M-TAF31 (approximate spectral proxy; patent nd/νd retained; supplier unresolved)",
     },
     {
       id: 3,
@@ -106,7 +106,7 @@ const LENS_DATA = {
       nd: 1.8,
       vd: 46.6,
       fl: 121.875,
-      glass: "Unmatched (nearest 804466 high-index lanthanum family; patent nd≈1.80, νd≈46.6)",
+      glass: "M-TAF31 (approximate spectral proxy; patent nd/νd retained; supplier unresolved)",
     },
     {
       id: 4,
@@ -196,7 +196,7 @@ const LENS_DATA = {
       nd: 1.67,
       vd: 33.1,
       fl: -65.410752,
-      glass: "Unmatched (nd≈1.67, νd≈33.1 dense flint)",
+      glass: "N-SF5 (approximate spectral proxy; patent nd/νd retained; supplier unresolved)",
     },
   ],
 

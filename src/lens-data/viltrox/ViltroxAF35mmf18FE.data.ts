@@ -43,7 +43,7 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 /* SD review: CN211955963U, PDF p. 17, Fig. 1, 600 dpi, 2026-09-10 UTC.
- * Optical-rim proportions reviewed; existing geometry-limited inferred SDs retained.
+ * Front-surface optical rim reduced to 13.3 mm from Fig. 1; remaining inferred SDs retained.
  * Catalog names denote compatible spectral proxies; patent nd/vd and supplier uncertainty are retained.
  */
 const LENS_DATA = {
@@ -204,7 +204,7 @@ const LENS_DATA = {
 
   /* ── Surface prescription ── */
   surfaces: [
-    { label: "1", R: 133.7, d: 1.0, nd: 1.49, elemId: 1, sd: 17.0 },
+    { label: "1", R: 133.7, d: 1.0, nd: 1.49, elemId: 1, sd: 13.3 },
     { label: "2", R: 21.2, d: 7.1, nd: 1.0, elemId: 0, sd: 11.25 },
     { label: "3", R: -22.02, d: 1.0, nd: 1.85, elemId: 2, sd: 11.25 },
     { label: "4", R: 64.6, d: 5.71, nd: 1.83, elemId: 3, sd: 13.8 },
@@ -250,7 +250,7 @@ const LENS_DATA = {
   groups: [
     { text: "G1 (+)", fromSurface: "1", toSurface: "7" },
     { text: "G2 (+)", fromSurface: "9", toSurface: "13A" },
-    { text: "G3 (−) FOCUS", fromSurface: "14A", toSurface: "15A" },
+    { text: "G3 (−)", fromSurface: "14A", toSurface: "15A" },
     { text: "G4 (+)", fromSurface: "16", toSurface: "19" },
   ],
   doublets: [

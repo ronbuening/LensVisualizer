@@ -218,7 +218,7 @@ The production specification and the patent model remain deliberately separate w
 
 ### Patent-figure SD review (2026-09-10 UTC)
 
-Reviewed the local `patents/CN211955963U.pdf`, PDF page 17, Figure 1, at 600 dpi. The existing SDs were retained: direct optical-rim inspection did not establish a figure discrepancy large enough to override the ray-clearance and physical-geometry constraints. Labels, group brackets, and focus arrows were excluded from the comparison. All semi-diameters remain modeling inferences. Surface and image-circle audits were run for this prescription.
+Reviewed the local `patents/CN211955963U.pdf`, PDF page 17, Figure 1, at 600 dpi. The front-surface semi-diameter is 13.3 mm from the optical rim in Figure 1, replacing the earlier 17 mm ray-envelope estimate. Remaining apertures retain their geometry-constrained values. Labels, group brackets, and focus arrows were excluded from the comparison. All semi-diameters remain modeling inferences. Surface and image-circle audits were run for this prescription.
 
 ## Sources / References
 

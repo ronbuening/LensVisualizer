@@ -10,8 +10,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **704** lenses scanned
-- **1513** total code-only elements found
-- **1513** elements in this report
+- **1511** total code-only elements found
+- **1511** elements in this report
 - **237** distinct lens files affected
 
 ## Codes by Frequency
@@ -25,8 +25,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 487702 | 47 | 30 | patents/JP2016148731A.pdf<br>patents/US7158320.pdf<br>patents/JP_2000047107_A.pdf<br>patents/JP2018049102A.pdf | 1/47 rows have review records |
 | 805254 | 47 | 34 | patents/US7158320.pdf<br>patents/US20150146044A1.pdf<br>patents/JP_2000047107_A.pdf<br>patents/JPA 1991141313-000000.pdf | No review-record hit |
 | 697555 | 34 | 27 | patents/US20130308041A1.pdf<br>patents/JP2013054269A.pdf<br>patents/US6115188.pdf<br>patents/US20150205081A1.pdf | 4/34 rows have review records |
-| 804466 | 30 | 19 | patents/US20110090576A1.pdf<br>patents/US20020015231A1.pdf<br>patents/JP_2007333790_A.pdf<br>patents/US6115188.pdf | 4/30 rows have review records |
 | 847239 | 29 | 15 | patents/JP2018049102A.pdf<br>patents/JPA 1997211319-000000.pdf<br>patents/US6115188.pdf<br>patents/JP_2008070450_A.pdf | 1/29 rows have review records |
+| 804466 | 28 | 18 | patents/US20110090576A1.pdf<br>patents/US20020015231A1.pdf<br>patents/JP_2007333790_A.pdf<br>patents/US6115188.pdf | 2/28 rows have review records |
 | 883408 | 28 | 20 | patents/US20150146044A1.pdf<br>patents/JPA 1997211319-000000.pdf<br>patents/US20130308041A1.pdf<br>patents/US20150205081A1.pdf | 5/28 rows have review records |
 | 904313 | 28 | 17 | patents/US20150146044A1.pdf<br>patents/US20130308041A1.pdf<br>patents/JP2016118658A.pdf<br>patents/US20130335830A1.pdf | No review-record hit |
 | 487704 | 24 | 14 | patents/US20050068636A1.pdf<br>patents/US20040218274A1.pdf<br>patents/US20030133200A1.pdf<br>patents/US6141156.pdf | No review-record hit |
@@ -2974,8 +2974,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L11 (Element 1 (L11)) | 1 | `Unmatched (nearest 626357 flint family; patent nd≈1.63, νd≈35.7)` | 1.63000 / 35.70 | No catalog entry | abbe | patents/CN211955966U.pdf | Explicit disposition in data |
-| L12 (Element 2 (L12)) | 3 | `Unmatched (nearest 804466 high-index lanthanum family; patent nd≈1.80, νd≈46.6)` | 1.80000 / 46.60 | No catalog entry | abbe | patents/CN211955966U.pdf | Explicit disposition in data |
-| L13 (Element 3 (L13)) | 5 | `Unmatched (nearest 804466 high-index lanthanum family; patent nd≈1.80, νd≈46.6)` | 1.80000 / 46.60 | No catalog entry | abbe | patents/CN211955966U.pdf | Explicit disposition in data |
 | L14 (Element 4 (L14)) | 7 | `Unmatched (nearest 847238 dense-flint family; patent nd≈1.85, νd≈23.8)` | 1.85000 / 23.80 | No catalog entry | abbe | patents/CN211955966U.pdf | Explicit disposition in data |
 | L15 (Element 5 (L15)) | 9 | `620363 — flint class (vendor unresolved)` | 1.62000 / 36.30 | E-F2 (trusted Sellmeier) | sellmeier | patents/CN211955966U.pdf | No review-record hit |
 | L21 (Element 6 (L21)) | 12 | `648339 — dense-flint class (vendor unresolved)` | 1.65000 / 33.80 | SF2 (trusted Sellmeier) | sellmeier | patents/CN211955966U.pdf | No review-record hit |
