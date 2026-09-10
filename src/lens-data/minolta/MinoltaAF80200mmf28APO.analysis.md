@@ -5,7 +5,7 @@
 **Filed:** 1987-08-06<br>
 **Published:** 1989-02-09<br>
 **Inventors:** Hisashi Tokumaru; Masakuni Tai<br>
-**Applicant:** Minolta Co., Ltd.<br>
+**Applicant:** Minolta Camera Co., Ltd.<br>
 **Title:** 大口径比望遠ズームレンズ (large-aperture-ratio telephoto zoom lens)<br>
 **Embodiment analyzed:** Example 1
 
@@ -211,7 +211,7 @@ The prescription is all-spherical. No aspheric coefficients, conic constants, di
 
 ## Sources
 
-1. **JP1989-039542**, 大口径比望遠ズームレンズ, Minolta Co., Ltd., filed 1987-08-06 and published 1989-02-09. Example 1 supplies the numerical prescription and 82-140-195 mm spacing table; Fig. 1 supplies the four-group optical section.
+1. **JP1989-039542**, 大口径比望遠ズームレンズ, Minolta Camera Co., Ltd., filed 1987-08-06 and published 1989-02-09. Example 1 supplies the numerical prescription and 82-140-195 mm spacing table; Fig. 1 supplies the four-group optical section.
 2. **Minolta factory service manual, AF Zoom 80-200mm F2.8, lens code 2589-100 / Maxxum code 2589-600.** Manufacturer-authored service material, consulted as an archival scan hosted by AllPhotoLenses, used for the production 16-element/13-group identity, Minolta A mount, front-focus mechanism, first-group focusing, Groups II/III zoom motion, fixed Group IV, constant zoom length, 1.8 m minimum focus distance, diaphragm location within Group IV, and the 2.4 mm minimum-side aperture adjustment.
 3. **Manufacturer optical-glass catalogs audited for coordinate compatibility:** OHARA, HOYA, SCHOTT, HIKARI, CDGM, and SUMITA. These comparisons support the conservative class/unmatched annotations but do not establish the actual Minolta glass vendor or melt identity.
 4. **Minolta US 4,786,152, Embodiment 3.** Used only as cross-patent evidence that the exact `493836` material family is anomalous-dispersion glass, not as a source of numeric spectral data for this prescription.

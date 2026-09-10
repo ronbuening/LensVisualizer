@@ -6,6 +6,28 @@ import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const CDGM_GLASS_ENTRIES: readonly GlassEntry[] = [
   {
+    name: "H-ZLaF90",
+    vendor: "CDGM",
+    B: [4.94167183e-1, 2.31375143, 2.2792987],
+    C: [6.02358038e-2, 1.37149187e-2, 1.48088436e2],
+    nd: 2.00069,
+    vd: 25.43,
+    code6: "001254",
+    source:
+      "CDGM H-ZLaF90 optical glass data sheet, K1-L3 Sellmeier constants; https://www.cdgmgd.com/webapp/pdf/H-ZLaF90.pdf (accessed 2026-09-10).",
+  },
+  {
+    name: "H-ZPK5",
+    vendor: "CDGM",
+    B: [2.59562934e-1, 1.24131969, 7.8723739e-1],
+    C: [1.96231869e-2, 6.19669959e-3, 1.23753444e2],
+    nd: 1.5928,
+    vd: 68.34,
+    code6: "593683",
+    source:
+      "CDGM H-ZPK5 optical glass data sheet, K1-L3 Sellmeier constants; https://www.cdgmgd.com/webapp/pdf/H-ZPK5.pdf (accessed 2026-09-10).",
+  },
+  {
     name: "H-LaF7",
     vendor: "CDGM",
     B: [1.85620526, 1.38494652, 0.223526441],

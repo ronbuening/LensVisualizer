@@ -6,6 +6,8 @@
  */
 
 const ASSIGNEE_START_YEARS = new Map([
+  // https://www.konicaminolta.com/global-en/corporate/history-timeline03.html
+  ["Minolta Co., Ltd.", 1994],
   ["Carl-Zeiss-Stiftung", 1891],
   ["VEB Carl Zeiss Jena", 1948],
   ["Zeiss Ikon AG", 1926],
@@ -13,7 +15,12 @@ const ASSIGNEE_START_YEARS = new Map([
   ["Carl Zeiss AG", 2004],
 ]);
 
+// Nikon history and the source publications distinguish legal renames from spelling variants:
+// https://www.nikon.com/company/corporate/history/
+// https://patents.google.com/patent/US2646721A/en (front page: Aktiengesellschaft)
 const ASSIGNEE_ALIASES = [
+  { alias: "Nippon Kogaku Kogyo K.K.", canonical: "Nippon Kogaku K.K." },
+  { alias: "Voigtländer & Sohn Aktiengesellschaft", canonical: "Voigtländer & Sohn AG" },
   { alias: "Carl Zeiss", canonical: "Carl-Zeiss-Stiftung", fromYear: 1891, throughYear: 2003 },
   { alias: "Carl Zeiss Stiftung", canonical: "Carl-Zeiss-Stiftung" },
   { alias: "Carl Zeiss Stiftung d/b/a Carl Zeiss", canonical: "Carl-Zeiss-Stiftung" },
