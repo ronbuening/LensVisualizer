@@ -46,3 +46,8 @@ The earlier ray-throughput rationale was insufficient: passing more rays does no
 The ten resolved elements retain compatible catalog proxies. L5/L11, L8/L12 and L16 have no compatible catalog candidates under the existing index/Abbe guard. L9 retains its ordinary-crown Abbe fallback: multiple nearby curves do not establish a unique assignment. No supplier, melt or anomalous-partial-dispersion identity was inferred from the rounded table coordinates.
 
 The authored STO SD remains 11.722108147 mm. Corrected its description from a verified physical iris to a paraxial reference: the runtime exact-marginal calibration yields approximately 13.246 mm. Finite-aperture clipping remains part of the numerical reconstruction. Removed the analysis claims that the entire default bundle passes or that these apertures validate the production silhouette/performance.
+
+
+## 2026-09-10 — Withheld from the public catalog
+
+Changed `visible` from its default `true` to `false` because the Table 1 / Figure 1 conflicts above remain unresolved. The prescription and audit evidence are retained for further investigation.

@@ -21,7 +21,7 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-09-10",
     type: "improvement",
-    summary: "Unified duplicate patent assignees and connected documented corporate relationships",
+    summary: "Unified patent-assignee relationships and hid the unresolved Viltrox 75mm reconstruction",
   },
   {
     date: "2026-09-09",

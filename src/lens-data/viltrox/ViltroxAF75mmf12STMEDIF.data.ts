@@ -61,6 +61,8 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   /* ── Identity ── */
   key: "viltrox-af-75mm-f12-pro",
+  // Withhold from the public catalog until the Table 1 / Figure 1 conflicts are resolved.
+  visible: false,
   maker: "Viltrox",
   name: "VILTROX AF 75mm f/1.2 PRO",
   subtitle: "CN 114755806 A Example 1 — constrained source-error reconstruction",
