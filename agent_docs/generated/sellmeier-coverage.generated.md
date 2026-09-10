@@ -12,7 +12,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **704** lenses scanned
-- **693** visible lenses scanned
+- **692** visible lenses scanned
 - **473** lenses fully covered by trusted chromatic data
 - **471** visible lenses fully covered by trusted chromatic data
 - **467** lenses fully covered by strict Sellmeier data
@@ -748,7 +748,7 @@ Fully strict and line-index-complete trusted lenses are listed above; this table
 | 177 | [FUJIFILM FUJINON 23mm f/2 (Fujifilm X100V)](../../src/lens-data/fujifilm/FujifilmX100V23mmf2.data.ts) | 62.5% | 62.5% | 5/8 | 5/8 | 3 | abbe: 3 |
 | 178 | [LEICA ELMARIT-R 28mm f/2.8](../../src/lens-data/leica/LeicaElmarit28mmf28.data.ts) | 62.5% | 62.5% | 5/8 | 5/8 | 3 | abbe: 3 |
 | 179 | [VOIGTLÄNDER NOKTON Vintage Line 50mm f/1.5 Aspherical II VM](../../src/lens-data/voigtlander/VoigtlanderNokton50mmf15AsphericalVM.data.ts) | 62.5% | 62.5% | 5/8 | 5/8 | 3 | abbe: 3 |
-| 180 | [VILTROX AF 75mm f/1.2 PRO](../../src/lens-data/viltrox/ViltroxAF75mmf12STMEDIF.data.ts) | 62.5% | 62.5% | 10/16 | 10/16 | 6 | abbe: 6 |
+| 180 | [VILTROX AF 75mm f/1.2 PRO](../../src/lens-data/viltrox/ViltroxAF75mmf12STMEDIF.data.ts) *(hidden)* | 62.5% | 62.5% | 10/16 | 10/16 | 6 | abbe: 6 |
 | 181 | [AGFA COLOR-TELINEAR 90mm f/4](../../src/lens-data/agfa/AgfaColorTelinear90mmf4.data.ts) | 60.0% | 60.0% | 3/5 | 3/5 | 2 | abbe: 2 |
 | 182 | [NIKON AI NIKKOR 180mm f/2.8 ED](../../src/lens-data/nikon/NikonAINikkor180mmf28.data.ts) | 60.0% | 60.0% | 3/5 | 3/5 | 2 | abbe: 2 |
 | 183 | [VILTROX AF 35mm f/1.8 FE](../../src/lens-data/viltrox/ViltroxAF35mmf18FE.data.ts) | 60.0% | 60.0% | 6/10 | 6/10 | 4 | abbe: 4 |
@@ -2009,17 +2009,6 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 5 | Element 3 | abbe | `Unmatched (nd=1.84202, vd=43.34; code 842433)` | Explicit unmatched/proprietary annotation |
 | 10 | Element 5 | abbe | `Unmatched (nd=1.60286, vd=37.37; code 603374; near F5 class)` | Explicit unmatched/proprietary annotation |
 | 13 | Element 7 | abbe | `Unmatched (nd=1.79316, vd=47.24; near 788474/475 lanthanum-flint class)` | Explicit unmatched/proprietary annotation |
-
-### [VILTROX AF 75mm f/1.2 PRO](../../src/lens-data/viltrox/ViltroxAF75mmf12STMEDIF.data.ts) - 62.5% trusted (10/16); 62.5% Sellmeier (10/16) - CN 114755806 A
-
-| Surface | Element | Runtime quality | Glass annotation | Reason |
-|---|---|---|---|---|
-| 7 | Element 5 | abbe | `Unmatched (847238 class; patent nd=1.85, νd=23.78)` | Explicit unmatched/proprietary annotation |
-| 13 | Element 8 | abbe | `Unmatched (835427 class; patent nd=1.83, νd=42.72)` | Explicit unmatched/proprietary annotation |
-| 16 | Element 9 | abbe | `Unmatched (517642 class; patent nd=1.52, νd=64.20)` | Explicit unmatched/proprietary annotation |
-| 19 | Element 11 | abbe | `Unmatched (847238 class; patent nd=1.85, νd=23.78)` | Explicit unmatched/proprietary annotation |
-| 21 | Element 12 | abbe | `Unmatched (835427 class; patent nd=1.83, νd=42.72)` | Explicit unmatched/proprietary annotation |
-| 27 | Element 16 | abbe | `Unmatched (946180 class; patent nd=1.95, νd=17.98)` | Explicit unmatched/proprietary annotation |
 
 ### [AGFA COLOR-TELINEAR 90mm f/4](../../src/lens-data/agfa/AgfaColorTelinear90mmf4.data.ts) - 60.0% trusted (3/5); 60.0% Sellmeier (3/5) - US 2,819,651
 
