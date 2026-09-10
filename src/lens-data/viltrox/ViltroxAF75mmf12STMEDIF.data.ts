@@ -32,13 +32,15 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                            ║
  * ║ Aperture: modeled/design F/1.27 from the rendered Example-1 aberration    ║
  * ║ plots; marketed aperture remains F/1.2. The physical stop diameter is not ║
- * ║ printed, so STO sd = 11.722108147 mm is inferred from the verified pupil. ║
+ * ║ printed. STO sd = 11.722108147 mm is a paraxial reference; the runtime   ║
+ * ║ calibrates the iris with an exact marginal ray at the design f-number. ║
  * ║                                                                            ║
- * ║ Semi-diameters: not published by the patent. They are derived in the      ║
- * ║ normalized model from paraxial marginal/chief rays and the Viltrox        ║
- * ║ construction silhouette, then constrained by positive edge thickness,     ║
- * ║ actual spherical rim slope, cross-gap intrusion in both focus states,     ║
- * ║ full-field chief-ray passage, and the default 0.6-field render-ray fan.   ║
+ * ║ Semi-diameters: inferred from the optical rims of patent Figure 1.      ║
+ * ║ S20/S21 are capped at 11.0 mm by the table-derived air-gap geometry.     ║
+ * ║ Finite-aperture ray clipping is retained, not removed by enlarging rims. ║
+ * ║ Figure 1 conflicts with the table in the rear group, especially L16:    ║
+ * ║ its printed 0.51 mm center thickness yields a thin meniscus. No SD can   ║
+ * ║ reproduce the drawing's thick, nearly plano-convex L16 from those rows. ║
  * ║                                                                            ║
  * ║ Glass discipline: the patent publishes only rounded two-decimal nd/vd.    ║
  * ║ Glass strings use compatible spectral proxies or Unmatched coordinate       ║
@@ -52,7 +54,8 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 /* SD review: CN114755806A, PDF p. 12, Fig. 1, 600 dpi, 2026-09-10 UTC.
- * Optical-rim proportions reviewed; existing geometry-limited inferred SDs retained.
+ * Inferred rims follow the drawing where compatible with Table 1 geometry.
+ * Table/figure conflicts remain explicit; L16 is a real element, distinct from omitted GL.
  * Catalog names denote compatible spectral proxies; patent nd/vd and supplier uncertainty are retained.
  */
 const LENS_DATA = {
@@ -68,6 +71,7 @@ const LENS_DATA = {
     "2ω = 21.40° PATENT / 21.35° MARKETED",
     "L9 INNER FOCUS",
     "ALL SPHERICAL",
+    "RECONSTRUCTED PRESCRIPTION",
   ],
 
   focalLengthMarketing: 75,
@@ -301,40 +305,40 @@ const LENS_DATA = {
       fl: 347.725867,
       glass: "Unmatched (946180 class; patent nd=1.95, νd=17.98)",
       apd: false,
-      role: "Final high-index positive meniscus; manufacturer-correlated high-index position.",
+      role: "Final high-index element. Table 1 gives a 0.51 mm-thick meniscus; Figure 1 draws a thicker element with a nearly flat rear face. The model retains the table geometry.",
     },
   ],
 
   /* ── Surface prescription: final normalized infinity state ── */
   surfaces: [
-    { label: "1", R: 75.060409728, d: 7.243489292, nd: 1.92, elemId: 1, sd: 33.6 },
-    { label: "2", R: 694.302340301, d: 0.297677642, nd: 1, elemId: 0, sd: 31.6 },
-    { label: "3", R: 53.667309845, d: 7.372482937, nd: 1.59, elemId: 2, sd: 31.5 },
-    { label: "4", R: 664.134695786, d: 1.488388211, nd: 1.67, elemId: 3, sd: 27.7 },
-    { label: "5", R: 46.164841004, d: 2.232582316, nd: 1, elemId: 0, sd: 27 },
-    { label: "6", R: 35.329374830, d: 11.480434399, nd: 1.59, elemId: 4, sd: 26 },
+    { label: "1", R: 75.060409728, d: 7.243489292, nd: 1.92, elemId: 1, sd: 29.2 },
+    { label: "2", R: 694.302340301, d: 0.297677642, nd: 1, elemId: 0, sd: 29.2 },
+    { label: "3", R: 53.667309845, d: 7.372482937, nd: 1.59, elemId: 2, sd: 26.6 },
+    { label: "4", R: 664.134695786, d: 1.488388211, nd: 1.67, elemId: 3, sd: 26.6 },
+    { label: "5", R: 46.164841004, d: 2.232582316, nd: 1, elemId: 0, sd: 26.6 },
+    { label: "6", R: 35.329374830, d: 11.480434399, nd: 1.59, elemId: 4, sd: 22.3 },
     { label: "7", R: -82.608522474, d: 1.190710569, nd: 1.85, elemId: 5, sd: 22.3 },
-    { label: "8", R: 71.006040242, d: 0.148838821, nd: 1, elemId: 0, sd: 21.5 },
-    { label: "9", R: 38.054117514, d: 5.060519917, nd: 2, elemId: 6, sd: 20.5 },
-    { label: "10", R: 36.289881355, d: 2.867627953, nd: 1, elemId: 0, sd: 18.6 },
-    { label: "11", R: 66.684753136, d: 1.289936449, nd: 1.7, elemId: 7, sd: 18.6 },
-    { label: "12", R: 24.897757990, d: 5.129978033, nd: 1, elemId: 0, sd: 18 },
-    { label: "13", R: 45.886016279, d: 5.179590973, nd: 1.83, elemId: 8, sd: 18 },
-    { label: "14", R: 1e15, d: 1.984517614, nd: 1, elemId: 0, sd: 16 },
+    { label: "8", R: 71.006040242, d: 0.148838821, nd: 1, elemId: 0, sd: 22.3 },
+    { label: "9", R: 38.054117514, d: 5.060519917, nd: 2, elemId: 6, sd: 19.7 },
+    { label: "10", R: 36.289881355, d: 2.867627953, nd: 1, elemId: 0, sd: 19.7 },
+    { label: "11", R: 66.684753136, d: 1.289936449, nd: 1.7, elemId: 7, sd: 18.1 },
+    { label: "12", R: 24.897757990, d: 5.129978033, nd: 1, elemId: 0, sd: 18.1 },
+    { label: "13", R: 45.886016279, d: 5.179590973, nd: 1.83, elemId: 8, sd: 16.2 },
+    { label: "14", R: 1e15, d: 1.984517614, nd: 1, elemId: 0, sd: 16.2 },
     { label: "STO", R: 1e15, d: 2.818015012, nd: 1, elemId: 0, sd: 11.722108147 },
-    { label: "16", R: 604.304466489, d: 0.793807046, nd: 1.52, elemId: 9, sd: 13 },
-    { label: "17", R: 28.290290851, d: 12.790216025, nd: 1, elemId: 0, sd: 13 },
-    { label: "18", R: 52.833812447, d: 4.693384158, nd: 1.59, elemId: 10, sd: 12.5 },
-    { label: "19", R: -41.124166264, d: 0.992258807, nd: 1.85, elemId: 11, sd: 12.5 },
-    { label: "20", R: 52.546057393, d: 1.319704214, nd: 1, elemId: 0, sd: 10.8 },
-    { label: "21", R: 1e15, d: 0.148838821, nd: 1.83, elemId: 12, sd: 10.8 },
-    { label: "22", R: 41.683800231, d: 6.052778724, nd: 1.67, elemId: 13, sd: 11.5 },
-    { label: "23", R: -54.622855076, d: 0.992258807, nd: 1, elemId: 0, sd: 13 },
-    { label: "24", R: 35.926714632, d: 0.922800691, nd: 2, elemId: 14, sd: 13.6 },
-    { label: "25", R: 47.899309399, d: 5.715410729, nd: 1.62, elemId: 15, sd: 13.6 },
-    { label: "26", R: -42.832835930, d: 0.992258807, nd: 1, elemId: 0, sd: 14.5 },
-    { label: "27", R: 33.792365937, d: 0.506051992, nd: 1.95, elemId: 16, sd: 14.6 },
-    { label: "28", R: 37.368466678, d: 7.420455809, nd: 1, elemId: 0, sd: 14.8 },
+    { label: "16", R: 604.304466489, d: 0.793807046, nd: 1.52, elemId: 9, sd: 13.8 },
+    { label: "17", R: 28.290290851, d: 12.790216025, nd: 1, elemId: 0, sd: 13.8 },
+    { label: "18", R: 52.833812447, d: 4.693384158, nd: 1.59, elemId: 10, sd: 11.4 },
+    { label: "19", R: -41.124166264, d: 0.992258807, nd: 1.85, elemId: 11, sd: 11.4 },
+    { label: "20", R: 52.546057393, d: 1.319704214, nd: 1, elemId: 0, sd: 11 },
+    { label: "21", R: 1e15, d: 0.148838821, nd: 1.83, elemId: 12, sd: 11 },
+    { label: "22", R: 41.683800231, d: 6.052778724, nd: 1.67, elemId: 13, sd: 12.7 },
+    { label: "23", R: -54.622855076, d: 0.992258807, nd: 1, elemId: 0, sd: 12.7 },
+    { label: "24", R: 35.926714632, d: 0.922800691, nd: 2, elemId: 14, sd: 13.3 },
+    { label: "25", R: 47.899309399, d: 5.715410729, nd: 1.62, elemId: 15, sd: 13.3 },
+    { label: "26", R: -42.832835930, d: 0.992258807, nd: 1, elemId: 0, sd: 13.3 },
+    { label: "27", R: 33.792365937, d: 0.506051992, nd: 1.95, elemId: 16, sd: 13.2 },
+    { label: "28", R: 37.368466678, d: 7.420455809, nd: 1, elemId: 0, sd: 13.2 },
   ],
 
   asph: {},

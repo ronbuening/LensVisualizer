@@ -12,6 +12,8 @@
 **Embodiment analyzed:** Example 1
 **Focus model:** `CONSTRAINED_RECONSTRUCTION`
 
+**Source limitation:** this reconstruction does not reproduce the complete patent silhouette. Table 1 and Figure 1 disagree on several rear elements, most visibly L16. The later grant, CN 114755806 B, repeats the same Table 1 values (PDF p. 7). The diagram retains those numerical surfaces; the inferred apertures have been revised to remove unsupported rim extensions. This is not a verified production prescription.
+
 The modeled prescription is Example 1 of CN 114755806 A. The correlation to the production VILTROX AF 75mm f/1.2 PRO is a source-based identification rather than a manufacturer statement that the patent is the production prescription. Several independent features converge on the same example:
 
 1. Viltrox specifies a 75 mm APS-C lens with 16 elements in 11 groups; Example 1 contains 16 elements in 11 air-separated groups and publishes a 75.50 mm infinity focal length.
@@ -39,9 +41,9 @@ The lens is best described by its verified power distribution rather than by for
 
 The system contains 16 elements in 11 groups and five cemented doublets. G1 contains L1 through L8 and has a computed EFL of +68.791786 mm. L9 is a standalone negative meniscus with EFL -57.103339 mm. G2 contains L10 through L16 and has a computed EFL of +28.050618 mm. These are group or standalone powers; they should not be confused with the complete lens's 75.50 mm system focal length or with the in-situ contribution of an element embedded in the complete train.
 
-The aperture stop lies between L8 and L9. The design f-number is F/1.27 because the rendered Example-1 aberration plots are explicitly labeled F1.27, even though ¶0019 and the production lens name use F1.2. The normalized model therefore keeps F/1.27 as the optical design value and F/1.2 as the marketed aperture. The patent does not publish the physical stop diameter. The modeled stop semi-diameter of 11.722108 mm is inferred from the verified entrance pupil required for 75.50 mm at F/1.27; it is not a source dimension.
+The aperture stop lies between L8 and L9. The design f-number is F/1.27 because the rendered Example-1 aberration plots are explicitly labeled F1.27, even though ¶0019 and the production lens name use F1.2. The normalized model therefore keeps F/1.27 as the optical design value and F/1.2 as the marketed aperture. The patent does not publish the physical stop diameter. The authored stop semi-diameter of 11.722108 mm is a paraxial reference for 75.50 mm at F/1.27, not a source dimension. The runtime instead calibrates the physical iris using an exact marginal ray; its infinity semi-diameter is approximately 13.246 mm. The UI's estimated pupil diameter is paraxial and differs from the exact target pupil diameter.
 
-The semi-diameters of the refracting surfaces are likewise modeled rather than patent-published. They were selected to preserve the manufacturer construction silhouette while passing the verified marginal and chief-ray bundles and satisfying positive edge thickness, actual rim-slope, shared-gap intrusion, full-field chief-ray, and render-ray containment constraints at both authored focus states. They should be read as validated visualization apertures, not manufacturing clear-aperture drawings.
+The refracting-surface semi-diameters are inferred from the optical rims of Figure 1 at 600 dpi, using an approximate 35.80 µm/pixel scale in the normalized model. Common rims replace the unsupported pointed extensions on L2 and L4. S20/S21 are limited to 11.0 mm by the table-derived gap geometry; the other rims follow the figure within measurement precision. The figure and numerical rear-group shapes disagree, so this is an aperture estimate, not a complete geometric fit. Rays may clip at these finite apertures; passage of more rays is not evidence for enlarging an optical rim.
 
 The central architectural choice is the isolated L9 focus element. The patent emphasizes that a single lightweight focus lens reduces the driven mass (¶0009). In the normalized model, the fixed front and rear groups remain stationary while L9 translates imageward, so focus is obtained without moving the large-diameter front assembly.
 
@@ -130,7 +132,9 @@ The discrepancy is retained explicitly. The cemented group itself is strongly po
 
 **nd = 1.95000, νd = 17.98. Glass: Unmatched (946180 class; patent nd=1.95, νd=17.98). Standalone f = +347.725867 mm.**
 
-L16 is the final refracting element and the fourth manufacturer-correlated high-index position. Its standalone positive power is modest, but it completes the positive G2 relay and sets the final convergence into the reconstructed image plane. The final normalized surface-to-image distance is 7.420456 mm.
+L16 is explicitly present in Figure 1 and ¶0012; it is distinct from the auxiliary plate GL described in ¶0017. Table 1 assigns it surfaces 27–28: R = +34.056/+37.660 mm and center thickness 0.51 mm before normalization. Those values produce a very thin positive meniscus, with normalized center thickness 0.506052 mm and edge thickness about 0.230334 mm at the revised 13.2 mm semi-diameter.
+
+Figure 1 instead shows a substantially thicker element with a nearly flat rear face. That discrepancy cannot be corrected by changing SD. The tabulated radii and thickness remain in the model; L16 therefore still looks thin on the site. It is not an extra surface or the omitted GL plate. Its standalone power is modest, and the final normalized surface-to-image distance remains 7.420456 mm.
 
 ## Glass Identification and Selection
 
@@ -212,13 +216,26 @@ The optical quantities below are recomputed from the final TypeScript surface ar
 | Reconstructed close active EFL | 81.455232 mm |
 | Reconstructed close magnification magnitude | 0.095077 |
 
-Independent ABCD multiplication and sequential y–ν basis-ray tracing agree to numerical precision at both authored focus endpoints. The modeled semi-diameters retain positive edge thickness and pass the applicable spherical rim-slope and shared-gap intrusion checks in both states. The full 10.70° chief ray and the default 0.6-field display bundles also remain within the authored clear apertures.
+The first-order quantities are unchanged by the aperture revision. Rechecking Table 1 against the normalized arrays confirms all active radii and spacings to the stored precision, apart from the already disclosed S10 reconstruction and solved image plane. All sixteen glass coordinate pairs and five cemented pairs agree with the source table and topology.
 
-The narrowest modeled element edge margin occurs at L16 and remains positive. These aperture results validate the data-model geometry but should not be interpreted as manufacturer-published mechanical clear apertures.
+Every modeled element has positive edge thickness. At infinity, mid-focus and close focus, no surface requires display-only trimming. Only L9 translates, imageward, while G1, G2 and the image plane stay fixed. These checks establish internal consistency of the reconstruction, not agreement with the patent's imaging performance.
 
 ### Patent-figure SD review (2026-09-10 UTC)
 
-Reviewed the local `patents/CN114755806A.pdf`, PDF page 12, Figure 1, at 600 dpi. The existing SDs were retained: direct optical-rim inspection did not establish a figure discrepancy large enough to override the ray-clearance and physical-geometry constraints. Labels, group brackets, and focus arrows were excluded from the comparison. All semi-diameters remain modeling inferences. Surface and image-circle audits were run for this prescription.
+The earlier decision to retain larger apertures merely to pass additional rays is superseded. Optical rims from Figure 1 now guide the surface apertures, with a geometry cap at S20/S21. Wide-open clipping is retained and is not described as a validated production vignetting profile.
+
+The following source conflicts remain unresolved and are visible in the numerical model:
+
+| Region | Table 1 | Figure 1 / prose |
+|---|---|---|
+| L6 rear, S10 | +26.573 mm printed; existing reconstruction uses +36.573 mm before scaling | Positive L6 and the other examples support the disclosed reconstruction, not an exact source correction |
+| L12 front, S21 | Plane, with 0.15 mm center thickness | Curved front and substantially thicker L12 |
+| L13 rear, S23 | Negative radius, −55.049 mm | Opposite curvature; prose calls L13 negative |
+| L15 rear, S26 | Negative radius, −43.167 mm | Opposite curvature; prose calls L15 negative |
+| L16, S27–S28 | +34.056/+37.660 mm, 0.51 mm center thickness | Thicker element with nearly flat rear face |
+| GL and image plane | Finite R29 and tabulated rear distances | Plane-parallel GL; the retained reconstruction uses a solved image plane |
+
+Neither the application nor the grant supplies a unique corrected rear prescription. The model retains the numerical table instead of changing element count, radius signs, or glass ownership to fit the drawing.
 
 ## Sources
 
@@ -227,3 +244,4 @@ Reviewed the local `patents/CN114755806A.pdf`, PDF page 12, Figure 1, at 600 dpi
 - Viltrox Pro-series page, official source explicitly describing the 75 mm F1.2 construction as 16 elements in 11 groups with three ED and four high-refractive-index elements: <https://viltrox.com/pages/viltrox-af-27mm-f1-2-pro-series>.
 - HOYA Optics Division, official optical-glass catalog/data download and glass-type lists, used for the code-class audit. The ten Example-1 coordinate classes correspond one-for-one with HOYA codes; the rounded patent indices are retained rather than replaced by catalog Sellmeier values: <https://www.hoya-opticalworld.com/english/datadownload/index.html> and <https://www.hoya-opticalworld.com/english/products/press_01.html>.
 - Manufacturer construction/MTF graphic supplied with the source package, used only for positional production correlation and semi-diameter silhouette guidance.
+- CN 114755806 B, Table 1, PDF p. 7: [granted patent](https://patents.google.com/patent/CN114755806B/en). The grant repeats the application's numerical prescription and does not resolve the rear-group discrepancies.
