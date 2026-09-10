@@ -258,6 +258,15 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
    * https://viltrox.com/pages/about-us
    * https://prtimes.jp/main/html/rd/p/000000001.000157861.html
    */
+  /* Representative designs: fast APS-C ultra-wide, full-frame ultra-wide with LCD,
+   * autofocus pancake, fast LAB wide-angle, first PRO prime, and HyperVCM LAB telephoto.
+   * https://viltrox.com/products/13mm-f14-af-lens-for-fujifilm-x-mount-camera-models
+   * https://viltrox.com/blogs/lens-insights/what-makes-the-viltrox-af-16mm-f1-8-fe-z-stand-out
+   * https://viltrox.com/blogs/new-in/chip-series-new-release-28mm-f4-5-xf-mount-for-fujifilm
+   * https://viltrox.com/products/af-35mm-f1-2-fe
+   * https://viltrox.com/products/75mm-f12-xf-lens
+   * https://viltrox.com/products/af-135mm-f1-8-lab-fe
+   */
   viltrox: {
     founded: 2009,
     headquarters: "Shenzhen, China",
@@ -266,7 +275,7 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
     history:
       "Viltrox is the imaging-equipment brand of Shenzhen Jueying Technology Co., Ltd., founded in 2009 in Shenzhen. Its range includes photographic accessories and interchangeable lenses for mirrorless camera systems. The AF prime-lens lineup spans compact everyday lenses and large-aperture designs, including the APS-C 27mm f/1.2 and 75mm f/1.2 PRO lenses.",
     notableDesigns:
-      "AF 27mm f/1.2 PRO, AF 75mm f/1.2 PRO, AF 33mm f/1.4, AF 56mm f/1.4, AF 35mm f/1.8 FE, AF 50mm f/1.8 FE",
+      "AF 13mm f/1.4, AF 16mm f/1.8, AF 28mm f/4.5 Chip, AF 35mm f/1.2 LAB, AF 75mm f/1.2 PRO, AF 135mm f/1.8 LAB",
   },
   vivitar: {
     founded: 1938,

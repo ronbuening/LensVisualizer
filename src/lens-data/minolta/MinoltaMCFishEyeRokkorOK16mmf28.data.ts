@@ -72,7 +72,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 3,589,798",
   patentAuthors: ["Toshinobu Ogura"],
-  patentAssignees: ["Minolta Co., Ltd."],
+  patentAssignees: ["Minolta Camera Co., Ltd."],
   patentYear: 1971,
   elementCount: 10,
   groupCount: 7,

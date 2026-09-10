@@ -63,7 +63,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "JP1989-039542 A",
   patentAuthors: ["Hisashi Tokumaru", "Masakuni Tai"],
-  patentAssignees: ["Minolta Co., Ltd."],
+  patentAssignees: ["Minolta Camera Co., Ltd."],
   patentYear: 1989,
   elementCount: 16,
   groupCount: 13,

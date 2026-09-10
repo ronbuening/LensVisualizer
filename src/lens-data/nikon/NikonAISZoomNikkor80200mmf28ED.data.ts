@@ -48,7 +48,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "JPS58-54312A",
   patentAuthors: ["Yoshinori Hamanishi"],
-  patentAssignees: ["Nippon Kogaku Kogyo K.K."],
+  patentAssignees: ["Nippon Kogaku K.K."],
   patentYear: 1983,
   elementCount: 15,
   groupCount: 11,
