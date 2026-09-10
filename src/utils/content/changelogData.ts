@@ -21,7 +21,12 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-09-10",
     type: "improvement",
-    summary: "Unified patent-assignee relationships and hid the unresolved Viltrox 75mm reconstruction",
+    summary: "Unified patent-assignee relationships",
+  },
+  {
+    date: "2026-09-10",
+    type: "lens",
+    summary: "Added five Viltrox prime lens designs",
   },
   {
     date: "2026-09-09",
