@@ -177,8 +177,8 @@ The two L23 surfaces have comparatively modest polynomial departures at the mode
 
 | Surface | Modeled semi-diameter | Departure from K=0 base sphere |
 | --- | ---: | ---: |
-| `12A` | 14.8 mm | -0.298111616 mm |
-| `13A` | 14.8 mm | +0.413134283 mm |
+| `12A` | 12.6 mm | -0.172906841 mm |
+| `13A` | 12.6 mm | +0.232537036 mm |
 | `14A` | 15.5 mm | +1.754167873 mm |
 | `15A` | 15.5 mm | +2.368625745 mm |
 
@@ -212,13 +212,13 @@ The final data file contains 19 listed surfaces including exactly one `STO`, ten
 
 Independent reduced-angle sequential tracing and a separate ABCD/basis-ray matrix calculation agree to numerical precision. At infinity the model gives EFL = **34.545216929 mm**, Gaussian BFL = **23.883594338 mm**, and f-number = **1.800000000** from the modeled entrance pupil. At the published nearest-focus state the EFL becomes **32.931776271 mm**. The G3 travel is **4.92 mm**, exactly matching the D1/D2 spacing change.
 
-The inferred semi-diameters were checked at both focus endpoints. The smallest modeled element edge thickness is **0.273904920 mm** at L13. The maximum modeled rim-slope angle is **38.980541°** at surface 10. The tightest cross-gap margin is **0.068079224 mm** at the S2/S3 boundary under the current 90% gap-sag rule. Exact-meridional aperture checks at the default off-axis field of 18.96° show the extreme negative pupil seed clipping first at exposed surface 2, while the other default seeds remain contained; no tested ray first clips at either cemented junction. At the full 31.6° half-field, the extreme seeds are vignetted at exposed outer surfaces rather than within a cemented pair. These results establish internal consistency of the modeled apertures; they are not manufacturer dimensions.
+The revised G1/G2 apertures retain positive element edge thickness and require no display-only trimming at infinity, mid-focus or close focus. The smallest modeled edge thickness is approximately 1.105596 mm at L14. The S2/S3 shared band remains 11.25 mm because of the opposing convex-surface gap. These inferred apertures follow the patent's optical rims where the numerical geometry permits; finite-aperture vignetting is retained rather than enlarging the elements to pass additional rays.
 
 The production specification and the patent model remain deliberately separate where their reference conditions differ. The catalog identity is 35 mm f/1.8 with a marketed 0.4 m MFD, whereas the numerical prescription is a 34.545 mm infinity design whose published close-focus row is labeled 0.3 m. The analysis preserves both without forcing one set of values to replace the other.
 
 ### Patent-figure SD review (2026-09-10 UTC)
 
-Reviewed the local `patents/CN211955963U.pdf`, PDF page 17, Figure 1, at 600 dpi. The front-surface semi-diameter is 13.3 mm from the optical rim in Figure 1, replacing the earlier 17 mm ray-envelope estimate. Remaining apertures retain their geometry-constrained values. Labels, group brackets, and focus arrows were excluded from the comparison. All semi-diameters remain modeling inferences. Surface and image-circle audits were run for this prescription.
+Reviewed the local `patents/CN211955963U.pdf`, PDF page 17, Figure 1, at 600 dpi. The front-surface semi-diameter is 13.3 mm from the optical rim in Figure 1, replacing the earlier 17 mm ray-envelope estimate. The follow-up G1/G2 review reduces S4/S5 to 12.4 mm, S6/S7 to 13.5 mm, S9 to 10.4 mm, S10/S11 to 11.6 mm, and S12A/S13A to 12.6 mm. The drawing’s short mechanical edge extensions at L11/L12 and L21 are excluded from the optical rims; S2/S3 retain their 11.25 mm gap constraint. G3/G4 are unchanged. Labels, group brackets, and focus arrows were excluded from the comparison. All semi-diameters remain modeling inferences. Surface and image-circle audits were run for this prescription.
 
 ## Sources / References
 

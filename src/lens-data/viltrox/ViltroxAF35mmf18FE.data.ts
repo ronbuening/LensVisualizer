@@ -24,11 +24,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║   IMG spacing 22.12 + 2.00/1.52 + 1.00 = 24.43578947368421 mm.           ║
  * ║                                                                            ║
  * ║ SEMI-DIAMETERS:                                                            ║
- * ║   No patent clear apertures are published. SDs are modeled from the       ║
- * ║   f/1.8 marginal ray, ±0.60×31.6° chief-ray bundles, source geometry,     ║
- * ║   the current edge/slope/cross-gap rules, and the manufacturer optical     ║
- * ║   section. The 11.25 mm S2/S3 shared band is set by the 7.10 mm opposing ║
- * ║   convex-surface gap; the close-focus S15/S16 band is also geometry-bound. ║
+ * ║   No patent clear apertures are published. G1/G2 SDs follow Figure 1     ║
+ * ║   optical rims, excluding mechanical edge extensions. G3/G4 retain their ║
+ * ║   geometry-constrained estimates. The 11.25 mm S2/S3 shared band is set  ║
+ * ║   by the 7.10 mm opposing convex-surface gap; the close-focus S15/S16    ║
+ * ║   band is also geometry-bound.                                          ║
  * ║                                                                            ║
  * ║ FOCUS / MFD NOTE:                                                         ║
  * ║   closeFocusM=0.3 represents the patent's published nearest-focus row so  ║
@@ -43,7 +43,8 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 /* SD review: CN211955963U, PDF p. 17, Fig. 1, 600 dpi, 2026-09-10 UTC.
- * Front-surface optical rim reduced to 13.3 mm from Fig. 1; remaining inferred SDs retained.
+ * G1/G2 optical rims follow Fig. 1; S2/S3 retain the shared-gap cap.
+ * Mechanical edge extensions are excluded from the inferred clear apertures.
  * Catalog names denote compatible spectral proxies; patent nd/vd and supplier uncertainty are retained.
  */
 const LENS_DATA = {
@@ -207,16 +208,16 @@ const LENS_DATA = {
     { label: "1", R: 133.7, d: 1.0, nd: 1.49, elemId: 1, sd: 13.3 },
     { label: "2", R: 21.2, d: 7.1, nd: 1.0, elemId: 0, sd: 11.25 },
     { label: "3", R: -22.02, d: 1.0, nd: 1.85, elemId: 2, sd: 11.25 },
-    { label: "4", R: 64.6, d: 5.71, nd: 1.83, elemId: 3, sd: 13.8 },
-    { label: "5", R: -26.11, d: 0.1, nd: 1.0, elemId: 0, sd: 13.8 },
-    { label: "6", R: 37.4, d: 4.36, nd: 1.85, elemId: 4, sd: 14.6 },
-    { label: "7", R: -124.7, d: 10.59, nd: 1.0, elemId: 0, sd: 14.6 },
+    { label: "4", R: 64.6, d: 5.71, nd: 1.83, elemId: 3, sd: 12.4 },
+    { label: "5", R: -26.11, d: 0.1, nd: 1.0, elemId: 0, sd: 12.4 },
+    { label: "6", R: 37.4, d: 4.36, nd: 1.85, elemId: 4, sd: 13.5 },
+    { label: "7", R: -124.7, d: 10.59, nd: 1.0, elemId: 0, sd: 13.5 },
     { label: "STO", R: 1e15, d: 4.83, nd: 1.0, elemId: 0, sd: 10.84229974288589 },
-    { label: "9", R: -22.62, d: 1.0, nd: 1.7, elemId: 5, sd: 12.6 },
-    { label: "10", R: 20.03, d: 5.05, nd: 1.5, elemId: 6, sd: 12.6 },
-    { label: "11", R: -307.54, d: 0.42, nd: 1.0, elemId: 0, sd: 12.6 },
-    { label: "12A", R: 55.48, d: 7.31, nd: 1.81, elemId: 7, sd: 14.8 },
-    { label: "13A", R: -23.67, d: 1.0, nd: 1.0, elemId: 0, sd: 14.8 },
+    { label: "9", R: -22.62, d: 1.0, nd: 1.7, elemId: 5, sd: 10.4 },
+    { label: "10", R: 20.03, d: 5.05, nd: 1.5, elemId: 6, sd: 11.6 },
+    { label: "11", R: -307.54, d: 0.42, nd: 1.0, elemId: 0, sd: 11.6 },
+    { label: "12A", R: 55.48, d: 7.31, nd: 1.81, elemId: 7, sd: 12.6 },
+    { label: "13A", R: -23.67, d: 1.0, nd: 1.0, elemId: 0, sd: 12.6 },
     { label: "14A", R: 200.5, d: 1.0, nd: 1.69, elemId: 8, sd: 15.5 },
     { label: "15A", R: 54.03, d: 8.69, nd: 1.0, elemId: 0, sd: 15.5 },
     { label: "16", R: 88.04, d: 7.12, nd: 1.49, elemId: 9, sd: 15.8 },
