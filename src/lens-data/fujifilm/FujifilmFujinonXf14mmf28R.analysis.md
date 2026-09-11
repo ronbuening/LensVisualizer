@@ -350,3 +350,15 @@ applied, so the aspheric coefficients retain their native Example 1 magnitudes.
 Inspected the exact local US 2015/0168694 A1, PDF page 2, Fig. 1 at 600 dpi; screening crop `0.26,0.265,0.695,0.43`. Retained the existing SDs: optical rims agree within approximately 15%, with small differences constrained by the rear cemented-pair clearance. All 10 elements use compatible catalog dispersion.
 
 Display name checked against the manufacturer product designation; the existing FUJINON XF name, aperture and R/LM/OIS/WR suffixes are correct. Structured patent assignee metadata uses the existing canonical `Fujifilm Corporation` spelling.
+
+
+## Diagram and Spectral Review — 2026-09-11 UTC
+
+Rechecked the local section against Fig. 1. The stepped cemented G2 rim differs from a single shared clear aperture;
+its source outline is not evidence for enlarging both cemented members to the same mechanical diameter. SDs are retained.
+L32, L33 and L36 now carry inferred APD tags from their compatible S-FPL51/S-FPM2 catalog curves (approximately
++0.03074/+0.01431 dPgF). These are model inferences, not patent spectral measurements or production supplier claims.
+No catalog-derived spectral overrides are reintroduced.
+
+The fixed-image-plane movement profile confirms only G3 moves objectward, by 1.780420 mm, from infinity to close.
+G1, G2 and the stop remain fixed. Source element labels and focus ordering are correct.

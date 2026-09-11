@@ -202,7 +202,7 @@ The final data file uses **catalog-coordinate class/equivalent labels**, not cla
 | S-FPL51 class | 1.49700 | 81.54 | L1B, L3B, L4A, L5B | OHARA coordinate equivalent; patent vendor unspecified |
 | S-FPL55 class | 1.43875 | 94.66 | L1C | Coordinate match; historical vendor identity unproven |
 | S-BAM4 class | 1.60562 | 43.71 | L2A | OHARA coordinate equivalent; patent vendor unspecified |
-| S-YGH51 class | 1.75500 | 52.32 | L2B | Historical OHARA-class wording retained; S-LAH97 postdates priority |
+| S-YGH51 class | 1.75500 | 52.32 | L2B | Historical OHARA coordinate equivalent with its own published curve |
 | S-FPM2 class | 1.59522 | 67.73 | L2C | OHARA coordinate equivalent; patent vendor unspecified |
 | S-TIH23 class | 1.78470 | 26.29 | L2D | OHARA coordinate equivalent; patent vendor unspecified |
 | S-LAH59 class | 1.81600 | 46.62 | L2E | OHARA coordinate equivalent; patent vendor unspecified |
@@ -217,7 +217,12 @@ The final data file uses **catalog-coordinate class/equivalent labels**, not cla
 
 The most obvious chromatic pattern is the repeated use of high-Abbe crown-like coordinates against higher-index, lower-Abbe partners in cemented pairs and distributed groups. This is consistent with the patent's explicit chromatic-correction descriptions for G1, G2F/G2R, G3, and G5. It also provides convergent support for Fujifilm's production specification of six ED elements in total, one of them Super ED. It does **not** identify which patent coordinate became which production ED element.
 
-No element in the final data carries authored `nC`, `nF`, `ng`, or `dPgF`. The published `θgF` can support a future patent-derived `dPgF` backfill, but is not an absolute line-index measurement. This integration retains the compatible catalog curves without adding that separate backfill. Accordingly, this analysis makes no APO claim and no claim of anomalous-partial-dispersion behavior for any specific element. The glass names remain coordinate classes unless a future audit deliberately adopts and round-trips a specific catalog identity.
+Table 1's 21 glass `θgF` values are now retained as `dPgF = θgF - (0.6438 - 0.001682·νd)`.
+The catalog supplies C/d/F and the engine preserves the patent ratio at g; no absolute line indices are fabricated.
+Positive departures of at least 0.01 are marked patent-backed APD: L1B, L1C, L2C, L2D, L3B, L4A and L5B.
+This includes a high-dispersion flint (L2D); APD does not mean ED, and neither establishes an APO designation.
+S-YGH51 now uses its own published historical OHARA curve, rather than resolving the modern S-LAH97 name in a comment.
+The glass names remain coordinate equivalents without a production supplier claim.
 
 ## Focus Mechanism
 
@@ -241,7 +246,7 @@ The patent distributes chromatic correction through several physically separated
 
 The rear focusing group continues that strategy. The patent's two material/power constraints on G5—Conditional Formulas (5) and (6)—place limits on the negative L5A power relative to G5 and on the mean Abbe number of L5A and L5B. L5C is then identified as the positive member correcting lateral chromatic-aberration fluctuation in combination with the two negatives (¶0066, ¶0079-¶0082).
 
-This source language supports discussion of chromatic correction, but not an apochromatic classification. The final data lacks the explicit line-index or `dPgF` data required by the project for stronger secondary-spectrum claims.
+This source language supports discussion of chromatic correction, but not an apochromatic classification. The authored `dPgF` values preserve the patent's partial dispersion without establishing an APO designation.
 
 ## Conditional Expressions
 
@@ -309,3 +314,20 @@ Display name checked against the manufacturer product designation; the existing 
 | 30–31 (L5A) | 6.9 | 8.3 |
 | 32–34 (L5B/C) | 7.0 | 8.3 |
 | 35–36 (L6A) | 11.3 | 14.2 |
+
+
+## Diagram and Spectral Review — 2026-09-11 UTC
+
+Reviewed the local site against Fig. 1 at wide and tele, and checked focus travel relative to the fixed image plane.
+The second pass enlarged S16–S18 from 12.2 to 14.8 mm, S19–S21 from 11.2 to 13.2 mm, and S27–S29 from 8.7 to
+9.8 mm. The 600 dpi figure suggests approximately 15.2, 13.6, and 11.3 mm respectively. The latter two are capped
+below the figure outlines: 13.5 mm gives negative L3D edge thickness; 11.2 mm gives negative L4D edge thickness.
+These are clear optical rims, not mechanical blanks. The earlier first-pass rim table remains a record of that pass.
+
+Focus is correctly infinity-to-close: only G5 moves imageward, +1.589403 mm wide and +14.851319 mm tele.
+From wide to tele, camera-frame group shifts are G1 −59.061, G2 +2.593, G3 −24.535, G4 −11.614, G5 −16.473,
+and G6 +6.260 mm. G2 reaches +7.897 mm and G6 +7.195 mm at the middle keyframe before reversing.
+The original ordered zoom/focus spacing arrays agree with Table 3 and Fig. 1; no reversal or reordering is needed.
+
+The 21 `θgF` entries were read directly from Table 1, PDF page 24. The new APD colors distinguish patent-backed
+partial dispersion from inferred vendor matches; all 21 elements continue to use catalog dispersion.

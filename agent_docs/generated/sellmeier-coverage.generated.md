@@ -1095,7 +1095,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 17A | Element L23 | abbe | `Unmatched (nd=1.80348, nu_d=40.45; no defensible current public-catalog identity)` | Explicit unmatched/proprietary annotation |
+| 17A | Element 9 | abbe | `Unmatched (nd=1.80348, nu_d=40.45; no defensible current public-catalog identity)` | Explicit unmatched/proprietary annotation |
 
 ### [NIKON AI ZOOM-NIKKOR 80-200mm f/4](../../src/lens-data/nikon/NikonAINikkor80200mmf4.data.ts) - 92.3% trusted (12/13); 92.3% Sellmeier (12/13) - US 4,452,513
 

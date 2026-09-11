@@ -123,7 +123,7 @@ L23 is the first lens after the aperture stop and carries aspherical surfaces 17
 
 The patent directly assigns the first of the four post-stop lenses an advantage in spherical-aberration correction (¶0060). L23 is that lens in Example 1. The two aspherical surfaces provide additional higher-order control at this strategically sensitive post-stop position.
 
-No public catalog identity is forced onto the element because the stored `nd`/`νd` pair does not support a defensible current match.
+Several catalog curves lie inside the broad coordinate guard, but the patent supplies no evidence to choose their differing dispersion. L23 remains unidentified rather than selecting one to inflate coverage.
 
 ### L24 — Positive Meniscus, Cemented Pair C2
 
@@ -183,7 +183,7 @@ The palette spans very high-index, low-`νd` flint classes and several much lowe
 
 Fujifilm's production specification states that the lens contains two ED elements. The patent does not identify any element as “ED,” and the data file contains no manufacturer-supplied mapping between that marketing count and Example 1's element labels. The low-dispersion annotations therefore remain optical-glass classifications rather than a claim that specific patent elements are the two production ED elements.
 
-No `nC`, `nF`, `ng`, or `dPgF` fields are authored. Consequently, the analysis does not claim apochromatic correction, anomalous partial dispersion, or a specific secondary-spectrum behavior from the d-line data alone.
+No `nC`, `nF`, `ng`, or `dPgF` fields are authored. APD tags are explicitly inferred from compatible catalog curves; the patent d-line coordinates alone do not establish anomalous dispersion or an APO designation.
 
 ## Focus Mechanism
 
@@ -342,3 +342,15 @@ These checks validate the authored geometry as a LensVisualizer model; they do n
 Inspected the exact local US 2016/0282590 A1, PDF page 2, Fig. 1 infinity panel at 600 dpi; screening crop `0.30,0.31,0.66,0.475`. Retained the existing SDs. The apparent 17 mm rear rims in the automatic screen are ray/leader contamination; enlarged inspection shows approximately 9–12 mm optical extents. Twelve of 13 elements resolve to catalog curves. L23 (1.80348/40.45) remains explicitly unmatched; no production supplier or new dispersion fit is inferred.
 
 Display name checked against the manufacturer product designation; the existing FUJINON XF name, aperture and R/LM/OIS/WR suffixes are correct. Structured patent assignee metadata uses the existing canonical `Fujifilm Corporation` spelling.
+
+
+## Diagram and Spectral Review — 2026-09-11 UTC
+
+Rechecked the local drawing against Fig. 1; retained the current SDs and physical element labels.
+L11, L22, L24, L26 and L31 now show inferred APD from their compatible catalog curves, with the selected proxy
+and derived departure identified in each inspector note. Positive short-flint APD is distinguished from ED glass.
+L23 remains unmatched: J-LASF013, S-LAH63 and NBFD3 are near the coordinate, but no independent spectral evidence
+selects among them. No new absolute line indices or production supplier identities were inferred.
+
+The published focus rows are correctly ordered infinity–middle–close. With the image plane fixed, G1 stays fixed,
+G2 moves 3.2044 mm objectward and G3 moves 2.2893 mm objectward. The rear gap increases accordingly.

@@ -64,7 +64,7 @@ Patent ¶0050 discusses the power of G1a in relation to G1 and the adjacent stop
 ### L14 + L15 — First G1b Cemented Doublet (D1)
 
 **L14:** `nd = 2.00069`, `νd = 25.46`. Glass: `001255 — high-index flint class`. Isolated-element `f = +9.931129 mm`.\
-**L15:** `nd = 1.72047`, `νd = 34.71`. Glass: `720347 — dense flint class`. Isolated-element `f = -14.260195 mm`.
+**L15:** `nd = 1.72047`, `νd = 34.71`. Glass: `720347 — short-flint coordinate class`. Isolated-element `f = -14.260195 mm`.
 
 L14 and L15 form the first cemented pair in G1b, positive first and negative second as specified in patent ¶0055 and ¶0066. The pair's verified cemented net focal length is +28.846736 mm. That cemented value is not the same quantity as either member's isolated focal length: L14 is strongly positive in isolation and L15 strongly negative, while the bonded pair remains moderately positive.
 
@@ -113,15 +113,16 @@ The patent publishes `Nd`, `νd`, and `θgF` coordinates but does not identify g
 | 516641 — crown coordinate class | 1.51633 | 64.06 | L12 | two-surface aspheric negative meniscus |
 | 729547 — lanthanum crown class | 1.72916 | 54.68 | L13, L18 | positive balancing elements |
 | 001255 — high-index flint class | 2.00069 | 25.46 | L14 | strong positive member of D1 |
-| 720347 — dense flint class | 1.72047 | 34.71 | L15 | negative member of D1 |
+| 720347 — short-flint coordinate class | 1.72047 | 34.71 | L15 | negative member of D1 |
 | 583594 — barium crown coordinate class | 1.58313 | 59.38 | L16 | two-surface aspheric positive meniscus |
 | 847238 — dense flint class | 1.84666 | 23.78 | L17 | negative member of D2 |
 | 835427 — high-index lanthanum flint class | 1.83481 | 42.74 | L21 | positive focusing element |
 | 855248 — dense flint class | 1.85478 | 24.80 | L31 | fixed negative rear group |
 
-An independent catalog comparison found public entries with close coordinate equivalence for these codes, but the patent itself remains vendor-neutral. The data accordingly records class/code identities only. No `nC`, `nF`, `ng`, or `dPgF` values are authored because Example 3 does not publish those quantities and the data does not infer them from a candidate vendor glass.
-
-The patent does make explicit use of partial-dispersion ratios in conditional expressions (6) and (7) for the cemented lenses. That supports discussion of deliberate chromatic balancing, but it does not by itself justify labeling the design apochromatic or assigning anomalous-partial-dispersion behavior to any element. No such claim is made here.
+The patent remains vendor-neutral. Table 9 does publish θgF for all ten glasses, and these values are now authored
+as `dPgF = θgF - (0.6438 - 0.001682·νd)`. Compatible catalog curves supply C/d/F, with the patent ratio retained at g.
+No absolute nC/nF/ng values are invented. L14, L17 and L31 have positive departures of at least 0.01 and receive
+patent-backed APD tags. These are high-dispersion flints, not ED elements; the tags do not imply an APO design.
 
 ## Focus Mechanism
 
@@ -223,3 +224,12 @@ The catalog sources support coordinate-equivalence checks only. Because the pate
 Inspected the exact local US 2020/0073096 A1, PDF page 4, Fig. 3, rotated 90 degrees at 600 dpi; screening crop `0.21,0.405,0.665,0.765`. Retained the existing SDs. The apparent 13.8 mm L21 result includes non-optical ink; direct inspection gives approximately 10.2 mm, consistent with the 10.5/10.3 mm authored surfaces. All 10 elements resolve through coordinate-compatible catalog curves; six-digit labels do not identify a production vendor or manufacturing process.
 
 Display name checked against the manufacturer product designation; the existing FUJINON XF name, aperture and R/LM/OIS/WR suffixes are correct. Structured patent assignee metadata uses the existing canonical `Fujifilm Corporation` spelling.
+
+
+## Diagram and Spectral Review — 2026-09-11 UTC
+
+Rechecked the local diagram against rotated Fig. 3 and the Table 9 glass ratios (PDF page 21).
+SDs and source element labels remain appropriate. The three patent-backed APD tags correct previously missing
+color annotations without assigning a production glass supplier.
+Focus correctly runs from infinity to close: G2 alone moves 1.902539 mm objectward; G1a, G1b, G3 and the stop stay fixed.
+The published 1 m intermediate spacing lies between the infinity and reconstructed 0.17 m endpoints.

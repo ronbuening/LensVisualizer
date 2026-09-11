@@ -862,7 +862,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | E12 (Element 12) | 21 | `847239 optical-glass class (vendor unspecified)` | 1.84670 / 23.90 | S-NPH53 (trusted Sellmeier) | sellmeier | patents/US20060023317A1.pdf | No review-record hit |
 | E13 (Element 13) | 22 | `762401 optical-glass class (vendor unspecified)` | 1.76200 / 40.10 | S-LAM55 (trusted Sellmeier) | sellmeier | patents/US20060023317A1.pdf | No review-record hit |
 | E14 (Element 14) | 24 | `603606 optical-glass class (vendor unspecified)` | 1.60310 / 60.60 | N-SK14 (trusted Sellmeier) | sellmeier | patents/US20060023317A1.pdf | No review-record hit |
-| E15 (Element 15) | 26A | `583594 optical-glass class (vendor unspecified)` | 1.58310 / 59.40 | S-BAL42 (trusted Sellmeier) | sellmeier | patents/US20060023317A1.pdf | No review-record hit |
+| E15 (Element 15) | 26A | `583594 optical-glass class (vendor unspecified)` | 1.58310 / 59.40 | L-BAL42 (trusted Sellmeier) | sellmeier | patents/US20060023317A1.pdf | No review-record hit |
 | E16 (Element 16) | 28 | `487702 optical-glass class (vendor unspecified)` | 1.48750 / 70.20 | S-FSL5 (trusted Sellmeier) | sellmeier | patents/US20060023317A1.pdf | No review-record hit |
 | E17 (Element 17) | 29 | `847239 optical-glass class (vendor unspecified)` | 1.84670 / 23.90 | S-NPH53 (trusted Sellmeier) | sellmeier | patents/US20060023317A1.pdf | No review-record hit |
 
@@ -1129,26 +1129,26 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L11 (Element L11) | 1 | `847238 — high-index flint class (vendor indeterminate)` | 1.84666 / 23.78 | J-SF03 (trusted Sellmeier) | sellmeier | patents/US20160282590A1.pdf | No review-record hit |
-| L14 (Element L14) | 7 | `001291 — high-index lanthanum-flint class (vendor indeterminate)` | 2.00100 / 29.13 | S-LAH99 (trusted Sellmeier) | sellmeier | patents/US20160282590A1.pdf | No review-record hit |
-| L22 (Element L22) | 14 | `923189 — high-index flint class (vendor indeterminate)` | 1.92286 / 18.90 | H-ZF72A (trusted Sellmeier) | sellmeier | patents/US20160282590A1.pdf | No review-record hit |
-| L26 (Element L26) | 22 | `497816 — low-dispersion/ED class (vendor indeterminate)` | 1.49700 / 81.61 | H-FK61 (trusted Sellmeier) | sellmeier | patents/US20160282590A1.pdf | No review-record hit |
-| L31 (Element L31) | 24 | `946180 — high-index flint class (vendor indeterminate)` | 1.94595 / 17.98 | FDS18 (trusted Sellmeier) | sellmeier | patents/US20160282590A1.pdf | No review-record hit |
+| L11 (Element 1) | 1 | `847238 — high-index flint class (vendor indeterminate)` | 1.84666 / 23.78 | J-SF03 (trusted Sellmeier) | sellmeier | patents/US20160282590A1.pdf | No review-record hit |
+| L14 (Element 4) | 7 | `001291 — high-index lanthanum-flint class (vendor indeterminate)` | 2.00100 / 29.13 | S-LAH99 (trusted Sellmeier) | sellmeier | patents/US20160282590A1.pdf | No review-record hit |
+| L22 (Element 8) | 14 | `923189 — high-index flint class (vendor indeterminate)` | 1.92286 / 18.90 | H-ZF72A (trusted Sellmeier) | sellmeier | patents/US20160282590A1.pdf | No review-record hit |
+| L26 (Element 12) | 22 | `497816 — low-dispersion/ED class (vendor indeterminate)` | 1.49700 / 81.61 | H-FK61 (trusted Sellmeier) | sellmeier | patents/US20160282590A1.pdf | No review-record hit |
+| L31 (Element 13) | 24 | `946180 — high-index flint class (vendor indeterminate)` | 1.94595 / 17.98 | FDS18 (trusted Sellmeier) | sellmeier | patents/US20160282590A1.pdf | No review-record hit |
 
 ### [FUJIFILM FUJINON XF 16mm f/2.8 R WR](../../src/lens-data/fujifilm/FujifilmFujinonXf16mmf28RWR.data.ts) - US 2020/0073096 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L11 (Element L11) | 1 | `540597 — barium crown class` | 1.53996 / 59.73 | BAK2 (trusted Sellmeier) | sellmeier | patents/US20200073096A1.pdf | No review-record hit |
-| L12 (Element L12) | 3A | `516641 — crown coordinate class` | 1.51633 / 64.06 | S-BSL7 (trusted Sellmeier) | sellmeier | patents/US20200073096A1.pdf | No review-record hit |
-| L13 (Element L13) | 5 | `729547 — lanthanum crown class` | 1.72916 / 54.68 | TAC8 (trusted Sellmeier) | sellmeier | patents/US20200073096A1.pdf | No review-record hit |
-| L14 (Element L14) | 8 | `001255 — high-index flint class` | 2.00069 / 25.46 | TAFD40L-W (trusted Sellmeier) | sellmeier | patents/US20200073096A1.pdf | No review-record hit |
-| L15 (Element L15) | 9 | `720347 — dense flint class` | 1.72047 / 34.71 | N-KZFS8 (trusted Sellmeier) | sellmeier | patents/US20200073096A1.pdf | No review-record hit |
-| L16 (Element L16) | 11A | `583594 — barium crown coordinate class` | 1.58313 / 59.38 | J-SK12 (trusted Sellmeier) | sellmeier | patents/US20200073096A1.pdf | No review-record hit |
-| L17 (Element L17) | 13 | `847238 — dense flint class` | 1.84666 / 23.78 | J-SF03 (trusted Sellmeier) | sellmeier | patents/US20200073096A1.pdf | No review-record hit |
-| L18 (Element L18) | 14 | `729547 — lanthanum crown class` | 1.72916 / 54.68 | TAC8 (trusted Sellmeier) | sellmeier | patents/US20200073096A1.pdf | No review-record hit |
-| L21 (Element L21) | 16 | `835427 — high-index lanthanum flint class` | 1.83481 / 42.74 | S-LAH55 (trusted Sellmeier) | sellmeier | patents/US20200073096A1.pdf | No review-record hit |
-| L31 (Element L31) | 18 | `855248 — dense flint class` | 1.85478 / 24.80 | S-NBH56 (trusted Sellmeier) | sellmeier | patents/US20200073096A1.pdf | No review-record hit |
+| L11 (Element 1) | 1 | `540597 — barium crown class` | 1.53996 / 59.73 | BAK2 (trusted Sellmeier) | sellmeier | patents/US20200073096A1.pdf | No review-record hit |
+| L12 (Element 2) | 3A | `516641 — crown coordinate class` | 1.51633 / 64.06 | S-BSL7 (trusted Sellmeier) | sellmeier | patents/US20200073096A1.pdf | No review-record hit |
+| L13 (Element 3) | 5 | `729547 — lanthanum crown class` | 1.72916 / 54.68 | TAC8 (trusted Sellmeier) | sellmeier | patents/US20200073096A1.pdf | No review-record hit |
+| L14 (Element 4) | 8 | `001255 — high-index flint class` | 2.00069 / 25.46 | TAFD40L-W (trusted Sellmeier) | sellmeier | patents/US20200073096A1.pdf | No review-record hit |
+| L15 (Element 5) | 9 | `720347 — short-flint coordinate class` | 1.72047 / 34.71 | N-KZFS8 (trusted Sellmeier) | sellmeier | patents/US20200073096A1.pdf | No review-record hit |
+| L16 (Element 6) | 11A | `583594 — barium crown coordinate class` | 1.58313 / 59.38 | J-SK12 (trusted Sellmeier) | sellmeier | patents/US20200073096A1.pdf | No review-record hit |
+| L17 (Element 7) | 13 | `847238 — dense flint class` | 1.84666 / 23.78 | J-SF03 (trusted Sellmeier) | sellmeier | patents/US20200073096A1.pdf | No review-record hit |
+| L18 (Element 8) | 14 | `729547 — lanthanum crown class` | 1.72916 / 54.68 | TAC8 (trusted Sellmeier) | sellmeier | patents/US20200073096A1.pdf | No review-record hit |
+| L21 (Element 9) | 16 | `835427 — high-index lanthanum flint class` | 1.83481 / 42.74 | S-LAH55 (trusted Sellmeier) | sellmeier | patents/US20200073096A1.pdf | No review-record hit |
+| L31 (Element 10) | 18 | `855248 — dense flint class` | 1.85478 / 24.80 | S-NBH56 (trusted Sellmeier) | sellmeier | patents/US20200073096A1.pdf | No review-record hit |
 
 ### [FUJIFILM FUJINON XF 23mm f/2 R WR](../../src/lens-data/fujifilm/FujifilmXF23mmf2RWR.data.ts) - US 2017/0351051 A1
 

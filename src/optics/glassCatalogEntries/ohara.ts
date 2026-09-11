@@ -6,6 +6,28 @@ import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
   {
+    name: "L-BAL42",
+    vendor: "Ohara",
+    B: [1.39528097, 0.072551952, 1.66335848],
+    C: [0.011186203, -0.0246748575, 167.717958],
+    nd: 1.583126,
+    vd: 59.385694,
+    code6: "583594",
+    source:
+      "OHARA_260701.AGF, L-BAL42 row, formula 2; https://oharacorp.com/wp-content/uploads/catalogs/OHARA_260701_CATALOG.zip (accessed 2026-09-11).",
+  },
+  {
+    name: "S-YGH51",
+    vendor: "Ohara",
+    B: [1.0828017, 0.933988681, 1.32367286],
+    C: [0.018115636, 0.00304157575, 91.0353195],
+    nd: 1.754998,
+    vd: 52.321434,
+    code6: "755523",
+    source:
+      "OHARA_260701.AGF, S-YGH51 row, formula 2; https://oharacorp.com/wp-content/uploads/catalogs/OHARA_260701_CATALOG.zip (accessed 2026-09-11).",
+  },
+  {
     name: "S-BAM3",
     vendor: "Ohara",
     B: [1.36955358, 0.0853825867, 1.16159771],

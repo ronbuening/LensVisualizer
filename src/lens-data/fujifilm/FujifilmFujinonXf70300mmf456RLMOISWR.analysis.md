@@ -539,3 +539,17 @@ semi-diameters are explicitly modeled quantities.
 Inspected the exact local US 2021/0286156 A1, PDF page 13, Fig. 12 at 600 dpi; screening crop `0.348,0.443,0.74,0.6`. Retained the existing SDs. Enlarged inspection rejects leader-line overreads in G2, G4 and G5. Thin air gaps constrain the optical rims; the front and final elements agree within approximately 10%. Table 16 explicitly names the glasses; the H-ZLaF68N addition brings catalog coverage to 17/17 while retaining patent-derived dPgF.
 
 Display name checked against the manufacturer product designation; the existing FUJINON XF name, aperture and R/LM/OIS/WR suffixes are correct. Structured patent assignee metadata uses the existing canonical `Fujifilm Corporation` spelling.
+
+
+## Diagram and Spectral Review — 2026-09-11 UTC
+
+Rechecked the local drawing against Fig. 12. A trial 8.6 mm common G5 rim gives 2.02 mm intrusion across S25–S26,
+exceeding the 1.397 mm allowance, so those clear apertures remain geometry-limited. Existing SDs and labels are retained.
+Table 16 names L-BAL42; it now uses OHARA's separate L-BAL42 coefficients rather than the S-BAL42 alias.
+L13, L23 and L33 receive patent-backed APD tags from the already-authored Table 16 ratios. L23 is a high-dispersion
+flint: the APD color is not an ED designation. All 17 glasses remain catalog-covered.
+
+Focus correctly moves G4 alone objectward: −1.850687 mm wide and −15.753023 mm tele.
+Wide-to-tele group shifts relative to the fixed image plane are G1 −72.983, G2 −2.757, G3 −18.711, G4 −8.445,
+G5 −18.711 and G6 0 mm. G2 first moves +0.998 mm imageward at the middle keyframe, then reverses; G3 and G5
+move together and G6 stays fixed. The existing spacing order reproduces the patent mechanism.
