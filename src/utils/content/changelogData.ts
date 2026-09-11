@@ -21,6 +21,21 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-09-11",
     type: "lens",
+    summary: "Added Canon EF 35mm L II, RF 35mm Macro and TS-E 24mm L II designs",
+  },
+  {
+    date: "2026-09-11",
+    type: "lens",
+    summary: "Added Fujifilm XF55-200mm with audited patent rims and glass dispersion",
+  },
+  {
+    date: "2026-09-11",
+    type: "lens",
+    summary: "Added Voigtländer Apo-Lanthar 210mm, Skoparex 35mm and Telomar 180mm designs",
+  },
+  {
+    date: "2026-09-11",
+    type: "lens",
     summary: "Added Fujifilm XF14mm, both XF16mm primes, XF70-300mm and XF100-400mm",
   },
   {

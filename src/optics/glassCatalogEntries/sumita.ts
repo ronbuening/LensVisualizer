@@ -543,4 +543,14 @@ export const SUMITA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor K-VC80(M) formula-1 polynomial and molding-state optical coordinate. The catalog reuses base-family code 694531, so code6 is omitted because that code does not encode the molding-state nd/vd pair.",
   },
+  {
+    name: "K-PSK200",
+    vendor: "Sumita",
+    nd: 1.61305,
+    vd: 59.0,
+    polynomial: [2.5593395, -0.0088787219, 0.015115397, 0.0002035651, 7.5991137e-6, -1.5375246e-7],
+    code6: "613590",
+    source:
+      "Sumita vendor Zemax catalog, https://refractiveindex.info/download/data/2017/sumita_2017-02-02.agf; accessed 2026-09-11 via refractiveindex.info vendor-data mirror.",
+  },
 ];

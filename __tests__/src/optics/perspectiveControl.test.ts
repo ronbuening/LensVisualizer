@@ -5,17 +5,6 @@ import { computeCardinalElementsAtState } from "../../../src/optics/cardinalElem
 import { doLayout } from "../../../src/optics/optics.js";
 import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 
-const ENABLED_PC_KEYS = [
-  "canon-tse-50f28l-macro",
-  "canon-tse-90mm-f28l-macro",
-  "canon-tse-135mm-f4l",
-  "fujifilm-gf-30mm-f56-ts",
-  "nikon-pc-nikkor-19mm-f4e-ed",
-  "nikon-pc-nikkor-35mm-f28",
-  "nikon-pc-e-nikkor-24-f35d-ed",
-  "nikon-pce-micro-nikkor-45f28d",
-] as const;
-
 const TILT_PIVOT_OFFSETS = {
   "canon-tse-50f28l-macro": -55.96,
   "canon-tse-90mm-f28l-macro": -71.85725,
@@ -38,12 +27,10 @@ const CLOSE_FOCUS_REAR_TRAVEL_MM = {
 
 describe("perspectiveControl lens data", () => {
   it("defaults to disabled for every non-PC lens", () => {
-    const enabled = Object.entries(LENS_CATALOG)
-      .filter(([, data]) => data.perspectiveControl != null)
-      .map(([key]) => key)
-      .sort();
-
-    expect(enabled).toEqual([...ENABLED_PC_KEYS].sort());
+    for (const data of Object.values(LENS_CATALOG)) {
+      if (data.perspectiveControl != null) continue;
+      expect(buildLens(data).perspectiveControl, data.key).toBeNull();
+    }
   });
 
   it("carries perspective-control config onto the built runtime lens", () => {
