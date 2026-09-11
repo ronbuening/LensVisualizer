@@ -38,7 +38,9 @@ present, using the data-provided label, endpoint labels, optional center label, 
 a center label use signed `-1..1` travel with the center/default at `0`; controls without one retain `0..1` travel.
 
 `DiagramControls` focus/zoom sliders expose a compact MOTION action (through `SliderControl`'s action slot) only when
-modeled group movement is available. Shift/tilt sliders expose independent zero-reset actions through the shared
+modeled group movement is available. Without modeled focus travel, the disabled focus control labels its far end
+"Not modeled" instead of presenting a schema placeholder or production specification as a reachable focus endpoint.
+Shift/tilt sliders expose independent zero-reset actions through the shared
 `SliderResetButton`, which comparison mode's shared sliders reuse.
 
 ## Display And Content Components

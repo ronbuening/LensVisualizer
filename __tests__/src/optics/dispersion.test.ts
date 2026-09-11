@@ -488,8 +488,9 @@ describe("resolveGlass", () => {
     expect(resolveGlass("MP-NBFD130 molded high-index flint")?.name).toBe("NBFD13");
   });
 
-  it("resolves Ohara PGM / large-format aliases to catalog equivalents", () => {
-    expect(resolveGlass("L-BAL42 (OHARA)")?.name).toBe("S-BAL42");
+  it("resolves named Ohara PGM curves before remaining catalog aliases", () => {
+    expect(resolveGlass("L-BAL42 (OHARA)")?.name).toBe("L-BAL42");
+    expect(resolveGlass("S-YGH51 (OHARA)")?.name).toBe("S-YGH51");
     expect(resolveGlass("OHARA L-BSL7 (PGM)")?.name).toBe("S-BSL7");
     expect(resolveGlass("L-BAL35 (OHARA)")?.name).toBe("S-BAL35");
   });

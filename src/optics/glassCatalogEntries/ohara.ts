@@ -6,6 +6,39 @@ import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
   {
+    name: "L-BAL42",
+    vendor: "Ohara",
+    B: [1.39528097, 0.072551952, 1.66335848],
+    C: [0.011186203, -0.0246748575, 167.717958],
+    nd: 1.583126,
+    vd: 59.385694,
+    code6: "583594",
+    source:
+      "OHARA_260701.AGF, L-BAL42 row, formula 2; https://oharacorp.com/wp-content/uploads/catalogs/OHARA_260701_CATALOG.zip (accessed 2026-09-11).",
+  },
+  {
+    name: "S-YGH51",
+    vendor: "Ohara",
+    B: [1.0828017, 0.933988681, 1.32367286],
+    C: [0.018115636, 0.00304157575, 91.0353195],
+    nd: 1.754998,
+    vd: 52.321434,
+    code6: "755523",
+    source:
+      "OHARA_260701.AGF, S-YGH51 row, formula 2; https://oharacorp.com/wp-content/uploads/catalogs/OHARA_260701_CATALOG.zip (accessed 2026-09-11).",
+  },
+  {
+    name: "S-BAM3",
+    vendor: "Ohara",
+    B: [1.36955358, 0.0853825867, 1.16159771],
+    C: [0.00941331434, 0.0504359027, 130.548899],
+    nd: 1.582673,
+    vd: 46.423175,
+    code6: "583464",
+    source:
+      "OHARA_260701.AGF, discontinued S-BAM3 row, formula 2; https://oharacorp.com/wp-content/uploads/catalogs/OHARA_260701_CATALOG.zip (accessed 2026-09-11).",
+  },
+  {
     name: "S-TIM39",
     vendor: "Ohara",
     B: [1.47008105, 0.224752746, 2.44968592],
@@ -2030,5 +2063,15 @@ export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
     code6: "589512",
     source:
       "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF); vendor formula-3 polynomial for discontinued BAL7.",
+  },
+  {
+    name: "S-LAM73",
+    vendor: "Ohara",
+    nd: 1.7936,
+    vd: 37.08945,
+    B: [1.86353123, 0.255215617, 1.23399133],
+    C: [0.0107620673, 0.0487248679, 117.12511],
+    source:
+      "OHARA vendor Zemax catalog, https://refractiveindex.info/download/data/2017/ohara_2017-11-30.agf; accessed 2026-09-11 via refractiveindex.info vendor-data mirror.",
   },
 ];

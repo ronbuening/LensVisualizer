@@ -6,6 +6,17 @@ import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const CDGM_GLASS_ENTRIES: readonly GlassEntry[] = [
   {
+    name: "H-ZLaF68N",
+    vendor: "CDGM",
+    B: [1.49455025, 2.07574257, 0.361138143],
+    C: [109.762523, 0.010404077, 0.041262142],
+    nd: 1.883,
+    vd: 39.22,
+    code6: "883392",
+    source:
+      "CDGM Optical Glass Data Sheet, September 2023, printed page 276 (PDF page 278), K1/L1 through K3/L3; https://www.cdgmgd.com/accessory/2023-09-01/client/www.cdgmgd.com/456361a8-7b3f-448a-b759-7e157b6279cc.pdf (accessed 2026-09-11).",
+  },
+  {
     name: "H-ZLaF90",
     vendor: "CDGM",
     B: [4.94167183e-1, 2.31375143, 2.2792987],
@@ -409,5 +420,26 @@ export const CDGM_GLASS_ENTRIES: readonly GlassEntry[] = [
     code6: "664355",
     source:
       "CDGM Optical Glass Data Sheet, June 2022, H-ZBaF4 page 183; vendor Sellmeier-1 constants K1-L3 and d-code 664355.",
+  },
+  {
+    name: "D-LAF79-25",
+    vendor: "CDGM",
+    nd: 1.72986,
+    vd: 40.497566,
+    B: [0.244124156, 1.39592511, 1.66977539],
+    C: [0.0430784572, 113.324709, 0.00964211165],
+    source:
+      "CDGM vendor Zemax catalog, https://refractiveindex.info/download/data/2022/CDGM-ZEMAX202206new.AGF; accessed 2026-09-11 via refractiveindex.info vendor-data mirror; 25 C/h annealing grade; base code omitted to preserve existing code resolution.",
+  },
+  {
+    name: "H-ZLaF4LA",
+    vendor: "CDGM",
+    nd: 1.91082,
+    vd: 35.25034,
+    B: [2.212551, 0.312542616, 1.56862457],
+    C: [0.011817254, 0.049586258, 115.52649],
+    code6: "911353",
+    source:
+      "CDGM vendor Zemax catalog, https://refractiveindex.info/download/data/2022/CDGM-ZEMAX202206new.AGF; accessed 2026-09-11 via refractiveindex.info vendor-data mirror.",
   },
 ];
