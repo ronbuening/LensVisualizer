@@ -136,6 +136,16 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
       },
     ],
   },
+  "Fuji Photo Film Co., Ltd.": {
+    corporateFamily: [
+      {
+        family: "Fujifilm–Fujinon",
+        effectiveFrom: "1934-01",
+        sourceUrl: SOURCES.fujifilmHistory,
+        note: "The original Fuji Photo Film company anchors this corporate lineage; historical patents retain their source-era assignee name.",
+      },
+    ],
+  },
   "Fuji Photo Optical Co., Ltd.": {
     corporateFamily: [
       {
