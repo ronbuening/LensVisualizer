@@ -19,6 +19,11 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-09-11",
+    type: "lens",
+    summary: "Added six Fujifilm lens designs and the Viltrox AF 14mm f/4 Air",
+  },
+  {
     date: "2026-09-10",
     type: "improvement",
     summary: "Unified patent-assignee relationships",

@@ -268,6 +268,18 @@ describe("glass coverage opportunities scan", () => {
     expect(extractPatentNumber(undefined, "US 4,123,456 A Example 1")).toBe("US 4,123,456 A");
   });
 
+  it("preserves era-form publications and matches their Gregorian PDF wrappers", () => {
+    expect(extractPatentNumber("JP S62-244010 A", "US 4,123,456 A Example 1")).toBe("JP S62-244010 A");
+    expect(extractPatentNumber(undefined, "JP S62-244010 A Example 2")).toBe("JP S62-244010 A");
+    expect(findLocalPatent("JP S62-244010 A", ["JPA 1987244010-000000.pdf"]).path).toBe(
+      "patents/JPA 1987244010-000000.pdf",
+    );
+    expect(findLocalPatent("JP H10-123456 B2", ["JPB 1998123456-000000.pdf"]).path).toBe(
+      "patents/JPB 1998123456-000000.pdf",
+    );
+    expect(findLocalPatent("JP S62-4010 A", ["JPA 1987244010-000000.pdf"]).path).toBeNull();
+  });
+
   it("matches spaced legacy patent numbers without substring collisions", () => {
     expect(patentSearchTokens("DE 1 228 820 B")).toEqual(["DE1228820B", "DE1228820", "1228820"]);
     expect(findLocalPatent("DE 1 228 820 B", ["20260118637.pdf", "DE_1228820_B.pdf"])).toEqual({

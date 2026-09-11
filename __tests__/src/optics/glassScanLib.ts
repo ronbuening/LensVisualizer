@@ -105,7 +105,7 @@ export function isExplicitlyUnmatched(glassString: string | undefined): boolean 
 /* ── Patent references and the untracked local PDF inventory ──────────── */
 
 const patentReferencePattern =
-  /\b(?:Patent\s+)?((?:JPWO|WO|US|JP|DE|GB|FR|CH|CN)\s*\d(?:[\d,./-]|\s+(?=\d))*(?:\s*(?:A1|A|B2|B1|B|C\d?|U))?)/i;
+  /\b(?:Patent\s+)?((?:JPWO|WO|US|JP(?:\s*[SH])?|DE|GB|FR|CH|CN)\s*\d(?:[\d,./-]|\s+(?=\d))*(?:\s*(?:A1|A|B2|B1|B|C\d?|U))?)/i;
 
 /** Extract a display-form patent number, preferring dedicated lens metadata over the legacy subtitle fallback. */
 export function extractPatentNumber(patentNumber: string | undefined, subtitle?: string): string | null {
@@ -134,6 +134,14 @@ export function patentSearchTokens(patentNumber: string | null): string[] {
   const stripped = stripPatentKind(normalized);
   const noCountry = stripped.replace(/^(?:JPWO|WO|US|JP|DE|GB|FR|CH|CN)/, "");
   const tokens = [normalized, stripped, noCountry];
+
+  // Showa/Heisei publication labels use era years, while local platform exports use Gregorian years.
+  const eraPublication = patentReference.match(/\bJP\s*([SH])\s*(\d{1,2})[-/](\d{1,6})(?:\s*(A1|A|B2|B1|B))?$/i);
+  if (eraPublication) {
+    const [, era, eraYear, serial, kind = ""] = eraPublication;
+    const year = Number(eraYear) + (era.toUpperCase() === "S" ? 1925 : 1988);
+    tokens.push(...patentSearchTokens(`JP ${year}-${serial} ${kind}`));
+  }
 
   const japanesePublication = normalized.match(/^(?:JP)(\d{4})(\d{1,6})(A1|A|B2|B1|B)?$/);
   if (japanesePublication) {
