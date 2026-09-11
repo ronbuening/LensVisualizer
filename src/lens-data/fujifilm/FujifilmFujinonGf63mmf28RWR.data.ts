@@ -25,12 +25,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                                              ║
  * ║  Semi-diameters:                                                                             ║
  * ║    No source SDs are published. The stop radius is reconstructed from the patent f/2.87.     ║
- * ║    Lens-surface SDs use the larger of (a) the on-axis full-stop marginal envelope and        ║
- * ║    (b) exact rays at the production 23.45° diagonal half-field through ±0.75 stop radius,   ║
- * ║    then add 8% clearance and round upward to 0.05 mm. L24 is the mechanical exception:        ║
- * ║    S13/S14 are reduced to 16.90/17.15 mm to retain positive endpoint edge thickness while      ║
- * ║    preserving >0.85 mm full-field representative-ray clearance. The diameter progression      ║
- * ║    also agrees with Fujifilm's official lens-configuration cross-section.                      ║
+ * ║    Optical rims are estimated from Fig. 1 at 600 dpi (33.38 µm/px), excluding flanges.
+ * ║    The second viewer pass refines the front assembly and rear doublet rim progression.
+ * ║    Surface clearance and image-circle bounds constrain the inferred apertures.
  * ║                                                                                              ║
  * ║  Glass discipline:                                                                           ║
  * ║    The patent publishes nd/νd only. Six-digit/class labels are used where supplier identity  ║
@@ -121,7 +118,8 @@ const LENS_DATA = {
       vd: 68.62,
       fl: 139.997886,
       glass: "593686 — FCD505-class ED crown (supplier unproven)",
-      apd: false,
+      // Compatible catalog curve supports APD; production glass identity is unresolved.
+      apd: "inferred",
       role: "Object-side member of the L21+L22 cemented pair; production ED element.",
       cemented: "L21+L22",
     },
@@ -210,25 +208,25 @@ const LENS_DATA = {
 
   /* ── Surface prescription: Example 1, PP omitted with air-equivalent BFD normalization ── */
   surfaces: [
-    { label: "1", R: 32.3262, d: 4.23, nd: 1.95375, elemId: 1, sd: 18.1 },
-    { label: "2", R: 66.8687, d: 0.13, nd: 1.0, elemId: 0, sd: 17.25 },
-    { label: "3", R: 21.5069, d: 5.21, nd: 1.48749, elemId: 2, sd: 14.55 },
-    { label: "4", R: 111.0969, d: 0.05, nd: 1.0, elemId: 0, sd: 13.45 },
+    { label: "1", R: 32.3262, d: 4.23, nd: 1.95375, elemId: 1, sd: 16.6 },
+    { label: "2", R: 66.8687, d: 0.13, nd: 1.0, elemId: 0, sd: 16.6 },
+    { label: "3", R: 21.5069, d: 5.21, nd: 1.48749, elemId: 2, sd: 13.4 },
+    { label: "4", R: 111.0969, d: 0.05, nd: 1.0, elemId: 0, sd: 13.4 },
     { label: "5", R: 92.4044, d: 1.6, nd: 1.69895, elemId: 3, sd: 13.15 },
-    { label: "6", R: 15.4525, d: 7.908, nd: 1.0, elemId: 0, sd: 10.05 },
+    { label: "6", R: 15.4525, d: 7.908, nd: 1.0, elemId: 0, sd: 9.0 },
     { label: "STO", R: 1e15, d: 10.211, nd: 1.0, elemId: 0, sd: 7.8158748586 },
-    { label: "8", R: -18.1789, d: 2.36, nd: 1.59282, elemId: 4, sd: 11.1 },
-    { label: "9", R: -15.633, d: 1.05, nd: 1.5927, elemId: 5, sd: 11.85 },
-    { label: "10", R: -39.9853, d: 0.68, nd: 1.0, elemId: 0, sd: 14.15 },
-    { label: "11", R: -59.5014, d: 2.96, nd: 1.788, elemId: 6, sd: 15.3 },
-    { label: "12", R: -32.4883, d: 0.1, nd: 1.0, elemId: 0, sd: 15.95 },
-    { label: "13", R: -93.3949, d: 3.65, nd: 1.816, elemId: 7, sd: 16.9 },
-    { label: "14", R: -32.4022, d: 1.26, nd: 1.0, elemId: 0, sd: 17.15 },
-    { label: "15", R: 200.7689, d: 6.93, nd: 1.6968, elemId: 8, sd: 19.25 },
-    { label: "16", R: -42.01, d: 1.47, nd: 1.60342, elemId: 9, sd: 19.45 },
-    { label: "17", R: 1e15, d: 4.87, nd: 1.0, elemId: 0, sd: 19.9 },
-    { label: "18", R: -85.0921, d: 1.44, nd: 1.51633, elemId: 10, sd: 20.25 },
-    { label: "19", R: -328.1791, d: 32.9608687764, nd: 1.0, elemId: 0, sd: 20.8 },
+    { label: "8", R: -18.1789, d: 2.36, nd: 1.59282, elemId: 4, sd: 10.4 },
+    { label: "9", R: -15.633, d: 1.05, nd: 1.5927, elemId: 5, sd: 10.4 },
+    { label: "10", R: -39.9853, d: 0.68, nd: 1.0, elemId: 0, sd: 12.0 },
+    { label: "11", R: -59.5014, d: 2.96, nd: 1.788, elemId: 6, sd: 13.6 },
+    { label: "12", R: -32.4883, d: 0.1, nd: 1.0, elemId: 0, sd: 13.6 },
+    { label: "13", R: -93.3949, d: 3.65, nd: 1.816, elemId: 7, sd: 14.9 },
+    { label: "14", R: -32.4022, d: 1.26, nd: 1.0, elemId: 0, sd: 14.9 },
+    { label: "15", R: 200.7689, d: 6.93, nd: 1.6968, elemId: 8, sd: 18.9 },
+    { label: "16", R: -42.01, d: 1.47, nd: 1.60342, elemId: 9, sd: 18.9 },
+    { label: "17", R: 1e15, d: 4.87, nd: 1.0, elemId: 0, sd: 20.8 },
+    { label: "18", R: -85.0921, d: 1.44, nd: 1.51633, elemId: 10, sd: 21.0 },
+    { label: "19", R: -328.1791, d: 32.9608687764, nd: 1.0, elemId: 0, sd: 21.0 },
   ],
 
   asph: {},
@@ -251,7 +249,7 @@ const LENS_DATA = {
 
   closeFocusM: 0.5,
   focusDescription:
-    "CONSTRAINED_RECONSTRUCTION — G1 + STO + G2 translate rigidly toward the object while G3 and the image plane remain fixed; D14 is solved from the 0.50 m MFD as 1.2600 → 14.1674477062 mm (12.9074477062 mm travel), predicting 0.17119×.",
+    "Front-group focus: G1, the stop, and G2 move together toward the object; G3 stays fixed. The 0.50 m endpoint is a constrained reconstruction: D14 increases from 1.26 to 14.167 mm, giving 12.907 mm travel and approximately 0.171× magnification.",
 
   /* ── Aperture configuration ── */
   nominalFno: 2.87,

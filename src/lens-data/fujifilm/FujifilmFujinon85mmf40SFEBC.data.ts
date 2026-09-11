@@ -4,7 +4,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ╔══════════════════════════════════════════════════════════════════════════════╗
  * ║ LENS DATA — FUJIFILM EBC FUJINON 85mm f/4 SOFT-FOCUS                    ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
- * ║ Source: JP1980-000560 A, Example 1 (昭55-560), fixed by the job card.      ║
+ * ║ Source: JP S55-560 A, Example 1 (昭55-560), fixed by the job card.      ║
  * ║ Patent design: 4 elements / 4 groups, all spherical, f = 1.0, 1:2.8,     ║
  * ║ 2ω = 28°. The patent prescription is the numerical authority.             ║
  * ║                                                                            ║
@@ -47,7 +47,7 @@ const LENS_DATA = {
   key: "fujifilm-fujinon-85mm-f4-sf-ebc",
   maker: "Fujifilm",
   name: "FUJIFILM EBC FUJINON 85mm f/4 SOFT-FOCUS",
-  subtitle: "JP1980-000560 A Example 1 — fixed embodiment; patent f/2.8 vs marketed f/4",
+  subtitle: "JP S55-560 A Example 1 — fixed embodiment; patent f/2.8 vs marketed f/4",
   specs: [
     "4 ELEMENTS / 4 GROUPS",
     "85 mm MARKETED; 89.814 mm TRACED DESIGN",
@@ -62,7 +62,7 @@ const LENS_DATA = {
   apertureDesign: 2.8,
   lensMounts: ["m42"],
   imageFormat: "135-full-frame",
-  patentNumber: "JP1980-000560 A",
+  patentNumber: "JP S55-560 A",
   // 高橋宗甫 is provisionally romanized as Soho Takahashi; see the analysis source note.
   patentAuthors: ["Ryoichi Doi", "Soho Takahashi"],
   patentAssignees: ["Fuji Photo Optical Co., Ltd."],
@@ -156,7 +156,7 @@ const LENS_DATA = {
   /* ── Focus configuration ── */
   closeFocusM: 1,
   focusDescription:
-    "NO_INTERNAL_RECONSTRUCTION — JP1980-000560 Example 1 publishes no focus spacing schedule; the model remains at the infinity prescription. The manufacturer 1.0 m minimum-focus specification is metadata only.",
+    "Infinity prescription only. Example 1 publishes no focus spacing schedule. The manufacturer’s 1.0 m minimum focus distance is shown for reference; internal travel is not modeled.",
 
   /* ── Aperture configuration ── */
   nominalFno: 2.8,

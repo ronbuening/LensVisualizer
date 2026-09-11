@@ -5,7 +5,7 @@
 **Filed:** January 15, 2021\
 **Published:** July 29, 2021\
 **Inventor:** Shunsuke Miyagishima\
-**Applicant / Assignee:** FUJIFILM Corporation\
+**Applicant / Assignee:** Fujifilm Corporation\
 **Title:** *Imaging Lens and Imaging Apparatus*\
 **Embodiment analyzed:** Example 1
 

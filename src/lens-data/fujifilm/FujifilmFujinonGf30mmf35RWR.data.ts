@@ -86,6 +86,8 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.497,
       vd: 81.59,
+      // Compatible catalog curve supports APD; production glass identity is unresolved.
+      apd: "inferred",
       fl: -67.090837,
       glass: "497816 low-dispersion class",
       role: "Fixed G1 low-dispersion negative element; production ED correlation is inferred, not patent-labeled.",
@@ -161,6 +163,8 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.497,
       vd: 81.59,
+      // Compatible catalog curve supports APD; production glass identity is unresolved.
+      apd: "inferred",
       fl: 25.77939,
       glass: "497816 low-dispersion class",
       role: "Moving G2 low-dispersion positive member; production ED correlation is inferred, not patent-labeled.",
@@ -186,6 +190,8 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 2.00272,
       vd: 19.32,
+      // Compatible catalog curve supports APD; production glass identity is unresolved.
+      apd: "inferred",
       fl: 33.722243,
       glass: "E-FDS2-class (HOYA exact-coordinate candidate)",
       role: "Fixed G3 positive member of the L31/L32 cemented pair.",
@@ -212,6 +218,8 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.94595,
       vd: 17.98,
+      // Compatible catalog curve supports APD; production glass identity is unresolved.
+      apd: "inferred",
       fl: -84.984736,
       glass: "FDS18-class (HOYA exact-coordinate candidate)",
       role: "Fixed G3 negative single lens.",

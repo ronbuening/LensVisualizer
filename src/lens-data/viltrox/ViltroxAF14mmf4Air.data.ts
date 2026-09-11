@@ -82,6 +82,8 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.92,
       vd: 20.9,
+      // Compatible catalog curve supports APD; production glass identity is unresolved.
+      apd: "inferred",
       fl: -28.428867,
       glass: "923209 class",
       role: "High-index front negative meniscus.",
@@ -94,6 +96,8 @@ const LENS_DATA = {
       type: "Neg. Meniscus (2× Asph)",
       nd: 1.5,
       vd: 81.6,
+      // Compatible catalog curve supports APD; production glass identity is unresolved.
+      apd: "inferred",
       fl: -31.104312,
       glass: "J-FKH1 equivalent (qualified spectral proxy for rounded patent 1.50 / 81.6; vendor unresolved)",
       role: "Double-aspherical negative front-group element.",
@@ -106,6 +110,8 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.59,
       vd: 68.3,
+      // Compatible catalog curve supports APD; production glass identity is unresolved.
+      apd: "inferred",
       fl: -21.188886,
       glass: "592683 class",
       cemented: "J1",
@@ -158,6 +164,8 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.46,
       vd: 90.2,
+      // Compatible catalog curve supports APD; production glass identity is unresolved.
+      apd: "inferred",
       fl: 15.752227,
       glass: "459902 class",
       cemented: "J3",
@@ -184,6 +192,8 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.46,
       vd: 90.2,
+      // Compatible catalog curve supports APD; production glass identity is unresolved.
+      apd: "inferred",
       fl: 29.573906,
       glass: "459902 class",
       role: "High-Abbe positive rear element of the moving focus group.",
@@ -220,6 +230,8 @@ const LENS_DATA = {
       type: "Near Plano-Convex Positive",
       nd: 1.59,
       vd: 68.6,
+      // Compatible catalog curve supports APD; production glass identity is unresolved.
+      apd: "inferred",
       fl: 77.116985,
       glass: "593686 class",
       role: "Final positive element ahead of the normalized rear air space.",

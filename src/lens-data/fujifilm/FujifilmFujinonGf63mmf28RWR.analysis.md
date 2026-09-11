@@ -6,7 +6,7 @@
 **Filed:** 2017-01-10\
 **Published:** 2017-08-24\
 **Inventor:** Masato Kondo\
-**Applicant / Assignee:** FUJIFILM Corporation\
+**Applicant / Assignee:** Fujifilm Corporation\
 **Title:** *Imaging Lens and Imaging Apparatus*\
 **Embodiment analyzed:** Example 1
 
@@ -212,9 +212,9 @@ The model uses no uniform scaling: $s=1.0$. Example 1 is all-spherical, so `asph
 
 The rear PP plate is the only omitted optical member. Its source path is 30.0000 mm of air, 3.2500 mm of $n_d=1.51680$ plate, and 0.8182 mm of air. Converting the plate thickness to air gives 32.9608687764 mm, which is the authored final spacing and reproduces the patent Bf at printed precision.
 
-The aperture and lens semi-diameters are modeling inferences because the patent publishes none. The stop semi-diameter is reconstructed from f/2.87. The other surfaces use verified production-field ray envelopes with clearance; L24 is the mechanical exception, with S13/S14 constrained to 16.90/17.15 mm to preserve positive edge thickness while maintaining production-field ray clearance. Across the infinity and reconstructed close-focus states, the minimum endpoint edge thickness is 0.281025 mm, the maximum actual spherical rim angle is 49.289243°, and the worst positive shared-band cross-gap intrusion is 0.484531 of the available gap. Representative production-field rays remain contained.
+The aperture and lens semi-diameters are modeling inferences because the patent publishes none. The stop semi-diameter is reconstructed from f/2.87. Lens rims are estimated from the 600 dpi Figure 1 using the 56.11 mm glass span (33.38 µm/px). The current SDs follow the optical boundaries, including the shorter L13 rear curve and the stepped rear doublet, without reproducing mechanical flanges. Surface-clearance and image-circle bounds pass. These inferred apertures do not promise unvignetted full-pupil transmission across the patent's 25.8° half-field.
 
-Those inferred apertures are intentionally tied to the production field rather than enlarged to promise full-pupil transmission across the patent's wider 25.8° half-field. At that wider edge, representative chief and ±0.5-pupil rays pass, while a +0.75-pupil ray clips slightly at S13. The model therefore does not convert the patent's 51.6° design field into an unsupported production clear-aperture claim.
+L21 uses inferred-APD coloring: the compatible FCD505 catalog curve gives approximately +0.01597 deviation from the normal partial-dispersion line. This supports a qualified dispersion classification, not a historical supplier identity or a patent-published partial dispersion.
 
 ## Sources
 
@@ -226,4 +226,4 @@ Those inferred apertures are intentionally tied to the production field rather t
 
 ### Patent-rim and glass audit (2026-09-11 UTC)
 
-Figure 1 (PDF p.2) was inspected at 600 dpi. The 56.11 mm glass span gives 33.38 µm/px. Clean optical rims agree with the authored SDs to about 15%, with additional noise from annotations in G2. SDs were retained after surface and image-circle checks. All ten elements already resolve to compatible catalog dispersion.
+Figure 1 (PDF p.2) was inspected at 600 dpi. The 56.11 mm glass span gives 33.38 µm/px. The initial screening retained the ray-envelope estimates; the subsequent direct viewer comparison refined individual optical rims as recorded in the sibling audit. All ten elements already resolve to compatible catalog dispersion.

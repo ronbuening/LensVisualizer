@@ -4,7 +4,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ╔════════════════════════════════════════════════════════════════════════════╗
  * ║  LENS DATA — FUJIFILM FUJINAR 210mm f/4.5                               ║
  * ╠════════════════════════════════════════════════════════════════════════════╣
- * ║  Data source: JP1954-002685, sole numerical prescription (job-card       ║
+ * ║  Data source: JP S29-2685 B, sole numerical prescription (job-card       ║
  * ║  designation: Example 1), Ryoichi Doi / Fuji Photo Film Co., Ltd.       ║
  * ║  Four elements / three groups; Tessar type; one aspherical surface.      ║
  * ║                                                                            ║
@@ -59,7 +59,7 @@ const LENS_DATA = {
   key: "fujifilm-fujinar-210mm-f45",
   maker: "Fujifilm",
   name: "FUJIFILM FUJINAR 210mm f/4.5",
-  subtitle: "JP1954-002685, Example 1 — constrained A8 reconstruction from the published ~20-ring edge criterion",
+  subtitle: "JP S29-2685 B, Example 1 — constrained A8 reconstruction from the published ~20-ring edge criterion",
   specs: ["4 ELEMENTS / 3 GROUPS", "PATENT f′ = 210 mm", "COMPUTED EFL 210.947 mm", "F/4.5", "1 ASPHERICAL SURFACE"],
 
   focalLengthMarketing: 210,
@@ -67,7 +67,7 @@ const LENS_DATA = {
   apertureMarketing: 4.5,
   apertureDesign: 4.5,
   lensMounts: ["large-format-lens-board"],
-  patentNumber: "JP1954-002685",
+  patentNumber: "JP S29-2685 B",
   patentAuthors: ["Ryoichi Doi"],
   patentAssignees: ["Fuji Photo Film Co., Ltd."],
   patentYear: 1954,
@@ -162,9 +162,7 @@ const LENS_DATA = {
   /* ── Focus configuration ── */
   closeFocusM: 1.0,
   focusDescription:
-    "NO_INTERNAL_RECONSTRUCTION: JP1954-002685 publishes one infinity prescription and no internal focus motion. " +
-    "closeFocusM = 1.0 m is only the schema-required finite UI placeholder, not a modeled MFD; " +
-    "external view-camera bellows/standard translation is outside the optical model.",
+    "Infinity prescription only. The patent publishes no internal focus motion or minimum focus distance. The disabled 1.00 m endpoint is a placeholder; external view-camera bellows travel is not modeled.",
 
   /* ── Aperture configuration ── */
   nominalFno: 4.5,

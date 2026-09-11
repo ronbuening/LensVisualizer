@@ -2356,7 +2356,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 8 | Element 6 | abbe | `Unmatched (SSK51-class very dense crown, near N-SSK5; patent nd=1.6578, νd=51.2)` | Explicit unmatched/proprietary annotation |
 | 9 | Element 7 | abbe | `Unmatched (supplier unspecified; patent nd=1.5488, νd=63.0)` | Explicit unmatched/proprietary annotation |
 
-### [NIKON UV-NIKKOR AUTO 55mm f/4](../../src/lens-data/nikon/NikonUvNikkor55mmf4.data.ts) - 0.0% trusted (0/3); 0.0% Sellmeier (0/3)
+### [NIKON UV-NIKKOR AUTO 55mm f/4](../../src/lens-data/nikon/NikonUvNikkor55mmf4.data.ts) - 0.0% trusted (0/3); 0.0% Sellmeier (0/3) - JP S42-9417
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
@@ -2373,7 +2373,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 5 | Element 3 | abbe | `Unmatched patent medium (Abbe estimated; supplier unspecified)` | Explicit unmatched/proprietary annotation |
 | 6 | Element 4 | abbe | `Unmatched patent medium (Abbe estimated; supplier unspecified)` | Explicit unmatched/proprietary annotation |
 
-### [FUJIFILM FUJINAR 210mm f/4.5](../../src/lens-data/fujifilm/FujifilmFujinar210mmf45.data.ts) - 0.0% trusted (0/4); 0.0% Sellmeier (0/4) - JP1954-002685
+### [FUJIFILM FUJINAR 210mm f/4.5](../../src/lens-data/fujifilm/FujifilmFujinar210mmf45.data.ts) - 0.0% trusted (0/4); 0.0% Sellmeier (0/4) - JP S29-2685 B
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|

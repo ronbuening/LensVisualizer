@@ -2,7 +2,7 @@
 
 ## Patent Reference and Design Identification
 
-**Patent:** JP1980-000560 A\
+**Patent:** JP S55-560 A\
 **Application Number:** 特願昭54-24240\
 **Published:** 1980-01-05\
 **Inventors:** Ryoichi Doi; Soho Takahashi\
@@ -12,7 +12,7 @@
 
 The source prints 高橋宗甫 without kana or Latin spelling. “Soho Takahashi” is a provisional romanization for catalog metadata; the personal-name reading remains unverified.
 
-The prescription is the fixed Example 1 correlation specified for this lens record. The patent describes a soft-focus objective for a 35 mm camera and gives Example 1 as a four-element, four-group, all-spherical design with normalized focal length `f = 1.0`, aperture ratio `1:2.8`, and full field `2ω = 28°` (JP1980-000560 A, pp. 409–410). The source front page also prints 1978-03-20 followed by the notation `手続補正書提出の日`; because that wording does not unambiguously identify an ordinary filing date, the analysis does not relabel it as one.
+The prescription is the fixed Example 1 correlation specified for this lens record. The patent describes a soft-focus objective for a 35 mm camera and gives Example 1 as a four-element, four-group, all-spherical design with normalized focal length `f = 1.0`, aperture ratio `1:2.8`, and full field `2ω = 28°` (JP S55-560 A, pp. 409–410). The source front page also prints 1978-03-20 followed by the notation `手続補正書提出の日`; because that wording does not unambiguously identify an ordinary filing date, the analysis does not relabel it as one.
 
 The production correlation is supported by several converging characteristics, while remaining a selected correlation rather than a manufacturer-confirmed prescription:
 
@@ -82,13 +82,13 @@ The crown/flint contrast is sufficient to discuss ordinary first-order chromatic
 
 ## Focus Mechanism
 
-The focus status is **NO_INTERNAL_RECONSTRUCTION**. JP1980-000560 Example 1 provides no focus-spacing table, finite-object prescription, magnification row, or mechanical description that determines which element or group moves during focusing. The analysis therefore does not classify the optical movement as unit focus, inner focus, or rear focus.
+The focus status is **NO_INTERNAL_RECONSTRUCTION**. JP S55-560 A Example 1 provides no focus-spacing table, finite-object prescription, magnification row, or mechanical description that determines which element or group moves during focusing. The analysis therefore does not classify the optical movement as unit focus, inner focus, or rear focus.
 
 Fuji's production literature gives a focusing range of **1 m to infinity**, and the data retains `closeFocusM: 1` as product metadata. That value does not create a close-focus optical state: `var` and `varLabels` are empty, and the modeled prescription remains the published infinity-style state. No principal-plane object distance, internal travel, or close-focus magnification is inferred from the 1 m marketing specification.
 
 ## Aberration Correction Strategy and Soft-Focus Design
 
-The patent describes its soft-focus behavior directly in terms of Seidel sums. It identifies `ΣI` as spherical aberration, `ΣII` as off-axis coma, `ΣIII` as astigmatism, `ΣP` as the Petzval sum, and `ΣV` as distortion. For Example 1, the printed totals are `ΣI = 4.955`, `ΣII = -0.14`, `ΣIII = -0.2840`, `ΣP = 0.6406`, and `ΣV = -0.2008` (JP1980-000560 A, p. 412).
+The patent describes its soft-focus behavior directly in terms of Seidel sums. It identifies `ΣI` as spherical aberration, `ΣII` as off-axis coma, `ΣIII` as astigmatism, `ΣP` as the Petzval sum, and `ΣV` as distortion. For Example 1, the printed totals are `ΣI = 4.955`, `ΣII = -0.14`, `ΣIII = -0.2840`, `ΣP = 0.6406`, and `ΣV = -0.2008` (JP S55-560 A, p. 412).
 
 The key soft-focus constraint is `15.0 > ΣI > 0.5`. The patent explains that too large a spherical-aberration sum makes the image core and halo difficult to balance, while too small a value yields insufficient soft-focus effect. Example 1's `ΣI = 4.955` is therefore not treated as a residual defect to be minimized; within the patent's own design framework it is a controlled aberration used to generate the intended image character.
 
@@ -128,7 +128,7 @@ No sensor cover glass, filter plate, inactive dummy plane, flare-cutter plane, b
 
 ## Sources and References
 
-1. **Japanese Patent Publication JP1980-000560 A (昭55-560),** *明るい軟焦点レンズ* [Bright soft-focus lens], Fuji Photo Optical Co., Ltd., published 1980-01-05. Supplied six-page patent scan; Example 1 prescription and Figures 1–5.
+1. **Japanese Patent Publication JP S55-560 A (昭55-560),** *明るい軟焦点レンズ* [Bright soft-focus lens], Fuji Photo Optical Co., Ltd., published 1980-01-05. Supplied six-page patent scan; Example 1 prescription and Figures 1–5.
 2. **Fuji Photo Film Co., Ltd., Fujica AZ-1 system sales literature.** Manufacturer lens table listing EBC FUJINON·SF 85mm f/4 as 4 elements / 4 groups, 28°34′, 1 m–∞, f/4–16, 49 mm, and 285 g; archival scan: https://www.pacificrimcamera.com/rl/01692/01692.pdf
 3. **Fuji Photo Film Co., Ltd., AZ-1 sales brochure OP1-111E (77-10-SA-MW), October 1977.** Manufacturer brochure used for period/mount context; archival scan: https://www.pacificrimcamera.com/rl/00921/00921.pdf
 4. **Fujifilm corporate history.** Used for the historical English company-name normalization: https://www.fujifilm.com/jp/en/about/corporate/history

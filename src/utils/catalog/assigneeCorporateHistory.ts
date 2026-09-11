@@ -53,6 +53,8 @@ const SOURCES = {
   sonyReorganization: "https://www.sony.com/en/SonyInfo/News/Press/202005/20-039E/",
   sonyStructure: "https://www.sony.com/en/SonyInfo/News/Press/202011/20-093E/",
   tamronHistory: "https://www.tamron.com/global/company/tamron_history.html",
+  viltroxRename: "https://patents.google.com/patent/CN218630458U/zh",
+  viltroxRegistration: "https://m.shuidi.cn/company-67c4590220744b2c488f83aa38029142.html",
   vivitarHistory: "https://japb.net/business/company-profiles/vivitar/",
   vivitarNameChange: "https://uprp.gov.pl/sites/default/files/wup/1979/06/wup06_1979.pdf",
   voigtlanderHistory: "https://www.cosina.co.jp/voigtlander/",
@@ -619,6 +621,27 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
       },
     ],
     corporateFamily: [{ family: "Samsung", effectiveFrom: "2010-04-01", sourceUrl: SOURCES.samsungMerger }],
+  },
+  "Shenzhen Leiying Photoelectric Technology Co., Ltd.": {
+    corporateFamily: [
+      {
+        family: "Viltrox",
+        effectiveFrom: "2016-03-10",
+        sourceUrl: SOURCES.viltroxRegistration,
+        note: "Former registered name of Shenzhen Viltrox Technology; unified social credit code 91440300MA5D88WC5L. Historical patent attributions retain their publication-era name.",
+      },
+    ],
+  },
+  "Shenzhen Viltrox Technology Co., Ltd.": {
+    successorOf: [
+      {
+        organization: "Shenzhen Leiying Photoelectric Technology Co., Ltd.",
+        effectiveDate: "2025-04-18",
+        sourceUrl: SOURCES.viltroxRename,
+        note: "CP03 records the patentee name/address change on this date; this is the patent-register event date, not an asserted corporate registration date. 唯卓仕 is rendered Viltrox here and Weizhuoshi in the translated legal event.",
+      },
+    ],
+    corporateFamily: [{ family: "Viltrox", effectiveFrom: "2025-04-18", sourceUrl: SOURCES.viltroxRename }],
   },
   "Sony Corporation": {
     subsidiaryOf: [

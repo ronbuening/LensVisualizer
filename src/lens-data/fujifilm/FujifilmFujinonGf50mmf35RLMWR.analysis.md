@@ -6,7 +6,7 @@
 **Filed:** 2019-11-20\
 **Published:** 2020-05-28\
 **Inventors:** Ryosuke Nagami; Tetsuya Ori\
-**Applicant / Assignee:** FUJIFILM Corporation\
+**Applicant / Assignee:** Fujifilm Corporation\
 **Title:** *Imaging Lens and Imaging Apparatus*\
 **Embodiment analyzed:** Example 1
 
@@ -217,7 +217,7 @@ The authored stop recovers FNo = **3.560000000000** at infinity. Because the pat
 
 The inferred semi-diameter set passes the shared surface validator and production render diagnostics. The S8 rim was enlarged during the patent audit below; earlier numerical edge/gap extrema from the draft are not retained as current measurements.
 
-For the patent's 30.2° design half-field, the locally traced chief ray and on-axis marginal rays remain inside every authored surface at all three focus keyframes. Using the patent-published *f* = 48.57 mm and 30.2° half-field, the paraxial half-image height is **28.268 mm**, slightly larger than the project's 44×33 half-diagonal of **27.390 mm**; this is consistent with the patent's 60.4° design field exceeding the production lens's marketed 57.4° field.
+For the patent's 30.2° design half-field, the locally traced chief ray remains inside every authored surface at infinity, intermediate, and close focus. Using the patent-published *f* = 48.57 mm and 30.2° half-field, the paraxial half-image height is **28.268 mm**, slightly larger than the project's 44×33 half-diagonal of **27.390 mm**; this is consistent with the patent's 60.4° design field exceeding the production lens's marketed 57.4° field.
 
 The prescription applies no uniform scale, excludes the optional PP plate through the patent's air-equivalent rear spacing, and retains the patent's single translating focus group. No per-element spectral indices or anomalous-partial-dispersion values are added beyond the published d-line *nd* and νd coordinates.
 
@@ -236,4 +236,4 @@ The prescription applies no uniform scale, excludes the optional PP plate throug
 
 ### Patent-rim audit (2026-09-11 UTC)
 
-Figure 1 (PDF p.2) was inspected at 600 dpi, rotated clockwise. The 47.91 mm glass span gives 22.76 µm/px. S8, the front of L23, increases from 7.5 to 9.8 mm to follow the clean optical rim; its cemented partner remains at 10.0 mm. This removes the exaggerated waist. Other rims agree within measurement uncertainty or include mechanical steps. Group brackets contaminate the automatic G2 envelope and were excluded. Surface, image-circle, and production render checks pass. All nine elements already have compatible catalog dispersion; no glass changes were needed.
+Figure 1 (PDF p.2) was inspected at 600 dpi, rotated clockwise. The 47.91 mm glass span gives 22.76 µm/px. S8, the front of L23, increases from 7.5 to 9.8 mm to follow the clean optical rim; its cemented interface is 9.8 mm after the second viewer pass. This removes the exaggerated waist. The subsequent viewer pass also refines S1–S6, S10, and the optical portion of S13/S14; see the sibling audit. Group brackets contaminate the automatic G2 envelope and were excluded. Surface, image-circle, and production render checks pass. All nine elements already have compatible catalog dispersion; no glass changes were needed.

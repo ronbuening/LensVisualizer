@@ -1,6 +1,6 @@
 ## Patent Reference and Design Identification
 
-**Patent:** JP1954-002685 (特許出願公告 昭29-2685)\
+**Patent:** JP S29-2685 B (特許出願公告 昭29-2685)\
 **Application Number:** 特願 昭26-11016\
 **Filed:** 1951-08-24\
 **Published:** 1954-05-15\
@@ -9,7 +9,7 @@
 **Title:** ボケの描写を考慮した非球面写真レンズ — “Aspherical photographic lens considering the rendering of out-of-focus blur”\
 **Embodiment analyzed:** Example 1 — project designation for the patent's sole numerical prescription
 
-The catalog correlation used here associates JP1954-002685 with the **FUJIFILM FUJINAR 210mm f/4.5**. The patent itself does not print the Fujinar trade name, so this correlation is not presented as manufacturer confirmation. It is nevertheless consistent with the source prescription, which gives `f′ = 210` and `F:4.5`, and with the four-element, three-group Tessar-type section shown in Figure 7 on patent page 3.
+The catalog correlation used here associates JP S29-2685 B with the **FUJIFILM FUJINAR 210mm f/4.5**. The patent itself does not print the Fujinar trade name, so this correlation is not presented as manufacturer confirmation. It is nevertheless consistent with the source prescription, which gives `f′ = 210` and `F:4.5`, and with the four-element, three-group Tessar-type section shown in Figure 7 on patent page 3.
 
 The production identity is independently supported by the Tokyo Photographic Art Museum collection, which lists a Fuji Film **Fujinar F4.5 21cm**. FUJIFILM's corporate history also states that the company's early postwar large-format studio-camera lens line was introduced as Rectar and later renamed Fujinar. These sources establish the product family and exact 21 cm / f/4.5 designation, but they do not state that this patent prescription was the manufactured optical formula.
 
@@ -129,7 +129,7 @@ The patent also gives no field angle or image circle. Off-axis tracing was used 
 
 ## Sources
 
-1. Japanese Patent Office, **JP1954-002685**, 特許出願公告 昭29-2685, filed 1951-08-24, published 1954-05-15.
+1. Japanese Patent Office, **JP S29-2685 B**, 特許出願公告 昭29-2685, filed 1951-08-24, published 1954-05-15.
 2. FUJIFILM, **“カメラ・光学機器事業基盤の確立” (Camera and optical equipment business foundation)**, corporate history. https://www.fujifilm.co.jp/corporate/aboutus/history/ayumi/dai2-09.html
 3. FUJIFILM, **“営業写真用レンズの整備と中判カメラの発売”**, corporate history section documenting Rectar as a large-format studio-camera lens line later renamed Fujinar. https://www.fujifilm.co.jp/corporate/aboutus/history/ayumi/dai3-05.html
 4. Tokyo Photographic Art Museum collection, **Fujinar F4.5 21cm**, accession 60100451. https://collection.topmuseum.jp/Publish/search?aate=%E5%AF%8C%E5%A3%AB%E3%83%95%E3%82%A4%E3%83%AB%E3%83%A0&aaty=contains
