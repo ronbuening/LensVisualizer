@@ -265,9 +265,7 @@ const LENS_DATA = {
   /* ── Focus configuration ── */
   closeFocusM: 0.17,
   focusDescription:
-    "PUBLISHED: US 2019/0113711 A1 Example 1 varies d17 from 0.95 mm at infinity to 18.25 mm at β = -0.5. " +
-    "L1 and L2 translate integrally toward the object relative to fixed L3 and the image plane; " +
-    "the L1–L2 spacing and 11.66 mm BF remain fixed.",
+    "Published focus: L1 and L2 move together toward the object while L3 stays fixed. Their rear gap increases from 0.95 mm at infinity to 18.25 mm at 0.5× magnification.",
 
   /* ── Aperture configuration ── */
   nominalFno: 1.85,

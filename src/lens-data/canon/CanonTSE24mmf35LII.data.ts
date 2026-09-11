@@ -108,6 +108,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
+      diagramLabel: "G1",
       label: "Element 1",
       type: "Neg. Meniscus (1× Asph)",
       nd: 1.58313,
@@ -119,6 +120,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L2",
+      diagramLabel: "G2",
       label: "Element 2",
       type: "Negative Meniscus",
       nd: 1.883,
@@ -130,6 +132,7 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L3",
+      diagramLabel: "G3",
       label: "Element 3",
       type: "Biconcave Negative",
       nd: 1.497,
@@ -343,7 +346,8 @@ const LENS_DATA = {
   ],
 
   groups: [
-    { text: "L1", fromSurface: "1", toSurface: "12" },
+    { text: "L1a", fromSurface: "1", toSurface: "6" },
+    { text: "L1b", fromSurface: "7", toSurface: "12" },
     { text: "L2", fromSurface: "14", toSurface: "27" },
   ],
   doublets: [
@@ -356,10 +360,7 @@ const LENS_DATA = {
 
   closeFocusM: 0.21,
   focusDescription:
-    "CONSTRAINED_RECONSTRUCTION: patent ¶0047 moves STO + rear unit L2 rigidly toward the object. " +
-    "Using the patent BF anchor d27∞=54.96 mm and Canon 0.21 m MFD, a code-solved close endpoint gives " +
-    "Δ=8.049325054 mm, d12=2.940674946 mm and d27=63.009325054 mm; d12+d27 is conserved. " +
-    "The patent publishes no numerical close-focus row; intermediate slider positions are modeled interpolation.",
+    "Modeled rear focus: the stop and rear unit L2 move together toward the object while L1 stays fixed. The near endpoint is inferred from Canon’s 0.21 m minimum focus; the patent gives the direction but no close-focus prescription.",
 
   nominalFno: 3.56,
   fstopSeries: [3.56, 4, 5.6, 8, 11, 16, 22],

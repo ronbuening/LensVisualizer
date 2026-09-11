@@ -208,10 +208,15 @@ describe("DiagramControls", () => {
   });
 
   it("disables the focus slider while keeping focus details visible when focus travel data is absent", () => {
-    const { callbacks } = renderControls(buildLens(LENS_CATALOG["canon-rf-28-70-f2"]), { focusExpanded: true });
+    const { callbacks } = renderControls(
+      buildLens({ ...LENS_CATALOG["canon-rf-28-70-f2"], closeFocusM: 1, zoomCloseFocusM: undefined }),
+      { focusExpanded: true },
+    );
     const focusSlider = screen.getByRole("slider", { name: "FOCUS" }) as HTMLInputElement;
 
     expect(focusSlider.disabled).toBe(true);
+    expect(screen.getByText("Not modeled")).toBeTruthy();
+    expect(screen.queryByText("1.00 m")).toBeNull();
     expect(screen.getByText("FOCUS")).toBeTruthy();
     expect(screen.getByText(/No close-focus data in patent/i)).toBeTruthy();
 

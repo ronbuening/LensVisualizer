@@ -305,9 +305,7 @@ const LENS_DATA = {
 
   closeFocusM: 0.28,
   focusDescription:
-    "CONSTRAINED_RECONSTRUCTION: the patent publishes infinity only and moves rigid L2 objectward. " +
-    "The close state is code-solved with d13 7.69→0.065731 mm and BF 39.00→46.624269 mm, preserving " +
-    "d13+BF=46.69 mm and reproducing the rounded Canon 0.21× / 0.28 m targets; it is not a published row.",
+    "Modeled rear focus: L2 moves toward the object while L1 stays fixed. The near endpoint is inferred from Canon’s 0.28 m / 0.21× specifications; the patent publishes only the infinity prescription.",
 
   nominalFno: 1.45,
   fstopSeries: [1.45, 2, 2.8, 4, 5.6, 8, 11, 16, 22],

@@ -175,10 +175,7 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 1.0,
-  focusDescription:
-    "NO_INTERNAL_RECONSTRUCTION: US 2,645,154 Example 1 publishes only the infinity prescription and no internal " +
-    "focus movement. closeFocusM = 1.0 m is the schema-required finite UI placeholder, not a modeled minimum focus " +
-    "distance; external view-camera bellows/standard translation is outside the optical model.",
+  focusDescription: "The patent provides only an infinity prescription. View-camera bellows focusing is not modeled.",
 
   nominalFno: 4.5,
   fstopSeries: [4.5, 5.6, 8, 11, 16],

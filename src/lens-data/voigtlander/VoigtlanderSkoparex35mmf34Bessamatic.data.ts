@@ -176,7 +176,7 @@ const LENS_DATA = {
   doublets: [{ text: "D1", fromSurface: "9", toSurface: "12" }],
 
   closeFocusM: 0.9906,
-  focusDescription: "NO_INTERNAL_RECONSTRUCTION — patent is infinity-only; production 0.9906 m MFD is metadata only.",
+  focusDescription: "The patent provides only an infinity prescription; the documented 0.99 m minimum focus distance is not modeled.",
 
   nominalFno: 3.4,
   fstopSeries: [3.4, 4, 5.6, 8, 11, 16],

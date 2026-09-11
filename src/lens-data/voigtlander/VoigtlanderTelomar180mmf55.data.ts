@@ -171,8 +171,7 @@ const LENS_DATA = {
   var: {},
   varLabels: [],
   closeFocusM: 1,
-  focusDescription:
-    "NO_INTERNAL_RECONSTRUCTION: FR 1,045,076 publishes only the static infinity prescription and no internal focus motion. closeFocusM = 1.0 m is a schema-required finite UI placeholder, not a modeled MFD; external view-camera bellows/standard translation is outside the optical model.",
+  focusDescription: "The patent provides only an infinity prescription. View-camera bellows focusing is not modeled.",
 
   /* ── Diagram annotations ── */
   groups: [

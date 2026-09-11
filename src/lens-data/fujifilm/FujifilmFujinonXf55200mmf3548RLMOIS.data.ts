@@ -370,7 +370,7 @@ const LENS_DATA = {
     ["23", "DD[23] G5-G6"],
   ],
   focusDescription:
-    "CONSTRAINED_RECONSTRUCTION: patent-published G4 inner focus, solved at Fujifilm's 1.1 m sensor-referenced MFD. G4 alone translates objectward; DD[17] decreases and DD[20] increases equally at each zoom station. G2 OIS is source-published but no numerical transverse displacement is modeled.",
+    "Modeled inner focus: G4 alone moves toward the object, with near positions inferred from Fujifilm’s 1.1 m minimum focus at each zoom station. The patent identifies G2 as the stabilization group; lateral stabilization motion is not modeled.",
 
   groups: [
     { text: "G1 +", fromSurface: "1", toSurface: "5" },
