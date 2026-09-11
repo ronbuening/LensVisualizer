@@ -151,18 +151,18 @@ const LENS_DATA = {
   /* ── Surface prescription ── */
   surfaces: [
     { label: "1", R: 43.6482, d: 6.6888, nd: 1.5836, elemId: 1, sd: 18.5 },
-    { label: "2", R: -83.8296, d: 0.2106, nd: 1, elemId: 0, sd: 18.2 },
-    { label: "3", R: -83.8296, d: 2.511, nd: 1.72755, elemId: 2, sd: 18.2 },
+    { label: "2", R: -83.8296, d: 0.2106, nd: 1, elemId: 0, sd: 18.5 },
+    { label: "3", R: -83.8296, d: 2.511, nd: 1.72755, elemId: 2, sd: 18.5 },
     // STO position inferred from Fig. 3: q = 0.60 of the published a2 gap from surface 4 toward surface 5.
-    { label: "4", R: 172.0566, d: 29.42136, nd: 1, elemId: 0, sd: 17.5 },
+    { label: "4", R: 172.0566, d: 29.42136, nd: 1, elemId: 0, sd: 18.5 },
     { label: "STO", R: 1e15, d: 19.61424, nd: 1, elemId: 0, sd: 11.490846012167745 },
-    { label: "5", R: 172.0566, d: 5.2308, nd: 1.62355, elemId: 3, sd: 14 },
-    { label: "6", R: -216.621, d: 7.9434, nd: 1, elemId: 0, sd: 14.2 },
-    { label: "7", R: -32.0292, d: 3.1338, nd: 1.58264, elemId: 4, sd: 14.5 },
+    { label: "5", R: 172.0566, d: 5.2308, nd: 1.62355, elemId: 3, sd: 17.3 },
+    { label: "6", R: -216.621, d: 7.9434, nd: 1, elemId: 0, sd: 17.3 },
+    { label: "7", R: -32.0292, d: 3.1338, nd: 1.58264, elemId: 4, sd: 18.5 },
     // Cemented L4→L5 junction: downstream element L5 owns the medium after surface 8.
-    { label: "8", R: 74.4138, d: 5.5764, nd: 1.75512, elemId: 5, sd: 15.5 },
+    { label: "8", R: 74.4138, d: 5.5764, nd: 1.75512, elemId: 5, sd: 18.5 },
     // Image-space d is the independently recomputed BFD of the rounded, scaled prescription.
-    { label: "9", R: -369.7776, d: 71.4282597274377, nd: 1, elemId: 0, sd: 16 },
+    { label: "9", R: -369.7776, d: 71.4282597274377, nd: 1, elemId: 0, sd: 18.5 },
   ],
 
   asph: {},

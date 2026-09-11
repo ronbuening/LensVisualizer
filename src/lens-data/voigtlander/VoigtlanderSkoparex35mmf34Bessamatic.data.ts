@@ -149,16 +149,16 @@ const LENS_DATA = {
     { label: "1", R: 31.79057, d: 2.17595, nd: 1.50137, elemId: 1, sd: 16.7 },
     { label: "2", R: 16.46106, d: 16.4416, nd: 1, elemId: 0, sd: 14 },
     { label: "3", R: 18.743585, d: 1.6443, nd: 1.664466, elemId: 2, sd: 9.5 },
-    { label: "4", R: 30.739275, d: 0.17395, nd: 1, elemId: 0, sd: 9.2 },
+    { label: "4", R: 30.739275, d: 0.17395, nd: 1, elemId: 0, sd: 9.5 },
     { label: "5", R: 15.61966, d: 3.72365, nd: 1.62374, elemId: 3, sd: 8.6 },
-    { label: "6", R: -205.13479, d: 1.1606, nd: 1, elemId: 0, sd: 7.8 },
+    { label: "6", R: -205.13479, d: 1.1606, nd: 1, elemId: 0, sd: 8.6 },
     { label: "7", R: -33.850635, d: 0.56105, nd: 1.60717, elemId: 4, sd: 6.9 },
-    { label: "8", R: 11.96272, d: 1.757434, nd: 1, elemId: 0, sd: 5.7 },
+    { label: "8", R: 11.96272, d: 1.757434, nd: 1, elemId: 0, sd: 6.6 },
     // STO position inferred from Figure 2: 79% through the patent's a4 gap from R8 toward R9.
     { label: "STO", R: 1e15, d: 0.467166, nd: 1, elemId: 0, sd: 5.216405432 },
-    { label: "9", R: 2960.479025, d: 0.4837, nd: 1.61659, elemId: 5, sd: 6 },
+    { label: "9", R: 2960.479025, d: 0.4837, nd: 1.61659, elemId: 5, sd: 8 },
     // Patent R10/R11 collapsed to one physical L5→L6 cemented interface; downstream L6 owns the junction.
-    { label: "10", R: 11.65234, d: 5.41625, nd: 1.691, elemId: 6, sd: 7.3 },
+    { label: "10", R: 11.65234, d: 5.41625, nd: 1.691, elemId: 6, sd: 8 },
     // Infinity BFD is recomputed from the scaled prescription; patent header s'0=1.0493f is rounded.
     { label: "12", R: -19.971875, d: 36.724732365, nd: 1, elemId: 0, sd: 8 },
   ],

@@ -388,3 +388,5 @@ data.
 US 2015/0098138 A1, Fig. 3, PDF p4 (600 dpi; crop 0.27,0.48,0.655,0.65). Retained the SDs: clean optical rims agree within about 10%; the apparent E2/E10/E11/E13 oversizing in automated ENV/RIM readings comes from overlapping rays or brackets. No clear-aperture table is published.
 
 Surface validation and image-circle audits passed. Display names were checked against the shared all-caps maker/line, separated system-token, and aperture conventions; the existing titles already conform. Patent optical coordinates and inferred-focus qualifications were preserved.
+
+Direct local-SVG comparison confirms the retained optical rims and element/group labels. L2a and L2b move objectward from infinity toward near focus while L1 remains fixed. E5/E9 (S-FPL51) and E13 (S-FPM2) now carry inferred APD tags from the compatible catalog curves; no patent partial-dispersion measurement or production supplier is asserted.

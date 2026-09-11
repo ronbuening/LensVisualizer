@@ -297,14 +297,10 @@ Key first-order results from the final arrays are:
 | Modeled f-number, wide / intermediate / tele | 3.563144254 / 4.169123177 / 4.976648717 |
 | Total Petzval sum, Σφ/(n·n′) | +0.002319178936819303 mm⁻¹ |
 | Petzval reciprocal | 431.187083 mm |
-| Minimum modeled element edge thickness | +0.393625823 mm |
-| Maximum actual rim-slope angle | 35.428010° |
-| Maximum shared-band cross-gap intrusion | 0.812729 of gap |
-| Minimum margin over tested default exact-ray envelope | 1.251320401 mm |
 
 The aperture-stop **position** is published: source S11, between G2 and G3. Its clear radius is not published. The data's `STO.sd = 9.460132942 mm` is an inferred common physical stop radius that reproduces the three rounded source f-numbers within 0.00336 f-number.
 
-Likewise, the patent publishes no surface semi-diameters for Example 1. The S24/S25 rims are estimated from Fig. 1 at 14.5 mm; the remaining `sd` values are modeled clear apertures derived from the verified ray envelope and constrained by edge-thickness, actual-rim-slope, conic-domain, cross-gap, and off-axis-containment checks. They are not presented as production mechanical dimensions.
+Likewise, the patent publishes no surface semi-diameters for Example 1. The S24/S25 rims are estimated from Fig. 1 at 14.5 mm; S16/S17 use 11.8 mm and G2 uses a geometry-limited 9.0 mm. The remaining `sd` values are modeled clear apertures derived from the verified ray envelope and constrained by edge-thickness, actual-rim-slope, conic-domain, cross-gap, and off-axis-containment checks. They are not presented as production mechanical dimensions.
 
 The rear PP cover/filter member is intentionally excluded from the active prescription. Its verified first-order effect is retained through the 23.313560574 mm S25-to-image air-equivalent spacing. This keeps the image-plane reference consistent with the patent ray model while avoiding non-lens sensor/filter elements in the ordinary sequential prescription.
 
@@ -320,6 +316,8 @@ There is no uniform production scaling. The native Example 1 dimensions are reta
 5. **Cross-catalog glass audit:** OHARA, HOYA, SCHOTT, HIKARI, CDGM, and SUMITA authoritative catalogs, recorded in the glass annotations and generated coverage reports. Vendor names in the data remain catalog-resolution choices unless the source itself identifies the supplier.
 ## Integration audit — 2026-09-11 UTC
 
-DE 11 2013 006 887 B4, Fig. 1 wide panel, PDF p25 (600 dpi; crop 0.39,0.265,0.73,0.37). At 0.06660 mm/pixel, the last element has a roughly 435-pixel full optical height, giving 14.5 mm SD. S24/S25 changed from 11.0 to 14.5 mm. This restores the visibly larger rear element; PP plates, group labels, and stop leader ink were excluded. Other SDs were retained because deviations were smaller or the modeled ray-clearance bound was larger.
+DE 11 2013 006 887 B4, Fig. 1 wide and tele panels, PDF p25 (600 dpi; wide crop 0.39,0.265,0.73,0.37). At 0.06660 mm/pixel, S24/S25 have a roughly 435-pixel full optical height, supporting their 14.5 mm SD. Direct local-SVG comparison also enlarges S16/S17 to a common 11.8 mm and G2 S6–S10 to 9.0 mm. The figure suggests about 10.4 mm for G2, but that would produce 2.39 mm of S7/S8 cross-gap intrusion across a 1.998 mm axial gap; the physical geometry bound takes precedence. PP plates, labels, and leader ink were excluded.
+
+The local controls and sampled motion profiles agree with the patent ordering: wide to tele moves G1–G5 objectward while G6 stays fixed; infinity to near moves only G4 objectward, with greater travel at tele. L13 and L32 now carry inferred APD color tags based on their compatible S-FPL51 and S-FPL53 curves. These are catalog-based inferences, not measured patent partial dispersion or identified production suppliers.
 
 Surface validation and image-circle audits passed. Display names were checked against the shared all-caps maker/line, separated system-token, and aperture conventions; the existing titles already conform. Patent optical coordinates and inferred-focus qualifications were preserved.

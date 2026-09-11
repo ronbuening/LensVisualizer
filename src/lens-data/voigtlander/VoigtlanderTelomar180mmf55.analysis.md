@@ -143,6 +143,6 @@ There are no aspherical surfaces, no zoom states, no internal focus states, and 
 9. **CDGM optical-glass database**: https://www.cdgmgd.com/database/toWebDatabase.htm?k=Products_Data&pageIndex=12&url=database
 ## Integration audit — 2026-09-11 UTC
 
-FR 1,045,076, Fig. 3, PDF p4 (600 dpi; crop 0.35,0.645,0.56,0.724). Retained SDs: the thin front lens is under-read by the automatic rim probe, and the rear elements differ by roughly 16–22%, below the strong-evidence threshold. L3 now resolves through E-BAF8 as a qualified barium-flint spectral proxy.
+FR 1,045,076, Fig. 3, PDF p4 (600 dpi; crop 0.35,0.645,0.56,0.724). Direct comparison with the local SVG restores common horizontal rims: S1–S4 share 18.5 mm; S5/S6 are 17.3 mm; and S7–S9 share 18.5 mm. The rear heights follow the optical silhouettes at approximately 0.07977 mm/pixel, excluding the stop and hatching. Labels I, II, III, IVa/IVb retain the patent member numbering. No internal focus travel is published or enabled. L3 resolves through E-BAF8 as a qualified barium-flint spectral proxy.
 
 Surface validation and image-circle audits passed. Display names were checked against the shared all-caps maker/line, separated system-token, and aperture conventions; the existing titles already conform. Patent optical coordinates and inferred-focus qualifications were preserved.

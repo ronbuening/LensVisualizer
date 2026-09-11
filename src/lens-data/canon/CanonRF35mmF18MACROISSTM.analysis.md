@@ -331,3 +331,5 @@ silently corrected; the small track and Table 1 spacing differences are retained
 US 2019/0113711 A1, Fig. 1, PDF p2 (600 dpi; crop 0.27,0.44,0.675,0.615). Retained the published effective-aperture-derived SDs and documented cemented-interface envelope. The E6/E7 automated measurement picks up the neighboring larger doublet outline; it does not justify overriding the aperture table.
 
 Surface validation and image-circle audits passed. Display names were checked against the shared all-caps maker/line, separated system-token, and aperture conventions; the existing titles already conform. Patent optical coordinates and inferred-focus qualifications were preserved.
+
+Direct local-SVG comparison retains the published effective-aperture values (SD = ea/2) and source group/element labels. Infinity to macro moves L1 and L2 together toward the object while L3 remains fixed. The glass audit found no source-supported reason to add an APD claim to these elements.

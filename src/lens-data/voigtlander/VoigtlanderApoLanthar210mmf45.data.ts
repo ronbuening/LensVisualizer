@@ -32,7 +32,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  are model-derived from exact spherical ray envelopes at ±18° object       ║
  * ║  half-field, i.e. a conservative 0.6 × 30° check against the patent's      ║
  * ║  rounded “almost 60°” full field, using the full f/4.5 pupil. Values were  ║
- * ║  rounded upward, then checked for edge thickness, actual rim slope,        ║
+ * ║  rounded upward and enlarged to the common member rims in Fig. 2, then  ║
+ * ║  checked for edge thickness, actual rim slope,                            ║
  * ║  shared-gap intrusion, and off-axis containment. They are not measured     ║
  * ║  production clear apertures.                                                ║
  * ║                                                                              ║
@@ -74,6 +75,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
+      diagramLabel: "L1",
       label: "Element 1",
       type: "Biconvex Positive",
       nd: 1.65953,
@@ -88,6 +90,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L2",
+      diagramLabel: "L2",
       label: "Element 2",
       type: "Plano-Concave Negative",
       nd: 1.60266,
@@ -102,6 +105,7 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L3",
+      diagramLabel: "L3",
       label: "Element 3",
       type: "Biconcave Negative",
       nd: 1.64282,
@@ -115,6 +119,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L4",
+      diagramLabel: "L4",
       label: "Element 4",
       type: "Biconcave Negative",
       nd: 1.60266,
@@ -129,6 +134,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L5",
+      diagramLabel: "L5",
       label: "Element 5",
       type: "Biconvex Positive",
       nd: 1.66867,
@@ -144,13 +150,13 @@ const LENS_DATA = {
 
   surfaces: [
     { label: "1", R: 61.3347, d: 11.3463, nd: 1.65953, elemId: 1, sd: 31.0 },
-    { label: "2", R: -177.8679, d: 2.9442, nd: 1.60266, elemId: 2, sd: 30.5 },
-    { label: "3", R: 1e15, d: 6.8082, nd: 1.0, elemId: 0, sd: 29.0 },
+    { label: "2", R: -177.8679, d: 2.9442, nd: 1.60266, elemId: 2, sd: 31 },
+    { label: "3", R: 1e15, d: 6.8082, nd: 1.0, elemId: 0, sd: 31 },
     { label: "4", R: -133.6251, d: 2.9442, nd: 1.64282, elemId: 3, sd: 24.8 },
-    { label: "5", R: 57.0402, d: 8.1585, nd: 1.0, elemId: 0, sd: 22.0 },
+    { label: "5", R: 57.0402, d: 8.1585, nd: 1.0, elemId: 0, sd: 24.8 },
     { label: "STO", R: 1e15, d: 4.2924, nd: 1.0, elemId: 0, sd: 19.507679083388 },
-    { label: "6", R: -509.0715, d: 2.9442, nd: 1.60266, elemId: 4, sd: 22.5 },
-    { label: "7", R: 49.3731, d: 12.4509, nd: 1.66867, elemId: 5, sd: 25.5 },
+    { label: "6", R: -509.0715, d: 2.9442, nd: 1.60266, elemId: 4, sd: 26 },
+    { label: "7", R: 49.3731, d: 12.4509, nd: 1.66867, elemId: 5, sd: 26 },
     { label: "8", R: -85.2537, d: 181.93478162984, nd: 1.0, elemId: 0, sd: 26.0 },
   ],
 

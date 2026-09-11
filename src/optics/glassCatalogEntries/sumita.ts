@@ -553,4 +553,14 @@ export const SUMITA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "Sumita vendor Zemax catalog, https://refractiveindex.info/download/data/2017/sumita_2017-02-02.agf; accessed 2026-09-11 via refractiveindex.info vendor-data mirror.",
   },
+  {
+    name: "K-PFK80",
+    vendor: "Sumita",
+    nd: 1.497,
+    vd: 81.3504,
+    polynomial: [2.2178347, -0.0055966846, 0.0083703747, 0.0001097485, -0.0000033983937, 0.00000025836351],
+    code6: "497815",
+    source:
+      "SUMITA Zemax all-glass catalog, download dated 2026-08-26 (header 2026-08-21), https://www.sumita-opt.co.jp/download_files/en/data/zemax.agf; accessed 2026-09-11. Vendor formula-1 polynomial for the unmolded K-PFK80 row; not K-PFK80(M). vd is coefficient-evaluated (81.3504); the source lists nominal vd=81.5. Coefficients are retained verbatim.",
+  },
 ];

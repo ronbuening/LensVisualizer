@@ -232,6 +232,6 @@ conventional symmetric wide-angle form.
   coordinate audit. The patent does not identify a supplier, so no historical vendor is assigned.
 ## Integration audit — 2026-09-11 UTC
 
-US 2,927,506, Fig. 2, PDF p2 (600 dpi). Retained SDs: two crop attempts (0.35,0.28,0.705,0.51 and 0.34,0.28,0.72,0.51) encountered axial arrow/crop-edge contamination. Visual inspection confirms the large beveled front meniscus and small rear doublet; the unreliable axial calibration cannot justify reducing the existing ray-cleared rims. L4 now resolves through the compatible BAFD3 curve while preserving its patent coordinates.
+US 2,927,506, Fig. 2, PDF p2 (600 dpi). Axial arrows and crop edges contaminate automatic scale extraction, but direct comparison with the local SVG establishes common horizontal rims for the smaller members. S3/S4 now share 9.5 mm, S5/S6 8.6 mm, S7/S8 6.9/6.6 mm, and S9/S10/S12 8 mm. The L4 rear rim is limited to 6.6 mm to avoid the renderer’s stop-adjacent gap trim. The large front meniscus retains its beveled outline and ray-cleared apertures. L1–L6 and D1 labels agree with the prescription. No internal focus travel is published or enabled. L4 resolves through the compatible BAFD3 curve while preserving its patent coordinates.
 
 Surface validation and image-circle audits passed. Display names were checked against the shared all-caps maker/line, separated system-token, and aperture conventions; the existing titles already conform. Patent optical coordinates and inferred-focus qualifications were preserved.
