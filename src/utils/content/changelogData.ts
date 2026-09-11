@@ -21,6 +21,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-09-11",
     type: "lens",
+    summary: "Added Fujifilm XF14mm, both XF16mm primes, XF70-300mm and XF100-400mm",
+  },
+  {
+    date: "2026-09-11",
+    type: "lens",
     summary: "Added six Fujifilm lens designs and the Viltrox AF 14mm f/4 Air",
   },
   {

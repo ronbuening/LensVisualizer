@@ -6,6 +6,17 @@ import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
   {
+    name: "S-BAM3",
+    vendor: "Ohara",
+    B: [1.36955358, 0.0853825867, 1.16159771],
+    C: [0.00941331434, 0.0504359027, 130.548899],
+    nd: 1.582673,
+    vd: 46.423175,
+    code6: "583464",
+    source:
+      "OHARA_260701.AGF, discontinued S-BAM3 row, formula 2; https://oharacorp.com/wp-content/uploads/catalogs/OHARA_260701_CATALOG.zip (accessed 2026-09-11).",
+  },
+  {
     name: "S-TIM39",
     vendor: "Ohara",
     B: [1.47008105, 0.224752746, 2.44968592],

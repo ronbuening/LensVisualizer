@@ -6,6 +6,17 @@ import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const CDGM_GLASS_ENTRIES: readonly GlassEntry[] = [
   {
+    name: "H-ZLaF68N",
+    vendor: "CDGM",
+    B: [1.49455025, 2.07574257, 0.361138143],
+    C: [109.762523, 0.010404077, 0.041262142],
+    nd: 1.883,
+    vd: 39.22,
+    code6: "883392",
+    source:
+      "CDGM Optical Glass Data Sheet, September 2023, printed page 276 (PDF page 278), K1/L1 through K3/L3; https://www.cdgmgd.com/accessory/2023-09-01/client/www.cdgmgd.com/456361a8-7b3f-448a-b759-7e157b6279cc.pdf (accessed 2026-09-11).",
+  },
+  {
     name: "H-ZLaF90",
     vendor: "CDGM",
     B: [4.94167183e-1, 2.31375143, 2.2792987],
