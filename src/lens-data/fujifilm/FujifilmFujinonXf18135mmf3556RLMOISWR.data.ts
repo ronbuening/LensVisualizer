@@ -82,6 +82,8 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
+      apd: "inferred",
+      apdNote: "Compatible N-SF66 catalog curve has ΔPgF ≈ +0.031; inferred optical class only, not a patent APD designation or supplier identification.",
       name: "L11",
       diagramLabel: "L11",
       label: "L11",
@@ -144,6 +146,8 @@ const LENS_DATA = {
     },
     {
       id: 6,
+      apd: "inferred",
+      apdNote: "Compatible N-SF66 catalog curve has ΔPgF ≈ +0.031; inferred optical class only, not a patent APD designation or supplier identification.",
       name: "L23",
       diagramLabel: "L23",
       label: "L23",
@@ -180,6 +184,8 @@ const LENS_DATA = {
     },
     {
       id: 9,
+      apd: "inferred",
+      apdNote: "Compatible S-FPL51 catalog curve has ΔPgF ≈ +0.031; inferred optical class only, not a patent APD designation or supplier identification.",
       name: "L42",
       diagramLabel: "L42",
       label: "L42",
@@ -193,6 +199,8 @@ const LENS_DATA = {
     },
     {
       id: 10,
+      apd: "inferred",
+      apdNote: "Compatible N-SF66 catalog curve has ΔPgF ≈ +0.031; inferred optical class only, not a patent APD designation or supplier identification.",
       name: "L43",
       diagramLabel: "L43",
       label: "L43",

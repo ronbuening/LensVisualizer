@@ -71,6 +71,8 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
+      apd: "patent",
+      apdNote: "Patent Table 1 partial-dispersion ratio gives ΔPgF = +0.02940 for L11; high-dispersion APD, not ED.",
       name: "L11",
       diagramLabel: "L11",
       label: "Element L11",
@@ -157,6 +159,8 @@ const LENS_DATA = {
     },
     {
       id: 8,
+      apd: "patent",
+      apdNote: "Patent Table 1 partial-dispersion ratio gives ΔPgF = +0.02977 for low-dispersion L31.",
       name: "L31",
       diagramLabel: "L31",
       label: "Element L31",
@@ -182,6 +186,8 @@ const LENS_DATA = {
     },
     {
       id: 10,
+      apd: "patent",
+      apdNote: "Patent Table 1 partial-dispersion ratio gives ΔPgF = +0.02121 for low-dispersion L33.",
       name: "L33",
       diagramLabel: "L33",
       label: "Element L33",

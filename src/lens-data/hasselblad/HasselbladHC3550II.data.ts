@@ -25,8 +25,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ Semi-diameters: the patent does not tabulate them. SDs are inferred from ║
  * ║ exact spherical meridional bundles at the published 34.65° half-field,   ║
  * ║ the 645 diagonal field at the reconstructed 0.60 m endpoint, Fig. 1      ║
- * ║ proportions, and current edge/slope/cross-gap constraints. Intentional   ║
- * ║ vignetting boundaries are on air-exposed surfaces S3, S8, S14, and S17;  ║
+ * ║ proportions, and current edge/slope/cross-gap constraints.               ║
+ * ║ L7 S12–S13 use 9.5 mm from the optical rims in the 600-dpi Fig. 1.      ║
+ * ║ Vignetting boundaries are on air-exposed surfaces;                       ║
  * ║ sampled bundles do not first clip at cemented interfaces.                ║
  * ║                                                                            ║
  * ║ Glass: the patent publishes nd/νd only and names no vendor. Class/code   ║
@@ -163,6 +164,8 @@ const LENS_DATA = {
     },
     {
       id: 9,
+      apd: "inferred",
+      apdNote: "The compatible K-PFK80 catalog curve has ΔPgF ≈ +0.030; inferred low-dispersion APD class, not a patent designation or production supplier identification.",
       name: "L9",
       diagramLabel: "L9",
       label: "Element 9",
@@ -211,8 +214,8 @@ const LENS_DATA = {
     { label: "9", R: -47.229, d: 4.89, nd: 1.62041, elemId: 6, sd: 9.7 },
     { label: "10", R: -28.844, d: 6.75, nd: 1.0, elemId: 0, sd: 11.3 },
     { label: "STO", R: 1e15, d: 7.64, nd: 1.0, elemId: 0, sd: 9.9115338112 },
-    { label: "12", R: 33.067, d: 3.04, nd: 1.84666, elemId: 7, sd: 14.4 },
-    { label: "13", R: 47.032, d: 7.21, nd: 1.0, elemId: 0, sd: 14.4 },
+    { label: "12", R: 33.067, d: 3.04, nd: 1.84666, elemId: 7, sd: 9.5 },
+    { label: "13", R: 47.032, d: 7.21, nd: 1.0, elemId: 0, sd: 9.5 },
     { label: "14", R: -175.66, d: 1.3, nd: 1.8, elemId: 8, sd: 14.15 },
     { label: "15", R: 29.231, d: 12.75, nd: 1.497, elemId: 9, sd: 15.5 },
     { label: "16", R: -19.077, d: 1.63, nd: 1.70154, elemId: 10, sd: 15.5 },

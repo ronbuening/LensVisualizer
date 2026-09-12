@@ -75,6 +75,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
+      diagramLabel: "L1",
       label: "Element 1",
       type: "Positive Meniscus",
       nd: 1.63854,
@@ -85,6 +86,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L2",
+      diagramLabel: "L2",
       label: "Element 2",
       type: "Negative Meniscus",
       nd: 1.48749,
@@ -95,6 +97,7 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L3",
+      diagramLabel: "L3",
       label: "Element 3",
       type: "Biconcave Negative",
       nd: 1.48749,
@@ -105,6 +108,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L4",
+      diagramLabel: "L4",
       label: "Element 4",
       type: "Positive Meniscus",
       nd: 1.902,
@@ -114,7 +118,10 @@ const LENS_DATA = {
     },
     {
       id: 5,
+      apd: "inferred",
+      apdNote: "The compatible S-FPL51 catalog curve has ΔPgF ≈ +0.031; inferred APD class only, not a patent designation or production supplier identification.",
       name: "L5",
+      diagramLabel: "L5",
       label: "Element 5",
       type: "Biconvex Positive",
       nd: 1.497,
@@ -125,6 +132,7 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L6",
+      diagramLabel: "L6",
       label: "Element 6",
       type: "Biconcave Negative",
       nd: 1.78472,
@@ -134,7 +142,10 @@ const LENS_DATA = {
     },
     {
       id: 7,
+      apd: "inferred",
+      apdNote: "The compatible S-FPL51 catalog curve has ΔPgF ≈ +0.031; inferred APD class only, not a patent designation or production supplier identification.",
       name: "L7",
+      diagramLabel: "L7",
       label: "Element 7",
       type: "Biconvex Positive (2× Asph)",
       nd: 1.497,
@@ -144,7 +155,10 @@ const LENS_DATA = {
     },
     {
       id: 8,
+      apd: "inferred",
+      apdNote: "The compatible S-NPH1 catalog curve has ΔPgF ≈ +0.025; inferred APD class only, not a patent designation or production supplier identification.",
       name: "L8",
+      diagramLabel: "L8",
       label: "Element 8",
       type: "Biconvex Positive",
       nd: 1.80809,
@@ -156,6 +170,7 @@ const LENS_DATA = {
     {
       id: 9,
       name: "L9",
+      diagramLabel: "L9",
       label: "Element 9",
       type: "Biconcave Negative",
       nd: 1.902,
@@ -166,7 +181,10 @@ const LENS_DATA = {
     },
     {
       id: 10,
+      apd: "inferred",
+      apdNote: "The compatible S-NPH4 catalog curve has ΔPgF ≈ +0.030; inferred APD class only, not a patent designation or production supplier identification.",
       name: "L10",
+      diagramLabel: "L10",
       label: "Element 10",
       type: "Positive Meniscus",
       nd: 1.89286,
@@ -177,6 +195,7 @@ const LENS_DATA = {
     {
       id: 11,
       name: "L11",
+      diagramLabel: "L11",
       label: "Element 11",
       type: "Negative Meniscus",
       nd: 1.53172,

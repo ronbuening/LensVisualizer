@@ -184,6 +184,8 @@ The patent does not publish `nC`, `nF`, or `ng`, so those fields are intentional
 
 The production specification states that the commercial lens contains three ED elements. Within Example 1, L12 (νd 68.63), L31 (νd 81.26), and L33 (νd 74.70) are the three most conspicuous low-dispersion positive materials and provide a plausible numerical correlation with that count. This is an inference from the patent coordinates and production specification, not a manufacturer-published element-by-element ED map.
 
+The diagram marks L11, L31, and L33 as patent-supported APD because their published θgF values imply positive ΔPgF above 0.02. This includes a high-dispersion flint (L11); APD is not synonymous with ED or a production APO designation.
+
 ## Focus Mechanism
 
 The design uses **single-group inner focus**. G4, the cemented L41+L42 doublet, is the only group that moves for focus. G5 remains fixed to the image plane. FUJIFILM's product documentation identifies linear-motor focusing; the patent establishes the optical movement but does not supply the commercial motor implementation.

@@ -155,6 +155,8 @@ The prescription does not store nC, nF, ng, or ΔPgF because the patent supplies
 
 The glass palette spans high-Abbe low-dispersion crowns, high-index low-Abbe positive/negative partners, and intermediate crown/flint classes. In particular, the modeled S-FPL51 equivalents at L5 and L7 carry the highest νd and a substantial positive ΔPgF in the selected catalog data, while several high-index rear elements carry much lower νd values. This provides a defensible spectral basis for discussing modeled chromatic balancing, but not for calling the production lens APO or for asserting that Hasselblad used these exact vendor glasses.
 
+The diagram marks L5, L7, L8, and L10 as inferred APD because the compatible catalog curves have ΔPgF approximately +0.031, +0.031, +0.025, and +0.030, respectively. The colors describe catalog equivalents, including high-dispersion flints, without asserting production glass identities. L1–L11 diagram labels follow the patent element numbering.
+
 ## Focus Mechanism
 
 The patent states that the optical system may focus by moving G1 and G2 independently and that the stop should move with G1 (¶0026). For Example 1 it is more specific: G1 moves integrally with the stop, G2 moves independently, and both principal groups move toward the object side during focusing (¶0029).

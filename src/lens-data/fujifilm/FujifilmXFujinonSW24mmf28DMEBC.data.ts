@@ -68,6 +68,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
+      diagramLabel: "L1",
       label: "Element 1",
       type: "Negative Meniscus",
       nd: 1.6228,
@@ -80,6 +81,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L2",
+      diagramLabel: "L2",
       label: "Element 2",
       type: "Biconvex Positive",
       nd: 1.51823,
@@ -92,6 +94,7 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L3",
+      diagramLabel: "L3",
       label: "Element 3",
       type: "Negative Meniscus",
       nd: 1.62299,
@@ -104,6 +107,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L4",
+      diagramLabel: "L4",
       label: "Element 4",
       type: "Plano-Concave Negative",
       nd: 1.68273,
@@ -117,6 +121,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L5",
+      diagramLabel: "L5",
       label: "Element 5",
       type: "Biconvex Positive",
       nd: 1.69895,
@@ -130,6 +135,7 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L6",
+      diagramLabel: "L6",
       label: "Element 6",
       type: "Biconvex Positive",
       nd: 1.64,
@@ -142,6 +148,7 @@ const LENS_DATA = {
     {
       id: 7,
       name: "L7",
+      diagramLabel: "L7",
       label: "Element 7",
       type: "Biconcave Negative",
       nd: 1.76182,
@@ -154,6 +161,7 @@ const LENS_DATA = {
     {
       id: 8,
       name: "L8",
+      diagramLabel: "L8",
       label: "Element 8",
       type: "Positive Meniscus (convex to rear)",
       nd: 1.62041,
@@ -166,6 +174,7 @@ const LENS_DATA = {
     {
       id: 9,
       name: "L9",
+      diagramLabel: "L9",
       label: "Element 9",
       type: "Near-Plano-Convex Positive",
       nd: 1.6223,
@@ -188,8 +197,8 @@ const LENS_DATA = {
     { label: "7", R: 1e15, d: 1.198801, nd: 1.68273, elemId: 4, sd: 8.3 },
     { label: "8", R: 23.439201, d: 3.596404, nd: 1.69895, elemId: 5, sd: 8.3 },
     { label: "9", R: -90.407353, d: 0.23976, nd: 1.0, elemId: 0, sd: 8.3 },
-    { label: "10", R: 27.99968, d: 11.988012, nd: 1.64, elemId: 6, sd: 9.5 },
-    { label: "11", R: -21.168911, d: 1.285115, nd: 1.0, elemId: 0, sd: 9.5 },
+    { label: "10", R: 27.99968, d: 11.988012, nd: 1.64, elemId: 6, sd: 7.5 },
+    { label: "11", R: -21.168911, d: 1.285115, nd: 1.0, elemId: 0, sd: 7.5 },
     // STO position inferred from Figure 1: 40% of patent d11 measured from r11 toward r12.
     { label: "STO", R: 1e15, d: 1.927672, nd: 1.0, elemId: 0, sd: 6.309601 },
     { label: "12", R: -19.852627, d: 3.596404, nd: 1.76182, elemId: 7, sd: 6.6 },

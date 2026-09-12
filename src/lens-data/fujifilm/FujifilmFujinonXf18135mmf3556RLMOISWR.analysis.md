@@ -228,6 +228,8 @@ two production ED designations to specific prescription elements and makes no AP
 S-FPL51, S-LAH58, S-TIH10, S-FSL5, FCD505, and N-SF66-class coordinates may support catalog Sellmeier resolution in
 the application, but that catalog behavior remains distinct from a patent-stated melt identity.
 
+The diagram marks L11, L23, L42, and L43 as inferred APD from compatible catalog curves with ΔPgF about +0.031. These colors describe the selected optical equivalents, including high-dispersion flints; they do not identify the two marketed ED elements or establish a production supplier.
+
 ## Focus Mechanism
 
 The patent makes G3 a single negative focusing group and states that G3 moves **toward the object** when focusing on a

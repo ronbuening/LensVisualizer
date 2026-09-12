@@ -193,6 +193,8 @@ No `nC`, `nF`, `ng`, or `dPgF` fields are authored. Consequently, chromatic disc
 patent itself states about its index/Abbe conditions and to ordinary `nd`/`νd` relationships. No apochromatic or
 anomalous-dispersion performance claim is made.
 
+The diagram marks L9 as inferred APD: its compatible K-PFK80 catalog curve has ΔPgF approximately +0.030. This is a catalog-based classification, not a patent APD designation or production performance claim.
+
 ## Focus Mechanism
 
 The patent permits rear focusing by translating only G3 toward the object as focus moves from infinity toward shorter
@@ -273,7 +275,9 @@ It is not derived from a thin-lens sum of standalone element powers.
 The physical stop size and every clear semi-diameter are modeling quantities rather than patent dimensions. The final
 clear apertures were chosen from exact meridional ray envelopes, the published field, the reconstructed close-focus
 state, and the proportions of Fig. 1, then checked against edge thickness, actual spherical rim slope, shared-band
-air-gap intrusion, and off-axis containment. The modeled first-clipping boundaries are air-exposed surfaces rather than
+air-gap intrusion, and off-axis containment. A second comparison of the local diagram with the 600-dpi Fig. 1 reduces L7 (S12–S13) from 14.4 to 9.5 mm. The figure axis is near x=522 on the 1400-pixel page render; the two rims lie near x=482 and 564. The 497-pixel S1–S19 vertex span represents 111.56 mm, giving approximately 9.2 mm from the rim half-width. The independent comparison with the neighboring stop and L6 rims supports a rounded 9.5 mm inferred aperture. Ray and annotation lines outside the optical rim are excluded.
+
+The modeled first-clipping boundaries are air-exposed surfaces rather than
 the cemented interfaces, so the cemented triplets remain physically coherent in the traced model.
 
 No sensor cover plate, filter, inactive dummy plane, or mechanical component has been inserted. The optional filter and
@@ -296,4 +300,4 @@ to disclose beyond `s = 1`.
 
 ### Patent-rim review — 2026-09-12 UTC
 
-US20120063011A1.pdf, page 2, Fig. 1 was visually inspected at 600 dpi. The estimated apertures were retained. Two automated crops remained contaminated by ray bundles and leaders at their axial edges, so their scales were rejected. The post-stop L7 appears smaller in the schematic, but there is no trustworthy common axial scale supporting a replacement aperture; the existing ray-envelope clearances remain the model constraint. Surface validation and image-circle audits pass.
+US20120063011A1.pdf, page 2, Fig. 1 was visually inspected at 600 dpi. Automated crops were contaminated by ray bundles and leaders, so their scales were rejected. The direct vertex-span and optical-rim measurements described above support the L7 reduction to 9.5 mm; other apertures are retained. Surface validation and image-circle audits pass.

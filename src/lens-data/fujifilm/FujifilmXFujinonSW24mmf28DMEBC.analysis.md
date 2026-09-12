@@ -267,4 +267,6 @@ L1, L4, and L6 now name qualified S-BSM10, BAF22, and J-LAK01 catalog equivalent
 
 ### Patent-rim review — 2026-09-12 UTC
 
-US4158482.pdf, page 2, Fig. 1 was visually inspected at 600 dpi. The estimated apertures were retained. The first and third negative menisci have obvious mechanical steps, and L6 automated rim readings are contaminated by the internal dimension labels. The unobstructed optical rims do not justify changes beyond the existing slope and gap constraints. Surface validation and image-circle audits pass.
+US4158482.pdf, page 2, Fig. 1 was visually inspected at 600 dpi. The first and third negative menisci have mechanical steps that must not be mistaken for optical rims. The direct L6 measurement below supersedes the contaminated automated reading. Other estimated apertures are retained within figure uncertainty and the existing slope/gap constraints. Surface validation and image-circle audits pass.
+
+The local-diagram rim recheck uses 7.5 mm for L6 (S10–S11), reduced from 9.5 mm. On the 600-dpi Fig. 1 crop, its rim half-width is approximately 533 pixels; the S2–S17 vertex span is approximately 3390 pixels for 46.82 mm, giving 7.36 mm. Its independent diameter ratio to L2 is approximately 0.60. The rounded 7.5 mm estimate excludes dimension labels and preserves the published prescription. L1–L9 diagram labels now follow Fig. 1.
