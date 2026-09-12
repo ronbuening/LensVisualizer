@@ -19,6 +19,21 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-09-12",
+    type: "lens",
+    summary: "Added Fujifilm XF18-120mm, XF18-135mm and EBC X-Fujinon W 24mm designs",
+  },
+  {
+    date: "2026-09-12",
+    type: "lens",
+    summary: "Added Hasselblad HC 50mm II, XCD 30mm and XCD 45mm patent designs",
+  },
+  {
+    date: "2026-09-12",
+    type: "improvement",
+    summary: "Expanded glass dispersion coverage with NHG H-LaK77 and audited catalog matches",
+  },
+  {
     date: "2026-09-11",
     type: "lens",
     summary: "Added Canon EF 35mm L II, RF 35mm Macro and TS-E 24mm L II designs",
