@@ -19,15 +19,14 @@ import type { LensDataInput } from "../../types/optics.js";
  * The authored STO sd is the wide-end f/4.5 calibration value. zoomApertureModel derives the station iris
  * radii from nominalFno; those radii are calculated model values, not patent-published stop diameters.
  *
- * Semi-diameters: modeled from exact spherical ray tracing over all 17 keyframes plus 16 midpoint states,
- * using the full pupil and the default ±0.60-format-half-field off-axis bundle, then rounded with about
- * 10% clearance. Current edge-thickness, rim-slope, conic-domain, and shared-gap intrusion checks pass.
+ * Semi-diameters: initialized from exact spherical ray envelopes, then refined to the patent figure rims.
+ * Leader lines, stop blades, and bevels are excluded from optical rim measurements. Current edge-thickness, rim-slope, conic-domain, and shared-gap intrusion checks pass.
  * Integration validation includes the shared production render-trim and geometry corpus checks.
  *
  * Focus: closeFocusM = 0.6 m is production metadata only. No finite-conjugate optical spacings are authored.
  */
 /** Semi-diameters were reviewed against US3771853.pdf, p. 4, Fig. 3 at 600 dpi on 2026-09-13 UTC.
- * Front surfaces 1-5 now follow the larger patent optical rims; the remaining ray-envelope apertures are retained.
+ * Front surfaces 1-5 follow the larger patent optical rims; rear surfaces 6-16 follow manually isolated rims.
  * Figure scale is 43.80 micrometers/pixel; rear-group leader lines are excluded from measurements. */
 const LENS_DATA = {
   /* ── Identity ── */
@@ -189,18 +188,18 @@ const LENS_DATA = {
     { label: "3", R: -744.582, d: 4.25, nd: 1.8411, elemId: 2, sd: 23 },
     { label: "4", R: -73.091, d: 1.3, nd: 1.44628, elemId: 3, sd: 23 },
     { label: "5", R: 29.225, d: 30.8806, nd: 1, elemId: 0, sd: 17.8 },
-    { label: "6", R: 37.907, d: 4.45, nd: 1.6393, elemId: 4, sd: 10.88 },
-    { label: "7", R: -28.14, d: 1.1, nd: 1.744, elemId: 5, sd: 10.67 },
-    { label: "8", R: -98.768, d: 0.1, nd: 1, elemId: 0, sd: 10.39 },
-    { label: "9", R: 19.309, d: 3.3, nd: 1.57501, elemId: 6, sd: 9.6 },
-    { label: "10", R: 60.223, d: 3.4108, nd: 1, elemId: 0, sd: 8.92 },
-    { label: "11", R: -118.839, d: 3.7, nd: 1.69895, elemId: 7, sd: 7.27 },
-    { label: "12", R: -21.666, d: 1, nd: 1.80518, elemId: 8, sd: 6.45 },
-    { label: "13", R: 19.163, d: 1.438933333, nd: 1, elemId: 0, sd: 5.86 },
+    { label: "6", R: 37.907, d: 4.45, nd: 1.6393, elemId: 4, sd: 11.6 },
+    { label: "7", R: -28.14, d: 1.1, nd: 1.744, elemId: 5, sd: 11.6 },
+    { label: "8", R: -98.768, d: 0.1, nd: 1, elemId: 0, sd: 11.6 },
+    { label: "9", R: 19.309, d: 3.3, nd: 1.57501, elemId: 6, sd: 8.6 },
+    { label: "10", R: 60.223, d: 3.4108, nd: 1, elemId: 0, sd: 8.6 },
+    { label: "11", R: -118.839, d: 3.7, nd: 1.69895, elemId: 7, sd: 6.3 },
+    { label: "12", R: -21.666, d: 1, nd: 1.80518, elemId: 8, sd: 6.3 },
+    { label: "13", R: 19.163, d: 1.438933333, nd: 1, elemId: 0, sd: 5.1 },
     { label: "STO", R: 1e15, d: 0.719466667, nd: 1, elemId: 0, sd: 4.122271 },
-    { label: "14", R: 439.074, d: 0.9, nd: 1.72825, elemId: 9, sd: 6.17 },
-    { label: "15", R: 20.948, d: 5.1, nd: 1.8333, elemId: 10, sd: 6.58 },
-    { label: "16", R: -25.982, d: 38.299, nd: 1, elemId: 0, sd: 7.25 },
+    { label: "14", R: 439.074, d: 0.9, nd: 1.72825, elemId: 9, sd: 7.1 },
+    { label: "15", R: 20.948, d: 5.1, nd: 1.8333, elemId: 10, sd: 7.1 },
+    { label: "16", R: -25.982, d: 38.299, nd: 1, elemId: 0, sd: 7.1 },
   ],
 
   asph: {},
@@ -225,7 +224,7 @@ const LENS_DATA = {
     43.24092827,
     44.177102255,
   ],
-  zoomLabels: ["28.85 mm", "44.19 mm"],
+  zoomLabels: ["28.85 mm", "44.18 mm"],
   var: {
     "5": [
       [30.8806, 30.8806],

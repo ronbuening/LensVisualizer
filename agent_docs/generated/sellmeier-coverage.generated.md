@@ -2132,7 +2132,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 9 | Element 6 | abbe | `Unmatched (694535 lanthanum crown; H-LaK6A/LAC13/S-LAL13 candidates are non-unique)` | Explicit unmatched/proprietary annotation |
 | 11 | Element 7 | abbe | `Unmatched (694535 lanthanum crown; H-LaK6A/LAC13/S-LAL13 candidates are non-unique)` | Explicit unmatched/proprietary annotation |
 
-### [NIKON NIKKOR-SW 75mm f/4.5](../../src/lens-data/nikon/NikonNikkorSW75mmf45.data.ts) - 57.1% trusted (4/7); 57.1% Sellmeier (4/7) - JPS5357028A
+### [NIKON NIKKOR-SW 75mm f/4.5](../../src/lens-data/nikon/NikonNikkorSW75mmf45.data.ts) - 57.1% trusted (4/7); 57.1% Sellmeier (4/7) - JP S53-57028 A
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|

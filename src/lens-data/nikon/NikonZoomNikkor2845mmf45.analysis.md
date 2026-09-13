@@ -141,7 +141,7 @@ The patent specifies only d-line refractive index and Abbe number for each eleme
 | L9 | 1.72825 | 28.3 | H-ZF4A (CDGM catalog equivalent; source coordinate 728283; production supplier unspecified) | Exact-code catalog-equivalent proxy |
 | L10 | 1.83330 | 36.8 | 833368; S-LAH60 spectral proxy | Coordinate-compatible, supplier unresolved |
 
-No `nC`, `nF`, `ng`, or `dPgF` fields are authored because the patent does not publish those element-specific values. At positions with the named catalog-equivalent annotations above, current LensVisualizer can resolve compatible catalog coefficients and use them as modern spectral proxies; L2, L3, L6, and L10 remain limited to the lower-quality fallback supported by their stored coordinates. These catalog proxies do not establish the historical glass supplier or patent-specific spectral behavior, and they do not justify an APO or anomalous-dispersion performance claim.
+No `nC`, `nF`, `ng`, or `dPgF` fields are authored because the patent does not publish those element-specific values. At positions with the named catalog-equivalent annotations above, current LensVisualizer can resolve compatible catalog coefficients and use them as modern spectral proxies; only L2 and L3 remain limited to the lower-quality fallback supported by their stored coordinates. These catalog proxies do not establish the historical glass supplier or patent-specific spectral behavior, and they do not justify an APO or anomalous-dispersion performance claim.
 
 ## Focus Mechanism
 
@@ -176,7 +176,7 @@ The quantitative optical checks are recomputed from the final prescription rathe
 
 At the published endpoints, independent height/reduced-angle tracing and a separately implemented basis-ray/ABCD cross-check agree at floating-point precision. The final model computes 28.851368 mm EFL and 38.297555 mm BFL at the wide state, and 44.177102 mm EFL and 48.466361 mm BFL at the tele state. These remain within the source-precision tolerances of the printed 28.85/44.19 mm focal lengths and 38.299/48.467 mm back-focus values.
 
-The semi-diameters are modeling inferences because the patent publishes no clear apertures. The initial exact-ray-envelope estimates were reviewed against Fig. 3 during integration. The front assembly was enlarged to match the optical rims; the remaining apertures and published zoom anchors are preserved. Earlier rim-slope and gap-intrusion extrema from the smaller front assembly are superseded by the current surface and render-diagnostics checks.
+The semi-diameters are modeling inferences because the patent publishes no clear apertures. The initial exact-ray-envelope estimates were reviewed against Fig. 3 during integration. The front assembly was enlarged to match the optical rims; the rear rims were then isolated manually; published zoom anchors are preserved. Earlier rim-slope and gap-intrusion extrema from the smaller front assembly are superseded by the current surface and render-diagnostics checks.
 
 The integration checks below exercise production validation, runtime glass resolution, and render diagnostics.
 
@@ -210,8 +210,10 @@ US3771853.pdf p. 4, Fig. 3 was inspected at 600 dpi (crop 0.34,0.18,0.83,0.385; 
 | 1 / 2 | 19.09 / 17.66 | 27.3 / 23.0 |
 | 3 / 4 / 5 | 15.77 / 15.33 / 13.96 | 23.0 / 23.0 / 17.8 |
 
-Rear-group SDs and the calibrated iris are retained. CDGM QF3 adds the 575413 curve; S-LAH60 supplies a compatible 833368 spectral proxy (Δnd = +0.0007, Δνd = +0.36). Coverage rises from 6/10 to 8/10; 841433 and 446672 remain unresolved. “Developmental design” is included in the display name because this patent's 10/6 construction differs from the production lens's 11/7 construction.
+Rear-group SDs were refined again in the local-diagram follow-up below; the calibrated iris is retained. CDGM QF3 adds the 575413 curve; S-LAH60 supplies a compatible 833368 spectral proxy (Δnd = +0.0007, Δνd = +0.36). Coverage rises from 6/10 to 8/10; 841433 and 446672 remain unresolved. “Developmental design” is included in the display name because this patent's 10/6 construction differs from the production lens's 11/7 construction.
 
 The optical prescriptions, stop calibration, and source focus/zoom states are preserved. Surface validation, image-circle screening, and the shared render-diagnostics corpus were run during integration. Catalog proxies preserve patent nd/νd and do not identify the historical supplier, melt, or anomalous partial dispersion.
 
 New coefficient source: [CDGM Optical Glass Data Sheet, June 2022](https://www.cdgmgd.com/accessory/2022-06-28/client/www.cdgmgd.com/9b32dd2c-55f4-4d4c-b2d2-48f52c9d5f07.pdf), H-LaK67 printed p. 140, QF3 p. 145, H-BaF2 p. 171. Polynomial rows are retained in their published form; they are not converted to fabricated Sellmeier coefficients.
+
+The local-diagram follow-up isolated Fig. 3 rear optical rims from the dimension leaders at 600 dpi. Surfaces 6–8 now use 11.6 mm, 9–10 use 8.6 mm, 11–12 use 6.3 mm, 13 uses 5.1 mm, and 14–16 use 7.1 mm. These remain figure-derived estimates. The rear-group silhouette now follows the patent more closely; image-circle screening and the 101-position render-trim sweep pass. The computed zoom range is 28.85–44.18 mm, separately from the patent’s rounded 28.85–44.19 mm range.

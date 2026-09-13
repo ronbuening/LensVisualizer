@@ -54,7 +54,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 593686 | 9 | 8 | patents/JP2016148731A.pdf<br>patents/US20130308041A1.pdf<br>patents/JP2023033114A.pdf<br>patents/JP2020086133A.pdf | No review-record hit |
 | 648338 | 9 | 9 | patents/US20110090576A1.pdf<br>patents/US20200166730A1.pdf<br>patents/US3635546.pdf<br>patents/US8422143.pdf | 1/9 rows have review records |
 | 851401 | 9 | 7 | patents/JP2016148731A.pdf<br>patents/US20130335830A1.pdf<br>patents/JP2023044106A.pdf<br>patents/JPWO2017138250A1.pdf | No review-record hit |
-| 486815 | 8 | 3 | patents/US3743384.pdf<br>patents/US3774991.pdf | 6/8 rows have review records |
+| 486815 | 8 | 3 | patents/US3743384.pdf<br>patents/US3774991.pdf | All rows have review records |
 | 501565 | 8 | 6 | patents/JPA 1999231209-000000.pdf<br>patents/US4189212.pdf<br>patents/US3743384.pdf<br>patents/DE_1497540_A1.pdf | 4/8 rows have review records |
 | 517642 | 8 | 6 | patents/US7158320.pdf<br>patents/JPA 1999231209-000000.pdf<br>patents/US4223981.pdf<br>patents/US20070229969A1.pdf | 1/8 rows have review records |
 | 589612 | 8 | 8 | patents/US20160327774A1.pdf<br>patents/US4452513.pdf<br>patents/US4223981.pdf<br>patents/US20170068075A1.pdf | No review-record hit |
@@ -223,7 +223,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 516506 | 1 | 1 | patents/US7307794.pdf | All rows explicitly disposed |
 | 518523 | 1 | 1 | patents/US4871239.pdf | All rows have review records |
 | 520642 | 1 | 1 | patents/DE_3907928_A1.pdf | All rows explicitly disposed |
-| 520701 | 1 | 1 | patents/JP_S5357028_A.pdf | No review-record hit |
+| 520701 | 1 | 1 | patents/JP_S5357028_A.pdf | All rows have review records |
 | 523701 | 1 | 1 | patents/US20100194930A1.pdf | All rows explicitly disposed |
 | 525558 | 1 | 1 | patents/US8994842.pdf | All rows explicitly disposed |
 | 525563 | 1 | 1 | patents/US7307794.pdf | All rows explicitly disposed |
@@ -298,7 +298,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 670472 | 1 | 1 | patents/CN_121091494_A.pdf | No review-record hit |
 | 670573 | 1 | 1 | patents/JPB 1969024068-000000.pdf | No review-record hit |
 | 672323 | 1 | 1 | patents/GB_850117_A.pdf | All rows have review records |
-| 672388 | 1 | 1 | patents/JP_S5357028_A.pdf | No review-record hit |
+| 672388 | 1 | 1 | patents/JP_S5357028_A.pdf | All rows have review records |
 | 675348 | 1 | 1 | patents/JP2018180366A.pdf | All rows explicitly disposed |
 | 676440 | 1 | 1 | patents/US7542219.pdf | All rows explicitly disposed |
 | 678314 | 1 | 1 | patents/US20100208366A1.pdf | All rows explicitly disposed |
@@ -380,7 +380,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 797455 | 1 | 1 | patents/US4452513.pdf | All rows have review records |
 | 798453 | 1 | 1 | patents/US9651761.pdf | All rows explicitly disposed |
 | 800255 | 1 | 1 | patents/JP2015041012A.pdf | All rows have review records |
-| 802444 | 1 | 1 | patents/JP_S5357028_A.pdf | No review-record hit |
+| 802444 | 1 | 1 | patents/JP_S5357028_A.pdf | All rows have review records |
 | 803404 | 1 | 1 | patents/US20140247506A1.pdf | All rows have review records |
 | 803405 | 1 | 1 | patents/US20170351051A1.pdf | All rows have review records |
 | 805410 | 1 | 1 | patents/US4871239.pdf | All rows have review records |
@@ -2149,10 +2149,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L1 (Element 1) | 1 | `486815 - fluophosphate crown class (vendor unresolved)` | 1.48606 / 81.50 | No catalog entry | abbe | patents/US3774991.pdf | No review-record hit |
+| L1 (Element 1) | 1 | `486815 - fluophosphate crown class (vendor unresolved)` | 1.48606 / 81.50 | No catalog entry | abbe | patents/US3774991.pdf | Audit-log hit |
 | L2 (Element 2) | 3 | `744449 - lanthanum glass class (vendor unresolved)` | 1.74400 / 44.90 | H-LaF3B (trusted Sellmeier) | sellmeier | patents/US3774991.pdf | No review-record hit |
 | L3 (Element 3) | 4 | `639450 - barium flint class (vendor unresolved)` | 1.63930 / 45.00 | BAF12 (trusted Sellmeier) | sellmeier | patents/US3774991.pdf | No review-record hit |
-| L4 (Element 4) | 6 | `486815 - fluophosphate crown class (vendor unresolved)` | 1.48606 / 81.50 | No catalog entry | abbe | patents/US3774991.pdf | No review-record hit |
+| L4 (Element 4) | 6 | `486815 - fluophosphate crown class (vendor unresolved)` | 1.48606 / 81.50 | No catalog entry | abbe | patents/US3774991.pdf | Audit-log hit |
 
 ### [NIKON NIKKOR 600mm f/5.6 ED](../../src/lens-data/nikon/NikonNikkor600mmf56ED.data.ts) - US 3,774,991
 
@@ -2230,14 +2230,14 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|---|---|
 | L21 (Element 3) | 5 | `755276 dense-flint class (catalog identity unresolved)` | 1.75520 / 27.57 | SF4 (trusted Sellmeier) | sellmeier | patents/JP2021189351A.pdf | Audit-log hit |
 
-### [NIKON NIKKOR-SW 75mm f/4.5](../../src/lens-data/nikon/NikonNikkorSW75mmf45.data.ts) - JPS5357028A
+### [NIKON NIKKOR-SW 75mm f/4.5](../../src/lens-data/nikon/NikonNikkorSW75mmf45.data.ts) - JP S53-57028 A
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L1 (Element 1) | 1 | `573575 — barium crown coordinate class (vendor unresolved)` | 1.57250 / 57.50 | BAK1 (trusted Sellmeier) | sellmeier | patents/JP_S5357028_A.pdf | No review-record hit |
-| L2A (Element 2) | 3 | `802444 — high-index crown/lanthanum coordinate class (vendor unresolved)` | 1.80218 / 44.40 | No catalog entry | abbe | patents/JP_S5357028_A.pdf | No review-record hit |
-| L2B (Element 3) | 4 | `672388 — dense-flint/lanthanum coordinate class (vendor unresolved)` | 1.67163 / 38.80 | No catalog entry | abbe | patents/JP_S5357028_A.pdf | No review-record hit |
-| L2C (Element 4) | 5 | `520701 — low-index high-Abbe crown coordinate class (vendor unresolved)` | 1.52000 / 70.10 | No catalog entry | abbe | patents/JP_S5357028_A.pdf | No review-record hit |
+| L2A (Element 2) | 3 | `802444 — high-index crown/lanthanum coordinate class (vendor unresolved)` | 1.80218 / 44.40 | No catalog entry | abbe | patents/JP_S5357028_A.pdf | Audit-log hit |
+| L2B (Element 3) | 4 | `672388 — dense-flint/lanthanum coordinate class (vendor unresolved)` | 1.67163 / 38.80 | No catalog entry | abbe | patents/JP_S5357028_A.pdf | Audit-log hit |
+| L2C (Element 4) | 5 | `520701 — low-index high-Abbe crown coordinate class (vendor unresolved)` | 1.52000 / 70.10 | No catalog entry | abbe | patents/JP_S5357028_A.pdf | Audit-log hit |
 | L3B (Element 6) | 8 | `717295 — dense flint coordinate class (vendor unresolved)` | 1.71736 / 29.50 | SF1 (trusted Sellmeier) | sellmeier | patents/JP_S5357028_A.pdf | No review-record hit |
 
 ### [NIKON PC-NIKKOR 35mm f/2.8](../../src/lens-data/nikon/NikonPCNikkor35mmf28.data.ts) - DE 1 497 540 A1

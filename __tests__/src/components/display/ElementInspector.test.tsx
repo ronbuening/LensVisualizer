@@ -120,6 +120,25 @@ describe("ElementInspector", () => {
     expect(screen.getByText("field flattener")).toBeTruthy();
   });
 
+  it("formats computed focal lengths without exposing calculation precision", () => {
+    render(
+      <ElementInspector
+        info={{ ...basicElement, fl: -21.34355431 }}
+        L={mockLens}
+        t={mockTheme}
+        showChromatic={false}
+      />,
+    );
+    expect(screen.getByText("-21.34 mm")).toBeTruthy();
+  });
+
+  it("shows a missing focal length explicitly", () => {
+    render(
+      <ElementInspector info={{ ...basicElement, fl: undefined }} L={mockLens} t={mockTheme} showChromatic={false} />,
+    );
+    expect(screen.getByText("—")).toBeTruthy();
+  });
+
   it("renders focal length when available", () => {
     render(<ElementInspector info={basicElement} L={mockLens} t={mockTheme} showChromatic={false} />);
     expect(screen.getByText(/85\.3 mm/)).toBeTruthy();

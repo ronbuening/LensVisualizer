@@ -62,7 +62,7 @@ const LENS_DATA = {
   apertureDesign: 4.5,
   lensMounts: ["large-format-lens-board"],
   imageFormat: "4x5",
-  patentNumber: "JPS5357028A",
+  patentNumber: "JP S53-57028 A",
   patentAuthors: ["Ikuo Mori"],
   patentAssignees: ["Nippon Kogaku K.K."],
   patentYear: 1978,
@@ -74,6 +74,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
+      diagramLabel: "L1",
       label: "Element 1",
       type: "Negative Meniscus",
       nd: 1.5725,
@@ -86,6 +87,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L2A",
+      diagramLabel: "L2A",
       label: "Element 2",
       type: "Biconvex Positive",
       nd: 1.80218,
@@ -99,6 +101,7 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L2B",
+      diagramLabel: "L2B",
       label: "Element 3",
       type: "Biconcave Negative",
       nd: 1.67163,
@@ -112,6 +115,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L2C",
+      diagramLabel: "L2C",
       label: "Element 4",
       type: "Positive Meniscus",
       nd: 1.52,
@@ -125,6 +129,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L3A",
+      diagramLabel: "L3A",
       label: "Element 5",
       type: "Positive Meniscus",
       nd: 1.60717,
@@ -138,6 +143,7 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L3B",
+      diagramLabel: "L3B",
       label: "Element 6",
       type: "Negative Meniscus",
       nd: 1.71736,
@@ -151,6 +157,7 @@ const LENS_DATA = {
     {
       id: 7,
       name: "L4",
+      diagramLabel: "L4",
       label: "Element 7",
       type: "Negative Meniscus",
       nd: 1.7335,
@@ -192,7 +199,10 @@ const LENS_DATA = {
     { text: "G3 (+)", fromSurface: "7", toSurface: "9" },
     { text: "G4 (-)", fromSurface: "10", toSurface: "11" },
   ],
-  doublets: [{ text: "D1", fromSurface: "7", toSurface: "9" }],
+  doublets: [
+    { text: "T1", fromSurface: "3", toSurface: "6" },
+    { text: "D1", fromSurface: "7", toSurface: "9" },
+  ],
 
   /* ── Focus configuration ── */
   closeFocusM: 1.0,

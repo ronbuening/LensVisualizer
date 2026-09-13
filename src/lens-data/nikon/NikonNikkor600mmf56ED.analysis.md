@@ -90,7 +90,7 @@ The patent's chromatic concept is unusually explicit for an early-1970s telephot
 
 The glass audit checked current OHARA, HOYA, SCHOTT, HIKARI, CDGM, and Sumita catalog families. Those comparisons are useful for class and coordinate context, but they do not establish the actual historical melts used by Nippon Kogaku. The data therefore does not store vendor-derived `nC`, `nF`, `ng`, or `dPgF` values on these elements.
 
-That limitation matters for terminology. The patent explicitly presents the invention as a method of reducing secondary spectrum, and Nikon marketed the lens as ED. The implemented spectral model, however, contains only the patent's `nd`/`νd` coordinates. It therefore does not independently establish apochromatic or anomalous-partial-dispersion performance. The analysis treats the patent's chromatic claims as source statements rather than as results reproduced by the current Abbe-only model.
+That limitation matters for terminology. The patent explicitly presents the invention as a method of reducing secondary spectrum, and Nikon marketed the lens as ED. The model preserves the patent's `nd`/`νd` coordinates and uses compatible catalog curves for four of the five elements; L1 remains on the Abbe approximation. It therefore does not independently establish apochromatic or anomalous-partial-dispersion performance. The analysis treats the patent's chromatic claims as source statements rather than as results reproduced by the current mixed catalog/Abbe model.
 
 ## Focus Mechanism
 

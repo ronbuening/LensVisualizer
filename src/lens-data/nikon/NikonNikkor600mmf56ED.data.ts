@@ -153,10 +153,10 @@ const LENS_DATA = {
     "Infinity prescription only. The production lens focuses to 11 m with a separate focusing unit; its AU-1 focus motion is not modeled.",
 
   groups: [
-    { text: "FORWARD ACHROMATIC GROUP", fromSurface: "1", toSurface: "6" },
-    { text: "REAR GROUP", fromSurface: "7", toSurface: "9" },
+    { text: "FRONT", fromSurface: "1", toSurface: "6" },
+    { text: "REAR", fromSurface: "7", toSurface: "9" },
   ],
-  doublets: [{ text: "L4+L5", fromSurface: "7", toSurface: "9" }],
+  doublets: [{ text: "D1", fromSurface: "7", toSurface: "9" }],
 
   nominalFno: 5.6,
   fstopSeries: [5.6, 8, 11, 16, 22],

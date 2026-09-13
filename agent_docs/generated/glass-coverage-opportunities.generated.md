@@ -14,7 +14,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 - **7807 / 8381** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.2%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
-- **264** code-only missing-Sellmeier elements in Sweep 2: **6** active unreviewed, **135** self-recording explicit dispositions, **0** dispositions missing any review record
+- **264** code-only missing-Sellmeier elements in Sweep 2: **1** active unreviewed, **135** self-recording explicit dispositions, **0** dispositions missing any review record
 - **0** unresolved named-token elements in Sweep 2B, producing **0** token occurrences across **0** distinct tokens
 - **0** Tier A proprietary backfill rows in Sweep 3
 
@@ -174,11 +174,7 @@ Add catalog entries only when public coefficient-backed vendor data is available
 
 | Code | Active elements | Lens files | localPatentStatus | Representative rows |
 |---|---:|---:|---|---|
-| 486815 | 2 | 1 | patents/US3774991.pdf | [NIKON NIKKOR 300mm f/4.5 ED](../../src/lens-data/nikon/NikonNikkor300mmf45ED.data.ts) Element 1 (1.48606 / 81.50)<br>[NIKON NIKKOR 300mm f/4.5 ED](../../src/lens-data/nikon/NikonNikkor300mmf45ED.data.ts) Element 4 (1.48606 / 81.50) |
-| 520701 | 1 | 1 | patents/JP_S5357028_A.pdf | [NIKON NIKKOR-SW 75mm f/4.5](../../src/lens-data/nikon/NikonNikkorSW75mmf45.data.ts) Element 4 (1.52000 / 70.10) |
-| 672388 | 1 | 1 | patents/JP_S5357028_A.pdf | [NIKON NIKKOR-SW 75mm f/4.5](../../src/lens-data/nikon/NikonNikkorSW75mmf45.data.ts) Element 3 (1.67163 / 38.80) |
 | 683315 | 1 | 1 | patents/JPA 1987249119-000000.pdf | [MINOLTA AF 20mm f/2.8](../../src/lens-data/minolta/MinoltaAF20mmf28.data.ts) Element 4 (1.68300 / 31.52) |
-| 802444 | 1 | 1 | patents/JP_S5357028_A.pdf | [NIKON NIKKOR-SW 75mm f/4.5](../../src/lens-data/nikon/NikonNikkorSW75mmf45.data.ts) Element 2 (1.80218 / 44.40) |
 
 ## Sweep 2B - Named Tokens Missing Catalog Resolution
 

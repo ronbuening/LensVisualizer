@@ -241,8 +241,8 @@ export default function DiagramControls({
           onPointerDown={beginInteraction}
           onChange={handleZoomChange}
           onPointerUp={handlePointerUp}
-          minLabel={`${L.zoomPositions![0]} mm`}
-          maxLabel={`${L.zoomPositions![L.zoomPositions!.length - 1]} mm`}
+          minLabel={`${Number(L.zoomPositions![0].toFixed(2))} mm`}
+          maxLabel={`${Number(L.zoomPositions![L.zoomPositions!.length - 1].toFixed(2))} mm`}
           flexBasis="200px"
           action={groupMovementAvailability.zoom ? motionButton("zoom", "zoom") : undefined}
         >
