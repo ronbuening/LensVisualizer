@@ -224,6 +224,18 @@ describe("DiagramControls", () => {
     expect(callbacks.onFocusChange).not.toHaveBeenCalled();
   });
 
+  it("keeps computed zoom endpoint labels compact without rounding the optical data", () => {
+    const L = {
+      ...buildLens(LENS_CATALOG["canon-rf-28-70-f2"]),
+      zoomPositions: [28.851368294, 44.177102255],
+    };
+    renderControls(L);
+
+    expect(screen.getByText("28.85 mm")).toBeTruthy();
+    expect(screen.getByText("44.18 mm")).toBeTruthy();
+    expect(L.zoomPositions).toEqual([28.851368294, 44.177102255]);
+  });
+
   it("opens the zoom motion overlay from a zoom slider action", () => {
     const { callbacks } = renderControls(buildLens(LENS_CATALOG["nikon-afp-dx-70-300-f4563g"]));
 

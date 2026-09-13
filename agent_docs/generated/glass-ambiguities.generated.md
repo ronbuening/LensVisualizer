@@ -12,17 +12,17 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **729** lenses scanned
-- **8321** glass elements examined
-- **2568** elements have multiple coordinate-compatible candidates
-- **481** lens files are affected
+- **735** lenses scanned
+- **8376** glass elements examined
+- **2583** elements have multiple coordinate-compatible candidates
+- **487** lens files are affected
 - **239** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **197** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
-| Smallest reference-index residual | 1471 |
-| Evidence-source priority | 816 |
+| Smallest reference-index residual | 1475 |
+| Evidence-source priority | 827 |
 | Vendor context | 272 |
 | Stable canonical-name order | 7 |
 | Smallest Abbe residual | 2 |
@@ -1118,6 +1118,12 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `N-SF6 / S-TIH6 class (805/254)` | 1.80518 / 25.35 (d) | S-TIH6 — direct name evidence outranks alias evidence. | SF6 (Schott, alias) | 1 | [NIKON Gyogyotto 20mm f/8](../../src/lens-data/nikon/NikonGyogyotto20mmf8.data.ts) L2 |
 | `805255 — dense-flint class (vendor unresolved)` | 1.80518 / 25.50 (d) | J-SF6 — smallest d-line \|Δn\| (3.3e-8 vs 4.4e-8) | H-ZF7LA (CDGM, code, preferred code row)<br>FD60 (Hoya, code, alternate code row) | 1 | [NIKON MEDICAL-NIKKOR 120mm f/4 IF](../../src/lens-data/nikon/NikonMedicalNikkor120mmf4IF.data.ts) L1 |
 | `S-TIM35 catalog-equivalent coefficient proxy (patent 699301; production supplier unspecified)` | 1.69895 / 30.10 (d) | S-TIM35 — direct name evidence outranks six-digit code evidence. | E-FD15 (Hoya, code, alternate code row) | 1 | [NIKON NIKKOR 300mm f/2S IF-ED](../../src/lens-data/nikon/NikonAiSNikkor300mmf2IFED.data.ts) L10 |
+| `744449 - lanthanum glass class (vendor unresolved)` | 1.74400 / 44.90 (d) | H-LaF3B — smallest d-line \|Δn\| (1.0e-7 vs 2.8e-5) | N-LAF2 (Schott, code, alternate code row) | 1 | [NIKON NIKKOR 300mm f/4.5 ED](../../src/lens-data/nikon/NikonNikkor300mmf45ED.data.ts) L2 |
+| `620603 - SK16-class crown (vendor unresolved)` | 1.62041 / 60.30 (d) | N-SK16 — alias evidence outranks six-digit code evidence. | J-SK16 (Hikari, code, alternate code row)<br>S-BSM16 (Ohara, code, alternate code row) | 1 | [NIKON NIKKOR 300mm f/4.5 ED](../../src/lens-data/nikon/NikonNikkor300mmf45ED.data.ts) L5 |
+| `620363 - F2-class flint (vendor unresolved)` | 1.62004 / 36.30 (d) | F2 — direct name evidence outranks six-digit code evidence. | E-F2 (Hoya, code, alternate code row)<br>S-TIM2 (Ohara, code, preferred code row) | 1 | [NIKON NIKKOR 300mm f/4.5 ED](../../src/lens-data/nikon/NikonNikkor300mmf45ED.data.ts) L6 |
+| `744449 — lanthanum glass coordinate class (vendor unresolved)` | 1.74400 / 44.90 (d) | H-LaF3B — smallest d-line \|Δn\| (1.0e-7 vs 2.8e-5) | N-LAF2 (Schott, code, alternate code row) | 1 | [NIKON NIKKOR 600mm f/5.6 ED](../../src/lens-data/nikon/NikonNikkor600mmf56ED.data.ts) L2 |
+| `648338 — flint coordinate class (supplier unresolved)` | 1.64831 / 33.80 (d) | H-ZF1 — smallest d-line \|Δn\| (6.2e-4 vs 6.2e-4) | E-FD2 (Hoya, code, alternate code row)<br>S-TIM22 (Ohara, code, preferred code row) | 1 | [NIKON NIKKOR AUTO 28mm f/2.8](../../src/lens-data/nikon/NikonNewNikkorAuto28mmf28.data.ts) L1 |
+| `620603 — barium-crown class (S-BSM16 coordinate equivalent; supplier unresolved)` | 1.62041 / 60.30 (d) | S-BSM16 — direct name evidence outranks six-digit code evidence. | J-SK16 (Hikari, code, alternate code row)<br>N-SK16 (Schott, code, preferred code row) | 2 | [NIKON NIKKOR AUTO 28mm f/2.8](../../src/lens-data/nikon/NikonNewNikkorAuto28mmf28.data.ts) L2 |
 | `J-KZFH9 (HIKARI catalog equivalent; patent code 738323, vendor unspecified)` | 1.73800 / 32.30 (d) | J-KZFH9 — direct name evidence outranks six-digit code evidence. | S-NBH53 (Ohara, code, vendor ✗, preferred code row) | 1 | [NIKON NIKKOR Z 14-24mm f/2.8 S](../../src/lens-data/nikon/NikonZ1424f28S.data.ts) L14 |
 | `J-LASF017 (Hikari) — high-index lanthanum (795453)` | 1.79500 / 45.31 (d) | J-LASF017 — direct name evidence outranks six-digit code evidence. | Q-LASFPH3S (Hikari, code, vendor ✓, alternate code row) | 1 | [NIKON NIKKOR Z 14-30mm f/4 S](../../src/lens-data/nikon/NikonNikkorZ1430mmf4S.data.ts) L41 |
 | `FCD1 / S-FPL51 class (HOYA/OHARA)` | 1.49700 / 81.61 (d) | FCD1 — smallest d-line \|Δn\| (1.6e-7 vs 7.1e-7) | S-FPL51 (Ohara, name, vendor ✓) | 4 | [NIKON NIKKOR Z 180-600mm f/5.6-6.3 VR](../../src/lens-data/nikon/NikonNikkorZ180600mmf5663VR.data.ts) L2 |
@@ -1170,6 +1176,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `648338 — SF2 class (catalog equivalent; vendor unconfirmed)` | 1.64830 / 33.80 (d) | SF2 — direct name evidence outranks six-digit code evidence. | H-ZF1 (CDGM, code, alternate code row)<br>E-FD2 (Hoya, code, alternate code row)<br>S-TIM22 (Ohara, code, preferred code row) | 1 | [NIKON NIKKOR-S AUTO 5cm f/2](../../src/lens-data/nikon/NikonNikkorSAuto50mmf2.data.ts) L4 |
 | `741278 — SF13 / S-TIH13 class (catalog equivalent; vendor unconfirmed)` | 1.74080 / 27.70 (d) | S-TIH13 — direct name evidence outranks six-digit code evidence. | E-FD13 (Hoya, code, alternate code row) | 1 | [NIKON NIKKOR-S AUTO 5cm f/2](../../src/lens-data/nikon/NikonNikkorSAuto50mmf2.data.ts) L5 |
 | `744449 — LAF2 / S-LAM2 class (catalog equivalent; vendor unconfirmed)` | 1.74400 / 44.90 (d) | S-LAM2 — direct name evidence outranks six-digit code evidence. | H-LaF3B (CDGM, code, preferred code row)<br>N-LAF2 (Schott, code, alternate code row) | 2 | [NIKON NIKKOR-S AUTO 5cm f/2](../../src/lens-data/nikon/NikonNikkorSAuto50mmf2.data.ts) L6 |
+| `717295 — dense flint coordinate class (vendor unresolved)` | 1.71736 / 29.50 (d) | SF1 — smallest d-line \|Δn\| (1.5e-7 vs 1.8e-6) | S-TIH1 (Ohara, code, alternate code row) | 1 | [NIKON NIKKOR-SW 75mm f/4.5](../../src/lens-data/nikon/NikonNikkorSW75mmf45.data.ts) L3B |
 | `Nikon ED glass (near S-FPL51 / FCD1)` | 1.49782 / 82.56 (d) | FCD1 — smallest d-line \|Δn\| (8.2e-4 vs 8.2e-4) | S-FPL51 (Ohara, name) | 1 | [NIKON PC-E MICRO-NIKKOR 45mm f/2.8 D ED](../../src/lens-data/nikon/NikonMicroNikkorPCE45mmf28D.data.ts) L21 |
 | `S-FSL5 (OHARA) / N-FK5 (Schott)` | 1.48749 / 70.45 (d) | N-FK5 — smallest d-line \|Δn\| (3.7e-9 vs 6.5e-8) | S-FSL5 (Ohara, name, vendor ✓) | 1 | [NIKON PC-E MICRO-NIKKOR 45mm f/2.8 D ED](../../src/lens-data/nikon/NikonMicroNikkorPCE45mmf28D.data.ts) L33 |
 | `S-LAH65V (OHARA) / TAF3 (HOYA)` | 1.80400 / 46.58 (d) | S-LAH65V — smallest d-line \|Δn\| (5.0e-7 vs 2.0e-4) | TAF3 (Hoya, name, vendor ✓) | 1 | [NIKON PC-E MICRO-NIKKOR 45mm f/2.8 D ED](../../src/lens-data/nikon/NikonMicroNikkorPCE45mmf28D.data.ts) L34 |
@@ -1205,6 +1212,12 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `717295 - flint class (vendor unresolved)` | 1.71736 / 29.48 (d) | SF1 — smallest d-line \|Δn\| (1.5e-7 vs 1.8e-6) | S-TIH1 (Ohara, code, alternate code row) | 3 | [NIKON ZOOM-NIKKOR 100-300mm f/5.6](../../src/lens-data/nikon/NikonAISZoomNikkor100300mmf56.data.ts) L11a |
 | `805254 - dense flint class (vendor unresolved)` | 1.80518 / 25.36 (d) | S-TIH6 — smallest d-line \|Δn\| (7.1e-7 vs 2.1e-6) | SF6 (Schott, code, alternate code row) | 2 | [NIKON ZOOM-NIKKOR 100-300mm f/5.6](../../src/lens-data/nikon/NikonAISZoomNikkor100300mmf56.data.ts) L21a |
 | `517641 - BK7-class crown (vendor unresolved)` | 1.51680 / 64.12 (d) | N-BK7 — alias evidence outranks six-digit code evidence. | J-BK7A (Hikari, code, preferred code row) | 1 | [NIKON ZOOM-NIKKOR 100-300mm f/5.6](../../src/lens-data/nikon/NikonAISZoomNikkor100300mmf56.data.ts) L43 |
+| `H-LaF3B (CDGM catalog equivalent; source coordinate 744449; production supplier unspecified)` | 1.74400 / 44.90 (d) | H-LaF3B — direct name evidence outranks six-digit code evidence. | N-LAF2 (Schott, code, vendor ✗, alternate code row) | 1 | [NIKON ZOOM-NIKKOR 28-45mm f/4.5 (developmental design)](../../src/lens-data/nikon/NikonZoomNikkor2845mmf45.data.ts) L5 |
+| `H-ZF7LA (CDGM catalog equivalent; source coordinate 805255; production supplier unspecified)` | 1.80518 / 25.50 (d) | H-ZF7LA — direct name evidence outranks six-digit code evidence. | J-SF6 (Hikari, code, vendor ✗, alternate code row)<br>FD60 (Hoya, code, vendor ✗, alternate code row) | 1 | [NIKON ZOOM-NIKKOR 28-45mm f/4.5 (developmental design)](../../src/lens-data/nikon/NikonZoomNikkor2845mmf45.data.ts) L8 |
+| `H-ZF4A (CDGM catalog equivalent; source coordinate 728283; production supplier unspecified)` | 1.72825 / 28.30 (d) | H-ZF4A — direct name evidence outranks six-digit code evidence. | E-FD10 (Hoya, code, vendor ✗, alternate code row) | 1 | [NIKON ZOOM-NIKKOR 28-45mm f/4.5 (developmental design)](../../src/lens-data/nikon/NikonZoomNikkor2845mmf45.data.ts) L9 |
+| `728283 — SF10 coordinate class (supplier unresolved)` | 1.72825 / 28.30 (d) | SF10 — direct name evidence outranks six-digit code evidence. | H-ZF4A (CDGM, code, preferred code row)<br>E-FD10 (Hoya, code, alternate code row) | 1 | [NIKON ZOOM-NIKKOR AUTO 50-300mm f/4.5](../../src/lens-data/nikon/NikonZoomNikkorAuto50300mmf45.data.ts) L6 |
+| `620603 — SK16/BSM16 coordinate class (supplier unresolved)` | 1.62041 / 60.30 (d) | N-SK16 — alias evidence outranks six-digit code evidence. | J-SK16 (Hikari, code, alternate code row)<br>S-BSM16 (Ohara, code, alternate code row) | 2 | [NIKON ZOOM-NIKKOR AUTO 50-300mm f/4.5](../../src/lens-data/nikon/NikonZoomNikkorAuto50300mmf45.data.ts) L9 |
+| `517642 — BK7-family crown coordinate class (supplier unresolved)` | 1.51680 / 64.20 (d) | N-BK7 — alias evidence outranks six-digit code evidence. | H-K9L (CDGM, code, alternate code row)<br>H-K9LGT (CDGM, code, alternate code row) | 1 | [NIKON ZOOM-NIKKOR AUTO 50-300mm f/4.5](../../src/lens-data/nikon/NikonZoomNikkorAuto50300mmf45.data.ts) L16 |
 | `620603 - SK16 class (vendor unresolved)` | 1.62041 / 60.30 (d) | N-SK16 — alias evidence outranks six-digit code evidence. | J-SK16 (Hikari, code, alternate code row)<br>S-BSM16 (Ohara, code, alternate code row) | 3 | [NIKON ZOOM-NIKKOR AUTO 80-200mm f/4.5](../../src/lens-data/nikon/NikonAutoZoomNikkor80200mmf45.data.ts) L1 |
 | `755275 - SF4 class (vendor unresolved)` | 1.75520 / 27.50 (d) | SF4 — direct name evidence outranks six-digit code evidence. | E-FD4 (Hoya, code, preferred code row)<br>H-ZF6 (CDGM, code, alternate code row) | 1 | [NIKON ZOOM-NIKKOR AUTO 80-200mm f/4.5](../../src/lens-data/nikon/NikonAutoZoomNikkor80200mmf45.data.ts) L3 |
 | `689311 - SF8 class (vendor unresolved)` | 1.68893 / 31.10 (d) | N-SF8 — alias evidence outranks six-digit code evidence. | S-TIM28 (Ohara, code, preferred code row) | 1 | [NIKON ZOOM-NIKKOR AUTO 80-200mm f/4.5](../../src/lens-data/nikon/NikonAutoZoomNikkor80200mmf45.data.ts) L4 |

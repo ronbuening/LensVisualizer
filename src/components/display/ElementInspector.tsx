@@ -232,8 +232,7 @@ export default function ElementInspector({ info, L, t, showChromatic, onOpenAsph
         <div>
           <span style={{ color: t.propLabel }}>FL = </span>
           <span style={{ color: t.value }}>
-            {(info.fl ?? 0) > 0 ? "+" : ""}
-            {info.fl} mm
+            {info.fl === undefined ? "—" : `${info.fl > 0 ? "+" : ""}${Number(info.fl.toFixed(2))} mm`}
           </span>
         </div>
         <div>

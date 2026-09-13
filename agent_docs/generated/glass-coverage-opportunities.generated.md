@@ -9,12 +9,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **729** lenses scanned (**717** visible)
-- **7745 / 8326** non-air surfaces use strict catalog Sellmeier data (93.0%)
-- **7760 / 8326** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.2%)
+- **735** lenses scanned (**723** visible)
+- **7792 / 8381** non-air surfaces use strict catalog Sellmeier data (93.0%)
+- **7807 / 8381** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.2%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
-- **256** code-only missing-Sellmeier elements in Sweep 2: **1** active unreviewed, **132** self-recording explicit dispositions, **0** dispositions missing any review record
+- **264** code-only missing-Sellmeier elements in Sweep 2: **1** active unreviewed, **135** self-recording explicit dispositions, **0** dispositions missing any review record
 - **0** unresolved named-token elements in Sweep 2B, producing **0** token occurrences across **0** distinct tokens
 - **0** Tier A proprietary backfill rows in Sweep 3
 
@@ -91,9 +91,11 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [FUJIFILM SUPER EBC FUJINON 7.1-28.4mm f/2-2.8 (Fujifilm X10)](../../src/lens-data/fujifilm/FujifilmX1071284mmf228.data.ts) | US 2014/0133036 A1 | Missing from untracked local patents/ references (US20140133036A1, US20140133036, 20140133036) | 81.8% (9/11) | 81.8% (9/11) | 2 | 11A [glass] (G3 front asphere: `Unmatched (nd=1.803603, νd=40.28)`)<br>16A [glass] (G3 negative asphere: `Unmatched (nd=1.803603, νd=40.28)`) | abbe: 2 |
 | [LEICA SUMMILUX 28mm f/1.7 ASPH. (Leica Q, Q2, Q3)](../../src/lens-data/leica/Leica28mmf17.data.ts) | US 2016/0266350 A1 | [PDF](../../patents/US20160266350A1.pdf) | 81.8% (9/11) | 81.8% (9/11) | 2 | 12A [glass] (Element 6: `877370 — high-index lanthanum glass (patent nd=1.87722, nu_d=37.0)`)<br>20A [glass] (Element 11: `Unmatched (patent nd=1.68250, νd=33.00; prior H-ZF52A annotation rejected on dispersion)`) | abbe: 2 |
 | [AGFA COLOR-MAGNOLAR II 100mm f/4.5](../../src/lens-data/agfa/AgfaColorMagnolarII100mmf45.data.ts) | GB 775,944 | [PDF](../../patents/GB_775944_A.pdf) | 80.0% (4/5) | 60.0% (3/5) | 1 | 4 [glass] (Element 3: `Unmatched (540/509 crown-flint-boundary glass; no public catalog match located)`) | abbe: 1 |
+| [NIKON NIKKOR 600mm f/5.6 ED](../../src/lens-data/nikon/NikonNikkor600mmf56ED.data.ts) | US 3,774,991 | [PDF](../../patents/US3774991.pdf) | 80.0% (4/5) | 80.0% (4/5) | 1 | 1 [glass] (Element 1: `Unmatched (486815 — fluophosphate crown; vendor unresolved)`) | abbe: 1 |
 | [SAMSUNG 30mm f/2](../../src/lens-data/samsung/Samsung30mmf2.data.ts) | US 2010/0149663 A1 | [PDF](../../patents/US20100149663A1.pdf) | 80.0% (4/5) | 80.0% (4/5) | 1 | 3 [glass] (Element 2: `Unmatched (684316 dense-flint class; vendor unresolved)`) | abbe: 1 |
 | [CANON EF-M 15-45mm f/3.5-6.3 IS STM](../../src/lens-data/canon/CanonEFM1545mmf3563ISSTM.data.ts) | JP 2016-118658 A | [PDF](../../patents/JP2016118658A.pdf) | 80.0% (8/10) | 80.0% (8/10) | 2 | 3A [glass] (Element 2: `Unmatched (nd=1.52996, nu_d=55.8; no exact defensible public-catalog identity found)`)<br>17A [glass] (Element 9: `Unmatched (nd=1.52996, nu_d=55.8; no exact defensible public-catalog identity found)`) | abbe: 2 |
 | [Nikon AI Micro-Nikkor 105mm f/2.8S](../../src/lens-data/nikon/NikonAIMicroNikkor105mmf28S.data.ts) | US 4,392,724 | [PDF](../../patents/US4392724.pdf) | 80.0% (8/10) | 80.0% (8/10) | 2 | 12 [glass] (L31 G3 positive meniscus: `Unmatched (595/355 vintage flint; near FF5 / S-FTM16 class but higher nd)`)<br>16 [glass] (L33 G3 positive reconverger: `Unmatched (595/355 vintage flint; near FF5 / S-FTM16 class but higher nd)`) | abbe: 2 |
+| [NIKON ZOOM-NIKKOR 28-45mm f/4.5 (developmental design)](../../src/lens-data/nikon/NikonZoomNikkor2845mmf45.data.ts) | US 3,771,853 | [PDF](../../patents/US3771853.pdf) | 80.0% (8/10) | 80.0% (8/10) | 2 | 3 [glass] (Element 2: `Unmatched (841433; nd=1.84110, νd=43.3)`)<br>4 [glass] (Element 3: `Unmatched (446672; nd=1.44628, νd=67.2)`) | abbe: 2 |
 
 ## Near-Complete Visible Lenses - Non-Glass or Mixed-Material Gaps
 

@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **729** lenses scanned
-- **8326** non-air surfaces examined
-- **8336** element glass declarations examined
-- **228** non-explicit-unmatched annotations did not resolve
-- **113** distinct unresolved glass-like tokens found
+- **735** lenses scanned
+- **8381** non-air surfaces examined
+- **8391** element glass declarations examined
+- **233** non-explicit-unmatched annotations did not resolve
+- **117** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -24,6 +24,7 @@ or per-lens patent backfills.
 | 863252 | 4 | 2 | |
 | 856401 | 3 | 2 | |
 | 863248 | 3 | 1 | |
+| 486815 | 2 | 1 | |
 | 514428 | 2 | 1 | |
 | 620586 | 2 | 1 | |
 | 627376 | 2 | 2 | |
@@ -47,6 +48,7 @@ or per-lens patent backfills.
 | 507589 | 1 | 1 | |
 | 514530 | 1 | 1 | |
 | 518523 | 1 | 1 | |
+| 520701 | 1 | 1 | |
 | 534554 | 1 | 1 | |
 | 534556 | 1 | 1 | |
 | 545486 | 1 | 1 | |
@@ -71,6 +73,7 @@ or per-lens patent backfills.
 | 658397 | 1 | 1 | |
 | 667311 | 1 | 1 | |
 | 672323 | 1 | 1 | |
+| 672388 | 1 | 1 | |
 | 680312 | 1 | 1 | |
 | 682366 | 1 | 1 | |
 | 683315 | 1 | 1 | |
@@ -104,6 +107,7 @@ or per-lens patent backfills.
 | 792450 | 1 | 1 | |
 | 797455 | 1 | 1 | |
 | 800255 | 1 | 1 | |
+| 802444 | 1 | 1 | |
 | 803404 | 1 | 1 | |
 | 803405 | 1 | 1 | |
 | 805410 | 1 | 1 | |
@@ -175,6 +179,11 @@ or per-lens patent backfills.
 - [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 10: `863248 — ultra-dense flint (patent nd=1.86290, nu_d=24.8)`
 - [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 17: `863248 — ultra-dense flint (patent nd=1.86290, nu_d=24.8)`
 - [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 19: `863248 — ultra-dense flint (patent nd=1.86290, nu_d=24.8)`
+
+### 486815 — 2 occurrences
+
+- [NIKON NIKKOR 300mm f/4.5 ED](../../src/lens-data/nikon/NikonNikkor300mmf45ED.data.ts) 1: `486815 - fluophosphate crown class (vendor unresolved)`
+- [NIKON NIKKOR 300mm f/4.5 ED](../../src/lens-data/nikon/NikonNikkor300mmf45ED.data.ts) 6: `486815 - fluophosphate crown class (vendor unresolved)`
 
 ### 514428 — 2 occurrences
 
@@ -287,6 +296,10 @@ or per-lens patent backfills.
 
 - [MINOLTA AF 35-105mm f/3.5-4.5 New (v2)](../../src/lens-data/minolta/MinoltaAF35105mmf3545v2.data.ts) 21A: `518523 - thin hybrid aspheric layer (unresolved)`
 
+### 520701 — 1 occurrence
+
+- [NIKON NIKKOR-SW 75mm f/4.5](../../src/lens-data/nikon/NikonNikkorSW75mmf45.data.ts) 5: `520701 — low-index high-Abbe crown coordinate class (vendor unresolved)`
+
 ### 534554 — 1 occurrence
 
 - [NIKON FISHEYE-NIKKOR 6mm f/2.8](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf28.data.ts) 15: `534554 — crown glass (patent nd=1.53375, νd=55.4; no current HIKARI catalog match)`
@@ -382,6 +395,10 @@ or per-lens patent backfills.
 ### 672323 — 1 occurrence
 
 - [CARL ZEISS JENA PANCOLAR 50mm f/2](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPancolar50mmf2.data.ts) 4: `Dense flint (672/323, Jena in-house; no exact public catalog match)`
+
+### 672388 — 1 occurrence
+
+- [NIKON NIKKOR-SW 75mm f/4.5](../../src/lens-data/nikon/NikonNikkorSW75mmf45.data.ts) 4: `672388 — dense-flint/lanthanum coordinate class (vendor unresolved)`
 
 ### 680312 — 1 occurrence
 
@@ -514,6 +531,10 @@ or per-lens patent backfills.
 ### 800255 — 1 occurrence
 
 - [SONY SONNAR T* FE 35mm f/2.8 ZA](../../src/lens-data/sony/SonyFE35mmf28ZA.data.ts) 1: `800255 - dense flint (patent nd=1.80000, vd=25.46; no exact public catalog match)`
+
+### 802444 — 1 occurrence
+
+- [NIKON NIKKOR-SW 75mm f/4.5](../../src/lens-data/nikon/NikonNikkorSW75mmf45.data.ts) 3: `802444 — high-index crown/lanthanum coordinate class (vendor unresolved)`
 
 ### 803404 — 1 occurrence
 
