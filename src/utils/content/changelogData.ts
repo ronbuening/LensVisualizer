@@ -19,6 +19,26 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-09-13",
+    type: "improvement",
+    summary: "Linked more Nikon, Fujifilm, Canon and Tamron manufacturer stories to lens diagrams",
+  },
+  {
+    date: "2026-09-13",
+    type: "lens",
+    summary: "Added Nikon 28mm, 300mm ED, 600mm ED and Nikkor-SW 75mm patent designs",
+  },
+  {
+    date: "2026-09-13",
+    type: "lens",
+    summary: "Added Nikon Zoom-Nikkor Auto 50–300mm f/4.5 patent design",
+  },
+  {
+    date: "2026-09-13",
+    type: "improvement",
+    summary: "Expanded Nikon glass dispersion coverage and refined patent-diagram proportions",
+  },
+  {
     date: "2026-09-12",
     type: "lens",
     summary: "Added Fujifilm XF18-120mm, XF18-135mm and EBC X-Fujinon W 24mm designs",

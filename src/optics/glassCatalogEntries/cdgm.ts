@@ -6,6 +6,40 @@ import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const CDGM_GLASS_ENTRIES: readonly GlassEntry[] = [
   {
+    name: "H-LaK67",
+    vendor: "CDGM",
+    polynomial: [2.7410828, -0.016285022, 0.015866919, 0.0010819231, -0.000077131038, 0.000004033333],
+    nd: 1.67,
+    vd: 51.7,
+    PgF: 0.5537,
+    code6: "670517",
+    source:
+      "CDGM Optical Glass Data Sheet, June 2022, printed page 140 (PDF page 142), published dispersion constants; https://www.cdgmgd.com/accessory/2022-06-28/client/www.cdgmgd.com/9b32dd2c-55f4-4d4c-b2d2-48f52c9d5f07.pdf (accessed 2026-09-13).",
+  },
+  {
+    name: "QF3",
+    vendor: "CDGM",
+    polynomial: [2.4245509, -0.0079714057, 0.019149892, 0.00035505098, 0.000013941882, 0.000001705772],
+    nd: 1.57502,
+    vd: 41.31,
+    PgF: 0.5743,
+    code6: "575413",
+    source:
+      "CDGM Optical Glass Data Sheet, June 2022, printed page 145 (PDF page 147), published dispersion constants; https://www.cdgmgd.com/accessory/2022-06-28/client/www.cdgmgd.com/9b32dd2c-55f4-4d4c-b2d2-48f52c9d5f07.pdf (accessed 2026-09-13).",
+  },
+  {
+    name: "H-BaF2",
+    vendor: "CDGM",
+    B: [0.131856447, 1.28686729, 1.0068252],
+    C: [0.0404229746, 0.0080740739, 113.574742],
+    nd: 1.5697,
+    vd: 49.45,
+    PgF: 0.5616,
+    code6: "570495",
+    source:
+      "CDGM Optical Glass Data Sheet, June 2022, printed page 171 (PDF page 173), published dispersion constants; https://www.cdgmgd.com/accessory/2022-06-28/client/www.cdgmgd.com/9b32dd2c-55f4-4d4c-b2d2-48f52c9d5f07.pdf (accessed 2026-09-13).",
+  },
+  {
     name: "H-ZLaF68N",
     vendor: "CDGM",
     B: [1.49455025, 2.07574257, 0.361138143],
