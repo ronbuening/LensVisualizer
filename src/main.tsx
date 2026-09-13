@@ -4,6 +4,7 @@ import { HelmetProvider } from "react-helmet-async";
 import ErrorBoundary from "./components/errors/ErrorBoundary.js";
 import HolidayFavicon from "./components/HolidayFavicon.js";
 import router from "./router.js";
+import { installBrowserTranslationWarning } from "./utils/browserTranslationWarning.js";
 import { installGlobalErrorBeacons } from "./utils/errorBeacon.js";
 
 // Track SPA navigations in GoatCounter. The script tag in index.html handles the
@@ -23,6 +24,9 @@ router.subscribe((state) => {
   if (!import.meta.env.PROD || !window.goatcounter?.count) return;
   window.goatcounter.count({ path });
 });
+
+// Keep the translation warning outside React so a corrupted tree can still explain the recovery step.
+installBrowserTranslationWarning();
 
 // Beacon uncaught errors and unhandled rejections to GoatCounter (production only).
 installGlobalErrorBeacons();
