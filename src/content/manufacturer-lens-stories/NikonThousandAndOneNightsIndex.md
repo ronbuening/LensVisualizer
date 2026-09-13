@@ -22,17 +22,17 @@ Nikon does not display a publication date on the current index or individual Eng
 | No. 95 | [Micro-NIKKOR C 5cm F3.5](https://imaging.nikon.com/imaging/information/story/0095/) | — |
 | No. 94 | [Nikon Mini AF600QD / Lite-Touch AF](https://imaging.nikon.com/imaging/information/story/0094/) | — |
 | No. 93 | [Ai AF Zoom Nikkor 24–50mm F3.3–4.5S](https://imaging.nikon.com/imaging/information/story/0093/) | — |
-| No. 92 | [Ai Zoom Nikkor ED 50–300mm F4.5](https://imaging.nikon.com/imaging/information/story/0092/) | — |
-| No. 91 | [Nikon Series E Zoom 36–72mm f/3.5](https://imaging.nikon.com/imaging/information/story/0091/) | — |
+| No. 92 | [Ai Zoom Nikkor ED 50–300mm F4.5](https://imaging.nikon.com/imaging/information/story/0092/) | [AI Zoom-Nikkor ED 50–300mm](/lens/nikon-ai-zoom-nikkor-ed-50-300-f45) |
+| No. 91 | [Nikon Series E Zoom 36–72mm f/3.5](https://imaging.nikon.com/imaging/information/story/0091/) | [Series E Zoom 36–72mm](/lens/nikon-series-e-zoom-36-72mm-f35) |
 | No. 90 | [AF-P DX NIKKOR 10–20mm f/4.5–5.6G VR](https://imaging.nikon.com/imaging/information/story/0090/) | [AF-P DX 10–20mm](/lens/nikon-af-p-dx-10-20mm-f45-56g-vr) |
 | No. 89 | [AI Nikkor 85mm f/1.4S](https://imaging.nikon.com/imaging/information/story/0089/) | [AI Nikkor 85mm f/1.4S](/lens/nikkor-85f14-ais) |
-| No. 88 | [AF-S DX Micro NIKKOR 40mm f/2.8G](https://imaging.nikon.com/imaging/information/story/0088/) | — |
+| No. 88 | [AF-S DX Micro NIKKOR 40mm f/2.8G](https://imaging.nikon.com/imaging/information/story/0088/) | [AF-S DX Micro 40mm f/2.8G](/lens/nikon-af-s-dx-micro-nikkor-40mm-f28g) |
 | No. 87 | [New Nikkor 200mm f/4](https://imaging.nikon.com/imaging/information/story/0087/) | — |
 | No. 86 | [AI Nikkor 24mm f/2.8](https://imaging.nikon.com/imaging/information/story/0086/) | — |
 | No. 85 | [Micro-Nikkor Auto 55mm f/3.5](https://imaging.nikon.com/imaging/information/story/0085/) | — |
 | No. 84 | [AI Nikkor 35mm f/2S](https://imaging.nikon.com/imaging/information/story/0084/) | [AI Nikkor 35mm f/2](/lens/nikon-ai-nikkor-35mm-f2) |
 | No. 83 | [IX-Nikkor 30–60mm f/4–5.6](https://imaging.nikon.com/imaging/information/story/0083/) | — |
-| No. 82 | [AF-S DX VR Zoom-Nikkor 18–200mm f/3.5–5.6G IF-ED](https://imaging.nikon.com/imaging/information/story/0082/) | — |
+| No. 82 | [AF-S DX VR Zoom-Nikkor 18–200mm f/3.5–5.6G IF-ED](https://imaging.nikon.com/imaging/information/story/0082/) | [AF-S DX VR 18–200mm](/lens/nikon-af-s-dx-vr-zoom-nikkor-18-200-f35-56g-if-ed) |
 | No. 81 | [GN Auto NIKKOR 45mm f/2.8](https://imaging.nikon.com/imaging/information/story/0081/) | — |
 | No. 80 | [Nikon Series E 100mm f/2.8](https://imaging.nikon.com/imaging/information/story/0080/) | [Series E 100mm f/2.8](/lens/nikon-series-e-100mm-f28) |
 | No. 79 | [W-Nikkor·C 2.8cm f/3.5](https://imaging.nikon.com/imaging/information/story/0079/) | — |
@@ -42,26 +42,26 @@ Nikon does not display a publication date on the current index or individual Eng
 | No. 75 | [IX-Nikkor 20–60mm f/3.5–5.6](https://imaging.nikon.com/imaging/information/story/0075/) | — |
 | No. 74 | [AI AF Micro-Nikkor 60mm f/2.8S](https://imaging.nikon.com/imaging/information/story/0074/) | — |
 | No. 73 | [Nikon Teleconverter TC-1 2×](https://imaging.nikon.com/imaging/information/story/0073/) | — |
-| No. 72 | [AI AF Micro-Nikkor 105mm f/2.8S](https://imaging.nikon.com/imaging/information/story/0072/) | [AI Micro-Nikkor 105mm f/2.8S](/lens/nikon-ai-micro-nikkor-105mm-f28s) |
+| No. 72 | [AI AF Micro-Nikkor 105mm f/2.8S](https://imaging.nikon.com/imaging/information/story/0072/) | [AI AF Micro-Nikkor 105mm f/2.8S](/lens/nikon-ai-af-micro-nikkor-105mm-f28s) |
 | No. 71 | [AI Zoom-Nikkor 35–105mm f/3.5–4.5S](https://imaging.nikon.com/imaging/information/story/0071/) | [AI Zoom-Nikkor 35–105mm](/lens/nikon-ai-zoom-nikkor-35-105mm-f3-5-4-5s) |
 | No. 70 | [AI Nikkor 300mm f/4.5S](https://imaging.nikon.com/imaging/information/story/0070/) | — |
-| No. 69 | [Medical-Nikkor 120mm f/4 IF](https://imaging.nikon.com/imaging/information/story/0069/) | — |
+| No. 69 | [Medical-Nikkor 120mm f/4 IF](https://imaging.nikon.com/imaging/information/story/0069/) | [Medical-Nikkor 120mm f/4 IF](/lens/nikon-medical-nikkor-120mm-f4-if) |
 | No. 68 | [AF-S DX Zoom-Nikkor 12–24mm f/4G IF-ED](https://imaging.nikon.com/imaging/information/story/0068/) | [AF-S DX Zoom-Nikkor 12–24mm](/lens/nikon-af-s-dx-zoom-nikkor-12-24mm-f4g-if-ed) |
 | No. 67 | [AI AF-S Zoom-Nikkor 80–200mm f/2.8D IF-ED](https://imaging.nikon.com/imaging/information/story/0067/) | [AI AF-S Zoom-Nikkor 80–200mm](/lens/nikon-afs-zoom-nikkor-80-200mm-f28d-if-ed) |
 | No. 66 | [AI Nikkor 400mm f/3.5 IF-ED](https://imaging.nikon.com/imaging/information/story/0066/) | — |
 | No. 65 | [AF Zoom-Nikkor 28–200mm f/3.5–5.6G IF-ED](https://imaging.nikon.com/imaging/information/story/0065/) | [AF Zoom-Nikkor 28–200mm](/lens/nikkor-af-28-200-f3556-g-if-ed) |
 | No. 64 | [EL-Nikkor 80mm f/5.6N](https://imaging.nikon.com/imaging/information/story/0064/) | — |
 | No. 63 | [AF Zoom-Nikkor 28–80mm f/3.3–5.6G](https://imaging.nikon.com/imaging/information/story/0063/) | [AF Zoom-Nikkor 28–80mm](/lens/nikon-af-zoom-nikkor-28-80mm-f33-56g) |
-| No. 62 | [Zoom-Nikkor Auto 50–300mm f/4.5](https://imaging.nikon.com/imaging/information/story/0062/) | — |
+| No. 62 | [Zoom-Nikkor Auto 50–300mm f/4.5](https://imaging.nikon.com/imaging/information/story/0062/) | [Zoom-Nikkor Auto 50–300mm](/lens/nikon-zoom-nikkor-auto-50-300mm-f45) |
 | No. 61 | [AI Zoom-NIKKOR 50–135mm f/3.5S](https://imaging.nikon.com/imaging/information/story/0061/) | [AI Zoom-Nikkor 50–135mm](/lens/nikon-ai-zoom-nikkor-50-135mm-f35s) |
-| No. 60 | [AI NIKKOR 50mm f/1.8S](https://imaging.nikon.com/imaging/information/story/0060/) | — |
+| No. 60 | [AI NIKKOR 50mm f/1.8S](https://imaging.nikon.com/imaging/information/story/0060/) | [AI Nikkor 50mm f/1.8S](/lens/nikon-ai-nikkor-50f18s) |
 | No. 59 | [AI Nikkor 105mm f/1.8S](https://imaging.nikon.com/imaging/information/story/0059/) | — |
 | No. 58 | [AI AF Zoom-Nikkor 24–120mm f/3.5–5.6D (IF)](https://imaging.nikon.com/imaging/information/story/0058/) | [AI AF Zoom-Nikkor 24–120mm](/lens/nikon-ai-af-zoom-nikkor-24-120-f35-56d) |
 | No. 57 | [AI Nikkor 28mm f/2.8S](https://imaging.nikon.com/imaging/information/story/0057/) | [AI Nikkor 28mm f/2.8S](/lens/nikon-ai-nikkor-28mm-f28s) |
 | No. 56 | [Auto NIKKOR WIDE-ZOOM 3.5–8.5cm f/2.8–4](https://imaging.nikon.com/imaging/information/story/0056/) | — |
 | No. 55 | [AI Nikkor 18mm f/4](https://imaging.nikon.com/imaging/information/story/0055/) | — |
 | No. 54 | [Nikon Fun Fun LensSet, part 2: Gyogyotto 20 and Dodotto 400](https://imaging.nikon.com/imaging/information/story/0054/) | [Gyogyotto 20](/lens/nikon-gyogyotto-20mm-f8) · [Dodotto 400](/lens/nikon-dodotto-400f8) |
-| No. 53 | [Ai AF Fisheye-Nikkor 16mm f/2.8D](https://imaging.nikon.com/imaging/information/story/0053/) | — |
+| No. 53 | [Ai AF Fisheye-Nikkor 16mm f/2.8D](https://imaging.nikon.com/imaging/information/story/0053/) | [AF Fisheye-Nikkor 16mm f/2.8D](/lens/nikon-af-fisheye-nikkor-16mm-f28d) |
 | No. 52 | [Nikon Fun Fun LensSet, part 1: Gugutto Macro and Fuwatto Soft](https://imaging.nikon.com/imaging/information/story/0052/) | [Gugutto Macro](/lens/nikon-gugotto-120mm-f45) · [Fuwatto Soft](/lens/nikon-fuwatto-soft-90mm-f48) |
 | No. 51 | [Nikon Soft Focus Filters Soft 1 and Soft 2](https://imaging.nikon.com/imaging/information/story/0051/) | — |
 | No. 50 | [Focusing Unit and NIKKOR-Q Auto 400mm F4.5](https://imaging.nikon.com/imaging/information/story/0050/) | — |
@@ -83,13 +83,13 @@ Nikon does not display a publication date on the current index or individual Eng
 | No. 34 | [NIKKOR-H·C 5cm F2](https://imaging.nikon.com/imaging/information/story/0034/) | — |
 | No. 33 | ["Pikaichi" L35AF 35mm f/2.8](https://imaging.nikon.com/imaging/information/story/0033/) | [L35AF 35mm f/2.8](/lens/nikon-l35af-35f28) |
 | No. 32 | [Ai AF DC Nikkor 135mm F2S](https://imaging.nikon.com/imaging/information/story/0032/) | — |
-| No. 31 | [Ai Nikkor ED 200mm F2S (IF)](https://imaging.nikon.com/imaging/information/story/0031/) | — |
+| No. 31 | [Ai Nikkor ED 200mm F2S (IF)](https://imaging.nikon.com/imaging/information/story/0031/) | [AI Nikkor ED 200mm f/2S IF](/lens/nikon-ai-nikkor-200mm-f2-if-ed) |
 | No. 30 | [Ai Nikkor 135mm F2](https://imaging.nikon.com/imaging/information/story/0030/) | [AI Nikkor 135mm F2](/lens/nikon-ai-nikkor-135f2) |
 | No. 29 | [W-Nikkor·C 2.5cm F4](https://imaging.nikon.com/imaging/information/story/0029/) | — |
 | No. 28 | [Ai AF Nikkor 28mm F1.4D](https://imaging.nikon.com/imaging/information/story/0028/) | [AF Nikkor 28mm F1.4D](/lens/nikkor-28f14d) |
 | No. 27 | [Ai Nikkor 35mm F1.4S](https://imaging.nikon.com/imaging/information/story/0027/) | [AI Nikkor 35mm F1.4S](/lens/nikon-ai-nikkor-35mm-f14-s) |
-| No. 26 | [Ai Micro Nikkor 55mm f/2.8, latter part](https://imaging.nikon.com/imaging/information/story/0026/) | — |
-| No. 25 | [Ai Micro Nikkor 55mm F2.8, first part](https://imaging.nikon.com/imaging/information/story/0025/) | — |
+| No. 26 | [Ai Micro Nikkor 55mm f/2.8, latter part](https://imaging.nikon.com/imaging/information/story/0026/) | [AI Micro-Nikkor 55mm f/2.8](/lens/nikon-ai-micro-nikkor-55f28) |
+| No. 25 | [Ai Micro Nikkor 55mm F2.8, first part](https://imaging.nikon.com/imaging/information/story/0025/) | [AI Micro-Nikkor 55mm f/2.8](/lens/nikon-ai-micro-nikkor-55f28) |
 | No. 24 | [Converter lenses for COOLPIX 4300](https://imaging.nikon.com/imaging/information/story/0024/) | — |
 | No. 23 | [AI AF Nikkor 80mm F2.8S](https://imaging.nikon.com/imaging/information/story/0023/) | — |
 | No. 22 | [COOLPIX 4300](https://imaging.nikon.com/imaging/information/story/0022/) | — |

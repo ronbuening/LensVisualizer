@@ -12,7 +12,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **735** lenses scanned
-- **723** visible lenses scanned
+- **722** visible lenses scanned
 - **495** lenses fully covered by trusted chromatic data
 - **493** visible lenses fully covered by trusted chromatic data
 - **489** lenses fully covered by strict Sellmeier data
@@ -720,7 +720,7 @@ Fully strict and line-index-complete trusted lenses are listed above; this table
 | 131 | [LEICA ELMARIT-TL 18mm f/2.8 ASPH.](../../src/lens-data/leica/LeicaElmaritTL18mmf28.data.ts) | 80.0% | 80.0% | 8/10 | 8/10 | 2 | abbe: 2 |
 | 132 | [Nikon AI Micro-Nikkor 105mm f/2.8S](../../src/lens-data/nikon/NikonAIMicroNikkor105mmf28S.data.ts) | 80.0% | 80.0% | 8/10 | 8/10 | 2 | abbe: 2 |
 | 133 | [NIKON NIKKOR Z 28mm f/2.8](../../src/lens-data/nikon/NikonZ28f28.data.ts) | 80.0% | 80.0% | 8/10 | 8/10 | 2 | abbe: 2 |
-| 134 | [NIKON ZOOM-NIKKOR 28-45mm f/4.5 (developmental design)](../../src/lens-data/nikon/NikonZoomNikkor2845mmf45.data.ts) | 80.0% | 80.0% | 8/10 | 8/10 | 2 | abbe: 2 |
+| 134 | [NIKON ZOOM-NIKKOR 28-45mm f/4.5 (developmental design)](../../src/lens-data/nikon/NikonZoomNikkor2845mmf45.data.ts) *(hidden)* | 80.0% | 80.0% | 8/10 | 8/10 | 2 | abbe: 2 |
 | 135 | [SONY FE 24mm f/2.8 G](../../src/lens-data/sony/SonyFE24mmf28G.data.ts) | 80.0% | 80.0% | 8/10 | 8/10 | 2 | abbe: 2 |
 | 136 | [NIKON AF-S NIKKOR 14-24mm f/2.8 G ED](../../src/lens-data/nikon/NikonNikkorAFS1424mmf28.data.ts) | 80.0% | 80.0% | 12/15 | 12/15 | 3 | abbe: 3 |
 | 137 | [MINOLTA AF 28-75mm f/2.8 (D)](../../src/lens-data/minolta/MinoltaAF2875mmf28D.data.ts) | 80.0% | 80.0% | 16/20 | 16/20 | 4 | abbe: 4 |
@@ -1680,13 +1680,6 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 |---|---|---|---|---|
 | 12 | Element 6 (resin layer) | abbe | `Resin layer (source coordinate; formulation unspecified)` | No catalog match |
 | 14A | Element 7 | abbe | `531557 — source optical material (unmatched; supplier unspecified)` | Explicit unmatched/proprietary annotation |
-
-### [NIKON ZOOM-NIKKOR 28-45mm f/4.5 (developmental design)](../../src/lens-data/nikon/NikonZoomNikkor2845mmf45.data.ts) - 80.0% trusted (8/10); 80.0% Sellmeier (8/10) - US 3,771,853
-
-| Surface | Element | Runtime quality | Glass annotation | Reason |
-|---|---|---|---|---|
-| 3 | Element 2 | abbe | `Unmatched (841433; nd=1.84110, νd=43.3)` | Explicit unmatched/proprietary annotation |
-| 4 | Element 3 | abbe | `Unmatched (446672; nd=1.44628, νd=67.2)` | Explicit unmatched/proprietary annotation |
 
 ### [SONY FE 24mm f/2.8 G](../../src/lens-data/sony/SonyFE24mmf28G.data.ts) - 80.0% trusted (8/10); 80.0% Sellmeier (8/10) - JP 2022-030896 A
 

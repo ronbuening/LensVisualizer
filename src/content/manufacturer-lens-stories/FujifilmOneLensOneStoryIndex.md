@@ -18,7 +18,7 @@ Fujifilm's official _One Lens, One Story_ series ran for 12 installments in 2015
 | --- | --- | --- | --- |
 | 2015-11-09 | XF1.4X TC WR and XF50–140mmF2.8 | [One Lens, One Story #12](https://www.fujifilm-x.com/global/stories/one-lens-one-story-12/) | [XF50–140mmF2.8](/lens/fuji-xf-50140mm-f28) |
 | 2015-11-06 | XF1.4X TC WR and XF50–140mmF2.8 | [One Lens, One Story #11](https://www.fujifilm-x.com/global/stories/one-lens-one-story-11/) | [XF50–140mmF2.8](/lens/fuji-xf-50140mm-f28) |
-| 2015-10-08 | XF18–135mmF3.5–5.6 R LM OIS WR | [One Lens, One Story #10](https://www.fujifilm-x.com/global/stories/one-lens-one-story-10/) | — |
+| 2015-10-08 | XF18–135mmF3.5–5.6 R LM OIS WR | [One Lens, One Story #10](https://www.fujifilm-x.com/global/stories/one-lens-one-story-10/) | [XF18–135mm F3.5–5.6](/lens/fujifilm-fujinon-xf-18-135mm-f35-56-r-lm-ois-wr) |
 | 2015-09-11 | XF18mmF2 R | [One Lens, One Story #9](https://www.fujifilm-x.com/global/stories/one-lens-one-story-9/) | [XF18mmF2 R](/lens/fujifilm-xf18f2r) |
 | 2015-09-09 | XF56mmF1.2 R, part 2 | [One Lens, One Story #8](https://www.fujifilm-x.com/global/stories/one-lens-one-story-8/) | [XF56mmF1.2 R](/lens/fujinon-xf56f12r) |
 | 2015-09-07 | XF56mmF1.2 R, part 1 | [One Lens, One Story #7](https://www.fujifilm-x.com/global/stories/one-lens-one-story-7/) | [XF56mmF1.2 R](/lens/fujinon-xf56f12r) |
@@ -27,7 +27,7 @@ Fujifilm's official _One Lens, One Story_ series ran for 12 installments in 2015
 | 2015-08-26 | XF35mmF1.4 R | [One Lens, One Story #4](https://www.fujifilm-x.com/global/stories/one-lens-one-story-4/) | [XF35mmF1.4 R](/lens/fujifilm-xf35-f14-r) |
 | 2015-08-24 | XF60mmF2.4 R Macro | [One Lens, One Story #3](https://www.fujifilm-x.com/global/stories/one-lens-one-story-3/) | [XF60mmF2.4 R Macro](/lens/fujifilm-xf60-f24-r-macro) |
 | 2015-08-21 | XF23mmF1.4 R | [One Lens, One Story #2](https://www.fujifilm-x.com/global/stories/one-lens-one-story-2/) | [XF23mmF1.4 R](/lens/fujinon-xf-23mm-f14-r) |
-| 2015-08-19 | XF14mmF2.8 R | [One Lens, One Story #1](https://www.fujifilm-x.com/global/stories/one-lens-one-story-1/) | — |
+| 2015-08-19 | XF14mmF2.8 R | [One Lens, One Story #1](https://www.fujifilm-x.com/global/stories/one-lens-one-story-1/) | [XF14mm F2.8 R](/lens/fujifilm-fujinon-xf-14mm-f28-r) |
 
 The XF1.4X TC WR does not yet have its own Surface & Stop page. For installments 11 and 12, the catalog link therefore points to the exact XF50–140mmF2.8 lens used throughout both articles.
 

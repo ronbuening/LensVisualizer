@@ -31,6 +31,8 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-zoom-nikkor-28-45-f45",
+  // Example I differs from production; keep hidden pending verification of Example III.
+  visible: false,
   maker: "Nikon",
   name: "NIKON ZOOM-NIKKOR 28-45mm f/4.5 (developmental design)",
   subtitle: "US 3,771,853 — Example I; closely related developmental design, not the exact production formula",

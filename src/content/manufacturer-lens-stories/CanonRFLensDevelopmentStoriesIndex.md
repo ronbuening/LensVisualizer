@@ -29,7 +29,7 @@ They are listed below in the order used by Canon's feature and grouped by lens. 
 
 - [Developer Interview](https://files.canon-europe.com/files/webcontent/rf-lens-world/features/development/index.html#pop03)
 
-The Canon interview covers both zooms; the catalog link is specifically for the F2.8 lens.
+**[Open the RF70–200mm F4 L on Surface & Stop](/lens/canon-rf70-200mm-f4-l-is-usm).**
 
 ## RF15–35mm F2.8 L IS USM
 
@@ -48,4 +48,4 @@ Canon's corporate technology library contains two more substantial RF lens-devel
 | Lens | Official article | Surface & Stop |
 | --- | --- | --- |
 | RF5.2mm F2.8 L Dual Fisheye | [The EOS VR System: Dramatically Expanding VR Imaging Possibilities](https://global.canon/en/technology/canon-tech/interview/vrlens/) | — |
-| RF100–500mm F4.5–7.1 L IS USM | [RF Super-telephoto Zoom Lens](https://global.canon/en/technology/rf-2020.html) | — |
+| RF100–500mm F4.5–7.1 L IS USM | [RF Super-telephoto Zoom Lens](https://global.canon/en/technology/rf-2020.html) | [RF100–500mm F4.5–7.1 L](/lens/canon-rf-100-500mm-f45-71-l-is-usm) |

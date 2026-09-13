@@ -9,7 +9,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **735** lenses scanned (**723** visible)
+- **735** lenses scanned (**722** visible)
 - **7792 / 8381** non-air surfaces use strict catalog Sellmeier data (93.0%)
 - **7807 / 8381** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.2%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
@@ -95,7 +95,6 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [SAMSUNG 30mm f/2](../../src/lens-data/samsung/Samsung30mmf2.data.ts) | US 2010/0149663 A1 | [PDF](../../patents/US20100149663A1.pdf) | 80.0% (4/5) | 80.0% (4/5) | 1 | 3 [glass] (Element 2: `Unmatched (684316 dense-flint class; vendor unresolved)`) | abbe: 1 |
 | [CANON EF-M 15-45mm f/3.5-6.3 IS STM](../../src/lens-data/canon/CanonEFM1545mmf3563ISSTM.data.ts) | JP 2016-118658 A | [PDF](../../patents/JP2016118658A.pdf) | 80.0% (8/10) | 80.0% (8/10) | 2 | 3A [glass] (Element 2: `Unmatched (nd=1.52996, nu_d=55.8; no exact defensible public-catalog identity found)`)<br>17A [glass] (Element 9: `Unmatched (nd=1.52996, nu_d=55.8; no exact defensible public-catalog identity found)`) | abbe: 2 |
 | [Nikon AI Micro-Nikkor 105mm f/2.8S](../../src/lens-data/nikon/NikonAIMicroNikkor105mmf28S.data.ts) | US 4,392,724 | [PDF](../../patents/US4392724.pdf) | 80.0% (8/10) | 80.0% (8/10) | 2 | 12 [glass] (L31 G3 positive meniscus: `Unmatched (595/355 vintage flint; near FF5 / S-FTM16 class but higher nd)`)<br>16 [glass] (L33 G3 positive reconverger: `Unmatched (595/355 vintage flint; near FF5 / S-FTM16 class but higher nd)`) | abbe: 2 |
-| [NIKON ZOOM-NIKKOR 28-45mm f/4.5 (developmental design)](../../src/lens-data/nikon/NikonZoomNikkor2845mmf45.data.ts) | US 3,771,853 | [PDF](../../patents/US3771853.pdf) | 80.0% (8/10) | 80.0% (8/10) | 2 | 3 [glass] (Element 2: `Unmatched (841433; nd=1.84110, νd=43.3)`)<br>4 [glass] (Element 3: `Unmatched (446672; nd=1.44628, νd=67.2)`) | abbe: 2 |
 
 ## Near-Complete Visible Lenses - Non-Glass or Mixed-Material Gaps
 
