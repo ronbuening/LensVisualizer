@@ -3,30 +3,88 @@
  *
  * Presents every visible patent, inventor, assignee, and curated corporate
  * relationship in one zoomable SVG. The ordinary /relationships page remains
- * the focused ego-map workflow; party links from this page hand off to it.
+ * the focused ego-map workflow, available through explicit detail-card links.
  */
 
-import { useMemo, useState } from "react";
-import { useNavigate } from "react-router";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useLocation, useNavigate, useNavigationType } from "react-router";
 import ClientOnly from "../components/ClientOnly.js";
 import PanelErrorBoundary from "../components/errors/PanelErrorBoundary.js";
 import StaticPageShell from "../components/layout/StaticPageShell.js";
 import PatentDetailCard from "../components/relationshipMap/PatentDetailCard.js";
 import UniversalEntityDetailCard from "../components/relationshipMap/UniversalEntityDetailCard.js";
 import UniversalRelationshipMap from "../components/relationshipMap/UniversalRelationshipMap.js";
+import UniversalMapSearch from "../components/relationshipMap/UniversalMapSearch.js";
 import SEOHead from "../components/SEOHead.js";
 import { SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
 import { buildUniversalRelationshipGraph } from "../utils/catalog/universalRelationshipGraph.js";
 import { breadcrumbJsonLd, collectionPageJsonLd } from "../utils/seo/structuredData.js";
-import { canonicalPagePath, canonicalPageUrl } from "../utils/seo/siteUrls.js";
+import { canonicalPageUrl } from "../utils/seo/siteUrls.js";
 import { H1_STYLE } from "../utils/style/pageStyles.js";
 import { panelCard } from "../utils/style/styles.js";
+import { universalMapHash, universalMapNodeFromHash } from "../utils/state/universalMapUrl.js";
 
 const UNIVERSAL_GRAPH = buildUniversalRelationshipGraph();
+const UNIVERSAL_NODE_IDS = new Set(UNIVERSAL_GRAPH.nodes.map((node) => node.id));
 
 export default function UniversalRelationshipMapPage() {
+  const location = useLocation();
   const navigate = useNavigate();
-  const [selectedNodeId, setSelectedNodeId] = useState<string | null>(null);
+  const navigationType = useNavigationType();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  const selectedNodeId = mounted ? universalMapNodeFromHash(location.hash, UNIVERSAL_NODE_IDS) : null;
+  const [focusRequest, setFocusRequest] = useState<{ nodeId: string; requestId: number }>();
+  const [viewResetRequest, setViewResetRequest] = useState(0);
+  const focusSequence = useRef(0);
+  const pendingSelection = useRef<{ hash: string; center: boolean; keyboard: boolean } | undefined>(undefined);
+  const handledLocationKey = useRef<string | undefined>(undefined);
+  const detailsHeadingRef = useRef<HTMLHeadingElement>(null);
+  const focusDetails = useRef(false);
+  const requestNodeFocus = useCallback((nodeId: string) => {
+    setFocusRequest({ nodeId, requestId: ++focusSequence.current });
+  }, []);
+
+  const selectNode = (nodeId: string | null, center = false, keyboard = false) => {
+    if (nodeId !== null && !UNIVERSAL_NODE_IDS.has(nodeId)) return;
+    const hash = universalMapHash(location.hash, nodeId);
+    if (
+      hash !== location.hash &&
+      (nodeId === null || nodeId !== universalMapNodeFromHash(location.hash, UNIVERSAL_NODE_IDS))
+    ) {
+      pendingSelection.current = { hash, center, keyboard };
+      void navigate({ pathname: location.pathname, search: location.search, hash }, { preventScrollReset: true });
+    } else {
+      pendingSelection.current = undefined;
+      focusDetails.current = keyboard;
+      if (center && nodeId) requestNodeFocus(nodeId);
+    }
+  };
+  const focusNode = (nodeId: string, keyboard = false) => selectNode(nodeId, true, keyboard);
+
+  // Selection derives from the committed URL: Back can cancel a concurrent
+  // navigation before it renders. Only consume its camera intent if it commits.
+  useEffect(() => {
+    if (!mounted || handledLocationKey.current === location.key) return;
+    handledLocationKey.current = location.key;
+    const local =
+      navigationType !== "POP" && pendingSelection.current?.hash === location.hash
+        ? pendingSelection.current
+        : undefined;
+    pendingSelection.current = undefined;
+    const nodeId = universalMapNodeFromHash(location.hash, UNIVERSAL_NODE_IDS);
+    focusDetails.current = local?.keyboard ?? false;
+    if (nodeId && (!local || local.center)) requestNodeFocus(nodeId);
+    else {
+      setFocusRequest(undefined);
+      if (!local) setViewResetRequest((previous) => previous + 1);
+    }
+  }, [mounted, location.hash, location.key, navigationType, requestNodeFocus]);
+  useEffect(() => {
+    if (!focusDetails.current) return;
+    detailsHeadingRef.current?.focus({ preventScroll: true });
+    focusDetails.current = false;
+  }, [selectedNodeId, focusRequest]);
   const selectedNode = useMemo(
     () => UNIVERSAL_GRAPH.nodes.find((node) => node.id === selectedNodeId),
     [selectedNodeId],
@@ -108,21 +166,23 @@ export default function UniversalRelationshipMapPage() {
             }
           >
             <PanelErrorBoundary lensKey="universal-relationship-map">
+              <UniversalMapSearch graph={UNIVERSAL_GRAPH} theme={t} onSelectNode={focusNode} />
               <UniversalRelationshipMap
                 graph={UNIVERSAL_GRAPH}
                 theme={t}
                 selectedNodeId={selectedNodeId}
-                onSelectNode={setSelectedNodeId}
+                onSelectNode={(nodeId) => selectNode(nodeId)}
+                focusRequest={focusRequest}
+                viewResetRequest={viewResetRequest}
               />
 
               {selectedNode?.kind === "patent" && (
                 <PatentDetailCard
                   patent={selectedNode.patent}
                   theme={t}
-                  onFocusParty={(ref) =>
-                    void navigate(canonicalPagePath(`/relationships#focus=${ref.role}:${ref.slug}`))
-                  }
-                  onClose={() => setSelectedNodeId(null)}
+                  onFocusParty={(ref, keyboard) => focusNode(`${ref.role}:${ref.slug}`, keyboard)}
+                  onClose={() => selectNode(null)}
+                  headingRef={detailsHeadingRef}
                 />
               )}
 
@@ -131,7 +191,9 @@ export default function UniversalRelationshipMapPage() {
                   graph={UNIVERSAL_GRAPH}
                   node={selectedNode}
                   theme={t}
-                  onClose={() => setSelectedNodeId(null)}
+                  onClose={() => selectNode(null)}
+                  onSelectNode={focusNode}
+                  headingRef={detailsHeadingRef}
                 />
               )}
             </PanelErrorBoundary>

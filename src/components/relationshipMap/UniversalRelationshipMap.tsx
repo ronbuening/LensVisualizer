@@ -7,7 +7,17 @@
  * catalog legible at its initial fit.
  */
 
-import { useMemo, useRef, useState, type CSSProperties, type KeyboardEvent, type PointerEvent } from "react";
+import {
+  useCallback,
+  useEffect,
+  useId,
+  useMemo,
+  useRef,
+  useState,
+  type CSSProperties,
+  type KeyboardEvent,
+  type PointerEvent,
+} from "react";
 import type { Theme } from "../../types/theme.js";
 import type {
   UniversalEdgeKind,
@@ -18,6 +28,8 @@ import type {
 import { pluralize } from "../../utils/text.js";
 import { toggleBtn } from "../../utils/style/styles.js";
 import useViewBoxZoom from "../hooks/useViewBoxZoom.js";
+import useSvgViewport from "../hooks/useSvgViewport.js";
+import UniversalMapOverview from "./UniversalMapOverview.js";
 import { layoutUniversalRelationshipGraph } from "./universalLayout.js";
 
 interface UniversalRelationshipMapProps {
@@ -25,6 +37,8 @@ interface UniversalRelationshipMapProps {
   theme: Theme;
   selectedNodeId: string | null;
   onSelectNode: (nodeId: string | null) => void;
+  focusRequest?: { nodeId: string; requestId: number };
+  viewResetRequest?: number;
 }
 
 function isActivateKey(event: KeyboardEvent): boolean {
@@ -84,13 +98,68 @@ export default function UniversalRelationshipMap({
   theme: t,
   selectedNodeId,
   onSelectNode,
+  focusRequest,
+  viewResetRequest,
 }: UniversalRelationshipMapProps) {
   const layout = useMemo(() => layoutUniversalRelationshipGraph(graph), [graph]);
   const svgRef = useRef<SVGSVGElement>(null);
   const zoom = useViewBoxZoom(layout.width, layout.height, true, svgRef);
+  const viewport = useSvgViewport(svgRef, zoom.viewBox);
+  const overviewId = useId();
+  const [showOverview, setShowOverview] = useState(true);
   const [hoveredNodeId, setHoveredNodeId] = useState<string | null>(null);
+  const [emphasizeConnections, setEmphasizeConnections] = useState(false);
+  const adjacency = useMemo(() => {
+    const neighbors = new Map(graph.nodes.map((node) => [node.id, new Set<string>()]));
+    for (const edge of graph.edges) {
+      neighbors.get(edge.from)?.add(edge.to);
+      neighbors.get(edge.to)?.add(edge.from);
+    }
+    return neighbors;
+  }, [graph]);
+  const selectedNeighborhood = useMemo(
+    () => (selectedNodeId ? new Set([selectedNodeId, ...(adjacency.get(selectedNodeId) ?? [])]) : null),
+    [adjacency, selectedNodeId],
+  );
+  const emphasisActive = emphasizeConnections && selectedNeighborhood !== null;
   const activeNodeId = hoveredNodeId ?? selectedNodeId;
   const activeClusterId = activeNodeId ? layout.nodeById[activeNodeId]?.clusterId : undefined;
+  const handledFocus = useRef<typeof focusRequest>(undefined);
+  const { centerOn } = zoom;
+  const currentZoom = zoom.state.zoom;
+  const handledReset = useRef(0);
+  const { reset } = zoom;
+  useEffect(() => {
+    if (viewResetRequest === undefined || viewResetRequest === handledReset.current) return;
+    handledReset.current = viewResetRequest;
+    reset();
+  }, [viewResetRequest, reset]);
+  const focusNode = useCallback(
+    (nodeId: string) => {
+      const node = layout.nodeById[nodeId];
+      if (!node) return true;
+      const rect = svgRef.current?.getBoundingClientRect();
+      if (!rect?.width || !rect.height) return false;
+      // Labels are nine SVG units high; 1.5 CSS pixels per unit makes them readable.
+      const fitScale = Math.min(rect.width / layout.width, rect.height / layout.height);
+      centerOn(node.x, node.y, Math.max(currentZoom, 1.5 / fitScale));
+      return true;
+    },
+    [layout, centerOn, currentZoom],
+  );
+
+  useEffect(() => {
+    if (!focusRequest || handledFocus.current === focusRequest) return;
+    const applyFocus = () => {
+      if (handledFocus.current === focusRequest) return;
+      if (focusNode(focusRequest.nodeId)) handledFocus.current = focusRequest;
+    };
+    applyFocus();
+    if (handledFocus.current === focusRequest || !svgRef.current) return;
+    const observer = new ResizeObserver(applyFocus);
+    observer.observe(svgRef.current);
+    return () => observer.disconnect();
+  }, [focusRequest, focusNode]);
 
   const graphNodeById = useMemo(() => new Map(graph.nodes.map((node) => [node.id, node])), [graph.nodes]);
   const graphEdgeById = useMemo(() => new Map(graph.edges.map((edge) => [edge.id, edge])), [graph.edges]);
@@ -105,6 +174,34 @@ export default function UniversalRelationshipMap({
   )}, and ${graph.stats.components} connected ${pluralize(graph.stats.components, "component")}`;
 
   const legendItemStyle: CSSProperties = { display: "flex", alignItems: "center", gap: 6 };
+  const overview = (
+    <UniversalMapOverview
+      id={overviewId}
+      layout={layout}
+      theme={t}
+      selectedNodeId={selectedNodeId}
+      view={zoom.state}
+      visibleBounds={
+        viewport.bounds ?? { x: zoom.state.vbX, y: zoom.state.vbY, width: zoom.state.vbW, height: zoom.state.vbH }
+      }
+      onCenterView={zoom.centerOn}
+      onPanView={zoom.panBy}
+      onFitAll={zoom.reset}
+    />
+  );
+  const controlStyle = (active = false, disabled = false): CSSProperties => {
+    const base = toggleBtn(t, active, { flex: 0, hasRightBorder: false, padding: "8px 12px" });
+    // Standalone controls use a full border, so omit the shared segmented-control edge.
+    delete base.borderRight;
+    return {
+      ...base,
+      minHeight: 44,
+      borderRadius: 4,
+      border: `1px solid ${t.toggleBorder}`,
+      opacity: disabled ? 0.5 : 1,
+      cursor: disabled ? "default" : "pointer",
+    };
+  };
   const legendSwatch = (stroke: string, shape: "circle" | "square" | "diamond" | "hexagon"): CSSProperties => ({
     display: "inline-block",
     width: 11,
@@ -118,23 +215,46 @@ export default function UniversalRelationshipMap({
 
   return (
     <div style={{ position: "relative" }}>
-      {zoom.state.zoom > 1 && (
+      <div
+        role="group"
+        aria-label="Map navigation"
+        style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 8 }}
+      >
+        {[
+          { label: "Zoom in", action: zoom.zoomIn, disabled: !zoom.canZoomIn },
+          { label: "Zoom out", action: zoom.zoomOut, disabled: !zoom.canZoomOut },
+          { label: "Fit all", action: zoom.reset, disabled: false },
+          {
+            label: "Center selection",
+            action: () => {
+              if (selectedNodeId) focusNode(selectedNodeId);
+            },
+            disabled: !selectedNodeId,
+          },
+        ].map(({ label, action, disabled }) => (
+          <button key={label} type="button" onClick={action} disabled={disabled} style={controlStyle(false, disabled)}>
+            {label}
+          </button>
+        ))}
         <button
           type="button"
-          onClick={zoom.reset}
-          style={{
-            ...toggleBtn(t, false, { flex: 0, hasRightBorder: false, padding: "4px 10px" }),
-            position: "absolute",
-            top: 8,
-            right: 8,
-            zIndex: 1,
-            borderRadius: 4,
-            border: `1px solid ${t.toggleBorder}`,
-          }}
+          aria-pressed={emphasizeConnections}
+          disabled={!selectedNodeId}
+          onClick={() => setEmphasizeConnections((value) => !value)}
+          style={controlStyle(emphasizeConnections, !selectedNodeId)}
         >
-          Reset view
+          Emphasize connections
         </button>
-      )}
+        <button
+          type="button"
+          aria-expanded={showOverview}
+          aria-controls={showOverview ? overviewId : undefined}
+          onClick={() => setShowOverview((value) => !value)}
+          style={controlStyle(showOverview)}
+        >
+          Overview
+        </button>
+      </div>
 
       <div
         style={{
@@ -145,6 +265,7 @@ export default function UniversalRelationshipMap({
           minHeight: 520,
           maxHeight: 760,
           background: t.panelBg,
+          position: "relative",
         }}
       >
         <svg
@@ -229,7 +350,10 @@ export default function UniversalRelationshipMap({
                 stroke={edgeStroke(t, edge.kind)}
                 strokeWidth={active ? 2.5 : corporate ? 1.35 : 0.8}
                 strokeDasharray={edgeDash(edge.kind)}
-                opacity={active ? 1 : corporate ? 0.62 : 0.3}
+                opacity={
+                  (active ? 1 : corporate ? 0.62 : 0.3) *
+                  (emphasisActive && edge.from !== selectedNodeId && edge.to !== selectedNodeId ? 0.15 : 1)
+                }
                 pointerEvents="none"
               >
                 <title>{relationshipTitle(edge, nodeNames)}</title>
@@ -263,6 +387,7 @@ export default function UniversalRelationshipMap({
                 role="button"
                 tabIndex={0}
                 aria-label={`Select ${nodeRoleLabel(node.kind)} ${node.name}`}
+                opacity={emphasisActive && !selectedNeighborhood?.has(node.id) ? 0.15 : 1}
                 style={{ cursor: "pointer" }}
                 onPointerDown={stopNodePointerDown}
                 onPointerEnter={() => setHoveredNodeId(node.id)}
@@ -328,7 +453,11 @@ export default function UniversalRelationshipMap({
             );
           })}
         </svg>
+        {showOverview && viewport.width >= 600 && (
+          <div style={{ position: "absolute", right: 8, bottom: 8 }}>{overview}</div>
+        )}
       </div>
+      {showOverview && viewport.width < 600 && <div style={{ marginTop: 8 }}>{overview}</div>}
 
       <div
         style={{

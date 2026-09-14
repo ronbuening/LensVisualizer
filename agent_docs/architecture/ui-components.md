@@ -101,6 +101,29 @@ unique cross-neighborhood patent count, then neighborhood node count. `Universal
 halos inside each disconnected-network boundary, keeps every edge at its edge-kind brightness within and between
 neighborhoods, and draws nodes above both boundary layers.
 
+`UniversalMapSearch` searches only graph nodes and uses the shared portal dropdown with combobox keyboard semantics.
+`src/utils/catalog/universalRelationshipSearch.ts` normalizes names and compact patent numbers, ranking exact matches,
+prefixes, then reordered word matches with deterministic catalog sorting. The dropdown shows at most eight results;
+Enter selects the highlighted or first result and never navigates to a search page; it is ignored during text composition.
+Escape, outside interaction, and Tab dismiss it; selection clears the query and retains input focus.
+Search selection opens the existing details and issues a numbered focus request; the renderer measures its SVG and
+centers at readable magnification through `useViewBoxZoom.centerOn`. Requests are consumed once, including repeated
+requests for the same node, so subsequent pan/zoom gestures remain under the visitor's control.
+The persistent navigation controls reuse that hook for bounded zoom, fit-all, and readable selection centering;
+fitting the viewport leaves selection and details intact.
+Universal detail cards use the same selection/focus path for related patents, inventors, assignees, organizations,
+and families. Explicit focused-map and source links remain available. Keyboard navigation between cards focuses the
+replacement heading without scrolling; pointer navigation leaves page focus alone.
+The page owns selection history and camera intent; see [Routing and content](routing-and-content.md#pages-and-routes)
+for the fragment, hydration, and Back/Forward contract.
+The optional connection emphasis uses memoized adjacency to retain the selected node, its immediate neighbors, and
+incident edges at normal opacity while multiplying other node/edge opacity by 0.15. Hover does not change membership,
+all elements remain operable, and clearing selection temporarily suspends emphasis without forgetting the toggle.
+`UniversalMapOverview` reuses the same layout for a cached simplified scene and shows the visible viewport measured
+through the main SVG's inverse screen transform (`useSvgViewport` / `svgCoordinates`). Click/tap centers without
+changing selection or zoom; arrow keys pan and Home fits the map. The overview sits inside wide viewports and below
+viewports narrower than 600 CSS pixels, with a local visibility toggle. It does not run another layout or filter the graph.
+
 ## Markdown Renderer
 
 `ThemedMarkdown` has an `article` variant (heading IDs, React Router internal links, special image renderers, GFM,
