@@ -30,8 +30,8 @@ export const CHANGELOG: ChangelogEntry[] = [
   },
   {
     date: "2026-09-14",
-    type: "improvement",
-    summary: "Refined Nikon 28–45mm patent geometry and expanded glass dispersion coverage",
+    type: "lens",
+    summary: "Added Nikon Zoom-Nikkor 28–45mm f/4.5 from patent Embodiment III",
   },
   {
     date: "2026-09-13",
