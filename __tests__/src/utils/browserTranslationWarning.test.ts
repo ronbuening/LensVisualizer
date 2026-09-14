@@ -36,6 +36,11 @@ describe("browser translation warning", () => {
     expect(warning?.textContent).toContain("Browser page translation can interfere");
     expect(warning?.getAttribute("translate")).toBe("no");
     expect(warning?.classList.contains("notranslate")).toBe(true);
+    expect(warning?.style.position).toBe("sticky");
+
+    const reload = warning?.querySelector("button");
+    expect(reload?.type).toBe("button");
+    expect(reload?.textContent).toBe("Reload");
   });
 
   it("recognizes Microsoft Edge translation markers", () => {

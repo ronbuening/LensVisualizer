@@ -3,8 +3,9 @@
  *
  * The banner is deliberately created outside the React root: translation can
  * leave React unable to commit the very fallback that would otherwise explain
- * the problem. Normal browser sessions get only two narrow attribute observers
- * and no added DOM.
+ * the problem. It sticks to the top of the viewport so it stays visible when
+ * the viewer is scrolled. Normal browser sessions get only two narrow
+ * attribute observers and no added DOM.
  */
 
 const GOOGLE_TRANSLATION_CLASSES = ["translated-ltr", "translated-rtl"];
@@ -34,13 +35,22 @@ function createWarning(doc: Document): HTMLDivElement {
   message.dataset.translationWarningMessage = "";
   warning.append(message);
 
-  const reload = doc.createElement("a");
-  reload.href = doc.defaultView?.location.href ?? "/";
+  // A real reload, not a same-URL link: a link captured at creation goes stale
+  // after SPA navigation and does not reload when the URL carries a hash.
+  const reload = doc.createElement("button");
+  reload.type = "button";
   reload.textContent = "Reload";
+  reload.addEventListener("click", () => doc.defaultView?.location.reload());
   Object.assign(reload.style, {
+    background: "none",
+    border: "none",
     color: "#fff7ed",
+    cursor: "pointer",
+    font: "inherit",
     fontWeight: "700",
     marginLeft: "0.45rem",
+    padding: "0",
+    textDecoration: "underline",
   });
   warning.append(reload);
 
@@ -52,8 +62,9 @@ function createWarning(doc: Document): HTMLDivElement {
     fontSize: "0.85rem",
     lineHeight: "1.45",
     padding: "0.65rem 1rem",
-    position: "relative",
+    position: "sticky",
     textAlign: "center",
+    top: "0",
     zIndex: "10000",
   });
 

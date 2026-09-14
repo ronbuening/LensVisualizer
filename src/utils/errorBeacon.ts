@@ -7,8 +7,12 @@
  * (URLs, emails, and long opaque tokens stripped) and truncated before
  * sending. Startup events wait briefly for the async analytics script, and
  * beacons are deduped and capped per session so a render loop cannot flood
- * analytics.
+ * analytics. Errors raised while browser page translation is active are
+ * reported under a `translated-` path prefix so they can be separated from
+ * application errors.
  */
+
+import { isBrowserTranslationActive } from "./browserTranslationWarning.js";
 
 const MAX_MESSAGE_LENGTH = 120;
 const MAX_KEY_LENGTH = 60;
@@ -111,6 +115,11 @@ function schedulePendingBeaconFlush(): void {
  * per-session cap is reached. If the async analytics script is still loading,
  * retain the event for up to 30 seconds and flush it once count() is ready.
  *
+ * When Chrome or Edge page translation is active, the synthetic path gains a
+ * `translated-` prefix: translation rewrites React-owned text nodes, and the
+ * resulting insertBefore/removeChild failures are browser-induced, not
+ * application bugs.
+ *
  * @param source - where the error was caught (boundary or listener name)
  * @param error - the caught error or rejection reason
  * @param lensKey - offending lens key when known; preferred as the path segment
@@ -119,7 +128,8 @@ export function reportErrorBeacon(source: string, error: unknown, lensKey?: stri
   if (!import.meta.env.PROD) return;
   if (typeof window === "undefined") return;
   flushPendingBeacons();
-  const path = `/_error/${errorBeaconKey(lensKey || source)}`;
+  const prefix = isBrowserTranslationActive() ? "translated-" : "";
+  const path = `/_error/${prefix}${errorBeaconKey(lensKey || source)}`;
   if (sentPaths.has(path) || pendingBeacons.has(path)) return;
   if (sentPaths.size + pendingBeacons.size >= MAX_BEACONS_PER_SESSION) return;
 

@@ -49,7 +49,7 @@ describe("ComparisonContent", () => {
     const LB = buildSimplePositiveElementLens("comparison-b");
     const dispatch = vi.fn();
 
-    render(
+    const { container } = render(
       <ComparisonContent
         theme={themes.dark}
         isWide={true}
@@ -101,6 +101,8 @@ describe("ComparisonContent", () => {
     });
     fireEvent.click(screen.getByRole("button", { name: "Movement" }));
     expect(dispatch).toHaveBeenCalledWith({ type: SET_GROUP_MOVEMENT, open: true, mode: "focus" });
+    // Browser page translation opt-out on the comparison root (agent_docs/gotchas.md).
+    expect(container.firstElementChild?.getAttribute("translate")).toBe("no");
   });
 
   it("renders an error display and suppresses sliders for failed comparison builds", () => {
