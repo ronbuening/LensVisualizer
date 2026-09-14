@@ -168,7 +168,9 @@ const LENS_DATA = {
       vd: 68.62,
       indexReference: "d",
       fl: 21.077979,
-      glass: "593686 — low-dispersion crown class (supplier unresolved)",
+      glass: "593686 — FCD515-compatible ED crown proxy (supplier unresolved)",
+      apd: "inferred",
+      apdNote: "L21 correlates with the ED element in Fujifilm’s published optical construction; the compatible FCD515 curve has positive anomalous partial dispersion. Production correlation only, not a patent APD designation or supplier identity.",
       cemented: "C3",
     },
     {
@@ -221,6 +223,8 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 23.149775,
       glass: "003193 — high-index high-dispersion class (supplier unresolved)",
+      apd: "inferred",
+      apdNote: "Compatible E-FDS2 catalog curve gives ΔPgF ≈ +0.034. Inferred high-dispersion APD class, not ED or an identified patent glass supplier.",
     },
     {
       id: 13,
@@ -402,7 +406,7 @@ const LENS_DATA = {
   /* ── Focus configuration ── */
   closeFocusM: 0.2,
   focusDescription:
-    "PUBLISHED: G2 (L21-L26) moves 2.50 mm objectward to the 110 mm state; G1, STO, G3, and IMG stay fixed.",
+    "Inner focus: G2 (L21–L26) moves 2.50 mm toward the object. The published close state places the object 110 mm ahead of the first surface; the other groups and image plane stay fixed.",
 
   /* ── Aperture configuration ── */
   nominalFno: 1.44,

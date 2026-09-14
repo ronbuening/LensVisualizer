@@ -124,6 +124,8 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 51.35946006519035,
       glass: "497816 low-dispersion / ED class (supplier unspecified)",
+      apd: "inferred",
+      apdNote: "The compatible H-FK61 curve gives ΔPgF ≈ +0.031. The sole aspherical element also correlates with Fujifilm’s published ED asphere; neither identifies the patent glass supplier.",
       role: "Dual-asphere positive element immediately behind the stop in G1b.",
     },
     {
@@ -277,7 +279,7 @@ const LENS_DATA = {
 
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "12" },
-    { text: "G2", fromSurface: "13", toSurface: "14" },
+    { text: "G2 FOCUS", fromSurface: "13", toSurface: "14" },
     { text: "G3", fromSurface: "15", toSurface: "17" },
   ],
   doublets: [
@@ -287,7 +289,7 @@ const LENS_DATA = {
 
   closeFocusM: 0.39,
   focusDescription:
-    "CONSTRAINED_RECONSTRUCTION: only G2/L21 moves imageward. Infinity and 1 m DD[12]/DD[14] states are patent-published; the 0.39 m endpoint is code-solved from FUJIFILM's sensor-plane MFD with DD[12]+DD[14]=11.53 mm, yielding 7.464571581644397/4.065428418355603 mm. The reconstruction is not a patent-published spacing state.",
+    "Inner focus: G2 (L21) moves toward the image. Infinity and 1 m states are published; the 0.39 m endpoint is reconstructed from the production minimum focus distance.",
 
   nominalFno: 2.06,
   fstopSeries: [2.06, 2.8, 4, 5.6, 8, 11, 16],

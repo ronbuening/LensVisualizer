@@ -149,8 +149,8 @@ const LENS_DATA = {
   surfaces: [
     { label: "1", R: 54.03776, d: 3.00958, nd: 1.62041, elemId: 1, sd: 17.5 },
     { label: "2", R: 19.31363, d: 7.77, nd: 1.0, elemId: 0, sd: 13.9 },
-    { label: "3", R: 138.70486, d: 14.34342, nd: 1.66755, elemId: 2, sd: 12.8 },
-    { label: "4", R: -87.51351, d: 0.09842, nd: 1.0, elemId: 0, sd: 9.5 },
+    { label: "3", R: 138.70486, d: 14.34342, nd: 1.66755, elemId: 2, sd: 14.5 },
+    { label: "4", R: -87.51351, d: 0.09842, nd: 1.0, elemId: 0, sd: 11.2 },
     { label: "5", R: 26.69513, d: 2.45014, nd: 1.58913, elemId: 3, sd: 8.9 },
     { label: "6", R: 10.70447, d: 7.15358, nd: 1.0, elemId: 0, sd: 7.7 },
     { label: "7", R: 24.1388, d: 6.98264, nd: 1.64328, elemId: 4, sd: 7.7 },

@@ -21,8 +21,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Selection criterion | Elements |
 |---|---:|
-| Smallest reference-index residual | 1505 |
-| Evidence-source priority | 828 |
+| Smallest reference-index residual | 1504 |
+| Evidence-source priority | 829 |
 | Vendor context | 272 |
 | Stable canonical-name order | 7 |
 | Smallest Abbe residual | 2 |
@@ -579,7 +579,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `583595 — crown class (supplier unresolved)` | 1.58313 / 59.46 (d) | M-BACD12 — smallest d-line \|Δn\| (1.6e-8 vs 2.7e-4) | Q-SK52S (Hikari, code, preferred code row) | 3 | [FUJIFILM FUJINON XF 18mm f/1.4 R LM WR](../../src/lens-data/fujifilm/FujifilmFujinonXf18mmf14RLMWR.data.ts) L11 |
 | `487704 — low-dispersion crown class (supplier unresolved)` | 1.48749 / 70.42 (d) | N-FK5 — smallest d-line \|Δn\| (3.7e-9 vs 4.1e-8) | H-QK3L (CDGM, code, alternate code row)<br>FK5 (Sumita, code, alternate code row)<br>FC5 (Hoya, code, alternate code row) | 1 | [FUJIFILM FUJINON XF 18mm f/1.4 R LM WR](../../src/lens-data/fujifilm/FujifilmFujinonXf18mmf14RLMWR.data.ts) L14 |
 | `954323 — high-index lanthanum class (supplier unresolved)` | 1.95375 / 32.32 (d) | J-LASFH21 — smallest d-line \|Δn\| (3.1e-8 vs 2.8e-7) | TAFD45L (Hoya, code, alternate code row)<br>S-LAH98 (Ohara, code, preferred code row)<br>TAFD45 (Hoya, code, alternate code row) | 1 | [FUJIFILM FUJINON XF 18mm f/1.4 R LM WR](../../src/lens-data/fujifilm/FujifilmFujinonXf18mmf14RLMWR.data.ts) L17 |
-| `593686 — low-dispersion crown class (supplier unresolved)` | 1.59282 / 68.62 (d) | FCD515 — smallest d-line \|Δn\| (4.3e-6 vs 6.8e-6) | FCD505 (Hoya, code, preferred code row) | 1 | [FUJIFILM FUJINON XF 18mm f/1.4 R LM WR](../../src/lens-data/fujifilm/FujifilmFujinonXf18mmf14RLMWR.data.ts) L21 |
+| `593686 — FCD515-compatible ED crown proxy (supplier unresolved)` | 1.59282 / 68.62 (d) | FCD515 — direct name evidence outranks six-digit code evidence. | FCD505 (Hoya, code, preferred code row) | 1 | [FUJIFILM FUJINON XF 18mm f/1.4 R LM WR](../../src/lens-data/fujifilm/FujifilmFujinonXf18mmf14RLMWR.data.ts) L21 |
 | `773496 — high-index moderate-dispersion class (supplier unresolved)` | 1.77250 / 49.61 (d) | J-LASF016 — smallest d-line \|Δn\| (1.7e-8 vs 6.4e-8) | N-LAF34 (Schott, code, alternate code row)<br>S-LAH66 (Ohara, code, preferred code row)<br>S-LAH66N (Ohara, code, alternate code row) | 1 | [FUJIFILM FUJINON XF 18mm f/1.4 R LM WR](../../src/lens-data/fujifilm/FujifilmFujinonXf18mmf14RLMWR.data.ts) L23 |
 | `847238 — dense-flint class (supplier unresolved)` | 1.84667 / 23.79 (d) | FDS90 — smallest d-line \|Δn\| (6.8e-6 vs 1.0e-5) | H-ZF52 (CDGM, code, alternate code row)<br>J-SF03 (Hikari, code, alternate code row)<br>S-TIH53W (Ohara, code, alternate code row)<br>S-TIH53 (Ohara, code, preferred code row) | 1 | [FUJIFILM FUJINON XF 18mm f/1.4 R LM WR](../../src/lens-data/fujifilm/FujifilmFujinonXf18mmf14RLMWR.data.ts) L32 |
 | `S-NPH1 (OHARA) / 808-228 short flint` | 1.80809 / 22.76 (d) | S-NPH1 — direct name evidence outranks six-digit code evidence. | FD225 (Hoya, code, vendor ✗, alternate code row) | 1 | [FUJIFILM FUJINON XF 23mm f/1.4 R LM WR](../../src/lens-data/fujifilm/FujifilmXF23mmf14RLMWR.data.ts) L13 |
