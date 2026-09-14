@@ -102,6 +102,20 @@ export default function UniversalRelationshipMap({
   const svgRef = useRef<SVGSVGElement>(null);
   const zoom = useViewBoxZoom(layout.width, layout.height, true, svgRef);
   const [hoveredNodeId, setHoveredNodeId] = useState<string | null>(null);
+  const [emphasizeConnections, setEmphasizeConnections] = useState(false);
+  const adjacency = useMemo(() => {
+    const neighbors = new Map(graph.nodes.map((node) => [node.id, new Set<string>()]));
+    for (const edge of graph.edges) {
+      neighbors.get(edge.from)?.add(edge.to);
+      neighbors.get(edge.to)?.add(edge.from);
+    }
+    return neighbors;
+  }, [graph]);
+  const selectedNeighborhood = useMemo(
+    () => (selectedNodeId ? new Set([selectedNodeId, ...(adjacency.get(selectedNodeId) ?? [])]) : null),
+    [adjacency, selectedNodeId],
+  );
+  const emphasisActive = emphasizeConnections && selectedNeighborhood !== null;
   const activeNodeId = hoveredNodeId ?? selectedNodeId;
   const activeClusterId = activeNodeId ? layout.nodeById[activeNodeId]?.clusterId : undefined;
   const handledFocus = useRef<typeof focusRequest>(undefined);
@@ -154,6 +168,14 @@ export default function UniversalRelationshipMap({
   )}, and ${graph.stats.components} connected ${pluralize(graph.stats.components, "component")}`;
 
   const legendItemStyle: CSSProperties = { display: "flex", alignItems: "center", gap: 6 };
+  const controlStyle = (active = false, disabled = false): CSSProperties => ({
+    ...toggleBtn(t, active, { flex: 0, hasRightBorder: false, padding: "8px 12px" }),
+    minHeight: 44,
+    borderRadius: 4,
+    border: `1px solid ${t.toggleBorder}`,
+    opacity: disabled ? 0.5 : 1,
+    cursor: disabled ? "default" : "pointer",
+  });
   const legendSwatch = (stroke: string, shape: "circle" | "square" | "diamond" | "hexagon"): CSSProperties => ({
     display: "inline-block",
     width: 11,
@@ -184,23 +206,19 @@ export default function UniversalRelationshipMap({
             disabled: !selectedNodeId,
           },
         ].map(({ label, action, disabled }) => (
-          <button
-            key={label}
-            type="button"
-            onClick={action}
-            disabled={disabled}
-            style={{
-              ...toggleBtn(t, false, { flex: 0, hasRightBorder: false, padding: "8px 12px" }),
-              minHeight: 44,
-              borderRadius: 4,
-              border: `1px solid ${t.toggleBorder}`,
-              opacity: disabled ? 0.5 : 1,
-              cursor: disabled ? "default" : "pointer",
-            }}
-          >
+          <button key={label} type="button" onClick={action} disabled={disabled} style={controlStyle(false, disabled)}>
             {label}
           </button>
         ))}
+        <button
+          type="button"
+          aria-pressed={emphasizeConnections}
+          disabled={!selectedNodeId}
+          onClick={() => setEmphasizeConnections((value) => !value)}
+          style={controlStyle(emphasizeConnections, !selectedNodeId)}
+        >
+          Emphasize connections
+        </button>
       </div>
 
       <div
@@ -296,7 +314,10 @@ export default function UniversalRelationshipMap({
                 stroke={edgeStroke(t, edge.kind)}
                 strokeWidth={active ? 2.5 : corporate ? 1.35 : 0.8}
                 strokeDasharray={edgeDash(edge.kind)}
-                opacity={active ? 1 : corporate ? 0.62 : 0.3}
+                opacity={
+                  (active ? 1 : corporate ? 0.62 : 0.3) *
+                  (emphasisActive && edge.from !== selectedNodeId && edge.to !== selectedNodeId ? 0.15 : 1)
+                }
                 pointerEvents="none"
               >
                 <title>{relationshipTitle(edge, nodeNames)}</title>
@@ -330,6 +351,7 @@ export default function UniversalRelationshipMap({
                 role="button"
                 tabIndex={0}
                 aria-label={`Select ${nodeRoleLabel(node.kind)} ${node.name}`}
+                opacity={emphasisActive && !selectedNeighborhood?.has(node.id) ? 0.15 : 1}
                 style={{ cursor: "pointer" }}
                 onPointerDown={stopNodePointerDown}
                 onPointerEnter={() => setHoveredNodeId(node.id)}

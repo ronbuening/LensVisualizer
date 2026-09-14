@@ -148,6 +148,62 @@ function makeMultiHubGraph(): UniversalRelationshipGraph {
 }
 
 describe("UniversalRelationshipMap", () => {
+  it("emphasizes only the selected neighborhood, keeps it anchored during hover, and resumes after clearing", () => {
+    const props = { graph, theme: themes.dark, onSelectNode: vi.fn() };
+    const { container, getByRole, rerender } = renderWithRouter(
+      <UniversalRelationshipMap {...props} selectedNodeId={author.id} />,
+    );
+    const positions = [...container.querySelectorAll("circle")].map((node) => [
+      node.getAttribute("cx"),
+      node.getAttribute("cy"),
+    ]);
+    const edgeCount = container.querySelectorAll("line").length;
+    const toggle = getByRole("button", { name: "Emphasize connections" });
+    expect(toggle.getAttribute("aria-pressed")).toBe("false");
+    fireEvent.click(toggle);
+    const assigneeButton = getByRole("button", { name: "Select assignee Example Optics" });
+    expect(assigneeButton.getAttribute("opacity")).toBe("0.15");
+    expect(getByRole("button", { name: "Select inventor Ada Inventor" }).getAttribute("opacity")).toBe("1");
+    expect(getByRole("button", { name: "Select patent US 1" }).getAttribute("opacity")).toBe("1");
+    fireEvent.pointerEnter(assigneeButton);
+    expect(assigneeButton.getAttribute("opacity")).toBe("0.15");
+    fireEvent.click(assigneeButton);
+    expect(props.onSelectNode).toHaveBeenCalledWith(assignee.id);
+    expect(container.querySelectorAll("line")).toHaveLength(edgeCount);
+    expect(
+      [...container.querySelectorAll("circle")].map((node) => [node.getAttribute("cx"), node.getAttribute("cy")]),
+    ).toEqual(positions);
+    rerender(<UniversalRelationshipMap {...props} selectedNodeId={null} />);
+    expect((toggle as HTMLButtonElement).disabled).toBe(true);
+    expect(toggle.getAttribute("aria-pressed")).toBe("true");
+    expect(assigneeButton.getAttribute("opacity")).toBe("1");
+    rerender(<UniversalRelationshipMap {...props} selectedNodeId={"family:example"} />);
+    expect(getByRole("button", { name: "Select inventor Ada Inventor" }).getAttribute("opacity")).toBe("0.15");
+    expect(assigneeButton.getAttribute("opacity")).toBe("1");
+  });
+
+  it.each(["authorship", "assignment", "successor", "acquisition", "subsidiary", "family"] as const)(
+    "keeps incident %s edges bright and dims unrelated edges",
+    (kind) => {
+      const edges = graph.edges.map((edge) => ({ ...edge, kind }));
+      const { container, getByRole } = renderWithRouter(
+        <UniversalRelationshipMap
+          graph={{ ...graph, edges }}
+          theme={themes.dark}
+          selectedNodeId={author.id}
+          onSelectNode={vi.fn()}
+        />,
+      );
+      const lines = [...container.querySelectorAll("line")];
+      const opacities = lines.map((line) => Number(line.getAttribute("opacity")));
+      fireEvent.click(getByRole("button", { name: "Emphasize connections" }));
+      lines.forEach((line, i) =>
+        expect(Number(line.getAttribute("opacity"))).toBeCloseTo(
+          opacities[i] * (edges[i].from === author.id || edges[i].to === author.id ? 1 : 0.15),
+        ),
+      );
+    },
+  );
   it("centers readable search targets and repeats requests after a viewport reset", () => {
     const rect = vi
       .spyOn(SVGSVGElement.prototype, "getBoundingClientRect")

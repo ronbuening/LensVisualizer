@@ -115,6 +115,9 @@ Hydration and Back/Forward restore readable focus; an absent or unknown node res
 and detail dismissal update history without moving the camera. Pan/zoom and other display settings remain local.
 Selection derives from the committed router location rather than mirrored component state: Back may interrupt a
 concurrent navigation before its intermediate location renders. Camera intent is consumed only when that URL commits.
+The optional connection emphasis uses memoized adjacency to retain the selected node, its immediate neighbors, and
+incident edges at normal opacity while multiplying other node/edge opacity by 0.15. Hover does not change membership,
+all elements remain operable, and clearing selection temporarily suspends emphasis without forgetting the toggle.
 
 ## Markdown Renderer
 
