@@ -7,7 +7,16 @@
  * catalog legible at its initial fit.
  */
 
-import { useMemo, useRef, useState, type CSSProperties, type KeyboardEvent, type PointerEvent } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type CSSProperties,
+  type KeyboardEvent,
+  type PointerEvent,
+} from "react";
 import type { Theme } from "../../types/theme.js";
 import type {
   UniversalEdgeKind,
@@ -25,6 +34,7 @@ interface UniversalRelationshipMapProps {
   theme: Theme;
   selectedNodeId: string | null;
   onSelectNode: (nodeId: string | null) => void;
+  focusRequest?: { nodeId: string; requestId: number };
 }
 
 function isActivateKey(event: KeyboardEvent): boolean {
@@ -84,6 +94,7 @@ export default function UniversalRelationshipMap({
   theme: t,
   selectedNodeId,
   onSelectNode,
+  focusRequest,
 }: UniversalRelationshipMapProps) {
   const layout = useMemo(() => layoutUniversalRelationshipGraph(graph), [graph]);
   const svgRef = useRef<SVGSVGElement>(null);
@@ -91,6 +102,35 @@ export default function UniversalRelationshipMap({
   const [hoveredNodeId, setHoveredNodeId] = useState<string | null>(null);
   const activeNodeId = hoveredNodeId ?? selectedNodeId;
   const activeClusterId = activeNodeId ? layout.nodeById[activeNodeId]?.clusterId : undefined;
+  const handledFocus = useRef<typeof focusRequest>(undefined);
+  const { centerOn } = zoom;
+  const currentZoom = zoom.state.zoom;
+  const focusNode = useCallback(
+    (nodeId: string) => {
+      const node = layout.nodeById[nodeId];
+      if (!node) return true;
+      const rect = svgRef.current?.getBoundingClientRect();
+      if (!rect?.width || !rect.height) return false;
+      // Labels are nine SVG units high; 1.5 CSS pixels per unit makes them readable.
+      const fitScale = Math.min(rect.width / layout.width, rect.height / layout.height);
+      centerOn(node.x, node.y, Math.max(currentZoom, 1.5 / fitScale));
+      return true;
+    },
+    [layout, centerOn, currentZoom],
+  );
+
+  useEffect(() => {
+    if (!focusRequest || handledFocus.current === focusRequest) return;
+    const applyFocus = () => {
+      if (handledFocus.current === focusRequest) return;
+      if (focusNode(focusRequest.nodeId)) handledFocus.current = focusRequest;
+    };
+    applyFocus();
+    if (handledFocus.current === focusRequest || !svgRef.current) return;
+    const observer = new ResizeObserver(applyFocus);
+    observer.observe(svgRef.current);
+    return () => observer.disconnect();
+  }, [focusRequest, focusNode]);
 
   const graphNodeById = useMemo(() => new Map(graph.nodes.map((node) => [node.id, node])), [graph.nodes]);
   const graphEdgeById = useMemo(() => new Map(graph.edges.map((edge) => [edge.id, edge])), [graph.edges]);

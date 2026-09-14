@@ -50,9 +50,9 @@ flowchart LR
   n_src_pages_src_pages_MountPage_tsx --> |5| n_external_src_utils_catalog
   n_src_pages_src_pages_RelationshipMapPage_tsx --> |5| n_external_src_utils_catalog
   n_src_pages_src_pages_RelationshipMapPage_tsx --> |4| n_external_src_components_relationshipMap
+  n_src_pages_src_pages_UniversalRelationshipMapPage_tsx --> |4| n_external_src_components_relationshipMap
   n_src_pages_src_pages_MakersIndexPage_tsx --> |4| n_external_src_utils_catalog
   n_src_pages_src_pages_MakerPage_tsx --> |3| n_external_src_components_content
-  n_src_pages_src_pages_UniversalRelationshipMapPage_tsx --> |3| n_external_src_components_relationshipMap
   n_src_pages_src_pages_FormatPage_tsx --> |3| n_external_src_utils_catalog
   n_src_pages_src_pages_ArticlePage_tsx --> |2| n_external_pkg_react
   n_src_pages_src_pages_ArticlesPage_tsx --> |2| n_external_src_components_content
@@ -114,5 +114,5 @@ flowchart LR
 | `PatentsIndexPage.tsx` | Route-level React page | src/components/content (5), src/utils/catalog (2), src/utils/style (2), src/components/layout, src/components/SEOHead.tsx, +4 more | src/routes | default, PatentsIndexPage |
 | `RelationshipMapPage.tsx` | Route-level React page | src/utils/catalog (5), src/components/relationshipMap (4), src/utils/seo (2), src/utils/style (2), package:react, +5 more | src/routes | default, RelationshipMapPage |
 | `SearchPage.tsx` | Route-level React page | src/components/search (2), package:react, package:react-router, src/components/layout, src/components/SEOHead.tsx, +3 more | src/routes | default, SearchPage |
-| `UniversalRelationshipMapPage.tsx` | Route-level React page | src/components/relationshipMap (3), src/utils/catalog (2), src/utils/seo (2), src/utils/style (2), package:react, +5 more | src/routes | default, UniversalRelationshipMapPage |
+| `UniversalRelationshipMapPage.tsx` | Route-level React page | src/components/relationshipMap (4), src/utils/catalog (2), src/utils/seo (2), src/utils/style (2), package:react, +5 more | src/routes | default, UniversalRelationshipMapPage |
 | `UpdatesPage.tsx` | Route-level React page | src/utils/catalog (2), src/utils/content (2), package:react, package:react-router, src/components/content, +4 more | src/routes | default, UpdatesPage |

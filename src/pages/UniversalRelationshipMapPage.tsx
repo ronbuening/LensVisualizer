@@ -14,6 +14,7 @@ import StaticPageShell from "../components/layout/StaticPageShell.js";
 import PatentDetailCard from "../components/relationshipMap/PatentDetailCard.js";
 import UniversalEntityDetailCard from "../components/relationshipMap/UniversalEntityDetailCard.js";
 import UniversalRelationshipMap from "../components/relationshipMap/UniversalRelationshipMap.js";
+import UniversalMapSearch from "../components/relationshipMap/UniversalMapSearch.js";
 import SEOHead from "../components/SEOHead.js";
 import { SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
 import { buildUniversalRelationshipGraph } from "../utils/catalog/universalRelationshipGraph.js";
@@ -27,6 +28,11 @@ const UNIVERSAL_GRAPH = buildUniversalRelationshipGraph();
 export default function UniversalRelationshipMapPage() {
   const navigate = useNavigate();
   const [selectedNodeId, setSelectedNodeId] = useState<string | null>(null);
+  const [focusRequest, setFocusRequest] = useState<{ nodeId: string; requestId: number }>();
+  const focusNode = (nodeId: string) => {
+    setSelectedNodeId(nodeId);
+    setFocusRequest((previous) => ({ nodeId, requestId: (previous?.requestId ?? 0) + 1 }));
+  };
   const selectedNode = useMemo(
     () => UNIVERSAL_GRAPH.nodes.find((node) => node.id === selectedNodeId),
     [selectedNodeId],
@@ -108,11 +114,13 @@ export default function UniversalRelationshipMapPage() {
             }
           >
             <PanelErrorBoundary lensKey="universal-relationship-map">
+              <UniversalMapSearch graph={UNIVERSAL_GRAPH} theme={t} onSelectNode={focusNode} />
               <UniversalRelationshipMap
                 graph={UNIVERSAL_GRAPH}
                 theme={t}
                 selectedNodeId={selectedNodeId}
                 onSelectNode={setSelectedNodeId}
+                focusRequest={focusRequest}
               />
 
               {selectedNode?.kind === "patent" && (

@@ -81,6 +81,16 @@ describe("UniversalRelationshipMapPage", () => {
     expect(document.querySelector('a[href^="/lens/"]')).not.toBeNull();
   });
 
+  it("opens entity details from dropdown search without leaving the universal page", async () => {
+    renderUniversalPage();
+    const input = await screen.findByRole("combobox", { name: "Search the map" });
+    fireEvent.change(input, { target: { value: "Nikon Corporation" } });
+    fireEvent.keyDown(input, { key: "Enter" });
+    expect(screen.getByRole("heading", { level: 3, name: "Nikon Corporation" })).toBeDefined();
+    expect(screen.queryByRole("listbox")).toBeNull();
+    expect(screen.getByRole("heading", { level: 1, name: "Universal Relationship Map" })).toBeDefined();
+  });
+
   it("opens entity details with a focused-map handoff for assignees", async () => {
     renderUniversalPage();
     fireEvent.click(await screen.findByRole("button", { name: "Select test assignee" }));

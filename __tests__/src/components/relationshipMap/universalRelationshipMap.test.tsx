@@ -13,6 +13,7 @@ import type {
 } from "../../../../src/utils/catalog/universalRelationshipGraph.js";
 import themes from "../../../../src/utils/theme/themes.js";
 import { renderWithRouter } from "../../../testUtils.js";
+import { layoutUniversalRelationshipGraph } from "../../../../src/components/relationshipMap/universalLayout.js";
 
 afterEach(cleanup);
 
@@ -147,6 +148,28 @@ function makeMultiHubGraph(): UniversalRelationshipGraph {
 }
 
 describe("UniversalRelationshipMap", () => {
+  it("centers readable search targets and repeats requests after a viewport reset", () => {
+    const rect = vi
+      .spyOn(SVGSVGElement.prototype, "getBoundingClientRect")
+      .mockReturnValue({ width: 800, height: 600 } as DOMRect);
+    const props = { graph, theme: themes.dark, selectedNodeId: author.id, onSelectNode: vi.fn() };
+    const request = { nodeId: author.id, requestId: 1 };
+    const { container, getByRole, rerender } = renderWithRouter(
+      <UniversalRelationshipMap {...props} focusRequest={request} />,
+    );
+    const svg = container.querySelector("svg")!;
+    const target = layoutUniversalRelationshipGraph(graph).nodeById[author.id];
+    const centered = svg.getAttribute("viewBox")!;
+    const [x, y, w, h] = centered.split(" ").map(Number);
+    expect(x + w / 2).toBeCloseTo(target.x);
+    expect(y + h / 2).toBeCloseTo(target.y);
+    expect(Math.min(800 / w, 600 / h) * 9).toBeCloseTo(13.5);
+    fireEvent.click(getByRole("button", { name: "Reset view" }));
+    expect(svg.getAttribute("viewBox")).not.toBe(centered);
+    rerender(<UniversalRelationshipMap {...props} focusRequest={{ nodeId: author.id, requestId: 2 }} />);
+    expect(svg.getAttribute("viewBox")).toBe(centered);
+    rect.mockRestore();
+  });
   it("renders every node as a keyboard-operable control", () => {
     const onSelectNode = vi.fn();
     const { container, getAllByRole, getByRole, getByText } = renderWithRouter(

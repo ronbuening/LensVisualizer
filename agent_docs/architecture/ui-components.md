@@ -101,6 +101,11 @@ unique cross-neighborhood patent count, then neighborhood node count. `Universal
 halos inside each disconnected-network boundary, keeps every edge at its edge-kind brightness within and between
 neighborhoods, and draws nodes above both boundary layers.
 
+`UniversalMapSearch` searches only graph nodes and uses the shared portal dropdown with combobox keyboard semantics.
+Search selection opens the existing details and issues a numbered focus request; the renderer measures its SVG and
+centers at readable magnification through `useViewBoxZoom.centerOn`. Requests are consumed once, including repeated
+requests for the same node, so subsequent pan/zoom gestures remain under the visitor's control.
+
 ## Markdown Renderer
 
 `ThemedMarkdown` has an `article` variant (heading IDs, React Router internal links, special image renderers, GFM,

@@ -30,6 +30,7 @@ flowchart LR
     n_src_utils_catalog_src_utils_catalog_searchCatalog_ts["searchCatalog.ts"]
     n_src_utils_catalog_src_utils_catalog_slugText_ts["slugText.ts"]
     n_src_utils_catalog_src_utils_catalog_universalRelationshipGraph_ts["universalRelationshipGraph.ts"]
+    n_src_utils_catalog_src_utils_catalog_universalRelationshipSearch_ts["universalRelationshipSearch.ts"]
   end
   n_external_src_generated["src/generated"]
   n_external_src_types["src/types"]
@@ -80,9 +81,9 @@ flowchart LR
 
 ## Directory Overview
 
-- Direct source files: 21
+- Direct source files: 22
 - Direct subfolders: 0
-- Main outbound areas: same folder (40), src/types (11), src/generated (6), src/utils/seo (3), glob:../../lens-data/**/*.analysis.md, glob:../../lens-data/**/*.data.ts, src/comparison, src/lens-data/defaults.ts, +1 more
+- Main outbound areas: same folder (43), src/types (11), src/generated (6), src/utils/seo (3), glob:../../lens-data/**/*.analysis.md, glob:../../lens-data/**/*.data.ts, src/comparison, src/lens-data/defaults.ts, +1 more
 - External consumers: src/benchmarks, src/comparison, src/components/content, src/components/controls, src/components/display, src/components/homepage, src/components/hooks, src/components/layout, +31 more
 
 ## Files
@@ -94,7 +95,7 @@ flowchart LR
 | `authorAssignees.ts` | Author Assignees helper module | same folder (3) | src/pages/AuthorsIndexPage.tsx | ALL_AUTHOR_ASSIGNEES, UNASSIGNED_AUTHORS, AuthorDirectoryEntry, AuthorAssigneeStratum, AUTHOR_DIRECTORY_ENTRIES, AUTHOR_ASSIGNEE_STRATA, UNASSIGNED_AUTHOR_COUNT, filterAuthorsByAssignee |
 | `authorBiographies.ts` | Author Biographies helper module | none | src/pages/AuthorPage.tsx, src/pages/AuthorsIndexPage.tsx | AuthorBiographySource, AuthorBiography, AUTHOR_BIOGRAPHIES, getAuthorBiography |
 | `authorCatalog.ts` | Author Catalog helper module | same folder (5), src/generated, src/types, src/utils/seo | same folder (4), src/components/relationshipMap (2), src/components/content, src/pages/AuthorPage.tsx, src/pages/AuthorsIndexPage.tsx, +1 more | AuthorMetadata, AuthorPatentLens, AuthorPatent, AuthorGroupMode, AuthorPatentGroup, AUTHORS, getAuthorBySlug, getAuthorByName, +4 more |
-| `collation.ts` | Collation helper module | none | same folder (9), src/pages/lensIndex (3), src/components/relationshipMap (2), src/pages/AuthorsIndexPage.tsx, src/pages/MakersIndexPage.tsx, +2 more | catalogCollator |
+| `collation.ts` | Collation helper module | none | same folder (10), src/pages/lensIndex (3), src/components/relationshipMap (2), src/pages/AuthorsIndexPage.tsx, src/pages/MakersIndexPage.tsx, +2 more | catalogCollator |
 | `groupByNamedParty.ts` | Group By Named Party helper module | same folder | same folder (2), src/pages/lensIndex | NamedPartyGroup, groupByNamedParty |
 | `imageFormatDetails.ts` | Image Format Details helper module | same folder | src/pages/FormatPage.tsx, src/pages/FormatsIndexPage.tsx | ImageFormatDetails, IMAGE_FORMAT_DETAILS, getImageFormatDetails |
 | `lensCatalog.ts` | Lens Catalog helper module | glob:../../lens-data/**/*.analysis.md, glob:../../lens-data/**/*.data.ts, same folder, src/lens-data/defaults.ts, src/types, +1 more | src/components/layout (4), src/utils/state (3), src/components/hooks (2), src/benchmarks, src/comparison, +2 more | OpticalConfigurationOption, LENS_CATALOG, ALL_CATALOG_KEYS, CATALOG_KEYS, COMPARISON_CATALOG_KEYS, DEBUG_CATALOG_KEYS, isDebugLensKey, opticalConfigurationOptionsForKey, +5 more |
@@ -107,6 +108,7 @@ flowchart LR
 | `patentCatalog.ts` | Patent Catalog helper module | same folder (8), src/types | src/pages/PatentsIndexPage.tsx | aggregatePatentRecords, espacenetPatentUrl, isPatentPublicationNumber, patentJurisdiction, PatentJurisdiction, PatentRecord, PatentLens, PatentAssigneeGroup, +6 more |
 | `patentRecords.ts` | Patent Records helper module | same folder (2), src/types | same folder (3), src/components/content | PatentJurisdiction, PatentRecord, AggregatePatentOptions, isPatentPublicationNumber, espacenetPatentUrl, patentJurisdiction, aggregatePatentRecords |
 | `relationshipGraph.ts` | Relationship Graph helper module | same folder (3), src/types | src/components/relationshipMap (4), same folder, src/pages/RelationshipMapPage.tsx | PartyRef, GraphPatentNode, GraphPartyNode, RelationshipGraph, resolveFocusParam, buildRelationshipGraph |
-| `searchCatalog.ts` | Search Catalog helper module | same folder (6), src/utils/seo | src/components/search (2), src/components/relationshipMap | LensNameSearchMatch, PatentSearchMatch, AuthorSearchMatch, CatalogSearchResults, CatalogSearchMatch, normalizeSearchText, searchCatalog, exactSearchTarget |
+| `searchCatalog.ts` | Search Catalog helper module | same folder (6), src/utils/seo | src/components/search (2), same folder, src/components/relationshipMap | LensNameSearchMatch, PatentSearchMatch, AuthorSearchMatch, CatalogSearchResults, CatalogSearchMatch, normalizeSearchText, searchCatalog, exactSearchTarget |
 | `slugText.ts` | Slug Text helper module | none | same folder, src/pages/lensIndex | transliterateCatalogText, stableHash |
-| `universalRelationshipGraph.ts` | Universal Relationship Graph helper module | same folder (6) | src/components/relationshipMap (4), src/pages/UniversalRelationshipMapPage.tsx | UniversalNodeKind, UniversalPartyNode, UniversalPatentNode, UniversalCorporateNode, UniversalRelationshipNode, UniversalEdgeKind, UniversalRelationshipEdge, UniversalRelationshipStats, +4 more |
+| `universalRelationshipGraph.ts` | Universal Relationship Graph helper module | same folder (6) | src/components/relationshipMap (5), same folder, src/pages/UniversalRelationshipMapPage.tsx | UniversalNodeKind, UniversalPartyNode, UniversalPatentNode, UniversalCorporateNode, UniversalRelationshipNode, UniversalEdgeKind, UniversalRelationshipEdge, UniversalRelationshipStats, +4 more |
+| `universalRelationshipSearch.ts` | Universal Relationship Search helper module | same folder (3) | src/components/relationshipMap | buildUniversalSearchIndex, searchUniversalNodes |

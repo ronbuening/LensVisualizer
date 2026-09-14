@@ -59,6 +59,8 @@ export interface ViewBoxZoomResult {
   zoomOut: () => void;
   /** Pan by a delta in SVG units */
   panBy: (dx: number, dy: number) => void;
+  /** Center on diagram coordinates, optionally changing magnification. */
+  centerOn: (x: number, y: number, zoom?: number) => void;
 }
 
 /** Clamp pan so at least PAN_VISIBLE_FRACTION of the diagram remains in view */
@@ -428,6 +430,25 @@ export default function useViewBoxZoom(
 
   const viewBox = `${state.vbX} ${state.vbY} ${state.vbW} ${state.vbH}`;
 
+  const centerOn = useCallback(
+    (x: number, y: number, targetZoom?: number) => {
+      if (!active || !Number.isFinite(x) || !Number.isFinite(y)) return;
+      if (targetZoom !== undefined && !Number.isFinite(targetZoom)) return;
+      dragStart.current = null;
+      pinchStart.current = null;
+      gestureStartZoom.current = null;
+      touchInteractionActive.current = false;
+      setIsPanning(false);
+      setState((previous) => {
+        const zoom = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, targetZoom ?? previous.zoom));
+        const vbW = svgW / zoom;
+        const vbH = svgH / zoom;
+        return { ...clampPan(x - vbW / 2, y - vbH / 2, vbW, vbH, svgW, svgH), vbW, vbH, zoom };
+      });
+    },
+    [active, svgW, svgH],
+  );
+
   return {
     state,
     viewBox,
@@ -443,5 +464,6 @@ export default function useViewBoxZoom(
     zoomIn,
     zoomOut,
     panBy,
+    centerOn,
   };
 }
