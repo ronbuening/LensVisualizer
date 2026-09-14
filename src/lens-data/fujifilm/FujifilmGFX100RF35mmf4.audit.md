@@ -33,4 +33,4 @@ Notes:
   tables may publish clear apertures directly. Reading them needs OCR.
 - Verification: `npm run typecheck` passed; `npm run test` 2440 tests passed; cross-section re-rendered
   and compared with FIG. 13.
-- Full method and per-lens results: agent_docs/patent-figure-sd-audit.md.
+- Full method and per-lens results: agent_docs/records/patent-figure-sd-audit-2026-07.md.

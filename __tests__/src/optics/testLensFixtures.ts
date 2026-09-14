@@ -99,12 +99,17 @@ export function buildChromaticPositiveElementLens(key = "test-chromatic-positive
   });
 }
 
-export function buildVariableStopGapLens(range: VarRange, key = "test-variable-stop-gap"): RuntimeLens {
+export function buildVariableStopGapLens(
+  range: VarRange,
+  key = "test-variable-stop-gap",
+  focusPositions?: number[],
+): RuntimeLens {
   const surfaces = simplePositiveSurfaces(Array.isArray(range[0]) ? (range[0] as [number, number])[0] : range[0]);
   return buildFixture({
     key,
     surfaces,
     var: { STO: range },
+    focusPositions,
     zoomPositions: Array.isArray(range[0]) ? [24, 50, 100] : undefined,
     nominalFno: Array.isArray(range[0]) ? [2, 2, 2] : 2,
   });

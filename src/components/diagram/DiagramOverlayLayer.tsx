@@ -5,6 +5,8 @@
  * markers, badge overlays, and flash effect into one compositional layer.
  */
 
+import { wideOpenStopAtZoom } from "../../optics/apertureStop.js";
+
 import { memo } from "react";
 import usePrefersReducedMotion from "../../utils/usePrefersReducedMotion.js";
 import {
@@ -17,6 +19,7 @@ import {
 import ApertureStop from "./ApertureStop.js";
 import CardinalElementsOverlay from "./CardinalElementsOverlay.js";
 import ElementAnnotations from "./ElementAnnotations.js";
+import ImagePlaneOverlay from "./ImagePlaneOverlay.js";
 import LocaInsetWidget from "./LocaInsetWidget.js";
 import PetzvalSumBadge from "./PetzvalSumBadge.js";
 import type { RuntimeLens, ElementShape, ChromaticRayFanSpread } from "../../types/optics.js";
@@ -32,7 +35,7 @@ interface DiagramOverlayLayerProps {
   sy: (y: number) => number;
   IX: number;
   effectiveSC: number;
-  pointTransform?: (z: number, y: number) => [number, number];
+  lensPointTransform?: (z: number, y: number) => [number, number];
   zPos: number[];
   IMG_MM: number;
   shapes: ElementShape[];
@@ -71,7 +74,7 @@ const DiagramOverlayLayer = memo(function DiagramOverlayLayer({
   sy,
   IX,
   effectiveSC,
-  pointTransform,
+  lensPointTransform,
   zPos,
   IMG_MM,
   shapes,
@@ -103,28 +106,10 @@ const DiagramOverlayLayer = memo(function DiagramOverlayLayer({
 }: DiagramOverlayLayerProps) {
   const reducedMotion = usePrefersReducedMotion();
   const stopInnerBlockedSD = stopInnerBlockedSemiDiameter(L);
-  const screenPoint = (z: number, y: number): [number, number] => {
-    const [zz, yy] = pointTransform ? pointTransform(z, y) : [z, y];
+  const movedScreenPoint = (z: number, y: number): [number, number] => {
+    const [zz, yy] = lensPointTransform ? lensPointTransform(z, y) : [z, y];
     return [sx(zz), sy(yy)];
   };
-  const imageNormal = L.imagePlane.normal;
-  const isAxialImagePlane = Math.abs(imageNormal.y) < 1e-9 && Math.abs(imageNormal.z) > 1 - 1e-9;
-  // Ordinary lenses pin the rendered sensor to IMG_MM; folded/side-focus planes keep their authored geometry.
-  const imagePlaneZ = isAxialImagePlane ? IMG_MM : L.imagePlane.z;
-  const imagePlaneY = L.imagePlane.y;
-  const imageTangent = { z: imageNormal.y, y: -imageNormal.z };
-  const imageLineStart = screenPoint(
-    imagePlaneZ - imageTangent.z * L.lyImgLine,
-    imagePlaneY - imageTangent.y * L.lyImgLine,
-  );
-  const imageLineEnd = screenPoint(
-    imagePlaneZ + imageTangent.z * L.lyImgLine,
-    imagePlaneY + imageTangent.y * L.lyImgLine,
-  );
-  const imageLabel = screenPoint(
-    imagePlaneZ + imageTangent.z * L.lyImgLabel,
-    imagePlaneY + imageTangent.y * L.lyImgLabel,
-  );
 
   return (
     <>
@@ -132,36 +117,17 @@ const DiagramOverlayLayer = memo(function DiagramOverlayLayer({
         sx={sx}
         sy={sy}
         stopZ={stopZ}
-        stopPhysSD={L.stopPhysSD}
-        stopHousingSD={L.stopHousingSD}
+        stopPhysSD={wideOpenStopAtZoom(zoomT, L)}
+        stopHousingSD={Math.max(L.stopHousingSD, ...(L.zoomStopSDs ?? []))}
         currentPhysStopSD={currentPhysStopSD}
         innerBlockedSD={stopInnerBlockedSD}
         bladeStubFrac={L.bladeStubFrac}
         lyStoPad={L.lyStoPad}
-        pointTransform={pointTransform}
+        pointTransform={lensPointTransform}
         t={t}
       />
 
-      <line
-        x1={imageLineStart[0]}
-        y1={imageLineStart[1]}
-        x2={imageLineEnd[0]}
-        y2={imageLineEnd[1]}
-        stroke={t.imgLine}
-        strokeWidth={t.imgLineWidth}
-        strokeDasharray="4,3"
-      />
-      <text
-        x={imageLabel[0]}
-        y={imageLabel[1]}
-        textAnchor="middle"
-        fill={t.imgLabel}
-        fontSize={9.5}
-        fontFamily="inherit"
-        style={{ letterSpacing: "0.12em" }}
-      >
-        {L.imagePlane.label}
-      </text>
+      <ImagePlaneOverlay lens={L} theme={t} sx={sx} sy={sy} IMG_MM={IMG_MM} />
 
       {showChromatic && chromaticRayFanSpread && Object.keys(chromaticRayFanSpread.axialIntercepts).length >= 2 && (
         <LocaInsetWidget
@@ -184,7 +150,7 @@ const DiagramOverlayLayer = memo(function DiagramOverlayLayer({
         sx={sx}
         sy={sy}
         zPos={zPos}
-        pointTransform={pointTransform}
+        pointTransform={lensPointTransform}
         act={act}
         showChromatic={showChromatic}
       />
@@ -199,7 +165,7 @@ const DiagramOverlayLayer = memo(function DiagramOverlayLayer({
             seen.set(label, previousCount + 1);
             const surface = L.S[surfaceIdx];
             const labelOffset = previousCount * 8;
-            const [x, y] = screenPoint(zPos[surfaceIdx], -(surface.sd + 8 + labelOffset));
+            const [x, y] = movedScreenPoint(zPos[surfaceIdx], -(surface.sd + 8 + labelOffset));
             return (
               <text
                 key={`folded-hit-${index}-${label}`}
@@ -227,17 +193,17 @@ const DiagramOverlayLayer = memo(function DiagramOverlayLayer({
             const epZRel = epZRelStopAtZoom(zoomT, L);
             const xpZRel = xpZRelLastSurfAtZoom(zoomT, L);
             const epCenter = isFinite(epZRel)
-              ? screenPoint(zPos[L.stopIdx] + epZRel, 0)
+              ? movedScreenPoint(zPos[L.stopIdx] + epZRel, 0)
               : ([NaN, NaN] as [number, number]);
             const xpCenter = isFinite(xpZRel)
-              ? screenPoint(zPos[L.N - 1] + xpZRel, 0)
+              ? movedScreenPoint(zPos[L.N - 1] + xpZRel, 0)
               : ([NaN, NaN] as [number, number]);
             const epX = epCenter[0];
             const xpX = xpCenter[0];
-            const epTop = isFinite(epZRel) ? screenPoint(zPos[L.stopIdx] + epZRel, -epSD) : epCenter;
-            const epBottom = isFinite(epZRel) ? screenPoint(zPos[L.stopIdx] + epZRel, epSD) : epCenter;
-            const xpTop = isFinite(xpZRel) ? screenPoint(zPos[L.N - 1] + xpZRel, -xpSD) : xpCenter;
-            const xpBottom = isFinite(xpZRel) ? screenPoint(zPos[L.N - 1] + xpZRel, xpSD) : xpCenter;
+            const epTop = isFinite(epZRel) ? movedScreenPoint(zPos[L.stopIdx] + epZRel, -epSD) : epCenter;
+            const epBottom = isFinite(epZRel) ? movedScreenPoint(zPos[L.stopIdx] + epZRel, epSD) : epCenter;
+            const xpTop = isFinite(xpZRel) ? movedScreenPoint(zPos[L.N - 1] + xpZRel, -xpSD) : xpCenter;
+            const xpBottom = isFinite(xpZRel) ? movedScreenPoint(zPos[L.N - 1] + xpZRel, xpSD) : xpCenter;
             const midY = isFinite(epCenter[1]) ? epCenter[1] : sy(0);
             const tickLen = 4;
             const epColor = t.pupilEntrance;
@@ -405,6 +371,7 @@ const DiagramOverlayLayer = memo(function DiagramOverlayLayer({
           cardinals={cardinalElements}
           sx={sx}
           sy={sy}
+          pointTransform={lensPointTransform}
           showCardinals={showCardinals}
           showCardinalFocal={showCardinalFocal}
           showCardinalPrincipal={showCardinalPrincipal}

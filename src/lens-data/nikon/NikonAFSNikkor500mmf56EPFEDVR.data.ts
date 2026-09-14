@@ -20,8 +20,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * Focus status: PUBLISHED. The source table varies D1, D2, and BF. The dominant
  * motion is the negative G2 focus doublet moving imageward; the numerical rows
  * also shift the G3 start by 0.06 mm and BF by 0.03857 mm from infinity to the
- * near state. The current prime schema stores the published infinity and near
- * endpoints; the published intermediate row is retained in the audit artifact.
+ * near state. All three published rows are stored as exact focus keyframes.
  *
  * Semi-diameters and stop diameter are inferred because the patent does not
  * tabulate clear apertures. Figure 3 was rendered at 600 dpi and measured on
@@ -500,10 +499,11 @@ const LENS_DATA = {
   maxFstop: 32,
   fstopSeries: [5.6, 8, 11, 16, 22, 32],
   focusDescription: "Published G2-dominant internal focus; D1, D2, and BF vary from infinity to 3.0 m",
+  focusPositions: [0, 0.20019026630835987, 1],
   var: {
-    "12": [22.24696, 39.16215],
-    "15": [32.25305, 15.39786],
-    "34": [64.39657, 64.43514],
+    "12": [22.24696, 25.12411, 39.16215],
+    "15": [32.25305, 29.3559, 15.39786],
+    "34": [64.39657, 64.40466, 64.43514],
   },
   varLabels: [
     ["12", "D1"],

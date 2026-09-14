@@ -305,13 +305,14 @@ const LENS_DATA = {
 
   asph: {},
 
-  /* Patent infinity and −1× endpoints, uniformly scaled to 180 mm. */
+  /* Patent infinity, −1/2×, and −1× keyframes, uniformly scaled to 180 mm. */
+  focusPositions: [0, 0.7387189937888587, 1],
   var: {
-    "11": [4.800307, 37.375399],
-    "16": [36.204007, 3.628915],
-    STO: [15.512908, 3.254997],
-    "22": [15.4059, 25.631676],
-    "26": [60.292712, 62.324034],
+    "11": [4.800307, 21.360001, 37.375399],
+    "16": [36.204007, 19.644007, 3.628915],
+    STO: [15.512908, 9.265247, 3.254997],
+    "22": [15.4059, 20.634747, 25.631676],
+    "26": [60.292712, 61.310916, 62.324034],
   },
   varLabels: [
     ["11", "D(11)"],
@@ -335,7 +336,7 @@ const LENS_DATA = {
 
   closeFocusM: 0.47,
   focusDescription:
-    "Floating internal focus: LG1 and the stop remain fixed; LG2 moves imageward, LG3 moves objectward, and LG4 moves slightly objectward from infinity to 1:1. Five patent air gaps are interpolated between the endpoint states.",
+    "Floating internal focus: LG1 and the stop remain fixed; LG2 moves imageward, LG3 moves objectward, and LG4 moves slightly objectward from infinity to 1:1. The infinity, −1/2×, and −1× patent rows are exact focus keyframes.",
 
   nominalFno: 3.5,
   fstopSeries: [3.5, 4, 5.6, 8, 11, 16],

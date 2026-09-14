@@ -26,8 +26,3 @@ All revised asphere diagnostics were recomputed at the new modeled apertures. Th
 ### Motion
 
 - Rechecked the wide/middle/tele sequence and four zoom spacings. The 16.48 / 35.00 / 82.45 mm ordering is correct; all four functional groups move objectward overall, while G2 retains the patent's small imageward wide-to-mid reversal before moving objectward to tele. No close-focus motion is authored because the source publishes none.
-
-### Verification
-
-- `audit:surface` accepted the complete revised SD set.
-- `audit:image-circle` reported zero undersized surfaces.

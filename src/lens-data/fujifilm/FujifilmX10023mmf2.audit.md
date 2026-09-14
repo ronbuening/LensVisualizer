@@ -24,7 +24,7 @@ Patent: US 2012/0069456 A1
 - FIG. 1 was not used to set the values: it is a rotated, ray-overlaid scan whose axial anchor truncates
   against the entering bundle, and repeated crops gave per-element ratios spanning 0.47-2.41.
 - No aspheric surface changed, so the quoted S10A/S11A rim departures are unaffected.
-- Full method and per-lens results: agent_docs/patent-figure-sd-audit.md.
+- Full method and per-lens results: agent_docs/records/patent-figure-sd-audit-2026-07.md.
 
 ## 2026-07-29 - Remaining unmatched-glass disposition
 

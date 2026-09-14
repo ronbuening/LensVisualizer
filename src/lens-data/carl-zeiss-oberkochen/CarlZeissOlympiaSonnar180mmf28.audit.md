@@ -31,15 +31,3 @@ Catalog version: local working tree, 2026-06-25
 
 - `apd: false` remains appropriate. The patent provides no partial-dispersion data.
 - High-index/high-dispersion status for SF56A/SF11 and SF4 is already represented in glass names and element roles.
-
-### Phase 4 - Analysis sync
-
-- No analysis prose change was required. The existing analysis already describes the four-element glass pairing and patent constraints.
-
-### Verification
-
-- `npm run generate:glass-reports` - passed (7 files, 7 tests); generated report state retained.
-- `npm run typecheck` - passed.
-- `npm run format:check` - passed.
-- `npm run test -- __tests__/src/lens-data/lensDataTyping.test.ts __tests__/src/optics/validateLensData.test.ts __tests__/src/optics/buildLens.test.ts` - passed (3 files, 143 tests).
-- `npm run test` - failed outside this audit's edits: stale/generated route metadata is missing Rodenstock lens routes, and the existing Sonnar 50/1.5 skew-ray chromatic assertion differs by 0.0011856 mm.

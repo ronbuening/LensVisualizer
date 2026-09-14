@@ -14,17 +14,22 @@ function renderControls(
   L: RuntimeLens,
   options: {
     focusExpanded?: boolean;
+    apertureExpanded?: boolean;
     focusT?: number;
     dynamicEFL?: number;
     showEffectiveFocalLength?: boolean;
+    shiftMm?: number;
+    tiltDeg?: number;
   } = {},
 ) {
   const callbacks = {
     onAberrationChange: vi.fn(),
+    onStopdownChange: vi.fn(),
     onFocusChange: vi.fn(),
     onShiftChange: vi.fn(),
     onTiltChange: vi.fn(),
     onOpenGroupMovement: vi.fn(),
+    onSliderPointerUp: vi.fn(),
     onToggleEffectiveFocalLength: vi.fn(),
   };
   return {
@@ -40,8 +45,8 @@ function renderControls(
         onAberrationChange={callbacks.onAberrationChange}
         focusT={options.focusT ?? 0}
         onFocusChange={callbacks.onFocusChange}
-        shiftMm={0}
-        tiltDeg={0}
+        shiftMm={options.shiftMm ?? 0}
+        tiltDeg={options.tiltDeg ?? 0}
         onShiftChange={callbacks.onShiftChange}
         onTiltChange={callbacks.onTiltChange}
         focusExpanded={options.focusExpanded ?? false}
@@ -49,7 +54,7 @@ function renderControls(
         varReadouts={[]}
         aberrationReadouts={[]}
         stopdownT={0}
-        onStopdownChange={vi.fn()}
+        onStopdownChange={callbacks.onStopdownChange}
         fNumber={L.FOPEN}
         currentFOPEN={L.FOPEN}
         currentPhysStopSD={L.stopPhysSD}
@@ -60,9 +65,9 @@ function renderControls(
         onToggleEffectiveFocalLength={callbacks.onToggleEffectiveFocalLength}
         showEffectiveAperture={false}
         onToggleEffectiveAperture={vi.fn()}
-        apertureExpanded={false}
+        apertureExpanded={options.apertureExpanded ?? false}
         onApertureExpandedChange={vi.fn()}
-        onSliderPointerUp={vi.fn()}
+        onSliderPointerUp={callbacks.onSliderPointerUp}
         showSliders={true}
         onOpenGroupMovement={callbacks.onOpenGroupMovement}
       />,
@@ -72,6 +77,29 @@ function renderControls(
 }
 
 describe("DiagramControls", () => {
+  it.each([1.03, 1.45, 1.85])("preserves patent aperture precision for f/%s", (nominalFno) => {
+    const L = buildLens({ ...LENS_CATALOG["sonnar-50f15"], nominalFno });
+    renderControls(L);
+    expect(screen.getAllByText(`f/${nominalFno}`)).not.toHaveLength(0);
+    expect(screen.queryByText(`f/${nominalFno.toFixed(1)}`)).toBeNull();
+  });
+
+  it("offers the actual wide-open aperture without a faster, unreachable shortcut", () => {
+    const L = buildLens(LENS_CATALOG["fujifilm-xf50-f1"]);
+    const { callbacks } = renderControls(L, { apertureExpanded: true });
+    expect(screen.queryByRole("button", { name: "Set aperture to f/1" })).toBeNull();
+    fireEvent.click(screen.getByRole("button", { name: "Set aperture to f/1.03" }));
+    expect(callbacks.onStopdownChange).toHaveBeenCalledWith(0);
+  });
+
+  it("rounds a precise patent shortcut label while retaining its numeric endpoint", () => {
+    const L = buildLens({ ...LENS_CATALOG["sonnar-50f15"], nominalFno: 2.88277 });
+    const { callbacks } = renderControls(L, { apertureExpanded: true });
+    fireEvent.click(screen.getByRole("button", { name: "Set aperture to f/2.88" }));
+    expect(callbacks.onStopdownChange).toHaveBeenCalledWith(0);
+    expect(screen.queryByText("f/2.88277")).toBeNull();
+  });
+
   it("hides the aperture slider for fixed-stop lenses", () => {
     renderControls(buildLens(LENS_CATALOG["zeiss-hologon-15f8"]));
 
@@ -90,6 +118,32 @@ describe("DiagramControls", () => {
 
     expect(screen.getByText("SHIFT")).toBeTruthy();
     expect(screen.getByText("TILT")).toBeTruthy();
+    expect((screen.getByRole("button", { name: "Reset shift to center" }) as HTMLButtonElement).disabled).toBe(true);
+    expect((screen.getByRole("button", { name: "Reset tilt to center" }) as HTMLButtonElement).disabled).toBe(true);
+  });
+
+  it("shows only shift for the shift-only PC-Nikkor 35mm", () => {
+    renderControls(buildLens(LENS_CATALOG["nikon-pc-nikkor-35mm-f28"]));
+
+    expect(screen.getByText("SHIFT")).toBeTruthy();
+    expect(screen.queryByText("TILT")).toBeNull();
+    expect(screen.getByRole("button", { name: "Reset shift to center" })).toBeTruthy();
+    expect(screen.queryByRole("button", { name: "Reset tilt to center" })).toBeNull();
+  });
+
+  it("resets shift and tilt independently", () => {
+    const { callbacks } = renderControls(buildLens(LENS_CATALOG["nikon-pc-nikkor-19mm-f4e-ed"]), {
+      shiftMm: 4,
+      tiltDeg: -3,
+    });
+
+    fireEvent.click(screen.getByRole("button", { name: "Reset shift to center" }));
+    expect(callbacks.onShiftChange).toHaveBeenCalledWith(0);
+    expect(callbacks.onTiltChange).not.toHaveBeenCalled();
+
+    fireEvent.click(screen.getByRole("button", { name: "Reset tilt to center" }));
+    expect(callbacks.onTiltChange).toHaveBeenCalledWith(0);
+    expect(callbacks.onSliderPointerUp).toHaveBeenCalledTimes(2);
   });
 
   it("shows an aberration-control slider when declared by lens data", () => {
@@ -154,15 +208,32 @@ describe("DiagramControls", () => {
   });
 
   it("disables the focus slider while keeping focus details visible when focus travel data is absent", () => {
-    const { callbacks } = renderControls(buildLens(LENS_CATALOG["canon-rf-28-70-f2"]), { focusExpanded: true });
+    const { callbacks } = renderControls(
+      buildLens({ ...LENS_CATALOG["canon-rf-28-70-f2"], closeFocusM: 1, zoomCloseFocusM: undefined }),
+      { focusExpanded: true },
+    );
     const focusSlider = screen.getByRole("slider", { name: "FOCUS" }) as HTMLInputElement;
 
     expect(focusSlider.disabled).toBe(true);
+    expect(screen.getByText("Not modeled")).toBeTruthy();
+    expect(screen.queryByText("1.00 m")).toBeNull();
     expect(screen.getByText("FOCUS")).toBeTruthy();
     expect(screen.getByText(/No close-focus data in patent/i)).toBeTruthy();
 
     fireEvent.change(focusSlider, { target: { value: "0.75" } });
     expect(callbacks.onFocusChange).not.toHaveBeenCalled();
+  });
+
+  it("keeps computed zoom endpoint labels compact without rounding the optical data", () => {
+    const L = {
+      ...buildLens(LENS_CATALOG["canon-rf-28-70-f2"]),
+      zoomPositions: [28.851368294, 44.177102255],
+    };
+    renderControls(L);
+
+    expect(screen.getByText("28.85 mm")).toBeTruthy();
+    expect(screen.getByText("44.18 mm")).toBeTruthy();
+    expect(L.zoomPositions).toEqual([28.851368294, 44.177102255]);
   });
 
   it("opens the zoom motion overlay from a zoom slider action", () => {

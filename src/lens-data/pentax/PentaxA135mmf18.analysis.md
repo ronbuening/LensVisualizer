@@ -113,7 +113,7 @@ The focus mechanism is fixed-rear-element extension. The sixth component, L7, re
 | Patent β = −1/10 evaluation | 20.42 mm | 16.42 mm | object ≈ 1518 mm before first vertex; β ≈ −0.098; subject-to-film ≈ 1.678 m |
 | Production 1.2 m MFD representation in data file | 29.4035 mm | 25.4035 mm | β ≈ −0.152 at 1.2 m subject-to-film |
 
-The patent text and figures use the β = −1/10 state to compare the invention's fixed-rear focusing against a less-corrected alternative at the same magnification. The data file also includes the manufacturer's 1.2 m close-focus specification. That row is not a patent-published prescription row; it is a paraxial extension of the same fixed-L7 focus law so the viewer's close-focus endpoint matches the production lens.
+The patent text and figures use the β = −1/10 state to compare the invention's fixed-rear focusing against a less-corrected alternative at the same magnification. That row is stored as an exact focus keyframe. The data file also includes the manufacturer's 1.2 m close-focus specification. The final row is not patent-published; it is a paraxial extension of the same fixed-L7 focus law so the viewer's endpoint matches the production lens. Interpolation between keyframes is approximate visualization.
 
 ## Conditional Expressions
 

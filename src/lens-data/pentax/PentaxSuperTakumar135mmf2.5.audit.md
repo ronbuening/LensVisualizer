@@ -12,8 +12,6 @@ Patent: US 3,459,469, Example 1
   specifications. All five elements now have trusted coefficient-backed dispersion, including the recovered Sumita SK1
   curve used for L3.
 - Local viewer QA confirmed all five element labels and the retained silhouette without diagram errors.
-- `npm run generate:glass-reports` passed (8 files, 14 tests); the image-circle audit, typecheck, format check, lint,
-  2,947-test suite, and production build also passed (1,052 routes prerendered).
 
 ## 2026-08-08 - Glass-source follow-up
 
@@ -36,10 +34,3 @@ Patent: US 3,459,469, Example 1
 - Confirmed coefficient-backed catalog dispersion for four of five elements. L3 exactly matches an archival Sumita
   SK1 index/Abbe row, but no source-verified dispersion coefficients are available in the retained official catalogs;
   it therefore remains a vendor-unspecified SK1 class on the Abbe fallback rather than receiving invented provenance.
-- `npm run audit:surface -- src/lens-data/pentax/PentaxSuperTakumar135mmf2.5.data.ts` passed.
-- `npm run audit:image-circle -- src/lens-data/pentax/PentaxSuperTakumar135mmf2.5.data.ts` passed.
-- `npm run audit:patent-figure -- ... patents/US3459469.pdf 1 0.30,0.20,0.70,0.42` passed the post-correction
-  proportion review.
-- `npm run generate:glass-reports` passed (8 files, 14 tests).
-- `npm run typecheck`, `npm run format:check`, `npm run lint`, and `npm run test` passed (2,947 tests).
-- `npm run build` passed; 1,052 routes prerendered.

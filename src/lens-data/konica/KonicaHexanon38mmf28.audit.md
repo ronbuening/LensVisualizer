@@ -10,7 +10,3 @@ Patent: US 3,615,126, Embodiment I / Claim 2
 - Fig. 1 shows a compact Tessar-like four-element layout with the front element largest, two smaller central elements, and a rear positive meniscus behind the stop.
 - Stored SDs match that hierarchy: the front element is 7.25-8.7 mm, the middle elements are about 6.1-6.95 mm, the rear element returns to 6.75-7.0 mm, and the stop is kept separate at 4.927 mm.
 - No SD values changed. Current values remain inferred from the patent figure, f/2.8 stop geometry, ray-envelope clearance, edge thickness, and cross-gap sag checks.
-
-### Verification
-
-- `npm test -- elementRenderDiagnostics`

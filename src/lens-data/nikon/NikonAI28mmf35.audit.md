@@ -29,7 +29,3 @@ Patent: US 4,099,850, Example 5
 ### Phase 4 — Analysis sync
 
 - Updated `NikonAI28mmf35.analysis.md` to use the catalog-equivalent glass labels and to remove the outdated claim that Hikari entries alone were the active resolver labels.
-
-### Verification
-
-- Pending full Nikon batch verification.

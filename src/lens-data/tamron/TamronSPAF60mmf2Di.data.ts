@@ -325,16 +325,13 @@ const LENS_DATA = {
 
   asph: {},
 
-  /* Patent table endpoints: infinity and 1:1. The published 5:1 state is
-   * interpreted in the companion analysis but cannot be represented by the
-   * two-endpoint prime-lens `var` structure without adding an unsupported
-   * intermediate focus control point.
-   */
+  /* Patent table keyframes: infinity, 5:1, and 1:1. */
+  focusPositions: [0, 0.5039200468308941, 1],
   var: {
-    "9": [1.5848, 17.4252],
-    "14": [17.2873, 1.447],
-    STO: [13.2179, 1.5],
-    "22": [1.8205, 13.5384],
+    "9": [1.5848, 4.6948, 17.4252],
+    "14": [17.2873, 14.1774, 1.447],
+    STO: [13.2179, 10.5905, 1.5],
+    "22": [1.8205, 4.4479, 13.5384],
   },
   varLabels: [
     ["9", "D(9)"],

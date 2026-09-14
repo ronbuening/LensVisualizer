@@ -73,8 +73,7 @@ export default function useStickySliders(
           dispatch({ type: SET_SHARED_FOCUS_T, value: cp });
           prevFocusT.current = cp;
           focusStuck.current = true;
-          const { LA, LB } = comparisonLenses!;
-          triggerFlash(LA.closeFocusM > LB.closeFocusM ? "a" : "b");
+          triggerFlash(focusPair!.focusA > focusPair!.focusB ? "a" : "b");
           return;
         }
       }
@@ -82,7 +81,7 @@ export default function useStickySliders(
       prevFocusT.current = v;
       dispatch({ type: SET_SHARED_FOCUS_T, value: v });
     },
-    [focusPair, comparisonLenses, triggerFlash, dispatch],
+    [focusPair, triggerFlash, dispatch],
   );
 
   const handleSharedStopdownChange = useCallback(

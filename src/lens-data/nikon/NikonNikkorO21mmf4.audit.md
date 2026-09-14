@@ -39,13 +39,3 @@ These are wavelength-tracing equivalents, not claims about Nikon's historical me
 - A finite-conjugate paraxial solve changes only final BF: 7.346549773 mm at infinity to 7.875785504 mm at the 0.9 m
   catalog endpoint, an inferred extension of 0.529235731 mm.
 - The data and analysis explicitly label this state **inferred unit focus**.
-
-### Verification
-
-- `npm run audit:surface -- src/lens-data/nikon/NikonNikkorO21mmf4.data.ts` — passed.
-- `npm test -- elementRenderDiagnostics.test.ts` — passed, including hidden-trim and cross-gap checks.
-- `npm run generate:glass-reports` — passed; coverage is 8/8 trusted and 8/8 Sellmeier.
-- `npm run typecheck`, `npm run format:check`, and `npm run lint` — passed; lint reports three unrelated existing
-  warnings and no errors.
-- `npm run test` — passed, 207 files / 2440 tests.
-- `npm run build` — passed, including prerender and sitemap generation for 947 routes.

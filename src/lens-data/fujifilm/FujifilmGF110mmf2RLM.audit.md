@@ -35,15 +35,6 @@ Patent: US 2018/0100988 A1, Example 1 (Tables 1-3)
 - Removed the unsupported claim that L14 matched HOYA TAFD25 exactly.
 - Reframed vendor attribution: the patent provides nd/vd, not glass names; L13 and L14 remain code-only pending a catalog source.
 
-### Verification
-
-- `npm run typecheck` — passed.
-- `npm run format:check` — passed.
-- `npm run lint` — passed.
-- `npm run test` — passed, 129 test files / 1664 tests.
-- `npm test -- catalogMismatchScan glassRelabelCandidatesScan unresolvedGlassScan` — passed. Regenerated output removed this lens from `catalog-mismatches.generated.md` and `glass-relabel-candidates.generated.md`; only the two deliberate unresolved code annotations remain in `unresolved-glass.generated.md`. Generated report files were restored afterward to preserve unrelated pre-existing edits.
-- After the files were overwritten by an external save, the same scoped audit edits were reapplied and `npm run typecheck` was rerun successfully.
-
 ## 2026-05-19 — Six-digit Sellmeier source recheck
 
 | Element / surface | Field | Before | After | Justification |

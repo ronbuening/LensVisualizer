@@ -29,14 +29,6 @@ The solve treats the patent's published direction as authoritative and estimates
 - Updated the focus-mechanism section to describe the inferred focus travel and the method.
 - Corrected the prior statement implying `d(G4-G5)` would grow at close focus; imageward L10 motion makes `d19` contract.
 
-### Verification
-
-- `npm run typecheck` — passed.
-- `npm run format:check` — passed.
-- `npm run lint` — passed.
-- `npm run test -- buildLens` — passed, 51 tests.
-- `npm run test` — passed, 118 files / 1543 tests. React error-boundary tests emitted expected throw stacks while still passing.
-
 ## 2026-05-20 — Glass relabel follow-up
 
 - Opened the data, analysis, and local patent PDF `patents/JP2021179551A.pdf`; local text confirms the queued rows at surfaces 6, 8, 11A, and 15.

@@ -171,6 +171,7 @@ function compileOpticalPath(runtime: RuntimeLens): PathSpec {
 function compileVariables(runtime: RuntimeLens, labelToSurfaceIndex: Readonly<Record<string, number>>): VariableSpec {
   return Object.freeze({
     isZoom: runtime.isZoom,
+    focusPositions: runtime.focusPositions,
     zoomPositions: runtime.zoomPositions ? Object.freeze([...runtime.zoomPositions]) : null,
     zoomLabels: runtime.zoomLabels ? Object.freeze([...runtime.zoomLabels]) : null,
     zoomStep: runtime.zoomStep,

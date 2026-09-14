@@ -15,9 +15,3 @@ Patent: US 5,745,306 A, Example 1, Fig. 1 (PDF page 2)
 - Marked active positions 1, 2, and 5 as inference-qualified ED elements, matching Nikon's published three-ED layout without inventing patent partial-dispersion values.
 - Restored concise source group labels G1, G2, and G3.
 - Confirmed published negative-G2 travel is 10.8239 mm imageward toward near focus. This prime lens has no zoom travel.
-
-### Verification
-
-- Per-lens image-circle audit: passed with 0 undersized surfaces.
-- Per-lens surface validator and regenerated glass-report suite: passed.
-- `npm run typecheck`, `npm run format:check`, `npm run lint`, `npm run test` (2,493 tests), and `npm run build` (1,112 prerendered routes): passed.

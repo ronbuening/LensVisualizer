@@ -23,7 +23,3 @@ Reviewed local untracked patent file `patents/US8416512.pdf`, Example 3 and FIGS
 - US 8,416,512 does not publish per-surface clear apertures or effective diameters for Example 3.
 - Current SDs remain documented renderer estimates. They make rational sense against FIG. 3: broad front Gr1A apertures, large front asphere, stop at `sd = 13.2 mm`, similar post-stop L24 block apertures, and a controlled final relay diameter.
 - No SD values were changed in this pass.
-
-### Verification
-
-- Pending batch verification after the current Nikon audit pass.

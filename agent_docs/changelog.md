@@ -97,27 +97,3 @@ The changelog renders in a scrollable `/updates` column and does not paginate.
 There is no hard expiry policy, but entries older than ~60 days can be removed
 if the list grows unwieldy. Prune from the **bottom** of the array (oldest
 entries first).
-
----
-
-## Existing History (seeded from PRs #291–#350)
-
-The initial entries cover **2026-03-26 through 2026-03-28** and include:
-
-- **2026-03-28**: Real sagittal ray analysis; field curvature and astigmatic difference analysis
-- **2026-03-27**: SEO improvements; Fujifilm maker + lenses; Canon and Nikon lens additions;
-  full aberrations analysis suite (spherical aberration engine, analysis drawer, coma,
-  distortion, vignetting, longitudinal SA chart); Nikon Z semidiameter fixes
-- **2026-03-26**: Variable-aperture zoom lens support; Nikon Z close-focus collision fixes
-
----
-
-## Component Reference
-
-| File | Role |
-|------|------|
-| `src/utils/content/changelogData.ts` | Data - `CHANGELOG` array, `ChangelogEntry` type |
-| `src/pages/UpdatesPage.tsx` | Main UI - renders changelog plus full lens-addition history |
-| `src/components/content/ChangelogList.tsx` | Date-grouped changelog list with type badges, used by `UpdatesPage` |
-
-The homepage links to `/updates` from the "Recently Added" section.

@@ -1,26 +1,12 @@
 import type { LensDataInput } from "../../types/optics.js";
 
-// ============================================================================
-// NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S
-// Patent: JP2022-92388A, Example 1 (Numerical Example 1)
-// Filed: 2020-12-10, Published: 2022-06-22
-// Inventor: Hiroshi Yabumoto
-//
-// Production identification: Example 1 matches the production NIKKOR Z
-// 100-400mm f/4.5-5.6 VR S by convergent criteria: 25 elements in 20
-// groups, 6 ED + 2 Super ED, all-spherical, dual-group floating inner
-// focus, in-barrel VR, and filing/announcement chronology.
-//
-// Scale: 1:1 (no scaling applied; patent prescription at production scale)
-//
-// Semi-diameters: Estimated via paraxial marginal + chief ray trace at
-// both zoom positions with 10% mechanical clearance. Front-group values
-// reflect 77 mm filter thread constraint. Patent does not provide SDs.
-//
-// Abbe numbers: Inferred from nd-matched glass catalog candidates (OHARA,
-// SCHOTT). Patent provides only nd; vd values are approximate.
-// ============================================================================
-
+/**
+ * JP2022092388A Example 1, Table 1 and Figures 1–2.
+ * Patent nd values are authored; every vd and glass identity is inferred.
+ * Filter element26/source surfaces47–48 excluded, with 1.6/1.5168 mm
+ * added to rear air. No sensor stack is drawn or counted as a lens.
+ * SDs remain estimated optical rims, reviewed against both source figures.
+ */
 const LENS_DATA = {
   key: "nikkor-z-100-400-f4556",
   name: "NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S",
@@ -28,11 +14,11 @@ const LENS_DATA = {
   subtitle: "JP2022-92388A Example 1",
   specs: [
     "25 elements / 20 groups",
-    "6 ED + 2 Super ED",
+    "Patent nd; Abbe numbers inferred",
     "All spherical",
     "Dual-group floating inner focus (G5 + G6)",
     "In-barrel VR (L17 + L18 cemented doublet)",
-    "77 mm filter thread",
+    "Centered VR configuration",
   ],
   focalLengthMarketing: [100, 400],
   focalLengthDesign: [103.09, 388.17],
@@ -47,14 +33,16 @@ const LENS_DATA = {
   elementCount: 25,
   groupCount: 20,
   focusDescription:
-    "Floating dual-group inner focus. G5 (cemented negative doublet L20+L21) and G6 (positive L22 + negative L23) move toward the image on independent trajectories during close focus. G5 carries the primary focus travel (+30.6 mm at tele); G6 provides fine correction (+0.4 mm at tele). Total variable-gap sum is constant: true internal focusing with no length change during AF.",
+    "Patent G5/G6 floating focus: imageward travel is 1.39/9.708 mm at wide and 30.617/30.999 mm at tele. The 0.382 mm tele D38 change is relative group separation, not G6 travel. Near source figures describe about 0.98 m; VR lateral motion is not simulated.",
 
   zoomPositions: [103.09, 388.17],
   zoomStep: 0.004,
-  zoomLabels: ["100 mm", "400 mm"],
-  nominalFno: [4.5, 5.6],
-  closeFocusM: 0.75,
-  fstopSeries: [4.5, 5.6, 8, 11, 16, 22, 32],
+  zoomLabels: ["103.09 mm", "388.17 mm"],
+  zoomApertureModel: "from-nominal-fno",
+  nominalFno: [4.58, 5.76],
+  closeFocusM: 0.98, // Figure2 finite object distances plus system track, rounded.
+
+  fstopSeries: [4.58, 5.76, 8, 11, 16, 22, 32],
   maxFstop: 32,
 
   scFill: 0.48,
@@ -72,8 +60,8 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.4,
       fl: 477.6,
-      glass: "N-FK5 / S-FSL5 (FK crown, ED class)",
-      role: "Front positive element. Symmetric biconvex minimizes coma at maximum marginal ray height.",
+      glass: "N-FK5 — inferred vd and catalog counterpart; patent gives nd only",
+      role: "Positive front singlet of G1",
     },
     {
       id: 2,
@@ -83,10 +71,9 @@ const LENS_DATA = {
       nd: 1.437001,
       vd: 95.0,
       fl: 407.5,
-      glass: "Nikon Super ED (near S-FPL55)",
-      apd: "inferred",
-      apdNote: "Anomalous partial dispersion; secondary spectrum correction",
-      role: "Super ED plano-convex at near-maximum marginal ray height for primary LoCA and secondary spectrum correction.",
+      glass: "S-FPL55 — inferred vd and catalog counterpart; patent gives nd only",
+      apd: false,
+      role: "Plano-convex rear singlet of G1",
     },
     // G2: Second Positive (f = +412.7 mm)
     {
@@ -97,11 +84,10 @@ const LENS_DATA = {
       nd: 1.49782,
       vd: 81.1,
       fl: 116.2,
-      glass: "S-FPL51 (OHARA)",
+      glass: "S-FPL51 — inferred vd and catalog counterpart; patent gives nd only",
       cemented: "D1",
-      apd: "inferred",
-      apdNote: "ED class; anomalous partial dispersion",
-      role: "ED positive in cemented achromatic doublet D1.",
+      apd: false,
+      role: "Positive front element of cemented doublet D1 in G2",
     },
     {
       id: 4,
@@ -111,9 +97,9 @@ const LENS_DATA = {
       nd: 1.8044,
       vd: 39.6,
       fl: -65.7,
-      glass: "S-LAH63 (OHARA)",
+      glass: "S-LAH63 — inferred vd and catalog counterpart; patent gives nd only",
       cemented: "D1",
-      role: "Dense lanthanum negative in D1. Dominant negative power makes D1 a net negative achromat (f = -167 mm).",
+      role: "Negative rear element of cemented doublet D1",
     },
     {
       id: 5,
@@ -123,10 +109,9 @@ const LENS_DATA = {
       nd: 1.437001,
       vd: 95.0,
       fl: 115.4,
-      glass: "Nikon Super ED (near S-FPL55)",
-      apd: "inferred",
-      apdNote: "Anomalous partial dispersion; secondary spectrum correction",
-      role: "Super ED biconvex. Strongest positive in G2; forms dialyte with D1 for wide-band achromatization.",
+      glass: "S-FPL55 — inferred vd and catalog counterpart; patent gives nd only",
+      apd: false,
+      role: "Positive singlet in G2",
     },
     // G3: Zoom Variator (f = -37.7 mm)
     {
@@ -137,9 +122,9 @@ const LENS_DATA = {
       nd: 1.720467,
       vd: 50.2,
       fl: 63.4,
-      glass: "720502 - lanthanum crown (nd=1.720467, vd~50.2)",
+      glass: "S-LAL10 — inferred vd and catalog counterpart; patent gives nd only",
       cemented: "D2",
-      role: "Lanthanum positive in cemented achromat D2. Inverted arrangement for enhanced secondary spectrum correction.",
+      role: "Positive front element of cemented doublet D2 in G3",
     },
     {
       id: 7,
@@ -149,11 +134,10 @@ const LENS_DATA = {
       nd: 1.49782,
       vd: 81.1,
       fl: -56.1,
-      glass: "S-FPL51 (OHARA)",
+      glass: "S-FPL51 — inferred vd and catalog counterpart; patent gives nd only",
       cemented: "D2",
-      apd: "inferred",
-      apdNote: "ED class; anomalous partial dispersion",
-      role: "ED negative in inverted achromat D2. Low-dispersion glass in the negative element enhances secondary spectrum correction.",
+      apd: false,
+      role: "Negative rear element of cemented doublet D2",
     },
     {
       id: 8,
@@ -163,9 +147,9 @@ const LENS_DATA = {
       nd: 1.741,
       vd: 52.6,
       fl: -42.0,
-      glass: "741526 - lanthanum crown (TAC2 code match; patent nd=1.74100, vd~52.6 inferred)",
+      glass: "TAC2 — inferred vd and catalog counterpart; patent gives nd only",
       cemented: "D3",
-      role: "Lanthanum negative in D3. Carries the majority of G3 diverging power.",
+      role: "Negative front element of cemented doublet D3",
     },
     {
       id: 9,
@@ -175,9 +159,9 @@ const LENS_DATA = {
       nd: 1.854505,
       vd: 39.9,
       fl: 65.1,
-      glass: "L-LAH85V catalog equivalent (patent 855399; production supplier unspecified)",
+      glass: "L-LAH85V — inferred vd and catalog counterpart; patent gives nd only",
       cemented: "D3",
-      role: "Dense lanthanum positive meniscus (convex to object) in D3. High index controls Petzval curvature.",
+      role: "Positive rear element of cemented doublet D3",
     },
     {
       id: 10,
@@ -187,8 +171,8 @@ const LENS_DATA = {
       nd: 1.755,
       vd: 52.3,
       fl: -62.4,
-      glass: "S-LAH97 (OHARA)",
-      role: "Strongest individual negative in G3. Rear position maximizes beam divergence.",
+      glass: "S-LAH97 — inferred vd and catalog counterpart; patent gives nd only",
+      role: "Negative singlet in G3",
     },
     // G4: Relay + Stop + VR (f = +46.0 mm)
     {
@@ -199,8 +183,8 @@ const LENS_DATA = {
       nd: 1.59319,
       vd: 60.5,
       fl: 129.2,
-      glass: "FCD600 (HOYA catalog equivalent; production supplier unspecified)",
-      role: "Symmetric biconvex relay element. Begins reconverging the divergent beam from G3.",
+      glass: "FCD600 — inferred vd and catalog counterpart; patent gives nd only",
+      role: "Positive singlet in G4",
     },
     {
       id: 12,
@@ -210,10 +194,9 @@ const LENS_DATA = {
       nd: 1.49782,
       vd: 81.1,
       fl: 129.7,
-      glass: "S-FPL51 (OHARA)",
-      apd: "inferred",
-      apdNote: "ED class; anomalous partial dispersion",
-      role: "ED plano-convex (convex to object, flat rear). Chromatic-neutral positive power in the relay.",
+      glass: "S-FPL51 — inferred vd and catalog counterpart; patent gives nd only",
+      apd: false,
+      role: "Plano-convex singlet in G4",
     },
     {
       id: 13,
@@ -223,10 +206,9 @@ const LENS_DATA = {
       nd: 1.49782,
       vd: 81.1,
       fl: 96.9,
-      glass: "S-FPL51 (OHARA)",
-      apd: "inferred",
-      apdNote: "ED class; anomalous partial dispersion",
-      role: "Second ED plano-convex in relay. With L12, provides chromatic-neutral positive power ahead of the stop.",
+      glass: "S-FPL51 — inferred vd and catalog counterpart; patent gives nd only",
+      apd: false,
+      role: "Plano-convex singlet in G4",
     },
     {
       id: 14,
@@ -236,8 +218,8 @@ const LENS_DATA = {
       nd: 1.8061,
       vd: 40.9,
       fl: -110.1,
-      glass: "S-LAH53 (OHARA)",
-      role: "Dense lanthanum negative immediately ahead of stop. Controls zonal spherical aberration. \u2020 Glass ambiguous: S-LAH55 (vd ~ 41) or S-LAH64 (vd ~ 47).",
+      glass: "S-LAH53 — inferred vd and catalog counterpart; patent gives nd only",
+      role: "Negative singlet before the stop in G4",
     },
     {
       id: 15,
@@ -247,8 +229,8 @@ const LENS_DATA = {
       nd: 1.80809,
       vd: 22.8,
       fl: 142.0,
-      glass: "S-NPH1 (OHARA)",
-      role: "Positive meniscus (convex to image) immediately behind stop. Low-Abbe glass corrects oblique spherical aberration.",
+      glass: "S-NPH1 — inferred vd and catalog counterpart; patent gives nd only",
+      role: "Positive meniscus after the stop in G4",
     },
     {
       id: 16,
@@ -258,8 +240,8 @@ const LENS_DATA = {
       nd: 2.00069,
       vd: 25.5,
       fl: -46.9,
-      glass: "001255 - ultra-high-index dense flint (nd=2.00069, vd~25.5)",
-      role: "Ultra-high-index meniscus (convex to object). nd = 2.001: strongest negative near stop for higher-order SA and Petzval control.",
+      glass: "TAFD40L-W — inferred vd and catalog counterpart; patent gives nd only",
+      role: "Negative meniscus in G4",
     },
     {
       id: 17,
@@ -269,9 +251,9 @@ const LENS_DATA = {
       nd: 1.552981,
       vd: 55.5,
       fl: 42.7,
-      glass: "J-KZFH4 catalog equivalent (patent 553555; production supplier unspecified)",
+      glass: "J-KZFH4 — inferred vd and catalog counterpart; patent gives nd only",
       cemented: "VR",
-      role: "Positive element of the VR cemented doublet. Moves perpendicular to optical axis for 5.5-stop image stabilization.",
+      role: "Positive front element of the source VR doublet; centered here",
     },
     {
       id: 18,
@@ -281,9 +263,9 @@ const LENS_DATA = {
       nd: 1.95375,
       vd: 32.3,
       fl: -92.6,
-      glass: "S-LAH98 (OHARA)",
+      glass: "S-LAH98 — inferred vd and catalog counterpart; patent gives nd only",
       cemented: "VR",
-      role: "Negative meniscus (convex to image) in VR doublet. Combined VR group f = +78.6 mm (fvr/ft = 0.202).",
+      role: "Negative rear element of the source VR doublet; centered here",
     },
     {
       id: 19,
@@ -293,8 +275,8 @@ const LENS_DATA = {
       nd: 1.60342,
       vd: 56.4,
       fl: 77.0,
-      glass: "603564 — medium crown (patent nd=1.60342, νd≈56.4; no exact public catalog match)",
-      role: "Positive meniscus (convex to object). Completes the relay and delivers converging beam to focus groups.",
+      glass: "603564 — inferred vd and unresolved identity; patent gives nd only",
+      role: "Positive meniscus at rear of G4",
     },
     // G5: Focus Group A (f = -81.7 mm)
     {
@@ -305,9 +287,9 @@ const LENS_DATA = {
       nd: 1.85026,
       vd: 32.3,
       fl: 71.2,
-      glass: "850323 - high-index lanthanum (nd=1.85026, vd~32.3)",
+      glass: "S-LAH71 — inferred vd and catalog counterpart; patent gives nd only",
       cemented: "D5",
-      role: "High-index positive in focus cemented doublet D5.",
+      role: "Positive element of the G5 focusing doublet",
     },
     {
       id: 21,
@@ -317,9 +299,9 @@ const LENS_DATA = {
       nd: 1.72916,
       vd: 54.7,
       fl: -37.5,
-      glass: "S-LAL18 (OHARA)",
+      glass: "S-LAL18 — inferred vd and catalog counterpart; patent gives nd only",
       cemented: "D5",
-      role: "Dominant negative in D5 (combined f = -82 mm). G5 is the primary focus group: +30.6 mm travel at tele.",
+      role: "Negative element of the G5 focusing doublet",
     },
     // G6: Focus Group B (f = -153.3 mm)
     {
@@ -330,8 +312,8 @@ const LENS_DATA = {
       nd: 1.654115,
       vd: 39.7,
       fl: 70.4,
-      glass: "S-NBH5 (OHARA)",
-      role: "Positive element in second focus group.",
+      glass: "S-NBH5 — inferred vd and catalog counterpart; patent gives nd only",
+      role: "Positive singlet in G6 focusing group",
     },
     {
       id: 23,
@@ -341,8 +323,8 @@ const LENS_DATA = {
       nd: 1.90265,
       vd: 35.4,
       fl: -46.5,
-      glass: "J-LASFH9 catalog equivalent (patent 903354; production supplier unspecified)",
-      role: "Ultra-high-index negative in G6. Second focus group provides fine correction; differential trajectory with G5 suppresses focus breathing.",
+      glass: "J-LASFH9 — inferred vd and catalog counterpart; patent gives nd only",
+      role: "Negative singlet in G6 focusing group",
     },
     // G7: Field Flattener (f = +502.7 mm)
     {
@@ -353,10 +335,9 @@ const LENS_DATA = {
       nd: 1.49782,
       vd: 81.1,
       fl: -75.3,
-      glass: "S-FPL51 (OHARA)",
-      apd: "inferred",
-      apdNote: "ED class; corrects lateral chromatic aberration near image plane",
-      role: "ED negative near image plane. Corrects lateral chromatic aberration at maximal chief ray height.",
+      glass: "S-FPL51 — inferred vd and catalog counterpart; patent gives nd only",
+      apd: false,
+      role: "Negative singlet in G7",
     },
     {
       id: 25,
@@ -366,20 +347,8 @@ const LENS_DATA = {
       nd: 1.738,
       vd: 49.3,
       fl: 66.7,
-      glass: "738493 — lanthanum crown (patent nd=1.73800, νd≈49.3; no exact public catalog match)",
-      role: "Positive meniscus (convex to object) paired with ED L24 for field flattening. G7 is stationary.",
-    },
-    // Filter (sensor cover glass model)
-    {
-      id: 26,
-      name: "FL",
-      label: "Filter",
-      type: "Flat Plate",
-      nd: 1.5168,
-      vd: 64.2,
-      fl: 1e15,
-      glass: "N-BK7 (SCHOTT)",
-      role: "Parallel-sided flat plate modeling the sensor stack. Not counted among the 25 optical elements.",
+      glass: "738493 — inferred vd and unresolved identity; patent gives nd only",
+      role: "Positive meniscus in G7",
     },
   ],
 
@@ -418,28 +387,25 @@ const LENS_DATA = {
     { label: "28", R: -60.541, d: 0.6, nd: 1.0, elemId: 0, sd: 16.0 },
     { label: "29", R: 134.57, d: 1.4, nd: 2.00069, elemId: 16, sd: 16.0 },
     { label: "30", R: 34.633, d: 2.73, nd: 1.0, elemId: 0, sd: 16.0 },
-    { label: "31", R: 59.403, d: 5.16, nd: 1.552981, elemId: 17, sd: 15.0 },
-    { label: "32", R: -38.045, d: 1.25, nd: 1.95375, elemId: 18, sd: 15.6 },
-    { label: "33", R: -67.886, d: 0.66, nd: 1.0, elemId: 0, sd: 17.5 },
-    { label: "34", R: 35.224, d: 3.5, nd: 1.60342, elemId: 19, sd: 17.5 },
-    { label: "35", R: 140.226, d: 3.2, nd: 1.0, elemId: 0, sd: 17.0 },
+    { label: "31", R: 59.403, d: 5.16, nd: 1.552981, elemId: 17, sd: 13.2 },
+    { label: "32", R: -38.045, d: 1.25, nd: 1.95375, elemId: 18, sd: 13.2 },
+    { label: "33", R: -67.886, d: 0.66, nd: 1.0, elemId: 0, sd: 13.2 },
+    { label: "34", R: 35.224, d: 3.5, nd: 1.60342, elemId: 19, sd: 13 },
+    { label: "35", R: 140.226, d: 3.2, nd: 1.0, elemId: 0, sd: 13 },
     // G5
-    { label: "36", R: 120.647, d: 2.26, nd: 1.85026, elemId: 20, sd: 16.5 },
-    { label: "37", R: -120.465, d: 1.0, nd: 1.72916, elemId: 21, sd: 16.0 },
-    { label: "38", R: 35.481, d: 14.3, nd: 1.0, elemId: 0, sd: 16.0 },
+    { label: "36", R: 120.647, d: 2.26, nd: 1.85026, elemId: 20, sd: 11.2 },
+    { label: "37", R: -120.465, d: 1.0, nd: 1.72916, elemId: 21, sd: 11.2 },
+    { label: "38", R: 35.481, d: 14.3, nd: 1.0, elemId: 0, sd: 11.2 },
     // G6
-    { label: "39", R: 560.475, d: 2.63, nd: 1.654115, elemId: 22, sd: 15.0 },
-    { label: "40", R: -50.042, d: 2.31, nd: 1.0, elemId: 0, sd: 16.5 },
-    { label: "41", R: -44.883, d: 1.0, nd: 1.90265, elemId: 23, sd: 16.0 },
-    { label: "42", R: 660.951, d: 26.984, nd: 1.0, elemId: 0, sd: 16.0 },
+    { label: "39", R: 560.475, d: 2.63, nd: 1.654115, elemId: 22, sd: 11.2 },
+    { label: "40", R: -50.042, d: 2.31, nd: 1.0, elemId: 0, sd: 11.2 },
+    { label: "41", R: -44.883, d: 1.0, nd: 1.90265, elemId: 23, sd: 11.2 },
+    { label: "42", R: 660.951, d: 26.984, nd: 1.0, elemId: 0, sd: 11.2 },
     // G7
     { label: "43", R: -285.763, d: 1.0, nd: 1.49782, elemId: 24, sd: 20.5 },
     { label: "44", R: 43.194, d: 1.46, nd: 1.0, elemId: 0, sd: 20.5 },
     { label: "45", R: 47.384, d: 5.67, nd: 1.738, elemId: 25, sd: 21.0 },
-    { label: "46", R: 1194.653, d: 29.62, nd: 1.0, elemId: 0, sd: 21.5 },
-    // Filter
-    { label: "47", R: 1e15, d: 1.6, nd: 1.5168, elemId: 26, sd: 24.0 },
-    { label: "48", R: 1e15, d: 0.0, nd: 1.0, elemId: 0, sd: 24.0 },
+    { label: "46", R: 1194.653, d: 30.674852320675104, nd: 1.0, elemId: 0, sd: 21.5 },
   ],
 
   asph: {},
@@ -476,7 +442,7 @@ const LENS_DATA = {
     ["17", "D17"],
     ["35", "D35"],
     ["38", "D38"],
-    ["42", "BF"],
+    ["42", "D42"],
   ],
 
   groups: [

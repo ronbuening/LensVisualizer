@@ -50,15 +50,6 @@ Confirmed without data-file changes:
 - Updated the glass-selection section to distinguish catalog-resolved glasses from patent-code-only glasses.
 - Removed the remaining "apochromatic correction pair" wording because the patent does not publish measured partial-dispersion or line-index data for this example.
 
-### Verification
-
-- `npm test -- catalogMismatchScan glassRelabelCandidatesScan` before edits — passed; lens appeared in the generated mismatch reports for the corrected labels above.
-- `npm test -- catalogMismatchScan glassRelabelCandidatesScan` after edits — passed; NikonNikkorZ1430mmf4S no longer appears in either generated mismatch report.
-- `npm run typecheck` — passed.
-- `npm run format:check` — passed.
-- `npm run lint` — passed.
-- `npm run test` — passed, 116 files / 1507 tests.
-
 ### Outstanding follow-ups
 
 - Consider adding catalog entries only if public Sellmeier sources are found for patent codes 694533, 903357, 795453, and 765468. Until then these labels intentionally fall back to Abbe approximation using the patent's stored nd/νd.

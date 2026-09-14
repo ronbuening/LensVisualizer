@@ -52,7 +52,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "JP1987-244010 A",
   patentAuthors: ["Naoshi Okada", "Hisashi Tokumaru"],
-  patentAssignees: ["Minolta Co., Ltd."],
+  patentAssignees: ["Minolta Camera Co., Ltd."],
   patentYear: 1987,
   elementCount: 7,
   groupCount: 6,

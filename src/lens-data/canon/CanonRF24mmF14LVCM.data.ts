@@ -15,10 +15,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    β=-0.022: d9=1.69, d11=8.41, d15=6.40, d22=2.23 mm                  ║
  * ║    β=-0.10:  d9=3.37, d11=6.73, d15=5.08, d22=3.55 mm                  ║
  * ║    β=-0.17:  d9=4.82, d11=5.28, d15=3.91, d22=4.73 mm                  ║
- * ║  LensDataInput stores prime-lens focus as infinity/close endpoint pairs, ║
- * ║  so `var` contains the first and last published rows. The two published  ║
- * ║  intermediate rows are retained here and in the audit and are verified  ║
- * ║  independently by the Stage-2 calculation script.                       ║
+ * ║  All four published rows are stored as exact focus keyframes. Motion    ║
+ * ║  between them is piecewise-linear visualization.                        ║
  * ║                                                                            ║
  * ║  The patent prints f=24.72 mm and Fno=1.46. The rounded prescription     ║
  * ║  independently computes EFL=24.713123 mm at infinity. Marketing remains ║
@@ -298,12 +296,13 @@ const LENS_DATA = {
     },
   },
 
-  /* ── Published focus endpoints; intermediate source rows are in the header/audit ── */
+  /* ── Published focus keyframes ── */
+  focusPositions: [0, 0.20297806853366232, 0.7062890432451783, 1],
   var: {
-    "9": [1.2, 4.82],
-    "11": [8.91, 5.28],
-    "15": [6.78, 3.91],
-    "22A": [1.85, 4.73],
+    "9": [1.2, 1.69, 3.37, 4.82],
+    "11": [8.91, 8.41, 6.73, 5.28],
+    "15": [6.78, 6.4, 5.08, 3.91],
+    "22A": [1.85, 2.23, 3.55, 4.73],
   },
   varLabels: [
     ["9", "D9"],
@@ -312,8 +311,7 @@ const LENS_DATA = {
     ["22A", "D22"],
   ],
   focusDescription:
-    "PUBLISHED — L2 moves imageward and L4 moves objectward. `var` stores the patent infinity and " +
-    "β=-0.17 endpoints; the β=-0.022 and β=-0.10 rows remain in the header/audit and are independently verified.",
+    "PUBLISHED — L2 moves imageward and L4 moves objectward. The infinity, β=-0.022, β=-0.10, and β=-0.17 patent rows are exact focus keyframes.",
 
   /* ── Patent functional groups and cemented components ── */
   groups: [

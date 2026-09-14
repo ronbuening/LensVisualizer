@@ -26,9 +26,3 @@ Patent: US 10,545,321 B2, Example 4, Figure 13
 
 - Recomputed all published infinity and close-focus states. G4 alone moves objectward for closer focus, while the five-group zoom retains the patent's wide-middle-tele order.
 - Replaced long sign/focus prose with the patent's concise `G1`-`G5` labels.
-
-### Verification
-
-- `npm run audit:surface -- src/lens-data/tamron/TamronSPA011150600mmf563VC.data.ts` — passed.
-- `npm run audit:image-circle -- src/lens-data/tamron/TamronSPA011150600mmf563VC.data.ts` — zero undersized surfaces.
-- `npm run generate:glass-reports` — passed.

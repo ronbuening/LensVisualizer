@@ -93,17 +93,17 @@ The lens uses internal focusing by translation of functional group G2 (L4–L6),
 
 The patent's own finite-focus row increases `d6` from 16.255 to 17.589 and decreases `d11` from 2.963 to 1.629, corresponding to a 1.334-unit imageward (rearward) G2 translation and approximately 1/10 lateral magnification. Independent paraxial solution with the corrected L7 index places that published state at about 1161.527 normalized units object-to-image, or 6969.164 mm after the 6× scaling, so it is not the production 5.5 m endpoint.
 
-The final data file therefore uses a **CONSTRAINED_RECONSTRUCTION** for 5.5 m. The production endpoint is solved while preserving the patent's one-group translation and exact adjacent-gap conservation. The required G2 travel is 10.425804 mm imageward (rearward).
+The published state is stored as an exact focus keyframe. The final data file uses a **CONSTRAINED_RECONSTRUCTION** for 5.5 m. The production endpoint is solved while preserving the patent's one-group translation and exact adjacent-gap conservation. The required G2 travel is 10.425804 mm imageward (rearward).
 
 Because the inferred aperture stop is fixed in the barrel, the patent's long front-side G2 gap is represented by a fixed S6→STO segment and a variable STO→S7 segment. The variable spacings are:
 
-| Gap | Infinity | 5.5 m |
-|---|---:|---:|
-| STO→S7 | 48.765 mm | 59.190804 mm |
-| S11→S12 | 17.778 mm | 7.352196 mm |
-| Sum | 66.543 mm | 66.543 mm |
+| Gap | Infinity | Patent finite row | 5.5 m |
+|---|---:|---:|---:|
+| STO→S7 | 48.765 mm | 56.769 mm | 59.190804 mm |
+| S11→S12 | 17.778 mm | 9.774 mm | 7.352196 mm |
+| Sum | 66.543 mm | 66.543 mm | 66.543 mm |
 
-The close-state conjugate solution places the object plane 5500.000 mm from the fixed image plane and gives a paraxial lateral magnification of approximately −0.12357. No additional floating group, rear-group shift, or hidden focus degree of freedom is introduced.
+The close-state conjugate solution places the object plane 5500.000 mm from the fixed image plane and gives a paraxial lateral magnification of approximately −0.12357. No additional floating group, rear-group shift, or hidden focus degree of freedom is introduced. Motion between the three exact states is piecewise-linear visualization.
 
 ## Chromatic Correction Strategy
 

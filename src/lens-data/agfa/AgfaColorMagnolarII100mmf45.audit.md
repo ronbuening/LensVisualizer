@@ -22,10 +22,6 @@ Patent: GB 775,944, sole numerical example
 - Figure review supports the current SD hierarchy: broad front cemented component, smaller biconcave central singlet, and a rear cemented component slightly smaller than the front component.
 - No SD values changed. Current values remain inferred renderer estimates constrained by f/4.5 marginal geometry, edge thickness, rim slope, and cross-gap sag clearance.
 
-### Verification
-
-- `npm test -- elementRenderDiagnostics`
-
 ## 2026-07-30 SUMITA LLF4 coefficient recovery
 
 - Added SUMITA's discontinued-inclusive LLF4 vendor polynomial at catalog code `561453`.

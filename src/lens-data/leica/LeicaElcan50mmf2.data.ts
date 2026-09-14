@@ -94,7 +94,7 @@ const LENS_DATA = {
       nd: 1.7546,
       vd: 34.7,
       fl: 52.0,
-      glass: "≈LAFN7 (lanthanum flint)",
+      glass: "Unmatched lanthanum flint (patent nd=1.7546, vd=34.7; outside LAFN7 compatibility)",
       apd: false,
       role: "Rear field-correcting element; high-index lanthanum flint for chromatic fine-tuning",
     },

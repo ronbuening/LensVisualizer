@@ -16,9 +16,3 @@ Patent: US 5,745,306 A, Example 2, Fig. 4 (PDF page 7)
 - Resolved L21's patent code `773495` to the compatible M-TAF1 catalog curve; production supplier identity remains unspecified. L13 remains unresolved because no unique defensible public match was found.
 - Restored concise source labels G1, G2, G3, and L14.
 - Confirmed constrained negative-G2 travel is 10.8362 mm imageward toward near focus. This prime lens has no zoom travel.
-
-### Verification
-
-- Per-lens image-circle audit: passed with 0 undersized surfaces.
-- Per-lens surface validator and regenerated glass-report suite: passed.
-- `npm run typecheck`, `npm run format:check`, `npm run lint`, `npm run test` (2,493 tests), and `npm run build` (1,112 prerendered routes): passed.

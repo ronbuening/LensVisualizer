@@ -17,12 +17,6 @@ Patent: US 2011/0170195 A1, Example 1
 - Relabeled L12, L13, and L23 to catalog-compatible HOYA `NBFD13`, `BACD4`, and `M-PCD4`. These provide checked dispersion curves while remaining explicitly vendor-unproven patent correlations.
 - Normalized the display name to `NIKON AF-S DX MICRO-NIKKOR 40mm f/2.8G`.
 
-### Verification
-
-- `npm run audit:surface -- src/lens-data/nikon/NikonAFSDXMicroNikkor40mmf28G.data.ts --scan 14A 9`
-- `npm run audit:image-circle -- src/lens-data/nikon/NikonAFSDXMicroNikkor40mmf28G.data.ts`
-- Full repository checks are recorded in the integrating commit.
-
 ## 2026-08-18 — Screenshot follow-up
 
 - Rechecked the supplied infinity rendering against Figure 1. The revised G1/G2/G3 height progression follows the source; no further SD adjustment exceeded the audit threshold with sufficient visual confidence.

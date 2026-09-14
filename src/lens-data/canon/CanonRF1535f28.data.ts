@@ -1,38 +1,8 @@
-/**
- * Canon RF 15-35mm f/2.8 L IS USM
- *
- * Patent:      US 2020/0257181 A1 (Gyoda, Canon), Numerical Example 1
- * Published:   August 13, 2020
- * Priority:    JP 2019-021356, February 8, 2019
- *
- * Prescription at design scale (not rescaled to marketing focal lengths).
- * Zoom positions: 15.45 / 24.00 / 33.95 mm (patent-stated EFL).
- * Constant f/2.91 across zoom range (marketed as f/2.8).
- *
- * Flare cutting stop (patent surface 21, R = ∞, between B4 and B5) has been
- * removed from the prescription. Its variable air gap is combined with the
- * preceding fixed gap (patent surface 20, d = 3.52 mm) into a single variable
- * gap at surface "20". At the telephoto end, the original FS gap was −1.05 mm
- * (physically overlapping the B5 front vertex); the combined gap is +2.47 mm,
- * satisfying the non-negative thickness validation constraint. Removing the FS
- * does not affect paraxial ray tracing — verified computationally.
- *
- * Close-focus spacing data is not provided in this patent. All var pairs use
- * identical [d_inf, d_inf] values. Focus slider is inoperative.
- *
- * A16 aspherical coefficients are present in the patent for surfaces 1*, 3*,
- * and 27* but are omitted here as the renderer's sag equation extends only
- * to A14. Maximum sag error from this omission is ~3 μm at the rim of
- * surface 1* — negligible for visualization.
- *
- * Semi-diameters start from the patent "Effective diameter" column ÷ 2, then
- * receive a modest construction-diagram pass so the rendered element outlines
- * track Canon's published section more closely. L1 front/rear SDs keep the full
- * patent values (27.52 / 18.92 mm) now that the renderer uses slope-based
- * validation instead of the old sd/|R| ratio check. The near-paraboloidal rear
- * surface (K = −0.981) has a gentle slope at these SDs (~49°, well under the
- * 64° threshold for spheres at sd/|R| = 0.9). STO semi-diameter uses the
- * wide-angle value (16.52 / 2 = 8.26 mm).
+/** US20200257181A1 Numerical Example 1, PDF pages 14–15, Figures 1A–1B.
+ * Source A16 terms and published physical iris schedule retained.
+ * Air-only flare diaphragm S21 remains omitted; d20+d21 preserves vertex spacing
+ * but does not simulate its clipping. No cover glass or filter block is present.
+ * Finite-focus gaps are unpublished and focus remains disabled.
  */
 
 import type { LensDataInput } from "../../types/optics.js";
@@ -45,9 +15,9 @@ const LENS_DATA = {
   specs: [
     "16 elements / 12 groups",
     "3 aspherical elements (6 surfaces)",
-    "2 UD elements",
-    "Optical IS (B4 shift)",
-    "Inner focus (B2)",
+    "Patent nd/vd; compatible glass counterparts",
+    "Centered IS (B4)",
+    "Infinity-focus model",
   ],
 
   focalLengthMarketing: [15, 35] as [number, number],
@@ -63,12 +33,11 @@ const LENS_DATA = {
   elementCount: 16,
   groupCount: 12,
   focusDescription:
-    "Inner focus via B2 (L5, L6+L7). B2 moves image-ward for close focus. " +
-    "No barrel extension; constant overall length during focus at each zoom position.",
+    "Infinity-focus model: B2 (L5–L7) moves imageward for close focus, but the patent publishes no finite-focus gaps. The disabled 0.28 m endpoint is retained retail metadata. Source iris diameters vary with zoom. IS is centered; omitted flare diaphragm S21 clipping is not simulated.",
 
   // ─── Zoom ───────────────────────────────────────────────────────────────────
   zoomPositions: [15.45, 24.0, 33.95],
-  zoomLabels: ["Wide", "Tele"],
+  zoomLabels: ["15.45 mm", "33.95 mm"],
 
   // ─── Elements (front to rear) ──────────────────────────────────────────────
   elements: [
@@ -81,8 +50,8 @@ const LENS_DATA = {
       nd: 1.58313,
       vd: 59.4,
       fl: -28.51,
-      glass: "S-BAL42 (OHARA)",
-      role: "Front negative meniscus; double-asph with near-paraboloidal rear surface (K = −0.981). Primary negative power in B1.",
+      glass: "S-BAL42 — compatible catalog counterpart; patent identity unspecified",
+      role: "Neg. Meniscus (2× Asph) singlet",
     },
     {
       id: 2,
@@ -92,8 +61,8 @@ const LENS_DATA = {
       nd: 1.854,
       vd: 40.4,
       fl: -96.46,
-      glass: "L-LAH85V (OHARA)",
-      role: "Supplementary negative asphere in B1; field-flattening and distortion correction.",
+      glass: "L-LAH85V — compatible catalog counterpart; patent identity unspecified",
+      role: "Biconcave Neg. (2× Asph) singlet",
     },
     {
       id: 3,
@@ -103,8 +72,8 @@ const LENS_DATA = {
       nd: 1.59522,
       vd: 67.7,
       fl: -50.16,
-      glass: "S-FPM2 (OHARA)",
-      role: "Negative element in fluorophosphate crown; limits chromatic load from front group.",
+      glass: "S-FPM2 — compatible catalog counterpart; patent identity unspecified",
+      role: "Biconcave Negative singlet",
     },
     {
       id: 4,
@@ -114,8 +83,8 @@ const LENS_DATA = {
       nd: 1.85478,
       vd: 24.8,
       fl: 47.0,
-      glass: "S-NBH56 (OHARA)",
-      role: "Sole positive element in B1; partially offsets net negative power and contributes positive chromatic aberration to partially compensate L1–L3.",
+      glass: "S-NBH56 — compatible catalog counterpart; patent identity unspecified",
+      role: "Biconvex Positive singlet",
     },
     // ── B2: Positive variator / focus unit (f = +73.31 mm) ──
     {
@@ -126,8 +95,8 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.9,
       fl: 72.07,
-      glass: "S-TIH53 (OHARA)",
-      role: "Primary positive power in B2 (focus unit).",
+      glass: "S-TIH53 — compatible catalog counterpart; patent identity unspecified",
+      role: "Biconvex Positive singlet; source B2 focus unit",
     },
     {
       id: 6,
@@ -137,9 +106,9 @@ const LENS_DATA = {
       nd: 1.92286,
       vd: 20.9,
       fl: -44.91,
-      glass: "PBH21 (OHARA; historical 923209)",
+      glass: "PBH21 — compatible catalog counterpart; patent identity unspecified",
       cemented: "D1",
-      role: "Negative element of achromatic corrector doublet D1 in B2.",
+      role: "Negative Meniscus element of cemented doublet D1; source B2 focus unit",
     },
     {
       id: 7,
@@ -149,9 +118,9 @@ const LENS_DATA = {
       nd: 1.53172,
       vd: 48.8,
       fl: 45.2,
-      glass: "S-TIL6 (OHARA)",
+      glass: "S-TIL6 — compatible catalog counterpart; patent identity unspecified",
       cemented: "D1",
-      role: "Positive element of D1; near-zero net power doublet corrects chromatic and spherical aberration from L5.",
+      role: "Positive Meniscus element of cemented doublet D1; source B2 focus unit",
     },
     // ── B3: Positive relay doublet (f = +52.20 mm) ──
     {
@@ -162,9 +131,9 @@ const LENS_DATA = {
       nd: 2.00069,
       vd: 25.5,
       fl: -72.66,
-      glass: "TAFD40 (HOYA)",
+      glass: "TAFD40 — compatible catalog counterpart; patent identity unspecified",
       cemented: "D2",
-      role: "Highest-index glass in system (nd > 2.0); negative element of achromatic relay doublet D2.",
+      role: "Negative Meniscus element of cemented doublet D2",
     },
     {
       id: 9,
@@ -174,9 +143,9 @@ const LENS_DATA = {
       nd: 1.53775,
       vd: 74.7,
       fl: 30.24,
-      glass: "S-FPM3 (OHARA)",
+      glass: "S-FPM3 — compatible catalog counterpart; patent identity unspecified",
       cemented: "D2",
-      role: "Positive crown in D2; Δνd = 49.2 provides strong achromatization in the relay section.",
+      role: "Biconvex Positive element of cemented doublet D2",
     },
     // ── B4: Negative IS unit (f = −63.99 mm) ──
     {
@@ -187,9 +156,9 @@ const LENS_DATA = {
       nd: 1.92286,
       vd: 20.9,
       fl: 31.5,
-      glass: "PBH21 (OHARA; historical 923209)",
+      glass: "PBH21 — compatible catalog counterpart; patent identity unspecified",
       cemented: "D3",
-      role: "Positive element of IS doublet D3; cemented construction ensures corrected aberrations during image stabilization shift.",
+      role: "Positive Meniscus element of cemented doublet D3; centered B4 stabilization group",
     },
     {
       id: 11,
@@ -199,9 +168,9 @@ const LENS_DATA = {
       nd: 1.834,
       vd: 37.2,
       fl: -21.72,
-      glass: "S-LAH60 (OHARA)",
+      glass: "S-LAH60 — compatible catalog counterpart; patent identity unspecified",
       cemented: "D3",
-      role: "Dominant negative element of IS unit; B4 shifts orthogonal to axis for image stabilization.",
+      role: "Biconcave Negative element of cemented doublet D3; centered B4 stabilization group",
     },
     // ── B5: Positive rear group / PL unit (f = +51.49 mm) ──
     {
@@ -212,10 +181,9 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.6,
       fl: 40.0,
-      glass: "S-FPL51 / FCD1 (OHARA / HOYA)",
-      apd: "inferred" as const,
-      apdNote: "Canon UD designation; fluorophosphate crown with νd = 81.6",
-      role: "First UD element; primary lateral chromatic aberration corrector at wide end.",
+      glass: "FCD1 — compatible catalog counterpart; patent identity unspecified",
+      apd: false as const,
+      role: "Biconvex Positive singlet",
     },
     {
       id: 13,
@@ -225,11 +193,10 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.6,
       fl: 33.68,
-      glass: "S-FPL51 / FCD1 (OHARA / HOYA)",
-      apd: "inferred" as const,
-      apdNote: "Canon UD designation; fluorophosphate crown with νd = 81.6",
+      glass: "FCD1 — compatible catalog counterpart; patent identity unspecified",
+      apd: false as const,
       cemented: "D4",
-      role: "Second UD element; cemented with L14 for combined lateral color and Petzval correction.",
+      role: "Biconvex Positive element of cemented doublet D4",
     },
     {
       id: 14,
@@ -239,9 +206,9 @@ const LENS_DATA = {
       nd: 2.0509,
       vd: 26.9,
       fl: -21.79,
-      glass: "TAFD65 (HOYA)",
+      glass: "TAFD65 — compatible catalog counterpart; patent identity unspecified",
       cemented: "D4",
-      role: "Ultra-high-index negative in D4; Δνd = 54.7 (strongest achromatic pair). Negative Petzval contribution moderates field curvature.",
+      role: "Biconcave Negative element of cemented doublet D4",
     },
     {
       id: 15,
@@ -251,8 +218,8 @@ const LENS_DATA = {
       nd: 1.854,
       vd: 40.4,
       fl: -93.22,
-      glass: "L-LAH85V (OHARA)",
-      role: "Third aspherical element; double-asph surfaces correct field curvature, astigmatism, and distortion at the image side.",
+      glass: "L-LAH85V — compatible catalog counterpart; patent identity unspecified",
+      role: "Neg. Meniscus (2× Asph) singlet",
     },
     {
       id: 16,
@@ -262,8 +229,8 @@ const LENS_DATA = {
       nd: 1.92286,
       vd: 20.9,
       fl: 87.31,
-      glass: "PBH21 (OHARA; historical 923209)",
-      role: "Rearmost element; gentle curvatures from high index. Fluorine-coated in production.",
+      glass: "PBH21 — compatible catalog counterpart; patent identity unspecified",
+      role: "Biconvex Positive singlet",
     },
   ],
 
@@ -274,24 +241,24 @@ const LENS_DATA = {
     // ── B1 ──
     { label: "1A", R: 3000.0, d: 2.85, nd: 1.58313, elemId: 1, sd: 27.52 },
     { label: "2A", R: 16.526, d: 10.57, nd: 1.0, elemId: 0, sd: 18.92 },
-    { label: "3A", R: -809.327, d: 2.25, nd: 1.854, elemId: 2, sd: 18.23 },
+    { label: "3A", R: -809.327, d: 2.25, nd: 1.854, elemId: 2, sd: 18.1 },
     { label: "4A", R: 91.828, d: 5.56, nd: 1.0, elemId: 0, sd: 15.74 },
     { label: "5", R: -53.256, d: 1.2, nd: 1.59522, elemId: 3, sd: 15.59 },
-    { label: "6", R: 68.528, d: 0.15, nd: 1.0, elemId: 0, sd: 15.44 },
-    { label: "7", R: 43.587, d: 5.03, nd: 1.85478, elemId: 4, sd: 13.25 },
-    { label: "8", R: -485.244, d: 25.32, nd: 1.0, elemId: 0, sd: 13.0 },
+    { label: "6", R: 68.528, d: 0.15, nd: 1.0, elemId: 0, sd: 15.435 },
+    { label: "7", R: 43.587, d: 5.03, nd: 1.85478, elemId: 4, sd: 15.55 },
+    { label: "8", R: -485.244, d: 25.32, nd: 1.0, elemId: 0, sd: 15.31 },
     // ── B2 (focus unit) ──
     { label: "9", R: 63.607, d: 2.67, nd: 1.84666, elemId: 5, sd: 12.32 },
     { label: "10", R: -1472.964, d: 0.15, nd: 1.0, elemId: 0, sd: 12.39 },
-    { label: "11", R: 52.737, d: 1.0, nd: 1.92286, elemId: 6, sd: 11.35 },
-    { label: "12", R: 22.996, d: 5.41, nd: 1.53172, elemId: 7, sd: 11.05 },
-    { label: "13", R: 489.976, d: 8.24, nd: 1.0, elemId: 0, sd: 11.2 },
+    { label: "11", R: 52.737, d: 1.0, nd: 1.92286, elemId: 6, sd: 12.535 },
+    { label: "12", R: 22.996, d: 5.41, nd: 1.53172, elemId: 7, sd: 12.31 },
+    { label: "13", R: 489.976, d: 8.24, nd: 1.0, elemId: 0, sd: 12.45 },
     // ── SP (Fno stop) ──
     { label: "STO", R: 1e15, d: 13.71, nd: 1.0, elemId: 0, sd: 8.26 },
     // ── B3 ──
-    { label: "15", R: 27.733, d: 1.2, nd: 2.00069, elemId: 8, sd: 15.25 },
-    { label: "16", R: 19.641, d: 9.29, nd: 1.53775, elemId: 9, sd: 15.0 },
-    { label: "17", R: -78.882, d: 1.6, nd: 1.0, elemId: 0, sd: 14.8 },
+    { label: "15", R: 27.733, d: 1.2, nd: 2.00069, elemId: 8, sd: 13.86 },
+    { label: "16", R: 19.641, d: 9.29, nd: 1.53775, elemId: 9, sd: 13.27 },
+    { label: "17", R: -78.882, d: 1.6, nd: 1.0, elemId: 0, sd: 13.165 },
     // ── B4 (IS unit) ──
     { label: "18", R: -67.558, d: 4.31, nd: 1.92286, elemId: 10, sd: 10.99 },
     { label: "19", R: -20.948, d: 0.77, nd: 1.834, elemId: 11, sd: 11.24 },
@@ -299,17 +266,17 @@ const LENS_DATA = {
     // ── B5 (PL unit) ──
     { label: "22", R: 30.487, d: 11.2, nd: 1.497, elemId: 12, sd: 17.43 },
     { label: "23", R: -50.182, d: 0.15, nd: 1.0, elemId: 0, sd: 17.34 },
-    { label: "24", R: 40.928, d: 11.0, nd: 1.497, elemId: 13, sd: 17.0 },
-    { label: "25", R: -25.8, d: 1.2, nd: 2.0509, elemId: 14, sd: 16.6 },
-    { label: "26", R: 208.835, d: 4.54, nd: 1.0, elemId: 0, sd: 16.4 },
-    { label: "27A", R: -73.669, d: 2.1, nd: 1.854, elemId: 15, sd: 14.78 },
-    { label: "28A", R: -1000.0, d: 0.15, nd: 1.0, elemId: 0, sd: 16.06 },
-    { label: "29", R: 216.036, d: 3.4, nd: 1.92286, elemId: 16, sd: 17.13 },
+    { label: "24", R: 40.928, d: 11.0, nd: 1.497, elemId: 13, sd: 15.735 },
+    { label: "25", R: -25.8, d: 1.2, nd: 2.0509, elemId: 14, sd: 14.755 },
+    { label: "26", R: 208.835, d: 4.54, nd: 1.0, elemId: 0, sd: 14.74 },
+    { label: "27A", R: -73.669, d: 2.1, nd: 1.854, elemId: 15, sd: 14.775 },
+    { label: "28A", R: -1000.0, d: 0.15, nd: 1.0, elemId: 0, sd: 16.055 },
+    { label: "29", R: 216.036, d: 3.4, nd: 1.92286, elemId: 16, sd: 17.125 },
     { label: "30", R: -127.538, d: 14.0, nd: 1.0, elemId: 0, sd: 17.44 },
   ],
 
   // ─── Aspherical coefficients ───────────────────────────────────────────────
-  // Patent includes A16 for surfaces 1*, 3*, 27* — omitted (negligible contribution at production SDs).
+  // Complete source aspheric coefficients, including A16 on surfaces 1, 3 and 27.
   asph: {
     "1A": {
       K: 0,
@@ -319,6 +286,7 @@ const LENS_DATA = {
       A10: -8.60253e-14,
       A12: 1.03363e-16,
       A14: -7.03702e-20,
+      A16: 2.16318e-23,
     },
     "2A": {
       K: -9.81344e-1,
@@ -337,6 +305,7 @@ const LENS_DATA = {
       A10: -3.49283e-12,
       A12: 3.62808e-15,
       A14: 5.24953e-19,
+      A16: -2.43479e-21,
     },
     "4A": {
       K: 0,
@@ -355,6 +324,7 @@ const LENS_DATA = {
       A10: 4.87911e-12,
       A12: -8.56493e-15,
       A14: -1.1788e-18,
+      A16: -3.10043e-23,
     },
     "28A": {
       K: 0,
@@ -415,6 +385,7 @@ const LENS_DATA = {
   groups: [
     { text: "B1 (−)", fromSurface: "1A", toSurface: "8" },
     { text: "B2 (+, Focus)", fromSurface: "9", toSurface: "13" },
+    { text: "SP", fromSurface: "STO", toSurface: "STO" },
     { text: "B3 (+)", fromSurface: "15", toSurface: "17" },
     { text: "B4 (−, IS)", fromSurface: "18", toSurface: "20" },
     { text: "B5 (+, PL)", fromSurface: "22", toSurface: "30" },
@@ -427,9 +398,10 @@ const LENS_DATA = {
   ],
 
   // ─── Rendering & layout ────────────────────────────────────────────────────
+  zoomStopSemiDiameters: [8.26, 10.465, 13.325],
   nominalFno: 2.91,
   closeFocusM: 0.28,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
+  fstopSeries: [2.91, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
   scFill: 0.5,
   yScFill: 0.45,

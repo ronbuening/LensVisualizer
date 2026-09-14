@@ -123,7 +123,7 @@ The lens uses inner focus. G2 consists only of L21 and moves toward the image du
 | Patent near state, β = -0.041 | 2.984 mm | 5.092 mm | +0.672 mm | -0.0408 |
 | Data-file close state, production MFD 0.22 m | 4.586 mm | 3.490 mm | +2.274 mm | -0.1324 |
 
-The patent's tabulated close state is not the production minimum focus distance. A paraxial finite-conjugate solve in the air-equivalent data model shows that the same prescription reaches the manufacturer-published 0.22 m image-plane close focus when G2 travel is extended to 2.274087 mm, yielding |m| = 0.13237. This matches the published 0.13× maximum magnification closely enough for the data file's close-focus endpoint.
+The patent's tabulated close state is stored as an exact keyframe but is not the production minimum focus distance. A paraxial finite-conjugate solve in the air-equivalent data model shows that the same prescription reaches the manufacturer-published 0.22 m image-plane close focus when G2 travel is extended to 2.274087 mm, yielding |m| = 0.13237. This matches the published 0.13× maximum magnification closely enough for the data file's close-focus endpoint. Interpolation between the three exact states is a visualization approximation.
 
 ## Aspherical Surfaces
 

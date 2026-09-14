@@ -7,9 +7,10 @@ import { useCallback, useEffect } from "react";
 import { eflAtZoom, formatDist } from "../../optics/optics.js";
 import { fisheyeProjectionFocalLengthAtZoom, isFisheyeProjection } from "../../optics/projection.js";
 import { getGroupMovementAvailability } from "../../optics/groupMovement.js";
-import { perspectiveControlSteps } from "../../optics/lensMovement.js";
+import { isMovementAxisEnabled, perspectiveControlSteps } from "../../optics/lensMovement.js";
 import { snapToZeroStop } from "../../utils/style/sliderStops.js";
 import SliderControl from "./SliderControl.js";
+import SliderResetButton from "./SliderResetButton.js";
 import useInteractionSignal from "../hooks/useInteractionSignal.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
@@ -20,9 +21,11 @@ interface VarReadout {
   val: string;
 }
 
-/** Format f-number for display: one decimal below f/10, rounded above. */
+/** Preserve hundredth-stop patent apertures while keeping whole stops compact. */
 function fmtF(f: number): string {
-  return f < 10 ? f.toFixed(1) : String(Math.round(f));
+  const rounded = Math.round(f * 100) / 100;
+  if (Number.isInteger(rounded)) return rounded < 10 ? rounded.toFixed(1) : String(rounded);
+  return rounded.toFixed(2).replace(/0$/, "");
 }
 
 interface DiagramControlsProps {
@@ -104,6 +107,8 @@ export default function DiagramControls({
 }: DiagramControlsProps) {
   const { interacting, beginInteraction, endInteraction, onChangeActivity } = useInteractionSignal();
   const pcSteps = L.perspectiveControl ? perspectiveControlSteps(L.perspectiveControl) : null;
+  const shiftEnabled = L.perspectiveControl ? isMovementAxisEnabled(L.perspectiveControl.shiftRangeMm) : false;
+  const tiltEnabled = L.perspectiveControl ? isMovementAxisEnabled(L.perspectiveControl.tiltRangeDeg) : false;
   const groupMovementAvailability = getGroupMovementAvailability(L);
 
   useEffect(() => {
@@ -163,6 +168,16 @@ export default function DiagramControls({
     [onChangeActivity, onTiltChange, pcSteps],
   );
 
+  const handleShiftReset = useCallback(() => {
+    handleShiftChange(0);
+    handlePointerUp();
+  }, [handlePointerUp, handleShiftChange]);
+
+  const handleTiltReset = useCallback(() => {
+    handleTiltChange(0);
+    handlePointerUp();
+  }, [handlePointerUp, handleTiltChange]);
+
   const infinityEFL = L.isZoom ? eflAtZoom(zoomT, L) : L.EFL;
   const projection = L.projection ?? { kind: "rectilinear" };
   const isFisheye = isFisheyeProjection(projection);
@@ -170,7 +185,10 @@ export default function DiagramControls({
   const apertureReferenceValue = fisheyeProjectionFocalLengthAtZoom(projection, zoomT) ?? dynamicEFL;
   const eflChanged = Math.abs(dynamicEFL - infinityEFL) > 0.1;
   const effApertureDiffers = Math.abs(effectiveFNum - fNumber) > 0.05;
-  const availableFStops = L.fstopSeries.filter((value) => value >= currentFOPEN - 0.1 && value <= L.maxFstop);
+  const availableFStops = [
+    currentFOPEN,
+    ...L.fstopSeries.filter((value) => value > currentFOPEN + 0.001 && value <= L.maxFstop),
+  ];
   const hasApertureRange = L.maxFstop > currentFOPEN + 0.15;
   const showApertureControl = showSliders && (hasApertureRange || availableFStops.length > 1);
   const signed = (value: number, digits: number, unit: string) =>
@@ -223,8 +241,8 @@ export default function DiagramControls({
           onPointerDown={beginInteraction}
           onChange={handleZoomChange}
           onPointerUp={handlePointerUp}
-          minLabel={`${L.zoomPositions![0]} mm`}
-          maxLabel={`${L.zoomPositions![L.zoomPositions!.length - 1]} mm`}
+          minLabel={`${Number(L.zoomPositions![0].toFixed(2))} mm`}
+          maxLabel={`${Number(L.zoomPositions![L.zoomPositions!.length - 1].toFixed(2))} mm`}
           flexBasis="200px"
           action={groupMovementAvailability.zoom ? motionButton("zoom", "zoom") : undefined}
         >
@@ -260,14 +278,14 @@ export default function DiagramControls({
           useSideLayout={useSideLayout}
           label="FOCUS"
           labelMinWidth={85}
-          displayValue={formatDist(focusT, L)}
+          displayValue={formatDist(focusT, L, zoomT)}
           value={focusT}
           step={L.focusStep}
           onPointerDown={beginInteraction}
           onChange={handleFocusChange}
           onPointerUp={handlePointerUp}
           minLabel={"\u221e"}
-          maxLabel={`${L.closeFocusM} m`}
+          maxLabel={groupMovementAvailability.focus ? formatDist(1, L, zoomT) : "Not modeled"}
           disabled={!groupMovementAvailability.focus}
           disabledReason="No modeled focus travel data"
           flexBasis="260px"
@@ -378,7 +396,7 @@ export default function DiagramControls({
         </SliderControl>
       )}
 
-      {showSliders && L.perspectiveControl && pcSteps && (
+      {showSliders && L.perspectiveControl && pcSteps && shiftEnabled && (
         <SliderControl
           t={t}
           compact={compact}
@@ -396,10 +414,11 @@ export default function DiagramControls({
           minLabel={signed(L.perspectiveControl.shiftRangeMm[0], 1, "mm")}
           maxLabel={signed(L.perspectiveControl.shiftRangeMm[1], 1, "mm")}
           flexBasis="190px"
+          action={<SliderResetButton axisLabel="shift" value={shiftMm} onReset={handleShiftReset} t={t} />}
         />
       )}
 
-      {showSliders && L.perspectiveControl && pcSteps && (
+      {showSliders && L.perspectiveControl && pcSteps && tiltEnabled && (
         <SliderControl
           t={t}
           compact={compact}
@@ -417,6 +436,7 @@ export default function DiagramControls({
           minLabel={signed(L.perspectiveControl.tiltRangeDeg[0], 1, "deg")}
           maxLabel={signed(L.perspectiveControl.tiltRangeDeg[1], 1, "deg")}
           flexBasis="190px"
+          action={<SliderResetButton axisLabel="tilt" value={tiltDeg} onReset={handleTiltReset} t={t} />}
         />
       )}
 
@@ -434,7 +454,7 @@ export default function DiagramControls({
           onPointerDown={beginInteraction}
           onChange={handleStopdownChange}
           onPointerUp={handlePointerUp}
-          minLabel={`f/${currentFOPEN.toFixed(1)}`}
+          minLabel={`f/${fmtF(currentFOPEN)}`}
           maxLabel={`f/${L.maxFstop}`}
           flexBasis="220px"
           collapsible={true}
@@ -452,7 +472,7 @@ export default function DiagramControls({
                   transition: "color 0.3s",
                 }}
               >
-                {apertureReferenceLabel} {apertureReferenceValue.toFixed(2)} mm · EP {"\u2300"}{" "}
+                {apertureReferenceLabel} {apertureReferenceValue.toFixed(2)} mm · Est. wide-open EP {"\u2300"}{" "}
                 {(baseEPSD * 2).toFixed(2)} mm · Stop {"\u2300"} {(currentPhysStopSD * 2).toFixed(2)} mm
               </div>
               <div
@@ -474,7 +494,7 @@ export default function DiagramControls({
                       handleStopdownChange(Math.log(n / L.FOPEN) / Math.log(L.maxFstop / L.FOPEN));
                       handlePointerUp();
                     }}
-                    aria-label={`Set aperture to f/${n}`}
+                    aria-label={`Set aperture to f/${fmtF(n)}`}
                     style={{
                       background: "none",
                       border: "none",
@@ -486,7 +506,7 @@ export default function DiagramControls({
                       transition: "opacity 0.15s",
                     }}
                   >
-                    f/{n}
+                    f/{fmtF(n)}
                   </button>
                 ))}
               </div>

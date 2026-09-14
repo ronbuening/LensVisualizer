@@ -43,14 +43,6 @@ Catalog version: fd7376b
 - Updated the element-by-element glass names for G2, G5, G6, G8, G9, G10, G11, G12, and G14 to match the audited data labels.
 - Updated the D4 and G11 prose so it no longer names false S-TIM22 or S-LAH89 glasses.
 
-### Verification
-
-- `npm run typecheck` - passed.
-- `npm run format:check` - passed.
-- `npm run lint` - passed.
-- `npm run test` - passed (116 files, 1507 tests; expected error-boundary console errors were emitted by tests).
-- `npm test -- catalogMismatchScan glassRelabelCandidatesScan` - passed; Canon RF 50mm f/1.2 no longer appears in either generated report.
-
 ## 2026-05-19 - Partial-dispersion enrichment and code search
 
 ### Phase 1 - Glass corrections
@@ -74,11 +66,9 @@ Catalog version: fd7376b
 - Added ΔθgF details for G5, G7, and G10 in the element narrative.
 - Added a glass-selection note explaining that patent-family ΔθgF values are now stored as `dPgF`.
 
-### Verification
+### Report status
 
-- `npm run generate:glass-reports` - passed; the unresolved 666356 rows remain in `six-digit-glass-codes-missing-sellmeier.generated.md` because no coefficient-backed public catalog match was found.
-- `npm run typecheck` - passed.
-- `npm run format:check` - passed.
+- The unresolved 666356 rows remain in `six-digit-glass-codes-missing-sellmeier.generated.md` because no coefficient-backed public catalog match was found.
 
 ## 2026-05-31 - Catalog-mismatch second-batch recheck
 

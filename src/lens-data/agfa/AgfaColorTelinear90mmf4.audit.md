@@ -23,10 +23,6 @@ Patent: US 2,819,651, single worked example
 - Stored SDs already follow that figure envelope: front/middle surfaces stay near 12.3-12.7 mm after scaling, while the rear doublet is smaller at 10.2 mm.
 - No SD values changed. Current values remain inferred clear apertures constrained by the f/4 on-axis beam, the 15 degree chief ray, edge thickness, rim slope, and cross-gap sag clearance.
 
-### Verification
-
-- `npm test -- elementRenderDiagnostics`
-
 ## 2026-07-30 SUMITA KF3 coefficient recovery
 
 - Added SUMITA's discontinued-inclusive KF3 vendor polynomial at catalog code `515546`.

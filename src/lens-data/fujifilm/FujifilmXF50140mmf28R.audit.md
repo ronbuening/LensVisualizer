@@ -24,11 +24,3 @@ Patent: US 2017/0090163 A1, master lens / Table 1
 ### Phase 4 - Analysis sync
 
 - Updated the glass inventory and L22 note to identify S-BSM22 as the coefficient-backed match.
-
-### Verification
-
-- `npm run generate:glass-reports` - passed.
-- `npm run typecheck` - passed.
-- `npm run format:check` - passed.
-- `npm run lint` - passed.
-- `npm run test` - passed, 131 test files / 1666 tests.

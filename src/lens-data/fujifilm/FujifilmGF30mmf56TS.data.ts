@@ -61,6 +61,15 @@ const LENS_DATA = {
     tiltRangeDeg: [-8.5, 8.5],
     shiftStepMm: 0.1,
     tiltStepDeg: 0.1,
+    // WO 2024/195273 A1 [0270], Fig. 42 places Tc at or near the optical system's
+    // image-side principal point. Example 4's infinity EFL locates that reference
+    // 30.9009 mm objectward of the image plane. This is patent design guidance,
+    // not a measured production hinge position.
+    tiltPivot: {
+      frame: "camera",
+      basis: "patent-principal-point-guidance",
+      zOffsetFromImagePlaneMm: -30.9009,
+    },
   },
 
   elements: [

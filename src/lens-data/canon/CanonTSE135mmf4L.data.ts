@@ -61,6 +61,12 @@ const LENS_DATA = {
     tiltRangeDeg: [-10, 10],
     shiftStepMm: 0.1,
     tiltStepDeg: 0.1,
+    // Reference-state rear vertex fallback; not a measured mechanical tilt hinge.
+    tiltPivot: {
+      frame: "camera",
+      basis: "rear-vertex-fallback",
+      zOffsetFromImagePlaneMm: -78.33,
+    },
   },
   focusDescription:
     "Double floating focus: L2/FN moves imageward and L3/FP moves objectward; L1, STO, and L4/RF remain fixed.",

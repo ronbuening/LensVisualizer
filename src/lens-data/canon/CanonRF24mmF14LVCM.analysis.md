@@ -237,10 +237,9 @@ prime lens.
 | $\beta=-0.10$ | 3.37 | 6.73 | 5.08 | 3.55 | +2.17 | -1.70 |
 | Close, $\beta=-0.17$ | 4.82 | 5.28 | 3.91 | 4.73 | +3.62 | -2.87 |
 
-The final `var` field stores the published infinity and close endpoints because the current prime-lens schema accepts one
-infinity/close pair per variable gap. The two intermediate published rows are not reconstructed or discarded; they are
-retained as source states and independently verified. The source gap sums remain constant to 0.01 mm rounding, consistent
-with rigid translation of L2 and L4.
+The final `var` field stores all four published rows as exact focus keyframes. Their normalized positions follow the
+viewer's inverse-distance convention. The source gap sums remain constant to 0.01 mm rounding, consistent with rigid
+translation of L2 and L4. Motion between the published rows remains a piecewise-linear visualization.
 
 At the normalized image plane, the close row computes to -0.17078× at 0.23896 m object-to-image distance, consistent with
 Canon's marketed 0.17× at 0.24 m. Canon states that Nano USM controls the floating-focus unit and VCM powers the

@@ -24,13 +24,6 @@ Patent: US 3,975,089, Table I / Fig. 1
 
 - Updated the analysis glass-palette summary to avoid overstating the count of distinct glass types and to call FK5 a fluor crown rather than a fluorite crown.
 
-### Verification
-
-- `npm run generate:glass-reports` passed.
-- `npm run typecheck` passed.
-- Scoped `prettier --check` passed for the Vivitar audit files and regenerated glass reports.
-- `git diff --check -- src/lens-data/vivitar agent_docs/generated` passed.
-
 ## 2026-06-23 — SD proportion refinement
 
 - Adjusted the L6/L7 cemented interface SD from 9.0 mm to 10.2 mm to make the Group III compensator doublet read as a more coherent pair in the SVG diagram.

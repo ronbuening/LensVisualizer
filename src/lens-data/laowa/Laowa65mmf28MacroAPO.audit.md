@@ -19,18 +19,9 @@ Patent: CN 110161666A, Example 2
 - Confirmed flagged rows against local `patents/CN110161666A.pdf`, Example 2 table. Stored nd/vd values matched the patent.
 - Non-flagged prescription fields were not fully rekeyed in this queue pass.
 
-### Phase 3 — Spectral / metadata enrichment
-
-- No catalog entries added; selected matches already resolve through the project catalog.
-
 ### Phase 4 — Analysis sync
 
 - Updated affected element notes and the glass identification table.
-
-### Verification
-
-- `npm run generate:glass-reports` — passed; lens cleared from both glass mismatch queues.
-- `npm run typecheck`, `npm run format:check`, `npm run lint`, and `npm run test` — passed.
 
 ## 2026-06-24 — Full local patent audit
 
@@ -57,8 +48,3 @@ Patent: CN 110161666A, Example 2
 ### Phase 4 — Analysis sync
 
 - Updated `Laowa65mmf28MacroAPO.analysis.md` so L3 and L10 use unbroken six-digit code labels and explicitly explain why they remain unresolved rather than resolved to H-LAK51/H-LAK52.
-
-### Verification
-
-- `npm run generate:glass-reports` — passed.
-- `npm run typecheck`, `npm run format:check`, `npm run lint`, `npm run test`, and `npm run build` — passed.

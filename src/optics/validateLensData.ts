@@ -9,7 +9,7 @@
  * rather than throwing on the first problem.
  */
 
-import type { AsphericCoefficients, ImagePlaneData, PerspectiveControlConfig, SurfaceData } from "../types/optics.js";
+import type { AsphericCoefficients, ImagePlaneData, SurfaceData } from "../types/optics.js";
 import { ASPHERIC_COEFFICIENT_SCHEMA } from "../types/asphericSchema.js";
 import { isImageFormatId, isLensMountId } from "../utils/catalog/lensTaxonomy.js";
 import {
@@ -44,7 +44,7 @@ const OPTIONAL_ASPHERIC_COEFFICIENTS = ASPHERIC_COEFFICIENT_SCHEMA.filter((descr
 const KNOWN_ASPHERIC_COEFFICIENTS = new Set<string>(ASPHERIC_COEFFICIENT_SCHEMA.map((descriptor) => descriptor.key));
 
 function validateNumberRange(
-  config: PerspectiveControlConfig,
+  config: Record<string, unknown>,
   field: "shiftRangeMm" | "tiltRangeDeg",
   errors: string[],
 ): void {
@@ -58,8 +58,46 @@ function validateNumberRange(
     errors.push(`"perspectiveControl.${field}" must contain finite numbers`);
     return;
   }
-  if (min > 0 || max < 0 || min >= max) {
-    errors.push(`"perspectiveControl.${field}" must be an ascending range that includes 0`);
+  if (min > 0 || max < 0 || min > max) {
+    errors.push(`"perspectiveControl.${field}" must be an ordered range that includes 0`);
+  }
+}
+
+function isEnabledMovementRange(value: unknown): boolean {
+  return (
+    Array.isArray(value) &&
+    value.length === 2 &&
+    value.every((entry) => typeof entry === "number" && isFinite(entry)) &&
+    value[1] > value[0]
+  );
+}
+
+function validatePerspectiveControlTiltPivot(value: unknown, errors: string[]): void {
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
+    errors.push(`"perspectiveControl.tiltPivot" must be an object when tilt is enabled`);
+    return;
+  }
+
+  const pivot = value as Record<string, unknown>;
+  if (pivot.frame !== "camera") {
+    errors.push(`"perspectiveControl.tiltPivot.frame" must be "camera"`);
+  }
+  if (
+    pivot.basis !== "mechanical-axis" &&
+    pivot.basis !== "patent-principal-point-guidance" &&
+    pivot.basis !== "rear-vertex-fallback"
+  ) {
+    errors.push(
+      `"perspectiveControl.tiltPivot.basis" must be "mechanical-axis", ` +
+        `"patent-principal-point-guidance", or "rear-vertex-fallback"`,
+    );
+  }
+  if (
+    typeof pivot.zOffsetFromImagePlaneMm !== "number" ||
+    !isFinite(pivot.zOffsetFromImagePlaneMm) ||
+    pivot.zOffsetFromImagePlaneMm >= 0
+  ) {
+    errors.push(`"perspectiveControl.tiltPivot.zOffsetFromImagePlaneMm" must be a finite negative number`);
   }
 }
 
@@ -68,9 +106,32 @@ function validatePerspectiveControl(value: unknown, errors: string[]): void {
     errors.push(`"perspectiveControl" must be an object when provided`);
     return;
   }
-  const config = value as PerspectiveControlConfig;
+  const config = value as Record<string, unknown>;
   validateNumberRange(config, "shiftRangeMm", errors);
   validateNumberRange(config, "tiltRangeDeg", errors);
+  if (isEnabledMovementRange(config.tiltRangeDeg)) {
+    validatePerspectiveControlTiltPivot(config.tiltPivot, errors);
+  } else if (config.tiltPivot !== undefined) {
+    validatePerspectiveControlTiltPivot(config.tiltPivot, errors);
+    if (
+      Array.isArray(config.tiltRangeDeg) &&
+      config.tiltRangeDeg.length === 2 &&
+      config.tiltRangeDeg[0] === 0 &&
+      config.tiltRangeDeg[1] === 0
+    ) {
+      errors.push(`"perspectiveControl.tiltPivot" must be omitted when tilt is disabled`);
+    }
+  }
+  if (
+    Array.isArray(config.shiftRangeMm) &&
+    config.shiftRangeMm.length === 2 &&
+    Array.isArray(config.tiltRangeDeg) &&
+    config.tiltRangeDeg.length === 2 &&
+    config.shiftRangeMm[0] === config.shiftRangeMm[1] &&
+    config.tiltRangeDeg[0] === config.tiltRangeDeg[1]
+  ) {
+    errors.push(`"perspectiveControl" must enable shift, tilt, or both`);
+  }
   if (
     config.shiftStepMm !== undefined &&
     (typeof config.shiftStepMm !== "number" || !isFinite(config.shiftStepMm) || config.shiftStepMm <= 0)
@@ -636,6 +697,41 @@ export default function validateLensData(data: UntrustedLensData): string[] {
     if (!Array.isArray(data[f]) || data[f].length === 0) errors.push(`Missing or empty required array field: "${f}"`);
   }
 
+  if (
+    data.zoomApertureModel !== undefined &&
+    (data.zoomApertureModel !== "from-nominal-fno" ||
+      !Array.isArray(data.zoomPositions) ||
+      data.zoomPositions.length < 2)
+  ) {
+    errors.push('"zoomApertureModel" must be "from-nominal-fno" on a zoom lens');
+  }
+  if (data.zoomStopSemiDiameters !== undefined) {
+    if (
+      !Array.isArray(data.zoomStopSemiDiameters) ||
+      !Array.isArray(data.zoomPositions) ||
+      data.zoomPositions.length < 2 ||
+      data.zoomStopSemiDiameters.length !== data.zoomPositions.length ||
+      data.zoomStopSemiDiameters.some((radius) => !Number.isFinite(radius) || radius <= 0) ||
+      data.zoomApertureModel !== undefined
+    ) {
+      errors.push(
+        "zoomStopSemiDiameters requires one positive finite radius per zoom station and no inferred aperture model",
+      );
+    }
+  }
+  if (data.zoomCloseFocusM !== undefined) {
+    if (
+      !Array.isArray(data.zoomCloseFocusM) ||
+      !Array.isArray(data.zoomPositions) ||
+      data.zoomPositions.length < 2 ||
+      data.zoomCloseFocusM.length !== data.zoomPositions.length
+    ) {
+      errors.push('"zoomCloseFocusM" must match the authored zoom stations');
+    } else if (data.zoomCloseFocusM.some((value: number) => !Number.isFinite(value) || value <= 0)) {
+      errors.push('"zoomCloseFocusM" values must be positive finite distances');
+    }
+  }
+
   /* ── nominalFno: required, number or number[] (for variable-aperture zooms) ── */
   if (typeof data.nominalFno === "number") {
     if (!isFinite(data.nominalFno)) errors.push(`"nominalFno" must be a finite number`);
@@ -661,7 +757,15 @@ export default function validateLensData(data: UntrustedLensData): string[] {
   if (data.visible !== undefined && typeof data.visible !== "boolean")
     errors.push(`"visible" must be a boolean (got ${typeof data.visible})`);
   if (data.opticalConfiguration !== undefined) validateOpticalConfiguration(data.opticalConfiguration, errors);
-  if (data.perspectiveControl !== undefined) validatePerspectiveControl(data.perspectiveControl, errors);
+  if (data.perspectiveControl !== undefined) {
+    validatePerspectiveControl(data.perspectiveControl, errors);
+    if (data.imageFormat === undefined) {
+      errors.push(`"imageFormat" is required when "perspectiveControl" is provided`);
+    }
+    if (data.opticalPath !== undefined) {
+      errors.push(`"perspectiveControl" cannot be combined with generalized "opticalPath" metadata`);
+    }
+  }
   if (data.projection !== undefined) validateProjection(data.projection, errors);
   if (data.lensMounts !== undefined) validateLensMounts(data.lensMounts, errors);
   if (data.imageFormat !== undefined) validateImageFormat(data.imageFormat, errors);
@@ -843,6 +947,29 @@ export default function validateLensData(data: UntrustedLensData): string[] {
     }
   }
 
+  /* ── Focus interpolation positions ── */
+  const focusPositionCount =
+    Array.isArray(data.focusPositions) && data.focusPositions.length >= 2 ? data.focusPositions.length : 2;
+  if (data.focusPositions !== undefined) {
+    if (!Array.isArray(data.focusPositions) || data.focusPositions.length < 2) {
+      errors.push(`"focusPositions" must be an array of at least 2 normalized focus coordinates`);
+    } else {
+      if (!data.focusPositions.every((n: unknown) => typeof n === "number" && isFinite(n))) {
+        errors.push(`"focusPositions" must contain only finite numbers`);
+      } else {
+        if (data.focusPositions[0] !== 0 || data.focusPositions[data.focusPositions.length - 1] !== 1) {
+          errors.push(`"focusPositions" must begin at 0 (infinity) and end at 1 (close focus)`);
+        }
+        for (let i = 1; i < data.focusPositions.length; i++) {
+          if (data.focusPositions[i] <= data.focusPositions[i - 1]) {
+            errors.push(`"focusPositions" must be strictly increasing`);
+            break;
+          }
+        }
+      }
+    }
+  }
+
   /* ── Optional zoom fields ── */
   if (data.zoomStep !== undefined) {
     if (typeof data.zoomStep !== "number" || !isFinite(data.zoomStep) || data.zoomStep <= 0)
@@ -983,24 +1110,36 @@ export default function validateLensData(data: UntrustedLensData): string[] {
       if (!surfaceLabels.has(label)) errors.push(`var key "${label}" does not match any surface label`);
       if (isZoom) {
         if (!Array.isArray(range) || range.length !== nz)
-          errors.push(`var["${label}"]: expected array of ${nz} [d_inf, d_close] pairs (one per zoom position)`);
+          errors.push(`var["${label}"]: expected ${nz} focus-thickness vectors (one per zoom position)`);
         else {
           for (let zi = 0; zi < nz; zi++) {
-            if (!Array.isArray(range[zi]) || range[zi].length !== 2)
-              errors.push(`var["${label}"][${zi}]: expected [d_infinity, d_close] array of length 2`);
-            else {
-              /* Non-negative thickness — negative gaps are physically impossible */
-              if (range[zi][0] < 0) errors.push(`var["${label}"][${zi}]: d_infinity=${range[zi][0]} is negative`);
-              if (range[zi][1] < 0) errors.push(`var["${label}"][${zi}]: d_close=${range[zi][1]} is negative`);
+            const focusThicknesses = range[zi];
+            if (!Array.isArray(focusThicknesses) || focusThicknesses.length !== focusPositionCount) {
+              errors.push(`var["${label}"][${zi}]: expected focus-thickness array of length ${focusPositionCount}`);
+            } else {
+              for (let fi = 0; fi < focusThicknesses.length; fi++) {
+                const thickness = focusThicknesses[fi];
+                if (typeof thickness !== "number" || !isFinite(thickness)) {
+                  errors.push(`var["${label}"][${zi}][${fi}]: thickness must be a finite number`);
+                } else if (thickness < 0) {
+                  errors.push(`var["${label}"][${zi}][${fi}]: thickness=${thickness} is negative`);
+                }
+              }
             }
           }
         }
       } else {
-        if (!Array.isArray(range) || range.length !== 2)
-          errors.push(`var["${label}"]: expected [d_infinity, d_close] array of length 2`);
-        else {
-          if (range[0] < 0) errors.push(`var["${label}"]: d_infinity=${range[0]} is negative`);
-          if (range[1] < 0) errors.push(`var["${label}"]: d_close=${range[1]} is negative`);
+        if (!Array.isArray(range) || range.length !== focusPositionCount) {
+          errors.push(`var["${label}"]: expected focus-thickness array of length ${focusPositionCount}`);
+        } else {
+          for (let fi = 0; fi < range.length; fi++) {
+            const thickness = range[fi];
+            if (typeof thickness !== "number" || !isFinite(thickness)) {
+              errors.push(`var["${label}"][${fi}]: thickness must be a finite number`);
+            } else if (thickness < 0) {
+              errors.push(`var["${label}"][${fi}]: thickness=${thickness} is negative`);
+            }
+          }
         }
       }
       /* Surface d should match the var infinity value at the first zoom position */

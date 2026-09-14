@@ -20,14 +20,6 @@ Patent: DE 1 228 820 B, sole claimed prescription
 
 - Corrected the generated-report patent parser to retain spaces inside legacy publication numbers. `DE 1 228 820 B` now resolves to `patents/DE_1228820_B.pdf` instead of colliding with an unrelated filename containing the single digit previously parsed from the subtitle.
 
-### Verification
-
-- `npm run generate:glass-reports` — 8 files / 10 tests passed.
-- `npm test -- dispersion.test.ts lensDataTyping.test.ts validateLensData.test.ts buildLens.test.ts` — 4 files / 237 tests passed.
-- `npm run typecheck`
-- `npm run format:check`
-- `git diff --check`
-
 ## 2026-07-04 - Semi-diameter patent-diagram review
 
 ### Phase 2 - Retained-information audit
@@ -36,10 +28,6 @@ Patent: DE 1 228 820 B, sole claimed prescription
 - The drawing shows the F section as the largest part, with L1 slightly broader than L2, the positive M singlet moderately smaller, and the rear H section as a compact group. L4/L5 are small stop-adjacent positive elements, L6 is the taller dense-flint negative, and L7 is a thin final positive element rather than a large rear collector.
 - Stored SDs follow that silhouette: 15.0 / 14.05 mm for the front negative pair, 11.0 mm for the median singlet, roughly 7.8-7.95 mm through the main rear section, and 6.45 mm for the thin final member.
 - No SD values changed. Current values remain inferred from the patent figure, f/4 entrance-pupil geometry, rendered edge thickness, cross-gap sag limits, and same-element diameter constraints.
-
-### Verification
-
-- `npm test -- elementRenderDiagnostics`
 
 ## 2026-08-18 — L4 J-K3 coefficient assignment
 

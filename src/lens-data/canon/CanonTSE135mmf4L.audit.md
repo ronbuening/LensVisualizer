@@ -23,11 +23,3 @@ Patent: JP 2018-132674 A, Numerical Data 1 (Mizuma / Canon)
 ### Analysis sync
 
 - Updated the G1 prose, glass table, and source note to use the N-SSK5 catalog-equivalent label while preserving the S-BSM25 class context.
-
-### Verification
-
-- `npm run typecheck` - passed.
-- `npm run test -- perspectiveControl elementRenderDiagnostics` - passed (2 files, 8 tests).
-- `npm run generate:glass-reports` - passed (7 files, 7 tests).
-- `npm run format:check` - passed.
-- `npm run lint` - passed.

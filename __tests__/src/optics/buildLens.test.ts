@@ -1,5 +1,6 @@
 import { describe, it, expect, vi } from "vitest";
 import buildLens, { paraxialTrace, realTraceToStop } from "../../../src/optics/buildLens.js";
+import { wideOpenStopAtZoom } from "../../../src/optics/apertureStop.js";
 import { doLayout } from "../../../src/optics/optics.js";
 import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
 import {
@@ -162,8 +163,8 @@ describe("buildLens — production lenses", () => {
     expect(L.EP.epSD).toBeCloseTo(6.3 / (2 * 2.8), 10);
     // halfField is the declared maxTraceFieldDeg for fisheyes (110° for the
     // Nikon 6mm). The paraxial-chief-ray bisection used to narrow this to ~32°,
-    // but fisheyes skip that bisection — see buildLens.ts comment block and
-    // TRACE_MODEL_IMPROVEMENT_PLAN.md PR 8 step 7.
+    // but fisheyes skip that bisection — see the buildLens.ts comment block and
+    // agent_docs/architecture/optics-engine.md (halfField vs tracingHalfField).
     expect(L.halfField).toBeCloseTo(110, 6);
   });
 
@@ -309,6 +310,8 @@ describe("buildLens — RuntimeLens property shape", () => {
     expect(Array.isArray(L.groups)).toBe(true);
     expect(Array.isArray(L.doublets)).toBe(true);
     expect(Array.isArray(L.varLabels)).toBe(true);
+    expect(L.focusPositions).toEqual([0, 1]);
+    expect(Object.isFrozen(L.focusPositions)).toBe(true);
     expect(Array.isArray(L.rayFractions)).toBe(true);
     expect(Array.isArray(L.rayHeights)).toBe(true);
     expect(Array.isArray(L.offAxisFractions)).toBe(true);
@@ -697,5 +700,23 @@ describe("bladeStubFrac — aberration-aware blade position", () => {
       const L = buildLens(data);
       expect(L.stopHousingSD).toBeGreaterThanOrEqual(L.stopPhysSD);
     }
+  });
+});
+
+// Authored iris schedules are an engine contract, independent of a patent's values.
+describe("published zoom iris schedule", () => {
+  it("preserves supplied radii and interpolates between stations", () => {
+    const zoomPositions = NikkorZ70200Raw.zoomPositions;
+    const radii = zoomPositions.map((_, i) => 8 + 2 * i);
+    const L = buildLens({
+      ...LENS_DEFAULTS,
+      ...NikkorZ70200Raw,
+      zoomApertureModel: undefined,
+      zoomStopSemiDiameters: radii,
+    } as LensData);
+    expect(L.stopPhysSD).toBe(radii[0]);
+    expect(L.zoomStopSDs).toEqual(radii);
+    expect(wideOpenStopAtZoom(0.5 / (radii.length - 1), L)).toBe(9);
+    expect(wideOpenStopAtZoom(1, L)).toBe(radii.at(-1));
   });
 });

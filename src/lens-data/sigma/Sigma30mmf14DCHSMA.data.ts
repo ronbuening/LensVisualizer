@@ -201,9 +201,10 @@ const LENS_DATA = {
     },
   },
 
+  focusPositions: [0, 0.49996964183249615, 1],
   var: {
-    "6": [5.449, 0.9202559462],
-    "18A": [38.399, 42.9277440538],
+    "6": [5.449, 3.5754, 0.9202559462],
+    "18A": [38.399, 40.2725, 42.9277440538],
   },
 
   varLabels: [
@@ -220,7 +221,7 @@ const LENS_DATA = {
 
   closeFocusM: 0.3,
   focusDescription:
-    "Rear-group focus: G1 fixed; G2 and the stop translate objectward as a rigid group. Close-focus spacing is paraxially extended to Sigma's 0.30 m MFD from the patent's 600 mm focus table.",
+    "Rear-group focus: G1 is fixed; G2 and the stop translate objectward as a rigid group. The patent 600 mm row is exact before the constrained 0.30 m endpoint.",
 
   nominalFno: 1.4,
   fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],

@@ -25,20 +25,9 @@ Catalog version: local working tree, 2026-05-19
 - Rechecked the current data file against the documented patent transcription and 0.5x scaling. Stored surface values and glass constants remain consistent with the Claim 2 layout notes.
 - Confirmed the patent publishes no effective diameters or aspherical coefficients; semi-diameters and `asph: {}` remain project-authored.
 
-### Phase 3 - Spectral / metadata enrichment
-
-- No catalog additions or spectral fields were made for this lens.
-
 ### Phase 4 - Analysis sync
 
 - Updated the Element III note to remove the overconfident SF2-equivalent wording and keep the 672/323 dense flint code unresolved.
-
-### Verification
-
-- `npm run generate:glass-reports` — passed; Pancolar remains in the six-digit missing-Sellmeier report for its Jena in-house code-only glasses, and the false SF2 catalog-resolution path is cleared.
-- `npm run typecheck` — passed.
-- `npm run format:check` — passed.
-- `npm run test` — passed (131 files, 1666 tests; expected error-boundary console output only).
 
 ## 2026-06-25 - Full-folder patent recheck
 

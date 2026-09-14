@@ -29,13 +29,6 @@ Patent: US 3,942,876, Example 4 / Table IV / Fig. 5
 - Updated the analysis note to use unbroken code `713433`.
 - Updated the L6 glass explanation and summary table to describe the N-BALF4/BaLF4-class Sellmeier proxy.
 
-### Verification
-
-- `npm run generate:glass-reports` passed.
-- `npm run typecheck` passed.
-- Scoped `prettier --check` passed for the Vivitar audit files and regenerated glass reports.
-- `git diff --check -- src/lens-data/vivitar agent_docs/generated` passed.
-
 ## 2026-08-07 — Legacy LAFL4 catalog recovery
 
 - Visually rechecked US 3,942,876 Table IV: L5 remains `nd=1.71270`, `νd=43.3`, code 713433.

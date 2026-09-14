@@ -19,15 +19,3 @@ Patent: US 2009/0296231 A1, Numerical Embodiment 2
 
 - Retained existing `apd: "patent"` metadata on the PR/N2 fluorophosphate elements and the fluorite/UD elements already identified in the file.
 - No new dPgF values were added because S-FPL51 elements already carry line-index data and the patent provides only the conditional theta_gF inequality for the PR/N2 material family.
-
-### Phase 4 - Analysis sync
-
-- No analysis changes needed.
-
-### Verification
-
-- `npm run generate:glass-reports` - passed (7 files, 7 tests).
-- `npm run typecheck` - passed before and after metadata regeneration.
-- `npm run format:check` - passed.
-- `npm run lint` - passed.
-- `npm run test` - initially exposed stale generated route metadata; after `npm run generate:metadata`, passed (183 files, 2212 tests).

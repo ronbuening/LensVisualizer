@@ -10,7 +10,3 @@ Patent: JP S53-133028, sole worked example
 - Fig. 1 supports the current SD progression: a large front positive singlet and front cemented group, a smaller isolated negative element before the stop, and a compact rear cemented group.
 - Stored SDs match that hierarchy after 100x scaling: front group 25-26 mm, isolated negative element 17-17.5 mm, and rear group 15-15.5 mm.
 - No SD values changed. Current values remain inferred from f/2 marginal geometry, reduced off-axis field, Fig. 1 proportions, the 52 mm production filter-thread bound, edge thickness, and cross-gap sag checks.
-
-### Verification
-
-- `npm test -- elementRenderDiagnostics`

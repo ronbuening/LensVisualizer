@@ -25,11 +25,3 @@ Patent: JP 2018-205474 A, Numerical Data 1 (Yamagishi / Canon)
 
 - Updated the L6 prose and glass table from S-NBH52V to S-NBH52.
 - Updated the L10 prose/table/source note so S-BAL3 is not described as a resolved local-catalog match.
-
-### Verification
-
-- `npm run typecheck` - passed.
-- `npm run test -- perspectiveControl elementRenderDiagnostics` - passed (2 files, 8 tests).
-- `npm run generate:glass-reports` - passed (7 files, 7 tests).
-- `npm run format:check` - passed.
-- `npm run lint` - passed.

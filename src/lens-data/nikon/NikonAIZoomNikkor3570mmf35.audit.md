@@ -26,14 +26,6 @@ Patent: US 4,266,860, Second Embodiment / Claim 8
 - The patent gives only `nd` and `vd`. No ED/APD claim, line-index table, partial-dispersion table, or aspherical data was found.
 - No APD flags were added.
 
-### Phase 4 - Analysis sync
-
-- No analysis file changes were needed.
-
-### Verification
-
-- Pending full Nikon batch verification.
-
 ## 2026-07-30 - SUMITA KF8 coefficient recovery
 
 - SUMITA's discontinued-inclusive all-glass catalog publishes KF8 at code `511509`, nd = 1.51118, νd = 50.9.

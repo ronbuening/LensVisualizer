@@ -2,6 +2,8 @@
  * Current-state optical summary derived from a prepared engine state.
  */
 
+import { closeFocusAtZoom } from "../focusDistance.js";
+
 import type { FieldGeometryState } from "../optics.js";
 import { FOCUS_INFINITY_THRESHOLD, eflAtZoom } from "../layout.js";
 import { computeCardinalElements2 } from "../first-order/cardinals.js";
@@ -98,7 +100,7 @@ export function computeOpticalSummaryForState2(
 }
 
 function focusDistanceForState(state: PreparedOpticalState): number | null {
-  const closeFocusM = state.lens.runtime.closeFocusM;
+  const closeFocusM = closeFocusAtZoom(state.zoomT, state.lens.runtime);
   if (state.focusT < FOCUS_INFINITY_THRESHOLD) return null;
   if (!Number.isFinite(closeFocusM) || closeFocusM <= 0 || state.focusT <= 0) return null;
   return closeFocusM / state.focusT;

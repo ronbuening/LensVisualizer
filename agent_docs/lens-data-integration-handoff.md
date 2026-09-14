@@ -50,6 +50,8 @@ changes. Do not hand-edit generated reports. A lens is integrated only when the 
 silhouette, stop/pupil behavior, representative rays, focus/zoom endpoints, and analysis prose all agree with the
 documented model.
 
+Do not add per-lens or per-batch tests; see "Per-Lens And Audit Test Retention" in `agent_docs/architecture/testing.md`.
+
 ## Sources of Truth
 
 - [`../src/lens-data/LENS_DATA_SPEC.md`](../src/lens-data/LENS_DATA_SPEC.md)

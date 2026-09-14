@@ -261,7 +261,7 @@ const DiagramHeader = memo(
                   }}
                 >
                   {L.isZoom && <span>{eflAtZoom(zoomT, L).toFixed(0)} mm</span>}
-                  <span>{formatDist(focusT, L)}</span>
+                  <span>{formatDist(focusT, L, zoomT)}</span>
                   <span>f/{fNumber < 10 ? fNumber.toFixed(1) : Math.round(fNumber)}</span>
                   <span>{compactFocalReadout}</span>
                 </div>

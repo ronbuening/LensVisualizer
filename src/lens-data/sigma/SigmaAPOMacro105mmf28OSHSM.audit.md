@@ -20,4 +20,3 @@ Patent: JP 2012-58682 A, Example 4
 
 - Updated the E16 element note and glass-selection table from the legacy BACD5/S-BAL35 wording to M-BACD5N.
 - Added a HOYA M-BACD5N source note to the analysis references.
-

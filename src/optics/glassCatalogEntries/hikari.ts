@@ -5,6 +5,48 @@
 import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const HIKARI_GLASS_ENTRIES: readonly GlassEntry[] = [
+  {
+    name: "Q-LASFH58S",
+    vendor: "Hikari",
+    powerSeries: [
+      [3.32552726, 0],
+      [-0.0132706113, 2],
+      [-0.000149120991, 4],
+      [0.0339899628, -2],
+      [0.000811209445, -4],
+      [0.00000579662969, -6],
+      [0.00000235145894, -8],
+      [0, -10],
+      [0, -12],
+    ],
+    nd: 1.85108,
+    vd: 40.12,
+    PgF: 0.5685,
+    code6: "851401",
+    source:
+      "Hikari Optical Glass Catalog 2025-06-01, PDF page 189, Q-LASFH58S nine-term power series; https://www.hikari-g.co.jp/optical_glass/catalog/document/HIKARI_Catalog.pdf (accessed 2026-09-11).",
+  },
+  {
+    name: "J-LASF013",
+    vendor: "Hikari",
+    powerSeries: [
+      [3.1635095, 0],
+      [-0.0145894059, 2],
+      [-0.000212587159, 4],
+      [0.0315033746, -2],
+      [0.000585519102, -4],
+      [0.0000585508847, -6],
+      [-0.00000344096993, -8],
+      [0.000000317840715, -10],
+      [0, -12],
+    ],
+    nd: 1.8044,
+    vd: 39.61,
+    PgF: 0.5719,
+    code6: "804396",
+    source:
+      "Nikon/Hikari J-LASF013 datasheet (2022-07-01 revision), vendor nine-term power series; https://www.nikon.com/business/components/lineup/materials/optical-glass/catalog/pdf/J-LASF013.pdf (accessed 2026-09-07).",
+  },
   /* Phase 94: first-party rows completing the Nikon AF-S DX 55-200mm. */
   {
     name: "J-SK14",

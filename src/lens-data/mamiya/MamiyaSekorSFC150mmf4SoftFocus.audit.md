@@ -8,7 +8,6 @@ Catalog version: local working tree, 2026-08-07
 ### Figure and geometry review
 
 - No matching local patent PDF is present in `patents/`, so the project's patent-figure audit procedure blocks a direct semi-diameter revision for this lens.
-- `npm run audit:image-circle -- src/lens-data/mamiya/MamiyaSekorSFC150mmf4SoftFocus.data.ts` reports zero undersized surfaces.
 - Reviewed all five surface-derived element types, D1/D2 cemented boundaries, G1–G3 spans, and rounded Abbe badges; they agree with the stored prescription and the supplied site screenshot.
 - The removable softness-control discs remain correctly excluded because they are non-refracting pupil masks rather than prescription elements.
 

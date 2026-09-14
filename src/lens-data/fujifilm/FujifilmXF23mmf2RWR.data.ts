@@ -315,9 +315,10 @@ const LENS_DATA = {
     },
   },
 
+  focusPositions: [0, 0.3666506780181183, 1],
   var: {
-    "12": [2.312, 4.586087444736031],
-    "14A": [5.764, 3.489912555263969],
+    "12": [2.312, 2.984, 4.586087444736031],
+    "14A": [5.764, 5.092, 3.489912555263969],
   },
   varLabels: [
     ["12", "DD[12]"],
@@ -338,7 +339,7 @@ const LENS_DATA = {
 
   closeFocusM: 0.22,
   focusDescription:
-    "Inner focus by G2 only. The single negative L21 element moves imageward; G1 and G3 remain fixed. Close endpoint solves the patent prescription to the production 0.22 m MFD.",
+    "Inner focus by G2 only. The patent beta=-0.041 row is stored exactly before the constrained production 0.22 m endpoint; G1 and G3 remain fixed.",
 
   nominalFno: 2,
   fstopSeries: [2, 2.8, 4, 5.6, 8, 11, 16],

@@ -306,7 +306,7 @@ A fresh paraxial y-nu ray trace was run directly from the patent's Example 1 sur
 
 The standalone in-air element focal lengths and the group focal lengths were also recomputed. The group values are: G1 = +28.36 mm, G2 = −17.48 mm, G3 = +37.09 mm, G4 = +70.52 mm, G5 = +48.51 mm, and G6 = −33.22 mm. These confirm the patent's positive-negative-positive-stop-positive-positive-negative architecture.
 
-The data file deliberately differs from the patent in two implementation details. First, PP is excluded and folded into the final BFD, as required by the project data convention. Second, the current prime-focus spacing model stores only the β = 0 and β = −0.98 endpoints, so it cannot reproduce the β = −0.5 expansion of DD[18] in the interactive interpolation. (The odd-order aspheres on surfaces 4 and 7, previously even-order fits, are now transcribed exactly.) These changes do not affect the infinity-focus paraxial focal length or group-power verification.
+The data file differs from the patent in one implementation detail: PP is excluded and folded into the final BFD, as required by the project data convention. All three focus rows are otherwise stored as exact keyframes, including the β = −0.5 expansion of DD[18]. The odd-order aspheres on surfaces 4 and 7, previously even-order fits, are also transcribed exactly. These implementation choices do not affect the infinity-focus paraxial focal length or group-power verification.
 
 ## Sources
 

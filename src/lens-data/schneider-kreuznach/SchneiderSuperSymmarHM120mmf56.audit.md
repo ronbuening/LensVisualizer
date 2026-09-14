@@ -4,10 +4,6 @@ Patent: US 4,773,745, first numerical example and Fig. 1
 
 ## 2026-07-14 — Fig. 1 semi-diameter silhouette correction
 
-### Phase 1 — Glass corrections
-
-- No glass, refractive-index, or dispersion fields changed in this pass.
-
 ### Phase 2 — Retained-information audit
 
 The patent does not publish clear-aperture diameters. Fig. 1 was therefore measured as a relative silhouette, normalized to the existing 21.5 mm semi-diameter at surface 1, and then constrained by the prescription's spherical-rim, positive edge-thickness, and cross-gap-sag limits.
@@ -26,31 +22,12 @@ The patent does not publish clear-aperture diameters. Fig. 1 was therefore measu
 - `STO` remains 10.29 mm because it is derived from the reconstructed f/5.6 entrance pupil, not from a drawn patent diaphragm.
 - No radius, thickness, index, stop coordinate, focal metadata, or focus spacing changed.
 
-### Phase 3 — Spectral / metadata enrichment
-
-- No spectral or identity metadata changed.
-
 ### Phase 4 — Analysis sync
 
 - Updated the verification summary to describe the normalized Fig. 1 rim progression.
 - Updated the derived geometry values: maximum `sd/|R|` 0.691557, maximum within-element SD ratio 1.264706, minimum edge thickness 2.307763 mm, and maximum cross-gap intrusion 59.9873%.
 
-### Verification
-
-- `npm run test -- elementRenderDiagnostics` — passed (5 tests).
-- `npm run typecheck && npm run format:check && npm run lint && npm run test` — passed (192 files, 2,311 tests).
-- `npm run build` — passed; 548 routes prerendered and sitemap generated.
-- Local Diagram and Off-Axis browser views — corrected silhouette confirmed; expected ghost/vignetted rays only; no application console errors.
-
 ## 2026-08-10 — Patent-author canonicalization
-
-### Phase 1 — Glass corrections
-
-- No glass, refractive-index, or dispersion fields changed in this pass.
-
-### Phase 2 — Retained-information audit
-
-- No optical prescription, aperture, semi-diameter, or movement data changed.
 
 ### Phase 3 — Spectral / metadata enrichment
 
@@ -63,9 +40,3 @@ The patent does not publish clear-aperture diameters. Fig. 1 was therefore measu
 ### Phase 4 — Analysis sync
 
 - Updated the inventor line and source citation to distinguish the canonical catalog identity from the name printed on the patent.
-
-### Verification
-
-- `npm run generate:metadata` — passed; the combined inventor-identity pass reduced the generated catalog from 391 to 389 author records.
-- `npm run typecheck && npm run format:check && npm run lint && npm run test` — passed (249 files, 2,962 tests).
-- `npm run build` — passed; 1,070 routes prerendered and sitemap and RSS feeds generated.

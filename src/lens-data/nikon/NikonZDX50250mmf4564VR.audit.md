@@ -37,10 +37,6 @@ Patent: JP WO2020/105107 A1, Example 1
 
 - Updated `NikonZDX50250mmf4564VR.analysis.md` to reflect the resolver-backed glass relabels, the retained high-index property-class rows, and the inferred APD status of L31.
 
-### Verification
-
-- Pending full Nikon batch verification.
-
 ## 2026-07-30 - Remaining 902253 source audit
 
 - Rechecked L34 at `nd = 1.90200`, `vd = 25.3` against the expanded current and discontinued-inclusive catalogs.

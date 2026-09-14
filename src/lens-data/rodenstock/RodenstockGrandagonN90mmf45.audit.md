@@ -11,10 +11,6 @@ Patent: DE 2444954 A1, Patentanspruch 2
 - Stored SDs follow the same patent silhouette at the 90 mm scale: 25.2 mm at the outer front and rear, 12.2-13.0 mm around the central groups, and a 10.63 mm stop.
 - No SD values changed. Current values remain inferred from the patent drawing, exact-ray stop geometry, and large-format coverage constraints.
 
-### Verification
-
-- `npm test -- elementRenderDiagnostics`
-
 ## 2026-07-30 - SK3 catalog recovery
 
 - Verified SUMITA SK3 in the vendor's 2025-11-07 all-glass catalog at `1.60881 / 58.9`.

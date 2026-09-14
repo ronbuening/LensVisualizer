@@ -20,8 +20,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    1.0000 = 25.52042194 mm.                                       ║
  * ║                                                                    ║
  * ║  NOTE ON FOCUS DATA:                                               ║
- * ║    The patent directly tabulates the INF and 800 mm states. The    ║
- * ║    close-focus entries below extend the same one-degree internal   ║
+ * ║    The patent INF and 800 mm states are exact keyframes. The       ║
+ * ║    close-focus entries extend the same one-degree internal         ║
  * ║    focus motion to Sigma's published 0.50 m MFD by paraxial        ║
  * ║    conjugate solve while conserving D6 + D10. The result gives    ║
  * ║    beta ≈ -0.139, matching Sigma's 1:7.2 maximum magnification.   ║
@@ -200,9 +200,10 @@ const LENS_DATA = {
     },
   },
 
+  focusPositions: [0, 0.6254433871190281, 1],
   var: {
-    STO: [10.13, 4.43018],
-    "10A": [1.94, 7.63982],
+    STO: [10.13, 6.6783, 4.43018],
+    "10A": [1.94, 5.3917, 7.63982],
   },
 
   varLabels: [
@@ -223,7 +224,7 @@ const LENS_DATA = {
 
   closeFocusM: 0.5,
   focusDescription:
-    "Inner focus: the two-element positive second group moves toward the object from infinity to near focus while G1, the stop, and G3 remain fixed.",
+    "Inner focus: the patent 800 mm state is exact before the constrained 0.50 m endpoint. The positive G2 moves objectward while G1, the stop, and G3 remain fixed.",
 
   nominalFno: 2.8,
   maxFstop: 22,

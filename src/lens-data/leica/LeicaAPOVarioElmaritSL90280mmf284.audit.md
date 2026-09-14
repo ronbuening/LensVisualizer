@@ -19,19 +19,9 @@ Patent: JP 2016-139125 A, Numerical Example 1
 - Checked the flagged Data 1 rows against the patent; stored radii, thicknesses, and `nd/vd` match those rows.
 - No semi-diameter edits made; the data file already documents estimated semi-diameters because the patent lacks them.
 
-### Phase 3 — Spectral / metadata enrichment
-
-- No additional line-index data found for these relabeled rows.
-
 ### Phase 4 — Analysis sync
 
 - Updated element descriptions, glass table rows, and the chromatic strategy summary for the relabeled glasses.
-
-### Verification
-
-- `npm test -- dispersion` — passed.
-- `npm run typecheck` — passed.
-- `npm run generate:glass-reports` — passed; lens removed from the relabel-by-lens queue.
 
 ## 2026-05-19 — Six-digit missing-Sellmeier follow-up
 

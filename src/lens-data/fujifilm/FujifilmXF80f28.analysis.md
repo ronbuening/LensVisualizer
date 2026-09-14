@@ -1,346 +1,91 @@
-# Fujifilm XF 80mm f/2.8 R LM OIS WR Macro — Patent Optical Analysis
+# Fujifilm XF80 Macro — Patent Model
 
-**Patent:** US 2018/0246292 A1 — Example 1
-**Inventors:** Ryoko Tomioka, Daiki Kawamura (Fujifilm Corporation)
-**Filed:** February 27, 2018 | **Priority:** JP 2017-036188, February 28, 2017
+## Patent Reference and Design Identification
 
----
+**Patent:** US 2018/0246292 A1
 
-## 1. Production Lens Identification
-
-Example 1 of US 2018/0246292 A1 is identified as the production design for the **Fujinon XF 80mm f/2.8 R LM OIS WR Macro** based on convergent criteria:
+**Inventors:** Ryoko Tomioka and Daiki Kawamura
 
-| Parameter | Patent Example 1 | Production Lens |
-|---|---|---|
-| Focal length | 78.79 mm | 80 mm (nominal) |
-| Maximum aperture | f/2.88 | f/2.8 (nominal) |
-| Full angle of view | 20.2° | 20.1° |
-| Element/group count | 16 / 12 | 16 / 12 |
-| Aspherical elements | 1 (double-sided) | 1 |
-| ED elements | 3 (S-FPL51 × 2; S-FPM3 × 1, inferred) | 3 ED |
-| Super ED elements | 1 (S-FPL55) | 1 Super ED |
-| Focus type | Floating (G2 + G3), internal | Floating, internal |
-| Image stabilization | G4a perpendicular shift | 5-stop OIS |
-| Maximum magnification | β = −1.0 (1:1) | 1:1 |
-| Minimum focus distance | ~0.25 m (inferred) | 0.25 m |
-
-The patent focal length of 78.79 mm is rounded to the nominal marketing value of 80 mm. The computed f-number of 2.88 is rounded to f/2.8 for marketing. Fujifilm's official specification of "16 elements in 12 groups, including one aspherical, one Super ED, and three ED lenses" matches the patent prescription exactly. The patent's description of the floating focus system and vibration-proof mechanism also corresponds precisely to Fujifilm's marketing description of a "Floating Focus System" with "inner-focusing" and "5-stop OIS."
+**Assignee:** Fujifilm Corporation
 
-**Note:** Fujifilm has not publicly confirmed which patent example corresponds to the production lens. This identification is inferential, based on the above convergent criteria.
-
----
-
-## 2. System Architecture
-
-The XF 80mm f/2.8 Macro is a four-group design — positive/negative/positive/negative — with the fourth group subdivided into a vibration-proof subgroup (G4a) and a fixed rear subgroup (G4b). The P-N-P-N power arrangement positions some negative refracting power behind the stop, which shifts the rear principal plane forward of the physical lens and provides a moderate back focal distance suitable for the X-mount flange.
+**Filed:** 2018-02-27
 
-**Computed system parameters (paraxial ray trace, verified against patent):**
+**Priority:** JP 2017-036188, 2017-02-28
 
-| Parameter | Value |
-|---|---|
-| Effective focal length | 78.786 mm (patent: 78.79 mm) |
-| f-number (infinity) | f/2.88 |
-| Half-field angle ω | 10.1° |
-| Total optical track | 140.18 mm |
-| Back focal distance | 27.42 mm (air, excl. PP); 31.27 mm (incl. PP) |
-| Total track / EFL ratio | 1.78 |
-| f-number at β = −1.0 | f/3.99 |
+**Published:** 2018-08-30
 
-The total track / EFL ratio of 1.78 indicates the lens is substantially longer than its focal length — this is *not* a telephoto design in the classical sense (which would require a ratio below 1.0). The overall length of 140 mm is characteristic of a macro lens that must accommodate the large internal group travel required for 1:1 focusing while maintaining constant external length. The moderate negative power of G4 (|f₄/f| = 1.30) does shift the rear principal plane somewhat forward — the back focal distance of 27.4 mm is only 35% of the EFL — but the primary purpose of the four-group arrangement is to enable floating focus and integrated OIS rather than telephoto compaction.
+**Embodiment analyzed:** Example 1, Tables 1–4 and Figure 1
 
-### Group Powers and Roles
+The diagram uses the 16-element, 12-component macro example associated with the XF80. Its prescription remains at the patent scale, 78.79 mm f/2.88; the 80mm f/2.8 product name is separate. This correspondence does not establish identical production glass, coatings, stabilization effectiveness or actuators.
 
-| Group | Elements | Focal Length | f_group / f_sys | Behavior During Focus |
-|---|---|---|---|---|
-| G1 | L1a, L1b, L1c, L1d | +44.37 mm | 0.563 | Stationary |
-| G2 | L2a, L2b+L2c | −31.02 mm | 0.394 | Moves toward image |
-| G3 | L3a, L3b+L3c | +36.48 mm | 0.463 | Moves toward object |
-| G4a | L4aa+L4ab, L4ac | −25.58 mm | 0.325 | Stationary (VR group) |
-| G4b | L4ba, L4bb+L4bc | +39.54 mm | — | Stationary |
-| G4 (total) | G4a + G4b | −102.40 mm | 1.300 | Stationary |
+The original PDF shows Figure 1 on p. 2, the architecture and focus explanation in paragraphs 75–81 on p. 39, and Tables 1–4 with the asphere equation on p. 40. The title-page illustration is Example 8 and is not the source for this model.
 
-The front group G1 carries the bulk of the positive refracting power and collects light. The strongly negative G2 and strongly positive G3 form a focusing doublet that moves in opposition — a floating focus architecture that maintains aberration correction across the enormous focus range from infinity to 1:1. The overall negative G4 houses the OIS mechanism in G4a while G4b provides final chromatic and field curvature trimming near the image.
+## Optical Architecture
 
----
+The four groups have positive–negative–positive–negative power. G1 has four singlets, including the element carrying both aspherical surfaces. G2 and G3 each have a singlet and cemented pair. G4 contains two subgroups: stabilization group G4a has a cemented pair and a singlet; fixed G4b has a singlet and cemented pair. Four cemented pairs produce 12 air-separated components from 16 elements.
 
-## 3. Air-Separated Groups (12 Groups)
+The stop is source surface 14 between G2 and G3. Paragraph 75 explicitly says its drawn symbol indicates position rather than size or shape. The model calibrates the physical stop from f/2.88 rather than measuring that symbol.
 
-The 16 elements divide into 12 air-separated optical groups, matching Fujifilm's published specification:
+Semi-diameters are inferred from the optical rims of the infinity section in Figure 1, rendered at 600 dpi and calibrated against the 108.91 mm first-to-last-glass span. The front radius is approximately 22 mm, the aspherical element 14.7 mm and the rear pair 13.7 mm. Source figures do not publish effective aperture dimensions. Surfaces 5, 11 and 23 retain tighter radii of 15.7, 10.2 and 10 mm because larger drawing-edge trials fail the adjacent-surface clearance checks. These limits prevent mechanical or schematic outlines from becoming overlapping optical surfaces.
 
-| # | Element(s) | Configuration | Parent Group |
-|---|---|---|---|
-| 1 | L1a | Standalone biconvex | G1 |
-| 2 | L1b | Standalone biconvex | G1 |
-| 3 | L1c | Standalone biconcave negative | G1 |
-| 4 | L1d | Standalone biconvex (aspherical) | G1 |
-| 5 | L2a | Standalone biconcave negative | G2 |
-| 6 | L2b + L2c | Cemented doublet | G2 |
-| 7 | L3a | Standalone biconvex | G3 |
-| 8 | L3b + L3c | Cemented doublet | G3 |
-| 9 | L4aa + L4ab | Cemented doublet | G4a |
-| 10 | L4ac | Standalone negative meniscus | G4a |
-| 11 | L4ba | Standalone positive meniscus | G4b |
-| 12 | L4bb + L4bc | Cemented doublet | G4b |
+## Element-by-Element Analysis
 
----
-
-## 4. Element-by-Element Analysis
-
-### Group 1 — Front Positive Group (Stationary)
-
-G1 is composed of four air-spaced elements and carries a net focal length of +44.37 mm. It remains fixed during both focusing and OIS operation, providing a mechanically stable front assembly that prevents dust intrusion and avoids disturbing macro subjects.
+Each isolated focal length is independently calculated from the source radii, thickness and index using the thick-lens formula in air. It is not the power of an assembled doublet.
 
-**L1a — Positive biconvex (Element 1)**
-- Glass: nd = 1.72916, νd = 54.67 → **OHARA S-LAL18** (lanthanum crown)
-- Thin-lens focal length: +82.2 mm
-- Radii: R₁ = +119.842 mm, R₂ = −119.842 mm (symmetric biconvex)
-- Role: First collector element. The symmetric biconvex form minimizes coma at the design conjugate. The moderate-index lanthanum crown provides good aberration correction without excessive surface curvatures.
+| Element | Form | nd | νd | Isolated focal length (mm) |
+|---|---|---:|---:|---:|
+| L1a | Biconvex Positive | 1.72916 | 54.67 | +83.0 |
+| L1b | Biconvex Positive | 1.49700 | 81.54 | +76.6 |
+| L1c | Biconcave Negative | 1.62588 | 35.70 | -30.8 |
+| L1d | Biconvex Pos. (2× Asph) | 1.58313 | 59.46 | +33.5 |
+| L2a | Biconcave Negative | 1.58913 | 61.13 | -31.1 |
+| L2b | Negative Meniscus | 1.67300 | 38.15 | -29.2 |
+| L2c | Positive Meniscus | 2.00069 | 25.46 | +28.5 |
+| L3a | Biconvex Positive | 1.43875 | 94.66 | +68.0 |
+| L3b | Biconvex Positive | 1.49700 | 81.54 | +41.8 |
+| L3c | Negative Meniscus | 1.84666 | 23.78 | -92.5 |
+| L4aa | Positive Meniscus | 2.00272 | 19.32 | +51.5 |
+| L4ab | Biconcave Negative | 1.69700 | 48.52 | -24.2 |
+| L4ac | Negative Meniscus | 1.53775 | 74.70 | -63.4 |
+| L4ba | Positive Meniscus | 1.95375 | 32.32 | +41.4 |
+| L4bb | Biconvex Positive | 1.51680 | 64.20 | +49.0 |
+| L4bc | Negative Meniscus | 1.95906 | 17.47 | -49.0 |
 
-**L1b — Positive biconvex (Element 2) — ED Glass**
-- Glass: nd = 1.49700, νd = 81.54 → **OHARA S-FPL51** (Extra-low Dispersion)
-- Thin-lens focal length: +75.7 mm
-- Radii: R₁ = +59.897 mm, R₂ = −101.295 mm
-- Role: Primary chromatic corrector in the front group. The anomalous partial dispersion of S-FPL51 enables correction of secondary spectrum. Paired with the neighboring flint L1c, the Abbe number difference νd(L1b) − νd(L1c) = 45.84 satisfies the patent's Conditional Expression (3) (35 < Δν < 50), ensuring strong longitudinal chromatic aberration correction at infinity focus without overcorrection.
-
-**L1c — Negative biconcave (Element 3)**
-- Glass: nd = 1.62588, νd = 35.70 → **HOYA E-F1** dense flint (code 626357)
-- Thin-lens focal length: −31.0 mm
-- Radii: R₁ = −67.240 mm, R₂ = +27.219 mm
-- Role: Chromatic counterpart to L1b. The high-dispersion flint works against the low-dispersion ED glass to achromatize the front group. Its strong negative power also contributes to Petzval sum correction — critical for a macro lens that must maintain a flat field from infinity to 1:1.
-
-**L1d — Positive biconvex, double asphere (Element 4) — Aspherical Element**
-- Glass: nd = 1.58313, νd = 59.46 → **583595 — OHARA S-BAL41** (barium crown; catalog pending)
-- Thin-lens focal length: +32.4 mm
-- Radii: R₁ = +25.205 mm (asph), R₂ = −75.345 mm (asph)
-- Role: This is the single aspherical element in the design, carrying aspherical correction on both surfaces. It is the strongest positive element in G1 and sits at the position of greatest marginal ray height within the front group, making it the most effective location for controlling spherical aberration. Both surfaces share KA = 1.0 (K = 0 in standard convention), meaning the base curves are spherical and all aspherical departure comes from the even-order polynomial coefficients A₄ through A₂₀. At the estimated clear aperture (h ≈ 13 mm), the front surface departs approximately −164 μm from its base sphere, while the rear departs −70 μm. Both departures are negative, meaning both surfaces are slightly flatter at the rim than their base spheres — the classic correction profile for undercorrected spherical aberration.
-
-### Group 2 — Negative Focusing Group (Moves Toward Image)
-
-G2 has a net focal length of −31.02 mm and is one of two floating focus groups. During focusing from infinity to 1:1, G2 translates +15.35 mm toward the image, opening the gap between G1 and G2 from 2.34 mm to 17.69 mm.
-
-**L2a — Negative biconcave (Element 5)**
-- Glass: nd = 1.58913, νd = 61.13 → **OHARA S-BAL35** (barium crown)
-- Thin-lens focal length: −31.2 mm
-- Radii: R₁ = −115.008 mm, R₂ = +21.887 mm (both surfaces concave)
-- Role: The leading element of the front focus group. Both surfaces are concave, with the strongly curved rear surface (R₂ = +21.9 mm) doing most of the diverging work. The relatively low-dispersion glass keeps chromatic contribution manageable during focus travel.
-
-**L2b + L2c — Cemented doublet (Elements 6 + 7)**
-- L2b: nd = 1.67300, νd = 38.15 → **OHARA S-NBH52** (exact code-family match)
-- L2c: nd = 2.00069, νd = 25.46 → **HOYA TAFD40** (ultra-high index dense flint)
-- Standalone thin-lens focal lengths: L2b ≈ −29.3 mm, L2c ≈ +29.1 mm (near-zero combined power)
-- Role: This is a chromatic corrector doublet — the two elements have nearly canceling powers, so their primary contribution is to the chromatic balance of G2 rather than its net refracting power. The use of TAFD40 (nd = 2.001, one of the highest-index optical glasses commercially available) allows the cemented junction surface at R = +22.32 mm to carry strong chromatic correction with minimal surface curvature. The Abbe number difference of only 12.7 between L2b and L2c is unusually small for an achromatic doublet, reflecting the fact that this pair is optimized for chromatic fine-tuning during focus shift rather than primary achromatization.
+G1 supplies positive collection and a negative correcting singlet. G2's negative power and G3's positive power provide opposite focus movements. The low-dispersion positive elements in G1/G3 balance higher-dispersion negative partners. G4a combines three elements for lateral stabilization, while G4b supplies the final fixed correction. These descriptions interpret the architecture; they do not assign measured aberration corrections to individual elements.
 
-### Aperture Stop
+## Glass Identification and Selection
 
-The aperture stop sits between G2 and G3 at surface 14 (R = ∞, a flat surface). At infinity focus, the gap from G2's rear surface to the stop is 20.39 mm, and from the stop to G3's front surface is 19.53 mm. Both gaps collapse dramatically at 1:1 focus (to 5.04 mm and 3.58 mm respectively), as the two focus groups converge toward the stop from opposite sides.
+The patent gives numerical nd and νd, not glass suppliers or production ED designations. All catalog names are inferred counterparts: S-LAL18, S-FPL51, E-F1, M-BACD12, S-BAL35, S-NBH52, TAFD40, S-FPL55, S-TIH53, E-FDS2, S-LAM59, S-FPM3, S-LAH98, S-BSL7 and S-NPH3. The original numerical coordinates remain authoritative, including the source νd=64.20 for the rear crown.
 
-### Group 3 — Positive Focusing Group (Moves Toward Object)
-
-G3 has a net focal length of +36.48 mm and is the second floating focus group. During focusing from infinity to 1:1, G3 translates 15.95 mm toward the object side, closing the gap between the stop and G3 while opening the gap between G3 and G4.
-
-**L3a — Positive biconvex (Element 8) — Super ED Glass**
-- Glass: nd = 1.43875, νd = 94.66 → **OHARA S-FPL55** (Super Extra-low Dispersion)
-- Thin-lens focal length: +67.4 mm
-- Radii: R₁ = +75.243 mm, R₂ = −48.692 mm
-- Role: The most optically exotic element in the design. S-FPL55 is a calcium fluoride equivalent — its refractive index (1.439) and Abbe number (94.7) are nearly identical to crystalline fluorite (CaF₂: nd ≈ 1.434, νd ≈ 95.3), but it is a synthetic glass that can be polished conventionally. Its extreme anomalous partial dispersion makes it the most effective material available for correcting secondary spectrum. Placed at the front of the rear focus group, L3a provides the backbone of the lens's chromatic correction across the entire focus range. This is the element Fujifilm designates as the "Super ED" lens.
+L1b, L3a, L3b and L4ac have high Abbe numbers. Their anomalous partial dispersion is inferred from catalog counterparts. The source does not establish a count of branded ED/Super ED elements or the use of calcium fluoride. The diagram therefore distinguishes inferred dispersion from a patent-listed material identity.
 
-**L3b + L3c — Cemented doublet (Elements 9 + 10) — Contains ED Glass**
-- L3b: nd = 1.49700, νd = 81.54 → **OHARA S-FPL51** (ED glass)
-- L3c: nd = 1.84666, νd = 23.78 → **OHARA S-TIH53** (dense flint)
-- Standalone thin-lens focal lengths: L3b ≈ +41.1 mm, L3c ≈ −90.7 mm; combined (thick-lens): approximately +75 mm
-- Abbe number difference: 57.76 — the largest Δν in the design
-- Role: Powerhouse achromatic doublet of the rear focus group. The enormous Δν provides aggressive chromatic correction, particularly important because this group moves during focusing. L3b's S-FPL51 reinforces secondary spectrum correction. L3c's S-TIH53 (nd = 1.847, νd = 23.78) provides a strong chromatic lever arm against L3b without requiring excessive surface curvatures.
+## Aspherical Surfaces
 
-### Group 4a — Vibration Reduction Group (OIS, Stationary Along Axis)
+L1d carries both aspherical surfaces, source 7 and 8. The source equation uses KA in the term 1−KA·C²h²; its KA=1 maps to standard conic K=0. All even polynomial coefficients A4 through A20 are transcribed from Table 4. Both conics and all 18 polynomial coefficients were checked against the rendered original table and retained. Their validity is constrained to the modeled optical rims, not arbitrary extrapolation beyond the glass.
 
-G4a has a net focal length of −25.58 mm and translates perpendicular to the optical axis for image stabilization, shifting the image on the sensor to compensate for camera shake. Its |f₄ₐ/f| = 0.325 satisfies Conditional Expression (1).
+## Focusing Mechanism
 
-**L4aa + L4ab — Cemented doublet (Elements 11 + 12)**
-- L4aa: nd = 2.00272, νd = 19.32 → **HOYA E-FDS2** ultra-high index dense flint (code 003193)
-- L4ab: nd = 1.69700, νd = 48.52 → **OHARA S-LAM59** lanthanum crown (code 697485)
-- Standalone focal lengths: L4aa ≈ +52.6 mm (positive), L4ab ≈ −24.3 mm (negative)
-- Conditional (2): ν₄ₐᵦ − ν₄ₐₐ = 29.20 (within 18–35 range)
-- Role: VR cemented doublet. L4aa's nd = 2.003 is one of the highest refractive indices used in production optics. The positive-negative arrangement provides internal achromatization of the VR group, suppressing chromatic aberration generation during lateral shift.
+Paragraph 76 and Figure 1 identify G1/G4 as stationary relative to the image. G2 moves 15.35 mm imageward and G3 moves 15.95 mm objectward. The stop remains fixed.
 
-**L4ac — Negative meniscus (Element 13) — ED Candidate**
-- Glass: nd = 1.53775, νd = 74.70 → **OHARA S-FPM3** (fluorophosphate)
-- Thin-lens focal length: −63.3 mm
-- Radii: R₁ = +395.226 mm (nearly flat), R₂ = +31.350 mm (strongly curved)
-- Conditional (9): ν₄ₐc = 74.70 (within 60–100 range)
-- Role: Third element of the VR group. Its high νd of 74.70 satisfies Conditional Expression (9), which the patent identifies as important for suppressing chromatic aberration during OIS operation. S-FPM3 is a fluorophosphate glass with moderate anomalous partial dispersion — not as exotic as S-FPL51 or S-FPL55, but it sits above the normal line on the glass map and is the only remaining candidate to account for Fujifilm's third "ED" element designation.
+| Gap | Infinity (mm) | Life-size station (mm) |
+|---|---:|---:|
+| DD8: G1–G2 | 2.34 | 17.69 |
+| DD13: G2–stop | 20.39 | 5.04 |
+| DD14: stop–G3 | 19.53 | 3.58 |
+| DD19: G3–G4 | 6.50 | 22.45 |
 
-### Group 4b — Rear Fixed Group (Stationary)
+The four gaps sum to 48.76 mm at both endpoints. An independent paraxial calculation using the rounded source prescription gives magnification −1.00096, EFL 59.26 mm and approximately 0.24643 m physical object-to-image distance at the near station. The distance is reconstructed, while the source explicitly labels the station β=−1.0. Intermediate slider positions and inverse-distance labels are estimates between the two published endpoints.
 
-G4b has a net focal length of +39.54 mm and remains stationary during all operations.
+## Stabilization
 
-**L4ba — Positive meniscus (Element 14)**
-- Glass: nd = 1.95375, νd = 32.32 → **OHARA S-LAH98** (ultra-high index lanthanum)
-- Thin-lens focal length: +41.5 mm
-- Radii: R₁ = +37.523 mm, R₂ = +709.784 mm
-- Role: Strong positive element using ultra-high-index lanthanum glass. Its positive power partially counteracts G4a's negative power, bringing the net G4 power to a moderate −102.4 mm. Significant contributor to Petzval sum and field curvature control.
+The patent identifies G4a as the subgroup that moves transversely for camera-shake correction. The diagram shows the centered axial prescription and its focus motion; it does not animate lateral OIS displacement. The source supports the subgroup identification, but does not establish a five-stop production performance rating.
 
-**L4bb + L4bc — Cemented doublet (Elements 15 + 16)**
-- L4bb: nd = 1.51680, νd = 64.20 → **OHARA S-BSL7 / Schott N-BK7** (standard borosilicate crown)
-- L4bc: nd = 1.95906, νd = 17.47 → **OHARA S-NPH3** (ultra-high index dense flint)
-- Standalone focal lengths: L4bb ≈ +48.2 mm, L4bc ≈ −48.9 mm
-- Abbe number difference: 46.73
-- Role: The final optical doublet before the image plane. L4bc's νd = 17.47 (the lowest Abbe number in the design) provides extreme chromatic leverage. Position close to the sensor gives strong influence over lateral color correction.
+## Aperture and Image Formation
 
----
+Table 2 gives f/2.88 and full field 20.2° at infinity, and f/3.99 and full field 5.0° at the life-size station. The aperture control uses nominal f/2.88, with a fixed physical iris during focus. The source finite-conjugate f/3.99 is separate from the viewer's calculated effective-aperture estimate.
 
-## 5. The Aspherical Element — L1d in Detail
+The source rear stack consists of 27.42 mm air, a 2.85 mm plate at nd=1.51680 and 1 mm air. The plate is excluded from the lens surfaces under the lens-data specification. The remaining air-equivalent distance is 30.2989557 mm, preserving paraxial focus; the physical track including the plate is 140.18 mm. Omitting the plate also omits its higher-order and chromatic effects.
 
-L1d is the sole aspherical element, carrying polynomial aspherical correction on both its front (surface 7) and rear (surface 8) surfaces. The aspherical form uses KA = 1.0 (equivalent to K = 0 in standard notation — spherical base curve) with all departure from the polynomial terms A₄ through A₂₀.
+## Model Limitations
 
-### Aspherical Coefficients
-
-| Coefficient | Surface 7 (front) | Surface 8 (rear) |
-|---|---|---|
-| R (mm) | +25.2054 | −75.3450 |
-| K | 0 | 0 |
-| A₄ | −3.4417 × 10⁻⁶ | −5.6321 × 10⁻⁷ |
-| A₆ | −1.0271 × 10⁻⁸ | −7.1694 × 10⁻⁹ |
-| A₈ | +7.8474 × 10⁻¹¹ | +5.3448 × 10⁻¹¹ |
-| A₁₀ | −1.3013 × 10⁻¹² | −8.2555 × 10⁻¹³ |
-| A₁₂ | +5.9809 × 10⁻¹⁵ | +2.0691 × 10⁻¹⁵ |
-| A₁₄ | +1.5650 × 10⁻¹⁷ | +8.6700 × 10⁻¹⁸ |
-| A₁₆ | −3.3871 × 10⁻¹⁹ | −2.1215 × 10⁻²⁰ |
-| A₁₈ | +1.5230 × 10⁻²¹ | −2.8133 × 10⁻²² |
-| A₂₀ | −2.5293 × 10⁻²⁴ | +7.4217 × 10⁻²⁵ |
-
-### Aspherical Departure from Base Sphere
-
-| Height h (mm) | Surface 7 departure (μm) | Surface 8 departure (μm) |
-|---|---|---|
-| 3.0 | −0.3 | −0.1 |
-| 6.0 | −4.9 | −1.0 |
-| 9.0 | −27.6 | −7.4 |
-| 12.0 | −107.2 | −40.2 |
-| 13.0 | −164.5 | −70.2 |
-
-Both surfaces are flatter at the rim than their base spheres (negative departure). The front surface carries approximately 2.3× more departure than the rear. The departures are well within conventional CNC polishing capability. Precision glass molding (PGM) is unlikely for this element: S-BAL41 has a glass transition temperature of approximately 557°C — above the typical PGM threshold — and is not listed in OHARA's moldable glass catalog.
-
-The positioning of L1d within G1 is optimal: it sits at the last position in the front group, where the marginal ray height is still large but the chief ray has begun to converge toward the stop. This gives the aspherical correction strong leverage over both spherical aberration (via the marginal ray) and coma (via the chief ray height), which is why a single aspherical element suffices for the entire 16-element design.
-
----
-
-## 6. Focusing Mechanism — Floating Focus
-
-The lens employs a **floating focus** system with two independently moving groups (G2 and G3) driven by linear motors. G1 and G4 remain mechanically fixed along the optical axis.
-
-### Variable Gap Behavior
-
-| Gap | Location | Infinity (mm) | β = −1.0 (mm) | Change |
-|---|---|---|---|---|
-| DD[8] | G1 → G2 | 2.34 | 17.69 | +15.35 |
-| DD[13] | G2 → Stop | 20.39 | 5.04 | −15.35 |
-| DD[14] | Stop → G3 | 19.53 | 3.58 | −15.95 |
-| DD[19] | G3 → G4 | 6.50 | 22.45 | +15.95 |
-| **Sum** | | **48.76** | **48.76** | **0.00** |
-
-The total variable gap sum is exactly conserved at 48.76 mm, confirming constant overall lens length during focusing. The two focus groups travel nearly equal distances in opposite directions: G2 retreats 15.35 mm toward the image while G3 advances 15.95 mm toward the object. At 1:1 magnification, the two groups nearly converge on the stop — the gap from G2 to the stop shrinks to 5.04 mm and from the stop to G3 to 3.58 mm.
-
-### Why Floating Focus Matters for Macro
-
-A conventional unit-focus macro lens suffers progressive aberration degradation as the conjugate ratio approaches 1:1, because the lens was optimized for a single conjugate. The floating focus approach splits the focusing function between two groups with opposite signs (G2 negative, G3 positive), allowing the designer to balance aberration contributions at both conjugates simultaneously. The patent's aberration diagrams (FIG. 9) confirm this: the spherical aberration curves at infinity (FNo = 2.88) and at β = −1.0 (FNo = 3.99) are both well-corrected.
-
----
-
-## 7. Optical Image Stabilization
-
-The fourth-a lens group (G4a) serves as the vibration-proof group, translating perpendicular to the optical axis. This mechanism is rated at 5 stops of stabilization in the production lens.
-
-### VR Group Design Rationale
-
-**Conditional (1):** |f₄ₐ/f| = 0.325 — keeps the VR group's power strong enough (|f₄ₐ| = 25.58 mm) that only modest lateral shifts are needed to achieve the required image displacement.
-
-**Conditional (8):** |(1 − β₄ₐ) × β₄ᵦ| = 1.450 — controls the "VR sensitivity," the ratio between the image shift and the lateral translation of G4a. A value of 1.45 means the image moves 1.45× further than the lens group, providing good correction amplification while keeping sensitivity manageable.
-
-The three-element construction of G4a (cemented doublet + singlet) minimizes aberration degradation during off-axis displacement. The cemented pair (L4aa + L4ab) provides internal achromatization so the group doesn't generate chromatic aberration as it shifts. The separated singlet L4ac, made from S-FPM3 (ν₄ₐc = 74.70, satisfying Conditional Expression 9), provides additional chromatic fine-tuning.
-
----
-
-## 8. Glass Selection Strategy
-
-The design uses 15 distinct glass annotations across 16 elements, with two repeated S-FPL51 ED elements.
-
-### Summary Table
-
-| Element | Catalog Glass | nd | νd | Classification | Special Property |
-|---|---|---|---|---|---|
-| L1a | S-LAL18 | 1.72916 | 54.67 | Lanthanum crown | — |
-| L1b | S-FPL51 | 1.49700 | 81.54 | ED glass | Anomalous partial dispersion |
-| L1c | E-F1 / 626357 | 1.62588 | 35.70 | Dense flint | HOYA Sellmeier |
-| L1d | 583595 — S-BAL41 | 1.58313 | 59.46 | Barium crown | Aspherical substrate; catalog pending |
-| L2a | S-BAL35 | 1.58913 | 61.13 | Barium crown | — |
-| L2b | S-NBH52 | 1.67300 | 38.15 | Barium flint | OHARA Sellmeier |
-| L2c | TAFD40 | 2.00069 | 25.46 | Ultra-high index flint | nd > 2.0 |
-| L3a | **S-FPL55** | 1.43875 | 94.66 | **Super ED** | **Fluorite-equivalent APD** |
-| L3b | S-FPL51 | 1.49700 | 81.54 | ED glass | Anomalous partial dispersion |
-| L3c | S-TIH53 | 1.84666 | 23.78 | Dense flint | — |
-| L4aa | E-FDS2 / 003193 | 2.00272 | 19.32 | Ultra-high index flint | HOYA Sellmeier; nd > 2.0 |
-| L4ab | S-LAM59 / 697485 | 1.69700 | 48.52 | Lanthanum crown | OHARA Sellmeier |
-| L4ac | S-FPM3 | 1.53775 | 74.70 | Fluorophosphate | Moderate APD |
-| L4ba | S-LAH98 | 1.95375 | 32.32 | Ultra-high index lanthanum | nd ≈ 1.95 |
-| L4bb | S-BSL7 | 1.51680 | 64.20 | Borosilicate crown (N-BK7) | — |
-| L4bc | S-NPH3 | 1.95906 | 17.47 | Ultra-high index flint | Lowest νd in design |
-
-**Catalog-pending note:** The patent gives refractive index and Abbe number, not vendor glass names. Code-only labels preserve those nd/νd coordinates without forcing a mismatched Sellmeier catalog entry; they can auto-resolve later if a matching catalog glass is added with the same six-digit code.
-
-### Chromatic Correction Architecture
-
-The design achieves chromatic correction through four achromatic "engines" distributed across the lens:
-
-1. **G1 air-spaced pair (L1b/L1c):** S-FPL51 (νd = 81.5) vs. HOYA E-F1 dense flint (νd = 35.7), Δν = 45.8. Primary achromatization and secondary spectrum correction for the front group.
-
-2. **G3 cemented doublet (L3b/L3c):** S-FPL51 (νd = 81.5) vs. S-TIH53 (νd = 23.8), Δν = 57.8. The largest Abbe number difference in the design, providing aggressive chromatic correction in the rear focus group.
-
-3. **G4a cemented doublet (L4aa/L4ab):** HOYA E-FDS2 ultra-high-index flint (νd = 19.3) vs. OHARA S-LAM59 lanthanum crown (νd = 48.5), Δν = 29.2. Internal achromatization of the VR group.
-
-4. **G4b cemented doublet (L4bb/L4bc):** S-BSL7 (νd = 64.2) vs. S-NPH3 (νd = 17.5), Δν = 46.7. Final chromatic trim near the image plane.
-
-The Super ED element L3a (S-FPL55) sits between these pairs, providing the critical anomalous partial dispersion correction that reduces secondary spectrum.
-
-### Ultra-High Index Glasses
-
-Four elements use glasses with nd approaching or exceeding 2.0: L2c (2.001), L4aa (2.003), and L4ba/L4bc (1.954/1.959). These ultra-high-index materials allow strong refractive power with reduced surface curvature, reducing higher-order aberrations. The tradeoff is high dispersion, so each appears cemented to or paired with a lower-dispersion partner.
-
----
-
-## 9. Conditional Expression Verification
-
-All nine of the patent's conditional expressions are satisfied by Example 1:
-
-| # | Expression | Computed Value | Required Range | Status |
-|---|---|---|---|---|
-| (1) | \|f₄ₐ/f\| | 0.325 | 0.25 – 0.45 | ✓ |
-| (1-1) | \|f₄ₐ/f\| | 0.325 | 0.29 – 0.42 | ✓ |
-| (2) | ν₄ₐᵦ − ν₄ₐₐ | 29.2 | 18 – 35 | ✓ |
-| (2-1) | ν₄ₐᵦ − ν₄ₐₐ | 29.2 | 27 – 35 | ✓ |
-| (3) | ν₁ᵦ − ν₁c | 45.8 | 35 – 50 | ✓ |
-| (4) | f₁/f | 0.563 | 0.5 – 0.7 | ✓ |
-| (4-1) | f₁/f | 0.563 | 0.55 – 0.67 | ✓ |
-| (5) | \|f₂/f\| | 0.394 | 0.35 – 0.6 | ✓ |
-| (5-1) | \|f₂/f\| | 0.394 | 0.38 – 0.57 | ✓ |
-| (6) | f₃/f | 0.463 | 0.4 – 0.5 | ✓ |
-| (6-1) | f₃/f | 0.463 | 0.42 – 0.5 | ✓ |
-| (7) | \|f₄/f\| | 1.300 | 0.5 – 2.0 | ✓ |
-| (7-1) | \|f₄/f\| | 1.300 | 0.6 – 1.5 | ✓ |
-| (8) | \|(1−β₄ₐ)×β₄ᵦ\| | 1.450 | 1.0 – 2.0 | ✓ |
-| (8-1) | \|(1−β₄ₐ)×β₄ᵦ\| | 1.450 | 1.3 – 1.6 | ✓ |
-| (9) | ν₄ₐc | 74.70 | 60 – 100 | ✓ |
-| (9-1) | ν₄ₐc | 74.70 | 70 – 100 | ✓ |
-
-All values satisfy both the primary and tightened conditional expression ranges.
-
----
-
-## 10. Design Summary
-
-The Fujifilm XF 80mm f/2.8 R LM OIS WR Macro (as represented by Example 1) is a four-group positive-negative-positive-negative macro lens with floating focus and integrated optical image stabilization. Its 16 elements span 15 distinct glass annotations, ranging from the fluorite-equivalent S-FPL55 (νd = 94.7) to the ultra-high-dispersion S-NPH3 (νd = 17.5), with four elements using nd > 1.95. A single double-sided aspherical element in the front group controls spherical aberration and coma across the entire focus range.
-
-The design's defining achievement is maintaining high optical performance across an enormous conjugate range — from infinity to 1:1 magnification — while simultaneously providing 5-stop image stabilization and a sealed, constant-length barrel. The floating focus architecture, with G2 and G3 traveling ±15–16 mm in opposite directions, allows independent optimization at both conjugates rather than accepting the progressive degradation inherent in simpler unit-focus designs.
-
----
-
-*Document prepared from US 2018/0246292 A1, Example 1 prescription data. Glass identifications are inferential based on nd/νd matching against published catalog values (OHARA, HOYA); code-only entries remain catalog-pending and fall back to Abbe dispersion. All focal lengths and conditional expression values independently computed via paraxial ray trace and verified against the patent's Table 28.*
+Radii, thicknesses, glass coordinates, asphere coefficients and focus gap endpoints are patent values. Optical rims, catalog identity, the finite object distance and intermediate focus states are reconstructed or inferred. The model does not establish production coatings, actuators, stabilization effectiveness or branded ED classifications. The centered optical calculations do not simulate OIS displacement.

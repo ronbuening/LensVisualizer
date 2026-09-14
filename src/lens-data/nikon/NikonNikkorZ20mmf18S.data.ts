@@ -10,8 +10,7 @@ import type { LensDataInput } from "../../types/optics.js";
  *   Accordingly elementCount remains the patent's physical count of 14 while the authored optical-media list has 15 entries.
  * - No scale factor is applied. Marketing 20 mm / f/1.8 is kept separate from the design EFL / FNO.
  * - Focus status: PUBLISHED. The patent gives infinity, middle, and near focus rows; no internal reconstruction is used.
- * - The current LensData var schema stores the infinity and near endpoints; the published middle row is preserved in
- *   this header for source-complete focus verification.
+ * - The infinity, middle, and near rows are stored as exact focus keyframes.
  * - Semi-diameters are derived modeling values because Example 1 publishes no clear-aperture table. The stop semi-diameter
  *   is calibrated to the published FNO=1.850 and is therefore an inferred aperture, not a source stop diameter.
  * - Glass names are catalog-coordinate matches or representatives for the patent's nd/vd values, not source-proven Nikon
@@ -325,11 +324,12 @@ const LENS_DATA = {
     "27A": { K: 0, A4: 6.20655e-5, A6: -5.08156e-7, A8: 1.34161e-9, A10: -1.31454e-12, A12: 0, A14: 0 },
   },
 
+  focusPositions: [0, 0.28567786423905145, 1],
   var: {
-    "8": [3.83333, 8.49234],
-    "10": [9.69148, 5.03506],
-    "23": [7.98377, 7.06806],
-    "25A": [8.05896, 8.97413],
+    "8": [3.83333, 4.66117, 8.49234],
+    "10": [9.69148, 8.86123, 5.03506],
+    "23": [7.98377, 7.83192, 7.06806],
+    "25A": [8.05896, 8.21231, 8.97413],
   },
   varLabels: [
     ["8", "D8"],
@@ -354,7 +354,7 @@ const LENS_DATA = {
 
   closeFocusM: 0.20096149,
   focusDescription:
-    "PUBLISHED focus model: G2 moves imageward while G4 moves objectward from infinity to the near row. The patent also publishes a middle row (D8=4.66117, D10=8.86123, D23=7.83192, D25=8.21231), documented in the data header; the current LensData var schema stores the infinity and near endpoints.",
+    "PUBLISHED focus model: G2 moves imageward while G4 moves objectward. The patent's infinity, middle, and near rows are exact focus keyframes.",
   nominalFno: 1.85,
   fstopSeries: [1.8, 2, 2.8, 4, 5.6, 8, 11, 16],
   apertureBlades: 9,

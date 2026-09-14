@@ -20,7 +20,3 @@ Patent: US 4,235,521, Embodiment 1 / FIG. 2
 ### Phase 4 - Analysis sync
 
 - Updated `OlympusXAZuiko35mmf28.analysis.md` to mention the Fig. 2 rear-group SD adjustment and current rim-slope/sag validation language.
-
-### Verification
-
-- `npm test -- elementRenderDiagnostics`

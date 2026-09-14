@@ -10,8 +10,6 @@
 - Reduced L1's front/rear SDs from `46.2 / 45.8` to `38.0 / 37.8` mm. The former outline was materially larger than
   the patent's front-group envelope relative to L2, L3, and the fixed rear groups.
 - Retained the remaining inferred SDs, whose clean rims already follow the figure's stepped envelope.
-- `npm run audit:surface -- src/lens-data/panasonic/PanasonicLumixSPro70200mmf28OIS.data.ts` and
-  `npm run audit:image-circle -- src/lens-data/panasonic/PanasonicLumixSPro70200mmf28OIS.data.ts` passed.
 
 ### Glass
 

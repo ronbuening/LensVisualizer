@@ -27,6 +27,8 @@ const SOURCES = {
   fujifilmOverview: "https://global.fujifilm.com/en/about/corporate/overview",
   hoyaPentaxMerger: "https://www.hoya.com/en/news/20111001/",
   konicaMinoltaHistory: "https://www.konicaminolta.com/global-en/corporate/history-timeline04.html",
+  konicaMinoltaOrigins: "https://www.konicaminolta.com/global-en/corporate/history-timeline01.html",
+  konicaMinoltaRenames: "https://www.konicaminolta.com/global-en/corporate/history-timeline03.html",
   konicaMinoltaIntegration: "https://www.konicaminolta.com/about/releases/minolta/2003/0805_01_01.html",
   konicaMinoltaAdvancedLayers: "https://www.konicaminolta.com/about/releases/2012/0221_01_01.html",
   konicaMinoltaReorganization: "https://www.konicaminolta.com/about/releases/2012/1010_01_01.html",
@@ -51,6 +53,8 @@ const SOURCES = {
   sonyReorganization: "https://www.sony.com/en/SonyInfo/News/Press/202005/20-039E/",
   sonyStructure: "https://www.sony.com/en/SonyInfo/News/Press/202011/20-093E/",
   tamronHistory: "https://www.tamron.com/global/company/tamron_history.html",
+  viltroxRename: "https://patents.google.com/patent/CN218630458U/zh",
+  viltroxRegistration: "https://m.shuidi.cn/company-67c4590220744b2c488f83aa38029142.html",
   vivitarHistory: "https://japb.net/business/company-profiles/vivitar/",
   vivitarNameChange: "https://uprp.gov.pl/sites/default/files/wup/1979/06/wup06_1979.pdf",
   voigtlanderHistory: "https://www.cosina.co.jp/voigtlander/",
@@ -59,6 +63,7 @@ const SOURCES = {
   zeissSubsidiaries: "https://www.zeiss.com/corporate/en/about-zeiss/past/history/history-of-zeiss-subsidiaries.html",
   zeissFoundation: "https://www.carl-zeiss-stiftung.de/en/foundation/structure",
   zeissIkon: "https://collection.sciencemuseumgroup.org.uk/people/cp102447/zeiss-ikon-ag",
+  zeissCameras: "https://lenspire.zeiss.com/photo/en/article/a-compendium-of-the-history-of-zeiss-cameras.",
 } as const;
 
 /**
@@ -131,6 +136,16 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
       },
     ],
   },
+  "Fuji Photo Film Co., Ltd.": {
+    corporateFamily: [
+      {
+        family: "Fujifilm–Fujinon",
+        effectiveFrom: "1934-01",
+        sourceUrl: SOURCES.fujifilmHistory,
+        note: "The original Fuji Photo Film company anchors this corporate lineage; historical patents retain their source-era assignee name.",
+      },
+    ],
+  },
   "Fuji Photo Optical Co., Ltd.": {
     corporateFamily: [
       {
@@ -198,6 +213,35 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
       },
     ],
   },
+  "Konishiroku Photo Industry Co., Ltd.": {
+    corporateFamily: [
+      {
+        family: "Konica lineage",
+        effectiveFrom: "1936",
+        effectiveTo: "1987",
+        sourceUrl: SOURCES.konicaMinoltaOrigins,
+        note: "The date marks the incorporated Konishiroku lineage, not the first use of this exact English name.",
+      },
+    ],
+  },
+  "Konica Corporation": {
+    successorOf: [
+      {
+        organization: "Konishiroku Photo Industry Co., Ltd.",
+        effectiveDate: "1987",
+        sourceUrl: SOURCES.konicaMinoltaRenames,
+        note: "Corporate name change; historical patent attributions retain the earlier legal name.",
+      },
+    ],
+    corporateFamily: [
+      {
+        family: "Konica lineage",
+        effectiveFrom: "1987",
+        effectiveTo: "2003-08-05",
+        sourceUrl: SOURCES.konicaMinoltaRenames,
+      },
+    ],
+  },
   "Konica Minolta Advanced Layers, Inc.": {
     successorOf: [
       {
@@ -233,6 +277,12 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
   },
   "Konica Minolta, Inc.": {
     successorOf: [
+      {
+        organization: "Konica Corporation",
+        effectiveDate: "2003-08-05",
+        sourceUrl: SOURCES.konicaMinoltaIntegration,
+        note: "Konica became Konica Minolta Holdings in the integration; the current operating-company name dates from 2013.",
+      },
       {
         organization: "Minolta Co., Ltd.",
         effectiveDate: "2003-10-01",
@@ -297,7 +347,26 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
     ],
     corporateFamily: [{ family: "Mamiya camera lineage", effectiveFrom: "1993-04", sourceUrl: SOURCES.mamiyaHistory }],
   },
+  "Minolta Camera Co., Ltd.": {
+    corporateFamily: [
+      {
+        family: "Minolta lineage",
+        effectiveFrom: "1928",
+        effectiveTo: "1994",
+        sourceUrl: SOURCES.konicaMinoltaOrigins,
+        note: "The date marks the business lineage, not the first use of the Minolta Camera name. Original patent front pages use Minolta Camera Kabushiki Kaisha.",
+      },
+    ],
+  },
   "Minolta Co., Ltd.": {
+    successorOf: [
+      {
+        organization: "Minolta Camera Co., Ltd.",
+        effectiveDate: "1994",
+        sourceUrl: SOURCES.konicaMinoltaRenames,
+        note: "Corporate name change; normalized patent-search assignee fields can incorrectly apply the later name to earlier publications.",
+      },
+    ],
     acquiredBy: [
       {
         organization: "Konica Minolta Holdings, Inc.",
@@ -307,6 +376,12 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
       },
     ],
     corporateFamily: [
+      {
+        family: "Minolta lineage",
+        effectiveFrom: "1994",
+        effectiveTo: "2003-10-01",
+        sourceUrl: SOURCES.konicaMinoltaRenames,
+      },
       {
         family: "Konica Minolta",
         effectiveFrom: "2003-08-05",
@@ -557,6 +632,27 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
     ],
     corporateFamily: [{ family: "Samsung", effectiveFrom: "2010-04-01", sourceUrl: SOURCES.samsungMerger }],
   },
+  "Shenzhen Leiying Photoelectric Technology Co., Ltd.": {
+    corporateFamily: [
+      {
+        family: "Viltrox",
+        effectiveFrom: "2016-03-10",
+        sourceUrl: SOURCES.viltroxRegistration,
+        note: "Former registered name of Shenzhen Viltrox Technology; unified social credit code 91440300MA5D88WC5L. Historical patent attributions retain their publication-era name.",
+      },
+    ],
+  },
+  "Shenzhen Viltrox Technology Co., Ltd.": {
+    successorOf: [
+      {
+        organization: "Shenzhen Leiying Photoelectric Technology Co., Ltd.",
+        effectiveDate: "2025-04-18",
+        sourceUrl: SOURCES.viltroxRename,
+        note: "CP03 records the patentee name/address change on this date; this is the patent-register event date, not an asserted corporate registration date. 唯卓仕 is rendered Viltrox here and Weizhuoshi in the translated legal event.",
+      },
+    ],
+    corporateFamily: [{ family: "Viltrox", effectiveFrom: "2025-04-18", sourceUrl: SOURCES.viltroxRename }],
+  },
   "Sony Corporation": {
     subsidiaryOf: [
       {
@@ -593,6 +689,17 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
         effectiveDate: "1970-04",
         sourceUrl: SOURCES.tamronHistory,
         note: "The official history records the April 1970 company-name change to Tamron Co., Ltd.",
+      },
+    ],
+    corporateFamily: [{ family: "Tamron", effectiveFrom: "1970-04", sourceUrl: SOURCES.tamronHistory }],
+  },
+  "Tamron Optical Foshan Co., Ltd.": {
+    corporateFamily: [
+      {
+        family: "Tamron",
+        effectiveFrom: "1997-07",
+        sourceUrl: SOURCES.tamronHistory,
+        note: "Established as Tamron's Foshan manufacturing company; retained as a distinct patent assignee, not an alias of the Japanese company.",
       },
     ],
   },
@@ -642,17 +749,16 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
       },
     ],
   },
-  "Voigtländer & Sohn Aktiengesellschaft": {
-    corporateFamily: [
+  "Voigtländer A.G.": {
+    subsidiaryOf: [
       {
-        family: "Voigtländer",
-        effectiveFrom: "1756",
-        sourceUrl: SOURCES.voigtlanderHistory,
-        note: "The date marks the documented brand lineage, not the first use of this exact corporate style.",
+        organization: "Carl-Zeiss-Stiftung",
+        effectiveFrom: "1956",
+        effectiveTo: "1971",
+        sourceUrl: SOURCES.zeissCameras,
+        note: "ZEISS documents full Foundation ownership over this period. This does not attribute later Cosina patents to the historical company.",
       },
     ],
-  },
-  "Voigtländer A.G.": {
     corporateFamily: [
       {
         family: "Voigtländer",

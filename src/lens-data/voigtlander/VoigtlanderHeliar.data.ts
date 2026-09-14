@@ -1,35 +1,11 @@
 import type { LensDataInput } from "../../types/optics.js";
 
 /**
- * ╔══════════════════════════════════════════════════════════════════════╗
- * ║           LENS DATA — VOIGTLÄNDER HELIAR (SYMMETRIC, 1902)         ║
- * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Data source: US Patent 716,035 (C.A.H. Harting, single example). ║
- * ║  Symmetric five-element Cooke Triplet derivative with cemented     ║
- * ║  doublets replacing the outer positive singlets.                   ║
- * ║  5 elements / 3 groups, 0 aspherical surfaces.                    ║
- * ║  Focus: unit focus (entire lens moves, bellows extension).         ║
- * ║                                                                    ║
- * ║  NOTE ON SEMI-DIAMETERS:                                          ║
- * ║    Patent does not list SDs. Estimated from paraxial marginal +   ║
- * ║    chief ray trace at full field (2ω = 43.6°), constrained by    ║
- * ║    edge thickness feasibility (element b has 0.43 edge at SD 12.5 ║
- * ║    — the tightest constraint in the system). The runtime derives ║
- * ║    the physical stop aperture from nominal f/4.0.                ║
- * ║                                                                    ║
- * ║  NOTE ON UNITS:                                                    ║
- * ║    All dimensions are in the patent's normalized system (f = 100). ║
- * ║    The patent does not specify a physical focal length — the       ║
- * ║    production Heliars ranged from 120 mm to 600 mm. To interpret  ║
- * ║    as millimeters, treat this as a 100 mm f/4.0 lens.            ║
- * ║                                                                    ║
- * ║  NOTE ON THICKNESS INTERPRETATION:                                 ║
- * ║    The patent lists d¹=1.6, d²=3.6, d³=8.1, d⁴=1.6.            ║
- * ║    d³=8.1 is the air gap (not element c thickness), verified by   ║
- * ║    paraxial ray trace: this is the only interpretation that        ║
- * ║    reproduces the patent's stated f = 100 (EFL = 100.12, 0.12%   ║
- * ║    error) without introducing free parameters.                    ║
- * ╚══════════════════════════════════════════════════════════════════════╝
+ * US 716,035, sole symmetric example, normalized f=100 interpreted as mm.
+ * The drawing explicitly identifies d3=8.1 as air and d4=1.6 as central glass.
+ * Source nD is used as an approximate modern nd; Abbe numbers are estimates.
+ * Semi-diameters and the 1.6-unit stop offset are inferred from the drawing
+ * with ray/edge feasibility allowances. The patent gives no focus schedule.
  */
 
 const LENS_DATA = {
@@ -57,7 +33,7 @@ const LENS_DATA = {
    *  Five elements: front cemented doublet (a + b), central biconcave (c),
    *  rear cemented doublet (b′ + a′). Symmetric optical layout, with
    *  the aperture stop just behind the central element.
-   *  Only two glass types used: Glass I (LF, nD=1.5638) and Glass II (SK, nD=1.6080).
+   *  Only two glass types used: Glass I (nD=1.5638) and Glass II (nD=1.6080); supplier unspecified.
    */
   elements: [
     {
@@ -68,7 +44,7 @@ const LENS_DATA = {
       nd: 1.5638,
       vd: 42.0,
       fl: -122.9,
-      glass: "Light Flint (LF, probable discontinued Schott type)",
+      glass: "Unmatched Glass I (patent nD; estimated Abbe 42; supplier unspecified)",
       apd: false,
       role: "Dispersive (flint) component of front achromatic doublet. Weak negative power; meniscus shape contributes to field flattening.",
       cemented: "D1",
@@ -81,9 +57,9 @@ const LENS_DATA = {
       nd: 1.608,
       vd: 57.0,
       fl: 40.6,
-      glass: "Dense Crown (SK, high-confidence match: Schott N-SK2, Δnd = 0.0006)",
+      glass: "Unmatched Glass II (patent nD; estimated Abbe 57; supplier unspecified)",
       apd: false,
-      role: "Primary positive power-contributor. Dense barium crown provides maximum power per unit chromatic aberration. Nearly all power comes from the cemented interface.",
+      role: "Primary positive power-contributor. The higher-index, lower-dispersion medium pairs with element a; the glass-air rear surface also contributes positive power.",
       cemented: "D1",
     },
     {
@@ -94,9 +70,9 @@ const LENS_DATA = {
       nd: 1.5638,
       vd: 42.0,
       fl: -39.7,
-      glass: "Light Flint (LF, same glass as elements a/a′)",
+      glass: "Unmatched Glass I (patent nD; estimated Abbe 42; supplier unspecified)",
       apd: false,
-      role: "Central negative element (Cooke Triplet inheritance). Controls Petzval sum, spherical aberration balance, and power leverage. No chromatic correction role — all achromatism is at the doublet interfaces.",
+      role: "Central negative element (Cooke Triplet inheritance). Controls Petzval sum, spherical aberration balance, and power leverage. Its dispersive negative power also contributes to the system chromatic balance.",
     },
     {
       id: 4,
@@ -106,7 +82,7 @@ const LENS_DATA = {
       nd: 1.608,
       vd: 57.0,
       fl: 40.6,
-      glass: "Dense Crown (SK, Schott N-SK2)",
+      glass: "Unmatched Glass II (patent nD; estimated Abbe 57; supplier unspecified)",
       apd: false,
       role: "Mirror image of element b. Primary positive power in rear group.",
       cemented: "D2",
@@ -119,7 +95,7 @@ const LENS_DATA = {
       nd: 1.5638,
       vd: 42.0,
       fl: -122.9,
-      glass: "Light Flint (LF, same glass as elements a/c)",
+      glass: "Unmatched Glass I (patent nD; estimated Abbe 42; supplier unspecified)",
       apd: false,
       role: "Mirror image of element a. Dispersive component of rear achromatic doublet.",
       cemented: "D2",
@@ -163,15 +139,15 @@ const LENS_DATA = {
   /* ── Variable air spacings (focus mechanism) ──
    *  Unit focus: entire lens moves as a rigid body. Only the back focal
    *  distance (surface 8 → image plane) changes.
-   *  Close focus at 1.0 m (treating normalized units as mm):
-   *    Extension = f²/(d_obj − f) = 100.12²/(1000 − 100.12) = 11.14
-   *    BFD_close = 85.52 + 11.14 = 96.66
+   *  Inferred close focus is solved by paraxial propagation at 1.0 m
+   *  object-to-image distance, including the 28.2 mm optical assembly.
+   *  The patent itself specifies neither close focus nor travel.
    */
   var: {
-    8: [85.52, 96.66],
+    8: [85.52, 98.23772450719136],
   },
 
-  varLabels: [["8", "BF"]],
+  varLabels: [["8", "BF (modeled)"]],
 
   /* ── Group and doublet annotations ── */
   groups: [
@@ -188,7 +164,7 @@ const LENS_DATA = {
   /* ── Focus configuration ── */
   closeFocusM: 1.0,
   focusDescription:
-    "Unit focus — entire lens moves via bellows extension or helicoid. Air gaps between groups remain constant. Patent does not specify close focus; 1.0 m assumed for a 100 mm focal length interpretation.",
+    "Inferred unit focus — all groups and the stop move together by 12.72 mm. The modeled 1.0 m endpoint is object-to-image distance at 100 mm scale; no focus schedule is published. Intermediate distance labels are approximate.",
 
   /* ── Aperture configuration ── */
   nominalFno: 4.0,

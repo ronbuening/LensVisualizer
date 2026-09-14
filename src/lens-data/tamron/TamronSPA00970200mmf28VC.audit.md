@@ -19,8 +19,3 @@ Patent: US 8,867,144 B2, Example 1, Figure 1
 
 - Recomputed every published infinity and close-focus state. LG3 alone moves objectward for closer focus; LG2, LG3, and LG4 retain their imageward wide-to-tele travel relative to fixed LG1 and LG5.
 - Replaced long power/focus descriptions with the patent's concise `LG1`-`LG5` labels.
-
-### Verification
-
-- `npm run audit:image-circle -- src/lens-data/tamron/TamronSPA00970200mmf28VC.data.ts` — zero undersized surfaces.
-- `npm run generate:glass-reports` — passed.

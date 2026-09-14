@@ -1,28 +1,11 @@
 import type { LensDataInput } from "../../types/optics.js";
 
 /**
- * ╔══════════════════════════════════════════════════════════════════════╗
- * ║           LENS DATA — RICOH GR IIIx 26.1mm f/2.8                  ║
- * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Data source: US 2022/0026670 A1 Example 3 (Kazuyasu Ohashi).     ║
- * ║  Semi-wide-angle quasi-symmetric design with telephoto shortening. ║
- * ║  7 elements / 5 groups (air-separated), 3 aspherical surfaces.    ║
- * ║  Focus: unit focus (whole lens translates).                        ║
- * ║                                                                    ║
- * ║  OCR CORRECTIONS APPLIED:                                          ║
- * ║    S2 R: 224.908 → 24.908 (leading "2" prepended from surf. no.). ║
- * ║    Verified: corrected value yields EFL = 26.051 mm (patent 26.05)║
- * ║    Uncorrected yields 25.0 mm — a 4% discrepancy.                 ║
- * ║    S9 glass name corrupted to "S-LAH58" (duplicated from S6);     ║
- * ║    actual glass identified as OHARA 755523 (TaC6) by nd/νd match. ║
- * ║                                                                    ║
- * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    Not listed in patent. Estimated from paraxial marginal + chief  ║
- * ║    ray trace at partial field (~50% off-axis), with 10% clearance  ║
- * ║    and constraints for edge thickness, sd/|R| ratio, and cross-gap ║
- * ║    sag overlap. Significant vignetting at full field is expected   ║
- * ║    (typical for compact camera lenses of this class).              ║
- * ╚══════════════════════════════════════════════════════════════════════╝
+ * US20220026670A1 Example 3, Table 3 and Figure 3.
+ * S2=24.908 mm is a reconstructed repair of the printed "0 224.908" row.
+ * S12 is marked aspherical but coefficients are absent: spherical placeholder.
+ * Filters are excluded; rear air includes t/nd, not physical plate thickness.
+ * The unlisted 0.70 mm post-filter gap is reconstructed, not published.
  */
 
 const LENS_DATA = {
@@ -31,7 +14,7 @@ const LENS_DATA = {
   maker: "Ricoh",
   name: "RICOH GR LENS 26.1mm f/2.8 (Ricoh GR IIIx)",
   subtitle: "US 2022/0026670 A1 EXAMPLE 3 — KAZUYASU OHASHI",
-  specs: ["7 ELEMENTS / 5 GROUPS", "f ≈ 26.1 mm", "F/2.8", "2ω ≈ 56.6°", "3 ASPHERICAL SURFACES"],
+  specs: ["7 ELEMENTS / 5 GROUPS", "f = 26.05 mm", "F/2.87", "2ω = 56.6°", "2 MODELED ASPHERES; S12 UNRESOLVED"],
 
   /* ── Explicit metadata fields ── */
   focalLengthMarketing: 26.1,
@@ -57,10 +40,10 @@ const LENS_DATA = {
       nd: 1.854,
       vd: 40.38,
       fl: 15.86,
-      glass: "OHARA L-LAH85V (PGM)",
+      glass: "OHARA L-LAH85V (patent-listed)",
       apd: false,
       dPgF: -0.00708,
-      role: "Front positive meniscus; primary telephoto-shortening power. Aspherical front surface corrects spherical aberration and near-axis coma.",
+      role: "Positive front element of cemented doublet D1; published front asphere",
       cemented: "D1",
     },
     {
@@ -74,7 +57,7 @@ const LENS_DATA = {
       glass: "OHARA S-NBH58",
       apd: false,
       dPgF: 0.00492,
-      role: "Rear element of front cemented doublet D1; chromatic correction within Group I. High-dispersion niobium-barium flint paired against L1.",
+      role: "Negative rear element of cemented doublet D1",
       cemented: "D1",
     },
     {
@@ -88,7 +71,7 @@ const LENS_DATA = {
       glass: "OHARA S-TIM27",
       apd: false,
       dPgF: 0.00638,
-      role: "Concave-toward-object surface reduces Group I diameter and corrects coma of lower rays (¶0075). Forms diverging sub-group of Group II.",
+      role: "Negative singlet in group II",
     },
     {
       id: 4,
@@ -101,7 +84,7 @@ const LENS_DATA = {
       glass: "OHARA S-LAH58",
       apd: false,
       dPgF: -0.00854,
-      role: "Principal converging element ahead of stop. Highest-index glass (nd=1.883) permits strong power from gentle curvatures. Convex surface faces L5 across stop (quasi-symmetric pair).",
+      role: "Positive singlet in group II, before the stop",
     },
     {
       id: 5,
@@ -111,9 +94,9 @@ const LENS_DATA = {
       nd: 1.755,
       vd: 52.32,
       fl: 9.12,
-      glass: "OHARA 755523 (TaC6; see analysis §5.2)",
+      glass: "J-LASKH2 — compatible counterpart; patent glass-name conflict",
       apd: false,
-      role: "Strongest converging element (FL=+9.1 mm). High-index low-dispersion crown anchors chromatic correction of rear group. Convex image-side surface completes quasi-symmetric opposing-convex architecture across stop.",
+      role: "Positive front element of cemented doublet D2; patent glass-name row conflicts with its nd/vd",
       cemented: "D2",
     },
     {
@@ -127,7 +110,7 @@ const LENS_DATA = {
       glass: "OHARA S-TIL6",
       apd: false,
       dPgF: 0.00145,
-      role: "Rear element of cemented doublet D2. Large Δnd at junction (0.223) drives chromatic and field curvature correction. Concave image-side surface faces L7 concave object-side surface.",
+      role: "Negative rear element of cemented doublet D2",
       cemented: "D2",
     },
     {
@@ -138,27 +121,25 @@ const LENS_DATA = {
       nd: 1.9027,
       vd: 31.0,
       fl: -64.86,
-      glass: "903310 - OHARA L-LAH86 (PGM; patent Pg,F=0.5943)",
+      glass: "OHARA L-LAH86 (patent-listed; Pg,F=0.5943)",
       apd: false,
       dPgF: 0.00264,
-      role: "Sole element of Group IV; provides negative rear power for telephoto shortening of total track. Ultra-high-index (nd=1.903) PGM glass. Rear surface heavily aspherized for field-dependent aberration correction (astigmatism, distortion, peripheral coma).",
+      role: "Negative singlet forming group IV; rear asphere published, front asphere coefficients missing",
     },
   ],
 
   /* ── Surface prescription ──
    *  Patent surface numbers: 1–15 (including filter and image).
-   *  Filter (S14–S15: ∞ / 1.40mm / nd=1.51633 + ∞ / 0.70mm to image)
-   *  is omitted; its mechanical distance is folded into the last surface d.
-   *  Total BFD = 14.378 + 1.40 + 0.70 = 16.478 mm.
-   *
-   *  S12 is marked aspherical in the patent (*) but has no published
-   *  coefficients in the Example 3 data section.  L-LAH86 is a PGM glass
-   *  (both surfaces formed in one mold), so mild asphericity is expected.
-   *  Included in asph{} with K=0 and all coefficients zero.
+   *  Filter S14–S15 (1.40 mm, nd=1.51633) is omitted.
+   *  Rear air = 14.378 + 1.40/1.51633 + 0.70 = 16.0012818714 mm.
+   *  The final 0.70 mm is inferred from conjugate and total-track consistency;
+   *  the table leaves d15 blank. Do not present it as a published spacing.
+   *  S12 is marked aspherical but its coefficients are unpublished here.
+   *  Its zero-coefficient spherical placeholder is an explicit limitation.
    */
   surfaces: [
     // ── Group I: cemented doublet D1 (L1 + L2) ──
-    { label: "1A", R: 9.247, d: 2.91, nd: 1.854, elemId: 1, sd: 6.0 }, // L1 front (asph, PGM)
+    { label: "1A", R: 9.247, d: 2.91, nd: 1.854, elemId: 1, sd: 6.0 }, // L1 front (published asphere)
     { label: "2", R: 24.908, d: 0.7, nd: 1.7888, elemId: 2, sd: 5.3 }, // L1→L2 cemented junction
     { label: "3", R: 7.36, d: 2.01, nd: 1.0, elemId: 0, sd: 4.3 }, // L2 rear → air
 
@@ -177,8 +158,8 @@ const LENS_DATA = {
     { label: "11", R: 33.044, d: 1.15, nd: 1.0, elemId: 0, sd: 4.0 }, // L6 rear → air
 
     // ── Group IV: L7 (negative meniscus, 2× asph) ──
-    { label: "12A", R: -18.0, d: 1.0, nd: 1.9027, elemId: 7, sd: 4.8 }, // L7 front (asph, PGM; no published coeffs)
-    { label: "13A", R: -26.676, d: 16.478, nd: 1.0, elemId: 0, sd: 5.2 }, // L7 rear → BFD to image (asph, PGM; incl. filter path)
+    { label: "12A", R: -18.0, d: 1.0, nd: 1.9027, elemId: 7, sd: 4.8 }, // Spherical placeholder for source-marked asphere; coefficients missing
+    { label: "13A", R: -26.676, d: 16.001281871360455, nd: 1.0, elemId: 0, sd: 5.2 }, // Published rear asphere → air-equivalent image spacing
   ],
 
   /* ── Aspherical coefficients ── */
@@ -194,7 +175,7 @@ const LENS_DATA = {
     },
     "12A": {
       // Patent marks S12 aspherical (*) but publishes no coefficients for Ex. 3.
-      // PGM glass (L-LAH86) — mild asphericity likely present but unpublished.
+      // Zero coefficients are a spherical fallback, not a patent prescription.
       K: 0,
       A4: 0,
       A6: 0,
@@ -216,11 +197,12 @@ const LENS_DATA = {
 
   /* ── Variable air spacings (unit focus) ──
    *  Unit focus: entire lens translates; only BFD changes.
-   *  BFD includes filter equivalent path (14.378 + 1.40 + 0.70 = 16.478 mm).
-   *  Extension at 0.2 m: ≈ 3.90 mm (paraxial thin-lens estimate).
+   *  The source has no finite focus table. Closest station is reconstructed
+   *  for the assumed 0.20 m image-to-object distance using the rounded lens
+   *  matrix; extension 4.8551862252 mm. All optics and stop move together.
    */
   var: {
-    "13A": [16.478, 20.38],
+    "13A": [16.001281871360455, 20.856468096571174],
   },
 
   varLabels: [["13A", "BF"]],
@@ -239,12 +221,12 @@ const LENS_DATA = {
   ],
 
   /* ── Focus configuration ── */
-  closeFocusM: 0.2, // normal mode; macro mode extends to 0.12 m
-  focusDescription: "Unit focus — entire 7-element assembly translates along the optical axis.",
+  closeFocusM: 0.2, // Assumed finite endpoint, not a published patent station.
+  focusDescription: "Reconstructed unit focus: all seven elements and the stop translate 4.85519 mm for an assumed 20 cm image-to-object distance. No finite patent focus schedule; S12 asphere coefficients remain unavailable.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 3.2, 3.5, 4, 4.5, 5, 5.6, 6.3, 7.1, 8, 9, 10, 11, 13, 16],
+  nominalFno: 2.87,
+  fstopSeries: [2.87, 3.2, 3.5, 4, 4.5, 5, 5.6, 6.3, 7.1, 8, 9, 10, 11, 13, 16],
 
   /* ── Layout tuning ── */
   scFill: 0.55,

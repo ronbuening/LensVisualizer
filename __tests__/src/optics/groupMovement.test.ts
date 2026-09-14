@@ -4,12 +4,9 @@ import {
   getGroupMovementAvailability,
   inferLensMovementGroups,
 } from "../../../src/optics/groupMovement.js";
-import CanonRF14Raw from "../../../src/lens-data/canon/CanonRF14mmF14LVCM.data.js";
-import CanonRF24Raw from "../../../src/lens-data/canon/CanonRF24mmF14LVCM.data.js";
-import CanonRF35Raw from "../../../src/lens-data/canon/CanonRF35mmF14LVCM.data.js";
 import NikonAfpDx70300Raw from "../../../src/lens-data/nikon/NikonAFPDX70300mmf4563G.data.js";
 import NikonZ100400Raw from "../../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.js";
-import { build, sharedSonnar50f15 } from "./testLensFixtures.js";
+import { build, buildVariableStopGapLens, sharedSonnar50f15 } from "./testLensFixtures.js";
 import type { RuntimeLens } from "../../../src/types/optics.js";
 
 describe("group movement optics helpers", () => {
@@ -37,8 +34,8 @@ describe("group movement optics helpers", () => {
     expect(getGroupMovementAvailability(L).focus).toBe(true);
     for (const series of profile.series) {
       const closePoint = series.samples.find((point) => Math.abs(point.focusT - 1) < 1e-9);
-      expect(closePoint?.shiftMm).toBeLessThan(-2.9);
-      expect(closePoint?.shiftMm).toBeGreaterThan(-3.1);
+      // Independent finite-conjugate result for the corrected 0.9 m endpoint.
+      expect(closePoint?.shiftMm).toBeCloseTo(-3.1474798041, 8);
       expect(closePoint?.positionMm).toBeLessThan(0);
     }
   });
@@ -63,34 +60,9 @@ describe("group movement optics helpers", () => {
     expect(profile.maxAbsShiftMm).toBeGreaterThan(20);
   });
 
-  it("preserves the published Canon RF VCM prime focus directions", () => {
-    const rf14 = build(CanonRF14Raw);
-    const rf14Profile = computeGroupMovementProfile(rf14, "focus", { focusT: 1, zoomT: 0 });
-    const rf14Focus = rf14Profile.series.find((series) => series.group.label.startsWith("L2"));
+  it("detects focus travel that reverses to an unchanged close endpoint", () => {
+    const L = buildVariableStopGapLens([2, 5, 2], "test-reversing-focus-availability", [0, 0.5, 1]);
 
-    expect(getGroupMovementAvailability(rf14)).toEqual({ focus: true, zoom: false, combined: false });
-    expect(rf14Focus?.currentPoint.shiftMm).toBeCloseTo(-1.01, 2);
-
-    const rf24 = build(CanonRF24Raw);
-    const rf24Profile = computeGroupMovementProfile(rf24, "focus", { focusT: 1, zoomT: 0 });
-    const rf24L2 = rf24Profile.series.find((series) => series.group.label.startsWith("L2"));
-    const rf24L4 = rf24Profile.series.find((series) => series.group.label.startsWith("L4"));
-
-    expect(getGroupMovementAvailability(rf24)).toEqual({ focus: true, zoom: false, combined: false });
-    expect(rf24L2?.currentPoint.shiftMm).toBeCloseTo(3.62, 2);
-    expect(rf24L4?.currentPoint.shiftMm).toBeCloseTo(-2.88, 2);
-  });
-
-  it("does not invent unpublished Canon RF 35 mm focus or zoom travel", () => {
-    const rf35 = build(CanonRF35Raw);
-
-    expect(getGroupMovementAvailability(rf35)).toEqual({ focus: false, zoom: false, combined: false });
-    expect(inferLensMovementGroups(rf35).map((group) => group.label)).toEqual([
-      "B1",
-      "B2 (OBJECTWARD FOCUS)",
-      "B3",
-      "B4 (OBJECTWARD FOCUS)",
-      "B5",
-    ]);
+    expect(getGroupMovementAvailability(L)).toEqual({ focus: true, zoom: false, combined: false });
   });
 });

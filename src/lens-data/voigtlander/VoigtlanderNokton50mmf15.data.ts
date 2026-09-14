@@ -61,7 +61,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 2,646,721 A",
   patentAuthors: ["Albrecht Wilhelm Tronnier"],
-  patentAssignees: ["Voigtländer & Sohn Aktiengesellschaft"],
+  patentAssignees: ["Voigtländer & Sohn AG"],
   patentYear: 1953,
   elementCount: 7,
   groupCount: 5,

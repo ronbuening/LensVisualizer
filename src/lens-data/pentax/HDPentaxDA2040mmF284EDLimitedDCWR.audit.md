@@ -19,11 +19,6 @@ No SD change was justified. The element-to-element taper agrees with Figure 1 af
 
 - Rechecked the three published infinity states and the constrained close-focus solve. Zoom order remains 20.60 / 30.00 / 39.00 mm; G1 follows the patent's imageward-then-objectward reversal while G2 moves monotonically objectward. Close focus moves G1 objectward by increasing D6 at every zoom station.
 
-### Verification
-
-- `audit:image-circle` reported zero undersized surfaces.
-- The unchanged prescription passes the shared lens validator.
-
 ## 2026-08-18 — Sumita K-VC80(M) coefficient assignment
 
 - Visually rechecked local `patents/JP2015011156A.pdf`, PDF page 9, Numerical Example 1 / Table 1. Aspherical L12 begins at surface 3 with `nd = 1.68900`, `νd = 52.8`.

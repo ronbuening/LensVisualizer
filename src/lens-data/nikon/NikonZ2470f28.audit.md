@@ -46,14 +46,6 @@ Catalog version: local working tree, 2026-05-04
 - Removed catalog-specific APD claims for L32 and L52; retained ED identification only as an nd/vd-position inference.
 - Updated the manufacturing/asphere notes so non-catalog labels are described by patent code and nd/vd rather than unresolved OHARA suffix names.
 
-### Verification
-
-- `npm test -- catalogMismatchScan glassRelabelCandidatesScan` - passed; this lens no longer appears in either generated report.
-- `npm run typecheck` - passed.
-- `npm run format:check` - passed.
-- `npm run lint` - passed.
-- `npm run test` - passed (116 files, 1507 tests; expected error-boundary console errors emitted by tests).
-
 ## 2026-05-19 — Six-digit glass-code backfill review
 
 Reopened `patents/WO2020136749A1.pdf`, Example 1 / Table 1. The reviewed missing-Sellmeier rows were L21 / S6 (`744495`, nd=1.74389, νd=49.53), L42 / S20 (`498826`, nd=1.49782, νd=82.57), L61 / S26 (`792450`, nd=1.79189, νd=45.04), and L72 / S30 (`852402`, nd=1.85207, νd=40.15).
@@ -74,3 +66,36 @@ Changes made:
 - Rechecked local `patents/WO2020136749A1.pdf`, Example 1 / Table 1, against the prior transcription: L21 remains `1.74389 / 49.53` and L72 remains `1.85207 / 40.15`.
 - Relabeled L21 to Hoya M-NBF1 (`1.743300 / 49.326`) and L72 to Hoya M-TAFD305 (`1.851348 / 40.104`) as coefficient-backed catalog equivalents.
 - Patent codes `744495` and `852402` and the unspecified production supplier remain explicit. L61 stays unresolved; no geometry, asphere, or APD metadata changed.
+
+## 2026-09-08 — First-hosted catalog audit, lens 16
+
+This reinspection supersedes earlier claims that all zoom/focus gaps matched.
+Original ignored WO2020136749A1 PDF: title p. 1, equation (A) p. 30,
+Table 1 pp. 34–37, Figure 4 p. 83 (600 dpi).
+
+- Corrected all four κ=1 aspheres to standard K=0; coefficients unchanged.
+- Restored middle50mm station, D5=21.220, D13=6.132, D18=3.866, BF=23.42.
+  Removed invented focus-dependent BF: source BF11.93/23.42/28.62 is zoom-only.
+- Preserved source near gaps and calculated their approximately1:30 conjugates:
+  0.844245/1.582032/2.095598m object-to-image distance. New zoom-dependent
+  endpoint support replaces common0.38m in controls, summary, breathing,
+  effective-f-number estimates and comparison mappings.
+- Figure-derived front SD34mm, L13 28.8mm and L21 front21.5mm; internal/rear
+  rims refined. L22 14.8mm trial rejected by gap7→8; retained14.5mm.
+  Final surface/image-circle and15zoom/focus render-state checks pass.
+- Source f/2.92 and reachable shortcuts corrected. Explicit inferred zoom iris
+  schedule has radii8.625232/11.148693/12.466456mm; exact-engine rays launched
+  at EFL/(2*2.92) reach those rims. Other lenses retain their existing model.
+  Pupil readout is labeled estimated because its first-order ratio differs
+  from the exact marginal-ray entrance diameter.
+- Qualified catalog glass identities as inferences; retained all source nd/νd.
+  Recomputed isolated powers (L22−38.4, L42+29.6mm). Included stop in G3;
+  gap labels now identify adjacent groups. Public analysis rewritten, including
+  all seven inventors, G2 reversal and source/model distinctions.
+- Live production wide baseline; local infinity, near and intermediate focus,
+  middle/tele zoom, f/2.92–16 and both motion charts inspected. Tele focus
+  chart1.35mm maximum; zoom chart29.81mm. Middle near1.58m; tele near2.10m;
+  half-focus4.19m, f/16 iris4.55mm diameter.
+
+Final focused checks:85tests/5files pass; prior validator-inclusive159tests pass.
+Full typecheck/format/lint/test/build and generated reports are due at lens20.

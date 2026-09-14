@@ -7,6 +7,7 @@
 
 import type { FoldedPathAutoCandidateSkip } from "../../types/optics.js";
 import { intersectSurfaceProfile, type SurfaceIntersectionResult } from "../math/intersection.js";
+import { intersectRayPlane, type RayPlaneIntersection } from "../math/plane.js";
 import type { PreparedOpticalState, Ray3, Vec3 } from "../types.js";
 import { evaluateAperture } from "./aperture.js";
 import { incidentSideFor, resolvedNextIndex } from "./interactions.js";
@@ -20,10 +21,7 @@ export interface SurfaceHitCandidate {
 }
 
 /** Intersection of a ray with the current image plane. */
-export interface ImagePlaneIntersection {
-  point: Vec3;
-  t: number;
-}
+export type ImagePlaneIntersection = RayPlaneIntersection;
 
 /**
  * Compute the bounded search length for the next sequential surface.
@@ -128,20 +126,7 @@ export function intersectImagePlane(
   direction: Vec3,
   state: PreparedOpticalState,
 ): ImagePlaneIntersection | null {
-  const imagePlane = state.imagePlane;
-  const denom =
-    imagePlane.normal[0] * direction[0] + imagePlane.normal[1] * direction[1] + imagePlane.normal[2] * direction[2];
-  if (Math.abs(denom) <= 1e-12) return null;
-  const numer =
-    imagePlane.normal[0] * (origin[0] - imagePlane.point[0]) +
-    imagePlane.normal[1] * (origin[1] - imagePlane.point[1]) +
-    imagePlane.normal[2] * (origin[2] - imagePlane.point[2]);
-  const t = -numer / denom;
-  if (!Number.isFinite(t) || t <= 1e-7) return null;
-  return {
-    t,
-    point: [origin[0] + direction[0] * t, origin[1] + direction[1] * t, origin[2] + direction[2] * t],
-  };
+  return intersectRayPlane({ origin, direction }, state.imagePlane);
 }
 
 /**

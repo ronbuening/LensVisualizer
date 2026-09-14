@@ -1,32 +1,11 @@
 import type { LensDataInput } from "../../types/optics.js";
 
 /**
- * ╔══════════════════════════════════════════════════════════════════════╗
- * ║           LENS DATA — NOKTON 50mm f/1.0                            ║
- * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Data source: JP2023063766A Example 1 (Cosina / Ogino).            ║
- * ║  Patent paraxial trace gives EFL = 49.9977 mm and BFL = 18.7323   ║
- * ║  mm, matching the 18.74 mm image-side air gap within table        ║
- * ║  rounding.  Cosina's Z-mount product page publishes a 47.9° full  ║
- * ║  field, so projection.fullFieldDeg preserves the production       ║
- * ║  coverage instead of deriving 46.8° from an ideal 50 mm diagonal. ║
- * ║  Focus: patent gives the infinity prescription only; the 0.45 m   ║
- * ║  close-focus state is modeled as a BF-only approximation for the  ║
- * ║  mirrorless production variants.                                  ║
- * ║                                                                    ║
- * ║  NOTE ON _FOPEN:                                                   ║
- * ║    The Nokton's front group has strong positive power, giving a    ║
- * ║    y_ratio of ~0.6455 at the stop.  The entrance pupil is ~1.55×  ║
- * ║    larger than the physical stop opening.  _FOPEN uses EP-based    ║
- * ║    formula: EFL / (2 × EP_SD) to give the correct f/1.0 readout  ║
- * ║    with EP SD ≈ 24.999 mm and physical stop SD ≈ 16.14 mm.       ║
- * ║                                                                    ║
- * ║  NOTE ON ASPHERICAL RENDERING:                                     ║
- * ║    3 aspherical surfaces (1A, 16A, 17A) with large polynomial     ║
- * ║    departures (up to 739 µm).  renderSag() provides aspherically- ║
- * ║    correct element profiles in the SVG cross-section.  The        ║
- * ║    paraxial ray engine continues to use spherical sag correctly.   ║
- * ╚══════════════════════════════════════════════════════════════════════╝
+ * JP2023063766A Example 1, Tables 1–2; Figure 1 supplies estimated optical rims.
+ * Table trace: EFL 49.9977 mm, BFL 18.7323 mm, total track 83.76 mm.
+ * Production field angle and minimum focus are metadata, not patent measurements.
+ * The patent gives infinity only. Close focus uses an inferred whole-unit extension,
+ * not the production floating mechanism. Aspheres govern both shape and exact tracing.
  */
 
 const LENS_DATA = {
@@ -64,7 +43,7 @@ const LENS_DATA = {
       nd: 1.90525,
       vd: 35.04,
       fl: 119.3,
-      glass: "S-LAH93 (OHARA, patent nd/vd match)",
+      glass: "S-LAH93 (OHARA, catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Front positive meniscus; ASP1 corrects spherical aberration — 739 µm departure at H = 26 mm",
     },
@@ -76,7 +55,7 @@ const LENS_DATA = {
       nd: 1.90043,
       vd: 37.37,
       fl: 60.2,
-      glass: "TAFD37A (HOYA, patent nd/vd match)",
+      glass: "TAFD37A (HOYA, catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Second extreme-index power element; shares G1 refractive load with L1",
     },
@@ -88,7 +67,7 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.46,
       fl: -37.2,
-      glass: "SF6 / S-TIH6 (OHARA)",
+      glass: "S-TIH6 (OHARA catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "G1 negative element; Petzval corrector and chromatic balancer (νd = 25.46)",
     },
@@ -100,7 +79,7 @@ const LENS_DATA = {
       nd: 1.76182,
       vd: 26.61,
       fl: -21.2,
-      glass: "S-TIH14 (OHARA, patent nd/vd match) / SF14-family dense flint",
+      glass: "S-TIH14 (OHARA, catalog equivalent; production supplier unspecified) / SF14-family dense flint",
       apd: false,
       role: "Cemented in L4; primary chromatic lever — strongest negative power in system (f = −21.2 mm)",
       cemented: "L4",
@@ -113,9 +92,9 @@ const LENS_DATA = {
       nd: 1.883,
       vd: 40.69,
       fl: 23.3,
-      glass: "S-LAH58 (OHARA)",
+      glass: "S-LAH58 (OHARA catalog equivalent; production supplier unspecified)",
       apd: false,
-      role: "Cemented in L4; high-index positive partner, same glass as L5 and L6f",
+      role: "Cemented in L4; high-index positive partner, same patent nd/vd as L5 and L6f",
       cemented: "L4",
     },
     {
@@ -126,9 +105,9 @@ const LENS_DATA = {
       nd: 1.883,
       vd: 40.69,
       fl: 54.7,
-      glass: "S-LAH58 (OHARA)",
+      glass: "S-LAH58 (OHARA catalog equivalent; production supplier unspecified)",
       apd: false,
-      role: "Standalone positive element; power-sharing with L4r and L6f (same glass)",
+      role: "Standalone positive element; power-sharing with L4r and L6f (same patent nd/vd)",
     },
     {
       id: 7,
@@ -138,9 +117,9 @@ const LENS_DATA = {
       nd: 1.883,
       vd: 40.69,
       fl: 36.1,
-      glass: "S-LAH58 (OHARA)",
+      glass: "S-LAH58 (OHARA catalog equivalent; production supplier unspecified)",
       apd: false,
-      role: "Cemented in L6; field and chromatic correction, third element in S-LAH58 group",
+      role: "Cemented in L6; field and chromatic correction, third element with the same patent nd/vd",
       cemented: "L6",
     },
     {
@@ -166,21 +145,15 @@ const LENS_DATA = {
       fl: -154.6,
       glass: "L-LAH84 (OHARA catalog-equivalent; patent supplier unspecified)",
       apd: false,
-      role: "Rear aspherical corrector — ASP16 + ASP17 carry ~1 mm combined departure; f/f_le = −0.3234",
+      role: "Rear negative meniscus with two patent aspheres; f/f_le = −0.3234",
     },
   ],
 
-  /* ── Surface prescription — JP2023063766A Table 1, Example 1 ──
-   *  Semi-diameters derived from paraxial marginal-ray trace at f/1.0
-   *  (EP SD ≈ 24.999 mm).  Front-group SDs (L2, L3) refined against the
-   *  manufacturer's published cross-section diagram to better reflect
-   *  the visual element proportions: L2 reduced to 24.0/20.0 mm and
-   *  L3 front reduced to 19.0 mm.
-   *  Surface "6" (L3 rear, R = 19.835 mm) is R-capped: sd/|R| = 0.897.
-   *  Rear-group SDs sized to match patent Figure 1 proportions.
-   *
-   *  STOP SD is the physically correct value (~16.14 mm) so that the
-   *  computed entrance pupil is ~24.999 mm SD = ~49.998 mm diameter = f/1.0.
+  /* Table 1 prescription. Semi-diameters are inferred, not tabulated.
+   * Figure 1 optical rims give L5 ~18 mm, L6 cemented interface ~15.5 mm,
+   * and L7 ~13 mm. Surface 15 uses 12.2 mm for cross-gap clearance.
+   * Front apertures retain the existing ray-envelope allowance above drawn rims.
+   * STO is an authored estimate; runtime aperture sizing derives its working opening.
    */
   surfaces: [
     { label: "1A", R: 40.765, d: 4.89, nd: 1.90525, elemId: 1, sd: 27.0 },
@@ -193,19 +166,19 @@ const LENS_DATA = {
     { label: "8", R: -40.995, d: 1.55, nd: 1.76182, elemId: 4, sd: 17.0 },
     { label: "9", R: 26.578, d: 10.8, nd: 1.883, elemId: 5, sd: 17.0 },
     { label: "10", R: -90.702, d: 0.31, nd: 1.0, elemId: 0, sd: 17.0 },
-    { label: "11", R: 78.611, d: 5.05, nd: 1.883, elemId: 6, sd: 16.5 },
-    { label: "12", R: -125.199, d: 0.31, nd: 1.0, elemId: 0, sd: 16.0 },
+    { label: "11", R: 78.611, d: 5.05, nd: 1.883, elemId: 6, sd: 18 },
+    { label: "12", R: -125.199, d: 0.31, nd: 1.0, elemId: 0, sd: 18 },
     { label: "13", R: 53.736, d: 9.47, nd: 1.883, elemId: 7, sd: 16.0 },
-    { label: "14", R: -78.407, d: 1.55, nd: 1.55298, elemId: 8, sd: 13.5 },
-    { label: "15", R: 45.846, d: 1.42, nd: 1.0, elemId: 0, sd: 13.0 },
-    { label: "16A", R: 3376.612, d: 2.78, nd: 1.80835, elemId: 9, sd: 12.0 },
-    { label: "17A", R: 120.496, d: 18.74, nd: 1.0, elemId: 0, sd: 11.0 },
+    { label: "14", R: -78.407, d: 1.55, nd: 1.55298, elemId: 8, sd: 15.5 },
+    { label: "15", R: 45.846, d: 1.42, nd: 1.0, elemId: 0, sd: 12.2 },
+    { label: "16A", R: 3376.612, d: 2.78, nd: 1.80835, elemId: 9, sd: 13 },
+    { label: "17A", R: 120.496, d: 18.74, nd: 1.0, elemId: 0, sd: 13 },
   ],
 
   /* ── Aspherical coefficients — Patent Table 2, Example 1 ──
    *  Keyed by surface label.  Sag equation:
    *    Z = (C·H²)/(1+√(1−(1+K)·C²·H²)) + A4·H⁴ + A6·H⁶ + ... + A14·H¹⁴
-   *  Used ONLY for element shape rendering (renderSag).
+   *  Used for element shape and exact surface tracing.
    *  For all-spherical designs, set asph: {}
    */
   asph: {
@@ -240,15 +213,16 @@ const LENS_DATA = {
 
   /* ── Variable air spacings ──
    *  Keyed by surface label.  [thickness_infinity, thickness_close_focus]
-   *  BF-only close-focus approximation: BFD increases by 3.85 mm. Cosina
+   *  Inferred unit extension: BFD increases by 7.394899233 mm, solving the
+   * paraxial object-to-image conjugate at 450 mm. Cosina
    *  advertises a floating mechanism for the mirrorless variants, but this
    *  patent does not provide close-focus internal-spacing tables.
    */
   var: {
-    "17A": [18.74, 22.59],
+    "17A": [18.74, 26.134899232679075],
   },
 
-  varLabels: [["17A", "BF"]],
+  varLabels: [["17A", "BF (modeled)"]],
 
   /* ── Group and doublet annotations ── */
   groups: [
@@ -264,7 +238,7 @@ const LENS_DATA = {
   /* ── Focus configuration ── */
   closeFocusM: 0.45,
   focusDescription:
-    "Mirrorless production variants focus to 0.45 m and advertise a floating mechanism; JP2023063766A discloses only the infinity prescription, so close focus is approximated with the image-side air gap.",
+    "JP2023063766A discloses infinity only. The 0.45 m endpoint is an inferred paraxial unit-extension model: all optics and the stop move 7.395 mm toward the object. It does not reproduce the mirrorless production floating mechanism.",
 
   /* ── Aperture configuration ── */
   nominalFno: 1.0,

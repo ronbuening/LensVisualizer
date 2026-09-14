@@ -10,10 +10,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  All 25 prescription surfaces are spherical; surface 13 is the STO.     ║
  * ║                                                                            ║
  * ║  Focus status: PUBLISHED. G2 moves imageward and G3 objectward.          ║
- * ║  The current prime-lens var schema stores the published infinity and      ║
- * ║  β=-1.0 endpoint pairs. The patent's β=-0.5 station is retained and      ║
- * ║  independently checked in the audit/calculation artifacts; it is not      ║
- * ║  replaced by a reconstruction.                                             ║
+ * ║  The infinity, β=-0.5, and β=-1.0 rows are exact focus keyframes; no      ║
+ * ║  source state is replaced by a reconstruction.                             ║
  * ║                                                                            ║
  * ║  PRODUCT / MODEL SEPARATION:                                               ║
  * ║    Nikon markets 85 mm, f/3.5, DX, 1.0×, MFD 0.286 m.                   ║
@@ -52,7 +50,7 @@ const LENS_DATA = {
   key: "nikon-af-s-dx-micro-nikkor-85mm-f35g-ed-vr",
   maker: "Nikon",
   name: "NIKON AF-S DX MICRO-NIKKOR 85mm f/3.5G ED VR",
-  subtitle: "US 2009/0190220 A1 Example 1 — production correlation inferred; published focus endpoints",
+  subtitle: "US 2009/0190220 A1 Example 1 — production correlation inferred; published focus keyframes",
   specs: [
     "14 ELEMENTS / 10 GROUPS",
     "85 mm",
@@ -286,12 +284,13 @@ const LENS_DATA = {
 
   asph: {},
 
-  /* Published Table 1 endpoints: infinity → β=-1.0. */
+  /* Published Table 1 keyframes: infinity → β=-0.5 → β=-1.0. */
+  focusPositions: [0, 0.7833746615766991, 1],
   var: {
-    "7": [2.49595, 17.78094],
-    "12": [17.38925, 2.10426],
-    STO: [16.18097, 3.18873],
-    "18": [4.99729, 17.98953],
+    "7": [2.49595, 10.52739, 17.78094],
+    "12": [17.38925, 9.35781, 2.10426],
+    STO: [16.18097, 9.51488, 3.18873],
+    "18": [4.99729, 11.66338, 17.98953],
   },
 
   varLabels: [
@@ -319,7 +318,7 @@ const LENS_DATA = {
   /* ── Focus configuration ── */
   closeFocusM: 0.26419491,
   focusDescription:
-    "PUBLISHED dual-group internal focus: G2 moves toward the image while G3 moves toward the object; the data stores the patent infinity and beta=-1.0 endpoints, while the published beta=-0.5 station is retained in the audit. Patent beta=-1.0 normalizes to 0.26419491 m object-to-image distance; Nikon markets 0.286 m MFD from the focal plane.",
+    "PUBLISHED dual-group internal focus: G2 moves toward the image while G3 moves toward the object; the infinity, beta=-0.5, and beta=-1.0 patent rows are exact focus keyframes. Patent beta=-1.0 normalizes to 0.26419491 m object-to-image distance; Nikon markets 0.286 m MFD from the focal plane.",
 
   /* ── Aperture configuration ── */
   nominalFno: 3.6,

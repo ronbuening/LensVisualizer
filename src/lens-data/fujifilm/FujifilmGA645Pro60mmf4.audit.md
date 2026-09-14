@@ -10,7 +10,3 @@ Patent: US 5,548,447, Example 1 / Table I
 - Fig. 1 shows a large front section, smaller central elements around the diaphragm, and a taller rear doublet, with the final positive member clearly larger than the stop-adjacent lenses.
 - Stored SDs follow that run: the first element is 13.6-14.0 mm, the central lenses remain around 7.8-8.8 mm, and the rear doublet expands to 9.6-11.9 mm.
 - No SD values changed. Current values remain inferred from the patent figure, f/4 stop geometry, marginal/chief-ray clearance, edge thickness, and cross-gap sag checks.
-
-### Verification
-
-- `npm test -- elementRenderDiagnostics`

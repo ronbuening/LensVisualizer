@@ -23,15 +23,3 @@ Patent: JP 2013-140404 A, Numerical Example 1
 | L7 | `apd` / `apdNote` | omitted | `inferred` | Second S-FPL51 UD element in the positive relay unit. |
 
 - Retained L2 `apd: "patent"` and `dPgF: -0.00599` from patent condition (8).
-
-### Phase 4 - Analysis sync
-
-- No prose change needed; the analysis already identifies L3/L7 as UD elements and L2 as the patent-governed anomalous-dispersion glass.
-
-### Verification
-
-- `npm run generate:glass-reports` - passed (7 files, 7 tests).
-- `npm run typecheck` - passed before and after metadata regeneration.
-- `npm run format:check` - passed.
-- `npm run lint` - passed.
-- `npm run test` - initially exposed stale generated route metadata; after `npm run generate:metadata`, passed (183 files, 2212 tests).

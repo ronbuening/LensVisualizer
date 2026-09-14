@@ -32,18 +32,6 @@ Catalog version: local working tree, 2026-06-25
 - `apd: false` remains appropriate for all elements; no partial-dispersion or APD data is printed in the patent.
 - The high-index lanthanum/dense-flint status remains represented in `glass` labels and role text for LaF2, LaK10, and SF/F elements.
 
-### Phase 4 - Analysis sync
-
-- No analysis prose change was required. The analysis already documents the high-index lanthanum strategy and the patent-derived front-cell constraints.
-
-### Verification
-
-- `npm run generate:glass-reports` - passed (7 files, 7 tests); generated report state retained.
-- `npm run typecheck` - passed.
-- `npm run format:check` - passed.
-- `npm run test -- __tests__/src/lens-data/lensDataTyping.test.ts __tests__/src/optics/validateLensData.test.ts __tests__/src/optics/buildLens.test.ts` - passed (3 files, 143 tests).
-- `npm run test` - failed outside this audit's edits: stale/generated route metadata is missing Rodenstock lens routes, and the existing Sonnar 50/1.5 skew-ray chromatic assertion differs by 0.0011856 mm.
-
 ## 2026-08-21 — Near/close glass-candidate review
 
 - Rechecked DE 1,089,183's LaF2, PK1, and LaK10 coordinates and assigned N-LAF2, PC1, and J-LAK10 as

@@ -179,7 +179,7 @@ The patent tabulates one near state, labelled 40倍距離. In context this is a 
 | Patent 1:40 state | 2.8751 mm | 2.5210 mm | 0.4293 mm | 635.6343 mm | -0.025 |
 | Data-file close endpoint | 1.6098 mm | 3.7863 mm | 1.6946 mm | 141.970 mm | -0.101 |
 
-The data file uses the last row as its close-focus endpoint because it is the paraxial solution that matches Sigma's published 0.25 m / 1:9.9 production specification. The match is not forced by changing the group architecture; it is the same two-gap conservation pattern extended farther in the same direction. The sum d23 + d25 remains 5.3961 mm in all states.
+The patent 1:40 row is stored as an exact focus keyframe. The data file uses the last row as its close-focus endpoint because it is the paraxial solution that matches Sigma's published 0.25 m / 1:9.9 production specification. The match is not forced by changing the group architecture; it is the same two-gap conservation pattern extended farther in the same direction. The sum d23 + d25 remains 5.3961 mm in all states. Interpolation between the three exact states is a visualization approximation.
 
 ## Aspherical Surfaces
 

@@ -46,11 +46,3 @@ Patent: US 4,025,167, Embodiment 2
 
 - Updated both element discussions, the glass inventory, and the source list to replace the obsolete source-blocker
   and code-only wording with the verified catalog-equivalent evidence.
-
-### Verification
-
-- `npm run generate:glass-reports` — passed (8 files / 10 tests); the active source queue is empty, and this lens is
-  now 15/15 strict and trusted.
-- `npm test -- dispersion.test.ts lensDataTyping.test.ts validateLensData.test.ts buildLens.test.ts` — passed
-  (4 files / 239 tests).
-- `npm run typecheck`, `npm run format:check`, and `git diff --check` — passed.

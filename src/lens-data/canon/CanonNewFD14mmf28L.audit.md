@@ -10,7 +10,3 @@ Patent: JP S57-64716 A, sole numerical example
 - Fig. 1 shows a large retrofocus front group tapering through multiple negative menisci toward a tight stop region, followed by compact post-stop doublets and a modest final field group.
 - Stored SDs follow that envelope: S1 begins at 27.5 mm, the front group steps down toward the stop at 7.5-8 mm, and the rear groups re-expand only to about 10.5 mm.
 - No SD values changed. Current values remain inferred from marginal/chief-ray envelopes and constrained by edge thickness, signed cross-gap sag, rim slope, and element SD-ratio checks.
-
-### Verification
-
-- `npm test -- elementRenderDiagnostics`

@@ -77,12 +77,6 @@ export const ALIAS_RECORDS: readonly GlassAliasRecord[] = [
     note: "Ohara large-format designation with the same published optical constants as S-TIM28.",
   },
   {
-    alias: "L-BAL42",
-    target: "S-BAL42",
-    kind: "catalog-variant",
-    note: "Ohara low-softening / PGM variant sharing the S-BAL42 optical constants.",
-  },
-  {
     alias: "L-BSL7",
     target: "S-BSL7",
     kind: "catalog-variant",

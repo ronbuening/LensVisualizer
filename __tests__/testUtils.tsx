@@ -232,6 +232,7 @@ export function makeLensComputationResult(overrides: Record<string, unknown> = {
     CX: 0,
     IX: 0,
     effectiveSC: 1,
+    perspectiveTraceContext: null,
     shapes: [],
     shapeError: null,
     stopZ: 0,

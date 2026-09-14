@@ -29,15 +29,6 @@ Patent: CN 116520542 A, Example 2
 - The patent publishes only nd and vd for the glass rows. No nC, nF, ng, PgF, theta_gF, dPgF, or Sellmeier coefficient source was found in the local patent.
 - Added a reviewed-sidecar row for L1 / `866450` and L11 / `545486`; regenerated reports now show both as reviewed sidecar hits while still missing Sellmeier coverage.
 
-### Phase 4 - Analysis sync
-
-- No analysis text changes were required for this pass.
-
-### Verification
-
-- `npm run generate:glass-reports` - passed.
-- `npm run typecheck`, `npm run format:check`, `npm run lint`, `npm run test`, and `npm run build` - passed.
-
 ## 2026-07-30 - Unsafe named-token cleanup
 
 - Replaced L4's unresolved `H-LAK53A (CDGM)` attribution with HOYA `TAC8`, the current first-party coefficient-backed catalog equivalent that exactly reproduces the patent's 1.72916 / 54.67 coordinate and code 729547.

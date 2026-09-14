@@ -15,7 +15,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                            ║
  * ║  FOCUS STATUS — CONSTRAINED_RECONSTRUCTION:                               ║
  * ║  The patent publishes a beta-magnitude 0.15 state but not the production  ║
- * ║  1.0 m / 0.19x endpoint. G1 remains fixed. G2 (L4-L7 plus STO) and G3     ║
+ * ║  1.0 m / 0.19x endpoint. Both states are stored as focus keyframes. G1    ║
+ * ║  remains fixed. G2 (L4-L7 plus STO) and G3                                ║
  * ║  (L8) move objectward. The stored close state was solved with a fixed      ║
  * ║  image plane, the manufacturer 1.0 m MFD measured from the image plane,    ║
  * ║  and the patent terminal movement ratio X2/X3 = 0.7967231325. The solved   ║
@@ -222,10 +223,11 @@ const LENS_DATA = {
 
   asph: {},
 
+  focusPositions: [0, 0.8252868364271783, 1],
   var: {
-    "6": [29.334, 2.415407479],
-    "14": [7.587, 0.718958966],
-    "16": [87.456314928, 121.242948483],
+    "6": [29.334, 7.8165, 2.415407479],
+    "14": [7.587, 2.097, 0.718958966],
+    "16": [87.456314928, 114.463815, 121.242948483],
   },
 
   varLabels: [
@@ -245,8 +247,9 @@ const LENS_DATA = {
   closeFocusM: 1.0,
   focusDescription:
     "CONSTRAINED_RECONSTRUCTION: G1 is fixed; G2 (L4-L7 plus STO) and G3 (L8) move objectward. " +
-    "The 1.0 m endpoint preserves the fixed image plane and patent terminal X2/X3 = 0.7967231325, yielding " +
-    "|beta| = 0.1926159803. The patent-published |beta| = 0.15 state is not stored as the production endpoint.",
+    "The patent-published |beta| = 0.15 state and the reconstructed 1.0 m endpoint are exact keyframes. " +
+    "The endpoint preserves the fixed image plane and patent terminal X2/X3 = 0.7967231325, yielding " +
+    "|beta| = 0.1926159803.",
 
   nominalFno: 2.88,
   fstopSeries: [2.88, 4, 5.6, 8, 11, 16, 22],

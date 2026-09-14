@@ -260,13 +260,6 @@ Independent optical and source checks:
 
 Repository integration checks completed on 2026-07-31:
 
-- `npm run typecheck`: pass.
-- `npm run format:check`: pass.
-- `npm run lint`: pass with zero errors and three pre-existing warnings outside this lens package.
-- `npm run test`: pass, 213 test files and 2,526 tests.
-- `npm run generate:glass-reports`: pass, eight test files and 13 tests.
-- `npm run build`: pass, including metadata generation, the production bundle, and 981 prerendered routes.
-
 ## Final decision
 
 The corrected data and analysis pair agree with the fixed patent embodiment, the production control-ring order, and the

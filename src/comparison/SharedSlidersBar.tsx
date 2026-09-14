@@ -32,12 +32,14 @@ import { formatSharedFocusDist, sharedFNumber } from "./comparisonSliders.js";
 import type { FocusPairResult, AperturePairResult, ZoomPairResult, MovementPairResult } from "./comparisonSliders.js";
 import { formatDist, eflAtZoom } from "../optics/optics.js";
 import { getGroupMovementAvailability } from "../optics/groupMovement.js";
+import { isMovementAxisEnabled } from "../optics/lensMovement.js";
 import { snapToZeroStop } from "../utils/style/sliderStops.js";
 import type { RuntimeLens } from "../types/optics.js";
 import type { Theme } from "../types/theme.js";
 import type { GroupMovementMode } from "../types/groupMovement.js";
 import SharedSliderSection from "./SharedSliderSection.js";
 import SharedFStopQuickSelect from "./SharedFStopQuickSelect.js";
+import SliderResetButton from "../components/controls/SliderResetButton.js";
 
 interface SharedSlidersBarProps {
   LA: RuntimeLens;
@@ -114,6 +116,8 @@ export default function SharedSlidersBar({
   const showApertureCP = apertureCP > 0.01 && apertureCP < 0.99;
   const showZoom = zoomPair?.showZoom;
   const showMovement = movementPair?.showMovement;
+  const showShift = showMovement && movementPair && isMovementAxisEnabled(movementPair.shiftRangeMm);
+  const showTilt = showMovement && movementPair && isMovementAxisEnabled(movementPair.tiltRangeDeg);
   const movementAvailabilityA = getGroupMovementAvailability(LA);
   const movementAvailabilityB = getGroupMovementAvailability(LB);
 
@@ -167,6 +171,14 @@ export default function SharedSlidersBar({
   };
   const handleSharedTiltChange = (value: number) => {
     onSharedTiltChange(snapToZeroStop(value, movementPair?.tiltStepDeg ?? 0));
+  };
+  const handleSharedShiftReset = () => {
+    handleSharedShiftChange(0);
+    onSliderPointerUp?.();
+  };
+  const handleSharedTiltReset = () => {
+    handleSharedTiltChange(0);
+    onSliderPointerUp?.();
   };
   const signed = (value: number, digits: number, unit: string) =>
     `${value > 0 ? "+" : ""}${value.toFixed(digits)} ${unit}`;
@@ -253,7 +265,7 @@ export default function SharedSlidersBar({
           />
         )}
 
-        {showMovement && movementPair && (
+        {showShift && movementPair && (
           <SharedSliderSection
             theme={t}
             label="SHIFT"
@@ -266,16 +278,29 @@ export default function SharedSlidersBar({
             sliderStep={movementPair.shiftStepMm}
             onSliderChange={handleSharedShiftChange}
             onPointerUp={onSliderPointerUp}
+            action={
+              <SliderResetButton axisLabel="shift" value={sharedShiftMm} onReset={handleSharedShiftReset} t={t} />
+            }
             readouts={
               <>
-                <span>A: {LA.perspectiveControl ? signed(movementPair.shiftA, 1, "mm") : "n/a"}</span>
-                <span>B: {LB.perspectiveControl ? signed(movementPair.shiftB, 1, "mm") : "n/a"}</span>
+                <span>
+                  A:{" "}
+                  {LA.perspectiveControl && isMovementAxisEnabled(LA.perspectiveControl.shiftRangeMm)
+                    ? signed(movementPair.shiftA, 1, "mm")
+                    : "n/a"}
+                </span>
+                <span>
+                  B:{" "}
+                  {LB.perspectiveControl && isMovementAxisEnabled(LB.perspectiveControl.shiftRangeMm)
+                    ? signed(movementPair.shiftB, 1, "mm")
+                    : "n/a"}
+                </span>
               </>
             }
           />
         )}
 
-        {showMovement && movementPair && (
+        {showTilt && movementPair && (
           <SharedSliderSection
             theme={t}
             label="TILT"
@@ -288,10 +313,21 @@ export default function SharedSlidersBar({
             sliderStep={movementPair.tiltStepDeg}
             onSliderChange={handleSharedTiltChange}
             onPointerUp={onSliderPointerUp}
+            action={<SliderResetButton axisLabel="tilt" value={sharedTiltDeg} onReset={handleSharedTiltReset} t={t} />}
             readouts={
               <>
-                <span>A: {LA.perspectiveControl ? signed(movementPair.tiltA, 1, "deg") : "n/a"}</span>
-                <span>B: {LB.perspectiveControl ? signed(movementPair.tiltB, 1, "deg") : "n/a"}</span>
+                <span>
+                  A:{" "}
+                  {LA.perspectiveControl && isMovementAxisEnabled(LA.perspectiveControl.tiltRangeDeg)
+                    ? signed(movementPair.tiltA, 1, "deg")
+                    : "n/a"}
+                </span>
+                <span>
+                  B:{" "}
+                  {LB.perspectiveControl && isMovementAxisEnabled(LB.perspectiveControl.tiltRangeDeg)
+                    ? signed(movementPair.tiltB, 1, "deg")
+                    : "n/a"}
+                </span>
               </>
             }
           />
@@ -315,13 +351,13 @@ export default function SharedSlidersBar({
           readouts={
             <>
               <span>
-                A: {formatDist(focusPair.focusA, LA)}
+                A: {formatDist(focusPair.focusA, LA, zoomPair?.zoomA)}
                 {focusPair.focusA > 0.003 && focusedEflDiffersA && (
                   <span style={{ opacity: 0.7 }}> ({dynamicEflA.toFixed(1)} mm)</span>
                 )}
               </span>
               <span>
-                B: {formatDist(focusPair.focusB, LB)}
+                B: {formatDist(focusPair.focusB, LB, zoomPair?.zoomB)}
                 {focusPair.focusB > 0.003 && focusedEflDiffersB && (
                   <span style={{ opacity: 0.7 }}> ({dynamicEflB.toFixed(1)} mm)</span>
                 )}

@@ -10,7 +10,10 @@ import { execFileSync } from "node:child_process";
 import { describe, expect, it } from "vitest";
 
 function runNpmScript(script: string, args: string[] = []): string {
-  return execFileSync("npm", ["run", script, "--", ...args], { encoding: "utf8" });
+  return execFileSync("npm", ["run", script, "--", ...args], {
+    encoding: "utf8",
+    stdio: ["ignore", "pipe", "pipe"],
+  });
 }
 
 describe("audit script npm contracts", () => {

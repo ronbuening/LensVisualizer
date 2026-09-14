@@ -150,7 +150,7 @@ The most conspicuous dispersion structure is the repeated 1.49782/82.57 high-Abb
 
 ## Focus Mechanism
 
-The patent publishes all three focus states, so the focus model is `PUBLISHED`, not a reconstruction. G2/GF moves toward the image and G4 moves toward the object as focus is brought closer (¶0072; Fig. 1). G1, G3, and G5 remain fixed. The current prime-lens `var` schema stores the infinity and near endpoints; the published middle row is documented in the data header and included in the focus-state verification.
+The patent publishes all three focus states, so the focus model is `PUBLISHED`, not a reconstruction. G2/GF moves toward the image and G4 moves toward the object as focus is brought closer (¶0072; Fig. 1). G1, G3, and G5 remain fixed. The infinity, middle, and near rows are stored as exact focus keyframes.
 
 | State | Object distance from first surface | D8 | D10 | D23 | D25 | Computed β |
 |---|---:|---:|---:|---:|---:|---:|

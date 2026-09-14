@@ -43,4 +43,4 @@ Patent: US 2020/0333569 A1, Example 1
   d = 2.67) reaches zero edge thickness at h ~ 8.0 mm, so the drawn outline there is also a flange.
 - Verification: `npm run typecheck` passed; `npm run test` 2440 tests passed; cross-section re-rendered
   and compared with FIG. 2.
-- Full method and per-lens results: agent_docs/patent-figure-sd-audit.md.
+- Full method and per-lens results: agent_docs/records/patent-figure-sd-audit-2026-07.md.

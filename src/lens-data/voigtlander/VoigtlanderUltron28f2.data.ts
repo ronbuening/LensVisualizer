@@ -1,26 +1,11 @@
 import type { LensDataInput } from "../../types/optics.js";
 
-/**
- * ╔══════════════════════════════════════════════════════════════════════════╗
- * ║      LENS DATA — VOIGTLÄNDER ULTRON Vintage Line 28mm F2 Aspherical    ║
- * ╠══════════════════════════════════════════════════════════════════════════╣
- * ║  Data source: JP2022-100641A Example 1 (Cosina Co., Ltd.).             ║
- * ║  Quasi-symmetric wide-angle for VM (Leica M) mount rangefinder.        ║
- * ║  10 elements / 7 groups, 2 aspherical surfaces (1 element).            ║
- * ║  Focus: Unit focus (whole-lens translation).                           ║
- * ║                                                                        ║
- * ║  NOTE ON SEMI-DIAMETERS:                                               ║
- * ║    Not listed in the patent. Calibrated to Cosina's published SVG      ║
- * ║    cross-section using L1 outer (no flange) = 12.0 mm as anchor       ║
- * ║    (6.96 SVG/mm). Outer mechanical half-heights used for display SDs   ║
- * ║    to match U-shape profile: L1 ≈ L10 ≈ 12 mm, tapering to 8 mm at   ║
- * ║    stop, with Jw/Jy ≈ 9.3–9.7 mm and Jx ≈ 8.0–8.1 mm.               ║
- * ║                                                                        ║
- * ║  NOTE ON CEMENTED SURFACES:                                            ║
- * ║    Surface 4 is the junction of Jw (L2 + L3): R = ∞ (flat).           ║
- * ║    Surface 7 is the junction of Jy (L4 + L5): R = −24.267 mm.         ║
- * ║    Surface 11 is the junction of Jx (L6 + L7): R = +17.500 mm.        ║
- * ╚══════════════════════════════════════════════════════════════════════════╝
+/** JP2022100641A Example1: table p.7, equation p.8, Figure1 p.16 (600dpi).
+ * Matching JP7546909B2 table p.6 retains the same malformed ASP18 A6=-336E-07.
+ * Existing -3.36e-7 remains an inferred decimal repair, not a confirmed source value.
+ * Source radii, spacings, glass coordinates, source-listed element focal lengths and SDs retained.
+ * Source summary and rounded table disagree in EFL/near conjugate; see analysis.
+ * Figure101 cover/filter is excluded; no plate thickness/index is supplied for conversion.
  */
 
 const LENS_DATA = {
@@ -28,21 +13,21 @@ const LENS_DATA = {
   key: "ultron-28f2-asph",
   maker: "Voigtländer",
   name: "VOIGTLÄNDER ULTRON Vintage Line 28mm f/2 Aspherical",
-  subtitle: "JP2022-100641A EXAMPLE 1 — COSINA / HATTA Shōju, SHIBATA Yūki",
+  subtitle: "JP2022-100641A EXAMPLE 1 — COSINA / YOSHIHISA YOMOGIDA, YUKI SHIBATA",
   specs: [
     "10 ELEMENTS / 7 GROUPS",
     "f = 28.50 mm",
     "F/2.0",
     "2ω = 75.4°",
     "2 ASPHERICAL SURFACES (1 ELEMENT)",
-    "2 APD ELEMENTS",
   ],
 
   /* ── Explicit metadata fields ── */
   focalLengthMarketing: 28,
   focalLengthDesign: 28.5,
   apertureMarketing: 2.0,
-  // apertureDesign omitted — patent F/2.0 matches marketing
+  apertureDesign: 2.0,
+  imageFormat: "135-full-frame",
   patentNumber: "JP 2022-100641 A",
   patentAuthors: ["Yoshihisa Yomogida", "Yuki Shibata"],
   patentAssignees: ["Cosina Co., Ltd."],
@@ -55,7 +40,7 @@ const LENS_DATA = {
    *  Patent labels: Mna, Mnb, Mpa, Mpb, Mnc (Gf) and Nna, Npa, Npb, Nnb, Nnc (Gr).
    *  Cemented doublets: Jw (L2+L3), Jy (L4+L5), Jx (L6+L7).
    *  Filter plate (101) omitted — camera-side cover glass, not part of the
-   *  interchangeable lens assembly.  Patent BFD includes full air gap to image.
+   *  interchangeable lens assembly.  Published ZD18 is the last-lens-to-image distance; plate thickness/index are not supplied.
    */
   elements: [
     {
@@ -66,9 +51,9 @@ const LENS_DATA = {
       nd: 1.5168,
       vd: 64.2,
       fl: -57.14,
-      glass: "BSC7 (HOYA) / N-BK7 (Schott)",
+      glass: "BSC7 (HOYA) / N-BK7 (Schott) (inferred coordinate counterpart)",
       apd: false,
-      role: "Front diverging meniscus — bends wide-angle field inward; low-cost crown contributes to Petzval sum correction and field curvature control",
+      role: "Front negative meniscus, convex toward the object, in Gf.",
     },
     {
       id: 2,
@@ -78,10 +63,10 @@ const LENS_DATA = {
       nd: 1.64769,
       vd: 33.84,
       fl: -36.4,
-      glass: "E-FD2 (HOYA, patent nd/vd match) / SF2 (Schott)",
+      glass: "E-FD2 (HOYA, patent nd/vd match) / SF2 (Schott) (inferred coordinate counterpart)",
       apd: false,
       cemented: "Jw",
-      role: "Negative flint of Jw doublet; large Δnd at flat junction (0.263) drives monochromatic correction (SA, coma)",
+      role: "Plano-concave negative member of Jw; the cemented interface is flat.",
     },
     {
       id: 3,
@@ -91,10 +76,10 @@ const LENS_DATA = {
       nd: 1.91082,
       vd: 35.25,
       fl: 40.4,
-      glass: "TAFD35 (HOYA, patent nd/vd match)",
+      glass: "TAFD35 (HOYA, patent nd/vd match) (inferred coordinate counterpart)",
       apd: false,
       cemented: "Jw",
-      role: "Positive element of Jw; ultra-high-index LaF allows moderate curvatures at strong power — net doublet weakly positive",
+      role: "Plano-convex positive member of Jw; source high-index coordinate also used for L4.",
     },
     {
       id: 4,
@@ -104,10 +89,10 @@ const LENS_DATA = {
       nd: 1.91082,
       vd: 35.25,
       fl: 13.7,
-      glass: "TAFD35 (HOYA, patent nd/vd match)",
+      glass: "TAFD35 (HOYA, patent nd/vd match) (inferred coordinate counterpart)",
       apd: false,
       cemented: "Jy",
-      role: "Strongest positive element (f = 13.7 mm) — primary converging element redirecting the wide-angle bundle through the stop; symmetric biconvex minimises SA at f/2",
+      role: "Biconvex positive member of Jy; source-listed isolated focal length 13.70 mm.",
     },
     {
       id: 5,
@@ -117,10 +102,10 @@ const LENS_DATA = {
       nd: 1.76182,
       vd: 26.61,
       fl: -25.39,
-      glass: "S-TIH14 (OHARA, patent nd/vd match)",
+      glass: "S-TIH14 (OHARA, patent nd/vd match) (inferred coordinate counterpart)",
       apd: false,
       cemented: "Jy",
-      role: "Negative element of Jy; partial chromatic correction with L4 (Δνd = 8.64); high-dispersion flint in negative element follows achromat principle",
+      role: "Biconcave negative member of Jy with a lower Abbe number than L4.",
     },
     {
       id: 6,
@@ -130,10 +115,10 @@ const LENS_DATA = {
       nd: 1.71736,
       vd: 29.5,
       fl: -12.16,
-      glass: "S-TIH1 (OHARA) / SF1 (Schott)",
+      glass: "S-TIH1 (OHARA) / SF1 (Schott) (inferred coordinate counterpart)",
       apd: false,
       cemented: "Jx",
-      role: "Negative flint of rear achromat Jx; strongest negative element (f = −12.16 mm); Δνd = 25.96 with L7 provides primary chromatic correction",
+      role: "Biconcave negative member of Jx after the stop.",
     },
     {
       id: 7,
@@ -143,11 +128,10 @@ const LENS_DATA = {
       nd: 1.6968,
       vd: 55.46,
       fl: 22.98,
-      glass: "S-LAC14 (OHARA) / N-LaK14 (Schott)",
-      apd: "inferred",
-      apdNote: "Manufacturer states 2 APD elements; S-LAC14 (LaC crown, νd ≈ 55) expected to have positive ΔPgF",
+      glass: "S-LAC14 (OHARA) / N-LaK14 (Schott) (inferred coordinate counterpart)",
+      apd: false,
       cemented: "Jx",
-      role: "Positive crown of Jx achromat; probable APD element — lanthanum crown contributes to secondary spectrum correction",
+      role: "Biconvex positive member of Jx. No patent partial-dispersion evidence identifies it as APD.",
     },
     {
       id: 8,
@@ -157,9 +141,9 @@ const LENS_DATA = {
       nd: 1.883,
       vd: 40.81,
       fl: 18.17,
-      glass: "H-ZLAF68C (CDGM, patent nd/vd match)",
+      glass: "H-ZLAF68C (CDGM, patent nd/vd match) (inferred coordinate counterpart)",
       apd: false,
-      role: "Strong positive rear singlet — primary image-forming element; high-index LaF keeps curvatures moderate for SA control; Petzval contribution balanced by surrounding negatives",
+      role: "Positive singlet in Gr, between Jx and the two final negative lenses.",
     },
     {
       id: 9,
@@ -169,11 +153,9 @@ const LENS_DATA = {
       nd: 1.62999,
       vd: 58.12,
       fl: -100.0,
-      glass: "J-PSKH8 catalog equivalent (patent 630581; production supplier unspecified)",
-      apd: "inferred",
-      apdNote:
-        "Manufacturer states 2 APD elements; J-PSKH8 is a qualified coordinate-equivalent curve, but the patent does not identify the production melt or publish partial dispersion for this row",
-      role: "Weak negative field corrector; possible APD element — controls astigmatism and ray exit angles for digital sensors",
+      glass: "J-PSKH8 catalog equivalent (patent 630581; production supplier unspecified) (inferred coordinate counterpart)",
+      apd: false,
+      role: "Weak negative meniscus. Source FL is −100 mm, while the rounded radii/index give about −98.90 mm; no patent APD claim.",
     },
     {
       id: 10,
@@ -183,9 +165,9 @@ const LENS_DATA = {
       nd: 1.8061,
       vd: 40.73,
       fl: -500.0,
-      glass: "NBFD3 (HOYA) / S-LAH63Q (OHARA)",
+      glass: "NBFD3 (HOYA) / S-LAH63Q (OHARA) (inferred coordinate counterpart)",
       apd: false,
-      role: "Near-zero power aspheric corrector — both surfaces aspherical; placed last for maximum leverage on field aberrations (astigmatism, coma, field curvature); claim 3 element",
+      role: "Final weak negative meniscus with two aspheric faces. Source FL is −500 mm; ASP18 A6 remains an explicitly inferred repair.",
     },
   ],
 
@@ -218,11 +200,9 @@ const LENS_DATA = {
    *  Standard even-polynomial form with K = 0 (sphere + polynomial).
    *  Z(h) = (h²/R)/[1+√(1−(1+K)·(h/R)²)] + A4·h⁴ + A6·h⁶ + A8·h⁸ + ...
    *
-   *  NOTE ON SURFACE 18A A6: Patent prints "−336E−07" which is a
-   *  formatting artifact (missing decimal point). The correct value is
-   *  −3.36 × 10⁻⁷, confirmed by coefficient progression analysis and
-   *  departure computation (literal reading gives absurd 34 mm departure
-   *  at h = 10 mm vs. the corrected 0.31 mm).
+   *  Source and grant both print A6=-336E-07. Existing -3.36e-7 is retained
+   *  as an inferred missing-decimal repair consistent with the drawing. The grant
+   *  does not independently confirm it; this remains a source limitation.
    */
   asph: {
     "17A": {
@@ -268,9 +248,9 @@ const LENS_DATA = {
   ],
 
   /* ── Focus configuration ── */
-  closeFocusM: 0.5,
+  closeFocusM: 0.4921574,
   focusDescription:
-    "Unit focus: entire lens assembly translates forward 1.93 mm via helicoid. No internal group movement. BFD increases from 18.40 mm (∞) to 20.33 mm (m = 0.0676). Subject-to-sensor distance at closest focus ≈ 492 mm.",
+    "Source near station: ZD0=430 mm plus LT=60.2274 mm and 1.93 mm extension gives 49.22 cm. All lenses and stop move together. The rounded prescription instead computes about 50.98 cm; this source discrepancy remains unresolved.",
 
   /* ── Aperture configuration ── */
   nominalFno: 2.0,

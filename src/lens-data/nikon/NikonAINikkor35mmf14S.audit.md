@@ -6,14 +6,10 @@ Patent: US 3,576,360, Embodiment 1 / FIG. 1 / Claim 2
 
 ### Phase 2 - Retained-information audit
 
-- Reviewed the existing semi-diameter reference-pass notes in `agent_docs/semi-diameter-patent-diagram-audits.md` for this lens and the local source mapping to US 3,576,360 Embodiment 1 / FIG. 1.
+- Reviewed the semi-diameter reference-pass notes for this lens (the reference-pass guide has since been folded into `agent_docs/patent-figure-sd-audit-procedure.md`) and the local source mapping to US 3,576,360 Embodiment 1 / FIG. 1.
 - This lens was part of the successful reference pass: the middle and rear SD run had already been reshaped to follow FIG. 1 and avoid excessive cross-gap sag in the tight post-stop air spaces.
 - Current SDs preserve that refined shape: a large fast-wide front section, controlled central/post-stop diameters, and a rear group that stays clear without inflating the patent silhouette.
 - No new SD values changed in this pass. The K10 glass label remains explicitly unmatched because the project has no coefficient-backed legacy K10 entry.
-
-### Verification
-
-- `npm test -- elementRenderDiagnostics`
 
 ## 2026-08-07 — Legacy K10 catalog recovery
 

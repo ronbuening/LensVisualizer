@@ -26,12 +26,3 @@ Patent: US 4,057,330, Example 2
 ### Phase 4 — Analysis sync
 
 - Updated L1/L2/L3/L4 prose, glass summary, and glass-selection discussion.
-
-### Verification
-
-- `npm test -- dispersion` — passed.
-- `npm run typecheck` — passed.
-- `npm run generate:glass-reports` — passed; lens removed from the relabel-by-lens queue.
-- `npm run lint` — passed.
-- `npm run format:check` — passed.
-- `git diff --check` — passed.

@@ -1,31 +1,10 @@
 import type { LensDataInput } from "../../types/optics.js";
 
 /**
- * ╔══════════════════════════════════════════════════════════════════════╗
- * ║           LENS DATA — NIKON AI NIKKOR 85mm f/1.4S                  ║
- * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Data source: US 4,396,256 Embodiment 1 (Daijiro Fujie / Nikon).  ║
- * ║  Modified Gauss-Sonnar hybrid; basic design Takashi Takiguchi.     ║
- * ║  7 elements / 5 groups, 0 aspherical surfaces.                    ║
- * ║  Focus: CRC floating — L1–L4 unit + L5 differential (d10 varies). ║
- * ║                                                                    ║
- * ║  NOTE ON SCALING:                                                  ║
- * ║    Patent at f=1.0; all R, d, sd values scaled ×85 to f≈85 mm     ║
- * ║    production focal length.                                        ║
- * ║                                                                    ║
- * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    Patent does not list SDs. Estimated from paraxial marginal and  ║
- * ║    chief ray trace at f/1.4 (EP SD = 30.36 mm) with 60% off-axis  ║
- * ║    field fraction and ~8% mechanical clearance. Constrained by     ║
- * ║    edge thickness, cross-gap overlap, and sd/|R| < 0.90 limits.   ║
- * ║    72mm filter thread → front element SD ≈ 32 mm.                 ║
- * ║                                                                    ║
- * ║  NOTE ON VARIABLE GAPS:                                            ║
- * ║    Patent does not provide close-focus spacing values. The d10 and ║
- * ║    BFD close-focus values are estimates derived from the 0.85 m    ║
- * ║    minimum focus distance (m = −1/7.9) and assumed CRC split.     ║
- * ║    Extension ≈ 10.76 mm; estimated CRC differential ≈ 2.0 mm.    ║
- * ╚══════════════════════════════════════════════════════════════════════╝
+ * US 4,396,256 A, Embodiment 1, normalized f=1 scaled by85.
+ * Seven elements, five air-separated components; all spherical.
+ * Floating-focus direction is sourced; finite distances/travel are inferred.
+ * Clear apertures and the stop's split of D7 are figure-based estimates.
  */
 
 const LENS_DATA = {
@@ -33,7 +12,7 @@ const LENS_DATA = {
   key: "nikkor-85f14-ais",
   maker: "Nikon",
   name: "NIKON AI NIKKOR 85mm f/1.4 S",
-  subtitle: "US 4,396,256 Embodiment 1 — Nippon Kogaku / Fujie",
+  subtitle: "US 4,396,256 A Embodiment 1 (85× scale) — Nippon Kogaku / Fujie",
   specs: ["7 ELEMENTS / 5 GROUPS", "f ≈ 85.0 mm", "F/1.4", "2ω ≈ 28.5°", "ALL SPHERICAL"],
 
   focalLengthMarketing: 85,
@@ -42,7 +21,7 @@ const LENS_DATA = {
   apertureDesign: 1.4,
   lensMounts: ["nikon-f"],
   imageFormat: "135-full-frame",
-  patentNumber: "US 4,396,256",
+  patentNumber: "US 4,396,256 A",
   patentAuthors: ["Daijiro Fujie"],
   patentAssignees: ["Nippon Kogaku K.K."],
   patentYear: 1983,
@@ -60,8 +39,8 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.77279,
       vd: 49.4,
-      fl: 106.4,
-      glass: "LaK–LaF border (HOYA TAF1 / Schott N-LAF34 class, 773-494)",
+      fl: 105.1,
+      glass: "N-LAF34 (Schott, inferred coordinate counterpart)",
       apd: false,
       role: "Front positive meniscus, convex toward object. Provides initial convergence through the full f/1.4 beam. High-index lanthanum glass limits curvatures to control high-order aberrations.",
     },
@@ -72,8 +51,8 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.6968,
       vd: 55.6,
-      fl: 86.6,
-      glass: "Lanthanum crown (HOYA LAC14 / Schott N-LAK14 class, 697-556)",
+      fl: 81.2,
+      glass: "N-LAK14 (Schott, inferred coordinate counterpart)",
       apd: false,
       role: "Second positive meniscus (φ₂ > φ₁). Higher power than L1, immediately preceded by a divergent air lens. Lower dispersion (vd=55.6) reduces chromatic contributions from this stronger element.",
     },
@@ -84,8 +63,8 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.7847,
       vd: 26.1,
-      fl: 89.0,
-      glass: "Dense flint (HOYA FD110 / Schott SF11 class, 785-261)",
+      fl: 89.9,
+      glass: "SF11 (Schott, inferred coordinate counterpart)",
       apd: false,
       cemented: "L3",
       role: "Front element of cemented negative doublet L3. Dense flint chosen for g-line spherical aberration control via patent conditions (4)–(6).",
@@ -97,11 +76,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.7552,
       vd: 27.5,
-      fl: -26.1,
-      glass: "Dense flint (HOYA E-FD4 / Schott SF4 class, 755-275)",
+      fl: -25.9,
+      glass: "E-FD4 (HOYA, inferred coordinate counterpart)",
       apd: false,
       cemented: "L3",
-      role: "Rear element of L3 doublet. Nearly matched Abbe number to L3a (Δvd=1.4) creates wavelength-selective negative spherical aberration at the cemented surface, counteracting g-line over-correction. Rear surface r7 (+23.6 mm) is the steepest in the system — the Sonnar 'stopper surface'.",
+      role: "Rear element of L3 doublet. Nearly matched Abbe number to L3a (Δvd=1.4) creates wavelength-selective negative spherical aberration at the cemented surface, counteracting g-line over-correction. Rear surface r7 (+23.6 mm) is the steepest in the system.",
     },
     {
       id: 5,
@@ -110,8 +89,8 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.58144,
       vd: 40.8,
-      fl: -38.8,
-      glass: "Light flint (HOYA E-FL5 / Schott LF5 class, 581-408)",
+      fl: -38.6,
+      glass: "E-FL5 (HOYA, inferred coordinate counterpart)",
       apd: false,
       cemented: "L4",
       role: "Front (negative) element of rear doublet L4. Low-index light flint; the concave-concave shape provides the rear Gauss negative corrector function.",
@@ -123,8 +102,8 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.74443,
       vd: 49.4,
-      fl: 35.7,
-      glass: "Lanthanum flint (HOYA NBF1 / OHARA S-LAM60 class, 744-494)",
+      fl: 36.8,
+      glass: "NBF1 (HOYA, inferred coordinate counterpart)",
       apd: false,
       cemented: "L4",
       role: "Rear (positive) element of L4. Same glass as L5. Doublet net power is very weak positive (fl ≈ +448 mm); L4 functions primarily as an aberration corrector.",
@@ -136,10 +115,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.74443,
       vd: 49.4,
-      fl: 107.2,
-      glass: "Lanthanum flint (HOYA NBF1 / OHARA S-LAM60 class, 744-494)",
+      fl: 107.7,
+      glass: "NBF1 (HOYA, inferred coordinate counterpart)",
       apd: false,
-      role: "Rear positive singlet. Same glass as L4b (manufacturing logistics). Provides final convergence. Separated from L4 by the CRC variable gap d10, which enlarges at close focus for aberration correction.",
+      role: "Rear positive singlet. Same source glass coordinates as L4b. Provides final convergence. Separated from L4 by the CRC variable gap d10, which enlarges at close focus for aberration correction.",
     },
   ],
 
@@ -148,8 +127,8 @@ const LENS_DATA = {
    *  Stop position inferred from patent FIG. 1 at ~65% through d7 air gap.
    */
   surfaces: [
-    { label: "1", R: 66.436, d: 7.497, nd: 1.77279, elemId: 1, sd: 32.0 }, // L1 front
-    { label: "2", R: 346.596, d: 1.496, nd: 1.0, elemId: 0, sd: 31.0 }, // L1 rear → air
+    { label: "1", R: 66.436, d: 7.497, nd: 1.77279, elemId: 1, sd: 33.5 }, // L1 front
+    { label: "2", R: 346.596, d: 1.496, nd: 1.0, elemId: 0, sd: 33.5 }, // L1 rear → air
     { label: "3", R: 37.128, d: 9.699, nd: 1.6968, elemId: 2, sd: 28.0 }, // L2 front
     { label: "4", R: 96.501, d: 1.496, nd: 1.0, elemId: 0, sd: 25.0 }, // L2 rear → air
     { label: "5", R: 167.28, d: 6.503, nd: 1.7847, elemId: 3, sd: 24.3 }, // L3a front
@@ -159,26 +138,20 @@ const LENS_DATA = {
     { label: "8", R: -31.408, d: 1.496, nd: 1.58144, elemId: 5, sd: 19.0 }, // L4a front
     { label: "9", R: 79.807, d: 8.704, nd: 1.74443, elemId: 6, sd: 19.0 }, // L4a→L4b junction
     { label: "10", R: -39.806, d: 0.4, nd: 1.0, elemId: 0, sd: 20.0 }, // L4b rear → air (CRC gap)
-    { label: "11", R: 106.004, d: 4.803, nd: 1.74443, elemId: 7, sd: 22.0 }, // L5 front
-    { label: "12", R: -322.405, d: 42.628, nd: 1.0, elemId: 0, sd: 21.5 }, // L5 rear → image (BFD)
+    { label: "11", R: 106.004, d: 4.803, nd: 1.74443, elemId: 7, sd: 19.5 }, // L5 front
+    { label: "12", R: -322.405, d: 42.628, nd: 1.0, elemId: 0, sd: 19.5 }, // L5 rear → image (BFD)
   ],
 
   /* ── Aspherical coefficients ── */
   asph: {},
 
-  /* ── Variable air spacings (CRC focus mechanism) ──
-   *  The entire lens extends for close focus (unit focus component), while
-   *  L1–L4 move by a slightly larger amount than L5, enlarging d10.
-   *  This is Nikon's Close-Range Correction (CRC) system.
-   *
-   *  CAUTION: Close-focus values are ESTIMATES — the patent does not provide
-   *  explicit close-focus spacing data. Values derived from the 0.85 m MFD
-   *  (magnification −1/7.9, extension ≈ 10.76 mm) with an assumed CRC
-   *  differential of ≈ 2.0 mm.
+  /* Floating direction is sourced (column6), but no finite gaps are given.
+   * Retain the assumed2mm differential; solve rear extension for0.85m.
+   * L1-L4/stop travel12.10765mm; L5 travels10.10765mm objectward.
    */
   var: {
     10: [0.4, 2.4], // CRC gap: L4b rear → L5 front [d_infinity, d_close_est]
-    12: [42.628, 51.388], // BFD: L5 rear → image [d_infinity, d_close_est]
+    12: [42.628, 52.73565361226402], // BFD: L5 rear → image [d_infinity, d_close_est]
   },
 
   varLabels: [
@@ -188,8 +161,8 @@ const LENS_DATA = {
 
   /* ── Group and doublet annotations ── */
   groups: [
-    { text: "FRONT (Sonnar hybrid)", fromSurface: "1", toSurface: "7" },
-    { text: "REAR (Gauss)", fromSurface: "8", toSurface: "12" },
+    { text: "L1–L4 + stop (floating)", fromSurface: "1", toSurface: "10" },
+    { text: "L5 (focus)", fromSurface: "11", toSurface: "12" },
   ],
 
   doublets: [
@@ -200,7 +173,7 @@ const LENS_DATA = {
   /* ── Focus configuration ── */
   closeFocusM: 0.85,
   focusDescription:
-    "CRC (Close-Range Correction): entire lens extends for close focus; L1–L4 move as a unit by a slightly larger amount than L5, enlarging the d10 air gap. Compensates for field curvature, coma, and astigmatism shifts at close distances. Close-focus variable gap values are estimates.",
+    "Floating focus direction follows the patent: L1–L4 and the stop move farther objectward than L5, enlarging D10. The 2 mm differential and 0.85 m endpoint are assumed; rear extension is reconstructed to match that endpoint. No finite station is published.",
 
   /* ── Aperture configuration ── */
   nominalFno: 1.4,

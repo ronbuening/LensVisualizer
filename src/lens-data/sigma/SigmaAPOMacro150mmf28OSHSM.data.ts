@@ -6,7 +6,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ╠══════════════════════════════════════════════════════════════════════════════╣
  * ║ Data source: JP 2012-63403 A, Numerical Example 2, Sigma Corporation.      ║
  * ║ 19 elements / 13 air-spaced groups; all-spherical prescription.            ║
- * ║ Focus: dual floating inner focus. L2 moves image-ward; L3 moves object-ward.║
+ * ║ Focus: three exact patent states. L2 moves image-ward; L3 moves object-ward.║
  * ║ Stabilization: L5 decenters laterally; L4 is the fixed negative conditioner ║
  * ║ immediately in front of the OS group.                                      ║
  * ║                                                                              ║
@@ -409,11 +409,12 @@ const LENS_DATA = {
 
   asph: {},
 
+  focusPositions: [0, 0.7573770485166879, 1],
   var: {
-    "8": [2.42, 20.1009],
-    "15": [24.66, 6.9791],
-    STO: [22.52, 2.5],
-    "21": [2.55, 22.57],
+    "8": [2.42, 10.5359, 20.1009],
+    "15": [24.66, 16.5441, 6.9791],
+    STO: [22.52, 12.0489, 2.5],
+    "21": [2.55, 13.0211, 22.57],
   },
   varLabels: [
     ["8", "D8"],

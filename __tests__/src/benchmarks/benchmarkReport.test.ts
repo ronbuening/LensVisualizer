@@ -130,4 +130,14 @@ describe("benchmark report helpers", () => {
     expect(report).toContain("data.sphericalAberration");
     expect(report).toContain("Aberration panel skips: 1");
   });
+
+  it("summarizes older schema-2 records without movement snapshots or perspective rows", () => {
+    const record = makeRecord("2026-05-27T12:00:00.000Z", 10, 20);
+
+    expect(record.config.scenarioSnapshots).toBeUndefined();
+    expect(record.summary.analysis?.summary).not.toBeNull();
+    expect(record.summary.analysis?.perspectiveFocus).toBeNull();
+    expect(record.summary.analysis?.perspectiveDistortion).toBeNull();
+    expect(buildBenchmarkReport([record])).toContain("perspectiveFocus");
+  });
 });

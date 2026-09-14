@@ -55,7 +55,7 @@ const LENS_DATA = {
   groupCount: 6,
 
   focusDescription:
-    "Front objective L1-L5 translates objectward while the weak negative L6 compensator remains fixed relative to the film plane.",
+    "Front objective L1-L5 translates objectward while the weak negative L6 compensator remains fixed. The patent close row is exact before the constrained 0.9 m endpoint.",
 
   /* ── Elements ── */
   elements: [
@@ -148,8 +148,9 @@ const LENS_DATA = {
   asph: {},
 
   /* ── Focus ── */
+  focusPositions: [0, 0.5595405625339631, 1],
   var: {
-    "10": [0.87, 21.081081],
+    "10": [0.87, 10.4, 21.081081],
   },
   varLabels: [["10", "FOCUS"]],
 

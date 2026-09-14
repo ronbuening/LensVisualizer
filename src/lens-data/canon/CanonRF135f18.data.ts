@@ -1,26 +1,10 @@
 import type { LensDataInput } from "../../types/optics.js";
 
 /**
- * ╔══════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — CANON RF 135mm f/1.8 L IS USM                        ║
- * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Data source: US 2023/0213745 A1 Example 4 (Nakada / Canon).      ║
- * ║  Three-unit telephoto: +L1 / −L2 (focus) / +L3 (with IS).        ║
- * ║  17 elements / 12 groups, all spherical, 5 cemented doublets.     ║
- * ║  Focus: inner focus via single negative element L2 (Nano USM).    ║
- * ║                                                                    ║
- * ║  NOTE ON SCALING:                                                  ║
- * ║    Patent data is at f ≈ 130.95 mm (production marketed as        ║
- * ║    135 mm).  No scaling applied — all R, d, sd values are as      ║
- * ║    published in the patent.                                        ║
- * ║                                                                    ║
- * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    SDs are presentation clear-aperture estimates tuned against     ║
- * ║    Canon's published construction diagram: large front positive    ║
- * ║    unit, compact post-stop focus element, and a rear group that     ║
- * ║    opens back up toward the mount while staying within renderer     ║
- * ║    edge-thickness and cross-gap limits.                            ║
- * ╚══════════════════════════════════════════════════════════════════════╝
+ * US20230213745A1 Numerical Example 4, Figure 7 (not Figure 5).
+ * Source radii and spacings retained; estimated optical rims reviewed at 600 dpi.
+ * Plate rows 31–32 excluded: rear equivalent air is 12.63+1.5/1.51633+0.8 mm.
+ * Source nd/vd do not identify glass suppliers, chemistry or APD.
  */
 
 const LENS_DATA = {
@@ -29,7 +13,7 @@ const LENS_DATA = {
   maker: "Canon",
   name: "CANON RF 135mm f/1.8 L IS USM",
   subtitle: "US 2023/0213745 A1 EXAMPLE 4 — CANON / NAKADA",
-  specs: ["17 ELEMENTS / 12 GROUPS", "f ≈ 130.9 mm", "F/1.86", "2ω ≈ 18.8°", "ALL SPHERICAL — 5 CEMENTED DOUBLETS"],
+  specs: ["17 ELEMENTS / 12 GROUPS", "f ≈ 130.9 mm", "F/1.86", "2ω = 18.76°", "ALL SPHERICAL — 5 CEMENTED DOUBLETS"],
 
   /* ── Explicit metadata ── */
   focalLengthMarketing: 135,
@@ -55,9 +39,9 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.8,
       fl: 144.6,
-      glass: "S-TIH53 (OHARA)",
+      glass: "S-TIH53 — compatible catalog counterpart; patent identity unspecified",
       apd: false,
-      role: "High-index front meniscus; bends steep f/1.8 marginal rays through small angles to limit surface-induced spherical aberration.",
+      role: "Positive front singlet of fixed unit L1",
     },
     {
       id: 2,
@@ -67,10 +51,9 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.5,
       fl: 170.2,
-      glass: "Canon UD fluorophosphate (≈ S-FPL51)",
-      apd: "inferred",
-      apdNote: "UD fluorophosphate — anomalous partial dispersion below the normal line on the PgF–νd diagram.",
-      role: "First UD element. Standalone low-dispersion positive; adds converging power with minimal chromatic contribution.",
+      glass: "S-FPL51 — compatible catalog counterpart; patent identity unspecified",
+      apd: false,
+      role: "Low-dispersion positive singlet of fixed unit L1",
     },
     {
       id: 3,
@@ -80,11 +63,10 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.5,
       fl: 121.9,
-      glass: "Canon UD fluorophosphate (≈ S-FPL51)",
-      apd: "inferred",
-      apdNote: "UD fluorophosphate.",
+      glass: "S-FPL51 — compatible catalog counterpart; patent identity unspecified",
+      apd: false,
       cemented: "D1",
-      role: "Second UD element; crown partner in D1. Corrects LoCA while contributing positive power.",
+      role: "Positive front element of cemented doublet D1",
     },
     {
       id: 4,
@@ -94,11 +76,10 @@ const LENS_DATA = {
       nd: 1.77047,
       vd: 29.7,
       fl: -45.7,
-      glass: "NBFD29 (HOYA, 770297)",
-      apd: "inferred",
-      apdNote: "770297 dense titanium flint; anomalous partial dispersion above the normal line, complementary to UD partner.",
+      glass: "NBFD29 — compatible catalog counterpart; patent identity unspecified",
+      apd: false,
       cemented: "D1",
-      role: "Flint in D1 (net negative doublet). Dominant negative power helps flatten Petzval surface; intentionally under-corrected LoCA residual for system-level balancing.",
+      role: "Negative rear element of cemented doublet D1",
     },
     {
       id: 5,
@@ -108,11 +89,10 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.5,
       fl: 67.8,
-      glass: "Canon UD fluorophosphate (≈ S-FPL51)",
-      apd: "inferred",
-      apdNote: "UD fluorophosphate.",
+      glass: "S-FPL51 — compatible catalog counterpart; patent identity unspecified",
+      apd: false,
       cemented: "D2",
-      role: "Third UD element; crown in D2 (net positive). Primary achromatic power source in L1 — near-perfectly achromatic doublet.",
+      role: "Positive front element of cemented doublet D2",
     },
     {
       id: 6,
@@ -122,11 +102,10 @@ const LENS_DATA = {
       nd: 1.77047,
       vd: 29.7,
       fl: -194.8,
-      glass: "NBFD29 (HOYA, 770297)",
-      apd: "inferred",
-      apdNote: "770297 dense titanium flint; anomalous dispersion complementary to UD.",
+      glass: "NBFD29 — compatible catalog counterpart; patent identity unspecified",
+      apd: false,
       cemented: "D2",
-      role: "Flint in D2. Corrects LoCA almost perfectly (achromatic residual ≈ 0). Biconvex/biconcave form addresses spherical aberration and coma.",
+      role: "Negative rear element of cemented doublet D2",
     },
     {
       id: 7,
@@ -136,9 +115,9 @@ const LENS_DATA = {
       nd: 1.618,
       vd: 63.4,
       fl: -62.5,
-      glass: "S-PHM52 (OHARA)",
+      glass: "S-PHM52 — compatible catalog counterpart; patent identity unspecified",
       apd: false,
-      role: "Single-element inner focus unit (L2). Flat front surface ensures marginal ray incidence angle is focus-independent, minimizing focus-induced aberration variation. Driven by Nano USM.",
+      role: "Single plano-concave element forming moving focus unit L2",
     },
     {
       id: 8,
@@ -148,10 +127,10 @@ const LENS_DATA = {
       nd: 1.92286,
       vd: 20.9,
       fl: -74.8,
-      glass: "N-SF66 / E-FDS1 (Schott/Ohara, 923/209)",
+      glass: "N-SF66 — compatible catalog counterpart; patent identity unspecified",
       apd: false,
       cemented: "D3",
-      role: "Flint in D3 (L3a subunit). Very high-index (nd ≈ 1.923) negative element; concentrates power at the cemented junction while acting as dispersive counterpart.",
+      role: "Negative front element of cemented doublet D3 in fixed subunit L3a",
     },
     {
       id: 9,
@@ -161,10 +140,10 @@ const LENS_DATA = {
       nd: 1.804,
       vd: 46.5,
       fl: 45.0,
-      glass: "S-LAH65V (OHARA)",
+      glass: "S-LAH65V — compatible catalog counterpart; patent identity unspecified",
       apd: false,
       cemented: "D3",
-      role: "Lanthanum crown in D3. Provides dominant convergent power for the rear group; high-index architecture keeps surface curvatures manageable.",
+      role: "Positive rear element of cemented doublet D3",
     },
     {
       id: 10,
@@ -174,9 +153,9 @@ const LENS_DATA = {
       nd: 1.92286,
       vd: 20.9,
       fl: 105.4,
-      glass: "N-SF66 / E-FDS1 (Schott/Ohara, 923/209)",
+      glass: "N-SF66 — compatible catalog counterpart; patent identity unspecified",
       apd: false,
-      role: "Weak positive meniscus in IS subunit L3b. High nd minimizes Petzval sum variation during IS decentration. Meniscus form limits decentered coma.",
+      role: "Positive meniscus in stabilization subunit L3b; lateral motion not simulated",
     },
     {
       id: 11,
@@ -186,9 +165,9 @@ const LENS_DATA = {
       nd: 1.91082,
       vd: 35.3,
       fl: -37.0,
-      glass: "911353 — lanthanum (nd=1.91082, νd=35.3)",
+      glass: "TAFD35 — compatible catalog counterpart; patent identity unspecified",
       apd: false,
-      role: "Dominant negative element in IS subunit L3b. Strong divergence yields L3b net focal length ≈ −57.9 mm. N3b_ave = 1.917 satisfies patent inequality (1).",
+      role: "Negative singlet in stabilization subunit L3b; lateral motion not simulated",
     },
     {
       id: 12,
@@ -198,10 +177,10 @@ const LENS_DATA = {
       nd: 1.60311,
       vd: 60.6,
       fl: 38.5,
-      glass: "S-BSM14 / N-SK14 (OHARA / Schott)",
+      glass: "N-SK14 — compatible catalog counterpart; patent identity unspecified",
       apd: false,
       cemented: "D4",
-      role: "Borosilicate crown in D4 (L3c subunit). Conventional glass for rear-group chromatic correction where secondary spectrum burden is lower.",
+      role: "Positive front element of cemented doublet D4 in subunit L3c",
     },
     {
       id: 13,
@@ -211,10 +190,10 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.8,
       fl: -56.1,
-      glass: "S-TIH53 (OHARA)",
+      glass: "S-TIH53 — compatible catalog counterpart; patent identity unspecified",
       apd: false,
       cemented: "D4",
-      role: "Flint in D4. Same glass as L1; corrects rear-group chromatic aberration.",
+      role: "Negative rear element of cemented doublet D4",
     },
     {
       id: 14,
@@ -224,9 +203,9 @@ const LENS_DATA = {
       nd: 2.00069,
       vd: 25.5,
       fl: 42.3,
-      glass: "TAFD40 (HOYA catalog-equivalent to patent 001255; supplier not identified)",
+      glass: "TAFD40 — compatible catalog counterpart; patent identity unspecified",
       apd: false,
-      role: "Ultra-high-index (nd ≈ 2.0) positive element — strongest Petzval corrector. High nd yields Petzval contribution of φ/2.0, roughly half that of a conventional crown. Primary mechanism for field curvature control.",
+      role: "High-index positive singlet in subunit L3c",
     },
     {
       id: 15,
@@ -236,10 +215,10 @@ const LENS_DATA = {
       nd: 1.65844,
       vd: 50.9,
       fl: -31.2,
-      glass: "N-SSK5 (Schott; catalog-equivalent 658509 extra-dense crown)",
+      glass: "N-SSK5 — compatible catalog counterpart; patent identity unspecified",
       apd: false,
       cemented: "D5",
-      role: "Inverted doublet D5: higher-νd 'crown' carries negative power. Provides divergence to counterbalance L14 and D4 convergence while maintaining chromatic correction.",
+      role: "Negative front element of cemented doublet D5",
     },
     {
       id: 16,
@@ -249,10 +228,10 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.5,
       fl: 45.5,
-      glass: "SF6 equivalent (Schott)",
+      glass: "SF6 — compatible catalog counterpart; patent identity unspecified",
       apd: false,
       cemented: "D5",
-      role: "Inverted doublet D5: lower-νd 'flint' carries positive power. Net D5 is negative, contributing to Petzval reduction.",
+      role: "Positive rear element of cemented doublet D5",
     },
     {
       id: 17,
@@ -262,9 +241,9 @@ const LENS_DATA = {
       nd: 1.58913,
       vd: 61.1,
       fl: -115.1,
-      glass: "S-BAL35 / N-SK5 (OHARA / Schott)",
+      glass: "S-BAL35 — compatible catalog counterpart; patent identity unspecified",
       apd: false,
-      role: "Rear field flattener. Weakly negative meniscus corrects residual field curvature and astigmatism; influences exit pupil telecentricity for uniform sensor illumination.",
+      role: "Negative rear meniscus of fixed unit L3",
     },
   ],
 
@@ -310,7 +289,7 @@ const LENS_DATA = {
     { label: "27", R: 31.679, d: 7.95, nd: 1.80518, elemId: 16, sd: 18.2 }, // L15→L16 junction (D5)
     { label: "28", R: 207.181, d: 8.55, nd: 1.0, elemId: 0, sd: 18.8 }, // L16 rear → air
     { label: "29", R: -28.564, d: 1.6, nd: 1.58913, elemId: 17, sd: 18.5 }, // L17 front
-    { label: "30", R: -50.386, d: 12.63, nd: 1.0, elemId: 0, sd: 18.5 }, // L17 rear → image plane (BFD; cover glass modeled separately in camera body)
+    { label: "30", R: -50.386, d: 14.419230576457633, nd: 1.0, elemId: 0, sd: 18.5 }, // Rear air-equivalent spacing; source cover plate excluded
   ],
 
   /* ── Aspherical coefficients ── */
@@ -343,13 +322,13 @@ const LENS_DATA = {
   ],
 
   /* ── Focus configuration ── */
-  closeFocusM: 0.7,
+  closeFocusM: 0.699370427048457,
   focusDescription:
-    "Inner focus: single plano-concave element L7 (unit L2) translates 18.2 mm toward the image via Nano USM. L1 and L3 remain stationary.",
+    "Patent inner focus: only plano-concave element L7 (unit L2) moves 18.21 mm toward the image. L1, the stop and L3 remain fixed. Closest distance 69.94 cm is calculated from the published near gaps. Stabilization displacement is not simulated.",
 
   /* ── Aperture configuration ── */
   nominalFno: 1.86,
-  fstopSeries: [1.8, 2, 2.5, 2.8, 3.5, 4, 4.5, 5.6, 6.3, 8, 11, 16, 22],
+  fstopSeries: [1.86, 2, 2.5, 2.8, 3.5, 4, 4.5, 5.6, 6.3, 8, 11, 16, 22],
 
   /* ── Layout tuning ── */
   scFill: 0.5,

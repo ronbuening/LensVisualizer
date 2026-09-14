@@ -8,6 +8,7 @@ import {
   sharedFNumber,
   snapToCommon,
 } from "../../../src/comparison/comparisonSliders.js";
+import { formatDist } from "../../../src/optics/optics.js";
 import type { RuntimeLens } from "../../../src/types/optics.js";
 
 /* ── Mock lens objects (only the fields these functions use) ── */
@@ -251,6 +252,12 @@ describe("computeMovementPair", () => {
     },
   } as unknown as RuntimeLens;
   const ordinary = { perspectiveControl: null } as unknown as RuntimeLens;
+  const shiftOnly = {
+    perspectiveControl: {
+      shiftRangeMm: [-11, 11],
+      tiltRangeDeg: [0, 0],
+    },
+  } as unknown as RuntimeLens;
 
   it("hides movement controls for two non-PC lenses", () => {
     const r = computeMovementPair(5, 5, ordinary, ordinary);
@@ -276,5 +283,27 @@ describe("computeMovementPair", () => {
     expect(r.tiltB).toBe(8);
     expect(r.shiftStepMm).toBe(0.1);
     expect(r.tiltStepDeg).toBe(0.1);
+  });
+
+  it("clamps unsupported tilt to zero for a shift-only lens", () => {
+    const r = computeMovementPair(8, 5, shiftOnly, ordinary);
+    expect(r.showMovement).toBe(true);
+    expect(r.shiftA).toBe(8);
+    expect(r.tiltA).toBe(0);
+    expect(r.shiftRangeMm).toEqual([-11, 11]);
+    expect(r.tiltRangeDeg).toEqual([0, 0]);
+  });
+});
+
+describe("zoom-dependent focus distance", () => {
+  it("uses the current zoom endpoint for labels and comparison clamping", () => {
+    const zoom = { ...lensA, isZoom: true, zoomCloseFocusM: [0.5, 1, 2] } as RuntimeLens;
+    const prime = { ...lensB, closeFocusM: 1 } as RuntimeLens;
+    expect(formatDist(1, zoom, 0)).toBe("50 cm");
+    expect(formatDist(1, zoom, 0.5)).toBe("1.00 m");
+    expect(formatDist(1, zoom, 1)).toBe("2.00 m");
+    const pair = computeFocusPair(0.5, zoom, prime, 1, 0);
+    expect(pair.focusA).toBe(1);
+    expect(pair.focusB).toBe(0.5);
   });
 });

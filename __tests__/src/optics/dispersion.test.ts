@@ -87,6 +87,27 @@ describe("glass catalog", () => {
     expect(evaluateCatalogAbbeNumber(entry!)).toBeCloseTo(64.14, 2);
   });
 
+  it("S-BAL11 reproduces the published OHARA 02-06 C/d/F/g indices", () => {
+    const entry = resolveGlass("573578");
+    expect(entry?.name).toBe("S-BAL11");
+    expect(evaluateSellmeier(entry!, LINE_NM.C)).toBeCloseTo(1.56949, 5);
+    expect(evaluateSellmeier(entry!, LINE_NM.d)).toBeCloseTo(1.5725, 5);
+    expect(evaluateSellmeier(entry!, LINE_NM.F)).toBeCloseTo(1.5794, 5);
+    expect(evaluateSellmeier(entry!, LINE_NM.g)).toBeCloseTo(1.58481, 5);
+    expect(evaluateCatalogAbbeNumber(entry!)).toBeCloseTo(57.74, 2);
+  });
+
+  it("BAL15Y reproduces the published OHARA 24-10 line indices and Abbe number", () => {
+    const entry = resolveGlass("BAL15Y (OHARA)");
+    expect(entry?.name).toBe("BAL15Y");
+    expect(entry?.code6).toBe("557587");
+    expect(evaluateSellmeier(entry!, LINE_NM.C)).toBeCloseTo(1.55383, 5);
+    expect(evaluateSellmeier(entry!, LINE_NM.d)).toBeCloseTo(1.55671, 5);
+    expect(evaluateSellmeier(entry!, LINE_NM.F)).toBeCloseTo(1.56331, 5);
+    expect(evaluateSellmeier(entry!, LINE_NM.g)).toBeCloseTo(1.56848, 5);
+    expect(evaluateCatalogAbbeNumber(entry!)).toBeCloseTo(58.68, 2);
+  });
+
   it.each([
     { name: "J-SF1", code6: "717296", nd: 1.71736, vd: 29.57 },
     { name: "J-SF6", code6: "805255", nd: 1.80518, vd: 25.45 },
@@ -299,11 +320,31 @@ describe("glass catalog", () => {
     expect(evaluateSellmeier(lasf02!, LINE_NM.e)).toBeCloseTo(1.804034, 6);
   });
 
+  it("reproduces the official CDGM H-LaF7 line-index table", () => {
+    const glass = resolveGlass("H-LaF7");
+    expect(glass?.vendor).toBe("CDGM");
+    expect(evaluateSellmeier(glass!, LINE_NM.C)).toBeCloseTo(1.775589, 6);
+    expect(evaluateSellmeier(glass!, LINE_NM.d)).toBeCloseTo(1.78179, 6);
+    expect(evaluateSellmeier(glass!, LINE_NM.F)).toBeCloseTo(1.796666, 6);
+    expect(evaluateSellmeier(glass!, LINE_NM.g)).toBeCloseTo(1.808925, 6);
+    expect(resolveGlass("782371")?.name).toBe("H-LaF7");
+  });
+
+  it("reproduces the official CDGM H-ZLaF50E line-index table", () => {
+    const glass = resolveGlass("H-ZLaF50E");
+    expect(glass?.vendor).toBe("CDGM");
+    expect(evaluateSellmeier(glass!, LINE_NM.C)).toBeCloseTo(1.798821, 6);
+    expect(evaluateSellmeier(glass!, LINE_NM.d)).toBeCloseTo(1.804, 6);
+    expect(evaluateSellmeier(glass!, LINE_NM.F)).toBeCloseTo(1.816084, 6);
+    expect(evaluateSellmeier(glass!, LINE_NM.g)).toBeCloseTo(1.825709, 6);
+  });
+
   it("resolves CDGM names regardless of the annotation's casing", () => {
     // Canonical names use the vendor's mixed case (H-ZLaF50D); lens annotations
     // authored in all caps must keep resolving to the same entry.
     for (const [annotated, canonical] of [
       ["H-ZLAF50D", "H-ZLaF50D"],
+      ["H-ZLAF50E", "H-ZLaF50E"],
       ["H-LAK12", "H-LaK12"],
       ["D-ZLAF81-25", "D-ZLaF81-25"],
     ] as const) {
@@ -447,8 +488,9 @@ describe("resolveGlass", () => {
     expect(resolveGlass("MP-NBFD130 molded high-index flint")?.name).toBe("NBFD13");
   });
 
-  it("resolves Ohara PGM / large-format aliases to catalog equivalents", () => {
-    expect(resolveGlass("L-BAL42 (OHARA)")?.name).toBe("S-BAL42");
+  it("resolves named Ohara PGM curves before remaining catalog aliases", () => {
+    expect(resolveGlass("L-BAL42 (OHARA)")?.name).toBe("L-BAL42");
+    expect(resolveGlass("S-YGH51 (OHARA)")?.name).toBe("S-YGH51");
     expect(resolveGlass("OHARA L-BSL7 (PGM)")?.name).toBe("S-BSL7");
     expect(resolveGlass("L-BAL35 (OHARA)")?.name).toBe("S-BAL35");
   });

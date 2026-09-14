@@ -51,7 +51,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 4,764,000",
   patentAuthors: ["Hisashi Tokumaru"],
-  patentAssignees: ["Minolta Co., Ltd."],
+  patentAssignees: ["Minolta Camera Co., Ltd."],
   patentYear: 1988,
   elementCount: 8,
   groupCount: 8,
@@ -178,10 +178,11 @@ const LENS_DATA = {
 
   asph: {},
 
+  focusPositions: [0, 0.853009797094441, 1],
   var: {
-    "8": [5.0, 27.5],
-    "12": [24.0, 1.5],
-    "16": [43.1530002237, 113.4895036789],
+    "8": [5.0, 18.36, 27.5],
+    "12": [24.0, 10.64, 1.5],
+    "16": [43.1530002237, 76.5518, 113.4895036789],
   },
   varLabels: [
     ["8", "D8"],

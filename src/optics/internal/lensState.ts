@@ -16,7 +16,9 @@ import type {
   SurfaceSpectral,
   VarRange,
 } from "../../types/optics.js";
-import { resolveAberrationThickness } from "../prescription/variables.js";
+import { resolveControlledThickness } from "../prescription/variables.js";
+
+export { resolveControlledThickness, resolveVariableThickness } from "../prescription/variables.js";
 
 /**
  * Build a surface-label to zero-based index map.
@@ -183,76 +185,6 @@ export function firstInfinityThickness(range: unknown, isZoom: boolean): number 
 }
 
 /**
- * Resolve a variable gap at current focus and zoom controls.
- *
- * Non-zoom ranges interpolate infinity-to-close by `controlT`. Zoom ranges first
- * interpolate the bracketing zoom entries, then interpolate their focus endpoints.
- *
- * @param baseThickness - authored default thickness in mm
- * @param range - optional variable gap range
- * @param isZoom - whether the range is zoom-indexed
- * @param controlT - normalized focus/aberration control
- * @param zoomT - normalized zoom control
- * @returns current axial thickness in mm
- */
-export function resolveVariableThickness(
-  baseThickness: number,
-  range: VarRange | undefined,
-  isZoom: boolean,
-  controlT: number,
-  zoomT: number,
-): number {
-  if (!range) return baseThickness;
-  if (!isZoom) {
-    const [dInfinity, dClose] = range as [number, number];
-    return dInfinity + (dClose - dInfinity) * controlT;
-  }
-  const zoomRanges = range as [number, number][];
-  if (zoomRanges.length === 0) return baseThickness;
-  if (zoomRanges.length === 1) {
-    const [dInfinity, dClose] = zoomRanges[0];
-    return dInfinity + (dClose - dInfinity) * controlT;
-  }
-  const position = zoomT * (zoomRanges.length - 1);
-  const index = Math.min(Math.floor(position), zoomRanges.length - 2);
-  const fraction = position - index;
-  const dInfinity = zoomRanges[index][0] + (zoomRanges[index + 1][0] - zoomRanges[index][0]) * fraction;
-  const dClose = zoomRanges[index][1] + (zoomRanges[index + 1][1] - zoomRanges[index][1]) * fraction;
-  return dInfinity + (dClose - dInfinity) * controlT;
-}
-
-/**
- * Combine focus and aberration variable gap controls for one surface gap.
- *
- * Focus movement is applied first. Aberration movement contributes only its delta
- * from the base authored gap so both controls can coexist without double-counting
- * the infinity thickness.
- *
- * @param baseThickness - authored default thickness in mm
- * @param focusRange - optional focus variable range
- * @param aberrationRange - optional aberration-analysis range
- * @param isZoom - whether ranges are zoom-indexed
- * @param focusT - normalized focus slider
- * @param zoomT - normalized zoom slider
- * @param aberrationT - normalized aberration spacing slider
- * @returns current axial thickness in mm
- */
-export function resolveControlledThickness(
-  baseThickness: number,
-  focusRange: VarRange | undefined,
-  aberrationRange: AberrationVarRange | undefined,
-  isZoom: boolean,
-  focusT: number,
-  zoomT: number,
-  aberrationT: number,
-): number {
-  const focusThickness = resolveVariableThickness(baseThickness, focusRange, isZoom, focusT, zoomT);
-  if (!aberrationRange) return focusThickness;
-  const aberrationThickness = resolveAberrationThickness(baseThickness, aberrationRange, isZoom, aberrationT, zoomT);
-  return focusThickness + (aberrationThickness - baseThickness);
-}
-
-/**
  * Build a state-adjusted surface array with current controlled thicknesses.
  *
  * @param surfaces - authored physical surfaces
@@ -262,6 +194,7 @@ export function resolveControlledThickness(
  * @param zoomT - normalized zoom slider
  * @param aberrationVarByIdx - aberration spacing ranges keyed by surface index
  * @param aberrationT - normalized aberration spacing slider
+ * @param focusPositions - normalized focus coordinates aligned with each focus range
  * @returns copied surfaces with updated `d` values
  */
 export function buildStateSurfaces(
@@ -272,6 +205,7 @@ export function buildStateSurfaces(
   zoomT: number,
   aberrationVarByIdx: Record<number, AberrationVarRange> = {},
   aberrationT = 0,
+  focusPositions?: readonly number[],
 ): SurfaceData[] {
   return surfaces.map((surface, index) => ({
     ...surface,
@@ -283,6 +217,7 @@ export function buildStateSurfaces(
       focusT,
       zoomT,
       aberrationT,
+      focusPositions,
     ),
   }));
 }

@@ -28,12 +28,6 @@ Patent: JP 2020-177057 A, Example 1
 
 - Updated the analysis file's glass table and affected element narratives, including the L25 code fallback and G5 HRI labels.
 
-### Verification
-
-- `npm test -- glassRelabelByLensScan` passed; this lens no longer appears in the relabel queue.
-- `npm run typecheck` passed.
-- `npm run test` passed.
-
 ## 2026-05-19 — Six-digit glass-code backfill review
 
 Reviewed `patents/JP2020177057A.pdf`, Example 1. The L25 / surface 12 row gives nd=1.755750, νd=24.71, and θgF=0.629. Public Nikon/Hikari catalog data now provides an exact coefficient-backed match: Hikari J-SFH5, d-code `756247`, nd=1.755750, νd=24.71, PgF≈0.6291.

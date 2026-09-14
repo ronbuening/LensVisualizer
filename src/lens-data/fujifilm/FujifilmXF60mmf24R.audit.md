@@ -26,14 +26,6 @@ Patent: US 2014/0247506 A1, Example 1
 
 - Updated the L14/L17 glass-identification rows to use unbroken six-digit tokens and unresolved status.
 
-### Verification
-
-- `npm run generate:glass-reports` - passed.
-- `npm run typecheck` - passed.
-- `npm run format:check` - passed.
-- `npm run lint` - passed.
-- `npm run test` - passed, 131 test files / 1666 tests.
-
 ## 2026-05-31 - Catalog-mismatch second-batch recheck
 
 Reviewed the local untracked file `patents/US20140247506A1.pdf`, Example 1.

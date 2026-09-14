@@ -11,8 +11,6 @@
   `16.5` to `15.0` mm and surface 21 changed from `16.0` to `15.0` mm.
 - Retained the other inferred SDs. Figure leaders obscure several rims, and the remaining clean outlines do not support
   a material change.
-- `npm run audit:surface -- src/lens-data/panasonic/PanasonicLumixSPro2470mmf28.data.ts` and
-  `npm run audit:image-circle -- src/lens-data/panasonic/PanasonicLumixSPro2470mmf28.data.ts` passed.
 
 ### Glass
 

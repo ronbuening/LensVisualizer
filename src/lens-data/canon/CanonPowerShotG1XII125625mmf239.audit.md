@@ -10,7 +10,3 @@ Patent: US 2015/0219882 A1, Numerical Example 2
 - The figure shows the front B1 cemented group as the largest section, a smaller B2 variator, compact B3/B4/B5 groups through the stop and focus region, and a larger final positive B6 relay.
 - Stored SDs already match that hierarchy: B1 starts at 20.0 mm, B2 stays near 9-10 mm, the central groups sit mostly near 7-9.6 mm, and B6 re-expands to 13.2 mm.
 - No SD values changed. Current values remain inferred from multi-state marginal/chief-ray clearance and constrained by renderer safety, edge thickness, sd/|R|, and cross-gap sag checks.
-
-### Verification
-
-- `npm test -- elementRenderDiagnostics`

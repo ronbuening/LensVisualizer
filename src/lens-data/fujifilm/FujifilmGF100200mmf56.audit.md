@@ -10,7 +10,3 @@ Patent: US 2019/0361195 A1, Example 1
 - Fig. 1 shows the positive front group as the largest aperture, smaller moving G2/G3 groups, a stop in front of the rear section, and a moderate final group near the image side.
 - Stored SDs preserve that visual hierarchy: G1 begins around 25-27 mm, G2/G3 are mostly 11-14.7 mm, the stop is about 11.1 mm, and the rear group re-expands to about 14.5-15.4 mm.
 - No SD values changed. Current values remain inferred from the patent figure, zoom-state ray envelopes, f/5.6 stop geometry, edge thickness, and cross-gap sag checks.
-
-### Verification
-
-- `npm test -- elementRenderDiagnostics`

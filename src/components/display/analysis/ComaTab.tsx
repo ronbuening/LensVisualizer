@@ -5,7 +5,7 @@
  * meridional and sagittal coma fan plots with numeric readouts.
  */
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import type { RuntimeLens } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
 import type { PreparedOpticalState } from "../../../optics/types.js";
@@ -15,6 +15,7 @@ import ComaPreviewSection from "./aberrations/ComaPreviewSection.js";
 import MeridionalComaSection from "./aberrations/MeridionalComaSection.js";
 import SagittalComaSection from "./aberrations/SagittalComaSection.js";
 import useComaData from "./aberrations/useComaData.js";
+import PerspectiveComaAnalysis from "./perspective/PerspectiveComaAnalysis.js";
 
 type ComaDetailFieldSelection = "default" | 0.25 | 0.5 | 0.75 | 1;
 
@@ -40,7 +41,29 @@ interface ComaTabProps {
   analysisContext?: AnalysisComputationContext;
 }
 
-export default function ComaTab({
+export default function ComaTab(props: ComaTabProps) {
+  const { analysisContext, t } = props;
+  const perspectiveResult = useMemo(
+    () => (analysisContext?.movementActive ? analysisContext.computePerspectiveFieldAberrations() : null),
+    [analysisContext],
+  );
+
+  if (analysisContext?.movementActive) {
+    return (
+      <div style={{ padding: "8px 0" }}>
+        {perspectiveResult ? (
+          <PerspectiveComaAnalysis result={perspectiveResult} t={t} />
+        ) : (
+          <div style={{ color: t.muted, fontSize: 10 }}>Movement-aware coma analysis is unavailable.</div>
+        )}
+      </div>
+    );
+  }
+
+  return <CenteredComaTab {...props} />;
+}
+
+function CenteredComaTab({
   L,
   t,
   zPos,

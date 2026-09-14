@@ -7,7 +7,6 @@ Patent: JP 2022-99402 A, Example 1
 - Added HOYA NBFD29 from HOYA's first-party optical-glass PDF (`NBFD29`, code 770-297, nd=1.77047, vd=29.74, PgF=0.5951, formula-3 A0-A5 constants) to the runtime catalog.
 - Relabeled L3 / S5 and L4 / S7 to `NBFD29 (HOYA, 770297)`.
 - Relabeled L6 / S12 to existing coefficient-backed `TAFD35 (HOYA, 911353; patent rounds vd to 35.2)`, whose d-line index matches the stored nd=1.91082.
-- `npm test -- dispersion` and `npm run generate:glass-reports` passed; these formerly code-only rows now use trusted Sellmeier data.
 
 ## 2026-05-19 - Missing-Sellmeier queue audit
 

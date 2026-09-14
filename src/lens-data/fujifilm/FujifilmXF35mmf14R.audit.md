@@ -11,10 +11,6 @@ Patent: US 2014/0285903 A1, Example 1
 - Stored SDs match that profile: front GF begins at 15.5-16.8 mm, stop-adjacent surfaces narrow to about 8.3-9.0 mm, and rear GR remains about 6.5-10.4 mm.
 - No SD values changed. Current values remain inferred from the patent figure, f/1.4 stop geometry, marginal/chief-ray envelope, edge thickness, and cross-gap sag checks.
 
-### Verification
-
-- `npm test -- elementRenderDiagnostics`
-
 ## 2026-08-11 - D-K59 catalog recovery
 
 - Rendered local `patents/US20140285903A1.pdf` page 14 and visually confirmed Example 1 surfaces 10-11 at

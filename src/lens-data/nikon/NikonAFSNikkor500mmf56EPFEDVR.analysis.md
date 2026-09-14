@@ -201,8 +201,8 @@ start of G3 imageward by that amount, and BF grows by 0.03857 mm. Fresh object-t
 magnifications of −0.0333312 and −0.1801134 at the intermediate and near rows, respectively, with object-to-image B
 residuals of 0.0465 mm and 0.0085 mm.
 
-The runtime data structure stores the published infinity and near endpoints and interpolates between them. The
-published intermediate row remains an independent audit state rather than an additional interpolation knot.
+The runtime data structure stores the published infinity, intermediate, and near rows as exact focus keyframes.
+Interpolation between those source states remains piecewise linear.
 
 ## Diffractive Phase Surface
 
@@ -298,7 +298,7 @@ local spherical geometry requires no hidden trim. At the configured 80% field, f
 fan samples pass; the outermost negative sample clips at surface 2 rather than at a cemented junction.
 
 These checks validate the authored geometric model, not factory manufacturing tolerances or measured image quality.
-Semi-diameters and stop size remain inferred, the runtime focus path has two endpoint knots, the VR group remains
+Semi-diameters and stop size remain inferred, the runtime focus path has three published keyframes, the VR group remains
 centered, and the diffractive model remains a single-order geometric treatment.
 
 ## Sources

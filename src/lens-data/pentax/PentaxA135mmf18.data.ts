@@ -49,8 +49,6 @@ const LENS_DATA = {
   patentYear: 1984,
   elementCount: 7,
   groupCount: 6,
-  focusDescription: "Fixed rear element extension: L1-L6 move together while L7 remains fixed at the rear.",
-
   elements: [
     {
       id: 1,
@@ -151,8 +149,9 @@ const LENS_DATA = {
   ],
 
   asph: {},
+  focusPositions: [0, 0.7150276511555425, 1],
   var: {
-    "11": [4.0, 29.4034898751],
+    "11": [4.0, 20.42, 29.4034898751],
   },
   varLabels: [["11", "D11"]],
   groups: [
@@ -162,6 +161,8 @@ const LENS_DATA = {
   doublets: [{ text: "D1", fromSurface: "3", toSurface: "5" }],
 
   closeFocusM: 1.2,
+  focusDescription:
+    "Fixed rear-element focus: the patent beta=-0.1 state is exact before the constrained 1.2 m endpoint; L1-L6 move together while L7 remains fixed.",
   nominalFno: 1.8,
   fstopSeries: [1.8, 2, 2.8, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,

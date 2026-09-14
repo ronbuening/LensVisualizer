@@ -302,10 +302,11 @@ const LENS_DATA = {
     },
   },
 
+  focusPositions: [0, 0.2858808070165786, 1],
   var: {
-    "11": [7.5732, 1.709399],
-    "16": [5.2496, 8.044584],
-    "27A": [38.449162, 41.518534],
+    "11": [7.5732, 6.5175, 1.709399],
+    "16": [5.2496, 5.7528, 8.044584],
+    "27A": [38.449162, 39.001762, 41.518534],
   },
   varLabels: [
     ["11", "D11 L1-L2"],
@@ -327,7 +328,7 @@ const LENS_DATA = {
 
   closeFocusM: 0.276,
   focusDescription:
-    "Dual-group floating internal focus: L1 fixed; L2 and stop/L3 move objectward by different amounts. Close-focus values extrapolate the patent's L2:L3 motion ratio to Sigma's published 0.276 m / 1:7.1 limit.",
+    "Dual-group floating internal focus: L1 is fixed; the patent finite state is stored exactly, followed by a constrained extrapolation of the L2:L3 motion ratio to Sigma's published 0.276 m / 1:7.1 limit.",
 
   nominalFno: 1.4,
   fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],

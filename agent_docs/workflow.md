@@ -5,7 +5,8 @@
 - **Small, focused commits** — one logical change per commit (add a type, fix a bug, update a component, add a test)
 - **Commit and push frequently** — after each working stage, not only at the end
 - **Break larger tasks into stages** — commit at the end of each stage before moving to the next
-- **Update branch records at stage boundaries** — keep a short high-signal note in `agent_docs/records/` following `agent_docs/record_keeping.md`
+- **The PR description is the record** — do not write per-branch notes under `agent_docs/records/`; see
+  `agent_docs/documentation-policy.md`
 
 Typical stage breakdown:
 1. Types / interfaces → commit
@@ -13,12 +14,39 @@ Typical stage breakdown:
 3. UI components → commit
 4. Final typecheck + lint + format pass → commit
 
-## Branch Records
+## Commands
 
-- For multi-step work, keep a concise branch/task record in `agent_docs/records/`
-- Record scope, meaningful changes, verification commands, and follow-ups
-- Before opening a PR, make sure the record reflects the final branch state
-- See `agent_docs/record_keeping.md` for the preferred format and pruning rules
+`CLAUDE.md` lists the day-to-day subset. This is the full script inventory; `__tests__/docDrift.test.ts` fails when
+`package.json` and this fence disagree.
+
+```bash
+npm install
+npm run dev                # Generate metadata, then start Vite on http://localhost:5173
+npm run build              # Organize lens data, generate metadata + folder readmes, build, prerender, sitemap, RSS feeds
+npm run generate:metadata  # Organize lens data, refresh src/generated/build-metadata.json, rewrite src/**/readme.md
+npm run generate:readmes   # Rewrite the src/**/readme.md folder docs alone (also runs inside generate:metadata)
+npm run generate:feeds     # Rebuild dist/feeds/ RSS from metadata, lens summaries, changelog
+npm run organize:lens-data # Move stray root-level lens files into maker folders
+npm run preview
+npm run test
+npm run test:coverage
+npm run generate:glass-reports
+npm run generate:mirror-reports
+npm run generate:mount-svgs
+npm run generate:sa-figure-svgs     # Regenerate static spherical-aberration article figures from their components
+npm run generate:holiday-branding   # Recolor the base marks into public/branding/holiday/
+npm run audit:dependencies          # Fail on non-allowlisted high/critical npm advisories
+npm run audit:image-circle          # semi-diameters that cannot cover their own image circle
+npm run audit:patent-figure         # measure a patent cross-section against a lens data file
+npm run audit:surface               # aspheric domain scan + validator with trial semi-diameters
+npm run benchmark:optics-rendering  # On-demand optics/render benchmark (not part of build or test)
+npm run typecheck
+npm run lint
+npm run lint:fix
+npm run format
+npm run format:check
+npm run seo:audit
+```
 
 ## Pre-Commit Checks
 

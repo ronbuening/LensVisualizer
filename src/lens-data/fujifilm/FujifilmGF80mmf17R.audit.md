@@ -37,13 +37,8 @@ Catalog version: 88dde1c
 - Reframed the glass source note because the patent gives optical constants, not vendor glass names.
 - Kept the existing Example 1 identification and aspherical coefficient discussion; its S14 `A20` table already matched Patent Table 4.
 
-### Verification
+### Report status
 
-- `npm test -- catalogMismatchScan glassRelabelCandidatesScan unresolvedGlassScan` — passed; reports regenerated.
-- `npm run typecheck` — passed.
-- `npm run format:check` — passed.
-- `npm run lint` — passed.
-- `npm run test` — passed (129 files, 1664 tests). React error-boundary tests print expected stack traces while passing.
 - Generated reports now show no GF80 catalog-mismatch or relabel-candidate rows. One unresolved GF80 entry remains: L31 / S16 `883392`, intentionally code-labeled because no current catalog glass matches Patent Table 1 nd=1.88300, vd=39.22.
 
 ## 2026-05-19 — Six-digit Sellmeier source recheck

@@ -24,10 +24,6 @@ Patent: US 2,983,193, Fig. 2 prescription / Fig. 1 section
 - Stored SDs follow that pattern after scaling to the 6 inch design: front surfaces are 39-43 mm, the inner groups are roughly 27.8-33.0 mm, the stop is 14.455 mm, and the final rear surface is 35.0 mm.
 - No SD values changed. Current values remain inferred from the patent figure, f/3.5 stop solution, ray-envelope clearance, edge thickness, and cross-gap sag checks.
 
-### Verification
-
-- `npm test -- elementRenderDiagnostics`
-
 ## 2026-08-18 — L4 H-ZF39 coefficient assignment
 
 - Visually rechecked `patents/US2983193.pdf`, PDF page 3. L4 remains patent coordinate `1.66700 / 32.2`.

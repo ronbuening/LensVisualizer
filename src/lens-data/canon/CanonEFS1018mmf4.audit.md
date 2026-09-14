@@ -36,11 +36,3 @@ Catalog version: 88dde1c
 
 - Updated `CanonEFS1018mmf4.analysis.md` element narratives for L5, L7-L10, and L12-L14 to match the corrected glass labels.
 - Updated the glass-selection table and source list to reflect S-NBH8, TAFD35, S-TIM5, S-LAH55, S-TIM22, and S-BAL42.
-
-### Verification
-
-- `npm run typecheck` — passed.
-- `npm run format:check` — passed.
-- `npm run lint` — passed.
-- `npm run test` — passed, 129 files / 1664 tests. Console output includes expected error-boundary stack traces from `errorBoundaries.test.tsx`.
-- `npm test -- catalogMismatchScan glassRelabelCandidatesScan unresolvedGlassScan` — passed. Regenerated scan output no longer included `CanonEFS1018mmf4`; generated report files were restored afterward because they had unrelated pre-existing working-tree changes.

@@ -112,16 +112,16 @@ The patent describes short-distance compensation by moving both functional group
 
 The patent's published `β = −1/30` row is a calibration state, not the production minimum-focus endpoint. Its printed spacings imply `X1 = 0.7876 mm`, `X2 = 0.4726 mm`, and `X2/X1 = 0.6000508`, matching the stated value 0.6 at source precision. The corresponding object-to-image distance is approximately 557.48 mm, so it cannot represent Nikon's marketed 0.25 m minimum focus.
 
-The production endpoint is therefore a `CONSTRAINED_RECONSTRUCTION`. It retains the patent movement topology, fixes `X2/X1 = 0.6`, enforces the paraxial imaging condition at 0.25 m measured from the image plane, and is checked against Nikon's rounded 0.10× maximum reproduction ratio.
+The patent row is stored as an exact keyframe. The production endpoint remains a `CONSTRAINED_RECONSTRUCTION`. It retains the patent movement topology, fixes `X2/X1 = 0.6`, enforces the paraxial imaging condition at 0.25 m measured from the image plane, and is checked against Nikon's rounded 0.10× maximum reproduction ratio.
 
-| Variable spacing | Infinity | Reconstructed 0.25 m endpoint |
-|---|---:|---:|
-| Surface 7 to `STO` | 6.470000 mm | 8.755470 mm |
-| `STO` to surface 8 | 4.518300 mm | 3.147018 mm |
-| Total G1-G2 gap `d7` | 10.988300 mm | 11.902488 mm |
-| Surface 13 to image, air-equivalent | 40.268539 mm | 41.639822 mm |
+| Variable spacing | Infinity | Patent β = −1/30 | Reconstructed 0.25 m endpoint |
+|---|---:|---:|---:|
+| Surface 7 to `STO` | 6.470000 mm | 7.257600 mm | 8.755470 mm |
+| `STO` to surface 8 | 4.518300 mm | 4.045700 mm | 3.147018 mm |
+| Total G1-G2 gap `d7` | 10.988300 mm | 11.303300 mm | 11.902488 mm |
+| Surface 13 to image, air-equivalent | 40.268539 mm | 40.741139 mm | 41.639822 mm |
 
-The solution gives G1 objectward travel `X1 = 2.2854704520 mm` and G2 objectward travel `X2 = 1.3712822712 mm`. The reconstructed finite-conjugate magnification is −0.0971903×, which rounds to the manufacturer's 0.10× specification. The model does not claim that the production cam maintains an exactly constant 0.6 ratio throughout its full travel; that constant ratio is the explicit reconstruction constraint.
+The solution gives G1 objectward travel `X1 = 2.2854704520 mm` and G2 objectward travel `X2 = 1.3712822712 mm`. The reconstructed finite-conjugate magnification is −0.0971903×, which rounds to the manufacturer's 0.10× specification. The model does not claim that the production cam maintains an exactly constant 0.6 ratio throughout its full travel; the segments between exact keyframes are visualization approximations.
 
 ## Modeling Disclosures
 

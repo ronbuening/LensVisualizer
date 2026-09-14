@@ -1,93 +1,57 @@
 # Gotchas — LensVisualizer
 
-- Optical calculations use paraxial approximation (small-angle) — standard for patent data
-- `src/optics` is the authoritative engine. Stable `src/optics/*` files are the app-facing public surface; deeper
-  subdirectories are for engine internals and focused tests
-- Do not reintroduce an old-vs-new production or developer selector. If rollback is needed, use git history or a focused
-  current-engine fix with regression coverage
-- Exact surface tracing is the only trace path. The legacy vertex-plane tracer has been removed; do not
-  reintroduce a per-lens rollout, a `traceMode` option, or trace-mode state in lens data files
-- Mirror and telescope prescriptions opt into folded behavior with `opticalPath`, `SurfaceData.interaction`, and
-  `innerSd`. Ordinary refractive lenses should omit those fields so they keep the default sequential front-to-rear model
-- `opticalPath.surfaceOrder` is a hit order, not a physical ordering requirement, and labels may repeat. Use it for
-  Mangin/second-surface or known folded paths; use `mode: "auto"` only when nearest-valid-surface selection is needed and
-  set a conservative `maxInteractions`
-- `opticalPath.imagePlane.normal` is a meridional normal. `{ z: 1, y: 0 }` is the ordinary vertical IMG plane, while
-  `{ z: 0, y: 1 }` is a horizontal side-focus plane. Do not assume folded systems image at the last surface's BFD
-- `interaction.normal` makes a surface a tilted meridional plane for tracing and SVG rendering. For a flat fold mirror
-  with a visible backing plane, put the same normal on the backing surface or it will render as an untilted plate
-- Second-surface mirrors with `mirrorKind: "second-surface"` render a dashed coating accent in the SVG. That accent is
-  visual-only; reflection/refraction behavior still comes from `SurfaceData.interaction` and the resolved path
-- `innerSd` means a central hole in the active aperture; rays inside the hole pass through. Solid central obstructions
-  should be separate `interaction: { type: "block" }` surfaces
-- Centrally obstructed reflex lenses need annular stop/field reasoning. `stopInnerBlockedSemiDiameter()` is the shared
-  helper for stop display and obstruction-aware sampling. Do not treat the blocked central chief ray as a valid off-axis
-  field solve; Nikon Reflex-Nikkor 1000mm f/11 is the current audit example where that collapses field geometry to zero.
-- Every analysis launch slope should flow through `projectionLaunchSlopeForField` in `src/optics/projection.ts` rather
-  than inline `-Math.tan(θ)`. The helper applies the shared `MAX_FIELD_LAUNCH_DEG = 89` guard; fisheye chief-ray solves
-  route through the bounding-sphere vector path via `solveChiefRay`, and vector-aware callers should consume
-  `solve.vectorLaunch` when it is present
-- The chief-ray solver `solveChiefRay` in `fieldGeometry.ts` is memoized per-`RuntimeLens` via a `WeakMap` keyed on
-  `(focusT, zoomT, aberrationT, fieldAngleDeg, launchSurface)`. Cache invalidation relies on `RuntimeLens` being
-  a fresh object per `buildLens()` call — never mutate `L` in place
-- Runtime trace adapters cache prepared state by `RuntimeLens`, `focusT`, `zoomT`, and `aberrationT`, and cache shifted
-  diagram `zPos` states by array identity. If adding a state-dependent optical input, include it in the cache key or
-  bypass the cache in the focused test
-- `buildLens()` calls `validateLensData()` internally; malformed data throws descriptive errors with all issues listed
-- Theme colors use semantic names (`rayWarm`, `rayCool`, `apdPatentBg`) — update all 4 themes when changing colors
-- `vite.config.js` sets `base: '/'` — Cloudflare Pages serves the production site from the domain root
-- Lens data globs scan recursively for `**/*.data.ts`; analysis globs scan recursively for `**/*.analysis.md` and match by relative stem path — naming convention matters for auto-registration
-- `src/lens-data/defaults.ts` values are merged under each lens — per-lens values in `.data.ts` take precedence
-- Glob paths in `lensCatalog.ts` are relative to the file's location (`../lens-data/`)
-- Lens data files are TypeScript (`.data.ts`) with `satisfies LensDataInput` for compile-time type checking — also validated at runtime by `validateLensData()`
-- `lensMounts` and `imageFormat` must use canonical ids from `src/utils/catalog/lensTaxonomy.ts`; leave uncertain lenses unset
-  and track them in `agent_docs/lens-mount-format-backfill.md`
-- Test files are `.ts` — both Vitest and tsc process them; Vitest resolves `.js` import extensions to `.ts` sources automatically
-- Several scan suites under `__tests__/src/optics/` are report generators that rewrite `agent_docs/generated/*.generated.md` on every run (`npm run generate:glass-reports` is just a vitest filter). The six-digit and glass-coverage-opportunities scans skip their rewrite when the untracked local `patents/` PDF inventory is empty, so plain `npm run test` in a fresh worktree or CI leaves the checked-in reports unchanged — regenerate those from a checkout where `patents/` is populated
-- `tsconfig.json` uses `strict: true` with `allowJs: false`; lens data `.data.ts` files are included in tsc via the `"src"` include
-- `.git-blame-ignore-revs` lists the initial Prettier commit — GitHub respects it automatically; for local blame run `git config blame.ignoreRevsFile .git-blame-ignore-revs`
-- `nominalFno` can be a single number or an array (one per zoom position) for variable-aperture zooms — array length must match `zoomPositions.length`; using an array on a non-zoom lens will fail validation
-- Some zoom patents only publish infinity-focus spacing tables. If you copy those values into the close-focus slot unchanged, the focus slider will stay visually static for the moving group. Infer close-focus pairs only for the true focusing gaps, preserve the mechanism constraint (for a single rigid translator, the adjacent-gap sum stays constant), and document the approximation in the header plus `focusDescription`
-- `prerender.mjs` validates that every route pattern in `routeManifest.tsx` is covered by routes in `src/generated/build-metadata.json` — adding a new route pattern without updating `generate-build-metadata.mjs` will fail the build. Client-only patterns (e.g. `/compare/:slugA/:slugB`) are exempt via `CLIENT_ONLY_PATTERNS`
-- `analysisDrawerOpen` is NOT persisted to localStorage (always starts closed); `analysisDrawerTab` IS persisted so the user's last-used tab is remembered
-- Analysis drawer closes automatically when switching lenses (SET_LENS_A) or entering comparison mode (ENTER_COMPARE) to prevent stale data display
-- Perspective-control movement is opt-in via `perspectiveControl`. Do not add SHIFT/TILT controls to ordinary lenses.
-  The v1 movement layer is a 2D meridional visualization against a fixed IMG plane; analysis tabs remain centered-lens
-  diagnostics and show a notice when movement is active
-- Folded mirror analysis is intentionally guarded by path. Spherical aberration and mirror-safe blur helpers can use the
-  explicit image plane; the analysis drawer guards coma, distortion, and vignetting for `L.isFoldedOptics`, and
-  the Aberrations tab hides its field-curvature/astigmatism section until that math is explicitly adapted and
-  fixture-tested
-- Ray density is a persisted preference (`normal`, `dense`, `diagnostic`), not a URL field. `normal` must preserve the
-  lens-authored `rayFractions` / `offAxisFractions` exactly; denser modes should go through `src/optics/raySampling.ts`
-  so symmetry and chief rays stay predictable
-- Chromatic mode replaces the monochrome ray layers. When COLOR is on, ON-AXIS controls axial chromatic rays and
-  OFF-AXIS controls off-axis chromatic rays; do not render normal rays underneath the chromatic fan
-- Cardinal element overlays are state-aware first-order diagnostics. Keep the CARDINALS / DIMENSIONS controls
-  feature-flagged by `ENABLE_CARDINAL_ELEMENTS`; the overlay must render H/N and H′/N′ as explicitly coincident for
-  same-index systems and must not describe nodal points as no-parallax or panoramic rotation points
-- New analysis tabs have four registration points (tab id in `ANALYSIS_TAB_IDS`, label, content component,
-  renderer entry); follow `agent_docs/adding_an_analysis_tab.md` rather than wiring from memory
-- The aspheric deviation inspector (`AsphericComparisonOverlay`) is **not** an analysis drawer tab — it is a standalone `OverlayModal` opened via the "Compare to sphere →" link in `ElementInspector`. Its open/close state lives in `useOverlayState.ts` (`asphCompareElementId`, `openAsphCompare`, `closeAsphCompare`) and resets automatically when switching lenses. This is the only diagram overlay still in `useOverlayState`; all the others (Abbe/glass-map, LCA, Petzval, bokeh, analysis drawer) live in the URL-shareable `panels` slice of the reducer. The callback flows: `useOverlayState` → `LensDiagramLoadedState` → `DiagramControlPanel` → `ElementInspector`
-- Adding a new shareable view-state field requires three coordinated edits: (1) the `[key, default]` entry in `VIEW_STATE_FIELDS` in `src/utils/state/lensViewUrlState.ts`, (2) the matching `URLState` and `PanelsSlice` (and `PanelField` union) entries in `src/types/state.ts`, and (3) the URL key + parse/build branch in `parseLensViewQuery` / `buildLensViewQuery` if the field needs a non-trivial encoding. The reducer's `APPLY_URL_VIEW_STATE` branch and `createInitialState` use the table directly, so they pick up new fields automatically once steps 1-2 are in place
-- Field curvature sign convention: positive shift = aft (toward sensor), negative = fore (toward lens). Petzval shift is negated relative to the geometric sag so it matches T/S direction for converging systems. Coma spot diagrams use industry-standard axes: sagittal on horizontal, tangential on vertical
-- Distortion computation uses the same state-aware solved-chief-ray convention as `useOffAxisRays.ts`; keep visible off-axis rays, distortion, vignetting, pupil aberration, coma, and bokeh aligned if the convention changes
-- Maker prefixes have one source of truth in `scripts/maker-prefixes.mjs`; `generate-build-metadata.mjs` writes `src/generated/maker-prefixes.json` for runtime metadata helpers
-- SD validation uses slope-based rim check (`sagSlopeRaw`, threshold ~64.2°) not the old `sd/|R| ≤ 0.90` spherical proxy — aspherical surfaces (K near −1) can have sd/|R| well above 0.9. Element front/rear SD ratio limit is 3.0 (sanity check). Cross-gap validation checks the two boundary surfaces that face each other and requires combined sag intrusion ≤ `gapSagFrac × gap`; the default is 0.90, leaving visible clearance instead of accepting mathematical rim contact. Rendering shares this rim and gap policy; production tests fail if `computeElementRenderDiagnostics()` would hide more than 0.25 mm of a surface
-- Chief ray solver (`solveChiefRay`) skips iteration below 1° field angle — retrofocus designs can have pupil
-  aberration even at 2-3°. Above 1° it uses bounded bisection/scanning and returns typed status plus
-  `vectorLaunch` when applicable. Vignetting, pupil, distortion, and off-axis tracing share this solver for
-  physically correct pupil-sweep centering
-- SVG element outlines use 96 subdivisions per surface — sufficient for strong aspherics. Element shapes render each surface to its diagnostic render SD, with straight connecting edges where front/rear SDs differ (trapezoidal barrel cuts), so hidden clipping cannot create artificial edge "wings"
-- Vignetting field samples are adaptive (~3° spacing, min 7 samples) — ultra-wide lenses get denser sampling
-  automatically. Pupil sweep uses 192 rays per field angle on ordinary lenses and 96 on heavy lenses via
-  `isHeavyLensForRayWork`
-- Distortion analysis uses a 17-sample pupil correction table, 9 samples on heavy lenses, and adaptive
-  1°-per-segment bracket search in `solveFieldAngleForImageHeightAccurate`; fisheye grid samples use the vector branch
-  when angular cells exceed the slope-launch domain
-- Cross-gap overlap is often the binding constraint when increasing SDs on extreme wide-angle lenses — thin air gaps between strongly curved boundary surfaces set the practical SD limit
-- Layout tuning (`scFill`, `yScFill`, `maxAspectRatio`, `lensShiftFrac`) is a final visual calibration pass after the prescription and SDs already validate. Use it to better match published optical sections, not to paper over bad geometry
+Non-obvious constraints and failure modes: one trap per bullet, with the full rule in the linked doc.
+
+- Trace-path, folded/mirror (`opticalPath`, `surfaceOrder`, `imagePlane.normal`, `interaction.normal`, `mirrorKind`,
+  `innerSd`), and field-launch (`projectionLaunchSlopeForField`, `solveChiefRay`) conventions are defined in
+  `agent_docs/architecture/optics-engine.md`; lens-file authoring rules are in `src/lens-data/LENS_DATA_SPEC.md`. Do not
+  reintroduce a legacy trace selector, per-lens rollout state, or a `traceMode` option.
+- `solveChiefRay` is memoized per `RuntimeLens` in a `WeakMap` keyed on `(focusT, zoomT, aberrationT, fieldAngleDeg,
+  launchSurface)`. Invalidation relies on every `buildLens()` call returning a fresh object — never mutate `L` in place.
+- Runtime trace adapters cache prepared state by `RuntimeLens` + `focusT` + `zoomT` + `aberrationT`, and cache shifted
+  diagram `zPos` states by array identity. A new state-dependent optical input must join the cache key, or the focused
+  test must bypass the cache.
+- `solveChiefRay` skips iteration below 1° field angle, yet retrofocus designs can show pupil aberration at 2–3°. Above
+  1° it uses bounded bisection/scanning and returns a typed status plus `vectorLaunch` when applicable.
+- Centrally obstructed reflex lenses need annular stop/field reasoning through the shared `stopInnerBlockedSemiDiameter()`
+  helper. Never treat the blocked central chief ray as a valid off-axis field solve; on the Nikon Reflex-Nikkor 1000mm
+  f/11 that collapses field geometry to zero.
+- Sign conventions: field-curvature shift is positive aft (toward the sensor) and negative fore; the Petzval shift is
+  negated relative to geometric sag so it matches the T/S direction for converging systems; coma spot diagrams put
+  sagittal on the horizontal axis and tangential on the vertical.
+- Cardinal overlays stay behind `ENABLE_CARDINAL_ELEMENTS`. Render H/N and H′/N′ as explicitly coincident for same-index
+  systems, and never describe nodal points as no-parallax or panoramic rotation points.
+- SD validation is slope-based (`sagSlopeRaw`, rim threshold ~64.2°), not the old `sd/|R| ≤ 0.90` proxy — aspheres with
+  K near −1 legitimately exceed 0.9. Front/rear SD ratio ≤ 3.0; cross-gap sag intrusion ≤ `gapSagFrac × gap` (default
+  0.90); production tests fail if `computeElementRenderDiagnostics()` would hide more than 0.25 mm of a surface.
+- `nominalFno` may be an array only on zoom lenses, with one entry per `zoomPositions` element; an array on a prime fails
+  validation.
+- Some zoom patents publish only infinity-focus spacing tables; copying them unchanged into the close-focus slot leaves
+  the focus slider visually static. Infer close-focus pairs only for the true focusing gaps, preserve the mechanism
+  constraint (a single rigid translator keeps the adjacent-gap sum constant), and document the approximation in the
+  file header and `focusDescription`.
+- The `import.meta.glob` patterns in `src/utils/catalog/lensCatalog.ts` are relative to that file (`../../lens-data/`),
+  and analysis files match by relative stem path — naming and placement matter for auto-registration.
+- `scripts/prerender.mjs` validates that every route pattern in `src/routes/routeManifest.tsx` is covered by
+  `src/generated/build-metadata.json`; a new pattern without a `scripts/generate-build-metadata.mjs` update fails the
+  build. Client-only patterns (e.g. `/compare/:slugA/:slugB`) are exempt via `CLIENT_ONLY_PATTERNS`.
+- `vite.config.js` sets `base: '/'`; Cloudflare Pages serves production from the domain root.
+- `tsconfig.json` is `strict: true` with `allowJs: false`; `.data.ts` lens files are type-checked through the `"src"`
+  include. Test files are `.ts`, and Vitest resolves `.js` import specifiers to `.ts` sources automatically.
+- Several scan suites under `__tests__/src/optics/` rewrite `agent_docs/generated/*.generated.md` on every run
+  (`npm run generate:glass-reports` is just a vitest filter). The six-digit and glass-coverage-opportunities scans skip
+  the rewrite when the untracked local `patents/` inventory is empty, so `npm run test` in a fresh worktree or CI leaves
+  the checked-in reports unchanged — regenerate from a checkout with `patents/` populated.
+- `.git-blame-ignore-revs` lists the initial Prettier commit. GitHub honors it automatically; locally run
+  `git config blame.ignoreRevsFile .git-blame-ignore-revs`.
 - Keep `react`, `react-dom`, `@types/react`, and `@types/react-dom` on the same React 19 line. `react-helmet-async` 3
   delegates metadata to React 19's native hoisting, so its old SSR context is intentionally empty; prerender metadata
   must continue through the boundary/extraction path in `src/entry-server.tsx`. See
   `agent_docs/records/react-types-downgrade-2026-07-07.md` for the resolved React 18-era mismatch.
+- `analysisDrawerOpen` is NOT persisted to localStorage (the drawer always starts closed); `analysisDrawerTab` IS
+  persisted so the last-used tab is remembered. The drawer also closes on `SET_LENS_A` and `ENTER_COMPARE` so stale
+  analysis never shows for a new lens.
+- `AsphericComparisonOverlay` is an `OverlayModal` opened from `ElementInspector`, not a drawer tab; its open state in
+  `useOverlayState.ts` is the only overlay outside the URL-shareable `panels` slice
+  (`agent_docs/architecture/viewer-and-diagram.md`).
+- New analysis tabs: `agent_docs/adding_an_analysis_tab.md`. New URL-shareable fields: `agent_docs/adding_url_state.md`.

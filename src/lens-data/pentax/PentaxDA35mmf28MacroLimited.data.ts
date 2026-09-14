@@ -188,8 +188,9 @@ const LENS_DATA = {
   ],
 
   asph: {},
+  focusPositions: [0, 0.858792011850653, 1],
   var: {
-    "13": [1.0, 24.13],
+    "13": [1.0, 12.57, 24.13],
   },
   varLabels: [["13", "D13"]],
   groups: [

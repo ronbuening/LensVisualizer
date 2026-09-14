@@ -218,9 +218,10 @@ const LENS_DATA = {
     },
   },
 
+  focusPositions: [0, 0.9106579317813288, 1],
   var: {
-    "8": [2.9684, 5.3323],
-    "14A": [1.21, 25.7088],
+    "8": [2.9684, 3.2165, 5.3323],
+    "14A": [1.21, 13.371, 25.7088],
   },
   varLabels: [
     ["8", "d1a (G1→STO)"],
@@ -236,7 +237,7 @@ const LENS_DATA = {
 
   closeFocusM: 0.163,
   focusDescription:
-    "PUBLISHED: Example 1 supplies INF, β=-0.5 MID, and β=-1.0 CLD states. G1 and G2 move objectward while d1a changes; the stop co-moves with G2, d1b stays 4.00000 mm, and G3 remains fixed to the physical image plane. Runtime focus uses one linear parameter between the published INF/CLD endpoints, so the published MID d1a/d2 pair is verified separately and is not represented exactly by the runtime interpolation. The modeled CLD conjugate is 0.15264661 m object-to-physical-focal-plane, while closeFocusM retains Nikon's separate 0.163 m marketed minimum-focus specification.",
+    "PUBLISHED: Example 1 supplies exact INF, β=-0.5 MID, and β=-1.0 CLD focus keyframes. G1 and G2 move objectward while d1a changes; the stop co-moves with G2, d1b stays 4.00000 mm, and G3 remains fixed to the physical image plane. The modeled CLD conjugate is 0.15264661 m object-to-physical-focal-plane, while closeFocusM retains Nikon's separate 0.163 m marketed minimum-focus specification.",
 
   nominalFno: 2.68,
   fstopSeries: [2.68, 4, 5.6, 8, 11, 16, 22],

@@ -23,7 +23,3 @@ Reviewed local untracked patent file `patents/US8416506.pdf`, Example 6 / Table 
 - US 8,416,506 does not publish per-surface clear apertures or effective diameters for Example 6.
 - Current SDs remain documented renderer clear-aperture estimates. They make rational sense against FIG. 26 and the production 77 mm filter constraint: a large front collector, tightened variator and focus groups, a stop at `sd = 16.59 mm`, and moderate rear relay diameters through the G5a/G5b/G5c assembly.
 - The stop SD is derived from the f/2.89 aperture geometry; the other SDs remain constrained by paraxial ray envelopes, edge thickness, and sag clearance rather than patent-published aperture data.
-
-### Verification
-
-- Pending batch verification after the current Nikon audit pass.

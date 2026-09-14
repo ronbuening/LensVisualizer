@@ -96,6 +96,16 @@ describe("createCoordinateTransforms", () => {
     expect(bounded.sx(140)).toBeLessThanOrEqual(800 - 37.9);
   });
 
+  it("reduces both axis scales when a moved-lens y extent would exceed the viewport", () => {
+    const unbounded = createCoordinateTransforms(base);
+    const bounded = createCoordinateTransforms({ ...base, yExtent: { min: -100, max: 100 } });
+
+    expect(bounded.effectiveSC).toBeLessThan(unbounded.effectiveSC);
+    expect(bounded.sy(-100)).toBeGreaterThanOrEqual(19.9);
+    expect(bounded.sy(100)).toBeLessThanOrEqual(400 - 19.9);
+    expect(bounded.sx(100) - bounded.sx(0)).toBeLessThan(unbounded.sx(100) - unbounded.sx(0));
+  });
+
   it("clampedRayEnd passes through when ray is within viewport", () => {
     const { clampedRayEnd, yViewMax } = createCoordinateTransforms(base);
     // Small slope, ray stays within viewport

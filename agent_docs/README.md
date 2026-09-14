@@ -1,94 +1,98 @@
 # Agent Docs
 
 Focused docs for agents working in LensVisualizer. Read the smallest relevant doc before changing an area, then follow
-links outward only when the task crosses boundaries.
+links outward only when the task crosses boundaries. Every living doc is listed here once with a tag;
+`documentation-policy.md` says what goes where and when it is deleted, and `__tests__/docDrift.test.ts` enforces the
+index.
 
-## Layout
+Tags: `[policy]` how we work · `[recipe]` steps for one change type · `[architecture]` how the code works now ·
+`[queue]` open work only · `[record]` linked historical or in-progress notes · `[generated]` regenerable reports.
 
-- [`architecture.md`](architecture.md) and [`architecture/`](architecture/) — subsystem map, program flow, public functions, and focused architecture notes.
-- Task recipes at the root — step-by-step guides for common change types:
-  [`adding_an_analysis_tab.md`](adding_an_analysis_tab.md), [`adding_url_state.md`](adding_url_state.md),
-  [`adding_a_route.md`](adding_a_route.md), [`adding_ui_controls.md`](adding_ui_controls.md),
-  [`testing_recipes.md`](testing_recipes.md), [`theme_tokens.md`](theme_tokens.md). Read the matching
-  recipe before starting one of these tasks.
-- Lens/content workflow docs at the root — lens authoring, the copy-ready
-  [`lens-data-integration-handoff.md`](lens-data-integration-handoff.md), patent audits, semi-diameter diagram audits,
-  articles, changelog, comments, and gotchas.
-- [`diffractive-phase-surfaces-plan.md`](diffractive-phase-surfaces-plan.md) — shipped implementation record and
-  engine/data contract for rotationally symmetric Nikon PF, Canon DO, and equivalent kinoform phase surfaces.
-- Glass catalog workflow docs at the root — catalog buildout, relabel follow-up, and proprietary-glass backfill.
-- [`seo-optimization-plan.md`](seo-optimization-plan.md) — staged production rollout, Search Console triage,
-  index-quality decisions, performance work, monitoring, required inputs, and acceptance criteria for SEO follow-ups.
-- Agent instruction guidance at the root — [`agent-md-best-practices.md`](agent-md-best-practices.md) for general
-  AGENTS.md files and [`claude-md-best-practices.md`](claude-md-best-practices.md) for Claude-specific files.
-- Root-level project docs: [`../TRACE_MODEL_IMPROVEMENT_PLAN.md`](../TRACE_MODEL_IMPROVEMENT_PLAN.md) (historical
-  trace status), [`../FEATURE_ADDITION_PLAN.md`](../FEATURE_ADDITION_PLAN.md) (single source of truth for planned
-  features), and [`../EFFICIENCY_IMPROVEMENT_PLAN.md`](../EFFICIENCY_IMPROVEMENT_PLAN.md) (cleanup/performance
-  backlog). The former `ANALYSIS_OPTIONS.md` and `MIRROR_LENS_FUTURE_ENHANCEMENTS.md` roadmaps are archived under
-  [`records/`](records/).
-- Current mirror/folded optics behavior is covered in [`architecture/optics-engine.md`](architecture/optics-engine.md)
-  and authoring rules are covered in [`adding_a_lens.md`](adding_a_lens.md); remaining follow-up work is tracked in
-  the Mirror/Folded Backlog section of [`../FEATURE_ADDITION_PLAN.md`](../FEATURE_ADDITION_PLAN.md).
-- [`generated/`](generated/) — auto-generated reports and work queues; regenerate these instead of hand-editing them.
-- [`benchmarks/`](benchmarks/) — on-demand optics/rendering benchmark history and the latest human-readable benchmark
-  report. Run `npm run benchmark:optics-rendering` manually; this command is intentionally not part of normal tests or
-  build scripts.
-- [`records/`](records/) — historical branch/task notes. Treat these as context, not current source of truth.
+## Policy and conventions
 
-## Generated Reports
+- [policy] [`documentation-policy.md`](documentation-policy.md) — where things go, what is not documented, retention triggers, CLAUDE.md rules
+- [policy] [`decisions.md`](decisions.md) — verified-healthy, rejected, and excluded items; check before "fixing" or rebuilding
+- [policy] [`workflow.md`](workflow.md) — commit style, the full npm script inventory, CI, deployment
+- [policy] [`code_conventions.md`](code_conventions.md) — naming, TypeScript, the `*2` compat facade, formatting, architecture constraints
+- [policy] [`commenting_guide.md`](commenting_guide.md) — comment the why, not the what
+- [policy] [`changelog.md`](changelog.md) — `/updates` entry rules for `src/utils/content/changelogData.ts`
+- [policy] [`article_formatting.md`](article_formatting.md) — markdown polish expectations for articles
+- [policy] [`gotchas.md`](gotchas.md) — non-obvious constraints and failure modes, with pointers
 
-Regenerate all glass reports together:
+## Architecture
 
-```bash
-npm run generate:glass-reports
-```
+- [architecture] [`architecture.md`](architecture.md) — subsystem index, system shape, full project map
+- [architecture] [`architecture/program-flow.md`](architecture/program-flow.md) — route shell and diagram computation flow (Mermaid)
+- [architecture] [`architecture/public-functions.md`](architecture/public-functions.md) — import boundaries and which public barrel to use
+- [architecture] [`architecture/routing-and-content.md`](architecture/routing-and-content.md) — routes, SSR, SEO, articles, generated metadata
+- [architecture] [`architecture/viewer-and-diagram.md`](architecture/viewer-and-diagram.md) — LensViewer, diagram panels, zoom/pan, error tiers
+- [architecture] [`architecture/ui-components.md`](architecture/ui-components.md) — controls, display components, markdown renderer, analysis tabs
+- [architecture] [`architecture/optics-engine.md`](architecture/optics-engine.md) — tracing, launch conventions, folded paths, aberrations, diffractive surfaces, validation
+- [architecture] [`architecture/mount-diagrams.md`](architecture/mount-diagrams.md) — mount data, polar geometry renderer, `/mounts` pages, SVG generator
+- [architecture] [`architecture/state-and-utilities.md`](architecture/state-and-utilities.md) — reducer state, preferences, URL sync, themes, utilities
+- [architecture] [`architecture/comparison.md`](architecture/comparison.md) — comparison mode, shared sliders, compare URLs
+- [architecture] [`architecture/testing.md`](architecture/testing.md) — test layout, regression anchors, and the per-lens test retention policy
 
-Regenerate mirror fixture reports:
+## Recipes
 
-```bash
-npm run generate:mirror-reports
-```
+- [recipe] [`adding_a_lens.md`](adding_a_lens.md) — lens data workflow and validation troubleshooting; field rules live in `src/lens-data/LENS_DATA_SPEC.md`
+- [recipe] [`lens-data-integration-handoff.md`](lens-data-integration-handoff.md) — copy-ready AI handoff for constructing data/analysis pairs
+- [recipe] [`lens-patent-audit.md`](lens-patent-audit.md) — four-phase patent audit and the per-lens `*.audit.md` log format
+- [recipe] [`patent-figure-sd-audit-procedure.md`](patent-figure-sd-audit-procedure.md) — semi-diameter vs patent-figure runbook
+- [recipe] [`glass-catalog-buildout.md`](glass-catalog-buildout.md) — glass catalog playbook and how to add a Sellmeier entry safely
+- [recipe] [`adding_an_article.md`](adding_an_article.md) — article and series frontmatter, TOC, links, verification
+- [recipe] [`adding_a_route.md`](adding_a_route.md) — new page/route with prerender and sitemap wiring
+- [recipe] [`adding_an_analysis_tab.md`](adding_an_analysis_tab.md) — the four registration points for a new analysis drawer tab
+- [recipe] [`adding_url_state.md`](adding_url_state.md) — the three coordinated edits for a URL-shareable view-state field
+- [recipe] [`adding_ui_controls.md`](adding_ui_controls.md) — sliders and toggles via shared controls and dispatch adapters
+- [recipe] [`theme_tokens.md`](theme_tokens.md) — adding or changing theme color tokens across all four variants
+- [recipe] [`testing_recipes.md`](testing_recipes.md) — copy-paste test patterns and the shared `__tests__/testUtils.tsx` helpers
 
-Regenerate the mount SVG specifications + per-view SVGs:
+## Queues (open work only)
 
-```bash
-npm run generate:mount-svgs
-```
+- [queue] [`../FEATURE_ADDITION_PLAN.md`](../FEATURE_ADDITION_PLAN.md) — planned features; owns the per-item template and the "already shipped" list
+- [queue] [`../EFFICIENCY_IMPROVEMENT_PLAN.md`](../EFFICIENCY_IMPROVEMENT_PLAN.md) — open cleanup and performance items with verification gates
+- [queue] [`../TRACE_MODEL_IMPROVEMENT_PLAN.md`](../TRACE_MODEL_IMPROVEMENT_PLAN.md) — trace-model status, deferred items, suggested next work
+- [queue] [`sd-audit-queue.md`](sd-audit-queue.md) — semi-diameter floor failures, shape deviations, source blockers, the in-progress diagram sweep
+- [queue] [`lens-mount-format-backfill.md`](lens-mount-format-backfill.md) — mount/format metadata coverage and review queue
+- [queue] [`glass-relabel-followup.md`](glass-relabel-followup.md) — catalog-mismatch relabel status and closed families
+- [queue] [`proprietary-glass-backfill.md`](proprietary-glass-backfill.md) — patent line-index backfill for proprietary glasses
+- [queue] [`seo-optimization-plan.md`](seo-optimization-plan.md) — SEO rollout and Search Console triage, blocked on user-supplied inputs
 
-Individual report commands:
+## Records
 
-- [`generated/unresolved-glass.generated.md`](generated/unresolved-glass.generated.md) — `npm test -- unresolvedGlassScan`
-- [`generated/catalog-mismatches.generated.md`](generated/catalog-mismatches.generated.md) — `npm test -- catalogMismatchScan`
-- [`generated/glass-relabel-candidates.generated.md`](generated/glass-relabel-candidates.generated.md) — `npm test -- glassRelabelCandidatesScan`
-- [`generated/glass-relabel-by-lens.generated.md`](generated/glass-relabel-by-lens.generated.md) — `npm test -- glassRelabelByLensScan`
-- [`generated/glass-ambiguities.generated.md`](generated/glass-ambiguities.generated.md) — `npm test -- glassAmbiguityScan`;
-  one rollup row per distinct (annotation, stored coordinates) ambiguity with an occurrence count, the
-  selected row + tie-break reason, and runner-up names — per-candidate residuals come from
-  `explainCompatibleGlassResolution`, not the committed report
-- [`generated/six-digit-glass-codes.generated.md`](generated/six-digit-glass-codes.generated.md) — `npm test -- sixDigitGlassCodeScan`
-- [`generated/six-digit-glass-codes-missing-sellmeier.generated.md`](generated/six-digit-glass-codes-missing-sellmeier.generated.md) — `npm test -- sixDigitGlassCodeScan`
-- [`generated/six-digit-glass-codes-missing-sellmeier-reviewed.md`](generated/six-digit-glass-codes-missing-sellmeier-reviewed.md) — manual review sidecar; preserve it when regenerating reports
-- [`generated/sellmeier-coverage.generated.md`](generated/sellmeier-coverage.generated.md) — `npm test -- sellmeierCoverageScan`
-- [`generated/glass-coverage-opportunities.generated.md`](generated/glass-coverage-opportunities.generated.md) — `npm test -- glassCoverageOpportunitiesScan`
-- [`generated/mirror-fixtures.generated.md`](generated/mirror-fixtures.generated.md) — `npm test -- mirrorFixtureAuthoringReport`
-- [`generated/lens-mount-svg-specifications.md`](generated/lens-mount-svg-specifications.md) + [`generated/mounts/`](generated/mounts/) — `npm test -- mountSvgSpecificationsReport`;
-  the spec records figure element counts + content hashes and machine-block sizes + hashes — full SVG
-  markup lives in the committed `generated/mounts/*.svg` files and diffable geometry in `src/mounts/`
+Kept only while a living doc or a lens `*.audit.md` sidecar links them; see [`records/README.md`](records/README.md).
 
-The `sixDigitGlassCodeScan` and `glassCoverageOpportunitiesScan` reports embed match statuses against the untracked
-local `patents/` PDF inventory. Those scans skip the rewrite when the inventory is empty (fresh worktrees, CI), so
-regenerate their three report files only from a checkout where `patents/` is populated.
+- [record] [`records/README.md`](records/README.md) — admission rule and where deleted records went
+- [record] [`records/lens-shape-audit-first-200-2026-09-08.md`](records/lens-shape-audit-first-200-2026-09-08.md) — in-progress diagram sweep, paused at lens 40 of 200, with resume handoff
+- [record] [`records/patent-figure-sd-audit-2026-07.md`](records/patent-figure-sd-audit-2026-07.md) — 2026-07 semi-diameter audit report of the odd-asphere lenses
+- [record] [`records/konica-ar-september5-audit.md`](records/konica-ar-september5-audit.md) — Konica AR batch audit linked from its lens audit logs
+- [record] [`records/relationship-map-2026-07-22.md`](records/relationship-map-2026-07-22.md) — patent relationship map (F25) outcome record
+- [record] [`records/mirror-lens-tracing-and-authoring.md`](records/mirror-lens-tracing-and-authoring.md) — historical mirror/folded implementation notes
+- [record] [`records/optics-2-stage-05-performance.md`](records/optics-2-stage-05-performance.md) — trace performance stage record
+- [record] [`records/react-types-downgrade-2026-07-07.md`](records/react-types-downgrade-2026-07-07.md) — resolved React 18-era types mismatch
 
-## Benchmarks
+## Generated reports and benchmarks
 
-Optics/rendering benchmark records live outside `generated/` because each run is a permanent historical measurement:
+Regenerate instead of hand-editing. Reports are deterministic, so `git diff` after regeneration shows only real data
+changes. Judge glass coverage by the share of surfaces with trusted chromatic data, not by absolute missing counts.
+`npm run generate:glass-reports` rewrites all glass reports, `npm run generate:mirror-reports` the mirror fixtures, and
+`npm run generate:mount-svgs` the mount SVG specification plus per-view SVGs. Individual reports:
 
-- [`benchmarks/README.md`](benchmarks/README.md) — command, options, output policy, and benchmark coverage.
-- [`benchmarks/benchmark-report.md`](benchmarks/benchmark-report.md) — latest report regenerated from the newest 10 run JSON files.
-- [`benchmarks/runs/`](benchmarks/runs/) — one JSON file per real benchmark run.
+- [generated] [`generated/unresolved-glass.generated.md`](generated/unresolved-glass.generated.md) — `npm test -- unresolvedGlassScan`
+- [generated] [`generated/catalog-mismatches.generated.md`](generated/catalog-mismatches.generated.md) — `npm test -- catalogMismatchScan`
+- [generated] [`generated/glass-relabel-candidates.generated.md`](generated/glass-relabel-candidates.generated.md) — `npm test -- glassRelabelCandidatesScan`
+- [generated] [`generated/glass-relabel-by-lens.generated.md`](generated/glass-relabel-by-lens.generated.md) — `npm test -- glassRelabelByLensScan`
+- [generated] [`generated/glass-ambiguities.generated.md`](generated/glass-ambiguities.generated.md) — `npm test -- glassAmbiguityScan`; one rollup row per distinct ambiguity, per-candidate residuals come from `explainCompatibleGlassResolution`
+- [generated] [`generated/six-digit-glass-codes.generated.md`](generated/six-digit-glass-codes.generated.md) — `npm test -- sixDigitGlassCodeScan`
+- [generated] [`generated/six-digit-glass-codes-missing-sellmeier.generated.md`](generated/six-digit-glass-codes-missing-sellmeier.generated.md) — `npm test -- sixDigitGlassCodeScan`
+- [generated] [`generated/six-digit-glass-codes-missing-sellmeier-reviewed.md`](generated/six-digit-glass-codes-missing-sellmeier-reviewed.md) — hand-written review sidecar read by two scans; preserve it when regenerating
+- [generated] [`generated/sellmeier-coverage.generated.md`](generated/sellmeier-coverage.generated.md) — `npm test -- sellmeierCoverageScan`
+- [generated] [`generated/glass-coverage-opportunities.generated.md`](generated/glass-coverage-opportunities.generated.md) — `npm test -- glassCoverageOpportunitiesScan`
+- [generated] [`generated/mirror-fixtures.generated.md`](generated/mirror-fixtures.generated.md) — `npm test -- mirrorFixtureAuthoringReport`
+- [generated] [`generated/lens-mount-svg-specifications.md`](generated/lens-mount-svg-specifications.md) — `npm test -- mountSvgSpecificationsReport`; figure counts and content hashes, with full SVG markup in [`generated/mounts/`](generated/mounts/) and diffable geometry in `src/mounts/`
+- [generated] [`benchmarks/README.md`](benchmarks/README.md) — on-demand `npm run benchmark:optics-rendering`; one JSON per run in [`benchmarks/runs/`](benchmarks/runs/), latest report in [`benchmarks/benchmark-report.md`](benchmarks/benchmark-report.md)
 
-Regenerate only the human-readable report without creating another run:
-
-```bash
-npm run benchmark:optics-rendering -- --report-only
-```
+The six-digit and glass-coverage-opportunities scans embed match statuses against the untracked local `patents/` PDF
+inventory and skip their rewrite when it is empty (fresh worktrees, CI); regenerate those three report files only from a
+checkout where `patents/` is populated.

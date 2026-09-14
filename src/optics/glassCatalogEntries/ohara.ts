@@ -5,6 +5,75 @@
 import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
+  {
+    name: "L-BAL42",
+    vendor: "Ohara",
+    B: [1.39528097, 0.072551952, 1.66335848],
+    C: [0.011186203, -0.0246748575, 167.717958],
+    nd: 1.583126,
+    vd: 59.385694,
+    code6: "583594",
+    source:
+      "OHARA_260701.AGF, L-BAL42 row, formula 2; https://oharacorp.com/wp-content/uploads/catalogs/OHARA_260701_CATALOG.zip (accessed 2026-09-11).",
+  },
+  {
+    name: "S-YGH51",
+    vendor: "Ohara",
+    B: [1.0828017, 0.933988681, 1.32367286],
+    C: [0.018115636, 0.00304157575, 91.0353195],
+    nd: 1.754998,
+    vd: 52.321434,
+    code6: "755523",
+    source:
+      "OHARA_260701.AGF, S-YGH51 row, formula 2; https://oharacorp.com/wp-content/uploads/catalogs/OHARA_260701_CATALOG.zip (accessed 2026-09-11).",
+  },
+  {
+    name: "S-BAM3",
+    vendor: "Ohara",
+    B: [1.36955358, 0.0853825867, 1.16159771],
+    C: [0.00941331434, 0.0504359027, 130.548899],
+    nd: 1.582673,
+    vd: 46.423175,
+    code6: "583464",
+    source:
+      "OHARA_260701.AGF, discontinued S-BAM3 row, formula 2; https://oharacorp.com/wp-content/uploads/catalogs/OHARA_260701_CATALOG.zip (accessed 2026-09-11).",
+  },
+  {
+    name: "S-TIM39",
+    vendor: "Ohara",
+    B: [1.47008105, 0.224752746, 2.44968592],
+    C: [0.0102900432, 0.0541276904, 237.43494],
+    nd: 1.6668,
+    vd: 33.054985,
+    code6: "667330",
+    source:
+      "OHARA_260701.AGF, discontinued S-TIM39 row, formula 2 Sellmeier; official OHARA all-products catalog https://oharacorp.com/wp-content/uploads/catalogs/OHARA_260701_CATALOG.zip (accessed 2026-09-07).",
+  },
+  {
+    name: "PBH23",
+    vendor: "Ohara",
+    polynomial: [3.0554324, -0.010867434, 0.038522891, 0.0030173971, -0.0002129474, 0.000024864803],
+    nd: 1.784702,
+    vd: 26.216753,
+    code6: "785262",
+    source:
+      "OHARA_260701.AGF, discontinued PBH23 row, formula 1 polynomial; official OHARA all-products catalog https://oharacorp.com/wp-content/uploads/catalogs/OHARA_260701_CATALOG.zip (accessed 2026-09-05).",
+  },
+  /* Phase 46: exact Konica patent-coordinate coverage from OHARA's current
+   * first-party BAL15Y datasheet.
+   */
+  {
+    name: "BAL15Y",
+    vendor: "Ohara",
+    B: [1.28348331, 0.102800765, 0.404609885],
+    C: [0.00790900515, 0.0305971274, 46.5268356],
+    nd: 1.556711,
+    vd: 58.68,
+    PgF: 0.5444,
+    code6: "557587",
+    source:
+      "OHARA BAL15Y product datasheet (OHARA 24-10), https://oharacorp.com/wp-content/uploads/datasheets/ehbal15y.pdf; vendor-published dispersion constants and C/d/F/g line indices.",
+  },
   /* Phase 45: first-party named-token audit additions. */
   {
     name: "S-BAL50",
@@ -593,6 +662,18 @@ export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
     PgF: 0.5368,
     code6: "538747",
     source: "Ohara AGF (ohara_2017-11-30.agf) via refractiveindex.info. Fluorophosphate crown with +ΔPgF.",
+  },
+  {
+    name: "S-BAL11",
+    vendor: "Ohara",
+    B: [8.21314256e-1, 6.12586478e-1, 1.24859637],
+    C: [3.51436131e-3, 1.79762375e-2, 1.3345667e2],
+    nd: 1.572501,
+    vd: 57.74,
+    PgF: 0.5456,
+    code6: "573578",
+    source:
+      "OHARA 02-06 S-BAL11 datasheet, dispersion constants and C/d/F/g indices; https://oharacorp.com/wp-content/uploads/2023/06/esbal11.pdf (accessed 2026-09-08). Supplier-neutral equivalent for patent coordinates, not a production melt attribution.",
   },
   {
     name: "S-BAL35",
@@ -1982,5 +2063,15 @@ export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
     code6: "589512",
     source:
       "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF); vendor formula-3 polynomial for discontinued BAL7.",
+  },
+  {
+    name: "S-LAM73",
+    vendor: "Ohara",
+    nd: 1.7936,
+    vd: 37.08945,
+    B: [1.86353123, 0.255215617, 1.23399133],
+    C: [0.0107620673, 0.0487248679, 117.12511],
+    source:
+      "OHARA vendor Zemax catalog, https://refractiveindex.info/download/data/2017/ohara_2017-11-30.agf; accessed 2026-09-11 via refractiveindex.info vendor-data mirror.",
   },
 ];

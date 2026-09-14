@@ -24,4 +24,3 @@ Patent: US 4,063,802, Embodiment 1
 
 - All three reviewed code rows resolved to existing coefficient-backed catalog entries.
 - Updated the analysis glass notes and summary table accordingly.
-

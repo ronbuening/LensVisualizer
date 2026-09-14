@@ -44,15 +44,6 @@ The previous draft set `apd: "patent"` on all 21 modeled media merely because θ
 classification applies the APD badge only to the anomalous PF material GDa and the three production-correlated ED
 elements L34, L35, and L37. The remaining 17 entries retain their ΔPgF values for tracing and set `apd: false`.
 
-## Verification
-
-- Stored lens validation reports no surface-geometry errors.
-- The image-circle audit reports zero semi-diameter floor failures.
-- Maximum spherical rim slope is 36.439° at surface 33.
-- Minimum computed edge thickness is 0.0618 mm at L39.
-- The tightest positive cross-gap intrusion is 1.86622 / 3.0 mm (62.207%) from surface 23 to 24.
-- Catalog dispersion tests pass with duplicate six-digit-code precedence preserved.
-
 ## Retained sources
 
 - JP 2018-017857 A, Example 2, Tables 5–8, Figures 3–4.

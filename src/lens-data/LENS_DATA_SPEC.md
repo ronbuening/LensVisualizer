@@ -58,6 +58,7 @@ rear spacing to the documented air-equivalent distance instead of leaving the pr
 | `surfaces` | `array` | Optical surfaces (min 1); ordinary lenses list front to rear, while folded models may use signed displacements and explicit path order |
 | `nominalFno` | `number \| number[]` | Nominal f-number — single value for primes/constant-aperture zooms, or array (one per zoom position) for variable-aperture zooms (e.g. `[4.5, 5.76]`) |
 | `closeFocusM` | `number` | Minimum focus distance in meters |
+| `zoomCloseFocusM` | `number[]` (optional) | Positive object-to-image endpoint distances matching `zoomPositions`; overrides the scalar at each zoom station |
 | `fstopSeries` | `array` | F-stop values for quick-select UI buttons |
 
 ### Required but have defaults (from `defaults.ts`)
@@ -111,6 +112,7 @@ Keep it normalized even when the product's official styling varies by source:
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
 | `maker` | `string` | | Manufacturer name (e.g. `"Nikon"`, `"Voigtländer"`). Used for maker pages and SEO metadata. If omitted, derived from the lens `name` via prefix matching. |
+| `publishedAt` | `string` | Git-derived | Optional explicit UTC ISO timestamp (`YYYY-MM-DDTHH:mm:ssZ`) for a newly published replacement model. Overrides inherited file publication history in recent lenses, feeds, and SEO; last-modified remains Git-derived but cannot precede publication. Omit for normal additions and routine corrections. |
 | `visible` | `boolean` | `true` | Controls whether the lens appears in the UI catalog. Set to `false` to hide a lens from the dropdown without removing its data file. |
 | `opticalConfiguration` | `object` | | Links complete prescriptions that are switchable optical states of one catalog lens. See Alternate Optical Configurations below. |
 | `subtitle` | `string` | | Compact patent/example/design-correlation context. Used as the UI-header fallback when structured patent metadata is unavailable and retained by several corpus reports for source/example matching. |
@@ -120,20 +122,21 @@ Keep it normalized even when the product's official styling varies by source:
 | `apertureMarketing` | `number` | | Marketed/nominal maximum f-number (e.g. `1.8` for an "f/1.8" lens). |
 | `apertureDesign` | `number` | | Design/patent maximum f-number (precise computed value, e.g. `1.85`). May differ from marketing value. |
 | `lensMounts` | `LensMountId[]` | | Canonical mount ids for production variants represented by this optical formula. May contain multiple ids, e.g. `["nikon-z", "sony-fe"]`. |
-| `imageFormat` | `ImageFormatId` | | Single canonical image-circle/format id, e.g. `"135-full-frame"`, `"aps-c"`, or `"110"`. |
+| `imageFormat` | `ImageFormatId` | | Single canonical image-circle/format id, e.g. `"135-full-frame"`, `"aps-c"`, or `"110"`. Required for normalized fixed-sensor perspective field sampling. |
 | `patentNumber` | `string` | | Source patent publication or grant identifier, including jurisdiction and kind code when the source publishes one (e.g. `"US 10,571,651 B2"`). Do not include an example, embodiment, table, or figure label. |
 | `patentAuthors` | `string[]` | | Inventors named by the source patent, in source order. Use one complete personal name per entry. An empty array means the patent names no individual inventor. |
 | `patentAssignees` | `string[]` | | Assignees named by the source patent, or applicants when that jurisdiction publishes applicants rather than assignees. Use one canonical display name for each historical legal entity. An empty array means the patent names no assignee or applicant. |
 | `patentYear` | `number` | | Year the patent was published or granted (e.g. `2019`). |
 | `elementCount` | `number` | | Total number of glass elements in the design. |
 | `groupCount` | `number` | | Total number of air-separated groups in the design. |
-| `perspectiveControl` | `object` | | Optional tilt/shift movement limits for perspective-control lenses. Omit for all ordinary lenses. |
+| `perspectiveControl` | `object` | | Optional shift-Y/tilt-X limits and camera-frame tilt pivot for perspective-control lenses. Omit for all ordinary and folded lenses. |
 | `projection` | `object` | `{ kind: "rectilinear" }` | Optional projection metadata. Use for non-rectilinear lenses, or for rare rectilinear designs whose published coverage should override the paraxial field estimate. |
 | `opticalPath` | `object` | | Optional generalized path metadata for mirror, folded, annular, or non-right-side image-plane systems. Omit for ordinary front-to-rear refractive lenses. |
 | `focusDescription` | `string` | | Human-readable focus mechanism description |
 | `asph` | `object` | | Aspherical coefficients (see below) |
 | `var` | `object` | | Variable air gaps for focus (see below) |
 | `varLabels` | `array` | | Display labels for variable gaps |
+| `focusPositions` | `number[]` | `[0, 1]` | Optional normalized `focusT` coordinates for multi-keyframe focus interpolation |
 | `aberrationControl` | `object` | | Optional independent soft-focus or spherical-aberration-control slider (see below) |
 | `groups` | `array` | | Group annotations for SVG diagram |
 | `doublets` | `array` | | Cemented doublet annotations for SVG diagram |
@@ -513,7 +516,10 @@ For a compact audit of hidden mirror fixture metadata, run `npm run generate:mir
 
 ## Perspective Control Movement (`perspectiveControl`)
 
-Only declare this field for lenses with real perspective-control mechanisms. When present, the UI shows signed SHIFT and TILT sliders, stores them in the URL as `shift` and `tilt`, moves the rendered lens/rays in the 2D meridional diagram, and keeps the sensor/IMG plane fixed. Analysis drawer diagnostics remain centered-lens calculations in v1 and display a notice when movement is active.
+Only declare this field for lenses with real perspective-control mechanisms. When present, the UI shows the supported
+signed SHIFT and/or TILT sliders and stores them in the URL as `shift` and `tilt`. The camera frame, camera axis, and
+sensor/`IMG` plane remain fixed. The complete intrinsic lens stack moves relative to that frame, and active diagram rays
+are physically retraced through the moved stop and lens to the fixed sensor.
 
 ```javascript
 perspectiveControl: {
@@ -521,12 +527,72 @@ perspectiveControl: {
   tiltRangeDeg: [-8.5, 8.5],    // [min, max] lens tilt in degrees; must include 0
   shiftStepMm: 0.1,             // optional; defaults to 0.1 mm
   tiltStepDeg: 0.1,             // optional; defaults to 0.1 deg
+  tiltPivot: {                   // required whenever tiltRangeDeg has non-zero travel
+    frame: "camera",
+    basis: "rear-vertex-fallback",
+    zOffsetFromImagePlaneMm: -56.5,
+  },
 }
 ```
 
-Validation requires both ranges to be finite ascending `[min, max]` tuples that include `0`. Include a short source comment in the lens file for the official movement limits.
+Validation requires both ranges to be finite ordered `[min, max]` tuples that include `0`. Use `[0, 0]` to disable an
+unsupported axis on a shift-only or tilt-only lens; at least one axis must have non-zero travel. Include a short source
+comment in the lens file for the official movement limits. Movement-aware normalized sensor sampling also requires a
+canonical `imageFormat`; when the format is unknown, sensor-relative analysis must report itself unavailable rather
+than inventing a sensor size.
 
-Current enabled production lenses and source references:
+### Frames And Pivot
+
+The **camera frame** owns the sensor and its `u`/`v` axes. For the ordinary axial sensor, `u` is camera-right and `v` is
+down in the meridional diagram. The **intrinsic lens frame** owns the prescription surfaces, aperture stop, first-order
+pupils, cardinal elements, and other lens-axis quantities. Shift and tilt form one rigid transform between these
+frames; they do not tilt the sensor or the complete SVG.
+
+For tilt-enabled lenses, `tiltPivot` defines the rotation reference in the camera frame. Tilt is a meridional rotation
+about camera `X`; `zOffsetFromImagePlaneMm` must be a finite negative millimeter offset from the fixed sensor/image
+plane, with negative values toward the object. Author the value from the canonical reference state
+(`focusT = 0`, `zoomT = 0`, `aberrationT = 0`). It remains camera-fixed at other focus/zoom positions and must not
+follow the current rear vertex.
+
+Use `basis: "mechanical-axis"` only when a reliable source publishes enough information to locate the physical axis.
+Use `basis: "patent-principal-point-guidance"` when a patent directs the rotation center to an optical principal point
+or nearby region but does not dimension or verify the production hinge. Store the canonical reference-state principal
+point explicitly and cite the patent paragraph/figure next to the lens data. This is stronger than a geometry fallback
+but must not be presented as a measured mechanical axis.
+Use `basis: "rear-vertex-fallback"` when the canonical reference-state rear vertex supplies the offset because the
+actual mechanism axis is unpublished. A fallback is a deterministic visualization/tracing reference, not a claim about
+the manufactured hinge; say so in the adjacent source comment. Tilt-enabled lenses must declare a pivot. Shift-only
+lenses must omit it.
+
+### Field And Analysis Meaning
+
+Movement-aware analysis uses two explicit field domains:
+
+- **Scene-locked** holds a camera-space scene direction fixed while the lens moves. Distortion uses this domain and
+  separates composition displacement (posed ideal minus zero-pose ideal), optical residual (actual traced intercept
+  minus posed ideal), and their total on the fixed sensor.
+- **Sensor-locked** holds a requested physical sensor point fixed and solves the scene direction whose exact chief ray
+  passes through the moved stop and reaches that point. Blur/bokeh, best focus, field curvature/astigmatism/coma,
+  chromatic field behavior, vignetting, and apparent-pupil measurements use this domain.
+
+EFL, cardinal elements, Petzval, focus breathing, classical lens-axis spherical aberration, and classical longitudinal
+chromatic aberration remain intrinsic lens-frame properties and are labeled as such. Sensor-relative results use the
+fixed sensor basis and normal. Intrinsic pupil positions/sizes remain lens-frame values; field-dependent apparent
+pupils are solved from the moved chief and pupil bundles.
+
+Do not substitute centered-lens results when an active-movement trace, field point, or metric is unsupported. The
+viewer retains requested samples with an explicit unavailable/clipped/missed status, and guards unsupported sections.
+
+### V1 Scope
+
+The data contract currently represents vertical lens translation (`shift-Y`) and meridional tilt about camera `X`
+(`tilt-X`) only. It does not encode mechanism rotation, swing, horizontal/independent XY movements, separately rotated
+shift and tilt axes, or a complete mechanical linkage. Perspective-control full tracing is not supported for
+folded/generalized optical paths; do not add `perspectiveControl` to such a prescription and expect movement-aware
+results.
+
+Example official-source references used by existing lens records:
+- Nikon PC-NIKKOR 35mm f/2.8: shift +/-11 mm, no production tilt, from Nikon Imaging's official PC-NIKKOR history: <https://imaging.nikon.com/imaging/information/story/0017/>
 - Nikon PC NIKKOR 19mm f/4E ED: shift +/-12 mm, tilt +/-7.5 deg, from Nikon Imaging's official product page: <https://imaging.nikon.com/imaging/lineup/lens/f-mount/specialpurpose/pc_pce/pc_19mmf_4e_ed/>
 - Nikon PC-E NIKKOR 24mm f/3.5D ED: shift +/-11.5 mm, tilt +/-8.5 deg, from Nikon USA's launch release: <https://www.nikonusa.com/press-room/nikons-new-wide-angle-pc-e-ni>
 - Nikon PC-E Micro-NIKKOR 45mm f/2.8D ED: shift +/-11.5 mm, tilt +/-8.5 deg, from Nikon Imaging's official product page: <https://imaging.nikon.com/imaging/lineup/lens/f-mount/specialpurpose/pc_pce/pce_45mmf_28ed/index.html>
@@ -849,6 +915,21 @@ Z(h) = (h²/R) / [1 + √(1 − (1+K)·(h/R)²)] + A4·h⁴ + A6·h⁶ + A8·h�
 - For all-spherical designs: `asph: {}`
 - **Conic limit:** When K > 0 (hyperboloid), the surface semi-diameter must satisfy sd < |R| / √(1+K). The validator enforces sd ≤ 0.98 × this limit.
 
+**Replacing an even-order refit with exact patent coefficients.** Odd-order support landed in July 2026; a file that
+predates it may still hold a least-squares even-order refit of an odd-term patent surface. To replace one:
+
+1. Transcribe the full coefficient table for the exact example — from the `*.analysis.md` if it preserved it, else from
+   the patent. Never backfill from a "leading coefficients" summary.
+2. Convert the conic as above (K = KA − 1). For a uniformly scaled prescription, rescale each term with
+   `Aₙ(scaled) = Aₙ(patent) / s^(n−1)` (see **Scaling** under Data Sourcing Checklist).
+3. Replace the refit `asph` block: keep A4–A14 (as `0` when unused), add the non-zero odd terms, omit zero odd terms.
+4. Update the data-file header note and remove any "renderer is even-order only" / refit statements from the analysis,
+   keeping the patent tables there as the canonical source.
+5. Recompute every rim departure the analysis quotes with `npm run audit:surface -- <file> --scan <label> <sd>`, record
+   the values in the analysis prose and the `*.audit.md` log, then run `npm run typecheck && npm run test` — the
+   catalog validation and render-diagnostics sweeps cover the new coefficients; do not add a per-lens test.
+6. Visually check the lens page: cross-section, wide-open rays, and the aspheric-compare overlay.
+
 ---
 
 ## Variable Air Spacings (`var`)
@@ -870,9 +951,30 @@ varLabels: [
 ],
 ```
 
+The two-value form uses the implicit focus positions `[0, 1]`. To reproduce published intermediate focus states,
+declare their normalized `focusT` coordinates and provide one thickness per position:
+
+```javascript
+focusPositions: [0, 0.72, 1],
+var: {
+  "10": [5.49, 4.81, 5.89], // infinity, published intermediate state, close focus
+},
+```
+
+`zoomStopSemiDiameters: [8.26, 10.465, 13.325]` supplies published physical iris radii in mm, one per source zoom station. Values must be positive and finite. The first radius is the baseline iris; intermediate radii are interpolated and focus retains the current zoom iris. Do not combine this source schedule with `zoomApertureModel`.
+
+`zoomApertureModel: "from-nominal-fno"` opts a zoom into a physical iris schedule inferred from the source station f-numbers. The builder traces each nominal infinity entrance-pupil radius to the stop and retains that station radius. Intermediate radii are interpolated; focus keeps the current zoom radius. This is a calculated aperture model, not a patent-published diameter schedule, and must be identified as inferred in the analysis. Omission retains the existing fixed physical iris.
+
+`zoomCloseFocusM` preserves zoom-dependent near-focus conjugates when a patent publishes different object distances at its zoom stations (for example, states at approximately constant magnification). Supply one positive finite distance in metres per `zoomPositions` entry. Distances between stations interpolate in the same normalized zoom coordinates; labels at intermediate focus use inverse-distance interpolation and remain estimates. Source-derived endpoints should be identified as calculated in the analysis. Single-lens labels, breathing, summary, effective-f-number estimates and comparison focus mapping use the current zoom endpoint. Omit the field for the existing scalar behavior.
+
+`focusPositions` follows the existing focus control: `0` is infinity and `1` is `closeFocusM`. When a published
+object-to-image distance is available, its coordinate is `closeFocusM / focusDistanceM`. Values between authored
+positions are piecewise-linearly interpolated and should not be presented as source-published mechanical positions.
+
 ### Zoom Lens Format (with `zoomPositions`)
 
-When `zoomPositions` is present, each `var` value becomes an array of `[d_infinity, d_close]` pairs — one per zoom position:
+When `zoomPositions` is present, each `var` value becomes an array of focus-thickness vectors — one per zoom position.
+Without explicit `focusPositions`, each vector remains the existing `[d_infinity, d_close]` pair:
 
 ```javascript
 zoomPositions: [24, 50, 70],   // 3 zoom positions
@@ -883,7 +985,7 @@ var: {
 },
 ```
 
-For zoom-only movements (no focus variation at that gap), use identical inf/close values:
+For zoom-only movements (no focus variation at that gap), repeat the same thickness at every focus position:
 
 ```javascript
   "5":  [[1.0, 1.0], [3.0, 3.0], [2.5, 2.5]],   // zoom only, no focus change
@@ -896,8 +998,10 @@ The surface's `d` field should equal `var[label][0][0]` (infinity focus at the f
 ### Rules
 
 - Keys must match existing surface labels
-- **Prime:** Each value is `[d_infinity, d_close]` — exactly 2 numbers
-- **Zoom:** Each value is an array of `[d_inf, d_close]` pairs, length matching `zoomPositions.length`
+- `focusPositions`, when present, must contain at least two finite values, begin at `0`, end at `1`, and be strictly increasing
+- **Prime:** Each value contains one thickness per focus position; without `focusPositions`, exactly two values are required
+- **Zoom:** Each value is an array with length matching `zoomPositions.length`; every inner focus vector must match `focusPositions` or the implicit two-position default
+- Every thickness must be finite and non-negative; the first value remains the infinity-focus thickness
 - `varLabels` entries must reference keys present in `var`
 
 ### Focus types by number of variable gaps
@@ -1104,6 +1208,9 @@ When transcribing from an optical patent:
 14. **Non-monotonic (reversing) groups** — Check whether any gap's spacing goes up then down (or vice versa) across zoom positions — e.g., `[28.12, 22.59, 27.71]`. This is handled automatically by piecewise-linear interpolation, but include enough zoom positions to bracket any reversals. Note reversals in the file header
 15. **EFL verification at each zoom position** — After transcribing all surfaces and variable gaps, verify the computed EFL at each zoom position (from `buildLens()` → `zoomEFLs`) against the patent's stated focal lengths. Mismatches usually indicate a transcription error in the variable gap table
 
+For prime or zoom lenses with three or more published focus states, use `focusPositions` and preserve every published
+spacing row. This supports non-linear and reversing focus travel without changing the zoom or aberration-control axes.
+
 ---
 
 ## Example: Minimal All-Spherical Singlet
@@ -1148,7 +1255,7 @@ zoomPositions: [24, 50, 70],
 zoomStep: 0.004,
 zoomLabels: ["Wide", "Tele"],
 
-// Variable air spacings — one [d_inf, d_close] pair per zoom position
+// Variable air spacings — one focus-thickness vector per zoom position
 var: {
   // Zoom-only gap: identical inf/close values at each position
   "5":  [[2.0, 2.0], [5.0, 5.0], [3.5, 3.5]],

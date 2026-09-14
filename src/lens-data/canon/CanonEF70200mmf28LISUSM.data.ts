@@ -1,0 +1,465 @@
+import type { LensDataInput } from "../../types/optics.js";
+
+/**
+ * ╔══════════════════════════════════════════════════════════════════════════════════════╗
+ * ║  LENS DATA — CANON EF 70-200mm f/2.8L IS USM                                    ║
+ * ╠══════════════════════════════════════════════════════════════════════════════════════╣
+ * ║  Source prescription: JP2002162564A, Example 1 / Numerical Example 1.             ║
+ * ║  Patent applicant: Canon Inc.; inventor: Akira Harada.                             ║
+ * ║  Model: 21 refractive elements / 19 air-separated physical groups / 0 aspheres.    ║
+ * ║                                                                                      ║
+ * ║  CORRELATION LIMIT: Canon's production lens is officially 23 elements / 18 groups. ║
+ * ║  This file therefore models the fixed patent embodiment correlated with the         ║
+ * ║  production lens; it is not asserted to be the exact production prescription.       ║
+ * ║                                                                                      ║
+ * ║  ZOOM: Published infinity-focus spacings at 72.50, 99.50, and 194.99 mm.            ║
+ * ║  Variable source gaps: D6, D10, D17, D23, D30, D35. D30 and D35 are source-labeled ║
+ * ║  variable but are 2.99 mm and 4.79 mm at all three published states.                ║
+ * ║  D41 is a derived paraxial image-plane spacing that preserves infinity focus after   ║
+ * ║  source rounding; it is not a patent-published movement row.                        ║
+ * ║                                                                                      ║
+ * ║  FOCUS STATUS — NO_INTERNAL_RECONSTRUCTION: The patent identifies g2 (r7-r10) as    ║
+ * ║  the axial focus unit but publishes no close-focus spacing table for Example 1.     ║
+ * ║  All focus endpoints in `var` are therefore identical. `closeFocusM: 1.4` is only   ║
+ * ║  production metadata and does not synthesize internal movement.                     ║
+ * ║                                                                                      ║
+ * ║  IS: g5B (r31-r35) is the patent's transverse image-stabilizing unit. The centered  ║
+ * ║  prescription is modeled; no decentered IS state is authored.                       ║
+ * ║                                                                                      ║
+ * ║  SOURCE NORMALIZATION: JP page 6 prints r23 and r24 as R=0.000. The same-family     ║
+ * ║  table and optical meaning establish both as planes; they are encoded as R=1e15.    ║
+ * ║  No uniform scale is applied.                                                        ║
+ * ║                                                                                      ║
+ * ║  GLASS: Patent nd/vd are retained. Named catalog curves are spectral surrogates,  ║
+ * ║  not Canon supplier attributions. Dispersion is evaluated from their published   ║
+ * ║  coefficients; no catalog-derived values are stored as measured line indices.   ║
+ * ║                                                                                 ║
+ * ║  SEMI-DIAMETERS: Example 1 publishes no clear apertures. SDs are modeling values     ║
+ * ║  derived from the calibrated f/2.9 marginal bundle, full-frame chief rays,           ║
+ * ║  0.6-field pupil samples, patent Fig. 1 proportions, and the production barrel       ║
+ * ║  envelope. They were then constrained by edge thickness, actual spherical rim        ║
+ * ║  slope, cross-gap intrusion, and cemented-interface containment.                     ║
+ * ║  STO sd=17.778959714 mm is the single wide-state paraxial f/2.9 calibration.         ║
+ * ║  gapSagFrac=0.95 is required by the tight r12-r13 and r15-r16 air gaps while         ║
+ * ║  retaining positive modeled rim clearance and the f/2.9 axial marginal bundle.      ║
+ * ║                                                                                      ║
+ * ║  Product metadata source: Canon Camera Museum, EF70-200mm f/2.8L IS USM.             ║
+ * ║  https://global.canon/en/c-museum/product/ef365.html                                ║
+ * ╚══════════════════════════════════════════════════════════════════════════════════════╝
+ */
+
+const LENS_DATA = {
+  /* ── Identity ── */
+  key: "canon-ef-70-200f28l-is-usm",
+  maker: "Canon",
+  name: "CANON EF 70-200mm f/2.8L IS USM",
+  subtitle: "JP2002162564A Example 1 — correlated patent embodiment; not the exact 23/18 production formula",
+  specs: [
+    "PATENT EXAMPLE: 21 ELEMENTS / 19 GROUPS",
+    "DESIGN 72.50-194.98 mm",
+    "DESIGN f/2.9",
+    "ALL-SPHERICAL",
+    "TRANSVERSE IS UNIT g5B",
+  ],
+
+  focalLengthMarketing: [70, 200],
+  focalLengthDesign: [72.4976753358023, 194.97993964127204],
+  apertureMarketing: 2.8,
+  apertureDesign: 2.9,
+  lensMounts: ["canon-ef"],
+  imageFormat: "135-full-frame",
+  patentNumber: "JP 2002-162564 A",
+  patentAuthors: ["Akira Harada"],
+  patentAssignees: ["Canon Inc."],
+  patentYear: 2002,
+  elementCount: 21,
+  groupCount: 19,
+
+  /* ── Glass elements ── */
+  elements: [
+    {
+      id: 1,
+      name: "L1",
+      label: "Element 1",
+      type: "Negative Meniscus",
+      nd: 1.7495,
+      vd: 35.3,
+      indexReference: "d",
+      fl: -259.449509,
+      glass: "750353 coordinate class (spectral surrogate: OHARA S-LAM7)",
+      role: "Front g1 element.",
+    },
+    {
+      id: 2,
+      name: "L2",
+      label: "Element 2",
+      type: "Biconvex Positive",
+      nd: 1.497,
+      vd: 81.5,
+      indexReference: "d",
+      fl: 209.461479,
+      glass: "497816 fluorophosphate-crown coordinate class (spectral surrogate: OHARA S-FPL51)",
+      role: "Low-dispersion positive element in g1.",
+    },
+    {
+      id: 3,
+      name: "L3",
+      label: "Element 3",
+      type: "Positive Meniscus",
+      nd: 1.497,
+      vd: 81.5,
+      indexReference: "d",
+      fl: 248.009918,
+      glass: "497816 fluorophosphate-crown coordinate class (spectral surrogate: OHARA S-FPL51)",
+      role: "Low-dispersion positive element in g1.",
+    },
+    {
+      id: 4,
+      name: "L4",
+      label: "Element 4",
+      type: "Negative Meniscus",
+      nd: 1.84666,
+      vd: 23.8,
+      indexReference: "d",
+      fl: -477.613368,
+      glass: "847238 dense-flint coordinate class (spectral surrogate: OHARA S-TIH53)",
+      role: "Front element of the positive g2 focusing unit.",
+    },
+    {
+      id: 5,
+      name: "L5",
+      label: "Element 5",
+      type: "Positive Meniscus",
+      nd: 1.48749,
+      vd: 70.2,
+      indexReference: "d",
+      fl: 103.24364,
+      glass: "487702/704 fluor-crown coordinate class (spectral surrogate: OHARA S-FSL5)",
+      role: "Positive rear element of the g2 focusing unit.",
+    },
+    {
+      id: 6,
+      name: "L6",
+      label: "Element 6",
+      type: "Negative Meniscus",
+      nd: 1.8061,
+      vd: 40.9,
+      indexReference: "d",
+      fl: -46.218167,
+      glass: "806409 lanthanum-flint coordinate class (spectral surrogate: OHARA S-LAH53)",
+      role: "Front negative element of g3.",
+    },
+    {
+      id: 7,
+      name: "L7",
+      label: "Element 7",
+      type: "Biconcave Negative",
+      nd: 1.48749,
+      vd: 70.2,
+      indexReference: "d",
+      fl: -54.469889,
+      glass: "487702/704 fluor-crown coordinate class (spectral surrogate: OHARA S-FSL5)",
+      cemented: "D1",
+      role: "Front member of the cemented pair in g3.",
+    },
+    {
+      id: 8,
+      name: "L8",
+      label: "Element 8",
+      type: "Positive Meniscus",
+      nd: 1.84666,
+      vd: 23.8,
+      indexReference: "d",
+      fl: 49.849048,
+      glass: "847238 dense-flint coordinate class (spectral surrogate: OHARA S-TIH53)",
+      cemented: "D1",
+      role: "Rear member of the cemented pair in g3.",
+    },
+    {
+      id: 9,
+      name: "L9",
+      label: "Element 9",
+      type: "Biconcave Negative",
+      nd: 1.71299,
+      vd: 53.9,
+      indexReference: "d",
+      fl: -77.636128,
+      glass: "713539 lanthanum-crown coordinate class (spectral surrogate: OHARA S-LAL8)",
+      role: "Rear negative element of g3.",
+    },
+    {
+      id: 10,
+      name: "L10",
+      label: "Element 10",
+      type: "Biconvex Positive",
+      nd: 1.497,
+      vd: 81.5,
+      indexReference: "d",
+      fl: 59.854283,
+      glass: "497816 fluorophosphate-crown coordinate class (spectral surrogate: OHARA S-FPL51)",
+      role: "Front positive element of g4.",
+    },
+    {
+      id: 11,
+      name: "L11",
+      label: "Element 11",
+      type: "Negative Meniscus",
+      nd: 1.6668,
+      vd: 33,
+      indexReference: "d",
+      fl: -83.070355,
+      glass: "667330 flint coordinate class (spectral surrogate: OHARA S-TIM39 legacy)",
+      role: "Negative element in g4.",
+    },
+    {
+      id: 12,
+      name: "L12",
+      label: "Element 12",
+      type: "Plano-Convex Positive",
+      nd: 1.84666,
+      vd: 23.8,
+      indexReference: "d",
+      fl: 163.189474,
+      glass: "847238 dense-flint coordinate class (spectral surrogate: OHARA S-TIH53)",
+      role: "Positive rear element of g4 adjacent to the stop gap.",
+    },
+    {
+      id: 13,
+      name: "L13",
+      label: "Element 13",
+      type: "Positive Meniscus",
+      nd: 1.7725,
+      vd: 49.6,
+      indexReference: "d",
+      fl: 110.545545,
+      glass: "773496 lanthanum-flint coordinate class (spectral surrogate: OHARA S-LAH66)",
+      role: "Front positive element of g5A.",
+    },
+    {
+      id: 14,
+      name: "L14",
+      label: "Element 14",
+      type: "Negative Meniscus",
+      nd: 1.84666,
+      vd: 23.8,
+      indexReference: "d",
+      fl: -61.276523,
+      glass: "847238 dense-flint coordinate class (spectral surrogate: OHARA S-TIH53)",
+      role: "Negative middle element of g5A.",
+    },
+    {
+      id: 15,
+      name: "L15",
+      label: "Element 15",
+      type: "Biconvex Positive",
+      nd: 1.60311,
+      vd: 60.6,
+      indexReference: "d",
+      fl: 35.252129,
+      glass: "603607 dense-crown coordinate class (spectral surrogate: OHARA S-BSM14)",
+      role: "Strong positive rear element of g5A.",
+    },
+    {
+      id: 16,
+      name: "L16",
+      label: "Element 16",
+      type: "Biconvex Positive",
+      nd: 1.84666,
+      vd: 23.8,
+      indexReference: "d",
+      fl: 74.94317,
+      glass: "847238 dense-flint coordinate class (spectral surrogate: OHARA S-TIH53)",
+      cemented: "D2",
+      role: "Front member of the negative transverse IS unit g5B.",
+    },
+    {
+      id: 17,
+      name: "L17",
+      label: "Element 17",
+      type: "Biconcave Negative",
+      nd: 1.6935,
+      vd: 53.2,
+      indexReference: "d",
+      fl: -32.53195,
+      glass: "694532 lanthanum-crown coordinate class (spectral surrogate: OHARA L-LAL13)",
+      cemented: "D2",
+      role: "Rear member of the cemented pair in g5B.",
+    },
+    {
+      id: 18,
+      name: "L18",
+      label: "Element 18",
+      type: "Biconcave Negative",
+      nd: 1.6935,
+      vd: 53.2,
+      indexReference: "d",
+      fl: -64.496385,
+      glass: "694532 lanthanum-crown coordinate class (spectral surrogate: OHARA L-LAL13)",
+      role: "Rear negative element of g5B, the transverse IS unit.",
+    },
+    {
+      id: 19,
+      name: "L19",
+      label: "Element 19",
+      type: "Biconvex Positive",
+      nd: 1.497,
+      vd: 81.5,
+      indexReference: "d",
+      fl: 38.11849,
+      glass: "497816 fluorophosphate-crown coordinate class (spectral surrogate: OHARA S-FPL51)",
+      role: "Front positive element of g5C.",
+    },
+    {
+      id: 20,
+      name: "L20",
+      label: "Element 20",
+      type: "Negative Meniscus",
+      nd: 1.834,
+      vd: 37.2,
+      indexReference: "d",
+      fl: -48.717804,
+      glass: "834372 lanthanum-flint coordinate class (spectral surrogate: OHARA S-LAH60)",
+      role: "Negative middle element of g5C.",
+    },
+    {
+      id: 21,
+      name: "L21",
+      label: "Element 21",
+      type: "Biconvex Positive",
+      nd: 1.834,
+      vd: 37.2,
+      indexReference: "d",
+      fl: 86.33175,
+      glass: "834372 lanthanum-flint coordinate class (spectral surrogate: OHARA S-LAH60)",
+      role: "Positive rear element of g5C.",
+    },
+  ],
+
+  // Optical rims refined against the exact local patent at 600 dpi; see the companion analysis.
+  /* ── Surface prescription ── */
+  surfaces: [
+    { label: "1", R: 419.962, d: 2.8, nd: 1.7495, elemId: 1, sd: 34 },
+    { label: "2", R: 132.534, d: 0.23, nd: 1.0, elemId: 0, sd: 34 },
+    { label: "3", R: 138.957, d: 7.52, nd: 1.497, elemId: 2, sd: 34.0 },
+    { label: "4", R: -407.574, d: 0.1, nd: 1.0, elemId: 0, sd: 34.5 },
+    { label: "5", R: 90.528, d: 6.64, nd: 1.497, elemId: 3, sd: 34 },
+    { label: "6", R: 332.596, d: 7.03, nd: 1.0, elemId: 0, sd: 34 },
+    { label: "7", R: 47.719, d: 2.5, nd: 1.84666, elemId: 4, sd: 26 },
+    { label: "8", R: 41.657, d: 1.82, nd: 1.0, elemId: 0, sd: 25.2 },
+    { label: "9", R: 49.949, d: 8.77, nd: 1.48749, elemId: 5, sd: 25.2 },
+    { label: "10", R: 6214.652, d: 1.8, nd: 1.0, elemId: 0, sd: 25.0 },
+    { label: "11", R: 1840.842, d: 1.4, nd: 1.8061, elemId: 6, sd: 18.0 },
+    { label: "12", R: 36.505, d: 5.55, nd: 1.0, elemId: 0, sd: 16.02 },
+    { label: "13", R: -86.16, d: 1.4, nd: 1.48749, elemId: 7, sd: 16.02 },
+    { label: "14", R: 38.587, d: 5.08, nd: 1.84666, elemId: 8, sd: 17.0 },
+    { label: "15", R: 422.938, d: 2.47, nd: 1.0, elemId: 0, sd: 16.38 },
+    { label: "16", R: -67.77, d: 1.4, nd: 1.71299, elemId: 9, sd: 16.38 },
+    { label: "17", R: 304.729, d: 33.14, nd: 1.0, elemId: 0, sd: 17.2 },
+    { label: "18", R: 218.633, d: 7.01, nd: 1.497, elemId: 10, sd: 18.5 },
+    { label: "19", R: -34.066, d: 1.1, nd: 1.0, elemId: 0, sd: 18.5 },
+    { label: "20", R: -32.873, d: 1.45, nd: 1.6668, elemId: 11, sd: 18.0 },
+    { label: "21", R: -82.289, d: 0.15, nd: 1.0, elemId: 0, sd: 18.0 },
+    { label: "22", R: 138.166, d: 3.0, nd: 1.84666, elemId: 12, sd: 18.5 },
+    { label: "23", R: 1e15, d: 12.09, nd: 1.0, elemId: 0, sd: 18.5 },
+    { label: "STO", R: 1e15, d: 0.25, nd: 1.0, elemId: 0, sd: 17.778959713801967 },
+    { label: "25", R: 53.68, d: 5.0, nd: 1.7725, elemId: 13, sd: 18.5 },
+    { label: "26", R: 138.666, d: 7.32, nd: 1.0, elemId: 0, sd: 18.2 },
+    { label: "27", R: 44.371, d: 3.0, nd: 1.84666, elemId: 14, sd: 16.5 },
+    { label: "28", R: 23.175, d: 0.15, nd: 1.0, elemId: 0, sd: 15.7 },
+    { label: "29", R: 23.436, d: 7.0, nd: 1.60311, elemId: 15, sd: 15.7 },
+    { label: "30", R: -203.339, d: 2.99, nd: 1.0, elemId: 0, sd: 15.3 },
+    { label: "31", R: 269.475, d: 3.5, nd: 1.84666, elemId: 16, sd: 14.0 },
+    { label: "32", R: -82.499, d: 1.35, nd: 1.6935, elemId: 17, sd: 13.0 },
+    { label: "33", R: 31.261, d: 3.9, nd: 1.0, elemId: 0, sd: 12.15 },
+    { label: "34", R: -66.833, d: 1.35, nd: 1.6935, elemId: 18, sd: 12.15 },
+    { label: "35", R: 136.353, d: 4.79, nd: 1.0, elemId: 0, sd: 13.0 },
+    { label: "36", R: 113.45, d: 8.89, nd: 1.497, elemId: 19, sd: 15.0 },
+    { label: "37", R: -22.151, d: 0.5, nd: 1.0, elemId: 0, sd: 15.0 },
+    { label: "38", R: -22.027, d: 1.8, nd: 1.834, elemId: 20, sd: 15.0 },
+    { label: "39", R: -49.895, d: 4.22, nd: 1.0, elemId: 0, sd: 15.5 },
+    { label: "40", R: 117.787, d: 4.0, nd: 1.834, elemId: 21, sd: 19.5 },
+    { label: "41", R: -182.364, d: 60.519267212042344, nd: 1.0, elemId: 0, sd: 19.5 },
+  ],
+
+  asph: {},
+
+  /* ── Published infinity-focus zoom movement; no internal focus reconstruction ── */
+  var: {
+    "6": [
+      [7.03, 7.03],
+      [13.28, 13.28],
+      [34.81, 34.81],
+    ],
+    "10": [
+      [1.8, 1.8],
+      [9.85, 9.85],
+      [17.55, 17.55],
+    ],
+    "17": [
+      [33.14, 33.14],
+      [25.43, 25.43],
+      [0.7, 0.7],
+    ],
+    "23": [
+      [12.09, 12.09],
+      [5.5, 5.5],
+      [1.0, 1.0],
+    ],
+    "30": [
+      [2.99, 2.99],
+      [2.99, 2.99],
+      [2.99, 2.99],
+    ],
+    "35": [
+      [4.79, 4.79],
+      [4.79, 4.79],
+      [4.79, 4.79],
+    ],
+    "41": [
+      [60.519267212042344, 60.519267212042344],
+      [60.52319632595183, 60.52319632595183],
+      [60.53237325536181, 60.53237325536181],
+    ],
+  },
+  varLabels: [
+    ["6", "D6"],
+    ["10", "D10"],
+    ["17", "D17"],
+    ["23", "D23"],
+    ["30", "D30"],
+    ["35", "D35"],
+    ["41", "BF"],
+  ],
+
+  zoomPositions: [72.5, 99.5, 194.99],
+  zoomLabels: ["Wide", "Tele"],
+
+  groups: [
+    { text: "g1 +", fromSurface: "1", toSurface: "6" },
+    { text: "g2 FOCUS +", fromSurface: "7", toSurface: "10" },
+    { text: "g3 -", fromSurface: "11", toSurface: "17" },
+    { text: "g4 +", fromSurface: "18", toSurface: "23" },
+    { text: "g5A +", fromSurface: "25", toSurface: "30" },
+    { text: "g5B IS -", fromSurface: "31", toSurface: "35" },
+    { text: "g5C +", fromSurface: "36", toSurface: "41" },
+  ],
+
+  doublets: [
+    { text: "D1", fromSurface: "13", toSurface: "15" },
+    { text: "D2", fromSurface: "31", toSurface: "33" },
+  ],
+
+  closeFocusM: 1.4,
+  focusDescription:
+    "Patent g2 is the axial focusing unit, but Example 1 has no published close-focus spacing table. This data model therefore keeps all internal focus endpoints identical; 1.4 m is Canon production metadata only.",
+
+  nominalFno: 2.9,
+  fstopSeries: [2.9, 4, 5.6, 8, 11, 16, 22, 32],
+  apertureBlades: 8,
+  maxFstop: 32,
+
+  gapSagFrac: 0.95,
+  yScFill: 0.42,
+} satisfies LensDataInput;
+
+export default LENS_DATA;

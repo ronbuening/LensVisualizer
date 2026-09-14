@@ -32,14 +32,9 @@ Patent: JP 2019-117419 A, Numerical Example 1
 - Updated E2/E14 labels to the catalog-backed HOYA names.
 - Reworded E15 from a probable M-TAF101 claim to a code-preserving moldable lanthanum-crown class.
 
-### Verification
+### Report status
 
-- `npm test -- dispersion.test.ts` - passed.
-- `npm run generate:glass-reports` - passed; this lens is now 14/15 Sellmeier-covered, with only E15 / 764491 unresolved by design.
-- `npm run typecheck` - passed.
-- `npm run format:check` - passed.
-- `npm run lint` - passed.
-- `npm run test` - passed.
+- This lens is now 14/15 Sellmeier-covered, with only E15 / 764491 unresolved by design.
 
 ## 2026-06-23 - Semi-diameter raw-geometry audit
 

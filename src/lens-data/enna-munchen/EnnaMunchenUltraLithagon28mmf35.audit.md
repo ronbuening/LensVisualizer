@@ -22,10 +22,6 @@ Patent: US 2,959,100, Example 1 / Table I
 - Stored SDs preserve that visual run: L1 at 15.3 mm, L2 at about 11 mm, L3/L4 at 7.7-8.6 mm, L5 at 6.4-6.7 mm, and L6 at 7.8-8.0 mm.
 - No SD values changed. Current values remain inferred from the patent figure, marginal/chief-ray envelope, f/3.5 stop placement, edge-thickness limits, and cross-gap sag clearance.
 
-### Verification
-
-- `npm test -- elementRenderDiagnostics`
-
 ## 2026-08-11 — Phase 92 HOYA F7 recovery
 
 - Visually rechecked US 2,959,100 Tables I and II on rendered PDF pages 2–3: L2 and L4 are both

@@ -6,8 +6,10 @@
 // Prescription at patent scale (f ≈ 49.549 mm). Not rescaled to marketed 50 mm.
 // Semi-diameters estimated via combined marginal + chief ray trace at f/1.03,
 // ω = 15.7°, constrained by 77 mm filter thread and edge thickness ≥ 0.5 mm.
-// Front-group SDs accept partial field vignetting at f/1.0 (consistent with
-// production lens behavior).
+// 2026-09-08: Fig. 7 optical-rim review supports a 13 mm aspheric rim.
+// Remaining SDs are estimates, not proof of production vignetting.
+// Sensor plate omitted with a paraxial air-equivalent rear gap; nonparaxial
+// plate aberrations are not reproduced by this lens-only model.
 //
 // Aspherical surfaces use the patent's KA convention: KA = 1 + K.
 // Patent KA = 1.0 → K = 0 (spherical base conic). Patent coefficients extend
@@ -41,7 +43,7 @@ const LENS_DATA = {
     "f = 49.549 mm  FNo = 1.03  2ω = 31.4°",
   ],
   focusDescription:
-    "Inner focus — G2 (5 elements, 2 cemented doublets) moves 4.44 mm toward object from ∞ to 0.7 m. G1 and stop remain stationary.",
+    "Patent Example 3: G2 moves 4.441 mm toward the object; G1 and stop remain fixed. Source close focus is 0.700 m from the sensor, or 0.699 m from the modeled air-equivalent image plane. Intermediate movement is interpolated.",
 
   elements: [
     {
@@ -51,8 +53,10 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.54072,
       vd: 47.23,
+      dPgF: 0.00344086,
+      apdNote: "Patent Table 9 θgF=0.56780; ΔPgF converted to the runtime normal line.",
       fl: -76.1,
-      glass: "S-TIL2 (OHARA)",
+      glass: "S-TIL2 (catalog-compatible model; supplier unspecified)",
       role: "Front negative element — concave first surface diverges the on-axis beam before L1b. Part of the wide-conversion sub-structure (Gs1) that suppresses sagittal coma at the ~48 mm entrance pupil.",
     },
     {
@@ -62,10 +66,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.59282,
       vd: 68.62,
+      dPgF: 0.01575884,
+      apdNote: "Patent Table 9 θgF=0.54414; ΔPgF converted to the runtime normal line.",
       fl: 74.3,
       glass: "593686 ED class; J-PSKH1 catalog spectral proxy (patent dPgF retained)",
-      apd: "inferred",
-      dPgF: 0.014, apdNote: "ΔθgF = +0.014; LB positive lens per patent — maximum νd among all positive lenses before stop",
+      apd: "patent",
       role: "LB positive lens (patent designation). Second unit (Gs2) of the wide-conversion structure. Reconverges the divergent beam from L1a. Low-dispersion ED glass corrects longitudinal chromatic aberration.",
     },
     {
@@ -75,10 +80,11 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.59282,
       vd: 68.62,
+      dPgF: 0.01575884,
+      apdNote: "Patent Table 9 θgF=0.54414; ΔPgF converted to the runtime normal line.",
       fl: 86.5,
       glass: "593686 ED class; J-PSKH1 catalog spectral proxy (patent dPgF retained)",
-      apd: "inferred",
-      dPgF: 0.014, apdNote: "ΔθgF = +0.014; LC positive lens per patent — second-highest νd among positive lenses before stop",
+      apd: "patent",
       role: "LC positive lens (patent designation). Shares the positive-power burden with L1b in low-dispersion glass, keeping curvatures moderate to suppress spherical aberration.",
     },
     {
@@ -88,11 +94,11 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.95906,
       vd: 17.47,
+      dPgF: 0.04551454,
+      apdNote: "Patent Table 9 θgF=0.65993; ΔPgF converted to the runtime normal line.",
       fl: 158.4,
-      glass: "S-NPH3 (OHARA)",
+      glass: "S-NPH3 (catalog-compatible model; supplier unspecified)",
       apd: "patent",
-      dPgF: 0.047, apdNote:
-        "ΔθgF = +0.047; LA positive lens per patent — high-index high-dispersion element for secondary spectrum correction",
       role: "LA positive lens — the patent's core innovation element. Strongly anomalous partial dispersion balances the ED elements' secondary spectrum. Very high nd (1.959) prevents excessive surface curvatures.",
     },
     {
@@ -102,6 +108,8 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.788,
       vd: 47.52,
+      dPgF: -0.00842136,
+      apdNote: "Patent Table 9 θgF=0.55545; ΔPgF converted to the runtime normal line.",
       fl: 114.7,
       glass: "LaK (nd=1.788, νd=47.5)",
       cemented: "D1",
@@ -114,6 +122,8 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.89286,
       vd: 20.36,
+      dPgF: 0.02988552,
+      apdNote: "Patent Table 9 θgF=0.63944; ΔPgF converted to the runtime normal line.",
       fl: -74.8,
       glass: "893204 NPH class; S-NPH4 catalog spectral proxy (production supplier unspecified)",
       cemented: "D1",
@@ -126,6 +136,8 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.80809,
       vd: 22.76,
+      dPgF: 0.02521232,
+      apdNote: "Patent Table 9 θgF=0.63073; ΔPgF converted to the runtime normal line.",
       fl: -40.9,
       glass: "SF/NPH (nd=1.808, νd=22.8)",
       role: "Last element of G1 before the stop. Strongest negative power in G1 — provides Petzval field flattening and shapes the pupil geometry entering the stop.",
@@ -137,6 +149,8 @@ const LENS_DATA = {
       type: "Neg. Meniscus (2× Asph)",
       nd: 1.68863,
       vd: 31.2,
+      dPgF: 0.00976840,
+      apdNote: "Patent Table 9 θgF=0.60109; ΔPgF converted to the runtime normal line.",
       fl: -97.5,
       glass: "NbF/SF (nd=1.689, νd=31.2)",
       role: "Sole aspherical element — both surfaces carry the patent's exact odd/even A4–A20 polynomial figuring. Primary corrector for residual spherical aberration and higher-order coma. Positioned immediately behind the stop.",
@@ -148,6 +162,8 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.883,
       vd: 39.22,
+      dPgF: -0.00488196,
+      apdNote: "Patent Table 9 θgF=0.57295; ΔPgF converted to the runtime normal line.",
       fl: 22.3,
       glass: "LaF (nd=1.883, νd=39.2)",
       cemented: "D2",
@@ -160,6 +176,8 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.69895,
       vd: 30.05,
+      dPgF: 0.00848410,
+      apdNote: "Patent Table 9 θgF=0.60174; ΔPgF converted to the runtime normal line.",
       fl: -23.3,
       glass: "NbF (nd=1.699, νd=30.1)",
       cemented: "D2",
@@ -172,6 +190,8 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.883,
       vd: 39.22,
+      dPgF: -0.00488196,
+      apdNote: "Patent Table 9 θgF=0.57295; ΔPgF converted to the runtime normal line.",
       fl: 19.4,
       glass: "LaF (nd=1.883, νd=39.2)",
       cemented: "D3",
@@ -184,6 +204,8 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.62005,
       vd: 36.35,
+      dPgF: 0.00336070,
+      apdNote: "Patent Table 9 θgF=0.58602; ΔPgF converted to the runtime normal line.",
       fl: -55.3,
       glass: "TiF/F (nd=1.620, νd=36.4)",
       cemented: "D3",
@@ -216,8 +238,8 @@ const LENS_DATA = {
     { label: "STO", R: 1e15, d: 11.466, nd: 1.0, elemId: 0, sd: 13.9 },
     // ─── G2: Second lens group (moves during focus) ───
     // L2a — Aspherical negative meniscus (concave toward object)
-    { label: "15A", R: -14.64464, d: 2.55, nd: 1.68863, elemId: 8, sd: 10.7 },
-    { label: "16A", R: -18.73058, d: 0.2, nd: 1.0, elemId: 0, sd: 9.9 },
+    { label: "15A", R: -14.64464, d: 2.55, nd: 1.68863, elemId: 8, sd: 13.0 },
+    { label: "16A", R: -18.73058, d: 0.2, nd: 1.0, elemId: 0, sd: 13.0 },
     // L2b + L2c — Cemented doublet D2
     { label: "17", R: 49.66071, d: 6.45, nd: 1.883, elemId: 9, sd: 15.0 },
     { label: "18", R: -32.522, d: 1.21, nd: 1.69895, elemId: 10, sd: 15.0 },
@@ -225,8 +247,8 @@ const LENS_DATA = {
     // L2d + L2e — Cemented doublet D3
     { label: "20", R: 42.22428, d: 8.8, nd: 1.883, elemId: 11, sd: 16.0 },
     { label: "21", R: -28.754, d: 1.21, nd: 1.62005, elemId: 12, sd: 16.0 },
-    { label: "22", R: -178.14293, d: 18.251, nd: 1.0, elemId: 0, sd: 16.0 },
-    // d = DD[22] (14.401) + PP (2.850) + air (1.000) = 18.251 mm
+    { label: "22", R: -178.14293, d: 14.401 + 2.85 / 1.5168 + 1, nd: 1.0, elemId: 0, sd: 16.0 },
+    // Air-equivalent d = DD[22] + PP thickness / nd + air = 17.279955696 mm.
   ],
 
   asph: {
@@ -276,16 +298,16 @@ const LENS_DATA = {
 
   var: {
     STO: [11.466, 7.025],
-    "22": [18.251, 22.692],
+    "22": [14.401 + 2.85 / 1.5168 + 1, 18.842 + 2.85 / 1.5168 + 1],
   },
   varLabels: [
-    ["STO", "G1–G2"],
-    ["22", "BF"],
+    ["STO", "Stop–G2"],
+    ["22", "BF (air equiv.)"],
   ],
 
   groups: [
     { text: "G1 — stationary", fromSurface: "1", toSurface: "13" },
-    { text: "G2 — focus (moves →)", fromSurface: "15A", toSurface: "22" },
+    { text: "G2 — focus (moves ←)", fromSurface: "15A", toSurface: "22" },
   ],
 
   doublets: [
@@ -294,8 +316,8 @@ const LENS_DATA = {
     { text: "D3", fromSurface: "20", toSurface: "22" },
   ],
 
-  closeFocusM: 0.7,
-  nominalFno: 1.0,
+  closeFocusM: 0.7 - (2.85 - 2.85 / 1.5168) / 1000,
+  nominalFno: 1.03,
   fstopSeries: [1.0, 1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
   scFill: 0.5,
   yScFill: 0.55,

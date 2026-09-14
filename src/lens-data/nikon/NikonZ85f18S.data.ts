@@ -1,29 +1,10 @@
 import type { LensDataInput } from "../../types/optics.js";
 
-/**
- * ╔══════════════════════════════════════════════════════════════════════╗
- * ║           LENS DATA — NIKON NIKKOR Z 85mm f/1.8 S                  ║
- * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Data source: JP2020-173366A Example 3 (Konica Minolta / Nikon).   ║
- * ║  Positive–negative–positive–negative telephoto, all-spherical.     ║
- * ║  12 elements / 8 groups, 0 aspherical surfaces.                    ║
- * ║  Focus: floating inner focus — Gr2 (image-ward) + Gr3 (object-     ║
- * ║         ward), with fixed stop between them.                       ║
- * ║                                                                    ║
- * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    Patent does not list SDs. Values estimated via paraxial         ║
- * ║    marginal + chief ray trace at f/1.85, 2ω = 29.26°, with       ║
- * ║    ~8% mechanical clearance on marginal heights and 65% of         ║
- * ║    chief ray height for off-axis contribution (allowing ~35%       ║
- * ║    vignetting at full field corners). All elements verified for    ║
- * ║    positive edge thickness and SD/R < 0.90.                       ║
- * ║                                                                    ║
- * ║  NOTE ON COVER GLASS:                                              ║
- * ║    Patent surfaces 22–23 (nd = 1.51680, νd = 64.20, d = 1.6 mm)  ║
- * ║    represent the sensor cover glass / filter stack. These are      ║
- * ║    excluded; the last surface's d includes the cover glass         ║
- * ║    thickness + back focus (11.000 + 1.600 + 0.920 = 13.520 mm).  ║
- * ╚══════════════════════════════════════════════════════════════════════╝
+/** JP2020-173366A Example 3, Figure 3 (PDF pp.16–17 and20).
+ * R/d/nd/vd are the original numerical rows; all surfaces are spherical.
+ * Rims are inferred from the optical outline at600dpi, not listed clear apertures.
+ * Omit PT surfaces22–23: rear air distance =11+1.6/1.5168+0.92 mm.
+ * Source summaries FL83 and TL111.35 disagree with the numerical table; see analysis.
  */
 
 const LENS_DATA = {
@@ -34,10 +15,10 @@ const LENS_DATA = {
   subtitle: "JP2020-173366A EXAMPLE 3 — KONICA MINOLTA / NIKON",
   specs: [
     "12 ELEMENTS / 8 GROUPS",
-    "f ≈ 83.0 mm (patent) · 85 mm (production)",
-    "F/1.85 (patent) · F/1.8 (production)",
-    "2ω ≈ 29.26° (patent) · 28°30′ (production)",
-    "ALL SPHERICAL · 2 ED ELEMENTS",
+    "f = 83.0 mm (source summary)",
+    "F/1.85 (patent)",
+    "2ω = 29.26° (patent)",
+    "ALL SPHERICAL · PATENT EXAMPLE 3",
   ],
 
   focalLengthMarketing: 85,
@@ -69,10 +50,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.7725,
       vd: 49.62,
-      fl: 139.5,
-      glass: "S-LAH66 (OHARA)",
+      fl: 139.8,
+      glass: "S-LAH66 (OHARA, inferred coordinate counterpart)",
       apd: false,
-      role: "Front positive element. High-index lanthanum crown provides moderate converging power with gentle curvatures at the largest beam diameter.",
+      role: "Front positive singlet in fixed Gr1.",
     },
     {
       id: 2,
@@ -81,11 +62,10 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.55032,
       vd: 75.5,
-      fl: 114.2,
-      glass: "Fluorophosphate crown (ED)",
-      apd: "inferred",
-      apdNote: "νd = 75.50 — fluorophosphate FK/FPL family, above Nikon ED threshold",
-      role: "First ED element. Low-dispersion meniscus contributes positive power with minimal chromatic contribution for axial color correction.",
+      fl: 111.3,
+      glass: "FCD705 (HOYA, inferred coordinate counterpart)",
+      apd: false,
+      role: "Low-dispersion positive singlet in Gr1; commercial composition and branded ED identity are not specified.",
     },
     {
       id: 3,
@@ -94,12 +74,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.497,
       vd: 81.61,
-      fl: 91.6,
-      glass: "S-FPL51 (OHARA)",
-      apd: "patent",
-      dPgF: 0.032, apdNote: "S-FPL51: PgF = 0.5385, dPgF = +0.032 — strong anomalous partial dispersion",
+      fl: 92.5,
+      glass: "S-FPL51 (OHARA, inferred coordinate counterpart)",
+      apd: false,
       cemented: "D1",
-      role: "Second ED element. S-FPL51 provides the primary secondary spectrum correction. Cemented with L14 to form the Gr1 achromatic doublet.",
+      role: "Low-dispersion positive partner in cemented Gr1 pair; its catalog match does not establish patent-listed anomalous dispersion.",
     },
     {
       id: 4,
@@ -108,11 +87,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.85025,
       vd: 30.05,
-      fl: -64.7,
-      glass: "H-ZLaF76 (CDGM, 850301)",
+      fl: -64.5,
+      glass: "H-ZLaF76 (CDGM, inferred coordinate counterpart)",
       apd: false,
       cemented: "D1",
-      role: "Flint partner in the Gr1 achromatic doublet. High dispersion complements L13's anomalous dispersion for secondary spectrum correction.",
+      role: "Negative partner in the Gr1 cemented pair.",
     },
     // ── Group 2 — Negative focus group (moves image-ward) ──
     {
@@ -122,11 +101,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.92286,
       vd: 20.88,
-      fl: 76.6,
-      glass: "PBH21 (OHARA; historical 923209)",
+      fl: 76.8,
+      glass: "PBH21 (OHARA, inferred coordinate counterpart)",
       apd: false,
       cemented: "D2",
-      role: "Extreme-dispersion positive element in the Gr2 focus doublet. High nd/low νd enables strong power in a compact, lightweight element for AF speed.",
+      role: "Positive, high-dispersion member of the moving negative Gr2 doublet.",
     },
     {
       id: 6,
@@ -135,11 +114,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.60342,
       vd: 38.01,
-      fl: -36.7,
-      glass: "Flint (code 603380)",
+      fl: -36.6,
+      glass: "J-F5 (Hikari, inferred coordinate counterpart)",
       apd: false,
       cemented: "D2",
-      role: "Dominant negative power in Gr2. Achromatizes the focus doublet to minimize chromatic shift during focusing.",
+      role: "Negative member of the moving Gr2 doublet; shares source coordinates with L44.",
     },
     // ── Group 3 — Positive focus group (moves object-ward) ──
     {
@@ -149,10 +128,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.59349,
       vd: 67.0,
-      fl: 67.9,
-      glass: "Phosphate crown (nearest: S-FPM2, OHARA)",
+      fl: 68.4,
+      glass: "J-PSKH4 (Hikari, inferred coordinate counterpart)",
       apd: false,
-      role: "Single-element positive focus group. Low-dispersion crown creates chromatic lever arm against L21 for focus-invariant color correction.",
+      role: "Positive singlet Gr3 moves objectward, opposite to Gr2.",
     },
     // ── Group 4 — Rear negative group (fixed) ──
     {
@@ -162,11 +141,11 @@ const LENS_DATA = {
       type: "Plano-Convex Positive",
       nd: 1.91082,
       vd: 35.25,
-      fl: 48.0,
-      glass: "Ultra-high-index La dense flint (code 911353)",
+      fl: 48,
+      glass: "TAFD35 (HOYA, inferred coordinate counterpart)",
       apd: false,
       cemented: "D3",
-      role: "Ultra-high-index element with flat front face. Strong positive power from a single curved surface enables compact Gr4 architecture.",
+      role: "Plano-convex positive member of the first Gr4 doublet.",
     },
     {
       id: 9,
@@ -175,11 +154,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.6727,
       vd: 32.17,
-      fl: -38.8,
-      glass: "Dense flint (code 673322)",
+      fl: -38.5,
+      glass: "H-ZF2 (CDGM, inferred coordinate counterpart)",
       apd: false,
       cemented: "D3",
-      role: "Negative partner in first Gr4 doublet (net FL ≈ −206 mm). Begins field-flattening divergence for Petzval correction.",
+      role: "Negative member of the first Gr4 doublet. Numerical R16 is finite despite the source prose calling this plano-concave.",
     },
     {
       id: 10,
@@ -188,11 +167,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.8485,
       vd: 43.79,
-      fl: 71.0,
-      glass: "J-LASFH22 (Hikari, 849438)",
+      fl: 71.5,
+      glass: "J-LASFH22 (Hikari, inferred coordinate counterpart)",
       apd: false,
       cemented: "D4",
-      role: "Positive element in second Gr4 doublet (net FL ≈ +122.7 mm). Sub-corrector controlling coma and field curvature within the negative rear group.",
+      role: "Positive member of the second Gr4 doublet.",
     },
     {
       id: 11,
@@ -201,11 +180,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.60342,
       vd: 38.01,
-      fl: -164.3,
-      glass: "Flint (code 603380, same as L22)",
+      fl: -163.8,
+      glass: "J-F5 (Hikari, inferred coordinate counterpart)",
       apd: false,
       cemented: "D4",
-      role: "Chromatic corrector within the positive L43+L44 doublet. Weak negative power fine-tunes color balance without altering convergence significantly.",
+      role: "Negative member of the second Gr4 doublet; shares source coordinates with L22.",
     },
     {
       id: 12,
@@ -214,10 +193,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.64769,
       vd: 33.72,
-      fl: -111.5,
-      glass: "Dense flint (nearest: Schott SF2)",
+      fl: -113.3,
+      glass: "SF2 (Schott, inferred coordinate counterpart)",
       apd: false,
-      role: "Final element, concave to object. Narrows beam within Gr4 and increases off-axis ray incidence angle for near-telecentric exit pupil geometry.",
+      role: "Rear negative meniscus, concave toward object; it is the last modeled glass element.",
     },
   ],
 
@@ -228,38 +207,38 @@ const LENS_DATA = {
    */
   surfaces: [
     // ── Gr1: Front positive group (fixed) ──
-    { label: "1", R: 120.814, d: 4.94, nd: 1.7725, elemId: 1, sd: 27.0 }, // L11 front
-    { label: "2", R: -1000.0, d: 0.25, nd: 1.0, elemId: 0, sd: 26.5 }, // L11 rear → air
-    { label: "3", R: 42.061, d: 6.12, nd: 1.55032, elemId: 2, sd: 25.0 }, // L12 front
-    { label: "4", R: 127.231, d: 0.5, nd: 1.0, elemId: 0, sd: 23.0 }, // L12 rear → air
-    { label: "5", R: 62.742, d: 6.56, nd: 1.497, elemId: 3, sd: 20.5 }, // L13 front
-    { label: "6", R: -165.753, d: 1.4, nd: 1.85025, elemId: 4, sd: 20.5 }, // L13→L14 junction
-    { label: "7", R: 82.262, d: 6.182, nd: 1.0, elemId: 0, sd: 20.5 }, // L14 rear → air (var)
+    { label: "1", R: 120.814, d: 4.94, nd: 1.7725, elemId: 1, sd: 28 }, // L11 front
+    { label: "2", R: -1000.0, d: 0.25, nd: 1.0, elemId: 0, sd: 28 }, // L11 rear → air
+    { label: "3", R: 42.061, d: 6.12, nd: 1.55032, elemId: 2, sd: 24 }, // L12 front
+    { label: "4", R: 127.231, d: 0.5, nd: 1.0, elemId: 0, sd: 24 }, // L12 rear → air
+    { label: "5", R: 62.742, d: 6.56, nd: 1.497, elemId: 3, sd: 22 }, // L13 front
+    { label: "6", R: -165.753, d: 1.4, nd: 1.85025, elemId: 4, sd: 22 }, // L13→L14 junction
+    { label: "7", R: 82.262, d: 6.182, nd: 1.0, elemId: 0, sd: 22 }, // L14 rear → air (var)
 
     // ── Gr2: Negative focus group — cemented doublet (moves image-ward) ──
-    { label: "8", R: 438.032, d: 3.21, nd: 1.92286, elemId: 5, sd: 17.0 }, // L21 front
-    { label: "9", R: -84.265, d: 1.13, nd: 1.60342, elemId: 6, sd: 16.0 }, // L21→L22 junction
-    { label: "10", R: 30.06, d: 13.284, nd: 1.0, elemId: 0, sd: 16.0 }, // L22 rear → air (var)
+    { label: "8", R: 438.032, d: 3.21, nd: 1.92286, elemId: 5, sd: 17.9 }, // L21 front
+    { label: "9", R: -84.265, d: 1.13, nd: 1.60342, elemId: 6, sd: 17.9 }, // L21→L22 junction
+    { label: "10", R: 30.06, d: 13.284, nd: 1.0, elemId: 0, sd: 17.9 }, // L22 rear → air (var)
 
     // ── Aperture stop (fixed between Gr2 and Gr3) ──
     { label: "STO", R: 1e15, d: 11.915, nd: 1.0, elemId: 0, sd: 13.4 },
 
     // ── Gr3: Positive focus group — singlet (moves object-ward) ──
-    { label: "12", R: 54.757, d: 4.1, nd: 1.59349, elemId: 7, sd: 14.0 }, // L31 front
-    { label: "13", R: -152.958, d: 2.059, nd: 1.0, elemId: 0, sd: 14.0 }, // L31 rear → air (var)
+    { label: "12", R: 54.757, d: 4.1, nd: 1.59349, elemId: 7, sd: 15.4 }, // L31 front
+    { label: "13", R: -152.958, d: 2.059, nd: 1.0, elemId: 0, sd: 15.4 }, // L31 rear → air (var)
 
     // ── Gr4: Rear negative group (fixed) ──
-    // D3: L41+L42 cemented doublet (net FL ≈ −206 mm)
-    { label: "14", R: 1e15, d: 6.5, nd: 1.91082, elemId: 8, sd: 14.0 }, // L41 front (flat)
-    { label: "15", R: -43.69, d: 2.02, nd: 1.6727, elemId: 9, sd: 14.0 }, // L41→L42 junction
-    { label: "16", R: 64.869, d: 4.9, nd: 1.0, elemId: 0, sd: 14.0 }, // L42 rear → air
-    // D4: L43+L44 cemented doublet (net FL ≈ +122.7 mm)
-    { label: "17", R: 70.537, d: 8.2, nd: 1.8485, elemId: 10, sd: 14.0 }, // L43 front
-    { label: "18", R: -411.688, d: 4.5, nd: 1.60342, elemId: 11, sd: 14.0 }, // L43→L44 junction
-    { label: "19", R: 130.583, d: 8.121, nd: 1.0, elemId: 0, sd: 13.5 }, // L44 rear → air
+    // D3: L41+L42 cemented doublet
+    { label: "14", R: 1e15, d: 6.5, nd: 1.91082, elemId: 8, sd: 16.4 }, // L41 front (flat)
+    { label: "15", R: -43.69, d: 2.02, nd: 1.6727, elemId: 9, sd: 16.4 }, // L41→L42 junction
+    { label: "16", R: 64.869, d: 4.9, nd: 1.0, elemId: 0, sd: 16.4 }, // L42 rear → air
+    // D4: L43+L44 cemented doublet
+    { label: "17", R: 70.537, d: 8.2, nd: 1.8485, elemId: 10, sd: 17.9 }, // L43 front
+    { label: "18", R: -411.688, d: 4.5, nd: 1.60342, elemId: 11, sd: 17.9 }, // L43→L44 junction
+    { label: "19", R: 130.583, d: 8.121, nd: 1.0, elemId: 0, sd: 17.9 }, // L44 rear → air
     // L45 singlet
-    { label: "20", R: -35.4045, d: 1.4, nd: 1.64769, elemId: 12, sd: 13.0 }, // L45 front
-    { label: "21", R: -69.4719, d: 13.52, nd: 1.0, elemId: 0, sd: 13.0 }, // L45 rear → image (incl. cover glass path)
+    { label: "20", R: -35.4045, d: 1.4, nd: 1.64769, elemId: 12, sd: 19.2 }, // L45 front
+    { label: "21", R: -69.4719, d: 12.974852320675105, nd: 1.0, elemId: 0, sd: 19.2 }, // L45 rear → image (air-equivalent omitted PT path)
   ],
 
   /* ── Aspherical coefficients ──
@@ -288,7 +267,7 @@ const LENS_DATA = {
     ["7", "D7"],
     ["10", "D10"],
     ["STO", "D11"],
-    ["13", "BF"],
+    ["13", "D13"],
   ],
 
   /* ── Group annotations ── */
@@ -309,13 +288,11 @@ const LENS_DATA = {
   /* ── Focus configuration ── */
   closeFocusM: 0.8,
   focusDescription:
-    "Floating inner focus: Gr2 (cemented doublet, 2 elements) moves toward image; " +
-    "Gr3 (singlet) moves toward object. Two independent stepping motors (Nikon Multi-Focus System). " +
-    "D2Gr/D3Gr = −0.57; Gr2 travel = +3.84 mm, Gr3 travel = −6.76 mm.",
+    "Source POS2 is 0.8 m object-to-image: Gr2 moves imageward 3.838 mm and Gr3 objectward 6.762 mm. Gr1, stop and Gr4 are fixed (0.001 mm table rounding). Intermediate motion is interpolated; the rounded prescription gives about 0.803 m at POS2.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 1.8,
-  fstopSeries: [1.8, 2, 2.5, 2.8, 3.5, 4, 4.5, 5.6, 6.3, 8, 11, 16],
+  nominalFno: 1.85,
+  fstopSeries: [1.85, 2, 2.5, 2.8, 3.5, 4, 4.5, 5.6, 6.3, 8, 11, 16],
 
   /* ── Layout tuning ── */
   scFill: 0.5,

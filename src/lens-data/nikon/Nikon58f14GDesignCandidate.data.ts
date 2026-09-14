@@ -1,35 +1,12 @@
 import type { LensDataInput } from "../../types/optics.js";
 
 /**
- * ╔══════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — NIKON AF-S NIKKOR 58mm f/1.4G (Design Candidate)     ║
- * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Data source: JP2013-019993A Example 2 (Nikon / Haruo Sato).      ║
- * ║  Modified Gauss type optimized for sagittal coma correction.       ║
- * ║  9 elements / 4 patent groups (5 air-separated components),       ║
- * ║  2 aspherical surfaces (S1A front, S15A rear).                    ║
- * ║  Focus: Unit focus — entire optical assembly translates.           ║
- * ║                                                                    ║
- * ║  DESIGN CANDIDATE NOTE:                                            ║
- * ║    Example 2 is the closest patent match to the production lens    ║
- * ║    (9 elements, asph on S1 and S15, f ≈ 58mm). The production     ║
- * ║    lens is 9 elements / 6 groups; the patent groups the Lb1       ║
- * ║    cemented doublet as a single component within Gb, yielding     ║
- * ║    5 air-separated components. Nikon likely split this doublet    ║
- * ║    into two air-separated singlets for production.                ║
- * ║                                                                    ║
- * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    Patent does not list SDs. Estimated via paraxial marginal +    ║
- * ║    0.6-field chief ray trace with 5–8% mechanical clearance,      ║
- * ║    capped by edge-thickness positivity (ET > 0.3 mm) and the     ║
- * ║    S15A conic height limit (sd < 0.98 × |R|/√(1+K) = 20.1 mm).  ║
- * ║                                                                    ║
- * ║  NOTE ON CONIC CONSTANTS:                                          ║
- * ║    Patent uses κ in the sag discriminant 1 − κ(y/r)².            ║
- * ║    Spec uses (1+K). Therefore K = κ − 1.                         ║
- * ║    S1A:  patent κ = 0.5721  → K = −0.4279 (prolate ellipsoid)    ║
- * ║    S15A: patent κ = 14.1597 → K = +13.1597 (oblate ellipsoid)    ║
- * ╚══════════════════════════════════════════════════════════════════════╝
+ * JP 2013-019993 A, Example 2 / Figure 3 / Tables 4-5.
+ * Design candidate, not an established production prescription.
+ * Nine elements, five air-separated components, four optical groups.
+ * Original conic conversion K=kappa-1 is correct and retained.
+ * Optical rims inferred from the exact figure; source gives no clear apertures.
+ * Unit focusing is described, but the 0.58 m endpoint is a reconstruction.
  */
 
 const LENS_DATA = {
@@ -39,17 +16,17 @@ const LENS_DATA = {
   name: "NIKON AF-S NIKKOR 58mm f/1.4 G",
   subtitle: "JP2013-019993A EXAMPLE 2 (NEAR MATCH) — NIKON / HARUO SATO",
   specs: [
-    "9 ELEMENTS / 5 GROUPS (patent) · 6 GROUPS (production)",
-    "f ≈ 58.0 mm",
-    "F/1.4",
-    "2ω ≈ 41.7°",
+    "9 ELEMENTS / 5 GROUPS · PATENT DESIGN CANDIDATE",
+    "f = 58.0216 mm (PATENT)",
+    "F/1.45 (PATENT)",
+    "2ω = 41.72°",
     "2 ASPHERICAL SURFACES",
   ],
 
   focalLengthMarketing: 58,
-  focalLengthDesign: 58.0,
+  focalLengthDesign: 58.0216,
   apertureMarketing: 1.4,
-  apertureDesign: 1.4,
+  apertureDesign: 1.45,
   patentNumber: "JP 2013-019993 A",
   patentAuthors: ["Haruo Sato"],
   patentAssignees: ["Nikon Corporation"],
@@ -72,7 +49,7 @@ const LENS_DATA = {
       nd: 1.74443,
       vd: 49.53,
       fl: 91.0,
-      glass: "Lanthanum dense flint (LASF-type, nd/νd match uncertain)",
+      glass: "Unidentified glass (nd 1.74443, vd 49.53)",
       apd: false,
       role: "Front positive collector with aspherical correction for spherical aberration and lower coma. Ga (Group 1, positive).",
     },
@@ -84,7 +61,7 @@ const LENS_DATA = {
       nd: 1.755,
       vd: 52.34,
       fl: 59.8,
-      glass: "J-LASKH2 (Hikari, patent nd/vd match) / N-LAK33B",
+      glass: "J-LASKH2 (Hikari, inferred coordinate counterpart)",
       apd: false,
       cemented: "Lb1",
       role: "Front element of cemented chromatic corrector doublet. Gb (Group 2, negative).",
@@ -97,7 +74,7 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.31,
       fl: -99.0,
-      glass: "S-FSL5 / FK5 (fluorine crown, low dispersion)",
+      glass: "S-FSL5 (OHARA, inferred coordinate counterpart)",
       apd: false,
       cemented: "Lb1",
       role: "Rear element of chromatic corrector doublet; low dispersion controls primary color. Gb.",
@@ -110,7 +87,7 @@ const LENS_DATA = {
       nd: 1.68893,
       vd: 31.16,
       fl: -51.6,
-      glass: "E-FD8 (HOYA, patent nd/vd match) / S-TIM28",
+      glass: "E-FD8 (HOYA, inferred coordinate counterpart)",
       apd: false,
       role: "Classical Gauss diverging meniscus; strongest negative element in front half. Petzval field flattening. Gb.",
     },
@@ -122,7 +99,7 @@ const LENS_DATA = {
       nd: 1.72825,
       vd: 28.46,
       fl: -22.3,
-      glass: "H-ZF4A (CDGM, patent nd/vd match) / S-TIH10",
+      glass: "H-ZF4A (CDGM, inferred coordinate counterpart)",
       apd: false,
       cemented: "Lc",
       role: "Front element of post-stop corrector doublet; high dispersion for chromatic balancing. Gc (Group 3, negative).",
@@ -135,7 +112,7 @@ const LENS_DATA = {
       nd: 1.883,
       vd: 40.77,
       fl: 32.0,
-      glass: "S-LAH58 / N-LASF44 (high-index lanthanum)",
+      glass: "S-LAH58 (OHARA, inferred coordinate counterpart)",
       apd: false,
       cemented: "Lc",
       role: "Rear element of post-stop corrector; nd = 1.883 drives Petzval correction. Gc.",
@@ -148,7 +125,7 @@ const LENS_DATA = {
       nd: 1.883,
       vd: 40.66,
       fl: 37.1,
-      glass: "S-LAH58 / N-LASF44 (high-index lanthanum, same family as Lcp)",
+      glass: "S-LAH58 (OHARA, approximate coordinate counterpart)",
       apd: false,
       cemented: "Ld",
       role: "Front positive of rear power triplet; high index for Petzval control. Gd (Group 4, positive).",
@@ -161,9 +138,8 @@ const LENS_DATA = {
       nd: 1.53172,
       vd: 48.78,
       fl: -41.4,
-      glass: "Unmatched (KZFS2-type short flint; S-NBM51 name rejected by stored nd/vd)",
-      apd: "inferred",
-      apdNote: "Short flint with positive ΔPgF; paired with S-LAH58 positive elements for secondary spectrum control",
+      glass: "J-LLF6 (Hikari, inferred coordinate counterpart)",
+      apd: false,
       cemented: "Ld",
       role: "Central negative of rear triplet; symmetric biconcave shape factor ≈ 0 optimizes coma and spherical aberration balance. Gd.",
     },
@@ -175,7 +151,7 @@ const LENS_DATA = {
       nd: 1.74443,
       vd: 49.53,
       fl: 38.6,
-      glass: "Same as La (lanthanum dense flint, LASF-type)",
+      glass: "Unidentified glass (same source coordinates as La)",
       apd: false,
       cemented: "Ld",
       role: "Rear positive of triplet with aspherical exit surface; corrects upper coma, sagittal coma, spherical aberration, and distortion. Gd.",
@@ -183,26 +159,26 @@ const LENS_DATA = {
   ],
 
   /* ── Surface prescription ──
-   *  16 surfaces (15 patent surfaces + STO), front to rear.
+   *  15 source surfaces including the stop, front to rear.
    *  Patent surface numbers preserved in labels.
    *  Aperture stop at patent surface 8, between Gb and Gc.
    */
   surfaces: [
-    { label: "1A", R: 52.8577, d: 6.0, nd: 1.74443, elemId: 1, sd: 26.7 }, // La front (aspherical)
-    { label: "2", R: 229.3475, d: 0.1, nd: 1.0, elemId: 0, sd: 26.4 }, // La rear → air
-    { label: "3", R: 40.3738, d: 6.0, nd: 1.755, elemId: 2, sd: 21.8 }, // Lb1p front
-    { label: "4", R: 354.9744, d: 1.5, nd: 1.48749, elemId: 3, sd: 21.8 }, // Lb1p→Lb1n junction
-    { label: "5", R: 42.4134, d: 4.1038, nd: 1.0, elemId: 0, sd: 21.8 }, // Lb1n rear → air
-    { label: "6", R: 290.8467, d: 1.5, nd: 1.68893, elemId: 4, sd: 18.0 }, // Lb2 front
-    { label: "7", R: 31.6359, d: 6.0, nd: 1.0, elemId: 0, sd: 17.3 }, // Lb2 rear → air
+    { label: "1A", R: 52.8577, d: 6.0, nd: 1.74443, elemId: 1, sd: 23.5 }, // La front (aspherical)
+    { label: "2", R: 229.3475, d: 0.1, nd: 1.0, elemId: 0, sd: 23.5 }, // La rear → air
+    { label: "3", R: 40.3738, d: 6.0, nd: 1.755, elemId: 2, sd: 19.8 }, // Lb1p front
+    { label: "4", R: 354.9744, d: 1.5, nd: 1.48749, elemId: 3, sd: 19.8 }, // Lb1p→Lb1n junction
+    { label: "5", R: 42.4134, d: 4.1038, nd: 1.0, elemId: 0, sd: 19.8 }, // Lb1n rear → air
+    { label: "6", R: 290.8467, d: 1.5, nd: 1.68893, elemId: 4, sd: 16.9 }, // Lb2 front
+    { label: "7", R: 31.6359, d: 6.0, nd: 1.0, elemId: 0, sd: 16.9 }, // Lb2 rear → air
     { label: "STO", R: 1e15, d: 6.0, nd: 1.0, elemId: 0, sd: 14.0 }, // Aperture stop (patent surface 8)
-    { label: "9", R: -30.7873, d: 1.7, nd: 1.72825, elemId: 5, sd: 16.2 }, // Lcn front
+    { label: "9", R: -30.7873, d: 1.7, nd: 1.72825, elemId: 5, sd: 16.8 }, // Lcn front
     { label: "10", R: 35.1427, d: 7.0, nd: 1.883, elemId: 6, sd: 16.8 }, // Lcn→Lcp junction
-    { label: "11", R: -131.1407, d: 0.1, nd: 1.0, elemId: 0, sd: 17.5 }, // Lcp rear → air
-    { label: "12", R: 118.7661, d: 6.0, nd: 1.883, elemId: 7, sd: 17.5 }, // Ldp1 front
-    { label: "13", R: -44.2318, d: 1.5, nd: 1.53172, elemId: 8, sd: 17.6 }, // Ldp1→Ldn junction
-    { label: "14", R: 44.2683, d: 6.0, nd: 1.74443, elemId: 9, sd: 17.6 }, // Ldn→Ldp2 junction
-    { label: "15A", R: -77.2943, d: 38.7, nd: 1.0, elemId: 0, sd: 17.6 }, // Ldp2 rear (aspherical) → air; d = BFD
+    { label: "11", R: -131.1407, d: 0.1, nd: 1.0, elemId: 0, sd: 16.8 }, // Lcp rear → air
+    { label: "12", R: 118.7661, d: 6.0, nd: 1.883, elemId: 7, sd: 16.8 }, // Ldp1 front
+    { label: "13", R: -44.2318, d: 1.5, nd: 1.53172, elemId: 8, sd: 16.8 }, // Ldp1→Ldn junction
+    { label: "14", R: 44.2683, d: 6.0, nd: 1.74443, elemId: 9, sd: 16.8 }, // Ldn→Ldp2 junction
+    { label: "15A", R: -77.2943, d: 38.7, nd: 1.0, elemId: 0, sd: 16.8 }, // Ldp2 rear (aspherical) → air; d = BFD
   ],
 
   /* ── Aspherical coefficients ──
@@ -258,11 +234,11 @@ const LENS_DATA = {
   /* ── Focus configuration ── */
   closeFocusM: 0.58,
   focusDescription:
-    "Unit focus — entire optical assembly translates forward via SWM helicoid. BFD increases at close focus.",
+    "Unit focus per patent paragraph 75: all groups and the stop move objectward. The 0.58 m endpoint and extension are a paraxial reconstruction; no finite-focus station or motor mechanism is specified for Example 2.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 1.4,
-  fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
+  nominalFno: 1.45,
+  fstopSeries: [1.45, 2, 2.8, 4, 5.6, 8, 11, 16],
 
   /* ── Layout tuning ── */
   scFill: 0.5,

@@ -26,19 +26,10 @@ APD status remains `false` for all elements. The patent describes low-refractivi
 ### Phase 3 - Spectral / metadata enrichment
 
 - The patent does not publish nC, nF, ng, PgF, theta-gF, or dPgF tables. No line-index enrichment was added.
-- `npm run generate:glass-reports` now reports this lens at 0/6 trusted Sellmeier rows by design; all six glass rows are Abbe-backed because the stored prescription is e-line patent data.
 
 ### Phase 4 - Analysis sync
 
 - Updated the spectral-convention notes to explain why the data file suppresses d-line Sellmeier resolution even where Schott family assignments are known.
-
-### Verification
-
-- `npm run generate:glass-reports` - passed.
-- `npm run typecheck` - passed.
-- `npm run format:check` - passed.
-- `npm run lint` - passed.
-- `npm run test` - passed.
 
 ## 2026-07-30 - Reference-line metadata
 

@@ -2,9 +2,9 @@ import type { LensDataInput } from "../../types/optics.js";
 
 // =============================================================================
 //  NIKKOR Z 50mm f/1.8 S — Patent WO2019/220618 A1, Example 9
-//  Inventors: Saburo Masugi, Tomoyuki Koshima (Nikon Corporation)
+//  Inventors: Saburo Masugi, Tomoyuki Sashima (Nikon Corporation)
 //  Filed: 2018-05-18 | Published: 2019-11-21
-//  Production design confirmed by: 12E/9G count, 2 asph + 2 ED match,
+//  Production association supported by: 12E/9G count, 2 asph + 2 ED match,
 //  and computed MFD = 400.0 mm = Nikon published 0.4 m.
 // =============================================================================
 
@@ -22,7 +22,7 @@ const LENS_DATA = {
   apertureDesign: 1.85,
   lensMounts: ["nikon-z"],
   imageFormat: "135-full-frame",
-  patentNumber: "JP WO2019/220618 A1",
+  patentNumber: "WO 2019/220618 A1",
   patentAuthors: ["Saburo Masugi", "Tomoyuki Sashima"],
   patentAssignees: ["Nikon Corporation"],
   patentYear: 2019,
@@ -33,8 +33,9 @@ const LENS_DATA = {
   //
   // elemId mapping notes:
   //   Cemented doublets: junction surface carries the rear element's elemId.
-  //   Composite L14: the 0.1 mm resin layer (surface 6A) has elemId 0;
-  //     the glass body (surface 7) carries elemId 4. The aspherical coefficients
+  //   Composite L14: the 0.1 mm layer (surface 6A) has elemId 13;
+  //     the glass body (surface 7) carries elemId 4. The layer is an additional
+  //     modeled medium, not a thirteenth production lens. The aspherical coefficients
   //     are keyed to surface "6A". See analysis document for inferential basis
   //     of the composite aspherical identification.
 
@@ -62,7 +63,7 @@ const LENS_DATA = {
       nd: 1.94595,
       vd: 18.0,
       fl: 98.54,
-      glass: "FDS18 (HOYA, 946180)",
+      glass: "FDS18 (HOYA catalog equivalent, 946180; production supplier unspecified)",
       apd: false,
       role: "Achromatizing partner to L11. Highest refractive index in the system. The large nd difference at the cemented interface creates a powerfully correcting buried surface for chromatic aberration.",
       cemented: "L11–L12",
@@ -82,14 +83,28 @@ const LENS_DATA = {
     },
 
     {
+      id: 13,
+      name: "L14a",
+      label: "L14 aspherical layer",
+      type: "Thin Aspherical Layer (inferred composite)",
+      nd: 1.56093,
+      vd: 36.6,
+      glass: "Unmatched (patent thin-layer medium; polymer identity and supplier unspecified)",
+      apd: false,
+      cemented: "L14 composite",
+      role: "Table 9 surface 6: 0.100 mm layer carrying the outer asphere. Composite construction is inferred from the thin layer; the patent gives optical constants without naming a resin.",
+    },
+
+    {
       id: 4,
       name: "L14",
       label: "Element 4",
-      type: "Pos. Meniscus (Asph, convex to obj.)",
+      type: "Pos. Meniscus (composite substrate)",
       nd: 1.804,
       vd: 46.6,
       fl: 54.12,
-      glass: "S-LAH65V class (lanthanum dense flint, nd = 1.804)",
+      glass: "S-LAH65V catalog equivalent (production supplier unspecified)",
+      cemented: "L14 composite",
       apd: false,
       role: "First aspherical element. Object-side aspherical surface (probable composite construction: 0.1 mm resin layer, nd = 1.561, νd = 36.6, on glass substrate). Targets spherical aberration and coma on the converging marginal beam before the stop.",
     },
@@ -147,7 +162,7 @@ const LENS_DATA = {
       fl: 32.84,
       glass: "774472 - lanthanum dense flint (M-TAF401 code match; patent nd=1.77377, vd=47.2)",
       apd: false,
-      role: "Second aspherical element — double asphere (both surfaces). Primary monochromatic aberration corrector in the focusing group. Image-side surface carries ~75× more aspherical departure than object side. Probable precision glass molded (PGM) element; high-index lanthanum glass minimises mass for fast AF response.",
+      role: "Second aspherical element — double asphere (both surfaces). Primary monochromatic aberration corrector in the focusing group. Image-side surface carries ~75× more aspherical departure than object side. Manufacturing process is not established by this prescription.",
     },
 
     {
@@ -173,7 +188,7 @@ const LENS_DATA = {
       nd: 1.94595,
       vd: 18.0,
       fl: 103.65,
-      glass: "FDS18 (HOYA, 946180)",
+      glass: "FDS18 (HOYA catalog equivalent, 946180; production supplier unspecified)",
       apd: false,
       role: "Positive element of the rear cemented doublet. Same ultra-high-index glass as L12, providing chromatic balance symmetrically across the system. Forms cemented pair with L32 for lateral color correction and field flattening.",
       cemented: "L31–L32",
@@ -209,15 +224,15 @@ const LENS_DATA = {
 
   // §3 — Surfaces (strict front-to-rear order)
   //
-  //  Surface 13 is a virtual (dummy) surface per patent ¶0128.
-  //  The thin resin layer at surface 6A (elemId: 0) participates in the ray
-  //  trace but is not rendered as a separate element — see §2 notes above.
+  //  Source surface 13 is a virtual plane per ¶0128; its 2.7 mm is merged into STO.
+  //  The thin layer at surface 6A has explicit optical constants and is rendered
+  //  as a bonded medium. The sensor filter is omitted using air-equivalent BF.
   //  Semi-diameters estimated from f/1.85 entrance pupil geometry (EP SD ≈ 14 mm)
   //  with 8–12% mechanical clearance.  Sized to ensure positive edge thickness
   //  and smooth SD progression across cemented doublets.
   //  Surfaces 9–11 (L15–L16 doublet) and 14–15 (L21) carry reduced SDs relative
   //  to their mechanical clear aperture: at close focus, G2 travels 7.9 mm toward
-  //  the object and the STO→G2 gap shrinks from 10.32 mm to 2.409 mm, so the
+  //  the object and the STO→G2 gap shrinks from 13.02 mm to 5.109 mm, so the
   //  strongly-curved rear surface of L16 (R = 21 mm) physically encroaches on
   //  L21's front surface.  The reduced SDs prevent glass interpenetration and
   //  visible diagram overlap at close-focus distances (issue #290).
@@ -230,7 +245,7 @@ const LENS_DATA = {
     { label: "3", R: 105.0, d: 2.805, nd: 1.0, elemId: 0, sd: 19.5 }, // L12 rear → air
     { label: "4", R: -226.31231, d: 6.827, nd: 1.72916, elemId: 3, sd: 18.9 }, // L13 front
     { label: "5", R: -47.98013, d: 0.644, nd: 1.0, elemId: 0, sd: 19.0 }, // L13 rear → air
-    { label: "6A", R: 36.6491, d: 0.1, nd: 1.56093, elemId: 0, sd: 18.5 }, // L14 resin layer (asph)
+    { label: "6A", R: 36.6491, d: 0.1, nd: 1.56093, elemId: 13, sd: 18.5 }, // L14 resin layer (asph)
     { label: "7", R: 36.85687, d: 5.622, nd: 1.804, elemId: 4, sd: 18.5 }, // L14 glass front
     { label: "8", R: 217.9278, d: 0.2, nd: 1.0, elemId: 0, sd: 18.5 }, // L14 rear → air
     { label: "9", R: 28.49361, d: 7.332, nd: 1.59319, elemId: 5, sd: 16.0 }, // L15 front (ED)
@@ -238,16 +253,13 @@ const LENS_DATA = {
     { label: "11", R: 20.99038, d: 5.164, nd: 1.0, elemId: 0, sd: 12.0 }, // L16 rear → air
 
     // ── Aperture stop ─────────────────────────────────────────────
-    { label: "STO", R: 1e15, d: 10.32, nd: 1.0, elemId: 0, sd: 11.0 }, // stop (D12, variable)
-
-    // ── Virtual surface ───────────────────────────────────────────
-    { label: "13", R: 1e15, d: 2.7, nd: 1.0, elemId: 0, sd: 14.5 }, // fixed air space
+    { label: "STO", R: 1e15, d: 13.02, nd: 1.0, elemId: 0, sd: 11.0 }, // stop (D12, variable)
 
     // ── G2 (focusing group) ───────────────────────────────────────
-    { label: "14", R: -23.41799, d: 1.1, nd: 1.64769, elemId: 7, sd: 13.0 }, // L21 front
-    { label: "15", R: 998.77224, d: 0.2, nd: 1.0, elemId: 0, sd: 13.0 }, // L21 rear → air
-    { label: "16A", R: 85.12299, d: 5.0, nd: 1.77377, elemId: 8, sd: 16.0 }, // L22 front (asph)
-    { label: "17A", R: -35.29338, d: 2.485, nd: 1.0, elemId: 0, sd: 16.0 }, // L22 rear (asph) → air
+    { label: "14", R: -23.41799, d: 1.1, nd: 1.64769, elemId: 7, sd: 11.5 }, // L21 front
+    { label: "15", R: 998.77224, d: 0.2, nd: 1.0, elemId: 0, sd: 12.3 }, // L21 rear → air
+    { label: "16A", R: 85.12299, d: 5.0, nd: 1.77377, elemId: 8, sd: 14.5 }, // L22 front (asph)
+    { label: "17A", R: -35.29338, d: 2.485, nd: 1.0, elemId: 0, sd: 14.5 }, // L22 rear (asph) → air
     { label: "18", R: -73.80381, d: 6.4, nd: 1.49782, elemId: 9, sd: 17.0 }, // L23 front (super ED)
     { label: "19", R: -23.23519, d: 6.356, nd: 1.0, elemId: 0, sd: 17.0 }, // L23 rear → air (D19, var)
 
@@ -256,16 +268,15 @@ const LENS_DATA = {
     { label: "21", R: -63.69645, d: 1.9, nd: 1.64769, elemId: 11, sd: 18.0 }, // L32 front (junction)
     { label: "22", R: -482.01125, d: 2.887, nd: 1.0, elemId: 0, sd: 16.7 }, // L32 rear → air
     { label: "23", R: -50.20764, d: 1.9, nd: 1.64769, elemId: 12, sd: 18.0 }, // L33 front
-    { label: "24", R: 1e15, d: 10.5, nd: 1.0, elemId: 0, sd: 18.0 }, // L33 rear → air
+    { label: "24", R: 1e15, d: 12.554852320675106, nd: 1.0, elemId: 0, sd: 18.0 }, // L33 rear → air
 
-    // ── Filter + BFD ──────────────────────────────────────────────
-    { label: "25", R: 1e15, d: 1.6, nd: 1.5168, elemId: 0, sd: 18.5 }, // FL front (BK7)
-    { label: "26", R: 1e15, d: 1.0, nd: 1.0, elemId: 0, sd: 18.5 }, // FL rear → image
+    // Source BF = 10.5 + 1.6 mm filter + 1 mm air;
+    // air-equivalent BF = 10.5 + 1.6/1.5168 + 1.
   ],
 
   // §4 — Aspherical coefficients
   //  Patent aspheric equation (¶0061):
-  //    X(y) = (y²/R) / [1 + √(1 − (1+κ)y²/R²)] + A4·y⁴ + A6·y⁶ + A8·y⁸ + A10·y¹⁰
+  //    X(y) = (y²/R) / [1 + √(1 − κ·y²/R²)] + A4·y⁴ + A6·y⁶ + A8·y⁸ + A10·y¹⁰
   //  Patent lists κ = 1.0 but uses convention where κ represents (1+K); standard K = 0.
   //  Coefficients through A10 only (A12 = A14 = 0).
 
@@ -304,7 +315,7 @@ const LENS_DATA = {
   //  D26 is constant at 1.000 mm (patent lists as variable but values are identical).
 
   var: {
-    STO: [10.32, 2.409],
+    STO: [13.02, 5.109],
     19: [6.356, 14.267],
   },
 
@@ -328,13 +339,13 @@ const LENS_DATA = {
   ],
 
   // §8 — Focus configuration
-  closeFocusM: 0.4,
+  closeFocusM: 0.39945485232067507,
   focusDescription:
-    "Inner focus — G2 (L21 + L22 + L23) translates 7.9 mm toward the object. G1 and G3 remain fixed. Stepping motor (STM) drive.",
+    "Patent inner focus: G2 translates 7.911 mm toward the object; G1, stop and G3 stay fixed. Source close distance is 0.4 m object-to-image (307.67 mm to the first surface); the model preserves that object leg after omitting the sensor plate.",
 
   // §9 — Aperture configuration
   nominalFno: 1.85,
-  fstopSeries: [1.8, 2, 2.8, 4, 5.6, 8, 11, 16],
+  fstopSeries: [1.85, 2, 2.8, 4, 5.6, 8, 11, 16],
 
   // §10 — Layout tuning (overrides defaults)
   scFill: 0.52,

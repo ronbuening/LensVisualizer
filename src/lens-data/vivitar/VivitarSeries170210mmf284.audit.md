@@ -41,13 +41,6 @@ Patent: US 4,758,073, Example 4
 
 - Updated the L1, L4, and L13 analysis text plus the glass table and palette summary to match the corrected labels.
 
-### Verification
-
-- `npm run generate:glass-reports` passed.
-- `npm run typecheck` passed.
-- Scoped `prettier --check` passed for the Vivitar audit files and regenerated glass reports.
-- `git diff --check -- src/lens-data/vivitar agent_docs/generated` passed.
-
 ## 2026-06-23 — SD proportion refinement
 
 - Adjusted the Group G2 SDs for L4-L7 so the two cemented doublets read closer in overall size: S6/S7/S10/S11 were reduced modestly and the S8/S9 pinch was raised from 14.4 mm to 14.45 mm.

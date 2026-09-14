@@ -10,7 +10,3 @@ Patent: US 2013/0176385 A1, Numerical Example 4
 - Fig. 7 shows a large positive first unit, a smaller negative second unit, a compact third unit around the stop/flare stop, and a larger single rear-focus fourth unit.
 - Stored SDs follow that silhouette: the first unit starts at 20.0 mm and settles around 16 mm, the variator/third-unit surfaces remain in the 4.3-12.9 mm range around the stop, and the rear-focus element re-expands to about 13 mm.
 - No SD values changed. Current values remain inferred from zoom-state marginal/chief-ray envelopes and constrained by edge thickness, rim slope, element SD ratio, and cross-gap sag clearance.
-
-### Verification
-
-- `npm test -- elementRenderDiagnostics`

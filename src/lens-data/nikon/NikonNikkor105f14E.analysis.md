@@ -12,7 +12,7 @@
 
 ## 1. Patent–Production Lens Correspondence
 
-This analysis examines Example 3 (Table 3) of patent WO2019/116563 A1 as a candidate match for the production AF-S NIKKOR 105mm f/1.4E ED. The lens was announced by Nikon on 27 July 2016 under the "three-dimensional high fidelity" design philosophy. The patent was filed approximately 17 months after the product launch, which is common practice — manufacturers frequently file continuation patents covering design refinements or related configurations after a lens enters production.
+This analysis examines Example 3 (Table 3) of patent WO2019/116563 A1 as a candidate match for the production AF-S NIKKOR 105mm f/1.4E ED. The lens was announced by Nikon on 27 July 2016 under the "three-dimensional high fidelity" design philosophy. The patent filing follows the product launch; structural correspondence supports a candidate association but does not establish an identical production prescription.
 
 The correspondence between Example 3 and the production lens rests on multiple convergent criteria:
 
@@ -45,7 +45,7 @@ The optical system LS(3) is a three-group telephoto-type design comprising 14 el
 
 The aperture stop (S) is located inside G3, between elements L33 and L34, positioned after the L32–L33 cemented doublet and before the third ED element L34. This placement ensures that the stop is well behind the front group, contributing to the telephoto ratio and allowing the large-aperture front elements to collect light efficiently.
 
-The patent states the system specifications as: f = 102.148 mm, F/1.45, 2ω = 23.842°, image height Y = 21.63 mm, total track TL = 150.819 mm, back focal distance BF = 39.632 mm. The telephoto ratio TL/f ≈ 1.48, which is moderately compact for a 105mm f/1.4 design. The BF of approximately 40 mm is shorter than the Nikon F-mount flange distance of 46.5 mm, meaning the rear element of the lens extends approximately 7 mm past the mount flange into the camera body's mirror box. This is entirely normal for fast F-mount primes — the mirror-box cavity provides the necessary physical clearance, and mirror interference is avoided by the lens's telephoto ratio keeping the rear element well forward of the mirror sweep path.
+The patent states the system specifications as: f = 102.148 mm, F/1.45, 2ω = 23.842°, image height Y = 21.63 mm, total track TL = 150.819 mm, back focal distance BF = 39.632 mm. The telephoto ratio TL/f ≈ 1.48, which is moderately compact for a 105mm f/1.4 design. The patent back focus does not establish the production mount registration, rear mechanical envelope or mirror clearance.
 
 ---
 
@@ -71,7 +71,7 @@ The front element is a weak positive meniscus with its convex side facing the ob
 | 3 | 98.03190 | 9.004 | 1.49700 | 81.61 | 0.539 |
 | 4 | −860.70550 | 0.100 | (air) | | |
 
-The first ED element (f ≈ +177 mm). The glass is identified with high confidence as **Ohara S-FPL51** (catalog: nd = 1.49700, νd = 81.54), a fluorophosphate crown widely used in high-performance photographic lenses as an ED glass equivalent. S-FPL51 exhibits strong positive anomalous partial dispersion (ΔθgF ≈ +0.033 above the normal line), which is essential for correcting secondary spectrum — the residual longitudinal chromatic aberration that persists even after conventional achromatization. The biconvex form with a strongly curved front surface (R₃ ≈ 98 mm) and weakly curved rear (R₄ ≈ −861 mm) distributes the refractive power to minimize spherical aberration at this surface.
+The first ED element (f ≈ +177 mm). The glass is modeled with **Ohara S-FPL51** as a catalog equivalent, without identifying the production supplier (catalog: nd = 1.49700, νd = 81.54), a fluorophosphate crown widely used in high-performance photographic lenses as an ED glass equivalent. S-FPL51 exhibits strong positive anomalous partial dispersion (ΔθgF ≈ +0.032468 above the normal line), which is essential for correcting secondary spectrum — the residual longitudinal chromatic aberration that persists even after conventional achromatization. The biconvex form with a strongly curved front surface (R₃ ≈ 98 mm) and weakly curved rear (R₄ ≈ −861 mm) distributes the refractive power to minimize spherical aberration at this surface.
 
 **L13–L14 — Cemented doublet (Elements 3–4)**
 
@@ -81,9 +81,9 @@ The first ED element (f ≈ +177 mm). The glass is identified with high confiden
 | 6 (junction) | −266.98950 | 3.500 | 1.72047 | 34.71 | 0.583 | L14 (neg) |
 | 7 | 168.27370 | D7 (var) | (air) | | | |
 
-The second cemented group in G1 pairs another S-FPL51 ED element (L13, f ≈ +112 mm) with a high-dispersion negative element (L14, f ≈ −143 mm). This is a classic achromatic doublet configuration — a low-dispersion positive element cemented to a high-dispersion negative element — and it performs the primary chromatic correction for the front group. The L13 element is the thickest single element in the system at 11.648 mm, consistent with the patent's observation that the positive APD/ED lenses require substantial axial thickness (condition 5: DP1 > 0.80 mm) to achieve effective aberration correction.
+The second cemented group in G1 pairs another S-FPL51 ED element (L13, f ≈ +112 mm) with a high-dispersion negative element (L14, f ≈ −143 mm). This is a classic achromatic doublet configuration — a low-dispersion positive element cemented to a high-dispersion negative element — and it performs the primary chromatic correction for the front group. L13 is the thickest element at 11.648 mm. The patent's DP1 thickness condition applies to L21, the positive lens identified in ¶0077, rather than to every ED element.
 
-L14's glass (nd = 1.72047, νd = 34.71, θgF = 0.583) is a niobium-barium heavy flint type, identified as **Ohara S-NBH8**. It sits nearly exactly on the Schott normal line (ΔθgF ≈ −0.002), which is ideal for the flint component of an achromatic doublet — the ED element provides the anomalous dispersion for secondary spectrum correction, while the flint partner provides normal dispersion behavior for first-order achromatization.
+L14's glass (nd = 1.72047, νd = 34.71, θgF = 0.583) is a niobium-barium heavy flint type, modeled with **Ohara S-NBH8** as a catalog equivalent. It sits nearly exactly on the Schott normal line (ΔθgF ≈ −0.002), which is ideal for the flint component of an achromatic doublet — the ED element provides the anomalous dispersion for secondary spectrum correction, while the flint partner provides normal dispersion behavior for first-order achromatization.
 
 ### Group G2 — Focusing Group (Negative)
 
@@ -97,7 +97,7 @@ L14's glass (nd = 1.72047, νd = 34.71, θgF = 0.583) is a niobium-barium heavy 
 
 This is the most optically significant group in the patent — it contains element L21, the "positive lens satisfying conditions (1)–(3)" that forms the core of the patent's claims. G2 is a cemented doublet with overall negative power (the combined doublet focal length is approximately −58 mm, computed from thick-lens paraxial ray tracing through all three G2 surfaces), acting as a field-flattening diverging group between G1 and G3.
 
-**L21 — the APD glass element** (f ≈ +217 mm as a standalone thin lens). This is a positive meniscus with both surfaces concave toward the object (R₈ = −156.94 mm, R₉ = −74.83 mm; since |R₉| < |R₈|, the element is thicker at center than edge, confirming positive power). Its glass (nd = 1.65940, νd = 26.87, θgF = 0.633) has no exact match in standard commercial catalogs and represents the patent's key glass innovation. With ΔθgF ≈ +0.034 above the Schott normal line, it exhibits strong positive anomalous partial dispersion comparable to ED glasses, but in a completely different region of the glass map — moderate index, very high dispersion (νd ≈ 27). This combination of high dispersion with high anomalous dispersion is unusual and enables secondary spectrum correction through a mechanism distinct from the ED glass approach used in G1.
+**L21 — the APD glass element** (f ≈ +217 mm as a standalone thin lens). This is a positive meniscus with both surfaces concave toward the object (R₈ = −156.94 mm, R₉ = −74.83 mm; since |R₉| < |R₈|, the element is thicker at center than edge, confirming positive power). Its glass (nd = 1.65940, νd = 26.87, θgF = 0.633) has no exact match in standard commercial catalogs and represents the patent's key glass innovation. With ΔθgF ≈ +0.034395 above the Schott normal line, it exhibits strong positive anomalous partial dispersion comparable to ED glasses, but in a completely different region of the glass map — moderate index, very high dispersion (νd ≈ 27). This combination of high dispersion with high anomalous dispersion is unusual and enables secondary spectrum correction through a mechanism distinct from the ED glass approach used in G1.
 
 The patent's conditional expressions for this glass, independently verified by computation:
 
@@ -134,7 +134,7 @@ The first element of G3 is a high-power positive element (f ≈ +59 mm) in ultra
 | 14 (junction) | −54.38990 | 1.800 | 1.71736 | 29.57 | 0.604 | L33 (neg) |
 | 15 | 28.02300 | 5.843 | (air) | | | |
 
-A cemented doublet positioned immediately before the aperture stop. L32 is a biconvex positive element (f ≈ +51 mm) in lanthanum crown glass, very likely **Ohara S-LAL14** (catalog: nd = 1.69680, νd = 55.53 — an excellent match). L33 is a biconcave negative element (f ≈ −26 mm) in a specialty high-dispersion glass with notably elevated partial dispersion (θgF = 0.604, ΔθgF ≈ +0.010 above the normal line). Hikari J-SF1 reproduces its nd, νd, and partial dispersion closely and supplies the catalog spectral proxy without identifying Nikon's production supplier.
+A cemented doublet positioned immediately before the aperture stop. L32 is a biconvex positive element (f ≈ +51 mm) in lanthanum crown glass, compatible with the **Ohara S-LAL14** catalog proxy (catalog: nd = 1.69680, νd = 55.53 — an excellent match). L33 is a biconcave negative element (f ≈ −26 mm) in a specialty high-dispersion glass with notably elevated partial dispersion (θgF = 0.604, ΔθgF ≈ +0.010 above the normal line). Hikari J-SF1 reproduces its nd, νd, and partial dispersion closely and supplies the catalog spectral proxy without identifying Nikon's production supplier.
 
 The L32–L33 doublet corrects residual axial chromatic aberration and spherical aberration in the converging beam between G2 and the stop. The strong negative power of L33 also contributes to Petzval sum correction (field flattening).
 
@@ -163,7 +163,7 @@ The third ED element (f ≈ +80 mm), again in **S-FPL51**. Positioned immediatel
 | 20 (junction) | 23.56120 | 8.119 | 1.76684 | 46.78 | 0.558 | L36 (pos) |
 | 21 | −400.50550 | 2.828 | (air) | | | |
 
-This doublet pairs a thin biconcave negative element (L35, same glass as L14: nd = 1.72047, νd = 34.71) with a thick biconvex positive element (L36, f ≈ +29 mm). L36's glass (nd = 1.76684, νd = 46.78, θgF = 0.558) is a lanthanum heavy flint, identified as **Ohara S-LAH96**, sitting slightly below the normal line (ΔθgF ≈ −0.007). This doublet provides strong positive power in the rear group while correcting higher-order spherical aberration and coma in the diverging beam behind the stop. The strongly curved junction surface (R₂₀ = 23.56 mm) generates substantial monochromatic surface power at the cemented interface — the large refractive index step (Δnd = 0.046) provides leverage for correcting zonal spherical aberration, while the moderate difference in V-number between the two glasses (Δνd ≈ 12) keeps the chromatic contribution at the junction manageable.
+This doublet pairs a thin biconcave negative element (L35, same patent nd/νd as L14: nd = 1.72047, νd = 34.71) with a thick biconvex positive element (L36, f ≈ +29 mm). L36's glass (nd = 1.76684, νd = 46.78, θgF = 0.558) is a lanthanum heavy flint, modeled with **Ohara S-LAH96** as a catalog equivalent, sitting slightly below the normal line (ΔθgF ≈ −0.007). This doublet provides strong positive power in the rear group while correcting higher-order spherical aberration and coma in the diverging beam behind the stop. The strongly curved junction surface (R₂₀ = 23.56 mm) generates substantial monochromatic surface power at the cemented interface — the large refractive index step (Δnd = 0.046) provides leverage for correcting zonal spherical aberration, while the moderate difference in V-number between the two glasses (Δνd ≈ 12) keeps the chromatic contribution at the junction manageable.
 
 **L37–L38 — Cemented doublet (Elements 13–14)**
 
@@ -185,8 +185,8 @@ The system employs 10 distinct glass types across its 14 elements. Three element
 
 | Glass | nd | νd | θgF | ΔθgF | Elements | Role |
 |-------|----|----|-----|------|----------|------|
-| S-FPL51 (Ohara) | 1.49700 | 81.61 | 0.539 | +0.033 | L12, L13, L34 | ED glass — primary & secondary chromatic correction |
-| APD specialty | 1.65940 | 26.87 | 0.633 | +0.034 | L21 | High-dispersion anomalous glass — secondary spectrum via different mechanism |
+| S-FPL51 (Ohara) | 1.49700 | 81.61 | 0.539 | +0.03246802 | L12, L13, L34 | ED glass — primary & secondary chromatic correction |
+| APD specialty | 1.65940 | 26.87 | 0.633 | +0.03439534 | L21 | High-dispersion anomalous glass — secondary spectrum via different mechanism |
 | S-LAH79 equiv. | 2.00100 | 29.13 | 0.599 | +0.004 | L31, L38 | Ultra-high index for compact power, monochromatic correction |
 | S-LAL14 (Ohara) | 1.69680 | 55.52 | 0.543 | −0.007 | L32 | Lanthanum crown, positive power near stop |
 | S-NBH8 (Ohara) | 1.72047 | 34.71 | 0.583 | −0.002 | L14, L35 | Achromatic flint partner for ED doublets |
@@ -267,7 +267,7 @@ The absence of aspherical surfaces is noteworthy in this context. Many competing
 | L32 | +51 | G3 | Positive element of pre-stop doublet. Spherical and chromatic correction. |
 | L33 | −26 | G3 | Negative element of pre-stop doublet. Petzval correction and higher-order spherical aberration. |
 | L34 | +80 | G3 | Post-stop ED element. Primarily lateral chromatic aberration and secondary spectrum correction for off-axis fields. |
-| L35 | −25 | G3 | Thin negative meniscus. Petzval sum correction, field flattening. |
+| L35 | −25 | G3 | Thin biconcave negative. Petzval sum correction, field flattening. |
 | L36 | +29 | G3 | Thick positive element. Strong positive power for final convergence; higher-order spherical correction. |
 | L37 | −51 | G3 | Final negative element. Residual Petzval correction, field flattening, distortion control. |
 | L38 | +37 | G3 | Final positive element in ultra-high-index glass. Brings beam to focus; balances residual chromatic and monochromatic aberrations at the image. |
@@ -297,3 +297,27 @@ Several features visible in the patent but not explicitly described in Nikon's m
 - Ohara optical glass catalog — S-FPL51, S-NBH8, S-LAH96, S-LAL14, S-BSL7 datasheets
 - HOYA optical glass catalog — E-FL5 datasheet
 - Schott optical glass catalog — normal line coefficient reference (θgF = −0.001682 × νd + 0.6438)
+
+
+## 2026-09 Patent Diagram Verification
+
+The local source used for this recheck is `JPWO2019116563A1.pdf`, Example 3, Table 3 on PDF p15 and Figure 5 on p33. All radii, thicknesses and nd/νd match. The diagram uses the patent f/1.450 aperture and 102.148 mm design focal length; the product name remains 105mm f/1.4E.
+
+Figure 5 was rendered at 600 dpi. Its first-to-last vertex span is 111.187 mm; optical rims support approximately 23.5 mm at surface 13 and 22.5 mm at the cemented surface 14. Those apertures replace the undersized 19/19.2 mm estimates. Other semi-diameters remain estimates within the drawing and ray-clearance allowances, not patent-tabulated dimensions. Surface 6 to 7 forms a biconcave L14, correcting its previous meniscus label.
+
+Table 3's published partial-dispersion ratios are retained for every element, using ΔPgF = θgF − (0.6438 − 0.001682νd). Catalog glass names are spectral equivalents; none establishes a production supplier. The unmatched APD medium is characterized by the patent constants, not identified as glass manufactured by Nikon.
+
+| Elements | θgF | ΔPgF used by model |
+|---|---:|---:|
+| L11 | 0.537 | 0.005894 |
+| L12, L13, L34 | 0.539 | 0.03246802 |
+| L14, L35 | 0.583 | −0.00241778 |
+| L21 | 0.633 | 0.03439534 |
+| L22 | 0.536 | −0.00035384 |
+| L31, L38 | 0.599 | 0.00419666 |
+| L32 | 0.543 | −0.00741536 |
+| L33 | 0.604 | 0.00993674 |
+| L36 | 0.558 | −0.00711604 |
+| L37 | 0.576 | 0.00112836 |
+
+The source close station is β=−0.132 with 12 mm imageward G2 travel. Independent paraxial propagation gives β≈−0.132084 and object-to-image distance≈998.66 mm, consistent with the rounded 1 m slider endpoint. G1, G3 and the stop stay fixed. Intermediate focus distances are approximate; source spacings are preserved.

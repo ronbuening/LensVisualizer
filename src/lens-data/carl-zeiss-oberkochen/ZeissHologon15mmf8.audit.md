@@ -23,18 +23,6 @@ Catalog version: local working tree, 2026-06-25
 - `apd: false` remains appropriate for all three elements. The patent gives no partial-dispersion data or APD claim.
 - High-index status is already captured by the SF6 and LAK8 glass labels and analysis prose.
 
-### Phase 4 - Analysis sync
-
-- No analysis prose change was required. The analysis already explains the symmetric SF6/LAK8/SF6 strategy and the figure-derived SD treatment.
-
-### Verification
-
-- `npm run generate:glass-reports` - passed (7 files, 7 tests); generated report state retained.
-- `npm run typecheck` - passed.
-- `npm run format:check` - passed.
-- `npm run test -- __tests__/src/lens-data/lensDataTyping.test.ts __tests__/src/optics/validateLensData.test.ts __tests__/src/optics/buildLens.test.ts` - passed (3 files, 143 tests).
-- `npm run test` - failed outside this audit's edits: stale/generated route metadata is missing Rodenstock lens routes, and the existing Sonnar 50/1.5 skew-ray chromatic assertion differs by 0.0011856 mm.
-
 ## 2026-08-18 - Central-element coefficient backfill
 
 - Rendered and visually checked the image-only `patents/DE_1241637_B.pdf`. The example table on printed pages 5–6

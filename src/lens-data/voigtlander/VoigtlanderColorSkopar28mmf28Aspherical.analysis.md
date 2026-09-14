@@ -172,7 +172,7 @@ The patent publishes an infinity rear spacing of 38.498 mm and one finite row wi
 production lens's 0.15 m minimum-focus endpoint. A direct paraxial solution of the final prescription gives 43.375340 mm
 for the patent's 180 mm object-space row, a 0.045340 mm residual attributable to the precision of the published table.
 
-The production endpoint in the data is therefore a `CONSTRAINED_RECONSTRUCTION`. It retains the patent's rigid
+The published 180 mm row is stored as an exact focus keyframe. The production endpoint in the data is a `CONSTRAINED_RECONSTRUCTION`. It retains the patent's rigid
 unit-focus mechanism and fixes the object-to-image distance at Cosina's published 0.15 m. The finite-conjugate equation
 has two positive reciprocal roots at that fixed total distance:
 
@@ -185,7 +185,7 @@ has two positive reciprocal roots at that fixed total distance:
 The retained branch is continuous from infinity, has `|m| < 1`, and predicts approximately 1:2.266, close to Cosina's
 rounded 1:2.3 maximum-reproduction specification. The reciprocal high-extension root is mathematically valid but is not
 the production operating branch. This selection is a mechanism- and product-constrained inference, not a published
-patent focus row. No internal floating motion has been introduced.
+patent focus row. No internal floating motion has been introduced, and interpolation between keyframes is not claimed as a mechanical trajectory.
 
 ## Aspherical Surfaces
 

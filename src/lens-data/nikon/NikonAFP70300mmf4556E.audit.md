@@ -40,7 +40,3 @@ The remaining J-series labels either already resolve to catalog coefficients or 
 
 - Updated the element-by-element glass names, the glass-identification table, and the L13 APD/ED explanation in `NikonAFP70300mmf4556E.analysis.md`.
 - Kept all focal length, zoom, focus, VR, conditional-expression, and verification values unchanged.
-
-### Verification
-
-- Pending batch verification after the current Nikon audit pass.

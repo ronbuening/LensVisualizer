@@ -24,14 +24,6 @@ Patent: US 4,666,259 A, Example 1 / Table 1
 - The patent gives only `nd` and `vd`. No ED/APD claim, line-index table, partial-dispersion table, or aspherical data was found.
 - No APD flags were added.
 
-### Phase 4 - Analysis sync
-
-- No analysis file changes were needed.
-
-### Verification
-
-- Pending full Nikon batch verification.
-
 ## 2026-08-21 — Near/close glass-candidate review
 
 - Rechecked US 4,666,259 A and assigned NBFD2 as a supplier-neutral spectral proxy for L23's `796410` class.

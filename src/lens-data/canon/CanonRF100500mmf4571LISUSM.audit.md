@@ -73,9 +73,3 @@ patent silhouette; the automated 26.9 mm result for those elements is the L8 bra
 - Verified that `CANON RF 100-500mm f/4.5-7.1 L IS USM` matches Canon's product identity after repository spacing and `f/` normalization.
 - Normalized the patent assignee to the catalog's canonical `Canon Inc.` spelling, preventing the same latent metadata failure exposed by the new 400mm file.
 - Synchronized the analysis citation to the same canonical `Canon Inc.` display name.
-
-### Verification
-
-- `npm run audit:surface -- src/lens-data/canon/CanonRF100500mmf4571LISUSM.data.ts` - passed.
-- `npm run audit:image-circle -- src/lens-data/canon/CanonRF100500mmf4571LISUSM.data.ts` - passed, 0 undersized.
-- `npm run generate:glass-reports` - passed, 8 files / 15 tests.

@@ -19,6 +19,206 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-09-14",
+    type: "lens",
+    summary: "Added Fujinon XF 8mm f/3.5, 18mm f/1.4 and 50mm f/2 patent designs",
+  },
+  {
+    date: "2026-09-14",
+    type: "lens",
+    summary: "Added Zeiss Biometar 80mm and 120mm f/2.8 and Distagon T* 25mm f/2.8 designs",
+  },
+  {
+    date: "2026-09-14",
+    type: "lens",
+    summary: "Added Nikon Zoom-Nikkor 28–45mm f/4.5 from patent Embodiment III",
+  },
+  {
+    date: "2026-09-13",
+    type: "improvement",
+    summary: "Linked more Nikon, Fujifilm, Canon and Tamron manufacturer stories to lens diagrams",
+  },
+  {
+    date: "2026-09-13",
+    type: "lens",
+    summary: "Added Nikon 28mm, 300mm ED, 600mm ED and Nikkor-SW 75mm patent designs",
+  },
+  {
+    date: "2026-09-13",
+    type: "lens",
+    summary: "Added Nikon Zoom-Nikkor Auto 50–300mm f/4.5 patent design",
+  },
+  {
+    date: "2026-09-13",
+    type: "improvement",
+    summary: "Expanded Nikon glass dispersion coverage and refined patent-diagram proportions",
+  },
+  {
+    date: "2026-09-12",
+    type: "lens",
+    summary: "Added Fujifilm XF18-120mm, XF18-135mm and EBC X-Fujinon W 24mm designs",
+  },
+  {
+    date: "2026-09-12",
+    type: "lens",
+    summary: "Added Hasselblad HC 50mm II, XCD 30mm and XCD 45mm patent designs",
+  },
+  {
+    date: "2026-09-12",
+    type: "improvement",
+    summary: "Expanded glass dispersion coverage with NHG H-LaK77 and audited catalog matches",
+  },
+  {
+    date: "2026-09-11",
+    type: "lens",
+    summary: "Added Canon EF 35mm L II, RF 35mm Macro and TS-E 24mm L II designs",
+  },
+  {
+    date: "2026-09-11",
+    type: "lens",
+    summary: "Added Fujifilm XF55-200mm with audited patent rims and glass dispersion",
+  },
+  {
+    date: "2026-09-11",
+    type: "lens",
+    summary: "Added Voigtländer Apo-Lanthar 210mm, Skoparex 35mm and Telomar 180mm designs",
+  },
+  {
+    date: "2026-09-11",
+    type: "lens",
+    summary: "Added Fujifilm XF14mm, both XF16mm primes, XF70-300mm and XF100-400mm",
+  },
+  {
+    date: "2026-09-11",
+    type: "lens",
+    summary: "Added six Fujifilm lens designs and the Viltrox AF 14mm f/4 Air",
+  },
+  {
+    date: "2026-09-10",
+    type: "improvement",
+    summary: "Unified patent-assignee relationships",
+  },
+  {
+    date: "2026-09-10",
+    type: "lens",
+    summary: "Added five Viltrox prime lens designs",
+  },
+  {
+    date: "2026-09-09",
+    type: "lens",
+    summary: "Added six Samyang AF and XP prime lens designs with audited diagrams and glass",
+  },
+  {
+    date: "2026-09-09",
+    type: "fix",
+    summary: "Reviewed and corrected the oldest 40 lens diagrams, prescriptions, and movements",
+  },
+  {
+    date: "2026-09-08",
+    type: "lens",
+    summary: "Added Canon EF 50mm f/1.2L USM, EF 70-300mm IS USM, and EF-S 18-55mm lens designs",
+  },
+  {
+    date: "2026-09-07",
+    type: "lens",
+    summary: "Added Canon EF 70-200mm f/2.8L IS, f/4L IS, and f/4L USM lens designs",
+  },
+  {
+    date: "2026-09-06",
+    type: "lens",
+    summary: "Added six Canon EF, EF-S, EF-M, and PowerShot lens designs",
+  },
+  {
+    date: "2026-09-05",
+    type: "lens",
+    summary: "Added six Konica Hexanon AR prime and zoom lens designs",
+  },
+  {
+    date: "2026-09-04",
+    type: "improvement",
+    summary: "Improved patent-based focus accuracy across 55 lens models",
+  },
+  {
+    date: "2026-09-04",
+    type: "lens",
+    summary: "Added six Nikon AI and AI AF prime, macro, and zoom lens designs",
+  },
+  {
+    date: "2026-09-03",
+    type: "fix",
+    summary: "Matched centered tilt-shift diagram scale to ordinary lenses",
+  },
+  {
+    date: "2026-09-03",
+    type: "fix",
+    summary: "Corrected the Fujifilm GF30 tilt pivot from patent mechanism guidance",
+  },
+  {
+    date: "2026-09-03",
+    type: "improvement",
+    summary: "Added independent reset controls for tilt-shift movement axes",
+  },
+  {
+    date: "2026-09-03",
+    type: "fix",
+    summary: "Fixed tilt-shift diagrams and analyses to trace moved lenses against a fixed sensor",
+  },
+  {
+    date: "2026-09-03",
+    type: "lens",
+    summary: "Added Nikon 200mm f/2, 300mm f/2, and 80-200mm f/2.8 ED designs",
+  },
+  {
+    date: "2026-09-02",
+    type: "improvement",
+    summary: "Optimized and enhanced the universal relationship map",
+  },
+  {
+    date: "2026-09-02",
+    type: "lens",
+    summary: "Added Nikon AI 50-300mm, PC 35mm, and Series E 36-72mm lens designs",
+  },
+  {
+    date: "2026-09-02",
+    type: "lens",
+    summary: "Added Nikon 100-300mm, 200-400mm ED, and Medical-Nikkor 120mm designs",
+  },
+  {
+    date: "2026-09-01",
+    type: "lens",
+    summary: "Added three Konica patent-derived prime and telephoto lens designs",
+  },
+  {
+    date: "2026-08-30",
+    type: "lens",
+    summary: "Added three Nikon AF-S DX patent-derived zoom lens designs",
+  },
+  {
+    date: "2026-08-29",
+    type: "lens",
+    summary: "Added three Konica Zoom-Hexanon AR patent-derived zoom lens designs",
+  },
+  {
+    date: "2026-08-28",
+    type: "lens",
+    summary: "Added three Konica UC Hexanon AR patent-derived lens designs",
+  },
+  {
+    date: "2026-08-27",
+    type: "lens",
+    summary: "Added three Sony ZEISS patent-derived zoom lens designs",
+  },
+  {
+    date: "2026-08-26",
+    type: "lens",
+    summary: "Added seven Canon EF patent-derived zoom, macro, and telephoto lens designs",
+  },
+  {
+    date: "2026-08-25",
+    type: "lens",
+    summary: "Added five Canon EF, EF-S, and EF-M patent-derived zoom lens designs",
+  },
+  {
     date: "2026-08-24",
     type: "lens",
     summary: "Added six Canon EF patent-derived lens designs spanning 35-500mm",

@@ -11,10 +11,6 @@ Patent: US 2014/0240851 A1, Example 4
 - Fig. 4 shows a moderate front group, a smaller stop-adjacent middle section, and L8 as the largest rear member. Stored SDs follow that run: front surfaces are about 6.5-7.6 mm, the narrow central/rear aspheric section reaches 4.8-6.5 mm, and final L8 grows to 7.0-8.0 mm.
 - No SD values changed. Current values remain inferred from the patent figure, Table 17 effective-radius anchors, f/2 stop geometry, edge thickness, and cross-gap sag checks.
 
-### Verification
-
-- `npm test -- elementRenderDiagnostics`
-
 ## 2026-07-29 - Catalog-coordinate correction
 
 - Rechecked Example 4 in local `patents/US20140240851A1.pdf`; S3 remains 1.83400 / 37.16 and its R/d row is

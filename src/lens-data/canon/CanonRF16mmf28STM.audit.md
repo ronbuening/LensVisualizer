@@ -10,7 +10,3 @@ Patent: JP 2022-085382 A, Numerical Example 3
 - Fig. 5 shows the corresponding two-group ultra-wide layout: a moderate negative-front group, a smaller stop region, compact cemented rear groups, and the largest clear aperture on the final rear positive meniscus near the image plane.
 - Stored SDs follow that silhouette: the front group steps from 9.5 mm down to 6.8 mm, the stop is 4.842 mm, the rear group grows through 6.3-9.5 mm, and the final element reaches 10.0-10.5 mm.
 - No SD values changed. Current values remain inferred from paraxial marginal/chief-ray envelopes and constrained by edge thickness, rim slope, element SD ratio, and cross-gap sag clearance.
-
-### Verification
-
-- `npm test -- elementRenderDiagnostics`

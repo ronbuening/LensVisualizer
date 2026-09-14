@@ -39,16 +39,6 @@ code-only glasses remain unresolved where no comparably strong, coefficient-back
 - Normalized the display name to separate the aperture from the `D` designation.
 - Updated the analysis glass table, element descriptions, patent-figure SD provenance, and Hikari catalog source.
 
-### Verification
-
-- Stored prescription: `npm run audit:surface -- <data-file>` — passed.
-- Image-circle floor: `npm run audit:image-circle -- <data-file>` — passed.
-- `npm test -- elementRenderDiagnostics` — passed (6 tests).
-- `npm run typecheck`, `npm run format:check`, and `npm run lint` — passed; lint retained three unrelated pre-existing warnings.
-- `npm run test` — passed (209 files, 2450 tests).
-- `npm run build` — passed (966 routes prerendered).
-- In-app browser screenshots were unavailable; visual comparison used the rendered 300 dpi patent page plus the passing full-catalog render diagnostics.
-
 ## 2026-07-29 - `796409` coefficient-source review
 
 - Rendered and visually checked the prescription. Working Example 1 row 30 confirms L3F3 at
@@ -82,14 +72,6 @@ code-only glasses remain unresolved where no comparably strong, coefficient-back
 
 - Updated the L3R3 description, glass inventory, and catalog-evidence paragraph. The wording treats NBFD10 as the
   coefficient model, not a claim about Nikon's production procurement.
-
-### Verification
-
-- `npm run generate:glass-reports` — passed (8 files / 10 tests); strict/trusted coverage rose to 12/16 elements
-  for this lens and 4667/4679 surfaces overall.
-- `npm test -- dispersion.test.ts lensDataTyping.test.ts validateLensData.test.ts buildLens.test.ts` — passed
-  (4 files / 237 tests).
-- `npm run typecheck`, `npm run format:check`, and `git diff --check` — passed.
 
 ## 2026-08-11 — Phase 92 HOYA legacy-catalog recovery
 

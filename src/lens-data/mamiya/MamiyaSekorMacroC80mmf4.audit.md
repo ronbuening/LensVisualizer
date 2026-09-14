@@ -25,8 +25,6 @@ Catalog version: local working tree, 2026-08-07
 
 - The revised surfaces preserve positive edge thickness and valid spherical domains.
 - Exact tracing retains clearance for the complete 0.6-field diagnostic bundles at infinity and the represented `beta = -1/2` state.
-- `npm run audit:surface -- src/lens-data/mamiya/MamiyaSekorMacroC80mmf4.data.ts --sd 1=12.8 --sd 2=12.8 --sd 3=12.8 --sd 8=10.6 --sd 9=11.4 --sd 10=12.8` passed.
-- `npm run audit:image-circle -- src/lens-data/mamiya/MamiyaSekorMacroC80mmf4.data.ts` reported zero undersized surfaces.
 
 ### Glass review
 

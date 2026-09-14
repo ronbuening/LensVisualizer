@@ -5,7 +5,7 @@ import type { LensDataInput } from "../../types/optics.js";
 // Implementation note: patent plane filter/sensor-cover surfaces 18-23 are excluded per corpus convention.
 // Their optical path is folded into the final air-equivalent back-focus gap at surface 17.
 // Infinity BF used here is the paraxial focus distance from surface 17 after excluding the plates.
-// Close-focus BF preserves the patent's +1.77 mm G2/sensor spacing change.
+// Focus-keyframe BF values preserve the patent's +0.23 mm and +1.77 mm G2/sensor spacing changes.
 // Semi-diameters are inferred clear-aperture values, chosen to preserve an f/1.24 on-axis beam while
 // satisfying conservative render checks for edge thickness, front/rear element ratio, and cross-gap sag.
 
@@ -162,9 +162,10 @@ const LENS_DATA = {
   ],
 
   asph: {},
+  focusPositions: [0, 0.13423022016389788, 1],
   var: {
-    "14": [0.9, 2.67],
-    "17": [14.15109, 15.92109],
+    "14": [0.9, 1.13, 2.67],
+    "17": [14.15109, 14.38109, 15.92109],
   },
   varLabels: [
     ["14", "D14"],
@@ -180,7 +181,7 @@ const LENS_DATA = {
   ],
 
   focusDescription:
-    "Dual-group floating focus (CRC): G1 and G2 translate object-ward with approximately 2:1 travel; sensor/filter stack excluded and folded into the final air-equivalent BF.",
+    "Dual-group floating focus (CRC): all three patent states are exact keyframes; G1 and G2 translate objectward with approximately 2:1 travel. The sensor/filter stack is excluded and folded into the final air-equivalent BF.",
   closeFocusM: 0.45,
   nominalFno: 1.2,
   fstopSeries: [1.2, 1.4, 2, 2.8, 4, 5.6, 8, 11, 16],

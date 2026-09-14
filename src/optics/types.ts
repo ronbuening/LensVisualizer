@@ -139,6 +139,7 @@ export interface PathSpec {
 /** Focus/zoom variable-gap metadata resolved to surface indices. */
 export interface VariableSpec {
   isZoom: boolean;
+  focusPositions: readonly number[];
   zoomPositions: readonly number[] | null;
   zoomLabels: readonly string[] | null;
   zoomStep: number;

@@ -22,8 +22,6 @@ Catalog version: local working tree, 2026-08-07
 ### Geometry and tracing checks
 
 - The updated values preserve positive edge thickness, valid spherical domains, and the authored cross-gap geometry.
-- `npm run audit:surface -- src/lens-data/mamiya/Mamiya7210mmf8NL.data.ts --sd 1=15.5 --sd 2=15.5 --sd 3=14.5 --sd 4=14.5 --sd 5=14.5` passed.
-- `npm run audit:image-circle -- src/lens-data/mamiya/Mamiya7210mmf8NL.data.ts` reported zero undersized surfaces.
 
 ### Glass and identity review
 

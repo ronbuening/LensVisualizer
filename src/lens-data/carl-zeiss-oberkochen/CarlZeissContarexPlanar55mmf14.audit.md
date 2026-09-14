@@ -22,18 +22,6 @@ Catalog version: local working tree, 2026-06-25
 - `apd: false` remains appropriate for all elements; the patent provides no line-index or partial-dispersion information.
 - High-index lanthanum/dense-flint status is already represented in the LaF3, SF6, and LaF10 labels and corresponding role prose.
 
-### Phase 4 - Analysis sync
-
-- No analysis prose change was required. The analysis already documents the high-index lanthanum/dense-flint strategy and the zero-asphere prescription.
-
-### Verification
-
-- `npm run generate:glass-reports` - passed (7 files, 7 tests); generated report state retained.
-- `npm run typecheck` - passed.
-- `npm run format:check` - passed.
-- `npm run test -- __tests__/src/lens-data/lensDataTyping.test.ts __tests__/src/optics/validateLensData.test.ts __tests__/src/optics/buildLens.test.ts` - passed (3 files, 143 tests).
-- `npm run test` - failed outside this audit's edits: stale/generated route metadata is missing Rodenstock lens routes, and the existing Sonnar 50/1.5 skew-ray chromatic assertion differs by 0.0011856 mm.
-
 ## 2026-08-21 — Near/close glass-candidate review
 
 - Rechecked DE 1,170,157 B's LF7 coordinate and assigned Hikari J-LF7 as a supplier-neutral spectral proxy for L3.

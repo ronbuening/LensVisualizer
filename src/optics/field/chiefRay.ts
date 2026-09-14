@@ -5,6 +5,8 @@
  * bounding-sphere launches and fallback diagnostics.
  */
 
+import { wideOpenStopAtZoom } from "../apertureStop.js";
+
 import type { ParaxialTraceResult, RayTraceResult, RuntimeLens } from "../../types/optics.js";
 import { resolveImageFormatMetadata } from "../../utils/catalog/lensTaxonomy.js";
 import { normalizeRuntimeLens } from "../prescription/normalizeLensData.js";
@@ -805,8 +807,8 @@ export function entrancePupilAtState2(
 export function conjugateK2(focusT: number, zoomT: number, L: RuntimeLens, aberrationT = 0): number {
   if (focusT < FOCUS_INFINITY_THRESHOLD) return 0;
   const du = 1e-5;
-  const currentEP = entrancePupilAtState2(L.stopPhysSD, focusT, zoomT, L, undefined, aberrationT).epSD;
-  const infinityEP = entrancePupilAtState2(L.stopPhysSD, 0, zoomT, L, undefined, 0).epSD;
+  const currentEP = entrancePupilAtState2(wideOpenStopAtZoom(zoomT, L), focusT, zoomT, L, undefined, aberrationT).epSD;
+  const infinityEP = entrancePupilAtState2(wideOpenStopAtZoom(zoomT, L), 0, zoomT, L, undefined, 0).epSD;
   const yRefCurrent = currentEP * conjugateReferencePupilFraction2(L, currentEP);
   const yRefInfinity = infinityEP * conjugateReferencePupilFraction2(L, infinityEP);
   const kt = realK2(yRefCurrent, du, focusT, zoomT, L, aberrationT);

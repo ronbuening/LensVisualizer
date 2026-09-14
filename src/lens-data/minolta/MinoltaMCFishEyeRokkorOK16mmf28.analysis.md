@@ -5,7 +5,7 @@
 **Priority:** March 25, 1968 (Japan 19328/68)<br>
 **Granted:** June 29, 1971<br>
 **Inventor:** Toshinobu Ogura<br>
-**Assignee:** Minolta Co., Ltd.<br>
+**Assignee:** Minolta Camera Co., Ltd.<br>
 **Title:** *Wide-Angle Lens System with Corrected Lateral Aberration*<br>
 **Embodiment analyzed:** Example / Embodiment II
 
@@ -149,6 +149,6 @@ The field trace also explains, but does not prove, the data file's equisolid ref
 
 ## Sources / References
 
-1. Toshinobu Ogura, *Wide-Angle Lens System with Corrected Lateral Aberration*, US 3,589,798, assigned to Minolta Co., Ltd., filed March 25, 1969, granted June 29, 1971. Embodiment II and claim 2 supply the prescription; Figure 5 supplies the second-embodiment 90° half-field aberration presentation.
+1. Toshinobu Ogura, *Wide-Angle Lens System with Corrected Lateral Aberration*, US 3,589,798, assigned to Minolta Camera Co., Ltd., filed March 25, 1969, granted June 29, 1971. Embodiment II and claim 2 supply the prescription; Figure 5 supplies the second-embodiment 90° half-field aberration presentation.
 2. Minolta Camera Co., *The Minolta SR System of Creative Photography*, period manufacturer literature, printed p. 7 (scan p. 10): 16mm f/2.8 MC Fish-eye Rokkor, 11 elements in 8 groups, 180° angle of view, 0.3 m minimum focus, built-in filter, f/2.8–f/16 diaphragm; the product photograph shows the ROKKOR-OK barrel designation.
 3. Minolta, *Lens Directory*, section IV-45: 16mm f/2.8 MC Fisheye Rokkor technical data, including 180° diagonal, 137° horizontal, and 86° vertical angles of view, 11 elements in 8 groups, 0.3 m minimum focus, and built-in turret filters.

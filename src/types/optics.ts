@@ -200,11 +200,28 @@ export interface ResolvedAnnotation {
   toSurface: number;
 }
 
+/** Camera-fixed axial reference used to make perspective-control tilt geometry deterministic. */
+export interface TiltPivot {
+  /** Pivot coordinates are expressed in the camera frame, whose image plane remains fixed. */
+  frame: "camera";
+  /**
+   * `mechanical-axis` is a directly sourced physical rotation axis.
+   * `patent-principal-point-guidance` is a patent-directed optical design target, not a measured
+   * production hinge. `rear-vertex-fallback` is a deterministic geometry fallback.
+   */
+  basis: "mechanical-axis" | "patent-principal-point-guidance" | "rear-vertex-fallback";
+  /** Signed axial offset from the fixed image plane in mm; negative values lie objectward. */
+  zOffsetFromImagePlaneMm: number;
+}
+
 export interface PerspectiveControlConfig {
+  /** A [0, 0] range disables that movement axis for shift-only or tilt-only lenses. */
   shiftRangeMm: [number, number];
   tiltRangeDeg: [number, number];
   shiftStepMm?: number;
   tiltStepDeg?: number;
+  /** Required by validation whenever tilt has non-zero travel; omitted for shift-only lenses. */
+  tiltPivot?: TiltPivot;
 }
 
 export interface RectilinearProjectionConfig {
@@ -253,11 +270,11 @@ export interface ResolvedAberrationControlConfig extends Omit<AberrationControlC
   varLabels: [number, string][];
 }
 
-/** Variable gap range for prime lenses: [d_infinity, d_close] */
-export type PrimeVarRange = [number, number];
+/** Variable gap range for prime lenses: one thickness per normalized focus position. */
+export type PrimeVarRange = [number, number, ...number[]];
 
-/** Variable gap for zoom lenses: array of [d_infinity, d_close] per zoom position */
-export type ZoomVarRange = [number, number][];
+/** Variable gap for zoom lenses: one focus-thickness vector per zoom position. */
+export type ZoomVarRange = PrimeVarRange[];
 
 /** Variable gap: prime or zoom */
 export type VarRange = PrimeVarRange | ZoomVarRange;
@@ -280,6 +297,8 @@ export interface OpticalConfigurationData {
 
 /** Complete lens data object (after defaults merging) */
 export interface LensData {
+  /** Optional UTC publication timestamp for a replacement model; otherwise derived from Git history. */
+  publishedAt?: string;
   key: string;
   maker?: string;
   name: string;
@@ -308,6 +327,12 @@ export interface LensData {
   aberrationControl?: AberrationControlConfig;
   nominalFno?: number | number[];
   closeFocusM: number;
+  /** Object-to-image close distances at the authored zoom stations, in metres. */
+  zoomCloseFocusM?: number[];
+  /** Published physical iris semi-diameters in mm, one per source zoom station. */
+  zoomStopSemiDiameters?: number[];
+  /** Infer physical iris radii at source zoom stations from their nominal f-numbers. */
+  zoomApertureModel?: "from-nominal-fno";
   focusStep: number;
   maxFstop: number;
   apertureStep: number;
@@ -317,6 +342,8 @@ export interface LensData {
   asph?: Record<string, AsphericCoefficients>;
   var?: Record<string, VarRange>;
   varLabels?: [string, string][];
+  /** Normalized focusT coordinates for each authored focus thickness; defaults to [0, 1]. */
+  focusPositions?: number[];
   groups?: AnnotationData[];
   doublets?: AnnotationData[];
   zoomPositions?: number[];
@@ -452,7 +479,9 @@ export interface RuntimeLens {
   readonly offAxisFractions: number[];
   readonly offAxisHeights: number[];
   readonly closeFocusM: number;
+  readonly zoomCloseFocusM?: readonly number[];
   readonly focusStep: number;
+  readonly focusPositions: readonly number[];
   readonly focusDescription?: string;
   readonly maxFstop: number;
   readonly apertureStep: number;
@@ -472,6 +501,7 @@ export interface RuntimeLens {
   readonly zoomXpZRelLastSurfs: number[] | null;
   readonly zoomXpSDs: number[] | null;
   readonly zoomFOPENs: number[] | null;
+  readonly zoomStopSDs?: readonly number[] | null;
   readonly zoomStep: number;
   readonly zoomLabels: string[] | null;
   readonly labelIdx: Record<string, number>;

@@ -3,6 +3,8 @@
 import { describe, it, expect, vi } from "vitest";
 import { renderHook } from "@testing-library/react";
 import useLensComputation from "../../../../src/components/hooks/useLensComputation.js";
+import { prepareRuntimeState } from "../../../../src/optics/compat.js";
+import { traceEngineRay2 } from "../../../../src/optics/trace/rayAdapters.js";
 import buildLens from "../../../../src/optics/buildLens.js";
 import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
 
@@ -12,6 +14,7 @@ import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
 describe("useLensComputation", () => {
   const baseLensKey = "sonnar-50f15";
   const focusLensKey = "sony-fe-14mm-f18-gm";
+  const perspectiveLensKey = "canon-tse-50f28l-macro";
 
   it("returns a valid RuntimeLens and geometry for a known lens key", () => {
     const { result } = renderHook(() =>
@@ -146,6 +149,70 @@ describe("useLensComputation", () => {
     expect(r.fNumber).toBeCloseTo(r.currentFOPEN, 1);
   });
 
+  it.each(["canon-ef-70-300mm-f4-56-is-usm", "canon-ef-s-18-55mm-f3p5-5p6", "nikkor-z-70-200f28"])(
+    "%s keeps the full iris at every zoom's wide-open setting",
+    (lensKey) => {
+      const { result, rerender } = renderHook(
+        ({ zoomT, stopdownT }) =>
+          useLensComputation({
+            lensKey,
+            focusT: 0,
+            zoomT,
+            stopdownT,
+            scaleRatio: null,
+            panelId: "zoom-aperture",
+          }),
+        { initialProps: { zoomT: 0, stopdownT: 0 } },
+      );
+      const iris = result.current.L!.stopPhysSD;
+      for (const zoomT of [0, 0.5, 1]) {
+        rerender({ zoomT, stopdownT: 0 });
+        expect(result.current.currentPhysStopSD).toBeCloseTo(iris, 10);
+        expect(result.current.currentEPSD).toBeCloseTo(result.current.baseEPSD, 10);
+        const L = result.current.L!;
+        const stopdownT = Math.log(8 / L.FOPEN) / Math.log(L.maxFstop / L.FOPEN);
+        rerender({ zoomT, stopdownT });
+        expect(result.current.fNumber).toBeCloseTo(8, 10);
+        expect(result.current.currentPhysStopSD).toBeCloseTo((iris * result.current.currentFOPEN) / 8, 10);
+      }
+    },
+  );
+
+  it("reconstructs the 24–70 source aperture at every authored station", () => {
+    const { result, rerender } = renderHook(
+      ({ zoomT, stopdownT }) =>
+        useLensComputation({
+          lensKey: "nikkor-z-24-70-f28",
+          focusT: 0,
+          zoomT,
+          stopdownT,
+          scaleRatio: null,
+          panelId: "source-iris",
+        }),
+      { initialProps: { zoomT: 0, stopdownT: 0 } },
+    );
+    const radii: number[] = [];
+    for (const zoomT of [0, 0.5, 1]) {
+      rerender({ zoomT, stopdownT: 0 });
+      const r = result.current;
+      radii.push(r.currentPhysStopSD);
+      expect(r.fNumber).toBeCloseTo(2.92, 8);
+      const state = prepareRuntimeState(r.L!, 0, zoomT);
+      const ray = traceEngineRay2(
+        state,
+        { origin: [0, r.dynamicEFL / (2 * 2.92), -10], direction: [0, 0, 1] },
+        { checkSemiDiameter: true },
+      );
+      expect(ray.status).toBe("ok");
+      expect(ray.hits.find((hit) => hit.surfaceIndex === r.L!.stopIdx)?.radius).toBeCloseTo(r.currentPhysStopSD, 8);
+      const L = r.L!;
+      rerender({ zoomT, stopdownT: Math.log(16 / L.FOPEN) / Math.log(L.maxFstop / L.FOPEN) });
+      expect(result.current.currentPhysStopSD).toBeCloseTo((r.currentPhysStopSD * 2.92) / 16, 8);
+    }
+    expect(radii[1]).toBeGreaterThan(radii[0]);
+    expect(radii[2]).toBeGreaterThan(radii[1]);
+  });
+
   it("fNumber increases when stopped down", () => {
     const { result: wide } = renderHook(() =>
       useLensComputation({
@@ -278,5 +345,36 @@ describe("useLensComputation", () => {
     expect(r0.current.IMG_MM).toBe(r1.current.IMG_MM);
     // But surface positions should change with focus
     expect(r0.current.zPos).not.toEqual(r1.current.zPos);
+  });
+
+  it("binds moved display geometry and physical tracing to one fixed-camera perspective pose", () => {
+    const renderPerspective = (shiftMm: number, tiltDeg: number) =>
+      renderHook(() =>
+        useLensComputation({
+          lensKey: perspectiveLensKey,
+          focusT: 0,
+          zoomT: 0,
+          stopdownT: 0,
+          shiftMm,
+          tiltDeg,
+          scaleRatio: null,
+          panelId: "perspective-test",
+        }),
+      ).result.current;
+
+    const centered = renderPerspective(0, 0);
+    const moved = renderPerspective(4, 3);
+    const context = moved.perspectiveTraceContext!;
+    const localPoint: [number, number, number] = [0, 2, moved.zPos[0]];
+    const cameraPoint = context.pose.lensToCameraPoint(localPoint);
+
+    expect(context.pose.active).toBe(true);
+    expect(context.state.z).toEqual(moved.zPos);
+    expect(context.sensorPlane.point[2]).toBeCloseTo(moved.IMG_MM, 12);
+    expect(context.pose.tiltPivot).toEqual(moved.L!.perspectiveControl!.tiltPivot);
+    expect(Object.isFrozen(context.pose.tiltPivot)).toBe(true);
+    expect(moved.movementTransform.point(localPoint[2], localPoint[1])).toEqual([cameraPoint[2], cameraPoint[1]]);
+    expect(centered.effectiveSC).toBeCloseTo(centered.L!.SC, 12);
+    expect(moved.effectiveSC).toBeLessThanOrEqual(centered.effectiveSC);
   });
 });

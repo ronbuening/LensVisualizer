@@ -31,12 +31,6 @@ Patent: US 2011/0090576 A1, Third Numerical Embodiment / Figure 5
 - Normalized the structured assignee and subtitle to the repository-wide `Canon Inc.` spelling; the analysis retains the
   patent's printed Canon Kabushiki Kaisha wording.
 
-### Verification
-
-- `npm run audit:surface -- src/lens-data/canon/CanonEF600mmf4LISIIUSM.data.ts` - passed.
-- `npm run audit:image-circle -- src/lens-data/canon/CanonEF600mmf4LISIIUSM.data.ts` - passed, 0 undersized.
-- `npm run generate:glass-reports` - passed, 8 files / 15 tests.
-
 ## 2026-08-21 - Diagram-label and movement follow-up
 
 ### Patent-figure review
@@ -52,8 +46,3 @@ Patent: US 2011/0090576 A1, Third Numerical Embodiment / Figure 5
   L11–L15 with moving L16. Movement analysis therefore averaged the two and displayed only half the real shift.
 - Split the display spans into fixed LF, imageward-moving `L16 FOCUS (−)`, and fixed LR. L16 now reports its full
   +20.112105825 mm imageward translation. This prime lens has no zoom travel.
-
-### Verification
-
-- `npm run audit:surface -- src/lens-data/canon/CanonEF600mmf4LISIIUSM.data.ts` - passed.
-- `npm run audit:image-circle -- src/lens-data/canon/CanonEF600mmf4LISIIUSM.data.ts` - passed, 0 undersized.

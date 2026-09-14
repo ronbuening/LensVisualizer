@@ -10,8 +10,6 @@
   floor.
 - Retained the submitted SDs. Clean figure/data measurements stay within the audit tolerance; the apparent L3 and
   L9-L10 outliers are under-read or crossed by patent leader and group lines.
-- `npm run audit:image-circle -- src/lens-data/panasonic/PanasonicLumixSPro1635mmf4.data.ts` passed with no undersized
-  surfaces.
 
 ### Glass
 

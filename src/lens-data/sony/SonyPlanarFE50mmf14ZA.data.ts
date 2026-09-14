@@ -271,9 +271,10 @@ const LENS_DATA = {
   },
 
   /* ── Variable air spacings (inner focus) ── */
+  focusPositions: [0, 0.26868481558865914, 1],
   var: {
-    "11": [2.442, 12.782], // D11: Lp3 rear → L21 front
-    "15": [12.684, 2.344], // D15: L22 rear → L31 front
+    "11": [2.442, 4.592, 12.782], // D11: Lp3 rear → L21 front
+    "15": [12.684, 10.534, 2.344], // D15: L22 rear → L31 front
   },
   varLabels: [
     ["11", "D11"],

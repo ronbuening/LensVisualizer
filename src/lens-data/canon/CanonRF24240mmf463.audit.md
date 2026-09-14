@@ -40,14 +40,6 @@ Catalog version: 5c81522
 - Removed unsupported catalog names from L9, L10, L11, L13, L14, and L16 prose where no current entry round-trips the patent values.
 - Updated L1 prose from S-LAH79 to S-LAH95; L7 from S-LAL54 to S-LAH66; L19 from S-BSM14 to S-BSM18; and L21 from S-TIH14 to S-TIH53.
 
-### Verification
-
-- `npm test -- catalogMismatchScan glassRelabelCandidatesScan` - passed; Canon RF 24-240 no longer appears in either generated report.
-- `npm run typecheck` - passed.
-- `npm run format:check` - passed.
-- `npm run lint` - passed.
-- `npm run test` - passed (116 test files, 1507 tests).
-
 ## 2026-05-19 - Code-only glass source recheck
 
 ### Phase 1 - Glass corrections
@@ -60,19 +52,13 @@ Catalog version: 5c81522
 
 - Rechecked Numerical Data 1 row 25 and aspherical rows 25/26 in the local patent PDF; the data file remains consistent with the existing 2026-05-04 full audit.
 
-### Phase 3 - Spectral / metadata enrichment
-
-- No C/F/g line-index or partial-dispersion columns are published in Numerical Data 1, so no `nC`, `nF`, `ng`, or `dPgF` fields were added.
-
 ### Phase 4 - Analysis sync
 
 - No analysis changes were needed; the existing L14 prose already identifies 531559 as a no-current-catalog-match moldable barium light crown.
 
-### Verification
+### Report status
 
-- `npm run generate:glass-reports` - passed; the 531559 row remains in `six-digit-glass-codes-missing-sellmeier.generated.md` because no coefficient-backed public catalog match was found.
-- `npm run typecheck` - passed.
-- `npm run format:check` - passed.
+- The 531559 row remains in `six-digit-glass-codes-missing-sellmeier.generated.md` because no coefficient-backed public catalog match was found.
 
 ## 2026-05-20 - Glass relabel follow-up
 

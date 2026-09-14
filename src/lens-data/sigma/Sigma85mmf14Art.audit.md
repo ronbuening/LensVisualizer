@@ -20,18 +20,9 @@ Patent: JP 2018-005099 A, Example 4
 - Spot-checked flagged rows against Example 4; stored nd/vd and patent PgF values are retained.
 - No radius, spacing, or asphere edits were needed in this scoped glass pass.
 
-### Phase 3 - Spectral / metadata enrichment
-
-- No new catalog entry was needed for this lens; all targets were already cataloged.
-
 ### Phase 4 - Analysis sync
 
 - Updated the companion analysis names, repeated-glass narrative, and references for FCD705, J-KZFH9, and E-FD15.
-
-### Verification
-
-- `npm test -- dispersion`
-- `npm test -- glassRelabelByLensScan`
 
 ## 2026-06-23 - APD badge correction
 
@@ -50,11 +41,6 @@ Patent: JP 2018-005099 A, Example 4
 ### Phase 3 - Analysis sync
 
 - Updated the companion analysis text to distinguish patent PgF data from APD viewer badges.
-
-### Verification
-
-- `npm run typecheck`
-- `npm run test -- lensDataTyping dispersion ElementInspector`
 
 ## 2026-07-29 - Glass classification follow-up
 

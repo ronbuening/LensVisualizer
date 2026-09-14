@@ -5,6 +5,7 @@ import { afterEach, describe, expect, it } from "vitest";
 import {
   MAKER_PREFIXES,
   collectLensData,
+  collectLensDataAsync,
   collectRootLensMovePlan,
   deriveMakerSlug,
   organizeRootLensFiles,
@@ -158,6 +159,51 @@ describe("lens-data scripts", () => {
     });
 
     expect(() => organizeRootLensFiles(lensDataDir, { log: () => undefined })).toThrow(/destination already exists/);
+  });
+
+  it("publishes replacement models consistently in both collectors without losing later modifications", async () => {
+    const { rootDir, lensDataDir } = createTempLensDataDir();
+    tempRoots.push(rootDir);
+    const dataPath = join(lensDataDir, "Replacement.data.ts");
+    const writePublication = (timestamp: string) =>
+      writeFileSync(
+        dataPath,
+        `const LENS_DATA = { key: "replacement", name: "TEST REPLACEMENT", publishedAt: "${timestamp}" };`,
+      );
+    writePublication("2026-09-14T12:06:25Z");
+    const options = {
+      rootDir,
+      lensDataDir,
+      fallbackDate: "2026-09-15",
+      trackedLensRecordsByKey: {},
+      getFreshness: () => ({
+        publishedOn: "2020-01-01",
+        publishedAt: "2020-01-01T00:00:00Z",
+        publishedCommit: "original",
+        lastModified: "2026-09-15",
+        lastModifiedAt: "2026-09-15T09:00:00Z",
+        lastModifiedCommit: "later",
+      }),
+    };
+    const sync = collectLensData(options);
+    expect(await collectLensDataAsync(options)).toEqual(sync);
+    expect(sync[0].freshness).toEqual({
+      publishedOn: "2026-09-14",
+      publishedAt: "2026-09-14T12:06:25.000Z",
+      lastModified: "2026-09-15",
+      lastModifiedAt: "2026-09-15T09:00:00Z",
+      lastModifiedCommit: "later",
+    });
+    const old = collectLensData({
+      ...options,
+      getFreshness: () => ({ publishedOn: "2020-01-01", lastModified: "2020-01-01" }),
+    });
+    expect(old[0].freshness.lastModified).toBe("2026-09-14");
+    for (const invalid of ["2026-09-14", "2026-02-30T00:00:00Z", "2026-09-14T12:00:00-04:00"]) {
+      writePublication(invalid);
+      expect(() => collectLensData(options)).toThrow(/Invalid lens publishedAt/);
+      await expect(collectLensDataAsync(options)).rejects.toThrow(/Invalid lens publishedAt/);
+    }
   });
 
   it("preserves original published dates for lenses moved before the rename commit exists", () => {

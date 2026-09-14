@@ -8,7 +8,6 @@ Patent: US 2023/0213745 A1, Example 4 (Nakada / Canon)
 
 - Added HOYA NBFD29 from HOYA's first-party optical-glass PDF (`NBFD29`, code 770-297, nd=1.77047, vd=29.74, PgF=0.5951, formula-3 A0-A5 constants) to the runtime catalog.
 - Relabeled L4 / S6 and L6 / S9 from code-only `770297` annotations to `NBFD29 (HOYA, 770297)`.
-- `npm test -- dispersion` and `npm run generate:glass-reports` passed; these rows now use trusted Sellmeier data.
 
 ---
 
@@ -114,11 +113,6 @@ Updated `CanonRF135f18.analysis.md` to match Phase 1 glass relabels:
 
 No APO language added or removed — no dPgF or line-index data available from this patent.
 
-### Verification
-
-- `npm run typecheck` — passed (0 errors). ✓
-- `npm run test` — 116 test files, 1504 tests, all passed. ✓
-
 ### Outstanding follow-ups
 
 - **S-NPH7** (L14, nd = 2.00069, νd = 25.5) is not in the glass catalog and falls back to Abbe approximation. Consider adding it if coefficient-backed source data is found.
@@ -131,3 +125,7 @@ No APO language added or removed — no dPgF or line-index data available from t
 - Replaced L14's unsupported `S-NPH7 (OHARA)` label with `TAFD40`, the coefficient-backed HOYA catalog equivalent for code 001255 and the patent's 2.00069 / 25.5 coordinate.
 - The patent does not name the glass supplier, so the new annotation records equivalence rather than asserting that Canon used HOYA glass.
 - Synchronized the analysis; no prescription geometry or authored nd/νd values changed.
+
+## 2026-09-09 — First-added audit, lens35
+
+Original scanned Numerical Example4 PDFp15 and correct Figure7 PDFp8 at600dpi reviewed (older Figure5reference was wrong). All lens R/d/nd/vd and calculated individual FLs retained. Omitted source plate1.50mm/nd1.51633 plus0.80mm rear air now correctly contributes to BF:12.63→14.4192305765mm. No cover/filter surfaces added. Near endpoint0.70→0.699370427m calculated from published gaps, unchanged18.21mm L7movement. Source overall148.55mm versus row-sum equivalent148.56923mm and source130.95mm versus calculated130.93936mm retained as rounding/summary differences. First aperturebutton1.8→1.86. Five unsupported inferredAPDbadges removed; all glassnames qualified as compatible counterparts, L11nowTAFD35. Removed unsupported chemistry, motor and correction-role assertions. Centered IS configuration explicit. SDs retained within Figure7tolerance; baseline surface/image-circle/nohiddenrimtrim checks pass. Productionbaseline inspected; local infinity/near/half-focus, f16 and motion-chart checks complete: EFL130.94→103.36mm, half117.46mm, D11/D13 endpoints confirmed, travel18.21mm, f16stop4.48mm. Three regression tests and final surface/image-circle gates pass. Batch31–40gatespending.

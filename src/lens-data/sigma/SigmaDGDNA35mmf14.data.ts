@@ -81,7 +81,7 @@ export const sigmaDgDnA35mmF14Data = {
   /* ── Focus configuration ── */
   closeFocusM: 0.3,
   focusDescription:
-    "Inner focus by single-element negative middle group (L9), driven by stepping motor; lens length is fixed during focus and the front element does not rotate.",
+    "Inner focus by the single-element negative middle group L9. The patent 1.47 m row is exact before the constrained 0.30 m endpoint; lens length remains fixed.",
 
   /* ── Aperture configuration ── */
   nominalFno: 1.4,
@@ -184,13 +184,14 @@ export const sigmaDgDnA35mmF14Data = {
   },
 
   /* ── Variable air gaps ──
-   * Each entry [d_inf, d_close] gives the gap at the infinity-focus state
-   * and at the close-focus state (closeFocusM = 0.30 m). Sum of the two
-   * variable gaps is invariant: d15 + d17 = 16.0381 mm in both states
+   * Infinity, the patent 1.47 m state, and the reconstructed 0.30 m state
+   * are stored as keyframes. Sum of the two variable gaps is invariant:
+   * d15 + d17 = 16.0381 mm at every state
    * (rigid translation of L9 toward the image plane). */
+  focusPositions: [0, 0.2039949861473531, 1],
   var: {
-    STO: [3.9908, 10.8551],
-    "17": [12.0473, 5.183],
+    STO: [3.9908, 4.8959, 10.8551],
+    "17": [12.0473, 11.1422, 5.183],
   },
 
   varLabels: [

@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import type { PreparedOpticalState } from "../../../optics/types.js";
 import type { AnalysisComputationContext } from "../../../optics/compat.js";
 import type { RuntimeLens } from "../../../types/optics.js";
@@ -5,6 +6,7 @@ import type { Theme } from "../../../types/theme.js";
 import BokehPreviewContent from "./BokehPreviewContent.js";
 import useBokehPreviewData from "./useBokehPreviewData.js";
 import usePreparedAnalysisState from "./usePreparedAnalysisState.js";
+import PerspectiveBokehAnalysis from "./perspective/PerspectiveBokehAnalysis.js";
 
 interface BokehTabProps {
   L: RuntimeLens;
@@ -19,6 +21,49 @@ interface BokehTabProps {
 }
 
 export default function BokehTab({
+  L,
+  t,
+  focusT,
+  zoomT,
+  aberrationT = 0,
+  currentEPSD,
+  currentPhysStopSD,
+  preparedState: preparedStateProp,
+  analysisContext,
+}: BokehTabProps) {
+  const perspectiveResult = useMemo(
+    () => (analysisContext?.movementActive ? analysisContext.computePerspectiveFocusAnalysis() : null),
+    [analysisContext],
+  );
+
+  if (analysisContext?.movementActive) {
+    return (
+      <div style={{ padding: "8px 0" }}>
+        {perspectiveResult ? (
+          <PerspectiveBokehAnalysis result={perspectiveResult} t={t} />
+        ) : (
+          <div style={{ color: t.muted, fontSize: 10 }}>Movement-aware bokeh analysis is unavailable.</div>
+        )}
+      </div>
+    );
+  }
+
+  return (
+    <CenteredBokehTab
+      L={L}
+      t={t}
+      focusT={focusT}
+      zoomT={zoomT}
+      aberrationT={aberrationT}
+      currentEPSD={currentEPSD}
+      currentPhysStopSD={currentPhysStopSD}
+      preparedState={preparedStateProp}
+      analysisContext={analysisContext}
+    />
+  );
+}
+
+function CenteredBokehTab({
   L,
   t,
   focusT,

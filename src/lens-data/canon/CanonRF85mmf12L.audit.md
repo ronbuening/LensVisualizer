@@ -19,19 +19,9 @@ Patent: US 2020/0012073 A1, Example 1
 - Checked the flagged prescription rows against the patent table; stored surface values match the published rows.
 - No geometry, asphere, variable-gap, or metadata edits made.
 
-### Phase 3 — Spectral / metadata enrichment
-
-- No additional line-index data found for the relabeled rows.
-
 ### Phase 4 — Analysis sync
 
 - Updated the complete glass table and L13 prose to match the relabeled elements.
-
-### Verification
-
-- `npm test -- dispersion` — passed.
-- `npm run typecheck` — passed.
-- `npm run generate:glass-reports` — passed; lens removed from the relabel-by-lens queue.
 
 ## 2026-05-19 - Code-only glass source recheck
 
@@ -56,13 +46,6 @@ Patent: US 2020/0012073 A1, Example 1
 ### Phase 4 - Analysis sync
 
 - Updated the glass table and BR carrier prose for N-KZFS8, S-NBH56, and S-TIL2.
-
-### Verification
-
-- `npm run generate:glass-reports` — passed; RF85 is absent from the current six-digit missing-Sellmeier, unresolved-glass, catalog-mismatch, and relabel-by-lens queues for the corrected rows.
-- `npm run typecheck` — passed.
-- `npm run format:check` — passed.
-- `npm run test` — passed (131 files, 1666 tests; expected error-boundary console output only).
 
 ## 2026-06-04 - Sweep 3 patent dPgF backfill
 

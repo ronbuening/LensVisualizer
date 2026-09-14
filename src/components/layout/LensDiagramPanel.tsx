@@ -180,6 +180,7 @@ export default function LensDiagramPanel({
     effectiveSC,
     movement,
     movementTransform,
+    perspectiveTraceContext,
     lensAxis,
     shapes,
     shapeError,
@@ -307,7 +308,7 @@ export default function LensDiagramPanel({
     sx,
     sy,
     clampedRayEnd,
-    movementTransform,
+    perspectiveTraceContext: perspectiveTraceContext ?? undefined,
     currentPhysStopSD,
     currentEPSD,
     rayDensity: effectiveRayDensity,
@@ -469,7 +470,7 @@ export default function LensDiagramPanel({
                 currentEPSD={currentEPSD}
                 currentPhysStopSD={currentPhysStopSD}
                 fieldGeometry={fieldGeometry}
-                movementActive={resolvedMovement.active}
+                perspectiveTraceContext={perspectiveTraceContext}
                 sliderInteracting={sliderInteracting}
                 aberrationsExpanded={aberrationsExpanded}
                 onAberrationsExpandedChange={adapters.onAberrationsExpandedChange}

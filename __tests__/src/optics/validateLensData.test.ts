@@ -294,15 +294,131 @@ describe("validateLensData", () => {
     expect(
       validateLensData(
         makeValid({
+          imageFormat: "135-full-frame",
           perspectiveControl: {
             shiftRangeMm: [-11.5, 11.5],
             tiltRangeDeg: [-8.5, 8.5],
             shiftStepMm: 0.1,
             tiltStepDeg: 0.1,
+            tiltPivot: {
+              frame: "camera",
+              basis: "rear-vertex-fallback",
+              zOffsetFromImagePlaneMm: -56.5,
+            },
           },
         }),
       ),
     ).toEqual([]);
+
+    expect(
+      validateLensData(
+        makeValid({
+          imageFormat: "44x33",
+          perspectiveControl: {
+            shiftRangeMm: [-15, 15],
+            tiltRangeDeg: [-8.5, 8.5],
+            tiltPivot: {
+              frame: "camera",
+              basis: "patent-principal-point-guidance",
+              zOffsetFromImagePlaneMm: -30.9009,
+            },
+          },
+        }),
+      ),
+    ).toEqual([]);
+
+    expect(
+      validateLensData(
+        makeValid({
+          imageFormat: "135-full-frame",
+          perspectiveControl: {
+            shiftRangeMm: [-11, 11],
+            tiltRangeDeg: [0, 0],
+          },
+        }),
+      ),
+    ).toEqual([]);
+  });
+
+  it("requires a valid camera-frame pivot whenever tilt is enabled", () => {
+    const missing = validateLensData(
+      makeValid({
+        imageFormat: "135-full-frame",
+        perspectiveControl: { shiftRangeMm: [-11, 11], tiltRangeDeg: [-8.5, 8.5] },
+      }),
+    );
+    expect(missing.some((error) => error.includes('"perspectiveControl.tiltPivot"'))).toBe(true);
+
+    const malformed = validateLensData(
+      makeValid({
+        imageFormat: "135-full-frame",
+        perspectiveControl: {
+          shiftRangeMm: [-11, 11],
+          tiltRangeDeg: [-8.5, 8.5],
+          tiltPivot: {
+            frame: "lens",
+            basis: "current-stop",
+            zOffsetFromImagePlaneMm: Number.NaN,
+          },
+        },
+      }),
+    );
+    expect(malformed.some((error) => error.includes("tiltPivot.frame"))).toBe(true);
+    expect(malformed.some((error) => error.includes("tiltPivot.basis"))).toBe(true);
+    expect(malformed.some((error) => error.includes("tiltPivot.zOffsetFromImagePlaneMm"))).toBe(true);
+
+    for (const invalidOffset of [0, 1]) {
+      const nonObjectward = validateLensData(
+        makeValid({
+          imageFormat: "135-full-frame",
+          perspectiveControl: {
+            shiftRangeMm: [-11, 11],
+            tiltRangeDeg: [-8.5, 8.5],
+            tiltPivot: {
+              frame: "camera",
+              basis: "rear-vertex-fallback",
+              zOffsetFromImagePlaneMm: invalidOffset,
+            },
+          },
+        }),
+      );
+      expect(nonObjectward.some((error) => error.includes("must be a finite negative number"))).toBe(true);
+    }
+  });
+
+  it("requires image format, omits tilt pivots for shift-only lenses, and excludes generalized paths", () => {
+    const shiftOnly = {
+      shiftRangeMm: [-11, 11],
+      tiltRangeDeg: [0, 0],
+    };
+    const missingFormat = validateLensData(makeValid({ perspectiveControl: shiftOnly }));
+    expect(missingFormat.some((error) => error.includes('"imageFormat" is required'))).toBe(true);
+
+    const disabledTiltPivot = validateLensData(
+      makeValid({
+        imageFormat: "135-full-frame",
+        perspectiveControl: {
+          ...shiftOnly,
+          tiltPivot: {
+            frame: "camera",
+            basis: "rear-vertex-fallback",
+            zOffsetFromImagePlaneMm: -45,
+          },
+        },
+      }),
+    );
+    expect(disabledTiltPivot.some((error) => error.includes("must be omitted when tilt is disabled"))).toBe(true);
+
+    const generalizedPath = validateLensData(
+      makeValid({
+        imageFormat: "135-full-frame",
+        perspectiveControl: shiftOnly,
+        opticalPath: {},
+      }),
+    );
+    expect(generalizedPath.some((error) => error.includes('cannot be combined with generalized "opticalPath"'))).toBe(
+      true,
+    );
   });
 
   it("catches invalid perspectiveControl movement ranges", () => {
@@ -321,6 +437,11 @@ describe("validateLensData", () => {
     expect(errors.some((error) => error.includes("perspectiveControl.tiltRangeDeg"))).toBe(true);
     expect(errors.some((error) => error.includes("perspectiveControl.shiftStepMm"))).toBe(true);
     expect(errors.some((error) => error.includes("perspectiveControl.tiltStepDeg"))).toBe(true);
+
+    const noMovementErrors = validateLensData(
+      makeValid({ perspectiveControl: { shiftRangeMm: [0, 0], tiltRangeDeg: [0, 0] } }),
+    );
+    expect(noMovementErrors.some((error) => error.includes("must enable shift, tilt, or both"))).toBe(true);
   });
 
   it("accepts valid fisheye projection metadata", () => {
@@ -530,6 +651,39 @@ describe("validateLensData", () => {
     });
     const errors = validateLensData(data);
     expect(errors.some((e) => e.includes("length 2"))).toBe(true);
+  });
+
+  it("accepts aligned multi-keyframe focus positions and prime spacings", () => {
+    const data = makeValid({
+      focusPositions: [0, 0.4, 1],
+      var: { STO: [2, 3, 4] },
+    });
+    expect(validateLensData(data)).toEqual([]);
+  });
+
+  it("catches invalid focus position coordinates", () => {
+    const invalidCases = [
+      [0.1, 0.5, 1],
+      [0, 0.5, 0.5, 1],
+      [0, Number.NaN, 1],
+      [0, 0.5, 0.9],
+    ];
+    for (const focusPositions of invalidCases) {
+      const errors = validateLensData(makeValid({ focusPositions, var: { STO: focusPositions.map(() => 2) } }));
+      expect(
+        errors.some((error) => error.includes("focusPositions")),
+        focusPositions.join(","),
+      ).toBe(true);
+    }
+  });
+
+  it("requires every prime focus range to align with focusPositions", () => {
+    const data = makeValid({
+      focusPositions: [0, 0.4, 1],
+      var: { STO: [2, 4] },
+    });
+    const errors = validateLensData(data);
+    expect(errors.some((error) => error.includes('var["STO"]') && error.includes("length 3"))).toBe(true);
   });
 
   it("catches invalid varLabels reference", () => {
@@ -1023,6 +1177,37 @@ describe("validateLensData — production lenses", () => {
  * ═══════════════════════════════════════════════════════════════════ */
 
 describe("validateLensData — zoom lens paths", () => {
+  it("accepts aligned focus keyframes at every zoom position", () => {
+    const data = makeValid({
+      nominalFno: [2, 2],
+      zoomPositions: [24, 70],
+      focusPositions: [0, 0.5, 1],
+      var: {
+        STO: [
+          [2, 3, 2],
+          [4, 6, 5],
+        ],
+      },
+    });
+    expect(validateLensData(data)).toEqual([]);
+  });
+
+  it("requires every zoom focus vector to align with focusPositions", () => {
+    const data = makeValid({
+      nominalFno: [2, 2],
+      zoomPositions: [24, 70],
+      focusPositions: [0, 0.5, 1],
+      var: {
+        STO: [
+          [2, 3, 2],
+          [4, 5],
+        ],
+      },
+    });
+    const errors = validateLensData(data);
+    expect(errors.some((error) => error.includes('var["STO"][1]') && error.includes("length 3"))).toBe(true);
+  });
+
   it("catches negative var thickness in zoom format", () => {
     const data = makeValid({
       zoomPositions: [24, 70],
@@ -1149,10 +1334,10 @@ describe("validateLensData — zoom lens paths", () => {
           [2, 3],
           [4, 5],
         ],
-      }, // only 2 pairs, needs 3
+      }, // only 2 focus vectors, needs 3
     });
     const errors = validateLensData(data);
-    expect(errors.some((e) => e.includes("3 [d_inf, d_close] pairs"))).toBe(true);
+    expect(errors.some((e) => e.includes("3 focus-thickness vectors"))).toBe(true);
   });
 
   it("catches zoomPositions with fewer than 2 entries", () => {
@@ -1173,18 +1358,18 @@ describe("validateLensData — zoom lens paths", () => {
     expect(errors.some((e) => e.includes("finite numbers"))).toBe(true);
   });
 
-  it("catches zoom var entry that is not a [d_inf, d_close] pair", () => {
+  it("catches zoom var entry that is not a focus-thickness vector", () => {
     const data = makeValid({
       zoomPositions: [24, 70],
       var: {
         STO: [
           [2, 3],
-          5, // not a pair
+          5, // not a focus vector
         ],
       },
     });
     const errors = validateLensData(data);
-    expect(errors.some((e) => e.includes("[d_infinity, d_close]"))).toBe(true);
+    expect(errors.some((e) => e.includes("focus-thickness array of length 2"))).toBe(true);
   });
 
   it("catches zoom var entry with wrong-length inner array", () => {
@@ -1198,7 +1383,7 @@ describe("validateLensData — zoom lens paths", () => {
       },
     });
     const errors = validateLensData(data);
-    expect(errors.some((e) => e.includes("[d_infinity, d_close]"))).toBe(true);
+    expect(errors.some((e) => e.includes("focus-thickness array of length 2"))).toBe(true);
   });
 });
 
@@ -1341,5 +1526,41 @@ describe("validateLensData — rim slope check", () => {
     });
     const errors = validateLensData(data);
     expect(errors.some((e) => e.includes("rim slope"))).toBe(true);
+  });
+});
+
+// These guards cover new shared data contracts, not per-lens prescription snapshots.
+describe("zoom source schedules", () => {
+  it("rejects malformed physical iris schedules and conflicting inferred schedules", () => {
+    for (const zoomStopSemiDiameters of [[8], [8, 0, 12], [8, NaN, 12]]) {
+      expect(
+        validateLensData(makeValid({ zoomPositions: [20, 35, 50], zoomStopSemiDiameters })).some((e) =>
+          e.includes("zoomStopSemiDiameters"),
+        ),
+      ).toBe(true);
+    }
+    expect(
+      validateLensData(
+        makeValid({
+          zoomPositions: [20, 35, 50],
+          zoomStopSemiDiameters: [8, 10, 12],
+          zoomApertureModel: "from-nominal-fno",
+        }),
+      ).some((e) => e.includes("zoomStopSemiDiameters")),
+    ).toBe(true);
+  });
+  it("rejects malformed zoom focus endpoints and unknown aperture models", () => {
+    for (const zoomCloseFocusM of [[1], [1, -1, 2], [1, Infinity, 2]]) {
+      expect(
+        validateLensData(makeValid({ zoomPositions: [20, 35, 50], zoomCloseFocusM })).some((e) =>
+          e.includes("zoomCloseFocusM"),
+        ),
+      ).toBe(true);
+    }
+    expect(
+      validateLensData(makeValid({ zoomPositions: [20, 35, 50], zoomApertureModel: "unknown" })).some((e) =>
+        e.includes("zoomApertureModel"),
+      ),
+    ).toBe(true);
   });
 });

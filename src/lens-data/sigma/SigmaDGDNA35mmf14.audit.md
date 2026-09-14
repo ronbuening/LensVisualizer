@@ -32,7 +32,3 @@ Patent: JP 2022-33487 A, Numerical Example 1
 ### Phase 4 - Analysis sync
 
 - Updated the companion analysis text and the special-low-dispersion table for the L5 and L7 glass-label changes.
-
-### Verification
-
-- `npm run generate:glass-reports`

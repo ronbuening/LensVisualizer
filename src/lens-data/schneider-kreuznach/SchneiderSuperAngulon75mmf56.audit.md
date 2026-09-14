@@ -26,20 +26,11 @@ APD status remains `false` for all elements. The patent describes ordinary wide-
 
 ### Phase 3 - Spectral / metadata enrichment
 
-- `npm run generate:glass-reports` now reports this lens at 6/8 trusted Sellmeier rows.
 - L4 / 561453 and L6 / 614563 remain intentional code-only Abbe rows pending public coefficient data.
 
 ### Phase 4 - Analysis sync
 
 - Updated the analysis file's glass-identification sections and glass table to match the resolver-aware labels and remaining code-only rows.
-
-### Verification
-
-- `npm run generate:glass-reports` - passed.
-- `npm run typecheck` - passed.
-- `npm run format:check` - passed.
-- `npm run lint` - passed.
-- `npm run test` - passed.
 
 ## 2026-07-30 SUMITA LLF4 coefficient recovery
 
