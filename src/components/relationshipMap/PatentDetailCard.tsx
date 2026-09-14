@@ -8,6 +8,7 @@
  */
 
 import LensEntryLink from "../content/LensEntryLink.js";
+import type { RefObject } from "react";
 import PatentNumberLink from "../content/PatentNumberLink.js";
 import PatentPartyList from "../content/PatentPartyList.js";
 import { getAuthorByName } from "../../utils/catalog/authorCatalog.js";
@@ -22,8 +23,9 @@ interface PatentDetailCardProps {
   /** Omitted in the universal map, where no single party is the center. */
   centerRef?: PartyRef;
   theme: Theme;
-  onFocusParty: (ref: PartyRef) => void;
+  onFocusParty: (ref: PartyRef, keyboard?: boolean) => void;
   onClose: () => void;
+  headingRef?: RefObject<HTMLHeadingElement | null>;
 }
 
 export default function PatentDetailCard({
@@ -32,6 +34,7 @@ export default function PatentDetailCard({
   theme: t,
   onFocusParty,
   onClose,
+  headingRef,
 }: PatentDetailCardProps) {
   const isCenter = (name: string, role: PatentPartyRole) =>
     centerRef !== undefined && role === centerRef.role && name === centerRef.name;
@@ -44,7 +47,7 @@ export default function PatentDetailCard({
     return (
       <button
         type="button"
-        onClick={() => onFocusParty({ role, name, slug: meta.slug })}
+        onClick={(event) => onFocusParty({ role, name, slug: meta.slug }, event.detail === 0)}
         style={{
           background: "none",
           border: "none",
@@ -87,7 +90,11 @@ export default function PatentDetailCard({
         Close
       </button>
 
-      <h3 style={{ color: t.title, fontSize: "0.95rem", margin: "0 0 0.35rem", paddingRight: "3rem" }}>
+      <h3
+        ref={headingRef}
+        tabIndex={headingRef ? -1 : undefined}
+        style={{ color: t.title, fontSize: "0.95rem", margin: "0 0 0.35rem", paddingRight: "3rem" }}
+      >
         <PatentNumberLink patentNumber={patent.patentNumber} color={t.descLinkColor} />
         {patent.patentYear !== undefined && (
           <span style={{ color: t.label, fontSize: "0.7rem", marginLeft: "0.5rem", fontWeight: 400 }}>

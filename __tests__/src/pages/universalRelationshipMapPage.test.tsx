@@ -5,7 +5,7 @@
  */
 
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { cleanup, fireEvent, screen, waitFor } from "@testing-library/react";
+import { cleanup, fireEvent, screen, waitFor, within } from "@testing-library/react";
 import { Route, Routes } from "react-router";
 import type { UniversalRelationshipGraph } from "../../../src/utils/catalog/universalRelationshipGraph.js";
 import UniversalRelationshipMapPage from "../../../src/pages/UniversalRelationshipMapPage.js";
@@ -96,6 +96,25 @@ describe("UniversalRelationshipMapPage", () => {
     fireEvent.click(await screen.findByRole("button", { name: "Select test assignee" }));
     const focusedLink = screen.getByRole("link", { name: /Open focused relationship map/ });
     expect(focusedLink.getAttribute("href")).toMatch(/^\/relationships\/#focus=assignee:/);
+  });
+
+  it("navigates patent-party details in place and focuses the replacement heading for keyboard activation", async () => {
+    renderUniversalPage();
+    fireEvent.click(await screen.findByRole("button", { name: "Select test patent" }));
+    const party = within(screen.getByRole("article"))
+      .getAllByRole("button")
+      .find((button) => !button.getAttribute("aria-label")?.startsWith("Close"))!;
+    const name = party.textContent!;
+    fireEvent.click(party, { detail: 0 });
+    const heading = screen.getByRole("heading", { level: 3, name });
+    expect(document.activeElement).toBe(heading);
+    expect(screen.getByRole("heading", { level: 1, name: "Universal Relationship Map" })).toBeDefined();
+    const patent = within(screen.getByRole("region", { name: "Related patents" })).getAllByRole("button")[0];
+    const number = patent.textContent!;
+    fireEvent.click(patent, { detail: 0 });
+    expect(screen.getByRole("button", { name: "Close patent details" })).toBeDefined();
+    expect(document.activeElement?.tagName).toBe("H3");
+    expect(document.activeElement?.textContent).toContain(number);
   });
 
   it("shows dated sourced corporate records for a family hub", async () => {

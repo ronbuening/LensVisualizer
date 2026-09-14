@@ -107,6 +107,9 @@ centers at readable magnification through `useViewBoxZoom.centerOn`. Requests ar
 requests for the same node, so subsequent pan/zoom gestures remain under the visitor's control.
 The persistent navigation controls reuse that hook for bounded zoom, fit-all, and readable selection centering;
 fitting the viewport leaves selection and details intact.
+Universal detail cards use the same selection/focus path for related patents, inventors, assignees, organizations,
+and families. Explicit focused-map and source links remain available. Keyboard navigation between cards focuses the
+replacement heading without scrolling; pointer navigation leaves page focus alone.
 
 ## Markdown Renderer
 

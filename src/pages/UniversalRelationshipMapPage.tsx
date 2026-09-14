@@ -3,11 +3,10 @@
  *
  * Presents every visible patent, inventor, assignee, and curated corporate
  * relationship in one zoomable SVG. The ordinary /relationships page remains
- * the focused ego-map workflow; party links from this page hand off to it.
+ * the focused ego-map workflow, available through explicit detail-card links.
  */
 
-import { useMemo, useState } from "react";
-import { useNavigate } from "react-router";
+import { useEffect, useMemo, useRef, useState } from "react";
 import ClientOnly from "../components/ClientOnly.js";
 import PanelErrorBoundary from "../components/errors/PanelErrorBoundary.js";
 import StaticPageShell from "../components/layout/StaticPageShell.js";
@@ -19,20 +18,27 @@ import SEOHead from "../components/SEOHead.js";
 import { SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
 import { buildUniversalRelationshipGraph } from "../utils/catalog/universalRelationshipGraph.js";
 import { breadcrumbJsonLd, collectionPageJsonLd } from "../utils/seo/structuredData.js";
-import { canonicalPagePath, canonicalPageUrl } from "../utils/seo/siteUrls.js";
+import { canonicalPageUrl } from "../utils/seo/siteUrls.js";
 import { H1_STYLE } from "../utils/style/pageStyles.js";
 import { panelCard } from "../utils/style/styles.js";
 
 const UNIVERSAL_GRAPH = buildUniversalRelationshipGraph();
 
 export default function UniversalRelationshipMapPage() {
-  const navigate = useNavigate();
   const [selectedNodeId, setSelectedNodeId] = useState<string | null>(null);
   const [focusRequest, setFocusRequest] = useState<{ nodeId: string; requestId: number }>();
-  const focusNode = (nodeId: string) => {
+  const detailsHeadingRef = useRef<HTMLHeadingElement>(null);
+  const focusDetails = useRef(false);
+  const focusNode = (nodeId: string, keyboard = false) => {
+    focusDetails.current = keyboard;
     setSelectedNodeId(nodeId);
     setFocusRequest((previous) => ({ nodeId, requestId: (previous?.requestId ?? 0) + 1 }));
   };
+  useEffect(() => {
+    if (!focusDetails.current) return;
+    detailsHeadingRef.current?.focus({ preventScroll: true });
+    focusDetails.current = false;
+  }, [selectedNodeId, focusRequest]);
   const selectedNode = useMemo(
     () => UNIVERSAL_GRAPH.nodes.find((node) => node.id === selectedNodeId),
     [selectedNodeId],
@@ -127,10 +133,9 @@ export default function UniversalRelationshipMapPage() {
                 <PatentDetailCard
                   patent={selectedNode.patent}
                   theme={t}
-                  onFocusParty={(ref) =>
-                    void navigate(canonicalPagePath(`/relationships#focus=${ref.role}:${ref.slug}`))
-                  }
+                  onFocusParty={(ref, keyboard) => focusNode(`${ref.role}:${ref.slug}`, keyboard)}
                   onClose={() => setSelectedNodeId(null)}
+                  headingRef={detailsHeadingRef}
                 />
               )}
 
@@ -140,6 +145,8 @@ export default function UniversalRelationshipMapPage() {
                   node={selectedNode}
                   theme={t}
                   onClose={() => setSelectedNodeId(null)}
+                  onSelectNode={focusNode}
+                  headingRef={detailsHeadingRef}
                 />
               )}
             </PanelErrorBoundary>

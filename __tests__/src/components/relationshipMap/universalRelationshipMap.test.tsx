@@ -275,7 +275,13 @@ describe("UniversalRelationshipMap", () => {
 describe("UniversalEntityDetailCard", () => {
   it("shows dates, sources, and the focused-map link", () => {
     const { getByRole, getByText } = renderWithRouter(
-      <UniversalEntityDetailCard graph={graph} node={assignee} theme={themes.dark} onClose={vi.fn()} />,
+      <UniversalEntityDetailCard
+        graph={graph}
+        node={assignee}
+        theme={themes.dark}
+        onClose={vi.fn()}
+        onSelectNode={vi.fn()}
+      />,
     );
     expect(getByText("2000-01-01 onward")).toBeDefined();
     expect(getByRole("link", { name: "Source ↗" }).getAttribute("href")).toBe("https://example.com/source");
@@ -284,14 +290,65 @@ describe("UniversalEntityDetailCard", () => {
     );
   });
 
-  it("links corporate-family members to their focused relationship maps", () => {
+  it("selects corporate-family members within the universal map", () => {
     const family = graph.nodes.find((node) => node.kind === "family")!;
     if (family.kind !== "family") throw new Error("missing family fixture");
+    const pick = vi.fn();
     const { getByRole } = renderWithRouter(
-      <UniversalEntityDetailCard graph={graph} node={family} theme={themes.dark} onClose={vi.fn()} />,
+      <UniversalEntityDetailCard
+        graph={graph}
+        node={family}
+        theme={themes.dark}
+        onClose={vi.fn()}
+        onSelectNode={pick}
+      />,
     );
-    expect(getByRole("link", { name: assignee.name }).getAttribute("href")).toBe(
-      "/relationships/#focus=assignee:example",
+    fireEvent.click(getByRole("button", { name: assignee.name }), { detail: 0 });
+    expect(pick).toHaveBeenCalledWith(assignee.id, true);
+  });
+
+  it("deduplicates and orders related patents and selects corporate targets", () => {
+    const patents = [
+      {
+        id: "patent:US 3",
+        kind: "patent" as const,
+        name: "US 3",
+        patent: { id: "patent:US 3", patentNumber: "US 3", authors: [], assignees: [], lenses: [] },
+      },
+      {
+        id: "patent:US 2",
+        kind: "patent" as const,
+        name: "US 2",
+        patent: { id: "patent:US 2", patentNumber: "US 2", patentYear: 1990, authors: [], assignees: [], lenses: [] },
+      },
+    ];
+    const expanded = {
+      ...graph,
+      nodes: [...graph.nodes, ...patents],
+      edges: [
+        ...graph.edges,
+        { id: "duplicate", from: "patent:US 1", to: assignee.id, kind: "assignment" as const },
+        ...patents.map((p) => ({ id: p.id, from: p.id, to: assignee.id, kind: "assignment" as const })),
+      ],
+    };
+    const pick = vi.fn();
+    const { getByRole, getAllByRole } = renderWithRouter(
+      <UniversalEntityDetailCard
+        graph={expanded}
+        node={assignee}
+        theme={themes.dark}
+        onClose={vi.fn()}
+        onSelectNode={pick}
+      />,
     );
+    expect(getAllByRole("button", { name: /^US / }).map((button) => button.textContent)).toEqual([
+      "US 2",
+      "US 1",
+      "US 3",
+    ]);
+    fireEvent.click(getByRole("button", { name: "US 2" }), { detail: 1 });
+    expect(pick).toHaveBeenLastCalledWith("patent:US 2", false);
+    fireEvent.click(getByRole("button", { name: "Example family" }));
+    expect(pick).toHaveBeenLastCalledWith("family:example", true);
   });
 });
