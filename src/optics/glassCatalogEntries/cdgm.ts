@@ -6,6 +6,18 @@ import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const CDGM_GLASS_ENTRIES: readonly GlassEntry[] = [
   {
+    name: "H-TF5",
+    vendor: "CDGM",
+    B: [1.55856807, 0.109731968, 1.10774896],
+    C: [0.0110562787, 0.054404745, 88.3222356],
+    nd: 1.6541,
+    vd: 39.54,
+    PgF: 0.5725,
+    code6: "654395",
+    source:
+      "CDGM Optical Glass Data Sheet, November 2021, printed page 290 (PDF page 292), Sellmeier-1 constants; https://www.cdgmgd.com/accessory/2021-11-18/client/www.cdgmgd.com/f44bac33-96f4-4f40-a15d-54061708cbaa.pdf (accessed 2026-09-14).",
+  },
+  {
     name: "H-LaK67",
     vendor: "CDGM",
     polynomial: [2.7410828, -0.016285022, 0.015866919, 0.0010819231, -0.000077131038, 0.000004033333],

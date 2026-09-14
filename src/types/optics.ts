@@ -297,6 +297,8 @@ export interface OpticalConfigurationData {
 
 /** Complete lens data object (after defaults merging) */
 export interface LensData {
+  /** Optional UTC publication timestamp for a replacement model; otherwise derived from Git history. */
+  publishedAt?: string;
   key: string;
   maker?: string;
   name: string;

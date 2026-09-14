@@ -15,8 +15,7 @@ The organizer moves only the root-level `.data.ts` file and its same-stem `.anal
 `.audit.md` log separately in the final maker folder. If authoring directly inside a maker folder, import from
 `../../types/optics.js` instead of the template's root-level `../types/optics.js`.
 
-On `npm run build`, every visible lens is also eligible for `/feeds/lenses.xml` (the 50 newest by git-derived
-publication date; `visible: false` fixtures are excluded). See `agent_docs/architecture/routing-and-content.md`.
+On `npm run build`, every visible lens is also eligible for `/feeds/lenses.xml` (the 50 newest by publication date, normally derived from Git; `visible: false` fixtures are excluded). See `agent_docs/architecture/routing-and-content.md`.
 
 ## Reference Documents
 

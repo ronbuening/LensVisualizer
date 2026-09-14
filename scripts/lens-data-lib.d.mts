@@ -1,4 +1,5 @@
 export interface LensIdentity {
+  publishedAt: string | null;
   key: string | null;
   name: string | null;
   maker: string | null;
@@ -8,6 +9,10 @@ export interface LensIdentity {
 }
 
 export interface LensFreshness {
+  publishedAt?: string;
+  publishedCommit?: string | null;
+  lastModifiedAt?: string;
+  lastModifiedCommit?: string | null;
   publishedOn: string;
   lastModified: string;
 }
