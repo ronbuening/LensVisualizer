@@ -164,10 +164,59 @@ describe("UniversalRelationshipMap", () => {
     expect(x + w / 2).toBeCloseTo(target.x);
     expect(y + h / 2).toBeCloseTo(target.y);
     expect(Math.min(800 / w, 600 / h) * 9).toBeCloseTo(13.5);
-    fireEvent.click(getByRole("button", { name: "Reset view" }));
+    fireEvent.click(getByRole("button", { name: "Fit all" }));
     expect(svg.getAttribute("viewBox")).not.toBe(centered);
     rerender(<UniversalRelationshipMap {...props} focusRequest={{ nodeId: author.id, requestId: 2 }} />);
     expect(svg.getAttribute("viewBox")).toBe(centered);
+    rect.mockRestore();
+  });
+
+  it("provides bounded zoom controls and fits a panned overview without changing selection", () => {
+    const rect = vi
+      .spyOn(SVGSVGElement.prototype, "getBoundingClientRect")
+      .mockReturnValue({ width: 800, height: 600, left: 0, top: 0 } as DOMRect);
+    const select = vi.fn();
+    const { container, getByRole } = renderWithRouter(
+      <UniversalRelationshipMap graph={graph} theme={themes.dark} selectedNodeId={null} onSelectNode={select} />,
+    );
+    const svg = container.querySelector("svg")!;
+    const initial = svg.getAttribute("viewBox");
+    expect((getByRole("button", { name: "Zoom out" }) as HTMLButtonElement).disabled).toBe(true);
+    expect((getByRole("button", { name: "Center selection" }) as HTMLButtonElement).disabled).toBe(true);
+    Object.defineProperties(svg, { setPointerCapture: { value: vi.fn() }, releasePointerCapture: { value: vi.fn() } });
+    fireEvent.pointerDown(svg, { button: 0, clientX: 200, clientY: 200, pointerId: 1 });
+    fireEvent.pointerMove(svg, { clientX: 250, clientY: 230, pointerId: 1 });
+    fireEvent.pointerUp(svg, { pointerId: 1 });
+    expect(svg.getAttribute("viewBox")).not.toBe(initial);
+    fireEvent.click(getByRole("button", { name: "Fit all" }));
+    expect(svg.getAttribute("viewBox")).toBe(initial);
+    for (let i = 0; i < 40; i++) fireEvent.click(getByRole("button", { name: "Zoom in" }));
+    expect((getByRole("button", { name: "Zoom in" }) as HTMLButtonElement).disabled).toBe(true);
+    fireEvent.click(getByRole("button", { name: "Zoom out" }));
+    expect((getByRole("button", { name: "Zoom in" }) as HTMLButtonElement).disabled).toBe(false);
+    expect(select).not.toHaveBeenCalled();
+    rect.mockRestore();
+  });
+
+  it("centers the selected node again after fit-all and preserves closer zoom", () => {
+    const rect = vi
+      .spyOn(SVGSVGElement.prototype, "getBoundingClientRect")
+      .mockReturnValue({ width: 800, height: 600 } as DOMRect);
+    const select = vi.fn();
+    const { container, getByRole } = renderWithRouter(
+      <UniversalRelationshipMap graph={graph} theme={themes.dark} selectedNodeId={author.id} onSelectNode={select} />,
+    );
+    const svg = container.querySelector("svg")!;
+    fireEvent.click(getByRole("button", { name: "Center selection" }));
+    const focused = svg.getAttribute("viewBox");
+    fireEvent.click(getByRole("button", { name: "Fit all" }));
+    fireEvent.click(getByRole("button", { name: "Center selection" }));
+    expect(svg.getAttribute("viewBox")).toBe(focused);
+    fireEvent.click(getByRole("button", { name: "Zoom in" }));
+    const closer = svg.getAttribute("viewBox");
+    fireEvent.click(getByRole("button", { name: "Center selection" }));
+    expect(svg.getAttribute("viewBox")).toBe(closer);
+    expect(select).not.toHaveBeenCalled();
     rect.mockRestore();
   });
   it("renders every node as a keyboard-operable control", () => {

@@ -158,23 +158,41 @@ export default function UniversalRelationshipMap({
 
   return (
     <div style={{ position: "relative" }}>
-      {zoom.state.zoom > 1 && (
-        <button
-          type="button"
-          onClick={zoom.reset}
-          style={{
-            ...toggleBtn(t, false, { flex: 0, hasRightBorder: false, padding: "4px 10px" }),
-            position: "absolute",
-            top: 8,
-            right: 8,
-            zIndex: 1,
-            borderRadius: 4,
-            border: `1px solid ${t.toggleBorder}`,
-          }}
-        >
-          Reset view
-        </button>
-      )}
+      <div
+        role="group"
+        aria-label="Map navigation"
+        style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 8 }}
+      >
+        {[
+          { label: "Zoom in", action: zoom.zoomIn, disabled: !zoom.canZoomIn },
+          { label: "Zoom out", action: zoom.zoomOut, disabled: !zoom.canZoomOut },
+          { label: "Fit all", action: zoom.reset, disabled: false },
+          {
+            label: "Center selection",
+            action: () => {
+              if (selectedNodeId) focusNode(selectedNodeId);
+            },
+            disabled: !selectedNodeId,
+          },
+        ].map(({ label, action, disabled }) => (
+          <button
+            key={label}
+            type="button"
+            onClick={action}
+            disabled={disabled}
+            style={{
+              ...toggleBtn(t, false, { flex: 0, hasRightBorder: false, padding: "8px 12px" }),
+              minHeight: 44,
+              borderRadius: 4,
+              border: `1px solid ${t.toggleBorder}`,
+              opacity: disabled ? 0.5 : 1,
+              cursor: disabled ? "default" : "pointer",
+            }}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
 
       <div
         style={{

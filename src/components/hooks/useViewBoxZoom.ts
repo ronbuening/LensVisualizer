@@ -61,6 +61,8 @@ export interface ViewBoxZoomResult {
   panBy: (dx: number, dy: number) => void;
   /** Center on diagram coordinates, optionally changing magnification. */
   centerOn: (x: number, y: number, zoom?: number) => void;
+  canZoomIn: boolean;
+  canZoomOut: boolean;
 }
 
 /** Clamp pan so at least PAN_VISIBLE_FRACTION of the diagram remains in view */
@@ -465,5 +467,7 @@ export default function useViewBoxZoom(
     zoomOut,
     panBy,
     centerOn,
+    canZoomIn: state.zoom < MAX_ZOOM,
+    canZoomOut: state.zoom > MIN_ZOOM,
   };
 }

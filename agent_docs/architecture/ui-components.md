@@ -105,6 +105,8 @@ neighborhoods, and draws nodes above both boundary layers.
 Search selection opens the existing details and issues a numbered focus request; the renderer measures its SVG and
 centers at readable magnification through `useViewBoxZoom.centerOn`. Requests are consumed once, including repeated
 requests for the same node, so subsequent pan/zoom gestures remain under the visitor's control.
+The persistent navigation controls reuse that hook for bounded zoom, fit-all, and readable selection centering;
+fitting the viewport leaves selection and details intact.
 
 ## Markdown Renderer
 
