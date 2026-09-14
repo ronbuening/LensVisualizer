@@ -19,6 +19,21 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-09-14",
+    type: "lens",
+    summary: "Added Fujinon XF 8mm f/3.5, 18mm f/1.4 and 50mm f/2 patent designs",
+  },
+  {
+    date: "2026-09-14",
+    type: "lens",
+    summary: "Added Zeiss Biometar 80mm and 120mm f/2.8 and Distagon T* 25mm f/2.8 designs",
+  },
+  {
+    date: "2026-09-14",
+    type: "improvement",
+    summary: "Refined Nikon 28–45mm patent geometry and expanded glass dispersion coverage",
+  },
+  {
     date: "2026-09-13",
     type: "improvement",
     summary: "Linked more Nikon, Fujifilm, Canon and Tamron manufacturer stories to lens diagrams",

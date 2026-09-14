@@ -1,82 +1,101 @@
 import type { LensDataInput } from "../../types/optics.js";
 
 /**
- * Nikon Zoom-Nikkor 28-45mm f/4.5 — US 3,771,853, Example I.
- *
- * Source model: 10 elements / 6 physical air-spaced groups, all spherical, scale s = 1.
- * The four patent principal power groups are annotated G1-G4 but do not replace the physical group count.
- *
- * Production correlation: Nikon history strongly links Nakamura's 1970 development and patent work to the
- * 28-45mm f/4.5, but the production lens is 11 elements / 7 groups. This is therefore a closely related
- * developmental patent design, not a manufacturer-confirmed exact production prescription.
- *
- * Zoom: infinity-only NO_INTERNAL_RECONSTRUCTION. The patent publishes endpoint spacings and nonlinear
- * equation (11) for G1. Seventeen zoom keyframes preserve the literal endpoint spacings and approximate the
- * endpoint-normalized equation-(11) curve to < 0.01 mm in both BFL and EFL interpolation error.
- *
- * Stop: the patent says the stop lies between G3 and G4 but gives no coordinate or diameter. Figure 3 is schematic and does not dimension that gap; the model therefore chooses a disclosed 2:1 split of
- * D13 around exactly one STO as a deterministic axial inference, not as a measured source coordinate.
- * The authored STO sd is the wide-end f/4.5 calibration value. zoomApertureModel derives the station iris
- * radii from nominalFno; those radii are calculated model values, not patent-published stop diameters.
- *
- * Semi-diameters: initialized from exact spherical ray envelopes, then refined to the patent figure rims.
- * Leader lines, stop blades, and bevels are excluded from optical rim measurements. Current edge-thickness, rim-slope, conic-domain, and shared-gap intrusion checks pass.
- * Integration validation includes the shared production render-trim and geometry corpus checks.
- *
- * Focus: closeFocusM = 0.6 m is production metadata only. No finite-conjugate optical spacings are authored.
+ * ╔════════════════════════════════════════════════════════════════════════════╗
+ * ║ LENS DATA — NIKON ZOOM-NIKKOR 28-45mm f/4.5                            ║
+ * ╠════════════════════════════════════════════════════════════════════════════╣
+ * ║ Source: US 3,771,853, Embodiment III / job-card Example 3.              ║
+ * ║ The USPTO Certificate of Correction changes r14 from +889.704 mm to      ║
+ * ║ +889.074 mm; the corrected value is used here while the raw value remains ║
+ * ║ in the dossier evidence.                                                  ║
+ * ║                                                                            ║
+ * ║ 11 elements / 7 air-separated physical groups / 4 functional power       ║
+ * ║ components. All refracting surfaces are spherical.                        ║
+ * ║                                                                            ║
+ * ║ Zoom states: the wide and tele endpoint spacings are patent-published.    ║
+ * ║ Three interior keyframes are code-solved from the patent's ψ(x)=x,        ║
+ * ║ φ(x)=0.7836x kinematics and Gaussian equations (11)–(12). The tele        ║
+ * ║ endpoint is returned to the printed d5/d13 values so the two published    ║
+ * ║ numerical states remain exact.                                             ║
+ * ║                                                                            ║
+ * ║ Rear spacing: the printed Bf values do not close at their 0.001 mm        ║
+ * ║ display precision when the rounded prescription is traced. The modeled    ║
+ * ║ surface-18 spacing therefore uses the self-consistent paraxial BFL at     ║
+ * ║ each keyframe. The original Bf values and residuals remain in evidence.   ║
+ * ║                                                                            ║
+ * ║ Stop: the patent publishes only that the stop lies between functional     ║
+ * ║ groups 2 and 3. This model places STO at the midpoint of the published    ║
+ * ║ 4.8 mm d10 gap (2.4 mm + 2.4 mm), consistent with Fig. 2 topology.        ║
+ * ║ STO.sd is calibrated so the wide endpoint has paraxial f/4.5. This        ║
+ * ║ calibration is not independent evidence of the unpublished physical iris. ║
+ * ║ With that fixed modeled stop, the five modeled wide-open f-numbers are    ║
+ * ║ stored in nominalFno; the production/marketing aperture remains f/4.5.    ║
+ * ║                                                                            ║
+ * ║ September 14 SD review: rear surfaces 14–16 use 6.2 mm; 17–18 use 8.0 mm,
+ * ║ estimated from Fig. 5 optical rims, excluding leaders and brackets.
+ * ║ Semi-diameters are modeled, not patent-published. They were derived from  ║
+ * ║ exact meridional spherical ray tracing over all five zoom keyframes, then ║
+ * ║ checked against full-frame chief rays, the complete pupil bundle at 0.6×  ║
+ * ║ half-field, edge thickness, actual rim slope, and shared-gap intrusion.   ║
+ * ║ Full-field outer-pupil rays are allowed to vignette in the rear cemented  ║
+ * ║ pair where larger SDs would violate physical edge thickness.              ║
+ * ║                                                                            ║
+ * ║ Focus status: NO_INTERNAL_RECONSTRUCTION. The patent has no finite-object  ║
+ * ║ focus spacings. closeFocusM = 0.6 is production metadata only; every      ║
+ * ║ authored focus pair is identical, so no close-focus optical motion is     ║
+ * ║ invented.                                                                  ║
+ * ╚════════════════════════════════════════════════════════════════════════════╝
  */
-/** Semi-diameters were reviewed against US3771853.pdf, p. 4, Fig. 3 at 600 dpi on 2026-09-13 UTC.
- * Front surfaces 1-5 follow the larger patent optical rims; rear surfaces 6-16 follow manually isolated rims.
- * Figure scale is 43.80 micrometers/pixel; rear-group leader lines are excluded from measurements. */
+
 const LENS_DATA = {
-  /* ── Identity ── */
-  key: "nikon-zoom-nikkor-28-45-f45",
-  // Example I differs from production; keep hidden pending verification of Example III.
-  visible: false,
+  key: "nikon-zoom-nikkor-28-45f45",
   maker: "Nikon",
-  name: "NIKON ZOOM-NIKKOR 28-45mm f/4.5 (developmental design)",
-  subtitle: "US 3,771,853 — Example I; closely related developmental design, not the exact production formula",
-  specs: ["10 ELEMENTS / 6 GROUPS", "28.85-44.19 mm PATENT RANGE", "F/4.5", "35 mm FORMAT", "ALL-SPHERICAL"],
+  name: "NIKON ZOOM-NIKKOR 28-45mm f/4.5",
+  subtitle: "US 3,771,853 A — Embodiment III; strong Nikon product correlation, exact embodiment unconfirmed",
+  specs: [
+    "11 ELEMENTS / 7 GROUPS",
+    "28.85-44.19 mm PATENT DESIGN",
+    "F/4.5 PATENT APERTURE ASSERTION",
+    "ALL-SPHERICAL",
+  ],
 
   focalLengthMarketing: [28, 45],
-  focalLengthDesign: [28.851368, 44.177102],
+  focalLengthDesign: [28.8476729420341, 44.1877941383985],
   apertureMarketing: 4.5,
-  apertureDesign: 4.5,
   lensMounts: ["nikon-f"],
   imageFormat: "135-full-frame",
-  patentNumber: "US 3,771,853",
+  patentNumber: "US 3,771,853 A",
   patentAuthors: ["Soichi Nakamura"],
   patentAssignees: ["Nippon Kogaku K.K."],
   patentYear: 1973,
-  elementCount: 10,
-  groupCount: 6,
+  elementCount: 11,
+  groupCount: 7,
 
-  /* ── Elements ── */
   elements: [
     {
       id: 1,
       name: "L1",
       label: "Element 1",
       type: "Negative Meniscus",
-      nd: 1.54739,
-      vd: 53.6,
+      nd: 1.52,
+      vd: 70.1,
       indexReference: "d",
-      fl: -126.701699,
-      glass: "N-BALF5 (SCHOTT catalog equivalent; source coordinate 547536; production supplier unspecified)",
-      role: "Front negative meniscus of patent principal group G1.",
+      fl: -126.698733135044,
+      glass: "520701 — J-PKH1 coordinate-compatible proxy (supplier unresolved)",
+      role: "Front negative element of functional group 1.",
     },
     {
       id: 2,
       name: "L2",
       label: "Element 2",
       type: "Positive Meniscus",
-      nd: 1.8411,
-      vd: 43.3,
+      nd: 1.80411,
+      vd: 46.4,
       indexReference: "d",
-      fl: 96.080371,
-      glass: "Unmatched (841433; nd=1.84110, νd=43.3)",
-      role: "Positive member of the first cemented pair in G1.",
-      cemented: "D1",
+      fl: 96.7139074324292,
+      glass: "804464 — N-LASF44 coordinate-compatible proxy (supplier unresolved)",
+      cemented: "C1",
+      role: "Front component of the cemented pair in functional group 1.",
     },
     {
       id: 3,
@@ -86,74 +105,74 @@ const LENS_DATA = {
       nd: 1.44628,
       vd: 67.2,
       indexReference: "d",
-      fl: -46.598085,
-      glass: "Unmatched (446672; nd=1.44628, νd=67.2)",
-      role: "Negative member of the first cemented pair in G1.",
-      cemented: "D1",
+      fl: -46.8445614815578,
+      glass: "Unmatched 446672 — low-index crown (supplier unresolved)",
+      cemented: "C1",
+      role: "Rear component of the cemented pair in functional group 1.",
     },
     {
       id: 4,
       name: "L4",
       label: "Element 4",
       type: "Biconvex Positive",
-      nd: 1.6393,
-      vd: 45,
+      nd: 1.61117,
+      vd: 55.8,
       indexReference: "d",
-      fl: 25.944761,
-      glass: "BAF12 (SUMITA catalog equivalent; source coordinate 639450; production supplier unspecified)",
-      role: "Positive member of the front cemented pair in G2.",
-      cemented: "D2",
+      fl: 29.7056844246786,
+      glass: "611558 — H-ZK5/BACD8/SK8/BSM8 coordinate class; supplier unresolved",
+      cemented: "C2",
+      role: "Positive component in functional group 2.",
     },
     {
       id: 5,
       name: "L5",
       label: "Element 5",
       type: "Negative Meniscus",
-      nd: 1.744,
-      vd: 44.9,
+      nd: 1.8411,
+      vd: 43.3,
       indexReference: "d",
-      fl: -53.245839,
-      glass: "H-LaF3B (CDGM catalog equivalent; source coordinate 744449; production supplier unspecified)",
-      role: "Negative member of the front cemented pair in G2.",
-      cemented: "D2",
+      fl: -76.3700741677564,
+      glass: "Unmatched 841433 — high-index crown (supplier unresolved)",
+      cemented: "C2",
+      role: "Negative partner in the functional-group-2 cemented pair.",
     },
     {
       id: 6,
       name: "L6",
       label: "Element 6",
       type: "Positive Meniscus",
-      nd: 1.57501,
-      vd: 41.3,
+      nd: 1.54072,
+      vd: 47.2,
       indexReference: "d",
-      fl: 48.014348,
-      glass: "575413 — light-flint coordinate class (supplier unresolved)",
-      role: "Rear positive singlet of G2.",
+      fl: 49.291788971896,
+      glass: "541472 — LLF2/QF8 coordinate class; supplier unresolved",
+      role: "Rear positive element of functional group 2.",
     },
     {
       id: 7,
       name: "L7",
       label: "Element 7",
       type: "Positive Meniscus",
-      nd: 1.69895,
-      vd: 30,
+      nd: 1.6968,
+      vd: 55.6,
       indexReference: "d",
-      fl: 37.324642,
-      glass: "SF15 (SUMITA catalog equivalent; source coordinate 699300; production supplier unspecified)",
-      role: "Positive member of the cemented negative group G3.",
-      cemented: "D3",
+      fl: 32.4398967986834,
+      glass: "697556 — K-LaK14/J-LAK14 coordinate class; supplier unresolved",
+      cemented: "C3",
+      role: "Front element of the negative functional-group-3 cemented pair.",
     },
     {
       id: 8,
       name: "L8",
       label: "Element 8",
       type: "Biconcave Negative",
-      nd: 1.80518,
-      vd: 25.5,
+      nd: 1.80454,
+      vd: 39.5,
       indexReference: "d",
-      fl: -12.492857,
-      glass: "H-ZF7LA (CDGM catalog equivalent; source coordinate 805255; production supplier unspecified)",
-      role: "Negative member of the cemented negative group G3.",
-      cemented: "D3",
+      fl: -11.8079611982386,
+      glass: "805395 — NBFD3 coordinate-compatible proxy (supplier unresolved)",
+      cemented: "C3",
+      role: "Strong negative component of functional group 3.",
     },
     {
       id: 9,
@@ -163,197 +182,119 @@ const LENS_DATA = {
       nd: 1.72825,
       vd: 28.3,
       indexReference: "d",
-      fl: -30.23338,
-      glass: "H-ZF4A (CDGM catalog equivalent; source coordinate 728283; production supplier unspecified)",
-      role: "Negative member of the cemented positive group G4.",
-      cemented: "D4",
+      fl: -31.4892328106066,
+      glass: "728283 — SF10/E-FD10/ZF4/H-ZF4A coordinate class; supplier unresolved",
+      cemented: "C4",
+      role: "Front negative component in functional group 4.",
     },
     {
       id: 10,
       name: "L10",
       label: "Element 10",
       type: "Biconvex Positive",
-      nd: 1.8333,
-      vd: 36.8,
+      nd: 1.8411,
+      vd: 43.3,
       indexReference: "d",
-      fl: 14.640751,
-      glass: "833368 — lanthanum flint (S-LAH60 coordinate-compatible dispersion proxy; supplier unresolved)",
-      role: "Positive member of the cemented positive group G4.",
-      cemented: "D4",
+      fl: 19.0393035616514,
+      glass: "Unmatched 841433 — high-index crown (supplier unresolved)",
+      cemented: "C4",
+      role: "Positive cemented partner in functional group 4.",
+    },
+    {
+      id: 11,
+      name: "L11",
+      label: "Element 11",
+      type: "Positive Meniscus",
+      nd: 1.76684,
+      vd: 46.6,
+      indexReference: "d",
+      fl: 52.8668437917533,
+      glass: "767466 — J-LASFH2 coordinate-compatible proxy (supplier unresolved)",
+      role: "Final positive element of functional group 4.",
     },
   ],
 
-  /* ── Surface prescription ── */
   surfaces: [
-    { label: "1", R: 74.514, d: 2, nd: 1.54739, elemId: 1, sd: 27.3 },
-    { label: "2", R: 35.58, d: 10.5, nd: 1, elemId: 0, sd: 23 },
-    { label: "3", R: -744.582, d: 4.25, nd: 1.8411, elemId: 2, sd: 23 },
-    { label: "4", R: -73.091, d: 1.3, nd: 1.44628, elemId: 3, sd: 23 },
-    { label: "5", R: 29.225, d: 30.8806, nd: 1, elemId: 0, sd: 17.8 },
-    { label: "6", R: 37.907, d: 4.45, nd: 1.6393, elemId: 4, sd: 11.6 },
-    { label: "7", R: -28.14, d: 1.1, nd: 1.744, elemId: 5, sd: 11.6 },
-    { label: "8", R: -98.768, d: 0.1, nd: 1, elemId: 0, sd: 11.6 },
-    { label: "9", R: 19.309, d: 3.3, nd: 1.57501, elemId: 6, sd: 8.6 },
-    { label: "10", R: 60.223, d: 3.4108, nd: 1, elemId: 0, sd: 8.6 },
-    { label: "11", R: -118.839, d: 3.7, nd: 1.69895, elemId: 7, sd: 6.3 },
-    { label: "12", R: -21.666, d: 1, nd: 1.80518, elemId: 8, sd: 6.3 },
-    { label: "13", R: 19.163, d: 1.438933333, nd: 1, elemId: 0, sd: 5.1 },
-    { label: "STO", R: 1e15, d: 0.719466667, nd: 1, elemId: 0, sd: 4.122271 },
-    { label: "14", R: 439.074, d: 0.9, nd: 1.72825, elemId: 9, sd: 7.1 },
-    { label: "15", R: 20.948, d: 5.1, nd: 1.8333, elemId: 10, sd: 7.1 },
-    { label: "16", R: -25.982, d: 38.299, nd: 1, elemId: 0, sd: 7.1 },
+    { label: "1", R: 52.201, d: 2, nd: 1.52, elemId: 1, sd: 25.8 },
+    { label: "2", R: 28.743, d: 11.5, nd: 1, elemId: 0, sd: 22.1 },
+    { label: "3", R: -744.562, d: 4.2, nd: 1.80411, elemId: 2, sd: 21.5 },
+    { label: "4", R: -70.591, d: 1.3, nd: 1.44628, elemId: 3, sd: 21.2 },
+    { label: "5", R: 29.871, d: 30.3905, nd: 1, elemId: 0, sd: 17.3 },
+    { label: "6", R: 39.507, d: 4.5, nd: 1.61117, elemId: 4, sd: 9.6 },
+    { label: "7", R: -32.141, d: 1.1, nd: 1.8411, elemId: 5, sd: 9 },
+    { label: "8", R: -65.335, d: 0.1, nd: 1, elemId: 0, sd: 8.7 },
+    { label: "9", R: 18.809, d: 3, nd: 1.54072, elemId: 6, sd: 7.6 },
+    { label: "10", R: 60.333, d: 2.4, nd: 1, elemId: 0, sd: 6.7 },
+    // STO station inferred from patent Fig. 2: midpoint of the published 4.8 mm d10 air gap.
+    { label: "STO", R: 1e15, d: 2.4, nd: 1, elemId: 0, sd: 4.62743548999962 },
+    { label: "11", R: -117.506, d: 1.7, nd: 1.6968, elemId: 7, sd: 5.7 },
+    { label: "12", R: -19.07, d: 1, nd: 1.80454, elemId: 8, sd: 5.9 },
+    { label: "13", R: 19.373, d: 1.0864, nd: 1, elemId: 0, sd: 6.1 },
+    // USPTO Certificate of Correction: printed +889.704 -> corrected +889.074 mm.
+    { label: "14", R: 889.074, d: 0.7, nd: 1.72825, elemId: 9, sd: 6.2 },
+    { label: "15", R: 22.348, d: 2.4, nd: 1.8411, elemId: 10, sd: 6.2 },
+    { label: "16", R: -53.729, d: 0.5, nd: 1, elemId: 0, sd: 6.2 },
+    { label: "17", R: -55, d: 4.8, nd: 1.76684, elemId: 11, sd: 8.0 },
+    // Self-consistent paraxial BFL from the corrected rounded wide-end prescription.
+    { label: "18", R: -24.222, d: 37.7231870886993, nd: 1, elemId: 0, sd: 8.0 },
   ],
 
   asph: {},
 
-  /* ── Infinity zoom model ── */
-  zoomPositions: [
-    28.851368294,
-    29.82938314,
-    30.804914076,
-    31.777917491,
-    32.748349766,
-    33.716167278,
-    34.681326396,
-    35.643783481,
-    36.603494889,
-    37.560416971,
-    38.514506067,
-    39.465718514,
-    40.41401064,
-    41.359338766,
-    42.301659207,
-    43.24092827,
-    44.177102255,
-  ],
-  zoomLabels: ["28.85 mm", "44.18 mm"],
   var: {
     "5": [
-      [30.8806, 30.8806],
-      [28.798565867, 28.798565867],
-      [26.840209165, 26.840209165],
-      [24.993758729, 24.993758729],
-      [23.248885826, 23.248885826],
-      [21.596489599, 21.596489599],
-      [20.028519702, 20.028519702],
-      [18.537828813, 18.537828813],
-      [17.118049313, 17.118049313],
-      [15.76348964, 15.76348964],
-      [14.469046738, 14.469046738],
-      [13.230131771, 13.230131771],
-      [12.042606816, 12.042606816],
-      [10.902730667, 10.902730667],
-      [9.807112288, 9.807112288],
-      [8.752670654, 8.752670654],
-      [7.7366, 7.7366],
-    ],
-    "10": [
-      [3.4108, 3.4108],
-      [3.43266875, 3.43266875],
-      [3.4545375, 3.4545375],
-      [3.47640625, 3.47640625],
-      [3.498275, 3.498275],
-      [3.52014375, 3.52014375],
-      [3.5420125, 3.5420125],
-      [3.56388125, 3.56388125],
-      [3.58575, 3.58575],
-      [3.60761875, 3.60761875],
-      [3.6294875, 3.6294875],
-      [3.65135625, 3.65135625],
-      [3.673225, 3.673225],
-      [3.69509375, 3.69509375],
-      [3.7169625, 3.7169625],
-      [3.73883125, 3.73883125],
-      [3.7607, 3.7607],
+      [30.3905, 30.3905],
+      [22.4254684099115, 22.4254684099115],
+      [15.9563682768386, 15.9563682768386],
+      [10.523260992153, 10.523260992153],
+      [5.8365, 5.8365],
     ],
     "13": [
-      [1.438933333, 1.438933333],
-      [1.523570833, 1.523570833],
-      [1.608208333, 1.608208333],
-      [1.692845833, 1.692845833],
-      [1.777483333, 1.777483333],
-      [1.862120833, 1.862120833],
-      [1.946758333, 1.946758333],
-      [2.031395833, 2.031395833],
-      [2.116033333, 2.116033333],
-      [2.200670833, 2.200670833],
-      [2.285308333, 2.285308333],
-      [2.369945833, 2.369945833],
-      [2.454583333, 2.454583333],
-      [2.539220833, 2.539220833],
-      [2.623858333, 2.623858333],
-      [2.708495833, 2.708495833],
-      [2.793133333, 2.793133333],
+      [1.0864, 1.0864],
+      [1.85501172177428, 1.85501172177428],
+      [2.62362344354856, 2.62362344354856],
+      [3.39223516532284, 3.39223516532284],
+      [4.1597, 4.1597],
     ],
-    STO: [
-      [0.719466667, 0.719466667],
-      [0.761785417, 0.761785417],
-      [0.804104167, 0.804104167],
-      [0.846422917, 0.846422917],
-      [0.888741667, 0.888741667],
-      [0.931060417, 0.931060417],
-      [0.973379167, 0.973379167],
-      [1.015697917, 1.015697917],
-      [1.058016667, 1.058016667],
-      [1.100335417, 1.100335417],
-      [1.142654167, 1.142654167],
-      [1.184972917, 1.184972917],
-      [1.227291667, 1.227291667],
-      [1.269610417, 1.269610417],
-      [1.311929167, 1.311929167],
-      [1.354247917, 1.354247917],
-      [1.396566667, 1.396566667],
-    ],
-    "16": [
-      [38.299, 38.299],
-      [38.9345, 38.9345],
-      [39.57, 39.57],
-      [40.2055, 40.2055],
-      [40.841, 40.841],
-      [41.4765, 41.4765],
-      [42.112, 42.112],
-      [42.7475, 42.7475],
-      [43.383, 43.383],
-      [44.0185, 44.0185],
-      [44.654, 44.654],
-      [45.2895, 45.2895],
-      [45.925, 45.925],
-      [46.5605, 46.5605],
-      [47.196, 47.196],
-      [47.8315, 47.8315],
-      [48.467, 48.467],
+    "18": [
+      [37.7231870886993, 37.7231870886993],
+      [40.5063855414827, 40.5063855414827],
+      [43.2895839942661, 43.2895839942661],
+      [46.0727824470495, 46.0727824470495],
+      [48.8556954433968, 48.8556954433968],
     ],
   },
   varLabels: [
-    ["5", "D5"],
-    ["10", "D10"],
-    ["13", "D13a"],
-    ["STO", "D13b"],
-    ["16", "BF"],
+    ["5", "D5 (G1-G2)"],
+    ["13", "D13 (G3-G4)"],
+    ["18", "BFD"],
   ],
-  focusDescription:
-    "Infinity zoom prescription only. The production lens focuses to 0.6 m, but no finite-focus optical state is published.",
 
-  /* ── Aperture ── */
-  nominalFno: 4.5,
-  zoomApertureModel: "from-nominal-fno",
-  closeFocusM: 0.6,
-  fstopSeries: [4.5, 5.6, 8, 11, 16],
+  zoomPositions: [28.85, 32.7792359464091, 36.6464438139281, 40.4492965445913, 44.19],
+  zoomLabels: ["Wide", "Tele"],
 
   groups: [
     { text: "G1 (-)", fromSurface: "1", toSurface: "5" },
     { text: "G2 (+)", fromSurface: "6", toSurface: "10" },
     { text: "G3 (-)", fromSurface: "11", toSurface: "13" },
-    { text: "G4 (+)", fromSurface: "14", toSurface: "16" },
+    { text: "G4 (+)", fromSurface: "14", toSurface: "18" },
   ],
   doublets: [
-    { text: "D1", fromSurface: "3", toSurface: "5" },
-    { text: "D2", fromSurface: "6", toSurface: "8" },
-    { text: "D3", fromSurface: "11", toSurface: "13" },
-    { text: "D4", fromSurface: "14", toSurface: "16" },
+    { text: "C1", fromSurface: "3", toSurface: "5" },
+    { text: "C2", fromSurface: "6", toSurface: "8" },
+    { text: "C3", fromSurface: "11", toSurface: "13" },
+    { text: "C4", fromSurface: "14", toSurface: "16" },
   ],
 
-  yScFill: 0.6,
+  closeFocusM: 0.6,
+  focusDescription:
+    "Not modeled — the patent publishes no finite-object focus spacings; 0.6 m is production MFD metadata only and all authored focus pairs are identical.",
+
+  // Modeled wide-open f-number from the inferred fixed STO at each zoom keyframe.
+  nominalFno: [4.5, 4.6863957198004, 4.85165978554429, 4.99579219723201, 5.11890624441235],
+  fstopSeries: [4.5, 5.6, 8, 11, 16, 22],
+
+  yScFill: 0.42,
 } satisfies LensDataInput;
 
 export default LENS_DATA;
