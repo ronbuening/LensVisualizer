@@ -110,6 +110,11 @@ fitting the viewport leaves selection and details intact.
 Universal detail cards use the same selection/focus path for related patents, inventors, assignees, organizations,
 and families. Explicit focused-map and source links remain available. Keyboard navigation between cards focuses the
 replacement heading without scrolling; pointer navigation leaves page focus alone.
+The universal route stores selection in `#node=…`, encoded with `URLSearchParams` and validated against graph IDs.
+Hydration and Back/Forward restore readable focus; an absent or unknown node restores the overview. Local node clicks
+and detail dismissal update history without moving the camera. Pan/zoom and other display settings remain local.
+Selection derives from the committed router location rather than mirrored component state: Back may interrupt a
+concurrent navigation before its intermediate location renders. Camera intent is consumed only when that URL commits.
 
 ## Markdown Renderer
 

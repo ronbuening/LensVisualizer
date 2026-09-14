@@ -35,6 +35,7 @@ interface UniversalRelationshipMapProps {
   selectedNodeId: string | null;
   onSelectNode: (nodeId: string | null) => void;
   focusRequest?: { nodeId: string; requestId: number };
+  viewResetRequest?: number;
 }
 
 function isActivateKey(event: KeyboardEvent): boolean {
@@ -95,6 +96,7 @@ export default function UniversalRelationshipMap({
   selectedNodeId,
   onSelectNode,
   focusRequest,
+  viewResetRequest,
 }: UniversalRelationshipMapProps) {
   const layout = useMemo(() => layoutUniversalRelationshipGraph(graph), [graph]);
   const svgRef = useRef<SVGSVGElement>(null);
@@ -105,6 +107,13 @@ export default function UniversalRelationshipMap({
   const handledFocus = useRef<typeof focusRequest>(undefined);
   const { centerOn } = zoom;
   const currentZoom = zoom.state.zoom;
+  const handledReset = useRef(0);
+  const { reset } = zoom;
+  useEffect(() => {
+    if (viewResetRequest === undefined || viewResetRequest === handledReset.current) return;
+    handledReset.current = viewResetRequest;
+    reset();
+  }, [viewResetRequest, reset]);
   const focusNode = useCallback(
     (nodeId: string) => {
       const node = layout.nodeById[nodeId];

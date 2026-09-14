@@ -83,7 +83,7 @@ flowchart LR
 
 - Direct source files: 20
 - Direct subfolders: 1
-- Main outbound areas: src/utils/catalog (55), src/components/content (23), src/utils/seo (21), src/components/layout (20), src/components/SEOHead.tsx (20), src/utils/style (20), src/pages/lensIndex (18), package:react-router (17), +18 more
+- Main outbound areas: src/utils/catalog (55), src/components/content (23), src/utils/seo (21), src/components/layout (20), src/components/SEOHead.tsx (20), src/utils/style (20), package:react-router (18), src/pages/lensIndex (18), +18 more
 - External consumers: src/routes
 
 ## Subfolders
@@ -114,5 +114,5 @@ flowchart LR
 | `PatentsIndexPage.tsx` | Route-level React page | src/components/content (5), src/utils/catalog (2), src/utils/style (2), src/components/layout, src/components/SEOHead.tsx, +4 more | src/routes | default, PatentsIndexPage |
 | `RelationshipMapPage.tsx` | Route-level React page | src/utils/catalog (5), src/components/relationshipMap (4), src/utils/seo (2), src/utils/style (2), package:react, +5 more | src/routes | default, RelationshipMapPage |
 | `SearchPage.tsx` | Route-level React page | src/components/search (2), package:react, package:react-router, src/components/layout, src/components/SEOHead.tsx, +3 more | src/routes | default, SearchPage |
-| `UniversalRelationshipMapPage.tsx` | Route-level React page | src/components/relationshipMap (4), src/utils/catalog (2), src/utils/seo (2), src/utils/style (2), package:react, +4 more | src/routes | default, UniversalRelationshipMapPage |
+| `UniversalRelationshipMapPage.tsx` | Route-level React page | src/components/relationshipMap (4), src/utils/catalog (2), src/utils/seo (2), src/utils/style (2), package:react, +6 more | src/routes | default, UniversalRelationshipMapPage |
 | `UpdatesPage.tsx` | Route-level React page | src/utils/catalog (2), src/utils/content (2), package:react, package:react-router, src/components/content, +4 more | src/routes | default, UpdatesPage |
