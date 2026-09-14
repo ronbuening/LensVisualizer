@@ -102,6 +102,10 @@ halos inside each disconnected-network boundary, keeps every edge at its edge-ki
 neighborhoods, and draws nodes above both boundary layers.
 
 `UniversalMapSearch` searches only graph nodes and uses the shared portal dropdown with combobox keyboard semantics.
+`src/utils/catalog/universalRelationshipSearch.ts` normalizes names and compact patent numbers, ranking exact matches,
+prefixes, then reordered word matches with deterministic catalog sorting. The dropdown shows at most eight results;
+Enter selects the highlighted or first result and never navigates to a search page; it is ignored during text composition.
+Escape, outside interaction, and Tab dismiss it; selection clears the query and retains input focus.
 Search selection opens the existing details and issues a numbered focus request; the renderer measures its SVG and
 centers at readable magnification through `useViewBoxZoom.centerOn`. Requests are consumed once, including repeated
 requests for the same node, so subsequent pan/zoom gestures remain under the visitor's control.
@@ -110,11 +114,8 @@ fitting the viewport leaves selection and details intact.
 Universal detail cards use the same selection/focus path for related patents, inventors, assignees, organizations,
 and families. Explicit focused-map and source links remain available. Keyboard navigation between cards focuses the
 replacement heading without scrolling; pointer navigation leaves page focus alone.
-The universal route stores selection in `#node=…`, encoded with `URLSearchParams` and validated against graph IDs.
-Hydration and Back/Forward restore readable focus; an absent or unknown node restores the overview. Local node clicks
-and detail dismissal update history without moving the camera. Pan/zoom and other display settings remain local.
-Selection derives from the committed router location rather than mirrored component state: Back may interrupt a
-concurrent navigation before its intermediate location renders. Camera intent is consumed only when that URL commits.
+The page owns selection history and camera intent; see [Routing and content](routing-and-content.md#pages-and-routes)
+for the fragment, hydration, and Back/Forward contract.
 The optional connection emphasis uses memoized adjacency to retain the selected node, its immediate neighbors, and
 incident edges at normal opacity while multiplying other node/edge opacity by 0.15. Hover does not change membership,
 all elements remain operable, and clearing selection temporarily suspends emphasis without forgetting the toggle.

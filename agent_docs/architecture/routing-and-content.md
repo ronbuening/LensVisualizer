@@ -31,7 +31,7 @@ build metadata.
 | `ArticlePage.tsx` | `src/pages/` | Article page at `/articles/:slug`. |
 | `UpdatesPage.tsx` | `src/pages/` | Recently added lens/update page. |
 | `RelationshipMapPage.tsx` | `src/pages/` | Patent relationship map at `/relationships`; the focus inventor/assignee lives in a `#focus=<role>:<slug>` fragment (see below). |
-| `UniversalRelationshipMapPage.tsx` | `src/pages/` | Catalog-wide patent and corporate-lineage network at `/relationships/universal`, linked only from the relationship-map index. |
+| `UniversalRelationshipMapPage.tsx` | `src/pages/` | Catalog-wide patent and corporate-lineage network at `/relationships/universal`, with shareable `#node=…` selection; linked from the relationship-map index. |
 | `NotFoundPage.tsx` | `src/pages/` | Catch-all 404. |
 
 `RelationshipMapPage` is one static route whose content is driven by a fragment rather than a path param: with no
@@ -53,6 +53,17 @@ become external-organization nodes, and disconnected components are packed into 
 a patent opens the shared patent detail card; selecting any other entity exposes its dated corporate records and links
 catalog parties back to the ordinary focused map. No homepage or global navigation link points directly to this route;
 the prominent entry point lives in the no-focus `/relationships` index state.
+
+`src/utils/state/universalMapUrl.ts` serializes the complete graph ID with `URLSearchParams` and validates restored
+IDs against the graph. IDs containing already-encoded corporate names must round-trip without an extra manual decode.
+The selected node is read from the committed router location after hydration; keeping a separate mirrored selection
+can become stale when Back interrupts a concurrent navigation. Changed selections and explicit deselection push history;
+reselecting the same node can recenter without another history entry. Search and detail navigation carry pending camera
+intent, consumed only when the corresponding URL commits. Direct SVG selection and closing details preserve the camera.
+Reload and Back/Forward restore selection, details, and readable framing; absent, malformed, or unknown targets restore
+the overview. Query text, pan/zoom, emphasis, and overview visibility remain local. Unrelated URL parameters are preserved,
+and the canonical URL remains `/relationships/universal/`. Component interactions are documented in
+[UI components](ui-components.md#relationship-map-components).
 
 ## Static Page Shells
 
