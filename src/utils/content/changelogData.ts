@@ -20,6 +20,12 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-09-14",
+    type: "improvement",
+    summary:
+      "Enhanced the universal relationship map with search, connected navigation, shareable selections, neighborhood emphasis and an interactive overview",
+  },
+  {
+    date: "2026-09-14",
     type: "lens",
     summary: "Added Fujinon XF 8mm f/3.5, 18mm f/1.4 and 50mm f/2 patent designs",
   },

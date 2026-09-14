@@ -23,6 +23,7 @@ flowchart LR
     n_src_utils_src_utils_holidays_ts["holidays.ts"]
     n_src_utils_src_utils_mediaQuery_ts["mediaQuery.ts"]
     n_src_utils_src_utils_perfProbe_ts["perfProbe.ts"]
+    n_src_utils_src_utils_svgCoordinates_ts["svgCoordinates.ts"]
     n_src_utils_src_utils_text_ts["text.ts"]
     n_src_utils_src_utils_useMediaQuery_ts["useMediaQuery.ts"]
     n_src_utils_src_utils_usePrefersReducedMotion_ts["usePrefersReducedMotion.ts"]
@@ -35,7 +36,7 @@ flowchart LR
 
 ## Directory Overview
 
-- Direct source files: 11
+- Direct source files: 12
 - Direct subfolders: 6
 - Main outbound areas: package:react, src/utils/mediaQuery.ts, src/utils/useMediaQuery.ts
 - External consumers: src/benchmarks, src/components/content, src/components/controls, src/components/diagram, src/components/display, src/components/errors, src/components/HolidayFavicon.tsx, src/components/homepage, +22 more
@@ -63,6 +64,7 @@ flowchart LR
 | `holidays.ts` | Holidays helper module | none | src/utils/theme (2), src/components/HolidayFavicon.tsx | HolidayId, HOLIDAY_IDS, isHolidayId, nthWeekdayOfMonth, computeEaster, getActiveHoliday, HolidayOverride, holidayOverrideFromSearch |
 | `mediaQuery.ts` | Media Query helper module | none | src/utils/useMediaQuery.ts | subscribeToMediaQuery |
 | `perfProbe.ts` | Perf Probe helper module | none | src/components/display (6), src/benchmarks | probe, resetPerfProbe |
+| `svgCoordinates.ts` | Svg Coordinates helper module | none | src/components/hooks, src/components/relationshipMap | SvgBounds, clientPointToSvg, visibleSvgBounds |
 | `text.ts` | Text helper module | none | src/components/relationshipMap (4), src/components/search (2), src/pages/AuthorPage.tsx, src/pages/AuthorsIndexPage.tsx, src/pages/FormatPage.tsx, +7 more | pluralize |
 | `useMediaQuery.ts` | React hook module | package:react, src/utils/mediaQuery.ts | src/components/layout (3), src/components/content (2), src/components/homepage (2), src/pages/HomePage.tsx, src/utils/state, +2 more | default, useMediaQuery |
 | `usePrefersReducedMotion.ts` | React hook module | src/utils/useMediaQuery.ts | src/components/layout (4), src/components/diagram (2) | REDUCED_MOTION_QUERY, default, usePrefersReducedMotion |

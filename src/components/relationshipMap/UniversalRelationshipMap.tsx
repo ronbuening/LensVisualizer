@@ -10,6 +10,7 @@
 import {
   useCallback,
   useEffect,
+  useId,
   useMemo,
   useRef,
   useState,
@@ -27,6 +28,8 @@ import type {
 import { pluralize } from "../../utils/text.js";
 import { toggleBtn } from "../../utils/style/styles.js";
 import useViewBoxZoom from "../hooks/useViewBoxZoom.js";
+import useSvgViewport from "../hooks/useSvgViewport.js";
+import UniversalMapOverview from "./UniversalMapOverview.js";
 import { layoutUniversalRelationshipGraph } from "./universalLayout.js";
 
 interface UniversalRelationshipMapProps {
@@ -101,6 +104,9 @@ export default function UniversalRelationshipMap({
   const layout = useMemo(() => layoutUniversalRelationshipGraph(graph), [graph]);
   const svgRef = useRef<SVGSVGElement>(null);
   const zoom = useViewBoxZoom(layout.width, layout.height, true, svgRef);
+  const viewport = useSvgViewport(svgRef, zoom.viewBox);
+  const overviewId = useId();
+  const [showOverview, setShowOverview] = useState(true);
   const [hoveredNodeId, setHoveredNodeId] = useState<string | null>(null);
   const [emphasizeConnections, setEmphasizeConnections] = useState(false);
   const adjacency = useMemo(() => {
@@ -168,14 +174,34 @@ export default function UniversalRelationshipMap({
   )}, and ${graph.stats.components} connected ${pluralize(graph.stats.components, "component")}`;
 
   const legendItemStyle: CSSProperties = { display: "flex", alignItems: "center", gap: 6 };
-  const controlStyle = (active = false, disabled = false): CSSProperties => ({
-    ...toggleBtn(t, active, { flex: 0, hasRightBorder: false, padding: "8px 12px" }),
-    minHeight: 44,
-    borderRadius: 4,
-    border: `1px solid ${t.toggleBorder}`,
-    opacity: disabled ? 0.5 : 1,
-    cursor: disabled ? "default" : "pointer",
-  });
+  const overview = (
+    <UniversalMapOverview
+      id={overviewId}
+      layout={layout}
+      theme={t}
+      selectedNodeId={selectedNodeId}
+      view={zoom.state}
+      visibleBounds={
+        viewport.bounds ?? { x: zoom.state.vbX, y: zoom.state.vbY, width: zoom.state.vbW, height: zoom.state.vbH }
+      }
+      onCenterView={zoom.centerOn}
+      onPanView={zoom.panBy}
+      onFitAll={zoom.reset}
+    />
+  );
+  const controlStyle = (active = false, disabled = false): CSSProperties => {
+    const base = toggleBtn(t, active, { flex: 0, hasRightBorder: false, padding: "8px 12px" });
+    // Standalone controls use a full border, so omit the shared segmented-control edge.
+    delete base.borderRight;
+    return {
+      ...base,
+      minHeight: 44,
+      borderRadius: 4,
+      border: `1px solid ${t.toggleBorder}`,
+      opacity: disabled ? 0.5 : 1,
+      cursor: disabled ? "default" : "pointer",
+    };
+  };
   const legendSwatch = (stroke: string, shape: "circle" | "square" | "diamond" | "hexagon"): CSSProperties => ({
     display: "inline-block",
     width: 11,
@@ -219,6 +245,15 @@ export default function UniversalRelationshipMap({
         >
           Emphasize connections
         </button>
+        <button
+          type="button"
+          aria-expanded={showOverview}
+          aria-controls={showOverview ? overviewId : undefined}
+          onClick={() => setShowOverview((value) => !value)}
+          style={controlStyle(showOverview)}
+        >
+          Overview
+        </button>
       </div>
 
       <div
@@ -230,6 +265,7 @@ export default function UniversalRelationshipMap({
           minHeight: 520,
           maxHeight: 760,
           background: t.panelBg,
+          position: "relative",
         }}
       >
         <svg
@@ -417,7 +453,11 @@ export default function UniversalRelationshipMap({
             );
           })}
         </svg>
+        {showOverview && viewport.width >= 600 && (
+          <div style={{ position: "absolute", right: 8, bottom: 8 }}>{overview}</div>
+        )}
       </div>
+      {showOverview && viewport.width < 600 && <div style={{ marginTop: 8 }}>{overview}</div>}
 
       <div
         style={{

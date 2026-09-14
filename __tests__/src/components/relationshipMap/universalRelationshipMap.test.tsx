@@ -3,7 +3,7 @@
 /** Interaction coverage for the universal relationship SVG and entity panel. */
 
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { cleanup, fireEvent } from "@testing-library/react";
+import { act, cleanup, fireEvent } from "@testing-library/react";
 import UniversalEntityDetailCard from "../../../../src/components/relationshipMap/UniversalEntityDetailCard.js";
 import UniversalRelationshipMap from "../../../../src/components/relationshipMap/UniversalRelationshipMap.js";
 import type {
@@ -12,10 +12,14 @@ import type {
   UniversalRelationshipNode,
 } from "../../../../src/utils/catalog/universalRelationshipGraph.js";
 import themes from "../../../../src/utils/theme/themes.js";
-import { renderWithRouter } from "../../../testUtils.js";
+import { installResizeObserverMock, renderWithRouter } from "../../../testUtils.js";
 import { layoutUniversalRelationshipGraph } from "../../../../src/components/relationshipMap/universalLayout.js";
 
-afterEach(cleanup);
+afterEach(() => {
+  cleanup();
+  vi.restoreAllMocks();
+  vi.unstubAllGlobals();
+});
 
 const author: UniversalPartyNode = {
   id: "author:ada",
@@ -148,6 +152,68 @@ function makeMultiHubGraph(): UniversalRelationshipGraph {
 }
 
 describe("UniversalRelationshipMap", () => {
+  it("defers focus until measured and moves the overview below narrow viewports", () => {
+    const observer = installResizeObserverMock();
+    let width = 0;
+    vi.spyOn(SVGSVGElement.prototype, "getBoundingClientRect").mockImplementation(
+      () => ({ width, height: 600, left: 0, top: 0 }) as DOMRect,
+    );
+    const { container, getByRole } = renderWithRouter(
+      <UniversalRelationshipMap
+        graph={graph}
+        theme={themes.dark}
+        selectedNodeId={author.id}
+        onSelectNode={vi.fn()}
+        focusRequest={{ nodeId: author.id, requestId: 1 }}
+      />,
+    );
+    const main = container.querySelector("svg")!;
+    const initial = main.getAttribute("viewBox");
+    width = 800;
+    act(() => observer.trigger(main));
+    expect(main.getAttribute("viewBox")).not.toBe(initial);
+    let overview = getByRole("group", { name: "Map overview" });
+    expect(main.parentElement?.contains(overview)).toBe(true);
+    width = 390;
+    act(() => observer.trigger(main));
+    overview = getByRole("group", { name: "Map overview" });
+    expect(main.parentElement?.contains(overview)).toBe(false);
+    fireEvent.click(getByRole("button", { name: "Overview" }));
+    expect(container.querySelector('[aria-label="Map overview"]')).toBeNull();
+    fireEvent.click(getByRole("button", { name: "Overview" }));
+    expect(getByRole("group", { name: "Map overview" })).toBeDefined();
+  });
+  it("moves the main viewport through the overview while retaining zoom, selection, and emphasis", () => {
+    const select = vi.fn();
+    const { container, getByRole } = renderWithRouter(
+      <UniversalRelationshipMap graph={graph} theme={themes.dark} selectedNodeId={author.id} onSelectNode={select} />,
+    );
+    const main = container.querySelector("svg")!;
+    const view = () => main.getAttribute("viewBox")!.split(" ").map(Number);
+    fireEvent.click(getByRole("button", { name: "Zoom in" }));
+    const [, , width, height] = view();
+    const toggle = getByRole("button", { name: "Emphasize connections" });
+    fireEvent.click(toggle);
+    const overview = getByRole("group", { name: "Map overview" });
+    Object.defineProperty(overview, "getScreenCTM", {
+      value: () => ({ inverse: () => ({ a: 1, b: 0, c: 0, d: 1, e: 0, f: 0 }) }),
+    });
+    fireEvent.click(overview, { clientX: 120, clientY: 140 });
+    let [x, y, w, h] = view();
+    expect(x + w / 2).toBeCloseTo(120);
+    expect(y + h / 2).toBeCloseTo(140);
+    expect([w, h]).toEqual([width, height]);
+    fireEvent.keyDown(overview, { key: "ArrowRight" });
+    [x, y, w, h] = view();
+    expect(x + w / 2).toBeCloseTo(120 + width * 0.1);
+    expect(y + h / 2).toBeCloseTo(140);
+    const indicator = getByRole("img", { name: "Visible map area" });
+    expect(Number(indicator.getAttribute("x"))).toBeCloseTo(Math.max(0, x));
+    expect(toggle.getAttribute("aria-pressed")).toBe("true");
+    expect(getByRole("button", { name: "Select assignee Example Optics" }).getAttribute("opacity")).toBe("0.15");
+    expect(select).not.toHaveBeenCalled();
+  });
+
   it("emphasizes only the selected neighborhood, keeps it anchored during hover, and resumes after clearing", () => {
     const props = { graph, theme: themes.dark, onSelectNode: vi.fn() };
     const { container, getByRole, rerender } = renderWithRouter(
@@ -283,7 +349,7 @@ describe("UniversalRelationshipMap", () => {
     expect(getByRole("group", { name: /Universal relationship map/ })).toBeDefined();
     expect(getAllByRole("button", { name: /^Select / })).toHaveLength(graph.nodes.length);
     expect(getByText("Example Optics · 4 nodes")).toBeDefined();
-    expect(container.querySelectorAll("ellipse")).toHaveLength(1);
+    expect(container.querySelector("svg")!.querySelectorAll("ellipse")).toHaveLength(1);
 
     const familyButton = getByRole("button", { name: "Select corporate family Example family" });
     fireEvent.click(familyButton);
@@ -312,7 +378,7 @@ describe("UniversalRelationshipMap", () => {
         onSelectNode={vi.fn()}
       />,
     );
-    expect(container.querySelectorAll("ellipse")).toHaveLength(2);
+    expect(container.querySelector("svg")!.querySelectorAll("ellipse")).toHaveLength(2);
 
     const authorshipLines = [...container.querySelectorAll("line")].filter((line) =>
       line.querySelector("title")?.textContent?.includes("Shared Inventor named on"),

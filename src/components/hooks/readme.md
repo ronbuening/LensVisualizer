@@ -26,6 +26,7 @@ flowchart LR
     n_src_components_hooks_src_components_hooks_useOverlayState_ts["useOverlayState.ts"]
     n_src_components_hooks_src_components_hooks_useRayTracing_ts["useRayTracing.ts"]
     n_src_components_hooks_src_components_hooks_useSideLayoutDetection_ts["useSideLayoutDetection.ts"]
+    n_src_components_hooks_src_components_hooks_useSvgViewport_ts["useSvgViewport.ts"]
     n_src_components_hooks_src_components_hooks_useViewBoxZoom_ts["useViewBoxZoom.ts"]
   end
   n_external_pkg_react["pkg:react"]
@@ -39,7 +40,6 @@ flowchart LR
   n_external_src_optics_buildLens_ts["src/optics/buildLens.ts"]
   n_external_src_optics_cardinalElements_ts["src/optics/cardinalElements.ts"]
   n_external_src_optics_compat_ts["src/optics/compat.ts"]
-  n_external_src_optics_diagramGeometry_ts["src/optics/diagramGeometry.ts"]
   n_src_components_hooks_src_components_hooks_useHeaderHeight_ts --> |2| n_external_pkg_react
   n_src_components_hooks_src_components_hooks_useSideLayoutDetection_ts --> |2| n_external_pkg_react
   n_src_components_hooks_src_components_hooks_useLensComputation_ts --> |2| n_external_src_optics_lensMovement_ts
@@ -69,21 +69,21 @@ flowchart LR
   n_src_components_hooks_src_components_hooks_useOverlays_ts --> n_external_pkg_react
   n_src_components_hooks_src_components_hooks_useOverlayState_ts --> n_external_pkg_react
   n_src_components_hooks_src_components_hooks_useRayTracing_ts --> n_external_pkg_react
+  n_src_components_hooks_src_components_hooks_useSvgViewport_ts --> n_external_pkg_react
   n_src_components_hooks_src_components_hooks_useViewBoxZoom_ts --> n_external_pkg_react
   n_src_components_hooks_src_components_hooks_offAxisRayUtils_ts --> n_external_src_optics_aberration
   n_src_components_hooks_src_components_hooks_useLensComputation_ts --> n_external_src_optics_apertureStop_ts
   n_src_components_hooks_src_components_hooks_useLensComputation_ts --> n_external_src_optics_buildLens_ts
   n_src_components_hooks_src_components_hooks_useLensComputation_ts --> n_external_src_optics_cardinalElements_ts
   n_src_components_hooks_src_components_hooks_useLensComputation_ts --> n_external_src_optics_compat_ts
-  n_src_components_hooks_src_components_hooks_useLensComputation_ts --> n_external_src_optics_diagramGeometry_ts
   n_src_components_hooks_truncated["additional relationships omitted"]
 ```
 
 ## Directory Overview
 
-- Direct source files: 18
+- Direct source files: 19
 - Direct subfolders: 0
-- Main outbound areas: package:react (18), src/types (15), same folder (13), src/optics/perspective (8), src/optics/optics.ts (7), src/optics/raySampling.ts (3), src/utils/state (3), src/optics/lensMovement.ts (2), +9 more
+- Main outbound areas: package:react (19), src/types (15), same folder (13), src/optics/perspective (8), src/optics/optics.ts (7), src/optics/raySampling.ts (3), src/utils/state (3), src/optics/lensMovement.ts (2), +10 more
 - External consumers: src/benchmarks, src/components/controls, src/components/display, src/components/layout, src/components/relationshipMap, src/components/search
 
 ## Files
@@ -107,4 +107,5 @@ flowchart LR
 | `useOverlayState.ts` | React hook module | package:react | src/components/layout | OverlayState, default, useOverlayState |
 | `useRayTracing.ts` | React hook module | same folder (5), src/types (2), package:react, src/optics/optics.ts, src/optics/perspective | src/components/layout | default, useRayTracing |
 | `useSideLayoutDetection.ts` | React hook module | package:react (2) | src/components/layout | default, useSideLayoutDetection |
-| `useViewBoxZoom.ts` | React hook module | package:react | src/components/relationshipMap (2), src/components/display, src/components/layout | ViewBoxState, ViewBoxZoomResult, default, useViewBoxZoom |
+| `useSvgViewport.ts` | React hook module | package:react, src/utils/svgCoordinates.ts | src/components/relationshipMap | default, useSvgViewport |
+| `useViewBoxZoom.ts` | React hook module | package:react | src/components/relationshipMap (3), src/components/display, src/components/layout | ViewBoxState, ViewBoxZoomResult, default, useViewBoxZoom |
