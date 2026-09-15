@@ -21,6 +21,16 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-09-15",
     type: "lens",
+    summary: "Added Leica Summicron-C 40mm f/2 and Macro-Elmar-M 90mm f/4 patent designs",
+  },
+  {
+    date: "2026-09-15",
+    type: "lens",
+    summary: "Added Leica DC zoom patent designs for Panasonic LX7, LX100 II, FZ300 and FZ2500",
+  },
+  {
+    date: "2026-09-15",
+    type: "lens",
     summary: "Added Fujinon XF 27mm f/2.8, XF 30mm f/2.8 Macro and XF 35mm f/2 patent designs",
   },
   {

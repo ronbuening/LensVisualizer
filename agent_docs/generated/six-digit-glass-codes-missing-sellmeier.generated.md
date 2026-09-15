@@ -9,12 +9,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **747** lenses scanned
-- **1697** total code-only elements found
-- **265** elements in this report
-- **101** distinct lens files affected
+- **753** lenses scanned
+- **1730** total code-only elements found
+- **267** elements in this report
+- **102** distinct lens files affected
 - **1** active unreviewed elements have no review-record hit or explicit disposition
-- **136** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
+- **138** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
 - **0** dispositions lack any review record
 
 ## Prioritized Unreviewed Queue
@@ -38,6 +38,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 662561 | 4 | 1 | patents/GB_850117_A.pdf | All rows have review records |
 | 835427 | 4 | 3 | patents/JP2015166834A.pdf<br>patents/CN114755806A.pdf | All rows explicitly disposed |
 | 863252 | 4 | 2 | patents/WO2021199923A1.pdf<br>patents/WO_2025263124_A1.pdf | All rows have review records |
+| 684313 | 3 | 2 | patents/US20150124127A1.pdf | All rows explicitly disposed |
 | 777297 | 3 | 3 | patents/WO2021199923A1.pdf<br>patents/WO_2025263124_A1.pdf<br>patents/JP2023039817A.pdf | All rows have review records |
 | 856401 | 3 | 2 | patents/WO2021199923A1.pdf<br>patents/WO_2025263124_A1.pdf | All rows have review records |
 | 863248 | 3 | 1 | patents/JP2023039817A.pdf | All rows have review records |
@@ -48,7 +49,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 620586 | 2 | 1 | patents/US4303314.pdf | All rows have review records |
 | 627376 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
 | 633315 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
-| 684313 | 2 | 1 | No patent number parsed from lens metadata | All rows explicitly disposed |
 | 690570 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
 | 720521 | 2 | 2 | patents/US4124276.pdf | All rows have review records |
 | 726548 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
@@ -123,6 +123,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 626357 | 1 | 1 | patents/CN211955966U.pdf | All rows explicitly disposed |
 | 630346 | 1 | 1 | patents/JP2015041012A.pdf | All rows have review records |
 | 635232 | 1 | 1 | patents/US8081392.pdf | All rows explicitly disposed |
+| 636239 | 1 | 1 | patents/US20150124127A1.pdf | All rows explicitly disposed |
 | 640353 | 1 | 1 | patents/US4277149.pdf | All rows have review records |
 | 641589 | 1 | 1 | patents/US7307794.pdf | All rows explicitly disposed |
 | 642581 | 1 | 1 | patents/US2721499.pdf | All rows have review records |
@@ -397,6 +398,13 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L3 (Element 3) | 4 | `773530 — high-index lanthanum crown (patent nd=1.77250, νd=53.00; no exact public catalog match)` | 1.77250 / 53.00 | No catalog entry | abbe | patents/CN110161666A.pdf | Reviewed sidecar hit |
+
+### [LEICA DC VARIO-SUMMILUX 4.7-17.7mm f/1.4-2.3 (Panasonic Lumix DMC-LX7)](../../src/lens-data/leica/LeicaDCVarioSummilux47177mmf1423PanasonicLX7.data.ts) - US 2015/0124127 A1
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L10 (Element 10) | 20A | `684313 — Unmatched exact public catalog identity` | 1.68400 / 31.30 | No catalog entry | abbe | patents/US20150124127A1.pdf | Explicit disposition in data |
+| L11 (Element 11) | 22A | `636239 — Unmatched exact public catalog identity` | 1.63550 / 23.90 | No catalog entry | abbe | patents/US20150124127A1.pdf | Explicit disposition in data |
 
 ### [LEICA ELCAN 50mm f/2](../../src/lens-data/leica/LeicaElcan50mmf2.data.ts) - US 3,649,104
 
