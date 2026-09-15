@@ -17,7 +17,8 @@ import type { LensDataInput } from "../../types/optics.js";
  *   stop with 10% clearance over the axial and +/-0.60 published-half-field construction region, plus a
  *   conservative full-field rim-ray coverage check. The front two elements were refined against Fig. 1 at 600 dpi: S1/S2 = 19.8/14.0 mm and
  *   S3/S4 = 14.4/10.3 mm. S2 is capped below the measured rim to respect the surface-slope limit.
- *   The remaining ray-envelope SDs are retained where labels obscure the optical rims.
+ *   The second Fig. 1 review sets G12 to 8.3 mm and the three rear elements to 10.2/10.8/10.8 mm,
+ *   excluding leaders and mechanical steps. Other ray-envelope SDs are retained.
  * - Glass labels are coordinate/class descriptions only; the patent does not establish suppliers or melts.
  *   No per-glass nC/nF/ng/dPgF values are authored because exact identities are not independently established.
  * - The production correlation to the ZEISS Batis 2.8/18 is strong but not manufacturer-confirmed patent attribution.
@@ -68,7 +69,7 @@ const LENS_DATA = {
       vd: 67,
       indexReference: "d",
       fl: -60.891629,
-      glass: "593670 class (supplier unconfirmed)",
+      glass: "J-PSKH4 catalog proxy; 593670 class (supplier unconfirmed)",
       apd: false,
       role: "Front negative meniscus supporting wide-angle coverage.",
     },
@@ -82,8 +83,9 @@ const LENS_DATA = {
       vd: 81.61,
       indexReference: "d",
       fl: -49.195131,
-      glass: "497816 low-dispersion crown class (supplier unconfirmed)",
-      apd: false,
+      glass: "H-FK61 catalog proxy; 497816 low-dispersion crown class (supplier unconfirmed)",
+      apd: "inferred",
+      apdNote: "The compatible 497816 fluor-crown catalog class has positive anomalous partial dispersion (H-FK61 proxy ΔPgF ≈ +0.0315). The patent supplies only nd/νd; supplier, melt and measured partial dispersion are unconfirmed.",
     },
     {
       id: 3,
@@ -95,7 +97,7 @@ const LENS_DATA = {
       vd: 67.02,
       indexReference: "d",
       fl: -29.263186,
-      glass: "592670 molded PCD51/Q-PSKH4S class (supplier unconfirmed)",
+      glass: "M-PCD51 catalog proxy; 592670 molded PCD51/Q-PSKH4S class (supplier unconfirmed)",
       apd: false,
     },
     {
@@ -135,7 +137,7 @@ const LENS_DATA = {
       vd: 70.44,
       indexReference: "d",
       fl: 20.910194,
-      glass: "487704 low-index crown class (supplier unconfirmed)",
+      glass: "H-QK3L catalog proxy; 487704 low-index crown class (supplier unconfirmed)",
       apd: false,
       cemented: "D1",
     },
@@ -149,8 +151,9 @@ const LENS_DATA = {
       vd: 81.56,
       indexReference: "d",
       fl: 23.842775,
-      glass: "497816 molded low-dispersion class (supplier unconfirmed)",
-      apd: false,
+      glass: "H-FK61 catalog proxy; 497816 molded low-dispersion class (supplier unconfirmed)",
+      apd: "inferred",
+      apdNote: "The compatible 497816 fluor-crown catalog class has positive anomalous partial dispersion (H-FK61 proxy ΔPgF ≈ +0.0315). The patent supplies only nd/νd; supplier, melt and measured partial dispersion are unconfirmed.",
     },
     {
       id: 8,
@@ -162,7 +165,7 @@ const LENS_DATA = {
       vd: 54.04,
       indexReference: "d",
       fl: -45.915551,
-      glass: "729540 high-index low-dispersion molded class (supplier unconfirmed)",
+      glass: "M-TAC80 catalog proxy; 729540 high-index low-dispersion molded class (supplier unconfirmed)",
       apd: false,
       role: "Single-element negative inner-focus group G12.",
     },
@@ -176,8 +179,9 @@ const LENS_DATA = {
       vd: 81.61,
       indexReference: "d",
       fl: 80.283147,
-      glass: "497816 low-dispersion crown class (supplier unconfirmed)",
-      apd: false,
+      glass: "H-FK61 catalog proxy; 497816 low-dispersion crown class (supplier unconfirmed)",
+      apd: "inferred",
+      apdNote: "The compatible 497816 fluor-crown catalog class has positive anomalous partial dispersion (H-FK61 proxy ΔPgF ≈ +0.0315). The patent supplies only nd/νd; supplier, melt and measured partial dispersion are unconfirmed.",
     },
     {
       id: 10,
@@ -189,8 +193,9 @@ const LENS_DATA = {
       vd: 81.61,
       indexReference: "d",
       fl: 49.630236,
-      glass: "497816 low-dispersion crown class (supplier unconfirmed)",
-      apd: false,
+      glass: "H-FK61 catalog proxy; 497816 low-dispersion crown class (supplier unconfirmed)",
+      apd: "inferred",
+      apdNote: "The compatible 497816 fluor-crown catalog class has positive anomalous partial dispersion (H-FK61 proxy ΔPgF ≈ +0.0315). The patent supplies only nd/νd; supplier, melt and measured partial dispersion are unconfirmed.",
     },
     {
       id: 11,
@@ -202,7 +207,7 @@ const LENS_DATA = {
       vd: 37.22,
       indexReference: "d",
       fl: -28.425101,
-      glass: "882372 molded TAFD307 class (supplier unconfirmed)",
+      glass: "M-TAFD307 catalog proxy; 882372 molded TAFD307 class (supplier unconfirmed)",
       apd: false,
     },
   ],
@@ -223,14 +228,14 @@ const LENS_DATA = {
     { label: "STO", R: 1e15, d: 2.425, nd: 1, elemId: 0, sd: 7.559068469367 },
     { label: "13A", R: 30.85, d: 4.386, nd: 1.4971, elemId: 7, sd: 9.3 },
     { label: "14A", R: -18.338, d: 1.472, nd: 1, elemId: 0, sd: 9.4 },
-    { label: "15A", R: 45.781, d: 0.8, nd: 1.729, elemId: 8, sd: 10 },
-    { label: "16A", R: 19.193, d: 6.519, nd: 1, elemId: 0, sd: 9.9 },
-    { label: "17", R: -68.737, d: 2.535, nd: 1.497, elemId: 9, sd: 11.6 },
-    { label: "18", R: -25.555, d: 0.1, nd: 1, elemId: 0, sd: 11.9 },
-    { label: "19", R: -329.577, d: 4.036, nd: 1.497, elemId: 10, sd: 12.8 },
-    { label: "20", R: -23.042, d: 0.329, nd: 1, elemId: 0, sd: 12.9 },
-    { label: "21A", R: -400, d: 1.2, nd: 1.882, elemId: 11, sd: 13.1 },
-    { label: "22A", R: 26.785, d: 24.731206751055, nd: 1, elemId: 0, sd: 13.8 },
+    { label: "15A", R: 45.781, d: 0.8, nd: 1.729, elemId: 8, sd: 8.3 },
+    { label: "16A", R: 19.193, d: 6.519, nd: 1, elemId: 0, sd: 8.3 },
+    { label: "17", R: -68.737, d: 2.535, nd: 1.497, elemId: 9, sd: 10.2 },
+    { label: "18", R: -25.555, d: 0.1, nd: 1, elemId: 0, sd: 10.2 },
+    { label: "19", R: -329.577, d: 4.036, nd: 1.497, elemId: 10, sd: 10.8 },
+    { label: "20", R: -23.042, d: 0.329, nd: 1, elemId: 0, sd: 10.8 },
+    { label: "21A", R: -400, d: 1.2, nd: 1.882, elemId: 11, sd: 10.8 },
+    { label: "22A", R: 26.785, d: 24.731206751055, nd: 1, elemId: 0, sd: 10.8 },
   ],
 
   /* ── Aspherical coefficients ── */

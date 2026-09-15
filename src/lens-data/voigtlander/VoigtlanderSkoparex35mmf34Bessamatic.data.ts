@@ -49,7 +49,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 2,927,506",
   patentAuthors: ["Fritz Determann"],
-  patentAssignees: ["Voigtländer A.G."],
+  patentAssignees: ["Voigtländer AG"],
   patentYear: 1960,
   elementCount: 6,
   groupCount: 5,

@@ -26,10 +26,12 @@ The patent nd/νd coordinates are retained. The following existing catalog curve
 | L132 | 1.497 / 81.61 | H-FK61 | 0.000000 / 0.003 |
 | L133 | 1.882 / 37.22 | M-TAFD307 | 0.000020 / 0.000 |
 
-### Metadata and verification
+### Metadata
 
 Display names follow the catalog's uppercase manufacturer/line convention. Canonical maker and assignee spelling and romanized inventor names are used while the analysis preserves source wording and qualified production correlations.
 
-Surface audit passes. Image-circle audit reports no undersized surfaces. See the shared corpus checks for geometry, metadata, runtime dispersion, and render diagnostics; no per-lens test was added.
+### Second figure, glass and live-diagram review
 
-Final verification: `npm run typecheck`, `npm run format:check`, `npm run lint`, `npm test` (274 files / 2,695 tests), and `npm run build` (1,340 prerendered routes) passed. The local browser cross-section and display/focus labels were inspected against the patent figure. `npm run generate:glass-reports` passed with zero catalog-coordinate mismatches.
+The second local-site comparison exposed an oversized G12/G13 outline that was obscured by leaders in the first automated crop. At 50.57 µm/px, the clean optical half-widths are approximately 8.3 mm (G12), 10.2 mm (L131), and 10.8 mm (L132/L133). S15A/S16A now use 8.3 mm; S17/S18 use 10.2 mm; S19–S22A use 10.8 mm. S22A previously extended 28% beyond the measured rim. The front-element rear faces remain slope-limited rather than extending onto mechanical steps. The source curves and focus distances are unchanged.
+
+L112/L117/L131/L132 now have inferred APD tags from the compatible 497816 fluor-crown class (H-FK61 proxy ΔPgF ≈ +0.0315). No patent-measured partial dispersion or supplier identity is claimed. Explicit catalog proxy names make the existing runtime curve choices visible. The live focus control moves G12 imageward from D14/D16 = 1.472/6.519 to 2.318/5.674 mm; G11/G13 remain fixed.

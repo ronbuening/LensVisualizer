@@ -178,7 +178,7 @@ const LENS_DATA = {
 
   closeFocusM: 1.0,
   focusDescription:
-    "NO_INTERNAL_RECONSTRUCTION: US 1,786,916 Example 2 publishes one static prescription and no focus motion. closeFocusM = 1.0 m is only the finite schema/UI placeholder; no production MFD or focus spacing law is modeled.",
+    "US 1,786,916 Example 2 publishes one static prescription. Focus travel and minimum focus distance are not documented.",
   nominalFno: 1.4,
   fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
 

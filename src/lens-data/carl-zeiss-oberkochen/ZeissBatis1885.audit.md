@@ -26,12 +26,15 @@ The patent nd/νd coordinates are retained. The following existing catalog curve
 | L10 | 1.4875 / 70.44 | H-QK3L | -0.000010 / 0.000 |
 | L11 | 1.5182 / 58.96 | S-NSL3 | 0.000029 / -0.058 |
 
-### Metadata and verification
+### Metadata
 
 Display names follow the catalog's uppercase manufacturer/line convention. Canonical maker and assignee spelling and romanized inventor names are used while the analysis preserves source wording and qualified production correlations.
 
-Surface audit passes. Image-circle audit reports no undersized surfaces. See the shared corpus checks for geometry, metadata, runtime dispersion, and render diagnostics; no per-lens test was added.
 
 Inventor romanization corroboration: [Hirofumi Tabata](https://patents.google.com/patent/JP2017026716A/en) and [Yasuhiko Obikane](https://patents.google.com/patent/JP2017040874A/en) identify the same Japanese-script names in Tamron publications.
 
-Final verification: `npm run typecheck`, `npm run format:check`, `npm run lint`, `npm test` (274 files / 2,695 tests), and `npm run build` (1,340 prerendered routes) passed. The local browser cross-section and display/focus labels were inspected against the patent figure. `npm run generate:glass-reports` passed with zero catalog-coordinate mismatches.
+### Second figure, glass and live-diagram review
+
+The second live-site comparison retains the corrected rims. The rear-face limits exclude the patent's short mechanical steps and keep the preceding air gap open. L2 and L7 now carry inferred APD tags with H-FK61 and FCD515 proxy evidence, respectively; no measured patent partial-dispersion values are claimed. Catalog proxy names are explicit in the element inspector. The patent label preserves the leading zero in JP 2015-096915 A, and the specifications identify the VC group without implying that lateral stabilization is simulated.
+
+Infinity, the intermediate |β|=0.025 keyframe, and the |β|=0.125 endpoint are correctly ordered. The live control increases the G1–G2 gap 4.538 → 5.870 → 11.462 mm and decreases G2–STO 13.725 → 12.393 → 6.801 mm: G2 moves imageward.

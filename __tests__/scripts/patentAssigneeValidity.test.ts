@@ -37,6 +37,7 @@ describe("patent assignee validity", () => {
   it.each([
     ["Nippon Kogaku Kogyo K.K.", "Nippon Kogaku K.K."],
     ["Voigtländer & Sohn Aktiengesellschaft", "Voigtländer & Sohn AG"],
+    ["Voigtländer A.G.", "Voigtländer AG"],
   ])("rejects the spelling-only duplicate %s", (alias, canonical) => {
     expect(() => assertPatentAssigneeValidity([{ key: "alias", patentYear: 1953, patentAssignees: [alias] }])).toThrow(
       `use ${canonical} instead of ${alias}`,

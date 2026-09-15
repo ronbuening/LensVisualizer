@@ -72,7 +72,7 @@ const LENS_DATA = {
   imageFormat: "6x9",
   patentNumber: "FR 1,045,076",
   patentAuthors: [],
-  patentAssignees: ["Voigtländer A.G."],
+  patentAssignees: ["Voigtländer AG"],
   patentYear: 1953,
   elementCount: 5,
   groupCount: 4,

@@ -6,6 +6,17 @@ import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
   {
+    name: "L-BSL7",
+    vendor: "Ohara",
+    B: [0.917473918, 0.352687665, 1.05579788],
+    C: [0.00527701411, 0.0170809497, 104.302583],
+    nd: 1.51633,
+    vd: 64.065129,
+    code6: "516641",
+    source:
+      "OHARA_260701.AGF, L-BSL7 low-softening-temperature row, formula 2; https://oharacorp.com/wp-content/uploads/catalogs/OHARA_260701_CATALOG.zip (accessed 2026-09-15).",
+  },
+  {
     name: "L-BAL42",
     vendor: "Ohara",
     B: [1.39528097, 0.072551952, 1.66335848],

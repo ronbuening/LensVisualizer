@@ -21,12 +21,13 @@ The patent nd/νd coordinates are retained. The following existing catalog curve
 | L5 | 1.64238 / 48 | BAF9 | 0.000900 / -0.200 |
 | L6 | 1.64238 / 48 | BAF9 | 0.000900 / -0.200 |
 
-### Metadata and verification
+### Metadata
 
 Display names follow the catalog's uppercase manufacturer/line convention. Canonical maker and assignee spelling and romanized inventor names are used while the analysis preserves source wording and qualified production correlations.
 
-Surface audit passes. Image-circle audit cannot establish coverage without a source-supported image format. See the shared corpus checks for geometry, metadata, runtime dispersion, and render diagnostics; no per-lens test was added.
 
 The prewar Jena origin is explicit in the patent heading. The maker and display prefix use Carl Zeiss Jena, consistent with the existing prewar Sonnar records; this is not an Oberkochen-era design.
 
-Final verification: `npm run typecheck`, `npm run format:check`, `npm run lint`, `npm test` (274 files / 2,695 tests), and `npm run build` (1,340 prerendered routes) passed. The local browser cross-section and display/focus labels were inspected against the patent figure. `npm run generate:glass-reports` passed with zero catalog-coordinate mismatches.
+### Second figure, glass and live-diagram review
+
+The second local-site comparison with Fig. 2 retains the SDs. Hatching, surface leaders and the small flat outer rim segments are not extra optical aperture. Element shapes, two cemented pairs, element order and the Carl Zeiss Jena display identity agree with the selected prescription. Existing catalog proxies cover all six elements; no evidence supports additional APD tags. Focus remains disabled because the source is static, and its explanation no longer exposes an internal placeholder distance.

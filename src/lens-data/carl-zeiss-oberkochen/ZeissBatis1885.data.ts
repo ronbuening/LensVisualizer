@@ -1,7 +1,7 @@
 import type { LensDataInput } from "../../types/optics.js";
 
 /**
- * ZEISS Batis 85mm f/1.8 research correlation — JP 2015-96915 A, Example 2.
+ * ZEISS Batis 85mm f/1.8 research correlation — JP 2015-096915 A, Example 2.
  *
  * Patent prescription: 11 elements / 8 air-spaced groups, all spherical. The source gives a positive G1,
  * negative single-element G2 focus group, and positive G3 with a negative single-element VC stabilization group.
@@ -36,13 +36,13 @@ const LENS_DATA = {
   key: "zeiss-batis-85f18",
   maker: "Carl Zeiss",
   name: "ZEISS BATIS 85mm f/1.8",
-  subtitle: "JP 2015-96915 A Example 2 — inferred ZEISS Batis 1.8/85 correlation",
+  subtitle: "JP 2015-096915 A Example 2 — inferred ZEISS Batis 1.8/85 correlation",
   specs: [
     "11 ELEMENTS / 8 GROUPS",
     "85 mm marketed / 82.87 mm patent",
     "f/1.8 marketed / Fno 1.85 patent-model infinity",
     "2ω = 28.60° at infinity",
-    "PUBLISHED INNER FOCUS + VC STABILIZATION",
+    "PUBLISHED INNER FOCUS / VC GROUP IDENTIFIED",
   ],
 
   focalLengthMarketing: 85,
@@ -51,7 +51,7 @@ const LENS_DATA = {
   apertureDesign: 1.85,
   lensMounts: ["sony-fe"],
   imageFormat: "135-full-frame",
-  patentNumber: "JP 2015-96915 A",
+  patentNumber: "JP 2015-096915 A",
   patentAuthors: ["Hirofumi Tabata", "Yasuhiko Obikane"],
   patentAssignees: ["Tamron Co., Ltd."],
   patentYear: 2015,
@@ -68,7 +68,7 @@ const LENS_DATA = {
       vd: 31.31,
       indexReference: "d",
       fl: 72.515229,
-      glass: "904313 — high-index lanthanum-flint class (supplier unproven)",
+      glass: "N-LASF46B catalog proxy; 904313 — high-index lanthanum-flint class (supplier unproven)",
       role: "Front positive element of G1.",
     },
     {
@@ -80,7 +80,9 @@ const LENS_DATA = {
       vd: 81.61,
       indexReference: "d",
       fl: 65.845536,
-      glass: "497816 — low-dispersion fluorine/phosphate-crown class (supplier unproven)",
+      apd: "inferred",
+      apdNote: "The compatible H-FK61 low-dispersion catalog proxy has ΔPgF ≈ +0.0315. The patent supplies only nd/νd; supplier, melt and measured partial dispersion are unconfirmed.",
+      glass: "H-FK61 catalog proxy; 497816 — low-dispersion fluorine/phosphate-crown class (supplier unproven)",
       cemented: "D1",
       role: "Positive component of the G1 cemented pair.",
     },
@@ -93,7 +95,7 @@ const LENS_DATA = {
       vd: 27.76,
       indexReference: "d",
       fl: -34.167712,
-      glass: "741278 — dense-flint class (supplier unproven)",
+      glass: "E-FD13 catalog proxy; 741278 — dense-flint class (supplier unproven)",
       cemented: "D1",
       role: "Negative component of the G1 cemented pair.",
     },
@@ -106,7 +108,7 @@ const LENS_DATA = {
       vd: 50.85,
       indexReference: "d",
       fl: 71.025958,
-      glass: "658509 — dense-crown class (supplier unproven)",
+      glass: "BACED5 catalog proxy; 658509 — dense-crown class (supplier unproven)",
       role: "Rear positive element of G1.",
     },
     {
@@ -118,7 +120,7 @@ const LENS_DATA = {
       vd: 70.44,
       indexReference: "d",
       fl: -57.134473,
-      glass: "487704 — low-index crown class (supplier unproven)",
+      glass: "H-QK3L catalog proxy; 487704 — low-index crown class (supplier unproven)",
       role: "Single negative G2 axial focus element.",
     },
     {
@@ -130,7 +132,7 @@ const LENS_DATA = {
       vd: 25.72,
       indexReference: "d",
       fl: -39.904671,
-      glass: "785257 — dense-flint class (supplier unproven)",
+      glass: "H-ZF13 catalog proxy; 785257 — dense-flint class (supplier unproven)",
       cemented: "D2",
       role: "Negative component of the positive G3a cemented pair.",
     },
@@ -143,7 +145,9 @@ const LENS_DATA = {
       vd: 68.62,
       indexReference: "d",
       fl: 26.087626,
-      glass: "593686 — low-dispersion crown class (supplier unproven)",
+      apd: "inferred",
+      apdNote: "The compatible FCD515 low-dispersion catalog proxy has ΔPgF ≈ +0.0157. The patent supplies only nd/νd; supplier, melt and measured partial dispersion are unconfirmed.",
+      glass: "FCD515 catalog proxy; 593686 — low-dispersion crown class (supplier unproven)",
       cemented: "D2",
       role: "Positive component of the positive G3a cemented pair.",
     },
@@ -156,7 +160,7 @@ const LENS_DATA = {
       vd: 46.5,
       indexReference: "d",
       fl: -61.276307,
-      glass: "804465 — lanthanum high-index class (supplier unproven)",
+      glass: "N-LASF44 catalog proxy; 804465 — lanthanum high-index class (supplier unproven)",
       role: "Single negative G3b / VC stabilization element.",
     },
     {
@@ -168,7 +172,7 @@ const LENS_DATA = {
       vd: 33.27,
       indexReference: "d",
       fl: 21.025692,
-      glass: "806333 — high-index flint class (supplier unproven)",
+      glass: "J-LASFH6 catalog proxy; 806333 — high-index flint class (supplier unproven)",
       cemented: "D3",
       role: "Positive component of the G3c cemented pair.",
     },
@@ -181,7 +185,7 @@ const LENS_DATA = {
       vd: 70.44,
       indexReference: "d",
       fl: -38.937873,
-      glass: "487704 — low-index crown class (supplier unproven)",
+      glass: "H-QK3L catalog proxy; 487704 — low-index crown class (supplier unproven)",
       cemented: "D3",
       role: "Negative component of the G3c cemented pair.",
     },
@@ -194,7 +198,7 @@ const LENS_DATA = {
       vd: 58.96,
       indexReference: "d",
       fl: -89.666436,
-      glass: "518590 — crown class (supplier unproven)",
+      glass: "S-NSL3 catalog proxy; 518590 — crown class (supplier unproven)",
       role: "Rear negative meniscus of G3c, convex toward the image plane.",
     },
   ],

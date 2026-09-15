@@ -22,10 +22,10 @@ The patent nd/νd coordinates are retained. The following existing catalog curve
 | L31 | 1.80518 / 25.4 | S-TIH6 | 0.000001 / 0.025 |
 | L32 | 1.90366 / 31.3 | J-LASFH13 | 0.000000 / -0.026 |
 
-### Metadata and verification
+### Metadata
 
 Display names follow the catalog's uppercase manufacturer/line convention. Canonical maker and assignee spelling and romanized inventor names are used while the analysis preserves source wording and qualified production correlations.
 
-Surface audit passes. Image-circle audit reports no undersized surfaces. See the shared corpus checks for geometry, metadata, runtime dispersion, and render diagnostics; no per-lens test was added.
+### Second figure, glass and live-diagram review
 
-Final verification: `npm run typecheck`, `npm run format:check`, `npm run lint`, `npm test` (274 files / 2,695 tests), and `npm run build` (1,340 prerendered routes) passed. The local browser cross-section and display/focus labels were inspected against the patent figure. `npm run generate:glass-reports` passed with zero catalog-coordinate mismatches.
+The second local-site comparison with Example 5 / Fig. 5 retains the SDs: the enlarged rear elements and smaller stop-side pair agree with the optical outline. Dashed rays and stepped mechanical rims are excluded. All seven inspector labels explicitly identify compatible catalog proxies where a generic code previously hid the selected curve. Standard/high-index colors remain appropriate without measured APD evidence. The focus control remains disabled; the description distinguishes the marketed 0.34 m limit from unavailable travel data.

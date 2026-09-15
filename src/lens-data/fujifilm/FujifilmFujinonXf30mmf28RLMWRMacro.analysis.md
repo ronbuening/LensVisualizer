@@ -76,9 +76,7 @@ The source PP plate after L31 is intentionally absent from the LensVisualizer pr
 air-equivalent replacement is 20.703955696203 mm. This is a reference-plane normalization; it does not change the lens
 powers.
 
-The data-file semi-diameters are also modeling values. The patent's ED column is an effective ray diameter over the focus
-range, not a mechanical clear aperture [1, ¶0242–¶0245]. The modeled physical semi-diameters use those ray envelopes plus
-disclosed clearance; they must not be read as production barrel dimensions.
+The data-file semi-diameters use the published Table 1 effective diameters divided by two. ED describes the effective ray diameter over the focus range [1, ¶0242–¶0245], not the larger mechanical rims drawn in Fig. 1. The earlier 0.30–0.40 mm padding has been removed; the optical model now preserves the source aperture limits.
 
 ## Element-by-Element Analysis
 
@@ -208,8 +206,7 @@ mm distance from surface 21A to the image plane after omission of PP.
 
 The patent publishes d-line refractive index `nd`, Abbe number `νd`, and partial-dispersion ratio `θgF`; it does not name
 suppliers or glass melts [1, Table 1]. Catalog research therefore supports coordinate classes and candidate families, not
-manufacturer-specific assignments. The final data deliberately retains patent `nd`/`νd` and does not import catalog
-`nC`, `nF`, `ng`, or `dPgF` values from an unproven supplier identity.
+manufacturer-specific assignments. The final data retains patent `nd`/`νd` and derives `dPgF` directly from Table 1 as `θgF − (0.6438 − 0.001682νd)`. No catalog-derived `nC`/`nF`/`ng` overrides are authored.
 
 | Element(s) | nd | νd | Data-file glass identification | Evidence status |
 |---|---:|---:|---|---|
@@ -228,9 +225,9 @@ The catalog audit covered OHARA, HOYA, SCHOTT, HIKARI, CDGM, and SUMITA sources 
 S- and L-prefix families is retained where relevant; L31's low-Tg 516641 class is not silently collapsed into the S-BSL7
 entry used as a coordinate comparison for L12.
 
-The patent's `θgF` values are useful for checking that candidate classes are plausible, but the final LensVisualizer data
-contains no authored `nC`, `nF`, `ng`, or `dPgF`. Consequently, this analysis does not make an APO-performance claim or
-assert anomalous-dispersion performance from catalog data that has not been adopted into the verified model.
+All eleven elements carry the patent-derived `dPgF`. L14 and L16 have ΔPgF = +0.03083028 and receive patent-backed APD coloring. L21 has ΔPgF = +0.04949936: it is an anomalous high-dispersion flint, not an ED element. These tags describe measured material dispersion, not an APO-performance claim. The other elements retain their standard/high-index colors.
+
+The catalog now includes OHARA L-BSL7, using the vendor's July 2026 Sellmeier constants. L31 explicitly resolves to this low-softening-temperature proxy rather than S-BSL7; its θgF ≈ 0.53343 also agrees with the patent's 0.53345. Production supplier identity remains unconfirmed.
 
 ## Focus Mechanism
 
@@ -388,8 +385,7 @@ supported by the source rather than inferred from generic glass behavior:
   of two ED elements [1, Table 1] [2] [3].
 
 These facts support a deliberate chromatic-correction strategy, particularly against focus-dependent color change. They
-do not by themselves establish apochromatic performance. The final model has no supplier-validated Sellmeier assignment
-or explicit `nC`/`nF`/`ng`/`dPgF` fields, so stronger spectral claims are intentionally avoided.
+do not by themselves establish apochromatic performance. Compatible catalog curves supply the C/d/F shape while the patent-derived `dPgF` controls the g-line; no production supplier identity or complete measured line-index set is claimed.
 
 ## Conditional Expressions
 

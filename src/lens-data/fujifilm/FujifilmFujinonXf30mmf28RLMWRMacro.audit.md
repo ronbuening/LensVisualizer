@@ -26,10 +26,16 @@ The patent nd/νd coordinates are retained. The following existing catalog curve
 | L23 | 1.883 / 39.22 | H-ZLaF68N | 0.000000 / 0.000 |
 | L31 | 1.51633 / 64.06 | S-BSL7 | 0.000000 / 0.080 |
 
-### Metadata and verification
+### Metadata
 
 Display names follow the catalog's uppercase manufacturer/line convention. Canonical maker and assignee spelling and romanized inventor names are used while the analysis preserves source wording and qualified production correlations.
 
-Surface audit passes. Image-circle audit reports no undersized surfaces. See the shared corpus checks for geometry, metadata, runtime dispersion, and render diagnostics; no per-lens test was added.
+### Second figure, glass and live-diagram review
 
-Final verification: `npm run typecheck`, `npm run format:check`, `npm run lint`, `npm test` (274 files / 2,695 tests), and `npm run build` (1,340 prerendered routes) passed. The local browser cross-section and display/focus labels were inspected against the patent figure. `npm run generate:glass-reports` passed with zero catalog-coordinate mismatches.
+Table 1 explicitly publishes effective diameters ED and θgF for Example 1. The final SDs now equal ED/2 on every refractive surface, removing the earlier 0.30–0.40 mm padding. The wider Fig. 1 mechanical rim is not treated as additional optical aperture. The stop remains inferred because its diameter is not tabulated.
+
+All eleven θgF values are converted directly to dPgF = θgF − (0.6438 − 0.001682νd). L14/L16 have +0.03083028 and patent-backed APD coloring; L21 has +0.04949936 and is labeled anomalous high-dispersion flint, not ED. Other glasses keep their standard/high-index colors. No complete nC/nF/ng overrides are authored.
+
+Added the previously absent OHARA L-BSL7 low-softening-temperature entry from OHARA_260701.AGF, with the vendor's formula-2 coefficients. L31 now selects L-BSL7 explicitly (nd 1.51633, νd 64.065129, θgF approximately 0.53343), matching the patent's 1.51633/64.06/0.53345 more closely than S-BSL7. Removed the obsolete L-BSL7 → S-BSL7 alias. The existing 516641 bare-code precedence remains S-BSL7. All eleven elements retain compatible catalog coverage without implying production suppliers.
+
+The live focus slider orders infinity before the 10 cm state. Only G2 moves imageward by 8.453 mm; DD14/DD19 change from 2.301/13.210 to 10.754/4.757 mm. G1 and G3 remain fixed.

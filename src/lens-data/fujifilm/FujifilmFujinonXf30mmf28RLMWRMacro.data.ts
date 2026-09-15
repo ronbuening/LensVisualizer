@@ -12,10 +12,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * air-equivalent 20.703955696203 mm from 17.731 + 2.850/1.51680 + 1.094.
  * Stop: axial station is patent-published; physical diameter is not. STO sd=6.550410636 mm is calibrated
  * paraxially from the normalized infinity model to design FNo=2.9, so it is an inference.
- * Semi-diameters are modeled physical clear apertures, not patent dimensions. Baseline sd is ED/2 + 0.30 mm;
- * surface 13A is 9.10 mm so the default on-axis ray fan clears at closest focus.
+ * Semi-diameters are Table 1 effective diameters ED/2. The larger Fig. 1 mechanical rims are not optical apertures.
  * Glass: patent nd/vd is retained at the d line. Labels are coordinate classes/candidates only; supplier/melt
- * identity is unconfirmed. Patent thetaGF is not converted into unsupported nC/nF/ng/dPgF fields.
+ * identity is unconfirmed. Table 1 thetaGF supplies dPgF directly; no catalog-derived nC/nF/ng overrides are used.
  * Aspheres: patent KA maps as K = KA - 1. All Example-1 KA values are 1, hence K=0.
  * Scale: none (s=1). Dimensions and asphere coefficients remain at patent scale.
  */
@@ -51,9 +50,10 @@ const LENS_DATA = {
       type: "Negative Meniscus (2× Asph)",
       nd: 1.58254,
       vd: 59.44,
+      dPgF: -0.00198192, // Table 1: θgF=0.54184; ΔPgF=θgF−(0.6438−0.001682νd).
       indexReference: "d",
       fl: -20.548862,
-      glass: "583594 low-Tg crown class (supplier unconfirmed)",
+      glass: "L-BAL42 catalog proxy; 583594 low-Tg crown class (supplier unconfirmed)",
       role: "Front negative element of fixed subgroup G1A; both surfaces are aspherical.",
     },
     {
@@ -64,6 +64,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.51633,
       vd: 64.14,
+      dPgF: -0.00060652, // Table 1: θgF=0.53531; ΔPgF=θgF−(0.6438−0.001682νd).
       indexReference: "d",
       fl: -44.699621,
       glass: "516641 crown / S-BSL7-class (supplier unconfirmed)",
@@ -77,9 +78,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.80611,
       vd: 33.29,
+      dPgF: 0.00348378, // Table 1: θgF=0.59129; ΔPgF=θgF−(0.6438−0.001682νd).
       indexReference: "d",
       fl: 18.807929,
-      glass: "806333 high-index flint class (supplier unconfirmed)",
+      glass: "J-LASFH6 catalog proxy; 806333 high-index flint class (supplier unconfirmed)",
       role: "Positive rear element of fixed subgroup G1A.",
     },
     {
@@ -90,6 +92,9 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.497,
       vd: 81.54,
+      dPgF: 0.03083028, // Table 1: θgF=0.53748; ΔPgF=θgF−(0.6438−0.001682νd).
+      apd: "patent",
+      apdNote: "Table 1 publishes θgF=0.53748; positive anomalous dispersion in this ED element. Supplier identity is unconfirmed.",
       indexReference: "d",
       fl: 30.540834,
       glass: "497816 S-FPL51/FCD1-class ED glass (supplier unconfirmed)",
@@ -103,6 +108,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.77047,
       vd: 29.74,
+      dPgF: 0.00136268, // Table 1: θgF=0.59514; ΔPgF=θgF−(0.6438−0.001682νd).
       indexReference: "d",
       fl: -10.585567,
       glass: "770297 / NBFD29-class flint (supplier unconfirmed)",
@@ -117,6 +123,9 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.497,
       vd: 81.54,
+      dPgF: 0.03083028, // Table 1: θgF=0.53748; ΔPgF=θgF−(0.6438−0.001682νd).
+      apd: "patent",
+      apdNote: "Table 1 publishes θgF=0.53748; positive anomalous dispersion in this ED element. Supplier identity is unconfirmed.",
       indexReference: "d",
       fl: 22.784496,
       glass: "497816 S-FPL51/FCD1-class ED glass (supplier unconfirmed)",
@@ -131,6 +140,7 @@ const LENS_DATA = {
       type: "Biconvex Positive (2× Asph)",
       nd: 1.6935,
       vd: 53.2,
+      dPgF: -0.00770760, // Table 1: θgF=0.54661; ΔPgF=θgF−(0.6438−0.001682νd).
       indexReference: "d",
       fl: 17.166701,
       glass: "694532 lanthanum crown / M-LAC130-class (supplier unconfirmed)",
@@ -144,6 +154,9 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.98613,
       vd: 16.48,
+      dPgF: 0.04949936, // Table 1: θgF=0.66558; ΔPgF=θgF−(0.6438−0.001682νd).
+      apd: "patent",
+      apdNote: "Table 1 publishes θgF=0.66558; positive partial-dispersion deviation in a high-dispersion flint, not an ED glass.",
       indexReference: "d",
       fl: 56.77069,
       glass: "986165 high-index flint / FDS16-W-class (supplier unconfirmed)",
@@ -157,6 +170,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.6727,
       vd: 32.17,
+      dPgF: 0.00855994, // Table 1: θgF=0.59825; ΔPgF=θgF−(0.6438−0.001682νd).
       indexReference: "d",
       fl: 73.89863,
       glass: "673322 dense flint / H-ZF2-class (supplier unconfirmed)",
@@ -171,6 +185,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.883,
       vd: 39.22,
+      dPgF: -0.00495196, // Table 1: θgF=0.57288; ΔPgF=θgF−(0.6438−0.001682νd).
       indexReference: "d",
       fl: -12.612466,
       glass: "883392 lanthanum flint / H-ZLaF68N-class (supplier unconfirmed)",
@@ -185,36 +200,37 @@ const LENS_DATA = {
       type: "Positive Meniscus (2× Asph)",
       nd: 1.51633,
       vd: 64.06,
+      dPgF: -0.00260108, // Table 1: θgF=0.53345; ΔPgF=θgF−(0.6438−0.001682νd).
       indexReference: "d",
       fl: 60.767271,
-      glass: "516641 low-Tg crown / L-BSL7-class (supplier unconfirmed)",
+      glass: "L-BSL7 catalog proxy (low-Tg crown; supplier unconfirmed)",
       role: "Fixed positive G3 field-side element; both surfaces are aspherical.",
     },
   ],
 
   /* ── Surface prescription ── */
   surfaces: [
-    { label: "1A", R: 259.44525, d: 1, nd: 1.58254, elemId: 1, sd: 7.6 },
-    { label: "2A", R: 11.42635, d: 2.89, nd: 1, elemId: 0, sd: 6.8 },
-    { label: "3", R: 95.17947, d: 1.13, nd: 1.51633, elemId: 2, sd: 6.75 },
-    { label: "4", R: 18.50036, d: 1, nd: 1, elemId: 0, sd: 6.65 },
-    { label: "5", R: 18.74098, d: 3.75, nd: 1.80611, elemId: 3, sd: 7.095 },
-    { label: "6", R: -72.28533, d: 2, nd: 1, elemId: 0, sd: 7.115 },
+    { label: "1A", R: 259.44525, d: 1, nd: 1.58254, elemId: 1, sd: 7.3 },
+    { label: "2A", R: 11.42635, d: 2.89, nd: 1, elemId: 0, sd: 6.5 },
+    { label: "3", R: 95.17947, d: 1.13, nd: 1.51633, elemId: 2, sd: 6.45 },
+    { label: "4", R: 18.50036, d: 1, nd: 1, elemId: 0, sd: 6.35 },
+    { label: "5", R: 18.74098, d: 3.75, nd: 1.80611, elemId: 3, sd: 6.795 },
+    { label: "6", R: -72.28533, d: 2, nd: 1, elemId: 0, sd: 6.815 },
     { label: "STO", R: 1e15, d: 6.69, nd: 1, elemId: 0, sd: 6.550410636 },
-    { label: "8", R: 79.8183, d: 3.71, nd: 1.497, elemId: 4, sd: 7.265 },
-    { label: "9", R: -18.45388, d: 1.87, nd: 1, elemId: 0, sd: 7.255 },
-    { label: "10", R: -11.37137, d: 1, nd: 1.77047, elemId: 5, sd: 7.025 },
-    { label: "11", R: 29.9463, d: 4.71, nd: 1.497, elemId: 6, sd: 7.855 },
-    { label: "12", R: -17.25886, d: 0.53, nd: 1, elemId: 0, sd: 8.365 },
-    { label: "13A", R: 40.08092, d: 5.01, nd: 1.6935, elemId: 7, sd: 9.1 },
-    { label: "14A", R: -16.06849, d: 2.301, nd: 1, elemId: 0, sd: 9.305 },
-    { label: "15", R: 1355.62916, d: 2, nd: 1.98613, elemId: 8, sd: 8.68 },
-    { label: "16", R: -58.35203, d: 0.5, nd: 1, elemId: 0, sd: 8.59 },
-    { label: "17", R: -80.63177, d: 1.71, nd: 1.6727, elemId: 9, sd: 8.395 },
-    { label: "18", R: -31.0144, d: 0.85, nd: 1.883, elemId: 10, sd: 8.26 },
-    { label: "19", R: 17.59974, d: 13.21, nd: 1, elemId: 0, sd: 7.98 },
-    { label: "20A", R: -362.90949, d: 4.47, nd: 1.51633, elemId: 11, sd: 11.59 },
-    { label: "21A", R: -29.00029, d: 20.703955696203, nd: 1, elemId: 0, sd: 12.045 },
+    { label: "8", R: 79.8183, d: 3.71, nd: 1.497, elemId: 4, sd: 6.965 },
+    { label: "9", R: -18.45388, d: 1.87, nd: 1, elemId: 0, sd: 6.955 },
+    { label: "10", R: -11.37137, d: 1, nd: 1.77047, elemId: 5, sd: 6.725 },
+    { label: "11", R: 29.9463, d: 4.71, nd: 1.497, elemId: 6, sd: 7.555 },
+    { label: "12", R: -17.25886, d: 0.53, nd: 1, elemId: 0, sd: 8.065 },
+    { label: "13A", R: 40.08092, d: 5.01, nd: 1.6935, elemId: 7, sd: 8.7 },
+    { label: "14A", R: -16.06849, d: 2.301, nd: 1, elemId: 0, sd: 9.005 },
+    { label: "15", R: 1355.62916, d: 2, nd: 1.98613, elemId: 8, sd: 8.38 },
+    { label: "16", R: -58.35203, d: 0.5, nd: 1, elemId: 0, sd: 8.29 },
+    { label: "17", R: -80.63177, d: 1.71, nd: 1.6727, elemId: 9, sd: 8.095 },
+    { label: "18", R: -31.0144, d: 0.85, nd: 1.883, elemId: 10, sd: 7.96 },
+    { label: "19", R: 17.59974, d: 13.21, nd: 1, elemId: 0, sd: 7.68 },
+    { label: "20A", R: -362.90949, d: 4.47, nd: 1.51633, elemId: 11, sd: 11.29 },
+    { label: "21A", R: -29.00029, d: 20.703955696203, nd: 1, elemId: 0, sd: 11.745 },
   ],
 
   /* ── Aspherical coefficients ── */
