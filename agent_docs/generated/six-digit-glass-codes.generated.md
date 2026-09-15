@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **747** lenses scanned
-- **1697** total code-only elements found
-- **1697** elements in this report
-- **265** distinct lens files affected
+- **753** lenses scanned
+- **1699** total code-only elements found
+- **1699** elements in this report
+- **266** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -126,6 +126,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 624470 | 3 | 3 | patents/US7359125.pdf<br>patents/US3774991.pdf<br>patents/US3481666.pdf | 1/3 rows have review records |
 | 626357 | 3 | 3 | patents/US20140098253A1.pdf<br>patents/JP_H0219814_A.pdf<br>patents/CN211955966U.pdf | 1/3 rows have review records |
 | 654397 | 3 | 2 | patents/US20150146044A1.pdf<br>patents/US20110090576A1.pdf | No review-record hit |
+| 684313 | 3 | 2 | patents/US20150124127A1.pdf | All rows explicitly disposed |
 | 689312 | 3 | 2 | patents/US10168507.pdf<br>patents/US20240151940A1.pdf | No review-record hit |
 | 738323 | 3 | 3 | patents/JP2013054269A.pdf<br>patents/US20150205081A1.pdf<br>patents/US20190265441A1.pdf | 1/3 rows have review records |
 | 741278 | 3 | 3 | patents/JP2018049102A.pdf<br>patents/US3459469.pdf<br>patents/JPWO2019187633A1.pdf | No review-record hit |
@@ -180,7 +181,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 673322 | 2 | 2 | patents/JP_H0219814_A.pdf<br>patents/JP2012181525A.pdf | No review-record hit |
 | 678553 | 2 | 2 | patents/US6115188.pdf<br>patents/JPA 1979030821-000000.pdf | No review-record hit |
 | 678555 | 2 | 2 | patents/CN_121091494_A.pdf<br>patents/JPA 1975110330-000000.pdf | No review-record hit |
-| 684313 | 2 | 1 | No patent number parsed from lens metadata | All rows explicitly disposed |
 | 690570 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
 | 691548 | 2 | 2 | patents/US20240295723A1.pdf<br>patents/CN211955966U.pdf | No review-record hit |
 | 713538 | 2 | 1 | patents/JP_H11211978_A.pdf | No review-record hit |
@@ -281,6 +281,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 626391 | 1 | 1 | patents/US4062630.pdf | All rows have review records |
 | 630346 | 1 | 1 | patents/JP2015041012A.pdf | All rows have review records |
 | 635232 | 1 | 1 | patents/US8081392.pdf | All rows explicitly disposed |
+| 636239 | 1 | 1 | patents/US20150124127A1.pdf | All rows explicitly disposed |
 | 639449 | 1 | 1 | No patent number parsed from lens metadata | No review-record hit |
 | 639450 | 1 | 1 | patents/US3774991.pdf | No review-record hit |
 | 639555 | 1 | 1 | patents/JP2021086024A.pdf | No review-record hit |
@@ -2417,6 +2418,13 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L18 (Element 18) | 35 | `Unmatched proprietary short flint (635/232, condition-b APD glass)` | 1.63494 / 23.22 | No catalog entry | abbe | patents/US8081392.pdf | Explicit disposition in data |
+
+### [PANASONIC LEICA DC VARIO-SUMMILUX 4.7-17.7mm f/1.4-2.3 (Panasonic Lumix DMC-LX7; Leica D-Lux 6)](../../src/lens-data/panasonic/LeicaDCVarioSummilux47177mmf1423PanasonicLX7.data.ts) - US 2015/0124127 A1
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L10 (Element 10) | 20A | `684313 — Unmatched exact public catalog identity` | 1.68400 / 31.30 | No catalog entry | abbe | patents/US20150124127A1.pdf | Explicit disposition in data |
+| L11 (Element 11) | 22A | `636239 — Unmatched exact public catalog identity` | 1.63550 / 23.90 | No catalog entry | abbe | patents/US20150124127A1.pdf | Explicit disposition in data |
 
 ### [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) - US 2015/0268449 A1
 

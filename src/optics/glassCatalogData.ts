@@ -103,6 +103,7 @@ const GLASS_CATALOG_SOURCE_ORDER = [
   "SF4",
   "SF1",
   "N-LAK8",
+  "N-LAK21",
   "N-KZFS5",
   "SF2",
   "N-SK16",

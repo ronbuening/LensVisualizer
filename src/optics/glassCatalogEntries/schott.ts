@@ -6,6 +6,18 @@ import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const SCHOTT_GLASS_ENTRIES: readonly GlassEntry[] = [
   {
+    name: "N-LAK21",
+    vendor: "Schott",
+    B: [1.22718116, 0.420783743, 1.01284843],
+    C: [0.00602075682, 0.0196862889, 88.4370099],
+    nd: 1.64049,
+    vd: 60.1,
+    PgF: 0.5411,
+    code6: "640601",
+    source:
+      "SCHOTT Optical Glass collection (May 2019), PDF p. 54, N-LAK21 datasheet dated 2014-02-01; https://www.schott.com/en-gb/products/optical-glass/-/media/Project/OnEx/Products/O/optical-glass/Downloads/schott-optical-glass-collection-datasheets-english-may2019.pdf (accessed 2026-09-15).",
+  },
+  {
     name: "LAFN7",
     vendor: "Schott",
     B: [1.66842615, 0.298512803, 1.0774376],

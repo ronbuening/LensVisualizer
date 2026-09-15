@@ -12,17 +12,17 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **747** lenses scanned
-- **8486** glass elements examined
-- **2650** elements have multiple coordinate-compatible candidates
+- **753** lenses scanned
+- **8548** glass elements examined
+- **2656** elements have multiple coordinate-compatible candidates
 - **499** lens files are affected
 - **256** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
-- **197** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
+- **198** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
 | Smallest reference-index residual | 1506 |
-| Evidence-source priority | 863 |
+| Evidence-source priority | 869 |
 | Vendor context | 272 |
 | Stable canonical-name order | 7 |
 | Smallest Abbe residual | 2 |
@@ -869,6 +869,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `BACED1 (HOYA catalog equivalent; production supplier unspecified; patent 617540)` | 1.61720 / 54.01 (d) | BACED1 — direct name evidence outranks six-digit code evidence. | K-SSK1 (Sumita, code, vendor ✗, preferred code row) | 1 | [NIKON AF ZOOM-MICRO NIKKOR ED 70-180mm f/4.5-5.6D](../../src/lens-data/nikon/NikonAFZoomMicro70180mmf4556D.data.ts) L3 |
 | `S-LAH65V class (OHARA, 804/466)` | 1.80411 / 46.54 (d) | S-LAH65V — direct name evidence outranks six-digit code evidence. | S-LAH65 (Ohara, code, vendor ✓, preferred code row)<br>H-ZLaF50E (CDGM, code, vendor ✗, alternate code row)<br>J-LASF015 (Hikari, code, vendor ✗, alternate code row)<br>H-ZLaF50D (CDGM, code, vendor ✗, alternate code row) | 3 | [NIKON AF ZOOM-MICRO NIKKOR ED 70-180mm f/4.5-5.6D](../../src/lens-data/nikon/NikonAFZoomMicro70180mmf4556D.data.ts) L10 |
 | `SF6-class dense flint (Schott, 805/255)` | 1.80458 / 25.50 (d) | SF6 — direct name evidence outranks six-digit code evidence. | H-ZF7LA (CDGM, code, vendor ✗, preferred code row)<br>J-SF6 (Hikari, code, vendor ✗, alternate code row)<br>FD60 (Hoya, code, vendor ✗, alternate code row) | 1 | [NIKON AF ZOOM-MICRO NIKKOR ED 70-180mm f/4.5-5.6D](../../src/lens-data/nikon/NikonAFZoomMicro70180mmf4556D.data.ts) L11 |
+| `J-LAK01 (Hikari; patent code 640601)` | 1.64000 / 60.09 (d) | J-LAK01 — direct name evidence outranks six-digit code evidence. | N-LAK21 (Schott, code, vendor ✗, preferred code row) | 1 | [NIKON AF ZOOM-NIKKOR 28-200mm f/3.5-5.6 G IF-ED](../../src/lens-data/nikon/NikonAFZoomNikkor28200mmf3556GIFED.data.ts) L11b |
 | `835427 — lanthanum flint class` | 1.83481 / 42.72 (d) | S-LAH55 — smallest d-line \|Δn\| (2.9e-6 vs 3.0e-6) | TAFD5G (Hoya, code, alternate code row)<br>TAFD5F (Hoya, code, alternate code row) | 1 | [NIKON AF ZOOM-NIKKOR 28-200mm f/3.5-5.6 G IF-ED](../../src/lens-data/nikon/NikonAFZoomNikkor28200mmf3556GIFED.data.ts) L21g |
 | `773496 — lanthanum flint class` | 1.77250 / 49.61 (d) | J-LASF016 — smallest d-line \|Δn\| (1.7e-8 vs 6.4e-8) | N-LAF34 (Schott, code, alternate code row)<br>S-LAH66 (Ohara, code, preferred code row)<br>S-LAH66N (Ohara, code, alternate code row) | 2 | [NIKON AF ZOOM-NIKKOR 28-200mm f/3.5-5.6 G IF-ED](../../src/lens-data/nikon/NikonAFZoomNikkor28200mmf3556GIFED.data.ts) L22 |
 | `808228 — very dense flint class` | 1.80809 / 22.76 (d) | FD225 — smallest d-line \|Δn\| (1.4e-6 vs 4.7e-6) | S-NPH1 (Ohara, code, preferred code row) | 1 | [NIKON AF ZOOM-NIKKOR 28-200mm f/3.5-5.6 G IF-ED](../../src/lens-data/nikon/NikonAFZoomNikkor28200mmf3556GIFED.data.ts) L23 |
@@ -922,6 +923,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `497816 low-dispersion class (vendor/composition ambiguous)` | 1.49700 / 81.61 (d) | H-FK61 — smallest d-line \|Δn\| (1.1e-8 vs 1.6e-7) | FCD1 (Hoya, code, alternate code row)<br>S-FPL51 (Ohara, code, preferred code row) | 1 | [NIKON AF-S DX ZOOM-NIKKOR 18-55mm f/3.5-5.6G ED II](../../src/lens-data/nikon/NikonAFSDXZoomNikkor1855mmf3556GEDII.data.ts) L2a |
 | `517641 crown class (vendor ambiguous; BK7-family coordinates)` | 1.51680 / 64.10 (d) | N-BK7 — alias evidence outranks six-digit code evidence. | J-BK7A (Hikari, code, preferred code row) | 2 | [NIKON AF-S DX ZOOM-NIKKOR 18-55mm f/3.5-5.6G ED II](../../src/lens-data/nikon/NikonAFSDXZoomNikkor1855mmf3556GEDII.data.ts) L2ap |
 | `847238 class` | 1.84666 / 23.80 (d) | J-SF03 — smallest d-line \|Δn\| (3.7e-8 vs 5.0e-8) | H-ZF52 (CDGM, code, alternate code row)<br>S-TIH53W (Ohara, code, alternate code row)<br>S-TIH53 (Ohara, code, preferred code row)<br>FDS90 (Hoya, code, alternate code row) | 4 | [NIKON AF-S DX ZOOM-NIKKOR 18-70mm f/3.5-4.5G IF-ED](../../src/lens-data/nikon/NikonAFSDXZoomNikkor1870mmf3545GIFED.data.ts) L11 +2 files |
+| `S-BSM81 catalog equivalent (patent 640601; production supplier unspecified)` | 1.64000 / 60.10 (d) | S-BSM81 — direct name evidence outranks six-digit code evidence. | N-LAK21 (Schott, code, preferred code row) | 1 | [NIKON AF-S DX ZOOM-NIKKOR 18-70mm f/3.5-4.5G IF-ED](../../src/lens-data/nikon/NikonAFSDXZoomNikkor1870mmf3545GIFED.data.ts) L12 |
 | `713539 class` | 1.71300 / 53.90 (d) | LAC8 — smallest d-line \|Δn\| (1.8e-7 vs 3.0e-4) | MP-LAC8-30 (Hoya, code, alternate code row) | 2 | [NIKON AF-S DX ZOOM-NIKKOR 18-70mm f/3.5-4.5G IF-ED](../../src/lens-data/nikon/NikonAFSDXZoomNikkor1870mmf3545GIFED.data.ts) L13 +1 files |
 | `804466 class` | 1.80400 / 46.60 (d) | H-ZLaF50D — smallest d-line \|Δn\| (7.2e-9 vs 1.9e-8) | J-LASF015 (Hikari, code, alternate code row)<br>H-ZLaF50E (CDGM, code, alternate code row)<br>S-LAH65 (Ohara, code, preferred code row) | 3 | [NIKON AF-S DX ZOOM-NIKKOR 18-70mm f/3.5-4.5G IF-ED](../../src/lens-data/nikon/NikonAFSDXZoomNikkor1870mmf3545GIFED.data.ts) L21 |
 | `804396 class` | 1.80440 / 39.60 (d) | J-LASF013 — smallest d-line \|Δn\| (2.3e-8 vs 2.5e-7) | S-LAH63Q (Ohara, code, alternate code row)<br>S-LAH63 (Ohara, code, preferred code row) | 1 | [NIKON AF-S DX ZOOM-NIKKOR 18-70mm f/3.5-4.5G IF-ED](../../src/lens-data/nikon/NikonAFSDXZoomNikkor1870mmf3545GIFED.data.ts) L31 |
@@ -1004,6 +1006,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `847238 - dense-flint class` | 1.84666 / 23.78 (d) | J-SF03 — smallest d-line \|Δn\| (3.7e-8 vs 5.0e-8) | H-ZF52 (CDGM, code, alternate code row)<br>S-TIH53W (Ohara, code, alternate code row)<br>S-TIH53 (Ohara, code, preferred code row)<br>FDS90 (Hoya, code, alternate code row) | 4 | [NIKON AF-S VR ZOOM-NIKKOR 200-400mm f/4G IF-ED](../../src/lens-data/nikon/NikonAFSVRZoomNikkor200400mmf4GIFED.data.ts) L16 |
 | `804396 - lanthanum glass class` | 1.80440 / 39.59 (d) | J-LASF013 — smallest d-line \|Δn\| (2.3e-8 vs 2.5e-7) | S-LAH63Q (Ohara, code, alternate code row)<br>S-LAH63 (Ohara, code, preferred code row) | 1 | [NIKON AF-S VR ZOOM-NIKKOR 200-400mm f/4G IF-ED](../../src/lens-data/nikon/NikonAFSVRZoomNikkor200400mmf4GIFED.data.ts) L18 |
 | `697555 - lanthanum-crown class` | 1.69680 / 55.52 (d) | J-LAK14 — smallest d-line \|Δn\| (1.3e-8 vs 2.3e-6) | LAC14 (Hoya, code, alternate code row)<br>S-LAL14 (Ohara, code, preferred code row) | 1 | [NIKON AF-S VR ZOOM-NIKKOR 200-400mm f/4G IF-ED](../../src/lens-data/nikon/NikonAFSVRZoomNikkor200400mmf4GIFED.data.ts) L21 |
+| `S-BSM81 catalog equivalent (patent 640601; production supplier unspecified)` | 1.64000 / 60.09 (d) | S-BSM81 — direct name evidence outranks six-digit code evidence. | N-LAK21 (Schott, code, preferred code row) | 4 | [NIKON AF-S VR ZOOM-NIKKOR 200-400mm f/4G IF-ED](../../src/lens-data/nikon/NikonAFSVRZoomNikkor200400mmf4GIFED.data.ts) L23 +1 files |
 | `741527/528 - lanthanum-crown class` | 1.74100 / 52.67 (d) | LAK011 — smallest d-line \|Δn\| (1.0e-7 vs 1.1e-6) | S-LAL61 (Ohara, code, alternate code row) | 2 | [NIKON AF-S VR ZOOM-NIKKOR 200-400mm f/4G IF-ED](../../src/lens-data/nikon/NikonAFSVRZoomNikkor200400mmf4GIFED.data.ts) L45 |
 | `847238 — dense-flint class (vendor unresolved)` | 1.84666 / 23.78 (d) | J-SF03 — smallest d-line \|Δn\| (3.7e-8 vs 5.0e-8) | H-ZF52 (CDGM, code, alternate code row)<br>S-TIH53W (Ohara, code, alternate code row)<br>S-TIH53 (Ohara, code, preferred code row)<br>FDS90 (Hoya, code, alternate code row) | 3 | [NIKON AF-S VR ZOOM-NIKKOR 24-120mm f/3.5-5.6G IF-ED](../../src/lens-data/nikon/NikonAFSVRZoomNikkor24120mmf3556GIFED.data.ts) L11 |
 | `755523 — lanthanum-crown class (vendor unresolved)` | 1.75500 / 52.32 (d) | J-LASKH2 — smallest d-line \|Δn\| (1.5e-8 vs 1.6e-7) | N-LAK33B (Schott, code, alternate code row)<br>TAC6L (Hoya, code, alternate code row)<br>S-YGH51 (Ohara, code, alternate code row) | 1 | [NIKON AF-S VR ZOOM-NIKKOR 24-120mm f/3.5-5.6G IF-ED](../../src/lens-data/nikon/NikonAFSVRZoomNikkor24120mmf3556GIFED.data.ts) L12 |
