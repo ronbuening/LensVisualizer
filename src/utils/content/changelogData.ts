@@ -19,6 +19,16 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-09-15",
+    type: "lens",
+    summary: "Added Fujinon XF 27mm f/2.8, XF 30mm f/2.8 Macro and XF 35mm f/2 patent designs",
+  },
+  {
+    date: "2026-09-15",
+    type: "lens",
+    summary: "Added ZEISS Batis 18mm f/2.8, Batis 85mm f/1.8 and Biotar 50mm f/1.4 patent designs",
+  },
+  {
     date: "2026-09-14",
     type: "improvement",
     summary:
