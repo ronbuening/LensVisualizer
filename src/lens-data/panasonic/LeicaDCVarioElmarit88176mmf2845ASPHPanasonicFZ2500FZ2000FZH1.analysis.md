@@ -1,4 +1,4 @@
-# LEICA DC VARIO-ELMARIT 8.8-176mm f/2.8-4.5 ASPH. (Panasonic Lumix FZ2500 / FZ2000 / FZH1)
+# PANASONIC LEICA DC VARIO-ELMARIT 8.8-176mm f/2.8-4.5 ASPH. (Panasonic Lumix FZ2500 / FZ2000 / FZH1)
 
 ## Patent Reference and Design Identification
 
@@ -11,6 +11,8 @@
 **Applicant:** Panasonic Intellectual Property Management Co., Ltd.\
 **Title:** *Zoom Lens System, Imaging Apparatus and Camera*\
 **Embodiment analyzed:** Numerical Example 1 / first exemplary embodiment, Figure 1 and Tables 1-3D
+
+**Manufacturer and branding:** The production LEICA DC lens is manufactured by Panasonic using measurement equipment and quality-assurance systems certified by Leica Camera AG. The catalog therefore lists Panasonic as maker and retains LEICA DC as the optical branding. Patent-assignee attribution is recorded separately and does not establish exclusive design authorship. [Panasonic manufacturing explanation](https://www.panasonic.com/nz/consumer/lumix/brand/technologies/great-lenses-make-great-cameras.html)
 
 US 2018/0081156 A1 states that Numerical Example 1 corresponds to the first exemplary embodiment of Figure 1. The patent describes a five-powered-group zoom consisting, from object to image, of G1(+), G2(-), the aperture stop, G3(+), G4(-), and G5(+), followed by a plane-parallel plate P. The first embodiment contains 16 physical lens elements, five cemented pairs, and eight aspherical surfaces distributed over five elements. Those source facts are stated in ¶0025-¶0040 and tabulated in Tables 1-3D.
 

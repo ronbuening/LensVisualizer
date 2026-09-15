@@ -46,7 +46,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "leica-dc-vario-elmarit-4p5-108mm-f28-panasonic-fz300",
   maker: "Panasonic",
-  name: "LEICA DC VARIO-ELMARIT 4.5-108mm f/2.8 (Panasonic Lumix DMC-FZ300)",
+  name: "PANASONIC LEICA DC VARIO-ELMARIT 4.5-108mm f/2.8 (Panasonic Lumix DMC-FZ300)",
   subtitle: "US 2015/0103211 A1 Example 1 — strong probable FZ300 correlation; native patent scale",
   specs: [
     "14 ELEMENTS / 11 GROUPS",

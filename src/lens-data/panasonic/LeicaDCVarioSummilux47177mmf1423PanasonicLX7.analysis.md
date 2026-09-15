@@ -10,6 +10,8 @@
 **Title:** *Zoom Lens System, Imaging Device and Camera*\
 **Embodiment analyzed:** Embodiment 1 / Numerical Example 1
 
+**Manufacturer and branding:** The production LEICA DC lens is manufactured by Panasonic using measurement equipment and quality-assurance systems certified by Leica Camera AG. The catalog therefore lists Panasonic as maker and retains LEICA DC as the optical branding. Patent-assignee attribution is recorded separately and does not establish exclusive design authorship. [Panasonic manufacturing explanation](https://www.panasonic.com/nz/consumer/lumix/brand/technologies/great-lenses-make-great-cameras.html)
+
 The prescription modeled here is Numerical Example 1, which the patent explicitly identifies as the implementation of Embodiment 1 (US 2015/0124127 A1, ¶0194; Fig. 1; Tables 1–3). The patent describes an eleven-element, five-unit zoom with unit powers positive–negative–positive–positive–negative, an aperture diaphragm inside the third unit, transverse image stabilization by L8, and focusing by axial motion of the fourth unit G4 (¶0119–¶0129, ¶0190–¶0192).
 
 The association with the production Panasonic LUMIX DMC-LX7 is strong but remains an inference rather than a manufacturer-confirmed patent attribution. Panasonic specifies a LEICA DC VARIO-SUMMILUX 4.7–17.7 mm f/1.4–2.3 lens with 11 elements in 10 groups, five aspherical lenses producing nine aspherical surfaces, two ED lenses, POWER O.I.S., and a 1/1.7-inch sensor. Those construction counts agree exactly with Numerical Example 1, while the patent's L8 transverse stabilizer corresponds functionally to the production O.I.S. layout. The patent priority date of July 17, 2012 is also contemporaneous with the LX7 product documentation.

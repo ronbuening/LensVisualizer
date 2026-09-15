@@ -43,7 +43,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "leica-dc-vario-summilux-10934-f1728-lx100m2",
   maker: "Panasonic",
-  name: "LEICA DC VARIO-SUMMILUX 10.9-34mm f/1.7-2.8 ASPH. (Panasonic Lumix DC-LX100M2)",
+  name: "PANASONIC LEICA DC VARIO-SUMMILUX 10.9-34mm f/1.7-2.8 ASPH. (Panasonic Lumix DC-LX100M2)",
   subtitle: "US 2016/0054550 A1 Example 1 — strong production correlation; normalized direct-cement model",
   specs: [
     "11 ELEMENTS / 8 GROUPS",

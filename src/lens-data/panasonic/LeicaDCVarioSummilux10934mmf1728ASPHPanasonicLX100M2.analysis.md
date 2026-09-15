@@ -1,4 +1,4 @@
-# LEICA DC VARIO-SUMMILUX 10.9-34mm f/1.7-2.8 ASPH. (Panasonic Lumix DC-LX100M2)
+# PANASONIC LEICA DC VARIO-SUMMILUX 10.9-34mm f/1.7-2.8 ASPH. (Panasonic Lumix DC-LX100M2)
 
 ## Patent Reference and Design Identification
 
@@ -10,6 +10,8 @@
 **Applicant:** Panasonic Intellectual Property Management Co., Ltd.\
 **Title:** “Zoom Lens System, Imaging Device, and Camera”\
 **Embodiment analyzed:** Example 1 / First Exemplary Embodiment
+
+**Manufacturer and branding:** The production LEICA DC lens is manufactured by Panasonic using measurement equipment and quality-assurance systems certified by Leica Camera AG. The catalog therefore lists Panasonic as maker and retains LEICA DC as the optical branding. Patent-assignee attribution is recorded separately and does not establish exclusive design authorship. [Panasonic manufacturing explanation](https://www.panasonic.com/nz/consumer/lumix/brand/technologies/great-lenses-make-great-cameras.html)
 
 The prescription modeled here is Example 1 of US 2016/0054550 A1. The patent identifies a six-unit zoom system, G1 through G6, with powers positive–negative–positive–positive–positive–positive, followed in the source table by a parallel plate P and the image plane. Example 1 contains 11 glass elements, with cemented pairs L3–L4, L6–L7, and L9–L10, and eight aspherical surfaces distributed across five elements. The patent describes all six zoom units as moving during zooming, G6 as the focusing unit, and L3–L4 as the transverse image-blurring-correction pair. [1, ¶¶0031–0047; Tables 1–3]
 

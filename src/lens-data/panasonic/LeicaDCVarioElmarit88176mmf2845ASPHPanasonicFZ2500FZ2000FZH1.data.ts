@@ -29,7 +29,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "leica-dc-vario-elmarit-fz2500-fz2000-fzh1",
   maker: "Panasonic",
-  name: "LEICA DC VARIO-ELMARIT 8.8-176mm f/2.8-4.5 ASPH. (Panasonic Lumix FZ2500 / FZ2000 / FZH1)",
+  name: "PANASONIC LEICA DC VARIO-ELMARIT 8.8-176mm f/2.8-4.5 ASPH. (Panasonic Lumix FZ2500 / FZ2000 / FZH1)",
   subtitle: "US 2018/0081156 A1 Numerical Example 1 — correlated, not manufacturer-confirmed",
   specs: [
     "16 ELEMENTS / 11 GROUPS",
