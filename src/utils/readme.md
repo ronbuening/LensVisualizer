@@ -16,6 +16,7 @@ flowchart LR
     n_src_utils_src_utils_style["style/"]
     n_src_utils_src_utils_theme["theme/"]
     n_src_utils_src_utils_appConfig_ts["appConfig.ts"]
+    n_src_utils_src_utils_browserTranslationWarning_ts["browserTranslationWarning.ts"]
     n_src_utils_src_utils_chunkLoadRetry_ts["chunkLoadRetry.ts"]
     n_src_utils_src_utils_errorBeacon_ts["errorBeacon.ts"]
     n_src_utils_src_utils_errorReporting_ts["errorReporting.ts"]
@@ -30,6 +31,7 @@ flowchart LR
   end
   n_external_pkg_react["pkg:react"]
   n_src_utils_src_utils_useMediaQuery_ts --> n_external_pkg_react
+  n_src_utils_src_utils_errorBeacon_ts --> n_src_utils_src_utils_browserTranslationWarning_ts
   n_src_utils_src_utils_useMediaQuery_ts --> n_src_utils_src_utils_mediaQuery_ts
   n_src_utils_src_utils_usePrefersReducedMotion_ts --> n_src_utils_src_utils_useMediaQuery_ts
 ```
@@ -38,7 +40,7 @@ flowchart LR
 
 - Direct source files: 12
 - Direct subfolders: 6
-- Main outbound areas: package:react, src/utils/mediaQuery.ts, src/utils/useMediaQuery.ts
+- Main outbound areas: package:react, src/utils/browserTranslationWarning.ts, src/utils/mediaQuery.ts, src/utils/useMediaQuery.ts
 - External consumers: src/benchmarks, src/components/content, src/components/controls, src/components/diagram, src/components/display, src/components/errors, src/components/HolidayFavicon.tsx, src/components/homepage, +22 more
 
 ## Subfolders
@@ -57,8 +59,9 @@ flowchart LR
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
 | `appConfig.ts` | App Config helper module | none | src/utils/state | DEFAULT_COLOR_TRACING |
+| `browserTranslationWarning.ts` | Browser Translation Warning helper module | none | src/components/errors, src/main.tsx, src/utils/errorBeacon.ts | isBrowserTranslationActive, installBrowserTranslationWarning |
 | `chunkLoadRetry.ts` | Chunk Load Retry helper module | none | src/router.tsx, src/utils/catalog | loadChunkWithReload |
-| `errorBeacon.ts` | Error Beacon helper module | none | src/components/errors (3), src/main.tsx | sanitizeErrorMessage, errorBeaconKey, reportErrorBeacon, installGlobalErrorBeacons, resetErrorBeaconSessionForTests |
+| `errorBeacon.ts` | Error Beacon helper module | src/utils/browserTranslationWarning.ts | src/components/errors (3), src/main.tsx | sanitizeErrorMessage, errorBeaconKey, reportErrorBeacon, installGlobalErrorBeacons, resetErrorBeaconSessionForTests |
 | `errorReporting.ts` | Error Reporting helper module | none | src/components/errors | REPO_URL, buildIssueURL |
 | `featureFlags.ts` | Feature Flags helper module | none | src/components/layout (5), src/components/controls (2), src/components/diagram (2), src/components/display (2), src/components/hooks (2), +3 more | ENABLE_UNIFORM_SCALING, ENABLE_ASPH_DIAMOND_FILL, ENABLE_EDGE_PROJECTION, ENABLE_REAL_RAY_LSA_DIAGNOSTIC, ENABLE_ANALYSIS_VIEW, ENABLE_CARDINAL_ELEMENTS |
 | `holidays.ts` | Holidays helper module | none | src/utils/theme (2), src/components/HolidayFavicon.tsx | HolidayId, HOLIDAY_IDS, isHolidayId, nthWeekdayOfMonth, computeEaster, getActiveHoliday, HolidayOverride, holidayOverrideFromSearch |

@@ -218,7 +218,7 @@ afterEach(() => cleanup());
 
 describe("LensDiagramLoadedState", () => {
   it("renders viewport and hides the control panel while zoom/pan is active", () => {
-    render(
+    const { container } = render(
       <LensDiagramLoadedState
         {...baseProps({
           displayFlags: { ...baseProps().displayFlags, zoomPanActive: true },
@@ -228,6 +228,8 @@ describe("LensDiagramLoadedState", () => {
 
     expect(screen.getByTestId("diagram-viewport").getAttribute("data-view-box")).toBe("0 0 20 20");
     expect(screen.queryByTestId("diagram-control-panel")).toBeNull();
+    // Browser page translation opt-out on the panel root (agent_docs/gotchas.md).
+    expect(container.firstElementChild?.getAttribute("translate")).toBe("no");
   });
 
   it("uses fixed-height flex containment when requested", () => {

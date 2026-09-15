@@ -66,6 +66,20 @@ describe("ErrorDisplay", () => {
     // Should not crash
     expect(screen.getByText("Rendering Error")).toBeTruthy();
   });
+
+  it("swaps the GitHub link for reload guidance while browser translation is active", () => {
+    document.documentElement.classList.add("translated-ltr");
+    try {
+      render(<ErrorDisplay error={new Error("insertBefore failed")} context={{}} onRetry={vi.fn()} />);
+      expect(screen.getByText("Browser Translation Interrupted Rendering")).toBeTruthy();
+      expect(screen.getByText(/Browser page translation is active/)).toBeTruthy();
+      expect(screen.getByText("Reload Page")).toBeTruthy();
+      expect(screen.queryByText("Report Issue on GitHub")).toBeNull();
+      expect(screen.queryByText("Retry")).toBeNull();
+    } finally {
+      document.documentElement.className = "";
+    }
+  });
 });
 
 /* ═══════════════════════════════════════════════════════════════════════
