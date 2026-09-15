@@ -320,7 +320,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [OLYMPUS M.ZUIKO DIGITAL ED 12mm f/2.0](../../src/lens-data/olympus/OlympusMZuiko12mmf2.data.ts) | 11/11 | 11 | 11/11 |
 | [OLYMPUS ZUIKO AUTO-W 18mm f/3.5](../../src/lens-data/olympus/OlympusZuikoAutoW18mmf35.data.ts) | 11/11 | 11 | 11/11 |
 | [OLYMPUS ZUIKO DIGITAL ED 150mm f/2.0](../../src/lens-data/olympus/OlympusMZuiko150mmf2ED.data.ts) | 11/11 | 11 | 11/11 |
-| [PANASONIC LEICA DC VARIO-SUMMILUX 10.9-34mm f/1.7-2.8 ASPH. (Panasonic Lumix DC-LX100M2)](../../src/lens-data/panasonic/LeicaDCVarioSummilux10934mmf1728ASPHPanasonicLX100M2.data.ts) | 11/11 | 11 | 11/11 |
+| [PANASONIC LEICA DC VARIO-SUMMILUX 10.9-34mm f/1.7-2.8 ASPH. (Panasonic Lumix LX100 / LX100 II; Leica D-Lux (Typ 109) / D-Lux 7 / D-Lux 8)](../../src/lens-data/panasonic/LeicaDCVarioSummilux10934mmf1728ASPHPanasonicLX100M2.data.ts) | 11/11 | 11 | 11/11 |
 | [PANASONIC LUMIX S 20-60mm f/3.5-5.6](../../src/lens-data/panasonic/PanasonicLumixS2060mmf3556.data.ts) | 11/11 | 11 | 11/11 |
 | [PANASONIC LUMIX S 35mm f/1.8](../../src/lens-data/panasonic/PanasonicS35mmf18.data.ts) | 11/11 | 11 | 11/11 |
 | [PENTAX HD D FA645 MACRO 90mm f/2.8 ED AW SR](../../src/lens-data/pentax/PentaxDFA64590mmf28EDAWSRMacro.data.ts) | 11/11 | 11 | 11/11 |
@@ -730,7 +730,7 @@ Fully strict and line-index-complete trusted lenses are listed above; this table
 | 119 | [TAMRON AF 28-300mm f/3.5-6.3 XR Di LD Aspherical [IF] MACRO](../../src/lens-data/tamron/TamronA06128300mmf3563.data.ts) | 83.3% | 83.3% | 15/18 | 15/18 | 3 | abbe: 3 |
 | 120 | [FUJIFILM SUPER EBC FUJINON 7.1-28.4mm f/2-2.8 (Fujifilm X10)](../../src/lens-data/fujifilm/FujifilmX1071284mmf228.data.ts) | 81.8% | 81.8% | 9/11 | 9/11 | 2 | abbe: 2 |
 | 121 | [LEICA SUMMILUX 28mm f/1.7 ASPH. (Leica Q, Q2, Q3)](../../src/lens-data/leica/Leica28mmf17.data.ts) | 81.8% | 81.8% | 9/11 | 9/11 | 2 | abbe: 2 |
-| 122 | [PANASONIC LEICA DC VARIO-SUMMILUX 4.7-17.7mm f/1.4-2.3 (Panasonic Lumix DMC-LX7)](../../src/lens-data/panasonic/LeicaDCVarioSummilux47177mmf1423PanasonicLX7.data.ts) | 81.8% | 81.8% | 9/11 | 9/11 | 2 | abbe: 2 |
+| 122 | [PANASONIC LEICA DC VARIO-SUMMILUX 4.7-17.7mm f/1.4-2.3 (Panasonic Lumix DMC-LX7; Leica D-Lux 6)](../../src/lens-data/panasonic/LeicaDCVarioSummilux47177mmf1423PanasonicLX7.data.ts) | 81.8% | 81.8% | 9/11 | 9/11 | 2 | abbe: 2 |
 | 123 | [PENTAX HD D FA645 35mm f/3.5 AL [IF]](../../src/lens-data/pentax/PentaxDFA64535mmf35AL.data.ts) | 81.8% | 81.8% | 9/11 | 9/11 | 2 | abbe: 2 |
 | 124 | [CANON RF 20mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF20mmf14LVCM.data.ts) | 81.3% | 81.3% | 13/16 | 13/16 | 3 | abbe: 3 |
 | 125 | [FUJIFILM FUJINON XF 18-135mm f/3.5-5.6 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmFujinonXf18135mmf3556RLMOISWR.data.ts) | 81.3% | 81.3% | 13/16 | 13/16 | 3 | abbe: 3 |
@@ -1619,7 +1619,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 12A | Element 6 | abbe | `877370 — high-index lanthanum glass (patent nd=1.87722, nu_d=37.0)` | No catalog match |
 | 20A | Element 11 | abbe | `Unmatched (patent nd=1.68250, νd=33.00; prior H-ZF52A annotation rejected on dispersion)` | Explicit unmatched/proprietary annotation |
 
-### [PANASONIC LEICA DC VARIO-SUMMILUX 4.7-17.7mm f/1.4-2.3 (Panasonic Lumix DMC-LX7)](../../src/lens-data/panasonic/LeicaDCVarioSummilux47177mmf1423PanasonicLX7.data.ts) - 81.8% trusted (9/11); 81.8% Sellmeier (9/11) - US 2015/0124127 A1
+### [PANASONIC LEICA DC VARIO-SUMMILUX 4.7-17.7mm f/1.4-2.3 (Panasonic Lumix DMC-LX7; Leica D-Lux 6)](../../src/lens-data/panasonic/LeicaDCVarioSummilux47177mmf1423PanasonicLX7.data.ts) - 81.8% trusted (9/11); 81.8% Sellmeier (9/11) - US 2015/0124127 A1
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|

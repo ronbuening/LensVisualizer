@@ -1,4 +1,4 @@
-# PANASONIC LEICA DC VARIO-SUMMILUX 10.9-34mm f/1.7-2.8 ASPH. (Panasonic Lumix DC-LX100M2)
+# PANASONIC LEICA DC VARIO-SUMMILUX 10.9-34mm f/1.7-2.8 ASPH. (Panasonic Lumix LX100 / LX100 II; Leica D-Lux (Typ 109) / D-Lux 7 / D-Lux 8)
 
 ## Patent Reference and Design Identification
 
@@ -27,6 +27,8 @@ The association with the LEICA DC VARIO-SUMMILUX 10.9–34 mm f/1.7–2.8 used i
 The correlation is not exact in marketed numbers. The patent publishes 11.2612, 19.1449, and 32.5307 mm at its three infinity-focus zoom samples, while Panasonic markets 10.9–34 mm. The source f-numbers are 1.76551, 2.51390, and 2.91140 rather than the engraved f/1.7–2.8 range. The final LensVisualizer model therefore keeps marketing fields separate and does not rescale the prescription to force the advertised endpoints.
 
 The final normalized model has computed effective focal lengths of 11.265298534 mm, 19.151668516 mm, and 32.537812044 mm. These differ slightly from the raw patent values because the model collapses three finite-thickness adhesive layers to direct cemented interfaces. The source rear parallel plate is also omitted and its effect is folded into a code-solved rear air gap. Those are explicit modeling transformations, not corrections to the patent.
+
+The camera-family names also include Leica D-Lux (Typ 109), D-Lux 7 and D-Lux 8, whose official specifications list the 10.9–34mm f/1.7–2.8 ASPH. lens. These are production lens-family associations, not independent confirmation that each camera uses this exact patent prescription. [D-Lux (Typ 109) specifications](https://leica-camera.com/sites/default/files/pm-73538-Leica-D-Lux-%28Typ-109%29_Technical-Data_en.pdf), [D-Lux 7 specifications](https://leica-camera.com/sites/default/files/pm-54104-Technical_data_D-Lux_May_2020_en.pdf), [D-Lux 8 specifications](https://leica-camera.com/sites/default/files/pm-111399-leica-d-lux8_technical-data_en.pdf).
 
 ## Optical Architecture
 

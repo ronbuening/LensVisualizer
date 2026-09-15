@@ -20,6 +20,8 @@ Two numerical differences are intentionally preserved instead of being removed b
 
 The LensVisualizer model omits the patent's rear plane-parallel plate P and collapses the 0.01 mm adhesive layer between L6 and L7. These are modeling transformations, not corrections to the patent. The adhesive collapse replaces the equal-radius source surfaces 12–13 by one L6→L7 junction at R = 56.2842 mm, and the 0.01 + 0.30 mm axial intervals become 0.31 mm. The rear plate is replaced by code-solved air rear spacings of 1.621328395 mm, 1.636948819 mm, and 1.619439804 mm at wide, middle, and tele respectively. All asphere coefficients remain unscaled.
 
+The Leica D-Lux 6 also carries the 4.7–17.7mm f/1.4–2.3 lens family and is included in the display name. This production association does not independently confirm the modeled patent prescription for that camera. [Leica D-Lux 6 specifications](https://leica-camera.com/sites/default/files/pm-73563-Leica-D-Lux-6_Technical-Data_en.pdf).
+
 ## Optical Architecture
 
 Embodiment 1 is a five-unit refractive zoom with the signed power sequence G1(+), G2(−), G3(+), G4(+), G5(−). The physical construction is 11 elements in 10 air-separated groups because L6 and L7 are cemented. The third unit G3 contains five elements and the aperture diaphragm, exactly as described in ¶0124–¶0125. The final modeled unit focal lengths are 98.556619 mm for G1, −12.883320 mm for G2, 16.035944 mm for G3, 26.370036 mm for G4, and −32.275284 mm for G5.
