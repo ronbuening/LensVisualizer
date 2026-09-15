@@ -749,7 +749,7 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
       },
     ],
   },
-  "Voigtländer A.G.": {
+  "Voigtländer AG": {
     subsidiaryOf: [
       {
         organization: "Carl-Zeiss-Stiftung",

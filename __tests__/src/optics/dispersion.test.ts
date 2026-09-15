@@ -491,7 +491,7 @@ describe("resolveGlass", () => {
   it("resolves named Ohara PGM curves before remaining catalog aliases", () => {
     expect(resolveGlass("L-BAL42 (OHARA)")?.name).toBe("L-BAL42");
     expect(resolveGlass("S-YGH51 (OHARA)")?.name).toBe("S-YGH51");
-    expect(resolveGlass("OHARA L-BSL7 (PGM)")?.name).toBe("S-BSL7");
+    expect(resolveGlass("OHARA L-BSL7 (PGM)")?.name).toBe("L-BSL7");
     expect(resolveGlass("L-BAL35 (OHARA)")?.name).toBe("S-BAL35");
   });
 
@@ -520,7 +520,7 @@ describe("resolveGlass", () => {
   });
 
   it("exposes every duplicate-code candidate", () => {
-    expect(resolveGlassCandidates("516641").map((entry) => entry.name)).toEqual(["S-BSL7", "K-BK7"]);
+    expect(resolveGlassCandidates("516641").map((entry) => entry.name)).toEqual(["S-BSL7", "K-BK7", "L-BSL7"]);
   });
 
   it("uses vendor context and coordinates to disambiguate duplicate codes", () => {
@@ -531,7 +531,7 @@ describe("resolveGlass", () => {
   it("explains compatible candidates using the same runtime ranking", () => {
     const explanation = explainCompatibleGlassResolution("516641 (SUMITA)", 1.5163, 64.11);
     expect(explanation.selected?.name).toBe("K-BK7");
-    expect(explanation.candidates.map(({ entry }) => entry.name)).toEqual(["K-BK7", "S-BSL7"]);
+    expect(explanation.candidates.map(({ entry }) => entry.name)).toEqual(["K-BK7", "L-BSL7", "S-BSL7"]);
     expect(explanation.candidates[0]).toMatchObject({
       source: "code",
       matchedToken: "516641",

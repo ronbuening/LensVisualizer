@@ -19,6 +19,7 @@ const ASSIGNEE_START_YEARS = new Map([
 // https://www.nikon.com/company/corporate/history/
 // https://patents.google.com/patent/US2646721A/en (front page: Aktiengesellschaft)
 const ASSIGNEE_ALIASES = [
+  { alias: "Voigtländer A.G.", canonical: "Voigtländer AG" },
   { alias: "Nippon Kogaku Kogyo K.K.", canonical: "Nippon Kogaku K.K." },
   { alias: "Voigtländer & Sohn Aktiengesellschaft", canonical: "Voigtländer & Sohn AG" },
   { alias: "Carl Zeiss", canonical: "Carl-Zeiss-Stiftung", fromYear: 1891, throughYear: 2003 },

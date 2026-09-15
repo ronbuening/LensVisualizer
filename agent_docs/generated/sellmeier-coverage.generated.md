@@ -11,17 +11,17 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **741** lenses scanned
-- **729** visible lenses scanned
-- **501** lenses fully covered by trusted chromatic data
-- **499** visible lenses fully covered by trusted chromatic data
-- **495** lenses fully covered by strict Sellmeier data
-- **493** visible lenses fully covered by strict Sellmeier data
+- **747** lenses scanned
+- **735** visible lenses scanned
+- **507** lenses fully covered by trusted chromatic data
+- **505** visible lenses fully covered by trusted chromatic data
+- **501** lenses fully covered by strict Sellmeier data
+- **499** visible lenses fully covered by strict Sellmeier data
 - **6** lenses fully covered only after measured line-index data
 - **6** visible lenses fully covered only after measured line-index data
-- **7846 / 8436** non-air surfaces use strict catalog Sellmeier data
-- **93.0%** strict Sellmeier surface coverage overall
-- **7861 / 8436** non-air surfaces use trusted chromatic data
+- **7901 / 8491** non-air surfaces use strict catalog Sellmeier data
+- **93.1%** strict Sellmeier surface coverage overall
+- **7916 / 8491** non-air surfaces use trusted chromatic data
 - **93.2%** trusted chromatic coverage overall
 - **37 / 75** native e-line surfaces use name-verified catalog Sellmeier data
 
@@ -294,6 +294,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [FUJIFILM FUJINON GF 35-70mm f/4.5-5.6 WR](../../src/lens-data/fujifilm/FujifilmGF3570mmf4556.data.ts) | 11/11 | 11 | 11/11 |
 | [FUJIFILM FUJINON GF 45mm f/2.8 R WR](../../src/lens-data/fujifilm/FujifilmGF45mmf28.data.ts) | 11/11 | 11 | 11/11 |
 | [FUJIFILM FUJINON XF 23mm f/1.4 R](../../src/lens-data/fujifilm/FujifilmXF23mmf14.data.ts) | 11/11 | 11 | 11/11 |
+| [FUJIFILM FUJINON XF 30mm f/2.8 R LM WR Macro](../../src/lens-data/fujifilm/FujifilmFujinonXf30mmf28RLMWRMacro.data.ts) | 11/11 | 11 | 11/11 |
 | [FUJIFILM FUJINON XF 56mm f/1.2 R](../../src/lens-data/fujifilm/FujifilmXF56mmf12.data.ts) | 11/11 | 11 | 11/11 |
 | [FUJIFILM FUJINON XF 90mm f/2 R LM WR](../../src/lens-data/fujifilm/FujifilmXF90mmf2.data.ts) | 11/11 | 11 | 11/11 |
 | [HASSELBLAD HC 50mm f/3.5 II](../../src/lens-data/hasselblad/HasselbladHC3550II.data.ts) | 11/11 | 11 | 11/11 |
@@ -319,6 +320,8 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [SAMYANG AF 85mm f/1.4 FE](../../src/lens-data/samyang/SamyangAF85mmf14.data.ts) | 11/11 | 11 | 11/11 |
 | [SIGMA 14mm f/4 (Sigma dp0 Quattro)](../../src/lens-data/sigma/SigmaDp0Quattro14mmf4.data.ts) | 11/11 | 11 | 11/11 |
 | [SONY E 18-55mm f/3.5-5.6 OSS](../../src/lens-data/sony/SonyE1855mmf3556.data.ts) | 11/11 | 11 | 11/11 |
+| [ZEISS BATIS 18mm f/2.8](../../src/lens-data/carl-zeiss-oberkochen/ZeissBatis2818.data.ts) | 11/11 | 11 | 11/11 |
+| [ZEISS BATIS 85mm f/1.8](../../src/lens-data/carl-zeiss-oberkochen/ZeissBatis1885.data.ts) | 11/11 | 11 | 11/11 |
 | [CANON EF 100mm f/2.8 Macro](../../src/lens-data/canon/CanonEF100mmf28Macro.data.ts) | 10/10 | 10 | 10/10 |
 | [CANON EF 135mm f/2 L USM](../../src/lens-data/canon/CanonEF135mmf2LUSM.data.ts) | 10/10 | 10 | 10/10 |
 | [CANON EF 200mm f/1.8 L USM](../../src/lens-data/canon/CanonEF200mmf18L.data.ts) | 10/10 | 10 | 10/10 |
@@ -362,6 +365,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [CARL ZEISS DISTAGON T* 35mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon35mmf14.data.ts) | 9/9 | 9 | 9/9 |
 | [FUJIFILM EBC X-FUJINON W 24mm f/2.8 DM](../../src/lens-data/fujifilm/FujifilmXFujinonSW24mmf28DMEBC.data.ts) | 9/9 | 9 | 9/9 |
 | [FUJIFILM FUJINON GF 50mm f/3.5 R LM WR](../../src/lens-data/fujifilm/FujifilmFujinonGf50mmf35RLMWR.data.ts) | 9/9 | 9 | 9/9 |
+| [FUJIFILM FUJINON XF 35mm f/2 R WR](../../src/lens-data/fujifilm/FujifilmFujinonXf35mmf2RWR.data.ts) | 9/9 | 9 | 9/9 |
 | [FUJIFILM FUJINON XF 50mm f/2 R WR](../../src/lens-data/fujifilm/FujifilmFujinonXf50mmf2RWR.data.ts) | 9/9 | 9 | 9/9 |
 | [HASSELBLAD HC 150mm f/3.2](../../src/lens-data/hasselblad/HasselbladHC150mmf32.data.ts) | 9/9 | 9 | 9/9 |
 | [HASSELBLAD HC 300mm f/4.5](../../src/lens-data/hasselblad/HasselbladHC300mmf45.data.ts) | 9/9 | 9 | 9/9 |
@@ -447,6 +451,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [CARL ZEISS JENA BIOGON 35mm f/2.8 (pre-war)](../../src/lens-data/carl-zeiss-jena/ZeissBiogon35mmf28Prewar.data.ts) | 7/7 | 7 | 7/7 |
 | [CARL ZEISS PLANAR T* 50mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissPlanarT50mmf14.data.ts) | 7/7 | 7 | 7/7 |
 | [ENNA MÜNCHEN LITHAGON 24mm f/4](../../src/lens-data/enna-munchen/EnnaMunchenLithagon24mmf4.data.ts) | 7/7 | 7 | 7/7 |
+| [FUJIFILM FUJINON XF 27mm f/2.8](../../src/lens-data/fujifilm/FujifilmFujinonXf27mmf28.data.ts) | 7/7 | 7 | 7/7 |
 | [FUJIFILM FUJINON-Z 43-75mm f/3.5-4.5](../../src/lens-data/fujifilm/FujifilmFujinonZ4375mmf3545.data.ts) | 7/7 | 7 | 7/7 |
 | [FUJIFILM SUPER EBC FUJINON 45mm f/4 (Fujifilm GA645W/GA645Wi Professional)](../../src/lens-data/fujifilm/FujifilmGA645WidePro45mmf4.data.ts) | 7/7 | 7 | 7/7 |
 | [FUJIFILM SUPER EBC FUJINON 60mm f/4 (Fujifilm GA645 Professional)](../../src/lens-data/fujifilm/FujifilmGA645Pro60mmf4.data.ts) | 7/7 | 7 | 7/7 |
@@ -488,6 +493,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [CANON SERENAR 28mm f/3.5](../../src/lens-data/canon/CanonSerenar28mmf35.data.ts) | 6/6 | 6 | 6/6 |
 | [CANON SERENAR 35mm f/3.2](../../src/lens-data/canon/CanonSerenar35mmf32.data.ts) | 6/6 | 6 | 6/6 |
 | [CANON SERENAR 50mm f/1.8](../../src/lens-data/canon/CanonSerenar50mmf18.data.ts) | 6/6 | 6 | 6/6 |
+| [CARL ZEISS JENA BIOTAR 50mm f/1.4](../../src/lens-data/carl-zeiss-jena/ZeissBiotar50mmf14.data.ts) | 6/6 | 6 | 6/6 |
 | [ENNA MÜNCHEN ULTRA-LITHAGON 28mm f/3.5](../../src/lens-data/enna-munchen/EnnaMunchenUltraLithagon28mmf35.data.ts) | 6/6 | 6 | 6/6 |
 | [FUJIFILM EBC FUJINON SW 65mm f/5.6 (Fujica GSW690 Professional)](../../src/lens-data/fujifilm/FujifilmFujinonSW65mmf56.data.ts) | 6/6 | 6 | 6/6 |
 | [HASSELBLAD HC 80mm f/2.8](../../src/lens-data/hasselblad/HasselbladHC80mmf28.data.ts) | 6/6 | 6 | 6/6 |

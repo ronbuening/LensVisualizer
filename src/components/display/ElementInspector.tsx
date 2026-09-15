@@ -104,7 +104,8 @@ function elementDispersionRows(info: ElementData, L: RuntimeLens): ElementDisper
   const rows: ElementDispersionRow[] = [];
   for (const idx of surfaceIndexesForElement(info, L)) {
     const entry = L.indexByIdx?.[idx];
-    if (!entry || entry.quality === "air") continue;
+    // At a cemented rear interface the transmitted medium belongs to the next element.
+    if (!entry || entry.quality === "air" || L.S[idx]?.elemId !== info.id) continue;
     rows.push({
       surfaceLabel: L.S[idx]?.label ?? String(idx + 1),
       quality: entry.quality,
@@ -127,6 +128,10 @@ export default function ElementInspector({ info, L, t, showChromatic, onOpenAsph
     .filter((row): row is { surface: SurfaceData; summary: string } => Boolean(row.summary));
   const imagePlane = L.isFoldedOptics && L.data.opticalPath?.imagePlane ? L.imagePlane : null;
   const dispersionRows = showChromatic ? elementDispersionRows(info, L) : [];
+  const cementedCount = info.cemented
+    ? (L.data?.elements ?? []).filter((element) => element.cemented === info.cemented).length
+    : 0;
+  const cementedLabel = cementedCount === 2 ? "DOUBLET" : cementedCount === 3 ? "TRIPLET" : "CEMENTED";
 
   return (
     <div>
@@ -142,7 +147,9 @@ export default function ElementInspector({ info, L, t, showChromatic, onOpenAsph
         >
           {info.label}
         </span>
-        <span style={{ fontSize: 11, color: t.muted, transition: "color 0.3s" }}>{info.name}</span>
+        {info.name !== info.label && (
+          <span style={{ fontSize: 11, color: t.muted, transition: "color 0.3s" }}>{info.name}</span>
+        )}
         {info.apd && (
           <span
             style={{
@@ -171,7 +178,7 @@ export default function ElementInspector({ info, L, t, showChromatic, onOpenAsph
               transition: "all 0.3s",
             }}
           >
-            DOUBLET {info.cemented}
+            {cementedLabel} {info.cemented}
           </span>
         )}
         {(() => {

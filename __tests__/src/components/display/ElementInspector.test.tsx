@@ -108,10 +108,22 @@ describe("ElementInspector", () => {
     expect(screen.getByText("APD (INFERRED)")).toBeTruthy();
   });
 
-  it("renders cemented badge when present", () => {
-    const cementedElement: ElementData = { ...basicElement, cemented: "E1+E2" };
-    render(<ElementInspector info={cementedElement} L={mockLens} t={mockTheme} showChromatic={false} />);
-    expect(screen.getByText(/DOUBLET.*E1\+E2/)).toBeTruthy();
+  it.each([
+    [2, "DOUBLET"],
+    [3, "TRIPLET"],
+    [4, "CEMENTED"],
+  ])("labels a %i-element cemented component as %s", (count, label) => {
+    const elements = Array.from({ length: count }, (_, id) => ({ ...basicElement, id: id + 1, cemented: "C1" }));
+    const L = { ...mockLens, data: { elements } } as unknown as RuntimeLens;
+    render(<ElementInspector info={elements[0]} L={L} t={mockTheme} showChromatic={false} />);
+    expect(screen.getByText(`${label} C1`)).toBeTruthy();
+  });
+
+  it("shows identical element name and label only once", () => {
+    render(
+      <ElementInspector info={{ ...basicElement, name: "E1" }} L={mockLens} t={mockTheme} showChromatic={false} />,
+    );
+    expect(screen.getAllByText("E1")).toHaveLength(1);
   });
 
   it("renders role when present", () => {
@@ -197,6 +209,23 @@ describe("ElementInspector", () => {
     expect(screen.getByText("1.50000").getAttribute("title")).toBe("d-line 587.6 nm");
     expect(screen.getByText("1.51000").getAttribute("title")).toBe("F-line 486.1 nm");
     expect(screen.getByText("1.51500").getAttribute("title")).toBe("g-line 435.8 nm");
+  });
+
+  it("excludes the neighboring glass at a cemented rear interface", () => {
+    const L = {
+      ...mockLens,
+      S: [
+        { label: "1", elemId: 1 },
+        { label: "2", elemId: 2 },
+      ],
+      indexByIdx: {
+        0: { quality: "sellmeier", glassEntry: { name: "Crown" }, fn: () => 1.5 },
+        1: { quality: "sellmeier", glassEntry: { name: "Flint" }, fn: () => 1.7 },
+      },
+    } as unknown as RuntimeLens;
+    render(<ElementInspector info={basicElement} L={L} t={mockTheme} showChromatic={true} />);
+    expect(screen.getByText("Sellmeier (Crown)")).toBeTruthy();
+    expect(screen.queryByText(/Sellmeier.*Flint/)).toBeNull();
   });
 
   it("labels an e-line-compatible Sellmeier trace with physical C/d/F/g wavelengths", () => {
