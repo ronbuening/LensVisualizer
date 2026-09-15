@@ -141,7 +141,6 @@ this lens. No d-line conversion has been imposed.
 | L5 | 1.69232 / 49.18 | e-line | Unmatched; patent-coordinate fallback | No compatible catalog curve |
 | L6 | 1.64304 / 59.85 | e-line | N-LAK21; supplier-neutral proxy | -0.000003 / 0.008 |
 
-
 The class labels are catalog comparisons, not evidence that Leitz used the named modern vendor melts in production.
 Likewise, candidate catalog line indices and partial-dispersion data are not copied into the prescription. The final data
 contains no `nC`, `nF`, `ng`, or `dPgF` fields, so the analysis makes no apochromatic or anomalous-partial-dispersion claim.

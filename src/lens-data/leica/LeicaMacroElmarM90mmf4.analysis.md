@@ -65,7 +65,7 @@ focal lengths.
 
 ### L1 — Positive Meniscus
 
-**nₑ = 1.64304, νₑ = 59.85. Glass model: N-LAK21 (SCHOTT coordinate match; supplier unconfirmed). Standalone f = +46.794 mm.**
+**nₑ = 1.64304, νₑ = 59.85. Glass model: N-LAK21 (coordinate-compatible spectral proxy; supplier unconfirmed). Standalone f = +46.794 mm.**
 
 L1 is the first of the two positive pre-stop members specified by the patent. Its positive standalone power is the second
 largest positive contribution among the four singlets. Together with L2 it forms the strong front positive pair; the pair's
@@ -79,7 +79,7 @@ melt.
 
 ### L2 — Positive Meniscus
 
-**nₑ = 1.64304, νₑ = 59.85. Glass model: N-LAK21 (SCHOTT coordinate match; supplier unconfirmed). Standalone f = +55.184 mm.**
+**nₑ = 1.64304, νₑ = 59.85. Glass model: N-LAK21 (coordinate-compatible spectral proxy; supplier unconfirmed). Standalone f = +55.184 mm.**
 
 L2 repeats the same published e-line glass coordinates as L1 but has different curvatures and thickness, so its standalone
 power is lower. The patent's claim-1 condition requires the positive-lens indices to exceed 1.64; the retained value
@@ -91,7 +91,7 @@ from its glass class or power sign alone.
 
 ### L3 — Negative Meniscus
 
-**nₑ = 1.75458, νₑ = 34.72. Glass model: LAFN7 (SCHOTT coordinate match; supplier unconfirmed). Standalone f = −22.541 mm.**
+**nₑ = 1.75458, νₑ = 34.72. Glass model: LAFN7 (coordinate-compatible spectral proxy; supplier unconfirmed). Standalone f = −22.541 mm.**
 
 L3 is the sole negative singlet and the strongest standalone element by absolute optical power. Its inclusion changes the
 front two-element sub-prescription from +0.038888 mm⁻¹ to a three-element pre-stop power of +0.007569 mm⁻¹. This verified
@@ -104,7 +104,7 @@ other catalog models, this does not establish historical supplier identity.
 
 ### L4 — Positive Meniscus
 
-**nₑ = 1.79180, νₑ = 25.87. Glass model: SF56A (SCHOTT coordinate match; supplier unconfirmed). Standalone f = +154.324 mm.**
+**nₑ = 1.79180, νₑ = 25.87. Glass model: SF56A (coordinate-compatible spectral proxy; supplier unconfirmed). Standalone f = +154.324 mm.**
 
 L4 is the separated positive member behind the stop. Its standalone positive power is modest compared with the first three
 singlets, but its location after the long stop-containing air space makes it a distinct rear part of the architecture. The
@@ -126,9 +126,6 @@ choice gives the runtime model explicit spectral proxies while keeping supplier 
 | L2 | 1.64304 / 59.85 | e-line | N-LAK21; supplier-neutral proxy | -0.000003 / 0.008 |
 | L3 | 1.75458 / 34.72 | e-line | LAFN7; supplier-neutral proxy | 0.000003 / -0.003 |
 | L4 | 1.79180 / 25.87 | e-line | SF56A; supplier-neutral proxy | -0.000001 / 0.003 |
-
-
-
 
 Catalog-derived `nC`, `nF`, `ng`, and `dPgF` overrides have been removed from the elements.
 The shared catalog now supplies all four elements' dispersion, including the newly added, vendor-sourced N-LAK21 curve. The patent itself supplies only `nₑ` and `νₑ`, and

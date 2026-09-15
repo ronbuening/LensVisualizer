@@ -6,7 +6,7 @@
 
 Local source: `patents/US20160054550A1.pdf`, Fig. 1(a), Example 1; Table 1 on PDF p. 24. The exact local PDF was inspected; the glass coordinates and reference line were checked in the cited table.
 
-Figure screening: `npm run audit:patent-figure -- src/lens-data/leica/LeicaDCVarioSummilux10934mmf1728ASPHPanasonicLX100M2.data.ts patents/US20160054550A1.pdf 2 0.419,0.279,0.690,0.390 --dpi=600`. Optical rims were inspected visually; stop lines, leaders, plate P, and mechanical flanges were excluded. No patent publishes the authored per-surface clear apertures.
+Figure screening: `npm run audit:patent-figure -- src/lens-data/panasonic/LeicaDCVarioSummilux10934mmf1728ASPHPanasonicLX100M2.data.ts patents/US20160054550A1.pdf 2 0.419,0.279,0.690,0.390 --dpi=600`. Optical rims were inspected visually; stop lines, leaders, plate P, and mechanical flanges were excluded. No patent publishes the authored per-surface clear apertures.
 
 | Surfaces | Before (mm) | After (mm) | Evidence |
 |---|---|---|---|
@@ -46,3 +46,19 @@ Display name: **LEICA DC VARIO-SUMMILUX 10.9-34mm f/1.7-2.8 ASPH. (Panasonic Lum
 - Full repository gates passed: typecheck, format check, lint, all 274 test files / 2,700 tests, and production build (1,351 prerendered pages).
 - Changelog entries use the UTC date 2026-09-15, verified against 2026-09-15T14:27:20Z; existing entries retain their dates and identities.
 - Loaded the final lens route in the local application and visually compared its SVG silhouette and display labels with the inspected patent figure.
+
+## 2026-09-15 — Local-site diagram and movement follow-up
+
+Compared the local-site cross-section with the exact local patent figure again, including glass silhouettes, asphere marks, numbered elements, cemented boundaries, group signs and the stop/image labels. All element shape labels agree with the signs of the retained prescription radii.
+
+No further SD change: the remaining rim differences do not provide strong evidence beyond the prior audit, or include mechanical outlines rather than optical aperture.
+
+**Movement:** G1, G3, G4 and G5 move objectward. G2 moves imageward then reverses objectward; G6 moves objectward then slightly imageward. Close-focus G6 travel is objectward (patent paragraph 0046). Published wide/middle/tele rows remain in increasing focal-length order; no unsupported focus displacement was added.
+
+**Glass and labels:** all resolved entries now name the actual runtime spectral proxy and explicitly retain supplier uncertainty. 5 APD tags now distinguish catalog-inferred deviations with per-element evidence notes. No additional complete, compatible published dispersion curve was found for the six remaining batch gaps; coverage stays 56/62 elements.
+
+The four Panasonic fixed-camera lenses consistently use Panasonic maker metadata while retaining their LEICA DC optical branding. Focus help is shortened to the published direction and missing-spacing limitation.
+
+**Assignees:** reviewed the 64-name corpus inventory and this publication. The four Panasonic publications share Panasonic Intellectual Property Management Co., Ltd.; the two German publications share Ernst Leitz GmbH. Existing canonical names are already consolidated. Historical legal renames and distinct subsidiaries remain separate.
+
+**Verification:** surface/image-circle audits, five-state render diagnostics, local-site wide/tele controls (zooms), disabled focus controls, and the required typecheck/format/lint/test/build gates.

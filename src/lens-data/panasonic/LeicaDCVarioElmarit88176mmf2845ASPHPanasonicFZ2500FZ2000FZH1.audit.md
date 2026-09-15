@@ -6,7 +6,7 @@
 
 Local source: `patents/US20180081156A1.pdf`, Fig. 1(a), Numerical Example 1; Table 1 on PDF p. 19. The exact local PDF was inspected; the glass coordinates and reference line were checked in the cited table.
 
-Figure screening: `npm run audit:patent-figure -- src/lens-data/leica/LeicaDCVarioElmarit88176mmf2845ASPHPanasonicFZ2500FZ2000FZH1.data.ts patents/US20180081156A1.pdf 2 0.281,0.278,0.723,0.412 --dpi=600`. Optical rims were inspected visually; stop lines, leaders, plate P, and mechanical flanges were excluded. No patent publishes the authored per-surface clear apertures.
+Figure screening: `npm run audit:patent-figure -- src/lens-data/panasonic/LeicaDCVarioElmarit88176mmf2845ASPHPanasonicFZ2500FZ2000FZH1.data.ts patents/US20180081156A1.pdf 2 0.281,0.278,0.723,0.412 --dpi=600`. Optical rims were inspected visually; stop lines, leaders, plate P, and mechanical flanges were excluded. No patent publishes the authored per-surface clear apertures.
 
 No SD changes. At 60.87 µm/px, the clean front rims measure approximately 24.7 / 22.7 / 21.3 mm; existing 25.9 / 25.3 / 22.8 mm values retain ray clearance and are within the figure-review noise band. The remaining optical rims are close to the modeled outline. The automatic L4/L5 and rear-group outliers are leader-line contamination or axial mapping into a neighboring element; the 600-dpi crop shows no matching oversized optical rims. No numerical outlier was copied into the prescription.
 
@@ -47,3 +47,19 @@ Display name: **LEICA DC VARIO-ELMARIT 8.8-176mm f/2.8-4.5 ASPH. (Panasonic Lumi
 - Full repository gates passed: typecheck, format check, lint, all 274 test files / 2,700 tests, and production build (1,351 prerendered pages).
 - Changelog entries use the UTC date 2026-09-15, verified against 2026-09-15T14:27:20Z; existing entries retain their dates and identities.
 - Loaded the final lens route in the local application and visually compared its SVG silhouette and display labels with the inspected patent figure.
+
+## 2026-09-15 — Local-site diagram and movement follow-up
+
+Compared the local-site cross-section with the exact local patent figure again, including glass silhouettes, asphere marks, numbered elements, cemented boundaries, group signs and the stop/image labels. All element shape labels agree with the signs of the retained prescription radii.
+
+No further SD change: the remaining rim differences do not provide strong evidence beyond the prior audit, or include mechanical outlines rather than optical aperture.
+
+**Movement:** G2 moves imageward; G3 and the stop reverse at the middle sample; G4 moves objectward during zoom and imageward for close focus. G1 and G5 remain fixed in the source first-vertex frame; the normalized image-plane solution shifts by 0.0322 mm across the range. Published wide/middle/tele rows remain in increasing focal-length order; no unsupported focus displacement was added.
+
+**Glass and labels:** all resolved entries now name the actual runtime spectral proxy and explicitly retain supplier uncertainty. 6 APD tags now distinguish patent-listed deviations with per-element evidence notes. No additional complete, compatible published dispersion curve was found for the six remaining batch gaps; coverage stays 56/62 elements.
+
+The four Panasonic fixed-camera lenses consistently use Panasonic maker metadata while retaining their LEICA DC optical branding. Focus help is shortened to the published direction and missing-spacing limitation.
+
+**Assignees:** reviewed the 64-name corpus inventory and this publication. The four Panasonic publications share Panasonic Intellectual Property Management Co., Ltd.; the two German publications share Ernst Leitz GmbH. Existing canonical names are already consolidated. Historical legal renames and distinct subsidiaries remain separate.
+
+**Verification:** surface/image-circle audits, five-state render diagnostics, local-site wide/tele controls (zooms), disabled focus controls, and the required typecheck/format/lint/test/build gates.

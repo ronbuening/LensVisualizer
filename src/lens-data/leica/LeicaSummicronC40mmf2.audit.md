@@ -39,3 +39,17 @@ Display name: **LEICA SUMMICRON-C 40mm f/2**. Marketing focal lengths/apertures 
 - Full repository gates passed: typecheck, format check, lint, all 274 test files / 2,700 tests, and production build (1,351 prerendered pages).
 - Changelog entries use the UTC date 2026-09-15, verified against 2026-09-15T14:27:20Z; existing entries retain their dates and identities.
 - Loaded the final lens route in the local application and visually compared its SVG silhouette and display labels with the inspected patent figure.
+
+## 2026-09-15 — Local-site diagram and movement follow-up
+
+Compared the local-site cross-section with the exact local patent figure again, including glass silhouettes, asphere marks, numbered elements, cemented boundaries, group signs and the stop/image labels. All element shape labels agree with the signs of the retained prescription radii.
+
+No further SD change: the remaining rim differences do not provide strong evidence beyond the prior audit, or include mechanical outlines rather than optical aperture.
+
+**Movement:** The static prescription has no zoom or authored finite-focus travel. The disabled focus control correctly reports Not modeled. Published wide/middle/tele rows remain in increasing focal-length order; no unsupported focus displacement was added.
+
+**Glass and labels:** all resolved entries now name the actual runtime spectral proxy and explicitly retain supplier uncertainty. No APD tag is justified for this native-e prescription. No additional complete, compatible published dispersion curve was found for the six remaining batch gaps; coverage stays 56/62 elements.
+
+**Assignees:** reviewed the 64-name corpus inventory and this publication. The four Panasonic publications share Panasonic Intellectual Property Management Co., Ltd.; the two German publications share Ernst Leitz GmbH. Existing canonical names are already consolidated. Historical legal renames and distinct subsidiaries remain separate.
+
+**Verification:** surface/image-circle audits, five-state render diagnostics, local-site wide/tele controls (zooms), disabled focus controls, and the required typecheck/format/lint/test/build gates.

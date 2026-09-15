@@ -44,7 +44,7 @@ The source Table 3 image heights increase through the zoom range while the focal
 
 ### L1 — Biconvex Positive Front Element
 
-**nd = 1.59282, νd = 68.6. Glass: 593686 class (supplier unresolved). Standalone f = +66.803597 mm.**
+**nd = 1.59282, νd = 68.6. Glass: FCD515 (coordinate-compatible spectral proxy; supplier unconfirmed). Standalone f = +66.803597 mm.**
 
 L1 is the sole element of G1 and carries the same first-order focal length as the complete G1 unit. The patent describes it simply as a biconvex positive lens. [1, ¶0039]
 
@@ -74,7 +74,7 @@ L3 is the negative member of the stabilization pair. Its low Abbe number makes i
 
 #### L4 — Biconvex Positive
 
-**nd = 1.91082, νd = 35.3. Glass: 911353 class (supplier unresolved). Standalone f = +15.344762 mm.**
+**nd = 1.91082, νd = 35.3. Glass: H-ZLaF4LA (coordinate-compatible spectral proxy; supplier unconfirmed). Standalone f = +15.344762 mm.**
 
 L4 is the positive member of the same cemented pair. The data file uses a direct L3-to-L4 cemented interface at R = 27.4462 mm. The source’s 0.01000 mm adhesive layer is not represented as a generic synthetic element; instead, that thickness is added to the downstream L4 center thickness, which becomes 2.0864 mm in the normalized model.
 
@@ -102,7 +102,7 @@ L6 is the negative member of G4 and carries the aspherical object-side surface 1
 
 #### L7 — Biconvex Positive
 
-**nd = 2.00272, νd = 19.3. Glass: 003193 class (supplier unresolved). Standalone f = +24.108291 mm.**
+**nd = 2.00272, νd = 19.3. Glass: E-FDS2 (coordinate-compatible spectral proxy; supplier unconfirmed). Standalone f = +24.108291 mm.**
 
 L7 has the highest refractive index and lowest Abbe number in the final element list. Those coordinates are unusual, but they do not identify a supplier uniquely; the data therefore retains only the six-digit class.
 
@@ -122,13 +122,13 @@ The patent states that L9 and L10 are cemented. [1, ¶0036]
 
 #### L9 — Biconvex Positive
 
-**nd = 1.77250, νd = 49.6. Glass: 773496 class (supplier unresolved). Standalone f = +20.558244 mm.**
+**nd = 1.77250, νd = 49.6. Glass: J-LASF016 (coordinate-compatible spectral proxy; supplier unconfirmed). Standalone f = +20.558244 mm.**
 
 L9 is the positive member of the pair. Its modeled semi-diameter is constrained closely by the final geometry: among the 11 elements, L9 has the smallest verified modeled edge thickness, about 0.11455 mm. That value refers to the modeled semi-diameter and is not a production drawing dimension.
 
 #### L10 — Biconcave Negative
 
-**nd = 1.84666, νd = 23.8. Glass: 847238 class (supplier unresolved). Standalone f = −12.214499 mm.**
+**nd = 1.84666, νd = 23.8. Glass: J-SF03 (coordinate-compatible spectral proxy; supplier unconfirmed). Standalone f = −12.214499 mm.**
 
 L10 is the stronger negative member. The source 0.01000 mm adhesive layer is collapsed into the downstream L10 thickness, which becomes 0.9896 mm in the final model.
 
@@ -146,7 +146,7 @@ The final file does not invent the near-focus displacement of G6. L11 therefore 
 
 ## Glass Identification and Selection
 
-The patent publishes d-line refractive index and Abbe number, but not glass trade names, C/F/g line indices, Sellmeier coefficients, or anomalous partial-dispersion values. Stage-1 catalog review checked current or authoritative OHARA, HOYA, SCHOTT, HIKARI, CDGM, and SUMITA sources. Where the same coordinate is shared by multiple vendors, the final data uses a class or six-digit code; near-coordinate named curves are explicitly qualified as spectral proxies, not exact production glass identities.
+The patent publishes d-line refractive index and Abbe number, but not glass trade names, C/F/g line indices, Sellmeier coefficients, or anomalous partial-dispersion values. Stage-1 catalog review checked current or authoritative OHARA, HOYA, SCHOTT, HIKARI, CDGM, and SUMITA sources. Every compatible catalog curve is named and qualified as a spectral proxy; these names do not establish production glass identities.
 
 | Element | Patent index / Abbe | Reference | Runtime spectral model | Index residual / Abbe residual |
 |---|---|---|---|---|
@@ -162,11 +162,13 @@ The patent publishes d-line refractive index and Abbe number, but not glass trad
 | L10 | 1.84666 / 23.8 | d-line | J-SF03; supplier-neutral proxy | 0.000000 / 0.000 |
 | L11 | 1.55343 / 71.5 | d-line | M-FCD500; supplier-neutral proxy | -0.000111 / 0.180 |
 
-
-
 The palette spans νd = 19.3 to 71.5. That range establishes that the designer combined materials of very different dispersion, but nd/νd alone does not establish apochromatic correction or anomalous partial dispersion. The final data deliberately contains no nC, nF, ng, or dPgF fields and makes no APO claim.
 
 The three source adhesive media at nd = 1.56732, νd = 42.8 and the source rear plate at nd = 1.51680, νd = 64.2 remain recorded in the evidence dossier but are not application elements. The former are collapsed at same-radius cement junctions; the latter is omitted according to the project rule for rear sensor/filter plates.
+
+### Diagram color evidence
+
+Catalog-inferred APD color tags identify L1, L7, L8, L10, L11. Each selected spectral proxy has computed ΔPgF above +0.015 relative to the normal-line baseline (0.6438 − 0.001682νd). The inspector names the proxy and its deviation. The patent does not supply these values; no measured line indices or patent dPgF fields are invented. These tags describe the modeled materials, not proof of production ED assignments or APO performance.
 
 ## Focus Mechanism
 

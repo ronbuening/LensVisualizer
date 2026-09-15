@@ -51,3 +51,23 @@ Display name: **LEICA DC VARIO-ELMARIT 4.5-108mm f/2.8 (Panasonic Lumix DMC-FZ30
 - Full repository gates passed: typecheck, format check, lint, all 274 test files / 2,700 tests, and production build (1,351 prerendered pages).
 - Changelog entries use the UTC date 2026-09-15, verified against 2026-09-15T14:27:20Z; existing entries retain their dates and identities.
 - Loaded the final lens route in the local application and visually compared its SVG silhouette and display labels with the inspected patent figure.
+
+## 2026-09-15 — Local-site diagram and movement follow-up
+
+Compared the local-site cross-section with the exact local patent figure again, including glass silhouettes, asphere marks, numbered elements, cemented boundaries, group signs and the stop/image labels. All element shape labels agree with the signs of the retained prescription radii.
+
+No further SD change: the remaining rim differences do not provide strong evidence beyond the prior audit, or include mechanical outlines rather than optical aperture.
+
+**Movement:** G1 and G3 move objectward, G2 and G5 imageward; G4 reverses from imageward to objectward between the middle and tele samples. G6 has only a 0.0221 mm rounded-spacing excursion. Close-focus G4 travel is imageward. Published wide/middle/tele rows remain in increasing focal-length order; no unsupported focus displacement was added.
+
+**Glass and labels:** all resolved entries now name the actual runtime spectral proxy and explicitly retain supplier uncertainty. 6 APD tags now distinguish catalog-inferred deviations with per-element evidence notes. No additional complete, compatible published dispersion curve was found for the six remaining batch gaps; coverage stays 56/62 elements.
+
+The four Panasonic fixed-camera lenses consistently use Panasonic maker metadata while retaining their LEICA DC optical branding. Focus help is shortened to the published direction and missing-spacing limitation.
+
+Shortened diagram group captions to G3 (+) and G4 (−) to prevent OIS/FOCUS text crowding the neighboring group labels; roles remain documented in the element descriptions and focus help.
+
+**Assignees:** reviewed the 64-name corpus inventory and this publication. The four Panasonic publications share Panasonic Intellectual Property Management Co., Ltd.; the two German publications share Ernst Leitz GmbH. Existing canonical names are already consolidated. Historical legal renames and distinct subsidiaries remain separate.
+
+**Verification:** surface/image-circle audits, five-state render diagnostics, local-site wide/tele controls (zooms), disabled focus controls, and the required typecheck/format/lint/test/build gates.
+
+Additional material-source check: the [Mitsui APEL brochure](https://jp.mitsuichemicals.com/content/dam/mitsuichemicals/sites/mci/documents/sites/default/files/media/document/2020/apel_en.pdf.coredownload.inline.pdf) lists optical polymer grades around nd = 1.544 and νd = 56, near L14. It does not provide a complete coefficient curve or identify this patent material. This is a possible polymer-family coordinate, not grounds to add a glass curve, measured indices or a production supplier label. The Osaka Gas [OKP table](https://www.ogc.co.jp/products/fluorene/okp.html) likewise provides nominal polymer properties, not a verified compatible curve for LX7 L11.

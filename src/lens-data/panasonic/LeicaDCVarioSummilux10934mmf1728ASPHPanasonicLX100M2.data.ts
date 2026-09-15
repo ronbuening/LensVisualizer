@@ -42,7 +42,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   /* ── Identity ── */
   key: "leica-dc-vario-summilux-10934-f1728-lx100m2",
-  maker: "Leica",
+  maker: "Panasonic",
   name: "LEICA DC VARIO-SUMMILUX 10.9-34mm f/1.7-2.8 ASPH. (Panasonic Lumix DC-LX100M2)",
   subtitle: "US 2016/0054550 A1 Example 1 — strong production correlation; normalized direct-cement model",
   specs: [
@@ -78,8 +78,9 @@ const LENS_DATA = {
       vd: 68.6,
       indexReference: "d",
       fl: 66.803597,
-      glass: "593686 class (supplier unresolved)",
-      apd: false,
+      glass: "FCD515 (coordinate-compatible spectral proxy; supplier unconfirmed)",
+      apd: "inferred",
+      apdNote: "FCD515 spectral proxy has ΔPgF ≈ +0.0158; APD is catalog-inferred, not patent-listed or a supplier identification.",
       role: "Positive G1 front element.",
     },
     {
@@ -121,7 +122,7 @@ const LENS_DATA = {
       vd: 35.3,
       indexReference: "d",
       fl: 15.344762,
-      glass: "911353 class (supplier unresolved)",
+      glass: "H-ZLaF4LA (coordinate-compatible spectral proxy; supplier unconfirmed)",
       apd: false,
       role: "Positive member of the L3-L4 cemented stabilization pair in G3.",
       cemented: "D34",
@@ -165,8 +166,9 @@ const LENS_DATA = {
       vd: 19.3,
       indexReference: "d",
       fl: 24.108291,
-      glass: "003193 class (supplier unresolved)",
-      apd: false,
+      glass: "E-FDS2 (coordinate-compatible spectral proxy; supplier unconfirmed)",
+      apd: "inferred",
+      apdNote: "E-FDS2 spectral proxy has ΔPgF ≈ +0.0338; APD is catalog-inferred, not patent-listed or a supplier identification.",
       role: "Positive high-index member of the G4 cemented pair ahead of the diaphragm.",
       cemented: "D67",
     },
@@ -181,7 +183,8 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 20.173959,
       glass: "M-FCD500 (coordinate-compatible spectral proxy; supplier unconfirmed)",
-      apd: false,
+      apd: "inferred",
+      apdNote: "M-FCD500 spectral proxy has ΔPgF ≈ +0.0170; APD is catalog-inferred, not patent-listed or a supplier identification.",
       role: "Dual-sided aspherical positive element at the front of G5.",
     },
     {
@@ -194,7 +197,7 @@ const LENS_DATA = {
       vd: 49.6,
       indexReference: "d",
       fl: 20.558244,
-      glass: "773496 class (supplier unresolved)",
+      glass: "J-LASF016 (coordinate-compatible spectral proxy; supplier unconfirmed)",
       apd: false,
       role: "Positive member of the L9-L10 cemented pair in G5.",
       cemented: "D910",
@@ -209,8 +212,9 @@ const LENS_DATA = {
       vd: 23.8,
       indexReference: "d",
       fl: -12.214499,
-      glass: "847238 class (supplier unresolved)",
-      apd: false,
+      glass: "J-SF03 (coordinate-compatible spectral proxy; supplier unconfirmed)",
+      apd: "inferred",
+      apdNote: "J-SF03 spectral proxy has ΔPgF ≈ +0.0178; APD is catalog-inferred, not patent-listed or a supplier identification.",
       role: "Negative member of the L9-L10 cemented pair in G5.",
       cemented: "D910",
     },
@@ -225,7 +229,8 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 35.551589,
       glass: "M-FCD500 (coordinate-compatible spectral proxy; supplier unconfirmed)",
-      apd: false,
+      apd: "inferred",
+      apdNote: "M-FCD500 spectral proxy has ΔPgF ≈ +0.0170; APD is catalog-inferred, not patent-listed or a supplier identification.",
       role: "Dual-sided aspherical positive G6 focus group; no close-focus travel is reconstructed.",
     },
   ],
@@ -394,7 +399,7 @@ const LENS_DATA = {
   /* ── Focus configuration ── */
   closeFocusM: 0.03,
   focusDescription:
-    "Not modeled — only infinity-focus zoom states are modeled. Patent G6 focus direction is objectward; 0.03 m is marketed wide-end MFD (tele 0.30 m), not a reconstructed internal focus state.",
+    "Not modeled — G6 moves objectward for close focus; the patent provides only infinity-focus zoom spacings.",
 
   /* ── Aperture configuration ── */
   nominalFno: [1.76551, 2.5139, 2.9114],

@@ -36,7 +36,7 @@ The Petzval sum of the final model is 0.007544606 mm⁻¹ when accumulated surfa
 
 ### L1 — Biconvex Positive
 
-nd = 1.83481, νd = 42.7. Glass: **835427 — high-index lanthanum class (supplier unresolved)**. Standalone in-air f = +98.556619 mm.
+nd = 1.83481, νd = 42.7. Glass: **S-LAH55 (coordinate-compatible spectral proxy; supplier unconfirmed)**. Standalone in-air f = +98.556619 mm.
 
 L1 is the sole element of G1 and therefore has the same focal length as the complete first unit. Its weak positive power distinguishes it from the much stronger negative second unit that follows. The patent identifies L1 simply as a biconvex element (¶0122); no aspherical surface is assigned to it.
 
@@ -52,13 +52,13 @@ The glass label is intentionally non-vendor-specific. Authoritative public catal
 
 ### L3 — Biconcave Negative
 
-nd = 1.59282, νd = 68.6. Glass: **593686 — low-dispersion / ED-class coordinate (supplier unresolved)**. Standalone in-air f = −34.712882 mm.
+nd = 1.59282, νd = 68.6. Glass: **FCD515 (coordinate-compatible spectral proxy; supplier unconfirmed)**. Standalone in-air f = −34.712882 mm.
 
 L3 is the second negative element in G2. Its relatively high Abbe number contrasts with the much lower-νd positive L4 that follows, but the patent does not identify a particular catalog glass or publish partial-dispersion data. The production LX7 literature states that the finished lens contains two ED elements; the coordinate is consistent with a low-dispersion class, but that production label is not sufficient to identify this patent element with a specific melt.
 
 ### L4 — Positive Meniscus
 
-nd = 2.00272, νd = 19.3. Glass: **003193 — high-index / high-dispersion class (supplier unresolved)**. Standalone in-air f = +31.507571 mm.
+nd = 2.00272, νd = 19.3. Glass: **E-FDS2 (coordinate-compatible spectral proxy; supplier unconfirmed)**. Standalone in-air f = +31.507571 mm.
 
 L4 closes G2. Its positive power partly offsets L2 and L3 while the complete unit remains strongly negative at −12.883320 mm. The element is spherical in Numerical Example 1. The patent describes it as a positive meniscus with the convex surface toward the object (¶0123).
 
@@ -72,7 +72,7 @@ L5 begins the positive third unit G3 and is a substantial positive contributor. 
 
 ### L6 — Positive Meniscus, cemented to L7
 
-nd = 1.77250, νd = 49.6. Glass: **773496 — lanthanum class (supplier unresolved)**. Standalone in-air f = +14.593172 mm.
+nd = 1.77250, νd = 49.6. Glass: **J-LASF016 (coordinate-compatible spectral proxy; supplier unconfirmed)**. Standalone in-air f = +14.593172 mm.
 
 L6 is the positive member of cemented pair C1. The patent's source prescription inserts a 0.01 mm adhesive layer between L6 and L7 (¶0124; Table 1). The LensVisualizer model removes that generic adhesive plane and uses a direct junction at R = 56.2842 mm with the downstream L7 index.
 
@@ -80,7 +80,7 @@ The standalone focal length above is the isolated physical element in air, compu
 
 ### L7 — Negative Meniscus, cemented to L6
 
-nd = 1.74077, νd = 27.8. Glass: **741278 — high-dispersion flint class (supplier unresolved)**. Standalone in-air f = −10.689035 mm.
+nd = 1.74077, νd = 27.8. Glass: **E-FD13 (coordinate-compatible spectral proxy; supplier unconfirmed)**. Standalone in-air f = −10.689035 mm.
 
 L7 is the negative member of C1. Because the omitted 0.01 mm adhesive thickness is absorbed into the modeled direct junction, its modeled center thickness is 0.31 mm rather than the source glass-only 0.30 mm. The isolated in-air focal length therefore differs slightly from a calculation made from the unnormalized source element.
 
@@ -88,7 +88,7 @@ The final direct-junction L6+L7 pair has a cemented net focal length of −63.77
 
 ### L8 — Negative Meniscus, transverse image-stabilization element
 
-nd = 1.72825, νd = 28.3. Glass: **728283 — high-dispersion flint class (supplier unresolved)**. Standalone in-air f = −23.529706 mm.
+nd = 1.72825, νd = 28.3. Glass: **H-ZF4A (coordinate-compatible spectral proxy; supplier unconfirmed)**. Standalone in-air f = −23.529706 mm.
 
 L8 lies immediately behind the aperture diaphragm and is the image-blur compensation element identified for Numerical Example 1 (¶0190). The patent specifies transverse motion rather than axial focusing motion. At the telephoto limit, a 0.116 mm lateral L8 displacement is stated to compensate the image decenter associated with a 0.3° inclination of the complete zoom system (¶0191–¶0192).
 
@@ -116,7 +116,7 @@ L11 is the sole element of G5 and carries an aspherical object-side surface, 22A
 
 ## Glass Identification and Selection
 
-The patent supplies only d-line nd and νd values and does not identify glass suppliers or melts. The final data uses six-digit coordinate classes, qualified named spectral proxies, and explicit `Unmatched` descriptions where no compatible curve is available. Authoritative OHARA, HOYA, SCHOTT, HIKARI, CDGM, and SUMITA catalogs were checked during extraction; where multiple suppliers publish compatible coordinates, the label remains supplier-unresolved.
+The patent supplies only d-line nd and νd values and does not identify glass suppliers or melts. The final data uses qualified named spectral proxies and explicit `Unmatched` descriptions where no compatible curve is available. Authoritative OHARA, HOYA, SCHOTT, HIKARI, CDGM, and SUMITA catalogs were checked during extraction; where multiple suppliers publish compatible coordinates, the label remains supplier-unresolved.
 
 | Element | Patent index / Abbe | Reference | Runtime spectral model | Index residual / Abbe residual |
 |---|---|---|---|---|
@@ -132,12 +132,13 @@ The patent supplies only d-line nd and νd values and does not identify glass su
 | L10 | 1.68400 / 31.3 | d-line | Unmatched; patent-coordinate fallback | No compatible catalog curve |
 | L11 | 1.63550 / 23.9 | d-line | Unmatched; patent-coordinate fallback | No compatible catalog curve |
 
-
-
-
-No element carries authored nC, nF, ng, or dPgF values. Consequently the prescription supports Abbe-level dispersion modeling only unless a future source identifies a catalog glass that round-trips the stored coordinate. It would be inappropriate to describe the patent prescription as apochromatic or to assign anomalous partial dispersion from Panasonic's production ED terminology alone.
+No element carries authored nC, nF, ng, or dPgF values. Nine of the eleven elements use compatible catalog dispersion curves; L10 and L11 retain the patent-coordinate Abbe fallback. It would be inappropriate to describe the patent prescription as apochromatic or to assign anomalous partial dispersion from Panasonic's production ED terminology alone.
 
 The Panasonic brochure states that the production LX7 lens uses two ED elements, including one dual-sided aspherical ED lens. The patent's L3 and L9 coordinates are conspicuously low-dispersion, and L9 is dual-aspherical, so those facts strengthen the production correlation. They do not establish that the production ED melts and the patent-coordinate glasses are identical.
+
+### Diagram color evidence
+
+Catalog-inferred APD color tags identify L3, L4, L9. Each selected spectral proxy has computed ΔPgF above +0.015 relative to the normal-line baseline (0.6438 − 0.001682νd). The inspector names the proxy and its deviation. The patent does not supply these values; no measured line indices or patent dPgF fields are invented. These tags describe the modeled materials, not proof of production ED assignments or APO performance.
 
 ## Focus Mechanism
 
@@ -171,7 +172,7 @@ with h and z in millimeters (¶0181–¶0186). This is the same standard conic c
 | 21A | 0 | −2.80965e−4 | 9.08046e−6 | −3.10430e−7 | 2.64379e−8 | −7.01895e−10 | −1.88682e−11 | 1.10060e−12 |
 | 22A | 0 | −7.92215e−4 | 6.88113e−5 | −2.88618e−6 | 7.75972e−8 | −8.87695e−10 | −2.47039e−17 | −1.82676e−19 |
 
-The patent publishes no clear apertures, so the model's semi-diameters are inferred rather than source values. Asphere departures are therefore quoted only at those modeled semi-diameters. Relative to the same-R spherical base, the verified departures are −0.0874 mm at 3A, −0.7304 mm at 4A, −0.0645 mm at 9A, +0.1622 mm at 10A, −0.2413 mm at 18A, −0.0745 mm at 19A, −0.0290 mm at 20A, −0.0433 mm at 21A, and −0.0271 mm at 22A (h = 4.7 mm). The largest modeled departure is therefore on 4A at h = 7.7 mm.
+The patent publishes no clear apertures, so the model's semi-diameters are inferred rather than source values. Asphere departures are therefore quoted only at those modeled semi-diameters. Relative to the same-R spherical base, the verified departures are −0.2905 mm at 3A (h = 10.7 mm), −0.7304 mm at 4A, −0.0645 mm at 9A, +0.1622 mm at 10A, −0.2413 mm at 18A, −0.0745 mm at 19A, −0.0290 mm at 20A, −0.0433 mm at 21A, and −0.0271 mm at 22A (h = 4.7 mm). The largest modeled departure is therefore on 4A at h = 7.7 mm.
 
 Those departure signs describe geometry relative to the corresponding base sphere; they should not be converted directly into claims about which aberration each surface corrects. The patent's aberration figures demonstrate the complete-system result, not a surface-by-surface allocation of correction.
 
@@ -206,7 +207,6 @@ The physical diaphragm diameter is not published. The model calibrates the stop 
 Surface semi-diameters are likewise modeled. Exact meridional ray bundles at 0.6 of the patent half-field were checked at wide, middle, tele, and one midpoint in each zoom segment. The final modeled geometry has a maximum rim-slope angle of 46.137° and a minimum sampled common-aperture element thickness of 0.3100 mm; the largest positive shared-gap sag-intrusion ratio is 0.6450 against the 0.90 policy limit. These are model-geometry checks based on the stored semi-diameters; they do not establish production barrel clearances or application-renderer trim.
 
 Full-field chief rays at the patent half-view angles reproduce the published image heights to +0.00053 mm at wide, +0.00303 mm at middle, and +0.00013 mm at tele, all within the 0.005 mm verification tolerance. This is a chief-ray field check and does not assert that a complete full-field marginal bundle is unvignetted.
-
 
 ## Sources and References
 

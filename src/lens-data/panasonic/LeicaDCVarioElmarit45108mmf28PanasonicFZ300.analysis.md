@@ -37,8 +37,8 @@ The focal lengths in this section are independently recomputed standalone elemen
 
 #### L1 + L2 — Cemented Front Pair D1
 
-**L1:** nd = 1.84666, νd = 23.8. Glass: 847238 high-index flint class; supplier unresolved. Standalone f = −189.082 mm.\
-**L2:** nd = 1.49700, νd = 81.6. Glass: 497816 low-dispersion class; supplier unresolved. Standalone f = +95.413 mm.
+**L1:** nd = 1.84666, νd = 23.8. Glass: J-SF03 (coordinate-compatible spectral proxy; supplier unconfirmed). Standalone f = −189.082 mm.\
+**L2:** nd = 1.49700, νd = 81.6. Glass: H-FK61 (coordinate-compatible spectral proxy; supplier unconfirmed). Standalone f = +95.413 mm.
 
 The patent describes L1 as a negative meniscus with its convex surface toward the object and L2 as a biconvex positive element, cemented together (¶0117). The raw patent prescription places a 0.01000 mm adhesive layer between them. LensVisualizer does not author a generic cement layer at that junction, so the active model collapses it to a direct L1→L2 interface and adds the removed 0.01000 mm to L2's thickness in order to preserve the downstream vertex station.
 
@@ -46,7 +46,7 @@ The two elements form only part of G1. In the normalized model, the isolated D1 
 
 #### L3 — Rear Positive Meniscus of G1
 
-**nd = 1.59282, νd = 68.6. Glass: FCD505-compatible low-dispersion class; supplier unresolved. Standalone f = +125.019 mm.**
+**nd = 1.59282, νd = 68.6. Glass: FCD505 (coordinate-compatible spectral proxy; supplier unconfirmed). Standalone f = +125.019 mm.**
 
 L3 is the third and final element of G1 and is described by the patent as a positive meniscus with its convex surface toward the object (¶0117). Its glass coordinate is compatible with HOYA FCD505, but the patent does not identify a supplier or catalog glass. The data therefore retain only a class-level description.
 
@@ -56,14 +56,14 @@ Together, L1–L3 produce a verified net G1 focal length of +76.994 mm in the no
 
 #### L4 — Two-Asphere Negative Meniscus
 
-**nd = 1.88202, νd = 37.2. Glass: 882372 mold-glass class; supplier unresolved. Standalone f = −14.223 mm.**
+**nd = 1.88202, νd = 37.2. Glass: M-TAFD307 (coordinate-compatible spectral proxy; supplier unconfirmed). Standalone f = −14.223 mm.**
 
 L4 is a negative meniscus with the convex side toward the object and carries aspheric surfaces on both faces, source surfaces 7 and 8 (¶0118). In the active file these are labeled `7A` and `8A`. The element supplies substantial negative standalone power near the front of G2, but the analysis does not assign a specific aberration term to it without a separate aberration decomposition.
 
 #### L5 + L6 — Cemented Pair D2
 
-**L5:** nd = 1.77250, νd = 49.6. Glass: 773496 lanthanum-crown class; supplier unresolved. Standalone f = −11.082 mm.\
-**L6:** nd = 1.92286, νd = 20.9. Glass: 923209 dense-flint class; supplier unresolved. Standalone f = +11.126 mm.
+**L5:** nd = 1.77250, νd = 49.6. Glass: J-LASF016 (coordinate-compatible spectral proxy; supplier unconfirmed). Standalone f = −11.082 mm.\
+**L6:** nd = 1.92286, νd = 20.9. Glass: N-SF66 (coordinate-compatible spectral proxy; supplier unconfirmed). Standalone f = +11.126 mm.
 
 The patent makes L5 biconcave and L6 biconvex, with a 0.01000 mm adhesive layer between them at source surface 10 (¶0118). That adhesive is collapsed in the active model exactly as at D1: the cemented junction carries L6's index and element identity, while 0.01000 mm is incorporated into L6's modeled thickness.
 
@@ -71,7 +71,7 @@ Their strong opposing standalone powers do not cancel to zero when cemented beca
 
 #### L7 — Rear Negative Meniscus of G2
 
-**nd = 1.84666, νd = 23.8. Glass: 847238 high-index flint class; supplier unresolved. Standalone f = −41.537 mm.**
+**nd = 1.84666, νd = 23.8. Glass: J-SF03 (coordinate-compatible spectral proxy; supplier unconfirmed). Standalone f = −41.537 mm.**
 
 L7 is the rear negative meniscus of G2 with its convex surface toward the image side (¶0118). It repeats L1's nd/νd coordinate. The coordinate admits several catalog-equivalent families, so the file deliberately avoids naming a particular OHARA, SCHOTT, or CDGM melt.
 
@@ -85,8 +85,8 @@ L8 is the front positive meniscus of G3 and is aspherical on both faces (`16A`, 
 
 #### L9 + L10 — Cemented Pair D3
 
-**L9:** nd = 1.48749, νd = 70.4. Glass: 487704/48770x low-dispersion crown class; supplier unresolved. Standalone f = +15.428 mm.\
-**L10:** nd = 1.64769, νd = 33.8. Glass: 648338 flint class; supplier unresolved. Standalone f = −10.932 mm.
+**L9:** nd = 1.48749, νd = 70.4. Glass: N-FK5 (coordinate-compatible spectral proxy; supplier unconfirmed). Standalone f = +15.428 mm.\
+**L10:** nd = 1.64769, νd = 33.8. Glass: E-FD2 (coordinate-compatible spectral proxy; supplier unconfirmed). Standalone f = −10.932 mm.
 
 The patent describes L9 as biconvex, L10 as biconcave, and the pair as cemented (¶0119). The raw 0.01000 mm adhesive at source surface 19 is collapsed to a direct junction in the active prescription, with the removed thickness absorbed into L10 while preserving the following vertex location.
 
@@ -104,7 +104,7 @@ G3 as a whole has a verified normalized focal length of +16.665 mm. The patent f
 
 #### L12 — Single Negative Meniscus
 
-**nd = 1.49700, νd = 81.6. Glass: 497816 low-dispersion class; supplier unresolved. Standalone f = −34.868 mm.**
+**nd = 1.49700, νd = 81.6. Glass: H-FK61 (coordinate-compatible spectral proxy; supplier unconfirmed). Standalone f = −34.868 mm.**
 
 G4 consists solely of L12, a negative meniscus with the convex side toward the object (¶0120). The patent states that focusing from infinity toward a close object is performed by moving G4 toward the image side (¶0124). Because no close-focus spacing table is published for Numerical Example 1, the data file does not attempt to reconstruct that travel.
 
@@ -130,7 +130,7 @@ The patent prose calls G6 fixed relative to the image surface during zooming (¶
 
 ## Glass Identification and Selection
 
-The patent publishes only d-line refractive index nd and Abbe number νd. It does not identify glass manufacturers, catalog names, melts, line indices, or anomalous partial-dispersion values. The data file therefore uses class-level labels, six-digit coordinate-style descriptions, or explicit `Unmatched (...)` labels. Candidate vendor matches are evidence of coordinate compatibility only.
+The patent publishes only d-line refractive index nd and Abbe number νd. It does not identify glass manufacturers, catalog names, melts, line indices, or anomalous partial-dispersion values. The data file therefore uses qualified named spectral proxies or explicit `Unmatched (...)` labels. Candidate vendor matches are evidence of coordinate compatibility only.
 
 | Element | Patent index / Abbe | Reference | Runtime spectral model | Index residual / Abbe residual |
 |---|---|---|---|---|
@@ -149,14 +149,15 @@ The patent publishes only d-line refractive index nd and Abbe number νd. It doe
 | L13 | 1.51776 / 69.9 | d-line | PCS1; supplier-neutral proxy | -0.000476 / -0.221 |
 | L14 | 1.54410 / 56.1 | d-line | Unmatched; patent-coordinate fallback | No compatible catalog curve |
 
-
-
-
 The labels intentionally stop short of production-vendor attribution. For example, 1.84666/23.8 has multiple strong catalog-coordinate equivalents; a selected catalog curve is a spectral proxy, not supplier evidence. The same caution applies to 1.49700/81.6 and 1.48749/70.4.
 
 Panasonic's production specification describes three ED elements in the marketed FZ300 lens. The patent example contains several low-dispersion coordinates compatible with that broad description, but it does not identify three specific elements as "ED" and supplies no element-level manufacturer glass names. The production ED count is therefore useful correlation evidence, not a license to relabel particular patent elements as production ED glasses.
 
 No `nC`, `nF`, `ng`, or `dPgF` values are authored into the final element data. Some coordinate-compatible catalog candidates have such data, but those are properties of the candidate catalog glasses, not source-published properties of the patent elements. Accordingly, this analysis makes no apochromatic or anomalous-partial-dispersion performance claim.
+
+### Diagram color evidence
+
+Catalog-inferred APD color tags identify L1, L2, L3, L6, L7, L12. Each selected spectral proxy has computed ΔPgF above +0.015 relative to the normal-line baseline (0.6438 − 0.001682νd). The inspector names the proxy and its deviation. The patent does not supply these values; no measured line indices or patent dPgF fields are invented. These tags describe the modeled materials, not proof of production ED assignments or APO performance.
 
 ## Focus Mechanism
 

@@ -32,10 +32,11 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 // SD review (2026-09-15): exact local patent Fig. 1 optical rims; see the audit sidecar.
+// L2 surface 3A extended to 10.7 mm at its optical rim; rear 4A remains 7.7 mm.
 // Revised apertures remain estimates; radii, spacings and calibrated stop are unchanged.
 const LENS_DATA = {
   key: "leica-dc-vario-summilux-47-177mm-f14-23-panasonic-lx7",
-  maker: "Leica",
+  maker: "Panasonic",
   name: "LEICA DC VARIO-SUMMILUX 4.7-17.7mm f/1.4-2.3 (Panasonic Lumix DMC-LX7)",
   subtitle: "US 2015/0124127 A1 · Numerical Example 1 · LX7 correlation is inferential",
   specs: [
@@ -69,7 +70,7 @@ const LENS_DATA = {
       vd: 42.7,
       indexReference: "d",
       fl: 98.556619,
-      glass: "835427 — high-index lanthanum class (supplier unresolved)",
+      glass: "S-LAH55 (coordinate-compatible spectral proxy; supplier unconfirmed)",
       apd: false,
     },
     {
@@ -93,8 +94,9 @@ const LENS_DATA = {
       vd: 68.6,
       indexReference: "d",
       fl: -34.712882,
-      glass: "593686 — low-dispersion / ED-class coordinate (supplier unresolved)",
-      apd: false,
+      glass: "FCD515 (coordinate-compatible spectral proxy; supplier unconfirmed)",
+      apd: "inferred",
+      apdNote: "FCD515 spectral proxy has ΔPgF ≈ +0.0158; APD is catalog-inferred, not patent-listed or a supplier identification.",
     },
     {
       id: 4,
@@ -105,8 +107,9 @@ const LENS_DATA = {
       vd: 19.3,
       indexReference: "d",
       fl: 31.507571,
-      glass: "003193 — high-index / high-dispersion class (supplier unresolved)",
-      apd: false,
+      glass: "E-FDS2 (coordinate-compatible spectral proxy; supplier unconfirmed)",
+      apd: "inferred",
+      apdNote: "E-FDS2 spectral proxy has ΔPgF ≈ +0.0338; APD is catalog-inferred, not patent-listed or a supplier identification.",
     },
     {
       id: 5,
@@ -129,7 +132,7 @@ const LENS_DATA = {
       vd: 49.6,
       indexReference: "d",
       fl: 14.593172,
-      glass: "773496 — lanthanum class (supplier unresolved)",
+      glass: "J-LASF016 (coordinate-compatible spectral proxy; supplier unconfirmed)",
       apd: false,
       cemented: "C1",
     },
@@ -142,7 +145,7 @@ const LENS_DATA = {
       vd: 27.8,
       indexReference: "d",
       fl: -10.689035,
-      glass: "741278 — high-dispersion flint class (supplier unresolved)",
+      glass: "E-FD13 (coordinate-compatible spectral proxy; supplier unconfirmed)",
       apd: false,
       cemented: "C1",
     },
@@ -155,7 +158,7 @@ const LENS_DATA = {
       vd: 28.3,
       indexReference: "d",
       fl: -23.529706,
-      glass: "728283 — high-dispersion flint class (supplier unresolved)",
+      glass: "H-ZF4A (coordinate-compatible spectral proxy; supplier unconfirmed)",
       apd: false,
       role: "Transverse image-stabilization element within G3 (patent ¶0190-¶0192).",
     },
@@ -169,7 +172,8 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 12.566649,
       glass: "M-FCD500 (coordinate-compatible spectral proxy; supplier unconfirmed)",
-      apd: false,
+      apd: "inferred",
+      apdNote: "M-FCD500 spectral proxy has ΔPgF ≈ +0.0170; APD is catalog-inferred, not patent-listed or a supplier identification.",
     },
     {
       id: 10,
@@ -201,7 +205,7 @@ const LENS_DATA = {
   surfaces: [
     { label: "1", R: 113.4453, d: 1.9, nd: 1.83481, elemId: 1, sd: 13.4 },
     { label: "2", R: -297.1745, d: 0.3, nd: 1.0, elemId: 0, sd: 13.4 },
-    { label: "3A", R: 111.987, d: 1.0, nd: 1.805, elemId: 2, sd: 7.7 },
+    { label: "3A", R: 111.987, d: 1.0, nd: 1.805, elemId: 2, sd: 10.7 },
     { label: "4A", R: 8.9938, d: 5.6842, nd: 1.0, elemId: 0, sd: 7.7 },
     { label: "5", R: -29.3648, d: 0.5, nd: 1.59282, elemId: 3, sd: 6.9 },
     { label: "6", R: 69.2114, d: 0.1, nd: 1.0, elemId: 0, sd: 6.9 },

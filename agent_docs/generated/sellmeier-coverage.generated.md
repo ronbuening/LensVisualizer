@@ -42,15 +42,15 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [LEICA ELMARIT-M 135mm f/2.8](../../src/lens-data/leica/LeicaElmaritM135mmf28.data.ts) | 6 | Element 4 | `SF5 (Schott; patent ne=1.67764, ve=32.0 stored as nd/vd)` | SF5 | 1.67764 / 32.00 | 1.67764 / 31.97 |
 | [LEICA ELMARIT-R 35mm f/2.8](../../src/lens-data/leica/LeicaElmaritR35mmf28.data.ts) | 1 | Element 1 | `FK5 / N-FK5 class (Schott legacy; patent n_e)` | N-FK5 | 1.48920 / 69.90 | 1.48914 / 70.23 |
 | [LEICA ELMARIT-R 35mm f/2.8](../../src/lens-data/leica/LeicaElmaritR35mmf28.data.ts) | 3 | Element 2 | `BaSF6 class; J-BASF6 catalog e-line spectral proxy (production supplier unspecified)` | J-BASF6 | 1.67130 / 41.60 | 1.67133 / 41.60 |
-| [LEICA MACRO-ELMAR-M 90mm f/4](../../src/lens-data/leica/LeicaMacroElmarM90mmf4.data.ts) | 1 | Element 1 | `N-LAK21 (SCHOTT coordinate match; supplier unconfirmed)` | N-LAK21 | 1.64304 / 59.85 | 1.64304 / 59.86 |
-| [LEICA MACRO-ELMAR-M 90mm f/4](../../src/lens-data/leica/LeicaMacroElmarM90mmf4.data.ts) | 3 | Element 2 | `N-LAK21 (SCHOTT coordinate match; supplier unconfirmed)` | N-LAK21 | 1.64304 / 59.85 | 1.64304 / 59.86 |
-| [LEICA MACRO-ELMAR-M 90mm f/4](../../src/lens-data/leica/LeicaMacroElmarM90mmf4.data.ts) | 5 | Element 3 | `LAFN7 (SCHOTT coordinate match; supplier unconfirmed)` | LAFN7 | 1.75458 / 34.72 | 1.75458 / 34.72 |
-| [LEICA MACRO-ELMAR-M 90mm f/4](../../src/lens-data/leica/LeicaMacroElmarM90mmf4.data.ts) | 7 | Element 4 | `SF56A (SCHOTT coordinate match; supplier unconfirmed)` | SF56A | 1.79180 / 25.87 | 1.79180 / 25.87 |
+| [LEICA MACRO-ELMAR-M 90mm f/4](../../src/lens-data/leica/LeicaMacroElmarM90mmf4.data.ts) | 1 | Element 1 | `N-LAK21 (coordinate-compatible spectral proxy; supplier unconfirmed)` | N-LAK21 | 1.64304 / 59.85 | 1.64304 / 59.86 |
+| [LEICA MACRO-ELMAR-M 90mm f/4](../../src/lens-data/leica/LeicaMacroElmarM90mmf4.data.ts) | 3 | Element 2 | `N-LAK21 (coordinate-compatible spectral proxy; supplier unconfirmed)` | N-LAK21 | 1.64304 / 59.85 | 1.64304 / 59.86 |
+| [LEICA MACRO-ELMAR-M 90mm f/4](../../src/lens-data/leica/LeicaMacroElmarM90mmf4.data.ts) | 5 | Element 3 | `LAFN7 (coordinate-compatible spectral proxy; supplier unconfirmed)` | LAFN7 | 1.75458 / 34.72 | 1.75458 / 34.72 |
+| [LEICA MACRO-ELMAR-M 90mm f/4](../../src/lens-data/leica/LeicaMacroElmarM90mmf4.data.ts) | 7 | Element 4 | `SF56A (coordinate-compatible spectral proxy; supplier unconfirmed)` | SF56A | 1.79180 / 25.87 | 1.79180 / 25.87 |
 | [LEICA MACRO-ELMARIT-R 60mm f/2.8](../../src/lens-data/leica/LeicaMacroElmaritR60mmf28.data.ts) | 8 | Element 5 | `BACD16 / S-BSM16 class (e-line catalog match; patent vendor not named)` | S-BSM16 | 1.62287 / 60.10 | 1.62286 / 60.03 |
 | [LEICA MACRO-ELMARIT-R 60mm f/2.8](../../src/lens-data/leica/LeicaMacroElmaritR60mmf28.data.ts) | 10 | Element 6 | `BACD4 class (e-line catalog match; patent vendor not named)` | BACD4 | 1.61521 / 58.40 | 1.61521 / 58.31 |
-| [LEICA SUMMICRON-C 40mm f/2](../../src/lens-data/leica/LeicaSummicronC40mmf2.data.ts) | 4 | Element 3 | `SF56A class (SCHOTT coordinate-equivalent; supplier/melt unproven)` | SF56A | 1.79180 / 25.87 | 1.79180 / 25.87 |
+| [LEICA SUMMICRON-C 40mm f/2](../../src/lens-data/leica/LeicaSummicronC40mmf2.data.ts) | 4 | Element 3 | `SF56A (coordinate-compatible spectral proxy; supplier unconfirmed)` | SF56A | 1.79180 / 25.87 | 1.79180 / 25.87 |
 | [LEICA SUMMICRON-C 40mm f/2](../../src/lens-data/leica/LeicaSummicronC40mmf2.data.ts) | 6 | Element 4 | `S-TIM6 (coordinate-compatible spectral proxy; supplier unconfirmed)` | S-TIM6 | 1.64062 / 35.09 | 1.64061 / 35.13 |
-| [LEICA SUMMICRON-C 40mm f/2](../../src/lens-data/leica/LeicaSummicronC40mmf2.data.ts) | 9 | Element 6 | `N-LAK21 class (SCHOTT near-exact coordinate match; supplier/melt unproven)` | N-LAK21 | 1.64304 / 59.85 | 1.64304 / 59.86 |
+| [LEICA SUMMICRON-C 40mm f/2](../../src/lens-data/leica/LeicaSummicronC40mmf2.data.ts) | 9 | Element 6 | `N-LAK21 (coordinate-compatible spectral proxy; supplier unconfirmed)` | N-LAK21 | 1.64304 / 59.85 | 1.64304 / 59.86 |
 | [LEICA SUMMICRON-R 50mm f/2](../../src/lens-data/leica/LeicaSummicronR50mmf2.data.ts) | 1 | Element 1 | `SF10 (Schott; patent ne=1.73430, ve=28.19 stored as nd/vd)` | SF10 | 1.73430 / 28.19 | 1.73430 / 28.19 |
 | [LEICA SUMMICRON-R 50mm f/2](../../src/lens-data/leica/LeicaSummicronR50mmf2.data.ts) | 3 | Element 2 | `ZBaF17/BaSF6 class; J-BASF6 catalog e-line spectral proxy (production supplier unspecified)` | J-BASF6 | 1.67133 / 41.64 | 1.67133 / 41.60 |
 | [LEICA SUMMICRON-R 50mm f/2](../../src/lens-data/leica/LeicaSummicronR50mmf2.data.ts) | 4 | Element 3 | `SF11 (Schott; patent ne=1.79190, ve=25.55 stored as nd/vd)` | SF11 | 1.79190 / 25.55 | 1.79190 / 25.55 |
@@ -171,7 +171,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [FUJIFILM FUJINON XF 16-55mm f/2.8 R LM WR II](../../src/lens-data/fujifilm/FujifilmXF16555mmf28RLMWRII.data.ts) | 16/16 | 16 | 16/16 |
 | [FUJIFILM FUJINON XF 16-80mm f/4 R OIS WR](../../src/lens-data/fujifilm/FujifilmXF1680mmf4.data.ts) | 16/16 | 16 | 16/16 |
 | [FUJIFILM FUJINON XF 80mm f/2.8 R LM OIS WR Macro](../../src/lens-data/fujifilm/FujifilmXF80f28.data.ts) | 16/16 | 16 | 16/16 |
-| [LEICA DC VARIO-ELMARIT 8.8-176mm f/2.8-4.5 ASPH. (Panasonic Lumix FZ2500 / FZ2000 / FZH1)](../../src/lens-data/leica/LeicaDCVarioElmarit88176mmf2845ASPHPanasonicFZ2500FZ2000FZH1.data.ts) | 16/16 | 16 | 16/16 |
+| [LEICA DC VARIO-ELMARIT 8.8-176mm f/2.8-4.5 ASPH. (Panasonic Lumix FZ2500 / FZ2000 / FZH1)](../../src/lens-data/panasonic/LeicaDCVarioElmarit88176mmf2845ASPHPanasonicFZ2500FZ2000FZH1.data.ts) | 16/16 | 16 | 16/16 |
 | [MINOLTA AF 28-70mm f/2.8 G](../../src/lens-data/minolta/MinoltaAF2870mmf28G.data.ts) | 16/16 | 16 | 16/16 |
 | [NIKON AF-S NIKKOR 400mm f/2.8E FL ED VR](../../src/lens-data/nikon/NikonAFSNIKKOR400mmf28EFLEDVR.data.ts) | 16/16 | 16 | 16/16 |
 | [NIKON AF-S NIKKOR 500mm f/4E FL ED VR](../../src/lens-data/nikon/NikonAFSNIKKOR500mmf4EFLEDVR.data.ts) | 16/16 | 16 | 16/16 |
@@ -309,7 +309,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [HASSELBLAD XCD 30mm f/3.5](../../src/lens-data/hasselblad/HasselbladXCD3530.data.ts) | 11/11 | 11 | 11/11 |
 | [KONICA UC ZOOM HEXANON AR 45–100mm f/3.5](../../src/lens-data/konica/KonicaUCZoomHexanonAR45100mmf35.data.ts) | 11/11 | 11 | 11/11 |
 | [LEICA APO-SUMMICRON 43mm f/2 ASPH. (Leica Q3 43)](../../src/lens-data/leica/LeicaAPO43mmf2.data.ts) | 11/11 | 11 | 11/11 |
-| [LEICA DC VARIO-SUMMILUX 10.9-34mm f/1.7-2.8 ASPH. (Panasonic Lumix DC-LX100M2)](../../src/lens-data/leica/LeicaDCVarioSummilux10934mmf1728ASPHPanasonicLX100M2.data.ts) | 11/11 | 11 | 11/11 |
+| [LEICA DC VARIO-SUMMILUX 10.9-34mm f/1.7-2.8 ASPH. (Panasonic Lumix DC-LX100M2)](../../src/lens-data/panasonic/LeicaDCVarioSummilux10934mmf1728ASPHPanasonicLX100M2.data.ts) | 11/11 | 11 | 11/11 |
 | [NIKON AF NIKKOR 28mm f/1.4 D](../../src/lens-data/nikon/NikonAF28f14D.data.ts) | 11/11 | 11 | 11/11 |
 | [NIKON AF-I NIKKOR 300mm f/2.8D IF-ED](../../src/lens-data/nikon/NikonAFINikkor300mmf28DIFED.data.ts) | 11/11 | 11 | 11/11 |
 | [NIKON AI AF-S NIKKOR ED 300mm f/2.8D IF](../../src/lens-data/nikon/NikonAFSNikkor300mmf28DIFED.data.ts) | 11/11 | 11 | 11/11 |
@@ -729,7 +729,7 @@ Fully strict and line-index-complete trusted lenses are listed above; this table
 | 118 | [TAMRON AF 28-200mm SUPER XR f/3.8-5.6 Aspherical [IF] MACRO](../../src/lens-data/tamron/TamronA0328200mmf3856.data.ts) | 83.3% | 83.3% | 15/18 | 15/18 | 3 | abbe: 3 |
 | 119 | [TAMRON AF 28-300mm f/3.5-6.3 XR Di LD Aspherical [IF] MACRO](../../src/lens-data/tamron/TamronA06128300mmf3563.data.ts) | 83.3% | 83.3% | 15/18 | 15/18 | 3 | abbe: 3 |
 | 120 | [FUJIFILM SUPER EBC FUJINON 7.1-28.4mm f/2-2.8 (Fujifilm X10)](../../src/lens-data/fujifilm/FujifilmX1071284mmf228.data.ts) | 81.8% | 81.8% | 9/11 | 9/11 | 2 | abbe: 2 |
-| 121 | [LEICA DC VARIO-SUMMILUX 4.7-17.7mm f/1.4-2.3 (Panasonic Lumix DMC-LX7)](../../src/lens-data/leica/LeicaDCVarioSummilux47177mmf1423PanasonicLX7.data.ts) | 81.8% | 81.8% | 9/11 | 9/11 | 2 | abbe: 2 |
+| 121 | [LEICA DC VARIO-SUMMILUX 4.7-17.7mm f/1.4-2.3 (Panasonic Lumix DMC-LX7)](../../src/lens-data/panasonic/LeicaDCVarioSummilux47177mmf1423PanasonicLX7.data.ts) | 81.8% | 81.8% | 9/11 | 9/11 | 2 | abbe: 2 |
 | 122 | [LEICA SUMMILUX 28mm f/1.7 ASPH. (Leica Q, Q2, Q3)](../../src/lens-data/leica/Leica28mmf17.data.ts) | 81.8% | 81.8% | 9/11 | 9/11 | 2 | abbe: 2 |
 | 123 | [PENTAX HD D FA645 35mm f/3.5 AL [IF]](../../src/lens-data/pentax/PentaxDFA64535mmf35AL.data.ts) | 81.8% | 81.8% | 9/11 | 9/11 | 2 | abbe: 2 |
 | 124 | [CANON RF 20mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF20mmf14LVCM.data.ts) | 81.3% | 81.3% | 13/16 | 13/16 | 3 | abbe: 3 |
@@ -1612,7 +1612,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 11A | G3 front asphere | abbe | `Unmatched (nd=1.803603, νd=40.28)` | Explicit unmatched/proprietary annotation |
 | 16A | G3 negative asphere | abbe | `Unmatched (nd=1.803603, νd=40.28)` | Explicit unmatched/proprietary annotation |
 
-### [LEICA DC VARIO-SUMMILUX 4.7-17.7mm f/1.4-2.3 (Panasonic Lumix DMC-LX7)](../../src/lens-data/leica/LeicaDCVarioSummilux47177mmf1423PanasonicLX7.data.ts) - 81.8% trusted (9/11); 81.8% Sellmeier (9/11) - US 2015/0124127 A1
+### [LEICA DC VARIO-SUMMILUX 4.7-17.7mm f/1.4-2.3 (Panasonic Lumix DMC-LX7)](../../src/lens-data/panasonic/LeicaDCVarioSummilux47177mmf1423PanasonicLX7.data.ts) - 81.8% trusted (9/11); 81.8% Sellmeier (9/11) - US 2015/0124127 A1
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|

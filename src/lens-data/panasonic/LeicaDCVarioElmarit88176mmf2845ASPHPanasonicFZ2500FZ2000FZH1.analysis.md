@@ -66,7 +66,7 @@ The element focal lengths below are standalone thick-element focal lengths recom
 
 ### L1 — Negative Meniscus, G1, cemented pair D1
 
-**nd = 1.90366, νd = 31.3. Glass: 904313 high-index lanthanum-flint class. Standalone f = -122.847038 mm.**
+**nd = 1.90366, νd = 31.3. Glass: J-LASFH13 (coordinate-compatible spectral proxy; supplier unconfirmed). Standalone f = -122.847038 mm.**
 
 L1 is the first element of the fixed positive front group and the only negative-power element in G1. The patent describes it as a meniscus with its convex surface toward the object and bonds it directly to L2 (¶0027, ¶0034). Its negative standalone power should not be confused with the positive power of G1 as a whole.
 
@@ -74,7 +74,7 @@ Together, L1 and L2 form D1. In the normalized model that cemented pair has a ne
 
 ### L2 — Positive Meniscus, G1, cemented pair D1
 
-**nd = 1.59282, νd = 68.6. Glass: 593686 low-dispersion crown class. Standalone f = +85.461478 mm.**
+**nd = 1.59282, νd = 68.6. Glass: FCD515 (coordinate-compatible spectral proxy; supplier unconfirmed). Standalone f = +85.461478 mm.**
 
 L2 is the positive member of D1 and is a meniscus with its convex face toward the object according to ¶0034. Its patent dPgF value is +0.0194. Unlike most element-level design-role statements, the patent explicitly assigns chromatic significance to this coordinate: conditions (5), (5a), and (5b) use L2's dPgF, and ¶0123 states that satisfying the condition makes secondary-spectrum correction easier.
 
@@ -82,7 +82,7 @@ The data file therefore preserves dPgF = +0.0194 directly on L2. It does not inf
 
 ### L3 — Positive Meniscus, G1
 
-**nd = 1.59282, νd = 68.6. Glass: 593686 low-dispersion crown class. Standalone f = +106.464500 mm.**
+**nd = 1.59282, νd = 68.6. Glass: FCD515 (coordinate-compatible spectral proxy; supplier unconfirmed). Standalone f = +106.464500 mm.**
 
 L3 is the rear element of G1 and shares L2's nd, νd, and dPgF coordinate. The patent again gives it a direct chromatic condition: condition (6) is defined from L3's dPgF, and ¶0127 links that condition to easier secondary-spectrum correction. Its +0.0194 value satisfies the patent's preferred +0.015 threshold.
 
@@ -90,7 +90,7 @@ Because G1 is fixed through the zoom, L3's axial station relative to L1 and L2 d
 
 ### L4 — Negative Meniscus, G2
 
-**nd = 1.95375, νd = 32.3. Glass: 954323 ultra-high-index class. Standalone f = -17.273281 mm.**
+**nd = 1.95375, νd = 32.3. Glass: J-LASFH21 (coordinate-compatible spectral proxy; supplier unconfirmed). Standalone f = -17.273281 mm.**
 
 L4 begins the negative second group. The patent describes it as a meniscus with the convex surface facing the object (¶0035). It is a comparatively strong negative standalone element and is followed by another negative element, L5, before the positive L6 closes G2.
 
@@ -106,7 +106,7 @@ The two aspheric surfaces are retained geometrically rather than being interpret
 
 ### L6 — Biconvex Positive, G2
 
-**nd = 1.94595, νd = 18.0. Glass: 946180 very-high-dispersion flint class. Standalone f = +27.305795 mm.**
+**nd = 1.94595, νd = 18.0. Glass: FDS18 (coordinate-compatible spectral proxy; supplier unconfirmed). Standalone f = +27.305795 mm.**
 
 L6 is the positive rear element of the otherwise negative G2 and is described by the patent as biconvex (¶0035). Its dPgF is +0.0386, but the patent does not assign L6 a dedicated conditional expression analogous to L2 or L3, so no specific chromatic correction role is inferred here from that number alone.
 
@@ -114,7 +114,7 @@ The aperture stop follows L6. Consequently, the G2-to-stop spacing is one of the
 
 ### L7 — Positive Meniscus, two aspherical surfaces, G3
 
-**nd = 1.77182, νd = 49.6. Glass: 772496/773496 lanthanum-crown class. Standalone f = +19.619984 mm.**
+**nd = 1.77182, νd = 49.6. Glass: S-LAH66N (coordinate-compatible spectral proxy; supplier unconfirmed). Standalone f = +19.619984 mm.**
 
 L7 begins the positive third group immediately behind the stop. The patent describes it as a positive meniscus with its convex surface toward the object and aspherical surfaces on both faces (¶0036). Those faces are active-model surfaces 14A and 15A.
 
@@ -122,7 +122,7 @@ G3 as a whole has +23.600917 mm focal length in the normalized model and contain
 
 ### L8 — Biconvex Positive, G3, cemented pair D2
 
-**nd = 1.49700, νd = 81.6. Glass: 497816 ED/fluorophosphate class. Standalone f = +15.761950 mm.**
+**nd = 1.49700, νd = 81.6. Glass: H-FK61 (coordinate-compatible spectral proxy; supplier unconfirmed). Standalone f = +15.761950 mm.**
 
 L8 is the positive front member of the L8+L9 cemented pair described in ¶0029 and ¶0036. Its patent coordinate has the highest Abbe number in the active prescription and dPgF = +0.0375. The class label records that low-dispersion coordinate without asserting that L8 is one of Panasonic's specifically marketed ED elements.
 
@@ -130,7 +130,7 @@ The normalized D2 pair has a net isolated focal length of -15.120600 mm. That ne
 
 ### L9 — Biconcave Negative, G3, cemented pair D2
 
-**nd = 1.88300, νd = 40.8. Glass: 883408 high-index lanthanum-flint class. Standalone f = -6.843400 mm.**
+**nd = 1.88300, νd = 40.8. Glass: S-LAH58 (coordinate-compatible spectral proxy; supplier unconfirmed). Standalone f = -6.843400 mm.**
 
 L9 is the strong negative member of D2 and is biconcave in the patent description (¶0036). Its dPgF is -0.0094. The implemented cemented interface uses L9's downstream index directly; the source's intervening 0.005 mm generic medium is omitted and its thickness is folded into L9's modeled center thickness.
 
@@ -146,7 +146,7 @@ The normalized L10+L11 pair D3 has a net isolated focal length of +24.345539 mm.
 
 ### L11 — Negative Meniscus, G3, cemented pair D3
 
-**nd = 1.69895, νd = 30.0. Glass: 699300 dense-flint class. Standalone f = -33.629244 mm.**
+**nd = 1.69895, νd = 30.0. Glass: SF15 (coordinate-compatible spectral proxy; supplier unconfirmed). Standalone f = -33.629244 mm.**
 
 L11 is the negative member of D3. The patent describes it as a meniscus with its concave surface toward the object (¶0036). Its dPgF is +0.0086.
 
@@ -170,7 +170,7 @@ L13 is cemented to the negative L14. Because D4 is the entirety of G4, the norma
 
 ### L14 — Biconcave Negative, G4, cemented pair D4
 
-**nd = 1.80420, νd = 46.5. Glass: 804465 lanthanum-flint class. Standalone f = -8.398820 mm.**
+**nd = 1.80420, νd = 46.5. Glass: N-LASF44 (coordinate-compatible spectral proxy; supplier unconfirmed). Standalone f = -8.398820 mm.**
 
 L14 is the strong negative member of D4 and is biconcave in the patent (¶0037). Its dPgF is -0.0066. The combination of positive L13 and stronger negative L14 produces G4's net negative power.
 
@@ -186,7 +186,7 @@ The normalized D5 assembly has a net isolated focal length of +29.488189 mm. Sin
 
 ### L16 — Negative Meniscus, G5, cemented pair D5
 
-**nd = 1.92119, νd = 24.0. Glass: 921240 high-index high-dispersion class. Standalone f = -25.769745 mm.**
+**nd = 1.92119, νd = 24.0. Glass: FDS24 (coordinate-compatible spectral proxy; supplier unconfirmed). Standalone f = -25.769745 mm.**
 
 L16 is the negative rear member of D5 and a meniscus with its concave surface toward the object according to ¶0038. Its patent dPgF is +0.0151. The final refracting surface of L16 is active-model surface 33.
 
@@ -194,7 +194,7 @@ The source then inserts a 7.67 mm air space and plane-parallel plate P before th
 
 ## Glass Identification and Selection
 
-The patent does not name glass suppliers or melt designations. It supplies d-line refractive index nd, d-line Abbe number νd, and dPgF for the lens elements. The final data uses coordinate-compatible spectral proxies and six-digit coordinate classes without claiming a production supplier identity.
+The patent does not name glass suppliers or melt designations. It supplies d-line refractive index nd, d-line Abbe number νd, and dPgF for the lens elements. The final data uses named coordinate-compatible spectral proxies without claiming a production supplier identity.
 
 The active element palette is:
 
@@ -217,14 +217,15 @@ The active element palette is:
 | L15 | 1.80525 / 40.9 | d-line | S-LAH53; supplier-neutral proxy | 0.000848 / 0.026 |
 | L16 | 1.92119 / 24 | d-line | FDS24; supplier-neutral proxy | -0.000001 / -0.040 |
 
-
-
-
 The glass audit compared these coordinates against current authoritative OHARA, HOYA, SCHOTT, HIKARI, CDGM, and SUMITA catalog resources. Those comparisons are useful for class-level interpretation but do not establish the physical supplier or melt used in a patent embodiment. The data consequently omits unsupported nC, nF, and ng values and retains the patent's dPgF values directly.
 
 L5/L15 use S-LAH53 and L12/L13 use S-TIM28 as near-coordinate spectral proxies. Their catalog partial-dispersion signs agree with the patent; the patent values −0.0066 and +0.0074 remain authoritative at the g-line. These matches do not establish exact production compositions.
 
 The manufacturer's statement that the production lens uses four ED lenses and one UHR lens is kept separate from these patent coordinate classifications. The numerical example contains plausible low-dispersion and high-index candidates, but the evidence does not establish which specific patent elements Panasonic intended to label ED or UHR in the production product.
+
+### Diagram color evidence
+
+L2, L3, L6, L8, L10 and L16 now carry patent-listed APD color tags, supported by their Table 1 ΔPgF values of +0.0194, +0.0194, +0.0386, +0.0375, +0.0194 and +0.0151. Conditions (5) and (6) additionally identify the anomalous dispersion of L2 and L3. These colors do not identify a supplier or claim an apochromatic lens.
 
 ## Focus Mechanism
 

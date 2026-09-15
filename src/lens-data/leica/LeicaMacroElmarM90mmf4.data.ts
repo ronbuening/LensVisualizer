@@ -62,7 +62,7 @@ const LENS_DATA = {
       vd: 59.85,
       indexReference: "e",
       fl: 46.793896231130866,
-      glass: "N-LAK21 (SCHOTT coordinate match; supplier unconfirmed)",
+      glass: "N-LAK21 (coordinate-compatible spectral proxy; supplier unconfirmed)",
     },
     {
       id: 2,
@@ -73,7 +73,7 @@ const LENS_DATA = {
       vd: 59.85,
       indexReference: "e",
       fl: 55.18405004565967,
-      glass: "N-LAK21 (SCHOTT coordinate match; supplier unconfirmed)",
+      glass: "N-LAK21 (coordinate-compatible spectral proxy; supplier unconfirmed)",
     },
     {
       id: 3,
@@ -84,7 +84,7 @@ const LENS_DATA = {
       vd: 34.72,
       indexReference: "e",
       fl: -22.54086907294271,
-      glass: "LAFN7 (SCHOTT coordinate match; supplier unconfirmed)",
+      glass: "LAFN7 (coordinate-compatible spectral proxy; supplier unconfirmed)",
     },
     {
       id: 4,
@@ -95,7 +95,7 @@ const LENS_DATA = {
       vd: 25.87,
       indexReference: "e",
       fl: 154.32363383636715,
-      glass: "SF56A (SCHOTT coordinate match; supplier unconfirmed)",
+      glass: "SF56A (coordinate-compatible spectral proxy; supplier unconfirmed)",
     },
   ],
 
@@ -124,7 +124,7 @@ const LENS_DATA = {
 
   closeFocusM: 0.8,
   focusDescription:
-    "Static published prescription only; production MFD is 0.8 m, but DE2246966 provides no finite-conjugate internal spacing law (NO_INTERNAL_RECONSTRUCTION).",
+    "Not modeled — the patent supplies a static prescription, with no finite-focus spacings. Production minimum focus is 0.8 m.",
 
   nominalFno: 4,
   fstopSeries: [4, 5.6, 8, 11, 16, 22],
