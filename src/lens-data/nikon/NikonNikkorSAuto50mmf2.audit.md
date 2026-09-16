@@ -1,6 +1,6 @@
 # Audit Log — NIKON NIKKOR-S AUTO 5cm f/2
 
-Patent: JP 1964-025754, Embodiment 1 / Figure 1.
+Patent: JP 1964-025754 B, Embodiment 1 / Figure 1.
 
 ## 2026-07-26 — Figure-matched SDs, identity, glass review, and inferred focus
 

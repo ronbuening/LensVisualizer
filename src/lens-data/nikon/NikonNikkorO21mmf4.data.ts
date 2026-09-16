@@ -52,7 +52,7 @@ const LENS_DATA = {
   apertureDesign: 4,
   lensMounts: ["nikon-s", "nikon-f"],
   imageFormat: "135-full-frame",
-  patentNumber: "JP 1968-030782",
+  patentNumber: "JP 1968-030782 Y1",
   patentAuthors: ["Zenji Wakimoto"],
   patentAssignees: ["Nippon Kogaku K.K."],
   patentYear: 1968,

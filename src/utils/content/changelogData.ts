@@ -20,6 +20,12 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-09-16",
+    type: "fix",
+    summary:
+      "Fixed Espacenet links for US application publications and pre-2000 Japanese patent numbers, and added kind codes to 21 Japanese patents",
+  },
+  {
+    date: "2026-09-16",
     type: "improvement",
     summary:
       "Added corporate history links for Cosina, Leitz Canada, Fujifilm, HOYA, Jenoptik Jena, and Agfa to the relationship map",

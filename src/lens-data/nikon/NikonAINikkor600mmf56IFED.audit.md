@@ -1,6 +1,6 @@
 # Audit Log — NIKON AI NIKKOR 600mm f/5.6 IF-ED
 
-Patent: JP 1981-035116, Example 1 / Figure 1
+Patent: JP 1981-035116 A, Example 1 / Figure 1
 
 ## 2026-08-21 — Screenshot, patent-figure, diagram-metadata, and glass audit
 

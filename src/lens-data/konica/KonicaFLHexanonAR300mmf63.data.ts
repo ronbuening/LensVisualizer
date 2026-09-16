@@ -53,7 +53,7 @@ const LENS_DATA = {
   apertureDesign: 6.3,
   lensMounts: ["konica-ar"],
   imageFormat: "135-full-frame",
-  patentNumber: "JP 1974-023892",
+  patentNumber: "JP 1974-023892 B1",
   patentAuthors: ["Masamichi Kitagawa"],
   patentAssignees: ["Konishiroku Photo Industry Co., Ltd."],
   patentYear: 1974,

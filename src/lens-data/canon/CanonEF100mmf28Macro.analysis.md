@@ -1,6 +1,6 @@
 ## Patent Reference and Design Identification
 
-**Patent:** JP 1991-141313
+**Patent:** JP 1991-141313 A
 **Application Number:** JP 1989-281171 (特願平1-281171)
 **Filed:** 1989-10-27
 **Published:** 1991-06-17
@@ -9,7 +9,7 @@
 **Title:** Photographic lens (撮影レンズ)
 **Embodiment analyzed:** Numerical Example 1
 
-The prescription represented here is Numerical Example 1 of JP 1991-141313. The patent describes a macro-capable photographic lens derived from a Gauss-type system, with a positive first group, positive second group, and negative third group. During focusing from infinity toward close distances, the first group, diaphragm, and second group move together toward the object while the third group remains fixed. The patent sets an approximately 24° field and approximately f/2.8 speed as design targets and explicitly addresses aberration stability as magnification approaches unity (JP 1991-141313, PDF pp. 1–4 / patent pp. 73–76).
+The prescription represented here is Numerical Example 1 of JP 1991-141313 A. The patent describes a macro-capable photographic lens derived from a Gauss-type system, with a positive first group, positive second group, and negative third group. During focusing from infinity toward close distances, the first group, diaphragm, and second group move together toward the object while the third group remains fixed. The patent sets an approximately 24° field and approximately f/2.8 speed as design targets and explicitly addresses aberration stability as magnification approaches unity (JP 1991-141313 A, PDF pp. 1–4 / patent pp. 73–76).
 
 The selected production correlation is the Canon EF 100mm f/2.8 Macro. It is treated as the fixed correlation for this model, but not as a manufacturer-confirmed patent attribution. Several independent characteristics converge:
 
@@ -137,7 +137,7 @@ This is not a floating system in the patent's sense: the first and second groups
 
 ## Aberration Correction Strategy
 
-The patent begins from a problem characteristic of large-aperture macro lenses: as magnification increases, spherical aberration changes substantially and can be accompanied by worsening sagittal field curvature and outward coma. It notes that conventional floating systems can compensate for these changes, but at the cost of multiple independently moving groups, greater mechanical complexity, and increased focusing load (JP 1991-141313, PDF p. 2 / patent p. 74).
+The patent begins from a problem characteristic of large-aperture macro lenses: as magnification increases, spherical aberration changes substantially and can be accompanied by worsening sagittal field curvature and outward coma. It notes that conventional floating systems can compensate for these changes, but at the cost of multiple independently moving groups, greater mechanical complexity, and increased focusing load (JP 1991-141313 A, PDF p. 2 / patent p. 74).
 
 The proposed solution is primarily a redistribution of power inside a Gauss-derived architecture rather than the addition of aspheres. In the first group, the positive component is divided among L1, L2, and L3. The patent explains that part of the divergent action associated with the following negative component is shared by the image-side surfaces of the two positive menisci. This reduces the magnitude of the spherical-aberration coefficients assigned to the negative component and allows the positive and negative portions of the first group to balance their focus-dependent changes over a wider range.
 
@@ -159,7 +159,7 @@ The patent defines seven inequalities. Conditions (1) and (2) control the combin
 | `abs(φ1,4)·F` | 0.491648 | 0.49 | `0.2 < x < 1` | Pass |
 | `abs(φ1,6)·F` | 1.330455 | 1.33 | `1 < x < 2.1` | Pass |
 
-All seven expressions satisfy their stated intervals and round to the values printed in patent Table 1 (JP 1991-141313, PDF p. 7 / patent p. 79). This agreement also provides a sensitive check on radius signs and Example-1 table selection.
+All seven expressions satisfy their stated intervals and round to the values printed in patent Table 1 (JP 1991-141313 A, PDF p. 7 / patent p. 79). This agreement also provides a sensitive check on radius signs and Example-1 table selection.
 
 ## Verification Summary
 
@@ -175,7 +175,7 @@ The inferred semi-diameters pass the standalone edge-thickness, actual rim-slope
 
 ## Sources and References
 
-- Japan Patent Office, **JP 1991-141313**, *撮影レンズ* (Photographic lens), Hideki Ogawa / Canon Inc., Numerical Example 1. Filed 1989-10-27; published 1991-06-17. Primary source for prescription, group arrangement, focus motion, conditions, and aberration rationale.
+- Japan Patent Office, **JP 1991-141313 A**, *撮影レンズ* (Photographic lens), Hideki Ogawa / Canon Inc., Numerical Example 1. Filed 1989-10-27; published 1991-06-17. Primary source for prescription, group arrangement, focus motion, conditions, and aberration rationale.
 - Canon Camera Museum, **EF100mm f/2.8 Macro**: https://global.canon/en/c-museum/product/ef289.html — official source for April 1990 introduction, 10-element/9-group construction, 0.31 m closest focusing distance, 1.0× maximum magnification, 8 diaphragm blades, and f/32 minimum aperture.
 - OHARA, optical-glass product/catalog information: https://www.ohara-inc.co.jp/en/product/01000/ — current-coordinate comparisons only; not evidence of historical Canon glass identity.
 - HIKARI optical-glass catalog: https://www.hikari-g.co.jp/optical_glass/catalog/

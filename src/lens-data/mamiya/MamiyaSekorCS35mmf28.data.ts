@@ -59,7 +59,7 @@ const LENS_DATA = {
   apertureDesign: 2.8,
   lensMounts: ["mamiya-nc"],
   imageFormat: "135-full-frame",
-  patentNumber: "JP 1978-066222",
+  patentNumber: "JP 1978-066222 A",
   patentAuthors: ["Katsunori Ebara"],
   patentAssignees: ["Mamiya Koki Co., Ltd."],
   patentYear: 1978,

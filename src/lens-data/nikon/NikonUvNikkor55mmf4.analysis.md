@@ -1,6 +1,6 @@
 ## Patent Reference and Design Identification
 
-**Patent:** JP S42-9417 / JPB 1967009417 (特公 昭42-9417)
+**Patent:** JP S42-9417 B / JPB 1967009417 (特公 昭42-9417)
 **Application Number:** 昭39-11182
 **Filed:** February 29, 1964
 **Published:** May 13, 1967
@@ -148,7 +148,7 @@ That choice has clear tradeoffs. The design is simple, compact, and compatible w
 
 ## Sources
 
-- JP S42-9417 / JPB 1967009417, “紫外線撮影用レンズ” (Lens for Ultraviolet Photography), Nippon Kogaku Kogyo K.K., published May 13, 1967. Primary source for prescription, field angle, reference wavelength, UV correction range, and Seidel coefficients.
+- JP S42-9417 B / JPB 1967009417, “紫外線撮影用レンズ” (Lens for Ultraviolet Photography), Nippon Kogaku Kogyo K.K., published May 13, 1967. Primary source for prescription, field angle, reference wavelength, UV correction range, and Seidel coefficients.
 - Cooper, J. and Abbott, W., *The Handbook of Photography (Nikon F, Nikkormat)*, 1st ed., 1968. Scans hosted by MIR, “55mm f/4.0-32 UV-Nikkor Auto,” used for the 55mm f/4 product identification, 3/3 construction, angle of view, filter size, weight, distance scale, and depth-of-field table.
 - OHARA S-BSL7 data sheet, OHARA 25-04. Used for nd, νd, 365.015 nm refractive index, and transmission comparison for the UV crown-class elements.
 - HIKARI J-LLF2 data sheet, Hikari Glass Co., Ltd. Used for nd, νd, 365.015 nm refractive index, and transmission comparison for the UV light-flint-class central element.

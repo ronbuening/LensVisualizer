@@ -53,7 +53,7 @@ const LENS_DATA = {
   apertureDesign: 3.3,
   lensMounts: ["m42"],
   imageFormat: "135-full-frame",
-  patentNumber: "JP 1969-024068",
+  patentNumber: "JP 1969-024068 B",
   patentAuthors: ["Iwatatsu Fujioka"],
   patentAssignees: ["Yashica Co., Ltd."],
   patentYear: 1969,

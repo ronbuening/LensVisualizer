@@ -1,6 +1,6 @@
 ## Patent Reference and Design Identification
 
-**Patent:** JP 1974-023892 (特公昭49-23892)\
+**Patent:** JP 1974-023892 B1 (特公昭49-23892)\
 **Filed:** 7 October 1970\
 **Published:** 19 June 1974\
 **Inventor:** Masamichi Kitagawa\
@@ -8,9 +8,9 @@
 **Title:** *Compact High-Performance Telephoto Lens* (小型高性能望遠レンズ)\
 **Embodiment analyzed:** Example 1
 
-The model transcribes Example 1 of JP 1974-023892. The patent normalizes the numerical prescription to `f = 1.0` and gives `F 1:6.3`, `fB = 0.1736`, `T = 0.586`, and `f1,2 = f/3.86`; the prescription itself is printed on patent page 3. The LensVisualizer data applies a literal scale factor of `s = 300.000` to the patent radii and axial spacings, without renormalizing the rounded source values to force an exact 300 mm effective focal length.
+The model transcribes Example 1 of JP 1974-023892 B1. The patent normalizes the numerical prescription to `f = 1.0` and gives `F 1:6.3`, `fB = 0.1736`, `T = 0.586`, and `f1,2 = f/3.86`; the prescription itself is printed on patent page 3. The LensVisualizer data applies a literal scale factor of `s = 300.000` to the patent radii and axial spacings, without renormalizing the rounded source values to force an exact 300 mm effective focal length.
 
-The selected production correlation is the KONICA FL-HEXANON AR 300mm f/6.3. Surviving Konica/Berkey literature describes the contemporary 300mm f/6.3 Automatic Telephoto Hexanon Fluorite as a 300 mm, f/6.3 lens with nine elements in five groups, an 8° angle of view, a 4.5 m minimum focus from the film plane, and plural laboratory-grown crystal-fluorite elements. Example 1 has the same nine-element/five-group structure, the same nominal focal length and aperture after scaling, an 8.25° patent field, and two identical front media with `nd = 1.43389` and `νd = 94.7`. These converging features establish the fixed correlation used here; the manufacturer literature does not itself identify JP 1974-023892 as the source patent.
+The selected production correlation is the KONICA FL-HEXANON AR 300mm f/6.3. Surviving Konica/Berkey literature describes the contemporary 300mm f/6.3 Automatic Telephoto Hexanon Fluorite as a 300 mm, f/6.3 lens with nine elements in five groups, an 8° angle of view, a 4.5 m minimum focus from the film plane, and plural laboratory-grown crystal-fluorite elements. Example 1 has the same nine-element/five-group structure, the same nominal focal length and aperture after scaling, an 8.25° patent field, and two identical front media with `nd = 1.43389` and `νd = 94.7`. These converging features establish the fixed correlation used here; the manufacturer literature does not itself identify JP 1974-023892 B1 as the source patent.
 
 The production brochure also describes a separate protective optical flat for the fluorite. That plate is not present in the selected patent prescription and is therefore excluded from the active optical model rather than inserted as an additional element.
 
@@ -129,7 +129,7 @@ No aspheric surface, zoom state, folded path, sensor plate, filter, or inactive 
 
 ## Sources
 
-1. **JP 1974-023892 (特公昭49-23892)**, *小型高性能望遠レンズ* (*Compact High-Performance Telephoto Lens*), Masamichi Kitagawa / Konishiroku Photo Industry Co., Ltd.; especially pp. 1–3 for identification, conditions, and Example 1; p. 5 for the Seidel table; p. 6 for the infinity-object and first-surface stop reference; p. 7 for the Example 1 optical section; and p. 8 for the Example 1 aberration plots.
+1. **JP 1974-023892 B1 (特公昭49-23892)**, *小型高性能望遠レンズ* (*Compact High-Performance Telephoto Lens*), Masamichi Kitagawa / Konishiroku Photo Industry Co., Ltd.; especially pp. 1–3 for identification, conditions, and Example 1; p. 5 for the Seidel table; p. 6 for the infinity-object and first-surface stop reference; p. 7 for the Example 1 optical section; and p. 8 for the Example 1 aberration plots.
 2. **Konica Division, Berkey Marketing Companies**, *Konica 300mm f6.3 Automatic Telephoto Hexanon Fluorite Lens*, Cat. No. 703-155, ©1980. Manufacturer literature scan: <https://www.pacificrimcamera.com/rl/02831/02831.pdf>.
 3. **OHARA Optical Glass** catalog and equivalence resources: <https://www.ohara-inc.co.jp/en/product/optical/>.
 4. **HOYA Optical Glass** data resources: <https://www.hoya-opticalworld.com/english/datadownload/index.html>.

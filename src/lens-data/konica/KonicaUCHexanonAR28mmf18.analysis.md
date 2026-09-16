@@ -1,6 +1,6 @@
 ## Patent Reference and Design Identification
 
-**Patent:** JP 1976-026535 (特開昭51-26535)\
+**Patent:** JP 1976-026535 A (特開昭51-26535)\
 **Application Number:** 昭49-99518\
 **Filed:** 1974-08-30\
 **Published:** 1976-03-04\
@@ -173,7 +173,7 @@ Example 1 has no aspherical surfaces. No asphere section is therefore required, 
 
 ## Sources / References
 
-1. **JP 1976-026535 (特開昭51-26535)**, supplied eight-page Japanese patent scan, Example 1. The Example 1 prescription and notation are on patent page 3; Figure 1 and the infinity / `M = 1/6` layout are on patent page 5.
+1. **JP 1976-026535 A (特開昭51-26535)**, supplied eight-page Japanese patent scan, Example 1. The Example 1 prescription and notation are on patent page 3; Figure 1 and the infinity / `M = 1/6` layout are on patent page 5.
 2. **Konica UC Hexanon Lenses brochure**, original Konica literature scan hosted by CameraManuals/Butkus: <https://cameramanuals.org/lenses/konica_uc_hexanon_lenses.pdf>. Used for product identity and marketed UC HEXANON AR 28mm F1.8 specifications.
 3. **Konica 28mm f/1.8 Automatic Wide Angle Hexanon Lens technical sheet**, Konica Division / Berkey Marketing Companies, copyright 1980, hosted by Pacific Rim Camera: <https://www.pacificrimcamera.com/rl/02831/02831.pdf>. Used for 28 mm, f/1.8–16, 8 elements / 8 groups, 75°, floating-element description, and 0.18 m minimum focus from the film plane.
 4. **Konica Autoreflex T4 instruction manual**, original manufacturer manual scan, hosted by ManualsLib: <https://www.manualslib.com/manual/1729457/Konica-Minolta-Autoreflex-T4.html>. Used for the 35 mm SLR / 24 × 36 mm system format context.

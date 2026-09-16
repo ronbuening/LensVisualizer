@@ -2,7 +2,7 @@
 
 ## Patent Reference and Design Identification
 
-**Patent:** JP S61-090115 (A)
+**Patent:** JP S61-090115 A (A)
 **Application Number:** 昭59-212244
 **Filed:** October 9, 1984
 **Published:** May 8, 1986
@@ -11,7 +11,7 @@
 **Title:** 結像用対物レンズ (Imaging Objective Lens)
 **Embodiment analyzed:** Example 4 (第4実施例, Table 4)
 
-JP S61-090115 discloses imaging objectives made only from calcium fluoride (CaF₂) and fused silica (SiO₂). The stated design purpose is good color correction from approximately 200 nm in the ultraviolet through the visible range and into the near infrared. The patent gives five worked examples using a four-component L₁-L₄ architecture.
+JP S61-090115 A discloses imaging objectives made only from calcium fluoride (CaF₂) and fused silica (SiO₂). The stated design purpose is good color correction from approximately 200 nm in the ultraviolet through the visible range and into the near infrared. The patent gives five worked examples using a four-component L₁-L₄ architecture.
 
 Example 4 is the best match to the Nikon UV-Nikkor 105mm f/4.5 and to the later Nikon/Tochigi Nikon Rayfact UV105mm industrial derivative.
 
@@ -192,6 +192,6 @@ The patent cites JP Publication S43-26269 as prior art for CaF₂/SiO₂ objecti
 
 ## Sources
 
-- JP S61-090115 (A), "結像用対物レンズ" (Imaging Objective Lens), published May 8, 1986. Primary source for the optical prescription, material table, conditional expressions, design rationale, and aberration diagrams.
+- JP S61-090115 A (A), "結像用対物レンズ" (Imaging Objective Lens), published May 8, 1986. Primary source for the optical prescription, material table, conditional expressions, design rationale, and aberration diagrams.
 - Nikon, "Rayfact UV Series | Lineup," current Rayfact UV105mm / PF10545MF-UV specifications. Source for the current production-derivative focal length, F-number, field of view, image circle, wavelength range, magnification range, object-to-image distance, F mount, and flange-to-image distance.
 - Daitron / Tochigi Nikon, "UV-105mmF4.5 Tochigi Nikon UV Shooting Lens." Source for the UV-105mm F4.5 industrial presentation, 105 mm focal-distance label, 220-900 nm range, F mount, 46.5 mm flange back, and physical lens data.

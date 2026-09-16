@@ -55,7 +55,7 @@ const LENS_DATA = {
   apertureDesign: 2.8,
   lensMounts: ["contax-yashica"],
   imageFormat: "135-full-frame",
-  patentNumber: "JP 1975-110330",
+  patentNumber: "JP 1975-110330 A",
   patentAuthors: ["Yoshisato Fujioka"],
   patentAssignees: ["Yashica Co., Ltd."],
   patentYear: 1975,

@@ -45,7 +45,7 @@ const LENS_DATA = {
   apertureDesign: 2,
   lensMounts: ["fixed-lens-camera"],
   imageFormat: "135-full-frame",
-  patentNumber: "JP H05-164961",
+  patentNumber: "JP H05-164961 A",
   patentAuthors: ["Yoshio Shimazaki"],
   patentAssignees: ["Konica Corporation"],
   patentYear: 1993,

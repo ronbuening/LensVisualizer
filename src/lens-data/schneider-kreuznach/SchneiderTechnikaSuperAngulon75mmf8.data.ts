@@ -50,7 +50,7 @@ const LENS_DATA = {
   apertureMarketing: 8,
   apertureDesign: 8,
   imageFormat: "4x5",
-  patentNumber: "JP S42-023896",
+  patentNumber: "JP S42-023896 B",
   patentAuthors: ["Günter Klemt"],
   patentAssignees: ["Jos. Schneider & Co., Optische Werke"],
   patentYear: 1967,

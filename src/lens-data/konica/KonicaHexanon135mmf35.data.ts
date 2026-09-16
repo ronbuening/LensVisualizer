@@ -50,7 +50,7 @@ const LENS_DATA = {
   apertureDesign: 3.5,
   lensMounts: ["konica-f"],
   imageFormat: "135-full-frame",
-  patentNumber: "JP 1955-009472",
+  patentNumber: "JP 1955-009472 B",
   patentAuthors: ["Tomokazu Kazamaki", "Fumio Kondo"],
   patentAssignees: [],
   patentYear: 1955,

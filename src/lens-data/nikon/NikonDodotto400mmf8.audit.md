@@ -1,6 +1,6 @@
 # Audit Log — Nikon Dodotto 400mm f/8
 
-Patent: JP H9-105860, Example 1 / Table 1.
+Patent: JP H9-105860 A, Example 1 / Table 1.
 
 ## 2026-08-11 — Patent glass follow-up
 

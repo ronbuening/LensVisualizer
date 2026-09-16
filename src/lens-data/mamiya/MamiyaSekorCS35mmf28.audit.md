@@ -1,6 +1,6 @@
 # Audit Log - Mamiya-Sekor CS 35mm f/2.8
 
-Patent: JP 1978-066222, Example 1
+Patent: JP 1978-066222 A, Example 1
 Catalog version: local working tree, 2026-08-07
 
 ## 2026-08-07 - Glass classification and Sellmeier audit

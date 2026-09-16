@@ -1,6 +1,6 @@
 # Audit Log — NIKON NIKKOR-O 2.1cm f/4
 
-Patent: JP 1968-030782, Example 2 / Figure 2.
+Patent: JP 1968-030782 Y1, Example 2 / Figure 2.
 
 ## 2026-07-26 — Figure-matched SDs, glass coverage, identity, and inferred focus
 

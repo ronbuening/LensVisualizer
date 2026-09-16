@@ -2,7 +2,7 @@
 
 ## Patent Reference and Design Identification
 
-**Patent:** JP 1969-024068<br>
+**Patent:** JP 1969-024068 B<br>
 **Application Number:** Japanese Patent Application Sho 41-37065<br>
 **Filed:** 1966-06-10<br>
 **Published:** 1969-10-13<br>
@@ -11,7 +11,7 @@
 **Title:** 大口径比広角写真レンズ (*Large-aperture-ratio wide-angle photographic lens*)
 **Embodiment analyzed:** Example 1
 
-The prescription is JP 1969-024068 Example 1. The patent gives a normalized focal length of 100.0, an aperture ratio of 1:3.3, and a 92° included field, with eight glass elements shown in Figure 1 (pp. 3 and 5). The LensVisualizer data file applies the fixed project correlation to the production YASHICA YASHINON-DX 21mm f/3.3; this correlation is not presented as a manufacturer-confirmed patent attribution.
+The prescription is JP 1969-024068 B Example 1. The patent gives a normalized focal length of 100.0, an aperture ratio of 1:3.3, and a 92° included field, with eight glass elements shown in Figure 1 (pp. 3 and 5). The LensVisualizer data file applies the fixed project correlation to the production YASHICA YASHINON-DX 21mm f/3.3; this correlation is not presented as a manufacturer-confirmed patent attribution.
 
 The production relationship is supported by several convergent source facts. Yashica's TL-E manual lists the Yashinon-DX 21mm f/3.3 as an eight-element, five-group, 92° lens and places it among the screw-thread interchangeable lenses. The same manual gives a special mounting sequence for the 21mm and directs composition through the lens's exclusive finder. A later Yashica TL Electro-X ITS manual lists the 21mm f/3.3 with a 0.8 m minimum focus and 55 mm screw-in filter. These production specifications align with the selected patent example's focal ratio, field, and optical count without establishing an explicit corporate statement that Example 1 became the production lens.
 
@@ -116,13 +116,13 @@ These are catalog-coordinate comparators, not evidence that Yashica bought those
 
 ## Focus Mechanism
 
-The focus status is `NO_INTERNAL_RECONSTRUCTION`. JP 1969-024068 Example 1 publishes one fixed optical prescription and gives no finite-object spacing table, magnification row, or internal group-motion prescription. The data file therefore has an empty `var` object and defines no focus movement.
+The focus status is `NO_INTERNAL_RECONSTRUCTION`. JP 1969-024068 B Example 1 publishes one fixed optical prescription and gives no finite-object spacing table, magnification row, or internal group-motion prescription. The data file therefore has an empty `var` object and defines no focus movement.
 
 The production 0.8 m minimum focus is retained as manufacturer metadata. It is not used to infer unit focusing, inner focusing, floating motion, or a close-focus back focal distance. The reviewed manufacturer material establishes the marketed minimum focus but does not provide the optical kinematics needed to reconstruct a finite-focus prescription. The LensVisualizer model therefore represents only the source-published fixed state.
 
 ## Conditional Expressions
 
-JP 1969-024068 states a set of design inequalities for the four functional groups. Re-evaluation from the final data arrays gives:
+JP 1969-024068 B states a set of design inequalities for the four functional groups. Re-evaluation from the final data arrays gives:
 
 | Patent condition | Example 1 |
 | --- | --- |
@@ -153,7 +153,7 @@ The modeled prescription retains every patent radius, internal spacing, refracti
 
 ## Sources / References
 
-1. **JP 1969-024068**, Yashica Co., Ltd., Iwatatsu Fujioka, *大口径比広角写真レンズ* (*Large-aperture-ratio wide-angle photographic lens*), published 1969-10-13. Example 1 prescription and specifications on p. 3; Petzval/aberration table and claim conditions on p. 4; optical section in Figure 1 on p. 5.
+1. **JP 1969-024068 B**, Yashica Co., Ltd., Iwatatsu Fujioka, *大口径比広角写真レンズ* (*Large-aperture-ratio wide-angle photographic lens*), published 1969-10-13. Example 1 prescription and specifications on p. 3; Petzval/aberration table and claim conditions on p. 4; optical section in Figure 1 on p. 5.
 2. **Yashica TL-E Instruction Booklet**, Yashica Co., Ltd. Manufacturer-produced manual scan: https://www.cameramanuals.org/yashica_pdf/yashica_tl-e.pdf. The interchangeable-lens section documents the screw-thread mount, special 21mm mounting procedure, exclusive finder, and the Yashinon-DX 21mm f/3.3 lens table.
 3. **Yashica TL Electro-X ITS Instruction Booklet**, Yashica Co., Ltd. Manufacturer-produced manual scan: https://www.cameramanuals.org/yashica_pdf/yashica_tl_electro_x_its.pdf. The interchangeable-lens table lists the 21mm f/3.3 with 0.8 m minimum focus and 55 mm screw-in filter.
 4. **OHARA Optical Glass Catalog**, current d-line product table and catalog downloads: https://www.ohara-inc.co.jp/en/product/01000/ and https://www.ohara-inc.co.jp/en/product/catalog/. Used only for catalog-coordinate comparison, notably S-LAM3.
