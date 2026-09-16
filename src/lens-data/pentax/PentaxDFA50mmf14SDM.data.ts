@@ -30,7 +30,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   key: "pentax-dfa-50mm-f14-sdm-aw",
-  maker: "PENTAX",
+  maker: "Pentax",
   name: "PENTAX HD D FA* 50mm f/1.4 SDM AW",
   subtitle: "US 2019/0250367 A1 Example 1 — Murayama",
   specs: [
