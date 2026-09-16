@@ -14,7 +14,4 @@
 /lens/nikon-af-zoom-micro-70-180mm-f4.5-5.6d/ /lens/nikon-af-zoom-micro-70-180mm-f45-56d/ 301
 /lens/sony-sal-70-400mm-f4-5.6-g /lens/sony-sal-70-400mm-f4-56-g/ 301
 /lens/sony-sal-70-400mm-f4-5.6-g/ /lens/sony-sal-70-400mm-f4-56-g/ 301
-# 2026-09-16: consolidate duplicate Summilux patent-family records.
-/lens/leica-summilux-m-35mm-f14 /lens/leica-summilux-m-35f14/ 301
-/lens/leica-summilux-m-35mm-f14/ /lens/leica-summilux-m-35f14/ 301
 /compare/* /index.html 200
