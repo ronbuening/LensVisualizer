@@ -58,3 +58,6 @@ Non-obvious constraints and failure modes: one trap per bullet, with the full ru
   `useOverlayState.ts` is the only overlay outside the URL-shareable `panels` slice
   (`agent_docs/architecture/viewer-and-diagram.md`).
 - New analysis tabs: `agent_docs/adding_an_analysis_tab.md`. New URL-shareable fields: `agent_docs/adding_url_state.md`.
+- Mount and image-format ids are single `:param` route segments (`/mounts/:mountId`, `/formats/:formatId`). An id with a
+  `/` never matches, so the prerender emits a noindex Page Not Found and `seo-audit` reports a missing canonical. The
+  slug rule lives in `src/utils/catalog/lensTaxonomy.ts` and is guarded by `lensTaxonomy.test.ts`.

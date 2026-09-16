@@ -55,7 +55,7 @@ const LENS_DATA = {
   apertureMarketing: 1.9,
   apertureDesign: 1.99,
   lensMounts: ["fixed-lens-camera"],
-  imageFormat: "1/1.7-inch-type",
+  imageFormat: "1-1.7-inch-type",
   patentNumber: "JP 2010-164839 A",
   patentAuthors: ["Yoshifumi Sudoh"],
   patentAssignees: ["Ricoh Co., Ltd."],

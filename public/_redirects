@@ -14,6 +14,12 @@
 /lens/nikon-af-zoom-micro-70-180mm-f4.5-5.6d/ /lens/nikon-af-zoom-micro-70-180mm-f45-56d/ 301
 /lens/sony-sal-70-400mm-f4-5.6-g /lens/sony-sal-70-400mm-f4-56-g/ 301
 /lens/sony-sal-70-400mm-f4-5.6-g/ /lens/sony-sal-70-400mm-f4-56-g/ 301
+# 2026-09-16: image-format ids "1/2.3-inch-type" and "1/1.7-inch-type" renamed to
+# single-segment slugs; the old two-segment paths never matched /formats/:formatId.
+/formats/1/2.3-inch-type /formats/1-2.3-inch-type/ 301
+/formats/1/2.3-inch-type/ /formats/1-2.3-inch-type/ 301
+/formats/1/1.7-inch-type /formats/1-1.7-inch-type/ 301
+/formats/1/1.7-inch-type/ /formats/1-1.7-inch-type/ 301
 # Client-only comparison pages: serve the app shell with a 200 so arbitrary lens
 # pairs load without a 404. The target must be `/`, not `/index.html`: Cloudflare's
 # parser rejects any `/*` rule whose target ends in `/index` or `/index.html`

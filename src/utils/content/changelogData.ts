@@ -21,6 +21,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-09-16",
     type: "fix",
+    summary: "Fixed 1/2.3-inch and 1/1.7-inch type format pages showing Page Not Found",
+  },
+  {
+    date: "2026-09-16",
+    type: "fix",
     summary: "Fixed shared lens-comparison links briefly showing Page Not Found before loading",
   },
   {

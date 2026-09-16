@@ -17,6 +17,14 @@ describe("lensTaxonomy", () => {
     expect(new Set(ids).size).toBe(ids.length);
   });
 
+  it("keeps every mount and image format id to a single URL path segment", () => {
+    // Guards /mounts/:mountId and /formats/:formatId: a `:param` route never matches an id
+    // containing "/", so the prerender emitted a noindex Page Not Found for such ids.
+    for (const { id } of [...LENS_MOUNTS, ...IMAGE_FORMATS]) {
+      expect(id, `${id}: route-param ids must be one lowercase slug segment`).toMatch(/^[a-z0-9.-]+$/);
+    }
+  });
+
   it("defines positive dimensions for every image format", () => {
     for (const format of IMAGE_FORMATS) {
       expect(format.widthMm, `${format.id}: width`).toBeGreaterThan(0);
@@ -93,8 +101,8 @@ describe("lensTaxonomy", () => {
   it("includes image formats for the added mount families", () => {
     expect(IMAGE_FORMATS.map((format) => format.id)).toEqual(
       expect.arrayContaining([
-        "1/2.3-inch-type",
-        "1/1.7-inch-type",
+        "1-2.3-inch-type",
+        "1-1.7-inch-type",
         "1-inch-type",
         "four-thirds",
         "aps-film",
