@@ -9,12 +9,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **753** lenses scanned
-- **1699** total code-only elements found
-- **267** elements in this report
-- **102** distinct lens files affected
-- **1** active unreviewed elements have no review-record hit or explicit disposition
-- **138** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
+- **762** lenses scanned
+- **1721** total code-only elements found
+- **276** elements in this report
+- **104** distinct lens files affected
+- **8** active unreviewed elements have no review-record hit or explicit disposition
+- **140** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
 - **0** dispositions lack any review record
 
 ## Prioritized Unreviewed Queue
@@ -27,6 +27,12 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | Tier | Code | Active elements / lens files | Visible lenses | Strict surfaces | Completion candidates | Near-complete candidates | Local patent lenses | Representative rows |
 |---|---|---:|---:|---:|---|---|---:|---|
 | A | 683315 | 1 / 1 | 1 | 1 | MINOLTA AF 20mm f/2.8 | — | 1/1 | [MINOLTA AF 20mm f/2.8](../../src/lens-data/minolta/MinoltaAF20mmf28.data.ts) Element 4 (1.68300 / 31.52) |
+| C | 682419 | 2 / 1 | 1 | 2 | — | — | 1/1 | [CARL ZEISS JENA FLEKTOGON 50mm f/4](../../src/lens-data/carl-zeiss-jena/ZeissFlektogon50mmf4.data.ts) Element 3 (1.68169 / 41.90)<br>[CARL ZEISS JENA FLEKTOGON 50mm f/4](../../src/lens-data/carl-zeiss-jena/ZeissFlektogon50mmf4.data.ts) Element 4 (1.68169 / 41.90) |
+| D | 542596 | 1 / 1 | 1 | 1 | — | — | 1/1 | [CARL ZEISS JENA FLEKTOGON 50mm f/4](../../src/lens-data/carl-zeiss-jena/ZeissFlektogon50mmf4.data.ts) Element 2 (1.54212 / 59.60) |
+| D | 550454 | 1 / 1 | 1 | 1 | — | — | 1/1 | [CARL ZEISS JENA FLEKTOGON 20mm f/4](../../src/lens-data/carl-zeiss-jena/ZeissFlektogon20mmf4.data.ts) Element 5 (1.55000 / 45.40) |
+| D | 610380 | 1 / 1 | 1 | 1 | — | — | 1/1 | [CARL ZEISS JENA FLEKTOGON 20mm f/4](../../src/lens-data/carl-zeiss-jena/ZeissFlektogon20mmf4.data.ts) Element 7 (1.61000 / 38.00) |
+| D | 681472 | 1 / 1 | 1 | 1 | — | — | 1/1 | [CARL ZEISS JENA FLEKTOGON 50mm f/4](../../src/lens-data/carl-zeiss-jena/ZeissFlektogon50mmf4.data.ts) Element 7 (1.68078 / 47.20) |
+| D | 698536 | 1 / 1 | 1 | 1 | — | — | 1/1 | [CARL ZEISS JENA FLEKTOGON 50mm f/4](../../src/lens-data/carl-zeiss-jena/ZeissFlektogon50mmf4.data.ts) Element 1 (1.69806 / 53.60) |
 
 ## Codes by Frequency
 
@@ -49,6 +55,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 620586 | 2 | 1 | patents/US4303314.pdf | All rows have review records |
 | 627376 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
 | 633315 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
+| 682419 | 2 | 1 | patents/DE_1157000_B.pdf | No review-record hit |
 | 690570 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
 | 720521 | 2 | 2 | patents/US4124276.pdf | All rows have review records |
 | 726548 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
@@ -92,7 +99,9 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 534555 | 1 | 1 | patents/US4110006.pdf | All rows explicitly disposed |
 | 534556 | 1 | 1 | patents/US20230367186A1.pdf | All rows have review records |
 | 540509 | 1 | 1 | patents/GB_775944_A.pdf | All rows explicitly disposed |
+| 542596 | 1 | 1 | patents/DE_1157000_B.pdf | No review-record hit |
 | 545486 | 1 | 1 | patents/CN116520542A.pdf | All rows have review records |
+| 550454 | 1 | 1 | patents/GB_978797_A.pdf | No review-record hit |
 | 553381 | 1 | 1 | patents/US7508592.pdf | All rows explicitly disposed |
 | 554381 | 1 | 1 | patents/US7359125.pdf | All rows have review records |
 | 554522 | 1 | 1 | patents/US20100208366A1.pdf | All rows explicitly disposed |
@@ -112,6 +121,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 602352 | 1 | 1 | patents/GB_850117_A.pdf | All rows have review records |
 | 603564 | 1 | 1 | patents/JP2022092388A.pdf | All rows have review records |
 | 605382 | 1 | 1 | patents/US2279384.pdf | All rows explicitly disposed |
+| 610380 | 1 | 1 | patents/GB_978797_A.pdf | No review-record hit |
 | 611572 | 1 | 1 | patents/US2279384.pdf | All rows explicitly disposed |
 | 612313 | 1 | 1 | patents/US20210026133A1.pdf | All rows have review records |
 | 617443 | 1 | 1 | patents/JP2023039817A.pdf | All rows have review records |
@@ -142,7 +152,9 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 676440 | 1 | 1 | patents/US7542219.pdf | All rows explicitly disposed |
 | 678314 | 1 | 1 | patents/US20100208366A1.pdf | All rows explicitly disposed |
 | 678322 | 1 | 1 | patents/WO2021200206A1.pdf | All rows explicitly disposed |
+| 678508 | 1 | 1 | patents/GB_978797_A.pdf | All rows explicitly disposed |
 | 680312 | 1 | 1 | patents/JP2015041012A.pdf | All rows have review records |
+| 681472 | 1 | 1 | patents/DE_1157000_B.pdf | No review-record hit |
 | 682366 | 1 | 1 | Missing from untracked local patents/ references (US4518229, 4518229) | All rows have review records |
 | 682575 | 1 | 1 | patents/US7542219.pdf | All rows explicitly disposed |
 | 683309 | 1 | 1 | patents/US2983193.pdf | All rows explicitly disposed |
@@ -157,6 +169,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 693562 | 1 | 1 | patents/US2983193.pdf | All rows explicitly disposed |
 | 694312 | 1 | 1 | patents/WO2021199923A1.pdf | All rows have review records |
 | 697555 | 1 | 1 | Missing from untracked local patents/ references (JP1978066222, 1978066222, JPA1978066222000000, JPB1978066222000000) | All rows explicitly disposed |
+| 698536 | 1 | 1 | patents/DE_1157000_B.pdf | No review-record hit |
 | 700555 | 1 | 1 | patents/WO_2025263124_A1.pdf | All rows have review records |
 | 701301 | 1 | 1 | patents/US4277149.pdf | All rows have review records |
 | 712525 | 1 | 1 | patents/JP2021076829A.pdf | All rows explicitly disposed |
@@ -165,6 +178,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 728261 | 1 | 1 | patents/US4523816.pdf | All rows explicitly disposed |
 | 728283 | 1 | 1 | No patent number parsed from lens metadata | All rows explicitly disposed |
 | 728285 | 1 | 1 | No patent number parsed from lens metadata | All rows explicitly disposed |
+| 728380 | 1 | 1 | patents/GB_978797_A.pdf | All rows explicitly disposed |
 | 728403 | 1 | 1 | patents/US6560042.pdf | All rows explicitly disposed |
 | 730262 | 1 | 1 | patents/JP2021076829A.pdf | All rows explicitly disposed |
 | 732547 | 1 | 1 | patents/WO2021199923A1.pdf | All rows explicitly disposed |
@@ -302,6 +316,25 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | L5 (Element 5) | 8 | `BaK/SK crown (561/575)` | 1.56093 / 57.50 | No catalog entry | abbe | patents/US2721499.pdf | Reviewed sidecar hit |
 | L6 (Element 6) | 9 | `SK-type dense crown (625/533)` | 1.62500 / 53.30 | No catalog entry | abbe | patents/US2721499.pdf | Reviewed sidecar hit |
 | L8 (Element 8) | 12 | `LaK/SK crown (642/581)` | 1.64200 / 58.10 | No catalog entry | abbe | patents/US2721499.pdf | Reviewed sidecar hit |
+
+### [CARL ZEISS JENA FLEKTOGON 20mm f/4](../../src/lens-data/carl-zeiss-jena/ZeissFlektogon20mmf4.data.ts) - GB 978,797
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L5 (Element 5) | 8 | `550454 — light-flint class (supplier/melt unestablished)` | 1.55000 / 45.40 | No catalog entry | abbe | patents/GB_978797_A.pdf | No review-record hit |
+| L6 (Element 6) | 10 | `Unmatched (728380; nearest current dense-barium-flint family outside Δn=0.003)` | 1.72800 / 38.00 | No catalog entry | abbe | patents/GB_978797_A.pdf | Explicit disposition in data |
+| L7 (Element 7) | 11 | `610380 — flint class (supplier/melt unestablished)` | 1.61000 / 38.00 | No catalog entry | abbe | patents/GB_978797_A.pdf | No review-record hit |
+| L10 (Element 10) | 15 | `Unmatched (678508; no coordinate-compatible current catalog glass located)` | 1.67800 / 50.80 | No catalog entry | abbe | patents/GB_978797_A.pdf | Explicit disposition in data |
+
+### [CARL ZEISS JENA FLEKTOGON 50mm f/4](../../src/lens-data/carl-zeiss-jena/ZeissFlektogon50mmf4.data.ts) - DE 1 157 000
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L1 (Element 1) | 1 | `698536 class (supplier unresolved)` | 1.69806 / 53.60 | No catalog entry | abbe | patents/DE_1157000_B.pdf | No review-record hit |
+| L2 (Element 2) | 2 | `542596 class (supplier unresolved)` | 1.54212 / 59.60 | No catalog entry | abbe | patents/DE_1157000_B.pdf | No review-record hit |
+| L3 (Element 3) | 4 | `682419 class (supplier unresolved)` | 1.68169 / 41.90 | No catalog entry | abbe | patents/DE_1157000_B.pdf | No review-record hit |
+| L4 (Element 4) | 6 | `682419 class (supplier unresolved)` | 1.68169 / 41.90 | No catalog entry | abbe | patents/DE_1157000_B.pdf | No review-record hit |
+| L7 (Element 7) | 10 | `681472 class (supplier unresolved)` | 1.68078 / 47.20 | No catalog entry | abbe | patents/DE_1157000_B.pdf | No review-record hit |
 
 ### [CARL ZEISS JENA PANCOLAR 50mm f/2](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPancolar50mmf2.data.ts) - GB 850,117
 

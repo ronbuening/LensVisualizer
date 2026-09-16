@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **753** lenses scanned
-- **8553** non-air surfaces examined
-- **8563** element glass declarations examined
-- **233** non-explicit-unmatched annotations did not resolve
-- **117** distinct unresolved glass-like tokens found
+- **762** lenses scanned
+- **8613** non-air surfaces examined
+- **8623** element glass declarations examined
+- **240** non-explicit-unmatched annotations did not resolve
+- **123** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -29,6 +29,7 @@ or per-lens patent backfills.
 | 620586 | 2 | 1 | |
 | 627376 | 2 | 2 | |
 | 633315 | 2 | 2 | |
+| 682419 | 2 | 1 | |
 | 690570 | 2 | 2 | |
 | 720521 | 2 | 2 | |
 | 726548 | 2 | 2 | |
@@ -51,7 +52,9 @@ or per-lens patent backfills.
 | 520701 | 1 | 1 | |
 | 534554 | 1 | 1 | |
 | 534556 | 1 | 1 | |
+| 542596 | 1 | 1 | |
 | 545486 | 1 | 1 | |
+| 550454 | 1 | 1 | |
 | 554381 | 1 | 1 | |
 | 561575 | 1 | 1 | |
 | 570481 | 1 | 1 | |
@@ -63,6 +66,7 @@ or per-lens patent backfills.
 | 602352 | 1 | 1 | |
 | 603564 | 1 | 1 | |
 | 607492 | 1 | 1 | |
+| 610380 | 1 | 1 | |
 | 612313 | 1 | 1 | |
 | 617443 | 1 | 1 | |
 | 624584 | 1 | 1 | |
@@ -75,10 +79,12 @@ or per-lens patent backfills.
 | 672323 | 1 | 1 | |
 | 672388 | 1 | 1 | |
 | 680312 | 1 | 1 | |
+| 681472 | 1 | 1 | |
 | 682366 | 1 | 1 | |
 | 683315 | 1 | 1 | |
 | 683548 | 1 | 1 | |
 | 694312 | 1 | 1 | |
+| 698536 | 1 | 1 | |
 | 700555 | 1 | 1 | |
 | 701301 | 1 | 1 | |
 | 721334 | 1 | 1 | |
@@ -205,6 +211,11 @@ or per-lens patent backfills.
 - [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) 36: `633315 flint class (catalog unresolved)`
 - [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR — TC 1.4x Engaged](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14TCIn.data.ts) 36: `633315 flint class (catalog unresolved)`
 
+### 682419 — 2 occurrences
+
+- [CARL ZEISS JENA FLEKTOGON 50mm f/4](../../src/lens-data/carl-zeiss-jena/ZeissFlektogon50mmf4.data.ts) 4: `682419 class (supplier unresolved)`
+- [CARL ZEISS JENA FLEKTOGON 50mm f/4](../../src/lens-data/carl-zeiss-jena/ZeissFlektogon50mmf4.data.ts) 6: `682419 class (supplier unresolved)`
+
 ### 690570 — 2 occurrences
 
 - [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) 42: `690570 crown class (catalog unresolved)`
@@ -308,9 +319,17 @@ or per-lens patent backfills.
 
 - [PANASONIC LEICA DG SUMMILUX 9mm f/1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG9mmf17.data.ts) 3A: `534556 — moldable crown (patent nd=1.53380, nu_d=55.6)`
 
+### 542596 — 1 occurrence
+
+- [CARL ZEISS JENA FLEKTOGON 50mm f/4](../../src/lens-data/carl-zeiss-jena/ZeissFlektogon50mmf4.data.ts) 2: `542596 class (supplier unresolved)`
+
 ### 545486 — 1 occurrence
 
 - [LAOWA 58mm f/2.8 2× Ultra-Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) 20: `545486 - crown glass (patent nd=1.54517, vd=48.63)`
+
+### 550454 — 1 occurrence
+
+- [CARL ZEISS JENA FLEKTOGON 20mm f/4](../../src/lens-data/carl-zeiss-jena/ZeissFlektogon20mmf4.data.ts) 8: `550454 — light-flint class (supplier/melt unestablished)`
 
 ### 554381 — 1 occurrence
 
@@ -355,6 +374,10 @@ or per-lens patent backfills.
 ### 607492 — 1 occurrence
 
 - [AGFA COLOR-TELINEAR 90mm f/4](../../src/lens-data/agfa/AgfaColorTelinear90mmf4.data.ts) 7: `BAM5 class (barium middle glass, 607/492)`
+
+### 610380 — 1 occurrence
+
+- [CARL ZEISS JENA FLEKTOGON 20mm f/4](../../src/lens-data/carl-zeiss-jena/ZeissFlektogon20mmf4.data.ts) 11: `610380 — flint class (supplier/melt unestablished)`
 
 ### 612313 — 1 occurrence
 
@@ -404,6 +427,10 @@ or per-lens patent backfills.
 
 - [SONY SONNAR T* FE 35mm f/2.8 ZA](../../src/lens-data/sony/SonyFE35mmf28ZA.data.ts) 12A: `680312 - dense flint (patent nd=1.68000, vd=31.16; no exact public catalog match)`
 
+### 681472 — 1 occurrence
+
+- [CARL ZEISS JENA FLEKTOGON 50mm f/4](../../src/lens-data/carl-zeiss-jena/ZeissFlektogon50mmf4.data.ts) 10: `681472 class (supplier unresolved)`
+
 ### 682366 — 1 occurrence
 
 - [MINOLTA AF APO TELE 300mm f/2.8](../../src/lens-data/minolta/MinoltaAF300mmf28.data.ts) 5: `682366 - dense flint class (catalog unresolved)`
@@ -419,6 +446,10 @@ or per-lens patent backfills.
 ### 694312 — 1 occurrence
 
 - [SONY FE 14mm f/1.8 GM](../../src/lens-data/sony/SonyFE14mmf18GM.data.ts) 7: `694312 - short flint (Sony patent nd=1.69416, vd=31.2; no exact public catalog match)`
+
+### 698536 — 1 occurrence
+
+- [CARL ZEISS JENA FLEKTOGON 50mm f/4](../../src/lens-data/carl-zeiss-jena/ZeissFlektogon50mmf4.data.ts) 1: `698536 class (supplier unresolved)`
 
 ### 700555 — 1 occurrence
 
