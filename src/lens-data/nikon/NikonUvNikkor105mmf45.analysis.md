@@ -2,7 +2,7 @@
 
 ## Patent Reference and Design Identification
 
-**Patent:** JP S61-090115 A (A)
+**Patent:** JP S61-090115 A
 **Application Number:** 昭59-212244
 **Filed:** October 9, 1984
 **Published:** May 8, 1986
@@ -192,6 +192,6 @@ The patent cites JP Publication S43-26269 as prior art for CaF₂/SiO₂ objecti
 
 ## Sources
 
-- JP S61-090115 A (A), "結像用対物レンズ" (Imaging Objective Lens), published May 8, 1986. Primary source for the optical prescription, material table, conditional expressions, design rationale, and aberration diagrams.
+- JP S61-090115 A, "結像用対物レンズ" (Imaging Objective Lens), published May 8, 1986. Primary source for the optical prescription, material table, conditional expressions, design rationale, and aberration diagrams.
 - Nikon, "Rayfact UV Series | Lineup," current Rayfact UV105mm / PF10545MF-UV specifications. Source for the current production-derivative focal length, F-number, field of view, image circle, wavelength range, magnification range, object-to-image distance, F mount, and flange-to-image distance.
 - Daitron / Tochigi Nikon, "UV-105mmF4.5 Tochigi Nikon UV Shooting Lens." Source for the UV-105mm F4.5 industrial presentation, 105 mm focal-distance label, 220-900 nm range, F mount, 46.5 mm flange back, and physical lens data.
