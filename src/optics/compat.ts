@@ -263,6 +263,7 @@ export {
 export {
   computeElementRenderDiagnostics2,
   computeElementShapes2,
+  computeStandaloneMirrorPaths2,
   createCoordinateTransforms2,
   stateForRuntimeDiagram2,
 } from "./diagram/runtimeDiagramAdapter.js";

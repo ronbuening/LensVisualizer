@@ -18,7 +18,9 @@ const ASSIGNEE_START_YEARS = new Map([
 // Nikon history and the source publications distinguish legal renames from spelling variants:
 // https://www.nikon.com/company/corporate/history/
 // https://patents.google.com/patent/US2646721A/en (front page: Aktiengesellschaft)
+// DE 1 157 000 names Jenoptik Jena G.m.b.H.; normalize punctuation only, not legal identity.
 const ASSIGNEE_ALIASES = [
+  { alias: "Jenoptik Jena G.m.b.H.", canonical: "Jenoptik Jena GmbH" },
   { alias: "Voigtländer A.G.", canonical: "Voigtländer AG" },
   { alias: "Nippon Kogaku Kogyo K.K.", canonical: "Nippon Kogaku K.K." },
   { alias: "Voigtländer & Sohn Aktiengesellschaft", canonical: "Voigtländer & Sohn AG" },

@@ -14,15 +14,15 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 - **761** lenses scanned
 - **8601** glass elements examined
-- **2681** elements have multiple coordinate-compatible candidates
-- **506** lens files are affected
+- **2662** elements have multiple coordinate-compatible candidates
+- **500** lens files are affected
 - **256** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **198** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
-| Smallest reference-index residual | 1522 |
-| Evidence-source priority | 878 |
+| Smallest reference-index residual | 1510 |
+| Evidence-source priority | 871 |
 | Vendor context | 272 |
 | Stable canonical-name order | 7 |
 | Smallest Abbe residual | 2 |
@@ -435,17 +435,8 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `728283 — dense-flint class (supplier unresolved)` | 1.72830 / 28.30 (d) | H-ZF4A — smallest d-line \|Δn\| (5.0e-5 vs 5.0e-5) | E-FD10 (Hoya, code, alternate code row) | 1 | [CARL ZEISS JENA BIOMETAR 80mm f/2.8](../../src/lens-data/carl-zeiss-jena/ZeissBiometar80mmf28.data.ts) L4 |
 | `620603 — crown class (supplier unresolved)` | 1.62040 / 60.30 (d) | N-SK16 — smallest d-line \|Δn\| (1.0e-5 vs 1.0e-5) | J-SK16 (Hikari, code, alternate code row)<br>S-BSM16 (Ohara, code, alternate code row) | 1 | [CARL ZEISS JENA BIOMETAR 80mm f/2.8](../../src/lens-data/carl-zeiss-jena/ZeissBiometar80mmf28.data.ts) L5 |
 | `673322 — SF5-class dense flint (supplier unproven)` | 1.67270 / 32.20 (d) | SF5 — direct name evidence outranks six-digit code evidence. | H-ZF2 (CDGM, code, alternate code row)<br>E-FD5 (Hoya, code, preferred code row) | 1 | [CARL ZEISS JENA BIOTAR 50mm f/1.4](../../src/lens-data/carl-zeiss-jena/ZeissBiotar50mmf14.data.ts) L4 |
-| `620603 — dense-crown class (supplier/melt unestablished)` | 1.62000 / 60.30 (d) | N-SK16 — smallest d-line \|Δn\| (4.1e-4 vs 4.1e-4) | J-SK16 (Hikari, code, alternate code row)<br>S-BSM16 (Ohara, code, alternate code row) | 1 | [CARL ZEISS JENA FLEKTOGON 20mm f/4](../../src/lens-data/carl-zeiss-jena/ZeissFlektogon20mmf4.data.ts) L4 |
-| `673322 / SF5-class (supplier unresolved)` | 1.67254 / 32.20 (d) | SF5 — direct name evidence outranks six-digit code evidence. | E-FD5 (Hoya, code, preferred code row)<br>H-ZF2 (CDGM, code, alternate code row) | 1 | [CARL ZEISS JENA FLEKTOGON 50mm f/4](../../src/lens-data/carl-zeiss-jena/ZeissFlektogon50mmf4.data.ts) L5 |
 | `678555 LaK (≈ Schott N-LaK12)` | 1.67786 / 55.50 (d) | LAC12 — smallest d-line \|Δn\| (4.2e-5 vs 4.5e-5) | K-LaK12 (Sumita, code, vendor ✗, alternate code row) | 1 | [CARL ZEISS JENA TESSAR 50mm f/2.8](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaTessar50mmf28.data.ts) L1 |
-| `517642 — BK7/K9L crown class (supplier unresolved)` | 1.51680 / 64.20 (d) | N-BK7 — alias evidence outranks six-digit code evidence. | H-K9L (CDGM, code, alternate code row)<br>H-K9LGT (CDGM, code, alternate code row) | 2 | [CARL ZEISS MIROTAR 500mm f/4.5](../../src/lens-data/carl-zeiss-oberkochen/ZeissMirotarf45500mm.data.ts) L1 |
 | `SF56A / SF11 (Schott, 785261)` | 1.78470 / 26.10 (d) | SF56A — smallest d-line \|Δn\| (1.1e-6 vs 2.0e-5) | SF11 (Schott, name, vendor ✓) | 1 | [CARL ZEISS OLYMPIA-SONNAR 180mm f/2.8](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissOlympiaSonnar180mmf28.data.ts) L3 |
-| `699301 — dense-flint class (supplier unresolved)` | 1.69895 / 30.10 (d) | E-FD15 — smallest d-line \|Δn\| (2.0e-7 vs 3.2e-6) | S-TIM35 (Ohara, code, preferred code row) | 2 | [CARL ZEISS PLANAR 80mm f/2.8 (6×6)](../../src/lens-data/carl-zeiss-oberkochen/ZeissPlanar2880.data.ts) L1 |
-| `762265/762266 — dense-flint class (supplier unresolved)` | 1.76182 / 26.50 (d) | J-SF14 — smallest d-line \|Δn\| (3.0e-8 vs 7.4e-7) | S-TIH14 (Ohara, code, preferred code row)<br>FD140 (Hoya, code, alternate code row) | 1 | [CARL ZEISS PLANAR 80mm f/2.8 (6×6)](../../src/lens-data/carl-zeiss-oberkochen/ZeissPlanar2880.data.ts) L4 |
-| `620603 — crown class (supplier unresolved)` | 1.62041 / 60.30 (d) | J-SK16 — smallest d-line \|Δn\| (1.0e-8 vs 3.5e-8) | N-SK16 (Schott, code, preferred code row)<br>S-BSM16 (Ohara, code, alternate code row) | 1 | [CARL ZEISS PLANAR 80mm f/2.8 (6×6)](../../src/lens-data/carl-zeiss-oberkochen/ZeissPlanar2880.data.ts) L5 |
-| `620603 — SK16-class crown (supplier unresolved)` | 1.62041 / 60.30 (d) | N-SK16 — alias evidence outranks six-digit code evidence. | J-SK16 (Hikari, code, alternate code row)<br>S-BSM16 (Ohara, code, alternate code row) | 1 | [CARL ZEISS PLANAR 80mm f/2.8 (Graflex XL)](../../src/lens-data/carl-zeiss-oberkochen/ZeissPlanar80mmf28GraflexXL.data.ts) LI |
-| `755275 — SF4/FD4-class dense flint (supplier unresolved)` | 1.75520 / 27.50 (d) | SF4 — direct name evidence outranks six-digit code evidence. | E-FD4 (Hoya, code, preferred code row)<br>H-ZF6 (CDGM, code, alternate code row) | 2 | [CARL ZEISS PLANAR 80mm f/2.8 (Graflex XL)](../../src/lens-data/carl-zeiss-oberkochen/ZeissPlanar80mmf28GraflexXL.data.ts) LII |
-| `717295 — SF1/FD1-class dense flint (supplier unresolved)` | 1.71736 / 29.50 (d) | SF1 — direct name evidence outranks six-digit code evidence. | S-TIH1 (Ohara, code, alternate code row) | 1 | [CARL ZEISS PLANAR 80mm f/2.8 (Graflex XL)](../../src/lens-data/carl-zeiss-oberkochen/ZeissPlanar80mmf28GraflexXL.data.ts) LIII |
 | `M-NBF1 / MP-NBF1 class (HOYA, 743/493)` | 1.74330 / 49.33 (d) | M-NBF1 — direct name evidence outranks six-digit code evidence. | S-LAM60 (Ohara, code, vendor ✗, preferred code row) | 1 | [CARL ZEISS TOUIT MAKRO-PLANAR T* 50mm f/2.8 Macro](../../src/lens-data/carl-zeiss-oberkochen/ZeissTouit50mmf28Macro.data.ts) L13 |
 | `M-LAF81 / MP-LAF81 class (HOYA, 731/405)` | 1.73077 / 40.50 (d) | M-LAF81 — direct name evidence outranks six-digit code evidence. | L-LAM69 (Ohara, code, vendor ✗, alternate code row) | 1 | [CARL ZEISS TOUIT MAKRO-PLANAR T* 50mm f/2.8 Macro](../../src/lens-data/carl-zeiss-oberkochen/ZeissTouit50mmf28Macro.data.ts) L21 |
 | `BSC7 (HOYA) / N-BK7 class (517/642)` | 1.51680 / 64.20 (d) | N-BK7 — direct name evidence outranks alias evidence. | S-BSL7 (Ohara, alias, vendor ✗)<br>H-K9L (CDGM, code, vendor ✗, alternate code row)<br>H-K9LGT (CDGM, code, vendor ✗, alternate code row) | 1 | [CARL ZEISS TOUIT MAKRO-PLANAR T* 50mm f/2.8 Macro](../../src/lens-data/carl-zeiss-oberkochen/ZeissTouit50mmf28Macro.data.ts) L22 |
@@ -778,10 +769,6 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `E-FD7 catalog equivalent (exact patent code 640346; production supplier unspecified)` | 1.63980 / 34.60 (d) | E-FD7 — direct name evidence outranks six-digit code evidence. | J-SF7 (Hikari, code, alternate code row) | 1 | [LEICA ELMARIT 90mm f/2.8](../../src/lens-data/leica/LeicaElmarit90mmf28.data.ts) L3 |
 | `FK5 / N-FK5 class (Schott legacy; patent n_e)` | 1.48920 / 69.90 (e) | N-FK5 — Annotation vendor context matches Schott. | FK5 (Sumita, name, vendor ✗) | 1 | [LEICA ELMARIT-R 35mm f/2.8](../../src/lens-data/leica/LeicaElmaritR35mmf28.data.ts) L1 |
 | `K-LaFK50-class (Sumita) / S-LAH66-class (OHARA)` | 1.77200 / 50.00 (d) | K-LaFK50 — smallest d-line \|Δn\| (3.6e-6 vs 5.0e-4) | S-LAH66 (Ohara, name, vendor ✓) | 1 | [LEICA ELMARIT-TL 18mm f/2.8 ASPH.](../../src/lens-data/leica/LeicaElmaritTL18mmf28.data.ts) L7 |
-| `744449 class (source sodium-D; vendor unresolved)` | 1.74400 / 44.90 (d) | H-LaF3B — smallest d-line \|Δn\| (1.0e-7 vs 2.8e-5) | N-LAF2 (Schott, code, alternate code row) | 3 | [LEICA SUMMICRON 35mm f/2 I](../../src/lens-data/leica/LeicaSummicron35mmf2I.data.ts) L1 |
-| `648338 class (source sodium-D; vendor unresolved)` | 1.64770 / 33.88 (d) | H-ZF1 — smallest d-line \|Δn\| (6.8e-6 vs 1.0e-5) | E-FD2 (Hoya, code, alternate code row)<br>S-TIM22 (Ohara, code, preferred code row) | 1 | [LEICA SUMMICRON 35mm f/2 I](../../src/lens-data/leica/LeicaSummicron35mmf2I.data.ts) L3 |
-| `720503 class (source sodium-D; vendor unresolved)` | 1.72000 / 50.31 (d) | LAC10 — smallest d-line \|Δn\| (1.7e-6 vs 1.0e-5) | J-LAK10 (Hikari, code, preferred code row) | 2 | [LEICA SUMMICRON 35mm f/2 I](../../src/lens-data/leica/LeicaSummicron35mmf2I.data.ts) L4 |
-| `699301 class (source sodium-D; vendor unresolved)` | 1.69890 / 30.05 (d) | S-TIM35 — smallest d-line \|Δn\| (4.7e-5 vs 5.0e-5) | E-FD15 (Hoya, code, alternate code row) | 1 | [LEICA SUMMICRON 35mm f/2 I](../../src/lens-data/leica/LeicaSummicron35mmf2I.data.ts) L6 |
 | `S-FPL51 class (OHARA 497816 reference)` | 1.49700 / 81.60 (d) | S-FPL51 — direct name evidence outranks six-digit code evidence. | H-FK61 (CDGM, code, vendor ✗, alternate code row)<br>FCD1 (Hoya, code, vendor ✗, alternate code row) | 2 | [MAMIYA AF APO 300mm f/4.5 IF](../../src/lens-data/mamiya/MamiyaAFAPO300mmf45IF.data.ts) L2 |
 | `S-LAL 8 class (OHARA 713539 reference)` | 1.71300 / 53.90 (d) | LAC8 — smallest d-line \|Δn\| (1.8e-7 vs 3.0e-4) | MP-LAC8-30 (Hoya, code, vendor ✗, alternate code row) | 1 | [MAMIYA AF APO 300mm f/4.5 IF](../../src/lens-data/mamiya/MamiyaAFAPO300mmf45IF.data.ts) L8 |
 | `497816 low-dispersion fluorophosphate-crown class` | 1.49700 / 81.60 (d) | H-FK61 — smallest d-line \|Δn\| (1.1e-8 vs 1.6e-7) | FCD1 (Hoya, code, alternate code row)<br>S-FPL51 (Ohara, code, preferred code row) | 1 | [MAMIYA N 210mm f/8 L](../../src/lens-data/mamiya/Mamiya7210mmf8NL.data.ts) L2 |

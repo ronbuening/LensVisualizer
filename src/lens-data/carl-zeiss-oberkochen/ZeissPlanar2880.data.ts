@@ -36,7 +36,7 @@ const LENS_DATA = {
   name: "CARL ZEISS PLANAR 80mm f/2.8 (6×6)",
   subtitle:
     "US 2,724,994 Example II — strong five-element 6×6 Planar 2.8/80 correlation; not manufacturer-confirmed patent attribution",
-  specs: ["5 ELEMENTS / 4 GROUPS", "f = 80.0001 mm (modeled)", "F/2.8 (stop calibrated)", "6×6", "ALL-SPHERICAL"],
+  specs: ["5 ELEMENTS / 4 GROUPS", "f ≈ 80.00 mm (modeled)", "F/2.8 (stop calibrated)", "6×6", "ALL-SPHERICAL"],
 
   focalLengthMarketing: 80,
   focalLengthDesign: 80.00011097418026,
@@ -62,7 +62,7 @@ const LENS_DATA = {
       vd: 30.1,
       indexReference: "d",
       fl: -105.52377004865114,
-      glass: "699301 — dense-flint class (supplier unresolved)",
+      glass: "E-FD15 (coordinate-compatible dispersion proxy; historical supplier unconfirmed)",
       apd: false,
       role: "Negative member of the cemented positive front component; paired with L2 for front-group chromatic correction.",
       cemented: "D1",
@@ -77,7 +77,7 @@ const LENS_DATA = {
       vd: 53.5,
       indexReference: "d",
       fl: 48.906049037493,
-      glass: "S-LAL13 coordinate-compatible catalog proxy (historical supplier unproven)",
+      glass: "S-LAL13 (coordinate-compatible dispersion proxy; historical supplier unconfirmed)",
       apd: false,
       role: "Positive cemented partner; together with L1 forms the net positive front component.",
       cemented: "D1",
@@ -92,7 +92,7 @@ const LENS_DATA = {
       vd: 30.1,
       indexReference: "d",
       fl: -109.14676154095653,
-      glass: "699301 — dense-flint class (supplier unresolved)",
+      glass: "E-FD15 (coordinate-compatible dispersion proxy; historical supplier unconfirmed)",
       apd: false,
       role: "Dispersive meniscus immediately before the diaphragm.",
     },
@@ -106,7 +106,7 @@ const LENS_DATA = {
       vd: 26.5,
       indexReference: "d",
       fl: -96.70971392688074,
-      glass: "762265/762266 — dense-flint class (supplier unresolved)",
+      glass: "J-SF14 (coordinate-compatible dispersion proxy; historical supplier unconfirmed)",
       apd: false,
       role: "Thin dispersive meniscus immediately behind the diaphragm.",
     },
@@ -120,7 +120,7 @@ const LENS_DATA = {
       vd: 60.3,
       indexReference: "d",
       fl: 45.68828096802974,
-      glass: "620603 — crown class (supplier unresolved)",
+      glass: "J-SK16 (coordinate-compatible dispersion proxy; historical supplier unconfirmed)",
       apd: false,
       role: "Positive rear meniscus completing the rear collecting component.",
     },
@@ -153,7 +153,7 @@ const LENS_DATA = {
 
   closeFocusM: 1.016,
   focusDescription:
-    "Production Rolleiflex 2.8D unit focus moves the rigid front lens panel; the patent publishes no focus spacings, so this model preserves the infinity prescription only (NO_INTERNAL_RECONSTRUCTION).",
+    "Infinity prescription only. The Rolleiflex moves the complete lens panel for focus; travel is not modeled.",
 
   nominalFno: 2.8,
   fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],

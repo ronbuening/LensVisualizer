@@ -28,3 +28,11 @@ The listed curves are catalog proxies; production identities remain unproven. Un
 The imported curved r1 was labeled STO and entered glass, violating the air-stop contract. It is now surface 1, preceded by a neutral flat STO at the same vertex (zero air spacing). No radius, glass thickness, mirror path, or image-plane location changes. Canonical assignee spelling is Carl-Zeiss-Stiftung.
 
 Companion analysis now lists the actual runtime glass curves and preserves source-versus-model limitations.
+
+## 2026-09-16 — Local-site diagram and controls review
+
+Reviewed the live SVG against the exact local patent figure cited above, including glass bodies, cemented interfaces, element identifiers, dispersion colors, and aperture/stop annotations. The model is a prime; no zoom travel is authored. Fixed patent optics. The production lens uses bellows focusing to 3.5 m; bellows travel is not modeled.
+
+Glass labels now name the actual selected catalog curve and explicitly separate the dispersion proxy from historical supplier identity. The selected curves have no positive ΔPgF large enough to justify an inferred APD tag; unsupported APD tags were not added.
+
+The local-site review exposed a shared rendering omission: standalone reflecting interfaces outside glass-element spans were not drawn. Both mirrors now use their actual surface profiles, retaining the primary mirror's central opening. Folded-path labels are separated in screen space and the legend explains mirror annotations. Optical SDs and the traced prescription remain unchanged after comparison with both patent figure sheets.

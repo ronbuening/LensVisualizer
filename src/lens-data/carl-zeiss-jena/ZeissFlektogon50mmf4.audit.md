@@ -36,3 +36,18 @@ The listed curves are catalog proxies; production identities remain unproven. Un
 Retained the source-correlated display name and its explicit attribution uncertainty.
 
 Companion analysis now lists the actual runtime glass curves and preserves source-versus-model limitations.
+
+## 2026-09-16 — Local-site diagram and controls review
+
+Reviewed the live SVG against the exact local patent figure cited above, including glass bodies, cemented interfaces, element identifiers, dispersion colors, and aperture/stop annotations. The model is a prime; no zoom travel is authored. Infinity prescription only; the patent gives no focus travel. The production lens focuses to 0.50 m.
+
+Glass labels now name the actual selected catalog curve and explicitly separate the dispersion proxy from historical supplier identity. The selected curves have no positive ΔPgF large enough to justify an inferred APD tag; unsupported APD tags were not added.
+
+Additional compatible curves (catalog minus source coordinates):
+
+| Element | Patent index / Abbe | Runtime curve | Δn | Δν |
+|---|---|---|---|---|
+| L1 | 1.69806 / 53.6 (d) | N-LAK14 | -0.001260 | 1.810 |
+| L2 | 1.54212 / 59.6 (d) | BAK2 | -0.002158 | 0.100 |
+
+The patent's first page names Jenoptik Jena G.m.b.H. Canonical metadata now uses Jenoptik Jena GmbH, with a spelling guard against the punctuation variant. It is not merged into VEB Carl Zeiss Jena: the source names a distinct legal entity. SDs remain unchanged after the direct figure comparison.

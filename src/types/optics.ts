@@ -576,7 +576,7 @@ export interface SurfaceAccentPathData {
   pathD: string;
   labelX: number;
   labelY: number;
-  kind: "second-surface-coating" | "diffractive-phase";
+  kind: "second-surface-coating" | "first-surface-mirror" | "diffractive-phase";
 }
 
 export interface ElementShape {

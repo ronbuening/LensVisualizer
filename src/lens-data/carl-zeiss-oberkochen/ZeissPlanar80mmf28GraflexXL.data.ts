@@ -36,7 +36,7 @@ const LENS_DATA = {
   subtitle: "US 2,799,207 — Embodiment I; high-confidence Graflex XL correlation, not manufacturer-confirmed",
   specs: [
     "5 ELEMENTS / 4 GROUPS",
-    "80 mm MARKETED / 79.9996 mm DESIGN EFL",
+    "80 mm / f ≈ 80.00 mm DESIGN",
     "f/2.8 — CALIBRATED STOP MODEL",
     "PATENT FIELD 56° / PRODUCT CATALOG 58°",
     "ALL-SPHERICAL",
@@ -65,7 +65,7 @@ const LENS_DATA = {
       vd: 60.3,
       indexReference: "d",
       fl: 69.090354,
-      glass: "620603 — SK16-class crown (supplier unresolved)",
+      glass: "N-SK16 (coordinate-compatible dispersion proxy; historical supplier unconfirmed)",
       role: "Outer positive member on the object side.",
     },
     {
@@ -78,7 +78,7 @@ const LENS_DATA = {
       vd: 27.5,
       indexReference: "d",
       fl: -106.177114,
-      glass: "755275 — SF4/FD4-class dense flint (supplier unresolved)",
+      glass: "SF4 (coordinate-compatible dispersion proxy; historical supplier unconfirmed)",
       role: "Inner negative member before the diaphragm.",
     },
     {
@@ -91,7 +91,7 @@ const LENS_DATA = {
       vd: 29.5,
       indexReference: "d",
       fl: -22.405177,
-      glass: "717295 — SF1/FD1-class dense flint (supplier unresolved)",
+      glass: "SF1 (coordinate-compatible dispersion proxy; historical supplier unconfirmed)",
       cemented: "D1",
       role: "Negative component nearest the diaphragm in the rear cemented member.",
     },
@@ -105,7 +105,7 @@ const LENS_DATA = {
       vd: 54.9,
       indexReference: "d",
       fl: 31.845955,
-      glass: "K-LaK9 coordinate-compatible catalog proxy (historical supplier unproven)",
+      glass: "K-LaK9 (coordinate-compatible dispersion proxy; historical supplier unconfirmed)",
       cemented: "D1",
       role: "Positive component cemented to LIII; together they form the rear inner dispersive member.",
     },
@@ -119,7 +119,7 @@ const LENS_DATA = {
       vd: 27.5,
       indexReference: "d",
       fl: 69.546577,
-      glass: "755275 — SF4/FD4-class dense flint (supplier unresolved)",
+      glass: "SF4 (coordinate-compatible dispersion proxy; historical supplier unconfirmed)",
       role: "Outer positive member on the image side.",
     },
   ],
@@ -151,7 +151,7 @@ const LENS_DATA = {
 
   closeFocusM: 0.762,
   focusDescription:
-    "NO_INTERNAL_RECONSTRUCTION: infinity prescription only; Graflex scale focus reaches 2.5 ft (0.762 m), but no optical close-focus spacing or barrel travel is published.",
+    "Infinity prescription only; the patent gives no focus travel. The Graflex lens focuses to 2.5 ft (0.762 m).",
 
   nominalFno: 2.8,
   fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],

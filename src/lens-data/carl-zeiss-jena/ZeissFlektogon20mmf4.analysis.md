@@ -111,7 +111,7 @@ not assign a separately calculated aberration coefficient to L4.
 
 ### L5 — Plano-Convex Positive, rear member of G4
 
-`nd = 1.5500`, `νd = 45.4`. Glass: **550454 — light-flint class (supplier/melt unestablished)**. Standalone
+`nd = 1.5500`, `νd = 45.4`. Glass: **J-LLF1 dispersion proxy (historical supplier unconfirmed)**. Standalone
 `f = +30.945 mm`.
 
 L5 opposes L4 in refractive sign. Despite the appreciable standalone powers of the two elements, their cemented pair is
@@ -136,7 +136,7 @@ keeps L6 explicitly unmatched.
 
 ### L7 — Biconvex Positive, rear member of G5
 
-`nd = 1.6100`, `νd = 38.0`. Glass: **610380 — flint class (supplier/melt unestablished)**. Standalone
+`nd = 1.6100`, `νd = 38.0`. Glass: **S-TIM3 dispersion proxy (historical supplier unconfirmed)**. Standalone
 `f = +10.479 mm`.
 
 L7 is the strongest positive standalone element in the design. Cemented to L6, it forms the rear section's principal
@@ -160,12 +160,11 @@ it, and the complete G6 component is only weakly negative when isolated.
 
 ### L9 — Positive Meniscus, middle member of G6
 
-`nd = 1.5160`, `νd = 56.8`. Glass: **516568 — crown class (supplier/melt unestablished)**. Standalone
+`nd = 1.5160`, `νd = 56.8`. Glass: **C2 dispersion proxy (historical supplier unconfirmed)**. Standalone
 `f = +22.178 mm`.
 
 L9 is the positive middle element of the rear triplet. Its much lower index and higher Abbe number than L8 produce the
-large index/dispersion contrast specified at their cemented interface. The data retains the six-digit coordinate class
-rather than converting the close modern H-K8 coordinate match into a historical supplier claim.
+large index/dispersion contrast specified at their cemented interface. The C2 catalog curve supplies an approximate spectral proxy; neither this curve nor the close modern H-K8 coordinate match establishes a historical supplier.
 
 The smallest modeled element edge thickness occurs in L9: 0.494 mm at the shared 5.6 mm rendering semi-diameter. That is
 a geometry result for the inferred clear apertures, not a patent-published mechanical thickness.
@@ -193,9 +192,9 @@ The patent refractive indices and Abbe numbers are retained. Catalog curves are 
 | L2 | 1.6935 / 53.6 (d) | S-LAL13 |
 | L3 | 1.6935 / 53.6 (d) | S-LAL13 |
 | L4 | 1.62 / 60.3 (d) | N-SK16 |
-| L5 | 1.55 / 45.4 (d) | Unresolved; patent-coordinate fallback |
+| L5 | 1.55 / 45.4 (d) | J-LLF1 |
 | L6 | 1.728 / 38 (d) | Unresolved; patent-coordinate fallback |
-| L7 | 1.61 / 38 (d) | Unresolved; patent-coordinate fallback |
+| L7 | 1.61 / 38 (d) | S-TIM3 |
 | L8 | 1.678 / 32.2 (d) | Unresolved; patent-coordinate fallback |
 | L9 | 1.516 / 56.8 (d) | C2 |
 | L10 | 1.678 / 50.8 (d) | Unresolved; patent-coordinate fallback |
@@ -288,3 +287,12 @@ establish production barrel clearances, factory mechanical apertures, or measure
    (<https://www.cdgmgd.com/database/toWebDatabase.htm?k=Products_Data&pageIndex=9&url=database>), and SUMITA
    (<https://www.sumita-opt.co.jp/en/download/>). These comparisons establish only coordinate classes or explicit
    unmatched status; they do not establish historical supplier or melt identity.
+
+## Catalog dispersion follow-up
+
+The following curves are approximate spectral proxies within the catalog coordinate guard, not identified production glasses. Source indices, Abbe numbers, and reference lines are unchanged. Differences below are catalog minus patent; no catalog line indices or APD claims are copied into the prescription. The curve coefficients and vendor provenance are retained in the shared glass catalog.
+
+| Element | Patent index / Abbe | Runtime curve | Δn | Δν |
+|---|---|---|---|---|
+| L5 | 1.55 / 45.4 (d) | J-LLF1 | -0.001860 | 0.110 |
+| L7 | 1.61 / 38 (d) | S-TIM3 | 0.002929 | -0.995 |

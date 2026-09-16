@@ -24,6 +24,7 @@ flowchart LR
   n_external_src_utils_usePrefersReducedMotion_ts["src/utils/usePrefersReducedMotion.ts"]
   n_external_src_optics_apertureStop_ts["src/optics/apertureStop.ts"]
   n_external_src_optics_chromatic["src/optics/chromatic"]
+  n_external_src_optics_diagramGeometry_ts["src/optics/diagramGeometry.ts"]
   n_external_src_optics_lensMovement_ts["src/optics/lensMovement.ts"]
   n_src_components_diagram_React_components --> |31| n_external_src_types
   n_src_components_diagram_React_components --> |24| n_external_pkg_react
@@ -37,6 +38,7 @@ flowchart LR
   n_src_components_diagram_React_components --> |2| n_external_src_utils_usePrefersReducedMotion_ts
   n_src_components_diagram_React_components --> n_external_src_optics_apertureStop_ts
   n_src_components_diagram_React_components --> n_external_src_optics_chromatic
+  n_src_components_diagram_React_components --> n_external_src_optics_diagramGeometry_ts
   n_src_components_diagram_React_components --> n_external_src_optics_lensMovement_ts
   n_src_components_diagram_TypeScript_modules --> n_external_src_types
 ```
@@ -45,7 +47,7 @@ flowchart LR
 
 - Direct source files: 25
 - Direct subfolders: 1
-- Main outbound areas: src/types (32), package:react (24), same folder (19), src/optics/dispersion.ts (7), src/optics/cardinalElements.ts (3), src/optics/optics.ts (3), src/components/display (2), src/optics/chromaticRayFanScaling.ts (2), +5 more
+- Main outbound areas: src/types (32), package:react (24), same folder (19), src/optics/dispersion.ts (7), src/optics/cardinalElements.ts (3), src/optics/optics.ts (3), src/components/display (2), src/optics/chromaticRayFanScaling.ts (2), +6 more
 - External consumers: src/benchmarks, src/components/layout, src/components/markdown
 
 ## Subfolders
@@ -68,7 +70,7 @@ flowchart LR
 | `DiagramGridAxisLayer.tsx` | React component module | src/types (2), package:react | same folder | default |
 | `DiagramOverlayLayer.tsx` | React component module | same folder (6), src/types (2), package:react, src/optics/apertureStop.ts, src/optics/cardinalElements.ts, +3 more | same folder | default |
 | `DiagramRayLayers.tsx` | React component module | src/types (3), same folder (2), package:react | same folder | default |
-| `DiagramSVG.tsx` | React component module | same folder (6), src/types (3), package:react, src/optics/cardinalElements.ts, src/optics/dispersion.ts, +2 more | src/benchmarks, src/components/layout | default |
+| `DiagramSVG.tsx` | React component module | same folder (6), src/types (3), package:react, src/optics/cardinalElements.ts, src/optics/diagramGeometry.ts, +3 more | src/benchmarks, src/components/layout | default |
 | `diagramSvgTypes.ts` | Diagram Svg Types helper module | src/types | same folder (3) | RaySegment, ChromaticRaySegment |
 | `ElementAnnotations.tsx` | React component module | src/types (2), package:react | same folder | default |
 | `EntrancePupilDiagram.tsx` | React component module | package:react | src/components/markdown | default |

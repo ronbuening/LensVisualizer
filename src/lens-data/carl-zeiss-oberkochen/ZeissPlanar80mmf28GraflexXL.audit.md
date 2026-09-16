@@ -29,3 +29,9 @@ The listed curves are catalog proxies; production identities remain unproven. Un
 Canonicalized Carl Zeiss to Carl-Zeiss-Stiftung, resolving the metadata-generation failure. Display labels distinguish the 6×6 and Graflex XL models.
 
 Companion analysis now lists the actual runtime glass curves and preserves source-versus-model limitations.
+
+## 2026-09-16 — Local-site diagram and controls review
+
+Reviewed the live SVG against the exact local patent figure cited above, including glass bodies, cemented interfaces, element identifiers, dispersion colors, and aperture/stop annotations. The model is a prime; no zoom travel is authored. Infinity prescription only; the patent gives no focus travel. The Graflex lens focuses to 2.5 ft (0.762 m).
+
+Glass labels now name the actual selected catalog curve and explicitly separate the dispersion proxy from historical supplier identity. The selected curves have no positive ΔPgF large enough to justify an inferred APD tag; unsupported APD tags were not added.

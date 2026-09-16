@@ -611,11 +611,11 @@ describe("DiagramSVG", () => {
     expect(Number(label!.getAttribute("y"))).toBeCloseTo(325, 10);
   });
 
-  it("renders folded hit-order labels for debug fixtures", () => {
-    const L = buildLens(LENS_CATALOG["reference-newtonian-side-focus"]);
+  it("renders standalone mirrors and packs repeated folded hit-order labels", () => {
+    const L = { ...buildLens(LENS_CATALOG["reference-newtonian-side-focus"]), ES: [] };
     const layout = doLayout(0, 0, L);
 
-    render(
+    const { container } = render(
       <DiagramSVG
         L={L}
         t={themes.dark}
@@ -639,7 +639,7 @@ describe("DiagramSVG", () => {
         showOffAxis="off"
         showChromatic={false}
         showPupils={false}
-        foldedHitOrderLabels={["M1", "SEC"]}
+        foldedHitOrderLabels={["M1", "SEC", "M1"]}
         zoomT={0}
         act={null}
         onHover={onHover}
@@ -657,6 +657,13 @@ describe("DiagramSVG", () => {
 
     expect(screen.getByText("1 M1")).toBeTruthy();
     expect(screen.getByText("2 SEC")).toBeTruthy();
+    expect(screen.getByText("3 M1")).toBeTruthy();
+    expect(
+      Math.abs(Number(screen.getByText("1 M1").getAttribute("y")) - Number(screen.getByText("3 M1").getAttribute("y"))),
+    ).toBeGreaterThanOrEqual(12);
+    const mirrors = container.querySelectorAll('[data-testid^="surface-accent-first-surface-mirror-"]');
+    expect(mirrors).toHaveLength(2);
+    expect(mirrors[0].getAttribute("d")).toContain("M");
   });
 
   it("renders second-surface mirror coating accents from element shapes", () => {

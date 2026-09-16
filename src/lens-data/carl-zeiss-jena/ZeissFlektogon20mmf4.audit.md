@@ -49,3 +49,16 @@ The listed curves are catalog proxies; production identities remain unproven. Un
 Retained the source-correlated display name and its explicit attribution uncertainty.
 
 Companion analysis now lists the actual runtime glass curves and preserves source-versus-model limitations.
+
+## 2026-09-16 — Local-site diagram and controls review
+
+Reviewed the live SVG against the exact local patent figure cited above, including glass bodies, cemented interfaces, element identifiers, dispersion colors, and aperture/stop annotations. The model is a prime; no zoom travel is authored. Infinity prescription only; the patent gives no focus travel. The production lens focuses to 0.16 m.
+
+Glass labels now name the actual selected catalog curve and explicitly separate the dispersion proxy from historical supplier identity. The selected curves have no positive ΔPgF large enough to justify an inferred APD tag; unsupported APD tags were not added.
+
+Additional compatible curves (catalog minus source coordinates):
+
+| Element | Patent index / Abbe | Runtime curve | Δn | Δν |
+|---|---|---|---|---|
+| L5 | 1.55 / 45.4 (d) | J-LLF1 | -0.001860 | 0.110 |
+| L7 | 1.61 / 38 (d) | S-TIM3 | 0.002929 | -0.995 |

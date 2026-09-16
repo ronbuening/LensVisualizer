@@ -47,15 +47,15 @@ No semi-diameters are published. The data file's clear radii are modeled values 
 
 L1 is the first positive member. The patent specifically emphasizes the first lens's comparatively strong spherical form as part of the claimed architecture, using the condition that its first radius be less than 85% of the overall objective length. In the final model the corresponding ratio is **0.764649**, satisfying that condition. [GB 2 066 504 A, PDF pp. 3 and 9; Claim 1.]
 
-The catalog label is deliberately class-level. The source itself supplies only the native e-line coordinate, not a manufacturer glass name or melt designation.
+K-LaK12 is a coordinate-compatible dispersion proxy. The source itself supplies only the native e-line coordinate, not a manufacturer glass name or melt designation.
 
 ### L2 — Positive Meniscus
 
-**`ne = 1.7007`, `νe = 46.7`. Glass: Unmatched at the retained native e-line coordinate. Standalone `f = +277.380 mm`.**
+**`ne = 1.7007`, `νe = 46.7`. Glass: LAFN2 coordinate-compatible dispersion proxy; historical supplier unconfirmed. Standalone `f = +277.380 mm`.**
 
 L2 is a very weak positive element relative to L1: its standalone absolute power is about 26.5% of L1's. The patent's second-lens condition also requires its two radii to differ by less than 10%; the implemented geometry gives **4.6826%** under the conservative smaller-radius normalization. [GB 2 066 504 A, PDF pp. 3 and 9; Claim 1.]
 
-No defensible current authoritative catalog row was resolved for `ne = 1.7007`, `νe = 46.7`. The data file therefore keeps an explicit `Unmatched (...)` label rather than assigning a speculative vendor glass.
+The shared catalog’s discontinued SUMITA LAFN2 curve passes the native e-line coordinate guard and is used as an approximate spectral proxy. Its evaluated e-line Abbe number differs by +1.475; this does not identify the production glass.
 
 ### L3 — Negative Meniscus
 
@@ -100,14 +100,14 @@ Native e-line coordinates are preserved; catalog curves are evaluated at C′/e/
 | Element | Source index / Abbe | Catalog curve |
 |---|---|---|
 | L1 | 1.681 / 54.7 (e) | K-LaK12 |
-| L2 | 1.7007 / 46.7 (e) | Unresolved; patent-coordinate fallback |
+| L2 | 1.7007 / 46.7 (e) | LAFN2 |
 | L3 | 1.7462 / 27.9 (e) | S-TIH3 |
 | L4a | 1.7617 / 27.3 (e) | S-TIH4 |
 | L4b | 1.7762 / 49.4 (e) | N-LAF34 |
 | L5 | 1.7762 / 49.4 (e) | N-LAF34 |
 | L6 | 1.7762 / 49.4 (e) | N-LAF34 |
 
-Named curves pass the catalog coordinate guard without changing the patent coordinates. No catalog-derived line indices are copied into the elements. Unresolved rows retain their source-based fallback; nearby glass families do not establish a unique historical identity. No APO or anomalous-dispersion claim follows from these assignments.
+Named curves pass the catalog coordinate guard without changing the patent coordinates. No catalog-derived line indices are copied into the elements. All seven elements now have catalog dispersion proxies; nearby glass families do not establish a unique historical identity. No APO or anomalous-dispersion claim follows from these assignments.
 
 The missing K-LaK12 curve is supplied by the [official SUMITA datasheet](https://www.sumita-opt.co.jp/abbe/pdf/k-lak12.pdf), using its published A0–A5 polynomial. Its e-line coordinates are 1.68082 / 55.2, compatible with L1 at 1.6810 / 54.7.
 
@@ -145,7 +145,7 @@ The surface-by-surface Petzval sum, calculated as `φ/(n·n′)` at each of the 
 
 The inferred stop gives an entrance-pupil semi-diameter of **17.855258 mm** and a modeled f-number of **1.400000005**. This agreement is intentionally labeled a calibration: the stop diameter was chosen to reproduce the patent's f/1.4 target, so it is not independent evidence for a production diaphragm diameter.
 
-The modeled semi-diameters pass the portable edge-thickness, actual rim-slope, and shared-gap checks. The smallest modeled element edge thickness is **0.316452 mm**. Exact 2D meridional tracing of **19 documented ray samples** at 0°, 13.8°, and 23° also remains within the authored semi-diameters; the 23° chief ray reaches an image height of **20.858852 mm**. This is finite sampled containment, not proof of zero vignetting over the continuous full-field pupil.
+The revised model passes the repository surface and image-circle audits. Exact on-axis rays sampled through the full modeled entrance pupil pass the authored apertures. The earlier dossier’s 19-ray off-axis sample is not treated as validation of the revised rear rim; full-field pupil illumination remains unproven.
 
 
 ## Sources and References
@@ -156,3 +156,13 @@ The modeled semi-diameters pass the portable edge-thickness, actual rim-slope, a
 4. **SCHOTT**, *Optical Glass Collection Datasheets* (N-LAF34 data used for coordinate comparison). https://www.us.schott.com/shop/medias/schott-optical-glass-collection-datasheets-english-us-march2018.pdf
 5. **SUMITA Optical Glass, Inc.**, *Optical Glass Data Book*, Glass Data Version 14.02, revision 21 August 2026 (K-LaK12, K-SFLD4, K-LaSFn7 coordinate comparisons). https://www.sumita-opt.co.jp/download_files/en/data/glassdatabook_ver14.02.00.pdf
 6. **Digicamclub**, “Die Carl Zeiss Jena Prakticar Objektive zur Praktica B,” secondary historical correlation source for early PRAKTICAR 1.4/50 designers/timing. https://www.digicamclub.de/showthread.php?mode=threaded&p=239419&t=21342
+
+## Catalog dispersion follow-up
+
+The following curves are approximate spectral proxies within the catalog coordinate guard, not identified production glasses. Source indices, Abbe numbers, and reference lines are unchanged. Differences below are catalog minus patent; no catalog line indices or APD claims are copied into the prescription. The curve coefficients and vendor provenance are retained in the shared glass catalog.
+
+| Element | Patent index / Abbe | Runtime curve | Δn | Δν |
+|---|---|---|---|---|
+| L2 | 1.7007 / 46.7 (e) | LAFN2 | -0.000279 | 1.475 |
+
+The final L6 element now uses a 15.3 mm inferred semi-diameter on both faces, measured from Fig. 1 (previously 19 mm). Source-label annotations consistently use L1, L2, L3, L4a, L4b, L5, and L6. The revised rim passes the surface and image-circle audits and the sampled full on-axis pupil; this does not establish full-pupil edge-field illumination.

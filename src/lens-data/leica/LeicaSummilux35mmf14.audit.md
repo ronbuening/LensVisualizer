@@ -48,3 +48,17 @@ Rechecked FR 1.233.449 PDF p. 1 and US 2,975,673 PDF pp. 1–2. FR filing (24 Au
 Both Example 1 tables give the same radii, spacings, indices, aperture ratio and field; L7's printed Abbe value differs (FR 47.69, US 47.59). Retain the French value as the primary source and preserve the discrepancy in the analysis. The US diaphragm drawing and inventor metadata supplement the same model, not a second catalog lens.
 
 Retain `leica-summilux-m-35f14`, remove the source-edition suffix from its name, carry over explicit `apertureDesign: 1.4`, and remove the duplicate US-based entry. No redirect is needed because that entry was never published in production. Preserve the French-based inferred stop and SDs: its sampled on-axis rays at 95%, 99%, and 100% pupil radius pass; the former US model clipped near-marginal rays at surface 5. Neither stop split is a published dimension. Four of seven elements retain catalog dispersion proxies; the three unresolved e-line elements remain unresolved.
+
+## 2026-09-16 — Local-site diagram and controls review
+
+Reviewed the live SVG against the exact local patent figure cited above, including glass bodies, cemented interfaces, element identifiers, dispersion colors, and aperture/stop annotations. The model is a prime; no zoom travel is authored. Infinity prescription only; the patent gives no focus travel. The production lens focuses to 1.0 m.
+
+Glass labels now name the actual selected catalog curve and explicitly separate the dispersion proxy from historical supplier identity. The selected curves have no positive ΔPgF large enough to justify an inferred APD tag; unsupported APD tags were not added.
+
+Additional compatible curves (catalog minus source coordinates):
+
+| Element | Patent index / Abbe | Runtime curve | Δn | Δν |
+|---|---|---|---|---|
+| L2 | 1.7899 / 48 (e) | TAF4 | 0.002048 | -0.741 |
+| L4 | 1.7899 / 48 (e) | TAF4 | 0.002048 | -0.741 |
+| L6 | 1.7899 / 48 (e) | TAF4 | 0.002048 | -0.741 |

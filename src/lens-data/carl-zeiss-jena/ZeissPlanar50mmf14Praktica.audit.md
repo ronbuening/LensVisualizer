@@ -31,3 +31,17 @@ The listed curves are catalog proxies; production identities remain unproven. Un
 Retained manufacturer-facing PRAKTICAR rather than the job-card Planar name. Added missing K-LaK12 from the official SUMITA datasheet (Ver. 14.01.00, A0–A5); compatible e-line proxy, not a supplier attribution. Source: https://www.sumita-opt.co.jp/abbe/pdf/k-lak12.pdf.
 
 Companion analysis now lists the actual runtime glass curves and preserves source-versus-model limitations.
+
+## 2026-09-16 — Local-site diagram and controls review
+
+Reviewed the live SVG against the exact local patent figure cited above, including glass bodies, cemented interfaces, element identifiers, dispersion colors, and aperture/stop annotations. The model is a prime; no zoom travel is authored. Infinity prescription only; the patent gives no focus travel. The production lens focuses to 0.36 m.
+
+Glass labels now name the actual selected catalog curve and explicitly separate the dispersion proxy from historical supplier identity. The selected curves have no positive ΔPgF large enough to justify an inferred APD tag; unsupported APD tags were not added.
+
+Additional compatible curves (catalog minus source coordinates):
+
+| Element | Patent index / Abbe | Runtime curve | Δn | Δν |
+|---|---|---|---|---|
+| L2 | 1.7007 / 46.7 (e) | LAFN2 | -0.000279 | 1.475 |
+
+A second, closer inspection supersedes the initial decision to retain the final member's aperture. At 600 dpi, Fig. 1 gives L6 envelope/rim SDs of 15.27/15.29 mm. Surfaces 12–13 now use 15.3 mm instead of 19 mm. Sampled full-aperture on-axis rays remain clear. Other SDs remain unchanged because the family drawing does not independently dimension Example 4. Diagram identifiers now consistently follow L1–L6, including L4a/L4b for the cemented pair.

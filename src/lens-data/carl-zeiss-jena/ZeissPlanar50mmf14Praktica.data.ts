@@ -26,7 +26,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * Semi-diameters: unpublished. Values are modeled from exact spherical
  * ray-envelope sampling, then checked for edge thickness, actual rim slope,
  * shared-gap intrusion, and sampled off-axis containment. They are not
- * patent clear-aperture values.
+ * patent clear-aperture values. The final L6 rim is 15.3 mm after direct
+ * Fig. 1 measurement; the previous 19 mm rim overstated the rear outline.
+ * The revised rim retains sampled full on-axis pupil clearance.
  *
  * Focus: NO_INTERNAL_RECONSTRUCTION. The patent supplies one prescription
  * state. The manufacturer 0.36 m MFD is retained as product metadata only;
@@ -57,35 +59,38 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
+      diagramLabel: "L1",
       label: "Element 1",
       type: "Positive Meniscus",
       nd: 1.681,
       vd: 54.7,
       indexReference: "e",
       fl: 73.434,
-      glass: "K-LaK12 class (SUMITA coordinate match; historical supplier/melt not established)",
+      glass: "K-LaK12 (coordinate-compatible dispersion proxy; historical supplier unconfirmed)",
     },
     {
       id: 2,
       name: "L2",
+      diagramLabel: "L2",
       label: "Element 2",
       type: "Positive Meniscus",
       nd: 1.7007,
       vd: 46.7,
       indexReference: "e",
       fl: 277.38,
-      glass: "Unmatched (native e-line ne=1.7007, νe=46.7; no authoritative current row resolved)",
+      glass: "LAFN2 (coordinate-compatible dispersion proxy; historical supplier unconfirmed)",
     },
     {
       id: 3,
       name: "L3",
+      diagramLabel: "L3",
       label: "Element 3",
       type: "Negative Meniscus",
       nd: 1.7462,
       vd: 27.9,
       indexReference: "e",
       fl: -62.169,
-      glass: "S-TIH3 class (OHARA coordinate match; historical supplier/melt not established)",
+      glass: "S-TIH3 (coordinate-compatible dispersion proxy; historical supplier unconfirmed)",
     },
     {
       id: 4,
@@ -97,7 +102,7 @@ const LENS_DATA = {
       vd: 27.3,
       indexReference: "e",
       fl: -21.821,
-      glass: "755275 class (S-TIH4 / K-SFLD4 coordinate match; supplier/melt not established)",
+      glass: "S-TIH4 (coordinate-compatible dispersion proxy; historical supplier unconfirmed)",
       cemented: "D1",
     },
     {
@@ -110,30 +115,32 @@ const LENS_DATA = {
       vd: 49.4,
       indexReference: "e",
       fl: 37.009,
-      glass: "773496 class (N-LAF34 / K-LaSFn7 coordinate match; supplier/melt not established)",
+      glass: "N-LAF34 (coordinate-compatible dispersion proxy; historical supplier unconfirmed)",
       cemented: "D1",
     },
     {
       id: 6,
       name: "L5",
+      diagramLabel: "L5",
       label: "Element 6",
       type: "Positive Meniscus",
       nd: 1.7762,
       vd: 49.4,
       indexReference: "e",
       fl: 57.195,
-      glass: "773496 class (N-LAF34 / K-LaSFn7 coordinate match; supplier/melt not established)",
+      glass: "N-LAF34 (coordinate-compatible dispersion proxy; historical supplier unconfirmed)",
     },
     {
       id: 7,
       name: "L6",
+      diagramLabel: "L6",
       label: "Element 7",
       type: "Biconvex Positive",
       nd: 1.7762,
       vd: 49.4,
       indexReference: "e",
       fl: 82.265,
-      glass: "773496 class (N-LAF34 / K-LaSFn7 coordinate match; supplier/melt not established)",
+      glass: "N-LAF34 (coordinate-compatible dispersion proxy; historical supplier unconfirmed)",
     },
   ],
 
@@ -152,8 +159,8 @@ const LENS_DATA = {
     { label: "9", R: -25.785, d: 0.145, nd: 1.0, elemId: 0, sd: 16.2 },
     { label: "10", R: -63.925, d: 4.33, nd: 1.7762, elemId: 6, sd: 16.85 },
     { label: "11", R: -26.975, d: 0.145, nd: 1.0, elemId: 0, sd: 17.1 },
-    { label: "12", R: 118.385, d: 3.175, nd: 1.7762, elemId: 7, sd: 19.0 },
-    { label: "13", R: -137.0, d: 36.6, nd: 1.0, elemId: 0, sd: 19.0 },
+    { label: "12", R: 118.385, d: 3.175, nd: 1.7762, elemId: 7, sd: 15.3 },
+    { label: "13", R: -137.0, d: 36.6, nd: 1.0, elemId: 0, sd: 15.3 },
   ],
 
   asph: {},
@@ -168,7 +175,7 @@ const LENS_DATA = {
 
   closeFocusM: 0.36,
   focusDescription:
-    "NO_INTERNAL_RECONSTRUCTION: the patent publishes one prescription state only; 0.36 m is manufacturer MFD metadata, not a reconstructed internal focus law.",
+    "Infinity prescription only; the patent gives no focus travel. The production lens focuses to 0.36 m.",
 
   nominalFno: 1.4,
   fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],

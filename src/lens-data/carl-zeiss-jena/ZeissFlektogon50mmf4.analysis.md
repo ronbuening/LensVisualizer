@@ -32,15 +32,15 @@ The focal lengths in this section are **standalone element focal lengths in air*
 
 ### L1 - Biconvex Positive
 
-**nd = 1.69806, νd = 53.6. Glass: 698536 class (supplier unresolved). f = +102.957 mm.**
+**nd = 1.69806, νd = 53.6. Glass: N-LAK14 dispersion proxy (historical supplier unconfirmed). f = +102.957 mm.**
 
 L1 is the positive front component of the cemented diverging member I. Its positive standalone power is more than offset by L2, so the complete front member remains negative. Claim 5 specifically requires the refractive index of the positive front lens to exceed that of the negative lens by at least 0.1; the final prescription satisfies that scale-invariant condition. [1, p. 2, Claim 5]
 
-The patent does not name a glass supplier or trade glass for this coordinate. The class label therefore preserves the published d-line coordinate rather than assigning a modern catalog identity.
+The patent does not name a glass supplier or trade glass for this coordinate. The numerical d-line coordinate is preserved; the approximate N-LAK14 spectral proxy is not a production identity.
 
 ### L2 - Biconcave Negative
 
-**nd = 1.54212, νd = 59.6. Glass: 542596 class (supplier unresolved). f = -39.646 mm.**
+**nd = 1.54212, νd = 59.6. Glass: BAK2 dispersion proxy (historical supplier unconfirmed). f = -39.646 mm.**
 
 L2 provides the dominant negative standalone power in member I. L1 and L2 are cemented at source surface r2; Claim 6 requires that cemented interface to have converging power, a condition satisfied by the retained radius and index step. [1, p. 2, Claim 6]
 
@@ -92,8 +92,8 @@ The patent refractive indices and Abbe numbers are retained. Catalog curves are 
 
 | Element | Source index / Abbe | Catalog curve |
 |---|---|---|
-| L1 | 1.69806 / 53.6 (d) | Unresolved; patent-coordinate fallback |
-| L2 | 1.54212 / 59.6 (d) | Unresolved; patent-coordinate fallback |
+| L1 | 1.69806 / 53.6 (d) | N-LAK14 |
+| L2 | 1.54212 / 59.6 (d) | BAK2 |
 | L3 | 1.68169 / 41.9 (d) | Unresolved; patent-coordinate fallback |
 | L4 | 1.68169 / 41.9 (d) | Unresolved; patent-coordinate fallback |
 | L5 | 1.67254 / 32.2 (d) | SF5 |
@@ -154,3 +154,12 @@ The field-angle condition is deliberately treated differently from the other con
 7. **SUMITA Optical Glass, Zemax AGF catalog**, including SF5 / 673322: https://www.sumita-opt.co.jp/download_files/en/data/zemax.agf
 8. **OHARA, optical-glass catalog index**, used in the coordinate-class audit: https://www.ohara-inc.co.jp/en/product/catalog/
 9. **HOYA, optical-glass data downloads**, used in the coordinate-class audit: https://www.hoya-opticalworld.com/english/datadownload/index.html
+
+## Catalog dispersion follow-up
+
+The following curves are approximate spectral proxies within the catalog coordinate guard, not identified production glasses. Source indices, Abbe numbers, and reference lines are unchanged. Differences below are catalog minus patent; no catalog line indices or APD claims are copied into the prescription. The curve coefficients and vendor provenance are retained in the shared glass catalog.
+
+| Element | Patent index / Abbe | Runtime curve | Δn | Δν |
+|---|---|---|---|---|
+| L1 | 1.69806 / 53.6 (d) | N-LAK14 | -0.001260 | 1.810 |
+| L2 | 1.54212 / 59.6 (d) | BAK2 | -0.002158 | 0.100 |

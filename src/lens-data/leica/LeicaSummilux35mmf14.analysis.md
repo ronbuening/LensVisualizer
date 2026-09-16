@@ -91,7 +91,7 @@ H-LaK8A, but that equivalence does not establish the historical melt or supplier
 
 ### L2 — Positive Meniscus, front member of cemented assembly D1
 
-**ne = 1.78990, νe = 48.0. Glass: Unmatched (native e-line ne=1.7899, νe=48.0; supplier unproven). f = +27.3900 mm.**
+**ne = 1.78990, νe = 48.0. Glass: TAF4 coordinate-compatible dispersion proxy; historical supplier unconfirmed. f = +27.3900 mm.**
 
 L2 is individually positive, with standalone power +0.0365096 mm⁻¹. It is cemented directly to L3 at the source surface
 $r_4$; the implemented junction therefore carries the downstream L3 medium and element identity rather than an invented
@@ -109,7 +109,7 @@ comparison (catalog minus patent: $\Delta n_e=-0.00006$, $\Delta\nu_e=+0.12$). T
 
 ### L4 — Positive Meniscus behind the diaphragm
 
-**ne = 1.78990, νe = 48.0. Glass: Unmatched (native e-line ne=1.7899, νe=48.0; supplier unproven). f = +80.1056 mm.**
+**ne = 1.78990, νe = 48.0. Glass: TAF4 coordinate-compatible dispersion proxy; historical supplier unconfirmed. f = +80.1056 mm.**
 
 L4 is the isolated converging meniscus placed immediately behind the modeled diaphragm region and ahead of the second
 cemented negative assembly. Its standalone focal length is 2.2794 times the computed 35.1432 mm total EFL, satisfying the
@@ -129,7 +129,7 @@ precision, and it does not establish the historical supplier or melt; the runtim
 
 ### L6 — Positive Meniscus, rear member of cemented assembly D2
 
-**ne = 1.78990, νe = 48.0. Glass: Unmatched (native e-line ne=1.7899, νe=48.0; supplier unproven). f = +28.6045 mm.**
+**ne = 1.78990, νe = 48.0. Glass: TAF4 coordinate-compatible dispersion proxy; historical supplier unconfirmed. f = +28.6045 mm.**
 
 L6 is cemented directly to L5 and is individually positive, with standalone power +0.0349595 mm⁻¹. The complete L5-L6
 pair remains slightly negative in standalone form, with net power -0.00400907 mm⁻¹ ($f = -249.4346$ mm). This is the
@@ -152,14 +152,14 @@ Native e-line coordinates are preserved; catalog curves are evaluated at C′/e/
 | Element | Source index / Abbe | Catalog curve |
 |---|---|---|
 | L1 | 1.72341 / 50.1 (e) | LAC10 |
-| L2 | 1.7899 / 48 (e) | Unresolved; patent-coordinate fallback |
+| L2 | 1.7899 / 48 (e) | TAF4 |
 | L3 | 1.70444 / 29.84 (e) | SF15 |
-| L4 | 1.7899 / 48 (e) | Unresolved; patent-coordinate fallback |
+| L4 | 1.7899 / 48 (e) | TAF4 |
 | L5 | 1.76167 / 27.34 (e) | SF4 |
-| L6 | 1.7899 / 48 (e) | Unresolved; patent-coordinate fallback |
+| L6 | 1.7899 / 48 (e) | TAF4 |
 | L7 | 1.72056 / 47.69 (e) | S-LAM3 |
 
-Named curves pass the catalog coordinate guard without changing the patent coordinates. No catalog-derived line indices are copied into the elements. Unresolved rows retain their source-based fallback; nearby glass families do not establish a unique historical identity. No APO or anomalous-dispersion claim follows from these assignments.
+Named curves pass the catalog coordinate guard without changing the patent coordinates. No catalog-derived line indices are copied into the elements. All seven elements now have catalog dispersion proxies; nearby glass families do not establish a unique historical identity. No APO or anomalous-dispersion claim follows from these assignments.
 
 ## Focus Mechanism
 
@@ -236,3 +236,13 @@ revised rim set. The semi-diameters and stop position remain inferred model choi
    $n_e=1.72056$, $\nu_e=47.65$; used only as a coordinate-near comparison to patent L7, not as a historical glass
    assignment.
    https://www.cdgmgd.com/accessory/2021-09-01/client/www.cdgmgd.com/006fb98b-22a8-479f-9aab-93b958af435f.pdf
+
+## Catalog dispersion follow-up
+
+The following curves are approximate spectral proxies within the catalog coordinate guard, not identified production glasses. Source indices, Abbe numbers, and reference lines are unchanged. Differences below are catalog minus patent; no catalog line indices or APD claims are copied into the prescription. The curve coefficients and vendor provenance are retained in the shared glass catalog.
+
+| Element | Patent index / Abbe | Runtime curve | Δn | Δν |
+|---|---|---|---|---|
+| L2 | 1.7899 / 48 (e) | TAF4 | 0.002048 | -0.741 |
+| L4 | 1.7899 / 48 (e) | TAF4 | 0.002048 | -0.741 |
+| L6 | 1.7899 / 48 (e) | TAF4 | 0.002048 | -0.741 |
