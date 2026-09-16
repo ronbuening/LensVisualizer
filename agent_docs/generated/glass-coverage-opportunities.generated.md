@@ -9,12 +9,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **761** lenses scanned (**749** visible)
-- **8004 / 8606** non-air surfaces use strict catalog Sellmeier data (93.0%)
-- **8019 / 8606** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.2%)
+- **766** lenses scanned (**754** visible)
+- **8027 / 8638** non-air surfaces use strict catalog Sellmeier data (92.9%)
+- **8042 / 8638** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.1%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
-- **272** code-only missing-Sellmeier elements in Sweep 2: **4** active unreviewed, **140** self-recording explicit dispositions, **0** dispositions missing any review record
+- **279** code-only missing-Sellmeier elements in Sweep 2: **4** active unreviewed, **147** self-recording explicit dispositions, **0** dispositions missing any review record
 - **0** unresolved named-token elements in Sweep 2B, producing **0** token occurrences across **0** distinct tokens
 - **0** Tier A proprietary backfill rows in Sweep 3
 
@@ -73,6 +73,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [NIKON NIKKOR-N Auto 24mm f/2.8](../../src/lens-data/nikon/NikonNikkorAuto24f28.data.ts) | US 3,622,227 | [PDF](../../patents/US3622227.pdf) | 88.9% (8/9) | 88.9% (8/9) | 1 | 15 [glass] (Element 9: `LAF2 equivalent (catalog comparison; supplier unspecified)`) | abbe: 1 |
 | [NIKON NIKKOR-N AUTO 28mm f/2](../../src/lens-data/nikon/NikonNikkorN28mmf2.data.ts) | US 3,736,049 | [PDF](../../patents/US3736049.pdf) | 88.9% (8/9) | 88.9% (8/9) | 1 | 14 [glass] (Element 8: `Discontinued LaF/LaK type (1970s)`) | abbe: 1 |
 | [PENTAX FA 31mm f/1.8 AL Limited](../../src/lens-data/pentax/PentaxFA31mmf18ALLtd.data.ts) | US 6,560,042 B2 | [PDF](../../patents/US6560042.pdf) | 88.9% (8/9) | 88.9% (8/9) | 1 | 13 [glass] (Element 8: `Unmatched (728403 lanthanum flint; no public coefficient row inside the d-line safety window)`) | abbe: 1 |
+| [SCHNEIDER-KREUZNACH CINEGON 10mm f/1.8](../../src/lens-data/schneider-kreuznach/SchneiderCinegon1810.data.ts) | US 3,038,379 | [PDF](../../patents/US3038379.pdf) | 88.9% (8/9) | 88.9% (8/9) | 1 | 5 [glass] (Element 4: `Unmatched (nd=1.5128, vd=57.2; public catalog identity unresolved)`) | abbe: 1 |
 | [SONY DT 16-50mm f/2.8 SSM](../../src/lens-data/sony/SonyDT1650mmf28SSM.data.ts) | US 2012/0307129 A1 | [PDF](../../patents/US20120307129A1.pdf) | 88.9% (16/18) | 88.9% (16/18) | 2 | 6A [glass] (G4 compound layer: `Unmatched (compound-asphere layer; material unspecified by patent)`)<br>26 [glass] (G13 compound layer: `Unmatched (compound-asphere layer; material unspecified by patent)`) | abbe: 2 |
 | [CANON 10.2-30.6mm f/2-4.9 (Canon PowerShot G9 X)](../../src/lens-data/canon/CanonPowerShotG9X.data.ts) | JP 2016-161889 A | [PDF](../../patents/JP2016161889A.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 9 [glass] (L23 (G2n): `Unmatched (special high-dispersion glass; patent points to an SnO-rich JP2012-193065 class)`) | abbe: 1 |
 | [CARL ZEISS PRO-TESSAR 35mm f/3.2](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissProTessar35mmf32.data.ts) | DE 1,089,183 | [PDF](../../patents/DE_1089183_B.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 12 [glass] (Element 7 (L_VIII): `LLF7 (Schott)`) | abbe: 1 |

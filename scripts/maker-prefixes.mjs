@@ -39,6 +39,8 @@ export const MAKER_PREFIXES = [
   { prefix: "RODENSTOCK", display: "Rodenstock", slug: "rodenstock" },
   { prefix: "SAMYANG", display: "Samyang", slug: "samyang" },
   { prefix: "ROKINON", display: "Samyang", slug: "samyang" },
+  { prefix: "ALBERT SCHACHT", display: "Schacht", slug: "schacht" },
+  { prefix: "SCHACHT", display: "Schacht", slug: "schacht" },
   { prefix: "SAMSUNG", display: "Samsung", slug: "samsung" },
   { prefix: "SCHNEIDER KREUZNACH", display: "Schneider Kreuznach", slug: "schneider-kreuznach" },
   { prefix: "SCHNEIDER", display: "Schneider Kreuznach", slug: "schneider-kreuznach" },

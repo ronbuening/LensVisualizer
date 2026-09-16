@@ -81,6 +81,13 @@ describe("deriveMaker", () => {
     });
   });
 
+  it("normalizes Schacht branding and explicit maker metadata", () => {
+    const expected = { display: "Schacht", slug: "schacht" };
+    expect(deriveMaker("ALBERT SCHACHT S-TRAVENAR")).toEqual(expected);
+    expect(deriveMaker("SCHACHT TRAVENAR")).toEqual(expected);
+    expect(deriveMaker("S-TRAVENAR", "Schacht")).toEqual(expected);
+  });
+
   it("derives Laowa from LAOWA and Venus Optics prefixes", () => {
     expect(deriveMaker("LAOWA 12mm f/2.8 Zero-D")).toEqual({
       display: "Laowa",
