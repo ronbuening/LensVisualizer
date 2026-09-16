@@ -35,6 +35,9 @@ Non-obvious constraints and failure modes: one trap per bullet, with the full ru
 - `scripts/prerender.mjs` validates that every route pattern in `src/routes/routeManifest.tsx` is covered by
   `src/generated/build-metadata.json`; a new pattern without a `scripts/generate-build-metadata.mjs` update fails the
   build. Client-only patterns (e.g. `/compare/:slugA/:slugB`) are exempt via `CLIENT_ONLY_PATTERNS`.
+- Cloudflare silently drops any `public/_redirects` rule whose source ends in `/*` and whose target ends in `/index`
+  or `/index.html`: its parser logs "Infinite loop detected" and ignores the line. The compare fallback targets `/`
+  for this reason; see the comment in `public/_redirects` before changing it.
 - `vite.config.js` sets `base: '/'`; Cloudflare Pages serves production from the domain root.
 - `tsconfig.json` is `strict: true` with `allowJs: false`; `.data.ts` lens files are type-checked through the `"src"`
   include. Test files are `.ts`, and Vitest resolves `.js` import specifiers to `.ts` sources automatically.
