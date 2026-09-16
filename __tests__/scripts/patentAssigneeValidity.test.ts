@@ -1,5 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { assertPatentAssigneeValidity } from "../../scripts/patent-assignee-validity.mjs";
+import {
+  ASSIGNEE_START_YEARS,
+  assertPatentAssigneeValidity,
+  deriveAssigneeStartYears,
+} from "../../scripts/patent-assignee-validity.mjs";
 
 describe("patent assignee validity", () => {
   it("accepts canonical historical and modern Zeiss entities", () => {
@@ -68,5 +72,31 @@ describe("patent assignee validity", () => {
         },
       ]),
     ).toThrow(/Carl Zeiss AG did not exist until 2004/);
+  });
+});
+
+describe("derived assignee start years", () => {
+  it("takes the earliest successorOf date and lets overrides win", () => {
+    const derived = deriveAssigneeStartYears(
+      {
+        "Late Name Co.": {
+          successorOf: [{ effectiveDate: "2013-04-01" }, { effectiveDate: "2003-08-05" }],
+        },
+        "No Successor Co.": {},
+        "Override Co.": { successorOf: [{ effectiveDate: "2010-04-01" }] },
+      },
+      new Map([["Override Co.", 1969]]),
+    );
+    expect(derived.get("Late Name Co.")).toBe(2003);
+    expect(derived.has("No Successor Co.")).toBe(false);
+    expect(derived.get("Override Co.")).toBe(1969);
+  });
+
+  it("bounds registry successor names by their succession date", () => {
+    expect(ASSIGNEE_START_YEARS.get("Nikon Corporation")).toBe(1988);
+    expect(ASSIGNEE_START_YEARS.get("Konica Minolta, Inc.")).toBe(2013);
+    expect(() =>
+      assertPatentAssigneeValidity([{ key: "early", patentYear: 1987, patentAssignees: ["Nikon Corporation"] }]),
+    ).toThrow("Nikon Corporation did not exist until 1988");
   });
 });
