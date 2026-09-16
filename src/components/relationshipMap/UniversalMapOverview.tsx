@@ -12,13 +12,16 @@ interface UniversalMapOverviewProps {
   selectedNodeId: string | null;
   view: ViewBoxState;
   visibleBounds: SvgBounds;
-  onCenterView: (x: number, y: number) => void;
+  /** Center the main map on a world point, optionally at a new zoom level. */
+  onCenterView: (x: number, y: number, zoom?: number) => void;
   onPanView: (dx: number, dy: number) => void;
   onFitAll: () => void;
 }
 
 const WIDTH = 220;
 const HEIGHT = 150;
+/** Each double-click halves the visible area around the chosen point. */
+const DOUBLE_CLICK_ZOOM_FACTOR = 2;
 
 export default function UniversalMapOverview({
   id,
@@ -65,6 +68,15 @@ export default function UniversalMapOverview({
     [layout, t, scale],
   );
   const selected = selectedNodeId ? layout.nodeById[selectedNodeId] : undefined;
+  /* Clamp the pointer to the layout so clicks in the letterboxed margins still land on the map edge. */
+  const worldPointFromEvent = (event: React.MouseEvent<SVGSVGElement>) => {
+    const point = clientPointToSvg(event.currentTarget, event.clientX, event.clientY);
+    if (!point) return undefined;
+    return {
+      x: Math.max(0, Math.min(layout.width, point.x)),
+      y: Math.max(0, Math.min(layout.height, point.y)),
+    };
+  };
   const x = Math.max(0, Math.min(layout.width, visibleBounds.x));
   const y = Math.max(0, Math.min(layout.height, visibleBounds.y));
   const width = Math.max(0, Math.min(layout.width, visibleBounds.x + visibleBounds.width) - x);
@@ -85,7 +97,8 @@ export default function UniversalMapOverview({
     >
       <div style={{ padding: "5px 8px", fontSize: "0.68rem", color: t.label }}>Overview</div>
       <p id={instructionsId} style={VISUALLY_HIDDEN}>
-        Click or tap to center the map. Arrow keys pan. Home fits the full map.
+        Click or tap to center the map. Double-click or double-tap to zoom in there. Arrow keys pan. Home fits the full
+        map.
       </p>
       <svg
         role="group"
@@ -103,10 +116,17 @@ export default function UniversalMapOverview({
           outlineOffset: -3,
         }}
         onClick={(event) => {
-          const point = clientPointToSvg(event.currentTarget, event.clientX, event.clientY);
+          const point = worldPointFromEvent(event);
           if (!point) return;
           event.currentTarget.focus({ preventScroll: true });
-          onCenterView(Math.max(0, Math.min(layout.width, point.x)), Math.max(0, Math.min(layout.height, point.y)));
+          onCenterView(point.x, point.y);
+        }}
+        onDoubleClick={(event) => {
+          /* The two clicks already centered here; now magnify around the same point. */
+          const point = worldPointFromEvent(event);
+          if (!point) return;
+          event.preventDefault();
+          onCenterView(point.x, point.y, view.zoom * DOUBLE_CLICK_ZOOM_FACTOR);
         }}
         onKeyDown={(event) => {
           const directions: Record<string, [number, number]> = {

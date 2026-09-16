@@ -20,6 +20,12 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-09-16",
+    type: "feature",
+    summary:
+      "Added double-click zoom on the universal relationship map overview to magnify and center on a chosen spot",
+  },
+  {
+    date: "2026-09-16",
     type: "fix",
     summary:
       "Fixed Espacenet links for US application publications and pre-2000 Japanese patent numbers, and added kind codes to 21 Japanese patents",
