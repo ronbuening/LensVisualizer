@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import type { ComponentType, CSSProperties, ReactNode } from "react";
 import { Link } from "react-router";
 import ReactMarkdown from "react-markdown";
+import type { ExtraProps } from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import rehypeSlug from "rehype-slug";
@@ -94,18 +95,21 @@ export default function ThemedMarkdown({
           {children}
         </h3>
       ),
-      p: ({ children }: { children?: ReactNode }) => (
-        <p
-          style={{
-            margin: article ? "8px 0" : "6px 0",
-            fontSize: article ? 13 : 12,
-            color: t.descText,
-            lineHeight: 1.7,
-          }}
-        >
-          {children}
-        </p>
-      ),
+      p: ({ children, node }: { children?: ReactNode } & ExtraProps) =>
+        isImageOnlyParagraph(node) ? (
+          <>{children}</>
+        ) : (
+          <p
+            style={{
+              margin: article ? "8px 0" : "6px 0",
+              fontSize: article ? 13 : 12,
+              color: t.descText,
+              lineHeight: 1.7,
+            }}
+          >
+            {children}
+          </p>
+        ),
       strong: ({ children }: { children?: ReactNode }) => (
         <strong style={{ color: t.descH2, fontWeight: 600 }}>{children}</strong>
       ),
@@ -270,6 +274,15 @@ export default function ThemedMarkdown({
       {markdown}
     </ReactMarkdown>
   );
+}
+
+/* Markdown wraps a lone image in a paragraph, but every image here renders as a
+ * block <figure>, which HTML forbids inside <p>: browsers close the paragraph
+ * early and React warns in development. Image-only paragraphs render bare. */
+function isImageOnlyParagraph(node: ExtraProps["node"]): boolean {
+  const content = node?.children.filter((child) => !(child.type === "text" && child.value.trim() === "")) ?? [];
+  const [only] = content;
+  return content.length === 1 && only?.type === "element" && only.tagName === "img";
 }
 
 /* The spherical-aberration series references its figures by static asset path;

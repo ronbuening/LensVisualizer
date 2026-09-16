@@ -61,7 +61,7 @@ function buildStaticSvg(Diagram: ComponentType<{ isDark: boolean }>): string {
   const dark = splitSvg(renderToStaticMarkup(<Diagram isDark />), "dark");
   const light = splitSvg(renderToStaticMarkup(<Diagram isDark={false} />), "light");
   return [
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${dark.viewBox}" width="100%" height="auto" role="img" aria-label="${dark.ariaLabel}">`,
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${dark.viewBox}" width="100%" role="img" aria-label="${dark.ariaLabel}">`,
     `  <!-- Generated from src/components/diagram/sphericalAberration/ by npm run generate:sa-figure-svgs; do not edit by hand. -->`,
     `  <style>`,
     `    .sa-light { display: none; }`,

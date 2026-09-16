@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 250" width="100%" height="auto" role="img" aria-label="Four longitudinal spherical-aberration curve shapes">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 250" width="100%" role="img" aria-label="Four longitudinal spherical-aberration curve shapes">
   <!-- Generated from src/components/diagram/sphericalAberration/ by npm run generate:sa-figure-svgs; do not edit by hand. -->
   <style>
     .sa-light { display: none; }
