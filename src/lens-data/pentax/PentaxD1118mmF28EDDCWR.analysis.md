@@ -8,7 +8,7 @@
 **Filed:** 29 November 2017  
 **Published:** 14 June 2018  
 **Inventor:** Takahiko Ohishi  
-**Applicant:** Takahiko Ohishi  
+**Applicant:** Takahiko Ohishi (inventor-applicant; no organization named, so `patentAssignees` is empty)  
 **Title:** “Zooming Optical System”  
 **Embodiment analyzed:** Numerical Example 1
 

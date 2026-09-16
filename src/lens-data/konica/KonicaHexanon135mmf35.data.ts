@@ -52,7 +52,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "JP 1955-009472",
   patentAuthors: ["Tomokazu Kazamaki", "Fumio Kondo"],
-  patentAssignees: ["Tomokazu Kazamaki", "Fumio Kondo"],
+  patentAssignees: [],
   patentYear: 1955,
   elementCount: 4,
   groupCount: 4,

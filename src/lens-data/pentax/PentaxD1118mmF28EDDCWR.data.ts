@@ -67,7 +67,7 @@ const LENS_DATA = {
   imageFormat: "aps-c",
   patentNumber: "US 2018/0164556 A1",
   patentAuthors: ["Takahiko Ohishi"],
-  patentAssignees: ["Takahiko Ohishi"],
+  patentAssignees: [],
   patentYear: 2018,
   elementCount: 16,
   groupCount: 11,

@@ -5,7 +5,7 @@
 **Priority:** France, 17 February 1950 and 5 July 1950
 **Published:** 4 June 1952
 **Inventor:** Pierre Angénieux
-**Applicant:** Pierre Angénieux
+**Applicant:** Pierre Angénieux (inventor-applicant; no organization named, so `patentAssignees` is empty)
 **Title:** *Improvements in Wide-Angle Objectives*
 **Embodiment analyzed:** Example I, Table I, Fig. 1
 

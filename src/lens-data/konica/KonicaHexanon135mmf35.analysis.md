@@ -7,7 +7,7 @@
 **Filed:** 1954-02-08\
 **Published:** 1955-12-26\
 **Inventors:** Tomokazu Kazamaki; Fumio Kondo\
-**Applicants:** Tomokazu Kazamaki; Fumio Kondo\
+**Applicants:** Tomokazu Kazamaki; Fumio Kondo (inventor-applicants; no organization named, so `patentAssignees` is empty)\
 **Title:** 望遠写真レンズ (Telephoto photographic lens)\
 **Embodiment analyzed:** Example 1
 

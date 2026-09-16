@@ -6,7 +6,7 @@
 **Granted:** 15 October 1969  
 **Published:** 28 November 1969  
 **Inventors:** Ludwig Bertele; Jürgen Bertele  
-**Applicants / patent holders:** Ludwig Bertele; Jürgen Bertele  
+**Applicants / patent holders:** Ludwig Bertele; Jürgen Bertele (inventor-applicants; no organization named, so `patentAssignees` is empty)  
 **Title:** *Photographisches Objektiv*  
 **Embodiment analyzed:** Example 1
 
@@ -32,8 +32,8 @@ and Exakta identifiers are catalog inferences from the named camera families, no
 patent.
 
 Schacht is recorded as the lens maker, while the Swiss patent's title page names Dr. Ludwig Bertele and Jürgen
-Bertele as the patent holders and separately identifies them as the inventors. Those two source-named holders
-therefore populate `patentAssignees`; Schacht is not named there. The association with a Schacht production lens
+Bertele as the patent holders and separately identifies them as the inventors. Because the holders are the
+inventors themselves and no organization is named, `patentAssignees` stays empty; Schacht is not named there. The association with a Schacht production lens
 does not establish an assignment to the manufacturer or document any separate licensing arrangement.
 
 ## Optical Architecture

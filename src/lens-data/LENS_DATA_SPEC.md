@@ -231,8 +231,10 @@ patentAssignees: ["Canon Inc."],
   for that entity throughout the corpus. Omit locations, translated-name duplicates, and source-database artifacts.
   Preserve distinct historical legal entities, subsidiaries, and reorganized companies instead of merging them into the
   current product maker or a modern successor.
+- `patentAssignees` lists organizations only. When the source names a person as applicant or patent holder, including
+  inventor-applicant publications, use `patentAssignees: []`; the person is already credited through `patentAuthors`.
 - Empty arrays are meaningful source statements, not placeholders for unfinished research: use `patentAuthors: []` only
-  when the source names no individual inventor, and `patentAssignees: []` only when it identifies no assignee or applicant.
+  when the source names no individual inventor, and `patentAssignees: []` only when it identifies no organizational assignee or applicant.
 - Do not add filing dates, priority numbers, attorneys, agents, examiners, translators, or current patent owners to these
   fields. `patentYear` remains the year of the source publication or grant named by `patentNumber`.
 - Build metadata generation checks curated historical assignee aliases and legal-form start years. These checks flag
