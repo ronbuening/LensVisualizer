@@ -59,15 +59,53 @@ export function isPatentPublicationNumber(value: string): boolean {
 }
 
 /**
- * Build a worldwide Espacenet publication-number search URL.
+ * Convert a catalog display number into the DOCDB publication number that
+ * Espacenet indexes.
  *
- * Espacenet accepts DOCDB-style identifiers without display punctuation and is
- * flexible about omitted kind codes, which covers both modern publications and
- * the historical patent-number formats represented in the catalog.
+ * Three catalog formats diverge from DOCDB. US application publications print a
+ * seven-digit serial whose leading zero DOCDB drops (US 2018/0164556 A1 is
+ * US2018164556A1). Japanese era numbers keep their serial without leading zeros
+ * (JP S62-078520 A is JPS6278520A). Pre-2000 Japanese numbers recorded with a
+ * Western year must use the Showa or Heisei era year the publication carries
+ * (JP 1991-141313 is JPH03141313). Every other format, including post-2000
+ * Japanese numbers whose six-digit serials keep their zeros, only needs its
+ * display punctuation removed.
  */
+export function docdbPublicationNumber(patentNumber: string): string {
+  const display = patentNumber.trim().toUpperCase();
+
+  const usApplication = display.match(/^US\s+(\d{4})\/0(\d{6})\s*([A-Z]\d?)?$/);
+  if (usApplication) return `US${usApplication[1]}${usApplication[2]}${usApplication[3] ?? ""}`;
+
+  const japanese = display.match(/^JP\s+(?:([SH])(\d{1,2})|(\d{4}))-(\d+)\s*([A-Z]\d?)?$/);
+  if (japanese) {
+    const [, era, eraYear, westernYear, serial, kind = ""] = japanese;
+    const resolved = era
+      ? { era, eraYear: Number(eraYear) }
+      : japaneseEraFromWesternYear(Number(westernYear), Number(serial));
+    if (resolved) return `JP${resolved.era}${String(resolved.eraYear).padStart(2, "0")}${Number(serial)}${kind}`;
+  }
+
+  return display.replace(/[^A-Z0-9]/g, "");
+}
+
+/**
+ * Map a pre-2000 Western publication year to its Showa or Heisei era year; later
+ * years keep the Western form.
+ *
+ * 1989 spans both eras. The JPO kept Showa 64 numbering for publications until
+ * early April 1989 (serials through the 90000s) and started Heisei 1 numbering
+ * at 100000, so the serial decides which era prefix a 1989 number carries.
+ */
+function japaneseEraFromWesternYear(year: number, serial: number): { era: "S" | "H"; eraYear: number } | undefined {
+  if (year >= 2000 || year < 1926) return undefined;
+  if (year === 1989) return serial < 100000 ? { era: "S", eraYear: 64 } : { era: "H", eraYear: 1 };
+  return year > 1989 ? { era: "H", eraYear: year - 1988 } : { era: "S", eraYear: year - 1925 };
+}
+
+/** Build a worldwide Espacenet publication-number search URL from a catalog display number. */
 export function espacenetPatentUrl(patentNumber: string): string {
-  const publicationNumber = patentNumber.toUpperCase().replace(/[^A-Z0-9]/g, "");
-  return `https://worldwide.espacenet.com/patent/search?q=${encodeURIComponent(`pn=${publicationNumber}`)}`;
+  return `https://worldwide.espacenet.com/patent/search?q=${encodeURIComponent(`pn=${docdbPublicationNumber(patentNumber)}`)}`;
 }
 
 /** Resolve the publication authority encoded at the start of a patent number. */
