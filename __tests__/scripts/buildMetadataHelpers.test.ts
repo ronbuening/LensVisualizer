@@ -64,7 +64,7 @@ describe("build metadata helpers", () => {
     ).not.toThrow();
     expect(calls).toEqual([
       ["rev-parse", "--is-shallow-repository"],
-      ["fetch", "--unshallow"],
+      ["fetch", "--unshallow", "--quiet"],
       ["rev-parse", "--is-shallow-repository"],
     ]);
   });

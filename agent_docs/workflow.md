@@ -75,6 +75,11 @@ GitHub Pages is an active mirror/backup.
   `X-Frame-Options`) and the SPA `200` rewrites therefore do **not** apply on the GitHub Pages mirror. Canonical URLs
   point at surfaceandstop.com, which mitigates duplicate-content SEO from the mirror.
 - Builds use the normal pipeline and deploy the generated `dist/` output.
+- Cloudflare build logs stay short on purpose: `vite.config.js` switches to `logLevel: "warn"` when `CF_PAGES` is
+  set, and the metadata step unshallows with `git fetch --quiet`. On 2026-09-16 Cloudflare dropped the ~900-line
+  per-asset listing mid-stream and failed the build stage with "an internal error occurred"; GitHub Actions and local
+  builds keep the full listing. If that error recurs, retry the deployment from the Cloudflare dashboard before
+  debugging the build.
 - Base path set to `/` in `vite.config.js` because Cloudflare Pages serves the production site from the domain root
 - Quality checks run on PRs via `.github/workflows/quality.yml` (lint, format, typecheck, test, npm audit, build)
 - Build pipeline: `generate-build-metadata.mjs` (routes + metadata) → `vite build` → `prerender.mjs` (SSR static HTML +

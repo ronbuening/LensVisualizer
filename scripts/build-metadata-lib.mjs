@@ -18,7 +18,7 @@ export function assertFullGitHistory({ cwd, execFileImpl = execFileSync, allowFe
 
     if (isShallow === "true" && allowFetch) {
       try {
-        execFileImpl("git", ["fetch", "--unshallow"], {
+        execFileImpl("git", ["fetch", "--unshallow", "--quiet"], {
           cwd,
           encoding: "utf-8",
         });
