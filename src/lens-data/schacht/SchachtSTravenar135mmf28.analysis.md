@@ -31,6 +31,11 @@ mount metadata is similarly normalized from the camera-system compatibility list
 and Exakta identifiers are catalog inferences from the named camera families, not mount-standard labels printed in the
 patent.
 
+Schacht is recorded as the lens maker, while the Swiss patent's title page names Dr. Ludwig Bertele and Jürgen
+Bertele as the patent holders and separately identifies them as the inventors. Those two source-named holders
+therefore populate `patentAssignees`; Schacht is not named there. The association with a Schacht production lens
+does not establish an assignment to the manufacturer or document any separate licensing arrangement.
+
 ## Optical Architecture
 
 The modeled prescription contains four elements in four air-spaced groups and is all-spherical. In object-to-image

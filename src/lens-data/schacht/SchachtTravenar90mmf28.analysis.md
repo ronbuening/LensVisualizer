@@ -32,6 +32,11 @@ primary Schacht source retained in the dossier explicitly names US 2,721,501 or 
 of the production Travenar 90mm f/2.8. The data file therefore records the match as a strong inference, not as a
 manufacturer statement.
 
+Schacht is recorded as the lens maker, while patent attribution follows the cited publication. The bibliographic
+heading on PDF p. 2 names Ludwig Bertele and gives no assignee or assignment to Schacht. Accordingly,
+`patentAssignees` is empty: this means no assignee is named in this source, not that Schacht could never have held
+rights under a separate agreement. The production-lens association alone does not establish patent ownership.
+
 ## Optical Architecture
 
 The design is a four-element, three-group, all-spherical objective with a positive–negative–positive member-power
