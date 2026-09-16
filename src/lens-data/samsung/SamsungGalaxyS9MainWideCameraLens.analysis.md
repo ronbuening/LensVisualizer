@@ -68,13 +68,11 @@ coincident with the S1 vertex and calibrates its wide-open semi-diameter to 1.43
 computed 4.313424827 mm EFL gives f/1.5. That agreement verifies only the stop calibration; it is not independent evidence
 for the physical production iris diameter or its axial location.
 
-Static stop calibration does not, however, make the geometry-safe model a fully clear f/1.5 system. An independent exact
-meridional trace of the final aspheres and modeled rims finds that the default 0.83 wide-open axial pupil sample launches
-at 1.193380869 mm and reaches S7A at 1.117804589 mm, outside its 1.060261096 mm modeled semi-diameter. The largest clear
-axial launch is about 1.150091158 mm, corresponding to an EFL/diameter f-number proxy of 1.875253451. Increasing L4's rim
-enough to pass that bundle is not a supported fix: the unmodified S7/S8 source surfaces reach zero edge thickness near
-1.100849300 mm and are already negative at the published 1.192 mm shared radius. The `nominalFno: 1.5` value is therefore
-a source-target calibration, not a verified clear-aperture result for the current geometry-safe visualization model.
+The corrected aspheric signs pass the formerly clipped 0.83-pupil axial sample (launch height
+1.193380869 mm). Its image-plane intercept is about -0.004673 mm; a 1.0 mm launch gives -0.001576 mm,
+compared with +0.384126 mm before correction. These monochromatic checks support the sign interpretation,
+but do not establish full-field performance or validate the unspecified stop position. The modeled rear
+rims remain truncated because the published coefficient precision cannot reproduce their full envelope.
 
 ## Element-by-Element Analysis
 
@@ -110,11 +108,10 @@ cannot be inferred from the large standalone focal length alone.
 `nd = 1.544, νd = 56.094. Glass: Unmatched (544561 optical-material class; supplier unknown). f = +9.81082 mm.`
 
 L4 is a materially stronger positive element than L3. The patent describes both paraxial surface shapes as a convex-front,
-concave-rear meniscus (¶0125). This element also exposes the principal geometry inconsistency in the source when the
-published ray-used effective-aperture radius is treated as a physical rim: the mapped S7/S8 surfaces would give an L4 edge
-thickness of -0.0524683 mm at the common published 1.192 mm radius. The final model does not alter the patent surfaces;
-instead, it uses a modeled common physical semi-diameter of 1.060261096 mm, which leaves a verified 0.0200000 mm minimum
-edge thickness. Those modeled rims are visualization/model geometry, not claimed production dimensions.
+concave-rear meniscus (¶0125). With the Table-4 polynomial signs retained, the common published 1.192 mm
+radius gives a positive edge thickness of 0.225050 mm. The former negative edge thickness was introduced
+by the model's coefficient negation, not established by the source. Both modeled rims now use 1.21584 mm
+(1.02× the published effective radius).
 
 ### L5 - Near-Afocal Weak Positive Meniscus, two aspherical surfaces
 
@@ -178,41 +175,51 @@ All fourteen lens surfaces S1-S14 are aspherical in Example 1 (¶0131 and Table 
 
 `Z = -cY² / [1 + √(1 - (1 + K)c²Y²)] + A·Y⁴ + B·Y⁶ + ...`
 
-LensVisualizer uses the opposite sign for the conic-base sag. To preserve the complete source surface under that coordinate
-change, the model retains each source `R` and `K` and negates every published polynomial coefficient. The source A, B, C,
-D, E, F, G, H, J sequence therefore maps to model A4, A6, A8, A10, A12, A14, A16, A18, A20 with the opposite sign. No uniform scale is applied, so no dimensional coefficient scaling is required.
+The implemented model retains Table-4 radii, conic constants, and polynomial signs in the usual
+positive-conic, object-to-image sag convention. The negative numerator printed in Equation (1) is treated
+as a source equation error, an interpretation supported by the Figure 1 contours and exact axial tracing.
+The earlier model instead negated every polynomial term, reversing the peripheral bends and creating an
+artificial L4 crossing. This correction is an explicit source interpretation, not a claim that the printed
+equation has a positive numerator. No coefficient fitting or dimensional scaling is applied.
 
-The tables below give the final LensVisualizer coefficient set. A dash means no nonzero term is authored at that order.
-These values are the sign-normalized form of patent Table 4, not a second independently fitted surface.
+The tables below give the implemented coefficients, now identical in sign to Table 4.
+A dash means no nonzero term is authored at that order.
 
 | Surface | K | A4 | A6 | A8 | A10 | A12 | A14 | A16 | A18 | A20 |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| 1A | -1.6552217 | -1.16091e-2 | -9.65387e-2 | 3.155559e-1 | -6.103956e-1 | 7.409635e-1 | -5.643710e-1 | 2.624528e-1 | -6.77393e-2 | 7.4222e-3 |
-| 2A | -24.000204 | 1.29476e-2 | 3.63024e-2 | -4.14684e-2 | 4.31300e-2 | -4.27570e-2 | 3.64053e-2 | -2.09420e-2 | 6.6627e-3 | -8.573e-4 |
-| 3A | -50.6870574 | 3.89719e-2 | 3.10197e-2 | 2.133e-4 | -2.203593e-1 | 4.423371e-1 | -4.475599e-1 | 2.552890e-1 | -7.85311e-2 | 1.02827e-2 |
-| 4A | 4.8241626 | 4.34129e-2 | 6.33982e-2 | -1.513420e-1 | 3.827429e-1 | -8.176100e-1 | 1.0506755 | -7.674961e-1 | 2.880086e-1 | -4.22082e-2 |
-| 5A | -12.7994972 | 8.2797e-3 | -1.615828e-1 | 9.392688e-1 | -2.4165689 | 3.961589 | -4.1252343 | 2.5899193 | -9.003932e-1 | 1.340505e-1 |
-| 6A | -42.8915719 | 1.081493e-1 | -3.169587e-1 | 8.513916e-1 | -1.2909706 | 1.5485732 | -1.5974902 | 1.137569 | -4.537753e-1 | 7.54816e-2 |
-| 7A | -0.3530718 | 2.370002e-1 | -5.814920e-1 | 1.662903 | -3.4439451 | 5.2966339 | -5.6879394 | 3.8338174 | -1.4272539 | 2.227640e-1 |
-| 8A | -4.2495116 | 2.47478e-2 | 4.17117e-2 | -3.110626e-1 | 1.0130564 | -1.7589418 | 1.8091287 | -1.1258055 | 3.970271e-1 | -6.13702e-2 |
-| 9A | 0 | -8.30070e-2 | 8.112926e-1 | -2.3021412 | 4.1836612 | -5.0467303 | 4.0494266 | -2.0724279 | 6.104917e-1 | -7.84477e-2 |
-| 10A | 0 | -2.627193e-1 | 1.1387755 | -2.0723941 | 2.4444138 | -1.9176466 | 9.907477e-1 | -3.234978e-1 | 6.01376e-2 | -4.8119e-3 |
-| 11A | 0 | -4.625186e-1 | 1.1116904 | -1.591279 | 1.6061269 | -1.0855971 | 4.768917e-1 | -1.297930e-1 | 1.97278e-2 | -1.2726e-3 |
-| 12A | 0 | -1.464370e-1 | 1.698953e-1 | -1.117498e-1 | 6.34561e-2 | -2.87105e-2 | 9.0165e-3 | -1.7792e-3 | 1.964e-4 | -9.2e-6 |
-| 13A | -10.8244988 | 2.005729e-1 | -5.26574e-2 | -1.02193e-2 | 9.0359e-3 | -2.3863e-3 | 3.304e-4 | -2.41e-5 | 7e-7 | — |
-| 14A | -5.5973242 | 1.362365e-1 | -6.26627e-2 | 2.52880e-2 | -7.5010e-3 | 1.4408e-3 | -1.697e-4 | 1.12e-5 | -3e-7 | — |
+| 1A | -1.6552217 | 1.16091e-2 | 9.65387e-2 | -3.155559e-1 | 6.103956e-1 | -7.409635e-1 | 5.643710e-1 | -2.624528e-1 | 6.77393e-2 | -7.4222e-3 |
+| 2A | -24.000204 | -1.29476e-2 | -3.63024e-2 | 4.14684e-2 | -4.31300e-2 | 4.27570e-2 | -3.64053e-2 | 2.09420e-2 | -6.6627e-3 | 8.573e-4 |
+| 3A | -50.6870574 | -3.89719e-2 | -3.10197e-2 | -2.133e-4 | 2.203593e-1 | -4.423371e-1 | 4.475599e-1 | -2.552890e-1 | 7.85311e-2 | -1.02827e-2 |
+| 4A | 4.8241626 | -4.34129e-2 | -6.33982e-2 | 1.513420e-1 | -3.827429e-1 | 8.176100e-1 | -1.0506755 | 7.674961e-1 | -2.880086e-1 | 4.22082e-2 |
+| 5A | -12.7994972 | -8.2797e-3 | 1.615828e-1 | -9.392688e-1 | 2.4165689 | -3.961589 | 4.1252343 | -2.5899193 | 9.003932e-1 | -1.340505e-1 |
+| 6A | -42.8915719 | -1.081493e-1 | 3.169587e-1 | -8.513916e-1 | 1.2909706 | -1.5485732 | 1.5974902 | -1.137569 | 4.537753e-1 | -7.54816e-2 |
+| 7A | -0.3530718 | -2.370002e-1 | 5.814920e-1 | -1.662903 | 3.4439451 | -5.2966339 | 5.6879394 | -3.8338174 | 1.4272539 | -2.227640e-1 |
+| 8A | -4.2495116 | -2.47478e-2 | -4.17117e-2 | 3.110626e-1 | -1.0130564 | 1.7589418 | -1.8091287 | 1.1258055 | -3.970271e-1 | 6.13702e-2 |
+| 9A | 0 | 8.30070e-2 | -8.112926e-1 | 2.3021412 | -4.1836612 | 5.0467303 | -4.0494266 | 2.0724279 | -6.104917e-1 | 7.84477e-2 |
+| 10A | 0 | 2.627193e-1 | -1.1387755 | 2.0723941 | -2.4444138 | 1.9176466 | -9.907477e-1 | 3.234978e-1 | -6.01376e-2 | 4.8119e-3 |
+| 11A | 0 | 4.625186e-1 | -1.1116904 | 1.591279 | -1.6061269 | 1.0855971 | -4.768917e-1 | 1.297930e-1 | -1.97278e-2 | 1.2726e-3 |
+| 12A | 0 | 1.464370e-1 | -1.698953e-1 | 1.117498e-1 | -6.34561e-2 | 2.87105e-2 | -9.0165e-3 | 1.7792e-3 | -1.964e-4 | 9.2e-6 |
+| 13A | -10.8244988 | -2.005729e-1 | 5.26574e-2 | 1.02193e-2 | -9.0359e-3 | 2.3863e-3 | -3.304e-4 | 2.41e-5 | -7e-7 | — |
+| 14A | -5.5973242 | -1.362365e-1 | 6.26627e-2 | -2.52880e-2 | 7.5010e-3 | -1.4408e-3 | 1.697e-4 | -1.12e-5 | 3e-7 | — |
 
 Because many surfaces use large higher-order terms with alternating signs, a single A4 coefficient is not a sufficient
 summary of the peripheral shape. The patent itself is the stronger source for qualitative edge-shape statements: it
 explicitly allows inflection behavior on L6 and L7 (¶¶0128, 0130).
 
-The patent's effective-aperture radii are ray-used radii, not published physical lens rims (¶0073). Treating them as
-physical semi-diameters produces the L4 contradiction noted above and, on the rear surfaces, can exceed the conservative
-rim-slope policy used for this model. The final modeled rims therefore remain separate authoring values. Across those
-modeled rims the independently checked minimum element thickness is 0.0200000 mm, the maximum actual aspheric rim slope
-is 59.9093°, and the minimum computed inter-element air separation is 0.0358480 mm. These are static model-geometry
-checks, not measurements of the manufactured Galaxy S9 lens, and they do not establish wide-open exact-pupil containment;
-the f/1.5 axial-clearance limitation described above remains unresolved.
+The patent's effective-aperture radii are ray-used radii, not published physical lens rims (¶0073).
+Each element uses a common rim, matching the flat closures in Figure 1. L1–L4 use 1.02× the larger
+source radius; L5/L6 use 1.02× the smaller radius because extending their front surfaces to the
+larger rear radii causes polynomial divergence. These conservative rims also truncate their envelopes. The rear surfaces cannot safely use the full 2.720/2.880 mm
+radii: the seven-decimal Table-4 polynomial values produce a crossing at the common 2.720 mm height
+(edge thickness -2.699029 mm), inconsistent with Figure 1. S13 also begins turning back toward the
+image near a 2.0 mm height. A rounding interval of only ±0.00000005 in an A18 coefficient contributes
+about ±3.321 mm of sag at 2.72 mm; printed zero A20 terms also cannot establish the original precision.
+The related US10935759B2 Table 4 repeats the same rounded values.
+
+Both rear rims are therefore conservatively truncated at 2.0 mm. This avoids the divergent periphery
+but visibly understates the patent's rear envelope. The model is a partial reconstruction, not a faithful
+full-aperture replica of Figure 1. Higher-precision source coefficients are needed to restore that envelope;
+no values are fitted to the drawing, and no geometry-validation tolerance is relaxed.
 
 ## Image Stabilization
 
