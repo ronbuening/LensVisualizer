@@ -52,7 +52,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "GB 720,808",
   patentAuthors: ["Pierre Angénieux"],
-  patentAssignees: ["Pierre Angénieux"],
+  patentAssignees: [],
   patentYear: 1954,
   elementCount: 6,
   groupCount: 6,

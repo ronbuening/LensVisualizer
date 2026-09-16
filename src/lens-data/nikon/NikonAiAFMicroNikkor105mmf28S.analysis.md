@@ -2,7 +2,7 @@
 
 ## Patent Reference and Design Identification
 
-**Patent:** JPH0219814A<br>
+**Patent:** JP H02-19814 A<br>
 **Application Number:** JP63-170118<br>
 **Filed:** 1988-07-08<br>
 **Published:** 1990-01-23<br>
@@ -11,9 +11,9 @@
 **Title:** Lens usable for short-distance photographing<br>
 **Embodiment analyzed:** Example 5
 
-The prescription is taken from Example 5 of JPH0219814A. The selected Japanese publication is the numerical authority: its Table 5 gives a 105.000 mm design at F/2.86, a full field of 23.2°, and three focus states from infinity through β = −0.5 to life size at β = −1.0. The publication also shows the corresponding three-group focusing architecture and the corrected conditional-expression table.[1]
+The prescription is taken from Example 5 of JP H02-19814 A. The selected Japanese publication is the numerical authority: its Table 5 gives a 105.000 mm design at F/2.86, a full field of 23.2°, and three focus states from infinity through β = −0.5 to life size at β = −1.0. The publication also shows the corresponding three-group focusing architecture and the corrected conditional-expression table.[1]
 
-The production correlation is fixed to the Nikon AI AF Micro-Nikkor 105mm f/2.8S. Nikon's retrospective account identifies Keiji Moriyama as the designer, states that the production design was completed at the end of 1987 and released in 1990, and describes a modified-Gauss six-element/five-group front system followed by a three-element rear converter. Nikon also states that the three elements before the aperture, the three elements after it, and the forward two elements of the rear converter move independently during focusing, and that the lens reaches 1:1 reproduction.[2] Nikon does not identify JPH0219814A by patent number, so the patent-to-product link remains a correlation rather than a manufacturer-confirmed patent attribution.
+The production correlation is fixed to the Nikon AI AF Micro-Nikkor 105mm f/2.8S. Nikon's retrospective account identifies Keiji Moriyama as the designer, states that the production design was completed at the end of 1987 and released in 1990, and describes a modified-Gauss six-element/five-group front system followed by a three-element rear converter. Nikon also states that the three elements before the aperture, the three elements after it, and the forward two elements of the rear converter move independently during focusing, and that the lens reaches 1:1 reproduction.[2] Nikon does not identify JP H02-19814 A by patent number, so the patent-to-product link remains a correlation rather than a manufacturer-confirmed patent attribution.
 
 The correlation is supported by several independent correspondences:
 
@@ -162,7 +162,7 @@ No asphere convention or coefficient transformation applies because every optica
 
 ## Sources / References
 
-1. Nikon Corporation, **JPH0219814A**, “Lens usable for short-distance photographing,” published 1990-01-23. Numerical authority: Example 5 Table 5; corrected condition table; Figures 6 and 11; procedural correction sheet. Supplied patent PDF. Searchable family record: <https://patents.google.com/patent/JPH0219814A/en>.
+1. Nikon Corporation, **JP H02-19814 A**, “Lens usable for short-distance photographing,” published 1990-01-23. Numerical authority: Example 5 Table 5; corrected condition table; Figures 6 and 11; procedural correction sheet. Supplied patent PDF. Searchable family record: <https://patents.google.com/patent/JP H02-19814 A/en>.
 2. Nikon Imaging, **“NIKKOR — The Thousand and One Nights No.72: AI AF Micro-Nikkor 105mm f/2.8S.”** <https://imaging.nikon.com/imaging/information/story/0072/>.
 3. Keiji Moriyama / Nikon Corporation, **US4986643A, “Lens system capable of close-up photographing.”** English-family text used only to clarify scan-obscured prose and equation labels, not to replace the selected Japanese prescription: <https://patents.google.com/patent/US4986643A>.
 4. OHARA, optical-glass catalog and data resources: <https://www.oharacorp.com/optical-glass/>.

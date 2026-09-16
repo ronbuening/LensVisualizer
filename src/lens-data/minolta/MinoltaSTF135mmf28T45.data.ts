@@ -32,7 +32,7 @@ const LENS_DATA = {
   key: "minolta-stf-135f28-t45",
   maker: "Minolta",
   name: "MINOLTA AF 135mm f/2.8 [T4.5] STF",
-  subtitle: "JP1999-231209 A, Example 1 — Minolta AF 135mm STF production-design correlation",
+  subtitle: "JP 1999-231209 A, Example 1 — Minolta AF 135mm STF production-design correlation",
   specs: [
     "8 ELEMENTS / 6 GROUPS",
     "135mm f/2.8 [T4.5] STF",
@@ -48,7 +48,7 @@ const LENS_DATA = {
   apertureDesign: 2.83,
   lensMounts: ["sony-a"],
   imageFormat: "135-full-frame",
-  patentNumber: "JP1999-231209 A",
+  patentNumber: "JP 1999-231209 A",
   patentAuthors: ["Yoshinobu Kudo"],
   patentAssignees: ["Minolta Co., Ltd."],
   patentYear: 1999,

@@ -4,7 +4,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ╔══════════════════════════════════════════════════════════════════════════════╗
  * ║ LENS DATA — KONICA FL-HEXANON AR 300mm f/6.3                              ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
- * ║ Data source: JP1974-023892, Example 1 (Masamichi Kitagawa / Konishiroku).  ║
+ * ║ Data source: JP 1974-023892, Example 1 (Masamichi Kitagawa / Konishiroku).  ║
  * ║ Nine elements in five air-separated groups; all surfaces are spherical.    ║
  * ║                                                                            ║
  * ║ SCALING: The patent is normalized to f = 1.0. Every patent R and d is      ║
@@ -38,7 +38,7 @@ const LENS_DATA = {
   key: "konica-fl-hexanon-ar-300mm-f63",
   maker: "Konica",
   name: "KONICA FL-HEXANON AR 300mm f/6.3",
-  subtitle: "JP1974-023892 Example 1 — literal ×300 scale; Konica 300mm f/6.3 fluorite correlation",
+  subtitle: "JP 1974-023892 Example 1 — literal ×300 scale; Konica 300mm f/6.3 fluorite correlation",
   specs: [
     "9 ELEMENTS / 5 GROUPS",
     "300mm f/6.3 (MARKETED)",
@@ -53,7 +53,7 @@ const LENS_DATA = {
   apertureDesign: 6.3,
   lensMounts: ["konica-ar"],
   imageFormat: "135-full-frame",
-  patentNumber: "JP1974-023892",
+  patentNumber: "JP 1974-023892 B1",
   patentAuthors: ["Masamichi Kitagawa"],
   patentAssignees: ["Konishiroku Photo Industry Co., Ltd."],
   patentYear: 1974,

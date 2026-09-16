@@ -20,6 +20,34 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-09-16",
+    type: "feature",
+    summary:
+      "Added double-click zoom on the universal relationship map overview to magnify and center on a chosen spot",
+  },
+  {
+    date: "2026-09-16",
+    type: "fix",
+    summary:
+      "Fixed Espacenet links for US application publications and pre-2000 Japanese patent numbers, and added kind codes to 21 Japanese patents",
+  },
+  {
+    date: "2026-09-16",
+    type: "improvement",
+    summary:
+      "Added corporate history links for Cosina, Leitz Canada, Fujifilm, HOYA, Jenoptik Jena, and Agfa to the relationship map",
+  },
+  {
+    date: "2026-09-16",
+    type: "fix",
+    summary: "Corrected five anachronistic patent assignees and unified five split inventor spellings on lens pages",
+  },
+  {
+    date: "2026-09-16",
+    type: "fix",
+    summary: "Normalized 24 Japanese patent numbers so they group under Japan on the patents index",
+  },
+  {
+    date: "2026-09-16",
     type: "lens",
     summary: "Added Schacht Travenar 90mm and S-Travenar 135mm f/2.8 patent designs",
   },

@@ -1,6 +1,6 @@
 ## Patent Reference and Design Identification
 
-**Patent:** JP 1966-017177
+**Patent:** JP 1966-017177 B
 **Application Number:** 特願昭38-64650
 **Filed:** 1963-12-03
 **Published:** 1966-09-29
@@ -9,7 +9,7 @@
 **Title:** 大口径比写真レンズ (*Large-aperture photographic lens*)
 **Embodiment analyzed:** Embodiment 1
 
-This prescription transcribes the selected embodiment of JP 1966-017177. The patent publishes a normalized focal length
+This prescription transcribes the selected embodiment of JP 1966-017177 B. The patent publishes a normalized focal length
 of $f=1$, an aperture ratio of 1:1.4, a full field of $41°$, seven elements, and five functional groups. The data model
 applies a uniform scale of 58 to correlate the normalized design with the NIKKOR-S Auto 5.8cm f/1.4. The resulting
 Gaussian focal length is 58.005890865 mm; 58 mm remains the marketed focal length.
@@ -127,7 +127,7 @@ Nikon's history of the early F system states that its lens barrels used linear-h
 patent's rigid internal spacings, this supports an inferred unit-focus model rather than an internal- or floating-focus
 movement.
 
-JP 1966-017177 publishes only the infinity prescription. It gives no object distance, minimum-focus prescription,
+JP 1966-017177 B publishes only the infinity prescription. It gives no object distance, minimum-focus prescription,
 variable-spacing table, moving-group designation, or close-range magnification. The sequential model therefore leaves
 all internal gaps fixed and varies only the final BF gap. A finite-conjugate paraxial solve increases BF from
 37.005824 mm at infinity to 43.853987 mm at the 0.6 m production-catalog endpoint, an inferred extension of
@@ -208,7 +208,7 @@ published numbers are the exact production prescription.
 
 ## Sources
 
-- Japanese Patent Publication JP 1966-017177, *大口径比写真レンズ*, Embodiment 1, pp. 1–3.
+- Japanese Patent Publication JP 1966-017177 B, *大口径比写真レンズ*, Embodiment 1, pp. 1–3.
 - Nikon Corporation, “NIKKOR — The Thousand and One Nights No.40: Nikkor-S Auto 5.8cm F1.4,”
   https://imaging.nikon.com/imaging/information/story/0040/
 - Nikon Corporation, “Debut of Nikon F — Camera Chronicle,”

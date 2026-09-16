@@ -6,7 +6,7 @@
 **Application Number:** JP2014-99625\
 **Filed:** 2014-05-13\
 **Published:** 2015-12-03\
-**Inventors:** Masafumi Yamashita; Tetsushi Miwa\
+**Inventors:** Masashi Yamashita; Tetsushi Miwa\
 **Applicant:** Nikon Corporation\
 **Title:** 光学系、光学装置、光学系の製造方法 (*Optical system, optical apparatus, and method for manufacturing an optical system*)\
 **Embodiment analyzed:** Example 1 / 第1実施例

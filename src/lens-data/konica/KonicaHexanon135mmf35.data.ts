@@ -3,7 +3,7 @@ import type { LensDataInput } from "../../types/optics.js";
 /**
  * LENS DATA — KONICA HEXANON 135mm f/3.5
  *
- * Source: JP1955-009472, Example 1, Tomokazu Kazamaki / Fumio Kondo.
+ * Source: JP 1955-009472, Example 1, Tomokazu Kazamaki / Fumio Kondo.
  * The patent publishes an all-spherical 4-element / 4-group telephoto objective at F = 100 mm.
  * This production-correlated model is uniformly scaled ×1.35, giving EFL = 134.994957 mm.
  * All radii, thicknesses, inferred semi-diameters, stop coordinates, and rear image spacing are scaled;
@@ -35,7 +35,7 @@ const LENS_DATA = {
   key: "konica-hexanon-135mm-f35",
   maker: "Konica",
   name: "KONICA HEXANON 135mm f/3.5",
-  subtitle: "JP1955-009472 Example 1 — 1.35× scaled correlation to early Konica F/FS lens",
+  subtitle: "JP 1955-009472 Example 1 — 1.35× scaled correlation to early Konica F/FS lens",
   specs: [
     "4 ELEMENTS / 4 GROUPS",
     "f = 134.995mm DESIGN",
@@ -50,9 +50,9 @@ const LENS_DATA = {
   apertureDesign: 3.5,
   lensMounts: ["konica-f"],
   imageFormat: "135-full-frame",
-  patentNumber: "JP1955-009472",
+  patentNumber: "JP 1955-009472 B",
   patentAuthors: ["Tomokazu Kazamaki", "Fumio Kondo"],
-  patentAssignees: ["Tomokazu Kazamaki", "Fumio Kondo"],
+  patentAssignees: [],
   patentYear: 1955,
   elementCount: 4,
   groupCount: 4,
@@ -132,7 +132,7 @@ const LENS_DATA = {
 
   closeFocusM: 1.8288,
   focusDescription:
-    "NO_INTERNAL_RECONSTRUCTION — Konica F/FS literature gives 6 ft (1.8288 m) closest focus, but JP1955-009472 Example 1 publishes no focus-spacing state; the modeled prescription remains at infinity.",
+    "NO_INTERNAL_RECONSTRUCTION — Konica F/FS literature gives 6 ft (1.8288 m) closest focus, but JP 1955-009472 Example 1 publishes no focus-spacing state; the modeled prescription remains at infinity.",
 
   nominalFno: 3.5,
   fstopSeries: [3.5, 4, 5.6, 8, 11, 16],

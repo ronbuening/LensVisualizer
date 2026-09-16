@@ -27,7 +27,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   /* ── Identity ── */
   key: "zeiss-batis-18f28",
-  maker: "Carl Zeiss",
+  maker: "Carl Zeiss Oberkochen",
   name: "ZEISS BATIS 18mm f/2.8",
   subtitle: "JP 2016-188967 A Example 1 — strong Batis 2.8/18 correlation; attribution not manufacturer-confirmed",
   specs: [

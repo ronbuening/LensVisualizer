@@ -61,7 +61,7 @@ const LENS_DATA = {
   apertureDesign: 2.88,
   lensMounts: ["sony-a"],
   imageFormat: "135-full-frame",
-  patentNumber: "JP1989-039542 A",
+  patentNumber: "JP 1989-039542 A",
   patentAuthors: ["Hisashi Tokumaru", "Masakuni Tai"],
   patentAssignees: ["Minolta Camera Co., Ltd."],
   patentYear: 1989,

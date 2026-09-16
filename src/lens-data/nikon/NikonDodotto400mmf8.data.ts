@@ -44,7 +44,7 @@ const LENS_DATA = {
   apertureDesign: 8.13,
   lensMounts: ["nikon-f"],
   imageFormat: "645",
-  patentNumber: "JP H9-105860",
+  patentNumber: "JP H9-105860 A",
   patentAuthors: ["Kouichi Ohshita"],
   patentAssignees: ["Nikon Corporation"],
   patentYear: 1997,

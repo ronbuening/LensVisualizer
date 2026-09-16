@@ -52,7 +52,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "CH 479 879",
   patentAuthors: ["Ludwig Bertele", "Jürgen Bertele"],
-  patentAssignees: ["Ludwig Bertele", "Jürgen Bertele"],
+  patentAssignees: [],
   patentYear: 1969,
   elementCount: 4,
   groupCount: 4,

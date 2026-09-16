@@ -41,7 +41,7 @@ const LENS_DATA = {
   apertureDesign: 2,
   lensMounts: ["canon-fd"],
   imageFormat: "135-full-frame",
-  patentNumber: "JP S53-133028",
+  patentNumber: "JP S53-133028 A",
   patentAuthors: ["Sadahiko Tsuji"],
   patentAssignees: ["Canon Inc."],
   patentYear: 1978,

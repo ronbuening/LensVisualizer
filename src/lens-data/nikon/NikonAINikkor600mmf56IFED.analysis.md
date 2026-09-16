@@ -2,7 +2,7 @@
 
 ## Patent Reference and Design Identification
 
-**Patent:** JP1981-035116\
+**Patent:** JP 1981-035116 A\
 **Filed:** 1975-09-30\
 **Published:** 1981-04-07\
 **Inventors:** Soichi Nakamura; Kazuo Arashida\
@@ -10,7 +10,7 @@
 **Title:** 望遠レンズ (Telephoto Lens)\
 **Embodiment analyzed:** Example 1
 
-The modeled prescription is Example 1 of JP1981-035116. The patent gives a normalized focal length of 100, an f-number of F/5.6, seven elements in six air-separated groups, and three functional groups with stated focal lengths of +37.5, −15.0, and +40.0. The LensVisualizer model applies a uniform scale factor of 6, producing the production-scale 600 mm design while leaving refractive indices and Abbe numbers unchanged. The prescription is entirely spherical, so no aspherical coefficient transformation is required.
+The modeled prescription is Example 1 of JP 1981-035116 A. The patent gives a normalized focal length of 100, an f-number of F/5.6, seven elements in six air-separated groups, and three functional groups with stated focal lengths of +37.5, −15.0, and +40.0. The LensVisualizer model applies a uniform scale factor of 6, producing the production-scale 600 mm design while leaving refractive indices and Abbe numbers unchanged. The prescription is entirely spherical, so no aspherical coefficient transformation is required.
 
 The production correlation is the Nikon AI Nikkor 600mm f/5.6 IF-ED. It is supported by several converging features rather than by a manufacturer statement that names this patent: the 600 mm f/5.6 specification, seven-element/six-group construction, the positive–negative–positive internal-focusing architecture, the 135-format field, and the 5.5 m production minimum-focus distance. Nikon's historical account states that Soichi Nakamura and Kazuo Arashida developed the 400 mm and 600 mm optics together, with Arashida responsible for the 600 mm design. Its detailed construction discussion concerns the 400 mm sibling and documents the second-group IF concept in that shared development lineage; the one-group IF motion for Example 1 is established directly by the selected patent. Nikon's AI-system history establishes the F-mount context. An archival manufacturer brochure for the Nikkor 600mm f/5.6 IF-ED lists 600 mm f/5.6, 7 elements in 6 groups, a 4°10′ picture angle, 5.5 m minimum focus, and an f/22 minimum aperture.
 
@@ -139,7 +139,7 @@ The model contains no sensor cover glass, filter, inactive dummy surface, or mec
 
 ## Sources and References
 
-1. **JP1981-035116**, *望遠レンズ* (*Telephoto Lens*), Nippon Kogaku K.K., published 7 April 1981, Example 1. The numerical prescription is on patent page 3; Figure 1 and the aberration plots are on page 4; the correction sheet is on page 5.
+1. **JP 1981-035116 A**, *望遠レンズ* (*Telephoto Lens*), Nippon Kogaku K.K., published 7 April 1981, Example 1. The numerical prescription is on patent page 3; Figure 1 and the aberration plots are on page 4; the correction sheet is on page 5.
 2. Nikon, **NIKKOR — The Thousand and One Nights No.66**, historical account of the jointly developed 400 mm/600 mm IF optics and the Nakamura/Arashida design lineage: https://imaging.nikon.com/imaging/information/story/0066/
 3. Nikon, **Camera Chronicle — Debut of Nikon F3**, AI-system history and F-mount compatibility: https://imaging.nikon.com/imaging/information/chronicle/history-f3/index.html
 4. Nikon, **Nikkor 600mm f/5.6 IF-ED** manufacturer brochure, archival scan hosted by Pacific Rim Camera: https://www.pacificrimcamera.com/rl/00594/00594.pdf

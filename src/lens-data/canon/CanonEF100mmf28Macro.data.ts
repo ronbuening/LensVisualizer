@@ -54,7 +54,7 @@ const LENS_DATA = {
   apertureDesign: 2.89,
   lensMounts: ["canon-ef"],
   imageFormat: "135-full-frame",
-  patentNumber: "JP 1991-141313",
+  patentNumber: "JP 1991-141313 A",
   patentAuthors: ["Hideki Ogawa"],
   patentAssignees: ["Canon Inc."],
   patentYear: 1991,

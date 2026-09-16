@@ -3,7 +3,7 @@ import type { LensDataInput } from "../../types/optics.js";
 /**
  * LENS DATA — KONICA UC ZOOM HEXANON AR 45–100mm f/3.5
  *
- * Source: JP S51-34741 / JPS5134741A, Example 1, Tadashi Kojima.
+ * Source: JP S51-34741 / JP S51-34741 A, Example 1, Tadashi Kojima.
  * Patent prescription: 11 elements / 10 groups, all spherical.
  * Patent zoom states: 46.76, 67.38, 99.18 mm; no uniform production scale is applied.
  * Internal zoom: C1 and C4 are fixed; C2 translates imageward; C3 reverses direction.
@@ -32,7 +32,7 @@ const LENS_DATA = {
   key: "konica-uc-zoom-hexanon-ar-45-100mm-f35",
   maker: "Konica",
   name: "KONICA UC ZOOM HEXANON AR 45–100mm f/3.5",
-  subtitle: "JPS5134741A Example 1 — patent design 46.76–99.18mm",
+  subtitle: "JP S51-34741 A Example 1 — patent design 46.76–99.18mm",
   specs: [
     "11 ELEMENTS / 10 GROUPS",
     "45–100mm MARKETING / 46.76–99.18mm PATENT",
@@ -47,7 +47,7 @@ const LENS_DATA = {
   apertureDesign: 3.5,
   lensMounts: ["konica-ar"],
   imageFormat: "135-full-frame",
-  patentNumber: "JPS5134741A",
+  patentNumber: "JP S51-34741 A",
   patentAuthors: ["Tadashi Kojima"],
   patentAssignees: ["Konishiroku Photo Industry Co., Ltd."],
   patentYear: 1976,

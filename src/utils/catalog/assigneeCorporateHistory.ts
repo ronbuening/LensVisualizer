@@ -18,23 +18,27 @@ import type { AssigneeCorporateRelationships } from "../../types/catalog.js";
 type AuthoredCorporateRelationships = Partial<AssigneeCorporateRelationships>;
 
 const SOURCES = {
+  agfaHistory: "https://www.historisches-lexikon-bayerns.de/Lexikon/Agfa_AG",
   canonHistory: "https://global.canon/en/c-museum/history/story04.html",
+  cosinaHistory: "https://www.cosina.co.jp/company/",
   fujifilmHistory: "https://global.fujifilm.com/en/about/corporate/history",
-  fujifilmAnnual2005:
-    "https://ir.fujifilm.com/en/investors/ir-materials/integrated-report/main/016/teaserItems1/01/linkList/0/link/ff_ar_2005_001.pdf",
-  fujifilmSustainability2010:
-    "https://www.fujifilm.com/files-holdings/en/sustainability/report/2010/sustainability_activity_report_2010_ff_sr_2010_004.pdf",
   fujifilmOverview: "https://global.fujifilm.com/en/about/corporate/overview",
+  fujinonMerger: "https://av.watch.impress.co.jp/docs/news/357173.html",
+  fujinonRename: "https://www.itmedia.co.jp/news/article/0407/01/1040701077/",
+  hoyaHistory: "https://www.hoya.com/en/company/history/",
   hoyaPentaxMerger: "https://www.hoya.com/en/news/20111001/",
+  jenoptikHistory: "https://de.wikipedia.org/wiki/Jenoptik",
+  konicaMinoltaAnnual2013:
+    "https://www.konicaminolta.com/global-en/investors/ir_library/ar/ar2013/Konica_Minolta_AR2013_E.pdf",
   konicaMinoltaHistory: "https://www.konicaminolta.com/global-en/corporate/history-timeline04.html",
   konicaMinoltaOrigins: "https://www.konicaminolta.com/global-en/corporate/history-timeline01.html",
   konicaMinoltaRenames: "https://www.konicaminolta.com/global-en/corporate/history-timeline03.html",
   konicaMinoltaIntegration: "https://www.konicaminolta.com/about/releases/minolta/2003/0805_01_01.html",
-  konicaMinoltaAdvancedLayers: "https://www.konicaminolta.com/about/releases/2012/0221_01_01.html",
-  konicaMinoltaReorganization: "https://www.konicaminolta.com/about/releases/2012/1010_01_01.html",
   leica1988: "https://timeline.leica-camera.com/en/years/1988",
   leica1996: "https://timeline.leica-camera.com/en/years/1996",
   leicaHistory: "https://leica-camera.com/en-US/press/four-generations-leitz-company-management-1869-1986",
+  leitzCanadaHistory: "https://gmpphoto.blogspot.com/2019/05/a-very-important-part-of-leica-history.html",
+  leitzCanadaSale: "https://phsc.ca/camera/once-upon-a-time-in-canada/",
   mamiyaHistory: "https://www.mamiya-op.co.jp/en/company/history/",
   nikonHistory: "https://www.nikon.com/company/corporate/history/",
   nittohHistory: "https://www.nittohkogaku.co.jp/en/company/history.html",
@@ -46,7 +50,7 @@ const SOURCES = {
   panasonicXiamen: "https://panasonic.cn/about/panasonic-china/pavcx/",
   pentaxHistory: "https://www.ricoh-imaging.co.jp/english/pentax/pentaxhistory/",
   ricohHistory: "https://www.ricoh.com/about/history",
-  ricohPentaxAcquisition: "https://www.ricoh.com/-/Media/Ricoh/Sites/com/release/2011/pdf/1001.pdf",
+  ricohHistory2010s: "https://www.ricoh.com/about/history/2010_",
   ricohImagingRename: "https://www.ricoh-imaging.co.jp/japan/news/2013/20130702.html",
   samsungElectroMechanicsHistory: "https://www.samsungsem.com/global/newsroom/news/view.do?id=613",
   samsungMerger: "https://www.samsung.com/global/ir/reports-disclosures/public-disclosure-view.70398/",
@@ -58,6 +62,7 @@ const SOURCES = {
   viltroxRegistration: "https://m.shuidi.cn/company-67c4590220744b2c488f83aa38029142.html",
   vivitarHistory: "https://japb.net/business/company-profiles/vivitar/",
   vivitarNameChange: "https://uprp.gov.pl/sites/default/files/wup/1979/06/wup06_1979.pdf",
+  voigtlanderRename: "https://patents.google.com/patent/US2662446A/en",
   voigtlanderHistory: "https://www.cosina.co.jp/voigtlander/",
   zeissHistory: "https://www.zeiss.com/corporate/en/about-zeiss/past/history.html",
   zeissLocations: "https://www.zeiss.com/corporate/en/about-zeiss/past/history/locations.html",
@@ -72,6 +77,25 @@ const SOURCES = {
  * names or external organizations that explain the historical transition.
  */
 export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporateRelationships>> = {
+  "Agfa Camera-Werk AG": {
+    acquiredBy: [
+      {
+        organization: "Agfa AG",
+        effectiveDate: "1957-04-01",
+        sourceUrl: SOURCES.agfaHistory,
+        note: "The Munich Camerawerk merged into Agfa Aktiengesellschaft für Photofabrikation, Leverkusen; patents published under this name after the merger are delayed publications.",
+      },
+    ],
+    corporateFamily: [
+      {
+        family: "Agfa",
+        effectiveFrom: "1953-03-20",
+        effectiveTo: "1957-04-01",
+        sourceUrl: SOURCES.agfaHistory,
+        note: "Registered as Agfa Camera-Werk Aktiengesellschaft on this date after the I.G. Farben break-up; the Munich works had carried the Agfa name since 1921.",
+      },
+    ],
+  },
   "Asahi Kogaku Kogyo Co., Ltd.": {
     corporateFamily: [
       {
@@ -119,6 +143,35 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
   "Carl-Zeiss-Stiftung": {
     corporateFamily: [{ family: "ZEISS", effectiveFrom: "1889", sourceUrl: SOURCES.zeissHistory }],
   },
+  "Cosina Co., Ltd.": {
+    corporateFamily: [
+      {
+        family: "Voigtländer",
+        effectiveFrom: "1999",
+        sourceUrl: SOURCES.cosinaHistory,
+        note: "Brand lineage only. Cosina's company history records the start of Voigtländer-brand product sales in 1999 under license from the trademark holder; this does not make Cosina a legal successor of Voigtländer AG.",
+      },
+    ],
+  },
+  "Ernst Leitz Canada Limited": {
+    subsidiaryOf: [
+      {
+        organization: "Ernst Leitz GmbH",
+        effectiveFrom: "1952",
+        effectiveTo: "1990",
+        sourceUrl: SOURCES.leitzCanadaHistory,
+        note: "Established by Leitz Wetzlar at Midland, Ontario in 1952 and sold to Hughes Aircraft in 1990, after which it operated as Hughes Leitz Optical Technologies and later ELCAN Optical Technologies.",
+      },
+    ],
+    corporateFamily: [
+      {
+        family: "Leitz–Leica lineage",
+        effectiveFrom: "1952",
+        effectiveTo: "1990",
+        sourceUrl: SOURCES.leitzCanadaSale,
+      },
+    ],
+  },
   "Ernst Leitz GmbH": {
     acquiredBy: [
       {
@@ -142,8 +195,9 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
       {
         family: "Fujifilm–Fujinon",
         effectiveFrom: "1934-01",
+        effectiveTo: "2006-10-01",
         sourceUrl: SOURCES.fujifilmHistory,
-        note: "The original Fuji Photo Film company anchors this corporate lineage; historical patents retain their source-era assignee name.",
+        note: "The original Fuji Photo Film company anchors this corporate lineage until the 2006 holding-company reorganization; historical patents retain their source-era assignee name.",
       },
     ],
   },
@@ -160,9 +214,15 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
   "Fujifilm Corporation": {
     successorOf: [
       {
+        organization: "Fuji Photo Film Co., Ltd.",
+        effectiveDate: "2006-10-01",
+        sourceUrl: SOURCES.fujifilmHistory,
+        note: "The renamed legal entity is FUJIFILM Holdings Corporation; the operating business, including the imaging patents, passed to the newly formed FUJIFILM Corporation under the holding-company structure.",
+      },
+      {
         organization: "Fujinon Corporation",
         effectiveDate: "2010-07-01",
-        sourceUrl: SOURCES.fujifilmSustainability2010,
+        sourceUrl: SOURCES.fujinonMerger,
         note: "Fujinon was merged into FUJIFILM Corporation on this date.",
       },
     ],
@@ -173,7 +233,7 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
       {
         organization: "Fuji Photo Optical Co., Ltd.",
         effectiveDate: "2004-10-01",
-        sourceUrl: SOURCES.fujifilmAnnual2005,
+        sourceUrl: SOURCES.fujinonRename,
         note: "Fuji Photo Optical changed its corporate name to FUJINON CORPORATION.",
       },
     ],
@@ -181,7 +241,7 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
       {
         organization: "Fujifilm Corporation",
         effectiveDate: "2010-07-01",
-        sourceUrl: SOURCES.fujifilmSustainability2010,
+        sourceUrl: SOURCES.fujinonMerger,
         note: "Recorded as an absorption-type merger into FUJIFILM Corporation.",
       },
     ],
@@ -190,7 +250,35 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
         family: "Fujifilm–Fujinon",
         effectiveFrom: "2004-10-01",
         effectiveTo: "2010-07-01",
-        sourceUrl: SOURCES.fujifilmAnnual2005,
+        sourceUrl: SOURCES.fujinonRename,
+      },
+    ],
+  },
+  "Hoya Corporation": {
+    corporateFamily: [
+      {
+        family: "HOYA",
+        effectiveFrom: "1941-11",
+        sourceUrl: SOURCES.hoyaHistory,
+        note: "Founded as an optical glass maker in Hoya, Tokyo.",
+      },
+      {
+        family: "Pentax lineage",
+        effectiveFrom: "2008-03-31",
+        effectiveTo: "2011-10-01",
+        sourceUrl: SOURCES.hoyaHistory,
+        note: "Covers the PENTAX imaging business while HOYA owned it after the March 2008 merger; patents from this window name HOYA as assignee.",
+      },
+    ],
+  },
+  "Jenoptik Jena GmbH": {
+    corporateFamily: [
+      {
+        family: "ZEISS",
+        effectiveFrom: "1963",
+        effectiveTo: "1991",
+        sourceUrl: SOURCES.jenoptikHistory,
+        note: "East German branch of the divided ZEISS lineage. Carl Zeiss Jena registered the Jenoptik mark in the mid-1950s, and the Jena combine filed West German patents such as DE 1 157 000 under Jenoptik Jena GmbH with VEB Carl Zeiss Jena designers as inventors. The window starts at the earliest catalog patent under this name; the source does not document the GmbH's exact corporate form.",
       },
     ],
   },
@@ -248,14 +336,14 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
       {
         organization: "Konica Minolta Opto, Inc.",
         effectiveDate: "2012-04-01",
-        sourceUrl: SOURCES.konicaMinoltaAdvancedLayers,
+        sourceUrl: SOURCES.konicaMinoltaAnnual2013,
       },
     ],
     acquiredBy: [
       {
         organization: "Konica Minolta, Inc.",
         effectiveDate: "2013-04-01",
-        sourceUrl: SOURCES.konicaMinoltaReorganization,
+        sourceUrl: SOURCES.konicaMinoltaAnnual2013,
         note: "The wholly owned subsidiary was absorbed into the reorganized operating company.",
       },
     ],
@@ -264,7 +352,7 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
         organization: "Konica Minolta Holdings, Inc.",
         effectiveFrom: "2012-04-01",
         effectiveTo: "2013-04-01",
-        sourceUrl: SOURCES.konicaMinoltaAdvancedLayers,
+        sourceUrl: SOURCES.konicaMinoltaAnnual2013,
       },
     ],
     corporateFamily: [
@@ -272,7 +360,7 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
         family: "Konica Minolta",
         effectiveFrom: "2012-04-01",
         effectiveTo: "2013-04-01",
-        sourceUrl: SOURCES.konicaMinoltaAdvancedLayers,
+        sourceUrl: SOURCES.konicaMinoltaAnnual2013,
       },
     ],
   },
@@ -293,7 +381,7 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
       {
         organization: "Konica Minolta Advanced Layers, Inc.",
         effectiveDate: "2013-04-01",
-        sourceUrl: SOURCES.konicaMinoltaReorganization,
+        sourceUrl: SOURCES.konicaMinoltaAnnual2013,
         note: "The subsidiary was absorbed during the operating-company reorganization.",
       },
     ],
@@ -527,7 +615,7 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
       {
         organization: "Ricoh Co., Ltd.",
         effectiveDate: "2011-10-01",
-        sourceUrl: SOURCES.ricohPentaxAcquisition,
+        sourceUrl: SOURCES.hoyaPentaxMerger,
         note: "Ricoh acquired the PENTAX imaging business from HOYA, rather than the already-merged legal entity wholesale.",
       },
     ],
@@ -545,12 +633,6 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
         sourceUrl: SOURCES.hoyaPentaxMerger,
         note: "Covers the PENTAX imaging business while it was held by HOYA.",
       },
-      {
-        family: "Ricoh",
-        effectiveFrom: "2011-10-01",
-        sourceUrl: SOURCES.ricohPentaxAcquisition,
-        note: "Covers the transferred PENTAX imaging business, not the former legal entity as a whole.",
-      },
     ],
   },
   "Pentax Ricoh Imaging Company, Ltd.": {
@@ -558,7 +640,7 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
       {
         organization: "Pentax Corporation",
         effectiveDate: "2011-10-01",
-        sourceUrl: SOURCES.ricohPentaxAcquisition,
+        sourceUrl: SOURCES.ricohHistory2010s,
         note: "The new Ricoh subsidiary inherited the acquired PENTAX imaging business.",
       },
     ],
@@ -567,7 +649,7 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
         organization: "Ricoh Co., Ltd.",
         effectiveFrom: "2011-10-01",
         effectiveTo: "2013-08-01",
-        sourceUrl: SOURCES.ricohPentaxAcquisition,
+        sourceUrl: SOURCES.ricohHistory2010s,
       },
     ],
     corporateFamily: [
@@ -575,7 +657,7 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
         family: "Ricoh",
         effectiveFrom: "2011-10-01",
         effectiveTo: "2013-08-01",
-        sourceUrl: SOURCES.ricohPentaxAcquisition,
+        sourceUrl: SOURCES.ricohHistory2010s,
       },
     ],
   },
@@ -587,6 +669,16 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
         effectiveTo: "1979-02-28",
         sourceUrl: SOURCES.vivitarHistory,
         note: "The exact end date is corroborated by the government gazette cited on Vivitar Corporation's successor record.",
+      },
+    ],
+  },
+  "Ricoh Co., Ltd.": {
+    corporateFamily: [
+      {
+        family: "Ricoh",
+        effectiveFrom: "1936-02-06",
+        sourceUrl: SOURCES.ricohHistory,
+        note: "Founded as Riken Kankoshi Co., Ltd.; renamed Riken Optical Co., Ltd. in 1938 and Ricoh Company, Ltd. in April 1963.",
       },
     ],
   },
@@ -717,10 +809,10 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
   "VEB Carl Zeiss Jena": {
     acquiredBy: [
       {
-        organization: "Carl Zeiss (Oberkochen)",
+        organization: "Carl-Zeiss-Stiftung",
         effectiveDate: "1991",
         sourceUrl: SOURCES.zeissSubsidiaries,
-        note: "Carl Zeiss acquired selected parts of the former VEB after German reunification, not the entire historical combine unchanged.",
+        note: "Carl Zeiss in Oberkochen, recorded under its owner Carl-Zeiss-Stiftung in this catalog, acquired selected parts of the former VEB after German reunification, not the entire historical combine unchanged.",
       },
     ],
     corporateFamily: [
@@ -755,12 +847,21 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
       {
         family: "Voigtländer",
         effectiveFrom: "1756",
+        effectiveTo: "1953",
         sourceUrl: SOURCES.voigtlanderHistory,
-        note: "The date marks the documented brand lineage, not the first use of this exact corporate style.",
+        note: "The start date marks the documented brand lineage, not the first use of this exact corporate style; the window closes with the last US grants printed under the & Sohn style in 1953.",
       },
     ],
   },
   "Voigtländer AG": {
+    successorOf: [
+      {
+        organization: "Voigtländer & Sohn AG",
+        effectiveDate: "1953",
+        sourceUrl: SOURCES.voigtlanderRename,
+        note: "US 2,646,721, granted 28 July 1953, still names Voigtländer & Sohn Aktiengesellschaft, while US 2,662,446, granted 15 December 1953, names Voigtländer A.G.; no official source documents the exact rename date.",
+      },
+    ],
     subsidiaryOf: [
       {
         organization: "Carl-Zeiss-Stiftung",
@@ -773,19 +874,19 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
     corporateFamily: [
       {
         family: "Voigtländer",
-        effectiveFrom: "1756",
+        effectiveFrom: "1953",
         sourceUrl: SOURCES.voigtlanderHistory,
-        note: "The date marks the documented brand lineage, not the first use of this exact corporate style.",
+        note: "The window starts with the first US grant printed under the shortened style; the brand lineage itself dates from 1756.",
       },
     ],
   },
   "Zeiss Ikon AG": {
     subsidiaryOf: [
       {
-        organization: "Carl Zeiss Jena",
+        organization: "Carl-Zeiss-Stiftung",
         effectiveFrom: "1926",
         sourceUrl: SOURCES.zeissIkon,
-        note: "The museum record describes Zeiss Ikon as formed by Carl Zeiss Jena from four camera makers.",
+        note: "The museum record describes Zeiss Ikon as formed by Carl Zeiss Jena from four camera makers; the Foundation-owned Carl Zeiss firm is recorded under its owner, Carl-Zeiss-Stiftung, throughout this catalog.",
       },
     ],
     corporateFamily: [{ family: "ZEISS", effectiveFrom: "1926", sourceUrl: SOURCES.zeissIkon }],

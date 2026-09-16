@@ -122,7 +122,7 @@ function normalizePatentToken(value: string): string {
 }
 
 function stripPatentKind(value: string): string {
-  return value.replace(/(?:A1|A|B2|B1|B|C\d?|U)$/i, "");
+  return value.replace(/(?:A1|A|B2|B1|B|C\d?|U|Y\d?)$/i, "");
 }
 
 /** Normalized search tokens for matching a patent number against filenames. */
@@ -136,18 +136,26 @@ export function patentSearchTokens(patentNumber: string | null): string[] {
   const tokens = [normalized, stripped, noCountry];
 
   // Showa/Heisei publication labels use era years, while local platform exports use Gregorian years.
-  const eraPublication = patentReference.match(/\bJP\s*([SH])\s*(\d{1,2})[-/](\d{1,6})(?:\s*(A1|A|B2|B1|B))?$/i);
+  const eraPublication = patentReference.match(
+    /\bJP\s*([SH])\s*(\d{1,2})[-/](\d{1,6})(?:\s*(A1|A|B2|B1|B|Y1|Y2|Y))?$/i,
+  );
   if (eraPublication) {
     const [, era, eraYear, serial, kind = ""] = eraPublication;
     const year = Number(eraYear) + (era.toUpperCase() === "S" ? 1925 : 1988);
     tokens.push(...patentSearchTokens(`JP ${year}-${serial} ${kind}`));
   }
 
-  const japanesePublication = normalized.match(/^(?:JP)(\d{4})(\d{1,6})(A1|A|B2|B1|B)?$/);
+  const japanesePublication = normalized.match(/^(?:JP)(\d{4})(\d{1,6})(A1|A|B2|B1|B|Y1|Y2|Y)?$/);
   if (japanesePublication) {
     const [, year, serial, kind] = japanesePublication;
     const publicationDigits = `${year}${serial.padStart(6, "0")}`;
-    const wrapperKinds = kind?.startsWith("A") ? ["A"] : kind?.startsWith("B") ? ["B"] : ["A", "B"];
+    const wrapperKinds = kind?.startsWith("A")
+      ? ["A"]
+      : kind?.startsWith("B")
+        ? ["B"]
+        : kind?.startsWith("Y")
+          ? ["Y"]
+          : ["A", "B"];
     for (const wrapperKind of wrapperKinds) tokens.push(`JP${wrapperKind}${publicationDigits}000000`);
   }
 

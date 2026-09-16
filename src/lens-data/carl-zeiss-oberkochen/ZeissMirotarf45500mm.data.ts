@@ -51,7 +51,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   key: "carl-zeiss-mirotar-500f45",
-  maker: "Carl Zeiss",
+  maker: "Carl Zeiss Oberkochen",
   name: "CARL ZEISS MIROTAR 500mm f/4.5",
   subtitle: "GB 975,446 Example 1 — correlated to ZEISS Mirotar f/4.5 500 mm",
   specs: [

@@ -2,7 +2,7 @@
 
 ## Patent Reference and Design Identification
 
-**Patent:** JP1978-066222 (特開昭53-66222)
+**Patent:** JP 1978-066222 A (特開昭53-66222)
 **Filed:** 26 November 1976
 **Published:** 13 June 1978
 **Inventor:** Katsunori Ebara
@@ -10,7 +10,7 @@
 **Title:** Photographic Lens (写真レンズ)
 **Embodiment analyzed:** Example 1
 
-JP1978-066222 describes a compact retrofocus photographic objective composed of six air-spaced elements. Example 1 is used here as the fixed prescription correlated with the production Mamiya-Sekor CS 35mm f/2.8. The manufacturer source does not identify the patent, so the correlation rests on convergent design and product evidence rather than an explicit manufacturer statement:
+JP 1978-066222 A describes a compact retrofocus photographic objective composed of six air-spaced elements. Example 1 is used here as the fixed prescription correlated with the production Mamiya-Sekor CS 35mm f/2.8. The manufacturer source does not identify the patent, so the correlation rests on convergent design and product evidence rather than an explicit manufacturer statement:
 
 1. The patent example and the manufacturer manual both specify six elements in six groups.
 2. The patent gives F/2.8, matching the marketed maximum aperture.
@@ -146,6 +146,6 @@ No sensor cover glass, filter, inactive dummy plane, flare cutter, or mechanical
 
 ## Sources
 
-1. Katsunori Ebara, “Photographic Lens” (写真レンズ), JP1978-066222, Mamiya Koki Co., Ltd., filed 26 November 1976, published 13 June 1978, especially pp. 123–125 and Figures 1–2.
+1. Katsunori Ebara, “Photographic Lens” (写真レンズ), JP 1978-066222 A, Mamiya Koki Co., Ltd., filed 26 November 1976, published 13 June 1978, especially pp. 123–125 and Figures 1–2.
 2. *Mamiya NC1000/NC1000S Instruction Manual*, “Mamiya-Sekor CS Lenses,” printed p. 26. The table gives 35 mm, f/2.8, 6 groups/6 elements, 63°, f/16, and 0.4 m minimum focus for the production lens.
 3. OHARA, HOYA, SCHOTT, HIKARI, CDGM, and SUMITA official optical-glass catalogs and cross-reference tables, consulted only to test class-level matches to the patent's $n_d$/$\nu_d$ coordinates. The patent coordinates remain authoritative.

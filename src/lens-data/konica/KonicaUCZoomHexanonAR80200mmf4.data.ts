@@ -4,7 +4,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ╔══════════════════════════════════════════════════════════════════════════════╗
  * ║ LENS DATA — KONICA UC ZOOM HEXANON AR 80–200mm f/4                       ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
- * ║ Source: JPS51-37247A (JP1976-037247), Example 1, Hideo Shizume /          ║
+ * ║ Source: JP S51-37247 A (JP1976-037247), Example 1, Hideo Shizume /          ║
  * ║ Konishiroku Photo Industry Co., Ltd.                                      ║
  * ║ 14 elements / 10 groups, all spherical. No scale factor is applied.       ║
  * ║                                                                            ║
@@ -58,7 +58,7 @@ const LENS_DATA = {
   key: "konica-uc-zoom-hexanon-ar-80-200-f4",
   maker: "Konica",
   name: "KONICA UC ZOOM HEXANON AR 80–200mm f/4",
-  subtitle: "JPS51-37247A Example 1 — raw prescription with disclosed stop/focus reconstruction",
+  subtitle: "JP S51-37247 A Example 1 — raw prescription with disclosed stop/focus reconstruction",
   specs: ["14 ELEMENTS / 10 GROUPS", "80–200mm f/4", "0.7 m MFD", "ALL SPHERICAL"],
 
   focalLengthMarketing: [80, 200],
@@ -66,7 +66,7 @@ const LENS_DATA = {
   apertureMarketing: 4,
   lensMounts: ["konica-ar"],
   imageFormat: "135-full-frame",
-  patentNumber: "JPS51-37247A",
+  patentNumber: "JP S51-37247 A",
   patentAuthors: ["Hideo Shizume"],
   patentAssignees: ["Konishiroku Photo Industry Co., Ltd."],
   patentYear: 1976,

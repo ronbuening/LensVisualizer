@@ -121,8 +121,9 @@ incident edges at normal opacity while multiplying other node/edge opacity by 0.
 all elements remain operable, and clearing selection temporarily suspends emphasis without forgetting the toggle.
 `UniversalMapOverview` reuses the same layout for a cached simplified scene and shows the visible viewport measured
 through the main SVG's inverse screen transform (`useSvgViewport` / `svgCoordinates`). Click/tap centers without
-changing selection or zoom; arrow keys pan and Home fits the map. The overview sits inside wide viewports and below
-viewports narrower than 600 CSS pixels, with a local visibility toggle. It does not run another layout or filter the graph.
+changing selection or zoom; double-click centers and doubles the zoom; arrow keys pan and Home fits the map. The
+overview sits inside wide viewports and below viewports narrower than 600 CSS pixels, with a local visibility
+toggle. It does not run another layout or filter the graph.
 
 ## Markdown Renderer
 

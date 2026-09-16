@@ -1,7 +1,7 @@
 import type { LensDataInput } from "../../types/optics.js";
 
 /**
- * Data source: JPS52-141223A, Example 1 (Yusuke Nanjo / Mamiya Koki Co., Ltd.).
+ * Data source: JP S52-141223 A, Example 1 (Yusuke Nanjo / Mamiya Koki Co., Ltd.).
  * Five all-spherical elements in three air-separated groups; the stop lies inside patent gap d5.
  *
  * Scaling: The patent is normalized to f = 1.0. Every radius, thickness, stop position,
@@ -33,7 +33,7 @@ const LENS_DATA = {
   key: "mamiya-sekor-sfc-150f4-soft-focus",
   maker: "Mamiya",
   name: "MAMIYA-SEKOR SFC 150mm f/4 SOFT FOCUS",
-  subtitle: "JPS52-141223A Example 1 — production-correlated RB67 prescription",
+  subtitle: "JP S52-141223 A Example 1 — production-correlated RB67 prescription",
   specs: [
     "5 ELEMENTS / 3 GROUPS",
     "f = 150.026 mm (MODELED)",
@@ -49,7 +49,7 @@ const LENS_DATA = {
   apertureDesign: 4,
   lensMounts: ["mamiya-rb67"],
   imageFormat: "6x7",
-  patentNumber: "JPS52-141223A",
+  patentNumber: "JP S52-141223 A",
   patentAuthors: ["Yusuke Nanjo"],
   patentAssignees: ["Mamiya Koki Co., Ltd."],
   patentYear: 1977,

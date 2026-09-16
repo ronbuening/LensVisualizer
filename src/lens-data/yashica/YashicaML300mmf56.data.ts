@@ -4,7 +4,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ╔══════════════════════════════════════════════════════════════════════════════╗
  * ║              LENS DATA — YASHICA ML 300mm f/5.6                           ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
- * ║  Data source: JP1978-129629, Example 2 (Tokina Optical).                  ║
+ * ║  Data source: JP 1978-129629, Example 2 (Tokina Optical).                  ║
  * ║  Strong inferred production correlation to the Yashica ML 300mm f/5.6     ║
  * ║  compact: 6 elements / 3 groups, f/5.6, and 8.5° full field all agree.     ║
  * ║                                                                            ║
@@ -40,7 +40,7 @@ const LENS_DATA = {
   key: "yashica-ml-300mm-f56",
   maker: "Yashica",
   name: "YASHICA ML 300mm f/5.6 C",
-  subtitle: "JP1978-129629 Example 2 - strong inferred production correlation",
+  subtitle: "JP 1978-129629 Example 2 - strong inferred production correlation",
   specs: ["6 ELEMENTS / 3 GROUPS", "300mm f/5.6", "2ω = 8.5°", "ALL SPHERICAL"],
 
   focalLengthMarketing: 300,
@@ -49,9 +49,9 @@ const LENS_DATA = {
   apertureDesign: 5.6,
   lensMounts: ["contax-yashica"],
   imageFormat: "135-full-frame",
-  patentNumber: "JP1978-129629",
+  patentNumber: "JP 1978-129629 A",
   patentAuthors: ["Toshio Funejima", "Hamao Inagaki"],
-  patentAssignees: ["Tokina Optical Co., Ltd."],
+  patentAssignees: ["Tomioka Optical Co., Ltd.", "Tokina Optical Co., Ltd."],
   patentYear: 1978,
   elementCount: 6,
   groupCount: 3,
@@ -167,7 +167,7 @@ const LENS_DATA = {
 
   closeFocusM: 4.5,
   focusDescription:
-    "NO_INTERNAL_RECONSTRUCTION: the production lens is documented to focus to 4.5 m, but JP1978-129629 Example 2 publishes no finite-focus spacing states; no internal focus movement is modeled.",
+    "NO_INTERNAL_RECONSTRUCTION: the production lens is documented to focus to 4.5 m, but JP 1978-129629 Example 2 publishes no finite-focus spacing states; no internal focus movement is modeled.",
 
   nominalFno: 5.6,
   fstopSeries: [5.6, 8, 11, 16, 22],

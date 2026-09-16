@@ -30,7 +30,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   key: "fujifilm-xf56mm-f12-r-wr",
-  maker: "FUJIFILM",
+  maker: "Fujifilm",
   name: "FUJIFILM FUJINON XF 56mm f/1.2 R WR",
   subtitle: "JP 2023-029039 A Example 2",
   specs: [

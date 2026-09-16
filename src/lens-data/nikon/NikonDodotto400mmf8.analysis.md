@@ -1,6 +1,6 @@
 ## Patent Reference and Design Identification
 
-**Patent:** JP H9-105860 (特開平9-105860)
+**Patent:** JP H9-105860 A (特開平9-105860)
 **Application Number:** 特願平7-262941
 **Filed:** October 11, 1995 (平成7年10月11日)
 **Published:** April 22, 1997 (平成9年4月22日)
@@ -9,7 +9,7 @@
 **Title:** 望遠レンズ (Telephoto Lens)
 **Embodiment analyzed:** Example 1 (第1実施例; Table 1)
 
-JP H9-105860 describes a compact two-group telephoto lens with a positive front group and a negative rear group. Both groups are cemented doublets, so the optical prescription contains four elements in two air-separated groups, with the aperture stop in the inter-group air space. Example 1 is the selected embodiment. The patent table gives f = 390.004 mm, Bf = 174.594 mm, FNO = 8.13, 2A = 10.1°, and TL = 0.762.
+JP H9-105860 A describes a compact two-group telephoto lens with a positive front group and a negative rear group. Both groups are cemented doublets, so the optical prescription contains four elements in two air-separated groups, with the aperture stop in the inter-group air space. Example 1 is the selected embodiment. The patent table gives f = 390.004 mm, Bf = 174.594 mm, FNO = 8.13, 2A = 10.1°, and TL = 0.762.
 
 Example 1 is the best match to the production Nikon Dodotto 400 (Tele 400mm f/8) for the following reasons:
 
@@ -21,7 +21,7 @@ Example 1 is the best match to the production Nikon Dodotto 400 (Tele 400mm f/8)
 6. **Image circle.** The patent field angle of 2A = 10.1° at f ≈ 390 mm corresponds to an image diameter of about 68.9 mm. The aberration plots are also drawn at Y = 35.00 mm. Nikon's retrospective says the design preserved peripheral illumination sufficient for 645 medium-format use.
 7. **Telephoto ratio.** The computed total track from the first surface to the paraxial image plane is 297.095 mm. Divided by the patent focal length, this gives TL = 0.762, matching the patent table.
 
-A later related patent, JP H10-111451, is sometimes associated with the Dodotto 400 in secondary references. It was published after the production lens had already appeared. JP H9-105860 has both the necessary filing chronology and the closer numerical correspondence, so Example 1 of JP H9-105860 is used as the working prescription.
+A later related patent, JP H10-111451, is sometimes associated with the Dodotto 400 in secondary references. It was published after the production lens had already appeared. JP H9-105860 A has both the necessary filing chronology and the closer numerical correspondence, so Example 1 of JP H9-105860 A is used as the working prescription.
 
 ## Optical Architecture
 
@@ -156,7 +156,7 @@ The resulting lens is a deliberately sparse telephoto. It does not attempt the c
 
 ## Sources
 
-- JP H9-105860 (特開平9-105860), Kouichi Ohshita, "望遠レンズ" (Telephoto Lens), filed October 11, 1995, published April 22, 1997.
+- JP H9-105860 A (特開平9-105860), Kouichi Ohshita, "望遠レンズ" (Telephoto Lens), filed October 11, 1995, published April 22, 1997.
 - Nikon Imaging. Kouichi Ohshita, "NIKKOR: The Thousand and One Nights — Tale 54: Nikon Fun Fun LensSet, Part 2 (Gyogyotto 20, Dodotto 400)." https://imaging.nikon.com/imaging/information/story/0054/
 - OHARA Corporation, S-BSM10 optical-glass datasheet / catalog page. https://oharacorp.com/glass/s-bsm10/
 - OHARA Corporation, S-TIM2 optical-glass datasheet / catalog page. https://oharacorp.com/glass/s-tim2/

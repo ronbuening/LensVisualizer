@@ -52,6 +52,20 @@ describe("patent catalog", () => {
     );
   });
 
+  it("normalizes catalog formats that diverge from DOCDB publication numbers", () => {
+    const search = (publicationNumber: string) =>
+      `https://worldwide.espacenet.com/patent/search?q=pn%3D${publicationNumber}`;
+    expect(espacenetPatentUrl("US 2018/0164556 A1")).toBe(search("US2018164556A1"));
+    expect(espacenetPatentUrl("US 2001/0030812 A1")).toBe(search("US2001030812A1"));
+    expect(espacenetPatentUrl("JP S62-078520 A")).toBe(search("JPS6278520A"));
+    expect(espacenetPatentUrl("JP H9-105860 A")).toBe(search("JPH09105860A"));
+    expect(espacenetPatentUrl("JP 1991-141313 A")).toBe(search("JPH03141313A"));
+    expect(espacenetPatentUrl("JP 1974-023892 A")).toBe(search("JPS4923892A"));
+    expect(espacenetPatentUrl("JP 1989-039542 A")).toBe(search("JPS6439542A"));
+    expect(espacenetPatentUrl("JP 1989-100000 A")).toBe(search("JPH01100000A"));
+    expect(espacenetPatentUrl("JP 2016-090725 A")).toBe(search("JP2016090725A"));
+  });
+
   it("distinguishes publication numbers from local source fallback labels", () => {
     expect(isPatentPublicationNumber("US 2,819,651")).toBe(true);
     expect(isPatentPublicationNumber("WO 2021/246545 A1")).toBe(true);

@@ -1,6 +1,6 @@
 ## Patent Reference and Design Identification
 
-**Patent:** JP S42-023896 (特公 昭42-23896)\
+**Patent:** JP S42-023896 B (特公 昭42-23896)\
 **Application Number:** 昭30-22649; German priority application Sch 16212\
 **Filed:** August 25, 1955 (Japan); priority August 31, 1954 (Germany)\
 **Published:** November 17, 1967\
@@ -227,7 +227,7 @@ These semi-diameters are a physically constrained reconstruction, not a claim ab
 
 ## Sources
 
-1. JP S42-023896 (特公 昭42-23896), Günter Klemt / Jos. Schneider & Co., published November 17, 1967. Attached seven-page patent scan; examples on pages 1-2, claims on page 3, section drawing on page 4, and aberration plots on pages 5-7.
+1. JP S42-023896 B (特公 昭42-23896), Günter Klemt / Jos. Schneider & Co., published November 17, 1967. Attached seven-page patent scan; examples on pages 1-2, claims on page 3, section drawing on page 4, and aberration plots on pages 5-7.
 2. Günter Klemt, US 2,781,695, *Optical System with Large Effective Image Angle*, granted February 19, 1957. https://patents.google.com/patent/US2781695A/en
 3. Jos. Schneider & Co., *Super-Angulon* technical brochure, 1976; f/8 construction and coverage table on pages 1-2, 75 mm f/8 technical-data row on page 4. https://www.pacificrimcamera.com/rl/02156/02156.pdf
 4. Linhof, *Super Technika IV/V* literature, listing the Technika Super-Angulon 75 mm f/8. https://linhof.com/wp-content/uploads/2021/05/1964_Linhof_Super_Technika_IV-V_ga.pdf

@@ -6,7 +6,7 @@
 **Filed:** February 6, 1959  
 **Priority:** March 15, 1958 (Germany)  
 **Granted:** June 12, 1962  
-**Inventor:** Wolfram Albrecht  
+**Inventor:** Wolfram W. Albrecht  
 **Assignee:** Jos. Schneider & Co., Optische Werke  
 **Title:** *High-Speed Photographic or Cinematographic Objective with Wide Image Angle*  
 **Embodiment analyzed:** Example 1, the representative numerical prescription on patent page 2 and repeated in claim 2 on page 3

@@ -1,6 +1,6 @@
 # Audit Log - CANON NEW FD 100mm f/2
 
-Patent: JP S53-133028, sole worked example
+Patent: JP S53-133028 A, sole worked example
 
 ## 2026-07-04 - Semi-diameter patent-diagram review
 

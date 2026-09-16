@@ -127,6 +127,8 @@ describe("UniversalMapOverview", () => {
     fireEvent.click(svg, { clientX: 70, clientY: 80 });
     expect(center).toHaveBeenCalledWith(300, 300);
     expect(document.activeElement).toBe(svg);
+    fireEvent.doubleClick(svg, { clientX: 70, clientY: 80 });
+    expect(center).toHaveBeenLastCalledWith(300, 300, view.zoom * 2);
     fireEvent.keyDown(svg, { key: "ArrowRight" });
     expect(pan).toHaveBeenLastCalledWith(40, 0);
     fireEvent.keyDown(svg, { key: "ArrowUp" });

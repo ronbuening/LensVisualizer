@@ -4,7 +4,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ╔══════════════════════════════════════════════════════════════════════════════╗
  * ║  LENS DATA — NIKON AF-I NIKKOR 300mm f/2.8D IF-ED                        ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
- * ║  Data source: JPH04294310A, Example 1 (Nikon / Susumu Sato).              ║
+ * ║  Data source: JP H04-294310 A, Example 1 (Nikon / Susumu Sato).              ║
  * ║  Production correlation is strong but inferential; the patent does not     ║
  * ║  name the commercial lens.                                                  ║
  * ║  11 elements / 9 air-spaced clusters / 3 patent functional groups.         ║
@@ -42,7 +42,7 @@ const LENS_DATA = {
   key: "nikon-af-i-nikkor-300mm-f2-8d-if-ed",
   maker: "Nikon",
   name: "NIKON AF-I NIKKOR 300mm f/2.8D IF-ED",
-  subtitle: "JPH04294310A Example 1 — production correlation inferred from timing and architecture",
+  subtitle: "JP H04-294310 A Example 1 — production correlation inferred from timing and architecture",
   specs: [
     "300mm f/2.8",
     "PATENT F=293.9647mm / FN=2.9",
@@ -56,7 +56,7 @@ const LENS_DATA = {
   apertureDesign: 2.9,
   lensMounts: ["nikon-f"],
   imageFormat: "135-full-frame",
-  patentNumber: "JPH04294310A",
+  patentNumber: "JP H04-294310 A",
   patentAuthors: ["Susumu Sato"],
   patentAssignees: ["Nikon Corporation"],
   patentYear: 1992,

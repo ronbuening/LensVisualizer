@@ -1,8 +1,8 @@
-# CANON EF 100-300mm f/5.6 — JPS61-77818A Example 1
+# CANON EF 100-300mm f/5.6 — JP S61-77818 A Example 1
 
 ## Patent Reference and Design Identification
 
-**Patent:** JPS61-77818A
+**Patent:** JP S61-77818 A
 **Application Number:** JP59200177A
 **Filed:** 25 September 1984
 **Published:** 21 April 1986
@@ -12,7 +12,7 @@
 
 **Embodiment analyzed:** Numerical Example 1
 
-The selected correlation is the Canon EF 100-300mm f/5.6 and the sole numerical example in JPS61-77818A. The patent itself does not name the production lens, so the relationship is not presented as manufacturer-confirmed. It is instead supported by convergent source evidence: the numerical example contains 15 elements in 9 air-separated physical groups, the principal zoom range is 100–290 mm at f/5.6, Canon is the applicant, and the publication precedes the 1987 introduction of the EF product. Canon's product record independently gives the non-L EF100-300mm f/5.6 as 15 elements in 9 groups with a marketed 100–300 mm range and constant f/5.6 maximum aperture. [1–4]
+The selected correlation is the Canon EF 100-300mm f/5.6 and the sole numerical example in JP S61-77818 A. The patent itself does not name the production lens, so the relationship is not presented as manufacturer-confirmed. It is instead supported by convergent source evidence: the numerical example contains 15 elements in 9 air-separated physical groups, the principal zoom range is 100–290 mm at f/5.6, Canon is the applicant, and the publication precedes the 1987 introduction of the EF product. Canon's product record independently gives the non-L EF100-300mm f/5.6 as 15 elements in 9 groups with a marketed 100–300 mm range and constant f/5.6 maximum aperture. [1–4]
 
 The patent is internally inconsistent at the long end. Its prose and four-column spacing table use 290 mm, and the page-4 aberration figure is labeled `f = 290`, while the page-3 numerical-example heading prints `f = 69-100~300`. The model therefore treats 290 mm as the actual tabulated design state and 300 mm as a rounded heading and production nominal value; no scale is applied. The numerical example also publishes a separate second zoom from 100 mm to 69 mm; that state is retained because it belongs to the selected embodiment even though it lies outside the marketed production range. [1]
 
@@ -181,7 +181,7 @@ No cover plate, sensor glass, filter, inactive dummy surface, or mechanical plan
 
 ## Sources and References
 
-1. **JPS61-77818A, “Zoom Lens,” Canon Inc., Numerical Example 1.** Supplied five-page Japanese patent scan. The prescription and spacing table are on page 3 of the supplied scan; the optical section and aberration diagrams are on page 4. Metadata and searchable Japanese text were cross-checked at [Google Patents](https://patents.google.com/patent/JPS6177818A/en).
+1. **JP S61-77818 A, “Zoom Lens,” Canon Inc., Numerical Example 1.** Supplied five-page Japanese patent scan. The prescription and spacing table are on page 3 of the supplied scan; the optical section and aberration diagrams are on page 4. Metadata and searchable Japanese text were cross-checked at [Google Patents](https://patents.google.com/patent/JPS6177818A/en).
 2. **Canon Camera Museum — EF100-300mm f/5.6.** Official English product record: <https://global.canon/en/c-museum/product/ef262.html>.
 3. **Canon Camera Museum — EF100-300mm F5.6.** Official Japanese product record: <https://global.canon/ja/c-museum/product/ef262.html>.
 4. **Canon Camera Museum — View by period, 1987–1991.** EF/EOS system history and 35 mm SLR context: <https://global.canon/en/c-museum/history/story07.html>.

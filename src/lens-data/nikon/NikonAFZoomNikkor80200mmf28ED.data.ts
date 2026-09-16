@@ -4,7 +4,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ╔══════════════════════════════════════════════════════════════════════════════╗
  * ║  LENS DATA — NIKON AI AF ZOOM-NIKKOR 80-200mm f/2.8 ED                    ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
- * ║  Data source: JP-S62-108218 A, Example 3 / Table 3 / Figure 1.          ║
+ * ║  Data source: JP S62-108218 A, Example 3 / Table 3 / Figure 1.          ║
  * ║  16 elements / 11 air-separated groups; all spherical.                    ║
  * ║  Focus status: PUBLISHED. At either zoom endpoint only G1 moves for focus. ║
  * ║  Published close-focus stroke: G1 shifts 10.496 mm objectward.             ║
@@ -54,7 +54,7 @@ const LENS_DATA = {
   key: "nikon-af-zoom-nikkor-80-200mm-f28-ed",
   maker: "Nikon",
   name: "NIKON AI AF ZOOM-NIKKOR 80-200mm f/2.8 ED",
-  subtitle: "JP-S62-108218 A — Example 3; production-correlated 80-200mm f/2.8 ED design",
+  subtitle: "JP S62-108218 A — Example 3; production-correlated 80-200mm f/2.8 ED design",
   specs: ["16 ELEMENTS / 11 GROUPS", "80-196 mm DESIGN", "F/2.88", "3 LOW-DISPERSION ELEMENTS"],
 
   focalLengthMarketing: [80, 200],
@@ -63,8 +63,8 @@ const LENS_DATA = {
   apertureDesign: 2.88,
   lensMounts: ["nikon-f"],
   imageFormat: "135-full-frame",
-  patentNumber: "JP-S62-108218 A",
-  patentAuthors: ["Yoshinori Hamanishi"],
+  patentNumber: "JP S62-108218 A",
+  patentAuthors: ["Yoshinari Hamanishi"],
   patentAssignees: ["Nippon Kogaku K.K."],
   patentYear: 1987,
   elementCount: 16,

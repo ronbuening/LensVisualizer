@@ -4,7 +4,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ╔══════════════════════════════════════════════════════════════════════╗
  * ║      LENS DATA — NIKON AI NIKKOR 600mm f/5.6 IF-ED                ║
  * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Data source: JP1981-035116 Example 1, Nippon Kogaku K.K.          ║
+ * ║  Data source: JP 1981-035116 Example 1, Nippon Kogaku K.K.          ║
  * ║  Production correlation: Nikon AI Nikkor 600mm f/5.6 IF-ED.       ║
  * ║  7 elements / 6 air-separated groups; all spherical.              ║
  * ║                                                                    ║
@@ -62,7 +62,7 @@ const LENS_DATA = {
   key: "nikon-ai-nikkor-600mm-f56-if-ed",
   maker: "Nikon",
   name: "NIKON AI NIKKOR 600mm f/5.6 IF-ED",
-  subtitle: "JP1981-035116 Example 1 — Nippon Kogaku K.K. / Nakamura & Arashida",
+  subtitle: "JP 1981-035116 Example 1 — Nippon Kogaku K.K. / Nakamura & Arashida",
   specs: ["7 ELEMENTS / 6 GROUPS", "600mm f/5.6", "4°10′", "INTERNAL FOCUS", "5.5 m MFD"],
 
   focalLengthMarketing: 600,
@@ -71,7 +71,7 @@ const LENS_DATA = {
   apertureDesign: 5.6,
   lensMounts: ["nikon-f"],
   imageFormat: "135-full-frame",
-  patentNumber: "JP1981-035116",
+  patentNumber: "JP 1981-035116 A",
   patentAuthors: ["Soichi Nakamura", "Kazuo Arashida"],
   patentAssignees: ["Nippon Kogaku K.K."],
   patentYear: 1981,

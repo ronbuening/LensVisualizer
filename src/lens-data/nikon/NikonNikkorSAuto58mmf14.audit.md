@@ -1,6 +1,6 @@
 # Audit Log — NIKON NIKKOR-S AUTO 5.8cm f/1.4
 
-Patent: JP 1966-017177, Embodiment 1 / Figure 1.
+Patent: JP 1966-017177 B, Embodiment 1 / Figure 1.
 
 ## 2026-07-26 — Figure-matched SDs, identity, glass review, and inferred focus
 

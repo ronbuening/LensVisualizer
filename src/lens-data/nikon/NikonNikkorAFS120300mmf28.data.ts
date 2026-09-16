@@ -48,7 +48,7 @@ const LENS_DATA = {
   apertureMarketing: 2.8,
   apertureDesign: 2.91,
   patentNumber: "JP 2020-177057 A",
-  patentAuthors: ["Masafumi Yamashita", "Toshinori Take"],
+  patentAuthors: ["Masashi Yamashita", "Toshinori Take"],
   patentAssignees: ["Nikon Corporation"],
   patentYear: 2020,
   elementCount: 25,

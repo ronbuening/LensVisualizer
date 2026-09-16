@@ -2,7 +2,7 @@
 
 ## Patent Reference and Design Identification
 
-**Patent:** JP S51-63635 (特開昭51-63635; JPA 1976063635)  
+**Patent:** JP S51-63635 A (特開昭51-63635; JPA 1976063635)  
 **Original Japanese application:** JP 46-41643  
 **Filed in Japan:** 18 June 1971, as printed on the Japanese publication  
 **Published:** 2 June 1976  
@@ -12,7 +12,7 @@
 **Embodiment analyzed:** Table 1, the sole numerical example  
 **English counterpart:** US 3,817,600, *Zoom Lens Having Close-Up Focusing Mode of Operation*, granted 18 June 1974
 
-The Japanese publication and the US counterpart disagree slightly on the earliest application date. The Japanese cover page prints 18 June 1971, while the US cover claims Japanese foreign priority from 14 June 1971 under application 46-41643. The Japanese date is used for the metadata of JP S51-63635; the US date is retained only as patent-family information.
+The Japanese publication and the US counterpart disagree slightly on the earliest application date. The Japanese cover page prints 18 June 1971, while the US cover claims Japanese foreign priority from 14 June 1971 under application 46-41643. The Japanese date is used for the metadata of JP S51-63635 A; the US date is retained only as patent-family information.
 
 Table 1 on patent pages 3–4 defines a 15-element, four-principal-group zoom with nominal focal length $f = 70$–$205$ mm and relative aperture 1:3.65. The prescription is identified with high confidence as the optical basis of the first Vivitar Series 1 70–210mm f/3.5 VMC Macro Focusing Auto Zoom for the following convergent reasons:
 
@@ -269,7 +269,7 @@ The production owner’s manual specifies a 70–210mm f/3.5 lens with 15 elemen
 
 ## Sources
 
-- JP S51-63635 (特開昭51-63635), *Zoom Lens*, published 2 June 1976. Table 1 appears on pages 3–4; the stop note, optical diagram, and endpoint aberration plots appear on page 4.
+- JP S51-63635 A (特開昭51-63635), *Zoom Lens*, published 2 June 1976. Table 1 appears on pages 3–4; the stop note, optical diagram, and endpoint aberration plots appear on page 4.
 - US 3,817,600, *Zoom Lens Having Close-Up Focusing Mode of Operation*, Rinzō Watanabe and Ellis I. Betensky, granted 18 June 1974. Used for the English group descriptions, published group focal lengths, nonlinear motion curves, and mechanical cam explanation.
 - Vivitar, *Vivitar Series 1 70mm–210mm f3.5 Macro Focusing Auto Zoom Lens — Owner’s Manual*, dated March 1975.
 - SUMITA Optical Glass, official all-glass Zemax catalog, including discontinued standard types SF1, SK5, BK1, SF11, BAF11, K5, F1, FK5, SF6, BAF9, LAFN2, and LF2.

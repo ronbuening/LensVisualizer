@@ -1,6 +1,6 @@
 ## Patent Reference and Design Identification
 
-**Patent:** JPS51-37247A\
+**Patent:** JP S51-37247 A\
 **Application Number:** 49-110764\
 **Filed:** 25 September 1974\
 **Published:** 29 March 1976\
@@ -9,7 +9,7 @@
 **Title:** *Compact Zoom Lens* (コンパクトズームレンズ)\
 **Embodiment analyzed:** Example 1
 
-The prescription is the first numerical example of JPS51-37247A. The patent front page identifies Hideo Shizume as inventor and Konishiroku Photo Industry Co., Ltd. as applicant. Example 1 is tabulated on patent page 303 of the supplied publication scan, with its optical section and aberration plots beginning on page 304.
+The prescription is the first numerical example of JP S51-37247 A. The patent front page identifies Hideo Shizume as inventor and Konishiroku Photo Industry Co., Ltd. as applicant. Example 1 is tabulated on patent page 303 of the supplied publication scan, with its optical section and aberration plots beginning on page 304.
 
 The selected production correlation is the **KONICA UC ZOOM HEXANON AR 80–200mm f/4**. The correlation rests on convergent, but not manufacturer-confirmed, evidence:
 
@@ -205,7 +205,7 @@ The surface-by-surface Petzval sum, computed as `φ/(n·n′)`, is +0.0004902412
 
 ## Sources and References
 
-1. **JPS51-37247A**, *Compact Zoom Lens* (コンパクトズームレンズ), Hideo Shizume, applicant Konishiroku Photo Industry Co., Ltd., published 29 March 1976. Supplied eight-page publication scan; Example 1 prescription on printed page 303 and optical section/aberration plots on pages 304–306.
+1. **JP S51-37247 A**, *Compact Zoom Lens* (コンパクトズームレンズ), Hideo Shizume, applicant Konishiroku Photo Industry Co., Ltd., published 29 March 1976. Supplied eight-page publication scan; Example 1 prescription on printed page 303 and optical section/aberration plots on pages 304–306.
 2. **Konica Division, Berkey Marketing Companies**, *80-200mm f/4.0 Automatic Macro Zoom Hexanon UC Lens*, Cat. No. 703-177, 1980. Product literature used for the 80–200mm designation, f/4 aperture range, 14-element/10-group construction, 0.7m film-plane minimum focus, approximate 1:2 and 1:5 reproduction figures, 62mm filter, 157mm length, 830g weight, and built-in hood.
 3. **Konica**, *Autoreflex T4 User's Manual*, interchangeable-lens table, pp. 78–79. Used as an independent manufacturer-authored source for the 80–200mm f/4, 14-element/10-group specification, 0.7m closest distance, 62mm filter, 157mm length, 830g weight, and the Konica 35mm bayonet system context.
 4. **OHARA Corporation**, *Optical Glass Pocket Catalog* and current detailed optical-glass data. Used only to test modern `nd`/`νd` coordinate compatibility for the neutral six-digit glass annotations; no OHARA identity is assigned to the historical lens.

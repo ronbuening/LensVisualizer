@@ -31,7 +31,7 @@ const LENS_DATA = {
   apertureDesign: 3.5,
   lensMounts: ["nikon-f"],
   imageFormat: "135-full-frame",
-  patentNumber: "JP S38-26133",
+  patentNumber: "JP S38-26133 B",
   patentAuthors: ["Zenji Wakimoto"],
   patentAssignees: ["Nippon Kogaku K.K."],
   patentYear: 1963,

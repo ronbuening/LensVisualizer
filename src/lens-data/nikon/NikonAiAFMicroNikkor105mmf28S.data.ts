@@ -4,7 +4,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ╔══════════════════════════════════════════════════════════════════════════════╗
  * ║ LENS DATA — NIKON AI AF MICRO-NIKKOR 105mm f/2.8 S                       ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
- * ║ Data source: JPH0219814A, Example 5 (Keiji Moriyama / Nikon Corporation). ║
+ * ║ Data source: JP H02-19814 A, Example 5 (Keiji Moriyama / Nikon Corporation). ║
  * ║ Production correlation: Nikon's retrospective identifies the 1990         ║
  * ║ AI AF Micro-Nikkor 105mm f/2.8S as Moriyama's nine-element, three-block   ║
  * ║ design with life-size focusing.                                            ║
@@ -45,7 +45,7 @@ const LENS_DATA = {
   key: "nikon-ai-af-micro-nikkor-105mm-f28s",
   maker: "Nikon",
   name: "NIKON AI AF MICRO-NIKKOR 105mm f/2.8 S",
-  subtitle: "JPH0219814A Example 5 — production correlation to the 1990 AI AF Micro-Nikkor 105mm f/2.8S",
+  subtitle: "JP H02-19814 A Example 5 — production correlation to the 1990 AI AF Micro-Nikkor 105mm f/2.8S",
   specs: [
     "9 ELEMENTS / 8 GROUPS",
     "f = 105.000 mm PATENT / 105.001 mm TRACE",
@@ -60,7 +60,7 @@ const LENS_DATA = {
   apertureDesign: 2.86,
   lensMounts: ["nikon-f"],
   imageFormat: "135-full-frame",
-  patentNumber: "JPH0219814A",
+  patentNumber: "JP H02-19814 A",
   patentAuthors: ["Keiji Moriyama"],
   patentAssignees: ["Nikon Corporation"],
   patentYear: 1990,

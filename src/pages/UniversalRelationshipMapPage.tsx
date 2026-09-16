@@ -155,7 +155,8 @@ export default function UniversalRelationshipMapPage() {
 
           <p style={{ color: t.label, fontSize: "0.72rem", lineHeight: 1.5, margin: "0 0 0.8rem" }}>
             Soft halos group hub neighborhoods; dashed boxes mark disconnected networks. Pinch or scroll to zoom, drag
-            to pan, and select any node for details. Labels appear as you zoom in.
+            to pan, and select any node for details. Double-click the overview to zoom in on that spot. Labels appear as
+            you zoom in.
           </p>
 
           <ClientOnly
