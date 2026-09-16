@@ -46,6 +46,7 @@ const LENS_DATA = {
   apertureMarketing: 1.5,
   apertureDesign: 1.5,
   lensMounts: ["fixed-lens-camera"],
+  imageFormat: "1-2.55-inch-type",
   patentNumber: "US 2021/0149156 A1",
   patentAuthors: ["Jae Hyuk Huh", "Jae Hyun Baik", "Yong Joo Jo"],
   patentAssignees: ["Samsung Electro-Mechanics Co., Ltd."],

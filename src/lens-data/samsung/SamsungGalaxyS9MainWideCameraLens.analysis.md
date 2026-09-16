@@ -33,9 +33,13 @@ The patent includes an intermediate F2.0 state that is not one of the Galaxy S9'
 That difference is retained rather than explained away. The data file therefore identifies the production correlation as
 inferred, not manufacturer-confirmed.
 
-Samsung's product specification gives a 1/2.55-inch-type sensor. The current LensVisualizer taxonomy supplied with this
-job has no exact 1/2.55-inch-type identifier, so the data file intentionally leaves `imageFormat` unset rather than
-substituting the available 1/2.3-inch-type category.
+Samsung's product specification gives a 1/2.55-inch-type, 4:3 sensor with 1.4 µm pixels.
+The model uses the canonical `imageFormat: "1-2.55-inch-type"`. Its nominal 5.6448 × 4.2336 mm
+capture area (7.056 mm diagonal) is derived from the 4032 × 3024 output dimensions documented by
+NTT DOCOMO and Samsung's pixel pitch; see `LENS_MOUNT_FORMAT_OPTIONS.md` for sources.
+This is metadata for the inferred Galaxy S9 association, not proof of patent-to-product identity or
+full-field coverage by the truncated model. The patent's plotted 3.50 mm image height remains a
+separate source value and is not replaced by the sensor's 3.528 mm nominal half-diagonal.
 
 ## Optical Architecture
 

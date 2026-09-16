@@ -2,6 +2,18 @@
 
 Patent: US 2021/0149156 A1, Example 1; local `patents/US20210149156A1.pdf`, Fig. 1 p. 2 and Tables 1–4.
 
+## 2026-09-16 — Sensor format metadata
+
+Added canonical `1-2.55-inch-type` for the inferred Galaxy S9 main-camera association. Samsung's
+camera specification gives 4:3 and 1.4 µm pixels; DOCOMO gives 4032 × 3024 capture dimensions.
+The nominal active area is 5.6448 × 4.2336 mm (diagonal 7.056 mm); source links and derivation are
+recorded in `LENS_MOUNT_FORMAT_OPTIONS.md`. This replaces the earlier taxonomy-gap omission.
+
+Image-circle screening now runs rather than skipping: it flags S12A (1.75542 mm vs 1.83054 mm
+heuristic floor) and S14A (2.0 mm vs 2.50854 mm floor). These are consistent with the documented
+truncated rear envelope; sensor metadata does not certify full-field coverage. The rims are not
+expanded into the divergent source polynomials to silence the warning. Surface validation still passes.
+
 ## 2026-09-16 — Asphere sign correction (supersedes the rim conclusion below)
 
 The earlier audit incorrectly accepted polynomial negation as a coordinate conversion and attributed
