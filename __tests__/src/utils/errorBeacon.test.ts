@@ -19,6 +19,7 @@ afterEach(() => {
   vi.unstubAllEnvs();
   resetErrorBeaconSessionForTests();
   delete window.goatcounter;
+  document.documentElement.className = "";
 });
 
 describe("sanitizeErrorMessage", () => {
@@ -75,6 +76,20 @@ describe("reportErrorBeacon", () => {
     expect(count).toHaveBeenCalledWith({
       path: "/_error/error-boundary",
       title: "error-boundary: string reason",
+      event: true,
+    });
+  });
+
+  it("prefixes the path while browser page translation is active", () => {
+    vi.stubEnv("PROD", true);
+    const count = installGoatCounterMock();
+    document.documentElement.classList.add("translated-ltr");
+
+    reportErrorBeacon("error-boundary", new Error("Failed to execute 'insertBefore' on 'Node'"));
+
+    expect(count).toHaveBeenCalledWith({
+      path: "/_error/translated-error-boundary",
+      title: "error-boundary: Failed to execute 'insertBefore' on 'Node'",
       event: true,
     });
   });

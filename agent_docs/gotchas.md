@@ -55,3 +55,7 @@ Non-obvious constraints and failure modes: one trap per bullet, with the full ru
   `useOverlayState.ts` is the only overlay outside the URL-shareable `panels` slice
   (`agent_docs/architecture/viewer-and-diagram.md`).
 - New analysis tabs: `agent_docs/adding_an_analysis_tab.md`. New URL-shareable fields: `agent_docs/adding_url_state.md`.
+- Chrome/Edge page translation swaps React-owned text nodes for `<font>` wrappers, so the next reconciliation throws an
+  `insertBefore`/`removeChild` NotFoundError into the nearest error boundary — a browser failure, not an app bug.
+  `src/utils/browserTranslationWarning.ts` detects the markers and shows a React-independent banner, `reportErrorBeacon`
+  prefixes those paths with `translated-`, and `ErrorDisplay` swaps the GitHub link for reload guidance.

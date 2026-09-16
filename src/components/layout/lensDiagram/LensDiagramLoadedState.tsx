@@ -129,7 +129,9 @@ export default function LensDiagramLoadedState({
 
   return (
     <>
-      <div ref={panelContainerRef} style={rootStyle}>
+      {/* translate="no": browser page translation detaches React text nodes, and the readouts
+          below re-render on every slider tick. The lens notes column is a sibling and stays translatable. */}
+      <div ref={panelContainerRef} style={rootStyle} translate="no">
         {header}
         <div style={bodyStyle}>
           <DiagramViewport

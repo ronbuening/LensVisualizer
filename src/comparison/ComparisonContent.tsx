@@ -88,6 +88,9 @@ export default function ComparisonContent({
 
   return (
     <div
+      /* translate="no": same dynamic readouts as the single-lens diagram panel; browser translation
+         detaches React text nodes and breaks the next update. */
+      translate="no"
       style={
         isWide
           ? { height: "100%", minHeight: 0, display: "flex", flexDirection: "column", overflow: "hidden" }

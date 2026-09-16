@@ -18,6 +18,7 @@ import { Component } from "react";
 import type { ReactNode, ErrorInfo, CSSProperties } from "react";
 import { buildIssueURL, REPO_URL } from "../../utils/errorReporting.js";
 import { reportErrorBeacon } from "../../utils/errorBeacon.js";
+import { isBrowserTranslationActive } from "../../utils/browserTranslationWarning.js";
 
 interface ErrorDisplayProps {
   error: Error | null;
@@ -97,6 +98,20 @@ const REPORT_LINK_STYLE: CSSProperties = {
   cursor: "pointer",
 };
 
+const TRANSLATION_NOTE_STYLE: CSSProperties = {
+  fontSize: 12,
+  lineHeight: 1.5,
+  color: FALLBACK.text,
+  textAlign: "left",
+  marginBottom: 14,
+};
+
+/* Shown instead of the GitHub link when Chrome/Edge page translation is active:
+ * translation detaches React-owned text nodes, so the failure is browser-induced. */
+const TRANSLATION_GUIDANCE =
+  "Browser page translation is active. Translation rewrites the page while it updates, which causes this error. " +
+  "Switch back to the original language, then reload the page.";
+
 const BOUNDARY_WRAPPER: CSSProperties = {
   background: FALLBACK.bg,
   color: FALLBACK.text,
@@ -123,6 +138,9 @@ const BOUNDARY_WRAPPER: CSSProperties = {
  * @param {string}   [props.title]   — heading text shown above the error message
  */
 export function ErrorDisplay({ error, context, onRetry, title = "Rendering Error" }: ErrorDisplayProps) {
+  /* Translation-induced errors are not app bugs: swap the issue link for recovery guidance. */
+  const translationActive = typeof document !== "undefined" && isBrowserTranslationActive();
+
   /* Build a pre-filled GitHub issue URL; fall back to bare /issues/new on failure */
   let issueURL;
   try {
@@ -132,8 +150,10 @@ export function ErrorDisplay({ error, context, onRetry, title = "Rendering Error
   }
 
   return (
-    <div style={ERROR_DISPLAY_CONTAINER}>
-      <h2 style={{ color: FALLBACK.errorTitle, fontSize: 16, marginBottom: 10 }}>{title}</h2>
+    <div style={ERROR_DISPLAY_CONTAINER} translate="no">
+      <h2 style={{ color: FALLBACK.errorTitle, fontSize: 16, marginBottom: 10 }}>
+        {translationActive ? "Browser Translation Interrupted Rendering" : title}
+      </h2>
       <pre
         style={{
           ...ERROR_PRE_BASE,
@@ -147,6 +167,8 @@ export function ErrorDisplay({ error, context, onRetry, title = "Rendering Error
         {error?.message || String(error)}
       </pre>
 
+      {translationActive && <p style={TRANSLATION_NOTE_STYLE}>{TRANSLATION_GUIDANCE}</p>}
+
       {error?.stack && (
         <details style={{ textAlign: "left", marginBottom: 14 }}>
           <summary style={{ cursor: "pointer", fontSize: 11, color: FALLBACK.mutedText, marginBottom: 6 }}>
@@ -159,14 +181,22 @@ export function ErrorDisplay({ error, context, onRetry, title = "Rendering Error
       )}
 
       <div style={ERROR_ACTIONS_ROW}>
-        {onRetry && (
-          <button onClick={onRetry} style={RETRY_BTN_STYLE}>
-            Retry
+        {translationActive ? (
+          <button onClick={() => window.location.reload()} style={RETRY_BTN_STYLE}>
+            Reload Page
           </button>
+        ) : (
+          <>
+            {onRetry && (
+              <button onClick={onRetry} style={RETRY_BTN_STYLE}>
+                Retry
+              </button>
+            )}
+            <a href={issueURL} target="_blank" rel="noopener noreferrer" style={REPORT_LINK_STYLE}>
+              Report Issue on GitHub
+            </a>
+          </>
         )}
-        <a href={issueURL} target="_blank" rel="noopener noreferrer" style={REPORT_LINK_STYLE}>
-          Report Issue on GitHub
-        </a>
       </div>
     </div>
   );
