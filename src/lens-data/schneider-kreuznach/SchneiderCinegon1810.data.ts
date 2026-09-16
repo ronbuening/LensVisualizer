@@ -50,7 +50,7 @@ const LENS_DATA = {
   apertureMarketing: 1.8,
   apertureDesign: 1.8,
   patentNumber: "US 3,038,379",
-  patentAuthors: ["Wolfram Albrecht"],
+  patentAuthors: ["Wolfram W. Albrecht"],
   patentAssignees: ["Jos. Schneider & Co., Optische Werke"],
   patentYear: 1962,
   elementCount: 9,

@@ -4,7 +4,7 @@
 **Application Number:** 特願昭60-248546
 **Filed:** 1985-11-06
 **Published:** 1987-05-19
-**Inventor:** Yoshinori Hamanishi
+**Inventor:** Yoshinari Hamanishi
 **Applicant:** Nippon Kogaku K.K.
 **Title:** Large-Aperture-Ratio Telephoto Zoom Lens (大口径比望遠ズームレンズ)
 **Embodiment analyzed:** Example 3 / Table 3 / Figure 1 optical section / Figures 3A–3D aberration plots

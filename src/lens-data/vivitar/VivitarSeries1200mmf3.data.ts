@@ -29,7 +29,7 @@ const LENS_DATA = {
   apertureDesign: 3.0,
   patentNumber: "US 3,942,876",
   patentAuthors: ["Ellis I. Betensky"],
-  patentAssignees: ["Vivitar Corporation"],
+  patentAssignees: ["Ponder & Best, Inc."],
   patentYear: 1976,
   elementCount: 6,
   groupCount: 6,

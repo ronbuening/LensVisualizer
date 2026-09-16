@@ -45,7 +45,7 @@ const LENS_DATA = {
   lensMounts: ["canon-ef", "nikon-f", "sony-a"],
   imageFormat: "135-full-frame",
   patentNumber: "JP 2013-254160 A",
-  patentAuthors: ["Noriyuki Adachi"],
+  patentAuthors: ["Nobuyuki Adachi"],
   patentAssignees: ["Tamron Co., Ltd."],
   patentYear: 2013,
   elementCount: 19,

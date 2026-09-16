@@ -6,7 +6,7 @@
 **Application Number:** S56-153206\
 **Filed:** 1981-09-28\
 **Published:** 1983-03-31\
-**Inventor:** Yoshinori Hamanishi\
+**Inventor:** Yoshinari Hamanishi\
 **Applicant:** Nippon Kogaku Kogyo K.K.\
 **Title:** 4群構成大口径比ズームレンズ (*Four-group large-aperture-ratio zoom lens*)\
 **Embodiment analyzed:** Example 2
