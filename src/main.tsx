@@ -3,6 +3,7 @@ import { RouterProvider } from "react-router";
 import { HelmetProvider } from "react-helmet-async";
 import ErrorBoundary from "./components/errors/ErrorBoundary.js";
 import HolidayFavicon from "./components/HolidayFavicon.js";
+import PrerenderedHeadCleanup from "./components/PrerenderedHeadCleanup.js";
 import router from "./router.js";
 import { installGlobalErrorBeacons } from "./utils/errorBeacon.js";
 
@@ -36,6 +37,7 @@ function mountApp() {
     <ErrorBoundary>
       <HelmetProvider>
         <HolidayFavicon />
+        <PrerenderedHeadCleanup />
         <RouterProvider router={router} />
       </HelmetProvider>
     </ErrorBoundary>,

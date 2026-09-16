@@ -23,6 +23,7 @@ flowchart LR
     n_src_components_src_components_search["search/"]
     n_src_components_src_components_ClientOnly_tsx["ClientOnly.tsx"]
     n_src_components_src_components_HolidayFavicon_tsx["HolidayFavicon.tsx"]
+    n_src_components_src_components_PrerenderedHeadCleanup_tsx["PrerenderedHeadCleanup.tsx"]
     n_src_components_src_components_SEOHead_tsx["SEOHead.tsx"]
   end
   n_external_src_utils_seo["src/utils/seo"]
@@ -35,18 +36,20 @@ flowchart LR
   n_src_components_src_components_SEOHead_tsx --> |2| n_external_src_utils_seo
   n_src_components_src_components_ClientOnly_tsx --> n_external_pkg_react
   n_src_components_src_components_HolidayFavicon_tsx --> n_external_pkg_react
+  n_src_components_src_components_PrerenderedHeadCleanup_tsx --> n_external_pkg_react
   n_src_components_src_components_SEOHead_tsx --> n_external_pkg_react_helmet_async
   n_src_components_src_components_SEOHead_tsx --> n_external_src_utils_catalog
   n_src_components_src_components_HolidayFavicon_tsx --> n_external_src_utils_holidays_ts
+  n_src_components_src_components_PrerenderedHeadCleanup_tsx --> n_external_src_utils_seo
   n_src_components_src_components_HolidayFavicon_tsx --> n_external_src_utils_state
   n_src_components_src_components_HolidayFavicon_tsx --> n_external_src_utils_theme
 ```
 
 ## Directory Overview
 
-- Direct source files: 3
+- Direct source files: 4
 - Direct subfolders: 12
-- Main outbound areas: package:react (2), src/utils/seo (2), package:react-helmet-async, src/utils/catalog, src/utils/holidays.ts, src/utils/state, src/utils/theme
+- Main outbound areas: package:react (3), src/utils/seo (3), package:react-helmet-async, src/utils/catalog, src/utils/holidays.ts, src/utils/state, src/utils/theme
 - External consumers: src/main.tsx, src/pages/ArticlePage.tsx, src/pages/ArticlesPage.tsx, src/pages/AuthorPage.tsx, src/pages/AuthorsIndexPage.tsx, src/pages/ComparePage.tsx, src/pages/FormatPage.tsx, src/pages/FormatsIndexPage.tsx, +14 more
 
 ## Subfolders
@@ -72,4 +75,5 @@ flowchart LR
 | --- | --- | --- | --- | --- |
 | `ClientOnly.tsx` | React component module | package:react | src/pages/ComparePage.tsx, src/pages/LensPage.tsx, src/pages/UniversalRelationshipMapPage.tsx | default, ClientOnly |
 | `HolidayFavicon.tsx` | React component module | package:react, src/utils/holidays.ts, src/utils/state, src/utils/theme | src/main.tsx | default, HolidayFavicon |
+| `PrerenderedHeadCleanup.tsx` | React component module | package:react, src/utils/seo | src/main.tsx | default, PrerenderedHeadCleanup |
 | `SEOHead.tsx` | React component module | src/utils/seo (2), package:react-helmet-async, src/utils/catalog | src/pages/ArticlePage.tsx, src/pages/ArticlesPage.tsx, src/pages/AuthorPage.tsx, src/pages/AuthorsIndexPage.tsx, src/pages/ComparePage.tsx, +16 more | JsonLdSchema, default, SEOHead |
