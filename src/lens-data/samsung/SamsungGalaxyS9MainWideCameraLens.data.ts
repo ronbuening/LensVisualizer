@@ -1,0 +1,356 @@
+import type { LensDataInput } from "../../types/optics.js";
+
+/**
+ * Samsung Galaxy S9 main wide camera lens candidate — US 2021/0149156 A1, Example 1.
+ *
+ * Product correlation is strong but inferred; no located Samsung primary source explicitly identifies
+ * Example 1 as the production Galaxy S9 prescription. The seven powered elements are kept at patent scale.
+ * The patent IR-block plate is omitted per the current data specification; S14A→image is replaced by the
+ * verified paraxial air-equivalent spacing 1.019463768115942 mm.
+ *
+ * STO: the source publishes VST effective-aperture radii of 1.550/1.100/0.900 mm but no VST→S1 axial
+ * spacing, and it does not establish those ray-used radii as the physical LensVisualizer stop/entrance-pupil
+ * radius. The model normalizes STO to the S1 vertex (d = 0) and calibrates its wide-open semi-diameter to
+ * the parsed prescription EFL at f/1.5: 1.437808275771618 mm. This is a model calibration, not a
+ * source-published physical stop dimension.
+ *
+ * Semi-diameters: use common rims per element, guided by Fig. 1 and the tabulated ray-used radii.
+ * L1–L4 use 1.02× the larger radius; L5/L6 use 1.02× the smaller radius to avoid polynomial divergence.
+ * S13/S14 use a conservative common 2.0 mm rim: the seven-decimal Table-4 coefficients diverge
+ * toward the published 2.720/2.880 mm effective radii. The full rear outline cannot be recovered
+ * from that precision; these truncated rims are a visualization limitation, not production dimensions.
+ *
+ * Aspheres: retain Table-4 R, K, and polynomial signs without scaling. Equation (1) prints a
+ * negative conic numerator, inconsistent with the tabulated prescription interpreted in the usual
+ * object-to-image convention. Treating that sign as a source equation error is supported by Fig. 1
+ * and exact axial tracing; the previous polynomial negation reversed the peripheral shapes.
+ * This interpretation does not recover missing rear coefficient precision. See the analysis/audit.
+ * Focus status is NO_INTERNAL_RECONSTRUCTION: no focus-dependent spacing is invented.
+ */
+
+const LENS_DATA = {
+  key: "samsung-galaxy-s9-main-wide",
+  maker: "Samsung",
+  name: "SAMSUNG 4.3mm f/1.5 (Galaxy S9)",
+  subtitle: "US 2021/0149156 A1 Example 1 — partial reconstruction; Galaxy S9 association unconfirmed",
+  specs: [
+    "7 ELEMENTS / 7 GROUPS",
+    "4.3 mm NOMINAL",
+    "F1.5–F2.4 VARIABLE APERTURE",
+    "76.72° FOV",
+    "14 ASPHERICAL SURFACES",
+  ],
+
+  focalLengthMarketing: 4.3,
+  focalLengthDesign: 4.313424827314853,
+  apertureMarketing: 1.5,
+  apertureDesign: 1.5,
+  lensMounts: ["fixed-lens-camera"],
+  imageFormat: "1-2.55-inch-type",
+  patentNumber: "US 2021/0149156 A1",
+  patentAuthors: ["Jae Hyuk Huh", "Jae Hyun Baik", "Yong Joo Jo"],
+  patentAssignees: ["Samsung Electro-Mechanics Co., Ltd."],
+  patentYear: 2021,
+  elementCount: 7,
+  groupCount: 7,
+
+  elements: [
+    {
+      id: 1,
+      name: "L1",
+      diagramLabel: "L1",
+      label: "Element 1",
+      type: "Positive Meniscus (2× Asph)",
+      nd: 1.544,
+      vd: 56.094,
+      indexReference: "d",
+      fl: 4.469726231865324,
+      glass: "Unmatched (544561 optical-material class; supplier unknown)",
+      role: "Front positive collecting element.",
+    },
+    {
+      id: 2,
+      name: "L2",
+      diagramLabel: "L2",
+      label: "Element 2",
+      type: "Negative Meniscus (2× Asph)",
+      nd: 1.661,
+      vd: 20.353,
+      indexReference: "d",
+      fl: -9.659963800010638,
+      glass: "Unmatched (661204 optical-material class; supplier unknown)",
+      role: "Negative second element.",
+    },
+    {
+      id: 3,
+      name: "L3",
+      diagramLabel: "L3",
+      label: "Element 3",
+      type: "Positive Meniscus (2× Asph)",
+      nd: 1.544,
+      vd: 56.094,
+      indexReference: "d",
+      fl: 173.6156759120033,
+      glass: "Unmatched (544561 optical-material class; supplier unknown)",
+      role: "Weak positive third element.",
+    },
+    {
+      id: 4,
+      name: "L4",
+      diagramLabel: "L4",
+      label: "Element 4",
+      type: "Positive Meniscus (2× Asph)",
+      nd: 1.544,
+      vd: 56.094,
+      indexReference: "d",
+      fl: 9.810824856577083,
+      glass: "Unmatched (544561 optical-material class; supplier unknown)",
+      role: "Positive fourth element.",
+    },
+    {
+      id: 5,
+      name: "L5",
+      diagramLabel: "L5",
+      label: "Element 5",
+      type: "Weak Positive Meniscus (2× Asph)",
+      nd: 1.661,
+      vd: 20.353,
+      indexReference: "d",
+      fl: 12223802.501732571,
+      glass: "Unmatched (661204 optical-material class; supplier unknown)",
+      role: "Near-afocal positive fifth element.",
+    },
+    {
+      id: 6,
+      name: "L6",
+      diagramLabel: "L6",
+      label: "Element 6",
+      type: "Biconvex Positive (2× Asph)",
+      nd: 1.639,
+      vd: 23.528,
+      indexReference: "d",
+      fl: 782.5591086807203,
+      glass: "Unmatched (639235 optical-material class; supplier unknown)",
+      role: "Weak positive sixth element.",
+    },
+    {
+      id: 7,
+      name: "L7",
+      diagramLabel: "L7",
+      label: "Element 7",
+      type: "Negative Meniscus (2× Asph)",
+      nd: 1.534,
+      vd: 55.656,
+      indexReference: "d",
+      fl: -11.278864929107225,
+      glass: "Unmatched (534557 optical-material class; supplier unknown)",
+      role: "Rear negative element adjacent to the normalized image-space gap.",
+    },
+  ],
+
+  surfaces: [
+    { label: "STO", R: 1e15, d: 0, nd: 1, elemId: 0, sd: 1.437808275771618 },
+    { label: "1A", R: 1.8300896, d: 0.772, nd: 1.544, elemId: 1, sd: 1.39536 },
+    { label: "2A", R: 6.2991055, d: 0.145, nd: 1.0, elemId: 0, sd: 1.39536 },
+    { label: "3A", R: 8.2729295, d: 0.2, nd: 1.661, elemId: 2, sd: 1.27908 },
+    { label: "4A", R: 3.5690962, d: 0.17, nd: 1.0, elemId: 0, sd: 1.27908 },
+    { label: "5A", R: 3.731059, d: 0.334, nd: 1.544, elemId: 3, sd: 1.1934 },
+    { label: "6A", R: 3.7619952, d: 0.047, nd: 1.0, elemId: 0, sd: 1.1934 },
+    { label: "7A", R: 2.662169, d: 0.23, nd: 1.544, elemId: 4, sd: 1.21584 },
+    { label: "8A", R: 5.1499618, d: 0.469, nd: 1.0, elemId: 0, sd: 1.21584 },
+    { label: "9A", R: -1000.0, d: 0.311, nd: 1.661, elemId: 5, sd: 1.326 },
+    { label: "10A", R: -1000.0, d: 0.197, nd: 1.0, elemId: 0, sd: 1.326 },
+    { label: "11A", R: 1000.0, d: 0.567, nd: 1.639, elemId: 6, sd: 1.75542 },
+    { label: "12A", R: -1000.0, d: 0.143, nd: 1.0, elemId: 0, sd: 1.75542 },
+    { label: "13A", R: 1.6880487, d: 0.535, nd: 1.534, elemId: 7, sd: 2.0 },
+    { label: "14A", R: 1.1730407, d: 1.019463768115942, nd: 1.0, elemId: 0, sd: 2.0 },
+  ],
+
+  asph: {
+    "1A": {
+      K: -1.6552217,
+      A4: 0.0116091,
+      A6: 0.0965387,
+      A8: -0.3155559,
+      A10: 0.6103956,
+      A12: -0.7409635,
+      A14: 0.564371,
+      A16: -0.2624528,
+      A18: 0.0677393,
+      A20: -0.0074222,
+    },
+    "2A": {
+      K: -24.000204,
+      A4: -0.0129476,
+      A6: -0.0363024,
+      A8: 0.0414684,
+      A10: -0.04313,
+      A12: 0.042757,
+      A14: -0.0364053,
+      A16: 0.020942,
+      A18: -0.0066627,
+      A20: 0.0008573,
+    },
+    "3A": {
+      K: -50.6870574,
+      A4: -0.0389719,
+      A6: -0.0310197,
+      A8: -0.0002133,
+      A10: 0.2203593,
+      A12: -0.4423371,
+      A14: 0.4475599,
+      A16: -0.255289,
+      A18: 0.0785311,
+      A20: -0.0102827,
+    },
+    "4A": {
+      K: 4.8241626,
+      A4: -0.0434129,
+      A6: -0.0633982,
+      A8: 0.151342,
+      A10: -0.3827429,
+      A12: 0.81761,
+      A14: -1.0506755,
+      A16: 0.7674961,
+      A18: -0.2880086,
+      A20: 0.0422082,
+    },
+    "5A": {
+      K: -12.7994972,
+      A4: -0.0082797,
+      A6: 0.1615828,
+      A8: -0.9392688,
+      A10: 2.4165689,
+      A12: -3.961589,
+      A14: 4.1252343,
+      A16: -2.5899193,
+      A18: 0.9003932,
+      A20: -0.1340505,
+    },
+    "6A": {
+      K: -42.8915719,
+      A4: -0.1081493,
+      A6: 0.3169587,
+      A8: -0.8513916,
+      A10: 1.2909706,
+      A12: -1.5485732,
+      A14: 1.5974902,
+      A16: -1.137569,
+      A18: 0.4537753,
+      A20: -0.0754816,
+    },
+    "7A": {
+      K: -0.3530718,
+      A4: -0.2370002,
+      A6: 0.581492,
+      A8: -1.662903,
+      A10: 3.4439451,
+      A12: -5.2966339,
+      A14: 5.6879394,
+      A16: -3.8338174,
+      A18: 1.4272539,
+      A20: -0.222764,
+    },
+    "8A": {
+      K: -4.2495116,
+      A4: -0.0247478,
+      A6: -0.0417117,
+      A8: 0.3110626,
+      A10: -1.0130564,
+      A12: 1.7589418,
+      A14: -1.8091287,
+      A16: 1.1258055,
+      A18: -0.3970271,
+      A20: 0.0613702,
+    },
+    "9A": {
+      K: 0.0,
+      A4: 0.083007,
+      A6: -0.8112926,
+      A8: 2.3021412,
+      A10: -4.1836612,
+      A12: 5.0467303,
+      A14: -4.0494266,
+      A16: 2.0724279,
+      A18: -0.6104917,
+      A20: 0.0784477,
+    },
+    "10A": {
+      K: 0.0,
+      A4: 0.2627193,
+      A6: -1.1387755,
+      A8: 2.0723941,
+      A10: -2.4444138,
+      A12: 1.9176466,
+      A14: -0.9907477,
+      A16: 0.3234978,
+      A18: -0.0601376,
+      A20: 0.0048119,
+    },
+    "11A": {
+      K: 0.0,
+      A4: 0.4625186,
+      A6: -1.1116904,
+      A8: 1.591279,
+      A10: -1.6061269,
+      A12: 1.0855971,
+      A14: -0.4768917,
+      A16: 0.129793,
+      A18: -0.0197278,
+      A20: 0.0012726,
+    },
+    "12A": {
+      K: 0.0,
+      A4: 0.146437,
+      A6: -0.1698953,
+      A8: 0.1117498,
+      A10: -0.0634561,
+      A12: 0.0287105,
+      A14: -0.0090165,
+      A16: 0.0017792,
+      A18: -0.0001964,
+      A20: 9.2e-06,
+    },
+    "13A": {
+      K: -10.8244988,
+      A4: -0.2005729,
+      A6: 0.0526574,
+      A8: 0.0102193,
+      A10: -0.0090359,
+      A12: 0.0023863,
+      A14: -0.0003304,
+      A16: 2.41e-05,
+      A18: -7e-07,
+    },
+    "14A": {
+      K: -5.5973242,
+      A4: -0.1362365,
+      A6: 0.0626627,
+      A8: -0.025288,
+      A10: 0.007501,
+      A12: -0.0014408,
+      A14: 0.0001697,
+      A16: -1.12e-05,
+      A18: 3e-07,
+    },
+  },
+
+  var: {},
+  varLabels: [],
+  groups: [],
+  doublets: [],
+
+  // Camera FV-5 device metadata reports 0.10 m for the Galaxy S9 rear main camera; Samsung primary
+  // product specifications located for this job do not publish MFD. This metadata does not define focus travel.
+  closeFocusM: 0.1,
+  focusDescription:
+    "NO_INTERNAL_RECONSTRUCTION — aperture states only; no focus motion modeled. 0.10 m MFD is metadata only.",
+
+  nominalFno: 1.5,
+  fstopSeries: [1.5, 2, 2.4],
+  maxFstop: 2.4,
+
+  yScFill: 0.45,
+} satisfies LensDataInput;
+
+export default LENS_DATA;

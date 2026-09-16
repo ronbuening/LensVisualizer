@@ -22,6 +22,13 @@ export const IMAGE_FORMAT_DETAILS: Record<ImageFormatId, ImageFormatDetails> = {
     description:
       "The 110 format was introduced for pocket cameras, using cartridge film to make loading simple and camera bodies extremely compact. The exposed image is only 17 x 13 mm in this catalog's reference geometry, so even a lens that covers the whole frame can use a much smaller image circle than a 35 mm still-camera lens. That is why 110 cameras and systems such as Pentax Auto 110 could put interchangeable optics into bodies that feel closer to compact cameras than conventional SLRs.\n\nOptically, 110 designs operate in a very different scale from 35 mm systems. Focal lengths are short, entrance pupils are small for a given f-number, and depth of field is naturally deep at equivalent angles of view. Designers can keep lenses physically tiny, but the small negative also asks a lot from film grain, manufacturing tolerances, and alignment. In this catalog, 110-format lenses are useful for seeing how familiar optical formulas shrink when the capture area becomes much smaller than full-frame.",
   },
+  "1-2.55-inch-type": {
+    commonUses: "Smartphone main cameras, including the Samsung Galaxy S9",
+    coverageNotes: "Nominal 5.6448 x 4.2336 mm capture area with a 7.056 mm diagonal and 4:3 aspect ratio",
+    summary: "A small smartphone sensor class paired with short-focal-length integrated camera lenses.",
+    description:
+      "Samsung specifies the Galaxy S9 main camera as 1/2.55-inch type with a 4:3 aspect ratio and 1.4 µm pixels. The catalog's nominal capture area follows from 4032 x 3024 pixels at that pitch. The inch-type designation is a historical optical-format label, not a physical diagonal in inches. Sensor implementations and usable crops can vary.\n\nThis format identifies the intended capture area for catalog grouping and image-field calculations. A patent model associated with a production camera can still have incomplete aperture geometry; assigning the sensor format does not certify that the reconstruction reproduces the production lens's full-field performance.",
+  },
   "1-2.3-inch-type": {
     commonUses: "Small-sensor compact cameras, superzooms, action cameras, and early Pentax Q bodies",
     coverageNotes: "6.17 x 4.55 mm sensor with a 7.67 mm diagonal",

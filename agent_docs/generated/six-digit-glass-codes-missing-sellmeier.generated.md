@@ -9,12 +9,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **761** lenses scanned
-- **1704** total code-only elements found
-- **272** elements in this report
-- **104** distinct lens files affected
+- **766** lenses scanned
+- **1720** total code-only elements found
+- **279** elements in this report
+- **105** distinct lens files affected
 - **4** active unreviewed elements have no review-record hit or explicit disposition
-- **140** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
+- **147** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
 - **0** dispositions lack any review record
 
 ## Prioritized Unreviewed Queue
@@ -40,6 +40,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 662561 | 4 | 1 | patents/GB_850117_A.pdf | All rows have review records |
 | 835427 | 4 | 3 | patents/JP2015166834A.pdf<br>patents/CN114755806A.pdf | All rows explicitly disposed |
 | 863252 | 4 | 2 | patents/WO2021199923A1.pdf<br>patents/WO_2025263124_A1.pdf | All rows have review records |
+| 544561 | 3 | 1 | patents/US20210149156A1.pdf | All rows explicitly disposed |
 | 684313 | 3 | 2 | patents/US20150124127A1.pdf | All rows explicitly disposed |
 | 777297 | 3 | 3 | patents/WO2021199923A1.pdf<br>patents/WO_2025263124_A1.pdf<br>patents/JP2023039817A.pdf | All rows have review records |
 | 856401 | 3 | 2 | patents/WO2021199923A1.pdf<br>patents/WO_2025263124_A1.pdf | All rows have review records |
@@ -51,6 +52,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 620586 | 2 | 1 | patents/US4303314.pdf | All rows have review records |
 | 627376 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
 | 633315 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
+| 661204 | 2 | 1 | patents/US20210149156A1.pdf | All rows explicitly disposed |
 | 682419 | 2 | 1 | patents/DE_1157000_B.pdf | No review-record hit |
 | 690570 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
 | 720521 | 2 | 2 | patents/US4124276.pdf | All rows have review records |
@@ -94,6 +96,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 534554 | 1 | 1 | patents/US3737214.pdf | All rows have review records |
 | 534555 | 1 | 1 | patents/US4110006.pdf | All rows explicitly disposed |
 | 534556 | 1 | 1 | patents/US20230367186A1.pdf | All rows have review records |
+| 534557 | 1 | 1 | patents/US20210149156A1.pdf | All rows explicitly disposed |
 | 540509 | 1 | 1 | patents/GB_775944_A.pdf | All rows explicitly disposed |
 | 545486 | 1 | 1 | patents/CN116520542A.pdf | All rows have review records |
 | 553381 | 1 | 1 | patents/US7508592.pdf | All rows explicitly disposed |
@@ -127,6 +130,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 630346 | 1 | 1 | patents/JP2015041012A.pdf | All rows have review records |
 | 635232 | 1 | 1 | patents/US8081392.pdf | All rows explicitly disposed |
 | 636239 | 1 | 1 | patents/US20150124127A1.pdf | All rows explicitly disposed |
+| 639235 | 1 | 1 | patents/US20210149156A1.pdf | All rows explicitly disposed |
 | 640353 | 1 | 1 | patents/US4277149.pdf | All rows have review records |
 | 641589 | 1 | 1 | patents/US7307794.pdf | All rows explicitly disposed |
 | 642581 | 1 | 1 | patents/US2721499.pdf | All rows have review records |
@@ -855,6 +859,18 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L2 (Element 2) | 3 | `Unmatched (684316 dense-flint class; vendor unresolved)` | 1.68384 / 31.60 | No catalog entry | abbe | patents/US20100149663A1.pdf | Explicit disposition in data |
+
+### [SAMSUNG 4.3mm f/1.5 (Galaxy S9)](../../src/lens-data/samsung/SamsungGalaxyS9MainWideCameraLens.data.ts) - US 2021/0149156 A1
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L1 (Element 1) | 1A | `Unmatched (544561 optical-material class; supplier unknown)` | 1.54400 / 56.09 | No catalog entry | abbe | patents/US20210149156A1.pdf | Explicit disposition in data |
+| L2 (Element 2) | 3A | `Unmatched (661204 optical-material class; supplier unknown)` | 1.66100 / 20.35 | No catalog entry | abbe | patents/US20210149156A1.pdf | Explicit disposition in data |
+| L3 (Element 3) | 5A | `Unmatched (544561 optical-material class; supplier unknown)` | 1.54400 / 56.09 | No catalog entry | abbe | patents/US20210149156A1.pdf | Explicit disposition in data |
+| L4 (Element 4) | 7A | `Unmatched (544561 optical-material class; supplier unknown)` | 1.54400 / 56.09 | No catalog entry | abbe | patents/US20210149156A1.pdf | Explicit disposition in data |
+| L5 (Element 5) | 9A | `Unmatched (661204 optical-material class; supplier unknown)` | 1.66100 / 20.35 | No catalog entry | abbe | patents/US20210149156A1.pdf | Explicit disposition in data |
+| L6 (Element 6) | 11A | `Unmatched (639235 optical-material class; supplier unknown)` | 1.63900 / 23.53 | No catalog entry | abbe | patents/US20210149156A1.pdf | Explicit disposition in data |
+| L7 (Element 7) | 13A | `Unmatched (534557 optical-material class; supplier unknown)` | 1.53400 / 55.66 | No catalog entry | abbe | patents/US20210149156A1.pdf | Explicit disposition in data |
 
 ### [SAMSUNG 45mm f/1.8](../../src/lens-data/samsung/Samsung45mmf18.data.ts) - US 2013/0314588 A1
 

@@ -99,6 +99,7 @@ in distortion, vignetting, bokeh, and aberration analysis.
 | ID | Display Label | Width x Height (mm) | Diagonal (mm) | Aspect Ratio |
 |----|---------------|---------------------|---------------|--------------|
 | `110` | 110 | 17 x 13 | 21.4 | 17:13 |
+| `1-2.55-inch-type` | 1/2.55-inch type | 5.6448 x 4.2336 | 7.056 | 4:3 |
 | `1-2.3-inch-type` | 1/2.3-inch type | 6.17 x 4.55 | 7.67 | about 4:3 |
 | `1-1.7-inch-type` | 1/1.7-inch type | 7.44 x 5.58 | 9.3 | 4:3 |
 | `1-inch-type` | 1-inch type / Nikon CX | 13.2 x 8.8 | 15.86 | 3:2 |
@@ -140,3 +141,13 @@ in distortion, vignetting, bokeh, and aberration analysis.
 - Use `6x8` for Fuji GX680 lenses and `6x9` for Fuji G690 lenses.
 - Leave uncertain metadata unset and record the question in `agent_docs/lens-mount-format-backfill.md`.
 - Do not add a new id for a spelling or label preference; add one only for a genuinely distinct mount or image format.
+
+### 1/2.55-inch-type dimension basis
+
+Samsung specifies the Galaxy S9 main camera as 1/2.55-inch type, 4:3, with 1.4 µm pixels
+([Samsung camera specifications](https://www.samsung.com/sg/support/mobile-devices/everything-you-need-to-know-about-your-samsung-galaxy-s9-and-s9-plus-camera/)).
+NTT DOCOMO lists a 4032 × 3024 still-image size for the Galaxy S9 SC-02K
+([carrier specifications](https://www.docomo.ne.jp/support/product/sc02k/spec.html)).
+The nominal active area is derived as 4032 × 0.0014 by 3024 × 0.0014 mm, with a 7.056 mm diagonal.
+These calculated dimensions represent the nominal capture area, not a measurement of the sensor die;
+the optical-inch designation is not converted directly into millimeters.

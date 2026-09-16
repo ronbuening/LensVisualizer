@@ -20,6 +20,21 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-09-16",
+    type: "lens",
+    summary: "Added Schacht Travenar 90mm and S-Travenar 135mm f/2.8 patent designs",
+  },
+  {
+    date: "2026-09-16",
+    type: "lens",
+    summary: "Added Schneider-Kreuznach Cinegon 6.5mm f/1.9 and 10mm f/1.8 patent designs",
+  },
+  {
+    date: "2026-09-16",
+    type: "lens",
+    summary: "Added Samsung 4.3mm f/1.5 patent design associated with the Galaxy S9",
+  },
+  {
+    date: "2026-09-16",
     type: "fix",
     summary: "Fixed 1/2.3-inch and 1/1.7-inch type format pages showing Page Not Found",
   },

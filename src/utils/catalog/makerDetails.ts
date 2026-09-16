@@ -95,6 +95,15 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
     notableDesigns:
       "14mm f/2.8 ED AS IF UMC, 85mm f/1.4, 135mm f/2 ED UMC, 24mm f/3.5 Tilt-Shift, XP 14mm f/2.4, AF 35mm f/2.8 FE, AF 35-150mm f/2-2.8, XEEN cinema primes",
   },
+  // Company chronology: https://japb.net/business/company-profiles/schacht/
+  schacht: {
+    founded: 1948,
+    headquarters: "Ulm, Germany; originally Munich",
+    summary: "German maker of interchangeable photographic lenses, including the Travenar and S-Travenar families.",
+    history:
+      "Albert Schacht founded the company in Munich in 1948, after a career at Zeiss, ICA, Zeiss Ikon, and Steinheil. The company relocated to Ulm in 1954 and supplied interchangeable lenses for camera systems including Exakta, Leica thread mount, M42, and Praktina. Its lenses carry both Munich and Ulm branding, reflecting the two locations.",
+    notableDesigns: "Travenar 90mm f/2.8, S-Travenar 135mm f/2.8, Travelon, Travegon",
+  },
   samsung: {
     founded: 1938,
     headquarters: "Suwon and Seoul, South Korea",

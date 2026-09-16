@@ -112,6 +112,17 @@ export const IMAGE_FORMATS = [
     sortOrder: 100,
   },
   {
+    // Nominal active area: 4032 × 3024 pixels at 1.4 µm (Galaxy S9).
+    // Sources and derivation: LENS_MOUNT_FORMAT_OPTIONS.md.
+    id: "1-2.55-inch-type",
+    label: "1/2.55-inch type",
+    widthMm: 5.6448,
+    heightMm: 4.2336,
+    diagonalMm: 7.056,
+    aspectRatio: 4 / 3,
+    sortOrder: 110,
+  },
+  {
     id: "1-2.3-inch-type",
     label: "1/2.3-inch type",
     widthMm: 6.17,
