@@ -20,16 +20,6 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-09-16",
-    type: "fix",
-    summary: "Connected Samsung Electro-Mechanics to the Samsung corporate family",
-  },
-  {
-    date: "2026-09-16",
-    type: "fix",
-    summary: "Corrected Samsung Galaxy S9 patent model aspheric signs and lens rims",
-  },
-  {
-    date: "2026-09-16",
     type: "lens",
     summary: "Added Schacht Travenar 90mm and S-Travenar 135mm f/2.8 patent designs",
   },
