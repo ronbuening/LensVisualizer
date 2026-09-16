@@ -35,6 +35,7 @@ describe("patent assignee validity", () => {
   });
 
   it.each([
+    ["Jenoptik Jena G.m.b.H.", "Jenoptik Jena GmbH"],
     ["Nippon Kogaku Kogyo K.K.", "Nippon Kogaku K.K."],
     ["Voigtländer & Sohn Aktiengesellschaft", "Voigtländer & Sohn AG"],
     ["Voigtländer A.G.", "Voigtländer AG"],

@@ -178,6 +178,19 @@ describe("DiagramLegend", () => {
     expect(screen.queryByText("Vignetted (ghost)")).toBeNull();
   });
 
+  it("explains both reflecting-surface styles when present", () => {
+    const mirrors = {
+      ...lens(),
+      S: [
+        { interaction: { type: "reflect", mirrorKind: "first-surface" } },
+        { interaction: { type: "reflect", mirrorKind: "second-surface" } },
+      ],
+    } as RuntimeLens;
+    renderLegend({ L: mirrors });
+    expect(screen.getByText("M: reflecting surface")).toBeTruthy();
+    expect(screen.getByText("S: silvered rear surface")).toBeTruthy();
+  });
+
   it("discloses the diffractive phase accent only for lenses that use it", () => {
     const phaseLens = {
       ...lens(),

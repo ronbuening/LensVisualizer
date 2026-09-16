@@ -9,12 +9,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **753** lenses scanned (**741** visible)
-- **7957 / 8553** non-air surfaces use strict catalog Sellmeier data (93.0%)
-- **7972 / 8553** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.2%)
+- **761** lenses scanned (**749** visible)
+- **8004 / 8606** non-air surfaces use strict catalog Sellmeier data (93.0%)
+- **8019 / 8606** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.2%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
-- **267** code-only missing-Sellmeier elements in Sweep 2: **1** active unreviewed, **138** self-recording explicit dispositions, **0** dispositions missing any review record
+- **272** code-only missing-Sellmeier elements in Sweep 2: **4** active unreviewed, **140** self-recording explicit dispositions, **0** dispositions missing any review record
 - **0** unresolved named-token elements in Sweep 2B, producing **0** token occurrences across **0** distinct tokens
 - **0** Tier A proprietary backfill rows in Sweep 3
 
@@ -175,6 +175,8 @@ Add catalog entries only when public coefficient-backed vendor data is available
 
 | Code | Active elements | Lens files | localPatentStatus | Representative rows |
 |---|---:|---:|---|---|
+| 682419 | 2 | 1 | patents/DE_1157000_B.pdf | [CARL ZEISS JENA FLEKTOGON 50mm f/4](../../src/lens-data/carl-zeiss-jena/ZeissFlektogon50mmf4.data.ts) Element 3 (1.68169 / 41.90)<br>[CARL ZEISS JENA FLEKTOGON 50mm f/4](../../src/lens-data/carl-zeiss-jena/ZeissFlektogon50mmf4.data.ts) Element 4 (1.68169 / 41.90) |
+| 681472 | 1 | 1 | patents/DE_1157000_B.pdf | [CARL ZEISS JENA FLEKTOGON 50mm f/4](../../src/lens-data/carl-zeiss-jena/ZeissFlektogon50mmf4.data.ts) Element 7 (1.68078 / 47.20) |
 | 683315 | 1 | 1 | patents/JPA 1987249119-000000.pdf | [MINOLTA AF 20mm f/2.8](../../src/lens-data/minolta/MinoltaAF20mmf28.data.ts) Element 4 (1.68300 / 31.52) |
 
 ## Sweep 2B - Named Tokens Missing Catalog Resolution

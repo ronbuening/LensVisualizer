@@ -157,15 +157,23 @@ const DiagramOverlayLayer = memo(function DiagramOverlayLayer({
 
       {foldedHitOrderLabels.length > 0 &&
         (() => {
-          const seen = new Map<string, number>();
+          const placed: Array<{ x: number; y: number; halfWidth: number }> = [];
           return foldedHitOrderLabels.map((label, index) => {
             const surfaceIdx = L.labelIdx[label];
             if (surfaceIdx === undefined) return null;
-            const previousCount = seen.get(label) ?? 0;
-            seen.set(label, previousCount + 1);
             const surface = L.S[surfaceIdx];
-            const labelOffset = previousCount * 8;
-            const [x, y] = movedScreenPoint(zPos[surfaceIdx], -(surface.sd + 8 + labelOffset));
+            const text = `${index + 1} ${label}`;
+            const halfWidth = (text.length * 8.5 * 0.62) / 2;
+            const [x, initialY] = movedScreenPoint(zPos[surfaceIdx], -(surface.sd + 8));
+            let y = initialY;
+            // Pack in screen pixels: optical-mm offsets collide at wide diagram scales.
+            while (
+              placed.some(
+                (other) => Math.abs(x - other.x) < halfWidth + other.halfWidth + 3 && Math.abs(y - other.y) < 12,
+              )
+            )
+              y -= 12;
+            placed.push({ x, y, halfWidth });
             return (
               <text
                 key={`folded-hit-${index}-${label}`}

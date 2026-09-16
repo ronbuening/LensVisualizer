@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **753** lenses scanned
-- **8553** non-air surfaces examined
-- **8563** element glass declarations examined
-- **233** non-explicit-unmatched annotations did not resolve
-- **117** distinct unresolved glass-like tokens found
+- **761** lenses scanned
+- **8606** non-air surfaces examined
+- **8616** element glass declarations examined
+- **236** non-explicit-unmatched annotations did not resolve
+- **119** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -29,6 +29,7 @@ or per-lens patent backfills.
 | 620586 | 2 | 1 | |
 | 627376 | 2 | 2 | |
 | 633315 | 2 | 2 | |
+| 682419 | 2 | 1 | |
 | 690570 | 2 | 2 | |
 | 720521 | 2 | 2 | |
 | 726548 | 2 | 2 | |
@@ -75,6 +76,7 @@ or per-lens patent backfills.
 | 672323 | 1 | 1 | |
 | 672388 | 1 | 1 | |
 | 680312 | 1 | 1 | |
+| 681472 | 1 | 1 | |
 | 682366 | 1 | 1 | |
 | 683315 | 1 | 1 | |
 | 683548 | 1 | 1 | |
@@ -204,6 +206,11 @@ or per-lens patent backfills.
 
 - [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) 36: `633315 flint class (catalog unresolved)`
 - [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR — TC 1.4x Engaged](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14TCIn.data.ts) 36: `633315 flint class (catalog unresolved)`
+
+### 682419 — 2 occurrences
+
+- [CARL ZEISS JENA FLEKTOGON 50mm f/4](../../src/lens-data/carl-zeiss-jena/ZeissFlektogon50mmf4.data.ts) 4: `682419 class (supplier unresolved)`
+- [CARL ZEISS JENA FLEKTOGON 50mm f/4](../../src/lens-data/carl-zeiss-jena/ZeissFlektogon50mmf4.data.ts) 6: `682419 class (supplier unresolved)`
 
 ### 690570 — 2 occurrences
 
@@ -403,6 +410,10 @@ or per-lens patent backfills.
 ### 680312 — 1 occurrence
 
 - [SONY SONNAR T* FE 35mm f/2.8 ZA](../../src/lens-data/sony/SonyFE35mmf28ZA.data.ts) 12A: `680312 - dense flint (patent nd=1.68000, vd=31.16; no exact public catalog match)`
+
+### 681472 — 1 occurrence
+
+- [CARL ZEISS JENA FLEKTOGON 50mm f/4](../../src/lens-data/carl-zeiss-jena/ZeissFlektogon50mmf4.data.ts) 10: `681472 class (supplier unresolved)`
 
 ### 682366 — 1 occurrence
 

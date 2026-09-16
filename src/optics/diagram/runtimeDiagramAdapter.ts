@@ -4,14 +4,14 @@
  * Bridges legacy layout arrays to PreparedOpticalState so SVG rendering can use the new diagram geometry module.
  */
 
-import type { ElementRenderDiagnostics, ElementShape, RuntimeLens } from "../../types/optics.js";
+import type { ElementRenderDiagnostics, ElementShape, RuntimeLens, SurfaceAccentPathData } from "../../types/optics.js";
 import { normalizeRuntimeLens } from "../prescription/normalizeLensData.js";
 import { prepareState } from "../state/prepareState.js";
 import type { CompiledStateSurface, PreparedOpticalState } from "../types.js";
 import { createCoordinateTransforms2 } from "./coordinateTransforms.js";
 import { computeElementShapesForState2 } from "./elementShapes.js";
 import { computeElementRenderDiagnosticsForState2 } from "./renderDiagnostics.js";
-import type { DiagramPointTransform2 } from "./surfaceOutline.js";
+import { renderedSurfaceZ2, surfaceMaterialPathD2, type DiagramPointTransform2 } from "./surfaceOutline.js";
 
 export { createCoordinateTransforms2 };
 
@@ -72,5 +72,35 @@ function stateWithDiagramZ2(state: PreparedOpticalState, zPos: readonly number[]
     ...state,
     surfaces: Object.freeze(surfaces),
     z: Object.freeze([...zPos]),
+  });
+}
+
+/** Render reflecting interfaces that are not boundaries of a transmissive glass body. */
+export function computeStandaloneMirrorPaths2(
+  L: RuntimeLens,
+  zPos: number[],
+  sx: (z: number) => number,
+  sy: (y: number) => number,
+  pointTransform?: DiagramPointTransform2,
+): SurfaceAccentPathData[] {
+  if (!L.S.some((surface) => surface.interaction?.type === "reflect")) return [];
+  const boundaries = new Set(L.ES.flatMap(([, front, rear]) => [front, rear]));
+  const state = stateForRuntimeDiagram2(L, zPos);
+  return state.surfaces.flatMap((surface, surfIdx) => {
+    if (surface.interaction.type !== "reflect" || boundaries.has(surfIdx)) return [];
+    const z = renderedSurfaceZ2(surface, surface.sd);
+    const [zz, yy] = pointTransform ? pointTransform(z, surface.sd) : [z, surface.sd];
+    return [
+      {
+        surfIdx,
+        pathD: surfaceMaterialPathD2(state, surfIdx, surface.sd, surface.innerSd ?? 0, sx, sy, pointTransform),
+        labelX: sx(zz),
+        labelY: sy(yy) + 10,
+        kind:
+          surface.interaction.mirrorKind === "second-surface"
+            ? ("second-surface-coating" as const)
+            : ("first-surface-mirror" as const),
+      },
+    ];
   });
 }

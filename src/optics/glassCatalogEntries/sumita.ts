@@ -5,6 +5,16 @@
 import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const SUMITA_GLASS_ENTRIES: readonly GlassEntry[] = [
+  {
+    name: "K-LaK12",
+    vendor: "Sumita",
+    polynomial: [2.7644388, -0.011785176, 0.017957173, 0.00034733134, 0.0000036439617, -0.0000003286378],
+    nd: 1.6779,
+    vd: 55.5,
+    code6: "678555",
+    source:
+      "SUMITA K-LaK12 datasheet, Ver. 14.01.00, https://www.sumita-opt.co.jp/abbe/pdf/k-lak12.pdf; vendor A0-A5 polynomial, accessed 2026-09-16.",
+  },
   /* Phase 87: legacy SK1 recovered during the Pentax Super-Takumar
    * 135mm f/2.5 follow-up glass audit.
    */

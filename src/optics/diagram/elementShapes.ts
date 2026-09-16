@@ -10,6 +10,7 @@ import type { PreparedOpticalState } from "../types.js";
 import {
   renderedSurfaceZ2,
   surfacePathD2,
+  surfaceMaterialPathD2,
   SVG_PATH_SUBDIVISIONS_2,
   type DiagramPointTransform2,
 } from "./surfaceOutline.js";
@@ -56,27 +57,6 @@ export function computeElementShapesForState2(
 
     const surfacePath = (surfaceIndex: number, trim: number): string =>
       surfacePathD2(state, surfaceIndex, trim, sx, sy, pointTransform);
-
-    const surfaceMaterialPath = (surfaceIndex: number, outerTrim: number, innerTrim = 0): string => {
-      const surface = state.surfaces[surfaceIndex];
-      if (!surface) return "";
-
-      const bandInner = Number.isFinite(innerTrim) ? Math.max(0, Math.min(innerTrim, outerTrim)) : 0;
-      if (bandInner <= 0) return surfacePath(surfaceIndex, outerTrim);
-
-      /* Annular coatings are two physical radial bands; split the SVG path so the clear center is not marked silvered. */
-      const segmentCount = Math.max(8, Math.round((SVG_PATH_SUBDIVISIONS_2 * (outerTrim - bandInner)) / outerTrim));
-      const segment = (from: number, to: number): string => {
-        let path = "";
-        for (let i = 0; i <= segmentCount; i++) {
-          const y = from + ((to - from) * i) / segmentCount;
-          path += `${i ? "L" : "M"}${pathPoint(renderedSurfaceZ2(surface, y), y)} `;
-        }
-        return path;
-      };
-
-      return `${segment(-outerTrim, -bandInner)}${segment(bandInner, outerTrim)}`;
-    };
 
     let d = "";
     for (let i = 0; i <= NN; i++) {
@@ -145,7 +125,7 @@ export function computeElementShapesForState2(
         const innerTrim = Math.min(trim, Math.max(0, surface.innerSd ?? 0));
         surfaceAccentPaths.push({
           surfIdx: surfaceIndex,
-          pathD: surfaceMaterialPath(surfaceIndex, trim, innerTrim),
+          pathD: surfaceMaterialPathD2(state, surfaceIndex, trim, innerTrim, sx, sy, pointTransform),
           labelX,
           labelY: labelY + 10,
           kind: "second-surface-coating",

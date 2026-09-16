@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **753** lenses scanned
-- **1699** total code-only elements found
-- **1699** elements in this report
-- **266** distinct lens files affected
+- **761** lenses scanned
+- **1704** total code-only elements found
+- **1704** elements in this report
+- **268** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -181,6 +181,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 673322 | 2 | 2 | patents/JP_H0219814_A.pdf<br>patents/JP2012181525A.pdf | No review-record hit |
 | 678553 | 2 | 2 | patents/US6115188.pdf<br>patents/JPA 1979030821-000000.pdf | No review-record hit |
 | 678555 | 2 | 2 | patents/CN_121091494_A.pdf<br>patents/JPA 1975110330-000000.pdf | No review-record hit |
+| 682419 | 2 | 1 | patents/DE_1157000_B.pdf | No review-record hit |
 | 690570 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
 | 691548 | 2 | 2 | patents/US20240295723A1.pdf<br>patents/CN211955966U.pdf | No review-record hit |
 | 713538 | 2 | 1 | patents/JP_H11211978_A.pdf | No review-record hit |
@@ -310,7 +311,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 676440 | 1 | 1 | patents/US7542219.pdf | All rows explicitly disposed |
 | 678314 | 1 | 1 | patents/US20100208366A1.pdf | All rows explicitly disposed |
 | 678322 | 1 | 1 | patents/WO2021200206A1.pdf | All rows explicitly disposed |
+| 678508 | 1 | 1 | patents/GB_978797_A.pdf | All rows explicitly disposed |
 | 680312 | 1 | 1 | patents/JP2015041012A.pdf | All rows have review records |
+| 681472 | 1 | 1 | patents/DE_1157000_B.pdf | No review-record hit |
 | 682366 | 1 | 1 | Missing from untracked local patents/ references (US4518229, 4518229) | All rows have review records |
 | 682575 | 1 | 1 | patents/US7542219.pdf | All rows explicitly disposed |
 | 683309 | 1 | 1 | patents/US2983193.pdf | All rows explicitly disposed |
@@ -332,6 +335,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 721334 | 1 | 1 | Missing from untracked local patents/ references (US4786152, 4786152) | All rows have review records |
 | 722292 | 1 | 1 | patents/US20130088622A1.pdf | No review-record hit |
 | 728261 | 1 | 1 | patents/US4523816.pdf | All rows explicitly disposed |
+| 728380 | 1 | 1 | patents/GB_978797_A.pdf | All rows explicitly disposed |
 | 728403 | 1 | 1 | patents/US6560042.pdf | All rows explicitly disposed |
 | 729545 | 1 | 1 | patents/US10168507.pdf | No review-record hit |
 | 730262 | 1 | 1 | patents/JP2021076829A.pdf | All rows explicitly disposed |
@@ -1122,6 +1126,21 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L3 (Element III) | 4 | `689311 — dense-flint class (supplier unresolved)` | 1.68890 / 31.10 | S-TIM28 (trusted Sellmeier) | sellmeier | patents/US2968221.pdf | No review-record hit |
 | L4 (Element IV) | 6 | `728283 — dense-flint class (supplier unresolved)` | 1.72830 / 28.30 | H-ZF4A (trusted Sellmeier) | sellmeier | patents/US2968221.pdf | No review-record hit |
 | L5 (Element V) | 8 | `620603 — crown class (supplier unresolved)` | 1.62040 / 60.30 | N-SK16 (trusted Sellmeier) | sellmeier | patents/US2968221.pdf | No review-record hit |
+
+### [CARL ZEISS JENA FLEKTOGON 20mm f/4](../../src/lens-data/carl-zeiss-jena/ZeissFlektogon20mmf4.data.ts) - GB 978,797
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L6 (Element 6) | 10 | `Unmatched (728380; nearest current dense-barium-flint family outside Δn=0.003)` | 1.72800 / 38.00 | No catalog entry | abbe | patents/GB_978797_A.pdf | Explicit disposition in data |
+| L10 (Element 10) | 15 | `Unmatched (678508; no coordinate-compatible current catalog glass located)` | 1.67800 / 50.80 | No catalog entry | abbe | patents/GB_978797_A.pdf | Explicit disposition in data |
+
+### [CARL ZEISS JENA FLEKTOGON 50mm f/4](../../src/lens-data/carl-zeiss-jena/ZeissFlektogon50mmf4.data.ts) - DE 1 157 000
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L3 (Element 3) | 4 | `682419 class (supplier unresolved)` | 1.68169 / 41.90 | No catalog entry | abbe | patents/DE_1157000_B.pdf | No review-record hit |
+| L4 (Element 4) | 6 | `682419 class (supplier unresolved)` | 1.68169 / 41.90 | No catalog entry | abbe | patents/DE_1157000_B.pdf | No review-record hit |
+| L7 (Element 7) | 10 | `681472 class (supplier unresolved)` | 1.68078 / 47.20 | No catalog entry | abbe | patents/DE_1157000_B.pdf | No review-record hit |
 
 ### [CARL ZEISS JENA PANCOLAR 50mm f/2](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPancolar50mmf2.data.ts) - GB 850,117
 
@@ -3303,7 +3322,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L1 (Element 1) | 1 | `923209 class` | 1.92000 / 20.90 | E-FDS1 (trusted Sellmeier) | sellmeier | patents/CN_121091494_A.pdf | No review-record hit |
 | L3 (Element 3) | 5 | `592683 class` | 1.59000 / 68.30 | K-GFK68 (trusted Sellmeier) | sellmeier | patents/CN_121091494_A.pdf | No review-record hit |
 | L4 (Element 4) | 6 | `648338 class` | 1.65000 / 33.80 | H-ZF1 (trusted Sellmeier) | sellmeier | patents/CN_121091494_A.pdf | No review-record hit |
-| L5 (Element 5) | 8 | `678555 class` | 1.68000 / 55.50 | LAC12 (trusted Sellmeier) | sellmeier | patents/CN_121091494_A.pdf | No review-record hit |
+| L5 (Element 5) | 8 | `678555 class` | 1.68000 / 55.50 | K-LaK12 (trusted Sellmeier) | sellmeier | patents/CN_121091494_A.pdf | No review-record hit |
 | L6 (Element 6) | 9 | `670472 class` | 1.67000 / 47.20 | H-ZBaF52 (trusted Sellmeier) | sellmeier | patents/CN_121091494_A.pdf | No review-record hit |
 | L7 (Element 7) | 12 | `459902 class` | 1.46000 / 90.20 | FCD10A (trusted Sellmeier) | sellmeier | patents/CN_121091494_A.pdf | No review-record hit |
 | L8 (Element 8) | 13 | `001254 class` | 2.00000 / 25.40 | H-ZLaF90 (trusted Sellmeier) | sellmeier | patents/CN_121091494_A.pdf | No review-record hit |

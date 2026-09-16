@@ -19,6 +19,21 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-09-16",
+    type: "lens",
+    summary: "Added Zeiss Flektogon 20mm and 50mm f/4 and Prakticar 50mm f/1.4 patent designs",
+  },
+  {
+    date: "2026-09-16",
+    type: "lens",
+    summary: "Added Zeiss Planar 80mm f/2.8 6×6 and Graflex XL designs and Mirotar 500mm f/4.5",
+  },
+  {
+    date: "2026-09-16",
+    type: "lens",
+    summary: "Added Leica Summicron 35mm f/2 I and Summilux-M 35mm f/1.4 patent models",
+  },
+  {
     date: "2026-09-15",
     type: "lens",
     summary: "Added Leica Summicron-C 40mm f/2 and Macro-Elmar-M 90mm f/4 patent designs",

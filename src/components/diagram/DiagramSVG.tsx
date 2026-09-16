@@ -10,8 +10,9 @@
  * state or side effects. Interaction callbacks (onHover, onSelect) are passed
  * through from the parent LensDiagramPanel.
  */
-import { memo } from "react";
+import { memo, useMemo } from "react";
 import usePrefersReducedMotion from "../../utils/usePrefersReducedMotion.js";
+import { computeStandaloneMirrorPaths } from "../../optics/diagramGeometry.js";
 import DiagramDefs from "./DiagramDefs.js";
 import DiagramElementLayer from "./DiagramElementLayer.js";
 import DiagramGridAxisLayer from "./DiagramGridAxisLayer.js";
@@ -158,6 +159,10 @@ const DiagramSVG = memo(function DiagramSVG({
   onSvgTouchEnd,
   isPanning,
 }: DiagramSVGProps) {
+  const standaloneMirrors = useMemo(
+    () => computeStandaloneMirrorPaths(L, zPos, sx, sy, movementTransform?.point),
+    [L, zPos, sx, sy, movementTransform],
+  );
   const zoomCursor = zoomPanActive ? (isPanning ? "grabbing" : "grab") : undefined;
   const reducedMotion = usePrefersReducedMotion();
 
@@ -239,6 +244,7 @@ const DiagramSVG = memo(function DiagramSVG({
         showChromatic={showChromatic}
       />
       <DiagramElementLayer
+        standaloneMirrors={standaloneMirrors}
         lens={L}
         shapes={shapes}
         theme={t}
