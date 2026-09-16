@@ -48,6 +48,7 @@ const SOURCES = {
   ricohHistory: "https://www.ricoh.com/about/history",
   ricohPentaxAcquisition: "https://www.ricoh.com/-/Media/Ricoh/Sites/com/release/2011/pdf/1001.pdf",
   ricohImagingRename: "https://www.ricoh-imaging.co.jp/japan/news/2013/20130702.html",
+  samsungElectroMechanicsHistory: "https://www.samsungsem.com/global/newsroom/news/view.do?id=613",
   samsungMerger: "https://www.samsung.com/global/ir/reports-disclosures/public-disclosure-view.70398/",
   schneiderHistory: "https://schneiderkreuznach.com/en/company/about-us/history",
   sonyReorganization: "https://www.sony.com/en/SonyInfo/News/Press/202005/20-039E/",
@@ -618,6 +619,16 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
         effectiveFrom: "2009",
         effectiveTo: "2010-04-01",
         sourceUrl: SOURCES.samsungMerger,
+      },
+    ],
+  },
+  "Samsung Electro-Mechanics Co., Ltd.": {
+    corporateFamily: [
+      {
+        family: "Samsung",
+        effectiveFrom: "1973-08",
+        sourceUrl: SOURCES.samsungElectroMechanicsHistory,
+        note: "Founded as Samsung Sanyo Parts through a joint investment including Samsung Electronics; renamed Samsung Electro-Mechanics in 1987. This family link preserves the distinct patent assignee and does not assert a merger or subsidiary relationship.",
       },
     ],
   },
