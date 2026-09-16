@@ -40,3 +40,11 @@ Display labels distinguish the FR and US patent records without implying differe
 Companion analysis now lists the actual runtime glass curves and preserves source-versus-model limitations.
 
 The front rim is retained at 13 mm rather than the drawing-only estimate: the modeled f/1.4 entrance-pupil radius is 12.5511 mm. A literal 11.3 mm rim clips the on-axis marginal bundle. The 13 mm choice balances the patent outline with the modeled aperture.
+
+## 2026-09-16 — Consolidation of duplicate patent-family entries
+
+Rechecked FR 1.233.449 PDF p. 1 and US 2,975,673 PDF pp. 1–2. FR filing (24 August 1959) precedes US filing (26 August 1959); FR publication (12 October 1960) precedes US grant (21 March 1961). Both share German priority of 30 August 1958. France granted its patent on 2 May 1960.
+
+Both Example 1 tables give the same radii, spacings, indices, aperture ratio and field; L7's printed Abbe value differs (FR 47.69, US 47.59). Retain the French value as the primary source and preserve the discrepancy in the analysis. The US diaphragm drawing and inventor metadata supplement the same model, not a second catalog lens.
+
+Retain `leica-summilux-m-35f14`, remove the source-edition suffix from its name, carry over explicit `apertureDesign: 1.4`, and redirect the retired US-based URL. Preserve the French-based inferred stop and SDs: its sampled on-axis rays at 95%, 99%, and 100% pupil radius pass; the former US model clipped near-marginal rays at surface 5. Neither stop split is a published dimension. Four of seven elements retain catalog dispersion proxies; the three unresolved e-line elements remain unresolved.

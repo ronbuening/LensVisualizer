@@ -20,6 +20,11 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-09-16",
+    type: "fix",
+    summary: "Consolidated duplicate Summilux-M 35mm f/1.4 patent records into one lens",
+  },
+  {
+    date: "2026-09-16",
     type: "lens",
     summary: "Added Zeiss Flektogon 20mm and 50mm f/4 and Prakticar 50mm f/1.4 patent designs",
   },

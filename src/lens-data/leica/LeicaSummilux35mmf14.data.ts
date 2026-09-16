@@ -3,6 +3,8 @@ import type { LensDataInput } from "../../types/optics.js";
 /**
  * LENS DATA — LEICA SUMMILUX-M 35mm f/1.4
  * Data source: FR 1.233.449, Example 1 / Tableau 1 (fig. 1).
+ * Corroborating family source: US 2,975,673, Table 1 / Fig. 1.
+ * L7 retains FR νe = 47.69; US prints 47.59 (unresolved source discrepancy).
  * Strongly correlated to the 1961 Summilux-M 35 f/1.4 optical design, but
  * the patent-to-production attribution is not manufacturer-confirmed.
  * 7 elements / 5 air-separated groups, all spherical.
@@ -33,14 +35,15 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "leica-summilux-m-35f14",
   maker: "Leica",
-  name: "LEICA SUMMILUX-M 35mm f/1.4 (FR patent)",
+  name: "LEICA SUMMILUX-M 35mm f/1.4",
   subtitle:
-    "FR 1.233.449 Example 1 — strong correlation to the 1961 Summilux-M 35 f/1.4; attribution not manufacturer-confirmed",
+    "FR 1.233.449 / US 2,975,673 Example 1 — strong correlation to the 1961 Summilux-M 35 f/1.4; attribution not manufacturer-confirmed",
   specs: ["7 ELEMENTS / 5 GROUPS", "f = 35.143 mm MODELED", "f/1.4 CALIBRATED STOP", "2ω = 64° PATENT"],
 
   focalLengthMarketing: 35,
   focalLengthDesign: 35.14317682867564,
   apertureMarketing: 1.4,
+  apertureDesign: 1.4,
   lensMounts: ["leica-m"],
   imageFormat: "135-full-frame",
   patentNumber: "FR 1.233.449",

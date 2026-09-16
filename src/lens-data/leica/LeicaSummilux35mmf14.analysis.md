@@ -3,6 +3,7 @@
 **Patent:** FR 1.233.449  
 **Priority:** 30 August 1958 (Federal Republic of Germany)  
 **Filed in France:** 24 August 1959  
+**Granted in France:** 2 May 1960<br>
 **Published:** 12 October 1960  
 **Inventors:** Walter Mandler; Erich Wagner  
 **Applicant:** Ernst Leitz Canada Limited  
@@ -28,7 +29,22 @@ Leica statement naming this patent:
    reissue. [1, p. 1][3] These values are close but not identical and are treated as corroborating, not identity-defining,
    evidence.
 
-The FR and US catalog records describe corresponding patent-family designs with publication-specific glass values and inferred stop positions; their labels identify the source edition.
+### Patent-family consolidation
+
+One catalog entry represents Example 1 in both publications. The French application was filed on 24 August 1959,
+two days before the US filing on 26 August 1959. France granted the patent on 2 May 1960 and published it on
+12 October 1960; the US patent was granted on 21 March 1961. Both claim German priority of 30 August 1958. [1][5]
+
+Neither publication supplies a more complete numerical optical prescription: both give the same twelve radii,
+seven element thicknesses, air spaces, refractive indices, f/1.4 opening ratio, and 64° field. The US figure explicitly
+labels diaphragm D and supplies the inventors' given names. Neither gives numerical clear semi-diameters, an exact
+axial diaphragm position, a physical stop radius, or a focus law. [1][5]
+
+The French table is the retained numerical source. Its final element has $ν_e=47.69$, whereas US Table 1 prints
+$ν_e=47.59$ at the same $n_e=1.72056$. This is a printed source discrepancy, not evidence of a separate production
+lens or a resolved transcription error. The model preserves 47.69 and documents 47.59 without averaging them.
+The former US catalog entry used a different inferred stop split and rim set; those assumptions do not make its
+source prescription more complete. The retained French-based aperture model passes the sampled full on-axis pupil.
 
 The data therefore identifies the model as a strong correlation to the 1961 Summilux-M 35 f/1.4 optical design, not as a
 manufacturer-confirmed patent attribution.
@@ -97,7 +113,7 @@ comparison (catalog minus patent: $\Delta n_e=-0.00006$, $\Delta\nu_e=+0.12$). T
 
 L4 is the isolated converging meniscus placed immediately behind the modeled diaphragm region and ahead of the second
 cemented negative assembly. Its standalone focal length is 2.2794 times the computed 35.1432 mm total EFL, satisfying the
-patent requirement that this element's focal length exceed that of the complete objective. The patent makes the geometry
+patent requirement that this element's focal length exceed that of the complete objective. Relative to the patent's nominal 35 mm scale, the ratio is 2.28873; the denominator explains the difference. The patent makes the geometry
 of this meniscus and its relationship to the following negative meniscus central to the stated field-curvature
 correction. [1, pp. 1-2]
 
@@ -185,12 +201,10 @@ The modeled STO produces an entrance-pupil radius of **12.5511346 mm** and hence
 stop semi-diameter was solved from the f/1.4 target, this agreement is explicitly a calibration and not an independent
 verification of the unpublished physical stop diameter.
 
-Portable geometry checks found positive shared-band edge thickness for all seven physical elements, a maximum spherical
-rim-slope angle of **63.8828°** on surface 5, and positive separation in every checked air gap. Exact meridional rays pass
-all authored apertures for the full sampled on-axis pupil, dense ±9.6° and ±19.2° bundles over the authored pupil range,
-and the ±32° chief rays. Full-pupil illumination at 32° is not claimed. These checks support the modeled semi-diameters
-for the sampled states; they do not replace LensVisualizer's production render-trim or runtime validation, which require
-the project repository.
+The retained aperture model was checked with the repository surface and image-circle audits. Exact on-axis rays at
+95%, 99%, and 100% of the modeled entrance-pupil radius pass the authored apertures. These checks do not establish
+full-pupil off-axis illumination; the earlier dossier's dense field-bundle claims have not been revalidated for the
+revised rim set. The semi-diameters and stop position remain inferred model choices.
 
 ## Sources / References
 
@@ -208,8 +222,9 @@ the project repository.
    https://www.cdgmgd.com/accessory/2021-11-18/client/www.cdgmgd.com/f44bac33-96f4-4f40-a15d-54061708cbaa.pdf
 
 5. **United States Patent 2,975,673**, *High Aperture Photographic Objective*, Walter Mandler and Erich Wagner; filed
-   26 August 1959; claims German priority of 30 August 1958; assigned to Ernst Leitz Canada Ltd. Used only to normalize
-   the inventor given names and corroborate the patent-family identity.
+   26 August 1959; granted 21 March 1961; claims German priority of 30 August 1958; assigned to Ernst Leitz Canada Ltd.
+   Supplied scan: Fig. 1 on PDF p. 1, Table 1 on PDF p. 2. Corroborates the prescription, diaphragm region,
+   inventor given names, and patent-family identity; Table 1 prints the differing final-element Abbe value 47.59.
    https://patents.google.com/patent/US2975673A/en
 6. **SCHOTT**, optical-glass data sheet for **N-SF15**. Current e-line coordinates $n_e=1.70438$, $\nu_e=29.96$; used
    only as a coordinate-near comparison to patent L3, not as a historical glass assignment.
