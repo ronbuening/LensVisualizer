@@ -74,7 +74,7 @@ catalog is being backfilled, but when present it must be a non-empty array of un
 | `pentax-645` | Pentax 645 | Pentax 645 medium-format SLR mount; usually pairs with `645`. |
 | `pentax-67` | Pentax 67 | Pentax 6x7 / 67 medium-format SLR mount; usually pairs with `6x7`. |
 | `pentax-k` | Pentax K | Pentax K mount family. |
-| `pentax-q` | Pentax Q | Pentax Q mirrorless mount; usually pairs with `1/2.3-inch-type` or `1/1.7-inch-type`. |
+| `pentax-q` | Pentax Q | Pentax Q mirrorless mount; usually pairs with `1-2.3-inch-type` or `1-1.7-inch-type`. |
 | `praktina` | Praktina | Praktina bayonet mount; usually pairs with `135-full-frame`. |
 | `rollei-6000` | Rollei 6000 | Rolleiflex 6000-series medium-format mount; usually pairs with `6x6`. |
 | `rollei-qbm` | Rollei QBM | Rolleiflex SL35 / Voigtlander VSL mount; usually pairs with `135-full-frame`. |
@@ -99,8 +99,8 @@ in distortion, vignetting, bokeh, and aberration analysis.
 | ID | Display Label | Width x Height (mm) | Diagonal (mm) | Aspect Ratio |
 |----|---------------|---------------------|---------------|--------------|
 | `110` | 110 | 17 x 13 | 21.4 | 17:13 |
-| `1/2.3-inch-type` | 1/2.3-inch type | 6.17 x 4.55 | 7.67 | about 4:3 |
-| `1/1.7-inch-type` | 1/1.7-inch type | 7.44 x 5.58 | 9.3 | 4:3 |
+| `1-2.3-inch-type` | 1/2.3-inch type | 6.17 x 4.55 | 7.67 | about 4:3 |
+| `1-1.7-inch-type` | 1/1.7-inch type | 7.44 x 5.58 | 9.3 | 4:3 |
 | `1-inch-type` | 1-inch type / Nikon CX | 13.2 x 8.8 | 15.86 | 3:2 |
 | `four-thirds` | Four Thirds | 17.3 x 13 | 21.64 | 4:3 |
 | `aps-c` | APS-C | 23.6 x 15.7 | 28.35 | about 3:2 |
@@ -124,7 +124,7 @@ in distortion, vignetting, bokeh, and aberration analysis.
 - Prefer official product specs, patent examples, or documented production variants over filename inference.
 - Multi-mount lenses should list every known production mount represented by the same optical formula.
 - Fixed-lens cameras should use `lensMounts: ["fixed-lens-camera"]` plus the appropriate `imageFormat`.
-- Use `1/2.3-inch-type` or `1/1.7-inch-type` for Pentax Q lenses when the source format is known.
+- Use `1-2.3-inch-type` or `1-1.7-inch-type` for Pentax Q lenses when the source format is known.
 - Use `1-inch-type` for Nikon 1 / CX-format lenses.
 - Use `four-thirds` for both Four Thirds DSLR and Micro Four Thirds lenses.
 - Use `aps-c` for Canon EF-M, Samsung NX, Fujifilm X, and most Sigma SA digital lenses unless the source explicitly

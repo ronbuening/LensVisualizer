@@ -26,7 +26,6 @@ const FrontRearDefocusDiagram = memo(function FrontRearDefocusDiagram({ isDark }
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 640 320"
       width="100%"
-      height="auto"
       role="img"
       aria-label="Foreground and background blur disks under undercorrection and overcorrection"
     >

@@ -65,7 +65,7 @@ const LENS_DATA = {
   apertureMarketing: 2.8,
   apertureDesign: 2.8,
   lensMounts: ["pentax-q"],
-  imageFormat: "1/1.7-inch-type",
+  imageFormat: "1-1.7-inch-type",
   patentNumber: "US 8,824,059 B2",
   patentAuthors: ["Koji Kato", "Masakazu Saori"],
   patentAssignees: ["Pentax Ricoh Imaging Company, Ltd."],

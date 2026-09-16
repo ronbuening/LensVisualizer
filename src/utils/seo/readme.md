@@ -9,6 +9,7 @@ Generated `readme.md` and `improvementsuggestions.md` files are intentionally om
 ```mermaid
 flowchart LR
   subgraph n_src_utils_seo["src/utils/seo"]
+    n_src_utils_seo_src_utils_seo_prerenderedHead_ts["prerenderedHead.ts"]
     n_src_utils_seo_src_utils_seo_serializeJsonLd_ts["serializeJsonLd.ts"]
     n_src_utils_seo_src_utils_seo_siteUrls_ts["siteUrls.ts"]
     n_src_utils_seo_src_utils_seo_structuredData_ts["structuredData.ts"]
@@ -24,15 +25,16 @@ flowchart LR
 
 ## Directory Overview
 
-- Direct source files: 3
+- Direct source files: 4
 - Direct subfolders: 0
 - Main outbound areas: same folder, src/components/SEOHead.tsx, src/generated, src/utils/catalog
-- External consumers: src/comparison, src/components/content, src/components/homepage, src/components/layout, src/components/markdown, src/components/search, src/components/SEOHead.tsx, src/pages/ArticlePage.tsx, +21 more
+- External consumers: src/comparison, src/components/content, src/components/homepage, src/components/layout, src/components/markdown, src/components/PrerenderedHeadCleanup.tsx, src/components/search, src/components/SEOHead.tsx, +23 more
 
 ## Files
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
+| `prerenderedHead.ts` | Prerendered Head helper module | none | src/components/PrerenderedHeadCleanup.tsx, src/entry-server.tsx | PRERENDERED_HEAD_ATTRIBUTE, markPrerenderedHeadTags, removePrerenderedHeadTags |
 | `serializeJsonLd.ts` | Serialize Json Ld helper module | src/components/SEOHead.tsx | src/components/SEOHead.tsx | serializeJsonLd |
 | `siteUrls.ts` | Site Urls helper module | none | src/components/content (4), src/components/homepage (3), src/components/layout (3), src/utils/catalog (3), src/comparison (2), +10 more | SITE_URL, canonicalPagePath, canonicalPageUrl, normalizeSitePageUrl |
 | `structuredData.ts` | Structured Data helper module | same folder, src/generated, src/utils/catalog | src/pages/ArticlePage.tsx, src/pages/ArticlesPage.tsx, src/pages/AuthorPage.tsx, src/pages/AuthorsIndexPage.tsx, src/pages/FormatPage.tsx, +13 more | ListItemEntry, BreadcrumbEntry, publisherJsonLd, websiteJsonLd, webApplicationJsonLd, datasetJsonLd, collectionPageJsonLd, itemListJsonLd, +4 more |

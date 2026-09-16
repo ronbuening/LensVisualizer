@@ -60,7 +60,7 @@ const LENS_DATA = {
   apertureMarketing: 2.8,
   apertureDesign: 2.90063,
   lensMounts: ["fixed-lens-camera"],
-  imageFormat: "1/2.3-inch-type",
+  imageFormat: "1-2.3-inch-type",
   patentNumber: "US 2015/0103211 A1",
   patentAuthors: ["Takakazu Bito", "Hiroaki Suzuki", "Yoshiaki Kurioka", "Yusuke Yonetani"],
   patentAssignees: ["Panasonic Intellectual Property Management Co., Ltd."],

@@ -4,6 +4,11 @@
  * Lens data files store stable ids from this module rather than free-typed
  * display labels. That keeps catalog filters and image-field analysis working
  * from the same vocabulary.
+ *
+ * Mount and image-format ids also become `/mounts/:mountId` and
+ * `/formats/:formatId` route params, so each id must be a single URL path
+ * segment (lowercase slug, no "/"). Renaming an id needs a 301 in
+ * `public/_redirects` for the old page URL.
  */
 
 export const LENS_MOUNTS = [
@@ -107,7 +112,7 @@ export const IMAGE_FORMATS = [
     sortOrder: 100,
   },
   {
-    id: "1/2.3-inch-type",
+    id: "1-2.3-inch-type",
     label: "1/2.3-inch type",
     widthMm: 6.17,
     heightMm: 4.55,
@@ -116,7 +121,7 @@ export const IMAGE_FORMATS = [
     sortOrder: 120,
   },
   {
-    id: "1/1.7-inch-type",
+    id: "1-1.7-inch-type",
     label: "1/1.7-inch type",
     widthMm: 7.44,
     heightMm: 5.58,

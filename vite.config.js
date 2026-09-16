@@ -4,6 +4,11 @@ import { configDefaults, defineConfig } from "vitest/config";
 export default defineConfig(({ isSsrBuild }) => ({
   plugins: [react()],
   base: "/",
+  /* Cloudflare Pages (CF_PAGES=1) has dropped the ~900-line per-asset build
+   * listing mid-stream and then failed the build stage with "an internal error
+   * occurred", so keep the client build quiet there. Warnings and errors still
+   * print; GitHub Actions and local builds keep the full listing. */
+  logLevel: process.env.CF_PAGES ? "warn" : undefined,
   /* Honor an externally assigned dev-server port (e.g. preview tooling); Vite ignores PORT by default. */
   server: process.env.PORT ? { port: Number(process.env.PORT) } : undefined,
   build: {

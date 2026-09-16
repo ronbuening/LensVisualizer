@@ -13,7 +13,6 @@ const CausticDiagram = memo(function CausticDiagram({ isDark }: { isDark: boolea
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 640 260"
       width="100%"
-      height="auto"
       role="img"
       aria-label="Caustic diagram: pupil zones crossing the axis at different positions"
     >

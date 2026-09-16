@@ -82,6 +82,10 @@ The app uses React Router 8 with client-side routing plus static prerendering fo
 - `entry-server.tsx` exports `render(url): { html, helmet }` using `StaticRouter`. With React 19,
   `react-helmet-async` emits native metadata elements; the server entry separates React's hoisted title/meta/link tags
   and JSON-LD scripts from the body while preserving the existing structured prerender contract.
+- Every head tag the server entry emits is stamped with `data-prerender-head` (`src/utils/seo/prerenderedHead.ts`).
+  `main.tsx` mounts with `createRoot`, not hydration, so React 19 hoists a fresh title/meta/canonical set into
+  `<head>`; `PrerenderedHeadCleanup` removes the stamped static copies in a layout effect after the first commit, so
+  the post-boot document has exactly one of each while non-JS clients still get the full prerendered head.
 - `scripts/generate-build-metadata.mjs` expands the concrete prerender route list into
   `src/generated/build-metadata.json`, including homepage, search, lens, patent, author, maker, mount, format, article,
   and update routes.

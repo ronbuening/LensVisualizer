@@ -35,6 +35,9 @@ Non-obvious constraints and failure modes: one trap per bullet, with the full ru
 - `scripts/prerender.mjs` validates that every route pattern in `src/routes/routeManifest.tsx` is covered by
   `src/generated/build-metadata.json`; a new pattern without a `scripts/generate-build-metadata.mjs` update fails the
   build. Client-only patterns (e.g. `/compare/:slugA/:slugB`) are exempt via `CLIENT_ONLY_PATTERNS`.
+- Cloudflare silently drops any `public/_redirects` rule whose source ends in `/*` and whose target ends in `/index`
+  or `/index.html`: its parser logs "Infinite loop detected" and ignores the line. The compare fallback targets `/`
+  for this reason; see the comment in `public/_redirects` before changing it.
 - `vite.config.js` sets `base: '/'`; Cloudflare Pages serves production from the domain root.
 - `tsconfig.json` is `strict: true` with `allowJs: false`; `.data.ts` lens files are type-checked through the `"src"`
   include. Test files are `.ts`, and Vitest resolves `.js` import specifiers to `.ts` sources automatically.
@@ -55,3 +58,6 @@ Non-obvious constraints and failure modes: one trap per bullet, with the full ru
   `useOverlayState.ts` is the only overlay outside the URL-shareable `panels` slice
   (`agent_docs/architecture/viewer-and-diagram.md`).
 - New analysis tabs: `agent_docs/adding_an_analysis_tab.md`. New URL-shareable fields: `agent_docs/adding_url_state.md`.
+- Mount and image-format ids are single `:param` route segments (`/mounts/:mountId`, `/formats/:formatId`). An id with a
+  `/` never matches, so the prerender emits a noindex Page Not Found and `seo-audit` reports a missing canonical. The
+  slug rule lives in `src/utils/catalog/lensTaxonomy.ts` and is guarded by `lensTaxonomy.test.ts`.

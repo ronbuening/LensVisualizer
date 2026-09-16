@@ -22,14 +22,14 @@ export const IMAGE_FORMAT_DETAILS: Record<ImageFormatId, ImageFormatDetails> = {
     description:
       "The 110 format was introduced for pocket cameras, using cartridge film to make loading simple and camera bodies extremely compact. The exposed image is only 17 x 13 mm in this catalog's reference geometry, so even a lens that covers the whole frame can use a much smaller image circle than a 35 mm still-camera lens. That is why 110 cameras and systems such as Pentax Auto 110 could put interchangeable optics into bodies that feel closer to compact cameras than conventional SLRs.\n\nOptically, 110 designs operate in a very different scale from 35 mm systems. Focal lengths are short, entrance pupils are small for a given f-number, and depth of field is naturally deep at equivalent angles of view. Designers can keep lenses physically tiny, but the small negative also asks a lot from film grain, manufacturing tolerances, and alignment. In this catalog, 110-format lenses are useful for seeing how familiar optical formulas shrink when the capture area becomes much smaller than full-frame.",
   },
-  "1/2.3-inch-type": {
+  "1-2.3-inch-type": {
     commonUses: "Small-sensor compact cameras, superzooms, action cameras, and early Pentax Q bodies",
     coverageNotes: "6.17 x 4.55 mm sensor with a 7.67 mm diagonal",
     summary: "A very small digital still-camera sensor class used where pocketable bodies and long zoom ranges matter.",
     description:
       "The 1/2.3-inch type format is much smaller than its name suggests. The inch-type label comes from older video tube naming conventions, not from the sensor's physical diagonal; in this catalog it maps to a 6.17 x 4.55 mm active area. That tiny frame made it common in compact cameras and long-range superzooms, where manufacturers could pair very short focal lengths with lenses that delivered dramatic equivalent zoom ranges in a small body.\n\nOptically, this format pushes lens design toward miniature scale. Image circles are small, focal lengths are extremely short, and depth of field is deep even at relatively bright f-numbers. The tradeoff is that diffraction, sensor pixel density, manufacturing tolerances, and alignment become more visible limits. When catalog entries use this format, they show how photographic lens formulas behave when the capture area is closer to compact-camera territory than interchangeable-lens still systems.",
   },
-  "1/1.7-inch-type": {
+  "1-1.7-inch-type": {
     commonUses: "Premium compact cameras and later small-sensor interchangeable-lens compacts",
     coverageNotes: "7.44 x 5.58 mm sensor with a 9.3 mm diagonal",
     summary: "A premium compact-camera sensor class slightly larger than the common 1/2.3-inch type format.",
