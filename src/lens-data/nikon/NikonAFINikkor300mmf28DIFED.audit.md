@@ -1,6 +1,6 @@
 # Nikon AF-I NIKKOR 300mm f/2.8D IF-ED Patent Audit
 
-Patent: JPH04294310A, Example 1
+Patent: JP H04-294310 A, Example 1
 
 ## 2026-08-18 — Initial integration audit
 

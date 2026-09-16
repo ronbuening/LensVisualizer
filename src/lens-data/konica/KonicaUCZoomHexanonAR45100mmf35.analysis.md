@@ -1,6 +1,6 @@
 ## Patent Reference and Design Identification
 
-**Patent:** JPS5134741A (特開昭51-34741)\
+**Patent:** JP S51-34741 A (特開昭51-34741)\
 **Application Number:** JP10796874A\
 **Filed:** 1974-09-19\
 **Published:** 1976-03-24\
@@ -9,7 +9,7 @@
 **Title:** 準広角ズームレンズ (approximately “quasi-wide-angle zoom lens”)\
 **Embodiment analyzed:** Example 1
 
-The LensVisualizer prescription corresponds to Example 1 of JPS5134741A and is presented as the selected production
+The LensVisualizer prescription corresponds to Example 1 of JP S51-34741 A and is presented as the selected production
 correlation for the **KONICA UC ZOOM HEXANON AR 45–100mm f/3.5**. The primary Japanese publication scan controls the
 historical applicant attribution: its front page names 小西六写真工業株式会社, normalized in the data file as
 Konishiroku Photo Industry Co., Ltd. The searchable Google Patents record is useful for dates and inventor metadata, but
@@ -292,10 +292,10 @@ rescaled or otherwise altered.
 
 ## Sources / References
 
-- **JPS5134741A**, 準広角ズームレンズ, Tadashi Kojima, applicant 小西六写真工業株式会社, published 1976-03-24.
+- **JP S51-34741 A**, 準広角ズームレンズ, Tadashi Kojima, applicant 小西六写真工業株式会社, published 1976-03-24.
   Original 12-page Japanese publication scan supplied with the lens-patent job. Example 1 prescription and component data
   are on the numerical-example pages; Fig. 1 on the patent drawing page shows the four-component layout and diaphragm
-  between C3 and C4. Searchable metadata cross-check: <https://patents.google.com/patent/JPS5134741A/ja>.
+  between C3 and C4. Searchable metadata cross-check: <https://patents.google.com/patent/JP S51-34741 A/ja>.
 - **Konica, UC HEXANON lenses leaflet**, section “UC ZOOM HEXANON AR 45-100mm.” The manufacturer literature gives the
   marketed 45–100 mm identity, f/3.5, 10 groups / 11 elements, 52°–24° taking angle, 0.35 m closest distance, 55 mm
   filter, pull-out hood, and 570 g weight. Archival scan: <https://cameramanuals.org/lenses/konica_uc_hexanon_lenses.pdf>.

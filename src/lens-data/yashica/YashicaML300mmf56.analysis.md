@@ -2,7 +2,7 @@
 
 ## Patent Reference and Design Identification
 
-**Patent:** JP1978-129629 (特開昭53-129629)<br>
+**Patent:** JP 1978-129629 (特開昭53-129629)<br>
 **Application Number:** 特願昭52-44124<br>
 **Filed:** 19 April 1977<br>
 **Published:** 11 November 1978<br>
@@ -11,7 +11,7 @@
 **Title:** 全長の短い望遠レンズ (“telephoto lens with short overall length”)
 **Embodiment analyzed:** Example 2 (実施例2)
 
-JP1978-129629 describes a compact six-element telephoto objective and supplies three numerical examples. The
+JP 1978-129629 describes a compact six-element telephoto objective and supplies three numerical examples. The
 LensVisualizer entry fixes Example 2 as the prescription correlated with the production **YASHICA ML 300mm f/5.6**.
 The correlation is strong but inferential: neither the patent nor the period Yashica material explicitly states that
 Example 2 became this production lens. [1]
@@ -177,7 +177,7 @@ match into an unsupported historical-material claim.
 
 ## Focus Mechanism
 
-The production lens is documented to focus to **4.5 m**, but JP1978-129629 Example 2 publishes no finite-object
+The production lens is documented to focus to **4.5 m**, but JP 1978-129629 Example 2 publishes no finite-object
 prescription, focus-spacing table, magnification state, or focusing-group movement. The data file therefore uses the
 status **NO_INTERNAL_RECONSTRUCTION**: `closeFocusM` retains the production specification while `var` and `varLabels`
 remain empty. [1][2]
@@ -188,7 +188,7 @@ minimum-focus specification alone.
 
 ## Conditional Expressions
 
-JP1978-129629 defines eight conditions for the short telephoto form. Each is satisfied by the final data prescription.
+JP 1978-129629 defines eight conditions for the short telephoto form. Each is satisfied by the final data prescription.
 Quantities below are evaluated in the patent's normalized `f = 1` coordinate system; the dimensional scale factor does
 not change the dimensionless tests. [1]
 
@@ -240,7 +240,7 @@ manufacturer specifications.
 
 ## Sources and References
 
-1. **JP1978-129629 / 特開昭53-129629**, 全長の短い望遠レンズ, original uploaded patent scan. Front-page metadata on
+1. **JP 1978-129629 / 特開昭53-129629**, 全長の短い望遠レンズ, original uploaded patent scan. Front-page metadata on
    scan p. 1; design description and conditions on scan pp. 1-3; Example 2 prescription on scan p. 3; Seidel table and
    optical section on scan p. 4.
 2. **Yashica/Contax dealer lens-data document**, period manufacturer-issued product material, archival mirror at Pacific

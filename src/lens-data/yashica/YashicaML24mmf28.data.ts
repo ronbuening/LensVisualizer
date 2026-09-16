@@ -4,7 +4,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ╔══════════════════════════════════════════════════════════════════════════════╗
  * ║  LENS DATA — YASHICA ML 24mm f/2.8                                         ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
- * ║  Patent source: JP1975-110330, Example 1 (Yashica Co., Ltd.;               ║
+ * ║  Patent source: JP 1975-110330, Example 1 (Yashica Co., Ltd.;               ║
  * ║  Yoshisato Fujioka). The patent normalizes the prescription to f = 100.     ║
  * ║  All radii, spacings, BFD, stop position, and inferred semi-diameters are   ║
  * ║  scaled uniformly by s = 0.24 for the 24 mm production correlation.         ║
@@ -46,7 +46,7 @@ const LENS_DATA = {
   key: "yashica-ml-24mm-f2-8",
   maker: "Yashica",
   name: "YASHICA ML 24mm f/2.8",
-  subtitle: "JP1975-110330 Example 1 — uniformly scaled ×0.24 production correlation",
+  subtitle: "JP 1975-110330 Example 1 — uniformly scaled ×0.24 production correlation",
   specs: ["9 ELEMENTS / 8 GROUPS", "24mm f/2.8", "84°", "0.3m MINIMUM FOCUS", "ALL SPHERICAL"],
 
   focalLengthMarketing: 24,
@@ -55,7 +55,7 @@ const LENS_DATA = {
   apertureDesign: 2.8,
   lensMounts: ["contax-yashica"],
   imageFormat: "135-full-frame",
-  patentNumber: "JP1975-110330",
+  patentNumber: "JP 1975-110330",
   patentAuthors: ["Yoshisato Fujioka"],
   patentAssignees: ["Yashica Co., Ltd."],
   patentYear: 1975,

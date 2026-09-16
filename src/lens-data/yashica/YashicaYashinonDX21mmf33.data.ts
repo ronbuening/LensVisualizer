@@ -4,7 +4,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ╔════════════════════════════════════════════════════════════════════════════╗
  * ║       LENS DATA — YASHICA YASHINON-DX 21mm f/3.3                       ║
  * ╠════════════════════════════════════════════════════════════════════════════╣
- * ║  Data source: JP1969-024068 Example 1 (Yashica Co., Ltd.; Iwatatsu      ║
+ * ║  Data source: JP 1969-024068 Example 1 (Yashica Co., Ltd.; Iwatatsu      ║
  * ║  Fujioka). The patent prescription is normalized to f = 100.0 and is    ║
  * ║  uniformly scaled by s = 0.21 to the marketed 21mm focal length.        ║
  * ║  Source R, d, and stop location are scaled; semi-diameters are inferred ║
@@ -44,7 +44,7 @@ const LENS_DATA = {
   key: "yashica-yashinon-dx-21mm-f3-3",
   maker: "Yashica",
   name: "YASHICA YASHINON-DX 21mm f/3.3",
-  subtitle: "JP1969-024068 Example 1 — f=100 prescription scaled ×0.21",
+  subtitle: "JP 1969-024068 Example 1 — f=100 prescription scaled ×0.21",
   specs: ["8 ELEMENTS / 5 GROUPS", "21mm", "f/3.3", "92°", "MFD 0.8m"],
 
   focalLengthMarketing: 21,
@@ -53,7 +53,7 @@ const LENS_DATA = {
   apertureDesign: 3.3,
   lensMounts: ["m42"],
   imageFormat: "135-full-frame",
-  patentNumber: "JP1969-024068",
+  patentNumber: "JP 1969-024068",
   patentAuthors: ["Iwatatsu Fujioka"],
   patentAssignees: ["Yashica Co., Ltd."],
   patentYear: 1969,
@@ -206,7 +206,7 @@ const LENS_DATA = {
   /* ── Focus configuration ── */
   closeFocusM: 0.8,
   focusDescription:
-    "NO_INTERNAL_RECONSTRUCTION — JP1969-024068 Example 1 publishes one fixed prescription and no finite-focus movement table; the 0.8m marketed MFD is metadata only and no focus movement is modeled.",
+    "NO_INTERNAL_RECONSTRUCTION — JP 1969-024068 Example 1 publishes one fixed prescription and no finite-focus movement table; the 0.8m marketed MFD is metadata only and no focus movement is modeled.",
 
   /* ── Aperture configuration ── */
   nominalFno: 3.3,

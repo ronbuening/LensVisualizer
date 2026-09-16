@@ -1,6 +1,6 @@
 ## Patent Reference and Design Identification
 
-**Patent:** JP1975-110330 (`特開昭50-110330`)
+**Patent:** JP 1975-110330 (`特開昭50-110330`)
 **Application Number:** `特願昭49-14934`
 **Filed:** 1974-02-07
 **Published:** 1975-08-30
@@ -9,7 +9,7 @@
 **Title:** Retrofocus-type super-wide-angle objective lens (`レトロフォーカス型超広角対物レンズ`)
 **Embodiment analyzed:** Example 1
 
-The data file transcribes Example 1 of JP1975-110330 and applies a uniform linear scale of 0.24 to correlate the patent's normalized `f = 100` prescription with the Yashica ML 24mm f/2.8. The patent itself does not name the production lens, so the production correlation is a modeling identification rather than a manufacturer statement.
+The data file transcribes Example 1 of JP 1975-110330 and applies a uniform linear scale of 0.24 to correlate the patent's normalized `f = 100` prescription with the Yashica ML 24mm f/2.8. The patent itself does not name the production lens, so the production correlation is a modeling identification rather than a manufacturer statement.
 
 Several source facts converge on that identification. First, Example 1 is a 9-element design with one cemented pair, yielding eight air-separated physical groups. Second, the patent gives an aperture ratio of 1:2.8 and an 84° full field. Third, scaling the independently computed 99.9986-unit effective focal length by 0.24 gives a design EFL of 23.999661 mm. Fourth, Yashica's 1980 lens-data table lists the production ML 24mm f/2.8 as 9 elements in 8 groups with an 84° angle of view. Fifth, the same manufacturer table gives a 0.3 m minimum focus and f/2.8–16 aperture range, matching the production metadata retained in the data file. [1][2]
 
@@ -19,7 +19,7 @@ The production identity and the patent prescription remain distinct in the model
 
 ## Optical Architecture
 
-JP1975-110330 describes the objective as a retrofocus-type super-wide-angle lens. The scaled prescription satisfies the project's quantitative retrofocus criterion as well: the independently computed back focal distance is 37.263139 mm, larger than the 23.999661 mm EFL (`BFD/EFL = 1.55265`). The first surface to published image-plane track is 91.1232 mm, so the design is not a telephoto form under the separate `TL/EFL < 1` criterion.
+JP 1975-110330 describes the objective as a retrofocus-type super-wide-angle lens. The scaled prescription satisfies the project's quantitative retrofocus criterion as well: the independently computed back focal distance is 37.263139 mm, larger than the 23.999661 mm EFL (`BFD/EFL = 1.55265`). The first surface to published image-plane track is 91.1232 mm, so the design is not a telephoto form under the separate `TL/EFL < 1` criterion.
 
 The prescription contains 9 elements in 8 air-separated physical groups, but the patent organizes those elements into four functional sections, labeled I through IV in Figure 3. Those patent sections should not be confused with the physical group count used by LensVisualizer:
 
@@ -139,6 +139,6 @@ The inferred semi-diameters also satisfy the modeled geometric limits: the maxim
 
 ## Sources and References
 
-1. Yashica Co., Ltd., JP1975-110330 (`特開昭50-110330`), *Retrofocus-type super-wide-angle objective lens*, Example 1. Filed 1974-02-07; published 1975-08-30. The numerical prescription is on patent page 3; Figure 3 and its optical section are on page 4.
+1. Yashica Co., Ltd., JP 1975-110330 (`特開昭50-110330`), *Retrofocus-type super-wide-angle objective lens*, Example 1. Filed 1974-02-07; published 1975-08-30. The numerical prescription is on patent page 3; Figure 3 and its optical section are on page 4.
 2. Yashica, *Price List No. 10, Effective January 1, 1980*, p. 4, “Interchangeable Yashica ML, DSB, Questar Lens Data.” Archival manufacturer scan: https://www.pacificrimcamera.com/rl/02068/02068.pdf
 3. Yashica FR-system literature describing the Contax/Yashica bayonet and 35 mm SLR system. Archival manufacturer scan: https://www.pacificrimcamera.com/rl/03896/03896.pdf

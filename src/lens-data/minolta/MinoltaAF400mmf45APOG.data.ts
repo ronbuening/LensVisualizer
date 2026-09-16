@@ -4,7 +4,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ╔══════════════════════════════════════════════════════════════════════════════╗
  * ║ LENS DATA — MINOLTA AF 400mm f/4.5 APO G                                 ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
- * ║ Source: JP1996-327896 A, Example 1 (特開平8-327896 A), Minolta Co., Ltd.    ║
+ * ║ Source: JP 1996-327896 A, Example 1 (特開平8-327896 A), Minolta Co., Ltd.    ║
  * ║ All-spherical positive / negative / positive inner-focus telephoto.        ║
  * ║ Patent model: 8 elements / 6 air-separated glass groups, 14 refracting    ║
  * ║ surfaces, followed by one aperture stop. No scale factor is applied.       ║
@@ -49,7 +49,7 @@ const LENS_DATA = {
   key: "minolta-af-400mm-f45-apo-g",
   maker: "Minolta",
   name: "MINOLTA AF 400mm f/4.5 APO G",
-  subtitle: "JP1996-327896 A Example 1 — published inner-focus 400 mm-class telephoto",
+  subtitle: "JP 1996-327896 A Example 1 — published inner-focus 400 mm-class telephoto",
   specs: [
     "8-ELEMENT / 6-GROUP PATENT MODEL",
     "390 mm PATENT HEADER / 391.43 mm COMPUTED EFL",
@@ -64,7 +64,7 @@ const LENS_DATA = {
   apertureDesign: 4.59,
   lensMounts: ["sony-a"],
   imageFormat: "135-full-frame",
-  patentNumber: "JP1996-327896 A",
+  patentNumber: "JP 1996-327896 A",
   patentAuthors: ["Yoshinobu Asakura"],
   patentAssignees: ["Minolta Co., Ltd."],
   patentYear: 1996,

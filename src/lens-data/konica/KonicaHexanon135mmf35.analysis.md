@@ -1,8 +1,8 @@
-# KONICA HEXANON 135mm f/3.5 — JP1955-009472 Example 1
+# KONICA HEXANON 135mm f/3.5 — JP 1955-009472 Example 1
 
 ## Patent Reference and Design Identification
 
-**Patent:** JP1955-009472\
+**Patent:** JP 1955-009472\
 **Application Number:** 特願 昭29-2299\
 **Filed:** 1954-02-08\
 **Published:** 1955-12-26\
@@ -11,13 +11,13 @@
 **Title:** 望遠写真レンズ (Telephoto photographic lens)\
 **Embodiment analyzed:** Example 1
 
-JP1955-009472 Example 1 is the fixed prescription source for this model. The patent gives a four-element,
+JP 1955-009472 Example 1 is the fixed prescription source for this model. The patent gives a four-element,
 four-group, all-spherical objective with a complete focal length of 100 mm. Its aberration plots are labeled for
 f/3.5 and an 8°50′ off-axis field. The production-correlated data file applies a uniform scale factor of 1.35. That
 preserves every optical proportion while moving the independently traced effective focal length from 99.996264 mm to
 134.994957 mm. All dimensional prescription values are scaled by the same factor; refractive indices and Abbe numbers
 are unchanged. There are no aspherical surfaces, so no aspheric coefficient transformation is applicable.
-(JP1955-009472, pp. 1–2.)
+(JP 1955-009472, pp. 1–2.)
 
 The selected production correlation is the early Konica F/FS Hexanon 135mm f/3.5 rather than a later AR lens. A
 Konica Camera Company F/FS specification sheet lists a 135mm f/3.5 telephoto with four elements in four groups,
@@ -25,7 +25,7 @@ f/3.5–16 aperture range, 18° angle of view, 6 ft closest focus, automatic dia
 17°40′ full plotted field differs from the rounded manufacturer figure by only 20′, and the uniformly scaled
 prescription traces to 134.994957 mm. A Konica Camera Company price list effective July 1, 1961 separately lists the
 135mm f/3.5 automatic telephoto for the Konica F and FS. These are convergent correlation points; neither manufacturer
-document explicitly identifies JP1955-009472 as the production patent.
+document explicitly identifies JP 1955-009472 as the production patent.
 
 The timing is also compatible with the correlation. Konica's own technical history states that the Konica F was
 commercialized in 1960. The 1954 filing therefore predates the camera system but falls within a plausible design lead
@@ -55,7 +55,7 @@ scaling it becomes 16.875 mm / 3.645 mm and preserves the published `d6` total e
 
 The stop diameter and clear apertures are likewise modeling quantities. `STO.sd = 11.213190 mm` is chosen so that the
 modeled entrance pupil recovers the published f/3.5 aperture. The modeled element semi-diameters are 22.5, 21.5, 16.0,
-and 12.5 mm from front to rear. JP1955-009472 publishes no numerical clear-aperture or semi-diameter table.
+and 12.5 mm from front to rear. JP 1955-009472 publishes no numerical clear-aperture or semi-diameter table.
 
 ## Element-by-Element Analysis
 
@@ -108,7 +108,7 @@ choices and do not alter the published R6–R7 total separation.
 
 ## Glass Identification / Selection
 
-JP1955-009472 supplies d-line refractive index and Abbe number but names no glass manufacturer, catalog, or historical
+JP 1955-009472 supplies d-line refractive index and Abbe number but names no glass manufacturer, catalog, or historical
 melt. The final data retains supplier-neutral coordinate classes while naming compatible coefficient curves as
 catalog-equivalent proxies. Those proxies improve wavelength-dependent tracing; they do not identify the production
 glass supplier or historical melt:
@@ -129,7 +129,7 @@ the patent still does not support an apochromatic or anomalous-partial-dispersio
 
 ## Focus Mechanism
 
-JP1955-009472 Example 1 publishes no object-distance table, focus-spacing table, magnification state, or internal
+JP 1955-009472 Example 1 publishes no object-distance table, focus-spacing table, magnification state, or internal
 focusing motion. The data file therefore remains `NO_INTERNAL_RECONSTRUCTION`: `var` is empty and the optical
 prescription represents the infinity state only.
 
@@ -171,11 +171,11 @@ part of the negative-side pupil bundle; this is not used as a claim about the pr
 publishes no clear-aperture dimensions.
 
 The surface-by-surface Petzval sum, computed as `φ/(n·n′)`, is +0.001721848361 mm⁻¹ for the 135 mm-scaled prescription.
-It is a first-order calculation from the final model, not a value published by JP1955-009472.
+It is a first-order calculation from the final model, not a value published by JP 1955-009472.
 
 ## Sources
 
-- **Primary optical source:** 特許公告 昭30-9472, `JP1955-009472`, 望遠写真レンズ, Example 1, supplied two-page patent
+- **Primary optical source:** 特許公告 昭30-9472, `JP 1955-009472`, 望遠写真レンズ, Example 1, supplied two-page patent
   scan. The numerical prescription on p. 1 and Figures 1–4 on pp. 1–2 establish the optical form, d-line glass
   coordinates, f/3.5 aberration plot, 8°50′ off-axis plots, and conditional expressions.
 - **Konica Camera Company, Konica F/FS lens specification and price literature:**

@@ -4,7 +4,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ╔══════════════════════════════════════════════════════════════════════════════╗
  * ║ LENS DATA — NIKON AF-I NIKKOR 600mm f/4 D IF-ED                          ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
- * ║ Data source: JPH04238311A, Example 5 (Nikon Corporation / Susumu Sato).  ║
+ * ║ Data source: JP H04-238311 A, Example 5 (Nikon Corporation / Susumu Sato).  ║
  * ║ Production correlation: Nikon AF-I Nikkor 600mm f/4D IF-ED.               ║
  * ║ 9 active glass elements / 7 air-separated groups; all spherical.           ║
  * ║                                                                            ║
@@ -45,7 +45,7 @@ const LENS_DATA = {
   key: "nikon-af-i-nikkor-600mm-f4d-if-ed",
   maker: "Nikon",
   name: "NIKON AF-I NIKKOR 600mm f/4D IF-ED",
-  subtitle: "JPH04238311A Example 5 — constrained 6 m production-focus reconstruction",
+  subtitle: "JP H04-238311 A Example 5 — constrained 6 m production-focus reconstruction",
   specs: [
     "9 ELEMENTS / 7 GROUPS",
     "MARKETED 600mm f/4",
@@ -62,7 +62,7 @@ const LENS_DATA = {
   apertureDesign: 4.11,
   lensMounts: ["nikon-f"],
   imageFormat: "135-full-frame",
-  patentNumber: "JPH04238311A",
+  patentNumber: "JP H04-238311 A",
   patentAuthors: ["Susumu Sato"],
   patentAssignees: ["Nikon Corporation"],
   patentYear: 1992,

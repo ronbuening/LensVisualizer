@@ -2,7 +2,7 @@
 
 ## Patent Reference and Design Identification
 
-**Patent:** JPS58-54312A\
+**Patent:** JP S58-54312 A\
 **Application Number:** S56-153206\
 **Filed:** 1981-09-28\
 **Published:** 1983-03-31\
@@ -11,11 +11,11 @@
 **Title:** 4群構成大口径比ズームレンズ (*Four-group large-aperture-ratio zoom lens*)\
 **Embodiment analyzed:** Example 2
 
-The prescription is the second numerical example of JPS58-54312A. The patent publishes an 80–200 mm, f/2.8 four-group zoom with 15 glass elements in 11 air-separated components and assigns focusing to the first group [1, printed pp. 59–62]. The data file preserves that example without optical scaling.
+The prescription is the second numerical example of JP S58-54312 A. The patent publishes an 80–200 mm, f/2.8 four-group zoom with 15 glass elements in 11 air-separated components and assigns focusing to the first group [1, printed pp. 59–62]. The data file preserves that example without optical scaling.
 
 The production correlation is treated as a convergent identification rather than as a manufacturer-confirmed patent mapping. The principal evidence is:
 
-1. Nikon's official historical account states that the AI-S Zoom-Nikkor 80–200mm f/2.8 ED was designed by Yoshinori Hamanishi and released in 1982 [2]. Hamanishi is the inventor named on JPS58-54312A, filed in September 1981.
+1. Nikon's official historical account states that the AI-S Zoom-Nikkor 80–200mm f/2.8 ED was designed by Yoshinori Hamanishi and released in 1982 [2]. Hamanishi is the inventor named on JP S58-54312 A, filed in September 1981.
 2. Nikon's archived instruction manual gives 80–200 mm focal length, constant f/2.8 maximum aperture, and a 15-element/11-group construction [3]. These match the selected Example 2 at the level of marketed specification and physical element/component count.
 3. The patent's four principal groups have positive, negative, positive, and positive power, with the first group used for focusing [1]. The selected data model retains this architecture and the patent's three published infinity zoom states at 80, 140, and 200 mm.
 4. Nikon's manual gives a 2.5 m minimum focusing distance [3]. That production value is used only as the external constraint for the disclosed close-focus reconstruction; it is not substituted for a patent-published finite-object table, because the patent provides none.
@@ -186,7 +186,7 @@ The cemented assemblies also matter to the chromatic strategy because their inte
 
 ## Conditional Expressions
 
-JPS58-54312A states four principal conditions for the four-group large-aperture zoom and gives two additional limits in the discussion of the modified fourth group [1, printed pp. 59–61]. The patent defines each meniscus shape factor from its object- and image-side radii as
+JP S58-54312 A states four principal conditions for the four-group large-aperture zoom and gives two additional limits in the discussion of the modified fourth group [1, printed pp. 59–61]. The patent defines each meniscus shape factor from its object- and image-side radii as
 
 $$
 q = \frac{r_t + r_s}{r_t - r_s}.
@@ -225,7 +225,7 @@ No sensor cover glass, filter, inactive dummy refracting plane, or mechanical pa
 
 ## Sources and References
 
-1. **JPS58-54312A**, Nippon Kogaku Kogyo K.K., Yoshinori Hamanishi, published 1983-03-31. Selected source: Example 2; numerical tables on printed pp. 61–62; optical sections in Figures 1 and 5 on printed pp. 63 and 65. Supplied patent PDF is the prescription authority.
+1. **JP S58-54312 A**, Nippon Kogaku Kogyo K.K., Yoshinari Hamanishi, published 1983-03-31. Selected source: Example 2; numerical tables on printed pp. 61–62; optical sections in Figures 1 and 5 on printed pp. 63 and 65. Supplied patent PDF is the prescription authority.
 2. **Nikon, “NIKKOR — The Thousand and One Nights No. 67.”** Nikon states that the 80–200mm f/2.8 line began with the AI-S Zoom-Nikkor 80–200mm f/2.8 ED designed by Yoshinori Hamanishi and released in 1982. https://imaging.nikon.com/imaging/information/story/0067/
 3. **Nikon, *Zoom-Nikkor ED 80–200mm f/2.8* instruction manual.** The archived specifications give 80–200 mm, f/2.8, 15 elements in 11 groups, 30°10′–12°20′ picture angle, 2.5 m minimum focus, 95 mm attachments, and Nikon bayonet mount. https://cdn-10.nikon-cdn.com/pdf/manuals/archive/Zoom-Nikkor%20ED%2080-200mm%20f-2.8.pdf
-4. **US4468097A**, *Four-group great aperture ratio zoom lens*, U.S. family publication of JPS58-54312A. Used only to resolve the ambiguous 1.45 mm thickness readings in the Japanese scan. https://patents.google.com/patent/US4468097A/en
+4. **US4468097A**, *Four-group great aperture ratio zoom lens*, U.S. family publication of JP S58-54312 A. Used only to resolve the ambiguous 1.45 mm thickness readings in the Japanese scan. https://patents.google.com/patent/US4468097A/en

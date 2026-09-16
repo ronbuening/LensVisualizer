@@ -1,6 +1,6 @@
 ## Patent Reference and Design Identification
 
-**Patent:** JPH04294310A\
+**Patent:** JP H04-294310 A\
 **Application Number:** 特願平3-59980\
 **Filed:** 1991-03-25\
 **Published:** 1992-10-19\
@@ -9,7 +9,7 @@
 **Title:** Internal-Focusing Telephoto Lens (内焦望遠レンズ)\
 **Embodiment analyzed:** Example 1 (実施例1)
 
-This analysis treats JPH04294310A Example 1 as the fixed production correlation for the **NIKON AF-I NIKKOR 300mm f/2.8D IF-ED**. The patent itself does not name the commercial lens, so the correlation should not be read as manufacturer confirmation. It is instead supported by convergent timing and optical characteristics.
+This analysis treats JP H04-294310 A Example 1 as the fixed production correlation for the **NIKON AF-I NIKKOR 300mm f/2.8D IF-ED**. The patent itself does not name the commercial lens, so the correlation should not be read as manufacturer confirmation. It is instead supported by convergent timing and optical characteristics.
 
 1. Nikon records that the AF-I Nikkor 300mm f/2.8D IF-ED appeared in September 1992 with a completely renewed optical design and a built-in focusing motor. The selected application was filed in March 1991 and published the following month after that product introduction.
 2. Example 1 gives a headline focal length of 294.0 mm, a more precise design value of 293.9647 mm, and `FN = 2.9`. These are close to, but intentionally kept separate from, the production designation of 300mm f/2.8.
@@ -188,7 +188,7 @@ No patent radius, thickness, index, or Abbe value was corrected in constructing 
 
 ## Sources
 
-- **Primary prescription:** JPH04294310A, *Internal-Focusing Telephoto Lens* (内焦望遠レンズ), Example 1, especially ¶0006–¶0015 and ¶0022–¶0029, Fig. 1, and the Example 1 numerical table.
+- **Primary prescription:** JP H04-294310 A, *Internal-Focusing Telephoto Lens* (内焦望遠レンズ), Example 1, especially ¶0006–¶0015 and ¶0022–¶0029, Fig. 1, and the Example 1 numerical table.
 - **Nikon product history:** Nikon, *NIKKOR — The Thousand and One Nights No.11*. The historical chronology states that the AF-I Nikkor 300mm f/2.8D IF-ED appeared in September 1992 with a completely renewed optical design and a built-in motor. <https://imaging.nikon.com/imaging/information/story/0011/>
 - **Rear filter system:** Nikon Support, *Slip-in circular polarizing filters*. The compatibility table includes the AF-I 300mm f/2.8D IF-ED and documents Nikon's rear slip-in filter system for this lens class. <https://www.nikonimgsupport.com/eu/BV_article?articleNo=000048272&lang=en_GB>
 - **Glass-coordinate cross-checks:** HIKARI Optical Glass catalog pages for J-FKH1, J-LAF7, J-LAK14, J-PSKH1, J-SK5, and J-SF6; SCHOTT SF3 datasheet. These are used only to test whether the authored class/code labels are coordinate-compatible, not to claim Nikon used those exact vendor melts.

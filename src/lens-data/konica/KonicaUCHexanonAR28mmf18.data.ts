@@ -4,7 +4,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ╔══════════════════════════════════════════════════════════════════════════════════╗
  * ║ LENS DATA — KONICA UC HEXANON AR 28mm f/1.8                                  ║
  * ╠══════════════════════════════════════════════════════════════════════════════════╣
- * ║ Source: JP1976-026535, Example 1 (Konishiroku Photo Industry Co., Ltd.).       ║
+ * ║ Source: JP 1976-026535, Example 1 (Konishiroku Photo Industry Co., Ltd.).       ║
  * ║ Patent design: 8 elements / 8 air-spaced groups / 16 spherical refracting       ║
  * ║ surfaces; retrofocus architecture with an L2–L4 floating middle group.          ║
  * ║                                                                                ║
@@ -47,7 +47,7 @@ const LENS_DATA = {
   key: "konica-uc-hexanon-ar-28mm-f1-8",
   maker: "Konica",
   name: "KONICA UC HEXANON AR 28mm f/1.8",
-  subtitle: "JP1976-026535 Example 1 — patent f/2.0 design correlated to the production 28mm f/1.8",
+  subtitle: "JP 1976-026535 Example 1 — patent f/2.0 design correlated to the production 28mm f/1.8",
   specs: [
     "8 ELEMENTS / 8 GROUPS",
     "MODELED EFL 28.1585 mm",
@@ -62,7 +62,7 @@ const LENS_DATA = {
   apertureDesign: 2,
   lensMounts: ["konica-ar"],
   imageFormat: "135-full-frame",
-  patentNumber: "JP1976-026535",
+  patentNumber: "JP 1976-026535",
   patentAuthors: ["Toshiko Shimokura"],
   patentAssignees: ["Konishiroku Photo Industry Co., Ltd."],
   patentYear: 1976,
@@ -208,7 +208,7 @@ const LENS_DATA = {
   /* ── Focus configuration ── */
   closeFocusM: 0.18,
   focusDescription:
-    "Production MFD is 0.18 m from the film plane. JP1976-026535 Example 1 publishes only an M=1/6 state in which L2–L4 shifts 0.9996 mm imageward; the complete focusing extension/cam to 0.18 m is not published, so no runtime internal focus reconstruction is authored.",
+    "Production MFD is 0.18 m from the film plane. JP 1976-026535 Example 1 publishes only an M=1/6 state in which L2–L4 shifts 0.9996 mm imageward; the complete focusing extension/cam to 0.18 m is not published, so no runtime internal focus reconstruction is authored.",
 
   /* ── Aperture configuration ── */
   nominalFno: 2,

@@ -1,6 +1,6 @@
 ## Patent Reference and Design Identification
 
-**Patent:** JP1994-082698 A (特開平6-82698)
+**Patent:** JP 1994-082698 A (特開平6-82698)
 **Filed:** 1992-09-02
 **Published:** 1994-03-25
 **Inventor:** Yoshinobu Asakura
@@ -8,7 +8,7 @@
 **Title:** Large-Aperture Wide-Angle Zoom Lens (大口径広角ズームレンズ)
 **Embodiment analyzed:** Example 1
 
-The analyzed prescription is Example 1 of JP1994-082698 A, assigned in this catalog to the
+The analyzed prescription is Example 1 of JP 1994-082698 A, assigned in this catalog to the
 MINOLTA AF 28-70mm f/2.8 G. The patent does not identify that production lens by name, so the
 production correlation is not manufacturer-confirmed. It is the fixed project correlation and rests
 on convergent characteristics: Minolta is the applicant; the example is a large-aperture wide-angle
@@ -308,7 +308,7 @@ spectral data are added later.
 
 ## Focus Mechanism
 
-The data file intentionally uses **NO_INTERNAL_RECONSTRUCTION**. JP1994-082698 A publishes the zoom
+The data file intentionally uses **NO_INTERNAL_RECONSTRUCTION**. JP 1994-082698 A publishes the zoom
 states at the design/infinity condition but does not publish an object-distance table, close-focus
 gaps, magnification states, or an internal focusing law. The production minimum focus distance is
 recorded as 0.85 m, but that external specification does not uniquely determine which internal
@@ -393,7 +393,7 @@ interpreted as measured production-lens vignetting.
 
 ## Sources and References
 
-- JP1994-082698 A (特開平6-82698), Minolta Co., Ltd., Example 1; especially ¶0007-¶0021,
+- JP 1994-082698 A (特開平6-82698), Minolta Co., Ltd., Example 1; especially ¶0007-¶0021,
   the Example 1 prescription table, Figure 1, and Figure 2.
 - Michael Hohner, “Lens tech data for Minolta AF 28-70/2.8 G,” used as secondary archival
   corroboration for the production name, A-mount, 16/11 construction, 1993 release, order code

@@ -4,7 +4,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ╔══════════════════════════════════════════════════════════════════════════════╗
  * ║ LENS DATA — NIKON AI-S ZOOM-NIKKOR 80-200mm f/2.8 ED                      ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
- * ║ Data source: JPS58-54312A, Example 2 (Nippon Kogaku / Yoshinori Hamanishi).║
+ * ║ Data source: JP S58-54312 A, Example 2 (Nippon Kogaku / Yoshinori Hamanishi).║
  * ║ 15 elements / 11 air-separated components in four principal zoom groups.  ║
  * ║ All refracting surfaces are spherical. No scale factor is applied.          ║
  * ║                                                                              ║
@@ -37,7 +37,7 @@ const LENS_DATA = {
   key: "nikon-ais-zoom-nikkor-80-200mm-f28-ed",
   maker: "Nikon",
   name: "NIKON AI-S ZOOM-NIKKOR 80-200mm f/2.8 ED",
-  subtitle: "JPS58-54312A Example 2 — production correlation to the 1982 AI-S lens",
+  subtitle: "JP S58-54312 A Example 2 — production correlation to the 1982 AI-S lens",
   specs: ["15 ELEMENTS / 11 GROUPS", "80-200mm", "F/2.8", "30°10′-12°20′", "MFD 2.5 m"],
 
   focalLengthMarketing: [80, 200],
@@ -46,8 +46,8 @@ const LENS_DATA = {
   apertureDesign: 2.8,
   lensMounts: ["nikon-f"],
   imageFormat: "135-full-frame",
-  patentNumber: "JPS58-54312A",
-  patentAuthors: ["Yoshinori Hamanishi"],
+  patentNumber: "JP S58-54312 A",
+  patentAuthors: ["Yoshinari Hamanishi"],
   patentAssignees: ["Nippon Kogaku K.K."],
   patentYear: 1983,
   elementCount: 15,

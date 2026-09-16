@@ -1,6 +1,6 @@
 ## Patent Reference and Design Identification
 
-**Patent:** JP-S62-108218 A (特開昭62-108218)
+**Patent:** JP S62-108218 A (特開昭62-108218)
 **Application Number:** 特願昭60-248546
 **Filed:** 1985-11-06
 **Published:** 1987-05-19
@@ -273,6 +273,6 @@ These checks establish numerical consistency of the analysis with the final data
 
 ## Sources / References
 
-1. **JP-S62-108218 A (特開昭62-108218)**, Yoshinori Hamanishi, Nippon Kogaku K.K., filed 1985-11-06, published 1987-05-19. Example 3 / Table 3 supplies the prescription, endpoint variable spacings, F-number, image height, group definitions, and patent conditional expressions; Figure 1 supplies the optical section, while Figures 3A–3D are the Example 3 aberration plots.
+1. **JP S62-108218 A (特開昭62-108218)**, Yoshinari Hamanishi, Nippon Kogaku K.K., filed 1985-11-06, published 1987-05-19. Example 3 / Table 3 supplies the prescription, endpoint variable spacings, F-number, image height, group definitions, and patent conditional expressions; Figure 1 supplies the optical section, while Figures 3A–3D are the Example 3 aberration plots.
 2. **Nikon Imaging — NIKKOR: The Thousand and One Nights No. 67**, “Striving for silent focusing! Secrets behind development of a fast telephoto zoom lens.” Nikon's historical discussion states that the smaller autofocus 80–200 mm f/2.8 ED was released in 1988 and that its optical design continued into the 1996 D version without noteworthy optical changes. https://imaging.nikon.com/imaging/information/story/0067/
 3. **Nikon USA — AF Zoom-NIKKOR 80-200mm f/2.8D ED.** Production metadata used only for the correlation and mechanical/marketing fields: 80–200 mm, f/2.8, Nikon F bayonet, FX/35 mm, 16 elements / 11 groups, three ED elements, 1.5 m MFD for the later D version, 77 mm filter, and rounded FX angles of view. https://www.nikonusa.com/p/af-zoom-nikkor-80-200mm-f28d-ed/1986/overview

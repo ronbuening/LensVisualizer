@@ -1,6 +1,6 @@
 # Audit Log - MINOLTA AF 80-200mm f/2.8 APO
 
-Patent: JP1989-039542 A, Example 1
+Patent: JP 1989-039542 A, Example 1
 
 ## 2026-08-11 - Glass opportunity audit
 
