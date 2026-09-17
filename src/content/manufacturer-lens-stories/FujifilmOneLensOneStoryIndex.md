@@ -22,8 +22,8 @@ Fujifilm's official _One Lens, One Story_ series ran for 12 installments in 2015
 | 2015-09-11 | XF18mmF2 R | [One Lens, One Story #9](https://www.fujifilm-x.com/global/stories/one-lens-one-story-9/) | [XF18mmF2 R](/lens/fujifilm-xf18f2r) |
 | 2015-09-09 | XF56mmF1.2 R, part 2 | [One Lens, One Story #8](https://www.fujifilm-x.com/global/stories/one-lens-one-story-8/) | [XF56mmF1.2 R](/lens/fujinon-xf56f12r) |
 | 2015-09-07 | XF56mmF1.2 R, part 1 | [One Lens, One Story #7](https://www.fujifilm-x.com/global/stories/one-lens-one-story-7/) | [XF56mmF1.2 R](/lens/fujinon-xf56f12r) |
-| 2015-09-02 | XF27mmF2.8 and the X100 lens | [One Lens, One Story #6](https://www.fujifilm-x.com/global/stories/one-lens-one-story-6/) | [X100 23mmF2](/lens/fujifilm-x100-23f2) |
-| 2015-08-28 | XF27mmF2.8 | [One Lens, One Story #5](https://www.fujifilm-x.com/global/stories/one-lens-one-story-5/) | — |
+| 2015-09-02 | XF27mmF2.8 and the X100 lens | [One Lens, One Story #6](https://www.fujifilm-x.com/global/stories/one-lens-one-story-6/) | [XF27mmF2.8](/lens/fujifilm-fujinon-xf-27mm-f28) · [X100 23mmF2](/lens/fujifilm-x100-23f2) |
+| 2015-08-28 | XF27mmF2.8 | [One Lens, One Story #5](https://www.fujifilm-x.com/global/stories/one-lens-one-story-5/) | [XF27mmF2.8](/lens/fujifilm-fujinon-xf-27mm-f28) |
 | 2015-08-26 | XF35mmF1.4 R | [One Lens, One Story #4](https://www.fujifilm-x.com/global/stories/one-lens-one-story-4/) | [XF35mmF1.4 R](/lens/fujifilm-xf35-f14-r) |
 | 2015-08-24 | XF60mmF2.4 R Macro | [One Lens, One Story #3](https://www.fujifilm-x.com/global/stories/one-lens-one-story-3/) | [XF60mmF2.4 R Macro](/lens/fujifilm-xf60-f24-r-macro) |
 | 2015-08-21 | XF23mmF1.4 R | [One Lens, One Story #2](https://www.fujifilm-x.com/global/stories/one-lens-one-story-2/) | [XF23mmF1.4 R](/lens/fujinon-xf-23mm-f14-r) |

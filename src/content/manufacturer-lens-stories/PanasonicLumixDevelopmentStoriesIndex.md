@@ -72,6 +72,8 @@ The [four-part LUMIX LX100 development story](https://www.panasonic.com/au/consu
 | 3 — Great Lens, Compact Body | [Read at Panasonic](https://www.panasonic.com/au/consumer/lumix-cameras-video-cameras/lumix-digital-cameras-learn/article/the-story-behind-lumix-lx100-development/great-lens-compact-body.html) |
 | 4 — Designed for Enjoyment | [Read at Panasonic](https://www.panasonic.com/au/consumer/lumix-cameras-video-cameras/lumix-digital-cameras-learn/article/the-story-behind-lumix-lx100-development/designed-for-enjoyment.html) |
 
+**[Open the LEICA DC VARIO-SUMMILUX 10.9–34mm F1.7–2.8 ASPH. on Surface & Stop](/lens/leica-dc-vario-summilux-10934-f1728-lx100m2).** The catalog prescription is the shared LX100 and LX100 II optic, so it is the same lens the development story describes.
+
 Finally, [Original and Forward-Looking Lens Development](https://www.panasonic.com/global/consumer/lumix/philosophy/developer-interview/original-and-forward-looking-lens-development.html) is a system-level interview about the design philosophy and engineering of Panasonic's first full-frame LUMIX S lenses. It is included separately because it is not devoted to a single lens.
 
 The broader [LUMIX Blog index](https://www.panasonic.com/global/consumer/lumix/lumix-blog.html) contains additional camera and technology development stories. This page remains focused on lens development.

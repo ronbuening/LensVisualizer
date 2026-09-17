@@ -20,6 +20,16 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-09-17",
+    type: "article",
+    summary: "Added Nikon's Frontiers of Vision series to the manufacturer story index",
+  },
+  {
+    date: "2026-09-17",
+    type: "improvement",
+    summary: "Linked more Fujifilm, Panasonic and Pentax manufacturer stories to lens diagrams",
+  },
+  {
+    date: "2026-09-17",
     type: "improvement",
     summary: "Added links from inventor and assignee maps to focus their nodes on the universal map",
   },

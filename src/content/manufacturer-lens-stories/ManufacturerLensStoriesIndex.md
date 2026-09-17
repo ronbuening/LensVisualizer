@@ -16,7 +16,7 @@ This guide gathers those first-party articles in one place. Each company page li
 
 ## Browse by Company
 
-- **[Nikon — NIKKOR: The Thousand and One Nights](/articles/nikon-thousand-and-one-nights-index)** — all 98 tales in Nikon's current English index plus Research Report papers and corporate lens technology and design features.
+- **[Nikon — NIKKOR: The Thousand and One Nights](/articles/nikon-thousand-and-one-nights-index)** — all 98 tales in Nikon's current English index plus Research Report papers, the Frontiers of Vision series, and corporate lens technology and design features.
 - **[Fujifilm — One Lens, One Story](/articles/fujifilm-one-lens-one-story-index)** — One Lens, One Story, The History of FUJINON, FUJINON Speed Lenses, and a GFX100RF fixed-lens development chapter.
 - **[SIGMA — Ohsone's Anecdotes](/articles/sigma-ohsones-anecdotes-index)** — Ohsone's ten product tales and the eight-part GROUND BREAKING history series.
 - **[Panasonic — LUMIX Lens Development Stories](/articles/panasonic-lumix-development-stories-index)** — Optical Design Department essays, LEICA DG Lens Stories, and other official developer features.

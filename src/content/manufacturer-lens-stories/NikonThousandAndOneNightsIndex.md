@@ -1,7 +1,7 @@
 ---
 slug: nikon-thousand-and-one-nights-index
 title: "Nikon: NIKKOR — The Thousand and One Nights"
-summary: A complete index of Nikon's 98 English Thousand and One Nights lens tales and related research, technology, and design features, with exact Surface & Stop catalog matches.
+summary: A complete index of Nikon's 98 English Thousand and One Nights lens tales plus the Research Report papers, the Frontiers of Vision series, and corporate technology and design features, with exact Surface & Stop catalog matches.
 tag: guide
 series: manufacturer-lens-stories
 seriesOrder: 1
@@ -124,6 +124,27 @@ Nikon's corporate _Research Report_ series includes three detailed papers devote
 | NIKKOR Z 28–135mm f/4 PZ | [Development of the NIKKOR Z 28–135mm f/4 PZ](https://www.nikon.com/company/technology/nrr/pdf/nrr_vol7_2025_03_e.pdf) | — |
 | NIKKOR Z 400mm f/2.8 TC VR S and 600mm f/4 TC VR S | [Development of the NIKKOR Z 400mm and 600mm TC lenses](https://www.nikon.com/company/technology/nrr/pdf/nrr_vol6_2024_02_e.pdf) | — |
 | NIKKOR Z 58mm f/0.95 S Noct | [Development of the NIKKOR Z 58mm f/0.95 S Noct](https://www.nikon.com/company/technology/nrr/pdf/nrr_vol2_2020_02_e.pdf) | [NIKKOR Z 58mm f/0.95 S Noct](/lens/nikon-z-58f095-noct) |
+
+## Frontiers of Vision
+
+_[Frontiers of Vision](https://www.nikon.com/company/corporate/history/frontier/)_ is a Nikon corporate history series in which WIRED Japan's editorial team revisits products Nikon regards as epoch-making. It is deliberately broader than the lens collections above: its ten installments cover binoculars, a microscope, a film scanner, a profile projector, underwater and digital cameras, and two subjects that are directly optical. Only those two name a specific NIKKOR lens, so the catalog column here is sparse by the series' nature rather than by omission.
+
+Nikon prints a year alongside each installment number, so the years below are the manufacturer's own and are not inferred.
+
+| Sequence | Year | Subject — official article | Surface & Stop |
+| --- | --- | --- | --- |
+| No. 10 | 1971 | [Nikon Photomic FTN for space photography](https://www.nikon.com/company/corporate/history/frontier/10/) | [Fisheye-Nikkor 6mm f/5.6](/lens/nikon-fisheye-nikkor-6mm-f56) |
+| No. 9 | 1964 | [Ultra Micro-NIKKOR and semiconductor photomasks](https://www.nikon.com/company/corporate/history/frontier/09/) | [Ultra-Micro-Nikkor 29.5mm f/1.2](/lens/nikon-ultra-micro-nikkor-295mm-f12) |
+| No. 8 | 1999 | [Nikon D1](https://www.nikon.com/company/corporate/history/frontier/08/) | — |
+| No. 7 | 1998 | [COOLPIX 900](https://www.nikon.com/company/corporate/history/frontier/07/) | — |
+| No. 6 | 1963 | [NIKONOS all-weather camera](https://www.nikon.com/company/corporate/history/frontier/06/) | — |
+| No. 5 | 1939 | [Profile projector](https://www.nikon.com/company/corporate/history/frontier/05/) | — |
+| No. 4 | 1993 | [COOLSCAN film scanner](https://www.nikon.com/company/corporate/history/frontier/04/) | — |
+| No. 3 | 1925 | [JOICO microscope](https://www.nikon.com/company/corporate/history/frontier/03/) | — |
+| No. 2 | 1997 | [COOLPIX 300](https://www.nikon.com/company/corporate/history/frontier/02/) | — |
+| No. 1 | 1921 | [MIKRON 6× binoculars](https://www.nikon.com/company/corporate/history/frontier/01/) | — |
+
+The 1971 installment describes a 1965 NASA request for an ultra-wide 220° lens and the Fisheye-Nikkor 6mm f/5.6 that answered it; the catalog holds that 220° design. The 1964 installment covers the Ultra Micro-NIKKOR 29.5mm f/1.2 photomask objective, which the catalog holds as its 1/25× reduction design.
 
 ## Additional NIKKOR Technology and Design Stories
 
