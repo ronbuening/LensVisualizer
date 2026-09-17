@@ -23,3 +23,12 @@ the schematic alone does not establish a smaller
 physical clear aperture. SDs and inferred stop are retained. The marketed 35 mm f/2.8 name remains correct; the
 36.6 mm effective focal length belongs in specification context, not the product name. The analysis mirrors the
 canonical assignee and qualified BAFN6 spectral proxy.
+
+
+## 2026-09-17 — Local-site diagram and inspector follow-up
+
+Direct local-site review against US3318653 p. 1 found the front element visibly oversized relative to the rear assembly. Refined r1/r2 SD from 12.1 to 9.5 mm. At the retained 0.02052 mm/px scale, automated ENV/RIM estimates are 9.50/9.29 mm; direct optical-rim inspection gives about 8.8–9.0 mm. The 9.5 mm model is a conservative figure-based rim with chief-ray clearance. A 9.0 mm candidate fails the 31.25° chief ray. Unlike the earlier binary retain/9.0 trial, intermediate candidates were tested before selecting 9.5.
+
+The exact trace retains all 21 sampled axial pupil rays and chief rays at 18.75° and 31.25°. At those off-axis angles, sampled pupil transmission changes from 19/21 and 12/21 to 16/21 and 8/21; this is documented peripheral vignetting, not a claim of uniform field illumination. Positive edge thickness, shared-gap clearance, zero render trimming, and the image-circle audit pass. Rear rims are retained because apparent enlargement in the drawing follows leaders.
+
+Named the five code-only catalog proxies to match the inspector; all six elements remain spectrally covered, spherical singlets with consistent shape/power and dispersion tags. The fixed prime has no modeled focus or zoom travel; the caption now distinguishes its production focusing range from the single patent state.

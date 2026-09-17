@@ -44,61 +44,61 @@ The focal lengths below are standalone thick-element EFLs with each element plac
 
 ### L1 — Biconvex Positive
 
-nd = 1.6779, νd = 55.5. Glass: 678555 — supplier unresolved. Standalone f = +23.808148 mm.
+nd = 1.6779, νd = 55.5. Glass: LAC12 — 678555 coordinate; compatible spectral proxy (supplier unconfirmed). Standalone f = +23.808148 mm.
 
 L1 is the positive front element of cemented member I. It is cemented directly to L2 at r2. The patent requires the refractive-index difference across this interface to lie between 0.008 and 0.02; the rounded Table A values give 0.0110, matching the patent's cited value of about 0.011. This is a source-defined index relationship; the available data do not justify assigning a specific historical glass maker or a more particular aberration role to L1 by itself.
 
 ### L2 — Biconcave Negative
 
-nd = 1.6889, νd = 31.2. Glass: 689312 — supplier unresolved. Standalone f = -65.129966 mm.
+nd = 1.6889, νd = 31.2. Glass: E-FD8 — 689312 coordinate; compatible spectral proxy (supplier unconfirmed). Standalone f = -65.129966 mm.
 
 L2 completes member I. Although L2 is negative as an isolated element, the complete cemented air-bounded member I has an isolated EFL of +35.271484 mm. This distinction is important: the member power includes the actual cemented interface and should not be reconstructed by simply adding the standalone element powers.
 
 ### L3 — Positive Meniscus
 
-nd = 1.6700, νd = 47.2. Glass: 670472 — supplier unresolved. Standalone f = +32.669806 mm.
+nd = 1.6700, νd = 47.2. Glass: H-ZBaF52 — 670472 coordinate; compatible spectral proxy (supplier unconfirmed). Standalone f = +32.669806 mm.
 
 L3 begins the second cemented member and is followed immediately by L4. The r4-r6 member is negative as an isolated air-bounded assembly, with EFL -66.562444 mm, despite L3 itself being positive in air. The member's position ahead of the diaphragm space follows the patent's four-member Gaussian arrangement.
 
 ### L4 — Negative Meniscus
 
-nd = 1.6166, νd = 36.6. Glass: 617366 — supplier unresolved. Standalone f = -18.566004 mm.
+nd = 1.6166, νd = 36.6. Glass: F4 — 617366 coordinate; compatible spectral proxy (supplier unconfirmed). Standalone f = -18.566004 mm.
 
 L4 is the negative rear component of member II and directly precedes the large d6 diaphragm space. The cemented r5 interface has an index difference of 0.0534 from the rounded Table A values, inside the patent's specified 0.04-0.06 range. The patent makes this larger index discontinuity a deliberate condition of the second doublet; the present analysis does not infer a more specific aberration correction from the glass coordinates alone.
 
 ### L5 — Biconcave Negative
 
-nd = 1.6727, νd = 32.2. Glass: 673322 — supplier unresolved. Standalone f = -10.022118 mm.
+nd = 1.6727, νd = 32.2. Glass: H-ZF2 — 673322 coordinate; compatible spectral proxy (supplier unconfirmed). Standalone f = -10.022118 mm.
 
 L5 is the first element after the diaphragm space and the negative component at the front of member III. Its placement opposite member II across the central air space is part of the patent's paired inner-member architecture. The complete L5/L6 member remains negative in isolation, with EFL -76.831156 mm.
 
 ### L6 — Biconvex Positive
 
-nd = 1.6583, νd = 57.3. Glass: 658573 — supplier unresolved. Standalone f = +13.998349 mm.
+nd = 1.6583, νd = 57.3. Glass: K-LaK11 — 658573 coordinate; compatible spectral proxy (supplier unconfirmed). Standalone f = +13.998349 mm.
 
 L6 completes member III at cemented surface r8. The rounded Table A indices give an absolute r8 index difference of 0.0144. The patent prose describes this as about 0.015 and requires a value between 0.008 and 0.02. The 0.0006 difference between the prose approximation and the table-derived value is retained as a source-rounding discrepancy; both satisfy the stated condition.
 
 ### L7 — Biconvex Positive
 
-nd = 1.7440, νd = 44.9. Glass: 744449 — supplier unresolved. Standalone f = +20.770738 mm.
+nd = 1.7440, νd = 44.9. Glass: H-LaF3B — 744449 coordinate; compatible spectral proxy (supplier unconfirmed). Standalone f = +20.770738 mm.
 
 L7 is the single positive rear member IV. Unlike the first three members, it is not cemented to another element. Its standalone EFL is therefore also the isolated EFL of member IV. Together with the positive front member, it forms the patent's collective outer pair around the two negative inner members.
 
 ## Glass Identification / Selection
 
-Table A publishes only d-line refractive index and νd. It does not publish glass maker, melt name, C/F/g line indices, partial dispersion, or Sellmeier coefficients. The final data therefore uses supplier-neutral six-digit coordinate classes rather than assigning a historical catalog glass that the patent does not identify.
+Table A publishes only d-line refractive index and νd. It does not publish glass maker, melt name, C/F/g line indices, partial dispersion, or Sellmeier coefficients. The final data names the runtime catalog proxies alongside the six-digit coordinate classes; those names describe the color model, not historical glass identities.
 
 | Element | nd | νd | Authored glass label |
 |---|---:|---:|---|
-| L1 | 1.6779 | 55.5 | 678555 — supplier unresolved |
-| L2 | 1.6889 | 31.2 | 689312 — supplier unresolved |
-| L3 | 1.6700 | 47.2 | 670472 — supplier unresolved |
-| L4 | 1.6166 | 36.6 | 617366 — supplier unresolved |
-| L5 | 1.6727 | 32.2 | 673322 — supplier unresolved |
-| L6 | 1.6583 | 57.3 | 658573 — supplier unresolved |
-| L7 | 1.7440 | 44.9 | 744449 — supplier unresolved |
+| L1 | 1.6779 | 55.5 | LAC12 — 678555 coordinate; compatible spectral proxy (supplier unconfirmed) |
+| L2 | 1.6889 | 31.2 | E-FD8 — 689312 coordinate; compatible spectral proxy (supplier unconfirmed) |
+| L3 | 1.6700 | 47.2 | H-ZBaF52 — 670472 coordinate; compatible spectral proxy (supplier unconfirmed) |
+| L4 | 1.6166 | 36.6 | F4 — 617366 coordinate; compatible spectral proxy (supplier unconfirmed) |
+| L5 | 1.6727 | 32.2 | H-ZF2 — 673322 coordinate; compatible spectral proxy (supplier unconfirmed) |
+| L6 | 1.6583 | 57.3 | K-LaK11 — 658573 coordinate; compatible spectral proxy (supplier unconfirmed) |
+| L7 | 1.7440 | 44.9 | H-LaF3B — 744449 coordinate; compatible spectral proxy (supplier unconfirmed) |
 
-Authoritative SUMITA, OHARA, HOYA, HIKARI, CDGM, and SCHOTT catalog material contains coordinate-compatible families for these positions, but multiple vendors can occupy the same or nearly the same nd/νd coordinates. Those catalog comparisons support the coordinate-class labels; they do not establish Schneider's historical supplier or melt. Candidate catalog `nC`, `nF`, and `ng` values retained in the audit evidence are therefore not promoted into the lens data.
+Authoritative SUMITA, OHARA, HOYA, HIKARI, CDGM, and SCHOTT catalog material contains coordinate-compatible families for these positions, but multiple vendors can occupy the same or nearly the same nd/νd coordinates. Those catalog comparisons support the qualified spectral-proxy labels; they do not establish Schneider's historical supplier or melt. Candidate catalog `nC`, `nF`, and `ng` values retained in the audit evidence are therefore not promoted into the lens data.
 
 No apochromatic, anomalous-partial-dispersion, or ED-glass claim is made. The patent data provide insufficient spectral information for such a statement.
 

@@ -5,7 +5,7 @@
 **Priority:** Germany, July 5, 1955
 **Granted:** February 25, 1958
 **Inventor:** Günter Klemt
-**Assignee:** Jos. Schneider & Co.
+**Assignee:** Jos. Schneider & Co., Optische Werke (the title page abbreviates this as Jos. Schneider & Co.)
 **Title:** *Wide-Angle Photographic and Cinematographic Objective*
 **Embodiment analyzed:** Example 1, the single preferred numerical embodiment
 
@@ -33,45 +33,45 @@ All surface semi-diameters are likewise modeled because the patent gives no clea
 
 ### L1 — Negative Meniscus
 
-**nd = 1.6228, νd = 56.9. Glass: 623569 — SK10-class crown (supplier unresolved). Standalone f = -60.0301 mm.**
+**nd = 1.6228, νd = 56.9. Glass: N-SK10 — 623569 coordinate; compatible spectral proxy (supplier unconfirmed). Standalone f = -60.0301 mm.**
 
 L1 is the first of the two negative menisci forming patent macro-group I. Its front placement and negative isolated power are source-consistent with the patent's dispersive front group. The analysis does not assign a specific aberration correction to L1 independently of the rest of the group; the verified result is its negative standalone power and its participation in the net-negative front assembly.
 
 ### L2 — Negative Meniscus
 
-**nd = 1.6230, νd = 58.1. Glass: 623581 — SK15-class crown (supplier unresolved). Standalone f = -54.2065 mm.**
+**nd = 1.6230, νd = 58.1. Glass: BACD15 — 623581 coordinate; compatible spectral proxy (supplier unconfirmed). Standalone f = -54.2065 mm.**
 
 L2 is the second air-spaced negative meniscus. Together L1 and L2 constitute the patent's front macro-group I, whose isolated net focal length is -27.5244454 mm. The long air space after L2 separates this negative attachment from the positive rear system and is the dominant inter-group gap in the prescription.
 
 ### L3 — Biconvex Positive
 
-**nd = 1.6261, νd = 39.1. Glass: 626391 — BaSF/BaF-class (supplier unresolved). Standalone f = +31.7294 mm.**
+**nd = 1.6261, νd = 39.1. Glass: H-BaF8 — 626391 coordinate; compatible spectral proxy (supplier unconfirmed). Standalone f = +31.7294 mm.**
 
 L3 is the first positive component of patent macro-group II. It begins the rear collective system after the large separation from the negative front pair. Its positive standalone power is substantial, but the quoted focal length is an isolated-element quantity and should not be interpreted as its in-situ contribution after interaction with the preceding group.
 
 ### L4 — Positive Meniscus
 
-**nd = 1.4707, νd = 67.2. Glass: Unmatched (legacy low-index crown / FK-QK class; patent nd=1.4707, νd=67.2). Standalone f = +42.6705 mm.**
+**nd = 1.4707, νd = 67.2. Glass: H-QK1 — compatible spectral proxy (supplier unconfirmed). Standalone f = +42.6705 mm.**
 
 L4 is the strongly curved positive meniscus immediately ahead of the diaphragm space. The patent specifically calls for this pre-biconcave collective component to use a low refractive index, approximately below 1.50, and to turn its concave side toward the following biconcave lens. [US 2,824,495, PDF p. 2, descriptive text.] The duplicated numerical table assigns L4 the low index 1.4707.
 
-No exact modern catalog coordinate was found for 1.4707 / 67.2 in the authoritative catalogs checked for the dossier, so the data deliberately retains an `Unmatched` class annotation rather than forcing a supplier or glass name.
+CDGM H-QK1 provides a compatible spectral proxy at nd = 1.470470 and νd = 66.88, differing from the patent by −0.000230 and −0.32. Its manufacturer-published Sellmeier curve supplies the color trace without changing the patent coordinates or identifying the historical melt. [CDGM Optical Glass Data Sheet, June 2022, printed p. 66 (PDF p. 68).](https://www.cdgmgd.com/accessory/2022-06-28/client/www.cdgmgd.com/9b32dd2c-55f4-4d4c-b2d2-48f52c9d5f07.pdf)
 
 ### L5 — Biconcave Negative
 
-**nd = 1.6990, νd = 30.1. Glass: 699301 — SF15-class dense flint (supplier unresolved). Standalone f = -14.5136 mm.**
+**nd = 1.6990, νd = 30.1. Glass: SF15 — 699301 coordinate; compatible spectral proxy (supplier unconfirmed). Standalone f = -14.5136 mm.**
 
 L5 is the biconcave negative component immediately behind the diaphragm space and is the strongest negative isolated element in the rear macro-group. Its table value is 1.6990 / 30.1. A prose sentence below the patent table instead associates the approximately 1.47 index with the biconcave member; that statement conflicts with the duplicated numerical table and with the preceding element description. The LensVisualizer data preserves the table and does not transfer L4's low index to L5.
 
 ### L6 — Negative Meniscus, Front Member of Cemented Compound
 
-**nd = 1.6727, νd = 32.2. Glass: 673322 — SF5-class flint (supplier unresolved). Standalone f = -168.3545 mm.**
+**nd = 1.6727, νd = 32.2. Glass: SF5 — 673322 coordinate; compatible spectral proxy (supplier unconfirmed). Standalone f = -168.3545 mm.**
 
 L6 begins the cemented rear compound and is only weakly negative when evaluated as an isolated element. It is cemented directly to L7 at r12; there is no synthetic cement layer in the model. At that junction the downstream L7 glass owns the medium after the surface, matching the physical cemented-interface convention used by LensVisualizer.
 
 ### L7 — Biconvex Positive, Rear Member of Cemented Compound
 
-**nd = 1.6779, νd = 55.3. Glass: 678553 — LAK12/LAL12-class crown (supplier unresolved). Standalone f = +16.8676 mm.**
+**nd = 1.6779, νd = 55.3. Glass: S-LAL12 — 678553 coordinate; compatible spectral proxy (supplier unconfirmed). Standalone f = +16.8676 mm.**
 
 L7 supplies the dominant positive isolated power of the cemented rear pair. The L6/L7 compound has a verified isolated net focal length of +18.6978536 mm. This compound value is distinct from either member's standalone focal length and from the pair's behavior in the complete lens.
 
@@ -79,17 +79,17 @@ The numerical table gives L6 = 1.6727 and L7 = 1.6779, so the rear member has th
 
 ## Glass Identification and Selection
 
-The patent supplies only d-line refractive indices and Abbe numbers. It does not publish per-element `nC`, `nF`, `ng`, `dPgF`, Sellmeier coefficients, or supplier names. The data therefore uses conservative coordinate/class labels rather than claiming historical supplier identity.
+The patent supplies only d-line refractive indices and Abbe numbers. It does not publish per-element `nC`, `nF`, `ng`, `dPgF`, Sellmeier coefficients, or supplier names. The data names compatible catalog spectral proxies for all seven elements without claiming historical supplier identity. Patent nd/νd values remain authoritative; vendor line indices and partial-dispersion values are not copied into the prescription.
 
 | Element | nd | νd | Authored glass annotation |
 |---|---:|---:|---|
-| L1 | 1.6228 | 56.9 | 623569 — SK10-class crown (supplier unresolved) |
-| L2 | 1.6230 | 58.1 | 623581 — SK15-class crown (supplier unresolved) |
-| L3 | 1.6261 | 39.1 | 626391 — BaSF/BaF-class (supplier unresolved) |
-| L4 | 1.4707 | 67.2 | Unmatched legacy low-index crown / FK-QK class |
-| L5 | 1.6990 | 30.1 | 699301 — SF15-class dense flint (supplier unresolved) |
-| L6 | 1.6727 | 32.2 | 673322 — SF5-class flint (supplier unresolved) |
-| L7 | 1.6779 | 55.3 | 678553 — LAK12/LAL12-class crown (supplier unresolved) |
+| L1 | 1.6228 | 56.9 | N-SK10 — 623569 coordinate; compatible spectral proxy (supplier unconfirmed) |
+| L2 | 1.6230 | 58.1 | BACD15 — 623581 coordinate; compatible spectral proxy (supplier unconfirmed) |
+| L3 | 1.6261 | 39.1 | H-BaF8 — 626391 coordinate; compatible spectral proxy (supplier unconfirmed) |
+| L4 | 1.4707 | 67.2 | H-QK1 — compatible spectral proxy (supplier unconfirmed) |
+| L5 | 1.6990 | 30.1 | SF15 — 699301 coordinate; compatible spectral proxy (supplier unconfirmed) |
+| L6 | 1.6727 | 32.2 | SF5 — 673322 coordinate; compatible spectral proxy (supplier unconfirmed) |
+| L7 | 1.6779 | 55.3 | S-LAL12 — 678553 coordinate; compatible spectral proxy (supplier unconfirmed) |
 
 The wide spread in νd values is real source data—for example, L4 is 67.2 while adjacent L5 is 30.1—but Abbe number alone does not establish anomalous partial dispersion or apochromatic correction. The model therefore makes no APO or anomalous-dispersion claim. Modern catalog matches used to classify these coordinates are equivalence evidence only; they are not evidence that Schneider purchased a particular supplier's melt.
 

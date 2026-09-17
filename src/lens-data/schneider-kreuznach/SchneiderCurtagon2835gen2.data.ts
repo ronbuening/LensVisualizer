@@ -26,7 +26,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  on-axis marginal rays, the default visual fan at ±18.75° (0.6× the      ║
  * ║  Schneider 62.5° full field), and full-field chief rays. A 10% clearance ║
  * ║  was applied to the governing ray height for each element and rounded up ║
- * ║  to 0.1 mm. Geometry is independently checked in the dossier verifier.   ║
+ * ║  to 0.1 mm. The front pair is refined to 9.5 mm from the patent figure;  ║
+ * ║  axial and full-field chief rays clear, with peripheral vignetting.       ║
  * ║                                                                            ║
  * ║  PRODUCT CORRELATION: Schneider's archival 24×36-mm SLR brochure depicts ║
  * ║  a CURTAGON 1:2.8/35 six-element section and lists 6/6 construction,     ║
@@ -71,7 +72,7 @@ const LENS_DATA = {
       vd: 65.79,
       indexReference: "d",
       fl: -49.3496,
-      glass: "464658 — FK3-coordinate class (supplier unconfirmed)",
+      glass: "FK3 — 464658 coordinate; compatible spectral proxy (supplier unconfirmed)",
       apd: false,
       role: "Negative front component I; isolated front meniscus.",
     },
@@ -85,7 +86,7 @@ const LENS_DATA = {
       vd: 41.14,
       indexReference: "d",
       fl: 29.2655,
-      glass: "702411 — BASF7/BAH27-class (supplier unresolved)",
+      glass: "BASF7 — 702411 coordinate; compatible spectral proxy (supplier unconfirmed)",
       apd: false,
       role: "First positive lens of rear component II.",
     },
@@ -99,7 +100,7 @@ const LENS_DATA = {
       vd: 54.04,
       indexReference: "d",
       fl: 54.1488,
-      glass: "617540 — SSK1/BSM21-class (supplier unresolved)",
+      glass: "K-SSK1 — 617540 coordinate; compatible spectral proxy (supplier unconfirmed)",
       apd: false,
       role: "Positive meniscus in rear component II.",
     },
@@ -113,7 +114,7 @@ const LENS_DATA = {
       vd: 26.1,
       indexReference: "d",
       fl: -16.3433,
-      glass: "785261 — SF56-class (supplier unconfirmed)",
+      glass: "SF56A — 785261 coordinate; compatible spectral proxy (supplier unconfirmed)",
       apd: false,
       role: "Biconcave negative lens in rear component II.",
     },
@@ -141,15 +142,15 @@ const LENS_DATA = {
       vd: 50.31,
       indexReference: "d",
       fl: 50.535,
-      glass: "720503 — LAK10-class (supplier unresolved)",
+      glass: "LAC10 — 720503 coordinate; compatible spectral proxy (supplier unconfirmed)",
       apd: false,
       role: "Rear positive meniscus in rear component II.",
     },
   ],
 
   surfaces: [
-    { label: "1", R: 72.9438, d: 2.196, nd: 1.4645, elemId: 1, sd: 12.1 },
-    { label: "2", R: 17.2752, d: 13.79088, nd: 1.0, elemId: 0, sd: 12.1 },
+    { label: "1", R: 72.9438, d: 2.196, nd: 1.4645, elemId: 1, sd: 9.5 },
+    { label: "2", R: 17.2752, d: 13.79088, nd: 1.0, elemId: 0, sd: 9.5 },
     { label: "3", R: 28.68708, d: 4.89708, nd: 1.7018, elemId: 2, sd: 9.3 },
     { label: "4", R: -67.2159, d: 0.35136, nd: 1.0, elemId: 0, sd: 9.3 },
     { label: "5", R: 14.75712, d: 1.83732, nd: 1.6172, elemId: 3, sd: 8.2 },
@@ -174,8 +175,7 @@ const LENS_DATA = {
   doublets: [],
 
   closeFocusM: 0.3,
-  focusDescription:
-    "Schneider product focus range is infinity to 0.30 m; the patent gives no finite-conjugate spacing state, so the optical prescription remains at the published infinity state (NO_INTERNAL_RECONSTRUCTION).",
+  focusDescription: "The production lens focuses from infinity to 0.30 m. The patent supplies only the infinity prescription, so focus travel is not modeled.",
 
   nominalFno: 2.8,
   fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],

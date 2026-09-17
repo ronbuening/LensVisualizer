@@ -277,6 +277,7 @@ const GLASS_CATALOG_SOURCE_ORDER = [
   "N-LAK33B",
   "TAFD32",
   "H-QK3L",
+  "H-QK1",
   "H-ZF6",
   "H-ZLaF50D",
   "H-ZLaF50E",

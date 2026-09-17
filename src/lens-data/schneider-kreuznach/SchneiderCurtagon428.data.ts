@@ -56,7 +56,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 2,824,495",
   patentAuthors: ["Günter Klemt"],
-  patentAssignees: ["Jos. Schneider & Co."],
+  patentAssignees: ["Jos. Schneider & Co., Optische Werke"],
   patentYear: 1958,
   elementCount: 7,
   groupCount: 6,
@@ -73,7 +73,7 @@ const LENS_DATA = {
       vd: 56.9,
       indexReference: "d",
       fl: -60.03010017486779,
-      glass: "623569 — SK10-class crown (supplier unresolved)",
+      glass: "N-SK10 — 623569 coordinate; compatible spectral proxy (supplier unconfirmed)",
       role: "Front negative meniscus in patent macro-group I.",
     },
     {
@@ -86,7 +86,7 @@ const LENS_DATA = {
       vd: 58.1,
       indexReference: "d",
       fl: -54.20649842470832,
-      glass: "623581 — SK15-class crown (supplier unresolved)",
+      glass: "BACD15 — 623581 coordinate; compatible spectral proxy (supplier unconfirmed)",
       role: "Second negative meniscus in patent macro-group I.",
     },
     {
@@ -99,7 +99,7 @@ const LENS_DATA = {
       vd: 39.1,
       indexReference: "d",
       fl: 31.729433141304604,
-      glass: "626391 — BaSF/BaF-class (supplier unresolved)",
+      glass: "H-BaF8 — 626391 coordinate; compatible spectral proxy (supplier unconfirmed)",
       role: "Positive forward component of patent macro-group II.",
     },
     {
@@ -112,7 +112,7 @@ const LENS_DATA = {
       vd: 67.2,
       indexReference: "d",
       fl: 42.670478963287,
-      glass: "Unmatched (legacy low-index crown / FK-QK class; patent nd=1.4707, νd=67.2)",
+      glass: "H-QK1 — compatible spectral proxy (supplier unconfirmed)",
       role: "Low-index positive meniscus immediately before the diaphragm space.",
     },
     {
@@ -125,7 +125,7 @@ const LENS_DATA = {
       vd: 30.1,
       indexReference: "d",
       fl: -14.513568977844097,
-      glass: "699301 — SF15-class dense flint (supplier unresolved)",
+      glass: "SF15 — 699301 coordinate; compatible spectral proxy (supplier unconfirmed)",
       role: "Biconcave negative component immediately behind the diaphragm space.",
     },
     {
@@ -138,7 +138,7 @@ const LENS_DATA = {
       vd: 32.2,
       indexReference: "d",
       fl: -168.35445382879558,
-      glass: "673322 — SF5-class flint (supplier unresolved)",
+      glass: "SF5 — 673322 coordinate; compatible spectral proxy (supplier unconfirmed)",
       role: "Front member of the cemented L6/L7 rear compound.",
       cemented: "D1",
     },
@@ -152,7 +152,7 @@ const LENS_DATA = {
       vd: 55.3,
       indexReference: "d",
       fl: 16.867607781896805,
-      glass: "678553 — LAK12/LAL12-class crown (supplier unresolved)",
+      glass: "S-LAL12 — 678553 coordinate; compatible spectral proxy (supplier unconfirmed)",
       role: "Rear positive member of the cemented L6/L7 compound.",
       cemented: "D1",
     },
@@ -183,8 +183,7 @@ const LENS_DATA = {
   asph: {},
 
   /* ── Focus ── */
-  focusDescription:
-    "NO_INTERNAL_RECONSTRUCTION: patent spacings remain fixed; closeFocusM is Retina/DKL metadata, not a focus law.",
+  focusDescription: "The Retina production lens focuses from infinity to 3 ft (0.9144 m). The patent supplies only one focus state, so focus travel is not modeled.",
   var: {},
   varLabels: [],
   closeFocusM: 0.9144,

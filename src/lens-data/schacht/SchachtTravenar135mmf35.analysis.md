@@ -82,7 +82,7 @@ historical supplier or melt, and the patent's nd/νd remain unchanged. [6]
 
 ### L2 — Positive Meniscus
 
-**nd = 1.6204, νd = 60.3. Glass: 620603 — dense crown class (supplier unresolved). f = +110.6030 mm.**
+**nd = 1.6204, νd = 60.3. Glass: N-SK16 — 620603 coordinate; compatible spectral proxy (supplier unconfirmed). f = +110.6030 mm.**
 
 L2 is the second collecting meniscus and is more strongly curved than L1. The patent specifically describes the second
 lens as bent toward the object side. In the selected numerical example, its two positive radii preserve that geometry
@@ -124,7 +124,7 @@ therefore express coordinate classes or explicit unresolved status, not supplier
 | Element | Patent nd | Patent νd | Authored glass label | Status |
 |---|---:|---:|---|---|
 | L1 | 1.5516 | 62.6 | N-PSK3 spectral proxy (supplier unconfirmed) | Compatible modern spectral proxy; historical identity unresolved |
-| L2 | 1.6204 | 60.3 | 620603 — dense crown class (supplier unresolved) | Strong coordinate-class match |
+| L2 | 1.6204 | 60.3 | N-SK16 — 620603 coordinate; compatible spectral proxy (supplier unconfirmed) | Strong coordinate-class match |
 | L3 | 1.7215 | 29.3 | S-TIH18 spectral proxy (supplier unconfirmed) | Strong coordinate-class match; supplier unresolved |
 | L4 | 1.7470 | 34.9 | LAFN7 spectral proxy (supplier unconfirmed) | Approximate compatible proxy; historical family unresolved |
 

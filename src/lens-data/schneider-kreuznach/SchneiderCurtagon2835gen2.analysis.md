@@ -28,25 +28,25 @@ No cemented interfaces occur. All twelve refracting surfaces are spherical, and 
 
 ### L1 — Negative Meniscus
 
-*nd* = 1.46450, νd = 65.79. Glass: 464658 — FK3-coordinate class (supplier unconfirmed). *f* = −49.35 mm.
+*nd* = 1.46450, νd = 65.79. Glass: FK3 — 464658 coordinate; compatible spectral proxy (supplier unconfirmed). *f* = −49.35 mm.
 
 L1 is the entire negative front component I. The patent describes it as a meniscus whose forward surface is less strongly curved than its rear surface, followed by the large air space $d_2$. [1, p. 2] Its verified isolated negative power is consistent with the system's reversed-telephoto layout, but the model does not assign a unique aberration correction to L1 alone.
 
 ### L2 — Biconvex Positive
 
-*nd* = 1.70180, νd = 41.14. Glass: 702411 — BASF7/BAH27-class (supplier unresolved). *f* = +29.27 mm.
+*nd* = 1.70180, νd = 41.14. Glass: BASF7 — 702411 coordinate; compatible spectral proxy (supplier unconfirmed). *f* = +29.27 mm.
 
 L2 is the first positive lens of rear component II and the strongest positive singlet by isolated power in the modeled prescription. The patent identifies it as biconvex and places it immediately after the large front-to-rear-component separation. [1, p. 2] Its focal length here is the standalone element value in air, not the effective contribution of L2 inside the full rear group.
 
 ### L3 — Positive Meniscus
 
-*nd* = 1.61720, νd = 54.04. Glass: 617540 — SSK1/BSM21-class (supplier unresolved). *f* = +54.15 mm.
+*nd* = 1.61720, νd = 54.04. Glass: K-SSK1 — 617540 coordinate; compatible spectral proxy (supplier unconfirmed). *f* = +54.15 mm.
 
 L3 is the positive meniscus preceding the central negative lens. The patent specifies a more strongly curved forward surface and a less strongly curved rear surface, with the latter facing the air space $d_6$ and the biconcave L4. [1, p. 2] The relative curvature of L3 and L4 is part of one of the patent's explicit design conditions rather than an inferred LensVisualizer optimization.
 
 ### L4 — Biconcave Negative
 
-*nd* = 1.78470, νd = 26.10. Glass: 785261 — SF56-class (supplier unconfirmed). *f* = −16.34 mm.
+*nd* = 1.78470, νd = 26.10. Glass: SF56A — 785261 coordinate; compatible spectral proxy (supplier unconfirmed). *f* = −16.34 mm.
 
 L4 is the biconcave negative singlet at the center of rear component II. It has the largest-magnitude standalone power of the six elements in the verified model. The patent brackets this negative lens between the L2/L3 and L5/L6 positive pairs and explicitly relates the ratios of the L4 radii to those of L5. [1, pp. 2–3]
 
@@ -58,7 +58,7 @@ L5 is the biconvex positive lens following L4. The patent uses the L4/L5 curvatu
 
 ### L6 — Positive Meniscus
 
-*nd* = 1.72000, νd = 50.31. Glass: 720503 — LAK10-class (supplier unresolved). *f* = +50.54 mm.
+*nd* = 1.72000, νd = 50.31. Glass: LAC10 — 720503 coordinate; compatible spectral proxy (supplier unconfirmed). *f* = +50.54 mm.
 
 L6 is the rear positive meniscus. The patent describes its less strongly curved surface as facing forward and its more strongly curved surface as facing the image side. It also specifies that the refractive index of L6 exceeds that of L5; in the selected prescription the indices are 1.72000 and 1.58900 respectively. [1, pp. 2–3]
 
@@ -68,12 +68,12 @@ The patent supplies only d-line refractive index and Abbe number for each elemen
 
 | Element | Patent *nd* | Patent νd | Authored glass label | Catalog interpretation |
 | --- | ---: | ---: | --- | --- |
-| L1 | 1.46450 | 65.79 | 464658 — FK3-coordinate class (supplier unconfirmed) | Exact/near-exact FK3-class coordinates occur in authoritative catalog material; supplier unproven. |
-| L2 | 1.70180 | 41.14 | 702411 — BASF7/BAH27-class (supplier unresolved) | Several current vendor families cluster near the patent coordinate; no unique supplier follows from *nd*/νd. |
-| L3 | 1.61720 | 54.04 | 617540 — SSK1/BSM21-class (supplier unresolved) | J-SSK1-class coordinates are close; the label remains class-level. |
-| L4 | 1.78470 | 26.10 | 785261 — SF56-class (supplier unconfirmed) | SCHOTT N-SF56 reproduces the coordinate closely, but the patent does not name SCHOTT. |
+| L1 | 1.46450 | 65.79 | FK3 — 464658 coordinate; compatible spectral proxy (supplier unconfirmed) | Exact/near-exact FK3-class coordinates occur in authoritative catalog material; supplier unproven. |
+| L2 | 1.70180 | 41.14 | BASF7 — 702411 coordinate; compatible spectral proxy (supplier unconfirmed) | Several current vendor families cluster near the patent coordinate; no unique supplier follows from *nd*/νd. |
+| L3 | 1.61720 | 54.04 | K-SSK1 — 617540 coordinate; compatible spectral proxy (supplier unconfirmed) | SUMITA K-SSK1 supplies the compatible runtime curve; the historical supplier remains unconfirmed. |
+| L4 | 1.78470 | 26.10 | SF56A — 785261 coordinate; compatible spectral proxy (supplier unconfirmed) | SCHOTT SF56A supplies the compatible runtime curve, but the patent does not name SCHOTT. |
 | L5 | 1.58900 | 48.64 | BAFN6 spectral proxy (supplier unconfirmed) | SCHOTT BAFN6 (nd 1.58900 / νd 48.45) supplies a compatible spectral proxy; historical supplier remains unresolved. |
-| L6 | 1.72000 | 50.31 | 720503 — LAK10-class (supplier unresolved) | LAK10-family entries occur across multiple vendors; no historical melt is asserted. |
+| L6 | 1.72000 | 50.31 | LAC10 — 720503 coordinate; compatible spectral proxy (supplier unconfirmed) | LAK10-family entries occur across multiple vendors; no historical melt is asserted. |
 
 The catalog work used current SCHOTT, OHARA, HOYA, HIKARI, CDGM, and SUMITA material to test coordinate compatibility. [4–10] Those comparisons support supplier-neutral spectral proxies. SCHOTT’s BAFN6 Sellmeier coefficients are now included
 in the catalog, so L5 resolves despite the patent’s rounded coordinate code differing from the catalog code. [11] Because the final data does not carry verified `nC`, `nF`, `ng`, or `dPgF` values for these historical elements, no apochromatic or anomalous-partial-dispersion performance claim is made.
@@ -106,9 +106,7 @@ Using the final parsed data, independent sequential height/reduced-angle tracing
 
 The patent does not publish an aperture stop. The model inserts one flat `STO` plane at the midpoint of the scaled $d_6$ gap between L3 and L4. Its 7.0302 mm semi-diameter is calibrated so the modeled entrance pupil yields f/2.8. Agreement with f/2.8 is therefore a calibration constraint, not independent evidence for the physical production diaphragm diameter or position.
 
-Likewise, the patent publishes no semi-diameters. The authored clear apertures are modeled from exact spherical meridional ray envelopes at the infinity state with a 10% clearance allowance. They pass the dossier's edge-thickness, actual rim-slope, shared-gap intrusion, and representative off-axis containment checks. These values are visualization and tracing geometry, not measured production lens diameters. The local patent figure was reviewed at 600 dpi; leader lines exaggerate the apparent L4/L5 rim, so those rear SDs remain within drawing uncertainty. The front 12.1 mm rim is retained as a ray-clearance allowance:
-a 9 mm figure-only rim clips the 31.25° full-field chief ray in the exact model. The schematic is therefore not treated
-as a literal front clear-aperture measurement.
+The patent publishes no semi-diameters. The front element now uses 9.5 mm rims inferred from the local 600-dpi figure, replacing the initial 12.1 mm ray-envelope allowance. A 9.0 mm candidate clips the 31.25° full-field chief ray, while 9.5 mm retains it and the complete axial f/2.8 bundle. Peripheral pupil clipping increases, as expected for the smaller front aperture; full-field illumination is not claimed. The remaining SDs retain the ray-envelope estimates, checked against optical rims while excluding leaders. All elements preserve positive edge thickness and clear inter-element gaps. These are modeled clear apertures, not measured production diameters.
 
 The surface-by-surface Petzval sum of the implemented model, using $\phi/(n n')$ at every refracting surface, is 0.00654578 mm⁻¹, corresponding to a reciprocal magnitude of 152.77 mm. This is a paraxial field-curvature quantity for the modeled prescription, not a direct measurement of the final image surface or corner performance.
 

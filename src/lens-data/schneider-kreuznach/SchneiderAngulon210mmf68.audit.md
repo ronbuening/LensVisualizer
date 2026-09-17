@@ -22,3 +22,8 @@ The existing vendor curves were evaluated at 589.2938 nm with νD=(nD−1)/(nF�
 d-line reference. Both comparisons satisfy unchanged Δn ±0.003 / Δν ±2 guards. These are approximate spectral
 proxies, not sodium-D-to-d conversions or historical melt identifications. Source nd/ν values remain unchanged;
 no nC/nF/ng/dPgF data were invented. The analysis retains the reference-wavelength caveat and names the proxies.
+
+
+## 2026-09-17 — Local-site diagram and inspector follow-up
+
+Direct local-site review against US1882530 p. 1 confirms the paired cemented triplets and stepped outer rims. Retained the constrained 21 / 15.538 / 14 mm rim structure; no further SD change is justified. The six inspector cards correctly report TRIPLET T1/T2 and the existing F5 / S-BAL2 / FK3 spectral proxies. These are sodium-D-compatible approximations, not historical supplier identities or measured patent color data. The fixed cell has no modeled focus or zoom travel. Removed the schema placeholder distance and internal reconstruction code from the user-facing focus caption; no minimum focus distance is asserted.

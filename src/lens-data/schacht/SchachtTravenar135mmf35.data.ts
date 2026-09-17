@@ -68,7 +68,7 @@ const LENS_DATA = {
       vd: 60.3,
       indexReference: "d",
       fl: 110.603025042,
-      glass: "620603 — dense crown class (supplier unresolved)",
+      glass: "N-SK16 — 620603 coordinate; compatible spectral proxy (supplier unconfirmed)",
       role: "Second collecting element, strongly bent toward the object side.",
     },
     {
@@ -116,8 +116,7 @@ const LENS_DATA = {
   doublets: [],
 
   closeFocusM: 1.5,
-  focusDescription:
-    "NO_INTERNAL_RECONSTRUCTION: patent Example 2 publishes no finite-focus optical state; 1.5 m is secondary product metadata only.",
+  focusDescription: "The patent supplies only an infinity-focus prescription. The reported 1.5 m close-focus distance is product information; focus travel is not modeled.",
 
   nominalFno: 3.5,
   fstopSeries: [3.5, 4, 5.6, 8, 11, 16],

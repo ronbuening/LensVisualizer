@@ -36,3 +36,8 @@ For comparison, local `patents/US_2721501_A.pdf` p. 2 names Ludwig Bertele with 
 and `patents/CH_479879_A.pdf` p. 1 names Ludwig and Jürgen Bertele as individual holders and inventors.
 The sibling Travenar 90mm f/2.8 and S-Travenar 135mm f/2.8 therefore correctly retain empty organizational
 assignee arrays. Product correlation with Schacht is not evidence of an assignment or license.
+
+
+## 2026-09-17 — Local-site diagram and inspector follow-up
+
+Direct local-site review against DE 843305 C p. 4 Fig. 2 confirms the retained 15.5 mm rear rim and front-element silhouette. No further SD change is justified. Named the existing N-SK16 proxy for L2 so its glass annotation agrees with the inspector's resolved curve. All four elements have compatible spectral curves. All are spherical singlets; shape/power labels and nd-based fill colors agree with the source data. Focus remains disabled at infinity, with no zoom control or authored motion law. Replaced the internal reconstruction code in the focus caption with a plain-language explanation.

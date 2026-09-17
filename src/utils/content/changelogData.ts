@@ -25,11 +25,6 @@ export const CHANGELOG: ChangelogEntry[] = [
   },
   {
     date: "2026-09-17",
-    type: "fix",
-    summary: "Corrected the Travenar 135mm f/3.5 patent-holder attribution on the relationship map",
-  },
-  {
-    date: "2026-09-17",
     type: "lens",
     summary: "Added Schacht Travenar 135mm f/3.5 and Schneider Angulon 210mm f/6.8 patent designs",
   },

@@ -37,6 +37,10 @@ const ASSIGNEE_START_YEAR_OVERRIDES = new Map([
 // https://patents.google.com/patent/US2646721A/en (front page: Aktiengesellschaft)
 // DE 1 157 000 names Jenoptik Jena G.m.b.H.; normalize punctuation only, not legal identity.
 const ASSIGNEE_ALIASES = [
+  // US 2,824,495 shortens the same Kreuznach assignee named in US 3,005,379.
+  // Retain the later GmbH & Co. KG as a distinct historical legal style.
+  { alias: "Jos. Schneider & Co.", canonical: "Jos. Schneider & Co., Optische Werke" },
+  { alias: "Jos. Schneider & Co. Optische Werke", canonical: "Jos. Schneider & Co., Optische Werke" },
   { alias: "Jenoptik Jena G.m.b.H.", canonical: "Jenoptik Jena GmbH" },
   { alias: "Voigtländer A.G.", canonical: "Voigtländer AG" },
   { alias: "Nippon Kogaku Kogyo K.K.", canonical: "Nippon Kogaku K.K." },

@@ -182,7 +182,7 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 1.0,
-  focusDescription: "NO_INTERNAL_RECONSTRUCTION: fixed optical cell; the patent publishes no internal focus law or MFD. closeFocusM = 1.0 m is only the required finite UI placeholder; view-camera bellows translation is outside the model.",
+  focusDescription: "The patent supplies a fixed optical cell. View-camera bellows focusing is not modeled, and no minimum focus distance is established.",
 
   /* ── Aperture configuration ── */
   nominalFno: 6.8,
