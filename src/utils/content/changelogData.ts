@@ -19,6 +19,21 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-09-17",
+    type: "improvement",
+    summary: "Added links from inventor and assignee maps to focus their nodes on the universal map",
+  },
+  {
+    date: "2026-09-17",
+    type: "lens",
+    summary: "Added Schacht Travenar 135mm f/3.5 and Schneider Angulon 210mm f/6.8 patent designs",
+  },
+  {
+    date: "2026-09-17",
+    type: "lens",
+    summary: "Added Schneider Cine-Xenon 25mm f/1.4 and Curtagon 35mm f/2.8 and 28mm f/4 designs",
+  },
+  {
     date: "2026-09-16",
     type: "feature",
     summary:

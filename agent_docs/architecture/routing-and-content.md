@@ -52,7 +52,8 @@ with those corporate-history records. Shared corporate families become hub nodes
 become external-organization nodes, and disconnected components are packed into separate outlined networks. Selecting
 a patent opens the shared patent detail card; selecting any other entity exposes its dated corporate records and links
 catalog parties back to the ordinary focused map. No homepage or global navigation link points directly to this route;
-the prominent entry point lives in the no-focus `/relationships` index state.
+the prominent entry point lives in the no-focus `/relationships` index state. Each focused inventor or assignee map
+also links to its center node on the universal map using `universalMapHash`, restoring selection, details, and framing.
 
 `src/utils/state/universalMapUrl.ts` serializes the complete graph ID with `URLSearchParams` and validates restored
 IDs against the graph. IDs containing already-encoded corporate names must round-trip without an extra manual decode.
