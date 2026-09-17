@@ -77,7 +77,7 @@ flowchart LR
 - Direct source files: 12
 - Direct subfolders: 0
 - Main outbound areas: same folder (15), src/types (12), package:react (4), src/comparison (3), src/utils/catalog (3), src/optics/lensMovement.ts, src/optics/validateLensData.ts, src/utils/appConfig.ts, +4 more
-- External consumers: src/comparison, src/components/HolidayFavicon.tsx, src/components/hooks, src/components/layout, src/pages/AuthorsIndexPage.tsx, src/pages/UniversalRelationshipMapPage.tsx, src/utils/theme
+- External consumers: src/comparison, src/components/HolidayFavicon.tsx, src/components/hooks, src/components/layout, src/pages/AuthorsIndexPage.tsx, src/pages/RelationshipMapPage.tsx, src/pages/UniversalRelationshipMapPage.tsx, src/utils/theme
 
 ## Files
 
@@ -90,7 +90,7 @@ flowchart LR
 | `lensViewUrlSync.ts` | Lens View Url Sync helper module | same folder (4), src/types (2), src/utils/catalog, src/utils/seo | same folder | ComparisonLenses, ComparisonError, ComparisonLensesParam, getComparisonZoomLens, getCatalogZoomLens, getUrlZoomLens, getStateZoom, buildLensViewSearch, +4 more |
 | `parseComparisonParams.ts` | Parse Comparison Params helper module | same folder (2), src/comparison | same folder (2), src/comparison | focalLengthToZoomT, zoomTToFocalLength, buildComparePath, BuildURLSliders, parseLensKeysFromSearch, parseComparisonParams, encodeSliderParams, buildComparisonURL |
 | `preferences.ts` | Preferences helper module | src/types | same folder (2), src/utils/theme (2), src/components/HolidayFavicon.tsx | PREFS_KEY, loadPrefs |
-| `universalMapUrl.ts` | Universal Map Url helper module | none | src/pages/UniversalRelationshipMapPage.tsx | universalMapNodeFromHash, universalMapHash |
+| `universalMapUrl.ts` | Universal Map Url helper module | none | src/pages/RelationshipMapPage.tsx, src/pages/UniversalRelationshipMapPage.tsx | universalMapNodeFromHash, universalMapHash |
 | `useLensState.ts` | React hook module | same folder (4), package:react, src/types, src/utils/catalog, src/utils/useMediaQuery.ts | src/components/layout | default, useLensState |
 | `usePreferences.ts` | React hook module | package:react, same folder, src/types | src/components/layout | default, usePreferences |
 | `useURLSync.ts` | React hook module | same folder (3), package:react, src/types, src/utils/catalog | src/components/layout | default, useURLSync |

@@ -20,6 +20,11 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-09-17",
+    type: "improvement",
+    summary: "Added links from inventor and assignee maps to focus their nodes on the universal map",
+  },
+  {
+    date: "2026-09-17",
     type: "fix",
     summary: "Corrected the Travenar 135mm f/3.5 patent-holder attribution on the relationship map",
   },
