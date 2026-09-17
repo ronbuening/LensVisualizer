@@ -521,11 +521,13 @@ describe("resolveGlass", () => {
 
   it("exposes every duplicate-code candidate", () => {
     expect(resolveGlassCandidates("516641").map((entry) => entry.name)).toEqual(["S-BSL7", "K-BK7", "L-BSL7"]);
+    expect(resolveGlassCandidates("589485").map((entry) => entry.name)).toEqual(["BAF6", "BAFN6"]);
   });
 
   it("uses vendor context and coordinates to disambiguate duplicate codes", () => {
     expect(resolveCompatibleGlass("516641 (SUMITA)", 1.5163, 64.11)?.name).toBe("K-BK7");
     expect(resolveCompatibleGlass("516641 (OHARA)", 1.51633, 64.14)?.name).toBe("S-BSL7");
+    expect(resolveCompatibleGlass("589485 (SCHOTT)", 1.589, 48.45)?.name).toBe("BAFN6");
   });
 
   it("explains compatible candidates using the same runtime ranking", () => {

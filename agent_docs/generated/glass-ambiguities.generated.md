@@ -12,17 +12,17 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **766** lenses scanned
-- **8633** glass elements examined
-- **2673** elements have multiple coordinate-compatible candidates
-- **504** lens files are affected
+- **771** lenses scanned
+- **8663** glass elements examined
+- **2682** elements have multiple coordinate-compatible candidates
+- **508** lens files are affected
 - **256** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **198** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
-| Smallest reference-index residual | 1515 |
-| Evidence-source priority | 877 |
+| Smallest reference-index residual | 1522 |
+| Evidence-source priority | 879 |
 | Vendor context | 272 |
 | Stable canonical-name order | 7 |
 | Smallest Abbe residual | 2 |
@@ -1563,13 +1563,22 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `728283 — flint class (vendor unspecified)` | 1.72825 / 28.32 (d) | H-ZF4A — smallest d-line \|Δn\| (3.6e-8 vs 2.2e-7) | E-FD10 (Hoya, code, alternate code row) | 1 | [SAMYANG XP 35mm f/1.2](../../src/lens-data/samyang/SamyangXP35mmf12.data.ts) L8 |
 | `620603 — SK16/BSM16 class (supplier unconfirmed)` | 1.62041 / 60.30 (d) | N-SK16 — alias evidence outranks six-digit code evidence. | J-SK16 (Hikari, code, alternate code row)<br>S-BSM16 (Ohara, code, alternate code row) | 1 | [SCHACHT S-TRAVENAR 135mm f/2.8](../../src/lens-data/schacht/SchachtSTravenar135mmf28.data.ts) L2 |
 | `728284 — SF10-class dense flint (supplier unconfirmed)` | 1.72825 / 28.40 (d) | SF10 — direct name evidence outranks six-digit code evidence. | J-SF10 (Hikari, code, alternate code row) | 1 | [SCHACHT S-TRAVENAR 135mm f/2.8](../../src/lens-data/schacht/SchachtSTravenar135mmf28.data.ts) L4 |
+| `620603 — dense crown class (supplier unresolved)` | 1.62040 / 60.30 (d) | N-SK16 — smallest d-line \|Δn\| (1.0e-5 vs 1.0e-5) | J-SK16 (Hikari, code, alternate code row)<br>S-BSM16 (Ohara, code, alternate code row) | 1 | [SCHACHT TRAVENAR 135mm f/3.5](../../src/lens-data/schacht/SchachtTravenar135mmf35.data.ts) L2 |
 | `SF8 / S-TIM28 class (supplier unconfirmed)` | 1.68981 / 31.20 (d) | S-TIM28 — direct name evidence outranks alias evidence. | N-SF8 (Schott, alias) | 1 | [SCHACHT TRAVENAR 90mm f/2.8](../../src/lens-data/schacht/SchachtTravenar90mmf28.data.ts) L3 |
+| `678555 — supplier unresolved` | 1.67790 / 55.50 (d) | LAC12 — smallest d-line \|Δn\| (1.9e-6 vs 5.0e-6) | K-LaK12 (Sumita, code, alternate code row) | 1 | [SCHNEIDER-KREUZNACH CINE-XENON 25mm f/1.4](../../src/lens-data/schneider-kreuznach/SchneiderCineXenon1425.data.ts) L1 |
+| `689312 — supplier unresolved` | 1.68890 / 31.20 (d) | E-FD8 — smallest d-line \|Δn\| (3.0e-5 vs 3.0e-5) | M-FD80 (Hoya, code, alternate code row)<br>J-SF8 (Hikari, code, alternate code row) | 1 | [SCHNEIDER-KREUZNACH CINE-XENON 25mm f/1.4](../../src/lens-data/schneider-kreuznach/SchneiderCineXenon1425.data.ts) L2 |
+| `673322 — supplier unresolved` | 1.67270 / 32.20 (d) | H-ZF2 — smallest d-line \|Δn\| (1.8e-7 vs 2.0e-7) | E-FD5 (Hoya, code, preferred code row)<br>SF5 (Schott, code, alternate code row) | 1 | [SCHNEIDER-KREUZNACH CINE-XENON 25mm f/1.4](../../src/lens-data/schneider-kreuznach/SchneiderCineXenon1425.data.ts) L5 |
+| `744449 — supplier unresolved` | 1.74400 / 44.90 (d) | H-LaF3B — smallest d-line \|Δn\| (1.0e-7 vs 2.8e-5) | N-LAF2 (Schott, code, alternate code row) | 1 | [SCHNEIDER-KREUZNACH CINE-XENON 25mm f/1.4](../../src/lens-data/schneider-kreuznach/SchneiderCineXenon1425.data.ts) L7 |
 | `744449 — N-LAF2 class (supplier unproven)` | 1.74400 / 44.90 (d) | N-LAF2 — direct name evidence outranks six-digit code evidence. | H-LaF3B (CDGM, code, preferred code row) | 1 | [SCHNEIDER-KREUZNACH CINEGON 10mm f/1.8](../../src/lens-data/schneider-kreuznach/SchneiderCinegon1810.data.ts) L1 |
 | `673322 — SF5 class (supplier unproven)` | 1.67270 / 32.20 (d) | SF5 — direct name evidence outranks six-digit code evidence. | H-ZF2 (CDGM, code, alternate code row)<br>E-FD5 (Hoya, code, preferred code row) | 1 | [SCHNEIDER-KREUZNACH CINEGON 10mm f/1.8](../../src/lens-data/schneider-kreuznach/SchneiderCinegon1810.data.ts) L5 |
 | `728284 — SF10 class (supplier unproven)` | 1.72820 / 28.30 (d) | SF10 — direct name evidence outranks six-digit code evidence. | J-SF10 (Hikari, code, alternate code row) | 1 | [SCHNEIDER-KREUZNACH CINEGON 10mm f/1.8](../../src/lens-data/schneider-kreuznach/SchneiderCinegon1810.data.ts) L9 |
 | `673322 flint class (supplier unresolved)` | 1.67270 / 32.20 (d) | H-ZF2 — smallest d-line \|Δn\| (1.8e-7 vs 2.0e-7) | E-FD5 (Hoya, code, preferred code row)<br>SF5 (Schott, code, alternate code row) | 2 | [SCHNEIDER-KREUZNACH CINEGON 6.5mm f/1.9](../../src/lens-data/schneider-kreuznach/SchneiderCinegon1965.data.ts) L1 |
 | `620603 crown class (supplier unresolved)` | 1.62040 / 60.30 (d) | N-SK16 — smallest d-line \|Δn\| (1.0e-5 vs 1.0e-5) | J-SK16 (Hikari, code, alternate code row)<br>S-BSM16 (Ohara, code, alternate code row) | 2 | [SCHNEIDER-KREUZNACH CINEGON 6.5mm f/1.9](../../src/lens-data/schneider-kreuznach/SchneiderCinegon1965.data.ts) L5 |
 | `699301 dense-flint class (supplier unresolved)` | 1.69900 / 30.10 (d) | E-FD15 — smallest d-line \|Δn\| (5.0e-5 vs 5.3e-5) | S-TIM35 (Ohara, code, preferred code row) | 1 | [SCHNEIDER-KREUZNACH CINEGON 6.5mm f/1.9](../../src/lens-data/schneider-kreuznach/SchneiderCinegon1965.data.ts) L7 |
+| `720503 — LAK10-class (supplier unresolved)` | 1.72000 / 50.31 (d) | LAC10 — smallest d-line \|Δn\| (1.7e-6 vs 1.0e-5) | J-LAK10 (Hikari, code, preferred code row) | 1 | [SCHNEIDER-KREUZNACH CURTAGON 35mm f/2.8](../../src/lens-data/schneider-kreuznach/SchneiderCurtagon2835gen2.data.ts) L6 |
+| `699301 — SF15-class dense flint (supplier unresolved)` | 1.69900 / 30.10 (d) | SF15 — direct name evidence outranks six-digit code evidence. | E-FD15 (Hoya, code, alternate code row)<br>S-TIM35 (Ohara, code, preferred code row) | 1 | [SCHNEIDER-KREUZNACH RETINA-CURTAGON 28mm f/4](../../src/lens-data/schneider-kreuznach/SchneiderCurtagon428.data.ts) L5 |
+| `673322 — SF5-class flint (supplier unresolved)` | 1.67270 / 32.20 (d) | SF5 — direct name evidence outranks six-digit code evidence. | H-ZF2 (CDGM, code, alternate code row)<br>E-FD5 (Hoya, code, preferred code row) | 1 | [SCHNEIDER-KREUZNACH RETINA-CURTAGON 28mm f/4](../../src/lens-data/schneider-kreuznach/SchneiderCurtagon428.data.ts) L6 |
+| `678553 — LAK12/LAL12-class crown (supplier unresolved)` | 1.67790 / 55.30 (d) | S-LAL12 — smallest d-line \|Δn\| (1.1e-7 vs 2.5e-7) | S-LAL12Q (Ohara, code, alternate code row) | 1 | [SCHNEIDER-KREUZNACH RETINA-CURTAGON 28mm f/4](../../src/lens-data/schneider-kreuznach/SchneiderCurtagon428.data.ts) L7 |
 | `LaF3 (Schott 717479) / S-LAM3 optical equivalent` | 1.71700 / 47.90 (d) | LAF3 — smallest d-line \|Δn\| (2.6e-8 vs 3.9e-6) | S-LAM3 (Ohara, name, vendor ✗) | 1 | [SCHNEIDER-KREUZNACH SUPER-ANGULON 75mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderSuperAngulon75mmf56.data.ts) L2 |
 | `BaSF-class barium dense flint (Schott 702411; S-BAH27 / BAFD7 optical equivalent)` | 1.70181 / 41.10 (d) | BAFD7 — smallest d-line \|Δn\| (2.7e-4 vs 2.7e-4) | S-BAH27 (Ohara, name, vendor ✗)<br>BASF7 (Sumita, code, vendor ✗, preferred code row) | 1 | [SCHNEIDER-KREUZNACH SUPER-ANGULON 75mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderSuperAngulon75mmf56.data.ts) L7 |
 | `625/356 flint (CDGM H-F6 optical equivalent; historical supplier unverified)` | 1.62540 / 35.56 (d) | H-F6 — direct name evidence outranks six-digit code evidence. | F7 (Hoya, code, vendor ✗, alternate code row) | 1 | [SCHNEIDER-KREUZNACH SUPER-SYMMAR HM 120mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderSuperSymmarHM120mmf56.data.ts) L2b |

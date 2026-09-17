@@ -6,6 +6,30 @@ import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const SCHOTT_GLASS_ENTRIES: readonly GlassEntry[] = [
   {
+    name: "N-PSK3",
+    vendor: "Schott",
+    B: [0.88727211, 0.489592425, 1.04865296],
+    C: [0.004698241, 0.0161818463, 104.374975],
+    nd: 1.55232,
+    vd: 63.46,
+    PgF: 0.5365,
+    code6: "552635",
+    source:
+      "SCHOTT N-PSK3 datasheet (2014-02-01), vendor Sellmeier constants; https://media.schott.com/api/public/content/d2ffcfdb186243899d40a9454e3b88a4?v=9a79cc5b (accessed 2026-09-17).",
+  },
+  {
+    name: "BAFN6",
+    vendor: "Schott",
+    B: [1.36719201, 0.10907994, 1.02108011],
+    C: [0.00882820704, 0.0438731646, 113.58602],
+    nd: 1.589,
+    vd: 48.45,
+    PgF: 0.5625,
+    code6: "589485",
+    source:
+      "SCHOTT Inquiry Glass datasheet collection (2019-08-28), PDF p. 5, BAFN6 sheet dated 2014-02-01; https://www.schott.com/en-dk/products/optical-glass/-/media/project/onex/products/o/optical-glass/downloads/schott-optical-glass-inquiry-glass-collection-datasheets-english-28082019.pdf (accessed 2026-09-17).",
+  },
+  {
     name: "N-LAK21",
     vendor: "Schott",
     B: [1.22718116, 0.420783743, 1.01284843],

@@ -9,9 +9,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **766** lenses scanned (**754** visible)
-- **8027 / 8638** non-air surfaces use strict catalog Sellmeier data (92.9%)
-- **8042 / 8638** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.1%)
+- **771** lenses scanned (**759** visible)
+- **8056 / 8668** non-air surfaces use strict catalog Sellmeier data (92.9%)
+- **8071 / 8668** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.1%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **279** code-only missing-Sellmeier elements in Sweep 2: **4** active unreviewed, **147** self-recording explicit dispositions, **0** dispositions missing any review record
@@ -84,6 +84,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [SCHNEIDER-KREUZNACH SUPER-SYMMAR HM 120mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderSuperSymmarHM120mmf56.data.ts) | US 4,773,745 | [PDF](../../patents/US4773745.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 13 [glass] (Element 8: `Unmatched (479/587 low-index crown; vendor unspecified)`) | abbe: 1 |
 | [MINOLTA AF 100mm f/2](../../src/lens-data/minolta/MinoltaAF100mmf2.data.ts) | JP 1987-244010 A | [PDF](../../patents/JPA 1987244010-000000.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 8 [glass] (Element 5: `Unmatched (781446 high-index mid-dispersion glass; no compatible public coefficient row)`) | abbe: 1 |
 | [NIKON AI-S NIKKOR 50mm f/1.2](../../src/lens-data/nikon/NikonAISNikkor50mmf12.data.ts) | US 4,621,909 | [PDF](../../patents/US4621909.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 1 [glass] (Element 1: `Unmatched Nikon/Hikari lanthanum glass (797/455; J-LASF017 / TAF2 class)`) | abbe: 1 |
+| [SCHNEIDER-KREUZNACH RETINA-CURTAGON 28mm f/4](../../src/lens-data/schneider-kreuznach/SchneiderCurtagon428.data.ts) | US 2,824,495 | [PDF](../../patents/US_2824495_A.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 7 [glass] (Element 4: `Unmatched (legacy low-index crown / FK-QK class; patent nd=1.4707, νd=67.2)`) | abbe: 1 |
 | [VOIGTLÄNDER COLOR-SKOPAR 28mm f/2.8 Aspherical SL IIs](../../src/lens-data/voigtlander/VoigtlanderColorSkopar28mmf28Aspherical.data.ts) | JP 2023-032663 A | [PDF](../../patents/JPA 2023032663-000000.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 5 [glass] (Cemented biconcave member: `Unmatched (nd inferred from published FL; νd omitted by patent)`) | constant: 1 |
 | [LAOWA 65mm f/2.8 2× Ultra Macro APO](../../src/lens-data/laowa/Laowa65mmf28MacroAPO.data.ts) | CN 110161666 A | [PDF](../../patents/CN110161666A.pdf) | 85.7% (12/14) | 85.7% (12/14) | 2 | 4 [glass] (Element 3: `773530 — high-index lanthanum crown (patent nd=1.77250, νd=53.00; no exact public catalog match)`)<br>16 [glass] (Element 10: `Unmatched (patent nd=1.72916, νd=57.67; prior H-LAK52 candidate rejected on dispersion)`) | abbe: 2 |
 | [MAMIYA-SEKOR CS 35mm f/2.8](../../src/lens-data/mamiya/MamiyaSekorCS35mmf28.data.ts) | JP 1978-066222 A | Missing from untracked local patents/ references (JP1978066222A, JP1978066222, 1978066222, JPA1978066222000000) | 83.3% (5/6) | 83.3% (5/6) | 1 | 3 [glass] (Element 2: `Unmatched (nd=1.69480, νd=55.5; nearest public 697555 lanthanum-crown family)`) | abbe: 1 |
