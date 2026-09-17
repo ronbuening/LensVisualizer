@@ -21,6 +21,16 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-09-17",
     type: "article",
+    summary: "Added ZEISS, Sony and Angénieux pages to the manufacturer lens story index",
+  },
+  {
+    date: "2026-09-17",
+    type: "article",
+    summary: "Added Canon's lens history timeline and SIGMA's RETICENCE manufacturing series",
+  },
+  {
+    date: "2026-09-17",
+    type: "article",
     summary: "Added Nikon's Frontiers of Vision series to the manufacturer story index",
   },
   {

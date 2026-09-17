@@ -9,6 +9,7 @@ Generated `readme.md` and `improvementsuggestions.md` files are intentionally om
 ```mermaid
 flowchart LR
   subgraph n_src_content_manufacturer_lens_stories["src/content/manufacturer-lens-stories"]
+    n_src_content_manufacturer_lens_stories_src_content_manufacturer_lens_stories_AngenieuxHistoryStoriesIndex_md["AngenieuxHistoryStoriesIndex.md"]
     n_src_content_manufacturer_lens_stories_src_content_manufacturer_lens_stories_CanonRFLensDevelopmentStoriesIndex_md["CanonRFLensDevelopmentStoriesIndex.md"]
     n_src_content_manufacturer_lens_stories_src_content_manufacturer_lens_stories_FujifilmOneLensOneStoryIndex_md["FujifilmOneLensOneStoryIndex.md"]
     n_src_content_manufacturer_lens_stories_src_content_manufacturer_lens_stories_LeicaCentennialLensStoriesIndex_md["LeicaCentennialLensStoriesIndex.md"]
@@ -17,13 +18,15 @@ flowchart LR
     n_src_content_manufacturer_lens_stories_src_content_manufacturer_lens_stories_PanasonicLumixDevelopmentStoriesIndex_md["PanasonicLumixDevelopmentStoriesIndex.md"]
     n_src_content_manufacturer_lens_stories_src_content_manufacturer_lens_stories_PentaxLensDevelopmentStoriesIndex_md["PentaxLensDevelopmentStoriesIndex.md"]
     n_src_content_manufacturer_lens_stories_src_content_manufacturer_lens_stories_SigmaOhsonesAnecdotesIndex_md["SigmaOhsonesAnecdotesIndex.md"]
+    n_src_content_manufacturer_lens_stories_src_content_manufacturer_lens_stories_SonyGMasterDesignPhilosophyIndex_md["SonyGMasterDesignPhilosophyIndex.md"]
     n_src_content_manufacturer_lens_stories_src_content_manufacturer_lens_stories_TamronLensDevelopmentHistoriesIndex_md["TamronLensDevelopmentHistoriesIndex.md"]
+    n_src_content_manufacturer_lens_stories_src_content_manufacturer_lens_stories_ZeissTechnicalArticlesIndex_md["ZeissTechnicalArticlesIndex.md"]
   end
 ```
 
 ## Directory Overview
 
-- Direct source files: 9
+- Direct source files: 12
 - Direct subfolders: 0
 - Main outbound areas: none
 - External consumers: none
@@ -32,6 +35,7 @@ flowchart LR
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
+| `AngenieuxHistoryStoriesIndex.md` | Markdown content: Angénieux: The Angénieux Stories | none | none | content |
 | `CanonRFLensDevelopmentStoriesIndex.md` | Markdown content: Canon: RF Lens Developer Stories | none | none | content |
 | `FujifilmOneLensOneStoryIndex.md` | Markdown content: Fujifilm: One Lens, One Story | none | none | content |
 | `LeicaCentennialLensStoriesIndex.md` | Markdown content: Leica: Centennial Lens Stories | none | none | content |
@@ -40,4 +44,6 @@ flowchart LR
 | `PanasonicLumixDevelopmentStoriesIndex.md` | Markdown content: Panasonic: LUMIX Lens Development Stories | none | none | content |
 | `PentaxLensDevelopmentStoriesIndex.md` | Markdown content: Pentax: Lens Development Stories | none | none | content |
 | `SigmaOhsonesAnecdotesIndex.md` | Markdown content: SIGMA: Ohsone's Anecdotes | none | none | content |
+| `SonyGMasterDesignPhilosophyIndex.md` | Markdown content: Sony: G Master Design Philosophy | none | none | content |
 | `TamronLensDevelopmentHistoriesIndex.md` | Markdown content: Tamron: Lens Development Histories | none | none | content |
+| `ZeissTechnicalArticlesIndex.md` | Markdown content: ZEISS: Camera Lens Technical Articles | none | none | content |

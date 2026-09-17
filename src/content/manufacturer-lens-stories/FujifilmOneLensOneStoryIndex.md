@@ -58,8 +58,11 @@ _Rebirth of the Legend_ connects Fujifilm's 1950s FUJINON Speed Trio to its fast
 
 ## GFX100RF Fixed-Lens Development
 
-One chapter of Fujifilm's five-part GFX100RF development story concentrates entirely on the camera's fixed 35mmF4 lens, including its compact optical layout, aspherical elements, leaf shutter, Nano GI coating, and autofocus mechanism.
+Fujifilm's four-part GFX100RF development story treats the camera and its fixed lens as one design. Volume 03 concentrates entirely on the 35mmF4 lens, including its compact optical layout, aspherical elements, leaf shutter, Nano GI coating, and autofocus mechanism; volume 02 covers the lens team's proposal for a very compact fixed lens on a large-format body. Volumes 01 and 04 are format heritage and industrial design.
 
-| Published | Lens | Official article | Surface & Stop |
+| Published | Volume and subject | Official article | Surface & Stop |
 | --- | --- | --- | --- |
-| 2025-03-24 | GFX100RF 35mmF4 | [Development Story vol. 03: Newly Developed 35mm F4 Lens](https://www.fujifilm-x.com/en-us/stories/development-story-vol-03-newly-developed-35mm-f4-lens/) | [GFX100RF 35mmF4](/lens/fujifilm-gfx100rf-35mm-f4) |
+| 2025-03-25 | vol. 04 — Design that Elevates the Concept | [Read at Fujifilm](https://www.fujifilm-x.com/global/stories/development-story-vol-04-design-that-elevates-the-concept/) | — |
+| 2025-03-24 | vol. 03 — Newly Developed 35mm F4 Lens | [Read at Fujifilm](https://www.fujifilm-x.com/global/stories/development-story-vol-03-newly-developed-35mm-f4-lens/) | [GFX100RF 35mmF4](/lens/fujifilm-gfx100rf-35mm-f4) |
+| 2025-03-21 | vol. 02 — Large Format + Compact and Lightweight | [Read at Fujifilm](https://www.fujifilm-x.com/global/stories/development-story-vol-2-large-format-compact-and-lightweight/) | [GFX100RF 35mmF4](/lens/fujifilm-gfx100rf-35mm-f4) |
+| 2025-03-20 | vol. 01 — The Rangefinder Style and Fujifilm, and the GFX | [Read at Fujifilm](https://www.fujifilm-x.com/global/stories/development-story-vol-01-the-rangefinder-style-and-fujifilm-and-the-gfx/) | — |
