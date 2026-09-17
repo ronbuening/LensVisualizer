@@ -24,3 +24,15 @@ LAFN7's +0.00250 index residual is near the existing compatibility boundary and 
 All four elements now resolve to compatible spectral proxies, including the retained 620603 crown.
 No supplier identity, patent line indices, or anomalous-dispersion property is inferred from these matches.
 The analysis now distinguishes runtime spectral proxies from historical melt identification and describes the revised rim.
+
+## 2026-09-17 — Individual patent-holder metadata correction
+
+The title page of local `patents/DE_843305_C.pdf` names Ludwig Bertele twice, as inventor and as individual
+applicant/patent holder. It names no Schacht organization. Changed `patentAssignees` from `["Ludwig Bertele"]`
+to `[]` to follow the catalog's organizations-only rule, while preserving the inventor credit and explaining
+individual ownership in the analysis. This also avoids a second Bertele node in the assignee layer of the map.
+
+For comparison, local `patents/US_2721501_A.pdf` p. 2 names Ludwig Bertele with no organizational assignee,
+and `patents/CH_479879_A.pdf` p. 1 names Ludwig and Jürgen Bertele as individual holders and inventors.
+The sibling Travenar 90mm f/2.8 and S-Travenar 135mm f/2.8 therefore correctly retain empty organizational
+assignee arrays. Product correlation with Schacht is not evidence of an assignment or license.

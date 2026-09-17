@@ -314,7 +314,7 @@ export interface LensData {
   patentNumber?: string;
   /** Inventors named by the source patent, in source order; empty when the patent names none. */
   patentAuthors?: string[];
-  /** Assignees or applicants named by the source patent; empty when the patent names none. */
+  /** Organizational assignees or applicants named by the source patent; empty when no organization is named. */
   patentAssignees?: string[];
   patentYear?: number;
   elementCount?: number;

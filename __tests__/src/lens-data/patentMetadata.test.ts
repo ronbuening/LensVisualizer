@@ -41,6 +41,18 @@ function normalizedAssigneeKey(value: string): string {
 }
 
 describe("lens patent metadata", () => {
+  it("does not repeat inventors as organizational assignees", () => {
+    // Inventor-applicants belong in patentAuthors; duplicating them creates false assignee nodes.
+    const offenders = Object.entries(modules).flatMap(([path, { default: data }]) => {
+      const authorKeys = new Set((data.patentAuthors ?? []).map(normalizedNameKey));
+      return (data.patentAssignees ?? [])
+        .filter((assignee) => authorKeys.has(normalizedNameKey(assignee)))
+        .map((assignee) => `${path}: ${assignee}`);
+    });
+
+    expect(offenders, "patentAssignees must contain organizations, not inventor-applicants").toEqual([]);
+  });
+
   it("declares complete structured metadata on every patent-backed lens", () => {
     const normalizedSpellings = new Map<string, string>();
     const normalizedWordOrders = new Map<string, string>();

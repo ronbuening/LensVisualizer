@@ -12,7 +12,10 @@
 
 The second standalone Ludwig Bertele line on the 1952 title page occupies the patent-holder/applicant position used by
 contemporary Deutsches Patentamt Patentschrift title pages; official DPMA examples show the same position occupied by a
-corporate patent holder. The structured `patentAssignees` field therefore records Ludwig Bertele. [10]
+corporate patent holder. Ludwig Bertele is therefore recorded here as the individual applicant/patent holder. [10]
+The catalog reserves `patentAssignees` for organizations, so that array is empty and Bertele remains credited in
+`patentAuthors`. Schacht is the correlated production maker; the patent does not name Schacht as an assignee or
+document a licensing arrangement.
 
 DE 843 305 describes a four-element objective in which all four lenses are separated by air. The first two lenses are
 converging, the third is diverging, and the fourth is converging. Example 2 is published at a nominal focal length of
