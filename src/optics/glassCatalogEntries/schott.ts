@@ -6,6 +6,29 @@ import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const SCHOTT_GLASS_ENTRIES: readonly GlassEntry[] = [
   {
+    name: "N-SF6",
+    vendor: "Schott",
+    B: [1.77931763, 0.338149866, 2.08734474],
+    C: [0.0133714182, 0.0617533621, 174.01759],
+    nd: 1.80518,
+    vd: 25.36,
+    code6: "805254",
+    source:
+      "SCHOTT Zemax catalog 2017-01-20b, N-SF6; https://refractiveindex.info/database/data/specs/schott/optical/N-SF6.yml (accessed 2026-09-18).",
+  },
+  {
+    name: "N-PSK53",
+    vendor: "Schott",
+    B: [1.3434087, 0.241417935, 0.952896897],
+    C: [0.00675074317, 0.0219910513, 103.551457],
+    nd: 1.62014,
+    vd: 63.48,
+    PgF: 0.5423,
+    code6: "620635",
+    source:
+      "SCHOTT Zemax catalog 2017-01-20b, inquiry glass N-PSK53; https://refractiveindex.info/database/data/specs/schott/optical/N-PSK53.yml (accessed 2026-09-18).",
+  },
+  {
     name: "N-PSK3",
     vendor: "Schott",
     B: [0.88727211, 0.489592425, 1.04865296],

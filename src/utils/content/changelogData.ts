@@ -19,6 +19,11 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-09-18",
+    type: "lens",
+    summary: "Added four Sony ZEISS Vario-Sonnar zooms, Vario-Prakticar and Ultra Prime 135mm",
+  },
+  {
     date: "2026-09-17",
     type: "article",
     summary: "Added ZEISS, Sony and Angénieux pages to the manufacturer lens story index",

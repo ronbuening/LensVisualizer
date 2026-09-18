@@ -110,7 +110,6 @@ export const ALIAS_RECORDS: readonly GlassAliasRecord[] = [
   { alias: "SK14", target: "N-SK14", kind: "legacy-name", note: "Legacy Schott name superseded by N-SK14." },
   { alias: "N-F2", target: "F2", kind: "legacy-name", note: "Route N-F2 annotations to the cataloged F2 row." },
   { alias: "N-SF1", target: "SF1", kind: "legacy-name", note: "Route N-SF1 annotations to the cataloged SF1 row." },
-  { alias: "N-SF6", target: "SF6", kind: "legacy-name", note: "Route N-SF6 annotations to the cataloged SF6 row." },
   {
     alias: "BAF3",
     target: "J-BAF3",

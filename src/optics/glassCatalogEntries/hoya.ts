@@ -5,6 +5,16 @@
 import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
+  {
+    name: "M-FCD1",
+    vendor: "Hoya",
+    polynomial: [2.2189068, -0.0061707065, 0.0080887631, 0.00013357782, 1.9476186e-7, -2.2577804e-7],
+    nd: 1.4971,
+    vd: 81.56,
+    code6: "497816",
+    source:
+      "HOYA Zemax catalog 2017-04-01, molding glass M-FCD1; https://refractiveindex.info/database/data/specs/hoya/optical/M-FCD1.yml (accessed 2026-09-18).",
+  },
   /* Legacy Yashica coordinate comparators from HOYA's
    * 2026-07-07 obsolete-inclusive Zemax catalog. */
   {
