@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **771** lenses scanned
-- **8668** non-air surfaces examined
-- **8678** element glass declarations examined
-- **236** non-explicit-unmatched annotations did not resolve
-- **119** distinct unresolved glass-like tokens found
+- **777** lenses scanned
+- **8735** non-air surfaces examined
+- **8745** element glass declarations examined
+- **237** non-explicit-unmatched annotations did not resolve
+- **120** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -112,6 +112,7 @@ or per-lens patent backfills.
 | 802444 | 1 | 1 | |
 | 803404 | 1 | 1 | |
 | 803405 | 1 | 1 | |
+| 803456 | 1 | 1 | |
 | 805410 | 1 | 1 | |
 | 835447 | 1 | 1 | |
 | 840433 | 1 | 1 | |
@@ -554,6 +555,10 @@ or per-lens patent backfills.
 ### 803405 — 1 occurrence
 
 - [FUJIFILM FUJINON XF 23mm f/2 R WR](../../src/lens-data/fujifilm/FujifilmXF23mmf2RWR.data.ts) 13A: `803405 - high-index lanthanum flint (likely PGM aspheric melt; no exact public catalog match)`
+
+### 803456 — 1 occurrence
+
+- [SONY ZEISS VARIO-SONNAR T* 8.8-73.3mm f/2.8 (Sony Cyber-shot DSC-RX10 / DSC-RX10 II)](../../src/lens-data/sony/ZeissVarioSonnarT88733mmf28SonyDSCRX10M12.data.ts) 6A: `803456 - high-index lanthanum class (catalog unresolved)`
 
 ### 805410 — 1 occurrence
 

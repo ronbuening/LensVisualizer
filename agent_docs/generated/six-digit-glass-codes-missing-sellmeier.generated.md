@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **771** lenses scanned
-- **1720** total code-only elements found
-- **279** elements in this report
-- **105** distinct lens files affected
+- **777** lenses scanned
+- **1721** total code-only elements found
+- **280** elements in this report
+- **106** distinct lens files affected
 - **4** active unreviewed elements have no review-record hit or explicit disposition
 - **147** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
 - **0** dispositions lack any review record
@@ -223,6 +223,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 802444 | 1 | 1 | patents/JP_S5357028_A.pdf | All rows have review records |
 | 803404 | 1 | 1 | patents/US20140247506A1.pdf | All rows have review records |
 | 803405 | 1 | 1 | patents/US20170351051A1.pdf | All rows have review records |
+| 803456 | 1 | 1 | patents/US20140354857A1.pdf | All rows have review records |
 | 805410 | 1 | 1 | patents/US4871239.pdf | All rows have review records |
 | 806333 | 1 | 1 | patents/CN211826699U.pdf | All rows explicitly disposed |
 | 810372 | 1 | 1 | patents/US20180164556A1.pdf | All rows explicitly disposed |
@@ -994,6 +995,12 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | L14 (L14) | 8 | `Unmatched (mixed-coordinate patent row; 001291 dense-flint class)` | 2.00912 / 29.10 | No catalog entry | abbe | patents/JP2015166834A.pdf | Explicit disposition in data |
 | L41 (L41) | 18 | `Unmatched (mixed-coordinate patent row; 804466 class)` | 1.80831 / 46.50 | No catalog entry | abbe | patents/JP2015166834A.pdf | Explicit disposition in data |
 | L44 (L44) | 23A | `Unmatched (mixed-coordinate patent row; 774472 lanthanum-flint class)` | 1.77767 / 47.10 | No catalog entry | abbe | patents/JP2015166834A.pdf | Explicit disposition in data |
+
+### [SONY ZEISS VARIO-SONNAR T* 8.8-73.3mm f/2.8 (Sony Cyber-shot DSC-RX10 / DSC-RX10 II)](../../src/lens-data/sony/ZeissVarioSonnarT88733mmf28SonyDSCRX10M12.data.ts) - US 2014/0354857 A1
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L4 (Element 4) | 6A | `803456 - high-index lanthanum class (catalog unresolved)` | 1.80300 / 45.57 | No catalog entry | abbe | patents/US20140354857A1.pdf | Audit-log hit |
 
 ### [TAMRON 14-150mm f/3.5-5.8 Di III (C001)](../../src/lens-data/tamron/TamronC00114150mmf3558.data.ts) - US 2014/0347522 A1
 
