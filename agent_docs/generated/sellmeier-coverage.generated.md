@@ -1416,7 +1416,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 10 | Element 6 | abbe | `Unmatched (Jena melt, n_e 1.66640 / ν_e 56.14 — the worst-matched coordinate in the design, nearest modern analogue 0.013 away in n_e)` | Explicit unmatched/proprietary annotation |
+| 10 | Element 6 | abbe | `Unmatched (Jena melt, n_e 1.66640 / ν_e 56.14; no verified compatible catalog dispersion)` | Explicit unmatched/proprietary annotation |
 
 ### [NIKON NIKKOR Z 26mm f/2.8](../../src/lens-data/nikon/NikonZ26f28.data.ts) - 88.9% trusted (8/9); 88.9% Sellmeier (8/9) - WO 2023/190222 A1
 

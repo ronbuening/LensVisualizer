@@ -19,3 +19,11 @@ Romanization source: WO2019188070A1, printed front page item (72), https://paten
 Production `computeElementRenderDiagnostics()` reports zero SD trim at zoom 0, 0.25, 0.5, 0.75 and 1 at both focus-control endpoints.
 
 Final repository validation: typecheck, formatting, lint and all 2,717 tests across 276 files passed. Production build prerendered 1,397 pages and generated sitemap/RSS feeds; only the existing large-chunk advisory remained.
+
+## 2026-09-18 — Local-site diagram follow-up
+
+Compared live wide/tele diagrams with local JP WO 2019/188070 A1, PDF page 40, Figs. 5-6 (Example 3) and page 22, Table 7. Retained the SDs: usable optical rims agree within drawing uncertainty. Zoom is correctly ordered, including GR2's imageward-then-objectward reversal; all other groups move objectward across the published states. Focus remains disabled because only infinity-focus states are modeled.
+
+Added inferred ED/APD tags to L32 and L41 from their compatible M-FCD1 catalog match, verified as the inferred-APD color on the local site. Removed the overclaim that rounded nd alone excludes bulk FCD1 alternatives. Production identity and source partial dispersion remain unconfirmed; no measured partial-dispersion override was authored. All fifteen elements retain catalog dispersion.
+
+Follow-up validation: typecheck, formatting, lint and all 2,717 tests in 276 files passed; the production build prerendered 1,397 pages. Glass reports retain 63/67 resolved batch elements and zero catalog mismatches. All six surface audits pass, the five applicable image-circle audits report no undersized surfaces, and renderer diagnostics report zero SD trim at five zoom positions and both focus-control endpoints. No additional changelog entry was added.

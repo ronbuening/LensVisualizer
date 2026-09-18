@@ -586,10 +586,7 @@ f/2.7–3.5 MC. The image format is 24 × 36 mm.
 0.80 m close focus with a switchable 1 : 3 macro mode at the long end, 58 mm filter thread, 480 g,
 74.5 mm long at the 70 mm setting, produced July 1987 to October 1990 — rest on secondary sources.
 
-**Not verified here.** Real type checking against the application schema, the application's own
-validation and build routines, production render diagnostics and runtime glass resolution were not
-run; the project toolchain was not accessible for this work. Their absence does not affect any
-number above, all of which were computed independently.
+**Repository verification.** The integrated data pass schema, surface, image-circle and renderer checks. The fixed plate semi-diameters are estimated at 12.9 mm from its approximately 0.95 rim ratio to L4 in local Fig. 1; the schematic does not supply manufacturing apertures. Live wide/tele and infinity/close-focus review confirms the stated travel directions.
 
 ## Design Heritage and Context
 
@@ -643,5 +640,4 @@ lens's switchable close-focus mode, though the patent publishes no data for it.
 **Glass catalogue data.** Ohara, Hoya, Schott, Sumita, Hikari and CDGM vendor tables as distributed
 with the `opticalglass` package, version 2.0.2, 1 087 rows evaluated at e/F′/C′. Catalogue revision
 dates are those of the package release and were not independently re-verified against vendor sites.
-No historical **Jenaer** Glaswerk catalogue was available, which is why no element is given a
-catalogue glass name.
+No historical **Jenaer** Glaswerk catalogue was available. The modern names in the data identify compatible spectral proxies; none establishes a historical production-glass identity.

@@ -126,7 +126,7 @@ GR5 also moves with GR3 during zooming. The verified movement difference between
 
 ### G10 + G11 — Cemented pair at the front of GR6
 
-**G10:** nd = 1.8350, νd = 42.984. Glass: 835430 class; current-catalog identity unresolved. f = -21.803 mm.  
+**G10:** nd = 1.8350, νd = 42.984. Glass: 835430 class; production supplier unconfirmed. f = -21.803 mm.  
 **G11:** nd = 1.8467, νd = 23.785. Glass: 847238 class, supplier unresolved. f = +89.359 mm.
 
 The cemented G10/G11 pair has a verified isolated net EFL of **-30.273 mm**. The sign of that net cemented power should not be confused with GR6’s complete in-situ function, because G12 follows as another positive lens and the full isolated GR6 EFL is -110.531 mm.
@@ -156,12 +156,12 @@ The patent provides only d-line refractive indices and Abbe numbers. It does not
 | 904313 class | 1.9037 | 31.319 | G6, G8 |
 | 623581 class | 1.6230 | 58.122 | G7 |
 | 583595 class | 1.5831 | 59.461 | G9 |
-| 835430 class, current identity unresolved | 1.8350 | 42.984 | G10 |
+| 835430 class, production supplier unconfirmed | 1.8350 | 42.984 | G10 |
 | 847238 class | 1.8467 | 23.785 | G11 |
 
-The Stage 1 catalog review found coordinate-compatible modern candidates for several of these classes across SCHOTT, OHARA, HOYA, and HIKARI catalogs, frequently with more than one plausible vendor equivalent. That multiplicity is precisely why the production file does not promote any one candidate to a supplier identity. The 835430 coordinate remains especially unsuitable for a confident modern catalog name, and the two 0.200 mm composite-asphere media are retained as unmatched thin layers rather than being forced onto bulk-glass catalog entries.
+The Stage 1 catalog review found coordinate-compatible modern candidates for several of these classes across SCHOTT, OHARA, HOYA, and HIKARI catalogs, frequently with more than one plausible vendor equivalent. That multiplicity is precisely why the production file does not promote any one candidate to a supplier identity. The 835430 coordinate resolves to a compatible TAFD5 spectral proxy without establishing production identity. The two 0.200 mm composite-asphere media remain unmatched thin layers rather than being forced onto bulk-glass catalog entries.
 
-No APO, anomalous-partial-dispersion, or secondary-spectrum claim is made. With only `nd`/`νd` source data and supplier-neutral class labels, the model does not have the line-index or validated Sellmeier evidence required for such statements.
+All twelve bulk-glass entries resolve to catalog spectral proxies; the two composite layers retain Abbe estimates. The data label each selected proxy separately from the unknown production supplier. No APO or independently verified secondary-spectrum claim follows from catalog substitution.
 
 ## Focus Mechanism
 

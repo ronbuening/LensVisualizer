@@ -240,3 +240,15 @@ The original run failed two metadata tests (non-romanized inventors and an unreg
 Production `computeElementRenderDiagnostics()` reports zero SD trim at zoom 0, 0.25, 0.5, 0.75 and 1 at both focus-control endpoints.
 
 Final repository validation: typecheck, formatting, lint and all 2,717 tests across 276 files passed. Production build prerendered 1,397 pages and generated sitemap/RSS feeds; only the existing large-chunk advisory remained.
+
+## 2026-09-18 — Local-site diagram follow-up
+
+Compared live wide/tele diagrams with local US 2014/0354857 A1, PDF page 26, Fig. 25 and page 51, Table 19. Retained all SDs, including L12's asphere-domain caps; its apparent larger source outline includes a mechanical flange.
+
+Zoom states are correctly ordered. G1, G3 and G4 move objectward, G2 reverses after moving imageward, and G5 remains fixed. No focus motion is invented from the camera's advertised minimum-focus distance.
+
+Resolved-glass labels now name the selected spectral proxies and explicitly disclaim production identity. L2 uses the compatible FCD1 curve and an inferred ED/APD tag, restoring its diagram color while preserving uncertainty about source partial dispersion. L4 remains unresolved: HOYA M-TAF31 (1.80139/45.45) and the additional MP/MC-TAF31-15 rows (1.80154/45.46) still do not establish a source-faithful match to 1.803/45.570. No extra curve was added solely to increase coverage.
+
+The full generated assignee set contains 64 canonical names and passes the existing validity guard. No further alias consolidation is justified. Carl Zeiss AG, Carl-Zeiss-Stiftung, VEB Carl Zeiss Jena and Jenoptik are distinct entities, as are the historically bounded Sony Corporation and Sony Group Corporation entries; preserving them avoids changing patent attribution.
+
+Follow-up validation: typecheck, formatting, lint and all 2,717 tests in 276 files passed; the production build prerendered 1,397 pages. Glass reports retain 63/67 resolved batch elements and zero catalog mismatches. All six surface audits pass, the five applicable image-circle audits report no undersized surfaces, and renderer diagnostics report zero SD trim at five zoom positions and both focus-control endpoints. No additional changelog entry was added.

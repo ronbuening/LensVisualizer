@@ -198,7 +198,9 @@ const LENS_DATA = {
       vd: 81.6,
       fl: 55.11,
       glass:
-        "M-FCD1 (HOYA) — 497816 class, fluorophosphate ED molding glass; nd 1.4971 excludes 1.4970 FCD1/S-FPL51; supplier unconfirmed",
+        "M-FCD1 (HOYA) — 497816 class, fluorophosphate ED molding glass; molding-grade spectral proxy; production supplier unconfirmed",
+      apd: "inferred",
+      apdNote: "ED/APD inferred from the M-FCD1 catalog match; production glass and source partial dispersion are unconfirmed.",
       role: "GR3 second positive element; both faces aspheric",
     },
     {
@@ -224,8 +226,10 @@ const LENS_DATA = {
       vd: 81.6,
       fl: 16.5,
       glass:
-        "M-FCD1 (HOYA) — 497816 class, fluorophosphate ED molding glass; nd 1.4971 excludes 1.4970 FCD1/S-FPL51; supplier unconfirmed",
+        "M-FCD1 (HOYA) — 497816 class, fluorophosphate ED molding glass; molding-grade spectral proxy; production supplier unconfirmed",
       cemented: "C3",
+      apd: "inferred",
+      apdNote: "ED/APD inferred from the M-FCD1 catalog match; production glass and source partial dispersion are unconfirmed.",
       role: "GR4 cemented doublet, biconvex element; object-side face aspheric",
     },
     {

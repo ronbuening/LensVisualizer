@@ -21,3 +21,13 @@ Local browser review covered wide, middle and telephoto states with on-axis rays
 Production `computeElementRenderDiagnostics()` reports zero SD trim at zoom 0, 0.25, 0.5, 0.75 and 1 at both focus-control endpoints.
 
 Final repository validation: typecheck, formatting, lint and all 2,717 tests across 276 files passed. Production build prerendered 1,397 pages and generated sitemap/RSS feeds; only the existing large-chunk advisory remained.
+
+## 2026-09-18 — Local-site diagram follow-up
+
+Compared the live diagram and zoom motion chart with local US 2008/0218875 A1, PDF page 2, Fig. 1 and page 18's table. Retained the previously corrected SDs and asphere-domain caps; no further optical-rim discrepancy justified a change.
+
+Zoom is ordered wide to tele. GR1 and GR3-GR6 travel objectward; GR2 first moves imageward and then reverses objectward, as the published spacing states require. Focus is disabled because no close-focus prescription is supplied.
+
+Replaced twelve obsolete unresolved/code-only bulk-glass labels with their selected compatible catalog proxy names, explicitly leaving production supplier unconfirmed. The two composite layers remain unresolved; searches of additional vendor catalogs did not establish compatible material identities or dispersion curves.
+
+Follow-up validation: typecheck, formatting, lint and all 2,717 tests in 276 files passed; the production build prerendered 1,397 pages. Glass reports retain 63/67 resolved batch elements and zero catalog mismatches. All six surface audits pass, the five applicable image-circle audits report no undersized surfaces, and renderer diagnostics report zero SD trim at five zoom positions and both focus-control endpoints. No additional changelog entry was added.

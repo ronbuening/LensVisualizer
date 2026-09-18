@@ -25,7 +25,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * Aperture:
  * The physical stop diameter is unpublished. STO.sd is calibrated at the wide state from
  * the patent Fno=1.860 and the modeled entrance-pupil magnification. nominalFno carries the
- * three published design f-numbers; agreement to those values is calibration, not an
+ * three published design f-numbers. zoomApertureModel derives a physical iris schedule
+ * from those source stations; agreement to those values is calibration, not an
  * independent measurement of the manufactured iris diameter.
  *
  * Semi-diameters:
@@ -77,7 +78,7 @@ const LENS_DATA = {
       name: "L11",
       diagramLabel: "L11",
       label: "Element 1",
-      type: "Negative Meniscus (2× Asph)",
+      type: "Biconcave Negative (2× Asph)",
       nd: 1.851348,
       vd: 40.1045,
       indexReference: "d",
@@ -121,7 +122,7 @@ const LENS_DATA = {
       vd: 42.7207,
       indexReference: "d",
       fl: 12.096464,
-      glass: "835427 lanthanum-flint class (vendor ambiguous)",
+      glass: "S-LAH55 — coordinate-compatible spectral proxy; production supplier unconfirmed",
       cemented: "L22+L23",
       role: "Positive member of the cemented GR2 pair.",
     },
@@ -135,7 +136,7 @@ const LENS_DATA = {
       vd: 27.5305,
       indexReference: "d",
       fl: -7.111407,
-      glass: "755275 dense-flint class (vendor ambiguous)",
+      glass: "E-FD4 — coordinate-compatible spectral proxy; production supplier unconfirmed",
       cemented: "L22+L23",
       role: "Negative member of the cemented GR2 pair.",
     },
@@ -309,6 +310,9 @@ const LENS_DATA = {
     "Example 3 publishes infinity-focus zoom states only; Sony's 0.05 m wide-end focus range is metadata only and does not define an internal close-focus state.",
 
   nominalFno: [1.86, 3.469, 5.07],
+  // Infer a physical iris at each source zoom station; a fixed wide iris
+  // over-opens the middle/tele states relative to their published FNo.
+  zoomApertureModel: "from-nominal-fno",
   fstopSeries: [1.8, 2, 2.8, 4, 5.6, 8, 11, 16],
 
   yScFill: 0.34,

@@ -68,11 +68,11 @@ The patent gives the four variable source spacings as D4, D11, D13, and D15. The
 
 ## Element-by-Element Analysis
 
-### L11 — Negative Meniscus, Two Aspherical Surfaces
+### L11 — Biconcave Negative, Two Aspherical Surfaces
 
 **nd = 1.851348, νd = 40.1045. Glass: 851401 class; HOYA M-TAFD305 is a close coordinate match, supplier unproven. Standalone f = -15.3825 mm.**
 
-L11 is the front member of the negative first group. Paragraph 0098 identifies it as a meniscus-shaped negative lens concave toward the object, and both of its surfaces are aspherical in Example 3 (paragraph 0106; Table 10).
+L11 is the front member of the negative first group. Paragraph 0098 calls it meniscus-shaped, but the selected Example 3 table gives R1 = −72.2917 mm and R2 = +16.0439 mm: the implemented surface pair is biconcave at the vertices. The inspector follows that numerical prescription and the rendered optical shape. Both surfaces are aspherical (paragraph 0106; Table 10).
 
 The patent's general design discussion specifically prefers an object-side negative member of GR1 with refractive index at least 1.8, explaining that the high index permits strong negative power without requiring as much curvature (paragraph 0046). Example 3 satisfies that stated preference with nd = 1.851348. The implemented standalone power is -0.06500899 mm⁻¹; because L12 follows with positive power, the complete GR1 is less negative than L11 by itself.
 
@@ -248,7 +248,7 @@ Those residuals are within the source-precision tolerance used for the rounded p
 
 The surface-by-surface Petzval sum, computed as $\phi/(n n')$ for each refracting surface, is +0.00659428 mm⁻¹, corresponding to a reciprocal magnitude of about 151.65 mm. It is unchanged with zoom because the surface curvatures and indices remain fixed while only axial separations change.
 
-The physical stop diameter is not published. The authored wide-state stop semi-diameter, 4.304772316 mm, is calibrated from the patent f/1.860 target and the computed entrance-pupil magnification; it is not an independent measurement of the iris. The effective stop radii required to match the three published f-numbers are about 4.3048, 3.3209, and 3.5042 mm. The model therefore treats the maximum aperture as state-dependent while retaining one stop plane.
+The physical stop diameter is not published. The authored wide-state stop semi-diameter, 4.304772316 mm, is calibrated from the patent f/1.860 target and the computed entrance-pupil magnification; it is not an independent measurement of the iris. The effective stop radii required to match the three published f-numbers are about 4.3048, 3.3209, and 3.5042 mm. The model retains one stop plane and uses `zoomApertureModel: "from-nominal-fno"` to derive the physical iris schedule with the repository’s exact ray solver. This avoids retaining the wider wide-angle iris at the intermediate and telephoto states; the quoted paraxial radii above describe the authoring calculation, not the runtime exact-ray radii.
 
 Surface semi-diameters are model-derived and reviewed against the optical rims in local Figure 9. The front group was reduced to match the drawing after excluding its mechanical flange. Repository surface validation checks the edited geometry, and the image-circle audit checks the rear aperture floor. These checks establish model consistency within their scope; they do not convert estimated semi-diameters into production measurements.
 

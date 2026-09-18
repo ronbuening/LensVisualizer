@@ -17,3 +17,13 @@ The original run failed two metadata tests (non-romanized inventors and an unreg
 Production `computeElementRenderDiagnostics()` reports zero SD trim at zoom 0, 0.25, 0.5, 0.75 and 1 at both focus-control endpoints.
 
 Final repository validation: typecheck, formatting, lint and all 2,717 tests across 276 files passed. Production build prerendered 1,397 pages and generated sitemap/RSS feeds; only the existing large-chunk advisory remained.
+
+## 2026-09-18 — Local-site diagram follow-up
+
+Compared the live wide/tele diagrams again with local DE 3602859 A1, PDF page 11, Fig. 1. Reduced both plane-plate SDs to 12.9 mm: the optical rim is approximately 0.95 of L4's 13.49 mm rim, excluding annotation strokes. The former 16.08/16.46 mm pair overstated the plate and gave a plane plate unequal rims. This is a relative schematic estimate, not a published clear aperture. The updated site silhouette now follows that relative height.
+
+Wide-to-tele order is correct: G1 moves imageward, G2 objectward, and the plate stays fixed. Close focus moves both powered groups objectward together (about 1.78 mm at wide and 6.58 mm at tele), with the fixed plate preserved. This remains an explicitly reconstructed unit-extension model, not a published internal-focus prescription.
+
+L6 remains unresolved in its native e-line coordinates. Removed the stale numerical nearest-match claim; other catalog labels remain explicitly qualified spectral proxies.
+
+Follow-up validation: typecheck, formatting, lint and all 2,717 tests in 276 files passed; the production build prerendered 1,397 pages. Glass reports retain 63/67 resolved batch elements and zero catalog mismatches. All six surface audits pass, the five applicable image-circle audits report no undersized surfaces, and renderer diagnostics report zero SD trim at five zoom positions and both focus-control endpoints. No additional changelog entry was added.

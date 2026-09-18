@@ -17,3 +17,11 @@ The original run failed two metadata tests (non-romanized inventors and an unreg
 Production `computeElementRenderDiagnostics()` reports zero SD trim at zoom 0, 0.25, 0.5, 0.75 and 1 at both focus-control endpoints.
 
 Final repository validation: typecheck, formatting, lint and all 2,717 tests across 276 files passed. Production build prerendered 1,397 pages and generated sitemap/RSS feeds; only the existing large-chunk advisory remained.
+
+## 2026-09-18 — Local-site diagram follow-up
+
+Compared the live diagram with local US 2017/0307860 A1, PDF page 4, Fig. 7 and the prescription on page 14. Retained SDs: optical rims agree within drawing uncertainty; the protruding mechanical shoulders are not clear apertures. This fixed prime has no modeled focus travel, and its disabled control correctly communicates that limitation.
+
+Reviewed element labels, high-index colors and the existing inferred S-FPL51 APD tag. Corrected the analysis text to describe catalog-derived spectral indices rather than obsolete copied line-index fields. All eight elements retain compatible catalog curves.
+
+Follow-up validation: typecheck, formatting, lint and all 2,717 tests in 276 files passed; the production build prerendered 1,397 pages. Glass reports retain 63/67 resolved batch elements and zero catalog mismatches. All six surface audits pass, the five applicable image-circle audits report no undersized surfaces, and renderer diagnostics report zero SD trim at five zoom positions and both focus-control endpoints. No additional changelog entry was added.

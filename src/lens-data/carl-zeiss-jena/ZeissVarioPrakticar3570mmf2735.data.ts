@@ -170,7 +170,7 @@ const LENS_DATA = {
   groupCount: 8, // 7 air-separated powered groups + the plate
 
   /* ── Elements ── n_e / nu_e stored natively (indexReference "e"); fl = standalone thick-lens
-   *   focal length in air at the modelled scale. No catalogue glass names: see header. */
+   *   focal length in air at the modelled scale. Catalog names identify spectral proxies only: see header. */
   elements: [
     {
       id: 1,
@@ -256,7 +256,7 @@ const LENS_DATA = {
       indexReference: "e",
       fl: 52.0,
       glass:
-        "Unmatched (Jena melt, n_e 1.66640 / ν_e 56.14 — the worst-matched coordinate in the design, nearest modern analogue 0.013 away in n_e)",
+        "Unmatched (Jena melt, n_e 1.66640 / ν_e 56.14; no verified compatible catalog dispersion)",
       apd: false,
       role: "Positive meniscus lying concentric to the aperture stop.",
     },
@@ -308,6 +308,8 @@ const LENS_DATA = {
   /* ── Surface prescription ── labels 1-17 are the patent's r1-r17; STO is the inferred
    *   iris plane inside the l5 Blendenraum. Surface d is the axial distance to the NEXT
    *   surface; nd is the medium AFTER the surface. All values = source value x 35.0 mm. */
+  // Fig. 1: the fixed plate rim is about 0.95 times L4's optical rim.
+  // Estimate 12.9 mm on both plane faces; the prior 16 mm rim exaggerated P.
   surfaces: [
     { label: "1", R: 38.9375, d: 6.3035, nd: 1.68101, elemId: 1, sd: 20.38 },
     { label: "2", R: 21.4375, d: 8.2425, nd: 1.0, elemId: 0, sd: 17.65 },
@@ -325,8 +327,8 @@ const LENS_DATA = {
     { label: "13", R: 20.8635, d: 3.1045, nd: 1.0, elemId: 0, sd: 10.21 },
     { label: "14", R: 177.4325, d: 3.745, nd: 1.66151, elemId: 8, sd: 11.86 },
     { label: "15", R: -32.2595, d: 1.0, nd: 1.0, elemId: 0, sd: 12.47 }, // l7 — zoom + focus gap (var)
-    { label: "16", R: 1e15, d: 3.878, nd: 1.51859, elemId: 9, sd: 16.08 },
-    { label: "17", R: 1e15, d: 37.7488, nd: 1.0, elemId: 0, sd: 16.46 }, // fixed plate-to-image distance
+    { label: "16", R: 1e15, d: 3.878, nd: 1.51859, elemId: 9, sd: 12.9 },
+    { label: "17", R: 1e15, d: 37.7488, nd: 1.0, elemId: 0, sd: 12.9 }, // fixed plate-to-image distance
   ],
 
   /* ── All-spherical design: the source publishes no asphere equation or coefficient table. ── */

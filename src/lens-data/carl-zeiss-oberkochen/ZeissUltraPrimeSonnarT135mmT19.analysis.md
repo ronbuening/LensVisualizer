@@ -126,12 +126,12 @@ L8 is the last element. It is a moderate positive meniscus (convergence share +0
 
 ## Glass Identification and Selection
 
-The patent's construction table names a glass for every element but prints no refractive indices or Abbe numbers. All nd, νd, nC, nF, ng and ΔPg,F values in the data file are therefore nominal catalog coordinates for the named glasses, not melt data or patent-published values. The patent's typography is normalized to current vendor designations without changing the glass families:
+The patent's construction table names a glass for every element but prints no refractive indices or Abbe numbers. The authored nd, νd and ΔPg,F values are nominal catalog coordinates for the named glasses, not melt data or patent-published values. C/F/g indices are evaluated from the catalog dispersion curves at runtime rather than copied onto each element. The patent's typography is normalized to current vendor designations without changing the glass families:
 
 - NFK5 → N-FK5, NSF6 → N-SF6, NPSK53 → N-PSK53, NLASF44 → N-LASF44, SFPL51 (Ohara) → S-FPL51.
 - The lead-containing SF1 and SF2 are not silently converted to their lead-free N-SF1 and N-SF2 counterparts. Both remain in SCHOTT's current preferred-glass catalog.
 
-Replaying the stored Sellmeier coefficients reproduces the copied catalog line indices to within 4.9 × 10⁻⁶.
+The catalog curves pass coefficient/index consistency checks. N-SF6 uses its own lead-free dispersion curve, distinct from SF6; N-PSK53 likewise retains the named inquiry-glass curve.
 
 | Glass (vendor) | nd | νd | ΔPg,F (catalog) | Used in | Class / role |
 | --- | ---: | ---: | ---: | --- | --- |

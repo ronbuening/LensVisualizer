@@ -10,42 +10,42 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **777** lenses scanned
-- **1746** total code-only elements found
-- **1746** elements in this report
-- **274** distinct lens files affected
+- **1721** total code-only elements found
+- **1721** elements in this report
+- **272** distinct lens files affected
 
 ## Codes by Frequency
 
 | Code | Elements | Lens files | localPatentStatus | reviewRecordStatus |
 |---|---:|---:|---|---|
-| 847238 | 93 | 51 | patents/US7158320.pdf<br>patents/US20150146044A1.pdf<br>patents/JP_2000047107_A.pdf<br>patents/US20110090576A1.pdf | 7/93 rows have review records |
-| 497816 | 89 | 46 | patents/JPA 1997211319-000000.pdf<br>patents/US20130308041A1.pdf<br>patents/US6115188.pdf<br>patents/US20130088622A1.pdf | 6/89 rows have review records |
-| 835427 | 62 | 40 | patents/JP2016148731A.pdf<br>patents/US7158320.pdf<br>patents/US20130308041A1.pdf<br>patents/US6115188.pdf | 8/62 rows have review records |
-| 773496 | 56 | 42 | patents/US20150146044A1.pdf<br>patents/JP_2000047107_A.pdf<br>patents/JP2018049102A.pdf<br>patents/JP2013054269A.pdf | 1/56 rows have review records |
+| 847238 | 91 | 49 | patents/US7158320.pdf<br>patents/US20150146044A1.pdf<br>patents/JP_2000047107_A.pdf<br>patents/US20110090576A1.pdf | 6/91 rows have review records |
+| 497816 | 88 | 45 | patents/JPA 1997211319-000000.pdf<br>patents/US20130308041A1.pdf<br>patents/US6115188.pdf<br>patents/US20130088622A1.pdf | 5/88 rows have review records |
+| 835427 | 61 | 39 | patents/JP2016148731A.pdf<br>patents/US7158320.pdf<br>patents/US20130308041A1.pdf<br>patents/US6115188.pdf | 8/61 rows have review records |
+| 773496 | 54 | 41 | patents/US20150146044A1.pdf<br>patents/JP_2000047107_A.pdf<br>patents/JP2018049102A.pdf<br>patents/JP2013054269A.pdf | 1/54 rows have review records |
 | 487702 | 50 | 33 | patents/JP2016148731A.pdf<br>patents/US7158320.pdf<br>patents/JP_2000047107_A.pdf<br>patents/JP2018049102A.pdf | 1/50 rows have review records |
 | 805254 | 47 | 34 | patents/US7158320.pdf<br>patents/US20150146044A1.pdf<br>patents/JP_2000047107_A.pdf<br>patents/JPA 1991141313-000000.pdf | No review-record hit |
 | 697555 | 38 | 30 | patents/US20130308041A1.pdf<br>patents/JP2013054269A.pdf<br>patents/US6115188.pdf<br>patents/US20150205081A1.pdf | 4/38 rows have review records |
 | 883408 | 34 | 24 | patents/US20150146044A1.pdf<br>patents/JPA 1997211319-000000.pdf<br>patents/US20130308041A1.pdf<br>patents/US20150205081A1.pdf | 5/34 rows have review records |
 | 847239 | 31 | 16 | patents/JP2018049102A.pdf<br>patents/JPA 1997211319-000000.pdf<br>patents/JPA 1989189622-000000.pdf<br>patents/US6115188.pdf | 1/31 rows have review records |
-| 904313 | 30 | 18 | patents/US20150146044A1.pdf<br>patents/US20130308041A1.pdf<br>patents/JP2016118658A.pdf<br>patents/US20130335830A1.pdf | No review-record hit |
 | 804466 | 28 | 18 | patents/US20110090576A1.pdf<br>patents/US20020015231A1.pdf<br>patents/JP_2007333790_A.pdf<br>patents/US6115188.pdf | 2/28 rows have review records |
-| 487704 | 26 | 16 | patents/US20220011542A1.pdf<br>patents/US20050068636A1.pdf<br>patents/US20040218274A1.pdf<br>patents/US20030133200A1.pdf | 1/26 rows have review records |
-| 729547 | 26 | 21 | patents/US20150146044A1.pdf<br>patents/JP2013054269A.pdf<br>patents/US20200073096A1.pdf<br>patents/US10168507.pdf | 3/26 rows have review records |
+| 904313 | 28 | 17 | patents/US20150146044A1.pdf<br>patents/US20130308041A1.pdf<br>patents/JP2016118658A.pdf<br>patents/US20130335830A1.pdf | No review-record hit |
+| 487704 | 25 | 15 | patents/US20220011542A1.pdf<br>patents/US20050068636A1.pdf<br>patents/US20040218274A1.pdf<br>patents/US20030133200A1.pdf | No review-record hit |
+| 729547 | 25 | 20 | patents/US20150146044A1.pdf<br>patents/JP2013054269A.pdf<br>patents/US20200073096A1.pdf<br>patents/US10168507.pdf | 2/25 rows have review records |
 | 516641 | 23 | 18 | patents/JPA 1991141313-000000.pdf<br>patents/JP_H11211978_A.pdf<br>patents/JP_2007003600_A.pdf<br>patents/JP_2005092056_A.pdf | 1/23 rows have review records |
-| 806333 | 22 | 17 | patents/US20130308041A1.pdf<br>patents/JP2017227799A.pdf<br>patents/JP2020086133A.pdf<br>patents/US20130222925A1.pdf | 3/22 rows have review records |
+| 806333 | 21 | 16 | patents/US20130308041A1.pdf<br>patents/JP2017227799A.pdf<br>patents/JP2020086133A.pdf<br>patents/US20130222925A1.pdf | 2/21 rows have review records |
 | 834372 | 20 | 17 | patents/US7158320.pdf<br>patents/JP2018049102A.pdf<br>patents/JPA 1997211319-000000.pdf<br>patents/JPA 1989189622-000000.pdf | 1/20 rows have review records |
 | 911353 | 20 | 15 | patents/JP2016148731A.pdf<br>patents/JP2013054269A.pdf<br>patents/US20140098253A1.pdf<br>patents/US20220171174A1.pdf | 1/20 rows have review records |
 | 603607 | 19 | 15 | patents/US20150146044A1.pdf<br>patents/JPA 1991141313-000000.pdf<br>patents/JPA 1989189622-000000.pdf<br>patents/JP2013054269A.pdf | No review-record hit |
-| 755275 | 18 | 17 | patents/US4826301.pdf<br>patents/JPA 1989189622-000000.pdf<br>patents/JP_2005092056_A.pdf<br>patents/JPA 1980017129-000000.pdf | 1/18 rows have review records |
 | 699301 | 17 | 16 | patents/JP2016161889A.pdf<br>patents/JP2016148731A.pdf<br>patents/JPA 1991141313-000000.pdf<br>patents/JP_2007333790_A.pdf | 1/17 rows have review records |
+| 755275 | 17 | 16 | patents/US4826301.pdf<br>patents/JPA 1989189622-000000.pdf<br>patents/JP_2005092056_A.pdf<br>patents/JPA 1980017129-000000.pdf | 1/17 rows have review records |
 | 713539 | 16 | 14 | patents/JP_2000047107_A.pdf<br>patents/JP_2007003600_A.pdf<br>patents/JPA 1980017129-000000.pdf<br>patents/JPA 1979030821-000000.pdf | 4/16 rows have review records |
 | 497815 | 15 | 8 | patents/JP2018049102A.pdf<br>patents/US6115188.pdf<br>patents/JP_2007003600_A.pdf<br>patents/US20140098253A1.pdf | No review-record hit |
 | 583594 | 15 | 14 | patents/US4826301.pdf<br>patents/JPA 1989189622-000000.pdf<br>patents/JP2013054269A.pdf<br>patents/JP_H11211978_A.pdf | No review-record hit |
-| 923209 | 15 | 13 | patents/JP2023033114A.pdf<br>patents/DE112013006887B4.pdf<br>patents/JP2020118738A.pdf<br>patents/WO2020230915A1.pdf | 1/15 rows have review records |
-| 618634 | 14 | 12 | patents/US20160327774A1.pdf<br>patents/JP2016114800A.pdf<br>patents/JP2016006455A.pdf<br>patents/JPA 1994082698-000000.pdf | 2/14 rows have review records |
 | 804465 | 14 | 9 | patents/US20020015231A1.pdf<br>patents/US20220171174A1.pdf<br>patents/WO2025013477A1.pdf<br>patents/US20100194930A1.pdf | No review-record hit |
 | 805255 | 14 | 10 | patents/US20150146044A1.pdf<br>patents/JP_H0219814_A.pdf<br>patents/JP_S62108218_A.pdf<br>patents/US4223981.pdf | 2/14 rows have review records |
+| 618634 | 13 | 11 | patents/US20160327774A1.pdf<br>patents/JP2016114800A.pdf<br>patents/JP2016006455A.pdf<br>patents/JPA 1994082698-000000.pdf | 2/13 rows have review records |
 | 717295 | 13 | 9 | patents/JP2018049102A.pdf<br>patents/US20160327774A1.pdf<br>patents/JPA 1989039542-000000.pdf<br>patents/US4908639.pdf | 1/13 rows have review records |
+| 923209 | 13 | 12 | patents/JP2023033114A.pdf<br>patents/DE112013006887B4.pdf<br>patents/JP2020118738A.pdf<br>patents/WO2020230915A1.pdf | 1/13 rows have review records |
 | 001291 | 12 | 11 | patents/JP2016148731A.pdf<br>patents/US20190113711A1.pdf<br>patents/US20200166730A1.pdf<br>patents/US20160282590A1.pdf | 2/12 rows have review records |
 | 620603 | 11 | 9 | patents/US2968221.pdf<br>patents/US4158482.pdf<br>patents/US20120063011A1.pdf<br>patents/JPA 1999231209-000000.pdf | No review-record hit |
 | 720502 | 11 | 8 | patents/JP2018049102A.pdf<br>patents/US6115188.pdf<br>patents/US20110090576A1.pdf<br>patents/US20060023317A1.pdf | 1/11 rows have review records |
@@ -53,15 +53,15 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 741527 | 10 | 5 | patents/US6940655.pdf<br>patents/US7359125.pdf<br>patents/US20050157403A1.pdf<br>patents/US20030133200A1.pdf | 1/10 rows have review records |
 | 437951 | 9 | 6 | patents/WO2025013477A1.pdf<br>patents/JP2020118738A.pdf<br>patents/US20210132345A1.pdf<br>patents/JP2020086133A.pdf | No review-record hit |
 | 493836 | 9 | 4 | patents/JPA 1996327896-000000.pdf<br>patents/JP2004109559A.pdf<br>patents/JPA 1989039542-000000.pdf | All rows have review records |
-| 583595 | 9 | 5 | patents/JP2023033114A.pdf<br>patents/US20220011542A1.pdf<br>patents/JP2023044106A.pdf<br>patents/US20080218875A1.pdf | No review-record hit |
-| 589612 | 9 | 9 | patents/US20160327774A1.pdf<br>patents/US4452513.pdf<br>patents/US4223981.pdf<br>patents/US20170068075A1.pdf | 1/9 rows have review records |
-| 593670 | 9 | 6 | patents/US20200142168A1.pdf<br>patents/JP2025052870A.pdf<br>patents/JP2020086133A.pdf<br>patents/US20240151940A1.pdf | 5/9 rows have review records |
 | 593686 | 9 | 8 | patents/JP2016148731A.pdf<br>patents/US20130308041A1.pdf<br>patents/JP2023033114A.pdf<br>patents/JP2020086133A.pdf | No review-record hit |
 | 603655 | 9 | 5 | patents/US20220011542A1.pdf<br>patents/JP2023001878A.pdf<br>patents/JP2015011156A.pdf<br>patents/US20050157403A1.pdf | No review-record hit |
 | 851401 | 9 | 7 | patents/JP2016148731A.pdf<br>patents/US20130335830A1.pdf<br>patents/JP2023044106A.pdf<br>patents/JPWO2017138250A1.pdf | No review-record hit |
 | 486815 | 8 | 3 | patents/US3743384.pdf<br>patents/US3774991.pdf | All rows have review records |
 | 501565 | 8 | 6 | patents/JPA 1999231209-000000.pdf<br>patents/US4189212.pdf<br>patents/US3743384.pdf<br>patents/DE_1497540_A1.pdf | 4/8 rows have review records |
 | 517642 | 8 | 6 | patents/US7158320.pdf<br>patents/JPA 1999231209-000000.pdf<br>patents/US4223981.pdf<br>patents/US20070229969A1.pdf | 1/8 rows have review records |
+| 583595 | 8 | 4 | patents/JP2023033114A.pdf<br>patents/US20220011542A1.pdf<br>patents/JP2023044106A.pdf<br>patents/US20140347522A1.pdf | No review-record hit |
+| 589612 | 8 | 8 | patents/US20160327774A1.pdf<br>patents/US4452513.pdf<br>patents/US4223981.pdf<br>patents/US20170068075A1.pdf | No review-record hit |
+| 593670 | 8 | 5 | patents/US20200142168A1.pdf<br>patents/JP2025052870A.pdf<br>patents/JP2020086133A.pdf<br>patents/US20240151940A1.pdf | 4/8 rows have review records |
 | 603606 | 8 | 6 | patents/JP2016148731A.pdf<br>patents/JP2013054269A.pdf<br>patents/US6115188.pdf<br>patents/JP_2007003600_A.pdf | No review-record hit |
 | 620363 | 8 | 6 | patents/JP_2005092056_A.pdf<br>patents/JPA 1982019708-000000.pdf<br>patents/JPA 2000019398-000000.pdf<br>patents/US20080212200A1.pdf | 1/8 rows have review records |
 | 623582 | 8 | 5 | patents/US20150146044A1.pdf<br>patents/US4826301.pdf<br>patents/US20130308041A1.pdf<br>patents/JP_2005092056_A.pdf | No review-record hit |
@@ -72,7 +72,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 728285 | 7 | 7 | patents/JP_2000047107_A.pdf<br>patents/US20110090576A1.pdf<br>patents/JP_2007333790_A.pdf<br>patents/US20210033835A1.pdf | 1/7 rows have review records |
 | 788474 | 7 | 7 | patents/US20170242219A1.pdf<br>patents/JP2016006455A.pdf<br>patents/JP2015011156A.pdf<br>patents/US20050157403A1.pdf | 1/7 rows have review records |
 | 900374 | 7 | 5 | patents/US20190113711A1.pdf<br>patents/JP2020118738A.pdf<br>patents/JP2023044106A.pdf<br>patents/US20240295723A1.pdf | No review-record hit |
-| 001255 | 6 | 6 | patents/US20220171174A1.pdf<br>patents/US20210033835A1.pdf<br>patents/US20200073096A1.pdf<br>patents/JP2023033114A.pdf | 1/6 rows have review records |
 | 517524 | 6 | 6 | patents/JP2016148731A.pdf<br>patents/US6115188.pdf<br>patents/US20140098253A1.pdf<br>patents/US20190113711A1.pdf | No review-record hit |
 | 689311 | 6 | 6 | patents/US20060023317A1.pdf<br>patents/US2968221.pdf<br>patents/JPA 1989039542-000000.pdf<br>patents/US5734508.pdf | 1/6 rows have review records |
 | 720347 | 6 | 6 | patents/US20130308041A1.pdf<br>patents/US20220171174A1.pdf<br>patents/US20200073096A1.pdf<br>patents/WO2023153076A1.pdf | No review-record hit |
@@ -86,6 +85,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 806409 | 6 | 6 | patents/JPA 1991141313-000000.pdf<br>patents/US20110090576A1.pdf<br>patents/US20160327774A1.pdf<br>patents/JPA 1982019708-000000.pdf | No review-record hit |
 | 946180 | 6 | 6 | patents/JP2016148731A.pdf<br>patents/WO2025013477A1.pdf<br>patents/US20160282590A1.pdf<br>patents/US20140139720A1.pdf | 2/6 rows have review records |
 | 954323 | 6 | 6 | patents/US20220171174A1.pdf<br>patents/US20190265441A1.pdf<br>patents/US20170242219A1.pdf<br>patents/US20220011542A1.pdf | 1/6 rows have review records |
+| 001255 | 5 | 5 | patents/US20220171174A1.pdf<br>patents/US20210033835A1.pdf<br>patents/US20200073096A1.pdf<br>patents/JP2023033114A.pdf | No review-record hit |
 | 517522 | 5 | 5 | patents/JP2016090725A.pdf<br>patents/JP2014209144A.pdf<br>patents/US9538088.pdf<br>patents/US10545321.pdf | 2/5 rows have review records |
 | 541472 | 5 | 5 | patents/US4826301.pdf<br>patents/US20130308041A1.pdf<br>patents/US20210033835A1.pdf<br>patents/JP2012181525A.pdf | No review-record hit |
 | 567428 | 5 | 5 | patents/US20180164556A1.pdf<br>patents/US7804652.pdf<br>patents/CN211826699U.pdf<br>patents/CN211955965U.pdf | No review-record hit |
@@ -115,8 +115,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 762401 | 4 | 4 | patents/JPA 1991141313-000000.pdf<br>patents/JPA 1997211319-000000.pdf<br>patents/US20060023317A1.pdf<br>patents/US7106520.pdf | No review-record hit |
 | 804396 | 4 | 4 | patents/US6940655.pdf<br>patents/US20050068636A1.pdf<br>patents/US20050157403A1.pdf<br>patents/US20030133200A1.pdf | No review-record hit |
 | 808228 | 4 | 4 | patents/US20110090576A1.pdf<br>patents/US20190113711A1.pdf<br>patents/US6621643.pdf<br>patents/JP2017116646A.pdf | No review-record hit |
-| 834373 | 4 | 4 | patents/US8824059.pdf<br>patents/US20140354857A1.pdf<br>patents/US10545321.pdf<br>patents/US20080212200A1.pdf | 1/4 rows have review records |
-| 835430 | 4 | 2 | patents/US20070229969A1.pdf<br>patents/US20080218875A1.pdf | No review-record hit |
 | 863252 | 4 | 2 | patents/WO2021199923A1.pdf<br>patents/WO_2025263124_A1.pdf | All rows have review records |
 | 871407 | 4 | 4 | patents/WO2025013477A1.pdf<br>patents/US20200166730A1.pdf<br>patents/JP2020118738A.pdf<br>patents/US20240295723A1.pdf | No review-record hit |
 | 459902 | 3 | 2 | patents/JP2023044106A.pdf<br>patents/CN_121091494_A.pdf | No review-record hit |
@@ -127,10 +125,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 548458 | 3 | 3 | patents/US20200166730A1.pdf<br>patents/JPWO2017221949A1.pdf<br>patents/US6940655.pdf | No review-record hit |
 | 575415 | 3 | 3 | patents/US20130308041A1.pdf<br>patents/US20240295723A1.pdf | No review-record hit |
 | 581407 | 3 | 3 | patents/US20150205081A1.pdf<br>patents/JPA 1979030821-000000.pdf | No review-record hit |
-| 589613 | 3 | 3 | patents/JP2020086133A.pdf<br>patents/US8422143.pdf<br>patents/US20080218875A1.pdf | No review-record hit |
-| 592670 | 3 | 3 | patents/US20150092100A1.pdf<br>patents/US20140354857A1.pdf<br>patents/JP2017116646A.pdf | 1/3 rows have review records |
 | 596392 | 3 | 3 | patents/US20150146044A1.pdf<br>patents/US20130088622A1.pdf<br>patents/WO2025013477A1.pdf | No review-record hit |
-| 623581 | 3 | 3 | patents/DE_1170157_B.pdf<br>patents/US4158482.pdf<br>patents/US20080218875A1.pdf | No review-record hit |
 | 624470 | 3 | 3 | patents/US7359125.pdf<br>patents/US3774991.pdf<br>patents/US3481666.pdf | 1/3 rows have review records |
 | 626357 | 3 | 3 | patents/US20140098253A1.pdf<br>patents/JP_H0219814_A.pdf<br>patents/CN211955966U.pdf | 1/3 rows have review records |
 | 654397 | 3 | 2 | patents/US20150146044A1.pdf<br>patents/US20110090576A1.pdf | No review-record hit |
@@ -147,6 +142,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 801350 | 3 | 3 | patents/JPA 1997211319-000000.pdf<br>patents/JP2020086133A.pdf | No review-record hit |
 | 805396 | 3 | 3 | patents/US20210132345A1.pdf<br>patents/JP2020086133A.pdf<br>patents/US10545321.pdf | No review-record hit |
 | 808409 | 3 | 3 | patents/US20100194930A1.pdf<br>patents/JP2020118738A.pdf<br>patents/WO2020230915A1.pdf | No review-record hit |
+| 834373 | 3 | 3 | patents/US8824059.pdf<br>patents/US10545321.pdf<br>patents/US20080212200A1.pdf | No review-record hit |
+| 835430 | 3 | 1 | patents/US20070229969A1.pdf | No review-record hit |
 | 855248 | 3 | 3 | patents/US20190113711A1.pdf<br>patents/US20210033835A1.pdf<br>patents/US20200073096A1.pdf | No review-record hit |
 | 856401 | 3 | 2 | patents/WO2021199923A1.pdf<br>patents/WO_2025263124_A1.pdf | All rows have review records |
 | 859300 | 3 | 3 | patents/JP2021179551A.pdf<br>patents/US20210132345A1.pdf<br>patents/US20240295723A1.pdf | 1/3 rows have review records |
@@ -170,11 +167,14 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 539540 | 2 | 1 | patents/JP_H11211978_A.pdf | No review-record hit |
 | 550755 | 2 | 2 | patents/WO2025013477A1.pdf<br>patents/JP2017116646A.pdf | No review-record hit |
 | 581409 | 2 | 2 | patents/JPWO2020158622A1.pdf<br>patents/US20240151940A1.pdf | No review-record hit |
+| 589613 | 2 | 2 | patents/JP2020086133A.pdf<br>patents/US8422143.pdf | No review-record hit |
+| 592670 | 2 | 2 | patents/US20150092100A1.pdf<br>patents/JP2017116646A.pdf | No review-record hit |
 | 606437 | 2 | 2 | patents/WO2024062958A1.pdf<br>patents/US20210132345A1.pdf | No review-record hit |
 | 613443 | 2 | 2 | patents/US20130308041A1.pdf<br>patents/US20210033835A1.pdf | No review-record hit |
 | 617540 | 2 | 1 | patents/JPA 1999030748-000000.pdf | No review-record hit |
 | 620586 | 2 | 1 | patents/US4303314.pdf | All rows have review records |
 | 622531 | 2 | 2 | patents/US4158482.pdf<br>patents/JPB 1969024068-000000.pdf | No review-record hit |
+| 623581 | 2 | 2 | patents/DE_1170157_B.pdf<br>patents/US4158482.pdf | No review-record hit |
 | 627376 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
 | 633315 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
 | 639554 | 2 | 2 | patents/JP2021086024A.pdf<br>patents/WO2023181666A1.pdf | No review-record hit |
@@ -372,7 +372,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 762271 | 1 | 1 | patents/JPA 1979055423-000000.pdf | No review-record hit |
 | 765249 | 1 | 1 | patents/US20130314588A1.pdf | All rows explicitly disposed |
 | 767462 | 1 | 1 | patents/US3507558.pdf | All rows have review records |
-| 768492 | 1 | 1 | patents/US20140354857A1.pdf | All rows have review records |
 | 769497 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | All rows have review records |
 | 770297 | 1 | 1 | patents/JP2023044106A.pdf | No review-record hit |
 | 770493 | 1 | 1 | Missing from untracked local patents/ references (WO2021246545A1, WO2021246545, 2021246545) | All rows explicitly disposed |
@@ -3118,46 +3117,11 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L41 (L41) | 18 | `Unmatched (mixed-coordinate patent row; 804466 class)` | 1.80831 / 46.50 | No catalog entry | abbe | patents/JP2015166834A.pdf | Explicit disposition in data |
 | L44 (L44) | 23A | `Unmatched (mixed-coordinate patent row; 774472 lanthanum-flint class)` | 1.77767 / 47.10 | No catalog entry | abbe | patents/JP2015166834A.pdf | Explicit disposition in data |
 
-### [SONY ZEISS VARIO-SONNAR T* 10.4-37.1mm f/1.8-4.9 (Sony Cyber-shot DSC-RX100 / DSC-RX100 II)](../../src/lens-data/sony/ZeissVarioSonnarT104371mmf1849SonyDSCRX100M12.data.ts) - US 2013/0314585 A1
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L22 (Element 4) | 8 | `835427 lanthanum-flint class (vendor ambiguous)` | 1.83481 / 42.72 | S-LAH55 (trusted Sellmeier) | sellmeier | patents/US20130314585A1.pdf | No review-record hit |
-| L23 (Element 5) | 9 | `755275 dense-flint class (vendor ambiguous)` | 1.75520 / 27.53 | E-FD4 (trusted Sellmeier) | sellmeier | patents/US20130314585A1.pdf | No review-record hit |
-
-### [SONY ZEISS VARIO-SONNAR T* 14.3-71.5mm f/2.8-4.8 (Sony Cyber-shot DSC-R1)](../../src/lens-data/sony/ZeissVarioSonnarT143715mmf2848SonyDCSR1.data.ts) - US 2008/0218875 A1
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| G1 (G1) | 1 | `589613 — glass class (supplier unresolved)` | 1.58910 / 61.25 | M-BACD5N (trusted Sellmeier) | sellmeier | patents/US20080218875A1.pdf | No review-record hit |
-| G2 (G2) | 3 | `773496 — glass class (supplier unresolved)` | 1.77250 / 49.60 | J-LASF016 (trusted Sellmeier) | sellmeier | patents/US20080218875A1.pdf | No review-record hit |
-| G3b (G3 glass body) | 5 | `773496 — glass class (supplier unresolved)` | 1.77250 / 49.60 | J-LASF016 (trusted Sellmeier) | sellmeier | patents/US20080218875A1.pdf | No review-record hit |
-| G4 (G4) | 8 | `923209 — glass class (supplier unresolved)` | 1.92290 / 20.88 | PBH21 (trusted Sellmeier) | sellmeier | patents/US20080218875A1.pdf | No review-record hit |
-| G5b (G5 glass body) | 11 | `618634 — glass class (supplier unresolved)` | 1.61800 / 63.40 | S-PHM52 (trusted Sellmeier) | sellmeier | patents/US20080218875A1.pdf | No review-record hit |
-| G6 (G6) | 14 | `904313 — glass class (supplier unresolved)` | 1.90370 / 31.32 | N-LASF46B (trusted Sellmeier) | sellmeier | patents/US20080218875A1.pdf | No review-record hit |
-| G7 (G7) | 15 | `623581 — glass class (supplier unresolved)` | 1.62300 / 58.12 | BACD15 (trusted Sellmeier) | sellmeier | patents/US20080218875A1.pdf | No review-record hit |
-| G8 (G8) | 17 | `904313 — glass class (supplier unresolved)` | 1.90370 / 31.32 | N-LASF46B (trusted Sellmeier) | sellmeier | patents/US20080218875A1.pdf | No review-record hit |
-| G9 (G9) | 19A | `583595 — glass class (supplier unresolved)` | 1.58310 / 59.46 | M-BACD12 (trusted Sellmeier) | sellmeier | patents/US20080218875A1.pdf | No review-record hit |
-| G10 (G10) | 21 | `835430 — glass class (current-catalog identity unresolved)` | 1.83500 / 42.98 | TAFD5 (trusted Sellmeier) | sellmeier | patents/US20080218875A1.pdf | No review-record hit |
-| G11 (G11) | 22 | `847238 — glass class (supplier unresolved)` | 1.84670 / 23.79 | FDS90 (trusted Sellmeier) | sellmeier | patents/US20080218875A1.pdf | No review-record hit |
-| G12 (G12) | 24 | `923209 — glass class (supplier unresolved)` | 1.92290 / 20.88 | PBH21 (trusted Sellmeier) | sellmeier | patents/US20080218875A1.pdf | No review-record hit |
-
 ### [SONY ZEISS VARIO-SONNAR T* 8.8-73.3mm f/2.8 (Sony Cyber-shot DSC-RX10 / DSC-RX10 II)](../../src/lens-data/sony/ZeissVarioSonnarT88733mmf28SonyDSCRX10M12.data.ts) - US 2014/0354857 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L1 (Element 1) | 1 | `847238 - dense flint class (catalog unresolved)` | 1.84700 / 23.78 | FDS90 (trusted Sellmeier) | sellmeier | patents/US20140354857A1.pdf | Audit-log hit |
-| L2 (Element 2) | 2 | `497816 - low-dispersion phosphate crown class (catalog unresolved)` | 1.49700 / 81.61 | H-FK61 (trusted Sellmeier) | sellmeier | patents/US20140354857A1.pdf | Audit-log hit |
-| L3 (Element 3) | 4 | `593670 - dense phosphate crown class (catalog unresolved)` | 1.59300 / 67.00 | J-PSKH4 (trusted Sellmeier) | sellmeier | patents/US20140354857A1.pdf | Audit-log hit |
 | L4 (Element 4) | 6A | `803456 - high-index lanthanum class (catalog unresolved)` | 1.80300 / 45.57 | No catalog entry | abbe | patents/US20140354857A1.pdf | Audit-log hit |
-| L5 (Element 5) | 8 | `729547 - lanthanum crown class (catalog unresolved)` | 1.72900 / 54.67 | S-LAL18 (trusted Sellmeier) | sellmeier | patents/US20140354857A1.pdf | Audit-log hit |
-| L6 (Element 6) | 9 | `001255 - very-high-index lanthanum flint class (catalog unresolved)` | 2.00100 / 25.46 | TAFD40 (trusted Sellmeier) | sellmeier | patents/US20140354857A1.pdf | Audit-log hit |
-| L7 (Element 7) | 11A | `834373 - lanthanum flint class (catalog unresolved)` | 1.83400 / 37.28 | NBFD10 (trusted Sellmeier) | sellmeier | patents/US20140354857A1.pdf | Audit-log hit |
-| L9 (Element 9) | 16 | `487704 - fluor crown class (catalog unresolved)` | 1.48700 / 70.44 | FC5 (trusted Sellmeier) | sellmeier | patents/US20140354857A1.pdf | Audit-log hit |
-| L10 (Element 10) | 17 | `806333 - lanthanum flint class (catalog unresolved)` | 1.80600 / 33.27 | NBFD15 (trusted Sellmeier) | sellmeier | patents/US20140354857A1.pdf | Audit-log hit |
-| L11 (Element 11) | 19A | `589612 - dense barium crown class (catalog unresolved)` | 1.58900 / 61.18 | S-BAL35 (trusted Sellmeier) | sellmeier | patents/US20140354857A1.pdf | Audit-log hit |
-| L12 (Element 12) | 21A | `768492 - high-index lanthanum class (catalog unresolved; nd from documented source correction)` | 1.76800 / 49.24 | M-TAF101 (trusted Sellmeier) | sellmeier | patents/US20140354857A1.pdf | Audit-log hit |
-| L13 (Element 13) | 23A | `592670 - dense crown class (catalog unresolved)` | 1.59200 / 67.02 | M-PCD51 (trusted Sellmeier) | sellmeier | patents/US20140354857A1.pdf | Audit-log hit |
 
 ### [TAMRON 14-150mm f/3.5-5.8 Di III (C001)](../../src/lens-data/tamron/TamronC00114150mmf3558.data.ts) - US 2014/0347522 A1
 
