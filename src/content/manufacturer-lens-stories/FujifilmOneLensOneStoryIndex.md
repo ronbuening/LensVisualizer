@@ -22,8 +22,8 @@ Fujifilm's official _One Lens, One Story_ series ran for 12 installments in 2015
 | 2015-09-11 | XF18mmF2 R | [One Lens, One Story #9](https://www.fujifilm-x.com/global/stories/one-lens-one-story-9/) | [XF18mmF2 R](/lens/fujifilm-xf18f2r) |
 | 2015-09-09 | XF56mmF1.2 R, part 2 | [One Lens, One Story #8](https://www.fujifilm-x.com/global/stories/one-lens-one-story-8/) | [XF56mmF1.2 R](/lens/fujinon-xf56f12r) |
 | 2015-09-07 | XF56mmF1.2 R, part 1 | [One Lens, One Story #7](https://www.fujifilm-x.com/global/stories/one-lens-one-story-7/) | [XF56mmF1.2 R](/lens/fujinon-xf56f12r) |
-| 2015-09-02 | XF27mmF2.8 and the X100 lens | [One Lens, One Story #6](https://www.fujifilm-x.com/global/stories/one-lens-one-story-6/) | [X100 23mmF2](/lens/fujifilm-x100-23f2) |
-| 2015-08-28 | XF27mmF2.8 | [One Lens, One Story #5](https://www.fujifilm-x.com/global/stories/one-lens-one-story-5/) | — |
+| 2015-09-02 | XF27mmF2.8 and the X100 lens | [One Lens, One Story #6](https://www.fujifilm-x.com/global/stories/one-lens-one-story-6/) | [XF27mmF2.8](/lens/fujifilm-fujinon-xf-27mm-f28) · [X100 23mmF2](/lens/fujifilm-x100-23f2) |
+| 2015-08-28 | XF27mmF2.8 | [One Lens, One Story #5](https://www.fujifilm-x.com/global/stories/one-lens-one-story-5/) | [XF27mmF2.8](/lens/fujifilm-fujinon-xf-27mm-f28) |
 | 2015-08-26 | XF35mmF1.4 R | [One Lens, One Story #4](https://www.fujifilm-x.com/global/stories/one-lens-one-story-4/) | [XF35mmF1.4 R](/lens/fujifilm-xf35-f14-r) |
 | 2015-08-24 | XF60mmF2.4 R Macro | [One Lens, One Story #3](https://www.fujifilm-x.com/global/stories/one-lens-one-story-3/) | [XF60mmF2.4 R Macro](/lens/fujifilm-xf60-f24-r-macro) |
 | 2015-08-21 | XF23mmF1.4 R | [One Lens, One Story #2](https://www.fujifilm-x.com/global/stories/one-lens-one-story-2/) | [XF23mmF1.4 R](/lens/fujinon-xf-23mm-f14-r) |
@@ -58,8 +58,11 @@ _Rebirth of the Legend_ connects Fujifilm's 1950s FUJINON Speed Trio to its fast
 
 ## GFX100RF Fixed-Lens Development
 
-One chapter of Fujifilm's five-part GFX100RF development story concentrates entirely on the camera's fixed 35mmF4 lens, including its compact optical layout, aspherical elements, leaf shutter, Nano GI coating, and autofocus mechanism.
+Fujifilm's four-part GFX100RF development story treats the camera and its fixed lens as one design. Volume 03 concentrates entirely on the 35mmF4 lens, including its compact optical layout, aspherical elements, leaf shutter, Nano GI coating, and autofocus mechanism; volume 02 covers the lens team's proposal for a very compact fixed lens on a large-format body. Volumes 01 and 04 are format heritage and industrial design.
 
-| Published | Lens | Official article | Surface & Stop |
+| Published | Volume and subject | Official article | Surface & Stop |
 | --- | --- | --- | --- |
-| 2025-03-24 | GFX100RF 35mmF4 | [Development Story vol. 03: Newly Developed 35mm F4 Lens](https://www.fujifilm-x.com/en-us/stories/development-story-vol-03-newly-developed-35mm-f4-lens/) | [GFX100RF 35mmF4](/lens/fujifilm-gfx100rf-35mm-f4) |
+| 2025-03-25 | vol. 04 — Design that Elevates the Concept | [Read at Fujifilm](https://www.fujifilm-x.com/global/stories/development-story-vol-04-design-that-elevates-the-concept/) | — |
+| 2025-03-24 | vol. 03 — Newly Developed 35mm F4 Lens | [Read at Fujifilm](https://www.fujifilm-x.com/global/stories/development-story-vol-03-newly-developed-35mm-f4-lens/) | [GFX100RF 35mmF4](/lens/fujifilm-gfx100rf-35mm-f4) |
+| 2025-03-21 | vol. 02 — Large Format + Compact and Lightweight | [Read at Fujifilm](https://www.fujifilm-x.com/global/stories/development-story-vol-2-large-format-compact-and-lightweight/) | [GFX100RF 35mmF4](/lens/fujifilm-gfx100rf-35mm-f4) |
+| 2025-03-20 | vol. 01 — The Rangefinder Style and Fujifilm, and the GFX | [Read at Fujifilm](https://www.fujifilm-x.com/global/stories/development-story-vol-01-the-rangefinder-style-and-fujifilm-and-the-gfx/) | — |

@@ -10,13 +10,13 @@ toc: true
 
 # Lens Stories from the Manufacturers
 
-Nikon's _NIKKOR — The Thousand and One Nights_ is the best-known manufacturer-written lens history, but it is not the only one. Fujifilm and SIGMA produced named series of their own; Canon, Panasonic, and Pentax published smaller collections of developer interviews and design stories; and Leica and Tamron maintain substantial first-party lens histories.
+Nikon's _NIKKOR — The Thousand and One Nights_ is the best-known manufacturer-written lens history, but it is not the only one. Fujifilm and SIGMA produced named series of their own; Canon, Panasonic, Pentax, and Sony published collections of developer interviews and design stories; Leica, Tamron, and Angénieux maintain substantial first-party lens histories; and ZEISS publishes the most technical body of work of any manufacturer here.
 
 This guide gathers those first-party articles in one place. Each company page links to the original manufacturer article and, when the exact lens is available in the Surface & Stop catalog, to its interactive cross-section.
 
 ## Browse by Company
 
-- **[Nikon — NIKKOR: The Thousand and One Nights](/articles/nikon-thousand-and-one-nights-index)** — all 98 tales in Nikon's current English index plus Research Report papers and corporate lens technology and design features.
+- **[Nikon — NIKKOR: The Thousand and One Nights](/articles/nikon-thousand-and-one-nights-index)** — all 98 tales in Nikon's current English index plus Research Report papers, the Frontiers of Vision series, and corporate lens technology and design features.
 - **[Fujifilm — One Lens, One Story](/articles/fujifilm-one-lens-one-story-index)** — One Lens, One Story, The History of FUJINON, FUJINON Speed Lenses, and a GFX100RF fixed-lens development chapter.
 - **[SIGMA — Ohsone's Anecdotes](/articles/sigma-ohsones-anecdotes-index)** — Ohsone's ten product tales and the eight-part GROUND BREAKING history series.
 - **[Panasonic — LUMIX Lens Development Stories](/articles/panasonic-lumix-development-stories-index)** — Optical Design Department essays, LEICA DG Lens Stories, and other official developer features.
@@ -24,6 +24,9 @@ This guide gathers those first-party articles in one place. Each company page li
 - **[Canon — RF Lens Developer Stories](/articles/canon-rf-lens-development-stories-index)** — RF Lens World interviews plus development features for the RF5.2mm Dual Fisheye and RF100–500mm.
 - **[Leica — Centennial Lens Stories](/articles/leica-centennial-lens-stories-index)** — lens milestones from Leica's official 2025 centennial timeline, from the Summicron to the APO-Telyt-R.
 - **[Tamron — Lens Development Histories](/articles/tamron-lens-development-histories-index)** — the company's lens timeline plus its updated 90mm Macro and all-in-one zoom histories.
+- **[ZEISS — Camera Lens Technical Articles](/articles/zeiss-technical-articles-index)** — the Lenspire technical papers by Hubert Nasse and Vladan Blahnik, including the naming series on Planar, Tessar, Distagon, Biogon and Hologon.
+- **[Sony — G Master Design Philosophy](/articles/sony-g-master-design-philosophy-index)** — twelve developer interviews on α Universe, one per G Master lens.
+- **[Angénieux — The Angénieux Stories](/articles/angenieux-history-stories-index)** — six history features on the Retrofocus, the zoom lineage, and the company's cine and space optics.
 
 ## What Qualifies
 

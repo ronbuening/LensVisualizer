@@ -21,6 +21,6 @@ The table follows the lenses' introduction chronology, newest first.
 | HD PENTAX-D FA★ 85mmF1.4 ED SDM AW | [Development Story](https://www.ricoh-imaging.co.jp/english/products/star_lens/special/sp_dfa85-14/interview/) | [D FA★ 85mmF1.4](/lens/pentax-dfa-85mm-f14) |
 | HD PENTAX-D FA★ 50mmF1.4 SDM AW | [Development Story](https://www.ricoh-imaging.co.jp/english/products/star_lens/special/sp_dfa50-14/interview/) | [D FA★ 50mmF1.4](/lens/pentax-dfa-50mm-f14-sdm-aw) |
 | HD PENTAX-D FA★ 70–200mmF2.8ED DC AW | [PENTAX STORY](https://www.ricoh-imaging.co.jp/english/products/lens/pentax-story/70-200/) | [D FA★ 70–200mmF2.8](/lens/pentax-hd-d-fa-star-70-200mm-f28-ed-dc-aw) |
-| HD PENTAX-D FA 150–450mmF4.5–5.6ED DC AW | [PENTAX STORY](https://www.ricoh-imaging.co.jp/english/products/lens/pentax-story/150-450/) | — |
+| HD PENTAX-D FA 150–450mmF4.5–5.6ED DC AW | [PENTAX STORY](https://www.ricoh-imaging.co.jp/english/products/lens/pentax-story/150-450/) | [D FA 150–450mmF4.5–5.6](/lens/hd-pentax-d-fa-150-450-f45-56-ed-dc-aw) |
 
 The Surface & Stop DA★ 16–50mm is the earlier SDM design, not the PLM lens discussed in Ricoh's article, so it is deliberately not cross-linked.

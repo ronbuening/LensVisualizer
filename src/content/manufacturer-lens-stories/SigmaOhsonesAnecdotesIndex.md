@@ -1,7 +1,7 @@
 ---
 slug: sigma-ohsones-anecdotes-index
 title: "SIGMA: Ohsone's Anecdotes"
-summary: An index of SIGMA's Ohsone's Anecdotes and GROUND BREAKING product-history series, with exact Surface & Stop lens matches where available.
+summary: An index of SIGMA's Ohsone's Anecdotes, GROUND BREAKING, and RETICENCE series on lens design, product history, and Aizu manufacturing, with exact Surface & Stop lens matches where available.
 tag: guide
 series: manufacturer-lens-stories
 seriesOrder: 3
@@ -47,3 +47,20 @@ SIGMA's eight-part _GROUND BREAKING_ collection covers the products, materials, 
 | Vol. 3 | SIGMA Global Vision and the Art, Sports, and Contemporary lines | [Innovators of a new standard](https://www.sigma-global.com/en/our-community/sein/groundbreaking/innovators-of-a-new-standard/) | — |
 | Vol. 2 | Ultra-wide zoom lineage and 18–35mm F1.8 DC HSM \| Art | [Intuition opens the doors of possibility](https://www.sigma-global.com/en/our-community/sein/groundbreaking/intuition-opens-the-doors-of-possibility/) | — |
 | Vol. 1 | SIGMA's foundation, rear converter, and YS mount | [With independence comes the energy to lead to the future](https://www.sigma-global.com/en/our-community/sein/groundbreaking/with-independence-comes-the-energy-to-lead-to-the-future/) | — |
+
+## RETICENCE
+
+_RETICENCE_ is SEIN's eight-part account of how lenses are actually built at SIGMA's Aizu factory. Each article takes one production process and explains what it contributes to a finished lens, from grinding and polishing glass to the metal patterns, presses, and molding that produce barrel components, and the surface treatments and paints that control internal reflection.
+
+It is the only collection in this index devoted to lens manufacture rather than lens design, which is why it is listed separately from the two narrative series above. No single lens is its subject, so there is no catalog column.
+
+| Process | Official article |
+| --- | --- |
+| Polishing | [Read at SIGMA](https://www.sigma-global.com/en/our-community/sein/reticence/polishing/) |
+| Precision component | [Read at SIGMA](https://www.sigma-global.com/en/our-community/sein/reticence/precision-component/) |
+| Metal pattern | [Read at SIGMA](https://www.sigma-global.com/en/our-community/sein/reticence/metal-pattern/) |
+| Press | [Read at SIGMA](https://www.sigma-global.com/en/our-community/sein/reticence/press/) |
+| Plastic injection molding | [Read at SIGMA](https://www.sigma-global.com/en/our-community/sein/reticence/plastic-injection-molding/) |
+| Surface treatment | [Read at SIGMA](https://www.sigma-global.com/en/our-community/sein/reticence/surface-treatment/) |
+| Painting | [Read at SIGMA](https://www.sigma-global.com/en/our-community/sein/reticence/painting/) |
+| Jigs and tools | [Read at SIGMA](https://www.sigma-global.com/en/our-community/sein/reticence/jigs-and-tools/) |
