@@ -1564,3 +1564,12 @@ describe("zoom source schedules", () => {
     ).toBe(true);
   });
 });
+
+describe("published image-circle diameter", () => {
+  it("accepts a circle without inventing a format or projection law", () => {
+    expect(validateLensData(makeValid({ imageCircleMm: 8.7 }))).toEqual([]);
+  });
+  it.each([0, -1, NaN, Infinity, "8.7"])("rejects invalid diameter %s", (imageCircleMm) => {
+    expect(validateLensData(makeValid({ imageCircleMm })).some((error) => error.includes("imageCircleMm"))).toBe(true);
+  });
+});

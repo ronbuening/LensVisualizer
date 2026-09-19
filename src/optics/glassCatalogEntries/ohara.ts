@@ -6,6 +6,18 @@ import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
   {
+    name: "PBL6Y",
+    vendor: "Ohara",
+    B: [1.22310794, 0.0811217929, 0.321400939],
+    C: [0.00897805333, 0.0445756957, 40.5962247],
+    nd: 1.531717,
+    vd: 48.95,
+    PgF: 0.5599,
+    code6: "532490",
+    source:
+      "Ohara PBL6Y datasheet OHARA 24-10, 326–1129 nm Sellmeier constants; https://oharacorp.com/wp-content/uploads/datasheets/ehpbl06y.pdf (accessed 2026-09-19).",
+  },
+  {
     name: "L-BSL7",
     vendor: "Ohara",
     B: [0.917473918, 0.352687665, 1.05579788],

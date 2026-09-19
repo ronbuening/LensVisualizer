@@ -181,6 +181,16 @@ describe("analysis field geometry", () => {
     expect(missingGeometry.halfFieldDeg).toBeCloseTo(fullFrameGeometry.halfFieldDeg, 10);
   });
 
+  it("caps the analysis field to an explicit circular image without requiring a projection law", () => {
+    const circle = { ...L, data: { ...L.data, imageFormat: undefined, imageCircleMm: 8.7 } };
+    const geometry = computeAnalysisFieldGeometryAtState(0, 0, circle);
+    const fullFrame = computeAnalysisFieldGeometryAtState(0, 0, L);
+    expect(geometry.halfFieldDeg).toBeGreaterThan(0);
+    expect(geometry.halfFieldDeg).toBeLessThan(fullFrame.halfFieldDeg);
+    const sameDiameter = { ...circle, data: { ...circle.data, imageCircleMm: 43.3 } };
+    expect(computeAnalysisFieldGeometryAtState(0, 0, sameDiameter).halfFieldDeg).toBeCloseTo(fullFrame.halfFieldDeg, 8);
+  });
+
   it("uses a smaller APS-C analysis field than full-frame for the same optics", () => {
     const apsC = computeAnalysisFieldGeometryAtState(0, 0, withImageFormat(L, "aps-c"));
     const fullFrame = computeAnalysisFieldGeometryAtState(0, 0, withImageFormat(L, "135-full-frame"));

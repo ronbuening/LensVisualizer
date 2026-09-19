@@ -103,6 +103,24 @@ export function isLensMountId(value: unknown): value is LensMountId {
 
 export const IMAGE_FORMATS = [
   {
+    id: "16mm-cinema",
+    label: "16 mm cinema",
+    widthMm: 10.26,
+    heightMm: 7.49,
+    diagonalMm: 12.7,
+    aspectRatio: 10.26 / 7.49,
+    sortOrder: 145,
+  },
+  {
+    id: "35mm-cinema",
+    label: "35 mm cinema (22 × 16 mm)",
+    widthMm: 22,
+    heightMm: 16,
+    diagonalMm: 27.2,
+    aspectRatio: 22 / 16,
+    sortOrder: 195,
+  },
+  {
     id: "110",
     label: "110",
     widthMm: 17,
