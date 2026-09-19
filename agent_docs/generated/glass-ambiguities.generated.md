@@ -12,9 +12,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **777** lenses scanned
-- **8730** glass elements examined
-- **2696** elements have multiple coordinate-compatible candidates
+- **783** lenses scanned
+- **8769** glass elements examined
+- **2697** elements have multiple coordinate-compatible candidates
 - **510** lens files are affected
 - **259** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **198** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
@@ -22,7 +22,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Selection criterion | Elements |
 |---|---:|
 | Smallest reference-index residual | 1525 |
-| Evidence-source priority | 890 |
+| Evidence-source priority | 891 |
 | Vendor context | 272 |
 | Stable canonical-name order | 7 |
 | Smallest Abbe residual | 2 |
@@ -1068,6 +1068,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `487704 — optical-position class (vendor unproven)` | 1.48749 / 70.41 (d) | N-FK5 — smallest d-line \|Δn\| (3.7e-9 vs 4.1e-8) | H-QK3L (CDGM, code, alternate code row)<br>FK5 (Sumita, code, alternate code row)<br>FC5 (Hoya, code, alternate code row) | 2 | [NIKON AI AF-S ZOOM-NIKKOR 80-200mm f/2.8D IF-ED](../../src/lens-data/nikon/NikonAFSZoomNikkor80200mmf28DIFED.data.ts) L5 |
 | `788475 — optical-position class (vendor unproven)` | 1.78797 / 47.47 (d) | TAF4 — smallest d-line \|Δn\| (2.6e-5 vs 2.9e-5) | N-LAF21 (Schott, code, preferred code row) | 1 | [NIKON AI AF-S ZOOM-NIKKOR 80-200mm f/2.8D IF-ED](../../src/lens-data/nikon/NikonAFSZoomNikkor80200mmf28DIFED.data.ts) L13 |
 | `620363 — optical-position class (vendor unproven)` | 1.62004 / 36.27 (d) | E-F2 — smallest d-line \|Δn\| (1.5e-7 vs 8.4e-7) | S-TIM2 (Ohara, code, preferred code row) | 1 | [NIKON AI AF-S ZOOM-NIKKOR 80-200mm f/2.8D IF-ED](../../src/lens-data/nikon/NikonAFSZoomNikkor80200mmf28DIFED.data.ts) L15 |
+| `S-TIL6 catalog equivalent (patent 532490; production supplier unspecified)` | 1.53172 / 48.97 (d) | S-TIL6 — direct name evidence outranks six-digit code evidence. | PBL6Y (Ohara, code, preferred code row) | 1 | [NIKON AI AF-S ZOOM-NIKKOR 80-200mm f/2.8D IF-ED](../../src/lens-data/nikon/NikonAFSZoomNikkor80200mmf28DIFED.data.ts) L16 |
 | `773495 — optical-position class (vendor unproven)` | 1.77279 / 49.45 (d) | M-TAF1 — smallest d-line \|Δn\| (2.9e-4 vs 2.9e-4) | M-TAF105 (Hoya, code, preferred code row) | 1 | [NIKON AI AF-S ZOOM-NIKKOR 80-200mm f/2.8D IF-ED](../../src/lens-data/nikon/NikonAFSZoomNikkor80200mmf28DIFED.data.ts) L18 |
 | `TAF1 / TAF105 class (HOYA, 773/496)` | 1.77279 / 49.40 (d) | S-LAH66 — alias evidence outranks six-digit code evidence. | N-LAF34 (Schott, code, vendor ✗, alternate code row)<br>J-LASF016 (Hikari, code, vendor ✗, alternate code row)<br>S-LAH66N (Ohara, code, vendor ✗, alternate code row) | 1 | [Nikon AI Micro-Nikkor 105mm f/2.8S](../../src/lens-data/nikon/NikonAIMicroNikkor105mmf28S.data.ts) L11 |
 | `LAF3 class (HOYA, 717/480; S-LAM3 equivalent)` | 1.71700 / 48.10 (d) | LAF3 — Annotation vendor context matches Hoya. | S-LAM3 (Ohara, name, vendor ✗) | 1 | [Nikon AI Micro-Nikkor 105mm f/2.8S](../../src/lens-data/nikon/NikonAIMicroNikkor105mmf28S.data.ts) L12 |

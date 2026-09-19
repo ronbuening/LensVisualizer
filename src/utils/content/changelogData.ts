@@ -19,6 +19,11 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-09-19",
+    type: "lens",
+    summary: "Added three Kinoptik Tegea lenses and Nikon AF600, AF 35mm and Micro-Nikkor 60mm",
+  },
+  {
     date: "2026-09-18",
     type: "lens",
     summary: "Added four Sony ZEISS Vario-Sonnar zooms, Vario-Prakticar and Ultra Prime 135mm",

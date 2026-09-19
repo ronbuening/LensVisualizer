@@ -45,6 +45,17 @@ export interface MakerDetails {
 }
 
 export const MAKER_DETAILS: Record<string, MakerDetails> = {
+  // French Ministry of Culture inventory: https://pop.culture.gouv.fr/notice/palissy/IM25001882
+  // Tegea designs: US 3,037,426 and Kinoptik product literature cited in the lens analyses.
+  kinoptik: {
+    founded: 1932,
+    headquarters: "Paris, France (historical optical works)",
+    summary:
+      "French optical manufacturer known for cinema lenses, including the Tegea wide-angle and Super-Tegea fisheye families.",
+    history:
+      "Georges Grosset and Georges Perthuis founded Kinoptik in Paris in 1932. The company developed optics for cinema and specialized imaging, including an aerial-photography objective in 1939. Edgard Hugues's large-angular-field patent, assigned to Les Appareils de Precision Kinoptik, describes the three-system designs represented by the Tegea and Super-Tegea models in this catalog. Their production associations remain qualified in the individual lens analyses.",
+    notableDesigns: "Tegea 5.7mm f/1.8, Tegea 9.8mm f/1.8, Super-Tegea 1.9mm f/1.9",
+  },
   agfa: {
     founded: 1867,
     headquarters: "Mortsel, Belgium; historical camera works in Munich, Germany",
