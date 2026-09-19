@@ -10,11 +10,11 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **783** lenses scanned
-- **1728** total code-only elements found
-- **287** elements in this report
+- **1727** total code-only elements found
+- **286** elements in this report
 - **110** distinct lens files affected
 - **4** active unreviewed elements have no review-record hit or explicit disposition
-- **154** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
+- **153** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
 - **0** dispositions lack any review record
 
 ## Prioritized Unreviewed Queue
@@ -216,7 +216,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 780509 | 1 | 1 | patents/US20180164556A1.pdf | All rows explicitly disposed |
 | 786275 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | All rows have review records |
 | 786406 | 1 | 1 | patents/WO2019131993A1.pdf | All rows have review records |
-| 788472 | 1 | 1 | patents/JP2021036283A.pdf | All rows explicitly disposed |
 | 788474 | 1 | 1 | patents/JPA 2022012964-000000.pdf | All rows explicitly disposed |
 | 789457 | 1 | 1 | patents/US4182550.pdf | All rows have review records |
 | 792257 | 1 | 1 | patents/JP2023039817A.pdf | All rows explicitly disposed |
@@ -603,7 +602,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L2 (Element 2) | 3 | `Unmatched (788472 class; patent partial dispersion retained as dPgF)` | 1.78797 / 47.17 | No catalog entry | abbe | patents/JP2021036283A.pdf | Explicit disposition in data |
 | L6 (Element 6) | 11 | `Unmatched (683548 class; patent partial dispersion retained as dPgF)` | 1.68348 / 54.80 | No catalog entry | abbe | patents/JP2021036283A.pdf | Explicit disposition in data |
 
 ### [NIKON AF-P DX NIKKOR 10-20mm f/4.5-5.6 G VR](../../src/lens-data/nikon/NikonAFPDX1020mmf4556G.data.ts) - WO 2021/039813 A1

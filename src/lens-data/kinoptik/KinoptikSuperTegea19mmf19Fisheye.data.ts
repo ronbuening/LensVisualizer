@@ -48,8 +48,17 @@ const LENS_DATA = {
   maker: "Kinoptik",
   name: "KINOPTIK SUPER-TEGEA 1.9mm f/1.9 FISHEYE",
   subtitle: "US 3,037,426 — Example 3; strong production correlation, not manufacturer-confirmed example attribution",
-  specs: ["7 ELEMENTS / 7 GROUPS", "3 DIOPTRIC SYSTEMS", "1.9mm", "f/1.9", "197° FIELD", "1 ASPHERICAL SURFACE"],
+  specs: [
+    "7 ELEMENTS / 7 GROUPS",
+    "3 DIOPTRIC SYSTEMS",
+    "1.9mm",
+    "f/1.9",
+    "197° FIELD",
+    "8.7 mm CIRCULAR IMAGE (MARKETED)",
+    "1 ASPHERICAL SURFACE",
+  ],
 
+  imageCircleMm: 8.7,
   focalLengthMarketing: 1.9,
   focalLengthDesign: 1.9558999761,
   apertureMarketing: 1.9,

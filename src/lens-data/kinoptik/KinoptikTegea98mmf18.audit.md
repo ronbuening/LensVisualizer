@@ -29,3 +29,9 @@ Patent nd/vd values are unchanged. Catalog names denote supplier-neutral spectra
 ### Metadata and validation
 
 Canonicalized the shared Kinoptik assignee spelling and registered the Kinoptik maker prefix. Production correlations remain qualified; patent designs are not asserted to be manufacturer-confirmed production prescriptions. Surface audits pass. The image-circle audit skips this lens because its historical format has no authored canonical format; this is a validation limitation, not a passed image-circle result.
+
+### Local-site follow-up
+
+The localhost silhouette was compared directly with Fig. 2. Retained the corrected SDs: increasing the cemented pair/triplet to the literal drawing envelopes would cross the numerical table surfaces. Added the missing L8+L9 and L10+L11+L12 diagram annotations; the inspector correctly identifies C2 as a triplet. The manufacturer brochure (page 2) specifies 108° on 16 × 22 mm and 130° on 24 × 36 mm with slight vignetting. Authored the conservative 22 × 16 mm cinema format (27.20 mm minimum diagonal), not an unqualified full-frame circle. The patent has only an infinity state; focus stays disabled and no zoom travel exists.
+
+Assignee review: all three Kinoptiks use the same canonical Les Appareils de Precision Kinoptik; all three Nikons use Nikon Corporation. The corpus contains no additional spelling duplicate to consolidate. The older Nippon Kogaku K.K. is a historical legal name linked to Nikon, not a spelling alias.

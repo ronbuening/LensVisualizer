@@ -26,3 +26,9 @@ Patent nd/vd values are unchanged. Catalog names denote supplier-neutral spectra
 ### Metadata and validation
 
 Canonicalized the shared Kinoptik assignee spelling and registered the Kinoptik maker prefix. Production correlations remain qualified; patent designs are not asserted to be manufacturer-confirmed production prescriptions. Surface audits pass. The image-circle audit skips this lens because its historical format has no authored canonical format; this is a validation limitation, not a passed image-circle result.
+
+### Local-site follow-up
+
+The localhost silhouette was compared directly with Fig. 1, including the four small rear optical rims. No additional SD change is justified. The manufacturer brochure (page 4) specifies standard 16 mm coverage and fixed focus. Added the 10.26 × 7.49 mm camera format (12.70 mm minimum diagonal), and replaced the secondary 19-inch close-focus claim with the manufacturer fixed-focus description. This diagonal is a format requirement, not a measured maximum image circle. Focus stays disabled at infinity; no zoom travel exists.
+
+Assignee review: all three Kinoptiks use the same canonical Les Appareils de Precision Kinoptik; all three Nikons use Nikon Corporation. The corpus contains no additional spelling duplicate to consolidate. The older Nippon Kogaku K.K. is a historical legal name linked to Nikon, not a spelling alias.

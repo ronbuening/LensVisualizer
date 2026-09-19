@@ -15,6 +15,20 @@ export interface ImageFormatDetails {
 }
 
 export const IMAGE_FORMAT_DETAILS: Record<ImageFormatId, ImageFormatDetails> = {
+  "16mm-cinema": {
+    summary: "Standard 16 mm motion-picture film, distinct from the wider Super 16 gate.",
+    description:
+      "The nominal camera aperture is 10.26 × 7.49 mm, requiring a 12.70 mm diagonal. Projection apertures and viewfinder framelines can crop this area. A lens marketed for standard 16 mm is not automatically certified for Super 16.",
+    coverageNotes: "10.26 × 7.49 mm reference gate; 12.70 mm minimum coverage diagonal",
+    commonUses: "Standard 16 mm motion-picture cameras",
+  },
+  "35mm-cinema": {
+    summary: "A 22 × 16 mm reference image area for 35 mm motion-picture lenses.",
+    description:
+      "This reference follows the 16 × 22 mm coverage quoted in the Kinoptik Tegea manufacturer brochure. It is smaller than 24 × 36 mm still film and is not a claim of full-frame or Super 35 coverage. Actual camera gates and projection crops vary.",
+    coverageNotes: "22 × 16 mm reference area; 27.20 mm minimum coverage diagonal",
+    commonUses: "35 mm motion-picture cameras",
+  },
   "110": {
     commonUses: "Pocket film cameras and miniature interchangeable-lens systems",
     coverageNotes: "17 x 13 mm frame with a 21.4 mm diagonal",

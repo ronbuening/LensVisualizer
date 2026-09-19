@@ -12,7 +12,7 @@ The prescription is the seven-element Example 3 of US 3,037,426. Figure 3 shows 
 
 The identification with the production KINOPTIK 1.9mm f/1.9 SUPER-TEGEA is strong but remains a research correlation rather than a manufacturer statement that the production lens is specifically Example 3. Kinoptik/Karl Heitz literature lists the SUPER-TEGEA as 1.9 mm f/1.9, 197° on an 8.7 mm-diameter image circle, fixed focus, and approximately 9.2 mm optical back focus. Those values closely track the Example 3 patent summary. The same literature documents C-mount and ALPA versions. [2] [3]
 
-The implemented prescription remains at patent scale. No uniform scaling is applied. The data file deliberately omits `lensMounts` and `imageFormat` because the supplied LensVisualizer taxonomy has no canonical identifiers for C-mount, ALPA, or the 8.7 mm circular cine image format.
+The implemented prescription remains at patent scale. No uniform scaling is applied. The data file records the manufacturer’s 8.7 mm circular image as `imageCircleMm`, independent of a projection law. No rectangular format is inferred; historical C-mount and ALPA mounts remain uncatalogued.
 
 ## Optical Architecture
 

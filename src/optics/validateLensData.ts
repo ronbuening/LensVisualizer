@@ -770,6 +770,13 @@ export default function validateLensData(data: UntrustedLensData): string[] {
   if (data.lensMounts !== undefined) validateLensMounts(data.lensMounts, errors);
   if (data.imageFormat !== undefined) validateImageFormat(data.imageFormat, errors);
 
+  if (
+    data.imageCircleMm !== undefined &&
+    (typeof data.imageCircleMm !== "number" || !Number.isFinite(data.imageCircleMm) || data.imageCircleMm <= 0)
+  ) {
+    errors.push('"imageCircleMm" must be a finite positive diameter in millimetres');
+  }
+
   /* ── Early exit if surfaces/elements are missing — rest of checks depend on them ── */
   if (!Array.isArray(data.surfaces) || !Array.isArray(data.elements)) return errors;
 

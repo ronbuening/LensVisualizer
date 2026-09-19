@@ -28,3 +28,9 @@ Patent nd/vd values are unchanged. Catalog names denote supplier-neutral spectra
 ### Metadata and validation
 
 Reviewed display formatting and romanized inventor metadata against existing canonical catalog names. Production correlations remain qualified; patent designs are not asserted to be manufacturer-confirmed production prescriptions. Surface audits pass. The image-circle audit reports no undersized surfaces.
+
+### Local-site follow-up
+
+Compared the localhost infinity silhouette directly with Fig. 1, retaining the revised 11 mm G2 rims. Exercised the focus slider through its authored states: G1 moves 52.77403 mm objectward and G2 moves 42.90576 mm objectward at 1:1; G3 and the image plane remain fixed. The order is correct, but the default framing clipped the front group at close focus. Reduced scFill to 0.43 to keep all groups visible through travel without changing optics or SDs. This is a prime; no zoom travel exists. All eight glasses remain catalog-backed qualified proxies.
+
+Assignee review: all three Kinoptiks use the same canonical Les Appareils de Precision Kinoptik; all three Nikons use Nikon Corporation. The corpus contains no additional spelling duplicate to consolidate. The older Nippon Kogaku K.K. is a historical legal name linked to Nikon, not a spelling alias.

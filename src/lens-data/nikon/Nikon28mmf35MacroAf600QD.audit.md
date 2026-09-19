@@ -23,3 +23,9 @@ Patent nd/vd values are unchanged. Catalog names denote supplier-neutral spectra
 ### Metadata and validation
 
 Reviewed display formatting and romanized inventor metadata against existing canonical catalog names. Production correlations remain qualified; patent designs are not asserted to be manufacturer-confirmed production prescriptions. Surface audits pass. The image-circle audit reports no undersized surfaces.
+
+### Local-site follow-up
+
+The localhost silhouette and rear stop were compared directly with Fig. 3. Retained the revised 5 mm L3 rims; no further rim correction is justified. The inspector reports L3 as an Abbe estimate rather than implying a catalog match. The AF600/AF600 QD display name correctly identifies the fixed-camera association. The disabled focus control explicitly distinguishes the static patent model from Nikon’s documented unit focusing with a fixed rear stop. No zoom travel exists.
+
+Assignee review: all three Kinoptiks use the same canonical Les Appareils de Precision Kinoptik; all three Nikons use Nikon Corporation. The corpus contains no additional spelling duplicate to consolidate. The older Nippon Kogaku K.K. is a historical legal name linked to Nikon, not a spelling alias.

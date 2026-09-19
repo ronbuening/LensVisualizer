@@ -201,3 +201,7 @@ field-curvature specification.
    (https://www.hikari-g.co.jp/optical_glass/catalog/), CDGM (https://www.cdgmgd.com/), and SUMITA
    (https://www.sumita-opt.co.jp/en/download/). These catalogs support only the class/Unmatched dispositions described
    above; none is treated as proof of the historical KINOPTIK melt supplier.
+
+## Image coverage
+
+The [manufacturer brochure, page 2](https://www.pacificrimcamera.com/rl/00030/00030.pdf) specifies 108° on 16 × 22 mm and 130° on 24 × 36 mm with slight vignetting. The authored cinema format requires a 27.20 mm diagonal. The 43.27 mm full-frame diagonal is qualified, vignetted coverage, not the default analysis format or a measured clear image-circle boundary.

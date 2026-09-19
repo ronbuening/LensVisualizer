@@ -35,7 +35,7 @@ The Stage 1 catalog review found HIKARI J-BK7A coordinate-compatible at the d-li
 
 ### L2 — Biconvex Positive, first component of the cemented pair
 
-`nd = 1.78797`, `νd = 47.17`. Glass: `Unmatched (788472 class; patent partial dispersion retained as dPgF)`. Standalone air-equivalent `f = +20.0284 mm`.
+`nd = 1.78797`, `νd = 47.17`. Glass: `N-LAF21-class (coordinate-compatible spectral proxy; patent dPgF retained; supplier unproven)`. Standalone air-equivalent `f = +20.0284 mm`.
 
 L2 is the strong positive component of the only cemented group. Its rear surface is also the L2-to-L3 cemented interface, so the medium after that surface is L3 glass rather than air. The implemented surface therefore carries the downstream L3 element identity, consistent with the source prescription and current data rules.
 
@@ -78,13 +78,13 @@ Patent refractive indices and Abbe numbers are preserved. Named catalog glasses 
 | Element | Patent nd | Patent νd | Runtime glass annotation |
 |---|---:|---:|---|
 | L1 | 1.51680 | 64.12 | J-BK7A-class (coordinate-compatible spectral proxy; supplier unproven) |
-| L2 | 1.78797 | 47.17 | Unmatched (788472 class; patent partial dispersion retained as dPgF) |
+| L2 | 1.78797 | 47.17 | N-LAF21-class (coordinate-compatible spectral proxy; patent dPgF retained; supplier unproven) |
 | L3 | 1.53172 | 48.96 | PBL6Y-class (coordinate-compatible spectral proxy; supplier unproven) |
 | L4 | 1.80518 | 25.35 | Unmatched (805254 class; SF6-like nd/νd but partial dispersion incompatible) |
 | L5 | 1.74810 | 52.28 | E-LAKH1-class (coordinate-compatible spectral proxy; supplier unproven) |
 | L6 | 1.68348 | 54.80 | Unmatched (683548 class; patent partial dispersion retained as dPgF) |
 
-Table 1 publishes θgF = 0.5360, 0.5548, 0.5599, 0.6115, 0.5465, and 0.5501 for L1–L6. These ratios are converted to `dPgF` using the runtime normal line `0.6438 − 0.001682νd`; they are source data, not fitted catalog indices. PBL6Y uses the [Ohara 24-10 datasheet](https://oharacorp.com/wp-content/uploads/datasheets/ehpbl06y.pdf), whose θgF = 0.5599 agrees with L3. E-LAKH1 is a close coordinate proxy for L5; the authored partial dispersion controls the g-line. L2/L4/L6 remain unresolved.
+Table 1 publishes θgF = 0.5360, 0.5548, 0.5599, 0.6115, 0.5465, and 0.5501 for L1–L6. These ratios are converted to `dPgF` using the runtime normal line `0.6438 − 0.001682νd`; they are source data, not fitted catalog indices. PBL6Y uses the [Ohara 24-10 datasheet](https://oharacorp.com/wp-content/uploads/datasheets/ehpbl06y.pdf), whose θgF = 0.5599 agrees with L3. E-LAKH1 is a close coordinate proxy for L5; the authored partial dispersion controls the g-line. L4/L6 remain unresolved.
 
 ## Focus Mechanism
 
@@ -134,3 +134,5 @@ Example 1 has no aspherical surfaces. No cover glass, filter, dummy plane, or me
 6. HIKARI GLASS CO., LTD., **J-BK7A data sheet**: https://www.hikari-g.co.jp/optical_glass/general_optical_glass/document/BK/J_BK7A.pdf
 7. OHARA, **Optical Glass Pocket Catalog 2023-05**, PBL6Y row: https://oharacorp.com/wp-content/uploads/2023/06/ohara-pocket-catalog-2023-05.pdf
 8. SCHOTT, **Optical Glass Datasheet N-SF6**: https://media.schott.com/api/public/content/71867e8f4d09454b9ed013ea40429b29?v=c310af5c
+
+L2’s N-LAF21 proxy is supported by the [SCHOTT datasheet collection](https://www.schott.com/en-gb/products/optical-glass/-/media/Project/OnEx/Products/O/optical-glass/Downloads/schott-optical-glass-collection-datasheets-english-may2019.pdf?rev=5358bb64e13a44f2b37f5065490509af): nd 1.78800, vd 47.49, PgF 0.5555. Its coordinates closely match the patent and its partial-dispersion difference is only 0.0007; the patent dPgF still controls the modeled g-line.

@@ -98,6 +98,8 @@ in distortion, vignetting, bokeh, and aberration analysis.
 
 | ID | Display Label | Width x Height (mm) | Diagonal (mm) | Aspect Ratio |
 |----|---------------|---------------------|---------------|--------------|
+| `16mm-cinema` | 16 mm cinema | 10.26 x 7.49 | 12.70 | 1.37:1 |
+| `35mm-cinema` | 35 mm cinema (22 × 16 mm) | 22 x 16 | 27.20 | 1.375:1 |
 | `110` | 110 | 17 x 13 | 21.4 | 17:13 |
 | `1-2.55-inch-type` | 1/2.55-inch type | 5.6448 x 4.2336 | 7.056 | 4:3 |
 | `1-2.3-inch-type` | 1/2.3-inch type | 6.17 x 4.55 | 7.67 | about 4:3 |
@@ -151,3 +153,5 @@ NTT DOCOMO lists a 4032 × 3024 still-image size for the Galaxy S9 SC-02K
 The nominal active area is derived as 4032 × 0.0014 by 3024 × 0.0014 mm, with a 7.056 mm diagonal.
 These calculated dimensions represent the nominal capture area, not a measurement of the sensor die;
 the optical-inch designation is not converted directly into millimeters.
+
+The standard 16 mm gate follows [SMPTE Journal, Table I](https://journal.smpte.org/periodicals/SMPTE%20Journal/88/9/4/07241916.pdf). The 22 × 16 mm cinema reference follows the [Kinoptik brochure, page 2](https://www.pacificrimcamera.com/rl/00030/00030.pdf); it does not represent every 35 mm cinema gate. These diagonals are minimum format coverage, not measured maximum lens image circles.

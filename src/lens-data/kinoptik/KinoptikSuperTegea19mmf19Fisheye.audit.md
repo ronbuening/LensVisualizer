@@ -27,3 +27,9 @@ Patent nd/vd values are unchanged. Catalog names denote supplier-neutral spectra
 ### Metadata and validation
 
 Canonicalized the shared Kinoptik assignee spelling and registered the Kinoptik maker prefix. Production correlations remain qualified; patent designs are not asserted to be manufacturer-confirmed production prescriptions. Surface audits pass. The image-circle audit skips this lens because its historical format has no authored canonical format; this is a validation limitation, not a passed image-circle result.
+
+### Local-site follow-up
+
+The localhost silhouette was compared directly with Fig. 3. Retained the SDs: the large front blanks, smaller curved clear apertures, and very small rear imaging group agree within the documented rim/clearance constraints. The manufacturer brochure (page 3) explicitly gives a 197° field on an 8.7 mm diameter circle; this is now authored independently of any projection law and shown above the diagram. The unknown projection law remains a limitation for wide-field analysis. Fixed focus is disabled at infinity; no zoom travel exists.
+
+Assignee review: all three Kinoptiks use the same canonical Les Appareils de Precision Kinoptik; all three Nikons use Nikon Corporation. The corpus contains no additional spelling duplicate to consolidate. The older Nippon Kogaku K.K. is a historical legal name linked to Nikon, not a spelling alias.

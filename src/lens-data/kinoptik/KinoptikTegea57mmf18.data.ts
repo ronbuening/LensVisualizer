@@ -23,17 +23,15 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  and shared-gap sag intrusion.                                     ║
  * ║                                                                    ║
  * ║  Focus status: NO_INTERNAL_RECONSTRUCTION. The patent publishes    ║
- * ║  only the remote-object state. closeFocusM=0.483 is secondary      ║
- * ║  product metadata (CineD 19 in) required by LensDataInput; it      ║
- * ║  does not define an internal focus model and no var gaps are used. ║
+ * ║  only the remote-object state. The manufacturer brochure calls   ║
+ * ║  the production lens fixed focus; no variable gaps are authored. ║
  * ║                                                                    ║
  * ║  Source discrepancy retained: prose gives System II f=84.2 mm,    ║
  * ║  while Table 1 computes to 85.0063 mm and closes the published     ║
  * ║  afocal 1/3.92 front pair plus whole-system EFL/BFD.               ║
  * ║                                                                    ║
- * ║  Historical C/ARRIFLEX mounts and 16 mm format have no canonical   ║
- * ║  ids in the supplied taxonomy, so lensMounts/imageFormat are       ║
- * ║  intentionally omitted rather than free-typed.                     ║
+ * ║  Format follows the manufacturer brochure: standard 16 mm cine. ║
+ * ║  Historical C/ARRIFLEX mounts remain uncatalogued.                ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -44,6 +42,7 @@ const LENS_DATA = {
   name: "KINOPTIK TEGEA 5.7mm f/1.8",
   subtitle: "US 3,037,426 Example 1 — strong Tegea correlation; not manufacturer-confirmed",
   specs: [
+    "12.70 mm FORMAT DIAGONAL",
     "6 ELEMENTS / 6 GROUPS",
     "PATENT EFL ≈ 5.797 mm",
     "f/1.8",
@@ -52,6 +51,7 @@ const LENS_DATA = {
     "16 mm CINEMA (MARKETED)",
   ],
 
+  imageFormat: "16mm-cinema",
   focalLengthMarketing: 5.7,
   focalLengthDesign: 5.797294665734089,
   apertureMarketing: 1.8,
@@ -196,8 +196,9 @@ const LENS_DATA = {
   ],
   doublets: [],
 
-  closeFocusM: 0.483,
-  focusDescription: "Not modeled; the patent supplies only the infinity prescription.",
+  // Manufacturer brochure specifies fixed focus; this value is an infinity sentinel.
+  closeFocusM: 1e6,
+  focusDescription: "Fixed focus; no moving groups are modeled.",
 
   nominalFno: 1.8,
   fstopSeries: [1.8, 2, 2.8, 4, 5.6, 8, 11, 16],

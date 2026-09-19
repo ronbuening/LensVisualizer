@@ -98,7 +98,7 @@ No patent C/F/g line indices or partial-dispersion measurements are supplied for
 
 The optical focus status is **NO_INTERNAL_RECONSTRUCTION**. The patent gives a remote-object state and a focal plane but no variable-spacing table, focus travel, or internal focusing law. The data file therefore contains no `var` gaps and no reconstructed optical close-focus state.
 
-The Kinoptik-origin brochure describes the production lens with a fixed-locus focusing description, but it does not provide a patent-compatible moving-group model. The required `closeFocusM` field is set to 0.483 m from a secondary CineD listing of 19 in / 48.3 cm. That value is catalog/UI metadata only; it does not alter any optical spacing in the model and should not be read as a verified internal-focus reconstruction.
+The Kinoptik-origin brochure specifies fixed focus, from infinity to the front element. No moving groups are modeled. The required `closeFocusM` uses the same non-operative infinity sentinel as the Super-Tegea; the secondary 19-inch listing no longer overrides the manufacturer description.
 
 ## Aspherical Surfaces
 
@@ -155,5 +155,9 @@ The surface-by-surface Petzval sum from the final model is +0.005139 mm⁻¹. Th
 2. **KINOPTIK professional lens brochure — 5.7 mm f/1.8 TEGEA**, Kinoptik-origin scan hosted by Pacific Rim Camera: https://www.pacificrimcamera.com/rl/00030/00030.pdf . Product identity, 16 mm coverage, marketed angle of view, aperture range, optical back focus, and mechanical forms.
 3. **ARRIFLEX 16 BL catalog**, Arnold & Richter / ARRIFLEX, scan hosted by Pacific Rim Camera: https://www.pacificrimcamera.com/rl/01128/01128.pdf . Independent system-catalog listing of the Kinoptik Tegea 5.7 mm f/1.8, T2.
 4. **KINOPTIK price catalog, January 1, 1975**, manufacturer-origin scan hosted by Scribd: https://www.scribd.com/document/966475319/Kinoptik-1 . Historical listing of the 5.7 mm f/1.8 TEGEA as 16 mm only.
-5. **CineD Lens Database**, Kinoptik Tegea 5.7 mm listing: https://www.cined.com/lens-database/?lens=spherical-primes . Secondary source used only for the 19 in / 48.3 cm `closeFocusM` metadata; not used to define the optical prescription or historical mount.
+5. **CineD Lens Database**, Kinoptik Tegea 5.7 mm listing: https://www.cined.com/lens-database/?lens=spherical-primes . Secondary listing; its close-focus value is superseded by the manufacturer fixed-focus specification.
 6. Official optical-glass catalog resources consulted for coordinate comparison: SCHOTT, OHARA, HOYA, HIKARI GLASS, SUMITA OPTICAL GLASS, and CDGM. Their candidate matches support the class-level annotations only; none establishes the historical Tegea glass supplier.
+
+## Image coverage
+
+The [manufacturer brochure, page 4](https://www.pacificrimcamera.com/rl/00030/00030.pdf) specifies standard 16 mm cinema coverage. The authored 10.26 × 7.49 mm format requires a 12.70 mm diagonal; this is not a measured maximum image circle or a Super 16 claim.

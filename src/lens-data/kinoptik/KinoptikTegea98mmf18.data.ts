@@ -33,8 +33,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  class/Unmatched labels avoid asserting historical supplier melts ║
  * ║  or importing unsupported line-index/partial-dispersion data.     ║
  * ║                                                                    ║
- * ║  MOUNT/FORMAT: omitted. Current taxonomy has no Arriflex, Alpa,   ║
- * ║  barrel, or dedicated 16×22 format id; no free-typed substitute.  ║
+ * ║  FORMAT: manufacturer 22×16 mm cine coverage; full-frame use has ║
+ * ║  slight vignetting. Historical mounts remain uncatalogued.       ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -45,6 +45,7 @@ const LENS_DATA = {
   name: "KINOPTIK TEGEA 9.8mm f/1.8",
   subtitle: "US 3,037,426 Example 2 — 9.759 mm f/2 patent design; strong circumstantial TEGEA correlation",
   specs: [
+    "27.20 mm FORMAT DIAGONAL",
     "9 ELEMENTS / 6 GROUPS",
     "MODEL EFL ≈ 9.784 mm; PATENT f = 9.759 mm",
     "MODEL f/2; MARKETED f/1.8",
@@ -52,6 +53,7 @@ const LENS_DATA = {
     "1 ASPHERICAL SURFACE",
   ],
 
+  imageFormat: "35mm-cinema",
   focalLengthMarketing: 9.8,
   focalLengthDesign: 9.784066724,
   apertureMarketing: 1.8,
@@ -243,7 +245,10 @@ const LENS_DATA = {
     { text: "II", fromSurface: "3", toSurface: "5" },
     { text: "III", fromSurface: "6", toSurface: "15" },
   ],
-  doublets: [],
+  doublets: [
+    { text: "L8+L9", fromSurface: "3", toSurface: "5" },
+    { text: "L10+L11+L12", fromSurface: "6", toSurface: "9" },
+  ],
 
   /* Production close-focus value is metadata only; no finite-focus optical movement is reconstructed. */
   closeFocusM: 0.2286,

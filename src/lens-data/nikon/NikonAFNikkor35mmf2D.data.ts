@@ -70,7 +70,7 @@ const LENS_DATA = {
       dPgF: -0.00966006,
       indexReference: "d",
       fl: 20.028441617268722,
-      glass: "Unmatched (788472 class; patent partial dispersion retained as dPgF)",
+      glass: "N-LAF21-class (coordinate-compatible spectral proxy; patent dPgF retained; supplier unproven)",
       cemented: "D1",
     },
     {

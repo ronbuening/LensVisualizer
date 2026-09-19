@@ -310,6 +310,8 @@ export interface LensData {
   apertureDesign?: number;
   lensMounts?: LensMountId[];
   imageFormat?: ImageFormatId;
+  /** Published circular image diameter, independent of any assumed projection law. */
+  imageCircleMm?: number;
   /** Source patent publication or grant identifier, including jurisdiction and kind code when published. */
   patentNumber?: string;
   /** Inventors named by the source patent, in source order; empty when the patent names none. */

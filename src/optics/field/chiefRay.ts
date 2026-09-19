@@ -171,7 +171,7 @@ export function computeAnalysisFieldGeometryAtState2(
   if (!Number.isFinite(geometry.halfFieldDeg) || geometry.halfFieldDeg <= 0 || L.N < 1) return geometry;
 
   const format = resolveImageFormatMetadata(L.data?.imageFormat);
-  const maxImageHeight = format.diagonalMm / 2;
+  const maxImageHeight = (L.data?.imageCircleMm ?? format.diagonalMm) / 2;
   if (!Number.isFinite(maxImageHeight) || maxImageHeight <= 0) return geometry;
 
   const zPos = zPositionsForState(focusT, zoomT, L, aberrationT);

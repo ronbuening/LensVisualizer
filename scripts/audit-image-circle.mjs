@@ -78,13 +78,15 @@ async function auditLens(file) {
   const lens = (await import(pathToFileURL(file).href)).default;
   const rel = relative(ROOT, file);
   const format = IMAGE_FORMAT_BY_ID[lens.imageFormat];
-  if (!format) return { rel, name: lens.name, skipped: `no usable imageFormat (${String(lens.imageFormat)})` };
+  const diameterMm = lens.imageCircleMm ?? format?.diagonalMm;
+  if (!(Number.isFinite(diameterMm) && diameterMm > 0))
+    return { rel, name: lens.name, skipped: `no usable imageFormat (${String(lens.imageFormat)})` };
   /* Folded systems route the beam through mirrors, so the axial gap between a
    * surface vertex and the image plane is not the distance the ray travels. */
   if (lens.opticalPath) return { rel, name: lens.name, skipped: "folded optical path" };
 
   const scale = prescriptionScale(lens);
-  const semiDiagonal = (format.diagonalMm / 2) * scale;
+  const semiDiagonal = (diameterMm / 2) * scale;
   const focalLength = firstFocalLength(lens.focalLengthDesign) ?? firstFocalLength(lens.focalLengthMarketing);
   if (!focalLength) return { rel, name: lens.name, skipped: "no usable focal length" };
 
@@ -108,7 +110,15 @@ async function auditLens(file) {
       violations.push({ label: surface.label, sd: surface.sd, floor, t, shortfall: floor - surface.sd });
     }
   }
-  return { rel, name: lens.name, format: lens.imageFormat, semiDiagonal, scale, wide, violations };
+  return {
+    rel,
+    name: lens.name,
+    format: lens.imageCircleMm ? `${diameterMm} mm circle` : lens.imageFormat,
+    semiDiagonal,
+    scale,
+    wide,
+    violations,
+  };
 }
 
 const args = process.argv.slice(2);

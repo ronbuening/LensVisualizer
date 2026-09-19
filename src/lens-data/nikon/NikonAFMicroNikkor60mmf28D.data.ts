@@ -211,6 +211,8 @@ const LENS_DATA = {
   nominalFno: 2.82,
   fstopSeries: [2.8, 4, 5.6, 8, 11, 16],
 
+  // Keep the 52.77 mm objectward extension visible at 1:1 with a fixed image plane.
+  scFill: 0.43,
   yScFill: 0.34,
 } satisfies LensDataInput;
 
