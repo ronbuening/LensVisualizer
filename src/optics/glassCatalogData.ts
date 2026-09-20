@@ -19,6 +19,8 @@ import { SPECIAL_GLASS_ENTRIES } from "./glassCatalogEntries/special.js";
 export type { GlassEntry } from "./glassCatalogTypes.js";
 
 const GLASS_CATALOG_SOURCE_ORDER = [
+  "M-TAFD405",
+  "S-NBH59",
   "PBL6Y",
   "H-TF5",
   "H-LaK67",

@@ -9,12 +9,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **783** lenses scanned (**771** visible)
-- **8150 / 8774** non-air surfaces use strict catalog Sellmeier data (92.9%)
-- **8165 / 8774** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.1%)
+- **789** lenses scanned (**777** visible)
+- **8232 / 8861** non-air surfaces use strict catalog Sellmeier data (92.9%)
+- **8247 / 8861** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.1%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
-- **286** code-only missing-Sellmeier elements in Sweep 2: **4** active unreviewed, **153** self-recording explicit dispositions, **0** dispositions missing any review record
+- **288** code-only missing-Sellmeier elements in Sweep 2: **6** active unreviewed, **153** self-recording explicit dispositions, **0** dispositions missing any review record
 - **0** unresolved named-token elements in Sweep 2B, producing **0** token occurrences across **0** distinct tokens
 - **0** Tier A proprietary backfill rows in Sweep 3
 
@@ -33,6 +33,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 |---|---|---|---:|---:|---:|---|---|
 | [CANON RF 24-240mm f/4-6.3 IS USM](../../src/lens-data/canon/CanonRF24240mmf463.data.ts) | US 2020/0142167 A1 | [PDF](../../patents/US20200142167A1.pdf) | 95.2% (20/21) | 95.2% (20/21) | 1 | 25A [glass] (Element 14: `531559 - moldable barium light crown (patent nd=1.53110, vd=55.9)`) | abbe: 1 |
 | [CANON NEW FD 150-600mm f/5.6L](../../src/lens-data/canon/CanonFD150600mmf56L.data.ts) | US 4,110,006 | [PDF](../../patents/US4110006.pdf) | 94.7% (18/19) | 94.7% (18/19) | 1 | 30 [glass] (Element 17: `Unmatched (534555 vintage crown; no first-party coefficient row found)`) | abbe: 1 |
+| [SONY FE 50-150mm f/2 GM](../../src/lens-data/sony/SonyFE50150mmF2GM.data.ts) | WO 2025/220324 A1 | [PDF](../../patents/WO_2025220324_A1.pdf) | 94.7% (18/19) | 94.7% (18/19) | 1 | 11 [glass] (Element E6: `901271 class (supplier unproven)`) | abbe: 1 |
 | [OLYMPUS ZUIKO DIGITAL ED 14-35mm f/2.0 SWD](../../src/lens-data/olympus/OlympusMZuiko1435mmf2ED.data.ts) | US 8,081,392 B2 | [PDF](../../patents/US8081392.pdf) | 94.4% (17/18) | 94.4% (17/18) | 1 | 35 [glass] (Element 18: `Unmatched proprietary short flint (635/232, condition-b APD glass)`) | abbe: 1 |
 | [FUJIFILM FUJINON XF 16-55mm f/2.8 R LM WR](../../src/lens-data/fujifilm/FujifilmXF1655mmf28R.data.ts) | US 2016/0154221 A1 | [PDF](../../patents/US20160154221A1.pdf) | 94.1% (16/17) | 94.1% (16/17) | 1 | 13A [glass] (Element 8 (L31): `Unmatched (685309 dense flint; nearest public catalog row exceeds d-line tolerance)`) | abbe: 1 |
 | [NIKON NIKKOR Z 35mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) | JP 2025-052870 A | [PDF](../../patents/JP2025052870A.pdf) | 94.1% (16/17) | 94.1% (16/17) | 1 | 32A [glass] (Element 17: `Barium crown / LaK family (624584, no exact catalog match)`) | abbe: 1 |
@@ -48,11 +49,13 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [NIKON AF-S NIKKOR 105mm f/1.4E ED](../../src/lens-data/nikon/NikonNikkor105f14E.data.ts) | WO 2019/116563 A1 | [PDF](../../patents/JPWO2019116563A1.pdf) | 92.9% (13/14) | 92.9% (13/14) | 1 | 8 [glass] (Element 5: `Unmatched APD medium (patent optical constants; supplier unspecified)`) | abbe: 1 |
 | [PANASONIC LEICA DC VARIO-ELMARIT 4.5-108mm f/2.8 (Panasonic Lumix DMC-FZ300)](../../src/lens-data/panasonic/LeicaDCVarioElmarit45108mmf28PanasonicFZ300.data.ts) | US 2015/0103211 A1 | [PDF](../../patents/US20150103211A1.pdf) | 92.9% (13/14) | 92.9% (13/14) | 1 | 28A [glass] (Element 14: `Unmatched (nd=1.54410, νd=56.1; current six-vendor sweep)`) | abbe: 1 |
 | [SAMYANG AF 14mm f/2.8 FE](../../src/lens-data/samyang/SamyangAF14mmf28FE.data.ts) |  | No patent number parsed from lens metadata | 92.9% (13/14) | 92.9% (13/14) | 1 | 12A [glass] (Element 7: `Unmatched (nd=1.877950, vd=37.3)`) | abbe: 1 |
+| [SONY FE 50mm f/1.2 GM](../../src/lens-data/sony/SonyFE50mmf12GM.data.ts) | JP 2022-140076 A | [PDF](../../patents/JP2022140076A.pdf) | 92.9% (13/14) | 92.9% (13/14) | 1 | 19A [glass] (Element G11: `592610 class (supplier unresolved)`) | abbe: 1 |
 | [SONY ZEISS VARIO-SONNAR T* 8.8-73.3mm f/2.8 (Sony Cyber-shot DSC-RX10 / DSC-RX10 II)](../../src/lens-data/sony/ZeissVarioSonnarT88733mmf28SonyDSCRX10M12.data.ts) | US 2014/0354857 A1 | [PDF](../../patents/US20140354857A1.pdf) | 92.9% (13/14) | 92.9% (13/14) | 1 | 6A [glass] (Element 4: `803456 - high-index lanthanum class (catalog unresolved)`) | abbe: 1 |
 | [CANON EF-M 18-55mm f/3.5-5.6 IS STM](../../src/lens-data/canon/CanonEFM1855mmf3556ISSTM.data.ts) | US 2013/0335830 A1 | [PDF](../../patents/US20130335830A1.pdf) | 92.3% (12/13) | 92.3% (12/13) | 1 | 22 [glass] (Element 12: `Unmatched (nd=1.52996, nu_d=55.8; code 530558)`) | abbe: 1 |
 | [CANON RF 24-105mm f/4-7.1 IS STM](../../src/lens-data/canon/CanonRF24105mmf471ISSTM.data.ts) | US 2021/0003831 A1 | [PDF](../../patents/US20210003831A1.pdf) | 92.3% (12/13) | 92.3% (12/13) | 1 | 22A [glass] (Element 12 / B5: `Unmatched (1.53110/55.9; no exact public catalog match)`) | abbe: 1 |
 | [FUJIFILM FUJINON XF 16mm f/1.4 R WR](../../src/lens-data/fujifilm/FujifilmFujinonXf16mmf14RWR.data.ts) | US 2016/0282590 A1 | [PDF](../../patents/US20160282590A1.pdf) | 92.3% (12/13) | 92.3% (12/13) | 1 | 17A [glass] (Element 9: `Unmatched (nd=1.80348, nu_d=40.45; no defensible current public-catalog identity)`) | abbe: 1 |
 | [NIKON AI ZOOM-NIKKOR 80-200mm f/4](../../src/lens-data/nikon/NikonAINikkor80200mmf4.data.ts) | US 4,452,513 | [PDF](../../patents/US4452513.pdf) | 92.3% (12/13) | 92.3% (12/13) | 1 | 19 [glass] (G4 rear negative: `797455 — dense lanthanum glass class (catalog unresolved)`) | abbe: 1 |
+| [SCHNEIDER-KREUZNACH VARIOGON 10-40mm f/2.8](../../src/lens-data/schneider-kreuznach/SchneiderVariogon281040.data.ts) | US 3,057,257 | [PDF](../../patents/US3057257.pdf) | 92.3% (12/13) | 92.3% (12/13) | 1 | 1 [glass] (Element 1: `Unmatched (nd=1.52542, νd=64.55; supplier unresolved)`) | abbe: 1 |
 | [SONY FE 24mm f/1.4 GM](../../src/lens-data/sony/SonyFE24mmf14GM.data.ts) | WO 2019/073744 A1 | [PDF](../../patents/JPWO2019073744A1.pdf) | 92.3% (12/13) | 92.3% (12/13) | 1 | 1A [glass] (L11 front XA element: `Unmatched (MC-TAF115-class; Hoya source nominal/polynomial conflict; patent nd=1.77002, νd=49.4)`) | abbe: 1 |
 | [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) | JP 2022-092388 A | [PDF](../../patents/JP2022092388A.pdf) | 92.0% (23/25) | 92.0% (23/25) | 2 | 34 [glass] (Element 19: `603564 — inferred vd and unresolved identity; patent gives nd only`)<br>45 [glass] (Element 25: `738493 — inferred vd and unresolved identity; patent gives nd only`) | abbe: 2 |
 | [FUJIFILM TCL-X100 33mm f/2 (Fujifilm X100)](../../src/lens-data/fujifilm/FujifilmX100TCLX100.data.ts) | US 2015/0226942 A1 | Missing from untracked local patents/ references (US20150226942A1, US20150226942, 20150226942) | 91.7% (11/12) | 91.7% (11/12) | 1 | 18A [glass] (Master L36: `Unmatched (nd=1.56865, νd=58.6; no authoritative catalog match)`) | abbe: 1 |
@@ -88,6 +91,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [NIKON AI-S NIKKOR 50mm f/1.2](../../src/lens-data/nikon/NikonAISNikkor50mmf12.data.ts) | US 4,621,909 | [PDF](../../patents/US4621909.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 1 [glass] (Element 1: `Unmatched Nikon/Hikari lanthanum glass (797/455; J-LASF017 / TAF2 class)`) | abbe: 1 |
 | [VOIGTLÄNDER COLOR-SKOPAR 28mm f/2.8 Aspherical SL IIs](../../src/lens-data/voigtlander/VoigtlanderColorSkopar28mmf28Aspherical.data.ts) | JP 2023-032663 A | [PDF](../../patents/JPA 2023032663-000000.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 5 [glass] (Cemented biconcave member: `Unmatched (nd inferred from published FL; νd omitted by patent)`) | constant: 1 |
 | [LAOWA 65mm f/2.8 2× Ultra Macro APO](../../src/lens-data/laowa/Laowa65mmf28MacroAPO.data.ts) | CN 110161666 A | [PDF](../../patents/CN110161666A.pdf) | 85.7% (12/14) | 85.7% (12/14) | 2 | 4 [glass] (Element 3: `773530 — high-index lanthanum crown (patent nd=1.77250, νd=53.00; no exact public catalog match)`)<br>16 [glass] (Element 10: `Unmatched (patent nd=1.72916, νd=57.67; prior H-LAK52 candidate rejected on dispersion)`) | abbe: 2 |
+| [SCHNEIDER-KREUZNACH VARIOGON 45-100mm f/2.8](../../src/lens-data/schneider-kreuznach/SchneiderVariogon2845100.data.ts) | US 3,482,900 | [PDF](../../patents/US3482900.pdf) | 85.7% (12/14) | 85.7% (12/14) | 2 | 11 [glass] (Element 7: `Unmatched (1.60565 / 37.95; supplier unresolved)`)<br>18 [glass] (Element 11: `Unmatched (1.62364 / 36.75; supplier unresolved)`) | abbe: 2 |
 | [SONY ZEISS VARIO-SONNAR T* 14.3-71.5mm f/2.8-4.8 (Sony Cyber-shot DSC-R1)](../../src/lens-data/sony/ZeissVarioSonnarT143715mmf2848SonyDCSR1.data.ts) | US 2008/0218875 A1 | [PDF](../../patents/US20080218875A1.pdf) | 85.7% (12/14) | 85.7% (12/14) | 2 | 6 [glass] (G3 composite asphere layer: `Unmatched (composite asphere layer; bulk-glass supplier unresolved)`)<br>10A [glass] (G5 composite asphere layer: `Unmatched (composite asphere layer; bulk-glass supplier unresolved)`) | abbe: 2 |
 | [MAMIYA-SEKOR CS 35mm f/2.8](../../src/lens-data/mamiya/MamiyaSekorCS35mmf28.data.ts) | JP 1978-066222 A | Missing from untracked local patents/ references (JP1978066222A, JP1978066222, 1978066222, JPA1978066222000000) | 83.3% (5/6) | 83.3% (5/6) | 1 | 3 [glass] (Element 2: `Unmatched (nd=1.69480, νd=55.5; nearest public 697555 lanthanum-crown family)`) | abbe: 1 |
 | [SCHNEIDER-KREUZNACH APO-SYMMAR 100mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderAPOSymmar100mmf56.data.ts) | US 6,028,720 | [PDF](../../patents/US6028720.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 4 [glass] (Element 3: `Unmatched (phosphate crown class, ne=1.5223, ve=69.5; no public catalog match — possible special melt or discontinued glass)`) | abbe: 1 |
@@ -180,8 +184,10 @@ Add catalog entries only when public coefficient-backed vendor data is available
 | Code | Active elements | Lens files | localPatentStatus | Representative rows |
 |---|---:|---:|---|---|
 | 682419 | 2 | 1 | patents/DE_1157000_B.pdf | [CARL ZEISS JENA FLEKTOGON 50mm f/4](../../src/lens-data/carl-zeiss-jena/ZeissFlektogon50mmf4.data.ts) Element 3 (1.68169 / 41.90)<br>[CARL ZEISS JENA FLEKTOGON 50mm f/4](../../src/lens-data/carl-zeiss-jena/ZeissFlektogon50mmf4.data.ts) Element 4 (1.68169 / 41.90) |
+| 592610 | 1 | 1 | patents/JP2022140076A.pdf | [SONY FE 50mm f/1.2 GM](../../src/lens-data/sony/SonyFE50mmf12GM.data.ts) Element G11 (1.59208 / 61.00) |
 | 681472 | 1 | 1 | patents/DE_1157000_B.pdf | [CARL ZEISS JENA FLEKTOGON 50mm f/4](../../src/lens-data/carl-zeiss-jena/ZeissFlektogon50mmf4.data.ts) Element 7 (1.68078 / 47.20) |
 | 683315 | 1 | 1 | patents/JPA 1987249119-000000.pdf | [MINOLTA AF 20mm f/2.8](../../src/lens-data/minolta/MinoltaAF20mmf28.data.ts) Element 4 (1.68300 / 31.52) |
+| 901271 | 1 | 1 | patents/WO_2025220324_A1.pdf | [SONY FE 50-150mm f/2 GM](../../src/lens-data/sony/SonyFE50150mmF2GM.data.ts) Element E6 (1.90110 / 27.10) |
 
 ## Sweep 2B - Named Tokens Missing Catalog Resolution
 

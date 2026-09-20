@@ -6,6 +6,16 @@ import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
   {
+    name: "M-TAFD405",
+    vendor: "Hoya",
+    polynomial: [3.6542352, -0.015688325, 0.048094089, 0.0026498065, -0.00013971852, 0.000019581201],
+    nd: 1.9515,
+    vd: 29.83,
+    code6: "952298",
+    source:
+      "HOYA Zemax catalog 2026-07-07 including obsolete glasses; discontinued M-TAFD405, vendor polynomial coefficients. https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf",
+  },
+  {
     name: "M-FCD1",
     vendor: "Hoya",
     polynomial: [2.2189068, -0.0061707065, 0.0080887631, 0.00013357782, 1.9476186e-7, -2.2577804e-7],

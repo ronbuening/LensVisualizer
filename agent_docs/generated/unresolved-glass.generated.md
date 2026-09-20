@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **783** lenses scanned
-- **8774** non-air surfaces examined
-- **8784** element glass declarations examined
-- **237** non-explicit-unmatched annotations did not resolve
-- **120** distinct unresolved glass-like tokens found
+- **789** lenses scanned
+- **8861** non-air surfaces examined
+- **8871** element glass declarations examined
+- **239** non-explicit-unmatched annotations did not resolve
+- **122** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -58,6 +58,7 @@ or per-lens patent backfills.
 | 570481 | 1 | 1 | |
 | 571560 | 1 | 1 | |
 | 585417 | 1 | 1 | |
+| 592610 | 1 | 1 | |
 | 593348 | 1 | 1 | |
 | 595686 | 1 | 1 | |
 | 596670 | 1 | 1 | |
@@ -119,6 +120,7 @@ or per-lens patent backfills.
 | 866450 | 1 | 1 | |
 | 877370 | 1 | 1 | |
 | 882408 | 1 | 1 | |
+| 901271 | 1 | 1 | |
 | 904293 | 1 | 1 | |
 | 908334 | 1 | 1 | |
 | 910313 | 1 | 1 | |
@@ -339,6 +341,10 @@ or per-lens patent backfills.
 ### 585417 — 1 occurrence
 
 - [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) 3A: `585417 — light flint (patent nd=1.58542, nu_d=41.7)`
+
+### 592610 — 1 occurrence
+
+- [SONY FE 50mm f/1.2 GM](../../src/lens-data/sony/SonyFE50mmf12GM.data.ts) 19A: `592610 class (supplier unresolved)`
 
 ### 593348 — 1 occurrence
 
@@ -583,6 +589,10 @@ or per-lens patent backfills.
 ### 882408 — 1 occurrence
 
 - [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) 5: `882408 — high-index lanthanum glass (patent nd=1.88234, nu_d=40.8)`
+
+### 901271 — 1 occurrence
+
+- [SONY FE 50-150mm f/2 GM](../../src/lens-data/sony/SonyFE50150mmF2GM.data.ts) 11: `901271 class (supplier unproven)`
 
 ### 904293 — 1 occurrence
 

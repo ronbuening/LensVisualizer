@@ -6,6 +6,17 @@ import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
   {
+    name: "S-NBH59",
+    vendor: "Ohara",
+    B: [1.73689864, 0.287362541, 1.85126136],
+    C: [0.0107866506, 0.0458085077, 149.6469],
+    nd: 1.766342,
+    vd: 35.82,
+    code6: "766358",
+    source:
+      "OHARA S-NBH59 datasheet OHARA 25-04, vendor dispersion constants. https://www.ohara-inc.co.jp/assets/en/product/pdf/esnbh59.pdf",
+  },
+  {
     name: "PBL6Y",
     vendor: "Ohara",
     B: [1.22310794, 0.0811217929, 0.321400939],
