@@ -15,6 +15,20 @@ export interface ImageFormatDetails {
 }
 
 export const IMAGE_FORMAT_DETAILS: Record<ImageFormatId, ImageFormatDetails> = {
+  "normal-8": {
+    summary: "The original 8 mm motion-picture format, also called Standard or Regular 8.",
+    description:
+      "Schneider's historical Variogon publication specifies a 4.9 × 3.6 mm Normal-8 frame and lists the Variogon 2.8/10–40 for that format. Its 6.08 mm diagonal is the minimum frame-coverage reference, not a measured limit of the lens's illuminated image circle.",
+    coverageNotes: "4.9 × 3.6 mm reference gate; 6.08 mm minimum coverage diagonal",
+    commonUses: "Normal-8 motion-picture cameras",
+  },
+  "super-8": {
+    summary: "The enlarged 8 mm motion-picture frame introduced with Super 8.",
+    description:
+      "Schneider's historical Variogon publication specifies a 5.69 × 4.22 mm Super-8 frame. US 3,442,573 also explicitly describes full illumination of this frame. Its 7.08 mm diagonal is a minimum frame-coverage reference; it does not certify a larger usable circle or a particular reconstruction's corner performance.",
+    coverageNotes: "5.69 × 4.22 mm reference gate; 7.08 mm minimum coverage diagonal",
+    commonUses: "Super-8 motion-picture cameras",
+  },
   "16mm-cinema": {
     summary: "Standard 16 mm motion-picture film, distinct from the wider Super 16 gate.",
     description:

@@ -72,7 +72,7 @@ L6 is the positive cemented partner of L5. In isolation, the complete L5/L6 memb
 
 ### L7 — Positive Meniscus, front element of D3
 
-`nd = 1.60565, νd = 37.95. Glass: Unmatched (1.60565 / 37.95; supplier unresolved). f = +82.643 mm.`
+`nd = 1.60565, νd = 37.95. Glass: F15 spectral proxy (supplier unresolved). f = +82.643 mm.`
 
 L7 is the positive front element of the sole lens member in moving component III. It is cemented to L8 at r12. Because component III consists only of this cemented pair, the pair's computed net focal length is also the component focal length, approximately -76.128 mm.
 
@@ -120,7 +120,7 @@ L14 is the final positive singlet and terminates the refracting prescription at 
 
 ## Glass Identification and Selection
 
-L6 uses S-TIH10 as a coordinate-compatible spectral proxy (1.72825 / 28.4606 versus patent 1.72830 / 28.66). Twelve of fourteen elements now resolve to catalog curves. L7 and L11 remain unresolved because their nearest catalog candidates are appreciably less specific; no production supplier is inferred.
+L6 uses S-TIH10 as a coordinate-compatible spectral proxy (1.72825 / 28.4606 versus patent 1.72830 / 28.66). Thirteen of fourteen elements now resolve to catalog curves. L7 uses the manufacturer-published HOYA F15 polynomial (1.605651 / 37.899711). L11 remains unresolved without a sufficiently specific primary coefficient source; no production supplier is inferred.
 
 The patent supplies only d-line refractive index and Abbe number. It names no glass manufacturer and publishes no C-, F-, or g-line indices or anomalous-partial-dispersion data. The catalog review therefore treats modern matches as coordinate equivalences rather than evidence of historical supplier or melt identity. The final data use six-digit coordinate-class labels where defensible and `Unmatched (...)` where the authoritative current catalog search did not establish a sufficiently close named match.
 
@@ -132,13 +132,13 @@ The patent supplies only d-line refractive index and Abbe number. It names no gl
 | 622531 coordinate class | 1.62230 | 53.14 | L4 |
 | 713539 coordinate class | 1.71300 | 53.89 | L5, L8 |
 | S-TIH10 spectral proxy | 1.72830 | 28.66 | L6 |
-| Unmatched (1.60565 / 37.95) | 1.60565 | 37.95 | L7 |
+| F15 spectral proxy | 1.60565 | 37.95 | L7 |
 | 658508 coordinate class | 1.65844 | 50.84 | L9 |
 | Unmatched (1.62364 / 36.75) | 1.62364 | 36.75 | L11 |
 | 648338 coordinate class | 1.64831 | 33.77 | L13 |
 | 580539 coordinate class | 1.57957 | 53.86 | L14 |
 
-Authoritative catalog coverage recorded in the dossier includes SCHOTT, OHARA, HOYA, HIKARI, CDGM, and SUMITA. Several patent coordinates have exact or very close modern counterparts, but that does not identify the historical supplier. For the same reason, candidate catalog `nC`, `nF`, `ng`, or `dPgF` values are not copied onto the patent elements. The implemented model therefore supports ordinary Abbe-based dispersion only and does not support an APO or anomalous-partial-dispersion performance claim.
+Authoritative catalog coverage recorded in the dossier includes SCHOTT, OHARA, HOYA, HIKARI, CDGM, and SUMITA. Several patent coordinates have exact or very close modern counterparts, but that does not identify the historical supplier. For the same reason, candidate catalog `nC`, `nF`, `ng`, or `dPgF` values are not copied onto the patent elements. The implemented model uses compatible catalog curves for thirteen elements and an Abbe fallback for L11; neither establishes an APO or anomalous-partial-dispersion performance claim.
 
 The patent states that its indices refer to a wavelength of "587.6 microns." That unit is dimensionally inconsistent with the Fraunhofer d line represented by the numerical coordinate. The dossier preserves the raw wording but normalizes the modeled reference to 587.6 nm. This is a unit correction, not a refractive-index conversion.
 
@@ -171,7 +171,7 @@ The stop semi-diameter of 12.005 mm is likewise modeled. It was calibrated so th
 
 The same calculation gives an entrance-pupil semi-diameter increasing from approximately 8.582 mm at the 48 mm state to 17.151 mm at the 96 mm state. The fixed rear section gives an exit-pupil semi-diameter of approximately 14.647 mm, located 33.786 mm objectward of r24 in the verifier's sign convention. These are modeled first-order pupil quantities, not manufacturer dimensions.
 
-No semi-diameters are published in the patent. The final data therefore use modeled clear semi-diameters. Exact spherical tracing first checked the full on-axis f/2.8 pupil and the configured off-axis visualization bundle at all four published states plus three interpolated midpoint states, where the minimum non-stop clearance is approximately 0.292 mm. A denser check over 121 linearly interpolated zoom positions, 81 on-axis pupil samples, and 61 samples across each configured off-axis pupil band found no trace failures and a minimum non-stop clearance of approximately 0.290 mm. Separate checks give a minimum modeled element edge thickness of approximately 0.631 mm, a maximum actual spherical rim slope of approximately 1.718 against the current 2.065 limit, and a maximum shared-gap sag-intrusion ratio of approximately 0.538 against the 0.90 limit. These are construction checks for the authored model; they do not substitute for production LensVisualizer render diagnostics or prove clearance over every continuous pupil, field, and zoom coordinate.
+No semi-diameters are published in the patent. The live-diagram review against Figure 1 enlarged surfaces 1–5 to 28 mm, surfaces 6–10 to 16 mm, and surfaces 21–22 to 11.3 mm. These modeled optical rims better reproduce the common heights in components I and II and the rear negative singlet. Surface validation and render diagnostics pass across 41 zoom positions. A comparative 2,583-ray sample at 0°, 5°, and 10° reduces clipped rays from 362 to 312 with the same optical prescription and glass assignments. This is a sampled improvement, not proof of unvignetted full-field coverage.
 
 ## Patent Conditions and Source Discrepancies
 
@@ -208,3 +208,7 @@ The numerical verification separates four different categories that should not b
 3. Schneider-Kreuznach, **"Variogon - Zoom Lenses"** retrospective PDF. https://schneiderkreuznach.com/application/files/6115/0781/8896/variogon-zoom-lenses.pdf
 4. Burleigh Brooks Inc. / Schneider-Kreuznach, **"Schneider Vario-Lens Systems for Single Lens Reflex Cameras"** period brochure scan, archived by Pacific Rim Camera. https://www.pacificrimcamera.com/rl/00068/00068.pdf
 5. Current authoritative glass-catalog evidence recorded in the dossier: SCHOTT Advanced Optics, OHARA optical-glass catalogs, HOYA Optics Division, HIKARI General Optical Glass, CDGM Optical Glass Database, and SUMITA Optical Glass Data Book, version 14.02 (2026-08-21). These sources are used only for modern coordinate-equivalence review, not as proof of the historical supplier.
+
+## Image-format evidence
+
+The period Schneider catalog, [*Schneider Interchangeable Lenses*, p. 9](https://www.pacificrimcamera.com/rl/00068/00068.pdf), lists the Variogon 2.8/45–100 among 35 mm SLR lenses. Its 48.6°–25.4° angle range is consistent with a 24 × 36 mm frame. The existing `135-full-frame` assignment is retained: 43.3 mm is the nominal frame diagonal, not a manufacturer-certified maximum optical circle. The marketed 14/11 construction remains distinct from this patent’s 14/10 arrangement.

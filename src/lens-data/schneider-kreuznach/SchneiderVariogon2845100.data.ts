@@ -20,7 +20,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ default off-axis visualization bundle (0.6 of the 135-format diagonal half-field; pupil samples through      ║
  * ║ ±0.75) at all four published states and three interpolated midpoint states under exact spherical tracing.   ║
  * ║ Current CHAT_PREFLIGHT also checks edge thickness, actual spherical rim slope, shared-band gap intrusion,    ║
- * ║ and the spherical domain. Production LensVisualizer render-trim diagnostics remain integration-pending.      ║
+ * ║ and the spherical domain. Live SVG and 41-state render diagnostics verified; see audit log.      ║
  * ║                                                                                                              ║
  * ║ No uniform scale is applied. Marketing 45-100 mm remains separate from the unscaled 48-96 mm design states. ║
  * ║ Historical glass supplier/melts are unresolved; glass strings use coordinate classes or Unmatched labels.   ║
@@ -156,7 +156,7 @@ const LENS_DATA = {
       vd: 37.95,
       indexReference: "d",
       fl: 82.643,
-      glass: "Unmatched (1.60565 / 37.95; supplier unresolved)",
+      glass: "F15 — coordinate-compatible spectral proxy (supplier unresolved)",
       apd: false,
       cemented: "D3",
       role: "Front element of moving component III.",
@@ -265,16 +265,16 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 110.56, d: 2.3, nd: 1.80518, elemId: 1, sd: 26.1 },
-    { label: "2", R: 60.31, d: 7.5, nd: 1.55232, elemId: 2, sd: 25.3 },
-    { label: "3", R: 268.8, d: 0.1, nd: 1.0, elemId: 0, sd: 24.8 },
-    { label: "4", R: 46.49, d: 8.75, nd: 1.62041, elemId: 3, sd: 23.9 },
-    { label: "5", R: 219.4, d: 0.638, nd: 1.0, elemId: 0, sd: 22.8 },
-    { label: "6", R: 420.0, d: 1.5, nd: 1.6223, elemId: 4, sd: 15.0 },
-    { label: "7", R: 28.09, d: 6.8, nd: 1.0, elemId: 0, sd: 13.6 },
-    { label: "8", R: -181.2, d: 1.0, nd: 1.713, elemId: 5, sd: 13.0 },
-    { label: "9", R: 41.81, d: 5.0, nd: 1.7283, elemId: 6, sd: 12.7 },
-    { label: "10", R: -230.6, d: 10.885, nd: 1.0, elemId: 0, sd: 12.5 },
+    { label: "1", R: 110.56, d: 2.3, nd: 1.80518, elemId: 1, sd: 28 },
+    { label: "2", R: 60.31, d: 7.5, nd: 1.55232, elemId: 2, sd: 28 },
+    { label: "3", R: 268.8, d: 0.1, nd: 1.0, elemId: 0, sd: 28 },
+    { label: "4", R: 46.49, d: 8.75, nd: 1.62041, elemId: 3, sd: 28 },
+    { label: "5", R: 219.4, d: 0.638, nd: 1.0, elemId: 0, sd: 28 },
+    { label: "6", R: 420.0, d: 1.5, nd: 1.6223, elemId: 4, sd: 16 },
+    { label: "7", R: 28.09, d: 6.8, nd: 1.0, elemId: 0, sd: 16 },
+    { label: "8", R: -181.2, d: 1.0, nd: 1.713, elemId: 5, sd: 16 },
+    { label: "9", R: 41.81, d: 5.0, nd: 1.7283, elemId: 6, sd: 16 },
+    { label: "10", R: -230.6, d: 10.885, nd: 1.0, elemId: 0, sd: 16 },
     { label: "11", R: -56.12, d: 3.0, nd: 1.60565, elemId: 7, sd: 11.5 },
     { label: "12", R: -26.99, d: 1.0, nd: 1.713, elemId: 8, sd: 11.7 },
     { label: "13", R: -428.0, d: 14.028, nd: 1.0, elemId: 0, sd: 12.1 },
@@ -287,8 +287,8 @@ const LENS_DATA = {
     { label: "18", R: 26.9, d: 1.5, nd: 1.62364, elemId: 11, sd: 11.7 },
     { label: "19", R: 12.15, d: 5.0, nd: 1.62041, elemId: 12, sd: 10.5 },
     { label: "20", R: 38.21, d: 5.0, nd: 1.0, elemId: 0, sd: 10.3 },
-    { label: "21", R: -109.66, d: 1.55, nd: 1.64831, elemId: 13, sd: 9.5 },
-    { label: "22", R: 25.45, d: 7.95, nd: 1.0, elemId: 0, sd: 9.5 },
+    { label: "21", R: -109.66, d: 1.55, nd: 1.64831, elemId: 13, sd: 11.3 },
+    { label: "22", R: 25.45, d: 7.95, nd: 1.0, elemId: 0, sd: 11.3 },
     { label: "23", R: 84.79, d: 3.5, nd: 1.57957, elemId: 14, sd: 11.9 },
     // Source-published paraxial back focal length is 48.2 mm; source rounding gives computed BFD ≈48.23 mm.
     { label: "24", R: -35.89, d: 48.2, nd: 1.0, elemId: 0, sd: 12.0 },
@@ -341,7 +341,7 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 1.2,
-  focusDescription: "NO_INTERNAL_RECONSTRUCTION: patent permits component I or one member to shift for focus; no finite-focus spacings are published. closeFocusM=1.2 is metadata only; authored zoom-gap focus pairs are identical.",
+  focusDescription: "The patent describes front-component focusing but publishes no finite-focus spacings. Focus travel is not modeled; the production minimum focus distance is 1.2 m.",
 
   nominalFno: 2.8,
   fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],

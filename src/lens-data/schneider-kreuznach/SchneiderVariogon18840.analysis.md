@@ -301,3 +301,7 @@ also reproduces the patent's printed component focal lengths within the source-p
 4. **Bauer**, "C1 / C2 Operating Instructions." Manufacturer manual used only for the 3 ft / 0.9144 m production
    close-focus metadata of the C2 installation:
    https://museu.rtp.pt/media/2021/07/bauer-c1-c2.pdf
+
+## Live diagram and coverage review
+
+Canonical `super-8` now supplies the 5.69 × 4.22 mm gate explicitly described in US 3,442,573 (6th May 1969), with a 7.08 mm minimum coverage diagonal. No larger optical circle is asserted. The diagram uses the patent labels L1–L12 and P; the prism no longer shifts the rear element numbering. L2 is biconcave (r2 < 0, r3 > 0), correcting its earlier meniscus label. Component II moves imageward with zoom; III first moves objectward, then reverses imageward. The published three stations and unmodeled-focus status are preserved.

@@ -10,10 +10,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **789** lenses scanned
-- **1792** total code-only elements found
-- **288** elements in this report
-- **112** distinct lens files affected
-- **6** active unreviewed elements have no review-record hit or explicit disposition
+- **1790** total code-only elements found
+- **286** elements in this report
+- **110** distinct lens files affected
+- **4** active unreviewed elements have no review-record hit or explicit disposition
 - **153** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
 - **0** dispositions lack any review record
 
@@ -26,9 +26,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 
 | Tier | Code | Active elements / lens files | Visible lenses | Strict surfaces | Completion candidates | Near-complete candidates | Local patent lenses | Representative rows |
 |---|---|---:|---:|---:|---|---|---:|---|
-| A | 592610 | 1 / 1 | 1 | 1 | SONY FE 50mm f/1.2 GM | — | 1/1 | [SONY FE 50mm f/1.2 GM](../../src/lens-data/sony/SonyFE50mmf12GM.data.ts) Element G11 (1.59208 / 61.00) |
 | A | 683315 | 1 / 1 | 1 | 1 | MINOLTA AF 20mm f/2.8 | — | 1/1 | [MINOLTA AF 20mm f/2.8](../../src/lens-data/minolta/MinoltaAF20mmf28.data.ts) Element 4 (1.68300 / 31.52) |
-| A | 901271 | 1 / 1 | 1 | 1 | SONY FE 50-150mm f/2 GM | — | 1/1 | [SONY FE 50-150mm f/2 GM](../../src/lens-data/sony/SonyFE50150mmF2GM.data.ts) Element E6 (1.90110 / 27.10) |
 | C | 682419 | 2 / 1 | 1 | 2 | — | — | 1/1 | [CARL ZEISS JENA FLEKTOGON 50mm f/4](../../src/lens-data/carl-zeiss-jena/ZeissFlektogon50mmf4.data.ts) Element 3 (1.68169 / 41.90)<br>[CARL ZEISS JENA FLEKTOGON 50mm f/4](../../src/lens-data/carl-zeiss-jena/ZeissFlektogon50mmf4.data.ts) Element 4 (1.68169 / 41.90) |
 | D | 681472 | 1 / 1 | 1 | 1 | — | — | 1/1 | [CARL ZEISS JENA FLEKTOGON 50mm f/4](../../src/lens-data/carl-zeiss-jena/ZeissFlektogon50mmf4.data.ts) Element 7 (1.68078 / 47.20) |
 
@@ -117,7 +115,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 580595 | 1 | 1 | patents/JP2015041012A.pdf | All rows explicitly disposed |
 | 583302 | 1 | 1 | patents/JP_2005092056_A.pdf | All rows explicitly disposed |
 | 585417 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | All rows have review records |
-| 592610 | 1 | 1 | patents/JP2022140076A.pdf | No review-record hit |
 | 595355 | 1 | 1 | patents/US5579169.pdf | All rows explicitly disposed |
 | 595686 | 1 | 1 | patents/WO_2025263124_A1.pdf | All rows have review records |
 | 596670 | 1 | 1 | patents/WO_2025263124_A1.pdf | All rows have review records |
@@ -248,7 +245,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 876363 | 1 | 1 | patents/JPA 2021076740-000000.pdf | All rows explicitly disposed |
 | 877370 | 1 | 1 | patents/US20160266350A1.pdf | All rows have review records |
 | 882408 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | All rows have review records |
-| 901271 | 1 | 1 | patents/WO_2025220324_A1.pdf | No review-record hit |
 | 903204 | 1 | 1 | patents/WO2021200206A1.pdf | All rows explicitly disposed |
 | 904293 | 1 | 1 | patents/CN205720849U.pdf | All rows have review records |
 | 907303 | 1 | 1 | patents/JP2021076829A.pdf | All rows explicitly disposed |
@@ -986,18 +982,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | L44 (Element 14) | 23 | `863252 — dense flint (patent nd=1.86252, νd=25.2)` | 1.86252 / 25.20 | No catalog entry | abbe | patents/WO_2025263124_A1.pdf | Reviewed sidecar hit |
 | L45 (Element 15) | 25A | `856401 — lanthanum dense crown (patent nd=1.85612, νd=40.1)` | 1.85612 / 40.10 | No catalog entry | abbe | patents/WO_2025263124_A1.pdf | Reviewed sidecar hit |
 | L72 (Element 19) | 32 | `863252 — dense flint (patent nd=1.86252, νd=25.2)` | 1.86252 / 25.20 | No catalog entry | abbe | patents/WO_2025263124_A1.pdf | Reviewed sidecar hit |
-
-### [SONY FE 50-150mm f/2 GM](../../src/lens-data/sony/SonyFE50150mmF2GM.data.ts) - WO 2025/220324 A1
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| E6 (Element E6) | 11 | `901271 class (supplier unproven)` | 1.90110 / 27.10 | No catalog entry | abbe | patents/WO_2025220324_A1.pdf | No review-record hit |
-
-### [SONY FE 50mm f/1.2 GM](../../src/lens-data/sony/SonyFE50mmf12GM.data.ts) - JP 2022-140076 A
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| G11 (Element G11) | 19A | `592610 class (supplier unresolved)` | 1.59208 / 61.00 | No catalog entry | abbe | patents/JP2022140076A.pdf | No review-record hit |
 
 ### [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) - JP 2023-039817 A
 

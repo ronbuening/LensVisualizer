@@ -6,6 +6,17 @@ import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
   {
+    name: "L-BAL35P",
+    vendor: "Ohara",
+    B: [0.806742194, 0.690488648, 1.26477947],
+    C: [0.0148836231, 0.00251943058, 111.31457],
+    nd: 1.59208,
+    vd: 61.0,
+    code6: "592610",
+    source:
+      "OHARA L-BAL35P data sheet OHARA 25-04, manufacturer Sellmeier coefficients. https://www.ohara-inc.co.jp/assets/cn/product/pdf/clbal35p.pdf",
+  },
+  {
     name: "S-NBH59",
     vendor: "Ohara",
     B: [1.73689864, 0.287362541, 1.85126136],

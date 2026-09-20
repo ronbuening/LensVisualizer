@@ -98,6 +98,8 @@ in distortion, vignetting, bokeh, and aberration analysis.
 
 | ID | Display Label | Width x Height (mm) | Diagonal (mm) | Aspect Ratio |
 |----|---------------|---------------------|---------------|--------------|
+| `normal-8` | Normal 8 | 4.9 x 3.6 | 6.08 | 1.361:1 |
+| `super-8` | Super 8 | 5.69 x 4.22 | 7.08 | 1.348:1 |
 | `16mm-cinema` | 16 mm cinema | 10.26 x 7.49 | 12.70 | 1.37:1 |
 | `35mm-cinema` | 35 mm cinema (22 × 16 mm) | 22 x 16 | 27.20 | 1.375:1 |
 | `110` | 110 | 17 x 13 | 21.4 | 17:13 |
@@ -155,3 +157,7 @@ These calculated dimensions represent the nominal capture area, not a measuremen
 the optical-inch designation is not converted directly into millimeters.
 
 The standard 16 mm gate follows [SMPTE Journal, Table I](https://journal.smpte.org/periodicals/SMPTE%20Journal/88/9/4/07241916.pdf). The 22 × 16 mm cinema reference follows the [Kinoptik brochure, page 2](https://www.pacificrimcamera.com/rl/00030/00030.pdf); it does not represent every 35 mm cinema gate. These diagonals are minimum format coverage, not measured maximum lens image circles.
+
+### 8 mm cinema coverage sources
+
+Schneider’s [historical Variogon publication](https://schneiderkreuznach.com/application/files/6115/0781/8896/variogon-zoom-lenses.pdf), PDF p. 5, gives Normal-8 as 3.6 × 4.9 mm and Super-8 as 4.22 × 5.69 mm; it lists the 2.8/10–40 under Normal-8. US 3,442,573 explicitly gives the latter gate for the 1.8/8–40 prescription. These format diagonals are minimum frame-coverage references, not measured optical-circle limits.

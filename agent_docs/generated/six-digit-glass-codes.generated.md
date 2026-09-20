@@ -10,8 +10,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **789** lenses scanned
-- **1792** total code-only elements found
-- **1792** elements in this report
+- **1790** total code-only elements found
+- **1790** elements in this report
 - **281** distinct lens files affected
 
 ## Codes by Frequency
@@ -275,7 +275,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 583302 | 1 | 1 | patents/JP_2005092056_A.pdf | All rows explicitly disposed |
 | 583465 | 1 | 1 | patents/US4452513.pdf | No review-record hit |
 | 585417 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | All rows have review records |
-| 592610 | 1 | 1 | patents/JP2022140076A.pdf | No review-record hit |
 | 592683 | 1 | 1 | patents/CN_121091494_A.pdf | No review-record hit |
 | 595355 | 1 | 1 | patents/US5579169.pdf | All rows explicitly disposed |
 | 595677 | 1 | 1 | patents/US20150205081A1.pdf | No review-record hit |
@@ -431,7 +430,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 881401 | 1 | 1 | patents/JP2017116646A.pdf | No review-record hit |
 | 882408 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | All rows have review records |
 | 883392 | 1 | 1 | patents/US20200166730A1.pdf | No review-record hit |
-| 901271 | 1 | 1 | patents/WO_2025220324_A1.pdf | No review-record hit |
 | 902253 | 1 | 1 | patents/JP2023033114A.pdf | No review-record hit |
 | 903204 | 1 | 1 | patents/WO2021200206A1.pdf | All rows explicitly disposed |
 | 904293 | 1 | 1 | patents/CN205720849U.pdf | All rows have review records |
@@ -3075,7 +3073,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | E3 (Element E3) | 5 | `437951 class (supplier unproven)` | 1.43700 / 95.10 | FCD100 (trusted Sellmeier) | sellmeier | patents/WO_2025220324_A1.pdf | No review-record hit |
 | E4 (Element E4) | 7A | `768492 class (supplier unproven)` | 1.76802 / 49.20 | M-TAF101 (trusted Sellmeier) | sellmeier | patents/WO_2025220324_A1.pdf | No review-record hit |
 | E5 (Element E5) | 9 | `729547 class (supplier unproven)` | 1.72916 / 54.70 | TAC8 (trusted Sellmeier) | sellmeier | patents/WO_2025220324_A1.pdf | No review-record hit |
-| E6 (Element E6) | 11 | `901271 class (supplier unproven)` | 1.90110 / 27.10 | No catalog entry | abbe | patents/WO_2025220324_A1.pdf | No review-record hit |
 | E7 (Element E7) | 13 | `550755 class (supplier unproven)` | 1.55032 / 75.50 | FCD705 (trusted Sellmeier) | sellmeier | patents/WO_2025220324_A1.pdf | No review-record hit |
 | E8 (Element E8) | 15A | `694532 class (supplier unproven)` | 1.69350 / 53.20 | M-LAC130 (trusted Sellmeier) | sellmeier | patents/WO_2025220324_A1.pdf | No review-record hit |
 | E9 (Element E9) | 18 | `954323 class (supplier unproven)` | 1.95375 / 32.30 | J-LASFH21 (trusted Sellmeier) | sellmeier | patents/WO_2025220324_A1.pdf | No review-record hit |
@@ -3101,7 +3098,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | G8 (Element G8) | 14 | `717480 class (supplier unresolved)` | 1.71700 / 48.00 | LAF3 (trusted Sellmeier) | sellmeier | patents/JP2022140076A.pdf | No review-record hit |
 | G9 (Element G9) | 16 | `855252 class (supplier unresolved)` | 1.85451 / 25.20 | NBFD25 (trusted Sellmeier) | sellmeier | patents/JP2022140076A.pdf | No review-record hit |
 | G10 (Element G10) | 17 | `697555 class (supplier unresolved)` | 1.69680 / 55.50 | J-LAK14 (trusted Sellmeier) | sellmeier | patents/JP2022140076A.pdf | No review-record hit |
-| G11 (Element G11) | 19A | `592610 class (supplier unresolved)` | 1.59208 / 61.00 | No catalog entry | abbe | patents/JP2022140076A.pdf | No review-record hit |
 | G12 (Element G12) | 21 | `946180 class (supplier unresolved)` | 1.94595 / 18.00 | FDS18 (trusted Sellmeier) | sellmeier | patents/JP2022140076A.pdf | No review-record hit |
 | G13 (Element G13) | 22 | `593354 class (supplier unresolved)` | 1.59270 / 35.40 | FF5 (trusted Sellmeier) | sellmeier | patents/JP2022140076A.pdf | No review-record hit |
 | G14 (Element G14) | 24A | `851401 class (supplier unresolved)` | 1.85135 / 40.10 | M-TAFD305 (trusted Sellmeier) | sellmeier | patents/JP2022140076A.pdf | No review-record hit |

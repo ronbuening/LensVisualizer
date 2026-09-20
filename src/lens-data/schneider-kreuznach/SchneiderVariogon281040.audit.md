@@ -9,3 +9,9 @@ Retained SDs. The 600 dpi Figure 1 review gives approximately 18.6–18.7 mm fro
 Replaced forced Unmatched annotations for L2–L13 with coordinate-compatible spectral proxies: S-BSM16 (L2/L8/L10/L11), S-TIH14 (L3), E-FD4 (L4/L7), PC1 (L5/L6), F2 (L9), E-FD15 (L12), and K-LaK11 (L13). Patent coordinates remain unchanged. PC1 differs by only 0.000001 in nd and 0.15712 in vd. L1, 1.52542 / 64.55, remains unresolved after public catalog/source review. These matches do not establish historical suppliers. Coverage: 12/13.
 
 The companion analysis reflects these dispositions. Marketed names remain distinct from patent design values and qualified production correlations.
+
+## 2026-09-20 — Live diagram, travel, and coverage follow-up
+
+Reviewed US3057257 Figures 1–3 against live wide/tele. Trial smaller front and III/IV rims passed geometry but increased clipping in an identical 2,583-ray 0°/5°/10° sample from 578 to 674; rejected and retained ray-clearance SDs. Added patent L1–L13 labels, Normal-8 format (6.08 mm frame diagonal), and legacy HOYA PC3 for L1: 13/13 covered. II and III move imageward; fixed groups and disabled unmodeled focus verified.
+
+Assignee audit: source-era Schneider names are consolidated as `Jos. Schneider & Co., Optische Werke`; the later GmbH & Co. KG remains distinct. Sony Group Corporation is retained for these source-era filings, separately from older Sony Corporation patents. No additional duplicate assignee spelling was found.

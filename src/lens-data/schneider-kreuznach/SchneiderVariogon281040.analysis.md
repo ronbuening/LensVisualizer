@@ -20,7 +20,7 @@ The production correlation is strong but remains an inference rather than a manu
 3. The patent uses two movable negative intermediate components between fixed positive front and rear components, while Schneider describes the traditional narrow-gauge Variogon as a mechanically compensated zoom with two moving groups and a fixed image plane. [US 3,057,257, PDF p. 2; Schneider-Kreuznach, pp. 2–5.]
 4. Schneider dates development of adjustable-focal-length lenses to 1957 and states that production of the first Variogon 2.8/10-40 prototype began two years later, consistent with the patent's 1959 German priority. [Schneider-Kreuznach, p. 7.]
 
-The LensVisualizer prescription therefore uses a production-normalized `0.2×` model. All radii, center thicknesses, air spaces, modeled semi-diameters, and the modeled image-plane spacing are scaled by 0.2 from the patent coordinate system. The prescription is entirely spherical, so no aspheric coefficient scaling is involved. The production Normal-8 frame is source-supported as 3.6 × 4.9 mm, but no Normal-8 identifier exists in the current LensVisualizer image-format taxonomy; `imageFormat` is consequently omitted rather than mapped to another format. A standardized mount for this exact historical variant is likewise not established in the available primary source and `lensMounts` is left unset.
+The LensVisualizer prescription therefore uses a production-normalized `0.2×` model. All radii, center thicknesses, air spaces, modeled semi-diameters, and the modeled image-plane spacing are scaled by 0.2 from the patent coordinate system. The prescription is entirely spherical, so no aspheric coefficient scaling is involved. The production Normal-8 frame is source-supported as 3.6 × 4.9 mm, and is now represented by canonical `normal-8`, with a 6.08 mm minimum coverage diagonal. This is a frame-coverage reference, not a measured outer limit of the image circle. A standardized mount for this exact historical variant is likewise not established in the available primary source and `lensMounts` is left unset.
 
 ## Optical Architecture
 
@@ -148,7 +148,7 @@ The patent supplies only `nd` and `νd`. It does not publish `nC`, `nF`, `ng`, `
 
 | Patent `nd / νd` | Elements | Catalog evidence reviewed | Data-file treatment |
 |---|---|---|---|
-| 1.52542 / 64.55 | L1 | No exact authoritative row established | `Unmatched`; supplier unresolved |
+| 1.52542 / 64.55 | L1 | HOYA PC3: 1.525420 / 64.619542 | PC3 spectral proxy; supplier unresolved |
 | 1.62041 / 60.29 | L2, L8, L10, L11 | Exact coordinate match to OHARA S-BSM16 | S-BSM16 spectral proxy |
 | 1.76182 / 26.52 | L3 | Exact coordinate match to OHARA S-TIH14 | S-TIH14 spectral proxy |
 | 1.75520 / 27.53 | L4, L7 | Exact coordinate match to HOYA E-FD4L; OHARA S-TIH4 is close in `νd` | E-FD4 spectral proxy |
@@ -157,7 +157,7 @@ The patent supplies only `nd` and `νd`. It does not publish `nC`, `nF`, `ng`, `
 | 1.69895 / 30.05 | L12 | Exact coordinate match to HOYA E-FD15L | E-FD15 spectral proxy |
 | 1.65830 / 57.29 | L13 | SUMITA K-LaK11 agrees to catalog precision (`νd = 57.30`) | K-LaK11 spectral proxy |
 
-Twelve of thirteen elements now resolve to compatible catalog dispersion curves. L1 remains unresolved; no sourceable curve was found for 1.52542 / 64.55.
+All thirteen elements now resolve to compatible catalog dispersion curves. L1 uses the manufacturer-published legacy HOYA PC3 polynomial; supplier identity remains unresolved.
 
 No apochromatic or anomalous-partial-dispersion claim follows from these data. An `nd/νd` match alone does not identify secondary-spectrum behavior, and the model deliberately avoids importing modern catalog line indices as though they were part of the 1959 prescription.
 

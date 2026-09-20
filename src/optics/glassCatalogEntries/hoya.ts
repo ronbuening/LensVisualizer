@@ -6,6 +6,37 @@ import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
   {
+    name: "PC3",
+    vendor: "Hoya",
+    polynomial: [2.2982798, -0.010575328, 0.010358192, 0.00032740673, -2.298532e-5, 1.2091861e-6],
+    nd: 1.52542,
+    vd: 64.619542,
+    code6: "525646",
+    source:
+      "HOYA Zemax catalog 2026-07-07 including obsolete glasses; vendor polynomial coefficients for PC3. https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf",
+  },
+  {
+    name: "F15",
+    vendor: "Hoya",
+    polynomial: [2.5118393, -0.0077804578, 0.022422427, 0.00037461868, 3.1822466e-5, 1.3410962e-6],
+    nd: 1.605651,
+    vd: 37.899711,
+    code6: "606379",
+    source:
+      "HOYA Zemax catalog 2026-07-07 including obsolete glasses; vendor polynomial coefficients for F15. https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf",
+  },
+  {
+    name: "NBFD27",
+    vendor: "Hoya",
+    polynomial: [3.4613308, -0.015878094, 0.046156752, 0.0033927184, -0.00024749935, 3.1073975e-5],
+    nd: 1.9011,
+    vd: 27.06,
+    code6: "901271",
+    source:
+      "HOYA Zemax catalog 2026-07-07 including obsolete glasses; vendor polynomial coefficients for NBFD27. https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf",
+  },
+
+  {
     name: "M-TAFD405",
     vendor: "Hoya",
     polynomial: [3.6542352, -0.015688325, 0.048094089, 0.0026498065, -0.00013971852, 0.000019581201],

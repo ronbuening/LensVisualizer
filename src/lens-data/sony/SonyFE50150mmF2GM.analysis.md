@@ -171,7 +171,7 @@ E19 is the final refracting element before the image plane. It is a negative men
 
 ## Glass Identification / Selection
 
-E11 uses the published OHARA S-NBH59 Sellmeier curve (1.766342 / 35.82 versus patent 1.76634 / 35.8). E16 uses M-PCD51 as a close coordinate-compatible spectral proxy. Eighteen of nineteen elements now resolve to catalog curves; E6 remains unresolved. Neither proxy identifies the production supplier.
+E11 uses the published OHARA S-NBH59 Sellmeier curve (1.766342 / 35.82 versus patent 1.76634 / 35.8). E16 uses M-PCD51 as a close coordinate-compatible spectral proxy. All nineteen elements now resolve to catalog curves; E6 now uses the manufacturer-published HOYA NBFD27 polynomial as a compatible spectral proxy. No proxy identifies the production supplier.
 
 The patent publishes d-line refractive indices and Abbe numbers but does not name glass suppliers or melts. The companion data therefore stores d-line coordinate classes and qualified spectral proxies based on the published nd/νd pairs. Authoritative OHARA, HOYA, SCHOTT, HIKARI, CDGM, and SUMITA catalogs were used in the dossier to test coordinate compatibility, but catalog proximity is not treated as proof of the actual supplier. [OHARA][ohara] [HOYA][hoya] [SCHOTT][schott] [HIKARI][hikari] [CDGM][cdgm] [SUMITA][sumita]
 
@@ -181,7 +181,7 @@ The patent publishes d-line refractive indices and Abbe numbers but does not nam
 | 437951 | 1.43700 | 95.1 | E2, E3 | d-line coordinate class; supplier unproven |
 | 768492 | 1.76802 | 49.2 | E4, E18 | d-line coordinate class; supplier unproven |
 | 729547 | 1.72916 | 54.7 | E5 | d-line coordinate class; supplier unproven |
-| 901271 | 1.90110 | 27.1 | E6 | d-line coordinate class; supplier unproven |
+| NBFD27 proxy (901271) | 1.90110 | 27.1 | E6 | d-line coordinate class; supplier unproven |
 | 550755 | 1.55032 | 75.5 | E7 | d-line coordinate class; supplier unproven |
 | 694532 | 1.69350 | 53.2 | E8 | d-line coordinate class; supplier unproven |
 | 954323 | 1.95375 | 32.3 | E9, E19 | d-line coordinate class; supplier unproven |
@@ -295,3 +295,7 @@ An independent exact meridional spherical/aspherical trace through the final dat
 [schott]: https://www.us.schott.com/shop/advanced-optics/en/search/
 [cdgm]: https://www.cdgmgd.com/database/toWebDatabase.htm?k=Products_Data&pageIndex=18&url=database
 [sumita]: https://sumita-opt.co.jp/en/download/
+
+## Live diagram follow-up
+
+All 19 elements now resolve to compatible catalog curves, including E6 → HOYA NBFD27. The native patent nd/νd coordinates remain unchanged and supplier identity remains unresolved. The zoom-dependent close-focus labels now follow the published 0.397/0.521/0.746 m endpoints. G5 moves imageward and G6 objectward at every zoom station; the small 0.01 mm residual displacement in nominally fixed G7 follows the rounded source gaps. Figure 1 silhouettes and Table 1 effective diameters remain unchanged. No ED, XA, or APD color is inferred solely from an nd/νd match.

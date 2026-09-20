@@ -28,13 +28,13 @@ import type { LensDataInput } from "../../types/optics.js";
  * The patent does not publish r22-to-film spacing. The final d uses the fixed paraxial rear focal
  * distance of the exact-afocal reconstructed endpoints/basic objective: 12.295743886292mm.
  *
- * Normal-8 (3.6 x 4.9mm) is source-supported, but the current canonical imageFormat taxonomy has no
- * Normal-8 id, so imageFormat is intentionally omitted. No authoritative standardized mount for the
- * exact production variant is established, so lensMounts is also omitted.
+ * Normal-8 (3.6 x 4.9mm) follows Schneider's historical Variogon publication.
+ * No authoritative standardized mount for the exact production variant is established.
  */
 
 const LENS_DATA = {
   key: "schneider-variogon-10-40-f28",
+  imageFormat: "normal-8",
   maker: "Schneider-Kreuznach",
   name: "SCHNEIDER-KREUZNACH VARIOGON 10-40mm f/2.8",
   subtitle: "US 3,057,257 — Example 1; production-normalized x0.2 correlation",
@@ -55,18 +55,20 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
+      diagramLabel: "L1",
       label: "Element 1",
       type: "Biconvex Positive",
       nd: 1.52542,
       vd: 64.55,
       indexReference: "d",
       fl: 113.496717797954,
-      glass: "Unmatched (nd=1.52542, νd=64.55; supplier unresolved)",
+      glass: "PC3 — coordinate-compatible spectral proxy (supplier unresolved)",
       role: "Front positive singlet in fixed component I.",
     },
     {
       id: 2,
       name: "L2",
+      diagramLabel: "L2",
       label: "Element 2",
       type: "Biconvex Positive",
       nd: 1.62041,
@@ -80,6 +82,7 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L3",
+      diagramLabel: "L3",
       label: "Element 3",
       type: "Biconcave Negative",
       nd: 1.76182,
@@ -93,6 +96,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L4",
+      diagramLabel: "L4",
       label: "Element 4",
       type: "Positive Meniscus",
       nd: 1.7552,
@@ -106,6 +110,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L5",
+      diagramLabel: "L5",
       label: "Element 5",
       type: "Biconcave Negative",
       nd: 1.50378,
@@ -119,6 +124,7 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L6",
+      diagramLabel: "L6",
       label: "Element 6",
       type: "Biconcave Negative",
       nd: 1.50378,
@@ -132,6 +138,7 @@ const LENS_DATA = {
     {
       id: 7,
       name: "L7",
+      diagramLabel: "L7",
       label: "Element 7",
       type: "Positive Meniscus",
       nd: 1.7552,
@@ -145,6 +152,7 @@ const LENS_DATA = {
     {
       id: 8,
       name: "L8",
+      diagramLabel: "L8",
       label: "Element 8",
       type: "Biconvex Positive",
       nd: 1.62041,
@@ -158,6 +166,7 @@ const LENS_DATA = {
     {
       id: 9,
       name: "L9",
+      diagramLabel: "L9",
       label: "Element 9",
       type: "Negative Meniscus",
       nd: 1.62004,
@@ -171,6 +180,7 @@ const LENS_DATA = {
     {
       id: 10,
       name: "L10",
+      diagramLabel: "L10",
       label: "Element 10",
       type: "Biconvex Positive",
       nd: 1.62041,
@@ -183,6 +193,7 @@ const LENS_DATA = {
     {
       id: 11,
       name: "L11",
+      diagramLabel: "L11",
       label: "Element 11",
       type: "Positive Meniscus",
       nd: 1.62041,
@@ -195,6 +206,7 @@ const LENS_DATA = {
     {
       id: 12,
       name: "L12",
+      diagramLabel: "L12",
       label: "Element 12",
       type: "Biconcave Negative",
       nd: 1.69895,
@@ -207,6 +219,7 @@ const LENS_DATA = {
     {
       id: 13,
       name: "L13",
+      diagramLabel: "L13",
       label: "Element 13",
       type: "Biconvex Positive",
       nd: 1.6583,

@@ -36,6 +36,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   key: "schneider-variogon-8-40-f18",
+  imageFormat: "super-8",
   maker: "Schneider-Kreuznach",
   name: "SCHNEIDER-KREUZNACH VARIOGON 8-40mm f/1.8",
   subtitle: "US 3,442,573 Example 1 — convergent production correlation; patent attribution not manufacturer-confirmed",
@@ -55,6 +56,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
+      diagramLabel: "L1",
       label: "L1",
       type: "Biconvex Positive",
       nd: 1.62299,
@@ -67,8 +69,9 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L2",
+      diagramLabel: "L2",
       label: "L2",
-      type: "Negative Meniscus",
+      type: "Biconcave Negative",
       nd: 1.80518,
       vd: 25.46,
       indexReference: "d",
@@ -79,6 +82,7 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L3",
+      diagramLabel: "L3",
       label: "L3",
       type: "Positive Meniscus",
       nd: 1.62299,
@@ -90,6 +94,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L4",
+      diagramLabel: "L4",
       label: "L4",
       type: "Negative Meniscus",
       nd: 1.6779,
@@ -101,6 +106,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L5",
+      diagramLabel: "L5",
       label: "L5",
       type: "Positive Meniscus",
       nd: 1.80518,
@@ -113,6 +119,7 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L6",
+      diagramLabel: "L6",
       label: "L6",
       type: "Biconcave Negative",
       nd: 1.4645,
@@ -125,6 +132,7 @@ const LENS_DATA = {
     {
       id: 7,
       name: "L7",
+      diagramLabel: "L7",
       label: "L7",
       type: "Negative Meniscus",
       nd: 1.62041,
@@ -136,6 +144,7 @@ const LENS_DATA = {
     {
       id: 8,
       name: "L8",
+      diagramLabel: "L8",
       label: "L8",
       type: "Biconvex Positive",
       nd: 1.6223,
@@ -147,6 +156,7 @@ const LENS_DATA = {
     {
       id: 9,
       name: "P",
+      diagramLabel: "P",
       label: "Reflex prism P",
       type: "Plane-Parallel Prism",
       nd: 1.5168,
@@ -157,6 +167,7 @@ const LENS_DATA = {
     {
       id: 10,
       name: "L9",
+      diagramLabel: "L9",
       label: "L9",
       type: "Positive Meniscus",
       nd: 1.6779,
@@ -168,6 +179,7 @@ const LENS_DATA = {
     {
       id: 11,
       name: "L10",
+      diagramLabel: "L10",
       label: "L10",
       type: "Positive Meniscus",
       nd: 1.744,
@@ -179,6 +191,7 @@ const LENS_DATA = {
     {
       id: 12,
       name: "L11",
+      diagramLabel: "L11",
       label: "L11",
       type: "Biconcave Negative",
       nd: 1.7847,
@@ -190,6 +203,7 @@ const LENS_DATA = {
     {
       id: 13,
       name: "L12",
+      diagramLabel: "L12",
       label: "L12",
       type: "Biconvex Positive",
       nd: 1.713,
@@ -270,7 +284,7 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.9144,
-  focusDescription: "NO_INTERNAL_RECONSTRUCTION: published zoom only; Bauer C2 MFD metadata; no focus spacing model.",
+  focusDescription: "The patent publishes zoom travel only. Internal focus travel is not modeled; the Bauer C2 installation focuses from 3 ft to infinity.",
 
   nominalFno: 1.8,
   fstopSeries: [1.8, 2, 2.8, 4, 5.6, 8, 11, 16],

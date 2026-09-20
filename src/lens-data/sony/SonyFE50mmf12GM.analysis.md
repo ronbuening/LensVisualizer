@@ -124,7 +124,7 @@ The modeled active prescription ends after 25A. Patent surfaces 26–27 form the
 
 ## Glass Identification and Selection
 
-G4 uses the published HOYA M-TAFD405 dispersion polynomial as a compatible spectral proxy (1.95150 / 29.83 versus patent 1.95150 / 29.8). Thirteen of fourteen elements now resolve to catalog curves; G11 remains unresolved. This does not establish Sony's supplier.
+G4 uses the published HOYA M-TAFD405 dispersion polynomial as a compatible spectral proxy (1.95150 / 29.83 versus patent 1.95150 / 29.8). All fourteen elements now resolve to catalog curves; G11 uses the manufacturer-published OHARA L-BAL35P Sellmeier curve (1.59208 / 61.00). This does not establish Sony's supplier.
 
 The patent publishes d-line refractive index and Abbe number but does not name glass manufacturers or melts. The data file therefore uses six-digit optical-coordinate classes and qualified spectral proxies without asserting a specific supplier. Authoritative HOYA, OHARA, SCHOTT, HIKARI, CDGM, and SUMITA catalog families were checked during the source audit; several coordinates admit cross-vendor equivalents, so coordinate agreement alone does not resolve supplier identity.
 
@@ -139,7 +139,7 @@ The patent publishes d-line refractive index and Abbe number but does not name g
 | 855252 class | 1.85451 | 25.2 | G7, G9 | Supplier unresolved |
 | 717480 class | 1.71700 | 48.0 | G8 | Supplier unresolved |
 | 697555 class | 1.69680 | 55.5 | G10 | Supplier unresolved |
-| 592610 class | 1.59208 | 61.0 | G11 | Supplier unresolved |
+| L-BAL35P proxy | 1.59208 | 61.0 | G11 | Supplier unresolved |
 | 946180 class | 1.94595 | 18.0 | G12 | Supplier unresolved |
 | 851401 class | 1.85135 | 40.1 | G14 | Supplier unresolved |
 
@@ -224,3 +224,5 @@ No patent radius, spacing, refractive index, Abbe value, focus endpoint, or asph
 3. Sony Japan. **FE 50mm F1.2 GM launch release**, 2021-03-17. https://www.sony.jp/CorporateCruise/Press/202103/21-0317/ — announcement timing and three-XA-element product description.
 4. Sony α Universe. **FE 50mm F1.2 GM developer interview**, 2021-03-17. https://www.sony.jp/ichigan/a-universe/news/547/ — independently driven dual floating-focus groups, fixed optical group between them, XD linear-motor arrangement, and focus-position sensing.
 5. Authoritative optical-glass catalog families checked for coordinate compatibility: HOYA Optical World (https://www.hoya-opticalworld.com/), OHARA (https://oharacorp.com/), SCHOTT optical glass (https://www.schott.com/en-gb/products/optical-glass-p1000267), HIKARI (https://www.hikari-g.co.jp/optical_glass/catalog/), CDGM (https://www.cdgmgd.com/), and SUMITA (https://www.sumita-opt.co.jp/en/download/). These checks support coordinate-class review only; they do not establish Sony's glass supplier or melt identity.
+
+The close-focus label uses the patent endpoint 0.410 m from the image plane (280 mm object distance plus 130 mm lens-to-image track), separately from Sony’s rounded marketed 0.4 m. The live diagram preserves GR2’s 6.1293 mm imageward travel and GR4’s 4.6776 mm objectward travel. Figure 1’s nearly common G2/G3 optical rim is represented by 27 mm semi-diameters at surfaces 3–5; the flat FL plate remains excluded under the documented rear-plate normalization.

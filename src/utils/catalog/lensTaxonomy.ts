@@ -103,6 +103,24 @@ export function isLensMountId(value: unknown): value is LensMountId {
 
 export const IMAGE_FORMATS = [
   {
+    id: "normal-8",
+    label: "Normal 8",
+    widthMm: 4.9,
+    heightMm: 3.6,
+    diagonalMm: Math.hypot(4.9, 3.6),
+    aspectRatio: 4.9 / 3.6,
+    sortOrder: 90,
+  },
+  {
+    id: "super-8",
+    label: "Super 8",
+    widthMm: 5.69,
+    heightMm: 4.22,
+    diagonalMm: Math.hypot(5.69, 4.22),
+    aspectRatio: 5.69 / 4.22,
+    sortOrder: 95,
+  },
+  {
     id: "16mm-cinema",
     label: "16 mm cinema",
     widthMm: 10.26,

@@ -136,7 +136,7 @@ const LENS_DATA = {
       vd: 27.1,
       indexReference: "d",
       fl: 60.790077,
-      glass: "901271 class (supplier unproven)",
+      glass: "NBFD27 — coordinate-compatible spectral proxy (supplier unresolved)",
     },
     {
       id: 7,
@@ -467,7 +467,8 @@ const LENS_DATA = {
     { text: "D2", fromSurface: "27", toSurface: "29" },
   ],
 
-  closeFocusM: 0.4,
+  closeFocusM: 0.397,
+  zoomCloseFocusM: [0.397, 0.521, 0.746],
   focusDescription: "Published two-group floating focus: G5 moves imageward and G6 moves objectward. The authored close states are the patent Table 3 values at 0.397 m, 0.521 m, and 0.746 m for Wide/Mid/Tele; no internal focus reconstruction is used.",
 
   nominalFno: 2.06,

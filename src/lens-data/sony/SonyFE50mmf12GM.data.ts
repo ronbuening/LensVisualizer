@@ -49,7 +49,7 @@ const LENS_DATA = {
     "14 ELEMENTS / 10 GROUPS",
     "MARKETED 50 mm f/1.2",
     "DESIGN f = 53.90 mm / F1.21",
-    "2omega = 43.52 deg",
+    "2ω = 43.52°",
     "6 ASPHERICAL SURFACES",
   ],
 
@@ -213,7 +213,7 @@ const LENS_DATA = {
       vd: 61,
       indexReference: "d",
       fl: 55.437746,
-      glass: "592610 class (supplier unresolved)",
+      glass: "L-BAL35P — coordinate-compatible spectral proxy (supplier unresolved)",
       role: "Positive two-sided asphere completing moving focus group GR4.",
     },
     {
@@ -262,9 +262,9 @@ const LENS_DATA = {
   surfaces: [
     { label: "1", R: -73.4046, d: 1.6384, nd: 1.77047, elemId: 1, sd: 23.28 },
     { label: "2", R: 86.7316, d: 3.2478, nd: 1, elemId: 0, sd: 24.37 },
-    { label: "3", R: 463.1362, d: 8.541, nd: 1.91082, elemId: 2, sd: 24.89 },
-    { label: "4", R: -55.0045, d: 1.5819, nd: 1.73037, elemId: 3, sd: 25.58 },
-    { label: "5", R: -103.8048, d: 0.1, nd: 1, elemId: 0, sd: 26.41 },
+    { label: "3", R: 463.1362, d: 8.541, nd: 1.91082, elemId: 2, sd: 27 },
+    { label: "4", R: -55.0045, d: 1.5819, nd: 1.73037, elemId: 3, sd: 27 },
+    { label: "5", R: -103.8048, d: 0.1, nd: 1, elemId: 0, sd: 27 },
     { label: "6A", R: 52.131, d: 8.7586, nd: 1.9515, elemId: 4, sd: 28.08 },
     { label: "7A", R: -899.0845, d: 2.7386, nd: 1, elemId: 0, sd: 27.66 },
     { label: "8", R: -438.1637, d: 2.8474, nd: 1.98613, elemId: 5, sd: 26.9 },
@@ -377,9 +377,9 @@ const LENS_DATA = {
     { text: "C4", fromSurface: "21", toSurface: "23" },
   ],
 
-  closeFocusM: 0.4,
+  closeFocusM: 0.410,
   focusDescription:
-    "Published double-floating focus: GR2 moves image-side 6.1293 mm and GR4 moves object-side 4.6776 mm from infinity to the patent near endpoint (d0 = 280 mm from the first surface, about 0.410 m object-to-IMG). The UI close-focus value is Sony's marketed 0.4 m; no unpublished intermediate mechanical law is claimed.",
+    "Published double-floating focus: GR2 moves image-side 6.1293 mm and GR4 moves object-side 4.6776 mm from infinity to the patent near endpoint (d0 = 280 mm from the first surface, about 0.410 m object-to-IMG). The focus label follows this patent endpoint; Sony markets the minimum distance as 0.4 m.",
 
   nominalFno: 1.21,
   fstopSeries: [1.21, 1.4, 2, 2.8, 4, 5.6, 8, 11, 16],

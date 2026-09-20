@@ -152,7 +152,7 @@ The 699301 coordinate illustrates the supplier problem directly: both OHARA and 
 
 Sony states that the production FE 50mm F1.4 GM uses one ED element. Within Example 1, L17 is the conspicuous high-Abbe coordinate at nd = 1.55032 and νd = 75.5, so its position is consistent with the production statement. The correspondence is not proven: the patent does not call L17 ED, does not name its supplier, and does not provide line-index or partial-dispersion data.
 
-Accordingly, the LensVisualizer prescription is an Abbe-based chromatic model at these class labels. It does not support an assertion of anomalous partial dispersion or apochromatic correction, and no catalog Sellmeier curve is forced onto the elements merely because a six-digit coordinate is close.
+All fourteen elements resolve to coordinate-compatible catalog curves for chromatic tracing. These are spectral proxies, not supplier identifications. The prescription does not establish anomalous partial dispersion or apochromatic correction, so no APD color or proprietary ED/XA label is assigned from coordinate similarity alone.
 
 ## Focus Mechanism
 
