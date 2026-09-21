@@ -70,7 +70,7 @@ const LENS_DATA = {
       vd: 64.17,
       indexReference: "d",
       fl: -125.0422970077,
-      glass: "517642 class (supplier/melt unproven)",
+      glass: "H-K9L class (coordinate-compatible spectral proxy; coordinate code 517642; supplier/melt unproven)",
     },
     {
       id: 2,
@@ -82,7 +82,7 @@ const LENS_DATA = {
       vd: 27.76,
       indexReference: "d",
       fl: -30.7134843848,
-      glass: "741278 class (supplier/melt unproven)",
+      glass: "E-FD13 class (coordinate-compatible spectral proxy; coordinate code 741278; supplier/melt unproven)",
       cemented: "D1",
     },
     {
@@ -95,7 +95,7 @@ const LENS_DATA = {
       vd: 55.46,
       indexReference: "d",
       fl: 41.3275746384,
-      glass: "697555 class (supplier/melt unresolved)",
+      glass: "J-LAK14 class (coordinate-compatible spectral proxy; coordinate code 697555; supplier/melt unproven)",
       cemented: "D1",
     },
     {
@@ -108,7 +108,7 @@ const LENS_DATA = {
       vd: 20.88,
       indexReference: "d",
       fl: 56.1530139809,
-      glass: "923209 class (supplier/melt unproven)",
+      glass: "N-SF66 class (coordinate-compatible spectral proxy; coordinate code 923209; supplier/melt unproven)",
     },
     {
       id: 5,
@@ -120,7 +120,7 @@ const LENS_DATA = {
       vd: 68.62,
       indexReference: "d",
       fl: 43.503436883,
-      glass: "593686 class (low-dispersion family; supplier/melt unresolved)",
+      glass: "FCD515 class (coordinate-compatible spectral proxy; coordinate code 593686; supplier/melt unproven)",
       cemented: "D2",
     },
     {
@@ -133,7 +133,7 @@ const LENS_DATA = {
       vd: 28.32,
       indexReference: "d",
       fl: -25.4363415868,
-      glass: "728283 class (supplier/melt unproven)",
+      glass: "H-ZF4A class (coordinate-compatible spectral proxy; coordinate code 728283; supplier/melt unproven)",
       cemented: "D2",
     },
     {
@@ -146,7 +146,7 @@ const LENS_DATA = {
       vd: 42.72,
       indexReference: "d",
       fl: 84.6799354232,
-      glass: "835427 class (supplier/melt unproven)",
+      glass: "S-LAH55 class (coordinate-compatible spectral proxy; coordinate code 835427; supplier/melt unproven)",
     },
     {
       id: 8,
@@ -158,7 +158,7 @@ const LENS_DATA = {
       vd: 26.61,
       indexReference: "d",
       fl: -33.939174957,
-      glass: "762266 class (supplier/melt unproven)",
+      glass: "J-SF14 class (coordinate-compatible spectral proxy; coordinate code 762266; supplier/melt unproven)",
     },
     {
       id: 9,
@@ -170,7 +170,7 @@ const LENS_DATA = {
       vd: 40.51,
       indexReference: "d",
       fl: 34.498637809,
-      glass: "731405 class (supplier/melt unresolved)",
+      glass: "L-LAM69 class (coordinate-compatible spectral proxy; coordinate code 731405; supplier/melt unproven)",
     },
     {
       id: 10,
@@ -182,7 +182,7 @@ const LENS_DATA = {
       vd: 30.05,
       indexReference: "d",
       fl: -59.885368254,
-      glass: "699301 class (supplier/melt unproven)",
+      glass: "E-FD15 class (coordinate-compatible spectral proxy; coordinate code 699301; supplier/melt unproven)",
     },
     {
       id: 11,

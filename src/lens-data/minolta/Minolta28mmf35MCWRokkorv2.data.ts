@@ -84,7 +84,7 @@ const LENS_DATA = {
       vd: 35,
       indexReference: "d",
       fl: 139.813333,
-      glass: "750350 — lanthanum-flint class (supplier unresolved)",
+      glass: "LAFN7 class (coordinate-compatible spectral proxy; coordinate code 750350; supplier/melt unproven)",
     },
     {
       id: 3,
@@ -95,7 +95,7 @@ const LENS_DATA = {
       vd: 64.2,
       indexReference: "d",
       fl: -87.187046,
-      glass: "517642 — BK7-class borosilicate crown (supplier unresolved)",
+      glass: "N-BK7 class (coordinate-compatible spectral proxy; coordinate code 517642; supplier/melt unproven)",
     },
     {
       id: 4,
@@ -106,7 +106,7 @@ const LENS_DATA = {
       vd: 47.2,
       indexReference: "d",
       fl: 29.767722,
-      glass: "670472/670473 — barium-flint class (supplier unresolved)",
+      glass: "S-BAH10 class (coordinate-compatible spectral proxy; coordinate code 670472/670473; supplier/melt unproven)",
     },
     {
       id: 5,
@@ -128,7 +128,7 @@ const LENS_DATA = {
       vd: 50.3,
       indexReference: "d",
       fl: 25.861804,
-      glass: "720503 — lanthanum-crown class (supplier unresolved)",
+      glass: "LAC10 class (coordinate-compatible spectral proxy; coordinate code 720503; supplier/melt unproven)",
     },
     {
       id: 7,
@@ -139,7 +139,7 @@ const LENS_DATA = {
       vd: 64.2,
       indexReference: "d",
       fl: 47.152477,
-      glass: "517642 — BK7-class borosilicate crown (supplier unresolved)",
+      glass: "N-BK7 class (coordinate-compatible spectral proxy; coordinate code 517642; supplier/melt unproven)",
     },
   ],
 
@@ -173,7 +173,7 @@ const LENS_DATA = {
 
   closeFocusM: 0.6,
   focusDescription:
-    "NO_INTERNAL_RECONSTRUCTION — JP1969-025743 Example 2 supplies one fixed optical state only; 0.6 m is production minimum-focus metadata and no internal focus motion is modeled.",
+    "Focus travel is not modeled: JP1969-025743 Example 2 supplies one fixed optical state only; 0.6 m is production minimum-focus metadata and no internal focus motion is modeled.",
 
   nominalFno: 3.499999895,
   fstopSeries: [3.5, 4, 5.6, 8, 11, 16],

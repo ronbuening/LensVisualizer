@@ -65,7 +65,7 @@ alone.
 
 ### L2 — Plano-Convex Positive
 
-`nd = 1.75000, νd = 35.0. Glass: 750350 — lanthanum-flint class (supplier unresolved). f = +139.813333 mm.`
+`nd = 1.75000, νd = 35.0. Glass: LAFN7 class (coordinate-compatible spectral proxy; coordinate code 750350; supplier/melt unproven). f = +139.813333 mm.`
 
 L2 is a weak positive element within the otherwise divergent three-element front subsystem. Its source coordinates are
 compatible with the 750350 lanthanum-flint class, but the patent names no glass supplier; the data therefore preserves a
@@ -73,7 +73,7 @@ class/code description rather than a vendor name. Its role here is described onl
 
 ### L3 — Negative Meniscus
 
-`nd = 1.51680, νd = 64.2. Glass: 517642 — BK7-class borosilicate crown (supplier unresolved). f = -87.187046 mm.`
+`nd = 1.51680, νd = 64.2. Glass: N-BK7 class (coordinate-compatible spectral proxy; coordinate code 517642; supplier/melt unproven). f = -87.187046 mm.`
 
 L3 completes the front three-element subsystem and contributes negative standalone power. The source coordinates closely
 match the conventional 517642/BK7 class. Current catalog rows from SCHOTT N-BK7 (`1.51680 / 64.17`) and HIKARI
@@ -82,7 +82,7 @@ melt.
 
 ### L4 — Biconvex Positive
 
-`nd = 1.67000, νd = 47.2. Glass: 670472/670473 — barium-flint class (supplier unresolved). f = +29.767722 mm.`
+`nd = 1.67000, νd = 47.2. Glass: S-BAH10 class (coordinate-compatible spectral proxy; coordinate code 670472/670473; supplier/melt unproven). f = +29.767722 mm.`
 
 L4 begins the convergent rear subsystem and supplies substantial positive standalone power. Its source coordinates lie very
 close to modern OHARA S-BAH10 (`1.67003 / 47.23`). The data file nevertheless retains a class/code label because the patent
@@ -98,7 +98,7 @@ modern HIKARI J-SF15 row is nearby in `nd/νd` space but is not exact enough to 
 
 ### L6 — Positive Meniscus
 
-`nd = 1.72000, νd = 50.3. Glass: 720503 — lanthanum-crown class (supplier unresolved). f = +25.861804 mm.`
+`nd = 1.72000, νd = 50.3. Glass: LAC10 class (coordinate-compatible spectral proxy; coordinate code 720503; supplier/melt unproven). f = +25.861804 mm.`
 
 L6 contributes strong positive standalone power in the rear section. Its coordinates closely reproduce the 720503 lanthanum-crown
 class. Current HIKARI J-LAK10 (`1.71999 / 50.27`) and OHARA S-LAL10 (`1.72000 / 50.23`) rows are both close; the data file
@@ -107,7 +107,7 @@ example.
 
 ### L7 — Plano-Convex Positive
 
-`nd = 1.51680, νd = 64.2. Glass: 517642 — BK7-class borosilicate crown (supplier unresolved). f = +47.152477 mm.`
+`nd = 1.51680, νd = 64.2. Glass: N-BK7 class (coordinate-compatible spectral proxy; coordinate code 517642; supplier/melt unproven). f = +47.152477 mm.`
 
 L7 is the final positive element and uses the same source `nd/νd` coordinates as L3. It contributes positive standalone
 power at the back of the optical train. The use of the same 517642-class coordinate at L3 and L7 is a source fact; any
@@ -207,3 +207,7 @@ track does not meet the project's `TL/EFL < 1` telephoto criterion, so no teleph
 9. HIKARI / Nikon, **J-series BK optical glass catalog**: https://www.nikon.com/business/components/lineup/materials/optical-glass/catalog/bk.html . Used for the L3/L7 class-level cross-check.
 10. HIKARI / Nikon, **J-series LAK optical glass catalog**: https://www.nikon.com/business/components/lineup/materials/optical-glass/catalog/lak.html . Used for modern coordinate-equivalence checking only.
 11. HIKARI / Nikon, **J-series SF optical glass catalog**: https://www.nikon.com/business/components/lineup/materials/optical-glass/catalog/sf.html . Used for modern coordinate-equivalence checking only.
+
+### Catalog proxy labels
+
+The viewer names the compatible catalog curve explicitly while retaining the original coordinate code and the supplier/melt qualification. The selected curves are unchanged: L2 → LAFN7, L3 → N-BK7, L4 → S-BAH10, L6 → LAC10, L7 → N-BK7. These labels identify spectral proxies, not production glass suppliers.

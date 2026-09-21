@@ -17,3 +17,7 @@ All seven elements already have compatible native-e spectral classes; retained t
 ### Metadata
 
 Canonicalized `Ernst Leitz G.m.b.H.` to the established `Ernst Leitz GmbH` assignee spelling; the patent-era entity remains unchanged.
+
+### Live geometry and travel follow-up
+
+Retained the SD model after a second comparison with the local drawing. Its radial scale would underfill the f/1.4 entrance pupil, so shrinking the front merely to copy the schematic would contradict the optical prescription. The five air-spaced groups, cemented pairs and all-spherical labels are correct. Focus remains explicitly not modeled. No zoom travel applies to this prime lens.

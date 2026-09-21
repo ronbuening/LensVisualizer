@@ -25,3 +25,7 @@ The patent reference coordinates are retained unchanged. Catalog curves are qual
 | L9 | Unmatched (native e-line coordinate 624361; F2/PBM2 coordinate class, supplier unproven) | F2 class (coordinate-compatible spectral proxy; native e 1.624/36.1; supplier/melt unproven) |
 
 Added OHARA S-FTL10 from its [manufacturer datasheet](https://oharacorp.com/wp-content/uploads/2023/06/esftl10.pdf), code(d) 501564 / code(e) 503561. All nine elements now have compatible spectral proxies. The bare d-code retains its previous K10 resolver preference; explicit OHARA context selects S-FTL10.
+
+### Live geometry and travel follow-up
+
+Retained SDs after comparison with the rotated FIG. 1 optical rims. Source element labels 30–46, five groups and two aspheric elements agree with the diagram. Focus remains explicitly not modeled. The patent-era Leica Camera GmbH attribution is retained and linked to the Leitz–Leica succession rather than rewritten as the later AG entity. No zoom travel applies to this prime lens.

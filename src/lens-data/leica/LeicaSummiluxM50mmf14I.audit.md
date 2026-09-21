@@ -21,3 +21,7 @@ L1/L6/L7 remain unmatched: the patent describes a Leitz rare-earth borate compos
 ### Metadata
 
 Canonicalized `Ernst Leitz G.m.b.H.` to the established `Ernst Leitz GmbH` assignee spelling; the patent-era entity remains unchanged.
+
+### Live geometry and travel follow-up
+
+Retained SDs after rechecking the local drawing and live outlines; the cemented shoulders and leader lines are excluded from optical-rim readings. Three rare-earth-borate elements remain unmatched: nearby modern catalog coordinates do not establish the historical composition’s dispersion. Focus remains explicitly not modeled. No zoom travel applies to this prime lens.

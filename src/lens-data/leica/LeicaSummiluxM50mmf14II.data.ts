@@ -161,7 +161,7 @@ const LENS_DATA = {
 
   closeFocusM: 1.0,
   focusDescription:
-    "NO_INTERNAL_RECONSTRUCTION — the patent supplies one optical state only; 1.0 m is historical product metadata and no focus motion is authored.",
+    "Focus travel is not modeled: the patent supplies one optical state only; 1.0 m is historical product metadata and no focus motion is authored.",
 
   nominalFno: 1.4,
   fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],

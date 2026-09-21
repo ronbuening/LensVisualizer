@@ -23,3 +23,11 @@ The patent reference coordinates are retained unchanged. Catalog curves are qual
 | Element | Before | After |
 |---|---|---|
 | L32 | 809404 class (supplier/melt unresolved) | L-LAH84 class (coordinate-compatible spectral proxy; native d 1.8086/40.42; supplier/melt unproven) |
+
+### Live glass-label follow-up
+
+Named the existing compatible spectral proxies explicitly while retaining coordinate codes and supplier/melt uncertainty: L11 → H-K9L, L12 → E-FD13, L13 → J-LAK14, L14 → N-SF66, L15 → FCD515, L16 → H-ZF4A, L21 → S-LAH55, L22 → J-SF14, L23 → L-LAM69, L31 → E-FD15. No spectral curve or patent reference coordinate changes.
+
+### Live geometry and travel follow-up
+
+The live infinity/close states agree with FIG. 1: Gr2 moves objectward by 8.122 mm while Gr1/Gr3 remain fixed. Retained the prior SD corrections; extending the last asphere beyond 19.5 mm would approach the polynomial turnover rather than improve the physical optical rim. The four aspheric surfaces belong to two elements, so the diagram correctly shows two element-level A badges. No zoom travel applies to this prime lens.

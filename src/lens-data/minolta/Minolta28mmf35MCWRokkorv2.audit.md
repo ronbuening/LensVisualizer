@@ -26,3 +26,11 @@ The patent reference coordinates are retained unchanged. Catalog curves are qual
 ### Metadata
 
 Canonicalized `Minolta Camera Kabushiki Kaisha` to `Minolta Camera Co., Ltd.` without changing the patent-era entity.
+
+### Live glass-label follow-up
+
+Named the existing compatible spectral proxies explicitly while retaining coordinate codes and supplier/melt uncertainty: L2 → LAFN7, L3 → N-BK7, L4 → S-BAH10, L6 → LAC10, L7 → N-BK7. No spectral curve or patent reference coordinate changes.
+
+### Live geometry and travel follow-up
+
+Retained the enlarged first-three-element SDs after comparison with FIG. 1; the large front negative/positive/negative assembly now follows the optical rims. The four rear elements agree with the source and remain air-spaced. Focus remains explicitly not modeled. No zoom travel applies to this prime lens.

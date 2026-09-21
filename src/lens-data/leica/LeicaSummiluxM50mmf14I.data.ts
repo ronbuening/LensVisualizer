@@ -164,7 +164,7 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 1.0,
-  focusDescription: "NO_INTERNAL_RECONSTRUCTION: patent infinity state only; 1.0 m is historical product metadata.",
+  focusDescription: "Focus travel is not modeled: patent infinity state only; 1.0 m is historical product metadata.",
 
   nominalFno: 1.4,
   fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],

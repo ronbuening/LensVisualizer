@@ -52,19 +52,19 @@ IA is the first lens of patent component A and the first of two negative menisci
 
 ### IIA — Negative Meniscus
 
-`nd = 1.6204, νd = 60.3. Glass: 620603 crown class (catalog supplier unresolved). f = −49.2034 mm.`
+`nd = 1.6204, νd = 60.3. Glass: N-SK16 class (coordinate-compatible spectral proxy; coordinate code 620603; supplier/melt unproven). f = −49.2034 mm.`
 
 IIA is the second lens of component A. Together, IA and IIA form the negative front component with a verified standalone focal length of −26.3894 mm. The patent specifically identifies the two-negative-lens form used by the second embodiment as a means of easing the aberration burden of the front diverging component. The stored glass label remains a six-digit class description because the patent provides only refractive-index/Abbe coordinates, not a vendor or melt designation; the model treats that pair as `nd/νd`.
 
 ### IB — Biconvex Positive
 
-`nd = 1.7170, νd = 47.9. Glass: 717479/480 lanthanum class (catalog supplier unresolved). f = +25.5991 mm.`
+`nd = 1.7170, νd = 47.9. Glass: S-LAM3 class (coordinate-compatible spectral proxy; coordinate code 717479/480; supplier/melt unproven). f = +25.5991 mm.`
 
 IB is the sole lens in component B and is therefore identical to that component’s standalone power. Its positive power follows the patent’s prescribed second-component architecture. The patent describes B as an intermediate compensating component between the strong negative front section and the more complex four-lens rear section; the analysis does not assign a more specific aberration contribution than the patent supports.
 
 ### IC — Positive Meniscus
 
-`nd = 1.7440, νd = 44.9. Glass: 744449 lanthanum class (catalog supplier unresolved). f = +56.8849 mm.`
+`nd = 1.7440, νd = 44.9. Glass: H-LaF3B class (coordinate-compatible spectral proxy; coordinate code 744449; supplier/melt unproven). f = +56.8849 mm.`
 
 IC is the first lens of component C and the positive member of the patent’s deliberately constructed IC–IIC diverging pair. The patent states that IC is spaced from IIC so that the intervening air space acts as an air lens used in coma correction (Source 1, PDF pp. 7–8). This is a source-described design relationship, not an inference from the sign of IC’s standalone power.
 
@@ -72,7 +72,7 @@ IC also participates directly in the patent’s third condition, `VC1 > VC2`, wh
 
 ### IIC — Biconcave Negative
 
-`nd = 1.7552, νd = 27.6. Glass: 755276 dense-flint class (catalog supplier unresolved). f = −16.3902 mm.`
+`nd = 1.7552, νd = 27.6. Glass: SF4 class (coordinate-compatible spectral proxy; coordinate code 755276; supplier/melt unproven). f = −16.3902 mm.`
 
 IIC is the strongest standalone negative element in the prescription. It is the second lens of component C and forms the rear component’s diverging sub-group together with IC. The patent warns that using a single negative IIC lens for this diverging function would produce excessive coma; the positive IC lens and their intervening air space are therefore part of the patented correction strategy.
 
@@ -80,7 +80,7 @@ Its much lower Abbe number than IC is also an explicit part of the patent’s ch
 
 ### IIIC — Positive Meniscus
 
-`nd = 1.7200, νd = 50.3. Glass: 720503 lanthanum class (catalog supplier unresolved). f = +30.2629 mm.`
+`nd = 1.7200, νd = 50.3. Glass: LAC10 class (coordinate-compatible spectral proxy; coordinate code 720503; supplier/melt unproven). f = +30.2629 mm.`
 
 IIIC is the third lens of component C and returns the rear group to positive standalone power after IIC. Its placement is involved in the patent’s fourth spacing condition through `dC4`, the air gap between IIC and IIIC. The patent links that spacing condition to avoiding an increase in negative distortion and a coma balance that would be difficult to maintain over the full field.
 
@@ -163,3 +163,7 @@ These are dossier-level checks, not substitutes for LensVisualizer repository va
 7. HIKARI Glass Co., Ltd., **J-LAF** and **J-SF** general optical-glass catalogs; used only for catalog-coordinate comparison. https://www.hikari-g.co.jp/optical_glass/general_optical_glass/j-laf/ and https://www.hikari-g.co.jp/optical_glass/general_optical_glass/j-sf/
 
 Computed quantities in this analysis are reproduced by the companion `Minolta28mmf28MD.verify.py` from the exact `Minolta28mmf28MD.data.ts` revision in the same dossier.
+
+### Catalog proxy labels
+
+The viewer names the compatible catalog curve explicitly while retaining the original coordinate code and the supplier/melt qualification. The selected curves are unchanged: L2 → N-SK16, L3 → S-LAM3, L4 → H-LaF3B, L5 → SF4, L6 → LAC10. These labels identify spectral proxies, not production glass suppliers.

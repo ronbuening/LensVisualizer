@@ -46,7 +46,7 @@ The three computed group focal lengths refer to each group treated as an isolate
 
 ### L11 — Negative Meniscus, convex to object
 
-**nd = 1.51680, νd = 64.17. Glass: 517642 class (supplier/melt unproven). Standalone f = −125.042 mm.**
+**nd = 1.51680, νd = 64.17. Glass: H-K9L class (coordinate-compatible spectral proxy; coordinate code 517642; supplier/melt unproven). Standalone f = −125.042 mm.**
 
 L11 is the front element and the first of two consecutive negative elements in Gr1. The patent explicitly prefers a negative meniscus convex toward the object in this position. Together with the following negative element, it expands the axial beam before the positive central part of Gr1; the patent associates that arrangement with shortening the overall design while avoiding a single abrupt concentration of positive power (¶0027).
 
@@ -54,7 +54,7 @@ Its standalone focal length describes L11 in air only. In the assembled group, t
 
 ### L12 — Biconcave Negative
 
-**nd = 1.74077, νd = 27.76. Glass: 741278 class (supplier/melt unproven). Standalone f = −30.713 mm.**
+**nd = 1.74077, νd = 27.76. Glass: E-FD13 class (coordinate-compatible spectral proxy; coordinate code 741278; supplier/melt unproven). Standalone f = −30.713 mm.**
 
 L12 is the second negative front-group element and is cemented directly to positive L13. The patent identifies the first two Gr1 members as negative (¶0045), so the strong negative standalone power here is source-consistent.
 
@@ -62,7 +62,7 @@ The isolated cemented L12+L13 pair has a computed net focal length of approximat
 
 ### L13 — Biconvex Positive
 
-**nd = 1.69680, νd = 55.46. Glass: 697555 class (supplier/melt unresolved). Standalone f = +41.328 mm.**
+**nd = 1.69680, νd = 55.46. Glass: J-LAK14 class (coordinate-compatible spectral proxy; coordinate code 697555; supplier/melt unproven). Standalone f = +41.328 mm.**
 
 L13 is cemented to L12 and begins the run of three consecutive positive elements L13–L15. The patent states that distributing positive power across three successive positive elements permits a gentler succession of ray bends than concentrating the same power in fewer strongly curved surfaces (¶0033).
 
@@ -70,7 +70,7 @@ No source assigns a unique aberration contribution to L13, so its role is descri
 
 ### L14 — Biconvex Positive
 
-**nd = 1.92286, νd = 20.88. Glass: 923209 class (supplier/melt unproven). Standalone f = +56.153 mm.**
+**nd = 1.92286, νd = 20.88. Glass: N-SF66 class (coordinate-compatible spectral proxy; coordinate code 923209; supplier/melt unproven). Standalone f = +56.153 mm.**
 
 L14 is the middle member of the three-positive sequence in Gr1. Its d-line index exceeds 1.79 and therefore satisfies the patent's material condition (5) for at least one positive Gr1 element. The patent states generally that such a high-index positive element can supply power with gentler curvature and can support compactness and field-curvature control (¶¶0034–0035).
 
@@ -78,7 +78,7 @@ That statement is a patent-level design rule; it is not evidence that L14 alone 
 
 ### L15 — Biconvex Positive
 
-**nd = 1.59282, νd = 68.62. Glass: 593686 class (low-dispersion family; supplier/melt unresolved). Standalone f = +43.503 mm.**
+**nd = 1.59282, νd = 68.62. Glass: FCD515 class (coordinate-compatible spectral proxy; coordinate code 593686; supplier/melt unproven). Standalone f = +43.503 mm.**
 
 L15 is the third consecutive positive element in Gr1 and is cemented to negative L16. Its νd of 68.62 exceeds the patent's condition (6) threshold of 60 for at least one positive Gr1 element. The patent notes that a high-Abbe positive element, particularly in a cemented combination with a negative element, can be useful for controlling axial chromatic error (¶¶0036–0037).
 
@@ -86,7 +86,7 @@ The isolated L15+L16 cemented pair has a computed net focal length of approximat
 
 ### L16 — Biconcave Negative
 
-**nd = 1.72825, νd = 28.32. Glass: 728283 class (supplier/melt unproven). Standalone f = −25.436 mm.**
+**nd = 1.72825, νd = 28.32. Glass: H-ZF4A class (coordinate-compatible spectral proxy; coordinate code 728283; supplier/melt unproven). Standalone f = −25.436 mm.**
 
 L16 is the final element of Gr1 and the negative member cemented to L15. The patent specifically prefers the most image-side lens in Gr1 to be negative so that Gr1's rear principal point can move toward the object side and the ray height incident on the focusing group can be reduced (¶0026).
 
@@ -94,7 +94,7 @@ This is one of the clearer element-specific functional statements in the patent 
 
 ### L21 — Positive Meniscus, convex to object
 
-**nd = 1.83481, νd = 42.72. Glass: 835427 class (supplier/melt unproven). Standalone f = +84.680 mm.**
+**nd = 1.83481, νd = 42.72. Glass: S-LAH55 class (coordinate-compatible spectral proxy; coordinate code 835427; supplier/melt unproven). Standalone f = +84.680 mm.**
 
 L21 is the first element of the moving Gr2 focusing group. In Example 1 it is a positive meniscus convex toward the object, followed by negative L22 and positive L23 (¶0048).
 
@@ -102,7 +102,7 @@ The patent defines Gr2 primarily by its positive net power and its motion. It do
 
 ### L22 — Biconcave Negative
 
-**nd = 1.76182, νd = 26.61. Glass: 762266 class (supplier/melt unproven). Standalone f = −33.939 mm.**
+**nd = 1.76182, νd = 26.61. Glass: J-SF14 class (coordinate-compatible spectral proxy; coordinate code 762266; supplier/melt unproven). Standalone f = −33.939 mm.**
 
 L22 is the sole negative element in Example 1's focusing group. The patent states that at least one negative element is needed in Gr2 to provide sufficient chromatic correction within the moving group as object distance changes (¶0012). L22 is therefore the explicit realization of that requirement in this embodiment.
 
@@ -110,7 +110,7 @@ Its negative standalone power is embedded between two positive elements, leaving
 
 ### L23 — Biconvex Positive, two aspherical surfaces
 
-**nd = 1.73077, νd = 40.51. Glass: 731405 class (supplier/melt unresolved). Standalone f = +34.499 mm.**
+**nd = 1.73077, νd = 40.51. Glass: L-LAM69 class (coordinate-compatible spectral proxy; coordinate code 731405; supplier/melt unproven). Standalone f = +34.499 mm.**
 
 L23 completes the moving positive–negative–positive focusing group. Both of its surfaces are aspherical: source surfaces 16 and 17 are stored as 16A and 17A in the data file.
 
@@ -118,7 +118,7 @@ The patent and Leica's original technical material both place an aspherical elem
 
 ### L31 — Biconcave Negative
 
-**nd = 1.69895, νd = 30.05. Glass: 699301 class (supplier/melt unproven). Standalone f = −59.885 mm.**
+**nd = 1.69895, νd = 30.05. Glass: E-FD15 class (coordinate-compatible spectral proxy; coordinate code 699301; supplier/melt unproven). Standalone f = −59.885 mm.**
 
 L31 is the negative front member of the fixed third group. The patent describes Gr3 in Example 1 as a biconcave negative element followed by a biconvex positive aspherical element (¶0048).
 
@@ -229,3 +229,7 @@ A source/model discrepancy remains intentionally visible. From the rounded paten
 3. Leica Camera AG, **Summilux-SL 50 f/1.4 ASPH. — original 2016-generation product page**: https://leica-camera.com/en-GB/photography/lenses/sl/summilux-sl-50mm-f1-4-asph-black-2016
 4. Leica Camera AG, **New lenses expand the Leica SL-System**, press release dated 19 September 2016: https://leica-camera.com/en-NZ/Company/Press-Centre/Press-Releases/Press-Releases-2016/Press-Release-New-lenses-expand-the-Leica-SL-System
 5. Leica Camera AG, **Summilux-SL 50 f/1.4 ASPH. — current generation product page** (generation-disambiguation only): https://leica-camera.com/en-int/photography/lenses/sl/summilux-sl-50mm-f1-4-asph-black-anodized-finish
+
+### Catalog proxy labels
+
+The viewer names the compatible catalog curve explicitly while retaining the original coordinate code and the supplier/melt qualification. The selected curves are unchanged: L11 → H-K9L, L12 → E-FD13, L13 → J-LAK14, L14 → N-SF66, L15 → FCD515, L16 → H-ZF4A, L21 → S-LAH55, L22 → J-SF14, L23 → L-LAM69, L31 → E-FD15. These labels identify spectral proxies, not production glass suppliers.

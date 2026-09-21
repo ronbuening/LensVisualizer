@@ -23,3 +23,7 @@ L2 (1.80500/44.53) and L3 (1.75000/25.14) remain unmatched. Nearby candidates li
 ### Metadata
 
 Canonicalized `Minolta Camera Kabushiki Kaisha` to `Minolta Camera Co., Ltd.` without changing the patent-era entity. Display names now distinguish the 7-element/7-group and 5-element/5-group MD versions.
+
+### Live geometry and travel follow-up
+
+A second axial-calibrated reading of FIG. 1 gives approximately 35.6 pixels/mm in the 600 dpi crop: the 48.3784 mm first-to-last vertex span measures about 1722 pixels. Optical rims support S1/S2 = 15.5/13 mm, S3/S4 = 8/8 mm, S5 = 7.3 mm and S9/S10 = 8.5/8.5 mm. These replace 14/12, 8.75/7.5, 6.1 and 8/8.2 mm respectively, making the front larger and the second element less tapered. S6/S7 remain 6.9 mm and S8 remains 7.6 mm: widening the shared S6–S7 band to 7.3 mm exceeds the permitted sag intrusion in the 0.798 mm gap. Figure leaders and the front mechanical bevel are excluded. The displayed five-element version remains distinct from the seven-element MD. L2 and L3 remain unmatched: the nearest catalog candidates are at the compatibility boundary or have an appreciable index residual, and no closer sourced spectral data were found. Focus remains explicitly not modeled. No zoom travel applies to this prime lens.

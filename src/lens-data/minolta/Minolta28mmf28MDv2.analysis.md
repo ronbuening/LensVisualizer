@@ -217,3 +217,7 @@ The design is entirely spherical. No aspherical coefficient table or conic conve
    (https://www.cdgmgd.com/database/toWebDatabase.htm?k=Products_Data&pageIndex=25&url=database), and SUMITA
    (https://www.sumita-opt.co.jp/download_files/en/data/zemax.agf). Catalog comparisons are used only to bound glass-class
    interpretations; they do not establish supplier identity for the patent elements.
+
+### Optical-rim refinement
+
+The construction drawing in US 4,493,536 FIG. 1 supports S1/S2 semi-diameters of 15.5/13 mm, S3/S4 of 8/8 mm, S5 of 7.3 mm and S9/S10 of 8.5/8.5 mm after calibration to the first-to-last vertex span. The narrow S6–S7 gap retains 6.9 mm on both faces to preserve clearance. These remain diagram-derived model apertures, not published dimensions.

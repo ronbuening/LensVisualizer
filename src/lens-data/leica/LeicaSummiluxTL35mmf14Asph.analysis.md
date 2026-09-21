@@ -53,49 +53,49 @@ L11 is the foremost element of Gr1a and is a positive meniscus convex to the obj
 
 ### L12 — Positive Meniscus, Front Component of D1
 
-**nd = 1.92290, νd = 20.88. Glass: 923209 high-index flint class (supplier unresolved). Standalone f = +53.172 mm.**
+**nd = 1.92290, νd = 20.88. Glass: PBH21 class (coordinate-compatible spectral proxy; coordinate code 923209; supplier/melt unproven). Standalone f = +53.172 mm.**
 
 L12 is the positive component of the first cemented pair in Gr1a. It is a positive meniscus convex to the object side and is cemented directly to L13 at source surface 4 (¶0043). Its high index and low Abbe number are source coordinates; no supplier or actual melt is established by the patent.
 
 ### L13 — Negative Meniscus, Rear Component of D1
 
-**nd = 1.51740, νd = 52.15. Glass: 517522 KF6 class (supplier unresolved). Standalone f = -37.950 mm.**
+**nd = 1.51740, νd = 52.15. Glass: E-CF6 class (coordinate-compatible spectral proxy; coordinate code 517522; supplier/melt unproven). Standalone f = -37.950 mm.**
 
 L13 is the negative rear component of D1 and is concave toward the image side (¶0043). L12 and L13 therefore combine opposite standalone powers at a cemented interface. The analysis does not assign a specific chromatic or monochromatic correction contribution to this pair beyond what the patent states for Gr1a as a whole.
 
 ### L14 — Biconvex Positive, Front Component of D2
 
-**nd = 1.83480, νd = 42.72. Glass: 835427 lanthanum high-index class (supplier unresolved). Standalone f = +19.936 mm.**
+**nd = 1.83480, νd = 42.72. Glass: TAFD5F class (coordinate-compatible spectral proxy; coordinate code 835427; supplier/melt unproven). Standalone f = +19.936 mm.**
 
 L14 is the strong positive biconvex component of the second cemented pair in Gr1a (¶0043). It is cemented to L15 at source surface 7. Its large standalone positive power is countered by the negative L15 immediately behind it; the resulting front subgroup remains only weakly negative as a complete in-situ assembly.
 
 ### L15 — Biconcave Negative, Rear Component of D2
 
-**nd = 1.75520, νd = 27.53. Glass: 755275 dense-flint class (supplier unresolved). Standalone f = -19.139 mm.**
+**nd = 1.75520, νd = 27.53. Glass: E-FD4 class (coordinate-compatible spectral proxy; coordinate code 755275; supplier/melt unproven). Standalone f = -19.139 mm.**
 
 L15 is the biconcave negative rear component of D2 and the final glass element before the aperture stop (¶0043). Its image-side surface is the concave surface that faces the stop from the object-side subgroup, one half of the stop-centered concave-surface arrangement emphasized by the patent (¶0014, ¶0036).
 
 ### L16 — Biconcave Negative, Front Component of D3
 
-**nd = 1.68890, νd = 31.16. Glass: 689312 dense-flint class (supplier unresolved). Standalone f = -16.394 mm.**
+**nd = 1.68890, νd = 31.16. Glass: E-FD8 class (coordinate-compatible spectral proxy; coordinate code 689312; supplier/melt unproven). Standalone f = -16.394 mm.**
 
 L16 begins Gr1b immediately after the stop. It is the negative front component of cemented pair D3, and its object-side surface is concave toward the stop (¶0043). In the model the cemented interface between L16 and L17 uses a widened modeled semi-diameter at surface 11; that geometry decision is discussed in the verification section and is not a change to the published radius or refractive data.
 
 ### L17 — Biconvex Positive, Rear Component of D3
 
-**nd = 1.72920, νd = 54.67. Glass: 729547 lanthanum-crown class (supplier unresolved). Standalone f = +23.255 mm.**
+**nd = 1.72920, νd = 54.67. Glass: TAC8 class (coordinate-compatible spectral proxy; coordinate code 729547; supplier/melt unproven). Standalone f = +23.255 mm.**
 
 L17 is the positive rear component of D3. Together L16 and L17 form the cemented front portion of the positive rear subgroup Gr1b. The patent describes Gr1b as a positive subgroup but does not isolate a separate aberration function for L17.
 
 ### L18 — Biconvex Positive with Two Aspherical Surfaces
 
-**nd = 1.74320, νd = 49.30. Glass: 743493 class (supplier unresolved). Standalone f = +28.999 mm.**
+**nd = 1.74320, νd = 49.30. Glass: S-LAM60 class (coordinate-compatible spectral proxy; coordinate code 743493; supplier/melt unproven). Standalone f = +28.999 mm.**
 
 L18 is the final element of Gr1b and carries the aspherical surfaces 13A and 14A. The patent explicitly states that the two-sided aspherical biconvex element in Gr1b is used to correct spherical aberration (¶0024, ¶0047). Because it lies immediately before the variable gap to the focusing element, its contribution is also part of the optical handoff into the moving Gr2 section.
 
 ### L21 — Negative Meniscus with Two Aspherical Surfaces; Focus Group Gr2
 
-**nd = 1.74320, νd = 49.30. Glass: 743493 class (supplier unresolved). Standalone f = -70.827 mm.**
+**nd = 1.74320, νd = 49.30. Glass: S-LAM60 class (coordinate-compatible spectral proxy; coordinate code 743493; supplier/melt unproven). Standalone f = -70.827 mm.**
 
 L21 is the entire second power group and the only element that moves for focus. It is a negative meniscus concave toward the image side, with aspherical surfaces 15A and 16A (¶0044). For close focus the whole element moves toward the image side.
 
@@ -103,19 +103,19 @@ The patent gives a specific rationale for the rear asphere of L21: its negative 
 
 ### L31 — Biconvex Positive, Front Element of Gr3
 
-**nd = 1.88100, νd = 40.14. Glass: 881401 class (supplier unresolved). Standalone f = +48.044 mm.**
+**nd = 1.88100, νd = 40.14. Glass: TAFD33 class (coordinate-compatible spectral proxy; coordinate code 881401; supplier/melt unproven). Standalone f = +48.044 mm.**
 
 L31 is the first element of Gr3 and the first positive element encountered after the negative focusing group. The patent states that placing a biconvex positive element at the object side of Gr3 properly reconverges the off-axis beam diverged by Gr2 and contributes to coma correction (¶0044, ¶0048).
 
 ### L32 — Biconvex Positive, Front Component of D4
 
-**nd = 1.83480, νd = 42.72. Glass: 835427 lanthanum high-index class (supplier unresolved). Standalone f = +37.695 mm.**
+**nd = 1.83480, νd = 42.72. Glass: TAFD5F class (coordinate-compatible spectral proxy; coordinate code 835427; supplier/melt unproven). Standalone f = +37.695 mm.**
 
 L32 is the positive front component of the final cemented pair. It shares the same native d-line optical coordinate as L14. In the patent's Gr3 architecture, this positive component is immediately followed by the negative L33, producing a strongly opposed-power cemented pair behind L31.
 
 ### L33 — Biconcave Negative, Rear Component of D4
 
-**nd = 1.64770, νd = 33.84. Glass: 648338 flint class (supplier unresolved). Standalone f = -34.920 mm.**
+**nd = 1.64770, νd = 33.84. Glass: H-ZF1 class (coordinate-compatible spectral proxy; coordinate code 648338; supplier/melt unproven). Standalone f = -34.920 mm.**
 
 L33 is the biconcave negative rear component of D4 and the final glass element of the active lens. The patent states that the cemented element in Gr3 helps reduce variation of chromatic aberration during focusing (¶0044). That source statement is retained without elevating the lens to an APO or anomalous-dispersion classification, because the patent does not publish the line-index or partial-dispersion data needed for such a claim.
 
@@ -126,15 +126,15 @@ The patent publishes only `nd` and `νd` coordinates at the d-line (587.56 nm); 
 | Authored glass label | nd | νd | Elements |
 |---|---:|---:|---|
 | NBFD10 class (coordinate-compatible spectral proxy; native d 1.834/37.35; supplier/melt unproven) | 1.83400 | 37.35 | L11 |
-| 923209 high-index flint class (supplier unresolved) | 1.92290 | 20.88 | L12 |
-| 517522 KF6 class (supplier unresolved) | 1.51740 | 52.15 | L13 |
-| 835427 lanthanum high-index class (supplier unresolved) | 1.83480 | 42.72 | L14, L32 |
-| 755275 dense-flint class (supplier unresolved) | 1.75520 | 27.53 | L15 |
-| 689312 dense-flint class (supplier unresolved) | 1.68890 | 31.16 | L16 |
-| 729547 lanthanum-crown class (supplier unresolved) | 1.72920 | 54.67 | L17 |
-| 743493 class (supplier unresolved) | 1.74320 | 49.30 | L18, L21 |
-| 881401 class (supplier unresolved) | 1.88100 | 40.14 | L31 |
-| 648338 flint class (supplier unresolved) | 1.64770 | 33.84 | L33 |
+| PBH21 class (coordinate-compatible spectral proxy; coordinate code 923209; supplier/melt unproven) | 1.92290 | 20.88 | L12 |
+| E-CF6 class (coordinate-compatible spectral proxy; coordinate code 517522; supplier/melt unproven) | 1.51740 | 52.15 | L13 |
+| TAFD5F class (coordinate-compatible spectral proxy; coordinate code 835427; supplier/melt unproven) | 1.83480 | 42.72 | L14, L32 |
+| E-FD4 class (coordinate-compatible spectral proxy; coordinate code 755275; supplier/melt unproven) | 1.75520 | 27.53 | L15 |
+| E-FD8 class (coordinate-compatible spectral proxy; coordinate code 689312; supplier/melt unproven) | 1.68890 | 31.16 | L16 |
+| TAC8 class (coordinate-compatible spectral proxy; coordinate code 729547; supplier/melt unproven) | 1.72920 | 54.67 | L17 |
+| S-LAM60 class (coordinate-compatible spectral proxy; coordinate code 743493; supplier/melt unproven) | 1.74320 | 49.30 | L18, L21 |
+| TAFD33 class (coordinate-compatible spectral proxy; coordinate code 881401; supplier/melt unproven) | 1.88100 | 40.14 | L31 |
+| H-ZF1 class (coordinate-compatible spectral proxy; coordinate code 648338; supplier/melt unproven) | 1.64770 | 33.84 | L33 |
 
 No `nC`, `nF`, `ng`, or `dPgF` fields are stored in the model. Representative catalog line indices can be used to examine the patent's first-order comparison wavelength, but they are not asserted as properties of the unnamed patent melts. Accordingly, this analysis makes no apochromatic or anomalous-partial-dispersion performance claim.
 
@@ -226,3 +226,7 @@ No uniform scaling was applied. All modeled radii, spacings, semi-diameters, and
 7. **CDGM Glass Co., Ltd.** Optical glass database. https://www.cdgmgd.com/database/toWebDatabase.htm?k=Products_Data&url=database
 8. **HOYA GROUP Optics Division.** Glass polished-lens and cross-reference resources. https://www.hoya-opticalworld.com/english/products/kenma.html
 9. **SUMITA OPTICAL GLASS, Inc.** Optical Glass Data downloads, catalog version 14.02.00. https://www.sumita-opt.co.jp/en/download/
+
+### Catalog proxy labels
+
+The viewer names the compatible catalog curve explicitly while retaining the original coordinate code and the supplier/melt qualification. The selected curves are unchanged: L12 → PBH21, L13 → E-CF6, L14 → TAFD5F, L15 → E-FD4, L16 → E-FD8, L17 → TAC8, L18 → S-LAM60, L21 → S-LAM60, L31 → TAFD33, L32 → TAFD5F, L33 → H-ZF1. These labels identify spectral proxies, not production glass suppliers.

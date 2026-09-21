@@ -177,7 +177,7 @@ At the published 21.07 mm semi-diameter, the verified departure from the corresp
 
 The patent's chromatic strategy is unusually explicit. For the corresponding design family it states that using multiple SFPL51/SFPL53 abnormal-dispersion glasses adds degrees of freedom for reducing aberrations, particularly chromatic aberration. For Example 2 it identifies SFPL51 at L2, L7, and L16 and SFPL53 at L4, L11, L12, and L13, and it places dense-flint SNPH1 at L15. The first-embodiment explanation, which the second embodiment incorporates by reference, describes the dense flint as providing secondary dispersion that compensates secondary dispersion introduced elsewhere in the system.
 
-The model uses OHARA Sellmeier curves plus catalog-derived `dPgF` for every active glass, so the dispersion discussion is not based on Abbe number alone. Even so, these are public catalog coordinates rather than measured production-melt data, and no claim of apochromatic performance is made from them.
+The viewer marks the seven named fluor-crown elements and L15's S-NPH1 dense flint as patent-listed APD (the latter is explicitly classified in claim 7). The model uses OHARA Sellmeier curves plus catalog-derived `dPgF` for every active glass, so the dispersion discussion is not based on Abbe number alone. Even so, these are public catalog coordinates rather than measured production-melt data, and no claim of apochromatic performance is made from them.
 
 ## Verification Summary
 

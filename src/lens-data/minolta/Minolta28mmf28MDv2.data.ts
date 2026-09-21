@@ -101,17 +101,17 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 43.5652, d: 1.6772, nd: 1.78831, elemId: 1, sd: 14.0 },
-    { label: "2", R: 18.0292, d: 21.3388, nd: 1.0, elemId: 0, sd: 12.0 },
-    { label: "3", R: 30.2652, d: 7.854, nd: 1.805, elemId: 2, sd: 8.75 },
-    { label: "4", R: -61.6, d: 4.0628, nd: 1.0, elemId: 0, sd: 7.5 },
+    { label: "1", R: 43.5652, d: 1.6772, nd: 1.78831, elemId: 1, sd: 15.5 },
+    { label: "2", R: 18.0292, d: 21.3388, nd: 1.0, elemId: 0, sd: 13 },
+    { label: "3", R: 30.2652, d: 7.854, nd: 1.805, elemId: 2, sd: 8 },
+    { label: "4", R: -61.6, d: 4.0628, nd: 1.0, elemId: 0, sd: 8 },
     { label: "STO", R: 1e15, d: 4.0628, nd: 1.0, elemId: 0, sd: 6.541810862460941 },
-    { label: "5", R: -17.2648, d: 4.3428, nd: 1.75, elemId: 3, sd: 6.1 },
+    { label: "5", R: -17.2648, d: 4.3428, nd: 1.75, elemId: 3, sd: 7.3 },
     { label: "6", R: 60.1048, d: 0.798, nd: 1.0, elemId: 0, sd: 6.9 },
     { label: "7", R: -79.4108, d: 2.0804, nd: 1.7725, elemId: 4, sd: 6.9 },
     { label: "8", R: -19.0008, d: 0.084, nd: 1.0, elemId: 0, sd: 7.6 },
-    { label: "9", R: -498.5232, d: 2.0776, nd: 1.6968, elemId: 5, sd: 8.0 },
-    { label: "10", R: -30.8952, d: 35.75538554189261, nd: 1.0, elemId: 0, sd: 8.2 },
+    { label: "9", R: -498.5232, d: 2.0776, nd: 1.6968, elemId: 5, sd: 8.5 },
+    { label: "10", R: -30.8952, d: 35.75538554189261, nd: 1.0, elemId: 0, sd: 8.5 },
   ],
 
   asph: {},
@@ -122,7 +122,7 @@ const LENS_DATA = {
 
   closeFocusM: 0.3,
   focusDescription:
-    "NO_INTERNAL_RECONSTRUCTION: 0.3 m is production metadata only; US 4,493,536 Example 1 publishes no finite-object spacing state, so the optical model remains at the published infinity prescription.",
+    "Focus travel is not modeled: 0.3 m is production metadata only; US 4,493,536 Example 1 publishes no finite-object spacing state, so the optical model remains at the published infinity prescription.",
 
   nominalFno: 2.8,
   fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],

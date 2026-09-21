@@ -239,7 +239,7 @@ const LENS_DATA = {
 
   closeFocusM: 0.7,
   focusDescription:
-    "NO_INTERNAL_RECONSTRUCTION — one published optical state only; 0.7 m and about 1:17.5 are source performance statements, not an authored movement law.",
+    "Focus travel is not modeled: one published optical state only; 0.7 m and about 1:17.5 are source performance statements, not an authored movement law.",
 
   nominalFno: 1.4,
   fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
