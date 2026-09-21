@@ -31,3 +31,7 @@ Named the existing compatible spectral proxies explicitly while retaining coordi
 ### Live geometry and travel follow-up
 
 The live infinity/close states agree with FIG. 1: Gr2 moves objectward by 8.122 mm while Gr1/Gr3 remain fixed. Retained the prior SD corrections; extending the last asphere beyond 19.5 mm would approach the polynomial turnover rather than improve the physical optical rim. The four aspheric surfaces belong to two elements, so the diagram correctly shows two element-level A badges. No zoom travel applies to this prime lens.
+
+### L15 front-rim correction
+
+The previous pass missed the overhanging front rim of L15. In FIG. 1 the S8 front optical rim terminates at the same height as the S9 cemented interface, giving a level upper/lower edge. Corrected S8 from 28.0 to 24.8 mm to match S9. The larger value produced an unsupported projecting tip even though the geometry validator accepted it. This is a figure-derived rim correction; radii, thicknesses and the cemented interface are unchanged.
