@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **789** lenses scanned
-- **1790** total code-only elements found
-- **1790** elements in this report
-- **281** distinct lens files affected
+- **798** lenses scanned
+- **1792** total code-only elements found
+- **1792** elements in this report
+- **282** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -202,6 +202,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 740282 | 2 | 2 | patents/US3635546.pdf<br>patents/US3481666.pdf | No review-record hit |
 | 740317 | 2 | 1 | patents/JPA 1989039542-000000.pdf | No review-record hit |
 | 744448 | 2 | 2 | patents/US10545321.pdf | 1/2 rows have review records |
+| 750251 | 2 | 2 | patents/US_4493536_A.pdf | All rows have review records |
 | 750350 | 2 | 2 | patents/JP_2000047107_A.pdf<br>patents/US6115188.pdf | No review-record hit |
 | 755516 | 2 | 1 | patents/JP2004109559A.pdf | All rows have review records |
 | 755523 | 2 | 2 | patents/US9651761.pdf<br>patents/US20040218274A1.pdf | No review-record hit |
@@ -371,7 +372,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 747274 | 1 | 1 | patents/US3649104.pdf | All rows have review records |
 | 749501 | 1 | 1 | patents/US4124276.pdf | All rows have review records |
 | 749547 | 1 | 1 | patents/CN205720849U.pdf | All rows have review records |
-| 750251 | 1 | 1 | Missing from untracked local patents/ references (US4560253, 4560253) | All rows have review records |
 | 750501 | 1 | 1 | patents/US4277149.pdf | All rows have review records |
 | 750504 | 1 | 1 | patents/US4258985.pdf | All rows have review records |
 | 752251 | 1 | 1 | patents/US20230367186A1.pdf | All rows have review records |
@@ -411,6 +411,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 803405 | 1 | 1 | patents/US20170351051A1.pdf | All rows have review records |
 | 803456 | 1 | 1 | patents/US20140354857A1.pdf | All rows have review records |
 | 805410 | 1 | 1 | patents/US4871239.pdf | All rows have review records |
+| 805445 | 1 | 1 | patents/US_4493536_A.pdf | All rows explicitly disposed |
 | 810372 | 1 | 1 | patents/US20180164556A1.pdf | All rows explicitly disposed |
 | 831265 | 1 | 1 | patents/US3615126.pdf | All rows explicitly disposed |
 | 835431 | 1 | 1 | No patent number parsed from lens metadata | All rows explicitly disposed |
@@ -1840,6 +1841,13 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | G5 (Element G5) | 9 | `Unmatched (733282 dense flint; no compatible public coefficient row)` | 1.73300 / 28.20 | No catalog entry | abbe | patents/US3589798.pdf | Explicit disposition in data |
 | G8 (Element G8) | 14 | `Unmatched (733282 dense flint; no compatible public coefficient row)` | 1.73300 / 28.20 | No catalog entry | abbe | patents/US3589798.pdf | Explicit disposition in data |
 | G9 (Element G9) | 17 | `Unmatched (740375 high-index flint; no compatible public coefficient row)` | 1.74000 / 37.50 | No catalog entry | abbe | patents/US3589798.pdf | Explicit disposition in data |
+
+### [MINOLTA MD 28mm f/2.8 (5 elements / 5 groups)](../../src/lens-data/minolta/Minolta28mmf28MDv2.data.ts) - US 4,493,536
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L2 (Element 2) | 3 | `Unmatched (805445 coordinate; supplier unresolved)` | 1.80500 / 44.53 | No catalog entry | abbe | patents/US_4493536_A.pdf | Explicit disposition in data |
+| L3 (Element 3) | 5 | `Unmatched (750251 coordinate; supplier unresolved)` | 1.75000 / 25.14 | No catalog entry | abbe | patents/US_4493536_A.pdf | Explicit disposition in data |
 
 ### [MINOLTA MD ROKKOR 45mm f/2](../../src/lens-data/minolta/MinoltaRokkor45mmf2MD.data.ts) - US 4,277,149
 

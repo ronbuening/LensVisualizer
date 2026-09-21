@@ -389,19 +389,36 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
       { family: "Konica Minolta", effectiveFrom: "2003-08-05", sourceUrl: SOURCES.konicaMinoltaHistory },
     ],
   },
-  "Leica Camera AG": {
+  "Leica Camera GmbH": {
     successorOf: [
       {
         organization: "Ernst Leitz GmbH",
         effectiveDate: "1986",
         sourceUrl: SOURCES.leica1988,
-        note: "The photography division became Leica GmbH in 1986 and was operating as Leica Camera AG by 1996.",
+        note: "The photography division became Leica GmbH in 1986; the 1992 patent retains the Leica Camera GmbH assignee name.",
       },
     ],
     corporateFamily: [
       {
         family: "Leitz–Leica lineage",
         effectiveFrom: "1986",
+        sourceUrl: SOURCES.leica1988,
+      },
+    ],
+  },
+  "Leica Camera AG": {
+    successorOf: [
+      {
+        organization: "Leica Camera GmbH",
+        effectiveDate: "1996",
+        sourceUrl: SOURCES.leica1996,
+        note: "The camera business became Leica Camera AG for its 1996 stock-market listing; earlier patent-era GmbH attributions remain separate.",
+      },
+    ],
+    corporateFamily: [
+      {
+        family: "Leitz–Leica lineage",
+        effectiveFrom: "1996",
         sourceUrl: SOURCES.leica1996,
       },
     ],

@@ -9,12 +9,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **789** lenses scanned
-- **1790** total code-only elements found
-- **286** elements in this report
-- **110** distinct lens files affected
+- **798** lenses scanned
+- **1792** total code-only elements found
+- **288** elements in this report
+- **111** distinct lens files affected
 - **4** active unreviewed elements have no review-record hit or explicit disposition
-- **153** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
+- **155** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
 - **0** dispositions lack any review record
 
 ## Prioritized Unreviewed Queue
@@ -60,6 +60,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 720521 | 2 | 2 | patents/US4124276.pdf | All rows have review records |
 | 726548 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
 | 733282 | 2 | 1 | patents/US3589798.pdf | All rows explicitly disposed |
+| 750251 | 2 | 2 | patents/US_4493536_A.pdf | All rows have review records |
 | 755516 | 2 | 1 | patents/JP2004109559A.pdf | All rows have review records |
 | 774492 | 2 | 1 | patents/US3748022.pdf | All rows have review records |
 | 781445 | 2 | 2 | patents/US4277149.pdf<br>patents/US4182550.pdf | All rows have review records |
@@ -194,7 +195,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 747274 | 1 | 1 | patents/US3649104.pdf | All rows have review records |
 | 749501 | 1 | 1 | patents/US4124276.pdf | All rows have review records |
 | 749547 | 1 | 1 | patents/CN205720849U.pdf | All rows have review records |
-| 750251 | 1 | 1 | Missing from untracked local patents/ references (US4560253, 4560253) | All rows have review records |
 | 750501 | 1 | 1 | patents/US4277149.pdf | All rows have review records |
 | 750504 | 1 | 1 | patents/US4258985.pdf | All rows have review records |
 | 754260 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | All rows have review records |
@@ -229,6 +229,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 803405 | 1 | 1 | patents/US20170351051A1.pdf | All rows have review records |
 | 803456 | 1 | 1 | patents/US20140354857A1.pdf | All rows have review records |
 | 805410 | 1 | 1 | patents/US4871239.pdf | All rows have review records |
+| 805445 | 1 | 1 | patents/US_4493536_A.pdf | All rows explicitly disposed |
 | 806333 | 1 | 1 | patents/CN211826699U.pdf | All rows explicitly disposed |
 | 810372 | 1 | 1 | patents/US20180164556A1.pdf | All rows explicitly disposed |
 | 831265 | 1 | 1 | patents/US3615126.pdf | All rows explicitly disposed |
@@ -567,6 +568,13 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | G5 (Element G5) | 9 | `Unmatched (733282 dense flint; no compatible public coefficient row)` | 1.73300 / 28.20 | No catalog entry | abbe | patents/US3589798.pdf | Explicit disposition in data |
 | G8 (Element G8) | 14 | `Unmatched (733282 dense flint; no compatible public coefficient row)` | 1.73300 / 28.20 | No catalog entry | abbe | patents/US3589798.pdf | Explicit disposition in data |
 | G9 (Element G9) | 17 | `Unmatched (740375 high-index flint; no compatible public coefficient row)` | 1.74000 / 37.50 | No catalog entry | abbe | patents/US3589798.pdf | Explicit disposition in data |
+
+### [MINOLTA MD 28mm f/2.8 (5 elements / 5 groups)](../../src/lens-data/minolta/Minolta28mmf28MDv2.data.ts) - US 4,493,536
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L2 (Element 2) | 3 | `Unmatched (805445 coordinate; supplier unresolved)` | 1.80500 / 44.53 | No catalog entry | abbe | patents/US_4493536_A.pdf | Explicit disposition in data |
+| L3 (Element 3) | 5 | `Unmatched (750251 coordinate; supplier unresolved)` | 1.75000 / 25.14 | No catalog entry | abbe | patents/US_4493536_A.pdf | Explicit disposition in data |
 
 ### [MINOLTA MD ROKKOR 45mm f/2](../../src/lens-data/minolta/MinoltaRokkor45mmf2MD.data.ts) - US 4,277,149
 

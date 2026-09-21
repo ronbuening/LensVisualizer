@@ -6,6 +6,18 @@ import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
   {
+    name: "S-FTL10",
+    vendor: "Ohara",
+    B: [1.10542993, 0.116184325, 1.15396111],
+    C: [0.00669004168, 0.0360840691, 137.546485],
+    nd: 1.501372,
+    vd: 56.42,
+    PgF: 0.5533,
+    code6: "501564",
+    source:
+      "OHARA S-FTL10 manufacturer datasheet, code(d) 501564 / code(e) 503561; accessed 2026-09-21. https://oharacorp.com/wp-content/uploads/2023/06/esftl10.pdf",
+  },
+  {
     name: "L-BAL35P",
     vendor: "Ohara",
     B: [0.806742194, 0.690488648, 1.26477947],

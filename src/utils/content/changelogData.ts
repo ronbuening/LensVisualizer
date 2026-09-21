@@ -19,6 +19,11 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-09-21",
+    type: "lens",
+    summary: "Added six Leica Summilux lenses and three Minolta 28mm designs",
+  },
+  {
     date: "2026-09-20",
     type: "lens",
     summary: "Added three Schneider Variogon zooms and Sony GM 50mm f/1.2, 50mm f/1.4 and 50–150mm f/2",
