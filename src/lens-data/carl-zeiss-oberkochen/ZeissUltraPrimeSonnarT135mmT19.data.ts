@@ -60,7 +60,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   /* ── Identity ── */
   key: "zeiss-ultra-prime-135-t19",
-  maker: "Carl Zeiss",
+  maker: "Carl Zeiss Oberkochen",
   name: "CARL ZEISS ULTRA PRIME SONNAR T* 135mm T1.9",
   subtitle: "US 2017/0307860 A1 EXAMPLE 1 — CARL ZEISS AG / PRETORIUS, BLAHNIK (MANIPULATOR OMITTED)",
   specs: ["8 ELEMENTS / 7 GROUPS", "f ≈ 134.3 mm", "F/1.8", "2ω ≈ 13.1° (31.14 mm ID)", "ALL SPHERICAL"],

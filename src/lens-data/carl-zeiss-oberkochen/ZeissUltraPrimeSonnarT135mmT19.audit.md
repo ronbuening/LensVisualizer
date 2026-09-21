@@ -25,3 +25,7 @@ Compared the live diagram with local US 2017/0307860 A1, PDF page 4, Fig. 7 and 
 Reviewed element labels, high-index colors and the existing inferred S-FPL51 APD tag. Corrected the analysis text to describe catalog-derived spectral indices rather than obsolete copied line-index fields. All eight elements retain compatible catalog curves.
 
 Follow-up validation: typecheck, formatting, lint and all 2,717 tests in 276 files passed; the production build prerendered 1,397 pages. Glass reports retain 63/67 resolved batch elements and zero catalog mismatches. All six surface audits pass, the five applicable image-circle audits report no undersized surfaces, and renderer diagnostics report zero SD trim at five zoom positions and both focus-control endpoints. No additional changelog entry was added.
+
+## 2026-09-21 — Maker normalization
+
+Changed `maker` from `Carl Zeiss` to the established `Carl Zeiss Oberkochen` catalog family. The CARL ZEISS display branding and `Carl Zeiss AG` patent assignee are retained as separate metadata.
