@@ -4,6 +4,10 @@ import { prepareRuntimeState } from "../../../src/optics/compat.js";
 import { assessMtfSupport } from "../../../src/optics/analysis/mtfSupport.js";
 import type { MtfOptions } from "../../../src/types/mtf.js";
 import { LINE_NM } from "../../../src/optics/spectralLines.js";
+import { geometricOtf, otfMagnitude } from "../../../src/optics/analysis/mtfMath.js";
+import { computeMtf } from "../../../src/optics/mtf.js";
+import { mtfTraceClassification } from "../../../src/optics/analysis/mtfTracing.js";
+import type { EngineTraceResult } from "../../../src/optics/trace/types.js";
 
 export const mtfTestOptions: MtfOptions = {
   method: "geometric",
@@ -47,5 +51,39 @@ describe("MTF support", () => {
       surfaces: L.data.surfaces.map((s, i) => (i === 2 ? { ...s, nd: 1.6, elemId: 2 } : s)),
     });
     expect(assessMtfSupport(prepareRuntimeState(mixed, 0, 0), mtfTestOptions).reason).toBe("mixed-reference");
+  });
+});
+
+describe("geometric MTF", () => {
+  it("has unity response for a point and is translation invariant", () => {
+    for (const x of [0, 1.234]) {
+      expect(otfMagnitude(geometricOtf([{ x, y: 0, weight: 1 }], [0, 10, 100], "x"))).toEqual([1, 1, 1]);
+    }
+  });
+  it("reproduces an anisotropic Gaussian and weights transmitted intensity", () => {
+    const points = Array.from({ length: 801 }, (_, i) => {
+      const x = (i - 400) * 0.0001;
+      return { x, y: 0, weight: Math.exp((-x * x) / (2 * 0.005 ** 2)) };
+    });
+    const frequencies = [0, 10, 20, 40];
+    const values = otfMagnitude(geometricOtf(points, frequencies, "x"));
+    values.forEach((v, i) => expect(v).toBeCloseTo(Math.exp(-2 * Math.PI ** 2 * 0.005 ** 2 * frequencies[i] ** 2), 6));
+    otfMagnitude(geometricOtf(points, frequencies, "y")).forEach((v) => expect(v).toBeCloseTo(1, 12));
+    expect(geometricOtf([], frequencies, "x").real).toEqual([]);
+  });
+  it("does not treat failed intersections as physical vignetting", () => {
+    expect(mtfTraceClassification({ status: "failed", failureReason: "noBracket" } as EngineTraceResult)).toBe(
+      "failed",
+    );
+    expect(mtfTraceClassification({ status: "clipped", failureReason: null } as EngineTraceResult)).toBe("blocked");
+  });
+  it("reports converged curves or explicit sampling limitations on a real optical state", () => {
+    const result = computeMtf(prepareRuntimeState(buildSimplePositiveElementLens(), 0, 0), mtfTestOptions);
+    const field = result.fields[0];
+    expect(field.reason).toBeNull();
+    expect(field.sagittal[0]).toBeCloseTo(1, 12);
+    field.tangential.forEach((value, i) => expect(value).toBeCloseTo(field.sagittal[i], 12));
+    expect(field.maxDelta).not.toBeNull();
+    expect(field.gridSize).toBe(32);
   });
 });
