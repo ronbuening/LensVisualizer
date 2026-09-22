@@ -10,12 +10,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **798** lenses scanned (**786** visible)
-- **8311 / 8941** non-air surfaces use strict catalog Sellmeier data (93.0%)
-- **8326 / 8941** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.1%)
+- **8321 / 8941** non-air surfaces use strict catalog Sellmeier data (93.1%)
+- **8336 / 8941** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.2%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
-- **288** code-only missing-Sellmeier elements in Sweep 2: **4** active unreviewed, **155** self-recording explicit dispositions, **0** dispositions missing any review record
-- **0** unresolved named-token elements in Sweep 2B, producing **0** token occurrences across **0** distinct tokens
+- **289** code-only missing-Sellmeier elements in Sweep 2: **4** active unreviewed, **155** self-recording explicit dispositions, **0** dispositions missing any review record
+- **1** unresolved named-token elements in Sweep 2B, producing **1** token occurrences across **1** distinct tokens
 - **0** Tier A proprietary backfill rows in Sweep 3
 
 ## Sweep 1 - Relabel Mismatches
@@ -74,7 +74,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [NIKON R-UW AF FISHEYE-NIKKOR 13mm f/2.8](../../src/lens-data/nikon/NikonRUWAFNikkor13mmf28.data.ts) | US 5,579,169 | [PDF](../../patents/US5579169.pdf) | 90.0% (9/10) | 90.0% (9/10) | 1 | 7 [glass] (G41 positive doublet element: `Unmatched dense flint (595355)`) | abbe: 1 |
 | [CARL ZEISS JENA VARIO-PRAKTICAR 35-70mm f/2.7-3.5 MC](../../src/lens-data/carl-zeiss-jena/ZeissVarioPrakticar3570mmf2735.data.ts) | DE 3602859 A1 | [PDF](../../patents/DE_3602859_A1.pdf) | 88.9% (8/9) | 88.9% (8/9) | 1 | 10 [glass] (Element 6: `Unmatched (Jena melt, n_e 1.66640 / ν_e 56.14; no verified compatible catalog dispersion)`) | abbe: 1 |
 | [NIKON NIKKOR-N Auto 24mm f/2.8](../../src/lens-data/nikon/NikonNikkorAuto24f28.data.ts) | US 3,622,227 | [PDF](../../patents/US3622227.pdf) | 88.9% (8/9) | 88.9% (8/9) | 1 | 15 [glass] (Element 9: `LAF2 equivalent (catalog comparison; supplier unspecified)`) | abbe: 1 |
-| [NIKON NIKKOR-N AUTO 28mm f/2](../../src/lens-data/nikon/NikonNikkorN28mmf2.data.ts) | US 3,736,049 | [PDF](../../patents/US3736049.pdf) | 88.9% (8/9) | 88.9% (8/9) | 1 | 14 [glass] (Element 8: `Discontinued LaF/LaK type (1970s)`) | abbe: 1 |
+| [NIKON NIKKOR-N AUTO 28mm f/2](../../src/lens-data/nikon/NikonNikkorN28mmf2.data.ts) | US 3,736,049 | [PDF](../../patents/US3736049.pdf) | 88.9% (8/9) | 88.9% (8/9) | 1 | 14 [glass] (Element 8: `744479 — lanthanum flint (catalog unresolved; nd = 1.74443, νd = 47.9)`) | abbe: 1 |
 | [PENTAX FA 31mm f/1.8 AL Limited](../../src/lens-data/pentax/PentaxFA31mmf18ALLtd.data.ts) | US 6,560,042 B2 | [PDF](../../patents/US6560042.pdf) | 88.9% (8/9) | 88.9% (8/9) | 1 | 13 [glass] (Element 8: `Unmatched (728403 lanthanum flint; no public coefficient row inside the d-line safety window)`) | abbe: 1 |
 | [SCHNEIDER-KREUZNACH CINEGON 10mm f/1.8](../../src/lens-data/schneider-kreuznach/SchneiderCinegon1810.data.ts) | US 3,038,379 | [PDF](../../patents/US3038379.pdf) | 88.9% (8/9) | 88.9% (8/9) | 1 | 5 [glass] (Element 4: `Unmatched (nd=1.5128, vd=57.2; public catalog identity unresolved)`) | abbe: 1 |
 | [SONY DT 16-50mm f/2.8 SSM](../../src/lens-data/sony/SonyDT1650mmf28SSM.data.ts) | US 2012/0307129 A1 | [PDF](../../patents/US20120307129A1.pdf) | 88.9% (16/18) | 88.9% (16/18) | 2 | 6A [glass] (G4 compound layer: `Unmatched (compound-asphere layer; material unspecified by patent)`)<br>26 [glass] (G13 compound layer: `Unmatched (compound-asphere layer; material unspecified by patent)`) | abbe: 2 |
@@ -95,7 +95,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [SCHNEIDER-KREUZNACH SUPER-SYMMAR XL 110mm f/5.6 ASPHERIC](../../src/lens-data/schneider-kreuznach/SchneiderSuperSymmarXL110mmf56.data.ts) | US 5,870,234 | [PDF](../../patents/US5870234.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 1 [glass] (Element 1: `Unmatched (Schott KF9; patent e-line ne=1.52583, ve=51.25 stored as nd/vd)`) | abbe: 1 |
 | [VILTROX AF 14mm f/4 AIR](../../src/lens-data/viltrox/ViltroxAF14mmf4Air.data.ts) | CN 121091494 A | [PDF](../../patents/CN_121091494_A.pdf) | 83.3% (10/12) | 83.3% (10/12) | 2 | 17 [glass] (Element 10: `Unmatched (patent nd=1.78 / vd=25.7; rounded coordinates do not pass catalog guard)`)<br>19A [glass] (Element 11: `Unmatched (nd≈1.64, νd≈23.5)`) | abbe: 2 |
 | [FUJIFILM SUPER EBC FUJINON 7.1-28.4mm f/2-2.8 (Fujifilm X10)](../../src/lens-data/fujifilm/FujifilmX1071284mmf228.data.ts) | US 2014/0133036 A1 | Missing from untracked local patents/ references (US20140133036A1, US20140133036, 20140133036) | 81.8% (9/11) | 81.8% (9/11) | 2 | 11A [glass] (G3 front asphere: `Unmatched (nd=1.803603, νd=40.28)`)<br>16A [glass] (G3 negative asphere: `Unmatched (nd=1.803603, νd=40.28)`) | abbe: 2 |
-| [LEICA SUMMILUX 28mm f/1.7 ASPH. (Leica Q, Q2, Q3)](../../src/lens-data/leica/Leica28mmf17.data.ts) | US 2016/0266350 A1 | [PDF](../../patents/US20160266350A1.pdf) | 81.8% (9/11) | 81.8% (9/11) | 2 | 12A [glass] (Element 6: `877370 — high-index lanthanum glass (patent nd=1.87722, nu_d=37.0)`)<br>20A [glass] (Element 11: `Unmatched (patent nd=1.68250, νd=33.00; prior H-ZF52A annotation rejected on dispersion)`) | abbe: 2 |
+| [LEICA SUMMILUX 28mm f/1.7 ASPH. (Leica Q, Q2, Q3)](../../src/lens-data/leica/Leica28mmf17.data.ts) | US 2016/0266350 A1 | [PDF](../../patents/US20160266350A1.pdf) | 81.8% (9/11) | 81.8% (9/11) | 2 | 12A [glass] (Element 6: `877370 — high-index lanthanum glass (catalog unresolved; patent nd=1.87722, νd=37.0)`)<br>20A [glass] (Element 11: `683330 — dense flint (catalog unresolved; patent nd=1.68250, νd=33.0; prior H-ZF52A label rejected)`) | abbe: 2 |
 | [PANASONIC LEICA DC VARIO-SUMMILUX 4.7-17.7mm f/1.4-2.3 (Panasonic Lumix DMC-LX7; Leica D-Lux 6)](../../src/lens-data/panasonic/LeicaDCVarioSummilux47177mmf1423PanasonicLX7.data.ts) | US 2015/0124127 A1 | [PDF](../../patents/US20150124127A1.pdf) | 81.8% (9/11) | 81.8% (9/11) | 2 | 20A [glass] (Element 10: `684313 — Unmatched exact public catalog identity`)<br>22A [glass] (Element 11: `636239 — Unmatched exact public catalog identity`) | abbe: 2 |
 | [AGFA COLOR-MAGNOLAR II 100mm f/4.5](../../src/lens-data/agfa/AgfaColorMagnolarII100mmf45.data.ts) | GB 775,944 | [PDF](../../patents/GB_775944_A.pdf) | 80.0% (4/5) | 60.0% (3/5) | 1 | 4 [glass] (Element 3: `Unmatched (540/509 crown-flint-boundary glass; no public catalog match located)`) | abbe: 1 |
 | [NIKON NIKKOR 600mm f/5.6 ED](../../src/lens-data/nikon/NikonNikkor600mmf56ED.data.ts) | US 3,774,991 | [PDF](../../patents/US3774991.pdf) | 80.0% (4/5) | 80.0% (4/5) | 1 | 1 [glass] (Element 1: `Unmatched (486815 — fluophosphate crown; vendor unresolved)`) | abbe: 1 |
@@ -190,6 +190,7 @@ These unresolved catalog-style labels are often better first catalog targets tha
 
 | Token | Token occurrences | Lens files | localPatentStatus | Representative rows |
 |---|---:|---:|---|---|
+| H-ZF52A | 1 | 1 | patents/US20160266350A1.pdf | [LEICA SUMMILUX 28mm f/1.7 ASPH. (Leica Q, Q2, Q3)](../../src/lens-data/leica/Leica28mmf17.data.ts) Element 11 (1.68250 / 33.00; abbe) |
 
 ## Sweep 3 - Proprietary Line-Index Backfill
 
