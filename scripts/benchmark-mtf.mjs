@@ -10,6 +10,7 @@ import { MTF_BENCHMARK_CASES, MTF_BENCHMARK_GRIDS } from "../src/benchmarks/mtfC
 
 const method = process.argv.includes("--diffraction") ? "diffraction" : "geometric";
 const spectrum = process.argv.includes("--cdf") ? "cdf" : "reference";
+const apertureScale = process.argv.includes("--stopped-down") ? 0.25 : 1;
 const rows = [];
 for (const file of MTF_BENCHMARK_CASES) {
   const data = (await import(pathToFileURL(resolve("src/lens-data", file)))).default;
@@ -21,8 +22,8 @@ for (const file of MTF_BENCHMARK_CASES) {
       spectrum,
       maxGridSize,
       fieldFractions: [0, 0.5, 1],
-      pupilSemiDiameterMm: L.EP.epSD,
-      stopSemiDiameterMm: L.stopPhysSD,
+      pupilSemiDiameterMm: L.EP.epSD * apertureScale,
+      stopSemiDiameterMm: L.stopPhysSD * apertureScale,
     };
     computeMtf(state, options);
     const times = [];
@@ -36,6 +37,7 @@ for (const file of MTF_BENCHMARK_CASES) {
     rows.push({
       key: data.key,
       maxGridSize,
+      support: result.support.reason ?? "candidate",
       medianMs: +times[1].toFixed(2),
       fields: result.fields.map(({ fieldFraction, status, reason, gridSize, maxDelta }) => ({
         fieldFraction,
@@ -56,6 +58,7 @@ console.log(
       cpu: os.cpus()[0]?.model,
       method,
       spectrum,
+      apertureScale,
       rows,
     },
     null,

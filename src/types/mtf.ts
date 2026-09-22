@@ -34,6 +34,8 @@ export interface MtfSupport {
   referenceWavelengthNm: number;
   /** Mixed-reference models require physical d-line dispersion lookups. */
   useResolvedReference: boolean;
+  /** Incident intensity weights; throughput is applied separately before normalizing the OTF. */
+  spectralLines: Array<{ wavelengthNm: number; weight: number }>;
   limitations: string[];
 }
 

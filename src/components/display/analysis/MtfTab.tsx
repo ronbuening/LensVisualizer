@@ -103,9 +103,7 @@ export default function MtfTab({
             onChange={(e) => setSpectrum(e.target.value as MtfSpectrum)}
           >
             <option value="reference">Reference wavelength</option>
-            <option value="cdf" disabled>
-              C/d/F (coming later)
-            </option>
+            <option value="cdf">C/d/F estimate (equal weights)</option>
           </select>
         </label>
         <label>
@@ -134,8 +132,11 @@ export default function MtfTab({
         </label>
       </div>
       <p style={{ color: t.muted }}>
-        {support.referenceWavelengthNm.toFixed(1)} nm · Physical stop radius {currentPhysStopSD.toFixed(2)} mm · Zoom{" "}
-        {(preparedState.zoomT * 100).toFixed(0)}% · One fixed image plane
+        {spectrum === "cdf"
+          ? "C/d/F: 656.3 / 587.6 / 486.1 nm; equal incident weights"
+          : `${support.referenceWavelengthNm.toFixed(1)} nm`}{" "}
+        · Physical stop radius {currentPhysStopSD.toFixed(2)} mm · Zoom {(preparedState.zoomT * 100).toFixed(0)}% · One
+        fixed image plane
       </p>
       {method === "geometric" && (
         <p>Geometric MTF excludes diffraction. It can overestimate contrast near the diffraction limit.</p>

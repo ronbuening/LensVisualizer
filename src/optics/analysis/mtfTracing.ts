@@ -7,6 +7,7 @@ import { halfFieldAtZoom } from "../layout.js";
 import { traceEngineRay2 } from "../trace/rayAdapters.js";
 import { bulkTransmissionForTrace } from "../trace/bulkAbsorption.js";
 import type { MtfSpot } from "./mtfMath.js";
+import type { ChromaticChannel } from "../../types/optics.js";
 
 export interface MtfPupilRay extends MtfSpot {
   column: number;
@@ -51,6 +52,7 @@ export function traceMtfPupil(
   support: MtfSupport,
   fieldFraction: number,
   gridSize: number,
+  spectralLine?: { channel: ChromaticChannel; wavelengthNm: number },
 ): MtfBundle | null {
   const L = state.lens.runtime;
   const angle = halfFieldAtZoom(state.zoomT, L) * fieldFraction;
@@ -66,9 +68,12 @@ export function traceMtfPupil(
       stopSemiDiameter: options.stopSemiDiameterMm,
       stopOnClip: true,
       directionNormalized: true,
-      wavelengthNm: support.referenceWavelengthNm,
+      wavelengthNm: spectralLine?.wavelengthNm ?? support.referenceWavelengthNm,
       recordOpticalPath: options.method === "diffraction",
-      indexAtSurface: support.useResolvedReference ? (i) => state.lens.dispersion[i].indexAt("G") : undefined,
+      indexAtSurface:
+        spectralLine || support.useResolvedReference
+          ? (i) => state.lens.dispersion[i].indexAt(spectralLine?.channel ?? "G")
+          : undefined,
     });
   };
   const chiefTrace = traceAt(0, 0);

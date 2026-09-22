@@ -6,6 +6,11 @@ import type { PreparedOpticalState } from "../types.js";
 export const MTF_FREQUENCIES = Object.freeze(Array.from({ length: 51 }, (_, i) => i * 2));
 export const MTF_FIELDS = Object.freeze([0, 0.25, 0.5, 0.75, 1]);
 export const MTF_CONVERGENCE_TOLERANCE = 0.01;
+export const MTF_CDF_LINES = [
+  { channel: "G", wavelengthNm: LINE_NM.d },
+  { channel: "R", wavelengthNm: LINE_NM.C },
+  { channel: "B", wavelengthNm: LINE_NM.F },
+] as const;
 
 export function assessMtfSupport(state: PreparedOpticalState, options: MtfOptions): MtfSupport {
   const { lens } = state;
@@ -18,6 +23,10 @@ export function assessMtfSupport(state: PreparedOpticalState, options: MtfOption
     message: "Simulation of the authored prescription, not a measured production lens.",
     referenceWavelengthNm: references.size === 1 && references.has("e") ? LINE_NM.e : LINE_NM.d,
     useResolvedReference: mixed,
+    spectralLines:
+      options.spectrum === "cdf"
+        ? MTF_CDF_LINES.map((line) => ({ wavelengthNm: line.wavelengthNm, weight: 1 / 3 }))
+        : [{ wavelengthNm: references.size === 1 && references.has("e") ? LINE_NM.e : LINE_NM.d, weight: 1 }],
     limitations: [
       "Circular iris; authored clear apertures and glass values may be approximate.",
       "Excludes coatings, manufacturing errors, omitted sensor stacks, polarization and sensor processing.",
@@ -64,8 +73,26 @@ export function assessMtfSupport(state: PreparedOpticalState, options: MtfOption
     return reject("mixed-reference", "Mixed d/e indices need physical wavelength data for every glass.");
   }
   if (mixed) support.limitations.push("Reference indices use compatible catalog dispersion at the d line.");
-  if (options.spectrum !== "reference")
-    return reject("spectral-data-unavailable", "Spectral MTF is not available yet.");
+  if (options.spectrum === "cdf") {
+    const unsupported = lens.dispersion.some((s, i) => {
+      if (s.quality === "air" || s.quality === "sellmeier") return false;
+      const element = media.find((e) => e.id === state.surfaces[i].elemId);
+      return s.quality !== "lineIndices" || element?.indexReference === "e";
+    });
+    if (unsupported)
+      return reject(
+        "spectral-data-unavailable",
+        "C/d/F requires physical C, d and F indices for every glass. Reference-wavelength MTF remains available.",
+      );
+    support.referenceWavelengthNm = LINE_NM.d;
+    support.limitations.push(
+      "Three-line C/d/F estimate with equal incident intensity weights, one image plane and preserved lateral color; not a broadband camera response.",
+    );
+    if (lens.dispersion.some((s) => s.quality === "sellmeier"))
+      support.limitations.push(
+        "Compatible catalog glasses supply spectral proxies, not proof of production glass identity or MTF accuracy.",
+      );
+  }
   if (options.method === "diffraction")
     support.limitations.push(
       "Scalar FFT: image-ray incidence ≤15°, direction-cosine pupil radius ≤0.25, blur ≤2% of reference radius; other states are unavailable.",

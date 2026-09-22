@@ -57,6 +57,7 @@ flowchart LR
   n_src_optics_analysis_src_optics_analysis_chromatic_ts --> |2| n_external_src_optics_aberration
   n_src_optics_analysis_src_optics_analysis_analysisContext_ts --> |2| n_external_src_optics_chromatic
   n_src_optics_analysis_src_optics_analysis_groupMovement_ts --> |2| n_external_src_types
+  n_src_optics_analysis_src_optics_analysis_mtfTracing_ts --> |2| n_external_src_types
   n_src_optics_analysis_src_optics_analysis_bokeh_ts --> n_external_src_optics_aberration
   n_src_optics_analysis_src_optics_analysis_aberrations_ts --> n_external_src_optics_aberrationAnalysis_ts
   n_src_optics_analysis_src_optics_analysis_analysisJobs_ts --> n_external_src_optics_chromatic
@@ -86,7 +87,6 @@ flowchart LR
   n_src_optics_analysis_src_optics_analysis_pupilAberration_ts --> n_external_src_optics_pupilAberration_ts
   n_src_optics_analysis_src_optics_analysis_chromatic_ts --> n_external_src_optics_rayTrace_ts
   n_src_optics_analysis_src_optics_analysis_mtfSupport_ts --> n_external_src_optics_spectralLines_ts
-  n_src_optics_analysis_src_optics_analysis_chromatic_ts --> n_external_src_optics_trace
   n_src_optics_analysis_truncated["additional relationships omitted"]
 ```
 
@@ -94,7 +94,7 @@ flowchart LR
 
 - Direct source files: 23
 - Direct subfolders: 0
-- Main outbound areas: same folder (32), src/optics/types.ts (16), src/types (13), src/optics/perspective (10), src/optics/chromatic (8), src/optics/optics.ts (8), src/optics/trace (4), src/optics/aberration (3), +13 more
+- Main outbound areas: same folder (32), src/optics/types.ts (16), src/types (14), src/optics/perspective (10), src/optics/chromatic (8), src/optics/optics.ts (8), src/optics/trace (4), src/optics/aberration (3), +13 more
 - External consumers: src/benchmarks, src/components/layout, src/optics/aberration, src/optics/analysisJobs.ts, src/optics/compat.ts, src/optics/distortionAnalysis.ts, src/optics/mtf.ts, src/optics/vignetteAnalysis.ts
 
 ## Files
@@ -115,9 +115,9 @@ flowchart LR
 | `groupMovement.ts` | Group Movement helper module | src/types (2), src/optics/groupMovement.ts, src/optics/types.ts | src/optics/compat.ts | computeGroupMovementProfileForState2, computeGroupMovementProfile2, firstAvailableGroupMovementMode2, getGroupMovementAvailability2, inferLensMovementGroups2, isGroupMovementModeAvailable2 |
 | `mtf.ts` | Mtf helper module | same folder (4), src/optics/types.ts, src/types | src/optics/mtf.ts | emptyMtfField, computeMtfSteps, computeMtf |
 | `mtfDiffraction.ts` | Mtf Diffraction helper module | same folder (3), src/optics/math, src/optics/types.ts | same folder | ComplexPupil, DiffractionOtf, PupilReconstruction, pupilOtf, reconstructMtfPupil |
-| `mtfMath.ts` | Mtf Math helper module | none | same folder (3) | MtfSpot, ComplexOtf, geometricOtf, otfMagnitude |
-| `mtfSupport.ts` | Mtf Support helper module | src/optics/spectralLines.ts, src/optics/types.ts, src/types | same folder, src/optics/mtf.ts | MTF_FREQUENCIES, MTF_FIELDS, MTF_CONVERGENCE_TOLERANCE, assessMtfSupport |
-| `mtfTracing.ts` | Mtf Tracing helper module | src/optics/trace (3), same folder, src/optics/field, src/optics/layout.ts, src/optics/types.ts, +1 more | same folder (3) | MtfPupilRay, MtfBundle, mtfImagePoint, mtfTraceClassification, traceMtfPupil |
+| `mtfMath.ts` | Mtf Math helper module | none | same folder (3) | MtfSpot, ComplexOtf, geometricOtf, otfMagnitude, translateOtf, combineOtfs |
+| `mtfSupport.ts` | Mtf Support helper module | src/optics/spectralLines.ts, src/optics/types.ts, src/types | same folder, src/optics/mtf.ts | MTF_FREQUENCIES, MTF_FIELDS, MTF_CONVERGENCE_TOLERANCE, MTF_CDF_LINES, assessMtfSupport |
+| `mtfTracing.ts` | Mtf Tracing helper module | src/optics/trace (3), src/types (2), same folder, src/optics/field, src/optics/layout.ts, +1 more | same folder (3) | MtfPupilRay, MtfBundle, mtfImagePoint, mtfTraceClassification, traceMtfPupil |
 | `mtfWavefront.ts` | Mtf Wavefront helper module | same folder, src/optics/types.ts | same folder | WavefrontSample, launchPhaseMm, sampleReferenceWavefront |
 | `perspectiveAnalysisJobs.ts` | Perspective Analysis Jobs helper module | src/optics/perspective (8), same folder, src/optics/chromatic | same folder | PerspectiveAnalysisJobParams, PerspectiveAnalysisSamplingPlan, PerspectiveAnalysisJobs, perspectiveAnalysisSamplingPlan, createPerspectiveAnalysisJobs |
 | `preparedStateAdapters.ts` | Prepared State Adapters helper module | src/optics/types.ts | same folder (5) | zPosForPreparedAnalysis2 |

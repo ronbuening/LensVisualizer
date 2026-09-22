@@ -15,7 +15,7 @@ for (const file of readdirSync("src/lens-data", { recursive: true })
   const L = buildLens(data);
   const support = assessMtfSupport(prepareRuntimeState(L, 0, 0), {
     method: "geometric",
-    spectrum: "reference",
+    spectrum: process.argv.includes("--cdf") ? "cdf" : "reference",
     pupilSemiDiameterMm: L.EP.epSD,
     stopSemiDiameterMm: L.stopPhysSD,
   });
