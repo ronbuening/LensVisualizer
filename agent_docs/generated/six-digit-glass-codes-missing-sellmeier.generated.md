@@ -9,12 +9,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **798** lenses scanned
-- **1793** total code-only elements found
-- **289** elements in this report
-- **111** distinct lens files affected
+- **804** lenses scanned
+- **1807** total code-only elements found
+- **300** elements in this report
+- **114** distinct lens files affected
 - **4** active unreviewed elements have no review-record hit or explicit disposition
-- **155** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
+- **163** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
 - **0** dispositions lack any review record
 
 ## Prioritized Unreviewed Queue
@@ -49,7 +49,10 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 514428 | 2 | 1 | patents/JP2016021011A.pdf | All rows have review records |
 | 531557 | 2 | 2 | patents/WO2022071249A1.pdf<br>patents/US8994842.pdf | All rows explicitly disposed |
 | 531559 | 2 | 2 | patents/US20200142167A1.pdf<br>patents/WO2021039813A1.pdf | All rows have review records |
+| 540473 | 2 | 1 | patents/GB_135853_A.pdf | All rows explicitly disposed |
 | 620586 | 2 | 1 | patents/US4303314.pdf | All rows have review records |
+| 621569 | 2 | 1 | patents/GB_135853_A.pdf | All rows explicitly disposed |
+| 622532 | 2 | 1 | patents/GB_135853_A.pdf | All rows explicitly disposed |
 | 627376 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
 | 633315 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
 | 661204 | 2 | 1 | patents/US20210149156A1.pdf | All rows explicitly disposed |
@@ -57,6 +60,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 682419 | 2 | 1 | patents/DE_1157000_B.pdf | No review-record hit |
 | 683548 | 2 | 2 | patents/JP2021036283A.pdf<br>patents/WO2021039813A1.pdf | All rows have review records |
 | 690570 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
+| 691530 | 2 | 1 | patents/US20150177500A1.pdf | All rows have review records |
 | 720521 | 2 | 2 | patents/US4124276.pdf | All rows have review records |
 | 726548 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
 | 733282 | 2 | 1 | patents/US3589798.pdf | All rows explicitly disposed |
@@ -65,6 +69,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 774492 | 2 | 1 | patents/US3748022.pdf | All rows have review records |
 | 781445 | 2 | 2 | patents/US4277149.pdf<br>patents/US4182550.pdf | All rows have review records |
 | 781446 | 2 | 2 | patents/JPA 1987244010-000000.pdf<br>patents/JP2004109559A.pdf | All rows have review records |
+| 803404 | 2 | 2 | patents/US20150177500A1.pdf<br>patents/US20140247506A1.pdf | All rows have review records |
 | 804238 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
 | 804466 | 2 | 1 | patents/JP2015166834A.pdf | All rows explicitly disposed |
 | 806418 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
@@ -114,6 +119,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 575414 | 1 | 1 | patents/US2279384.pdf | All rows explicitly disposed |
 | 578671 | 1 | 1 | patents/JPA 2021076740-000000.pdf | All rows explicitly disposed |
 | 580595 | 1 | 1 | patents/JP2015041012A.pdf | All rows explicitly disposed |
+| 581592 | 1 | 1 | patents/US20150131163A1.pdf | All rows explicitly disposed |
 | 583302 | 1 | 1 | patents/JP_2005092056_A.pdf | All rows explicitly disposed |
 | 585417 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | All rows have review records |
 | 595355 | 1 | 1 | patents/US5579169.pdf | All rows explicitly disposed |
@@ -189,6 +195,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 740439 | 1 | 1 | patents/US2983193.pdf | All rows explicitly disposed |
 | 740458 | 1 | 1 | patents/US2983193.pdf | All rows explicitly disposed |
 | 740464 | 1 | 1 | patents/US2983193.pdf | All rows explicitly disposed |
+| 740491 | 1 | 1 | patents/US20150131163A1.pdf | All rows explicitly disposed |
 | 740493 | 1 | 1 | patents/US20050013015A1.pdf | All rows explicitly disposed |
 | 741262 | 1 | 1 | patents/US3552833.pdf | All rows explicitly disposed |
 | 744458 | 1 | 1 | patents/US2279384.pdf | All rows explicitly disposed |
@@ -226,7 +233,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 798453 | 1 | 1 | patents/US9651761.pdf | All rows explicitly disposed |
 | 800255 | 1 | 1 | patents/JP2015041012A.pdf | All rows have review records |
 | 802444 | 1 | 1 | patents/JP_S5357028_A.pdf | All rows have review records |
-| 803404 | 1 | 1 | patents/US20140247506A1.pdf | All rows have review records |
 | 803405 | 1 | 1 | patents/US20170351051A1.pdf | All rows have review records |
 | 803456 | 1 | 1 | patents/US20140354857A1.pdf | All rows have review records |
 | 805410 | 1 | 1 | patents/US4871239.pdf | All rows have review records |
@@ -357,6 +363,13 @@ Completion counts are conditional on finding a source-verified catalog identity 
 |---|---|---|---|---|---|---|---|
 | L24 (L24) | 11A | `772493 — molded lanthanum-crown class (no exact public catalog match)` | 1.77210 / 49.30 | No catalog entry | abbe | patents/US20230341664A1.pdf | Reviewed sidecar hit |
 
+### [FUJIFILM FUJINON XF 10-24mm f/4 R OIS](../../src/lens-data/fujifilm/FujifilmFujinonXf1024mmf4ROIS.data.ts) - US 2015/0131163 A1
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L12 (Element L12) | 3A | `Unmatched (740491 coordinate)` | 1.74025 / 49.12 | No catalog entry | abbe | patents/US20150131163A1.pdf | Explicit disposition in data |
+| L21 (Element L21) | 10A | `Unmatched (581592 coordinate)` | 1.58103 / 59.23 | No catalog entry | abbe | patents/US20150131163A1.pdf | Explicit disposition in data |
+
 ### [FUJIFILM FUJINON XF 16-55mm f/2.8 R LM WR](../../src/lens-data/fujifilm/FujifilmXF1655mmf28R.data.ts) - US 2016/0154221 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
@@ -370,6 +383,14 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | L31 (L31) | 12A | `Unmatched (798453; nd=1.79839, νd=45.28)` | 1.79839 / 45.28 | No catalog entry | abbe | patents/US9651761.pdf | Explicit disposition in data |
 | L41 (L41) | 14A | `Unmatched (569585; nd=1.56867, νd=58.50)` | 1.56867 / 58.50 | No catalog entry | abbe | patents/US9651761.pdf | Explicit disposition in data |
 | L51 (L51) | 23A | `Unmatched (666552; nd=1.66630, νd=55.16)` | 1.66630 / 55.16 | No catalog entry | abbe | patents/US9651761.pdf | Explicit disposition in data |
+
+### [FUJIFILM FUJINON XF 18-55mm f/2.8-4 R LM OIS](../../src/lens-data/fujifilm/FujifilmFujinonXf1855mmf284RLMOIS.data.ts) - US 2015/0177500 A1
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L22 (L22) | 6A | `691530 coordinate class (catalog unresolved)` | 1.69098 / 52.95 | No catalog entry | abbe | patents/US20150177500A1.pdf | Audit-log hit |
+| L31 (L31) | 11A | `803404 coordinate class (catalog unresolved)` | 1.80348 / 40.44 | No catalog entry | abbe | patents/US20150177500A1.pdf | Audit-log hit |
+| L41 (L41) | 19A | `691530 coordinate class (catalog unresolved)` | 1.69098 / 52.95 | No catalog entry | abbe | patents/US20150177500A1.pdf | Audit-log hit |
 
 ### [FUJIFILM FUJINON XF 23mm f/2 R WR](../../src/lens-data/fujifilm/FujifilmXF23mmf2RWR.data.ts) - US 2017/0351051 A1
 
@@ -469,6 +490,17 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | G2 (Element 2) | 3 | `Unmatched (nd=1.69480, νd=55.5; nearest public 697555 lanthanum-crown family)` | 1.69480 / 55.50 | No catalog entry | abbe | Missing from untracked local patents/ references (JP1978066222A, JP1978066222, 1978066222, JPA1978066222000000) | Explicit disposition in data |
+
+### [MEYER OPTIK GÖRLITZ DOUBLE-PLASMAT 135mm f/4.5 (patent model)](../../src/lens-data/meyer-optik-goerlitz/MeyerOptikGorlitz135mmf45DoublePlasmat.data.ts) - GB 135,853 A
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L3′ (Element 1) | 1 | `Unmatched (621569 — historical D-line crown-class coordinate; supplier unresolved)` | 1.62070 / 56.90 | No catalog entry | abbe | patents/GB_135853_A.pdf | Explicit disposition in data |
+| L2′ (Element 2) | 2 | `Unmatched (540473 — historical D-line low-index flint / LLF-FEL-class coordinate; supplier unresolved)` | 1.53980 / 47.30 | No catalog entry | abbe | patents/GB_135853_A.pdf | Explicit disposition in data |
+| L1′ (Element 3) | 4 | `Unmatched (622532 — historical D-line SSK/BSM-class coordinate; supplier unresolved)` | 1.62230 / 53.20 | No catalog entry | abbe | patents/GB_135853_A.pdf | Explicit disposition in data |
+| L1 (Element 4) | 6 | `Unmatched (622532 — historical D-line SSK/BSM-class coordinate; supplier unresolved)` | 1.62230 / 53.20 | No catalog entry | abbe | patents/GB_135853_A.pdf | Explicit disposition in data |
+| L2 (Element 5) | 8 | `Unmatched (540473 — historical D-line low-index flint / LLF-FEL-class coordinate; supplier unresolved)` | 1.53980 / 47.30 | No catalog entry | abbe | patents/GB_135853_A.pdf | Explicit disposition in data |
+| L3 (Element 6) | 9 | `Unmatched (621569 — historical D-line crown-class coordinate; supplier unresolved)` | 1.62070 / 56.90 | No catalog entry | abbe | patents/GB_135853_A.pdf | Explicit disposition in data |
 
 ### [MINOLTA AF 100mm f/2](../../src/lens-data/minolta/MinoltaAF100mmf2.data.ts) - JP 1987-244010 A
 

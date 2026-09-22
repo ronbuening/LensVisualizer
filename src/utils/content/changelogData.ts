@@ -20,6 +20,11 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-09-22",
+    type: "lens",
+    summary: "Added three Fujinon XF zooms and Meyer Orestor, Kino-Plasmat and Double-Plasmat models",
+  },
+  {
+    date: "2026-09-22",
     type: "fix",
     summary: "Reviewed and corrected 20 lens diagrams against their patents: rims, apertures, focus states and glass",
   },

@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **798** lenses scanned
-- **8941** non-air surfaces examined
-- **8951** element glass declarations examined
-- **235** non-explicit-unmatched annotations did not resolve
-- **120** distinct unresolved glass-like tokens found
+- **804** lenses scanned
+- **8997** non-air surfaces examined
+- **9007** element glass declarations examined
+- **238** non-explicit-unmatched annotations did not resolve
+- **121** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -31,12 +31,14 @@ or per-lens patent backfills.
 | 633315 | 2 | 2 | |
 | 682419 | 2 | 1 | |
 | 690570 | 2 | 2 | |
+| 691530 | 2 | 1 | |
 | 720521 | 2 | 2 | |
 | 726548 | 2 | 2 | |
 | 755516 | 2 | 1 | |
 | 774492 | 2 | 1 | |
 | 777297 | 2 | 2 | |
 | 784438 | 2 | 1 | |
+| 803404 | 2 | 2 | |
 | 804238 | 2 | 2 | |
 | 806418 | 2 | 2 | |
 | 807316 | 2 | 2 | |
@@ -112,7 +114,6 @@ or per-lens patent backfills.
 | 797455 | 1 | 1 | |
 | 800255 | 1 | 1 | |
 | 802444 | 1 | 1 | |
-| 803404 | 1 | 1 | |
 | 803405 | 1 | 1 | |
 | 803456 | 1 | 1 | |
 | 805410 | 1 | 1 | |
@@ -218,6 +219,11 @@ or per-lens patent backfills.
 - [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) 42: `690570 crown class (catalog unresolved)`
 - [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR — TC 1.4x Engaged](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14TCIn.data.ts) 42: `690570 crown class (catalog unresolved)`
 
+### 691530 — 2 occurrences
+
+- [FUJIFILM FUJINON XF 18-55mm f/2.8-4 R LM OIS](../../src/lens-data/fujifilm/FujifilmFujinonXf1855mmf284RLMOIS.data.ts) 6A: `691530 coordinate class (catalog unresolved)`
+- [FUJIFILM FUJINON XF 18-55mm f/2.8-4 R LM OIS](../../src/lens-data/fujifilm/FujifilmFujinonXf1855mmf284RLMOIS.data.ts) 19A: `691530 coordinate class (catalog unresolved)`
+
 ### 720521 — 2 occurrences
 
 - [MINOLTA AF APO Tele 200mm f/2.8](../../src/lens-data/minolta/MinoltaAF200mmf28.data.ts) 5: `720521 - high-index lanthanum crown (catalog unresolved)`
@@ -247,6 +253,11 @@ or per-lens patent backfills.
 
 - [CARL ZEISS CONTAREX PLANAR 55mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissContarexPlanar55mmf14.data.ts) 7: `LaF10 (Schott 784438)`
 - [CARL ZEISS CONTAREX PLANAR 55mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissContarexPlanar55mmf14.data.ts) 9: `LaF10 (Schott 784438)`
+
+### 803404 — 2 occurrences
+
+- [FUJIFILM FUJINON XF 18-55mm f/2.8-4 R LM OIS](../../src/lens-data/fujifilm/FujifilmFujinonXf1855mmf284RLMOIS.data.ts) 11A: `803404 coordinate class (catalog unresolved)`
+- [FUJIFILM FUJINON XF 60mm f/2.4 R Macro](../../src/lens-data/fujifilm/FujifilmXF60mmf24R.data.ts) 12A: `803404 - PGM lanthanum heavy flint (patent nd=1.80348, vd=40.4; no exact public catalog match)`
 
 ### 804238 — 2 occurrences
 
@@ -555,10 +566,6 @@ or per-lens patent backfills.
 ### 802444 — 1 occurrence
 
 - [NIKON NIKKOR-SW 75mm f/4.5](../../src/lens-data/nikon/NikonNikkorSW75mmf45.data.ts) 3: `802444 — high-index crown/lanthanum coordinate class (vendor unresolved)`
-
-### 803404 — 1 occurrence
-
-- [FUJIFILM FUJINON XF 60mm f/2.4 R Macro](../../src/lens-data/fujifilm/FujifilmXF60mmf24R.data.ts) 12A: `803404 - PGM lanthanum heavy flint (patent nd=1.80348, vd=40.4; no exact public catalog match)`
 
 ### 803405 — 1 occurrence
 
