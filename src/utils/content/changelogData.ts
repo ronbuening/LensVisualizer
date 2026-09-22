@@ -22,7 +22,7 @@ export const CHANGELOG: ChangelogEntry[] = [
     date: "2026-09-22",
     type: "fix",
     summary:
-      "Reviewed and corrected hosted lens diagrams 41–60 against their patents: rims, apertures, focus states and glass",
+      "Reviewed and corrected 10 lens diagrams against their patents: rims, apertures, focus states and glass",
   },
   {
     date: "2026-09-21",
