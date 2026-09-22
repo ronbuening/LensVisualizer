@@ -1,11 +1,13 @@
 # Leica Summicron-M 50mm f/2 (Version IV/V) — Patent Analysis
 
 **Patent:** US 4,123,144 — "Four-Member Gauss Objective"
-**Inventors:** Walter Mandler, Garry Edwards, Erich Wagner (Ernst Leitz Canada Ltd., Midland, Ontario)
+**Inventors:** Walter Mandler, Garry Edwards, Erich Wagner (all of Midland, Canada, as printed)
+**Assignee:** Ernst Leitz Wetzlar GmbH, Wetzlar (as printed; catalogued under Ernst Leitz GmbH)
 **Filed:** May 16, 1977 (DE priority May 18, 1976, DE 2621981)
 **Granted:** October 31, 1978
-**Leica computation number:** C368 (design circa 1974)
-**Production embodiment:** Example 9 (FIG. 2 configuration)
+**Leica computation number:** C368 (design circa 1974; attribution from Leica literature, not the patent)
+**Production embodiment:** Example 9 (FIG. 2 configuration, planar r₁₀)
+**Index reference:** the patent tables are headed n_e / ν_e (mercury e-line, 546.07 nm); the data file stores these native values with `indexReference: "e"`
 **Production era:** Summicron-R 50mm f/2 II (R-mount, 1976–2009); Summicron-M 50mm f/2 (M-mount, 1979–present)
 
 ---
@@ -14,7 +16,7 @@
 
 The Summicron-M 50mm f/2, designed at Leitz Canada under the direction of Walter Mandler, is one of the most celebrated and longest-lived lens designs in photographic history. Its optical formula — six elements in four groups, all spherical — has been in continuous production since 1976 and remains current in the Leica M-mount lineup. The lens is internally designated C368 and was first realized as the Summicron-R 50mm f/2 II for Leica's R-mount SLR system in 1976, then adapted for the M-mount rangefinder in 1979. The M-mount Version IV (1979–1994, order no. 11819) and Version V (1994–present, order no. 11826) differ only in barrel design and coatings; the optical cell is identical.
 
-The patent presents nine worked examples, all sharing the same basic Gauss-type topology but differing in glass selection. Example 9, the final and most refined embodiment, corresponds to the production lens. It follows the FIG. 2 configuration, distinguished by a plano-convex sixth element (flat surface facing the object). This gives the design three flat optical surfaces in total (the two cemented bonds and the L6 object-facing surface), in addition to the flat surfaces implicit in the plano-convex and plano-concave element forms — a remarkable feature that was central to Mandler's manufacturing-cost strategy.
+The patent presents nine worked examples, all sharing the same basic Gauss-type topology but differing in glass selection. Example 9, the final embodiment, is taken here as the production lens; the patent itself names no production example, so the attribution rests on Leica literature and on the fit of Example 9's form to the production lens (six elements in four groups, f/2, ±22.5°, a planar-fronted plano-convex rear element and a back focus that suits the M mount). It follows the FIG. 2 configuration, distinguished by a plano-convex sixth element (flat surface facing the object). This gives the design three flat optical surfaces in total (the two cemented bonds and the L6 object-facing surface), in addition to the flat surfaces implicit in the plano-convex and plano-concave element forms — a remarkable feature that was central to Mandler's manufacturing-cost strategy.
 
 The design achieves an aperture ratio of 1:2, a field angle of ±22.5° (45° total, covering the 24×36mm format), and a back focal distance of approximately 29.4 mm at f = 50 mm — well-suited to the M-mount's 27.8 mm flange distance. The patent prescription is given at f = 100 mm; all production dimensions are scaled by a factor of ≈0.50.
 
@@ -30,7 +32,9 @@ This is a defining characteristic of the Summicron-M 50/2: Mandler achieved its 
 
 ## 3. Optical Prescription (Example 9, f = 100 mm)
 
-| Surface | Radius (r) | Spacing (a) | Lens | n_d | v_d | Element Shape |
+The patent tabulates refractive index and Abbe number at the e-line (column headings n_e,i and ν_e,i). The values below are transcribed as printed; they are not d-line numbers, and the data file keeps them native rather than converting them.
+
+| Surface | Radius (r) | Spacing (a) | Lens | n_e | ν_e | Element Shape |
 |---------|-----------|-------------|------|-------|-------|---------------|
 | 1 | 59.94 | 9.57 | L1 | 1.79227 | 47.15 | Positive meniscus, front |
 | 2 | 167.31 | 0.38 | — | 1.0 | — | L1 rear → air |
@@ -44,13 +48,14 @@ This is a defining characteristic of the Summicron-M 50/2: Mandler achieved its 
 | 10 | ∞ | 8.61 | L6 | 1.72055 | 47.69 | Plano-convex, front (flat) |
 | 11 | −59.94 | s' | — | 1.0 | — | L6 rear → air |
 
-**Back focal length:** s' = 58.88 mm (at f = 100)
+**Back focal length:** s' = 58.88 mm (at f = 100). The diaphragm is a tabulated surface (No. 6), so its position is published, not inferred from the drawing.
 
 ### Computed verification (paraxial ray trace)
 
 - **EFL (computed):** 100.03 mm — consistent with patent's stated f = 100 ✓
 - **BFD (computed):** 58.91 mm — consistent with patent's stated s' = 58.88 ✓
 - **Total track (vertex-to-vertex):** 69.92 mm; overall length (to image): 128.83 mm
+- **At the stored s = 0.50 scale:** EFL 50.015 mm, BFD 29.457 mm, track 34.96 mm; the stop semi-diameter of 7.8 mm reproduces f/2.005 on axis
 
 The vertex-to-vertex total track is only 70% of the focal length, resulting in a physically compact optical cell. However, the overall optical length — from first vertex to the image plane — is 128.83 mm, or approximately 1.29× the effective focal length. By the standard definition (overall length / EFL), this is not a telephoto design; rather, the rear principal plane H' lies approximately 20.5 mm ahead of the last vertex (at production scale), which shortens the back focal distance to roughly 59% of the EFL. This large H'-to-vertex offset is what permits the relatively compact BFD of ≈29.4 mm at f = 50 mm — sufficient for the M-mount's 27.8 mm flange distance — despite the design not being formally telephoto.
 
@@ -62,14 +67,14 @@ The vertex-to-vertex total track is only 70% of the focal length, resulting in a
 
 **Element:** L1 (surfaces r₁, r₂)
 **Shape:** Positive meniscus, concave toward the diaphragm
-**Glass:** n_d = 1.79227, v_d = 47.15 (lanthanum-containing dense crown)
+**Glass:** n_e = 1.79227, ν_e = 47.15 (lanthanum flint, LaFN21 class)
 **Thick-lens focal length:** +113.4 mm (at f = 100); +56.7 mm at production scale
 
 L1 is the front collector element. Its meniscus form — convex toward the object, concave toward the diaphragm — is characteristic of the outer elements in a Gauss-type design. The high refractive index (nearly 1.80) provides strong refracting power while keeping the surface curvatures moderate, which reduces both spherical aberration and higher-order monochromatic aberrations. The moderate Abbe number (47.15) places this glass in the lanthanum crown family, providing adequate chromatic correction without requiring extreme dispersion compensation elsewhere.
 
 In the patent's symmetry scheme, r₁ = +59.94 is paired with r₁₁ = −59.94 on L6, forming one of the two matched-radius pairs that reduce tooling costs.
 
-**Glass identification:** The n_d/v_d pair (1.792/47.2) does not precisely match any standard Schott catalog glass. The nearest candidates are Schott TaF4 (1.788/47.4) and LaFN21 (1.788/47.5), both showing residuals of approximately Δn_d ≈ −0.004. This suggests either a proprietary Leitz melt, a special-order variant from a glass manufacturer, or a production glass whose catalog designation has since been discontinued. This was common practice at Leitz Canada, where Mandler had access to custom melt compositions optimized for specific designs.
+**Glass identification:** Read at the e-line, as the patent tabulates it, the pair 1.79227 / 47.15 sits on the LaFN21 family: Schott N-LAF21 evaluates to n_e = 1.79195, ν_e = 47.25 from its published dispersion, and Hoya TAF4 and Ohara S-LAH64 land at the same coordinates. The apparent Δn ≈ −0.004 residual quoted in earlier versions of this note came from comparing the patent's e-line index against d-line catalog values; it is not evidence of a special melt. The patent does not name a supplier, so the data file labels the element as an N-LAF21 coordinate proxy.
 
 ### 4.2 Group II — Front Cemented Doublet (L2 + L3)
 
@@ -81,24 +86,24 @@ In the patent's symmetry scheme, r₁ = +59.94 is paired with r₁₁ = −59.94
 #### L2 — Plano-Convex Positive
 
 **Shape:** Convex front (r₃ = +40.30), flat rear (r₄ = ∞)
-**Glass:** n_d = 1.67133, v_d = 41.64
+**Glass:** n_e = 1.67133, ν_e = 41.64
 **Element focal length:** +60.0 mm (at f = 100); +30.0 mm at production scale
 
-L2 is the positive element of the front doublet. Its strong convex front surface (r₃ = 40.30) provides the primary converging power in this group. The flat rear surface simultaneously serves as the cemented bond face and eliminates one curved surface from fabrication. The glass has moderate index and dispersion, placing it in the barium flint or dense barium crown range. The nearest Schott catalog match is BaSF6 (1.668/41.9), with a modest residual (Δn_d ≈ −0.003, Δv_d ≈ +0.3).
+L2 is the positive element of the front doublet. Its strong convex front surface (r₃ = 40.30) provides the primary converging power in this group. The flat rear surface simultaneously serves as the cemented bond face and eliminates one curved surface from fabrication. The glass has moderate index and dispersion, placing it in the barium flint range: at the e-line the pair is an exact match for the BaSF6 family (Hikari J-BASF6 evaluates to n_e = 1.67133, ν_e = 41.60), so the data file uses that catalog entry as its dispersion proxy.
 
 In the symmetry scheme, r₃ = +40.30 is paired with r₉ = −40.30 on L5.
 
 #### L3 — Plano-Concave Negative
 
 **Shape:** Flat front (r₄ = ∞, the bond surface), concave rear (r₅ = +25.67; center of curvature to the right, so the surface is concave toward the diaphragm)
-**Glass:** n_d = 1.73430, v_d = 28.19 (dense flint)
+**Glass:** n_e = 1.73430, ν_e = 28.19 (dense flint)
 **Element focal length:** −35.0 mm (at f = 100); −17.5 mm at production scale
 
-L3 is the negative flint element of the front doublet. Its high dispersion (v_d = 28.19) provides the chromatic correction needed to achromatize the front group. The refractive index step at the cemented bond — Δn = n₃ − n₂ = 1.73430 − 1.67133 = +0.063 — satisfies the patent's condition 0.05 ≤ n₃ − n₂ ≤ 0.20.
+L3 is the negative flint element of the front doublet. Its high dispersion (ν_e = 28.19) provides the chromatic correction needed to achromatize the front group. The refractive index step at the cemented bond — Δn = n₃ − n₂ = 1.73430 − 1.67133 = +0.063 — satisfies the patent's condition 0.05 ≤ n₃ − n₂ ≤ 0.20.
 
 The flat bond surface itself has zero optical power (since φ = Δn/R = 0 when R = ∞), so the doublet's net refracting power comes entirely from the two curved surfaces, r₃ and r₅. However, the index step at the bond is not optically inert: converging rays passing from L2 glass (n = 1.671) into L3 glass (n = 1.734) are refracted toward the normal at the flat interface, changing their convergence angle. This alters the wavefront curvature and affects the aberration contributions of the downstream surface r₅. The deliberate choice of index contrast is thus a subtle but real correction lever, distinct from surface power.
 
-The nearest Schott catalog matches for L3 are SF3 (1.740/28.3) and SF10 (1.728/28.4), with residuals of Δn_d ≈ ±0.006.
+At the e-line the L3 pair is an exact match for Schott SF10 (published dispersion gives n_e = 1.73430, ν_e = 28.19, agreeing to the last digit); the ±0.006 residuals quoted previously were again a d-line versus e-line comparison. Ohara S-TIH10, Hoya E-FD10 and Hikari J-SF10 sit on the same point, so the family is certain even though the supplier is not.
 
 The overall doublet power is weakly negative (f ≈ −141.5 mm), consistent with the patent's description that "each of the doublet components has either a low positive power of refraction or a negative power of refraction."
 
@@ -118,28 +123,28 @@ The production lens uses an 8-blade diaphragm in most examples, though both 8- a
 #### L4 — Plano-Concave Negative
 
 **Shape:** Concave front (r₇ = −27.69; center of curvature to the left, so the surface is concave toward the diaphragm), flat rear (r₈ = ∞)
-**Glass:** n_d = 1.63003, v_d = 35.45
+**Glass:** n_e = 1.63003, ν_e = 35.45
 **Element focal length:** −44.0 mm (at f = 100); −22.0 mm at production scale
 
 L4 is the negative element of the rear doublet, positioned immediately behind the diaphragm. Its concave front surface faces the stop, creating the classic Gauss "air lens" between the inner concave surfaces of the two doublets (r₅ and r₇). This strongly diverging air space is the primary corrector for spherical aberration and coma in the Gauss design. The close spacing of r₅ and r₇ — with only the 10.81 + 13.39 = 24.20 mm diaphragm gap between them — and their similar but deliberately non-identical radii (25.67 vs. 27.69) is where the core Gauss correction mechanism operates.
 
-The glass has moderate index and intermediate dispersion. The nearest Schott catalog match is F2 (1.620/36.4), but the residual in refractive index is relatively large (Δn_d ≈ 0.010), suggesting a non-standard melt.
+The glass has moderate index and intermediate dispersion. At the e-line the pair is an exact match for the F1 flint family (Hoya E-F1 evaluates to n_e = 1.63003, ν_e = 35.48; Ohara S-TIM1 and Sumita F1 coincide), not F2. The Δn ≈ 0.010 "non-standard melt" residual quoted previously was a d-line comparison artifact.
 
 #### L5 — Plano-Convex Positive
 
 **Shape:** Flat front (r₈ = ∞, the bond surface), convex rear (r₉ = −40.30; center of curvature to the left, so the surface is convex toward the image)
-**Glass:** n_d = 1.72055, v_d = 47.69 (lanthanum crown)
+**Glass:** n_e = 1.72055, ν_e = 47.69 (lanthanum flint, LaF3 class)
 **Element focal length:** +55.9 mm (at f = 100); +27.9 mm at production scale
 
 L5 is the positive element of the rear doublet. The refractive index step at the cemented bond — Δn = n₅ − n₄ = 1.72055 − 1.63003 = +0.091 — satisfies the patent's condition 0.05 ≤ n₅ − n₄ ≤ 0.15. As with the front doublet bond, the flat surface has zero power, but the index step refracts converging rays passing from L4 glass into L5 glass, modifying wavefront curvature and the downstream aberration balance.
 
-The glass is identical to that used in L6 (n_d = 1.72055, v_d = 47.69). The nearest Schott catalog match is LaF10 (1.720/46.4) for refractive index, or LaF3 (1.717/48.0) for overall proximity. The exact match is uncertain.
+The glass is identical to that used in L6 (n_e = 1.72055, ν_e = 47.69). At the e-line this is an exact LaF3-class point: Hoya LAF3 evaluates to n_e = 1.72056, ν_e = 47.73 and Ohara S-LAM3 to 1.72056 / 47.64. Schott LaF3 (d-line 1.717 / 48.0) is the same family seen at the d-line; LaF10 is not a candidate once the reference line is respected.
 
 ### 4.5 Group IV — Rear Positive Element (L6)
 
 **Element:** L6 (surfaces r₁₀, r₁₁)
 **Shape:** Plano-convex, flat surface facing the object
-**Glass:** n_d = 1.72055, v_d = 47.69 (same glass as L5)
+**Glass:** n_e = 1.72055, ν_e = 47.69 (same glass as L5)
 **Thick-lens focal length:** +83.2 mm (at f = 100); +41.6 mm at production scale
 
 L6 is the final collecting element. Its plano-convex form — flat front (r₁₀ = ∞), convex rear (r₁₁ = −59.94) — is the distinguishing feature of the FIG. 2 configuration. The flat object-facing surface satisfies the patent's preferred condition that r₁₀ "is greater than six times the focal length" (infinity being obviously greater than 600 mm). This third flat optical surface maximizes the cost advantages described in the patent: fewer diamond-tool setups, simpler alignment in Leitz's precision mounting system (referenced as German Offenlegungsschrift 2,364,621), and reduced fabrication time.
@@ -212,7 +217,7 @@ The Petzval sum is positive and small, indicating mild inward (undercorrected) f
 
 ## 8. Chromatic Correction
 
-The design uses a classical achromatic strategy: high-dispersion flint elements (L3 and L4, v_d ≈ 28–35) are paired with lower-dispersion positive elements within each cemented doublet. The approximate symmetry about the stop provides the primary lateral color correction.
+The design uses a classical achromatic strategy: high-dispersion flint elements (L3 and L4, ν_e ≈ 28–35) are paired with lower-dispersion positive elements within each cemented doublet. The approximate symmetry about the stop provides the primary lateral color correction.
 
 However, the achromatic correction is conventional — not apochromatic. Erwin Puts, the pre-eminent independent analyst of Leica optics, noted that Mandler's designs exhibited under-correction in the blue portion of the spectrum. During the film era, this was an acceptable compromise because silver-halide emulsions had relatively low sensitivity to blue and violet wavelengths. On modern digital sensors, which have more uniform spectral response, this under-correction manifests as purple fringing on high-contrast edges — a known characteristic of the Summicron-M 50/2 that reviewers consistently observe.
 
@@ -225,13 +230,13 @@ This limitation was ultimately one of the motivations for Peter Karbe's APO-Summ
 The Summicron-M 50/2 uses **unit focusing** — the entire optical cell translates forward as a rigid unit to focus from infinity to the minimum focus distance. There are no internal focusing groups or floating elements. The only variable gap is the back focal distance between the last surface (r₁₁) and the image plane (film or sensor).
 
 **Production specifications (M-mount):**
-- Minimum focus distance: 0.7 m (2.3 ft)
+- Minimum focus distance: 0.7 m (2.3 ft), taken as the object-to-image distance in the usual Leica convention
 - Maximum reproduction ratio: 1:11.5 (Leica published)
-- Focus extension at 0.7 m (thick-lens computation): ≈3.85 mm
-- BFD at infinity (scaled to f = 50 mm): ≈29.46 mm
-- BFD at 0.7 m: ≈33.31 mm
+- Focus extension at 0.7 m (paraxial thick-lens solve on the scaled Example 9; derived, not published): 4.13 mm
+- BFD at infinity (scaled to f = 50 mm): 29.46 mm
+- BFD at 0.7 m: 33.59 mm (object 631.5 mm in front of r₁; magnification −0.0826, i.e. 1:12.1)
 
-Note: the paraxial thick-lens computation yields a reproduction ratio of approximately 1:13 at 0.7 m, while Leica publishes 1:11.5. This discrepancy likely arises from a combination of factors: the production lens may be slightly re-optimized from Example 9, the published MFD may be measured to the film plane rather than the front principal plane, and the actual conjugate geometry differs from the paraxial model at finite conjugates. The Summicron-R II version uses a shorter minimum focus distance of 0.5 m, made possible by the SLR's longer flange distance accommodating greater lens extension.
+The patent publishes only the infinity state, so this close-focus state is a calculation, not patent data. It reproduces Leica's 1:11.5 to within about 5 %; the remainder is consistent with the production lens being slightly re-optimized from Example 9 and with paraxial versus real conjugate geometry. (An earlier version of this note measured the 0.7 m from the front principal plane, which gave 3.85 mm and about 1:13; the object-to-image convention used now is the one the distance scale is engraved to.) The Summicron-R II version uses a shorter minimum focus distance of 0.5 m, made possible by the SLR's longer flange distance accommodating greater lens extension.
 
 The absence of floating elements means that aberration correction is optimized for a single object distance (infinity). At closer focus distances, performance degrades gently — particularly field curvature and spherical aberration increase — but the overall correction remains excellent within the lens's intended use range.
 
@@ -239,16 +244,16 @@ The absence of floating elements means that aberration correction is optimized f
 
 ## 10. Glass Selection Philosophy
 
-The six glass types in Example 9 can be organized into three functional pairs that mirror each other across the stop:
+The six glass positions in Example 9 (five distinct types) can be organized into three functional pairs that mirror each other across the stop. Values are the patent's e-line coordinates; the catalog family is the exact C′/e/F′ match:
 
-| Position | Element | n_d | v_d | Role |
-|----------|---------|------|------|------|
-| Front outer | L1 | 1.79227 | 47.15 | High-index collector (lanthanum crown) |
-| Rear outer | L6 | 1.72055 | 47.69 | High-index collector (lanthanum crown) |
-| Front positive | L2 | 1.67133 | 41.64 | Moderate-index barium flint/crown |
-| Rear positive | L5 | 1.72055 | 47.69 | Lanthanum crown (shared with L6) |
-| Front negative | L3 | 1.73430 | 28.19 | Dense flint (chromatic corrector) |
-| Rear negative | L4 | 1.63003 | 35.45 | Light/medium flint (chromatic corrector) |
+| Position | Element | n_e | ν_e | Catalog family (e-line match) | Role |
+|----------|---------|------|------|------|------|
+| Front outer | L1 | 1.79227 | 47.15 | LaFN21 / N-LAF21 class | High-index collector |
+| Rear outer | L6 | 1.72055 | 47.69 | LaF3 class | High-index collector |
+| Front positive | L2 | 1.67133 | 41.64 | BaSF6 class | Moderate-index barium flint |
+| Rear positive | L5 | 1.72055 | 47.69 | LaF3 class (shared with L6) | Lanthanum flint |
+| Front negative | L3 | 1.73430 | 28.19 | SF10 (exact) | Dense flint (chromatic corrector) |
+| Rear negative | L4 | 1.63003 | 35.45 | F1 class | Light/medium flint (chromatic corrector) |
 
 Several patterns emerge from this arrangement:
 
@@ -256,11 +261,11 @@ Several patterns emerge from this arrangement:
 
 **Index contrasts at the cemented bonds:** The patent explicitly requires that the negative element in each doublet has a higher refractive index than its positive partner (n₃ > n₂ and n₅ > n₄). Although the flat bond surfaces have zero optical power, the index step refracts converging or diverging wavefronts at the interface, altering the aberration contributions of downstream surfaces. This is the mechanism by which the patent's index-difference conditions (n₃ − n₂ and n₅ − n₄) influence the correction balance — not through surface power, but through wavefront reshaping.
 
-**High-index outer elements:** The use of lanthanum-containing glasses with n_d > 1.72 for all elements outside the negative flints keeps surface curvatures gentle throughout, which is essential for controlling higher-order aberrations at f/2.
+**High-index outer elements:** The use of lanthanum-containing glasses with n_e > 1.72 for all elements outside the negative flints keeps surface curvatures gentle throughout, which is essential for controlling higher-order aberrations at f/2.
 
-**Economy of types:** By sharing the same glass (n_d = 1.72055, v_d = 47.69) for both L5 and L6, the design reduces the number of distinct glass procurements from six to five — another manufacturing cost optimization.
+**Economy of types:** By sharing the same glass (n_e = 1.72055, ν_e = 47.69) for both L5 and L6, the design reduces the number of distinct glass procurements from six to five — another manufacturing cost optimization.
 
-**Glass identification uncertainty:** None of the six glass types precisely match standard Schott catalog entries from the 1970s era. Residuals range from Δn_d ≈ 0.003 (for L2 vs. BaSF6) to Δn_d ≈ 0.010 (for L4 vs. F2). This pattern is consistent across all six positions and strongly suggests that Leitz Canada used proprietary melts or special compositions from the Leitz Glass Research Laboratory in Wetzlar. Without access to internal Leitz computation records, definitive catalog identifications are not possible from the patent data alone.
+**Glass identification:** Once the patent's e-line coordinates are compared with catalog dispersion evaluated at C′/e/F′, every one of the five glass types lands on a standard family to within Δn ≤ 0.0003 and Δν ≤ 0.1: SF10 exactly, and the LaFN21, BaSF6, F1 and LaF3 families. The earlier reading of this table — residuals of 0.003–0.010 pointing to proprietary Leitz melts — was an artifact of comparing e-line numbers with d-line catalog values. What the patent does not say is which supplier's glass was melted; the data file therefore labels each element as a coordinate-compatible catalog proxy (Schott N-LAF21 and SF10, Hikari J-BASF6, Hoya E-F1 and LAF3) with the supplier marked unconfirmed. No partial-dispersion data are published, so no element is flagged as anomalous-dispersion.
 
 ---
 
@@ -278,6 +283,8 @@ The patent prescription is stated at f = 100 mm. The production Summicron-M 50mm
 | F-number | f/2 | f/2 |
 
 The production M-mount lens weighs 240 g, accepts 39mm (E39) filters, and measures approximately 43.5 × 53 mm (diameter × length). The close focus distance is 0.7 m with a maximum reproduction ratio of 1:11.5. The Summicron-R II version is slightly larger (E55 filters, 250–300 g) with a closer MFD of 0.5 m.
+
+**Semi-diameters.** The patent publishes no clear apertures, and its FIG. 2 is the generic schematic shared by all nine examples (its a₅ : a₆ proportion does not match Example 9), so the drawn rims are only a guide. Measured against the vertex spacing (27.3 px/mm at production scale), FIG. 2 draws L1 and L6 at equal rim heights (≈13 mm) and the two doublets at equal rim heights (≈11.3 mm). The stored front group is a ray-based estimate (f/2 marginal ray plus full-field chief ray with clearance: 15.0 / 14.0 / 13.0 / 12.5 / 11.0 mm, stop 7.8 mm) and sits within 15 % of the figure. The rear group is set toward the figure proportion — 10.0 / 10.5 / 10.5 mm for the rear doublet and 12.5 / 12.5 mm for L6 — with r₉ capped at 10.5 mm because L5's edge thickness falls to 0.87 mm there (0.56 mm at 11 mm). With these values the f/2 axial beam clears every surface by at least 16 %, the full-field chief ray (23.4° for Y = 21.6 mm) passes everywhere, and the geometric corner transmission at f/2 is about 44 % (roughly 1.7 EV including cos⁴), which is in the range expected of a 50 mm f/2 Gauss with a compact rear group.
 
 ---
 

@@ -11,20 +11,44 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  Focus: floating inner focus — G2 (L6–L7) and G4 (L10) move.     ║
  * ║                                                                    ║
  * ║  NOTE ON CEMENT LAYERS:                                            ║
- * ║    Patent models 0.01 mm cement layers (nd = 1.56732) at each     ║
- * ║    cemented junction (D1, D2, D3). Since junction surfaces share  ║
- * ║    the same R, the cement thickness is folded into the preceding  ║
- * ║    element's center thickness (e.g., L3 d = 5.00 + 0.01 = 5.01). ║
+ * ║    Patent models 0.01 mm cement layers (nd = 1.56732, νd 42.8)   ║
+ * ║    at each cemented junction (D1, D2, D3). Since junction         ║
+ * ║    surfaces share the same R, the cement thickness is folded into ║
+ * ║    the preceding element's center thickness (L3 6.60 → 6.61,      ║
+ * ║    L6 1.40 → 1.41, L8 3.10 → 3.11).                               ║
  * ║                                                                    ║
- * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    Patent does not list semi-diameters. Estimated via paraxial    ║
- * ║    marginal ray (at f/2.06) + chief ray (70% field for post-stop  ║
- * ║    surfaces), with 8% mechanical clearance. Front SD constrained  ║
- * ║    by E49 filter thread (max OD ~47 mm; not binding here).        ║
+ * ║  NOTE ON SEMI-DIAMETERS (2026-09-21 audit):                        ║
+ * ║    Patent Table 1A lists no effective diameters. sd values are    ║
+ * ║    measured from FIG. 1A (300 dpi raster, 13.92 px/mm from the    ║
+ * ║    S1→S23 vertex span); the drawing is to design scale — the stop ║
+ * ║    is drawn at 8.41 mm (f/2.06 real-ray stop radius 8.40) and the ║
+ * ║    plate P at ±20.2 mm (≈ patent Y). Cemented junctions carry the ║
+ * ║    smaller member's rim. 16A is capped at 14.5 mm (figure ≈15.3)  ║
+ * ║    because its asphere slope turns over near h ≈ 14.6 mm. L11's   ║
+ * ║    front (18A) uses the optical extent (15.8 mm) where the drawn  ║
+ * ║    curve ends; the flat annulus out to the 18.3 mm rim (19A) is   ║
+ * ║    the mechanical edge shared with the rear surface. Every sd     ║
+ * ║    passes the f/2.06 axial beam and the Y = 20 mm chief ray at    ║
+ * ║    infinity and close focus (real-ray check).                     ║
+ * ║                                                                    ║
+ * ║  NOTE ON IMAGE HEIGHT:                                             ║
+ * ║    Patent Y = 20.0 mm at ω = 27.50° (f·tanω = 21.7 mm), i.e. the  ║
+ * ║    design carries ≈ −7.9 % barrel distortion (derived) and the    ║
+ * ║    full-frame corner is reached after in-camera correction. Chief ║
+ * ║    rays aimed at 21.6 mm raw height (ω ≈ 30°) are outside the     ║
+ * ║    design field and vignette at L11.                              ║
  * ║                                                                    ║
  * ║  NOTE ON COVER GLASS:                                              ║
  * ║    Patent parallel plate P (nd = 1.51680, d = 1.40) plus 1.00 mm ║
- * ║    air gap omitted from surfaces; total 6.00 mm folded into BFD. ║
+ * ║    air gap omitted; rear gap = 3.60 + 1.40/1.5168 + 1.00 = 5.523 ║
+ * ║    mm air-equivalent (patent geometric BF = 6.00 mm incl. plate).║
+ * ║                                                                    ║
+ * ║  NOTE ON FOCUS STATES:                                             ║
+ * ║    Table 1C publishes infinity, middle (d0 = 1331.625 mm, 1.4 m  ║
+ * ║    object-to-image) and close (d0 = 531.6251 mm, 0.600 m         ║
+ * ║    object-to-image). All three rows are kept via focusPositions;  ║
+ * ║    closeFocusM = 0.6 is the patent state, not the 0.27 m macro    ║
+ * ║    mode (a mechanical extension the patent does not describe).    ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -186,7 +210,7 @@ const LENS_DATA = {
       type: "Neg. Meniscus (2× Asph)",
       nd: 1.5866,
       vd: 59.0,
-      fl: -31.1,
+      fl: -31.2,
       glass: "K-SKLD200 (Sumita)",
       apd: false,
       role: "Rear field-flattener; G5 negative for Petzval balance; aggressive aspherization for astigmatism and distortion",
@@ -196,36 +220,36 @@ const LENS_DATA = {
   /* ── Surface prescription ── */
   surfaces: [
     // ── G1 (+) — L1 through L5 ──
-    { label: "1", R: -48.2488, d: 1.5, nd: 1.64769, elemId: 1, sd: 10.9 }, // L1 front
-    { label: "2", R: 44.7343, d: 0.7288, nd: 1.0, elemId: 0, sd: 11.1 }, // L1 rear → air
-    { label: "3", R: 37.972, d: 5.0, nd: 2.00069, elemId: 2, sd: 11.3 }, // L2 front
-    { label: "4", R: -131.5072, d: 0.9, nd: 1.0, elemId: 0, sd: 11.3 }, // L2 rear → air
-    { label: "5", R: 25.1796, d: 6.61, nd: 1.59282, elemId: 3, sd: 11.2 }, // L3 front (D1); d includes 0.01 cement
-    { label: "6", R: -47.5179, d: 1.1, nd: 1.76182, elemId: 4, sd: 9.8 }, // D1 junction → L4
-    { label: "7", R: 30.7715, d: 2.9914, nd: 1.0, elemId: 0, sd: 9.6 }, // L4 rear → air
-    { label: "8A", R: 54.8186, d: 2.8, nd: 1.5866, elemId: 5, sd: 9.4 }, // L5 front (OIS element)
-    { label: "9A", R: -129.0571, d: 1.3423, nd: 1.0, elemId: 0, sd: 9.1 }, // L5 rear → air
+    { label: "1", R: -48.2488, d: 1.5, nd: 1.64769, elemId: 1, sd: 14.9 }, // L1 front; FIG. 1A rim 14.9
+    { label: "2", R: 44.7343, d: 0.7288, nd: 1.0, elemId: 0, sd: 14.9 }, // L1 rear → air
+    { label: "3", R: 37.972, d: 5.0, nd: 2.00069, elemId: 2, sd: 14.0 }, // L2 front; FIG. 1A rim 14.0
+    { label: "4", R: -131.5072, d: 0.9, nd: 1.0, elemId: 0, sd: 14.0 }, // L2 rear → air
+    { label: "5", R: 25.1796, d: 6.61, nd: 1.59282, elemId: 3, sd: 11.3 }, // L3 front (D1); d includes 0.01 cement; rim 11.3
+    { label: "6", R: -47.5179, d: 1.1, nd: 1.76182, elemId: 4, sd: 10.4 }, // D1 junction → L4; L4 rim 10.4 (L3 rim 11.3)
+    { label: "7", R: 30.7715, d: 2.9914, nd: 1.0, elemId: 0, sd: 10.4 }, // L4 rear → air
+    { label: "8A", R: 54.8186, d: 2.8, nd: 1.5866, elemId: 5, sd: 9.8 }, // L5 front (OIS element); rim 9.8
+    { label: "9A", R: -129.0571, d: 1.3423, nd: 1.0, elemId: 0, sd: 9.8 }, // L5 rear → air
 
     // ── Aperture stop ──
-    { label: "STO", R: 1e15, d: 8.5, nd: 1.0, elemId: 0, sd: 8.2 }, // d11 variable
+    { label: "STO", R: 1e15, d: 8.5, nd: 1.0, elemId: 0, sd: 8.2 }, // d11 variable; paraxial f/2.06 iris (figure draws 8.4)
 
     // ── G2 (+) — L6–L7 cemented (focus group) ──
-    { label: "10A", R: -34.7967, d: 1.41, nd: 1.68948, elemId: 6, sd: 7.1 }, // L6 front; d includes 0.01 cement
-    { label: "11", R: 27.9597, d: 4.0, nd: 1.95375, elemId: 7, sd: 7.0 }, // D2 junction → L7
-    { label: "12", R: -47.7042, d: 2.3984, nd: 1.0, elemId: 0, sd: 6.9 }, // L7 rear → air; d15 variable
+    { label: "10A", R: -34.7967, d: 1.41, nd: 1.68948, elemId: 6, sd: 9.2 }, // L6 front; d includes 0.01 cement; rim 9.2
+    { label: "11", R: 27.9597, d: 4.0, nd: 1.95375, elemId: 7, sd: 9.5 }, // D2 junction → L7; L6 rim 9.2 / L7 rim 9.8
+    { label: "12", R: -47.7042, d: 2.3984, nd: 1.0, elemId: 0, sd: 9.8 }, // L7 rear → air; d15 variable
 
     // ── G3 (−) — L8–L9 cemented ──
-    { label: "13", R: -69.0757, d: 3.11, nd: 1.90366, elemId: 8, sd: 8.1 }, // L8 front; d includes 0.01 cement
-    { label: "14", R: -23.3606, d: 1.0, nd: 1.69895, elemId: 9, sd: 9.1 }, // D3 junction → L9
-    { label: "15", R: 306.9478, d: 4.5634, nd: 1.0, elemId: 0, sd: 9.4 }, // L9 rear → air; d19 variable
+    { label: "13", R: -69.0757, d: 3.11, nd: 1.90366, elemId: 8, sd: 11.2 }, // L8 front; d includes 0.01 cement; rim 11.2
+    { label: "14", R: -23.3606, d: 1.0, nd: 1.69895, elemId: 9, sd: 12.2 }, // D3 junction → L9; doublet edge 12.2
+    { label: "15", R: 306.9478, d: 4.5634, nd: 1.0, elemId: 0, sd: 12.2 }, // L9 rear → air; d19 variable
 
     // ── G4 (+) — L10 singlet (focus group) ──
-    { label: "16A", R: 202.6421, d: 7.1497, nd: 1.55332, elemId: 10, sd: 11.9 }, // L10 front
-    { label: "17A", R: -24.5159, d: 5.2709, nd: 1.0, elemId: 0, sd: 14.2 }, // L10 rear → air; d21 variable
+    { label: "16A", R: 202.6421, d: 7.1497, nd: 1.55332, elemId: 10, sd: 14.5 }, // L10 front; figure ≈15.3, capped below asphere turnover
+    { label: "17A", R: -24.5159, d: 5.2709, nd: 1.0, elemId: 0, sd: 15.3 }, // L10 rear → air; d21 variable; rim 15.3
 
     // ── G5 (−) — L11 singlet ──
-    { label: "18A", R: -17.1668, d: 2.0, nd: 1.5866, elemId: 11, sd: 15.3 }, // L11 front
-    { label: "19A", R: -295.0, d: 6.0, nd: 1.0, elemId: 0, sd: 16.2 }, // L11 rear → image (BFD incl. cover glass)
+    { label: "18A", R: -17.1668, d: 2.0, nd: 1.5866, elemId: 11, sd: 15.8 }, // L11 front; optical extent 15.8 (flange to 18.3)
+    { label: "19A", R: -295.0, d: 5.523, nd: 1.0, elemId: 0, sd: 18.3 }, // L11 rear → image; 3.60 + 1.40/1.5168 + 1.00 (plate folded)
   ],
 
   /* ── Aspherical coefficients ── */
@@ -306,18 +330,21 @@ const LENS_DATA = {
    *  G2 (L6–L7) and G4 (L10) advance toward object during close focusing.
    *  G1, G3, G5 remain stationary. Constant overall length.
    *  d(STO) + d(12) = 10.898 mm (constant); d(15) + d(17A) = 9.834 mm (constant).
+   *  Patent Table 1C rows: infinity / middle (1.4 m object-to-image) / close (0.6 m).
+   *  Middle-row coordinate = 0.6 m ÷ 1.4 m.
    */
+  focusPositions: [0, 0.428571428571, 1],
   var: {
-    STO: [8.5, 6.4983],
-    "12": [2.3984, 4.4001],
-    "15": [4.5634, 1.8105],
-    "17A": [5.2709, 8.0238],
+    STO: [8.5, 7.6379, 6.4983],
+    "12": [2.3984, 3.2604, 4.4001],
+    "15": [4.5634, 3.3774, 1.8105],
+    "17A": [5.2709, 6.4569, 8.0238],
   },
   varLabels: [
     ["STO", "D11"],
     ["12", "D15"],
     ["15", "D19"],
-    ["17A", "BF"],
+    ["17A", "D21"],
   ],
 
   /* ── Group and doublet annotations ── */
@@ -335,12 +362,13 @@ const LENS_DATA = {
   ],
 
   /* ── Focus configuration ── */
-  closeFocusM: 0.6,
+  closeFocusM: 0.6, // patent close-object state: d0 531.6251 + TL 68.3749 = 600.0 mm object-to-image
   focusDescription: "Floating inner focus: G2 (L6–L7) and G4 (L10) translate toward object. Constant overall length.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 2.0,
-  fstopSeries: [2, 2.8, 4, 5.6, 8, 11, 16],
+  nominalFno: 2.06, // patent Table 1C F number 2.06002 at infinity
+  fstopSeries: [2.06, 2.8, 4, 5.6, 8, 11, 16],
+  maxFstop: 16,
 
   /* ── Layout tuning ── */
   scFill: 0.5,

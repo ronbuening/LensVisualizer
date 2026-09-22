@@ -21,19 +21,21 @@ Peter Karbe, Leica's chief lens designer, has stated that the APO correction all
 | Parameter | Patent (Example 1, ∞) | Leica Published |
 |---|---|---|
 | Focal length | 41.71 mm (design EFL) | 43 mm (marketing) |
-| Maximum aperture | f/2.06 (design) | f/2.0 (marketing) |
+| Maximum aperture | f/2.06 (design; Table 1C F number 2.06002) | f/2.0 (marketing) |
 | Half-field angle | 27.50° | — |
 | Full field (2ω) | 54.99° | — |
 | Image height Y | 20.0 mm | 21.6 mm (sensor half-diagonal) |
-| Total track length | 68.37 mm | — |
+| Total track length | 68.37 mm (incl. 1.4 mm plate and 1.0 mm air) | — |
 | Elements / groups | 11 / 5 (power groups) | 11 / 8 (air-separated) |
 | Aspherical surfaces | 7 (on 4 elements) | 7 aspherical surfaces |
-| Close focus (standard) | — | 0.6 m |
+| Close focus (standard) | 0.600 m object-to-image (Table 1C close-object state) | 0.6 m |
 | Close focus (macro) | — | 0.27 m |
 | Filter thread | — | E49 |
 | OIS | L5 decentered ⊥ axis | Integrated OIS |
 
 The marketing focal length of 43 mm corresponds to the diagonal of a 24×36 mm full-frame sensor (√(24² + 36²) = 43.27 mm), making this a geometrically "true normal" lens. The design EFL of 41.71 mm is the paraxial value; the difference from the marketed 43 mm reflects the standard industry practice of rounding to a nominal value.
+
+The patent's maximum image height is 20.0 mm, not the 21.6 mm full-frame half-diagonal, yet its half-field angle of 27.50° corresponds to an ideal (f·tan ω) height of 21.7 mm — the full-frame corner. The design therefore carries about −7.9 % barrel distortion at the corner (a derived value; the patent publishes only the field angle and image height), and the corrected full-frame image is recovered by the in-camera distortion profile. The data file's semi-diameters are checked against the 20.0 mm raw image height; a chief ray aimed at 21.6 mm on the sensor would need ω ≈ 30°, outside the design field, and vignettes at L11.
 
 ---
 
@@ -64,7 +66,7 @@ This gives 4 + 1 + 1 + 1 + 1 = **8 air-separated groups**, matching the Leica sp
 | L5 | Biconvex (2× Asph) | 1.58660 | 59.0 | K-SKLD200 (Sumita) | +66.0 | 8A, 9A | — | OIS element; weak positive with aspherics for SA/coma |
 | L6 | Biconcave (1× Asph) | 1.68948 | 31.0 | S-TIM28 / L-TIM28 (OHARA) | −22.3 | 10A | D2 (with L7) | Negative flint; aberration control at stop |
 | L7 | Biconvex | 1.95375 | 32.3 | S-LAH98 (OHARA) | +19.0 | — | D2 (with L6) | Ultra-high-index positive; primary power in G2 |
-| L8 | Pos. Meniscus (convex to image) | 1.90366 | 31.3 | S-NPH53 / TAFD30 (OHARA) | +37.8 | — | D3 (with L9) | Positive meniscus; high-index short flint for Petzval correction |
+| L8 | Pos. Meniscus (convex to image) | 1.90366 | 31.3 | S-LAH95 (OHARA) | +37.8 | — | D3 (with L9) | Positive meniscus; high-index short flint for Petzval correction |
 | L9 | Biconcave | 1.69895 | 30.1 | S-TIM35 (OHARA) | −31.0 | — | D3 (with L8) | Negative flint; G3 diverging power for field correction |
 | L10 | Biconvex (2× Asph) | 1.55332 | 71.7 | M-FCD500 (HOYA) | +40.0 | 16A, 17A | — | Fluorophosphate positive; main APD contributor; focus group |
 | L11 | Neg. Meniscus (convex to image, 2× Asph) | 1.58660 | 59.0 | K-SKLD200 (Sumita) | −31.2 | 18A, 19A | — | Rear field-flattener; G5 negative for Petzval balance |
@@ -83,7 +85,7 @@ Three elements use glasses with refractive indices approaching or exceeding 1.9:
 
 **L7 — S-LAH98 (nd = 1.95375, νd = 32.3).** This ultra-high-index lanthanum glass carries the primary positive power of G2 (f = +19.0 mm), the strongest positive element in the rear half of the system. Its placement immediately behind the aperture stop, cemented to the negative L6, forms a powerful doublet that handles both axial color and spherical aberration in the post-stop region.
 
-**L8 — S-NPH53 (nd = 1.90366, νd = 31.3).** Another ultra-high-index short flint, used as a positive meniscus in G3. The high index reduces curvature demands on the meniscus surfaces, limiting the introduction of higher-order astigmatism.
+**L8 — S-LAH95 (nd = 1.90366, νd = 31.3).** Another ultra-high-index lanthanum flint (the 904313 coordinate, also HOYA TAFD25 / Schott N-LASF46B), used as a positive meniscus in G3. The high index reduces curvature demands on the meniscus surfaces, limiting the introduction of higher-order astigmatism.
 
 ### 3.2 Anomalous Partial Dispersion Glasses
 
@@ -97,11 +99,11 @@ The APO correction depends on anomalous partial dispersion (APD) to bring a thir
 
 ### 3.3 Optical Cement
 
-All three cemented doublets (D1 = L3+L4, D2 = L6+L7, D3 = L8+L9) use the same cement with nd = 1.56732 and νd = 42.8, matching OHARA S-BAM4. The patent explicitly lists the cement as a 0.01 mm thick optical surface at each junction — an unusually detailed treatment that acknowledges the cement's non-negligible refractive contribution.
+All three cemented doublets (D1 = L3+L4, D2 = L6+L7, D3 = L8+L9) use the same cement with nd = 1.56732 and νd = 42.8 (the patent calls it only "an adhesive" and does not name it). The patent explicitly lists the cement as a 0.01 mm thick layer at each junction (Table 1A surfaces 6, 13 and 17). The data file keeps the repo convention of folding each 0.01 mm layer into the preceding element's centre thickness (L3 6.61, L6 1.41, L8 3.11 mm), which changes the paraxial focal length by less than 0.01 mm.
 
 ### 3.4 Cover Glass
 
-The parallel plate P (nd = 1.51680, νd = 64.2) matches OHARA L-BSL7, the low-softening-temperature variant of BK7-equivalent glass. In the Q3 43, this represents the combined IR-cut / low-pass filter stack in front of the sensor.
+The parallel plate P (nd = 1.51680, νd = 64.2) is a BK7-class plate (S-BSL7 / N-BK7 coordinate). In the Q3 43, this represents the combined IR-cut / low-pass filter stack in front of the sensor. The data file omits it and carries the rear space as its air-equivalent length, 3.60 + 1.40/1.5168 + 1.00 = 5.52 mm, which reproduces the patent's infinity focus to 0.01 mm; the patent's own BF figure of 6.00 mm (used in Inequality (4)) is the geometric distance including the plate.
 
 ### 3.5 Petzval Sum
 
@@ -111,11 +113,11 @@ The computed Petzval sum is +0.00098 mm⁻¹, yielding a Petzval radius of appro
 
 ## 4. Aspherical Surfaces
 
-Seven surfaces across four elements carry aspherical profiles, making this one of the most aggressively aspherized normal-focal-length designs in current production. All aspherical departures below are computed at the estimated clear-aperture semi-diameter (SD) for each surface, derived from paraxial marginal and chief ray traces at f/2.06 with 8% mechanical clearance.
+Seven surfaces across four elements carry aspherical profiles, making this one of the most aggressively aspherized normal-focal-length designs in current production. The patent publishes no effective diameters; all aspherical departures below are computed at the data file's semi-diameters (SD), which were measured from the FIG. 1A cross-section in the 2026-09-21 audit (the drawing is to design scale: its stop opening measures 8.41 mm against the 8.40 mm f/2.06 stop radius, and the plate is drawn to the 20.0 mm image height).
 
 ### 4.1 L5 — Surfaces 8A and 9A (OIS Element)
 
-Both surfaces of the image-stabilization element are aspherical. The departures from the base sphere are approximately −197 μm on surface 8A (SD ≈ 9.4 mm) and −146 μm on surface 9A (SD ≈ 9.1 mm). Both surfaces have K = 0 (spherical base), with the aspheric profile defined entirely by even-order polynomial coefficients through A14.
+Both surfaces of the image-stabilization element are aspherical. The departures from the base sphere are approximately −258 μm on surface 8A and −235 μm on surface 9A, both at the drawn rim of SD ≈ 9.8 mm. Both surfaces have K = 0 (spherical base), with the aspheric profile defined entirely by even-order polynomial coefficients through A14.
 
 The aspherical departures on L5 serve a dual purpose. First, they correct residual spherical aberration from the front group at the marginal ray height near the stop. Second, because L5 moves perpendicularly to the optical axis during image stabilization, the aspherical profiles must be designed to maintain correction quality over the full decentering range — a considerably tighter design constraint than for a stationary aspheric. The patent states that the image blur compensation displacement at infinity is 0.401 mm.
 
@@ -123,19 +125,19 @@ The aspherical departures on L5 serve a dual purpose. First, they correct residu
 
 The object-side surface of L6 carries a significant conic constant (K = −0.420) along with polynomial terms through A10 (higher orders are zero). The prolate-ellipsoid base shape (K < 0) reduces the surface slope at the rim compared to a sphere of the same vertex radius, which helps control coma and oblique spherical aberration for off-axis ray bundles passing through the stop.
 
-The combined aspheric departure at the clear aperture (SD ≈ 7.1 mm) is approximately −60 μm, with the polynomial terms (−64 μm) dominating over the mild conic contribution (+3 μm). The conic sets the bulk wavefront shape while the polynomial provides fine high-order correction.
+The combined aspheric departure at the drawn rim (SD ≈ 9.2 mm) is approximately −182 μm, with the polynomial terms (−192 μm) dominating over the mild conic contribution (+9 μm). The conic sets the bulk wavefront shape while the polynomial provides fine high-order correction.
 
 ### 4.3 L10 — Surfaces 16A and 17A (Focus Group)
 
-L10 is a biconvex fluorophosphate element with aspherics on both surfaces. The front surface (16A) at SD ≈ 11.9 mm has moderate departure (−114 μm) while the rear surface (17A) at SD ≈ 14.2 mm shows a much larger +610 μm departure — the rear surface flattens significantly relative to its base sphere (R = −24.52 mm), creating a pronounced "bent" profile that redirects the converging beam.
+L10 is a biconvex fluorophosphate element with aspherics on both surfaces. The front surface (16A) is nearly flat (R = +202.6 mm) and its polynomial reaches a sag maximum near h ≈ 14.6 mm, so the data file caps its SD at 14.5 mm although the drawing shows the element edge at about 15.3 mm; the departure there is −218 μm. The rear surface (17A) at SD ≈ 15.3 mm shows a much larger +852 μm departure — the rear surface flattens significantly relative to its base sphere (R = −24.52 mm), creating a pronounced "bent" profile that redirects the converging beam.
 
 Both surfaces have K = 0 with polynomial coefficients through A14. The asymmetric departure pattern (negative on front, positive on rear) indicates that the aspherics are primarily working to control the field-dependent behavior of G4 as a focusing group: since L10 moves during focus (see §5), the aspherical profiles must maintain correction quality across the entire internal-focus range from infinity to the standard minimum focus distance of 0.6 m.
 
 ### 4.4 L11 — Surfaces 18A and 19A (Rear Field-Flattener)
 
-The rear-most glass element carries the largest aspherical departures in the entire system. Surface 18A has K = −0.276 (a prolate ellipsoid) plus polynomial terms yielding a total departure of approximately +3,785 μm — nearly 3.8 mm of aspheric departure from the base sphere at SD ≈ 15.3 mm. The conic contributes approximately +1,126 μm, with the polynomial terms adding a further +2,659 μm. Surface 19A adds −106 μm of departure at SD ≈ 16.2 mm.
+The rear-most glass element carries the largest aspherical departures in the entire system. Surface 18A has K = −0.276 (a prolate ellipsoid) plus polynomial terms yielding a total departure of approximately +4,480 μm — about 4.5 mm of aspheric departure from the base sphere at SD ≈ 15.8 mm, the height at which the drawn front curve ends before a flat annulus runs out to the 18.3 mm mechanical rim. The conic contributes approximately +1,487 μm, with the polynomial terms adding a further +2,993 μm. Surface 19A adds −725 μm of departure at its SD ≈ 18.3 mm rim (the rear surface's polynomial turns strongly negative outside h ≈ 15 mm, so the rear rim bends toward the image).
 
-The extreme aspherization of surface 18A reflects L11's role as a field-flattener operating close to the image plane. Its base radius is only −17.17 mm, producing a steeply curved spherical surface, and the large SD-to-radius ratio (sd/|R| ≈ 0.89) places the clear aperture near the geometric limit of the sphere. The prolate conic and polynomial terms together reshape this steep surface to redirect the strongly diverging off-axis beam, correcting astigmatism, field curvature, and distortion without introducing excessive higher-order residuals. At this position, ray heights vary strongly with field angle, so the aspherical departures primarily affect off-axis performance rather than on-axis spherical aberration.
+The extreme aspherization of surface 18A reflects L11's role as a field-flattener operating close to the image plane. Its base radius is only −17.17 mm, producing a steeply curved spherical surface, and the large SD-to-radius ratio (sd/|R| ≈ 0.92) places the clear aperture near the geometric limit of the sphere. The prolate conic and polynomial terms together reshape this steep surface to redirect the strongly diverging off-axis beam, correcting astigmatism, field curvature, and distortion without introducing excessive higher-order residuals. At this position, ray heights vary strongly with field angle, so the aspherical departures primarily affect off-axis performance rather than on-axis spherical aberration.
 
 ### 4.5 Manufacturing Implications
 
@@ -143,7 +145,7 @@ The four aspherical elements span two glass types:
 
 - **L5 and L11** use Sumita K-SKLD200, an exact 587590 coefficient-backed precision-molding glass.
 - **L10** uses HOYA M-FCD500 (nd = 1.55332), a fluorophosphate glass. Given the production volumes of the Q3 43, PGM is the likely manufacturing method.
-- **L6** uses S-TIM28 (nd = 1.68948). OHARA offers L-TIM28 as the PGM variant, suggesting this element is also glass-molded.
+- **L6** is listed at nd = 1.68948, νd = 31.0; the nearest catalog glass is OHARA S-TIM28 (1.68893 / 31.08), which the data file uses as a class label rather than an exact match. OHARA offers L-TIM28 as the PGM variant, suggesting this element is also glass-molded.
 
 ---
 
@@ -167,6 +169,8 @@ Two critical observations emerge:
 2. **Differential motion:** G4 moves 37% farther than G2 (2.753 mm vs. 2.002 mm). This differential creates the "floating" element behavior that maintains correction quality across the focus range. If both groups moved the same amount, as in a simpler unit-focus or single-group IF design, the balance of spherical aberration and field curvature would shift substantially at close focus. The independent motion allows each group to track its optimal position.
 
 The patent (§0049–0050) explicitly states that G2 and G4 move toward the object during close focusing, while G1, G3, and G5 remain fixed at constant distances from the image plane.
+
+Table 1C gives the object distance d0 for each state: 1331.625 mm for the middle row and 531.6251 mm for the close-object row. Adding the 68.3749 mm total length gives object-to-image distances of exactly 1.400 m and 0.600 m, so the patent's close state is the production lens's standard 0.6 m minimum focus. The data file stores all three published rows (`focusPositions` places the middle row at 0.6 / 1.4 = 0.43 of the focus travel) rather than interpolating between infinity and close focus.
 
 ### Macro Mode
 
@@ -209,9 +213,9 @@ Inequality (10) governs the OIS compensation ratio. Here β is the lateral magni
 
 This lens represents a sophisticated modern approach to the classical "fast normal" design problem, distinguished by several notable features:
 
-**Starting-point negative.** L1's biconcave negative element at the very front of the system is an unusual choice for a ~43 mm normal lens. Its primary role is aberration management rather than power contribution: by pre-diverging the incoming beam before it encounters the strong positive elements L2 and L3, L1 controls the ray heights and incidence angles on downstream surfaces, reducing the higher-order monochromatic residuals that would otherwise be introduced by the steep curvatures of the high-index positives. L1 also contributes to Petzval correction — as a negative element with moderate index (nd = 1.648), it bends the Petzval surface backward, counteracting the positive elements' inward-curving contribution. The overall system BFD of ~6 mm against an EFL of ~42 mm yields BFD/EFL ≈ 0.14, confirming this remains a compact, slightly telephoto-ratio configuration appropriate for a mirrorless fixed-lens camera with a short flange distance.
+**Starting-point negative.** L1's biconcave negative element at the very front of the system is an unusual choice for a ~43 mm normal lens. Its primary role is aberration management rather than power contribution: by pre-diverging the incoming beam before it encounters the strong positive elements L2 and L3, L1 controls the ray heights and incidence angles on downstream surfaces, reducing the higher-order monochromatic residuals that would otherwise be introduced by the steep curvatures of the high-index positives. L1 also contributes to Petzval correction — as a negative element with moderate index (nd = 1.648), it bends the Petzval surface backward, counteracting the positive elements' inward-curving contribution. The overall system back focus of 5.5 mm air-equivalent (6.0 mm geometric including the plate) against an EFL of ~42 mm yields BFD/EFL ≈ 0.13, confirming this remains a compact, slightly telephoto-ratio configuration appropriate for a mirrorless fixed-lens camera with a short flange distance.
 
-**Three cemented doublets in rapid succession.** The rear half of the lens contains three cemented doublets (D2, D3) plus the powerful L10 singlet, all operating at high ray incidence angles immediately after the stop. This dense packing of high-index doublets is characteristic of modern computational optimization — each doublet provides a paired correction "knob" for simultaneous chromatic and monochromatic aberration control that would be impossible to achieve with singlets alone.
+**Two cemented doublets in rapid succession.** The rear half of the lens contains two cemented doublets (D2, D3) plus the powerful L10 singlet, all operating at high ray incidence angles immediately after the stop. This dense packing of high-index doublets is characteristic of modern computational optimization — each doublet provides a paired correction "knob" for simultaneous chromatic and monochromatic aberration control that would be impossible to achieve with singlets alone.
 
 **Extreme index range.** The design spans an extraordinary range of refractive indices, from 1.553 (L10, M-FCD500) to 2.001 (L2, TAFD40). This 0.45-unit range is among the widest in any production camera lens. The high-index elements minimize surface curvatures and thus higher-order aberrations, while the low-index fluorophosphate elements provide the anomalous dispersion needed for APO correction.
 
@@ -227,4 +231,4 @@ Example 1 was selected as the production design based on its match with the Leic
 
 ---
 
-*Analysis based on US 2024/0241349 A1, Example 1. All element focal lengths, inequality values, and glass identifications independently verified via thick-lens computation and catalog matching. The 2026-05-19 glass audit resolved L3 to HOYA FCD515 and L5/L11 to Sumita K-SKLD200. Aspherical departures computed from patent polynomial coefficients at paraxially ray-traced semi-diameters. Petzval sum verified via surface-by-surface computation. Manufacturer specifications sourced from Leica Camera AG product pages and DPReview.*
+*Analysis based on US 2024/0241349 A1, Example 1. All element focal lengths, inequality values, and glass identifications independently verified via thick-lens computation and catalog matching. The 2026-05-19 glass audit resolved L3 to HOYA FCD515 and L5/L11 to Sumita K-SKLD200. The 2026-09-21 diagram audit replaced the earlier paraxial semi-diameter estimates with values measured from FIG. 1A, folded the cover plate into the rear space as an air-equivalent distance, adopted the patent's f/2.06 as the working aperture, and stored the published middle focus state; aspherical departures are computed from the patent polynomial coefficients at those semi-diameters. Petzval sum verified via surface-by-surface computation. Manufacturer specifications sourced from Leica Camera AG product pages and DPReview.*

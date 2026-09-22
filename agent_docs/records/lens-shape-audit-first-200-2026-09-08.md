@@ -18,8 +18,9 @@ Per-lens evidence lives in each lens's `*.audit.md` sidecar; this file only hold
 Lenses 1–40 were completed 2026-09-08/09 (see git history). The audit resumed at lens 41 on 2026-09-21 on branch
 `ronbuening/ContLensAudit260921` from `39cdee70`, keeping the frozen queue order and ten-lens commit cadence.
 
-- Batch 41–50 committed under “Audit hosted lens diagrams 41–50”. Locate later batches by title with
-  `git log --oneline --grep="lens diagrams"`.
+- Batch 41–50 committed under “Audit hosted lens diagrams 41–50”, batch 51–60 under “Audit hosted lens diagrams
+  51–60”. Locate batches by title with `git log --oneline --grep="lens diagrams"`. Both batches ship in one PR;
+  the next batch is 61–70.
 - Method for 41 onward: one audit pass per lens covering the source example's every prescription row, aspheres,
   variable gaps and general data; exact meridional traces of the axial f-number beam and the full-field chief ray
   against every stored rim; patent-figure rim measurement at native resolution with flanges and brackets excluded;
@@ -35,8 +36,8 @@ Lenses 1–40 were completed 2026-09-08/09 (see git history). The audit resumed 
   distinctions. Catalog-compatible glass does not establish production supplier or APD. Missing finite-focus tables
   do not authorize invented travel. Published physical iris schedules use `zoomStopSemiDiameters`; inferred
   nominal-f-number schedules use `zoomApertureModel`, never both.
-- A consolidated user-facing changelog entry for the resumed run is owed at its end; batches 41–50 onward have none
-  yet.
+- User-facing changelog: one consolidated entry per PR (2026-09-22 covers lenses 41–60). Add the next one when the
+  following batches are delivered.
 
 ### Open limitations to carry forward
 
@@ -52,6 +53,20 @@ unavoidably; lens 45 back-focus text/table conflict (38.73 vs 37.96 mm) and unve
 internally inconsistent after the R7 repair and its `lensMounts` is still unset; lens 49 production 0.6 m close focus
 lies beyond the published β = 0.14 state, so the endpoint is 0.815 m; lens 50 close-focus spacings are calculated and
 L21 is capped by its polynomial turnover.
+
+Batch 51–60 adds: lens 51 Table I computes to 38.5–89.1 mm against the text's 36–83 mm (Group IV power mismatch),
+only two zoom stations are tabulated, and the wide-end full-frame corner chief ray is blocked at L4/L5 by the design;
+lens 52 patent Y = 20.0 mm at ω = 27.5° reaches the full-frame corner only after in-camera distortion correction, and
+the 0.27 m macro mode is not modeled; lens 53 asphere coefficients read literally leave −5 mm marginal spherical
+aberration and L10 turnover at h ≈ 8.4 mm (no alternative reading found; recheck against a family member), and its
+d16 conflicts with the stated S'O'/f; lens 54 stop position anywhere in a₆ is equally consistent with the patent and
+its FIG. 1 is a different example; lens 55 rims come from the generic FIG. 2 shared by nine examples; lens 56 rims are
+estimates, its macro mode is off the focus axis, and two glasses run on the Abbe fallback; lens 57 printed f = 100.0
+and B.F. = 136.1 are not reproduced by its own table (99.32 / 133.43) and the L7/L8 near-contact at f/2 is a
+prescription property (`gapSagFrac: 1`); lens 58 stop position and rims are estimates and two glasses stay
+Abbe-only; lens 59 rims are ray-clearance/figure estimates and Cosina's APD claims are unverifiable from the patent;
+lens 60 Fig. 1 is schematic and the stop is a model choice. Lenses 53, 54 and 55 store e-line patent indices with
+`indexReference: "e"`.
 
 ### Audit-test cleanup at the 1–40 delivery (2026-09-09)
 
@@ -117,16 +132,16 @@ Final checks passed after audit-test removal: typecheck, format check, lint and 
 | 48 | vivitar-series1-200f3 | 2026-04-07T20:21:30.000Z | `src/lens-data/vivitar/VivitarSeries1200mmf3.data.ts` | Reviewed and committed; see source limitations |
 | 49 | fujifilm-xf90f2 | 2026-04-08T12:02:16.000Z | `src/lens-data/fujifilm/FujifilmXF90mmf2.data.ts` | Reviewed and committed; see source limitations |
 | 50 | fujinon-xf56f12r | 2026-04-08T12:02:16.000Z | `src/lens-data/fujifilm/FujifilmXF56mmf12.data.ts` | Reviewed and committed; see source limitations |
-| 51 | vivitar-s1-35-85-f28 | 2026-04-08T12:02:16.000Z | `src/lens-data/vivitar/VivitarSeries13585mmf28.data.ts` | Pending |
-| 52 | leica-apo-summicron-43f2 | 2026-04-09T11:05:59.000Z | `src/lens-data/leica/LeicaAPO43mmf2.data.ts` | Pending |
-| 53 | leica-apo-summicron-m-35f2 | 2026-04-09T11:05:59.000Z | `src/lens-data/leica/LeicaAPO35mmf2.data.ts` | Pending |
-| 54 | leica-elcan-50f2 | 2026-04-09T11:05:59.000Z | `src/lens-data/leica/LeicaElcan50mmf2.data.ts` | Pending |
-| 55 | leica-summicron-m-50f2-v5 | 2026-04-09T11:05:59.000Z | `src/lens-data/leica/LeicaSummicronV550mmf2.data.ts` | Pending |
-| 56 | leica-summilux-28f17 | 2026-04-09T11:05:59.000Z | `src/lens-data/leica/Leica28mmf17.data.ts` | Pending |
-| 57 | nikkor-n-28f2 | 2026-04-10T04:37:04.000Z | `src/lens-data/nikon/NikonNikkorN28mmf2.data.ts` | Pending |
-| 58 | nikon-28ti-28f28 | 2026-04-10T04:37:04.000Z | `src/lens-data/nikon/Nikon28Ti28mmf28.data.ts` | Pending |
-| 59 | voigtlander-nokton-x-50f12 | 2026-04-10T04:37:04.000Z | `src/lens-data/voigtlander/VoigtlanderNoktonX50mmf12.data.ts` | Pending |
-| 60 | canon-serenar-28f35 | 2026-04-10T13:33:16.000Z | `src/lens-data/canon/CanonSerenar28mmf35.data.ts` | Pending |
+| 51 | vivitar-s1-35-85-f28 | 2026-04-08T12:02:16.000Z | `src/lens-data/vivitar/VivitarSeries13585mmf28.data.ts` | Reviewed and committed; see source limitations |
+| 52 | leica-apo-summicron-43f2 | 2026-04-09T11:05:59.000Z | `src/lens-data/leica/LeicaAPO43mmf2.data.ts` | Reviewed and committed; see source limitations |
+| 53 | leica-apo-summicron-m-35f2 | 2026-04-09T11:05:59.000Z | `src/lens-data/leica/LeicaAPO35mmf2.data.ts` | Reviewed and committed; see source limitations |
+| 54 | leica-elcan-50f2 | 2026-04-09T11:05:59.000Z | `src/lens-data/leica/LeicaElcan50mmf2.data.ts` | Reviewed and committed; see source limitations |
+| 55 | leica-summicron-m-50f2-v5 | 2026-04-09T11:05:59.000Z | `src/lens-data/leica/LeicaSummicronV550mmf2.data.ts` | Reviewed and committed; see source limitations |
+| 56 | leica-summilux-28f17 | 2026-04-09T11:05:59.000Z | `src/lens-data/leica/Leica28mmf17.data.ts` | Reviewed and committed; see source limitations |
+| 57 | nikkor-n-28f2 | 2026-04-10T04:37:04.000Z | `src/lens-data/nikon/NikonNikkorN28mmf2.data.ts` | Reviewed and committed; see source limitations |
+| 58 | nikon-28ti-28f28 | 2026-04-10T04:37:04.000Z | `src/lens-data/nikon/Nikon28Ti28mmf28.data.ts` | Reviewed and committed; see source limitations |
+| 59 | voigtlander-nokton-x-50f12 | 2026-04-10T04:37:04.000Z | `src/lens-data/voigtlander/VoigtlanderNoktonX50mmf12.data.ts` | Reviewed and committed; see source limitations |
+| 60 | canon-serenar-28f35 | 2026-04-10T13:33:16.000Z | `src/lens-data/canon/CanonSerenar28mmf35.data.ts` | Reviewed and committed; see source limitations |
 | 61 | canon-serenar-35f32 | 2026-04-10T13:33:16.000Z | `src/lens-data/canon/CanonSerenar35mmf32.data.ts` | Pending |
 | 62 | canon-serenar-50f18 | 2026-04-10T13:33:16.000Z | `src/lens-data/canon/CanonSerenar50mmf18.data.ts` | Pending |
 | 63 | canon-serenar-85f15 | 2026-04-10T13:33:16.000Z | `src/lens-data/canon/CanonSerenar85mmf15.data.ts` | Pending |

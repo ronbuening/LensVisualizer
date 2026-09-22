@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-09-22",
+    type: "fix",
+    summary:
+      "Reviewed and corrected hosted lens diagrams 41–60 against their patents: rims, apertures, focus states and glass",
+  },
+  {
     date: "2026-09-21",
     type: "lens",
     summary: "Added six Leica Summilux lenses and three Minolta 28mm designs",

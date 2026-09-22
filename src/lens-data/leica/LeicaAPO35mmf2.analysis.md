@@ -32,21 +32,20 @@ The Leica APO-Summicron-M 35 f/2 ASPH. is a ten-element, five-group wide-angle p
 
 ### Computed specifications (from patent data, scaled to f = 35 mm)
 
-| Parameter | Computed (n_e) | Computed (n_d) | Patent (normalized) |
-|-----------|----------------|----------------|---------------------|
-| EFL | 35.0 mm | 34.8 mm | f = 1.00 mm |
-| BFD (paraxial, from last surface) | 14.6 mm | 14.4 mm | — |
-| BFD (patent-stated S'O') | 15.1 mm | — | 0.43 × f |
-| Total track (SO') | 64.8 mm | 64.1 mm | 1.85 × f |
-| SO'/f | 1.85 | 1.84 | 1.85 |
-| S'O'/f | 0.43 | — | 0.43 |
-| Half-image diagonal | ~21.1 mm | — | — |
-| Petzval radius | ~387 mm | — | 11.05 (norm.) |
-| Entrance pupil diameter | 17.5 mm | 17.4 mm | 0.50 (norm.) |
+| Parameter | Computed (n_e, as stored) | Patent (normalized) |
+|-----------|---------------------------|---------------------|
+| EFL | 34.99 mm | f = 1.00 mm |
+| BFD (paraxial, from last surface) | 14.62 mm (0.418 × f) | — |
+| BFD (patent-stated S'O') | 15.05 mm | 0.43 × f |
+| Total track (SO', vertex to paraxial image) | 64.32 mm | 1.85 × f |
+| SO'/f | 1.84 | 1.85 |
+| Half-image diagonal YB (SO'/YB = 3.08) | 21.0 mm | 0.60 (norm.) |
+| Petzval radius | ~387 mm | 11.05 (norm.) |
+| Entrance pupil diameter | 17.5 mm | 0.50 (norm.) |
 
-The computed EFL from the ABCD matrix paraxial ray trace is 0.9996 mm at f = 1 normalization (using the patent's n_e values), confirming the patent prescription is internally consistent. When the same prescription is evaluated using n_d (d-line, 587.56 nm) catalog values — as required by the data file convention — the computed EFL is 34.75 mm and BFD is 14.39 mm. The ~0.7% shift is normal for the e-line → d-line wavelength conversion.
+The patent table is given at the e-line (n_e, 546.07 nm) with integer ν_e values, and the data file keeps those native coordinates (`indexReference: "e"`) rather than converting them to d-line catalog values. Evaluated as stored, the paraxial EFL is 34.99 mm — the patent's f = 1.00 × 35 to within rounding — and the subgroup focal lengths reproduce the patent's own table (below), confirming that the radii and thicknesses are transcribed consistently.
 
-The sum of the tabulated d values is 1.78 mm (normalized), which is less than the patent's stated SO' = 1.85. The difference arises because the tabulated d₁₆ = 0.36 mm is not the full back focal distance; the ABCD-derived paraxial BFD from the last surface is 0.418 mm (at n_e). Using this corrected BFD yields SO' = 1.78 − 0.36 + 0.418 = 1.84 ≈ 1.85, consistent with the patent's stated value. The patent's S'O'/f = 0.43 similarly represents the true paraxial image distance rather than the tabulated d₁₆. The 2.0 mm discrepancy between the tabulated d₁₆ (12.6 mm scaled) and the paraxial BFD (14.6 mm scaled) is consistent with the presence of a sensor cover glass/IR filter stack omitted from the prescription, as is standard practice.
+The sum of the tabulated d values is 1.78 (normalized), which is less than the patent's stated SO' = 1.85. The tabulated d₁₆ = 0.36 is not the paraxial back focal distance: the paraxial BFD from the last vertex computes to 0.418, giving SO' = 1.42 + 0.418 = 1.84 ≈ 1.85, and the patent's S'O'/f = 0.43 is likewise the paraxial image distance. Why the table prints 0.36 (12.6 mm scaled, 2.0 mm short of the computed 14.6 mm) is not explained in the patent; the difference is too large for a filter-stack air-equivalent, so it is treated as an unexplained table entry. The data file stores the computed paraxial BFD (14.62 mm) so that the infinity image plane is at best focus.
 
 ---
 
@@ -70,7 +69,7 @@ The design organizes ten elements into three principal groups (VG, MG, HG) conta
 | MG | 3.36 | 3.34 | Middle positive group |
 | HG | 3.86 | 3.87 | Rear positive group |
 
-The G2, G4, and MG/HG values match the patent to within rounding. The G1 discrepancy (44.2 computed vs. 48.07 patent) is a natural consequence of G1's near-afocal configuration: when net power is close to zero, the EFL is extremely sensitive to the least-significant digits of the radii. Sensitivity analysis shows that shifting R₁ by just 0.005 mm (from 1.546 to 1.551) changes the computed G1 EFL from 44 to 49. Since the patent's prescription is rounded to three decimal places (0.001 mm at normalized scale, corresponding to 0.035 mm at production scale), a G1 EFL anywhere in the range 40–55 is consistent with the tabulated data. The essential point — G1 is nearly afocal — is confirmed by both values. The G3 discrepancy (3.36 vs. 3.34) is within the rounding tolerance of the prescription data.
+The G2, G4, G5 and VG/MG/HG values match the patent to within rounding. The G1 discrepancy (44.2 computed vs. 48.07 patent) is a natural consequence of G1's near-afocal configuration: when net power is close to zero, the EFL is extremely sensitive to the least-significant digits of the radii. Sensitivity analysis shows that shifting R₁ by just 0.005 (from 1.546 to 1.551 normalized) changes the computed G1 EFL from 44 to 49. Since the patent's prescription is rounded to three decimal places (0.001 at normalized scale, corresponding to 0.035 mm at production scale), a G1 EFL anywhere in the range 40–55 is consistent with the tabulated data. The essential point — G1 is nearly afocal — is confirmed by both values. The G3 discrepancy (3.36 vs. 3.34) is within the rounding tolerance of the prescription data.
 
 ---
 
@@ -80,19 +79,19 @@ The G2, G4, and MG/HG values match the patent to within rounding. The G1 discrep
 
 #### L1 — Biconvex Positive (1× Aspherical)
 
-- **Glass:** S-LAH89 (OHARA) — n_e = 1.855, v_e = 40; n_d = 1.85150, v_d = 40.78
+- **Glass:** patent n_e = 1.855, v_e = 40; catalog equivalent S-LAH89 (OHARA), n_e = 1.8565, v_e = 40.5 (n_d = 1.85150, v_d = 40.78)
 - **Focal length:** +19.0 mm (at f = 35)
 - **Shape:** Biconvex, R1 = +1.546, R2 = −0.628 (normalized); strongly asymmetric with steeper rear surface
 - **Aspherical surface:** Surface 1 (object-side), K = 0, polynomial corrections through A8
 
-The patent explicitly identifies S-LAH89 as the front element glass ([0071]), chosen for its Knoop hardness (HK ≥ 600 N/mm²) and acid resistance (ISO 8424 class ≤ 4). As the exposed front element of a compact M-mount lens with only a screw-in hood, mechanical and chemical durability is paramount.
+The patent names S-LAH89 as an example of a front-element glass ([0071]) satisfying its Knoop hardness (HK ≥ 600 N/mm²) and acid resistance (ISO 8424 class ≤ 4) requirements. As the exposed front element of a compact M-mount lens with only a screw-in hood, mechanical and chemical durability is paramount. The table's n_e = 1.855 sits 0.0015 below the S-LAH89 catalog value (1.8565), so the identification rests on the patent's naming rather than on an exact index match; no catalog glass reproduces 1.855/40 exactly.
 
 The aspherical object-side surface controls distortion contribution from the strongly curved front element. The patent notes ([0037]) that this asphere, combined with the near-afocal G1 doublet configuration, minimizes distortion and makes G1 suitable as an assembly adjustment member for centering the on-axis image.
 
 #### L2 — Biconcave Negative
 
-- **Glass:** KZFS-type short flint — n_e = 1.658, v_e = 39, ΔP_gF = −0.004; n_d ≈ 1.65412, v_d ≈ 39.70
-- **Focal length:** −18.0 mm (at f = 35)
+- **Glass:** patent n_e = 1.658, v_e = 39, ΔP_gF = −0.004; catalog equivalents N-KZFS5 (Schott) / S-NBH5 (OHARA), n_e = 1.6580, v_e = 39.5 (n_d = 1.65412, v_d = 39.70)
+- **Focal length:** −17.9 mm (at f = 35)
 - **Shape:** Biconcave, R1 = −0.628, R2 = +0.742 (normalized)
 - **Cemented to:** L1 (junction = surface 2)
 
@@ -100,8 +99,8 @@ L2 is cemented to L1 to form subgroup G1. The doublet is designed to be nearly a
 
 #### L3 — Biconcave Negative
 
-- **Glass:** KZFS-type short flint — n_e = 1.658, v_e = 39, ΔP_gF = −0.004
-- **Focal length:** −18.7 mm (at f = 35)
+- **Glass:** patent n_e = 1.658, v_e = 39, ΔP_gF = −0.004 (same short-flint row as L2)
+- **Focal length:** −18.6 mm (at f = 35)
 - **Shape:** Biconcave, R1 = −0.790, R2 = +0.648 (normalized)
 - **Cemented to:** L4 (junction = surface 5)
 
@@ -109,12 +108,12 @@ L3 is the front element of the G2 cemented doublet. It provides negative power t
 
 #### L4 — Biconvex Positive
 
-- **Glass:** S-LAH79 (OHARA) — n_e = 1.888, v_e = 41; n_d = 1.88300, v_d = 40.76
+- **Glass:** patent n_e = 1.888, v_e = 41; catalog equivalent S-LAH58 (OHARA), n_e = 1.8882, v_e = 40.5 (n_d = 1.88300, v_d = 40.77)
 - **Focal length:** +16.6 mm (at f = 35)
 - **Shape:** Biconvex, R1 = +0.648, R2 = −1.081 (normalized)
 - **Cemented to:** L3 (junction = surface 5)
 
-L4 carries the highest refractive index in the entire design (n_d ≈ 1.883). The patent requires n_d ≥ 1.86 for this element ([0026]). The high index serves two purposes: it provides strong positive refractive power from moderate curvatures (reducing higher-order aberrations), and it minimizes the Petzval contribution (since Petzval sum contributions scale as φ/n, a higher n for positive elements reduces the positive Petzval contribution). The G2 doublet (L3 + L4) is the primary power-bearing subgroup of VG, with f'/f = 2.47.
+L4 carries the highest refractive index in the entire design (n_e = 1.888). The patent requires a refractive index ≥ 1.86 for this element ([0026]). The high index serves two purposes: it provides strong positive refractive power from moderate curvatures (reducing higher-order aberrations), and it minimizes the Petzval contribution (since Petzval sum contributions scale as φ/n, a higher n for positive elements reduces the positive Petzval contribution). The G2 doublet (L3 + L4) is the primary power-bearing subgroup of VG, with f'/f = 2.47.
 
 ### 3.2 Aperture Stop (BL)
 
@@ -124,12 +123,12 @@ The aperture diaphragm is located between the front group VG and the middle grou
 
 #### G3 — Cemented Apochromatic Triplet
 
-- **L5:** S-FPL51 (biconvex positive) — n_e = 1.498, v_e = 81, ΔP_gF = +0.031; f' = +53.4 mm
-- **L6:** KZFS-type (biconcave negative) — n_e = 1.658, v_e = 39, ΔP_gF = −0.004; f' = −19.7 mm
-- **L7:** S-FPL51 (biconvex positive) — n_e = 1.498, v_e = 81, ΔP_gF = +0.031; f' = +26.1 mm
+- **L5:** biconvex positive — patent n_e = 1.498, v_e = 81, ΔP_gF = +0.031 (catalog equivalent S-FPL51, OHARA: n_e = 1.4985, v_e = 81.2); f' = +53.3 mm
+- **L6:** biconcave negative — patent n_e = 1.658, v_e = 39, ΔP_gF = −0.004 (short-flint row); f' = −19.5 mm
+- **L7:** biconvex positive — same row as L5; f' = +26.0 mm
 - **Group focal length:** f'/f = 3.36 (computed) ≈ 3.34 (patent)
 
-This triplet is the optical heart of the APO correction. The two S-FPL51 elements (L5, L7) have very high Abbe numbers (v_d ≈ 81.6) and strongly positive anomalous partial dispersion (+0.031), while the sandwiched KZFS element (L6) has low Abbe number (v_d ≈ 39) and negative anomalous partial dispersion (−0.004). This combination — positive APD crowns flanking a negative APD flint — is the classic configuration for bringing three wavelengths to a common focus (apochromatic correction). The patent states ([0047]) that the positive elements require v_d ≥ 65 and ΔP_gF ≥ +0.013.
+This triplet is the optical heart of the APO correction. The two fluorophosphate-class elements (L5, L7) have very high Abbe numbers (v_e = 81) and strongly positive anomalous partial dispersion (+0.031), while the sandwiched short-flint element (L6) has a low Abbe number (v_e = 39) and negative anomalous partial dispersion (−0.004). The patent does not name these glasses; S-FPL51 and N-KZFS5 / S-NBH5 are the catalog entries whose e-line coordinates and ΔP_gF reproduce the table rows. This combination — positive APD crowns flanking a negative APD flint — is the classic configuration for bringing three wavelengths to a common focus (apochromatic correction). The patent states ([0047]) that the positive elements require v_d ≥ 65 and ΔP_gF ≥ +0.013.
 
 The triplet also addresses the sagittal astigmatism and serves as an assembly adjustment member for minimizing field centering errors ([0046]).
 
@@ -139,18 +138,18 @@ Note that L5 has a very weak front radius (R = +5.209 normalized, compared to th
 
 #### L8 — Biconvex Positive (1× Aspherical)
 
-- **Glass:** S-LAH89 (OHARA) — n_e = 1.855, v_e = 40
+- **Glass:** patent n_e = 1.855, v_e = 40 (same row as L1; S-LAH89 catalog equivalent)
 - **Focal length:** +15.4 mm (at f = 35)
 - **Shape:** Biconvex, R1 = +0.802, R2 = −0.616 (normalized)
 - **Aspherical surface:** Surface 12 (object-side), K = 0, polynomial corrections through A8
 - **Cemented to:** L9 (junction = surface 13)
 
-L8 is the strongest positive element in the design (shortest focal length at +15.4 mm). Its aspherical front surface contributes to balancing spherical aberration. The patent ([0054]) states that this asphere helps minimize unwanted spherical aberration contributions. L8 uses the same glass as L1 (S-LAH89), exploiting the quasi-symmetrical layout where corresponding elements on either side of the stop share optical properties.
+L8 is the strongest positive element in the design (shortest focal length at +15.4 mm). Its aspherical front surface contributes to balancing spherical aberration. The patent ([0054]) states that this asphere helps minimize unwanted spherical aberration contributions. L8 uses the same glass row as L1, exploiting the quasi-symmetrical layout where corresponding elements on either side of the stop share optical properties.
 
 #### L9 — Biconcave Negative
 
-- **Glass:** KZFS-type short flint — n_e = 1.658, v_e = 39, ΔP_gF = −0.004
-- **Focal length:** −16.8 mm (at f = 35)
+- **Glass:** patent n_e = 1.658, v_e = 39, ΔP_gF = −0.004 (short-flint row)
+- **Focal length:** −16.7 mm (at f = 35)
 - **Shape:** Biconcave, R1 = −0.616, R2 = +0.653 (normalized)
 - **Cemented to:** L8 (junction = surface 13)
 
@@ -158,12 +157,12 @@ L9 completes the G4 cemented doublet with L8. This is the fourth KZFS-type eleme
 
 #### L10 — Negative Meniscus (2× Aspherical)
 
-- **Glass:** L-BAL42 (OHARA PGM) — n_e = 1.583, v_e = 59; n_d = 1.58313, v_d = 59.37
-- **Focal length:** −115.0 mm (at f = 35)
+- **Glass:** patent n_e = 1.583, v_e = 59; nearest catalog class L-BAL42 / S-BAL42 (OHARA), n_e = 1.5855, v_e = 59.1 (n_d = 1.58313, v_d = 59.4)
+- **Focal length:** −115.1 mm (at f = 35)
 - **Shape:** Negative meniscus, concave toward object; R1 = −1.490, R2 = −6.742 (normalized)
 - **Aspherical surfaces:** Both surfaces 15 and 16, K = 0, with polynomials through A12 (surface 15) and A8 (surface 16)
 
-L10 is the single-element subgroup G5 and the only lens in the design manufactured by precision glass molding (PGM). The patent explicitly exempts the last element from the KZFS glass requirement ([0022]) "in favor of an aspherical design by precision glass molding." The L-BAL42 glass (OHARA's "L-" prefix denotes low-softening-temperature PGM-compatible grades) enables both surfaces to be aspherically molded in a single pressing operation.
+L10 is the single-element subgroup G5 and the only lens in the design manufactured by precision glass molding (PGM). The patent explicitly exempts the last element from the KZFS glass requirement ([0022]) "in favor of an aspherical design by precision glass molding." A low-softening-temperature moldable barium crown of the L-BAL42 class (OHARA's "L-" prefix denotes PGM-compatible grades) enables both surfaces to be aspherically molded in a single pressing operation. No catalog glass reproduces 1.583/59 at the e-line: the moldable candidates (L-BAL42, S-BAL42, Hoya M-BACD12, Hikari Q-SK52S) all sit at n_e ≈ 1.585. The printed 1.583 coincides with the d-line index of that class, so the row may be a d-line value in an otherwise e-line table; the data file stores the row as printed and labels the glass as a class.
 
 Despite its weak net power (f' ≈ −115 mm, only about −0.3 diopters at production scale), L10 plays a critical role in field correction. The patent states ([0054]) that both aspherical surfaces contribute to "balancing the astigmatic difference and coma over the image field, as well as minimizing unwanted contributions to the spherical aberration." Surface 15 carries the most complex aspherical polynomial in the design, with coefficients specified through A12 (h¹² term), indicating significant higher-order departure from the spherical base curve.
 
@@ -192,31 +191,35 @@ where the patent coefficients a2–a6 correspond to the standard notation A4–A
 
 ### Scaling behavior and aspherical departures
 
-The A6 coefficients appear strikingly large in magnitude — particularly for surfaces 15 and 16 (~35), and non-trivially for surfaces 1 and 12 (~1.8 and ~0.5). This is a consequence of the f = 1 mm normalization: under uniform scaling by factor s, the A₂ₙ coefficient scales as s^(2n−1), so going from f = 35 mm production scale to f = 1 mm normalization multiplies A6 by 35⁵ ≈ 5.3 × 10⁷ while multiplying A4 by only 35³ ≈ 4.3 × 10⁴. The design uses intentionally small A4 departures (4th-order correction largely absorbed by the spherical base curvature during optimization), concentrating the aspherical correction in the 6th-order and higher terms.
+The A6 coefficients appear strikingly large in magnitude — particularly for surfaces 15 and 16 (~35), and non-trivially for surfaces 1 and 12 (~1.8 and ~0.5). Under the f = 1 mm normalization the A₂ₙ coefficient scales as s^(2n−1), so going from f = 35 mm production scale to f = 1 mm multiplies A6 by 35⁵ ≈ 5.3 × 10⁷ while multiplying A4 by only 35³ ≈ 4.3 × 10⁴. Scaled back to production units the printed a2/a4/a6 terms vanish (A4 ≈ 4 × 10⁻¹⁰ mm⁻³, A8 ≈ 4 × 10⁻²², A12 ≈ 8 × 10⁻³³) and only the a3 (h⁶) and, on surface 15, a5 (h¹⁰) terms survive.
 
-At production scale, the aspherical departures are not negligible — particularly for L10. Using the estimated semi-diameters from the 2-ray trace (~10.5 mm for surfaces 15–16), the A6 polynomial term alone contributes approximately 0.5–0.8 mm of sag departure, which is comparable to the base spherical sag (~1.1 mm for surface 15 at R = −52.15 mm). This makes L10 a relatively strong asphere by production standards — consistent with it being a PGM element rather than conventionally polished. By contrast, surfaces 1 and 12 show much milder aspherical departures: at their estimated semi-diameters (~12–15 mm), the total polynomial sag departure is on the order of 10⁻³ mm, confirming that L1 and L8 are mild aspherics suitable for CNC or MRF polishing on the high-index S-LAH89 substrate.
+At the stored semi-diameters the literal departures are: surface 1 (h = 12.5 mm) −0.13 mm, surface 12 (h = 12.2 mm) −0.03 mm, surface 15 (h = 10.5 mm) +0.92 mm and surface 16 (h = 10.5 mm) +0.94 mm. The L10 values are of the same size as the base spherical sags (−1.07 mm and −0.23 mm respectively), so the literal polynomial reverses the curvature of both L10 surfaces in the outer zone: surface 15 turns over (changes from concave to convex) at h ≈ 8.4 mm, well inside the 10.5 mm patent-derived clear semi-diameter, and reaches a surface slope of 18° at the rim where the sphere alone would be −11°.
 
-**Manufacturing implications:** Surfaces 1 and 12 are on S-LAH89 glass, which cannot be precision-molded (its glass transition temperature is too high). These aspherics are therefore ground and polished using conventional CNC or MRF (magnetorheological finishing) techniques — consistent with Leica's well-known capabilities in aspherical lens production at the Wetzlar facility. Surfaces 15 and 16 are on L-BAL42 PGM glass and are molded.
+**Caveat on the printed coefficient table.** Traced as printed, the prescription is not a usable f/2 design: the marginal ray at f/2 crosses the axis 5.0 mm in front of the paraxial focus (the spherical base prescription alone gives −5.9 mm, and the h⁶ terms on surfaces 1 and 12 recover only 0.9 mm of it, with the zonal error left at −1.4 mm), and beyond ω ≈ 26° the chief ray is thrown outward by the reversed L10 zones, landing at 28 mm for the patent's 31.1° half-field instead of the ≈ 21 mm image height the design specifies (distortion −0.3 % at 10°, +2 % at 25°, +34 % at 31.1°). With all four polynomials removed the field maps normally (−2.6 % barrel distortion at 31.1°) but the spherical aberration remains. Alternative readings of the table were tested — treating the even-index columns as production-scale mm coefficients, shifting every coefficient one power of h, or scaling the h⁶ terms up or down by powers of 35 — and none yields both a corrected axial focus and a sane field, so the coefficients are kept exactly as printed and scaled by the stated rule. The practical consequence for the rendering is that the f/2 axial bundle does not converge on the image plane and the outer-field rays through L10 are not representative of the production lens; the base spherical prescription, group powers and glass palette are unaffected.
+
+Surfaces 1 and 12 show mild departures (−0.13 mm and −0.03 mm at the rim), consistent with L1 and L8 being ground-and-polished aspherics on the high-index substrate.
+
+**Manufacturing implications:** Surfaces 1 and 12 are on an S-LAH89-class lanthanum glass, which is not a precision-molding grade. These aspherics are therefore ground and polished using conventional CNC or MRF (magnetorheological finishing) techniques — consistent with Leica's well-known capabilities in aspherical lens production at the Wetzlar facility. Surfaces 15 and 16 are on a moldable L-BAL42-class glass and are molded ([0022]).
 
 ---
 
 ## 5. Glass Selection and the APO Designation
 
-The design uses only five distinct glass types across ten elements:
+The design uses only five distinct glass rows across ten elements. The patent gives them at the e-line; the catalog equivalents are the entries whose C′/e/F′ coordinates reproduce the rows:
 
-| Glass | n_d | v_d | ΔP_gF | Elements | Count |
-|-------|-----|-----|-------|----------|-------|
-| S-LAH89 (OHARA) | 1.85150 | 40.78 | ~0 | L1, L8 | 2 |
-| N-KZFS5 (Schott) / S-NBH5 (OHARA) | 1.65412 | 39.70 | −0.004 | L2, L3, L6, L9 | 4 |
-| S-FPL51 (OHARA) | 1.49700 | 81.61 | +0.031 | L5, L7 | 2 |
-| L-BAL42 (OHARA PGM) | 1.58313 | 59.37 | ~0 | L10 | 1 |
-| S-LAH79 (OHARA) | 1.88300 | 40.76 | ~0 | L4 | 1 |
+| Patent row (n_e / v_e / ΔP_gF) | Catalog equivalent | n_e / v_e (catalog) | n_d / v_d (catalog) | Elements | Count |
+|-------|-----|-----|-----|----------|-------|
+| 1.855 / 40 / — | S-LAH89 (OHARA), patent-named example for L1 | 1.8565 / 40.5 | 1.85150 / 40.78 | L1, L8 | 2 |
+| 1.658 / 39 / −0.004 | N-KZFS5 (Schott) or S-NBH5 (OHARA) | 1.6580 / 39.5 | 1.65412 / 39.70 | L2, L3, L6, L9 | 4 |
+| 1.498 / 81 / +0.031 | S-FPL51 (OHARA) | 1.4985 / 81.2 | 1.49700 / 81.55 | L5, L7 | 2 |
+| 1.583 / 59 / — | L-BAL42 class (OHARA PGM); nearest, not exact | 1.5855 / 59.1 | 1.58313 / 59.4 | L10 | 1 |
+| 1.888 / 41 / — | S-LAH58 (OHARA) | 1.8882 / 40.5 | 1.88300 / 40.77 | L4 | 1 |
 
-*Note: The patent specifies refractive indices at the e-line (n_e, 546.07 nm) and Abbe numbers v_e. The n_d and v_d values above are from catalog cross-references. The KZFS-type glass (n_e = 1.658, v_e = 39) matches Schott N-KZFS5 (n_d = 1.65412, n_e = 1.65844, v_d = 39.70, ΔP_gF = −0.0044) or its OHARA equivalent S-NBH5 (n_d = 1.65446, v_d = 39.60). The data file uses the Schott N-KZFS5 catalog value (n_d = 1.65412).*
+*Note: The data file stores the patent's native n_e / v_e values with `indexReference: "e"`; the dispersion engine resolves the catalog names above at C′/e/F′ (all within Δn ≤ 0.0025, Δν ≤ 0.6). Only S-LAH89 is named in the patent ([0071], as an example satisfying the front-element hardness requirement); the other four identifications are catalog inferences from the rows. The short-flint row matches Schott N-KZFS5 (ΔP_gF = −0.0044) and OHARA S-NBH5 equally well.*
 
-Six elements carry anomalous partial dispersion — four with negative ΔP_gF (the KZFS-type short flints) and two with positive ΔP_gF (S-FPL51 fluorophosphate crowns). This matches Leica's stated specification. The strategy is systematic: every negative-power element except L10 uses the same KZFS-type glass with ΔP_gF = −0.004, and these are distributed across all three groups (two in VG, one in MG, one in HG). This distributed correction architecture ensures that secondary spectrum is corrected not just at the image center (where the MG triplet dominates) but also across the field (where the VG and HG elements dominate the off-axis chromatic contributions).
+Six elements carry anomalous partial dispersion — four with negative ΔP_gF (the short flints) and two with positive ΔP_gF (fluorophosphate crowns); the ΔP_gF values are the patent table's own column. The strategy is systematic: every negative-power element except L10 uses the same short-flint row with ΔP_gF = −0.004, and these are distributed across all three groups (two in VG, one in MG, one in HG). This distributed correction architecture ensures that secondary spectrum is corrected not just at the image center (where the MG triplet dominates) but also across the field (where the VG and HG elements dominate the off-axis chromatic contributions).
 
-The "APO" designation requires correction of chromatic aberration at three wavelengths (apochromatic correction), which demands glass types whose partial dispersion deviates from the "normal line" relating P_gF to v_d. The combination of positive-ΔP_gF crowns (S-FPL51) with negative-ΔP_gF flints (KZFS) enables three-color focus convergence that is not achievable with glasses lying on the normal line.
+The "APO" designation requires correction of chromatic aberration at three wavelengths (apochromatic correction), which demands glass types whose partial dispersion deviates from the "normal line" relating P_gF to v_d. The combination of positive-ΔP_gF crowns with negative-ΔP_gF short flints enables three-color focus convergence that is not achievable with glasses lying on the normal line; the patent itself claims correction "over the primary and secondary spectrum" ([0076]).
 
 ---
 
@@ -233,15 +236,15 @@ The floating element strategy is motivated by aberration correction at close ran
 
 The production lens implements this with a 300° focus ring throw, with a tactile detent at 0.7 m marking the boundary of rangefinder-coupled focusing. Below 0.7 m, the user must use Live View or an EVF.
 
-**Note on variable gap estimation:** The patent does not provide explicit close-focus spacing tables. The data file's close-focus gap values are estimated from paraxial conjugate equations assuming a floating ratio (δ_rear ≈ 0.70 × δ_front), yielding d₁₁ ≈ 2.51 mm and BFD ≈ 19.44 mm at 0.3 m. These are approximate and flagged as inferred.
+**Note on variable gap estimation:** The patent does not provide close-focus spacing tables; FIG. 2 only shows the close-distance setting graphically. The data file's close-focus gaps are calculated from paraxial conjugates with an assumed floating ratio (δ_HG = 0.70 × δ_front, δ_front = 7.34 mm) so that the object-to-image distance is 300 mm: d₁₁ = 2.55 mm and BF = 19.76 mm at 0.3 m (magnification −0.17). The 0.70 ratio is an assumption, not patent data. FIG. 2, compared with FIG. 1, shows the MG–HG gap opening by roughly 2–4 mm — the figures are schematic and their axial scale is not uniform, so this is only an order-of-magnitude check on the assumed 2.2 mm.
 
 ---
 
 ## 7. Petzval Sum and Field Curvature
 
-The computed Petzval sum (at n_e wavelength) is +0.0905 in normalized units, corresponding to a Petzval radius of approximately 387 mm at f = 35 mm production scale. This is a relatively large Petzval radius (flat field) for a 35 mm lens, indicating effective field curvature correction.
+The computed Petzval sum (at n_e) is +0.0905 in normalized units, corresponding to a Petzval radius of approximately 387 mm at f = 35 mm production scale. This is a relatively large Petzval radius (flat field) for a 35 mm lens, indicating effective field curvature correction.
 
-The field flattening strategy relies on three mechanisms working in concert. First, every positive element uses a high-refractive-index glass (n_d ≥ 1.49 for S-FPL51, 1.85 for S-LAH89, 1.88 for S-LAH79), which reduces the Petzval contribution (φ/n) of each positive surface. Second, four negative elements with comparatively lower index (n_d ≈ 1.654) provide counterbalancing negative Petzval contributions. Third, L10's negative meniscus form provides a field-flattening correction in the final image space, fine-tuned by its double-asphere surfaces.
+The field flattening strategy relies on three mechanisms working in concert. First, the strong positive elements L1, L4 and L8 use high-refractive-index glass (n_e 1.855–1.888), which reduces the Petzval contribution (φ/n) of each positive surface; the fluorophosphate crowns of the triplet are weaker in power and sit where their low index matters less. Second, four negative elements with comparatively lower index (n_e = 1.658) provide counterbalancing negative Petzval contributions. Third, L10's negative meniscus form provides a field-flattening correction in the final image space, fine-tuned by its double-asphere surfaces.
 
 ---
 
@@ -251,11 +254,11 @@ The patent repeatedly emphasizes the quasi-symmetrical architecture as the found
 
 | Front of stop | ← Stop → | Rear of stop |
 |---------------|-----------|--------------|
-| G1: (+) doublet [LAH89 / KZFS] | BL | G3: (+) triplet [FPL51 / KZFS / FPL51] |
-| G2: (+) doublet [KZFS / LAH79] | | G4: (+) doublet [LAH89 / KZFS] |
+| G1: (+) doublet [1.855 / short flint] | BL | G3: (+) triplet [fluorophosphate / short flint / fluorophosphate] |
+| G2: (+) doublet [short flint / 1.888] | | G4: (+) doublet [1.855 / short flint] |
 | | | G5: (−) single [PGM asph.] |
 
-The VG-side and HG-side share structural DNA: both contain cemented doublets pairing a high-index positive crown with a KZFS-type negative flint. G1 (LAH89/KZFS) mirrors G4 (LAH89/KZFS); G2 (KZFS/LAH79) has no exact rear mirror but the power balance is maintained by G3 and G5 together. The MG triplet sits at the center, acting as the chromatic correction hub.
+The VG-side and HG-side share structural DNA: both contain cemented doublets pairing a high-index positive crown with a short-flint negative element. G1 (1.855 / short flint) mirrors G4 (1.855 / short flint); G2 (short flint / 1.888) has no exact rear mirror but the power balance is maintained by G3 and G5 together. The MG triplet sits at the center, acting as the chromatic correction hub.
 
 This quasi-symmetry means that odd-order aberrations (coma, distortion, lateral color) generated by the front half are approximately cancelled by the rear half — which is why the patent can claim "imperceptible distortion" ([0075]) and MTF contrast above ~75% at the image margin at 20 lp/mm.
 
@@ -276,14 +279,14 @@ The distribution of aspherics is deliberate: one at the front of the lens where 
 
 ## 10. Relationship to Leica's APO-Summicron Family
 
-The APO-Summicron-M 35 f/2 ASPH. is the latest addition to the APO-designated M-mount lens family, following the 90 mm f/2 (1998, the first APO-Summicron-M), the 75 mm f/2 (2005), and the 50 mm f/2 (2012). It is the first 35 mm M-lens to achieve apochromatic correction — a fact Leica emphasizes in its marketing materials. The design shares the distributed-APD-glass philosophy of its predecessors — using KZFS-type flints in every negative element across all groups — but introduces the double-asphere PGM element (L10) as a new tool for compact field correction. The floating focus mechanism, previously employed in the 75 mm APO-Summicron-M and the 50 mm f/1.4 Summilux-M ASPH., is extended here to achieve a 0.3 m close focus distance — the shortest in the M-mount system.
+The APO-Summicron-M 35 f/2 ASPH. is the latest addition to the APO-designated M-mount lens family, following the 90 mm f/2 (1998, the first APO-Summicron-M), the 75 mm f/2 (2005), and the 50 mm f/2 (2012). It is the first 35 mm M-lens to achieve apochromatic correction — a fact Leica emphasizes in its marketing materials. The design shares the distributed-APD-glass philosophy of its predecessors — using short-flint glass in every negative element across all groups — but introduces the double-asphere PGM element (L10) as a new tool for compact field correction. The floating focus mechanism, previously employed in the 75 mm APO-Summicron-M and the 50 mm f/1.4 Summilux-M ASPH., is extended here to achieve a 0.3 m close focus distance — the shortest in the M-mount system.
 
 ---
 
 ## 11. Data File Notes
 
-The companion data file (`LeicaAPO35mmf2.data.ts`) uses d-line (587.56 nm) refractive indices from glass catalogs rather than the patent's e-line values. This produces a computed EFL of ~34.75 mm (vs. 35.0 mm at the e-line). The discrepancy is expected and represents the wavelength-dependent focal shift, not a transcription error.
+The companion data file (`LeicaAPO35mmf2.data.ts`) stores the patent's native e-line refractive indices and integer ν_e values with `indexReference: "e"`, so the traced wavelength is 546.07 nm and the computed EFL is 34.99 mm (patent f = 1.00 × 35). The glass labels are catalog equivalents chosen to round-trip at C′/e/F′; only S-LAH89 is named in the patent.
 
-The patent's aspherical coefficient notation uses a non-standard labeling (a2, a3, ..., a6 for A4, A6, ..., A12). The "D ± N" exponential format in the patent (e.g., "0.1569D − 4" = 1.569 × 10⁻⁵) is a Fortran-style double-precision notation common in German optical patents.
+The patent's aspherical coefficient notation uses a non-standard labeling (a2, a3, ..., a6 for A4, A6, ..., A12). The "D ± N" exponential format in the patent (e.g., "0.1569D − 4" = 1.569 × 10⁻⁵) is a Fortran-style double-precision notation common in German optical patents. The coefficients are stored exactly as printed, scaled by 35^(1−2n); see the caveat in section 4 — read literally they do not produce a corrected f/2 design, and the rendered axial and outer-field rays should be read with that in mind.
 
-Semi-diameters are estimated (not patent-specified) and should be treated as approximate. The front element SD of 15.0 mm is constrained by the E39 filter thread geometry. Variable gap values for close focus are inferred from paraxial conjugate analysis and should likewise be treated as estimates rather than authoritative design data.
+Semi-diameters come from the patent's D/d_M and d_M/d_r ratio tables where those exist (L2 D = 25.1 mm and L1 edge thickness 0.65 mm → G1 sd 12.5; L8 edge thickness 1.24 mm and L9 D = 25.1 mm → G4 sd 12.2; L10 D = 21.0 mm → sd 10.5; L6 D = 18.9 mm → 9.45, stored 10.5 for the f/2 bundle), and elsewhere from the FIG. 1 rim proportions and the f/2 ray envelope. The D/d_M values inherit the ±0.005 rounding of the normalized thicknesses (±17 % for the 0.03 rows), so they are approximate; the two G1 estimates agree independently. The rows labelled 6 and 11 in the patent's ratio table (12.9 and 96.4) could not be assigned to a lens consistently and were not used. FIG. 1 is a schematic section whose axial scale varies by ±40 % between elements, so it was used only for rim ratios. Variable gap values for close focus are inferred from paraxial conjugate analysis with an assumed floating ratio and should likewise be treated as estimates rather than authoritative design data.
