@@ -4,22 +4,36 @@ import type { LensDataInput } from "../../types/optics.js";
  * ╔══════════════════════════════════════════════════════════════════════╗
  * ║  LENS DATA — Leica Summicron-M 50mm f/2 (Version IV/V)            ║
  * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Data source: US 4,123,144 Example 9 (Mandler / Ernst Leitz).     ║
- * ║  Four-component six-element Gauss objective, all spherical.        ║
- * ║  6 elements / 4 groups, 0 aspherical surfaces.                    ║
+ * ║  Data source: US 4,123,144 (Mandler, Edwards, Wagner; assignee    ║
+ * ║  printed as Ernst Leitz Wetzlar GmbH), Example 9, FIG. 2 form     ║
+ * ║  (planar r10). Four-component six-element Gauss objective, all    ║
+ * ║  spherical. 6 elements / 4 groups, 0 aspherical surfaces.         ║
  * ║  Focus: unit focusing (entire optical cell translates).            ║
  * ║                                                                    ║
  * ║  NOTE ON SCALING:                                                  ║
- * ║    Patent at f = 100; all R, d, sd values scaled ×0.50 to         ║
- * ║    f ≈ 50.0 mm production. BFD at close focus computed via        ║
- * ║    thick-lens conjugate equations (paraxial).                      ║
+ * ║    Patent normalized to f = 100 (s' = 58.88, 1:2, ±22.5°). All    ║
+ * ║    R and d scaled by s = 0.50 to the 50 mm production focal       ║
+ * ║    length: modeled EFL 50.015 mm, BFD 29.457 mm (patent 29.44).   ║
+ * ║    No aspheres. Close-focus BF is a paraxial thick-lens solve for  ║
+ * ║    a 700 mm object-to-image distance (derived, not published).    ║
+ * ║                                                                    ║
+ * ║  NOTE ON GLASS:                                                    ║
+ * ║    The patent table is headed n_e,i / ν_e,i — the stored nd/vd    ║
+ * ║    slots hold NATIVE e-line values (indexReference: "e"). At      ║
+ * ║    C′/e/F′ all five pairs match standard catalog glasses          ║
+ * ║    (SF10 exactly; LaFN21, BaSF6, F1 and LaF3 classes). The        ║
+ * ║    patent names no supplier, so labels are coordinate proxies.    ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                          ║
- * ║    Patent does not list semi-diameters. SDs estimated from        ║
- * ║    combined marginal + chief ray trace at f/2 and ±22.5°          ║
- * ║    half-field with ~8–10% mechanical clearance. Front elements    ║
- * ║    constrained by E39 filter thread (max clear aperture ~18 mm). ║
- * ║    Cemented surfaces matched within each doublet.                 ║
+ * ║    No clear apertures are published. Front group (S1–S5) and STO  ║
+ * ║    are ray-based estimates (f/2 marginal + full-field chief with   ║
+ * ║    clearance; STO = f/2 iris radius 7.8 mm). Rear group (S7–S11)  ║
+ * ║    was raised in the 2026-09-21 audit toward the FIG. 2 rims,     ║
+ * ║    which draw the rear doublet equal to the front doublet and L6  ║
+ * ║    equal to L1 (≈11.3 / 13.1 mm at 27.3 px/mm); S9 is capped at   ║
+ * ║    10.5 mm by L5's 0.87 mm edge thickness. FIG. 2 is the generic  ║
+ * ║    schematic shared by all nine examples, so these are guided     ║
+ * ║    estimates, not measurements of Example 9.                      ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -28,8 +42,8 @@ const LENS_DATA = {
   key: "leica-summicron-m-50f2-v5",
   maker: "Leica",
   name: "LEICA SUMMICRON-M 50mm f/2",
-  subtitle: "US 4,123,144 EXAMPLE 9 — MANDLER / ERNST LEITZ CANADA",
-  specs: ["6 ELEMENTS / 4 GROUPS", "f ≈ 50.0 mm", "F/2.0", "2ω ≈ 45°", "ALL SPHERICAL"],
+  subtitle: "US 4,123,144 EXAMPLE 9 (FIG. 2 FORM) — ERNST LEITZ / MANDLER, EDWARDS, WAGNER",
+  specs: ["6 ELEMENTS / 4 GROUPS", "f = 50.0 mm", "F/2.0", "2ω = 45°", "ALL SPHERICAL"],
 
   focalLengthMarketing: 50,
   focalLengthDesign: 50.0,
@@ -53,8 +67,9 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.79227,
       vd: 47.15,
+      indexReference: "e",
       fl: 56.7,
-      glass: "Lanthanum crown (proprietary Leitz melt; nearest: Schott TaF4 / LaFN21)",
+      glass: "N-LAF21 (Schott; LaFN21-class lanthanum flint, e-line coordinate proxy ne 1.79195 / νe 47.25; supplier unconfirmed)",
       apd: false,
       role: "Front collector. High-index meniscus concave toward diaphragm; |r₁| = |r₁₁| symmetry pair.",
     },
@@ -65,8 +80,9 @@ const LENS_DATA = {
       type: "Plano-Convex Positive",
       nd: 1.67133,
       vd: 41.64,
+      indexReference: "e",
       fl: 30.0,
-      glass: "Barium flint / dense barium crown (proprietary; nearest: Schott BaSF6)",
+      glass: "J-BASF6 (Hikari; BaSF6-class barium flint, exact e-line coordinates ne 1.67133 / νe 41.60; supplier unconfirmed)",
       apd: false,
       role: "Positive element of front cemented doublet. Flat rear is cemented bond surface.",
       cemented: "D1",
@@ -78,8 +94,9 @@ const LENS_DATA = {
       type: "Plano-Concave Negative",
       nd: 1.7343,
       vd: 28.19,
+      indexReference: "e",
       fl: -17.5,
-      glass: "Dense flint (proprietary; nearest: Schott SF3 / SF10)",
+      glass: "SF10 (Schott; exact e-line coordinates ne 1.73430 / νe 28.19; supplier unconfirmed)",
       apd: false,
       role: "Negative flint of front doublet. High dispersion for chromatic correction. Concave surface faces diaphragm.",
       cemented: "D1",
@@ -91,8 +108,9 @@ const LENS_DATA = {
       type: "Plano-Concave Negative",
       nd: 1.63003,
       vd: 35.45,
+      indexReference: "e",
       fl: -22.0,
-      glass: "Light/medium flint (proprietary; nearest: Schott F2)",
+      glass: "E-F1 (Hoya; F1-class flint, exact e-line coordinates ne 1.63003 / νe 35.48; supplier unconfirmed)",
       apd: false,
       role: "Negative element of rear doublet. Concave surface faces diaphragm; inner concave air lens with L3.",
       cemented: "D2",
@@ -104,8 +122,9 @@ const LENS_DATA = {
       type: "Plano-Convex Positive",
       nd: 1.72055,
       vd: 47.69,
+      indexReference: "e",
       fl: 27.9,
-      glass: "Lanthanum crown (proprietary; nearest: Schott LaF10). Same glass as L6.",
+      glass: "LAF3 (Hoya; LaF3-class lanthanum flint, exact e-line coordinates ne 1.72056 / νe 47.73; supplier unconfirmed). Same glass as L6.",
       apd: false,
       role: "Positive element of rear cemented doublet. Flat front is cemented bond surface. |r₉| = |r₃| symmetry pair.",
       cemented: "D2",
@@ -117,16 +136,19 @@ const LENS_DATA = {
       type: "Plano-Convex Positive",
       nd: 1.72055,
       vd: 47.69,
+      indexReference: "e",
       fl: 41.6,
-      glass: "Lanthanum crown (same glass as L5)",
+      glass: "LAF3 (Hoya; LaF3-class lanthanum flint, exact e-line coordinates ne 1.72056 / νe 47.73; supplier unconfirmed). Same glass as L5.",
       apd: false,
       role: "Rear collector. Flat surface faces object (FIG. 2 configuration); |r₁₁| = |r₁| symmetry pair.",
     },
   ],
 
   /* ── Surface prescription ──
-   *  Scaled from patent f = 100 by ×0.50.
-   *  All surfaces spherical or flat.
+   *  Patent Example 9 (f = 100): r = 59.94, 167.31, 40.30, ∞, 25.67, (diaphragm), −27.69, ∞, −40.30, ∞, −59.94;
+   *  a = 9.57, 0.38, 14.35, 2.87, 10.81, 13.39, 1.91, 7.65, 0.38, 8.61; s' = 58.88. Scaled by s = 0.50.
+   *  The diaphragm is a tabulated surface (No. 6) with a5 = 10.81 before and a6 = 13.39 after it.
+   *  All surfaces spherical or flat. Index values are e-line (see header).
    *
    *  The 0.19 mm air gap between S2 and S3 (L1 rear to L2 front) is
    *  physically tight but the gap widens at the rim: S3's stronger
@@ -140,22 +162,24 @@ const LENS_DATA = {
     { label: "4", R: 1e15, d: 1.435, nd: 1.7343, elemId: 3, sd: 12.5 },
     { label: "5", R: 12.835, d: 5.405, nd: 1.0, elemId: 0, sd: 11.0 },
     { label: "STO", R: 1e15, d: 6.695, nd: 1.0, elemId: 0, sd: 7.8 },
-    { label: "7", R: -13.845, d: 0.955, nd: 1.63003, elemId: 4, sd: 8.5 },
-    { label: "8", R: 1e15, d: 3.825, nd: 1.72055, elemId: 5, sd: 9.0 },
+    { label: "7", R: -13.845, d: 0.955, nd: 1.63003, elemId: 4, sd: 10.0 },
+    { label: "8", R: 1e15, d: 3.825, nd: 1.72055, elemId: 5, sd: 10.5 },
     { label: "9", R: -20.15, d: 0.19, nd: 1.0, elemId: 0, sd: 10.5 },
-    { label: "10", R: 1e15, d: 4.305, nd: 1.72055, elemId: 6, sd: 10.5 },
-    { label: "11", R: -29.97, d: 29.457, nd: 1.0, elemId: 0, sd: 12.0 },
+    { label: "10", R: 1e15, d: 4.305, nd: 1.72055, elemId: 6, sd: 12.5 },
+    { label: "11", R: -29.97, d: 29.457, nd: 1.0, elemId: 0, sd: 12.5 },
   ],
 
   /* ── Aspherical coefficients ── */
   asph: {},
 
   /* ── Variable air spacings (unit focus) ──
-   *  Only BFD changes; entire lens translates as a rigid unit.
-   *  Close focus BFD computed via thick-lens conjugate at MFD = 0.7 m.
+   *  Only BFD changes; entire lens translates as a rigid unit. The patent
+   *  publishes the infinity state only. Close-focus BF is a paraxial
+   *  thick-lens solve (derived) for the production 0.7 m MFD taken as the
+   *  object-to-image distance: extension 4.131 mm, m = −0.0826 (1:12.1).
    */
   var: {
-    "11": [29.457, 33.306],
+    "11": [29.457, 33.588],
   },
   varLabels: [["11", "BF"]],
 
@@ -173,7 +197,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.7,
-  focusDescription: "Unit focusing — entire optical cell translates forward.",
+  focusDescription:
+    "Unit focusing — entire optical cell translates forward. Patent publishes infinity only; the 0.7 m state is a paraxial thick-lens extension (calculated).",
 
   /* ── Aperture configuration ── */
   nominalFno: 2,

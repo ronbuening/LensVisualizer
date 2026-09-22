@@ -1,7 +1,8 @@
 # Canon Serenar 28mm f/3.5 — Optical Analysis
 
 **Patent:** US 2,645,974 — *High Aperture Wide Angle Six Element Gauss Type Objective Lens System*
-**Inventor:** Hiroshi Ito, assigned to Canon Camera Company, Ltd.
+**Inventor:** Hiroshi Ito, assigned to Canon Camera Company, Ltd. (as printed on the grant; catalogued here under the canonical entity name Canon Camera Co., Inc.)
+**Embodiment:** sole illustrative example (Fig. 1); the same table is repeated verbatim in claim 5
 **Filed:** June 29, 1951 (Japan priority: January 31, 1951)
 **Granted:** July 21, 1953
 **Production lens:** Canon Serenar 28mm f/3.5 I (marketed October 1951)
@@ -29,7 +30,7 @@ The design is a six-element, four-group modified double-Gauss (Planar-type) arra
 | III | L4 + L5 (cemented) | Compound negative meniscus | Rear Gauss doublet |
 | IV | L6 | Plano-convex positive | Rear collector |
 
-The aperture stop sits in the central air space between Groups II and III (the gap d₅ = 0.100f), which is the canonical stop position for a double-Gauss design. The two compound meniscus lenses (Groups II and III) face each other with their concave exterior surfaces, forming the characteristic "waist" of the Gauss configuration around the stop.
+The aperture stop sits in the central air space between Groups II and III (the gap d₅ = 0.100f), which is the canonical stop position for a double-Gauss design. The patent neither tabulates the stop nor draws it in Fig. 1; the data file places it at the mid-point of d₅ (1.394 mm from each facing surface at production scale). The two compound meniscus lenses (Groups II and III) face each other with their concave exterior surfaces, forming the characteristic "waist" of the Gauss configuration around the stop.
 
 ### 2.2 Aspherical Surfaces
 
@@ -58,8 +59,8 @@ Note that the cemented interfaces are at r₄ (L2–L3 junction, concave toward 
 
 Paraxial ray tracing of the normalized prescription yields:
 
-- **EFL (normalized):** 1.0047 (vs. patent-stated 1.00 — the small discrepancy is within rounding tolerance of the patent's three-significant-figure radii)
-- **Scale factor to 28 mm production:** ×27.87
+- **EFL (normalized):** 1.0046 (vs. patent-stated 1.00 — the small discrepancy is within rounding tolerance of the patent's three-significant-figure radii)
+- **Scale factor to 28 mm production:** ×27.8688 (chosen so the traced EFL is 28.0 mm; the patent's nominal f = 1.00 would scale to 27.87 mm)
 - **BFD (from last surface):** 0.800 normalized = 22.3 mm at production scale
 - **Total optical track (front surface to image):** 1.330 normalized = 37.1 mm at production scale
 
@@ -101,45 +102,45 @@ The cemented junction R₄ = −3.000 is very weakly curved — nearly flat. Thi
 - **Shape:** Biconcave
 - **Radii:** R₆ = −0.331, R₇ = +0.798
 - **Thick-lens focal length:** −0.402f = −11.2 mm
-- **Glass:** nᵈ = 1.5785, νᵈ = 41.7 → **unmatched vintage barium flint** (BaF3-class comparison)
+- **Glass:** nᵈ = 1.5785, νᵈ = 41.7 → **HOYA FL4 catalog equivalent** (legacy flint, 1.578447 / 41.707529; production supplier unspecified)
 
 L4 is the negative component of the rear cemented doublet, and it is the strongest negative element in the system. Its front surface R₆ = −0.331 is the concave face of Group III facing the stop, forming the mirror-image companion to L3's rear surface R₅. Together, these two strongly concave surfaces flanking the stop create the classic Gauss "waist" and are the primary sites for correcting spherical aberration and coma at large aperture.
 
-The choice of a moderate-index barium-flint-class row rather than a conventional dense flint for L4 is notable. The patent gives 1.5785/41.7 but does not establish the modern Schott BaF3 catalog row. This asymmetry between the front and rear Gauss doublets — different glass coordinates and thicknesses — is a deliberate departure from perfect symmetry.
+The choice of a moderate-index, moderate-dispersion flint (1.5785/41.7, in the Schott BaF3 neighbourhood) rather than a conventional dense flint for L4 is notable. The patent gives only the coordinate; the data file models it with HOYA's obsolete-inclusive FL4 row, which reproduces both numbers within the printed precision. This asymmetry between the front and rear Gauss doublets — different glass coordinates and thicknesses — is a deliberate departure from perfect symmetry.
 
 ### 3.5 Element L5 — Rear Cemented Positive (Group III, rear half)
 
 - **Shape:** Biconvex
 - **Radii:** R₇ = +0.798 (cemented junction), R₈ = −0.428
 - **Thick-lens focal length:** +0.467f = +13.0 mm
-- **Glass:** nᵈ = 1.6204, νᵈ = 60.3 → **Schott SK14** (dense barium crown)
+- **Glass:** nᵈ = 1.6204, νᵈ = 60.3 → **Schott N-SK16 catalog equivalent** (dense barium crown; production supplier unspecified)
 
-L5 is the positive component of the rear doublet. It provides strong convergence to redirect the diverging beam from L4 back toward the image. The SK14 glass (high-index crown, νᵈ = 60.3) is the same type used in L6, providing excellent chromatic performance. The cemented junction R₇ = +0.798 is more strongly curved than the front doublet's junction (R₄), which means the L4–L5 interface carries non-trivial optical power and Petzval contribution — another asymmetry between the front and rear Gauss halves.
+L5 is the positive component of the rear doublet. It provides strong convergence to redirect the diverging beam from L4 back toward the image. The 1.6204/60.3 dense barium crown (modelled with the N-SK16 catalog row, 1.62041/60.32) is the same coordinate used in L6, providing excellent chromatic performance. The cemented junction R₇ = +0.798 is more strongly curved than the front doublet's junction (R₄), which means the L4–L5 interface carries non-trivial optical power and Petzval contribution — another asymmetry between the front and rear Gauss halves.
 
 ### 3.6 Element L6 — Rear Positive Plano-Convex (Group IV)
 
 - **Shape:** Plano-convex (flat front facing the stop; convex rear surface protruding toward the image)
 - **Radii:** R₉ = ∞ (flat), R₁₀ = −0.866
 - **Thick-lens focal length:** +1.396f = +38.9 mm
-- **Glass:** nᵈ = 1.6204, νᵈ = 60.3 → **Schott SK14** (dense barium crown)
+- **Glass:** nᵈ = 1.6204, νᵈ = 60.3 → **Schott N-SK16 catalog equivalent** (dense barium crown; production supplier unspecified)
 
-L6 is the rear collector element, providing the final convergence to bring the image to focus. Its flat front surface is unusual — most double-Gauss designs use a meniscus or weakly curved surface here. The flat entry face means all of L6's optical power comes from the single rear surface R₁₀, which simplifies alignment and manufacturing. Although R₁₀ carries a negative sign (center of curvature to the left), the surface is physically convex toward the image — it protrudes outward at the center, making the element thicker at center than at the rim, the defining characteristic of a positive plano-convex form. The use of the same glass as L5 (SK14) is a practical advantage for production: Canon needed to source only four distinct glass types for the six elements.
+L6 is the rear collector element, providing the final convergence to bring the image to focus. It is also the largest element in the system: the full-field chief ray to the 135-format corner crosses its rear surface 6.0 mm from the axis, and Fig. 1 draws it roughly 1.6× the rim height of the cemented doublets. Its flat front surface is unusual — most double-Gauss designs use a meniscus or weakly curved surface here. The flat entry face means all of L6's optical power comes from the single rear surface R₁₀, which simplifies alignment and manufacturing. Although R₁₀ carries a negative sign (center of curvature to the left), the surface is physically convex toward the image — it protrudes outward at the center, making the element thicker at center than at the rim, the defining characteristic of a positive plano-convex form. The use of the same glass coordinate as L5 (1.6204/60.3) is a practical advantage for production: Canon needed to source only five distinct glass types for the six elements.
 
 The near-identical focal lengths of L1 (+38.4 mm) and L6 (+38.9 mm) reflect the quasi-symmetric power balance of the design, though the element shapes are quite different (meniscus vs. plano-convex), which is part of the asymmetric correction strategy.
 
 ## 4. Glass Types Summary
 
-The design uses only four distinct glass types across six elements:
+The design uses five distinct glass coordinates across six elements (L5 and L6 share one). The patent names no glass and no supplier; it prints only nᵈ and νᵈ to four and three figures. The labels below are modern catalog rows chosen because their nᵈ/νᵈ reproduce the patent pair within 1e-4 / 0.05, used purely to give the tracer a real dispersion curve:
 
-| Glass | Schott Designation | nᵈ | νᵈ | Six-Digit Code | Type | Elements |
+| Data-file label | Family | nᵈ | νᵈ | Six-Digit Code | Catalog row used | Elements |
 |-------|-------------------|------|------|---------------|------|----------|
-| S-BAL41 equivalent | Barium crown | 1.5638 | 60.7 | 564/607 | Crown | L1 |
-| E-BAF8 | Barium flint | 1.6237 | 47.0 | 624/470 | Crown-side doublet member | L2 |
-| E-F8 catalog equivalent | Dense flint | 1.5955 | 39.2 | 596/392 | Flint; production supplier unspecified | L3 |
-| FL4 (HOYA optical equivalent) | Legacy flint | 1.5785 | 41.7 | 579/417 | Official row 1.578447 / 41.707529; production supplier unspecified | L4 |
-| SK14 | Dense barium crown | 1.6204 | 60.3 | 620/603 | Crown | L5, L6 |
+| S-BAL41 (OHARA catalog equivalent) | Barium crown | 1.5638 | 60.7 | 564/607 | 1.56384 / 60.67 | L1 |
+| E-BAF8 (HOYA) | Barium flint | 1.6237 | 47.0 | 624/470 | 1.62374 / 47.04 | L2 |
+| E-F8 (HOYA catalog equivalent) | Dense flint | 1.5955 | 39.2 | 596/392 | 1.59551 / 39.22 | L3 |
+| FL4 (HOYA catalog equivalent) | Legacy flint | 1.5785 | 41.7 | 579/417 | 1.578447 / 41.707529 (obsolete-inclusive catalog) | L4 |
+| N-SK16 (Schott catalog equivalent) | Dense barium crown | 1.6204 | 60.3 | 620/603 | 1.62041 / 60.32 | L5, L6 |
 
-All five glass types were standard Schott catalog offerings of the era. Canon, like most Japanese manufacturers in the early 1950s, would have used equivalent domestic melts — likely from Ohara or HOYA. The patent lists nᵈ and νᵈ values that match the Schott catalog exactly, which was common practice: designers specified glasses by their Schott equivalents regardless of which foundry actually produced the melt.
+Which foundry actually supplied the 1951 melts is unknown. Canon, like most Japanese manufacturers in the early 1950s, would most plausibly have drawn on domestic Ohara or HOYA production; the vendor names in the labels are catalog equivalents for the printed coordinates, not attributions.
 
 There are no anomalous partial dispersion (APD) glasses in this design. The FK, ED, or fluorite-type materials that became important for later Canon lens designs were not part of the standard catalog in 1951, and the double-Gauss form achieves its chromatic correction through conventional crown/flint pairing within each cemented doublet.
 
@@ -188,11 +189,11 @@ The Canon Serenar 28mm f/3.5 uses **unit focusing** — the entire optical assem
 
 The patent does not provide variable-gap data for close focus distances, which is consistent with unit focus: since all elements move together, the internal air spacings remain fixed at all focus positions. Only the back focal distance (the gap from the last surface to the film plane) changes during focusing.
 
-At the minimum focus distance of 1 m, the lens must extend forward by approximately:
+At the minimum focus distance of 1 m — measured from the film plane, the rangefinder-lens convention — the lens must extend forward by approximately:
 
-$$\Delta = \frac{f^2}{d - f} = \frac{28^2}{1000 - 28} \approx 0.81 \text{ mm}$$
+$$\Delta = \frac{f^2}{s - f} \approx \frac{28^2}{972 - 28} \approx 0.83 \text{ mm}$$
 
-This small extension is easily accommodated by the helicoid mechanism within the compact lens barrel.
+where s ≈ 972 mm is the object distance from the front principal plane once the lens's own length is subtracted from the 1 m conjugate. The data file's close-focus keyframe uses this derived value (rear gap 22.30 → 23.13 mm; a paraxial trace of the stored keyframe puts the object 1.002 m from the image plane). This small extension is easily accommodated by the helicoid mechanism within the compact lens barrel.
 
 ## 9. Aberration Performance
 
@@ -206,9 +207,11 @@ The patent provides ray-traced aberration curves (Figures 2–4) showing perform
 
 ## 10. Semi-Diameter Estimation Notes
 
-The patent does not list semi-diameters or clear apertures. For the data file, semi-diameters were estimated by tracing both the marginal ray (at f/3.5) and the chief ray (at 70% of the half-field angle, i.e., 26.25°) through the scaled prescription, then adding approximately 8% mechanical clearance to the combined envelope.
+The patent does not list semi-diameters or clear apertures, and Fig. 1 is a schematic: its axial scale is not uniform (the 0.005f and 0.004f air gaps are drawn several times too wide, and the sags drawn on r₁ imply a radial scale under which the front element could not pass the patent's own 75° field), so the drawing's absolute dimensions were not used.
 
-The primary constraint on front-element semi-diameters is the narrow air gap d₂ = 0.139 mm between L1 and L2. Surface r₂ (R = +72.32 mm, gently convex toward the image) intrudes into this gap, and its sag at the rim must remain below the gap thickness. This limits r₂'s semi-diameter to approximately 4.3 mm, which in turn constrains r₁ to approximately 5.3 mm via the 1.25:1 element SD ratio guideline. These values are consistent with significant natural vignetting at the field edges — expected behavior for a compact rangefinder wide-angle of this era, where the f/3.5 speed is achieved only on-axis.
+The data-file values were instead set from an exact meridional trace of the scaled prescription. Two rays fix the floor at every surface: the f/3.5 axial marginal ray (4.0 mm at r₁, 3.2–3.4 mm through the doublets and L6) and the full-field chief ray to the 135-format corner, Y = 21.6 mm, which the trace reaches at ω = 38.0° (patent: 2ω = 75°). The chief ray is the binding constraint on the outer elements — it crosses r₁ at 5.4 mm, r₂ at 4.7 mm, r₈ at 4.2 mm, r₉ at 5.2 mm and r₁₀ at 6.0 mm — while the doublet interiors near the stop see it below 2.5 mm. Each rim was then placed above its floor with 6–25 % margin, and the element-to-element proportions were taken from Fig. 1, which draws the rim heights of L1 : L2–L3 : L4–L5 : L6 as roughly 1.21 : 1.00 : 1.08 : 1.64 (L6 clearly the largest element). The resulting rims are r₁ 5.7 / r₂ 5.4 mm, r₃–r₅ 4.6 / 4.0 / 3.6 mm, r₆–r₈ 3.7 / 4.2 / 4.9 mm and r₉ = r₁₀ = 7.5 mm.
+
+Neither thin air gap constrains the rims: r₂ and r₃ are both convex toward the object, and r₃ (R = +13.15 mm) recedes from the axis far faster than r₂ (R = +72.3 mm), so the d₂ gap opens outward; likewise r₈ curves away from the flat r₉, so d₈ opens outward. The gap that does close outward is d₅ across the stop (r₅ and r₆ are concave toward each other, meeting at about 5.0 mm), which is why the doublet rims facing the stop stay near 3.6–3.7 mm. At these values the full-field bundle is heavily vignetted by the front element and the rear doublet (the trace passes roughly half of the corner bundle) — expected behavior for a compact rangefinder wide-angle of this era, where the f/3.5 speed is achieved only on-axis.
 
 ## 11. Design Significance
 
@@ -218,7 +221,7 @@ Ito's design represents a careful study of how far the classical double-Gauss fo
 
 2. **Asymmetric doublet power:** Group III is made nearly afocal, shifting the power burden to the outer singlets where off-axis ray heights are more manageable.
 
-3. **Careful glass selection:** The use of four distinct glass types (rather than the two — one crown, one flint — common in simpler Gauss designs) provides additional degrees of freedom for chromatic and monochromatic aberration balancing.
+3. **Careful glass selection:** The use of five distinct glass types (rather than the two — one crown, one flint — common in simpler Gauss designs) provides additional degrees of freedom for chromatic and monochromatic aberration balancing.
 
 4. **Moderate Petzval sum target:** Rather than attempting to drive the Petzval sum toward zero (which would require extreme glass types or curvatures), Ito accepts a moderate value of ~0.4 and compensates the residual field curvature through astigmatism balancing.
 

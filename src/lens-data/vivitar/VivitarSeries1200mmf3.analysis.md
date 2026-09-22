@@ -7,9 +7,9 @@
 **Assignee:** Ponder & Best, Inc.
 **Granted:** March 9, 1976
 **Title:** Telephoto Lens
-**Embodiment analyzed:** Example 4 (Table IV, FIG. 5)
+**Embodiment analyzed:** Table IV (FIG. 5; repeated in claims 6 and 13) — the fourth of five tabulated embodiments; the patent does not number its examples
 
-US Patent 3,942,876, "Telephoto Lens," was granted on March 9, 1976, to Ellis I. Betensky and assigned to Ponder & Best, Inc. (the corporate parent of the Vivitar brand) of Santa Monica, California. The patent discloses five numerical embodiments of a telephoto lens family characterized by a movable front objective group and a stationary rear "correcting" or "compensating" element fixed relative to the film plane. Example 4 (Table IV, illustrated in FIG. 5) corresponds to the production Vivitar Series 1 200mm f/3.0 VMC Auto Telephoto, a six-element, six-group prime lens manufactured by Komine Co., Ltd. of Japan. The lens was part of the original Series 1 launch lineup and was widely available by 1974.
+US Patent 3,942,876, "Telephoto Lens," was granted on March 9, 1976, to Ellis I. Betensky and assigned to Ponder & Best, Inc. (the corporate parent of the Vivitar brand) of Santa Monica, California. The patent discloses five numerical embodiments of a telephoto lens family characterized by a movable front objective group and a stationary rear "correcting" or "compensating" element fixed relative to the film plane. The fourth embodiment (Table IV, illustrated in FIG. 5, "200mm EFL, as scaled for a 24 × 36mm image frame, and having a relative aperture of f/3.0") corresponds to the production Vivitar Series 1 200mm f/3.0 VMC Auto Telephoto, a six-element, six-group prime lens manufactured by Komine Co., Ltd. of Japan. The lens was part of the original Series 1 launch lineup and was widely available by 1974.
 
 **Key marketed specifications:**
 
@@ -27,9 +27,13 @@ US Patent 3,942,876, "Telephoto Lens," was granted on March 9, 1976, to Ellis I.
 
 ## Prescription (Table IV)
 
-The Table IV prescription as printed in the patent contains a likely typographical error in the radius R7, where the value "−1567.0" should read **"−567.0"**. With the published value, paraxial ray tracing yields an EFL of only 183.4 mm and a BFL of 67.4 mm — irreconcilable with the patent's own stated EFL of 200 mm, BFL of 77.5 mm, and FVD of 157.9 mm. With R7 = −567.0, the computed values converge closely on all patent-stated parameters (EFL ≈ 202 mm, BFL ≈ 75.5 mm, FVD ≈ 156 mm, FT/EFL ≈ 0.058). The focusing travel of 11.8 mm matches exactly in both cases, as R7 does not participate in the variable gap.
+The Table IV prescription as printed is not self-consistent. With the printed R7 = −1567.0, a paraxial trace gives an EFL of 183.4 mm and a BFL of 67.4 mm, and an exact trace shows 1.9 mm of undercorrected marginal spherical aberration at f/3 — irreconcilable with the patent's own "200mm EFL", its 77.5 mm back focal length and its 157.9 mm front vertex distance. This is not a general looseness of the patent: Tables II and III of the same document reproduce their stated focal lengths to within 0.2 mm and their back focal lengths to within 0.05 mm (135.21 and 134.98 mm computed for the two 135 mm designs).
 
-Notably, the identical value "−1567.0" appears in both the Table IV specification (page 6) and in Claim 6 (page 10), which are on separate pages of the patent document. This rules out a single-page OCR scanning artifact and points to an error in the original typewritten manuscript that was carried through to both the specification and claims. (It is also worth noting that a small EFL discrepancy exists in Table II as well — 131.3 mm computed versus 135 mm stated — suggesting the patent's numerical examples may contain other minor errors or deliberate perturbations.) The corrected prescription is used throughout this analysis.
+The printed value is not a scanning artifact. "−1567.0" appears identically in Table IV, in claim 6 and in claim 13 of US 3,942,876, and again in Table IV of the British family member GB 1,408,910, so the slip was in the applicant's manuscript.
+
+This analysis uses the single-character repair **R7 = −567.0**. It is an inference, not a patent value, and it rests on two independent aberration checks rather than on the focal length alone. Scanning R7 with every other printed value held fixed, −567 is where the f/3 spherical aberration is balanced (+0.21 mm at the 0.85 zone against −0.19 mm at the margin) and also where the paraxial F–C focus difference passes through zero (−0.01 mm, Abbe-number dispersion model); at −667 and −467 the colour error grows to −0.09 and +0.12 mm and the marginal spherical aberration to −0.74 and +0.78 mm. The repaired prescription computes to EFL = 202.0 mm, BFL = 75.5 mm and FVD = 156.0 mm.
+
+The repair does not remove every conflict. The patent text gives BFL 77.5 mm, FVD 157.9 mm and a corrector focal length of −240.4 mm, whereas the printed L6 data give −249.4 mm whatever R7 is, and no single-value change to the table reproduces the 200 mm focal length, the 77.5 mm back focus and the published close-focus conjugate together. (A change confined to L1, for example an index near 1.552 instead of the printed 1.56873, does return 200.0 mm and 77.50 mm with good monochromatic correction, but it contradicts a glass coordinate that is printed four times and matches a real catalog glass exactly, and it leaves the lens 0.19 mm short of achromatism.) The residual differences are therefore carried as an open source inconsistency, and the focal length, back focus and track quoted below are calculated from the repaired table.
 
 | Surface | Radius (mm) | Thickness (mm) | n_d | Element |
 |---------|-------------|----------------|---------|---------|
@@ -45,17 +49,17 @@ Notably, the identical value "−1567.0" appears in both the Table IV specificat
 | R9 | −38.14 | 1.85 | 1.71270 | L5 |
 | R10 | −157.93 | 3.20 → 33.80 ‡ | 1.0 (air) | — |
 | R11 | 71.98 | 2.00 | 1.57957 | L6 |
-| R12 | 47.56 | 75.50 (BFL) | 1.0 (air) | — |
+| R12 | 47.56 | 75.50 (calculated BFL; patent prints 77.5) | 1.0 (air) | — |
 
-† Corrected from patent's printed value of −1567.0; see discussion above. The same value appears in both Table IV and Claim 6.
+† Inferred repair of the printed −1567.0; see discussion above. The printed value appears in Table IV, claim 6, claim 13 and GB 1,408,910 Table IV.
 
-‡ Patent tabulates 3.20 → 15.00 (infinity → 2,372 mm). The close-focus gap of 33.80 mm at 1.2 m MFD is computed from a paraxial conjugate-matching model (see Focusing Mechanism section).
+‡ Patent tabulates 3.2 → 15.0 mm (infinity → 2,372 mm); both rows are kept in the data file. The 33.80 mm gap at the 1.2 m production MFD is calculated by paraxial conjugate matching (see Focusing Mechanism section) and is not a patent value.
 
 ---
 
 ## Computed Paraxial Parameters
 
-All values computed via ABCD matrix paraxial ray trace with the corrected R7 = −567.0.
+All values computed via ABCD matrix paraxial ray trace with the repaired R7 = −567.0.
 
 | Parameter | Computed | Patent Stated |
 |-----------|----------|---------------|
@@ -64,19 +68,21 @@ All values computed via ABCD matrix paraxial ray trace with the corrected R7 = �
 | FVD | 156.0 mm | 157.9 mm |
 | Telephoto ratio (FVD/EFL) | 0.77 | 0.79 |
 | Corrector EFL (L6) | −249.4 mm | −240.4 mm |
-| Focusing travel (to 2,372 mm) | 11.8 mm | 11.8 mm |
+| Focusing travel (3.2 → 15.0 mm row) | 11.8 mm | 11.8 mm |
+| EFL at the 15.0 mm row | 190.4 mm | — |
+| EFL at the calculated 1.2 m endpoint | 174.4 mm | — |
 | FT / EFL | 0.058 | 0.059 |
 | Petzval sum | −1.29 × 10⁻³ mm⁻¹ | — |
 | Petzval radius | −773 mm | — |
 | Half-field angle (24×36 mm) | 6.1° | — |
 
-The small residual discrepancies (1–3%) between computed and stated values are consistent with additional minor rounding in other patent parameters, or with the patent's language "defined *substantially* by the following data."
+The residual differences (+1.0% in focal length, −2.0 mm in back focus, −1.9 mm in track, +3.7% in corrector focal length) are larger than this patent's other tables show, so they are treated as an unresolved inconsistency in the published example rather than as rounding. The corrector value follows from the printed L6 data alone and does not depend on the R7 repair.
 
 ---
 
 ## Aspherical Surfaces
 
-**There are no aspherical surfaces in this design.** Neither the Table IV prescription, the patent text, the claims (Claim 6), nor the FIG. 5 drawing make any reference to aspherical coefficients, conic constants, or polynomial deformation terms for any surface in Example 4. All twelve optical surfaces are spherical. This is consistent across all five embodiments in the patent: none employ aspheres.
+**There are no aspherical surfaces in this design.** Neither the Table IV prescription, the patent text, the claims (6 and 13), nor the FIG. 5 drawing make any reference to aspherical coefficients, conic constants, or polynomial deformation terms for any surface in this embodiment. All twelve optical surfaces are spherical. This is consistent across all five embodiments in the patent: none employ aspheres.
 
 This is noteworthy because the Vivitar Series 1 200mm f/3.0 achieves its performance entirely through glass selection, element spacing, and the novel stationary corrector architecture — without resorting to the cost and manufacturing complexity of aspherical surfaces that would have been prohibitive for a 1970s production lens at this price point.
 
@@ -94,7 +100,7 @@ This is noteworthy because the Vivitar Series 1 200mm f/3.0 achieves its perform
 | Focal length | +101.4 mm |
 | Shape | Positive meniscus, convex toward object |
 
-**Glass identification:** Six-digit code **569631**. This is an exact match to Schott **PSK2** ($n_d=1.56873$, $\nu_d=63.16$), a phosphate-silicate crown. PSK2 is a moderate-index, low-dispersion crown occupying the boundary between the barium crown (SK) and phosphate (PK) families. OHARA S-PHM51 is not an equivalent: its published code is 617628.
+**Glass identification:** Six-digit code **569631**. This is an exact match to Schott **PSK2** ($n_d=1.56873$, $\nu_d=63.16$), a phosphate-silicate crown. PSK2 is a moderate-index, low-dispersion crown occupying the boundary between the barium crown (SK) and phosphate (PK) families. HOYA's PCD2 (1.56873 / 63.11) shares the code and is the row the repository catalog resolves for this element; the patent names no supplier. OHARA S-PHM51 is not an equivalent: its published code is 617628.
 
 **Optical role:** L1 is the leading positive element of the front group. Its strongly convex front surface (R1 = +56.828) provides the dominant positive refractive power, while the nearly flat rear surface (R2 = +3586.0, essentially plano) minimizes spherical aberration contribution from the second surface. The low dispersion (ν_d = 63.1) keeps L1's contribution to longitudinal chromatic aberration modest. At f/3 with a ~67 mm entrance pupil, L1 carries the largest clear aperture in the system and is the primary light-gathering element.
 
@@ -162,7 +168,7 @@ as a catalog equivalent; the patent does not establish the production supplier.
 
 The mechanism is the index asymmetry between L4 and L5. Each element's Petzval contribution is proportional to φ/n (power divided by refractive index). L4 uses SF6 (nd = 1.805) and L5 uses the lower-index 713433 glass (nd = 1.713). Because L5's index is lower, its Petzval contribution per unit of power is *larger* than L4's. Numerically: L4 contributes +7.37 × 10⁻³ mm⁻¹ to the Petzval sum and L5 contributes −8.28 × 10⁻³ mm⁻¹, for a net of −0.91 × 10⁻³ mm⁻¹ — a significant negative Petzval contribution from a nearly powerless pair. This deliberate index mismatch between elements of opposite sign is a classic field-flattening technique, and the choice of L5's glass (high-ish index, but not as high as SF6) appears to be driven by this Petzval requirement rather than by chromatic correction.
 
-L5 is also the last element before the variable air gap (R10 → R11), which changes from 3.20 mm at infinity focus to 33.80 mm at the production close-focus distance of 1.2 m (see Focusing Mechanism section for the derivation of this value).
+L5 is also the last element before the variable air gap (R10 → R11), which the patent tabulates from 3.2 mm at infinity to 15.0 mm at its close state, and which the data file extends by calculation to 33.80 mm for the production close-focus distance of 1.2 m (see Focusing Mechanism section).
 
 ### L6 — Stationary Rear Corrector (Compensating Element)
 
@@ -180,7 +186,7 @@ L5 is also the last element before the variable air gap (R10 → R11), which cha
 
 1. **Off-axis aberration compensation.** When the front objective (L1–L5) moves forward for close focusing, the change in conjugate produces significant off-axis aberrations (primarily coma and astigmatism). The patent explains that L6's fixed position relative to the image plane introduces compensating aberrations that counteract this degradation. This is what allows the lens to maintain consistent edge-to-edge sharpness across a wide focusing range — a feature heavily advertised by Vivitar, which marketed the production lens with close focus to 1.2 m.
 
-2. **EFL reduction during close focus.** Because L6 has negative power, the overall system EFL decreases as the objective moves forward. The computed EFL drops from 202.0 mm at infinity to 190.4 mm at closest focus, a decrease of approximately 5.8%. Since focusing travel scales with the *square* of focal length, this small EFL decrease translates into a significant reduction in required mechanical travel. The patent illustrates this principle for the 300 mm embodiment (FIG. 1), noting that a comparable design without the fixed corrector would need over 25 mm of travel to focus to 10.5× EFL, versus 19.27 mm with the corrector. The same principle applies here: the 200 mm design achieves a close-focus distance of 11.8× EFL with only 11.8 mm of travel (FT/EFL = 0.059), well within the "less than 13 percent" limit the patent claims for all embodiments.
+2. **EFL reduction during close focus.** Because L6 has negative power, the overall system EFL decreases as the objective moves forward. The computed EFL drops from 202.0 mm at infinity to 190.4 mm at the patent's 15.0 mm close state, a decrease of approximately 5.8%, and to 174.4 mm at the calculated 1.2 m endpoint. Since focusing travel scales with the *square* of focal length, this small EFL decrease translates into a significant reduction in required mechanical travel. The patent illustrates this principle for the 300 mm embodiment (FIG. 1), noting that a comparable design without the fixed corrector would need over 25 mm of travel to focus to 10.5× EFL, versus 19.27 mm with the corrector. The same principle applies here: the 200 mm design reaches the patent's close state of 2,372 mm (Table VI: 11.81 EFL) with only 11.8 mm of travel (FT/EFL = 0.059), well within the "less than 13 percent" limit the patent claims for all embodiments.
 
 The patent specifies that the corrector's EFL magnitude should be no greater than three times the overall system EFL, and that it should be a negative meniscus with the concave side facing the image — both conditions are satisfied here (|−249.4| < 3 × 202, and R12 = +47.56 is indeed concave toward the image when viewed from behind the lens).
 
@@ -188,7 +194,7 @@ The patent specifies that the corrector's EFL magnitude should be no greater tha
 
 ## Focusing Mechanism
 
-The lens employs **unit focusing** of the front objective with a fixed rear corrector — a design Betensky characterizes as a hybrid between conventional helicoid focusing and internal focusing. Specifically:
+The lens focuses by moving the whole front objective against a fixed rear corrector. The patent describes the objective elements as mounted to the barrel, which the focusing ring drives axially without rotation, while the compensating lens sits in the mounting member and "is at all times held in fixed relation to" the film plane. Specifically:
 
 - **Moving group:** L1 through L5 (all five elements of the objective) translate as a rigid unit along the optical axis when the external focusing ring is rotated.
 - **Fixed element:** L6 remains stationary relative to the film plane, mounted in the lens mount's rear housing.
@@ -198,24 +204,26 @@ This arrangement is mechanically simple (single helicoid, no complex cam followe
 
 ### Patent vs. Production Focus Range
 
-The patent (Table IV and Table VI) tabulates the variable gap as 3.20 mm (infinity) → 15.0 mm at a close-focus distance of 2,372 mm (~93 inches, 11.86× EFL), yielding a focusing travel of 11.8 mm (FT/EFL = 0.059).
+The patent publishes two states of the variable gap: 3.2 mm at infinity and 15.0 mm "for focusing between infinity and 2372mm or about 93 inches" (Table IV and the text after it), a focusing travel of 11.8 mm (Table VI: FT/EFL = 0.059, 11.81 EFL). The patent does not say from where the 2,372 mm is measured. Its Table III figure (1,606 mm) matches the object distance from the front vertex of that design (1,604 mm calculated), so the front vertex is the likelier reference.
 
-The production Vivitar lens was marketed with a significantly closer minimum focus distance of **1.2 m** (~47 inches, ~6× EFL), yielding a 1:4 reproduction ratio. Paraxial conjugate matching — solving for the gap *G* such that the image from the full system (with gap *G* and object at distance MFD − FVD(G) from R1) lands at the fixed R12-to-film distance — gives the following focus-distance table:
+In the repaired prescription, with the film plane held at the calculated 75.5 mm back focus, the 15.0 mm gap is conjugate to an object 2,286 mm in front of R1, or 2,453 mm from the film plane — 3.6% short of the patent's 2,372 mm on the front-vertex reading. That difference is of the same order as the other Table IV residuals and is left as found; the 15.0 mm row itself is stored unchanged.
 
-| MFD (mm) | Gap (mm) | Extension (mm) | FVD (mm) |
-|----------|----------|----------------|----------|
-| ∞ | 3.20 | 0.00 | 156.0 |
-| 10,000 | 5.74 | 2.54 | 158.5 |
-| 5,000 | 8.48 | 5.28 | 161.3 |
-| 3,000 | 11.97 | 8.77 | 165.3 |
-| 2,372 | 15.48 | 12.28 | 168.3 |
-| 2,000 | 18.34 | 15.14 | 171.1 |
-| 1,500 | 25.27 | 22.07 | 178.1 |
-| **1,200** | **33.80** | **30.60** | **186.6** |
+The production Vivitar lens was marketed with a significantly closer minimum focus distance of **1.2 m** (~47 inches, ~6× EFL), yielding a 1:4 reproduction ratio. The patent gives no spacing for that distance. Paraxial conjugate matching — solving for the gap *G* such that the image from the full system (with gap *G* and object at distance MFD − FVD(G) from R1) lands at the fixed R12-to-film distance — gives the following calculated table (distances from the film plane):
 
-The computed gap at the patent's close-focus distance of 2,372 mm is 15.48 mm — within 0.5 mm of the patent's stated 15.0 mm, the residual attributable to the 1% EFL discrepancy between our corrected prescription and the patent's stated 200 mm.
+| Object-to-film (mm) | Gap (mm) | Extension (mm) | FVD (mm) | Source |
+|----------|----------|----------------|----------|--------|
+| ∞ | 3.20 | 0.00 | 156.0 | patent row |
+| 10,000 | 5.74 | 2.54 | 158.5 | calculated |
+| 5,000 | 8.49 | 5.29 | 161.3 | calculated |
+| 3,000 | 12.53 | 9.33 | 165.3 | calculated |
+| 2,453 | 15.00 | 11.80 | 167.8 | patent row (distance calculated) |
+| 2,000 | 18.34 | 15.14 | 171.1 | calculated |
+| 1,500 | 25.27 | 22.07 | 178.1 | calculated |
+| **1,200** | **33.80** | **30.60** | **186.6** | calculated endpoint |
 
-At the production MFD of 1.2 m, the required gap is approximately **33.8 mm**, corresponding to a barrel extension of 30.6 mm and a magnification of 0.249 — confirming the marketed **1:4 reproduction ratio** to high precision. The FVD grows from 156 mm to 187 mm, meaning the barrel extends roughly 30 mm from its infinity position. This is physically plausible given the barrel length and helicoid travel of the production housing.
+At the production MFD of 1.2 m, the required gap is approximately **33.8 mm**, corresponding to a barrel extension of 30.6 mm and a magnification of 0.253 — consistent with the marketed **1:4 reproduction ratio**. The FVD grows from 156 mm to 187 mm, meaning the barrel extends roughly 30 mm from its infinity position. This is physically plausible given the barrel length and helicoid travel of the production housing, but the 33.8 mm figure is an extrapolation of the patent's single focusing gap beyond its published range, not patent data.
+
+The data file stores all three states as focus keyframes (3.2, 15.0 and 33.8 mm). The patent row sits at the focus coordinate 1.2 / 2.4535 = 0.489, so the travel between infinity and the published close state is the patent's own and only the segment beyond it is calculated.
 
 ---
 
@@ -223,7 +231,7 @@ At the production MFD of 1.2 m, the required gap is approximately **33.8 mm**, c
 
 The patent does not explicitly state the stop position within the 29.21 mm air gap between R6 and R7. The patent text says only that "the third element is negative with a concave rear surface *followed by the aperture stop*," confirming the stop is in this gap.
 
-From the FIG. 5 cross-section drawing, the iris diaphragm appears positioned approximately in the middle of the gap, roughly 15 mm after R6. This estimate is used in the data file, splitting the 29.21 mm gap into 15.00 mm (R6 to STO) and 14.21 mm (STO to R7). The marginal ray height at this stop position yields a stop semi-diameter of approximately 19.5 mm for the design f/3 aperture.
+FIG. 5 draws the iris as a pair of short lines near the middle of the gap. Measured on the 300 dpi page scan, with the axial scale fitted to the twelve vertex crossings (about 0.103 mm per pixel; the drawn vertices sit within 0.7 mm of their tabulated positions), the stop lines lie 14.5–14.9 mm behind R6. The data file keeps its earlier 15.00 mm (R6 to STO) + 14.21 mm (STO to R7) split, which agrees within the drawing's resolution; the station is an inference from the figure. At this station the exact f/3 marginal ray crosses the stop plane at 20.65 mm, which is the stored stop semi-diameter; the paraxial height is 19.4 mm, the difference being the spherical aberration of the front group at the stop. The drawn iris opening (about 17.4 mm) is smaller than either, one of several signs that FIG. 5 is a schematic rather than a scaled aperture drawing.
 
 ---
 
@@ -272,14 +280,13 @@ The element-by-element Petzval contributions reveal the balancing act:
 
 ## Semi-Diameter Estimation
 
-The patent does not provide clear-aperture or semi-diameter values for any surfaces. Semi-diameters were estimated using combined marginal and chief ray tracing:
+The patent does not provide clear-aperture or semi-diameter values for any surface, and FIG. 5 cannot supply them: its drawn rim heights (L1 31.5, L2 28.8, L3 24.4, L4 17.0, L5 14.0, L6 12.6 mm at the fitted scale) are each smaller than the f/3 axial beam at the same element, so the figure is used for proportions only. The semi-diameters are therefore estimates anchored to an exact meridional ray trace:
 
-- **Marginal ray:** Traced from infinity at f/3.0 (EP semi-diameter = 33.67 mm), giving ray heights at each surface.
-- **Chief ray:** Traced at 65% of the full-field half-angle (3.97° of 6.11°), with the stop modeled at 15 mm into the R6–R7 air gap.
-- **Clearance:** 8% mechanical clearance applied to the combined (marginal + chief) height.
-- **Filter cap:** Front element (R1) semi-diameter capped at 33.5 mm by the 72 mm filter thread constraint (inner diameter ≈ 68–69 mm). Front/rear SD ratios held ≤ 1.15 per element.
+- **Axial beam:** the f/3 marginal ray (entrance-pupil semi-diameter 33.67 mm) reaches 33.67, 33.39, 30.10, 28.06, 25.68 and 22.92 mm on R1–R6, 20.65 mm at the stop, and 17.71, 17.40, 14.45, 14.09, 12.99 and 12.47 mm on R7–R12. Every stored value clears it; R1, R2, R4, R5, R6, R7 and R8 were raised in the 2026-09-21 audit because the earlier estimates (33.5, 31.5, 27.0, 24.0, 23.0, 17.5 and 17.0 mm) cut into the axial beam or left it no margin, which made the drawn lens slower than f/3.
+- **Front element:** L1 is held at 33.8 mm (67.6 mm clear diameter, inside the 72 mm filter thread). Its edge thickness is already down to 1.0 mm at that height, in line with the near knife-edge FIG. 5 draws, so it carries only 0.4% clearance over the axial beam.
+- **Field:** the chief ray to the 21.6 mm format corner (ω = 5.97°) stays below 7.7 mm on every surface. A full unvignetted corner bundle would need 38.8 mm at R1 and 18.1 mm at L6, so the stored apertures trim the corner bundle by about 10–20% per side at the front group and up to about a third at the rear elements, which is ordinary for a compact f/3 telephoto of this period.
 
-Edge thickness verification confirms all elements have ET ≥ 1.2 mm (L1 is the tightest at 1.23 mm). Cross-gap sag checks confirm positive clearance at all air gaps including the minimum 0.5 mm gap between L1 and L2 (0.36 mm clearance after sag intrusion).
+Edge thicknesses at the stored semi-diameters are 1.0 mm (L1), 4.0 mm (L2), 10.1 mm (L3), 2.9 mm (L4), 4.3 mm (L5) and 2.6 mm (L6). The 0.5 mm L1–L2 air space is narrowest on the axis and opens toward the rim, because R2 is almost flat while R3 is strongly convex toward it.
 
 ---
 
@@ -287,13 +294,17 @@ Edge thickness verification confirms all elements have ET ≥ 1.2 mm (L1 is the 
 
 The `.data.ts` file for this lens incorporates several departures from a literal patent transcription:
 
-1. **R7 correction:** Surface R7 uses −567.0 rather than the patent-printed −1567.0, based on EFL convergence analysis detailed above.
+1. **R7 repair:** Surface R7 uses −567.0 rather than the patent-printed −1567.0. The value is inferred from the spherical-aberration and colour balance described above; the remaining differences from the patent's stated focal length, back focus, track and corrector focal length are documented rather than forced.
 
-2. **Close-focus gap:** The variable gap (surface "11", R10 exit) uses a close-focus value of 33.80 mm, computed via paraxial conjugate matching for the production MFD of 1.2 m. The patent only tabulates the gap to 15.0 mm at 2,372 mm.
+2. **Focus keyframes:** The variable gap (surface "11", the R10 exit) stores the two patent rows, 3.2 and 15.0 mm, plus a calculated 33.80 mm endpoint for the production MFD of 1.2 m. The 15.0 mm row is placed at the focus coordinate given by its calculated object-to-film distance (2.4535 m).
 
-3. **Aperture stop placement:** The 29.21 mm air gap after R6 is split into 15.00 mm + 14.21 mm at the inferred stop position, based on the FIG. 5 iris drawing. Surface labels skip from "6" to "STO" to "8" to accommodate the inserted stop.
+3. **Aperture stop placement:** The 29.21 mm air gap after R6 is split into 15.00 mm + 14.21 mm at the stop station inferred from the FIG. 5 iris drawing. Surface labels skip from "6" to "STO" to "8" to accommodate the inserted stop. The stop semi-diameter (20.65 mm) is the exact-ray f/3 value.
 
-4. **BFL:** The last surface thickness (75.50 mm) is the computed BFL at infinity, rather than the patent's stated 77.5 mm, for self-consistency with the corrected prescription.
+4. **BFL:** The last surface thickness (75.50 mm) is the computed BFL at infinity, rather than the patent's stated 77.5 mm, for self-consistency with the repaired prescription.
+
+5. **Semi-diameters:** Estimated from the exact f/3 axial beam with small clearances, as described above; none is a patent value.
+
+6. **Scale and format:** Table IV is already scaled for the 24 × 36 mm frame, so the prescription is stored unscaled and tagged as 135 full frame.
 
 ---
 

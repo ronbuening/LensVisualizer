@@ -13,17 +13,17 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 - **798** lenses scanned
 - **786** visible lenses scanned
-- **539** lenses fully covered by trusted chromatic data
-- **537** visible lenses fully covered by trusted chromatic data
-- **533** lenses fully covered by strict Sellmeier data
-- **531** visible lenses fully covered by strict Sellmeier data
+- **541** lenses fully covered by trusted chromatic data
+- **539** visible lenses fully covered by trusted chromatic data
+- **535** lenses fully covered by strict Sellmeier data
+- **533** visible lenses fully covered by strict Sellmeier data
 - **6** lenses fully covered only after measured line-index data
 - **6** visible lenses fully covered only after measured line-index data
-- **8311 / 8941** non-air surfaces use strict catalog Sellmeier data
-- **93.0%** strict Sellmeier surface coverage overall
-- **8326 / 8941** non-air surfaces use trusted chromatic data
-- **93.1%** trusted chromatic coverage overall
-- **86 / 131** native e-line surfaces use name-verified catalog Sellmeier data
+- **8321 / 8941** non-air surfaces use strict catalog Sellmeier data
+- **93.1%** strict Sellmeier surface coverage overall
+- **8336 / 8941** non-air surfaces use trusted chromatic data
+- **93.2%** trusted chromatic coverage overall
+- **106 / 151** native e-line surfaces use name-verified catalog Sellmeier data
 
 ## Native E-Line Catalog Matches
 
@@ -47,6 +47,20 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [CARL ZEISS JENA VARIO-PRAKTICAR 35-70mm f/2.7-3.5 MC](../../src/lens-data/carl-zeiss-jena/ZeissVarioPrakticar3570mmf2735.data.ts) | 12 | Element 7 | `J-BASF2 — compatible native e-line spectral proxy; historical Jena supplier and melt unconfirmed` | J-BASF2 | 1.66885 / 35.62 | 1.66884 / 35.60 |
 | [CARL ZEISS JENA VARIO-PRAKTICAR 35-70mm f/2.7-3.5 MC](../../src/lens-data/carl-zeiss-jena/ZeissVarioPrakticar3570mmf2735.data.ts) | 14 | Element 8 | `N-SSK5 — compatible native e-line spectral proxy; historical Jena supplier and melt unconfirmed` | N-SSK5 | 1.66151 / 50.57 | 1.66152 / 50.59 |
 | [CARL ZEISS JENA VARIO-PRAKTICAR 35-70mm f/2.7-3.5 MC](../../src/lens-data/carl-zeiss-jena/ZeissVarioPrakticar3570mmf2735.data.ts) | 16 | Plane plate | `N-BK7 — compatible native e-line spectral proxy; historical Jena supplier and melt unconfirmed` | N-BK7 | 1.51859 / 63.87 | 1.51872 / 63.96 |
+| [LEICA APO-SUMMICRON-M 35mm f/2 ASPH.](../../src/lens-data/leica/LeicaAPO35mmf2.data.ts) | 1A | Element 1 | `S-LAH89 (OHARA) — patent-named example; catalog ne 1.8565 / νe 40.5` | S-LAH89 | 1.85500 / 40.00 | 1.85646 / 40.53 |
+| [LEICA APO-SUMMICRON-M 35mm f/2 ASPH.](../../src/lens-data/leica/LeicaAPO35mmf2.data.ts) | 2 | Element 2 | `N-KZFS5 (Schott) / S-NBH5 (OHARA) — catalog equivalents (ne 1.65803 / νe 39.5)` | S-NBH5 | 1.65800 / 39.00 | 1.65803 / 39.43 |
+| [LEICA APO-SUMMICRON-M 35mm f/2 ASPH.](../../src/lens-data/leica/LeicaAPO35mmf2.data.ts) | 4 | Element 3 | `N-KZFS5 (Schott) / S-NBH5 (OHARA) — catalog equivalents (ne 1.65803 / νe 39.5)` | S-NBH5 | 1.65800 / 39.00 | 1.65803 / 39.43 |
+| [LEICA APO-SUMMICRON-M 35mm f/2 ASPH.](../../src/lens-data/leica/LeicaAPO35mmf2.data.ts) | 5 | Element 4 | `S-LAH58 (OHARA) — catalog equivalent (ne 1.88815 / νe 40.5)` | S-LAH58 | 1.88800 / 41.00 | 1.88815 / 40.52 |
+| [LEICA APO-SUMMICRON-M 35mm f/2 ASPH.](../../src/lens-data/leica/LeicaAPO35mmf2.data.ts) | 8 | Element 5 | `S-FPL51 (OHARA) — catalog equivalent (ne 1.49845 / νe 81.2)` | S-FPL51 | 1.49800 / 81.00 | 1.49845 / 81.15 |
+| [LEICA APO-SUMMICRON-M 35mm f/2 ASPH.](../../src/lens-data/leica/LeicaAPO35mmf2.data.ts) | 9 | Element 6 | `N-KZFS5 (Schott) / S-NBH5 (OHARA) — catalog equivalents (ne 1.65803 / νe 39.5)` | S-NBH5 | 1.65800 / 39.00 | 1.65803 / 39.43 |
+| [LEICA APO-SUMMICRON-M 35mm f/2 ASPH.](../../src/lens-data/leica/LeicaAPO35mmf2.data.ts) | 10 | Element 7 | `S-FPL51 (OHARA) — catalog equivalent (ne 1.49845 / νe 81.2)` | S-FPL51 | 1.49800 / 81.00 | 1.49845 / 81.15 |
+| [LEICA APO-SUMMICRON-M 35mm f/2 ASPH.](../../src/lens-data/leica/LeicaAPO35mmf2.data.ts) | 12A | Element 8 | `S-LAH89 (OHARA) — same row as L1; catalog ne 1.8565 / νe 40.5` | S-LAH89 | 1.85500 / 40.00 | 1.85646 / 40.53 |
+| [LEICA APO-SUMMICRON-M 35mm f/2 ASPH.](../../src/lens-data/leica/LeicaAPO35mmf2.data.ts) | 13 | Element 9 | `N-KZFS5 (Schott) / S-NBH5 (OHARA) — catalog equivalents (ne 1.65803 / νe 39.5)` | S-NBH5 | 1.65800 / 39.00 | 1.65803 / 39.43 |
+| [LEICA APO-SUMMICRON-M 35mm f/2 ASPH.](../../src/lens-data/leica/LeicaAPO35mmf2.data.ts) | 15A | Element 10 | `L-BAL42 (OHARA PGM) class — nearest catalog at e (ne 1.5855 / νe 59.1 vs patent 1.583 / 59)` | L-BAL42 | 1.58300 / 59.00 | 1.58547 / 59.13 |
+| [LEICA ELCAN 50mm f/2](../../src/lens-data/leica/LeicaElcan50mmf2.data.ts) | 1 | Element 1 | `N-LAK9 (Schott; legacy LaK9 — e-line match ne = 1.69401, νe = 54.48)` | N-LAK9 | 1.69400 / 54.50 | 1.69401 / 54.48 |
+| [LEICA ELCAN 50mm f/2](../../src/lens-data/leica/LeicaElcan50mmf2.data.ts) | 3 | Element 2 | `N-BAF10 (Schott; legacy BaF10 — e-line match ne = 1.67341, νe = 46.83)` | N-BAF10 | 1.67340 / 46.80 | 1.67341 / 46.83 |
+| [LEICA ELCAN 50mm f/2](../../src/lens-data/leica/LeicaElcan50mmf2.data.ts) | 5 | Element 3 | `E-FD13 (Hoya; SF13-class dense flint — e-line proxy ne = 1.74707, νe = 27.54; supplier unconfirmed)` | E-FD13 | 1.74710 / 27.40 | 1.74707 / 27.54 |
+| [LEICA ELCAN 50mm f/2](../../src/lens-data/leica/LeicaElcan50mmf2.data.ts) | 7 | Element 4 | `LAFN7 (Schott — e-line match ne = 1.75458, νe = 34.72)` | LAFN7 | 1.75460 / 34.70 | 1.75458 / 34.72 |
 | [LEICA ELMAR-M 135mm f/4](../../src/lens-data/leica/LeicaElmarM135mmf4.data.ts) | 4 | Element 3 | `N-BK7 / BK7 class (Schott; patent e-line value stored)` | N-BK7 | 1.51871 / 64.00 | 1.51872 / 63.96 |
 | [LEICA ELMAR-M 135mm f/4](../../src/lens-data/leica/LeicaElmarM135mmf4.data.ts) | 5 | Element 4 | `F5 (Schott; patent ne=1.60718, ve=37.8 stored as nd/vd)` | F5 | 1.60718 / 37.80 | 1.60718 / 37.77 |
 | [LEICA ELMARIT-R 28mm f/2.8](../../src/lens-data/leica/LeicaElmarit28mmf28.data.ts) | 1 | Element 1 | `SK16 (SCHOTT)` | N-SK16 | 1.62286 / 60.08 | 1.62286 / 60.08 |
@@ -70,6 +84,12 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [LEICA SUMMICRON-R 50mm f/2](../../src/lens-data/leica/LeicaSummicronR50mmf2.data.ts) | 3 | Element 2 | `ZBaF17/BaSF6 class; J-BASF6 catalog e-line spectral proxy (production supplier unspecified)` | J-BASF6 | 1.67133 / 41.64 | 1.67133 / 41.60 |
 | [LEICA SUMMICRON-R 50mm f/2](../../src/lens-data/leica/LeicaSummicronR50mmf2.data.ts) | 4 | Element 3 | `SF11 (Schott; patent ne=1.79190, ve=25.55 stored as nd/vd)` | SF11 | 1.79190 / 25.55 | 1.79190 / 25.55 |
 | [LEICA SUMMICRON-R 50mm f/2](../../src/lens-data/leica/LeicaSummicronR50mmf2.data.ts) | 7 | Element 4 | `SF2 (Schott; patent ne=1.65222, ve=33.60 stored as nd/vd)` | SF2 | 1.65222 / 33.60 | 1.65222 / 33.60 |
+| [LEICA SUMMICRON-M 50mm f/2](../../src/lens-data/leica/LeicaSummicronV550mmf2.data.ts) | 1 | Element 1 | `N-LAF21 (Schott; LaFN21-class lanthanum flint, e-line coordinate proxy ne 1.79195 / νe 47.25; supplier unconfirmed)` | N-LAF21 | 1.79227 / 47.15 | 1.79195 / 47.25 |
+| [LEICA SUMMICRON-M 50mm f/2](../../src/lens-data/leica/LeicaSummicronV550mmf2.data.ts) | 3 | Element 2 | `J-BASF6 (Hikari; BaSF6-class barium flint, exact e-line coordinates ne 1.67133 / νe 41.60; supplier unconfirmed)` | J-BASF6 | 1.67133 / 41.64 | 1.67133 / 41.60 |
+| [LEICA SUMMICRON-M 50mm f/2](../../src/lens-data/leica/LeicaSummicronV550mmf2.data.ts) | 4 | Element 3 | `SF10 (Schott; exact e-line coordinates ne 1.73430 / νe 28.19; supplier unconfirmed)` | SF10 | 1.73430 / 28.19 | 1.73430 / 28.19 |
+| [LEICA SUMMICRON-M 50mm f/2](../../src/lens-data/leica/LeicaSummicronV550mmf2.data.ts) | 7 | Element 4 | `E-F1 (Hoya; F1-class flint, exact e-line coordinates ne 1.63003 / νe 35.48; supplier unconfirmed)` | E-F1 | 1.63003 / 35.45 | 1.63003 / 35.48 |
+| [LEICA SUMMICRON-M 50mm f/2](../../src/lens-data/leica/LeicaSummicronV550mmf2.data.ts) | 8 | Element 5 | `LAF3 (Hoya; LaF3-class lanthanum flint, exact e-line coordinates ne 1.72056 / νe 47.73; supplier unconfirmed). Same glass as L6.` | LAF3 | 1.72055 / 47.69 | 1.72056 / 47.73 |
+| [LEICA SUMMICRON-M 50mm f/2](../../src/lens-data/leica/LeicaSummicronV550mmf2.data.ts) | 10 | Element 6 | `LAF3 (Hoya; LaF3-class lanthanum flint, exact e-line coordinates ne 1.72056 / νe 47.73; supplier unconfirmed). Same glass as L5.` | LAF3 | 1.72055 / 47.69 | 1.72056 / 47.73 |
 | [LEICA SUMMILUX-M 35mm f/1.4](../../src/lens-data/leica/LeicaSummilux35mmf14.data.ts) | 1 | Element 1 | `LAC10 (coordinate-compatible dispersion proxy; historical supplier unconfirmed)` | LAC10 | 1.72341 / 50.10 | 1.72341 / 50.10 |
 | [LEICA SUMMILUX-M 35mm f/1.4](../../src/lens-data/leica/LeicaSummilux35mmf14.data.ts) | 3 | Element 2 | `TAF4 (coordinate-compatible dispersion proxy; historical supplier unconfirmed)` | TAF4 | 1.78990 / 48.00 | 1.79195 / 47.26 |
 | [LEICA SUMMILUX-M 35mm f/1.4](../../src/lens-data/leica/LeicaSummilux35mmf14.data.ts) | 4 | Element 3 | `SF15 (coordinate-compatible dispersion proxy; historical supplier unconfirmed)` | SF15 | 1.70444 / 29.84 | 1.70445 / 29.82 |
@@ -572,6 +592,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [HASSELBLAD HC 80mm f/2.8](../../src/lens-data/hasselblad/HasselbladHC80mmf28.data.ts) | 6/6 | 6 | 6/6 |
 | [KONICA HEXANON AR 40mm f/1.8](../../src/lens-data/konica/KonicaHexanonAR40mmf18.data.ts) | 6/6 | 6 | 6/6 |
 | [KONICA HEXANON AR 50mm f/1.8](../../src/lens-data/konica/KonicaHexanonAR50mmf18.data.ts) | 6/6 | 6 | 6/6 |
+| [LEICA SUMMICRON-M 50mm f/2](../../src/lens-data/leica/LeicaSummicronV550mmf2.data.ts) | 6/6 | 6 | 6/6 |
 | [MAMIYA-SEKOR MACRO C 80mm f/4](../../src/lens-data/mamiya/MamiyaSekorMacroC80mmf4.data.ts) | 6/6 | 6 | 6/6 |
 | [NIKON 1 NIKKOR 10mm f/2.8](../../src/lens-data/nikon/Nikon1Nikkor10mmf28.data.ts) | 6/6 | 6 | 6/6 |
 | [Nikon AF Nikkor 28mm f/2.8D](../../src/lens-data/nikon/NikonAFNikkor28mmf28D.data.ts) | 6/6 | 6 | 6/6 |
@@ -643,6 +664,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [KODAK WIDE-FIELD EKTAR 100mm f/6.3](../../src/lens-data/kodak/KodakWideFieldEktar100mmf63.data.ts) | 4/4 | 4 | 4/4 |
 | [KONICA HEXANON 135mm f/3.5](../../src/lens-data/konica/KonicaHexanon135mmf35.data.ts) | 4/4 | 4 | 4/4 |
 | [KONICA HEXANON AR 135mm f/3.5](../../src/lens-data/konica/KonicaHexanonAR135mmf35.data.ts) | 4/4 | 4 | 4/4 |
+| [LEICA ELCAN 50mm f/2](../../src/lens-data/leica/LeicaElcan50mmf2.data.ts) | 4/4 | 4 | 4/4 |
 | [LEICA MACRO-ELMAR-M 90mm f/4](../../src/lens-data/leica/LeicaMacroElmarM90mmf4.data.ts) | 4/4 | 4 | 4/4 |
 | [NIKON AI NIKKOR 45mm f/2.8 P](../../src/lens-data/nikon/NikonAINikkor45mmf28.data.ts) | 4/4 | 4 | 4/4 |
 | [NIKON DODOTTO 400mm f/8](../../src/lens-data/nikon/NikonDodotto400mmf8.data.ts) | 4/4 | 4 | 4/4 |
@@ -938,15 +960,13 @@ Fully strict and line-index-complete trusted lenses are listed above; this table
 | 241 | [NIKON UV-NIKKOR AUTO 55mm f/4](../../src/lens-data/nikon/NikonUvNikkor55mmf4.data.ts) | 0.0% | 0.0% | 0/3 | 0/3 | 3 | abbe: 3 |
 | 242 | [CARL ZEISS JENA TESSAR 144mm f/5.5](../../src/lens-data/carl-zeiss-jena/ZeissTessar144f55.data.ts) | 0.0% | 0.0% | 0/4 | 0/4 | 4 | abbe: 4 |
 | 243 | [FUJIFILM FUJINAR 210mm f/4.5](../../src/lens-data/fujifilm/FujifilmFujinar210mmf45.data.ts) | 0.0% | 0.0% | 0/4 | 0/4 | 4 | constant: 4 |
-| 244 | [LEICA ELCAN 50mm f/2](../../src/lens-data/leica/LeicaElcan50mmf2.data.ts) | 0.0% | 0.0% | 0/4 | 0/4 | 4 | abbe: 4 |
-| 245 | [VOIGTLÄNDER DYNAR 100mm f/6](../../src/lens-data/voigtlander/VoigtlanderDynarF6.data.ts) | 0.0% | 0.0% | 0/5 | 0/5 | 5 | constant: 5 |
-| 246 | [VOIGTLÄNDER HELIAR (Symmetric) f/4](../../src/lens-data/voigtlander/VoigtlanderHeliar.data.ts) | 0.0% | 0.0% | 0/5 | 0/5 | 5 | abbe: 5 |
-| 247 | [VOIGTLÄNDER HELIAR 100mm f/4.5 (Second Asymmetric Form)](../../src/lens-data/voigtlander/VoigtlanderHeliarF45SecondAsymmetric.data.ts) | 0.0% | 0.0% | 0/5 | 0/5 | 5 | constant: 5 |
-| 248 | [CARL ZEISS JENA PANCOLAR 50mm f/2](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPancolar50mmf2.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
-| 249 | [LEICA SUMMICRON-M 50mm f/2](../../src/lens-data/leica/LeicaSummicronV550mmf2.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
-| 250 | [SAMSUNG 4.3mm f/1.5 (Galaxy S9)](../../src/lens-data/samsung/SamsungGalaxyS9MainWideCameraLens.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
-| 251 | [SAMYANG AF 35mm f/2.8 FE](../../src/lens-data/samyang/SamyangAF35mmf28FE.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
-| 252 | [SONY SONNAR T* FE 35mm f/2.8 ZA](../../src/lens-data/sony/SonyFE35mmf28ZA.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
+| 244 | [VOIGTLÄNDER DYNAR 100mm f/6](../../src/lens-data/voigtlander/VoigtlanderDynarF6.data.ts) | 0.0% | 0.0% | 0/5 | 0/5 | 5 | constant: 5 |
+| 245 | [VOIGTLÄNDER HELIAR (Symmetric) f/4](../../src/lens-data/voigtlander/VoigtlanderHeliar.data.ts) | 0.0% | 0.0% | 0/5 | 0/5 | 5 | abbe: 5 |
+| 246 | [VOIGTLÄNDER HELIAR 100mm f/4.5 (Second Asymmetric Form)](../../src/lens-data/voigtlander/VoigtlanderHeliarF45SecondAsymmetric.data.ts) | 0.0% | 0.0% | 0/5 | 0/5 | 5 | constant: 5 |
+| 247 | [CARL ZEISS JENA PANCOLAR 50mm f/2](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPancolar50mmf2.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
+| 248 | [SAMSUNG 4.3mm f/1.5 (Galaxy S9)](../../src/lens-data/samsung/SamsungGalaxyS9MainWideCameraLens.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
+| 249 | [SAMYANG AF 35mm f/2.8 FE](../../src/lens-data/samyang/SamyangAF35mmf28FE.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
+| 250 | [SONY SONNAR T* FE 35mm f/2.8 ZA](../../src/lens-data/sony/SonyFE35mmf28ZA.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
 
 ## Missing Surface Details
 
@@ -1481,7 +1501,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 14 | Element 8 | abbe | `Discontinued LaF/LaK type (1970s)` | No catalog match |
+| 14 | Element 8 | abbe | `744479 — lanthanum flint (catalog unresolved; nd = 1.74443, νd = 47.9)` | No catalog match |
 
 ### [PENTAX DA 21mm f/3.2 AL Limited](../../src/lens-data/pentax/PentaxDA21mmf32Limited.data.ts) - 88.9% trusted (8/9); 88.9% Sellmeier (8/9) - US 7,411,746 B2
 
@@ -1734,8 +1754,8 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 12A | Element 6 | abbe | `877370 — high-index lanthanum glass (patent nd=1.87722, nu_d=37.0)` | No catalog match |
-| 20A | Element 11 | abbe | `Unmatched (patent nd=1.68250, νd=33.00; prior H-ZF52A annotation rejected on dispersion)` | Explicit unmatched/proprietary annotation |
+| 12A | Element 6 | abbe | `877370 — high-index lanthanum glass (catalog unresolved; patent nd=1.87722, νd=37.0)` | No catalog match |
+| 20A | Element 11 | abbe | `683330 — dense flint (catalog unresolved; patent nd=1.68250, νd=33.0; prior H-ZF52A label rejected)` | No catalog match |
 
 ### [PANASONIC LEICA DC VARIO-SUMMILUX 4.7-17.7mm f/1.4-2.3 (Panasonic Lumix DMC-LX7; Leica D-Lux 6)](../../src/lens-data/panasonic/LeicaDCVarioSummilux47177mmf1423PanasonicLX7.data.ts) - 81.8% trusted (9/11); 81.8% Sellmeier (9/11) - US 2015/0124127 A1
 
@@ -1874,8 +1894,8 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 9 | Element 5 | abbe | `LaK (774492, probable thoriated)` | No catalog match |
-| 14 | Element 8 | abbe | `LaK (774492, probable thoriated)` | No catalog match |
+| 9 | Element 5 | abbe | `774492 — dense lanthanum crown (no catalog equivalent; nd=1.7737, νd=49.2)` | No catalog match |
+| 14 | Element 8 | abbe | `774492 — dense lanthanum crown (no catalog equivalent; nd=1.7737, νd=49.2)` | No catalog match |
 
 ### [KINOPTIK TEGEA 9.8mm f/1.8](../../src/lens-data/kinoptik/KinoptikTegea98mmf18.data.ts) - 77.8% trusted (7/9); 77.8% Sellmeier (7/9) - US 3,037,426
 
@@ -2071,8 +2091,8 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 3 | Element 2 | abbe | `840433 - lanthanum flint (patent nd=1.84042, vd=43.30; no exact public catalog match)` | No catalog match |
-| 7 | Element 5 | abbe | `EF3 (HOYA)` | No catalog match |
+| 3 | Element 2 | abbe | `840433 - lanthanum flint (catalog unresolved; patent nd=1.84042, vd=43.3)` | No catalog match |
+| 7 | Element 5 | abbe | `617308 - high-dispersion flint (catalog unresolved; patent nd=1.61750, vd=30.8)` | No catalog match |
 
 ### [NIKON W-NIKKOR 35mm f/1.8](../../src/lens-data/nikon/NikonWNikkor35mmf18.data.ts) - 71.4% trusted (5/7); 71.4% Sellmeier (5/7) - US 2,896,506
 
@@ -2693,15 +2713,6 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 5 | Element 3 | constant | `Unmatched (N=1.5293; Abbe number and spectral reference not published)` | Explicit unmatched/proprietary annotation |
 | 6 | Element 4 | constant | `Unmatched (N=1.6227; Abbe number and spectral reference not published)` | Explicit unmatched/proprietary annotation |
 
-### [LEICA ELCAN 50mm f/2](../../src/lens-data/leica/LeicaElcan50mmf2.data.ts) - 0.0% trusted (0/4); 0.0% Sellmeier (0/4) - US 3,649,104
-
-| Surface | Element | Runtime quality | Glass annotation | Reason |
-|---|---|---|---|---|
-| 1 | Element 1 | abbe | `LaK9 (Schott / Leitz)` | No catalog match |
-| 3 | Element 2 | abbe | `≈BaF10 (Leitz proprietary)` | Explicit unmatched/proprietary annotation |
-| 5 | Element 3 | abbe | `747274 - dense flint (patent nd=1.74710, vd=27.40; no exact public catalog match)` | No catalog match |
-| 7 | Element 4 | abbe | `Unmatched lanthanum flint (patent nd=1.7546, vd=34.7; outside LAFN7 compatibility)` | Explicit unmatched/proprietary annotation |
-
 ### [VOIGTLÄNDER DYNAR 100mm f/6](../../src/lens-data/voigtlander/VoigtlanderDynarF6.data.ts) - 0.0% trusted (0/5); 0.0% Sellmeier (0/5) - US 765,006 A
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
@@ -2742,17 +2753,6 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 6 | Element 4 | abbe | `Special light flint (Jena in-house, 602/352)` | No catalog match |
 | 7 | Element 5 | abbe | `SSK / LaK (Jena in-house, 662/561)` | No catalog match |
 | 9 | Element 6 | abbe | `SSK / LaK (Jena in-house, 662/561)` | No catalog match |
-
-### [LEICA SUMMICRON-M 50mm f/2](../../src/lens-data/leica/LeicaSummicronV550mmf2.data.ts) - 0.0% trusted (0/6); 0.0% Sellmeier (0/6) - US 4,123,144
-
-| Surface | Element | Runtime quality | Glass annotation | Reason |
-|---|---|---|---|---|
-| 1 | Element 1 | abbe | `Lanthanum crown (proprietary Leitz melt; nearest: Schott TaF4 / LaFN21)` | Explicit unmatched/proprietary annotation |
-| 3 | Element 2 | abbe | `Barium flint / dense barium crown (proprietary; nearest: Schott BaSF6)` | Explicit unmatched/proprietary annotation |
-| 4 | Element 3 | abbe | `Dense flint (proprietary; nearest: Schott SF3 / SF10)` | Explicit unmatched/proprietary annotation |
-| 7 | Element 4 | abbe | `Light/medium flint (proprietary; nearest: Schott F2)` | Explicit unmatched/proprietary annotation |
-| 8 | Element 5 | abbe | `Lanthanum crown (proprietary; nearest: Schott LaF10). Same glass as L6.` | Explicit unmatched/proprietary annotation |
-| 10 | Element 6 | abbe | `Lanthanum crown (same glass as L5)` | No catalog match |
 
 ### [SAMSUNG 4.3mm f/1.5 (Galaxy S9)](../../src/lens-data/samsung/SamsungGalaxyS9MainWideCameraLens.data.ts) - 0.0% trusted (0/7); 0.0% Sellmeier (0/7) - US 2021/0149156 A1
 

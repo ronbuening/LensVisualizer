@@ -87,7 +87,7 @@ The `n₃ = 1.7170` and `r₆ = 872.1` entries were visually checked in both pat
 
 **Sign convention:** Positive R = center of curvature to the right (convex to incident light from object side). This matches the patent's stated convention.
 
-**Stop position:** The patent does not explicitly specify the aperture stop location, but the figure clearly places it within the large 25.2 mm air gap between Components III and IV (between surfaces r₇ and r₈). This is the natural location for a double-Gauss design. The exact split is estimated at approximately the midpoint of the gap (12.6 / 12.6 mm), inferred from the figure.
+**Stop position:** The patent does not tabulate the aperture stop. The figure draws the iris inside the 25.2 mm air gap between Components III and IV (between r₇ and r₈), at about 48% of the vertex-to-vertex distance, which is the natural location for a double-Gauss design. The same figure, however, draws the two concave surfaces with clear semi-diameters of only about 22 mm, too small for the tabulated F/1.1 beam. An exact ray trace puts the F/1.1 marginal ray on r₇ at a height of 27.5 mm, 14.5 mm behind the r₇ vertex, and on r₈ at 27.2 mm, 15.4 mm behind the same vertex. A full-aperture iris can only sit between those two rims, so the data file places the stop 15.0 mm behind r₇ (15.0 / 10.2 mm split; 7.5 / 5.1 mm at production scale). This is a calculated placement, not a patent value.
 
 ### 4.3 Computed System Parameters (f = 100 scale)
 
@@ -95,13 +95,12 @@ The `n₃ = 1.7170` and `r₆ = 872.1` entries were visually checked in both pat
 |-----------|-------|
 | EFL (paraxial) | 99.85 mm |
 | BFL (paraxial) | 46.11 mm |
-| Published image spacing | 45.58 mm |
-| Total track (lens + BFL) | 162.3 mm |
+| Total track (lens + BFL) | 162.8 mm |
 | Entrance pupil diameter | 90.8 mm |
 | Petzval sum | +0.003432 mm⁻¹ |
 | Petzval radius | 291 mm (~2.9× EFL) |
 
-A Petzval radius of approximately 2.9× EFL is typical for a fast double-Gauss design and represents a reasonable degree of field-curvature correction. The 0.53 mm difference between the paraxial BFL and the patent's published image spacing is consistent with the precision of the rounded table; the project preserves the published spacing. Nikon's own evaluation acknowledges some residual curvature of field, consistent with the computed Petzval curvature.
+A Petzval radius of approximately 2.9× EFL is typical for a fast double-Gauss design and represents a reasonable degree of field-curvature correction. The patent publishes no back focal distance, so the image spacing used in this project is the calculated paraxial value. An exact trace of the F/1.1 marginal ray focuses 0.47 mm short of the paraxial image at this scale, an undercorrected spherical residual with no zonal reversal. Nikon's own evaluation acknowledges some residual curvature of field, consistent with the computed Petzval curvature.
 
 ### 4.4 Production-Scale Prescription Table (f ≈ 50)
 
@@ -115,7 +114,7 @@ All linear dimensions below are the corrected patent prescription scaled by exac
 | r₄ | +81.9 | 0.70 | 1.0 | — | Air |
 | r₅ | +26.75 | 9.70 | 1.7170 | L3 | Glass (L3) |
 | r₆ | +436.05 | 2.05 | 1.5927 | L4 | Glass (L4, cemented) |
-| r₇ | +16.65 | 12.6 total gap | 1.0 | — | Air (6.3 mm to stop + 6.3 mm from stop) |
+| r₇ | +16.65 | 12.6 total gap | 1.0 | — | Air (7.5 mm to stop + 5.1 mm from stop, calculated) |
 | *STO* | ∞ | — | 1.0 | — | *Aperture stop* |
 | r₈ | −21.3 | 2.70 | 1.6483 | L5 | Glass (L5) |
 | r₉ | +67.85 | 10.25 | 1.7170 | L6 | Glass (L6, cemented) |
@@ -134,8 +133,7 @@ The patent's r₆ value is scaled by the same factor of 0.5 as every other linea
 |-----------|-------|
 | EFL (paraxial) | 49.93 mm |
 | BFL (paraxial) | 23.05 mm |
-| Published image spacing | 22.79 mm |
-| Total track (lens + BFL) | 81.15 mm |
+| Total track (lens + BFL) | 81.40 mm |
 | Entrance pupil diameter | 45.4 mm |
 | Petzval sum | +0.006865 mm⁻¹ |
 | Petzval radius | 145.7 mm (~2.9× EFL) |
@@ -162,14 +160,14 @@ Every component focal length matches to within 0.1% with the visually verified n
 ### L1 — Component I: Front Positive Meniscus
 
 - **Shape:** Positive meniscus, convex to object (R₁ = +167.6, R₂ = +428.3)
-- **Glass:** K-SK7 (Sumita, 607595), nd = 1.6073, νd = 59.5 — dense crown (SK family)
+- **Glass:** nd = 1.6073, νd = 59.5 (patent code 607595) — dense crown (SK family); K-SK7 (Sumita) is the catalog equivalent used for dispersion
 - **Focal length:** +447.8 mm (very weak positive, 4.5× the system EFL)
-- **Role:** L1 is a low-power positive meniscus that serves primarily to extend the front group, distributing the convergence burden more gently across the front half of the lens. Its weak power means it contributes minimally to aberration while allowing the subsequent elements to work at reduced incidence angles. This element is *not* one of the three lanthanum elements — it uses conventional barium-based dense crown glass, likely a HIKARI (Nikon subsidiary) equivalent of Schott SK4 or a similar 1950s-era dense crown.
+- **Role:** L1 is a low-power positive meniscus that serves primarily to extend the front group, distributing the convergence burden more gently across the front half of the lens. Its weak power means it contributes minimally to aberration while allowing the subsequent elements to work at reduced incidence angles. This element is *not* one of the three lanthanum elements — it uses conventional barium-based dense crown glass at the classical SK7 coordinate. The patent does not name a supplier.
 
 ### L2 — Component II: Second Positive Meniscus
 
 - **Shape:** Positive meniscus, convex to object (R₃ = +93.0, R₄ = +163.8)
-- **Glass:** K-SK7 (Sumita, 607595), nd = 1.6073, νd = 59.5 — same glass as L1
+- **Glass:** nd = 1.6073, νd = 59.5 (patent code 607595) — same glass as L1; K-SK7 (Sumita) catalog equivalent
 - **Focal length:** +338.9 mm (moderate weak positive, 3.4× EFL)
 - **Role:** L2 is the stronger of the two front meniscus elements. It works together with L1 to gradually converge the on-axis marginal ray bundle before it enters the more strongly curved Component III. The pair L1 + L2 contributes gentle positive power from the front, akin to a "power supplement" that transforms the classical four-element Gauss core into a wider-aperture design. Using the same glass as L1 simplifies manufacturing and ensures matched chromatic behavior.
 
@@ -187,7 +185,7 @@ Every component focal length matches to within 0.1% with the visually verified n
 ### L4 — Component III, rear element (cemented doublet D1)
 
 - **Shape:** Negative meniscus, convex to object (R₆ = +872.1, R₇ = +33.3)
-- **Glass:** S-FTM16 (OHARA, 593353), nd = 1.5927, νd = 35.4 — light flint (LLF family)
+- **Glass:** nd = 1.5927, νd = 35.4 (patent code 593354) — flint lying on the high-dispersion side of the classical lead-flint line; S-FTM16 (OHARA, 1.59270 / 35.31) is the catalog equivalent used for dispersion
 - **Focal length (standalone):** −58.5 mm
 - **Role:** L4 is the chromatic correction partner to L3. Its lower Abbe number (higher dispersion) balances the chromatic aberration introduced by L3's positive power. The cemented pair III has a combined focal length of −823.7 mm — a very weak negative meniscus that acts primarily as a chromatic corrector rather than a significant power element.
 
@@ -196,7 +194,7 @@ Every component focal length matches to within 0.1% with the visually verified n
 ### L5 — Component IV, front element (cemented doublet D2)
 
 - **Shape:** Biconcave negative (R₈ = −42.6, R₉ = +135.7)
-- **Glass:** S-TIM22 (OHARA, 648338), nd = 1.6483, νd = 33.8 — flint (F family)
+- **Glass:** nd = 1.6483, νd = 33.8 (patent code 648338) — dense flint (SF family). The pair coincides with the legacy SF12 coordinate (1.64831 / 33.84), which the project catalog does not carry; the nearest catalog neighbour, S-TIM22 (OHARA, 1.64769 / 33.79, an SF2-type glass), supplies the dispersion curve while the patent index is kept for tracing
 - **Focal length (standalone):** −49.4 mm
 - **Role:** L5 is the strongest negative element in the system. Positioned immediately behind the aperture stop, it forms the front half of the rear achromatic doublet (Component IV). Its high dispersion (low νd) and strong negative power are essential for chromatic correction of the rear group.
 
@@ -223,18 +221,18 @@ Every component focal length matches to within 0.1% with the visually verified n
 ### L8 — Component VI, front element (cemented doublet D3)
 
 - **Shape:** Negative meniscus, convex to object (R₁₃ = +142.3, R₁₄ = +96.9)
-- **Glass:** E-F1 (HOYA, 626357), nd = 1.6259, νd = 35.6 — light flint (LF family)
+- **Glass:** nd = 1.6259, νd = 35.6 (patent code 626356) — flint (F1 type); E-F1 (HOYA, 1.62588 / 35.74) is the catalog equivalent used for dispersion
 - **Focal length (standalone):** −497.5 mm (very weak negative)
 - **Role:** L8 is a weak negative element providing final chromatic correction in the rear group. Its meniscus form means it contributes minimally to Petzval field curvature — a meniscus element's contributions to Petzval sum nearly cancel between its two surfaces. This makes it an effective chromatic tuning element without disturbing the already well-corrected field curvature.
 
 ### L9 — Component VI, rear element (cemented doublet D3)
 
 - **Shape:** Positive meniscus, convex to object (R₁₄ = +96.9, R₁₅ = +518.0)
-- **Glass:** K-SK18 (Sumita, 639555), nd = 1.6385, νd = 55.5 — dense crown (SK/LaK border)
+- **Glass:** nd = 1.6385, νd = 55.5 (patent code 639555) — dense crown (SK18 type); K-SK18 (Sumita) is the catalog equivalent used for dispersion
 - **Focal length (standalone):** +185.3 mm
 - **Role:** L9 is the final element and the rearmost positive power contributor. Its high Abbe number (low dispersion) paired with L8's high-dispersion flint forms the third and final achromatic doublet. Component VI collectively has a focal length of +300.2 mm, contributing moderate positive power while correcting residual longitudinal chromatic aberration.
 
-  L9's glass (nd = 1.6385, νd = 55.5) falls near the boundary between dense crown and lanthanum crown territory. It is *not* identified as one of the three lanthanum elements in Nikon's account, suggesting it uses a conventional barium-based dense crown. Its relatively high Abbe number distinguishes it from the LaK glasses of L3, L6, and L7 (which all have νd = 47.9).
+  L9's glass (nd = 1.6385, νd = 55.5) falls near the boundary between dense crown and lanthanum crown territory. It is *not* identified as one of the three lanthanum elements in Nikon's account, suggesting it uses a conventional barium-based dense crown. Its relatively high Abbe number distinguishes it from the lanthanum glass of L3, L6, and L7 (νd = 47.9).
 
 ---
 
@@ -260,9 +258,9 @@ The three negative elements (L4, L5, L8) use conventional flint glasses with νd
 
 | Element | nd | νd | Code | Family |
 |---------|-----|-----|------|--------|
-| L4 | 1.5927 | 35.4 | S-FTM16 / 593353 | Light Flint (LLF) |
-| L5 | 1.6483 | 33.8 | S-TIM22 / 648338 | Flint (F) |
-| L8 | 1.6259 | 35.6 | E-F1 / 626357 | Light Flint (LF) |
+| L4 | 1.5927 | 35.4 | 593354 (S-FTM16 equivalent) | Flint |
+| L5 | 1.6483 | 33.8 | 648338 (S-TIM22 nearest neighbour) | Dense Flint (SF) |
+| L8 | 1.6259 | 35.6 | 626356 (E-F1 equivalent) | Flint (F) |
 
 ### 6.3 Glass Manufacturer
 
@@ -274,12 +272,14 @@ Six distinct glass types are used across nine elements, with two repeated coordi
 
 | Glass type | nd | νd | Elements | Family |
 |-----------|-----|-----|----------|--------|
-| K-SK7 / 607595 | 1.6073 | 59.5 | L1, L2 | Dense Crown (SK) |
-| S-LAM3 / 717479 | 1.7170 | 47.9 | L3, L6, L7 | Lanthanum Crown (LaK); coefficient-backed equivalent |
-| S-FTM16 / 593353 | 1.5927 | 35.4 | L4 | Light Flint (LLF) |
-| S-TIM22 / 648338 | 1.6483 | 33.8 | L5 | Flint (F) |
-| E-F1 / 626357 | 1.6259 | 35.6 | L8 | Light Flint (LF) |
-| K-SK18 / 639555 | 1.6385 | 55.5 | L9 | Dense Crown (SK) |
+| 607595 (K-SK7 equivalent) | 1.6073 | 59.5 | L1, L2 | Dense Crown (SK) |
+| 717479 (S-LAM3 equivalent) | 1.7170 | 47.9 | L3, L6, L7 | Lanthanum glass (LaF3-type coordinate) |
+| 593354 (S-FTM16 equivalent) | 1.5927 | 35.4 | L4 | Flint |
+| 648338 (S-TIM22 nearest neighbour, Δnd = −0.0006) | 1.6483 | 33.8 | L5 | Dense Flint (SF) |
+| 626356 (E-F1 equivalent) | 1.6259 | 35.6 | L8 | Flint (F) |
+| 639555 (K-SK18 equivalent) | 1.6385 | 55.5 | L9 | Dense Crown (SK) |
+
+The catalog names are modern coefficient-backed equivalents chosen by coordinate; the patent names no glass or supplier.
 
 The repeated 717479 coordinate across L3, L6, and L7 is notable: the same high-index, moderate-dispersion glass supports positive power on both sides of the stop.
 
@@ -289,9 +289,7 @@ The repeated 717479 coordinate across L3, L6, and L7 is notable: the same high-i
 
 The patent does not specify variable air gaps or internal focusing groups. This is consistent with the lens's intended use on the Nikon S rangefinder system, which employed **unit focusing** — the entire optical assembly translates forward as a single unit to focus at closer distances. The only spacing that changes is the back focal distance (distance from the last optical surface to the film plane).
 
-The minimum focus distance for the Nikkor-N 5cm f/1.1 was **0.9 m (3 feet)** on the S-mount cameras, with a 12-blade aperture diaphragm stopping down to f/16 (some sources indicate f/22 on certain variants). The lens uses 62 mm filters and weighs approximately 355 g (12.25 oz) in the internal-mount version. The required focus extension (the additional forward translation of the lens group from infinity to MFD) can be estimated from the thin-lens conjugate relationship:
-
-For an object at 0.9 m and EFL ≈ 50 mm (production scale), the focus extension is approximately f²/(object_distance − f) ≈ 2.9 mm. This modest extension is well within the travel range of the focusing helicoid.
+The minimum focus distance for the Nikkor-N 5cm f/1.1 was **0.9 m (3 feet)** on the S-mount cameras, with a 12-blade aperture diaphragm stopping down to f/16 (some sources indicate f/22 on certain variants). The lens uses 62 mm filters and weighs approximately 355 g (12.25 oz) in the internal-mount version. The patent gives no focus data, so the close-focus state in the data file is calculated: a paraxial conjugate solve for a 0.9 m object-to-image distance gives a unit-focus extension of 3.09 mm (back focus 23.05 → 26.14 mm, magnification −0.062). This modest extension is well within the travel range of the focusing helicoid.
 
 ---
 
@@ -352,15 +350,17 @@ Applying the exact linear scale factor of 0.5 (from f = 100 patent to 50 mm prod
 | Parameter | Patent (f = 100) | Production (f ≈ 50) |
 |-----------|-----------------|---------------------|
 | EFL | 99.85 mm | 49.93 mm |
-| Published image spacing | 45.58 mm | 22.79 mm |
-| Lens track | 116.7 mm | 58.36 mm |
-| EP diameter | 91.1 mm | 45.5 mm |
+| BFL (paraxial, calculated) | 46.11 mm | 23.05 mm |
+| Lens track | 116.7 mm | 58.35 mm |
+| EP diameter | 90.8 mm | 45.4 mm |
 | Front element semi-diameter | ~49 mm | ~24.5 mm (49 mm diameter) |
 | Filter size | — | 62 mm |
 
+**Semi-diameters:** The patent lists no clear apertures. In the data file the rear components follow the rims measured on the patent figure (18.0, 17.8 and 18.1 mm for Components IV, V and VI at production scale), which clear the full-field chief ray. Surfaces r₅–r₈ are set from an exact F/1.1 axial ray trace, because the figure draws Component III and the two inner concave surfaces smaller than the tabulated F/1.1 beam requires; the margins there are small by necessity (L3 keeps a 0.95 mm edge, and the r₇ and r₈ rims are 0.28 mm apart axially at the iris). The front two menisci are the axial marginal height plus 8–10% (the figure rims measure 22.6 and 20.3 mm). Only about a quarter of the meridional pupil survives at the 21.6 mm image corner, in line with the heavy wide-open vignetting reported for the lens.
+
 **Production focal length note:** The patent normalizes the prescription to f = 100.0. The production lens is marketed as "5cm" (50 mm). The exact 0.5 rescale yields a computed paraxial EFL of 49.93 mm from the rounded patent table.
 
-The BFL of 22.79 mm at production scale is well inside the Nikon S-mount flange distance of 34.85 mm. This means the rear elements of the lens protrude significantly into the camera body — about 12.1 mm behind the lens mount flange. This is typical of fast rangefinder lenses, which do not require the long back focal distance needed by SLR mirror boxes. It is one reason the f/1.1 speed was achievable for rangefinder cameras but would not be matched for SLR normal lenses until decades later.
+The BFL of 23.05 mm at production scale is well inside the Nikon S-mount flange distance of 34.85 mm. This means the rear elements of the lens protrude significantly into the camera body — about 11.8 mm behind the lens mount flange. This is typical of fast rangefinder lenses, which do not require the long back focal distance needed by SLR mirror boxes. It is one reason the f/1.1 speed was achievable for rangefinder cameras but would not be matched for SLR normal lenses until decades later.
 
 ---
 

@@ -11,7 +11,7 @@ or per-lens patent backfills.
 - **798** lenses scanned
 - **8941** non-air surfaces examined
 - **8951** element glass declarations examined
-- **237** non-explicit-unmatched annotations did not resolve
+- **235** non-explicit-unmatched annotations did not resolve
 - **120** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
@@ -65,6 +65,7 @@ or per-lens patent backfills.
 | 603564 | 1 | 1 | |
 | 607492 | 1 | 1 | |
 | 612313 | 1 | 1 | |
+| 617308 | 1 | 1 | |
 | 617443 | 1 | 1 | |
 | 624584 | 1 | 1 | |
 | 625533 | 1 | 1 | |
@@ -79,14 +80,15 @@ or per-lens patent backfills.
 | 681472 | 1 | 1 | |
 | 682366 | 1 | 1 | |
 | 683315 | 1 | 1 | |
+| 683330 | 1 | 1 | |
 | 683548 | 1 | 1 | |
 | 694312 | 1 | 1 | |
 | 700555 | 1 | 1 | |
 | 701301 | 1 | 1 | |
 | 721334 | 1 | 1 | |
 | 738493 | 1 | 1 | |
+| 744479 | 1 | 1 | |
 | 744494 | 1 | 1 | |
-| 747274 | 1 | 1 | |
 | 749501 | 1 | 1 | |
 | 749547 | 1 | 1 | |
 | 750251 | 1 | 1 | |
@@ -127,14 +129,12 @@ or per-lens patent backfills.
 | 933209 | 1 | 1 | |
 | BAM5 | 1 | 1 | |
 | D-ZLAF85 | 1 | 1 | |
-| EF3 | 1 | 1 | |
 | FPL51 | 1 | 1 | |
+| H-ZF52A | 1 | 1 | |
 | J-LAK9 | 1 | 1 | |
 | KF5 | 1 | 1 | |
 | KZF4 | 1 | 1 | |
-| L5 | 1 | 1 | |
 | LAF2 | 1 | 1 | |
-| LAK9 | 1 | 1 | |
 | LF7-CLASS | 1 | 1 | |
 | LLF7 | 1 | 1 | |
 | N3 | 1 | 1 | |
@@ -235,8 +235,8 @@ or per-lens patent backfills.
 
 ### 774492 — 2 occurrences
 
-- [CANON FD 35mm f/2 S.S.C. (I)](../../src/lens-data/canon/CanonFD35mmf2.data.ts) 9: `LaK (774492, probable thoriated)`
-- [CANON FD 35mm f/2 S.S.C. (I)](../../src/lens-data/canon/CanonFD35mmf2.data.ts) 14: `LaK (774492, probable thoriated)`
+- [CANON FD 35mm f/2 S.S.C. (I)](../../src/lens-data/canon/CanonFD35mmf2.data.ts) 9: `774492 — dense lanthanum crown (no catalog equivalent; nd=1.7737, νd=49.2)`
+- [CANON FD 35mm f/2 S.S.C. (I)](../../src/lens-data/canon/CanonFD35mmf2.data.ts) 14: `774492 — dense lanthanum crown (no catalog equivalent; nd=1.7737, νd=49.2)`
 
 ### 777297 — 2 occurrences
 
@@ -368,6 +368,10 @@ or per-lens patent backfills.
 
 - [NIKON AF-P DX NIKKOR 70-300mm f/4.5-6.3 G ED VR](../../src/lens-data/nikon/NikonAFPDX70300mmf4563G.data.ts) 3: `612313 — anomalous-dispersion flint class (patent nd=1.61155, νd=31.26, θgF=0.618; no exact public catalog match)`
 
+### 617308 — 1 occurrence
+
+- [NIKON NIKKOR 28mm f/2.8 (Nikon 28Ti)](../../src/lens-data/nikon/Nikon28Ti28mmf28.data.ts) 7: `617308 - high-dispersion flint (catalog unresolved; patent nd=1.61750, vd=30.8)`
+
 ### 617443 — 1 occurrence
 
 - [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 27: `617443 — flint/crown-boundary glass (patent coordinate; vendor unspecified)`
@@ -424,6 +428,10 @@ or per-lens patent backfills.
 
 - [MINOLTA AF 20mm f/2.8](../../src/lens-data/minolta/MinoltaAF20mmf28.data.ts) 7: `683315 — flint class (catalog unresolved)`
 
+### 683330 — 1 occurrence
+
+- [LEICA SUMMILUX 28mm f/1.7 ASPH. (Leica Q, Q2, Q3)](../../src/lens-data/leica/Leica28mmf17.data.ts) 20A: `683330 — dense flint (catalog unresolved; patent nd=1.68250, νd=33.0; prior H-ZF52A label rejected)`
+
 ### 683548 — 1 occurrence
 
 - [NIKON AF-P DX NIKKOR 10-20mm f/4.5-5.6 G VR](../../src/lens-data/nikon/NikonAFPDX1020mmf4556G.data.ts) 7: `683548 - patent-specified glass (theta_gF=0.5501; unresolved)`
@@ -448,13 +456,13 @@ or per-lens patent backfills.
 
 - [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) 45: `738493 — inferred vd and unresolved identity; patent gives nd only`
 
+### 744479 — 1 occurrence
+
+- [NIKON NIKKOR-N AUTO 28mm f/2](../../src/lens-data/nikon/NikonNikkorN28mmf2.data.ts) 14: `744479 — lanthanum flint (catalog unresolved; nd = 1.74443, νd = 47.9)`
+
 ### 744494 — 1 occurrence
 
 - [NIKON AI NIKKOR 35mm f/2](../../src/lens-data/nikon/NikonAINikkor35mmf2.data.ts) 9: `Legacy 744/494 lanthanum-flint class (exact melt uncertain)`
-
-### 747274 — 1 occurrence
-
-- [LEICA ELCAN 50mm f/2](../../src/lens-data/leica/LeicaElcan50mmf2.data.ts) 5: `747274 - dense flint (patent nd=1.74710, vd=27.40; no exact public catalog match)`
 
 ### 749501 — 1 occurrence
 
@@ -570,7 +578,7 @@ or per-lens patent backfills.
 
 ### 840433 — 1 occurrence
 
-- [NIKON NIKKOR 28mm f/2.8 (Nikon 28Ti)](../../src/lens-data/nikon/Nikon28Ti28mmf28.data.ts) 3: `840433 - lanthanum flint (patent nd=1.84042, vd=43.30; no exact public catalog match)`
+- [NIKON NIKKOR 28mm f/2.8 (Nikon 28Ti)](../../src/lens-data/nikon/Nikon28Ti28mmf28.data.ts) 3: `840433 - lanthanum flint (catalog unresolved; patent nd=1.84042, vd=43.3)`
 
 ### 866450 — 1 occurrence
 
@@ -578,7 +586,7 @@ or per-lens patent backfills.
 
 ### 877370 — 1 occurrence
 
-- [LEICA SUMMILUX 28mm f/1.7 ASPH. (Leica Q, Q2, Q3)](../../src/lens-data/leica/Leica28mmf17.data.ts) 12A: `877370 — high-index lanthanum glass (patent nd=1.87722, nu_d=37.0)`
+- [LEICA SUMMILUX 28mm f/1.7 ASPH. (Leica Q, Q2, Q3)](../../src/lens-data/leica/Leica28mmf17.data.ts) 12A: `877370 — high-index lanthanum glass (catalog unresolved; patent nd=1.87722, νd=37.0)`
 
 ### 882408 — 1 occurrence
 
@@ -616,13 +624,13 @@ or per-lens patent backfills.
 
 - [SONY FE 12-24mm f/2.8 GM](../../src/lens-data/sony/SonyFE1224mmf28GM.data.ts) 30A: `D-ZLaF85 class (lanthanum flint, 856/401)`
 
-### EF3 — 1 occurrence
-
-- [NIKON NIKKOR 28mm f/2.8 (Nikon 28Ti)](../../src/lens-data/nikon/Nikon28Ti28mmf28.data.ts) 7: `EF3 (HOYA)`
-
 ### FPL51 — 1 occurrence
 
 - [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) 1: `FPL51 class (499/801, OHARA family)`
+
+### H-ZF52A — 1 occurrence
+
+- [LEICA SUMMILUX 28mm f/1.7 ASPH. (Leica Q, Q2, Q3)](../../src/lens-data/leica/Leica28mmf17.data.ts) 20A: `683330 — dense flint (catalog unresolved; patent nd=1.68250, νd=33.0; prior H-ZF52A label rejected)`
 
 ### J-LAK9 — 1 occurrence
 
@@ -636,17 +644,9 @@ or per-lens patent backfills.
 
 - [AGFA COLOR-TELINEAR 90mm f/4](../../src/lens-data/agfa/AgfaColorTelinear90mmf4.data.ts) 4: `KzF4 class (Schott-Jena legacy short flint, 570/481)`
 
-### L5 — 1 occurrence
-
-- [LEICA SUMMICRON-M 50mm f/2](../../src/lens-data/leica/LeicaSummicronV550mmf2.data.ts) 10: `Lanthanum crown (same glass as L5)`
-
 ### LAF2 — 1 occurrence
 
 - [NIKON NIKKOR-N Auto 24mm f/2.8](../../src/lens-data/nikon/NikonNikkorAuto24f28.data.ts) 15: `LAF2 equivalent (catalog comparison; supplier unspecified)`
-
-### LAK9 — 1 occurrence
-
-- [LEICA ELCAN 50mm f/2](../../src/lens-data/leica/LeicaElcan50mmf2.data.ts) 1: `LaK9 (Schott / Leitz)`
 
 ### LF7-CLASS — 1 occurrence
 
