@@ -10,3 +10,9 @@ Source: local `patents/GB_135853_A.pdf`, p. 3, Fig. 2 / Example 2; 600 dpi revie
 | 6 / 7 | 13.25 / 14.5 | 15.8 / 16.5 | Symmetric counterpart |
 
 The full 16.5 mm S5/S6 candidate caused a 0.615 mm renderer trim at the split stop gap, so these faces are capped at 15.8 mm. Outer cemented rims retained; the diagram does not justify removing their clearance constraints. All six glasses retain historical D-line/Abbe fallback: modern d-line analogues are not direct identities. Exact production format remains unknown, so the format-dependent image-circle heuristic is unavailable. The display title adds “patent model” because the source analysis does not establish the exact marketed Double-Plasmat variant or its Meyer attribution.
+
+## Local viewer follow-up
+
+Live localhost review against Fig. 2 confirms the symmetric arrangement, element order, and retained optical rims. FRONT/REAR captions replace overlapping long group names. Focus is disabled and there is no zoom. Modern SSK2 is close to the historical outer-doublet glass, but the source sodium D/G-prime reference and uncertain historical Abbe definition do not establish modern d-line identity; no speculative catalog assignment or APD tag is added.
+
+Three sampled static states report zero hidden surface trimming. Numerical finite-focus prescriptions remain unavailable.

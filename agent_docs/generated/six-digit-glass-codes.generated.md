@@ -1258,8 +1258,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L12 (Element L12) | 3A | `Unmatched (740491 coordinate)` | 1.74025 / 49.12 | No catalog entry | abbe | patents/US20150131163A1.pdf | Explicit disposition in data |
-| L21 (Element L21) | 10A | `Unmatched (581592 coordinate)` | 1.58103 / 59.23 | No catalog entry | abbe | patents/US20150131163A1.pdf | Explicit disposition in data |
+| L12 (Element 2) | 3A | `Unmatched (740491 coordinate)` | 1.74025 / 49.12 | No catalog entry | abbe | patents/US20150131163A1.pdf | Explicit disposition in data |
+| L21 (Element 5) | 10A | `Unmatched (581592 coordinate)` | 1.58103 / 59.23 | No catalog entry | abbe | patents/US20150131163A1.pdf | Explicit disposition in data |
 
 ### [FUJIFILM FUJINON XF 16-55mm f/2.8 R LM WR](../../src/lens-data/fujifilm/FujifilmXF1655mmf28R.data.ts) - US 2016/0154221 A1
 
@@ -1322,9 +1322,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L22 (L22) | 6A | `691530 coordinate class (catalog unresolved)` | 1.69098 / 52.95 | No catalog entry | abbe | patents/US20150177500A1.pdf | Audit-log hit |
-| L31 (L31) | 11A | `803404 coordinate class (catalog unresolved)` | 1.80348 / 40.44 | No catalog entry | abbe | patents/US20150177500A1.pdf | Audit-log hit |
-| L41 (L41) | 19A | `691530 coordinate class (catalog unresolved)` | 1.69098 / 52.95 | No catalog entry | abbe | patents/US20150177500A1.pdf | Audit-log hit |
+| L22 (Element 4) | 6A | `691530 coordinate class (catalog unresolved)` | 1.69098 / 52.95 | No catalog entry | abbe | patents/US20150177500A1.pdf | Audit-log hit |
+| L31 (Element 6) | 11A | `803404 coordinate class (catalog unresolved)` | 1.80348 / 40.44 | No catalog entry | abbe | patents/US20150177500A1.pdf | Audit-log hit |
+| L41 (Element 11) | 19A | `691530 coordinate class (catalog unresolved)` | 1.69098 / 52.95 | No catalog entry | abbe | patents/US20150177500A1.pdf | Audit-log hit |
 
 ### [FUJIFILM FUJINON XF 18mm f/1.4 R LM WR](../../src/lens-data/fujifilm/FujifilmFujinonXf18mmf14RLMWR.data.ts) - US 2022/0011542 A1
 

@@ -147,7 +147,7 @@ p. 3). The prescription is not altered to force the numerical example into the d
 
 The patent does not publish semi-diameters. The implemented values were sized from exact two-dimensional meridional
 spherical tracing with outward clearance. The full 24×36 mm diagonal-edge chief ray clears the modeled apertures at both
-field signs. The original ray-envelope aperture estimates were enlarged after a 600 dpi figure review: S3/S4 use a shared 26.8 mm cemented rim, S5 uses 15.5 mm inside the beveled blank, and L5 uses 16.0 mm. The rear diameter remains below the patent’s two-thirds entrance-pupil bound. These estimates do not establish unvignetted two-dimensional pupil transmission.
+field signs. The original ray-envelope aperture estimates were enlarged after a 600 dpi figure review: L1 uses a shared 29.5 mm rim and L4 a shared 14.0 mm rim; S3/S4 use a shared 26.8 mm cemented rim, S5 uses 15.5 mm inside the beveled blank, and L5 uses 16.0 mm. The rear diameter remains below the patent’s two-thirds entrance-pupil bound. These estimates do not establish unvignetted two-dimensional pupil transmission.
 
 Portable geometry checks also retain positive element edge thickness, stay below the current rim-slope limit, and pass
 shared-band cross-gap intrusion tests. These checks establish consistency of the authored meridional geometry; they do

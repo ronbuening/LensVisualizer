@@ -311,6 +311,12 @@ The modeled semi-diameters pass the portable edge-thickness, actual-rim-slope, c
 
 Figure 1 was reviewed at 600 dpi during integration. L21 now uses 13.9 mm at surface 4 and 9.4 mm at surface 5, following the distinct front and rear optical rims rather than extending the rear surface through the mechanical flange. Other element apertures remain unchanged.
 
+## Viewer aperture and glass classification
+
+The runtime uses `zoomApertureModel: "from-nominal-fno"` to infer a changing physical iris from the published infinity f-numbers. The wide / middle / long-state stop radii are 5.821384 / 5.691235 / 5.620209 mm. These are exact-ray calibration results, not source-published diaphragm measurements; interpolation does not establish a production cam law.
+
+L11, L23, and L33 carry **inferred APD** colors. Their coordinate-compatible catalog curves have appreciable positive partial-dispersion deviations; the inspector records the curve and approximate ΔPgF. The flags describe spectral proxies and do not identify the production supplier. No catalog-derived line indices are represented as patent measurements.
+
 ## Sources
 
 1. **Primary patent:** Tetsuya Ori and Michio Cho, “Zoom Lens and Imaging Apparatus,” US 2015/0177500 A1, published June 25, 2015. Relevant locations: Fig. 1; ¶0057–¶0076; ¶0096–¶0112; Tables 1–4; Table 21. The original PDF is included with this dossier.

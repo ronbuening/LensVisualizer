@@ -370,6 +370,12 @@ The production lens's marketed 16–50 mm and f/2.8–4.8 specifications are not
 
 The integration review preserves the supplied semi-diameters: the local JP WO2024/057734 A5 file contains amendments, not the original Example 17 prescription and figure. An exact local WO 2024/057734 A1 figure remains required before any diagram-derived aperture revision.
 
+## Viewer aperture and glass classification
+
+The runtime uses `zoomApertureModel: "from-nominal-fno"` to infer a changing physical iris from the published infinity f-numbers. The wide / middle / long-state stop radii are 6.711127 / 7.168142 / 7.176309 mm. These are exact-ray calibration results, not source-published diaphragm measurements; interpolation does not establish a production cam law.
+
+L21, L22, and L24 carry **inferred APD** colors. Their coordinate-compatible catalog curves have appreciable positive partial-dispersion deviations; the inspector records the curve and approximate ΔPgF. The flags describe spectral proxies and do not identify the production supplier. No catalog-derived line indices are represented as patent measurements.
+
 ## Sources / References
 
 1. **WO 2024/057734 A1, “Zoom lens and imaging device.”** PCT/JP2023/027399, published 2024-03-21. Example 17: ¶¶0292–0297; Fig. 35; Tables 49–51, printed pp. 97–99. Conditional-expression tables: Tables 64–65, printed pp. 112–113.

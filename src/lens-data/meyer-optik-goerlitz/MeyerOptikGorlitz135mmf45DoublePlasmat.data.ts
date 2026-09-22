@@ -182,8 +182,8 @@ const LENS_DATA = {
 
   /* ── Diagram annotations ── */
   groups: [
-    { text: "FRONT SINGLE OBJECTIVE", fromSurface: "1", toSurface: "5" },
-    { text: "REAR SINGLE OBJECTIVE", fromSurface: "6", toSurface: "10" },
+    { text: "FRONT", fromSurface: "1", toSurface: "5" },
+    { text: "REAR", fromSurface: "6", toSurface: "10" },
   ],
   doublets: [
     { text: "D1", fromSurface: "1", toSurface: "3" },

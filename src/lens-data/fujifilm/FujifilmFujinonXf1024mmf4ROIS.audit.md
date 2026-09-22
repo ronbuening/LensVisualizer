@@ -14,3 +14,9 @@ Source: local `patents/US20150131163A1.pdf`, p. 2, Fig. 1 / Example 1, wide pane
 Other rims retained: differences are small or automated measurements include leader ink. Full drawn S2/S3A=15.1 and S4A=12.8 mm would exceed shared-gap intrusion limits. Aspheric departures in the analysis were recomputed at the revised apertures.
 
 Glass: 12/14 elements resolve to qualified catalog curves. L12 (1.740250/49.12) and L21 (1.581029/59.23) remain unresolved: nearby catalog families are not established exact material matches. Current HOYA including-obsolete and OHARA source searches did not establish a new exact curve. The existing glass tolerances and spectral evidence were retained.
+
+## Local viewer follow-up
+
+Live localhost review confirms the Fig. 1 wide/middle/long order: G1 first moves imageward and then reverses; G2–G4 move objectward; G5 is fixed. Existing rim limits are retained. The G4 cemented triplet is now T1 in both diagram and inspector, and gap labels use D8/D14/D17/D23. A changing inferred iris follows Table 2 maximum apertures. L13/L32/L41/L43 receive inferred APD colors from qualified catalog curves.
+
+The 101-position zoom sweep at three focus settings reports zero hidden surface trimming (303 states). Focus remains disabled because numerical finite-focus prescriptions are absent. The assignee uses the existing Fujifilm Corporation identity; historical Fuji entities are kept separate.

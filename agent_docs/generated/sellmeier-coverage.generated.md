@@ -1657,8 +1657,8 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 3A | Element L12 | abbe | `Unmatched (740491 coordinate)` | Explicit unmatched/proprietary annotation |
-| 10A | Element L21 | abbe | `Unmatched (581592 coordinate)` | Explicit unmatched/proprietary annotation |
+| 3A | Element 2 | abbe | `Unmatched (740491 coordinate)` | Explicit unmatched/proprietary annotation |
+| 10A | Element 5 | abbe | `Unmatched (581592 coordinate)` | Explicit unmatched/proprietary annotation |
 
 ### [LAOWA 65mm f/2.8 2× Ultra Macro APO](../../src/lens-data/laowa/Laowa65mmf28MacroAPO.data.ts) - 85.7% trusted (12/14); 85.7% Sellmeier (12/14) - CN 110161666 A
 
@@ -1914,9 +1914,9 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 6A | L22 | abbe | `691530 coordinate class (catalog unresolved)` | No catalog match |
-| 11A | L31 | abbe | `803404 coordinate class (catalog unresolved)` | No catalog match |
-| 19A | L41 | abbe | `691530 coordinate class (catalog unresolved)` | No catalog match |
+| 6A | Element 4 | abbe | `691530 coordinate class (catalog unresolved)` | No catalog match |
+| 11A | Element 6 | abbe | `803404 coordinate class (catalog unresolved)` | No catalog match |
+| 19A | Element 11 | abbe | `691530 coordinate class (catalog unresolved)` | No catalog match |
 
 ### [CANON FD 35mm f/2 S.S.C. (I)](../../src/lens-data/canon/CanonFD35mmf2.data.ts) - 77.8% trusted (7/9); 77.8% Sellmeier (7/9) - US 3,748,022
 

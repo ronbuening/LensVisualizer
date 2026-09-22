@@ -126,19 +126,19 @@ L41 is the biconvex positive single element at the front of G4 and has aspheres 
 
 nd = 1.804000, νd = 46.58. Glass: 804466 coordinate class (S-LAH65V / H-ZLaF50D candidates). f = −13.947335 mm.
 
-L42 is the negative first element of the cemented G4 triplet D3. The patent describes the L42–L43–L44 cemented assembly in Examples 1 and 2 and ties the fourth-group cemented combination to chromatic correction. [US 2015/0131163 A1, ¶0067–0069.]
+L42 is the negative first element of the cemented G4 triplet T1. The patent describes the L42–L43–L44 cemented assembly in Examples 1 and 2 and ties the fourth-group cemented combination to chromatic correction. [US 2015/0131163 A1, ¶0067–0069.]
 
 ### L43 — Biconvex Positive
 
 nd = 1.496999, νd = 81.54. Glass: 497816 — S-FPL51 coordinate class (OHARA candidate). f = 19.440764 mm.
 
-L43 is the positive central element of D3. Its source coordinate matches the same S-FPL51 class used for L32, but the data keeps the catalog name at candidate level. The patent’s explicit chromatic rationale applies to the cemented fourth-group combination rather than to a separately quantified L43 contribution.
+L43 is the positive central element of T1. Its source coordinate matches the same S-FPL51 class used for L32, but the data keeps the catalog name at candidate level. The patent’s explicit chromatic rationale applies to the cemented fourth-group combination rather than to a separately quantified L43 contribution.
 
 ### L44 — Biconcave Negative
 
 nd = 1.696797, νd = 55.53. Glass: 697555 — S-LAL14 coordinate class (OHARA candidate). f = −44.739409 mm.
 
-L44 is the negative rear member of D3. The verified cemented-triplet EFL is −23.048805 mm, while the complete G4 remains positive at +46.411597 mm because L41 and the spacing within the group materially affect the group matrix. Paragraph 0069 states that the image-side negative L44 can assist astigmatism correction; that statement is attributed to the patent rather than inferred from the power sign alone.
+L44 is the negative rear member of T1. The verified cemented-triplet EFL is −23.048805 mm, while the complete G4 remains positive at +46.411597 mm because L41 and the spacing within the group materially affect the group matrix. Paragraph 0069 states that the image-side negative L44 can assist astigmatism correction; that statement is attributed to the patent rather than inferred from the power sign alone.
 
 ### L51 — Biconvex Positive (2× Asph)
 
@@ -287,9 +287,15 @@ The patent supplies no clear semi-diameters, so the data’s `sd` values are mod
 | Minimum sampled non-stop ray clearance | 0.135412 mm |
 | Maximum sampled non-stop aperture fill | 0.985440 |
 
-The stop diameter is also modeled rather than source-published. `STO.sd = 4.0483914768 mm` is the wide-state paraxial calibration required by the Table-2 FNo. 4.12 value. The corresponding derived stop semi-diameter targets are 4.0483915 mm at wide, 4.7668005 mm at intermediate, and 5.9701877 mm at the long end. Agreement with the Table-2 FNo. 4.12 values is therefore calibration, not independent evidence of the physical diaphragm diameter. Figure 7 separately labels the Example-1 telephoto aberration panel FNo. 4.55; that internal source discrepancy is not used to redefine the modeled aperture and remains documented in the dossier.
+The stop diameter is also modeled rather than source-published. `STO.sd = 4.0483914768 mm` is the wide-state paraxial calibration required by the Table-2 FNo. 4.12 value. Those paraxial estimates are not the runtime iris schedule. The model uses `zoomApertureModel: "from-nominal-fno"`: exact entrance-pupil-to-stop tracing infers radii of 4.063642, 4.806205, and 6.098988 mm at the three source stations. Intermediate radii are interpolated. This avoids a fixed physical iris silently reducing the telephoto maximum aperture. Agreement with the Table-2 FNo. 4.12 values is therefore calibration, not independent evidence of the physical diaphragm diameter. Figure 7 separately labels the Example-1 telephoto aberration panel FNo. 4.55; that internal source discrepancy is not used to redefine the modeled aperture and remains documented in the dossier.
 
 Figure 1 was reviewed at 600 dpi during integration. The front-group optical rims are larger than the initial ray-envelope estimates: S1 is 20.5 mm, S2/S3A 13.7 mm, S4A 11.2 mm, and S5–S8 12.8 mm. The S2/S3A and S4A limits preserve air-gap clearance; the larger drawn blank outlines cannot be copied as optical clear apertures. Other groups retain their original estimates.
+
+## Viewer aperture and glass classification
+
+The runtime uses `zoomApertureModel: "from-nominal-fno"` to infer a changing physical iris from the published infinity f-numbers. The wide / middle / long-state stop radii are 4.063642 / 4.806205 / 6.098988 mm. These are exact-ray calibration results, not source-published diaphragm measurements; interpolation does not establish a production cam law.
+
+L13, L32, L41, and L43 carry **inferred APD** colors. Their coordinate-compatible catalog curves have appreciable positive partial-dispersion deviations; the inspector records the curve and approximate ΔPgF. The flags describe spectral proxies and do not identify the production supplier. No catalog-derived line indices are represented as patent measurements.
 
 ## Sources and References
 

@@ -87,6 +87,8 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L21",
+      apd: "inferred",
+      apdNote: "The coordinate-compatible FCD1 spectral proxy gives ΔPgF ≈ +0.0311; inferred anomalous dispersion, not proof of production glass identity.",
       diagramLabel: "L21",
       label: "Element 4",
       type: "Positive Meniscus",
@@ -101,6 +103,8 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L22",
+      apd: "inferred",
+      apdNote: "The coordinate-compatible FCD505 spectral proxy gives ΔPgF ≈ +0.0159; inferred anomalous dispersion, not proof of production glass identity.",
       diagramLabel: "L22",
       label: "Element 5",
       type: "Biconvex Positive",
@@ -131,6 +135,8 @@ const LENS_DATA = {
     {
       id: 7,
       name: "L24",
+      apd: "inferred",
+      apdNote: "The coordinate-compatible FCD505 spectral proxy gives ΔPgF ≈ +0.0159; inferred anomalous dispersion, not proof of production glass identity.",
       diagramLabel: "L24",
       label: "Element 7",
       type: "Biconvex Positive",
@@ -370,6 +376,8 @@ const LENS_DATA = {
 
   closeFocusM: 0.24,
   focusDescription: "NO_INTERNAL_RECONSTRUCTION — G3 is the published focus group and moves imageward toward near focus, but Example 17 gives no close-focus spacings; the model preserves the three infinity-focus zoom states only.",
+  // Inferred iris schedule from the published infinity f-numbers; no source diameters.
+  zoomApertureModel: "from-nominal-fno",
   nominalFno: [2.88, 3.75, 4.94],
   fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
   apertureBlades: 9,

@@ -130,14 +130,14 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 88.02, d: 7.425, nd: 1.61375, elemId: 1, sd: 25.6 },
-    { label: "2", R: 1e15, d: 0.675, nd: 1.0, elemId: 0, sd: 25.2 },
+    { label: "1", R: 88.02, d: 7.425, nd: 1.61375, elemId: 1, sd: 29.5 },
+    { label: "2", R: 1e15, d: 0.675, nd: 1.0, elemId: 0, sd: 29.5 },
     { label: "3", R: 39.69, d: 21.735, nd: 1.60729, elemId: 2, sd: 26.8 },
     { label: "4", R: -127.71, d: 5.4, nd: 1.69895, elemId: 3, sd: 26.8 },
     { label: "5", R: 26.73, d: 14.9175, nd: 1.0, elemId: 0, sd: 15.5 },
     { label: "STO", R: 1e15, d: 14.9175, nd: 1.0, elemId: 0, sd: 12.55571638543146 },
-    { label: "6", R: -670.95, d: 4.185, nd: 1.63854, elemId: 4, sd: 11.2 },
-    { label: "7", R: 340.2, d: 5.94, nd: 1.0, elemId: 0, sd: 11.5 },
+    { label: "6", R: -670.95, d: 4.185, nd: 1.63854, elemId: 4, sd: 14 },
+    { label: "7", R: 340.2, d: 5.94, nd: 1.0, elemId: 0, sd: 14 },
     { label: "8", R: 226.8, d: 4.725, nd: 1.69895, elemId: 5, sd: 16 },
     { label: "9", R: -141.75, d: 51.975, nd: 1.0, elemId: 0, sd: 16 },
   ],
