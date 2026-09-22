@@ -10,6 +10,7 @@ Generated `readme.md` and `improvementsuggestions.md` files are intentionally om
 flowchart LR
   subgraph n_src_benchmarks["src/benchmarks"]
     n_src_benchmarks_src_benchmarks_benchmarkReport_ts["benchmarkReport.ts"]
+    n_src_benchmarks_src_benchmarks_mtfCases_ts["mtfCases.ts"]
     n_src_benchmarks_src_benchmarks_opticsRenderingBenchmark_tsx["opticsRenderingBenchmark.tsx"]
   end
   n_external_src_components_display["src/components/display"]
@@ -55,7 +56,7 @@ flowchart LR
 
 ## Directory Overview
 
-- Direct source files: 2
+- Direct source files: 3
 - Direct subfolders: 0
 - Main outbound areas: src/components/display (8), src/components/hooks (4), same folder (2), src/optics/compat.ts (2), src/optics/optics.ts (2), src/types (2), package:react, package:react-dom, +12 more
 - External consumers: none
@@ -65,4 +66,5 @@ flowchart LR
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
 | `benchmarkReport.ts` | Benchmark Report helper module | none | same folder | BENCHMARK_SCHEMA_VERSION, BenchmarkStatus, MainBenchmarkCategory, LegacyMainBenchmarkCategory, AnalysisBenchmarkCategory, BenchmarkScenarioConfigSnapshot, NumericSummary, BenchmarkStats, +14 more |
+| `mtfCases.ts` | Mtf Cases helper module | none | none | MTF_BENCHMARK_CASES, MTF_BENCHMARK_GRIDS |
 | `opticsRenderingBenchmark.tsx` | React component module | src/components/display (8), src/components/hooks (4), same folder (2), src/optics/compat.ts (2), src/optics/optics.ts (2), +15 more | none | buildBenchmarkReport, formatRunFileName, DEFAULT_BENCHMARK_LENS_KEYS, BENCHMARK_SCENARIOS, BenchmarkOutput, OpticsRenderingBenchmarkOptions, ScenarioSnapshot, RayWorkOutput, +4 more |

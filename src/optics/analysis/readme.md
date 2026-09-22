@@ -21,6 +21,7 @@ flowchart LR
     n_src_optics_analysis_src_optics_analysis_distortion_ts["distortion.ts"]
     n_src_optics_analysis_src_optics_analysis_fieldCurvature_ts["fieldCurvature.ts"]
     n_src_optics_analysis_src_optics_analysis_groupMovement_ts["groupMovement.ts"]
+    n_src_optics_analysis_src_optics_analysis_mtfSupport_ts["mtfSupport.ts"]
     n_src_optics_analysis_src_optics_analysis_perspectiveAnalysisJobs_ts["perspectiveAnalysisJobs.ts"]
     n_src_optics_analysis_src_optics_analysis_preparedStateAdapters_ts["preparedStateAdapters.ts"]
     n_src_optics_analysis_src_optics_analysis_pupilAberration_ts["pupilAberration.ts"]
@@ -43,6 +44,7 @@ flowchart LR
   n_external_src_optics_optics_ts["src/optics/optics.ts"]
   n_external_src_optics_pupilAberration_ts["src/optics/pupilAberration.ts"]
   n_external_src_optics_rayTrace_ts["src/optics/rayTrace.ts"]
+  n_external_src_optics_spectralLines_ts["src/optics/spectralLines.ts"]
   n_external_src_optics_trace["src/optics/trace"]
   n_external_src_optics_types_ts["src/optics/types.ts"]
   n_src_optics_analysis_src_optics_analysis_perspectiveAnalysisJobs_ts --> |8| n_external_src_optics_perspective
@@ -75,20 +77,20 @@ flowchart LR
   n_src_optics_analysis_src_optics_analysis_analysisMovementSupport_ts --> n_external_src_optics_perspective
   n_src_optics_analysis_src_optics_analysis_pupilAberration_ts --> n_external_src_optics_pupilAberration_ts
   n_src_optics_analysis_src_optics_analysis_chromatic_ts --> n_external_src_optics_rayTrace_ts
+  n_src_optics_analysis_src_optics_analysis_mtfSupport_ts --> n_external_src_optics_spectralLines_ts
   n_src_optics_analysis_src_optics_analysis_chromatic_ts --> n_external_src_optics_trace
   n_src_optics_analysis_src_optics_analysis_aberrations_ts --> n_external_src_optics_types_ts
   n_src_optics_analysis_src_optics_analysis_analysisContext_ts --> n_external_src_optics_types_ts
   n_src_optics_analysis_src_optics_analysis_analysisJobs_ts --> n_external_src_optics_types_ts
   n_src_optics_analysis_src_optics_analysis_bokeh_ts --> n_external_src_optics_types_ts
-  n_src_optics_analysis_src_optics_analysis_chromatic_ts --> n_external_src_optics_types_ts
   n_src_optics_analysis_truncated["additional relationships omitted"]
 ```
 
 ## Directory Overview
 
-- Direct source files: 17
+- Direct source files: 18
 - Direct subfolders: 0
-- Main outbound areas: same folder (23), src/optics/types.ts (11), src/optics/perspective (10), src/types (10), src/optics/chromatic (8), src/optics/optics.ts (8), src/optics/aberration (3), src/optics/layout.ts (2), +12 more
+- Main outbound areas: same folder (23), src/optics/types.ts (12), src/types (11), src/optics/perspective (10), src/optics/chromatic (8), src/optics/optics.ts (8), src/optics/aberration (3), src/optics/layout.ts (2), +13 more
 - External consumers: src/benchmarks, src/components/layout, src/optics/aberration, src/optics/analysisJobs.ts, src/optics/compat.ts, src/optics/distortionAnalysis.ts, src/optics/vignetteAnalysis.ts
 
 ## Files
@@ -107,6 +109,7 @@ flowchart LR
 | `distortion.ts` | Distortion helper module | same folder (2), src/optics/distortionAnalysis.ts, src/optics/optics.ts, src/optics/types.ts, src/types | same folder, src/optics/compat.ts | computeDistortionCurveForState2, computeDistortionFieldGridForState2, computeDistortionCurve2, computeDistortionFieldGrid2 |
 | `fieldCurvature.ts` | Field Curvature helper module | same folder | none | computeFieldCurvature2, computeFieldCurvatureBundleForState2, computeFieldCurvatureForState2 |
 | `groupMovement.ts` | Group Movement helper module | src/types (2), src/optics/groupMovement.ts, src/optics/types.ts | src/optics/compat.ts | computeGroupMovementProfileForState2, computeGroupMovementProfile2, firstAvailableGroupMovementMode2, getGroupMovementAvailability2, inferLensMovementGroups2, isGroupMovementModeAvailable2 |
+| `mtfSupport.ts` | Mtf Support helper module | src/optics/spectralLines.ts, src/optics/types.ts, src/types | none | MTF_FREQUENCIES, MTF_FIELDS, MTF_CONVERGENCE_TOLERANCE, assessMtfSupport |
 | `perspectiveAnalysisJobs.ts` | Perspective Analysis Jobs helper module | src/optics/perspective (8), same folder, src/optics/chromatic | same folder | PerspectiveAnalysisJobParams, PerspectiveAnalysisSamplingPlan, PerspectiveAnalysisJobs, perspectiveAnalysisSamplingPlan, createPerspectiveAnalysisJobs |
 | `preparedStateAdapters.ts` | Prepared State Adapters helper module | src/optics/types.ts | same folder (5) | zPosForPreparedAnalysis2 |
 | `pupilAberration.ts` | Pupil Aberration helper module | src/optics/optics.ts, src/optics/pupilAberration.ts, src/optics/types.ts, src/types | same folder, src/optics/compat.ts | PUPIL_ABERRATION_SAMPLE_COUNT_2, computeBothPupilAberrationProfilesForState2, computePupilAberrationProfile2, computeExitPupilAberrationProfile2, computeBothPupilAberrationProfiles2 |

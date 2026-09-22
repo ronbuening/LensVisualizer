@@ -362,8 +362,11 @@ model is intentionally the scope until exhausted.
 
 Carried from the analysis roadmap so nobody re-proposes them as "quick":
 
-- **True diffraction MTF / Strehl / wavefront error** — tracing is geometric; patent data lacks
-  what diffraction needs. Allowed limited version: F14's clearly-labeled geometric proxies.
+- **Production-lens MTF / Strehl / wavefront error** — manufactured-lens claims require measured
+  data. Simulated geometric and scalar diffraction MTF can use complete authored prescriptions;
+  source precision, omitted optics, spectral data, pupil mapping and numerical convergence limit
+  their validity. Implementation proceeds through contracts, geometric engine, worker/UI,
+  wavefront, diffraction, spectral and documented finite-conjugate stages, each tested and committed.
 - **Flare/ghosting/transmission/coating models** — no coating or transmission data. Allowed
   limited version: count air-glass interfaces as an explicitly heuristic badge.
 - **AF speed / OIS / actuator loads** — no mass/actuator data. Allowed limited version: group
