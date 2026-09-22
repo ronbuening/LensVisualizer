@@ -11,7 +11,10 @@ import type { MtfSpot } from "./mtfMath.js";
 export interface MtfPupilRay extends MtfSpot {
   column: number;
   row: number;
-  trace: Pick<EngineTraceResult, "input" | "terminalPoint" | "terminalDirection" | "finalMedium">;
+  trace: Pick<
+    EngineTraceResult,
+    "input" | "terminalPoint" | "terminalDirection" | "finalMedium" | "opticalPathLengthMm"
+  >;
 }
 export interface MtfBundle {
   rays: MtfPupilRay[];
@@ -64,6 +67,7 @@ export function traceMtfPupil(
       stopOnClip: true,
       directionNormalized: true,
       wavelengthNm: support.referenceWavelengthNm,
+      recordOpticalPath: options.method === "diffraction",
       indexAtSurface: support.useResolvedReference ? (i) => state.lens.dispersion[i].indexAt("G") : undefined,
     });
   };
@@ -105,6 +109,7 @@ export function traceMtfPupil(
           terminalPoint: trace.terminalPoint,
           terminalDirection: trace.terminalDirection,
           finalMedium: trace.finalMedium,
+          opticalPathLengthMm: trace.opticalPathLengthMm,
         },
       });
     }

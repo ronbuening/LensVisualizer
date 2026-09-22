@@ -25,6 +25,7 @@ flowchart LR
     n_src_optics_analysis_src_optics_analysis_mtfMath_ts["mtfMath.ts"]
     n_src_optics_analysis_src_optics_analysis_mtfSupport_ts["mtfSupport.ts"]
     n_src_optics_analysis_src_optics_analysis_mtfTracing_ts["mtfTracing.ts"]
+    n_src_optics_analysis_src_optics_analysis_mtfWavefront_ts["mtfWavefront.ts"]
     n_src_optics_analysis_src_optics_analysis_perspectiveAnalysisJobs_ts["perspectiveAnalysisJobs.ts"]
     n_src_optics_analysis_src_optics_analysis_preparedStateAdapters_ts["preparedStateAdapters.ts"]
     n_src_optics_analysis_src_optics_analysis_pupilAberration_ts["pupilAberration.ts"]
@@ -91,9 +92,9 @@ flowchart LR
 
 ## Directory Overview
 
-- Direct source files: 21
+- Direct source files: 22
 - Direct subfolders: 0
-- Main outbound areas: same folder (27), src/optics/types.ts (14), src/types (13), src/optics/perspective (10), src/optics/chromatic (8), src/optics/optics.ts (8), src/optics/trace (4), src/optics/aberration (3), +13 more
+- Main outbound areas: same folder (28), src/optics/types.ts (15), src/types (13), src/optics/perspective (10), src/optics/chromatic (8), src/optics/optics.ts (8), src/optics/trace (4), src/optics/aberration (3), +13 more
 - External consumers: src/benchmarks, src/components/layout, src/optics/aberration, src/optics/analysisJobs.ts, src/optics/compat.ts, src/optics/distortionAnalysis.ts, src/optics/mtf.ts, src/optics/vignetteAnalysis.ts
 
 ## Files
@@ -115,7 +116,8 @@ flowchart LR
 | `mtf.ts` | Mtf helper module | same folder (3), src/optics/types.ts, src/types | src/optics/mtf.ts | emptyMtfField, computeMtfSteps, computeMtf |
 | `mtfMath.ts` | Mtf Math helper module | none | same folder (2) | MtfSpot, ComplexOtf, geometricOtf, otfMagnitude |
 | `mtfSupport.ts` | Mtf Support helper module | src/optics/spectralLines.ts, src/optics/types.ts, src/types | same folder, src/optics/mtf.ts | MTF_FREQUENCIES, MTF_FIELDS, MTF_CONVERGENCE_TOLERANCE, assessMtfSupport |
-| `mtfTracing.ts` | Mtf Tracing helper module | src/optics/trace (3), same folder, src/optics/field, src/optics/layout.ts, src/optics/types.ts, +1 more | same folder | MtfPupilRay, MtfBundle, mtfImagePoint, mtfTraceClassification, traceMtfPupil |
+| `mtfTracing.ts` | Mtf Tracing helper module | src/optics/trace (3), same folder, src/optics/field, src/optics/layout.ts, src/optics/types.ts, +1 more | same folder (2) | MtfPupilRay, MtfBundle, mtfImagePoint, mtfTraceClassification, traceMtfPupil |
+| `mtfWavefront.ts` | Mtf Wavefront helper module | same folder, src/optics/types.ts | none | WavefrontSample, launchPhaseMm, sampleReferenceWavefront |
 | `perspectiveAnalysisJobs.ts` | Perspective Analysis Jobs helper module | src/optics/perspective (8), same folder, src/optics/chromatic | same folder | PerspectiveAnalysisJobParams, PerspectiveAnalysisSamplingPlan, PerspectiveAnalysisJobs, perspectiveAnalysisSamplingPlan, createPerspectiveAnalysisJobs |
 | `preparedStateAdapters.ts` | Prepared State Adapters helper module | src/optics/types.ts | same folder (5) | zPosForPreparedAnalysis2 |
 | `pupilAberration.ts` | Pupil Aberration helper module | src/optics/optics.ts, src/optics/pupilAberration.ts, src/optics/types.ts, src/types | same folder, src/optics/compat.ts | PUPIL_ABERRATION_SAMPLE_COUNT_2, computeBothPupilAberrationProfilesForState2, computePupilAberrationProfile2, computeExitPupilAberrationProfile2, computeBothPupilAberrationProfiles2 |

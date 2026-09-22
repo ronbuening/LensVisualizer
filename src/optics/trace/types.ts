@@ -37,6 +37,8 @@ export interface TraceHit {
 
 /** Full engine trace result before conversion to RuntimeLens-compatible ray shapes. */
 export interface EngineTraceResult {
+  /** Sequential capture only: OPL from input origin to the last exact surface hit, in mm. */
+  opticalPathLengthMm?: number;
   input: Ray3;
   hits: readonly TraceHit[];
   terminalPoint: Vec3;
@@ -62,6 +64,8 @@ export interface EngineTraceResult {
  * normalized. `stopAt` is a physical surface index for sequential-style partial traces.
  */
 export interface TraceOptions {
+  /** Opt-in sequential OPL capture; unavailable for generalized paths until phase-aware validation. */
+  recordOpticalPath?: boolean;
   stopAt?: number;
   skipLastTransfer?: boolean;
   recordHeights?: boolean;
