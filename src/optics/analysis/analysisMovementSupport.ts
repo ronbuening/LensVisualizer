@@ -9,6 +9,7 @@ export type AnalysisSectionId =
   | "field-curvature"
   | "chromatic"
   | "coma"
+  | "mtf"
   | "bokeh"
   | "distortion"
   | "vignetting"

@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import MtfTab from "../../display/analysis/MtfTab.js";
 import AberrationsPanel from "../../display/analysis/AberrationsPanel.js";
 import BokehTab from "../../display/analysis/BokehTab.js";
 import ChromaticTab from "../../display/analysis/ChromaticTab.js";
@@ -39,6 +40,16 @@ export interface AnalysisTabRendererContext {
 type AnalysisTabRenderer = (context: AnalysisTabRendererContext) => ReactNode;
 
 export const ANALYSIS_TAB_RENDERERS: Record<AnalysisTabId, AnalysisTabRenderer> = {
+  mtf: ({ L, t, preparedState, analysisContext, inputs }) => (
+    <MtfTab
+      L={L}
+      t={t}
+      preparedState={preparedState}
+      currentEPSD={inputs.currentEPSD}
+      currentPhysStopSD={inputs.currentPhysStopSD}
+      movementActive={analysisContext?.movementActive}
+    />
+  ),
   summary: ({ L, t, preparedState, analysisContext, inputs }) => (
     <OpticalSummaryTab
       L={L}

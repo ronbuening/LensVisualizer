@@ -5,6 +5,7 @@ export const ANALYSIS_TABS = [
   { id: "aberrations", label: "ABERRATIONS" },
   { id: "chromatic", label: "CHROMATIC" },
   { id: "coma", label: "COMA" },
+  { id: "mtf", label: "MTF" },
   { id: "bokeh", label: "BOKEH" },
   { id: "distortion", label: "DISTORTION" },
   { id: "breathing", label: "BREATHING" },

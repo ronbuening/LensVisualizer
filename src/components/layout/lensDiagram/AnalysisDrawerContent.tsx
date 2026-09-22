@@ -37,6 +37,7 @@ const ANALYSIS_TAB_SECTIONS: Record<AnalysisTabId, readonly AnalysisSectionId[]>
   aberrations: ["spherical-aberration", "field-curvature"],
   chromatic: ["chromatic"],
   coma: ["coma"],
+  mtf: ["mtf"],
   bokeh: ["bokeh"],
   distortion: ["distortion"],
   breathing: ["breathing"],

@@ -19,6 +19,7 @@ export const ANALYSIS_TAB_IDS = [
   "aberrations",
   "chromatic",
   "coma",
+  "mtf",
   "bokeh",
   "distortion",
   "breathing",

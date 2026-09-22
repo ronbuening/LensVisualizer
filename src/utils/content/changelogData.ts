@@ -20,6 +20,11 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-09-22",
+    type: "feature",
+    summary: "Added simulated geometric MTF charts with background calculation and sampling checks",
+  },
+  {
+    date: "2026-09-22",
     type: "lens",
     summary: "Added three Fujinon XF zooms and Meyer Orestor, Kino-Plasmat and Double-Plasmat models",
   },

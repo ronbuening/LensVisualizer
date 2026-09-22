@@ -33,7 +33,7 @@ flowchart LR
   n_external_src_optics_perspective["src/optics/perspective"]
   n_external_src_optics_projection_ts["src/optics/projection.ts"]
   n_external_src_optics_types_ts["src/optics/types.ts"]
-  n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_analysisTabRenderers_tsx --> |9| n_external_src_components_display
+  n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_analysisTabRenderers_tsx --> |10| n_external_src_components_display
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_panelModel_ts --> |4| n_external_src_types
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_DiagramViewport_tsx --> |3| n_external_src_components_diagram
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_AnalysisDrawerContent_tsx --> |3| n_external_src_types
@@ -72,7 +72,7 @@ flowchart LR
 
 - Direct source files: 7
 - Direct subfolders: 0
-- Main outbound areas: src/components/display (13), src/types (12), src/components/layout (9), package:react (5), src/components/diagram (3), src/optics/compat.ts (3), src/optics/optics.ts (3), src/components/hooks (2), +8 more
+- Main outbound areas: src/components/display (14), src/types (12), src/components/layout (9), package:react (5), src/components/diagram (3), src/optics/compat.ts (3), src/optics/optics.ts (3), src/components/hooks (2), +8 more
 - External consumers: src/components/layout
 
 ## Files
@@ -80,7 +80,7 @@ flowchart LR
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
 | `AnalysisDrawerContent.tsx` | React component module | src/types (3), src/optics/compat.ts (2), src/optics/optics.ts (2), package:react, src/components/display, +4 more | src/components/layout | default, AnalysisDrawerContent |
-| `analysisTabRenderers.tsx` | React component module | src/components/display (9), src/types (3), package:react, src/optics/compat.ts, src/optics/optics.ts, +1 more | src/components/layout | AnalysisDrawerInputs, AnalysisTabRendererContext, ANALYSIS_TAB_RENDERERS |
+| `analysisTabRenderers.tsx` | React component module | src/components/display (10), src/types (3), package:react, src/optics/compat.ts, src/optics/optics.ts, +1 more | src/components/layout | AnalysisDrawerInputs, AnalysisTabRendererContext, ANALYSIS_TAB_RENDERERS |
 | `analysisTabs.ts` | Analysis Tabs helper module | src/components/layout | src/components/layout | ANALYSIS_TABS |
 | `DiagramViewport.tsx` | React component module | src/components/diagram (3), src/components/layout (3), package:react (2), src/types (2), src/components/display, +1 more | src/components/layout | default, DiagramViewport |
 | `LensDiagramErrorState.tsx` | React component module | src/components/errors | src/components/layout | default, LensDiagramErrorState |
