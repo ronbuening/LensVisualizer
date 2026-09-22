@@ -1874,8 +1874,8 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 9 | Element 5 | abbe | `LaK (774492, probable thoriated)` | No catalog match |
-| 14 | Element 8 | abbe | `LaK (774492, probable thoriated)` | No catalog match |
+| 9 | Element 5 | abbe | `774492 — dense lanthanum crown (no catalog equivalent; nd=1.7737, νd=49.2)` | No catalog match |
+| 14 | Element 8 | abbe | `774492 — dense lanthanum crown (no catalog equivalent; nd=1.7737, νd=49.2)` | No catalog match |
 
 ### [KINOPTIK TEGEA 9.8mm f/1.8](../../src/lens-data/kinoptik/KinoptikTegea98mmf18.data.ts) - 77.8% trusted (7/9); 77.8% Sellmeier (7/9) - US 3,037,426
 

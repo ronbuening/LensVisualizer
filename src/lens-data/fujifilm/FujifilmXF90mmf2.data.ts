@@ -1,35 +1,43 @@
 import type { LensDataInput } from "../../types/optics.js";
 
 /**
- * ╔══════════════════════════════════════════════════════════════════════╗
- * ║           LENS DATA — FUJIFILM FUJINON XF 90mm f/2 R LM WR        ║
- * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Data source: US 2016/0274335 A1 Example 1 (Kawamura / Fujifilm). ║
- * ║  Three-group inner-focus telephoto for APS-C mirrorless.           ║
- * ║  11 elements / 8 groups, 0 aspherical surfaces, 3 ED elements.    ║
- * ║  Focus: Inner focus — G2 (cemented doublet) moves toward image.   ║
- * ║                                                                    ║
- * ║  NOTE ON R1 (OCR CORRECTION):                                      ║
- * ║    Patent Table 1 surface 1 reads "134,542.19" in US-format OCR.  ║
- * ║    The comma is a thousands separator, yielding R ≈ 135 m (flat). ║
- * ║    However, paraxial EFL with R1 = 134542 gives ~107 mm, far from ║
- * ║    the patent-stated f = 87.495. Using R1 = 134.54219 recovers    ║
- * ║    EFL = 87.50 and all seven conditional formulae. The decimal     ║
- * ║    point was corrupted to a comma during OCR. R1 = 134.54219.     ║
- * ║                                                                    ║
- * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    Patent does not list semi-diameters. Estimated by combined      ║
- * ║    marginal + chief ray trace at the design f-number (f/2.06)     ║
- * ║    and full field angle (ω = 9.2°), with ~8% mechanical clearance.║
- * ║    Constrained by 62 mm filter thread, positive edge thickness,   ║
- * ║    cemented-pair matching, and sd/|R| < 0.90.                     ║
- * ║                                                                    ║
- * ║  NOTE ON COVER GLASS:                                              ║
- * ║    Patent Table 1 includes a parallel plate PP (S21–S22,           ║
- * ║    nd = 1.51633, d = 2.850 mm). Excluded from surfaces array;     ║
- * ║    its optical path length is folded into the BFD (last surface   ║
- * ║    d = patent Bf = 24.663 mm, air-converted).                     ║
- * ╚══════════════════════════════════════════════════════════════════════╝
+ * LENS DATA — FUJIFILM FUJINON XF 90mm f/2 R LM WR
+ *
+ * Data source: US 2016/0274335 A1, Example 1 (Tables 1–2, FIG. 1); inventor Daiki Kawamura, Fujifilm Corporation.
+ * Three-group inner-focus medium telephoto for APS-C: G1 (+, 4 elements) / fixed stop / G2 (−, cemented doublet,
+ * focus) / G3 (+, 5 elements). 11 elements / 8 groups, no aspherical surfaces. Patent f = 87.495, FNo. 2.06,
+ * 2ω = 18.4°, Bf = 24.663 (air-converted); the prescription is stored at the patent's native scale and
+ * reproduces f = 87.50 mm paraxially. Group focal lengths (calculated): G1 +70.38, G2 −48.07, G3 +57.50 mm.
+ *
+ * NOTE ON R1:
+ *   The printed Table 1 reads R1 = 134.54219 (Table 12 repeats it for Example 6). Only the PDF's OCR text layer
+ *   garbles the row to "134,542.19"; the stored value is the printed patent value, not a correction.
+ *
+ * NOTE ON FOCUS:
+ *   Table 2 publishes two states: infinity (DD[8] 4.600, DD[11] 18.753) and "Proximal" (12.696 / 10.657,
+ *   β = 0.14, FNo. 2.35, 2ω = 16.0°). The patent prints no object distance; the proximal gaps focus an object
+ *   700 mm in front of surface 1 (calculated, β = −0.136), i.e. about 0.815 m object-to-image, so closeFocusM is
+ *   that calculated conjugate. The production lens focuses to 0.6 m (0.2×); that travel is not published and is
+ *   not modeled.
+ *
+ * NOTE ON SEMI-DIAMETERS:
+ *   The patent lists no effective diameters. Values are estimates from a marginal + chief ray trace at f/2.06 and
+ *   ω = 9.2° with mechanical clearance, bounded by the 62 mm filter thread, positive edge thickness and
+ *   cemented-pair matching. Compared with FIG. 1 (drawn to scale, 0.0926 mm/px at 300 dpi) in the 2026-09-21
+ *   audit: every rim is within about 11 % of the drawing (figure L11 24.5, L12 22.0, L13/L14 20.6, G2 14.3,
+ *   L31 14.8, L32/L33 15.0, L34 16.5, L35 15.0 mm), so the estimates are retained. The STO value is the
+ *   paraxial f/2.05 iris radius and matches the 14.2 mm stop symbol in FIG. 1; the engine derives the working
+ *   iris from nominalFno.
+ *
+ * NOTE ON COVER GLASS:
+ *   Table 1 ends with a parallel plate PP (surfaces 21–22, d = 2.850, nd = 1.51633) behind a 20.784 mm air gap.
+ *   It is excluded from the surfaces array; the last gap is the patent's air-converted Bf = 24.663 mm
+ *   (20.784 + 2.850/1.51633 = 22.664 mm, leaving a derived 1.999 mm of air behind the plate).
+ *
+ * NOTE ON PARTIAL DISPERSION:
+ *   Table 1 prints θgF for every element. dPgF is calculated as θgF − (0.6438 − 0.001682·νd). The patent does
+ *   not name glasses or call any element ED/anomalous; glass labels are catalog equivalents and apd flags
+ *   are inferred.
  */
 
 const LENS_DATA = {
@@ -72,6 +80,7 @@ const LENS_DATA = {
       fl: 182.1,
       glass: "S-BSL7 (OHARA)",
       apd: false,
+      dPgF: -0.00061,
       role: "Weak front positive — begins converging beam with low spherical contribution",
     },
     {
@@ -84,7 +93,8 @@ const LENS_DATA = {
       fl: 114.9,
       glass: "FCD1 (HOYA)",
       apd: "inferred",
-      dPgF: 0.032, apdNote: "ΔθgF ≈ +0.032, fluorophosphate crown — strongest ED element in design",
+      dPgF: 0.03234,
+      apdNote: "Patent θgF = 0.53887 → ΔθgF = +0.0323; fluorophosphate ED crown (catalog equivalent)",
       role: "Primary ED element — corrects longitudinal chromatic aberration in G1",
     },
     {
@@ -97,7 +107,8 @@ const LENS_DATA = {
       fl: 67.1,
       glass: "S-FPM2 (OHARA)",
       apd: "inferred",
-      dPgF: 0.014, apdNote: "ΔθgF ≈ +0.014, phosphate crown — moderate anomalous dispersion",
+      dPgF: 0.01438,
+      apdNote: "Patent θgF = 0.54426 → ΔθgF = +0.0144; phosphate crown, moderate anomalous dispersion",
       cemented: "D1",
       role: "Strongest G1 positive — bulk of front group convergence; cemented to L14",
     },
@@ -111,6 +122,7 @@ const LENS_DATA = {
       fl: -58.8,
       glass: "S-NBH51 (OHARA)",
       apd: false,
+      dPgF: -0.00248,
       cemented: "D1",
       role: "High-dispersion corrector — achromatizes G1 at cemented junction with L13",
     },
@@ -118,12 +130,13 @@ const LENS_DATA = {
       id: 5,
       name: "L21",
       label: "Element 5",
-      type: "Negative Meniscus",
+      type: "Positive Meniscus",
       nd: 1.92286,
       vd: 18.9,
       fl: 123.9,
       glass: "S-NPH2 (OHARA)",
       apd: false,
+      dPgF: 0.03759,
       cemented: "D2",
       role: "Ultra-high-index focus group positive — achromatizes G2 with L22",
     },
@@ -137,6 +150,7 @@ const LENS_DATA = {
       fl: -34.9,
       glass: "S-BSM18 (OHARA)",
       apd: false,
+      dPgF: -0.00207,
       cemented: "D2",
       role: "Focus group negative — dominant diverging power of inner-focus G2",
     },
@@ -150,7 +164,8 @@ const LENS_DATA = {
       fl: 140.2,
       glass: "S-FPM2 (OHARA)",
       apd: "inferred",
-      dPgF: 0.014, apdNote: "ΔθgF ≈ +0.014 — same ED glass as L13; third ED element",
+      dPgF: 0.01438,
+      apdNote: "Patent θgF = 0.54426 → ΔθgF = +0.0144; same glass row as L13",
       role: "Third ED element — corrects lateral color and secondary spectrum in rear group",
     },
     {
@@ -163,6 +178,7 @@ const LENS_DATA = {
       fl: 31.9,
       glass: "S-LAH55VS (OHARA)",
       apd: false,
+      dPgF: -0.00708,
       cemented: "D3",
       role: "Strongest positive in entire lens — main relay element; cemented to L33",
     },
@@ -176,6 +192,7 @@ const LENS_DATA = {
       fl: -27.9,
       glass: "S-TIM25 (OHARA)",
       apd: false,
+      dPgF: 0.0091,
       cemented: "D3",
       role: "High-dispersion corrector — achromatizes G31 doublet with L32",
     },
@@ -189,6 +206,7 @@ const LENS_DATA = {
       fl: 41.5,
       glass: "S-LAL8 (OHARA)",
       apd: false,
+      dPgF: -0.00732,
       role: "G32 singlet — corrects field curvature and astigmatism at large off-axis offset",
     },
     {
@@ -201,7 +219,8 @@ const LENS_DATA = {
       fl: -72.4,
       glass: "S-NSL36 (OHARA; exact patent coordinate match)",
       apd: false,
-      role: "G33 field flattener — directs off-axis rays for telecentricity; shortens total track",
+      dPgF: 0.00088,
+      role: "G33 rear negative — directs off-axis rays away from the axis and shortens total length (patent ¶0070)",
     },
   ],
 
@@ -238,23 +257,22 @@ const LENS_DATA = {
 
     // Sub-group G33 (negative): L35
     { label: "19", R: -75.1706, d: 1.35, nd: 1.51742, elemId: 11, sd: 13.5 }, // L35 front
-    { label: "20", R: 75.1706, d: 24.663, nd: 1.0, elemId: 0, sd: 13.5 }, // L35 rear → image (BFD, air-equiv.)
+    { label: "20", R: 75.1706, d: 24.663, nd: 1.0, elemId: 0, sd: 13.5 }, // L35 rear → image (patent Bf, air-converted)
   ],
 
   /* ── Aspherical coefficients ── */
   asph: {},
 
   /* ── Variable air spacings (inner focus) ──
-   *  G2 moves 8.096 mm toward image from infinity to 0.6 m.
-   *  Total gap (DD[8] + DD[11]) is constant at 23.353 mm.
+   *  Table 2: [infinity, proximal β = 0.14]. G2 moves 8.096 mm toward the image; DD[8] + DD[11] stays 23.353 mm.
    */
   var: {
     STO: [4.6, 12.696], // stop to G2 front
     "11": [18.753, 10.657], // G2 rear to G3 front
   },
   varLabels: [
-    ["STO", "D(St)"],
-    ["11", "BF₂"],
+    ["STO", "DD[8]"],
+    ["11", "DD[11]"],
   ],
 
   /* ── Group and doublet annotations ── */
@@ -270,12 +288,15 @@ const LENS_DATA = {
   ],
 
   /* ── Focus configuration ── */
-  closeFocusM: 0.6,
-  focusDescription: "Inner focus — G2 cemented doublet (L21+L22) moves 8.1 mm toward image. Quad Linear Motor drive.",
+  // Calculated conjugate of the patent's proximal state (object 700 mm from surface 1 + 115.07 mm track).
+  closeFocusM: 0.815,
+  focusDescription:
+    "Inner focus — only the G2 cemented doublet (L21+L22) moves, 8.1 mm toward the image from infinity to the patent's proximal state (β ≈ −0.14, about 0.82 m). Production MFD 0.6 m (0.2×) is beyond the published data and is not modeled.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 2.0,
-  fstopSeries: [2, 2.8, 4, 5.6, 8, 11, 16],
+  nominalFno: 2.06,
+  fstopSeries: [2.06, 2.8, 4, 5.6, 8, 11, 16],
+  maxFstop: 16,
 
   /* ── Layout tuning ── */
   scFill: 0.52,

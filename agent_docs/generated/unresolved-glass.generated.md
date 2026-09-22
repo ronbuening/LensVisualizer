@@ -235,8 +235,8 @@ or per-lens patent backfills.
 
 ### 774492 — 2 occurrences
 
-- [CANON FD 35mm f/2 S.S.C. (I)](../../src/lens-data/canon/CanonFD35mmf2.data.ts) 9: `LaK (774492, probable thoriated)`
-- [CANON FD 35mm f/2 S.S.C. (I)](../../src/lens-data/canon/CanonFD35mmf2.data.ts) 14: `LaK (774492, probable thoriated)`
+- [CANON FD 35mm f/2 S.S.C. (I)](../../src/lens-data/canon/CanonFD35mmf2.data.ts) 9: `774492 — dense lanthanum crown (no catalog equivalent; nd=1.7737, νd=49.2)`
+- [CANON FD 35mm f/2 S.S.C. (I)](../../src/lens-data/canon/CanonFD35mmf2.data.ts) 14: `774492 — dense lanthanum crown (no catalog equivalent; nd=1.7737, νd=49.2)`
 
 ### 777297 — 2 occurrences
 

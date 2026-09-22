@@ -8,25 +8,42 @@
  * ║                                                                    ║
  * ║  Negative-lead retrofocus zoom, 16 elements / 11 groups.          ║
  * ║  G1(−) GA, G2(+) GF (focusing), G3(+) GC (image-side).          ║
- * ║  Zoom: all three groups move; 4 variable gaps (D8, D11, Bf).      ║
+ * ║  Zoom: all three groups move; 3 variable gaps (D8, D11, Bf).      ║
  * ║  Focus: G2 alone (cemented doublet L21+L22) moves rearward.       ║
  * ║  Constant aperture f/2.91 at all zoom positions.                  ║
  * ║                                                                    ║
  * ║  4 aspherical surfaces on 3 elements (1A, 2A, 4A, 27A).          ║
- * ║  4 ED elements: L13, L35, L37, L38 (all S-FPL51, νd = 82.6).    ║
+ * ║  4 ED elements: L13, L35, L37, L38 (J-FKH1 equivalent, νd 82.6). ║
  * ║                                                                    ║
  * ║  NOTE ON SCALING:                                                  ║
  * ║    Patent prescription at f_w = 14.42 mm, f_t = 23.29 mm.        ║
  * ║    Production marketed as 14-24 mm. No scaling applied.            ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    Patent does not list SDs. Estimated from patent Fig. 10         ║
- * ║    element proportions, barrel diameter (88.5 mm OD), and          ║
- * ║    edge-thickness / sd-to-R constraints. Paraxial chief ray        ║
- * ║    trace is invalid at ω = 57.6° — SDs are heuristic.            ║
- * ║    Nikon's Fig. 10 optical section is treated as a schematic       ║
- * ║    silhouette target only; Table 4 / Table 5 are followed         ║
- * ║    literally for curvature and asphere math.                       ║
+ * ║    Patent does not list SDs. G1 and G2 rims are measured from      ║
+ * ║    Fig. 10 (wide state, 0.0784 mm/px from the 115.72 mm glass     ║
+ * ║    span): L11 front 32.8 / rear curve end 21.4, L12 20.6 / 15.6,  ║
+ * ║    L13–L14 16.9, G2 11.9–11.3 mm. Surface 4A is 0.35 mm above    ║
+ * ║    the drawn 15.25 mm so the Y = 21.6 mm wide-end chief ray       ║
+ * ║    (15.23 mm, exact trace) clears the rim. G3 rims are estimates  ║
+ * ║    that agree with Fig. 10 within about 15 % and are retained.    ║
+ * ║    Flat mounting annuli outside the curved surfaces are excluded. ║
+ * ║                                                                    ║
+ * ║  NOTE ON APERTURE:                                                 ║
+ * ║    Source FNO is 2.91 at both zoom ends while the stop rides in   ║
+ * ║    G3, so the physical iris must open toward tele. The patent     ║
+ * ║    lists no iris diameters; zoomApertureModel infers the station  ║
+ * ║    radii (about 7.97 / 9.00 / 9.58 / 10.58 mm) from f/2.91.       ║
+ * ║                                                                    ║
+ * ║  NOTE ON FOCUS KEYFRAMES:                                          ║
+ * ║    Table 4 publishes infinity, β = 0.025 and closest rows at all  ║
+ * ║    four stations. The β = 0.025 conjugates differ by station, so  ║
+ * ║    focusPositions carries one keyframe per station conjugate;     ║
+ * ║    each station's own published row is exact and its other three  ║
+ * ║    intermediate values are interpolated on x = a·u / (1 − b·u)    ║
+ * ║    through that station's two published finite states.            ║
+ * ║    Source TL(T) = 132.362 conflicts with the tabulated gap sum    ║
+ * ║    129.65 mm; the tabulated gaps are followed.                    ║
  * ║                                                                    ║
  * ║  NOTE ON CONIC CONSTANTS:                                          ║
  * ║    Patent uses κ convention (κ = 1 + K). Converted to standard    ║
@@ -48,7 +65,7 @@ const LENS_DATA = {
     "F/2.91 (constant)",
     "2ω = 115.2°–84.8°",
     "4 ASPHERICAL SURFACES (3 elements)",
-    "4 ED ELEMENTS (S-FPL51)",
+    "4 ED ELEMENTS (νd = 82.6)",
   ],
   focalLengthMarketing: [14, 24] as [number, number],
   focalLengthDesign: [14.42, 23.29] as [number, number],
@@ -100,10 +117,10 @@ const LENS_DATA = {
       nd: 1.49782,
       vd: 82.6,
       fl: -65.3,
-      glass: "S-FPL51 (OHARA) — ED fluorophosphate",
-      apd: "inferred",
+      glass: "J-FKH1 (HIKARI catalog equivalent; S-FPL51-class ED fluorophosphate, vendor unspecified)",
+      apd: "patent",
       apdNote:
-        "ED class; anomalous partial dispersion. Negative ED in front group — unusual placement for secondary lateral color correction.",
+        "Patent ¶[0108] states L13 is made of anomalous-dispersion glass. Negative ED in front group — unusual placement for secondary lateral color correction.",
       role: "ED negative in front group — corrects secondary lateral chromatic aberration that cannot be addressed from rear group alone. Patent-identified anomalous dispersion element.",
     },
     {
@@ -167,7 +184,7 @@ const LENS_DATA = {
       nd: 1.59349,
       vd: 67.0,
       fl: 31.6,
-      glass: "S-FPM2 (OHARA) — fluorophosphate crown",
+      glass: "J-PSKH4 (HIKARI catalog equivalent; phosphate crown, vendor unspecified)",
       cemented: "D2",
       apd: false,
       role: "Crown positive in D2 — pre-corrects SA and coma before the stop. High-νd glass provides achromatic balance.",
@@ -206,7 +223,7 @@ const LENS_DATA = {
       nd: 1.49782,
       vd: 82.6,
       fl: 34.8,
-      glass: "S-FPL51 (OHARA) — ED fluorophosphate",
+      glass: "J-FKH1 (HIKARI catalog equivalent; S-FPL51-class ED fluorophosphate, vendor unspecified)",
       apd: "patent",
       apdNote: "Patent-identified 'specific lens' — anomalous partial dispersion for primary LoCA correction.",
       role: "First ED positive behind stop — corrects primary and secondary longitudinal chromatic aberration at maximum marginal ray height.",
@@ -232,7 +249,7 @@ const LENS_DATA = {
       nd: 1.49782,
       vd: 82.6,
       fl: 42.9,
-      glass: "S-FPL51 (OHARA) — ED fluorophosphate",
+      glass: "J-FKH1 (HIKARI catalog equivalent; S-FPL51-class ED fluorophosphate, vendor unspecified)",
       apd: "patent",
       apdNote: "Patent-identified 'specific lens' — anomalous partial dispersion for lateral color correction.",
       cemented: "D4",
@@ -246,7 +263,7 @@ const LENS_DATA = {
       nd: 1.49782,
       vd: 82.6,
       fl: 27.7,
-      glass: "S-FPL51 (OHARA) — ED fluorophosphate",
+      glass: "J-FKH1 (HIKARI catalog equivalent; S-FPL51-class ED fluorophosphate, vendor unspecified)",
       apd: "patent",
       apdNote: "Patent-identified 'specific lens' — anomalous partial dispersion.",
       cemented: "D5",
@@ -273,7 +290,7 @@ const LENS_DATA = {
       nd: 1.85108,
       vd: 40.1,
       fl: 286.4,
-      glass: "S-LAH89 (OHARA)",
+      glass: "Q-LASFH58S (HIKARI catalog equivalent; mouldable lanthanum glass, vendor unspecified)",
       apd: false,
       role: "Rear field-correcting asphere — weak positive power with modest aspherical departure fine-tunes residual astigmatism, field curvature, and distortion.",
     },
@@ -282,25 +299,25 @@ const LENS_DATA = {
   /* ── Surface prescription ── */
   surfaces: [
     // ── G1 (GA): Front negative group ──
-    { label: "1A", R: 151.5, d: 3.0, nd: 1.58887, elemId: 1, sd: 18.03 }, // L11 front (asph)
-    { label: "2A", R: 16.04, d: 13.37, nd: 1.0, elemId: 0, sd: 14.43 }, // L11 rear (asph) → air
-    { label: "3", R: 88.74, d: 2.0, nd: 1.743104, elemId: 2, sd: 16.5 }, // L12 front
-    { label: "4A", R: 27.44, d: 10.0, nd: 1.0, elemId: 0, sd: 14.5 }, // L12 rear (asph) → air
-    { label: "5", R: -74.77, d: 1.5, nd: 1.49782, elemId: 3, sd: 14.0 }, // L13 front (ED)
-    { label: "6", R: 57.87, d: 0.15, nd: 1.0, elemId: 0, sd: 13.5 }, // L13 rear → air
-    { label: "7", R: 37.08, d: 5.77, nd: 1.737999, elemId: 4, sd: 15.0 }, // L14 front
-    { label: "8", R: -644.56, d: 19.11, nd: 1.0, elemId: 0, sd: 14.5 }, // L14 rear → air [D8]
+    { label: "1A", R: 151.5, d: 3.0, nd: 1.58887, elemId: 1, sd: 32.8 }, // L11 front (asph)
+    { label: "2A", R: 16.04, d: 13.37, nd: 1.0, elemId: 0, sd: 21.4 }, // L11 rear (asph) → air
+    { label: "3", R: 88.74, d: 2.0, nd: 1.743104, elemId: 2, sd: 20.6 }, // L12 front
+    { label: "4A", R: 27.44, d: 10.0, nd: 1.0, elemId: 0, sd: 15.6 }, // L12 rear (asph) → air
+    { label: "5", R: -74.77, d: 1.5, nd: 1.49782, elemId: 3, sd: 16.9 }, // L13 front (ED)
+    { label: "6", R: 57.87, d: 0.15, nd: 1.0, elemId: 0, sd: 16.9 }, // L13 rear → air
+    { label: "7", R: 37.08, d: 5.77, nd: 1.737999, elemId: 4, sd: 16.9 }, // L14 front
+    { label: "8", R: -644.56, d: 19.11, nd: 1.0, elemId: 0, sd: 16.9 }, // L14 rear → air [D8]
 
     // ── G2 (GF): Focusing group ──
-    { label: "9", R: 32.64, d: 1.1, nd: 2.0006, elemId: 5, sd: 14.0 }, // L21 front
-    { label: "10", R: 19.01, d: 5.3, nd: 1.64769, elemId: 6, sd: 13.5 }, // L21→L22 junction
-    { label: "11", R: 210.3, d: 10.68, nd: 1.0, elemId: 0, sd: 13.0 }, // L22 rear → air [D11]
+    { label: "9", R: 32.64, d: 1.1, nd: 2.0006, elemId: 5, sd: 11.9 }, // L21 front
+    { label: "10", R: 19.01, d: 5.3, nd: 1.64769, elemId: 6, sd: 11.6 }, // L21→L22 junction
+    { label: "11", R: 210.3, d: 10.68, nd: 1.0, elemId: 0, sd: 11.3 }, // L22 rear → air [D11]
 
     // ── G3 (GC): Image-side group ──
     { label: "12", R: 28.61, d: 1.1, nd: 1.85, elemId: 7, sd: 12.5 }, // L31 front
     { label: "13", R: 18.19, d: 6.08, nd: 1.59349, elemId: 8, sd: 12.0 }, // L31→L32 junction
     { label: "14", R: 522.9, d: 1.95, nd: 1.0, elemId: 0, sd: 12.0 }, // L32 rear → air
-    { label: "STO", R: 1e15, d: 2.88, nd: 1.0, elemId: 0, sd: 10.0 }, // Aperture stop
+    { label: "STO", R: 1e15, d: 2.88, nd: 1.0, elemId: 0, sd: 10.6 }, // Aperture stop (largest inferred iris, tele)
     { label: "16", R: -66.86, d: 1.1, nd: 1.95375, elemId: 9, sd: 11.5 }, // L33 front
     { label: "17", R: 25.72, d: 5.35, nd: 1.84666, elemId: 10, sd: 11.0 }, // L33→L34 junction
     { label: "18", R: -78.7, d: 0.4, nd: 1.0, elemId: 0, sd: 11.5 }, // L34 rear → air
@@ -367,26 +384,29 @@ const LENS_DATA = {
   zoomLabels: ["Wide", "Tele"],
 
   /* ── Variable air spacings (zoom format) ── */
-  // Each value: [[d_inf_W, d_cf_W], [d_inf_M1, d_cf_M1], [d_inf_M2, d_cf_M2], [d_inf_T, d_cf_T]]
-  // Bf is constant during focus (only changes with zoom)
+  // focusPositions = closest object-to-image distance ÷ each station's β = 0.025 object-to-image distance
+  // (T, M2, M1, W in increasing order). Per station: [∞, u_T, u_M2, u_M1, u_W, closest]; the entry at the
+  // station's own coordinate is the published β = 0.025 row, the other three intermediates are interpolated.
+  // Bf is constant during focus (only changes with zoom).
+  focusPositions: [0, 0.2692, 0.3082, 0.3368, 0.404, 1],
   var: {
     "8": [
-      [19.11, 22.29],
-      [10.32, 13.66],
-      [6.94, 10.37],
-      [2.78, 6.38],
+      [19.11, 19.686, 19.781, 19.853, 20.03, 22.29],
+      [10.32, 10.941, 11.043, 11.12, 11.308, 13.66],
+      [6.94, 7.585, 7.69, 7.77, 7.964, 10.37],
+      [2.78, 3.46, 3.571, 3.655, 3.86, 6.38],
     ],
     "11": [
-      [10.68, 7.5],
-      [8.35, 5.02],
-      [7.26, 3.83],
-      [5.72, 2.13],
+      [10.68, 10.104, 10.009, 9.937, 9.77, 7.5],
+      [8.35, 7.729, 7.627, 7.55, 7.362, 5.02],
+      [7.26, 6.615, 6.52, 6.43, 6.236, 3.83],
+      [5.72, 5.04, 4.929, 4.845, 4.64, 2.13],
     ],
     "28": [
-      [22.54, 22.54],
-      [27.74, 27.74],
-      [30.59, 30.59],
-      [35.22, 35.22],
+      [22.54, 22.54, 22.54, 22.54, 22.54, 22.54],
+      [27.74, 27.74, 27.74, 27.74, 27.74, 27.74],
+      [30.59, 30.59, 30.59, 30.59, 30.59, 30.59],
+      [35.22, 35.22, 35.22, 35.22, 35.22, 35.22],
     ],
   },
   varLabels: [
@@ -412,7 +432,10 @@ const LENS_DATA = {
   /* ── Aperture configuration ── */
   closeFocusM: 0.28,
   nominalFno: 2.91,
-  fstopSeries: [2.8, 3.2, 3.5, 4, 4.5, 5, 5.6, 6.3, 8, 11, 16, 22],
+  // Physical iris schedule inferred by tracing the source f/2.91 entrance pupil at each zoom station.
+  zoomApertureModel: "from-nominal-fno",
+  fstopSeries: [2.91, 3.2, 3.5, 4, 4.5, 5, 5.6, 6.3, 8, 11, 16, 22],
+  maxFstop: 22,
 
   /* ── Layout tuning ── */
   scFill: 0.55,

@@ -10,9 +10,9 @@
 **Classification:** US 350/214; Int. Cl. G02b 9/64
 **Embodiment analyzed:** Single numerical embodiment
 
-This patent discloses the optical formula for the **Canon FD 35mm f/2 S.S.C. (I)** — the first version of Canon's professional-grade 35mm wide-angle lens for the FD-mount system, and the first Canon wide-angle interchangeable lens to incorporate what Canon calls a "floating mechanism." This version is identified by its distinctive **concave front element** (R₁ < 0) and is known to employ **thoriated glass elements**, which produce the characteristic yellowing observed in aged examples. The single numerical embodiment given in the patent is the production design.
+The patent's single numerical embodiment is correlated here with the **Canon FD 35mm f/2 S.S.C. (I)**. The correlation is an author inference, not a statement in the patent: the embodiment is a 35 mm-class f/2 reverse telephoto with 2ω = 64°, nine elements in eight groups, a **concave front surface** (R₁ < 0) and a variable air interval for close focus, and the Canon Camera Museum lists the S.S.C. (I) as an 8-group, 9-element lens with a floating mechanism. The Japanese priority date (March 1971) predates the S.S.C. (I) by two years, so the same formula may also underlie earlier concave-front FD 35mm f/2 barrels; that has not been checked against a source. Collector reports describe yellowing, radioactive glass in concave-front examples; neither the patent nor Canon says so (see Glass Selection Strategy).
 
-Canon marketed this lens beginning in March 1973. It was later succeeded by the S.S.C. (II) version (10 elements, 8 groups, convex front element, non-thoriated glass) and eventually by the New FD 35mm f/2 (also 10 elements, 8 groups).
+Canon lists the S.S.C. (I) as marketed from March 1973. It was later succeeded by the S.S.C. (II) version (10 elements, 8 groups, convex front element) and eventually by the New FD 35mm f/2 (also 10 elements, 8 groups).
 
 ---
 
@@ -26,17 +26,17 @@ The lens is a **reverse telephoto (retrofocus)** design with the following syste
 | Maximum aperture | f/2 | f/2 |
 | Minimum aperture | — | f/16 |
 | Angular field (2ω) | 64° | 64° |
-| Back focal distance (computed) | 1.0844 | 37.95 mm |
+| Back focal distance (computed) | 1.0844 | 37.96 mm |
 | Back focal distance (patent) | 1.1066 | 38.73 mm |
 | Closest focusing distance | — | 0.3 m |
-| Maximum magnification | — | 0.194× |
+| Maximum magnification | — | 0.194× (Canon); 0.171× computed at 0.3 m |
 | Filter diameter | — | 55 mm |
 | Dimensions (∅ × L) | — | 67 × 60 mm |
 | Weight | — | 370 g |
 
 *Physical specifications from the Canon Camera Museum; optical parameters computed from the patent prescription.*
 
-The computed BFD of 37.95 mm is approximately 2% shorter than the patent's stated 38.73 mm. This discrepancy reflects cumulative rounding in the normalized prescription — the patent carries most values to only 4 significant figures, and the accumulated effect across 17 surfaces produces a 0.78 mm BFD error. The EFL itself matches to 0.02%, confirming the prescription is correctly transcribed.
+The computed BFD of 37.96 mm is about 2% shorter than the patent's stated back focus of 1.1066 (38.73 mm), which is printed identically in the description and in claim 1. This is an unresolved source conflict rather than a rounding effect: perturbing every radius and thickness within its last printed digit moves the paraxial BFD only between 1.079 and 1.090, and no single-entry change restores 1.1066 while keeping f = 1. The transcription itself is confirmed row by row, the EFL matches to 0.02%, and surfaces 1–10 reproduce the patent's own φ₁, φ₂, D and α (below), so any misprint lies in the rear sub-group, in D₁₀, or in the back-focus figure itself. The data file follows the table.
 
 The back focal distance — substantially longer than the focal length — is the defining trait of the reverse telephoto configuration and provides the mirror clearance required for single-lens reflex cameras. The Canon FD mount has a flange-to-film distance of 42.0 mm.
 
@@ -69,7 +69,7 @@ The patent defines its key parameters as: φ₁ = power of Group I, φ₂ = powe
 
 $$\alpha = \phi_1 + \phi_2 - D\phi_1\phi_2 = -0.6575 + 1.1549 - 0.4762 \times (-0.6575) \times 1.1549 = 0.859$$
 
-This parameter has a direct physical meaning: it is the slope of the marginal ray at the variable air gap for a ray entering the lens at unit height with zero slope. A value of α = 0.859 indicates strong convergence — the marginal ray makes approximately 41° with the optical axis as it crosses the variable gap between Groups II₁ and II₂. The patent requires 0.35 < α < 1.0 for the floating mechanism to effectively correct field curvature without disturbing other aberrations.
+This parameter has a direct physical meaning: it is the paraxial slope in the variable air gap of a ray entering the lens parallel to the axis at unit height (h = f). A value of α = 0.859 indicates a strongly convergent beam; for the actual f/2 marginal ray (h = 0.25 f) the slope in the gap is 0.859 × 0.25 ≈ 0.215, about 12° to the axis. The patent requires 0.35 < α < 1.0 for the floating mechanism to effectively correct field curvature without disturbing other aberrations.
 
 ---
 
@@ -103,15 +103,19 @@ All dimensions are normalized to f = 1. Physical dimensions in millimeters (f �
 | R₁₆ | +1.9700 | 0.0827 (2.89 mm) | 1.80610 | 40.8 | E9 | Glass |
 | R₁₇ | −3.2780 | — | — | — | — | — |
 
-**Variable air interval d₁₀:** 0.1541 (5.39 mm) at infinity focus; 0.1345 (4.71 mm) at the patent's example magnification of 0.118×. The change Δd₁₀ = −0.0196 (−0.69 mm), representing approximately 1.96% of the focal length, is within the patent's stipulated 5% limit.
+**Variable air interval d₁₀:** 0.1541 (5.39 mm) at infinity focus; 0.1345 (4.71 mm) at the patent's example magnification of 0.118×. The change Δd₁₀ = −0.0196 (−0.69 mm), representing approximately 1.96% of the focal length, is within the patent's stipulated 5% limit. These two rows are the only focus data the patent publishes; it gives no extension or object distance for the close-shot state.
 
-At the Canon Camera Museum's listed closest focus of 0.3 m (m = 0.194×), the variable gap is estimated at d₁₀ ≈ 0.1219 (4.27 mm), computed from the patent's stated linear proportionality between gap change and forward shift. The total gap decrease of −1.13 mm at MFD is approximately 3.2% of the focal length, still within the 5% limit.
+The data file carries three focus keyframes. The first two are the published rows, with the close-shot back focus (42.56 mm, a 4.60 mm forward shift, object-to-image 390 mm) calculated as the paraxial conjugate for m = −0.118. The third is a calculated state for the Canon Camera Museum's closest focusing distance of 0.3 m: d₁₀ is continued along the patent's "approximately in proportion to the amount of forward shift" rule (Δd₁₀/Δshift = −0.149 from the two published states) until the object-to-image distance is 300 mm, giving d₁₀ ≈ 4.40 mm (−0.99 mm, 2.8% of the focal length), a 6.65 mm forward shift and m = −0.171. The museum's 0.194× is not reproduced at 0.3 m by this prescription; it would require an object-to-image distance of about 276 mm (d₁₀ ≈ 4.27 mm), and the patent's 0.2× ceiling corresponds to about 271 mm.
 
 ### Aperture Stop Position
 
 The patent does not explicitly label the aperture stop in its prescription table; however, the stop location can be determined from the patent's cross-section drawing (FIG. 1) and corroborated by the marginal ray trace. The iris diaphragm is located **within the variable air gap d₁₀**, between the rear surface of Element 5 (R₁₀) and the front surface of Element 6 (R₁₁). This placement is confirmed by the paraxial ray trace, which shows the marginal ray height decreasing smoothly through the gap: h = 10.13 mm at R₁₀, h = 9.61 mm at the estimated stop position, and h = 8.97 mm at R₁₁.
 
-For the data file, the stop is positioned at approximately 45% of d₁₀ from R₁₀, as inferred from the iris placement in FIG. 1. The stop semi-diameter is 9.6 mm, giving a pupil magnification of approximately 0.91 (entrance pupil SD = 8.75 mm at f/2).
+For the data file, the stop is positioned at approximately 45% of d₁₀ from R₁₀, as inferred from the iris placement in FIG. 1 (the drawing reads about 42%, the same within its precision). The authored stop semi-diameter of 9.6 mm is the paraxial f/2 marginal height, and the iris opening drawn in FIG. 1 reads about 9.6 mm at the figure scale; the entrance-pupil semi-diameter is 8.75 mm, a ratio of about 0.91. A real f/2 marginal ray crosses the stop plane higher, at about 10.4 mm, because of the strong refraction at R₄, and the viewer derives its working iris from that real ray. When d₁₀ closes, both halves of the gap are scaled by the same ratio — a modeling assumption, since the patent does not say which sub-group carries the iris.
+
+### Semi-Diameters
+
+The patent publishes no clear apertures, so every semi-diameter in the data file is an estimate. They are based on the front-page FIG. 1, measured on its clean upper side at about 16.2 px/mm (from the R₁–R₁₇ vertex span): L1 20.1 mm, L2 flange 17.8 mm, L3–L5 11.8–12.1 mm, L6 10.3 mm, the cemented doublet 10.2 mm and L9 11.2 mm. The drawing sizes Group II₁ and the doublet almost exactly at the real f/2 marginal ray (12.04 mm at R₇, 10.27 mm at R₁₅), so those rims are set about 0.5 mm above it (12.5 mm and 10.8 mm); L9 follows the figure. At these rims an exact chief ray for Y = 21.6 mm (ω = 32.1°, against the patent's 32°) clears every surface, and the meridional full-field bundle passes roughly 41% of the f/2 stop diameter — heavy but unremarkable corner vignetting for a fast wide-angle of this period.
 
 The stop's location within the variable gap has a subtle but important consequence: as d₁₀ decreases during close focusing, the stop shifts fractionally closer to Group II₂, slightly altering the vignetting characteristics and off-axis illumination at close range. The patent's constraint that the gap change not exceed 5% of the focal length ensures this effect remains negligible.
 
@@ -133,7 +137,7 @@ The stop's location within the variable gap has a subtle but important consequen
 
 Despite appearing to be a negative meniscus at first glance (both R values negative), Element 1 carries weak positive power because the rear surface is more strongly curved (|R₂| < |R₁|), making the element thicker at the center. Its primary role is to initiate the divergence of off-axis ray bundles entering Group I, while its concave front surface — the first surface the incoming light encounters — is the defining visual characteristic that distinguishes the S.S.C. (I) from later versions of the Canon FD 35mm f/2. The large radii of curvature (both surfaces have absolute radii exceeding 113 mm) keep surface contributions to spherical aberration and coma manageable at this large aperture position.
 
-**Glass identification:** N = 1.697, V = 48.5 places this glass at the boundary of the lanthanum crown and barium crown families (six-digit code 697485). In the Ohara catalog, the closest equivalent is **S-LAM2** or a barium crown in the SK family. Schott's nearest historical equivalent is **LaK N-2** or **SK14**.
+**Glass identification:** N = 1.697, V = 48.5 (six-digit code 697485) is a lanthanum glass on the crown/flint boundary. The patent names no glass; the current-catalog coordinate equivalent is **OHARA S-LAM59** (1.69700 / 48.52), with Sumita's LaFN2 at the same coordinate. S-LAM2 (1.74400 / 44.8) is a different glass and is not an equivalent.
 
 ### Element 2 — Strong Negative Meniscus (Group I)
 
@@ -149,7 +153,7 @@ Despite appearing to be a negative meniscus at first glance (both R values negat
 
 Element 2 is the primary diverging element in Group I and the second-strongest negative element in the system after Element 6 (φ = −1.09). It carries nearly all of Group I's negative power (−0.752 of the group's −0.658 total). The deeply curved rear surface R₄ = +0.4944 (17.3 mm radius, convex toward the object) is among the strongest individual surfaces in the lens.
 
-**Glass identification:** N = 1.51633, V = 64.0 is an exact match for **BK7** (Schott) / **S-BSL7** (Ohara), the ubiquitous borosilicate crown glass. The use of inexpensive, well-characterized BK7 for this high-power diverging element is deliberate: its low refractive index means that the strong surface curvatures produce the necessary divergence without introducing excessive higher-order aberrations, and its high Abbe number (low dispersion) minimizes the chromatic contribution of this powerful negative element.
+**Glass identification:** N = 1.51633, V = 64.0 is the Japanese BK7-type borosilicate crown: **OHARA S-BSL7** (1.51633 / 64.14) is the catalog coordinate equivalent, whereas Schott's own BK7 is 1.51680 / 64.17. The use of an inexpensive, well-characterized borosilicate crown for this high-power diverging element is deliberate: its low refractive index means that the strong surface curvatures produce the necessary divergence without introducing excessive higher-order aberrations, and its high Abbe number (low dispersion) minimizes the chromatic contribution of this powerful negative element.
 
 ### Element 3 — Weakly Negative Meniscus (Group II₁)
 
@@ -200,7 +204,7 @@ Element 4 contributes strong positive power, almost entirely from its front surf
 
 Element 5 is the thickest element in the system at 10.1 mm, accounting for roughly 29% of the total focal length. Like Element 4, virtually all its power comes from the front surface; the rear surface R₁₀ is nearly flat (radius 4344 mm). The extreme thickness is a deliberate design choice: thick positive elements allow the designer to control the position of the rear principal plane and fine-tune the back focal distance, which is critical in a retrofocus design that must clear the SLR mirror. The substantial glass path also provides leverage for correcting zonal spherical aberration.
 
-**Glass identification:** N = 1.7737, V = 49.2 is a dense lanthanum crown (six-digit code 774492). No exact match exists in current (lead- and thorium-free) glass catalogs — the closest modern equivalents are Hoya MC-TAF115 (nd = 1.770, Vd = 49.5) and similar TAF-family glasses. The absence of a modern match is consistent with this being a **thorium-doped lanthanum crown** from the early 1970s, which achieved this combination of high index and low dispersion through thorium dioxide additions. This glass type is the strongest candidate for the radioactive element(s) documented in the S.S.C. (I) version. The same glass reappears in Element 8.
+**Glass identification:** N = 1.7737, V = 49.2 is a dense lanthanum crown (six-digit code 774492). No current catalog glass matches the pair; the nearest are the 1.77250 / 49.5–49.6 lanthanum glasses (OHARA S-LAH66, HOYA TAF1 types), about 1.2 × 10⁻³ lower in index, so the data file carries the code without a catalog name and the viewer falls back to an Abbe-number dispersion model for it. A discontinued early-1970s melt is the likeliest explanation. Whether it was a thorium-bearing glass is not stated by the patent or by Canon; that attribution comes from collector reports about the lens as a whole and is discussed under Glass Selection Strategy. The same glass reappears in Element 8.
 
 ### Element 6 — Biconcave Negative Flint (Group II₂)
 
@@ -216,7 +220,7 @@ Element 5 is the thickest element in the system at 10.1 mm, accounting for rough
 
 Element 6 is the first element after the variable air gap and the strongest negative element by absolute power in the system. Despite being the thinnest element in the lens (under 1 mm), it carries enormous diverging power. The strongly curved rear surface R₁₂ = +0.855 (30 mm radius) dominates. Its low-V flint glass provides significant negative chromatic contribution (φ/V = −0.041), making it the most important single element for chromatic correction of the rear group.
 
-**Glass identification:** N = 1.76182, V = 26.5 is a dense barium flint or short flint glass (code 762265). Probable match: **Ohara S-TIH6** or **Schott N-SF5**.
+**Glass identification:** N = 1.76182, V = 26.5 (code 762265) is the SF14-type dense flint. The catalog coordinate equivalent is **OHARA S-TIH14** (1.76182 / 26.52); HOYA FD140 and Hikari J-SF14 share the coordinate. The patent names no glass.
 
 ### Elements 7–8 — Cemented Doublet (Group II₂)
 
@@ -228,8 +232,8 @@ Element 6 is the first element after the variable air gap and the strongest nega
 | Thickness | 0.0280 (0.98 mm) |
 | Glass | N₇ = 1.80518, V₇ = 25.4 |
 | Shape | Biconcave |
-| Element power | φ = −0.691 |
-| Focal length | −50.7 mm |
+| Element power | φ = −0.746 (in air) |
+| Focal length | −46.9 mm |
 
 #### Element 8 (Cemented Rear — Lanthanum Crown)
 
@@ -239,8 +243,8 @@ Element 6 is the first element after the variable air gap and the strongest nega
 | Thickness | 0.1226 (4.29 mm) |
 | Glass | N₈ = 1.77370, V₈ = 49.2 |
 | Shape | Biconvex (very weak front, strongly curved rear) |
-| Element power | φ = +1.105 |
-| Focal length | +31.7 mm |
+| Element power | φ = +1.158 (in air) |
+| Focal length | +30.2 mm |
 
 #### Cemented Doublet Net Properties
 
@@ -248,13 +252,13 @@ Element 6 is the first element after the variable air gap and the strongest nega
 |---|---|
 | Net power | φ = +0.481 (positive) |
 | Net focal length | +72.7 mm |
-| Chromatic balance | φ₇/V₇ + φ₈/V₈ = −0.027 + 0.022 = −0.005 (nearly achromatic) |
+| Chromatic balance | φ₇/V₇ + φ₈/V₈ = −0.029 + 0.024 = −0.006 (nearly achromatic) |
 
 The cemented doublet at R₁₄ is a classic achromatic pair using a thin, high-dispersion negative flint element (E7) bonded to a thicker, lower-dispersion positive crown element (E8). The nearly flat cemented interface R₁₄ = +13.96 (489 mm radius) means refraction at the cement is minimal — the chromatic and Petzval correction comes primarily from the strong outer surfaces R₁₃ and R₁₅.
 
-**Glass identification for E7:** N = 1.80518, V = 25.4 is a confirmed exact match for **Schott SF6**, the classical dense flint glass (lead silicate, code 805254). In the Ohara catalog: **S-TIH14**. This was one of the most widely used high-dispersion flint glasses in the 1970s.
+**Glass identification for E7:** N = 1.80518, V = 25.4 (code 805254) is the coordinate of the classical **SF6**-type dense flint (Schott SF6 1.80518 / 25.43). The data file labels it with the OHARA coordinate equivalent **S-TIH6**; the patent names no glass or supplier. This was one of the most widely used high-dispersion flint glasses in the 1970s.
 
-**Glass identification for E8:** N = 1.7737, V = 49.2 — the same thoriated dense lanthanum crown as Element 5, confirming the designer's strategy of using matched glass types across the system for fabrication economy and thermal stability.
+**Glass identification for E8:** N = 1.7737, V = 49.2 — the same dense lanthanum crown as Element 5 (code 774492, no current catalog equivalent), so the design uses eight glass types for nine elements.
 
 ### Element 9 — Positive Biconvex (Group II₂, Rear)
 
@@ -270,7 +274,7 @@ The cemented doublet at R₁₄ is a classic achromatic pair using a thin, high-
 
 The final element provides positive power distributed across both surfaces (roughly 60/40 front-to-rear). As the rearmost glass element, it plays a critical role in controlling the exit pupil position — essential for SLR viewfinder compatibility — and contributes to final field flattening. The high-index glass (N = 1.806) keeps surface curvatures moderate relative to the power delivered, minimizing aberration contributions at this position where off-axis ray heights are smallest.
 
-**Glass identification:** N = 1.8061, V = 40.8 is a dense lanthanum flint, near the LaF/LaSF boundary (code 806408). Probable match: **Ohara S-LAH53** or **Schott N-LASF43**.
+**Glass identification:** N = 1.8061, V = 40.8 is a dense lanthanum flint, near the LaF/LaSF boundary (code 806408). Catalog coordinate equivalents bracket the patent's Abbe number: **OHARA S-LAH53** (1.80610 / 40.93, used as the data-file label) and HOYA NBFD13 (1.80610 / 40.73).
 
 ---
 
@@ -282,15 +286,15 @@ Tajima's solution subdivides the positive rear group II into two sub-groups (II�
 
 ### How it works
 
-The variable air interval d₁₀ sits in a region where the axial ray bundle is convergent. The patent's analysis shows that the marginal ray at this gap has a slope of α = 0.859 (approximately 41° to the axis). The patent's key insight is that changing an air interval in a region of convergent light produces strong correction of field curvature and astigmatism, minimal change to the system's focal length and f-number, and negligible change to spherical aberration and coma.
+The variable air interval d₁₀ sits in a region where the axial ray bundle is convergent. The patent's analysis gives the normalized slope in this gap as α = 0.859 for a ray entering at unit height; the real f/2 marginal ray converges at about 12°. The patent's key insight is that changing an air interval in a region of convergent light produces strong correction of field curvature and astigmatism, minimal change to the system's focal length and f-number, and negligible change to spherical aberration and coma.
 
 This last point is counterintuitive. One might expect that changing any internal spacing would disturb all aberrations. However, Tajima demonstrates that when the beam is convergent (α > 0), the rear sub-group II₂ has a longer effective focal length, which attenuates its sensitivity to spacing changes. In the limiting case α → 1, the effective focal length of II₂ approaches infinity, and the system's total power becomes completely insensitive to the variable gap.
 
 ### Numerical behavior at the embodiment
 
-At infinity focus, d₁₀ = 0.1541 (5.39 mm). The patent demonstrates the correction at 0.118× magnification, where the gap decreases to d₁₀ = 0.1345 (4.71 mm). The change of −0.69 mm is approximately 2% of the focal length. The Canon Camera Museum lists the lens's actual closest focus as 0.3 m with a maximum magnification of 0.194×, indicating that the floating mechanism operates over a wider range than the patent's single example point.
+At infinity focus, d₁₀ = 0.1541 (5.39 mm). The patent demonstrates the correction at 0.118× magnification, where the gap decreases to d₁₀ = 0.1345 (4.71 mm). The change of −0.69 mm is approximately 2% of the focal length. For that state the calculated forward shift is 4.60 mm, against 4.13 mm if the lens were shifted as a rigid unit to the same magnification. The Canon Camera Museum lists the lens's closest focus as 0.3 m with a maximum magnification of 0.194×, so the floating mechanism operates over a wider range than the patent's single example point, while staying under the patent's 0.2× ceiling.
 
-At MFD 0.3 m (m = 0.194×), the estimated d₁₀ is approximately 4.27 mm, computed from the patent's linear proportionality relation. The total gap change of −1.13 mm (3.2% of EFL) remains well within the 5% limit. The system EFL changes by approximately −0.6% at close focus (from 35.0 to 34.6 mm), confirming the patent's claim that the focal length is substantially preserved.
+At an object-to-image distance of 0.3 m the calculated state is d₁₀ ≈ 4.40 mm with m = −0.171, extrapolated along the patent's proportionality rule; this is a modeling choice, not published data. The gap change of −0.99 mm (2.8% of EFL) remains within the 5% limit, and the system EFL changes by about −0.9% (from 34.99 to 34.68 mm), consistent with the patent's claim that the focal length is substantially preserved. Canon's 0.194× would correspond to about 276 mm and d₁₀ ≈ 4.27 mm with this prescription.
 
 The patent's aberration diagrams (Figures 2–4) demonstrate:
 
@@ -308,11 +312,11 @@ Tajima's glass choices reveal a coherent design philosophy:
 
 The chromatic correction strategy divides the elements into two functional roles based on the sign of their φ/V contribution: elements with positive φ/V contribute chromatic overcorrection, while those with negative φ/V contribute undercorrection. An achromatic system has Σφ/V = 0.
 
-**Undercorrecting elements** (negative φ/V): E2 (−0.012), E3 (−0.001), E6 (−0.041), E7 (−0.027)
+**Undercorrecting elements** (negative φ/V): E2 (−0.012), E3 (−0.001), E6 (−0.041), E7 (−0.029)
 
-**Overcorrecting elements** (positive φ/V): E1 (+0.002), E4 (+0.013), E5 (+0.012), E8 (+0.022), E9 (+0.016)
+**Overcorrecting elements** (positive φ/V): E1 (+0.002), E4 (+0.013), E5 (+0.012), E8 (+0.024), E9 (+0.016)
 
-The two strongest undercorrectors are E6 and E7 — the high-dispersion flint glasses (V = 26.5 and 25.4) in Group II₂. Their combined undercorrection of −0.068 is balanced primarily by E5 and E8 (the matched lanthanum crown pair) and by E4 and E9.
+The two strongest undercorrectors are E6 and E7 — the high-dispersion flint glasses (V = 26.5 and 25.4) in Group II₂. Their combined undercorrection of −0.070 is balanced primarily by E5 and E8 (the matched lanthanum crown pair) and by E4 and E9.
 
 Note that E9, despite its moderate Abbe number (V = 40.8), acts as a chromatic *overcorrector* because it carries positive power — the sign of the power, not just the dispersion, determines the chromatic role.
 
@@ -320,29 +324,29 @@ Note that E9, despite its moderate Abbe number (V = 40.8), acts as a chromatic *
 
 Five of the nine elements (E1, E4, E5, E8, E9) use glasses in the lanthanum crown or lanthanum flint families. These high-index, relatively low-dispersion glasses allow the designer to achieve strong refractive power from moderate surface curvatures while keeping the Petzval sum under control.
 
-### Thoriated glass elements
+### Reported thoriated glass (attribution, not a patent statement)
 
-The Canon FD 35mm f/2 S.S.C. (I) is well documented as containing thorium-doped glass elements. Thorium dioxide (ThO₂) was added to optical glass in the 1960s–1970s to achieve high refractive indices with low dispersion — a combination difficult to obtain with conventional glass compositions. The characteristic yellowing observed in aged examples of this lens is caused by radiation-induced color center formation in the thoriated elements.
+Collectors and users widely report that concave-front Canon FD 35mm f/2 lenses yellow with age and register on radiation meters, which is the usual signature of thorium-bearing glass; thorium oxide was used in some 1950s–1970s melts to reach high index with low dispersion. Nothing in US 3,748,022 mentions glass chemistry, and no Canon source consulted for this analysis identifies a thoriated element, so the claim is recorded here as an outside attribution.
 
-The most probable thoriated elements in this design are **E5 and E8** (N = 1.7737, V = 49.2). This glass occupies a position on the Abbe diagram (high index, moderately low dispersion) that was historically the primary domain of thoriated lanthanum crowns. No exact match for this glass exists in modern thorium-free catalogs, which explains why Canon needed to redesign the lens with an additional element when thoriated glass was phased out.
+If the reports are correct, **E5 and E8** (N = 1.7737, V = 49.2) are the natural candidates, because that pair sits in the high-index, low-dispersion region where such melts were used and it is the only glass in the prescription with no current catalog equivalent. This is an inference from the glass map, not evidence; the patent does not explain why later versions were redesigned with an additional element.
 
 ### Economic glass pairing
 
-The repeated use of N₅ = N₈ = 1.7737 (the same dense lanthanum crown in both Element 5 and the cemented rear of Element 8) reduces the number of distinct glass types in the bill of materials from nine to eight. This is a practical manufacturing consideration that would have been important in the early 1970s Canon production environment.
+The repeated use of N₅ = N₈ = 1.7737 (the same dense lanthanum crown in both Element 5 and the cemented rear of Element 8) reduces the number of distinct glass types in the prescription from nine to eight.
 
 ### Summary table of glass families
 
 | Element | N | V | Code | Family | Role |
 |---|---|---|---|---|---|
-| E1 | 1.697 | 48.5 | 697485 | Lanthanum/barium crown | Moderate n, low dispersion |
-| E2 | 1.516 | 64.0 | 516640 | Borosilicate crown (BK7) | Low n, very low dispersion |
-| E3 | 1.702 | 41.1 | 702411 | Barium flint | Field correction |
-| E4 | 1.700 | 48.0 | S-LAM51 | Lanthanum glass | Positive power with low dispersion |
-| E5 | 1.774 | 49.2 | 774492 | Dense lanthanum crown (prob. thoriated) | High n, low dispersion |
-| E6 | 1.762 | 26.5 | 762265 | Dense barium flint | Strong chromatic corrector |
-| E7 | 1.805 | 25.4 | 805254 | Dense flint (SF6, exact match) | Achromatic doublet flint |
-| E8 | 1.774 | 49.2 | 774492 | Dense lanthanum crown (prob. thoriated) | Achromatic doublet crown |
-| E9 | 1.806 | 40.8 | 806408 | Dense lanthanum flint | High n, moderate dispersion |
+| E1 | 1.697 | 48.5 | 697485 | Lanthanum glass (S-LAM59 equivalent) | Moderate n, low dispersion |
+| E2 | 1.516 | 64.0 | 516640 | Borosilicate crown (BK7 type, S-BSL7 equivalent) | Low n, very low dispersion |
+| E3 | 1.702 | 41.1 | 702411 | Dense barium flint (BASF7 equivalent) | Field correction |
+| E4 | 1.700 | 48.0 | 700480 | Lanthanum glass (S-LAM51 equivalent) | Positive power with low dispersion |
+| E5 | 1.774 | 49.2 | 774492 | Dense lanthanum crown (no catalog equivalent) | High n, low dispersion |
+| E6 | 1.762 | 26.5 | 762265 | Dense flint (SF14 type, S-TIH14 equivalent) | Strong chromatic corrector |
+| E7 | 1.805 | 25.4 | 805254 | Dense flint (SF6 type, S-TIH6 equivalent) | Achromatic doublet flint |
+| E8 | 1.774 | 49.2 | 774492 | Dense lanthanum crown (no catalog equivalent) | Achromatic doublet crown |
+| E9 | 1.806 | 40.8 | 806408 | Dense lanthanum flint (S-LAH53 equivalent) | High n, moderate dispersion |
 
 ---
 
@@ -372,4 +376,4 @@ The correct assignment was verified computationally: the group powers match the 
 
 1. US Patent 3,748,022 — Tajima, A. "Reverse Telephoto Type Lens Prevented from the Deterioration of Image at the Time of Close Shot." Canon Kabushiki Kaisha. Filed March 3, 1972; granted July 24, 1973.
 2. Canon Camera Museum. "FD35mm f/2 S.S.C. (I)." Product page with confirmed specifications (9 elements, 8 groups; MFD 0.3 m; max magnification 0.194×; marketed March 1973). https://global.canon/en/c-museum/product/fd142.html
-3. Schott AG. *Optical Glass Pocket Catalog.* Glass code 805254 (SF6 / N-SF6). Confirmed match for N₇ = 1.80518, V₇ = 25.4.
+3. Schott AG. *Optical Glass Pocket Catalog.* Glass code 805254 (SF6 / N-SF6), the coordinate of N₇ = 1.80518, V₇ = 25.4; OHARA S-TIH6 is the same coordinate.
