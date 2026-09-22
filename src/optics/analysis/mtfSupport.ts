@@ -66,6 +66,9 @@ export function assessMtfSupport(state: PreparedOpticalState, options: MtfOption
   if (mixed) support.limitations.push("Reference indices use compatible catalog dispersion at the d line.");
   if (options.spectrum !== "reference")
     return reject("spectral-data-unavailable", "Spectral MTF is not available yet.");
-  if (options.method !== "geometric") return reject("method-unavailable", "Diffraction MTF is not available yet.");
+  if (options.method === "diffraction")
+    support.limitations.push(
+      "Scalar FFT: image-ray incidence ≤15°, direction-cosine pupil radius ≤0.25, blur ≤2% of reference radius; other states are unavailable.",
+    );
   return support;
 }

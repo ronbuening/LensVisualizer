@@ -4,6 +4,7 @@ import type { PreparedOpticalState } from "../types.js";
 import { assessMtfSupport, MTF_CONVERGENCE_TOLERANCE, MTF_FIELDS, MTF_FREQUENCIES } from "./mtfSupport.js";
 import { geometricOtf, otfMagnitude } from "./mtfMath.js";
 import { traceMtfPupil } from "./mtfTracing.js";
+import { pupilOtf, reconstructMtfPupil } from "./mtfDiffraction.js";
 
 export function emptyMtfField(fieldFraction: number): MtfFieldResult {
   return {
@@ -37,7 +38,7 @@ export function* computeMtfSteps(state: PreparedOpticalState, options: MtfOption
     let previous: MtfFieldResult | null = null;
     const index = result.fields.length;
     result.fields.push(emptyMtfField(fraction));
-    for (let size = 16; size <= (options.maxGridSize ?? 128); size *= 2) {
+    for (let size = options.method === "diffraction" ? 32 : 16; size <= (options.maxGridSize ?? 128); size *= 2) {
       const field = emptyMtfField(fraction);
       field.gridSize = size;
       const bundle = traceMtfPupil(state, options, support, fraction, size);
@@ -56,8 +57,24 @@ export function* computeMtfSteps(state: PreparedOpticalState, options: MtfOption
       }
       // A single common translation improves numerical conditioning without changing monochromatic MTF.
       const points = bundle.rays.map((p) => ({ ...p, x: p.x - bundle.chief.x, y: p.y - bundle.chief.y }));
-      field.sagittal = otfMagnitude(geometricOtf(points, result.frequenciesPerMm, "x"));
-      field.tangential = otfMagnitude(geometricOtf(points, result.frequenciesPerMm, "y"));
+      if (options.method === "diffraction") {
+        const reconstruction = reconstructMtfPupil(state, bundle, support.referenceWavelengthNm * 1e-6);
+        if (!reconstruction.pupil) {
+          field.reason = "diffraction-domain";
+          field.message = reconstruction.message;
+          if (reconstruction.refine) {
+            yield result;
+            continue;
+          }
+          break;
+        }
+        const otf = pupilOtf(reconstruction.pupil, support.referenceWavelengthNm * 1e-6, result.frequenciesPerMm);
+        field.sagittal = otfMagnitude(otf.sagittal);
+        field.tangential = otfMagnitude(otf.tangential);
+      } else {
+        field.sagittal = otfMagnitude(geometricOtf(points, result.frequenciesPerMm, "x"));
+        field.tangential = otfMagnitude(geometricOtf(points, result.frequenciesPerMm, "y"));
+      }
       field.reason = null;
       field.maxDelta = previous
         ? Math.max(

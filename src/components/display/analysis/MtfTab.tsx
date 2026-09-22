@@ -91,9 +91,7 @@ export default function MtfTab({
             onChange={(e) => setMethod(e.target.value as MtfMethod)}
           >
             <option value="geometric">Geometric</option>
-            <option value="diffraction" disabled>
-              Diffraction (coming later)
-            </option>
+            <option value="diffraction">Scalar diffraction</option>
           </select>
         </label>
         <label>

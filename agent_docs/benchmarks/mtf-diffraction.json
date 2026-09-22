@@ -1,0 +1,178 @@
+{
+  "createdAt": "2026-09-22T18:43:09.800Z",
+  "commit": "a8217af15cd3743020d1b74acb9aa9487433f9e2",
+  "node": "v24.15.0",
+  "cpu": "Apple M4 Pro",
+  "method": "diffraction",
+  "spectrum": "reference",
+  "rows": [
+    {
+      "key": "canon-serenar-50f18",
+      "maxGridSize": 32,
+      "medianMs": 16.42,
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "status": "unavailable",
+          "reason": "diffraction-domain",
+          "gridSize": 32,
+          "maxDelta": null
+        },
+        {
+          "fieldFraction": 0.5,
+          "status": "unavailable",
+          "reason": "diffraction-domain",
+          "gridSize": 32,
+          "maxDelta": null
+        },
+        {
+          "fieldFraction": 1,
+          "status": "unavailable",
+          "reason": "trace-failed",
+          "gridSize": 32,
+          "maxDelta": null
+        }
+      ]
+    },
+    {
+      "key": "canon-serenar-50f18",
+      "maxGridSize": 64,
+      "medianMs": 13.4,
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "status": "unavailable",
+          "reason": "diffraction-domain",
+          "gridSize": 32,
+          "maxDelta": null
+        },
+        {
+          "fieldFraction": 0.5,
+          "status": "unavailable",
+          "reason": "diffraction-domain",
+          "gridSize": 32,
+          "maxDelta": null
+        },
+        {
+          "fieldFraction": 1,
+          "status": "unavailable",
+          "reason": "trace-failed",
+          "gridSize": 32,
+          "maxDelta": null
+        }
+      ]
+    },
+    {
+      "key": "canon-serenar-50f18",
+      "maxGridSize": 128,
+      "medianMs": 12.48,
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "status": "unavailable",
+          "reason": "diffraction-domain",
+          "gridSize": 32,
+          "maxDelta": null
+        },
+        {
+          "fieldFraction": 0.5,
+          "status": "unavailable",
+          "reason": "diffraction-domain",
+          "gridSize": 32,
+          "maxDelta": null
+        },
+        {
+          "fieldFraction": 1,
+          "status": "unavailable",
+          "reason": "trace-failed",
+          "gridSize": 32,
+          "maxDelta": null
+        }
+      ]
+    },
+    {
+      "key": "sony-fe-24-70mm-f28-gm-ii",
+      "maxGridSize": 32,
+      "medianMs": 85.3,
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "status": "unconverged",
+          "reason": null,
+          "gridSize": 32,
+          "maxDelta": null
+        },
+        {
+          "fieldFraction": 0.5,
+          "status": "unavailable",
+          "reason": "diffraction-domain",
+          "gridSize": 32,
+          "maxDelta": null
+        },
+        {
+          "fieldFraction": 1,
+          "status": "unavailable",
+          "reason": "diffraction-domain",
+          "gridSize": 32,
+          "maxDelta": null
+        }
+      ]
+    },
+    {
+      "key": "sony-fe-24-70mm-f28-gm-ii",
+      "maxGridSize": 64,
+      "medianMs": 299.64,
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 64,
+          "maxDelta": 0.004771337981385182
+        },
+        {
+          "fieldFraction": 0.5,
+          "status": "unconverged",
+          "reason": null,
+          "gridSize": 64,
+          "maxDelta": null
+        },
+        {
+          "fieldFraction": 1,
+          "status": "unavailable",
+          "reason": "diffraction-domain",
+          "gridSize": 32,
+          "maxDelta": null
+        }
+      ]
+    },
+    {
+      "key": "sony-fe-24-70mm-f28-gm-ii",
+      "maxGridSize": 128,
+      "medianMs": 743.07,
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 64,
+          "maxDelta": 0.004771337981385182
+        },
+        {
+          "fieldFraction": 0.5,
+          "status": "unconverged",
+          "reason": null,
+          "gridSize": 128,
+          "maxDelta": 0.011505540248711643
+        },
+        {
+          "fieldFraction": 1,
+          "status": "unavailable",
+          "reason": "diffraction-domain",
+          "gridSize": 32,
+          "maxDelta": null
+        }
+      ]
+    }
+  ]
+}
