@@ -122,7 +122,7 @@ Batch 91–100 adds: lens 91 rims are estimates, its figure is schematic between
 prints without a decimal point (read 4.18583e-6), and Examples 1, 2, 4, 5 and 8 share its layout; lens 92 was rebuilt
 from Example 1 to match Ricoh's 9-element / 2-asphere spec, but Ricoh's "special low-dispersion lens" appears only in
 the 10-element Examples 4–5, its plate-to-image distance is derived, and L2 (806404) has no catalog Sellmeier; lens
-93 publishes no effective diameters (rims kept within 23 % of the figure); lens 94 counts the 1.00 mm Lp2 (BR) layer
+93 publishes no effective diameters (rims resized to FIG. 3 after review; S7 and S23 are gap-limited); lens 94 counts the 1.00 mm Lp2 (BR) layer
 as a patent element (14 vs Canon's 13), no example reproduces production f/1.2, and BR/UD identities are inferred;
 lens 95 Example 2 as Version I/II is an inference and focus is modeled at the 0.7 m coupled limit; lens 96 publishes
 no close-focus gaps (focus not modeled); lens 97 L5/L6/L8 have no catalog match, the image-circle proxy still flags
