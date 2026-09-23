@@ -12,25 +12,30 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    Not unit focus (only a subunit moves, not the entire lens).    ║
  * ║                                                                    ║
  * ║  NOTE ON PRESCRIPTION:                                             ║
- * ║    Patent text for Example 2 contains OCR-corrupted radii at      ║
- * ║    surfaces 14–18. Corrected values recovered from rasterized     ║
- * ║    patent PDF at 400 DPI. Corrected prescription reproduces all   ║
- * ║    patent-stated parameters: EFL = 51.10 mm, BFD = 14.60 mm,     ║
- * ║    total track = 111.01 mm, all element/group focal lengths,      ║
- * ║    and all Table 1 conditional expressions.                        ║
+ * ║    All 25 rows, the three K = 0 aspheres and d19 were re-read     ║
+ * ║    from the printed Numerical Data 2 table (PDF pp. 16–17). The    ║
+ * ║    printed table is correct; machine-text copies of it misread    ║
+ * ║    r14–r18 as Example 3's values. Paraxial EFL 51.10 mm, BF        ║
+ * ║    14.60 mm and TL 111.01 mm reproduce the patent. The patent     ║
+ * ║    lists no filter/cover plate; BF 14.60 is stored as the last    ║
+ * ║    air gap. FNo is the patent's 1.25 (marketed f/1.2).            ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    Estimated via combined marginal + chief ray trace at            ║
- * ║    offAxisFieldFrac = 0.60 with ~8–10% mechanical clearance.      ║
- * ║    Front element SD constrained by edge thickness (biconvex       ║
- * ║    R1=80.1/R2=−68.2 limits practical SD to ~25.5 mm despite      ║
- * ║    77 mm filter thread). Values are diagram-refined so G3 reads  ║
- * ║    smaller than D1, the first rear doublet is not undersized,    ║
- * ║    and the rear field doublet reads fuller in the manufacturer   ║
- * ║    section while preserving its tight front air-gap clearance.   ║
- * ║    Gap 7 (d=7.45 mm between G4 and G5) remains the binding       ║
- * ║    cross-gap constraint, limiting the G4 rear boundary to        ║
- * ║    ~15.4 mm while G5 keeps the larger clear aperture.            ║
+ * ║    The patent publishes no effective diameters. Values are        ║
+ * ║    estimates checked against FIG. 3 (PDF p. 4, 300 dpi; scale     ║
+ * ║    0.0753 mm/px from the 96.41 mm S1–S25 span) and an exact       ║
+ * ║    real-ray trace at f/1.25, Y = 21.64 mm, infinity and closest   ║
+ * ║    focus. FIG. 3 draws rims only ~1 mm outside the f/1.25 axial   ║
+ * ║    beam; other stored rims are up to ~23 % fuller (below the      ║
+ * ║    25 % figure-change threshold, retained).                       ║
+ * ║    S7 = 16.0 mm: the f/1.25 axial beam needs 15.61 mm; FIG. 3      ║
+ * ║    draws G4's rear face meeting G5's front face near 16.3 mm.     ║
+ * ║    The 7.45 mm gap then carries 0.24 mm rim clearance, which      ║
+ * ║    needs gapSagFrac 0.97.                                          ║
+ * ║    S25A = 17.1 mm: the asphere's sag reaches an extremum at       ║
+ * ║    16.3 mm (a gentle inflection, not divergence); the corner      ║
+ * ║    chief ray needs 16.18 mm at infinity and 16.86 mm at closest   ║
+ * ║    focus. S24 = 19.2 mm follows FIG. 3's G14/G15 rim.             ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -104,8 +109,8 @@ const LENS_DATA = {
       vd: 29.13,
       fl: 42.8,
       glass: "S-LAH99 (OHARA catalog-equivalent to patent 001291; supplier not identified)",
-      apd: "inferred",
-      apdNote: "Patent-listed ΔθgF = +0.0050.",
+      apd: false,
+      apdNote: "Patent-listed ΔθgF = +0.0050 (ordinary dense-flint deviation, not anomalous).",
       dPgF: 0.005,
       role: "Primary converging element; ultra-high refractive index enables strong power with moderate curvature. Near-plano rear surface (R₂ ≈ 2511 mm).",
     },
@@ -146,7 +151,7 @@ const LENS_DATA = {
       nd: 1.95375,
       vd: 32.32,
       fl: 38.91,
-      glass: "954323 — ultra-high-index dense flint (nd=1.95375, νd=32.32)",
+      glass: "S-LAH98 (OHARA catalog equivalent to patent 954323; supplier not identified)",
       apd: false,
       apdNote: "",
       dPgF: 0.0009,
@@ -176,7 +181,7 @@ const LENS_DATA = {
       nd: 1.738,
       vd: 32.26,
       fl: -26.19,
-      glass: "738323 — niobium dense flint (nd=1.73800, νd=32.26)",
+      glass: "S-NBH53 (OHARA catalog equivalent to patent 738323; supplier not identified)",
       apd: false,
       apdNote: "",
       dPgF: 0.0006,
@@ -191,7 +196,7 @@ const LENS_DATA = {
       nd: 1.76385,
       vd: 48.51,
       fl: 38.96,
-      glass: "764485 — lanthanum crown (nd=1.76385, νd=48.51)",
+      glass: "S-LAH96 (OHARA catalog equivalent to patent 764485; supplier not identified)",
       apd: false,
       apdNote: "",
       dPgF: -0.0041,
@@ -303,7 +308,7 @@ const LENS_DATA = {
 
     // Singlet G4
     { label: "6", R: 99.979, d: 1.6, nd: 1.65412, elemId: 4, sd: 19.0 }, // G4 front
-    { label: "7", R: 24.508, d: 7.45, nd: 1.0, elemId: 0, sd: 15.4 }, // G4 rear → air
+    { label: "7", R: 24.508, d: 7.45, nd: 1.0, elemId: 0, sd: 16.0 }, // G4 rear → air (rim meets G5 front near 16.3 mm)
 
     // Cemented doublet D2: G5 + G6
     { label: "8", R: -101.919, d: 1.34, nd: 1.66565, elemId: 5, sd: 16.5 }, // G5 front
@@ -335,8 +340,8 @@ const LENS_DATA = {
 
     // Cemented doublet D6: G14 + G15
     { label: "23", R: -58.17, d: 1.21, nd: 1.673, elemId: 14, sd: 17.1 }, // G14 front
-    { label: "24", R: 105.985, d: 5.08, nd: 1.804, elemId: 15, sd: 21.5 }, // G14→G15 junction
-    { label: "25A", R: -216.191, d: 14.6, nd: 1.0, elemId: 0, sd: 21.5 }, // G15 rear (asph) → air (BFD)
+    { label: "24", R: 105.985, d: 5.08, nd: 1.804, elemId: 15, sd: 19.2 }, // G14→G15 junction
+    { label: "25A", R: -216.191, d: 14.6, nd: 1.0, elemId: 0, sd: 17.1 }, // G15 rear (asph) → air (patent BF 14.60)
   ],
 
   /* ── Aspherical coefficients ── */
@@ -374,12 +379,13 @@ const LENS_DATA = {
   var: {
     "19": [1.95, 16.11],
   },
-  varLabels: [["19", "BF"]],
+  varLabels: [["19", "D19"]],
 
   /* ── Group and doublet annotations ── */
   groups: [
-    { text: "FRONT (LF)", fromSurface: "1A", toSurface: "10" },
-    { text: "REAR (LR)", fromSurface: "12", toSurface: "25A" },
+    // Patent focus units (FIG. 3 L1/L2 brackets); the optical halves LF (1A–10) and LR (12–25A) are described in prose.
+    { text: "L1 (FOCUS)", fromSurface: "1A", toSurface: "19" },
+    { text: "L2 (FIXED)", fromSurface: "20", toSurface: "25A" },
   ],
   doublets: [
     { text: "D1", fromSurface: "1A", toSurface: "3" },
@@ -396,11 +402,12 @@ const LENS_DATA = {
     "Front-group extension focus: L1 (G1–G11 + stop) translates toward object; L2 (G12–G15) stationary. Single variable gap (d19); BFD constant. Ring-type USM.",
 
   /* ── Aperture ── */
-  nominalFno: 1.2,
-  fstopSeries: [1.2, 1.4, 1.8, 2, 2.5, 2.8, 4, 5.6, 8, 11, 16],
+  nominalFno: 1.25,
+  fstopSeries: [1.25, 1.4, 1.8, 2, 2.5, 2.8, 4, 5.6, 8, 11, 16],
   apertureBlades: 10,
 
   /* ── Layout tuning ── */
+  gapSagFrac: 0.97, // S7/S8 rims nearly touch in FIG. 3; the f/1.25 axial beam needs S7 = 15.61 mm
   scFill: 0.5,
   yScFill: 0.38,
 } satisfies LensDataInput;

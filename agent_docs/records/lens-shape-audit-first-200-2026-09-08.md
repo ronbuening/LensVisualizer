@@ -39,8 +39,8 @@ Lenses 1–40 were completed 2026-09-08/09 (see git history). The audit resumed 
   distinctions. Catalog-compatible glass does not establish production supplier or APD. Missing finite-focus tables
   do not authorize invented travel. Published physical iris schedules use `zoomStopSemiDiameters`; inferred
   nominal-f-number schedules use `zoomApertureModel`, never both.
-- User-facing changelog: one consolidated entry per PR (2026-09-22 covers lenses 41–60). Add the next one when the
-  following batches are delivered.
+- User-facing changelog: one consolidated entry per PR (2026-09-22 covers lenses 41–60, 2026-09-23 covers 61–100).
+  Add the next one when the following batches are delivered. The next batch is 101–110.
 
 ### Open limitations to carry forward
 
@@ -117,6 +117,20 @@ patent's preferred method); lens 88 publishes no effective diameters, its 14.70�
 14.42°), and its IS group is undisclosed; lens 89 prose [0068] contradicts its gap table (table used) and close
 spacings and wide/mid irises are calculated; lens 90 labels its near state β = −1/10 while its gaps focus at
 β = −0.033 (1.28 m, kept), group focal lengths run 0.2–0.4 % long against its group table, and L21 is unidentified.
+
+Batch 91–100 adds: lens 91 rims are estimates, its figure is schematic between L1/L2 and L6/L7, surface 13's A6
+prints without a decimal point (read 4.18583e-6), and Examples 1, 2, 4, 5 and 8 share its layout; lens 92 was rebuilt
+from Example 1 to match Ricoh's 9-element / 2-asphere spec, but Ricoh's "special low-dispersion lens" appears only in
+the 10-element Examples 4–5, its plate-to-image distance is derived, and L2 (806404) has no catalog Sellmeier; lens
+93 publishes no effective diameters (rims kept within 23 % of the figure); lens 94 counts the 1.00 mm Lp2 (BR) layer
+as a patent element (14 vs Canon's 13), no example reproduces production f/1.2, and BR/UD identities are inferred;
+lens 95 Example 2 as Version I/II is an inference and focus is modeled at the 0.7 m coupled limit; lens 96 publishes
+no close-focus gaps (focus not modeled); lens 97 L5/L6/L8 have no catalog match, the image-circle proxy still flags
+S12 (exact chief ray clears 6.78 < 7.5), and production specs are secondary; lens 98 stop position comes from figures
+the patent says are not to scale and floating correction is not modeled; lens 99 iris radii are inferred and G4 is
+drawn 10–15 % over the figure; lens 100's field-angle row and condition (8) contradict its own focal lengths (source
+error) and the near state is calculated at 1.00 m against production 1.1 m. Lenses 91 and 97 use rectilinear
+`projection` overrides to state the patent's coverage.
 
 ### Audit-test cleanup at the 1–40 delivery (2026-09-09)
 
@@ -222,16 +236,16 @@ Final checks passed after audit-test removal: typecheck, format check, lint and 
 | 88 | canon-rf-85f2-macro | 2026-04-20T12:47:42.000Z | `src/lens-data/canon/CanonRF85mmf2Macro.data.ts` | Reviewed and committed; see source limitations |
 | 89 | canon-rf-24-105-f4-l | 2026-04-21T11:45:28.000Z | `src/lens-data/canon/CanonRF24105mmf4L.data.ts` | Reviewed and committed; see source limitations |
 | 90 | nikkor-z-40f2 | 2026-04-21T11:45:28.000Z | `src/lens-data/nikon/NikonNikkorZ40mmf2.data.ts` | Reviewed and committed; see source limitations |
-| 91 | ricoh-gr-18p3-f2p8 | 2026-04-21T11:45:28.000Z | `src/lens-data/ricoh/RicohGR218mmf28.data.ts` | Pending |
-| 92 | ricoh-gxr-a12-18f25 | 2026-04-21T11:45:28.000Z | `src/lens-data/ricoh/RicohGXRA1218mmf25.data.ts` | Pending |
-| 93 | canon-rf-50-f12-l | 2026-04-22T14:48:34.000Z | `src/lens-data/canon/CanonRF50mmf12L.data.ts` | Pending |
-| 94 | canon-rf-85f12l | 2026-04-22T14:48:34.000Z | `src/lens-data/canon/CanonRF85mmf12L.data.ts` | Pending |
-| 95 | voigtlander-nokton-35-f12 | 2026-04-22T14:48:34.000Z | `src/lens-data/voigtlander/VoigtlanderNokton35mmf12.data.ts` | Pending |
-| 96 | canon-rf24-105f28z | 2026-04-23T11:45:28.000Z | `src/lens-data/canon/CanonRF24105mmf28Z.data.ts` | Pending |
-| 97 | zeiss-biogon-21-f45 | 2026-04-23T11:45:28.000Z | `src/lens-data/carl-zeiss-oberkochen/ZeissBiogon21mmf45.data.ts` | Pending |
-| 98 | zeiss-distagon-35f14 | 2026-04-23T11:45:28.000Z | `src/lens-data/carl-zeiss-oberkochen/ZeissDistagon35mmf14.data.ts` | Pending |
-| 99 | nikkor-afs-24-70-f28e-vr | 2026-04-23T15:49:22.000Z | `src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts` | Pending |
-| 100 | nikon-afs-70-200-f28e-fl | 2026-04-23T15:49:22.000Z | `src/lens-data/nikon/NikonNikkorAFS70200mmf28E.data.ts` | Pending |
+| 91 | ricoh-gr-18p3-f2p8 | 2026-04-21T11:45:28.000Z | `src/lens-data/ricoh/RicohGR218mmf28.data.ts` | Reviewed and committed; see source limitations |
+| 92 | ricoh-gxr-a12-18f25 | 2026-04-21T11:45:28.000Z | `src/lens-data/ricoh/RicohGXRA1218mmf25.data.ts` | Reviewed and committed; see source limitations |
+| 93 | canon-rf-50-f12-l | 2026-04-22T14:48:34.000Z | `src/lens-data/canon/CanonRF50mmf12L.data.ts` | Reviewed and committed; see source limitations |
+| 94 | canon-rf-85f12l | 2026-04-22T14:48:34.000Z | `src/lens-data/canon/CanonRF85mmf12L.data.ts` | Reviewed and committed; see source limitations |
+| 95 | voigtlander-nokton-35-f12 | 2026-04-22T14:48:34.000Z | `src/lens-data/voigtlander/VoigtlanderNokton35mmf12.data.ts` | Reviewed and committed; see source limitations |
+| 96 | canon-rf24-105f28z | 2026-04-23T11:45:28.000Z | `src/lens-data/canon/CanonRF24105mmf28Z.data.ts` | Reviewed and committed; see source limitations |
+| 97 | zeiss-biogon-21-f45 | 2026-04-23T11:45:28.000Z | `src/lens-data/carl-zeiss-oberkochen/ZeissBiogon21mmf45.data.ts` | Reviewed and committed; see source limitations |
+| 98 | zeiss-distagon-35f14 | 2026-04-23T11:45:28.000Z | `src/lens-data/carl-zeiss-oberkochen/ZeissDistagon35mmf14.data.ts` | Reviewed and committed; see source limitations |
+| 99 | nikkor-afs-24-70-f28e-vr | 2026-04-23T15:49:22.000Z | `src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts` | Reviewed and committed; see source limitations |
+| 100 | nikon-afs-70-200-f28e-fl | 2026-04-23T15:49:22.000Z | `src/lens-data/nikon/NikonNikkorAFS70200mmf28E.data.ts` | Reviewed and committed; see source limitations |
 | 101 | nikon-afs-80-400-f45-56g | 2026-04-23T15:49:22.000Z | `src/lens-data/nikon/NikonNikkorAFS80400mmf4556G.data.ts` | Pending |
 | 102 | zeiss-hologon-15f8 | 2026-04-24T11:42:52.000Z | `src/lens-data/carl-zeiss-oberkochen/ZeissHologon15mmf8.data.ts` | Pending |
 | 103 | olympus-zuiko-auto-s-50f12 | 2026-04-24T11:44:28.000Z | `src/lens-data/olympus/OlympusZuikoAutoS50mmf12.data.ts` | Pending |

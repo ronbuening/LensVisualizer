@@ -9,10 +9,10 @@ or per-lens patent backfills.
 ## Summary
 
 - **810** lenses scanned
-- **9063** non-air surfaces examined
-- **9073** element glass declarations examined
-- **233** non-explicit-unmatched annotations did not resolve
-- **120** distinct unresolved glass-like tokens found
+- **9064** non-air surfaces examined
+- **9074** element glass declarations examined
+- **234** non-explicit-unmatched annotations did not resolve
+- **121** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -55,8 +55,8 @@ or per-lens patent backfills.
 | 534556 | 1 | 1 | |
 | 545486 | 1 | 1 | |
 | 554381 | 1 | 1 | |
-| 561575 | 1 | 1 | |
 | 570481 | 1 | 1 | |
+| 570575 | 1 | 1 | |
 | 571560 | 1 | 1 | |
 | 585417 | 1 | 1 | |
 | 593348 | 1 | 1 | |
@@ -116,6 +116,7 @@ or per-lens patent backfills.
 | 803405 | 1 | 1 | |
 | 803456 | 1 | 1 | |
 | 805410 | 1 | 1 | |
+| 806404 | 1 | 1 | |
 | 835447 | 1 | 1 | |
 | 840433 | 1 | 1 | |
 | 866450 | 1 | 1 | |
@@ -328,13 +329,13 @@ or per-lens patent backfills.
 
 - [NIKON AF-S NIKKOR 14-24mm f/2.8 G ED](../../src/lens-data/nikon/NikonNikkorAFS1424mmf28.data.ts) 6: `554381 — hybrid-asphere resin layer (inferred; patent nd=1.55389, νd=38.09; not catalog glass)`
 
-### 561575 — 1 occurrence
-
-- [CARL ZEISS BIOGON 21mm f/4.5](../../src/lens-data/carl-zeiss-oberkochen/ZeissBiogon21mmf45.data.ts) 8: `BaK/SK crown (561/575)`
-
 ### 570481 — 1 occurrence
 
 - [AGFA COLOR-TELINEAR 90mm f/4](../../src/lens-data/agfa/AgfaColorTelinear90mmf4.data.ts) 4: `KzF4 class (Schott-Jena legacy short flint, 570/481)`
+
+### 570575 — 1 occurrence
+
+- [CARL ZEISS BIOGON 21mm f/4.5](../../src/lens-data/carl-zeiss-oberkochen/ZeissBiogon21mmf45.data.ts) 8: `570575 — BaK-type barium crown (no exact catalog match)`
 
 ### 571560 — 1 occurrence
 
@@ -386,7 +387,7 @@ or per-lens patent backfills.
 
 ### 625533 — 1 occurrence
 
-- [CARL ZEISS BIOGON 21mm f/4.5](../../src/lens-data/carl-zeiss-oberkochen/ZeissBiogon21mmf45.data.ts) 9: `SK-type dense crown (625/533)`
+- [CARL ZEISS BIOGON 21mm f/4.5](../../src/lens-data/carl-zeiss-oberkochen/ZeissBiogon21mmf45.data.ts) 9: `625533 — SSK-type dense crown (no exact catalog match)`
 
 ### 630346 — 1 occurrence
 
@@ -571,6 +572,10 @@ or per-lens patent backfills.
 ### 805410 — 1 occurrence
 
 - [MINOLTA AF 35-105mm f/3.5-4.5 New (v2)](../../src/lens-data/minolta/MinoltaAF35105mmf3545v2.data.ts) 22: `805410 - dense lanthanum-flint / LASF-class glass (unresolved)`
+
+### 806404 — 1 occurrence
+
+- [RICOH GR LENS A12 28mm f/2.5 (Ricoh GXR A12)](../../src/lens-data/ricoh/RicohGXRA1218mmf25.data.ts) 3A: `806404 — lanthanum flint (catalog unresolved; nd 1.8061, νd 40.4)`
 
 ### 835447 — 1 occurrence
 
