@@ -4,26 +4,34 @@ import type { LensDataInput } from "../../types/optics.js";
  * ╔══════════════════════════════════════════════════════════════════════╗
  * ║           LENS DATA — Canon Serenar 85mm f/1.5                     ║
  * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Data source: US 2,645,973 Example 1 (Hiroshi Ito / Canon).       ║
- * ║  Modified double-Gauss with cemented triplet front meniscus.       ║
+ * ║  Data source: US 2,645,973 Example 1 (Fig. 1) — Hiroshi Ito /     ║
+ * ║  Canon. Modified double-Gauss, cemented triplet front meniscus.   ║
  * ║  7 elements / 4 groups, 0 aspherical surfaces.                    ║
  * ║  Focus: unit focusing (entire lens moves).                        ║
  * ║                                                                    ║
  * ║  NOTE ON SCALING:                                                  ║
- * ║    Patent at f = 1.00; all R, d, sd values scaled ×85 to match    ║
- * ║    the production 85 mm focal length.                              ║
+ * ║    Patent at f = 1.00 (traced EFL 1.0001); all R, d and sd values ║
+ * ║    scaled ×85, giving EFL 85.005 mm and BFD 44.79 mm. Every d,     ║
+ * ║    including d₂ = 0.002 → 0.17 mm, is the patent value × 85.       ║
  * ║                                                                    ║
- * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    SDs estimated from paraxial marginal ray trace at f/1.5 with   ║
- * ║    8–10% mechanical clearance. Front element constrained by 58 mm ║
- * ║    filter thread (max glass OD ≈ 54 mm). Cemented junction SDs    ║
- * ║    constrained to ≤ 1.25 ratio between adjacent surfaces and by   ║
- * ║    sd/|R| < 0.90 limit on the steeply curved r₆ surface.         ║
+ * ║  NOTE ON SEMI-DIAMETERS (2026-09-23 audit):                        ║
+ * ║    Not listed in the patent. Every surface passes the exact f/1.5 ║
+ * ║    axial marginal ray (entrance-pupil radius 28.3 mm) with ≥ 2 %   ║
+ * ║    margin, and the rims follow Fig. 1 measured at ≈8.7 px/mm:     ║
+ * ║    L1 ≈ 31, r₃–r₅ flat rim ≈ 26.7, r₆ ≈ 15.3, r₇ ≈ 13.0, L5–L6    ║
+ * ║    flat rim ≈ 17.8, L7 ≈ 18.3 mm. L1 is kept at 29.0 (58 mm        ║
+ * ║    filter / 62.5 mm barrel of the production lens) and r₇ at 15.6 ║
+ * ║    (the drawn 13 mm would clip the f/1.5 marginal ray).           ║
  * ║                                                                    ║
  * ║  NOTE ON STOP POSITION:                                            ║
- * ║    Patent does not specify exact iris location within the d₆ gap. ║
- * ║    STO position inferred from Fig. 1 iris placement — centered    ║
- * ║    in the gap, splitting d₆ = 16.15 mm into 8.075 + 8.075.       ║
+ * ║    The patent neither tabulates nor draws an iris (Fig. 1 shows   ║
+ * ║    glass only). STO placed at the centre of d₆, splitting         ║
+ * ║    16.15 mm into 8.075 + 8.075 — the canonical Gauss location.    ║
+ * ║                                                                    ║
+ * ║  NOTE ON CLOSE FOCUS:                                              ║
+ * ║    Patent publishes no close-focus state. The 1 m keyframe is a   ║
+ * ║    derived unit-focus extension (+8.58 mm) that places the object ║
+ * ║    1.0 m from the image plane (rangefinder convention).           ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -32,7 +40,7 @@ const LENS_DATA = {
   key: "canon-serenar-85f15",
   maker: "Canon",
   name: "CANON SERENAR 85mm f/1.5",
-  subtitle: "US 2,645,973 Example 1 — Hiroshi Ito / Canon",
+  subtitle: "US 2,645,973 Example 1 (Fig. 1) — Hiroshi Ito / Canon",
   specs: ["7 ELEMENTS / 4 GROUPS", "f ≈ 85.0 mm", "F/1.5", "2ω = 30°", "ALL SPHERICAL"],
   focalLengthMarketing: 85,
   focalLengthDesign: 85.0,
@@ -82,7 +90,7 @@ const LENS_DATA = {
       nd: 1.5163,
       vd: 64.0,
       fl: 94.7,
-      glass: "BK7 (Schott, ≈)",
+      glass: "S-BSL7 (OHARA)",
       apd: false,
       cemented: "T1",
       role: "Center element of the triplet — thick low-index crown spacer creating a large index difference at the L3–L4 junction for spherical aberration correction.",
@@ -142,19 +150,19 @@ const LENS_DATA = {
 
   /* ── Surface prescription ── */
   surfaces: [
-    { label: "1", R: 69.87, d: 8.925, nd: 1.6228, elemId: 1, sd: 27.0 },
-    { label: "2", R: 807.5, d: 0.5, nd: 1.0, elemId: 0, sd: 27.0 }, // d₂ widened from patent 0.17 to 0.50 mm to clear cross-gap sag at SD 27; optical impact negligible (ΔEFL < 0.2 mm)
-    { label: "3", R: 37.4, d: 7.225, nd: 1.6385, elemId: 2, sd: 27.0 },
-    { label: "4", R: 68.425, d: 16.15, nd: 1.5163, elemId: 3, sd: 24.0 },
-    { label: "5", R: -157.25, d: 1.7, nd: 1.6889, elemId: 4, sd: 20.0 },
+    { label: "1", R: 69.87, d: 8.925, nd: 1.6228, elemId: 1, sd: 29.0 },
+    { label: "2", R: 807.5, d: 0.17, nd: 1.0, elemId: 0, sd: 29.0 }, // patent d₂ = 0.002 × 85; r₂ and r₃ both recede toward the image, so the gap opens outward
+    { label: "3", R: 37.4, d: 7.225, nd: 1.6385, elemId: 2, sd: 26.5 },
+    { label: "4", R: 68.425, d: 16.15, nd: 1.5163, elemId: 3, sd: 26.5 },
+    { label: "5", R: -157.25, d: 1.7, nd: 1.6889, elemId: 4, sd: 26.5 },
     { label: "6", R: 21.42, d: 8.075, nd: 1.0, elemId: 0, sd: 16.5 },
-    // STO position inferred from Fig. 1 iris placement — centered in the d₆ gap.
+    // Iris neither tabulated nor drawn in the patent; placed at the centre of d₆.
     { label: "STO", R: 1e15, d: 8.075, nd: 1.0, elemId: 0, sd: 15.5 },
-    { label: "8", R: -26.35, d: 1.275, nd: 1.5317, elemId: 5, sd: 15.0 },
-    { label: "9", R: 48.62, d: 8.755, nd: 1.6584, elemId: 6, sd: 16.0 },
-    { label: "10", R: -37.4, d: 0.17, nd: 1.0, elemId: 0, sd: 16.5 },
-    { label: "11", R: 127.5, d: 5.1, nd: 1.6385, elemId: 7, sd: 16.5 },
-    { label: "12", R: -71.91, d: 44.63, nd: 1.0, elemId: 0, sd: 16.0 },
+    { label: "8", R: -26.35, d: 1.275, nd: 1.5317, elemId: 5, sd: 15.6 },
+    { label: "9", R: 48.62, d: 8.755, nd: 1.6584, elemId: 6, sd: 17.8 },
+    { label: "10", R: -37.4, d: 0.17, nd: 1.0, elemId: 0, sd: 17.8 },
+    { label: "11", R: 127.5, d: 5.1, nd: 1.6385, elemId: 7, sd: 18.2 },
+    { label: "12", R: -71.91, d: 44.79, nd: 1.0, elemId: 0, sd: 18.2 },
   ],
 
   /* ── Aspherical coefficients ── */
@@ -162,7 +170,7 @@ const LENS_DATA = {
 
   /* ── Variable air spacings (unit focus — only BFD changes) ── */
   var: {
-    "12": [44.63, 52.56],
+    "12": [44.79, 53.37],
   },
   varLabels: [["12", "BF"]],
 
@@ -180,7 +188,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 1.0,
-  focusDescription: "Unit focusing — entire optical assembly moves forward.",
+  focusDescription:
+    "Unit focusing — entire optical assembly moves forward. The 1 m keyframe is a derived extension (patent publishes no close state).",
 
   /* ── Aperture configuration ── */
   nominalFno: 1.5,

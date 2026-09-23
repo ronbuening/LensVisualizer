@@ -4,36 +4,42 @@ import type { LensDataInput } from "../../types/optics.js";
  * ╔══════════════════════════════════════════════════════════════════════════╗
  * ║           LENS DATA — NIKON NIKKOR Z 24-70mm f/4 S                     ║
  * ╠══════════════════════════════════════════════════════════════════════════╣
- * ║  Data source: WO2019/049372 A1, Example 1 (Nikon / Takeshi Umeda).    ║
+ * ║  Data source: WO 2019/049372 A1 (JP re-publication), Example 1,        ║
+ * ║  Table 1 (Nikon / Takeshi Umeda). Stored at native patent scale.       ║
  * ║  Positive-lead 5-group zoom: G1(+) G2(−) G3(+) G4(+) G5(−).         ║
  * ║  14 elements / 11 groups, 4 aspherical surfaces.                      ║
  * ║  Focus: internal focus via G4 (2 elements) moving toward object.      ║
  * ║                                                                        ║
  * ║  Zoom variable gaps: D3, D9 (zoom only).                              ║
  * ║  Focus variable gaps: D18, D22 (zoom + focus).                        ║
- * ║  BFD variable gap: D26 (zoom only, includes folded cover glass OPL).  ║
- * ║  All zoom gaps are monotonically varying — no reversing groups.        ║
- * ║  Total track: 121.6 mm (wide) to 151.0 mm (tele).                    ║
+ * ║  BFD variable gap: D26 (zoom only, air-equivalent patent BF).         ║
+ * ║  Zoom motion (Fig. 1A/1B arrows; positions from the Table 1 gaps):    ║
+ * ║    G1 +29.4 mm toward object; G3 and G5 +20.6 mm as one unit          ║
+ * ║    (D18 + L41/L42 + D22 = 20.04 mm at every station); G4 +14.3 mm;   ║
+ * ║    G2 REVERSES: 2.2 mm toward the image W→M, 2.0 mm back M→T.        ║
+ * ║  Patent TL 121.58–151.03 mm includes the 1.6 mm filter; the stored    ║
+ * ║  air-equivalent track is 121.04–150.48 mm.                            ║
  * ║                                                                        ║
  * ║  NOTE ON SEMI-DIAMETERS:                                               ║
- * ║    Patent does not provide semi-diameter data. SDs estimated via        ║
- * ║    combined marginal + chief ray traces at f/4 and full field angle    ║
- * ║    across all three zoom positions (envelope method), with 8-10%       ║
- * ║    mechanical clearance. Edge thickness (≥0.5 mm), cross-gap sag      ║
- * ║    overlap, and sd/|R| constraints applied. Front element SD           ║
- * ║    constrained by 72 mm filter thread (~34 mm max SD).                ║
- * ║    Refined against Nikon's production lens-construction diagram so    ║
- * ║    G2, G3, and rear-field clear apertures read closer to the shipped   ║
- * ║    optical section. Aspherical sag corrections included in ET          ║
- * ║    validation for S5A, S11A, S22A, S24A. Some beam clipping at         ║
- * ║    wide-end field edges is expected — Nikon applies digital            ║
- * ║    vignetting/distortion correction in-camera for this compact zoom    ║
- * ║    design.                                                            ║
+ * ║    Patent publishes no clear apertures. G3 (L31–L35), L41 and the     ║
+ * ║    optical extent of the L21 rear asphere (5A) follow rims measured   ║
+ * ║    on Fig. 1A (300 dpi raster, 0.2423 mm/px from the S1–S26 vertex    ║
+ * ║    span). The other rims are earlier ray-trace/filter-thread          ║
+ * ║    estimates that agree with Fig. 1A within about 15 %. Every rim     ║
+ * ║    clears the f/4 axial beam at all three stations; the wide-end      ║
+ * ║    corner bundle is partly vignetted, as the figure implies (the      ║
+ * ║    production lens corrects shading in camera).                       ║
+ * ║                                                                        ║
+ * ║  NOTE ON APERTURE:                                                     ║
+ * ║    FNo 4.00 at W/M/T with the stop riding in G3. The patent lists no   ║
+ * ║    iris diameters; zoomApertureModel infers the station radii from    ║
+ * ║    the nominal f-number (iris opens toward tele). STO sd records the  ║
+ * ║    largest (tele) inferred radius.                                    ║
  * ║                                                                        ║
  * ║  NOTE ON COVER GLASS:                                                  ║
- * ║    Patent surfaces 27-28 (filter, nd=1.51680, d=1.60) excluded.       ║
- * ║    Physical BFD from last lens surface to image (including filter      ║
- * ║    path) folded into S26 d value.                                      ║
+ * ║    Patent surfaces 27-28 (filter FL, nd=1.51680, d=1.60) excluded.    ║
+ * ║    D26 stores the patent's air-equivalent BF (15.013 / 27.941 /       ║
+ * ║    35.599 = D26 + 1.60/1.5168 + D28).                                 ║
  * ║                                                                        ║
  * ║  NOTE ON CONIC CONVENTION:                                              ║
  * ║    Patent uses κ in sag equation where K(standard) = κ − 1.           ║
@@ -144,8 +150,9 @@ const LENS_DATA = {
       vd: 71.7,
       fl: 42.7,
       glass: "M-FCD500 (HOYA catalog equivalent; production supplier unspecified)",
-      apd: "inferred",
-      apdNote: "νd = 71.7, fluorophosphate ED — Nikon's AS-ED designation (aspherical + ED in one element)",
+      apd: "patent",
+      apdNote:
+        "¶0031: the low-dispersion G3 lens satisfying condition (6) (Example 1 value νd3p = 71.6835, this element) gives G3 anomalous dispersion; Nikon markets it as the AS-ED element",
       role: "G3 lead — AS-ED element, post-stop spherical and axial chromatic aberration correction",
     },
     {
@@ -260,28 +267,28 @@ const LENS_DATA = {
 
     /* G2 — L21 (asph rear), L22, L23 */
     { label: "4", R: 400.0, d: 1.8, nd: 1.74353, elemId: 3, sd: 21.5 },
-    { label: "5A", R: 17.04241, d: 8.087, nd: 1.0, elemId: 0, sd: 16.7 }, // L21 rear (asph) → air
+    { label: "5A", R: 17.04241, d: 8.087, nd: 1.0, elemId: 0, sd: 14.4 }, // L21 rear (asph) → air; Fig. 1A curve end
     { label: "6", R: -181.13172, d: 1.35, nd: 1.755, elemId: 4, sd: 13.8 },
     { label: "7", R: 49.98466, d: 2.108, nd: 1.0, elemId: 0, sd: 13.5 },
     { label: "8", R: 37.80684, d: 3.693, nd: 2.00069, elemId: 5, sd: 14.5 },
     { label: "9", R: 235.22758, d: 23.69, nd: 1.0, elemId: 0, sd: 14.0 }, // D9 var — G2/G3 zoom gap
 
     /* Aperture stop — travels with G3 during zoom */
-    { label: "STO", R: 1e15, d: 1.5, nd: 1.0, elemId: 0, sd: 8.5 },
+    { label: "STO", R: 1e15, d: 1.5, nd: 1.0, elemId: 0, sd: 8.8 }, // largest inferred iris radius (tele, 8.758 mm)
 
     /* G3 — L31 (asph front), L32+L33 (cemented), L34+L35 (cemented) */
-    { label: "11A", R: 25.88353, d: 4.048, nd: 1.55332, elemId: 6, sd: 12.4 }, // L31 front (asph)
-    { label: "12", R: -254.63176, d: 0.8, nd: 1.0, elemId: 0, sd: 12.2 },
-    { label: "13", R: 52.19394, d: 1.0, nd: 1.83481, elemId: 7, sd: 10.8 }, // L32 front
-    { label: "14", R: 26.38369, d: 3.546, nd: 1.618, elemId: 8, sd: 10.8 }, // L32/L33 junction
-    { label: "15", R: -150.0, d: 3.743, nd: 1.0, elemId: 0, sd: 10.6 }, // L33 rear → air
-    { label: "16", R: -33.68615, d: 1.0, nd: 1.816, elemId: 9, sd: 10.0 }, // L34 front
-    { label: "17", R: 17.28639, d: 6.494, nd: 1.59319, elemId: 10, sd: 10.0 }, // L34/L35 junction
-    { label: "18", R: -23.04098, d: 4.579, nd: 1.0, elemId: 0, sd: 10.0 }, // D18 var — G3/G4 gap
+    { label: "11A", R: 25.88353, d: 4.048, nd: 1.55332, elemId: 6, sd: 9.8 }, // L31 front (asph)
+    { label: "12", R: -254.63176, d: 0.8, nd: 1.0, elemId: 0, sd: 9.8 },
+    { label: "13", R: 52.19394, d: 1.0, nd: 1.83481, elemId: 7, sd: 9.6 }, // L32 front
+    { label: "14", R: 26.38369, d: 3.546, nd: 1.618, elemId: 8, sd: 9.6 }, // L32/L33 junction
+    { label: "15", R: -150.0, d: 3.743, nd: 1.0, elemId: 0, sd: 9.6 }, // L33 rear → air
+    { label: "16", R: -33.68615, d: 1.0, nd: 1.816, elemId: 9, sd: 8.8 }, // L34 front
+    { label: "17", R: 17.28639, d: 6.494, nd: 1.59319, elemId: 10, sd: 8.8 }, // L34/L35 junction
+    { label: "18", R: -23.04098, d: 4.579, nd: 1.0, elemId: 0, sd: 8.8 }, // D18 var — G3/G4 gap
 
     /* G4 — focusing group (L41, L42 asph rear) */
-    { label: "19", R: -22.45485, d: 1.0, nd: 1.801, elemId: 11, sd: 13.0 },
-    { label: "20", R: -41.05177, d: 0.103, nd: 1.0, elemId: 0, sd: 13.5 },
+    { label: "19", R: -22.45485, d: 1.0, nd: 1.801, elemId: 11, sd: 11.0 },
+    { label: "20", R: -41.05177, d: 0.103, nd: 1.0, elemId: 0, sd: 11.0 },
     { label: "21", R: 59.92172, d: 6.115, nd: 1.59201, elemId: 12, sd: 14.0 },
     { label: "22A", R: -26.25646, d: 8.245, nd: 1.0, elemId: 0, sd: 14.0 }, // D22 var — G4/G5 gap
 
@@ -289,7 +296,7 @@ const LENS_DATA = {
     { label: "23", R: -40.60645, d: 3.489, nd: 1.58913, elemId: 13, sd: 15.0 },
     { label: "24A", R: -24.0, d: 5.786, nd: 1.0, elemId: 0, sd: 15.5 }, // L51 rear (asph) → air
     { label: "25", R: -24.36536, d: 1.5, nd: 1.618, elemId: 14, sd: 18.0 },
-    { label: "26", R: 107.45414, d: 15.558, nd: 1.0, elemId: 0, sd: 17.5 }, // D26 var — BFD (incl. filter OPL)
+    { label: "26", R: 107.45414, d: 15.013, nd: 1.0, elemId: 0, sd: 17.5 }, // D26 var — air-equivalent BF
   ],
 
   /* ── Aspherical coefficients ── */
@@ -340,7 +347,7 @@ const LENS_DATA = {
   /* ── Variable air spacings ──
    *  D3, D9: zoom only (identical inf/close values).
    *  D18, D22: zoom + focus (G4 internal focus, D18+D22 conserved at each zoom position).
-   *  D26: zoom only (BFD including folded cover glass path).
+   *  D26: zoom only (patent BF, air-equivalent: filter 1.60/1.5168 + D28 folded in).
    */
   var: {
     "3": [
@@ -364,9 +371,9 @@ const LENS_DATA = {
       [2.0, 10.51],
     ],
     "26": [
-      [15.558, 15.558],
-      [28.486, 28.486],
-      [36.145, 36.145],
+      [15.013, 15.013],
+      [27.941, 27.941],
+      [35.599, 35.599],
     ],
   },
 
@@ -399,7 +406,9 @@ const LENS_DATA = {
 
   /* ── Aperture configuration ── */
   nominalFno: 4.0,
+  zoomApertureModel: "from-nominal-fno",
   fstopSeries: [4, 5.6, 8, 11, 16, 22],
+  maxFstop: 22,
   apertureBlades: 7,
 
   /* ── Layout tuning ──

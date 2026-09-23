@@ -78,3 +78,73 @@ Changes made:
   unspecified)`. The official obsolete-inclusive HOYA coefficient row is exactly `1.83400 / 37.34` with code
   `834373`.
 - Synchronized the E13/E14 analysis narrative. No prescription geometry or supplier attribution changed.
+
+## 2026-09-23 — First-added diagram audit, lens 67
+
+Source: local `patents/JP2014209144A.pdf`. Used page 1 (bibliographic block: applicants Nikon and Tamron), page 17
+(inventor order), pages 10–12 (Example 2 general data ¶0042, table ¶0043, variable gaps ¶0044–¶0045, conditions
+¶0046) and page 15 (Fig. 5 section and zoom-movement arrows). Every table number was read off the rendered page. The
+Google Patents record of the same publication was used only for the inventor romanization (Takeshi Suzuki for 鈴木 剛司).
+
+### Re-verified and retained
+
+- All 32 surface rows (R, d, nd, νd), the stop at surface 25, the infinity and 2.2 m gap tables at all three
+  stations, and constant bf = 54.3185 match the page. No aspheres. EFL computes to 205.041 / 299.981 / 486.969 mm
+  (patent 205.0431 / 299.9821 / 486.9688). Close-focus EFL is 175.705 / 225.066 / 280.493 mm (patent 175.7064 /
+  225.0670 / 280.4931). Element focal lengths match their thick-lens values. Defocus at infinity is below 0.07 mm.
+- `closeFocusM: 2.2`: the patent object distance plus total length is 1890.00 + 309.32 = 2199.3 mm. The stored close
+  gaps focus at 2202.9 / 2200.0 / 2198.2 mm object-to-image. Only two focus states are published, so no
+  `focusPositions`.
+- No scaling (the patent is at production focal lengths). Patent authors, assignees, year and kind code are correct.
+- Glass: every label resolves `OK-compatible`. There are no mismatches.
+
+### Changes
+
+| Item | Before | After | Evidence |
+|---|---|---|---|
+| Zoom-motion description (header, G4 group label, analysis §5/§6.1/§10) | G2, G4, G6 fixed; "G4 (+) L4 [fixed]" | G2 and G6 fixed; L1, L3, L4, L5 and the stop move toward the object | Fig. 5 draws arrows under L1, L3, L4 and L5 and dashed lines under L2 and L6. From ¶0044, wide→tele travel is L1 75.38, L3 21.82, L4 10.97, stop 38.65 and L5 40.99 mm, all monotonic. d16 + d19 changes from 25.32 to 14.35 mm, so L4 cannot be fixed. Claim 5 is only a preferred option, and ¶0014 allows G4 to move. |
+| S29/S30 (E18) sd | 10.0 / 10.0 | 17.5 / 17.5 | The full-field chief ray reaches 10.1 / 10.7 mm (`BLOCKS-CHIEF`), and Fig. 5 measures ≈17.6 mm. |
+| S31/S32 (E19) sd | 6.5 / 6.5 | 17.2 / 17.2 | The chief ray reaches 12.0 / 12.4 mm (`BLOCKS-CHIEF`), and Fig. 5 measures ≈17.2 mm (1200 dpi crop). The edge thickness is 3.2 mm. |
+| S11 sd | 16.9 | 17.4 | The f/4.62 axial marginal ray reaches 17.33 mm (`CLIPS-AXIAL`). |
+| S12/S13 (E8) sd | 17.5 / 17.5 | 17.7 / 17.7 | Axial 17.34 / 17.58 mm (S13 `CLIPS-AXIAL`). Fig. 5 draws L2B at ≈19.3 mm, but the 2.0 mm S11→S12 air gap prevents that. |
+| `gapSagFrac` | default 0.90 | 0.96 | The S11/S12 rim sag totals 1.90 mm in the 2.0 mm gap at the needed 17.4 mm, so 0.10 mm clearance remains. |
+| `varLabels` for gap after S28 | "BF" | "D28" | Patent names the gap d28; bf is the separate fixed back focus. |
+| E1, E11 `type` | Positive Meniscus | Negative Meniscus | Both radii are positive, and the power is −211.8 / −209.5 mm. |
+| E4, E18 `type` | Negative Meniscus | Positive Meniscus | Both radii are negative, and the power is +115.7 / +131.4 mm. |
+| E8, E15 `glass` | S-LAM60 (OHARA) | NBF1 (HOYA; exact 743492) | Patent 1.74330 / 49.22. S-LAM60 is 1.74320 / 49.34, while NBF1 is exact. |
+| `specs` f-number | F/5.62–5.78 (optical) | F/4.62–5.78 (patent) | ¶0042 FNo = 4.62〜5.78. |
+| `apertureDesign` | 5.6 | 4.62 | Patent wide-open value; `apertureMarketing` 5.6 is kept. |
+| `fstopSeries` / `maxFstop` | [5.6 … 32] / default 16 | [4.62, 5.6 … 32] / 32 | The list now starts at the reachable patent value and reaches the production minimum aperture of f/32. f/22 and f/32 were previously filtered out by the f/16 cap. |
+| Analysis | inventor romanization "Suzuki Tsuyoshi"; E14 "unmatched"; E2/E3 "not identical with any catalog glass"; stop "achieves constant f/5.6"; focus-physics sentences | synchronized | E14 and E2/E3 now match the data file's glass labels. The focus text now uses the patent's close-focus f values. |
+
+Aperture model: kept the default fixed physical iris (no `zoomApertureModel`). ¶0016 says the moving stop keeps the
+iris diameter constant. A real-ray trace needs a stop radius of 14.047 / 14.062 / 14.060 mm to give FNo 4.62 / 5.24 /
+5.78, so one iris reproduces all three published values. The production constant f/5.6 is a diaphragm limit outside
+the example.
+
+Figure measurement: Fig. 5 was measured at 400 dpi, scale 3.403 px/mm from S1 (x 457) to IP (x 1509.5) = 309.32 mm;
+the S32 vertex was predicted at x 1324.7 and found at 1324. Rims: L1 ≈ 45.7 (stored 45.5), L2A ≈ 19.3 (18.5), L2C ≈
+21.4 (19.5–20.5), L3 ≈ 25.0 (24.0–24.5), L4 ≈ 24.4 / 23.7 (23.0–24.5), stop ≈ 13.7 (14.0), L5 ≈ 14.1 (13.0–13.5). All
+of these are within 15 %, so they were left unchanged.
+
+### Result checks
+
+- Surface validator: no errors. Image-circle floor: 0 undersized.
+- Real-ray clear-aperture trace (Y = 21.633 mm, ω 5.90 / 4.10 / 2.49°): no `CLIPS-AXIAL` or `BLOCKS-CHIEF` at infinity
+  or 2.2 m at any station. Ordinary full-field vignetting remains (front group and L2 50–87 %, E19 54–62 % side).
+- The engine's paraxial field limit rose from 4.0° / 2.5° / 1.3° (rear-group limited, below the patent ω) to 9.9° /
+  6.5° / 3.5°. The built lens gives FOPEN 4.62 at the wide end and a stop radius of 14.05 mm.
+- Local page, checked through DOM inspection because the browser pane was hidden and screenshots were unavailable: at
+  the wide end, E18 and E19 now render at 47 / 46 px against L1's 123 px, where production showed 27 / 18 px. The
+  ratio of about 0.38 matches Fig. 5. The group label now reads "G4 (+) L4", the aperture runs f/4.62–f/32 (f/5.78 at
+  the telephoto end), and off-axis rays are 2.1° at the telephoto end. There were no console errors. The coordinator
+  then rendered 205 mm and 487 mm fresh in headless Chromium with the zoom group-movement overlay: L1 travels
+  75.38 mm toward the object, L3, L4 and L5 also move toward the object, L2 and L6 are drawn fixed, and the aperture
+  readout runs f/4.62 → f/5.78 with a constant 28.09 mm iris.
+
+### Open limitations
+
+- L2B is drawn about 10 % smaller than Fig. 5 because the 2.0 mm S11→S12 gap limits the rim. The real lens presumably
+  uses edge bevels or flats there.
+- Semi-diameters remain ray-envelope and figure estimates; the patent publishes no effective diameters.
+- The diagram models the patent's wide-open FNo 4.62–5.78, not the production constant f/5.6 maximum.

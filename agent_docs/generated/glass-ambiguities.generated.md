@@ -14,16 +14,16 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 - **810** lenses scanned
 - **9058** glass elements examined
-- **2805** elements have multiple coordinate-compatible candidates
-- **528** lens files are affected
+- **2803** elements have multiple coordinate-compatible candidates
+- **527** lens files are affected
 - **265** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **198** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
-| Smallest reference-index residual | 1576 |
-| Evidence-source priority | 941 |
-| Vendor context | 279 |
+| Smallest reference-index residual | 1574 |
+| Evidence-source priority | 939 |
+| Vendor context | 281 |
 | Stable canonical-name order | 7 |
 | Smallest Abbe residual | 2 |
 
@@ -997,10 +997,9 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `487704 — fluor-crown class (closest FC5, HOYA; vendor unproven)` | 1.48749 / 70.45 (d) | FC5 — direct name evidence outranks six-digit code evidence. | N-FK5 (Schott, code, vendor ✗, preferred code row)<br>H-QK3L (CDGM, code, vendor ✗, alternate code row)<br>FK5 (Sumita, code, vendor ✗, alternate code row) | 1 | [NIKON AF-S FISHEYE NIKKOR 8-15mm f/3.5-4.5E ED](../../src/lens-data/nikon/NikonAFSFisheye815mmf3545EED.data.ts) L213 |
 | `S-BSL7 (Ohara) / N-BK7 equiv.; catalog equivalent, production supplier unspecified` | 1.51680 / 63.88 (d) | S-BSL7 — Annotation vendor context matches Ohara. | N-BK7 (Schott, name, vendor ✗) | 1 | [NIKON AF-S NIKKOR 105mm f/1.4E ED](../../src/lens-data/nikon/NikonNikkor105f14E.data.ts) L22 |
 | `S-TIH1 (OHARA; exact 717295 coordinate)` | 1.71736 / 29.53 (d) | S-TIH1 — direct name evidence outranks six-digit code evidence. | SF1 (Schott, code, vendor ✗, preferred code row) | 1 | [NIKON AF-S NIKKOR 120-300mm f/2.8 E FL ED SR VR](../../src/lens-data/nikon/NikonNikkorAFS120300mmf28.data.ts) L22 |
-| `697555 — lanthanum crown (patent coordinate; vendor unresolved)` | 1.69680 / 55.52 (d) | J-LAK14 — smallest d-line \|Δn\| (1.3e-8 vs 2.3e-6) | LAC14 (Hoya, code, alternate code row)<br>S-LAL14 (Ohara, code, preferred code row) | 2 | [NIKON AF-S NIKKOR 120-300mm f/2.8 E FL ED SR VR](../../src/lens-data/nikon/NikonNikkorAFS120300mmf28.data.ts) L23 +1 files |
+| `N-KZFS5 (Schott; OHARA S-NBH5 same coordinate)` | 1.65413 / 39.72 (d) | N-KZFS5 — smallest d-line \|Δn\| (9.6e-6 vs 1.5e-5) | S-NBH5 (Ohara, name, vendor ✓) | 1 | [NIKON AF-S NIKKOR 120-300mm f/2.8 E FL ED SR VR](../../src/lens-data/nikon/NikonNikkorAFS120300mmf28.data.ts) L33 |
 | `S-LAH99 / TAFD55 (001291, HRI)` | 2.00100 / 29.12 (d) | S-LAH99 — smallest d-line \|Δn\| (3.6e-10 vs 3.0e-6) | TAFD55 (Hoya, name) | 2 | [NIKON AF-S NIKKOR 120-300mm f/2.8 E FL ED SR VR](../../src/lens-data/nikon/NikonNikkorAFS120300mmf28.data.ts) L51 |
-| `OHARA S-FSL5 / Schott N-FK5 family` | 1.48749 / 70.31 (d) | N-FK5 — smallest d-line \|Δn\| (3.7e-9 vs 6.5e-8) | S-FSL5 (Ohara, name, vendor ✓) | 1 | [NIKON AF-S NIKKOR 120-300mm f/2.8 E FL ED SR VR](../../src/lens-data/nikon/NikonNikkorAFS120300mmf28.data.ts) L58 |
-| `741527 — lanthanum crown (patent nd=1.74100, nu_d=52.67)` | 1.74100 / 52.67 (d) | LAK011 — smallest d-line \|Δn\| (1.0e-7 vs 1.1e-6) | S-LAL61 (Ohara, code, alternate code row) | 1 | [NIKON AF-S NIKKOR 14-24mm f/2.8 G ED](../../src/lens-data/nikon/NikonNikkorAFS1424mmf28.data.ts) L3 |
+| `J-FKH1 (HIKARI catalog equivalent; S-FPL51-class ED fluorophosphate, vendor unspecified)` | 1.49782 / 82.51 (d) | J-FKH1 — Annotation vendor context matches Hikari. | S-FPL51 (Ohara, name, vendor ✗) | 2 | [NIKON AF-S NIKKOR 16-35mm f/4 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS1635mmf4.data.ts) L41 |
 | `N-LASF44 (Schott) / 804465 dense lanthanum flint class` | 1.80420 / 46.50 (d) | N-LASF44 — direct name evidence outranks six-digit code evidence. | TAF3 (Hoya, code, vendor ✗, alternate code row)<br>TAF3D (Hoya, code, vendor ✗, alternate code row) | 2 | [NIKON AF-S NIKKOR 18-35mm f/3.5-4.5 G ED](../../src/lens-data/nikon/NikonAFSNikkor1835mmf3545GED.data.ts) L3 |
 | `S-TIH6 (OHARA) / SF6-class titanium heavy flint` | 1.80518 / 25.46 (d) | S-TIH6 — Annotation vendor context matches Ohara. | SF6 (Schott, name, vendor ✗) | 1 | [NIKON AF-S NIKKOR 18-35mm f/3.5-4.5 G ED](../../src/lens-data/nikon/NikonAFSNikkor1835mmf3545GED.data.ts) L5 |
 | `S-FPL51 (OHARA) / FCD1-class ED fluorophosphate` | 1.49700 / 81.61 (d) | S-FPL51 — Annotation vendor context matches Ohara. | FCD1 (Hoya, name, vendor ✗) | 2 | [NIKON AF-S NIKKOR 18-35mm f/3.5-4.5 G ED](../../src/lens-data/nikon/NikonAFSNikkor1835mmf3545GED.data.ts) L7 |
@@ -1237,16 +1236,15 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `744449 — lanthanum glass coordinate class (vendor unresolved)` | 1.74400 / 44.90 (d) | H-LaF3B — smallest d-line \|Δn\| (1.0e-7 vs 2.8e-5) | N-LAF2 (Schott, code, alternate code row) | 1 | [NIKON NIKKOR 600mm f/5.6 ED](../../src/lens-data/nikon/NikonNikkor600mmf56ED.data.ts) L2 |
 | `648338 — flint coordinate class (supplier unresolved)` | 1.64831 / 33.80 (d) | H-ZF1 — smallest d-line \|Δn\| (6.2e-4 vs 6.2e-4) | E-FD2 (Hoya, code, alternate code row)<br>S-TIM22 (Ohara, code, preferred code row) | 1 | [NIKON NIKKOR AUTO 28mm f/2.8](../../src/lens-data/nikon/NikonNewNikkorAuto28mmf28.data.ts) L1 |
 | `620603 — barium-crown class (S-BSM16 coordinate equivalent; supplier unresolved)` | 1.62041 / 60.30 (d) | S-BSM16 — direct name evidence outranks six-digit code evidence. | J-SK16 (Hikari, code, alternate code row)<br>N-SK16 (Schott, code, preferred code row) | 2 | [NIKON NIKKOR AUTO 28mm f/2.8](../../src/lens-data/nikon/NikonNewNikkorAuto28mmf28.data.ts) L2 |
+| `697555 — lanthanum crown (patent coordinate; vendor unresolved)` | 1.69680 / 55.52 (d) | J-LAK14 — smallest d-line \|Δn\| (1.3e-8 vs 2.3e-6) | LAC14 (Hoya, code, alternate code row)<br>S-LAL14 (Ohara, code, preferred code row) | 1 | [NIKON NIKKOR Z 135mm f/1.8 S Plena](../../src/lens-data/nikon/NikonZ135f18.data.ts) L7 |
 | `J-FKH1 (HIKARI catalog equivalent; S-FPL51-class ED fluorophosphate, vendor unspecified)` | 1.49782 / 82.60 (d) | J-FKH1 — Annotation vendor context matches Hikari. | S-FPL51 (Ohara, name, vendor ✗) | 4 | [NIKON NIKKOR Z 14-24mm f/2.8 S](../../src/lens-data/nikon/NikonZ1424f28S.data.ts) L13 |
 | `J-KZFH9 (HIKARI catalog equivalent; patent code 738323, vendor unspecified)` | 1.73800 / 32.30 (d) | J-KZFH9 — direct name evidence outranks six-digit code evidence. | S-NBH53 (Ohara, code, vendor ✗, preferred code row) | 1 | [NIKON NIKKOR Z 14-24mm f/2.8 S](../../src/lens-data/nikon/NikonZ1424f28S.data.ts) L14 |
-| `J-LASF017 (Hikari) — high-index lanthanum (795453)` | 1.79500 / 45.31 (d) | J-LASF017 — direct name evidence outranks six-digit code evidence. | Q-LASFPH3S (Hikari, code, vendor ✓, alternate code row) | 1 | [NIKON NIKKOR Z 14-30mm f/4 S](../../src/lens-data/nikon/NikonNikkorZ1430mmf4S.data.ts) L41 |
 | `FCD1 / S-FPL51 class (HOYA/OHARA)` | 1.49700 / 81.61 (d) | FCD1 — smallest d-line \|Δn\| (1.6e-7 vs 7.1e-7) | S-FPL51 (Ohara, name, vendor ✓) | 4 | [NIKON NIKKOR Z 180-600mm f/5.6-6.3 VR](../../src/lens-data/nikon/NikonNikkorZ180600mmf5663VR.data.ts) L2 |
 | `TAFD5F/TAFD5G class (HOYA)` | 1.83481 / 42.72 (d) | TAFD5G — smallest d-line \|Δn\| (3.0e-6 vs 4.5e-6) | TAFD5F (Hoya, name, vendor ✓) | 3 | [NIKON NIKKOR Z 180-600mm f/5.6-6.3 VR](../../src/lens-data/nikon/NikonNikkorZ180600mmf5663VR.data.ts) L3 |
 | `FCD515/FCD505 class (HOYA)` | 1.59282 / 68.62 (d) | FCD515 — smallest d-line \|Δn\| (4.3e-6 vs 6.8e-6) | FCD505 (Hoya, name, vendor ✓) | 2 | [NIKON NIKKOR Z 180-600mm f/5.6-6.3 VR](../../src/lens-data/nikon/NikonNikkorZ180600mmf5663VR.data.ts) L20 |
 | `773496 class (HIKARI J-LASF016 coordinate representative)` | 1.77250 / 49.62 (d) | J-LASF016 — direct name evidence outranks six-digit code evidence. | N-LAF34 (Schott, code, vendor ✗, alternate code row)<br>S-LAH66 (Ohara, code, vendor ✗, preferred code row)<br>S-LAH66N (Ohara, code, vendor ✗, alternate code row) | 1 | [NIKON NIKKOR Z 20mm f/1.8 S](../../src/lens-data/nikon/NikonNikkorZ20mmf18S.data.ts) L12g |
 | `PBH21 (OHARA; historical 923209)` | 1.92286 / 20.88 (d) | PBH21 — direct name evidence outranks six-digit code evidence. | N-SF66 (Schott, code, vendor ✗, preferred code row)<br>E-FDS1 (Hoya, code, vendor ✗, alternate code row) | 6 | [NIKON NIKKOR Z 24-120mm f/4 S](../../src/lens-data/nikon/NikonNikkorZ24120mmf4S.data.ts) L16 +5 files |
 | `954323 — ultra-high-index lanthanum (S-LAH98 / TAFD45 family)` | 1.95375 / 32.33 (d) | S-LAH98 — smallest d-line \|Δn\| (5.9e-7 vs 2.6e-6) | TAFD45 (Hoya, name)<br>J-LASFH21 (Hikari, code, alternate code row)<br>TAFD45L (Hoya, code, alternate code row) | 3 | [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) L21 |
-| `851401 — dense lanthanum flint (near S-LAH89; patent nd=1.85135, νd=40.13)` | 1.85135 / 40.13 (d) | S-LAH89 — direct name evidence outranks six-digit code evidence. | M-TAFD305 (Hoya, code, preferred code row)<br>Q-LASFH58S (Hikari, code, alternate code row) | 1 | [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) L52 |
 | `FCD1 (HOYA) / S-FPL51` | 1.49700 / 81.61 (d) | FCD1 — Annotation vendor context matches Hoya. | S-FPL51 (Ohara, name, vendor ✗) | 2 | [NIKON NIKKOR Z 24-50mm f/4-6.3](../../src/lens-data/nikon/NikonNikkorZ2450mmf463.data.ts) L2a |
 | `BAFD7 (HOYA) / S-BAH27 / NBFD12 class` | 1.70154 / 41.24 (d) | BAFD7 — Annotation vendor context matches Hoya. | S-BAH27 (Ohara, name, vendor ✗) | 1 | [NIKON NIKKOR Z 24-50mm f/4-6.3](../../src/lens-data/nikon/NikonNikkorZ2450mmf463.data.ts) L2c |
 | `BK7 family (517641, Schott N-BK7 / OHARA S-BSL7)` | 1.51680 / 64.10 (d) | N-BK7 — smallest d-line \|Δn\| (3.5e-8 vs 4.7e-4) | S-BSL7 (Ohara, name, vendor ✓)<br>J-BK7A (Hikari, code, vendor ✗, preferred code row) | 1 | [NIKON NIKKOR Z 35mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) L12 |

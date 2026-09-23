@@ -2,26 +2,39 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — NIKON AF-S NIKKOR 200-500mm f/5.6E ED VR             ║
+ * ║  LENS DATA — NIKON AF-S NIKKOR 200-500mm f/5.6E ED VR                ║
  * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Data source: JP 2014-209144 A, Example 2 (Nikon / Tamron).       ║
- * ║  Super-telephoto zoom with VR. All-spherical design.               ║
- * ║  19 elements / 12 groups, 0 aspherical surfaces.                   ║
- * ║  Focus: Internal focus via G5 (L5) axial translation.              ║
- * ║                                                                    ║
- * ║  Zoom variable gaps (zoom only): D5, D16, D19, D24.               ║
- * ║  Focus variable gaps (zoom + focus): D25, D28.                     ║
- * ║  Reversing groups: D25 (non-monotonic across zoom).                ║
- * ║  Fixed groups during zoom: G2 (L2), G4 (L4), G6 (L6).            ║
- * ║  Moving groups during zoom: G1 (L1), G3 (L3), G5 (L5), Stop.     ║
- * ║                                                                    ║
- * ║  NOTE ON SCALING: None. Patent prescription is at production       ║
- * ║  focal lengths (205–487 mm). No scaling applied.                   ║
- * ║                                                                    ║
- * ║  NOTE ON SEMI-DIAMETERS: Patent provides no SDs. Estimated via    ║
- * ║  paraxial marginal ray trace at each zoom position, taking the    ║
- * ║  maximum ray height across all positions with ~8% mechanical      ║
- * ║  clearance. Front group capped at 45.5 mm (95 mm filter thread).  ║
+ * ║  Data source: JP 2014-209144 A, Example 2 (Nikon / Tamron).          ║
+ * ║  Super-telephoto zoom with VR (L2B). All-spherical design.           ║
+ * ║  19 elements / 12 groups, 0 aspherical surfaces.                     ║
+ * ║  Focus: internal focus, negative L5 doublet moves toward the image.  ║
+ * ║                                                                      ║
+ * ║  Zoom variable gaps (zoom only): D5, D16, D19, D24.                  ║
+ * ║  Focus variable gaps (zoom + focus): D25, D28.                       ║
+ * ║  Zoom motion (Fig. 5 arrows + ¶0044 gaps, wide→tele, all toward the  ║
+ * ║  object, monotonic): L1 75.38 mm, L3 21.82 mm, L4 10.97 mm, stop     ║
+ * ║  38.65 mm, L5 40.99 mm (infinity). L2 and L6 fixed (dashed lines;    ║
+ * ║  bf constant). Example 2 does NOT keep L4 fixed (claim 5 option).    ║
+ * ║                                                                      ║
+ * ║  NOTE ON SCALING: None. Patent prescription is at production focal   ║
+ * ║  lengths (205.04–486.97 mm). No scaling applied.                     ║
+ * ║                                                                      ║
+ * ║  NOTE ON APERTURE: fixed physical iris (no zoomApertureModel). ¶0016 ║
+ * ║  says the independently moving stop keeps the iris diameter          ║
+ * ║  constant; a real-ray trace confirms one iris radius (14.05–14.06    ║
+ * ║  mm) reproduces the patent FNo 4.62 / 5.24 / 5.78 at every station.  ║
+ * ║  The marketed constant f/5.6 is a production diaphragm limit, not    ║
+ * ║  part of the patent example.                                         ║
+ * ║                                                                      ║
+ * ║  NOTE ON SEMI-DIAMETERS: Patent provides no SDs. Values follow exact ║
+ * ║  marginal/chief-ray envelopes at all three stations (FNo 4.62–5.78,  ║
+ * ║  Y = 21.633 mm, ω 5.90–2.49°), checked against the Fig. 5 section    ║
+ * ║  (scale 3.40 px/mm at 400 dpi, S1→IP = 309.32 mm). L1 ≈ 45.7, L2A    ║
+ * ║  ≈ 19.3, L3 ≈ 25.0, L4 ≈ 24.4, stop ≈ 13.7, L5 ≈ 14.1, L6 ≈ 17.6 /   ║
+ * ║  17.2 mm in the figure. L6 raised to 17.5 / 17.2 mm (old 10.0 / 6.5  ║
+ * ║  blocked the full-field chief ray). L2B is held at 17.4–17.7 mm by   ║
+ * ║  the 2.0 mm S11→S12 air gap (figure ≈ 19.3 mm); gapSagFrac = 0.96    ║
+ * ║  lets S11 clear the f/4.62 axial bundle (17.33 mm).                  ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -34,7 +47,7 @@ const LENS_DATA = {
   specs: [
     "19 ELEMENTS / 12 GROUPS",
     "f = 205–487 mm",
-    "F/5.62–5.78 (optical); F/5.6 (marketed)",
+    "F/4.62–5.78 (patent); F/5.6 (marketed)",
     "2ω ≈ 11.8–5.0°",
     "ALL SPHERICAL",
     "3 ED ELEMENTS",
@@ -44,7 +57,7 @@ const LENS_DATA = {
   focalLengthMarketing: [200, 500] as [number, number],
   focalLengthDesign: [205.04, 486.97] as [number, number],
   apertureMarketing: 5.6,
-  apertureDesign: 5.6,
+  apertureDesign: 4.62,
   patentNumber: "JP 2014-209144 A",
   patentAuthors: ["Taku Matsuo", "Takeshi Suzuki", "Haruo Sato", "Hisayuki Yamanaka"],
   patentAssignees: ["Nikon Corporation","Tamron Co., Ltd."],
@@ -60,7 +73,7 @@ const LENS_DATA = {
       id: 1,
       name: "L1",
       label: "Element 1",
-      type: "Positive Meniscus",
+      type: "Negative Meniscus",
       nd: 1.804,
       vd: 46.6,
       fl: -211.8,
@@ -100,13 +113,13 @@ const LENS_DATA = {
       id: 4,
       name: "L4",
       label: "Element 4",
-      type: "Negative Meniscus",
+      type: "Positive Meniscus",
       nd: 1.60342,
       vd: 38.01,
       fl: 115.7,
       glass: "S-TIM5 (OHARA)",
       apd: false,
-      role: "Negative meniscus conditioning beam into VR group (L2A subgroup)",
+      role: "Positive meniscus (both radii concave to object) cemented to L5 in the L2A subgroup",
       cemented: "D2",
     },
     {
@@ -156,7 +169,7 @@ const LENS_DATA = {
       nd: 1.7433,
       vd: 49.22,
       fl: -143.2,
-      glass: "S-LAM60 (OHARA)",
+      glass: "NBF1 (HOYA; exact 743492 coordinate)",
       apd: false,
       role: "Negative singlet in VR group (L2B); adds decentering sensitivity",
     },
@@ -190,7 +203,7 @@ const LENS_DATA = {
       id: 11,
       name: "L11",
       label: "Element 11",
-      type: "Positive Meniscus",
+      type: "Negative Meniscus",
       nd: 1.90366,
       vd: 31.31,
       fl: -209.5,
@@ -247,7 +260,7 @@ const LENS_DATA = {
       nd: 1.7433,
       vd: 49.22,
       fl: 139.2,
-      glass: "S-LAM60 (OHARA)",
+      glass: "NBF1 (HOYA; exact 743492 coordinate)",
       apd: false,
       role: "Positive singlet providing relay-group convergence before stop",
     },
@@ -281,7 +294,7 @@ const LENS_DATA = {
       id: 18,
       name: "L18",
       label: "Element 18",
-      type: "Negative Meniscus",
+      type: "Positive Meniscus",
       nd: 1.58144,
       vd: 40.89,
       fl: 131.4,
@@ -318,24 +331,24 @@ const LENS_DATA = {
     { label: "8", R: 132.4791, d: 5.1, nd: 1.0, elemId: 0, sd: 18.5 },
 
     // G2/L2B (VR group): E6+E7 cemented doublet + E8 singlet
-    // SDs reduced to 17.5 to clear cross-gap sag at S11→S12 (2.0 mm gap)
+    // SDs held at 17.4–17.7 by the 2.0 mm S11→S12 air gap (gapSagFrac 0.96); Fig. 5 draws ≈19.3
     { label: "9", R: -188.3876, d: 1.5, nd: 1.51742, elemId: 6, sd: 17.5 },
     { label: "10", R: 46.2336, d: 3.8, nd: 1.80518, elemId: 7, sd: 17.5 },
-    { label: "11", R: 99.3055, d: 2.0, nd: 1.0, elemId: 0, sd: 16.9 },
-    { label: "12", R: -411.8858, d: 1.7, nd: 1.7433, elemId: 8, sd: 17.5 },
-    { label: "13", R: 143.7588, d: 3.0, nd: 1.0, elemId: 0, sd: 17.5 },
+    { label: "11", R: 99.3055, d: 2.0, nd: 1.0, elemId: 0, sd: 17.4 },
+    { label: "12", R: -411.8858, d: 1.7, nd: 1.7433, elemId: 8, sd: 17.7 },
+    { label: "13", R: 143.7588, d: 3.0, nd: 1.0, elemId: 0, sd: 17.7 },
 
     // G2/L2C: E9+E10 cemented doublet
     { label: "14", R: 153.9724, d: 9.5, nd: 1.60738, elemId: 9, sd: 19.5 },
     { label: "15", R: -32.5888, d: 1.7, nd: 1.65844, elemId: 10, sd: 20.5 },
     { label: "16", R: -200.7252, d: 23.8204, nd: 1.0, elemId: 0, sd: 20.5 }, // d16 = var wide∞
 
-    // G3 (L3): E11+E12 cemented doublet (moves during zoom)
+    // G3 (L3): E11+E12 cemented doublet (moves 21.82 mm toward object, wide→tele)
     { label: "17", R: 121.8569, d: 1.7, nd: 1.90366, elemId: 11, sd: 24.0 },
     { label: "18", R: 73.6444, d: 10.0, nd: 1.48749, elemId: 12, sd: 24.0 },
     { label: "19", R: -63.3839, d: 1.5, nd: 1.0, elemId: 0, sd: 24.5 }, // d19 = var wide∞
 
-    // G4 (L4): E13+E14 cemented doublet + E15 singlet (fixed during zoom)
+    // G4 (L4): E13+E14 cemented doublet + E15 singlet (moves 10.97 mm toward object, wide→tele)
     { label: "20", R: 524.006, d: 7.6, nd: 1.497, elemId: 13, sd: 24.5 },
     { label: "21", R: -54.0683, d: 1.7, nd: 1.834, elemId: 14, sd: 24.0 },
     { label: "22", R: -164.5813, d: 0.2, nd: 1.0, elemId: 0, sd: 24.0 },
@@ -350,11 +363,11 @@ const LENS_DATA = {
     { label: "27", R: -106.5949, d: 1.1, nd: 1.72916, elemId: 17, sd: 13.0 },
     { label: "28", R: 44.3402, d: 19.8179, nd: 1.0, elemId: 0, sd: 13.0 }, // d28 = var wide∞
 
-    // G6 (L6): E18 singlet + E19 singlet (fixed)
-    { label: "29", R: -96.2691, d: 5.0, nd: 1.58144, elemId: 18, sd: 10.0 },
-    { label: "30", R: -43.4021, d: 21.0392, nd: 1.0, elemId: 0, sd: 10.0 },
-    { label: "31", R: -40.3878, d: 1.5, nd: 1.83481, elemId: 19, sd: 6.5 },
-    { label: "32", R: -68.1862, d: 54.3185, nd: 1.0, elemId: 0, sd: 6.5 }, // bf (constant)
+    // G6 (L6): E18 singlet + E19 singlet (fixed); SDs from Fig. 5 (≈17.6 / 17.2 mm)
+    { label: "29", R: -96.2691, d: 5.0, nd: 1.58144, elemId: 18, sd: 17.5 },
+    { label: "30", R: -43.4021, d: 21.0392, nd: 1.0, elemId: 0, sd: 17.5 },
+    { label: "31", R: -40.3878, d: 1.5, nd: 1.83481, elemId: 19, sd: 17.2 },
+    { label: "32", R: -68.1862, d: 54.3185, nd: 1.0, elemId: 0, sd: 17.2 }, // bf (constant)
   ],
 
   /* ── Aspherical coefficients ── */
@@ -416,7 +429,7 @@ const LENS_DATA = {
     ["19", "D19"],
     ["24", "D24"],
     ["STO", "D25"],
-    ["28", "BF"],
+    ["28", "D28"],
   ] as [string, string][],
 
   /* ── Group and doublet annotations ── */
@@ -424,7 +437,7 @@ const LENS_DATA = {
     { text: "G1 (+) L1", fromSurface: "1", toSurface: "5" },
     { text: "G2 (−) L2 [fixed]", fromSurface: "6", toSurface: "16" },
     { text: "G3 (+) L3", fromSurface: "17", toSurface: "19" },
-    { text: "G4 (+) L4 [fixed]", fromSurface: "20", toSurface: "24" },
+    { text: "G4 (+) L4", fromSurface: "20", toSurface: "24" },
     { text: "G5 (−) L5 [focus]", fromSurface: "26", toSurface: "28" },
     { text: "G6 L6 [fixed]", fromSurface: "29", toSurface: "32" },
   ],
@@ -444,14 +457,15 @@ const LENS_DATA = {
   focusDescription: "Internal focus via G5 (L5) axial translation toward image. G5 is a negative cemented doublet.",
 
   /* ── Aperture configuration ──
-   *  Patent optical design: FNo = 4.62 (wide) to 5.78 (tele).
-   *  Production lens: electromagnetic diaphragm constrains to constant f/5.6.
-   *  Using patent optical values for accurate ray tracing.
+   *  Patent Example 2: FNo = 4.62 / 5.24 / 5.78 with a constant iris (¶0016); the fixed-iris default
+   *  reproduces all three (stop radius 14.05–14.06 mm). Production: constant f/5.6, minimum f/32.
    */
   nominalFno: [4.62, 5.24, 5.78] as number[],
-  fstopSeries: [5.6, 6.3, 8, 11, 16, 22, 32],
+  fstopSeries: [4.62, 5.6, 6.3, 8, 11, 16, 22, 32],
+  maxFstop: 32,
 
   /* ── Layout tuning ── */
+  gapSagFrac: 0.96,
   scFill: 0.48,
   yScFill: 0.5,
 } satisfies LensDataInput;

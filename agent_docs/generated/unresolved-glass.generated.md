@@ -11,7 +11,7 @@ or per-lens patent backfills.
 - **810** lenses scanned
 - **9063** non-air surfaces examined
 - **9073** element glass declarations examined
-- **238** non-explicit-unmatched annotations did not resolve
+- **236** non-explicit-unmatched annotations did not resolve
 - **121** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
@@ -333,7 +333,7 @@ or per-lens patent backfills.
 
 ### 554381 — 1 occurrence
 
-- [NIKON AF-S NIKKOR 14-24mm f/2.8 G ED](../../src/lens-data/nikon/NikonNikkorAFS1424mmf28.data.ts) 6: `554381 — dense flint (patent nd=1.55389, nu_d=38.09)`
+- [NIKON AF-S NIKKOR 14-24mm f/2.8 G ED](../../src/lens-data/nikon/NikonNikkorAFS1424mmf28.data.ts) 6: `554381 — hybrid-asphere resin layer (inferred; patent nd=1.55389, νd=38.09; not catalog glass)`
 
 ### 561575 — 1 occurrence
 
