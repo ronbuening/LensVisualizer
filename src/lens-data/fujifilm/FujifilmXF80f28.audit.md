@@ -99,3 +99,10 @@ Patent: US 2018/0246292 A1 — Example 1
 - Re-read `patents/US20180246292A1.pdf` p. 40, Table 1 surfaces 29–31 (rendered page): 27.42 mm air, plate 2.85 mm at nd 1.51680 / νd 64.20 (no designation printed), 1.00 mm air to the image. Surface 29 now stores the physical 27.42 mm (was the air-equivalent 30.2989557 mm) and the plate is a `rearPlates` entry with `gapAfterMm` 1.0; the rear gap is not focus-variable.
 - Plate glass labelled S-BSL7 (OHARA, matching the lens's own S-BSL7 element at the same nd/νd; compatible-glass resolver check passes).
 - Plate-check against HEAD: EFL and paraxial defocus identical at infinity and life-size (worst |Δ| 1.4e-14); physical track grows by 0.971 mm (2.85 × (1 − 1/1.5168)). `closeFocusM` already used the physical object-to-image distance including the plate and is unchanged.
+
+## 2026-09-23 — Glass relabel for the 1.51680 / 64.20 crown
+
+- L4bb and the rear plate both print nd 1.51680 / νd 64.20 but were labelled S-BSL7, the OHARA 1.51633 / 64.14 glass
+  that only matched within tolerance. Both now use the N-BK7 class (1.51680 / 64.17), the exact-nd match and the label
+  the other Fujifilm rear plates use. Catalog names remain inferred counterparts; the analysis glass list and the
+  rear-plate paragraph follow.

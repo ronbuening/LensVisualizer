@@ -141,7 +141,7 @@ This two-element sub-group is positioned at the image-side end of G3 and constit
 
 Resin layer (L35r): nd = 1.56093, νd = 36.64. S23 is aspherical. Center thickness 0.150 mm. The resin is the same UV-curable material as L31r.
 
-Glass body (L35g): nd = 1.51680, νd = 64.14. Glass: S-BSL7 (OHARA) — borosilicate crown, equivalent to Schott N-BK7. Center thickness 4.560 mm.
+Glass body (L35g): nd = 1.51680, νd = 64.14. Glass: J-BK7A (Hikari) — borosilicate crown, equivalent to Schott N-BK7. Center thickness 4.560 mm.
 
 The aspherical departure on S23 is also negative (A4 = −1.947×10⁻⁵), producing approximately −0.012 mm departure at h = 5 mm and −0.026 mm at h = 6 mm. Like S15, this corrects residual spherical aberration and, critically, minimizes decentering aberrations during VR operation — the aspherical profile ensures that the wavefront remains well-corrected even when L35–L36 are shifted off-axis.
 
@@ -181,7 +181,7 @@ nd = 1.84666, νd = 23.80. Glass: SF57 (Schott) — dense flint with very high d
 
 L52 is a positive meniscus concave to the object (R₁ = −502.457, R₂ = −52.880) that partially cancels L51's negative power while providing strong chromatic correction at the rear of the system. The very high dispersion (νd = 23.80) makes L52 an effective color corrector despite its moderate positive power. The use of a Schott glass rather than OHARA in this position is notable; SF57 provides an exact nd match (1.84666) that no current OHARA catalog entry replicates at this dispersion level. The L51–L52 pair together form G5 with a combined focal length of −89.4 mm — the weakest negative group in the system. G5 does not participate in focusing; its variable gap D33 changes only with zoom.
 
-Behind G5, a parallel plate cover glass PP (nd = 1.51680, νd = 64.14, S-BSL7 class, thickness 1.600 mm) represents the sensor protective glass. The data file models it in `rearPlates`: every analysis traces it, but the diagram does not draw it. D33 stores the patent's physical gap to the plate (8.272 / 18.869 / 33.216 mm), followed by the plate and 1.000 mm of air to the image plane. The air-equivalent back focus, D33 + 1.600/1.51680 + 1.000, reproduces the patent's printed Bf of 10.327 / 20.923 / 35.271 mm.
+Behind G5, a parallel plate cover glass PP (nd = 1.51680, νd = 64.14, J-BK7A class, thickness 1.600 mm) represents the sensor protective glass. The data file models it in `rearPlates`: every analysis traces it, but the diagram does not draw it. D33 stores the patent's physical gap to the plate (8.272 / 18.869 / 33.216 mm), followed by the plate and 1.000 mm of air to the image plane. The air-equivalent back focus, D33 + 1.600/1.51680 + 1.000, reproduces the patent's printed Bf of 10.327 / 20.923 / 35.271 mm.
 
 ---
 
@@ -202,7 +202,7 @@ The glass palette comprises 15 distinct glass types plus one UV-curable resin, d
 | L31g | 1.51742 | 52.20 | S-NSL36 (OHARA; patent coordinate match) | Normal crown | Substrate for hybrid asphere |
 | L32 | 1.60342 | 38.03 | S-TIM5 (OHARA) | Titanium flint | Weak positive in G3 |
 | L33, L41 | 2.00100 | 29.12 | S-LAH79 (OHARA) | Ultra-high-index LaF | High-index flint for cemented doublets |
-| L35g, PP | 1.51680 | 64.14 | S-BSL7 (OHARA) | Borosilicate crown | Substrate for VR asphere; cover glass |
+| L35g, PP | 1.51680 | 64.14 | J-BK7A (Hikari) | Borosilicate crown | Substrate for VR asphere; cover glass |
 | L36 | 1.66755 | 41.87 | J-BASF6 (Hikari) | Barium short flint | Chromatic partner in VR group |
 | L42 | 1.80400 | 46.60 | S-LAH65V (OHARA) | Dense lanthanum flint | Negative power in focus doublet |
 | L51 | 1.90265 | 35.77 | J-LASFH9 (Hikari) | Dense lanthanum flint | Field flattener in rear group |
@@ -340,6 +340,6 @@ All values agree to within rounding precision of the three-decimal-place patent 
 
 1. WO 2022/264542 A1 (WIPO), "Variable-Magnification Optical System, Optical Apparatus, and Method for Manufacturing Variable-Magnification Optical System," Nikon Corporation, published 22 December 2022. Example 1, Table 1.
 2. Nikon USA product page, NIKKOR Z DX 18-140mm f/3.5-6.3 VR (product code 20104). Accessed May 2026. https://www.nikonusa.com/p/nikkor-z-dx-18-140mm-f35-63-vr/20104/overview
-3. OHARA optical glass catalog (current online edition). Glass designations S-TIH6, S-FSL5, S-LAH55V, S-LAM2, S-LAH66, S-NSL36, S-TIM5, S-LAH79, S-BSL7, S-LAH65V.
-4. Hikari optical glass catalog 2023. Glass designations J-SFH1, J-BASF6, J-LASFH9.
-4. Schott optical glass catalog (current online edition). Glass designation SF57.
+3. OHARA optical glass catalog (current online edition). Glass designations S-TIH6, S-FSL5, S-LAH55V, S-LAM2, S-LAH66, S-NSL36, S-TIM5, S-LAH79, S-LAH65V.
+4. Hikari optical glass catalog 2023. Glass designations J-SFH1, J-BASF6, J-LASFH9, J-BK7A.
+5. Schott optical glass catalog (current online edition). Glass designation SF57.

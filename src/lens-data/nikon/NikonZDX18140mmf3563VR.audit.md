@@ -31,3 +31,10 @@ Patent: WO 2022/264542 A1
   20.924 against the patent's printed Bf 20.923). Physical track grows by 0.545 mm.
 - The analysis's "35 optical surfaces excluding PP" was corrected to 33 numbered surfaces (1–33 including the stop);
   Table 1 numbers the cover glass 34–35.
+
+## 2026-09-23 — Glass relabel for the 1.51680 / 64.14 crown
+
+- L35g and the PP cover glass both print nd 1.51680 / νd 64.14 but were labelled S-BSL7 (OHARA), the 1.51633 / 64.14
+  glass that only matched within tolerance. Both now use Hikari J-BK7A (1.51680 / 64.13), the nearest catalog row and
+  the vendor this file already uses for L23, L36 and L51. The analysis glass entries and source list follow; the
+  source list's duplicate item 4 was renumbered.
