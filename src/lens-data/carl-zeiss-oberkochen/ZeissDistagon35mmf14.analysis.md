@@ -3,9 +3,11 @@
 ## Patent & Design Analysis — US 3,915,558, Example 8
 
 **Patent:** US 3,915,558 — *High Power Wide-Angle Lens*
-**Inventor:** Erhard Glatzel (Carl Zeiss Stiftung, Oberkochen, Germany)
+**Inventor:** Erhard Glatzel (Heidenheim, Germany)
+**Assignee:** Carl Zeiss Stiftung, Oberkochen, Germany
 **Filed:** February 1, 1974 | **Granted:** October 28, 1975
 **Priority:** DE 2306346, February 9, 1973
+**Embodiment:** Example 8 (f/1.4, F = 1.0000, s′ = 0.98567F), general configuration of FIGS. 4 and 4a
 **Production lens:** Carl Zeiss Distagon T\* 1.4/35 (Contax/Yashica mount)
 
 ---
@@ -96,27 +98,27 @@ This sum represents the balance of large competing contributions: the negative e
 
 | Property | Value |
 |---|---|
-| Glass | BAF3 (HIKARI), 583/465 barium flint |
+| Glass | 583/465 barium flint; BAF3 catalog equivalent (J-BAF3 spectral row) |
 | nd / νd | 1.5827 / 46.5 |
-| Shape | Negative meniscus, concave toward front |
+| Shape | Negative meniscus, convex toward the object |
 | Radii | R₁ = +8.3325, R'₁ = +0.9281 |
 | Focal length (in air) | −1.80 F (−65.6 mm) |
 
-L1 is a deeply curved negative meniscus with its concave surface facing the object. Both radii are positive (centers of curvature to the right), but because the rear surface (R'₁ = +0.928) curves far more strongly than the front (R₁ = +8.333), the element is thicker at the edges than at the center — the defining geometry of a negative meniscus. Its primary role is to expand the beam entering the lens, contributing the largest single negative surface power in the system (φ at R'₁ = −0.628). This expansion is essential for achieving the retrofocus geometry.
+L1 is a deeply curved negative meniscus: its nearly flat front surface is convex toward the object and its strongly curved rear surface is concave toward the image. Both radii are positive (centers of curvature to the right), but because the rear surface (R'₁ = +0.928) curves far more strongly than the front (R₁ = +8.333), the element is thicker at the edges than at the center — the defining geometry of a negative meniscus. Its primary role is to expand the beam entering the lens, contributing the largest single negative surface power in the system (φ at R'₁ = −0.628). This expansion is essential for achieving the retrofocus geometry.
 
-The six-digit glass code 583465 corresponds to a barium flint type. A modern public Hikari BAF3 catalog row matches the patent constants closely (nd = 1.58267, νd = 46.48), so the data file now uses that coefficient-backed public match while retaining the historical BaF interpretation.
+The six-digit glass code 583465 corresponds to a barium flint of the historical BaF3 type. The patent gives only nd and νd, so the data file labels it as a BAF3 catalog equivalent and uses the coefficient-backed Hikari J-BAF3 row (nd = 1.58267, νd = 46.48) for dispersion. The production supplier is not stated in the patent.
 
 ### Element L2 — Secondary Negative Element
 
 | Property | Value |
 |---|---|
-| Glass | 548/45.8 — Extra-light flint; confirmed Schott LLF1 |
+| Glass | 548/45.8 — Extra-light flint; Schott LLF1 catalog equivalent |
 | nd / νd | 1.5481 / 45.8 |
-| Shape | Negative meniscus, concave toward front |
+| Shape | Negative meniscus, convex toward the object |
 | Radii | R₂ = +1.3301, R'₂ = +0.9281 |
 | Focal length (in air) | −6.10 F (−222.6 mm) |
 
-L2 is a weaker negative meniscus, also concave toward the front, with approximately one-third the refractive power of L1. Rule A requires φ₂ < ⅔ φ₁, and in Example 8 the ratio is 0.320. The rear surface R'₂ = +0.9281 is identical to R'₁ of L1. LLF1 is confirmed with nd = 1.54814, νd = 45.75, matching patent values to manufacturing tolerance.
+L2 is a weaker negative meniscus, also convex toward the object, with approximately one-third the refractive power of L1. Rule A requires φ₂ < ⅔ φ₁, and in Example 8 the ratio is 0.320. The rear surface R'₂ = +0.9281 is identical to R'₁ of L1. Schott LLF1 (nd = 1.54814, νd = 45.75) matches the patent pair within rounding and is used as the catalog equivalent; the patent does not name a glass.
 
 ### Air Lens α — Between Components II and III
 
@@ -126,19 +128,19 @@ The air space between L2 and L3a (S₂ = 0.335F ≈ 12.2 mm) forms the air lens 
 
 | Property | Value |
 |---|---|
-| Glass | 713/53.9 — Lanthanum crown; confirmed Schott N-LaK8 |
+| Glass | 713/53.9 — Lanthanum crown; Schott N-LAK8 catalog equivalent |
 | nd / νd | 1.7130 / 53.9 |
 | Shape | Biconvex positive |
 | Radii | R₃ₐ = +1.3016, R'₃ₐ = −11.273 |
 | Focal length (in air) | +1.65 F (+60.1 mm) |
 
-L3a is the strongest positive element and the dominant converging component of the entire lens. LaK8's high index (nd = 1.713) and low dispersion (νd = 53.9) provide strong positive power without excessive chromatic contribution. This glass is used for three elements (L3a, L3b, L4).
+L3a is the strongest positive element and the dominant converging component of the entire lens. The LaK8-type glass's high index (nd = 1.713) and low dispersion (νd = 53.9) provide strong positive power without excessive chromatic contribution. This glass is used for three elements (L3a, L3b, L4).
 
 ### Element L3b — Rear Element of Split Positive Component
 
 | Property | Value |
 |---|---|
-| Glass | 713/53.9 — Lanthanum crown; confirmed Schott N-LaK8 |
+| Glass | 713/53.9 — Lanthanum crown; Schott N-LAK8 catalog equivalent |
 | nd / νd | 1.7130 / 53.9 |
 | Shape | Positive meniscus, concave toward front |
 | Radii | R₃ᵦ = −47.565, R'₃ᵦ = −2.0928 |
@@ -152,7 +154,7 @@ The splitting of component 3 into air-spaced L3a and L3b is the central innovati
 
 | Property | Value |
 |---|---|
-| Glass | 713/53.9 — Lanthanum crown; confirmed Schott N-LaK8 |
+| Glass | 713/53.9 — Lanthanum crown; Schott N-LAK8 catalog equivalent |
 | nd / νd | 1.7130 / 53.9 |
 | Shape | Positive meniscus, convex toward front |
 | Radii | R₄ = +0.7809, R'₄ = +0.8332 |
@@ -162,13 +164,15 @@ L4 is described by the patent as "a variation of the anastigmatic zero lens (v. 
 
 ### Aperture Stop (CS)
 
-The stop is located in the CS gap (0.236F ≈ 8.6 mm) between L4 and L5. The entrance pupil is 32.5 mm behind the first lens vertex (datasheet); the paraxial ABCD computation yields 34.3 mm.
+The stop is located in the diaphragm space CS (S₄ = 0.23576F ≈ 8.6 mm) between L4 and L5. The table does not locate the diaphragm inside that space. FIGS. 4 and 4a both draw it about 0.69 of the way from the L4 rear vertex to the L5 front vertex. The model therefore places it 5.9 mm behind L4 and 2.7 mm ahead of L5; this position is inferred from the schematic figures. It also clears the rim of L4's concave rear surface, which reaches 5.5 mm behind its vertex at the 17.5 mm rim. With the stop there, the paraxial entrance pupil lies 31.9 mm behind the first vertex. The 32.5 mm datasheet value quoted in earlier notes was not rechecked in this audit.
+
+The model sets the working iris from the f/1.4 entrance pupil (13.04 mm radius) with a real-ray trace. The result is a 15.2 mm stop radius. The pupil is strongly aberrated, so a paraxial scaling of that iris would imply about f/1.3.
 
 ### Element L5 — Rear Diverging Element (Aspherical)
 
 | Property | Value |
 |---|---|
-| Glass | 548/45.8 — Extra-light flint; confirmed Schott LLF1 |
+| Glass | 548/45.8 — Extra-light flint; Schott LLF1 catalog equivalent |
 | nd / νd | 1.5481 / 45.8 |
 | Shape | Biconcave negative (1× aspherical surface) |
 | Radii | R₅ = −6.9100 (ASPHERICAL), R'₅ = +1.1271 |
@@ -180,7 +184,7 @@ L5 carries the lens's sole aspherical surface on its front face. Low-index LLF1 
 
 | Property | L6 | L7 |
 |---|---|---|
-| Glass | SF57 (nd=1.8467, νd=23.8) | N-LaF21 (nd=1.7883, νd=47.4) |
+| Glass | 847/238; SF57 catalog equivalent | 788/474; N-LAF21 catalog equivalent (historical LaF21) |
 | Shape | Biconcave negative | Biconvex positive |
 | Radii | R₆=−1.1854, R'₆=+1.3987 | R₇=+1.3987, R'₇=−0.9416 |
 | Standalone fl | −0.75 F (−27.4 mm) | +0.74 F (+27.1 mm) |
@@ -192,7 +196,7 @@ The doublet provides primary chromatic correction with 23.6-unit Abbe number con
 
 | Property | Value |
 |---|---|
-| Glass | N-LaF21 (nd=1.7883, νd=47.4) |
+| Glass | 788/474 (nd=1.7883, νd=47.4); N-LAF21 catalog equivalent |
 | Shape | Biconvex positive (nearly plano-convex) |
 | Radii | R₈ = +8.8250, R'₈ = −1.5029 |
 | Focal length (in air) | +1.64 F (+59.7 mm) |
@@ -203,19 +207,19 @@ The doublet provides primary chromatic correction with 23.6-unit Abbe number con
 
 The single aspherical surface is on L5's front face (patent surface R₅). The patent sag formulation is P(H) = c₁H² + c₂H⁴, with c₁ = 1/(2R₅) and c₂ = −7.9340850 × 10⁻¹ (normalized). All higher-order terms are zero, making this a pure 4th-order aspherical correction.
 
-Converted to standard conic+polynomial with K = 0: A₄ = c₂ − 1/(8R³) = −0.7930 (normalized) → −1.631 × 10⁻⁵ mm⁻³ at production scale. The aspherical departure at the estimated full-aperture semi-diameter (~13.5 mm) is approximately 0.54 mm — substantial but manufacturable for a surface of this size in the 1970s.
+Converted to standard conic+polynomial with K = 0: A₄ = c₂ − 1/(8R³) = −0.7930 (normalized) → −1.631 × 10⁻⁵ mm⁻³ at production scale. The departure from the vertex sphere is about 0.54 mm at 13.5 mm height and 0.89 mm at the modeled 15.3 mm clear aperture. That is substantial for a 1970s aspherical surface.
 
 ---
 
 ## 5. Glass Selection Strategy
 
-Five glass types serve nine elements: BAF3 / 583465 barium flint (L1), LLF1 548/458 (L2, L5), N-LaK8 713/539 (L3a, L3b, L4), SF57 847/238 (L6), and N-LaF21 788/474 (L7, L8). The achromatization strategy pairs the front member's modest dispersion contrast (~8 units, LaK8 vs LLF1/BaF) with the rear doublet's strong contrast (23.6 units, SF57 vs N-LaF21). The refractive index hierarchy satisfying Rules E' and E″ simultaneously optimizes Petzval field curvature and higher-order oblique aberration balance.
+Five glass types serve nine elements: 583/465 barium flint (L1, BAF3 type), 548/458 extra-light flint (L2, L5, LLF1 type), 713/539 lanthanum crown (L3a, L3b, L4, LaK8 type), 847/238 dense flint (L6, SF57 type) and 788/474 lanthanum flint (L7, L8, LaF21 type). The patent lists only nd and νd, so the catalog names are equivalents rather than documented production melts. The achromatization strategy pairs the front member's modest dispersion contrast (~8 units, LaK8 vs LLF1/BaF) with the rear doublet's strong contrast (23.6 units, SF57 vs N-LaF21). The refractive index hierarchy satisfying Rules E' and E″ simultaneously optimizes Petzval field curvature and higher-order oblique aberration balance.
 
 ---
 
 ## 6. Focusing Mechanism
 
-The production lens uses floating-element focusing to 0.3 m MFD. The patent provides only infinite-conjugate data. The data file approximates close focus with unit focusing (BFD change only), which does not capture the production floating-element behavior.
+The production lens has floating close-range correction and focuses to 0.3 m. The patent gives data for an object at infinity only and does not describe a floating group or its travel. The data file therefore uses a calculated unit-focus extension. The whole lens moves forward from a 35.98 mm to a 43.06 mm back focus (+7.08 mm). That puts a paraxial object 300 mm from the image plane, at about −0.19× magnification. This model does not reproduce the production floating-element correction. An earlier version shortened the back focus to 30.92 mm, which focused beyond infinity on a virtual object.
 
 ---
 
@@ -245,7 +249,7 @@ Erhard Glatzel (1925–2002) was one of the most prolific lens designers at Carl
 
 ## 9. Full Surface Prescription (Example 8)
 
-All values normalized to F = 1.0000. Multiply by 36.5 to obtain production dimensions in mm.
+All values normalized to F = 1.0000. Multiply by 36.5 to obtain production dimensions in mm. The data file splits CS (S10) into 5.9 mm before the stop and 2.705 mm after it; see §3.
 
 | Surface | R | d | nd (after) | Component |
 |---|---|---|---|---|

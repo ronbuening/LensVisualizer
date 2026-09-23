@@ -2,24 +2,37 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
- * ║           LENS DATA — NIKON NIKKOR Z 40mm f/2                      ║
+ * ║           LENS DATA — NIKON NIKKOR Z 40mm f/2                        ║
  * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Data source: JP 2021-189351A Example 4 (Furuida Keigo / Nikon).   ║
- * ║  Compact three-group inner-focus prime: G1(+) / S / G2(+) / G3(−).║
- * ║  6 elements / 4 groups, 2 aspherical surfaces (hybrid composite).  ║
- * ║  Focus: inner focus — G2 translates toward object.                 ║
- * ║                                                                    ║
- * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    Patent does not list SDs. Estimated via combined marginal +     ║
- * ║    chief ray trace (f/2.04, ω = 27.72°), constrained by edge      ║
- * ║    thickness ≥ 0.3 mm and cross-gap sag overlap ≤ gap × 1.1.      ║
- * ║    Front group (G1) SDs constrained by L11 biconvex edge thickness ║
- * ║    — significant off-axis vignetting at f/2 is expected and        ║
- * ║    consistent with the production lens's known behavior.           ║
- * ║                                                                    ║
- * ║  NOTE ON COVER GLASS:                                              ║
- * ║    Patent surfaces 14–15 (IR filter, nd = 1.5168, d = 1.6 mm)     ║
- * ║    excluded. Last surface d = air-equivalent BFD = 12.114 mm.      ║
+ * ║  Data source: JP 2021-189351 A, Example 4 (Table 4, Fig. 7);         ║
+ * ║  inventor Keigo Koida (古井田 啓吾), Nikon Corporation.              ║
+ * ║  Native patent scale (f = 41.194 mm); no rescaling.                  ║
+ * ║  Compact three-group inner-focus prime: G1(+) / S / G2(+) / G3(−).   ║
+ * ║  6 elements / 4 components, 2 aspherical surfaces (hybrid resin).    ║
+ * ║  Focus: inner focus — G2 translates toward the object by the         ║
+ * ║  patent's D4/D10 gaps; G1, stop and G3 fixed.                        ║
+ * ║                                                                      ║
+ * ║  NOTE ON CLOSE FOCUS:                                                ║
+ * ║    Table 4 labels its near state "β = −1/10", but the published      ║
+ * ║    D4/D10 values focus at β ≈ −0.033 (paraxial, calculated) and      ║
+ * ║    Fig. 8(B) quotes an object height H0 = −656.68 mm for Y = 21.63   ║
+ * ║    (β ≈ −0.033). closeFocusM = 1.28 m is the calculated object-to-   ║
+ * ║    image distance of the published gaps. The production 0.29 m MFD   ║
+ * ║    (0.17×) is not published and is not extrapolated.                 ║
+ * ║                                                                      ║
+ * ║  NOTE ON SEMI-DIAMETERS:                                             ║
+ * ║    Patent lists no diameters. Values are measured from Fig. 7        ║
+ * ║    (300 dpi, scale 12.34 px/mm from the S1–S13 vertex span): G1 rims ║
+ * ║    11.0 mm, L21 front concave 8.4 mm inside a flat annulus, L21/L22  ║
+ * ║    11.0 mm, resin 8A 11.3 mm, L23 13.5 mm, L31 resin/front 16.4 mm,  ║
+ * ║    L31 flat rear face 17.6 mm. STO 8.8 mm = inner end of the Fig. 7   ║
+ * ║    stop tick. All clear the f/2.04 axial bundle and the ω = 27.7°    ║
+ * ║    chief ray; off-axis bundles vignette at full aperture.            ║
+ * ║                                                                      ║
+ * ║  NOTE ON COVER GLASS:                                                ║
+ * ║    Patent surfaces 14–15 (filter FL, nd = 1.5168, d = 1.6 mm)        ║
+ * ║    excluded. Last gap = 10.5 + 1.6/1.5168 + 0.5596 = 12.114 mm       ║
+ * ║    (patent Bf(air) = 12.113).                                        ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -28,7 +41,7 @@ const LENS_DATA = {
   key: "nikkor-z-40f2",
   maker: "Nikon",
   name: "NIKON NIKKOR Z 40mm f/2",
-  subtitle: "JP 2021-189351A EXAMPLE 4 — NIKON / FURUIDA",
+  subtitle: "JP 2021-189351 A EXAMPLE 4 — NIKON / KOIDA",
   specs: ["6 ELEMENTS / 4 GROUPS", "f ≈ 41.2 mm", "F/2.04", "2ω ≈ 55.4°", "2 ASPHERICAL SURFACES (HYBRID COMPOSITE)"],
 
   /* ── Explicit metadata ── */
@@ -59,9 +72,9 @@ const LENS_DATA = {
       nd: 1.83481,
       vd: 42.73,
       fl: 27.5,
-      glass: "S-LAH55 (OHARA)",
+      glass: "S-LAH55V (OHARA)",
       apd: false,
-      role: "Front positive crown — dominant converging power in G1 achromatic doublet",
+      role: "Front high-index positive (lanthanum dense flint) — dominant converging power in the G1 cemented doublet",
       cemented: "D1",
     },
     {
@@ -72,7 +85,7 @@ const LENS_DATA = {
       nd: 1.71736,
       vd: 29.57,
       fl: -44.1,
-      glass: "S-TIH1 (OHARA)",
+      glass: "J-SF1 (HIKARI)",
       apd: false,
       role: "Negative flint — chromatic correction partner in G1 doublet",
       cemented: "D1",
@@ -98,9 +111,9 @@ const LENS_DATA = {
       nd: 1.804,
       vd: 46.6,
       fl: 32.3,
-      glass: "S-LAH65 (OHARA)",
+      glass: "J-LASF015 (HIKARI)",
       apd: false,
-      role: "Positive crown body of hybrid composite — primary positive power in G2",
+      role: "High-index positive body of the hybrid composite — primary positive power in the G2 cemented component",
       cemented: "H1",
     },
     {
@@ -124,7 +137,7 @@ const LENS_DATA = {
       nd: 1.83481,
       vd: 42.73,
       fl: 27.0,
-      glass: "S-LAH55 (OHARA)",
+      glass: "S-LAH55V (OHARA)",
       apd: false,
       role: "Strongest positive element — concave toward object, high-index meniscus reducing higher-order SA",
     },
@@ -159,25 +172,25 @@ const LENS_DATA = {
   /* ── Surface prescription ── */
   surfaces: [
     /* G1 — positive cemented doublet (L11 + L12), fixed during focus */
-    { label: "1", R: 28.7073, d: 4.9, nd: 1.83481, elemId: 1, sd: 14.0 },
-    { label: "2", R: -105.0698, d: 0.9, nd: 1.71736, elemId: 2, sd: 14.0 },
-    { label: "3", R: 45.4688, d: 2.45, nd: 1.0, elemId: 0, sd: 13.5 },
+    { label: "1", R: 28.7073, d: 4.9, nd: 1.83481, elemId: 1, sd: 11.0 },
+    { label: "2", R: -105.0698, d: 0.9, nd: 1.71736, elemId: 2, sd: 11.0 },
+    { label: "3", R: 45.4688, d: 2.45, nd: 1.0, elemId: 0, sd: 10.9 },
 
     /* Aperture stop — between G1 and G2, fixed during focus */
     { label: "STO", R: 1e15, d: 11.25, nd: 1.0, elemId: 0, sd: 8.8 },
 
     /* G2 — positive focus group: cemented assembly (L21 + L22 + L22r) + singlet L23 */
-    { label: "5", R: -16.5359, d: 0.9, nd: 1.7552, elemId: 3, sd: 7.2 },
-    { label: "6", R: 105.5966, d: 4.55, nd: 1.804, elemId: 4, sd: 7.8 },
-    { label: "7", R: -33.838, d: 0.1, nd: 1.56093, elemId: 5, sd: 9.8 },
-    { label: "8A", R: -31.0626, d: 0.15, nd: 1.0, elemId: 0, sd: 10.0 },
-    { label: "9", R: -397.823, d: 6.76, nd: 1.83481, elemId: 6, sd: 10.2 },
-    { label: "10", R: -21.5121, d: 13.7904, nd: 1.0, elemId: 0, sd: 12.8 },
+    { label: "5", R: -16.5359, d: 0.9, nd: 1.7552, elemId: 3, sd: 8.4 },
+    { label: "6", R: 105.5966, d: 4.55, nd: 1.804, elemId: 4, sd: 11.0 },
+    { label: "7", R: -33.838, d: 0.1, nd: 1.56093, elemId: 5, sd: 11.0 },
+    { label: "8A", R: -31.0626, d: 0.15, nd: 1.0, elemId: 0, sd: 11.3 },
+    { label: "9", R: -397.823, d: 6.76, nd: 1.83481, elemId: 6, sd: 13.5 },
+    { label: "10", R: -21.5121, d: 13.7904, nd: 1.0, elemId: 0, sd: 13.5 },
 
     /* G3 — negative field flattener: hybrid composite (L31r + L31), fixed during focus */
-    { label: "11A", R: -29.55, d: 0.1, nd: 1.56093, elemId: 7, sd: 15.5 },
-    { label: "12", R: -36.3, d: 1.3, nd: 1.51742, elemId: 8, sd: 15.5 },
-    { label: "13", R: 1084.4056, d: 12.114, nd: 1.0, elemId: 0, sd: 16.0 },
+    { label: "11A", R: -29.55, d: 0.1, nd: 1.56093, elemId: 7, sd: 16.4 },
+    { label: "12", R: -36.3, d: 1.3, nd: 1.51742, elemId: 8, sd: 16.4 },
+    { label: "13", R: 1084.4056, d: 12.114, nd: 1.0, elemId: 0, sd: 17.6 },
   ],
 
   /* ── Aspherical coefficients ──
@@ -206,8 +219,9 @@ const LENS_DATA = {
   },
 
   /* ── Variable air spacings (inner focus) ──
-   *  G2 translates 1.209 mm toward object from infinity to close focus.
-   *  Total track conserved: ΔD4 + ΔD10 = −1.209 + 1.209 = 0.
+   *  Patent Table 4 infinity / near-state gaps. G2 translates 1.2085 mm toward
+   *  the object; ΔD4 + ΔD10 = −1.2085 + 1.2085 = 0 (constant length).
+   *  The near state focuses at 1.28 m object-to-image (β ≈ −0.033, calculated).
    */
   var: {
     STO: [11.25, 10.0415],
@@ -215,7 +229,7 @@ const LENS_DATA = {
   },
   varLabels: [
     ["STO", "D4"],
-    ["10", "BF"],
+    ["10", "D10"],
   ],
 
   /* ── Group and doublet annotations ── */
@@ -231,13 +245,13 @@ const LENS_DATA = {
   ],
 
   /* ── Focus configuration ── */
-  closeFocusM: 0.29,
+  closeFocusM: 1.28,
   focusDescription:
-    "Inner focus (IF): G2 (L21–L23) translates toward the object. G1, aperture stop, and G3 remain fixed.",
+    "Inner focus (IF): G2 (L21–L23) translates 1.21 mm toward the object to the patent's near state (1.28 m, calculated). G1, aperture stop, and G3 remain fixed.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 2,
-  fstopSeries: [2, 2.8, 4, 5.6, 8, 11, 16],
+  nominalFno: 2.04,
+  fstopSeries: [2.04, 2.8, 4, 5.6, 8, 11, 16],
   apertureBlades: 9,
 
   /* ── Layout tuning ── */

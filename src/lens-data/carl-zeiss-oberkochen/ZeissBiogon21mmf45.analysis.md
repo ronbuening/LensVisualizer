@@ -2,18 +2,19 @@
 
 **Patent:** US 2,721,499 — *Five Component Wide-Angle Objective*
 **Inventor:** Ludwig Bertele (Heerbrugg, Switzerland)
+**Assignee:** None printed on the patent
 **Filed:** July 5, 1952 (Swiss priority July 12, 1951)
 **Granted:** October 25, 1955
 **Example analyzed:** Example 2 (f/4.5 variant)
-**Production lens:** Carl Zeiss Biogon 21mm f/4.5 (Contax mount, 1954–1961)
+**Production lens represented:** Carl Zeiss Biogon 21mm f/4.5 (Contax rangefinder mount, 1954–1961)
 
 ---
 
 ## 1. Historical Context
 
-The Biogon 21mm f/4.5 was the world's first commercially successful ultra-wide-angle lens for 35mm photography. Ludwig Bertele, one of the most influential optical designers of the twentieth century, computed the design in 1951 while based at Wild Heerbrugg in Switzerland, for Carl Zeiss Oberkochen (West Germany). Bertele had previously designed the Sonnar (1929), the original asymmetric Biogon 35mm f/2.8 (1934), and the Aviogon aerial survey lens (1950) — a large-format predecessor that directly informed the Biogon's quasi-symmetric architecture.
+The Biogon 21mm f/4.5 was the world's first commercially successful ultra-wide-angle lens for 35mm photography. Ludwig Bertele, one of the most influential optical designers of the twentieth century, filed the Swiss priority application in 1951 while based in Heerbrugg, Switzerland; the US patent is issued to him personally and prints no assignee, while the production lens was made by Carl Zeiss in Oberkochen (West Germany). Bertele had previously designed the Sonnar (1929), the original asymmetric Biogon 35mm f/2.8 (1934), and the Aviogon aerial survey lens (1950) — a large-format predecessor that directly informed the Biogon's quasi-symmetric architecture.
 
-The patent covers a family of three designs sharing the same fundamental topology but optimized for different maximum apertures: Example 1 at f/6.3, Example 2 at f/4.5, and Example 3 at f/3.4. Example 2 is the configuration that was manufactured as the production Biogon 21mm f/4.5 for the Contax rangefinder system, and later adapted (by scaling the same prescription) to the Hasselblad Super Wide Camera (38mm f/4.5 for 6×6 medium format), the Biogon 53mm f/4.5 for 6×9, and the Biogon 75mm f/4.5 for 4×5 format.
+The patent covers a family of three designs sharing the same fundamental topology but optimized for different maximum apertures: Example 1 at f/6.3, Example 2 at f/4.5, and Example 3 at f/3.4. The patent names no product. Example 2 is the example whose f/4.5 aperture and ~90° field match the Contax rangefinder Biogon 21mm f/4.5, so it is used here as that lens's reconstruction; the patent cannot confirm that the production glass or radii were identical. The same Biogon type later appeared in larger-format versions (for example the 38mm f/4.5 of the Hasselblad Super Wide); whether those were simple scalings of Example 2 is not established by this patent.
 
 The design was widely regarded as a breakthrough: it achieved 90°+ field coverage at f/4.5 with essentially zero distortion and remarkably even illumination to the corners — a combination that was considered impossible before the Biogon appeared at Photokina in 1954.
 
@@ -41,18 +42,18 @@ The modern Zeiss C Biogon T* 21mm f/4.5 ZM (introduced 2004 for Leica M mount) a
 
 ### 2.3 Key Specifications (Example 2, Patent Scale)
 
-The patent prescription is given at a normalized focal length of f = 100 mm. All linear dimensions (radii, thicknesses, spacings) scale uniformly to the production focal length.
+The patent prescription is given at a normalized focal length of f = 100 mm. All linear dimensions (radii, thicknesses, spacings) scale uniformly to the production focal length. The table below uses the patent scale; values marked *calculated* come from a paraxial trace of the table as printed.
 
 | Parameter | Patent value | Notes |
 |-----------|-------------|-------|
 | Stated focal length | 100 mm | Nominal design target |
-| Computed EFL (paraxial) | 90.55 mm | See §4 for discussion |
+| Computed EFL (paraxial) | 100.06 mm | Calculated; see §4.1 |
 | Relative aperture | 1:4.5 | |
 | Elements / groups | 8 / 5 | |
 | Aspherical surfaces | 0 | |
-| Half-field angle | ~45° | |
+| Half-field angle | ~45° | Patent: image angle "about 90°"; real chief ray reaches the 21.6 mm corner at 45.7° (calculated) |
 | Total optical track | 196.4 mm | r₁ to r₁₃ |
-| Back focal distance | 31.69 mm | Paraxial, from r₁₃ |
+| Back focal distance | 49.36 mm | Calculated paraxial, from r₁₃ |
 | Sum of V (L₁ + L₂) | 137.0 | Patent-stated constraint |
 | Air space C–D (l₃) | 4.7 mm | = 0.047f; stop location |
 
@@ -77,18 +78,18 @@ The patent prescription is given at a normalized focal length of f = 100 mm. All
 
 ### 3.1 Surface Table
 
-The following table is transcribed from the patent, with surface labels and element assignments added for clarity. The sign convention follows the patent: positive radii have their center of curvature to the right (toward the image).
+The following table is transcribed from the patent, with surface labels and element assignments added for clarity. The sign convention follows the patent: positive radii have their center of curvature to the right (toward the image). The table does not tabulate the diaphragm; the text places it in the third air space l₃, and Fig. 2 draws it at the middle of that 4.7 mm gap, which is where the data file puts it.
 
 | Surface | R (mm) | d (mm) | n_d | Element | Component | Notes |
 |---------|--------|--------|-----|---------|-----------|-------|
 | r₁ | +109.14 | 3.7 | 1.50380 | L₁ | A | L₁ front |
-| r₂ | +62.63 | 13.2 | 1.0 (air) | — | — | l₁: air gap A–B |
+| r₂ | +52.63 | 13.2 | 1.0 (air) | — | — | l₁: air gap A–B |
 | r₃ | +110.25 | 3.7 | 1.48697 | L₂ | B | L₂ front |
 | r₄ | +50.72 | 35.0 | 1.0 (air) | — | — | l₂: air gap B–C |
 | r₅ | +56.24 | 29.3 | 1.72050 | L₃ | C | L₃ front |
 | r₆ | +25.37 | 13.3 | 1.60739 | L₄ | C | Cemented junction |
 | r₇ | −194.92 | 4.7 | 1.0 (air) | — | — | l₃: stop air gap |
-| r₈ | −252.70 | 2.8 | 1.56093 | L₅ | D | L₅ front |
+| r₈ | −252.70 | 2.8 | 1.56993 | L₅ | D | L₅ front |
 | r₉ | +30.59 | 23.7 | 1.62500 | L₆ | D | Cemented junction |
 | r₁₀ | −25.51 | 18.2 | 1.71966 | L₇ | D | Cemented junction |
 | r₁₁ | −57.38 | 39.0 | 1.0 (air) | — | — | l₄: air gap D–E |
@@ -107,6 +108,8 @@ The patent text provides several derived quantities for Example 2. All were veri
 | Sum of cemented radii (r₆ + r₁₀) | 0.509f | 50.88 mm | ✓ |
 | Air space C–D (l₃) | 0.047f | 4.7 mm | ✓ |
 | Sum of Abbe numbers (L₁ + L₂) | 137.0 | 137.0 | ✓ |
+| Focal-length quotient A / B | between 0.35 and 3.0 (claim 1) | 1.05 (−206.3 / −196.9, calculated) | ✓ |
+| Paraxial EFL | f = 100 mm | 100.06 mm (calculated) | ✓ |
 
 ---
 
@@ -114,17 +117,13 @@ The patent text provides several derived quantities for Example 2. All were veri
 
 ### 4.1 Effective Focal Length
 
-A surface-by-surface paraxial ray trace (y–nu method) of the Example 2 prescription yields a computed EFL of **90.55 mm**, compared to the patent's stated value of 100.0 mm — a discrepancy of approximately 9.5%.
+A surface-by-surface paraxial ray trace (y–nu method) of the Example 2 table as printed yields a calculated EFL of **100.06 mm**, matching the patent's stated f = 100 mm within rounding, with a paraxial back focal distance of 49.36 mm. The same trace gives 99.94 mm for Example 1 and 99.95 mm for Example 3, so all three examples are genuinely computed at f = 100 mm.
 
-This discrepancy is not unique to Example 2. Paraxial ray traces of all three patent examples reveal systematic departures from the stated f = 100 mm: Example 1 yields approximately 99.5 mm (0.5% deviation), Example 2 yields 90.5 mm (9.5% deviation), and Example 3 yields 104.5 mm (4.5% deviation). The trend — increasing aperture correlating with larger EFL deviation — suggests that the f = 100 mm label in the patent serves as a normalized design scale rather than the precise paraxial result of each individual numerical example. In patents of the 1950s, it was common to present multiple examples at a nominal focal length, with the understanding that the prescription was to be scaled to the desired production focal length regardless.
-
-The ray trace methodology was cross-verified against Example 1, which yields an EFL within 0.5% of the stated 100 mm, confirming that the methodology is correct and the larger discrepancy in Example 2 is a property of the prescription itself.
-
-Regardless, the design dimensions and all internal consistency checks match the patent text exactly, and the production lens was manufactured from this prescription (scaled to f ≈ 21 mm).
+An earlier transcription of this lens had read r₂ as +62.63 and the L₅ index as 1.56093. In the printed table this typeface makes 5/6 and 0/9 look alike; read as +52.63 and 1.56993 (the same L₅ index Example 3 uses), the prescription closes on f = 100 mm, whereas the old reading produced a spurious 90.55 mm EFL and 31.7 mm back focus.
 
 ### 4.2 Petzval Sum
 
-The Petzval sum, computed surface-by-surface using the formula Σ φᵢ/(nᵢ · n'ᵢ), is **+0.00145 mm⁻¹**, giving a Petzval radius of approximately **691 mm** (or roughly 7.6× the design EFL). The positive sign indicates inward field curvature, as expected for a net-positive optical system.
+The Petzval sum, computed surface-by-surface using the formula Σ φᵢ/(nᵢ · n'ᵢ), is **+0.000296 mm⁻¹** at patent scale (calculated), giving a Petzval radius of approximately **3,380 mm**, roughly 34× the design EFL (about 710 mm at the stored 21 mm scale). The positive sign indicates inward field curvature, as expected for a net-positive optical system.
 
 This is a remarkably flat Petzval field for a lens of this era and represents one of the Biogon's most significant design achievements. For comparison, a simple doublet of the same focal length would typically have a Petzval radius of about 2–3× the focal length, resulting in unacceptable field curvature at 45° half-field. Bertele's quasi-symmetric architecture, with strong negative meniscus elements at both ends, effectively cancels the Petzval contributions of the central positive groups. The negative elements contribute large negative Petzval terms that offset the positive terms from Components C and D.
 
@@ -134,10 +133,10 @@ The following focal lengths were computed via thick-lens paraxial ray trace (sta
 
 | Component | Elements | Focal length (mm) | Power |
 |-----------|----------|-------------------|-------|
-| A | L₁ | −299.7 | Weak negative |
+| A | L₁ | −206.3 | Moderate negative |
 | B | L₂ | −196.9 | Moderate negative |
 | C | L₃ + L₄ | **+86.8** | Strong positive |
-| D | L₅ + L₆ + L₇ | **+107.8** | Moderate positive |
+| D | L₅ + L₆ + L₇ | **+110.7** | Moderate positive |
 | E | L₈ | −109.4 | Moderate negative |
 
 The overall system power is achieved by the two central positive groups (C and D), which together produce strong convergence. The three negative meniscus elements at the periphery (A, B, E) serve primarily to flatten the field and control off-axis aberrations rather than to contribute focusing power.
@@ -146,34 +145,34 @@ The overall system power is achieved by the two central positive groups (C and D
 
 ## 5. Glass Identification
 
-The patent provides refractive index (n_d) and Abbe number (V_d) for each element. Because this is a 1952 design, the glasses are from the Schott catalog of that era. Many of these formulations have since been discontinued or reformulated. The identifications below are matched against known Schott catalog glasses, with confidence assessments.
+The patent provides refractive index (n_d) and Abbe number (V_d) for each element and names no glass types or supplier. The identifications below are catalog equivalents by coordinate only, with confidence assessments; the historical melts (probably Schott glasses of the period, but the patent does not say) are not claimed.
 
 ### 5.1 Glass Table
 
 | Element | n_d | V_d | Six-digit code | Nearest Schott match | Δn_d | ΔV_d | Confidence |
 |---------|-----|-----|----------------|---------------------|------|------|------------|
 | L₁ | 1.50380 | 66.7 | 504/667 | HOYA PC1 optical equivalent (1.503779/66.887) | −0.00002 | +0.19 | Catalog-backed equivalent; supplier unspecified |
-| L₂ | 1.48697 | 70.3 | 487/703 | FK5 (1.4875/70.4) | −0.0005 | −0.1 | **Near-exact** |
+| L₂ | 1.48697 | 70.3 | 487/703 | FK5 fluor crown (1.4875/70.4) | −0.0005 | −0.1 | **Near-exact** |
 | L₃ | 1.72050 | 50.3 | 721/503 | LaK10 class; J-LAK10 spectral proxy | +0.0005 | 0.0 | **Near-exact** |
 | L₄ | 1.60739 | 59.5 | 607/595 | K-SK7 (Sumita, 1.60729/59.5) | +0.0001 | 0.0 | **Near-exact** |
-| L₅ | 1.56093 | 57.5 | 561/575 | No close match | — | — | Family (BaK/SK crown) |
-| L₆ | 1.62500 | 53.3 | 625/533 | SK10 (1.6228/53.3) | +0.0022 | 0.0 | Family (SK crown) |
+| L₅ | 1.56993 | 57.5 | 570/575 | No close match (nearest BaK1-type 1.5725/57.5) | −0.0026 | 0.0 | Family (BaK crown) |
+| L₆ | 1.62500 | 53.3 | 625/533 | SSK2 (1.6223/53.3) | +0.0027 | 0.0 | Family (SSK dense crown) |
 | L₇ | 1.71966 | 29.3 | 720/293 | SF1 (1.7174/29.5) | +0.0023 | −0.2 | Family (SF flint) |
-| L₈ | 1.64200 | 58.1 | 642/581 | LaK21 (1.6400/60.1) | +0.0020 | −2.0 | Family (LaK/SK crown) |
+| L₈ | 1.64200 | 58.1 | 642/581 | LAK6 / S-BSM36 class (1.6425/58.1–58.4) | −0.0005 | 0.0 | Several suppliers fit; unresolved |
 
 ### 5.2 Discussion of Glass Choices
 
-**L₂ (FK5):** The fluorite crown in L₂ is the most confidently identified glass. FK5 is a low-index, low-dispersion crown that contributes minimal chromatic aberration in the front negative meniscus. The patent specifies that the sum of V-values for L₁ and L₂ must exceed 100 — their combined V of 137.0 far exceeds this minimum, ensuring good lateral color correction in the front group.
+**L₂ (FK5 class):** The fluor crown (FK) in L₂ is the most confidently identified glass. FK5 is a low-index, low-dispersion crown that contributes minimal chromatic aberration in the front negative meniscus. The patent specifies that the sum of V-values for L₁ and L₂ must exceed 100 — their combined V of 137.0 far exceeds this minimum, ensuring good lateral color correction in the front group.
 
 **L₃ (LaK10 class):** The lanthanum crown coordinate is an excellent match to the LaK10 family. Hikari J-LAK10 supplies the catalog spectral proxy while leaving the historical production supplier unspecified. Its high refractive index (1.720) with moderate dispersion (V = 50.3) is essential for achieving strong surface powers at the front of Component C without excessive chromatic aberration.
 
 **L₄ (SK7):** An almost exact match. The dense crown SK7 serves as the cemented partner to L₃ in Component C, with a lower refractive index (1.607 vs. 1.721) and higher Abbe number (59.5 vs. 50.3). The refractive index step at the cemented junction (Δn = −0.113) provides chromatic correction, while the curvature at r₆ controls spherical aberration.
 
-**L₅ (unidentified crown):** This glass has no close match in standard Schott catalogs. Its n_d = 1.56093 and V_d = 57.5 (six-digit code 561/575) falls in the BaK/SK crown region but does not correspond to any common catalog entry. It may represent a now-discontinued Schott formulation, or an interpolated "paper glass" used in the patent computation with the understanding that the nearest available melt would be substituted in production.
+**L₅ (unidentified crown):** This glass has no close match in the repo's catalogs. Its n_d = 1.56993 and V_d = 57.5 (six-digit code 570/575, the same L₅ glass as Example 3) falls in the barium-crown region but does not correspond to any common catalog entry. It may represent a now-discontinued Schott formulation, or an interpolated "paper glass" used in the patent computation with the understanding that the nearest available melt would be substituted in production.
 
-**L₆ (SK-type crown):** The identification of L₆ is complicated by the difficulty of reading the Abbe number from the patent's printed table (the OCR is partially garbled at this entry). The analysis reads V_d = 53.3, which places this near SK10 (n_d = 1.6228, V_d = 53.3), though the refractive index differs by +0.0022. An alternative reading of V_d ≈ 59.0 (matching Example 3, which uses the same n_d = 1.62500) cannot be definitively excluded. In either case, this is an SK-family dense crown glass.
+**L₆ (SSK-type crown):** The rendered patent page reads V_d = 53.3 clearly for Example 2 (Example 3 uses the same n_d = 1.62500 with V_d = 59.0). The 625/533 coordinate lies near SSK2 (n_d = 1.6223, V_d = 53.3), 0.0027 lower in index, so it is recorded as an SSK-type dense crown without a catalog equivalent.
 
-**L₇ (SF1):** The dense flint in L₇ is the only true flint glass in the entire design. Its high dispersion (V = 29.3) is critical for achromatizing the cemented triplet of Component D, where it is sandwiched between two crown elements. The large index step at r₁₀ (from n = 1.625 in L₆ to n = 1.720 in L₇) provides strong chromatic correction.
+**L₇ (SF1 class):** The dense flint in L₇ is the only true flint glass in the entire design. Its high dispersion (V = 29.3) is critical for achromatizing the cemented triplet of Component D, where it is sandwiched between two crown elements. The large index step at r₁₀ (from n = 1.625 in L₆ to n = 1.720 in L₇) provides strong chromatic correction.
 
 **L₈ (LaK/SK family):** The rear meniscus uses a high-index crown glass, which is notable — a dense flint might be expected in the rear negative element of a symmetric design, but Bertele chose a low-dispersion glass instead. This choice aids lateral color correction by minimizing the chromatic contribution of the rearmost element, which sees strongly oblique ray bundles at full field.
 
@@ -184,8 +183,8 @@ The patent provides refractive index (n_d) and Abbe number (V_d) for each elemen
 ### 6.1 Component A — L₁ (Front Negative Meniscus)
 
 **Shape:** Meniscus, concave toward image; both surfaces convex toward the object.
-**Power:** Weak negative (f = −300 mm thick-lens).
-**Glass:** BK-type crown (n_d = 1.504, V_d = 66.7).
+**Power:** Moderate negative (f = −206 mm thick-lens).
+**Glass:** Low-index crown, HOYA PC1 catalog equivalent (n_d = 1.504, V_d = 66.7).
 
 L₁ is the first element the light encounters. As a weak negative meniscus with both surfaces curved toward the object, it acts primarily as a **field lens** for off-axis ray bundles. Its function is to bend the chief ray of wide-angle fields inward, directing oblique pencils toward the entrance pupil of the inner groups. Without L₁ (and L₂), peripheral ray bundles would miss the central positive groups entirely.
 
@@ -195,9 +194,9 @@ The air space between L₁ and L₂ (l₁ = 13.2 mm) is itself optically signifi
 
 **Shape:** Meniscus, concave toward image; both surfaces convex toward the object.
 **Power:** Moderate negative (f = −197 mm thick-lens).
-**Glass:** FK5 fluorite crown (n_d = 1.487, V_d = 70.3).
+**Glass:** FK5-class fluor crown (n_d = 1.487, V_d = 70.3).
 
-L₂ continues the function of L₁ but with stronger power. The use of two separated negative menisci rather than one is a deliberate design choice — it allows the total negative power to be split across two elements, reducing the surface curvatures required on any single element and thereby reducing higher-order aberrations. The patent explicitly states that this split front group is essential for providing oblique pencil passage "without vignetting" and avoiding "comatic aberration disturbing image formation."
+L₂ continues the function of L₁ with almost the same power (−197 mm against −206 mm). The use of two separated negative menisci rather than one is a deliberate design choice — it allows the total negative power to be split across two elements, reducing the surface curvatures required on any single element and thereby reducing higher-order aberrations. The patent explicitly states that this split front group is essential for providing oblique pencil passage "without vignetting" and avoiding "comatic aberration disturbing image formation."
 
 The high Abbe number (70.3) ensures that L₂ introduces minimal lateral chromatic aberration despite its significant negative power. This is critical at 45° half-field, where lateral color can produce visible color fringing at the image periphery.
 
@@ -223,8 +222,8 @@ The thick construction of L₃ (d₃ = 29.3 mm — nearly 30% of the design foca
 
 ### 6.4 Component D — L₅ + L₆ + L₇ (Cemented Triplet)
 
-**L₅ — Shape:** Biconcave; negative (f = −49 mm thick-lens).
-**L₅ — Glass:** Crown, 561/575 family (n_d = 1.561, V_d = 57.5).
+**L₅ — Shape:** Biconcave; negative (f = −48 mm thick-lens).
+**L₅ — Glass:** Barium crown, 570/575 (n_d = 1.570, V_d = 57.5).
 
 **L₆ — Shape:** Biconvex; strongly positive (f = +27 mm thick-lens).
 **L₆ — Glass:** SK-type dense crown (n_d = 1.625, V_d = 53.3).
@@ -232,7 +231,7 @@ The thick construction of L₃ (d₃ = 29.3 mm — nearly 30% of the design foca
 **L₇ — Shape:** Meniscus, convex toward image; negative (f = −84 mm thick-lens).
 **L₇ — Glass:** SF1-type dense flint (n_d = 1.720, V_d = 29.3).
 
-**Triplet net power:** Positive (f = +107.8 mm).
+**Triplet net power:** Positive (f = +110.7 mm).
 
 Component D is the image-side positive group and the most complex subassembly in the design, containing the lens's only flint glass element. The triplet architecture serves as a **fully achromatized positive group** with internal aberration balancing:
 
@@ -240,7 +239,7 @@ Component D is the image-side positive group and the most complex subassembly in
 
 2. **Spherical aberration control:** The two cemented junctions (r₉ at R = +30.59 and r₁₀ at R = −25.51) provide two internal correction surfaces. The patent discusses the cemented surface r₁₀, which is "convex towards the image": the glass adjacent to the convex side is L₇ (n = 1.720, dense flint) and the glass adjacent to the concave side is L₆ (n = 1.625, crown). The higher-index glass on the convex side is the standard doublet condition for correcting undercorrected spherical aberration introduced by the group's positive power.
 
-3. **Higher-order correction:** The patent's claim 7 describes a second cemented surface in Component D that is "convex towards the object" (r₉, R = +30.59). Here the arrangement is reversed: the glass on the convex (object) side is L₅ (n = 1.561), while the glass on the concave (image) side is L₆ (n = 1.625) — the lower-index glass faces the convex side. This opposite index arrangement at r₉ contributes spherical aberration of the opposite sign to that at r₁₀, giving the designer a second degree of freedom for controlling the zonal balance of the aberration curve independently of chromatic correction.
+3. **Higher-order correction:** The patent's claim 7 describes a second cemented surface in Component D that is "convex towards the object" (r₉, R = +30.59). Here the arrangement is reversed: the glass on the convex (object) side is L₅ (n = 1.570), while the glass on the concave (image) side is L₆ (n = 1.625) — the lower-index glass faces the convex side. This opposite index arrangement at r₉ contributes spherical aberration of the opposite sign to that at r₁₀, giving the designer a second degree of freedom for controlling the zonal balance of the aberration curve independently of chromatic correction.
 
 ### 6.5 Component E — L₈ (Rear Negative Meniscus)
 
@@ -250,11 +249,11 @@ Component D is the image-side positive group and the most complex subassembly in
 
 L₈ is the image-side counterpart to the front meniscus elements (A + B). Its role is twofold:
 
-1. **Petzval flattening:** L₈ provides strong negative Petzval contribution at a position far from the stop, where it has maximum leverage on field curvature. The combined Petzval contributions of L₁, L₂, and L₈ very nearly cancel the positive Petzval sum of Components C and D, yielding the remarkably flat field (Petzval radius ≈ 691 mm) that distinguishes the Biogon from earlier wide-angle designs.
+1. **Petzval flattening:** L₈ provides strong negative Petzval contribution at a position far from the stop, where it has maximum leverage on field curvature. The combined Petzval contributions of L₁, L₂, and L₈ very nearly cancel the positive Petzval sum of Components C and D, yielding the remarkably flat field (Petzval radius ≈ 3,380 mm at f = 100) that distinguishes the Biogon from earlier wide-angle designs.
 
 2. **Distortion correction:** Because L₈ is positioned symmetrically opposite to L₁ and L₂ relative to the stop, it helps enforce the quasi-symmetric cancellation of odd-order aberrations (coma, distortion, lateral color). This is the fundamental principle of symmetric wide-angle design: what the front half introduces, the rear half cancels.
 
-The rear surface of L₈ (r₁₃ = −102.64 mm) defines the exit aperture of the lens. The back focal distance of only 31.7 mm (at f = 100 scale) means that the rear element protrudes very close to the film plane. At production scale (f ≈ 21 mm), the BFD is approximately 6.7 mm — so close to the film that the lens cannot be used on SLR cameras without locking the mirror in the up position.
+The rear surface of L₈ (r₁₃ = −102.64 mm) defines the exit aperture of the lens. The back focal distance of 49.4 mm at f = 100 scale (calculated) becomes about 10.4 mm at production scale, so the rear element sits deep inside the camera body, far behind the lens mount — which is why the design cannot be used on SLR cameras without locking the mirror in the up position.
 
 ---
 
@@ -262,7 +261,7 @@ The rear surface of L₈ (r₁₃ = −102.64 mm) defines the exit aperture of t
 
 A distinctive feature of the Biogon design is that the air spaces themselves function as optical elements. The patent explicitly describes the shapes of the air lenses:
 
-- **l₁** (between A and B): Shaped like a "collecting meniscus element with its convex outer surfaces turned towards the object," per the patent. This air space is bounded by r₂ = +62.63 on the left and r₃ = +110.25 on the right — both surfaces are convex toward the object, forming a meniscus-shaped gap. The patent's term "collecting" describes the geometric form (a positive-meniscus shape), not the optical power of the air gap itself. The meniscus geometry of this gap creates a favorable passage for oblique ray bundles entering from wide field angles, guiding them toward the central positive groups.
+- **l₁** (between A and B): Shaped like a "collecting meniscus element with its convex outer surfaces turned towards the object," per the patent. This air space is bounded by r₂ = +52.63 on the left and r₃ = +110.25 on the right — both surfaces are convex toward the object, forming a meniscus-shaped gap. The patent's term "collecting" describes the geometric form (a positive-meniscus shape), not the optical power of the air gap itself. The meniscus geometry of this gap creates a favorable passage for oblique ray bundles entering from wide field angles, guiding them toward the central positive groups.
 
 - **l₂** and **l₄** (between B–C and D–E): Each has "the shape of a meniscus element with the respective outer surfaces being bent towards the object and to the image respectively." These air spaces contribute carefully controlled amounts of astigmatism correction.
 
@@ -276,7 +275,7 @@ A distinctive feature of the Biogon design is that the air spaces themselves fun
 
 The patent does not specify a focus mechanism, which is consistent with **unit focusing** — the entire optical assembly moves axially as a single unit to focus at different object distances. This is the simplest and most common focusing arrangement for wide-angle lenses of this era.
 
-The production Biogon 21mm f/4.5 confirms this: the entire lens barrel translates forward for close focus. The minimum focus distance is 0.9–1.0 meters, and Zeiss provided depth-of-field scales only at f/4.5 and f/5.6 because at any smaller aperture, the depth of field was so vast as to render the focus scale superfluous.
+The production Biogon 21mm f/4.5 confirms this: the entire lens barrel translates forward for close focus. The patent publishes no close-focus state; the data file's 0.9 m setting uses a calculated unit-focus extension of 0.53 mm at the stored scale (object-to-image distance 0.90 m, magnification about −0.025). The minimum focus distance is 0.9–1.0 meters, and Zeiss provided depth-of-field scales only at f/4.5 and f/5.6 because at any smaller aperture, the depth of field was so vast as to render the focus scale superfluous.
 
 ### 8.2 Focus Insensitivity
 
@@ -310,36 +309,36 @@ The patent cites Roossinov (US 2,516,724, 1950) among its references. Michail Ro
 
 ## 10. Scaling to Production
 
-The patent prescription at f = 100 mm is scaled uniformly to the production focal length. For the 21mm Contax version, the nominal scale factor is 0.21 (21/100). All radii, thicknesses, spacings, and semi-diameters multiply by this factor. The computed paraxial EFL of Example 2 is approximately 90.5 mm (see §4.1), so at production scale (×0.21) the paraxial EFL is about 19.0 mm — somewhat shorter than the marketed 21 mm. This discrepancy is documented in the data file as focalLengthDesign = 19.0 mm vs. focalLengthMarketing = 21 mm.
+The patent prescription at f = 100 mm is scaled uniformly to the production focal length. For the 21mm Contax version the scale factor is 0.21 (21/100). All radii, thicknesses, spacings, and semi-diameters multiply by this factor. The calculated paraxial EFL of Example 2 is 100.06 mm, so the stored prescription has an EFL of 21.01 mm, matching the marketed 21 mm.
 
 At production scale:
 
 | Parameter | Patent (f = 100) | Production (f ≈ 21) |
 |-----------|-----------------|---------------------|
-| Total track (r₁–r₁₃) | 196.4 mm | ~41 mm |
-| Back focal distance | 31.7 mm | ~6.7 mm |
-| Front element diameter | ~96 mm | ~20 mm |
+| Total track (r₁–r₁₃) | 196.4 mm | 41.2 mm |
+| Back focal distance (calculated) | 49.4 mm | 10.4 mm |
+| Front element diameter (Fig. 2 measurement) | ~113 mm | ~24 mm |
 | Air gap l₃ (stop) | 4.7 mm | ~1.0 mm |
 
-The same prescription was also scaled to other formats: 38mm for 6×6 (scale 0.38), 53mm for 6×9 (scale 0.53), and 75mm for 4×5 (scale 0.75).
+Larger-format Biogons (38mm for 6×6, 53mm for 6×9, 75mm for 4×5) are often described as scalings of the same design; the patent itself does not document those versions.
 
 ---
 
 ## 11. Semi-Diameter Estimation
 
-The patent provides no semi-diameter values. All semi-diameters in the companion data file were estimated using the following methodology:
+The patent provides no semi-diameter values. The semi-diameters in the companion data file are measurements of the Fig. 2 section, checked by exact ray trace:
 
-1. **Stop SD:** Derived from the paraxial relationship SD_stop = EFL/(2 × f/#) = 90.55/(2 × 4.5) = 10.06 mm at patent scale (2.11 mm production).
+1. **Figure scale:** Fig. 2 was measured at 600 dpi; its first-to-last vertex spacing and the drawn L₈ thickness give about 8.5 px per patent unit (about 40 px/mm at the stored 21 mm scale).
 
-2. **On-axis envelope:** A paraxial marginal ray was traced at the computed EP radius (10.06 mm) to establish minimum SD requirements at each surface.
+2. **Rims from the figure (stored scale):** L₁ about 11.9 mm with its concave rear surface ending near 8.5 mm, L₂ about 10.6 mm, L₃ about 6.0 mm, L₄ and L₅ about 4.2 mm, L₇ about 6.4 mm, and L₈ about 11.0 mm with its concave front surface ending near 7.7 mm. The large front and rear shells and the small central core are the figure's signature proportions.
 
-3. **Off-axis considerations:** For a 90° field lens, the off-axis beam footprint dominates the SD requirements at the front and rear elements. Paraxial chief ray tracing at 45° half-field is unreliable (the paraxial approximation breaks down well before 45°), so SDs were estimated using the patent figure proportions as the primary guide for front/rear element sizing.
+3. **Geometric limits:** The L₁ rear surface (r₂) is held at 8.5 mm because the L₁/L₂ air gap closes beyond that height, and the L₈ front surface is held at 7.5 mm by the 0.90 sd/|R| rim limit on its steep r₁₂ curve. Rims within about 15 % of the figure (r₄, r₆, r₉, r₁₀) keep their earlier values.
 
-4. **Physical constraints:** SDs were limited to sd/|R| < 0.90 at all spherical surfaces, and edge thicknesses were verified to be ≥ 1.0 mm for all elements. Cross-gap sag intrusion was checked to remain below 90% of each air gap.
+4. **Aperture stop:** The table does not locate the diaphragm; it sits at the middle of l₃ as drawn in Fig. 2. Its authored radius (2.95 mm) is the f/4.5 iris the engine derives from the nominal f-number.
 
-5. **Production reference:** The front element diameter was cross-checked against the 40.5 mm filter thread diameter (production), noting that the glass clear aperture is typically smaller than the filter thread.
+5. **Ray-trace check:** The f/4.5 axial marginal ray clears every surface, and the real full-field chief ray reaches the 21.6 mm corner at a half-field of 45.7° without meeting any rim. Because the paraxial field estimate stops near 37° at the steep r₂ surface, the data file declares the traced 91.4° coverage explicitly.
 
-The resulting SD estimates produce a visually correct quasi-symmetric cross-section consistent with the patent figure. The front elements (L₁: SD ≈ 48 mm patent / 10.1 mm production) and rear element (L₈: SD ≈ 38 mm patent / 8.0 mm production) are the largest, tapering to the stop (SD ≈ 10 mm patent / 2.1 mm production) in the expected pattern for a quasi-symmetric wide-angle design.
+The resulting cross-section reproduces the patent's quasi-symmetric silhouette: large negative shells at both ends (L₁ ≈ 11.9 mm, L₈ ≈ 11.0 mm) tapering to a compact positive core around a stop of about 3 mm radius.
 
 ---
 
@@ -351,10 +350,10 @@ The resulting SD estimates produce a visually correct quasi-symmetric cross-sect
 
 3. **The cemented groups are the heart of the design.** Component C (doublet, f = +87 mm) and Component D (triplet, f = +108 mm) provide essentially all the convergent power, while simultaneously correcting spherical aberration, chromatic aberration, and coma through their internal cemented junctions.
 
-4. **The negative menisci flatten the field.** Components A, B, and E together nearly cancel the Petzval sum of the central positive groups, yielding a Petzval radius of approximately 7.6× the focal length — exceptionally flat for a lens of this era.
+4. **The negative menisci flatten the field.** Components A, B, and E together nearly cancel the Petzval sum of the central positive groups, yielding a Petzval radius of roughly 34× the focal length (calculated) — exceptionally flat for a lens of this era.
 
 5. **Unit focusing only.** The entire lens moves axially. There is no internal or rear focusing mechanism.
 
-6. **The design is scalable.** The same prescription was manufactured at four different focal lengths for different film formats, from 21mm (35mm film) to 75mm (4×5 sheet film), simply by applying a uniform scale factor.
+6. **The design is scalable.** As a normalized f = 100 mm prescription, Example 2 scales uniformly to the 21 mm Contax focal length; the Biogon type was later offered for larger formats as well.
 
-7. **EFL discrepancy.** The paraxial EFL of Example 2 (90.55 mm) departs significantly from the stated 100 mm. This is specific to Example 2; Examples 1 and 3 depart by 0.5% and 4.5% respectively. The f = 100 mm label is best understood as a normalized design scale.
+7. **The table closes on f = 100 mm.** Read as printed (r₂ = +52.63, L₅ n_d = 1.56993), Example 2 traces to a paraxial EFL of 100.06 mm, and Examples 1 and 3 to 99.94 and 99.95 mm; the earlier 90.55 mm "discrepancy" was a transcription error.

@@ -2,35 +2,36 @@
 
 **Patent:** US 2010/0238560 A1 — Example 1 (SL1)
 **Inventor:** Makoto Fujimoto (Nikon Corporation)
-**Filed:** February 26, 2010 | **Priority:** March 17, 2009 (JP 2009-064521)
+**Filed:** February 26, 2010 | **Published:** September 23, 2010 | **Priority:** March 17, 2009 (JP 2009-064521)
 **Production lens:** AF-S NIKKOR 16-35mm f/4G ED VR (released February 2010)
 
 ---
 
 ## 1. Overview
 
-The Nikon AF-S NIKKOR 16-35mm f/4G ED VR is an ultra-wide-angle zoom lens with built-in optical image stabilization, designed for Nikon's FX-format (full-frame 35 mm) digital SLR cameras. It is a negative-lead, four-group zoom with vibration reduction (VR) implemented in the third lens group. Example 1 from the patent (designated SL1) matches the production lens in element count, group structure, focal length range, and mechanical configuration.
+The Nikon AF-S NIKKOR 16-35mm f/4G ED VR is an ultra-wide-angle zoom lens with built-in optical image stabilization, designed for Nikon's FX-format (full-frame 35 mm) digital SLR cameras. It is a negative-lead, four-group zoom with vibration reduction (VR) implemented in the third lens group. Example 1 from the patent (designated SL1) matches the production lens in element count, focal length range, aperture, aspherical and ED-class element count, and focusing/VR configuration; its air-separated group count is one lower than Nikon's published figure (see below).
 
 ### Identification of Example 1 as the production embodiment
 
-The production lens is specified by Nikon as having 17 elements in 12 groups, two ED glass elements, three aspherical lens elements, constant f/4 aperture, 16–35 mm focal length, 107°–63° angle of view, 0.29 m close focus distance, and a 77 mm filter thread. Example 1 matches on all convergent criteria:
+The production lens is specified by Nikon as having 17 elements in 12 groups, two ED glass elements, three aspherical lens elements, constant f/4 aperture, 16–35 mm focal length, 107°–63° angle of view, 0.29 m close focus distance, and a 77 mm filter thread. Example 1 compares as follows:
 
-- **Element count:** 17 elements (16 glass + 1 resin layer). Nikon specifies 12 groups; the patent describes 4 zoom groups (G1–G4), with the "12 groups" counting each air-separated optical component within the zoom groups.
+- **Element count:** 17 glass elements (L11–L14, L21–L23, L31–L34, L41–L46) plus the thin resin layer bonded to L13, which Nikon counts as part of one hybrid element.
+- **Group count:** Table 1 has 11 air-separated components (L11, L12, L13 hybrid, L14, CL21, L23, CL31, L33, L34, CL41, CL42). Nikon publishes 12 groups for the production lens, so either one cemented component is split in production or the production prescription differs slightly from Example 1. The data file records the patent's 11.
 - **Aspherical elements:** Three elements carry aspherical surfaces (L11 with two aspheric surfaces, L13 with a compound resin asphere, and L46 with one aspheric surface), totaling four aspherical surfaces on three elements.
-- **ED glass:** Two elements (L41 and L43) use S-FPL51 fluorophosphate ED glass (nd = 1.49782, νd = 82.51).
+- **ED glass:** Two elements (L41 and L43) use nd = 1.49782, νd = 82.51, the coordinates of Hikari J-FKH1 (the S-FPL51 fluorophosphate ED class). The patent lists only nd/νd and does not name the glass or call it anomalous; the ED identification is inferred from the coordinates and Nikon's two-ED specification.
 - **Focal length:** 16.48–33.94 mm at the design level; marketed as 16–35 mm.
 - **f-number:** f/4.1 constant across all zoom positions.
 - **Angle of view:** 108° (wide) to 63° (tele), consistent with the marketed 107°–63° specification.
 
 ### Design type
 
-The lens is a negative-positive-negative-positive four-group zoom. The negative-leading (retrofocus) first group enables the ultra-wide angle of view while maintaining a long enough back focal distance for the SLR mirror clearance. The four groups (G1–G4) move during zooming such that the G1–G2 separation decreases, the G2–G3 separation increases, and the G3–G4 separation decreases as the lens zooms from wide to telephoto.
+The lens is a negative-positive-negative-positive four-group zoom. The negative-leading (retrofocus) first group enables the ultra-wide angle of view while maintaining a long enough back focal distance for the SLR mirror clearance. All four groups (G1–G4) move during zooming (FIG. 1 trajectory arrows) such that the G1–G2 separation decreases, the G2–G3 separation increases, and the G3–G4 separation decreases as the lens zooms from wide to telephoto (¶0038).
 
 ---
 
 ## 2. Group Structure and Focal Lengths
 
-The system comprises four air-separated groups, each with a distinct optical role. Group focal lengths were verified by independent paraxial (ABCD matrix) ray trace and match the patent-stated values to four significant figures.
+The system comprises four air-separated groups, each with a distinct optical role. Group focal lengths computed by paraxial trace from Table 1 (−21.304, +34.141, −46.903, +50.014 mm) agree with the patent-stated values within 0.01 mm.
 
 | Group | Surfaces | Elements | Focal Length (mm) | Power | Role |
 |-------|----------|----------|-------------------|-------|------|
@@ -49,9 +50,9 @@ The system comprises four air-separated groups, each with a distinct optical rol
 
 The computed values agree with the patent to within rounding precision of the tabulated data.
 
-### Patent errata — Surface 30 radius of curvature
+### Surface 30 radius of curvature
 
-The patent publication lists the radius of curvature of surface 30 as R = −724.48 mm. Independent verification demonstrates this is a decimal-point error; the correct value is **R = −72.448 mm**. With R = −724.48, the computed G4 focal length is +77.3 mm (vs. patent-stated +50.02), and the system EFL at wide is 26.9 mm (vs. 16.48). With R = −72.448, all group and system focal lengths match exactly. This type of error is common in patent typesetting and does not affect the claims or disclosure of the invention.
+The printed Table 1 row reads R30 = **−72.448 mm**, and that value is used unchanged. The PDF's OCR text layer mis-reads the row as −724.48; an earlier version of this file treated that OCR reading as a patent erratum. With the printed value, the computed system focal lengths (16.476 / 23.992 / 33.929 mm) and the G4 focal length (+50.02 mm) reproduce Table 1.
 
 ---
 
@@ -66,9 +67,18 @@ Upon zooming from wide to telephoto, all four groups translate along the optical
 | G3–G4 | d22 | 12.46 | 5.96 | 1.21 | Decreases (groups converge) |
 | BFD | Bf | 38.60 | 50.93 | 67.55 | Increases |
 
-The total track (first surface to image plane) varies from 169.2 mm at wide to 165.2 mm at telephoto, indicating that the overall lens length changes modestly during zooming — consistent with the production lens's extending front barrel.
+Measured from the image plane, the group vertices move as follows (calculated from the tabulated gaps):
 
-**Note:** The patent provides variable gap data only at infinity focus. No close-focus gap data are tabulated, so the data file uses identical infinity and close-focus values for all variable gaps. Focusing is described as internal (CL21 axial translation within G2), but the specific gap changes during focus are not numerically specified.
+| Group | Wide (mm) | Mid (mm) | Tele (mm) | Motion W → T |
+|-------|-----------|----------|-----------|--------------|
+| G1 first vertex | 168.50 | 160.04 | 164.56 | Toward the image, then back toward the object |
+| G2 first vertex | 111.08 | 119.65 | 134.02 | Toward the object |
+| Stop S | 94.02 | 99.85 | 111.72 | Toward the object |
+| G4 last vertex (Bf) | 38.60 | 50.93 | 67.55 | Toward the object |
+
+This matches the FIG. 1 trajectory arrows: a curved path for G1 and monotonic object-side travel for G2, G3 and G4. The overall length is shortest near the middle focal length. Table 1 prints TL = 169.18 / 160.72 / 165.24 mm, 0.68 mm more at every station than the sum of the tabulated distances (168.50 / 160.04 / 164.56 mm). The tabulated distances reproduce the published focal lengths and back focus, so they are used as printed; the TL offset is an unexplained source difference.
+
+**Note:** The patent provides variable gap data only at infinity focus. No close-focus gap data are tabulated, so the data file uses identical infinity and close-focus values for all variable gaps and the viewer shows focus as not modeled. Focusing is described as internal (CL21 axial translation within G2, ¶0060), but the travel is not numerically specified.
 
 ---
 
@@ -79,7 +89,7 @@ The total track (first surface to image plane) varies from 169.2 mm at wide to 1
 G1 is the most optically complex group and carries the heaviest aberration correction burden at the extreme field angles of the ultra-wide configuration.
 
 **L11 — Negative meniscus, both surfaces aspherical (f = −25.3 mm)**
-Glass: nd = 1.76690, νd = 46.85 (six-digit code 767/469). No exact match in current OHARA S-prefix catalog; closest cross-catalog equivalents are HOYA E-FD5 (nd = 1.76684, νd = 46.82) and Schott N-LASF46A (nd = 1.76684, νd = 46.78). Almost certainly a precision glass-molded (PGM) element using a low-Tg moldable glass. Both surfaces carry aspherical departures: surface 1 has a spherical base (K = 0) with polynomial-only correction, while surface 2 is a near-parabolic prolate ellipsoid (K = −0.983). The near-parabolic profile is critical for handling the steep ray angles at the rim of this large front meniscus.
+Glass: nd = 1.76690, νd = 46.85 (six-digit code 767/469). No catalog glass matches exactly; the nearest is Hikari J-LASFH2 (nd = 1.76684, νd = 46.78), used as the catalog equivalent. The patent does not say how the aspherical surfaces are made. Both surfaces carry aspherical departures: surface 1 has a spherical base (K = 0) with polynomial-only correction, while surface 2 is a near-parabolic prolate ellipsoid (K = −0.983). The near-parabolic profile lets the deep rear surface run past its 14.6 mm vertex radius: FIG. 1 draws its optical zone ending at about 15.8 mm on a flat mounting annulus, and the full-field chief ray crosses it at 15.7 mm.
 
 **L12 — Biconcave negative lens (f = −92.4 mm)**
 Glass: nd = 1.88300, νd = 40.76 — OHARA S-LAH58. Weakly biconcave (R = −118.914 / +261.338) providing modest negative power to supplement L11.
@@ -97,7 +107,7 @@ G2 provides the primary converging power and contains the internal focusing elem
 **CL21 — Cemented doublet: L21 (negative meniscus, f = −50.3 mm) + L22 (biconvex positive, f = +28.0 mm) → f_doublet = +63.7 mm**
 L21: nd = 1.84666, νd = 23.78 — OHARA S-TIH53, a very high-dispersion dense flint.
 L22: nd = 1.60342, νd = 38.01 — OHARA S-TIM5.
-CL21 is the **focusing element**: it translates along the optical axis to focus from infinity to the minimum distance of 0.29 m (¶0060). Internal focusing via a compact cemented doublet enables fast, lightweight AF actuation by Nikon's Silent Wave Motor (SWM).
+CL21 is the **focusing element**: it translates along the optical axis to focus from infinity to the nearest distance (¶0060). The patent gives no close-focus distance or travel; 0.29 m is Nikon's published minimum focus distance. Internal focusing via a compact cemented doublet enables fast, lightweight AF actuation by Nikon's Silent Wave Motor (SWM).
 
 **L23 — Biconvex positive singlet (f = +63.5 mm)**
 Glass: nd = 1.51823, νd = 58.93 — OHARA S-NSL3. L23 remains fixed during focusing; only CL21 translates.
@@ -112,7 +122,7 @@ The patent identifies G3 as optimal for VR (¶0037): small element diameters, mi
 A flat surface (R = ∞) at the front of G3. The production lens uses a 9-blade rounded diaphragm.
 
 **CL31 — Cemented doublet: L31 (positive meniscus, f = +58.5 mm) + L32 (biconcave negative, f = −18.8 mm) → f_doublet = −27.7 mm**
-L31: nd = 1.70154, νd = 41.17 — OHARA S-LAM54.
+L31: nd = 1.70154, νd = 41.17 — OHARA S-BAH27 catalog equivalent.
 L32: nd = 1.88300, νd = 40.76 — S-LAH58.
 The cemented surface (R = −31.799) is concave toward the aperture stop, identified as important for correcting chromatic curvature of field during VR, particularly at the telephoto end (¶0063). CL31 constitutes the first negative VR subcomponent (G3a).
 
@@ -127,11 +137,11 @@ Glass: nd = 1.84666, νd = 23.78 — S-TIH53. Positive VR subcomponent (G3c). It
 G4 contains both ED glass elements in two triple-cemented lenses — an unusual and complex construction.
 
 **CL41 — Triple-cemented lens: L41 + L42 + L43 → f_triplet = +67.0 mm**
-L41: nd = 1.49782, νd = 82.51 — **S-FPL51 (OHARA) — ED glass** (f = +36.8 mm)
+L41: nd = 1.49782, νd = 82.51 — **ED-class fluorophosphate, Hikari J-FKH1 catalog equivalent** (f = +36.8 mm)
 L42: nd = 1.83400, νd = 37.16 — S-LAH60 (f = −32.9 mm)
-L43: nd = 1.49782, νd = 82.51 — **S-FPL51 (OHARA) — ED glass** (f = +59.3 mm)
+L43: nd = 1.49782, νd = 82.51 — **ED-class fluorophosphate, Hikari J-FKH1 catalog equivalent** (f = +59.3 mm)
 
-The primary chromatic correction assembly. Two S-FPL51 ED glass elements sandwich a high-index negative element, providing superb secondary spectrum correction. S-FPL51 is a fluorophosphate crown with anomalous partial dispersion (dPgF ≈ +0.033 above the normal glass line). These are the "two ED glass elements" cited in Nikon's specification sheet.
+The primary chromatic correction assembly. Two low-dispersion fluorophosphate elements sandwich a high-index negative element to control longitudinal and secondary color. The coordinates match the J-FKH1 / S-FPL51 ED class, whose anomalous partial dispersion comes from the catalog data; the patent lists only nd and νd. These are most likely the "two ED glass elements" in Nikon's specification.
 
 **CL42 — Triple-cemented lens: L44 + L45 + L46 → f_triplet = +160.7 mm**
 L44: nd = 1.88300, νd = 40.76 — S-LAH58 (f = −49.2 mm)
@@ -153,36 +163,43 @@ The lens employs four aspherical surfaces distributed across three elements. The
 | 7 | L13 resin | 8.352 | +7.352 | Oblate ellipsoid | Higher-order field curvature and coma correction |
 | 30 | L46 rear | 12.401 | +11.401 | Oblate ellipsoid | Final field-flattening; residual astigmatism and distortion |
 
-Surfaces 7 and 30 both have large positive K values (oblate ellipsoids), curving more steeply at the rim than a sphere — characteristic of field-flattening surfaces in wide-angle retrofocus designs that compensate for the strongly inward-curving Petzval surface.
+Surfaces 7 and 30 both have large positive conic constants (oblate base), but their polynomial terms dominate at the rim. At the data-file semi-diameters the departures from the base sphere are:
+
+| Surface | Semi-diameter (mm) | Departure (µm) | Note |
+|---------|--------------------|----------------|------|
+| 1 | 24.0 | −698 | Near its largest value (about −700 µm at 23.8 mm) |
+| 2 | 16.0 | — | Sag 8.25 mm, slope 44.9°; the rim is beyond the 14.63 mm vertex radius, so a spherical reference does not exist there |
+| 7 | 14.0 | +831 | Slope 21.2° |
+| 30 | 15.8 | +678 | Flatter than the base sphere; the slope reverses at about 16.15 mm, which caps the rim |
 
 ---
 
 ## 6. Glass Selection
 
-The design uses twelve distinct optical materials (eleven glass types plus one UV-curing resin). Most are identifiable in the OHARA catalog.
+The design uses twelve distinct optical materials (eleven glass types plus one UV-curing resin). The patent lists only nd and νd; the names below are catalog equivalents with matching coordinates, not supplier identifications.
 
 | Glass Code | Catalog Match | nd | νd | Elements | Count |
 |------------|--------------|------|------|----------|-------|
-| 767/469 | LAM family (cf. HOYA E-FD5) | 1.76690 | 46.85 | L11 | 1 |
+| 767/469 | Hikari J-LASFH2 (nearest; 1.76684 / 46.78) | 1.76690 | 46.85 | L11 | 1 |
 | 883/408 | S-LAH58 | 1.88300 | 40.76 | L12, L13, L32, L33, L44 | 5 |
 | 554/381 | UV-cure resin | 1.55389 | 38.09 | L13 resin | 1 |
 | 699/301 | S-TIM35 | 1.69895 | 30.13 | L14 | 1 |
 | 847/238 | S-TIH53 | 1.84666 | 23.78 | L21, L34 | 2 |
 | 603/380 | S-TIM5 | 1.60342 | 38.01 | L22 | 1 |
 | 518/589 | S-NSL3 | 1.51823 | 58.93 | L23 | 1 |
-| 702/412 | S-LAM54 | 1.70154 | 41.17 | L31 | 1 |
-| 498/825 | **S-FPL51 (ED)** | 1.49782 | 82.51 | L41, L43 | 2 |
+| 702/412 | S-BAH27 | 1.70154 | 41.17 | L31 | 1 |
+| 498/825 | **Hikari J-FKH1 (ED class)** | 1.49782 | 82.51 | L41, L43 | 2 |
 | 834/372 | S-LAH60 | 1.83400 | 37.16 | L42 | 1 |
 | 487/704 | S-FSL5 | 1.48749 | 70.41 | L45 | 1 |
 | 806/408 | S-LAH53 family | 1.80610 | 40.77 | L46 | 1 |
 
-S-LAH58 (nd = 1.883) is the most frequently used glass, appearing in five elements. The two S-TIH53 elements (L21 and L34) have very high dispersion (νd = 23.78), making them effective chromatic correctors when paired with low-dispersion partners. The S-FPL51 ED glass has anomalous partial dispersion enabling correction of secondary spectrum.
+S-LAH58 (nd = 1.883) is the most frequently used glass, appearing in five elements. The two S-TIH53 elements (L21 and L34) have very high dispersion (νd = 23.78), making them effective chromatic correctors when paired with low-dispersion partners. The J-FKH1-class ED glass has catalog anomalous partial dispersion that helps correct secondary spectrum.
 
 ---
 
 ## 7. Focusing System
 
-Internal focusing via translation of the cemented doublet CL21 (L21 + L22) along the optical axis within G2 (¶0060). The variable air gaps d9 (G1–G2 separation) and the CL21-to-L23 spacing adjust as CL21 moves. Internal focusing ensures the overall lens length does not change during focus and the front element does not rotate. The minimum focus distance is 0.29 m.
+Internal focusing via translation of the cemented doublet CL21 (L21 + L22) along the optical axis within G2 (¶0060). As CL21 moves, the air spaces on either side of it (d9 and the 4.70 mm CL21–L23 space) would change; the patent does not give the amount. The patent credits the internal focusing system with a lighter load on the focusing motor. Nikon's published minimum focus distance is 0.29 m.
 
 **Note:** The patent does not tabulate close-focus gap values. The data file uses identical infinity and close-focus values for all variable gaps and documents this limitation.
 
@@ -196,21 +213,24 @@ G3 serves as the VR group. During VR operation, CL31 (L31+L32), L33, and L34 shi
 
 ## 9. Data File Notes
 
-### Semi-diameter constraints
+### Semi-diameters
 
-The renderer enforces sd/|R| < 0.90 for all surfaces. This constraint is physically motivated by extreme surface slopes near sd = |R| for spherical surfaces, but is overly conservative for aspherical surfaces with K < 0 (prolate conics), which flatten at the rim and can support sd >> |R| without slope issues.
+The patent publishes no clear apertures. The data-file semi-diameters are measured from FIG. 1, which is drawn at the wide-angle state. The scale is 0.0822 mm per pixel at 300 dpi, taken from the 129.90 mm span between the first and last surfaces. Each value was then checked by exact real-ray trace at the 21.64 mm image height with f/4.1 at every zoom station.
 
-The most restrictive surface is L11 rear (surface 2A): R = 14.627 mm, K = −0.983. The near-parabolic profile physically supports sd ≈ 37 mm (constrained only by the 77 mm filter thread), but the renderer's sd/|R| limit requires sd ≤ 13.2 mm. This forces all of G1 to appear undersized relative to the production lens. The actual production lens has a front element diameter of approximately 73–74 mm (37 mm semi-diameter).
+- **G1:** L11 has a 24.0 mm rim. Its rear surface ends on a flat mounting annulus at about 15.8 mm, and the data file uses 16.0 mm to keep a margin over the 15.7 mm chief-ray height. L12 has a 17.3 mm rim. L13's front curve ends at 15.0 mm on a flat that runs out to its 17.1 mm rim. L14 has a 15.3 mm rim, where the drawing shows a finite edge; the earlier 18.0 / 17.5 mm values gave a zero edge.
+- **G2:** The rims of CL21 and L23 are about 10.6 mm. The f/4.1 axial beam at the telephoto end needs up to 10.1 mm.
+- **G3:** The CL31 and L33 rims are about 9.5 mm, and L34's is about 10.3 mm. The biconvex air lens between L32 and L33 closes at about 9.0 mm, where the two surfaces meet in FIG. 1. The data file stops surfaces 18 and 19 at 8.58 and 8.7 mm, which clears the 8.56 / 8.62 mm telephoto axial beam without drawing the surfaces through each other.
+- **G4:** CL41 is kept at 16.0 mm. CL42 is 16–16.5 mm, with surface 30 at 15.8 mm, just inside its asphere turnover.
 
-Several other surfaces are also constrained by edge thickness (the sag difference between front and rear surfaces of thick biconvex elements must not exceed center thickness) and cross-gap sag clearance. Key constraints:
+With these values, the full-field chief ray passes every surface at all three zoom stations. The corner bundles are partly vignetted by G1, G2 and the G3 air lens, as the drawing implies.
 
-- L22 (R = 19.297 / −121.274, d = 4.95 mm): edge thickness limits sd to ≈ 12 mm
-- L23 (R = 65.31 / −65.31, d = 3.10 mm): symmetric biconvex limits sd to ≈ 14 mm
-- L41 (R = 29.863 / −43.301, d = 8.0 mm): edge thickness limits sd to ≈ 16 mm
-- L45 (R = 20.5 / −40.025, d = 12.15 mm): edge thickness limits sd to ≈ 16 mm
-- Gap 18→19 (d = 2.90 mm): cross-gap sag clearance limits sd to ≈ 8.5 mm
+### Aperture model
 
-The resulting diagram is representative of the optical design's structure and element arrangement but not dimensionally accurate for the front element group.
+The FNO is 4.1 at all three stations, but the stop rides in G3 and no iris diameters are published. The data file therefore infers the iris schedule from the nominal f-number. The inferred iris radii are 6.42, 7.36 and 8.98 mm at wide, middle and tele. This is a calculated model, not a patent value. The aperture control runs from f/4.1 to f/22, the production minimum aperture.
+
+### Field of view in the viewer
+
+An exact trace puts 21.64 mm image height at ω = 54.2° / 41.8° / 32.0°, matching the patent's 2ω = 108° / 84° / 63°. The viewer's paraxial half-field estimate stops at about 44.6° at the wide end, limited by the deep rear surface of L11. A rectilinear coverage override is a single value and would be wrong at the other zoom stations, so it is not used.
 
 ---
 
@@ -221,8 +241,8 @@ The resulting diagram is representative of the optical design's structure and el
 | Focal length | 16–35 mm | 16.48–33.94 mm |
 | Maximum aperture | f/4 | f/4.1 |
 | Angle of view | 107°–63° | 108°–63° |
-| Elements / groups | 17 in 12 | 17 in 12 (verified) |
-| ED elements | 2 | 2 (L41, L43: S-FPL51) |
+| Elements / groups | 17 in 12 | 17 in 11 (+ resin layer) |
+| ED elements | 2 | 2 (L41, L43: νd 82.51, J-FKH1 class) |
 | Aspherical elements | 3 | 3 (L11, L13, L46) |
 | Close focus | 0.29 m | Not explicitly stated |
 | Diaphragm blades | 9 (rounded) | Not specified |

@@ -15,7 +15,7 @@ The lens under analysis is the **Fujinon XF 16-55mm F2.8 R LM WR**, Fujifilm's w
 **Published:** June 2, 2016
 **Embodiment analyzed:** Example 1
 
-The patent discloses three closely related numerical examples of a five-group standard zoom; all three meet the stated design targets (small F-number across the full zoom range, aberration-corrected at high pixel counts). Example 1 is the variant whose paraxial specifications (EFL range 16.49–53.44 mm, F/2.88–2.89, image heights consistent with APS-C) match Fujifilm's marketed XF 16-55mm product most closely. Examples 2 and 3 are design-space alternatives with modified Conditional Formula values; they were not commercialised. The analysis below is confined to Example 1.
+The patent discloses three closely related numerical examples of a five-group standard zoom; all three meet the stated design targets (small F-number across the full zoom range, aberration-corrected at high pixel counts). Example 1 is the first embodiment and the one stored here: EFL 16.49–53.44 mm, F/2.88–2.74–2.89, 17 elements in 12 groups with three double-aspheric elements and three ED elements, which matches the production XF 16-55mm's published construction. Examples 2 and 3 share the same wide and tele focal lengths (Example 3: 16.492 / 26.825 / 53.436 mm, F/2.88–2.89) and differ in their prescriptions and Conditional Formula values; the patent does not say which example, if any, was built exactly. The analysis below is confined to Example 1.
 
 ### 1.1 Marketed versus patent specifications
 
@@ -32,11 +32,11 @@ The patent discloses three closely related numerical examples of a five-group st
 | Elements / groups | 17 / 12 | 17 / 12 | Exact match |
 | Aspherical elements | 3 (each with two aspheric surfaces) | 3 | Exact match |
 | ED elements | 3 (two S-FPL51 + one S-FPM3) | 3 | Exact match |
-| Close focus | Not stated in patent | 0.30 m (whole zoom range) | — |
+| Close focus | Not stated in patent | 0.30 m wide / 0.40 m tele (macro range; 0.60 m in normal range); 0.16× max at tele | Data-file close gaps are calculated for 0.30 m (wide, mid) and 0.40 m (tele) |
 
 *Per convention, when patent-derived and manufacturer-published specifications disagree on hard marketed values, the manufacturer value is authoritative. The patent values are retained here because they are traceable and useful for reconstructing the design.*
 
-A note on the two angle-of-view conventions: the patent's 2ω values (87.0° wide, 48.6° mid, 28.8° tele from Table 2) are the optical field angles of the marginal chief ray, derived from the paraxial prescription without any in-camera geometric-distortion correction. The Fujifilm-marketed values (approximately 83.2° wide, 29.0° tele) are the rectilinear angles implied by the marketed focal length (16–55 mm) and the APS-C image circle (≈28.3 mm diagonal), i.e. $2\omega = 2\arctan\!\bigl(d_{\text{img}}/(2f)\bigr)$. A quick consistency check: at the patent's $f = 16.49$ mm the rectilinear 2ω would be $2\arctan(14.15/16.49) = 81.3°$; the patent's paraxial-chief-ray 2ω of 87.0° therefore corresponds to an incoming ray that, on a rectilinear lens of the same focal length, would map to an image height of $16.49 \tan(43.5°) = 15.65$ mm — about 10.6% outside the 14.15 mm semi-diagonal. This implies approximately **−10% corner barrel distortion at the wide end**, which the APS-C image sensor corner re-maps to approximately the rectilinear 83° angle during in-camera distortion correction. The tele end is essentially undistorted (patent 28.8° vs. rectilinear 29.7° at $f = 53.44$ mm). Substantial wide-end barrel distortion is a well-documented characteristic of contemporary mirrorless standard zooms: the design chooses a shorter, sharper rear section and a smaller front group in exchange for more aggressive software correction of distortion at the wide end.
+A note on the two angle-of-view conventions: the patent's 2ω values (87.0° wide, 48.6° mid, 28.8° tele from Table 2) are real field angles of the design, uncorrected for distortion. An exact meridional trace of the stored prescription puts the chief ray at those half-angles (43.5°, 24.3°, 14.4°) at an image height of about 14.43–14.48 mm at all three stations, so the patent evidently uses an image height slightly larger than the X-mount sensor's ≈14.1 mm half-diagonal. The Fujifilm-marketed values (83.2° wide, 29° tele) are the rectilinear angles implied by the marketed 16–55 mm focal lengths and the APS-C diagonal. Comparing the traced chief-ray height with $f\tan\omega$ gives the uncorrected distortion (calculated, not patent-published): about **−7.5 % barrel at the wide end** (14.10 mm is reached at ω ≈ 42.8°, where $f\tan\omega = 15.25$ mm), about +3 % at the intermediate position and about +5 % pincushion at the tele end. A sizeable wide-end barrel distortion that is removed in camera is typical of contemporary mirrorless standard zooms: the design accepts it in exchange for a smaller front group and a shorter, sharper rear section.
 
 ---
 
@@ -111,8 +111,8 @@ The table below lists all 17 elements in the design, front to rear, with the ele
 | Elem | nd | νd | Glass | f (mm) | Role |
 |---|---|---|---|---|---|
 | **L11** | 1.84666 | 23.78 | **OHARA S-TIH53** (exact) | −179.4 | Cemented to L12; front face of the leading doublet. A high-index dense flint, its low Abbe number (strongly dispersive) lets it correct longitudinal and lateral chromatic aberration generated downstream while carrying only modest refractive power. The patent paragraph [0058] explicitly assigns this role: *"the 1-1 negative lens L11 bears the function of correcting longitudinal chromatic aberration, lateral chromatic aberration, and spherical aberration."* |
-| **L12** | 1.61800 | 63.33 | **OHARA S-PHM52** (Δνd = +0.06) | +140.4 | Cemented to L11 to form the achromatic leading doublet. A lanthanum phosphate crown (PHM family, low-dispersion, high-index for its νd class). |
-| **L13** | 1.75500 | 52.32 | **HIKARI J-LASKH2** catalog equivalent (Δnd = 0, Δνd = +0.02); six-digit code **755523**, production vendor unspecified | +94.1 | Separate positive lanthanum crown. Distributes positive power between two positive lenses in G1 (the patent rationale, paragraph [0058]) to suppress spherical aberration generation while keeping the overall group power short enough to shorten track. |
+| **L12** | 1.61800 | 63.33 | **OHARA S-PHM52** (Δνd = +0.06) | +140.4 | Positive meniscus (convex to the object; R = +54.35 / +139.31 mm), cemented to L11 to form the achromatic leading doublet. A lanthanum phosphate crown (PHM family, low-dispersion, high-index for its νd class). |
+| **L13** | 1.75500 | 52.32 | **HIKARI J-LASKH2** catalog equivalent (Δnd = 0, Δνd = +0.02); six-digit code **755523**, production vendor unspecified | +94.1 | Separate positive meniscus (convex to the object; R = +53.19 / +200.57 mm) in lanthanum crown. Distributes positive power between two positive lenses in G1 (the patent rationale, paragraph [0058]) to suppress spherical aberration generation while keeping the overall group power short enough to shorten track. |
 
 ### 4.2 Variator (G2) — negative meniscus leader + cemented doublet + negative singlet
 
@@ -120,7 +120,7 @@ The table below lists all 17 elements in the design, front to rear, with the ele
 |---|---|---|---|---|---|
 | **L21** | 1.85135 | 40.10 | **HOYA M-TAFD305** (exact; six-digit code **851401**). Equivalent moldable grades: HOYA M-TAF31, HOYA M-TAFD55, Sumita K-VC91, HIKARI J-LASFH21 — all published at identical (nd, νd) | −17.6 | Double-aspheric negative meniscus with concave surface toward the image. Principal negative-power element of G2. The patent paragraph [0059] assigns it two duties: suppressing distortion at the wide-angle end, and bending the off-axis chief-ray angles down so that downstream elements see more moderate slopes. The strong rear-surface hyperboloid (see §5) is the key asphere of the entire design — it does most of the heavy lifting in controlling off-axis aberrations at the wide end. The HOYA M- prefix designates a moldable low-Tg glass intended for precision glass molding (PGM), consistent with L21 being a double-aspheric element. |
 | **L22** | 1.69680 | 55.53 | **OHARA S-LAL14** (Δνd = −0.12) | −16.4 | Biconcave negative lens, cemented to L23 at the rear. Shares negative-power burden with L21. |
-| **L23** | 1.90366 | 31.31 | **OHARA S-LAH58** (exact) | +14.6 | Biconvex positive lens, cemented to L22. A dense lanthanum flint — its very high nd (1.904) combined with its low Abbe number allows it to contribute positive power to balance dispersion inside G2 while keeping the combined surface in the cement close to its optimal shape for correcting zooming-induced fluctuations in chromatic and spherical aberration. |
+| **L23** | 1.90366 | 31.31 | **OHARA S-LAH95** (Δνd = +0.03) | +14.6 | Biconvex positive lens, cemented to L22. A dense lanthanum flint — its very high nd (1.904) combined with its low Abbe number allows it to contribute positive power to balance dispersion inside G2 while keeping the combined surface in the cement close to its optimal shape for correcting zooming-induced fluctuations in chromatic and spherical aberration. |
 | **L24** | 1.72916 | 54.68 | **OHARA S-LAL18** (Δνd = +0.01) | −48.6 | Separate negative meniscus, concave to the subject side. The patent's detailed description refers to this element as "2-4 positive lens L24" in paragraph [0059], but this is an inconsistency with the claims and with the computed power: the thick-lens formula yields **f = −48.6 mm**, unambiguously negative. The claims (paragraph [0016], claim 1) correctly call it a "2-4 negative lens". |
 
 ### 4.3 Master group (G3) — six elements plus stop in a positive-stop-positive-negative-positive sequence
@@ -130,12 +130,12 @@ The patent's Conditional Formula (4) and (5) describe this group's arrangement. 
 | Elem | nd | νd | Glass | f (mm) | Role |
 |---|---|---|---|---|---|
 | **L31** | 1.68458 | 30.88 | Explicit unmatched **685309** dense flint; L-TIM28 exceeds the d-line tolerance | +39.1 | **Double-aspheric** positive singlet *before* the stop. Per patent [0065], its purpose is to receive the divergent beam from G2 and limit downstream diameters. The low Abbe number (~31) satisfies Conditional Formula (7), 20 < νd31 < 40. |
-| **STO** | — | — | (aperture stop) | — | Variable iris, immediately after L31, sitting between L31 and L32. The wide-open stop semi-diameter varies with zoom position (wide ≈ 7.0 mm, mid ≈ 8.5 mm, tele ≈ 9.1 mm) — the production iris closes down at mid to deliver the marketed constant f/2.8. |
+| **STO** | — | — | (aperture stop) | — | Variable iris, immediately after L31, sitting between L31 and L32. The patent (¶[0088]) calls it a variable stop but publishes no diameters. The viewer infers the wide-open iris from the patent F-numbers (`zoomApertureModel: "from-nominal-fno"`): radius ≈ 7.2 mm (wide, F/2.88), 9.0 mm (mid, F/2.74), 9.7 mm (tele, F/2.89). These are calculated values; the production iris schedule that yields the marketed constant f/2.8 is not published. |
 | **L32A** | 1.84666 | 23.78 | **OHARA S-TIH53** (exact; same glass as L11) | −34.6 | Cemented to L32B. Negative-power front member of the first cemented doublet after the stop. Per [0066], the L32 doublet is specifically formed "by cementing a negative lens and a biconvex lens" — this achromatises the positive-combined doublet. |
 | **L32B** | 1.53775 | 74.70 | **OHARA S-FPM3** (exact) — **ED glass** | +23.0 | Biconvex positive, cemented to L32A. A fluor-phosphate ED glass with anomalous partial dispersion, critical for correcting apochromatic residuals (secondary spectrum) in the post-stop region where marginal-ray heights are largest. This is ED element #1. |
-| **L33A** | 1.49700 | 81.54 | **OHARA S-FPL51** (exact against 2014-era catalog; modern OHARA datasheets publish νd = 81.61, Δνd = −0.07) — **ED glass** | +72.6 | Positive meniscus (convex to image), cemented to L33B. The second cemented doublet (L33A + L33B) has a negative combined power per [0065] and provides the strong counterweight to L32's positive doublet. S-FPL51 is Ohara's flagship ED glass (anomalous partial dispersion, vd = 81.54, near-fluorite behaviour). ED element #2. |
+| **L33A** | 1.49700 | 81.54 | **OHARA S-FPL51** (exact against 2014-era catalog; modern OHARA datasheets publish νd = 81.61, Δνd = −0.07) — **ED glass** | +72.6 | Weakly biconvex positive (R = +396.5 / −39.6 mm, strongly convex to the image), cemented to L33B. The second cemented doublet (L33A + L33B) has a negative combined power per [0065] and provides the strong counterweight to L32's positive doublet. S-FPL51 is Ohara's flagship ED glass (anomalous partial dispersion, vd = 81.54, near-fluorite behaviour). ED element #2. |
 | **L33B** | 1.79952 | 42.22 | **OHARA S-LAH52** (exact) | −22.0 | Biconcave negative, cemented to L33A. This is also the **image-stabilization element**: paragraph [0081] of the patent states that camera-shake correction is performed by moving the L33 cemented doublet perpendicular to the optical axis. (In production, the XF 16-55mm does not include OIS — Fujifilm dropped this provision from the commercialised design.) |
-| **L34** | 1.61882 | 63.58 | Near **OHARA L-PHM52** (PGM version; Δnd = −0.00082, Δνd = −0.18); six-digit code **619636** | +19.8 | **Double-aspheric** positive singlet terminating G3. Per [0069], its asphericity corrects astigmatism and spherical aberration generated within G3. The L-prefix indicates a low-Tg glass intended for precision glass molding (PGM) — consistent with the two-surface aspheric requirement. |
+| **L34** | 1.61882 | 63.58 | Near **OHARA L-PHM52** (PGM version; Δnd ≈ −0.0008, Δνd ≈ −0.25); six-digit code **619636** | +19.8 | **Double-aspheric** positive singlet terminating G3. Per [0069], its asphericity corrects astigmatism and spherical aberration generated within G3. The L-prefix indicates a low-Tg glass intended for precision glass molding (PGM) — consistent with the two-surface aspheric requirement. |
 
 ### 4.4 Focusing group (G4) — two negative plano-concave elements + a positive cemented lens
 
@@ -176,7 +176,7 @@ Glass identification confidence (Δ values reported as **catalog minus patent**)
 
 - **Exact catalog matches** (|Δnd| < 0.0001 and |Δνd| < 0.05 at time of patent filing, 2014): L11, L21, L23, L24, L32A, L32B, L33B, L42, L51 — nine elements confirmed at rounding precision.
 - **Very close** (within ~0.07 νd units of the current published catalog value): L12 (S-PHM52, Δνd = +0.06), L33A and L43 (S-FPL51, Δνd = +0.07 vs. modern datasheet; 0.00 vs. 2014 datasheet), L41 (S-PHM52, Δνd = +0.06). The 2014-era OHARA catalog listed slightly different νd values for phosphate-crown and fluor-phosphate glasses than today's; these elements are exact matches against catalog data contemporary with the patent's priority date.
-- **Close catalog comparisons:** L22 (S-LAL14, Δνd = −0.12) and L34 (L-PHM52, Δνd = +0.27). L31 remains code-first `685309`; its index miss against L-TIM28 is too large for a safe catalog assignment.
+- **Close catalog comparisons:** L22 (S-LAL14, Δνd = −0.12) and L34 (L-PHM52 / S-PHM52 family, Δnd ≈ −0.0008, Δνd ≈ −0.25). L31 remains code-first `685309`; its index miss against L-TIM28 is too large for a safe catalog assignment.
 - **Catalog-equivalent match:** L13 (six-digit code **755523**) now resolves to HIKARI J-LASKH2 at the stored index and
   within 0.02 νd; this is a dispersion model, not a claim about Fujifilm's production supplier.
 
@@ -240,7 +240,7 @@ The companion data file stores the patent's exact odd/even coefficients and conv
 | A15 | 0 | −1.1949080E−16 | −5.6980089E−16 |
 | A16 | 0 | 4.6802864E−17 | 6.3788931E−17 |
 
-At the data-file semi-diameters, the exact profiles depart from their paraxial spheres by +3.733 µm (S6A), −416.800 µm (S7A), −146.557 µm (S13A), −15.348 µm (S14A), −250.978 µm (S22A), and +471.106 µm (S23A).
+At the data-file semi-diameters, the exact profiles depart from their paraxial spheres by +264.6 µm (S6A, rim 17.4 mm), −533.9 µm (S7A, rim 11.3 mm), −146.557 µm (S13A), −15.348 µm (S14A), −250.978 µm (S22A), and +471.106 µm (S23A).
 
 ### 6.2 Aspheric surfaces at a glance
 
@@ -261,7 +261,7 @@ The plot below shows sag departure from the base sphere (μm) as a function of h
 
 Three observations bear on the design philosophy:
 
-1. **S7A (L21 rear) is the largest-aperture aspheric in the design.** At h = 8 mm the departure is −112 μm; at h = 10 mm it reaches −286 μm. This is a heavily figured surface. Because L21 is the first strongly diverging element after the G1 front group, S7A is ideally positioned to pre-correct off-axis aberrations (distortion, astigmatism) for the full wide-angle field before the chief ray ever reaches the stop.
+1. **S7A (L21 rear) is the most strongly figured asphere in the design.** At h = 8 mm the departure is −112 μm; at h = 10 mm it reaches −286 μm. This is a heavily figured surface. Because L21 is the first strongly diverging element after the G1 front group, S7A is ideally positioned to pre-correct off-axis aberrations (distortion, astigmatism) for the full wide-angle field before the chief ray ever reaches the stop.
 
    **An architecturally important nuance:** the plotted "departure from sphere" on S7A is the *net* of two aggressive shape components that partially oppose each other. The bare hyperboloid base ( $K_\text{std} = -2.3833$ ) alone, without any polynomial, would sit **−1254 μm below the sphere at h = 10 mm** — four times deeper than the final surface. The polynomial terms contribute **+967 μm at h = 10 mm**, pulling the surface back toward (though still below) the sphere. The patent is therefore using two independent degrees of freedom — a strong conic *and* an aggressive polynomial — and tuning them against each other to achieve a very specific peripheral sag profile that neither one alone could deliver. This is characteristic of modern high-performance asphere design, and it is distinct from the simpler case of a near-paraboloid with mild polynomial fine-tuning.
 
@@ -314,15 +314,15 @@ A short numerical verification of the focus sensitivity — defined as (image-pl
 | Mid (31 mm) | **2.22× per mm** |
 | Tele (53.4 mm) | **2.73× per mm** |
 
-In other words: a 1 mm axial shift of G4 produces approximately 1.91 mm of image-plane displacement at wide and 2.73 mm at tele. Because the total track budget allows several millimetres of G4 travel, focusing from infinity to the marketed MFD of 0.30 m is well within the mechanical envelope. Solving the paraxial focus equation explicitly for each zoom position with MFD measured from the image plane yields the required G4 image-ward translations:
+In other words: a 1 mm axial shift of G4 produces approximately 1.91 mm of image-plane displacement at wide and 2.73 mm at tele. Because the total track budget allows several millimetres of G4 travel, focusing from infinity to the marketed macro-range MFD (0.30 m at wide, 0.40 m at tele) is well within the mechanical envelope. Solving the paraxial focus equation for each zoom position, with the distance measured from the image plane, yields the required G4 image-ward translations (calculated; the patent publishes no close-focus data, and Fujifilm gives no mid-zoom MFD, so 0.30 m is assumed there):
 
 | Zoom position | Required G4 travel |
 |---|---|
-| Wide (16.5 mm) | **≈ 0.70 mm** |
-| Mid (31 mm) | **≈ 2.04 mm** |
-| Tele (53.4 mm) | **≈ 4.55 mm** |
+| Wide (16.5 mm), 0.30 m | **≈ 0.70 mm** |
+| Mid (31 mm), 0.30 m | **≈ 2.04 mm** |
+| Tele (53.4 mm), 0.40 m | **≈ 3.16 mm** |
 
-The tele figure is the binding constraint on mechanical design: the infinity-focus value of DD28 (G4-to-G5 gap) at tele is 14.396 mm, so the ~4.5 mm close-focus reduction leaves ≈ 9.8 mm of clearance between L43 (G4 rear) and L51 (G5 front) at MFD — comfortable, and consistent with the relatively long rear path characteristic of this design. These computed close-focus air-gap values are what the companion data file records as the "close focus" half of each DD23 and DD28 variable-gap pair.
+At the tele end the paraxial magnification at 0.40 m is 0.154×, close to Fujifilm's published 0.16× maximum. The infinity-focus value of DD28 (G4-to-G5 gap) at tele is 14.396 mm, so the ≈ 3.2 mm close-focus reduction leaves ≈ 11.2 mm of clearance between L43 (G4 rear) and L51 (G5 front) at MFD — comfortable, and consistent with the relatively long rear path characteristic of this design. These computed close-focus air-gap values are what the companion data file records as the "close focus" half of each DD23 and DD28 variable-gap pair.
 
 ### 7.3 The shape-constraint rule of paragraph [0084]
 
@@ -366,7 +366,7 @@ The patent notes this with specific reference to non-reflex (mirrorless) cameras
 
 ### 8.3 Aperture behaviour
 
-The patent's F-number varies slightly across the zoom range: 2.88 at wide, 2.74 at mid, 2.89 at tele. This is a paraxial consequence of the design — at the middle zoom position, the geometry is most favourable for a wide entrance pupil relative to focal length. In production, the physical iris is adjusted per zoom position to deliver a constant marketed f/2.8, which means at middle zoom the iris is slightly *stopped down* from its geometric maximum. The patent description observes that *"the aperture stops St of Examples 1 through 3 are variable stops"*, confirming that the stop diameter is a programmed function of zoom position.
+The patent's F-number varies slightly across the zoom range: 2.88 at wide, 2.74 at mid, 2.89 at tele. This is a paraxial consequence of the design — at the middle zoom position, the geometry is most favourable for a wide entrance pupil relative to focal length. The production lens is marketed at a constant f/2.8, which presumably means the iris is set per zoom position (slightly *stopped down* at middle zoom); Fujifilm does not publish that schedule. The patent description notes only that *"the aperture stops St of Examples 1 through 3 are variable stops"* (¶[0088]). In the viewer, the three patent F-numbers are stored as the per-station wide-open values and the iris radius at each station is inferred from them (≈ 7.2 / 9.0 / 9.7 mm); the aperture scale therefore starts at f/2.74–2.89 rather than the marketed f/2.8, and runs to the production minimum of f/22.
 
 ---
 
@@ -428,7 +428,7 @@ Together these material and geometric choices, with the double-cemented-doublet 
 | Element count | 17 | 17 | ✓ |
 | Air-separated group count | 12 | 12 | ✓ |
 | Exact aspheric coefficient transcription | Table 4 | A4–A16 odd/even values retained; KA converted with K = KA − 1 | ✓ |
-| Close-focus G4 travel (MFD 0.30 m from image plane) | — | 0.70 mm (W) / 2.04 mm (M) / 4.55 mm (T); within DD28 budget | ✓ |
+| Close-focus G4 travel (0.30 m W/M, 0.40 m T, from image plane) | — | 0.70 mm (W) / 2.04 mm (M) / 3.16 mm (T); within DD28 budget; tele 0.154× vs published 0.16× | ✓ (calculated) |
 | HOYA catalog cross-index for L21 (851401) | — | Matches M-TAFD305 exactly (OHARA 2018/2023 pocket catalogues list the cross-reference directly) | ✓ |
 | Data file paraxial EFL round-trip (re-traced from written surfaces) | patent | 16.492 / 31.063 / 53.447 mm — residuals ≤ 11 μm | ✓ |
 | Data file BFD round-trip (air-equivalent 21.999 mm target) | 22.000 mm | 21.995 / 21.999 / 22.001 mm | ✓ |

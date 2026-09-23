@@ -12,7 +12,7 @@
 
 The NIKKOR Z 24-70mm f/4 S was announced on August 23, 2018 as one of the first three lenses for Nikon's Z-mount mirrorless system, alongside the Z 50mm f/1.8 S and the Z 35mm f/1.8 S. The filing date of the underlying patent predates the announcement by nearly a year, and the publication date follows it by approximately seven months — a typical Nikon timeline for bringing a zoom patent to production.
 
-Example 1 of the patent is the most likely production basis. The correlation is established by matching all hard manufacturer specifications against the patent's numerical example:
+Example 1 of the patent is the most likely production basis and is the example stored here. All eight numerical examples are 24–70 mm f/4-class designs, but Examples 3–6 let the intermediate-focal-length f-number rise to f/4.09–f/4.28, and Examples 7 and 8 use a different element count. Examples 1 and 2 both keep f/4.00 at all three stations with 14 elements and four aspherical surfaces; the patent does not say which one became the production lens, so the choice of Example 1 is an attribution, not a patent statement. The correlation is established by matching all hard manufacturer specifications against the patent's numerical example:
 
 | Specification | Manufacturer | Patent Ex. 1 | Match |
 |---|---|---|---|
@@ -21,11 +21,11 @@ Example 1 of the patent is the most likely production basis. The correlation is 
 | Elements / Groups | 14 / 11 | 14 / 11 | ✓ |
 | Aspherical elements | 4 (1 AS-ED + 3 asph) | 4 aspherical surfaces | ✓ |
 | ED elements | 2 (1 AS-ED + 1 ED) | 2 high-νd elements | ✓ |
-| Close focus | 0.30 m | — (close-focus data given) | ✓ |
+| Close focus | 0.30 m | ≈0.30 m (calculated from the close-focus gaps) | ✓ |
 | Image circle | 43.4 mm Ø (Y = 21.7) | Y = 21.70 mm | ✓ |
 | Half-angle (wide) | ~43° | 43.3° | ✓ |
 
-The zoom ratio is 2.75×, the total track varies from 121.6 mm (wide) to 151.0 mm (tele), and the design uses five moving groups — all consistent with the compact retractable-barrel construction of the production lens.
+The zoom ratio is 2.75×, the patent's total length (first surface to image, including the 1.6 mm filter) varies from 121.58 mm (wide) to 151.03 mm (tele), and the design uses five moving groups — all consistent with the compact retractable-barrel construction of the production lens.
 
 ---
 
@@ -45,7 +45,17 @@ The design follows a positive-lead five-group zoom configuration: **G1 (+) — G
 
 All group EFLs verified by independent y-nu paraxial ray trace and match patent values exactly.
 
-During zooming from wide to tele, all five groups translate along the optical axis. The G1–G2 gap increases dramatically (1.6 → 31.3 mm), the G2–G3 gap decreases (23.7 → 2.9 mm), and the G5-to-image gap increases (13.9 → 34.4 mm). All zoom gaps are monotonically varying — there are no reversing groups in this design, which simplifies the cam mechanism. The total track grows by 29.4 mm from wide to tele, consistent with the lens's telescoping barrel.
+During zooming from wide to tele, all five groups translate along the optical axis (¶0056). The G1–G2 gap increases dramatically (1.6 → 31.3 mm), the G2–G3 gap decreases (23.7 → 2.9 mm), and the air-equivalent back focus increases (15.01 → 35.60 mm). Every variable gap changes monotonically, but the groups do not all move monotonically. Positions calculated from the Table 1 gaps, measured from the image plane, give these movements:
+
+| Group | Wide → Mid | Mid → Tele | Net |
+|---|---|---|---|
+| G1 | +13.40 mm toward object | +16.05 mm | +29.44 mm |
+| G2 | −2.20 mm (toward image) | +1.99 mm | −0.21 mm |
+| G3 + stop | +12.93 mm | +7.66 mm | +20.59 mm |
+| G4 (focus) | +9.06 mm | +5.28 mm | +14.34 mm |
+| G5 | +12.93 mm | +7.66 mm | +20.59 mm |
+
+G2 reverses: it moves slightly toward the image from wide to mid and back toward the object from mid to tele, which is what the arrows under G2 in Figs. 1A and 1B show. G3 and G5 move by identical amounts because D18 + G4 thickness + D22 stays at 20.04 mm at every station; they can share one cam, with G4 riding between them for both zoom compensation and focus. The total length grows by 29.4 mm from wide to tele, consistent with the lens's telescoping barrel.
 
 ### 2.2 Focus Mechanism
 
@@ -58,6 +68,8 @@ The focus throw varies with zoom position:
 | Wide (24.7 mm) | −2.43 | +2.43 | 2.43 mm |
 | Mid (46.3 mm) | −5.24 | +5.24 | 5.24 mm |
 | Tele (67.9 mm) | −8.51 | +8.51 | 8.51 mm |
+
+The patent does not print the close object distance. With the image plane held at each station's infinity position, the published close-focus gaps focus an object 298.5 mm from the image plane at all three stations (paraxial magnification −0.119, −0.216 and −0.300). That matches the production lens's 0.30 m minimum focus and 0.3× maximum magnification, and the object heights printed on the Fig. 3 aberration plots (195.5 / 97.6 / 69.7 mm for Y = 21.7 mm) agree with those magnifications once distortion is allowed for. The `closeFocusM = 0.30` label is therefore a calculated match, not a patent value.
 
 The 3.5× increase in focus throw from wide to tele is expected: at longer focal lengths, a given change in object distance requires a larger lens movement to maintain focus. The compact two-element G4 group enables the fast stepping-motor autofocus that Nikon advertises for video work.
 
@@ -123,7 +135,7 @@ G3 is the most complex group, containing five elements in three air-separated co
 - Element focal length: +42.7 mm (thick lens)
 - Aspherical surface: K = 0 (spherical base, patent κ = 1)
 
-This is the element Nikon designates as the **"aspherical ED glass"** (AS-ED). The glass, with νd = 71.7, is in the extra-low dispersion category. The aspherical front surface primarily corrects spherical aberration, while the ED glass character controls axial chromatic aberration across the zoom range.
+This is the element Nikon designates as the **"aspherical ED glass"** (AS-ED). The glass, with νd = 71.7, is in the extra-low dispersion category. The patent supports the anomalous-dispersion reading: ¶0031 says the low-dispersion G3 lens that satisfies condition (6) gives the third group anomalous dispersion, and Example 1's condition (6) value, νd3p = 71.6835, is this element. The aspherical front surface primarily corrects spherical aberration, while the ED glass character controls axial chromatic aberration across the zoom range.
 
 **L32 + L33 — Cemented doublet (negative meniscus + biconvex positive)**
 - L32: nd = 1.83481, νd = 42.7 → **S-LAH55V (OHARA)** or similar high-index LaH flint
@@ -214,7 +226,7 @@ The design uses 10 distinct glass types across 14 elements (plus one filter glas
 
 Nikon's marketing identifies **two** ED glass elements:
 
-1. **L31 (νd = 71.7):** The AS-ED element. Fluorophosphate ED glass (M-FCD500 or equivalent). APD classification: inferred.
+1. **L31 (νd = 71.7):** The AS-ED element. Fluorophosphate ED glass (M-FCD500 or equivalent). APD classification: patent (¶0031, condition (6)).
 2. **L35 (νd = 67.9):** The non-aspherical ED element. Confirmed match J-PSKH1 (Hikari). APD classification: inferred.
 
 ### 5.3 Ultra-High Index Glass
@@ -239,7 +251,7 @@ The design has five optically significant variable air gaps. Their behavior acro
 | D9 | G2—G3 | 23.69 | 8.56 | 2.90 | Zoom only, decreasing |
 | D18 | G3—G4 | 4.58 | 8.45 | 10.82 | Zoom + focus, increasing |
 | D22 | G4—G5 | 8.25 | 4.38 | 2.00 | Zoom + focus, decreasing |
-| BFD | G5—Image | 15.56 | 28.49 | 36.14 | Zoom only (includes filter path) |
+| BF | G5—Image | 15.01 | 27.94 | 35.60 | Zoom only (air-equivalent; filter removed) |
 
 Three gaps (D3, D9, BFD) change only with zoom and are unaffected by focus. Two gaps (D18, D22) change with both zoom and focus.
 
@@ -280,7 +292,7 @@ The retractable barrel mechanism and relatively short total track (121.6–151.0
 
 ### 8.2 Constant f/4 Aperture
 
-The constant f/4 maximum aperture across the zoom range is achieved by the stop travelling with G3. The patent confirms FNo = 4.00 at all three zoom positions.
+The patent gives FNo = 4.00 at all three zoom positions with the stop travelling with G3. Because the entrance pupil grows from 6.2 mm to 17.0 mm in diameter while the stop's magnification changes, a fixed iris cannot hold f/4: the one that gives f/4 at 24.7 mm would give about f/5.8 at 67.9 mm. The patent publishes no iris diameters, so the data file uses an inferred schedule computed from the nominal f-number: iris radii of about 5.94 mm (wide), 7.69 mm (mid) and 8.76 mm (tele). These are calculated values, not Nikon's.
 
 ### 8.3 Close Focus Performance
 
@@ -296,7 +308,7 @@ The 0.30 m minimum focus distance is exceptional for a standard zoom. The G4 foc
 |---|---|---|---|---|---|
 | L11 | Neg. meniscus | 1.84666 | 23.8 | −167.0 | S-TIH53 |
 | L12 | Pos. meniscus | 1.75500 | 52.3 | +70.3 | J-LASKH2 |
-| L21 | Neg. meniscus (1× asph) | 1.74353 | 49.5 | −24.0 | Uncertain (see §10) |
+| L21 | Neg. meniscus (1× asph) | 1.74353 | 49.5 | −24.0 | M-NBF1 (catalog equivalent) |
 | L22 | Biconcave neg. | 1.75500 | 52.3 | −51.8 | J-LASKH2 |
 | L23 | Pos. meniscus | 2.00069 | 25.5 | +44.6 | TAFD40 (HOYA) |
 | L31 | Biconvex pos. (1× asph, AS-ED) | 1.55332 | 71.7 | +42.7 | M-FCD500 |
@@ -319,8 +331,9 @@ All element focal lengths computed via thick-lens formula and independently veri
 
 ## 10. Limitations and Caveats
 
-- **Semi-diameters:** The patent does not provide semi-diameter data. All SDs in the data file are estimated via combined marginal + chief ray traces across all three zoom positions with 8–10% mechanical clearance, validated against edge thickness (≥ 0.5 mm), cross-gap sag overlap (intrusion ≤ gap × 1.1), and aspherical slope limits. Front element SD constrained by 72 mm filter thread. Some vignetting at wide-end field edges is expected — the production lens applies digital shading correction.
-- **Close-focus object distance:** The patent provides close-focus variable spacings at W/M/T but does not explicitly state the object distance. The manufacturer specification of 0.30 m is used for `closeFocusM`.
+- **Semi-diameters:** The patent does not publish clear apertures. The G3 rims (L31–L35), L41 and the optical extent of L21's rear asphere follow rims measured on the Fig. 1A wide-angle section. The remaining rims are earlier ray-trace estimates, with the front element limited by the 72 mm filter thread, and all agree with Fig. 1A within about 15 %. Every rim clears the f/4 axial beam at all three stations. The wide-end corner bundle is partly vignetted in G2, G3 and G4, as the figure implies; the production lens corrects shading in camera. The viewer's wide-end half-field is a paraxial estimate limited by L21's rear surface (about 38°, against the patent's 43.3°); an exact trace reaches the 21.7 mm image height at 43.3°.
+- **Aperture schedule:** Inferred from the constant f/4.00 specification, not published (see §8.2).
+- **Close-focus object distance:** The patent provides close-focus variable spacings at W/M/T but does not state the object distance. The calculated conjugate is 298.5 mm object-to-image at all three stations, which matches the manufacturer's 0.30 m used for `closeFocusM`.
 - **Aspherical coefficients:** Only A4–A10 provided in patent. A12–A14 set to 0.
-- **Glass identifications:** All assignments are inferences from 6-digit nd/νd codes. Exact matches (Δnd < 0.00001) found for 13 of 14 elements. **L21 (nd = 1.74353, νd = 49.5) has no confirmed catalog match.** Production glasses may differ from patent values.
-- **Cover glass:** Patent surfaces 27–28 (nd = 1.51680, d = 1.60 mm) excluded from surface array. Physical BFD from last lens surface to image plane (including filter path) folded into the last surface's d value.
+- **Glass identifications:** All assignments are inferences from 6-digit nd/νd codes. Exact matches (Δnd < 0.00001) found for 13 of 14 elements. L21 (nd = 1.74353, νd = 49.5, code 744495) uses Hoya M-NBF1 as the nearest coefficient-backed catalog equivalent (Δnd = −0.00023); the production supplier is not identified. Production glasses may differ from patent values.
+- **Cover glass:** Patent surfaces 27–28 (filter FL, nd = 1.51680, d = 1.60 mm) are excluded from the surface array. The last gap stores the patent's air-equivalent back focus (15.013 / 27.941 / 35.599 mm), so the image plane sits at paraxial best focus.

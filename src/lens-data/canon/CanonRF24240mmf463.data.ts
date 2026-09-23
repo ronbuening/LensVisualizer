@@ -4,23 +4,43 @@ import type { LensDataInput } from "../../types/optics.js";
  * ╔══════════════════════════════════════════════════════════════════════╗
  * ║           LENS DATA — CANON RF 24-240mm F4-6.3 IS USM             ║
  * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Data source: US 2020/0142167 A1, Example 1 (Canon / Kikuchi).    ║
+ * ║  Data source: US 2020/0142167 A1, Numerical Data 1 (Example 1),   ║
+ * ║  Canon / Kikuchi. Native patent scale (f = 24.72–232.80 mm).      ║
+ * ║  Example 1 is the only 24–240 class example (Ex. 2 and 3 reach    ║
+ * ║  295 / 280 mm; Ex. 4 and 5 are 24–200 mm four-unit designs).      ║
  * ║  Positive-lead 6-unit zoom: + − + + − − (LR = L4+L5+L6).         ║
  * ║  21 elements / 15 groups, 2 aspherical surfaces (1 element).      ║
- * ║  Focus: Rear inner focus via L5 (unit 5, L18+L19 cemented         ║
- * ║         doublet) moving image-ward. Patent does not provide       ║
- * ║         close-focus spacings; var entries are zoom-only.           ║
  * ║                                                                    ║
- * ║  Zoom variable gaps (all 6 change during zoom):                   ║
- * ║    D5 (L1→L2), D13 (L2→L3), D24 (L3→L4),                        ║
- * ║    D31 (L4→L5), D34 (L5→L6), D37 (BFD).                         ║
- * ║  Reversing group: D34 is non-monotonic                            ║
- * ║    (15.54 → 14.63 → 17.77 mm, wide→mid→tele).                    ║
+ * ║  Zoom motion (FIG. 1 arrows, gap table): every unit moves toward  ║
+ * ║  the object from wide to tele; none reverses. D31 and D34 are     ║
+ * ║  individually non-monotonic (3.73→4.64→1.50, 15.54→14.63→17.77)  ║
+ * ║  but D31 + D34 = 19.27 mm at all three stations, so L4 and L6     ║
+ * ║  move as one (derived) while L5 floats between them. Total        ║
+ * ║  length 142.00 → 183.82 → 214.00 mm.                              ║
+ * ║                                                                    ║
+ * ║  Focus: L5 (L18+L19 cemented) moves image-ward (¶0053, arrow 5c). ║
+ * ║  The patent publishes no close-focus spacings, so the var pairs   ║
+ * ║  are identical and the focus slider does not move any unit.       ║
+ * ║  closeFocusM = 0.5 m is Canon's wide-end MFD (0.78 m at tele).    ║
+ * ║                                                                    ║
+ * ║  Back focus: the patent BF (= d37) is air-equivalent with no      ║
+ * ║  glass block listed; stored as-is (infinity defocus ≤ 0.011 mm).  ║
+ * ║  Aspheres: patent uses the standard (1 + k) conic form; k = 0 on  ║
+ * ║  both surfaces, so K = 0.                                          ║
+ * ║                                                                    ║
+ * ║  Aperture: nominal F4.12 / 5.66 / 6.41. No iris diameters are     ║
+ * ║  published, so the iris schedule is inferred from the FNO values  ║
+ * ║  (zoomApertureModel "from-nominal-fno": 6.63 / 7.64 / 8.16 mm).   ║
+ * ║  STO sd 8.16 = patent stop effective diameter 16.32 / 2, which    ║
+ * ║  equals the inferred tele iris radius.                             ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                          ║
- * ║    Patent lists "effective diameter" for every surface. Base SDs  ║
- * ║    use effective_diameter / 2, with small rendering adjustments    ║
- * ║    to better match Canon's published construction diagram.         ║
+ * ║    Every sd is the patent's tabulated effective diameter / 2      ║
+ * ║    (2026-09-23 audit removed earlier enlargements of up to        ║
+ * ║    +1.25 mm in units 2 and 3 that had no patent basis). Unit-3    ║
+ * ║    diameters equal the tele axial beam; a real trace at the       ║
+ * ║    patent field angles shows no axial clipping or chief-ray       ║
+ * ║    blocking.                                                      ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -171,7 +191,7 @@ const LENS_DATA = {
       id: 10,
       name: "L10",
       label: "Element 10",
-      type: "Plano-Convex Negative",
+      type: "Plano-Concave Negative",
       nd: 2.001,
       vd: 29.1,
       fl: -20.5,
@@ -226,7 +246,7 @@ const LENS_DATA = {
       nd: 1.5311,
       vd: 55.9,
       fl: 105.0,
-      glass: "531559 - moldable barium light crown (patent nd=1.53110, vd=55.9)",
+      glass: "Unmatched (531559; material not stated in patent, resin-class coordinate; patent nd=1.53110, vd=55.9)",
       apd: false,
       role: "Aspherical relay element — corrects SA, coma, and field curvature across zoom",
     },
@@ -333,30 +353,30 @@ const LENS_DATA = {
     { label: "5", R: 664.437, d: 1.34, nd: 1.0, elemId: 0, sd: 26.38 }, // L3 rear → air (zoom var)
 
     // ── Unit 2: Variator (f = −16.74 mm) ──
-    { label: "6", R: 243.528, d: 1.28, nd: 1.8515, elemId: 4, sd: 13.8 }, // L4 front
-    { label: "7", R: 20.583, d: 4.73, nd: 1.0, elemId: 0, sd: 12.2 }, // L4 rear → air
-    { label: "8", R: -56.381, d: 1.09, nd: 1.8515, elemId: 5, sd: 10.9 }, // L5 front
-    { label: "9", R: 45.818, d: 0.46, nd: 1.0, elemId: 0, sd: 10.7 }, // L5 rear → air
-    { label: "10", R: 35.871, d: 4.51, nd: 1.92286, elemId: 6, sd: 10.9 }, // L6 front
-    { label: "11", R: -61.247, d: 0.84, nd: 1.0, elemId: 0, sd: 10.2 }, // L6 rear → air
-    { label: "12", R: -32.368, d: 1.03, nd: 1.7725, elemId: 7, sd: 9.9 }, // L7 front
-    { label: "13", R: 821.472, d: 22.25, nd: 1.0, elemId: 0, sd: 10.0 }, // L7 rear → air (zoom var)
+    { label: "6", R: 243.528, d: 1.28, nd: 1.8515, elemId: 4, sd: 13.795 }, // L4 front
+    { label: "7", R: 20.583, d: 4.73, nd: 1.0, elemId: 0, sd: 11.19 }, // L4 rear → air
+    { label: "8", R: -56.381, d: 1.09, nd: 1.8515, elemId: 5, sd: 10.985 }, // L5 front
+    { label: "9", R: 45.818, d: 0.46, nd: 1.0, elemId: 0, sd: 10.39 }, // L5 rear → air
+    { label: "10", R: 35.871, d: 4.51, nd: 1.92286, elemId: 6, sd: 10.29 }, // L6 front
+    { label: "11", R: -61.247, d: 0.84, nd: 1.0, elemId: 0, sd: 9.82 }, // L6 rear → air
+    { label: "12", R: -32.368, d: 1.03, nd: 1.7725, elemId: 7, sd: 9.725 }, // L7 front
+    { label: "13", R: 821.472, d: 22.25, nd: 1.0, elemId: 0, sd: 9.32 }, // L7 rear → air (zoom var)
 
     // ── Unit 3: Correction Group with IS — XYZ (f = +60.67 mm) ──
     { label: "STO", R: 1e15, d: 0.35, nd: 1.0, elemId: 0, sd: 8.16 }, // Aperture stop
     // Subunit X (positive, f = +55.81 mm)
-    { label: "15", R: 27.034, d: 3.05, nd: 1.76182, elemId: 8, sd: 9.4 }, // L8 front
-    { label: "16", R: -852.68, d: 0.15, nd: 1.0, elemId: 0, sd: 9.3 }, // L8 rear → air
-    { label: "17", R: 19.84, d: 3.53, nd: 1.58144, elemId: 9, sd: 9.15 }, // L9 front
-    { label: "18", R: 1e15, d: 0.82, nd: 2.001, elemId: 10, sd: 8.9 }, // L9→L10 junction (flat)
-    { label: "19", R: 20.522, d: 2.7, nd: 1.0, elemId: 0, sd: 8.65 }, // L10 rear → air
+    { label: "15", R: 27.034, d: 3.05, nd: 1.76182, elemId: 8, sd: 8.515 }, // L8 front
+    { label: "16", R: -852.68, d: 0.15, nd: 1.0, elemId: 0, sd: 8.46 }, // L8 rear → air
+    { label: "17", R: 19.84, d: 3.53, nd: 1.58144, elemId: 9, sd: 8.325 }, // L9 front
+    { label: "18", R: 1e15, d: 0.82, nd: 2.001, elemId: 10, sd: 7.975 }, // L9→L10 junction (flat)
+    { label: "19", R: 20.522, d: 2.7, nd: 1.0, elemId: 0, sd: 7.605 }, // L10 rear → air
     // Subunit Y (positive, IS shift element, f = +41.45 mm)
-    { label: "20", R: 35.803, d: 0.8, nd: 2.00069, elemId: 11, sd: 8.55 }, // L11 front
-    { label: "21", R: 18.888, d: 3.99, nd: 1.72, elemId: 12, sd: 8.5 }, // L11→L12 junction
-    { label: "22", R: -63.451, d: 2.27, nd: 1.0, elemId: 0, sd: 8.45 }, // L12 rear → air
+    { label: "20", R: 35.803, d: 0.8, nd: 2.00069, elemId: 11, sd: 7.75 }, // L11 front
+    { label: "21", R: 18.888, d: 3.99, nd: 1.72, elemId: 12, sd: 7.63 }, // L11→L12 junction
+    { label: "22", R: -63.451, d: 2.27, nd: 1.0, elemId: 0, sd: 7.595 }, // L12 rear → air
     // Subunit Z (negative, f = −30.98 mm)
-    { label: "23", R: -26.036, d: 0.8, nd: 2.001, elemId: 13, sd: 8.65 }, // L13 front
-    { label: "24", R: -164.761, d: 8.46, nd: 1.0, elemId: 0, sd: 8.8 }, // L13 rear → air (zoom var)
+    { label: "23", R: -26.036, d: 0.8, nd: 2.001, elemId: 13, sd: 7.4 }, // L13 front
+    { label: "24", R: -164.761, d: 8.46, nd: 1.0, elemId: 0, sd: 7.55 }, // L13 rear → air (zoom var)
 
     // ── Unit 4: Relay / Compensator (f = +22.87 mm) ──
     { label: "25A", R: 45.628, d: 2.42, nd: 1.5311, elemId: 14, sd: 10.79 }, // L14 front (asph)
@@ -477,7 +497,9 @@ const LENS_DATA = {
 
   /* ── Aperture configuration ── */
   nominalFno: [4.12, 5.66, 6.41],
-  fstopSeries: [4, 4.5, 5, 5.6, 6.3, 7.1, 8, 11, 16, 22],
+  zoomApertureModel: "from-nominal-fno",
+  fstopSeries: [4.12, 4.5, 5, 5.6, 6.3, 7.1, 8, 11, 16, 22],
+  maxFstop: 22,
   apertureBlades: 7,
 
   /* ── Layout tuning ── */

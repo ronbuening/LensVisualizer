@@ -2,34 +2,52 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — Canon RF 28-70mm F2.8 IS STM                        ║
+ * ║  LENS DATA — Canon RF 28-70mm F2.8 IS STM                            ║
  * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Data source: US 2024/0329367 A1, Example 1 (§0083) — Canon.      ║
- * ║  Compact constant-aperture standard zoom for RF mount.             ║
- * ║  15 elements / 12 groups (7 movable units), 4 aspherical surfaces. ║
- * ║  Zoom: 28.80–67.90 mm (marketed 28–70 mm), f/2.88–2.92.          ║
- * ║  Internal zoom (total track 132–159 mm).                           ║
- * ║  Zoom variable gaps: D2, D9, D16, D19, D23, D25, D28.             ║
- * ║  Focus: rear inner focus via B6 (single element L13).              ║
- * ║  Patent provides infinity-focus spacings only; close-focus data    ║
- * ║  not available — all gaps encoded as zoom-only.                    ║
- * ║                                                                    ║
- * ║  NOTE ON R4: The patent's rendering of surface 4 radius is         ║
- * ║  ambiguous at low resolution (22 vs 32). Independent paraxial ray  ║
- * ║  trace confirms R4 = 22.455 mm — this produces exact EFL and       ║
- * ║  group focal length matches at all three zoom positions.           ║
- * ║                                                                    ║
- * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║  Estimated via combined marginal + chief ray trace at all three    ║
- * ║  zoom positions, refined against the Canon optical construction    ║
- * ║  diagram and patent FIG. 1. The diagram proportions are used to    ║
- * ║  avoid over-uniform middle/rear element heights: tall L1, compact  ║
- * ║  stop-side lenses, stepped B5/B6, and a larger rear doublet.       ║
- * ║  Constrained by: edge thickness ≥ 0.5 mm, cross-gap sag overlap    ║
- * ║  (S4→S5 gap limits SD to ~15.5 mm at that junction), slope limit,  ║
- * ║  and 67 mm production filter thread (~29.5 mm max SD).            ║
- * ║  Cover glass (nd=1.544, 2.00 mm) excluded; BFD includes its       ║
- * ║  physical thickness + 1.09 mm air gap to image plane.             ║
+ * ║  Data source: US 2024/0329367 A1, First Numerical Example (¶0083,    ║
+ * ║  FIG. 1) — Canon / Hagiwara. Stored at native patent scale.          ║
+ * ║  15 elements / 12 groups in 7 lens units, 4 aspherical surfaces.     ║
+ * ║  Zoom: 28.80–67.90 mm (marketed 28–70 mm), F2.88 / 2.88 / 2.92.      ║
+ * ║                                                                      ║
+ * ║  ZOOM MOTION (extending barrel, every unit moves):                   ║
+ * ║    Abstract / ¶0028–0029: B1, B3–B7 move toward the object from      ║
+ * ║    wide to tele; B2 follows a convex-to-image path (image-ward to    ║
+ * ║    the intermediate position, then object-ward). Derived front-      ║
+ * ║    vertex positions from the image plane (W / M / T, mm): B1 131.5 / ║
+ * ║    143.4 / 157.9; B2 123.2 / 120.3 / 124.0; B3 78.8 / 89.8 / 98.3;   ║
+ * ║    B7 22.2 / 33.1 / 41.7. The stop rides with B3.                    ║
+ * ║  Variable gaps: D2, D9, D16, D19, D23, D25, and the back focus.      ║
+ * ║                                                                      ║
+ * ║  FOCUS: B6 (single negative meniscus L13) moves toward the image     ║
+ * ║  from infinity to close (¶0065). The patent publishes infinity      ║
+ * ║  spacings only, so focus travel is not modelled (zoom-only gaps).    ║
+ * ║                                                                      ║
+ * ║  APERTURE: patent FNO 2.88 / 2.88 / 2.92 with a moving stop and no   ║
+ * ║  published iris diameters; zoomApertureModel "from-nominal-fno"      ║
+ * ║  infers iris radii 9.04 / 10.68 / 11.94 mm (calculated). STO sd      ║
+ * ║  records the largest inferred radius.                                ║
+ * ║                                                                      ║
+ * ║  COVER GLASS: patent surfaces 29–30 (GB, 2.00 mm, nd 1.54400) are    ║
+ * ║  excluded. Last gap = d28 + 2.00/1.544 + d30 (1.09) = 15.385 /       ║
+ * ║  26.315 / 34.865 mm, the air-equivalent bf (patent 15.39 / 26.31 /   ║
+ * ║  34.87).                                                             ║
+ * ║                                                                      ║
+ * ║  SOURCE CONFLICT: the printed Total Lens Length (132.38 / 144.25 /   ║
+ * ║  158.83) is 0.90 mm longer than the tabulated physical sum (131.48 / ║
+ * ║  143.36 / 157.94). The tabulated rows reproduce f and bf, so they    ║
+ * ║  are retained; the offset is unexplained.                            ║
+ * ║                                                                      ║
+ * ║  NOTE ON R4: surface 4 reads 22.455 mm; the paraxial trace with this ║
+ * ║  value reproduces f and all seven unit focal lengths.                ║
+ * ║                                                                      ║
+ * ║  NOTE ON SEMI-DIAMETERS: no effective diameters are published.       ║
+ * ║  Rims follow FIG. 1 (wide end, 13.25 px/mm at 300 dpi from the       ║
+ * ║  S1–S28 vertex span) where the stored value differed by more than    ║
+ * ║  about 15 %, subject to the exact axial f-number beam at every       ║
+ * ║  station: L2 flange 18.0, D1 rear 13.6, L5 11.3, L6 12.6, D2 12.2,   ║
+ * ║  D3 15.8 mm. L1 (29.5 vs FIG. 1 26.3), L11 and L12 remain about      ║
+ * ║  12–15 % above the figure. S4 is capped at 15.3 mm by its sag        ║
+ * ║  against S5 across the 7.05 mm gap.                                  ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -84,7 +102,7 @@ const LENS_DATA = {
       nd: 1.8919,
       vd: 37.1,
       fl: -33.2,
-      glass: "892371 — S-LAH66 family (OHARA)",
+      glass: "S-LAH92 (OHARA catalog equivalent; patent 892371)",
       apd: false,
       role: "Primary variator element; strong negative power drives zoom action in B2.",
     },
@@ -96,7 +114,7 @@ const LENS_DATA = {
       nd: 1.60311,
       vd: 60.6,
       fl: -34.6,
-      glass: "603606 — S-BSL7 family (OHARA)",
+      glass: "S-BSM14 (OHARA catalog equivalent; patent 603606)",
       apd: false,
       role: "Front element of cemented doublet D1 in B2; provides achromatic correction for the variator.",
       cemented: "D1",
@@ -109,7 +127,7 @@ const LENS_DATA = {
       nd: 1.90366,
       vd: 31.3,
       fl: 25.7,
-      glass: "904313 — S-LAH58 family (OHARA)",
+      glass: "S-LAH95 (OHARA catalog equivalent; patent 904313)",
       apd: false,
       role: "Rear element of D1; high-index lanthanum flint provides positive power for achromatic balance in B2.",
       cemented: "D1",
@@ -130,11 +148,11 @@ const LENS_DATA = {
       id: 6,
       name: "L6",
       label: "Element 6",
-      type: "Plano-Convex Positive",
+      type: "Biconvex Positive",
       nd: 2.001,
       vd: 29.1,
       fl: 41.5,
-      glass: "001291 — S-NPH4 family (OHARA)",
+      glass: "S-LAH99 (OHARA catalog equivalent; patent 001291)",
       apd: false,
       role: "Ultra-high-index element immediately after stop; primary spherical aberration corrector at f/2.88.",
     },
@@ -170,7 +188,7 @@ const LENS_DATA = {
       nd: 1.85478,
       vd: 24.8,
       fl: -33.7,
-      glass: "855248 — S-TIH53W family (OHARA)",
+      glass: "S-NBH56 (OHARA catalog equivalent; patent 855248)",
       apd: false,
       role: "Front element of anomalous-dispersion doublet D2; ultra-dense flint for secondary spectrum correction.",
       cemented: "D2",
@@ -209,7 +227,7 @@ const LENS_DATA = {
       nd: 1.59522,
       vd: 67.7,
       fl: 37.7,
-      glass: "595677 — S-BSM14 family (OHARA)",
+      glass: "S-FPM2 (OHARA catalog equivalent; patent 595677)",
       apd: false,
       role: "Primary positive element of B5; low-dispersion barium crown provides strong convergence for image formation.",
     },
@@ -221,7 +239,7 @@ const LENS_DATA = {
       nd: 1.6134,
       vd: 44.3,
       fl: -57.2,
-      glass: "613443 — S-BAH11 family (OHARA)",
+      glass: "S-NBM51 (OHARA catalog equivalent; patent 613443)",
       apd: false,
       role: "Sole focusing element (B6); lightweight meniscus for fast, quiet STM autofocus. Convex side faces object per §0065.",
     },
@@ -260,27 +278,27 @@ const LENS_DATA = {
     { label: "2", R: -1074.771, d: 0.85, nd: 1.0, elemId: 0, sd: 29.0 }, // d2 variable (zoom)
 
     // ── B2: Variator (L2, L3+L4, L5) ──
-    { label: "3", R: 95.769, d: 1.6, nd: 1.8919, elemId: 2, sd: 17.2 },
-    { label: "4", R: 22.455, d: 7.05, nd: 1.0, elemId: 0, sd: 15.3 }, // R4 confirmed; cross-gap limited
+    { label: "3", R: 95.769, d: 1.6, nd: 1.8919, elemId: 2, sd: 18.0 },
+    { label: "4", R: 22.455, d: 7.05, nd: 1.0, elemId: 0, sd: 15.3 }, // R4 = 22.455; sag against S5 caps sd
     { label: "5", R: -369.959, d: 1.25, nd: 1.60311, elemId: 3, sd: 15.4 }, // D1 front
-    { label: "6", R: 22.126, d: 7.0, nd: 1.90366, elemId: 4, sd: 16.2 }, // D1 junction
-    { label: "7", R: 412.508, d: 4.86, nd: 1.0, elemId: 0, sd: 15.8 },
-    { label: "8", R: -36.457, d: 1.0, nd: 1.8515, elemId: 5, sd: 11.2 },
-    { label: "9", R: -89.252, d: 21.64, nd: 1.0, elemId: 0, sd: 10.8 }, // d9 variable (zoom)
+    { label: "6", R: 22.126, d: 7.0, nd: 1.90366, elemId: 4, sd: 15.4 }, // D1 junction
+    { label: "7", R: 412.508, d: 4.86, nd: 1.0, elemId: 0, sd: 13.6 },
+    { label: "8", R: -36.457, d: 1.0, nd: 1.8515, elemId: 5, sd: 11.3 },
+    { label: "9", R: -89.252, d: 21.64, nd: 1.0, elemId: 0, sd: 11.3 }, // d9 variable (zoom)
 
     // ── B3: First intermediate positive (Stop, L6, L7, L8) ──
-    { label: "STO", R: 1e15, d: 0.65, nd: 1.0, elemId: 0, sd: 11.7 },
-    { label: "11", R: 43.928, d: 3.45, nd: 2.001, elemId: 6, sd: 11.0 },
-    { label: "12", R: -750.0, d: 2.4, nd: 1.0, elemId: 0, sd: 11.4 },
+    { label: "STO", R: 1e15, d: 0.65, nd: 1.0, elemId: 0, sd: 12.0 },
+    { label: "11", R: 43.928, d: 3.45, nd: 2.001, elemId: 6, sd: 12.6 },
+    { label: "12", R: -750.0, d: 2.4, nd: 1.0, elemId: 0, sd: 12.6 },
     { label: "13A", R: 106.432, d: 3.7, nd: 1.58313, elemId: 7, sd: 12.4 },
     { label: "14A", R: -70.798, d: 2.33, nd: 1.0, elemId: 0, sd: 12.4 },
     { label: "15", R: -41.445, d: 1.2, nd: 1.77047, elemId: 8, sd: 11.6 },
     { label: "16", R: 220.269, d: 4.86, nd: 1.0, elemId: 0, sd: 11.6 }, // d16 variable (zoom)
 
     // ── B4: Weak negative compensator (L9+L10 cemented doublet D2) ──
-    { label: "17", R: 1e15, d: 1.2, nd: 1.85478, elemId: 9, sd: 14.6 },
-    { label: "18", R: 28.842, d: 6.1, nd: 1.497, elemId: 10, sd: 14.6 }, // D2 junction; diagram-proportioned
-    { label: "19", R: -56.203, d: 2.0, nd: 1.0, elemId: 0, sd: 14.3 }, // d19 variable (zoom)
+    { label: "17", R: 1e15, d: 1.2, nd: 1.85478, elemId: 9, sd: 12.2 },
+    { label: "18", R: 28.842, d: 6.1, nd: 1.497, elemId: 10, sd: 12.2 }, // D2 junction
+    { label: "19", R: -56.203, d: 2.0, nd: 1.0, elemId: 0, sd: 12.2 }, // d19 variable (zoom)
 
     // ── B5: Second intermediate positive (L11, L12) ──
     { label: "20A", R: 55.622, d: 3.8, nd: 1.58313, elemId: 11, sd: 14.8 },
@@ -293,9 +311,9 @@ const LENS_DATA = {
     { label: "25", R: 23.38, d: 12.68, nd: 1.0, elemId: 0, sd: 12.6 }, // d25 variable (zoom)
 
     // ── B7: Rear negative doublet (L14+L15 cemented doublet D3) ──
-    { label: "26", R: -53.964, d: 1.3, nd: 1.744, elemId: 14, sd: 17.2 },
-    { label: "27", R: 43.097, d: 4.8, nd: 1.92286, elemId: 15, sd: 18.4 }, // D3 junction
-    { label: "28", R: -750.0, d: 16.09, nd: 1.0, elemId: 0, sd: 18.4 }, // BFD (d28+CG+d30)
+    { label: "26", R: -53.964, d: 1.3, nd: 1.744, elemId: 14, sd: 15.8 },
+    { label: "27", R: 43.097, d: 4.8, nd: 1.92286, elemId: 15, sd: 15.8 }, // D3 junction
+    { label: "28", R: -750.0, d: 15.385, nd: 1.0, elemId: 0, sd: 15.8 }, // air-equivalent bf (d28 + 2.00/1.544 + d30)
   ],
 
   /* ── Aspherical coefficients ── */
@@ -343,7 +361,7 @@ const LENS_DATA = {
   zoomStep: 0.004,
   zoomLabels: ["Wide", "Tele"],
 
-  /* ── Variable air spacings (zoom only — close-focus data not available) ── */
+  /* ── Variable air spacings (zoom only — close-focus data not published; last gap is air-equivalent bf) ── */
   var: {
     "2": [
       [0.85, 0.85],
@@ -376,9 +394,9 @@ const LENS_DATA = {
       [13.9, 13.9],
     ],
     "28": [
-      [16.09, 16.09],
-      [27.02, 27.02],
-      [35.57, 35.57],
+      [15.385, 15.385],
+      [26.315, 26.315],
+      [34.865, 34.865],
     ],
   },
   varLabels: [
@@ -410,12 +428,15 @@ const LENS_DATA = {
   /* ── Focus configuration ── */
   closeFocusM: 0.27,
   focusDescription:
-    "Rear inner focus via B6 (L13). Patent §0042/§0065: B6 moves toward image side from ∞ to close. " +
-    "Close-focus spacings not provided in Example 1; zoom-only gaps encoded.",
+    "Rear inner focus via B6 (single negative meniscus L13). Patent ¶0042/¶0065: B6 moves toward the image " +
+    "side from infinity to close. Close-focus spacings are not published for Example 1, so the gaps are zoom-only " +
+    "and the focus slider does not move B6.",
 
   /* ── Aperture configuration ── */
   nominalFno: [2.88, 2.88, 2.92],
-  fstopSeries: [2.8, 3.2, 3.5, 4, 4.5, 5, 5.6, 6.3, 8, 11, 16, 22],
+  zoomApertureModel: "from-nominal-fno",
+  fstopSeries: [2.88, 3.2, 3.5, 4, 4.5, 5, 5.6, 6.3, 8, 11, 16, 22],
+  maxFstop: 22,
   apertureBlades: 9,
 
   /* ── Layout tuning ── */
