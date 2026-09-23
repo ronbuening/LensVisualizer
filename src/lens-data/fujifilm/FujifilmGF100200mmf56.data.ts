@@ -13,7 +13,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                    ║
  * ║  Zoom variable gaps: DD[5], DD[13], DD[18].                         ║
  * ║  Reversing group: DD[18] is non-monotonic across W/M/T positions.   ║
- * ║  Cover glass PP is excluded; its optical path is folded into BFD.   ║
+ * ║  Cover glass PP (S35–36) is modeled in `rearPlates` (traced, not    ║
+ * ║  drawn); d34 stores the patent's 57.4777 mm gap to the plate.       ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║  Patent omits clear apertures. SDs were estimated from paraxial      ║
@@ -348,7 +349,20 @@ const LENS_DATA = {
     { label: "31A", R: 39.2886, d: 6.45, nd: 1.5176, elemId: 19, sd: 14.5 },
     { label: "32A", R: -40.9507, d: 15.04, nd: 1.0, elemId: 0, sd: 14.5 },
     { label: "33", R: -21.0887, d: 1.0, nd: 1.48749, elemId: 20, sd: 15.2 },
-    { label: "34", R: -40.2457, d: 60.62, nd: 1.0, elemId: 0, sd: 15.4 },
+    { label: "34", R: -40.2457, d: 57.4777, nd: 1.0, elemId: 0, sd: 15.4 }, // patent d34 to cover glass PP
+  ],
+
+  /* ── Cover glass PP (patent surfaces 35–36): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PP",
+      thicknessMm: 3.2,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 1.0314,
+      source: "US 2019/0361195 A1, Example 1 Table 1 surfaces 35–36",
+    },
   ],
 
   asph: {

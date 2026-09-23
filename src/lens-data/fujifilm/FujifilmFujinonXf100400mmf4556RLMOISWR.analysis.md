@@ -23,7 +23,7 @@ Several independent features converge on that identification:
 
 The data file preserves the patent prescription at scale factor **s = 1**. No radii, thicknesses, focal lengths, or image-plane coordinates are uniformly rescaled. Example 1 is entirely spherical or plano; there are no aspherical coefficients and therefore no asphere-coefficient transformation.
 
-The patent's plane-parallel optical member `PP`, represented by source surfaces 37-39 between the last lens and the image surface, is not part of the LensVisualizer lens prescription. It is a surrogate for cover glass, filters, or similar camera-side components (¶0059, ¶0087). The data file omits those surfaces and replaces their optical translation with an air-equivalent rear spacing after surface 36. No other active lens surface is removed.
+The patent's plane-parallel optical member `PP`, represented by source surfaces 37-39 between the last lens and the image surface, is a surrogate for cover glass, filters, or similar camera-side components (¶0059, ¶0087). The data file models it in `rearPlates` as the two cemented plates Table 1 prints (2.150 mm, nd 1.54763, νd 54.99; 0.700 mm, nd 1.49784, νd 54.95) followed by the 1.000 mm air gap to the image. Every analysis traces the plates, but the diagram does not draw them. Surface 36 stores the physical DD(36) gap to the first plate. No active lens surface is removed.
 
 ## Optical Architecture
 
@@ -44,11 +44,11 @@ The computed isolated-group focal lengths from the final TypeScript prescription
 
 ### Zoom kinematics
 
-At infinity focus, the final model transcribes the patent's three zoom positions at 102.873, 178.159, and 387.872 mm. The source variable spacings D5 and D13 change monotonically in opposite directions, while D22, D29, and the source D36 rear spacing reverse between the three published states. The modeled D36 values are the PP-normalized air-equivalent spacings rather than the physical source DD(36) values.
+At infinity focus, the final model transcribes the patent's three zoom positions at 102.873, 178.159, and 387.872 mm. The source variable spacings D5 and D13 change monotonically in opposite directions, while D22, D29, and the source D36 rear spacing reverse between the three published states. The modeled D36 values are the physical source DD(36) spacings to the PP plates.
 
 The stop is source-published at patent surface 22, immediately behind G3. It moves integrally with G3 during zooming (¶0084). Its axial placement is therefore not inferred. Its **semi-diameter is inferred**: the three published focal-length/F-number pairs imply paraxial stop radii of 9.045284, 9.045848, and 9.074770 mm, and `STO.sd = 9.055300420693245 mm` is their arithmetic mean.
 
-The final normalized optical tracks from the first surface to the modeled image plane are 220.705561, 249.271561, and 279.766561 mm. Relative to the independently recomputed EFLs, `TL/EFL` is 2.1456, 1.3993, and 0.7214. Under the project's strict terminology, only the longest focal-length state qualifies as a telephoto-form configuration because only there is `TL/EFL < 1`. None of the three states is retrofocus: the traced back focal distances from surface 36 are 38.893038, 31.693805, and 32.616656 mm, each smaller than its corresponding EFL.
+The physical optical tracks from the first surface to the modeled image plane, including the 2.850 mm PP stack, are 221.699, 250.265, and 280.760 mm (air-equivalent 220.705561, 249.271561, and 279.766561 mm). Relative to the independently recomputed EFLs, `TL/EFL` is 2.1553, 1.4049, and 0.7239. Under the project's strict terminology, only the longest focal-length state qualifies as a telephoto-form configuration because only there is `TL/EFL < 1`. None of the three states is retrofocus: the paraxial back focal distances from surface 36 through the PP plates are 39.886477, 32.687244, and 33.610095 mm (air-equivalent 38.893038, 31.693805, and 32.616656 mm), each smaller than its corresponding EFL.
 
 ## Element-by-Element Analysis
 
@@ -228,7 +228,7 @@ The glass names remain coordinate equivalents without a production supplier clai
 
 The patent specifies rear internal focusing by G5: the fifth lens group moves toward the image side when focus changes from infinity toward the nearest object (¶0076). It does not publish numerical close-focus spacings. Fujifilm specifies a production minimum focus distance of **1.75 m measured from the image plane** and a maximum reproduction ratio of **0.19x at the telephoto end**.
 
-The data file therefore uses the focus status **`CONSTRAINED_RECONSTRUCTION`**. Only G5 moves. At every authored zoom position, D29 increases and D34 decreases by exactly the same amount, conserving `D29 + D34` and preserving the one-degree-of-freedom translation implied by the patent mechanism. The close-focus state is code-solved in the PP-omitted normalized model; it is not a patent-published spacing table.
+The data file therefore uses the focus status **`CONSTRAINED_RECONSTRUCTION`**. Only G5 moves. At every authored zoom position, D29 increases and D34 decreases by exactly the same amount, conserving `D29 + D34` and preserving the one-degree-of-freedom translation implied by the patent mechanism. The close-focus state is code-solved (it was solved with PP folded into an air-equivalent D36, which is paraxially identical to the plate stack); it is not a patent-published spacing table.
 
 | Zoom state | G5 imageward shift | D29 infinity → close | D34 infinity → close |
 | --- | ---: | ---: | ---: |
@@ -281,7 +281,7 @@ The final data preserves the patent's d-line prescription without scaling. Indep
 
 The production 100-400 mm and f/4.5-5.6 values remain marketing specifications. They are not substituted for the design focal lengths or for the modeled f-number used to control stop and pupil geometry.
 
-The patent's `PP` plate surrogate is omitted by design. The source physical DD(36) values of 36.048, 28.853, and 29.788 mm become air-equivalent modeled rear spacings of **38.904561, 31.709561, and 32.644561 mm** after the two plate translations and final 1.000 mm air spacing are normalized. The traced back focal distances from surface 36 are 38.893038, 31.693805, and 32.616656 mm, keeping the normalization residual below 0.028 mm in every state.
+The patent's `PP` plate surrogate is modeled in `rearPlates`. D36 stores the source physical DD(36) values of 36.048, 28.853, and 29.788 mm; with the two plate translations and final 1.000 mm air spacing, the air-equivalent rear spacings are **38.904561, 31.709561, and 32.644561 mm**. The paraxial air-equivalent back focal distances from surface 36 are 38.893038, 31.693805, and 32.616656 mm, a residual below 0.028 mm in every state.
 
 The semi-diameters are not patent-published. They are modeling inferences derived from traced on-axis and off-axis rays, the patent section drawing, and external mechanical bounds. The integration rim review below supersedes the initial geometry extrema, which were calculated at the smaller
 pre-audit semi-diameters. The updated prescription passes the repository surface and image-circle checks.

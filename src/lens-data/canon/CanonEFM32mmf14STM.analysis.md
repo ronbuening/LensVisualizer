@@ -169,7 +169,7 @@ A paraxial conjugate calculation with d20 = 9.71 mm gives β = −0.1878, matchi
 
 ## Aspherical Surfaces
 
-Example 1 has one aspherical surface: **surface 20**, the rear surface of L12 in the L11-L12 cemented doublet. In the data file this surface is labeled **20A**. All other powered lens surfaces are spherical. The GB cover-glass surfaces are plane and are excluded from the data file.
+Example 1 has one aspherical surface: **surface 20**, the rear surface of L12 in the L11-L12 cemented doublet. In the data file this surface is labeled **20A**. All other powered lens surfaces are spherical. The GB cover-glass surfaces are plane; the block is modeled in the data file's `rearPlates` rather than as a drawn element.
 
 The patent uses the standard conic-constant convention:
 
@@ -213,11 +213,13 @@ These values agree with the patent's Table 1 to rounding. The most important des
 
 ## Data-File Implementation Notes
 
-The data file transcribes Numerical Data 1 without scaling. It excludes the patent GB block, because the project prescription format excludes sensor cover glass. The final data-file gap after surface 23 is therefore the air-equivalent image distance:
+The data file transcribes Numerical Data 1 without scaling. Surface 23 stores the patent's physical 8.52 mm gap to the GB block, and the block itself (surfaces 24–25: 1.75 mm, nd 1.54400, νd 60.0) plus the 1.55 mm air gap to the image plane is modeled in `rearPlates`: every analysis traces it, but it is not drawn. No catalog glass matches 1.544 / 60.0, so the plate uses the Abbe-number dispersion estimate. The paraxial air-equivalent image distance after surface 23 is
 
 $$
-8.52 + \frac{1.75}{1.54400} + 1.55 = 11.2034\ \text{mm}.
+8.52 + \frac{1.75}{1.54400} + 1.55 = 11.2034\ \text{mm},
 $$
+
+matching the patent's BF of 11.20 mm. The patent's lens length of 68.28 mm is likewise air-equivalent; the physical vertex-to-image track including the GB block is 68.91 mm.
 
 The aperture stop is labeled `STO`, surface 20 is labeled `20A`, and the focus variable is `var["20A"] = [1.10, 9.71]`.
 
@@ -225,14 +227,14 @@ The patent does not publish semi-diameters. The semi-diameters in the data file 
 
 ## Verification Summary
 
-A fresh paraxial y-ν trace was run from the Numerical Data 1 prescription. The plane-parallel GB block was included for image-plane verification and then folded into the air-equivalent back focus used in the data file.
+A fresh paraxial y-ν trace was run from the Numerical Data 1 prescription. The plane-parallel GB block was included for image-plane verification; its air-equivalent back focus is listed below for comparison with the patent BF.
 
 | Quantity | Patent value | Recalculated value | Note |
 |---|---:|---:|---|
 | Effective focal length | 32.34 mm | 32.3513 mm | Agreement within patent rounding. |
 | F-number | 1.45 | patent datum | Stop diameter is not published. |
 | Inferred stop semi-diameter | not published | 8.122 mm | Derived from design F/1.45 by entrance-pupil trace. |
-| Air-equivalent BF after surface 23 | 11.20 mm | 11.2034 mm | Cover glass folded into air. |
+| Air-equivalent BF after surface 23 | 11.20 mm | 11.2034 mm | 8.52 air + GB 1.75/1.544 + 1.55 air; GB modeled in `rearPlates`. |
 | Focus group L1 focal length | 38.53 mm | 38.5385 mm | Surfaces 1-20. |
 | Fixed rear group L2 focal length | 84.74 mm | 84.7420 mm | Surfaces 21-23. |
 | LR cemented group focal length | −27.37 mm | −27.3754 mm | Surfaces 12-14. |
@@ -240,7 +242,7 @@ A fresh paraxial y-ν trace was run from the Numerical Data 1 prescription. The 
 | d20 focus travel | 1.10 → 9.71 mm | +8.61 mm | L1 shifts objectward. |
 | Petzval sum | not tabulated | +0.0026807 mm⁻¹ | Surface-by-surface φ/(n n′) calculation. |
 
-Verification found no radius-sign reversal, no extra aspherical surface, and no conic-constant convention shift. The data-file implementation treats cover-glass exclusion and BFD folding, stop semi-diameter inference, semi-diameter inference, and catalog-glass uncertainty explicitly rather than leaving these points implicit.
+Verification found no radius-sign reversal, no extra aspherical surface, and no conic-constant convention shift. The data-file implementation treats the GB block as a traced `rearPlates` entry, stop semi-diameter inference, semi-diameter inference, and catalog-glass uncertainty explicitly rather than leaving these points implicit.
 
 ## Sources / References
 

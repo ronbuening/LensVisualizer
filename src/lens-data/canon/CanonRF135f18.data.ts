@@ -3,7 +3,9 @@ import type { LensDataInput } from "../../types/optics.js";
 /**
  * US20230213745A1 Numerical Example 4, Figure 7 (not Figure 5).
  * Source radii and spacings retained; estimated optical rims reviewed at 600 dpi.
- * Plate rows 31–32 excluded: rear equivalent air is 12.63+1.5/1.51633+0.8 mm.
+ * Plate rows 31–32 (1.50 mm, nd 1.51633, νd 64.1) and the 0.80 mm air to the
+ * image are modeled in `rearPlates` (traced, not drawn); surface 30 keeps the
+ * patent's 12.63 mm gap to the plate.
  * Source nd/vd do not identify glass suppliers, chemistry or APD.
  */
 
@@ -289,7 +291,19 @@ const LENS_DATA = {
     { label: "27", R: 31.679, d: 7.95, nd: 1.80518, elemId: 16, sd: 18.2 }, // L15→L16 junction (D5)
     { label: "28", R: 207.181, d: 8.55, nd: 1.0, elemId: 0, sd: 18.8 }, // L16 rear → air
     { label: "29", R: -28.564, d: 1.6, nd: 1.58913, elemId: 17, sd: 18.5 }, // L17 front
-    { label: "30", R: -50.386, d: 14.419230576457633, nd: 1.0, elemId: 0, sd: 18.5 }, // Rear air-equivalent spacing; source cover plate excluded
+    { label: "30", R: -50.386, d: 12.63, nd: 1.0, elemId: 0, sd: 18.5 }, // Patent gap to the rear plate
+  ],
+
+  /* ── Rear plate (patent surfaces 31–32): traced, not drawn ── */
+  rearPlates: [
+    {
+      thicknessMm: 1.5,
+      nd: 1.51633,
+      vd: 64.1,
+      glass: "S-BSL7",
+      gapAfterMm: 0.8,
+      source: "US 2023/0213745 A1, Numerical Example 4 surfaces 31–32",
+    },
   ],
 
   /* ── Aspherical coefficients ── */

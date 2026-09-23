@@ -9,13 +9,15 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ Zoom variable gaps: D5, D12, D18, D23, D28. G3 and G5 move integrally; G2 reverses direction.     ║
  * ║                                                                                                  ║
  * ║ Focus status: CONSTRAINED_RECONSTRUCTION. Only G4 translates objectward from infinity.           ║
- * ║ Close-focus D18/D23 pairs were code-solved for a 0.83 m object distance from the normalized IMG,   ║
- * ║ preserving D18 + D23 = 21.595 mm. After PP removal the final-model tele solution is |m| =         ║
- * ║ 0.329922, consistent with FUJIFILM's published 0.33x maximum magnification. These pairs are not   ║
- * ║ patent rows.                                                                                      ║
+ * ║ Close-focus D18/D23 pairs were code-solved for a 0.83 m object distance from the image plane,    ║
+ * ║ preserving D18 + D23 = 21.595 mm. They were solved with PP air-equivalent (paraxially identical  ║
+ * ║ to the physical PP); the tele solution is |m| = 0.329922, consistent with FUJIFILM's published   ║
+ * ║ 0.33x maximum magnification. These pairs are not patent rows.                                    ║
  * ║                                                                                                  ║
- * ║ The patent's plane-parallel optical member PP is omitted. Its first-order propagation is folded  ║
- * ║ into surface 30's rear air spacing: 26.284 + 2.850/1.54763 + 1.123 = 29.2485254292 mm.          ║
+ * ║ The patent's plane-parallel optical member PP (surfaces 31-32: t = 2.850, nd = 1.54763,          ║
+ * ║ vd = 54.98, theta_gF = 0.55247) is modeled in `rearPlates` (traced, not drawn): surface 30's     ║
+ * ║ gap is the printed 26.284 mm to PP, then 1.123 mm PP to image. Air-equivalent rear distance:     ║
+ * ║ 26.284 + 2.850/1.54763 + 1.123 = 29.2485254292 mm.                                               ║
  * ║                                                                                                  ║
  * ║ Semi-diameters are modeling inferences because Example 6 publishes no clear apertures. They were ║
  * ║ derived from wide-open marginal/chief-ray envelopes, APS-C image height, Fig. 12 proportions,    ║
@@ -276,7 +278,7 @@ const LENS_DATA = {
     },
   ],
 
-  /* ── Surface prescription: Example 6 Table 16; PP removed as described above ── */
+  /* ── Surface prescription: Example 6 Table 16 surfaces 1–30; PP in `rearPlates` below ── */
   surfaces: [
     { label: "1", R: 245.94174, d: 2.0, nd: 1.8061, elemId: 1, sd: 28.5 },
     { label: "2", R: 100.008, d: 6.24, nd: 1.48749, elemId: 2, sd: 28.5 },
@@ -307,7 +309,20 @@ const LENS_DATA = {
     { label: "27", R: -14.6049, d: 1.01, nd: 1.788, elemId: 16, sd: 7.3 },
     { label: "28", R: 1e15, d: 2.978, nd: 1.0, elemId: 0, sd: 7.3 },
     { label: "29", R: -37.23339, d: 2.59, nd: 1.91082, elemId: 17, sd: 14.0 },
-    { label: "30", R: -26.66311, d: 29.2485254292, nd: 1.0, elemId: 0, sd: 14.0 },
+    { label: "30", R: -26.66311, d: 26.284, nd: 1.0, elemId: 0, sd: 14.0 }, // gap to PP
+  ],
+
+  /* ── Plane-parallel member PP (patent surfaces 31–32): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PP",
+      thicknessMm: 2.85,
+      nd: 1.54763,
+      vd: 54.98,
+      dPgF: 0.00114636,
+      gapAfterMm: 1.123,
+      source: "US 2021/0286156 A1, Example 6 Table 16 surfaces 31–32 (patent θgF 0.55247)",
+    },
   ],
 
   /* ── Aspheres: Example 6 Table 18; patent KA = 1 -> standard K = 0 ── */
@@ -396,7 +411,7 @@ const LENS_DATA = {
   /* ── Focus / aperture / layout ── */
   focusDescription:
     "CONSTRAINED_RECONSTRUCTION: only G4 moves objectward; D18+D23 is conserved at each zoom state; " +
-    "close-focus gaps are code-solved at 0.83 m from the normalized image plane and reproduce 0.32992x at tele.",
+    "close-focus gaps are code-solved at 0.83 m from the image plane and reproduce 0.32992x at tele.",
   closeFocusM: 0.83,
   nominalFno: [4.12, 4.9, 5.77],
   fstopSeries: [4, 4.5, 5.6, 6.3, 8, 11, 16, 22],

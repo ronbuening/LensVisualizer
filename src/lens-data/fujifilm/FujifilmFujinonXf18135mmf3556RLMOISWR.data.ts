@@ -21,9 +21,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                            ║
  * ║ NORMALIZATION / SCALING                                                    ║
  * ║   No uniform scale is applied.                                             ║
- * ║   Patent PP (2.85 mm, nd=1.5168) represents cover/filter/prism optics and  ║
- * ║   is excluded. Its paraxial effect is folded into the rear air gap:        ║
- * ║   2.000 + 2.850/1.5168 + 16.080 = 19.958955696203 mm.                     ║
+ * ║   Patent PP (surfaces 30–31; 2.85 mm, nd=1.5168, νd=64.2) represents       ║
+ * ║   cover/filter/prism optics. It is modeled physically in `rearPlates`      ║
+ * ║   (traced, not drawn): d29 = 2.000 mm to PP, then 16.080 mm to image.      ║
  * ║                                                                            ║
  * ║ SEMI-DIAMETERS / STOP                                                      ║
  * ║   The patent publishes no clear-aperture table. SDs are inferred from      ║
@@ -326,14 +326,20 @@ const LENS_DATA = {
     { label: "26", R: 50.397, d: 2.99, nd: 1.72825, elemId: 15, sd: 9.6 },
     { label: "27", R: -96.38585, d: 2.0, nd: 1.0, elemId: 0, sd: 9.9 },
     { label: "28", R: -99.96628, d: 2.57, nd: 1.48749, elemId: 16, sd: 12.7 },
+    { label: "29", R: -48.81415, d: 2.0, nd: 1.0, elemId: 0, sd: 13.0 }, // patent d29 to the PP plate
+  ],
+
+  /* ── Optical member PP (patent surfaces 30–31): traced, not drawn ── */
+  rearPlates: [
     {
-      label: "29",
-      R: -48.81415,
-      d: 19.95895569620253,
-      nd: 1.0,
-      elemId: 0,
-      sd: 13.0,
-    }, // PP omitted; air-equivalent rear spacing to image plane
+      label: "PP",
+      thicknessMm: 2.85,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 16.08,
+      source: "US 9,651,761 B2, Example 1 Table 1 surfaces 30–31",
+    },
   ],
 
   asph: {

@@ -20,10 +20,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  1 m row is consistent with 1.000 m from surface 1; it is mapped  ║
  * ║  to 1.06049 m from the physical sensor plane for focusT.           ║
  * ║                                                                    ║
- * ║  OPTIONAL PP NORMALIZATION: patent surfaces 20–21 represent a      ║
- * ║  no-power filter/cover plate and are omitted. Surface 19 therefore ║
- * ║  uses 14.079538095 mm air-equivalent rear spacing to the model     ║
- * ║  image plane (11.10 + 2.85/1.51633 + 1.10).                        ║
+ * ║  PARALLEL PLATE PP: patent surfaces 20–21 (2.85 mm, nd 1.51633,    ║
+ * ║  νd 64.14, θgF 0.53531) are modeled in `rearPlates` (traced, not   ║
+ * ║  drawn) with 1.10 mm to Sim. Surface 19 keeps the patent's 11.10   ║
+ * ║  mm gap to the plate; air-equivalent BF = 14.079538095 mm.         ║
  * ║                                                                    ║
  * ║  SEMI-DIAMETERS: not published. They are inferred from the patent  ║
  * ║  FIG. 3 optical section, d-line marginal/chief-ray envelopes, the  ║
@@ -245,7 +245,21 @@ const LENS_DATA = {
     { label: "16", R: 174.9, d: 3.16, nd: 1.83481, elemId: 9, sd: 10.5 },
     { label: "17", R: -35.411, d: 4.27, nd: 1.0, elemId: 0, sd: 10.3 },
     { label: "18", R: -22.728, d: 1.32, nd: 1.85478, elemId: 10, sd: 11.5 },
-    { label: "19", R: -42.023, d: 14.079538095, nd: 1.0, elemId: 0, sd: 11.7 },
+    { label: "19", R: -42.023, d: 11.1, nd: 1.0, elemId: 0, sd: 11.7 },
+  ],
+
+  /* ── Parallel plate PP (patent surfaces 20–21): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PP",
+      thicknessMm: 2.85,
+      nd: 1.51633,
+      vd: 64.14,
+      glass: "S-BSL7",
+      dPgF: -0.00060652,
+      gapAfterMm: 1.1,
+      source: "US 2020/0073096 A1, Example 3 Table 9 surfaces 20–21 (patent θgF 0.53531)",
+    },
   ],
 
   /* ── Aspherical coefficients: Example 3, Table 12 ── */

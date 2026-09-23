@@ -10,8 +10,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * Prescription policy:
  * - Patent d-line prescription is retained at native scale. Computed EFL from the rounded Table 1 data is
  *   30.890120992212 mm; no scaling to the marketed 30 mm focal length is applied.
- * - Patent optional parallel plate PP (S25-S26) is omitted. Its d-line optical effect is folded into the
- *   final air-equivalent rear spacing: 20.812 + 3.200 / 1.51680 + 0.020 = 22.941704641350 mm.
+ * - Patent optional parallel plate PP (Table 1 S25-S26: 3.200 mm, nd 1.51680, vd 64.20) and its 0.020 mm air gap
+ *   to the image plane are modeled in `rearPlates` (traced, not drawn). S24 keeps the patent's 20.812 mm gap to PP;
+ *   the paraxial air equivalent is 20.812 + 3.200 / 1.51680 + 0.020 = 22.941704641350 mm.
  * - Patent asphere convention uses KA in sqrt(1 - KA*C^2*h^2); LensVisualizer uses (1+K), so K = KA - 1.
  *   Example 1 has KA = 1 on S1, S2, S16, and S17, therefore K = 0 on all four modeled aspheres.
  *
@@ -263,7 +264,21 @@ const LENS_DATA = {
     { label: "21", R: -67.54157, d: 1.02, nd: 1.94595, elemId: 12, sd: 14.3 },
     { label: "22", R: -425.65965, d: 3.05, nd: 1, elemId: 0, sd: 15.1 },
     { label: "23", R: 125.0308, d: 6.5, nd: 1.56883, elemId: 13, sd: 19 },
-    { label: "24", R: -60.39887, d: 22.94170464135, nd: 1, elemId: 0, sd: 19.8 },
+    // Last surface: patent gap to the parallel plate PP
+    { label: "24", R: -60.39887, d: 20.812, nd: 1, elemId: 0, sd: 19.8 },
+  ],
+
+  /* ── Optional parallel plate PP (patent Table 1 surfaces 25–26): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PP",
+      thicknessMm: 3.2,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 0.02,
+      source: "US 2021/0231930 A1, Example 1 Table 1 surfaces 25–26",
+    },
   ],
 
   /* ── Aspherical coefficients ── */

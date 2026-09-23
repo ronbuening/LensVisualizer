@@ -44,7 +44,8 @@ Because the patent is claiming a teleconverter, not a zoom lens, it is **silent 
 | Full field of view (W / M / T) | 2ω = 30.6° / 18.8° / 11.6° |
 | Implied image height | ≈ 14.1 mm (matches APS‑C half‑diagonal 14.14 mm) |
 | Air‑equivalent back focal distance | 29.41 mm (patent exactly) |
-| Total physical track (first vertex → image) | 185.9 mm at every zoom position |
+| Rear optical member PP | 2.85 mm plate, n_d = 1.51680, ν_d = 64.20 (N‑BK7 class), 26.43 mm behind L411 and 1.10 mm ahead of the image; modeled in `rearPlates`, traced by every analysis but not drawn |
+| Total physical track (first vertex → image) | 185.9 mm at every zoom position (plate included) |
 | Telephoto ratio at tele | track / EFL_tele = 185.9 / 136.0 = **1.367** (not a true telephoto construction) |
 
 Subsystem focal lengths for the four zoom‑architecture groups:

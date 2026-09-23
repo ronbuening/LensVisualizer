@@ -91,3 +91,12 @@ are limited by the neighbouring air gaps. The dashed stop symbol (≈12 mm half-
 - Focus travel and the OIS group are not in the patent and are not modeled.
 - Semi-diameters are estimates from the ray trace and FIG. 2; the patent publishes no effective diameters.
 - L24's glass has no exact catalog match (nearest S-TIH53 / S-NPH53, Δnd 5×10⁻⁵).
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Read Table 1 (master lens) on PDF p. 17: d40 = 26.4281; surfaces 41–42 are optical member PP (¶0052), 2.85 mm,
+  nd 1.51680, νd 64.20; d42 = 1.1000 to the image. The gap is not zoom-variable (Table 2 Bf 29.41 at W/M/T).
+- Surface 40 now stores the patent's 26.4281 mm, with `rearPlates` PP (N-BK7, the exact 1.51680 / 64.2 catalog
+  match) and gapAfter 1.10 mm. Paraxial check against the previous data: EFL identical at W/M/T; defocus changes
+  by 0.00004 mm (rounding in the old 29.4071 fold). Physical track grows by 0.971 mm to 185.92 mm, the value the
+  header and analysis already quoted as the physical track.

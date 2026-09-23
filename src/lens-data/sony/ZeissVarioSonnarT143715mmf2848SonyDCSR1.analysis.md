@@ -47,11 +47,11 @@ The patent also states that GR1 should reverse direction somewhere along the con
 
 The spacing around GR4 has the published sequence D18 = 6.037 → 5.394 → 7.430 mm from wide through intermediate to tele. That decrease and subsequent increase is exactly the pattern the patent describes for the GR4–GR5 separation. The patent associates this spacing strategy with control of focus-related field-curvature and spherical-aberration fluctuations; the implemented data verifies the kinematics but does not independently decompose those aberrations by group. (US 2008/0218875 A1, ¶¶0033, 0048–0050; Table 2.)
 
-The source also includes a rear low-pass/filter plate train at surfaces 26–29. Those plates are excluded from the ordinary LensVisualizer lens prescription under the current data rules. Their optical-path contribution is retained by replacing D25 with an air-equivalent distance to the same image plane:
+The source also includes a rear plate train at surfaces 26–29: the low-pass filter LPF (2.010 mm, nd 1.5523, νd 63.424), 2.100 mm of air, a 0.500 mm plate (nd 1.5567, νd 58.649), and 1.000 mm of air to the image. Both plates are modeled in `rearPlates`, traced by every analysis but not drawn, and D25 stores the physical Table 2 gap of 2.000, 9.935, and 21.801 mm. As a paraxial equivalent, the stack is worth a fixed 4.716045065 mm of air:
 
-`D25_model = D25_source + 2.010/1.5523 + 2.100 + 0.500/1.5567 + 1.000`.
+`D25_air-eq = D25_source + 2.010/1.5523 + 2.100 + 0.500/1.5567 + 1.000`,
 
-The fixed addition is 4.716045065 mm, giving implemented surface-25-to-image spacings of 6.716045065, 14.651045065, and 26.517045065 mm at the three published zoom states.
+giving air-equivalent surface-25-to-image spacings of 6.716045065, 14.651045065, and 26.517045065 mm at the three published zoom states. (US 2008/0218875 A1, Fig. 1; ¶0059; Tables 1–2.)
 
 ## Element-by-Element Analysis
 
@@ -137,7 +137,7 @@ The patent describes the sixth group generally as including negative and positiv
 
 **nd = 1.9229, νd = 20.880. Glass: 923209 class, supplier unresolved. f = +47.911 mm.**
 
-G12 is the final physical lens before the omitted low-pass/filter plate train. Although G12 is positive by itself, the complete GR6 remains net negative. At the tele state, the verified sixth-group lateral magnification is **1.398948**, satisfying the patent’s condition 1.1 < βtg6 < 2.0. (US 2008/0218875 A1, ¶¶0043–0045; Table 11; Stage 2 `FACT_STAGE2_CONDITIONS`.)
+G12 is the final physical lens before the rear low-pass/filter plate train. Although G12 is positive by itself, the complete GR6 remains net negative. At the tele state, the verified sixth-group lateral magnification is **1.398948**, satisfying the patent’s condition 1.1 < βtg6 < 2.0. (US 2008/0218875 A1, ¶¶0043–0045; Table 11; Stage 2 `FACT_STAGE2_CONDITIONS`.)
 
 The patent associates the rear-group form with controlling marginal-ray behavior, distortion, and chromatic aberration while enlarging the image. Those are patent-stated group-level objectives; the analysis does not assign them specifically to G12 without a separate aberration decomposition.
 
@@ -229,13 +229,13 @@ The discrepancies in (6) and (11) are retained as source-precision/internal-deri
 
 The final `.data.ts` was parsed as the implemented model rather than re-entered into a separate calculation copy. Sequential height/reduced-angle tracing and an independent ABCD implementation reproduce the three design states with mutual matrix agreement better than 1e-12.
 
-| State | Parsed-model EFL (mm) | Patent f (mm) | BFL from surface 25 (mm) | Implemented surface-25→IMG (mm) |
+| State | Parsed-model EFL (mm) | Patent f (mm) | BFL from surface 25 (mm) | Air-equivalent surface-25→IMG (mm) |
 |---|---:|---:|---:|---:|
 | Wide | 14.722970 | 14.7100 | 6.797209 | 6.716045 |
 | Intermediate | 32.075652 | 32.0597 | 14.670645 | 14.651045 |
 | Tele | 69.853197 | 69.8725 | 26.397504 | 26.517045 |
 
-The corresponding normalized surface-1-to-image tracks are 113.606045, 121.394045, and 150.635045 mm. The ratios `TL/EFL` are approximately 7.72, 3.78, and 2.16, so the project’s strict `TL/EFL < 1` architectural criterion is not met at any state. `BFD > EFL` is also not met, so the design is not labeled retrofocus under the project definition.
+The BFL column is the air-equivalent paraxial value. With the plates included physically, the surface-1-to-image tracks are 114.500, 122.288, and 151.529 mm (the air-equivalent tracks are 0.894 mm shorter: 113.606045, 121.394045, and 150.635045 mm). The physical ratios `TL/EFL` are approximately 7.78, 3.81, and 2.17 (7.72, 3.78, and 2.16 air-equivalent), so the project’s strict `TL/EFL < 1` architectural criterion is not met at any state. `BFD > EFL` is also not met, so the design is not labeled retrofocus under the project definition.
 
 The iris axial plane is source-published, but its diameter is not. The model uses a common **6.5985 mm stop semi-diameter**, calibrated to the three patent FNo states. With that common modeled stop, the recomputed maximum-aperture f-numbers are **2.864678, 3.717422, and 5.037302**. These are stored as `nominalFno`; matching the target f-number is calibration evidence, not independent evidence of the production diaphragm diameter.
 

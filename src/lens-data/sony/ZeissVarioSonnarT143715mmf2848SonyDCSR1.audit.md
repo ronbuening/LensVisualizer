@@ -31,3 +31,12 @@ Zoom is ordered wide to tele. GR1 and GR3-GR6 travel objectward; GR2 first moves
 Replaced twelve obsolete unresolved/code-only bulk-glass labels with their selected compatible catalog proxy names, explicitly leaving production supplier unconfirmed. The two composite layers remain unresolved; searches of additional vendor catalogs did not establish compatible material identities or dispersion curves.
 
 Follow-up validation: typecheck, formatting, lint and all 2,717 tests in 276 files passed; the production build prerendered 1,397 pages. Glass reports retain 63/67 resolved batch elements and zero catalog mismatches. All six surface audits pass, the five applicable image-circle audits report no undersized surfaces, and renderer diagnostics report zero SD trim at five zoom positions and both focus-control endpoints. No additional changelog entry was added.
+
+## 2026-09-23 — Rear plates modeled as `rearPlates`
+
+- Replaced the air-equivalent D25 with the physical rear stack from Table 1 surfaces 26–29 and Table 2 (PDF p. 19;
+  Fig. 1 on p. 2 labels the first plate LPF): D25 = 2.000 / 9.935 / 21.801 mm, then LPF 2.010 mm nd 1.5523 νd 63.424
+  (N-PSK3), 2.100 mm air, an unlabelled 0.500 mm plate nd 1.5567 νd 58.649 (BAL15Y), and 1.000 mm to the image.
+- Paraxial check against the previous data: EFL and defocus identical at all three zoom states (the former fold was
+  exactly D25 + 4.716045 mm, so no rounding shift). Physical track grows by 0.894 mm, to 114.500 / 122.288 /
+  151.529 mm.

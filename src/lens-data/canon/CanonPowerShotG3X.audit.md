@@ -24,3 +24,11 @@ Rechecked Fig. 11 against the screenshot; retained published effective-diameter 
 Camera-fixed wide→tele: B1/B3/B4/B5/B6 move objectward; B2 moves imageward. B3/B5 travel together. The patent's late-tele B6 reversal is not numerically sampled by the three published stations and remains an acknowledged interpolation limitation. B6 is the source focus group, but finite-focus movement remains unavailable, rather than invented from production MFD.
 
 Surface/image-circle audits and the source-station, dispersion, and render-clearance regressions validate this follow-up; final repository gates are recorded in the batch record.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Replaced the air-equivalent fold with Numerical Example 6's physical rear stack (PDF pp. 20–21 surface table and
+  variable-gap table): d33 = 9.13 / 24.16 / 33.92 mm, then GB (surfaces 34–35) 0.80 mm, nd 1.51633, νd 64.1, and 0.80 mm
+  air to the image plane. Glass label S-BSL7 (OHARA, as for the lens's other catalog proxies) resolves as compatible.
+- Paraxial check against the previous data: EFL identical and defocus unchanged at all three zoom stations, because the
+  old last gap was the exact d33 + 0.80/1.51633 + 0.80. Physical track grows by 0.80 × (1 − 1/1.51633) = 0.272 mm.
