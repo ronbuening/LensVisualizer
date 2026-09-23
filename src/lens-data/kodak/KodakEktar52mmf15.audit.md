@@ -58,3 +58,47 @@ name, so the name and the unset mount/format are left as they were.
 Open limitations: stop position and all semi-diameters are figure/ray-derived, not published; the D-line N/V values are
 stored as d-line; no focus data exists; the product correlation remains unconfirmed by a Kodak primary source. The live
 browser check could not be run in this pass because the browser pane was unavailable.
+
+## 2026-09-23 — Live diagram review
+
+Source: local `patents/US2397565.pdf`, PDF p. 1 (Fig. 1), compared directly with the local lens page at 1400×900
+(infinity, f/1.5 and f/16, on-axis and off-axis rays, chromatic trace on, hover card of every element).
+
+### Silhouette against Fig. 1
+
+Fig. 1 rim heights (upper side, 0.0475 mm/px) relative to element I: II 0.90, IV 0.76, V 0.67, VI/VII 0.80–0.84. The
+rendered model gives II 0.90, IV 0.74, V 0.65 and VI/VII 0.80 of I's 17.6 mm. The drawn features all appear in the
+render: II's front rim standing above the II/III cemented rim, III's rear rim below it, IV with its larger front rim,
+the stop just behind IV's rear rim at about 0.78 of the R7→R8 gap, V's small cylindrical rim with VI stepping out
+beyond it, and VI/VII sharing the triplet's large rear rim. The whole lens is drawn about 7 % taller relative to its
+axial length than Fig. 1 because surfaces 1–3 sit on the f/1.5 axial-marginal floor (17.34, 16.70, 15.61 mm), which
+the figure undercuts; that is retained. An exact spherical re-trace of the unchanged geometry reproduces the first
+pass: the f/1.5 axial marginal ray clears every surface and the Y = 21.6 mm (ω = 22.7°) chief ray clears every
+surface. No semi-diameter was changed.
+
+### Labels and display
+
+Retained after checking: Roman numerals I–VII match the patent; every `type` agrees with the R signs (I, II, III
+menisci; IV and VI biconcave; V and VII biconvex); cemented badges C2 (surfaces 3–5) and C4 (8–11); group labels
+G1(+) G2(+) G3(−) G4(+) match the isolated component powers; STO sits in the s3 gap; no aspheric markers (the patent
+is all-spherical); focus shows "Not modeled" and is fixed, as the patent has no focus data; there is no zoom.
+The engine's off-axis display field is 16.3° (0.6 of its 27.2° paraxial half-field), which is the app default.
+
+| Element | Before | After | Reason |
+|---|---|---|---|
+| IV | SF5/ZF2-class dense flint; supplier unresolved | SF5 catalog proxy; 673322 dense-flint class (supplier unconfirmed) | The label already resolved to SCHOTT SF5 (1.67270 / 32.21) for dispersion; the card now says so in the same proxy wording as I, III, V, VI |
+| VII | 734511/TAC4-class lanthanum crown; supplier unresolved | TAC4 catalog proxy; 734511 lanthanum-crown class (supplier unconfirmed) | Already resolved to HOYA TAC4 (1.73400 / 51.05); wording aligned |
+
+The analysis glass table and the IV and VII sections were updated to match.
+
+### Glass completeness
+
+Six of seven elements resolve to catalog Sellmeier data. Element II (1.617 / 38.5) was searched again in the repo
+catalog and in the SUMITA, OHARA and HOYA (including obsolete) vendor files with a ±0.006 / ±2 window. Nearest
+candidates: HOYA F9 1.62045 / 38.09, OHARA PBM9 1.62045 / 38.12, SUMITA F9 1.62045 / 38.0 (all Δnd +0.0035,
+Δνd −0.4); then the F4/PBM4 family at 1.61659 / 36.6 (Δνd −1.9) and F3/S-TIM3 at 1.61293 / 37.0. None is close
+enough to substitute without changing the patent's index, so II stays `Unmatched` and its chromatic trace uses the
+Abbe estimate (nF − nC 0.01603), as the hover card states. The analysis now records the search.
+
+Open limitations are unchanged from the first pass: figure/ray-derived stop and semi-diameters, D-line N/V stored as
+d-line, no focus data, and an unconfirmed product correlation.

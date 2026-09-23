@@ -9,19 +9,21 @@ import type { LensDataInput } from "../../types/optics.js";
  *   indices and Abbe numbers remain at the native e-line reference. The design is all-spherical.
  * - Two source corrections are applied only in the modeled branch while the raw Table 3 values remain preserved in
  *   the dossier: r15 = -259.71 (Claim 3 and the printed surface power) and d10 = 18.45 (Claim 3 / priority family).
- * - The aperture stop is inferred from Fig. 3 inside the published d12 diaphragm space. The drawing uses a finite-width
- *   iris symbol rather than a dimensioned stop plane; the model retains a 37.5% split from r12 toward r13 as an
- *   approximate placement (1.08990 / 1.81650 mm after scaling), not as a published coordinate.
- * - Stop semi-diameter 4.3365993427 mm is calibrated from the published f/4 target using the modeled entrance pupil.
- *   It is not a published physical diaphragm diameter.
+ * - The aperture stop is inferred from Fig. 3 inside the published d12 diaphragm space. Both drawn iris blades sit
+ *   about 58.5% of the way from the r12 vertex to the r13 vertex (600 dpi measurement; the d12 dimension leader, not
+ *   a blade, is at about 30%), so the model splits d12 as 1.7002 / 1.2062 mm after scaling. This is a figure
+ *   reading, not a published coordinate.
+ * - Stop semi-diameter 4.2695 mm is calibrated from the published f/4 target using the modeled paraxial entrance
+ *   pupil (2.62492 mm). It is not a published physical diaphragm diameter.
  * - NOTE ON SEMI-DIAMETERS: the patent publishes no clear diameters. Values began as exact spherical meridional ray
  *   envelopes (about 2% clearance at the 45° half-field where geometry permits; surfaces 6 and 14/15 limited by the
  *   90%-of-gap intrusion rule). The 2026-09-23 figure pass measured Fig. 3 at 300/600 dpi (≈21.7 px/mm at 300 dpi
  *   from the vertex track). The drawing's rims are uniformly about 0.73x the ray-envelope scale (its iris and L1 rim
  *   agree on that factor), so rims are compared proportionally. Surfaces 7 and 10-12 were reduced to follow the
  *   drawing's flat-topped members IV and V (8.7/8.65/8.5 and 6.4/6.4/6.3 mm); everything else already sat within
- *   ~10% of the drawing and is retained. The complete on-axis bundle, the default 0.6-field (27°) bundle, and the
- *   45° chief ray are contained; the extreme 45° f/4 meridional bundle is intentionally vignetted.
+ *   ~10% of the drawing and is retained. The complete on-axis bundle and the 45° chief ray are contained; the
+ *   default 0.6-field (27°) bundle loses about 5% on its lower rim at surface 10, and the extreme 45° f/4 meridional
+ *   bundle is intentionally vignetted.
  * - Focus status is NO_INTERNAL_RECONSTRUCTION. The 0.2 m production MFD is retained only as product metadata; the
  *   patent supplies no focus-state prescription or internal-motion law, so no variable focus gaps are invented.
  * - Production correlation to Leica/Leitz code 11813 is strong research correlation, not manufacturer-confirmed
@@ -72,7 +74,7 @@ const LENS_DATA = {
       vd: 64.31,
       indexReference: "e",
       fl: 164.830086,
-      glass: "PC3 (HOYA e-line catalog equivalent of historical SCHOTT PK3 class; production supplier unspecified)",
+      glass: "PC3 (HOYA equivalent; PK3 class, supplier unproven)",
       role: "Front positive meniscus preceding the two negative front menisci.",
     },
     {
@@ -96,7 +98,7 @@ const LENS_DATA = {
       vd: 57.08,
       indexReference: "e",
       fl: -23.689676,
-      glass: "K-LaK11 (SUMITA e-line catalog equivalent of historical SCHOTT LaK11 class; production supplier unspecified)",
+      glass: "K-LaK11 (SUMITA equivalent; LaK11 class, supplier unproven)",
       role: "Second negative front meniscus; completes the strongly negative front component A.",
     },
     {
@@ -121,7 +123,7 @@ const LENS_DATA = {
       vd: 45.67,
       indexReference: "e",
       fl: 25.164583,
-      glass: "FTM8 (OHARA e-line catalog proxy; production supplier unspecified)",
+      glass: "FTM8 (OHARA proxy; supplier unproven)",
       cemented: "IV",
       role: "Positive second lens of member IV; the cemented member is deliberately thick ahead of the diaphragm.",
     },
@@ -160,7 +162,7 @@ const LENS_DATA = {
       vd: 27.97,
       indexReference: "e",
       fl: -15.13237,
-      glass: "FD3 (HOYA e-line catalog equivalent of historical SCHOTT SF3 class; production supplier unspecified)",
+      glass: "FD3 (HOYA equivalent; SF3 class, supplier unproven)",
       role: "Negative sixth member immediately behind the diaphragm.",
     },
     {
@@ -184,7 +186,7 @@ const LENS_DATA = {
       vd: 61.03,
       indexReference: "e",
       fl: 34.715938,
-      glass: "N-SK5 (SCHOTT e-line catalog equivalent; production supplier unspecified)",
+      glass: "N-SK5 (SCHOTT equivalent; supplier unproven)",
       role: "Positive rear member completing the long-back-focus relay.",
     },
   ],
@@ -201,8 +203,8 @@ const LENS_DATA = {
     { label: "9", R: -57.7164, d: 0.1932, nd: 1, elemId: 0, sd: 8.5 },
     { label: "10", R: 23.5347, d: 3.8745, nd: 1.61114, elemId: 6, sd: 6.4 },
     { label: "11", R: -72.7545, d: 5.6196, nd: 1.5343, elemId: 7, sd: 6.4 },
-    { label: "12", R: -21.1512, d: 1.0899, nd: 1, elemId: 0, sd: 6.3 },
-    { label: "STO", R: 1e15, d: 1.8165, nd: 1, elemId: 0, sd: 4.3365993427 },
+    { label: "12", R: -21.1512, d: 1.7002, nd: 1, elemId: 0, sd: 6.3 },
+    { label: "STO", R: 1e15, d: 1.2062, nd: 1, elemId: 0, sd: 4.2695 },
     { label: "13", R: -15.1725, d: 1.0668, nd: 1.74618, elemId: 8, sd: 4.9 },
     { label: "14", R: 45.4692, d: 0.6783, nd: 1, elemId: 0, sd: 5.45 },
     { label: "15", R: -54.5391, d: 1.9383, nd: 1.62287, elemId: 9, sd: 5.45 },

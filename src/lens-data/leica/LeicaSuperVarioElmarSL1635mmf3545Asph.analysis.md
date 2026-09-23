@@ -6,7 +6,7 @@
 **Application Number:** 2016-231075  
 **Filed:** 2016-11-29  
 **Published:** 2018-06-07  
-**Inventor:** Yoshito Soma (相馬 祥人)  
+**Inventor:** Yoshihito Souma (相馬 祥人)  
 **Applicant:** Konica Minolta, Inc.  
 **Title:** ズームレンズ，撮像光学装置及びデジタル機器  
 **Embodiment analyzed:** Example 1 (実施例1 / EX1)
@@ -53,15 +53,15 @@ A further source-specific feature appears in Gr3. It contains two adjacent cemen
 
 ### Gr1 — L1, Negative Meniscus
 
-**nd = 1.83481, νd = 42.72. Glass: 835427 — TAFD5G-coordinate class (supplier unproven). Standalone f = -46.352102 mm.**
+**nd = 1.83481, νd = 42.72. Glass: TAFD5G (HOYA catalog equivalent; supplier unspecified). Standalone f = -46.352102 mm.**
 
 L1 is the front negative meniscus of Gr1. The patent describes its image-side surface as concave (¶0054). It begins the negative front-group power without being one of the aspherical elements. Its standalone focal length is a calculation for the isolated physical element; it should not be read as the element's in-situ contribution after coupling to the rest of Gr1.
 
-The stored glass label reflects an exact catalog-coordinate match to the TAFD5G coordinate family, but the patent does not identify the supplier. The data therefore records the coordinate class rather than asserting a HOYA melt identity.
+The stored label names HOYA TAFD5G because it reproduces the patent's 1.83481/42.72 coordinate exactly, but the patent does not identify the supplier. The label is a catalog equivalent, not an assertion of a HOYA melt identity.
 
 ### Gr1 — L2, Double-Sided Aspherical Negative Meniscus
 
-**nd = 1.58313, νd = 59.39. Glass: L-BAL42 (OHARA catalog equivalent; production supplier unspecified). Standalone f = -39.698505 mm.**
+**nd = 1.58313, νd = 59.39. Glass: L-BAL42 (OHARA catalog equivalent; supplier unspecified). Standalone f = -39.698505 mm.**
 
 L2 is the second negative meniscus of Gr1 and carries the first pair of aspherical surfaces, 3A and 4A (¶¶0054, 0066–0067). The patent's Example-1 prose specifically identifies this lens as double-sided aspherical.
 
@@ -71,8 +71,8 @@ The aspheres are geometrical features of L2; their verified coefficients and mod
 
 ### Gr1 — D1, L3 Biconvex Positive + L4 Biconcave Negative
 
-**L3:** nd = 1.64769, νd = 33.84. Glass: 648338 — high-dispersion flint class (supplier unproven). Standalone f = +45.089668 mm.  
-**L4:** nd = 1.72916, νd = 54.67. Glass: 729547 — lanthanum-crown class (supplier unproven). Standalone f = -23.411293 mm.  
+**L3:** nd = 1.64769, νd = 33.84. Glass: E-FD2 (HOYA catalog equivalent; supplier unspecified). Standalone f = +45.089668 mm.  
+**L4:** nd = 1.72916, νd = 54.67. Glass: TAC8 (HOYA catalog equivalent; supplier unspecified). Standalone f = -23.411293 mm.  
 **Computed cemented D1 net f = -53.023567 mm.**
 
 D1 is the cemented positive-negative pair described in ¶0054. The negative net power of the cemented assembly is a computed result and differs conceptually from either isolated member's standalone focal length. Neither the glass classes nor the net sign alone establish a specific aberration allocation, so no element-level aberration function is assigned beyond the source's broader Gr1 discussion.
@@ -81,36 +81,36 @@ At the cemented interface, the data follows the project convention that the junc
 
 ### Gr1 — L5, Rear Positive Meniscus
 
-**nd = 1.74077, νd = 27.76. Glass: 741278 — high-dispersion flint class (supplier unproven). Standalone f = +48.744630 mm.**
+**nd = 1.74077, νd = 27.76. Glass: E-FD13 (HOYA catalog equivalent; supplier unspecified). Standalone f = +48.744630 mm.**
 
 L5 closes Gr1 as the rear positive meniscus described in ¶0054. In the complete group it acts in combination with two negative front menisci and the negative-net D1 cemented pair; the complete group EFL is -20.950381 mm.
 
-Its 741278 coordinate is catalog-compatible with high-dispersion flint families, but the model does not convert that coordinate match into a supplier assertion or a spectral claim beyond nd and νd.
+Its 1.74077/27.76 coordinate is reproduced exactly by HOYA E-FD13, which the label names as a catalog equivalent; the model does not convert that coordinate match into a supplier assertion.
 
 ### Gr2a — D2, L6 Positive Meniscus + L7 Negative Meniscus
 
-**L6:** nd = 1.48749, νd = 70.44. Glass: 487704 — low-dispersion crown class (supplier unproven). Standalone f = +54.922455 mm.  
-**L7:** nd = 1.77250, νd = 49.62. Glass: 773496 — TAF1 historical-coordinate class (supplier unproven). Standalone f = -108.681447 mm.  
+**L6:** nd = 1.48749, νd = 70.44. Glass: FC5 (HOYA catalog equivalent; supplier unspecified). Standalone f = +54.922455 mm.  
+**L7:** nd = 1.77250, νd = 49.62. Glass: N-LAF34 (SCHOTT catalog equivalent of the HOYA TAF1 coordinate; supplier unspecified). Standalone f = -108.681447 mm.  
 **Computed cemented D2 / Gr2a net f = +113.922180 mm.**
 
 D2 is the entire published focus subgroup Gr2a. The patent describes it as a cemented pair comprising an image-side-convex positive meniscus followed by an object-side-concave negative meniscus (¶0054). The assembled subgroup has positive power and moves imageward for closer focus (¶0050).
 
 The computed Gr2a EFL of +113.922180 mm agrees with the +113.921 mm value printed in Table 1 to the precision expected from the rounded prescription. Its focus travel and the patent's chromatic rationale are treated separately below because those properties belong to the moving cemented subgroup, not to either standalone element in isolation.
 
-L7's 1.77250/49.62 coordinate matches the historical TAF1 coordinate recorded before HOYA's 2019 νd precision update to 49.63. That historical match supports the class label but still does not prove the patent's supplier.
+L7's 1.77250/49.62 coordinate matches the historical TAF1 coordinate recorded before HOYA's 2019 νd precision update to 49.63. No catalog entry in the repository carries that TAF1 row, so the label uses SCHOTT N-LAF34, which reproduces 1.77250/49.62 exactly, as the catalog equivalent. Neither match proves the patent's supplier.
 
 ### Gr2b — L8, Biconvex Positive
 
-**nd = 1.48749, νd = 70.44. Glass: 487704 — low-dispersion crown class (supplier unproven). Standalone f = +39.046699 mm.**
+**nd = 1.48749, νd = 70.44. Glass: FC5 (HOYA catalog equivalent; supplier unspecified). Standalone f = +39.046699 mm.**
 
 L8 is the first glass element behind the aperture stop and the first element of Gr2b (¶0054). The stop moves with Gr2b during zooming (¶0050). L8 is not part of the focus subgroup in Example 1; its authored spacings change with zoom only through the surrounding group motion.
 
-The same 487704 coordinate class appears in L6 and later in L12. The repeated coordinate does not imply that these elements have identical optical roles; the data records only their common nd/νd class.
+The same 1.48749/70.44 coordinate (HOYA FC5 as catalog equivalent) appears in L6 and later in L12. The repeated coordinate does not imply that these elements have identical optical roles; the data records only their common nd/νd pair.
 
 ### Gr2b — D3, L9 Positive Meniscus + L10 Negative Meniscus
 
-**L9:** nd = 1.76182, νd = 26.61. Glass: 762266 — high-dispersion flint class (supplier unproven). Standalone f = +65.664972 mm.  
-**L10:** nd = 1.91082, νd = 35.25. Glass: 911353 — TAFD35/TAFD35L-coordinate class (supplier unproven). Standalone f = -21.785560 mm.  
+**L9:** nd = 1.76182, νd = 26.61. Glass: FD140 (HOYA catalog equivalent; supplier unspecified). Standalone f = +65.664972 mm.  
+**L10:** nd = 1.91082, νd = 35.25. Glass: TAFD35 (HOYA catalog equivalent; supplier unspecified). Standalone f = -21.785560 mm.  
 **Computed cemented D3 net f = -30.934834 mm.**
 
 D3 is the rear cemented pair of Gr2b. The patent describes the pair as an image-side-convex positive meniscus cemented to an object-side-concave negative meniscus (¶0054). The pair itself is negative by the isolated cemented-net calculation, while Gr2b as a whole remains only weakly positive because L8 and the internal separations substantially change the assembled subgroup power.
@@ -119,7 +119,7 @@ This distinction is important for interpreting the +895.935171 mm Gr2b EFL: it i
 
 ### Gr3 — L11, Double-Sided Aspherical Biconvex Positive
 
-**nd = 1.58313, νd = 59.39. Glass: L-BAL42 (OHARA catalog equivalent; production supplier unspecified). Standalone f = +28.559184 mm.**
+**nd = 1.58313, νd = 59.39. Glass: L-BAL42 (OHARA catalog equivalent; supplier unspecified). Standalone f = +28.559184 mm.**
 
 L11 begins Gr3 and carries the second double-sided aspherical pair, surfaces 19A and 20A (¶¶0054, 0066–0067). The patent identifies it as biconvex and double-sided aspherical. Its coordinate is the same 1.58313/59.39 pair used in L2, labeled with the same L-BAL42 catalog equivalent and the same supplier caution.
 
@@ -127,8 +127,8 @@ The complete Gr3 EFL is +27.377064 mm, close to L11's isolated focal length but 
 
 ### Gr3 — D4, L12 Biconvex Positive + L13 Negative Meniscus
 
-**L12:** nd = 1.48749, νd = 70.44. Glass: 487704 — low-dispersion crown class (supplier unproven). Standalone f = +21.566812 mm.  
-**L13:** nd = 1.91082, νd = 35.25. Glass: 911353 — TAFD35/TAFD35L-coordinate class (supplier unproven). Standalone f = -60.169521 mm.  
+**L12:** nd = 1.48749, νd = 70.44. Glass: FC5 (HOYA catalog equivalent; supplier unspecified). Standalone f = +21.566812 mm.  
+**L13:** nd = 1.91082, νd = 35.25. Glass: TAFD35 (HOYA catalog equivalent; supplier unspecified). Standalone f = -60.169521 mm.  
 **Computed cemented D4 net f = +33.681898 mm.**
 
 D4 is the object-side member of Gr3's two adjacent cemented pairs. The source describes its cemented interface as concave toward the object (¶0054). In ¶0040, the patent associates the orientation of this object-side cemented interface, at the higher axial-ray-height side of Gr3, with increased freedom to balance spherical aberration and coma relative to astigmatism.
@@ -137,8 +137,8 @@ That attribution is retained as the patent's rationale. The standalone and cemen
 
 ### Gr3 — D5, L14 Biconcave Negative + L15 Biconvex Positive
 
-**L14:** nd = 1.91082, νd = 35.25. Glass: 911353 — TAFD35/TAFD35L-coordinate class (supplier unproven). Standalone f = -13.560009 mm.  
-**L15:** nd = 1.51680, νd = 64.20. Glass: 517642 — BK7-class crown (supplier unproven). Standalone f = +24.862160 mm.  
+**L14:** nd = 1.91082, νd = 35.25. Glass: TAFD35 (HOYA catalog equivalent; supplier unspecified). Standalone f = -13.560009 mm.  
+**L15:** nd = 1.51680, νd = 64.20. Glass: N-BK7 (SCHOTT catalog equivalent of the HOYA BSC7 coordinate; supplier unspecified). Standalone f = +24.862160 mm.  
 **Computed cemented D5 net f = -33.971740 mm.**
 
 D5 follows immediately behind D4. Its cemented interface faces in the opposite sense, concave toward the image, which is the paired-interface arrangement called out in ¶0040. The patent states that this image-side interface lies where off-axis ray height is relatively higher and can therefore add astigmatic correction with less effect on spherical aberration and coma than the forward interface.
@@ -147,8 +147,8 @@ D4 and D5 consequently form a useful source-documented design motif: two cemente
 
 ### Gr4 — D6, L16 Positive Meniscus + L17 Negative Meniscus
 
-**L16:** nd = 1.92286, νd = 20.88. Glass: 923209 — high-index flint class (supplier unproven). Standalone f = +15.292940 mm. Patent dPgF = +0.028.  
-**L17:** nd = 1.91082, νd = 35.25. Glass: 911353 — TAFD35/TAFD35L-coordinate class (supplier unproven). Standalone f = -21.901881 mm.  
+**L16:** nd = 1.92286, νd = 20.88. Glass: E-FDS1 (HOYA catalog equivalent; supplier unspecified). Standalone f = +15.292940 mm. Patent dPgF = +0.028.  
+**L17:** nd = 1.91082, νd = 35.25. Glass: TAFD35 (HOYA catalog equivalent; supplier unspecified). Standalone f = -21.901881 mm.  
 **Computed cemented D6 net f = +56.419642 mm.**
 
 D6 is the forward cemented pair of the negative rear group. L16 is the only positive element in Gr4 and is therefore the element to which Example 1's condition-(6) material value can be assigned. Table 1 publishes ΔPgF = +0.028, and the data stores that value directly on L16.
@@ -159,7 +159,7 @@ The D6 pair is positive in isolation; Gr4 becomes negative only after L18 is inc
 
 ### Gr4 — L18, Plano-Concave Negative
 
-**nd = 1.91082, νd = 35.25. Glass: 911353 — TAFD35/TAFD35L-coordinate class (supplier unproven). Standalone f = -22.444610 mm.**
+**nd = 1.91082, νd = 35.25. Glass: TAFD35 (HOYA catalog equivalent; supplier unspecified). Standalone f = -22.444610 mm.**
 
 L18 is the final photographic element. The patent describes it as plano-concave, concave toward the object (¶0054). In combination with positive-net D6, it brings the complete Gr4 to the verified EFL of -37.981467 mm.
 
@@ -167,21 +167,21 @@ The patent's broader rationale assigns the negative rear group a role in balanci
 
 ## Glass Identification and Selection
 
-The patent publishes nd and νd but does not identify glass suppliers by trade name. The model therefore uses coordinate classes and six-digit codes where defensible, and it uses a named catalog equivalent only where a catalog glass reproduces the patent coordinate exactly.
+The patent publishes nd and νd but does not identify glass suppliers by trade name. Every stored label names a catalog glass that reproduces the patent coordinate exactly (or, for L15, to 0.03 in νd), worded as a catalog equivalent. Nine of the eleven distinct coordinates are exact HOYA catalog rows, and a tenth (L7) matches the historical HOYA TAF1 row, which makes HOYA a plausible but unconfirmed supplier; where the repository catalog lacks the HOYA row (TAF1, BSC7) a SCHOTT equivalent is named instead.
 
 | Stored glass label | nd | νd | Elements | Evidence level |
 |---|---:|---:|---|---|
-| 835427 — TAFD5G-coordinate class | 1.83481 | 42.72 | L1 | Exact catalog-coordinate match; supplier unproven |
-| L-BAL42 (OHARA catalog equivalent) | 1.58313 | 59.39 | L2, L11 | Exact catalog-coordinate match to a moldable glass; supplier unproven |
-| 648338 — high-dispersion flint class | 1.64769 | 33.84 | L3 | Exact coordinate-family match; supplier unproven |
-| 729547 — lanthanum-crown class | 1.72916 | 54.67 | L4 | Exact coordinate-family match; supplier unproven |
-| 741278 — high-dispersion flint class | 1.74077 | 27.76 | L5 | Exact coordinate-family match; supplier unproven |
-| 487704 — low-dispersion crown class | 1.48749 | 70.44 | L6, L8, L12 | Exact coordinate-family match; supplier unproven |
-| 773496 — TAF1 historical-coordinate class | 1.77250 | 49.62 | L7 | Matches the historical pre-2019 TAF1 coordinate; supplier unproven |
-| 762266 — high-dispersion flint class | 1.76182 | 26.61 | L9 | Exact coordinate-family match; supplier unproven |
-| 911353 — TAFD35/TAFD35L-coordinate class | 1.91082 | 35.25 | L10, L13, L14, L17, L18 | Exact coordinate-family match; supplier unproven |
-| 517642 — BK7-class crown | 1.51680 | 64.20 | L15 | Exact coordinate-family match; supplier unproven |
-| 923209 — high-index flint class | 1.92286 | 20.88 | L16 | Exact coordinate-family match; supplier unproven; patent also supplies ΔPgF = +0.028 |
+| TAFD5G (HOYA catalog equivalent) | 1.83481 | 42.72 | L1 | Exact catalog-coordinate match; supplier unspecified |
+| L-BAL42 (OHARA catalog equivalent) | 1.58313 | 59.39 | L2, L11 | Exact catalog-coordinate match to a moldable glass; supplier unspecified |
+| E-FD2 (HOYA catalog equivalent) | 1.64769 | 33.84 | L3 | Exact catalog-coordinate match; supplier unspecified |
+| TAC8 (HOYA catalog equivalent) | 1.72916 | 54.67 | L4 | Exact catalog-coordinate match; supplier unspecified |
+| E-FD13 (HOYA catalog equivalent) | 1.74077 | 27.76 | L5 | Exact catalog-coordinate match; supplier unspecified |
+| FC5 (HOYA catalog equivalent) | 1.48749 | 70.44 | L6, L8, L12 | Exact catalog-coordinate match; supplier unspecified |
+| N-LAF34 (SCHOTT equivalent of the HOYA TAF1 coordinate) | 1.77250 | 49.62 | L7 | Exact match; also the historical pre-2019 HOYA TAF1 row; supplier unspecified |
+| FD140 (HOYA catalog equivalent) | 1.76182 | 26.61 | L9 | Exact catalog-coordinate match; supplier unspecified |
+| TAFD35 (HOYA catalog equivalent) | 1.91082 | 35.25 | L10, L13, L14, L17, L18 | Exact catalog-coordinate match; supplier unspecified |
+| N-BK7 (SCHOTT equivalent of the HOYA BSC7 coordinate) | 1.51680 | 64.20 | L15 | nd exact, catalog νd 64.17; supplier unspecified |
+| E-FDS1 (HOYA catalog equivalent) | 1.92286 | 20.88 | L16 | Exact catalog-coordinate match; supplier unspecified; patent also supplies ΔPgF = +0.028 |
 
 HOYA's cross-reference documentation is particularly useful because it documents the six-digit code convention while warning that equivalent code entries do not imply identical chemical composition. That limitation is material here: a coordinate match supports a class or cross-reference, not proof that Konica Minolta specified a particular HOYA, CDGM, OHARA, HIKARI, SUMITA, or Schott melt.
 
@@ -243,7 +243,7 @@ First, Gr2a's focus motion is chosen so that its focus-induced wide-end g-line l
 
 Second, the positive L16 in Gr4 carries the Example-1 condition-(6) value ΔPgF = +0.028. The patent requires ΔPgF > 0.01 for at least one positive Gr4 element and states that such a material can shift the wide-end g-line lateral chromatic aberration toward negative image height to aid secondary-spectrum correction (¶¶0041–0042). Example 1 satisfies that criterion through L16.
 
-The spectral evidence stops there. The patent does not publish nC, nF, or ng for L16, and the final data does not borrow catalog line indices from a merely coordinate-compatible glass. Consequently, this analysis does not claim an independently verified secondary-spectrum magnitude, an APO designation, or a complete wavelength-dependent reconstruction from the partial-dispersion value alone.
+The spectral evidence stops there. The patent does not publish nC, nF, or ng for L16, and the final data does not author catalog line indices onto it. The viewer's COLOR trace does use the named catalog equivalent's dispersion formula for every element, so its chromatic rendering is a catalog-proxy illustration rather than patent data. Consequently, this analysis does not claim an independently verified secondary-spectrum magnitude, an APO designation, or a complete wavelength-dependent reconstruction from the partial-dispersion value alone.
 
 ## Conditional Expressions
 
@@ -286,7 +286,7 @@ The resulting active D31 values are 17.9229957806, 24.6469957806, and 34.8089957
 
 The d-line surface-by-surface Petzval calculation uses $\phi/(n n')$ at each refracting interface. Its sum is +0.001662133491 mm⁻¹, corresponding to a paraxial Petzval radius of about +601.636 mm under the verifier's sign convention. This is a first-order curvature quantity; it should not be confused with the patent's full astigmatic field curves.
 
-The remaining construction limitations are explicit: production render diagnostics, real LensVisualizer runtime glass resolution, repository `buildLens()` validation, TypeScript typechecking, and repository formatting/test integration are outside this portable model record. They do not change the source/model distinction made above.
+All eighteen glass labels resolve to catalog entries with dispersion formulas in the LensVisualizer runtime, and the data builds and passes the repository's surface-geometry checks. None of that changes the source/model distinction made above.
 
 ## Sources and References
 

@@ -212,8 +212,9 @@ catalog glass coordinates rather than designer melt data and is retained rather 
 ## Glass Identification and Selection
 
 The patent states that the listed glasses are available from OHARA, so the supplier identity is source evidence rather
-than a brand-based inference. The model stores d-line `nd`/`νd` together with supported catalog `nC`, `nF`, `ng`, and
-`dPgF` values. OHARA notes that catalog coordinates are representative values for glass types rather than exact melt data;
+than a brand-based inference. The model stores d-line `nd`/`νd` and a catalog-derived `dPgF` for each element; the
+chromatic trace takes the full dispersion curve from the matching OHARA Sellmeier entry, because Table 5 publishes no line
+indices. OHARA notes that catalog coordinates are representative values for glass types rather than exact melt data;
 that limitation applies to all calculations using these public coordinates.
 
 | OHARA glass | nd | νd | dPgF | Elements | Source/model note |
@@ -226,6 +227,10 @@ that limitation applies to all calculations using these public coordinates.
 | S-NBH8 | 1.72047 | 34.71 | −0.002018 | L7, L12 | Negative members of D2 and D3 |
 | S-NPH1 | 1.80809 | 22.76 | +0.025182 | L10, L13 | High-index, low-Abbe menisci in G2 |
 | S-LAH65V | 1.80400 | 46.58 | −0.008152 | L14 | Current OHARA name for patent SLAH65 / code 804466 |
+
+The patent prose calls SFPL51 and SFPL53 "abnormal dispersion" glasses, although it attaches them to element numbers
+(L2, L7 and L16; L4, L11, L12 and L13) that do not match Table 5. The table places S-FPL51 at L2 and L8 and S-FPL53 at L9
+and L11, so those four elements carry the patent anomalous-dispersion tag in the data file.
 
 The distribution of these glasses supports a careful chromatic interpretation without requiring an APO label. High-Abbe
 S-FPL51 appears in the fixed front region and in the moving G1b element, while very-high-Abbe S-FPL53 appears twice in G2.

@@ -42,7 +42,7 @@ The published pair coincides with the SK18 dense-barium-crown family: SUMITA K-S
 
 Element II is the negative meniscus cemented to the front of III. This placement is explicit in the patent and is central to the claimed second-component condition. Its refractive index exceeds the patent's 1.58 lower bound.
 
-No current authoritative catalog match in the retained glass review was strong enough to justify a named supplier glass. The `Unmatched` label is therefore deliberate; it preserves the source coordinate without implying a historical vendor identity.
+No current or obsolete catalog glass in the repo catalog or the SUMITA, OHARA and HOYA (including obsolete) vendor files lies close enough to justify a named proxy: the nearest are HOYA F9 / OHARA PBM9 (about 1.6205 / 38.1, 0.0035 high in index) and the F4/PBM4 family (1.6166 / 36.6, almost two Abbe numbers low). The `Unmatched` label is therefore deliberate; it preserves the source coordinate without implying a historical vendor identity, and the viewer's chromatic trace estimates this element's dispersion from its Abbe number rather than from a Sellmeier fit.
 
 ### Element III — Positive Meniscus, Rear Member of the Second Component
 
@@ -54,11 +54,11 @@ The II+III pair has positive net power when treated as an isolated cemented comp
 
 ### Element IV — Biconcave Negative Third Component
 
-**nd = 1.673, νd = 32.2. Glass: SF5/ZF2-class dense flint; supplier unresolved. f = −25.302 mm.**
+**nd = 1.673, νd = 32.2. Glass: SF5 dense-flint class (SCHOTT SF5 catalog proxy; supplier unconfirmed). f = −25.302 mm.**
 
 Element IV forms the complete third component and is biconcave as specified by the patent. It is the last glass element before the diaphragm gap. The strongly curved surface facing the second component also forms the rear boundary of the patent's biconvex air lens.
 
-Modern HIKARI J-SF5 and CDGM H-ZF2 coordinates are close to the published 1.673 / 32.2 point, supporting a dense-flint class assignment. They do not establish which glass Eastman Kodak actually used.
+SCHOTT SF5 (1.67270 / 32.21) matches the published 1.673 / 32.2 point to rounding and is used as the catalog proxy that supplies the viewer's dispersion data; HIKARI J-SF5 and CDGM H-ZF2 sit at essentially the same coordinate. None of these establishes which glass Eastman Kodak actually used.
 
 ### Element V — Biconvex Positive, Front Member of the Rear Triplet
 
@@ -74,11 +74,11 @@ Element VI is the lower-index biconcave member cemented between V and VII, match
 
 ### Element VII — Biconvex Positive, Rear Member of the Rear Triplet
 
-**nd = 1.734, νd = 51.1. Glass: 734511/TAC4-class lanthanum crown; supplier unresolved. f = +33.226 mm.**
+**nd = 1.734, νd = 51.1. Glass: 734511 lanthanum-crown class (HOYA TAC4 catalog proxy; supplier unconfirmed). f = +33.226 mm.**
 
 Element VII is the high-index positive rear element of the cemented triplet. Example 1 satisfies the patent's preferred rear-element condition of refractive index greater than 1.66 and dispersive index greater than 50. The patent also remarks that Example 1 uses an exceptionally high-index rear element. (US 2,397,565, printed p. 2 / PDF p. 3; claim 2.)
 
-HOYA's current 734-511/TAC4 coordinate provides class-level support for the final label. No historical supplier identity is inferred from that code correspondence.
+HOYA TAC4 (1.73400 / 51.05) matches the published coordinate to rounding and is used as the catalog proxy for dispersion data. No historical supplier identity is inferred from that code correspondence.
 
 The two cemented interfaces within V+VI+VII illustrate a point explicitly emphasized by the patent: their curvatures have opposite signs, but their dioptric powers have the same sign. In the scaled model the R9 V→VI interface contributes +0.00729638 mm⁻¹ and the R10 VI→VII interface +0.00648870 mm⁻¹. These are surface powers at the cemented boundaries, not standalone element powers.
 
@@ -89,11 +89,11 @@ The patent gives only rounded D-line refractive indices and dispersive indices f
 | Element(s) | Stored source coordinate | Final glass label | Evidence level |
 |---|---:|---|---|
 | I, III | 1.638 / 55.5 | K-SK18 catalog proxy (SK18 class) | Exact to rounding: SUMITA K-SK18 1.63854 / 55.50; OHARA S-BSM18 equivalent |
-| II | 1.617 / 38.5 | Unmatched vintage barium-flint class | No retained exact current-catalog identity |
-| IV | 1.673 / 32.2 | SF5/ZF2-class dense flint; supplier unresolved | Strong class-level match to current HIKARI/CDGM coordinates |
+| II | 1.617 / 38.5 | Unmatched vintage barium-flint class | Nearest catalog glasses (HOYA F9 / OHARA PBM9 at about 1.6205 / 38.1) are 0.0035 off in index; dispersion is Abbe-estimated |
+| IV | 1.673 / 32.2 | SF5 catalog proxy (673322 dense flint) | Exact to rounding: SCHOTT SF5 1.67270 / 32.21; HIKARI J-SF5 and CDGM H-ZF2 equivalent |
 | V | 1.670 / 47.2 | S-BAH10 catalog proxy (BAF10 class) | Exact to rounding: OHARA S-BAH10 1.67003 / 47.23 |
 | VI | 1.541 / 47.5 | S-TIL2 catalog proxy (541472 light flint) | Near match: OHARA S-TIL2 1.54072 / 47.23 (Δνd 0.27) |
-| VII | 1.734 / 51.1 | 734511/TAC4-class lanthanum crown; supplier unresolved | Class-level coordinate-code match |
+| VII | 1.734 / 51.1 | TAC4 catalog proxy (734511 lanthanum crown) | Exact to rounding: HOYA TAC4 1.73400 / 51.05 |
 
 No element in the final data carries `nC`, `nF`, `ng`, or `dPgF`. The present model therefore supports only the patent's N/V-level glass characterization plus the stated class matches. It does not support an apochromatic or anomalous-partial-dispersion performance claim.
 

@@ -11,7 +11,7 @@ avoiding the Gr2a/Gr2b brackets, the mF arrow and the ST leader.
 Quick sanity check, retained: every R, d, nd and νd row, the four K = 0 aspheres (A4–A10), the W/M/T spacings and the
 0.35 m Gr2a focus rows match the table. The paraxial EFL is 16.399 / 23.697 / 34.194 mm against the patent's
 16.400 / 23.700 / 34.200 mm. Defocus at the stored last gap is at most 0.009 mm. Stored element focal lengths equal the
-thick-lens values. The sole inventor (Yoshito Soma, 相馬 祥人; romanization per Google Patents and EP 3,327,480 family), the assignee (Konica Minolta), the year 2018 and the display name
+thick-lens values. The sole inventor (相馬 祥人; romanization revised to Yoshihito Souma in the live diagram review below), the assignee (Konica Minolta), the year 2018 and the display name
 follow the sibling Leica SL naming convention.
 
 | Surfaces | Before SD (mm) | After SD (mm) | Evidence |
@@ -42,3 +42,46 @@ M-BACD12 (59.46) are close alternatives. All 18 elements now resolve to catalog 
 Open limitations: semi-diameters are figure-derived or ray-envelope estimates, not published values. The 0.25 m
 production MFD and Leica's single-element AF description remain unreconciled with the patent's cemented Gr2a focus
 group. The live localhost view was not checked in this pass because the browser pane was unavailable.
+
+## 2026-09-23 — Live diagram review
+
+Second, display-focused pass. Sources: local `patents/JP2018087903A.pdf` front page p. 1 (inventor 相馬 祥人), printed
+p. 16 (¶¶0066–0069: aspheric data, W/M/T spacings and the 撮影距離350mm rows) and Fig. 1 (EX1, W panel) on p. 25.
+
+| Item | Before | After | Evidence |
+| --- | --- | --- | --- |
+| `patentAuthors`, analysis inventor line | Yoshito Soma | Yoshihito Souma (相馬 祥人) | Romanization printed on the family member EP 3 327 480 B1 and on US 8,767,319 B2; the repository already credits the same inventor as Yoshihito Souma on the Nikon AF-S 85mm f/1.4G and the Leica Summilux-SL 50mm f/1.4 ASPH., so the author page stays consolidated. Kanji confirmed on the JP front page. |
+| L1, L3–L10, L12–L18 glass labels | Six-digit code/class labels such as `835427 — TAFD5G-coordinate class (supplier unproven)`; several resolved to non-exact catalog rows (N-FK5 νd 70.41, S-LAH66 49.60, J-SF14 26.58) | Named catalog equivalents with "supplier unspecified": TAFD5G, E-FD2, TAC8, E-FD13, FC5, FD140, TAFD35, E-FDS1 (HOYA); N-LAF34 for the HOYA TAF1 coordinate and N-BK7 for the HOYA BSC7 coordinate (SCHOTT, because the repository catalog has no exact row for those two HOYA glasses) | Each label now resolves to a catalog glass with the exact patent nd/νd (N-BK7 νd 64.17 vs 64.20). Nine of the eleven distinct coordinates are current HOYA catalog rows and L7 is the historical HOYA TAF1 row, so HOYA is plausible but not asserted. |
+| L2, L11 glass label | `L-BAL42 (OHARA catalog equivalent; exact 1.58313/59.39 coordinate; production supplier unspecified)` | `L-BAL42 (OHARA catalog equivalent; supplier unspecified)` | Shortened for the hover card; same resolution. |
+| `varLabels` | `D9 / Gr2a front`, `D12 / Gr2a rear`, `D18 / G2-G3`, `D26 / G3-G4`, `BF / normalized rear gap` | `D9 / Gr1–Gr2a`, `D12 / Gr2a–STO`, `D18 / Gr2–Gr3`, `D26 / Gr3–Gr4`, `BF (air-equivalent)` | Group names now match the `groups` labels (Gr1–Gr4) and name both sides of each gap. |
+
+Analysis prose synced: the per-element glass lines, the glass table and its introduction, the L1/L5/L7/L8 glass
+paragraphs, the note that the COLOR trace uses catalog-equivalent dispersion as a proxy, and the stale sentence that
+said runtime glass resolution and `buildLens()` validation were outside the record.
+
+Re-checked and retained. Focus and zoom ordering: every `var` entry is [infinity, 0.35 m] per station and the stations
+are W/M/T with ascending `zoomPositions` 16.4 / 23.7 / 34.2. D9 grows by 2.306 / 2.526 / 2.810 mm while D12 shrinks by
+2.305 / 2.525 / 2.809 mm, so Gr2a moves toward the image for close focus, as the abstract and ¶0050 state. D9 and D18
+shrink and D26 grows from W to T, matching the claimed group-spacing changes. The close rows focus at 194.95 / 200.65 /
+198.19 mm from S1 against the patent's d0 of 195.000 / 200.726 / 198.279 mm. Element `type` strings agree with every R
+sign (L6 and L9 image-side-convex positive menisci, L10 near-plano negative meniscus with R2 −540.5, L18 plano-concave).
+Doublets D1–D6 and groups Gr1–Gr4 match the patent's cemented pairs and group starts (surfaces 1, 10, 19, 27, with the
+stop inside Gr2 ahead of L8). The four aspheric markers sit on 3A, 4A, 19A and 20A. L16 keeps its patent ΔPgF +0.028
+and `apd: "patent"`; no other element gets an APD tag. Semi-diameters were compared with Fig. 1 again: the first pass's
+Gr1/Gr4 rims and ray-block fix at S31 stand, and L6–L15 read within about 10 % of the drawing (largest gap L11, stored
+12.5/12.7 mm against about 11.6 mm drawn), so nothing was changed.
+
+Checks on the result: surface validation reports no errors; the image-circle floor passes; paraxial EFL 16.399 / 23.697 /
+34.194 mm with defocus at most 0.009 mm; all 18 labels resolve to catalog glasses with Sellmeier data (no mismatches).
+
+Live view (localhost, own tab): the Browser pane was hidden, so screenshots failed, and the diagram was read through the
+page's DOM instead. The header shows the new inventor name. Hover cards for L1, L7, L15 and L16 show the new labels,
+Sellmeier dispersion from the named catalog glass, and the APD (PATENT) tag on L16 only. Loading the wide end with
+focus at the closest setting moves only the L6+L7 outline, by 9.3 SVG px (2.31 mm) toward the image. Zoom-station changes
+from the URL did not redraw element positions in the hidden page. A second zoom lens (Nikon Z 14-24) behaved the same way,
+so this looks like a hidden-pane rendering artifact rather than a data problem, but the tele-end silhouette and the
+OFF-AXIS/COLOR toggles could not be inspected visually.
+
+Open limitations: unchanged from the first pass (figure/ray-envelope semi-diameters, 0.25 m production MFD and Leica's
+single-element AF description unreconciled with the cemented Gr2a focus group). The visual live check of zoom endpoints
+is still outstanding.

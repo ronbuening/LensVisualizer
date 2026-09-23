@@ -65,3 +65,48 @@ file. The key is unchanged.
 - The Table 5 stop (S15) and the prose iris position (S22) still conflict; the table and Fig. 15 govern, as before.
 - The patent F3 object-to-image distance is 0.889 m, while the marketed close focus is 0.99 m. Both remain documented
   separately.
+
+## 2026-09-23 — Live diagram review
+
+Source: local `patents/US_8508864_B2.pdf`, Fig. 15 on PDF p. 16, Table 5 and its footnotes on PDF pp. 30–31, and the
+focus description on PDF p. 32 (printed col. 23). The local dev page `/lens/leica-summilux-c-100mm-t14` was checked at
+infinity and at closest focus, with the element hover cards, the off-axis toggle and the chromatic (COLOR) trace. The
+browser pane was not composited for part of the session, so the later checks read the rendered SVG and the inspector
+text from the page rather than from screenshots.
+
+### Focus order and direction
+
+Table 5 lists F1 (S0 at 1,000,010 mm, infinity), F2 (1,440 mm) and F3 (696 mm) in that order. The `var` arrays store
+[F1, F2, F3] against `focusPositions` [0, 0.5445, 1], so the slider runs from infinity on the left to F3 on the right.
+S12 shrinks from 1.810 to 0.800 mm and S14 from 14.200 to 1.300 mm, while S26 grows from 44.800 to 58.709 mm. G1b (L8)
+therefore moves 1.010 mm toward the object and G2 moves 13.909 mm toward the object, with the sum of the three gaps
+conserved. The patent text on printed col. 23 says both groups move "towards object space" as focus distance decreases.
+In the live SVG at 3.155 px/mm, L8 moved 3.2 px left (1.0 mm) and L9–L14 moved 43.9 px left (13.9 mm) between focus 0
+and focus 1, and the focus readout showed 89 cm. The order and direction are correct, and nothing was changed.
+
+### Changes
+
+| Item | Before | After | Evidence |
+| --- | --- | --- | --- |
+| Element `fl` (all 13) | Missing; the hover card showed "FL = —" | Thick-lens d-line values, e.g. L2 +127.898, L8 +72.413, L10 +6666.5 mm | Computed from the stored prescription; they match the focal lengths already quoted in the analysis |
+| `apd` on L2, L8 (S-FPL51) and L9, L11 (S-FPL53) | Unset | `"patent"` with an `apdNote` | Printed col. 22 names SFPL51 and SFPL53 as "abnormal dispersion" glasses. Its element numbers do not match Table 5, so the table's placement of each glass is used |
+| `nC` / `nF` / `ng` (all 13) | OHARA catalog line indices | Removed | Table 5 publishes no line indices. The stored catalog values took precedence over the catalog Sellmeier fit, and the inspector labelled them "Measured line indices". The COLOR trace now reports "Sellmeier" for every element. Catalog `dPgF` is kept |
+
+### Re-checked and retained
+
+- Element types against R signs: L2, L3 and L8 are biconvex; L4, L5 and L12 are biconcave; L6, L9, L10, L11 and L13 are
+  positive menisci, and L10 is only weakly positive (f ≈ +6.7 m); L7 is a negative meniscus. These agree with the
+  patent prose on printed col. 22.
+- Labels: the patent numerals L2–L14 are used as diagram labels. The D1, D2 and D3 doublet ranges, the G1a, G1b and G2
+  group ranges, the stop at S15 before L9, and the aspheric markers on 7A and 22A all match Table 5 and Fig. 15.
+- Semi-diameters: these are the Table 5 half-diameters, unchanged from the first pass. The live silhouette matches
+  Fig. 15: L2 is the tallest rim, the L4 to L7 block is narrowest, and L8 and L9 widen again around the stop.
+- Glass: glasscheck resolves all 13 labels as OHARA catalog glasses whose nd/νd match the patent codes.
+- The exact trace puts the 14.0 mm image height (28 mm diagonal) at ω = 8.05°, which matches the patent's full field.
+  The surface validator reports no errors, and the image-circle check passes.
+- No console errors appeared. LoCA reads 29 µm at infinity with the old line indices and 33 µm at F3 with Sellmeier.
+
+### Open limitations
+
+- The stop conflict between Table 5 (S15) and the prose (S22) remains unchanged. So does the difference between the
+  patent F3 distance (0.889 m) and the marketed 0.99 m close focus.

@@ -36,9 +36,9 @@ Component A contains the front positive meniscus followed by two negative menisc
 
 The modeled Petzval sum is `+0.00366568 mm⁻¹`, corresponding to a signed reciprocal magnitude of 272.801 mm in the adopted convention. This value is accumulated surface by surface as `φ/(n·n′)` from the final scaled prescription; it is a paraxial design quantity rather than a measured field-curvature radius. [7]
 
-The patent does not publish a physical stop diameter, an exact stop coordinate within the diaphragm gap, or clear semi-diameters. The implemented stop is therefore a disclosed modeling choice. Fig. 3 constrains the iris to the published `d12` diaphragm space but depicts the diaphragm as a finite-width schematic symbol rather than a dimensioned axial plane. The model chooses a 37.5% split from `r12` toward `r13`, approximately aligned with the object-side/lower blade mark in the drawing; that fraction is a modeling estimate, not a measured patent dimension. Its semi-diameter, 4.33660 mm, is calibrated to reproduce the published f/4 target, yielding an entrance-pupil semi-diameter of 2.62492 mm and a modeled f-number of 4.00000. Agreement with f/4 is calibration, not independent confirmation of the manufactured diaphragm diameter. [1, Fig. 3; 7]
+The patent does not publish a physical stop diameter, an exact stop coordinate within the diaphragm gap, or clear semi-diameters. The implemented stop is therefore a disclosed modeling choice. Fig. 3 constrains the iris to the published `d12` diaphragm space but depicts the diaphragm as a finite-width schematic symbol rather than a dimensioned axial plane. Both drawn iris blades sit about 58.5% of the way from the `r12` vertex to the `r13` vertex (the `d12` dimension leader, not a blade, lies near 30%), so the model splits the scaled gap as 1.7002 mm before and 1.2062 mm after the stop; that fraction is a figure reading, not a published patent dimension. Its semi-diameter, 4.26950 mm, is calibrated to reproduce the published f/4 target, yielding an entrance-pupil semi-diameter of 2.62492 mm and a modeled f-number of 4.00000. Agreement with f/4 is calibration, not independent confirmation of the manufactured diaphragm diameter. [1, Fig. 3; 7]
 
-All clear semi-diameters in the data file are likewise modeled rather than published. They began as exact ray envelopes and were then compared proportionally with Fig. 3, whose rims (including the drawn iris opening) are uniformly about 0.73 times the ray-envelope scale; members IV and V were trimmed to the drawing's flat-topped outlines (surface 7 at 8.7 mm, surfaces 10–12 at 6.4/6.4/6.3 mm), while the other rims already agreed with the drawing within about 10%. The resulting set satisfies the bundled verifier checks for positive edge thickness, actual spherical rim slope, spherical sag domain, and shared-gap intrusion. The full on-axis f/4 meridional bundle and the default ±27° off-axis bundle are contained, and the ±45° chief rays are contained. At the extreme ±45° field, the modeled apertures intentionally vignette the full f/4 meridional bundle; the original verifier's 70.82% survival figure (computed before the figure-proportion trim, which clips that extreme bundle further) is a one-dimensional meridional clipping sample, not a two-dimensional pupil transmission or a production relative-illumination measurement. [7]
+All clear semi-diameters in the data file are likewise modeled rather than published. They began as exact ray envelopes and were then compared proportionally with Fig. 3, whose rims (including the drawn iris opening) are uniformly about 0.73 times the ray-envelope scale; members IV and V were trimmed to the drawing's flat-topped outlines (surface 7 at 8.7 mm, surfaces 10–12 at 6.4/6.4/6.3 mm), while the other rims already agreed with the drawing within about 10%. The resulting set satisfies the bundled verifier checks for positive edge thickness, actual spherical rim slope, spherical sag domain, and shared-gap intrusion. The full on-axis f/4 meridional bundle and the ±45° chief rays are contained; the default ±27° off-axis bundle loses about 5% of its meridional width on the lower rim of surface 10 with the figure-read stop position. At the extreme ±45° field, the modeled apertures intentionally vignette the full f/4 meridional bundle; the original verifier's 70.82% survival figure (computed before the figure-proportion trim, which clips that extreme bundle further) is a one-dimensional meridional clipping sample, not a two-dimensional pupil transmission or a production relative-illumination measurement. [7]
 
 ## Element-by-Element Analysis
 
@@ -46,7 +46,7 @@ The patent tabulates refractive index and Abbe number at the e line, 546.1 nm. A
 
 ### L1 — Positive Meniscus
 
-`ne = 1.52736, νe = 64.31.` Glass: **PC3 (HOYA e-line catalog equivalent of historical SCHOTT PK3 class)**. Standalone `f = +164.830 mm`. [7; 8]
+`ne = 1.52736, νe = 64.31.` Glass: **PC3 (HOYA equivalent; PK3 class, supplier unproven)**. Standalone `f = +164.830 mm`. [7; 8]
 
 L1 is the positive front meniscus that distinguishes this invention from the earlier two-negative-meniscus front arrangement discussed in the patent. Its power is weak relative to the system as a whole, and it precedes the two negative front members that establish the long-back-focus wide-angle form. The patent specifies that the menisci turn their concave sides toward the diaphragm space. [1, p. 4]
 
@@ -58,7 +58,7 @@ L2 is the first negative meniscus of the front retrofocus section. Its current g
 
 ### L3 — Negative Meniscus
 
-`ne = 1.66104, νe = 57.08.` Glass: **K-LaK11 (SUMITA e-line catalog equivalent of historical SCHOTT LaK11 class)**. Standalone `f = -23.690 mm`. [7; 8]
+`ne = 1.66104, νe = 57.08.` Glass: **K-LaK11 (SUMITA equivalent; LaK11 class, supplier unproven)**. Standalone `f = -23.690 mm`. [7; 8]
 
 L3 is the second negative front meniscus and completes the three-element front component A. Together, L1–L3 form the front section that permits the image-side vertex spacing to remain substantially longer than the effective focal length. The source does not assign a unique aberration-correction role to L3 beyond the stated member-power relationships, so no more specific attribution is made here. [1, pp. 4–6]
 
@@ -72,7 +72,7 @@ The cemented interface is negatively refracting. In the patent's discussion of t
 
 ### L5 — Biconvex Positive, Second Lens of Member IV
 
-`ne = 1.53530, νe = 45.67.` Glass: **FTM8 (OHARA e-line catalog proxy)**. Standalone `f = +25.165 mm`. [7; 8]
+`ne = 1.53530, νe = 45.67.` Glass: **FTM8 (OHARA proxy; supplier unproven)**. Standalone `f = +25.165 mm`. [7; 8]
 
 L5 supplies the positive counterpart in member IV. Although L4 and L5 have substantial opposing standalone powers, their cemented combination is weakly positive. The member is also deliberately thick: the patent singles out the axial thicknesses of members IV and V as important to the design's field-curvature strategy. [1, p. 4]
 
@@ -92,7 +92,7 @@ The current S-TIL6 label is again a class-level match at the e-line coordinates,
 
 ### L8 — Biconcave Negative
 
-`ne = 1.74618, νe = 27.97.` Glass: **FD3 (HOYA e-line catalog equivalent of historical SCHOTT SF3 class)**. Standalone `f = -15.132 mm`. [7; 8]
+`ne = 1.74618, νe = 27.97.` Glass: **FD3 (HOYA equivalent; SF3 class, supplier unproven)**. Standalone `f = -15.132 mm`. [7; 8]
 
 L8 is member VI, the biconcave negative lens immediately behind the diaphragm. The patent consistently places this negative member behind the stop as part of the rear component D. Its dense-flint coordinate pair is reproduced at the e line by HOYA FD3 (the historical SF3 class, `nd ≈ 1.740`, `νd ≈ 28.2`); the label is a catalog equivalent, not a supplier identification. [1, Fig. 3; 6]
 
@@ -104,7 +104,7 @@ L9 is the positive seventh member following L8. It repeats the same native e-lin
 
 ### L10 — Plano-Convex Positive
 
-`ne = 1.59142, νe = 61.03.` Glass: **N-SK5 (SCHOTT e-line catalog equivalent)**. Standalone `f = +34.716 mm`. [7; 8]
+`ne = 1.59142, νe = 61.03.` Glass: **N-SK5 (SCHOTT equivalent; supplier unproven)**. Standalone `f = +34.716 mm`. [7; 8]
 
 L10 is the final positive member and is plano-convex in the implemented prescription. Its coordinate pair is reproduced at the e line by SCHOTT N-SK5 (`ne = 1.59142`, `νe = 61.02`), the modern successor of the classic SK5 barium crown; the label is a catalog equivalent, and the patent does not identify the melt or vendor. [6]
 

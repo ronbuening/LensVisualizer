@@ -38,3 +38,37 @@ Open limitation: at the wide end the prescription cannot reach the printed 14.2 
 L2 (1.80866 / 40.41) was `Unmatched (...)`. It is relabelled as an explicit spectral proxy for OHARA L-LAH84 (catalog 1.80835 / 40.55, Δnd −0.0003, Δνd +0.14; vendor Sellmeier in the catalog), with the patent nd/νd kept. No vendor glass is closer: HOYA MC-NBFD135 is 1.80834 / 40.92 and Sumita K-VC89 is 1.8100 / 40.95. The low-Tg (moldable) reading is an inference from L2's two strong aspheres, not a patent statement. All other elements already resolve to catalog glasses with the exact coordinate (Δnd ≤ 2e-7, Δνd ≤ 0.06). No APD flags are claimed.
 
 Live localhost view was not checked in this pass: the browser pane could not open a tab.
+
+## 2026-09-23 — Live diagram review
+
+Source: local `patents/JP2016133764A.pdf`, Example 6 data on pp. 23–24 (¶0112 various data), zoom-motion text ¶0068 (p. 12), Fig. 6 (p. 30, wide and tele layouts with m1–m4 arrows), re-rendered at 600 dpi (0.0766 mm/px, from the 108.032 mm wide-state track). The live page was read in the local dev server; the browser pane was hidden, so screenshots were unavailable and the rendered SVG was inspected through its element geometry and labels instead.
+
+### Zoom and focus order
+
+Zoom stations are ascending (11.300 / 16.822 / 22.347 mm) and every `var` row is ordered wide → middle → tele, matching ¶0112. Group travel was reconstructed from the stored gaps with the image plane fixed. Gr1's front vertex sits 47.8 / 38.3 / 34.7 mm (gap sum) ahead of the Gr1 rear, so Gr1 moves toward the image. Gr2 (with the stop) moves 20.5 → 25.9 → 30.6 mm from the image, Gr3 moves 19.0 → 23.0 → 26.1 mm, and Gr4's BF grows 15.54 → 19.71 → 22.71 mm, so Gr2–Gr4 move toward the object. d8 decreases, d21 increases, d25 falls then rises (3.476 → 3.313 → 3.398) and BF increases. That matches ¶0068 and the Fig. 6 arrows exactly. No reversal was found.
+
+The patent names no focus group for any example and publishes infinity states only (focusing appears only in the generic camera-control text, ¶0060). Keeping the gaps identical at both focus endpoints is therefore correct, and no focus direction can be checked. `focusDescription` was rewritten in plain words; the old one began with an internal status token.
+
+### Changes
+
+| Item | Before | After | Evidence |
+|---|---|---|---|
+| `nominalFno` | 3.603174 / 4.18708 / 4.614821 (calibrated model values) | 3.6 / 4.183 / 4.61 | ¶0112 printed Fno.; playbook requires the patent values |
+| Aperture model | fixed iris (sd 5.497) | `zoomApertureModel: "from-nominal-fno"` | Without it the fixed iris gave f/3.60 / 4.07 / 4.47, so the M/T stations were displayed about 0.1 stop too fast. The builder now infers 5.537 / 5.405 / 5.405 mm iris radii and reproduces f/3.6 / 4.183 / 4.61 |
+| STO `sd` | 5.497332 | 5.54 | Largest (wide) inferred iris radius, 5.537 mm |
+| `fstopSeries` | starts at 3.5 | starts at 3.6 | f/3.5 is not reachable at the printed f/3.6. `maxFstop` stays at the default 16; the production minimum aperture could not be confirmed from a Leica source in this pass |
+| specs chip | MODEL F/3.603-4.615 | F/3.6-4.61 | Printed values |
+| sd 12 (L6 front) | 7.5 | 7.1 | Fig. 6 D1 rim about 6.6 mm (stored 14 % large); now within 0.05 mm of the D1 junction rim 7.05 |
+| sd 16 / 17 (L8) | 7.15 / 7.55 | 7.0 / 7.1 | Fig. 6 L8 about 6.7 mm |
+| sd 18 / 19 (L9) | 8.1 / 8.3 | 7.5 / 7.6 | Fig. 6 L9 about 7.3 mm |
+| sd 20A / 21A (L10) | 8.3 / 8.25 | 7.8 / 7.8 | Fig. 6 L10 about 7.7 mm, equal to D2 (7.7) in the drawing |
+| L4, L7, L9 `apd` | false | "inferred" | 497816 is the N-PK52A / H-FK61 / S-FPL51 fluor-phosphate class with positive ΔPgF; the patent does not say ED |
+| L6, L8 glass label | "high-index low-dispersion class" | "high-index lanthanum dense flint class" | νd 35.25 is a dense lanthanum flint (TAFD35 coordinate); label resolves to the same catalog Sellmeier |
+
+The Gr2 trim changes the rendered order to match the drawing. Before, L9 and L10 stood about 0.8 mm taller than D2; now L10 is roughly level with D2 and D3 is the tallest rear element, as in Fig. 6. L5 (6.95, figure 6.8) and the D1 junction and rear rims (7.05, figure 6.6) were retained. Gr1, Gr3 and Gr4 values from the first pass were rechecked against the 600 dpi render and retained. D3 is still about 10 % below the figure (8.0 vs 8.9 mm), capped by L13 edge thickness.
+
+### Checks on the result
+
+The surface validator reports no errors at all three zoom states, and the image-circle floor check passes. In the exact meridional trace at the printed F-numbers, nothing clips the axial beam and nothing blocks the chief ray at the middle and tele stations (Y = 14.2 mm) or at the wide station's reachable 44.7° field (10.47 mm). Off-axis side vignetting at L9–L10 rises from about 15–22 % to about 29–32 %, comparable with the existing D2 value (27–31 %). The asphere departures at the new rims are +0.017 mm (20A, at 7.8 mm) and +0.179 mm (21A, at 7.8 mm); the analysis table was updated. All 14 elements still resolve to catalog glasses with Sellmeier data (L2 through the documented L-LAH84 proxy), so the colour trace uses real dispersion. Element `type` strings match the R signs. The aspheric markers sit on 3A, 4A, 20A and 21A only. The D1–D3 and Gr1–Gr4 ranges match the patent group table (¶0113).
+
+Open limitations retained: the wide-end real field stops at about 10.5 mm image height (surface 2 near-hemisphere), the SDs are modeled, and the iris schedule is inferred from the F-numbers rather than published.

@@ -42,3 +42,39 @@ Catalog coverage rises from 5/10 to 10/10 elements. No supplier is claimed and n
 The display name, patent metadata (with the canonical Jos. Schneider & Co., Optische Werke assignee), lens counts and
 static-focus model were rechecked and retained. A live localhost render check could not be performed in this pass
 because the browser pane was unavailable.
+
+## 2026-09-23 — Live diagram review
+
+Source: local `patents/US3512874.pdf`, p. 3 (Fig. 3), with the diaphragm region re-rendered at 600 dpi (about 43.4
+px/mm) and read column by column; the localhost lens page was compared with the figure before and after the edits.
+
+Stop position. Both drawn iris blades (upper blade centred near column 138, lower near 134 of the 600 dpi crop) lie
+about 58.5% of the way from the r12 vertex (column 78) to the r13 vertex (column 178); the thin `d12` dimension leader
+is the mark near 30%. The earlier 37.5% split therefore followed the leader rather than the blades. The stop was moved
+to the blade position and its semi-diameter recalibrated to the patent's f/4 with the paraxial entrance pupil
+(2.62492 mm, unchanged).
+
+| Item | Before | After | Evidence |
+| --- | --- | --- | --- |
+| d12 split (r12 → STO / STO → r13) | 1.0899 / 1.8165 mm (37.5%) | 1.7002 / 1.2062 mm (58.5%) | Fig. 3 blade columns at 600 dpi; total d12 2.9064 mm unchanged |
+| STO sd | 4.3366 mm | 4.2695 mm | Recalibrated: f/4.00001 with the new position |
+| Glass labels L1, L3, L5, L8, L10 | Long "e-line catalog equivalent of historical SCHOTT … class; production supplier unspecified" wording | "PC3 (HOYA equivalent; PK3 class, supplier unproven)" and matching short forms | Hover card readability; same catalog glasses and wording as L2/L4/L6/L7/L9 |
+
+Result: EFL 20.9993 mm, BFD 36.5227 mm and total track unchanged; surface validator clean; image-circle check clean.
+The on-axis f/4 bundle and the 40° and 45° chief rays pass every surface. With the stop further back, the default
+27° meridional bundle now loses about 5% on the lower rim of surface 10 (6.60 mm needed against 6.4 mm); this is
+ordinary vignetting and member V was not re-enlarged, because it is already about 14% above the drawing's proportional
+height. The engine's paraxial field estimate is 39.6°, limited by surfaces 4 and 6. The engine's own iris radius is
+4.345 mm (it derives the stop from the nominal f-number).
+
+Checked and retained: the drawn element heights relative to L1 match the model within about 10% except member V
+(model larger, ray-limited) and L3's front rim (model about 8% larger); L8/L9 rims nearly meet as in the figure (gap
+intrusion limit). Element names L1–L10, members IV/V as the doublet labels, components A–D as the group labels and
+their surface ranges match the patent's numbering; every element `type` matches its radius signs; nd/νd are the
+patent's ne/νe with the e-line reference shown; no element carries an APD tag, which the patent does not support; no
+surface is aspheric. There is no focus or zoom motion to check (static prescription; the focus slider reads "Not
+modeled"). In the live page all ten hover cards show the expected name, type, glass, ne/νe and focal length, all ten
+elements use catalog Sellmeier dispersion for the colour trace (axial colour 62 µm at f/4), the off-axis and colour
+toggles work, the stop mark renders between L7 and L8 at about 60% of the gap, and the console shows no errors. The
+browser pane was hidden during the final pass, so the post-edit page was inspected through its DOM rather than a
+screenshot.

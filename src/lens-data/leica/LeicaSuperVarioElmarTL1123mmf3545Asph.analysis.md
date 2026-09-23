@@ -83,7 +83,7 @@ L5 is the first powered element behind the stop in Gr2. It is a moderate positiv
 
 ### L6 — Negative Meniscus, D1 Front Member
 
-**nd = 1.91082, νd = 35.25. Glass: 911353 — high-index low-dispersion class (supplier unproven). f = -26.886 mm.**
+**nd = 1.91082, νd = 35.25. Glass: 911353 — high-index lanthanum dense flint class (supplier unproven). f = -26.886 mm.**
 
 L6 is the negative member of cemented pair D1. In the final active model its rear surface is cemented directly to L7; the patent's intervening 0.010 mm generic cement medium is omitted under the documented normalization. The standalone negative power should therefore not be read as the power of D1 itself.
 
@@ -95,7 +95,7 @@ L7 is the strong positive member of D1. The normalized D1 pair is net positive, 
 
 ### L8 — Biconcave Negative
 
-**nd = 1.91082, νd = 35.25. Glass: 911353 — high-index low-dispersion class (supplier unproven). f = -16.374 mm.**
+**nd = 1.91082, νd = 35.25. Glass: 911353 — high-index lanthanum dense flint class (supplier unproven). f = -16.374 mm.**
 
 L8 is a strong negative singlet inside positive Gr2. It follows D1 and precedes L9. Its placement provides another independent power surface set within the variator, but the patent does not identify a unique aberration term attributable to L8 by itself.
 
@@ -146,14 +146,14 @@ The patent supplies d-line refractive index and νd, not vendor glass names. The
 | 699301 — dense flint class | 1.69895 | 30.05 | L3 | HOYA E-FD15L exact coordinate; OHARA S-TIM35 close |
 | 497816 — ultra-low-dispersion crown class | 1.49700 | 81.61 | L4, L7, L9 | SCHOTT N-PK52A and CDGM H-FK61 exact; OHARA S-FPL51 close |
 | 596392 — flint class | 1.59551 | 39.24 | L5 | OHARA S-TIM8 exact; HIKARI J-F8 close |
-| 911353 — high-index low-dispersion class | 1.91082 | 35.25 | L6, L8 | HOYA TAFD35/TAFD35L exact coordinate |
+| 911353 — high-index lanthanum dense flint class | 1.91082 | 35.25 | L6, L8 | HOYA TAFD35/TAFD35L exact coordinate |
 | 583594 — barium/crown class | 1.58313 | 59.38 | L10 | OHARA S-BAL42 exact; CDGM D-ZK2 same coordinate pair |
 | 847238 — high-dispersion/high-transmission flint class | 1.84666 | 23.78 | L11 | OHARA S-TIH53W, HOYA FDS90-SG, and CDGM equivalents reproduce the coordinate |
 | 773496 — lanthanum high-index class | 1.77250 | 49.62 | L12 | SCHOTT N-LAF34 exact; HOYA TAF1 and OHARA S-LAH66 family close |
 | 618634 — phosphate crown class | 1.61800 | 63.39 | L13 | SCHOTT N-PSK53A and CDGM H-ZPK1A exact |
 | 904313 — high-index lanthanum flint class | 1.90366 | 31.31 | L14 | HOYA TAFD25 and OHARA S-LAH95 are near-exact class matches |
 
-These catalog matches establish coordinate compatibility, not production supplier or exact melt identity. The final file intentionally carries no `nC`, `nF`, `ng`, or `dPgF` fields. Candidate catalog line indices retained in the evidence record are provenance for the glass audit only; they are not treated as patent-published spectral data. Consequently this analysis does not claim apochromatic behavior or anomalous-partial-dispersion performance.
+These catalog matches establish coordinate compatibility, not production supplier or exact melt identity. The final file intentionally carries no `nC`, `nF`, `ng`, or `dPgF` fields. Candidate catalog line indices retained in the evidence record are provenance for the glass audit only; they are not treated as patent-published spectral data. Consequently this analysis does not claim apochromatic behavior. The three 497816 elements (L4, L7, L9) are tagged as inferred anomalous-dispersion (ED-class) glass, because every catalog glass at that coordinate (N-PK52A, H-FK61, S-FPL51 class) is a fluor-phosphate crown with positive partial-dispersion deviation; the patent itself does not call them ED or anomalous.
 
 The most explicit chromatic design statements come from the patent itself. In Gr1, the positive L3 / negative L4 rear subgroup uses a large νd difference, and condition (2) constrains that difference. In Gr4, condition (7) performs the analogous function for the positive L13 / negative L14 cemented pair. Group 3 is also cemented, and the patent presents that alternative as a way to add chromatic correction while keeping Group 3's zoom motion (¶0055). These are patent-level design relationships; they should not be confused with a wavelength-resolved chromatic trace of the final data file.
 
@@ -192,8 +192,8 @@ The semi-diameters used by the visualization are modeled rather than patent-publ
 |---|---:|---:|
 | 3A | 14.50 | +1.211 |
 | 4A | 12.00 | −0.334 |
-| 20A | 8.30 | +0.075721 |
-| 21A | 8.25 | +0.264728 |
+| 20A | 7.80 | +0.017 |
+| 21A | 7.80 | +0.179 |
 
 On `3A` and `4A`, the positive fourth-order terms dominate the low-order departure. On `4A` the higher orders take over near the rim: its departure peaks at about +0.20 mm near 9 mm height and turns negative by 12 mm, where the surface slope also levels off near 43°. The modeled 4A semi-diameter is capped there. On `20A`, the fourth-order coefficient is negative but the higher-order terms make the net modeled-rim departure positive; that is a useful reminder that the sign of `A4` alone is not a complete description of the surface. `21A` also has a positive net modeled departure. These statements describe the polynomial geometry, not a separately isolated aberration contribution.
 
@@ -227,9 +227,9 @@ This transformation preserves every downstream axial station and the total front
 
 The surface-by-surface Petzval sum is computed as $\phi/(n n')$ at each refracting surface. The final model gives **0.00489834418137 mm⁻¹**. Because the cement layers were collapsed at equal-radius interfaces, their Petzval contributions telescope exactly; the summed Petzval value is unchanged by the normalization to numerical precision.
 
-The aperture-stop axial plane is source-published, but its physical diameter is not. Stage 2 therefore calibrated a stop size at each W/M/T state from the raw patent model and published F-number, then carried that physical size through the cement normalization. The resulting final-model `nominalFno` values are **3.603174**, **4.187080**, and **4.614821**. Agreement with those values is calibration-dependent and is not an independent measurement of the production diaphragm.
+The aperture-stop axial plane is source-published, but its physical diameter is not. The data file stores the printed F-numbers **3.600**, **4.183**, and **4.610** as `nominalFno` and uses the calculated `from-nominal-fno` aperture model: the builder traces each station's nominal entrance-pupil radius back to the stop, giving inferred iris radii of about 5.54, 5.41 and 5.40 mm at W/M/T. A single fixed iris would reproduce f/3.6 at the wide end but only about f/4.07 and f/4.47 at the middle and tele stations, so the printed schedule implies a slightly smaller iris at longer focal lengths. These radii are inferred from the F-numbers, not patent-published diaphragm diameters.
 
-Lens semi-diameters are also modeled rather than patent-published. The L1 front value of 20.2 mm is derived from the patent's condition (3) entry, as described above. The rest of Gr1 and the two rear cemented doublets were enlarged toward the Figure 6 wide-state drawing, within the limits set by rim slope, air-gap clearance, edge thickness and the 4A slope plateau: roughly 14.0–14.5 mm for L1's rear surface and L2, 10.2–10.8 mm for L3 and L4, 7.2–7.5 mm for D2 and 8.0 mm for D3. The Gr2 rims keep their earlier ray-traced values, which are within about 10 % of the figure. The earlier, smaller front-group values blocked the wide-end chief ray.
+Lens semi-diameters are also modeled rather than patent-published. The L1 front value of 20.2 mm is derived from the patent's condition (3) entry, as described above. The rest of Gr1 and the two rear cemented doublets were enlarged toward the Figure 6 wide-state drawing, within the limits set by rim slope, air-gap clearance, edge thickness and the 4A slope plateau: roughly 14.0–14.5 mm for L1's rear surface and L2, 10.2–10.8 mm for L3 and L4, 7.2–7.5 mm for D2 and 8.0 mm for D3. In Gr2, L5 and the D1 cemented and rear rims keep their earlier ray-traced values (about 6.95–7.05 mm). L6's front, L8, L9 and L10 were trimmed toward the figure, where they read about 6.6, 6.7, 7.3 and 7.7 mm, to 7.1, 7.0–7.1, 7.5–7.6 and 7.8 mm. This restores the drawing's proportions, with L10 about as tall as D2 and D3 the tallest rear element; it only adds ordinary side vignetting of the off-axis beam (about 30 % at L9–L10). The earlier, smaller front-group values blocked the wide-end chief ray.
 
 At the wide end, this prescription cannot trace real rays to the printed 14.2 mm image height. The printed ω = 51.489° is exactly atan(14.2 / 11.3), a paraxial value. Figure 14 shows about −10 % barrel distortion at the wide-end 14.2 mm corner. In the model, chief rays steeper than about 44.9° miss L1's nearly hemispherical rear surface (R = 16.711 mm), so the wide state reaches only about 10.5 mm real image height. The middle and tele states reach 14.2 mm. The production lens may rely on in-camera distortion correction, but no source used here documents that.
 

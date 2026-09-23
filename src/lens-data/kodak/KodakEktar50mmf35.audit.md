@@ -44,3 +44,41 @@ polynomial from the 2026-07-07 catalog, which includes obsolete glasses.
 
 Open limitations: the production correlation to the Ektra/Retina Ektar remains research-grade; the stop position and
 diameter, the image plane and the focus are modeled or derived, not patent data; all four glass labels are modern catalog equivalents or proxies, not the historical Kodak glasses.
+
+## 2026-09-23 — Live diagram review
+
+Source: local `patents/US2165328.pdf`, p. 1, Fig. 2 (the render made in the first pass), compared with the local
+viewer's SVG at a 1400×900 viewport. The Browser pane was hidden, so the geometry was read from the rendered SVG
+(element bounding boxes, stop blade positions, hover cards) rather than from screenshots.
+
+Silhouette: the rendered heights of I : II : III+IV are 163 : 140 : 133 px, or 1 : 0.86 : 0.82. Fig. 2 draws them at
+about 370 : 318 : 305 px, which is also 1 : 0.86 : 0.82. The overall width-to-height ratio (front vertex to rear rim
+over element I's height) is 0.98 in the viewer against about 1.0 in the figure. The flat-topped III+IV edge with one
+shared cemented rim matches the drawing. The first pass's semi-diameters are retained.
+
+Stop: the modeled STO sat 1.72 mm behind the R4 vertex, but the concave R4 surface has 1.96 mm of sag at element II's
+6.7 mm rim. The diaphragm plane therefore cut through II's glass edge above about 6.3 mm, and the viewer drew the
+stop blades inside II's rim. The stop was moved rearward inside the same S2 air space and its semi-diameter was
+re-solved paraxially for f/3.5. The patent gives no stop station, so both positions are model choices.
+
+| Item | Before | After | Evidence |
+| --- | --- | --- | --- |
+| R4 → STO gap | 1.72 mm | 2.05 mm | R4 rim sag 1.96 mm at sd 6.7; new plane clears II's rim by 0.09 mm |
+| STO → R5 gap | 1.71 mm | 1.38 mm | Sum kept at the patent's scaled S2 = 3.43 mm; R5 rim (sag 0.56 mm) is 0.82 mm behind the stop |
+| STO sd | 6.009623068241 | 6.031744102409 | Paraxial marginal height at the new plane for EP radius 7.3717 mm (f/3.5) |
+
+Checks on the result: EFL 51.602 mm, BFD 41.781 mm and paraxial f/3.5 are unchanged. The f/3.5 axial beam still
+passes every surface, with the tightest margin 0.16 mm at S5, and the chief ray is not blocked. The corner bundle is
+clipped by about 26% of its width at S1 and 37% at S7 (previously 24% and 42%). The surface validator and the
+image-circle check pass, and the engine's paraxial half-field estimate is 39.1°. In the viewer the stop blades now sit
+between element II's rim and element III. The off-axis fan launches at 23.5°, and the chromatic readout is 167 µm
+LoCA. The console showed no errors.
+
+Retained after review: element types agree with the R signs (I positive meniscus, II biconcave, III biconvex, IV
+negative meniscus concave to the front). Roman numerals I–IV follow the patent. The glass labels, nd/νd and `apd:
+false` are as listed in the first pass; all four hover cards report Sellmeier dispersion (N-SK16, F15, K-SK18, C12).
+The group and doublet ranges, subtitle, specs and `NO_INTERNAL_RECONSTRUCTION` focus text are correct. The focus
+slider shows "Not modeled" and there are no zoom stations, so there is no travel direction to check. There are no
+aspheric markers, and the design is all-spherical.
+
+Open limitations: unchanged from the first pass.
