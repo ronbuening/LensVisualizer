@@ -26,6 +26,10 @@ options. This estimates the authored prescription; numerical convergence and sou
 Geometric OTF is the normalized intensity-weighted Fourier sum of a two-dimensional exact-ray distribution.
 Sagittal frequencies run along image X, tangential along Y; the field lies in the Y/Z meridian. Both chart views
 share the same computed fields, one image plane and physical lp/mm units. Missing fields are gaps.
+Infinity fields use the existing format-aware exact chief-ray solve to cap a known image circle; absent
+format metadata retains the modeled field. A failed intersection is counted as clipping only when a
+separate finite-cap bound proves the ray misses a spherical/flat clear aperture. Unproven misses and
+aspheric intersection failures still make that field unavailable.
 
 Scalar diffraction opts into sequential `recordOpticalPath`, which accumulates incident-medium optical length
 from the input origin to the final hit without changing ordinary trace outputs. `mtfWavefront.ts` includes the
@@ -37,6 +41,10 @@ by wavelength × frequency. The scalar approximation is restricted to air image 
 planes, chief incidence ≤15°, pupil cone radius ≤0.25 and blur ≤2% of reference radius. Folded/singular pupil
 maps and insufficient phase sampling are unavailable. These are conservative suitability limits, not an
 accuracy guarantee; see [Ansys FFT MTF](https://ansyshelp.ansys.com/public/Views/Secured/Zemax/v251/en/OpticStudio_User_Guide/OpticStudio_Help/topics/FFT_MTF.html).
+The ray-cone restriction excludes many lenses wider than approximately f/2 even when geometric tracing
+succeeds. More grid samples cannot remove this domain restriction. Air-equivalent omission of a patent
+sensor plate preserves paraxial propagation, not its higher-order aberrations; fast-lens MTF can change
+substantially. The source-prescription result must not be presented as the manufacturer's production MTF.
 
 Monochromatic runs retain native d/e indices; mixed references require usable physical conversion. The C/d/F
 estimate uses equal incident line weights, physical dispersion resolution and transmitted throughput; combine

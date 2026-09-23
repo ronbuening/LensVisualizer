@@ -39,9 +39,9 @@ describe("MTF tab", () => {
       },
     );
     render(<MtfTab L={L} t={mockTheme} preparedState={state} currentEPSD={1} currentPhysStopSD={1} />);
-    expect(await screen.findByRole("figure", { name: /spatial frequency/ })).toBeTruthy();
-    fireEvent.change(screen.getByLabelText("MTF chart"), { target: { value: "field" } });
-    expect(screen.getByRole("figure", { name: /image height/ })).toBeTruthy();
+    expect(await screen.findByRole("figure", { name: /image height/ })).toBeTruthy();
+    fireEvent.change(screen.getByLabelText("MTF chart"), { target: { value: "frequency" } });
+    expect(screen.getByRole("figure", { name: /spatial frequency/ })).toBeTruthy();
     expect(calculations).toBe(1);
     expect(screen.getByText(/excludes diffraction/)).toBeTruthy();
   });

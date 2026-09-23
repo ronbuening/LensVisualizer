@@ -6,8 +6,9 @@ import type { MtfOptions } from "../../../src/types/mtf.js";
 import { LINE_NM } from "../../../src/optics/spectralLines.js";
 import { geometricOtf, otfMagnitude } from "../../../src/optics/analysis/mtfMath.js";
 import { computeMtf } from "../../../src/optics/mtf.js";
-import { mtfTraceClassification } from "../../../src/optics/analysis/mtfTracing.js";
+import { mtfHalfField, mtfTraceClassification } from "../../../src/optics/analysis/mtfTracing.js";
 import type { EngineTraceResult } from "../../../src/optics/trace/types.js";
+import { traceEngineRay2 } from "../../../src/optics/trace/rayAdapters.js";
 
 export const mtfTestOptions: MtfOptions = {
   method: "geometric",
@@ -77,6 +78,46 @@ describe("geometric MTF", () => {
     );
     expect(mtfTraceClassification({ status: "clipped", failureReason: null } as EngineTraceResult)).toBe("blocked");
   });
+  it("recognizes proven misses of finite spherical caps without hiding in-aperture failures", () => {
+    const base = buildSimplePositiveElementLens();
+    const lens = build({
+      ...base.data,
+      surfaces: [
+        { label: "1", R: 10, d: 1, nd: 1.5168, elemId: 1, sd: 3 },
+        { label: "2", R: -10, d: 1, nd: 1, elemId: 0, sd: 3 },
+        { label: "STO", R: 1e15, d: 10, nd: 1, elemId: 0, sd: 3 },
+      ],
+    });
+    const state = prepareRuntimeState(lens, 0, 0);
+    const miss = traceEngineRay2(
+      state,
+      { origin: [8, 0, -10], direction: [0, 0, 1] },
+      {
+        checkSemiDiameter: true,
+        stopOnClip: true,
+      },
+    );
+    expect(miss.failureReason).toBe("noBracket");
+    expect(mtfTraceClassification(miss, state)).toBe("blocked");
+    expect(mtfTraceClassification({ ...miss, terminalPoint: [0, 0, -10] }, state)).toBe("failed");
+    expect(mtfTraceClassification({ ...miss, failureReason: "noConvergedIntersection" }, state)).toBe("failed");
+    const aspheric = {
+      ...state,
+      surfaces: state.surfaces.map((s, i) =>
+        i === 0
+          ? {
+              ...s,
+              profile: { ...s.profile, kind: "aspheric" as const },
+            }
+          : s,
+      ),
+    };
+    expect(mtfTraceClassification(miss, aspheric)).toBe("failed");
+    const result = computeMtf(state, { ...mtfTestOptions, pupilSemiDiameterMm: 8, stopSemiDiameterMm: 3 });
+    expect(result.fields[0].failedRays).toBe(0);
+    expect(result.fields[0].blockedRays).toBeGreaterThan(0);
+    expect(result.fields[0].sagittal[0]).toBeCloseTo(1, 12);
+  });
   it("reports converged curves or explicit sampling limitations on a real optical state", () => {
     const result = computeMtf(prepareRuntimeState(buildSimplePositiveElementLens(), 0, 0), mtfTestOptions);
     const field = result.fields[0];
@@ -85,5 +126,16 @@ describe("geometric MTF", () => {
     field.tangential.forEach((value, i) => expect(value).toBeCloseTo(field.sagittal[i], 12));
     expect(field.maxDelta).not.toBeNull();
     expect(field.gridSize).toBe(32);
+  });
+  it("caps infinity sampling to a declared image circle while retaining unformatted models", () => {
+    const base = buildSimplePositiveElementLens();
+    const options = { ...mtfTestOptions, fieldFractions: [0, 1], pupilSemiDiameterMm: 0.1 };
+    const unformatted = computeMtf(prepareRuntimeState(base, 0, 0), options);
+    expect(unformatted.support.available).toBe(true);
+    expect(mtfHalfField(prepareRuntimeState(base, 0, 0))).toBe(base.halfField);
+    const lens = build({ ...base.data, imageCircleMm: 4 });
+    const result = computeMtf(prepareRuntimeState(lens, 0, 0), options);
+    expect(Math.abs(result.fields[1].imageHeightMm!)).toBeCloseTo(2, 4);
+    expect(result.fields[1].failedRays).toBe(0);
   });
 });

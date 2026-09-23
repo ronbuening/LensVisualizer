@@ -93,12 +93,12 @@ export function reconstructMtfPupil(
   for (const ray of bundle.rays) {
     const wave = sampleReferenceWavefront(ray.trace, image, radius, bundle.objectPoint);
     if (!wave) return reject("A ray cannot be mapped onto the reference sphere.");
-    if (
-      Math.hypot(wave.qx - reference.qx, wave.qy - reference.qy) > 0.25 ||
-      Math.hypot(ray.x - image[0], ray.y - image[1]) > 0.02 * radius
-    ) {
-      return reject("Ray cone or image blur exceeds the validated scalar FFT domain; use geometric MTF.");
-    }
+    if (Math.hypot(wave.qx - reference.qx, wave.qy - reference.qy) > 0.25)
+      return reject(
+        "Diffraction requires a narrower ray cone (roughly f/2 or slower in air). Stop down or use geometric MTF.",
+      );
+    if (Math.hypot(ray.x - image[0], ray.y - image[1]) > 0.02 * radius)
+      return reject("Image blur exceeds the validated scalar FFT domain; use geometric MTF.");
     nodes[ray.row * n + ray.column] = {
       x: wave.qx,
       y: wave.qy,

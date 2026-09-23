@@ -21,8 +21,7 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-09-22",
     type: "feature",
-    summary:
-      "Added simulated MTF with geometric/diffraction modes, qualified C/d/F spectra, documented finite focus and background sampling checks",
+    summary: "Added simulated lens MTF with image-height charts, spectral estimates and documented finite focus",
   },
   {
     date: "2026-09-22",

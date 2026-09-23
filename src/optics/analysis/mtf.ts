@@ -9,7 +9,7 @@ import {
   MTF_FREQUENCIES,
 } from "./mtfSupport.js";
 import { combineOtfs, geometricOtf, otfMagnitude, translateOtf, type ComplexOtf, type MtfSpot } from "./mtfMath.js";
-import { traceMtfPupil } from "./mtfTracing.js";
+import { mtfHalfField, traceMtfPupil } from "./mtfTracing.js";
 import { pupilOtf, reconstructMtfPupil } from "./mtfDiffraction.js";
 
 export function emptyMtfField(fieldFraction: number): MtfFieldResult {
@@ -40,6 +40,9 @@ export function* computeMtfSteps(state: PreparedOpticalState, options: MtfOption
     fields: [],
   };
   if (!support.available) return result;
+  // Match the other analysis tabs: known image formats cap the infinity field through
+  // the exact chief-ray solve. Missing format metadata retains the modeled field.
+  const halfFieldDeg = mtfHalfField(state);
   for (const fraction of options.fieldFractions ?? MTF_FIELDS) {
     let previous: MtfFieldResult | null = null;
     const index = result.fields.length;
@@ -54,7 +57,7 @@ export function* computeMtfSteps(state: PreparedOpticalState, options: MtfOption
       let commonReference: MtfSpot | undefined,
         refine = false;
       for (const line of spectralLines) {
-        const bundle = traceMtfPupil(state, options, support, fraction, size, line);
+        const bundle = traceMtfPupil(state, options, support, fraction, size, line, halfFieldDeg);
         if (!bundle) break;
         commonReference ??= bundle.chief;
         field.imageHeightMm = commonReference.y;

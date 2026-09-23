@@ -2,13 +2,14 @@
 import type { MtfOptions, MtfSupport } from "../../types/mtf.js";
 import type { PreparedOpticalState, Ray3, Vec3 } from "../types.js";
 import type { EngineTraceResult } from "../trace/types.js";
-import { solveChiefRay2 } from "../field/chiefRay.js";
+import { computeAnalysisFieldGeometryAtState2, solveChiefRay2 } from "../field/chiefRay.js";
 import { halfFieldAtZoom } from "../layout.js";
 import { traceEngineRay2 } from "../trace/rayAdapters.js";
 import { bulkTransmissionForTrace } from "../trace/bulkAbsorption.js";
 import type { MtfSpot } from "./mtfMath.js";
 import type { ChromaticChannel } from "../../types/optics.js";
 import { mtfFiniteObjectPoint } from "./mtfConjugates.js";
+import { evaluateAperture } from "../trace/aperture.js";
 
 export interface MtfPupilRay extends MtfSpot {
   column: number;
@@ -30,6 +31,14 @@ export interface MtfBundle {
   objectPoint?: Vec3;
 }
 
+/** Finite fields retain their source convention; infinity fields respect known format bounds. */
+export function mtfHalfField(state: PreparedOpticalState): number {
+  const source = state.lens.source;
+  return state.focusT === 0 && (source.imageFormat || source.imageCircleMm)
+    ? computeAnalysisFieldGeometryAtState2(0, state.zoomT, state.lens.runtime, state.aberrationT).halfFieldDeg
+    : halfFieldAtZoom(state.zoomT, state.lens.runtime);
+}
+
 export function mtfImagePoint(state: PreparedOpticalState, trace: EngineTraceResult): MtfSpot | null {
   if (trace.status !== "ok" || Math.abs(trace.terminalDirection[2]) < 1e-12) return null;
   const distance = (state.imgZ - trace.terminalPoint[2]) / trace.terminalDirection[2];
@@ -41,9 +50,36 @@ export function mtfImagePoint(state: PreparedOpticalState, trace: EngineTraceRes
   };
 }
 
-/** Do not silently mask numerical intersection failures as an opaque pupil. */
-export function mtfTraceClassification(trace: EngineTraceResult): "valid" | "blocked" | "failed" {
+/** Prove a miss against the finite spherical/flat cap, independently of the intersection solver. */
+function missesApertureBounds(trace: EngineTraceResult, state: PreparedOpticalState, stopRadius?: number): boolean {
+  const surface = state.surfaces[trace.terminalSurfaceIndex + 1];
+  if (!surface || !["spherical", "flat"].includes(surface.profile.kind)) return false;
+  const radius = evaluateAperture(state, surface, 0, stopRadius).semiDiameter;
+  const limit = surface.profile.finiteRadiusLimit();
+  if (radius === null || !(radius > 0) || (limit !== null && radius > limit)) return false;
+  const sag = surface.profile.sag(radius);
+  const origin = trace.terminalPoint,
+    direction = trace.terminalDirection;
+  if (!Number.isFinite(sag) || direction[2] <= 1e-12) return false;
+  // A spherical cap is wholly inside this axial slab and radial cylinder. If the ray
+  // misses their intersection, a noBracket result is physical clipping, not lost data.
+  const start = Math.max(0, (surface.z + Math.min(0, sag) - origin[2]) / direction[2]);
+  const end = (surface.z + Math.max(0, sag) - origin[2]) / direction[2];
+  if (end < start) return false;
+  const radialSpeed2 = direction[0] ** 2 + direction[1] ** 2;
+  const closest = radialSpeed2 > 0 ? -(origin[0] * direction[0] + origin[1] * direction[1]) / radialSpeed2 : start;
+  const distance = Math.max(start, Math.min(end, closest));
+  return Math.hypot(origin[0] + distance * direction[0], origin[1] + distance * direction[1]) > radius + 1e-8;
+}
+
+/** Keep unknown numerical failures distinct from geometrically proven aperture misses. */
+export function mtfTraceClassification(
+  trace: EngineTraceResult,
+  state?: PreparedOpticalState,
+  stopRadius?: number,
+): "valid" | "blocked" | "failed" {
   if (trace.status === "ok") return "valid";
+  if (trace.failureReason === "noBracket" && state && missesApertureBounds(trace, state, stopRadius)) return "blocked";
   if (trace.failureReason && trace.failureReason !== "totalInternalReflection") return "failed";
   return "blocked";
 }
@@ -55,9 +91,10 @@ export function traceMtfPupil(
   fieldFraction: number,
   gridSize: number,
   spectralLine?: { channel: ChromaticChannel; wavelengthNm: number },
+  halfFieldDeg = mtfHalfField(state),
 ): MtfBundle | null {
   const L = state.lens.runtime;
-  const angle = halfFieldAtZoom(state.zoomT, L) * fieldFraction;
+  const angle = halfFieldDeg * fieldFraction;
   const chief = solveChiefRay2(angle, state.focusT, state.zoomT, L, undefined, state.aberrationT);
   const objectPoint = support.conjugate ? mtfFiniteObjectPoint(state, support.conjugate, angle) : undefined;
   if (objectPoint === null || (!objectPoint && chief.status !== "converged")) return null;
@@ -140,7 +177,7 @@ export function traceMtfPupil(
       const y = (2 * (row + 0.5)) / gridSize - 1;
       if (x * x + y * y > 1) continue;
       const trace = traceAt(x * options.pupilSemiDiameterMm, y * options.pupilSemiDiameterMm);
-      const classification = mtfTraceClassification(trace);
+      const classification = mtfTraceClassification(trace, state, options.stopSemiDiameterMm);
       if (classification === "blocked") {
         bundle.blocked++;
         continue;

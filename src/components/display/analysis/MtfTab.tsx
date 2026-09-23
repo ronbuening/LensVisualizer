@@ -26,7 +26,7 @@ export default function MtfTab({
 }: MtfTabProps) {
   const [method, setMethod] = useState<MtfMethod>("geometric");
   const [spectrum, setSpectrum] = useState<MtfSpectrum>("reference");
-  const [view, setView] = useState<"frequency" | "field">("frequency");
+  const [view, setView] = useState<"frequency" | "field">("field");
   const [maxGridSize, setMaxGridSize] = useState<128 | 256>(128);
   const [result, setResult] = useState<MtfResult | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -81,6 +81,9 @@ export default function MtfTab({
   return (
     <section style={{ color: t.value, fontSize: 12 }} aria-label="Simulated MTF">
       <h3 style={{ margin: "0 0 8px", fontSize: 14 }}>Simulated MTF</h3>
+      <p style={{ color: t.muted }}>
+        Prescription estimate, not manufacturer MTF. Omitted sensor optics can substantially change these curves.
+      </p>
       <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
         <label>
           Method{" "}

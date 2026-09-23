@@ -78,7 +78,7 @@ flowchart LR
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
-| `aperture.ts` | Aperture helper module | src/optics/types.ts | same folder (4) | ApertureState, ApertureEvaluation, evaluateAperture, isInsideActiveAperture |
+| `aperture.ts` | Aperture helper module | src/optics/types.ts | same folder (4), src/optics/analysis | ApertureState, ApertureEvaluation, evaluateAperture, isInsideActiveAperture |
 | `bulkAbsorption.ts` | Bulk Absorption helper module | src/optics/types.ts, src/types | same folder, src/optics/analysis, src/optics/perspective, src/optics/rayTrace.ts | bulkTransmissionForTrace |
 | `foldedDiagnostics.ts` | Folded Diagnostics helper module | same folder, src/optics/types.ts, src/types | same folder (4) | surfaceLabel, pushClipEvent, buildTraceDiagnostics |
 | `generalizedTrace.ts` | Generalized Trace helper module | same folder (6), src/optics/math, src/optics/types.ts, src/types | same folder (2), src/optics/perspective | shouldUseGeneralizedTrace, traceGeneralized |
