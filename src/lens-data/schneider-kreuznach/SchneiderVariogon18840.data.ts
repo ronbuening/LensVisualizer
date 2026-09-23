@@ -1,7 +1,7 @@
 import type { LensDataInput } from "../../types/optics.js";
 
 /**
- * Schneider Variogon 1.8 / 8-40 — US 3,442,573 Example 1 (Karl Macher / Jos. Schneider & Co.).
+ * Schneider Variogon 1.8 / 8-40 — US 3,442,573 Example 1 (Karl Heinrich Macher / Jos. Schneider & Co.).
  *
  * Source model: 12 refractive lenses plus the published flat reflex prism P. The prism is retained; no source plane is
  * omitted and no dimensional scaling is applied. The patent publishes three zoom spacing states: the two range
@@ -46,7 +46,7 @@ const LENS_DATA = {
   focalLengthDesign: [8.260539, 39.952456],
   apertureMarketing: 1.8,
   patentNumber: "US 3,442,573",
-  patentAuthors: ["Karl Macher"],
+  patentAuthors: ["Karl Heinrich Macher"],
   patentAssignees: ["Jos. Schneider & Co., Optische Werke"],
   patentYear: 1969,
   elementCount: 13,

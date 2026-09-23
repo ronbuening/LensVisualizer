@@ -9,9 +9,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **804** lenses scanned (**792** visible)
-- **8358 / 8997** non-air surfaces use strict catalog Sellmeier data (92.9%)
-- **8373 / 8997** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.1%)
+- **810** lenses scanned (**798** visible)
+- **8423 / 9063** non-air surfaces use strict catalog Sellmeier data (92.9%)
+- **8438 / 9063** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.1%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **300** code-only missing-Sellmeier elements in Sweep 2: **4** active unreviewed, **163** self-recording explicit dispositions, **0** dispositions missing any review record
@@ -85,6 +85,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [MINOLTA AF 100mm f/2.8 Macro](../../src/lens-data/minolta/MinoltaAF100mmf28Macro.data.ts) | US 4,764,000 | [PDF](../../patents/US4764000.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 13 [glass] (Element 7: `807316 - dense lanthanum flint (patent nd=1.80741, vd=31.59; unresolved)`) | abbe: 1 |
 | [MINOLTA AF 135mm f/2.8 [T4.5] STF](../../src/lens-data/minolta/MinoltaSTF135mmf28T45.data.ts) | JP 1999-231209 A | [PDF](../../patents/JPA 1999231209-000000.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 9 [glass] (Element 5: `507589 — bulk absorbing ND glass (catalog unresolved; patent α=0.55)`) | abbe: 1 |
 | [SCHNEIDER-KREUZNACH SUPER-SYMMAR HM 120mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderSuperSymmarHM120mmf56.data.ts) | US 4,773,745 | [PDF](../../patents/US4773745.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 13 [glass] (Element 8: `Unmatched (479/587 low-index crown; vendor unspecified)`) | abbe: 1 |
+| [KODAK EKTAR 52mm f/1.5](../../src/lens-data/kodak/KodakEktar52mmf15.data.ts) | US 2,397,565 | [PDF](../../patents/US2397565.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 3 [glass] (Element II: `Unmatched (vintage barium-flint class, N_D=1.617, V=38.5)`) | abbe: 1 |
 | [MINOLTA AF 100mm f/2](../../src/lens-data/minolta/MinoltaAF100mmf2.data.ts) | JP 1987-244010 A | [PDF](../../patents/JPA 1987244010-000000.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 8 [glass] (Element 5: `Unmatched (781446 high-index mid-dispersion glass; no compatible public coefficient row)`) | abbe: 1 |
 | [NIKON AI-S NIKKOR 50mm f/1.2](../../src/lens-data/nikon/NikonAISNikkor50mmf12.data.ts) | US 4,621,909 | [PDF](../../patents/US4621909.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 1 [glass] (Element 1: `Unmatched Nikon/Hikari lanthanum glass (797/455; J-LASF017 / TAF2 class)`) | abbe: 1 |
 | [VOIGTLÄNDER COLOR-SKOPAR 28mm f/2.8 Aspherical SL IIs](../../src/lens-data/voigtlander/VoigtlanderColorSkopar28mmf28Aspherical.data.ts) | JP 2023-032663 A | [PDF](../../patents/JPA 2023032663-000000.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 5 [glass] (Cemented biconcave member: `Unmatched (nd inferred from published FL; νd omitted by patent)`) | constant: 1 |

@@ -45,7 +45,7 @@ const LENS_DATA = {
   apertureMarketing: 2.8,
   apertureDesign: 2.8,
   patentNumber: "US 3,057,257",
-  patentAuthors: ["Günter Klemt", "Karl Macher"],
+  patentAuthors: ["Günter Klemt", "Karl Heinrich Macher"],
   patentAssignees: ["Jos. Schneider & Co., Optische Werke"],
   patentYear: 1962,
   elementCount: 13,

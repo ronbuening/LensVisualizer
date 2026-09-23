@@ -4,7 +4,7 @@
 **Filed:** September 21, 1965<br>
 **Priority:** September 25, 1964 (Germany Sch 35,848)<br>
 **Granted:** May 6, 1969<br>
-**Inventor:** Karl Macher<br>
+**Inventor:** Karl Heinrich Macher<br>
 **Assignee:** Jos. Schneider & Co., Optische Werke<br>
 **Title:** Varifocal cinematographic objective for large-frame sizes and including a four-component forward lens group
 and a four-lens rear group<br>

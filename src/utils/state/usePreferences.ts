@@ -7,7 +7,7 @@
  */
 
 import { useEffect, useRef } from "react";
-import { PREFS_KEY } from "./preferences.js";
+import { PREFS_KEY, PREFS_VERSION } from "./preferences.js";
 import type { LensState } from "../../types/state.js";
 
 export default function usePreferences(state: LensState): void {
@@ -16,7 +16,7 @@ export default function usePreferences(state: LensState): void {
 
   useEffect(() => {
     const prefs = {
-      v: 2,
+      v: PREFS_VERSION,
       dark: display.dark,
       highContrast: display.highContrast,
       desktopView: display.desktopView,

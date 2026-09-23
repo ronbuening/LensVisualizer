@@ -5,18 +5,17 @@
  * buttons (Auto/Dark/Light + High Contrast) on the right. Used on all static
  * pages (homepage, articles, lenses index, makers index, etc.).
  *
- * The interactive LensViewer keeps its own BreadcrumbBar which has
- * additional lens-specific context and settings.
+ * The interactive LensViewer keeps its own BreadcrumbBar for lens-specific
+ * breadcrumbs; both bars render the same ThemeToggleGroup.
  */
 
 import type { ReactNode } from "react";
 import { Link } from "react-router";
 import type { Theme } from "../../types/theme.js";
 import type { ThemeMode } from "../../utils/theme/themePreferences.js";
-import { headerSearchBtn, headerStrip, toggleGroup, toggleBtn } from "../../utils/style/styles.js";
-import { themeSlotDisplay } from "../../utils/theme/themeConstants.js";
-import { useActiveHoliday } from "../../utils/theme/useActiveHoliday.js";
+import { headerSearchBtn, headerStrip } from "../../utils/style/styles.js";
 import useMediaQuery from "../../utils/useMediaQuery.js";
+import ThemeToggleGroup from "./ThemeToggleGroup.js";
 
 interface PageNavBarProps {
   theme: Theme;
@@ -37,8 +36,6 @@ export default function PageNavBar({
 }: PageNavBarProps) {
   const isWide = useMediaQuery("(min-width: 720px)", { ssrDefault: false });
   const padding = isWide ? "6px 24px" : "6px 12px";
-  const holiday = useActiveHoliday();
-  const slot = themeSlotDisplay(themeMode, holiday);
 
   return (
     <nav
@@ -69,21 +66,13 @@ export default function PageNavBar({
         <Link to="/search/" aria-label="Search" style={headerSearchBtn(t)}>
           ⌕
         </Link>
-        <div style={toggleGroup(t)}>
-          <button type="button" aria-pressed={highContrast} onClick={onToggleHC} style={toggleBtn(t, highContrast)}>
-            <span style={{ fontSize: 12, lineHeight: 1, fontWeight: 700 }}>◐</span>
-            <span>HC</span>
-          </button>
-          <button
-            type="button"
-            aria-label={`Theme: ${slot.label}. Cycle theme`}
-            onClick={onToggleTheme}
-            style={toggleBtn(t, false, { hasRightBorder: false })}
-          >
-            <span style={{ fontSize: themeMode === "auto" ? 12 : 14, lineHeight: 1 }}>{slot.icon}</span>
-            <span>{slot.label}</span>
-          </button>
-        </div>
+        <ThemeToggleGroup
+          theme={t}
+          themeMode={themeMode}
+          highContrast={highContrast}
+          onToggleTheme={onToggleTheme}
+          onToggleHC={onToggleHC}
+        />
       </div>
     </nav>
   );

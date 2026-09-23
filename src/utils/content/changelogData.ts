@@ -19,6 +19,11 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-09-23",
+    type: "lens",
+    summary: "Added two Kodak Ektars, Leica Summilux-C 100, Super-Angulon-R 21 and SL/TL Super-Vario-Elmars",
+  },
+  {
     date: "2026-09-22",
     type: "lens",
     summary: "Added three Fujinon XF zooms and Meyer Orestor, Kino-Plasmat and Double-Plasmat models",

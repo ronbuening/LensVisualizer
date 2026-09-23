@@ -106,6 +106,7 @@ describe("createInitialState", () => {
     expect(state.rays.showOnAxis).toBe(true);
     expect(state.rays.showOffAxis).toBe("off");
     expect(state.rays.rayDensity).toBe("normal");
+    expect(state.rays.rayTracksF).toBe(true);
     expect(state.panels.focusExpanded).toBe(true); // isWide = true
     expect(state.panels.showEffectiveFocalLength).toBe(false);
     expect(state.panels.analysisDrawerOpen).toBe(false);

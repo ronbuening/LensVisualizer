@@ -32,6 +32,10 @@ describe("appConfig", () => {
     expect(typeof appConfig.DEFAULT_COLOR_TRACING).toBe("boolean");
   });
 
+  it("defaults ray tracing to TRACKS FOCUS", () => {
+    expect(appConfig.DEFAULT_RAY_TRACKS_FOCUS).toBe(true);
+  });
+
   it("exports only the expected configuration values", () => {
     const keys = Object.keys(appConfig);
     expect(keys).toContain("DEFAULT_COLOR_TRACING");

@@ -10,3 +10,6 @@
 
 /** Initial chromatic aberration display state for new users. */
 export const DEFAULT_COLOR_TRACING = false;
+
+/** Initial ray-tracing mode for new users: rays follow the focus slider (TRACKS FOCUS) instead of launching from infinity. */
+export const DEFAULT_RAY_TRACKS_FOCUS = true;

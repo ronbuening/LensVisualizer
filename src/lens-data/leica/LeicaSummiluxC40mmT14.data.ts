@@ -41,8 +41,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ Source-name corrections are S-TIH6 for printed STIH16/code 805254 and   ║
  * ║ S-FPL51 for printed SFP151/code 497816; raw strings remain in evidence. ║
  * ║ Runtime Sellmeier curves and dPgF are catalog-derived, not patent melt ║
- * ║ measurements. Mount/image-format metadata are intentionally unset        ║
- * ║ because the current canonical taxonomy has no PL or Super-35 ids.        ║
+ * ║ measurements. imageFormat is the canonical 35mm-cinema id (22 x 16 mm, ║
+ * ║ 27.2 mm diagonal), covered by the patent's 28 mm image diagonal; the   ║
+ * ║ taxonomy has no PL mount id, so lensMounts stays unset.                ║
  * ╚════════════════════════════════════════════════════════════════════════════╝
  */
 
@@ -69,6 +70,7 @@ const LENS_DATA = {
   patentYear: 2013,
   // Example 2 specifies a 28 mm design image diagonal (printed p. 16).
   imageCircleMm: 28,
+  imageFormat: "35mm-cinema",
   elementCount: 15,
   groupCount: 11,
 

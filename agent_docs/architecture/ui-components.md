@@ -27,7 +27,7 @@ flag is disabled, individual lens pages remain diagram-only and do not load or a
 
 The NORMAL / DENSE / DIAGNOSTIC ray-density segmented control belongs beside the FROM ∞ / TRACKS FOCUS tracing control
 in both `DiagramHeader` and `ControlsBar`. It is a preference-backed view setting, so do not add it to the breadcrumb
-settings menu or the URL query state.
+theme toggles or the URL query state.
 
 The CARDINALS / DIMENSIONS overlay controls are feature-flagged by `ENABLE_CARDINAL_ELEMENTS`. Desktop renders them to
 the left of the existing ray controls; mobile uses left/right arrow buttons to page between the existing controls and
