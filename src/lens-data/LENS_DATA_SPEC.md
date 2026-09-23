@@ -43,6 +43,9 @@ For telescope and mirror-lens fixtures, include the optical surfaces that rays c
 
 When an omitted cover/filter plate changes the source's optical path length or quoted back focus, convert the remaining
 rear spacing to the documented air-equivalent distance instead of leaving the prescription silently short.
+Record the source plate thickness, index/reference wavelength and spacing conversion in the lens notes. This is a
+paraxial replacement, not a complete optical equivalent; all analysis tabs currently inherit the omission. See
+[`Omitted Sensor Optics`](../../agent_docs/architecture/optics-engine.md#omitted-sensor-optics) for its consequences.
 
 ---
 

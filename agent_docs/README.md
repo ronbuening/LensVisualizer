@@ -42,7 +42,7 @@ Tags: `[policy]` how we work · `[recipe]` steps for one change type · `[archit
 - [recipe] [`glass-catalog-buildout.md`](glass-catalog-buildout.md) — glass catalog playbook and how to add a Sellmeier entry safely
 - [recipe] [`adding_an_article.md`](adding_an_article.md) — article and series frontmatter, TOC, links, verification
 - [recipe] [`adding_a_route.md`](adding_a_route.md) — new page/route with prerender and sitemap wiring
-- [recipe] [`adding_an_analysis_tab.md`](adding_an_analysis_tab.md) — the four registration points for a new analysis drawer tab
+- [recipe] [`adding_an_analysis_tab.md`](adding_an_analysis_tab.md) — the five registration points for a new analysis drawer tab
 - [recipe] [`adding_url_state.md`](adding_url_state.md) — the three coordinated edits for a URL-shareable view-state field
 - [recipe] [`adding_ui_controls.md`](adding_ui_controls.md) — sliders and toggles via shared controls and dispatch adapters
 - [recipe] [`theme_tokens.md`](theme_tokens.md) — adding or changing theme color tokens across all four variants

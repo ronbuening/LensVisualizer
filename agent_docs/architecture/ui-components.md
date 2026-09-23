@@ -63,9 +63,16 @@ mirror-safe aberrations path, and replaces complex tabs that still assume a sequ
 an explicit unsupported message. Remove a tab from the folded unsupported set only after its math uses generalized
 stop/image-plane ray intersections, has fixture-backed tests, and has clear UI copy for folded image-plane conventions.
 
-To add a tab, follow the four registration points in `agent_docs/adding_an_analysis_tab.md`. `AberrationsPanel` is a
+To add a tab, follow the five registration points in `agent_docs/adding_an_analysis_tab.md`. `AberrationsPanel` is a
 thin container over the section components and data hooks in `src/components/display/analysis/aberrations/`; the
 distortion and vignetting tabs consume deferred/frozen inputs through `analysisJobsForState2`.
+
+`MtfTab` defaults to geometric, reference-wavelength calculations and the image-height view (10/20/40 lp/mm).
+Its spatial-frequency view covers 0–100 lp/mm using the same five field samples. View, method, spectrum and sampling
+are local component state; the existing `tab=mtf` URL selects the tab. Requests debounce for 150 ms after settled inputs;
+the mounted tab owns the cancellable worker client and disposes it on unmount. The default grid cap is 128², with 256²
+available for refinement. Worker caching, numerical status and optical eligibility are documented in
+[`Simulated MTF`](optics-engine.md#simulated-mtf).
 
 ## Display Overlays
 

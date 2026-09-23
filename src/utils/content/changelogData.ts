@@ -19,7 +19,7 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
-    date: "2026-09-22",
+    date: "2026-09-23",
     type: "feature",
     summary: "Added simulated lens MTF with image-height charts, spectral estimates and documented finite focus",
   },

@@ -19,6 +19,29 @@ Pure optics modules have no React dependencies. Helpers accept the runtime lens 
 State-dependent analysis must remain outside `buildLens()`. `buildLens()` constructs build-time/runtime constants from
 lens data; analysis tabs use current focus, zoom, and aperture state.
 
+## Omitted Sensor Optics
+
+The diagram and analysis tabs currently share the authored optical prescription. Cover/filter plates omitted under
+`src/lens-data/LENS_DATA_SPEC.md` are therefore absent from analysis too; there is no separate analysis sensor stack.
+An air-equivalent replacement preserves paraxial propagation at the reference index, not higher-order aberrations or
+wavelength-dependent propagation. A converging beam through a plane-parallel plate can acquire spherical aberration,
+and a prescription designed with that plate can depend on its contribution.
+
+Consequences depend on the analysis, not just whether its numerical solver converges:
+
+- MTF, spherical aberration, coma, real sagittal/tangential focus curves and bokeh can change substantially, particularly
+  at wide apertures. The flat plate has zero Petzval surface power; that does not preserve the traced focus curves.
+- Chromatic focus and lateral color omit the plate's dispersion; distortion can change through chief-ray displacement.
+- A rear plate leaves the entrance pupil and upstream lens-aperture clipping unchanged at a fixed field angle, assuming
+  it adds no clipping. Exit-pupil positions and off-axis behavior can change; field bounds may also change.
+- Effective focal length, physical stop size and EFL-based breathing are largely preserved. Physical back-focus and
+  track distances are not interchangeable with air-equivalent coordinates. Existing illumination estimates also omit
+  coating/Fresnel and sensor-response effects.
+
+These are model limitations, not corrections to apply empirically or proof of an error in the manufactured lens.
+Use the source-prescription label for results. The proposed shared analysis-stack extension is tracked in
+`FEATURE_ADDITION_PLAN.md`; it must preserve the diagram omission and be validated across affected analyses.
+
 ## Simulated MTF
 
 `src/optics/mtf.ts` accepts a prepared state and explicit physical aperture, spectrum, field and frequency
@@ -42,9 +65,8 @@ planes, chief incidence ≤15°, pupil cone radius ≤0.25 and blur ≤2% of ref
 maps and insufficient phase sampling are unavailable. These are conservative suitability limits, not an
 accuracy guarantee; see [Ansys FFT MTF](https://ansyshelp.ansys.com/public/Views/Secured/Zemax/v251/en/OpticStudio_User_Guide/OpticStudio_Help/topics/FFT_MTF.html).
 The ray-cone restriction excludes many lenses wider than approximately f/2 even when geometric tracing
-succeeds. More grid samples cannot remove this domain restriction. Air-equivalent omission of a patent
-sensor plate preserves paraxial propagation, not its higher-order aberrations; fast-lens MTF can change
-substantially. The source-prescription result must not be presented as the manufacturer's production MTF.
+succeeds. More grid samples cannot remove this domain restriction. The source-prescription result must not be
+presented as the manufacturer's production MTF; the shared omitted-sensor limitations above also apply.
 
 Monochromatic runs retain native d/e indices; mixed references require usable physical conversion. The C/d/F
 estimate uses equal incident line weights, physical dispersion resolution and transmitted throughput; combine

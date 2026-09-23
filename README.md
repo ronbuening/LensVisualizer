@@ -29,8 +29,8 @@ No installation is needed to use the site:
 1. Open the [lens library](https://surfaceandstop.com/lenses) and choose a design.
 2. Move the focus, aperture, and, when available, zoom controls to see the prescription update.
 3. Select a glass element to inspect its surfaces, material data, and role.
-4. Open **Aberrations & Distortions** for summary, chromatic, coma, bokeh, distortion, breathing, vignetting, and
-   pupil views.
+4. Open **Aberrations & Distortions** for summary, chromatic, coma, bokeh, distortion, breathing, vignetting,
+   pupil, and simulated MTF views.
 5. Copy the page URL to share the current lens and view state.
 
 New to lens design? [Start Here](https://surfaceandstop.com/articles/start-here) introduces the viewer and links to
@@ -43,6 +43,7 @@ plain-language optics primers.
 | Interactive diagrams | Inline SVG lens sections with real surface sag, element selection, zoom and pan, and responsive focus, aperture, and zoom state |
 | Ray tracing | Exact spherical and aspheric surface intersections for on-axis, off-axis, and chromatic ray bundles |
 | Optical analysis | First-order summaries plus spherical aberration, field curvature, coma, bokeh, distortion, focus breathing, vignetting, pupil, and chromatic diagnostics |
+| Simulated MTF | Geometric and qualified scalar diffraction estimates, image-height and spatial-frequency charts, reference-wavelength or equal-weight C/d/F spectra, and explicit availability/convergence status |
 | Design comparison | Side-by-side lenses with shared controls and shareable comparison URLs |
 | Catalog research | Browsing and filtering by maker, focal length, patent year, inventor, assignee, mount, and image format |
 | Specialized systems | Projection-aware fisheyes, perspective-control movement, aspheric comparison, and reference models for folded or obstructed optical paths |
@@ -62,6 +63,12 @@ The models are reconstructions of published patent embodiments. A patent may des
 experimental design, or a prescription that differs from the final production lens. Analysis in the viewer is computed
 from the published data and the selected state; it is not a measurement of a physical sample or a substitute for
 laboratory testing.
+
+The **Simulated MTF** tab opens with 10/20/40 lp/mm curves against traced image height; its frequency view covers
+0–100 lp/mm. It supports infinity focus and explicitly documented finite-conjugate stations. Geometric mode excludes
+diffraction, while scalar diffraction has conservative aperture and field limits. Missing samples remain gaps, and a
+converged result only establishes sampling stability. Omitted sensor optics can affect MTF and other ray-based
+diagnostics; see the [optical-model limitations](agent_docs/architecture/optics-engine.md#omitted-sensor-optics).
 
 Every lens page carries its source metadata (patent number, embodiment, inventors, assignee), and each prescription is
 re-checked against its patent using the procedure in [`agent_docs/lens-patent-audit.md`](agent_docs/lens-patent-audit.md),
