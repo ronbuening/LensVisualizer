@@ -86,7 +86,7 @@ const LENS_DATA = {
       nd: 1.5168,
       vd: 64.2,
       fl: -47.1,
-      glass: "S-BSL7 (OHARA)",
+      glass: "N-BK7 (SCHOTT catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Diverging element; forms air-spaced pair with L1 for deliberate chromatic under-correction.",
     },

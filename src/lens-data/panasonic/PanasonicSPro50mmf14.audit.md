@@ -73,3 +73,9 @@ Patent: WO 2020/158622 A1, Example 3 / Table 3A
   1.51633) and gapAfter 1.00419 mm. Paraxial check against the previous data: EFL identical; defocus changes by at most
   0.00002 mm (rounding in the old 15.8087). Physical track grows by 0.7155 mm and now equals the printed 148.004 mm
   total length. `closeFocusM` 0.44 is the Panasonic specification and is unchanged.
+
+## 2026-09-23 — Glass relabel for the 1.51680 / 64.2 crown
+
+- The element with patent nd 1.51680 / νd 64.2 was labelled S-BSL7 (OHARA), which is the 1.51633 / 64.14 glass and
+  only matched within tolerance. It is now labelled as the N-BK7 (SCHOTT) class, an exact coordinate match, the same
+  class the rear plate uses. The production supplier remains unspecified; the analysis glass table and sources follow.

@@ -52,7 +52,7 @@ L1 serves as the front positive collector. Its high refractive index (the second
 
 ### L2 — Biconcave Negative
 
-$n_d = 1.51680$, $\nu_d = 64.2$. Glass: S-BSL7 (OHARA), equivalent to N-BK7 (Schott). $f = -47.1\ \text{mm}$.
+$n_d = 1.51680$, $\nu_d = 64.2$. Glass: N-BK7 (Schott) class. (OHARA S-BSL7 is the 1.51633 variant and does not match the printed 1.51680.) $f = -47.1\ \text{mm}$.
 
 L2 is a strongly negative biconcave element in common borosilicate crown glass. Positioned immediately behind L1, it forms a loose air-spaced power pair with L1. Because L1 uses a high-dispersion 923209-class glass ($\nu_d = 20.9$) in a positive element — the reverse of the classical crown-positive/flint-negative achromatic convention — the L1+L2 pair is chromatically under-corrected: L2's low-dispersion negative power compensates only about 57% of L1's chromatic contribution. The residual is deliberately left for the downstream L6+L7 cemented doublet to over-correct and balance. L2's strong negative power ($f = -47.1\ \text{mm}$) introduces the deliberate beam divergence that creates the deeply concave wavefront entering the mid-section of G1 — a signature of the "intentionally narrow beam zone" design philosophy described in ¶0014. The large air gap after L2 ($d_4 = 16.1\ \text{mm}$) allows the diverging beam to expand before entering L3, creating separation between the axial and off-axis ray bundles that the subsequent aspherical surface (L4) exploits for zonal correction.
 
@@ -157,7 +157,7 @@ Given that both surfaces are aspherical, L13 is almost certainly manufactured by
 | Element | $n_d$ | $\nu_d$ | $\Delta P_{gF}$ | Glass / Code | Vendor | Role |
 |---------|-------|---------|-----------------|--------------|--------|------|
 | L1 | 1.92286 | 20.9 | +0.028 | E-FDS1 catalog-equivalent | HOYA curve; supplier unspecified | Ultra-high-index short flint; front collector |
-| L2 | 1.51680 | 64.2 | — | S-BSL7 | OHARA | Borosilicate crown; achromatic partner to L1 |
+| L2 | 1.51680 | 64.2 | — | N-BK7 | Schott (class) | Borosilicate crown; achromatic partner to L1 |
 | L3 | 1.58144 | 40.9 | — | 581/409 | Uncertain | Light flint; beam divergence corrector |
 | L4 | 1.80755 | 40.9 | — | 808409 / MC-NBFD135 code match | Code-backed (PGM) | Moldable La glass; aspherical SA corrector |
 | L5 | 1.59282 | 68.6 | +0.019 | FCD515 (ED) | Hoya | ED fluorophosphate crown; SA correction |
@@ -305,5 +305,5 @@ All 13 individual element focal lengths were verified to within ±0.0004 mm of t
 
 1. WO 2020/158622 A1, "撮像光学系と、撮像光学系を用いる撮像装置およびカメラシステム," Panasonic IP Management, published 2020-08-06. Numerical Example 3, Tables 3A–3D.
 2. Panasonic official product page, LUMIX S PRO 50mm F1.4 (S-X50): 13 elements / 11 groups, 2 aspherical, 3 ED, f/1.4, MFD 0.44 m, 0.15× max magnification, 47° diagonal FOV, 77 mm filter, 11 blades, 955 g.
-3. Public optical glass catalogs: OHARA PBH21, S-BSL7, S-NBH56, S-LAH65VS, S-TIL26, L-TIM28(P); HOYA E-FDS1, FDS18, FCD515, FCD705; and MC-NBFD135 code-match data — referenced for $n_d$, $\nu_d$, $\Delta P_{gF}$, and moldability classification.
+3. Public optical glass catalogs: OHARA PBH21, S-NBH56, S-LAH65VS, S-TIL26, L-TIM28(P); HOYA E-FDS1, FDS18, FCD515, FCD705; SCHOTT N-BK7; and MC-NBFD135 code-match data — referenced for $n_d$, $\nu_d$, $\Delta P_{gF}$, and moldability classification.
 4. Hoya optical glass catalog: FCD515 ($n_d = 1.59282$, $\nu_d = 68.63$, $\Delta P_{gF} = 0.0194$) — exact match for L5 and L6 ED elements. Data verified via refractiveindex.info (Hoya optical glass spec sheets).

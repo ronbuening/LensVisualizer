@@ -237,7 +237,7 @@ const LENS_DATA = {
       nd: 1.5168,
       vd: 64.21,
       fl: -95.3,
-      glass: "S-BSL7 (OHARA)",
+      glass: "N-BK7 (SCHOTT catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Rear field flattener; concave-to-object meniscus improves Petzval sum and corrects astigmatism and distortion (¶0090).",
     },
