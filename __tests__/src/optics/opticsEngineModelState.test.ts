@@ -64,7 +64,8 @@ describe("Optics engine LensData normalization and compatibility", () => {
       expect(runtime.data.key).toBe(key);
       expect(engine.key).toBe(key);
       expect(engine.surfaces).toHaveLength(runtime.N);
-      expect(engine.elements).toHaveLength(runtime.elements.length);
+      /* Engine elements are every traced medium; runtime.elements drops synthetic rear plates for display. */
+      expect(engine.elements).toHaveLength(runtime.data.elements.length);
       expect(engine.runtime).toBe(runtime);
     }
   });

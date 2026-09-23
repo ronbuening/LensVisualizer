@@ -56,6 +56,29 @@ value so rendered ray bundles stay safely within what real surfaces can carry.
 
 `paraxialTrace()` is exported for low-level first-order tracing tests.
 
+### Rear Plates
+
+Source-listed cover glass and filter plates (`LensData.rearPlates`) are expanded once, in `buildLens` right after
+validation, by `expandRearPlates()` in `src/optics/prescription/rearPlates.ts`. It appends two flat refracting surfaces
+per plate (reserved labels `RP<n>a` / `RP<n>b`) and one element per plate, all marked `synthetic: "rearPlate"`.
+Because the expansion runs before `S`, `N`, `labelIdx` and every derived constant, EFL, pupils, field limits, prepared
+states, the exact tracer, chromatic dispersion and all analyses see the plate, with no per-analysis correction.
+`RuntimeLens.data` holds the expanded data, so normalization stays index-aligned.
+
+What is hidden, and where:
+
+- `RuntimeLens.ES` and `RuntimeLens.elements` exclude synthetic elements. That covers diagram shapes, render
+  diagnostics, element numbering, the inspector, the Abbe diagram and fallback construction groups.
+  `RuntimeLens.data.elements` and `EngineLens.elements` keep every traced medium for dispersion lookup.
+- `maxSD` ignores synthetic surfaces, whose generated rims are deliberately non-clipping.
+- `RuntimeLens.lastLensSurfaceIdx` is the last authored surface. Cardinal BFD is measured from it, while the matrix
+  vertex (`rearVertexZ`) stays at the plate's rear face. The Summary tab counts authored surfaces and lists plates
+  separately; the last variable-gap readout is labelled "to plate".
+- Rays are drawn exactly as traced, including the small refraction at the invisible plate faces.
+
+Folded paths and perspective-control lenses reject `rearPlates`; a camera-fixed plate would otherwise tilt with the
+lens. Lenses whose notes still fold a plate as t/n remain valid; see `src/lens-data/LENS_DATA_SPEC.md`.
+
 ## optics.ts
 
 `src/optics/optics.ts` is the stable barrel for commonly consumed pure optics helpers. Continue importing from this
@@ -302,7 +325,8 @@ directly, and rollback is an ordinary git revert or a focused fix with regressio
 
 `cardinalElements.ts` computes the Tier 1 first-order overlay from the current focus and zoom state. It uses current
 surface spacings, receives the visible `zPos`/image-plane positions from the diagram computation pipeline, and returns
-all six cardinal points atomically plus EFL, BFD, FFD, Hiatus, and Total track spans. For ordinary same-index
+all six cardinal points atomically plus EFL, BFD, FFD, Hiatus, and Total track spans. BFD starts at the last authored
+lens vertex, so modeled rear plates count as back focus. For ordinary same-index
 photographic lenses, H/N and H′/N′ are marked coincident explicitly; non-unity image-side systems compute N/N′
 independently. Axial folded reflective systems share the same paraxial transfer/interaction stepper with an enabled
 reflect branch; folded systems with tilted image planes still return no cardinal result until a rotated-frame reporting

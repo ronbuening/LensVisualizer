@@ -12,8 +12,8 @@ the derived maker folder and rewrites the `LensDataInput` import. If working dir
 `../../types/optics.js`. Audit logs are not moved automatically.
 
 Transcribe one identified patent embodiment, preserve its signs and precision, and record every deviation from it.
-Exclude sensor cover glass, filters, inactive dummy/flare-cutter planes, and mechanical parts; when an omitted plate
-affects source back focus, document the air-equivalent rear spacing. Keep only active mirror/blocking surfaces that the
+Model source-listed rear cover/filter plates with `rearPlates` (physical gaps as printed, never a hand-folded t/n).
+Exclude front filters, inactive dummy/flare-cutter planes, and mechanical parts. Keep only active mirror/blocking surfaces that the
 modeled path can hit. Use exactly one `STO`; keep cemented-interface `elemId` assignments, variable-gap base values, and
 zoom-position counts consistent. Never invent missing close-focus spacings: either keep the published state or label a
 constrained reconstruction in the header, `focusDescription`, and analysis. If scaling by `s`, scale every length

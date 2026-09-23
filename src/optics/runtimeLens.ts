@@ -47,6 +47,7 @@ import type {
 } from "../types/optics.js";
 import { ENABLE_UNIFORM_SCALING } from "../utils/featureFlags.js";
 import { diffractivePetzvalContribution } from "./math/diffractivePhase.js";
+import { expandRearPlates, lastLensSurfaceIndex } from "./prescription/rearPlates.js";
 
 /**
  * Paraxial ray trace through a surface array.
@@ -351,13 +352,16 @@ function hasFoldedOptics(data: LensData): boolean {
  * @returns       frozen runtime lens object (L)
  * @throws        if validation finds any issues
  */
-export default function buildLens(data: LensData): RuntimeLens {
-  const validationErrors = validateLensData(data as Record<string, any>);
+export default function buildLens(authoredData: LensData): RuntimeLens {
+  const validationErrors = validateLensData(authoredData as Record<string, any>);
   if (validationErrors.length > 0)
     throw new Error(
-      `Lens data "${data.key || "?"}" has ${validationErrors.length} error(s):\n  • ${validationErrors.join("\n  • ")}`,
+      `Lens data "${authoredData.key || "?"}" has ${validationErrors.length} error(s):\n  • ${validationErrors.join("\n  • ")}`,
     );
 
+  /* Rear plates become real traced surfaces here, before any derived constant, so EFL, pupils, field limits,
+   * prepared states and every analysis agree; synthetic plates are dropped only from drawn spans and lists. */
+  const data = expandRearPlates(authoredData);
   const S: SurfaceData[] = data.surfaces.map((s) => ({ ...s }));
   const N = S.length;
   const projection = resolveProjection(data);
@@ -385,7 +389,9 @@ export default function buildLens(data: LensData): RuntimeLens {
   const varLabels: [number, string][] = (data.varLabels || []).map(
     ([label, text]: [string, string]) => [labelIdx[label], text] as [number, string],
   );
-  const ES = buildElementSpans(S, data.elements);
+  const displayElements = data.elements.filter((element) => !element.synthetic);
+  const ES = buildElementSpans(S, displayElements);
+  const lastLensSurfaceIdx = lastLensSurfaceIndex(S);
 
   /* ── Per-surface dispersion data (for chromatic tracing) ── */
   const vdByIdx = buildVdIndex(S, data.elements);
@@ -524,7 +530,8 @@ export default function buildLens(data: LensData): RuntimeLens {
       S,
       N,
       ES,
-      elements: data.elements,
+      elements: displayElements,
+      lastLensSurfaceIdx,
       asphByIdx,
       varByIdx,
       vdByIdx,
@@ -815,7 +822,8 @@ export default function buildLens(data: LensData): RuntimeLens {
     totalTrack = z[N - 1] + S[N - 1].d;
   }
   const imagePlane = resolveImagePlane(data, totalTrack);
-  const maxSD = Math.max(...S.map((s) => s.sd));
+  /* Synthetic rear plates carry generous non-clipping rims; keep them out of the diagram's vertical scale. */
+  const maxSD = Math.max(...S.filter((s) => !s.synthetic).map((s) => s.sd));
 
   const { svgW, svgH, scFill, yScFill, maxRimAngleDeg, gapSagFrac, clipMargin } = data;
   const SC = (svgW * scFill) / totalTrack;
@@ -1016,7 +1024,8 @@ export default function buildLens(data: LensData): RuntimeLens {
     S,
     N,
     ES,
-    elements: data.elements,
+    elements: displayElements,
+    lastLensSurfaceIdx,
     asphByIdx,
     varByIdx,
     vdByIdx,

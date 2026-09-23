@@ -87,6 +87,8 @@ Read the smallest relevant doc before changing an area. `agent_docs/README.md` i
 - Folded-system complex analysis stays guarded until the specific path is mirror-safe: the drawer guards coma,
   distortion, vignetting, and pupils, and field curvature/astigmatism stays section-guarded inside the Aberrations tab.
   Details in `agent_docs/architecture/optics-engine.md`.
+- Source-listed rear cover glass / filter plates go in `LensData.rearPlates` with the source's physical gaps; never fold
+  t/n into the last gap by hand. `buildLens()` traces them everywhere and hides them from drawing via `synthetic`.
 - Keep slider-state-dependent analysis out of `buildLens()`; analysis tabs compute from current focus/zoom/aperture state.
 - Use existing shared utilities/components before adding new abstractions; render article and lens-description markdown
   with `src/components/markdown/ThemedMarkdown.tsx`.

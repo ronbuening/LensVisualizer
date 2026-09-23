@@ -1,9 +1,13 @@
 import { describe, it, expect, vi } from "vitest";
 import buildLens, { paraxialTrace, realTraceToStop } from "../../../src/optics/buildLens.js";
 import { wideOpenStopAtZoom } from "../../../src/optics/apertureStop.js";
-import { doLayout } from "../../../src/optics/optics.js";
+import { doLayout, traceRay } from "../../../src/optics/optics.js";
+import { computeCardinalElementsAtState } from "../../../src/optics/cardinalElements.js";
 import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
 import {
+  REAR_PLATE_FIXTURE,
+  buildRearPlateAirEquivalentLens,
+  buildRearPlateLens,
   sharedApoLanthar50f2,
   sharedNikkor105f14,
   sharedNikkorZ50f18,
@@ -718,5 +722,95 @@ describe("published zoom iris schedule", () => {
     expect(L.zoomStopSDs).toEqual(radii);
     expect(wideOpenStopAtZoom(0.5 / (radii.length - 1), L)).toBe(9);
     expect(wideOpenStopAtZoom(1, L)).toBe(radii.at(-1));
+  });
+});
+
+/* Rear plates are traced but hidden: the expansion must keep paraxial focus identical to the legacy t/n fold while
+ * adding the plate's real (angle-dependent) path, and must not leak into drawn spans, element lists or scale. */
+describe("buildLens — rear plates", () => {
+  const { thicknessMm: t, nd: n, gapAfterMm } = REAR_PLATE_FIXTURE;
+
+  function paraxialDefocus(L: ReturnType<typeof buildRearPlateLens>, focusT = 0) {
+    const layout = doLayout(focusT, 0, L);
+    const cardinals = computeCardinalElementsAtState(L, focusT, 0, layout.z, layout.imgZ)!;
+    return { imgZ: layout.imgZ, defocus: layout.imgZ - cardinals.points.rearFocal.z, cardinals };
+  }
+
+  it("appends two flat surfaces and one synthetic element per plate after the authored prescription", () => {
+    const L = buildRearPlateLens();
+    const plate = L.S.slice(-2);
+
+    expect(L.N).toBe(5);
+    expect(plate.map((surface) => surface.label)).toEqual(["RP1a", "RP1b"]);
+    expect(plate.map((surface) => surface.d)).toEqual([t, gapAfterMm]);
+    expect(plate.map((surface) => surface.nd)).toEqual([n, 1]);
+    expect(plate.every((surface) => surface.synthetic === "rearPlate")).toBe(true);
+    expect(L.lastLensSurfaceIdx).toBe(2);
+    expect(L.S[L.lastLensSurfaceIdx].d).toBe(44);
+  });
+
+  it("keeps synthetic plates out of drawn spans, element lists and diagram scale", () => {
+    const plated = buildRearPlateLens();
+    const folded = buildRearPlateAirEquivalentLens();
+
+    expect(plated.ES).toEqual(folded.ES);
+    expect(plated.elements).toEqual(folded.elements);
+    expect(plated.maxSD).toBe(folded.maxSD);
+    expect(plated.data.elements.some((element) => element.synthetic === "rearPlate")).toBe(true);
+  });
+
+  it("resolves plate dispersion through its catalog glass", () => {
+    const L = buildRearPlateLens();
+
+    expect(L.indexByIdx[L.N - 2].quality).toBe("sellmeier");
+    expect(buildRearPlateLens({ plates: [{ ...REAR_PLATE_FIXTURE, glass: undefined }] }).indexByIdx[3].quality).toBe(
+      "abbe",
+    );
+  });
+
+  it("preserves EFL and paraxial defocus of the air-equivalent fold while moving the image plane by t(1 - 1/n)", () => {
+    const plated = paraxialDefocus(buildRearPlateLens());
+    const folded = paraxialDefocus(buildRearPlateAirEquivalentLens());
+
+    expect(buildRearPlateLens().EFL).toBeCloseTo(buildRearPlateAirEquivalentLens().EFL, 10);
+    expect(plated.defocus).toBeCloseTo(folded.defocus, 10);
+    expect(plated.imgZ - folded.imgZ).toBeCloseTo(t * (1 - 1 / n), 10);
+  });
+
+  it("measures BFD from the last lens vertex so the plate counts as back focus", () => {
+    const L = buildRearPlateLens();
+    const { cardinals } = paraxialDefocus(L);
+    const layout = doLayout(0, 0, L);
+
+    expect(cardinals.rearLensVertexZ).toBeCloseTo(layout.z[L.lastLensSurfaceIdx], 12);
+    expect(cardinals.distances.bfd.valueMm).toBeCloseTo(cardinals.points.rearFocal.z - cardinals.rearLensVertexZ, 12);
+  });
+
+  it("adds the exact plane-parallel longitudinal shift t(1 - cos U / sqrt(n^2 - sin^2 U)) for real rays", () => {
+    const plated = buildRearPlateLens();
+    const folded = buildRearPlateAirEquivalentLens();
+    const axialIntercept = (L: typeof plated) => {
+      const layout = doLayout(0, 0, L);
+      const ray = traceRay(10, 0, layout.z, 0, 0, undefined, false, L);
+      expect(ray.clipped).toBe(false);
+      /* traceRay reports height and slope at the last traced surface. */
+      return { z: layout.z[L.N - 1] - ray.y / ray.u, u: ray.u };
+    };
+    const withPlate = axialIntercept(plated);
+    const withoutPlate = axialIntercept(folded);
+    const sinU = Math.sin(Math.atan(Math.abs(withoutPlate.u)));
+    const cosU = Math.cos(Math.atan(Math.abs(withoutPlate.u)));
+
+    expect(withPlate.z - withoutPlate.z).toBeCloseTo(t * (1 - cosU / Math.sqrt(n * n - sinU * sinU)), 8);
+    expect(withPlate.z - withoutPlate.z).toBeGreaterThan(t * (1 - 1 / n));
+  });
+
+  it("keeps focus variation on the gap before the plate", () => {
+    const plated = buildRearPlateLens({ lastGapRange: [44, 49] });
+    const folded = buildRearPlateAirEquivalentLens({ lastGapRange: [44, 49] });
+    const close = doLayout(1, 0, plated);
+
+    expect(close.z[plated.N - 2] - close.z[plated.lastLensSurfaceIdx]).toBeCloseTo(49, 10);
+    expect(paraxialDefocus(plated, 1).defocus).toBeCloseTo(paraxialDefocus(folded, 1).defocus, 10);
   });
 });

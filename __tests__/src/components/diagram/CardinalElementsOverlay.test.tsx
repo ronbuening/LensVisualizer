@@ -18,6 +18,7 @@ const lens = {
 const baseCardinals: CardinalElements = {
   frontVertexZ: 0,
   rearVertexZ: 60,
+  rearLensVertexZ: 60,
   imagePlaneZ: 88,
   objectIndex: 1,
   imageIndex: 1,

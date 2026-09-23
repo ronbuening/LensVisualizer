@@ -29,7 +29,8 @@ import type { LensDataInput } from "../types/optics.js";
  * ║    physical patent count.]                                           ║
  * ║                                                                      ║
  * ║  Optical design only: glass/mirror surfaces, stop, variable gaps.    ║
- * ║  No sensor glass, filters, mechanics, or parent/donor designs.       ║
+ * ║  Source-listed rear cover/filter plates go in `rearPlates`; no front ║
+ * ║  filters, mechanics, or parent/donor designs.                        ║
  * ║  See LENS_DATA_SPEC.md § Scope: What to Include.                     ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
@@ -155,8 +156,15 @@ const LENS_DATA = {
     //    { label: "STO", R: 1e15, d: ..., nd: glass_nd, elemId: glass_elem_id, sd: ..., stopPlacement: "inside-element" }
     //  See LENS_DATA_SPEC.md § Aperture Stop.
     // ...
-    // Last surface's d = BFD to the image plane (sequential lenses); folded systems declare opticalPath.imagePlane instead.
+    // Last surface's d = BFD to the image plane (sequential lenses), or the physical gap to the first rear plate;
+    // folded systems declare opticalPath.imagePlane instead.
   ],
+
+  /* ── Rear plates ── only when the source lists cover glass / filter plates behind the last lens. Copy the source
+   *    values; never fold t/n into the last gap by hand. See LENS_DATA_SPEC.md § Rear Plates (rearPlates). */
+  // rearPlates: [
+  //   { label: "CG", thicknessMm: 0.0, nd: 1.5168, vd: 64.2, glass: "N-BK7", gapAfterMm: 0.0, source: "..." },
+  // ],
 
   /* ── Aspherical coefficients ── keyed by surface label; aspheric surfaces only; all-spherical designs use asph: {}.
    *    A4–A14 required (0 when unused); A16–A20 and odd A3–A19 optional — include only published non-zero values.
