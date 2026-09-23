@@ -44,7 +44,7 @@ The central architectural choice is the moving G2 block. G2 carries almost all o
 
 G2 therefore moves 11.19 mm toward the object when focusing from infinity to the closest published state. The mechanical length of the optical system is held constant.
 
-The sensor cover / optical member PP is not modeled as part of the lens in the companion `.data.ts` file. The patent lists 17.4498 mm of air, 3.2000 mm of glass at $n_d = 1.51680$, and 1.0582 mm of air after surface 25. This is folded into the final air-equivalent BFD as:
+The sensor cover / optical member PP is not one of the lens elements, but the companion `.data.ts` file models it in `rearPlates`: every analysis traces it, but it is not drawn. The patent lists 17.4498 mm of air, 3.2000 mm of glass at $n_d = 1.51680$, $\nu_d = 64.20$ (N-BK7 class), and 1.0582 mm of air after surface 25. Surface 25 stores the physical 17.4498 mm gap; the paraxial air-equivalent back focal distance is:
 
 $$17.4498 + \frac{3.2000}{1.51680} + 1.0582 = 20.6177 \text{ mm}.$$
 
@@ -267,7 +267,7 @@ The corrected prescription was independently re-run as a paraxial ABCD trace bef
 | Magnification at closest trace | 0.17× | −0.165× |
 | Petzval product $P f$ | not published | +0.08746 |
 
-The data file preserves the patent's infinity prescription, uses the official marketed focal length and aperture for product metadata, and uses the official 0.5 m close-focus distance for the viewer metadata. The patent's cover glass is excluded from the surfaces array and folded into the final air-equivalent back focal distance.
+The data file preserves the patent's infinity prescription, uses the official marketed focal length and aperture for product metadata, and uses the official 0.5 m close-focus distance for the viewer metadata. The patent's cover glass is modeled in `rearPlates` rather than as drawn surfaces; surface 25 keeps the printed 17.4498 mm gap to it, so the physical track includes the plate and the air-equivalent BFD above remains its paraxial equivalent.
 
 ## 10. Sources
 

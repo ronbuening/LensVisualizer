@@ -19,7 +19,7 @@ Example 10 is the closest patent embodiment to the production FUJINON GF20-35mmF
 3. The patent gives **FNo. = 4.11 / 4.08 / 4.11**; the production lens is a constant F4 zoom.
 4. The patent gives **2ω = 110.0° / 87.6° / 74.6°**; Fujifilm publishes 108°-76° for the production lens.
 5. The patent states that Example 10 consists of five lens groups with powers **negative-positive-positive-negative-positive**, and that the focus group is the entire second lens group G2. This agrees with the production lens's compact internal-focus premise.
-6. The patent back focal length is **21.24 mm air-equivalent** at all zoom positions, consistent with a short-register mirrorless medium-format mount.
+6. The patent back focal length is **21.24 mm air-equivalent** at all zoom positions, consistent with a short-register mirrorless medium-format mount. Physically it is 17.0778 mm of air, the 3.20 mm optical member PP (filters / cover glass, nd = 1.51680, νd = 64.20), and 2.05 mm of air to the image.
 
 The interpretation below treats the patent prescription as the numerical authority, uses Fujifilm's published product specifications only for production-level matching, and labels glass identities by catalog match strength rather than by unsupported vendor assumption.
 
@@ -236,7 +236,7 @@ Expression (9) is the important caution. The patent table prints **5.000** for a
 
 ## Verification Summary
 
-The prescription was re-entered and checked with a paraxial y-nu matrix ray trace. The cover glass was excluded from the `.data.ts` surface list and folded into the final back focal distance as an air-equivalent path.
+The prescription was re-entered and checked with a paraxial y-nu matrix ray trace. The optical member PP (Table 28 surfaces 26–27) is modeled in `rearPlates`: every analysis traces it, but it is not drawn. Surface 25 keeps the patent's physical 17.0778 mm gap to the plate, and the air-equivalent BFD below (17.0778 + 3.20/1.51680 + 2.05 mm at the wide end) is its paraxial equivalent. The stored physical track therefore includes the plate and is 1.09 mm longer than the air-equivalent path.
 
 | Zoom position | Patent f | Computed EFL | Patent Bf | Computed air-equivalent BFD |
 | ------------- | -------: | -----------: | --------: | --------------------------: |

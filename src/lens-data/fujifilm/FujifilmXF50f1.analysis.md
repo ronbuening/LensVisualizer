@@ -216,7 +216,7 @@ The lens employs **inner focusing** with G2 as the sole moving group:
 | DD[14] (Stop → G2) | 11.466 mm | 7.025 mm | −4.441 mm |
 | DD[22] (G2 → sensor plate) | 14.401 mm | 18.842 mm | +4.441 mm |
 
-G2 moves **4.441 mm toward the object** when focusing from infinity to 0.7 m. The sum of gap changes is exactly zero, confirming the total track length is constant and all motion is internal. The patent defines the close distance from object to the physical image plane (§0213). The viewer omits the sensor plate and uses its paraxial air equivalent, so its corresponding reference-plane endpoint is 0.699028956 m. Intermediate movement is interpolated between the two source rows. Current effective aperture and breathing are calculated by the viewer; they are not extra published focus stations.
+G2 moves **4.441 mm toward the object** when focusing from infinity to 0.7 m. The sum of gap changes is exactly zero, confirming the total track length is constant and all motion is internal. The patent defines the close distance from object to the physical image plane (§0213). The data file traces the sensor plate physically, so the viewer's close endpoint is the same 0.700 m. Intermediate movement is interpolated between the two source rows. Current effective aperture and breathing are calculated by the viewer; they are not extra published focus stations.
 
 **Image circle coverage:** At infinity, f × tan(15.7°) = 13.93 mm image height, yielding a 27.9 mm image diagonal. The Fujifilm X-mount APS-C sensor diagonal is 28.2 mm, so coverage is tight with expected vignetting at extreme corners at f/1.0.
 
@@ -246,9 +246,9 @@ The figure is a comparison source, not a manufacturing drawing. Ray-envelope or 
 
 The companion `.data.ts` file is at patent scale (f ≈ 49.549 mm, not rescaled to marketed 50 mm). Key limitations relative to the full patent prescription:
 
-1. **Air-equivalent back distance:** The sensor plate is omitted by the lens-data contract. Its 2.850 mm thickness at nd = 1.51680 becomes 2.850 / 1.51680 mm of air. Thus the final gap is DD[22] + 2.850 / 1.51680 + 1.000 = 17.279955696 mm at infinity and 21.720955696 mm close. The former 18.251 / 22.692 mm gaps incorrectly treated glass as air. This conversion preserves paraxial propagation but does not reproduce the omitted plate’s nonparaxial or chromatic aberrations.
+1. **Sensor plate:** The optical member PP (Table 9 surfaces 23–24: 2.850 mm, nd = 1.51680, νd = 64.20, θgF = 0.53430) and its 1.000 mm air gap to the image plane are modeled in `rearPlates`. Every analysis traces the plate, including its nonparaxial and chromatic contributions, but it is not drawn. Surface 22 stores the patent DD[22] (14.401 mm at infinity, 18.842 mm close). The paraxial air equivalent of the rear path is DD[22] + 2.850 / 1.51680 + 1.000 = 17.279955696 mm at infinity and 21.720955696 mm close. The physical track, 111.268 mm, now matches the source and is 0.971 mm longer than that air-equivalent path.
 
-2. **Variable gaps:** Two gaps change during focus — the stop-to-G2 gap ("STO") and the back focal distance ("22"). Their changes cancel exactly (−4.441 + 4.441 = 0).
+2. **Variable gaps:** Two gaps change during focus — the stop-to-G2 gap ("STO") and the G2-to-PP gap ("22"). Their changes cancel exactly (−4.441 + 4.441 = 0).
 
 ---
 

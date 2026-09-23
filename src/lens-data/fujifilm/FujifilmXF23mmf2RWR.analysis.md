@@ -12,7 +12,7 @@
 
 US 2017/0351051 A1 discloses a three-group inner-focusing imaging lens in which the first lens group G1 and third lens group G3 remain fixed while the single-element negative second group G2 moves toward the image during close focusing. The patent's Example 1 is the closest prescription match for the Fujifilm Fujinon XF23mmF2 R WR.
 
-The identification rests on convergent evidence. Example 1 is a 10-element, 6-group APS-C wide-angle design with two aspherical elements, matching Fujifilm's published 10-element/6-group specification with two aspherical elements. The patent gives f = 22.377 mm, FNo. = 2.06, and 2ω = 64.8°, which correspond closely to the production 23 mm f/2 lens and its official 63.4° angle of view. The focusing architecture also matches the product description: a compact inner-focus system driven by a stepping motor. Fujifilm publishes a 22 cm minimum focus distance and 0.13× maximum magnification; those values are beyond the patent's tabulated β = -0.041 near-distance example but are reached in the air-equivalent data model by extending the same G2 motion.
+The identification rests on convergent evidence. Example 1 is a 10-element, 6-group APS-C wide-angle design with two aspherical elements, matching Fujifilm's published 10-element/6-group specification with two aspherical elements. The patent gives f = 22.377 mm, FNo. = 2.06, and 2ω = 64.8°, which correspond closely to the production 23 mm f/2 lens and its official 63.4° angle of view. The focusing architecture also matches the product description: a compact inner-focus system driven by a stepping motor. Fujifilm publishes a 22 cm minimum focus distance and 0.13× maximum magnification; those values are beyond the patent's tabulated β = -0.041 near-distance example but are reached in the data model by extending the same G2 motion.
 
 The patent contains six worked examples. Examples 2 and 3 have similar focal lengths, but Example 1 is the first worked example and matches the production 23 mm specification most directly. Examples 4 through 6 move toward longer focal lengths and are better understood as variants within the same compact f/2 WR prime design family rather than as the XF23mmF2 R WR prescription.
 
@@ -22,7 +22,7 @@ The design is a compact mirrorless wide-angle prime with a positive-negative-wea
 
 The physical layout has 10 elements in 6 air-separated groups: {L11}, {L12-L13}, {L14}, {L15-L16-L17}, {L21}, and {L31-L32}. The first lens group G1 is further divided by the stop into a positive front group G1F and a positive rear group G1R. G1F contains a front negative meniscus L11 followed by the L12-L13 cemented doublet. G1R contains a biconcave double-asphere L14 followed by the L15-L16-L17 cemented triplet. The small single negative aspheric L21 forms G2. The rear group G3 is a cemented negative-positive doublet.
 
-The prescription includes an optical member PP behind the lens in the patent table. In the data file this sensor-side plate is not modeled as a lens surface. Its optical path has instead been folded into the final air-equivalent back focal distance, following the project convention that excludes sensor cover glass and filters from production lens prescriptions.
+The prescription includes an optical member PP behind the lens in the patent table (surfaces 18–19: 2.850 mm, nd = 1.51680, νd = 64.20, θgF = 0.53430, followed by 1.000 mm of air to the image). The data file models this sensor-side plate physically in `rearPlates` as N-BK7 with the patent partial dispersion, behind the patent's 10.862 mm gap from surface 17. It is traced by every analysis but not drawn as a lens element.
 
 ## Element-by-Element Analysis
 
@@ -123,7 +123,7 @@ The lens uses inner focus. G2 consists only of L21 and moves toward the image du
 | Patent near state, β = -0.041 | 2.984 mm | 5.092 mm | +0.672 mm | -0.0408 |
 | Data-file close state, production MFD 0.22 m | 4.586 mm | 3.490 mm | +2.274 mm | -0.1324 |
 
-The patent's tabulated close state is stored as an exact keyframe but is not the production minimum focus distance. A paraxial finite-conjugate solve in the air-equivalent data model shows that the same prescription reaches the manufacturer-published 0.22 m image-plane close focus when G2 travel is extended to 2.274087 mm, yielding |m| = 0.13237. This matches the published 0.13× maximum magnification closely enough for the data file's close-focus endpoint. Interpolation between the three exact states is a visualization approximation.
+The patent's tabulated close state is stored as an exact keyframe but is not the production minimum focus distance. A paraxial finite-conjugate solve in the data model shows that the same prescription reaches the manufacturer-published 0.22 m image-plane close focus when G2 travel is extended to 2.274087 mm, yielding |m| = 0.13237. This matches the published 0.13× maximum magnification closely enough for the data file's close-focus endpoint. Interpolation between the three exact states is a visualization approximation.
 
 ## Aspherical Surfaces
 
@@ -183,9 +183,9 @@ The values confirm that Example 1 was transcribed consistently. The large |f3/f2
 
 ## Verification Summary
 
-The paraxial audit used an independent y-nu matrix trace. The optical member PP was excluded from the surface list and folded into the final air-equivalent back focal distance: 10.862 mm + 2.850/1.51680 mm + 1.000 mm = 13.740956 mm.
+The paraxial audit used an independent y-nu matrix trace. The optical member PP is modeled in `rearPlates`; its paraxial air-equivalent back focal distance is 10.862 mm + 2.850/1.51680 mm + 1.000 mm = 13.740956 mm. Relative to that air-equivalent path, the physical plate lengthens the total track by 2.850 × (1 − 1/1.51680) = 0.971 mm.
 
-At infinity, the matrix trace gives EFL = 22.3718 mm, agreeing with the patent's rounded f = 22.377 mm. The computed image-side back focal distance from the last lens surface is 13.7428 mm, agreeing with the folded air-equivalent value within rounding. The aperture stop semi-diameter required by the patent FNo. = 2.06 is 6.53 mm, so the data file uses 6.54 mm.
+At infinity, the matrix trace gives EFL = 22.3718 mm, agreeing with the patent's rounded f = 22.377 mm. The computed image-side back focal distance from the last lens surface is 13.7428 mm, agreeing with the air-equivalent value within rounding. The aperture stop semi-diameter required by the patent FNo. = 2.06 is 6.53 mm, so the data file uses 6.54 mm.
 
 The close-focus endpoint in the data file is not copied from the patent near-state table. It is solved to the production 0.22 m minimum focus distance and returns paraxial magnification -0.13237, matching the official 0.13× maximum magnification. Semi-diameters were then checked against the project constraints: sd/|R| < 0.90, front/rear element semi-diameter ratio ≤ 1.25, positive edge thickness, and signed cross-gap sag intrusion ≤ 90% of the adjacent air gap.
 

@@ -28,7 +28,7 @@ The previous X100-series lens (X100 through X100F, 2013–2018) used a different
 
 ## Optical Architecture
 
-The lens follows a three-group telephoto-type configuration arranged, from object to image, as: a first positive lens group (G1), an aperture stop (St), a second positive lens group (G2), and a third negative lens group (G3). The positive–positive–negative power distribution shortens the total length relative to the focal length — the total track is only 38.35 mm for a 23.7 mm EFL, yielding a telephoto ratio of approximately 1.62. This compact geometry is essential for the X100V's thin body profile, where much of the optical assembly resides within the camera body itself.
+The lens follows a three-group telephoto-type configuration arranged, from object to image, as: a first positive lens group (G1), an aperture stop (St), a second positive lens group (G2), and a third negative lens group (G3). The positive–positive–negative power distribution shortens the total length relative to the focal length — the total track is only 38.35 mm for a 23.7 mm EFL (the patent's TL, with the back focus taken as an air-equivalent distance), yielding a telephoto ratio of approximately 1.62. This compact geometry is essential for the X100V's thin body profile, where much of the optical assembly resides within the camera body itself.
 
 G1 comprises two elements forming a single cemented doublet (L11+L12) with moderate positive power ($f_{G1} \approx +42.7$ mm). The doublet corrects axial chromatic aberration while keeping the front group compact.
 
@@ -177,12 +177,14 @@ The following patent-stated values were independently verified via paraxial y-nu
 |-----------|-------------|----------------|-----------|
 | $f$ (EFL) | 23.689 mm | 23.689 mm | $\Delta < 0.001$ mm |
 | $B_f$ (air equiv.) | 4.861 mm | 4.861 mm | Exact |
-| $\text{TL}$ | 38.35 mm | 38.35 mm | Exact |
+| $\text{TL}$ (air equiv.) | 38.35 mm | 38.35 mm | Exact |
 | $2\omega$ | 62.0° | 61.9° (paraxial) | $\Delta = 0.1°$ |
 | $f_{G12}/f$ | 0.79 | 0.786 | $\Delta = 0.004$ |
 | $(R_a + R_b)/(R_a - R_b)$ | 0.02 | 0.018 | $\Delta = 0.002$ |
 | $\text{FNo} \times \text{TL} / Y_\text{max}$ | 5.56 | 5.56 | Exact |
 | Petzval sum | — | 0.0032 mm$^{-1}$ | $R_P \approx 311$ mm |
+
+The patent's Table 1 ends with an optical member PP (surfaces 16–17: t = 1.300 mm, $n_d = 1.51680$, $\nu_d = 64.20$) between a 3.504 mm air gap after L33 and a 0.500 mm gap to the image plane, representing filters and sensor cover glass. The data file models PP physically in `rearPlates` (N-BK7 class): it is traced by every analysis but not drawn, and the last lens surface keeps the patent's 3.504 mm gap to the plate. The plate has no power, so EFL and paraxial focus match the air-equivalent $B_f = 3.504 + 1.300/1.51680 + 0.500 = 4.861$ mm. The physical first-surface-to-image length is 38.79 mm, the air-converted TL plus the plate's $1.300 \times (1 - 1/1.51680) = 0.44$ mm.
 
 All conditional expressions (1) through (6) are satisfied within the specified bounds.
 

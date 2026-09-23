@@ -23,3 +23,9 @@ The surface validator reports no edge-thickness, rim-slope, gap-intrusion, asphe
 - Normalized the CDGM catalog spelling to `H-ZBAF52`.
 
 No radius, thickness, index, focus motion, stop size, element count, group count, or production display name was changed.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Source: US 2019/0094496 A1, Example 1 Table 1 surfaces 27–29 (read from the Google Patents publication text; no local PDF): D27 = 68.817 mm, `PP` t = 3.200 mm, nd 1.51680, νd 64.20, θgF 0.53430, then 0.026 mm to the image plane. The legacy fold 68.817 + 3.200/1.51680 + 0.026 = 70.952704641 mm reproduces the previous stored S27 gap exactly; S27 now stores the physical 68.817 mm.
+- Glass: `N-BK7 (SCHOTT)` (exact nd/νd class, accepted by `resolveCompatibleGlass`); dPgF = 0.53430 − normal line(64.2) = −0.0015156 from the patent θgF.
+- Plate check: EFL and paraxial defocus identical to the folded model at infinity and at the reconstructed 1.4 m state (defocus −0.001145 mm unchanged; worst difference 1.4e-14). Physical track grows by t(1 − 1/n) = 1.090295 mm. Surface and image-circle audits report no errors or undersized surfaces.

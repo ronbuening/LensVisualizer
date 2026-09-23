@@ -19,3 +19,13 @@ Patent: US 2022/0236544 A1, Example 10 (Tables 28-30)
 - Visually rechecked `patents/US20220236544A1.pdf`, PDF page 53, Table 28. L34 remains `nd = 1.49648`, `νd = 81.30`; the table also publishes θgF for all fourteen glass rows.
 - HOYA MC-FCD1-M20 is a close coefficient-backed ED match (`Δnd = +0.000419`, `Δνd = +0.21`). Relabeled L34 as its catalog equivalent with the production supplier unspecified.
 - Converted every Table 28 θgF value to the project's `dPgF` convention and stored all fourteen patent-authored values. No prescription geometry changed.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Replaced the air-equivalent surface-25 gap (21.2375 mm) with Table 28's physical rear stack (PDF p. 53, rendered and
+  read): d25 = 17.0778 mm, then optical member PP 3.2000 mm, nd 1.51680, νd 64.20, θgF 0.53430 (stored as
+  dPgF −0.00152), and 2.0500 mm to the image. Surface 25 is not a zoom/focus variable gap, so no `var` rows changed.
+- Glass label N-BK7 (exact nd, Δνd −0.03; resolves as catalog-compatible); the patent names no vendor.
+- Paraxial check against the previous data: EFL and defocus identical at all three zoom stations and both focus keyframes
+  (worst difference 5e-11 mm, since the old fold was stored unrounded). Physical track grows by 1.090 mm (3.20 × (1 −
+  1/1.5168)).

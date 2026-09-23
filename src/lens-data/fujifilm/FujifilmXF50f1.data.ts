@@ -8,8 +8,9 @@
 // ω = 15.7°, constrained by 77 mm filter thread and edge thickness ≥ 0.5 mm.
 // 2026-09-08: Fig. 7 optical-rim review supports a 13 mm aspheric rim.
 // Remaining SDs are estimates, not proof of production vignetting.
-// Sensor plate omitted with a paraxial air-equivalent rear gap; nonparaxial
-// plate aberrations are not reproduced by this lens-only model.
+// Optical member PP (Table 9 surfaces 23–24: 2.850 mm, nd 1.51680, νd 64.20,
+// θgF 0.53430) and its 1.000 mm air gap to the image plane are modeled in
+// `rearPlates` (traced, not drawn). Surface 22 keeps the patent DD[22] to PP.
 //
 // Aspherical surfaces use the patent's KA convention: KA = 1 + K.
 // Patent KA = 1.0 → K = 0 (spherical base conic). Patent coefficients extend
@@ -43,7 +44,7 @@ const LENS_DATA = {
     "f = 49.549 mm  FNo = 1.03  2ω = 31.4°",
   ],
   focusDescription:
-    "Patent Example 3: G2 moves 4.441 mm toward the object; G1 and stop remain fixed. Source close focus is 0.700 m from the sensor, or 0.699 m from the modeled air-equivalent image plane. Intermediate movement is interpolated.",
+    "Patent Example 3: G2 moves 4.441 mm toward the object; G1 and stop remain fixed. Source close focus is 0.700 m from object to the image plane, which the model reproduces with the sensor plate traced physically. Intermediate movement is interpolated.",
 
   elements: [
     {
@@ -247,8 +248,22 @@ const LENS_DATA = {
     // L2d + L2e — Cemented doublet D3
     { label: "20", R: 42.22428, d: 8.8, nd: 1.883, elemId: 11, sd: 16.0 },
     { label: "21", R: -28.754, d: 1.21, nd: 1.62005, elemId: 12, sd: 16.0 },
-    { label: "22", R: -178.14293, d: 14.401 + 2.85 / 1.5168 + 1, nd: 1.0, elemId: 0, sd: 16.0 },
-    // Air-equivalent d = DD[22] + PP thickness / nd + air = 17.279955696 mm.
+    // Last surface: patent DD[22] to the optical member PP
+    { label: "22", R: -178.14293, d: 14.401, nd: 1.0, elemId: 0, sd: 16.0 },
+  ],
+
+  /* ── Optical member PP (patent Table 9 surfaces 23–24): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PP",
+      thicknessMm: 2.85,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      dPgF: -0.0015156,
+      gapAfterMm: 1.0,
+      source: "US 2021/0231927 A1, Example 3 Table 9 surfaces 23–24 (patent θgF 0.53430)",
+    },
   ],
 
   asph: {
@@ -298,11 +313,11 @@ const LENS_DATA = {
 
   var: {
     STO: [11.466, 7.025],
-    "22": [14.401 + 2.85 / 1.5168 + 1, 18.842 + 2.85 / 1.5168 + 1],
+    "22": [14.401, 18.842],
   },
   varLabels: [
     ["STO", "Stop–G2"],
-    ["22", "BF (air equiv.)"],
+    ["22", "G2–PP"],
   ],
 
   groups: [
@@ -316,7 +331,7 @@ const LENS_DATA = {
     { text: "D3", fromSurface: "20", toSurface: "22" },
   ],
 
-  closeFocusM: 0.7 - (2.85 - 2.85 / 1.5168) / 1000,
+  closeFocusM: 0.7,
   nominalFno: 1.03,
   fstopSeries: [1.0, 1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
   scFill: 0.5,

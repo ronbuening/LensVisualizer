@@ -14,14 +14,16 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    (Di/2). Patent lists effective diameters for all surfaces.       ║
  * ║                                                                    ║
  * ║  NOTE ON COVER GLASS:                                              ║
- * ║    Patent lists two cover glass plates (S18–S20). Excluded per     ║
- * ║    project convention. Air-equivalent BFD folded into final        ║
- * ║    surface d: 20.73 + 0.80/1.53741 + 1.00/1.52312 = 21.91 mm.    ║
+ * ║    Patent Fig. 2 surfaces 18–20 list two cemented COVER plates     ║
+ * ║    (0.80 mm nd 1.53741 νd 61.81; 1.00 mm nd 1.52312 νd 54.36).     ║
+ * ║    S20 has no distance, so the image plane sits on the rear face   ║
+ * ║    (gap after 0). Modeled in `rearPlates` (traced, not drawn);     ║
+ * ║    S17 keeps the patent's 20.73 mm gap to the cover glass.         ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
  * ║    ✓ Aperture stop and variable focus gap                         ║
- * ║    ✗ DO NOT include: sensor glass, filters, mechanical parts      ║
+ * ║    ✗ DO NOT include: mechanical parts (cover glass: `rearPlates`)  ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -215,7 +217,27 @@ const LENS_DATA = {
 
     // L33: negative meniscus singleton, concave to object
     { label: "16", R: -35.501, d: 2.2, nd: 1.48749, elemId: 10, sd: 20.0 },
-    { label: "17", R: -1023.357, d: 21.91, nd: 1.0, elemId: 0, sd: 21.8 }, // air-eq BFD
+    { label: "17", R: -1023.357, d: 20.73, nd: 1.0, elemId: 0, sd: 21.8 }, // patent gap to the cover glass
+  ],
+
+  /* ── Cover glass (patent Fig. 2 surfaces 18–20, cemented pair): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "COVER",
+      thicknessMm: 0.8,
+      nd: 1.53741,
+      vd: 61.81,
+      gapAfterMm: 0,
+      source: "US 2020/0319427 A1, Example 1 Fig. 2 surfaces 18–19",
+    },
+    {
+      label: "COVER",
+      thicknessMm: 1.0,
+      nd: 1.52312,
+      vd: 54.36,
+      gapAfterMm: 0,
+      source: "US 2020/0319427 A1, Example 1 Fig. 2 surfaces 19–20 (S20 = image plane, no distance printed)",
+    },
   ],
 
   /* ── Aspherical coefficients ── */

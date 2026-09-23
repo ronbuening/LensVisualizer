@@ -26,6 +26,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    L31 9.4, L32 9.3/11.0, L33 12.1 mm. L32's front sd is its      ║
  * ║    optical aperture; the figure's 11.0 mm rectangle is the blank. ║
  * ║                                                                    ║
+ * ║  NOTE ON OPTICAL MEMBER PP:                                        ║
+ * ║    Patent surfaces 15–17: 3.504 mm air, PP (t = 1.300 mm, nd =    ║
+ * ║    1.51680, νd 64.20), 0.500 mm air to the image. PP is modeled   ║
+ * ║    physically in `rearPlates` (traced, not drawn); S14 stores the ║
+ * ║    patent 3.504 mm gap to the plate.                              ║
+ * ║                                                                    ║
  * ║  NOTE ON CLOSE FOCUS:                                              ║
  * ║    Patent does not publish close-focus spacings for Example 1.    ║
  * ║    Variable gap estimated via paraxial refocus to MFD = 0.10 m.   ║
@@ -33,7 +39,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
  * ║    ✓ Aperture stop and variable focus gap                         ║
- * ║    ✗ DO NOT include: sensor glass, filters, mechanical parts      ║
+ * ║    ✗ DO NOT include: mechanical parts (cover glass: `rearPlates`) ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -164,8 +170,9 @@ const LENS_DATA = {
   ],
 
   /* ── Surface prescription ──
-   *  Cover glass (PP) excluded; air-equivalent BFD folded into last surface d.
-   *  BFD (air equiv.) = 3.504 + 1.300/1.51680 + 0.500 = 4.861 mm.
+   *  S14 d = patent d15 = 3.504 mm (gap to PP); the plate and the 0.500 mm
+   *  trailing gap are in `rearPlates`. Air-equivalent Bf = 3.504 + 1.300/1.51680
+   *  + 0.500 = 4.861 mm (Table 2).
    */
   surfaces: [
     // ── G1: cemented doublet L11+L12 ──
@@ -189,7 +196,20 @@ const LENS_DATA = {
     { label: "11", R: -15.17144, d: 0.74, nd: 1.69895, elemId: 7, sd: 9.3 }, // L32 front
     { label: "12", R: 1e15, d: 0.1, nd: 1.0, elemId: 0, sd: 11.0 }, // L32 rear → air
     { label: "13", R: 82.50113, d: 1.98, nd: 1.883, elemId: 8, sd: 12.1 }, // L33 front
-    { label: "14", R: 1e15, d: 4.861, nd: 1.0, elemId: 0, sd: 12.1 }, // L33 rear → image (BFD, air equiv.)
+    { label: "14", R: 1e15, d: 3.504, nd: 1.0, elemId: 0, sd: 12.1 }, // L33 rear → PP (patent d15)
+  ],
+
+  /* ── Optical member PP (patent surfaces 16–17): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PP",
+      thicknessMm: 1.3,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 0.5,
+      source: "US 2020/0333569 A1, Example 1 Table 1 surfaces 16–17",
+    },
   ],
 
   /* ── Exact Example 1, Table 3 aspherical coefficients ── */

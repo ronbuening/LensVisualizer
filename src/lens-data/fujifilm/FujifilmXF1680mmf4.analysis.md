@@ -28,6 +28,8 @@ This analysis is derived from the patent prescription alone, cross‑referenced 
 | Variable gap DD[24] (G4↔G5)                    | 4.010 mm       | 15.227 mm    | 30.211 mm     |
 | Total optical length TLw (incl. BFw air‑eq.)   | 104.19 mm      | 118.79 mm    | 146.80 mm     |
 | Back focal length (air‑equivalent, from S29)   | 17.494 mm      | 17.495 mm    | 17.494 mm     |
+
+**Rear plate.** Table 31 follows S29 with a 14.614 mm air gap, the optical member PP (S30–S31: 2.850 mm, nd 1.51680, νd 64.20) and 1.000 mm of air to the image plane. The data file models PP physically in `rearPlates`; every analysis traces it, but it is not drawn. The air‑equivalent back focus 14.614 + 2.850/1.51680 + 1.000 = 17.493 mm reproduces the paraxial values above to 0.002 mm.
 | Zoom ratio                                     | 1.0×           | 2.215×       | 4.713×        |
 
 **Aperture model.** The stop is 1.100 mm ahead of L31 and moves with G3. Because the FNo stays constant while the focal length grows 4.7×, the iris has to open as the lens zooms toward tele. The patent does not publish iris diameters. The data file therefore calculates the station radii from FNo 4.12 (`zoomApertureModel: "from-nominal-fno"`), giving 4.90 mm at wide, 6.41 mm at the middle station and 7.97 mm at tele. This schedule is inferred, not patent data.
@@ -260,7 +262,7 @@ Variable‑gap behavior:
 
 The **reversing G3↔G4 spacing** (DD[21]) is notable. Between wide and middle, DD[21] grows by 1.57 mm; between middle and tele, it shrinks back by 1.47 mm. G3 and G4 both move toward the object throughout, but G3 moves faster from wide to middle and G4 faster from middle to tele. They never swap order. The data file carries all three stations, so the middle‑station peak is preserved.
 
-The total physical length of the lens (S1 to image plane including cover glass air‑equivalent) grows from 104.2 mm at wide to 146.8 mm at tele — a 41 % extension. This is an **externally extending zoom**, consistent with the barrel‑extending mechanical behavior observed in the shipping XF 16–80 mm.
+The air‑equivalent length of the lens (S1 to image plane, with PP counted as t/n) grows from 104.2 mm at wide to 146.8 mm at tele — a 41 % extension. The physical length, which includes the full 2.850 mm plate, is 0.97 mm longer at every station (105.2 mm to 147.8 mm). This is an **externally extending zoom**, consistent with the barrel‑extending mechanical behavior observed in the shipping XF 16–80 mm.
 
 ## 7. Focusing mechanism
 

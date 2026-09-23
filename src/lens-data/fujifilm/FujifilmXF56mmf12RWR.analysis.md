@@ -23,11 +23,11 @@ The production-link evidence is as follows.
 4. The image height from the patent field is f·tan(14.53°) = 14.113 mm, or a 28.23 mm image circle, matching APS-C coverage.
 5. The second group and aperture stop move as one unit toward the object for close focus; the first and third groups remain fixed. FUJIFILM describes an updated focusing group containing aspherical and ED elements and gives a minimum focus distance of 0.50 m.
 
-Surfaces 23 and 24 in the patent are the parallel optical member PP, representing a cover glass or filter plate rather than lens power. The data file excludes PP from the surface list and folds its optical path into the final air-equivalent back focal distance: 9.275 + 2.850/1.51680 + 1.013 = 12.167012 mm.
+Surfaces 23 and 24 in the patent are the parallel optical member PP, representing a cover glass or filter plate rather than lens power. The data file models PP in `rearPlates` (2.850 mm, nd = 1.51680, νd = 64.20, N-BK7 class), so every analysis traces through it, but the diagram does not draw it. Surface 22A keeps the patent's physical 9.275 mm gap to the plate, and 1.013 mm of air follows it to the image plane. Paraxially the stack is equivalent to an air-equivalent back focus of 9.275 + 2.850/1.51680 + 1.013 = 12.167 mm, matching Table 5's BF.
 
 ## Optical Architecture
 
-The design is a positive-positive-weak-negative three-group prime. It is not a telephoto design in the strict first-order sense: the total track from the first surface to the paraxial image plane is 90.018 mm, greater than the 54.453 mm focal length. The rear group's negative power is very weak, so it behaves mainly as a field and lateral-color corrector rather than a length-shortening telephoto group.
+The design is a positive-positive-weak-negative three-group prime. It is not a telephoto design in the strict first-order sense: the air-equivalent total track from the first surface to the paraxial image plane is 90.018 mm (90.989 mm physically, through the PP plate), greater than the 54.453 mm focal length. The rear group's negative power is very weak, so it behaves mainly as a field and lateral-color corrector rather than a length-shortening telephoto group.
 
 G1 is a fixed weak positive cemented doublet. Its computed focal length is +244.10 mm. This group preconditions the incoming beam while keeping focus-dependent aberration change low.
 
@@ -135,7 +135,7 @@ The focus mechanism is internal unit focusing of G2. During focus from infinity 
 | Infinity | 17.100 mm | 1.657 mm | 18.757 mm | 54.453 mm | 1.24 | 29.06° |
 | Patent close table | 9.855 mm | 8.902 mm | 18.757 mm | 52.909 mm | 1.50 | 25.82° |
 
-The change from infinity to the patent close table is 7.245 mm of objectward G2 travel. Independent finite-conjugate tracing shows that this tabulated close state focuses an object 499.98 mm in front of the first surface. Since the optical distance from the first surface to the image plane is 90.018 mm, the object-to-sensor distance is about 590.00 mm and the paraxial magnification is |β| = 0.111×.
+The change from infinity to the patent close table is 7.245 mm of objectward G2 travel. Independent finite-conjugate tracing shows that this tabulated close state focuses an object 499.98 mm in front of the first surface. Since the air-equivalent distance from the first surface to the image plane is 90.018 mm, the air-equivalent object-to-sensor distance is about 590.00 mm (about 590.97 mm physically, with the PP plate) and the paraxial magnification is |β| = 0.111×.
 
 FUJIFILM publishes the production minimum focus distance as 0.50 m measured from the focal plane and maximum magnification as 0.14×. Holding the patent's G2 unit-focus constraint and extrapolating the spacing pair to a 0.50 m object-to-sensor distance gives DD[3] = 8.246 mm, DD[17] = 10.511 mm, and |β| = 0.137×, which rounds to the published 0.14×. The data file retains the patent-published Table 5 focus-variable pair for transcription fidelity and stores the official 0.50 m minimum focus distance as product metadata.
 
@@ -185,16 +185,16 @@ Table 16 of the patent gives twelve condition values for each example. The value
 | 11 | f1/BF | 20.062 | 20.062 | 20-30 |
 | 12 | D12/(f·tanωm) | 1.212 | 1.212 | 1.2-3 |
 
-Condition 10 is interpreted with both TL and f squared. This reading is required to reproduce Table 16: 90.018²/(54.453²·tan14.53°) = 10.545. The unsquared expression would give 6.378 and would miss the stated bound.
+Condition 10 is interpreted with both TL and f squared, using the air-equivalent TL. This reading is required to reproduce Table 16: 90.018²/(54.453²·tan14.53°) = 10.545. The unsquared expression would give 6.378 and would miss the stated bound.
 
 ## Verification Summary
 
-The prescription was re-run through independent paraxial y-nu and ABCD matrix calculations. The infinity prescription reproduces the patent focal length and back focus after the PP optical member is folded into air-equivalent distance.
+The prescription was re-run through independent paraxial y-nu and ABCD matrix calculations. The infinity prescription reproduces the patent focal length and the air-equivalent back focus of the PP optical member stack.
 
 | Quantity | Computed | Patent / source | Note |
 |---|---:|---:|---|
 | EFL at infinity | 54.4525 mm | 54.453 mm | Table 5 |
-| Air-equivalent BF | 12.1670 mm | 12.167 mm | Table 5; PP folded out |
+| Air-equivalent BF | 12.1670 mm | 12.167 mm | Table 5; PP in `rearPlates` |
 | Image height at ω = 14.53° | 14.1128 mm | APS-C class | 28.23 mm image circle |
 | f(G1) | +244.10 mm | positive | group sign agrees |
 | f(G2) | +60.39 mm | positive | group sign agrees |

@@ -42,3 +42,12 @@ Patent: US 2020/0192060 A1, Example 2
 - Confirmed the high-index elements remain L11, L23, L31, L51, and L52 (nd >= 1.8). L31 remains the explicit `893204` S-NPH4 code-backed disposition.
 - Confirmed the SDs already come from the patent H*2 effective-diameter column halved. Figure 5 is consistent with those values, so no SD edits were made.
 - Verification: `npm run generate:glass-reports`, `npm run typecheck`, `npm run format:check`, `npm run lint`, `npm run test`, and `git diff --check` passed.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Read Example 2 Fig. 6 on PDF page 6 (Sheet 5) at 160 dpi: surface 18 d = 31.25575 (fixed; not in the Fig. 7
+  variable-gap table); surfaces 19–20 are one plate labeled COVER, 1.80 mm, nd 1.51633, νd 64.14 (H*2 58.00);
+  20 → 21 is 0.10 mm. Surface 18 now stores 31.25575 instead of the folded 32.54309, with `rearPlates` COVER
+  (OHARA S-BSL7, exact 1.51633 / 64.14 row, matching the file's OHARA element labels) and gapAfter 0.10 mm.
+- Paraxial check against the previous data: EFL identical; defocus changes by 0.00026 mm at all three focus keyframes
+  (rounding in the old 32.54309 versus 32.54283). Physical track grows by 0.613 mm, to 154.02 mm front vertex to image.

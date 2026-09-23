@@ -25,7 +25,7 @@ The prescription is identified as the basis for the production Fujinon GF110mmF2
 
 ## Optical Architecture
 
-The GF 110mm f/2 is a three-group inner-focus design of the form **positive–negative–positive** (G1–G2–G3). In broad terms, it follows the telephoto principle: the strong positive front group (G1, f₁ ≈ 86 mm) is followed by a weak negative focus group (G2, f₂ ≈ −57 mm), with a strong positive rear group (G3, f₃ ≈ 71 mm) relaying the image to the sensor plane. The overall system focal length of 108.47 mm is achieved through a total optical track of approximately 143 mm (S1 to image plane), but the three-group power distribution closely resembles a telephoto configuration adapted for an inner-focus mirrorless system.
+The GF 110mm f/2 is a three-group inner-focus design of the form **positive–negative–positive** (G1–G2–G3). In broad terms, it follows the telephoto principle: the strong positive front group (G1, f₁ ≈ 86 mm) is followed by a weak negative focus group (G2, f₂ ≈ −57 mm), with a strong positive rear group (G3, f₃ ≈ 71 mm) relaying the image to the sensor plane. The overall system focal length of 108.47 mm is achieved through a physical optical track of approximately 147.4 mm from S1 to the image plane, including the 3.2 mm plane-parallel plate PP (146.3 mm air-equivalent), but the three-group power distribution closely resembles a telephoto configuration adapted for an inner-focus mirrorless system.
 
 **Group G1** (6 elements, 4 air-separated sub-groups) serves as the front collector. It contains two cemented doublets that provide chromatic correction, flanking a positive singlet (L12) that bears much of the convergent power. Two of the four ED elements reside in G1 (L12 and L16), and the group's combined focal length of 86 mm means it does most of the bending work.
 
@@ -223,7 +223,7 @@ All numerical claims in this analysis were independently verified via paraxial r
 | Variable gap conservation | 22.890 mm | 22.890 mm | ✓ |
 | ED element count | 4 | 4 (Fujifilm spec) | ✓ |
 
-The air-equivalent BFD was computed as 23.857 mm (air) + 3.200/1.51680 mm (cover glass) + 1.000 mm (air) = 26.967 mm, matching the patent's stated BF = 26.97 mm.
+The air-equivalent BFD was computed as 23.8566 mm (air) + 3.2000/1.51680 mm (plate PP) + 1.0003 mm (air) = 26.967 mm, matching the patent's stated BF = 26.97 mm. The data file stores the physical 23.8566 mm gap on surface 24 and models PP (Table 1 surfaces 25–26, nd 1.51680, νd 64.20, N-BK7 class) with its 1.0003 mm gap to the image in `rearPlates`: every analysis traces the plate, but it is not drawn.
 
 ## Sources
 
