@@ -8,7 +8,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ Production correlation: Canon PowerShot G9 X, marketed October 2015.       ║
  * ║ 8 elements / 3 zoom groups / 5 aspherical surfaces.                       ║
  * ║                                                                            ║
- * ║ Zoom-only gaps: D4, D5, D13, and rear BF. D5 reverses at the mid state.    ║
+ * ║ Zoom-only gaps: D4, D5, D13, and D15. D5 reverses at the mid state.        ║
  * ║ Focus status: NO_INTERNAL_RECONSTRUCTION. Example 1 publishes no focus      ║
  * ║ trajectory. The required closeFocusM is the product-wide 0.05 m minimum;   ║
  * ║ all authored var pairs are identical within each zoom state.               ║
@@ -17,10 +17,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ 29.90 mm; production marketing endpoints are 10.2 and 30.6 mm, so one      ║
  * ║ uniform scale factor would be invalid.                                     ║
  * ║                                                                            ║
- * ║ Patent surfaces 16-17 are a plane-parallel filter/low-pass block and are   ║
- * ║ excluded from the active model. Its air-equivalent 1.09 / 1.51633 mm is    ║
- * ║ folded into the final rear air gap together with the published 1.62 mm     ║
- * ║ post-block spacing.                                                        ║
+ * ║ Patent surfaces 16-17 are a plane-parallel filter/low-pass block (1.09 mm, ║
+ * ║ nd 1.51633, νd 64.1; S-BSL7 class) modeled in `rearPlates` (traced, not    ║
+ * ║ drawn) with the published 1.62 mm block-to-image spacing. D15 stores the   ║
+ * ║ patent gap to the block: 5.14 / 3.38 / 2.74 mm; the equivalent BF matches  ║
+ * ║ the patent 7.48 / 5.72 / 5.08 mm.                                          ║
  * ║                                                                            ║
  * ║ The patent publishes no semi-diameters. Lens-surface SDs are model-derived ║
  * ║ from exact nonlinear on-axis marginal rays plus the default 0.6-field,     ║
@@ -208,7 +209,19 @@ const LENS_DATA = {
     { label: "12", R: 83.932, d: 1.39, nd: 1.91082, elemId: 7, sd: 4.3 },
     { label: "13", R: -18.038, d: 8.3, nd: 1.0, elemId: 0, sd: 4.4 },
     { label: "14", R: 48.372, d: 2.8, nd: 1.62263, elemId: 8, sd: 9 },
-    { label: "15A", R: -32.158, d: 7.478840885559212, nd: 1.0, elemId: 0, sd: 9 },
+    { label: "15A", R: -32.158, d: 5.14, nd: 1.0, elemId: 0, sd: 9 }, // D15 variable (zoom), gap to the filter block
+  ],
+
+  /* ── Filter/low-pass block (patent surfaces 16–17): traced, not drawn ── */
+  rearPlates: [
+    {
+      thicknessMm: 1.09,
+      nd: 1.51633,
+      vd: 64.1,
+      glass: "S-BSL7",
+      gapAfterMm: 1.62,
+      source: "JP 2016-161889 A, Example 1 surfaces 16–17 (¶0074)",
+    },
   ],
 
   asph: {
@@ -276,9 +289,9 @@ const LENS_DATA = {
       [29.44, 29.44],
     ],
     "15A": [
-      [7.478840885559212, 7.478840885559212],
-      [5.718840885559212, 5.718840885559212],
-      [5.078840885559212, 5.078840885559212],
+      [5.14, 5.14],
+      [3.38, 3.38],
+      [2.74, 2.74],
     ],
   },
 
@@ -286,7 +299,7 @@ const LENS_DATA = {
     ["4", "D4"],
     ["STO", "D5"],
     ["13", "D13"],
-    ["15A", "BF (air-equivalent)"],
+    ["15A", "D15"],
   ],
 
   zoomPositions: [10.5, 19.76, 29.9],

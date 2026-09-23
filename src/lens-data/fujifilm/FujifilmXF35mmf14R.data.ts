@@ -30,17 +30,20 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    were kept.                                                     ║
  * ║                                                                    ║
  * ║  NOTE ON COVER GLASS / BACK FOCUS:                                 ║
- * ║    Table 1 lists D15 = 17.00 mm air, then a 2.80 mm plate PP      ║
- * ║    (nd 1.51680, νd 64.2); Table 7 BF = 21.98 mm (air-equivalent). ║
- * ║    The plate is excluded and its t/n folded in: stored last gap   ║
- * ║    21.98 mm = paraxial BFD 21.978 mm (the implied plate-to-image  ║
- * ║    air is 3.13 mm; physical S15-to-image distance ≈22.93 mm).     ║
+ * ║    Table 1 lists D15 = 17.00 mm air, then a 2.80 mm plate PP       ║
+ * ║    (nd 1.51680, νd 64.2, surfaces 16–17); S17 prints no gap.       ║
+ * ║    S15 stores the physical 17.00 mm; PP is modeled in              ║
+ * ║    `rearPlates` (traced, not drawn). Its 3.134 mm gap to the       ║
+ * ║    image is derived, not printed: Table 7 air-equivalent BF        ║
+ * ║    21.98 − 17.00 − 2.80/1.5168. Physical S15-to-image ≈22.93 mm.   ║
  * ║                                                                    ║
  * ║  NOTE ON FOCUS:                                                    ║
- * ║    Patent publishes the infinity state only. The 0.28 m close     ║
- * ║    gap (28.02 mm, 6.04 mm extension, paraxial m ≈ −0.167) is      ║
- * ║    CALCULATED for unit focus at the production 0.28 m MFD         ║
- * ║    (object to image plane); production max. magnification 0.17×. ║
+ * ║    Patent publishes the infinity state only. The 0.28 m close      ║
+ * ║    gap (23.04 mm to PP, 6.04 mm extension, paraxial m ≈ −0.167)    ║
+ * ║    is CALCULATED for unit focus at the production 0.28 m MFD       ║
+ * ║    (object to image plane with the plate folded as t/n; the        ║
+ * ║    physical object-to-image distance is ≈281.2 mm); production     ║
+ * ║    max. magnification 0.17×.                                       ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -194,8 +197,22 @@ const LENS_DATA = {
     { label: "12", R: 1e15, d: 6.72, nd: 1.883, elemId: 6, sd: 9.5 },
     { label: "13", R: -11.174, d: 1.2, nd: 1.76182, elemId: 7, sd: 9.8 },
     { label: "14", R: -124.5, d: 4.99, nd: 1.883, elemId: 8, sd: 12.4 },
-    { label: "15", R: -20.516, d: 21.98, nd: 1.0, elemId: 0, sd: 12.4 },
-    // d = 21.98 mm: Table 7 air-equivalent BF (D15 17.00 + plate 2.80/1.5168 + 3.13 air)
+    // d = 17.00 mm: Table 1 D15, physical air gap to the plate PP
+    { label: "15", R: -20.516, d: 17.0, nd: 1.0, elemId: 0, sd: 12.4 },
+  ],
+
+  /* ── Parallel plate PP (patent Table 1 surfaces 16–17): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PP",
+      thicknessMm: 2.8,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 3.134,
+      source:
+        "US 2014/0285903 A1, Example 1 Table 1 surfaces 16–17; gap to image derived, not printed (Table 7 BF 21.98 − 17.00 − 2.80/1.5168)",
+    },
   ],
 
   /* ── Exact Example 1, Table 2 aspherical coefficients ──
@@ -248,12 +265,14 @@ const LENS_DATA = {
 
   /* ── Variable air spacings (unit focus) ──
    *  Unit focus: entire lens moves as a unit, only BFD changes.
+   *  S15 stores the physical gap to the plate PP (infinity 17.00 mm).
    *  Close focus 0.28 m (CALCULATED, not a patent state): paraxial
    *  extension 6.04 mm puts the object 280.2 mm from the image plane
-   *  at m ≈ −0.167 (production: 0.28 m MFD, 0.17× max. magnification).
+   *  with PP folded as t/n (≈281.2 mm physical) at m ≈ −0.167
+   *  (production: 0.28 m MFD, 0.17× max. magnification).
    */
   var: {
-    "15": [21.98, 28.02],
+    "15": [17.0, 23.04],
   },
   varLabels: [["15", "BF"]],
 

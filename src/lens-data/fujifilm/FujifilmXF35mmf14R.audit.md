@@ -105,3 +105,15 @@ S4 stays 11.3 mm: across the 0.20 mm L12–L13 air gap the tabulated R4 = 25.973
 11.5 mm, so the ≈12.3 mm rear rim Fig. 1 appears to draw cannot be built from the table. The on-axis f/1.45 marginal
 ray needs 11.11 mm at S3 and 9.77 mm at S4, both still clear. The surface validator passes at S3 = 13.0 mm and the
 L12 edge now steps 1.7 mm from front to rear instead of 3.4 mm.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Read Table 1-continued on PDF page 14 (printed page 5) at 160 dpi: D15 = 17.00; surfaces 16–17 are plate PP,
+  2.80 mm, nd 1.51680, νd 64.2; S17 prints no Di. Table 7 (PDF page 16) gives the air-equivalent BF 21.98, so the
+  3.134 mm plate-to-image gap is derived, not printed (21.98 − 17.00 − 2.80/1.5168). Glass N-BK7 (exact
+  1.51680/64.2 class; OHARA S-BSL7 is the 1.51633 variant).
+- S15 now stores 17.00 mm at infinity and 23.04 mm at the calculated 0.28 m state (legacy 21.98 / 28.02 less
+  4.980 mm of folded plate path). Plate check against the previous data: EFL identical; paraxial defocus changes by
+  8 × 10⁻⁶ mm at both keyframes (rounding of the derived 3.134 mm gap).
+- Physical track grows by 0.954 mm, equal to 2.80 × (1 − 1/1.5168). `closeFocusM` stays at the production 0.28 m;
+  the calculated close state's physical object-to-image distance is about 281.2 mm.

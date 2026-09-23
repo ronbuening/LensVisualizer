@@ -29,9 +29,9 @@ Example 5 is a compact positive–negative–positive three-power-group lens wit
 
 Computed from the final rounded prescription, G1 has focal length 23.9345 mm, G2 −315.8073 mm, and G3 79.0042 mm. The combined G1+G2 functional focal length is 29.3378 mm. G2 is therefore only weakly negative in the complete in-situ group, even though its L21/L22 cemented pair by itself is positive at 54.8983 mm; the following negative L23 and the internal spacings reverse the sign of the complete group. These group focal lengths describe the grouped matrices, not the standalone power of any one element.
 
-The complete model gives EFL 27.81397 mm, total air-equivalent track 37.03 mm, and Gaussian BFD 11.27243 mm from the last powered surface. Thus TL/EFL = 1.33135 and BFD/EFL = 0.40528. Under the project criteria it is neither telephoto (`TL/EFL < 1` is false) nor retrofocus (`BFD > EFL` is false). That quantitative result is consistent with the patent's emphasis on reducing overall length without using a conventional long-back-focus retrofocus arrangement.
+The complete model gives EFL 27.81397 mm, total air-equivalent track 37.03 mm (the patent's TL convention; the physical track with PP modeled is 37.98 mm), and air-equivalent Gaussian BFD 11.27243 mm from the last powered surface. Thus TL/EFL = 1.33135 and BFD/EFL = 0.40528. Under the project criteria it is neither telephoto (`TL/EFL < 1` is false) nor retrofocus (`BFD > EFL` is false). That quantitative result is consistent with the patent's emphasis on reducing overall length without using a conventional long-back-focus retrofocus arrangement.
 
-The patent's optional rear parallel plate PP is not part of the active LensVisualizer prescription. Paragraph 0064 expressly permits a configuration without PP; the model therefore omits source surfaces 14–15 and uses the published 11.27 mm air-equivalent S13-to-image spacing. No uniform scale is applied.
+The patent's rear parallel plate PP (surfaces 14–15: 2.80 mm, nd 1.51680, νd 64.2) is modeled in `rearPlates`: every analysis traces it, but it is not drawn. Paragraph 0064 notes that PP may also be omitted. S13 keeps the printed 6.00 mm gap to PP. Table 9 prints no spacing after surface 15, so the 3.424008 mm plate-to-image gap is derived rather than printed: it is the printed air-equivalent BF 11.27 mm minus 6.00 mm minus 2.80/1.51680. The paraxial image plane is therefore identical to the former folded model. No uniform scale is applied.
 
 ## Element-by-Element Analysis
 
@@ -155,7 +155,7 @@ The underlying cause is visible in the group focal length as well. Direct comput
 
 ## Verification Summary
 
-The final parsed data reproduce the principal first-order quantities at the patent's printed precision. Sequential height/reduced-angle tracing and an independently implemented ABCD chain both give EFL = 27.813969 mm and Gaussian BFD = 11.272434 mm from S13. The model keeps the authored rear air spacing at the patent's 11.27 mm air-equivalent BF, giving TL = 37.03 mm and stop-to-image distance ST = 31.05 mm.
+The final parsed data reproduce the principal first-order quantities at the patent's printed precision. Sequential height/reduced-angle tracing and an independently implemented ABCD chain both give EFL = 27.813969 mm and Gaussian BFD = 11.272434 mm from S13. With PP modeled physically, the S13-to-image path (6.00 mm + 2.80 mm PP + 3.424 mm) is air-equivalent to the patent's 11.27 mm BF. The air-equivalent TL = 37.03 mm and stop-to-image distance ST = 31.05 mm match Table 11; the physical values are 0.954 mm longer (37.98 mm and 32.00 mm) because of the 2.80 × (1 − 1/1.51680) plate allowance.
 
 The patent does not publish a physical stop diameter. The data therefore calibrate `STO.sd = 3.818045612 mm` from the published Fno = 2.88 and the computed entrance-pupil magnification. Re-evaluation gives f/2.880000, but that agreement is a calibration identity rather than independent evidence of the manufactured diaphragm size.
 

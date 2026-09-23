@@ -38,7 +38,7 @@ $$G1(+) \;\;—\;\; \text{STO} \;\;—\;\; G2(-) \;\;—\;\; G3(+)$$
 
 The group focal lengths are: $f_\text{G1} = +52.9\;\text{mm}$, $f_\text{G2} = -37.1\;\text{mm}$, $f_\text{G3} = +56.8\;\text{mm}$.
 
-The total track is 83.21 mm for $f = 71.28\;\text{mm}$, giving $\text{TL}/f = 1.167$. This ratio exceeds unity, so the design is not telephoto in the strict sense (telephoto requires $\text{TL}/f < 1$, where the physical length is shorter than the focal length). Instead, the total track is approximately 17% longer than the focal length — a compact but conventional configuration typical of moderate-aperture portrait-length primes. The back focal distance from the last glass surface (L9 rear) to the paraxial image is 12.43 mm (air-equivalent), providing adequate clearance for the Hasselblad XCD mount flange distance when scaled.
+The total track is 83.21 mm for $f = 71.28\;\text{mm}$, giving $\text{TL}/f = 1.167$. This ratio exceeds unity, so the design is not telephoto in the strict sense (telephoto requires $\text{TL}/f < 1$, where the physical length is shorter than the focal length). Instead, the total track is approximately 17% longer than the focal length — a compact but conventional configuration typical of moderate-aperture portrait-length primes. This patent total length is physical and includes the rear parallel plate P. Behind L9 the patent lists 10.68 mm of air, the 1.44 mm plate P (nd = 1.51680, νd = 64.2) and 0.80 mm of air to the image plane (BF = 0). The air-equivalent back focal distance is therefore 12.43 mm, providing adequate clearance for the Hasselblad XCD mount flange distance when scaled. The data file models P in `rearPlates`, scaled like the lens (1.82 mm plate, 1.01 mm trailing air). Every analysis traces it, but the diagram does not draw it. The stored physical track is 105.06 mm at production scale.
 
 **Group G1 (positive, 4 elements):** Front collector comprising L1 (positive meniscus), L2–L3 (cemented doublet), and L4 (positive meniscus). The L2–L3 cemented pair is a net-negative achromatic doublet ($f \approx -69\;\text{mm}$), with ED-crown L2 ($f = +55.2$) providing chromatic correction and dense-flint L3 ($f = -28.7$) providing the achromatising negative power. G1's overall positive power ($f_\text{G1} = +52.9\;\text{mm}$) derives from L1 (+58.5) and L4 (+60.5) overwhelming the negative L2–L3 core. The positive–positive–negative–positive arrangement within G1 distributes the converging power over multiple surfaces, reducing surface-by-surface aberration contributions.
 
@@ -90,9 +90,9 @@ The choice of a high-index ($n_d = 1.770$) dense flint for a positive element is
 
 ### L5 — Biconvex Positive (Cemented with L6, Focus Group)
 
-$n_d = 1.85896$, $\nu_d = 22.7$. Glass: S-NPH4 (OHARA) — ultra-high-dispersion flint. $f = +24.6\;\text{mm}$.
+$n_d = 1.85896$, $\nu_d = 22.7$. Glass: S-NPH5 (OHARA) — ultra-high-dispersion flint. $f = +24.6\;\text{mm}$.
 
-L5 is the positive element of the inner-focus cemented doublet G2. Its biconvex form (R1 = +154.18, R2 = −24.27) places most of the converging power on the strongly curved rear surface. S-NPH4 is an extraordinary glass choice for a positive element: with $\nu_d = 22.7$, it is among the most dispersive glasses in the OHARA catalog, and its refractive index of 1.859 enables strong curvature power with physically reasonable radii.
+L5 is the positive element of the inner-focus cemented doublet G2. Its biconvex form (R1 = +154.18, R2 = −24.27) places most of the converging power on the strongly curved rear surface. S-NPH5 is an extraordinary glass choice for a positive element: with $\nu_d = 22.7$, it is among the most dispersive glasses in the OHARA catalog, and its refractive index of 1.859 enables strong curvature power with physically reasonable radii.
 
 The rationale for this counter-intuitive glass selection is explained by patent conditions (1) and (2). Condition (1) requires $15 < \nu_{d,\text{G2p}} < 27$: the positive focus element *must* be highly dispersive. Condition (2) requires the Abbe-number difference between G2's negative and positive elements to fall in the range $7.5 < \nu_{d,\text{G2n}} - \nu_{d,\text{G2p}} < 16$. Together, these conditions mean G2 is a "reverse" achromatic pair where the positive element has *lower* Abbe number than the negative. This reverse-dispersion architecture suppresses chromatic focus shift — as G2 moves during focusing, it introduces approximately equal but opposite colour contributions from L5 and L6, keeping the axial colour balance stable across the focus range. The patent text (¶0118–0121) explicitly states that violating these bounds makes it difficult to correct both axial and lateral colour while maintaining stable chromatic performance across focus distances.
 
@@ -124,7 +124,7 @@ S-TIH53 ($\nu_d = 23.8$) is a high-dispersion dense flint — the same glass fam
 
 $n_d = 1.68863$, $\nu_d = 31.2$. Glass: HOYA E-FD8 catalog equivalent; the production supplier is unspecified. $f = −36.3\;\text{mm}$.
 
-L9 is the "specially made large-diameter aspherical element" described by Hasselblad. Both surfaces are aspherical. It is the rearmost glass element, positioned 12.31 mm after L8 and 10.68 mm (plus cover glass) before the image plane — deep in the diverging beam where field-angle-dependent aberrations (field curvature, astigmatism, distortion) are most pronounced and most accessible to aspherical correction.
+L9 is the "specially made large-diameter aspherical element" described by Hasselblad. Both surfaces are aspherical. It is the rearmost glass element, positioned 12.31 mm after L8 and 10.68 mm of air ahead of the cover plate P, which sits just before the image plane — deep in the diverging beam where field-angle-dependent aberrations (field curvature, astigmatism, distortion) are most pronounced and most accessible to aspherical correction.
 
 The meniscus form (R1 = −16.52, R2 = −51.60) is convex toward the image, consistent with the patent's description (¶0034). The negative focal length ($f = −36.3\;\text{mm}$) satisfies condition (7): $f_\text{G3n}/f = -36.3/71.28 = -0.509$, within the required range $-1.2 < f_\text{G3n}/f < -0.2$.
 
@@ -140,13 +140,13 @@ The meniscus form (R1 = −16.52, R2 = −51.60) is convex toward the image, con
 | L2 | 1.49700 | 81.6 | S-FPL51 | OHARA | **ED fluorophosphate** — primary chromatic corrector |
 | L3 | 1.77047 | 29.7 | HOYA NBFD29 | Hoya | Dense flint, achromatising partner to L2 |
 | L4 | 1.77047 | 29.7 | HOYA NBFD29 | Hoya | Dense flint, positive pre-stop converger |
-| L5 | 1.85896 | 22.7 | S-NPH4 | OHARA | Ultra-high-dispersion flint, focus group positive |
+| L5 | 1.85896 | 22.7 | S-NPH5 | OHARA | Ultra-high-dispersion flint, focus group positive |
 | L6 | 1.91082 | 35.2 | HOYA TAFD35 | Hoya | Ultra-high-index glass, focus group negative |
 | L7 | 1.69680 | 55.5 | S-LAL14 | OHARA | Lanthanum crown, relay positive |
 | L8 | 1.84666 | 23.8 | S-TIH53 | OHARA | Dense flint, relay achromatiser |
 | L9 | 1.68863 | 31.2 | E-FD8 catalog equivalent | Supplier not identified | Double-aspherical field flattener |
 
-The glass palette divides naturally into three functional tiers. In G1, the ED crown S-FPL51 paired with HOYA NBFD29 provides primary chromatic and secondary-spectrum correction. In G2, the reverse-dispersion pair (ultra-high-dispersion S-NPH4 positive + HOYA TAFD35 negative) ensures chromatically stable inner focusing. In G3, the conventional S-LAL14/S-TIH53 achromatic pair handles relay colour correction, while the coefficient-backed E-FD8 equivalent models the double-aspherical field flattener.
+The glass palette divides naturally into three functional tiers. In G1, the ED crown S-FPL51 paired with HOYA NBFD29 provides primary chromatic and secondary-spectrum correction. In G2, the reverse-dispersion pair (ultra-high-dispersion S-NPH5 positive + HOYA TAFD35 negative) ensures chromatically stable inner focusing. In G3, the conventional S-LAL14/S-TIH53 achromatic pair handles relay colour correction, while the coefficient-backed E-FD8 equivalent models the double-aspherical field flattener.
 
 Five of the nine elements use compatible OHARA catalog curves, while the remaining catalog-equivalent curves come from HOYA; those names describe optical equivalents rather than confirmed production suppliers. The three cemented interfaces (L2–L3, L5–L6, L7–L8) are modelled in the patent as thin layers with $n_d = 1.56732$, $\nu_d = 42.8$, and $d = 0.01\;\text{mm}$, consistent with a UV-cure optical adhesive (¶0022, ¶0025, ¶0028).
 

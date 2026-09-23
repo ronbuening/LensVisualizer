@@ -48,7 +48,7 @@ The verified zoom motion reproduces the patent’s stated relationships. From wi
 
 “Telephoto” is retained here only as the patent’s long-zoom state label. Under the project’s architectural terminology, the design is not classified as telephoto because normalized active track divided by EFL remains greater than 1 at all three published states. It is likewise not labeled retrofocus. The safer architectural description is therefore the verified five-group +−+++ standard zoom rather than a historical prime-lens family label.
 
-The optional parallel plate PP drawn between G5 and image plane Sim is not retained as a lens element. Patent ¶0058 and ¶0096 describe PP as a camera-dependent cover glass, prism, or filter equivalent. The model replaces the source path of 11.83 mm air + 2.85 mm at n = 1.51680 + 2.42 mm air with 16.1289556962 mm of air-equivalent rear spacing from surface 25 to the image plane, preserving reduced-angle propagation. This is a modeling normalization, not a claim that the source drawing lacks PP.
+The optional parallel plate PP drawn between G5 and image plane Sim is not a lens element. Patent ¶0058 and ¶0096 describe PP as a camera-dependent cover glass, prism, or filter equivalent. The model keeps the source path physically: surface 25 stores the printed 11.83 mm air gap, and PP (2.85 mm, nd = 1.51680, νd = 64.20, N-BK7 class) plus the 2.42 mm air gap to the image plane are carried in `rearPlates`. Every analysis traces through the plate, but it is not drawn in the cross-section. Its paraxial air equivalent is 11.83 + 2.85/1.51680 + 2.42 = 16.1289556962 mm from surface 25, and the physical track is 0.971 mm longer than that air-equivalent path.
 
 ## Element-by-Element Analysis
 
@@ -136,7 +136,7 @@ L43 is the positive rear member of the G4-2 focusing doublet. The cemented pair 
 
 nd = 1.76200, νd = 40.10. Glass: S-LAM55 (OHARA). f = +61.643 mm.
 
-L51 is the single positive element of G5. The patent states in ¶0057 and ¶0061 that G5 remains fixed during zoom; the verified zoom reconstruction uses G5 as the axial reference. Its isolated focal length is +61.643 mm. The optional camera-side plate PP shown behind G5 in Fig. 1 is not part of this element and is omitted from the active LensVisualizer prescription.
+L51 is the single positive element of G5. The patent states in ¶0057 and ¶0061 that G5 remains fixed during zoom; the verified zoom reconstruction uses G5 as the axial reference. Its isolated focal length is +61.643 mm. The optional camera-side plate PP shown behind G5 in Fig. 1 is not part of this element; it is modeled separately in `rearPlates` (traced, not drawn).
 
 ## Glass Identification and Selection
 
@@ -295,13 +295,13 @@ Conditions (1) and (2) are also satisfied directly by the G3-2 glass coordinates
 
 The final `.data.ts` was loaded by the Stage 2/3 verifier rather than by a separate hard-coded copy. A TypeScript-aware loader was used when available, with a strict literal-parser fallback; deliberately mutated duplicate-key and arithmetic-expression inputs are rejected. The implemented prescription reproduces the source first-order quantities as follows:
 
-| State | Patent f (mm) | Computed EFL (mm) | Residual (mm) | Computed BFD from S25 (mm) |
+| State | Patent f (mm) | Computed EFL (mm) | Residual (mm) | Computed air-equivalent BFD from S25 (mm) |
 |---|---:|---:|---:|---:|
 | Wide | 18.56 | 18.560557954 | +0.000557954 | 16.125170710 |
 | Middle | 31.50 | 31.495448834 | -0.004551166 | 16.118578637 |
 | Telephoto label | 53.46 | 53.467893963 | +0.007893963 | 16.129473668 |
 
-The normalized air-equivalent rear reference is 16.1289556962 mm from surface 25. The BFD values above differ from that reference by −0.003785 mm, −0.010377 mm, and +0.000518 mm at wide, middle, and long state respectively, all inside the ±0.02 mm source-precision-aware check. The ABCD and independently coded sequential y–ν matrices agree to within 2.2×10⁻14 in the worst published state.
+The air-equivalent rear reference is 16.1289556962 mm from surface 25 (11.83 mm air + 2.85/1.51680 mm through PP + 2.42 mm air). The BFD values above differ from that reference by −0.003785 mm, −0.010377 mm, and +0.000518 mm at wide, middle, and long state respectively, all inside the ±0.02 mm source-precision-aware check. The ABCD and independently coded sequential y–ν matrices agree to within 2.2×10⁻14 in the worst published state.
 
 The surface-by-surface Petzval sum, using φ/(n·n′) for every active refracting surface, is 0.002557019824249 mm⁻¹, corresponding to a reciprocal scale of 391.080269 mm. This is a first-order field-curvature quantity, not a claim about the final image surface after higher-order aberration correction.
 

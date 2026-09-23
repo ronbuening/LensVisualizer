@@ -47,15 +47,19 @@ correction (¶0051–¶0053). The aspheric elements are likewise split between t
 rear group: L12 is associated with distortion control in G1, while L34 is positioned toward the rear to address
 astigmatism and field curvature (¶0054, ¶0062–¶0063).
 
-Under the project's classification rules, the system is neither telephoto nor retrofocus: the normalized
-first-vertex-to-image track divided by EFL is 4.911746939, while BFD/EFL is 0.919746858 and BFD is shorter than EFL.
+Under the project's classification rules, the system is neither telephoto nor retrofocus: the air-equivalent
+first-vertex-to-image track divided by EFL is 4.911746939 (4.977693290 for the physical track, which includes the
+2.80 mm PP), while the air-equivalent BFD/EFL is 0.919746858 and BFD is shorter than EFL.
 Accordingly, “negative-leading wide-angle” is the more precise architectural description here.
 
 The patent includes an optional plane-parallel member PP near the image plane to represent cover/filter glass
-(¶0045). That plate is not part of the modeled lens. Source surfaces 19–20 are omitted. The modeled surface-18 rear
-spacing is the Gaussian air BFD of the rounded active prescription, 13.305455901 mm. Directly air-converting the
-published 11.46 mm air gap plus the 2.80 mm PP at nd = 1.51680 gives 13.305991561 mm; the 0.000535661 mm difference is
-below the precision of the rounded source table. The final active lens surface is source surface 18.
+(¶0045). Source surfaces 19–20 (PP: 2.80 mm, nd = 1.51680, νd = 64.2, with no air printed after it) are modeled in the
+data file's `rearPlates` field as an N-BK7-compatible plate lying on the image plane: every analysis traces through it,
+but it is not drawn as a lens element. The file keeps its image plane at the Gaussian air BFD of the rounded active
+prescription, 13.305455901 mm, so the stored physical surface-18 gap before PP is 13.305455901 − 2.80/1.51680 =
+11.459464339 mm against the printed 11.46 mm; the 0.000535661 mm difference is below the precision of the rounded
+source table. The physical track is therefore 0.954008439 mm (= 2.80 × (1 − 1/1.51680)) longer than the air-equivalent
+track. The final active lens surface is source surface 18.
 
 ## Element-by-Element Analysis
 
@@ -201,9 +205,10 @@ while G1, G2, the stop, and the image plane remain fixed. The code-solved travel
 | Spacing | Infinity | Reconstructed 0.18 m | Change |
 |---|---:|---:|---:|
 | STO → G3 front | 4.000000000 mm | 2.219579748 mm | -1.780420252 mm |
-| Rear surface 18 → image plane | 13.305455901 mm | 15.085876153 mm | +1.780420252 mm |
+| Rear surface 18 → PP (physical) | 11.459464339 mm | 13.239884592 mm | +1.780420252 mm |
 
-The sum of those two spaces is conserved, so the image plane remains fixed while G3 translates. Independent paraxial
+The sum of those two spaces is conserved, so the image plane remains fixed while G3 translates; the PP and its zero
+trailing gap are unchanged. In air-equivalent terms the rear back focus runs 13.305455901 → 15.085876153 mm. Independent paraxial
 tracing of the reconstructed state gives |m| = 0.122940114, close to FUJIFILM's rounded 0.12× specification. This
 agreement is a validation of the constrained reconstruction, not evidence that FUJIFILM published these exact internal
 spacings or this exact travel.
@@ -296,9 +301,9 @@ source radius, thickness, or index.
 ## Verification Summary
 
 Independent sequential y–ν tracing and an ABCD-matrix calculation agree exactly at the script's floating-point
-cross-check. From the final TypeScript arrays, the infinity model gives EFL = 14.466432571 mm and air BFD =
-13.305455901 mm. The patent's corresponding rounded values are 14.47 mm and 13.30 mm. Direct conversion of the rounded
-PP row gives 13.305991561 mm, differing from the focus-normalized model gap by only 0.000535661 mm. The image-height/EFL
+cross-check. From the final TypeScript arrays, the infinity model gives EFL = 14.466432571 mm and air-equivalent BFD =
+13.305455901 mm (11.459464339 mm physical air plus the 2.80 mm PP at nd = 1.51680). The patent's corresponding rounded values are 14.47 mm and 13.30 mm. Direct conversion of the rounded
+PP row gives 13.305991561 mm, differing from the model's air-equivalent back focus by only 0.000535661 mm. The image-height/EFL
 check gives a full paraxial field of 88.934990°, consistent with the patent's 89.0° value.
 
 The surface-by-surface Petzval sum, using φ/(n·n′), is +0.009445565781 mm⁻¹. This scalar sign and magnitude are reported
@@ -316,8 +321,8 @@ attributed to the patent or manufacturer.
 
 No patent numerical correction was required. Radius signs, d-line indices, Abbe numbers, thicknesses, and A3–A20
 coefficients remain as published after reading the rendered Example 1 tables. The only transformations are explicit
-modeling conventions: source PP is omitted with the rear air spacing set to the Gaussian BFD of the rounded active
-prescription, the patent's source-convention K is converted to project K, close focus is a constrained reconstruction,
+modeling conventions: source PP is modeled in `rearPlates` with the rear air spacing set so the air-equivalent back focus equals the
+Gaussian BFD of the rounded active prescription, the patent's source-convention K is converted to project K, close focus is a constrained reconstruction,
 and semi-diameters are inferred. No scale transformation is
 applied, so the aspheric coefficients retain their native Example 1 magnitudes.
 

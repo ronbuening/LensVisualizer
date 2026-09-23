@@ -21,7 +21,7 @@ The identification of Example 1 as the production Fujinon GF120mmF4 R LM OIS WR 
 
 5. **Angle of view.** The patent states 2ω = 26.4° at infinity; the manufacturer lists 25.7°. The small difference is within the range of nominal rounding and field-angle definition differences (geometric vs. vignetted).
 
-6. **Macro capability with 0.5× magnification.** The patent's close-focus state is labeled "MOD" (minimum object distance) and the figures show β = −0.5×, matching the manufacturer's maximum magnification of 0.5×. The patent lists a close-focus distance of 0.28075 m from the front vertex; the total optical path from front vertex to image plane is approximately 173 mm, so the predicted sensor-to-subject distance is 280.8 + 173.0 ≈ 454 mm, consistent with the manufacturer's 0.45 m MFD.
+6. **Macro capability with 0.5× magnification.** The patent's close-focus state is labeled "MOD" (minimum object distance) and the figures show β = −0.5×, matching the manufacturer's maximum magnification of 0.5×. The patent lists a close-focus distance of 0.28075 m from the front vertex; the physical length from front vertex to image plane (cover glass included) is approximately 173 mm, so the predicted sensor-to-subject distance is 280.8 + 173.0 ≈ 454 mm, consistent with the manufacturer's 0.45 m MFD.
 
 7. **OIS (camera shake correction).** The patent specifies that the third lens group G3 moves perpendicular to the optical axis for image stabilization, consistent with Fujifilm's 5-stop OIS specification.
 
@@ -41,7 +41,7 @@ The GF120mm f/4 Macro is a five-group macro design with a positive-negative-posi
 | G4 (focus group B) | L41, L42+L43 (3 elements, 2 components) | Positive (f₄ = +90.6 mm) | Inner focus group; moves 12.45 mm toward object at close focus |
 | G5 (rear) | L51+L52 (2 elements, 1 cemented component) | Negative (f₅ = −67.2 mm) | Field flattener and telecentricity corrector |
 
-An aperture stop (St) is positioned in the air space between G2 and G3. The overall topology — positive front group, negative diverging group, positive relay, positive focus group, and a strongly negative rear group — is a configuration the patent describes as suitable for mirrorless cameras with short back focuses (¶0069). The total track from front vertex to image plane is 173.0 mm (including the cover glass optical path), which exceeds the 116.4 mm EFL (telephoto ratio ≈ 1.49), so this is not a telephoto design in the classical sense; rather, the negative rear group (G5) serves primarily to bend the exit pupil rearward, achieving adequate telecentricity for the GFX sensor's microlens array while maintaining a back focal distance of approximately 36.7 mm (optical, before cover glass).
+An aperture stop (St) is positioned in the air space between G2 and G3. The overall topology — positive front group, negative diverging group, positive relay, positive focus group, and a strongly negative rear group — is a configuration the patent describes as suitable for mirrorless cameras with short back focuses (¶0069). The physical total track from front vertex to image plane is 173.0 mm (including the 3.2 mm cover glass; 171.9 mm air-equivalent), which exceeds the 116.4 mm EFL (telephoto ratio ≈ 1.49), so this is not a telephoto design in the classical sense; rather, the negative rear group (G5) serves primarily to bend the exit pupil rearward, achieving adequate telecentricity for the GFX sensor's microlens array while maintaining a back focal distance of approximately 36.7 mm (physical gap to the cover glass; 39.9 mm air-equivalent).
 
 The total track is conserved during focusing to within rounding tolerance (< 0.001 mm), confirming that the lens maintains constant overall length during focus — a desirable property for macro lenses where extension would alter working distance.
 
@@ -137,7 +137,7 @@ G5 is a powerfully negative rear group positioned after a large air space from G
 
 The conditional expression (6) requires 30 < νd5p < 45 for the positive element; S-LAH60V at νd = 37.16 satisfies this, and the patent explains at ¶0106 that this constraint corrects secondary lateral chromatic aberration. The pairing of two high-index glasses (nd > 1.8 for both) allows G5 to achieve its strong negative power (f/f5 = −1.73) without excessive surface curvatures, which would otherwise introduce coma and astigmatism at the large beam heights present at this rear position.
 
-The flat rear surface of L52 (R = ∞) simplifies manufacture and mounting, and forms the last optical surface before the back focal distance and cover glass assembly.
+The flat rear surface of L52 (R = ∞) simplifies manufacture and mounting, and forms the last optical surface before the back focal distance and cover glass assembly. The patent's cover glass (optical member PP, 3.200 mm, nd 1.51680, νd 64.20, then 1.022 mm to the image plane) is modeled in `rearPlates`: traced by every analysis but not drawn.
 
 ## Glass Identification and Selection
 

@@ -100,3 +100,15 @@ the full-field f/2.48 bundle needs 16.5 mm at S1. L14 and L15–L17 are within a
   model of L15 uses the listed Abbe number.
 - L14 (667311) and L17 (803404) have no catalog match and use Abbe-number fallback dispersion.
 - Rims are figure- and trace-derived; the patent gives no effective diameters.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Read Example 1 Table 1 on PDF page 23 from the rendered page: surface 19 d = 18.46; surfaces 20–21 are one plate
+  (the optical member GC of paragraph [0050]), 2.85 mm, nd 1.51680, νd 64.2. The table prints no distance after
+  surface 21, so the trailing gap is derived, not printed: 20.34 − 18.46 − 2.85/1.51680 = 0.001 mm (image on the GC
+  rear face, as the earlier paraxial check found).
+- Surface 19 now stores 18.46 mm, with `rearPlates` GC labelled N-BK7 (1.51680 / 64.17 resolves as compatible;
+  S-BSL7 is 1.51633). Paraxial check against the previous data: EFL identical at all three focus keyframes; defocus
+  changes by 0.00004 mm (rounding of the derived trailing gap). Physical track grows by 0.971 mm.
+- `closeFocusM` 0.267 is the production MFD and was left alone. The stored keyframe coordinate still uses the legacy
+  air-equivalent object-to-image distance (the physical −0.5× distance is 267.5 mm).

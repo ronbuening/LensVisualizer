@@ -17,7 +17,7 @@ The first embodiment remains the closest patent match for the production **Canon
 
 The special-element evidence also matches. Canon's product literature states that the production lens uses **two aspherical elements** and **one UD element**. Numerical Example 1 contains three aspherical surfaces, but they are on two physical elements: surface 2 on element 101, and surfaces 17 and 18 on element 108. Element 107 has `nd = 1.49700, νd = 81.5`, matching an OHARA S-FPL51-class fluorophosphate ED/UD glass. The match is therefore not based only on focal length; it also reproduces the production special-element count and the two-mode macro focus architecture.
 
-Two caveats are important. First, the patent's second focusing mode begins in the numerical table at a low-magnification finite state (`β = 0.02×`), while Canon's public user-facing Super Macro range is described differently in product literature. That difference does not invalidate the match; it indicates that the patent's optical example describes the two-mode architecture and limiting states rather than every retail mechanical stop or firmware restriction. Second, the patent table includes a 1.00 mm plane-parallel `nd = 1.51633` plate after the last powered surface. It is optically real in the patent trace, but it is outside the named L1/L2 lens units. Following project convention, the `.data.ts` file excludes that cover/window plate from the element and surface arrays and folds its air-equivalent optical path into the final back focal distance.
+Two caveats are important. First, the patent's second focusing mode begins in the numerical table at a low-magnification finite state (`β = 0.02×`), while Canon's public user-facing Super Macro range is described differently in product literature. That difference does not invalidate the match; it indicates that the patent's optical example describes the two-mode architecture and limiting states rather than every retail mechanical stop or firmware restriction. Second, the patent table includes a 1.00 mm plane-parallel `nd = 1.51633` plate after the last powered surface. It is optically real in the patent trace, but it is outside the named L1/L2 lens units. The `.data.ts` file keeps that plate out of the element and surface arrays and models it in `rearPlates`: every analysis traces it, but it is not drawn.
 
 No source located for this review names Canon's actual melt suppliers. The glass names below are therefore **catalog-equivalent identifications from optical constants**, not procurement claims. The OHARA names are used because the constants match OHARA catalog coordinates exactly or to ordinary patent rounding.
 
@@ -116,7 +116,7 @@ The high dispersion is deliberate. A moving single negative focus element would 
 
 Element 109b is the negative rear member of L2. Together with 109a it forms the moving focusing lens unit. The patent explicitly describes L2 as a cemented lens made of a positive lens and a negative lens in that order from object side to image side, reducing chromatic variation during focusing while keeping the focus unit lightweight.
 
-Surface 22 is the last powered surface. The patent gives `d22 = 29.28 mm` at infinity, followed by a 1.00 mm plane-parallel plate (`nd = 1.51633`) and 12.28 mm of final air. The air-equivalent distance is therefore `29.28 + 1/1.51633 + 12.28 = 42.219 mm`, which is the final BFD used in the data file.
+Surface 22 is the last powered surface. The patent gives `d22 = 29.28 mm` at infinity, followed by a 1.00 mm plane-parallel plate (`nd = 1.51633`) and 12.28 mm of final air. The air-equivalent distance is therefore `29.28 + 1/1.51633 + 12.28 = 42.219 mm`, the paraxial equivalent of the stored stack: the data file keeps the physical `d22 = 29.28 mm` on surface 22 and carries the plate and the 12.28 mm final air in `rearPlates`.
 
 ### Plane-parallel plate in the patent table
 
@@ -124,7 +124,7 @@ Surface 22 is the last powered surface. The patent gives `d22 = 29.28 mm` at inf
 
 Patent surfaces 23 and 24 form a 1.00 mm plane-parallel plate. It contributes no optical power but changes the back-focus accounting. Read literally, it also explains how the patent prescription can be compared to Canon's 11-element / 10-group public construction.
 
-The delivered `.data.ts` file does **not** list this plate as an element. This is a project-convention choice: image-side cover/window plates are excluded from the surface array and their air-equivalent optical path is folded into the final surface distance.
+The delivered `.data.ts` file does **not** list this plate as an element. It is modeled in `rearPlates` with the patent's thickness, index, Abbe number, and 12.28 mm gap to the image: every analysis traces it, but it is not drawn. Surface 22 keeps the patent's physical gap to the plate, so the physical track now includes the plate (0.34 mm longer than the former air-equivalent fold).
 
 ## Glass Identification and Selection
 
@@ -142,7 +142,7 @@ The glass identifications below are catalog-equivalent matches. They should not 
 | 108 | 1.58313 / 59.5 | S-BAL42 (OHARA) | Double-sided asphere near rear of L1 |
 | 109a | 1.95906 / 17.5 | S-NPH3 (OHARA) | Positive high-dispersion member of moving L2 doublet |
 | 109b | 1.83481 / 42.7 | S-LAH55V (OHARA) | Negative member of moving L2 doublet |
-| Plate | 1.51633 / 64.1 | S-BSL7 / BK7-class | Plane-parallel cover/window plate; folded into BFD in data file |
+| Plate | 1.51633 / 64.1 | S-BSL7 / BK7-class | Plane-parallel cover/window plate; modeled in `rearPlates` (traced, not drawn) |
 
 The chromatic strategy is compact rather than exotic. The design uses one very low-dispersion positive element, multiple dense negative flints in L1, and a cemented positive/negative moving focus doublet so that focusing does not introduce excessive chromatic variation.
 
@@ -157,7 +157,7 @@ The focusing unit is **L2**, the cemented doublet formed by elements 109a and 10
 | Second mode, second finite | 0.02× | 0.94 mm | 29.87 mm | 42.809 mm | Mode-change state after objectward shift |
 | Second mode, third finite | 1.2× | 10.32 mm | 20.49 mm | 33.429 mm | L2 moves imageward by 9.38 mm within second mode |
 
-The `.data.ts` focus slider can only represent one pair of endpoint states. It therefore uses the first-mode infinity state and the third finite 1.2× state. The resulting variable gaps are `FC: 0.94 → 10.32 mm` and final folded `BF: 42.219 → 33.429 mm`. This preserves the patent's extreme optical states but should not be interpreted as a full simulation of the lens's two user-selectable focus modes.
+The `.data.ts` focus slider can only represent one pair of endpoint states. It therefore uses the first-mode infinity state and the third finite 1.2× state. The resulting variable gaps are `FC: 0.94 → 10.32 mm` and `d22: 29.28 → 20.49 mm` ahead of the plate, with the 12.28 mm final air fixed (air-equivalent BF `42.219 → 33.429 mm`). This preserves the patent's extreme optical states but should not be interpreted as a full simulation of the lens's two user-selectable focus modes.
 
 Canon's product specifications identify the actuator as STM. The optical patent does not specify the electromechanical implementation.
 
@@ -203,7 +203,7 @@ Element 108 remains the best inferred candidate because it is aspherical, close 
 
 ## Data File Interpretation
 
-The delivered data file transcribes surfaces 1–22 plus the two flat stop planes FP and FC. The patent's plane-parallel plate at surfaces 23–24 is excluded from the element list and folded into the final BFD. Consequently, the data file has **10 powered glass elements in 9 powered groups**, while the production literature's **11/10** construction can be understood as including the flat plate when the patent is mapped literally.
+The delivered data file transcribes surfaces 1–22 plus the two flat stop planes FP and FC. The patent's plane-parallel plate at surfaces 23–24 is kept out of the element list and modeled in `rearPlates` (traced, not drawn). Consequently, the data file has **10 powered glass elements in 9 powered groups**, while the production literature's **11/10** construction can be understood as including the flat plate when the patent is mapped literally.
 
 Semi-diameters are not patent-published. The chosen values were generated from a paraxial marginal/chief-ray envelope and then reduced where necessary to keep `sd/|R| < 0.90`, element front/rear semi-diameter ratios at or below 1.25, edge thickness above 0.35 mm, and cross-gap sag intrusion within 90% of the corresponding air gap. The most restrictive gaps are the front asphere-to-element-102 gap and the element-105-to-element-106 air gap.
 
@@ -220,8 +220,8 @@ The prescription was re-entered and checked with a paraxial reduced-angle ray tr
 | Third finite EFL | 16.95 mm | 16.959 mm | Rounded-table agreement |
 | L1 focal length | 12.30 mm | 12.305 mm | Matches |
 | L2 focal length | −33.23 mm | −33.224 mm | Matches |
-| Folded infinity BF | 42.22 mm | 29.28 + 1/1.51633 + 12.28 = 42.219 mm | Matches |
-| Folded third finite BF | 33.44 mm | 20.49 + 1/1.51633 + 12.28 = 33.429 mm | Rounded-table agreement |
+| Air-equivalent infinity BF | 42.22 mm | 29.28 + 1/1.51633 + 12.28 = 42.219 mm | Matches |
+| Air-equivalent third finite BF | 33.44 mm | 20.49 + 1/1.51633 + 12.28 = 33.429 mm | Rounded-table agreement |
 | First-mode L2 travel | 7.81 mm | 8.75 − 0.94 = 7.81 mm | Matches |
 | Second-mode L2 travel | 9.38 mm | 10.32 − 0.94 = 9.38 mm | Matches |
 | BFD/EFL at infinity | 1.52 | 42.22 / 27.74 = 1.522 | Matches patent conditional table |

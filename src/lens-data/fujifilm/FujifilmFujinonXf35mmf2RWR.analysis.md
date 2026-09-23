@@ -38,7 +38,7 @@ G2 is the single biconcave element L21. Its standalone focal length is −24.368
 
 G3 contains five elements. L31 is a positive biconvex element with two aspherical surfaces. It is followed by the cemented positive-negative-positive triplet L32/L33/L34, whose independently computed net focal length is +34.398 mm, and finally by the negative meniscus L35 with two aspherical surfaces. The patent assigns general correction functions to the rear negative lens and the aspherical surfaces, including control of astigmatism, distortion, and field-related behavior (¶0068–¶0069); those statements are patent design rationale and are not treated here as isolated measured contributions from individual surfaces.
 
-The first-to-last lens-surface track is 45.999 mm. After converting the omitted rear plate to an air-equivalent path, the source-image-plane total length is 58.470956 mm, giving TL/EFL = 1.65518. This satisfies the patent's own definition of a compact lens, TL/f < 1.7 (¶0085), but it is not a telephoto design under the LensVisualizer project criterion TL/EFL < 1. The paraxial back focal distance from surface 16 to focus is 12.476042 mm, also well below the EFL, so the model is not classified as retrofocus under the project criterion BFD > EFL.
+The first-to-last lens-surface track is 45.999 mm. With the rear plate PP counted as its air-equivalent path, the source-image-plane total length is 58.470956 mm, giving TL/EFL = 1.65518; the physical path through the plate is 59.442 mm. This satisfies the patent's own definition of a compact lens, TL/f < 1.7 (¶0085), but it is not a telephoto design under the LensVisualizer project criterion TL/EFL < 1. The air-equivalent paraxial back focal distance from surface 16 to focus is 12.476042 mm, also well below the EFL, so the model is not classified as retrofocus under the project criterion BFD > EFL.
 
 ## Element-by-Element Analysis
 
@@ -200,18 +200,19 @@ The final model was recomputed from the literal contents of `FujifilmFujinonXf35
 |---|---:|---|
 | EFL | 35.326014 mm | d-line, infinity state, active surfaces 1–16 |
 | Patent EFL | 35.328 mm | Table 1 published value |
-| Paraxial BFD | 12.476042 mm | surface 16 to paraxial focus in air |
-| Air-equivalent rear spacing to source Sim | 12.471956 mm | used after omission of optional PP |
+| Paraxial BFD | 12.476042 mm | surface 16 to paraxial focus, air-equivalent through PP |
+| Air-equivalent rear spacing to source Sim | 12.471956 mm | paraxial equivalent of 8.806 + PP 2.850 + 1.787 |
 | Air-converted total length | 58.470956 mm | first lens surface to source Sim |
+| Physical total length | 59.442 mm | includes the 2.850 mm PP glass path |
 | TL/EFL | 1.655181 | compact under patent's <1.7 criterion |
 | Petzval sum | +0.004610411 mm⁻¹ | surface-by-surface $\phi/(n n')$ |
 | Reciprocal Petzval value | 216.900382 mm | reciprocal of the signed sum |
 
-The optional plane-parallel member PP at patent surfaces 17–18 is not included in the active model, consistent with ¶0057 and the project rule excluding sensor-side cover/filter plates. Its effect on the source image-plane reference is retained by replacing the rear path with the air-equivalent spacing
+The plane-parallel optical member PP at patent surfaces 17–18 (2.850 mm, nd 1.51680, νd 64.20; ¶0057 notes it may be omitted or placed elsewhere) is modeled in `rearPlates`: surface 16 keeps the patent's 8.806 mm gap, and the plate is followed by the printed 1.787 mm to Sim. Every analysis traces the plate, but it is not drawn. Its paraxial equivalent is the air spacing
 
 $8.806 + 2.850/1.51680 + 1.787 = 12.4719556962\ \mathrm{mm}$.
 
-ABCD propagation shows that this normalized air path is equivalent to the raw plate branch to floating-point precision for the paraxial matrix. The authored source-Sim plane lies about 0.00409 mm short of the exact paraxial focus, a small residual consistent with the rounded source prescription.
+The source-Sim plane lies about 0.00409 mm short of the exact paraxial focus, a small residual consistent with the rounded source prescription.
 
 The patent publishes the stop location but not its physical diameter. The model therefore calibrates `STO` semi-diameter to 6.07833 mm so that the final parsed system reproduces the published design F No. 2.09. The resulting modeled f-number is 2.090000. This is a calibration target, not independent evidence for the physical production diaphragm diameter.
 

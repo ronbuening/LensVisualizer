@@ -46,7 +46,7 @@ The lens is a modified double-Gauss type consisting of a positive front group (G
 | *— Triplet alone* | *L22+L23+L24* | *+19.4 mm* | *Positive cemented triplet* |
 | **System** | **8 elements** | **36.17 mm** | **EFL verified via ABCD paraxial trace** |
 
-The front group is weakly positive (f ≈ 183 mm), while the rear group carries the majority of the optical power (f ≈ 24 mm). This asymmetric power distribution departs from a classical double-Gauss, where the front and rear groups share power more equally. The concentration of power in the rear group, behind the aperture stop, contributes to the lens's compact form factor: the back focal distance of 21.98 mm is only 0.61× the system focal length, with the image plane sitting closer to the lens than the focal length would suggest if the principal planes were at the lens center.
+The front group is weakly positive (f ≈ 183 mm), while the rear group carries the majority of the optical power (f ≈ 24 mm). This asymmetric power distribution departs from a classical double-Gauss, where the front and rear groups share power more equally. The concentration of power in the rear group, behind the aperture stop, contributes to the lens's compact form factor: the air-equivalent back focal distance of 21.98 mm is only 0.61× the system focal length, with the image plane sitting closer to the lens than the focal length would suggest if the principal planes were at the lens center.
 
 ### Petzval Sum and Field Curvature
 
@@ -195,14 +195,14 @@ The XF35mmF1.4 R uses **unit focusing** — the entire optical assembly moves fo
 
 Unit focusing preserves the inter-element spacings, so aberration correction remains consistent across the focus range. The trade-off is that the lens must physically extend, and the focus motor must move the entire 8-element assembly. This contributes to the lens's relatively slow autofocus compared to inner-focus designs (a well-known characteristic of this lens).
 
-For the variable gap in the data file, only the back focal distance (the gap after S15) changes:
+For the variable gap in the data file, only the gap after S15 changes. The data file stores the physical air gap from S15 to the parallel plate PP; the air-equivalent back focus adds the plate's 2.80/1.5168 mm and the 3.134 mm behind it:
 
-| Focus position | BFD (S15 to image) | Extension |
-|----------------|-------------------|-----------|
-| Infinity | 21.98 mm | 0.00 mm |
-| 0.28 m (close focus, calculated) | 28.02 mm | 6.04 mm |
+| Focus position | S15 to PP (stored) | Air-equivalent BFD | Extension |
+|----------------|--------------------|--------------------|-----------|
+| Infinity | 17.00 mm | 21.98 mm | 0.00 mm |
+| 0.28 m (close focus, calculated) | 23.04 mm | 28.02 mm | 6.04 mm |
 
-The patent tabulates only the infinity state, so the close-focus row is calculated, not published. A paraxial trace of the Example 1 prescription needs 6.04 mm of unit extension to focus an object 280 mm from the image plane (the production minimum focus distance). The resulting magnification, −0.167×, agrees with Fujifilm's published 0.17× maximum magnification.
+The patent tabulates only the infinity state, so the close-focus row is calculated, not published. A paraxial trace of the Example 1 prescription needs 6.04 mm of unit extension to focus an object 280 mm from the image plane (the production minimum focus distance), counting the plate at its air-equivalent t/n; with the plate at its physical 2.80 mm the object-to-image distance is about 281.2 mm. The resulting magnification, −0.167×, agrees with Fujifilm's published 0.17× maximum magnification.
 
 ---
 
@@ -280,7 +280,7 @@ At the selected semi-diameters, the exact profiles depart from their paraxial sp
 
 Table 1 continues past the last lens surface with D15 = 17.00 mm of air and then a parallel plate PP (S16–S17: R = ∞, d = 2.80 mm, nd = 1.51680, νd = 64.2), representing the sensor cover glass and filters. Table 7 gives BF = 21.98 mm, which is the air-equivalent back focus: 17.00 + 2.80/1.5168 = 18.85 mm, leaving 3.13 mm of air between the plate and the image. The physical distance from S15 to the image is therefore about 22.93 mm.
 
-Following the data-file convention, the plate is excluded and the last gap stores the air-equivalent 21.98 mm. A paraxial trace without the plate gives BFD = 21.978 mm, so the stored image plane is in focus.
+The data file models PP in `rearPlates`: S15 stores the physical 17.00 mm, the 2.80 mm plate follows, and a 3.134 mm gap runs to the image. Every analysis traces the plate, but it is not drawn. The patent prints no distance after S17, so that 3.134 mm is derived from Table 7's air-equivalent BF (21.98 − 17.00 − 2.80/1.5168), not printed. The paraxial air-equivalent BFD is 21.978 mm, so the stored image plane is in focus. Modeling the plate physically lengthens the S1-to-image track by 2.80 × (1 − 1/1.5168) ≈ 0.95 mm relative to the air-equivalent value.
 
 ---
 

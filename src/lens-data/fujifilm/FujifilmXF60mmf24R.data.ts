@@ -42,9 +42,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    unmatched so no mismatched catalog row resolves.               ║
  * ║                                                                    ║
  * ║  COVER GLASS:                                                      ║
- * ║    Patent surfaces S20/S21 (parallel plate, d = 2.85 mm,         ║
- * ║    nd = 1.51680/N-BK7) excluded; air-equivalent path folded into ║
- * ║    BFD of last surface (d = 20.34 mm).                            ║
+ * ║    Patent Table 1 surfaces 20–21 (optical member GC, 2.85 mm,     ║
+ * ║    nd 1.51680, νd 64.2) are modeled in `rearPlates` (traced, not  ║
+ * ║    drawn). Surface 19 keeps the patent's 18.46 mm gap to GC. The  ║
+ * ║    patent prints no gap after surface 21; the 0.001 mm stored is  ║
+ * ║    derived (legacy 20.34 − 18.46 − 2.85/1.51680), i.e. the image  ║
+ * ║    sits on GC's rear face as the paraxial trace shows.            ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -227,7 +230,21 @@ const LENS_DATA = {
     { label: "16", R: 28.6691, d: 2.82, nd: 1.51823, elemId: 9, sd: 11.5 }, // L22 front
     { label: "17", R: 77.4943, d: 1.81, nd: 1.0, elemId: 0, sd: 11.5 }, // L22 rear → air
     { label: "18", R: 236.5466, d: 3.0, nd: 1.804, elemId: 10, sd: 12.0 }, // L23 front
-    { label: "19", R: -56.9828, d: 20.34, nd: 1.0, elemId: 0, sd: 12.0 }, // L23 rear → image (BFD, cover glass air-equiv folded)
+    { label: "19", R: -56.9828, d: 18.46, nd: 1.0, elemId: 0, sd: 12.0 }, // L23 rear → cover glass GC (patent d19)
+  ],
+
+  /* ── Cover glass GC (patent Table 1 surfaces 20–21): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "GC",
+      thicknessMm: 2.85,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 0.001,
+      source:
+        "US 2014/0247506 A1, Example 1 Table 1 surfaces 20–21; gap after GC derived, not printed (image on GC rear face)",
+    },
   ],
 
   /* ── Exact Example 1, Table 3 aspherical coefficients ── */
@@ -264,8 +281,9 @@ const LENS_DATA = {
    *  Unit focus: entire G1 translates forward. Only gap D13 changes.
    *  Patent Table 2: D13 = 1.80 (∞) / 10.57 (−0.2×) / 23.73 (−0.5×) mm.
    *  Paraxial check: stored gaps focus at m = −0.200 and −0.500; object-to-
-   *  image distances 436.6 mm and 266.5 mm (air-equivalent). Keyframe
-   *  coordinate = closeFocusM ÷ object-to-image distance.
+   *  image distances 436.6 mm and 266.5 mm air-equivalent (about 437.6 and
+   *  267.5 mm physical with GC). Keyframe coordinate = closeFocusM ÷ the
+   *  air-equivalent object-to-image distance (legacy convention, kept).
    */
   focusPositions: [0, 0.6115561181433857, 1],
   var: {

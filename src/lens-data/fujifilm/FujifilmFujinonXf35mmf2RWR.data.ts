@@ -4,8 +4,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * FUJIFILM FUJINON XF 35mm f/2 R WR — patent-model data.
  * Source: US 2017/0010441 A1, Example 1 (FUJIFILM Corporation; Masato Kondo, Takashi Suzuki).
  * The active prescription is the published infinity-focus state: 9 elements / 6 physical air-separated groups.
- * Patent PP (s17-s18) is omitted as permitted by ¶0057; s16-to-Sim becomes the verified air-equivalent
- * spacing 12.4719556962025 mm. No dimensional scale is applied (s = 1).
+ * Patent plane-parallel optical member PP (Table 1 s17-s18: 2.850 mm, nd 1.51680, νd 64.20, then 1.787 mm
+ * to Sim) is modeled in `rearPlates` (traced, not drawn); s16 keeps the patent's 8.806 mm gap to PP.
+ * No dimensional scale is applied (s = 1).
  *
  * Focus status: NO_INTERNAL_RECONSTRUCTION. The patent identifies L21/G2 as the negative inner-focus group
  * and gives its direction of travel, but publishes no second Example 1 spacing state. The manufacturer 0.35 m
@@ -301,10 +302,23 @@ const LENS_DATA = {
     {
       label: "16A",
       R: -96.37645,
-      d: 12.471955696202532,
+      d: 8.806,
       nd: 1.0,
       elemId: 0,
       sd: 9.7,
+    },
+  ],
+
+  /* ── Optical member PP (patent Table 1 surfaces 17–18): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PP",
+      thicknessMm: 2.85,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 1.787,
+      source: "US 2017/0010441 A1, Example 1 Table 1 surfaces 17–18",
     },
   ],
 
