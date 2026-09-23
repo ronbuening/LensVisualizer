@@ -64,17 +64,17 @@ Paragraph60 defines the two source positions as infinity and0.8m **object-to-ima
 
 Their sums differ by0.001mm, retained as published rounding. D13 is an internal Gr3–Gr4 gap, not back focus; the slider label is corrected. Intermediate states interpolate the published gaps. They are not source-listed positions or a verified motor schedule.
 
-The equivalent-air table gives a paraxial near conjugate of approximately0.802897m and magnification−0.124922. The explicit source0.8m label is retained, with the discrepancy stated in the focus description. The numerical aperture control now uses source f/1.85.
+The rounded prescription gives a paraxial near conjugate of approximately0.802897m and magnification−0.124922. The explicit source0.8m label is retained, with the discrepancy stated in the focus description. The numerical aperture control now uses source f/1.85.
 
 ## Semi-Diameter Estimation Notes
 
 Figure3 on PDF p.20 was rendered at600dpi. Its optical vertex span is97.291mm in the table. Excluding leader lines, movement arrows and the separate PT plate gives inferred rims: L11 28mm, L12 24mm, L13/L14 22mm, Gr2 17.9mm, Gr3 15.4mm, L41/L42 16.4mm, L43/L44 17.9mm and L45 19.2mm. These replace the earlier ray-envelope estimates. They are drawing-derived optical outlines, not patent-listed clear apertures. Surface, image-circle and untrimmed-runtime checks accompany them.
 
-## Source Limitations and Omitted Plate
+## Source Limitations and Rear Plate
 
-PT surfaces22–23 are a1.6mm plate with nd1.51680. Paragraph60 defines bf0.92mm from its rear face to the image. Per the lens specification, PT stays excluded and the rear equivalent-air spacing is **11+1.6/1.51680+0.92=12.974852mm**, replacing13.52mm. This conversion preserves the d-line paraxial transfer; plate chromatic and higher-order effects are absent.
+PT surfaces 22–23 are a 1.6 mm parallel plate with nd 1.51680 and νd 64.20, which the patent describes as the sensor cover glass and optical low-pass filter. Paragraph 60 defines bf 0.92 mm from its rear face to the image. PT is modeled in `rearPlates` (J-BK7A class): the stored d21 is the printed 11.000 mm, then the plate, then 0.92 mm to the image. Every analysis traces it, including its chromatic and higher-order contribution, but the diagram does not draw it. Its paraxial equivalent-air spacing, **11 + 1.6/1.51680 + 0.92 = 12.974852 mm**, is what earlier versions stored as d21.
 
-The printed rows sum to110.810mm including the physical plate, whereas the source summary says TL111.35mm. Their calculated infinity focal length is82.222194mm, whereas the source summary says83mm. Neither discrepancy is explained by adding the cover plate or choosing a different focal-length definition. The former notes' rounding and matrix-method explanations were unsupported and are removed. The source table remains intact; these summary/table discrepancies require follow-up. After plate conversion the modeled track is110.265852mm and its infinity matrix residual is approximately0.00002777.
+The printed rows sum to110.810mm including the physical plate, whereas the source summary says TL111.35mm. Their calculated infinity focal length is82.222194mm, whereas the source summary says83mm. Neither discrepancy is explained by adding the cover plate or choosing a different focal-length definition. The former notes' rounding and matrix-method explanations were unsupported and are removed. The source table remains intact; these summary/table discrepancies require follow-up. With the physical plate the modeled track is 110.811 mm at infinity (110.810 mm at the 0.8 m position, the 0.001 mm gap-sum residual), 0.545 mm longer than the former equivalent-air track of 110.265852 mm; the paraxial focus is unchanged, with an infinity matrix residual of approximately 0.00002777.
 
 ## Sources
 

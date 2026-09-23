@@ -6,8 +6,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ╠══════════════════════════════════════════════════════════════════════════════╣
  * ║ Source: US 5,745,306 A, Example 3 (Susumu Sato / Nikon Corporation).       ║
  * ║ Correlation: Nikon AI AF-S Nikkor ED 600mm f/4D II IF.                     ║
- * ║ The model has 10 elements / 7 groups after omission of the patent's        ║
- * ║ protective/filter plates and inactive S2.                                  ║
+ * ║ The model has 10 elements / 7 groups after omission of the patent's          ║
+ * ║ front protective plate and inactive S2; the rear filter is `rearPlates`.     ║
  * ║ All powered surfaces are spherical.                                         ║
  * ║                                                                              ║
  * ║ FOCUS STATUS: PUBLISHED. G2 translates imageward by 10.8634 mm from the     ║
@@ -18,11 +18,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ NO SCALING. The design remains the patent's approximately 588 mm, f/4.08    ║
  * ║ prescription; 600 mm f/4 is marketing metadata only.                         ║
  * ║                                                                              ║
- * ║ NORMALIZATION: source surfaces 1–2 (front protective plate), source surface ║
- * ║ 21 (inactive field-stop bookkeeping plane), and source surfaces 22–23       ║
- * ║ (rear filter) are omitted. The rear filter's d-line optical effect is       ║
- * ║ preserved by STO-to-image air-equivalent spacing                            ║
- * ║ 36.5 + 2.0 + 2.0/1.5168 + 115.6862 = 155.5047654 mm.                       ║
+ * ║ NORMALIZATION: source surfaces 1–2 (front protective plate) and source       ║
+ * ║ surface 21 (inactive field-stop bookkeeping plane) are omitted. Source       ║
+ * ║ surfaces 22–23 (rear filter, 2.0 mm, nd 1.516800, νd 64.10) are modeled in   ║
+ * ║ `rearPlates` (traced, not drawn): STO stores 36.5 + 2.0 = 38.5 mm to the     ║
+ * ║ filter (the S21 plane is folded out), then Bf = 115.6862 mm to the image.    ║
+ * ║ Air-equivalent STO-to-image: 38.5 + 2.0/1.5168 + 115.6862 = 155.504765 mm.   ║
  * ║                                                                              ║
  * ║ SEMI-DIAMETERS: the patent does not tabulate per-surface clear apertures.    ║
  * ║ Surface 3 is anchored to the printed condition (12), Φ/f1 = 0.593, with      ║
@@ -227,7 +228,20 @@ const LENS_DATA = {
     { label: "17", R: 112.205, d: 7.0, nd: 1.518601, elemId: 9, sd: 20.5 },
     { label: "18", R: -83.713, d: 3.5, nd: 1.80384, elemId: 10, sd: 20.5 },
     { label: "19", R: -160.774, d: 2.7, nd: 1.0, elemId: 0, sd: 20.5 },
-    { label: "STO", R: 1e15, d: 155.5047654008439, nd: 1.0, elemId: 0, sd: 19.057002615443462 },
+    // STO → rear filter: source d20 36.5 + d21 2.0 (inactive S21 plane folded out)
+    { label: "STO", R: 1e15, d: 38.5, nd: 1.0, elemId: 0, sd: 19.057002615443462 },
+  ],
+
+  /* ── Rear filter (patent Table 3 surfaces 22–23): traced, not drawn ── */
+  rearPlates: [
+    {
+      thicknessMm: 2.0,
+      nd: 1.5168,
+      vd: 64.1,
+      glass: "J-BK7A",
+      gapAfterMm: 115.6862,
+      source: "US 5,745,306 A, Example 3 Table 3 surfaces 22–23 (Bf 115.6862 at infinity and close focus)",
+    },
   ],
 
   asph: {},

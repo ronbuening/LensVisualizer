@@ -62,3 +62,14 @@ Patent: WO 2020/158622 A1, Example 3 / Table 3A
   patent. Relabeled L1 accordingly while leaving Panasonic's production supplier unspecified.
 - The authored patent `dPgF` now remains authoritative at the runtime g-line even when the catalog-equivalent curve
   supplies C/d/F.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Read Numerical Example 3 in `patents/JPWO2020158622A1.pdf` (PDF page 22, native text layer): Table 3A surface 25*
+  d = 13.42000; surfaces 26–27 are an unlabeled flat plate, 2.10000 mm, nd 1.51680, νd 64.2; Table 3C BF = 1.00419 /
+  1.00421 / 1.00398 (infinity / intermediate / close), a 0.0002 mm spread, so one gapAfter of 1.00419 is kept and the
+  close-focus difference stays in rounding.
+- Surface 25A now stores the patent's 13.42 mm, with `rearPlates` (N-BK7, the 1.51680 / 64.2 class; S-BSL7 is
+  1.51633) and gapAfter 1.00419 mm. Paraxial check against the previous data: EFL identical; defocus changes by at most
+  0.00002 mm (rounding in the old 15.8087). Physical track grows by 0.7155 mm and now equals the printed 148.004 mm
+  total length. `closeFocusM` 0.44 is the Panasonic specification and is unchanged.

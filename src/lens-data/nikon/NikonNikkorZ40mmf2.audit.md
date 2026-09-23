@@ -92,3 +92,12 @@ Patent: JP 2021-189351A, Example 4
 - L21's glass identity is still unresolved (755276 class, no Sellmeier). The resin (1.56093 / 36.64) has no
   catalog entry.
 - The semi-diameters are measured from the drawing; the patent publishes no effective diameters.
+
+## 2026-09-23 — Filter modeled as `rearPlates`
+
+- Replaced the air-equivalent last gap (12.114 mm) with Table 4's physical rear stack (PDF p. 19, rendered): surface 13
+  gap D13 = 10.5 mm, then `rearPlates` FL 1.6 mm, nd 1.5168, νd 63.88 (Hikari J-BK7, an exact catalog match), and
+  0.5596 mm to the image.
+- Paraxial check against the previous data: EFL identical; defocus moves by 0.00045 mm at both focus states, the
+  rounding in the old stored 12.114 against 10.5 + 1.6/1.5168 + 0.5596 = 12.1145. Physical track grows by 0.546 mm to
+  59.81 mm, the patent's printed TL.

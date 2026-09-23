@@ -28,17 +28,19 @@ The identification rests on several convergent features:
 4. Both specify a 0.30 m minimum focusing distance and approximately 0.5× magnification at the telephoto end.
 5. The patent application was filed in January 2019, immediately before Panasonic announced the S-R24105 as one of the first three L-Mount lenses for the Lumix S system on 2019-02-01.
 
-The production lens is marketed as 24–105 mm at f/4. The selected patent state is not an exact endpoint match: the published source focal lengths are 25.0078, 50.1541, and 100.5897 mm. After the model's disclosed adhesive and rear-plate normalization, the computed Gaussian focal lengths are 25.002987, 50.142962, and 100.568809 mm. No uniform scaling has been applied, and the marketing range remains separate from the modeled design range.
+The production lens is marketed as 24–105 mm at f/4. The selected patent state is not an exact endpoint match: the published source focal lengths are 25.0078, 50.1541, and 100.5897 mm. After the model's disclosed adhesive normalization, the computed Gaussian focal lengths are 25.002987, 50.142962, and 100.568809 mm. No uniform scaling has been applied, and the marketing range remains separate from the modeled design range.
 
 The patent table's angular values, 40.9808°, 23.2685°, and 12.0606°, are interpreted as half-field angles $\omega$. Their doubled fields, 81.9616°, 46.5370°, and 24.1212°, are consistent with the production lens's published 84°–23° diagonal angle of view. This is a source interpretation rather than an alteration of the prescription.
 
 The PDF text layer splits several telephoto variable-gap values across lines. Inspection of the rendered table establishes `d6 = 32.9890`, `d14 = 0.9570`, `d27 = 1.8000`, `d29 = 29.6400`, and `d33 = 45.6290` mm. These are transcription repairs to the extracted text, not corrections to the patent itself.
 
-Three 0.005 mm UV-curing adhesive layers published at the cemented pairs are not modeled as separate generic elements. Their thicknesses are absorbed into L1, L9, and L11 while preserving the downstream axial stations. The rear parallel plate P is omitted as sensor/filter glass, and its first-order optical effect is retained through the air-equivalent rear spacing
+Three 0.005 mm UV-curing adhesive layers published at the cemented pairs are not modeled as separate generic elements. Their thicknesses are absorbed into L1, L9, and L11 while preserving the downstream axial stations. The rear parallel plate P (patent surfaces 34–35: 2.1 mm, $n_d = 1.51680$, $\nu_d = 64.2$, followed by 2.7 mm of air to the image plane) is modeled in `rearPlates`: every analysis traces it, but the diagram does not draw it. Surface 33 therefore stores the patent's physical `d33` of 21.029, 39.997, and 45.629 mm. Its paraxial effect equals the air-equivalent rear spacing
 
 $$
-d_{33,\mathrm{model}} = d_{33,\mathrm{patent}} + \frac{2.1}{1.5168} + 2.7\ \mathrm{mm}.
+d_{33} + \frac{2.1}{1.5168} + 2.7 = 25.113494,\ 44.081494,\ 49.713494\ \mathrm{mm},
 $$
+
+which the earlier data stored directly as the last gap.
 
 The patent does not publish lens semi-diameters. Every authored semi-diameter is therefore a modeling inference derived from traced axial and off-axis bundles, the patent's Figure 1 layout, and geometry constraints. The stop position itself is source-published between G2 and G3; only the lens clear apertures are inferred.
 
@@ -66,9 +68,11 @@ The normalized infinity states are:
 
 | State | Computed EFL | Modeled open f-number | Half-field $\omega$ | Surface 1 to image plane |
 |---|---:|---:|---:|---:|
-| Wide | 25.002987 mm | 4.119433 | 40.9808° | 135.785494 mm |
-| Middle | 50.142962 mm | 4.119209 | 23.2685° | 147.814494 mm |
-| Telephoto | 100.568809 mm | 4.119415 | 12.0606° | 180.074494 mm |
+| Wide | 25.002987 mm | 4.119433 | 40.9808° | 136.501000 mm |
+| Middle | 50.142962 mm | 4.119209 | 23.2685° | 148.530000 mm |
+| Telephoto | 100.568809 mm | 4.119415 | 12.0606° | 180.790000 mm |
+
+The physical track includes plate P and matches the patent's printed total lengths of 136.5010, 148.5300, and 180.7900 mm; the air-equivalent track is 0.715506 mm shorter.
 
 The stop's physical open radius changes with zoom in the source prescription: 7.270, 9.125, and 10.893 mm. Because the marketed and modeled lens is constant-aperture, the data file uses the scalar modeled value `nominalFno: 4.1194`; the 10.893 mm stored stop semi-diameter is the telephoto maximum, and the runtime aperture model scales the opening with zoom.
 
@@ -207,9 +211,9 @@ The data therefore uses a **CONSTRAINED_RECONSTRUCTION** rather than presenting 
 | Middle | 2.620000 mm | 7.221741 mm | 14.555000 mm | 9.953259 mm | 4.601741 mm | 0.258551× |
 | Telephoto | 1.800000 mm | 15.469691 mm | 29.640000 mm | 15.970309 mm | 13.669691 mm | 0.492597× |
 
-The telephoto reconstruction differs from the source checkpoints by −0.090309 mm in travel and −0.007403× in magnification. Those residuals are consistent with normalization of the finite-index adhesive layers and rear plate, the source prescription's limited decimal precision, and the patent's rounded 0.5× statement. The wide and middle close-focus states are model solutions, not published patent states.
+The telephoto reconstruction differs from the source checkpoints by −0.090309 mm in travel and −0.007403× in magnification. Those residuals are consistent with normalization of the finite-index adhesive layers and the air-equivalent rear spacing used in the solve, the source prescription's limited decimal precision, and the patent's rounded 0.5× statement. The wide and middle close-focus states are model solutions, not published patent states.
 
-The reconstruction is solved to a 300 mm object-to-image-plane distance at each sampled focal state, matching the patent's reference plane and Panasonic's sensor-plane minimum-focus specification. The data does not infer additional floating groups or an undocumented focus cam law between the defined endpoints.
+The reconstruction was solved to a 300 mm object-to-image-plane distance at each sampled focal state, matching the patent's reference plane and Panasonic's sensor-plane minimum-focus specification. The solve used the earlier air-equivalent rear spacing, whose object-to-image track is 0.715506 mm shorter than the physical track that now includes plate P; the stored close-focus gaps were not re-solved when the plate moved into `rearPlates`. The data does not infer additional floating groups or an undocumented focus cam law between the defined endpoints.
 
 ## Aspherical Surfaces
 
@@ -268,8 +272,8 @@ The patent defines five principal conditions for balancing close-focus travel, f
 
 | Condition | Required interval | Patent Table 10 | Normalized model | Result |
 |---|---:|---:|---:|---|
-| (1) $T_{35t}/TL_t$ | $0.12 < x < 0.25$ | 0.182 | 0.182758 | Pass |
-| (2) $T_{35w}/TL_w$ | $0.05 < x < 0.20$ | 0.142 | 0.142836 | Pass |
+| (1) $T_{35t}/TL_t$ | $0.12 < x < 0.25$ | 0.182 | 0.182034 | Pass |
+| (2) $T_{35w}/TL_w$ | $0.05 < x < 0.20$ | 0.142 | 0.142087 | Pass |
 | (3) $\nu_d(LG5F)$ | $x > 65$ | 81.6 | 81.6 | Pass |
 | (4) $|f_4|/f_t$ | $0.30 < x < 0.70$ | 0.474 | 0.473924 | Pass |
 | (5) $|d_F|/f_t$ | $0.05 < x < 0.30$ | 0.137 | 0.135924 | Pass |
@@ -280,7 +284,7 @@ For condition (5), using the patent-published 13.76 mm travel with the normalize
 
 L13 is shifted perpendicular to the optical axis to compensate image motion (¶0045). The patent gives lateral shifts of 0.095, 0.139, and 0.231 mm at wide, middle, and telephoto for image displacement equivalent to a 0.3° tilt of the complete lens (¶0178–0179).
 
-A first-order decenter trace of the final normalized arrays independently reproduces this relation. The published L13 shifts generate image-plane displacements within 0.28% of those produced by a 0.3° input-axis tilt at all three states. The corresponding computed decenter values for exact first-order equality are 0.095184, 0.139382, and 0.231194 mm. The small residuals are consistent with the source values being rounded to 0.001 mm and with the model's adhesive/plate normalization.
+A first-order decenter trace of the final normalized arrays independently reproduces this relation. The published L13 shifts generate image-plane displacements within 0.28% of those produced by a 0.3° input-axis tilt at all three states. The corresponding computed decenter values for exact first-order equality are 0.095184, 0.139382, and 0.231194 mm. The small residuals are consistent with the source values being rounded to 0.001 mm and with the model's adhesive normalization.
 
 The stabilization element is distinct from the focus element: L13 moves laterally inside G3, whereas L14 moves axially as G4. The data file records the element role but does not add a runtime decenter control, so the centered prescription remains the visualization's base optical state.
 

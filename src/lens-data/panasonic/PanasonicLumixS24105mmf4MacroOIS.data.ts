@@ -21,8 +21,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  The patent's 40.9808°-12.0606° values are half-field angles ω, not full fields.    ║
  * ║                                                                                      ║
  * ║  Normalization: the three 0.005 mm UV-adhesive planes are collapsed into the       ║
- * ║  preceding element thicknesses. Rear plate P is omitted; surface 33 uses           ║
- * ║  d33 + 2.1 / 1.5168 + 2.7 mm air-equivalent spacing. No scale is applied.          ║
+ * ║  preceding element thicknesses. Surface 33 stores the physical patent d33            ║
+ * ║  (21.029 / 39.997 / 45.629 mm); parallel plate P (2.1 mm, nd 1.51680,                ║
+ * ║  νd 64.2) and the 2.7 mm air to the image are in `rearPlates`: traced,               ║
+ * ║  not drawn. The air-equivalent BF is unchanged. No scale is applied.                 ║
  * ║                                                                                      ║
  * ║  Semi-diameters: inferred from exact and reduced-angle axial/full-field bundles in  ║
  * ║  all six zoom/focus states, checked against patent Figure 1, then constrained by    ║
@@ -280,7 +282,20 @@ const LENS_DATA = {
     { label: "30", R: -106.5052, d: 1, nd: 1.497, elemId: 15, sd: 18 },
     { label: "31", R: 1030.8842, d: 0.2, nd: 1, elemId: 0, sd: 18.1 },
     { label: "32", R: 61.5545, d: 3.72, nd: 1.90043, elemId: 16, sd: 18.2 },
-    { label: "33", R: 449.3914, d: 25.113493671, nd: 1, elemId: 0, sd: 18.2 },
+    { label: "33", R: 449.3914, d: 21.029, nd: 1, elemId: 0, sd: 18.2 }, // D33 var — gap to plate P
+  ],
+
+  /* ── Parallel plate P (patent surfaces 34–35): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "P",
+      thicknessMm: 2.1,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 2.7,
+      source: "JP 2020-118738 A, Numerical Example 1 Table 1 surfaces 34–35",
+    },
   ],
 
   /* Patent convention is the standard conic constant K: K = 0 is a spherical base. */
@@ -382,9 +397,9 @@ const LENS_DATA = {
       [29.64, 15.970309181],
     ],
     "33": [
-      [25.113493671, 25.113493671],
-      [44.081493671, 44.081493671],
-      [49.713493671, 49.713493671],
+      [21.029, 21.029],
+      [39.997, 39.997],
+      [45.629, 45.629],
     ],
   },
 
@@ -393,7 +408,7 @@ const LENS_DATA = {
     ["14", "D14"],
     ["27A", "D27"],
     ["29A", "D29"],
-    ["33", "BF (AIR-EQUIVALENT)"],
+    ["33", "D33"],
   ],
 
   zoomPositions: [25.0078, 50.1541, 100.5897],

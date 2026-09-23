@@ -20,7 +20,7 @@ The diagram represents the compact nine-element, eight-component patent design a
 
 The optical groups are positive G1, positive G2, positive G3 and negative G4. The stop is fixed between G1 and G2. G1 contains a negative and positive singlet. G2 contains a cemented pair, negative singlet and compound positive L24. G3 contains the weak negative aspheric L31 and positive L32. G4 is the final negative singlet.
 
-L24 combines a glass body and a resin layer. Two entries preserve their interface, so the nine physical patent elements require ten medium entries. The separate rear filter is excluded. Three aspheric surfaces belong to two physical lens elements: L24's resin exit and both faces of L31. L31 remains a powered lens despite its small paraxial power; it is not an omitted filter.
+L24 combines a glass body and a resin layer. Two entries preserve their interface, so the nine physical patent elements require ten medium entries. The separate rear filter FL is modeled in `rearPlates`: every analysis traces it, but it is not drawn. Three aspheric surfaces belong to two physical lens elements: L24's resin exit and both faces of L31. L31 remains a powered lens despite its small paraxial power; it is not an omitted filter.
 
 ## Element-by-Element Analysis
 
@@ -65,7 +65,7 @@ The published gaps are:
 
 Their sum remains13mm. G2 moves1.681mm objectward and G3 moves4.792mm objectward; G1, stop and G4 stay fixed. D17 is an internal gap and is no longer mislabeled BF. Intermediate motion is interpolated between the published endpoints.
 
-The source near D0 is135.390mm from object to first surface. Adding the original physical track54.610mm gives the retained source label0.19m. The filter-omitted model has54.064852mm track and an independently computed near distance0.189450650m, beta−0.2032457, consistent with source beta−0.203 within its stated precision. The small distance difference includes the explicitly omitted filter path. Infinity EFL28.823820mm reproduces the source28.824mm.
+The source near D0 is135.390mm from object to first surface. Adding the original physical track54.610mm gives the retained source label0.19m. The model's physical track now includes the filter plate and equals the source54.610mm. The earlier air-equivalent model (54.064852mm track) gave an independently computed near distance0.189450650m, beta−0.2032457, consistent with source beta−0.203 within its stated precision; the paraxial focus is unchanged by modeling the plate physically, and the small distance difference came from the folded plate path. Infinity EFL28.823820mm reproduces the source28.824mm.
 
 ## Semi-Diameter Estimation Notes
 
@@ -73,11 +73,11 @@ Original Figure3 on PDF p.47 was rendered at600dpi and rotated for inspection. T
 
 These replace larger ray-envelope estimates. The adopted values pass surface/image-circle checks and show no hidden runtime trimming at infinity, midpoint or near. They are inferred optical outlines, not source-listed clear apertures.
 
-## Filter Omission and Limitations
+## Filter Plate and Limitations
 
-The source's separate FL surfaces20–21 comprise1.6mm at nd1.51680, followed by0.86mm air. They remain absent under the lens specification. The final gap is corrected from11.223mm to **11.223+1.6/1.51680+0.86=13.137852mm**, matching source Bfa13.138mm. The old data omitted both the plate's equivalent distance and the final air gap; the former claim that a separate camera model supplied them was incorrect.
+The source's separate FL surfaces20–21 comprise1.6mm at nd1.51680, νd63.88, followed by Bf0.86mm air. They are modeled in `rearPlates` (J-BK7 class) after the source D19 =11.223mm, so every analysis traces the plate while the diagram does not draw it. The paraxial air-equivalent back focus is **11.223+1.6/1.51680+0.86=13.137852mm**, matching source Bfa13.138mm.
 
-Equivalent spacing preserves d-line paraxial propagation, without the filter's higher-order and chromatic effects. Compound lens resin remains modeled. Production identification, supplier/chemistry and correction-pipeline claims are qualified; the source optical prescription and its limitations are explicit.
+Tracing the plate physically adds its small spherical, astigmatic and chromatic contributions, which the former equivalent-air spacing omitted. Compound lens resin remains modeled. Production identification, supplier/chemistry and correction-pipeline claims are qualified; the source optical prescription and its limitations are explicit.
 
 ## Sources
 

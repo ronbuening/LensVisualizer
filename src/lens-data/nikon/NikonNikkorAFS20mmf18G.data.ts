@@ -12,10 +12,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                    ║
  * ║  NOTE ON COVER GLASS:                                              ║
  * ║    Patent surfaces 29-30 are a 2.00 mm plane-parallel plate        ║
- * ║    followed by fB = 1.00 mm. Project convention excludes sensor    ║
- * ║    cover glass, so the final air gap folds the plate into an       ║
- * ║    air-equivalent distance: 36.31 + 2.00 / 1.51680 + 1.00          ║
- * ║    = 38.628565 mm at infinity.                                    ║
+ * ║    (nd 1.51680, νd 64.2) followed by fB = 1.00 mm. It is modeled   ║
+ * ║    physically in `rearPlates` (traced, not drawn); surface 28      ║
+ * ║    stores the patent gap to the plate, 36.31 mm at infinity.       ║
  * ║                                                                    ║
  * ║  NOTE ON FOCUS DATA:                                               ║
  * ║    The patent publishes only the infinity prescription. Close      ║
@@ -32,7 +31,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass/resin/cement optical media and surfaces                 ║
  * ║    ✓ Aperture stop and variable focus gaps                         ║
- * ║    ✗ No sensor cover glass as a surface                            ║
+ * ║    ✗ No sensor cover glass as a surface (it is in `rearPlates`)    ║
  * ║    ✗ No filters, motors, aperture blades as geometry, or barrel    ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
@@ -64,7 +63,7 @@ const LENS_DATA = {
   groupCount: 11,
   apertureBlades: 7,
   focusDescription:
-    "Rear-group focusing: Gr2 (surfaces 14-28) moves approximately 5.375 mm object-ward at 0.20 m; cover glass is folded into the final air-equivalent BFD.",
+    "Rear-group focusing: Gr2 (surfaces 14-28) moves approximately 5.375 mm object-ward at 0.20 m; the 2.00 mm cover glass and 1.00 mm fB follow the last lens surface as a traced rear plate.",
 
   elements: [
     {
@@ -282,7 +281,19 @@ const LENS_DATA = {
     { label: "25A", R: 310.584, d: 4.88, nd: 1.6935, elemId: 15, sd: 13.0 },
     { label: "26A", R: -26.434, d: 2.2, nd: 1.0, elemId: 0, sd: 12.5 },
     { label: "27", R: -106.408, d: 5.85, nd: 1.618, elemId: 16, sd: 12.5 },
-    { label: "28", R: -20.279, d: 38.62856540084388, nd: 1.0, elemId: 0, sd: 13.0 },
+    { label: "28", R: -20.279, d: 36.31, nd: 1.0, elemId: 0, sd: 13.0 }, // [var: BF, patent d28 to the cover plate]
+  ],
+
+  /* ── Sensor cover plate (patent surfaces 29–30): traced, not drawn ── */
+  rearPlates: [
+    {
+      thicknessMm: 2.0,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "J-BK7A",
+      gapAfterMm: 1.0,
+      source: "JP 2016-021011 A, Example 4 surfaces 29–30 (fB = 1.00 mm)",
+    },
   ],
 
   asph: {
@@ -315,9 +326,11 @@ const LENS_DATA = {
     },
   },
 
+  /* "28" = patent d28 to the cover plate (36.31 at infinity); the close value is the paraxial
+   * 0.20 m solve (Gr2 forward 5.375 mm at constant physical track). Plate + fB are in `rearPlates`. */
   var: {
     "13": [7.51, 2.135171345030911],
-    "28": [38.62856540084388, 44.00339405581297],
+    "28": [36.31, 41.68482865496909],
   },
   varLabels: [
     ["13", "Gr1-Gr2 gap"],

@@ -141,3 +141,14 @@ the SD method and the 25A turnover (departure −1.23 mm at 17.2 mm) added.
 - 25A and S31 rims are smaller than drawn (turnover and gap-clearance limits); front-group rims S2–S8 and D1 are
   estimates within about 15 % of the figure.
 - L31 (1.59294/67.9) and L44 (1.62372/58.4) have no exact catalog glass; L32 uses a compatible M-TAF401 equivalent.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Source: local `patents/JP2025052870A.pdf`, Table 1 p. 21 rows 33–35 and the variable-gap table: d33 = 10.38 mm
+  (both focus states), filter group FL t = 1.600 mm, nd 1.51680, νd 64.1, d35 = 1.00 mm (both states); BF 12.98,
+  BFa 12.434. The last gap changed from the folded 12.434 mm to the physical 10.38 mm and FL moved to `rearPlates`
+  (gapAfter 1.00 mm). Glass label J-BK7A (Hikari, 1.51680/64.13), matching L12 and resolving as compatible.
+- Plate check against HEAD: EFL identical at both focus states; paraxial defocus shifts by +0.00085 mm because the
+  legacy 12.434 was the patent's rounded BFa, while 10.38 + 1.6/1.5168 + 1.00 = 12.43485 mm. Physical track grows
+  0.546 mm, t(1 − 1/n) = 0.545 mm plus rounding, and now matches the patent TL 163.987 mm. Surface validator and
+  image-circle check pass.

@@ -40,3 +40,13 @@ Retrieved [original JP2020173366A PDF](https://patentimages.storage.googleapis.c
 - Production baseline and local infinity/near/half/f16 inspected. Near80cm, D7/D10/D11/D13=10.02/9.45/5.15/8.82 and EFL75.61; half1.60m, gaps8.10/11.36/8.53/5.44, EFL78.96; f16 stop3.15mm. Front/rear groups remain fixed and the two inner groups move oppositely.
 
 Batch21–30 full gates and commit pending; source-summary contradictions remain follow-up.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Replaced the equivalent-air d21 (12.974852 mm) with Example 3's physical rear stack (PDF p. 17, surfaces 21–23 and
+  bf, confirmed on the rendered page): d21 = 11.000 mm, then `rearPlates` PT 1.600 mm, nd 1.51680, νd 64.20
+  (J-BK7A, catalog-compatible), and bf 0.92 mm to the image. The patent text states PT stays fixed during focusing,
+  so one trailing gap covers both keyframes.
+- Paraxial check against the previous data: EFL identical and defocus unchanged at infinity and 0.8 m (worst |Δ|
+  2e-15), because the old d21 was the exact fold. Physical track grows by 0.545 mm, to 110.811 mm at infinity (the
+  printed row sum); the TL 111.35 mm summary discrepancy remains open.

@@ -40,7 +40,8 @@ The verified paraxial values for Example 3 are:
 | G3 focal length | −79.518 mm | −79.52 mm |
 | G2+G3 combined focal length | +31.880 mm | — |
 | Air-equivalent BFD from L9 rear to image | 14.2690 mm | implicit |
-| Lens total track, with cover glass folded to air-equivalent BFD | 52.2659 mm | 52.27 mm |
+| Lens total track, cover plate reduced to air (air-equivalent) | 52.2659 mm | 52.27 mm |
+| Physical total track, including the 4.082 mm cover plate | 53.6559 mm | — |
 | Exit pupil distance from paraxial image plane | −47.312 mm | −47.32 mm |
 | Petzval sum | 0.0062689 mm⁻¹ | — |
 | Petzval radius | 159.52 mm | — |
@@ -179,7 +180,7 @@ The L1 rear surface is the strongest front-group asphere and carries most of the
 
 ## Conditional Expressions and Verification Summary
 
-The following values were independently recalculated from the transcribed prescription using a y–ν paraxial ray trace. The cover glass was included for verification, then excluded from the delivered data file and folded into the final air-equivalent BFD.
+The following values were independently recalculated from the transcribed prescription using a y–ν paraxial ray trace. The cover plate is included, as it is in the delivered data file.
 
 | Patent condition | Formula | Code-verified value | Patent table value | Required range | Result |
 |---|---|---:|---:|---:|---|
@@ -189,11 +190,11 @@ The following values were independently recalculated from the transcribed prescr
 | (6) | CSD1/f | 0.571 | 0.57 | 0.3–1.0 | Satisfied |
 | (7) | f23/f2 | 1.457 | 1.46 | 1.01–2.0 | Satisfied |
 
-The values agree with the patent within the precision expected from rounded tabular radii, thicknesses, and refractive indices. The small difference between the folded air-equivalent BFD (14.2690 mm) and the paraxial image distance from the L9 rear surface (14.2750 mm) is also a rounding artifact of the published prescription.
+The values agree with the patent within the precision expected from rounded tabular radii, thicknesses, and refractive indices. The small difference between the air-equivalent BFD (14.2690 mm) and the paraxial image distance from the L9 rear surface (14.2750 mm) is also a rounding artifact of the published prescription.
 
 ## Data-File Transcription Notes
 
-The delivered `.data.ts` file transcribes only the lens prescription from the first refracting surface through L9. The patent's sensor-side cover plate is omitted, as required by the LensVisualizer data specification. Its optical path is folded into the final air gap after surface 16:
+The delivered `.data.ts` file transcribes the lens prescription from the first refracting surface through L9, and surface 16 keeps the patent's 10.832 mm gap to the sensor-side cover plate. The plate itself (surfaces 17–18: 4.082 mm, nd = 1.51633, νd = 64.14, OHARA S-BSL7 class) and its 0.745 mm air gap to the image are modeled in `rearPlates`: every analysis traces through it, but it is not drawn. Its paraxial air equivalent is the 14.2690 mm BFD quoted above:
 
 $$
 10.832 + \frac{4.082}{1.51633} + 0.745 = 14.269026 \text{ mm}.

@@ -46,7 +46,7 @@ The computed functional-group focal lengths are:
 
 These are isolated functional-group powers computed from the final surface arrays. They are not obtained by adding standalone element powers; separations and cemented interfaces materially alter the net result.
 
-The strict whole-system telephoto criterion `track/EFL < 1` is met only at the tele endpoint. After removal of the source filter and replacement by its air-equivalent translation, the active track/EFL ratio is 0.99513 at 193.95 mm. The wide and middle states have ratios above unity and are not described as telephoto by that strict test. The design is not retrofocus at any state because its rear focal distance is substantially shorter than the EFL.
+The strict whole-system telephoto criterion `track/EFL < 1` is met only at the tele endpoint. With the source filter modeled physically, the track/EFL ratio is 0.99883 at 193.95 mm (0.99513 if the filter is replaced by its air-equivalent length). The wide and middle states have ratios above unity and are not described as telephoto by that strict test. The design is not retrofocus at any state because its rear focal distance is substantially shorter than the EFL.
 
 ### Zoom kinematics
 
@@ -290,9 +290,9 @@ No scale factor was applied. Radii, thicknesses, image coordinates, and asphere 
 
 ## Model Scope and Source Normalization
 
-The patent's plane-parallel filter F, surfaces 42-43, is excluded from the active lens sequence. Its paraxial translation is preserved by replacing the 2.1074 mm plate at `nd = 1.51680` with the air-equivalent distance `2.1074/1.51680 = 1.389372 mm`. The final air spacing from surface 41 to the image plane is therefore the published 30.3551 mm air gap plus the plate's air equivalent and the state-specific published BF.
+The patent's plane-parallel filter F, surfaces 42-43 (2.1074 mm, `nd = 1.51680`, `νd = 64.17`), is modeled physically through `rearPlates`: every analysis traces it, but it is not drawn. Surface 41 keeps the published 30.3551 mm air gap to the filter, and the published wide-infinity BF of 0.3481 mm is the fixed filter-to-image gap. The printed BF differs slightly between states (0.3481-0.3504 mm), so the excess of up to 0.0023 mm is carried in the surface-41 gap: 30.3551 / 30.3552, 30.3574 / 30.3574, and 30.3555 / 30.3556 mm at wide, middle, and tele (infinity / 1.000 m). The physical track is 193.727-193.728 mm, in agreement with the patent's printed 193.72 mm total length.
 
-The resulting surface-41-to-image spacings are 32.092572, 32.094872, and 32.092972 mm at wide, middle, and tele. The independently computed rear focal distances from surface 41 are 32.089844, 32.092190, and 32.089692 mm, differing by only -0.0027 to -0.0033 mm.
+Paraxially, the filter is equivalent to an air path of `2.1074/1.51680 = 1.389372 mm`, so the surface-41-to-image air-equivalent spacings are 32.092572, 32.094872, and 32.092972 mm at wide, middle, and tele. The independently computed rear focal distances from surface 41 (air-equivalent) are 32.089844, 32.092190, and 32.089692 mm, differing by only -0.0027 to -0.0033 mm.
 
 The aperture stop position is published at source surface 15. Its physical semi-diameter is not published; the data file uses 12.7 mm, solved from the three patent EFL/f-number states and constrained to one physical stop. The recomputed f-numbers are 4.1459, 4.1052, and 4.1411.
 

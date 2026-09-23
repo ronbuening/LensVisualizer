@@ -144,3 +144,13 @@ silhouettes agreed within 2 px on every element used.
   format still nominally spans 21.6 mm, which this lens covers only after in-camera correction.
 - The 0.27 m macro mode (mechanical extension, f/2.8 limit) is outside the patent and is not modelled.
 - L6's 1.68948 / 31.0 glass has no exact catalog coordinate; the S-TIM28 class label carries Δnd = 5.5e-4.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Re-rendered Table 1A on PDF page 31 (printed page 13) at 250 dpi: surface 23 d = 3.60000; surfaces 24–25 are the
+  parallel plate P (labelled in FIG. 1A), 1.40000 mm, nd 1.51680, νd 64.2; surface 25 → 26 is 1.00000 mm air and
+  Table 1C BF = 0. The fixed rear gap is the same in all three focus states.
+- Surface 19A now stores the patent's 3.60 mm, with `rearPlates` P (N-BK7, the 1.51680 / 64.2 coordinate;
+  `resolveCompatibleGlass` confirms it) and gapAfter 1.00 mm. Paraxial check against the previous data: EFL identical
+  at all three focus keyframes; defocus changes by ≤ 5e-6 mm (the old 5.523 rounded 5.52300). Physical track grows by
+  0.477 mm to the patent's TL = 68.3749 mm including the plate.

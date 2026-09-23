@@ -12,10 +12,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                    ║
  * ║  Semi-diameters: patent 有効径 values divided by two.              ║
  * ║                                                                    ║
- * ║  Filter note: patent surfaces 30-31 are a plane-parallel optical   ║
- * ║  filter / cover plate. Per project convention they are omitted     ║
- * ║  from the surface array and folded into the final air-equivalent   ║
- * ║  back distance: 11.9400 + 4.2000 / 1.51680 + 0.9999 = 15.708887.   ║
+ * ║  Filter note: patent surfaces 30-31 (optical filter F, 4.2000 mm,  ║
+ * ║  nd 1.51680, νd 64.20) and the BF 0.9999 mm air gap to the image   ║
+ * ║  are modeled in `rearPlates` (traced, not drawn). Surface 29 keeps ║
+ * ║  the patent's 11.9400 mm gap to the filter.                        ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -316,7 +316,21 @@ const LENS_DATA = {
     { label: "26", R: 17.82, d: 2.66, nd: 1.0, elemId: 0, sd: 9.255 },
     { label: "27", R: 54.88, d: 6.35, nd: 1.55032, elemId: 14, sd: 9.51 },
     { label: "28", R: -17.08, d: 1.0, nd: 1.84666, elemId: 15, sd: 9.785 },
-    { label: "29", R: -27.35, d: 15.70888734177215, nd: 1.0, elemId: 0, sd: 10.2 },
+    // Last surface: patent gap to the optical filter F
+    { label: "29", R: -27.35, d: 11.94, nd: 1.0, elemId: 0, sd: 10.2 },
+  ],
+
+  /* ── Optical filter F (patent surfaces 30–31): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "F",
+      thicknessMm: 4.2,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "BSC7 (Hoya)",
+      gapAfterMm: 0.9999,
+      source: "JP 2017-167327 A, Numerical Example 1 surfaces 30–31 (BF 0.9999)",
+    },
   ],
 
   asph: {

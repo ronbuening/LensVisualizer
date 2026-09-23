@@ -30,9 +30,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    chief ray; off-axis bundles vignette at full aperture.            ║
  * ║                                                                      ║
  * ║  NOTE ON COVER GLASS:                                                ║
- * ║    Patent surfaces 14–15 (filter FL, nd = 1.5168, d = 1.6 mm)        ║
- * ║    excluded. Last gap = 10.5 + 1.6/1.5168 + 0.5596 = 12.114 mm       ║
- * ║    (patent Bf(air) = 12.113).                                        ║
+ * ║    Patent surfaces 14–15 (filter FL, nd = 1.5168, νd = 63.88,        ║
+ * ║    d = 1.6 mm) are modeled in `rearPlates` (traced, not drawn) with  ║
+ * ║    0.5596 mm to the image. Last gap = patent D13 = 10.5 mm; air-     ║
+ * ║    equivalent 10.5 + 1.6/1.5168 + 0.5596 = 12.1145 mm (patent        ║
+ * ║    Bf(air) = 12.113; physical Bf 12.66 as printed).                  ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -190,7 +192,20 @@ const LENS_DATA = {
     /* G3 — negative field flattener: hybrid composite (L31r + L31), fixed during focus */
     { label: "11A", R: -29.55, d: 0.1, nd: 1.56093, elemId: 7, sd: 16.4 },
     { label: "12", R: -36.3, d: 1.3, nd: 1.51742, elemId: 8, sd: 16.4 },
-    { label: "13", R: 1084.4056, d: 12.114, nd: 1.0, elemId: 0, sd: 17.6 },
+    { label: "13", R: 1084.4056, d: 10.5, nd: 1.0, elemId: 0, sd: 17.6 }, // D13 — gap to the FL plate
+  ],
+
+  /* ── Filter FL (patent surfaces 14–15): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "FL",
+      thicknessMm: 1.6,
+      nd: 1.5168,
+      vd: 63.88,
+      glass: "J-BK7",
+      gapAfterMm: 0.5596,
+      source: "JP 2021-189351 A, Example 4 Table 4 surfaces 14–15",
+    },
   ],
 
   /* ── Aspherical coefficients ──
