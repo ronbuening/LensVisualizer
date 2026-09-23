@@ -10,11 +10,11 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **810** lenses scanned
-- **1821** total code-only elements found
-- **300** elements in this report
-- **114** distinct lens files affected
+- **1797** total code-only elements found
+- **302** elements in this report
+- **116** distinct lens files affected
 - **4** active unreviewed elements have no review-record hit or explicit disposition
-- **163** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
+- **165** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
 - **0** dispositions lack any review record
 
 ## Prioritized Unreviewed Queue
@@ -37,6 +37,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 493836 | 9 | 4 | patents/JPA 1996327896-000000.pdf<br>patents/JP2004109559A.pdf<br>patents/JPA 1989039542-000000.pdf | All rows have review records |
 | 486815 | 8 | 3 | patents/US3743384.pdf<br>patents/US3774991.pdf | All rows have review records |
 | 847238 | 5 | 3 | patents/CN211826699U.pdf<br>patents/CN211955966U.pdf<br>patents/CN114755806A.pdf | All rows explicitly disposed |
+| 531559 | 4 | 3 | patents/US20200142167A1.pdf<br>patents/US20230213739A1.pdf<br>patents/WO2021039813A1.pdf | All rows have review records |
 | 662561 | 4 | 1 | patents/GB_850117_A.pdf | All rows have review records |
 | 835427 | 4 | 3 | patents/JP2015166834A.pdf<br>patents/CN114755806A.pdf | All rows explicitly disposed |
 | 863252 | 4 | 2 | patents/WO2021199923A1.pdf<br>patents/WO_2025263124_A1.pdf | All rows have review records |
@@ -48,7 +49,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 961323 | 3 | 1 | patents/WO2021200206A1.pdf | All rows explicitly disposed |
 | 514428 | 2 | 1 | patents/JP2016021011A.pdf | All rows have review records |
 | 531557 | 2 | 2 | patents/WO2022071249A1.pdf<br>patents/US8994842.pdf | All rows explicitly disposed |
-| 531559 | 2 | 2 | patents/US20200142167A1.pdf<br>patents/WO2021039813A1.pdf | All rows have review records |
 | 540473 | 2 | 1 | patents/GB_135853_A.pdf | All rows explicitly disposed |
 | 620586 | 2 | 1 | patents/US4303314.pdf | All rows have review records |
 | 621569 | 2 | 1 | patents/GB_135853_A.pdf | All rows explicitly disposed |
@@ -74,7 +74,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 804466 | 2 | 1 | patents/JP2015166834A.pdf | All rows explicitly disposed |
 | 806418 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
 | 807316 | 2 | 2 | patents/US4764000.pdf<br>patents/US4871239.pdf | All rows have review records |
-| 813252 | 2 | 1 | patents/US3591257.pdf | All rows have review records |
 | 815233 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
 | 819287 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
 | 830427 | 2 | 1 | patents/JP2015041012A.pdf | All rows explicitly disposed |
@@ -111,10 +110,10 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 553381 | 1 | 1 | patents/US7508592.pdf | All rows explicitly disposed |
 | 554381 | 1 | 1 | patents/US7359125.pdf | All rows have review records |
 | 554522 | 1 | 1 | patents/US20100208366A1.pdf | All rows explicitly disposed |
-| 561575 | 1 | 1 | patents/US2721499.pdf | All rows have review records |
 | 564463 | 1 | 1 | patents/US20180164556A1.pdf | All rows explicitly disposed |
 | 569585 | 1 | 1 | patents/US9651761.pdf | All rows explicitly disposed |
 | 569586 | 1 | 1 | patents/US20120069456A1.pdf | All rows explicitly disposed |
+| 570575 | 1 | 1 | patents/US2721499.pdf | All rows have review records |
 | 571560 | 1 | 1 | patents/WO_2025263124_A1.pdf | All rows have review records |
 | 575414 | 1 | 1 | patents/US2279384.pdf | All rows explicitly disposed |
 | 578671 | 1 | 1 | patents/JPA 2021076740-000000.pdf | All rows explicitly disposed |
@@ -127,6 +126,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 596670 | 1 | 1 | patents/WO_2025263124_A1.pdf | All rows have review records |
 | 602352 | 1 | 1 | patents/GB_850117_A.pdf | All rows have review records |
 | 603564 | 1 | 1 | patents/JP2022092388A.pdf | All rows have review records |
+| 604208 | 1 | 1 | patents/US20200012073A1.pdf | All rows explicitly disposed |
 | 605382 | 1 | 1 | patents/US2279384.pdf | All rows explicitly disposed |
 | 611572 | 1 | 1 | patents/US2279384.pdf | All rows explicitly disposed |
 | 612313 | 1 | 1 | patents/US20210026133A1.pdf | All rows have review records |
@@ -238,6 +238,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 805410 | 1 | 1 | patents/US4871239.pdf | All rows have review records |
 | 805445 | 1 | 1 | patents/US_4493536_A.pdf | All rows explicitly disposed |
 | 806333 | 1 | 1 | patents/CN211826699U.pdf | All rows explicitly disposed |
+| 806404 | 1 | 1 | patents/JP2012003015A.pdf | All rows have review records |
 | 810372 | 1 | 1 | patents/US20180164556A1.pdf | All rows explicitly disposed |
 | 831265 | 1 | 1 | patents/US3615126.pdf | All rows explicitly disposed |
 | 835431 | 1 | 1 | No patent number parsed from lens metadata | All rows explicitly disposed |
@@ -306,7 +307,20 @@ Completion counts are conditional on finding a source-verified catalog identity 
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L14 (Element 14) | 25A | `531559 - moldable barium light crown (patent nd=1.53110, vd=55.9)` | 1.53110 / 55.90 | No catalog entry | abbe | patents/US20200142167A1.pdf | Reviewed sidecar hit |
+| L14 (Element 14) | 25A | `Unmatched (531559; material not stated in patent, resin-class coordinate; patent nd=1.53110, vd=55.9)` | 1.53110 / 55.90 | No catalog entry | abbe | patents/US20200142167A1.pdf | Explicit disposition in data |
+
+### [CANON RF 24-50mm f/4.5-6.3 IS STM](../../src/lens-data/canon/CanonRF2450mmf463.data.ts) - US 2023/0213739 A1
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| G2 (Element 2 (G2, Asph.)) | 3A | `531559 — optical resin coordinate (COP class; patent ¶0062 allows resin for G2, material not named)` | 1.53110 / 55.90 | No catalog entry | abbe | patents/US20230213739A1.pdf | Audit-log hit |
+| L4 (Element 8 (L4, Asph.)) | 17A | `531559 — optical resin coordinate (same as G2; material not named in patent)` | 1.53110 / 55.90 | No catalog entry | abbe | patents/US20230213739A1.pdf | Audit-log hit |
+
+### [CANON RF 85mm f/1.2 L USM](../../src/lens-data/canon/CanonRF85mmf12L.data.ts) - US 2020/0012073 A1
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L9 (Element 9 (Lp2 / BR)) | 15 | `Unmatched (604208 — Canon BR-optics organic material, inferred; patent gives nd, νd and ΔθgF only)` | 1.60401 / 20.80 | No catalog entry | abbe | patents/US20200012073A1.pdf | Explicit disposition in data |
 
 ### [CANON TS-E 24mm f/3.5 L II](../../src/lens-data/canon/CanonTSE24mmf35LII.data.ts) - US 2010/0208366 A1
 
@@ -321,8 +335,8 @@ Completion counts are conditional on finding a source-verified catalog identity 
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L5 (Element 5) | 8 | `BaK/SK crown (561/575)` | 1.56093 / 57.50 | No catalog entry | abbe | patents/US2721499.pdf | Reviewed sidecar hit |
-| L6 (Element 6) | 9 | `SK-type dense crown (625/533)` | 1.62500 / 53.30 | No catalog entry | abbe | patents/US2721499.pdf | Reviewed sidecar hit |
+| L5 (Element 5) | 8 | `570575 — BaK-type barium crown (no exact catalog match)` | 1.56993 / 57.50 | No catalog entry | abbe | patents/US2721499.pdf | Audit-log hit |
+| L6 (Element 6) | 9 | `625533 — SSK-type dense crown (no exact catalog match)` | 1.62500 / 53.30 | No catalog entry | abbe | patents/US2721499.pdf | Reviewed sidecar hit |
 | L8 (Element 8) | 12 | `LaK/SK crown (642/581)` | 1.64200 / 58.10 | No catalog entry | abbe | patents/US2721499.pdf | Reviewed sidecar hit |
 
 ### [CARL ZEISS JENA FLEKTOGON 20mm f/4](../../src/lens-data/carl-zeiss-jena/ZeissFlektogon20mmf4.data.ts) - GB 978,797
@@ -464,13 +478,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L3 (Element 3) | 4 | `773530 — high-index lanthanum crown (patent nd=1.77250, νd=53.00; no exact public catalog match)` | 1.77250 / 53.00 | No catalog entry | abbe | patents/CN110161666A.pdf | Reviewed sidecar hit |
-
-### [LEICA ELMARIT-R 28mm f/2.8](../../src/lens-data/leica/LeicaElmarit28mmf28.data.ts) - US 3,591,257
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L4 (Element 4) | 6 | `813252 - high-index flint (patent nd=1.81265, vd=25.24; no exact public catalog match)` | 1.81265 / 25.24 | No catalog entry | abbe | patents/US3591257.pdf | Reviewed sidecar hit |
-| L7 (Element 7) | 11 | `813252 - high-index flint (patent nd=1.81265, vd=25.24; no exact public catalog match)` | 1.81265 / 25.24 | No catalog entry | abbe | patents/US3591257.pdf | Reviewed sidecar hit |
 
 ### [LEICA MACRO-ELMARIT-R 60mm f/2.8](../../src/lens-data/leica/LeicaMacroElmaritR60mmf28.data.ts) - US 3,552,833
 
@@ -662,7 +669,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L4 (Element 4) | 6 | `554381 — dense flint (patent nd=1.55389, nu_d=38.09)` | 1.55389 / 38.09 | No catalog entry | abbe | patents/US7359125.pdf | Audit-log hit |
+| L4 (Element 3 resin layer) | 6 | `554381 — hybrid-asphere resin layer (inferred; patent nd=1.55389, νd=38.09; not catalog glass)` | 1.55389 / 38.09 | No catalog entry | abbe | patents/US7359125.pdf | Audit-log hit |
 
 ### [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) - WO 2019/131993 A1
 
@@ -917,6 +924,12 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | L23 (L23) | 12 | `Unmatched (nd=1.84333, vd=24.2; code position 843242)` | 1.84333 / 24.20 | No catalog entry | abbe | patents/US7307794.pdf | Explicit disposition in data |
 | L41 (L41) | 17 | `Unmatched (nd=1.64118, vd=58.9; code position 641589)` | 1.64118 / 58.90 | No catalog entry | abbe | patents/US7307794.pdf | Explicit disposition in data |
 | L42 (L42) | 19 | `Unmatched (nd=1.51601, vd=50.6; code position 516506)` | 1.51601 / 50.60 | No catalog entry | abbe | patents/US7307794.pdf | Explicit disposition in data |
+
+### [RICOH GR LENS A12 28mm f/2.5 (Ricoh GXR A12)](../../src/lens-data/ricoh/RicohGXRA1218mmf25.data.ts) - JP 2012-003015 A
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L2 (Element 2) | 3A | `806404 — lanthanum flint (catalog unresolved; nd 1.8061, νd 40.4)` | 1.80610 / 40.40 | No catalog entry | abbe | patents/JP2012003015A.pdf | Audit-log hit |
 
 ### [RODENSTOCK APO-SIRONAR-W 150mm f/5.6](../../src/lens-data/rodenstock/RodenstockApoSironarW150mmf56.data.ts) - DE 3,907,928 A1
 
