@@ -140,7 +140,7 @@ The glass identifications in this revision use catalog matches conservatively. T
 
 The corrected N-LASF44 / 804465 identification for L3 and L9 is the main glass-catalog change relative to the earlier analysis. The earlier S-LAH65VS naming was not adequately supported by the patent's `nd`/`νd` pair.
 
-Because the patent publishes only d-line index and Abbe number, the companion data file deliberately omits structured `nC`, `nF`, and `ng` values. That keeps the prescription tied to the patent numbers and avoids falsely precise spectral data for catalog-class glass identifications.
+The patent publishes only d-line index and Abbe number. The companion data file adds `nC`, `nF`, and `ng` on the nine elements with an OHARA class identification (S-LAL18, S-TIM28, S-TIH6, S-FPL51, S-BAL42); these are catalog line indices for the identified class, not patent data, and they drive the chromatic tracing for those elements. The resin layers and the unmatched glasses carry no line indices.
 
 ## Focus Mechanism
 

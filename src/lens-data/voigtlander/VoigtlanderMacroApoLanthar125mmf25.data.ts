@@ -35,7 +35,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  IMPORTANT: This file describes ONLY the optical design:               ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)       ║
  * ║    ✓ Aperture stop and variable focus gaps                            ║
- * ║    ✗ DO NOT include: sensor glass, filters, mechanical parts          ║
+ * ║    ✗ DO NOT include: mechanical parts (the patent lists no rear plate)║
  * ╚══════════════════════════════════════════════════════════════════════════╝
  */
 
@@ -195,7 +195,7 @@ const LENS_DATA = {
    *  Production scale (×1.25 from patent design scale).
    *  Patent: JP 2002-090622 A, Table 2 (Example 2, 第2実施形態).
    *  STO placed in the L43–L44 air gap (between surfaces 6 and 7 of the patent).
-   *  Cover glass excluded; BFD is air-equivalent to image plane.
+   *  Example 2 lists no cover glass or filter; the last gap is the lens-to-image BFD.
    */
   surfaces: [
     // Group 1 — front positive group (7 elements)

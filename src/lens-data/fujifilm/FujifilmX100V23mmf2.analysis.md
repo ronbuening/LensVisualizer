@@ -115,7 +115,7 @@ The design uses six distinct glass types across eight elements. Two glasses — 
 | L23 | 1.80780 | 40.86 | Unmatched (near TAFD33 (HOYA), $\Delta n_d = 0.0017$) | Approximate | Aspherical biconvex, primary convergence in G2 |
 | L31 | 1.51633 | 64.06 | S-BSL7 (OHARA) | Exact | BK7-class crown, aspherical field corrector |
 
-The chromatic correction strategy relies on two cemented doublets. In G1, the TAFD25 flint ($\nu_d = 29.5$) partners with the high-index lanthanum-dense flint ($\nu_d = 39.2$) — a modest Abbe differential of approximately 10 units, supplemented by the high refractive-index differential at the cemented junction. In G2, S-TIM35 ($\nu_d = 30.1$) partners with S-LAH66 ($\nu_d = 49.6$) — a larger Abbe differential of approximately 19.5 units, providing the primary axial chromatic correction. No ED or anomalous-partial-dispersion glasses are used; the design achieves its chromatic correction through conventional high/low-dispersion flint pairings.
+The chromatic correction strategy relies on two cemented doublets. In G1, the S-TIH1 flint ($\nu_d = 29.5$) partners with the high-index lanthanum-dense flint ($\nu_d = 39.2$) — a modest Abbe differential of approximately 10 units, supplemented by the high refractive-index differential at the cemented junction. In G2, S-TIM35 ($\nu_d = 30.1$) partners with S-LAH66 ($\nu_d = 49.6$) — a larger Abbe differential of approximately 19.5 units, providing the primary axial chromatic correction. No ED or anomalous-partial-dispersion glasses are used; the design achieves its chromatic correction through conventional high/low-dispersion flint pairings.
 
 The two glasses that lack exact catalog matches ($n_d = 1.88300 / \nu_d = 39.22$ and $n_d = 1.80780 / \nu_d = 40.86$) share a common pattern: their $n_d$ values match known catalog entries, but the $\nu_d$ values diverge by 1–2 units. This is consistent with either proprietary glass compositions (particularly for the precision-molded aspherical L23) or deliberate slight obfuscation in the patent filing — a common practice in Japanese optical patents.
 
@@ -194,4 +194,4 @@ All conditional expressions (1) through (6) are satisfied within the specified b
 - Fujifilm X100V product page, https://fujifilm-x.com/global/products/cameras/x100v/specifications/ — confirms 8 elements / 6 groups, 2 aspherical elements, fixed FUJINON 23mm f/2 lens, MFD ≈ 10 cm.
 - Fujifilm X100VI specifications, https://fujifilm-dsc.com/en/manual/x100vi/technical_notes/spec/ — confirms sensor dimensions (23.5 × 15.7 mm APS-C), focal length f = 23 mm, maximum aperture F2.0.
 - OHARA optical glass catalog — used for S-TIH1, S-TIM35, S-LAH66, S-BSL7, and S-LAH79 identification.
-- HOYA optical glass catalog — used for TAFD25, TAFD33 identification.
+- HOYA optical glass catalog — used for the TAFD33 near-match noted for the unmatched L23.
