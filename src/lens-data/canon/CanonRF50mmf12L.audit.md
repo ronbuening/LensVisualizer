@@ -164,3 +164,20 @@ in ¶0026 and ¶0030–0031, and FIG. 3 on p. 4 (axis horizontal, object on the 
   FIG. 3 by up to about 23 %.
 - S25A is set 0.8 mm past its sag extremum so that the corner chief ray is not blocked.
 - G5/G10 (666356) still use H-ZBaF4 as a nearest-coordinate equivalent, with the patent `dPgF` authoritative.
+
+## 2026-09-23 — Review follow-up, G11 and G12 rims
+
+Raised in PR review: G11 and the front of G12 drew visibly taller than their neighbours and than FIG. 3.
+
+| Surface | Before | After | Evidence |
+|---|---|---|---|
+| S18A (G11 front) | 21.5 | 18.7 | FIG. 3 at 300 dpi (0.0753 mm/px from the 1280 px S1–S25 vertex span) draws G11 with a flat cylindrical edge at 248 px = 18.7 mm on both faces. |
+| S19 (G11 rear) | 23.0 | 18.7 | Same flat edge; the old value was 23 % over the figure and left G11 with a thin pointed rim. |
+| S20 (G12 front) | 22.5 | 20.0 | FIG. 3 draws G12 and G13 on one flat rim at 265 px = 20.0 mm, matching the stored S21. |
+
+The f/1.25 axial marginal ray needs 16.58 / 16.73 / 14.20 mm at S18A / S19 / S20, and the corner chief ray needs
+at most 10.55 / 12.30 / 15.54 mm (the S20 value is at closest focus). Neither clips or blocks at infinity or at
+0.40 m. With the other stored rims, unvignetted off-axis bundles had reached about 21 mm at G11. That was only possible because the front-group rims are
+themselves fuller than FIG. 3 (G1 stored 25.5 mm against ≈21.6 mm drawn); the smaller G11 now does part of that
+vignetting, as the figure implies. The viewer's half-field stays 23.4° (limited by S25A). The asphere departure at
+the new S18A rim is −215 µm. Surface validator and image-circle floor pass.

@@ -35,7 +35,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    S25A = 17.1 mm: the asphere's sag reaches an extremum at       ║
  * ║    16.3 mm (a gentle inflection, not divergence); the corner      ║
  * ║    chief ray needs 16.18 mm at infinity and 16.86 mm at closest   ║
- * ║    focus. S24 = 19.2 mm follows FIG. 3's G14/G15 rim.             ║
+ * ║    focus. S24 = 19.2 mm follows FIG. 3's G14/G15 rim. G11         ║
+ * ║    (S18A/S19) = 18.7 mm and G12 front (S20) = 20.0 mm follow FIG. ║
+ * ║    3's flat rims (0.0753 mm/px); the f/1.25 axial beam needs 16.7 ║
+ * ║    mm and the chief ray at most 15.5 mm there.                    ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -330,11 +333,11 @@ const LENS_DATA = {
     { label: "17", R: 105.692, d: 1.79, nd: 1.0, elemId: 0, sd: 20.5 }, // G10 rear → air
 
     // Singlet G11
-    { label: "18A", R: 161.695, d: 7.96, nd: 1.883, elemId: 11, sd: 21.5 }, // G11 front (asph)
-    { label: "19", R: -42.423, d: 1.95, nd: 1.0, elemId: 0, sd: 23.0 }, // G11 rear → air (VARIABLE)
+    { label: "18A", R: 161.695, d: 7.96, nd: 1.883, elemId: 11, sd: 18.7 }, // G11 front (asph)
+    { label: "19", R: -42.423, d: 1.95, nd: 1.0, elemId: 0, sd: 18.7 }, // G11 rear → air (VARIABLE)
 
     // Cemented doublet D5: G12 + G13 (stationary unit L2)
-    { label: "20", R: 54.474, d: 8.77, nd: 1.883, elemId: 12, sd: 22.5 }, // G12 front
+    { label: "20", R: 54.474, d: 8.77, nd: 1.883, elemId: 12, sd: 20.0 }, // G12 front
     { label: "21", R: -60.531, d: 1.54, nd: 1.59551, elemId: 13, sd: 20.0 }, // G12→G13 junction
     { label: "22", R: 40.56, d: 7.14, nd: 1.0, elemId: 0, sd: 19.5 }, // G13 rear → air
 

@@ -159,7 +159,7 @@ Doublet D4 (G9+G10) has moderate positive power (f_D4 = +204.8 mm). G9 uses a la
 - Radii: R1 = +161.695 mm (aspherical, corrected), R2 = −42.423 mm
 - Center thickness: 7.96 mm
 
-G11 is the last element of the focus unit (L1) and carries the second ground aspherical surface. Its front surface (surface 18*) has a departure of approximately −391 µm at the stored (estimated) 21.5 mm semi-diameter, progressively reducing the surface's convex curvature outward. This asphere is positioned in the converging beam after the stop, where it corrects residual higher-order spherical aberration and reduces the sensitivity of off-axis performance to focus position. The high-index 883408 glass class allows the biconvex element to generate strong positive power while maintaining manageable surface curvatures.
+G11 is the last element of the focus unit (L1) and carries the second ground aspherical surface. Its front surface (surface 18*) has a departure of approximately −215 µm at the 18.7 mm semi-diameter FIG. 3 draws, progressively reducing the surface's convex curvature outward. This asphere is positioned in the converging beam after the stop, where it corrects residual higher-order spherical aberration and reduces the sensitivity of off-axis performance to focus position. The high-index 883408 glass class allows the biconvex element to generate strong positive power while maintaining manageable surface curvatures.
 
 The air gap immediately after G11 (surface 19, d = 1.95 mm at infinity, expanding to 16.11 mm at closest focus) is the sole variable spacing in the system. This gap defines the focus interface between the moving unit L1 and the stationary unit L2; the BFD after L2 remains constant at 14.60 mm.
 
@@ -205,7 +205,7 @@ The design employs three aspherical surfaces on three separate elements, all wit
 | Surface | Element | R (mm) | Position | Manufacturing | Departure at SD |
 |---------|---------|--------|----------|---------------|-----------------|
 | 1* | G1 (front) | +80.110 | Front of lens | Ground | −758 µm at 25.5 mm |
-| 18* | G11 (front) | +161.695 | After stop | Ground | −391 µm at 21.5 mm |
+| 18* | G11 (front) | +161.695 | After stop | Ground | −215 µm at 18.7 mm |
 | 25* | G15 (rear) | −216.191 | Last surface | Glass-molded | +344 µm at 17.1 mm |
 
 The aspherical surfaces are strategically distributed through the system to address different aberrations. Surface 1* operates at the largest beam diameter and targets zonal and marginal spherical aberration — the dominant aberration in any f/1.2 design. Its departure increases monotonically in magnitude from center to rim, progressively flattening the convex surface to reduce the convergence of marginal rays. Surface 18* sits in the converging beam after the stop, where it corrects residual higher-order spherical aberration and helps maintain correction across the focus range. Surface 25*, near the image plane, primarily addresses field-dependent aberrations (astigmatism and field curvature) without significantly affecting on-axis performance.
