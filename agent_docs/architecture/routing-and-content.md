@@ -68,7 +68,8 @@ and the canonical URL remains `/relationships/universal/`. Component interaction
 
 ## Static Page Shells
 
-- `PageNavBar.tsx` provides themed static-page navigation with theme and high-contrast toggles.
+- `PageNavBar.tsx` provides themed static-page navigation; it and the LensViewer `BreadcrumbBar.tsx` render the same
+  inline `ThemeToggleGroup.tsx` theme and high-contrast toggles.
 - `StaticPageShell.tsx` wraps static pages that need shared breadcrumbs, page theme state, and `PAGE_BASE_STYLE`.
 - `src/utils/style/pageStyles.ts` exports shared static page base styles and fallback link styles.
 - Lens index-specific filter/results styles live under `src/pages/lensIndex/`, but reuse shared base styles where possible.

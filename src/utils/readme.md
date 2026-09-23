@@ -67,4 +67,4 @@ flowchart LR
 | `svgCoordinates.ts` | Svg Coordinates helper module | none | src/components/hooks, src/components/relationshipMap | SvgBounds, clientPointToSvg, visibleSvgBounds |
 | `text.ts` | Text helper module | none | src/components/relationshipMap (4), src/components/search (2), src/pages/AuthorPage.tsx, src/pages/AuthorsIndexPage.tsx, src/pages/FormatPage.tsx, +7 more | pluralize |
 | `useMediaQuery.ts` | React hook module | package:react, src/utils/mediaQuery.ts | src/components/layout (3), src/components/content (2), src/components/homepage (2), src/pages/HomePage.tsx, src/utils/state, +2 more | default, useMediaQuery |
-| `usePrefersReducedMotion.ts` | React hook module | src/utils/useMediaQuery.ts | src/components/layout (4), src/components/diagram (2) | REDUCED_MOTION_QUERY, default, usePrefersReducedMotion |
+| `usePrefersReducedMotion.ts` | React hook module | src/utils/useMediaQuery.ts | src/components/layout (3), src/components/diagram (2) | REDUCED_MOTION_QUERY, default, usePrefersReducedMotion |
