@@ -88,6 +88,22 @@ iris schedule is inferred and the smaller L21 rim lowers the paraxial wide field
 43.3°). Lenses 64–70 use inferred `zoomApertureModel` schedules except 64 and 67, whose fixed rear stop holds one
 iris.
 
+Batch 71–80 adds: lens 71 tabulates only wide and tele, so the viewer's straight-line gap blend is ≈48 mm and ≈6 mm
+out of focus at mid-slider (the four fabricated middle stations were removed; the patent's f = 69.98 state has no gap
+table), and its close focus and G5/G6 travel split are calculated; lens 72 has no close-focus data or focus group,
+and its "BF 2.75" row contradicts its own back-focus definition; lens 73 printed TL exceeds the gap sum by 0.90 mm,
+B6 focus travel is not modeled, and the patent's wide ω = 34.93° reaches only 18.78 mm of image height; lens 74
+focus is not modeled, L14's 531559 material is unknown, and the shared `clearap.mjs` solver locked onto spurious
+wide-end rays (a root-selection variant is in the local tools); lens 75 mid-zoom 0.30 m close focus is an
+assumption and its patent field angles land at ≈14.45 mm image height; lens 76 has no focus or OIS data (focus not
+modeled) and L24 has no exact catalog glass; lens 77 Examples 1, 4 and 11 fit production equally, Table 34
+Expression 11 prints 10.876 against the gap table's 7.534, and focus is not modeled; lens 78 Example 3 shares the
+same layout; lens 79 close focus is calculated to Canon's MFD, the G2/L4 material is unknown, and Examples 2–3 share
+the layout; lens 80 printed d23 = 9.90 against BF 11.44 is unexplained and Example 2 shares the construction.
+Inferred `zoomApertureModel` schedules: 71–75, 77, 79, 80; lens 76's fixed rear stop holds one iris. Several
+viewer paraxial wide half-field estimates (71, 73–75, 77, 79, 80) sit below the patent ω while the exact trace
+covers it.
+
 ### Audit-test cleanup at the 1–40 delivery (2026-09-09)
 
 Removed all 40 per-lens audit test files introduced by this branch, including the ten temporary files from batch 31–40. Their one-time checks passed before removal; per-lens audit notes preserve evidence and historical results, not a promise those temporary commands remain available. Existing catalog validation and surface/image-circle tools remain the repeatable audit gates.
@@ -172,16 +188,16 @@ Final checks passed after audit-test removal: typecheck, format check, lint and 
 | 68 | nikkor-z-14-30f4s | 2026-04-14T14:07:42.000Z | `src/lens-data/nikon/NikonNikkorZ1430mmf4S.data.ts` | Reviewed and committed; see source limitations |
 | 69 | nikkor-z-24-200-f4-63-vr | 2026-04-14T14:07:42.000Z | `src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts` | Reviewed and committed; see source limitations |
 | 70 | nikon-z-24-70f4s | 2026-04-14T14:07:42.000Z | `src/lens-data/nikon/NikonNikkorZ2470mmf4S.data.ts` | Reviewed and committed; see source limitations |
-| 71 | nikkor-z-24-120f4 | 2026-04-15T21:10:08.000Z | `src/lens-data/nikon/NikonNikkorZ24120mmf4S.data.ts` | Pending |
-| 72 | canon-rf-28-70-f2 | 2026-04-16T00:47:47.000Z | `src/lens-data/canon/CanonRF2870mmf2L.data.ts` | Pending |
-| 73 | canon-rf-28-70-f28-is-stm | 2026-04-16T00:47:47.000Z | `src/lens-data/canon/CanonRF2870mmf28.data.ts` | Pending |
-| 74 | canon-rf24-240-f4-63 | 2026-04-16T00:47:47.000Z | `src/lens-data/canon/CanonRF24240mmf463.data.ts` | Pending |
-| 75 | fuji-xf-16-55-f28 | 2026-04-16T22:09:51.000Z | `src/lens-data/fujifilm/FujifilmXF1655mmf28R.data.ts` | Pending |
-| 76 | fuji-xf-50140mm-f28 | 2026-04-16T22:09:51.000Z | `src/lens-data/fujifilm/FujifilmXF50140mmf28R.data.ts` | Pending |
-| 77 | fujifilm-xf-16-80-f4 | 2026-04-16T22:09:51.000Z | `src/lens-data/fujifilm/FujifilmXF1680mmf4.data.ts` | Pending |
-| 78 | fujifilm-xf-200-f2 | 2026-04-16T22:09:51.000Z | `src/lens-data/fujifilm/FujifilmXF200mmf2R.data.ts` | Pending |
-| 79 | canon-rf-24-50-f45-63 | 2026-04-17T12:45:01.000Z | `src/lens-data/canon/CanonRF2450mmf463.data.ts` | Pending |
-| 80 | nikkor-z-24-50-f4-63 | 2026-04-17T12:45:01.000Z | `src/lens-data/nikon/NikonNikkorZ2450mmf463.data.ts` | Pending |
+| 71 | nikkor-z-24-120f4 | 2026-04-15T21:10:08.000Z | `src/lens-data/nikon/NikonNikkorZ24120mmf4S.data.ts` | Reviewed and committed; see source limitations |
+| 72 | canon-rf-28-70-f2 | 2026-04-16T00:47:47.000Z | `src/lens-data/canon/CanonRF2870mmf2L.data.ts` | Reviewed and committed; see source limitations |
+| 73 | canon-rf-28-70-f28-is-stm | 2026-04-16T00:47:47.000Z | `src/lens-data/canon/CanonRF2870mmf28.data.ts` | Reviewed and committed; see source limitations |
+| 74 | canon-rf24-240-f4-63 | 2026-04-16T00:47:47.000Z | `src/lens-data/canon/CanonRF24240mmf463.data.ts` | Reviewed and committed; see source limitations |
+| 75 | fuji-xf-16-55-f28 | 2026-04-16T22:09:51.000Z | `src/lens-data/fujifilm/FujifilmXF1655mmf28R.data.ts` | Reviewed and committed; see source limitations |
+| 76 | fuji-xf-50140mm-f28 | 2026-04-16T22:09:51.000Z | `src/lens-data/fujifilm/FujifilmXF50140mmf28R.data.ts` | Reviewed and committed; see source limitations |
+| 77 | fujifilm-xf-16-80-f4 | 2026-04-16T22:09:51.000Z | `src/lens-data/fujifilm/FujifilmXF1680mmf4.data.ts` | Reviewed and committed; see source limitations |
+| 78 | fujifilm-xf-200-f2 | 2026-04-16T22:09:51.000Z | `src/lens-data/fujifilm/FujifilmXF200mmf2R.data.ts` | Reviewed and committed; see source limitations |
+| 79 | canon-rf-24-50-f45-63 | 2026-04-17T12:45:01.000Z | `src/lens-data/canon/CanonRF2450mmf463.data.ts` | Reviewed and committed; see source limitations |
+| 80 | nikkor-z-24-50-f4-63 | 2026-04-17T12:45:01.000Z | `src/lens-data/nikon/NikonNikkorZ2450mmf463.data.ts` | Reviewed and committed; see source limitations |
 | 81 | nikon-l35af-35f28 | 2026-04-17T12:45:01.000Z | `src/lens-data/nikon/NikonL35AF35mmf28.data.ts` | Pending |
 | 82 | nikon-nikkor-z-35f12s | 2026-04-17T12:45:01.000Z | `src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts` | Pending |
 | 83 | elmarit-r-28f28 | 2026-04-18T23:59:18.000Z | `src/lens-data/leica/LeicaElmarit28mmf28.data.ts` | Pending |

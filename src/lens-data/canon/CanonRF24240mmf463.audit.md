@@ -84,3 +84,78 @@ Catalog version: 5c81522
 - Existing HOYA FCD515 (`1.59282 / 68.63`) is the exact coefficient-backed equivalent; the prior S-BSM81
   comparison was the wrong catalog family. The production supplier remains unspecified.
 - Strict and trusted coverage rise to `20/21`; only the separate 531559 row remains unmatched. No geometry changed.
+
+## 2026-09-23 — First-added diagram audit, lens 74
+
+Source: local `patents/US20200142167A1.pdf` (US 2020/0142167 A1, 33 pp.). Pages used: p. 1 (bibliography), p. 2
+(FIG. 1, 300 ppi native raster), p. 20 (¶0047–0054, movement loci and focus), pp. 23–25 (¶0088–0090, Numerical
+Data 1 surface, aspheric, various, unit and single-lens data), pp. 25–31 (Examples 2–5 general data, used to check
+which example is stored) and p. 32 (Table 1). Every Numerical Data 1 row was read on the rendered page.
+
+### Re-verified and retained
+
+- Example identity: Example 1 (24.72–232.80 mm, F4.12–6.41, 21 elements / 15 groups) is the only 24–240 class
+  example. Examples 2 and 3 reach 294.97 mm and 280.00 mm; Examples 4 and 5 are four-unit 24.72–200 mm designs.
+- All 37 rows (R, d, nd, νd, stop at surface 14) match. Aspheres 25 and 26 match, K through A12. The patent writes
+  the conic as (1 + k) with k = 0 on both, so K = 0.
+- All six variable gaps at W / M / T match. No filter or cover plate is listed; BF is the air-equivalent distance,
+  so d37 is stored as published. Paraxial EFL is 24.716 / 84.989 / 232.718 mm, and infinity defocus is −0.006 /
+  −0.011 / −0.003 mm. Unit focal lengths reproduce the lens-unit table (cemented L18+L19 −53.51 mm, L20+L21
+  −138.26 mm). Every element `fl` matches the single-lens table to rounding. Native scale is kept.
+- A real-ray trace puts the entrance pupil 30.56 / 98.82 / 259.35 mm behind surface 1; the patent gives 30.57 /
+  98.84 / 259.37 mm.
+- Field: the patent's ω (37.55 / 14.28 / 5.31°) equals arctan(Y / f) with Y = 19.00 / 21.64 / 21.64 mm. A real chief
+  ray at 37.55° lands at 16.93 mm, which means strong barrel distortion at the wide end. Real rays reach 21.64 mm at
+  13.57° (M) and 5.05° (T).
+- Zoom motion: the FIG. 1 arrows run object-ward for all six units, and the gap table agrees. Measured from the
+  image, the unit front vertices move monotonically at the three stations; for example, unit 1 goes 141.99 →
+  183.81 → 213.99 mm and unit 2 goes 123.68 → 134.10 → 137.74 mm. No unit reverses. D31 and D34 are each
+  non-monotonic, but D31 + D34 = 19.27 mm at every station, so L4 and L6 move as one (derived) and L5 floats
+  between them.
+- Focus: ¶0053 moves L5 image-ward (arrow 5c), but no close-focus spacings are published. The identical var pairs
+  are kept, and the app labels focus "Not modeled". `closeFocusM` 0.5 m is Canon's wide-end MFD.
+- Glass: every nd/νd equals the table, and 20 of 21 labels resolve to coordinate-compatible catalog glasses.
+- Element counts, specs, mount/format, groups, doublets and varLabels are unchanged. Element types agree with the R
+  signs except L10 (below). `patentAuthors` (Shohei Kikuchi, the sole inventor) is already correct.
+
+### Changes
+
+| Item | Before | After | Evidence |
+|---|---|---|---|
+| Unit 2 sd (S6–S13) | 13.8 / 12.2 / 10.9 / 10.7 / 10.9 / 10.2 / 9.9 / 10.0 | 13.795 / 11.19 / 10.985 / 10.39 / 10.29 / 9.82 / 9.725 / 9.32 | Patent effective diameters ÷ 2. The old values were "rendering adjustments" of up to +1.01 mm with no patent source. The chief ray at 37.55° peaks at 9.42 mm on S7, inside 11.19 |
+| Unit 3 sd (S15–S24) | 9.4 / 9.3 / 9.15 / 8.9 / 8.65 / 8.55 / 8.5 / 8.45 / 8.65 / 8.8 | 8.515 / 8.46 / 8.325 / 7.975 / 7.605 / 7.75 / 7.63 / 7.595 / 7.4 / 7.55 | Patent effective diameters ÷ 2 (old values 10–17 % larger, up to +1.25 mm). Each equals the tele F6.41 axial beam: 8.51 / 8.46 / 8.33 / 7.97 / 7.60 / 7.75 / 7.63 / 7.59 / 7.40 / 7.55 mm |
+| `zoomApertureModel` | absent (fixed 6.63 mm iris) | `"from-nominal-fno"` | Only one stop diameter (16.32 mm) is published. The FNO schedule implies radii of 6.629 / 7.642 / 8.160 mm, and the tele radius equals the published stop diameter ÷ 2 |
+| `fstopSeries` / `maxFstop` | starts 4 / default 16 | starts 4.12 / 22 | The first stop must be reachable, and the series already held f/22 |
+| L10 `type` | Plano-Convex Negative | Plano-Concave Negative | S18 flat, S19 R = +20.522 (concave toward the image) |
+| L14 `glass` | `531559 - moldable barium light crown (…)` | `Unmatched (531559; material not stated in patent, resin-class coordinate; …)` | The patent names no material; "barium light crown" was unsupported |
+| Header | "Reversing group: D34"; SD note citing Canon's construction diagram | Monotonic object-ward motion with a derived L4/L6 link; aperture, BF and conic notes; patent-ED SD note | Findings above |
+| Analysis | surface ranges off by one; d31 shown monotonic; D34 reversal attributed to "a renderer"; L10 "plano-convex"; E-FD15 / S-TIH53W / S-TIH10 names; L14 glass-molded / PMo claim; image circle 43.28 mm at every station | corrected ranges; d31/d34 reversal with sum invariant and unit positions; inferred iris schedule; wide Y = 19.00 mm and real 16.9 mm distortion note; E-FDS1 / S-NBH56 / S-TIH6; L14 material unstated; BF and pupil checks; departures at the rim | Findings above |
+
+### Checks on the result
+
+- The surface validator reports no errors, and the image-circle audit reports 0 undersized.
+- The shared `clearap.mjs` solver locked onto spurious launch roots for this lens: it gave a wide-end ω of 38.4°
+  with yImg 17.35 mm instead of 21.64, and chief heights of 50 mm at S1. A continuation-guided copy anchored on the
+  real entrance pupil was used instead. At ω = 37.55 / 13.57 / 5.05° it finds no axial clipping and no chief-ray
+  blocking. Full-field one-side vignetting is up to 41 % in unit 3, about 50 % in unit 4 and 78–85 % at unit 1.
+  Unit 1 is unchanged from before the audit.
+- The engine derives stop radii of 6.629 / 7.642 / 8.160 mm, FOPEN of 4.12 / 5.66 / 6.41 and stop Ø 13.26 /
+  15.28 / 16.32 mm live. Its paraxial wide half-field estimate is now 35.4°, limited by S7, where it was 37.2°.
+  Both are below the patent's 37.55°; a real ray at 37.55° clears S7 at 9.42 mm.
+- L14 departures from the base sphere are −203 µm and +97 µm at h = 10 mm, as the analysis states, and −320 µm and
+  +65 µm at the effective semi-diameters. S26's sag slope turns over just inside its patent 11.285 mm rim, at
+  −0.010 slope.
+- Prettier reports clean formatting.
+- Live check with the headless local renderer: the wide, intermediate and tele infinity views render the smaller
+  unit-2/3 rims. The focus slider reads "Not modeled", and f/22 is reachable. The zoom-movement overlay moves all
+  six groups object-ward with a 72.00 mm maximum travel. Production was shot at the wide end as the baseline.
+  Off-axis rays were not toggled.
+
+### Open limitations
+
+- No close-focus spacings are published, so focus travel is not modeled. Canon's 0.78 m tele MFD is not
+  represented.
+- The iris schedule is inferred from the FNO values.
+- The L14 material is unknown (code 531559 has no catalog match); it may be an optical resin.
+- The engine's paraxial wide half-field (35.4°) underestimates the patent's 37.55°.
+- The wide-end real image height (16.9 mm at 37.55°) relies on digital distortion correction to fill the frame.

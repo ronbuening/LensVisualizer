@@ -18,16 +18,19 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    DD12 (G2→G3) : 19.890 /  5.636 /  0.685  (zoom-only)            ║
  * ║    DD23 (G3→G4) :  2.000 /  6.395 /  7.257  (zoom + focus)         ║
  * ║    DD28 (G4→G5) :  2.600 /  7.250 / 14.396  (zoom + focus)         ║
- * ║  All four trajectories are monotonic across the zoom range.        ║
+ * ║  Each gap changes monotonically over the three stations.  Group    ║
+ * ║  motion (Fig. 4): G1, G3 and G4 move monotonically toward the      ║
+ * ║  object; G2 first moves toward the image (≈5.2 mm to mid) and      ║
+ * ║  then back toward the object (≈3.1 mm to tele); G5 is fixed.       ║
  * ║                                                                    ║
  * ║  Close-focus DD23/DD28 values are DERIVED (not in patent):         ║
- * ║    Patent lists only infinity-focus variable gaps. Close-focus     ║
- * ║    values for DD23 and DD28 are computed here by solving for the   ║
- * ║    G4 translation that brings the paraxial image plane onto the    ║
- * ║    sensor at the Fujifilm-marketed MFD of 0.30 m (measured from    ║
- * ║    image plane).  DD5 and DD12 lie ahead of G4 and are not         ║
- * ║    affected by focusing — their close-focus values equal their     ║
- * ║    infinity values.                                                ║
+ * ║    The patent lists only infinity-focus variable gaps.  Close     ║
+ * ║    values are a paraxial G4-translation solve for Fujifilm's      ║
+ * ║    macro-range MFD (object-to-image): 0.30 m at wide, 0.40 m at    ║
+ * ║    tele (zoomCloseFocusM); the mid-station 0.30 m is an assumed    ║
+ * ║    value, since Fujifilm publishes only wide/tele.  G4 travel      ║
+ * ║    ≈ 0.70 / 2.04 / 3.16 mm.  DD5 and DD12 lie ahead of G4 and are  ║
+ * ║    not affected by focusing.                                       ║
  * ║                                                                    ║
  * ║  NOTE ON ASPHERICAL COEFFICIENTS:                                   ║
  * ║    The patent uses the Fujifilm sag convention                     ║
@@ -39,27 +42,33 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  NOTE ON SCALING:                                                   ║
  * ║    Patent Example 1 prescription is at f = 16.492 mm (wide) to     ║
  * ║    f = 53.436 mm (tele).  Fujifilm markets the lens as 16–55 mm;   ║
- * ║    this ~3% marketing rounding is NOT rescaled here — prescription ║
- * ║    values are preserved exactly from the patent.                   ║
+ * ║    the patent is already at production scale and is kept native.  ║
+ * ║                                                                    ║
+ * ║  NOTE ON BACK FOCUS:                                                ║
+ * ║    Patent surfaces 31–33 (2.15 mm n 1.54763 + 0.70 mm n 1.49784   ║
+ * ║    plates, 0.513 mm air) are excluded; the last gap 21.999 mm is   ║
+ * ║    19.630 + 2.15/1.54763 + 0.70/1.49784 + 0.513 (air-equivalent),  ║
+ * ║    matching the patent Bf of 22.000 mm at all three stations.      ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                            ║
- * ║    Semi-diameters are NOT listed in the patent.  They were         ║
- * ║    estimated by combined marginal-ray + chief-ray envelope         ║
- * ║    (offAxisFieldFrac = 0.60) evaluated at all three zoom positions ║
- * ║    with an 8% mechanical clearance, then iteratively adjusted to   ║
- * ║    satisfy edge-thickness (≥ 0.5 mm), cross-gap overlap (intrusion ║
- * ║    ≤ gap × 1.1), and rim-slope (≤ tan 64.2°) constraints across    ║
- * ║    all zoom positions.  Front-group SDs (~25 mm) are consistent    ║
- * ║    with the lens's 77 mm filter thread.                            ║
+ * ║    Semi-diameters are NOT listed in the patent.  G1 (S1–S5), L21   ║
+ * ║    (6A/7A) and L51 (29/30) were re-measured from the Fig. 1        ║
+ * ║    wide-angle section (scale 0.1316 mm/px at 300 dpi from S1 to    ║
+ * ║    the cover plate) in the 2026-09-23 audit: the old values        ║
+ * ║    blocked the exact full-field chief ray at S1 and 6A (wide) and  ║
+ * ║    at S30 (mid/tele, patent ω).  S8/S9                             ║
+ * ║    were raised to 10.5 mm to pass the ω = 43.5° chief ray (9.95   ║
+ * ║    mm on S8).  The remaining G2–G4 values are earlier ray-envelope ║
+ * ║    estimates, within ~15 % of the figure and clear of the axial    ║
+ * ║    f/2.74–2.89 beams at every station.                             ║
  * ║                                                                    ║
- * ║  NOTE ON STOP POSITION:                                             ║
- * ║    Patent Table 1 explicitly labels surface 15 as the aperture     ║
- * ║    stop ("aperture stop"), sitting 3.440 mm behind L31 and         ║
- * ║    3.440 mm ahead of L32A.  The stop is variable — its physical    ║
- * ║    SD changes with zoom position so that the marketed constant     ║
- * ║    f/2.8 is held across the zoom range.  The data file records     ║
- * ║    the maximum stop SD (tele, wide-open, ≈ 9.1 mm); the renderer   ║
- * ║    reconstructs the per-zoom entrance pupil from the ABCD trace.   ║
+ * ║  NOTE ON STOP / APERTURE:                                           ║
+ * ║    Patent Table 1 labels surface 15 as the aperture stop, 3.440 mm ║
+ * ║    behind L31 and ahead of L32A; ¶[0088] calls it a variable stop. ║
+ * ║    The patent gives FNO 2.88 / 2.74 / 2.89 but no iris diameters,  ║
+ * ║    so zoomApertureModel "from-nominal-fno" infers the per-station  ║
+ * ║    iris (≈ 7.2 / 9.0 / 9.7 mm from the engine).  STO sd records   ║
+ * ║    the largest (tele) iris; production is marketed as f/2.8.       ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -73,7 +82,7 @@ const LENS_DATA = {
     "17 ELEMENTS / 12 GROUPS",
     "f = 16.5 – 53.4 mm (PATENT) / 16 – 55 mm (MARKETED)",
     "F/2.88 – F/2.74 – F/2.89 (PATENT); F/2.8 CONSTANT (MARKETED)",
-    "2ω = 87.0° – 28.8° (PATENT, PARAXIAL)",
+    "2ω = 87.0° – 48.6° – 28.8° (PATENT)",
     "6 ASPHERICAL SURFACES (3 ELEMENTS)",
     "3 ED ELEMENTS (S-FPM3, 2× S-FPL51)",
   ],
@@ -112,26 +121,26 @@ const LENS_DATA = {
       id: 2,
       name: "L12",
       label: "Element 2 (L12)",
-      type: "Biconvex Positive",
+      type: "Positive Meniscus",
       nd: 1.618,
       vd: 63.33,
       fl: 140.4,
       glass: "OHARA S-PHM52",
       apd: false,
-      role: "Positive crown paired with L11 to form the front achromat of G1",
+      role: "Positive meniscus crown (convex to object) paired with L11 to form the front achromat of G1",
       cemented: "D1",
     },
     {
       id: 3,
       name: "L13",
       label: "Element 3 (L13)",
-      type: "Biconvex Positive",
+      type: "Positive Meniscus",
       nd: 1.755,
       vd: 52.32,
       fl: 94.1,
       glass: "J-LASKH2 (HIKARI catalog equivalent; patent code 755523, vendor unspecified)",
       apd: false,
-      role: "Separate positive lanthanum crown; distributes G1 positive power to suppress spherical aberration",
+      role: "Separate positive meniscus (convex to object) in lanthanum crown; distributes G1 positive power to suppress spherical aberration",
     },
 
     // G2 — variator (negative, -14.70 mm)
@@ -191,13 +200,13 @@ const LENS_DATA = {
       id: 8,
       name: "L31",
       label: "Element 8 (L31)",
-      type: "Pos. Meniscus (2× Asph)",
+      type: "Biconvex Pos. (2× Asph)",
       nd: 1.68458,
       vd: 30.88,
       fl: 39.1,
       glass: "Unmatched (685309 dense flint; nearest public catalog row exceeds d-line tolerance)",
       apd: false,
-      role: "Double-aspheric positive 'diverging-beam catcher' before the stop; limits downstream clear apertures and corrects spherical aberration at f/2.8",
+      role: "Double-aspheric, nearly plano-convex biconvex positive (R2 = −787 mm) before the stop; catches the diverging beam from G2, limits downstream clear apertures and corrects spherical aberration at f/2.8",
     },
     {
       id: 9,
@@ -230,14 +239,14 @@ const LENS_DATA = {
       id: 11,
       name: "L33A",
       label: "Element 11 (L33A)",
-      type: "Positive Meniscus",
+      type: "Biconvex Positive",
       nd: 1.497,
       vd: 81.54,
       fl: 72.6,
       glass: "OHARA S-FPL51 (ED)",
       apd: "patent",
       apdNote: "Near-fluorite ED glass; strongest available anomalous-partial-dispersion behaviour in OHARA catalog",
-      role: "ED positive meniscus (convex to image) cemented to L33B; completes the negative-combined L33 doublet",
+      role: "Weakly biconvex ED positive (R1 = +396.5 mm, R2 = −39.6 mm) cemented to L33B; completes the negative-combined L33 doublet",
       cemented: "D4",
     },
     {
@@ -325,17 +334,17 @@ const LENS_DATA = {
   /* ── Surface prescription ── */
   surfaces: [
     // G1 — positive front group
-    { label: "1", R: 86.20982, d: 2.21, nd: 1.84666, elemId: 1, sd: 25.2 }, //  1  L11 front
-    { label: "2", R: 54.352, d: 6.0, nd: 1.618, elemId: 2, sd: 24.8 }, //  2  L11/L12 cement
-    { label: "3", R: 139.31177, d: 0.1, nd: 1.0, elemId: 0, sd: 23.6 }, //  3  L12 rear → air
-    { label: "4", R: 53.19269, d: 6.34, nd: 1.755, elemId: 3, sd: 23.6 }, //  4  L13 front
-    { label: "5", R: 200.56627, d: 0.8, nd: 1.0, elemId: 0, sd: 21.7 }, //  5  L13 rear → DD5
+    { label: "1", R: 86.20982, d: 2.21, nd: 1.84666, elemId: 1, sd: 28.5 }, //  1  L11 front
+    { label: "2", R: 54.352, d: 6.0, nd: 1.618, elemId: 2, sd: 26.8 }, //  2  L11/L12 cement
+    { label: "3", R: 139.31177, d: 0.1, nd: 1.0, elemId: 0, sd: 26.6 }, //  3  L12 rear → air
+    { label: "4", R: 53.19269, d: 6.34, nd: 1.755, elemId: 3, sd: 25.7 }, //  4  L13 front
+    { label: "5", R: 200.56627, d: 0.8, nd: 1.0, elemId: 0, sd: 25.7 }, //  5  L13 rear → DD5
 
     // G2 — negative variator
-    { label: "6A", R: 141.91654, d: 1.4, nd: 1.85135, elemId: 4, sd: 11.5 }, //  6  L21 front (asph)
-    { label: "7A", R: 13.47772, d: 8.57, nd: 1.0, elemId: 0, sd: 10.8 }, //  7  L21 rear  (asph) → air
-    { label: "8", R: -32.15762, d: 1.01, nd: 1.6968, elemId: 5, sd: 9.8 }, //  8  L22 front
-    { label: "9", R: 17.989, d: 7.5, nd: 1.90366, elemId: 6, sd: 9.9 }, //  9  L22/L23 cement
+    { label: "6A", R: 141.91654, d: 1.4, nd: 1.85135, elemId: 4, sd: 17.4 }, //  6  L21 front (asph)
+    { label: "7A", R: 13.47772, d: 8.57, nd: 1.0, elemId: 0, sd: 11.3 }, //  7  L21 rear  (asph) → air
+    { label: "8", R: -32.15762, d: 1.01, nd: 1.6968, elemId: 5, sd: 10.5 }, //  8  L22 front
+    { label: "9", R: 17.989, d: 7.5, nd: 1.90366, elemId: 6, sd: 10.5 }, //  9  L22/L23 cement
     { label: "10", R: -39.71555, d: 1.38, nd: 1.0, elemId: 0, sd: 10.3 }, // 10  L23 rear → air
     { label: "11", R: -21.64392, d: 1.0, nd: 1.72916, elemId: 7, sd: 10.2 }, // 11  L24 front
     { label: "12", R: -56.68875, d: 19.89, nd: 1.0, elemId: 0, sd: 10.3 }, // 12  L24 rear → DD12
@@ -343,7 +352,7 @@ const LENS_DATA = {
     // G3 — master group (positive) with aperture stop after L31
     { label: "13A", R: 27.66531, d: 4.0, nd: 1.68458, elemId: 8, sd: 10.4 }, // 13  L31 front (asph)
     { label: "14A", R: -787.32682, d: 2.0, nd: 1.0, elemId: 0, sd: 10.1 }, // 14  L31 rear  (asph) → air
-    { label: "STO", R: 1e15, d: 3.44, nd: 1.0, elemId: 0, sd: 9.1 }, // 15  aperture stop
+    { label: "STO", R: 1e15, d: 3.44, nd: 1.0, elemId: 0, sd: 9.7 }, // 15  aperture stop
     { label: "16", R: 35.85993, d: 1.01, nd: 1.84666, elemId: 9, sd: 10.5 }, // 16  L32A front
     { label: "17", R: 15.925, d: 6.28, nd: 1.53775, elemId: 10, sd: 10.5 }, // 17  L32A/L32B cement
     { label: "18", R: -48.19335, d: 0.5, nd: 1.0, elemId: 0, sd: 11.1 }, // 18  L32B rear → air
@@ -361,8 +370,8 @@ const LENS_DATA = {
     { label: "28", R: -121.37904, d: 2.6, nd: 1.0, elemId: 0, sd: 10.2 }, // 28  L43 rear → DD28
 
     // G5 — fixed positive field flattener; then cover-glass stack folded into BFD
-    { label: "29", R: 310.67587, d: 3.0, nd: 1.95906, elemId: 17, sd: 11.1 }, // 29  L51 front
-    { label: "30", R: -80.18906, d: 21.999, nd: 1.0, elemId: 0, sd: 11.1 }, // 30  L51 rear → image (air-equivalent BFD folds the 2.15/1.54763 + 0.70/1.49784 + 0.513 mm cover-glass stack)
+    { label: "29", R: 310.67587, d: 3.0, nd: 1.95906, elemId: 17, sd: 13.8 }, // 29  L51 front
+    { label: "30", R: -80.18906, d: 21.999, nd: 1.0, elemId: 0, sd: 13.8 }, // 30  L51 rear → image (air-equivalent BFD folds the 2.15/1.54763 + 0.70/1.49784 + 0.513 mm cover-glass stack)
   ],
 
   /* ── Aspherical coefficients ──
@@ -468,9 +477,11 @@ const LENS_DATA = {
   //  DD5 and DD12 are ZOOM-ONLY (unchanged by focus, since both lie ahead of the focus group G4).
   //  DD23 (G3→G4) and DD28 (G4→G5) are ZOOM + FOCUS:
   //    Infinity values taken from patent Table 3.
-  //    Close-focus values derived from paraxial G4-translation solve for Fujifilm MFD of
-  //    0.30 m (measured from image plane), yielding G4 image-ward motion of
-  //    ≈ 0.70 mm (wide), ≈ 2.04 mm (mid), ≈ 4.55 mm (tele).
+  //    Close-focus values are DERIVED (paraxial G4-translation solve), not patent values:
+  //    wide and mid focus 0.30 m object-to-image, tele 0.40 m (Fujifilm macro-range MFD
+  //    0.30 m wide / 0.40 m tele; the mid-station 0.30 m is an assumption). G4 image-ward
+  //    motion ≈ 0.70 mm (wide), ≈ 2.04 mm (mid), ≈ 3.16 mm (tele); tele magnification
+  //    ≈ 0.154× paraxial vs Fujifilm's published 0.16×.
   //    For each zoom position:  DD23_close = DD23_inf + ΔG4;  DD28_close = DD28_inf − ΔG4.
   var: {
     "5": [
@@ -486,12 +497,12 @@ const LENS_DATA = {
     "23A": [
       [2.0, 2.697],
       [6.395, 8.435],
-      [7.257, 11.805],
+      [7.257, 10.418],
     ],
     "28": [
       [2.6, 1.903],
       [7.25, 5.21],
-      [14.396, 9.848],
+      [14.396, 11.235],
     ],
   },
 
@@ -499,7 +510,7 @@ const LENS_DATA = {
     ["5", "D5"],
     ["12", "D12"],
     ["23A", "D23"],
-    ["28", "BF"], // Functionally the last variable gap before G5; G5 rear + cover-glass air-equivalent is the true BFD
+    ["28", "D28"], // G4→G5 gap; the back focus behind the fixed G5 is constant (patent Bf 22.000 air-equivalent)
   ],
 
   /* ── Zoom lens fields ── */
@@ -526,12 +537,15 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.3,
+  zoomCloseFocusM: [0.3, 0.3, 0.4],
   focusDescription:
-    "Inner focus by G4 translation; G4 (L41 + L42+L43 cemented) moves toward the image plane for closer focus. Linear-motor driven (the 'LM' in the product name). G5 (field flattener) is stationary for weather sealing and microlens consistency.",
+    "Inner focus by G4 translation; G4 (L41 + L42+L43 cemented) moves toward the image plane for closer focus (patent ¶[0084]). Close-focus gaps are calculated for Fujifilm's macro-range MFD (0.30 m wide, 0.40 m tele; mid assumed 0.30 m), not published in the patent. Linear-motor driven (the 'LM' in the product name). G5 stays fixed during zoom and focus (¶[0078]: allows the lens to be sealed against foreign matter).",
 
   /* ── Aperture configuration ── */
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 3.5, 4, 4.5, 5.6, 6.3, 8, 11, 16, 22],
+  nominalFno: [2.88, 2.74, 2.89],
+  zoomApertureModel: "from-nominal-fno",
+  fstopSeries: [2.74, 2.88, 2.89, 3.5, 4, 4.5, 5.6, 6.3, 8, 11, 16, 22],
+  maxFstop: 22,
   apertureBlades: 9,
   apertureBladeRoundedness: 0.85,
 

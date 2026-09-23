@@ -1,8 +1,8 @@
 # Nikon NIKKOR Z 24-50mm f/4-6.3 — Optical Analysis
 
 **Patent:** JP 2021-189377 A (published 2021-12-13)
-**Applicants:** Konica Minolta / Nikon Corporation
-**Inventors:** Hirose Takumo, Yamada Keiko, Yamamoto Yasushi, Yamamoto Hiroshi
+**Applicants:** Konica Minolta, Inc. / Nikon Corporation
+**Inventors:** Takakazu Hirose, Keiko Yamada, Yasushi Yamamoto, Hiroshi Yamamoto
 **Published:** December 13, 2021
 **Embodiment analyzed:** Example No. 1 (corresponding to the First Embodiment, Figure 1)
 
@@ -12,7 +12,7 @@
 
 The NIKKOR Z 24-50mm f/4-6.3 is Nikon's ultra-compact standard zoom lens for the Z-mount mirrorless system. Announced alongside the Nikon Z5 in July 2020, it was designed specifically to serve as a full-frame kit lens with an emphasis on minimizing size and weight. At 195 g and a collapsed length of 51 mm, it is the shortest and lightest full-frame zoom in its class.
 
-The optical design is covered by JP 2021-189377 A, a joint filing by Konica Minolta and Nikon. The patent presents five numerical examples; Example 1 corresponds to the production lens configuration and is the focus of this analysis.
+The optical design is covered by JP 2021-189377 A, a joint filing by Konica Minolta and Nikon. The patent presents five numerical examples. Example 1 has the production construction (11 elements in 10 groups, 2 ED elements, 3 aspherical elements) and is the focus of this analysis. Example 2 has the same element count and glass types, so identifying Example 1 as the production prescription is an inference rather than something the patent states.
 
 ### Key Specifications (Manufacturer)
 
@@ -20,10 +20,12 @@ The optical design is covered by JP 2021-189377 A, a joint filing by Konica Mino
 |---|---|
 | Focal length | 24–50 mm |
 | Maximum aperture | f/4 (wide) – f/6.3 (tele) |
+| Minimum aperture | f/22 (wide) – f/36 (tele) |
 | Optical formula | 11 elements in 10 groups |
 | Special elements | 3 aspherical, 2 ED |
 | Diaphragm | 7 blades, rounded |
 | Close focus | 0.35 m (constant across zoom) |
+| Maximum reproduction ratio | 0.17× (at 50 mm) |
 | Filter thread | 52 mm |
 | Focus method | Internal focus (stepping motor) |
 | Mount | Nikon Z (FX) |
@@ -61,9 +63,11 @@ The total element count is 11 (3 + 5 + 2 + 1), arranged in 10 air-separated grou
 During zooming from wide (24.7 mm) to telephoto (48.5 mm):
 
 - **G1** executes a non-monotonic "U-turn" trajectory: it first moves toward the image (wide → middle), then reverses and moves toward the object (middle → tele).
-- **G2** moves monotonically toward the object, covering approximately 16.3 mm of travel. Since the stop moves with G2, this creates a compact zoom mechanism.
-- **G3** also moves monotonically toward the object, but less than G2, causing the G2–G3 and G3–G4 gaps to increase.
+- **G2** moves monotonically toward the object, covering about 16.4 mm of travel relative to the fixed G4. Since the stop moves with G2, this creates a compact zoom mechanism.
+- **G3** also moves monotonically toward the object, by about 13.2 mm (less than G2), causing the G2–G3 and G3–G4 gaps to increase.
 - **G4** is stationary.
+
+Measured from the first vertex to the last vertex, the lens is 75.80 mm long at wide, 73.41 mm at the middle station and 75.43 mm at tele: G1 moves about 2.4 mm toward the image and then about 2.0 mm back toward the object. The patent tabulates only these three zoom stations (f = 24.726, 34.711 and 48.503 mm). The data file uses exactly those three stations and no interpolated intermediate stations.
 
 The variable air spacings at infinity focus are:
 
@@ -80,7 +84,7 @@ The dramatic 16.8 mm reduction in d6 from wide to tele is the principal zooming 
 
 Group 3 is the dedicated focus group. During close focusing (minimum distance 0.35 m per manufacturer specification), G3 translates toward the image plane. This is an internal focusing (IF) design: the overall lens length does not change during focus, and the front element does not rotate — both advantages for filter use and mechanical simplicity.
 
-The computed close-focus G3 translations (at 0.35 m from sensor) are:
+The patent tabulates variable gaps for infinity focus only. The close-focus G3 translations below were calculated so that each station focuses at 0.35 m from the image plane. They are not patent values:
 
 | Zoom Position | G3 shift Δ (mm) | d17 (∞ → 0.35 m) | d21 (∞ → 0.35 m) |
 |---|---|---|---|
@@ -88,13 +92,17 @@ The computed close-focus G3 translations (at 0.35 m from sensor) are:
 | Middle (34.7 mm) | +2.45 | 10.00 → 12.45 | 10.37 → 7.91 |
 | Tele (48.5 mm) | +3.73 | 11.94 → 15.67 | 17.61 → 13.88 |
 
-The increasing G3 translation at longer focal lengths is characteristic of internal-focus zoom designs. At wide angle, the focus group leverages the stronger magnification through the preceding optics to achieve adequate focus shift with minimal movement. At telephoto, the reduced magnification from G1+G2 demands a proportionally larger physical translation of G3.
+These calculated states give paraxial magnifications of about −0.089×, −0.125× and −0.179× at the three stations. The tele value is close to Nikon's published 0.17× maximum reproduction ratio. The increasing G3 translation at longer focal lengths is characteristic of internal-focus zoom designs. At wide angle, the focus group leverages the stronger magnification through the preceding optics to achieve adequate focus shift with minimal movement. At telephoto, the reduced magnification from G1+G2 demands a proportionally larger physical translation of G3.
 
 G3's compact two-element construction enables the fast, quiet stepping motor autofocus that Nikon specifies for this lens.
 
 ### 2.4 Note on Back Focal Distance
 
-The prescription table in the patent lists d23 = 9.90 mm as the last surface-to-image distance, but paraxial ray trace yields BFL = 11.438 mm at wide (matching the patent's BF column exactly: 11.438 / 11.381 / 11.301 at wide / middle / tele). The BF values are the correct last-surface-to-paraxial-image distances. The discrepancy with d23 = 9.90 is most likely due to a sensor cover glass or IR-filter stack that the patent prescription does not explicitly include, consistent with the patent's note that "a parallel plate (e.g., sensor cover glass, optical low-pass filter, IR-cut filter) may be placed as needed."
+The prescription table prints d23 = 9.90 mm as the constant last-surface-to-image distance, and the printed total lengths use it: TL = first-to-last vertex + 9.90 mm at every station (85.702 / 83.311 / 85.334 mm). The patent defines BF as the air-converted distance from the last surface to the paraxial image. A paraxial trace of the tabulated surfaces reproduces that BF column exactly (11.438 / 11.381 / 11.301 mm). The patent does not tabulate a cover glass or filter. A plate in that space would make the physical distance longer than its air-equivalent, not shorter, so the 1.54 mm difference cannot be explained as a folded plate and remains unresolved. The data file stores the BF column as the last gap, which puts every station at paraxial focus. The small 0.14 mm drift of that paraxial image across the zoom range is part of the patent's data. It is not a movement of G4, which the text states is fixed.
+
+### 2.5 Aperture Schedule
+
+The patent gives the f-number at each station (4.080 / 5.115 / 6.337) but no iris diameters. Because the stop travels with G2, a fixed iris would give roughly f/4.1, f/5.0 and f/6.1. The viewer therefore uses an inferred iris schedule derived from the nominal f-numbers, with stop radii of about 5.78, 5.60 and 5.60 mm. This schedule is calculated and was not published.
 
 ---
 
@@ -119,7 +127,7 @@ Coefficients (A4 through A8 only; higher orders are zero):
 
 ### 3.2 L2d — Group 2 Rear Aberration Corrector (Surfaces 14, 15)
 
-L2d is a biconvex positive singlet (R₁ = +22.66, R₂ = −32.27 mm) fabricated from a precision-glass-moldable (PGM) optical glass (nd = 1.58313, νd = 59.46), matching the M-BACD12 property class — a barium crown glass in HOYA's PGM lineup with a low transition temperature suitable for high-precision press molding. The nearest resolver-backed Hikari Q-SK52S entry has the same six-digit class but a slightly different nd, so the data file keeps the patent row on Abbe fallback.
+L2d is a biconvex positive singlet (R₁ = +22.66, R₂ = −32.27 mm) fabricated from a precision-glass-moldable (PGM) optical glass (nd = 1.58313, νd = 59.46), an exact coordinate match for HOYA M-BACD12, a barium crown glass in HOYA's PGM lineup with a low transition temperature suitable for high-precision press molding.
 
 L2d sits immediately after the aperture stop, in the G2r sub-group. Its position gives it maximum leverage over spherical aberration and coma. The patent states that L2d's aspherical surfaces correct the spherical aberration and coma generated by the G2f sub-group. With a strong positive power of f = +23.5 mm, L2d is the second-strongest individual element in the entire system.
 
@@ -153,35 +161,36 @@ Coefficients:
 
 ## 4. Glass Selection and Material Strategy
 
-The eleven elements use just six distinct glass types (plus optical cement), reflecting a cost-conscious design philosophy. Two elements are molded plastic, which represents an unusually high plastic count for a full-frame interchangeable lens and underscores the budget orientation.
+The eleven elements use eight distinct materials: seven optical glasses and one COP resin, plus the optical cement. L2a/L2b share one glass, L2e/L4a share another and L1b/L3b share the resin. This reflects a cost-conscious design philosophy. Two elements are molded plastic, which represents an unusually high plastic count for a full-frame interchangeable lens and underscores the budget orientation.
 
 ### 4.1 Element-by-Element Glass Identification
 
 | Element | nd | νd | Glass Code | Catalog Match | Type |
 |---|---|---|---|---|---|
-| L1a | 1.69680 | 55.46 | 697.555 | Unmatched barium crown; prior S-BSM10 label incompatible | Barium crown |
+| L1a | 1.69680 | 55.46 | 697.555 | HOYA LAC14 (exact) | Lanthanum crown |
 | L1b | 1.53048 | 55.72 | 530.557 | COP resin (ZEONEX-type) | Plastic (cyclo-olefin polymer) |
-| L1c | 1.92286 | 20.88 | 923.209 | OHARA PBH21 | Ultra-high-dispersion flint |
+| L1c | 1.92286 | 20.88 | 923.209 | OHARA PBH21 (exact; HOYA E-FDS1 also exact) | Ultra-high-dispersion flint |
 | L2a | 1.49700 | 81.61 | 497.816 | HOYA FCD1 / S-FPL51 | ED (fluorophosphate) |
 | L2b | 1.49700 | 81.61 | 497.816 | HOYA FCD1 / S-FPL51 | ED (fluorophosphate) |
 | (cement) | 1.51400 | 27.05 | — | UV-cure adhesive | Optical cement |
-| L2c | 1.70154 | 41.24 | 702.412 | BAFD7 / S-BAH27 / NBFD12 class | Lanthanum flint |
-| L2d | 1.58313 | 59.46 | 583.595 | M-BACD12 property class | PGM barium crown |
-| L3a | 1.83481 | 42.72 | 835.427 | OHARA S-LAH55V / HOYA TAFD5G | Dense lanthanum flint |
+| L2c | 1.70154 | 41.24 | 702.412 | OHARA S-BAH27 (exact) | Dense barium flint |
+| L2d | 1.58313 | 59.46 | 583.595 | HOYA M-BACD12 (exact) | PGM barium crown |
+| L2e | 1.64769 | 33.84 | 648.338 | HOYA E-FD2 (exact) | Dense flint |
+| L3a | 1.83481 | 42.72 | 835.427 | HOYA TAFD5G (exact; OHARA S-LAH55V νd 42.73) | Dense lanthanum flint |
 | L3b | 1.53048 | 55.72 | 530.557 | COP resin (ZEONEX-type) | Plastic (cyclo-olefin polymer) |
-| L4a | 1.64769 | 33.84 | 648.338 | OHARA S-TIM22 | Titanium flint |
+| L4a | 1.64769 | 33.84 | 648.338 | HOYA E-FD2 (exact) | Dense flint |
 
-All ten glass identifications match catalog values to five decimal places in nd and two decimal places in νd, indicating exact catalog glasses rather than custom melts.
+Every glass row except the ED pair has an exact nd/νd catalog coordinate. The ED rows (1.49700 / 81.61) sit 0.02 in νd from HOYA FCD1. The patent prints only nd and νd and names no glasses, so these labels are catalog equivalents, not supplier identifications. HOYA supplies the exact match for most rows.
 
 ### 4.2 Material Strategy
 
-**ED Glass (L2a, L2b).** Both ED elements use the same glass — HOYA FCD1 (or its OHARA equivalent S-FPL51). With νd = 81.61, this is a standard fluorophosphate ED glass that Nikon has used extensively across their Z-mount lineup. Placing both ED elements in the G2 front sub-group, where the marginal ray height is near maximum, provides the strongest possible leverage for axial chromatic correction.
+**ED Glass (L2a, L2b).** Both ED elements use the same glass — HOYA FCD1 (or its OHARA equivalent S-FPL51). With νd = 81.61, this is a standard fluorophosphate ED glass class. Placing both ED elements in the G2 front sub-group, where the marginal ray height is near maximum, provides the strongest possible leverage for axial chromatic correction.
 
-**Ultra-High-Dispersion Flint (L1c).** L1c uses PBH21 (νd = 20.88), one of the most dispersive conventional glasses available. Paired against L1a's unmatched barium crown (νd = 55.46), it forms a widely separated "air-spaced achromat" that corrects lateral chromatic aberration across the wide field angle. The Abbe number difference |νp − νn| = 34.57 satisfies the patent's condition (3) range of 34–40.
+**Ultra-High-Dispersion Flint (L1c).** L1c uses PBH21 (νd = 20.88), one of the most dispersive conventional glasses available. Paired against L1a's LAC14-equivalent lanthanum crown (νd = 55.46), it forms a widely separated "air-spaced achromat" that corrects lateral chromatic aberration across the wide field angle. The Abbe number difference |νp − νn| = 34.57 (the patent's Table 2 value, computed with νn = 55.45) satisfies the patent's condition (3) range of 34–40.
 
 **Plastic Aspherics (L1b, L3b).** The choice of cyclo-olefin polymer (nd = 1.53048) for two aspherical elements is a deliberate cost and weight reduction strategy. COP resins such as Zeon's ZEONEX E48R (nd ≈ 1.53, νd ≈ 56) offer good optical clarity, low birefringence, and stable refractive index, at a fraction of the cost of molded glass aspherics. The tradeoff is greater thermal sensitivity (dn/dT ≈ −1.1 × 10⁻⁴/°C vs. ~10⁻⁶ for glass), which can shift focus in extreme temperatures. However, since both plastic elements carry weak net power (L1b ≈ −134 mm, L3b ≈ −915 mm), the thermal focus shift is minimal.
 
-**PGM Molded Glass (L2d).** L2d uses an M-BACD12-class barium crown glass in HOYA's precision glass molding (PGM) lineup. Unlike the plastic aspherics, this molded glass element occupies a high-convergence position just after the stop and carries strong positive power (+23.5 mm), demanding the tighter tolerances and better thermal stability that glass provides.
+**PGM Molded Glass (L2d).** L2d's row is an exact match for HOYA M-BACD12, a barium crown glass in HOYA's precision glass molding (PGM) lineup. Unlike the plastic aspherics, this molded glass element occupies a high-convergence position just after the stop and carries strong positive power (+23.5 mm), demanding the tighter tolerances and better thermal stability that glass provides.
 
 **Optical Cement (S10–S11 interface).** The cemented doublet L2b+L2c uses a UV-curable adhesive with nd = 1.51400, νd = 27.05. The cement layer is 0.01 mm thick — effectively an infinitesimal bonding film. Both the junction surface and the L2c front surface share the same radius (R = −20.356 mm), confirming this is a conventional cemented interface. The patent gives no partial-dispersion or line-index table, so the APD status of the two ED elements is inferred from the FCD1 / S-FPL51 glass class rather than directly published.
 
@@ -210,7 +219,7 @@ All ten glass identifications match catalog values to five decimal places in nd 
 
 **G1: Wide-Angle Front Group.** The three-element front group provides the negative power that creates the retrofocus configuration necessary for wide-angle coverage (half-field 41.3° at 24 mm) with adequate back focal distance for the Z-mount's 16 mm flange distance. L1a carries the bulk of the diverging power; L1b adds a small negative contribution while serving primarily as an aspherical distortion corrector; L1c acts as a chromatic corrector, using its extreme dispersion (νd = 20.88) to balance the lateral color introduced by L1a's refraction at large ray heights.
 
-**G2f: Achromatic Power Core.** The G2f sub-group provides positive power through L2a while using the cemented doublet L2b+L2c for chromatic correction. The doublet is deliberately designed to have near-zero net power (the composite focal length is approximately −1930 mm) — its purpose is not to contribute net refractive power but to generate a strong chromatic separation. L2b alone has f = +25.4 mm and L2c alone has f = −24.2 mm; these nearly cancel, but the combination of high-dispersion flint (L2c, νd = 41.24) and low-dispersion ED glass (L2b, νd = 81.61) creates effective achromatization of the axial color.
+**G2f: Achromatic Power Core.** The G2f sub-group provides positive power through L2a while using the cemented doublet L2b+L2c for chromatic correction. The doublet has near-zero net power (the calculated thick-lens focal length is approximately −1930 mm, although the patent text calls the cemented lens positive) — its purpose is not to contribute net refractive power but to generate a strong chromatic separation. L2b alone has f = +25.4 mm and L2c alone has f = −24.2 mm; these nearly cancel, but the combination of high-dispersion flint (L2c, νd = 41.24) and low-dispersion ED glass (L2b, νd = 81.61) creates effective achromatization of the axial color.
 
 **G2r: Spherical Aberration Control.** After the aperture stop, L2d's molded aspherical surfaces provide the primary spherical aberration and coma correction, while L2e (a negative meniscus with its concave side toward the image) contributes field-flattening power and controls the Petzval sum.
 
@@ -230,7 +239,7 @@ This yields a Petzval radius of approximately **+630 mm** — indicating an esse
 
 The near-zero Petzval sum arises from a careful balance of positive and negative element contributions. The strong positive elements (L2a, L2d, L4a) contribute positive Petzval, while the negative elements (L1a, L2e, L3a) contribute negative Petzval. The doublet L2b+L2c, with its near-zero net power, contributes minimally. The ultra-high-dispersion L1c element (PBH21, nd = 1.923) plays a key role: its high refractive index reduces its Petzval contribution per unit of power, allowing it to carry significant chromatic correction duty while adding relatively little field curvature.
 
-Despite the excellent paraxial Petzval correction, the patent's astigmatism plots (Figures 6A–6C) show tangential and sagittal field curvatures diverging toward the field edge, reaching approximately ±0.25 mm at maximum image height. This residual is dominated by higher-order field-dependent aberrations (oblique astigmatism) rather than Petzval curvature, which is typical for compact wide-angle zoom designs where the retrofocus front group introduces significant off-axis aberrations that the aspherical elements can only partially correct.
+Despite the excellent paraxial Petzval correction, the patent's astigmatism plots (Figures 6A–6C) show both image surfaces bending toward the lens at the field edge. At wide, the tangential surface reaches about −0.2 mm at the plotted 21.2 mm edge while the sagittal surface stays near −0.1 mm. At the middle and tele stations, the sagittal surface reaches about −0.3 mm at 21.7 mm and the tangential surface reaches about −0.1 to −0.2 mm. These are readings from the plots. This residual is dominated by higher-order field-dependent aberrations (oblique astigmatism) rather than Petzval curvature, which is typical for compact wide-angle zoom designs where the retrofocus front group introduces significant off-axis aberrations that the aspherical elements can only partially correct.
 
 ---
 
@@ -238,11 +247,11 @@ Despite the excellent paraxial Petzval correction, the patent's astigmatism plot
 
 The patent provides longitudinal aberration plots (Figures 6A–6C) at wide, middle, and telephoto positions. Key observations:
 
-**Spherical aberration** is reasonably well-controlled at all zoom positions, with d-line residuals within approximately 0.25 mm at wide and tightening to about 0.15 mm at tele. The g-line (435.8 nm) shows modest secondary spectrum — up to ~0.3 mm of longitudinal chromatic spread at the marginal zone — indicating the two-ED-element design provides good but not apochromatic correction.
+**Spherical aberration** is very small at wide, with the d-line curve within a few hundredths of a millimetre. At the middle station it is slightly larger. At tele, the curve swings to about +0.2 mm in the outer zone. The g-line (435.8 nm) sits about +0.07 mm from the d-line at wide and spreads to roughly +0.25 mm at the tele margin. The two-ED-element design therefore gives good but not apochromatic correction, and its residuals are largest at tele. All values are approximate readings from the plots.
 
-**Astigmatism** shows tangential and sagittal surfaces diverging toward the field edge, reaching approximately ±0.25 mm at maximum image height. This residual is dominated by higher-order oblique astigmatism from the retrofocus front group rather than Petzval curvature, which is well-corrected at the paraxial level.
+**Astigmatism** grows toward the field edge. It reaches roughly −0.2 mm (tangential) at wide and about −0.3 mm (sagittal) at the middle and tele stations. This residual is dominated by higher-order oblique astigmatism from the retrofocus front group rather than Petzval curvature, which is well-corrected at the paraxial level.
 
-**Distortion** is the design's most visible optical concession. At 24 mm, barrel distortion reaches approximately −3.5% at the image edge (with a slight mustache waviness near the corners). By 35 mm it transitions to pincushion, reaching approximately +4% at 50 mm. Nikon's Z cameras apply mandatory in-camera correction profiles that cannot be disabled, so the user never sees the raw optical distortion in JPEG output. RAW processors also apply the correction metadata automatically. This is a deliberate design strategy: by tolerating higher optical distortion, the designers can reduce element count and overall lens diameter.
+**Distortion** is the design's most visible optical concession. At wide, the barrel curve runs off the −5 % edge of the plot and reaches roughly −6.5 % at the plotted 21.2 mm image height. A real-ray trace of the stored prescription gives about −6.4 % at the patent's 41.27° half-field. At the middle station, distortion is close to zero (about +0.5 % at the corner). At tele, it is mild pincushion of about +1.8 %. Z-system cameras and RAW converters apply lens distortion-correction profiles, so this raw optical distortion is normally corrected in software. This is a deliberate design strategy: by tolerating higher optical distortion, the designers can reduce element count and overall lens diameter.
 
 ---
 
@@ -273,7 +282,7 @@ The condition values cluster near the centers of their ranges, suggesting Exampl
 | F-number | 4.08 | 5.12 | 6.34 |
 | Half-field ω (°) | 41.27 | 32.01 | 24.10 |
 | Image height y' (mm) | 21.70 | 21.70 | 21.70 |
-| Total track TL (mm) | 85.70 | 83.31 | 85.33 |
+| Total track TL (mm, patent; uses d23 = 9.90) | 85.70 | 83.31 | 85.33 |
 | BFL (mm) | 11.44 | 11.38 | 11.30 |
 
 The zoom ratio is 1.96×, and the f-number varies from 4.08 to 6.34 — a 1.55× ratio, which Nikon rounds to the marketed f/4–6.3 specification. The total track varies non-monotonically (shortest at middle), reflecting the G1 U-turn behavior.
@@ -312,6 +321,6 @@ The Nikkor Z 24-50mm f/4-6.3 is a study in cost-effective optical design under s
 
 The glass selection strategy uses only two genuine ED elements (both HOYA FCD1 / S-FPL51 fluorophosphate), two plastic aspherics (ZEONEX-type COP resin), and one molded-glass aspheric (M-BACD12 property class) — a materials palette that enables efficient high-volume manufacturing while keeping costs at the kit-lens level.
 
-The internal focusing mechanism via the lightweight two-element G3 group enables the fast stepping-motor AF performance that Nikon specifies, and the stationary G4 rear field lens provides the telecentricity needed for modern mirrorless sensors. The paraxial Petzval sum is well-corrected (R ≈ 630 mm), though higher-order off-axis aberrations — particularly oblique astigmatism and distortion — remain the primary optical compromises, mitigated by aspherical surfaces and mandatory in-camera electronic correction.
+The internal focusing mechanism via the lightweight two-element G3 group enables the fast stepping-motor AF performance that Nikon specifies, and the stationary G4 rear field lens provides the telecentricity needed for modern mirrorless sensors. The paraxial Petzval sum is well-corrected (R ≈ 630 mm), though higher-order off-axis aberrations — particularly oblique astigmatism and distortion — remain the primary optical compromises, mitigated by aspherical surfaces and electronic distortion correction.
 
 Optically, the lens performs above expectations for its class — a conclusion shared by most reviewers, who consistently note the image quality overachieves relative to the modest specifications and price point.

@@ -2,10 +2,10 @@
 
 **Patent:** US 2024/0329367 A1 (Pub. Oct 3, 2024)
 **Inventor:** Yasuaki Hagiwara (Canon Kabushiki Kaisha)
-**Assignee:** Canon Kabushiki Kaisha
+**Assignee:** Canon Inc. (Canon Kabushiki Kaisha)
 **Priority:** JP 2023-051695 (Mar 28, 2023)
 **Published:** October 3, 2024
-**Embodiment analyzed:** First Numerical Example (§0083)
+**Embodiment analyzed:** First Numerical Example (¶0083)
 
 ---
 
@@ -29,7 +29,7 @@ A flat cover glass (GB, nd = 1.54400, 2.00 mm) follows B7 before the image plane
 
 ### Note on Surface 4 Radius
 
-Independent paraxial ray trace verification revealed that the **correct radius for surface 4 is R = 22.455 mm**. At low rendering resolution, the tens digit can appear ambiguous (resembling either "2" or "3"), but at 300 DPI the patent reads "22.455" directly. With this value, computed EFLs at all three zoom positions match the patent's stated values to within ±0.01 mm, and all seven group focal lengths reproduce exactly (see §7). With R = 32.455, the wide-angle EFL computes to 32.58 mm instead of 28.80 mm, and the B2 group focal length becomes −43.4 mm instead of the patent's −27.10 mm — conclusively ruling out the larger value.
+Independent paraxial ray trace verification revealed that the **correct radius for surface 4 is R = 22.455 mm**. At low rendering resolution, the tens digit can appear ambiguous (resembling either "2" or "3"), but at 300 DPI the patent reads "22.455" directly. With this value, computed EFLs at all three zoom positions match the patent's stated values to within ±0.01 mm, and all seven group focal lengths reproduce exactly (see §6). With R = 32.455, the wide-angle EFL computes to 32.58 mm instead of 28.80 mm, and the B2 group focal length becomes −43.4 mm instead of the patent's −27.10 mm — conclusively ruling out the larger value.
 
 ---
 
@@ -47,21 +47,27 @@ The lens uses **seven variable air gaps** (d2, d9, d16, d19, d23, d25, d28) that
 | d25 | B6 → B7 | 12.68 | 12.78 | 13.90 | Zoom + Focus |
 | d28 | B7 → GB | 13.00 | 23.93 | 32.48 | Zoom (increases monotonically) |
 
-During zooming from wide to telephoto, the dominant motion is:
+This is an extending zoom, not an internal one: every lens unit moves. The abstract and ¶0028–0029 state that from wide to telephoto B1 and every unit of Bm and Br move toward the object, while B2 moves along a convex trajectory toward the image side — image-ward from the wide end to the intermediate position, then object-ward to the telephoto end. The FIG. 1 movement arrows show the same pattern. Front-vertex positions measured from the image plane, derived from the tabulated gaps:
 
-1. **B1 moves toward the object side** relative to B2 (d2 increases by 25.7 mm), extending the front of the lens at the telephoto end.
-2. **B2 closes toward the stop** (d9 decreases by 18.7 mm), providing the primary variator motion.
-3. **The rear groups (Bm and Br) separate from the image plane** at different rates, with B7's spacing to the cover glass (d28) increasing by 19.5 mm.
+| Unit | Wide | Intermediate | Telephoto | Motion W→T |
+|------|:-:|:-:|:-:|------|
+| B1 | 131.48 | 143.36 | 157.94 | +26.5 mm toward object |
+| B2 | 123.23 | 120.26 | 123.98 | −3.0 then +3.7 mm (reverses) |
+| B3 (with stop) | 78.83 | 89.77 | 98.32 | +19.5 mm toward object |
+| B4 | 60.24 | 73.21 | 82.58 | +22.3 mm toward object |
+| B5 | 50.94 | 61.87 | 70.42 | +19.5 mm toward object |
+| B6 | 35.97 | 47.00 | 56.67 | +20.7 mm toward object |
+| B7 | 22.19 | 33.12 | 41.67 | +19.5 mm toward object |
 
-All variable gaps change **monotonically** across the zoom range — there are no reversing groups in this design. This simplifies the cam mechanism and allows smooth, linear interpolation between zoom positions.
+Each tabulated gap changes monotonically between the three published stations, but B2 does not: its path reverses at the intermediate position, which ¶0029 credits with reducing field curvature there. B1 extends 26.5 mm, so the barrel grows by that much from wide to telephoto.
 
-The patent states the Total Lens Length (front vertex to image plane) as 132.38, 144.25, and 158.83 mm at wide, intermediate, and telephoto respectively. The computed sum of all axial thicknesses from the prescription gives values ~0.9 mm shorter at all three positions (131.48, 143.36, 157.94 mm). This constant offset likely reflects the patent's inclusion of a mechanical reference (such as front barrel protrusion or vertex offset) not captured in the optical prescription alone.
+The patent prints the Total Lens Length (front vertex to image plane) as 132.38, 144.25, and 158.83 mm. The physical sum of the tabulated thicknesses, including the 2.00 mm glass block, is 131.48, 143.36, and 157.94 mm — 0.90 mm shorter at every station. The tabulated rows reproduce the published focal lengths and back focus, so they are retained. The patent does not explain the offset.
 
-The air-equivalent back focal distance (bf = d28 + d29/n29 + d30) is 15.39 mm at wide, 26.32 mm at intermediate, and 34.87 mm at telephoto — matching the patent's stated values exactly.
+The air-equivalent back focus (bf = d28 + d29/n29 + d30) computes to 15.385, 26.315, and 34.865 mm, matching the published 15.39, 26.31, and 34.87 mm to rounding.
 
 ### Focus Mechanism
 
-The patent (§0042, §0065) describes B6 as the lens unit closest to the object side within the rear group Br that moves during focusing. B6 consists of a single element (L13), and it translates toward the image side when focusing from infinity to close distance. Both flanking gaps d23 (B5 → B6) and d25 (B6 → B7) change during zoom and focus, though the patent's Example 1 provides only infinity-focus spacings. Close-focus data is not available for this embodiment, so the data file encodes all gaps as zoom-only with identical infinity/close values.
+The patent (¶0042, ¶0065) describes B6 as the lens unit closest to the object side within the rear group Br that moves during focusing. B6 consists of a single element (L13), and it translates toward the image side when focusing from infinity to close distance. Both flanking gaps d23 (B5 → B6) and d25 (B6 → B7) change during zoom and focus, though the patent's Example 1 provides only infinity-focus spacings. Close-focus data is not available for this embodiment, so the data file encodes all gaps as zoom-only with identical infinity/close values.
 
 The close-focus distance of 0.27 m at 28 mm (AF) / 0.24 m (MF) and maximum magnification of 0.24× at 70 mm are from Canon's production specifications.
 
@@ -85,7 +91,7 @@ Canon specifies **2 GMo (Glass-Molded) aspherical elements**, which in the paten
 | A10 | −1.24634 × 10⁻¹³ |
 | A12 | +3.32938 × 10⁻¹⁶ |
 
-At an estimated semi-diameter of ~13.5 mm, the aspherical departure from the base sphere is dominated by the negative A4 term, producing a progressive flattening toward the rim that corrects spherical aberration generated by the fast f/2.88 aperture. All coefficients through A10 are negative, with only the A12 term providing a small positive correction at the extreme rim.
+At the stored 12.4 mm semi-diameter, the aspherical departure from the base sphere is dominated by the negative A4 term, producing a progressive flattening toward the rim that corrects spherical aberration generated by the fast f/2.88 aperture. All coefficients through A10 are negative, with only the A12 term providing a small positive correction at the extreme rim.
 
 ### Surface 14A — Rear of L7 (B3, Intermediate Group)
 
@@ -146,22 +152,22 @@ Together, the four aspherical surfaces provide six degrees of freedom for aberra
 | Element | nd | νd | 6-Digit Code | Probable Glass | Special |
 |---------|---------|------|------|------|------|
 | L1 | 1.49700 | 81.7 | 497817 | S-FPL51 (OHARA) | **UD** |
-| L2 | 1.89190 | 37.1 | 892371 | S-LAH66 family | — |
-| L3 | 1.60311 | 60.6 | 603606 | S-BSL7 family | — |
-| L4 | 1.90366 | 31.3 | 904313 | S-LAH58 family | — |
-| L5 | 1.85150 | 40.8 | 851408 | S-LAH65V | — |
-| L6 | 2.00100 | 29.1 | 001291 | S-NPH4 family | — |
+| L2 | 1.89190 | 37.1 | 892371 | S-LAH92 (OHARA) | — |
+| L3 | 1.60311 | 60.6 | 603606 | S-BSM14 (OHARA) | — |
+| L4 | 1.90366 | 31.3 | 904313 | S-LAH95 (OHARA) | — |
+| L5 | 1.85150 | 40.8 | 851408 | S-LAH89 (OHARA) | — |
+| L6 | 2.00100 | 29.1 | 001291 | S-LAH99 (OHARA) | — |
 | L7 | 1.58313 | 59.4 | 583594 | L-BAL42 (OHARA) | **GMo Asph** |
-| L8 | 1.77047 | 29.7 | 770297 | S-TIH18 family | — |
-| L9 | 1.85478 | 24.8 | 855248 | S-TIH53W family | — |
+| L8 | 1.77047 | 29.7 | 770297 | NBFD29 (HOYA) | — |
+| L9 | 1.85478 | 24.8 | 855248 | S-NBH56 (OHARA) | — |
 | L10 | 1.49700 | 81.7 | 497817 | S-FPL51 (OHARA) | **UD** |
 | L11 | 1.58313 | 59.4 | 583594 | L-BAL42 (OHARA) | **GMo Asph** |
-| L12 | 1.59522 | 67.7 | 595677 | S-BSM14 family | — |
-| L13 | 1.61340 | 44.3 | 613443 | S-BAH11 family | — |
-| L14 | 1.74400 | 44.8 | 744448 | S-LAL14 family | — |
+| L12 | 1.59522 | 67.7 | 595677 | S-FPM2 (OHARA) | — |
+| L13 | 1.61340 | 44.3 | 613443 | S-NBM51 (OHARA) | — |
+| L14 | 1.74400 | 44.8 | 744448 | S-LAM2 (OHARA) | — |
 | L15 | 1.92286 | 20.9 | 923209 | PBH21 (OHARA) | — |
 
-Glass identifications marked "family" are nearest-catalog matches based on six-digit glass codes. Exact catalog designations cannot be confirmed without full melt-sheet data from Canon's supplier.
+The patent gives only nd and νd. Every named glass above is a catalog equivalent whose nd/νd matches the patent row (within 0.15 in νd for the two 497817 rows); Canon's actual supplier and melt are not stated.
 
 ### UD Elements (L1 and L10)
 
@@ -195,7 +201,7 @@ B2 is the most strongly powered group in the system and provides the primary zoo
 
 **L2** (Negative meniscus, f = −33.2 mm): A high-index lanthanum flint meniscus with the convex surface facing the object. Its strong negative power, combined with the steep rear curvature (R = 22.455 mm), is the primary source of the variator's diverging action.
 
-**L3 + L4** (Cemented doublet D1, f_pair = +101.3 mm): L3 is a biconcave negative element in borosilicate crown (νd = 60.6), with a nearly flat front surface (R = −369.959) giving it plano-concave character; it is cemented to L4, a strongly positive meniscus in dense lanthanum flint (νd = 31.3). The large νd difference (60.6 vs 31.3) provides achromatic correction within B2, preventing the strong negative power from introducing excessive chromatic aberration during zoom.
+**L3 + L4** (Cemented doublet D1, f_pair = +101.3 mm): L3 is a biconcave negative element in barium crown (S-BSM14 class, νd = 60.6), with a nearly flat front surface (R = −369.959) giving it plano-concave character; it is cemented to L4, a strongly positive meniscus in dense lanthanum flint (νd = 31.3). The large νd difference (60.6 vs 31.3) provides achromatic correction within B2, preventing the strong negative power from introducing excessive chromatic aberration during zoom.
 
 **L5** (Negative meniscus, f = −73.0 mm): A moderately powered negative meniscus in lanthanum heavy flint (both radii negative: R = −36.457 / −89.252, concave to the object). Its placement at the rear of B2, closest to the aperture stop, helps control field curvature contribution.
 
@@ -203,7 +209,7 @@ B2 is the most strongly powered group in the system and provides the primary zoo
 
 B3 contains the aperture stop and three elements forming a **modified Gauss-type corrector**:
 
-**L6** (Plano-convex, f = +41.5 mm): The strongest single element in the entire system, using ultra-high-index glass (nd = 2.001). Positioned immediately after the stop, it introduces strong positive power where the marginal ray height is maximum. The extreme refractive index allows gentle curvatures (R_front = 43.928, R_rear = −750.0), keeping higher-order aberrations low despite the high power.
+**L6** (Biconvex with a nearly flat rear, f = +41.5 mm): The strongest single element in the entire system, using ultra-high-index glass (nd = 2.001). Positioned immediately after the stop, it introduces strong positive power where the marginal ray height is maximum. The extreme refractive index allows gentle curvatures (R_front = 43.928, R_rear = −750.0), keeping higher-order aberrations low despite the high power.
 
 **L7** (Biconvex, double-asph, f = +73.5 mm): The first GMo aspherical element. Both surfaces carry aspherical profiles that systematically flatten toward the rim (negative A4 on both), correcting **zonal spherical aberration** — the residual ring-like aberration that limits wide-open performance in fast zoom lenses.
 
@@ -219,19 +225,19 @@ B5 is the **most strongly positive group** in the system and provides the primar
 
 **L11** (Biconvex, double-asph, f = +78.3 mm): The second GMo aspherical element. Its placement away from the stop means the aspherical profiles address **field-dependent aberrations**. The unique positive A4 on the rear surface creates a bulging departure that progressively increases local power toward the rim, counteracting natural field curvature.
 
-**L12** (Biconvex, f = +37.7 mm): A relatively low-dispersion barium crown (νd = 67.7) that provides the bulk of B5's positive power. Its strong biconvex shape (R_front = 69.909, R_rear = −31.690) concentrates power on the rear surface.
+**L12** (Biconvex, f = +37.7 mm): A low-dispersion phosphate crown (S-FPM2 class, νd = 67.7) that provides the bulk of B5's positive power. Its strong biconvex shape (R_front = 69.909, R_rear = −31.690) concentrates power on the rear surface.
 
 ### B6 — Focusing Element (Negative, f = −57.18 mm)
 
-**L13** (Negative meniscus, f = −57.2 mm): This single element constitutes the **entire focusing group**. It is a meniscus with the convex surface facing the object (R_front = 71.379, R_rear = 23.380), yielding negative power despite both radii being positive. The patent (§0065) explicitly states that B6 moves toward the image side when focusing from infinity to close distance.
+**L13** (Negative meniscus, f = −57.2 mm): This single element constitutes the **entire focusing group**. It is a meniscus with the convex surface facing the object (R_front = 71.379, R_rear = 23.380), yielding negative power despite both radii being positive. The patent (¶0065) explicitly states that B6 moves toward the image side when focusing from infinity to close distance.
 
 Using a single lightweight element for focusing is critical for the **STM (Stepping Motor) autofocus** system — the low mass allows the leadscrew-type STM to achieve fast, quiet, and accurate focus acquisition. The choice of a medium-index glass (nd = 1.61340, νd = 44.3) balances adequate negative power against manageable chromatic aberration contribution.
 
 ### B7 — Rear Negative Doublet (f = −120.17 mm)
 
-**L14 + L15** (Cemented doublet D3): L14 is a biconcave element in lanthanum crown (nd = 1.74400), providing strong negative power (f ≈ −32 mm). L15 is a biconvex element in ultra-dense short flint PBH21 (nd = 1.92286, νd = 20.9), providing strong positive power (f ≈ +44 mm). The net effect is moderate negative power (f = −120 mm) with achromatic correction.
+**L14 + L15** (Cemented doublet D3): L14 is a biconcave element in lanthanum flint (S-LAM2 class, nd = 1.74400), providing strong negative power (f ≈ −32 mm). L15 is a biconvex element in ultra-dense short flint PBH21 (nd = 1.92286, νd = 20.9), providing strong positive power (f ≈ +44 mm). The net effect is moderate negative power (f = −120 mm) with achromatic correction.
 
-B7's position at the rear of the optical train, close to the image plane, means it has the most influence on **field curvature and distortion**. The Canon marketing material acknowledges that this lens relies on **electronic distortion correction** — the raw images show significant barrel distortion at the wide end (on the order of 10% or more at full field per the patent's aberration plots), which is corrected in-camera for JPEGs and via lens profiles for RAW converters.
+B7's position at the rear of the optical train, close to the image plane, means it has the most influence on **field curvature and distortion**. The Canon marketing material acknowledges that this lens relies on **electronic distortion correction** — the raw images show significant barrel distortion at the wide end (about −7 % at ω = 34.8° in the patent's FIG. 2A plot), which is corrected in-camera for JPEGs and via lens profiles for RAW converters.
 
 ### Cover Glass (GB)
 
@@ -250,7 +256,7 @@ All values verified via independent ABCD-matrix paraxial ray trace with R4 = 22.
 | Half-field ω (°) | 34.93 | 23.82 | 17.67 | Patent-stated |
 | Image height (mm) | 21.64 | 21.64 | 21.64 | Patent-stated |
 | Patent TLL (mm) | 132.38 | 144.25 | 158.83 | Patent-stated |
-| BFL air-equiv (mm) | 15.39 | 26.32 | 34.87 | Computed (exact match) |
+| BFL air-equiv (mm) | 15.385 | 26.315 | 34.865 | Computed (patent 15.39 / 26.31 / 34.87) |
 | Zoom ratio | — | — | 2.36 | Patent-stated |
 
 **Group focal lengths** (all match patent exactly):
@@ -277,6 +283,8 @@ All values verified via independent ABCD-matrix paraxial ray trace with R4 = 22.
 | L7 | +73.5 | | |
 | L8 | −45.2 | | |
 
+The published half-angle at the wide end is not the real-ray angle to the full 21.64 mm image height. Tracing exact rays through the stored prescription, the chief ray at ω = 34.93° lands at 18.78 mm, about 6.6 % short of f·tan ω. Reaching 21.64 mm takes about 39.0°. At the intermediate and telephoto stations the published angles are within 0.8° of the real-ray angles to 21.64 mm, which are 23.1° and 16.9°. FIG. 2A labels the wide plots ω = 34.8° against the table's 34.93°.
+
 **Petzval sum:** +0.001622 mm⁻¹ (Petzval radius ≈ +617 mm). This is well-corrected for a zoom lens — the negative elements (especially B2 and the rear doublets) effectively flatten the Petzval field against the strong positive elements (B3, B5).
 
 ---
@@ -285,7 +293,7 @@ All values verified via independent ABCD-matrix paraxial ray trace with R4 = 22.
 
 Several aspects of this design reflect Canon's specific goals for a **compact, affordable, high-performance standard zoom**:
 
-**Electronic distortion correction as a design constraint.** The lens is designed from the outset to rely on in-camera distortion correction. This allows the optical designer to accept significant barrel distortion at the wide end (reducing the element count needed for geometric correction) and instead allocate the limited element budget toward sharpness, chromatic correction, and aberration control. The patent's aberration plots (FIG. 2A) show barrel distortion exceeding 10% at the full field angle of ω = 34.8° at the wide end.
+**Electronic distortion correction as a design constraint.** The lens is designed from the outset to rely on in-camera distortion correction. This allows the optical designer to accept significant barrel distortion at the wide end (reducing the element count needed for geometric correction) and instead allocate the limited element budget toward sharpness, chromatic correction, and aberration control. The patent's aberration plot (FIG. 2A) shows about −7 % barrel distortion at the wide-end field angle ω = 34.8°.
 
 **Glass-molded aspherics instead of polished.** Using L-BAL42 (a moldable glass) for both aspherical elements enables high-volume production at lower cost than polished aspherics, consistent with the lens's non-L-series positioning. The tradeoff is visible in reviews as faint "onion ring" artifacts in out-of-focus highlights — a characteristic signature of molding marks on aspherical surfaces.
 
@@ -293,7 +301,7 @@ Several aspects of this design reflect Canon's specific goals for a **compact, a
 
 **UD glass at the front.** Placing an S-FPL51 element at the very front of the system is unusual for non-L lenses (as Canon's own marketing notes). The low density of fluorophosphate glass (~3.6 g/cm³) reduces the front-heavy weight distribution. The UD properties simultaneously address chromatic aberration at the position where it matters most — where the marginal ray is tallest.
 
-**Monotonic zoom cam.** All seven variable gaps change monotonically across the zoom range, with no reversing groups. This simplifies the mechanical cam design and contributes to the smooth zoom feel expected in a video-capable lens.
+**Mostly one-directional zoom cam.** Six of the seven units move steadily toward the object from wide to telephoto. Only B2 reverses, on the convex-to-image path that ¶0029 uses to hold field curvature down at the intermediate position.
 
 ---
 
@@ -320,9 +328,10 @@ The production lens matches the patent's first embodiment closely in element cou
 
 The accompanying `CanonRF2870mmf28.data.ts` file encodes the first numerical example with the following conventions:
 
-- **Cover glass excluded:** The 2.00 mm cover glass (nd = 1.54400) and 1.09 mm trailing air gap are folded into the back focal distance of surface "28". At each zoom position, BFD = d28 + 2.00 + 1.09.
+- **Cover glass excluded:** The 2.00 mm glass block GB (nd = 1.54400) is removed. Its air-equivalent thickness 2.00/1.544 = 1.295 mm and the 1.09 mm trailing gap are folded into surface "28", so the last gap is d28 + 1.295 + 1.09 = 15.385 / 26.315 / 34.865 mm, the patent's air-equivalent bf.
 - **Zoom-only variable gaps:** Since Example 1 provides only infinity-focus spacings, all seven variable gaps are encoded with identical [d_inf, d_close] pairs. If close-focus data becomes available (from another embodiment or measurement), gaps d23 and d25 should be updated to reflect the B6 focus travel.
-- **Semi-diameters estimated:** Combined marginal + chief ray trace at all three zoom positions, refined against the patent cross-section figure (FIG. 1) proportions. The initial unvignetted beam heights were reduced to satisfy multiple physical constraints: edge thickness ≥ 0.5 mm (six elements are binding — L1, L4, L10, L11, L12, L15), cross-gap sag overlap (the S4→S5 air gap limits the B2/D1 junction region to ~15.5 mm due to the very steep R = 22.455 mm rear surface of L2), sd/|R| ≤ 0.90 slope limit, and the 67 mm production filter thread (L1 max SD ≈ 29.5 mm). The resulting SDs imply moderate vignetting at the field corners, consistent with the production lens's known reliance on electronic vignetting correction.
+- **Semi-diameters estimated:** The patent publishes no effective diameters. The rims follow the FIG. 1 wide-end section, scaled at 13.25 px/mm from the S1–S28 vertex span. Values were changed where the earlier estimate differed from the figure by more than about 15 % or clipped the axial beam: L2 flange 18.0 mm, D1 rear 13.6 mm, L5 11.3 mm, L6 12.6 mm, D2 12.2 mm, D3 15.8 mm. Every rim passes the exact f/2.88–2.92 axial beam at all three stations. L1 (29.5 mm against a 26.3 mm figure rim), L11 and L12 remain 12–15 % above the figure. The steep R = 22.455 mm rear of L2 caps S4 at 15.3 mm against S5 across the 7.05 mm gap. Off-axis bundles are vignetted at the field corners, most strongly in B5–B6 at the wide end.
+- **Aperture schedule inferred:** The stop rides with B3 and the patent gives no iris diameters, so `zoomApertureModel: "from-nominal-fno"` derives iris radii of 9.04, 10.68, and 11.94 mm from the published f-numbers. These are calculated values, not patent data. The slider runs from the design f-number to f/22.
 - **nominalFno as array:** The design f-number varies from 2.88 at wide/intermediate to 2.92 at telephoto. The array form [2.88, 2.88, 2.92] ensures the renderer computes the correct entrance pupil size at each zoom position.
 
 ---
