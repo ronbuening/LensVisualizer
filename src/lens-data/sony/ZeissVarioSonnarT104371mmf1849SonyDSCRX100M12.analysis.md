@@ -22,7 +22,7 @@ The production correlation is to the ZEISS Vario-Sonnar T* 10.4–37.1 mm f/1.8�
 
 There are also material limits to the identification. The marketed focal lengths would require different scale factors at the two endpoints: approximately 0.94485 at the wide end and 1.04725 at the telephoto end. A single uniform scale therefore cannot turn Example 3 into the advertised 10.4–37.1 mm range. The patent also calls the third embodiment a 3.4× zoom in paragraph 0103, whereas its own Table 11 endpoints give about 3.2185×; Sony specifies 3.6× for the production lens. These differences are preserved rather than reconciled by changing the prescription.
 
-The data model also applies two source-to-model normalizations. Patent surface 5 is a zero-thickness, air-to-air planar bookkeeping plane and is omitted. Patent surfaces 16–19 form a plane-parallel rear SG/plate stack before the image plane; those plates are excluded from the ordinary active prescription and replaced by a verified air-equivalent translation of 1.668975685986314 mm added to the source D15 spacing at every zoom state. No uniform scale is applied.
+The data model applies one source-to-model normalization: patent surface 5 is a zero-thickness, air-to-air planar bookkeeping plane and is omitted. Patent surfaces 16–19 form the plane-parallel rear filter SG, two plates (0.300 mm, nd 1.516798 / νd 64.1983; 0.150 mm air; 0.500 mm, nd 1.556708 / νd 58.5624; 1.000 mm to the image). Both are modeled in `rearPlates`, traced by every analysis but not drawn, and the last lens surface keeps the printed D15 gap to the first plate. Paraxially the stack is equivalent to 1.668976 mm of air, so the physical track is 0.281 mm longer than that air-equivalent. No uniform scale is applied.
 
 Primary patent references: US 2013/0314585 A1, Figure 9; Tables 9–13; paragraphs 0059–0061 and 0097–0114.
 
@@ -35,7 +35,7 @@ Example 3 is a four-group negative-positive-positive-positive zoom with seven ph
 - **GR3:** L31 single positive meniscus.
 - **GR4:** L41 single positive biconvex lens.
 
-The aperture stop lies between GR2 and GR3. Paragraph 0102 also places a wide-angle peripheral-ray mask on the image-side surface of L31 and a rear filter stack between GR4 and the image plane. The filter stack is omitted from the active LensVisualizer prescription as described above; the mask location is documented, but the undimensioned mask is not synthesized as a separate blocker.
+The aperture stop lies between GR2 and GR3. Paragraph 0102 also places a wide-angle peripheral-ray mask on the image-side surface of L31 and a rear filter stack between GR4 and the image plane. The filter stack is traced as `rearPlates` but not drawn, as described above; the mask location is documented, but the undimensioned mask is not synthesized as a separate blocker.
 
 The independently recomputed functional group powers at the fixed internal spacings are:
 
@@ -64,7 +64,7 @@ The patent states that all four groups move during zooming (paragraph 0103). Wit
 
 Negative z is toward the object. GR2, the stop, and GR3 move objectward through both intervals; GR4 moves slightly imageward. GR1 is non-monotonic: it moves imageward from wide to the intermediate state and then objectward toward telephoto, ending about 0.487 mm imageward of its wide-angle position. That reversal follows Table 12 and Figure 9 even though the patent's general description elsewhere can be read as implying simple objectward GR1 motion over the full zoom range. The selected numerical example governs the implemented kinematics.
 
-The patent gives the four variable source spacings as D4, D11, D13, and D15. The final model retains the first three directly and transforms D15 into the rear air-equivalent gap after omission of the plane-parallel plates. The three authored zoom positions are the published 11.007, 19.615, and 35.426 mm control points; no additional source state is invented.
+The patent gives the four variable source spacings as D4, D11, D13, and D15. The final model retains all four directly; D15 is the physical gap from L41 to the first SG plate. The three authored zoom positions are the published 11.007, 19.615, and 35.426 mm control points; no additional source state is invented.
 
 ## Element-by-Element Analysis
 
@@ -244,7 +244,7 @@ The resulting effective focal lengths are:
 | Intermediate | 19.615 | 19.622001 | +0.007001 |
 | Tele | 35.426 | 35.421539 | -0.004461 |
 
-Those residuals are within the source-precision tolerance used for the rounded patent table. The implemented rear-plate normalization reproduces the source model's image-plane first-order matrix with a maximum absolute coefficient difference of approximately 7.1 × 10⁻15 over the three published states.
+Those residuals are within the source-precision tolerance used for the rounded patent table. The `rearPlates` model reproduces the former air-equivalent fold's image-plane first-order matrix with a maximum absolute coefficient difference of approximately 7.1 × 10⁻15 over the three published states.
 
 The surface-by-surface Petzval sum, computed as $\phi/(n n')$ for each refracting surface, is +0.00659428 mm⁻¹, corresponding to a reciprocal magnitude of about 151.65 mm. It is unchanged with zoom because the surface curvatures and indices remain fixed while only axial separations change.
 

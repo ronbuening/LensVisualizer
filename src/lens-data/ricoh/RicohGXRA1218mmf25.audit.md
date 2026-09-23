@@ -83,3 +83,13 @@ Retained: patent number, inventor (窪田 高士, Takashi Kubota, sole inventor 
   are interpolated.
 - L2's glass (1.8061/40.4) has no catalog equivalent, and the aspherical elements' molded construction is inferred.
 - The production special low-dispersion element does not appear in any 9/6 example.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Replaced the air-equivalent fold with the physical rear stack from Example 1 (Table 1 p. 12, Table 2 p. 13): D2 =
+  14.10 / 15.78 mm, then a 2.5 mm plate (surfaces 17–18, nd 1.5168, νd 64.2, no designation printed; N-BK7 class,
+  `resolveCompatibleGlass` true). The patent prints "—" after the plate, so `gapAfterMm` = 16.196 − 14.10 − 2.5/1.5168
+  = 0.4478 mm (derived, not printed), which keeps the previous image-plane choice.
+- Paraxial check against the previous data: EFL identical; defocus changes by +0.000007 mm in both focus states
+  (rounding of the derived distance). Physical track grows by 2.5 × (1 − 1/1.5168) = 0.852 mm, so `closeFocusM` moves
+  from 0.248 (folded track) to the physical object-to-image distance 0.249 (object 198.1 mm + track 50.78 mm).

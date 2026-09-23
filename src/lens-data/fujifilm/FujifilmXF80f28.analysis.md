@@ -84,7 +84,7 @@ The patent identifies G4a as the subgroup that moves transversely for camera-sha
 
 Table 2 gives f/2.88 and full field 20.2° at infinity, and f/3.99 and full field 5.0° at the life-size station. The aperture control uses nominal f/2.88, with a fixed physical iris during focus. The source finite-conjugate f/3.99 is separate from the viewer's calculated effective-aperture estimate.
 
-The source rear stack consists of 27.42 mm air, a 2.85 mm plate at nd=1.51680 and 1 mm air. The plate is excluded from the lens surfaces under the lens-data specification. The remaining air-equivalent distance is 30.2989557 mm, preserving paraxial focus; the physical track including the plate is 140.18 mm. Omitting the plate also omits its higher-order and chromatic effects.
+The source rear stack consists of 27.42 mm air, a 2.85 mm plate at nd=1.51680 / νd=64.20 (Table 1 surfaces 30–31) and 1 mm air. The plate is modeled in `rearPlates` (S-BSL7 dispersion): every analysis traces it, including its higher-order and chromatic contributions, but the diagram does not draw it. The last lens surface stores the physical 27.42 mm gap; the paraxially equivalent air distance is 30.2989557 mm, and the physical track including the plate is 140.18 mm.
 
 ## Model Limitations
 

@@ -24,13 +24,13 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    is not claimed to be identical.                                   ║
  * ║                                                                      ║
  * ║  NOTE ON BACK FOCUS:                                                 ║
- * ║    Patent surfaces 17–18 are a 2.5 mm plate (nd 1.5168) standing    ║
- * ║    for cover glass/filters; it is excluded and its t/n = 1.648 mm is ║
- * ║    folded into the last gap. The table gives no plate-to-image       ║
- * ║    distance ("—"). D2 + t/n = 15.748 mm leaves the paraxial image     ║
- * ║    0.447 mm farther back, so that distance is added to both D2      ║
- * ║    states (derived: image plane at the paraxial focus, where the    ║
- * ║    Fig. 2 curves start at zero). Infinity 16.196, close 17.876.      ║
+ * ║    Patent surfaces 17–18 are a 2.5 mm plate (nd 1.5168, νd 64.2)     ║
+ * ║    standing for cover glass/filters, modeled physically in           ║
+ * ║    `rearPlates` (traced, not drawn). D2 stores the patent gap to     ║
+ * ║    the plate: 14.10 (∞) / 15.78 (200 mm). The table gives no         ║
+ * ║    plate-to-image distance ("—"); 0.4478 mm is derived, not          ║
+ * ║    printed: it puts the image plane at the paraxial focus, where     ║
+ * ║    the Fig. 2 curves start at zero.                                  ║
  * ║                                                                      ║
  * ║  NOTE ON SEMI-DIAMETERS:                                             ║
  * ║    Not tabulated. Rims measured from Fig. 1 at 400 dpi (lens part    ║
@@ -185,7 +185,7 @@ const LENS_DATA = {
     },
   ],
 
-  /* ── Surface prescription (Table 1; surfaces 17–18 plate excluded) ── */
+  /* ── Surface prescription (Table 1; surfaces 17–18 plate in `rearPlates`) ── */
   surfaces: [
     // ── Group 1 ──
     { label: "1", R: 23.72, d: 1.1, nd: 1.6516, elemId: 1, sd: 9.4 }, // L1 front
@@ -207,7 +207,19 @@ const LENS_DATA = {
     { label: "13", R: 31.25, d: 3.9, nd: 1.8348, elemId: 8, sd: 9.1 }, // L7→L8 junction
     { label: "14", R: -19.67, d: 0.1, nd: 1.0, elemId: 0, sd: 9.1 }, // L8 rear → air
     { label: "15A", R: -181.46, d: 2.0, nd: 1.854, elemId: 9, sd: 9.9 }, // L9 front (asph)
-    { label: "16", R: -41.88, d: 16.196, nd: 1.0, elemId: 0, sd: 9.9 }, // L9 rear → image (D2 + t/n + derived plate-to-image)
+    { label: "16", R: -41.88, d: 14.1, nd: 1.0, elemId: 0, sd: 9.9 }, // L9 rear → plate (D2)
+  ],
+
+  /* ── Cover glass / filter plate (patent surfaces 17–18): traced, not drawn ── */
+  rearPlates: [
+    {
+      thicknessMm: 2.5,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 0.4478,
+      source: "JP 2012-003015 A, Example 1 Table 1 surfaces 17–18 (plate-to-image 0.4478 mm derived, not printed)",
+    },
   ],
 
   /* ── Aspherical coefficients (¶0094–0095); K = k_patent − 1 ── */
@@ -237,13 +249,13 @@ const LENS_DATA = {
   },
 
   /* ── Variable air spacings (Table 2: INF / 200 mm) ──
-   *  D1 (stop → L5): 4.46 → 3.85. D2 (L9 → plate): 14.10 → 15.78, stored as D2 + 1.648 (plate t/n)
-   *  + 0.447 (derived plate-to-image distance). Group 2 advances 1.68 mm and Group 1 advances
+   *  D1 (stop → L5): 4.46 → 3.85. D2 (L9 → plate): 14.10 → 15.78, stored as printed; the plate and
+   *  the derived 0.4478 mm plate-to-image distance are in `rearPlates`. Group 2 advances 1.68 mm and Group 1 advances
    *  1.68 − 0.61 = 1.07 mm toward the object (derived from the two gaps).
    */
   var: {
     STO: [4.46, 3.85],
-    "16": [16.196, 17.876],
+    "16": [14.1, 15.78],
   },
   varLabels: [
     ["STO", "D1"],
@@ -262,9 +274,10 @@ const LENS_DATA = {
   ],
 
   /* ── Focus configuration ──
-   *  Patent reference close distance 200 mm (object to surface 1); object-to-image ≈ 248 mm.
+   *  Patent reference close distance 200 mm (object to surface 1; the tabulated gaps trace to 198.1 mm);
+   *  physical object-to-image ≈ 248.9 mm (198.1 + 50.78 mm track including the plate).
    */
-  closeFocusM: 0.248,
+  closeFocusM: 0.249,
   focusDescription:
     "Floating focus — Group 1 (L1–L4 with the stop) and Group 2 (L5–L9) both advance toward the object; Group 2 moves farther (1.68 mm vs 1.07 mm at 200 mm).",
 

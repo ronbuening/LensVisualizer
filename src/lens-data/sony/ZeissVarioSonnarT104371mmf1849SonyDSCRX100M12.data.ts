@@ -10,9 +10,10 @@ import type { LensDataInput } from "../../types/optics.js";
  *
  * Model normalization:
  * - Source surface 5 is an inactive zero-thickness air-to-air plane and is omitted.
- * - Source surfaces 16-19 are the rear SG/plate stack and are excluded from the active
- *   prescription. Their reduced-angle translation is preserved by adding the fixed
- *   air-equivalent 1.668975685986314 mm to source D15 at every zoom state.
+ * - Source surfaces 16-19 are the rear filter SG stack, two plates modeled in order in
+ *   `rearPlates` (traced, not drawn): 0.300 mm nd 1.516798 / vd 64.1983 + 0.150 mm air
+ *   + 0.500 mm nd 1.556708 / vd 58.5624 + 1.000 mm to IMG. Surface 15A stores the
+ *   patent's physical D15 (5.065 / 4.371 / 3.625 mm) to the first plate.
  * - Exactly one STO is retained at source surface 11.
  * - The patent's asphere equation uses the standard (1+K) convention, so K maps directly.
  *
@@ -185,7 +186,30 @@ const LENS_DATA = {
     { label: "12A", R: 9.8285, d: 3.45, nd: 1.592014, elemId: 6, sd: 5.1 },
     { label: "13A", R: 13.0352, d: 5.953, nd: 1.0, elemId: 0, sd: 4.9 },
     { label: "14A", R: 68.7924, d: 3.05, nd: 1.592014, elemId: 7, sd: 9.7 },
-    { label: "15A", R: -23.3099, d: 6.733975685986314, nd: 1.0, elemId: 0, sd: 9.8 },
+    // Last surface: patent D15, physical gap to the first SG plate
+    { label: "15A", R: -23.3099, d: 5.065, nd: 1.0, elemId: 0, sd: 9.8 },
+  ],
+
+  /* ── Filter SG (patent Table 9 surfaces 16–19): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "SG",
+      thicknessMm: 0.3,
+      nd: 1.516798,
+      vd: 64.1983,
+      glass: "N-BK7",
+      gapAfterMm: 0.15,
+      source: "US 2013/0314585 A1, Example 3 Table 9 surfaces 16–17 (first SG plate)",
+    },
+    {
+      label: "SG",
+      thicknessMm: 0.5,
+      nd: 1.556708,
+      vd: 58.5624,
+      glass: "BAL15Y",
+      gapAfterMm: 1.0,
+      source: "US 2013/0314585 A1, Example 3 Table 9 surfaces 18–19 (second SG plate)",
+    },
   ],
 
   asph: {
@@ -280,9 +304,9 @@ const LENS_DATA = {
       [29.463, 29.463],
     ],
     "15A": [
-      [6.733975685986314, 6.733975685986314],
-      [6.039975685986314, 6.039975685986314],
-      [5.293975685986314, 5.293975685986314],
+      [5.065, 5.065],
+      [4.371, 4.371],
+      [3.625, 3.625],
     ],
   },
 
@@ -290,7 +314,7 @@ const LENS_DATA = {
     ["4", "D4"],
     ["STO", "D11"],
     ["13A", "D13"],
-    ["15A", "Rear gap (air-equivalent)"],
+    ["15A", "D15"],
   ],
 
   zoomPositions: [11.007, 19.615, 35.426],

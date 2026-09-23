@@ -48,7 +48,7 @@ All six groups move during zooming (¶0068, claim 6). With the image plane fixed
 
 The patent explains the motion as a distribution of the zooming task. Changing the GR1–GR2, GR2–GR3 and GR3–GR4 spacings varies the lateral magnification of GR2, GR3 and GR4 respectively, which limits the travel of any one group. Varying the GR4–GR5 spacing adjusts GR5, described as the group mainly responsible for image formation. The GR5–GR6 spacing gives GR6 a zooming action and suppresses the change of field curvature with zoom (¶0035).
 
-The total physical track from the first vertex to the image plane grows from 60.0 mm to 84.1 mm in the model. The ratio of track to focal length is 1.27 at tele, the quantity bounded by condition (e). The paraxial back focus is shorter than the focal length at every published state, so by that criterion the system is not retrofocus at any state; by the track-to-focal-length criterion it is not a telephoto at any state either.
+The total physical track from the first vertex to the image plane grows from 60.2 mm to 84.4 mm in the model, including the rear filter plates. The ratio of track to focal length is 1.27 at tele, the quantity bounded by condition (e). The paraxial back focus is shorter than the focal length at every published state, so by that criterion the system is not retrofocus at any state; by the track-to-focal-length criterion it is not a telephoto at any state either.
 
 ### Scaling and model conventions
 
@@ -56,7 +56,7 @@ The patent is normalized to f = 1.00 at the wide end. The data file multiplies a
 
 A real chief ray traced through the stop centre at the patent's half-angles, including all aspherical terms, reaches image heights of 6.66 / 7.65 / 7.61 mm at this scale. The 1.0-type format half-diagonal is 7.93 mm, so the middle (96.5%) and tele (96.0%) values fall just inside it. Relative to f·tan ω the wide-end chief ray lands 18.5% short (barrel distortion), consistent with the large negative distortion plotted at the wide end in Fig. 13.
 
-The patent's two rear plane plates (S29–S32; nd 1.5168 and 1.5567), described as seal glass or filters (¶0020), are omitted. Their path is carried as an air-equivalent addition to the last spacing, so the modeled rear gap is 7.702 / 16.243 / 20.680 mm. The model track is therefore shorter than 9 × the tabulated overall length (84.42 mm at tele), mainly because the plate thicknesses are replaced by their shorter air-equivalent path and partly because the tabulated lengths are rounded; the paraxial imaging is unchanged. As tabulated, the image plane lies 0.206 mm behind the paraxial focus at tele and 0.018 mm at wide; the data file keeps the published image plane.
+The patent's two rear plane plates (S29–S32), the optical filter FL placed between GR6 and the image plane (¶0106; seal glass or filters per ¶0020), are modeled in the data file's `rearPlates` field at the same ×9 scale: 0.288 mm of nd 1.5168 / νd 64.2, 1.251 mm of air, 0.486 mm of nd 1.5567 / νd 58.6 and 0.963 mm of air to the image plane. Every analysis traces them; the diagram does not draw them. The last lens spacing D28 is the patent's physical gap to the first plate, 4.986 / 13.527 / 17.964 mm. Its air-equivalent value including the plates is 7.702 / 16.243 / 20.680 mm. The model track therefore matches 9 × the tabulated overall length (60.21 / 69.12 / 84.42 mm) to the rounding of the table. As tabulated, the image plane lies 0.206 mm behind the paraxial focus at tele and 0.018 mm at wide; the data file keeps the published image plane.
 
 ## Element-by-Element Analysis
 
@@ -262,8 +262,8 @@ The scaled prescription was traced with independent sequential y–nu and ABCD m
 | Entrance-pupil radius (mm) | 1.52 | 2.84 | 7.02 |
 | Entrance pupil from S1 (mm) | 12.43 | 30.88 | 83.94 |
 | Exit pupil from image plane (mm) | −31.60 | −35.37 | −43.43 |
-| Track, S1 to image (mm) | 59.97 | 68.81 | 84.12 |
-| Paraxial BFD (mm) | 7.68 | 16.17 | 20.47 |
+| Track, S1 to image (mm) | 60.24 | 69.08 | 84.39 |
+| Paraxial BFD, air-equivalent (mm) | 7.68 | 16.17 | 20.47 |
 | Real chief-ray image height at patent ω (mm) | 6.66 | 7.65 | 7.61 |
 
 The patent gives f-numbers but no diaphragm diameter, so the stop radii are calibrated to reproduce those f-numbers rather than verified against them. They differ between states: a single fixed iris equal to the wide-end radius would give f/4.04 at the middle state and f/4.87 at tele. The data file therefore uses an iris schedule inferred from the published f-numbers; that schedule is an inference, not a published value. The Petzval sum of the scaled model, Σφ/(n·n′), is 0.00309 mm⁻¹; it is a paraxial quantity and is not used here to predict field curvature.

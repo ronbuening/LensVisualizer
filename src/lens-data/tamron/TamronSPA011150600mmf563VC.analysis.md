@@ -21,7 +21,7 @@ This analysis treats Example 4 as the selected production correlation for the **
 6. Three elements in Example 4 use the repeated high-Abbe coordinate `nd = 1.49700`, `νd = 81.61`. This is consistent with, but does not prove the identity of, the three LD elements stated by Tamron for the A011.
 7. The Japanese priority date precedes the Canon EF release of the A011 in December 2013.
 
-The LensVisualizer prescription is a normalized representation of the patent rather than a literal 44-surface transcription. Seven 0.01–0.02 mm same-radius interlayers published at cemented junctions have been collapsed into direct cemented interfaces, with their thickness added to the downstream element span. The zero-power bookkeeping plane at source surface 36 has been removed and its variable air space transferred to modeled surface `35`. The uncounted 2.000 mm rear plate at `nd = 1.51680`, followed by 1.000 mm air, is excluded from the ordinary lens prescription and replaced by the equivalent axial air distance of 2.3185654 mm. These are modeling normalizations, not corrections to the patent.
+The LensVisualizer prescription is a normalized representation of the patent rather than a literal 44-surface transcription. Seven 0.01–0.02 mm same-radius interlayers published at cemented junctions have been collapsed into direct cemented interfaces, with their thickness added to the downstream element span. The zero-power bookkeeping plane at source surface 36 has been removed and its variable air space transferred to modeled surface `35`. The uncounted 2.000 mm rear plate at `nd = 1.51680`, `νd = 64.20` (source surfaces 43–44, N-BK7 class), followed by 1.000 mm air, is kept out of the drawn lens prescription and modeled in `rearPlates`: every analysis traces it, but it is not drawn. Surface `42` therefore stores the patent D42 of 51.0000 / 77.8106 / 97.8880 mm; the paraxially equivalent air-only back focus would be 2.3185654 mm longer. The interlayer and surface-36 steps are modeling normalizations, not corrections to the patent.
 
 The normalization changes the Gaussian power slightly. The final data file computes effective focal lengths of 152.226594, 297.631820, and 582.810656 mm at the three infinity zoom states. The `zoomPositions` field nevertheless retains the patent Table 11 control points so that the zoom kinematics remain source-referenced.
 
@@ -206,7 +206,7 @@ G4, containing L15–L17, moves toward the object for closer focus. The two adja
 
 This is a conventional inner-focus action in the sense that a positive internal group translates while the front group does not execute an additional focus motion. The focus travel grows substantially toward the telephoto end because the same final object distance requires a larger internal conjugate change at the long focal-length state.
 
-The patent defines D(0) from the first lens surface to the object, giving 2399.28, 2352.02, and 2320.84 mm at the three near-focus states. Adding the raw patent's physical first-surface-to-image track gives 2.700 m to source precision. The normalized LensVisualizer model replaces the uncounted rear plate with an air-equivalent distance, so its geometric track is about 0.6814 mm shorter than the raw physical track; `closeFocusM: 2.7` therefore records the source/manufacturer object distance rather than pretending that the normalized axial coordinate is the original physical stack.
+The patent defines D(0) from the first lens surface to the object, giving 2399.28, 2352.02, and 2320.84 mm at the three near-focus states. Adding the raw patent's physical first-surface-to-image track gives 2.700 m to source precision. Because the interlayer collapse preserves axial stations and the rear plate is modeled physically in `rearPlates`, the LensVisualizer physical track matches the raw patent track, and `closeFocusM: 2.7` agrees with both the source geometry and the manufacturer's minimum object distance.
 
 At the raw published near states, independent first-order tracing gives approximate lateral magnifications of 1:17.37, 1:9.07, and 1:4.76 from wide to telephoto. The telephoto result is consistent with Tamron's rounded 1:5 product specification, while the difference is retained as the expected distinction between a patent paraxial model and a marketed production figure.
 
@@ -240,7 +240,7 @@ US 10,545,321 B2 defines several normalized conditions intended to constrain zoo
 | `(1 − βa)·βb` | −2.8 to −1.0 | −1.478045 | −1.4781 |
 | `Lt / fT` | 0.60 to 0.75 | 0.650896 | 0.6509 |
 
-For condition (1), `X1 = 78.44 mm` is the first-group displacement between the wide and telephoto ends. Condition (5) uses the raw patent's physical track, including the rear plate segment, because that is the geometry from which Table 16 was generated. The normalized LensVisualizer air-equivalent rear spacing should not be substituted into the source's own condition value.
+For condition (1), `X1 = 78.44 mm` is the first-group displacement between the wide and telephoto ends. Condition (5) uses the raw patent's physical track, including the rear plate segment, because that is the geometry from which Table 16 was generated. The LensVisualizer model now carries the same physical rear-plate segment in `rearPlates`, so its physical track reproduces that value; an air-equivalent back focus should not be substituted into the condition.
 
 The five results show that Example 4 occupies the intended design region rather than merely sharing a similar focal range. In particular, the compactness condition and the negative stabilization sensitivity are consistent with the architecture seen in Fig. 13: a long effective focal length is obtained from a substantially shorter physical system while the image-stabilizing block remains internal to G3.
 
@@ -254,7 +254,7 @@ Surface-by-surface Petzval summation using `φ/(n·n′)` gives `+0.0006239743 m
 
 Independent geometry checks of the final data give a minimum element edge thickness of approximately 1.049 mm, a maximum spherical rim angle of 31.02°, and a maximum shared-band cross-gap intrusion ratio of 0.8394 against the model limit of 0.90. All on-axis infinity marginal rays and all axial published near-focus marginal rays clear the modeled surfaces. No aspheric conic-limit check applies because the prescription is all-spherical.
 
-The normalized first-surface-to-image tracks are 300.038465, 347.302865, and 378.478665 mm. Those values are model coordinates after replacing the rear plate by its air-equivalent propagation and should not be substituted for the patent's physical track when evaluating source condition (5).
+The physical first-surface-to-image tracks, including the 2.000 mm rear plate and its 1.000 mm trailing gap, are 300.719900, 347.984300, and 379.160100 mm, matching the raw patent track used by source condition (5). Replacing the plate by its air-equivalent propagation would shorten each by 0.681435 mm.
 
 ## Sources and References
 

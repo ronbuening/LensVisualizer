@@ -3,7 +3,8 @@
  * Source prescription at f=78.79 mm, f/2.88; source KA=1 maps to standard K=0.
  * Four motion groups; G4 is split into stabilization subgroup G4a and fixed G4b.
  * Optical rims inferred from the original 600 dpi figure and validated for clearance.
- * Cover plate omitted with air-equivalent rear spacing; catalog names are inferred.
+ * Rear plate (Table 1 surfaces 30–31, 2.85 mm, nd 1.51680 / νd 64.20) is traced via
+ * `rearPlates`, not drawn; last gap is the physical 27.42 mm. Catalog names are inferred.
  */
 
 import type { LensDataInput } from "../../types/optics.js";
@@ -273,8 +274,20 @@ const LENS_DATA = {
     { label: "26", R: 709.7839, d: 0.1, nd: 1.0, elemId: 0, sd: 13.4 },
     { label: "27", R: 59.0208, d: 4.9, nd: 1.5168, elemId: 15, sd: 13.7 },
     { label: "28", R: -43.109, d: 1.07, nd: 1.95906, elemId: 16, sd: 13.7 },
-    // Source rear stack: 27.42 mm air + 2.85 mm / nd 1.5168 + 1 mm air.
-    { label: "29", R: -528.8086, d: 30.298955696202533, nd: 1.0, elemId: 0, sd: 13.7 },
+    // Physical air to the rear plate (Table 1 surface 29); the plate is in `rearPlates`.
+    { label: "29", R: -528.8086, d: 27.42, nd: 1.0, elemId: 0, sd: 13.7 },
+  ],
+
+  /* ── Rear plate (patent surfaces 30–31): traced, not drawn ── */
+  rearPlates: [
+    {
+      thicknessMm: 2.85,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "S-BSL7",
+      gapAfterMm: 1.0,
+      source: "US 2018/0246292 A1, Example 1 Table 1 surfaces 30–31",
+    },
   ],
 
   asph: {
@@ -333,7 +346,7 @@ const LENS_DATA = {
     { text: "D4", fromSurface: "27", toSurface: "29" },
   ],
 
-  // Inferred finite conjugate including physical thickness of the omitted 2.85 mm plate.
+  // Inferred finite conjugate: physical object-to-image distance including the 2.85 mm rear plate.
   closeFocusM: 0.24642928706318645,
   nominalFno: 2.88,
   fstopSeries: [2.88, 4, 5.6, 8, 11, 16],

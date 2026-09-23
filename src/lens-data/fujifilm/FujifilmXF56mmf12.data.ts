@@ -12,7 +12,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * FOCUS: ¶0050 — G1, the stop and L25 stay fixed to the image plane; L21 plus the cemented triplet L22–L24 move
  *   toward the object (FIG. 3 arrow). The patent publishes NO close-state spacing. The close-focus gaps below are
  *   calculated: a paraxial solve for a 0.700 m object-to-image distance (production MFD; object 619.8 mm ahead of
- *   surface 1 plus the 80.19 mm stored track) gives 6.90 mm of travel. The earlier 6.20 mm value focused an object
+ *   surface 1 plus the 80.19 mm air-equivalent track) gives 6.90 mm of travel. With PP modeled physically the track
+ *   is 81.14 mm, so the same object sits 0.701 m from the image plane. The earlier 6.20 mm value focused an object
  *   0.70 m from surface 1, i.e. 0.78 m from the image plane.
  *
  * NOTE ON ASPHERICAL SURFACES:
@@ -46,8 +47,9 @@ import type { LensDataInput } from "../../types/optics.js";
  *
  * NOTE ON COVER GLASS:
  *   Table 7 rows 21–22 list the plate PP (d = 2.80, nd = 1.51680, νd = 64.2) 10.00 mm behind L25 and print no
- *   plate-to-image distance; Table 8 gives the air-equivalent BF = 16.53 mm, which is stored as the last gap
- *   (10.00 + 2.80/1.5168 = 11.846, leaving a derived 4.684 mm of air behind the plate). PP is excluded.
+ *   plate-to-image distance. PP is modeled in `rearPlates` (N-BK7, traced, not drawn); surface 20 stores the
+ *   printed 10.00 mm gap. The 4.684 mm of air behind the plate is derived, not printed: Table 8 air-equivalent
+ *   BF 16.53 − 10.00 − 2.80/1.5168 = 4.684 mm, so the paraxial image plane is unchanged.
  *
  * NOTE ON GLASS: the patent names no glasses. Labels are catalog equivalents of the Table 7 nd/νd pairs. θgF
  *   (0.5375) is printed only on the L13 row — the L1p lens of conditions (3)/(4), Table 16 value 0.0280.
@@ -239,7 +241,21 @@ const LENS_DATA = {
     { label: "17", R: 29.688, d: 6.63, nd: 1.883, elemId: 10, sd: 13.7 },
     { label: "18", R: -55.427, d: 0.9, nd: 1.0, elemId: 0, sd: 13.9 },
     { label: "19", R: 289.87, d: 1.81, nd: 1.48749, elemId: 11, sd: 14.1 },
-    { label: "20", R: -289.87, d: 16.53, nd: 1.0, elemId: 0, sd: 14.1 },
+    { label: "20", R: -289.87, d: 10.0, nd: 1.0, elemId: 0, sd: 14.1 }, // Table 7 d20: gap to the plate PP
+  ],
+
+  /* ── Cover plate PP (patent Table 7 surfaces 21–22): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PP",
+      thicknessMm: 2.8,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 4.684,
+      source:
+        "US 2015/0212302 A1, Example 3 Table 7 surfaces 21–22; gap to image derived, not printed (Table 8 BF 16.53 − 10.00 − 2.80/1.5168)",
+    },
   ],
 
   /* ── Aspherical coefficients ──

@@ -93,3 +93,9 @@ Patent: US 2018/0246292 A1 — Example 1
 - Surface and image-circle audits passed; three source regression tests passed; TypeScript passed. Full batch gates/commit follow lens20.
 
 - Batch glass-report RCA: the named S-BAL41 catalog entry is incompatible with the source 1.58313/59.46–59.5 coordinate. Replaced the misleading label with inferred M-BACD12, which preserves the source values and resolves compatibly. Added an explicit resolver regression; the regenerated catalog-mismatch report is empty.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Re-read `patents/US20180246292A1.pdf` p. 40, Table 1 surfaces 29–31 (rendered page): 27.42 mm air, plate 2.85 mm at nd 1.51680 / νd 64.20 (no designation printed), 1.00 mm air to the image. Surface 29 now stores the physical 27.42 mm (was the air-equivalent 30.2989557 mm) and the plate is a `rearPlates` entry with `gapAfterMm` 1.0; the rear gap is not focus-variable.
+- Plate glass labelled S-BSL7 (OHARA, matching the lens's own S-BSL7 element at the same nd/νd; compatible-glass resolver check passes).
+- Plate-check against HEAD: EFL and paraxial defocus identical at infinity and life-size (worst |Δ| 1.4e-14); physical track grows by 0.971 mm (2.85 × (1 − 1/1.5168)). `closeFocusM` already used the physical object-to-image distance including the plate and is unchanged.
