@@ -4,7 +4,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * WO 2024/147268 A1, Example 1: Table 1 (PDF pp. 20–22), Figure 1 (p. 66).
  * Source radii, thicknesses and glass coordinates; drawing-derived optical rims.
  * Equation (a) uses 1−K: its K=1 becomes standard conic K=0.
- * The rear 1.6 mm filter is omitted using air-equivalent axial spacing.
+ * Rear filter FL (surfaces 32–33: 1.6 mm, nd 1.51680, νd 64.14) is modeled in
+ * `rearPlates` (traced, not drawn); surface 31 stores the physical 11.4681 mm gap.
  * Catalog names are dispersion proxies, not established production materials.
  */
 
@@ -285,7 +286,20 @@ const LENS_DATA = {
     { label: "28", R: 51.4253, d: 5.3074, nd: 1.84666, elemId: 15, sd: 21.1 }, // L15 front
     { label: "29", R: 162.7875, d: 4.3017, nd: 1.0, elemId: 0, sd: 19.3 }, // L15 rear → air
     { label: "30", R: -70.4474, d: 2.1, nd: 1.816, elemId: 16, sd: 21.1 }, // L16 front
-    { label: "31", R: -2372.9554, d: 13.894152320675106, nd: 1.0, elemId: 0, sd: 21.1 }, // L16 rear → image (air-equivalent BFD; omitted source filter: 1.6 mm, nd 1.5168)
+    { label: "31", R: -2372.9554, d: 11.4681, nd: 1.0, elemId: 0, sd: 21.1 }, // L16 rear → filter FL (physical gap)
+  ],
+
+  /* ── Filter FL (patent surfaces 32–33): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "FL",
+      thicknessMm: 1.6,
+      nd: 1.5168,
+      vd: 64.14,
+      glass: "N-BK7",
+      gapAfterMm: 1.3712,
+      source: "WO 2024/147268 A1, Example 1 Table 1 surfaces 32–33",
+    },
   ],
 
   /* ── Aspherical coefficients ── */
@@ -333,7 +347,7 @@ const LENS_DATA = {
   /* ── Focus configuration ── */
   closeFocusM: 0.8245543747338308,
   focusDescription:
-    "Source focus: G2 (negative L7) moves imageward 13.597 mm and G4 (positive L13) objectward 6.184 mm. Other groups remain fixed within 0.001 mm table rounding. Near distance is inferred from the finite conjugate, including the omitted filter thickness.",
+    "Source focus: G2 (negative L7) moves imageward 13.597 mm and G4 (positive L13) objectward 6.184 mm. Other groups remain fixed within 0.001 mm table rounding. Near distance is inferred from the finite conjugate, including the physical filter thickness.",
 
   /* ── Aperture configuration ── */
   nominalFno: 1.85,

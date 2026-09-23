@@ -8,14 +8,14 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ Two-group negative-positive retrofocus zoom for Nikon F / 135 full-frame coverage.  ║
  * ║ Patent prescription: 12 physical lens elements / 8 groups, 4 aspherical surfaces.   ║
  * ║                                                                                    ║
- * ║ Zoom variable gaps: D10 (Gr1-Gr2 spacing) and D27A/BF.                              ║
+ * ║ Zoom variable gaps: D10 (Gr1-Gr2 spacing) and D27 (27A to the PT plate).            ║
  * ║ Focus: patent states GrF (surfaces 11-14) moves imageward for close focus, but      ║
  * ║ close-focus spacing values are not published. This file therefore models the        ║
  * ║ infinity-focus zoom positions only; var pairs are identical for inf/close.          ║
  * ║                                                                                    ║
  * ║ Cover glass handling: patent surfaces 28-29 are a plane-parallel plate PT           ║
- * ║ (d=1.90, nd=1.51680) plus 1.00 mm air. Per data spec, PT is excluded and its        ║
- * ║ optical thickness is folded into final BF: 1.90 / 1.51680 + 1.00 = 2.252637 mm.     ║
+ * ║ (d=1.90, nd=1.51680, νd=64.20) plus BF 1.00 mm air, modeled in `rearPlates`         ║
+ * ║ (traced, not drawn). d27 stores the patent's physical 37.70 / 47.12 / 59.88 mm.     ║
  * ║                                                                                    ║
  * ║ Semi-diameters: patent does not list SDs. Values here are estimated from            ║
  * ║ marginal/chief-ray clearance and then reduced to satisfy spherical rim, asphere     ║
@@ -324,7 +324,20 @@ const LENS_DATA = {
     { label: "24", R: -13.915, d: 1.0, nd: 1.72916, elemId: 17, sd: 11.0 },
     { label: "25", R: 63.311, d: 1.21, nd: 1.0, elemId: 0, sd: 11.0 },
     { label: "26A", R: 999.995, d: 4.41, nd: 1.58313, elemId: 18, sd: 10.8 },
-    { label: "27A", R: -21.943, d: 39.95263713080169, nd: 1.0, elemId: 0, sd: 10.8 },
+    { label: "27A", R: -21.943, d: 37.7, nd: 1.0, elemId: 0, sd: 10.8 }, // d27 var — gap to the PT plate
+  ],
+
+  /* ── Cover plate PT (patent surfaces 28–29): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PT",
+      thicknessMm: 1.9,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 1.0,
+      source: "US 9,256,059 B2, Example 1 surfaces 28–29 (BF 1.00)",
+    },
   ],
 
   asph: {
@@ -373,14 +386,14 @@ const LENS_DATA = {
       [1.85, 1.85],
     ],
     "27A": [
-      [39.95263713080169, 39.95263713080169],
-      [49.37263713080169, 49.37263713080169],
-      [62.13263713080169, 62.13263713080169],
+      [37.7, 37.7],
+      [47.12, 47.12],
+      [59.88, 59.88],
     ],
   },
   varLabels: [
     ["10", "D10"],
-    ["27A", "BF"],
+    ["27A", "D27"],
   ],
 
   groups: [

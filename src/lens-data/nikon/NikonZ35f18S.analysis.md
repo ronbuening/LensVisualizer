@@ -46,7 +46,7 @@ The patent specifies three variable air gaps: d₁₃ (STO to Gr2), d₁₉ (Gr2
 | d₂₁ (Gr3 → cover glass) | 0.751 (16.22 mm) | 0.545 (11.77 mm) |
 | **Sum** | **1.494** | **1.494** |
 
-The total from L17's rear surface to the image plane is 2.5435 (normalized, 54.94 mm) at both focus positions, confirming zero discrepancy. In the data file the cover glass is omitted and the last gap carries d₂₁ plus the plate's air-equivalent thickness and BF (18.19 mm at infinity, 13.74 mm at MFD).
+The total from L17's rear surface to the image plane is 2.5435 (normalized, 54.94 mm) at both focus positions, confirming zero discrepancy. In the data file the last gap is the physical d₂₁ (16.22 mm at infinity, 11.77 mm at MFD), and the cover-glass plate and BF are modeled separately in `rearPlates`; the air-equivalent back focus d₂₁ + t/n + BF is 18.19 mm at infinity and 13.74 mm at MFD.
 
 ### 2.3 Telephoto Ratio
 
@@ -235,7 +235,7 @@ The patent pair (nd = 1.58313, νd = 59.46) is the exact catalog coordinate of H
 
 ### 3.5 Cover Glass / Filter Stack
 
-A single parallel plate (nd = 1.51680, νd = 64.13, thickness 0.074 ≈ 1.60 mm scaled) models the combined cover glass and IR-cut/OLPF stack in front of the sensor. The BF (cover glass rear to image) is 0.0425 ≈ 0.92 mm scaled. The data file omits the plate and folds its air-equivalent thickness (1.60/1.5168 = 1.05 mm) into the last air gap.
+A single parallel plate (nd = 1.51680, νd = 64.13, thickness 0.074 ≈ 1.60 mm scaled) models the combined cover glass and IR-cut/OLPF stack in front of the sensor. The BF (cover glass rear to image) is 0.0425 ≈ 0.92 mm scaled. The data file models the plate in `rearPlates` (J-BK7A, 1.5984 mm, 0.918 mm to the image): every analysis traces through it, but it is not drawn in the cross-section. Paraxially it is equivalent to 1.60/1.5168 = 1.05 mm of air, so the physical track is 0.54 mm longer than the air-equivalent one.
 
 ---
 

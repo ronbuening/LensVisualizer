@@ -15,7 +15,7 @@ The production correlation rests on several independent points rather than on a 
 
 1. The computed design focal length is **587.999783 mm**, close to Nikon's marketed **600 mm** designation.
 2. The patent aberration plot gives a design aperture of **f/4.11**; Nikon markets the lens as **f/4**.
-3. After the patent's fixed plane plates are omitted, the active formula contains **9 elements in 7 air-separated groups**, matching Nikon's specification of 9 elements in 7 groups plus a front dustproof plate.
+3. Leaving aside the patent's two fixed plane plates (the front plate and the rear filter), the active formula contains **9 elements in 7 air-separated groups**, matching Nikon's specification of 9 elements in 7 groups plus a front dustproof plate.
 4. The patent focuses by translation of the internal negative G2 group; Nikon identifies the production lens as an Internal Focusing design.
 5. The patent's image height of **21.6 mm** corresponds to a 43.2 mm image diagonal. The computed paraxial full field is **4.207595°**, close to Nikon's marketed **4°10′** picture angle for the 35 mm format.
 6. The patent was published on 1992-08-26. Nikon's corporate Camera Chronicle places the AF-I 600 mm release in **September 1992**.
@@ -26,7 +26,7 @@ The data file therefore keeps the marketed and design quantities separate: `foca
 
 Example 5 is a **positive–negative–positive inner-focus telephoto**. The active prescription has nine glass elements in seven air-separated groups. The front positive group G1 is compound, the negative G2 group translates for focus, and the positive G3 group remains fixed. The patent's stated objective is to preserve optical performance while reducing total length and the amount of focusing movement [JP H04-238311 A, p. 1; ¶¶0005–0009].
 
-Independent first-order calculation from the final TypeScript arrays gives an active optical track of **427.344265 mm** and an EFL of **587.999783 mm**, so `TL/EFL = 0.726776`. Under the project definition this is a telephoto design. The Gaussian back focal distance from active surface 18 is **201.824132 mm**, or `BFD/EFL = 0.343238`; the design is therefore not retrofocus.
+Independent first-order calculation gives an EFL of **587.999783 mm** and an air-equivalent optical track of **427.344265 mm** (rear filter reduced to its `t/n` air thickness), so `TL/EFL = 0.726776`. The physical first-vertex-to-image track, with the 2.00 mm rear filter at full thickness, is **428.025700 mm** (`TL/EFL = 0.727935`). Under the project definition this is a telephoto design either way. The air-equivalent Gaussian back focal distance from active surface 18 is **201.824132 mm**, or `BFD/EFL = 0.343238`; the design is therefore not retrofocus.
 
 The computed group powers clarify the division of labor:
 
@@ -41,7 +41,7 @@ The computed group powers clarify the division of labor:
 
 These are in-situ or cemented-unit powers, not substitutes for the standalone focal lengths of the individual elements. In particular, G12 is only weakly positive as a cemented unit even though its front element L14 is individually negative and its rear element L15 is individually positive. Likewise, the G2 front cemented pair is net negative although L21 by itself is positive.
 
-The source contains two plane plates outside the active lens. The front plate and the rear fixed filter are excluded from the ordinary LensVisualizer prescription in accordance with the data specification. Their translational effects are normalized to air where needed. The rear 2.00 mm plate at `nd = 1.51680`, together with the corrected rear image distance, is folded into the post-stop air-equivalent spacing. The resulting active surface-18-to-image distance is **201.825465 mm**.
+The source contains two plane plates outside the active lens. The front protective plate (surfaces 1–2) is omitted from the prescription and its translation normalized to air. The rear fixed filter F (surfaces 19–20: 2.00 mm, `nd = 1.51680`, `νd = 64.1`, J-BK7A class) is modeled in `rearPlates`: it is traced by every analysis but not drawn in the section. The stop surface stores the physical 42.9 mm from the stop to the filter (the patent's 65.20 mm from surface 18 to F, less the inferred 22.3 mm stop position), and the filter is followed by the corrected `d20 = 135.3069 mm` to the image. The physical surface-18-to-image distance is therefore **202.506900 mm**; its paraxial air equivalent, `65.20 + 2.00/1.51680 + 135.3069`, is **201.825465 mm**.
 
 The source does not tabulate the aperture-stop coordinate. Figure 9 places stop S between G3 and the rear filter F [JP H04-238311 A, Fig. 9, p. 10]. The model therefore treats the stop position as an inference from that figure: **22.3 mm after surface 18**. With the patent's f/4.11 design aperture, the inferred physical stop semi-diameter is **21.839919 mm**, corresponding to a computed entrance-pupil diameter of **143.065641 mm**. These dimensions are modeling quantities, not patent measurements.
 
@@ -182,7 +182,8 @@ Independent sequential height/reduced-angle tracing and an ABCD calculation appl
 |---|---:|
 | Design EFL | 587.999782715 mm |
 | Residual versus patent `F = 588.0001 mm` | −0.000317285 mm |
-| Active track / EFL | 0.726776230 |
+| Air-equivalent track / EFL | 0.726776230 |
+| Physical track / EFL (rear filter at full thickness) | 0.727935133 |
 | Paraxial full field at `Y = 21.6 mm` | 4.207595° |
 | Modeled entrance-pupil diameter | 143.065641 mm |
 | Modeled wide-open f-number | 4.110000 |
@@ -194,7 +195,7 @@ Independent sequential height/reduced-angle tracing and an ABCD calculation appl
 
 The model's inferred semi-diameters also satisfy the independent geometry checks used during data construction. The minimum computed edge thickness is **0.382907 mm**, the maximum spherical rim-slope angle is **51.1264°**, and the tightest cross-gap case remains within the prescribed clearance at both authored focus endpoints. These results validate the internal consistency of the stored geometry; they do not convert the inferred semi-diameters into patent-published mechanical dimensions.
 
-The source corrections and modeling inferences that materially affect the final prescription are therefore limited and explicit: the corrected `d20`, air-equivalent removal of the two fixed plane plates, the figure-derived stop position and aperture, the inferred semi-diameters, and the constrained 6 m G2 focus endpoint. None changes the selected patent, embodiment, or active powered-surface prescription.
+The source corrections and modeling inferences that materially affect the final prescription are therefore limited and explicit: the corrected `d20`, air-equivalent removal of the front plane plate, the rear filter carried as a traced `rearPlates` entry, the figure-derived stop position and aperture, the inferred semi-diameters, and the constrained 6 m G2 focus endpoint. None changes the selected patent, embodiment, or active powered-surface prescription.
 
 ## Sources and References
 

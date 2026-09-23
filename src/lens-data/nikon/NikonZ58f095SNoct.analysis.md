@@ -20,7 +20,7 @@ The catalog associates this seventeen-element, ten-component example with the No
 
 Front assembly GF contains thirteen elements: negative G1 comprises the first two cemented doublets, while positive G2 contains three singlets and three cemented doublets around the stop. Fixed rear assembly GR contains two cemented doublets. Seventeen elements form ten air-separated components; the three annotated optical groups are not the component count.
 
-The patent gives GF focal length75.60mm, G1−289.87mm, G2+69.07mm and GR+294.37mm. The entire GF, including its stop, translates during focus. GR remains fixed. The separate source filter group FL is omitted under the lens specification; it is not an eighteenth lens element.
+The patent gives GF focal length75.60mm, G1−289.87mm, G2+69.07mm and GR+294.37mm. The entire GF, including its stop, translates during focus. GR remains fixed. The separate source filter group FL is modeled as a camera-fixed rear plate in `rearPlates`, traced by every analysis but not drawn; it is not an eighteenth lens element.
 
 ## Element-by-Element Analysis
 
@@ -66,7 +66,7 @@ These replace rounded−0.0065/−0.0051 and zero surrogates. The patent conditi
 
 D22 increases from2.68 to21.29mm. With the image plane fixed, all of GF and its stop move18.61mm toward the object; both rear doublets remain fixed. Intermediate motion is an interpolation of these two source stations. The patent's near magnification is−0.194.
 
-An independent reduced-angle matrix calculation gives infinity EFL59.620439mm. At the source near gap it gives EFL62.748872mm, magnification−0.1942594 and object-to-first-vertex distance320.552645mm. The filter-omitted near track178.814852mm produces the modeled object-to-image label **0.499367498m**, displayed as about50cm. Adding the removed plate's physical-minus-equivalent path would give0.499912645m. The data do not assert a measured production focus throw or drive mechanism.
+An independent reduced-angle matrix calculation gives infinity EFL59.620439mm. At the source near gap it gives EFL62.748872mm, magnification−0.1942594 and object-to-first-vertex distance320.552645mm. The physical near track179.360000mm, including the FL plate, produces the modeled object-to-image label **0.499912645m**, displayed as about50cm. The former air-equivalent track178.814852mm gave0.499367498m. The data do not assert a measured production focus throw or drive mechanism.
 
 ## Aspherical Surfaces
 
@@ -80,11 +80,11 @@ The adopted surface radii including the stop are33.5,33,28.7,28.7,33,33,35.3,35.
 
 A figure-oriented29.2mm trial on facing S3/S4 exceeded the validator's air-gap intrusion limit:16.84mm versus16.308mm allowance within18.12mm. Both retain constrained28.7mm optical radii; the larger drawn mechanical shoulders are not refracting apertures. This source/geometry limitation remains a follow-up. Adopted rims pass surface/image-circle checks and cause no hidden renderer trimming at infinity, midpoint or near.
 
-## Filter Omission and Model Limitations
+## Filter Plate and Model Limitations
 
-Legacy source rows29–30 modeled a1.6mm plate at nd1.5168 followed by1mm air, with14.5mm air before it. They have been removed. Final S28 spacing is **14.5+1.6/1.5168+1=16.554852321mm**, matching the patent's rounded equivalent BF16.55mm. Merely deleting the plate without replacing its propagation would be incorrect.
+Source rows29–30 place a1.60mm plate FL at nd1.516800, νd64.14 after14.50mm air, followed by1.00mm air to the image. The data store S28 as the physical14.5mm gap and model FL in `rearPlates` (J-BK7A catalog counterpart, 1.00mm to the image), so the plate is traced but not drawn. Its air-equivalent back focus, **14.5+1.6/1.5168+1=16.554852321mm**, matches the patent's rounded equivalent BF16.55mm, and the physical17.10mm matches the printed BF.
 
-Equivalent air preserves d-line paraxial propagation, not the omitted plate's higher-order or chromatic effects. All seventeen optical elements remain. Figure radii, catalog counterparts and interpolation remain explicitly inferred; source prescriptions and published partial-dispersion values remain distinct from production claims.
+Tracing the plate, rather than folding it into equivalent air, also carries its higher-order and chromatic effects on the converging beam. All seventeen optical elements remain. Figure radii, catalog counterparts and interpolation remain explicitly inferred; source prescriptions and published partial-dispersion values remain distinct from production claims.
 
 ## Sources
 

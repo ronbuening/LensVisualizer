@@ -36,9 +36,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    FIG. 4 draws the same air space at 0.255. Every other row is   ║
  * ║    the patent value.                                               ║
  * ║                                                                    ║
- * ║  Cover glass PT (nd = 1.51680, t = 0.074 → 1.598 mm) is excluded; ║
- * ║  its air-equivalent thickness t/n is folded into the rear gap:    ║
- * ║  d21 + t/n + BF = (0.751 + 0.04879 + 0.0425) × 21.6 = 18.1934 mm. ║
+ * ║  Plate PT (patent surfaces 22–23; cover glass + LPF equivalent,   ║
+ * ║  nd = 1.51680, νd = 64.13, t = 0.074 → 1.5984 mm) is modeled in   ║
+ * ║  `rearPlates` (traced, not drawn). d21 = patent 0.751 / 0.545 ×   ║
+ * ║  21.6 = 16.2216 / 11.772 mm to the plate; BF 0.0425 → 0.918 mm.   ║
+ * ║  Air-equivalent back focus d21 + t/n + BF = 18.1934 / 13.7438 mm. ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    Patent effective-radius column Ri (有効半径) × 21.6, rounded   ║
@@ -259,8 +261,22 @@ const LENS_DATA = {
     // ── Gr3 (negative, moves toward image during close focus) ──────
     // L31 — negative meniscus, 2× aspherical (concave object side)
     { label: "20A", R: -40.9817, d: 1.7928, nd: 1.58313, elemId: 11, sd: 13.93 },
-    // d21: (patent 0.751 + cover glass 0.074/1.5168 + BF 0.0425) × 21.6 = 18.1934 to image
-    { label: "21A", R: -149.7917, d: 18.1934, nd: 1.0, elemId: 0, sd: 15.21 },
+    // d21: patent 0.751 × 21.6 = 16.2216 to the PT plate
+    { label: "21A", R: -149.7917, d: 16.2216, nd: 1.0, elemId: 0, sd: 15.21 },
+  ],
+
+  /* ── Plate PT (patent surfaces 22–23): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PT",
+      thicknessMm: 1.5984,
+      nd: 1.5168,
+      vd: 64.13,
+      glass: "J-BK7A",
+      sd: 25.92,
+      gapAfterMm: 0.918,
+      source: "JP 2019-090947 A, Example 4 surfaces 22–23 (t 0.074, Ri 1.200, BF 0.0425; × 21.6)",
+    },
   ],
 
   // Patent coefficients ÷ 21.6^(n−1); K unchanged (patent sag equation uses 1 + K).
@@ -323,11 +339,11 @@ const LENS_DATA = {
 
   // Three variable gaps: STO→Gr2, Gr2→Gr3, Gr3→image
   // [POS1 infinity, POS2 object 7.0 → 151.2 mm before surface 1]; patent rows × 21.6.
-  // The 21A gap carries the same folded cover-glass + BF constant (0.09129 → 1.9718 mm) in both states.
+  // The 21A gap is the physical d21 to the PT plate (patent 0.751 / 0.545).
   var: {
     STO: [11.1024, 6.1128],
     "19A": [4.9464, 14.3856],
-    "21A": [18.1934, 13.7438],
+    "21A": [16.2216, 11.772],
   },
   varLabels: [
     ["STO", "D13"],

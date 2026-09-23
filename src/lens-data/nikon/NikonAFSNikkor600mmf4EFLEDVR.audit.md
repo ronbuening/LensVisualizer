@@ -28,3 +28,13 @@ Patent: US 2018/0031811 A1, Example 4 / Figure 11
 ### Phase 4 — Analysis sync
 
 - Synchronized the explicit qualified glass labels and clarified that catalog coefficients provide runtime color coverage without becoming patent-authored spectral evidence.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Read Example 4 Table 4 on PDF page 34 at 160 dpi: surface 31 d = 6.15; surfaces 32–33 are the low-pass filter FL
+  (¶0308), 1.50 mm, nd 1.51680, νd 63.88; 33 → image is 75.12 mm. These reproduce the printed BF 82.77 and
+  air-converted BF 82.26, and the legacy folded S31 value 6.15 + 1.50/1.51680 + 75.12 = 82.258924 mm exactly.
+- S31.d now stores the patent's 6.15 mm, with `rearPlates` FL (J-BK7, the exact Hikari 1.51680 / 63.88 row, as for
+  HG) and gapAfter 75.12 mm. Paraxial check against the previous data: EFL identical and defocus unchanged at both
+  focus states. Physical track grows by 0.511 mm to 469.10 mm, matching Table 4's TL; `closeFocusM` 4.4 already used
+  the physical track and is unchanged.

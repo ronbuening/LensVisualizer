@@ -11,9 +11,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  is for a 0.50 m object distance; production MFD is 0.20 m.                ║
  * ║                                                                              ║
  * ║  NOTE ON FILTER STACK:                                                       ║
- * ║    Patent surfaces 15-20 are the sensor/filter stack and are excluded from   ║
- * ║    the renderer prescription. Their air-equivalent optical path length is    ║
- * ║    folded into the final BFD after surface 14A.                              ║
+ * ║    Patent surfaces 15-20 (three plates, nd=1.51633, νd=64.14; t = 0.50 /     ║
+ * ║    1.59 / 0.70 mm with air 1.11 / 0.30 / d20 = 0.6644 mm) are modeled in     ║
+ * ║    `rearPlates` (traced, not drawn). d14 = patent 10.5166 / 10.7439 mm;      ║
+ * ║    air-equivalent BF matches the patent 14.43 mm, physical TL 37.96 mm.      ║
  * ║                                                                              ║
  * ║  NOTE ON SEMI-DIAMETERS:                                                     ║
  * ║    Patent Example 1 does not publish clear semi-diameters. Values below are  ║
@@ -147,8 +148,8 @@ const LENS_DATA = {
   ],
 
   /* ── Surface prescription ──
-   * Filter stack removed. Patent d14 at infinity = 10.5166 mm plus 3.914368872 mm of
-   * air-equivalent filter/sensor-stack path gives folded final d = 14.430968872 mm.
+   * d14 is the patent's physical gap from surface 14A to the first filter plate (10.5166 mm
+   * at infinity); the three-plate filter stack follows in `rearPlates`.
    * Flare-cut stops FS1/FS2 are non-refracting mechanical apertures; their axial spaces are
    * retained around the single optical aperture stop STO.
    */
@@ -164,7 +165,35 @@ const LENS_DATA = {
     { label: "11", R: 113.7348, d: 2.5, nd: 1.755, elemId: 5, sd: 3.75 },
     { label: "12", R: -10.6165, d: 0.4, nd: 1.0, elemId: 0, sd: 4.0 },
     { label: "13", R: 21.1214, d: 2.95, nd: 1.59201, elemId: 6, sd: 4.9 },
-    { label: "14A", R: -13.9521, d: 14.4309688722, nd: 1.0, elemId: 0, sd: 6.0 },
+    { label: "14A", R: -13.9521, d: 10.5166, nd: 1.0, elemId: 0, sd: 6.0 },
+  ],
+
+  /* ── Filter/sensor stack (patent surfaces 15–20): traced, not drawn ── */
+  rearPlates: [
+    {
+      thicknessMm: 0.5,
+      nd: 1.51633,
+      vd: 64.14,
+      glass: "S-BSL7",
+      gapAfterMm: 1.11,
+      source: "JP 2011-248340 A, Example 1 (Table 1) surfaces 15–16",
+    },
+    {
+      thicknessMm: 1.59,
+      nd: 1.51633,
+      vd: 64.14,
+      glass: "S-BSL7",
+      gapAfterMm: 0.3,
+      source: "JP 2011-248340 A, Example 1 (Table 1) surfaces 17–18",
+    },
+    {
+      thicknessMm: 0.7,
+      nd: 1.51633,
+      vd: 64.14,
+      glass: "S-BSL7",
+      gapAfterMm: 0.6644,
+      source: "JP 2011-248340 A, Example 1 (Table 1) surfaces 19–20 (d20)",
+    },
   ],
 
   /* Patent tabulates κ in sqrt(1 − κ h²/R²); standard renderer K = κ − 1. */
@@ -192,11 +221,11 @@ const LENS_DATA = {
   /* Patent Example 1 focus table, infinity and 0.50 m close-focus state. */
   var: {
     "2": [2.1334, 1.9061],
-    "14A": [14.4309688722, 14.6582688722],
+    "14A": [10.5166, 10.7439],
   },
   varLabels: [
     ["2", "D2"],
-    ["14A", "BF"],
+    ["14A", "D14"],
   ],
 
   groups: [

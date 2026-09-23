@@ -18,7 +18,7 @@ The source focal endpoints are 103.09 and 388.17 mm. Figure 2(a) labels wide inf
 
 ## Architecture
 
-Twenty-five spherical lenses form twenty air-separated components in seven functional groups. G1 and G2 are positive, G3 negative, G4 positive, G5 and G6 negative focusing groups, and G7 positive. Five cemented components include the L17/L18 stabilization doublet; lateral stabilization is not simulated in the centered diagram. The source stop is surface 26 inside G4. The source filter is excluded from both geometry and element inventory.
+Twenty-five spherical lenses form twenty air-separated components in seven functional groups. G1 and G2 are positive, G3 negative, G4 positive, G5 and G6 negative focusing groups, and G7 positive. Five cemented components include the L17/L18 stabilization doublet; lateral stabilization is not simulated in the centered diagram. The source stop is surface 26 inside G4. The source filter FL is not a lens element: it is modeled as a rear plate (`rearPlates`), traced by every analysis but not drawn or counted in the element inventory.
 
 ## Element by element
 
@@ -71,15 +71,15 @@ The six source gap arrays are preserved, including all four combinations of wide
 | D38 | 14.3 | 22.618 | 8.8 | 9.182 |
 | D42 | 26.984 | 17.275 | 48.913 | 17.915 |
 
-All distances are millimetres. D42 is the gap before G7, not back focus; its displayed BF label is corrected to D42. The lens-to-image equivalent rear gap is fixed at 29.62 + 1.60/1.5168 = 30.6748523207 mm. Source filter element 26 and surfaces 47–48 are removed; the plane-parallel filter is not drawn or assigned a glass badge.
+All distances are millimetres. D42 is the gap before G7, not back focus; its displayed BF label is corrected to D42. The rear stack is fixed: surface 46 stores the physical 29.62 mm gap to filter FL (source surfaces 47–48, 1.60 mm, nd 1.5168), which sits 0.000 mm before the image plane. Table 1 prints no Abbe numbers, so the plate's νd = 64.1 is inferred as J-BK7A, the same way every element's νd is inferred. The filter is modeled in `rearPlates`, traced by every analysis but not drawn or assigned an element glass badge. Its paraxial air equivalent is 29.62 + 1.60/1.5168 = 30.6748523207 mm, the value older revisions stored as the last gap.
 
 G5 advances 1.390 mm at wide and 30.617 mm at tele relative to preceding G4. G6 advances 9.708 mm and 30.999 mm, respectively: its travel is the sum of changes in D35 and D38. The former claim that G6 moves only 0.4 mm at tele confused relative separation with absolute group movement. The three focus gaps change their total by −0.001 mm at wide and +0.001 mm at tele, retained source rounding. With the camera image fixed, the corresponding G5/G6 travels are 1.391/9.709 mm and 30.616/30.998 mm.
 
-Figure 2's near annotations give front-object distances D0=745.5 mm at wide and 695.5 mm at tele. Adding the respective mechanical prescription tracks gives approximately 0.98 m image-to-object distance at both ends. The former 0.75 m focus label is replaced by this rounded source-derived endpoint. Independent paraxial calculations of the rounded prescription with omitted-filter equivalent air give 0.978921337 m and 0.978785573 m, with magnifications −0.122931774 and −0.381930549. Figure annotations instead round to −0.1228 and −0.3812; these differences remain explicit.
+Figure 2's near annotations give front-object distances D0=745.5 mm at wide and 695.5 mm at tele. Adding the respective mechanical prescription tracks gives approximately 0.98 m image-to-object distance at both ends. The former 0.75 m focus label is replaced by this rounded source-derived endpoint. Independent paraxial calculations of the rounded prescription with the filter folded to equivalent air give 0.978921337 m and 0.978785573 m, with magnifications −0.122931774 and −0.381930549. Figure annotations instead round to −0.1228 and −0.3812; these differences remain explicit. The physical filter adds 0.545 mm to those image-to-object distances, leaving the rounded 0.98 m unchanged.
 
 ### Zoom
 
-The viewer retains the two published zoom stations. The optical assembly extends by approximately 50 mm from wide to tele while G7 remains fixed relative to the image. All zoom group trajectories follow cumulative changes of the source gaps; the stop follows G4. Intermediate zoom configurations are reconstructed rather than independently published prescriptions. The slider labels now identify source focal stations 103.09/388.17 mm. Calculated infinity EFLs are 103.084819 and 388.148142 mm. Table 1's tele total length 284.55 mm differs from the 284.590 mm mechanical sum and the 284.044852 mm equivalent-air sum; no spacings are altered to force agreement.
+The viewer retains the two published zoom stations. The optical assembly extends by approximately 50 mm from wide to tele while G7 remains fixed relative to the image. All zoom group trajectories follow cumulative changes of the source gaps; the stop follows G4. Intermediate zoom configurations are reconstructed rather than independently published prescriptions. The slider labels now identify source focal stations 103.09/388.17 mm. Calculated infinity EFLs are 103.084819 and 388.148142 mm. Table 1's tele total length 284.55 mm differs from the 284.590 mm mechanical sum, which the stored physical track (filter included) now reproduces, and from the 284.044852 mm equivalent-air sum; no spacings are altered to force agreement.
 
 ## Aspheres
 

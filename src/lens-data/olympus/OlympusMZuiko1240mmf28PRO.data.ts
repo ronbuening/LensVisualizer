@@ -28,12 +28,16 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    Production MFD is 0.20 m (manufacturer spec takes precedence).  ║
  * ║    var gaps reflect the patent's 0.25 m condition.                 ║
  * ║                                                                    ║
- * ║  Cover glass excluded; BFD folded to air-equivalent (≈ 15.997).   ║
+ * ║  NOTE ON COVER GLASS:                                              ║
+ * ║    Patent surfaces 25–26 (cover glass C, 4.000 mm, nd 1.51633,     ║
+ * ║    νd 64.14) and the 0.800 mm air gap to the image are modeled     ║
+ * ║    in `rearPlates` (traced, not drawn). Surface 24 keeps the       ║
+ * ║    patent's 12.5585 mm gap to the cover glass (FB in air 15.996).  ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
  * ║    ✓ Aperture stop and variable focus/zoom gaps                   ║
- * ║    ✗ DO NOT include: sensor glass, filters, mechanical parts      ║
+ * ║    ✗ DO NOT include: mechanical parts (cover glass: `rearPlates`)  ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -286,7 +290,20 @@ const LENS_DATA = {
     // ─── G5: L13 + L14 (cemented doublet, stationary) ───
     { label: "22", R: 30.0105, d: 1.395, nd: 2.00069, elemId: 13, sd: 13.2 }, // L13 front
     { label: "23", R: 22.6466, d: 7.173, nd: 1.58313, elemId: 14, sd: 13.2 }, // L13→L14 junction
-    { label: "24", R: -36.2011, d: 15.997, nd: 1.0, elemId: 0, sd: 13.2 }, // L14 rear → image (BFD air-equiv)
+    { label: "24", R: -36.2011, d: 12.5585, nd: 1.0, elemId: 0, sd: 13.2 }, // L14 rear → cover glass C
+  ],
+
+  /* ── Cover glass C (patent surfaces 25–26): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "C",
+      thicknessMm: 4.0,
+      nd: 1.51633,
+      vd: 64.14,
+      glass: "S-BSL7",
+      gapAfterMm: 0.8,
+      source: "US 2014/0139720 A1, Example 5 (¶0259) surfaces 25–26",
+    },
   ],
 
   /* ── Aspherical coefficients ── */

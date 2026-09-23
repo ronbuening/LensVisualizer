@@ -14,9 +14,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  MODEL TRANSFORMATIONS                                                     ║
  * ║  - No uniform scale is applied. Patent design and marketing values remain ║
  * ║    separate.                                                               ║
- * ║  - Sensor-cover/filter plate PT (source surfaces 22–23) is omitted.       ║
- * ║    Source S21-to-image path 21.790 mm air + 1.410 mm / 1.51680 glass +   ║
- * ║    0.800 mm air becomes 23.5195886076 mm air-equivalent spacing.          ║
+ * ║  - Sensor-cover/filter plate PT (source surfaces 22–23: 1.410 mm,         ║
+ * ║    nd 1.51680, νd 64.20) and its 0.800 mm air gap to the image are        ║
+ * ║    modeled in `rearPlates` (traced, not drawn). S21A keeps the            ║
+ * ║    patent's 21.790 mm physical gap to PT.                                 ║
  * ║  - STO physical semi-diameter is not published. The 15.4255966010 mm     ║
  * ║    value is calibrated to the source POS1 modeled Fno = 1.440 using the  ║
  * ║    computed entrance-pupil magnification; it is not an independent source ║
@@ -219,7 +220,21 @@ const LENS_DATA = {
     { label: "18", R: -73.645, d: 1.9, nd: 1.69895, elemId: 10, sd: 18.0 },
     { label: "19", R: 98.001, d: 1.5, nd: 1.0, elemId: 0, sd: 18.0 },
     { label: "20A", R: 69.849, d: 6.526, nd: 1.8086, elemId: 11, sd: 21.5 },
-    { label: "21A", R: -86.432, d: 23.5195886076, nd: 1.0, elemId: 0, sd: 19.5 },
+    // Last surface: patent gap to the plane-parallel plate PT
+    { label: "21A", R: -86.432, d: 21.79, nd: 1.0, elemId: 0, sd: 19.5 },
+  ],
+
+  /* ── Plane-parallel plate PT (patent surfaces 22–23): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PT",
+      thicknessMm: 1.41,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "H-K9L",
+      gapAfterMm: 0.8,
+      source: "EP 3 136 147 A1, Example 1 [0057] surfaces 22–23",
+    },
   ],
 
   asph: {

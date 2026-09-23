@@ -48,3 +48,13 @@ Patent: CN 110161666A, Example 2
 ### Phase 4 — Analysis sync
 
 - Updated `Laowa65mmf28MacroAPO.analysis.md` so L3 and L10 use unbroken six-digit code labels and explicitly explain why they remain unresolved rather than resolved to H-LAK51/H-LAK52.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Read Example 2 on rendered PDF pages 8–9 ([0060]–[0061]) and the focus table [0070]: surface 26 d = 12.3000;
+  surfaces 27–28 are one flat plate, 2.0000 mm, nd 1.51680, νd 64.20; D(28) = 1.0000 mm at infinity and 1.95×. No
+  patent designation or clear aperture is printed, so the plate has no `label` or `sd`.
+- Surface 24 (patent 26) now stores the physical 12.3 mm, with `rearPlates` glass H-K9L (exact CDGM 1.51680 / 64.20,
+  matching the file's CDGM element labels) and gapAfter 1.0 mm. Paraxial check against the previous data: EFL
+  identical; defocus changes by 0.0014 mm at both focus keyframes (rounding in the old folded 14.62 vs 14.6186).
+  Physical track grows by 0.68 mm (2.0 × (1 − 1/1.5168)) to 111.57 mm.

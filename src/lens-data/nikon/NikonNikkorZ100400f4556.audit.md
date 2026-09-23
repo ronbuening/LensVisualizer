@@ -87,3 +87,14 @@ Figure / SD check:
 Table1 pp14–15 and Figures1–2 p26 at600dpi reviewed. Removed filterelement26/source47–48; BF29.62→30.6748523207mm includes1.6/1.5168 equivalentair. Retained all source R/d/nd and four endpoint gapsets. Corrected D42 labelBF→D42, sourcezoomlabels103.09/388.17mm, sourceapertures4.58/5.76 (figuretele5.75 discrepancyrecorded), nearlabel0.75→0.98m from sourceD0+track. Corrected G6teletravelclaim0.4→30.999mm (relativeD38change0.382mm). All vdremaininferred; removed unsupportedED/SuperED/APD/chemistryclaims and qualifiedcataloglabels; L19/L25remainunresolved. Restored smallerrearopticalrimsS31–33=13.2,S34–35=13,S36–42=11.2mm, otherSDretained. Wrong-rotation screen andVRbracketover-read discarded. Surface/imagecircle and9-state nohidden-trimprobe pass. Productionbaseline inspected; localwide/tele∞/near plusmidzoom/midfocus, f32 andfocus/zoom motionchartscomplete. Three regressiontests pass. EFL103.08/91.84mm wide and388.15/158.38mm tele; mid161.89mm; midfocusmotion20.35mm, zoommotion50.00mm, f32stop4.60mm. Batch31–40gatespending.
 
 Added the explicitly inferred zoom iris schedule from source station f-numbers; focus retains the current zoom iris. This corrects fixed-iris telephoto aperture mismatch without claiming a source physical-stop schedule. Regression verification passes.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Re-read Table 1 (PDF pp. 14–15, rows 46–48): surface 46 d = 29.620, filter FL surfaces 47–48 t = 1.600 mm,
+  nd = 1.516800, surface 48 d = 0.000, fixed at every zoom/focus state. Surface 46 now stores the physical 29.62 mm and
+  `rearPlates` holds FL with `gapAfterMm: 0`, replacing the folded 30.6748523207 mm.
+- Table 1 prints nd only (no Abbe column for any surface), so the plate's νd = 64.1 is inferred as J-BK7A (Hikari,
+  catalog 1.51680 / 64.13), matching how every element's νd is inferred; `resolveCompatibleGlass` accepts the label.
+- Paraxial check against the previous data: EFL and defocus identical at wide/tele infinity and close focus (worst
+  |Δ| 5e-15). Physical track grows by 0.545 mm (1.6 × (1 − 1/1.5168)) and now matches the 284.590 mm mechanical sum
+  at tele; the rounded 0.98 m close-focus distance is unchanged.

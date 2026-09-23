@@ -2,10 +2,11 @@ import type { LensDataInput } from "../../types/optics.js";
 
 // Nikon 1 NIKKOR 32mm f/1.2
 // Source: WO 2014/061226 A1, Example 1 (Table 1 / paragraph 0079).
-// Implementation note: patent plane filter/sensor-cover surfaces 18-23 are excluded per corpus convention.
-// Their optical path is folded into the final air-equivalent back-focus gap at surface 17.
-// Infinity BF used here is the paraxial focus distance from surface 17 after excluding the plates.
-// Focus-keyframe BF values preserve the patent's +0.23 mm and +1.77 mm G2/sensor spacing changes.
+// Rear plates: the patent's filter group FL (surfaces 18-23, three plane plates nd 1.5168 / vd 63.88,
+// t = 0.50 / 1.59 / 0.70 with 1.11 / 0.30 / 0.70 mm air after each) is modeled in `rearPlates` (traced, not drawn).
+// d17 keeps the legacy file's paraxial image plane: the old air-equivalent BF 14.15109 mm (paraxial focus traced
+// from surface 17) minus sum(t/n) = 1.83940 and the 2.11 mm of plate air gives 10.20169 mm, 0.0017 mm over the
+// printed d17 = 10.20 (rounding). Focus keyframes keep the patent's +0.23 mm and +1.77 mm d17 changes.
 // Semi-diameters are inferred clear-aperture values, chosen to preserve an f/1.24 on-axis beam while
 // satisfying conservative render checks for edge thickness, front/rear element ratio, and cross-gap sag.
 
@@ -158,18 +159,46 @@ const LENS_DATA = {
     { label: "14", R: -23.4, d: 0.9, nd: 1.0, elemId: 0, sd: 10.8 },
     { label: "15", R: 30.8466, d: 4.1, nd: 1.8348, elemId: 8, sd: 10.8 },
     { label: "16", R: -38.7, d: 1.2, nd: 1.7552, elemId: 9, sd: 10.6 },
-    { label: "17", R: 85.2086, d: 14.15109, nd: 1.0, elemId: 0, sd: 10.6 },
+    { label: "17", R: 85.2086, d: 10.20169, nd: 1.0, elemId: 0, sd: 10.6 }, // d17 var — gap to the filter group FL
+  ],
+
+  /* ── Filter group FL (patent surfaces 18–23): traced, not drawn ── */
+  rearPlates: [
+    {
+      thicknessMm: 0.5,
+      nd: 1.5168,
+      vd: 63.88,
+      glass: "J-BK7",
+      gapAfterMm: 1.11,
+      source: "WO 2014/061226 A1, Example 1 Table 1 surfaces 18–19",
+    },
+    {
+      thicknessMm: 1.59,
+      nd: 1.5168,
+      vd: 63.88,
+      glass: "J-BK7",
+      gapAfterMm: 0.3,
+      source: "WO 2014/061226 A1, Example 1 Table 1 surfaces 20–21",
+    },
+    {
+      thicknessMm: 0.7,
+      nd: 1.5168,
+      vd: 63.88,
+      glass: "J-BK7",
+      gapAfterMm: 0.7,
+      source: "WO 2014/061226 A1, Example 1 Table 1 surfaces 22–23",
+    },
   ],
 
   asph: {},
   focusPositions: [0, 0.13423022016389788, 1],
   var: {
     "14": [0.9, 1.13, 2.67],
-    "17": [14.15109, 14.38109, 15.92109],
+    "17": [10.20169, 10.43169, 11.97169],
   },
   varLabels: [
     ["14", "D14"],
-    ["17", "BF"],
+    ["17", "D17"],
   ],
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "14" },
@@ -181,7 +210,7 @@ const LENS_DATA = {
   ],
 
   focusDescription:
-    "Dual-group floating focus (CRC): all three patent states are exact keyframes; G1 and G2 translate objectward with approximately 2:1 travel. The sensor/filter stack is excluded and folded into the final air-equivalent BF.",
+    "Dual-group floating focus (CRC): all three patent states are exact keyframes; G1 and G2 translate objectward with approximately 2:1 travel. The three-plate filter/sensor stack behind G2 is traced but not drawn.",
   closeFocusM: 0.45,
   nominalFno: 1.2,
   fstopSeries: [1.2, 1.4, 2, 2.8, 4, 5.6, 8, 11, 16],

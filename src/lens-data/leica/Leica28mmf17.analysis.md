@@ -198,10 +198,12 @@ ending at 15.2–15.5 mm and a flat annulus out to the 18.4 mm blank.
   (ω ≈ 42°) would need 15.1 / 16.0 / 19.2 mm at 19A / 20A / 21A, beyond the drawn L11 blank. The viewer's paraxial
   half-field estimate (about 35°) understates the exact-ray coverage (39.1° at infinity, 41.0° at 0.3 m for
   19.875 mm) because it overstates chief-ray heights on the steep rear aspheres.
-- **Cover glass.** Patent surfaces 22–23 (1.4 mm plane plate, nd = 1.5168) are omitted; their equivalent air
-  thickness t/n = 0.923 mm is folded into the last gap, which is 2.3 + 0.923 + BF = 4.2241 mm at infinity and
-  4.2993 mm at 0.3 m. The paraxial back focus of the transcription (4.2244 mm) then matches within 0.3 µm; the
-  earlier file folded the physical 1.4 mm and sat 0.48 mm behind focus.
+- **Cover glass.** Patent surfaces 22–23 (1.4 mm plane plate, nd = 1.5168, νd = 64.2) are modeled in `rearPlates`:
+  every analysis traces the plate, but the diagram does not draw it. The last air gap is the physical d21 = 2.3 mm,
+  followed by the plate and BF = 1.00114 mm. FIG. 16 prints BF 1.0763 at 0.3 m; the plate stack keeps one trailing
+  gap, so the extra 0.0752 mm is carried in d21 (2.3752 mm at 0.3 m). The paraxial equivalent is unchanged:
+  2.3 + 1.4/1.5168 + BF = 4.2241 mm at infinity and 4.2993 mm at 0.3 m, against a paraxial back focus of 4.2244 mm.
+  The stored physical track now includes the full 1.4 mm plate, as the patent's 63.98 mm overall length does.
 - **Focus model.** Only the M1 rows of FIG. 16 are modelled (infinity and d0 = 235 mm, 0.300 m object to image; the
   stored gaps focus at 235.0 mm). The M2 macro rows (0.300 m and 0.164 m, G1–G4 extended 2.3457 mm as a unit, iris
   closed to F/2.9) form a separate mechanical mode with no infinity conjugate and are recorded here but not on the

@@ -28,13 +28,13 @@ The project treats Example 4 as the fixed production correlation for the NIKON A
 
 Nikon's current global product page contains a source inconsistency: one overview bullet says three ED elements, while the detailed construction row states four ED elements. The data file follows the detailed construction specification and does not use the inconsistent overview sentence to relabel individual patent elements.
 
-The active LensVisualizer model differs from the physical patent train in one documented respect. The rear plane-parallel low-pass filter FL, source surfaces 32–33, is omitted under the current data rules. Its 1.50 mm thickness at `nd = 1.51680` is replaced by the air-equivalent rear spacing, so the modeled distance from L39's rear surface to the image plane is 82.258924 mm. The curved front protective meniscus HG is retained because it is a powered optical plate represented in both the patent architecture and the production lens description. No uniform scale is applied.
+The rear plane-parallel low-pass filter FL, source surfaces 32–33, is modeled in the data file's `rearPlates` field rather than as a drawn element: the 1.50 mm plate (`nd = 1.51680`, `νd = 63.88`, J-BK7 class) sits 6.15 mm behind L39 with 75.12 mm of air to the image plane, exactly as Table 4 prints it. Every analysis traces the plate, but the diagram does not draw it. Its air-equivalent distance from L39's rear surface to the image plane is 82.258924 mm (Table 4's air-converted BF 82.26 mm); the physical distance is 82.77 mm (BF 82.77 mm). The curved front protective meniscus HG is retained as a drawn element because it is a powered optical plate represented in both the patent architecture and the production lens description. No uniform scale is applied.
 
 The production specification therefore remains “16 elements in 12 groups plus one meniscus protective glass element,” whereas the data object's physical optical model contains 17 elements in 13 air-spaced groups. These are two descriptions of the same modeled train under different counting conventions.
 
 ## Optical Architecture
 
-Example 4 is a three-group positive–negative–positive telephoto objective with internal focusing. The independently traced group powers are approximately +230.736 mm for G1, -103.558 mm for G2, and +692.809 mm for G3. The stop lies between G2 and G3. The active air-equivalent total track is 468.588924 mm against a computed EFL of 587.816484 mm, giving `TL/EFL = 0.7972`; the design therefore satisfies the project's strict telephoto criterion. Its rear air-equivalent distance is only 82.258924 mm, so it is not retrofocus.
+Example 4 is a three-group positive–negative–positive telephoto objective with internal focusing. The independently traced group powers are approximately +230.736 mm for G1, -103.558 mm for G2, and +692.809 mm for G3. The stop lies between G2 and G3. The air-equivalent total track is 468.588924 mm against a computed EFL of 587.816484 mm, giving `TL/EFL = 0.7972`; the design therefore satisfies the project's strict telephoto criterion. Including FL physically, the track is 469.10 mm, matching Table 4's TL. Its rear air-equivalent distance is only 82.258924 mm, so it is not retrofocus.
 
 G1 is the dominant front collector. It begins with the very weak protective meniscus HG, then uses two large positive fluorite elements, a negative element, and a positive-net cemented component L14+L15. The front group therefore combines most of the system's positive power with the strongest dispersion-management burden.
 
@@ -56,7 +56,7 @@ A 600 dpi review of local PDF page 12 confirmed the Fig. 11 silhouette. After ex
 
 HG is optically almost afocal: its two radii are nearly equal and its net refractive power is extremely small. Its importance in the model is therefore not as a contributor to system focal length but as the real curved front plate that the patent includes in G1 and Nikon describes as a meniscus protective glass. Because the production element carries a fluorine coating while the patent prescription concerns bulk optical geometry, the coating is not represented as an additional optical surface.
 
-The data model retains HG rather than treating it like the omitted rear low-pass filter. This distinction follows geometry and function: HG is curved and weakly powered, whereas the omitted FL is plane-parallel and its first-order effect can be represented by an air-equivalent rear spacing.
+The data model draws HG as an element rather than treating it like the rear low-pass filter. This distinction follows geometry and function: HG is curved and weakly powered, whereas FL is a plane-parallel plate behind the last lens, which the data file carries in `rearPlates` (traced, not drawn).
 
 ### L11 — Biconvex Positive Fluorite Element
 
@@ -156,7 +156,7 @@ Figure 13(a) studies a +0.2 mm change to the air gap after L38 and associates th
 
 L39 is the final imaging element and alone constitutes the patent's positive G3adjA subgroup. Its standalone EFL is therefore also the subgroup EFL. L36 through L39 together form Gadj, whose centered nominal EFL is approximately +77.323 mm.
 
-The patent's adjustment concept changes the air gap between Ln and L39 by assembly spacers or equivalent mechanisms. The LensVisualizer model represents the nominal design value and terminates after L39 with the air-equivalent image spacing created by omission of FL.
+The patent's adjustment concept changes the air gap between Ln and L39 by assembly spacers or equivalent mechanisms. The LensVisualizer model represents the nominal design value and terminates after L39 with the patent's 6.15 mm gap to FL, followed by the `rearPlates` filter and its 75.12 mm gap to the image.
 
 ## Glass Identification and Selection
 
@@ -246,7 +246,7 @@ Condition (13) is a source sign contradiction, not a radius correction. The Exam
 
 Condition (16) is a source scope contradiction. The patent defines TL3 as the distance from the first to last lens surface of G3; under that definition the fourth example gives approximately 0.2533. The printed 0.29 is reproduced only when the distance is extended through the rear low-pass filter FL, even though ¶0308 places FL on the image side of G3. The data model does not enlarge G3 to force agreement.
 
-Condition (17) exposes a separate wording issue. Table 4's own overall-specification definition and its printed value are reproduced when TL is measured to the image plane. Some claim wording instead describes TL to the image-side lens surface. The data model uses the source's air-converted image-plane normalization after removing FL.
+Condition (17) exposes a separate wording issue. Table 4's own overall-specification definition and its printed value are reproduced when TL is measured to the image plane. Some claim wording instead describes TL to the image-side lens surface. The data model uses the source's image plane: its air-equivalent track reproduces the air-converted TL, and its physical track through FL reproduces TL = 469.10 mm.
 
 ## Verification Summary
 
@@ -257,8 +257,10 @@ The final data arrays were independently re-traced with explicit sequential heig
 | EFL at infinity | 587.816484 mm | 587.80 mm overall / 587.801 mm variable-distance table |
 | Modeled wide-open f-number | 4.080000 | FNO 4.08; stop diameter itself is not published |
 | Air-equivalent total track | 468.588924 mm | Air-converted TL 468.59 mm |
-| Source-normalized air image distance from L39 / S31 | 82.258924 mm | Air-converted BF 82.26 mm |
-| Paraxial best focus after L39 / S31 | 82.268176 mm | +0.009252 mm from the source-normalized image plane, consistent with rounded source data |
+| Physical total track (FL traced in `rearPlates`) | 469.10 mm | TL 469.10 mm |
+| Air-equivalent image distance from L39 / S31 | 82.258924 mm | Air-converted BF 82.26 mm |
+| Physical image distance from L39 / S31 (6.15 + 1.50 + 75.12) | 82.77 mm | BF 82.77 mm |
+| Paraxial best focus after L39 / S31 (air-equivalent) | 82.268176 mm | +0.009252 mm from the source image plane, consistent with rounded source data |
 | Front principal plane H relative to S1 | -441.974674 mm | Independent paraxial computation; not tabulated by the patent |
 | Rear principal plane H′ relative to active S31 | -505.548308 mm | Independent paraxial computation; not tabulated by the patent |
 | G1 EFL | +230.736184 mm | +230.74 mm |
@@ -268,7 +270,7 @@ The final data arrays were independently re-traced with explicit sequential heig
 | Close-state magnification | -0.144518 | β = -0.145 |
 | Petzval sum | +2.291376×10^-6 mm^-1 | Independently computed surface by surface as `φ/(n·n′)` |
 
-The 82.258924 mm value is the source-defined air-equivalent image-plane normalization used after removing FL; it is not an independently optimized focus distance. Re-tracing the rounded prescription places paraxial best focus 0.009252 mm farther back. The principal-plane positions are likewise computed model quantities rather than patent table values.
+The 82.258924 mm value is the air-equivalent form of the patent's printed 6.15 mm gap, 1.50 mm FL plate, and 75.12 mm gap to the image; it is not an independently optimized focus distance. Re-tracing the rounded prescription places paraxial best focus 0.009252 mm farther back. The principal-plane positions are likewise computed model quantities rather than patent table values.
 
 The Petzval sum is close to zero and therefore source-precision-sensitive. It is best read as evidence of strong first-order field-curvature cancellation rather than as a precise physical Petzval radius.
 

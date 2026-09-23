@@ -22,7 +22,7 @@ Example 1 is the strongest candidate for the optical prescription behind the Nik
 8. The patent priority date, July 2012, precedes the 2013 production lens announcement window by the expected design-to-product interval.
 9. The patent lateral-aberration diagrams give edge half-field angles of 51.18° at wide, 41.70° at mid, and 32.89° at tele for EX1. These correspond to full fields of approximately 102.4°, 83.4°, and 65.8°, close to Nikon's published 100°-63° FX angle of view. The patent's miscellaneous-data `2ω` row is not a conventional diagonal angle-of-view row and should not be used as the production-field check.
 
-The data file transcribes Example 1 at infinity focus. It omits the plane-parallel cover plate PT from the surface array, as required by the project data specification, and folds its optical thickness into the final air-equivalent back focal distance.
+The data file transcribes Example 1 at infinity focus. The plane-parallel cover plate PT is modeled in `rearPlates` with its printed thickness and glass: every analysis traces it, but the diagram does not draw it.
 
 ## Optical Architecture
 
@@ -222,19 +222,15 @@ The Example 1 prescription was re-entered and independently traced with a paraxi
 
 The surface-by-surface Petzval sum is `+0.003863`, corresponding to a Petzval radius of approximately `-258.8 mm`.
 
-The patent includes a plane-parallel plate PT with `d = 1.90 mm`, `nd = 1.51680`, followed by `1.00 mm` of air to the image plane. The data file excludes this plate and folds it into the final air-equivalent back focal distance:
+The patent includes a plane-parallel plate PT (surfaces 28-29) with `d = 1.90 mm`, `nd = 1.51680`, `νd = 64.20`, followed by `BF = 1.00 mm` of air to the image plane. The data file models it in `rearPlates` (N-BK7 class) and stores the patent's physical `d27` as the gap from surface `27A` to the plate. Its paraxial air-equivalent thickness is `1.90 / 1.51680 = 1.252637 mm`, so the air-equivalent distance from `27A` to the image is `d27 + 2.252637 mm`:
 
-`1.90 / 1.51680 + 1.00 = 2.252637 mm`.
-
-The final data-file air gaps from surface `27A` to the image plane are therefore:
-
-| Zoom position | Patent `d27` before PT | Folded final data-file gap |
+| Zoom position | Stored `d27` before PT | Air-equivalent `27A`-to-image distance |
 |---|---:|---:|
 | Wide | 37.70 mm | 39.952637 mm |
 | Mid | 47.12 mm | 49.372637 mm |
 | Tele | 59.88 mm | 62.132637 mm |
 
-A direct trace of the folded data file gives the same EFL values listed above; the remaining best-focus residual relative to the rounded patent `d27` table is below 0.012 mm across the three zoom positions.
+A direct trace of the data file gives the same EFL values listed above; the remaining best-focus residual relative to the rounded patent `d27` table is below 0.012 mm across the three zoom positions. Because the plate is carried at its physical thickness, the stored track is `1.90 × (1 − 1/1.51680) = 0.647 mm` longer than the air-equivalent track would be.
 
 Semi-diameters in the data file are estimated, not patent-tabulated. They were chosen from marginal/chief-ray clear-aperture estimates and then reduced where necessary to satisfy renderer constraints: spherical rim limits, aspherical slope limits, edge thickness, and cross-gap intrusion. The front group is the limiting region because several strong meniscus surfaces have small radii.
 

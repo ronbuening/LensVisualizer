@@ -39,3 +39,13 @@ Patent: JP 2016-090725 A, Example 9
 - Surface 14: replaced incorrect `S-NSL3` with code-first `517522` crown wording.
 - Surface 16: replaced incorrect `S-BAL2` with code-first `569560` barium-crown wording.
 - The patent does not identify either supplier, so the analysis now preserves coordinates without vendor claims. No geometry changed.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Read Example 9 (¶0110) on PDF page 25 (printed page 25) at 160 dpi: surface 20 d = 13.369; surfaces 21–22 are one
+  unlabeled plate, 1.500 mm, nd 1.52249, νd 59.48; 22 → image is 0.800 mm. 13.369 + 1.500/1.52249 + 0.800 = 15.154,
+  matching the legacy folded gap and the printed BF (¶0115).
+- Data surface 19 (patent 20) now stores 13.369 mm, with `rearPlates` S-NSL5 (OHARA, exact nd; νd 59.84 is
+  compatible, and OHARA is the lens's majority vendor) and gapAfter 0.800 mm. Paraxial check against the previous data:
+  EFL identical at infinity and 1:1; defocus changes by 0.0002 mm (rounding in the old 15.154). Physical track grows by
+  0.515 mm. `closeFocusM` 0.16 is Leica's quoted MFD and was left unchanged.
