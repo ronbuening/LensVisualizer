@@ -181,3 +181,33 @@ at most 10.55 / 12.30 / 15.54 mm (the S20 value is at closest focus). Neither cl
 themselves fuller than FIG. 3 (G1 stored 25.5 mm against ≈21.6 mm drawn); the smaller G11 now does part of that
 vignetting, as the figure implies. The viewer's half-field stays 23.4° (limited by S25A). The asphere departure at
 the new S18A rim is −215 µm. Surface validator and image-circle floor pass.
+
+## 2026-09-23 — Review follow-up, full resize to FIG. 3
+
+At the reviewer's request, every rim now follows FIG. 3 rather than keeping earlier estimates that were up to about
+23 % fuller. Measured on the lower silhouette at 300 dpi (0.07532 mm/px; the computed vertex positions of all 25
+surfaces land on the figure's axis crossings within a pixel). FIG. 3 draws each element or doublet with a flat edge.
+
+| Surfaces | Before | After | Figure |
+|---|---|---|---|
+| S1A / S2 / S3 (G1/G2) | 25.5 / 25.0 / 23.0 | 21.3 / 21.3 / 21.3 | 283 px flat |
+| S4 / S5 (G3) | 21.0 / 20.5 | 19.9 / 19.9 | 264 px flat |
+| S6 (G4 front) | 19.0 | 18.5 | 245 px flange |
+| S7 (G4 rear) | 16.0 | 16.0 | optical zone ≈16.6 mm; the 7.45 mm gap to S8 limits it (16.3 fails the validator) |
+| S8 / S9 / S10 (G5/G6) | 16.5 / 16.5 / 16.0 | 16.6 / 16.6 / 16.6 | 220 px flat |
+| S12 / S13 / S14 (G7/G8) | 17.5 / 18.5 / 18.5 | 16.8 / 16.8 / 16.8 | 223 px flat |
+| S15 / S16 / S17 (G9/G10) | 19.0 / 20.5 / 20.5 | 17.2 / 17.2 / 17.2 | 228 px flat |
+| S18A / S19 (G11) | 18.7 / 18.7 | unchanged | 248 px flat |
+| S20 / S21 / S22 (G12/G13) | 20.0 / 20.0 / 19.5 | 19.8 / 19.8 / 19.8 | 263 px flat |
+| S23 (G14 front) | 17.1 | 17.5 | drawn 19.1 mm flange; the 7.14 mm gap to S22 closes near 18 mm (18.0 fails the validator) |
+| S24 / S25A (G14/G15) | 19.2 / 17.1 | 19.1 / 19.1 | 254 px flat |
+
+S25A: the sag has a shallow extremum near 16.3 mm; out to the drawn 19.1 mm rim the slope stays under 3° and the
+departure is +570 µm, so the figure's rim is kept. G1's departure at the new 21.3 mm rim is −354 µm.
+
+Checks on the result: the exact trace at f/1.25 and Y = 21.64 mm shows no axial clipping and no chief-ray blocking at
+infinity or at 0.40 m (axial needs ≤ 20.44 mm at S1A and ≤ 16.73 mm after the stop; the chief ray needs at most
+16.86 mm, at S25A at closest focus). Surface validator and image-circle floor pass. The engine's paraxial
+half-field estimate rises to 25.8° (limited by S25A and S23), and the viewer's analysis field is capped at the
+full-frame diagonal, so drawn off-axis rays still end at the 21.64 mm corner. This supersedes the S20 = 20.0 mm
+value from the previous follow-up.
