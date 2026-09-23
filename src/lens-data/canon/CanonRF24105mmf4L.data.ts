@@ -1,25 +1,28 @@
 import type { LensDataInput } from "../../types/optics.js";
 
 /**
- * ╔══════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — CANON RF 24-105mm f/4 L IS USM                       ║
- * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Data source: US 2019/0278068 A1, Example 2 (Hatada / Canon).     ║
- * ║  Six-unit zoom: +/−/+/−/−/+ with extended rear group.             ║
- * ║  18 elements / 14 groups, 6 aspherical surfaces (3 GMo elements). ║
- * ║  Focus: inner focus via L4 (single element, rearward motion).     ║
- * ║                                                                    ║
- * ║  Zoom variable gaps: D5, D13, D31, D33 (zoom only).              ║
- * ║  Focus variable gaps: D27, D29 (zoom + focus; close-focus data    ║
- * ║    unavailable from patent — estimated from 0.45 m MFD).          ║
- * ║  Reversing groups: D27 (non-monotonic), D29 (non-monotonic).      ║
- * ║                                                                    ║
- * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    Patent lists effective diameters, but the published construction║
- * ║    diagram shows a more tapered mechanical envelope. SDs are       ║
- * ║    render-tuned from the patent table to keep element proportions  ║
- * ║    closer to Canon's side-view drawing while preserving validation.║
- * ╚══════════════════════════════════════════════════════════════════════╝
+ * LENS DATA — CANON RF 24-105mm f/4 L IS USM
+ *
+ * Data source: US 2019/0278068 A1, Numerical Example 2 [0097], Fig. 3 (Hatada / Canon).
+ * Six-unit zoom: +/−/+/−/−/+; all six units move toward the object from wide to tele
+ * (monotonic at the three tabulated stations). 18 elements / 14 groups, 6 aspherical
+ * surfaces on 3 elements. Stored at patent scale (f = 24.72–101.84 mm).
+ *
+ * Surface labels follow the patent numbering (the stop is patent surface 14).
+ * Zoom variable gaps: d5, d13, d27, d29, d31, d33 — three tabulated stations only.
+ *   d27 (L3→L4) and d29 (L4→L5) are non-monotonic: d27 1.80 → 3.37 → 1.40,
+ *   d29 11.59 → 10.02 → 11.99. The prose in [0068] (d27 increases, d29 decreases)
+ *   does not match the table; the table is used.
+ * Back focus: d33 equals the tabulated BF; the patent lists no filter or cover glass.
+ * Focus: L4 (single element) moves toward the image [0069]. Close-focus spacings are
+ *   not published; the stored close values are calculated for 0.45 m object-to-image.
+ * Aperture: FNO 4.12 at all stations; the stop moves with L3. Iris schedule inferred via
+ *   zoomApertureModel "from-nominal-fno"; the STO sd records the tele iris (patent ED/2).
+ *
+ * NOTE ON SEMI-DIAMETERS:
+ *   Every sd is the patent's tabulated effective diameter ÷ 2 (2026-09-23 audit). A real
+ *   ray trace reproduces them: post-stop values equal the tele f/4.12 axial marginal
+ *   height, and the L1/L2/L6 values cover the wide full-field chief ray.
  */
 
 const LENS_DATA = {
@@ -33,7 +36,7 @@ const LENS_DATA = {
     "f = 24.72 – 101.84 mm",
     "F/4.12 (design)",
     "2ω ≈ 82.4° – 24.0°",
-    "6 ASPHERICAL SURFACES (3 GMo ELEMENTS)",
+    "6 ASPHERICAL SURFACES (3 ELEMENTS)",
     "1 UD ELEMENT",
   ],
 
@@ -147,7 +150,7 @@ const LENS_DATA = {
       nd: 1.91082,
       vd: 35.3,
       fl: 49.4,
-      glass: "911353 — lanthanum (nd=1.91082, νd=35.3)",
+      glass: "TAFD35 (HOYA catalog equivalent)",
       apd: false,
       role: "First element after stop; starts beam convergence in relay group",
     },
@@ -172,7 +175,7 @@ const LENS_DATA = {
       nd: 1.59522,
       vd: 67.7,
       fl: 21.7,
-      glass: "S-FPM2 (OHARA) / MC-7 (HOYA)",
+      glass: "S-FPM2 (OHARA catalog equivalent)",
       apd: false,
       role: "Positive component of achromatic doublet; phosphate crown for axial color correction",
       cemented: "D2",
@@ -282,65 +285,66 @@ const LENS_DATA = {
 
   /* ── Surface prescription ── */
   surfaces: [
+    // Labels follow the patent's surface numbers (stop = patent surface 14). sd = patent effective diameter ÷ 2.
     // ── L1: Unit L1 (positive, f = +88.25 mm) ──
     // L1 + L2 cemented doublet (D1)
-    { label: "1", R: 266.275, d: 1.8, nd: 1.8081, elemId: 1, sd: 30.8 },
-    { label: "2", R: 93.368, d: 6.52, nd: 1.72916, elemId: 2, sd: 30.0 }, // junction → L2
-    { label: "3", R: 1e15, d: 0.15, nd: 1.0, elemId: 0, sd: 29.2 }, // L2 rear → air
+    { label: "1", R: 266.275, d: 1.8, nd: 1.8081, elemId: 1, sd: 31.5 },
+    { label: "2", R: 93.368, d: 6.52, nd: 1.72916, elemId: 2, sd: 30.645 }, // junction → L2
+    { label: "3", R: 1e15, d: 0.15, nd: 1.0, elemId: 0, sd: 30.435 }, // L2 rear → air
     // L3 standalone
-    { label: "4", R: 49.826, d: 6.97, nd: 1.72916, elemId: 3, sd: 26.4 },
-    { label: "5", R: 126.155, d: 0.75, nd: 1.0, elemId: 0, sd: 25.2 }, // variable gap L1→L2
+    { label: "4", R: 49.826, d: 6.97, nd: 1.72916, elemId: 3, sd: 27.97 },
+    { label: "5", R: 126.155, d: 0.75, nd: 1.0, elemId: 0, sd: 27.365 }, // variable gap d5 (L1→L2)
 
     // ── L2: Unit L2 (negative, f = −18.38 mm) ──
     // L4 standalone
-    { label: "6", R: 65.832, d: 1.25, nd: 1.95375, elemId: 4, sd: 16.6 },
-    { label: "7", R: 15.019, d: 8.19, nd: 1.0, elemId: 0, sd: 12.3 },
+    { label: "6", R: 65.832, d: 1.25, nd: 1.95375, elemId: 4, sd: 15.685 },
+    { label: "7", R: 15.019, d: 8.19, nd: 1.0, elemId: 0, sd: 11.715 },
     // L5 standalone (both surfaces aspherical)
-    { label: "8A", R: -33.476, d: 1.1, nd: 1.58313, elemId: 5, sd: 11.45 },
-    { label: "9A", R: 65.137, d: 0.15, nd: 1.0, elemId: 0, sd: 11.15 },
+    { label: "8A", R: -33.476, d: 1.1, nd: 1.58313, elemId: 5, sd: 11.44 },
+    { label: "9A", R: 65.137, d: 0.15, nd: 1.0, elemId: 0, sd: 10.98 },
     // L6 standalone (symmetric biconvex)
-    { label: "10", R: 40.325, d: 5.03, nd: 1.8081, elemId: 6, sd: 11.2 },
-    { label: "11", R: -40.325, d: 0.97, nd: 1.0, elemId: 0, sd: 10.42 },
+    { label: "10", R: 40.325, d: 5.03, nd: 1.8081, elemId: 6, sd: 10.855 },
+    { label: "11", R: -40.325, d: 0.97, nd: 1.0, elemId: 0, sd: 10.415 },
     // L7 standalone
-    { label: "12", R: -25.491, d: 1.0, nd: 1.804, elemId: 7, sd: 10.4 },
-    { label: "13", R: -63.435, d: 21.53, nd: 1.0, elemId: 0, sd: 10.05 }, // variable gap L2→L3
+    { label: "12", R: -25.491, d: 1.0, nd: 1.804, elemId: 7, sd: 10.275 },
+    { label: "13", R: -63.435, d: 21.53, nd: 1.0, elemId: 0, sd: 10.045 }, // variable gap d13 (L2→L3)
 
     // ── L3: Unit L3 (positive, f = +24.16 mm) ──
-    // Aperture stop
-    { label: "STO", R: 1e15, d: 0.3, nd: 1.0, elemId: 0, sd: 9.68 },
+    // Aperture stop (patent surface 14); sd = tele iris radius (patent ED 19.35 mm)
+    { label: "STO", R: 1e15, d: 0.3, nd: 1.0, elemId: 0, sd: 9.675 },
     // L8 standalone (plano-convex)
-    { label: "14", R: 44.965, d: 2.3, nd: 1.91082, elemId: 8, sd: 9.2 },
-    { label: "15", R: 1e15, d: 0.15, nd: 1.0, elemId: 0, sd: 9.4 },
+    { label: "15", R: 44.965, d: 2.3, nd: 1.91082, elemId: 8, sd: 9.97 },
+    { label: "16", R: 1e15, d: 0.15, nd: 1.0, elemId: 0, sd: 9.965 },
     // L9 + L10 cemented doublet (D2)
-    { label: "16", R: 21.533, d: 1.0, nd: 1.95375, elemId: 9, sd: 10.5 },
-    { label: "17", R: 13.108, d: 6.76, nd: 1.59522, elemId: 10, sd: 10.2 }, // junction → L10
-    { label: "18", R: -795.231, d: 1.37, nd: 1.0, elemId: 0, sd: 9.8 }, // L10 rear → air
+    { label: "17", R: 21.533, d: 1.0, nd: 1.95375, elemId: 9, sd: 9.95 },
+    { label: "18", R: 13.108, d: 6.76, nd: 1.59522, elemId: 10, sd: 9.33 }, // junction → L10
+    { label: "19", R: -795.231, d: 1.37, nd: 1.0, elemId: 0, sd: 9.05 }, // L10 rear → air
     // L11 + L12 cemented doublet (D3) — IS subunit
-    { label: "19", R: -152.936, d: 0.8, nd: 1.74951, elemId: 11, sd: 11.8 },
-    { label: "20", R: 16.038, d: 2.88, nd: 2.00069, elemId: 12, sd: 11.5 }, // junction → L12
-    { label: "21", R: 30.717, d: 3.81, nd: 1.0, elemId: 0, sd: 11.2 }, // L12 rear → air
+    { label: "20", R: -152.936, d: 0.8, nd: 1.74951, elemId: 11, sd: 8.85 },
+    { label: "21", R: 16.038, d: 2.88, nd: 2.00069, elemId: 12, sd: 8.6 }, // junction → L12
+    { label: "22", R: 30.717, d: 3.81, nd: 1.0, elemId: 0, sd: 8.385 }, // L12 rear → air
     // L13 + L14 cemented doublet (D4) — Gfp
-    { label: "22", R: 76.401, d: 0.75, nd: 1.78472, elemId: 13, sd: 10.8 },
-    { label: "23", R: 19.11, d: 3.57, nd: 1.497, elemId: 14, sd: 10.7 }, // junction → L14
-    { label: "24", R: 1e15, d: 0.15, nd: 1.0, elemId: 0, sd: 10.7 }, // L14 rear → air
+    { label: "23", R: 76.401, d: 0.75, nd: 1.78472, elemId: 13, sd: 8.395 },
+    { label: "24", R: 19.11, d: 3.57, nd: 1.497, elemId: 14, sd: 8.295 }, // junction → L14
+    { label: "25", R: 1e15, d: 0.15, nd: 1.0, elemId: 0, sd: 8.36 }, // L14 rear → air
     // L15 standalone (both surfaces aspherical)
-    { label: "25A", R: 24.461, d: 7.26, nd: 1.58313, elemId: 15, sd: 11.6 },
-    { label: "26A", R: -25.212, d: 1.8, nd: 1.0, elemId: 0, sd: 12.0 }, // variable gap L3→L4
+    { label: "26A", R: 24.461, d: 7.26, nd: 1.58313, elemId: 15, sd: 9.31 },
+    { label: "27A", R: -25.212, d: 1.8, nd: 1.0, elemId: 0, sd: 9.88 }, // variable gap d27 (L3→L4)
 
     // ── L4: Unit L4 (negative, f = −40.84 mm) — Focus group ──
-    { label: "27", R: 121.315, d: 0.75, nd: 1.72916, elemId: 16, sd: 9.6 },
-    { label: "28", R: 23.846, d: 11.59, nd: 1.0, elemId: 0, sd: 9.4 }, // variable gap L4→L5
+    { label: "28", R: 121.315, d: 0.75, nd: 1.72916, elemId: 16, sd: 9.995 },
+    { label: "29", R: 23.846, d: 11.59, nd: 1.0, elemId: 0, sd: 9.95 }, // variable gap d29 (L4→L5)
 
     // ── L5: Unit L5 (negative, f = −68.35 mm) ──
-    { label: "29A", R: -43.071, d: 1.5, nd: 1.7645, elemId: 17, sd: 13.0 },
-    { label: "30A", R: -248.821, d: 0.8, nd: 1.0, elemId: 0, sd: 13.57 }, // variable gap L5→L6
+    { label: "30A", R: -43.071, d: 1.5, nd: 1.7645, elemId: 17, sd: 12.085 },
+    { label: "31A", R: -248.821, d: 0.8, nd: 1.0, elemId: 0, sd: 13.565 }, // variable gap d31 (L5→L6)
 
-    // ── L6: Unit L6 (positive, f = +72.43 mm) — Grp ──
-    { label: "31", R: -68.116, d: 4.5, nd: 1.804, elemId: 18, sd: 16.8 },
-    { label: "32", R: -32.318, d: 17.88, nd: 1.0, elemId: 0, sd: 17.4 }, // BFD (variable)
+    // ── L6: Unit L6 (positive, f = +72.42 mm) — Grp ──
+    { label: "32", R: -68.116, d: 4.5, nd: 1.804, elemId: 18, sd: 17.55 },
+    { label: "33", R: -32.318, d: 17.88, nd: 1.0, elemId: 0, sd: 18.0 }, // variable gap d33 (= BF; no filter block)
   ],
 
-  /* ── Aspherical coefficients ── */
+  /* ── Aspherical coefficients (patent K is the conic constant; K = 0 on every surface) ── */
   asph: {
     "8A": {
       K: 0,
@@ -360,7 +364,7 @@ const LENS_DATA = {
       A12: 0,
       A14: 0,
     },
-    "25A": {
+    "26A": {
       K: 0,
       A4: -2.73692e-5,
       A6: 5.32572e-8,
@@ -369,7 +373,7 @@ const LENS_DATA = {
       A12: 0,
       A14: 0,
     },
-    "26A": {
+    "27A": {
       K: 0,
       A4: 1.47893e-5,
       A6: 2.32565e-9,
@@ -378,7 +382,7 @@ const LENS_DATA = {
       A12: 0,
       A14: 0,
     },
-    "29A": {
+    "30A": {
       K: 0,
       A4: -8.05959e-5,
       A6: 1.99191e-7,
@@ -387,7 +391,7 @@ const LENS_DATA = {
       A12: 8.67762e-15,
       A14: 0,
     },
-    "30A": {
+    "31A": {
       K: 0,
       A4: -7.18829e-5,
       A6: 2.81391e-7,
@@ -399,14 +403,17 @@ const LENS_DATA = {
   },
 
   /* ── Variable air spacings (zoom format) ──
-   *  Patent provides infinity-focus spacings at 3 zoom positions.
-   *  Close-focus data is not available from the patent.  Focus unit L4
-   *  (surfaces 27–28) moves rearward during close focus, so D27 increases
-   *  and D29 decreases by equal travel to preserve the L3→L5 envelope.
+   *  Patent [0097] tabulates infinity-focus spacings at exactly three zoom
+   *  stations (wide / intermediate / tele); all three are stored, nothing is
+   *  interpolated or blended. The patent publishes no close-focus spacings.
+   *  Focus unit L4 (surfaces 28–29) moves toward the image ([0069]), so d27
+   *  grows and d29 shrinks by the same travel.
    *
-   *  Close-focus endpoints are computed estimates from Canon's published
-   *  0.45 m MFD by solving the real-ray paraxial conjugate at each zoom
-   *  stop: L4 travel ≈ 0.54 / 1.38 / 3.56 mm at W / M / T.
+   *  Close-focus values are CALCULATED, not patent data: the L4 travel was
+   *  solved paraxially so that the object-to-image distance equals Canon's
+   *  published 0.45 m MFD at each station (image plane held at the infinity
+   *  BFD): travel 0.73 / 1.92 / 5.13 mm at W / M / T, giving β ≈ −0.070 /
+   *  −0.138 / −0.249 (production maximum magnification 0.24×).
    */
   zoomPositions: [24.72, 50.92, 101.84],
   zoomStep: 0.004,
@@ -423,22 +430,22 @@ const LENS_DATA = {
       [9.07, 9.07],
       [2.38, 2.38],
     ],
-    "26A": [
-      [1.8, 2.34],
-      [3.37, 4.75],
-      [1.4, 4.96],
+    "27A": [
+      [1.8, 2.53],
+      [3.37, 5.29],
+      [1.4, 6.53],
     ],
-    "28": [
-      [11.59, 11.05],
-      [10.02, 8.64],
-      [11.99, 8.43],
+    "29": [
+      [11.59, 10.86],
+      [10.02, 8.1],
+      [11.99, 6.86],
     ],
-    "30A": [
+    "31A": [
       [0.8, 0.8],
       [13.48, 13.48],
       [17.24, 17.24],
     ],
-    "32": [
+    "33": [
       [17.88, 17.88],
       [19.75, 19.75],
       [30.96, 30.96],
@@ -448,37 +455,43 @@ const LENS_DATA = {
   varLabels: [
     ["5", "D5"],
     ["13", "D13"],
-    ["26A", "D27"],
-    ["28", "D29"],
-    ["30A", "D31"],
-    ["32", "BF"],
+    ["27A", "D27"],
+    ["29", "D29"],
+    ["31A", "D31"],
+    ["33", "D33"],
   ],
 
   /* ── Group and doublet annotations ── */
   groups: [
     { text: "L1 (+)", fromSurface: "1", toSurface: "5" },
     { text: "L2 (−)", fromSurface: "6", toSurface: "13" },
-    { text: "L3 (+)", fromSurface: "STO", toSurface: "26A" },
-    { text: "L4 (−)", fromSurface: "27", toSurface: "28" },
-    { text: "L5 (−)", fromSurface: "29A", toSurface: "30A" },
-    { text: "L6 (+)", fromSurface: "31", toSurface: "32" },
+    { text: "L3 (+)", fromSurface: "STO", toSurface: "27A" },
+    { text: "L4 (−)", fromSurface: "28", toSurface: "29" },
+    { text: "L5 (−)", fromSurface: "30A", toSurface: "31A" },
+    { text: "L6 (+)", fromSurface: "32", toSurface: "33" },
   ],
 
   doublets: [
     { text: "D1", fromSurface: "1", toSurface: "3" },
-    { text: "D2", fromSurface: "16", toSurface: "18" },
-    { text: "D3", fromSurface: "19", toSurface: "21" },
-    { text: "D4", fromSurface: "22", toSurface: "24" },
+    { text: "D2", fromSurface: "17", toSurface: "19" },
+    { text: "D3", fromSurface: "20", toSurface: "22" },
+    { text: "D4", fromSurface: "23", toSurface: "25" },
   ],
 
   /* ── Focus configuration ── */
   closeFocusM: 0.45,
   focusDescription:
-    "Inner focus — L4 (single element) translates toward image side. Close-focus travel estimated from 0.45 m MFD; patent publishes infinity zoom spacings only.",
+    "Inner focus — L4 (single negative meniscus) moves toward the image. The patent publishes infinity spacings only; close-focus travel is calculated for Canon's 0.45 m MFD at every zoom station.",
 
-  /* ── Aperture configuration ── */
-  nominalFno: 4,
-  fstopSeries: [4, 5.6, 8, 11, 16, 22],
+  /* ── Aperture configuration ──
+   *  Constant F/4.12 across the zoom with the stop riding in L3; the patent
+   *  publishes only one stop effective diameter (19.35 mm), which is the tele
+   *  iris. Wide/intermediate iris radii are inferred from the nominal f-number.
+   */
+  nominalFno: 4.12,
+  zoomApertureModel: "from-nominal-fno",
+  fstopSeries: [4.12, 5.6, 8, 11, 16, 22],
+  maxFstop: 22,
   apertureBlades: 9,
 
   /* ── Layout tuning ── */

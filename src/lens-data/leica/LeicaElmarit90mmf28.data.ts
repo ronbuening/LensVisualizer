@@ -5,23 +5,34 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║           LENS DATA — LEICA ELMARIT 90mm f/2.8                     ║
  * ╠══════════════════════════════════════════════════════════════════════╣
  * ║  Data source: US 2,995,980 sole example (Zimmermann & Knetsch,     ║
- * ║  Ernst Leitz G.m.b.H.). Modified Cooke Triplet with cemented       ║
- * ║  middle and rear doublets.                                          ║
+ * ║  Ernst Leitz G.m.b.H.; DE priority 21 Dec 1956). Modified Cooke    ║
+ * ║  Triplet with cemented middle and rear doublets.                    ║
  * ║  5 elements / 3 groups, 0 aspherical surfaces.                     ║
  * ║  Focus: unit focusing (entire lens translates).                     ║
+ * ║  Attribution: the patent names no product; the Elmarit 90 f/2.8    ║
+ * ║  (1959) match is inferred from assignee, date, f/2.8 and the 5/3   ║
+ * ║  cemented-middle/cemented-rear layout.                              ║
  * ║                                                                     ║
  * ║  NOTE ON SCALING:                                                   ║
- * ║    Patent prescription at f = 100 mm normalisation; all R, d, and  ║
- * ║    sd values scaled ×0.9 to f ≈ 90 mm production focal length.     ║
- * ║    Claim table r₁ = +44.05 adopted (example table gives +44.65;    ║
- * ║    claim value yields EFL = 100.12 mm vs 101.88 mm for example).   ║
+ * ║    Patent values are per 100 mm equivalent focal length; all R, d  ║
+ * ║    and sd are scaled uniformly ×0.9 to the 90 mm production focal  ║
+ * ║    length (EFL 90.11 mm). Claim table r₁ = +44.05 adopted (example  ║
+ * ║    table prints +44.65; claim value gives EFL 100.12 vs 101.88).   ║
  * ║                                                                     ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    Patent does not list semi-diameters. Estimated from combined    ║
- * ║    marginal + chief ray trace at f/2.8 full aperture with ~8%      ║
- * ║    mechanical clearance, constrained by E39 filter thread at       ║
- * ║    the front. Stop position inferred from Fig. 1 (centered in      ║
- * ║    air gap a₂ between Groups II and III).                           ║
+ * ║    Patent lists no SDs. Fig. 1 is drawn to scale (vertex spacings  ║
+ * ║    agree within ~0.5 unit; 15.75 px per patent unit at 600 dpi):   ║
+ * ║    L1 ≈ 16.9 mm, both doublets' flat rims ≈ 15.1 mm, r₅ curve end  ║
+ * ║    ≈ 12.8 mm (bevel), r₆ ≈ 13.4 mm. r₃/r₄ set to 15.0 from the      ║
+ * ║    figure (the earlier 14.0/13.8 clipped the f/2.8 axial marginal  ║
+ * ║    ray, 14.07/13.97 mm). Other rims are earlier estimates within   ║
+ * ║    ~7 % of the figure and are retained.                             ║
+ * ║                                                                     ║
+ * ║  NOTE ON STOP AND FOCUS:                                           ║
+ * ║    Fig. 1 draws no diaphragm; the iris at the centre of air gap    ║
+ * ║    a₂ is a model choice. STO sd 12.9 = real f/2.8 marginal height. ║
+ * ║    The 1 m close-focus gap (84.40 mm) is a calculated paraxial      ║
+ * ║    unit-focus extension (+10.07 mm) for 1 m object-to-image.       ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -56,9 +67,9 @@ const LENS_DATA = {
       nd: 1.691,
       vd: 54.8,
       fl: 49.7,
-      glass: "K-LaK9 catalog equivalent (patent coordinate; production supplier unspecified)",
+      glass: "N-LAK9 catalog equivalent (Schott; patent coordinate 691548; production supplier unspecified)",
       apd: false,
-      role: "Front positive collector; strongly convex front, nearly flat rear. LaK crown enables strong power at moderate curvature.",
+      role: "Front positive collector; strongly convex front, nearly flat rear. Lanthanum-crown coordinate enables strong power at moderate curvature.",
     },
     {
       id: 2,
@@ -118,11 +129,11 @@ const LENS_DATA = {
   surfaces: [
     { label: "1", R: 39.645, d: 6.03, nd: 1.691, elemId: 1, sd: 17.0 },
     { label: "2", R: -241.146, d: 6.3, nd: 1.0, elemId: 0, sd: 16.0 },
-    { label: "3", R: -44.136, d: 4.86, nd: 1.7552, elemId: 2, sd: 14.0 },
-    { label: "4", R: -24.039, d: 2.7, nd: 1.6398, elemId: 3, sd: 13.8 },
+    { label: "3", R: -44.136, d: 4.86, nd: 1.7552, elemId: 2, sd: 15.0 },
+    { label: "4", R: -24.039, d: 2.7, nd: 1.6398, elemId: 3, sd: 15.0 },
     { label: "5", R: 31.383, d: 2.16, nd: 1.0, elemId: 0, sd: 13.5 },
-    // STO position inferred from Fig. 1 — iris centered in air gap a₂ (4.32 mm total)
-    { label: "STO", R: 1e15, d: 2.16, nd: 1.0, elemId: 0, sd: 12.7 },
+    // STO is a model choice (Fig. 1 draws no diaphragm) — centred in air gap a₂ (4.32 mm total)
+    { label: "STO", R: 1e15, d: 2.16, nd: 1.0, elemId: 0, sd: 12.9 },
     { label: "6", R: -1194.003, d: 2.7, nd: 1.62588, elemId: 4, sd: 13.5 },
     { label: "7", R: 26.244, d: 8.343, nd: 1.744, elemId: 5, sd: 14.0 },
     { label: "8", R: -44.937, d: 74.33, nd: 1.0, elemId: 0, sd: 14.5 },
@@ -133,7 +144,7 @@ const LENS_DATA = {
 
   /* ── Variable air spacings (unit focus) ── */
   var: {
-    "8": [74.33, 83.25],
+    "8": [74.33, 84.4], // close value calculated: 1 m object-to-image, unit focus
   },
   varLabels: [["8", "BF"]],
 
@@ -156,6 +167,7 @@ const LENS_DATA = {
   /* ── Aperture configuration ── */
   nominalFno: 2.8,
   fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
+  maxFstop: 22,
 
   /* ── Layout tuning ── */
   scFill: 0.45,

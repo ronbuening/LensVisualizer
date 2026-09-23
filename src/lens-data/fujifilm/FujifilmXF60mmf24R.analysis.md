@@ -15,7 +15,7 @@
 
 This analysis covers Example 1 from US 2014/0247506 A1, which corresponds to the production FUJINON XF60mmF2.4 R Macro lens. The identification is confirmed by several converging lines of evidence.
 
-The patent's design focal length of 61.06 mm rounds to the marketed 60 mm. The design f-number of 2.48 is marketed as f/2.4 — a standard commercial rounding practice. The patent specifies a maximum magnification of −0.5× and the production lens is marketed with 0.5× maximum magnification at a minimum focus distance of 26.7 cm, consistent with the patent's close-focus aberration diagrams. The construction of 10 elements in 8 groups including one aspherical element and one ED glass element matches Fujifilm's published specifications exactly. Fujifilm's product page confirms the aspherical element is the 7th element (L17 in patent nomenclature) and the ED element is the 6th element (L16), both consistent with the patent data. Finally, the patent assignee is FUJIFILM Corporation and the filing timeline (November 2011 priority, matching the XF60mm's initial announcement alongside the X-Pro1 in early 2012) aligns precisely.
+The patent's design focal length of 61.06 mm rounds to the marketed 60 mm. The design f-number of 2.48 is marketed as f/2.4 — a standard commercial rounding practice. The patent specifies a maximum magnification of −0.5× and the production lens is marketed with 0.5× maximum magnification at a minimum focus distance of 26.7 cm, consistent with the patent's close-focus aberration diagrams. The construction of 10 elements in 8 groups including one aspherical element and one ED glass element matches Fujifilm's published specifications exactly. In the patent the only aspherical element is L17 (both surfaces), and the only glass with ED-class dispersion is L16 (nd 1.49700 / νd 81.5), so the published one-aspherical / one-ED count maps onto the patent elements directly. The patent itself does not use the term ED. Finally, the patent assignee is FUJIFILM Corporation and the filing timeline (November 2011 priority, matching the XF60mm's initial announcement alongside the X-Pro1 in early 2012) aligns precisely.
 
 ---
 
@@ -84,7 +84,7 @@ The net negative power of D1 ensures that the front sub-group doesn't over-conve
 
 ### Aperture Stop (St)
 
-The stop is located in the air gap between L14 and L15, represented as surface S8 (R = ∞, d = 2.60 mm). It sits at the natural waist of the beam where the marginal ray height is minimized. At infinity focus and f/2.48, the marginal ray height at the stop is approximately 7.64 mm. The lens uses a 9-blade rounded diaphragm in production.
+The stop is located in the air gap between L14 and L15, represented as surface S8 (R = ∞, d = 2.60 mm). It sits at the natural waist of the beam where the marginal ray height is minimized. At infinity focus and f/2.48, an exact trace puts the axial marginal ray at 7.76 mm on the stop plane; the data file records the stop semi-diameter as 7.8 mm, which is also the iris radius the app derives from the patent FNO of 2.48. The lens uses a 9-blade rounded diaphragm in production.
 
 The stop position is explicitly specified in the patent Table 1 as surface 8 with the aperture stop annotation. The air gap between L14 rear (S7, d = 4.20 mm) and the stop (S8, d = 2.60 mm) places the iris 4.20 mm behind L14 and 2.60 mm in front of L15.
 
@@ -101,7 +101,7 @@ The stop position is explicitly specified in the patent Table 1 as surface 8 wit
 
 †*Note: Patent Table 17 gives νd6 − νd5 = 29.1 for Example 1, which implies νd5 ≈ 52.4 rather than the 48.8 listed in Table 1. A cross-check of all six numerical examples confirms this is a Table 1 typographical error: Examples 2–6 all produce νd6 − νd5 values that match Table 17 exactly when computed from their respective surface tables, while Example 1 alone fails (computing 32.7 instead of 29.1). The corrected value places L15 near the 517/524 light-flint region, but the data file leaves the glass unmatched because the stored Table 1 row and current catalog labels do not provide a resolver-safe exact catalog assignment. See §4 for further discussion.*
 
-This doublet is the chromatic correction workhorse for the rear half of G1. L16 is the sole ED (extra-low dispersion) glass element in the entire lens — confirmed by Fujifilm's product literature as S-FPL51, a calcium fluoride equivalent phosphate crown with anomalous partial dispersion. Its extremely high Abbe number (νd = 81.5) paired against L15's moderate dispersion creates a strong achromatic correction. The Abbe difference νd6 − νd5 falls well within conditional expression 4 (20.0 < νd6 − νd5 < 70.0).
+This doublet is the chromatic correction workhorse for the rear half of G1. L16 is the sole ED (extra-low dispersion) glass element in the entire lens. Its nd/νd pair matches Ohara S-FPL51, a fluorophosphate crown with anomalous partial dispersion, exactly; the S-FPL51 name is a catalog equivalent, and the ED status is inferred from that match and Fujifilm's one-ED-element specification, since the patent itself does not describe L16 as ED or anomalous. Its extremely high Abbe number (νd = 81.5) paired against L15's moderate dispersion creates a strong achromatic correction. The Abbe difference νd6 − νd5 falls well within conditional expression 4 (20.0 < νd6 − νd5 < 70.0).
 
 The combined power of D2 is negative, which complements the positive L17 that follows. Together, L15+L16+L17 form a weakly positive triplet-like arrangement behind the stop that performs field flattening and lateral color correction without adding significant axial power.
 
@@ -152,7 +152,7 @@ L22 partially compensates for L21's negative power, re-converging the beam towar
 | Shape | Biconvex positive (strongly convex toward image) |
 | Surfaces | S18 (R = +236.547) / S19 (R = −56.983) |
 | nd / νd | 1.80400 / 46.6 |
-| Glass | **S-LAH65V** (OHARA) — very close match |
+| Glass | **S-LAH65V** (OHARA) — exact catalog equivalent |
 | Standalone fl | +57.4 mm |
 
 L23 is the final optical element before the image plane. It is strongly asymmetric — nearly flat on the front (R = +237 mm) and deeply curved on the rear (R = −57 mm). This rearward-convex geometry makes L23 the primary field-flattening element in G2. Its high refractive index (nd = 1.804) in lanthanum heavy crown glass allows the strongly curved rear surface to correct Petzval field curvature without introducing excessive higher-order aberrations. Together with L21 and L22, it forms a quasi-telecentric rear corrector that keeps the exit cone angle moderate for the APS-C sensor.
@@ -178,13 +178,13 @@ Glass matches were determined by comparing nd/νd pairs against the OHARA, HOYA,
 | L17 | 1.80348 | 40.4 | 803404 | Lanthanum heavy flint (PGM-suitable); no exact catalog match found | Unresolved |
 | L21 | 1.72916 | 54.7 | 729/547 | **S-LAL18** (OHARA) | Exact (same as L13) |
 | L22 | 1.51823 | 58.9 | 518/589 | **S-NSL3** (OHARA) | Exact |
-| L23 | 1.80400 | 46.6 | 804/466 | **S-LAH65V** (OHARA) | Very close |
+| L23 | 1.80400 | 46.6 | 804/466 | **S-LAH65V** (OHARA) | Exact |
 
 **Unresolved glasses:**
 
-L14 (nd = 1.66680, νd = 31.1): No exact match found in current OHARA, HOYA, or Schott catalogs. The nearest OHARA glass by refractive index is S-TIH14 (nd = 1.76182) — far too high. HOYA E-FD2 (nd = 1.66680) has νd = 33.05, not 31.1. This may be a proprietary melt, a discontinued glass type, or the νd value may contain a patent transcription error.
+L14 (nd = 1.66680, νd = 31.1): No exact match found in the repo catalog (Ohara, Hoya, Hikari, Sumita, Schott, CDGM). Ohara S-TIM39 has the same nd (1.66680) but νd = 33.05, not 31.1. The listed 31.1 is internally consistent with the patent, because Table 17 gives νd3 − νd4 = 23.6 for Example 1 (54.7 − 31.1), so it is not treated as a typo. It may be a proprietary or discontinued melt.
 
-L15 (nd = 1.51742, νd = 48.8 as listed): The νd value listed in Table 1 is almost certainly a typographical error. The conditional expression cross-check (§7) shows that all five other examples in the patent produce νd6 − νd5 values matching Table 17 exactly, while Example 1 alone fails — requiring νd5 ≈ 52.4 to produce the Table 17 value of 29.1. The corrected six-digit region would be 517/524, but the current data file intentionally uses an unmatched label rather than forcing a catalog name that does not round-trip the stored patent row. (†Listed value; ‡corrected code.)
+L15 (nd = 1.51742, νd = 48.8 as listed): The νd value listed in Table 1 is almost certainly a typographical error. The conditional expression cross-check (§7) shows that all five other examples in the patent produce νd6 − νd5 values matching Table 17 exactly, while Example 1 alone fails — requiring νd5 ≈ 52.4 to produce the Table 17 value of 29.1. The corrected pair, 1.51742 / 52.4, is exactly Ohara S-NSL36 (1.51742 / 52.43; Hoya E-CF6 has the same nd at νd 52.15). For comparison, Example 2 lists 48.8 for its L15 too, on a different glass (1.53172), which may explain how the value got into the Example 1 row. The current data file intentionally uses an unmatched label rather than forcing a catalog name that does not round-trip the stored patent row. (†Listed value; ‡corrected code.)
 
 L17 (nd = 1.80348, νd = 40.4): This glass is in the lanthanum heavy flint region (LaF/LaSF boundary). No exact catalog match was found. The closest candidates are S-LAH53 (nd = 1.80610, νd = 40.93) and HOYA NBFD3, but neither is an exact match. As a glass-molded aspherical element, L17 likely uses a low-softening-temperature (L-) variant or a proprietary PGM glass optimized for molding at the nd/νd required by the design.
 
@@ -267,6 +267,8 @@ The air gap between L17's rear surface (S13A) and L21's front surface (S14) is t
 | −0.2× magnification | 10.57 | +8.77 mm |
 | −0.5× magnification | 23.73 | +21.93 mm |
 
+All three Table 2 states are stored as focus keyframes. A paraxial check of the stored gaps gives magnifications of −0.200 and −0.500. The object-to-image distances are 436.6 mm and 266.5 mm with the cover plate counted as air-equivalent path (about 1 mm longer with the physical 2.85 mm plate). The close state therefore matches the production minimum focus distance of 26.7 cm. The patent's aberration diagrams give the working f-number as 3.10 at −0.2× and 4.03 at −0.5× (Figs. 8 and 9), with half-fields of 10.1° and 7.7°. The data file keeps the infinity FNO of 2.48 as the nominal aperture, and the app's effective-aperture readout derives the working value from the geometry.
+
 At maximum magnification (−0.5×), G1 has extended 21.93 mm forward from its infinity position. This is a substantial extension — approximately 36% of the design focal length — which is typical of macro lenses achieving 0.5× reproduction ratios. In practice, the front element protrudes significantly from the lens barrel at close focus, which is why the production lens ships with a deep metal hood.
 
 ### Why single-group focus?
@@ -296,7 +298,7 @@ The surface-by-surface Petzval sum is +0.00240 mm⁻¹, corresponding to a Petzv
 
 ### Image circle
 
-The half-field angle of 12.7° at f = 61.06 mm yields a design image circle diagonal of approximately 27.5 mm. The Fuji X-mount APS-C sensor diagonal is 28.2 mm (23.5 × 15.6 mm), so the patent's 2ω = 25.4° represents the designed optimization field — slightly inside the sensor corners. Fujifilm's own product specification lists the angle of view as 26.6°, which corresponds to the full sensor diagonal (2 × arctan(14.1/61.06) ≈ 26.0°). The ~0.6° difference between the design field (25.4°) and full-sensor field (26.0°) provides a margin for vignetting control at the extreme corners, which is standard practice for this class of lens.
+The Fuji X-mount APS-C sensor diagonal is about 28.2 mm (23.5 × 15.6 mm). Fujifilm's product specification lists the angle of view as 26.6°, a nominal value for the marketed 60 mm focal length. An exact real-ray trace of the stored prescription shows that the patent's ω = 12.70° lands at an image height of 14.2 mm, which is the full APS-C corner. The paraxial f·tan ω (13.8 mm) understates it because the design has about +3 % pincushion distortion at the edge of the field, as the patent's Fig. 7C shows. The patent's 2ω = 25.4° therefore already covers the whole sensor diagonal; there is no corner margin.
 
 ### Back focal distance
 
@@ -306,11 +308,15 @@ The patent specifies d_19 = 18.46 mm (S19 to cover glass front) plus a 2.85 mm c
 
 ## 8. Semi-Diameter Estimation
 
-Semi-diameters were estimated by tracing marginal and chief rays through the system. The marginal ray was launched at the entrance pupil radius (EP_SD = EFL/(2·F_NO) = 61.06/4.96 = 12.31 mm) with zero angle. The chief ray was launched at 60% of the maximum half-field angle (offAxisFieldFrac = 0.60, i.e. ω = 7.62°) through the center of the entrance pupil. At each surface, the semi-diameter estimate is |y_marginal| + |y_chief| with ~10% mechanical clearance added.
+The patent does not publish effective diameters. The stored semi-diameters come from two sources: an exact meridional real-ray trace at the patent's f/2.48 and full image height (Y = 14.2 mm, ω = 12.70°) at all three focus states, and rim heights measured from the Example 1 cross-section (Fig. 1A, about 11.9 px/mm from the S1–S19 vertex span).
 
-The front group SDs are constrained by the 39 mm filter thread (maximum SD ≈ 18.5 mm); all estimates fall comfortably within this limit (maximum front SD ≈ 15.5 mm). Behind the stop, SDs are noticeably smaller (8–9.5 mm) as expected for the narrower beam.
+- **Front group (L11, L12).** 15.5 / 15.0 and 14.8 / 13.5 mm. The f/2.48 axial ray needs 12.31 mm at S1, and the unvignetted full-field bundle needs about 16.5 mm, so the corner is lightly vignetted there. Fig. 1A draws these rims about 13.4 and 12.6 mm, within about 15 % of the stored values, so they were kept.
+- **L13 front (S5).** 11.0 mm. The axial marginal ray at f/2.48 reaches 10.71 mm here, so the earlier 10.5 mm clipped it; the figure draws 11.0 mm.
+- **Stop.** 7.8 mm, the iris radius at f/2.48.
+- **Behind the stop (L15–L17).** 8.0–8.5 mm, within about 11 % of the figure; kept.
+- **Fixed G2 (L21 / L22 / L23).** 9.9 / 11.5 / 12.0 mm. G1 moves 21.93 mm forward during focus, which shifts the exit pupil, so the full-field chief ray climbs through the fixed rear group: at −0.5× it reaches 9.97 mm at S17 and 10.79 mm at S19. The earlier 9.0 / 9.5 mm rims blocked it. Fig. 1A draws L21, L22 and L23 at about 9.9, 11.6 and 12.2 mm, noticeably larger than G1's rear elements.
 
-Validation checks performed: edge thickness ≥ 0.3 mm for all elements (minimum: L11 at 0.96 mm); front/rear SD ratio ≤ 1.25 for all elements (maximum: L13 at 1.29, within the 3.0 sanity limit); cross-gap sag intrusion within gap × 1.1 for all air gaps.
+All elements keep positive edge thickness, and no rim intrudes across an air gap.
 
 ---
 

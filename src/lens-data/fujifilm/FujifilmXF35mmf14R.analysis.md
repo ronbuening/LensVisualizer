@@ -78,7 +78,7 @@ L11 is the first element the light encounters and serves as the primary positive
 | Shape | Positive meniscus, convex to object |
 | Glass | nd = 1.80400, νd = 46.6 |
 | Focal length | +47.1 mm |
-| Glass match | **OHARA S-LAH65VS** (nd = 1.80400, νd = 46.58), SCHOTT N-LASF44, HOYA TAF3 |
+| Glass match | **OHARA S-LAH65V** (nd = 1.80400, νd = 46.58), SCHOTT N-LASF44, HOYA TAF3 |
 
 L12 is the strongest positive element in the front group. Its tighter curvatures (R1 = 16.7 mm) indicate that it does the heavy lifting of converging the marginal ray bundle. The very high index lanthanum glass (nd = 1.804) reduces the curvature needed for a given power, which again minimizes spherical aberration at each surface. The pair L11 + L12 together act as a split positive doublet, distributing the positive power across four surfaces rather than two, which is a classical strategy for controlling spherical aberration in fast lenses.
 
@@ -116,7 +116,7 @@ The thin construction (1.10 mm) and weak power indicate this element's role is m
 
 ### Aperture Stop (between L14 and L21)
 
-The aperture stop is located in the air gap between the front and rear groups, at a distance of 2.73 mm after L14's rear surface. The production lens has 7 rounded diaphragm blades. In the patent, the stop is modeled as an ideal thin aperture (R = ∞, d = 3.20 mm), with the 3.20 mm thickness representing the physical space occupied by the iris mechanism and the air gap to L21.
+The aperture stop is located in the air gap between the front and rear groups, at a distance of 2.73 mm after L14's rear surface. The production lens has 7 rounded diaphragm blades. In the patent, the stop is modeled as an ideal thin aperture (R = ∞, d = 3.20 mm), with the 3.20 mm thickness representing the physical space occupied by the iris mechanism and the air gap to L21. At the patent's F/1.45 the exact axial marginal ray fixes the full-aperture iris radius at 7.55 mm, and Fig. 1 draws the stop opening at about 7.6 mm.
 
 ### Element 5 — L21: Biconcave Aspheric Singlet
 
@@ -133,7 +133,7 @@ L21 is the single aspherical element in the design and the most optically intere
 
 **Role in the system:** L21's negative power (f ≈ −59 mm) acts as the "diverging core" of the rear group, creating a large separation in ray heights between the stop and the cemented triplet. This is essential for the triplet to correct both axial and lateral chromatic aberration simultaneously. The aspheric profiles on L21 are responsible for the bulk of the residual spherical aberration correction — the patent text ([0036]) explicitly states that the aspherical lens provides "effective correction" of spherical aberration before light enters the cemented triplet, enabling the triplet to then "satisfactorily correct spherical aberration, chromatic coma aberration, and lateral chromatic aberration."
 
-**Aspherical departure:** With the exact patent polynomials, the front surface S10A departs by −1257.304 µm from its paraxial sphere at the 8.4 mm data-file semi-diameter, while S11A departs by −149.709 µm at 6.5 mm. The S10A estimate is 0.1 mm smaller than the original refit-era estimate so the exact profile remains inside the project rim-slope safety limit. The net effect is to increase L21's negative power at the margin relative to the paraxial zone, over-correcting marginal rays to compensate for the residual under-corrected spherical aberration from the many positive elements in the front group and cemented triplet.
+**Aspherical departure:** With the exact patent polynomials, the front surface S10A departs by −1257.3 µm from its paraxial sphere at the 8.4 mm data-file semi-diameter, while S11A departs by −383.5 µm at 8.4 mm. Fig. 1 draws L21 to about 8.6 mm; the S10A polynomial is already 60° steep at 8.4 mm and diverges a little beyond Fig. 1's rim, so the data file stops there. The F/1.45 axial beam needs 7.49 mm at S10A and 7.99 mm at S11A. At 8.4 mm the S11A sag (+0.398 mm) leaves only 0.05 mm to L22's plano face, matching Fig. 1, where L21's rim almost touches L22. The net effect is to increase L21's negative power at the margin relative to the paraxial zone, over-correcting marginal rays to compensate for the residual under-corrected spherical aberration from the many positive elements in the front group and cemented triplet.
 
 **Glass type:** The $n_d = 1.51760$, $\nu_d = 63.5$ prescription is the exact 518635 coordinate of coefficient-backed CDGM D-K59, a molding crown in the borosilicate region. D-K59 is therefore used as the optical catalog equivalent. The patent identifies neither a vendor nor a production melt, so the label does not claim CDGM supplied Fujifilm. The low refractive index and high Abbe number make this glass essentially "color-neutral," ensuring that the aspheric surfaces correct monochromatic aberrations without disturbing the chromatic balance.
 
@@ -200,32 +200,21 @@ For the variable gap in the data file, only the back focal distance (the gap aft
 | Focus position | BFD (S15 to image) | Extension |
 |----------------|-------------------|-----------|
 | Infinity | 21.98 mm | 0.00 mm |
-| 0.28 m (close focus) | ~27.35 mm | ~5.37 mm |
+| 0.28 m (close focus, calculated) | 28.02 mm | 6.04 mm |
 
-The maximum magnification of 0.17× at the 0.28 m close focus distance is consistent with the calculated value of approximately 0.148×. The small discrepancy reflects the difference between thin-lens and thick-lens magnification computation, as well as the difference between the design EFL (36.17 mm) and the marketed focal length (35 mm).
+The patent tabulates only the infinity state, so the close-focus row is calculated, not published. A paraxial trace of the Example 1 prescription needs 6.04 mm of unit extension to focus an object 280 mm from the image plane (the production minimum focus distance). The resulting magnification, −0.167×, agrees with Fujifilm's published 0.17× maximum magnification.
 
 ---
 
 ## 5. Semi-Diameter Estimation
 
-The patent does not list semi-diameters. They were estimated using combined marginal ray and chief ray paraxial traces through the verified prescription:
+The patent does not list semi-diameters, so every rim in the data file is an estimate. The inputs are:
 
-**Methodology:** For each surface, the semi-diameter was estimated as (marginal ray height + chief ray height at 60% field) × clearance factor, then constrained by physical validation checks.
+- **Axial beam.** An exact marginal ray at the patent's F/1.45 (entrance-pupil radius 12.47 mm) sets the minimum clear radius at each surface. It is 12.47 mm at S1, falls to 7.55 mm at the stop and rises to 8.77 mm at S15. Every stored rim clears it.
+- **Patent figure.** Fig. 1 (front page) is drawn close to scale. Using the S1–S15 vertex span, the scale is 0.0484 mm per pixel at 300 dpi. The incoming axial ray is drawn at 12.6 mm, which confirms the scale. The figure draws L11 to about 17.4 mm, L12 to 13.2 mm, the L13 flange to 12.1 mm, L14 to 9.1 mm, the stop opening to 7.6 mm, L21 to 8.6 mm and L22's plano face to 9.5 mm. The triplet's outer shoulder (L23/L24 and the last surface) reaches 12.4 mm.
+- **Mechanical checks.** Edge thickness, rim slope and cross-gap sag clearance. L12's rear surface and L13's front surface meet near 12 mm across their 0.20 mm gap, which caps S4/S5. The S10A polynomial caps L21's front rim at 8.4 mm.
 
-**Marginal ray:** Traced at the design f-number (f/1.45), entrance pupil radius = 12.47 mm. The marginal ray heights decrease from 12.47 mm at S1 to a minimum of ~7.4 mm near the stop, then remain relatively constant through the rear group.
-
-**Chief ray (60% field):** The chief ray at 60% of the maximum half-field angle (ω = 12.9°) was traced to find the off-axis beam footprint at each surface. The entrance pupil is located approximately 31.2 mm in front of S1, consistent with the stop being 21.5 mm behind S1 and the front group's weak positive power imaging the stop forward into object space.
-
-**Vignetting:** Real f/1.4 lenses typically vignette significantly at full field. The SD estimates incorporate a 50% vignetting reduction of the chief ray contribution, reflecting the practical beam diameter at outer field angles.
-
-**Physical constraints enforced:**
-
-1. 52 mm filter thread → maximum front group SD ≈ 23 mm (with barrel wall)
-2. Edge thickness ≥ 0.3 mm for all elements (validated via spherical sag computation)
-3. Cross-gap sag intrusion ≤ gap × 1.1 for all air gaps
-4. sd < |R| × 0.88 for all spherical surfaces (slope limit)
-
-**Binding constraints:** The tightest constraints are the 0.45 mm air gap between L21 and L22 (S11A–S12), which limits SD at S11A and S12 to ~6.5 mm, and the 0.20 mm air gap between L12 and L13 (S4–S5), which limits SD to ~12.1 mm.
+The remaining rims sit within about 15% of the figure. Four follow it more directly: the stop at 7.6 mm (the F/1.45 iris), S11A at 8.4 mm (it must clear the 7.99 mm axial beam) and S14/S15 at 12.4 mm (the figure's triplet shoulder). An exact trace finds no full-aperture bundle that reaches the frame corner without meeting L21 outside its drawn 8.6 mm rim. That implies strong mechanical vignetting at the APS-C corner at full aperture. This is an inference from the trace; the patent gives no relative-illumination data.
 
 ---
 
@@ -234,7 +223,7 @@ The patent does not list semi-diameters. They were estimated using combined marg
 | Element | nd | νd | Glass Code | Best Match | Glass Family | APD |
 |---------|-------|------|------------|------------|--------------|-----|
 | L11 | 1.75500 | 52.3 | 755-523 | OHARA S-LAH97 | Lanthanum dense crown | No |
-| L12 | 1.80400 | 46.6 | 804-466 | OHARA S-LAH65VS | Lanthanum dense flint | No |
+| L12 | 1.80400 | 46.6 | 804-466 | OHARA S-LAH65V | Lanthanum dense flint | No |
 | L13 | 1.69895 | 30.1 | 699-301 | OHARA S-TIM35 | Titanium medium-index flint | No |
 | L14 | 1.60342 | 38.0 | 603-380 | OHARA S-TIM5 | Titanium medium-index flint | No |
 | L21 | 1.51760 | 63.5 | 518-635 | CDGM D-K59 catalog equivalent | Molding crown | No |
@@ -283,15 +272,15 @@ The patent's aspherical sag formula differs from the standard (ISO 10110 / Zemax
 | 10A | 6.3508375E-09 | -7.9573382E-09 | 4.5951622E-10 | 9.3989975E-11 | -9.7762088E-12 | -4.3352953E-13 | 7.1170331E-14 | 2.5581917E-16 | -1.6083703E-16 |
 | 11A | -3.5081942E-09 | -3.6689473E-09 | 3.8060840E-10 | 2.1235855E-11 | -5.4237286E-12 | 1.6515932E-13 | 2.1078707E-14 | -1.6918406E-15 | 3.4763829E-17 |
 
-At the selected semi-diameters, the exact profiles depart from their paraxial spheres by −1257.304 µm for S10A ($h=8.4$ mm) and −149.709 µm for S11A ($h=6.5$ mm). These values are used as regression checks against transcription errors.
+At the selected semi-diameters, the exact profiles depart from their paraxial spheres by −1257.3 µm for S10A ($h=8.4$ mm) and −383.5 µm for S11A ($h=8.4$ mm). These values are used as regression checks against transcription errors.
 
 ---
 
 ## 9. Cover Glass Treatment
 
-The patent includes a flat parallel plate (surfaces S16–S17: R = ∞, d = 2.80 mm, nd = 1.51680, νd = 64.2) between the last lens surface and the image plane, representing the sensor cover glass and any optical filters. Per the data file specification, this cover glass is excluded from the surfaces array and its optical path is folded into the BFD.
+Table 1 continues past the last lens surface with D15 = 17.00 mm of air and then a parallel plate PP (S16–S17: R = ∞, d = 2.80 mm, nd = 1.51680, νd = 64.2), representing the sensor cover glass and filters. Table 7 gives BF = 21.98 mm, which is the air-equivalent back focus: 17.00 + 2.80/1.5168 = 18.85 mm, leaving 3.13 mm of air between the plate and the image. The physical distance from S15 to the image is therefore about 22.93 mm.
 
-The paraxial BFD from S15 to the image plane is 21.98 mm regardless of whether the cover glass is present, because flat parallel plates do not refract paraxial rays (φ = 0 at both surfaces). The physical image plane shifts by Δ = t(1 − 1/n) = 2.80(1 − 1/1.5168) ≈ 0.95 mm downstream when the cover glass is inserted, but this does not affect the paraxial BFD computation.
+Following the data-file convention, the plate is excluded and the last gap stores the air-equivalent 21.98 mm. A paraxial trace without the plate gives BFD = 21.978 mm, so the stored image plane is in focus.
 
 ---
 

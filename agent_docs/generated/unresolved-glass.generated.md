@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **810** lenses scanned
 - **9063** non-air surfaces examined
 - **9073** element glass declarations examined
-- **235** non-explicit-unmatched annotations did not resolve
-- **121** distinct unresolved glass-like tokens found
+- **233** non-explicit-unmatched annotations did not resolve
+- **120** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -42,7 +42,6 @@ or per-lens patent backfills.
 | 804238 | 2 | 2 | |
 | 806418 | 2 | 2 | |
 | 807316 | 2 | 2 | |
-| 813252 | 2 | 1 | |
 | 815233 | 2 | 2 | |
 | 819287 | 2 | 2 | |
 | G2 | 2 | 1 | |
@@ -272,11 +271,6 @@ or per-lens patent backfills.
 
 - [MINOLTA AF 100mm f/2.8 Macro](../../src/lens-data/minolta/MinoltaAF100mmf28Macro.data.ts) 13: `807316 - dense lanthanum flint (patent nd=1.80741, vd=31.59; unresolved)`
 - [MINOLTA AF 35-105mm f/3.5-4.5 New (v2)](../../src/lens-data/minolta/MinoltaAF35105mmf3545v2.data.ts) 17: `807316 - high-index dense flint class (unresolved)`
-
-### 813252 — 2 occurrences
-
-- [LEICA ELMARIT-R 28mm f/2.8](../../src/lens-data/leica/LeicaElmarit28mmf28.data.ts) 6: `813252 - high-index flint (patent nd=1.81265, vd=25.24; no exact public catalog match)`
-- [LEICA ELMARIT-R 28mm f/2.8](../../src/lens-data/leica/LeicaElmarit28mmf28.data.ts) 11: `813252 - high-index flint (patent nd=1.81265, vd=25.24; no exact public catalog match)`
 
 ### 815233 — 2 occurrences
 
