@@ -169,7 +169,7 @@ For the data file, the patent's 959 mm row is followed by a constrained endpoint
 |---|---:|---:|---|
 | d11 | 7.5732 | 1.7094 | Extrapolated L2 objectward motion = 5.8638 mm |
 | d16 | 5.2496 | 8.0446 | Extrapolated L2-L3 differential = 2.7950 mm |
-| folded final air gap | 38.4492 | 41.5185 | Extrapolated L3 objectward motion = 3.0694 mm |
+| d27 (to LPF) | 36.5001 | 39.5695 | Extrapolated L3 objectward motion = 3.0694 mm |
 
 This extrapolation is not patent-published. It is included because the project data model needs a close-focus state and Sigma's published MFD/magnification should govern product metadata. The patent-grounded finite state is represented exactly; interpolation on either side is explicitly approximate.
 
@@ -225,13 +225,13 @@ That is a controlled value for a 20 mm f/1.4 full-frame retrofocus lens. The neg
 
 ## Data-File Modeling Notes
 
-The companion `.data.ts` excludes the patent's LPF plate after surface 27, as required by the project data convention. The patent's stated total track is 161.26 mm. Summing the listed distances through the 1.45 mm LPF leaves BF = 0.9970 mm. The folded air-equivalent final distance is therefore:
+The companion `.data.ts` models the patent's 1.45 mm LPF plate after surface 27 (nd 1.52301, νd 58.59) through `rearPlates`: every analysis traces it, but it is not drawn. Surface 27A keeps the patent's physical d27 to the plate. The patent prints BF only symbolically; its stated total track is 161.26 mm, and summing the listed distances through the 1.45 mm LPF leaves BF = 0.9970 mm, which is stored as the plate's gap to the image. The paraxially equivalent air-only final distance is:
 
 $$
 d_{27,air}=36.5001+\frac{1.4500}{1.52301}+0.9970=38.4492\text{ mm}
 $$
 
-A direct paraxial trace through the glass elements gives a focal distance of 38.4532 mm from the last glass vertex; the 0.004 mm difference is within the rounding implied by the patent table.
+A direct paraxial trace through the glass elements gives an air-equivalent focal distance of 38.4532 mm from the last glass vertex; the 0.004 mm difference is within the rounding implied by the patent table.
 
 The stop semi-diameter in the data file is 12.8688 mm, computed from the marketed f/1.4 nominal aperture. The patent design FNO = 1.46 would correspond to a stop semi-diameter of about 12.3400 mm. Using the marketed value is intentional: `nominalFno` represents the production lens, while `apertureDesign` records the patent value.
 
@@ -245,7 +245,7 @@ The re-review found no gross transcription error in the original prescription, b
 - Patent F-number: 1.46; production metadata uses Sigma's marketed f/1.4.
 - Group focal lengths: L1 +104.281 mm, L1f -21.645 mm, L1r +41.190 mm, G1 -85.768 mm, L2 -267.935 mm, L3 +37.059 mm.
 - Petzval sum: +4.04344E-3 mm^-1, computed surface by surface, not by thin-element approximation.
-- Air-equivalent BFD after excluding the LPF: 38.4492 mm from patent distances; paraxial best focus at 38.4532 mm.
+- Air-equivalent BFD through the LPF: 38.4492 mm from patent distances; paraxial best focus at 38.4532 mm. The physical track including the LPF is 161.26 mm.
 - Patent finite focus: about -0.0247 magnification at the tabulated 959 mm state, not the production minimum focus distance.
 - Data-file close focus: extrapolated to 0.276 m and -0.1407 magnification using the patent's L2:L3 motion ratio.
 - E15 glass: kept as non-unique/probable rather than asserted as an exact Hoya M-TAF101 match.

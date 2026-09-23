@@ -13,3 +13,13 @@ L8 uses SUMITA K-VC80(M) as a qualified dispersion proxy, improving coverage fro
 Display name reviewed against the authored manufacturer references and the existing Samyang naming convention: retained the correct AF/XP, focal length, f-number, and FE designation. Canonicalized decimal-aperture keys and patent/inventor metadata without renaming the marketed product.
 
 Validation: `audit:surface` and `audit:image-circle` pass. The project's SVG shape builder was rendered and visually compared with the patent; no surface trimming occurs at infinity. For changed prescriptions, temporary exact-ray comparisons sampled published focus rows plus 0.25/0.5/0.75, on-axis pupil fractions ±1/±0.75/0 and ±0.60 half-field pupil fractions ±0.75/±0.375/0. The retained changes introduce no additional clipping relative to the supplied data. Existing full-edge clipping is not claimed to be repaired. No per-lens snapshot test was retained.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Read Example 1 Table 1 and Table 2 (PDF page 10, native text layer): S18 D3 = 19.5; S19–S20 optical filter OF,
+  2.5 mm, nd 1.51680, νd 64.20; infinity D4 = 1.02158 to IMG (D5 = 0.00192 is post-IMG and stays excluded). The
+  patent close row's D4 = 1.15459 is not used because the file's close state is a fixed-image-plane reconstruction.
+- Surface 18 now stores the printed 19.5 mm, with `rearPlates` OF (N-BK7; 1.51680 / 64.2 is the N-BK7 class) and
+  gapAfter 1.02158 mm. Paraxial check against the previous data: EFL identical and defocus unchanged at both focus
+  states (the old 22.1697867511 was the exact fold). Physical track grows by 0.852 mm, and the close state's
+  object-to-IMG distance is now the physical 450.000 mm that `closeFocusM` 0.45 already quoted.

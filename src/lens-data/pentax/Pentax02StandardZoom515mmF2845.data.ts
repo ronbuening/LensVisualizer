@@ -17,16 +17,17 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ Focus status: CONSTRAINED_RECONSTRUCTION. The patent specifies L21/G2   ║
  * ║ as the sole focusing group and imageward motion from infinity to finite ║
  * ║ focus, but publishes no finite-focus spacing table. The close pairs      ║
- * ║ below were re-solved from this normalized active prescription to the     ║
+ * ║ below were re-solved from this active prescription to the                ║
  * ║ manufacturer's 0.3 m MFD, with G1/G3/image fixed and d7+d9 conserved.   ║
  * ║ Tele close-focus magnification is 0.057765x, consistent with the         ║
  * ║ manufacturer's rounded approximately 0.06x specification.               ║
  * ║                                                                          ║
- * ║ Rear normalization: patent OP and CG plane plates (surfaces 18-21) are  ║
- * ║ excluded. Surface 17A d is the air-equivalent distance from the final   ║
- * ║ powered surface to the same source-defined image plane:                  ║
- * ║   d17 + 0.500/1.51633 + 0.620 + 0.500/1.51633 + 0.530.                 ║
- * ║ Source rounding leaves <= 0.006 mm residual against the powered BFL.    ║
+ * ║ Rear plates: patent OP filter (surfaces 18-19) and CG cover glass          ║
+ * ║ (surfaces 20-21), each 0.500 mm, nd 1.51633, vd 64.1, are modeled in       ║
+ * ║ `rearPlates` (traced, not drawn). Surface 17A d is the patent d17          ║
+ * ║ (9.264 / 15.248 / 20.989 mm), then OP, 0.620 air, CG, and fB = 0.530       ║
+ * ║ to the image plane. Air-equivalent BF 11.073 / 17.057 / 22.798 mm;         ║
+ * ║ source rounding leaves <= 0.006 mm residual against the powered BFL.       ║
  * ║                                                                          ║
  * ║ Stop: the patent publishes the stop plane but not its diameter. STO.sd  ║
  * ║ is the inferred wide-state physical semi-diameter. Variable-aperture     ║
@@ -180,7 +181,7 @@ const LENS_DATA = {
     },
   ],
 
-  /* ── Surfaces: patent 1-17; OP and CG removed, rear spacing normalized ── */
+  /* ── Surfaces: patent 1-17; OP and CG follow in `rearPlates` ── */
   surfaces: [
     { label: "1", R: 35.132, d: 1.637, nd: 1.7725, elemId: 1, sd: 10.4 },
     { label: "2", R: 18.306, d: 0.2, nd: 1.52972, elemId: 2, sd: 9 },
@@ -198,7 +199,29 @@ const LENS_DATA = {
     { label: "14", R: -14.245, d: 2.02, nd: 1.834, elemId: 8, sd: 3.2 },
     { label: "15", R: 10.242, d: 0.271, nd: 1, elemId: 0, sd: 3.05 },
     { label: "16A", R: 13.326, d: 2.256, nd: 1.51885, elemId: 9, sd: 3.1 },
-    { label: "17A", R: -19.493, d: 11.073487050971753, nd: 1, elemId: 0, sd: 3.15 },
+    { label: "17A", R: -19.493, d: 9.264, nd: 1, elemId: 0, sd: 3.15 },
+  ],
+
+  /* ── Optical filter OP and cover glass CG (patent surfaces 18–21): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "OP",
+      thicknessMm: 0.5,
+      nd: 1.51633,
+      vd: 64.1,
+      glass: "S-BSL7",
+      gapAfterMm: 0.62,
+      source: "US 8,824,059 B2, Numerical Embodiment 1 Table 1 surfaces 18–19",
+    },
+    {
+      label: "CG",
+      thicknessMm: 0.5,
+      nd: 1.51633,
+      vd: 64.1,
+      glass: "S-BSL7",
+      gapAfterMm: 0.53,
+      source: "US 8,824,059 B2, Numerical Embodiment 1 Table 1 surfaces 20–21; Table 2 fB = 0.53",
+    },
   ],
 
   asph: {
@@ -264,21 +287,21 @@ const LENS_DATA = {
       [1.333, 1.0031203849547445],
     ],
     "17A": [
-      [11.073487050971753, 11.073487050971753],
-      [17.057487050971755, 17.057487050971755],
-      [22.798487050971758, 22.798487050971758],
+      [9.264, 9.264],
+      [15.248, 15.248],
+      [20.989, 20.989],
     ],
   },
   varLabels: [
     ["7", "D7 (ZOOM + FOCUS)"],
     ["9", "D9 (ZOOM + FOCUS)"],
-    ["17A", "BF (OP/CG-NORM)"],
+    ["17A", "D17 (TO OP)"],
   ],
   focusDescription:
     "CONSTRAINED_RECONSTRUCTION: L21/G2 alone moves imageward from infinity to the manufacturer 0.3 m MFD. " +
     "D7 increases and D9 decreases by equal amounts at each zoom position, preserving their adjacent-gap sum. " +
-    "The close pairs were re-solved on the OP/CG-normalized active prescription; the patent publishes the focus " +
-    "group and direction but no finite-focus spacing table.",
+    "The close pairs were re-solved on the active prescription (OP/CG stack air-equivalent); the patent publishes the " +
+    "focus group and direction but no finite-focus spacing table.",
 
   groups: [
     { text: "G1 (-)", fromSurface: "1", toSurface: "7" },

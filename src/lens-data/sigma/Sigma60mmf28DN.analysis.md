@@ -45,9 +45,9 @@ G1 provides the main front collection and carries the front cemented chromatic-c
 
 The architecture is not a telephoto lens in the strict TL/EFL sense. Its physical patent track from surface 1 to image, including the camera-side filter plate, is 74.02 mm against f = 60.00 mm, so TL/EFL ≈ 1.23. It is better described as a compact short telephoto or double-Gauss-derived medium-telephoto design, not as a true telephoto formula.
 
-The patent includes a rear plane-parallel filter F at surfaces 16–17 and states that this plate is not part of G3; it is an IR-cut, low-pass, or similar camera-side filter selected according to the imaging device (¶0051). The data file therefore excludes that filter and folds its optical path into the last air-equivalent back distance:
+The patent includes a rear plane-parallel filter F at surfaces 16–17 and states that this plate is not part of G3; it is an IR-cut, low-pass, or similar camera-side filter selected according to the imaging device (¶0051). The data file models that filter through `rearPlates` (2.2000 mm, nd 1.51680, νd 64.20, then BF 1.0000 mm): every analysis traces it, but it is not drawn, and surface 15 keeps the patent's 23.0700 mm gap to the filter. Its paraxial air-equivalent back distance is
 
-$$d_{15,data}=23.0700+\frac{2.2000}{1.51680}+1.0000=25.5204\,\text{mm}.$$
+$$d_{15,\text{air-eq}}=23.0700+\frac{2.2000}{1.51680}+1.0000=25.5204\,\text{mm}.$$
 
 ## Element-by-Element Analysis
 

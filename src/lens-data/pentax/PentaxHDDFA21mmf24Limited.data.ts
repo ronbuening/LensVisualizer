@@ -6,9 +6,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * Source: JP 2022-117775 A, Numerical Example 1 (Ricoh Company, Ltd.).
  * Infinity-focus prescription, 11 elements / 8 groups, four aspherical surfaces.
  *
- * The patent lists a 1.5 mm cover-glass plate after surface 20. Per project
- * convention, that sensor-cover plate is excluded from the surfaces array and
- * folded into the final air-equivalent BFD: 38.340 + 1.500 / 1.51633 = 40.3293 mm.
+ * The patent lists a 1.5 mm parallel plate CG (surfaces 21–22, nd 1.51633,
+ * νd 64.1) after surface 20. It is modeled in `rearPlates` (traced, not drawn);
+ * surface 20 keeps the patent's 38.340 mm gap to the plate. Table 1 prints no
+ * gap after surface 22 ("-"); the 1.00 mm plate-to-image gap is derived from
+ * Table 3 BF 40.33 (air-equivalent: 40.33 − 38.340 − 1.500/1.51633 = 1.00),
+ * matching the paraxial focus (air-equivalent BFD 40.3293 mm) and L = 115.34.
  *
  * Semi-diameters are conservative renderer estimates derived from the design
  * f/2.45 stop, marginal ray trace, full-frame field, and edge/gap checks. The
@@ -229,7 +232,21 @@ const LENS_DATA = {
     { label: "17", R: -31.29, d: 1.2, nd: 2.001, elemId: 10, sd: 15.2 },
     { label: "18", R: -181.145, d: 1.35, nd: 1, elemId: 0, sd: 15.7 },
     { label: "19A", R: 117.398, d: 6.35, nd: 1.497, elemId: 11, sd: 17.1 },
-    { label: "20A", R: -24.237, d: 40.3293, nd: 1, elemId: 0, sd: 18.7 },
+    // Last surface: patent gap to the parallel plate CG
+    { label: "20A", R: -24.237, d: 38.34, nd: 1, elemId: 0, sd: 18.7 },
+  ],
+
+  /* ── Parallel plate CG (patent Table 1 surfaces 21–22): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "CG",
+      thicknessMm: 1.5,
+      nd: 1.51633,
+      vd: 64.1,
+      glass: "S-BSL7",
+      gapAfterMm: 1.0,
+      source: "JP 2022-117775 A, Example 1 Table 1 surfaces 21–22; 1.00 mm to image derived from Table 3 BF 40.33",
+    },
   ],
 
   asph: {

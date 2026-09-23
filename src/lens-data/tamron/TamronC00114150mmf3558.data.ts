@@ -17,8 +17,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ - The optically active s7 hybrid-asphere resin layer is retained as a separate      ║
  * ║   modeling material entry (L4r). elementCount remains the 17 physical lenses;       ║
  * ║   elements[] therefore contains 18 material entries including L4r.                  ║
- * ║ - Rear plane-parallel plate s37-s38 is omitted. Surface 36 uses the documented      ║
- * ║   air-equivalent rear spacing 11 + 4.2/1.5168 + 1 = 14.768987341772153 mm.         ║
+ * ║ - Rear plane-parallel plate s37-s38 (4.2000 mm, nd 1.51680, vd 64.20) and the      ║
+ * ║   1.0000 mm air gap to the image are modeled in `rearPlates` (traced, not drawn).   ║
+ * ║   Surface 36 keeps the patent's 11.0000 mm gap to the plate.                        ║
  * ║                                                                                      ║
  * ║ ZOOM / FOCUS                                                                          ║
  * ║ - zoomPositions are the patent Table 11 values 14.43 / 57.85 / 145.40 mm.          ║
@@ -342,8 +343,20 @@ const LENS_DATA = {
     { label: "33", R: -18.5559, d: 0.9, nd: 1.80518, elemId: 17, sd: 9.0 },
     { label: "34", R: -28.5021, d: 1.03, nd: 1.0, elemId: 0, sd: 9.0 },
     { label: "35", R: -152.2485, d: 2.3543, nd: 1.72916, elemId: 18, sd: 11.2 },
-    // Rear s37-s38 plate omitted; d is air-equivalent distance from source s36 to the image plane.
-    { label: "36", R: -38.5471, d: 14.768987341772153, nd: 1.0, elemId: 0, sd: 11.2 },
+    // Last surface: patent gap from s36 to the rear plate (s37-s38 in rearPlates).
+    { label: "36", R: -38.5471, d: 11.0, nd: 1.0, elemId: 0, sd: 11.2 },
+  ],
+
+  /* ── Rear plane-parallel plate (patent Table 9 surfaces 37–38): traced, not drawn ── */
+  rearPlates: [
+    {
+      thicknessMm: 4.2,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 1.0,
+      source: "US 2014/0347522 A1, Example 3 Table 9 surfaces 37–38",
+    },
   ],
 
   asph: {

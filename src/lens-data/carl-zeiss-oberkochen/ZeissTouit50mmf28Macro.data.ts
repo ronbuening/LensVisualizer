@@ -10,9 +10,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  Focus: floating inner focus; G2 moves imageward, G4 and G5 move objectward.       ║
  * ║                                                                                      ║
  * ║  NOTE ON COVER GLASS:                                                                ║
- * ║    The patent's PP plate (surfaces 27-28, nd = 1.51680, d = 1.22 mm) is sensor-    ║
- * ║    side cover glass and is excluded per project convention. Its optical path is     ║
- * ║    folded into the final BFD: 1.00 + 1.22 / 1.51680 + 22.81 = 24.6143248945 mm.    ║
+ * ║    The patent's PP plate (surfaces 27-28, d = 1.22 mm, nd = 1.51680, νd = 64.20)     ║
+ * ║    and the trailing 22.81 mm air gap are modeled physically in `rearPlates`          ║
+ * ║    (traced, not drawn). Surface 26 stores the patent's 1.00 mm gap to the plate.     ║
  * ║                                                                                      ║
  * ║  NOTE ON ASPHERES:                                                                   ║
  * ║    Surfaces 4A and 7A carry the patent's exact odd/even coefficients (A3-A15,       ║
@@ -256,7 +256,20 @@ const LENS_DATA = {
     { label: "23", R: -47.2254, d: 1.33, nd: 1.51742, elemId: 13, sd: 8.8 },
     { label: "24", R: 1e15, d: 1.48, nd: 1.0, elemId: 0, sd: 10.0 },
     { label: "25", R: 297.4201, d: 2.58, nd: 1.67003, elemId: 14, sd: 11.7 },
-    { label: "26", R: -68.6822, d: 24.6143248945, nd: 1.0, elemId: 0, sd: 11.7 },
+    { label: "26", R: -68.6822, d: 1.0, nd: 1.0, elemId: 0, sd: 11.7 }, // patent d26 to the PP plate
+  ],
+
+  /* ── Optical member PP (patent surfaces 27–28): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PP",
+      thicknessMm: 1.22,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 22.81,
+      source: "JP 2015-161792 A, Example 1 Table 1 surfaces 27–28",
+    },
   ],
 
   asph: {

@@ -15,3 +15,12 @@ The companion analysis reflects these dispositions. Marketed names remain distin
 Retained source Table 1 effective diameters and Figure 1 optical outlines. Verified L11–L34 labels, four aspheric surfaces on two elements, and G2 +9.84 mm imageward travel to the published 0.45 m endpoint. All 14 elements have compatible catalog spectral curves; corrected stale Abbe-only analysis wording. No patent APD or proprietary ED/XA identification is inferred from Abbe number alone.
 
 Assignee audit: source-era Schneider names are consolidated as `Jos. Schneider & Co., Optische Werke`; the later GmbH & Co. KG remains distinct. Sony Group Corporation is retained for these source-era filings, separately from older Sony Corporation patents. No additional duplicate assignee spelling was found.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Read Example 1 Table 1 on PDF p. 24 (printed p. 22): surface 26(ASP) d = 13.61; surfaces 27–28 are the plate GC,
+  2.50 mm, nd 1.51680, νd 64.2 (φ 48.00, not stored as `sd`); 28 → 29(IMG) is 1.00 mm. The gap is fixed in focus.
+- Surface 26A now stores the patent's 13.61 mm, with `rearPlates` GC (N-BK7, exact 1.51680 / 64.2 class match) and
+  gapAfter 1.00 mm. Paraxial check against the previous data: EFL identical; defocus unchanged at both focus states
+  (the old 16.25820675105485 fold was exact). Physical track grows by 0.852 mm to the Table 1 sum of 113.98 mm
+  (Table 2 prints L = 114.00).

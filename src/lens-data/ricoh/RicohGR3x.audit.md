@@ -24,3 +24,12 @@ Patent: US 2022/0026670 A1
 ## 2026-09-09 — First-added audit, lens34
 
 Original Table3 PDFp32 and Figure3 PDFp4 at600dpi reviewed. BF16.478→16.0012818714 uses 1.40/1.51633 equivalent air for the excluded filter. Unlisted post-filter0.70mm remains explicitly reconstructed (matrix confirms within0.000029mm), not published. Near BF20.38→20.8564680966 solves assumed20cm unit focus; nominal aperture2.8→2.87. All radii, glass coordinates, isolated FLs and published asphere coefficients retained. S2radius24.908 remains an inferred malformed-row repair; S12 spherical fallback remains unresolved. Header and focus description disclose assumptions. SDs retained within drawing tolerance; surface/image-circle/no-hidden-trim checks pass. L5TaC6 identity replaced by compatible J-LASKH2. Other names are explicitly patent-listed; unsupported processing/chemistry claims removed. Correction to June log: actual Pg,F values for L2/L6 are0.6009/0.5631; existing runtime dPgF values already correct. Production baseline inspected; local infinity/near/half-slider, f/16 and motion-chart review completed (BF16.00→20.86mm, half18.43mm, travel4.86mm, stopped-down stop1.32mm). Three regression tests pass; batch gates pending.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Replaced the air-equivalent 13A gap with the physical rear stack from Table 3 (PDF p. 32, rendered page): d13 =
+  14.378 mm, then the "various filters" plate 1.40 mm, nd 1.51633, νd 64.14 (no θgF printed), glass S-BSL7
+  (catalog-compatible). d15 is not printed; `gapAfterMm` 0.70 mm is the earlier paraxial-focus reconstruction, kept so
+  the file's image plane is unchanged. Close-focus gap 19.2331862252 mm = legacy 20.8564680966 − 1.40/1.51633 − 0.70.
+- Paraxial check against the previous data: EFL identical; defocus unchanged at both focus keyframes (worst difference
+  3e-15 mm). Physical track grows by 0.477 mm (t(1 − 1/n)) to 32.938 mm, consistent with the source L/f = 1.264.

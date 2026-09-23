@@ -14,10 +14,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    combined marginal + chief ray trace at f/2.86 with 60%          ║
  * ║    field fraction and ~5–10% mechanical clearance.                 ║
  * ║                                                                    ║
- * ║  COVER GLASS CONVENTION:                                           ║
- * ║    Patent filter F (surfaces 16–17, nd = 1.52301, d = 1.2 mm)     ║
- * ║    excluded. Air-equivalent path folded into BFD on surface 15:    ║
- * ║    BFD = 1.0 + 1.2/1.52301 + 4.93 ≈ 6.72 mm.                     ║
+ * ║  FILTER F:                                                         ║
+ * ║    Patent filter F (surfaces 16–17: d = 1.2 mm, nd = 1.52301,      ║
+ * ║    νd = 58.59, then 4.93 mm to the image) is modeled in            ║
+ * ║    `rearPlates` (traced, not drawn); surface 15 keeps the          ║
+ * ║    patent d15 = 1.0 mm to the filter.                              ║
  * ║                                                                    ║
  * ║  CLOSE-FOCUS EXTRAPOLATION:                                        ║
  * ║    Patent ∞ and 1000 mm states are exact keyframes. Close gap      ║
@@ -26,7 +27,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
  * ║    ✓ Aperture stop and variable focus gaps                        ║
- * ║    ✗ DO NOT include: sensor glass, filters, mechanical parts      ║
+ * ║    ✗ DO NOT include: mechanical parts (cover glass: `rearPlates`) ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -158,7 +159,7 @@ const LENS_DATA = {
 
   /* ── Surface prescription ──
    *  Patent surfaces 1–15, with S4 → STO and S9 → 9A (aspherical).
-   *  Filter F (patent S16–S17) excluded; air-equivalent BFD on S15.
+   *  Filter F (patent S16–S17) is in `rearPlates`; S15 keeps the patent d15.
    */
   surfaces: [
     /* ── G1A: L1 + L2 cemented doublet ── */
@@ -182,7 +183,20 @@ const LENS_DATA = {
     { label: "12", R: -12.38, d: 0.9, nd: 1.53172, elemId: 7, sd: 7.3 },
     { label: "13", R: -1000.0, d: 0.15, nd: 1.0, elemId: 0, sd: 7.5 },
     { label: "14", R: 63.82, d: 4.55, nd: 1.91082, elemId: 8, sd: 7.6 },
-    { label: "15", R: -49.1, d: 6.72, nd: 1.0, elemId: 0, sd: 8.3 },
+    { label: "15", R: -49.1, d: 1.0, nd: 1.0, elemId: 0, sd: 8.3 },
+  ],
+
+  /* ── Filter F (patent surfaces 16–17): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "F",
+      thicknessMm: 1.2,
+      nd: 1.52301,
+      vd: 58.59,
+      glass: "C12 (HOYA)",
+      gapAfterMm: 4.93,
+      source: "JP 2013-156459 A, Numerical Example 4 surfaces 16–17",
+    },
   ],
 
   /* ── Aspherical coefficients ──

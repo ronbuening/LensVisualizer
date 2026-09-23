@@ -56,3 +56,13 @@ Patent: JP 2019-117419 A, Numerical Example 1
 - Visually rechecked Example 1 in local `patents/JP2019117419A.pdf`; E15 remains `1.76450 / 49.10`.
 - OHARA's 2026-07-01 catalog publishes low-softening L-LAH91 at the same coordinate with vendor Sellmeier coefficients.
 - Relabeled E15 as an L-LAH91 catalog equivalent while leaving Sigma's production supplier unspecified. No geometry changed.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Replaced the air-equivalent 27A gap with the patent's physical rear stack (Numerical Example 1, rendered p. 10):
+  d27 = 36.5001 / 37.0527 mm (infinity / tabulated 959 mm state), then the LPF (surfaces 28–29) 1.4500 mm, nd 1.52301,
+  νd 58.59 (no θgF printed; C12 (HOYA) coordinate-compatible proxy), and BF 0.9970 mm. BF is printed only as a symbol,
+  so it stays derived from the stated 161.26 mm total track. The extrapolated close keyframe keeps its image plane:
+  d27 = 41.518534 − 1.4500/1.52301 − 0.9970 = 39.569472 mm.
+- Paraxial check against the previous data: EFL identical and defocus unchanged (worst |Δ| 3.5e-8 mm) at all three
+  focus keyframes. Physical track grows by 0.498 mm and now matches the patent's 161.26 mm.

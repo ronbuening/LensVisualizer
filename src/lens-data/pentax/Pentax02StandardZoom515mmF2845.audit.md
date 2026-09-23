@@ -24,3 +24,13 @@ Patent: US 8,824,059 B2, Numerical Embodiment 1
 - Confirmed coefficient-backed catalog dispersion for five of nine materials. The compound resin and the three
   explicitly unmatched patent coordinates remain on the Abbe fallback because no unique public coefficient source
   supports a stronger classification.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Replaced the air-equivalent 17A spacing with Table 1 (PDF p. 35) and Table 2 (PDF p. 36): d17 = 9.264 / 15.248 /
+  20.989 mm, then OP 0.500 mm, 0.620 mm air, CG 0.500 mm (both nd 1.51633, νd 64.1, S-BSL7 class), and fB = 0.53 mm to
+  the image. The legacy value d17 + 2 × 0.500/1.51633 + 0.620 + 0.530 reproduces the old 11.073487 / 17.057487 /
+  22.798487 mm exactly.
+- Paraxial check against the previous data: EFL and defocus identical at all three zoom stations and both focus
+  keyframes; the constrained close pairs and source-quoted 0.3 m MFD are unchanged. Physical track grows by 0.341 mm,
+  2 × 0.500 (1 − 1/1.51633).

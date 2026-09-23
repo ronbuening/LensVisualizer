@@ -234,7 +234,7 @@ All four values fall within both the broad and tightened ranges specified in the
 
 **Expression (1)** governs the balance between compactness and exit-angle control. At $f_1/f = 0.775$, G1 carries enough power to keep the total length short without creating excessively steep exit angles that would reduce sensor sensitivity at the corners.
 
-**Expression (2)** controls the ratio of back focal distance to G2's axial thickness. At $0.562$, there is adequate space behind G2 for the IR-cut filter and cover glass ($BF_{\text{air-equiv}} \approx 6.7$ mm) without making G2 so thick that it adds unnecessary length.
+**Expression (2)** controls the ratio of back focal distance to G2's axial thickness. At $0.562$, there is adequate space behind G2 for the IR-cut filter and cover glass ($BF_{\text{air-equiv}} \approx 6.7$ mm) without making G2 so thick that it adds unnecessary length. Physically that back focus is the patent's $1.00$ mm gap, the $1.20$ mm filter F ($n_d = 1.52301$, $\nu_d = 58.59$), and $4.93$ mm to the image; the data file models filter F through `rearPlates`, so every analysis traces it, but it is not drawn.
 
 **Expression (3)** balances the power split within G1 between the sub-groups flanking the stop. At $f_{1A}/f_{1B} = 1.306$, G1A is weaker than G1B, which biases the system toward better image-side telecentricity (since G1B, being closer to G2, has more influence on the exit ray geometry).
 
