@@ -357,11 +357,13 @@ FIG. 3 draws the rear of L1 as a gentle curve that meets the front of L2 at abou
 
 ### Cover Glass Handling
 
-The patent's parallel flat plate F (surfaces 14–15: nd = 1.51680, d = 1.40 mm glass + 0.50 mm air to image) is excluded from the data file's surface array. Its optical effect is folded into the last surface's thickness as the air-equivalent back focal distance:
+The patent's parallel flat plate F (surfaces 14–15: nd = 1.51680, νd = 64.20, d = 1.40 mm glass + 0.50 mm air to image) is modeled in the data file's `rearPlates` field. Every analysis traces it, but the diagram does not draw it. The last surface S13 keeps the patent's physical 12.756 mm gap to the plate front. The table leaves surface 15's D blank, so the 0.50 mm plate-to-image gap comes from ¶[0045], which puts the plate about 0.5 mm in front of the image. The glass is labeled HOYA BSC7, the catalog class that matches 1.51680 / 64.2; the patent itself names it only "FILTER".
+
+The paraxial equivalent of this stack is an air-equivalent back focal distance of
 
 BFD_air-eq = 12.756 + 1.40/1.51680 + 0.50 = 14.179 mm
 
-where 12.756 mm is the patent's geometric distance from S13 to the filter front, 1.40/1.51680 = 0.923 mm is the air-equivalent thickness of the filter glass, and 0.50 mm is the air gap from filter rear to image plane.
+where 1.40/1.51680 = 0.923 mm is the air-equivalent thickness of the filter glass. The physical S1-to-image track is 15.64 + 12.756 + 1.40 + 0.50 = 30.30 mm, the patent's L.
 
 ### Stop Position
 
@@ -377,11 +379,11 @@ The conic constant convention matches the standard sag equation used by the rend
 
 Since the lens uses unit focusing, only the back focal distance changes with focus. The data file encodes this as a single variable gap on the last surface:
 
-- `var["13A"] = [14.179, 15.481]` — infinity and calculated close focus
-- The close value is a paraxial unit-focus extension of 1.302mm, which focuses at a 0.30m object-to-image distance (the GR's normal-mode MFD)
+- `var["13A"] = [12.756, 14.058]` — physical S13-to-plate gap at infinity and calculated close focus
+- The close value is a paraxial unit-focus extension of 1.302mm, which focuses at a 0.30m object-to-image distance (the GR's normal-mode MFD) when measured over the air-equivalent track; over the physical track, with plate F, the same extension is about 0.30m + 0.48mm
 - `closeFocusM` is 0.30m. The 0.10m macro mode is not modeled, because the patent tabulates no finite-focus state at all.
 
-The paraxial image of the infinity prescription falls 0.0003mm from the stored back focus. That confirms the filter-plus-0.50mm-air folding of the patent's back focus.
+The paraxial image of the infinity prescription, traced through plate F, falls 0.0003mm from the image plane. That confirms the patent's 12.756mm gap, the 1.40mm plate and the 0.50mm air gap to the image.
 
 ### Numerical Precision
 

@@ -23,3 +23,13 @@ Patent: US 9,784,950 B2, Numerical Embodiment 1
 - Normalized the structured patent assignee from all caps to `Ricoh Imaging Company, Ltd.`, resolving the metadata
   convention test failure.
 - Confirmed coefficient-backed catalog dispersion on all 14 glass elements; no new glass row is required.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Replaced the air-equivalent surface-25 gap with the physical rear stack from Table 1 / Table 2 (PDF p. 33): optical
+  filter OP (surfaces 26–27) t = 1.05 mm, nd 1.51633, νd 64.1, OHARA S-BSL7 class; d25 prints 9.28 and fB
+  0.56 / 0.55 / 0.53. `rearPlates` holds one fixed trailing gap (0.56, wide fB), and the file's previously verified
+  paraxial image plane is kept, so d25 = 9.277 / 9.272 / 9.244 mm carries the 0.03 mm fB variation and table rounding.
+- Plate check against the previous data: EFL identical and paraxial defocus unchanged at every zoom station and focus
+  keyframe (worst |Δ| 3.6e-15). Physical track grows by 1.05 × (1 − 1/1.51633) = 0.358 mm. Surface validation and the
+  image-circle audit pass.

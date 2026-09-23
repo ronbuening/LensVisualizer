@@ -39,7 +39,7 @@ The aperture stop is adjacent to the image side of G1 and remains fixed during f
 
 The important mechanical choice is the G2 focus group. G2 consists of the L3+L4 cemented doublet plus L5. It advances 3.480 mm toward the object from infinity to the 240 mm state; G1, the aperture stop, and G3 stay fixed. This makes the moving group small enough for a compact stepping-motor mechanism while retaining a short close-focus distance (¶0074-¶0076, ¶0088-¶0092, ¶0105).
 
-The patent includes a plane-parallel filter F between G3 and the image plane and states that its axial position between G3 and the image plane does not affect aberrations (¶0106). In the companion data file, this plate is excluded per project convention and folded into the final air-equivalent gap: 16.3216 + 2.5000 / 1.51633 + 2.0000 = 19.9703 mm.
+The patent includes a plane-parallel filter F between G3 and the image plane and states that its axial position between G3 and the image plane does not affect aberrations (¶0106). In the companion data file, this plate (2.5000 mm, nd 1.51633, νd 64.14, OHARA S-BSL7 class) is modeled in `rearPlates`: it is traced by every analysis but not drawn, surface 16 keeps the patent's 16.3216 mm gap to the plate, and BF = 2.0000 mm follows it. Its paraxial air-equivalent is 16.3216 + 2.5000 / 1.51633 + 2.0000 = 19.9703 mm.
 
 ## Element-by-Element Analysis
 
@@ -189,12 +189,12 @@ Independent paraxial tracing gives:
 - Infinity EFL = 43.92695 mm, matching the patent's 43.93 mm.
 - Group focal lengths: G1 = 98.791 mm, G2 = 22.677 mm, G3 = -39.365 mm, G12 = 24.393 mm, and G23 = 54.897 mm.
 - Patent filter-included BFL after surface 18 = 2.00062 mm from the rounded prescription, matching the tabulated BF = 2.0000 mm within rounding.
-- Air-equivalent data-file final gap after surface 16 = 19.9703 mm after folding the plane-parallel filter out of the optical list.
+- Data-file final gap after surface 16 = 16.3216 mm (patent d16) to the filter plate, which is stored in `rearPlates`; the paraxial air-equivalent of the rear distance is 19.9703 mm.
 - Stop effective diameter = 12.90 mm, so the data-file stop semi-diameter is 6.45 mm. Imaging the stop through G1 gives an entrance-pupil diameter of about 15.11 mm and an F-number of 2.91, matching the patent's F2.90.
 - Close-focus finite-conjugate trace at d0 = 172.6297 mm gives magnification -0.25096.
 - Surface-by-surface Petzval sum Σφ/(n·n′) = +2.9707E-03 mm^-1, corresponding to a Petzval-radius magnitude of about 337 mm. The rear negative group contributes the principal negative Petzval balancing term.
 
-For this transcription, the patent effective-diameter column is treated as a full clear diameter, the data file stores semi-diameters, and the patent filter plate is excluded from the `.data.ts` surfaces and folded into the final air-equivalent spacing. L1 is classified as a high-index medium-dispersion moldable glass near the crown/flint boundary rather than as a crown glass.
+For this transcription, the patent effective-diameter column is treated as a full clear diameter, the data file stores semi-diameters, and the patent filter plate is modeled physically in `rearPlates` (traced, not drawn) rather than in the `surfaces` list. L1 is classified as a high-index medium-dispersion moldable glass near the crown/flint boundary rather than as a crown glass.
 
 ## Sources
 

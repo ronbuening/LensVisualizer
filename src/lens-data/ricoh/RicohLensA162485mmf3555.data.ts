@@ -12,13 +12,17 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ This model uses nd=1.77030, the OHARA L-LAH87 catalog value; that correction║
  * ║ independently restores the patent focal lengths and conditional results.    ║
  * ║                                                                              ║
- * ║ Rear-plane normalization: patent virtual filter/cover plates 22-25 are      ║
- * ║ omitted. Surface 21 d is the air-equivalent distance to FP, including their ║
- * ║ reduced-thickness effect and the independently recovered ~0.500063 mm gap. ║
+ * ║ Rear plates: patent virtual filter/cover plates F (surfaces 22-25: 0.70 mm   ║
+ * ║ nd 1.53770 / νd 66.60, 1.50 mm air, 0.70 mm nd 1.50000 / νd 64.00) are       ║
+ * ║ modeled in `rearPlates` (traced, not drawn); surface 21 d is the physical    ║
+ * ║ gap E to the first plate. The patent prints no surface-25 gap to FP: the     ║
+ * ║ 0.500027 mm trailing gap is derived, not printed, from the previous          ║
+ * ║ Gaussian image plane, and mid/tele E carry +0.00003 / +0.00008 mm so that    ║
+ * ║ plane is unchanged. Physical track grows by 0.478 mm over the folded form.   ║
  * ║                                                                              ║
  * ║ Zoom: five power groups move; the stop moves with Group IV. GII and GIII    ║
  * ║ reverse physical direction around the intermediate state. Variable gaps:    ║
- * ║ s3=A, s9=B, s11=C, s17=D, s21=air-equivalent BFD.                          ║
+ * ║ s3=A, s9=B, s11=C, s17=D, s21=E (gap to plate F).                            ║
  * ║                                                                              ║
  * ║ Focus status: CONSTRAINED_RECONSTRUCTION. The patent publishes GIII-only   ║
  * ║ focusing but no finite-distance table. Close-focus pairs model 0.25 m from ║
@@ -237,7 +241,28 @@ const LENS_DATA = {
     { label: "18A", R: 19.8852, d: 5.3, nd: 1.58913, elemId: 10, sd: 10.8 },
     { label: "19A", R: -22.74438, d: 0.1, nd: 1.0, elemId: 0, sd: 10.8 },
     { label: "20", R: 53.58387, d: 0.8, nd: 1.90366, elemId: 11, sd: 9.2 },
-    { label: "21", R: 18.67841, d: 30.304129130519772, nd: 1.0, elemId: 0, sd: 9.2 },
+    { label: "21", R: 18.67841, d: 27.38221, nd: 1.0, elemId: 0, sd: 9.2 }, // E var — gap to plate F
+  ],
+
+  /* ── Virtual filter/cover plates F (patent surfaces 22–25): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "F",
+      thicknessMm: 0.7,
+      nd: 1.5377,
+      vd: 66.6,
+      gapAfterMm: 1.5,
+      source: "US 2012/0307375 A1, Embodiment 3 table surfaces 22–23",
+    },
+    {
+      label: "F",
+      thicknessMm: 0.7,
+      nd: 1.5,
+      vd: 64.0,
+      gapAfterMm: 0.500027,
+      source:
+        "US 2012/0307375 A1, Embodiment 3 table surfaces 24–25; gap to FP derived, not printed (previous Gaussian image plane)",
+    },
   ],
 
   /* ── Aspherical coefficients ── */
@@ -323,9 +348,9 @@ const LENS_DATA = {
       [1.65001, 1.65001],
     ],
     "21": [
-      [30.304129130519772, 30.304129130519772],
-      [42.583038149609486, 42.583038149609486],
-      [54.73814753692398, 54.73814753692398],
+      [27.38221, 27.38221],
+      [39.661119, 39.661119],
+      [51.816229, 51.816229],
     ],
   },
   varLabels: [
@@ -333,7 +358,7 @@ const LENS_DATA = {
     ["9", "B / G2-G3 + focus"],
     ["11", "C / G3-STO + focus"],
     ["17", "D / G4-G5"],
-    ["21", "BF / air-equivalent"],
+    ["21", "E / G5-plate F"],
   ],
 
   /* ── Group annotations ── */

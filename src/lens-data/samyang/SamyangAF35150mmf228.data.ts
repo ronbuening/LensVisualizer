@@ -14,15 +14,15 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  Patent Fno: 2.07 / 2.63 / 2.90; nominal UI values use marketed F2-2.8. ║
  * ║  Special surfaces: 6A, 30A, 31A, 40A, 41A.                              ║
  * ║                                                                          ║
- * ║  Zoom variable gaps: D5, D12, D18, BF.                                  ║
+ * ║  Zoom variable gaps: D5, D12, D18, D41.                                 ║
  * ║  Focus variable gaps: D31 and D33 around the single-element Gm3 focus   ║
  * ║  group. D31 increases and D33 decreases by the same amount at each zoom ║
  * ║  position, so the focus group translates as a rigid body.               ║
  * ║                                                                          ║
  * ║  Sensor cover-glass note: patent surfaces 42-44 describe a 2.5 mm       ║
- * ║  sensor cover/filter plate plus residual image-plane spacing. They are  ║
- * ║  excluded from this file per project convention; their air-equivalent   ║
- * ║  path is folded into surface 41A's BF variable.                         ║
+ * ║  plate (nd 1.5168, νd 64.1973) and 0.5031 - 0.0031 = 0.5 mm of air to   ║
+ * ║  IMG. The plate is modeled in `rearPlates` (traced, not drawn); 41A     ║
+ * ║  stores the patent's physical D41 gap to the plate.                     ║
  * ║                                                                          ║
  * ║  Semi-diameter note: the patent does not publish clear apertures.       ║
  * ║  Semi-diameters here are conservative renderer estimates constrained by ║
@@ -354,7 +354,20 @@ const LENS_DATA = {
     { label: "38", R: 166.714, d: 3.25, nd: 1.8081, elemId: 21, sd: 14.0 },
     { label: "39", R: -166.714, d: 5.364, nd: 1.0, elemId: 0, sd: 13.8 },
     { label: "40A", R: -25.946, d: 1.9, nd: 1.5848, elemId: 22, sd: 12.7 },
-    { label: "41A", R: -83.237, d: 14.749, nd: 1.0, elemId: 0, sd: 12.7 },
+    // Last surface: patent D41, physical gap to the cover plate
+    { label: "41A", R: -83.237, d: 12.602, nd: 1.0, elemId: 0, sd: 12.7 },
+  ],
+
+  /* ── Sensor cover plate (patent Table 7 surfaces 42–44): traced, not drawn ── */
+  rearPlates: [
+    {
+      thicknessMm: 2.5,
+      nd: 1.5168,
+      vd: 64.1973,
+      glass: "N-BK7",
+      gapAfterMm: 0.5,
+      source: "US 2025/0231383 A1, embodiment 100-3 Table 7 surfaces 42–44 (0.5031 − 0.0031 mm to IMG)",
+    },
   ],
 
   /* ── Aspherical surfaces ── */
@@ -439,9 +452,9 @@ const LENS_DATA = {
       [11.269, 3.7],
     ],
     "41A": [
-      [14.749, 14.749],
-      [29.911, 29.911],
-      [37.521, 37.521],
+      [12.602, 12.602],
+      [27.764, 27.764],
+      [35.374, 35.374],
     ],
   },
   varLabels: [
@@ -450,7 +463,7 @@ const LENS_DATA = {
     ["18", "D18"],
     ["31A", "D31"],
     ["33", "D33"],
-    ["41A", "BF"],
+    ["41A", "D41"],
   ],
 
   /* ── Diagram annotations ── */

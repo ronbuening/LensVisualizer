@@ -24,3 +24,13 @@
 
 - Reviewed the official product styling and project naming convention. The display name
   `PANASONIC LUMIX S PRO 24-70mm f/2.8` is already correct and was retained.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Read Numerical Example 1 on PDF pages 22–23 (printed sheets 10–11) at 160 dpi: Table 1 surfaces 38–39 are the
+  parallel plate P (patent: image-sensor cover glass or UV-IR cut filter), 2.10000 mm, nd 1.51680,
+  νd 64.2; Table 3A prints BF 1.00000 and d37 18.9162 / 28.9895 / 38.2108 mm, fixed during focus (Table 3E).
+- D37 now stores those physical gaps at every zoom station and focus keyframe, with `rearPlates` P (N-BK7,
+  1.51680 / 64.2 resolves in the catalog) and gapAfter 1.0 mm. Paraxial check against the previous data: EFL identical
+  and defocus unchanged at all six states (the old fold used the exact 2.1/1.5168 value). Physical track grows by
+  0.7155 mm and now equals the patent's total lens length 157.4997 / 164.5424 / 181.8628 mm.

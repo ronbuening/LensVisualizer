@@ -17,15 +17,16 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    cross-gap sag intrusion < 90% at all gaps.  82 mm filter       ║
  * ║    thread constrains front element SD ≈ 37 mm.                    ║
  * ║                                                                    ║
- * ║  NOTE ON COVER GLASS:                                              ║
- * ║    Patent surfaces 25–26 (filter FL: 2.5 mm, nd = 1.5168)         ║
- * ║    excluded; air-equivalent BFD folded into surface 24             ║
- * ║    (20.543 mm vs. patent 17.895 mm physical).                     ║
+ * ║  NOTE ON FILTER:                                                   ║
+ * ║    Patent Table 1 surfaces 25–26 (filter FL, 2.5 mm, nd 1.51680,   ║
+ * ║    νd 64.20) and the 1.0 mm air gap to IMG are modeled in          ║
+ * ║    `rearPlates` (traced, not drawn). Surface 24 keeps the          ║
+ * ║    patent's 17.8946 mm gap to the filter.                          ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
  * ║    ✓ Aperture stop and variable focus gaps                        ║
- * ║    ✗ DO NOT include: sensor glass, filters, mechanical parts      ║
+ * ║    ✗ DO NOT include: mechanical parts (cover glass: `rearPlates`)  ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -254,7 +255,20 @@ const LENS_DATA = {
     { label: "21", R: -38.95, d: 1.29, nd: 1.51742, elemId: 12, sd: 14.5 }, // G11→G12 junction
     { label: "22", R: 278.8445, d: 5.0, nd: 1.0, elemId: 0, sd: 14.0 }, // G12 rear → air
     { label: "23", R: -51.8751, d: 1.28, nd: 1.8919, elemId: 13, sd: 13.5 }, // G13 front
-    { label: "24", R: -292.7369, d: 20.5428, nd: 1.0, elemId: 0, sd: 13.5 }, // G13 rear → IMG (air-equiv BFD)
+    { label: "24", R: -292.7369, d: 17.8946, nd: 1.0, elemId: 0, sd: 13.5 }, // G13 rear → filter FL
+  ],
+
+  /* ── Filter FL (patent Table 1 surfaces 25–26): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "FL",
+      thicknessMm: 2.5,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 1.0,
+      source: "WO 2019/187633 A1, Example 1 Table 1 surfaces 25–26",
+    },
   ],
 
   /* ── Aspherical coefficients ── */

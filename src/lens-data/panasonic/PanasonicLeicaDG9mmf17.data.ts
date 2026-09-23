@@ -18,7 +18,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
  * ║    ✓ Aperture stop and variable focus gaps                        ║
- * ║    ✗ DO NOT include: sensor glass, filters, mechanical parts      ║
+ * ║    ✗ DO NOT include: mechanical parts (cover glass: `rearPlates`) ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -202,8 +202,9 @@ const LENS_DATA = {
    *  25 patent surfaces → 22 data-file surfaces after folding three
    *  UV-curable resin cement layers (nd = 1.56732, d ≈ 0.01 mm each)
    *  into the preceding element thickness.
-   *  Cover glass (nd = 1.51680, d = 4.20 mm) excluded; air-equivalent
-   *  BFD folded into the last surface d value.
+   *  Cover glass (patent surfaces 26–27, nd = 1.51680, t = 4.20 mm) is
+   *  modeled in `rearPlates` below (traced, not drawn); the last surface d
+   *  is the physical patent gap d25 = 10.43 mm to the cover glass.
    */
   surfaces: [
     // ── G1A: Negative front group (L1–L6) ──
@@ -236,7 +237,19 @@ const LENS_DATA = {
 
     // ── G3: Field corrector (L12) ──
     { label: "20", R: 157.2184, d: 2.7252, nd: 1.62299, elemId: 12, sd: 7.5 },
-    { label: "21", R: -29.5709, d: 14.199, nd: 1.0, elemId: 0, sd: 7.5 }, // BFD incl. air-equiv CG
+    { label: "21", R: -29.5709, d: 10.43, nd: 1.0, elemId: 0, sd: 7.5 }, // d25: physical gap to cover glass
+  ],
+
+  /* ── Cover glass (patent surfaces 26–27): traced, not drawn ── */
+  rearPlates: [
+    {
+      thicknessMm: 4.2,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 1.0,
+      source: "US 2023/0367186 A1, Example 1 Table 1A surfaces 26–27",
+    },
   ],
 
   /* ── Aspherical coefficients ──

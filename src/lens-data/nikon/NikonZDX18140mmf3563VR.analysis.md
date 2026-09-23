@@ -35,7 +35,7 @@ The analysis that follows is based on Example 1 (第1実施例, Table 1), which 
 
 The design is a five-group zoom with a positive–negative–positive–negative–negative power distribution (G1 through G5: +/−/+/−/−). This is a variant of the mechanically compensated high-ratio zoom architecture common in consumer superzooms, descended from designs pioneered by Tamron and Konica Minolta in the early 2000s (the patent cites JP 2014-228808 as prior art).
 
-The system comprises 17 glass elements (plus two thin resin layers forming the aspherical departures) distributed across five zoom-movable groups and totaling 35 optical surfaces (excluding the cover glass PP). The zoom ratio is 7.33× at the design level, slightly below the marketed 7.8× figure which accounts for rounding of the tele-end focal length from 135.8 mm to 140 mm.
+The system comprises 17 glass elements (plus two thin resin layers forming the aspherical departures) distributed across five zoom-movable groups and totaling 33 numbered surfaces including the aperture stop (Table 1 surfaces 34–35 are the cover glass PP). The zoom ratio is 7.33× at the design level, slightly below the marketed 7.8× figure which accounts for rounding of the tele-end focal length from 135.8 mm to 140 mm.
 
 **Group roles:**
 
@@ -181,7 +181,7 @@ nd = 1.84666, νd = 23.80. Glass: SF57 (Schott) — dense flint with very high d
 
 L52 is a positive meniscus concave to the object (R₁ = −502.457, R₂ = −52.880) that partially cancels L51's negative power while providing strong chromatic correction at the rear of the system. The very high dispersion (νd = 23.80) makes L52 an effective color corrector despite its moderate positive power. The use of a Schott glass rather than OHARA in this position is notable; SF57 provides an exact nd match (1.84666) that no current OHARA catalog entry replicates at this dispersion level. The L51–L52 pair together form G5 with a combined focal length of −89.4 mm — the weakest negative group in the system. G5 does not participate in focusing; its variable gap D33 changes only with zoom.
 
-Behind G5, a parallel plate cover glass PP (nd = 1.51680 / S-BSL7, thickness 1.600 mm) represents the sensor protective glass; it is excluded from the optical prescription in the data file per project convention, with its optical path folded into the back focal distance.
+Behind G5, a parallel plate cover glass PP (nd = 1.51680, νd = 64.14, S-BSL7 class, thickness 1.600 mm) represents the sensor protective glass. The data file models it in `rearPlates`: every analysis traces it, but the diagram does not draw it. D33 stores the patent's physical gap to the plate (8.272 / 18.869 / 33.216 mm), followed by the plate and 1.000 mm of air to the image plane. The air-equivalent back focus, D33 + 1.600/1.51680 + 1.000, reproduces the patent's printed Bf of 10.327 / 20.923 / 35.271 mm.
 
 ---
 

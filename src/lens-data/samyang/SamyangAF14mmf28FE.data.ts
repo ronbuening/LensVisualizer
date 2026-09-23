@@ -11,12 +11,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ and TL=0.2 m. The middle focusT coordinate is the normalized published focus-   ║
  * ║ distance coordinate 0.2/0.516934471 = 0.386896234, not a reconstructed state.   ║
  * ║                                                                                  ║
- * ║ The optional plane-parallel rear optical element (patent surfaces 26-27,          ║
- * ║ t=2.500 mm, n=1.51680) is excluded. Its optical thickness is replaced by         ║
- * ║ 2.500/1.51680 = 1.648206751 mm of air. Because patent D4 + D5 = 0.500000 mm in   ║
- * ║ every focus state and D5 is a trailing image/reference bookkeeping coordinate,   ║
- * ║ the model uses the fixed normalized rear spacing                                 ║
- * ║ D3 + 2.500/1.51680 + (D4 + D5) = 24.808206751 mm and does not author D5.         ║
+ * ║ The plane-parallel rear optical element (patent surfaces 26-27, t=2.500 mm,      ║
+ * ║ nd=1.51680, vd=64.20) is modeled physically in `rearPlates` (traced, not drawn). ║
+ * ║ Surface 25 stores patent D3 = 22.66 mm, fixed in every focus state. Patent D4    ║
+ * ║ and D5 vary, but D4 + D5 = 0.500000 mm in every state and D5 is a trailing       ║
+ * ║ image/reference bookkeeping coordinate, so the plate's gapAfterMm is that fixed  ║
+ * ║ sum, 0.500 mm (derived from printed D4/D5, not printed as one value).            ║
  * ║                                                                                  ║
  * ║ Semi-diameters: patent H-Ape values are used verbatim on 5A (18.04 mm) and 6A   ║
  * ║ (15.21 mm). The remaining clear apertures are modeled from exact meridional ray  ║
@@ -271,7 +271,21 @@ const LENS_DATA = {
     { label: "22A", R: -12.535, d: 0.1, nd: 1.0, elemId: 0, sd: 8.0 },
     { label: "23", R: -18.801, d: 0.9, nd: 1.782, elemId: 13, sd: 8.4 },
     { label: "24", R: 14.403, d: 7.65, nd: 1.497, elemId: 14, sd: 9.8 },
-    { label: "25", R: -40.628, d: 24.80820675105485, nd: 1.0, elemId: 0, sd: 9.8 },
+    { label: "25", R: -40.628, d: 22.66, nd: 1.0, elemId: 0, sd: 9.8 }, // patent D3 to the rear plate
+  ],
+
+  /* ── Rear optical element OD1 (patent surfaces 26-27): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "OD1",
+      thicknessMm: 2.5,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 0.5,
+      source:
+        "KR 10-1933088 B1, Example 1 Table 1 surfaces 26-27 (p. 12); gapAfter = Table 3 D4 + D5 = 0.500000 mm in every state (derived, not printed)",
+    },
   ],
 
   asph: {
@@ -358,7 +372,7 @@ const LENS_DATA = {
 
   closeFocusM: 0.2,
   focusDescription:
-    "PUBLISHED inner focus: G21 translates imageward while G11 and G31 remain fixed; infinity, MAG=-1/30, and TL=0.2 m D1/D2 states are retained. The omitted rear plate is folded into a fixed air-equivalent rear datum, and D5 is not modeled as a signed gap.",
+    "PUBLISHED inner focus: G21 translates imageward while G11 and G31 remain fixed; infinity, MAG=-1/30, and TL=0.2 m D1/D2 states are retained. The 2.500 mm rear plate is traced (not drawn) at fixed D3 = 22.66 mm with the fixed D4 + D5 = 0.500 mm trailing gap; D5 is not modeled as a signed gap.",
 
   nominalFno: 2.8676723004254447,
   fstopSeries: [2.8676723004254447, 4, 5.6, 8, 11, 16, 22],

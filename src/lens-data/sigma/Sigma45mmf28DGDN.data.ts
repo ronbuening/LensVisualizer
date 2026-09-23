@@ -21,17 +21,17 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    effective diameter / 2.                                          ║
  * ║                                                                    ║
  * ║  NOTE ON FILTER / SENSOR GLASS:                                    ║
- * ║    Patent surfaces 17-18 are a plane-parallel filter plate         ║
- * ║    (d = 2.5000 mm, nd = 1.51633) followed by BF = 2.0000 mm.       ║
- * ║    Per project convention this filter is excluded from the         ║
- * ║    surfaces array and folded into the final air-equivalent gap:    ║
- * ║    d16 = 16.3216 + 2.5000 / 1.51633 + 2.0000 = 19.9703 mm.        ║
+ * ║    Patent surfaces 17-18 are a plane-parallel filter plate F       ║
+ * ║    (d = 2.5000 mm, nd 1.51633, νd 64.14, PgF 0.5353) followed by   ║
+ * ║    BF = 2.0000 mm. It is modeled in `rearPlates` (traced, not      ║
+ * ║    drawn); surface 16 keeps the patent d16 = 16.3216 mm to the     ║
+ * ║    plate (paraxial air-equivalent: 19.9703 mm).                    ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces from front element to image plane║
  * ║    ✓ Aperture stop and variable focus gaps                         ║
- * ║    ✗ Does not include sensor glass, filter glass, barrel, mount,  ║
- * ║      actuator, hood, or aperture blade mechanics                  ║
+ * ║    ✗ Does not include barrel, mount, actuator, hood, or aperture  ║
+ * ║      blade mechanics (filter plate F: `rearPlates`)               ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -190,7 +190,21 @@ const LENS_DATA = {
     { label: "13", R: -19.7354, d: 0.8, nd: 1.75211, elemId: 7, sd: 10.935 },
     { label: "14", R: -29.9543, d: 0.15, nd: 1.0, elemId: 0, sd: 11.83 },
     { label: "15", R: 95.8651, d: 2.5968, nd: 1.98612, elemId: 8, sd: 14.1 },
-    { label: "16", R: -580.7065, d: 19.9703, nd: 1.0, elemId: 0, sd: 14.36 },
+    { label: "16", R: -580.7065, d: 16.3216, nd: 1.0, elemId: 0, sd: 14.36 },
+  ],
+
+  /* ── Filter F (patent surfaces 17–18): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "F",
+      thicknessMm: 2.5,
+      nd: 1.51633,
+      vd: 64.14,
+      glass: "S-BSL7 (OHARA)",
+      dPgF: -0.00062,
+      gapAfterMm: 2.0,
+      source: "JP 2019-211703 A, Numerical Example 1 surfaces 17–18 (patent PgF 0.5353, BF 2.0000)",
+    },
   ],
 
   asph: {

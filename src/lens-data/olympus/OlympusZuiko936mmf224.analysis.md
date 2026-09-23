@@ -34,7 +34,7 @@ The zoom gaps at wide, middle, and telephoto positions are:
 
 The sum of those five variable spaces is 50.478 mm at wide, 50.466 mm at middle, and 50.487 mm at telephoto, confirming an effectively constant lens-to-prism-front track. The first-surface-to-prism-front track is 105.346 mm at wide. The full patent physical track including the prism, filter, cover glass, and final image distance is 135.006 mm at wide.
 
-The accompanying data file includes the powered lens and the 24.0 mm prism. It intentionally omits the filter plate and sensor cover glass, because the data specification excludes filters and sensor glass. The patent post-prism train is d28 = 1.000 mm air, d29 = 1.570 mm filter glass (nd = 1.54771), d30 = 1.000 mm air, d31 = 0.800 mm cover glass (nd = 1.52300), plus L = 1.290 mm to the image plane. From the rounded table this section is 4.8297 mm on an air-equivalent basis; the data file uses 4.8248 mm after the prism because that value re-closes the paraxial focus with the simplified flat-glass model.
+The accompanying data file includes the powered lens and the 24.0 mm prism as surfaces. The patent post-prism train is d28 = 1.000 mm air, d29 = 1.570 mm filter glass (nd = 1.54771, νd = 62.84), d30 = 1.000 mm air, d31 = 0.800 mm cover glass (nd = 1.52300, νd = 55.00), plus L = 1.290 mm to the image plane. The filter plate and cover glass are modeled in `rearPlates` with the printed 1.000 mm and 1.290 mm air after them: every analysis traces them, but they are not drawn. From the rounded table this post-prism section is 4.8297 mm on an air-equivalent basis; the paraxial image plane that re-closes focus with the rounded table sits at 4.8248 mm air-equivalent, so the data file stores 0.9951 mm (instead of the printed 1.000 mm) after the prism to keep that image plane.
 
 ## Element-by-Element Analysis
 
@@ -130,7 +130,7 @@ At the inferred semi-diameter of 12.4 mm, the polynomial departure of surface 26
 
 nd = 1.51633, νd = 64.14. Glass: path-splitter prism glass, patent-listed 516/641 class. Paraxial power = 0.
 
-The 24.0 mm flat prism is included in the rendered data file because it is a substantial part of the optical path and explains the long rear distance. It has no paraxial power. The filter and sensor cover plates behind it are not modeled as separate surfaces in the data file; the post-prism flat train is folded into the final air distance as described above.
+The 24.0 mm flat prism is included in the rendered data file because it is a substantial part of the optical path and explains the long rear distance. It has no paraxial power. The filter and sensor cover plates behind it are modeled in `rearPlates` (traced, not drawn), as described above.
 
 ## Glass Identification and Selection
 
@@ -229,7 +229,7 @@ Independent paraxial verification was performed from the transcribed Example 1 p
 | G4 focal length | +24.59 mm | — |
 | Petzval sum | +0.000306 mm^-1 | — |
 
-Tracing the full rounded patent table with L = 1.290 mm leaves only a few microns of residual paraxial focus error, which is consistent with the published rounding. The data-file simplification folds the omitted filter, cover glass, intervening air gaps, and final image distance into a post-prism air distance of 4.8248 mm.
+Tracing the full rounded patent table with L = 1.290 mm leaves only a few microns of residual paraxial focus error, which is consistent with the published rounding. The data file keeps the re-closed image plane: 0.9951 mm air after the prism, then the `rearPlates` filter plate and cover glass with the printed 1.000 mm and 1.290 mm air, 4.8248 mm on an air-equivalent basis.
 
 Patent table errata used in the transcription are: nd11 is printed without the leading 1; νd12 is printed with a spurious minus sign; νd13 is printed with a spurious leading 3; and the condition (2) correspondence value for Example 1 omits multiplication by fw.
 

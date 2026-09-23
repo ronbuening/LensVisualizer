@@ -32,3 +32,13 @@ Patent: WO 2019/187633, Example 1
 - Updated L14 from `apd: false` to `apd: "inferred"` for the S-FPM2 ED fluorophosphate class; the patent publishes nd/vd only for that element.
 - Updated L21 from `apd: "inferred"` to `apd: "patent"` because the existing note cites patent condition (3), theta-gF = 0.660, for the anomalous flint.
 - Current generated glass reports show no active Sony catalog-mismatch row for this lens.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Read Example 1 Table 1 on PDF page 17 (printed page 17) at 160 dpi: surface 24 d = 17.8946; surfaces 25–26 are the
+  filter FL (¶0111), 2.5000 mm, nd 1.51680, νd 64.20; 26 → IMG is 1.0000 mm. 17.8946 + 2.5/1.5168 + 1.0 = 20.5428
+  reproduces the legacy folded value exactly. Glass N-BK7 (1.51680 / 64.2 class; `resolveCompatibleGlass` true).
+- Surface 24 now stores the patent's 17.8946 mm with `rearPlates` FL and gapAfter 1.0 mm. Paraxial check against the
+  previous data: EFL identical; defocus changes by ≤ 0.00001 mm at all three focus keyframes (rounding only).
+- Physical track grows by 0.852 mm to 145.0 mm, matching the patent's Table 3 L = 145. `closeFocusM` (0.7 m) is
+  Sony's published value and is unchanged.
