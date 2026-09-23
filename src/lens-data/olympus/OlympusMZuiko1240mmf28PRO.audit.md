@@ -66,3 +66,9 @@ Catalog version: ab3a508
 - Paraxial check against the previous data: EFL identical at all three zoom stations; defocus changes by 0.00055 mm at
   every station and focus keyframe (the old 15.997 rounded up the exact 15.99645 fold). Physical track grows by
   1.3615 mm; `closeFocusM` 0.2 is the manufacturer MFD and is unchanged.
+
+## 2026-09-23 — Variable-gap label corrected
+
+- `varLabels` named the G4–G5 gap (surface 21, d21) "BF". That gap is the focus-compensating space between G4 and the
+  stationary G5, not the back focus, so the slider readout is now labelled "D21", matching the patent and the analysis
+  focus table. The back focus (d24 to cover glass C, then 0.8 mm) is fixed and has no slider.
