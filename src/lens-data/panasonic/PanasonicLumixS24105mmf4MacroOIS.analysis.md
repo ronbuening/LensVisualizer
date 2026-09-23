@@ -207,13 +207,13 @@ The data therefore uses a **CONSTRAINED_RECONSTRUCTION** rather than presenting 
 
 | State | D27 at infinity | D27 at close | D29 at infinity | D29 at close | G4 imageward travel | Computed magnification |
 |---|---:|---:|---:|---:|---:|---:|
-| Wide | 1.800000 mm | 3.394494 mm | 16.125000 mm | 14.530506 mm | 1.594494 mm | 0.129901× |
-| Middle | 2.620000 mm | 7.221741 mm | 14.555000 mm | 9.953259 mm | 4.601741 mm | 0.258551× |
-| Telephoto | 1.800000 mm | 15.469691 mm | 29.640000 mm | 15.970309 mm | 13.669691 mm | 0.492597× |
+| Wide | 1.800000 mm | 3.400518 mm | 16.125000 mm | 14.524482 mm | 1.600518 mm | 0.130385× |
+| Middle | 2.620000 mm | 7.239460 mm | 14.555000 mm | 9.935540 mm | 4.619460 mm | 0.259507× |
+| Telephoto | 1.800000 mm | 15.522694 mm | 29.640000 mm | 15.917306 mm | 13.722694 mm | 0.494313× |
 
-The telephoto reconstruction differs from the source checkpoints by −0.090309 mm in travel and −0.007403× in magnification. Those residuals are consistent with normalization of the finite-index adhesive layers and the air-equivalent rear spacing used in the solve, the source prescription's limited decimal precision, and the patent's rounded 0.5× statement. The wide and middle close-focus states are model solutions, not published patent states.
+The telephoto reconstruction differs from the source checkpoints by −0.037306 mm in travel and −0.005687× in magnification. Those residuals are consistent with normalization of the finite-index adhesive layers, the source prescription's limited decimal precision, and the patent's rounded 0.5× statement. The wide and middle close-focus states are model solutions, not published patent states.
 
-The reconstruction was solved to a 300 mm object-to-image-plane distance at each sampled focal state, matching the patent's reference plane and Panasonic's sensor-plane minimum-focus specification. The solve used the earlier air-equivalent rear spacing, whose object-to-image track is 0.715506 mm shorter than the physical track that now includes plate P; the stored close-focus gaps were not re-solved when the plate moved into `rearPlates`. The data does not infer additional floating groups or an undocumented focus cam law between the defined endpoints.
+The reconstruction was solved to a 300 mm object-to-image-plane distance at each sampled focal state, matching the patent's reference plane and Panasonic's sensor-plane minimum-focus specification. The solve traces plate P physically, so the object sits 300 mm in front of the stored image plane on the patent's printed physical track, and the paraxial image of that object falls on the image plane (defocus below 1e-9 mm) in all three close states. The gaps were re-solved on 2026-09-23 after the plate moved into `rearPlates`; the earlier solve had used the 0.715506 mm shorter air-equivalent track. The data does not infer additional floating groups or an undocumented focus cam law between the defined endpoints.
 
 ## Aspherical Surfaces
 
@@ -276,9 +276,9 @@ The patent defines five principal conditions for balancing close-focus travel, f
 | (2) $T_{35w}/TL_w$ | $0.05 < x < 0.20$ | 0.142 | 0.142087 | Pass |
 | (3) $\nu_d(LG5F)$ | $x > 65$ | 81.6 | 81.6 | Pass |
 | (4) $|f_4|/f_t$ | $0.30 < x < 0.70$ | 0.474 | 0.473924 | Pass |
-| (5) $|d_F|/f_t$ | $0.05 < x < 0.30$ | 0.137 | 0.135924 | Pass |
+| (5) $|d_F|/f_t$ | $0.05 < x < 0.30$ | 0.137 | 0.136451 | Pass |
 
-For condition (5), using the patent-published 13.76 mm travel with the normalized telephoto EFL gives 0.136822; using the reconstructed 13.669691 mm travel gives the tabulated 0.135924. Both remain comfortably inside the claimed interval.
+For condition (5), using the patent-published 13.76 mm travel with the normalized telephoto EFL gives 0.136822; using the reconstructed 13.722694 mm travel gives the tabulated 0.136451. Both remain comfortably inside the claimed interval.
 
 ## Image Stabilization
 

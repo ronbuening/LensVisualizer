@@ -228,15 +228,15 @@ The glass names remain coordinate equivalents without a production supplier clai
 
 The patent specifies rear internal focusing by G5: the fifth lens group moves toward the image side when focus changes from infinity toward the nearest object (¶0076). It does not publish numerical close-focus spacings. Fujifilm specifies a production minimum focus distance of **1.75 m measured from the image plane** and a maximum reproduction ratio of **0.19x at the telephoto end**.
 
-The data file therefore uses the focus status **`CONSTRAINED_RECONSTRUCTION`**. Only G5 moves. At every authored zoom position, D29 increases and D34 decreases by exactly the same amount, conserving `D29 + D34` and preserving the one-degree-of-freedom translation implied by the patent mechanism. The close-focus state is code-solved (it was solved with PP folded into an air-equivalent D36, which is paraxially identical to the plate stack); it is not a patent-published spacing table.
+The data file therefore uses the focus status **`CONSTRAINED_RECONSTRUCTION`**. Only G5 moves. At every authored zoom position, D29 increases and D34 decreases by exactly the same amount, conserving `D29 + D34` and preserving the one-degree-of-freedom translation implied by the patent mechanism. The close-focus state is code-solved; it is not a patent-published spacing table. The solve traces the PP plates physically, so the object sits 1.75 m in front of the stored image plane on the physical track, and its paraxial image falls on that plane (defocus below 1e-13 mm) at every zoom state. The spacings were re-solved on 2026-09-23 after PP moved into `rearPlates`; the earlier solve had used the 0.993 mm shorter air-equivalent track.
 
 | Zoom state | G5 imageward shift | D29 infinity → close | D34 infinity → close |
 | --- | ---: | ---: | ---: |
-| 102.873 mm | 1.589403 mm | 7.202000 → 8.791403 mm | 5.165000 → 3.575597 mm |
-| 178.159 mm | 4.099677 mm | 7.574000 → 11.673677 mm | 17.208000 → 13.108323 mm |
-| 387.872 mm | 14.851319 mm | 2.343000 → 17.194319 mm | 27.898000 → 13.046681 mm |
+| 102.873 mm | 1.590362 mm | 7.202000 → 8.792362 mm | 5.165000 → 3.574638 mm |
+| 178.159 mm | 4.102068 mm | 7.574000 → 11.676068 mm | 17.208000 → 13.105932 mm |
+| 387.872 mm | 14.859735 mm | 2.343000 → 17.202735 mm | 27.898000 → 13.038265 mm |
 
-Independent paraxial verification of the final TypeScript arrays gives an absolute telephoto magnification of **0.188532x** at the modeled 1.75 m object distance, close to Fujifilm's rounded 0.19x specification. This agreement is a validation of the constrained model, not evidence that the reconstructed spacing row was published by Fujifilm or by the patent.
+Independent paraxial verification of the final TypeScript arrays gives an absolute telephoto magnification of **0.188621x** at the modeled 1.75 m object distance, close to Fujifilm's rounded 0.19x specification. This agreement is a validation of the constrained model, not evidence that the reconstructed spacing row was published by Fujifilm or by the patent.
 
 Fujifilm describes the production autofocus system as linear-motor driven. The motor mechanism is product metadata rather than part of the optical prescription and is not represented by additional optical surfaces.
 
@@ -324,7 +324,7 @@ The second pass enlarged S16–S18 from 12.2 to 14.8 mm, S19–S21 from 11.2 to 
 below the figure outlines: 13.5 mm gives negative L3D edge thickness; 11.2 mm gives negative L4D edge thickness.
 These are clear optical rims, not mechanical blanks. The earlier first-pass rim table remains a record of that pass.
 
-Focus is correctly infinity-to-close: only G5 moves imageward, +1.589403 mm wide and +14.851319 mm tele.
+Focus is correctly infinity-to-close: only G5 moves imageward, +1.590362 mm wide and +14.859735 mm tele (values after the 2026-09-23 re-solve).
 From wide to tele, camera-frame group shifts are G1 −59.061, G2 +2.593, G3 −24.535, G4 −11.614, G5 −16.473,
 and G6 +6.260 mm. G2 reaches +7.897 mm and G6 +7.195 mm at the middle keyframe before reversing.
 The original ordered zoom/focus spacing arrays agree with Table 3 and Fig. 1; no reversal or reordering is needed.

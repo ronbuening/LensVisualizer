@@ -28,7 +28,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ - Focus status: CONSTRAINED_RECONSTRUCTION. Patent Table 12 is an approximately     ║
  * ║   1.0 m subject-to-image state, not the production 0.5 m MOD. The close pairs here  ║
  * ║   are code-solved for 0.5 m subject-to-image distance with G4 as the only focus     ║
- * ║   group, preserving the published mechanism constraint.                              ║
+ * ║   group, preserving the published mechanism constraint. Re-solved 2026-09-23 with   ║
+ * ║   the rear plate traced physically, so 0.5 m is measured to the stored image plane. ║
  * ║ - G3 and G5 share one zoom track. G4 reverses relative motion with respect to G3.   ║
  * ║ - Source discrepancy retained in audit: paragraph 0096 says G2 moves imageward      ║
  * ║   W->T, while Table 11 sensor-fixed geometry requires 3.7597 mm objectward motion.   ║
@@ -413,14 +414,14 @@ const LENS_DATA = {
       [1.7, 1.7],
     ],
     "28": [
-      [1.4374, 1.610542183445229],
-      [6.0872, 7.5038201232408905],
-      [3.6419, 9.49816160712323],
+      [1.4374, 1.6110744051830532],
+      [6.0872, 7.508402913928238],
+      [3.6419, 9.514974971429059],
     ],
     "32": [
-      [12.1029, 11.92975781655477],
-      [7.4531, 6.03647987675911],
-      [9.8984, 4.042138392876771],
+      [12.1029, 11.929225594816947],
+      [7.4531, 6.031897086071762],
+      [9.8984, 4.025325028570942],
     ],
     "34": [
       [1.03, 1.03],
@@ -456,7 +457,7 @@ const LENS_DATA = {
 
   closeFocusM: 0.5,
   focusDescription:
-    "CONSTRAINED_RECONSTRUCTION: production 0.5 m subject-to-image-plane MOD solved by translating G4 only; D28 + D32 is conserved at each zoom position. Patent Table 12 itself represents an approximately 1.0 m subject-to-image state.",
+    "CONSTRAINED_RECONSTRUCTION: production 0.5 m subject-to-image-plane MOD solved by translating G4 only, with the rear plate traced physically; D28 + D32 is conserved at each zoom position. Patent Table 12 itself represents an approximately 1.0 m subject-to-image state.",
 
   nominalFno: [3.6909409460450076, 5.387525251923575, 5.9052849086316925],
   fstopSeries: [3.5, 4, 5.6, 8, 11, 16, 22],

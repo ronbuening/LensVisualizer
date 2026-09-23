@@ -14,8 +14,9 @@ import type { LensDataInput } from "../../types/optics.js";
  *
  * Focus status: CONSTRAINED_RECONSTRUCTION. The patent publishes infinity-focus zoom spacings but no
  * close-focus table. G5 alone is translated imageward to the maker's 1.75 m minimum focus distance,
- * conserving D29 + D34 at each zoom state. The close-focus pairs below were solved in the project model
- * (with PP then folded into BF; paraxially identical to the plate stack); they are not patent-published spacings.
+ * conserving D29 + D34 at each zoom state. The close-focus pairs below are project reconstructions, not
+ * patent-published spacings. They were re-solved on 2026-09-23 with PP traced physically, so an object 1.75 m
+ * in front of the image plane is in paraxial focus on the stored image plane at every zoom state.
  *
  * Stop size: the patent does not publish a physical stop diameter. The three published f/F No. pairs
  * imply paraxial stop semi-diameters of 9.045284, 9.045848, and 9.074770 mm;
@@ -477,14 +478,14 @@ const LENS_DATA = {
       [24.28, 24.28],
     ],
     "29": [
-      [7.202, 8.791402526648897],
-      [7.574, 11.67367734335348],
-      [2.343, 17.194318909606018],
+      [7.202, 8.792362435881087],
+      [7.574, 11.676068221060385],
+      [2.343, 17.202735007397106],
     ],
     "34": [
-      [5.165, 3.575597473351104],
-      [17.208, 13.10832265664652],
-      [27.898, 13.046681090393982],
+      [5.165, 3.5746375641189134],
+      [17.208, 13.105931778939613],
+      [27.898, 13.038264992602894],
     ],
     "36": [
       [36.048, 36.048],
@@ -526,7 +527,7 @@ const LENS_DATA = {
 
   closeFocusM: 1.75,
   focusDescription:
-    "CONSTRAINED_RECONSTRUCTION: G5 alone moves imageward to 1.75 m; D29 increases and D34 decreases by equal amounts at each zoom state. Close-focus spacings are code-solved (paraxially unchanged by the PP rear plates), not patent-published.",
+    "CONSTRAINED_RECONSTRUCTION: G5 alone moves imageward to 1.75 m; D29 increases and D34 decreases by equal amounts at each zoom state. Close-focus spacings are code-solved for a 1.75 m object-to-image distance with the PP rear plates traced physically, not patent-published.",
 
   nominalFno: [4.614445088540655, 4.784521400670022, 5.791672588725861],
   fstopSeries: [4.5, 5.6, 8, 11, 16, 22],
