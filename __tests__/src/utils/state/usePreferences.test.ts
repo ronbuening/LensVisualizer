@@ -35,7 +35,7 @@ describe("usePreferences — initial write", () => {
     renderHook(() => usePreferences(state));
     const raw = localStorage.getItem(PREFS_KEY)!;
     const parsed = JSON.parse(raw) as Record<string, unknown>;
-    expect(parsed.v).toBe(2);
+    expect(parsed.v).toBe(3);
   });
 });
 

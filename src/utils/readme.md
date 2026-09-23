@@ -56,7 +56,7 @@ flowchart LR
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
-| `appConfig.ts` | App Config helper module | none | src/utils/state | DEFAULT_COLOR_TRACING |
+| `appConfig.ts` | App Config helper module | none | src/utils/state | DEFAULT_COLOR_TRACING, DEFAULT_RAY_TRACKS_FOCUS |
 | `chunkLoadRetry.ts` | Chunk Load Retry helper module | none | src/router.tsx, src/utils/catalog | loadChunkWithReload |
 | `errorBeacon.ts` | Error Beacon helper module | none | src/components/errors (3), src/main.tsx | sanitizeErrorMessage, errorBeaconKey, reportErrorBeacon, installGlobalErrorBeacons, resetErrorBeaconSessionForTests |
 | `errorReporting.ts` | Error Reporting helper module | none | src/components/errors | REPO_URL, buildIssueURL |
