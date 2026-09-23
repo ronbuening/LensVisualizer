@@ -319,6 +319,13 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.7,
+  finiteConjugates: [{
+    focusT: 1,
+    zoomT: 0,
+    objectDistanceMm: 576.6736,
+    distanceReference: "first-surface",
+    source: "US20210294073A1, Example 1, ¶0084 and Tables 1/3: 700 mm to the physical image plane minus 123.3264 mm summed physical track = 576.6736 mm to the first vertex; DD4=1.932 mm, DD15=16.728 mm. The model omits PP and uses air-equivalent back focus.",
+  }],
   focusDescription: "Inner focus: G2 (L21–L26 + stop) moves toward object. G1 and G3 fixed. DC motor with GMR sensor.",
 
   /* ── Aperture configuration ── */

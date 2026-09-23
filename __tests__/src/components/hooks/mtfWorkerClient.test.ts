@@ -48,7 +48,7 @@ describe("MTF worker lifecycle", () => {
     const pending = client.compute(job);
     port.reply({ id: 1, result });
     expect(await pending).toEqual(result);
-    expect(await client.compute(job)).toBe(result);
+    expect(await client.compute(job)).toEqual(result);
     expect(port.messages).toHaveLength(2);
     const changed = client.compute({ ...job, options: { ...job.options, stopSemiDiameterMm: 0.8 } });
     port.reply({ id: 2, result });
@@ -71,6 +71,25 @@ describe("MTF worker lifecycle", () => {
     expect(ports[0].terminated).toBe(true);
     ports[1].reply({ id: 3, result });
     expect(await current).toEqual(result);
+    client.dispose();
+  });
+  it("evicts retained payloads and keeps caller mutations out of cached calculations", async () => {
+    const port = new Port();
+    const bytes = (JSON.stringify(result).length + JSON.stringify(job).length) * 2 + 1024;
+    const client = new MtfWorkerClient(L.data, () => port, bytes + 50);
+    const first = client.compute(job);
+    port.reply({ id: 1, result });
+    await first;
+    const copy = await client.compute(job);
+    copy.fields[0].sagittal[0] = 0.123;
+    expect((await client.compute(job)).fields[0].sagittal[0]).toBe(result.fields[0].sagittal[0]);
+    const changed = client.compute({ ...job, options: { ...job.options, spectrum: "cdf" } });
+    port.reply({ id: 2, result });
+    await changed;
+    const evicted = client.compute(job);
+    expect(port.messages).toHaveLength(4);
+    port.reply({ id: 3, result });
+    expect(await evicted).toEqual(result);
     client.dispose();
   });
   it("does not cache results beyond its byte budget and reports worker errors", async () => {

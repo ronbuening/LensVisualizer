@@ -138,6 +138,13 @@ export default function MtfTab({
         · Physical stop radius {currentPhysStopSD.toFixed(2)} mm · Zoom {(preparedState.zoomT * 100).toFixed(0)}% · One
         fixed image plane
       </p>
+      <p style={{ color: t.muted }}>
+        {support.conjugate
+          ? `Finite object: ${support.conjugate.objectDistanceMm.toFixed(1)} mm from ${support.conjugate.distanceReference === "image-plane" ? "the image plane" : "the first surface"}.`
+          : preparedState.focusT === 0
+            ? "Object at infinity."
+            : "Finite conjugate is not established at this setting."}
+      </p>
       {method === "geometric" && (
         <p>Geometric MTF excludes diffraction. It can overestimate contrast near the diffraction limit.</p>
       )}
@@ -164,6 +171,7 @@ export default function MtfTab({
       <details>
         <summary>Model assumptions</summary>
         <p>{support.message}</p>
+        {support.conjugate && <p>Conjugate source: {support.conjugate.source}</p>}
         <ul>
           {support.limitations.map((text) => (
             <li key={text}>{text}</li>

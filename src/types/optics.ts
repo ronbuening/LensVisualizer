@@ -295,6 +295,16 @@ export interface OpticalConfigurationData {
   order: number;
 }
 
+/** Explicit source-backed finite configuration; interpolation never establishes a new conjugate. */
+export interface FiniteConjugate {
+  focusT: number;
+  zoomT: number;
+  objectDistanceMm: number;
+  distanceReference: "first-surface" | "image-plane";
+  /** Publication/embodiment/table or other evidence establishing both distance and focus spacings. */
+  source: string;
+}
+
 /** Complete lens data object (after defaults merging) */
 export interface LensData {
   /** Optional UTC publication timestamp for a replacement model; otherwise derived from Git history. */
@@ -346,6 +356,7 @@ export interface LensData {
   varLabels?: [string, string][];
   /** Normalized focusT coordinates for each authored focus thickness; defaults to [0, 1]. */
   focusPositions?: number[];
+  finiteConjugates?: FiniteConjugate[];
   groups?: AnnotationData[];
   doublets?: AnnotationData[];
   zoomPositions?: number[];

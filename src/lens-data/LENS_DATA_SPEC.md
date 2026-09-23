@@ -975,6 +975,22 @@ var: {
 object-to-image distance is available, its coordinate is `closeFocusM / focusDistanceM`. Values between authored
 positions are piecewise-linearly interpolated and should not be presented as source-published mechanical positions.
 
+`finiteConjugates` optionally certifies individual authored states for finite-distance MTF. Each entry has
+`focusT` (an authored nonzero focus station), `zoomT` (0 for a prime; source zoom station index divided by
+`zoomPositions.length - 1` for a zoom), positive `objectDistanceMm`, `distanceReference` (`"first-surface"` or
+`"image-plane"`), and a nonempty `source` identifying the evidence for both the distance and focus spacings.
+Distance is axial, from the object plane to the current first vertex or fixed image plane. Duplicate stations
+are invalid. MTF never infers these entries from `closeFocusM`, production MFD, or interpolated slider labels;
+undocumented intermediate states remain unavailable. Do not certify calculated focus travel as a published
+configuration. Source-rounded prescriptions may retain residual defocus: MTF uses their fixed image plane.
+
+```typescript
+finiteConjugates: [{
+  focusT: 1, zoomT: 0, objectDistanceMm: 700, distanceReference: "image-plane",
+  source: "Patent publication, example and tables identifying this finite configuration",
+}],
+```
+
 ### Zoom Lens Format (with `zoomPositions`)
 
 When `zoomPositions` is present, each `var` value becomes an array of focus-thickness vectors — one per zoom position.

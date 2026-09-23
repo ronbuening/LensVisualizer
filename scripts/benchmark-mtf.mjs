@@ -6,22 +6,24 @@ import { execFileSync } from "node:child_process";
 import buildLens from "../src/optics/buildLens.ts";
 import { prepareRuntimeState } from "../src/optics/compat.ts";
 import { computeMtf } from "../src/optics/mtf.ts";
-import { MTF_BENCHMARK_CASES, MTF_BENCHMARK_GRIDS } from "../src/benchmarks/mtfCases.ts";
+import { MTF_BENCHMARK_CASES, MTF_BENCHMARK_GRIDS, MTF_FINITE_BENCHMARK_CASE } from "../src/benchmarks/mtfCases.ts";
 
 const method = process.argv.includes("--diffraction") ? "diffraction" : "geometric";
 const spectrum = process.argv.includes("--cdf") ? "cdf" : "reference";
 const apertureScale = process.argv.includes("--stopped-down") ? 0.25 : 1;
+const focusT = process.argv.includes("--finite") ? 1 : 0;
+const fieldFractions = process.argv.includes("--sweep") ? Array.from({ length: 9 }, (_, i) => i / 8) : [0, 0.5, 1];
 const rows = [];
-for (const file of MTF_BENCHMARK_CASES) {
+for (const file of focusT ? [MTF_FINITE_BENCHMARK_CASE] : MTF_BENCHMARK_CASES) {
   const data = (await import(pathToFileURL(resolve("src/lens-data", file)))).default;
   const L = buildLens(data);
-  const state = prepareRuntimeState(L, 0, 0);
+  const state = prepareRuntimeState(L, focusT, 0);
   for (const maxGridSize of MTF_BENCHMARK_GRIDS) {
     const options = {
       method,
       spectrum,
       maxGridSize,
-      fieldFractions: [0, 0.5, 1],
+      fieldFractions,
       pupilSemiDiameterMm: L.EP.epSD * apertureScale,
       stopSemiDiameterMm: L.stopPhysSD * apertureScale,
     };
@@ -38,6 +40,7 @@ for (const file of MTF_BENCHMARK_CASES) {
       key: data.key,
       maxGridSize,
       support: result.support.reason ?? "candidate",
+      ...(result.support.conjugate ? { conjugate: result.support.conjugate } : {}),
       medianMs: +times[1].toFixed(2),
       fields: result.fields.map(({ fieldFraction, status, reason, gridSize, maxDelta }) => ({
         fieldFraction,
@@ -59,6 +62,8 @@ console.log(
       method,
       spectrum,
       apertureScale,
+      focusT,
+      fieldFractions,
       rows,
     },
     null,

@@ -155,6 +155,14 @@ The patent states several advantages of this focus architecture (¶0043): inner 
 
 The production lens specifies an MFD of 0.7 m with a maximum magnification of 0.15×, and uses a DC motor with a GMR (giant magnetoresistive) position sensor for autofocus.
 
+For finite MTF, the published close station is explicitly recorded in `finiteConjugates`. Paragraph 0084 measures
+700 mm from the object to the physical image plane. Summing Table 1's physical spacings with Table 3's close gaps,
+including PP and its following air gap, gives 123.3264 mm from the first vertex to that plane. The object therefore
+lies 576.6736 mm ahead of the first vertex. MTF retains this object location because the authored model removes PP
+and uses an air-equivalent back focus; interpreting 700 mm relative to that shortened model plane would move the
+object. This certifies the source station only, not intermediate focus positions or production-lens MTF. Existing
+omitted odd aspheric terms and the omitted PP remain model limitations.
+
 
 ## Aspherical Surfaces
 

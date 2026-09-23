@@ -2,6 +2,7 @@
 import type { MtfOptions, MtfSupport, MtfUnavailableReason } from "../../types/mtf.js";
 import { LINE_NM } from "../spectralLines.js";
 import type { PreparedOpticalState } from "../types.js";
+import { mtfFiniteConjugate, mtfFiniteObjectPoint } from "./mtfConjugates.js";
 
 export const MTF_FREQUENCIES = Object.freeze(Array.from({ length: 51 }, (_, i) => i * 2));
 export const MTF_FIELDS = Object.freeze([0, 0.25, 0.5, 0.75, 1]);
@@ -46,7 +47,24 @@ export function assessMtfSupport(state: PreparedOpticalState, options: MtfOption
   )
     return reject("unsupported-path", "MTF currently supports centered, sequential refractive prescriptions.");
   if (options.movementActive) return reject("active-movement", "MTF is unavailable while tilt or shift is active.");
-  if (state.focusT !== 0) return reject("finite-conjugate-unavailable", "MTF currently requires infinity focus.");
+  if (
+    Math.abs(state.imagePlane.normal[0]) > 1e-10 ||
+    Math.abs(state.imagePlane.normal[1]) > 1e-10 ||
+    state.imagePlane.normal[2] <= 0
+  )
+    return reject("unsupported-path", "MTF requires an image plane perpendicular to the optical axis.");
+  if (state.focusT !== 0) {
+    const conjugate = mtfFiniteConjugate(state);
+    if (!conjugate || !mtfFiniteObjectPoint(state, conjugate, 0))
+      return reject(
+        "finite-conjugate-unavailable",
+        "Finite MTF requires an explicitly documented focus/zoom station and object-distance convention. Use infinity or a documented station; interpolated focus states are unavailable.",
+      );
+    support.conjugate = conjugate;
+    support.limitations.push(
+      "Finite source is an isotropic point; field angles are measured from the first surface vertex. No refocus is applied.",
+    );
+  }
   const fields = options.fieldFractions ?? MTF_FIELDS;
   const frequencies = options.frequenciesPerMm ?? MTF_FREQUENCIES;
   if (

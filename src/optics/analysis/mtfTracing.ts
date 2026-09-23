@@ -8,6 +8,7 @@ import { traceEngineRay2 } from "../trace/rayAdapters.js";
 import { bulkTransmissionForTrace } from "../trace/bulkAbsorption.js";
 import type { MtfSpot } from "./mtfMath.js";
 import type { ChromaticChannel } from "../../types/optics.js";
+import { mtfFiniteObjectPoint } from "./mtfConjugates.js";
 
 export interface MtfPupilRay extends MtfSpot {
   column: number;
@@ -26,6 +27,7 @@ export interface MtfBundle {
   direction: Vec3;
   gridSize: number;
   launchStepMm: number;
+  objectPoint?: Vec3;
 }
 
 export function mtfImagePoint(state: PreparedOpticalState, trace: EngineTraceResult): MtfSpot | null {
@@ -57,12 +59,54 @@ export function traceMtfPupil(
   const L = state.lens.runtime;
   const angle = halfFieldAtZoom(state.zoomT, L) * fieldFraction;
   const chief = solveChiefRay2(angle, state.focusT, state.zoomT, L, undefined, state.aberrationT);
-  if (chief.status !== "converged") return null;
+  const objectPoint = support.conjugate ? mtfFiniteObjectPoint(state, support.conjugate, angle) : undefined;
+  if (objectPoint === null || (!objectPoint && chief.status !== "converged")) return null;
   const norm = Math.hypot(1, chief.uField);
   const direction: Vec3 = [0, chief.uField / norm, 1 / norm];
-  const leadZ = Math.min(0, state.surfaces[0].profile.sag(state.surfaces[0].sd)) - Math.max(10, L.rayLead ?? 0);
+  const firstZ = Math.min(0, state.surfaces[0].profile.sag(state.surfaces[0].sd));
+  const leadZ = Math.max(
+    firstZ - Math.max(10, L.rayLead ?? 0),
+    objectPoint ? (objectPoint[2] + firstZ) / 2 : -Infinity,
+  );
+  let centerY = chief.status === "converged" ? chief.yLaunch + leadZ * chief.uField : 0;
+  const rayAt = (x: number, y: number): Ray3 => {
+    const origin: Vec3 = [x, y, leadZ];
+    if (!objectPoint) return { origin, direction };
+    const delta = origin.map((v, i) => v - objectPoint[i]);
+    const length = Math.hypot(...delta);
+    return { origin, direction: [delta[0] / length, delta[1] / length, delta[2] / length] };
+  };
+  if (objectPoint) {
+    // Aim one finite-source chief through the physical stop. The same source and grid serve every wavelength.
+    const atStop = (y: number) => {
+      const trace = traceEngineRay2(state, rayAt(0, y), {
+        stopAt: state.lens.stop.surfaceIndex + 1,
+        checkSemiDiameter: false,
+        directionNormalized: true,
+        indexAtSurface:
+          support.useResolvedReference || options.spectrum === "cdf"
+            ? (i) => state.lens.dispersion[i].indexAt("G")
+            : undefined,
+      });
+      return trace.status === "ok" ? trace.terminalPoint[1] : NaN;
+    };
+    let aimed = false;
+    for (let i = 0; i < 30; i++) {
+      const height = atStop(centerY);
+      if (Math.abs(height) < 1e-8) {
+        aimed = true;
+        break;
+      }
+      const derivative = (atStop(centerY + 1e-4) - height) / 1e-4;
+      if (!Number.isFinite(derivative) || Math.abs(derivative) < 1e-10) break;
+      const step = height / derivative,
+        limit = Math.max(1, options.pupilSemiDiameterMm);
+      centerY -= Math.max(-limit, Math.min(limit, step));
+    }
+    if (!aimed) return null;
+  }
   const traceAt = (x: number, y: number) => {
-    const ray: Ray3 = { origin: [x, chief.yLaunch + y + leadZ * chief.uField, leadZ], direction };
+    const ray = rayAt(x, centerY + y);
     return traceEngineRay2(state, ray, {
       checkSemiDiameter: true,
       stopSemiDiameter: options.stopSemiDiameterMm,
@@ -85,9 +129,10 @@ export function traceMtfPupil(
     failed: 0,
     chief: chiefPoint,
     chiefTrace,
-    direction,
+    direction: chiefTrace.input.direction,
     gridSize,
     launchStepMm: (2 * options.pupilSemiDiameterMm) / gridSize,
+    objectPoint,
   };
   for (let row = 0; row < gridSize; row++) {
     for (let column = 0; column < gridSize; column++) {
@@ -104,6 +149,11 @@ export function traceMtfPupil(
       if (!point) {
         bundle.failed++;
         continue;
+      }
+      if (objectPoint) {
+        const distance = (origin: Vec3) => Math.hypot(...origin.map((v, i) => v - objectPoint[i]));
+        // Solid angle subtended by equal cells of the launch plane: cos(theta) / distance².
+        point.weight *= (distance(chiefTrace.input.origin) / distance(trace.input.origin)) ** 3;
       }
       bundle.rays.push({
         ...point,

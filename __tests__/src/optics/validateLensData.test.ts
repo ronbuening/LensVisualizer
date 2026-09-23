@@ -62,6 +62,28 @@ function makeValid(overrides: Record<string, unknown> = {}): Record<string, unkn
 }
 
 describe("validateLensData", () => {
+  it("requires finite-conjugate source evidence, distance conventions and authored stations", () => {
+    const station = {
+      focusT: 1,
+      zoomT: 0,
+      objectDistanceMm: 700,
+      distanceReference: "image-plane",
+      source: "Synthetic source table",
+    };
+    expect(validateLensData(makeValid({ finiteConjugates: [station] }))).toEqual([]);
+    for (const finiteConjugates of [
+      [],
+      [null],
+      [station, station],
+      [{ ...station, source: "" }],
+      [{ ...station, focusT: 0.5 }],
+      [{ ...station, zoomT: 0.5 }],
+      [{ ...station, objectDistanceMm: -1 }],
+      [{ ...station, distanceReference: "unknown" }],
+    ]) {
+      expect(validateLensData(makeValid({ finiteConjugates })).join(" ")).toContain("finiteConjugates");
+    }
+  });
   it("returns empty array for valid data", () => {
     expect(validateLensData(makeValid())).toEqual([]);
   });

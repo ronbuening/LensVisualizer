@@ -365,8 +365,10 @@ Carried from the analysis roadmap so nobody re-proposes them as "quick":
 - **Production-lens MTF / Strehl / wavefront error** — manufactured-lens claims require measured
   data. Simulated geometric and scalar diffraction MTF can use complete authored prescriptions;
   source precision, omitted optics, spectral data, pupil mapping and numerical convergence limit
-  their validity. Implementation proceeds through contracts, geometric engine, worker/UI,
-  wavefront, diffraction, spectral and documented finite-conjugate stages, each tested and committed.
+  their validity. See `agent_docs/architecture/optics-engine.md` for the simulated MTF contract.
+  Extensions to folded mirrors, diffractive surfaces, fisheyes, active tilt/shift, tolerances or
+  camera-system MTF require separate physical validation. Additional finite-focus catalog coverage
+  requires documented conjugates and authored focus/zoom configurations, not inferred focus labels.
 - **Flare/ghosting/transmission/coating models** — no coating or transmission data. Allowed
   limited version: count air-glass interfaces as an explicitly heuristic badge.
 - **AF speed / OIS / actuator loads** — no mass/actuator data. Allowed limited version: group

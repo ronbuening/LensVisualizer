@@ -22,7 +22,7 @@ export const CHANGELOG: ChangelogEntry[] = [
     date: "2026-09-22",
     type: "feature",
     summary:
-      "Added simulated geometric and scalar diffraction MTF charts, qualified C/d/F estimates and background sampling checks",
+      "Added simulated MTF with geometric/diffraction modes, qualified C/d/F spectra, documented finite focus and background sampling checks",
   },
   {
     date: "2026-09-22",

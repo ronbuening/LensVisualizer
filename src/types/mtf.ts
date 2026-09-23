@@ -1,4 +1,5 @@
 /** Explicit inputs and serializable outputs for simulated, image-space lens MTF. */
+import type { FiniteConjugate } from "./optics.js";
 export type MtfMethod = "geometric" | "diffraction";
 export type MtfSpectrum = "reference" | "cdf";
 export type MtfUnavailableReason =
@@ -36,6 +37,7 @@ export interface MtfSupport {
   useResolvedReference: boolean;
   /** Incident intensity weights; throughput is applied separately before normalizing the OTF. */
   spectralLines: Array<{ wavelengthNm: number; weight: number }>;
+  conjugate?: FiniteConjugate;
   limitations: string[];
 }
 

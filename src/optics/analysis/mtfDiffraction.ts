@@ -82,7 +82,7 @@ export function reconstructMtfPupil(
     return reject("Diffraction is outside the validated 15° image-ray incidence domain.");
   const image: Vec3 = [bundle.chief.x, bundle.chief.y, state.imgZ];
   const radius = Math.hypot(...bundle.chiefTrace.terminalPoint.map((v, i) => v - image[i]));
-  const reference = sampleReferenceWavefront(bundle.chiefTrace, image, radius);
+  const reference = sampleReferenceWavefront(bundle.chiefTrace, image, radius, bundle.objectPoint);
   if (!reference) return reject("Unable to establish a reference wavefront.");
   const n = bundle.gridSize;
   const nodes: Array<PupilNode | undefined> = new Array(n * n);
@@ -91,7 +91,7 @@ export function reconstructMtfPupil(
     minY = Infinity,
     maxY = -Infinity;
   for (const ray of bundle.rays) {
-    const wave = sampleReferenceWavefront(ray.trace, image, radius);
+    const wave = sampleReferenceWavefront(ray.trace, image, radius, bundle.objectPoint);
     if (!wave) return reject("A ray cannot be mapped onto the reference sphere.");
     if (
       Math.hypot(wave.qx - reference.qx, wave.qy - reference.qy) > 0.25 ||

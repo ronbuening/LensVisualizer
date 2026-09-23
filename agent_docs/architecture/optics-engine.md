@@ -19,6 +19,38 @@ Pure optics modules have no React dependencies. Helpers accept the runtime lens 
 State-dependent analysis must remain outside `buildLens()`. `buildLens()` constructs build-time/runtime constants from
 lens data; analysis tabs use current focus, zoom, and aperture state.
 
+## Simulated MTF
+
+`src/optics/mtf.ts` accepts a prepared state and explicit physical aperture, spectrum, field and frequency
+options. This estimates the authored prescription; numerical convergence and source-data confidence are separate.
+Geometric OTF is the normalized intensity-weighted Fourier sum of a two-dimensional exact-ray distribution.
+Sagittal frequencies run along image X, tangential along Y; the field lies in the Y/Z meridian. Both chart views
+share the same computed fields, one image plane and physical lp/mm units. Missing fields are gaps.
+
+Scalar diffraction opts into sequential `recordOpticalPath`, which accumulates incident-medium optical length
+from the input origin to the final hit without changing ordinary trace outputs. `mtfWavefront.ts` includes the
+incident plane/spherical phase and signed transfer to an image-centered reference sphere. Piston is removed,
+but wavelengths are not refocused or independently recentered. `mtfDiffraction.ts` triangulates unwrapped path
+onto transverse direction-cosine coordinates; its Jacobian and square-root transmission conserve pupil flux.
+A double-precision FFT of a 2× padded pupil produces linear autocorrelation. Image frequency shifts the pupil
+by wavelength × frequency. The scalar approximation is restricted to air image space, perpendicular image
+planes, chief incidence ≤15°, pupil cone radius ≤0.25 and blur ≤2% of reference radius. Folded/singular pupil
+maps and insufficient phase sampling are unavailable. These are conservative suitability limits, not an
+accuracy guarantee; see [Ansys FFT MTF](https://ansyshelp.ansys.com/public/Views/Secured/Zemax/v251/en/OpticStudio_User_Guide/OpticStudio_Help/topics/FFT_MTF.html).
+
+Monochromatic runs retain native d/e indices; mixed references require usable physical conversion. The C/d/F
+estimate uses equal incident line weights, physical dispersion resolution and transmitted throughput; combine
+complex OTFs before magnitude to retain lateral color. Compatible catalog glass is explicitly a spectral proxy.
+Finite rays share one isotropic object point and include spherical launch phase and launch-plane solid-angle
+weights. Only `finiteConjugates` stations are eligible; see `src/lens-data/LENS_DATA_SPEC.md` for source requirements.
+
+The MTF tab lazily creates a worker from serializable lens data. Superseding a running request terminates it;
+request ids reject stale replies. Completed results use an LRU bounded to 64 MiB, while chart changes reuse
+curves without tracing. Sampling compares successive curves at all displayed frequencies (absolute delta ≤0.01),
+caps at 256² and reports unconverged results explicitly. The read-only census is `scripts/audit-mtf.mjs` (`--cdf`
+for spectral eligibility); `scripts/benchmark-mtf.mjs` supports `--diffraction`, `--cdf`, `--stopped-down`, `--finite`
+and `--sweep`. Benchmarks retain status alongside timings so fast rejection is not confused with a completed curve.
+
 ## buildLens.ts
 
 `buildLens(data)` is the stable public constructor and delegates to `buildLens2` in `src/optics/compat.ts`.

@@ -24,7 +24,7 @@ export class MtfWorkerClient {
   private worker: MtfWorkerPort | null = null;
   private serial = 0;
   private rejectPending: ((error: Error) => void) | null = null;
-  private cache = new Map<string, { result: MtfResult; bytes: number }>();
+  private cache = new Map<string, { serialized: string; bytes: number }>();
   private retainedBytes = 0;
   constructor(
     private data: LensData,
@@ -56,7 +56,7 @@ export class MtfWorkerClient {
     if (cached) {
       this.cache.delete(key);
       this.cache.set(key, cached);
-      return Promise.resolve(cached.result);
+      return Promise.resolve(JSON.parse(cached.serialized) as MtfResult);
     }
     const id = ++this.serial;
     return new Promise((resolve, reject) => {
@@ -73,14 +73,17 @@ export class MtfWorkerClient {
             reject(new Error(data.error ?? "MTF worker failed."));
             return;
           }
-          const bytes = JSON.stringify(data.result).length * 2;
-          while (this.retainedBytes + bytes > this.byteLimit && this.cache.size) {
+          // Retain strings, whose UTF-16 payload has a known upper bound, rather than estimating
+          // object/array memory from JSON length. Include keys and a conservative entry allowance.
+          const serialized = JSON.stringify(data.result);
+          const bytes = (serialized.length + key.length) * 2 + 1024;
+          while ((this.retainedBytes + bytes > this.byteLimit || this.cache.size >= 128) && this.cache.size) {
             const oldest = this.cache.keys().next().value!;
             this.retainedBytes -= this.cache.get(oldest)!.bytes;
             this.cache.delete(oldest);
           }
           if (bytes <= this.byteLimit) {
-            this.cache.set(key, { result: data.result, bytes });
+            this.cache.set(key, { serialized, bytes });
             this.retainedBytes += bytes;
           }
           resolve(data.result);
