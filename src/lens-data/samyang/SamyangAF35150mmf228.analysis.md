@@ -218,7 +218,7 @@ Focusing is internal and is performed by Gm3, a single negative meniscus element
 | Middle | 2.868 mm | 7.233 mm | 9.585 mm | 5.220 mm | 4.365 mm imageward |
 | Tele | 1.195 mm | 8.764 mm | 11.269 mm | 3.700 mm | 7.569 mm imageward |
 
-The patent lists close-focus magnification β = 0.175 / 0.174 / 0.183 at the wide, middle, and telephoto positions. It also lists MOD object distances D0 = 157.000 / 334.990 / 635.000 mm from the first lens surface. Adding the patent OAL values gives approximate sensor-to-subject distances of 0.314 m, 0.496 m, and 0.810 m. These are close to, but not identical with, the official production values: 0.33 m / 0.85 m for the FE version and 0.32 m / 0.85 m for the L-mount version. The difference is consistent with normal production tuning, mount-specific metadata, and the patent's first-surface object-distance convention.
+The patent lists close-focus magnification β = 0.175 / 0.174 / 0.183 at the wide, middle, and telephoto positions. It also lists MOD object distances D0 = 157.000 / 334.990 / 635.000 mm from the first lens surface. The patent's OAL row cannot be added to D0 to reach the sensor, because it stops at the last lens surface (see Verification Summary). Adding the physical first-surface-to-image track instead, 172.951 / 191.650 / 213.518 mm (derived; D31 + D33 is unchanged by focus), gives sensor-to-subject distances of 0.330 m, 0.527 m, and 0.849 m. The wide and telephoto values match the official production figures of 0.33 m / 0.85 m for the FE version; the L-mount version lists 0.32 m / 0.85 m.
 
 ## Aspherical Surfaces
 
@@ -275,6 +275,8 @@ A paraxial y-nu ray trace was run from the patent prescription with the plane se
 | BFE in air | 14.749 mm | 14.765 mm | 29.911 mm | 29.921 mm | 37.521 mm | 37.509 mm |
 
 The maximum EFL residual is 0.075 mm, and the maximum BFE residual is 0.016 mm. Those differences are consistent with the number of decimal places published in the prescription.
+
+Table 9's OAL row (157.349 / 160.886 / 175.144 mm) is not a first-surface-to-image length, even though the text defines OAL that way. It equals, to the printed digit, the sum of Table 7 thicknesses from surface 1 to the last lens surface 41, excluding D41, the cover plate, and the trailing air. The same holds within 0.002 mm for all four embodiments, so the printed definition, not the prescription, is wrong. The physical track to the image plane is 172.951 / 191.650 / 213.518 mm (derived): the lens length plus D41, the 2.5 mm plate and 0.5 mm of air. Adding BFE in air instead of the physical plate stack gives 172.098 / 190.797 / 212.665 mm.
 
 The same trace gives these standalone in-air group focal lengths at the wide configuration: G13 = +125.7 mm, G23 = -29.5 mm, G33 = +1977 mm, Gf3 = +33.3 mm, Gm3 = -50.2 mm, and Gr3 = +435.8 mm. These are standalone group powers only; they are not the same as the in-situ contribution of each group in the assembled zoom.
 

@@ -16,6 +16,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ Cover glass handling: patent surfaces 28-29 are a plane-parallel plate PT           ║
  * ║ (d=1.90, nd=1.51680, νd=64.20) plus BF 1.00 mm air, modeled in `rearPlates`         ║
  * ║ (traced, not drawn). d27 stores the patent's physical 37.70 / 47.12 / 59.88 mm.     ║
+ * ║ Track: table sum to image 139.78 / 134.74 / 136.84 mm (derived) vs printed TL       ║
+ * ║ 139.69 / 134.64 / 136.74 mm. The ~0.10 mm excess recurs in all six patent           ║
+ * ║ examples; it is source TL bookkeeping, not a transcription error.                   ║
  * ║                                                                                    ║
  * ║ Semi-diameters: patent does not list SDs. Values here are estimated from            ║
  * ║ marginal/chief-ray clearance and then reduced to satisfy spherical rim, asphere     ║

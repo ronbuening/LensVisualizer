@@ -23,6 +23,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  plate (nd 1.5168, νd 64.1973) and 0.5031 - 0.0031 = 0.5 mm of air to   ║
  * ║  IMG. The plate is modeled in `rearPlates` (traced, not drawn); 41A     ║
  * ║  stores the patent's physical D41 gap to the plate.                     ║
+ * ║  Patent OAL 157.349 / 160.886 / 175.144 mm runs surface 1 to 41A only   ║
+ * ║  (excludes D41 and the plate stack despite its definition). Physical    ║
+ * ║  track to IMG: 172.951 / 191.650 / 213.518 mm (derived).                ║
  * ║                                                                          ║
  * ║  Semi-diameter note: the patent does not publish clear apertures.       ║
  * ║  Semi-diameters here are conservative renderer estimates constrained by ║

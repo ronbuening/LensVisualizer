@@ -13,3 +13,16 @@ Patent: US 2025/0231383 A1, embodiment 100-3
 - Paraxial check against the previous data: EFL identical at all three zoom stations; defocus changes by 0.0012 mm at
   every zoom and focus state (rounding in the patent's printed BFE-in-air row). Physical track grows by 0.853 mm
   (predicted 2.5 × (1 − 1/1.5168) = 0.852 mm).
+
+## 2026-09-23 — Track-length discrepancy resolved (patent OAL definition)
+
+- Re-read Tables 7 and 9 from the Google Patents text of US 2025/0231383 A1 (no local PDF). The data file's radii,
+  thicknesses, indices and variable gaps match embodiment 100-3; this is the right table and embodiment. No data change.
+- Table 9 OAL 157.349 / 160.886 / 175.144 mm equals Σd from surface 1 to surface 41 (the last lens vertex) exactly. It
+  leaves out D41, the 2.5 mm plate and the 0.5 mm of air, although the text defines OAL as first lens to IMG. Embodiments
+  100-1, 100-2 and 100-4 follow the same pattern, within 0.002 mm (Tables 1/3, 4/6, 10/12).
+- Physical track to IMG (derived, with `rearPlates` expanded): 172.951 / 191.650 / 213.518 mm, focus-invariant because
+  D31 + D33 is constant.
+- The analysis had added the OAL row to the MOD D0 values and reported sensor-to-subject distances of 0.314 / 0.496 /
+  0.810 m. With the physical track the distances are 0.330 / 0.527 / 0.849 m, which match the production 0.33 m / 0.85 m
+  (FE) at wide and tele. Corrected in the analysis; the OAL definition is noted in the header.
