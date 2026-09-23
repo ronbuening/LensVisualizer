@@ -23,11 +23,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    stored d21 = patent d21 − 2.59 at each zoom position.            ║
  * ║                                                                      ║
  * ║  NOTE ON COVER GLASS:                                                ║
- * ║    Patent surfaces 35–36 (CG, t = 1.96 mm, nd = 1.51633) and the    ║
- * ║    trailing air gap d36 = 2.75 mm are excluded. The air-equivalent ║
- * ║    path 1.96/1.51633 + 2.75 = 4.043 mm is added to patent d34:      ║
- * ║    stored BF = 19.04 / 28.26 / 33.70 mm (paraxial BFD 19.05 /       ║
- * ║    28.28 / 33.73 mm; patent lens length 157.51 / 170.61 / 179.07).  ║
+ * ║    Patent surfaces 35–36 (CG, t = 1.96 mm, nd = 1.51633, νd 64.1)  ║
+ * ║    and the trailing air gap d36 = 2.75 mm are modeled physically   ║
+ * ║    in `rearPlates` (traced, not drawn). D34 stores the patent gap  ║
+ * ║    to the plate: 15.00 / 24.22 / 29.66 mm.                           ║
  * ║                                                                      ║
  * ║  NOTE ON APERTURE:                                                   ║
  * ║    Patent FNO 2.06 at all three stations; the stop (S14) moves with ║
@@ -386,7 +385,20 @@ const LENS_DATA = {
     // Cemented doublet D6 (L18 + L19, ultra-high-index)
     { label: "32", R: -39.992, d: 1.3, nd: 1.48749, elemId: 18, sd: 15.4 },
     { label: "33", R: 50.003, d: 6.3, nd: 2.001, elemId: 19, sd: 18.4 },
-    { label: "34", R: -131.617, d: 19.04, nd: 1.0, elemId: 0, sd: 18.4 }, // [var: BF, includes CG air-equivalent path]
+    { label: "34", R: -131.617, d: 15.0, nd: 1.0, elemId: 0, sd: 18.4 }, // [var: BF, patent d34 to the CG plate]
+  ],
+
+  /* ── Sensor cover glass (patent surfaces 35–36): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "CG",
+      thicknessMm: 1.96,
+      nd: 1.51633,
+      vd: 64.1,
+      glass: "S-BSL7",
+      gapAfterMm: 2.75,
+      source: "JP 2020-118807 A, Example A surfaces 35–36",
+    },
   ],
 
   /* ── Aspherical coefficients ── */
@@ -446,7 +458,7 @@ const LENS_DATA = {
   /* ── Variable air spacings (zoom only — no close-focus data in patent) ──
    *  All gaps use identical inf/close values (zoom-only movement).
    *  "21" = patent d21 − 2.59 (absorbed flare-cut AP offset, patent S22).
-   *  "34" = patent d34 + 1.96/1.51633 + 2.75 (CG air-equivalent + d36).
+   *  "34" = patent d34 (gap to the CG plate; the plate and d36 = 2.75 are in `rearPlates`).
    */
   var: {
     "5": [
@@ -465,9 +477,9 @@ const LENS_DATA = {
       [1.02, 1.02],
     ],
     "34": [
-      [19.04, 19.04],
-      [28.26, 28.26],
-      [33.7, 33.7],
+      [15.0, 15.0],
+      [24.22, 24.22],
+      [29.66, 29.66],
     ],
   },
   varLabels: [

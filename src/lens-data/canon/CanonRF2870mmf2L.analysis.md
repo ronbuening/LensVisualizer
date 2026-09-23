@@ -55,10 +55,10 @@ All four groups move during zooming; none is fixed. The patent's Fig. 1 shows a 
 | d₅ (G1–G2) | 3.93 mm | 20.98 mm | 29.21 mm | +25.28 mm |
 | d₁₃ (G2–G3) | 15.61 mm | 6.51 mm | 2.27 mm | −13.34 mm |
 | d₂₁ (G3–G4)* | 6.08 mm | 2.00 mm | 1.02 mm | −5.06 mm |
-| d₃₄ (G4–image)† | 19.04 mm | 28.26 mm | 33.70 mm | +14.66 mm |
+| d₃₄ (G4–cover glass)† | 15.00 mm | 24.22 mm | 29.66 mm | +14.66 mm |
 
 *d₂₁ values include the absorbed flare-cut offset (patent d₂₁ − 2.59 mm).  
-†d₃₄ values are the patent d₃₄ (15.00 / 24.22 / 29.66 mm) plus the air-equivalent cover-glass path (1.96 / 1.51633 = 1.29 mm) and the fixed 2.75 mm d₃₆.
+†d₃₄ values are the patent gaps to the cover glass. The 1.96 mm cover glass and the fixed 2.75 mm d₃₆ follow it at every zoom position (§8.2).
 
 With the image plane fixed, the group positions follow directly from these gaps (derived values; positive = toward the object):
 
@@ -351,7 +351,7 @@ Patent surface 22 is a flare-cut aperture (AP) encoded with d = −2.59 mm. This
 
 ### 8.2 Cover Glass
 
-Patent surfaces 35–36 describe a cover glass (nd = 1.51633, d = 1.96 mm) followed by an air gap (d₃₆ = 2.75 mm, constant across zoom). Following the repository convention, the plate is excluded and its air-equivalent thickness (1.96 / 1.51633 = 1.29 mm) plus d₃₆ is added to patent d₃₄, giving a stored back gap of 19.04 / 28.26 / 33.70 mm. The paraxial back focal distance of the stored prescription is 19.05 / 28.28 / 33.73 mm, and first-surface-to-image length is 157.50 / 170.59 / 179.04 mm against the patent's 157.51 / 170.61 / 179.07 mm. (The patent's "BF 2.75" row repeats d₃₆ rather than the air-converted back focus its own definition describes; the lens-length row is consistent with the air-converted value.)
+Patent surfaces 35–36 describe a cover glass (nd = 1.51633, νd = 64.1, d = 1.96 mm) followed by an air gap (d₃₆ = 2.75 mm, constant across zoom). The data file models this plate physically through `rearPlates`: it is traced by every analysis but not drawn, and d₃₄ keeps the patent's 15.00 / 24.22 / 29.66 mm gap to the plate. The plate adds no power, so EFL and paraxial focus match the earlier air-equivalent model (d₃₄ + 1.96 / 1.51633 + 2.75). Unlike that fold, the plate also contributes its own spherical aberration, astigmatism and axial colour in the converging image-side beam, which the design was corrected to include. The Gaussian image lies 0.011 / 0.020 / 0.029 mm behind the patent image plane at wide / mid / tele. First-surface-to-image length is 158.17 / 171.26 / 179.71 mm physically, which is the patent's 157.51 / 170.61 / 179.07 mm air-converted length plus the plate's 1.96 × (1 − 1/1.51633) = 0.67 mm. (The patent's "BF 2.75" row repeats d₃₆ rather than the air-converted back focus its own definition describes; the lens-length row is consistent with the air-converted value.)
 
 ### 8.3 Semi-Diameters
 

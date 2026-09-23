@@ -12,13 +12,13 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                        ║
  * ║  Zoom variable gaps: D3, D9 (zoom only).                              ║
  * ║  Focus variable gaps: D18, D22 (zoom + focus).                        ║
- * ║  BFD variable gap: D26 (zoom only, air-equivalent patent BF).         ║
+ * ║  Rear gap D26 (zoom only) ends at the filter plate in `rearPlates`.   ║
  * ║  Zoom motion (Fig. 1A/1B arrows; positions from the Table 1 gaps):    ║
  * ║    G1 +29.4 mm toward object; G3 and G5 +20.6 mm as one unit          ║
  * ║    (D18 + L41/L42 + D22 = 20.04 mm at every station); G4 +14.3 mm;   ║
  * ║    G2 REVERSES: 2.2 mm toward the image W→M, 2.0 mm back M→T.        ║
- * ║  Patent TL 121.58–151.03 mm includes the 1.6 mm filter; the stored    ║
- * ║  air-equivalent track is 121.04–150.48 mm.                            ║
+ * ║  Patent TL 121.58–151.03 mm includes the 1.6 mm filter, as does the   ║
+ * ║  stored physical track.                                               ║
  * ║                                                                        ║
  * ║  NOTE ON SEMI-DIAMETERS:                                               ║
  * ║    Patent publishes no clear apertures. G3 (L31–L35), L41 and the     ║
@@ -37,9 +37,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    largest (tele) inferred radius.                                    ║
  * ║                                                                        ║
  * ║  NOTE ON COVER GLASS:                                                  ║
- * ║    Patent surfaces 27-28 (filter FL, nd=1.51680, d=1.60) excluded.    ║
- * ║    D26 stores the patent's air-equivalent BF (15.013 / 27.941 /       ║
- * ║    35.599 = D26 + 1.60/1.5168 + D28).                                 ║
+ * ║    Patent surfaces 27-28 (filter FL, nd=1.51680, νd=64.1, d=1.600)    ║
+ * ║    are modeled in `rearPlates` (traced, not drawn) with D28 = 0.100.  ║
+ * ║    D26 = patent 13.858 / 26.785 / 34.444 mm; Table 1 prints D28 as    ║
+ * ║    0.100 / 0.101 / 0.101, so the extra 0.001 mm at mid and tele is    ║
+ * ║    added to D26 (26.786 / 34.445). Air-equivalent BF matches the      ║
+ * ║    patent 15.013 / 27.941 / 35.599 mm.                                ║
  * ║                                                                        ║
  * ║  NOTE ON CONIC CONVENTION:                                              ║
  * ║    Patent uses κ in sag equation where K(standard) = κ − 1.           ║
@@ -296,7 +299,20 @@ const LENS_DATA = {
     { label: "23", R: -40.60645, d: 3.489, nd: 1.58913, elemId: 13, sd: 15.0 },
     { label: "24A", R: -24.0, d: 5.786, nd: 1.0, elemId: 0, sd: 15.5 }, // L51 rear (asph) → air
     { label: "25", R: -24.36536, d: 1.5, nd: 1.618, elemId: 14, sd: 18.0 },
-    { label: "26", R: 107.45414, d: 15.013, nd: 1.0, elemId: 0, sd: 17.5 }, // D26 var — air-equivalent BF
+    { label: "26", R: 107.45414, d: 13.858, nd: 1.0, elemId: 0, sd: 17.5 }, // D26 var — gap to the FL plate
+  ],
+
+  /* ── Filter FL (patent surfaces 27–28): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "FL",
+      thicknessMm: 1.6,
+      nd: 1.5168,
+      vd: 64.1,
+      glass: "J-BK7A",
+      gapAfterMm: 0.1,
+      source: "WO 2019/049372 A1, Example 1 Table 1 surfaces 27–28",
+    },
   ],
 
   /* ── Aspherical coefficients ── */
@@ -347,7 +363,7 @@ const LENS_DATA = {
   /* ── Variable air spacings ──
    *  D3, D9: zoom only (identical inf/close values).
    *  D18, D22: zoom + focus (G4 internal focus, D18+D22 conserved at each zoom position).
-   *  D26: zoom only (patent BF, air-equivalent: filter 1.60/1.5168 + D28 folded in).
+   *  D26: zoom only, gap to the FL plate (mid/tele +0.001 for Table 1's D28 = 0.101).
    */
   var: {
     "3": [
@@ -371,9 +387,9 @@ const LENS_DATA = {
       [2.0, 10.51],
     ],
     "26": [
-      [15.013, 15.013],
-      [27.941, 27.941],
-      [35.599, 35.599],
+      [13.858, 13.858],
+      [26.786, 26.786],
+      [34.445, 34.445],
     ],
   },
 

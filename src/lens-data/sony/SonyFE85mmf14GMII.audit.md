@@ -70,3 +70,12 @@ Catalog version: bb70259
 ## 2026-07-29 - Catalog-coordinate correction
 
 - Corrected L1 from modern `S-NPH2` to historical OHARA `PBH21`, the exact 1.92286 / 20.90 row.
+
+## 2026-09-23 — Cover glass modeled as `rearPlates`
+
+- Read Example 2 Table 6 on PDF page 28 (printed page 26) at 200 dpi: surface 26 d = 12.86; surfaces 27–28 are one
+  plate GC, 2.50 mm, nd 1.51680, νd 64.2 (φ 41.92 / 44.05); 28 → 29(IMG) is 1.00 mm. The earlier header's
+  "surfaces 27–29" and "S-BSL7" were wrong: 1.51680 / 64.2 is the N-BK7 class, and S-BSL7 is 1.51633.
+- Surface 26 now stores the patent's 12.86 mm, with `rearPlates` GC (N-BK7) and gapAfter 1.00 mm. Paraxial check
+  against the previous data: EFL identical; defocus changes by 0.0002 mm (rounding in the old 15.508). Physical track
+  grows by 0.852 mm.

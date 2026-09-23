@@ -9,11 +9,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  Two aspherical surfaces on the final element.                   ║
  * ║                                                                  ║
  * ║  Sensor/cover glass note: patent surfaces 31–32 describe a       ║
- * ║  1.4500 mm, nd=1.52301 plane-parallel plate plus BF=1.0000 mm.  ║
- * ║  Per project convention, that plate is excluded here and folded  ║
- * ║  into surface 30A as an air-equivalent BFD:                      ║
- * ║    infinity 37.5626 + 1.4500/1.52301 + 1.0000 = 39.5147 mm      ║
- * ║    close    50.4932 + 1.4500/1.52301 + 1.0000 = 52.4453 mm      ║
+ * ║  1.4500 mm plane-parallel plate (nd 1.52301, νd 58.59, θgF      ║
+ * ║  0.5449) plus BF = 1.0000 mm. It is modeled in `rearPlates`      ║
+ * ║  (traced, not drawn); surface 30A keeps the patent d30 to the    ║
+ * ║  plate: 37.5626 mm at infinity, 50.4932 mm at close focus.      ║
  * ║                                                                  ║
  * ║  Semi-diameters are conservative estimates from axial ray        ║
  * ║  heights, patent Fig. 1 proportions, the 105 mm filter size,     ║
@@ -318,7 +317,20 @@ const LENS_DATA = {
     { label: "27", R: -35.1809, d: 0.9, nd: 1.64769, elemId: 16, sd: 18.6 },
     { label: "28", R: 124.7179, d: 0.3, nd: 1.0, elemId: 0, sd: 19.0 },
     { label: "29A", R: 68.8532, d: 4.9326, nd: 1.84915, elemId: 17, sd: 18.4 },
-    { label: "30A", R: -92.2688, d: 39.5147, nd: 1.0, elemId: 0, sd: 18.4 },
+    { label: "30A", R: -92.2688, d: 37.5626, nd: 1.0, elemId: 0, sd: 18.4 },
+  ],
+
+  /* ── Sensor cover plate (patent surfaces 31–32): traced, not drawn ── */
+  rearPlates: [
+    {
+      thicknessMm: 1.45,
+      nd: 1.52301,
+      vd: 58.59,
+      glass: "C12 (HOYA)",
+      dPgF: -0.00035,
+      gapAfterMm: 1.0,
+      source: "JP 2019-144477 A, Numerical Example 1 surfaces 31–32 (patent θgF 0.5449)",
+    },
   ],
 
   asph: {
@@ -344,7 +356,7 @@ const LENS_DATA = {
 
   var: {
     "14": [15.8705, 3.0],
-    "30A": [39.5147, 52.4453],
+    "30A": [37.5626, 50.4932],
   },
 
   varLabels: [

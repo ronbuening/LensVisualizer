@@ -116,3 +116,13 @@ pp. 13–14; Fig. 1A–1C p. 38 (300 dpi raster, axis horizontal); Fig. 3 close-
 - The viewer's wide-end half-field is a paraxial estimate (38.3°) below the patent's 43.3°, because it overstates the
   chief-ray height on 5A; the exact trace covers the full field.
 - Example 1 versus Example 2 as the production basis is not settled by the patent.
+
+## 2026-09-23 — Filter modeled as `rearPlates`
+
+- Replaced the air-equivalent D26 with Table 1's physical rear stack (PDF pp. 13–14): D26 = 13.858 / 26.785 / 34.444 mm,
+  then `rearPlates` FL 1.600 mm, nd 1.51680, νd 64.1 (J-BK7A), and D28 = 0.100 mm. Table 1 prints D28 as
+  0.100 / 0.101 / 0.101, and `rearPlates` holds one fixed trailing gap, so the extra 0.001 mm at mid and tele is carried
+  in D26 (26.786 / 34.445).
+- Paraxial check against the previous data: EFL identical; defocus changes by at most 0.0009 mm (tele), the rounding in
+  the patent's printed air-equivalent BF (35.599 against 34.444 + 1.600/1.5168 + 0.101 = 35.5999). Physical track grows
+  by 0.545 mm and now matches the patent's 121.58–151.03 mm total length.
