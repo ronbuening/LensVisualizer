@@ -92,3 +92,16 @@ said a plate does not change the paraxial BFD).
 - No published clear apertures; all rims remain estimates (figure plus ray constraints).
 - Close focus is a calculated unit-focus extension; the patent has no finite-distance data.
 - The renderer cannot draw L23's stepped outer shoulder exactly.
+
+## 2026-09-23 — Review follow-up, L12 front rim
+
+Raised in PR review: L12 drew with a pointed outer tip because S3 (14.7 mm) sat 3.4 mm outside S4 (11.3 mm).
+
+| Surface | Before | After | Evidence |
+|---|---|---|---|
+| S3 (L12 front) | 14.7 | 13.0 | Fig. 1 draws the L12 front rim at ≈13.2 mm (≈275 px at 0.0484 mm/px). An unclipped real-ray scan of the spherical front group (S1–stop, 0–22°, every pupil height through the f/1.45 stop radius 7.553 mm) finds no ray that clears S4/S5 at ≤11.3 mm and S6 at ≤9.0 mm reaching above 12.88 mm at S3. The extra 1.7 mm could never carry light. |
+
+S4 stays 11.3 mm: across the 0.20 mm L12–L13 air gap the tabulated R4 = 25.973 and R5 = 27.72 meet at about
+11.5 mm, so the ≈12.3 mm rear rim Fig. 1 appears to draw cannot be built from the table. The on-axis f/1.45 marginal
+ray needs 11.11 mm at S3 and 9.77 mm at S4, both still clear. The surface validator passes at S3 = 13.0 mm and the
+L12 edge now steps 1.7 mm from front to rear instead of 3.4 mm.

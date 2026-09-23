@@ -23,8 +23,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    the stop opening to ≈7.6 mm. S10A stays at 8.4 mm: the Table 2 ║
  * ║    polynomial steepens past 60° there and diverges beyond ≈8.6 mm.║
  * ║    S11A at 8.4 mm leaves 0.05 mm to plano S12 (Fig. 1 shows the   ║
- * ║    L21 rim almost touching L22). Other rims are within ≈15 % of   ║
- * ║    Fig. 1 and were kept.                                          ║
+ * ║    L21 rim almost touching L22). S3 (L12 front) is 13.0 mm: Fig.  ║
+ * ║    1 draws ≈13.2 mm, and no ray that clears S4/S5 (≤11.3 mm,      ║
+ * ║    capped by the 0.20 mm L12–L13 gap) and the f/1.45 stop rises   ║
+ * ║    above 12.9 mm there. Other rims are within ≈15 % of Fig. 1 and ║
+ * ║    were kept.                                                     ║
  * ║                                                                    ║
  * ║  NOTE ON COVER GLASS / BACK FOCUS:                                 ║
  * ║    Table 1 lists D15 = 17.00 mm air, then a 2.80 mm plate PP      ║
@@ -171,7 +174,7 @@ const LENS_DATA = {
     // ── Front Group GF (positive) ──
     { label: "1", R: 31.767, d: 4.7, nd: 1.755, elemId: 1, sd: 16.8 },
     { label: "2", R: 108.05, d: 0.15, nd: 1.0, elemId: 0, sd: 15.5 },
-    { label: "3", R: 16.733, d: 5.01, nd: 1.804, elemId: 2, sd: 14.7 },
+    { label: "3", R: 16.733, d: 5.01, nd: 1.804, elemId: 2, sd: 13.0 },
     { label: "4", R: 25.973, d: 0.2, nd: 1.0, elemId: 0, sd: 11.3 },
     { label: "5", R: 27.72, d: 1.35, nd: 1.69895, elemId: 3, sd: 11.3 },
     { label: "6", R: 10.424, d: 6.27, nd: 1.0, elemId: 0, sd: 9.0 },
