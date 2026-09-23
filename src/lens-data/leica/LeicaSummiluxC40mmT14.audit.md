@@ -19,3 +19,7 @@ Removed copied catalog nC/nF/ng from all 15 elements so the runtime uses the nam
 Retained the published SDs after comparison with FIG. 13a–c. G2 travels objectward by 6.190 mm as Table 3's S19 gap decreases and S29 gap increases; the opposite prose direction is a source error already documented in the analysis. Source L2–L16 labels, four cemented pairs and both aspheric labels agree with the prescription.
 
 Added patent APD tags for L2/L7/L16 (S-FPL51) and L4/L11/L12/L13 (S-FPL53), explicitly identified on printed p. 17. L15's S-NPH1 dense flint is also tagged from the Example 2 identification and claim 7's abnormal-partial-dispersion description. Numerical dPgF remains catalog-derived. These tags correct the viewer colors without changing the spectral curves.
+
+### Image format
+
+Set `imageFormat: "35mm-cinema"` (22 × 16 mm, 27.2 mm diagonal) to match the Summilux-C 100 mm from the same patent. The canonical id is covered by the patent's 28 mm design image diagonal (`imageCircleMm`, printed p. 16). The marketed 33 mm Super 35 circle still has no separate id, and `lensMounts` stays unset because the taxonomy has no PL mount id. The image-circle floor check passes with no undersized surfaces.
