@@ -16,6 +16,16 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
       "HOYA Zemax catalog 2026-07-07 including obsolete glasses; vendor polynomial coefficients for PC3. https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf",
   },
   {
+    name: "C12",
+    vendor: "Hoya",
+    polynomial: [2.2877828, -0.0093148723, 0.010986443, 0.00048465203, -3.3944738e-5, 1.6958554e-6],
+    nd: 1.523073,
+    vd: 58.640203,
+    code6: "523586",
+    source:
+      "HOYA Zemax catalog 2026-07-07 including obsolete glasses; vendor polynomial coefficients for C12. https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf",
+  },
+  {
     name: "F15",
     vendor: "Hoya",
     polynomial: [2.5118393, -0.0077804578, 0.022422427, 0.00037461868, 3.1822466e-5, 1.3410962e-6],
