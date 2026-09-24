@@ -1,9 +1,11 @@
 /** Scalar pupil autocorrelation and conservative exact-ray to reference-pupil reconstruction. */
 import { fft2d } from "../math/fft.js";
 import type { Vec3, PreparedOpticalState } from "../types.js";
-import type { MtfBundle } from "./mtfTracing.js";
+import { xpZRelLastSurfAtZoom } from "../layout.js";
+import type { MtfBundle, MtfPupilRay } from "./mtfTracing.js";
 import { sampleReferenceWavefront } from "./mtfWavefront.js";
-import type { ComplexOtf } from "./mtfMath.js";
+import type { ComplexOtf, MtfSpot } from "./mtfMath.js";
+import { MTF_DIFFRACTION_LIMITS } from "./mtfConstants.js";
 
 export interface ComplexPupil {
   size: number;
@@ -20,6 +22,8 @@ export interface PupilReconstruction {
   pupil: ComplexPupil | null;
   message: string;
   refine: boolean;
+  /** Image-plane point the wavefront is referenced to; its OTF phase is relative to this point. */
+  reference: MtfSpot;
 }
 
 /** Linear autocorrelation uses >=2x zero padding so opposite pupil edges never wrap. */
@@ -74,15 +78,25 @@ export function reconstructMtfPupil(
   bundle: MtfBundle,
   wavelengthMm: number,
 ): PupilReconstruction {
-  const reject = (message: string, refine = false): PupilReconstruction => ({ pupil: null, message, refine });
-  if (bundle.chiefTrace.finalMedium !== 1 || bundle.rays.some((ray) => ray.trace.finalMedium !== 1))
+  const limits = MTF_DIFFRACTION_LIMITS;
+  // A clipped chief can sit outside the transmitted beam; reference the beam's flux centroid instead.
+  const centroidRay = bundle.chiefClipped ? rayNearestFluxCentroid(bundle) : null;
+  const referenceTrace = centroidRay?.trace ?? bundle.chiefTrace;
+  const referenceSpot: MtfSpot = centroidRay ? fluxCentroid(bundle) : bundle.chief;
+  const reject = (message: string, refine = false): PupilReconstruction => ({
+    pupil: null,
+    message,
+    refine,
+    reference: referenceSpot,
+  });
+  if (referenceTrace.finalMedium !== 1 || bundle.rays.some((ray) => ray.trace.finalMedium !== 1))
     return reject("Scalar FFT currently requires an image space in air.");
-  const chiefDirection = bundle.chiefTrace.terminalDirection;
-  if (chiefDirection[2] < Math.cos((15 * Math.PI) / 180))
-    return reject("Diffraction is outside the validated 15° image-ray incidence domain.");
-  const image: Vec3 = [bundle.chief.x, bundle.chief.y, state.imgZ];
-  const radius = Math.hypot(...bundle.chiefTrace.terminalPoint.map((v, i) => v - image[i]));
-  const reference = sampleReferenceWavefront(bundle.chiefTrace, image, radius, bundle.objectPoint);
+  const chiefDirection = referenceTrace.terminalDirection;
+  if (chiefDirection[2] < Math.cos((limits.maxChiefIncidenceDeg * Math.PI) / 180))
+    return reject(`Diffraction is outside the validated ${limits.maxChiefIncidenceDeg}° image-ray incidence domain.`);
+  const image: Vec3 = [referenceSpot.x, referenceSpot.y, state.imgZ];
+  const radius = referenceSphereRadius(state, referenceTrace, image);
+  const reference = sampleReferenceWavefront(referenceTrace, image, radius, bundle.objectPoint);
   if (!reference) return reject("Unable to establish a reference wavefront.");
   const n = bundle.gridSize;
   const nodes: Array<PupilNode | undefined> = new Array(n * n);
@@ -93,11 +107,11 @@ export function reconstructMtfPupil(
   for (const ray of bundle.rays) {
     const wave = sampleReferenceWavefront(ray.trace, image, radius, bundle.objectPoint);
     if (!wave) return reject("A ray cannot be mapped onto the reference sphere.");
-    if (Math.hypot(wave.qx - reference.qx, wave.qy - reference.qy) > 0.25)
+    if (Math.hypot(wave.qx - reference.qx, wave.qy - reference.qy) > limits.maxConeDirectionCosine)
       return reject(
         "Diffraction requires a narrower ray cone (roughly f/2 or slower in air). Stop down or use geometric MTF.",
       );
-    if (Math.hypot(ray.x - image[0], ray.y - image[1]) > 0.02 * radius)
+    if (Math.hypot(ray.x - image[0], ray.y - image[1]) > limits.maxBlurToReferenceRadius * radius)
       return reject("Image blur exceeds the validated scalar FFT domain; use geometric MTF.");
     nodes[ray.row * n + ray.column] = {
       x: wave.qx,
@@ -115,7 +129,7 @@ export function reconstructMtfPupil(
       const a = nodes[y * n + x];
       if (!a) continue;
       for (const b of [x + 1 < n ? nodes[y * n + x + 1] : undefined, y + 1 < n ? nodes[(y + 1) * n + x] : undefined]) {
-        if (b && Math.abs(a.path - b.path) > wavelengthMm / 4)
+        if (b && Math.abs(a.path - b.path) > wavelengthMm * limits.maxPhaseStepWaves)
           return reject("Wavefront phase needs finer pupil sampling.", true);
       }
     }
@@ -170,5 +184,37 @@ export function reconstructMtfPupil(
   if (folded) return reject("Exit-pupil mapping folds or becomes singular; scalar FFT MTF is unavailable.");
   if (!real.some((v, i) => v !== 0 || imaginary[i] !== 0))
     return reject("No continuous transmitted pupil could be reconstructed.");
-  return { pupil: { size: n, real, imaginary, step }, message: "", refine: false };
+  return { pupil: { size: n, real, imaginary, step }, message: "", refine: false, reference: referenceSpot };
+}
+
+/**
+ * Reference-sphere radius: the exit-pupil distance when it lies in front of the image, which is
+ * the textbook reference and stays finite when the last surface sits on the image plane;
+ * otherwise the distance from the reference ray's last surface hit.
+ */
+function referenceSphereRadius(state: PreparedOpticalState, referenceTrace: MtfPupilRay["trace"], image: Vec3): number {
+  const lastZ = state.surfaces[state.surfaces.length - 1]?.z;
+  const exitPupilZ = lastZ + xpZRelLastSurfAtZoom(state.zoomT, state.lens.runtime);
+  const pupilDistance = image[2] - exitPupilZ;
+  if (Number.isFinite(pupilDistance) && pupilDistance > 1e-6) return pupilDistance;
+  return Math.hypot(...referenceTrace.terminalPoint.map((v, i) => v - image[i]));
+}
+
+function fluxCentroid(bundle: MtfBundle): MtfSpot {
+  const weight = bundle.rays.reduce((sum, ray) => sum + ray.weight, 0);
+  return {
+    x: bundle.rays.reduce((sum, ray) => sum + ray.weight * ray.x, 0) / weight,
+    y: bundle.rays.reduce((sum, ray) => sum + ray.weight * ray.y, 0) / weight,
+    weight,
+  };
+}
+
+function rayNearestFluxCentroid(bundle: MtfBundle): MtfPupilRay | null {
+  if (!bundle.rays.length) return null;
+  const centroid = fluxCentroid(bundle);
+  return bundle.rays.reduce((best, ray) =>
+    Math.hypot(ray.x - centroid.x, ray.y - centroid.y) < Math.hypot(best.x - centroid.x, best.y - centroid.y)
+      ? ray
+      : best,
+  );
 }

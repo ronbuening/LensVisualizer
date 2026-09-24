@@ -1,15 +1,17 @@
 /** Shared pupil sampling for MTF. Exact hits stay in physical millimeters. */
-import type { MtfOptions, MtfSupport } from "../../types/mtf.js";
+import type { MtfOptions, MtfSpectralLine, MtfSupport } from "../../types/mtf.js";
 import type { PreparedOpticalState, Ray3, Vec3 } from "../types.js";
-import type { EngineTraceResult } from "../trace/types.js";
+import type { EngineTraceResult, TraceOptions } from "../trace/types.js";
 import { computeAnalysisFieldGeometryAtState2, solveChiefRay2 } from "../field/chiefRay.js";
 import { halfFieldAtZoom } from "../layout.js";
 import { traceEngineRay2 } from "../trace/rayAdapters.js";
 import { bulkTransmissionForTrace } from "../trace/bulkAbsorption.js";
+import { anchoredIndexTable } from "../chromatic/indexResolver.js";
 import type { MtfSpot } from "./mtfMath.js";
-import type { ChromaticChannel } from "../../types/optics.js";
 import { mtfFiniteObjectPoint } from "./mtfConjugates.js";
-import { evaluateAperture } from "../trace/aperture.js";
+import { mtfTraceClassification } from "./mtfRayClassification.js";
+
+export { mtfTraceClassification } from "./mtfRayClassification.js";
 
 export interface MtfPupilRay extends MtfSpot {
   column: number;
@@ -23,8 +25,12 @@ export interface MtfBundle {
   rays: MtfPupilRay[];
   blocked: number;
   failed: number;
+  /** Launch flux of rays the tracer could not resolve, in the same units as ray weights. */
+  failedWeight: number;
   chief: MtfSpot;
   chiefTrace: EngineTraceResult;
+  /** True when the reference chief ray is itself stopped by an aperture. */
+  chiefClipped: boolean;
   direction: Vec3;
   gridSize: number;
   launchStepMm: number;
@@ -39,49 +45,65 @@ export function mtfHalfField(state: PreparedOpticalState): number {
     : halfFieldAtZoom(state.zoomT, state.lens.runtime);
 }
 
-export function mtfImagePoint(state: PreparedOpticalState, trace: EngineTraceResult): MtfSpot | null {
+/**
+ * Intersect a trace's final segment with the axial image plane.
+ *
+ * A zero-length transfer is a landing: some prescriptions put the last plate surface on the
+ * image plane itself.
+ *
+ * @param state - prepared optical state
+ * @param trace - exact trace ending after the last surface
+ * @param imagePlaneZ - axial image-plane position in mm
+ * @returns landing point with bulk-transmission weight, or null when the plane is not ahead
+ */
+export function mtfImagePoint(
+  state: PreparedOpticalState,
+  trace: EngineTraceResult,
+  imagePlaneZ = state.imgZ,
+): MtfSpot | null {
   if (trace.status !== "ok" || Math.abs(trace.terminalDirection[2]) < 1e-12) return null;
-  const distance = (state.imgZ - trace.terminalPoint[2]) / trace.terminalDirection[2];
-  if (!(distance > 0)) return null;
+  const distance = (imagePlaneZ - trace.terminalPoint[2]) / trace.terminalDirection[2];
+  if (!(distance >= -1e-9)) return null;
+  const transfer = Math.max(0, distance);
   return {
-    x: trace.terminalPoint[0] + distance * trace.terminalDirection[0],
-    y: trace.terminalPoint[1] + distance * trace.terminalDirection[1],
+    x: trace.terminalPoint[0] + transfer * trace.terminalDirection[0],
+    y: trace.terminalPoint[1] + transfer * trace.terminalDirection[1],
     weight: bulkTransmissionForTrace(state.lens.runtime, trace.hits),
   };
 }
 
-/** Prove a miss against the finite spherical/flat cap, independently of the intersection solver. */
-function missesApertureBounds(trace: EngineTraceResult, state: PreparedOpticalState, stopRadius?: number): boolean {
-  const surface = state.surfaces[trace.terminalSurfaceIndex + 1];
-  if (!surface || !["spherical", "flat"].includes(surface.profile.kind)) return false;
-  const radius = evaluateAperture(state, surface, 0, stopRadius).semiDiameter;
-  const limit = surface.profile.finiteRadiusLimit();
-  if (radius === null || !(radius > 0) || (limit !== null && radius > limit)) return false;
-  const sag = surface.profile.sag(radius);
-  const origin = trace.terminalPoint,
-    direction = trace.terminalDirection;
-  if (!Number.isFinite(sag) || direction[2] <= 1e-12) return false;
-  // A spherical cap is wholly inside this axial slab and radial cylinder. If the ray
-  // misses their intersection, a noBracket result is physical clipping, not lost data.
-  const start = Math.max(0, (surface.z + Math.min(0, sag) - origin[2]) / direction[2]);
-  const end = (surface.z + Math.max(0, sag) - origin[2]) / direction[2];
-  if (end < start) return false;
-  const radialSpeed2 = direction[0] ** 2 + direction[1] ** 2;
-  const closest = radialSpeed2 > 0 ? -(origin[0] * direction[0] + origin[1] * direction[1]) / radialSpeed2 : start;
-  const distance = Math.max(start, Math.min(end, closest));
-  return Math.hypot(origin[0] + distance * direction[0], origin[1] + distance * direction[1]) > radius + 1e-8;
-}
+const indexTablesByState = new WeakMap<PreparedOpticalState, Map<number, Float64Array>>();
 
-/** Keep unknown numerical failures distinct from geometrically proven aperture misses. */
-export function mtfTraceClassification(
-  trace: EngineTraceResult,
-  state?: PreparedOpticalState,
-  stopRadius?: number,
-): "valid" | "blocked" | "failed" {
-  if (trace.status === "ok") return "valid";
-  if (trace.failureReason === "noBracket" && state && missesApertureBounds(trace, state, stopRadius)) return "blocked";
-  if (trace.failureReason && trace.failureReason !== "totalInternalReflection") return "failed";
-  return "blocked";
+/**
+ * Surface-index callback for one MTF wavelength.
+ *
+ * Reference-wavelength runs keep the authored indices unless mixed d/e references need a
+ * physical conversion. Resolved runs use indices anchored to each authored reference, so the
+ * design's focus at its reference line is unchanged.
+ *
+ * @param state - prepared optical state
+ * @param support - support record selecting authored or resolved indices
+ * @param wavelengthNm - traced wavelength in nanometres
+ * @returns trace callback, or undefined for authored reference indices
+ */
+export function mtfIndexResolver(
+  state: PreparedOpticalState,
+  support: MtfSupport,
+  wavelengthNm: number,
+): TraceOptions["indexAtSurface"] {
+  if (!support.useResolvedReference) return undefined;
+  let tables = indexTablesByState.get(state);
+  if (!tables) {
+    tables = new Map();
+    indexTablesByState.set(state, tables);
+  }
+  let table = tables.get(wavelengthNm);
+  if (!table) {
+    table = anchoredIndexTable(state, wavelengthNm);
+    tables.set(wavelengthNm, table);
+  }
+  const resolved = table;
+  return (surfaceIndex) => resolved[surfaceIndex];
 }
 
 export function traceMtfPupil(
@@ -90,7 +112,7 @@ export function traceMtfPupil(
   support: MtfSupport,
   fieldFraction: number,
   gridSize: number,
-  spectralLine?: { channel: ChromaticChannel; wavelengthNm: number },
+  spectralLine: MtfSpectralLine = support.spectralLines[0],
   halfFieldDeg = mtfHalfField(state),
 ): MtfBundle | null {
   const L = state.lens.runtime;
@@ -113,18 +135,18 @@ export function traceMtfPupil(
     const length = Math.hypot(...delta);
     return { origin, direction: [delta[0] / length, delta[1] / length, delta[2] / length] };
   };
+  const referenceNm = support.spectralLines[0]?.wavelengthNm ?? support.referenceWavelengthNm;
   if (objectPoint) {
     // Aim one finite-source chief through the physical stop. The same source and grid serve every wavelength.
+    const aimOptions: TraceOptions = {
+      stopAt: state.lens.stop.surfaceIndex + 1,
+      checkSemiDiameter: false,
+      directionNormalized: true,
+      wavelengthNm: referenceNm,
+      indexAtSurface: mtfIndexResolver(state, support, referenceNm),
+    };
     const atStop = (y: number) => {
-      const trace = traceEngineRay2(state, rayAt(0, y), {
-        stopAt: state.lens.stop.surfaceIndex + 1,
-        checkSemiDiameter: false,
-        directionNormalized: true,
-        indexAtSurface:
-          support.useResolvedReference || options.spectrum === "cdf"
-            ? (i) => state.lens.dispersion[i].indexAt("G")
-            : undefined,
-      });
+      const trace = traceEngineRay2(state, rayAt(0, y), aimOptions);
       return trace.status === "ok" ? trace.terminalPoint[1] : NaN;
     };
     let aimed = false;
@@ -142,41 +164,50 @@ export function traceMtfPupil(
     }
     if (!aimed) return null;
   }
-  const traceAt = (x: number, y: number) => {
-    const ray = rayAt(x, centerY + y);
-    return traceEngineRay2(state, ray, {
-      checkSemiDiameter: true,
-      stopSemiDiameter: options.stopSemiDiameterMm,
-      stopOnClip: true,
-      directionNormalized: true,
-      wavelengthNm: spectralLine?.wavelengthNm ?? support.referenceWavelengthNm,
-      recordOpticalPath: options.method === "diffraction",
-      indexAtSurface:
-        spectralLine || support.useResolvedReference
-          ? (i) => state.lens.dispersion[i].indexAt(spectralLine?.channel ?? "G")
-          : undefined,
-    });
+  const traceOptions: TraceOptions = {
+    checkSemiDiameter: true,
+    stopSemiDiameter: options.stopSemiDiameterMm,
+    stopOnClip: true,
+    directionNormalized: true,
+    wavelengthNm: spectralLine.wavelengthNm,
+    recordOpticalPath: options.method === "diffraction",
+    indexAtSurface: mtfIndexResolver(state, support, spectralLine.wavelengthNm),
   };
-  const chiefTrace = traceAt(0, 0);
+  const traceAt = (x: number, y: number) => traceEngineRay2(state, rayAt(x, centerY + y), traceOptions);
+  // The chief is a geometric reference, not a pupil sample: trace it through every surface even
+  // when an aperture clips it, and record the clipping separately.
+  const chiefTrace = traceEngineRay2(state, rayAt(0, centerY), {
+    ...traceOptions,
+    checkSemiDiameter: false,
+    stopOnClip: false,
+  });
   const chiefPoint = mtfImagePoint(state, chiefTrace);
   if (!chiefPoint) return null;
+  const chiefClipped = mtfTraceClassification(traceAt(0, 0), state, options.stopSemiDiameterMm) !== "valid";
   const bundle: MtfBundle = {
     rays: [],
     blocked: 0,
     failed: 0,
+    failedWeight: 0,
     chief: chiefPoint,
     chiefTrace,
+    chiefClipped,
     direction: chiefTrace.input.direction,
     gridSize,
     launchStepMm: (2 * options.pupilSemiDiameterMm) / gridSize,
     objectPoint,
   };
+  const chiefDistance = objectPoint ? Math.hypot(...chiefTrace.input.origin.map((v, i) => v - objectPoint[i])) : 0;
   for (let row = 0; row < gridSize; row++) {
     for (let column = 0; column < gridSize; column++) {
       const x = (2 * (column + 0.5)) / gridSize - 1;
       const y = (2 * (row + 0.5)) / gridSize - 1;
       if (x * x + y * y > 1) continue;
       const trace = traceAt(x * options.pupilSemiDiameterMm, y * options.pupilSemiDiameterMm);
+      // Solid angle subtended by equal cells of the launch plane: cos(theta) / distance².
+      const launchWeight = objectPoint
+        ? (chiefDistance / Math.hypot(...trace.input.origin.map((v, i) => v - objectPoint[i]))) ** 3
+        : 1;
       const classification = mtfTraceClassification(trace, state, options.stopSemiDiameterMm);
       if (classification === "blocked") {
         bundle.blocked++;
@@ -185,13 +216,10 @@ export function traceMtfPupil(
       const point = classification === "valid" ? mtfImagePoint(state, trace) : null;
       if (!point) {
         bundle.failed++;
+        bundle.failedWeight += launchWeight;
         continue;
       }
-      if (objectPoint) {
-        const distance = (origin: Vec3) => Math.hypot(...origin.map((v, i) => v - objectPoint[i]));
-        // Solid angle subtended by equal cells of the launch plane: cos(theta) / distance².
-        point.weight *= (distance(chiefTrace.input.origin) / distance(trace.input.origin)) ** 3;
-      }
+      point.weight *= launchWeight;
       bundle.rays.push({
         ...point,
         column,

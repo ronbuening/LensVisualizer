@@ -1,12 +1,12 @@
 import { describe, expect, it } from "vitest";
-import { build, buildSimplePositiveElementLens } from "./testLensFixtures.js";
+import { build, buildRearPlateLens, buildSimplePositiveElementLens, REAR_PLATE_FIXTURE } from "./testLensFixtures.js";
 import { prepareRuntimeState } from "../../../src/optics/compat.js";
 import { assessMtfSupport } from "../../../src/optics/analysis/mtfSupport.js";
 import type { MtfOptions } from "../../../src/types/mtf.js";
 import { LINE_NM } from "../../../src/optics/spectralLines.js";
 import { geometricOtf, otfMagnitude } from "../../../src/optics/analysis/mtfMath.js";
 import { computeMtf } from "../../../src/optics/mtf.js";
-import { mtfHalfField, mtfTraceClassification } from "../../../src/optics/analysis/mtfTracing.js";
+import { mtfHalfField, mtfTraceClassification, traceMtfPupil } from "../../../src/optics/analysis/mtfTracing.js";
 import type { EngineTraceResult } from "../../../src/optics/trace/types.js";
 import { traceEngineRay2 } from "../../../src/optics/trace/rayAdapters.js";
 
@@ -78,7 +78,7 @@ describe("geometric MTF", () => {
     );
     expect(mtfTraceClassification({ status: "clipped", failureReason: null } as EngineTraceResult)).toBe("blocked");
   });
-  it("recognizes proven misses of finite spherical caps without hiding in-aperture failures", () => {
+  it("proves spherical, flat and aspheric cap misses without hiding in-aperture failures", () => {
     const base = buildSimplePositiveElementLens();
     const lens = build({
       ...base.data,
@@ -100,7 +100,8 @@ describe("geometric MTF", () => {
     expect(miss.failureReason).toBe("noBracket");
     expect(mtfTraceClassification(miss, state)).toBe("blocked");
     expect(mtfTraceClassification({ ...miss, terminalPoint: [0, 0, -10] }, state)).toBe("failed");
-    expect(mtfTraceClassification({ ...miss, failureReason: "noConvergedIntersection" }, state)).toBe("failed");
+    // The analytic cap test is independent of the solver's failure label.
+    expect(mtfTraceClassification({ ...miss, failureReason: "noConvergedIntersection" }, state)).toBe("blocked");
     const aspheric = {
       ...state,
       surfaces: state.surfaces.map((s, i) =>
@@ -112,7 +113,9 @@ describe("geometric MTF", () => {
           : s,
       ),
     };
-    expect(mtfTraceClassification(miss, aspheric)).toBe("failed");
+    // Aspheric caps use the Lipschitz interval proof: outside the aperture cylinder is a miss, a real rim hit is not.
+    expect(mtfTraceClassification(miss, aspheric)).toBe("blocked");
+    expect(mtfTraceClassification({ ...miss, terminalPoint: [2.5, 0, -10] }, aspheric)).toBe("failed");
     const result = computeMtf(state, { ...mtfTestOptions, pupilSemiDiameterMm: 8, stopSemiDiameterMm: 3 });
     expect(result.fields[0].failedRays).toBe(0);
     expect(result.fields[0].blockedRays).toBeGreaterThan(0);
@@ -137,5 +140,40 @@ describe("geometric MTF", () => {
     const result = computeMtf(prepareRuntimeState(lens, 0, 0), options);
     expect(Math.abs(result.fields[1].imageHeightMm!)).toBeCloseTo(2, 4);
     expect(result.fields[1].failedRays).toBe(0);
+  });
+});
+
+describe("MTF at awkward geometry", () => {
+  it("lands rays on an image plane that coincides with the last plate surface", () => {
+    const L = buildRearPlateLens({ plates: [{ ...REAR_PLATE_FIXTURE, gapAfterMm: 0 }] });
+    const state = prepareRuntimeState(L, 0, 0);
+    expect(state.surfaces.at(-1)!.d).toBe(0);
+    const field = computeMtf(state, mtfTestOptions).fields[0];
+    expect(field.reason).toBeNull();
+    expect(field.sagittal[0]).toBeCloseTo(1, 12);
+  });
+  it("keeps a clipped chief ray as the geometric reference while pupil rays transmit", () => {
+    const base = buildSimplePositiveElementLens();
+    // One millimetre behind the stop, a 0.3 mm air baffle clips the 20° chief but passes part of the beam.
+    const [stop, ...lens] = base.data.surfaces;
+    const L = build({
+      ...base.data,
+      surfaces: [{ ...stop, d: 1 }, { label: "B", R: 1e15, nd: 1, sd: 0.3, d: 0.5, elemId: 0 }, ...lens],
+    });
+    const state = prepareRuntimeState(L, 0, 0);
+    const options = { ...mtfTestOptions, fieldFractions: [1] };
+    const bundle = traceMtfPupil(state, options, assessMtfSupport(state, options), 1, 32, undefined, 20)!;
+    expect(bundle).not.toBeNull();
+    expect(bundle.chiefClipped).toBe(true);
+    expect(bundle.rays.length).toBeGreaterThan(16);
+  });
+  it("judges convergence within the reporting band and reports where stability ends", () => {
+    const state = prepareRuntimeState(buildSimplePositiveElementLens(), 0, 0);
+    const options = { ...mtfTestOptions, pupilSemiDiameterMm: 10, stopSemiDiameterMm: 10, maxGridSize: 64 as const };
+    const band = computeMtf(state, { ...options, frequenciesPerMm: [0, 10, 20, 40] }).fields[0];
+    const wide = computeMtf(state, { ...options, frequenciesPerMm: [0, 10, 20, 40, 900] }).fields[0];
+    expect(wide.maxDelta).toBeCloseTo(band.maxDelta!, 12);
+    expect(wide.status).toBe(band.status);
+    expect([0, 10, 20, 40, 900, null]).toContain(wide.convergedThroughLpMm);
   });
 });

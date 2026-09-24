@@ -12,6 +12,7 @@ import { traceMtfPupil } from "../../../src/optics/analysis/mtfTracing.js";
 import { computeMtf } from "../../../src/optics/mtf.js";
 import { evaluateCatalogAbbeNumber, evaluateSellmeier, resolveGlass } from "../../../src/optics/glassCatalog.js";
 import { LINE_NM } from "../../../src/optics/spectralLines.js";
+import { anchoredIndexAtWavelength } from "../../../src/optics/chromatic/indexResolver.js";
 import type { MtfOptions } from "../../../src/types/mtf.js";
 
 const options: MtfOptions = {
@@ -25,6 +26,54 @@ const options: MtfOptions = {
 };
 
 describe("qualified spectral MTF", () => {
+  it("anchors catalog dispersion to the authored index so spectral runs keep the design's focus", () => {
+    const base = buildChromaticPositiveElementLens();
+    // N-BK7 stays a compatible catalog proxy for an authored index 1e-3 above its catalog nd.
+    const authored = 1.5178;
+    const L = build({
+      ...base.data,
+      elements: base.elements.map((e) => ({ ...e, nd: authored })),
+      surfaces: base.data.surfaces.map((s) => ({ ...s, nd: s.nd === 1 ? 1 : authored })),
+    });
+    const state = prepareRuntimeState(L, 0, 0);
+    expect(state.lens.dispersion[1].quality).toBe("sellmeier");
+    expect(state.lens.dispersion[1].indexAt("G")).not.toBeCloseTo(authored, 6);
+    expect(anchoredIndexAtWavelength(state, 1, LINE_NM.d)).toBeCloseTo(authored, 14);
+    const glass = state.lens.dispersion[1].glassEntry!;
+    expect(anchoredIndexAtWavelength(state, 1, LINE_NM.F) - authored).toBeCloseTo(
+      evaluateSellmeier(glass, LINE_NM.F) - evaluateSellmeier(glass, LINE_NM.d),
+      14,
+    );
+    const reference = assessMtfSupport(state, { ...options, spectrum: "reference" });
+    const cdf = assessMtfSupport(state, options);
+    const plain = traceMtfPupil(state, { ...options, spectrum: "reference" }, reference, 0.15, 16)!;
+    const dLine = traceMtfPupil(state, options, cdf, 0.15, 16, cdf.spectralLines[0])!;
+    dLine.rays.forEach((ray, i) => {
+      expect(ray.x).toBeCloseTo(plain.rays[i].x, 12);
+      expect(ray.y).toBeCloseTo(plain.rays[i].y, 12);
+    });
+  });
+  it("interpolates line-index glass exactly through its measured C/d/F/g channels", () => {
+    const state = prepareRuntimeState(buildChromaticPositiveElementLens(), 0, 0);
+    const lineLens = build({
+      ...state.lens.runtime.data,
+      elements: state.lens.runtime.elements.map((e) => ({
+        ...e,
+        glass: undefined,
+        nC: 1.5143,
+        nF: 1.5224,
+        ng: 1.5267,
+      })),
+    });
+    const lineState = prepareRuntimeState(lineLens, 0, 0);
+    expect(lineState.lens.dispersion[1].quality).toBe("lineIndices");
+    const channels = { C: 1.5143, d: lineState.surfaces[1].nd, F: 1.5224, g: 1.5267 } as const;
+    for (const [line, value] of Object.entries(channels))
+      expect(anchoredIndexAtWavelength(lineState, 1, LINE_NM[line as keyof typeof channels])).toBeCloseTo(value, 12);
+    const mid = anchoredIndexAtWavelength(lineState, 1, 540);
+    expect(mid).toBeGreaterThan(channels.d);
+    expect(mid).toBeLessThan(channels.F);
+  });
   it("combines complex OTFs before magnitude, preserving lateral color and throughput", () => {
     const base = { real: [1, 1], imaginary: [0, 0] };
     const shifted = translateOtf(base, [0, 10], 0.05);

@@ -2,6 +2,8 @@
 import type { FiniteConjugate } from "./optics.js";
 export type MtfMethod = "geometric" | "diffraction";
 export type MtfSpectrum = "reference" | "cdf";
+/** Largest pupil grid side a request may refine to; refinement always starts coarser. */
+export type MtfGridCap = 32 | 64 | 128 | 256;
 export type MtfUnavailableReason =
   | "unsupported-path"
   | "active-movement"
@@ -24,8 +26,14 @@ export interface MtfOptions {
   movementActive?: boolean;
   fieldFractions?: readonly number[];
   frequenciesPerMm?: readonly number[];
-  /** Largest pupil grid side; refinement starts at 16 and never exceeds 256. */
-  maxGridSize?: 32 | 64 | 128 | 256;
+  /** Largest pupil grid side; refinement starts at 16 (32 for diffraction) and never exceeds 256. */
+  maxGridSize?: MtfGridCap;
+}
+
+/** One sampled wavelength and its incident (pre-throughput) intensity weight. */
+export interface MtfSpectralLine {
+  wavelengthNm: number;
+  weight: number;
 }
 
 export interface MtfSupport {
@@ -33,10 +41,13 @@ export interface MtfSupport {
   reason: MtfUnavailableReason | null;
   message: string;
   referenceWavelengthNm: number;
-  /** Mixed-reference models require physical d-line dispersion lookups. */
+  /**
+   * Trace with anchored per-wavelength indices instead of the authored reference indices:
+   * true for spectral runs and for mixed d/e references that need physical conversion.
+   */
   useResolvedReference: boolean;
-  /** Incident intensity weights; throughput is applied separately before normalizing the OTF. */
-  spectralLines: Array<{ wavelengthNm: number; weight: number }>;
+  /** Incident intensity weights; transmitted throughput is applied separately before normalizing the OTF. */
+  spectralLines: MtfSpectralLine[];
   conjugate?: FiniteConjugate;
   limitations: string[];
 }
@@ -49,11 +60,18 @@ export interface MtfFieldResult {
   status: "converged" | "unconverged" | "unavailable";
   reason: MtfUnavailableReason | null;
   message: string;
+  /** Qualifications that keep a result usable, e.g. edge rays the tracer could not resolve. */
+  notes: string[];
   gridSize: number;
   validRays: number;
   blockedRays: number;
   failedRays: number;
+  /** Share of launch flux carried by unresolved rays; the geometric OTF error is at most twice this. */
+  unknownFluxFraction: number;
+  /** Largest change between the last two grids at or below the convergence band. */
   maxDelta: number | null;
+  /** Highest reported frequency through which every change stays within tolerance. */
+  convergedThroughLpMm: number | null;
 }
 
 export interface MtfResult {

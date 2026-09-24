@@ -12,20 +12,48 @@ export interface ComplexOtf {
 export function geometricOtf(points: readonly MtfSpot[], frequencies: readonly number[], axis: "x" | "y"): ComplexOtf {
   const total = points.reduce((sum, p) => sum + p.weight, 0);
   if (!(total > 0)) return { real: [], imaginary: [] };
-  const real: number[] = [];
-  const imaginary: number[] = [];
-  for (const frequency of frequencies) {
-    let re = 0;
-    let im = 0;
-    for (const point of points) {
-      const phase = -2 * Math.PI * frequency * point[axis];
-      re += point.weight * Math.cos(phase);
-      im += point.weight * Math.sin(phase);
+  const count = frequencies.length;
+  const real = new Float64Array(count);
+  const imaginary = new Float64Array(count);
+  const step = arithmeticStep(frequencies);
+  for (const point of points) {
+    const position = point[axis];
+    if (step === null) {
+      for (let i = 0; i < count; i++) {
+        const phase = -2 * Math.PI * frequencies[i] * position;
+        real[i] += point.weight * Math.cos(phase);
+        imaginary[i] += point.weight * Math.sin(phase);
+      }
+      continue;
     }
-    real.push(re / total);
-    imaginary.push(im / total);
+    // Evenly spaced frequencies share one phasor rotation per point: a single sincos pair
+    // replaces one per frequency, which keeps 0-100 lp/mm sweeps cheap for dense field grids.
+    const start = -2 * Math.PI * frequencies[0] * position;
+    const rotation = -2 * Math.PI * step * position;
+    const rotationCos = Math.cos(rotation);
+    const rotationSin = Math.sin(rotation);
+    let re = point.weight * Math.cos(start);
+    let im = point.weight * Math.sin(start);
+    for (let i = 0; i < count; i++) {
+      real[i] += re;
+      imaginary[i] += im;
+      const next = re * rotationCos - im * rotationSin;
+      im = re * rotationSin + im * rotationCos;
+      re = next;
+    }
   }
-  return { real, imaginary };
+  return { real: Array.from(real, (v) => v / total), imaginary: Array.from(imaginary, (v) => v / total) };
+}
+
+/** Common spacing of an evenly spaced frequency list with at least three entries, else null. */
+function arithmeticStep(frequencies: readonly number[]): number | null {
+  if (frequencies.length < 3) return null;
+  const step = frequencies[1] - frequencies[0];
+  if (!(step > 0)) return null;
+  for (let i = 2; i < frequencies.length; i++) {
+    if (Math.abs(frequencies[i] - frequencies[i - 1] - step) > 1e-9 * Math.max(1, step)) return null;
+  }
+  return step;
 }
 
 export function otfMagnitude(otf: ComplexOtf): number[] {

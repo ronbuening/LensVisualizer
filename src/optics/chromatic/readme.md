@@ -20,6 +20,7 @@ flowchart LR
   n_external_src_optics_aberration["src/optics/aberration"]
   n_external_src_optics_dispersion_ts["src/optics/dispersion.ts"]
   n_external_src_optics_field["src/optics/field"]
+  n_external_src_optics_glassCatalog_ts["src/optics/glassCatalog.ts"]
   n_external_src_optics_layout_ts["src/optics/layout.ts"]
   n_external_src_optics_prescription["src/optics/prescription"]
   n_external_src_optics_spectralLines_ts["src/optics/spectralLines.ts"]
@@ -31,11 +32,13 @@ flowchart LR
   n_src_optics_chromatic_src_optics_chromatic_dispersionQuality_ts --> n_external_src_optics_dispersion_ts
   n_src_optics_chromatic_src_optics_chromatic_indexResolver_ts --> n_external_src_optics_dispersion_ts
   n_src_optics_chromatic_src_optics_chromatic_analysis_ts --> n_external_src_optics_field
+  n_src_optics_chromatic_src_optics_chromatic_indexResolver_ts --> n_external_src_optics_glassCatalog_ts
   n_src_optics_chromatic_src_optics_chromatic_analysis_ts --> n_external_src_optics_layout_ts
   n_src_optics_chromatic_src_optics_chromatic_dispersionAdapter_ts --> n_external_src_optics_prescription
   n_src_optics_chromatic_src_optics_chromatic_dispersionQuality_ts --> n_external_src_optics_prescription
   n_src_optics_chromatic_src_optics_chromatic_indexResolver_ts --> n_external_src_optics_prescription
   n_src_optics_chromatic_src_optics_chromatic_channels_ts --> n_external_src_optics_spectralLines_ts
+  n_src_optics_chromatic_src_optics_chromatic_indexResolver_ts --> n_external_src_optics_spectralLines_ts
   n_src_optics_chromatic_src_optics_chromatic_dispersionAdapter_ts --> n_external_src_optics_types_ts
   n_src_optics_chromatic_src_optics_chromatic_dispersionQuality_ts --> n_external_src_optics_types_ts
   n_src_optics_chromatic_src_optics_chromatic_indexResolver_ts --> n_external_src_optics_types_ts
@@ -54,7 +57,7 @@ flowchart LR
 
 - Direct source files: 6
 - Direct subfolders: 0
-- Main outbound areas: src/types (6), same folder (3), src/optics/dispersion.ts (3), src/optics/prescription (3), src/optics/types.ts (3), src/optics/trace (2), src/optics/aberration, src/optics/field, +2 more
+- Main outbound areas: src/types (6), same folder (3), src/optics/dispersion.ts (3), src/optics/prescription (3), src/optics/types.ts (3), src/optics/spectralLines.ts (2), src/optics/trace (2), src/optics/aberration, +3 more
 - External consumers: src/components/controls, src/components/diagram, src/components/display, src/optics/aberration, src/optics/analysis, src/optics/compat.ts, src/optics/perspective, src/optics/rayTrace.ts
 
 ## Files
@@ -66,4 +69,4 @@ flowchart LR
 | `chromaticTrace.ts` | Chromatic Trace helper module | src/optics/trace (2), src/types | same folder, src/optics/analysis, src/optics/compat.ts, src/optics/rayTrace.ts | computeChromaticRayFanSpread2, traceRayChromatic2, traceRayVectorChromatic2, traceSkewRayChromatic2, traceSkewRayVectorChromatic2, VectorRayTraceInput2, ChromaticChannel, ChromaticRayFanSpread, +2 more |
 | `dispersionAdapter.ts` | Dispersion Adapter helper module | src/optics/dispersion.ts, src/optics/prescription, src/optics/types.ts, src/types | src/optics/compat.ts | compileSurfaceDispersions, makeSurfaceDispersion2, dispersionTableFromRuntime2 |
 | `dispersionQuality.ts` | Dispersion Quality helper module | src/optics/dispersion.ts, src/optics/prescription, src/optics/types.ts, src/types | src/optics/compat.ts | summarizeDispersionQualityForLens2, summarizeDispersionQualityForState2, summarizeDispersionQuality2 |
-| `indexResolver.ts` | Index Resolver helper module | same folder, src/optics/dispersion.ts, src/optics/prescription, src/optics/types.ts, src/types | src/optics/compat.ts, src/optics/perspective, src/optics/rayTrace.ts | CHROMATIC_CHANNELS_2, CHANNEL_WAVELENGTH_NM_2, SurfaceIndexResolver2, wavelengthNd2, indexAtPreparedSurface2, indexAtRuntimeSurface2, channelIndexResolverForState2 |
+| `indexResolver.ts` | Index Resolver helper module | same folder, src/optics/dispersion.ts, src/optics/glassCatalog.ts, src/optics/prescription, src/optics/spectralLines.ts, +2 more | src/optics/analysis, src/optics/compat.ts, src/optics/perspective, src/optics/rayTrace.ts | CHROMATIC_CHANNELS_2, CHANNEL_WAVELENGTH_NM_2, SurfaceIndexResolver2, wavelengthNd2, indexAtPreparedSurface2, indexAtRuntimeSurface2, channelIndexResolverForState2, anchoredIndexAtWavelength, +1 more |
