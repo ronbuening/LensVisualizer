@@ -1047,7 +1047,9 @@ positions are piecewise-linearly interpolated and should not be presented as sou
 Distance is axial, from the object plane to the current first vertex or fixed image plane. Duplicate stations
 are invalid. MTF never infers these entries from `closeFocusM`, production MFD, or interpolated slider labels;
 undocumented intermediate states remain unavailable. Do not certify calculated focus travel as a published
-configuration. Source-rounded prescriptions may retain residual defocus: MTF uses their fixed image plane.
+configuration. Source-rounded prescriptions may retain residual defocus: MTF evaluates the authored image plane
+by default, reports the axial best-focus shift as a diagnostic, and moves the plane only when the viewer asks.
+Do not edit the authored image distance to improve simulated MTF.
 
 ```typescript
 finiteConjugates: [{

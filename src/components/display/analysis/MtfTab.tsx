@@ -149,9 +149,6 @@ export default function MtfTab({
             ? "Object at infinity."
             : "Finite conjugate is not established at this setting."}
       </p>
-      {method === "geometric" && (
-        <p>Geometric MTF excludes diffraction. It can overestimate contrast near the diffraction limit.</p>
-      )}
       {!support.available ? (
         <p role="status">{support.message}</p>
       ) : error ? (
@@ -181,7 +178,10 @@ export default function MtfTab({
             <li key={text}>{text}</li>
           ))}
         </ul>
-        <p>Field percentages refer to the modeled field angle, not necessarily a sensor corner.</p>
+        <p>
+          Field percentages are fractions of the format-corner image height, or of the modeled edge when the lens
+          declares no format.
+        </p>
       </details>
     </section>
   );

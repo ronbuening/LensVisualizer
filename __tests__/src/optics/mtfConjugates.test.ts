@@ -3,7 +3,7 @@ import { build, buildSimplePositiveElementLens, buildVariableStopGapLens } from 
 import { prepareRuntimeState } from "../../../src/optics/compat.js";
 import { assessMtfSupport } from "../../../src/optics/analysis/mtfSupport.js";
 import { mtfFiniteObjectPoint } from "../../../src/optics/analysis/mtfConjugates.js";
-import { traceMtfPupil } from "../../../src/optics/analysis/mtfTracing.js";
+import { traceMtfFieldPupil } from "../../../src/optics/analysis/mtfTracing.js";
 import { computeMtf } from "../../../src/optics/mtf.js";
 import { sampleReferenceWavefront } from "../../../src/optics/analysis/mtfWavefront.js";
 import type { MtfOptions } from "../../../src/types/mtf.js";
@@ -47,7 +47,7 @@ describe("documented finite MTF", () => {
   const state = prepareRuntimeState(L, 1, 0);
   it("uses a common point source and reproduces paraxial focus and magnification", () => {
     const support = assessMtfSupport(state, options);
-    const bundle = traceMtfPupil(state, options, support, 0, 32)!;
+    const bundle = traceMtfFieldPupil(state, options, support, 0, 32)!;
     expect(bundle).not.toBeNull();
     for (const ray of bundle.rays) {
       const { origin, direction } = ray.trace.input;
@@ -56,7 +56,7 @@ describe("documented finite MTF", () => {
       expect(origin[1] - distance * direction[1]).toBeCloseTo(bundle.objectPoint![1], 10);
       expect(Math.hypot(ray.x, ray.y)).toBeLessThan(0.00001);
     }
-    const offAxis = traceMtfPupil(state, options, support, 0.001, 32)!;
+    const offAxis = traceMtfFieldPupil(state, options, support, 0.001 * L.halfField, 32)!;
     const parallel = atRear(1, 0),
       magnification = parallel.y + imageGap * parallel.u;
     expect(offAxis.chief.y / offAxis.objectPoint![1]).toBeCloseTo(magnification, 5);
@@ -93,8 +93,9 @@ describe("documented finite MTF", () => {
     const far = build({ ...base.data, finiteConjugates: [{ ...conjugate, objectDistanceMm: 1e9 }] });
     const finiteState = prepareRuntimeState(far, 1, 0),
       infiniteState = prepareRuntimeState(far, 0, 0);
-    const finite = traceMtfPupil(finiteState, options, assessMtfSupport(finiteState, options), 0.01, 32)!;
-    const infinite = traceMtfPupil(infiniteState, options, assessMtfSupport(infiniteState, options), 0.01, 32)!;
+    const angle = 0.01 * far.halfField;
+    const finite = traceMtfFieldPupil(finiteState, options, assessMtfSupport(finiteState, options), angle, 32)!;
+    const infinite = traceMtfFieldPupil(infiniteState, options, assessMtfSupport(infiniteState, options), angle, 32)!;
     expect(finite.rays.length).toBe(infinite.rays.length);
     finite.rays.forEach((r, i) => {
       expect(r.x).toBeCloseTo(infinite.rays[i].x, 6);
@@ -114,7 +115,7 @@ describe("documented finite MTF", () => {
     expect(assessMtfSupport(prepareRuntimeState(lens, 1, 0.49), options).reason).toBe("finite-conjugate-unavailable");
   });
   it("keeps spherical launch phase invariant when moving the input plane along a ray", () => {
-    const bundle = traceMtfPupil(state, options, assessMtfSupport(state, options), 0, 32)!;
+    const bundle = traceMtfFieldPupil(state, options, assessMtfSupport(state, options), 0, 32)!;
     const ray = bundle.rays[0].trace;
     const image = [0, 0, state.imgZ] as const;
     const before = sampleReferenceWavefront(ray, image, imageGap, bundle.objectPoint)!;

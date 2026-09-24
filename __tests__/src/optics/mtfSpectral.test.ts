@@ -6,9 +6,14 @@ import {
   REAR_PLATE_FIXTURE,
 } from "./testLensFixtures.js";
 import { prepareRuntimeState } from "../../../src/optics/compat.js";
-import { assessMtfSupport, MTF_CDF_LINES } from "../../../src/optics/analysis/mtfSupport.js";
+import {
+  assessMtfSupport,
+  MTF_CDF_LINES,
+  MTF_PHOTOPIC_LINES,
+  resolveMtfSpectrum,
+} from "../../../src/optics/analysis/mtfSupport.js";
 import { combineOtfs, geometricOtf, otfMagnitude, translateOtf } from "../../../src/optics/analysis/mtfMath.js";
-import { traceMtfPupil } from "../../../src/optics/analysis/mtfTracing.js";
+import { traceMtfFieldPupil } from "../../../src/optics/analysis/mtfTracing.js";
 import { computeMtf } from "../../../src/optics/mtf.js";
 import { evaluateCatalogAbbeNumber, evaluateSellmeier, resolveGlass } from "../../../src/optics/glassCatalog.js";
 import { LINE_NM } from "../../../src/optics/spectralLines.js";
@@ -46,8 +51,10 @@ describe("qualified spectral MTF", () => {
     );
     const reference = assessMtfSupport(state, { ...options, spectrum: "reference" });
     const cdf = assessMtfSupport(state, options);
-    const plain = traceMtfPupil(state, { ...options, spectrum: "reference" }, reference, 0.15, 16)!;
-    const dLine = traceMtfPupil(state, options, cdf, 0.15, 16, cdf.spectralLines[0])!;
+    const angle = 0.15 * L.halfField;
+    const plain = traceMtfFieldPupil(state, { ...options, spectrum: "reference" }, reference, angle, 16)!;
+    const dLine = traceMtfFieldPupil(state, options, cdf, angle, 16, cdf.spectralLines[0])!;
+    expect(dLine.rays.length).toBe(plain.rays.length);
     dLine.rays.forEach((ray, i) => {
       expect(ray.x).toBeCloseTo(plain.rays[i].x, 12);
       expect(ray.y).toBeCloseTo(plain.rays[i].y, 12);
@@ -146,7 +153,9 @@ describe("qualified spectral MTF", () => {
     const support = assessMtfSupport(state, options);
     const result = computeMtf(state, options).fields[0];
     expect(result.reason).toBeNull();
-    const bundles = MTF_CDF_LINES.map((line) => traceMtfPupil(state, options, support, 0.15, result.gridSize, line)!);
+    const bundles = MTF_CDF_LINES.map(
+      (line) => traceMtfFieldPupil(state, options, support, result.fieldAngleDeg!, result.gridSize, line)!,
+    );
     expect(bundles[0].rays[0].trace.input.origin).toEqual(bundles[1].rays[0].trace.input.origin);
     expect(Math.abs(bundles[0].chief.y - bundles[1].chief.y)).toBeGreaterThan(0.0001);
     const all = bundles.flatMap((bundle) => bundle.rays);
@@ -161,5 +170,33 @@ describe("qualified spectral MTF", () => {
     const diffraction = computeMtf(state, { ...options, method: "diffraction", fieldFractions: [0] });
     expect(diffraction.fields[0].reason).toBeNull();
     expect(diffraction.fields[0].sagittal[0]).toBeCloseTo(1, 12);
+  });
+  it("weights five photopic lines by V(λ) and anchors lateral colour at 555 nm", () => {
+    const state = prepareRuntimeState(buildChromaticPositiveElementLens(), 0, 0);
+    const photopic = { ...options, spectrum: "photopic" as const };
+    const support = assessMtfSupport(state, photopic);
+    expect(support).toMatchObject({ available: true, referenceWavelengthNm: 555, useResolvedReference: true });
+    expect(support.spectralLines).toEqual(MTF_PHOTOPIC_LINES);
+    expect(support.limitations.join(" ")).toContain("V(λ)");
+    // Every photopic line lies inside the C-g range that line-index glasses tabulate.
+    for (const line of MTF_PHOTOPIC_LINES) {
+      expect(line.wavelengthNm).toBeGreaterThanOrEqual(LINE_NM.g);
+      expect(line.wavelengthNm).toBeLessThanOrEqual(LINE_NM.C);
+    }
+    const field = computeMtf(state, photopic).fields[0];
+    expect(field.reason).toBeNull();
+    expect(field.sagittal[0]).toBeCloseTo(1, 12);
+  });
+  it("falls back to the reference wavelength when glass data cannot support a spectrum", () => {
+    const unresolved = prepareRuntimeState(buildSimplePositiveElementLens(), 0, 0);
+    for (const spectrum of ["photopic", "cdf"] as const) {
+      const choice = resolveMtfSpectrum(unresolved, spectrum);
+      expect(choice.spectrum).toBe("reference");
+      expect(choice.note).toContain("reference wavelength");
+      expect(assessMtfSupport(unresolved, { ...options, spectrum }).reason).toBe("spectral-data-unavailable");
+    }
+    const resolved = prepareRuntimeState(buildChromaticPositiveElementLens(), 0, 0);
+    expect(resolveMtfSpectrum(resolved, "photopic")).toEqual({ spectrum: "photopic", note: null });
+    expect(resolveMtfSpectrum(resolved, "reference")).toEqual({ spectrum: "reference", note: null });
   });
 });

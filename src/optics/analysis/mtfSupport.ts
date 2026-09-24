@@ -1,5 +1,5 @@
 /** MTF capability checks are per optical state, not per-lens rollout flags. */
-import type { MtfOptions, MtfSpectralLine, MtfSupport, MtfUnavailableReason } from "../../types/mtf.js";
+import type { MtfOptions, MtfSpectralLine, MtfSpectrum, MtfSupport, MtfUnavailableReason } from "../../types/mtf.js";
 import { LINE_NM } from "../spectralLines.js";
 import type { PreparedOpticalState } from "../types.js";
 import { mtfFiniteConjugate, mtfFiniteObjectPoint } from "./mtfConjugates.js";
@@ -23,8 +23,63 @@ export const MTF_CDF_LINES: readonly MtfSpectralLine[] = Object.freeze([
   { wavelengthNm: LINE_NM.F, weight: 1 / 3 },
 ]);
 
+/**
+ * Five-line photopic estimate: CIE 1924 V(λ) on an equal-energy source across 470-650 nm.
+ * The 555 nm peak comes first and anchors lateral colour; every line sits inside the C-g range
+ * that line-index glasses tabulate.
+ */
+export const MTF_PHOTOPIC_LINES: readonly MtfSpectralLine[] = Object.freeze([
+  { wavelengthNm: 555, weight: 1 },
+  { wavelengthNm: 470, weight: 0.091 },
+  { wavelengthNm: 510, weight: 0.503 },
+  { wavelengthNm: 610, weight: 0.503 },
+  { wavelengthNm: 650, weight: 0.107 },
+]);
+
 /** Prescription focal length may differ from the marketed value by this share before results are qualified. */
 const SCALE_NOTE_FRACTION = 0.1;
+
+const SPECTRUM_LABELS: Record<Exclude<MtfSpectrum, "reference">, string> = {
+  cdf: "C/d/F",
+  photopic: "Photopic",
+};
+
+/** Spectrum actually used for a request, and why it differs from the preferred one. */
+export interface MtfSpectrumChoice {
+  spectrum: MtfSpectrum;
+  note: string | null;
+}
+
+/**
+ * True when every glass has physical wavelength data: catalog Sellmeier or measured line indices
+ * referenced to d. The same test gates C/d/F and photopic sampling.
+ *
+ * @param state - prepared optical state
+ * @returns whether anchored indices exist at any visible wavelength
+ */
+export function hasMtfSpectralData(state: PreparedOpticalState): boolean {
+  const { lens } = state;
+  return lens.dispersion.every((dispersion, i) => {
+    if (dispersion.quality === "air" || dispersion.quality === "sellmeier") return true;
+    const element = lens.source.elements.find((e) => e.id === state.surfaces[i].elemId);
+    return dispersion.quality === "lineIndices" && element?.indexReference !== "e";
+  });
+}
+
+/**
+ * Resolve a preferred spectrum against the lens's glass data, falling back to the reference line.
+ *
+ * @param state - prepared optical state
+ * @param preferred - requested spectrum
+ * @returns spectrum to request and a user-facing note when it differs
+ */
+export function resolveMtfSpectrum(state: PreparedOpticalState, preferred: MtfSpectrum): MtfSpectrumChoice {
+  if (preferred === "reference" || hasMtfSpectralData(state)) return { spectrum: preferred, note: null };
+  return {
+    spectrum: "reference",
+    note: `${SPECTRUM_LABELS[preferred]} MTF needs physical dispersion data for every glass; showing the reference wavelength.`,
+  };
+}
 
 export function assessMtfSupport(state: PreparedOpticalState, options: MtfOptions): MtfSupport {
   const { lens } = state;
@@ -41,7 +96,9 @@ export function assessMtfSupport(state: PreparedOpticalState, options: MtfOption
     spectralLines:
       options.spectrum === "cdf"
         ? MTF_CDF_LINES.map((line) => ({ ...line }))
-        : [{ wavelengthNm: referenceWavelengthNm, weight: 1 }],
+        : options.spectrum === "photopic"
+          ? MTF_PHOTOPIC_LINES.map((line) => ({ ...line }))
+          : [{ wavelengthNm: referenceWavelengthNm, weight: 1 }],
     limitations: [
       "Circular iris; authored clear apertures and glass values may be approximate.",
       "Excludes coatings, manufacturing errors, omitted sensor stacks, polarization and sensor processing.",
@@ -76,7 +133,7 @@ export function assessMtfSupport(state: PreparedOpticalState, options: MtfOption
       );
     support.conjugate = conjugate;
     support.limitations.push(
-      "Finite source is an isotropic point; field angles are measured from the first surface vertex. No refocus is applied.",
+      "Finite source is an isotropic point; field angles are measured from the first surface vertex.",
     );
   }
   const fields = options.fieldFractions ?? MTF_FIELDS;
@@ -115,27 +172,33 @@ export function assessMtfSupport(state: PreparedOpticalState, options: MtfOption
     support.limitations.push(
       "Mixed d/e references are converted to the d line with compatible catalog dispersion, anchored to each authored index.",
     );
-  if (options.spectrum === "cdf") {
-    const unsupported = lens.dispersion.some((s, i) => {
-      if (s.quality === "air" || s.quality === "sellmeier") return false;
-      const element = media.find((e) => e.id === state.surfaces[i].elemId);
-      return s.quality !== "lineIndices" || element?.indexReference === "e";
-    });
-    if (unsupported)
+  if (options.spectrum !== "reference") {
+    const label = SPECTRUM_LABELS[options.spectrum];
+    if (!hasMtfSpectralData(state))
       return reject(
         "spectral-data-unavailable",
-        "C/d/F requires physical C, d and F indices for every glass. Reference-wavelength MTF remains available.",
+        `${label} MTF requires physical dispersion data for every glass. Reference-wavelength MTF remains available.`,
       );
-    support.referenceWavelengthNm = LINE_NM.d;
+    support.referenceWavelengthNm = support.spectralLines[0].wavelengthNm;
     support.useResolvedReference = true;
     support.limitations.push(
-      "Three-line C/d/F estimate with equal incident intensity weights, one image plane and preserved lateral color; not a broadband camera response.",
+      options.spectrum === "cdf"
+        ? "Three-line C/d/F estimate with equal incident intensity weights, one image plane and preserved lateral color; not a broadband camera response."
+        : "Five-line photopic estimate (470-650 nm, CIE 1924 V(λ) weights on an equal-energy source) with one image plane and preserved lateral color; not a specific camera's spectral response.",
     );
     if (lens.dispersion.some((s) => s.quality === "sellmeier"))
       support.limitations.push(
         "Compatible catalog glasses supply spectral proxies anchored to the authored indices, not proof of production glass identity or MTF accuracy.",
       );
   }
+  if (options.method === "geometric")
+    support.limitations.push(
+      "Geometric MTF excludes diffraction and can overstate contrast for well-corrected lenses near the diffraction limit.",
+    );
+  if (options.method === "geometric-dl")
+    support.limitations.push(
+      "Diffraction-corrected geometric MTF multiplies each wavelength's geometric OTF by the aberration-free OTF of the traced exit pupil. This engineering approximation to diffraction MTF can understate contrast where residual aberrations are comparable to a wavelength.",
+    );
   if (options.method === "diffraction") {
     const limits = MTF_DIFFRACTION_LIMITS;
     support.limitations.push(

@@ -26,8 +26,26 @@ export interface PupilReconstruction {
   reference: MtfSpot;
 }
 
-/** Linear autocorrelation uses >=2x zero padding so opposite pupil edges never wrap. */
-export function pupilOtf(pupil: ComplexPupil, wavelengthMm: number, frequencies: readonly number[]): DiffractionOtf {
+/** Pupil autocorrelation on a 2x zero-padded raster, reusable at any wavelength. */
+export interface PupilAutocorrelation {
+  /** Pupil raster side before padding. */
+  size: number;
+  real: Float64Array;
+  imaginary: Float64Array;
+  /** Zero-lag value: the pupil's transmitted energy. */
+  energy: number;
+  /** Pupil raster spacing in transverse direction cosine. */
+  step: number;
+}
+
+/**
+ * Linear autocorrelation of a pupil raster. The >=2x zero padding keeps opposite pupil edges
+ * from wrapping.
+ *
+ * @param pupil - complex pupil raster with a power-of-two side
+ * @returns padded autocorrelation raster
+ */
+export function pupilAutocorrelation(pupil: ComplexPupil): PupilAutocorrelation {
   const n = pupil.size,
     padded = 2 * n;
   const real = new Float64Array(padded * padded),
@@ -45,11 +63,28 @@ export function pupilOtf(pupil: ComplexPupil, wavelengthMm: number, frequencies:
   fft2d(real, imaginary, padded, true);
   const energy = real[0];
   if (!(energy > 0)) throw new Error("Diffraction pupil has no transmitted energy.");
+  return { size: n, real, imaginary, energy, step: pupil.step };
+}
+
+/**
+ * Sample a pupil autocorrelation along the sagittal (x) and tangential (y) lag axes.
+ *
+ * @param autocorrelation - raster from `pupilAutocorrelation`
+ * @param wavelengthMm - wavelength in mm; a frequency ν lags the pupil by λν in direction cosine
+ * @param frequencies - image-space frequencies in lp/mm
+ * @returns normalized complex OTF per axis, zero beyond the pupil's extent
+ */
+export function sampleAutocorrelation(
+  autocorrelation: PupilAutocorrelation,
+  wavelengthMm: number,
+  frequencies: readonly number[],
+): DiffractionOtf {
+  const { size: n, real, imaginary, energy, step } = autocorrelation;
   const cut = (stride: number): ComplexOtf => {
     const re: number[] = [],
       im: number[] = [];
     for (const frequency of frequencies) {
-      const shift = (frequency * wavelengthMm) / pupil.step;
+      const shift = (frequency * wavelengthMm) / step;
       if (shift >= n) {
         re.push(0);
         im.push(0);
@@ -63,7 +98,12 @@ export function pupilOtf(pupil: ComplexPupil, wavelengthMm: number, frequencies:
     }
     return { real: re, imaginary: im };
   };
-  return { sagittal: cut(1), tangential: cut(padded) };
+  return { sagittal: cut(1), tangential: cut(2 * n) };
+}
+
+/** Scalar OTF of a complex pupil raster. */
+export function pupilOtf(pupil: ComplexPupil, wavelengthMm: number, frequencies: readonly number[]): DiffractionOtf {
+  return sampleAutocorrelation(pupilAutocorrelation(pupil), wavelengthMm, frequencies);
 }
 
 interface PupilNode {
@@ -77,6 +117,7 @@ export function reconstructMtfPupil(
   state: PreparedOpticalState,
   bundle: MtfBundle,
   wavelengthMm: number,
+  imagePlaneZ = state.imgZ,
 ): PupilReconstruction {
   const limits = MTF_DIFFRACTION_LIMITS;
   // A clipped chief can sit outside the transmitted beam; reference the beam's flux centroid instead.
@@ -94,12 +135,14 @@ export function reconstructMtfPupil(
   const chiefDirection = referenceTrace.terminalDirection;
   if (chiefDirection[2] < Math.cos((limits.maxChiefIncidenceDeg * Math.PI) / 180))
     return reject(`Diffraction is outside the validated ${limits.maxChiefIncidenceDeg}° image-ray incidence domain.`);
-  const image: Vec3 = [referenceSpot.x, referenceSpot.y, state.imgZ];
+  const image: Vec3 = [referenceSpot.x, referenceSpot.y, imagePlaneZ];
   const radius = referenceSphereRadius(state, referenceTrace, image);
   const reference = sampleReferenceWavefront(referenceTrace, image, radius, bundle.objectPoint);
   if (!reference) return reject("Unable to establish a reference wavefront.");
+  // Launch nodes keep the rectangular footprint grid; the pupil raster is square with the ladder size.
+  const { columns, rows } = bundle;
   const n = bundle.gridSize;
-  const nodes: Array<PupilNode | undefined> = new Array(n * n);
+  const nodes: Array<PupilNode | undefined> = new Array(columns * rows);
   let minX = Infinity,
     maxX = -Infinity,
     minY = Infinity,
@@ -113,7 +156,7 @@ export function reconstructMtfPupil(
       );
     if (Math.hypot(ray.x - image[0], ray.y - image[1]) > limits.maxBlurToReferenceRadius * radius)
       return reject("Image blur exceeds the validated scalar FFT domain; use geometric MTF.");
-    nodes[ray.row * n + ray.column] = {
+    nodes[ray.row * columns + ray.column] = {
       x: wave.qx,
       y: wave.qy,
       path: wave.opticalPathMm - reference.opticalPathMm,
@@ -124,11 +167,14 @@ export function reconstructMtfPupil(
     minY = Math.min(minY, wave.qy);
     maxY = Math.max(maxY, wave.qy);
   }
-  for (let y = 0; y < n; y++)
-    for (let x = 0; x < n; x++) {
-      const a = nodes[y * n + x];
+  for (let y = 0; y < rows; y++)
+    for (let x = 0; x < columns; x++) {
+      const a = nodes[y * columns + x];
       if (!a) continue;
-      for (const b of [x + 1 < n ? nodes[y * n + x + 1] : undefined, y + 1 < n ? nodes[(y + 1) * n + x] : undefined]) {
+      for (const b of [
+        x + 1 < columns ? nodes[y * columns + x + 1] : undefined,
+        y + 1 < rows ? nodes[(y + 1) * columns + x] : undefined,
+      ]) {
         if (b && Math.abs(a.path - b.path) > wavelengthMm * limits.maxPhaseStepWaves)
           return reject("Wavefront phase needs finer pupil sampling.", true);
       }
@@ -175,11 +221,11 @@ export function reconstructMtfPupil(
         imaginary[y * n + x] = amplitude * Math.sin(phase);
       }
   };
-  for (let y = 0; y < n - 1; y++)
-    for (let x = 0; x < n - 1; x++) {
-      const i = y * n + x;
-      rasterize(nodes[i], nodes[i + 1], nodes[i + n + 1]);
-      rasterize(nodes[i], nodes[i + n + 1], nodes[i + n]);
+  for (let y = 0; y < rows - 1; y++)
+    for (let x = 0; x < columns - 1; x++) {
+      const i = y * columns + x;
+      rasterize(nodes[i], nodes[i + 1], nodes[i + columns + 1]);
+      rasterize(nodes[i], nodes[i + columns + 1], nodes[i + columns]);
     }
   if (folded) return reject("Exit-pupil mapping folds or becomes singular; scalar FFT MTF is unavailable.");
   if (!real.some((v, i) => v !== 0 || imaginary[i] !== 0))

@@ -9,7 +9,7 @@ Generated `readme.md` and `improvementsuggestions.md` files are intentionally om
 ```mermaid
 flowchart LR
   subgraph n_src_optics_analysis["src/optics/analysis"]
-    n_src_optics_analysis_TypeScript_modules["TypeScript modules (26)"]
+    n_src_optics_analysis_TypeScript_modules["TypeScript modules (30)"]
   end
   n_external_src_optics_types_ts["src/optics/types.ts"]
   n_external_src_types["src/types"]
@@ -17,10 +17,10 @@ flowchart LR
   n_external_src_optics_chromatic["src/optics/chromatic"]
   n_external_src_optics_optics_ts["src/optics/optics.ts"]
   n_external_src_optics_trace["src/optics/trace"]
-  n_external_src_optics_layout_ts["src/optics/layout.ts"]
-  n_external_src_optics_aberration["src/optics/aberration"]
   n_external_src_optics_field["src/optics/field"]
+  n_external_src_optics_layout_ts["src/optics/layout.ts"]
   n_external_src_optics_math["src/optics/math"]
+  n_external_src_optics_aberration["src/optics/aberration"]
   n_external_src_optics_aberrationAnalysis_ts["src/optics/aberrationAnalysis.ts"]
   n_external_src_optics_constants_ts["src/optics/constants.ts"]
   n_external_src_optics_distortionAnalysis_ts["src/optics/distortionAnalysis.ts"]
@@ -31,16 +31,17 @@ flowchart LR
   n_external_src_optics_rayTrace_ts["src/optics/rayTrace.ts"]
   n_external_src_optics_spectralLines_ts["src/optics/spectralLines.ts"]
   n_external_src_optics_vignetteAnalysis_ts["src/optics/vignetteAnalysis.ts"]
-  n_src_optics_analysis_TypeScript_modules --> |18| n_external_src_optics_types_ts
-  n_src_optics_analysis_TypeScript_modules --> |15| n_external_src_types
+  n_external_src_utils_catalog["src/utils/catalog"]
+  n_src_optics_analysis_TypeScript_modules --> |19| n_external_src_optics_types_ts
+  n_src_optics_analysis_TypeScript_modules --> |16| n_external_src_types
   n_src_optics_analysis_TypeScript_modules --> |10| n_external_src_optics_perspective
   n_src_optics_analysis_TypeScript_modules --> |9| n_external_src_optics_chromatic
   n_src_optics_analysis_TypeScript_modules --> |8| n_external_src_optics_optics_ts
-  n_src_optics_analysis_TypeScript_modules --> |6| n_external_src_optics_trace
+  n_src_optics_analysis_TypeScript_modules --> |7| n_external_src_optics_trace
+  n_src_optics_analysis_TypeScript_modules --> |5| n_external_src_optics_field
   n_src_optics_analysis_TypeScript_modules --> |4| n_external_src_optics_layout_ts
+  n_src_optics_analysis_TypeScript_modules --> |4| n_external_src_optics_math
   n_src_optics_analysis_TypeScript_modules --> |3| n_external_src_optics_aberration
-  n_src_optics_analysis_TypeScript_modules --> |3| n_external_src_optics_field
-  n_src_optics_analysis_TypeScript_modules --> |2| n_external_src_optics_math
   n_src_optics_analysis_TypeScript_modules --> n_external_src_optics_aberrationAnalysis_ts
   n_src_optics_analysis_TypeScript_modules --> n_external_src_optics_constants_ts
   n_src_optics_analysis_TypeScript_modules --> n_external_src_optics_distortionAnalysis_ts
@@ -51,13 +52,14 @@ flowchart LR
   n_src_optics_analysis_TypeScript_modules --> n_external_src_optics_rayTrace_ts
   n_src_optics_analysis_TypeScript_modules --> n_external_src_optics_spectralLines_ts
   n_src_optics_analysis_TypeScript_modules --> n_external_src_optics_vignetteAnalysis_ts
+  n_src_optics_analysis_TypeScript_modules --> n_external_src_utils_catalog
 ```
 
 ## Directory Overview
 
-- Direct source files: 26
+- Direct source files: 30
 - Direct subfolders: 0
-- Main outbound areas: same folder (40), src/optics/types.ts (18), src/types (15), src/optics/perspective (10), src/optics/chromatic (9), src/optics/optics.ts (8), src/optics/trace (6), src/optics/layout.ts (4), +13 more
+- Main outbound areas: same folder (51), src/optics/types.ts (19), src/types (16), src/optics/perspective (10), src/optics/chromatic (9), src/optics/optics.ts (8), src/optics/trace (7), src/optics/field (5), +14 more
 - External consumers: src/benchmarks, src/components/layout, src/optics/aberration, src/optics/analysisJobs.ts, src/optics/compat.ts, src/optics/distortionAnalysis.ts, src/optics/mtf.ts, src/optics/vignetteAnalysis.ts
 
 ## Files
@@ -76,14 +78,18 @@ flowchart LR
 | `distortion.ts` | Distortion helper module | same folder (2), src/optics/distortionAnalysis.ts, src/optics/optics.ts, src/optics/types.ts, src/types | same folder, src/optics/compat.ts | computeDistortionCurveForState2, computeDistortionFieldGridForState2, computeDistortionCurve2, computeDistortionFieldGrid2 |
 | `fieldCurvature.ts` | Field Curvature helper module | same folder | none | computeFieldCurvature2, computeFieldCurvatureBundleForState2, computeFieldCurvatureForState2 |
 | `groupMovement.ts` | Group Movement helper module | src/types (2), src/optics/groupMovement.ts, src/optics/types.ts | src/optics/compat.ts | computeGroupMovementProfileForState2, computeGroupMovementProfile2, firstAvailableGroupMovementMode2, getGroupMovementAvailability2, inferLensMovementGroups2, isGroupMovementModeAvailable2 |
-| `mtf.ts` | Mtf helper module | same folder (5), src/optics/types.ts, src/types | src/optics/mtf.ts | emptyMtfField, computeMtfSteps, computeMtf |
+| `mtf.ts` | Mtf helper module | same folder (9), src/optics/types.ts, src/types | src/optics/mtf.ts | emptyMtfField, MtfUnresolvedFlux, assessUnresolvedFlux, MtfGridOutcome, refineMtfField, resolveMtfGeometry, computeMtfSteps, computeMtf |
 | `mtfConjugates.ts` | Mtf Conjugates helper module | src/optics/field, src/optics/types.ts, src/types | same folder (2) | mtfFiniteConjugate, mtfFiniteObjectPoint |
-| `mtfConstants.ts` | Mtf Constants helper module | src/types | same folder (3) | MTF_GRID_LADDER, MTF_GRID_CAPS, MTF_DEFAULT_GRID_CAP, MTF_CONVERGENCE_TOLERANCE, MTF_CONVERGENCE_BAND_LPMM, MTF_MAX_FIELDS, MTF_MAX_FREQUENCIES, MTF_MAX_FREQUENCY_LPMM, +6 more |
-| `mtfDiffraction.ts` | Mtf Diffraction helper module | same folder (4), src/optics/layout.ts, src/optics/math, src/optics/types.ts | same folder | ComplexPupil, DiffractionOtf, PupilReconstruction, pupilOtf, reconstructMtfPupil |
-| `mtfMath.ts` | Mtf Math helper module | none | same folder (3) | MtfSpot, ComplexOtf, geometricOtf, otfMagnitude, translateOtf, combineOtfs |
-| `mtfRayClassification.ts` | Mtf Ray Classification helper module | src/optics/trace (2), src/optics/types.ts | same folder | MtfRayClass, mtfTraceClassification, provesApertureMiss |
-| `mtfSupport.ts` | Mtf Support helper module | same folder (3), src/optics/spectralLines.ts, src/optics/types.ts, src/types | same folder, src/optics/mtf.ts | MTF_FIELDS, MTF_FREQUENCIES, MTF_CDF_LINES, assessMtfSupport |
-| `mtfTracing.ts` | Mtf Tracing helper module | same folder (4), src/optics/trace (3), src/optics/chromatic, src/optics/field, src/optics/layout.ts, +2 more | same folder (3) | mtfTraceClassification, MtfPupilRay, MtfBundle, mtfHalfField, mtfImagePoint, mtfIndexResolver, traceMtfPupil |
+| `mtfConstants.ts` | Mtf Constants helper module | src/types | same folder (3) | MTF_GRID_LADDER, MTF_GRID_CAPS, MTF_DEFAULT_GRID_CAP, MTF_CONVERGENCE_TOLERANCE, MTF_CONVERGENCE_BAND_LPMM, MTF_MAX_FIELDS, MTF_MAX_FREQUENCIES, MTF_MAX_FREQUENCY_LPMM, +9 more |
+| `mtfDiffraction.ts` | Mtf Diffraction helper module | same folder (4), src/optics/layout.ts, src/optics/math, src/optics/types.ts | same folder (2) | ComplexPupil, DiffractionOtf, PupilReconstruction, PupilAutocorrelation, pupilAutocorrelation, sampleAutocorrelation, pupilOtf, reconstructMtfPupil |
+| `mtfDiffractionLimit.ts` | Mtf Diffraction Limit helper module | same folder (2) | same folder | MtfDiffractionLimit, diffractionLimitFromBundle, ellipticalLimit |
+| `mtfFields.ts` | Mtf Fields helper module | src/optics/field (2), same folder, src/optics/layout.ts, src/optics/math, src/optics/trace, +3 more | same folder | MtfFieldTarget, MtfChiefHeight, mtfModeledHalfField, declaredFormatRadiusMm, resolveMtfFieldGeometry, resolveMtfFieldTargets, mtfChiefHeight, mtfFieldProcessingOrder |
+| `mtfFocus.ts` | Mtf Focus helper module | same folder (2) | same folder | MtfFocusBundle, MtfBestFocus, findAxialBestFocus, landingPoints |
+| `mtfFootprint.ts` | Mtf Footprint helper module | same folder | same folder (2) | MtfFootprint, MtfLaunchClassifier, findMtfFootprint, expandMtfFootprint |
+| `mtfMath.ts` | Mtf Math helper module | none | same folder (4) | MtfSpot, ComplexOtf, geometricOtf, otfMagnitude, translateOtf, multiplyOtf, combineOtfs |
+| `mtfRayClassification.ts` | Mtf Ray Classification helper module | src/optics/trace (2), src/optics/types.ts | same folder (2) | MtfRayClass, mtfTraceClassification, provesApertureMiss |
+| `mtfSupport.ts` | Mtf Support helper module | same folder (3), src/optics/spectralLines.ts, src/optics/types.ts, src/types | same folder, src/optics/mtf.ts | MTF_FIELDS, MTF_FREQUENCIES, MTF_CDF_LINES, MTF_PHOTOPIC_LINES, MtfSpectrumChoice, hasMtfSpectralData, resolveMtfSpectrum, assessMtfSupport |
+| `mtfTracing.ts` | Mtf Tracing helper module | same folder (5), src/optics/trace (3), src/optics/chromatic, src/optics/field, src/optics/math, +2 more | same folder (6) | mtfTraceClassification, MtfPupilRay, MtfOpenBorders, MtfBundle, MtfFieldLaunch, mtfImagePoint, mtfIndexResolver, mtfTraceOptions, +8 more |
 | `mtfWavefront.ts` | Mtf Wavefront helper module | same folder, src/optics/types.ts | same folder | WavefrontSample, launchPhaseMm, sampleReferenceWavefront |
 | `perspectiveAnalysisJobs.ts` | Perspective Analysis Jobs helper module | src/optics/perspective (8), same folder, src/optics/chromatic | same folder | PerspectiveAnalysisJobParams, PerspectiveAnalysisSamplingPlan, PerspectiveAnalysisJobs, perspectiveAnalysisSamplingPlan, createPerspectiveAnalysisJobs |
 | `preparedStateAdapters.ts` | Prepared State Adapters helper module | src/optics/types.ts | same folder (5) | zPosForPreparedAnalysis2 |

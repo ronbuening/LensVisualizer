@@ -89,6 +89,26 @@ Nothing can be audited on these until the source is available.
 | Sigma 10-18mm f/2.8 | 図8 printed as a thumbnail; <20 px per element edge at 600 dpi | a higher-resolution copy of JP 2024-104911 A |
 | Sigma 14-24mm f/2.8 | 図1 exists only as the front-page abstract drawing (the drawing section starts at 図3) | a higher-resolution copy of JP 2018-189733 A |
 
+## Section D — MTF field census
+
+MTF traces the whole transmitted beam through the authored clear apertures, so it surfaces semi-diameters that block
+light the production lens transmits. Regenerate at any time (about three minutes):
+
+```bash
+node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-mtf.mjs --fields --list
+```
+
+Rows are lenses at infinity, wide open, at the wide end. "Edge" is the largest image height whose real chief ray
+passes every clear aperture; lenses whose edge merely misses the format corner are not listed here.
+
+| Lens | File | Finding | Status |
+|---|---|---|---|
+| VIVITAR SERIES 1 70-210mm f/3.5 | `vivitar/VivitarSeries170210mmf35.data.ts` | No pupil ray reaches the image, even on axis: surface 21 sits at zero gap before the stop, so every ray meets the stop plane behind itself | todo |
+| NIKON AF-S NIKKOR 16-35mm f/4G ED VR | `nikon/NikonNikkorAFS1635mmf4.data.ts` | Edge below half the format-corner height | todo |
+| SONY FE 16-35mm f/2.8 GM II | `sony/SonyFE1635mmf28GMII.data.ts` | Edge below half the format-corner height | todo |
+| PANASONIC LUMIX G VARIO 7-14mm f/4 | `panasonic/PanasonicLumixGVario714mmf4.data.ts` | Edge below half the format-corner height | todo |
+| OLYMPUS ZUIKO 16mm f/3.5 Fisheye | `olympus/OlympusZuiko16mmf35.data.ts` | Edge below half the format-corner height; also declares no fisheye `projection`, so rectilinear analyses accept it | todo |
+
 ## In-progress diagram sweep
 
 The oldest-200 hosted-diagram audit (patent and live-view review of each lens, semi-diameters included) is paused at

@@ -48,10 +48,19 @@ export const MTF_DIFFRACTION_LIMITS = Object.freeze({
   maxPhaseStepWaves: 0.25,
 });
 
+/** Transmitted rays inside a footprint's guard band widen it and retrace, at most this many times per field. */
+export const MTF_MAX_FOOTPRINT_EXPANSIONS = 2;
+
+/** Frequencies scored by the axial best-focus search, in lp/mm. */
+export const MTF_FOCUS_FREQUENCIES: readonly number[] = Object.freeze([10, 20, 30, 40, 50]);
+
+/** Pupil grid of the axial bundle traced once per request for the best-focus search. */
+export const MTF_FOCUS_GRID = 64;
+
 /** Default image-space frequencies: 0-100 lp/mm in 2 lp/mm steps. */
 export const MTF_FREQUENCIES: readonly number[] = Object.freeze(Array.from({ length: 51 }, (_, i) => i * 2));
 
-/** Default fractional field samples. */
+/** Default fractions of the reference image height. */
 export const MTF_FIELDS: readonly number[] = Object.freeze([0, 0.25, 0.5, 0.75, 1]);
 
 /** Format a tolerance for user-facing convergence messages. */

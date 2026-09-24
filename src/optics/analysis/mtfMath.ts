@@ -74,6 +74,14 @@ export function translateOtf(otf: ComplexOtf, frequencies: readonly number[], di
   return { real, imaginary };
 }
 
+/** Scale a complex OTF by a real, per-frequency transfer factor such as a diffraction limit. */
+export function multiplyOtf(otf: ComplexOtf, gain: readonly number[]): ComplexOtf {
+  return {
+    real: otf.real.map((value, i) => value * gain[i]),
+    imaginary: otf.imaginary.map((value, i) => value * gain[i]),
+  };
+}
+
 /** Incoherent wavelengths add as complex OTFs weighted by transmitted intensity, before magnitude. */
 export function combineOtfs(samples: readonly { otf: ComplexOtf; weight: number }[]): ComplexOtf {
   const total = samples.reduce((sum, sample) => sum + sample.weight, 0);

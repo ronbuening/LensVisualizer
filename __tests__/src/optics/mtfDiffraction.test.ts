@@ -1,10 +1,11 @@
 import { describe, expect, it } from "vitest";
 import { pupilOtf, reconstructMtfPupil, type ComplexPupil } from "../../../src/optics/analysis/mtfDiffraction.js";
+import { diffractionLimitFromBundle } from "../../../src/optics/analysis/mtfDiffractionLimit.js";
 import { otfMagnitude } from "../../../src/optics/analysis/mtfMath.js";
-import { traceMtfPupil } from "../../../src/optics/analysis/mtfTracing.js";
+import { traceMtfFieldPupil, type MtfBundle } from "../../../src/optics/analysis/mtfTracing.js";
 import { assessMtfSupport } from "../../../src/optics/analysis/mtfSupport.js";
 import { prepareRuntimeState } from "../../../src/optics/compat.js";
-import { buildSimplePositiveElementLens } from "./testLensFixtures.js";
+import { build, buildSimplePositiveElementLens } from "./testLensFixtures.js";
 import { computeMtf } from "../../../src/optics/mtf.js";
 import type { MtfOptions } from "../../../src/types/mtf.js";
 
@@ -131,7 +132,7 @@ describe("scalar diffraction MTF", () => {
       frequenciesPerMm: [0, 1, 2],
       maxGridSize: 64,
     };
-    const bundle = traceMtfPupil(state, options, assessMtfSupport(state, options), 0, 32)!;
+    const bundle = traceMtfFieldPupil(state, options, assessMtfSupport(state, options), 0, 32)!;
     expect(reconstructMtfPupil(state, bundle, 0.0005876).pupil).not.toBeNull();
     const result = computeMtf(state, options);
     expect(result.fields[0].reason).toBeNull();
@@ -153,8 +154,99 @@ describe("scalar diffraction MTF", () => {
     expect(reconstructMtfPupil(state, immersed, 0.0005876).message).toContain("air");
     const folded = {
       ...bundle,
-      rays: bundle.rays.map((ray) => ({ ...ray, column: ray.row < 16 ? 31 - ray.column : ray.column })),
+      rays: bundle.rays.map((ray) => ({
+        ...ray,
+        column: ray.row < bundle.rows / 2 ? bundle.columns - 1 - ray.column : ray.column,
+      })),
     };
     expect(reconstructMtfPupil(state, folded, 0.0005876).message).toContain("folds");
+  });
+});
+
+/** Uniform rays on a square launch lattice whose image-space direction cosines trace a given pupil. */
+function latticePupil(inside: (qx: number, qy: number) => boolean, extent: number, samples: number): MtfBundle {
+  const rays = [];
+  for (let row = 0; row < samples; row++)
+    for (let column = 0; column < samples; column++) {
+      const qx = ((2 * (column + 0.5)) / samples - 1) * extent;
+      const qy = ((2 * (row + 0.5)) / samples - 1) * extent;
+      if (!inside(qx, qy)) continue;
+      const terminalDirection = [qx, qy, Math.sqrt(1 - qx * qx - qy * qy)];
+      rays.push({ x: 0, y: 0, weight: 1, column, row, trace: { terminalDirection, finalMedium: 1 } });
+    }
+  return { rays } as unknown as MtfBundle;
+}
+
+describe("diffraction limit of a traced pupil", () => {
+  const wavelengthMm = 0.00055;
+  it("reproduces the circular aperture response from lattice rays", () => {
+    const na = 0.1;
+    const cutoff = (2 * na) / wavelengthMm;
+    const fractions = [0, 0.05, 0.1, 0.25, 0.5, 0.75, 0.9, 1.1];
+    const limit = diffractionLimitFromBundle(latticePupil((x, y) => Math.hypot(x, y) <= na, na, 64))!;
+    const values = limit.sample(
+      wavelengthMm,
+      fractions.map((f) => f * cutoff),
+    );
+    fractions.forEach((nu, i) => {
+      const analytic = nu >= 1 ? 0 : (2 / Math.PI) * (Math.acos(nu) - nu * Math.sqrt(1 - nu * nu));
+      expect(Math.abs(values.sagittal[i] - analytic)).toBeLessThan(0.005);
+      expect(Math.abs(values.tangential[i] - analytic)).toBeLessThan(0.005);
+    });
+  });
+  it("equals the normalized self-overlap area of a vignetted cat's-eye pupil", () => {
+    const catsEye = (x: number, y: number) => Math.hypot(x, y - 0.03) <= 0.1 && Math.hypot(x, y + 0.03) <= 0.1;
+    const limit = diffractionLimitFromBundle(latticePupil(catsEye, 0.1, 64))!;
+    const lags = [0.02, 0.05, 0.1, 0.15];
+    const values = limit.sample(
+      wavelengthMm,
+      lags.map((lag) => lag / wavelengthMm),
+    );
+    // Independent reference: dense point counting of the pupil and its shifted copy.
+    const overlap = (dx: number, dy: number) => {
+      let area = 0,
+        shared = 0;
+      for (let i = 0; i < 800; i++)
+        for (let j = 0; j < 800; j++) {
+          const x = -0.1 + (i + 0.5) * 0.00025;
+          const y = -0.1 + (j + 0.5) * 0.00025;
+          if (!catsEye(x, y)) continue;
+          area++;
+          if (catsEye(x + dx, y + dy)) shared++;
+        }
+      return shared / area;
+    };
+    lags.forEach((lag, i) => {
+      expect(Math.abs(values.sagittal[i] - overlap(lag, 0))).toBeLessThan(0.01);
+      expect(Math.abs(values.tangential[i] - overlap(0, lag))).toBeLessThan(0.01);
+    });
+    expect(values.tangential[1]).toBeLessThan(values.sagittal[1]);
+  });
+  it("agrees with scalar diffraction when the traced beam is aberration-free", () => {
+    // Paraxial back focus of the fixture singlet: stop-to-glass 1 mm, radii +50/-50, n=1.5168, 5 mm thick.
+    let y = 1,
+      u = -(1 * 0.5168) / 50 / 1.5168;
+    y += 5 * u;
+    u = 1.5168 * u - (y * (1 - 1.5168)) / -50;
+    const base = buildSimplePositiveElementLens();
+    const focused = build({
+      ...base.data,
+      surfaces: base.data.surfaces.map((surface, i) => (i === 2 ? { ...surface, d: -y / u } : surface)),
+    });
+    const state = prepareRuntimeState(focused, 0, 0);
+    const options: MtfOptions = {
+      method: "diffraction",
+      spectrum: "reference",
+      pupilSemiDiameterMm: 0.1,
+      stopSemiDiameterMm: 0.1,
+      fieldFractions: [0],
+      frequenciesPerMm: [0, 1, 2, 3, 4, 5],
+      maxGridSize: 64,
+    };
+    const scalar = computeMtf(state, options).fields[0];
+    const corrected = computeMtf(state, { ...options, method: "geometric-dl" }).fields[0];
+    expect(scalar.reason).toBeNull();
+    expect(corrected.reason).toBeNull();
+    corrected.sagittal.forEach((value, i) => expect(Math.abs(value - scalar.sagittal[i])).toBeLessThan(0.01));
   });
 });
