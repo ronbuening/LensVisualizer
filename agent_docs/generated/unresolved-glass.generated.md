@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **810** lenses scanned
-- **9064** non-air surfaces examined
-- **9074** element glass declarations examined
-- **234** non-explicit-unmatched annotations did not resolve
-- **121** distinct unresolved glass-like tokens found
+- **813** lenses scanned
+- **9115** non-air surfaces examined
+- **9125** element glass declarations examined
+- **232** non-explicit-unmatched annotations did not resolve
+- **119** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -132,10 +132,8 @@ or per-lens patent backfills.
 | D-ZLAF85 | 1 | 1 | |
 | FPL51 | 1 | 1 | |
 | H-ZF52A | 1 | 1 | |
-| J-LAK9 | 1 | 1 | |
 | KF5 | 1 | 1 | |
 | KZF4 | 1 | 1 | |
-| LAF2 | 1 | 1 | |
 | LF7-CLASS | 1 | 1 | |
 | LLF7 | 1 | 1 | |
 | N3 | 1 | 1 | |
@@ -637,10 +635,6 @@ or per-lens patent backfills.
 
 - [LEICA SUMMILUX 28mm f/1.7 ASPH. (Leica Q, Q2, Q3)](../../src/lens-data/leica/Leica28mmf17.data.ts) 20A: `683330 — dense flint (catalog unresolved; patent nd=1.68250, νd=33.0; prior H-ZF52A label rejected)`
 
-### J-LAK9 — 1 occurrence
-
-- [NIKON W-NIKKOR 35mm f/1.8](../../src/lens-data/nikon/NikonWNikkor35mmf18.data.ts) 10: `J-LAK9 class (Nikon J-series match)`
-
 ### KF5 — 1 occurrence
 
 - [AGFA COLOR-MAGNOLAR II 100mm f/4.5](../../src/lens-data/agfa/AgfaColorMagnolarII100mmf45.data.ts) 6: `KF5 class (Sumita legacy catalog; Schott-type)`
@@ -648,10 +642,6 @@ or per-lens patent backfills.
 ### KZF4 — 1 occurrence
 
 - [AGFA COLOR-TELINEAR 90mm f/4](../../src/lens-data/agfa/AgfaColorTelinear90mmf4.data.ts) 4: `KzF4 class (Schott-Jena legacy short flint, 570/481)`
-
-### LAF2 — 1 occurrence
-
-- [NIKON NIKKOR-N Auto 24mm f/2.8](../../src/lens-data/nikon/NikonNikkorAuto24f28.data.ts) 15: `LAF2 equivalent (catalog comparison; supplier unspecified)`
 
 ### LF7-CLASS — 1 occurrence
 

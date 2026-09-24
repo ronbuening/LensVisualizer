@@ -9,12 +9,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **810** lenses scanned
-- **1797** total code-only elements found
-- **302** elements in this report
-- **116** distinct lens files affected
+- **813** lenses scanned
+- **1799** total code-only elements found
+- **303** elements in this report
+- **117** distinct lens files affected
 - **4** active unreviewed elements have no review-record hit or explicit disposition
-- **165** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
+- **166** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
 - **0** dispositions lack any review record
 
 ## Prioritized Unreviewed Queue
@@ -34,8 +34,8 @@ Completion counts are conditional on finding a source-verified catalog identity 
 
 | Code | Elements | Lens files | localPatentStatus | reviewRecordStatus |
 |---|---:|---:|---|---|
+| 486815 | 9 | 4 | patents/US3743384.pdf<br>patents/US3774991.pdf | All rows have review records |
 | 493836 | 9 | 4 | patents/JPA 1996327896-000000.pdf<br>patents/JP2004109559A.pdf<br>patents/JPA 1989039542-000000.pdf | All rows have review records |
-| 486815 | 8 | 3 | patents/US3743384.pdf<br>patents/US3774991.pdf | All rows have review records |
 | 847238 | 5 | 3 | patents/CN211826699U.pdf<br>patents/CN211955966U.pdf<br>patents/CN114755806A.pdf | All rows explicitly disposed |
 | 531559 | 4 | 3 | patents/US20200142167A1.pdf<br>patents/US20230213739A1.pdf<br>patents/WO2021039813A1.pdf | All rows have review records |
 | 662561 | 4 | 1 | patents/GB_850117_A.pdf | All rows have review records |
@@ -767,6 +767,12 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L1 (Element 1) | 1 | `Unmatched (486815 — fluophosphate crown; vendor unresolved)` | 1.48606 / 81.50 | No catalog entry | abbe | patents/US3774991.pdf | Explicit disposition in data |
+
+### [NIKON NIKKOR 800mm f/8 ED](../../src/lens-data/nikon/NikonNikkor800mmf8ED.data.ts) - US 3,774,991
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L1 (Element 1) | 1 | `Unmatched (486815 — fluophosphate crown / ED-class; vendor unresolved)` | 1.48614 / 81.50 | No catalog entry | abbe | patents/US3774991.pdf | Explicit disposition in data |
 
 ### [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) - JP 2022-092388 A
 

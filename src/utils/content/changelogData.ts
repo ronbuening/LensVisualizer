@@ -19,6 +19,11 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-09-24",
+    type: "lens",
+    summary: "Marked our 800th lens with three Nikkor 800mms: f/8 ED, AF-S f/5.6E FL ED VR and Z f/6.3 VR S",
+  },
+  {
     date: "2026-09-23",
     type: "improvement",
     summary:

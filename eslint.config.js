@@ -6,7 +6,17 @@ import prettierConfig from "eslint-config-prettier";
 import tseslint from "typescript-eslint";
 
 export default [
-  { ignores: [".claude/worktrees/**", "dist/", "dist-server/", "node_modules/", "src/lens-data/*.data.js"] },
+  {
+    ignores: [
+      ".claude/worktrees/**",
+      ".lens-work/**",
+      "in_progress/**",
+      "dist/",
+      "dist-server/",
+      "node_modules/",
+      "src/lens-data/*.data.js",
+    ],
+  },
 
   js.configs.recommended,
 
