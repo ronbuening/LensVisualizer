@@ -99,7 +99,9 @@ node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-mtf.mjs 
 ```
 
 Rows are lenses at infinity, wide open, at the wide end. "Edge" is the largest image height whose real chief ray
-passes every clear aperture; lenses whose edge merely misses the format corner are not listed here.
+passes every clear aperture; lenses whose edge merely misses the format corner are not listed here. Later rows are
+full-beam findings where the edge is reached but the authored clear apertures pass too little or too much of the beam
+there; check them against the patent figure.
 
 | Lens | File | Finding | Status |
 |---|---|---|---|
@@ -108,6 +110,11 @@ passes every clear aperture; lenses whose edge merely misses the format corner a
 | SONY FE 16-35mm f/2.8 GM II | `sony/SonyFE1635mmf28GMII.data.ts` | Edge below half the format-corner height | todo |
 | PANASONIC LUMIX G VARIO 7-14mm f/4 | `panasonic/PanasonicLumixGVario714mmf4.data.ts` | Edge below half the format-corner height | todo |
 | OLYMPUS ZUIKO 16mm f/3.5 Fisheye | `olympus/OlympusZuiko16mmf35.data.ts` | Edge below half the format-corner height; also declares no fisheye `projection`, so rectilinear analyses accept it | todo |
+| SONY FE 12-24mm f/2.8 GM | `sony/SonyFE1224mmf28GM.data.ts` | Clear apertures likely wider than production: the 10.8 mm field traces 7,288 pupil rays against 4,060 on axis, and tangential 30 lp/mm falls to 0.03 there | todo |
+| CANON RF 24-105mm f/2.8 L IS USM Z | `canon/CanonRF24105mmf28Z.data.ts` | Chief ray reaches the 21.6 mm corner but no pupil ray does (cat's-eye closes to zero); 20.6 mm still transmits 814 rays | todo |
+| MEYER OPTIK GÖRLITZ DOUBLE-PLASMAT 135mm f/4.5 (patent model) | `meyer-optik-goerlitz/MeyerOptikGorlitz135mmf45DoublePlasmat.data.ts` | Chief ray reaches the 158.6 mm corner but no pupil ray does | todo |
+| KINOPTIK SUPER-TEGEA 1.9mm f/1.9 FISHEYE | `kinoptik/KinoptikSuperTegea19mmf19Fisheye.data.ts` | Edge 3.70 of 4.35 mm and the edge trace fails; declares no fisheye `projection` | todo |
+| SONY ZEISS VARIO-SONNAR T* 9-72mm f/2.8-4.5 (RX100 VI / VII) | `sony/ZeissVarioSonnarT9072mmf2845SonyDSCRX100M67.data.ts` | The chief ray is blocked in a band near 98 % of the 7.17 mm edge and transmits again beyond it; tangential 30 lp/mm is 0.00 from 7.1 mm | todo |
 
 ## Section E — MTF image-plane census
 
