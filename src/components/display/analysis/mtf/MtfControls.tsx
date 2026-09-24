@@ -17,6 +17,8 @@ interface MtfControlsProps {
   onChange: (patch: Partial<MtfPreferences>) => void;
   /** Photopic sweeps at 1 % and 2 % steps trace five wavelengths for up to 101 fields. */
   slowFieldSteps: boolean;
+  /** Offer the f/8 overlay: the working aperture is faster than f/8 and the lens reaches it. */
+  compareF8Available: boolean;
 }
 
 const METHODS: ReadonlyArray<[MtfMethod, string]> = [
@@ -38,7 +40,13 @@ const SAMPLING: ReadonlyArray<[MtfGridCap, string]> = [
   [256, "Refine"],
 ];
 
-export default function MtfControls({ t, preferences, onChange, slowFieldSteps }: MtfControlsProps) {
+export default function MtfControls({
+  t,
+  preferences,
+  onChange,
+  slowFieldSteps,
+  compareF8Available,
+}: MtfControlsProps) {
   const selectStyle: CSSProperties = { ...selector(t, false), fontSize: 11, padding: "5px 26px 5px 8px" };
   const toggleFrequency = (frequency: MtfChartFrequency) => {
     const selected = preferences.frequencies.includes(frequency)
@@ -111,6 +119,19 @@ export default function MtfControls({ t, preferences, onChange, slowFieldSteps }
             </Toggle>
           ))}
         </ToggleGroup>
+        {compareF8Available ? (
+          <ToggleGroup label="Aperture comparison" t={t}>
+            <Toggle
+              t={t}
+              active={preferences.compareF8}
+              last
+              title="Overlay the lens stopped down to f/8 (thin lines)"
+              onClick={() => onChange({ compareF8: !preferences.compareF8 })}
+            >
+              Compare f/8
+            </Toggle>
+          </ToggleGroup>
+        ) : null}
         {preferences.view === "field" ? (
           <ToggleGroup label="Chart frequencies (lp/mm)" t={t}>
             {MTF_CHART_FREQUENCIES.map((frequency, i) => (

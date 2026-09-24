@@ -29,19 +29,12 @@ const MODE_LABELS: Record<GroupMovementMode, string> = {
   combined: "Combined",
 };
 
-function movementColors(t: Theme): string[] {
-  return [
-    t.sliderAccent,
-    t.rayOffWarm,
-    t.rayCool,
-    t.rayWarm,
-    t.pupilExit,
-    t.stopLabel,
-    t.apdInferText,
-    t.apdPatentText,
-    t.chromDispLow,
-    t.rayChromV,
-  ];
+/**
+ * Group colors from the validated categorical slots. Each group owns a labelled row, so identity never
+ * rests on color alone, and repeating the five slots down the rows keeps neighboring rows distinct.
+ */
+function movementColors(t: Theme): readonly string[] {
+  return t.chartSeries;
 }
 
 function positionTicksForProfile(profile: GroupMovementProfile): number[] {

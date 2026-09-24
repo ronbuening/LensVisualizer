@@ -8,7 +8,7 @@ import { buildSimplePositiveElementLens } from "../../../optics/testLensFixtures
 import { prepareRuntimeState } from "../../../../../src/optics/compat.js";
 import { computeMtf } from "../../../../../src/optics/mtf.js";
 import type { MtfResult } from "../../../../../src/types/mtf.js";
-import type { MtfWorkerReply, MtfWorkerRequest } from "../../../../../src/components/hooks/mtfWorkerClient.js";
+import type { MtfJob, MtfWorkerReply, MtfWorkerRequest } from "../../../../../src/components/hooks/mtfWorkerClient.js";
 import { MTF_PREFERENCES_KEY, resetMtfPreferencesCache } from "../../../../../src/utils/state/mtfPreferences.js";
 
 const L = buildSimplePositiveElementLens();
@@ -16,7 +16,7 @@ const state = prepareRuntimeState(L, 0, 0);
 
 /** Worker stand-in that runs the pure engine; `progress` first posts a result with every field pending. */
 function stubWorker({ progress = false }: { progress?: boolean } = {}) {
-  const calls = { compute: 0 };
+  const calls = { compute: 0, jobs: [] as MtfJob[] };
   const replies: Array<() => void> = [];
   vi.stubGlobal(
     "Worker",
@@ -27,6 +27,7 @@ function stubWorker({ progress = false }: { progress?: boolean } = {}) {
       postMessage(message: MtfWorkerRequest) {
         if (message.type !== "compute") return;
         calls.compute++;
+        calls.jobs.push(message.job);
         const result = computeMtf(state, { ...message.job.options, maxGridSize: 128 });
         const send = (reply: MtfWorkerReply) => this.onmessage?.({ data: reply } as MessageEvent<MtfWorkerReply>);
         if (progress) {
@@ -159,5 +160,49 @@ describe("MTF chart", () => {
     };
     render(<MtfChart result={clipped} view="field" frequencies={[10]} t={mockTheme} />);
     expect(screen.getAllByText("Outside model").length).toBeGreaterThan(0);
+  });
+  it("reads exact values with the keyboard crosshair", () => {
+    render(<MtfChart result={result} view="field" frequencies={[10]} t={mockTheme} />);
+    const chart = screen.getByRole("group", { name: /MTF chart values/ });
+    fireEvent.keyDown(chart, { key: "End" });
+    const field = result.fields[2];
+    const text = screen.getByText(/lp\/mm S/).textContent!;
+    expect(text).toContain(`${field.imageHeightMm!.toFixed(2)} mm`);
+    expect(text).toContain(`S ${field.sagittal[result.frequenciesPerMm.indexOf(10)].toFixed(3)}`);
+    expect(screen.getByTestId("mtf-crosshair")).toBeTruthy();
+    fireEvent.keyDown(chart, { key: "Escape" });
+    expect(screen.queryByTestId("mtf-crosshair")).toBeNull();
+  });
+});
+
+describe("MTF export and aperture comparison", () => {
+  it("copies the displayed table as CSV", async () => {
+    stubWorker();
+    const writeText = vi.fn().mockResolvedValue(undefined);
+    vi.stubGlobal("navigator", { ...navigator, clipboard: { writeText } });
+    render(<MtfTab L={L} t={mockTheme} preparedState={state} currentEPSD={1} currentPhysStopSD={1} />);
+    await screen.findByRole("figure", { name: /image height/ });
+    fireEvent.click(screen.getByRole("button", { name: "Copy CSV" }));
+    expect(await screen.findByText("Copied")).toBeTruthy();
+    const [header, first] = (writeText.mock.calls[0][0] as string).split("\n");
+    expect(header).toBe(
+      "Image height (mm),Field (%),10 lp/mm sagittal,10 lp/mm tangential,30 lp/mm sagittal,30 lp/mm tangential,Status",
+    );
+    expect(first.startsWith("0.000,0,")).toBe(true);
+  });
+  it("overlays the lens stopped down to f/8 only when the working aperture is faster", async () => {
+    const { calls } = stubWorker();
+    const { unmount } = render(
+      <MtfTab L={L} t={mockTheme} preparedState={state} currentEPSD={1} currentPhysStopSD={1} fNumber={2.8} />,
+    );
+    await screen.findByRole("figure", { name: /image height/ });
+    fireEvent.click(screen.getByRole("button", { name: "Compare f/8" }));
+    expect(await screen.findByText("f/8 (thin lines)")).toBeTruthy();
+    const stopped = calls.jobs.at(-1)!.options;
+    expect(stopped.pupilSemiDiameterMm).toBeCloseTo(2.8 / 8, 12);
+    expect(stopped.stopSemiDiameterMm).toBeCloseTo(2.8 / 8, 12);
+    unmount();
+    render(<MtfTab L={L} t={mockTheme} preparedState={state} currentEPSD={1} currentPhysStopSD={1} fNumber={8} />);
+    expect(screen.queryByRole("button", { name: "Compare f/8" })).toBeNull();
   });
 });

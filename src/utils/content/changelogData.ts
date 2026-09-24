@@ -21,6 +21,12 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-09-24",
     type: "improvement",
+    summary:
+      "Made vignetting, pupil and lens-group movement chart colors easier to tell apart, especially in light mode",
+  },
+  {
+    date: "2026-09-24",
+    type: "improvement",
     summary: "Made Zoom span both rows at the right of the desktop analysis buttons",
   },
   {

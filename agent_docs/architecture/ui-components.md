@@ -87,8 +87,11 @@ comparison panes share; the existing `tab=mtf` URL selects the tab. Every reques
 field, so chart-only changes never recompute. `useMtfComputation` debounces settled inputs for 150 ms, keeps earlier
 curves dimmed until the new request reports progress, and cancels superseded work; the mounted tab disposes its worker
 on unmount. `MtfChart` gives each frequency a fixed `chartSeries` slot, labels curve ends, adds marker shapes up to
-21 fields and hatches heights beyond the modeled edge. `mtf/MtfControls`, `mtf/MtfFieldSummary` and
-`mtf/MtfValueTable` hold the controls, status counts and per-field values. Worker caching, numerical status and
+21 fields and hatches heights beyond the modeled edge. Its crosshair follows the pointer or the arrow keys
+(Home/End, Escape) and announces values through a polite live region. When the working aperture is faster than
+f/8 and the lens reaches it, "Compare f/8" runs a second worker request with pupil and stop radii scaled by N/8 and
+draws it with thin lines in the same slots. `mtf/MtfControls`, `mtf/MtfFieldSummary` and `mtf/MtfValueTable` hold
+the controls, status counts and per-field values; the table copies as CSV (`mtf/mtfCsv.ts`). Worker caching, numerical status and
 optical eligibility are documented in [`Simulated MTF`](optics-engine.md#simulated-mtf).
 
 ## Display Overlays

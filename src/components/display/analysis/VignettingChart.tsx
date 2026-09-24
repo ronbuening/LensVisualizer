@@ -78,13 +78,13 @@ export default function VignettingChart({ samples, t, width = 320, height = 220 
       referenceLines={[{ value: 1, opacity: 0.5 }]}
     >
       {/* ── Geometric transmission curve (solid) ── */}
-      <path d={gtPath} fill="none" stroke={t.sliderAccent} strokeWidth={1.5} strokeLinejoin="round" />
+      <path d={gtPath} fill="none" stroke={t.chartSeries[0]} strokeWidth={1.5} strokeLinejoin="round" />
 
       {/* ── Relative illumination curve (dashed) ── */}
       <path
         d={riPath}
         fill="none"
-        stroke={t.rayOffWarm}
+        stroke={t.chartSeries[1]}
         strokeWidth={1.5}
         strokeLinejoin="round"
         strokeDasharray="4,3"
@@ -97,7 +97,7 @@ export default function VignettingChart({ samples, t, width = 320, height = 220 
           cx={xScale(s.fieldAngleDeg)}
           cy={yScale(s.geometricTransmission)}
           r={2}
-          fill={t.sliderAccent}
+          fill={t.chartSeries[0]}
           opacity={0.8}
         />
       ))}
@@ -109,7 +109,7 @@ export default function VignettingChart({ samples, t, width = 320, height = 220 
           cx={xScale(s.fieldAngleDeg)}
           cy={yScale(s.relativeIllumination)}
           r={2}
-          fill={t.rayOffWarm}
+          fill={t.chartSeries[1]}
           opacity={0.8}
         />
       ))}
@@ -120,8 +120,8 @@ export default function VignettingChart({ samples, t, width = 320, height = 220 
         y={legendY}
         t={t}
         items={[
-          { label: "Geometric", color: t.sliderAccent },
-          { label: "Relative (cos⁴)", color: t.rayOffWarm, dasharray: "4,3" },
+          { label: "Geometric", color: t.chartSeries[0] },
+          { label: "Relative (cos⁴)", color: t.chartSeries[1], dasharray: "4,3" },
         ]}
       />
     </SvgChartFrame>

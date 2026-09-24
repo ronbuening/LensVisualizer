@@ -42,6 +42,8 @@ typecheck error in the others, which is the safety net.
 
 `chartSeries` is a five-slot categorical palette (blue, orange, green, violet, magenta) for charts whose series keep
 fixed identities: MTF frequency chips use slot *i* for the *i*-th chip, so hiding a series never repaints the others.
+Vignetting and pupil-aberration charts use slots 0 and 1 for their two series, and lens-group movement rows repeat the
+five slots down their labelled rows.
 Validate any change per variant against its `panelBg`: OKLab lightness band and chroma floor, adjacent-pair color-vision
 separation ΔE ≥ 8 (Machado simulation), normal-vision ΔE ≥ 15, and 3:1 contrast. The current values pass with adjacent
 color-vision ΔE ≥ 9.1 and normal-vision ΔE ≥ 19.5. `darkHC` reuses the `dark` values: they already sit at the top of

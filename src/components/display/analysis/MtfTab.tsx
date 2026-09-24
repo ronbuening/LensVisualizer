@@ -27,6 +27,8 @@ interface MtfTabProps {
 
 /** Refocusing must gain at least this much mean axial MTF before the authored plane is flagged. */
 const FOCUS_HINT_GAIN = 0.05;
+/** Comparison aperture of manufacturer charts. */
+const COMPARISON_F_NUMBER = 8;
 
 const METHOD_LABELS: Record<MtfMethod, string> = {
   "geometric-dl": "Diffraction-corrected",
@@ -86,6 +88,19 @@ export default function MtfTab({
   );
   const { result, stale, running, error } = useMtfComputation(L, job);
   const shown = support.available ? result : null;
+  // Stop-down scales the pupil and stop radii by N/8, as the aperture control does.
+  const compareF8Available = !!fNumber && fNumber < COMPARISON_F_NUMBER - 0.05 && L.maxFstop >= COMPARISON_F_NUMBER;
+  const comparisonJob = useMemo(() => {
+    if (!job || !compareF8Available || !preferences.compareF8 || !fNumber) return null;
+    const scale = fNumber / COMPARISON_F_NUMBER;
+    const stopped = {
+      ...job.options,
+      pupilSemiDiameterMm: job.options.pupilSemiDiameterMm * scale,
+      stopSemiDiameterMm: job.options.stopSemiDiameterMm * scale,
+    };
+    return { ...job, options: stopped };
+  }, [job, compareF8Available, preferences.compareF8, fNumber]);
+  const comparison = useMtfComputation(L, comparisonJob);
   const muted = { color: t.muted, margin: "4px 0" };
   return (
     <section style={{ color: t.value, fontSize: 12 }} aria-label="Simulated MTF">
@@ -98,6 +113,7 @@ export default function MtfTab({
         preferences={preferences}
         onChange={updatePreferences}
         slowFieldSteps={spectrum.spectrum !== "reference"}
+        compareF8Available={compareF8Available}
       />
       {!support.available ? (
         <AnalysisEmptyState t={t}>
@@ -115,8 +131,20 @@ export default function MtfTab({
             <p role="status" style={muted}>
               {stale ? "Updating…" : `Calculating… ${progressText(shown)}`}
             </p>
+          ) : comparisonJob && comparison.running ? (
+            <p role="status" style={muted}>
+              Calculating f/8 comparison…
+            </p>
           ) : null}
-          <MtfChart result={shown} view={preferences.view} frequencies={preferences.frequencies} t={t} stale={stale} />
+          <MtfChart
+            result={shown}
+            view={preferences.view}
+            frequencies={preferences.frequencies}
+            t={t}
+            stale={stale}
+            comparison={comparisonJob && !comparison.stale ? comparison.result : null}
+            comparisonLabel="f/8"
+          />
           <MtfFieldSummary result={shown} frequencies={preferences.frequencies} t={t} />
         </>
       )}

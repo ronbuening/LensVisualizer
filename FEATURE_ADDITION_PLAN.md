@@ -71,8 +71,8 @@ Verified in code on 2026-07-06 (pins re-checked 2026-09-09):
   `src/components/display/analysis/OpticalSummaryTab.tsx`. (AO#1.)
 - **Simulated MTF** — `src/optics/mtf.ts` + `src/components/display/analysis/MtfTab.tsx`; diffraction-corrected
   photopic default, geometric and scalar diffraction methods, image-height fields to the format corner in 1–10 % steps,
-  10–50 lp/mm chart frequencies, full-beam pupil sampling, optional best-axial focus, both chart views, qualified
-  spectra and documented finite conjugates. Current eligibility and limitations live in
+  10–50 lp/mm chart frequencies, full-beam pupil sampling, optional best-axial focus, both chart views, a keyboard
+  crosshair readout, CSV copy, an f/8 comparison overlay, qualified spectra and documented finite conjugates. Current eligibility and limitations live in
   `agent_docs/architecture/optics-engine.md`. Open follow-up: a worker pool if photopic 1–2 % sweeps prove slow on
   mid-range hardware.
 - **Field-selectable coma detail fans** — `src/components/display/analysis/ComaTab.tsx` has a

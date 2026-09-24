@@ -26,6 +26,8 @@ export interface MtfPreferences {
   /** Displayed frequencies, ascending; never empty. */
   frequencies: readonly MtfChartFrequency[];
   maxGridSize: MtfGridCap;
+  /** Overlay the lens stopped down to f/8 when the working aperture is faster. */
+  compareF8: boolean;
 }
 
 export const MTF_PREFERENCES_KEY = "lensvis:mtf:options";
@@ -38,6 +40,7 @@ export const DEFAULT_MTF_PREFERENCES: MtfPreferences = Object.freeze({
   fieldStepPercent: 10,
   frequencies: Object.freeze([10, 30] as const),
   maxGridSize: 128,
+  compareF8: false,
 });
 
 const oneOf =
@@ -72,6 +75,7 @@ export function parseMtfPreferences(raw: unknown): MtfPreferences {
     fieldStepPercent: isFieldStep(stored.fieldStepPercent) ? stored.fieldStepPercent : defaults.fieldStepPercent,
     frequencies: frequencies.length && frequencies.every(isFrequency) ? frequencies : defaults.frequencies,
     maxGridSize: isGridCap(stored.maxGridSize) ? stored.maxGridSize : defaults.maxGridSize,
+    compareF8: typeof stored.compareF8 === "boolean" ? stored.compareF8 : defaults.compareF8,
   };
 }
 
