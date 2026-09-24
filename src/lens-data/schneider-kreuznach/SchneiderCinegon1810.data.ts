@@ -25,8 +25,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * - The patent prose/claim calls the L1+L2 doublet positive, while its printed numerical table robustly computes a weak
  *   negative isolated power. No source number is changed; the discrepancy remains an audit disclosure.
  * - Period literature strongly correlates this formula with the Schneider Cinegon 1.8/10, but no primary Schneider
- *   statement tying US 3,038,379 Example 1 to the production formula was found. Current taxonomy has no C-mount or
- *   16 mm cine-format ids, so lensMounts and imageFormat are intentionally omitted.
+ *   statement tying US 3,038,379 Example 1 to the production formula was found. imageFormat is 16mm-cinema: the 1961
+ *   Burleigh Brooks listing's 64° field fits the 12.7 mm 16 mm-frame diagonal. lensMounts stays unset because the
+ *   taxonomy has no C-mount id.
  * - Focus status: NO_INTERNAL_RECONSTRUCTION. The patent has one fixed optical state. The 1961 period listing's 8 in
  *   closest-focus figure is retained only as product metadata; no internal focus var gaps are invented.
  */
@@ -48,6 +49,7 @@ const LENS_DATA = {
   focalLengthMarketing: 10,
   focalLengthDesign: 10.020549950705151,
   apertureMarketing: 1.8,
+  imageFormat: "16mm-cinema",
   apertureDesign: 1.8,
   patentNumber: "US 3,038,379",
   patentAuthors: ["Wolfram W. Albrecht"],

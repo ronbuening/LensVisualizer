@@ -33,6 +33,7 @@ const LENS_DATA = {
   focalLengthMarketing: 6.5,
   focalLengthDesign: 6.49760443712227,
   apertureMarketing: 1.9,
+  imageFormat: "normal-8",
   apertureDesign: 1.9,
   patentNumber: "DE 927 540",
   patentAuthors: ["Wolfram W. Albrecht"],

@@ -60,6 +60,7 @@ const LENS_DATA = {
   apertureMarketing: 5.6,
   lensMounts: ["large-format-lens-board"],
   imageFormat: "5x7" as const,
+  imageCircleMm: 288, // Schneider Large Format Lenses (2006): 288 mm at f/22 (105°), 186 mm at f/5.6
   patentNumber: "US 5,870,234",
   patentAuthors: ["Hiltrud Ebbesmeier née Schitthof"],
   patentAssignees: ["Jos. Schneider Optische Werke Kreuznach GmbH & Co. KG"],

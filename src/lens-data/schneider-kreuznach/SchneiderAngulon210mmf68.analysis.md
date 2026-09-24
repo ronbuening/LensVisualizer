@@ -27,6 +27,8 @@ The implemented cell extends 36.7248 mm from the R1 vertex to the R8 vertex. The
 
 The stop position is source-defined rather than inferred from a drawing. The patent prints the central separation as Δ = 0.04050, divided into Δ/2 on each side of diaphragm B. After the 1.05 scale, the model therefore uses 4.2525 mm from R4 to the stop and another 4.2525 mm from the stop to R5. [1, PDF pp. 1–2]
 
+Schneider rated the 210 mm Angulon as a wide-angle lens for large sheet film. Later Schneider lens data give an image circle of 382 mm at f/16 (85°) and recommend a 240 × 300 mm format, the closest canonical format being 8×10 inch. Period sources disagree on the exact figure: 1930s Schneider catalogs quoted 80° at full aperture, 8×10 inch coverage at f/6.8 and larger sheets when stopped down, while a mid-1970s guide gives 362 mm. The data file records `imageFormat: "8x10"` and `imageCircleMm: 382` (the f/16 value) and treats the spread as source uncertainty rather than a modeled result. The modeled 21.0 mm outer semi-diameters follow the patent's approximate usable diameter and are not fitted to that coverage.
+
 ## Element-by-Element Analysis
 
 ### L1 — Outer Negative Meniscus
@@ -120,7 +122,7 @@ Surface-by-surface Petzval evaluation using `φ/(n·n′)` gives a sum of **0.00
 2. **Jos. Schneider Optische Werke, Schneider Lenses catalog**, archival scan hosted by Pacific Rim Camera. The archival catalog identifies an Angulon f/6.8 210 mm and describes the construction as two components of three cemented lenses each. <https://www.pacificrimcamera.com/rl/00832/00832.pdf>
 3. **Schneider Optik Kreuznach large-format lens catalog**, archival scan hosted by Pacific Rim Camera. The catalog lists a 210 mm f/6.8 Technika Angulon. <https://www.pacificrimcamera.com/rl/00459/00459.pdf>
 4. Secondary transcription discussing Schneider brochure **1-3000 X.30 F.H.Kv.**, reporting approximately 430 mm and 330 mm focal lengths for the two 210 mm Angulon components. Used only as corroboration, not as the prescription source. <https://forum.grossformatfotografie.de/forum/user-post-list/148-olet/?pageNo=10>
-5. Roger Hyam, **Schneider Kreuznach Vintage Lens Data – Angulon 6.8/210mm**, secondary transcription of later Schneider optical data. Used only to document the later 208 mm EFL / 196 mm BFL discrepancy. <https://www.hyam.net/blog/archives/3961>
+5. Roger Hyam, **Schneider Kreuznach Vintage Lens Data – Angulon 6.8/210mm**, secondary transcription of later Schneider optical data. Used to document the later 208 mm EFL / 196 mm BFL discrepancy and the 382 mm image circle at f/16 with its 240 × 300 mm recommended format. <https://www.hyam.net/blog/archives/3961> <https://hyam.net/posts/2019/schneider-kreuznach-vintage-lens-data.html>
 
 6. SCHOTT, **F5 optical glass**, manufacturer catalog coefficients retained in the project glass catalog.
 7. OHARA, **S-BAL2 optical glass**, manufacturer catalog coefficients retained in the project glass catalog.

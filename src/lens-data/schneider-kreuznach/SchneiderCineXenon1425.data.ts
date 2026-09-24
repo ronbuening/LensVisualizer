@@ -46,6 +46,7 @@ const LENS_DATA = {
   focalLengthMarketing: 25,
   focalLengthDesign: 25.01451824,
   apertureMarketing: 1.4,
+  imageFormat: "16mm-cinema",
   apertureDesign: 1.400000081,
   patentNumber: "US 3,005,379",
   patentAuthors: ["Günter Klemt"],
