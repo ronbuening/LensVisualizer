@@ -6,7 +6,7 @@
 **Filed:** 15 December 2017 (PCT/JP2017/045183)  
 **Published:** 20 June 2019  
 **Applicant:** Nikon Corporation (株式会社ニコン)  
-**Inventors:** Masashi Yamashita (山下 雅史), Tomoki Ito (伊藤 智希), Hiroshi Yabumoto, Hiroshi Yamamoto, Tetsushi Miwa, Keisuke Tsubonoya, Ayumu Makita, Takeshi Uehara
+**Inventors:** Masashi Yamashita (山下 雅史), Tomoki Ito (伊藤 智希), Hiroshi Yabumoto, Hiroshi Yamamoto, Satoshi Miwa, Keisuke Tsubonoya, Ayumu Makita, Takeshi Uehara
 
 ---
 

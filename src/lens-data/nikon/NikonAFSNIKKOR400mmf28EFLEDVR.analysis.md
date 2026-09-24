@@ -6,7 +6,7 @@
 **Application Number:** 特願2014-99624\
 **Filed:** 2014-05-13\
 **Published:** 2015-12-03\
-**Inventors:** Kazumasa Tanaka; Toshinori Take; Tetsushi Miwa\
+**Inventors:** Kazumasa Tanaka; Toshinori Take; Satoshi Miwa\
 **Applicant:** Nikon Corporation\
 **Title:** 光学系、光学装置、光学系の製造方法 (*Optical system, optical apparatus, and method of manufacturing an optical system*)\
 **Embodiment analyzed:** Example 1 / 第1実施例\
@@ -19,7 +19,7 @@ as the production prescription.
 Several independent features converge on that identification:
 
 1. The source embodiment gives a precise infinity focal length of 392.003 mm and F-number 2.88, close to the marketed
-   400 mm and f/2.8 values. After the project-required removal of the front protective glass and rear filter, the final
+   400 mm and f/2.8 values. After the project-required removal of the front protective glass, the final
    active model has an independently verified EFL of 391.496520967 mm and modeled f-number of 2.881515520.
 2. Excluding the separately identified front protective glass, Example 1 contains 16 active elements in 12
    air-separated groups. Nikon specifies 16 elements in 12 groups plus one meniscus protective glass element for the
@@ -34,14 +34,17 @@ Several independent features converge on that identification:
 7. The patent was filed on 2014-05-13, one day before Nikon's 2014-05-14 product announcement.
 
 No uniform dimensional scaling is applied. The marketed 400 mm and f/2.8 specifications remain separate from the
-plate-normalized design values stored in the data file.
+FLG-normalized design values stored in the data file.
 
-The patent's first example also includes two source-only auxiliary optical components that are not retained as ordinary
-elements in the LensVisualizer model. The front FLG meniscus protective glass at source surfaces 1–2 is explicitly
-described as substantially powerless, and the rear plane filter FL occupies source surfaces 32–33 (¶0123, ¶0128–0130).
-Under the current data specification both are omitted. The rear plane filter's optical effect is folded into the final air
-spacing, and removal of the weak-power front protective meniscus requires a small paraxial image-plane refocus. These are
-modeling normalizations, not corrections to the patent.
+The patent's first example also includes two auxiliary optical components that are not drawn as ordinary elements in the
+LensVisualizer model. The front FLG meniscus protective glass at source surfaces 1–2 is explicitly described as
+substantially powerless and is omitted under the current data specification; its removal requires a small +0.069284 mm
+paraxial image-plane refocus. The rear plane filter FL occupies source surfaces 32–33 (2.00 mm, nd = 1.51680,
+νd = 63.88; ¶0123, ¶0128–0130). It is traced as a rear plate with the printed 9.00 mm gap ahead of it and the printed
+71.551 mm Bf behind it, so its spherical and chromatic contribution in the converging beam is part of every analysis, but
+it is not drawn. FL is the production lens's slip-in filter position: Nikon's user's manual says a filter must be
+inserted in the slip-in holder, which ships with a 40.5 mm neutral color (NC) filter, so the plate belongs to the working
+prescription. The FLG omission and refocus are modeling normalizations, not corrections to the patent.
 
 ## Optical Architecture
 
@@ -50,11 +53,12 @@ positive, with the aperture stop between G2 and G3 (¶0122). G1 is subdivided in
 subdivided into positive G3a, negative G3b, and positive G3c. The final active model contains 16 glass/crystal elements,
 12 air-separated groups, four cemented pairs, and no aspherical surfaces.
 
-The project defines a telephoto system strictly by total track divided by EFL. In the plate-normalized active model,
-source surface 3 to the image plane is 390.337849396 mm while EFL is 391.496520967 mm, giving TL/EFL = 0.997040404.
-The normalized model therefore qualifies **narrowly** as telephoto under that definition. Its BFD/EFL is 0.209296494,
-so it is not retrofocus. This classification applies to the normalized active model; the raw source model including both
-omitted plates has a slightly longer track and does not cross the project's telephoto threshold.
+The project defines a telephoto system strictly by total track divided by EFL. In the active model, source surface 3 to
+the image plane is 391.019284 mm (the patent's TL of 396.95 mm less FLG's 6.00 mm, plus the refocus) while EFL is
+391.496520967 mm, giving TL/EFL = 0.998781. The model therefore qualifies **narrowly** as telephoto under that
+definition. Its physical BFD (last lens vertex to image, through the filter) is 82.620284 mm, BFD/EFL = 0.211036, so it
+is not retrofocus. This classification applies to the FLG-omitted model; the raw source model including FLG has a
+slightly longer track and does not cross the project's telephoto threshold.
 
 The independently recomputed paraxial group powers show the intended distribution:
 
@@ -260,8 +264,8 @@ L38 is the final glass element in the active prescription and the negative rear 
 material gives the design another high-index, low-Abbe refractive contribution while the cemented pair remains net
 positive.
 
-The final image spacing follows source surface 31. The source rear filter is not represented as an element; its optical
-path contribution has already been incorporated into the normalized air spacing.
+The final image spacing follows source surface 31: the printed 9.00 mm air gap (plus the FLG refocus) to the rear
+filter FL, the 2.00 mm plate itself, and the printed 71.551 mm Bf. FL is traced but not drawn or counted as an element.
 
 ## Glass Identification and Selection
 
@@ -312,18 +316,19 @@ The patent states that the complete negative G2 group moves imageward to focus f
 adjacent gaps is attributable to the published decimal precision.
 
 The source table also changes Bf from 71.551 to 71.575 mm, a +0.024 mm shift, even though the prose describes focus by
-G2 translation. The final data preserves this explicit endpoint difference as a +0.024 mm change in the normalized rear
-air spacing. It is not interpreted as a second moving lens group.
+G2 translation. The final data preserves this explicit endpoint difference as a +0.024 mm change in the air gap ahead
+of the rear filter; the plate and the 71.551 mm gap behind it stay fixed. It is not interpreted as a second moving lens
+group.
 
 | Variable spacing in final data | Infinity | Close endpoint | Change |
 |---|---:|---:|---:|
 | d11, before G2 | 19.530 mm | 34.930 mm | +15.400 mm |
 | d16, after G2 | 36.219 mm | 20.820 mm | −15.399 mm |
-| normalized rear spacing after surface 31 | 81.938849 mm | 81.962849 mm | +0.024 mm |
+| surface 31 to rear filter FL | 9.069284 mm | 9.093284 mm | +0.024 mm |
 
 The original source geometry, including FLG and rear FL, corresponds to an object-to-image distance of 2.598906 m and
-β = −0.173. After the project-required omission of these auxiliary optics and exact infinity refocus, retaining the published
-internal G2 endpoint yields a verified paraxial object-to-image distance of **2.590180 m** and magnification **−0.173643**. The data
+β = −0.173. After the project-required omission of FLG and exact infinity refocus, retaining the published internal G2
+endpoint yields a verified paraxial object-to-image distance of **2.590861 m** and magnification **−0.173643**. The data
 file retains Nikon's marketed `closeFocusM` value of 2.6 m rather than replacing it with the normalized model's more
 precise computational result.
 
@@ -399,15 +404,15 @@ for the authored model are:
 | Quantity | Verified final-model value |
 |---|---:|
 | EFL | 391.496520967 mm |
-| BFL from source surface 31 | 81.938849396 mm |
-| Source surface 3 to image track | 390.337849396 mm |
-| TL/EFL | 0.997040404 |
+| Physical BFD from source surface 31 (through FL) | 82.620284 mm |
+| Source surface 3 to image track | 391.019284 mm |
+| TL/EFL | 0.998781 |
 | Entrance-pupil diameter | 135.864796918 mm |
 | Modeled f-number | 2.881515520 |
 | Active f/f12 | 0.380027758 |
 | Petzval sum | 0.000252158506 mm⁻¹ |
 | Equivalent Petzval radius | 3965.759537 mm |
-| Normalized close object-to-image distance | 2.590179567 m |
+| Normalized close object-to-image distance | 2.590861 m |
 | Normalized close magnification | −0.173642730 |
 
 The clear semi-diameters in the data file are not patent-published dimensions. They were inferred from the modeled
@@ -435,4 +440,7 @@ that other embodiments may use aspheres does not change Example 1's all-spherica
    <https://www.hikari-g.co.jp/optical_glass/catalog/document/HIKARI_ALL_Catalog_Data.xlsx>
 5. **I. H. Malitson**, “A Redetermination of Some Optical Properties of Calcium Fluoride,” *Applied Optics* 2(11), 1963.
    Used only for supplemental CaF2 spectral indices on L11/L12; the patent nd/νd pair remains authoritative.
+6. **Nikon Corporation**, *AF-S NIKKOR 400mm f/2.8E FL ED VR User's Manual*, slip-in filter holder section: a filter must
+   be inserted in the holder, which ships with a 40.5 mm NC filter.
+   <https://downloadcenter.nikonimglib.com/en/products/178/AF-S_NIKKOR_400mm_f_28E_FL_ED_VR.html>
    <https://opg.optica.org/ao/fulltext.cfm?uri=ao-2-11-1103>

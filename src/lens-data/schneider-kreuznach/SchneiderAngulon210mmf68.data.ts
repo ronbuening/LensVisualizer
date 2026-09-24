@@ -62,6 +62,8 @@ const LENS_DATA = {
   apertureMarketing: 6.8,
   apertureDesign: 6.8,
   lensMounts: ["large-format-lens-board"],
+  imageFormat: "8x10" as const,
+  imageCircleMm: 382, // Schneider vintage lens data: 382 mm at f/16 (85°); other period sources give 362–420 mm
   patentNumber: "US 1,882,530 A",
   patentAuthors: ["Albrecht Wilhelm Tronnier"],
   patentAssignees: [],

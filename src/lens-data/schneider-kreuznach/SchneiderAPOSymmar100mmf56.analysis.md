@@ -53,7 +53,7 @@ Key optical parameters:
 
 The computed EFL of approximately 103 mm differs from the patent's stated 101.2 mm by roughly 1.8%. This small discrepancy is within the patent's explicitly stated tolerance band of ±5% on thicknesses and distances and ±10% on surface powers. It may also reflect rounding of the tabulated prescription values.
 
-The image circle of 145 mm at f/22 fully covers 6×9 cm format (diagonal 101 mm) with generous room for shift and tilt movements, and provides usable coverage for 4×5 inch format (diagonal 163 mm) when stopped down, though with limited movement range.
+The image circle of 145 mm at f/22 (120 mm at f/5.6) covers the 6×9 cm format (diagonal 101 mm) with generous room for shift and tilt movements, and Schneider's own recommended format for the 100 mm APO-Symmar is 65 × 90 mm. It does not cover 4×5 inch film, whose 153.7 mm frame diagonal is larger than the 145 mm circle. The data file therefore uses the 6×9 format and records the 145 mm circle in `imageCircleMm`.
 
 ## Element-by-Element Analysis
 
@@ -191,5 +191,5 @@ Semi-diameters were validated against five independent constraints: sd/|R| < 0.9
 1. US 6,028,720 — R. Wartmann, U. Schauss, "High Resolution Objective for Large-Format Photography," Jos. Schneider Optische Werke Kreuznach GmbH & Co. KG. Granted February 22, 2000. Priority DE 197 54 758 (December 10, 1997).
 2. Schott AG, *Optical Glass Datasheet Collection* (May 2019 / January 2017 editions) — datasheet for N-BALF5.
 3. OHARA optical-glass catalog data for S-PHM53 and the coordinate-compatible S-FPM4 dispersion model.
-4. Schneider-Kreuznach, *Large Format Lenses* product brochure (undated, circa 2000s), via Linhof.com archival PDF — APO-Symmar specifications (6 elements / 4 groups, 72° coverage, image circles by focal length).
+4. Schneider-Kreuznach, *APO-Symmar* product brochure (printed 11/97) — APO-Symmar 5.6/100: 6 elements / 4 groups, 72° coverage, image circle 145 mm at f/22 and 120 mm at f/5.6, recommended format 65 × 90 mm. https://www.mr-alvandi.com/downloads/large-format/schneider-apo-symmar-1995.pdf
 5. LargeFormatPhotography.info, *Large Format Lens Specifications Database* — APO-Symmar 100mm: 6/4, f/5.6, 145 mm image circle.

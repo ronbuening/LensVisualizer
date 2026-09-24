@@ -235,6 +235,26 @@ export const HIKARI_GLASS_ENTRIES: readonly GlassEntry[] = [
       "Hikari Optical Glass Catalog 2025-06, J-F5 page; vendor formula-3 power-series coefficients and d-line code 603380.",
   },
   {
+    name: "J-F3",
+    vendor: "Hikari",
+    powerSeries: [
+      [2.5354736, 0],
+      [-0.010429899, 2],
+      [-0.0000900763853, 4],
+      [0.0222719327, -2],
+      [0.000443442601, -4],
+      [0.0000740581279, -6],
+      [-0.00000690525545, -8],
+      [0.000000652621989, -10],
+    ],
+    nd: 1.61293,
+    vd: 36.95,
+    PgF: 0.5863,
+    code6: "613369",
+    source:
+      "Nikon/Hikari Zemax catalog 2017-11 via refractiveindex.info (J-F3, formula 3 power series, 0.389–2.058 µm); nd/νd/PgF evaluated from the coefficients.",
+  },
+  {
     name: "J-SF8",
     vendor: "Hikari",
     powerSeries: [
@@ -505,6 +525,25 @@ export const HIKARI_GLASS_ENTRIES: readonly GlassEntry[] = [
       "Nikon/Hikari Zemax catalog 2017-11 via refractiveindex.info; Hikari Optical Glass Catalog 2023, J-LAK10 page (formula 3 power series, d-code 720503).",
   },
   {
+    name: "J-LAK9",
+    vendor: "Hikari",
+    powerSeries: [
+      [2.80700795, 0],
+      [-0.0135938061, 2],
+      [-0.000153406686, 4],
+      [0.0188808096, -2],
+      [0.000280739188, -4],
+      [0.00000533547368, -6],
+      [0.000000119947182, -8],
+    ],
+    nd: 1.691,
+    vd: 54.93,
+    PgF: 0.5443,
+    code6: "691549",
+    source:
+      "Nikon/Hikari Zemax catalog 2017-11 via refractiveindex.info (J-LAK9, formula 3 power series, 0.365–2.058 µm); nd/νd/PgF evaluated from the coefficients.",
+  },
+  {
     name: "J-LASFH15",
     vendor: "Hikari",
     powerSeries: [
@@ -523,6 +562,26 @@ export const HIKARI_GLASS_ENTRIES: readonly GlassEntry[] = [
     code6: "950294",
     source:
       "Nikon/Hikari Zemax catalog 2017-11 via refractiveindex.info; Hikari Optical Glass Catalog 2023, J-LASFH15 page (formula 3 power series, d-code 950294).",
+  },
+  {
+    name: "J-LASFH16",
+    vendor: "Hikari",
+    powerSeries: [
+      [3.83294326, 0],
+      [-0.0156840611, 2],
+      [0.0528843692, -2],
+      [0.00350978963, -4],
+      [-0.000506491928, -6],
+      [0.000115081798, -8],
+      [-0.0000110388704, -10],
+      [0.000000501900181, -12],
+    ],
+    nd: 2.001,
+    vd: 29.12,
+    PgF: 0.5996,
+    code6: "001291",
+    source:
+      "Nikon/Hikari Zemax catalog 2017-11 via refractiveindex.info (J-LASFH16, formula 3 power series, 0.389–2.058 µm); nd/νd/PgF evaluated from the coefficients.",
   },
   {
     name: "J-LASFH9",
@@ -1100,6 +1159,25 @@ export const HIKARI_GLASS_ENTRIES: readonly GlassEntry[] = [
     PgF: 0.5449,
     code6: "518588",
     source: "Hikari Optical Glass Catalog 2023, J-K3 page; vendor formula-3 power-series coefficients.",
+  },
+  {
+    name: "J-KF6",
+    vendor: "Hikari",
+    powerSeries: [
+      [2.26653222, 0],
+      [-0.00974283829, 2],
+      [-0.0000849115572, 4],
+      [0.0127195343, -2],
+      [0.000315395806, -4],
+      [-0.00000883703038, -6],
+      [0.00000184064027, -8],
+    ],
+    nd: 1.51742,
+    vd: 52.2,
+    PgF: 0.558,
+    code6: "517522",
+    source:
+      "Nikon/Hikari Zemax catalog 2017-11 via refractiveindex.info (J-KF6, formula 3 power series, 0.365–2.058 µm); nd/νd/PgF evaluated from the coefficients.",
   },
   {
     name: "J-LAK01",

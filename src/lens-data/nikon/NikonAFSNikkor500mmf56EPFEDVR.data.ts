@@ -63,7 +63,7 @@ const LENS_DATA = {
     maxTraceFieldDeg: 2.51062,
   },
   patentNumber: "JP 2018-017857 A",
-  patentAuthors: ["Tetsushi Miwa", "Hiroshi Yabumoto"],
+  patentAuthors: ["Satoshi Miwa", "Hiroshi Yabumoto"],
   patentAssignees: ["Nikon Corporation"],
   patentYear: 2018,
   elementCount: 19,

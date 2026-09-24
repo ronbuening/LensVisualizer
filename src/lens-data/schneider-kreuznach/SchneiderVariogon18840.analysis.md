@@ -24,9 +24,8 @@ narrow-gauge reflex designs. None of the retrieved Schneider sources explicitly 
 production Variogon 1.8/8-40, so the attribution remains a research inference rather than a manufacturer declaration.
 
 The Beaulieu brochure documents a C-mount production context, but the present data leaves `lensMounts` unset because the
-current LensVisualizer taxonomy contains no C-mount identifier. `imageFormat` is also unset because the taxonomy does not
-contain a Super-8 entry. Those omissions are taxonomy constraints, not uncertainty about the patent's stated 4.22 ×
-5.69 mm image frame.
+current LensVisualizer taxonomy contains no C-mount identifier; that omission is a taxonomy constraint. `imageFormat` is
+`super-8`, matching the patent's stated 4.22 × 5.69 mm image frame and Schneider's Variogon zoom-lens documentation.
 
 ## Optical Architecture
 

@@ -20,6 +20,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  No unprescribed plate is modeled. The authored rear plane is fixed at the  ║
  * ║  infinity bare-air conjugate; the close-state residual is only 0.0003217 mm.║
  * ║  The approximately 0.685 mm patent-Bf offset remains source-unresolved.      ║
+ * ║  Nikon's manual requires a 39 mm filter in the rear slip-in holder, and a   ║
+ * ║  2 mm crown plate would supply about 0.68 mm, but no example table, prose   ║
+ * ║  passage, or figure lists a plate, so none is modeled (source-listed only). ║
  * ║                                                                              ║
  * ║  STOP MODEL: Example 1 gives only a schematic stop S after G3. A 14.0 mm    ║
  * ║  surface-20→STO split is inferred from Fig. 1. The STO semi-diameter is      ║
