@@ -10,8 +10,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **813** lenses scanned (**801** visible)
-- **8476 / 9115** non-air surfaces use strict catalog Sellmeier data (93.0%)
-- **8491 / 9115** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.2%)
+- **8477 / 9115** non-air surfaces use strict catalog Sellmeier data (93.0%)
+- **8492 / 9115** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.2%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **303** code-only missing-Sellmeier elements in Sweep 2: **4** active unreviewed, **166** self-recording explicit dispositions, **0** dispositions missing any review record
@@ -60,6 +60,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [NIKON FISHEYE-NIKKOR 6mm f/2.8](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf28.data.ts) | US 3,737,214 | [PDF](../../patents/US3737214.pdf) | 91.7% (11/12) | 91.7% (11/12) | 1 | 15 [glass] (Element 7: `534554 — crown glass (patent nd=1.53375, νd=55.4; no current HIKARI catalog match)`) | abbe: 1 |
 | [PANASONIC LEICA DG SUMMILUX 9mm f/1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG9mmf17.data.ts) | US 2023/0367186 A1 | [PDF](../../patents/US20230367186A1.pdf) | 91.7% (11/12) | 91.7% (11/12) | 1 | 3A [glass] (Element 2: `534556 — moldable crown (patent nd=1.53380, nu_d=55.6)`) | abbe: 1 |
 | [SONY PLANAR T* FE 50mm f/1.4 ZA](../../src/lens-data/sony/SonyPlanarFE50mmf14ZA.data.ts) | WO 2017/138250 A1 | [PDF](../../patents/JPWO2017138250A1.pdf) | 91.7% (11/12) | 91.7% (11/12) | 1 | 12 [glass] (Element 7: `Unmatched (995293 ultra-high-index heavy flint; no public coefficient row inside the d-line safety window)`) | abbe: 1 |
+| [NIKON NIKKOR Z 800mm f/6.3 VR S](../../src/lens-data/nikon/NikonNIKKORZ800mmf63VRS.data.ts) | JP 2023-23323 A | [PDF](../../patents/JP2023023323A.pdf) | 91.7% (22/24) | 91.7% (22/24) | 2 | 6 [glass] (PF optical medium A: `Unmatched (PF optical material; nd=1.529500, vd=36.27)`)<br>7 [glass] (PF optical medium B: `Unmatched (PF optical material; nd=1.549800, vd=50.91)`) | abbe: 2 |
 | [CANON EF-S 18-55mm f/3.5-5.6](../../src/lens-data/canon/CanonEFS1855mmf3556.data.ts) | JP 2005-092056 A | [PDF](../../patents/JP_2005092056_A.pdf) | 90.9% (10/11) | 90.9% (10/11) | 1 | R18 [glass] (Element 10: `Unmatched (nd=1.583060, vd=30.2; coordinate class 583302)`) | abbe: 1 |
 | [CANON EF-S 18-55mm f/3.5-5.6 IS](../../src/lens-data/canon/CanonEFS1855mmf3556IS.data.ts) | US 2007/0058265 A1 | [PDF](../../patents/US20070058265A1.pdf) | 90.9% (10/11) | 90.9% (10/11) | 1 | 18 [glass] (Element 10: `Unmatched (583/302 flint; obsolete HOYA E-F3-class candidate)`) | abbe: 1 |
 | [NIKON AI AF-S NIKKOR ED 500mm f/4D IF](../../src/lens-data/nikon/NikonAFSNikkor500mmf4DIFED.data.ts) | US 5,745,306 A | [PDF](../../patents/US5745306.pdf) | 90.9% (10/11) | 90.9% (10/11) | 1 | 7 [glass] (L13: `Unmatched (nd=1.802180, νd=44.69)`) | abbe: 1 |
