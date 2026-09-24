@@ -21,6 +21,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-09-24",
     type: "improvement",
+    summary: "Made Zoom span both rows at the right of the desktop analysis buttons",
+  },
+  {
+    date: "2026-09-24",
+    type: "improvement",
     summary: "Added a two-row analysis button bar with tooltips under the desktop lens diagram",
   },
   {

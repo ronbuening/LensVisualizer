@@ -12,8 +12,8 @@ enforced by the type system — if `npm run typecheck` passes, the wiring is com
 2. **Tab label** — `src/components/layout/lensDiagram/analysisTabs.ts`: add
    `{ id: "yourTab", label: "YOUR TAB", description: "…" }` to `ANALYSIS_TABS` (labels are ALL
    CAPS; order in this array is display order). `description` is the one-sentence tooltip on the
-   desktop dock button. The dock sizes its columns from the tab count plus ZOOM to keep two rows
-   (currently six columns for ten analysis tabs plus ZOOM).
+   desktop dock button. The dock distributes analysis tabs across two rows and reserves the final
+   column for a double-height ZOOM button (currently five analysis columns plus ZOOM).
 3. **Display component** — new file `src/components/display/analysis/YourTab.tsx`. Copy the
    structure of an existing simple tab (`FocusBreathingTab.tsx` or `VignettingTab.tsx` are good
    models; `OpticalSummaryTab.tsx` shows the metric-row pattern via `AnalysisMetricRow` from

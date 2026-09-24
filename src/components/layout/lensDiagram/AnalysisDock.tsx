@@ -1,7 +1,7 @@
 /**
  * AnalysisDock — desktop launcher and tab switcher for the analysis drawer.
  *
- * Two rows of buttons, one per analysis tab plus ZOOM, under the lens diagram.
+ * Two rows of analysis buttons with ZOOM spanning both rows at the right.
  * Clicking a button opens the drawer on that tab; clicking the lit button closes
  * it. Each button explains itself in a hover/focus tooltip. The single-lens view
  * renders the dock inside DiagramViewport; comparison view renders one shared
@@ -58,11 +58,12 @@ export default function AnalysisDock({
     onZoomPanToggle(true);
   };
 
-  // Include ZOOM when sizing the two-row dock as analysis tabs are added.
-  const columns = Math.ceil((tabs.length + 1) / 2);
+  // Reserve the final column for ZOOM across both analysis rows.
+  const columns = Math.ceil(tabs.length / 2) + 1;
   const containerStyle: CSSProperties = {
     display: "grid",
     gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`,
+    gridTemplateRows: "repeat(2, 34px)",
     gap: 6,
     flex: "0 0 auto",
     ...(variant === "shared"
@@ -98,13 +99,14 @@ export default function AnalysisDock({
         ariaLabel="Enter zoom and pan mode"
         description={ZOOM_DOCK_DESCRIPTION}
         active={false}
+        doubleHeight
         onClick={handleZoomClick}
         t={t}
       >
-        <span aria-hidden="true" style={{ fontSize: 12, marginRight: 6 }}>
+        <span aria-hidden="true" style={{ fontSize: 16 }}>
           {"\uD83D\uDD0D"}
         </span>
-        ZOOM
+        <span>ZOOM</span>
       </DockButton>
     </div>
   );
@@ -119,6 +121,7 @@ function DockButton({
   active,
   pressed,
   controls,
+  doubleHeight = false,
   onClick,
   t,
 }: {
@@ -128,6 +131,7 @@ function DockButton({
   active: boolean;
   pressed?: boolean;
   controls?: string;
+  doubleHeight?: boolean;
   onClick: () => void;
   t: Theme;
 }) {
@@ -176,6 +180,19 @@ function DockButton({
     textOverflow: "ellipsis",
     cursor: "pointer",
     transition: "all 0.25s",
+    ...(doubleHeight
+      ? {
+          gridColumn: -2,
+          gridRow: "1 / span 2",
+          height: "auto",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: 7,
+          lineHeight: "normal",
+        }
+      : {}),
   };
 
   return (
