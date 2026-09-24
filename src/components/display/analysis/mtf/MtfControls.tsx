@@ -31,8 +31,10 @@ const SPECTRA: ReadonlyArray<[MtfSpectrum, string]> = [
   ["cdf", "C/d/F (equal weights)"],
   ["reference", "Reference line"],
 ];
+/** Auto keeps the design plane unless the lens data's plane contradicts its own prescription. */
 const FOCUS: ReadonlyArray<[MtfFocusMode, string]> = [
-  ["design", "Design image plane"],
+  ["auto", "Design plane (auto)"],
+  ["design", "Design plane (always)"],
   ["best-axial", "Best axial focus"],
 ];
 const SAMPLING: ReadonlyArray<[MtfGridCap, string]> = [

@@ -24,7 +24,7 @@ import {
   type MtfGridOutcome,
 } from "../../../src/optics/analysis/mtf.js";
 import { mtfChiefHeight, mtfFieldProcessingOrder } from "../../../src/optics/analysis/mtfFields.js";
-import { findAxialBestFocus } from "../../../src/optics/analysis/mtfFocus.js";
+import { findAxialBestFocus, mtfImagePlaneOffset } from "../../../src/optics/analysis/mtfFocus.js";
 import { MTF_MAX_UNKNOWN_FLUX } from "../../../src/optics/analysis/mtfConstants.js";
 import type { EngineTraceResult } from "../../../src/optics/trace/types.js";
 import { traceEngineRay2 } from "../../../src/optics/trace/rayAdapters.js";
@@ -346,5 +346,31 @@ describe("MTF refinement and focus", () => {
     expect(design.focus!.bestAxialShiftMm).not.toBe(0);
     expect(refocused.focus!.appliedShiftMm).toBe(refocused.focus!.bestAxialShiftMm);
     expect(refocused.fields[0].sagittal[1]).toBeGreaterThan(design.fields[0].sagittal[1]);
+  });
+  it("refocuses automatically only when the authored plane contradicts the paraxial focus", () => {
+    const base = buildSimplePositiveElementLens();
+    const options = { ...mtfTestOptions, fieldFractions: [0], pupilSemiDiameterMm: 2, stopSemiDiameterMm: 2 };
+    const state = prepareRuntimeState(base, 0, 0);
+    // The fixture's 80 mm last gap sits far behind its own paraxial focus.
+    const offset = mtfImagePlaneOffset(state, assessMtfSupport(state, options))!;
+    expect(offset.inconsistent).toBe(true);
+    const auto = computeMtf(state, { ...options, focus: "auto" }).focus!;
+    expect(auto).toMatchObject({ requestedMode: "auto", mode: "best-axial", imagePlaneInconsistent: true });
+    expect(auto.appliedShiftMm).toBe(auto.bestAxialShiftMm);
+    expect(auto.imagePlaneOffsetMm).toBeCloseTo(offset.offsetMm, 12);
+    expect(computeMtf(state, { ...options, focus: "design" }).focus).toMatchObject({
+      mode: "design",
+      appliedShiftMm: 0,
+      imagePlaneInconsistent: true,
+    });
+    const surfaces = base.data.surfaces.map((s, i, all) =>
+      i === all.length - 1 ? { ...s, d: s.d + offset.offsetMm } : s,
+    );
+    const focused = computeMtf(prepareRuntimeState(build({ ...base.data, surfaces }), 0, 0), {
+      ...options,
+      focus: "auto",
+    });
+    expect(focused.focus).toMatchObject({ mode: "design", appliedShiftMm: 0, imagePlaneInconsistent: false });
+    expect(Math.abs(focused.focus!.imagePlaneOffsetMm!)).toBeLessThan(1e-9);
   });
 });

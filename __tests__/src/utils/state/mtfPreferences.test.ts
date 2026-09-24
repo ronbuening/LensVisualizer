@@ -26,6 +26,10 @@ afterEach(() => {
 describe("MTF preferences", () => {
   it("keeps valid stored fields and replaces corrupt ones with defaults", () => {
     expect(parseMtfPreferences(null)).toEqual(DEFAULT_MTF_PREFERENCES);
+    // Auto keeps the design plane unless the lens data's plane contradicts its prescription.
+    expect(DEFAULT_MTF_PREFERENCES.focus).toBe("auto");
+    expect(parseMtfPreferences({ focus: "design" }).focus).toBe("design");
+    expect(parseMtfPreferences({ focus: "sideways" }).focus).toBe("auto");
     expect(
       parseMtfPreferences({
         method: "diffraction",

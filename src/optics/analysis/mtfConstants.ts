@@ -47,6 +47,15 @@ export const MTF_MAX_UNKNOWN_FLUX = 0.005;
  */
 export const MTF_ESTIMATED_DISPERSION_MAX_VD = 65;
 
+/**
+ * An authored image plane farther than this many diffraction depths of focus (2λN² at the d line and the lens's open
+ * f-number) from its own prescription's paraxial focus is inconsistent lens data, not a design choice: usually a
+ * source whose printed back focus contradicts its prescription. The test uses paraxial focus, so the spherical-
+ * aberration focus shift of fast lenses never triggers it; in the catalog it flags 43 lenses
+ * (`scripts/audit-mtf.mjs --focus`).
+ */
+export const MTF_IMAGE_PLANE_DEPTHS = 10;
+
 /** Conservative scalar-diffraction suitability limits; see agent_docs/architecture/optics-engine.md. */
 export const MTF_DIFFRACTION_LIMITS = Object.freeze({
   maxChiefIncidenceDeg: 15,

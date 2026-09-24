@@ -35,7 +35,7 @@ export const MTF_PREFERENCES_KEY = "lensvis:mtf:options";
 export const DEFAULT_MTF_PREFERENCES: MtfPreferences = Object.freeze({
   method: "geometric-dl",
   spectrum: "photopic",
-  focus: "design",
+  focus: "auto",
   view: "field",
   fieldStepPercent: 10,
   frequencies: Object.freeze([10, 30] as const),
@@ -49,7 +49,7 @@ const oneOf =
     values.includes(value as T);
 const isMethod = oneOf<MtfMethod>(["geometric", "geometric-dl", "diffraction"]);
 const isSpectrum = oneOf<MtfSpectrum>(["reference", "cdf", "photopic"]);
-const isFocus = oneOf<MtfFocusMode>(["design", "best-axial"]);
+const isFocus = oneOf<MtfFocusMode>(["auto", "design", "best-axial"]);
 const isView = oneOf<MtfChartView>(["field", "frequency"]);
 const isFieldStep = oneOf<MtfFieldStepPercent>(MTF_FIELD_STEPS);
 const isFrequency = oneOf<MtfChartFrequency>(MTF_CHART_FREQUENCIES);

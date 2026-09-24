@@ -7,7 +7,11 @@ import type { FiniteConjugate } from "./optics.js";
 export type MtfMethod = "geometric" | "geometric-dl" | "diffraction";
 export type MtfSpectrum = "reference" | "cdf" | "photopic";
 /** `design` keeps the authored image plane; `best-axial` moves it to the axial best focus for every field. */
-export type MtfFocusMode = "design" | "best-axial";
+/**
+ * `auto` keeps the authored image plane unless it is inconsistent with the prescription's own paraxial focus, then
+ * uses best axial focus; `design` and `best-axial` always apply their plane.
+ */
+export type MtfFocusMode = "auto" | "design" | "best-axial";
 /** Largest pupil grid side a request may refine to; refinement always starts coarser. */
 export type MtfGridCap = 32 | 64 | 128 | 256;
 export type MtfUnavailableReason =
@@ -76,7 +80,9 @@ export interface MtfFieldGeometry {
 
 /** Image plane used for the result, with the axial best-focus diagnostic. */
 export interface MtfFocus {
-  mode: MtfFocusMode;
+  requestedMode: MtfFocusMode;
+  /** Plane actually applied to every field. */
+  mode: Exclude<MtfFocusMode, "auto">;
   /** Plane shift from the authored image plane applied to every field, in mm (positive away from the lens). */
   appliedShiftMm: number;
   /** Axial best-focus shift from the authored plane; null when the axial bundle could not be scored. */
@@ -84,6 +90,10 @@ export interface MtfFocus {
   /** Mean axial geometric MTF over the focus-scoring frequencies at the authored plane and at best focus. */
   designScore: number | null;
   bestScore: number | null;
+  /** Prescription paraxial focus minus the authored image plane, in mm; null for finite conjugates. */
+  imagePlaneOffsetMm: number | null;
+  /** True when that offset exceeds `MTF_IMAGE_PLANE_DEPTHS` depths of focus. */
+  imagePlaneInconsistent: boolean;
 }
 
 export type MtfFieldStatus = "converged" | "unconverged" | "unavailable" | "pending";

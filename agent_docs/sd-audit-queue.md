@@ -109,6 +109,70 @@ passes every clear aperture; lenses whose edge merely misses the format corner a
 | PANASONIC LUMIX G VARIO 7-14mm f/4 | `panasonic/PanasonicLumixGVario714mmf4.data.ts` | Edge below half the format-corner height | todo |
 | OLYMPUS ZUIKO 16mm f/3.5 Fisheye | `olympus/OlympusZuiko16mmf35.data.ts` | Edge below half the format-corner height; also declares no fisheye `projection`, so rectilinear analyses accept it | todo |
 
+## Section E — MTF image-plane census
+
+These lenses place their image plane away from their own prescription's paraxial focus at infinity, by more than
+`MTF_IMAGE_PLANE_DEPTHS` (10) diffraction depths of focus (2λN² at the d line and the open f-number). At the authored
+plane their MTF collapses, so the MTF tab's default Auto focus refocuses them and says why. The usual cause is a
+source whose printed back focus contradicts its prescription. Folding a listed plate to its air-equivalent, or
+modeling it in `rearPlates`, leaves paraxial defocus unchanged, so plates alone rarely explain these offsets.
+Regenerate (about three minutes):
+
+```bash
+node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-mtf.mjs --focus
+```
+
+Work each row with [lens-patent-audit.md](lens-patent-audit.md) and the source PDF. Correct transcription errors,
+and model plates the source lists in `rearPlates`. Where the source itself is inconsistent, keep the published value
+and document the contradiction in the lens header and `*.audit.md`, as the Voigtländer 28/2 audit does, then delete
+the row. Offset is paraxial focus minus the authored plane (positive: the plane sits in front of focus).
+
+| Lens | File | Offset (mm) | Depths | Cause | Status |
+|---|---|---|---|---|---|
+| FUJIFILM FUJINON XF 18mm f/2 R | `fujifilm/FujifilmXF18mmf2.data.ts` | +4.993 | 1062 | Offset (5 mm) far exceeds the 2.70 mm cover glass; check the transcription | todo |
+| FUJIFILM FUJINON 23mm f/2 (Fujifilm X100) | `fujifilm/FujifilmX10023mmf2.data.ts` | +2.726 | 580 | Offset (2.7 mm) far exceeds any cover glass; check the transcription | todo |
+| CANON EF 24mm f/1.4 L USM | `canon/CanonEF24mmf14L.data.ts` | +1.748 | 759 | Not yet diagnosed; check the source image distance | todo |
+| VILTROX AF 14mm f/4 AIR | `viltrox/ViltroxAF14mmf4Air.data.ts` | -1.072 | 57 | Plate folded to air-equivalent; offset is the source image distance, not the fold | todo |
+| SIGMA 24mm f/1.4 DG DN \| Art | `sigma/Sigma24mmf14ArtDN.data.ts` | -1.048 | 455 | Patent BF 23.0355 mm kept vs 21.9873 mm paraxial; likely an omitted plate whose values are not recorded | todo |
+| MAMIYA AF APO 300mm f/4.5 IF | `mamiya/MamiyaAFAPO300mmf45IF.data.ts` | -1.026 | 41 | Not yet diagnosed; check the source image distance | todo |
+| VILTROX AF 50mm f/1.8 FE | `viltrox/ViltroxAF50mmf18FE.data.ts` | +0.989 | 260 | Plate folded to air-equivalent; offset is the source image distance, not the fold | todo |
+| Nikon AI Zoom-Nikkor 35–105mm f/3.5–4.5S | `nikon/NikonAIZoomNikkor35105mmf3545.data.ts` | +0.942 | 66 | Not yet diagnosed; check the source image distance | todo |
+| SONY FE 70-200mm f/4 G OSS | `sony/SonyFE70200mmf4G.data.ts` | -0.812 | 43 | Not yet diagnosed; check the source image distance | todo |
+| NIKON AF-S NIKKOR 28-300mm f/3.5-5.6 G ED VR | `nikon/NikonNikkorAFS28300mmf3556G.data.ts` | +0.714 | 48 | Not yet diagnosed; check the source image distance | todo |
+| CANON EF 500mm f/4 L IS USM | `canon/CanonEF500mmf4LISUSM.data.ts` | +0.670 | 34 | Rear filter folded to air-equivalent; offset is the source image distance, not the fold | todo |
+| VILTROX AF 35mm f/1.8 FE | `viltrox/ViltroxAF35mmf18FE.data.ts` | -0.552 | 145 | Plate folded to air-equivalent; analysis notes the printed BFL condition is not reproduced | todo |
+| CANON EF 50mm f/1.2L USM | `canon/CanonEF50mmf12LUSM.data.ts` | -0.546 | 298 | Not yet diagnosed; check the source image distance | todo |
+| KINOPTIK TEGEA 9.8mm f/1.8 | `kinoptik/KinoptikTegea98mmf18.data.ts` | +0.537 | 114 | Not yet diagnosed; check the source image distance | todo |
+| VILTROX AF 56mm f/1.4 E | `viltrox/ViltroxAF56mmf14E.data.ts` | +0.510 | 218 | Plate folded to air-equivalent; offset is the source image distance, not the fold | todo |
+| CANON EF 600mm f/4 L IS USM | `canon/CanonEF600mmf4LISUSM.data.ts` | -0.493 | 25 | Rear filter folded to air-equivalent; offset is the source image distance, not the fold | todo |
+| SONY SONNAR T* FE 35mm f/2.8 ZA | `sony/SonyFE35mmf28ZA.data.ts` | +0.471 | 51 | Not yet diagnosed; check the source image distance | todo |
+| VOIGTLÄNDER APO-LANTHAR 28mm f/2 Aspherical VM | `voigtlander/VoigtlanderAPOLanthar28mmf2Aspherical.data.ts` | +0.373 | 75 | Source contradiction (audit): printed D21 18.21 mm vs 18.58 mm prescription back focus | todo |
+| VILTROX AF 33mm f/1.4 E | `viltrox/ViltroxAF33mmf14E.data.ts` | +0.366 | 159 | Plate folded to air-equivalent; offset is the source image distance, not the fold | todo |
+| KONICA HEXANON AR 50mm f/1.8 | `konica/KonicaHexanonAR50mmf18.data.ts` | +0.344 | 90 | Analysis: printed axial spacings do not sum to the published track | todo |
+| TAMRON SP 90mm f/2.8 Di MACRO 1:1 VC USD (F004) | `tamron/TamronSP90mmf28Di.data.ts` | +0.294 | 32 | Not yet diagnosed; check the source image distance | todo |
+| MINOLTA MC W.ROKKOR-SG 28mm f/3.5 | `minolta/Minolta28mmf35MCWRokkorv2.data.ts` | -0.246 | 17 | Not yet diagnosed; check the source image distance | todo |
+| HASSELBLAD XCD 65mm f/2.8 | `hasselblad/HasselbladXCD65mmf28.data.ts` | +0.232 | 25 | Cover glass already in `rearPlates`; offset remains | todo |
+| CANON 12.5-62.5mm f/2.0-3.9 (PowerShot G1 X Mark II) | `canon/CanonPowerShotG1XII125625mmf239.data.ts` | +0.221 | 47 | Sensor block already in `rearPlates`; offset remains | todo |
+| NIKON R-UW AF ZOOM-NIKKOR 20-35mm f/2.8 | `nikon/NikonRUWAFZoomNikkor2035mmf28.data.ts` | +0.220 | 24 | Underwater lens designed with water in object space; in-air MTF is not its design condition | todo |
+| HASSELBLAD HC 210mm f/4 | `hasselblad/HasselbladHC210mmf4.data.ts` | -0.204 | 11 | Not yet diagnosed; check the source image distance | todo |
+| SAMYANG AF 35mm f/2.8 FE | `samyang/SamyangAF35mmf28FE.data.ts` | -0.190 | 19 | Header: patent OAL and filter-absent 'in Air' distance do not reconcile with the Gaussian image plane | todo |
+| HASSELBLAD XCD 45mm f/3.5 | `hasselblad/HasselbladXCD3545.data.ts` | +0.171 | 12 | Data note: source infinity BF 26.88 mm kept although the raw prescription computes otherwise | todo |
+| P. ANGÉNIEUX DEM 180mm f/2.3 APO | `p.-angénieux/AngenieuxDEM180mmf23APO.data.ts` | -0.146 | 24 | Not yet diagnosed; check the source image distance | todo |
+| CARL ZEISS OLYMPIA-SONNAR 180mm f/2.8 | `carl-zeiss-oberkochen/CarlZeissOlympiaSonnar180mmf28.data.ts` | +0.100 | 11 | Not yet diagnosed; check the source image distance | todo |
+| CANON RF 35mm f/1.4 L VCM | `canon/CanonRF35mmF14LVCM.data.ts` | -0.083 | 33 | Small offset; may be a designer best-focus plane, check the source | todo |
+| LEICA SUMMILUX-SL 50mm f/1.4 ASPH. I | `leica/LeicaSummiluxSL50mmf14AsphI.data.ts` | +0.075 | 31 | Plate PT already in `rearPlates`; small offset, may be a designer best-focus plane | todo |
+| VOIGTLÄNDER ULTRON Vintage Line 28mm f/2 Aspherical | `voigtlander/VoigtlanderUltron28f2.data.ts` | +0.069 | 15 | Small offset; may be a designer best-focus plane, check the source | todo |
+| SCHNEIDER-KREUZNACH VARIOGON 8-40mm f/1.8 | `schneider-kreuznach/SchneiderVariogon18840.data.ts` | +0.063 | 16 | Small offset; may be a designer best-focus plane, check the source | todo |
+| KINOPTIK SUPER-TEGEA 1.9mm f/1.9 FISHEYE | `kinoptik/KinoptikSuperTegea19mmf19Fisheye.data.ts` | +0.051 | 12 | Small offset; may be a designer best-focus plane, check the source | todo |
+| SONY E 50mm f/1.8 OSS | `sony/SonyE50mmf18OSS.data.ts` | +0.046 | 11 | Cover glass already in `rearPlates`; small offset, may be a designer best-focus plane | todo |
+| LEICA SUMMILUX-M 35mm f/1.4 ASPHERICAL | `leica/LeicaSummiluxM35mmf14Aspherical.data.ts` | +0.041 | 18 | Small offset; may be a designer best-focus plane, check the source | todo |
+| SONY SONNAR T* FE 55mm f/1.8 ZA | `sony/SonyFE55mmf18ZA.data.ts` | +0.039 | 10 | Small offset; may be a designer best-focus plane, check the source | todo |
+| LEICA SUMMILUX-C 40mm T1.4 | `leica/LeicaSummiluxC40mmT14.data.ts` | -0.038 | 17 | Small offset; may be a designer best-focus plane, check the source | todo |
+| LEICA SUMMILUX-C 100mm T1.4 | `leica/LeicaSummiluxC100mmT14.data.ts` | -0.036 | 16 | Small offset; may be a designer best-focus plane, check the source | todo |
+| VOIGTLÄNDER NOKTON Vintage Line 50mm f/1.5 Aspherical II VM | `voigtlander/VoigtlanderNokton50mmf15AsphericalVM.data.ts` | -0.028 | 11 | Small offset; may be a designer best-focus plane, check the source | todo |
+| LEICA SUMMILUX-M 35mm f/1.4 | `leica/LeicaSummilux35mmf14.data.ts` | -0.025 | 11 | Small offset; may be a designer best-focus plane, check the source | todo |
+| VILTROX AF 27mm f/1.2 PRO XF | `viltrox/ViltroxAF27mmf12XF.data.ts` | +0.025 | 15 | Source GL plate excluded; check the rear path against the source | todo |
+
 ## In-progress diagram sweep
 
 The oldest-200 hosted-diagram audit (patent and live-view review of each lens, semi-diameters included) is paused at

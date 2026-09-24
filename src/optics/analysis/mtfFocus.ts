@@ -6,6 +6,12 @@
  * shifted planes needs no retrace, so the offset is cheap to report as a diagnostic and to apply
  * as an optional single refocus for all fields, like a camera focused at the image center.
  */
+import type { MtfSupport } from "../../types/mtf.js";
+import { computeCardinalElements2 } from "../first-order/cardinals.js";
+import { fopenAtZoom } from "../layout.js";
+import { LINE_NM } from "../spectralLines.js";
+import type { PreparedOpticalState } from "../types.js";
+import { MTF_IMAGE_PLANE_DEPTHS } from "./mtfConstants.js";
 import { combineOtfs, geometricOtf, otfMagnitude, type MtfSpot } from "./mtfMath.js";
 import type { MtfBundle } from "./mtfTracing.js";
 
@@ -21,6 +27,36 @@ export interface MtfBestFocus {
   /** Mean axial MTF over the scored frequencies at the authored plane and at best focus. */
   designScore: number;
   bestScore: number;
+}
+
+/** Where the authored image plane sits relative to the prescription's own paraxial focus. */
+export interface MtfImagePlaneOffset {
+  /** Paraxial focus minus the authored image plane, in mm (positive away from the lens). */
+  offsetMm: number;
+  /** `MTF_IMAGE_PLANE_DEPTHS` diffraction depths of focus at the lens's open f-number, in mm. */
+  limitMm: number;
+  inconsistent: boolean;
+}
+
+/**
+ * Check the authored image plane against the prescription's paraxial focus at infinity.
+ *
+ * Sources sometimes print a back focus their own prescription does not reproduce; keeping the
+ * published value then places the image plane well off focus. The limit depends only on the
+ * lens and state, so every aperture and spectrum of one lens agrees on the verdict.
+ *
+ * @param state - prepared optical state
+ * @param support - support record; finite conjugates are not checked
+ * @returns offset and verdict, or null when there is no infinity focus to compare
+ */
+export function mtfImagePlaneOffset(state: PreparedOpticalState, support: MtfSupport): MtfImagePlaneOffset | null {
+  if (support.conjugate) return null;
+  const rearFocalZ = computeCardinalElements2(state)?.points.rearFocal.z;
+  const fNumber = fopenAtZoom(state.zoomT, state.lens.runtime);
+  if (rearFocalZ === undefined || !Number.isFinite(rearFocalZ) || !(fNumber > 0)) return null;
+  const offsetMm = rearFocalZ - state.imgZ;
+  const limitMm = MTF_IMAGE_PLANE_DEPTHS * 2 * LINE_NM.d * 1e-6 * fNumber ** 2;
+  return { offsetMm, limitMm, inconsistent: Math.abs(offsetMm) > limitMm };
 }
 
 const GOLDEN = (Math.sqrt(5) - 1) / 2;

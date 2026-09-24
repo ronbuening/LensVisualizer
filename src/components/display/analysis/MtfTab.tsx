@@ -25,8 +25,6 @@ interface MtfTabProps {
   movementActive?: boolean;
 }
 
-/** Refocusing must gain at least this much mean axial MTF before the authored plane is flagged. */
-const FOCUS_HINT_GAIN = 0.05;
 /** Comparison aperture of manufacturer charts. */
 const COMPARISON_F_NUMBER = 8;
 
@@ -107,7 +105,7 @@ export default function MtfTab({
       <h3 style={{ margin: "0 0 4px", fontSize: 14 }}>Simulated MTF</h3>
       <p style={muted}>{headerLine(options, support.referenceWavelengthNm, fNumber, focalLengthMm, shown)}</p>
       {spectrum.note ? <p style={muted}>{spectrum.note}</p> : null}
-      <FocusHint result={shown} t={t} onUseBestFocus={() => updatePreferences({ focus: "best-axial" })} />
+      <ImagePlaneNote result={shown} t={t} onUseAuto={() => updatePreferences({ focus: "auto" })} />
       <MtfControls
         t={t}
         preferences={preferences}
@@ -192,11 +190,12 @@ function headerLine(
       ? `${referenceWavelengthNm.toFixed(1)} nm`
       : `${SPECTRUM_LABELS[options.spectrum]} spectrum`,
   );
-  const shift = result?.focus?.appliedShiftMm ?? 0;
+  // Label the plane actually applied: auto may refocus a lens whose image plane is inconsistent.
+  const focus = result?.focus;
+  const bestAxial = focus ? focus.mode === "best-axial" : options.focus === "best-axial";
+  const shift = focus?.appliedShiftMm ?? 0;
   parts.push(
-    options.focus === "best-axial"
-      ? `Best axial focus (${shift >= 0 ? "+" : "−"}${Math.abs(shift).toFixed(3)} mm)`
-      : "Design image plane",
+    bestAxial ? `Best axial focus (${shift >= 0 ? "+" : "−"}${Math.abs(shift).toFixed(3)} mm)` : "Design image plane",
   );
   return parts.join(" · ");
 }
@@ -206,30 +205,44 @@ function progressText(result: MtfResult): string {
   return `${done} / ${result.fields.length} fields`;
 }
 
-function FocusHint({ result, t, onUseBestFocus }: { result: MtfResult | null; t: Theme; onUseBestFocus: () => void }) {
+/**
+ * Explains a lens whose authored image plane contradicts its own prescription's paraxial focus
+ * (see `mtfImagePlaneOffset`); spherical-aberration focus shift alone never shows it.
+ */
+function ImagePlaneNote({ result, t, onUseAuto }: { result: MtfResult | null; t: Theme; onUseAuto: () => void }) {
   const focus = result?.focus;
-  if (
-    !focus ||
-    focus.mode !== "design" ||
-    focus.bestAxialShiftMm === null ||
-    focus.designScore === null ||
-    focus.bestScore === null ||
-    focus.bestScore - focus.designScore < FOCUS_HINT_GAIN
-  )
-    return null;
-  const shift = focus.bestAxialShiftMm;
+  if (!focus?.imagePlaneInconsistent || focus.imagePlaneOffsetMm === null) return null;
+  const offset = focus.imagePlaneOffsetMm;
+  const shift = focus.appliedShiftMm;
   return (
     <p style={{ color: t.muted, margin: "4px 0" }}>
-      The authored image plane may be off focus: mean axial MTF at 10–50 lp/mm rises from {focus.designScore.toFixed(2)}{" "}
-      to {focus.bestScore.toFixed(2)} {Math.abs(shift).toFixed(3)} mm {shift < 0 ? "closer to" : "farther from"} the
-      lens.{" "}
-      <button
-        type="button"
-        onClick={onUseBestFocus}
-        style={{ background: "none", border: "none", padding: 0, color: t.value, cursor: "pointer", font: "inherit" }}
-      >
-        Use best axial focus
-      </button>
+      The lens data places the image plane {Math.abs(offset).toFixed(2)} mm {offset > 0 ? "in front of" : "behind"} its
+      own prescription&apos;s paraxial focus, usually because the source&apos;s printed back focus and its prescription
+      disagree.{" "}
+      {focus.requestedMode === "auto" && focus.mode === "best-axial" ? (
+        <>
+          These curves use best axial focus ({shift >= 0 ? "+" : "−"}
+          {Math.abs(shift).toFixed(3)} mm); choose “Design plane (always)” to see the authored plane.
+        </>
+      ) : focus.requestedMode === "design" ? (
+        <>
+          Curves at the authored plane are out of focus.{" "}
+          <button
+            type="button"
+            onClick={onUseAuto}
+            style={{
+              background: "none",
+              border: "none",
+              padding: 0,
+              color: t.value,
+              cursor: "pointer",
+              font: "inherit",
+            }}
+          >
+            Refocus automatically
+          </button>
+        </>
+      ) : null}
     </p>
   );
 }

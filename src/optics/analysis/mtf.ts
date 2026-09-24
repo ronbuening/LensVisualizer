@@ -43,7 +43,7 @@ import {
 import { expandMtfFootprint, type MtfFootprint } from "./mtfFootprint.js";
 import { pupilOtf, reconstructMtfPupil } from "./mtfDiffraction.js";
 import { diffractionLimitFromBundle, type MtfDiffractionLimit } from "./mtfDiffractionLimit.js";
-import { findAxialBestFocus } from "./mtfFocus.js";
+import { findAxialBestFocus, mtfImagePlaneOffset } from "./mtfFocus.js";
 import {
   mtfChiefHeight,
   mtfFieldProcessingOrder,
@@ -342,13 +342,24 @@ function* traceField(context: MtfJobContext, target: MtfFieldTarget): Generator<
 /* ── Focus ── */
 
 /**
- * Axial best focus from the center bundle. The search always runs so the result can flag an
- * authored image plane far from focus; `best-axial` requests apply the shift to every field.
+ * Axial best focus from the center bundle, and the image-plane consistency check. The search
+ * always runs so results can report it; `best-axial` requests apply the shift to every field, and
+ * `auto` requests apply it only when the authored plane is inconsistent with the prescription.
  */
 function resolveMtfFocus(context: MtfJobContext): MtfFocus {
   const { state, options, support } = context;
-  const mode = options.focus ?? "design";
-  const focus: MtfFocus = { mode, appliedShiftMm: 0, bestAxialShiftMm: null, designScore: null, bestScore: null };
+  const requestedMode = options.focus ?? "design";
+  const offset = mtfImagePlaneOffset(state, support);
+  const focus: MtfFocus = {
+    requestedMode,
+    mode: "design",
+    appliedShiftMm: 0,
+    bestAxialShiftMm: null,
+    designScore: null,
+    bestScore: null,
+    imagePlaneOffsetMm: offset?.offsetMm ?? null,
+    imagePlaneInconsistent: offset?.inconsistent ?? false,
+  };
   const launch = prepareMtfFieldLaunch(state, options, support, 0);
   const footprint = launch ? findMtfFieldFootprint(state, options, support, launch) : null;
   if (!launch || !footprint) return focus;
@@ -364,7 +375,10 @@ function resolveMtfFocus(context: MtfJobContext): MtfFocus {
   focus.bestAxialShiftMm = best.shiftMm;
   focus.designScore = best.designScore;
   focus.bestScore = best.bestScore;
-  if (mode === "best-axial") focus.appliedShiftMm = best.shiftMm;
+  if (requestedMode === "best-axial" || (requestedMode === "auto" && focus.imagePlaneInconsistent)) {
+    focus.mode = "best-axial";
+    focus.appliedShiftMm = best.shiftMm;
+  }
   return focus;
 }
 

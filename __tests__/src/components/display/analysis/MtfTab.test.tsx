@@ -4,18 +4,32 @@ import { cleanup, fireEvent, render, screen, within } from "@testing-library/rea
 import MtfTab from "../../../../../src/components/display/analysis/MtfTab.js";
 import MtfChart from "../../../../../src/components/display/analysis/MtfChart.js";
 import { mockTheme } from "../../../../testUtils.js";
-import { buildSimplePositiveElementLens } from "../../../optics/testLensFixtures.js";
+import { build, buildSimplePositiveElementLens } from "../../../optics/testLensFixtures.js";
 import { prepareRuntimeState } from "../../../../../src/optics/compat.js";
-import { computeMtf } from "../../../../../src/optics/mtf.js";
+import { assessMtfSupport, computeMtf } from "../../../../../src/optics/mtf.js";
+import { mtfImagePlaneOffset } from "../../../../../src/optics/analysis/mtfFocus.js";
 import type { MtfResult } from "../../../../../src/types/mtf.js";
 import type { MtfJob, MtfWorkerReply, MtfWorkerRequest } from "../../../../../src/components/hooks/mtfWorkerClient.js";
 import { MTF_PREFERENCES_KEY, resetMtfPreferencesCache } from "../../../../../src/utils/state/mtfPreferences.js";
 
+// The fixture's authored image plane sits far from its paraxial focus, so Auto refocuses it.
 const L = buildSimplePositiveElementLens();
 const state = prepareRuntimeState(L, 0, 0);
+const referenceOptions = {
+  method: "geometric",
+  spectrum: "reference",
+  pupilSemiDiameterMm: 1,
+  stopSemiDiameterMm: 1,
+} as const;
+const offsetMm = mtfImagePlaneOffset(state, assessMtfSupport(state, referenceOptions))!.offsetMm;
+const focusedL = build({
+  ...L.data,
+  surfaces: L.data.surfaces.map((s, i, all) => (i === all.length - 1 ? { ...s, d: s.d + offsetMm } : s)),
+});
+const focusedState = prepareRuntimeState(focusedL, 0, 0);
 
 /** Worker stand-in that runs the pure engine; `progress` first posts a result with every field pending. */
-function stubWorker({ progress = false }: { progress?: boolean } = {}) {
+function stubWorker({ progress = false, target = state }: { progress?: boolean; target?: typeof state } = {}) {
   const calls = { compute: 0, jobs: [] as MtfJob[] };
   const replies: Array<() => void> = [];
   vi.stubGlobal(
@@ -28,7 +42,7 @@ function stubWorker({ progress = false }: { progress?: boolean } = {}) {
         if (message.type !== "compute") return;
         calls.compute++;
         calls.jobs.push(message.job);
-        const result = computeMtf(state, { ...message.job.options, maxGridSize: 128 });
+        const result = computeMtf(target, { ...message.job.options, maxGridSize: 128 });
         const send = (reply: MtfWorkerReply) => this.onmessage?.({ data: reply } as MessageEvent<MtfWorkerReply>);
         if (progress) {
           const pending: MtfResult = {
@@ -65,12 +79,12 @@ describe("MTF tab", () => {
     expect(worker).not.toHaveBeenCalled();
   });
   it("defaults to the diffraction-corrected photopic model and notes estimated dispersion", async () => {
-    stubWorker();
+    stubWorker({ target: focusedState });
     render(
       <MtfTab
-        L={L}
+        L={focusedL}
         t={mockTheme}
-        preparedState={state}
+        preparedState={focusedState}
         currentEPSD={1}
         currentPhysStopSD={1}
         fNumber={2.8}
@@ -83,6 +97,16 @@ describe("MTF tab", () => {
     expect(header.textContent).toContain("Design image plane");
     // The fixture glass has only nd and νd, so its dispersion is estimated and the tab says so.
     expect(screen.getByText("Dispersion of one glass is estimated from nd and νd.")).toBeTruthy();
+    expect(screen.queryByText(/own prescription/)).toBeNull();
+  });
+  it("refocuses a lens whose image plane contradicts its own prescription, and says so", async () => {
+    stubWorker();
+    render(<MtfTab L={L} t={mockTheme} preparedState={state} currentEPSD={1} currentPhysStopSD={1} />);
+    expect(await screen.findByRole("figure", { name: /image height/ })).toBeTruthy();
+    expect(screen.getByText(/· Best axial focus \(/)).toBeTruthy();
+    const note = screen.getByText(/own prescription/).textContent!;
+    expect(note).toContain(`${Math.abs(offsetMm).toFixed(2)} mm behind`);
+    expect(note).toContain("These curves use best axial focus");
   });
   it("switches chart views and frequencies from one computed result, keeping color slots fixed", async () => {
     const { calls } = stubWorker();
