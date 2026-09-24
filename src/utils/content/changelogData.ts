@@ -20,6 +20,12 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-09-24",
+    type: "fix",
+    summary:
+      "Corrected chromatic focus and lateral color for 256 lenses whose glasses have only an index and Abbe number",
+  },
+  {
+    date: "2026-09-24",
     type: "improvement",
     summary:
       "Made vignetting, pupil and lens-group movement chart colors easier to tell apart, especially in light mode",

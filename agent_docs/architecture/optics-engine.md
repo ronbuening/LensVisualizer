@@ -140,7 +140,12 @@ The constructor validates lens data and constructs a frozen `RuntimeLens` with:
 - Per-surface dispersion resolvers. Catalog Sellmeier substitution compares d-line-authored elements at C/d/F and
   native e-line elements at C′/e/F′. E-line matching requires an explicit catalog name or alias; six-digit codes stay
   d-line-only because their encoded coordinates are nd/νd. For d-line elements with authored `dPgF`, the catalog
-  curve supplies C/d/F while the patent/source partial dispersion remains authoritative at g.
+  curve supplies C/d/F while the patent/source partial dispersion remains authoritative at g. The Abbe tier
+  (`abbeLineIndices`) keeps the exact F−C span from `nd`/`vd` and places the d line within it with the catalog-fitted
+  P_d,C normal line (`normalLinePdC`, ≈0.28–0.31 for real glasses; native e-line elements use `normalLinePeC` across
+  C′–F′), extending to g with the Schott P_g,F line plus `dPgF`. A midpoint split (P_d,C = 0.5) misstates focus
+  against wavelength wherever estimated glasses sit beside real ones. Anomalous-dispersion glasses without `dPgF`
+  remain uncertain at g.
 - Folded-path metadata: resolved `opticalPath`, explicit `imagePlane`, `isFoldedOptics`, and normalized surface/image-plane
   normals when mirror data opts into the generalized model.
 - Folded entrance/exit pupil geometry derived from generalized real-ray stop and full-system basis traces, with finite

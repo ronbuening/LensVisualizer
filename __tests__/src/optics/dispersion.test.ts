@@ -25,7 +25,12 @@ import { OHARA_GLASS_ENTRIES } from "../../../src/optics/glassCatalogEntries/oha
 import { SCHOTT_GLASS_ENTRIES } from "../../../src/optics/glassCatalogEntries/schott.js";
 import { SPECIAL_GLASS_ENTRIES } from "../../../src/optics/glassCatalogEntries/special.js";
 import { SUMITA_GLASS_ENTRIES } from "../../../src/optics/glassCatalogEntries/sumita.js";
-import { makeSurfaceDispersion, summarizeDispersionQuality } from "../../../src/optics/dispersion.js";
+import {
+  makeSurfaceDispersion,
+  normalLinePdC,
+  normalLinePeC,
+  summarizeDispersionQuality,
+} from "../../../src/optics/dispersion.js";
 import { sharedApoLanthar50f2 } from "./testLensFixtures.js";
 
 describe("glass catalog", () => {
@@ -746,13 +751,31 @@ describe("makeSurfaceDispersion preference cascade", () => {
       undefined,
     );
     expect(d.quality).toBe("abbe");
-    const delta = (nd - 1) / (2 * 64.14);
-    expect(d.fn("R")).toBeCloseTo(nd - delta, 10);
+    // The F−C span is exact by the definition of vd; P_d,C ≈ 0.2785 + 0.000421·vd places d within it.
+    const span = (nd - 1) / 64.14;
+    const nC = nd - (0.2785 + 0.000421 * 64.14) * span;
+    expect(d.fn("R")).toBeCloseTo(nC, 10);
     expect(d.fn("G")).toBe(nd);
-    expect(d.fn("B")).toBeCloseTo(nd + delta, 10);
+    expect(d.fn("B")).toBeCloseTo(nC + span, 10);
+    expect((d.fn("G") - d.fn("R")) / (d.fn("B") - d.fn("R"))).toBeCloseTo(0.3055, 3);
     // V channel: normal-line PgF = 0.6438 - 0.001682*64.14 ≈ 0.5359; ng = nF + PgF*(nF-nC).
     const PgF = 0.6438 - 0.001682 * 64.14;
-    expect(d.fn("V")).toBeCloseTo(nd + delta + PgF * (2 * delta), 10);
+    expect(d.fn("V")).toBeCloseTo(nC + span + PgF * span, 10);
+  });
+
+  it.each([
+    { reference: "d", lines: [LINE_NM.C, LINE_NM.d, LINE_NM.F], normalLine: normalLinePdC },
+    { reference: "e", lines: [LINE_NM.CPrime, LINE_NM.e, LINE_NM.FPrime], normalLine: normalLinePeC },
+  ])("places the $reference line within its red–blue span like the catalog glasses", ({ lines, normalLine }) => {
+    const residuals = allEntries()
+      .map((entry) => {
+        const [nRed, nRef, nBlue] = lines.map((line) => evaluateSellmeier(entry, line));
+        return Math.abs((nRef - nRed) / (nBlue - nRed) - normalLine((nRef - 1) / (nBlue - nRed)));
+      })
+      .sort((a, b) => a - b);
+    expect(residuals.length).toBeGreaterThan(500);
+    expect(residuals[Math.floor(residuals.length / 2)]).toBeLessThan(0.002);
+    expect(residuals.at(-1)!).toBeLessThan(0.02);
   });
 
   it("dPgF on the element shifts the V-channel index away from the normal-line baseline", () => {

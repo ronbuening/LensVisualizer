@@ -7,7 +7,7 @@
 import type { ChromaticChannel, RuntimeLens } from "../../types/optics.js";
 import type { CompiledSurfaceDispersion, EngineLens, PreparedOpticalState } from "../types.js";
 import { normalizeRuntimeLens } from "../prescription/normalizeLensData.js";
-import { normalLinePgF } from "../dispersion.js";
+import { abbeLineIndices } from "../dispersion.js";
 import { evaluateSellmeier } from "../glassCatalog.js";
 import { LINE_NM } from "../spectralLines.js";
 import { CHROMATIC_CHANNEL_METADATA, CHROMATIC_CHANNEL_ORDER } from "./channels.js";
@@ -36,8 +36,8 @@ export type SurfaceIndexResolver2 = (surfaceIndex: number, dLineIndex: number) =
  * Approximate channel refractive index from d-line index and Abbe number.
  *
  * This is the fallback when no catalog Sellmeier or patent line-index data is
- * available. Red and blue use a symmetric C/F estimate; violet uses the standard
- * partial-dispersion approximation for P_gF.
+ * available, and matches the dispersion cascade's Abbe tier without an authored
+ * dPgF (`abbeLineIndices`).
  *
  * @param nd - d-line refractive index
  * @param vd - Abbe Vd number, if known
@@ -47,13 +47,8 @@ export type SurfaceIndexResolver2 = (surfaceIndex: number, dLineIndex: number) =
 export function wavelengthNd2(nd: number, vd: number | undefined, channel: ChromaticChannel): number {
   if (nd === 1.0) return 1.0;
   if (!vd || channel === "G") return nd;
-  const delta = (nd - 1) / (2 * vd);
-  if (channel === "R") return nd - delta;
-  if (channel === "B") return nd + delta;
-  const nC = nd - delta;
-  const nF = nd + delta;
-  const PgF = normalLinePgF(vd);
-  return nF + PgF * (nF - nC);
+  const { nC, nF, ng } = abbeLineIndices(nd, vd);
+  return channel === "R" ? nC : channel === "B" ? nF : ng;
 }
 
 /**
