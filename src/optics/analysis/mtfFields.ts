@@ -93,10 +93,14 @@ export function resolveMtfFieldGeometry(
 }
 
 /**
- * Largest field angle whose real chief ray reaches the image through every clear aperture.
+ * Largest field angle whose real chief ray reaches the image through every clear aperture,
+ * or the angle whose chief reaches `stopHeightMm` when that comes first.
  *
- * Walks outward from the starting estimate until the chief clips, fails, or reaches
- * `stopHeightMm`, then bisects the boundary; an unreachable start scans inward instead.
+ * Walks outward from the starting estimate until the chief clips, fails, or passes
+ * `stopHeightMm`, then bisects the boundary; an unreachable start scans inward instead. A chief
+ * that passes the stop height is solved back to it, so the returned angle and height always
+ * describe the same ray: a 1° walk step can otherwise land millimetres beyond the format corner
+ * where the chief height rises steeply.
  *
  * @param chiefHeight - real chief image height, NaN when stopped
  * @param startDeg - starting estimate in degrees
@@ -111,9 +115,16 @@ function findModeledEdge(
   if (!(startDeg > 0)) return null;
   let good: { angle: number; height: number } | null = null;
   let bad: number | null = null;
+  // Largest reached angle still at or below the stop height; the axis always qualifies.
+  let below = { angle: 0, height: 0 };
+  const reached = (angle: number, height: number) => {
+    const point = { angle, height };
+    if (height <= stopHeightMm) below = point;
+    return point;
+  };
   const startHeight = chiefHeight(startDeg);
   if (Number.isFinite(startHeight)) {
-    good = { angle: startDeg, height: startHeight };
+    good = reached(startDeg, startHeight);
     for (let angle = startDeg + EDGE_WALK_DEG; good.height < stopHeightMm; angle += EDGE_WALK_DEG) {
       const next = Math.min(angle, MAX_FIELD_LAUNCH_DEG - 1e-3);
       if (next <= good.angle) break;
@@ -122,27 +133,57 @@ function findModeledEdge(
         bad = next;
         break;
       }
-      good = { angle: next, height };
+      good = reached(next, height);
     }
   } else {
     bad = startDeg;
     for (let i = EDGE_SCAN_STEPS - 1; i >= 1 && !good; i--) {
       const angle = (startDeg * i) / EDGE_SCAN_STEPS;
       const height = chiefHeight(angle);
-      if (Number.isFinite(height)) good = { angle, height };
+      if (Number.isFinite(height)) good = reached(angle, height);
       else bad = angle;
     }
     if (!good) return null;
   }
-  if (bad === null) return good;
-  let blocked = bad;
-  for (let i = 0; i < EDGE_BISECTIONS; i++) {
-    const mid: number = (good.angle + blocked) / 2;
-    const height = chiefHeight(mid);
-    if (Number.isFinite(height)) good = { angle: mid, height };
-    else blocked = mid;
+  let edge: { angle: number; height: number } = good;
+  if (bad !== null) {
+    let blocked = bad;
+    for (let i = 0; i < EDGE_BISECTIONS; i++) {
+      const mid: number = (edge.angle + blocked) / 2;
+      const height = chiefHeight(mid);
+      if (Number.isFinite(height)) edge = reached(mid, height);
+      else blocked = mid;
+    }
   }
-  return good;
+  return edge.height > stopHeightMm ? solveStopHeightCrossing(chiefHeight, below, edge.angle, stopHeightMm) : edge;
+}
+
+/**
+ * Bisect a reachable bracket for the angle whose chief reaches `stopHeightMm`. A clipped or
+ * failed chief inside the bracket counts as beyond it, so the result stays reachable.
+ *
+ * @param chiefHeight - real chief image height, NaN when stopped
+ * @param below - reached angle whose chief height is at or below the stop height
+ * @param aboveDeg - reached angle whose chief height exceeds it
+ * @param stopHeightMm - target height in mm
+ * @returns the crossing, reported at the stop height when the chief lands within tolerance of it
+ */
+function solveStopHeightCrossing(
+  chiefHeight: MtfChiefHeight,
+  below: { angle: number; height: number },
+  aboveDeg: number,
+  stopHeightMm: number,
+): { angle: number; height: number } {
+  let lower = below;
+  let upper = aboveDeg;
+  for (let i = 0; i < EDGE_BISECTIONS && stopHeightMm - lower.height >= HEIGHT_TOLERANCE_MM; i++) {
+    const mid = (lower.angle + upper) / 2;
+    const height = chiefHeight(mid);
+    if (Number.isFinite(height) && height <= stopHeightMm) lower = { angle: mid, height };
+    else upper = mid;
+  }
+  // A continuous chief lands on the stop height; a jump across it leaves the edge honestly below.
+  return stopHeightMm - lower.height < HEIGHT_TOLERANCE_MM ? { angle: lower.angle, height: stopHeightMm } : lower;
 }
 
 /**

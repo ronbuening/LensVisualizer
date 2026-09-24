@@ -54,8 +54,9 @@ views share the same computed fields, one image plane and physical lp/mm units.
 radius (`imageCircleMm`, else the canonical format diagonal), or the modeled edge when neither is declared. The
 modeled edge is the largest height whose real, stop-aimed chief ray passes every authored clear aperture. It starts
 from the shared field geometry, which tests a paraxially launched chief and can stop short in wide-angle designs with
-strong pupil aberration, and walks outward. Targets map to chief angles through the shared exact inversion
-(infinity) or a bracketed root solve on the aimed finite-source chief. Heights beyond the modeled edge are
+strong pupil aberration, and walks outward; a chief that passes the format corner is solved back to it, so the edge
+angle always lands on the edge height. Targets map to chief angles through the shared exact inversion (infinity) or a
+bracketed root solve on the aimed finite-source chief. Heights beyond the modeled edge are
 `outside-modeled-field` and are not traced. Fields run center, corner, then coarse to fine.
 
 **Pupil sampling** (`mtfFootprint.ts`, `mtfTracing.ts`). Each field scans a 20 × 20 launch-plane grid at the
@@ -63,9 +64,11 @@ reference wavelength, doubling until no transmitted sample touches its border, t
 beam; off-axis retrofocus beams can be much larger than the axial entrance pupil, as with ray aiming in lens-design
 software. Launch cells are square, `gridSize` across the beam's larger dimension, with an even column count so a
 meridional field of an x-symmetric lens traces one half and mirrors it. Transmitted rays in the footprint's guard
-band widen it and retrace. Collimated cells carry equal launch flux; finite sources use solid-angle weights. A field
-with no transmitted scan sample is `vignetted`. Full-beam results depend on authored clear apertures, so estimated
-semi-diameters that vignette less than the production lens lower off-axis curves.
+band widen it and retrace. A grid with too few transmitted rays refines rather than failing, because the footprint
+scan has already found flux: near the modeled edge cat's-eye vignetting can leave a slit a few cells high. Collimated
+cells carry equal launch flux; finite sources use solid-angle weights. A field with no transmitted scan sample is
+`vignetted`. Full-beam results depend on authored clear apertures, so estimated semi-diameters that vignette less than
+the production lens lower off-axis curves.
 
 **Ray failures** (`mtfRayClassification.ts`). TIR and aperture clips are blocking. A failed intersection blocks only
 when an independent proof shows the ray misses the next clear cap: analytic for flat and spherical caps, a Lipschitz

@@ -210,8 +210,10 @@ function fieldAtGrid(
     failedWeight += bundle.failedWeight;
     if (options.method === "diffraction" && bundle.failed > 0)
       return unavailable("trace-failed", "Numerical ray failures prevent a scalar diffraction estimate.");
+    // The footprint scan already found transmitted flux, so too few rays means this grid is too
+    // coarse for a thin (for example cat's-eye vignetted) beam; a finer grid may resolve it.
     if (bundle.rays.length < MTF_MIN_RAYS || !(transmitted > 0))
-      return unavailable("empty-pupil", "Too little pupil remains to estimate MTF.");
+      return unavailable("empty-pupil", "Too little pupil remains to estimate MTF.", true);
     // The exit pupil is nearly achromatic, so the reference line's pupil serves every wavelength.
     if (options.method === "geometric-dl") limit ??= diffractionLimitFromBundle(bundle);
     const otf = bundleOtf(context, bundle, line, commonReference, limit);

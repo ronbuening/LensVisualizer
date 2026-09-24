@@ -69,7 +69,7 @@ export interface MtfFieldGeometry {
   referenceHeightMm: number;
   /** Largest height whose chief ray passes every authored clear aperture, capped at the reference. */
   modeledEdgeHeightMm: number;
-  /** Chief-ray field angle at the modeled edge, in degrees. */
+  /** Chief-ray field angle at the modeled edge, in degrees; its chief reaches `modeledEdgeHeightMm`. */
   modeledEdgeAngleDeg: number;
   basis: "format-corner" | "modeled-edge";
 }

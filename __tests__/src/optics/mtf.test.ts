@@ -23,7 +23,7 @@ import {
   refineMtfField,
   type MtfGridOutcome,
 } from "../../../src/optics/analysis/mtf.js";
-import { mtfFieldProcessingOrder } from "../../../src/optics/analysis/mtfFields.js";
+import { mtfChiefHeight, mtfFieldProcessingOrder } from "../../../src/optics/analysis/mtfFields.js";
 import { findAxialBestFocus } from "../../../src/optics/analysis/mtfFocus.js";
 import { MTF_MAX_UNKNOWN_FLUX } from "../../../src/optics/analysis/mtfConstants.js";
 import type { EngineTraceResult } from "../../../src/optics/trace/types.js";
@@ -157,8 +157,12 @@ describe("geometric MTF", () => {
     expect(unformatted.geometry).toMatchObject({ basis: "modeled-edge" });
     expect(unformatted.geometry!.referenceHeightMm).toBe(unformatted.geometry!.modeledEdgeHeightMm);
     const lens = build({ ...base.data, imageCircleMm: 4 });
-    const result = computeMtf(prepareRuntimeState(lens, 0, 0), options);
+    const state = prepareRuntimeState(lens, 0, 0);
+    const result = computeMtf(state, options);
     expect(result.geometry).toMatchObject({ basis: "format-corner", referenceHeightMm: 2, modeledEdgeHeightMm: 2 });
+    // The edge angle is solved to the corner, not left at the outward walk's overshoot.
+    const chiefHeight = mtfChiefHeight(state, options, assessMtfSupport(state, options));
+    expect(Math.abs(chiefHeight(result.geometry!.modeledEdgeAngleDeg) - 2)).toBeLessThan(1e-4);
     result.fields.forEach((field, i) => {
       expect(field.targetImageHeightMm).toBeCloseTo(fieldFractions[i] * 2, 12);
       expect(field.imageHeightMm).toBeCloseTo(field.targetImageHeightMm!, 3);
