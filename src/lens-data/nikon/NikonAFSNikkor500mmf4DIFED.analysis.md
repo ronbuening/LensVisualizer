@@ -16,13 +16,13 @@ The prescription is the second embodiment of US 5,745,306 A. The patent publishe
 
 The production correlation is fixed to the NIKON AI AF-S NIKKOR ED 500mm f/4D IF named in the job card. It is a correlation rather than a manufacturer statement that this patent example is the production prescription. Several independent features converge:
 
-1. The modeled prescription contains 11 elements in 9 air-separated groups after exclusion of the patent's front and rear plane-glass filter plates. Nikon's official legacy product page specifies 11 elements in 9 groups plus one protective glass.
+1. The modeled prescription contains 11 elements in 9 air-separated groups after exclusion of the patent's front plane-glass filter plate; the rear filter plate is traced but not drawn or counted. Nikon's official legacy product page specifies 11 elements in 9 groups plus one protective glass.
 2. The patent's three elements at L11, L12, and L14b use the same very-low-dispersion coordinate pair, nd = 1.497820 and νd = 82.52. Nikon specifies three ED elements at production positions 1, 2, and 5, which are the corresponding active-element positions in this model.
 3. The patent embodiment is entirely spherical, and Nikon specifies zero aspherical elements for the production lens.
 4. The patent header gives F = 490.0 mm and f/4.08; independent paraxial computation from the final data gives EFL = 489.960550 mm. These are design values and remain separate from the marketed 500 mm and f/4 designation.
 5. The final prescription gives a full paraxial field of 5.0485° for the patent's 21.6 mm image height, consistent with Nikon's rounded 5° marketed angle of view.
 6. The patent's closest state is R = 5000 mm with β = -0.1107. Nikon specifies a 5 m minimum focus distance and 1/9 maximum reproduction ratio.
-7. Nikon specifies a 52 mm drop-in filter and a front protective glass. The patent separately shows plane-glass filters ahead of G1 and behind G3; those source planes are deliberately omitted from the active LensVisualizer prescription, so the production protective-glass correlation remains an identification inference rather than a source label.
+7. Nikon specifies a 52 mm drop-in filter and a front protective glass. The patent separately shows plane-glass filters ahead of G1 and behind G3; the front plane is deliberately omitted from the active LensVisualizer prescription and the rear filter is traced as an undrawn rear plate, so the production protective-glass correlation remains an identification inference rather than a source label.
 
 Two source-text contradictions are kept distinct from the modeled prescription. First, the infinity row of Table 2 prints `F, β = 580.4190`; this cannot be the design focal length because the same table header gives F = 490.0 mm, the prescription computes 489.960550 mm, and the patent's own condition (6) is reproduced only with F near 490 mm. The value is therefore not used as an EFL. Second, the patent's general description once calls L11 a “biconcave positive” lens, while the embodiment-specific description and Table 2 radii establish the biconvex positive geometry used here.
 
@@ -38,9 +38,9 @@ The design is a long-focus positive-negative-positive internal-focusing telephot
 
 Independent computation from the final data gives G1 an in-situ EFL of +218.995054 mm, G2 an EFL of -71.999217 mm, and G3 an EFL of +161.088605 mm. The combined G1+G2 power is extremely small, corresponding to an EFL of about +5.73×10^6 mm. That near-zero combined power is the numerical expression of the patent's stated “substantially afocal” front/focus combination; it should not be confused with the standalone power of any individual element.
 
-The authored surface-3-to-image track is 421.440765 mm. With EFL = 489.960550 mm, TL/EFL = 0.860152, so the system satisfies the project's telephoto criterion `TL/EFL < 1`. The Gaussian back focal distance from the last active powered surface is 160.422016 mm, well below the EFL; the lens is therefore not retrofocus under the project's `BFD > EFL` definition.
+The authored physical surface-3-to-image track, including the 2.0 mm rear filter, is 422.122200 mm. With EFL = 489.960550 mm, TL/EFL = 0.861543, so the system satisfies the project's telephoto criterion `TL/EFL < 1`. The Gaussian back focal distance from the last active powered surface is 160.422016 mm air-equivalent (161.103451 mm physical, through the filter), well below the EFL; the lens is therefore not retrofocus under the project's `BFD > EFL` definition.
 
-The active sequential model corresponds to patent source surfaces 3 through 23, with source surface 17 represented by the single `STO`. Source surfaces 1–2 are the patent's front plane-glass filter, surface 24 is field stop S2, surfaces 25–26 are the rear filter, and the prose-only S3 has no numerical table entry. These inactive planes are not represented as ordinary LensVisualizer surfaces. The omitted rear plate/filter path is instead normalized to an air-equivalent surface-23-to-image spacing of 160.421965401 mm, which differs from the independently computed Gaussian BFD by only about 0.00005 mm.
+The active sequential model corresponds to patent source surfaces 3 through 23, with source surface 17 represented by the single `STO`. Source surfaces 1–2 are the patent's front plane-glass filter, surface 24 is field stop S2, surfaces 25–26 are the rear filter, and the prose-only S3 has no numerical table entry. The front filter and the inactive S2/S3 planes are not represented as LensVisualizer surfaces. The rear filter (2.0 mm, nd = 1.516800, νd = 64.10) is modeled in `rearPlates`: surface 23 stores d23 + d24 = 45.4 mm to the filter, and the plate is followed by the printed Bf = 113.7034 mm. Nikon's manual for the successor AF-S 500mm f/4D IF-ED II directs the user always to use a filter in the slip-in holder, which ships with a 52 mm NC filter; no manual for the first version was found. The air-equivalent surface-23-to-image spacing remains 160.421965401 mm, which differs from the independently computed Gaussian BFD by only about 0.00005 mm.
 
 All powered surfaces are spherical. There is no asphere equation, conic convention, diffractive phase surface, fold, mirror, zoom mechanism, or perspective-control motion in the selected embodiment. Because the model is kept at scale factor `s = 1`, no length scaling or aspheric-coefficient transformation is required.
 
@@ -120,7 +120,7 @@ nd = 1.518601, νd = 69.98. Glass: J-PKH1 catalog equivalent (patent 519700; pro
 
 L3c is the final positive element of G3. Its weak object-side negative radius and much stronger negative image-side radius give a positive meniscus form. With L3a and L3b it produces the computed net G3 EFL of +161.088605 mm.
 
-The final element is followed, in the authored model, by the air-equivalent rear spacing that represents the omitted field-stop/filter region and brings the active prescription to the normalized image plane.
+The final element is followed by the 45.4 mm air space to the rear filter (field stop S2 folded out), the traced but undrawn 2.0 mm filter plate, and the printed 113.7034 mm Bf to the image plane.
 
 ## Glass Identification and Selection
 
@@ -190,7 +190,7 @@ The computed values reproduce the patent's rounded corresponding values for the 
 
 ## Verification Summary
 
-The final data file was independently recomputed with sequential height/reduced-angle tracing and an ABCD matrix check. Both methods give EFL = 489.960550314 mm and Gaussian BFD = 160.422015851 mm from the last active powered surface. The EFL differs from the patent's rounded 490.0 mm header by -0.03945 mm, well within the precision implied by the tabulated prescription.
+The final data file was independently recomputed with sequential height/reduced-angle tracing and an ABCD matrix check. Both methods give EFL = 489.960550314 mm and Gaussian BFD = 160.422015851 mm air-equivalent (161.103451 mm physical through the rear filter) from the last active powered surface. The EFL differs from the patent's rounded 490.0 mm header by -0.03945 mm, well within the precision implied by the tabulated prescription.
 
 The modeled stop is inferred because the patent does not publish a stop diameter. With physical stop semi-diameter 19.739770 mm, the final prescription gives an entrance-pupil diameter of 120.088370 mm and f/4.080000 at infinity. This verifies internal consistency with the published f/4.08, but it is not an independent recovery of a source-published aperture diameter.
 
@@ -210,3 +210,4 @@ The Petzval sum, computed surface by surface as `φ/(n·n′)`, is +1.32804563×
 6. SCHOTT, current optical-glass product data, including **N-SSK5**: https://us.shop.schott.com/advanced-optics/en/Optical-Glass/N-SSK5/c/glass-N-SSK5 . Used to check broad glass-class terminology, not to claim a supplier-specific match.
 7. CDGM GLASS CO., LTD., current **Colourless Optical Glass** data downloads: https://www.cdgmgd.com/go.htm?k=Colourless_Optical_Glass&url=goods . Used for independent catalog-coverage checks.
 8. SUMITA OPTICAL GLASS, INC., current optical-glass data downloads: https://www.sumita-opt.co.jp/en/download/ . Used for independent catalog-coverage checks.
+9. Nikon, **AF-S Nikkor 500mm f/4D IF-ED II** instruction manual, p. 16 (third-party mirror): always use a filter; the slip-in holder is supplied with a 52 mm NC filter. https://www.manualsdir.com/manuals/429211/nikon-500mm-f-4-if-ed-ii-af-s-nikkor-af-s-500mm-f-4d-if-ed-ii.html?page=16 . Used only for the filter-use requirement; the II version is a later production lens.

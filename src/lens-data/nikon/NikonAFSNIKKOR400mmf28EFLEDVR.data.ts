@@ -15,15 +15,18 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  rear-spacing adjustment; it is not modeled as a second moving     ║
  * ║  lens group.                                                       ║
  * ║                                                                    ║
- * ║  NORMALIZATION: source protective glass FLG (surfaces 1-2) and    ║
- * ║  rear filter FL (surfaces 32-33) are omitted per project scope.    ║
- * ║  The infinity rear air spacing from source surface 31 is set to    ║
- * ║  the exact active-model BFL, 81.9388493955 mm. This includes the   ║
- * ║  rear filter's air-equivalent effect plus a +0.0692839947 mm       ║
- * ║  paraxial refocus caused by removal of the weak-power front FLG.   ║
+ * ║  NORMALIZATION: source protective glass FLG (surfaces 1-2) is      ║
+ * ║  omitted per project scope. The rear filter FL (surfaces 32-33,    ║
+ * ║  2.00 mm, nd 1.51680, νd 63.88) is modeled in `rearPlates`         ║
+ * ║  (traced, not drawn) with the printed Bf 71.551 mm to the image.   ║
+ * ║  Surface 31 stores the printed 9.00 mm gap to FL plus a            ║
+ * ║  +0.0692839947 mm paraxial refocus caused by removal of the        ║
+ * ║  weak-power front FLG: 9.0692839947 mm. Physical track from        ║
+ * ║  source surface 3 = 391.019 mm (patent TL 396.95 minus FLG's       ║
+ * ║  6.00 mm, plus the refocus).                                       ║
  * ║  No uniform scaling is applied.                                    ║
  * ║  With the published G2 endpoint retained, the normalized active    ║
- * ║  close state images paraxially at 2.59018 m (vs source 2.59891 m), ║
+ * ║  close state images paraxially at 2.59086 m (vs source 2.59891 m), ║
  * ║  still consistent with Nikon's rounded 2.6 m production MFD.      ║
  * ║                                                                    ║
  * ║  STOP: patent FNO 2.88 and the source pupil trace imply a physical ║
@@ -50,7 +53,7 @@ const LENS_DATA = {
   key: "nikon-af-s-nikkor-400mm-f28e-fl-ed-vr",
   maker: "Nikon",
   name: "NIKON AF-S NIKKOR 400mm f/2.8E FL ED VR",
-  subtitle: "JP 2015-215559 A Example 1 — plate-normalized active prescription",
+  subtitle: "JP 2015-215559 A Example 1 — FLG omitted; rear filter FL traced",
   specs: [
     "16 ELEMENTS / 12 GROUPS",
     "2 FLUORITE + 2 ED",
@@ -361,7 +364,21 @@ const LENS_DATA = {
     { label: "28", R: -326.0207, d: 0.1, nd: 1, elemId: 0, sd: 16.5 },
     { label: "29", R: 67.6197, d: 4.5, nd: 1.64, elemId: 15, sd: 16.5 },
     { label: "30", R: -391.1361, d: 1.9, nd: 1.84666, elemId: 16, sd: 16.4 },
-    { label: "31", R: 276.0025, d: 81.93884939554965, nd: 1, elemId: 0, sd: 16.3 },
+    // Printed 9.00 mm gap to FL + 0.0692839947 mm refocus after omitting FLG
+    { label: "31", R: 276.0025, d: 9.06928399470577, nd: 1, elemId: 0, sd: 16.3 },
+  ],
+
+  /* ── Rear filter FL (patent Table 1 surfaces 32–33): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "FL",
+      thicknessMm: 2.0,
+      nd: 1.5168,
+      vd: 63.88,
+      glass: "J-BK7",
+      gapAfterMm: 71.551,
+      source: "JP 2015-215559 A, Example 1 Table 1 surfaces 32–33 (Bf 71.551 at infinity; +0.024 close carried in d31)",
+    },
   ],
 
   asph: {},
@@ -369,7 +386,7 @@ const LENS_DATA = {
   var: {
     "11": [19.53, 34.93],
     "16": [36.219, 20.82],
-    "31": [81.93884939554965, 81.96284939554965],
+    "31": [9.06928399470577, 9.09328399470577],
   },
   varLabels: [
     ["11", "D11"],
@@ -395,9 +412,9 @@ const LENS_DATA = {
   closeFocusM: 2.6,
   focusDescription:
     "PUBLISHED: G2 moves 15.400 mm imageward from infinity to the patent close-focus state (β = −0.173). " +
-    "The source also increases Bf by 0.024 mm; after omitting FLG and rear FL this is preserved as a 0.024 mm " +
-    "rear-spacing adjustment, not a second moving lens group. The normalized active close state paraxially images at " +
-    "2.59018 m; no internal focus travel is reconstructed.",
+    "The source also increases Bf by 0.024 mm; this is preserved as a 0.024 mm increase in the gap ahead of the " +
+    "rear filter FL, not a second moving lens group. The normalized active close state paraxially images at " +
+    "2.59086 m; no internal focus travel is reconstructed.",
 
   nominalFno: 2.8815155201942533,
   fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],

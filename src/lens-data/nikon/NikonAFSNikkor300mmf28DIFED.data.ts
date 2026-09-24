@@ -13,9 +13,13 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  SOURCE-PLANE NORMALIZATION:                                               ║
  * ║    - Source S1-S2 front protection glass is excluded from this active     ║
  * ║      sequential model. The model begins at source S3 (L11 front).         ║
- * ║    - Source S23 and S26 inactive field-stop planes and the S24-S25 rear   ║
- * ║      filter plate are excluded. Their axial optical effect is folded into ║
- * ║      the final S22-to-image air-equivalent spacing of 106.9520654 mm.     ║
+ * ║    - Source S23 and S26 inactive field-stop planes are folded out. The    ║
+ * ║      S24-S25 rear filter (2.0 mm, nd 1.516800, νd 64.10) is modeled in    ║
+ * ║      `rearPlates` (traced, not drawn): S22 stores d22 14.5 + d23 7.0 =    ║
+ * ║      21.5 mm to the filter; the plate is followed by d25 10.0 + Bf        ║
+ * ║      74.1335 = 84.1335 mm to the image. The air-equivalent S22-to-image   ║
+ * ║      spacing is unchanged at 106.9520654 mm; physical track from S3 is    ║
+ * ║      315.074700 mm.                                                       ║
  * ║    - No dimensional scaling is applied: s = 1.000000.                     ║
  * ║                                                                            ║
  * ║  STOP / PUPIL MODEL:                                                       ║
@@ -229,7 +233,20 @@ const LENS_DATA = {
     { label: "19", R: -43.5951, d: 3.5, nd: 1.79504, elemId: 10, sd: 19.6 },
     { label: "20", R: -64.7897, d: 7.6, nd: 1, elemId: 0, sd: 20 },
     { label: "21", R: -175.8037, d: 6.7, nd: 1.48749, elemId: 11, sd: 16.0 },
-    { label: "22", R: -53.035, d: 106.9520654, nd: 1, elemId: 0, sd: 16.5 },
+    // S22 → rear filter: source d22 14.5 + d23 7.0 (field-stop plane S23 folded out)
+    { label: "22", R: -53.035, d: 21.5, nd: 1, elemId: 0, sd: 16.5 },
+  ],
+
+  /* ── Rear filter (patent Table 1 surfaces 24–25): traced, not drawn ── */
+  rearPlates: [
+    {
+      thicknessMm: 2.0,
+      nd: 1.5168,
+      vd: 64.1,
+      glass: "J-BK7A",
+      gapAfterMm: 84.1335,
+      source: "US 5,745,306 A, Example 1 Table 1 surfaces 24–25 (d25 10.0 + Bf 74.1335, field-stop plane S26 folded out)",
+    },
   ],
 
   asph: {},
