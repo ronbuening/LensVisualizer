@@ -51,12 +51,12 @@ separate. Sagittal frequencies run along image X, tangential along Y; the field 
 views share the same computed fields, one image plane and physical lp/mm units.
 
 **Field axis** (`mtfFields.ts`). Field fractions are fractions of a reference image height: the declared format-corner
-radius (`imageCircleMm`, else the canonical format diagonal), or the modelled edge when neither is declared. The
-modelled edge is the largest height whose real, stop-aimed chief ray passes every authored clear aperture. It starts
+radius (`imageCircleMm`, else the canonical format diagonal), or the modeled edge when neither is declared. The
+modeled edge is the largest height whose real, stop-aimed chief ray passes every authored clear aperture. It starts
 from the shared field geometry, which tests a paraxially launched chief and can stop short in wide-angle designs with
 strong pupil aberration, and walks outward. Targets map to chief angles through the shared exact inversion
-(infinity) or a bracketed root solve on the aimed finite-source chief. Heights beyond the modelled edge are
-`outside-modeled-field` and are not traced. Fields run centre, corner, then coarse to fine.
+(infinity) or a bracketed root solve on the aimed finite-source chief. Heights beyond the modeled edge are
+`outside-modeled-field` and are not traced. Fields run center, corner, then coarse to fine.
 
 **Pupil sampling** (`mtfFootprint.ts`, `mtfTracing.ts`). Each field scans a 20 × 20 launch-plane grid at the
 reference wavelength, doubling until no transmitted sample touches its border, then traces the whole transmitted
@@ -120,7 +120,7 @@ gaps and plate dispersion. The typed protocol (`init | compute | cancel` → `pr
 built lens stays warm, and request ids reject stale replies. The worker caches finished fields and the focus search
 per request minus its field list (`MtfJobCache`), so a finer field step reuses coarser fields. Completed results use
 a client LRU bounded to 64 MiB, while chart changes reuse curves without tracing. The read-only census is `scripts/audit-mtf.mjs` (`--cdf`/`--photopic` for spectral
-eligibility, `--fields` for centre, half-height and modelled-edge availability); `scripts/benchmark-mtf.mjs` flags are
+eligibility, `--fields` for center, half-height and modeled-edge availability); `scripts/benchmark-mtf.mjs` flags are
 listed in `agent_docs/benchmarks/README.md`. Benchmarks retain status alongside timings so fast rejection is not
 confused with a completed curve.
 

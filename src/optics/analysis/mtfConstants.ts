@@ -25,7 +25,7 @@ export const MTF_CONVERGENCE_TOLERANCE = 0.01;
  */
 export const MTF_CONVERGENCE_BAND_LPMM = 50;
 
-/** Largest field list a request may carry: 1 % steps from centre to corner. */
+/** Largest field list a request may carry: 1 % steps from center to corner. */
 export const MTF_MAX_FIELDS = 101;
 export const MTF_MAX_FREQUENCIES = 501;
 export const MTF_MAX_FREQUENCY_LPMM = 1000;

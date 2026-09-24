@@ -149,7 +149,7 @@ describe("geometric MTF", () => {
     expect(field.maxDelta).not.toBeNull();
     expect(field.gridSize).toBe(32);
   });
-  it("measures fields in image height to the declared format corner, or to the modelled edge", () => {
+  it("measures fields in image height to the declared format corner, or to the modeled edge", () => {
     const base = buildSimplePositiveElementLens();
     const fieldFractions = [0, 0.5, 1];
     const options = { ...mtfTestOptions, fieldFractions, pupilSemiDiameterMm: 0.1 };
@@ -165,7 +165,7 @@ describe("geometric MTF", () => {
       expect(field.failedRays).toBe(0);
     });
   });
-  it("marks format heights beyond the modelled edge instead of tracing them", () => {
+  it("marks format heights beyond the modeled edge instead of tracing them", () => {
     const base = buildSimplePositiveElementLens();
     const options = { ...mtfTestOptions, fieldFractions: [0.5, 1], pupilSemiDiameterMm: 0.1 };
     const edge = computeMtf(prepareRuntimeState(base, 0, 0), options).geometry!.modeledEdgeHeightMm;
@@ -236,7 +236,7 @@ describe("MTF pupil footprint", () => {
   it("reproduces the entrance-pupil lattice for a stop-at-lens beam on axis", () => {
     const state = prepareRuntimeState(buildSimplePositiveElementLens(), 0, 0);
     const bundle = traceMtfFieldPupil(state, mtfTestOptions, assessMtfSupport(state, mtfTestOptions), 0, 32)!;
-    // A 32-cell entrance-pupil grid keeps 812 cell centres inside its circle.
+    // A 32-cell entrance-pupil grid keeps 812 cell centers inside its circle.
     expect(bundle.rays).toHaveLength(812);
     expect(bundle.launchStepMm).toBeCloseTo(2 / 32, 12);
   });
@@ -302,7 +302,7 @@ describe("MTF refinement and focus", () => {
     expect(small.note).toContain("≤ 0.004");
     expect(assessUnresolvedFlux(40, MTF_MAX_UNKNOWN_FLUX * 1.01).acceptable).toBe(false);
   });
-  it("orders field requests coarse to fine, centre and corner first", () => {
+  it("orders field requests coarse to fine, center and corner first", () => {
     const tenths = Array.from({ length: 11 }, (_, i) => i / 10);
     expect(mtfFieldProcessingOrder(tenths)).toEqual([0, 10, 5, 2, 7, 1, 3, 4, 6, 8, 9]);
     const percent = Array.from({ length: 101 }, (_, i) => i / 100);

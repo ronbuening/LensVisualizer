@@ -91,7 +91,7 @@ export interface ThemeColorTokens extends ThemeInternalTokens {
   legendSwatches: [string, string, string][];
   /**
    * Categorical chart series in fixed slot order (blue, orange, green, violet, magenta), e.g. MTF frequencies.
-   * Validated for colour-vision separation and 3:1 contrast against `panelBg`; see agent_docs/theme_tokens.md.
+   * Validated for color-vision separation and 3:1 contrast against `panelBg`; see agent_docs/theme_tokens.md.
    */
   chartSeries: [string, string, string, string, string];
   asphStroke: string;

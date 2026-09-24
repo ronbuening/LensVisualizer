@@ -4,7 +4,7 @@
  * Source prescriptions can keep a paraxial or rounded image distance that sits well off the
  * design's best focus (e.g. older patents). Re-projecting the already-traced axial bundle onto
  * shifted planes needs no retrace, so the offset is cheap to report as a diagnostic and to apply
- * as an optional single refocus for all fields, like a camera focused at the image centre.
+ * as an optional single refocus for all fields, like a camera focused at the image center.
  */
 import { combineOtfs, geometricOtf, otfMagnitude, type MtfSpot } from "./mtfMath.js";
 import type { MtfBundle } from "./mtfTracing.js";
@@ -68,7 +68,7 @@ export function findAxialBestFocus(
     const value = score(shift);
     if (value > best.value) best = { shift, value };
   }
-  // Golden-section refinement inside the best sample's neighbourhood.
+  // Golden-section refinement inside the best sample's neighborhood.
   let lo = best.shift - step;
   let hi = best.shift + step;
   let a = hi - GOLDEN * (hi - lo);

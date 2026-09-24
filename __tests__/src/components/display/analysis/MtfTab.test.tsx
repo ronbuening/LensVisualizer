@@ -82,7 +82,7 @@ describe("MTF tab", () => {
     // The fixture glass has no spectral data, so the photopic preference falls back with a note.
     expect(screen.getByText(/Photopic MTF needs physical dispersion data/)).toBeTruthy();
   });
-  it("switches chart views and frequencies from one computed result, keeping colour slots fixed", async () => {
+  it("switches chart views and frequencies from one computed result, keeping color slots fixed", async () => {
     const { calls } = stubWorker();
     render(<MtfTab L={L} t={mockTheme} preparedState={state} currentEPSD={1} currentPhysStopSD={1} />);
     expect(await screen.findByRole("figure", { name: /image height/ })).toBeTruthy();
@@ -152,7 +152,7 @@ describe("MTF chart", () => {
     expect(screen.getByText("Sagittal")).toBeTruthy();
     expect(screen.getByText("Tangential (meridional)")).toBeTruthy();
   });
-  it("hatches image heights beyond the modelled edge", () => {
+  it("hatches image heights beyond the modeled edge", () => {
     const clipped: MtfResult = {
       ...result,
       geometry: { ...result.geometry!, modeledEdgeHeightMm: result.geometry!.referenceHeightMm / 2 },

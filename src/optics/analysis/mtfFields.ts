@@ -1,12 +1,12 @@
 /**
  * MTF field positions in image height.
  *
- * Manufacturer charts plot MTF against distance from the image centre in millimetres, out to the
+ * Manufacturer charts plot MTF against distance from the image center in millimetres, out to the
  * format corner. Field requests are therefore fractions of a reference height: the format-corner
- * radius when the lens declares an image format or circle, otherwise the modelled edge. Targets
+ * radius when the lens declares an image format or circle, otherwise the modeled edge. Targets
  * map to chief-ray field angles through the same exact image-height inversion as the Distortion
  * tab (infinity) or a root solve on the aimed finite-source chief (documented conjugates).
- * Heights beyond the modelled edge, where authored clear apertures clip the real chief ray, are
+ * Heights beyond the modeled edge, where authored clear apertures clip the real chief ray, are
  * reported as outside the model rather than traced.
  */
 import { IMAGE_FORMAT_BY_ID, isImageFormatId } from "../../utils/catalog/lensTaxonomy.js";
@@ -23,7 +23,7 @@ import { mtfImagePoint, mtfLaunchRay, mtfTraceOptions, prepareMtfFieldLaunch } f
 export interface MtfFieldTarget {
   fraction: number;
   targetImageHeightMm: number;
-  /** Chief-ray field angle in degrees; null when the height is outside the modelled field or unsolved. */
+  /** Chief-ray field angle in degrees; null when the height is outside the modeled field or unsolved. */
   fieldAngleDeg: number | null;
   outsideModel: boolean;
 }
@@ -191,7 +191,7 @@ export function resolveMtfFieldTargets(
     );
     solvable.forEach((target, i) => {
       const angle = angles[i];
-      // The inversion reports |angle| to 1e-4 mm; the modelled edge itself is always reachable.
+      // The inversion reports |angle| to 1e-4 mm; the modeled edge itself is always reachable.
       target.fieldAngleDeg =
         angle !== null && Number.isFinite(angle)
           ? Math.min(Math.abs(angle), geometry.modeledEdgeAngleDeg)
@@ -243,7 +243,7 @@ export function resolveMtfFieldTargets(
 /**
  * Radial image height of the real chief ray at the reference wavelength: the solved chief at
  * infinity, the stop-aimed chief from a documented finite source. A chief stopped by any clear
- * aperture reports NaN, so both conjugates share one modelled-edge rule.
+ * aperture reports NaN, so both conjugates share one modeled-edge rule.
  *
  * @param state - prepared optical state
  * @param options - MTF request
@@ -280,7 +280,7 @@ export function mtfFieldProcessingOrder(fractions: readonly number[]): number[] 
     let best = -1;
     for (const index of remaining) {
       if (scheduled.has(index)) continue;
-      // Ties go to the lower fraction so the order is deterministic and centre-first.
+      // Ties go to the lower fraction so the order is deterministic and center-first.
       if (
         best < 0 ||
         gap[index] > gap[best] + 1e-12 ||

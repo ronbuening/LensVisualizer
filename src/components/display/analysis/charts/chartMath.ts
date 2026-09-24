@@ -116,7 +116,7 @@ export function svgPath<T>(items: readonly T[], x: (item: T) => number, y: (item
   return items.map((item, index) => `${index === 0 ? "M" : "L"}${x(item).toFixed(1)},${y(item).toFixed(1)}`).join(" ");
 }
 
-/** Chart point: a value, `null` to break the line there, or `undefined` to skip it and connect its neighbours. */
+/** Chart point: a value, `null` to break the line there, or `undefined` to skip it and connect its neighbors. */
 export type ChartPoint = { x: number; y: number } | null | undefined;
 
 /**

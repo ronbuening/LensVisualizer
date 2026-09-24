@@ -340,7 +340,7 @@ function* traceField(context: MtfJobContext, target: MtfFieldTarget): Generator<
 /* ── Focus ── */
 
 /**
- * Axial best focus from the centre bundle. The search always runs so the result can flag an
+ * Axial best focus from the center bundle. The search always runs so the result can flag an
  * authored image plane far from focus; `best-axial` requests apply the shift to every field.
  */
 function resolveMtfFocus(context: MtfJobContext): MtfFocus {
@@ -369,7 +369,7 @@ function resolveMtfFocus(context: MtfJobContext): MtfFocus {
 /* ── Job ── */
 
 function outsideModelMessage(geometry: MtfFieldGeometry): string {
-  return `Outside the modelled field: the model's clear apertures clip the chief ray beyond ${geometry.modeledEdgeHeightMm.toFixed(1)} mm.`;
+  return `Outside the modeled field: the model's clear apertures clip the chief ray beyond ${geometry.modeledEdgeHeightMm.toFixed(1)} mm.`;
 }
 
 /**

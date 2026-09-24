@@ -1,9 +1,9 @@
 /**
  * MTF against image height or spatial frequency.
  *
- * Each frequency keeps a fixed colour slot, so hiding one never repaints the others. Sagittal
+ * Each frequency keeps a fixed color slot, so hiding one never repaints the others. Sagittal
  * curves are solid and tangential (meridional) curves dashed, as on manufacturer charts; direct
- * end labels and marker shapes keep series identifiable without relying on colour alone.
+ * end labels and marker shapes keep series identifiable without relying on color alone.
  */
 import { useId } from "react";
 import type { MtfFieldResult, MtfResult } from "../../../types/mtf.js";
@@ -182,7 +182,7 @@ export default function MtfChart({ result, view, frequencies, t, stale = false }
   );
 }
 
-/** One series per selected frequency across image height, in fixed colour slots. */
+/** One series per selected frequency across image height, in fixed color slots. */
 function fieldSeries(
   fields: readonly MtfFieldResult[],
   result: MtfResult,
@@ -213,12 +213,12 @@ function fieldPoint(field: MtfFieldResult, value: number | undefined): ChartPoin
   return field.status === "unavailable" || x === null || value === undefined ? null : { x, y: value };
 }
 
-/** Centre, half height and outermost available field against frequency. */
+/** Center, half height and outermost available field against frequency. */
 function frequencySeries(fields: readonly MtfFieldResult[], result: MtfResult, t: Theme): Series[] {
   const available = fields.filter((f) => f.status === "converged" || f.status === "unconverged");
   const outermost = available.at(-1);
   const chosen: Array<[string, MtfFieldResult | undefined]> = [
-    ["Centre", available.find((f) => f.fieldFraction === 0)],
+    ["Center", available.find((f) => f.fieldFraction === 0)],
     ["50 %", available.find((f) => Math.abs(f.fieldFraction - 0.5) < 1e-9)],
     ["Edge", outermost && outermost.fieldFraction > 0.5 ? outermost : undefined],
   ];

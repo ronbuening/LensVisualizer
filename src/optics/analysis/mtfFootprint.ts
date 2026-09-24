@@ -43,8 +43,8 @@ const BEAM_EDGE_CELLS = 0.5;
  * Find a box that contains every transmitted launch position of one field.
  *
  * The scan starts from the entrance-pupil radius and doubles while transmitted (or unresolved
- * neighbouring) cells touch its border, so the result is closed on all sides. The box keeps the
- * meridional symmetry of a centred lens.
+ * neighboring) cells touch its border, so the result is closed on all sides. The box keeps the
+ * meridional symmetry of a centered lens.
  *
  * @param classify - launch classifier for this field and wavelength
  * @param seedRadiusMm - entrance-pupil semi-diameter used to size the first scan

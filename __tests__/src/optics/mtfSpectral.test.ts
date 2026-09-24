@@ -171,7 +171,7 @@ describe("qualified spectral MTF", () => {
     expect(diffraction.fields[0].reason).toBeNull();
     expect(diffraction.fields[0].sagittal[0]).toBeCloseTo(1, 12);
   });
-  it("weights five photopic lines by V(λ) and anchors lateral colour at 555 nm", () => {
+  it("weights five photopic lines by V(λ) and anchors lateral color at 555 nm", () => {
     const state = prepareRuntimeState(buildChromaticPositiveElementLens(), 0, 0);
     const photopic = { ...options, spectrum: "photopic" as const };
     const support = assessMtfSupport(state, photopic);

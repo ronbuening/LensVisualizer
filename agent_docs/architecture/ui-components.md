@@ -87,7 +87,7 @@ comparison panes share; the existing `tab=mtf` URL selects the tab. Every reques
 field, so chart-only changes never recompute. `useMtfComputation` debounces settled inputs for 150 ms, keeps earlier
 curves dimmed until the new request reports progress, and cancels superseded work; the mounted tab disposes its worker
 on unmount. `MtfChart` gives each frequency a fixed `chartSeries` slot, labels curve ends, adds marker shapes up to
-21 fields and hatches heights beyond the modelled edge. `mtf/MtfControls`, `mtf/MtfFieldSummary` and
+21 fields and hatches heights beyond the modeled edge. `mtf/MtfControls`, `mtf/MtfFieldSummary` and
 `mtf/MtfValueTable` hold the controls, status counts and per-field values. Worker caching, numerical status and
 optical eligibility are documented in [`Simulated MTF`](optics-engine.md#simulated-mtf).
 

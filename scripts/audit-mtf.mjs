@@ -1,7 +1,7 @@
 /**
  * Read-only MTF census. Run with the project's TS specifier hook.
  *
- * Default: support reasons per lens. `--fields` also computes centre, half-height and modelled-edge
+ * Default: support reasons per lens. `--fields` also computes center, half-height and modeled-edge
  * fields per supported lens and reports whether the format corner lies outside the model.
  * `--cdf` / `--photopic` select the spectrum; `--list` names the lenses behind every unavailable field;
  * `--limit=N` audits the first N lenses only.
@@ -23,7 +23,7 @@ const list = process.argv.includes("--list");
 const limit = Number(process.argv.find((arg) => arg.startsWith("--limit="))?.slice(8) ?? Infinity);
 const tally = (counts, key) => (counts[key] = (counts[key] ?? 0) + 1);
 const support = {};
-const fields = { centre: {}, half: {}, edge: {}, corner: {} };
+const fields = { center: {}, half: {}, edge: {}, corner: {} };
 const unavailable = {};
 const files = readdirSync("src/lens-data", { recursive: true })
   .filter((f) => f.endsWith(".data.ts"))
@@ -54,7 +54,7 @@ for (const file of files) {
   const edge = geometry.modeledEdgeHeightMm / geometry.referenceHeightMm;
   const result = computeMtf(state, { ...options, fieldFractions: [0, 0.5, edge] });
   const status = (field) => (field.status === "unavailable" ? field.reason : "available");
-  ["centre", "half", "edge"].forEach((position, i) => {
+  ["center", "half", "edge"].forEach((position, i) => {
     const value = status(result.fields[i]);
     tally(fields[position], value);
     if (value !== "available") (unavailable[`${position}:${value}`] ??= []).push(data.key);

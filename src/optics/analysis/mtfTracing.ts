@@ -175,7 +175,7 @@ export function mtfLaunchRay(launch: MtfFieldLaunch, x: number, y: number): Ray3
  * Resolve one field's chief-ray launch.
  *
  * Collimated fields launch along the solved chief direction. Finite sources aim the chief
- * through the physical stop centre at the reference wavelength; the same source point and
+ * through the physical stop center at the reference wavelength; the same source point and
  * launch plane then serve every wavelength and grid.
  *
  * @param state - prepared optical state

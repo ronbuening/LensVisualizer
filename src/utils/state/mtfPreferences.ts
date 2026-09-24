@@ -12,7 +12,7 @@ export type MtfChartView = "field" | "frequency";
 export const MTF_FIELD_STEPS = [10, 5, 2, 1] as const;
 export type MtfFieldStepPercent = (typeof MTF_FIELD_STEPS)[number];
 
-/** Frequency chips in fixed colour-slot order. */
+/** Frequency chips in fixed color-slot order. */
 export const MTF_CHART_FREQUENCIES = [10, 20, 30, 40, 50] as const;
 export type MtfChartFrequency = (typeof MTF_CHART_FREQUENCIES)[number];
 

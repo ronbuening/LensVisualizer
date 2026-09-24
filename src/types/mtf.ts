@@ -65,11 +65,11 @@ export interface MtfSupport {
 
 /** Image-height axis shared by every field of one result. */
 export interface MtfFieldGeometry {
-  /** Height of the 100 % field in mm: the declared format-corner radius, else the modelled edge. */
+  /** Height of the 100 % field in mm: the declared format-corner radius, else the modeled edge. */
   referenceHeightMm: number;
   /** Largest height whose chief ray passes every authored clear aperture, capped at the reference. */
   modeledEdgeHeightMm: number;
-  /** Chief-ray field angle at the modelled edge, in degrees. */
+  /** Chief-ray field angle at the modeled edge, in degrees. */
   modeledEdgeAngleDeg: number;
   basis: "format-corner" | "modeled-edge";
 }
@@ -94,7 +94,7 @@ export interface MtfFieldResult {
   targetImageHeightMm: number | null;
   /** Chief-ray field angle that reaches the target, in degrees. */
   fieldAngleDeg: number | null;
-  /** Radial chief-ray landing height on the analysed image plane, in mm. */
+  /** Radial chief-ray landing height on the analyzed image plane, in mm. */
   imageHeightMm: number | null;
   sagittal: number[];
   tangential: number[];

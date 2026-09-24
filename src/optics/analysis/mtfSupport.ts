@@ -16,7 +16,7 @@ import {
 
 export { MTF_FIELDS, MTF_FREQUENCIES } from "./mtfConstants.js";
 
-/** Equal-weight C/d/F estimate; the reference d line comes first and anchors lateral colour. */
+/** Equal-weight C/d/F estimate; the reference d line comes first and anchors lateral color. */
 export const MTF_CDF_LINES: readonly MtfSpectralLine[] = Object.freeze([
   { wavelengthNm: LINE_NM.d, weight: 1 / 3 },
   { wavelengthNm: LINE_NM.C, weight: 1 / 3 },
@@ -25,7 +25,7 @@ export const MTF_CDF_LINES: readonly MtfSpectralLine[] = Object.freeze([
 
 /**
  * Five-line photopic estimate: CIE 1924 V(λ) on an equal-energy source across 470-650 nm.
- * The 555 nm peak comes first and anchors lateral colour; every line sits inside the C-g range
+ * The 555 nm peak comes first and anchors lateral color; every line sits inside the C-g range
  * that line-index glasses tabulate.
  */
 export const MTF_PHOTOPIC_LINES: readonly MtfSpectralLine[] = Object.freeze([
