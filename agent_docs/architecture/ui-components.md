@@ -79,12 +79,17 @@ To add a tab, follow the five registration points in `agent_docs/adding_an_analy
 thin container over the section components and data hooks in `src/components/display/analysis/aberrations/`; the
 distortion and vignetting tabs consume deferred/frozen inputs through `analysisJobsForState2`.
 
-`MtfTab` defaults to geometric, reference-wavelength calculations and the image-height view (10/20/40 lp/mm).
-Its spatial-frequency view covers 0–100 lp/mm using the same five field samples. View, method, spectrum and sampling
-are local component state; the existing `tab=mtf` URL selects the tab. Requests debounce for 150 ms after settled inputs;
-the mounted tab owns the cancellable worker client and disposes it on unmount. The default grid cap is 128², with 256²
-available for refinement. Worker caching, numerical status and optical eligibility are documented in
-[`Simulated MTF`](optics-engine.md#simulated-mtf).
+`MtfTab` defaults to the diffraction-corrected method, a photopic spectrum (the reference line when a glass lacks
+spectral data, with a note), the design image plane and the image-height view at 10 % field steps showing 10 and
+30 lp/mm. Method, spectrum, image plane, sampling (128² or 256² cap), view, field step (10/5/2/1 %) and frequency chips
+(10–50 lp/mm) persist in localStorage through `src/utils/state/mtfPreferences.ts` and `useMtfPreferences`, which
+comparison panes share; the existing `tab=mtf` URL selects the tab. Every request computes 0–100 lp/mm for every
+field, so chart-only changes never recompute. `useMtfComputation` debounces settled inputs for 150 ms, keeps earlier
+curves dimmed until the new request reports progress, and cancels superseded work; the mounted tab disposes its worker
+on unmount. `MtfChart` gives each frequency a fixed `chartSeries` slot, labels curve ends, adds marker shapes up to
+21 fields and hatches heights beyond the modelled edge. `mtf/MtfControls`, `mtf/MtfFieldSummary` and
+`mtf/MtfValueTable` hold the controls, status counts and per-field values. Worker caching, numerical status and
+optical eligibility are documented in [`Simulated MTF`](optics-engine.md#simulated-mtf).
 
 ## Display Overlays
 

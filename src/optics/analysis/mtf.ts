@@ -53,6 +53,15 @@ import {
   type MtfFieldTarget,
 } from "./mtfFields.js";
 
+/**
+ * Results an identical earlier request may share: the axial focus search and finished fields,
+ * keyed by fraction. Callers key a cache by everything in the request except `fieldFractions`.
+ */
+export interface MtfJobCache {
+  focus?: MtfFocus;
+  fields: Map<number, MtfFieldResult>;
+}
+
 /** Everything one request shares across its fields. */
 interface MtfJobContext {
   state: PreparedOpticalState;
@@ -376,8 +385,18 @@ export function resolveMtfGeometry(state: PreparedOpticalState, options: MtfOpti
   return resolveMtfFieldGeometry(state, mtfModeledHalfField(state), mtfChiefHeight(state, options, support));
 }
 
-/** Yields after the field axis is known and after every refinement, so a worker can publish progress. */
-export function* computeMtfSteps(state: PreparedOpticalState, options: MtfOptions): Generator<MtfResult, MtfResult> {
+/**
+ * Yields after the field axis is known and after every refinement, so a worker can publish progress.
+ *
+ * @param state - prepared optical state
+ * @param options - MTF request
+ * @param cache - optional reuse of an identical request's focus and finished fields
+ */
+export function* computeMtfSteps(
+  state: PreparedOpticalState,
+  options: MtfOptions,
+  cache?: MtfJobCache,
+): Generator<MtfResult, MtfResult> {
   const support = assessMtfSupport(state, options);
   const frequencies = [...(options.frequenciesPerMm ?? MTF_FREQUENCIES)];
   const fractions = options.fieldFractions ?? MTF_FIELDS;
@@ -416,17 +435,36 @@ export function* computeMtfSteps(state: PreparedOpticalState, options: MtfOption
       : emptyMtfField(target.fraction, target),
   );
   // Every field shares one image plane, so the axial focus search runs before any field.
-  result.focus = resolveMtfFocus(context);
+  result.focus = cache?.focus ?? resolveMtfFocus(context);
+  if (cache) cache.focus = result.focus;
   context.imagePlaneZ = state.imgZ + result.focus.appliedShiftMm;
   yield result;
   for (const index of mtfFieldProcessingOrder(fractions)) {
     if (targets[index].outsideModel) continue;
+    const cached = cache?.fields.get(fractions[index]);
+    if (cached) {
+      result.fields[index] = copyField(cached);
+      continue;
+    }
+    let finished: MtfFieldResult | undefined;
     for (const field of traceField(context, targets[index])) {
+      finished = field;
       result.fields[index] = field;
       yield result;
     }
+    // Only fields that ran to completion are reusable; an abandoned generator stores nothing.
+    if (finished && cache) cache.fields.set(fractions[index], copyField(finished));
   }
   return result;
+}
+
+function copyField(field: MtfFieldResult): MtfFieldResult {
+  return {
+    ...field,
+    sagittal: [...field.sagittal],
+    tangential: [...field.tangential],
+    notes: [...field.notes],
+  };
 }
 
 export function computeMtf(state: PreparedOpticalState, options: MtfOptions): MtfResult {

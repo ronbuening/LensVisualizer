@@ -116,6 +116,36 @@ export function svgPath<T>(items: readonly T[], x: (item: T) => number, y: (item
   return items.map((item, index) => `${index === 0 ? "M" : "L"}${x(item).toFixed(1)},${y(item).toFixed(1)}`).join(" ");
 }
 
+/** Chart point: a value, `null` to break the line there, or `undefined` to skip it and connect its neighbours. */
+export type ChartPoint = { x: number; y: number } | null | undefined;
+
+/**
+ * SVG path through points that may break or skip.
+ *
+ * @param points - ordered points; `null` breaks the line, `undefined` is skipped
+ * @param xScale - data-to-pixel x mapping
+ * @param yScale - data-to-pixel y mapping
+ * @returns path data, empty when no point is drawable
+ */
+export function gapPath(
+  points: readonly ChartPoint[],
+  xScale: (value: number) => number,
+  yScale: (value: number) => number,
+): string {
+  let open = false;
+  const segments: string[] = [];
+  for (const point of points) {
+    if (point === undefined) continue;
+    if (point === null) {
+      open = false;
+      continue;
+    }
+    segments.push(`${open ? "L" : "M"}${xScale(point.x).toFixed(1)},${yScale(point.y).toFixed(1)}`);
+    open = true;
+  }
+  return segments.join(" ");
+}
+
 export function svgPoints<T>(items: readonly T[], x: (item: T) => number, y: (item: T) => number): string {
   return items.map((item) => `${x(item).toFixed(1)},${y(item).toFixed(1)}`).join(" ");
 }

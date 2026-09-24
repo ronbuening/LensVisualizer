@@ -11,6 +11,7 @@ flowchart LR
   subgraph n_src_components_display_analysis["src/components/display/analysis"]
     n_src_components_display_analysis_src_components_display_analysis_aberrations["aberrations/"]
     n_src_components_display_analysis_src_components_display_analysis_charts["charts/"]
+    n_src_components_display_analysis_src_components_display_analysis_mtf["mtf/"]
     n_src_components_display_analysis_src_components_display_analysis_perspective["perspective/"]
     n_src_components_display_analysis_React_components["React components (28)"]
     n_src_components_display_analysis_TypeScript_modules["TypeScript modules (3)"]
@@ -22,19 +23,20 @@ flowchart LR
   n_external_src_optics_optics_ts["src/optics/optics.ts"]
   n_external_src_optics_types_ts["src/optics/types.ts"]
   n_external_src_utils_perfProbe_ts["src/utils/perfProbe.ts"]
+  n_external_src_components_hooks["src/components/hooks"]
   n_external_src_optics_chromatic["src/optics/chromatic"]
   n_external_src_optics_distortionAnalysis_ts["src/optics/distortionAnalysis.ts"]
-  n_external_src_components_hooks["src/components/hooks"]
   n_external_src_optics_mtf_ts["src/optics/mtf.ts"]
   n_external_src_optics_pupilAberration_ts["src/optics/pupilAberration.ts"]
   n_external_src_optics_vignetteAnalysis_ts["src/optics/vignetteAnalysis.ts"]
+  n_external_src_utils_state["src/utils/state"]
   n_src_components_display_analysis_React_components --> |42| n_external_src_types
   n_src_components_display_analysis_React_components --> |18| n_src_components_display_analysis_src_components_display_analysis_charts
   n_src_components_display_analysis_React_components --> |15| n_external_src_optics_compat_ts
-  n_src_components_display_analysis_React_components --> |13| n_external_pkg_react
+  n_src_components_display_analysis_React_components --> |14| n_external_pkg_react
   n_src_components_display_analysis_React_components --> |11| n_external_src_optics_aberrationAnalysis_ts
   n_src_components_display_analysis_React_components --> |11| n_src_components_display_analysis_TypeScript_modules
-  n_src_components_display_analysis_React_components --> |9| n_external_src_optics_optics_ts
+  n_src_components_display_analysis_React_components --> |10| n_external_src_optics_optics_ts
   n_src_components_display_analysis_React_components --> |9| n_external_src_optics_types_ts
   n_src_components_display_analysis_React_components --> |9| n_src_components_display_analysis_src_components_display_analysis_aberrations
   n_src_components_display_analysis_React_components --> |7| n_src_components_display_analysis_src_components_display_analysis_perspective
@@ -42,22 +44,24 @@ flowchart LR
   n_src_components_display_analysis_TypeScript_modules --> |3| n_external_src_types
   n_src_components_display_analysis_React_components --> |3| n_external_src_utils_perfProbe_ts
   n_src_components_display_analysis_TypeScript_modules --> |2| n_external_pkg_react
+  n_src_components_display_analysis_React_components --> |2| n_external_src_components_hooks
   n_src_components_display_analysis_React_components --> |2| n_external_src_optics_chromatic
   n_src_components_display_analysis_React_components --> |2| n_external_src_optics_distortionAnalysis_ts
   n_src_components_display_analysis_TypeScript_modules --> |2| n_external_src_optics_types_ts
-  n_src_components_display_analysis_React_components --> n_external_src_components_hooks
+  n_src_components_display_analysis_React_components --> |2| n_src_components_display_analysis_src_components_display_analysis_mtf
   n_src_components_display_analysis_TypeScript_modules --> n_external_src_optics_chromatic
   n_src_components_display_analysis_React_components --> n_external_src_optics_mtf_ts
   n_src_components_display_analysis_React_components --> n_external_src_optics_pupilAberration_ts
   n_src_components_display_analysis_React_components --> n_external_src_optics_vignetteAnalysis_ts
   n_src_components_display_analysis_TypeScript_modules --> n_external_src_utils_perfProbe_ts
+  n_src_components_display_analysis_React_components --> n_external_src_utils_state
 ```
 
 ## Directory Overview
 
 - Direct source files: 31
-- Direct subfolders: 3
-- Main outbound areas: src/components/display (66), src/types (45), src/optics/compat.ts (18), package:react (15), src/optics/aberrationAnalysis.ts (11), src/optics/types.ts (11), src/optics/optics.ts (9), src/utils/perfProbe.ts (4), +6 more
+- Direct subfolders: 4
+- Main outbound areas: src/components/display (69), src/types (45), src/optics/compat.ts (18), package:react (16), src/optics/aberrationAnalysis.ts (11), src/optics/types.ts (11), src/optics/optics.ts (10), src/utils/perfProbe.ts (4), +7 more
 - External consumers: src/benchmarks, src/components/diagram, src/components/display, src/components/layout
 
 ## Subfolders
@@ -66,6 +70,7 @@ flowchart LR
 | --- | --- |
 | [aberrations/](aberrations/readme.md) | aberration-tab section components and hooks for spherical aberration, field curvature, astigmatism, and coma |
 | [charts/](charts/readme.md) | shared SVG chart frame and math helpers for analysis plots |
+| [mtf/](mtf/readme.md) | src/components/display/analysis/mtf source folder |
 | [perspective/](perspective/readme.md) | src/components/display/analysis/perspective source folder |
 
 ## Files
@@ -73,7 +78,7 @@ flowchart LR
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
 | `AberrationsPanel.tsx` | React component module | src/components/display (6), src/types (2), package:react, src/optics/compat.ts, src/optics/optics.ts, +1 more | src/benchmarks, src/components/layout | default, AberrationsPanel |
-| `analysisUi.tsx` | React component module | package:react, src/types | src/components/display (23) | AnalysisMetricRow, AnalysisEmptyState, AberrationValueDisplay |
+| `analysisUi.tsx` | React component module | package:react, src/types | src/components/display (24) | AnalysisMetricRow, AnalysisEmptyState, AberrationValueDisplay |
 | `AstigmatismPlot.tsx` | React component module | src/components/display, src/optics/aberrationAnalysis.ts, src/types | src/components/display | default, AstigmatismPlot |
 | `BokehPreviewContent.tsx` | React component module | src/components/display, src/optics/aberrationAnalysis.ts, src/types | src/components/display | default, BokehPreviewContent |
 | `BokehPreviewGrid.tsx` | React component module | src/optics/aberrationAnalysis.ts (2), package:react, src/types | src/components/display | default, BokehPreviewGrid |
@@ -92,8 +97,8 @@ flowchart LR
 | `LateralColorChart.tsx` | React component module | src/components/display (4), src/types (2), src/optics/compat.ts | src/components/display | default, LateralColorChart |
 | `LongitudinalChromaticFocusChart.tsx` | React component module | src/components/display (4), src/optics/compat.ts, src/types | src/components/display | default, LongitudinalChromaticFocusChart |
 | `MeridionalComaPlot.tsx` | React component module | src/components/display, src/optics/aberrationAnalysis.ts, src/types | src/components/display | default, MeridionalComaPlot |
-| `MtfChart.tsx` | React component module | src/components/display (2), src/types (2) | src/components/display | default, MtfChart |
-| `MtfTab.tsx` | React component module | src/types (3), package:react, src/components/display, src/components/hooks, src/optics/mtf.ts, +1 more | src/components/layout | default, MtfTab |
+| `MtfChart.tsx` | React component module | src/components/display (2), src/types (2), package:react, src/utils/state | src/components/display | default, MtfChart |
+| `MtfTab.tsx` | React component module | src/components/display (4), src/types (3), src/components/hooks (2), package:react, src/optics/mtf.ts, +2 more | src/components/layout | mtfFieldFractions, default, MtfTab |
 | `OpticalSummaryTab.tsx` | React component module | src/components/display (2), src/optics/compat.ts (2), src/types (2), package:react, src/optics/optics.ts, +1 more | src/components/layout | default, OpticalSummaryTab |
 | `PupilAberrationChart.tsx` | React component module | src/components/display (3), src/optics/pupilAberration.ts, src/types | src/components/display | default, PupilAberrationChart |
 | `PupilAberrationTab.tsx` | React component module | src/components/display (4), src/optics/compat.ts (2), src/types (2), package:react, src/optics/optics.ts, +1 more | src/components/layout | default, PupilAberrationTab |

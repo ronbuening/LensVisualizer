@@ -1,20 +1,60 @@
 // @vitest-environment jsdom
-import { afterEach, describe, expect, it, vi } from "vitest";
-import { cleanup, fireEvent, render, screen } from "@testing-library/react";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { cleanup, fireEvent, render, screen, within } from "@testing-library/react";
 import MtfTab from "../../../../../src/components/display/analysis/MtfTab.js";
 import MtfChart from "../../../../../src/components/display/analysis/MtfChart.js";
 import { mockTheme } from "../../../../testUtils.js";
 import { buildSimplePositiveElementLens } from "../../../optics/testLensFixtures.js";
 import { prepareRuntimeState } from "../../../../../src/optics/compat.js";
 import { computeMtf } from "../../../../../src/optics/mtf.js";
-import type { MtfJob, MtfWorkerReply } from "../../../../../src/components/hooks/mtfWorkerClient.js";
+import type { MtfResult } from "../../../../../src/types/mtf.js";
+import type { MtfWorkerReply, MtfWorkerRequest } from "../../../../../src/components/hooks/mtfWorkerClient.js";
+import { MTF_PREFERENCES_KEY, resetMtfPreferencesCache } from "../../../../../src/utils/state/mtfPreferences.js";
 
 const L = buildSimplePositiveElementLens();
 const state = prepareRuntimeState(L, 0, 0);
+
+/** Worker stand-in that runs the pure engine; `progress` first posts a result with every field pending. */
+function stubWorker({ progress = false }: { progress?: boolean } = {}) {
+  const calls = { compute: 0 };
+  const replies: Array<() => void> = [];
+  vi.stubGlobal(
+    "Worker",
+    class {
+      onmessage: ((e: MessageEvent<MtfWorkerReply>) => void) | null = null;
+      onerror = null;
+      terminate() {}
+      postMessage(message: MtfWorkerRequest) {
+        if (message.type !== "compute") return;
+        calls.compute++;
+        const result = computeMtf(state, { ...message.job.options, maxGridSize: 128 });
+        const send = (reply: MtfWorkerReply) => this.onmessage?.({ data: reply } as MessageEvent<MtfWorkerReply>);
+        if (progress) {
+          const pending: MtfResult = {
+            ...result,
+            fields: result.fields.map((field, i) => (i === 0 ? field : { ...field, status: "pending" })),
+          };
+          queueMicrotask(() => send({ type: "progress", id: message.id, result: pending }));
+          replies.push(() => send({ type: "result", id: message.id, result }));
+        } else queueMicrotask(() => send({ type: "result", id: message.id, result }));
+      }
+    },
+  );
+  return { calls, finish: () => replies.splice(0).forEach((reply) => reply()) };
+}
+
+const legendColor = (label: string) =>
+  within(screen.getByRole("figure")).getByText(label).closest("span")!.querySelector("line")!.getAttribute("stroke");
+
+beforeEach(() => {
+  localStorage.clear();
+  resetMtfPreferencesCache();
+});
 afterEach(() => {
   cleanup();
   vi.unstubAllGlobals();
 });
+
 describe("MTF tab", () => {
   it("blocks moved optics without starting background work", () => {
     const worker = vi.fn();
@@ -23,40 +63,101 @@ describe("MTF tab", () => {
     expect(screen.getByRole("status").textContent).toContain("tilt or shift");
     expect(worker).not.toHaveBeenCalled();
   });
-  it("shows both chart views using the same completed worker result", async () => {
-    let calculations = 0;
-    vi.stubGlobal(
-      "Worker",
-      class {
-        onmessage: ((e: MessageEvent<MtfWorkerReply>) => void) | null = null;
-        terminate() {}
-        postMessage(message: { type: string; id: number; job: MtfJob }) {
-          if (message.type !== "compute") return;
-          calculations++;
-          const result = computeMtf(state, { ...message.job.options, maxGridSize: 32 });
-          queueMicrotask(() => this.onmessage?.({ data: { id: message.id, result } } as MessageEvent<MtfWorkerReply>));
-        }
-      },
+  it("defaults to the diffraction-corrected model and states the spectrum it could use", async () => {
+    stubWorker();
+    render(
+      <MtfTab
+        L={L}
+        t={mockTheme}
+        preparedState={state}
+        currentEPSD={1}
+        currentPhysStopSD={1}
+        fNumber={2.8}
+        focalLengthMm={49.2}
+      />,
     );
+    expect(await screen.findByRole("figure", { name: /image height/ })).toBeTruthy();
+    const header = screen.getByText(/^f\/2\.8 · 49\.2 mm · Diffraction-corrected/);
+    expect(header.textContent).toContain("Design image plane");
+    // The fixture glass has no spectral data, so the photopic preference falls back with a note.
+    expect(screen.getByText(/Photopic MTF needs physical dispersion data/)).toBeTruthy();
+  });
+  it("switches chart views and frequencies from one computed result, keeping colour slots fixed", async () => {
+    const { calls } = stubWorker();
     render(<MtfTab L={L} t={mockTheme} preparedState={state} currentEPSD={1} currentPhysStopSD={1} />);
     expect(await screen.findByRole("figure", { name: /image height/ })).toBeTruthy();
-    fireEvent.change(screen.getByLabelText("MTF chart"), { target: { value: "frequency" } });
+    const thirty = legendColor("30 lp/mm");
+    expect(thirty).toBe(mockTheme.chartSeries[2]);
+    const frequencies = within(screen.getByRole("group", { name: /Chart frequencies/ }));
+    fireEvent.click(frequencies.getByRole("button", { name: "10" }));
+    fireEvent.click(frequencies.getByRole("button", { name: "50" }));
+    expect(frequencies.getByRole("button", { name: "10" }).getAttribute("aria-pressed")).toBe("false");
+    expect(within(screen.getByRole("figure")).queryByText("10 lp/mm")).toBeNull();
+    expect(legendColor("30 lp/mm")).toBe(thirty);
+    expect(legendColor("50 lp/mm")).toBe(mockTheme.chartSeries[4]);
+    // The last displayed frequency cannot be switched off.
+    fireEvent.click(frequencies.getByRole("button", { name: "30" }));
+    fireEvent.click(frequencies.getByRole("button", { name: "50" }));
+    expect(frequencies.getByRole("button", { name: "50" }).getAttribute("aria-pressed")).toBe("true");
+    fireEvent.click(
+      within(screen.getByRole("group", { name: "MTF chart" })).getByRole("button", { name: "Frequency" }),
+    );
     expect(screen.getByRole("figure", { name: /spatial frequency/ })).toBeTruthy();
-    expect(calculations).toBe(1);
-    expect(screen.getByText(/excludes diffraction/)).toBeTruthy();
+    expect(calls.compute).toBe(1);
   });
-  it("draws gaps for unavailable fields without NaN coordinates", () => {
-    const result = computeMtf(state, {
-      method: "geometric",
-      spectrum: "reference",
-      pupilSemiDiameterMm: 1,
-      stopSemiDiameterMm: 1,
-      fieldFractions: [0, 0.5, 1],
-      maxGridSize: 32,
-    });
-    result.fields[1].status = "unavailable";
-    const { container } = render(<MtfChart result={result} view="field" t={mockTheme} />);
+  it("remembers options in this browser and recomputes only when the fields change", async () => {
+    const { calls } = stubWorker();
+    const { unmount } = render(
+      <MtfTab L={L} t={mockTheme} preparedState={state} currentEPSD={1} currentPhysStopSD={1} />,
+    );
+    await screen.findByRole("figure", { name: /image height/ });
+    fireEvent.click(within(screen.getByRole("group", { name: "Field step" })).getByRole("button", { name: "5 %" }));
+    await vi.waitFor(() => expect(calls.compute).toBe(2));
+    expect(JSON.parse(localStorage.getItem(MTF_PREFERENCES_KEY)!)).toMatchObject({ fieldStepPercent: 5 });
+    unmount();
+    resetMtfPreferencesCache();
+    render(<MtfTab L={L} t={mockTheme} preparedState={state} currentEPSD={1} currentPhysStopSD={1} />);
+    const step = within(screen.getByRole("group", { name: "Field step" })).getByRole("button", { name: "5 %" });
+    expect(step.getAttribute("aria-pressed")).toBe("true");
+  });
+  it("reports field progress before the result completes", async () => {
+    const worker = stubWorker({ progress: true });
+    render(<MtfTab L={L} t={mockTheme} preparedState={state} currentEPSD={1} currentPhysStopSD={1} />);
+    expect((await screen.findByText(/Calculating… 1 \/ 11 fields/)).getAttribute("role")).toBe("status");
+    worker.finish();
+    await vi.waitFor(() => expect(screen.queryByText(/Calculating…/)).toBeNull());
+  });
+});
+
+describe("MTF chart", () => {
+  const result = computeMtf(state, {
+    method: "geometric",
+    spectrum: "reference",
+    pupilSemiDiameterMm: 1,
+    stopSemiDiameterMm: 1,
+    fieldFractions: [0, 0.5, 1],
+    maxGridSize: 32,
+  });
+  it("breaks curves at unavailable fields without NaN coordinates", () => {
+    const gapped: MtfResult = {
+      ...result,
+      fields: result.fields.map((field, i) => (i === 1 ? { ...field, status: "unavailable" } : field)),
+    };
+    const { container } = render(<MtfChart result={gapped} view="field" frequencies={[10, 30]} t={mockTheme} />);
     expect(container.innerHTML).not.toContain("NaN");
-    expect(container.querySelectorAll("path").length).toBe(6);
+    const sagittal = [...container.querySelectorAll("path")].find(
+      (path) => path.getAttribute("stroke") === mockTheme.chartSeries[0] && !path.getAttribute("stroke-dasharray"),
+    )!;
+    expect(sagittal.getAttribute("d")!.match(/M/g)).toHaveLength(2);
+    expect(screen.getByText("Sagittal")).toBeTruthy();
+    expect(screen.getByText("Tangential (meridional)")).toBeTruthy();
+  });
+  it("hatches image heights beyond the modelled edge", () => {
+    const clipped: MtfResult = {
+      ...result,
+      geometry: { ...result.geometry!, modeledEdgeHeightMm: result.geometry!.referenceHeightMm / 2 },
+    };
+    render(<MtfChart result={clipped} view="field" frequencies={[10]} t={mockTheme} />);
+    expect(screen.getAllByText("Outside model").length).toBeGreaterThan(0);
   });
 });

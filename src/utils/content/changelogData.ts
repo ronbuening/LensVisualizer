@@ -41,7 +41,7 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-09-23",
     type: "feature",
-    summary: "Added simulated lens MTF with image-height charts, spectral estimates and documented finite focus",
+    summary: "Added simulated lens MTF: diffraction-corrected photopic curves at 10–50 lp/mm out to the format corner",
   },
   {
     date: "2026-09-23",

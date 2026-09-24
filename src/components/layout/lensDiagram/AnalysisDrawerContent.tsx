@@ -23,6 +23,8 @@ interface AnalysisDrawerContentProps {
   dynamicEFL: number;
   currentEPSD: number;
   currentPhysStopSD: number;
+  /** Selected working f-number, for analysis headers. */
+  fNumber?: number;
   fieldGeometry?: FieldGeometryState | null;
   perspectiveTraceContext?: PerspectiveTraceContext | null;
   sliderInteracting?: boolean;
@@ -56,6 +58,7 @@ export default function AnalysisDrawerContent({
   dynamicEFL,
   currentEPSD,
   currentPhysStopSD,
+  fNumber,
   fieldGeometry = null,
   perspectiveTraceContext = null,
   sliderInteracting = false,
@@ -72,10 +75,21 @@ export default function AnalysisDrawerContent({
       currentEPSD,
       currentPhysStopSD,
       dynamicEFL,
+      fNumber,
       fieldGeometry,
       perspectiveTraceContext,
     }),
-    [focusT, zoomT, aberrationT, currentEPSD, currentPhysStopSD, dynamicEFL, fieldGeometry, perspectiveTraceContext],
+    [
+      focusT,
+      zoomT,
+      aberrationT,
+      currentEPSD,
+      currentPhysStopSD,
+      dynamicEFL,
+      fNumber,
+      fieldGeometry,
+      perspectiveTraceContext,
+    ],
   );
   // Defer one immutable snapshot so scalar controls and the prepared perspective
   // context can never transiently describe different slider states.

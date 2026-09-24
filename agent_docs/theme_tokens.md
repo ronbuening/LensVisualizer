@@ -38,6 +38,17 @@ typecheck error in the others, which is the safety net.
    add overrides there too; otherwise leave it inheriting.
 4. Use it in components as `t.myToken` / `theme.myToken`.
 
+## Categorical Chart Colours (`chartSeries`)
+
+`chartSeries` is a five-slot categorical palette (blue, orange, green, violet, magenta) for charts whose series keep
+fixed identities: MTF frequency chips use slot *i* for the *i*-th chip, so hiding a series never repaints the others.
+Validate any change per variant against its `panelBg`: OKLab lightness band and chroma floor, adjacent-pair colour-vision
+separation ΔE ≥ 8 (Machado simulation), normal-vision ΔE ≥ 15, and 3:1 contrast. The current values pass with adjacent
+colour-vision ΔE ≥ 9.1 and normal-vision ΔE ≥ 19.5. `darkHC` reuses the `dark` values: they already sit at the top of
+the dark-mode lightness band, and brighter candidates fail it. No five-hue set keeps every pair separable for
+colour-vision deficiencies, so charts pair these colours with direct labels or marker shapes. `themes.test.ts` checks
+five distinct slots with 3:1 panel contrast in every variant; holiday themes leave the token alone.
+
 ## Steps to Change an Existing Color
 
 Change it in all variants where it appears, including `holidayThemes.ts` overrides. Search the

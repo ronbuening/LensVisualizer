@@ -115,9 +115,11 @@ eligible; see `src/lens-data/LENS_DATA_SPEC.md` for source requirements.
 
 The MTF tab lazily creates a worker from serializable lens data. Worker initialization removes engine-generated
 synthetic surfaces/elements from `RuntimeLens.data` and rebuilds them once from `rearPlates`, preserving physical
-gaps and plate dispersion. Superseding a running request terminates it;
-request ids reject stale replies. Completed results use an LRU bounded to 64 MiB, while chart changes reuse
-curves without tracing. The read-only census is `scripts/audit-mtf.mjs` (`--cdf`/`--photopic` for spectral
+gaps and plate dispersion. The typed protocol (`init | compute | cancel` → `progress | result | error`) runs
+`computeMtfSteps` in ~30 ms slices and posts partial results at most every 100 ms. Cancellation is cooperative, so the
+built lens stays warm, and request ids reject stale replies. The worker caches finished fields and the focus search
+per request minus its field list (`MtfJobCache`), so a finer field step reuses coarser fields. Completed results use
+a client LRU bounded to 64 MiB, while chart changes reuse curves without tracing. The read-only census is `scripts/audit-mtf.mjs` (`--cdf`/`--photopic` for spectral
 eligibility, `--fields` for centre, half-height and modelled-edge availability); `scripts/benchmark-mtf.mjs` flags are
 listed in `agent_docs/benchmarks/README.md`. Benchmarks retain status alongside timings so fast rejection is not
 confused with a completed curve.

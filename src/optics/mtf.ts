@@ -6,4 +6,4 @@ export {
   MTF_PHOTOPIC_LINES,
   resolveMtfSpectrum,
 } from "./analysis/mtfSupport.js";
-export { computeMtf, computeMtfSteps, resolveMtfGeometry } from "./analysis/mtf.js";
+export { computeMtf, computeMtfSteps, resolveMtfGeometry, type MtfJobCache } from "./analysis/mtf.js";

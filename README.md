@@ -43,7 +43,7 @@ plain-language optics primers.
 | Interactive diagrams | Inline SVG lens sections with real surface sag, element selection, zoom and pan, and responsive focus, aperture, and zoom state |
 | Ray tracing | Exact spherical and aspheric surface intersections for on-axis, off-axis, and chromatic ray bundles |
 | Optical analysis | First-order summaries plus spherical aberration, field curvature, coma, bokeh, distortion, focus breathing, vignetting, pupil, and chromatic diagnostics |
-| Simulated MTF | Geometric and qualified scalar diffraction estimates, image-height and spatial-frequency charts, reference-wavelength or equal-weight C/d/F spectra, and explicit availability/convergence status |
+| Simulated MTF | Diffraction-corrected (default), geometric and qualified scalar diffraction estimates; photopic, C/d/F or reference-wavelength spectra; image height to the format corner in 1–10 % steps at 10–50 lp/mm, a spatial-frequency view, and explicit availability/convergence status |
 | Design comparison | Side-by-side lenses with shared controls and shareable comparison URLs |
 | Catalog research | Browsing and filtering by maker, focal length, patent year, inventor, assignee, mount, and image format |
 | Specialized systems | Projection-aware fisheyes, perspective-control movement, aspheric comparison, and reference models for folded or obstructed optical paths |
@@ -64,10 +64,12 @@ experimental design, or a prescription that differs from the final production le
 from the published data and the selected state; it is not a measurement of a physical sample or a substitute for
 laboratory testing.
 
-The **Simulated MTF** tab opens with 10/20/40 lp/mm curves against traced image height; its frequency view covers
-0–100 lp/mm. It supports infinity focus and explicitly documented finite-conjugate stations. Geometric mode excludes
-diffraction, while scalar diffraction has conservative aperture and field limits. Missing samples remain gaps, and a
-converged result only establishes sampling stability. Omitted sensor optics can affect MTF and other ray-based
+The **Simulated MTF** tab opens with diffraction-corrected photopic curves at 10 and 30 lp/mm against image height out
+to the format corner; 20/40/50 lp/mm and 5/2/1 % field steps are a click away, and its frequency view covers
+0–100 lp/mm. It supports infinity focus and explicitly documented finite-conjugate stations. Heights where the model's
+clear apertures clip the chief ray are hatched rather than traced. Geometric mode excludes diffraction, while scalar
+diffraction has conservative aperture and field limits. Missing samples remain gaps, and a converged result only
+establishes sampling stability. Omitted sensor optics can affect MTF and other ray-based
 diagnostics; see the [optical-model limitations](agent_docs/architecture/optics-engine.md#omitted-sensor-optics).
 
 Every lens page carries its source metadata (patent number, embodiment, inventors, assignee), and each prescription is
