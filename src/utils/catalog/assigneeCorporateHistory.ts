@@ -697,6 +697,13 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
         effectiveTo: "2013-08-01",
         sourceUrl: SOURCES.ricohHistory2010s,
       },
+      {
+        family: "Pentax lineage",
+        effectiveFrom: "2011-10-01",
+        effectiveTo: "2013-08-01",
+        sourceUrl: SOURCES.ricohHistory2010s,
+        note: "Carries the PENTAX imaging business acquired from HOYA; PENTAX-brand patents from this window name this company as assignee.",
+      },
     ],
   },
   "Ponder & Best, Inc.": {
@@ -732,7 +739,15 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
     subsidiaryOf: [
       { organization: "Ricoh Co., Ltd.", effectiveFrom: "2013-08-01", sourceUrl: SOURCES.ricohImagingRename },
     ],
-    corporateFamily: [{ family: "Ricoh", effectiveFrom: "2013-08-01", sourceUrl: SOURCES.ricohHistory }],
+    corporateFamily: [
+      { family: "Ricoh", effectiveFrom: "2013-08-01", sourceUrl: SOURCES.ricohHistory },
+      {
+        family: "Pentax lineage",
+        effectiveFrom: "2013-08-01",
+        sourceUrl: SOURCES.ricohImagingRename,
+        note: "Continues the PENTAX imaging business under the renamed Ricoh subsidiary.",
+      },
+    ],
   },
   "Samsung Digital Imaging Co., Ltd.": {
     acquiredBy: [

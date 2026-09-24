@@ -165,7 +165,7 @@ The patent publishes d-line nd and νd coordinates but does not name glass vendo
 | 1.51742 / 52.25 | L17 | Hikari J-KF6 (1.51742 / 52.20) |
 | 1.81600 / 46.56 | L19 | Hikari J-LASF09A (1.81600 / 46.59) |
 
-The strongest special-material correlation is numerical rather than catalog-based. Nikon specifies two fluorite and two ED elements for the production lens. The patent has exactly two 1.43382/95.13 elements and exactly two 1.49782/82.53 elements, so those pairs are plausible counterparts. The correspondence remains inferential because neither the patent nor Nikon's product literature explicitly maps production material names to patent element labels.
+The strongest special-material correlation is numerical rather than catalog-based. Nikon specifies two fluorite and two ED elements for the production lens. The patent has exactly two 1.43382/95.13 elements and exactly two 1.49782/82.53 elements, so those pairs are plausible counterparts. The correspondence remains inferential because neither the patent nor Nikon's product literature explicitly maps production material names to patent element labels. Nikon's lens-construction diagram confirms that placement: it colours the two large positives behind the protective glass as fluorite and marks as ED the image-side member of the G1b cemented pair and the rear member of the G3b VR pair, which are L1, L2, L5, and L14. The data file flags those four as anomalous-partial-dispersion elements (`apd: "inferred"`, since the identification comes from the manufacturer diagram rather than the patent); no dPgF value is authored for them.
 
 No element carries authored nC, nF, ng, or dPgF values, and the patent supplies no Sellmeier coefficients; the runtime dispersion comes from the catalog-equivalent curves above. Accordingly, this analysis does not claim apochromatic correction or anomalous-partial-dispersion behavior from nd/νd alone. Nikon's production literature states that fluorite and ED elements are used to reduce chromatic aberration, but that product-level claim is distinct from a wavelength-resolved reconstruction of the patent prescription.
 
@@ -244,7 +244,7 @@ The selected example is all-spherical/all-plane. No aspherical surfaces or coeff
 ## Sources and References
 
 1. Japan Patent Office. **JP 2013-250293 A**, 「撮影レンズ、光学機器、および撮影レンズの製造方法」, application JP2012-122713, filed 2012-05-30, published 2013-12-12. Example 1: ¶0045–0058, Table 1, Figure 1.
-2. Nikon Corporation. **AF-S NIKKOR 800mm f/5.6E FL ED VR | F mount Lenses**. Product specifications and construction. https://imaging.nikon.com/imaging/lineup/lens/f-mount/singlefocal/telephoto/af-s_800mmf_56g_fl_ed_vr/
+2. Nikon Corporation. **AF-S NIKKOR 800mm f/5.6E FL ED VR | F mount Lenses**. Product specifications and lens-construction diagram (fluorite and ED elements colour-coded). https://imaging.nikon.com/imaging/lineup/lens/f-mount/singlefocal/telephoto/af-s_800mmf_56g_fl_ed_vr/
 3. Nikon Corporation. **AF-S NIKKOR 800mm f/5.6E FL ED VR / AF-S TELECONVERTER TC800-1.25E ED**, news release, 2013-01-29. https://www.nikon.com/company/news/2013/0129_lens_06.html
 4. Nikon Corporation. **AF-S NIKKOR 800mm f/5.6E FL ED VR**, Japanese product overview, on-sale date 2013-05-31. https://nij.nikon.com/products/lineup/nikkor/fmount/af-s_nikkor_800mm_f56e_fl_ed_vr/
 5. Nikon Corporation. **AF-S NIKKOR 800mm f/5.6E FL ED VR — Main Specifications**, Japanese specifications page; IF and voice-coil-motor lens-shift VR. https://nij.nikon.com/products/lineup/nikkor/fmount/af-s_nikkor_800mm_f56e_fl_ed_vr/spec.html

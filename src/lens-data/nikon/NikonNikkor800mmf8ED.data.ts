@@ -87,6 +87,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
+      diagramLabel: "L1",
       label: "Element 1",
       type: "Biconvex Positive",
       nd: 1.48614,
@@ -94,11 +95,15 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 365.630831,
       glass: "Unmatched (486815 — fluophosphate crown / ED-class; vendor unresolved)",
+      apd: "patent",
+      apdNote:
+        "The patent selects phosphate / fluophosphate crown for the positive component for its low partial-dispersion value k (US 3,774,991, printed pp. 1–3); production ED element by correlation.",
       role: "Low-dispersion positive front component of the achromatized forward group.",
     },
     {
       id: 2,
       name: "L2",
+      diagramLabel: "L2",
       label: "Element 2",
       type: "Biconcave Negative",
       nd: 1.61266,
@@ -106,11 +111,15 @@ const LENS_DATA = {
       indexReference: "d",
       fl: -278.336772,
       glass: "J-KZFH1 (HIKARI) — patent antimony flint 613443",
+      apd: "patent",
+      apdNote:
+        "The patent selects antimony flint for the negative component for its partial-dispersion value k, paired with the phosphate crown to reduce secondary spectrum (US 3,774,991, printed pp. 1–3).",
       role: "Negative chromatic partner between the two positive forward components.",
     },
     {
       id: 3,
       name: "L3",
+      diagramLabel: "L3",
       label: "Element 3",
       type: "Biconvex Positive",
       nd: 1.56953,
@@ -123,6 +132,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L4",
+      diagramLabel: "L4",
       label: "Element 4",
       type: "Plano-Concave Negative",
       nd: 1.51885,
@@ -136,6 +146,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L5",
+      diagramLabel: "L5",
       label: "Element 5",
       type: "Plano-Convex Positive",
       nd: 1.62399,

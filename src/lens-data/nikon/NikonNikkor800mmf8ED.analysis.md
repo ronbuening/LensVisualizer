@@ -92,7 +92,7 @@ The patent's forward-group glass selection is central to the invention. It calls
 
 The selected numerical example, however, publishes only nd and νd for each element. It does not provide nC, nF, ng, dPgF, or Sellmeier coefficients for the actual melts. For runtime dispersion, L2–L5 trace on the nearest catalog Sellmeier curves listed above, all within 6.2e-4 in nd and 0.2 in νd, and L1 uses the Abbe-number fallback. Those curves are modern equivalents, not the 1970s melts. No quantitative APO classification, anomalous-partial-dispersion value, or three-line secondary-spectrum result is asserted for this model.
 
-Catalog review covered OHARA, HOYA, SCHOTT, HIKARI, CDGM, and SUMITA records. Close equivalents exist for L2–L5. Coordinate proximity is treated as class evidence rather than proof of supplier or melt identity: the catalog labels name the dispersion curve used for tracing, and L4's label states its residual. No current catalog glass matches L1's 1.48614 / 81.5 coordinate, so it stays an explicit Unmatched disposition.
+Catalog review covered OHARA, HOYA, SCHOTT, HIKARI, CDGM, and SUMITA records. Close equivalents exist for L2–L5. Coordinate proximity is treated as class evidence rather than proof of supplier or melt identity: the catalog labels name the dispersion curve used for tracing, and L4's label states its residual. No current catalog glass matches L1's 1.48614 / 81.5 coordinate, so it stays an explicit Unmatched disposition. Because the patent chooses the phosphate crown (L1) and antimony flint (L2) specifically for their partial-dispersion values, the data file marks both as patent-listed anomalous-partial-dispersion elements (`apd: "patent"`); it authors no dPgF, since Example III gives none.
 
 ## Focus Mechanism
 

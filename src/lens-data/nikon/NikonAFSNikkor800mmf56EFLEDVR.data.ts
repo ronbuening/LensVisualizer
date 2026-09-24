@@ -96,6 +96,9 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 362.5353962923034,
       glass: "CaF2 fluorite (Nikon specifies two fluorite elements; patent 1.43382/95.13)",
+      apd: "inferred",
+      apdNote:
+        "Fluorite per Nikon's lens-construction diagram (the two large positives behind the protective glass), matching the CaF2 coordinate; the patent publishes nd/νd only.",
       role: "G1a positive front element.",
     },
     {
@@ -109,6 +112,9 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 383.51525566221585,
       glass: "CaF2 fluorite (Nikon specifies two fluorite elements; patent 1.43382/95.13)",
+      apd: "inferred",
+      apdNote:
+        "Fluorite per Nikon's lens-construction diagram (the two large positives behind the protective glass), matching the CaF2 coordinate; the patent publishes nd/νd only.",
       role: "G1a positive front element.",
     },
     {
@@ -149,6 +155,9 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 168.48430493907134,
       glass: "J-FKH1 (HIKARI)",
+      apd: "inferred",
+      apdNote:
+        "ED per Nikon's lens-construction diagram (the image-side member of the G1b pair and the rear member of the G3b VR pair), matching the J-FKH1 coordinate; the patent publishes nd/νd only.",
       role: "G1b positive member of the cemented L4+L5 pair.",
       cemented: "D1",
     },
@@ -272,6 +281,9 @@ const LENS_DATA = {
       indexReference: "d",
       fl: -48.91083418553724,
       glass: "J-FKH1 (HIKARI)",
+      apd: "inferred",
+      apdNote:
+        "ED per Nikon's lens-construction diagram (the image-side member of the G1b pair and the rear member of the G3b VR pair), matching the J-FKH1 coordinate; the patent publishes nd/νd only.",
       role: "Negative member of the G3b cemented L13+L14 pair; satisfies the patent VR-group Abbe condition.",
       cemented: "D4",
     },

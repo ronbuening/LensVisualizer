@@ -37,8 +37,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  0.57 mm edge.                                                     ║
  * ║                                                                    ║
  * ║  Glass names below are coordinate-compatible catalog matches, not ║
- * ║  proof of Nikon's supplier or production melt. The PF media and    ║
- * ║  L34 (627592) are explicit Unmatched dispositions.                ║
+ * ║  proof of Nikon's supplier or production melt. The PF media are    ║
+ * ║  explicit Unmatched dispositions; L34 (patent 627592) traces on    ║
+ * ║  the nearest ED-class curve, J-PSKH8. ED rows (L16, L34, L37) and  ║
+ * ║  the SR row (L18) follow Nikon's lens-construction diagram.        ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -108,7 +110,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "Epf-A",
-      diagramLabel: "Epf",
+      diagramLabel: "Epf-A",
       label: "PF optical medium A",
       type: "Bonded PF Optical Medium",
       nd: 1.5295,
@@ -119,7 +121,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "Epf-B",
-      diagramLabel: "Epf",
+      diagramLabel: "Epf-B",
       label: "PF optical medium B",
       type: "Bonded PF Optical Medium",
       nd: 1.5498,
@@ -164,6 +166,9 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 136.910298,
       glass: "J-FKH1 (HIKARI)",
+      apd: "inferred",
+      apdNote:
+        "ED assignment from Nikon's published lens-construction diagram (element 6 of 22 marked ED); the patent publishes nd/νd only.",
     },
     {
       id: 9,
@@ -189,6 +194,9 @@ const LENS_DATA = {
       indexReference: "d",
       fl: 84.499773,
       glass: "J-SFH4 (HIKARI)",
+      apd: "patent",
+      apdNote:
+        "SR element: Nikon's construction diagram marks element 8 as the SR lens, and the patent singles L18 out as the smallest-νd positive lens of G1 with conditions on its θgF (conditions (2) and (14)); stored line indices give θgF = 0.6319.",
       nC: 1.656918,
       nF: 1.681192,
       ng: 1.696531,
@@ -255,7 +263,10 @@ const LENS_DATA = {
       vd: 59.24,
       indexReference: "d",
       fl: -46.638703,
-      glass: "Unmatched (627592 class; nearest Hikari J-PSKH8 at 1.62846/59.18 is 9.6e-4 high in nd)",
+      glass: "J-PSKH8 (HIKARI) nearest ED-class curve — patent 627592, Δnd +0.00096",
+      apd: "inferred",
+      apdNote:
+        "ED assignment from Nikon's published lens-construction diagram (element 13 of 22 marked ED); the patent publishes nd/νd only.",
       cemented: "D4",
     },
     {
@@ -295,6 +306,9 @@ const LENS_DATA = {
       indexReference: "d",
       fl: -57.955204,
       glass: "J-PSKH1 (HIKARI)",
+      apd: "inferred",
+      apdNote:
+        "ED assignment from Nikon's published lens-construction diagram (element 16 of 22 marked ED); the patent publishes nd/νd only.",
       cemented: "D5",
     },
     {

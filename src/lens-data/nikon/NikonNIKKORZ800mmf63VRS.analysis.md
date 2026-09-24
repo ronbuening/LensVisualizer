@@ -16,7 +16,7 @@ The association with the production NIKKOR Z 800mm f/6.3 VR S is strong but rema
 1. Example 6 contains 22 named physical lens elements in 14 air-separated assemblies, matching Nikon's published 22-element/14-group construction for the production lens. The data model has 24 element entries only because the two optically distinct bonded PF media are represented separately from the L13 substrate; `elementCount` remains 22.
 2. The patent publishes a design focal length of 779.99933 mm and FNO 6.41999, while Nikon markets the production lens as 800 mm f/6.3. These are retained as separate design and marketing quantities rather than rescaling the prescription.
 3. The patent gives maximum image height Y = 21.6 mm, corresponding to a 43.2 mm full image diameter, consistent with the production FX/full-frame format.
-4. Example 6 contains one PF optical element. Nikon's production specification likewise lists one PF element, together with three ED and one SR element. The patent does not identify which prescription rows correspond to Nikon's ED and SR marketing classifications, so those labels are not assigned to specific patent elements here.
+4. Example 6 contains one PF optical element. Nikon's production specification likewise lists one PF element, together with three ED and one SR element. Nikon's published lens-construction diagram colours those elements, and counting its 22 elements front to rear (the PF-bearing L13 counted once) places the PF element at position 3 (L13), the SR element at position 8 (L18), and the three ED elements at positions 6, 13, and 16 (L16, L34, and L37). Each assignment matches the patent row's glass class: L18 is the smallest-νd G1 positive lens that the patent's θgF conditions single out, and L16, L34, and L37 are the high-νd anomalous-dispersion coordinates.
 5. The published near-focus state has d0 = 4606.5453 mm from the object to the first lens surface. Adding the patent TL = 393.4547 mm gives 5000.0000 mm to the image plane, matching Nikon's 5.0 m minimum-focus specification after reference-plane normalization. The patent's β = -0.16674 is also close to Nikon's rounded 0.16× maximum reproduction ratio.
 6. Example 6 focuses by moving the internal single-element G2 toward the image plane, consistent with Nikon's published internal-focusing designation.
 7. The patent application date, 2021-08-05, precedes Nikon's 2022-04-06 production release announcement.
@@ -105,11 +105,11 @@ L33 is the only air-separated singlet within G3 before the remaining chain of ce
 
 ### D4 — L34 + L35 Cemented Doublet
 
-L34: nd = 1.627496, νd = 59.24. Glass: Unmatched (627592 class; nearest Hikari J-PSKH8 at 1.62846/59.18 is 9.6e-4 high in nd). f = -46.638703 mm.
+L34: nd = 1.627496, νd = 59.24. Glass: J-PSKH8 (HIKARI) nearest ED-class curve — patent 627592, Δnd +0.00096. f = -46.638703 mm.
 
 L35: nd = 1.79504, νd = 28.69. Glass: J-LAFH3 (HIKARI), coordinate-compatible catalog assignment. f = +52.039526 mm.
 
-L34 is biconcave negative. L35 is a positive meniscus convex toward the object. The 1.627496/59.24 coordinate has no exact catalog match. The nearest Hikari row, J-PSKH8, sits 9.6e-4 higher in nd, which is too far for a six-decimal patent value, so L34 is recorded as an explicit Unmatched disposition and traces on the Abbe-number fallback rather than being forced to a named vendor glass.
+L34 is biconcave negative. L35 is a positive meniscus convex toward the object. The 1.627496/59.24 coordinate has no exact catalog match. Nikon's construction diagram marks this element (13 of 22) as ED, which places it in the anomalous-dispersion phosphate-crown family; its nearest catalog member, Hikari J-PSKH8 (1.62846 / 59.18), matches νd within 0.06 but sits 9.6e-4 higher in nd. The data file therefore traces L34 on the J-PSKH8 curve and states the residual in the label, rather than falling back to a normal-dispersion Abbe estimate. The residual may reflect a pre-catalog melt value in the 2021 filing; the label is not a supplier identification.
 
 ### D5 — L36 + L37 Cemented Doublet
 
@@ -145,7 +145,7 @@ D8 is the final cemented pair before the 74.56937 mm published rear air-equivale
 
 ## Glass Identification and Selection
 
-The patent publishes nd and νd coordinates, not supplier glass names. The names below are therefore coordinate-compatible catalog identifications established in the dossier's glass audit; they are not proof of Nikon's actual supplier, melt, or production designation. The two PF media and L34 remain explicit Unmatched dispositions on the Abbe-number fallback; every other element traces on a catalog Sellmeier curve.
+The patent publishes nd and νd coordinates, not supplier glass names. The names below are therefore coordinate-compatible catalog identifications established in the dossier's glass audit; they are not proof of Nikon's actual supplier, melt, or production designation. The two PF media remain explicit Unmatched dispositions on the Abbe-number fallback, and L34 traces on its nearest ED-class curve with a stated residual; every other element traces on an exact or rounding-level catalog Sellmeier curve.
 
 | Glass / class | nd | νd | Used in | Status |
 | --- | ---: | ---: | --- | --- |
@@ -160,7 +160,7 @@ The patent publishes nd and νd coordinates, not supplier glass names. The names
 | J-LASFH16 (HIKARI) | 2.001 | 29.12 | L31 | Exact coordinate match |
 | NBFD32 (HOYA) | 1.730371 | 32.23 | L32, L310 | Coordinate-compatible to catalog rounding |
 | J-LASF016 (HIKARI) | 1.7725 | 49.62 | L33, L311 | Exact coordinate match |
-| Unmatched (627592 class) | 1.627496 | 59.24 | L34 | Nearest Hikari J-PSKH8 is 9.6e-4 high in nd; explicit disposition |
+| J-PSKH8 (HIKARI), nearest curve | 1.627496 | 59.24 | L34 | Patent 627592; catalog 1.62846 / 59.18 (Δnd +9.6e-4); Nikon marks ED |
 | J-LAFH3 (HIKARI) | 1.79504 | 28.69 | L35 | Exact coordinate match |
 | J-KZFH1 (HIKARI) | 1.61266 | 44.46 | L36 | Exact coordinate match |
 | J-PSKH1 (HIKARI) | 1.59319 | 67.9 | L37 | Exact coordinate match |
@@ -177,7 +177,7 @@ $$
 
 which reproduces the patent's Table 26 value 0.6319. The same L18 entry carries dPgF = +0.0334 from the authoritative Hikari data sheet. This provides direct spectral support for the patent conditions involving θgFp1; it does not by itself justify describing the complete lens as apochromatic. No broader APO claim is made here.
 
-Nikon markets the production lens as containing three ED elements and one SR element in addition to one PF element. The patent example does not identify those production marketing classifications on specific prescription rows, so the catalog-coordinate labels above are kept separate from Nikon's ED/SR count.
+Nikon markets the production lens as containing three ED elements and one SR element in addition to one PF element, and its lens-construction diagram identifies them as L16, L34, and L37 (ED) and L18 (SR). The data file flags the three ED rows `apd: "inferred"` (the identification comes from the manufacturer diagram, not the patent) and L18 `apd: "patent"` (the patent's θgF conditions single it out). The catalog labels still name dispersion curves, not Nikon's production melts.
 
 ## Focus Mechanism
 
@@ -254,7 +254,7 @@ No uniform scaling is applied. Marketed 800 mm / f/6.3 and patent design 779.999
 ## Sources and References
 
 1. Japan Patent Office, **JP 2023-23323 A**, *光学系及び光学機器* (*Optical system and optical apparatus*), published 2023-02-16. Example 6: ¶0158–¶0167, Tables 16–18 (PDF pp. 29–31), Figure 11 (PDF p. 40); diffractive equations (b)–(c): ¶0096–¶0100 (PDF p. 17); conditions: Table 26 (PDF pp. 36–37).
-2. Nikon Imaging, **NIKKOR Z 800mm f/6.3 VR S — Specifications**: https://imaging.nikon.com/imaging/lineup/lens/z-mount/z_800mmf63_vr_s/
+2. Nikon Imaging, **NIKKOR Z 800mm f/6.3 VR S — Specifications and Lens Construction diagram** (ED, SR, and PF elements colour-coded): https://imaging.nikon.com/imaging/lineup/lens/z-mount/z_800mmf63_vr_s/
 3. Nikon Corporation, **Nikon releases the NIKKOR Z 800mm f/6.3 VR S**, 2022-04-06: https://www.nikon.com/company/news/2022/0406_lens_01/
 4. Hikari Glass Co., Ltd., **Optical Glass Catalog**: https://www.hikari-g.co.jp/optical_glass/catalog/document/HIKARI_Catalog.pdf
 5. Hikari Glass Co., Ltd., **J-SFH4 optical-glass data sheet**: https://www.hikari-g.co.jp/optical_glass/general_optical_glass/document/SF/J_SFH4.pdf
