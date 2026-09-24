@@ -64,7 +64,7 @@ describe("MTF tab", () => {
     expect(screen.getByRole("status").textContent).toContain("tilt or shift");
     expect(worker).not.toHaveBeenCalled();
   });
-  it("defaults to the diffraction-corrected model and states the spectrum it could use", async () => {
+  it("defaults to the diffraction-corrected photopic model and notes estimated dispersion", async () => {
     stubWorker();
     render(
       <MtfTab
@@ -79,9 +79,10 @@ describe("MTF tab", () => {
     );
     expect(await screen.findByRole("figure", { name: /image height/ })).toBeTruthy();
     const header = screen.getByText(/^f\/2\.8 · 49\.2 mm · Diffraction-corrected/);
+    expect(header.textContent).toContain("photopic spectrum");
     expect(header.textContent).toContain("Design image plane");
-    // The fixture glass has no spectral data, so the photopic preference falls back with a note.
-    expect(screen.getByText(/Photopic MTF needs physical dispersion data/)).toBeTruthy();
+    // The fixture glass has only nd and νd, so its dispersion is estimated and the tab says so.
+    expect(screen.getByText("Dispersion of one glass is estimated from nd and νd.")).toBeTruthy();
   });
   it("switches chart views and frequencies from one computed result, keeping color slots fixed", async () => {
     const { calls } = stubWorker();

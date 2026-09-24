@@ -20,6 +20,21 @@ import { LINE_NM } from "../../../src/optics/spectralLines.js";
 import { anchoredIndexAtWavelength } from "../../../src/optics/chromatic/indexResolver.js";
 import type { MtfOptions } from "../../../src/types/mtf.js";
 
+/** Simple fixture lens with its single glass's data replaced. */
+function withGlass(patch: { nd?: number; vd?: number; dPgF?: number }) {
+  const L = buildSimplePositiveElementLens();
+  const nd = patch.nd ?? L.elements[0].nd;
+  return prepareRuntimeState(
+    build({
+      ...L.data,
+      elements: L.elements.map((e) => ({ ...e, ...patch, nd })),
+      surfaces: L.data.surfaces.map((s) => ({ ...s, nd: s.nd === 1 ? 1 : nd })),
+    }),
+    0,
+    0,
+  );
+}
+
 const options: MtfOptions = {
   method: "geometric",
   spectrum: "cdf",
@@ -103,19 +118,30 @@ describe("qualified spectral MTF", () => {
     expect(otfMagnitude(shifted)[1]).toBeCloseTo(1, 12);
     expect(combineOtfs([]).real).toEqual([]);
   });
-  it("requires physical spectral data and identifies compatible catalog substitution", () => {
-    const unresolved = prepareRuntimeState(buildSimplePositiveElementLens(), 0, 0);
-    expect(assessMtfSupport(unresolved, options).reason).toBe("spectral-data-unavailable");
-    expect(assessMtfSupport(unresolved, { ...options, spectrum: "reference" }).available).toBe(true);
+  it("estimates nd/νd-only glass dispersion, says so, and identifies compatible catalog substitution", () => {
+    const estimated = prepareRuntimeState(buildSimplePositiveElementLens(), 0, 0);
+    expect(estimated.lens.dispersion[1].quality).toBe("abbe");
+    expect(assessMtfSupport(estimated, options).limitations.join(" ")).toContain("One glass has only nd and νd");
+    expect(resolveMtfSpectrum(estimated, "photopic")).toEqual({
+      spectrum: "photopic",
+      note: "Dispersion of one glass is estimated from nd and νd.",
+    });
     const resolved = prepareRuntimeState(buildChromaticPositiveElementLens(), 0, 0);
     const support = assessMtfSupport(resolved, options);
     expect(support.available).toBe(true);
     expect(support.spectralLines.map((line) => line.weight)).toEqual([1 / 3, 1 / 3, 1 / 3]);
     expect(support.limitations.join(" ")).toContain("spectral proxies");
   });
-  it("requires physical dispersion for hidden rear plates as well as visible elements", () => {
+  it("blocks glasses whose dispersion cannot be estimated", () => {
+    expect(assessMtfSupport(withGlass({ vd: undefined }), options).reason).toBe("spectral-data-unavailable");
+    const fluoriteLike = withGlass({ nd: 1.497, vd: 81.6 });
+    expect(assessMtfSupport(fluoriteLike, options).message).toContain("low-dispersion glass (νd 81.6)");
+    expect(assessMtfSupport(fluoriteLike, { ...options, spectrum: "reference" }).available).toBe(true);
+    expect(assessMtfSupport(withGlass({ nd: 1.497, vd: 81.6, dPgF: 0.03 }), options).available).toBe(true);
+  });
+  it("checks hidden rear plates as well as visible elements", () => {
     const base = buildChromaticPositiveElementLens();
-    const unknownPlate = { ...REAR_PLATE_FIXTURE, glass: undefined };
+    const unknownPlate = { ...REAR_PLATE_FIXTURE, glass: undefined, nd: 1.497, vd: 81.6 };
     const unresolved = build({ ...base.data, rearPlates: [unknownPlate] });
     const state = prepareRuntimeState(unresolved, 0, 0);
     expect(unresolved.elements).toHaveLength(base.elements.length);
@@ -188,11 +214,11 @@ describe("qualified spectral MTF", () => {
     expect(field.sagittal[0]).toBeCloseTo(1, 12);
   });
   it("falls back to the reference wavelength when glass data cannot support a spectrum", () => {
-    const unresolved = prepareRuntimeState(buildSimplePositiveElementLens(), 0, 0);
+    const unresolved = withGlass({ vd: undefined });
     for (const spectrum of ["photopic", "cdf"] as const) {
       const choice = resolveMtfSpectrum(unresolved, spectrum);
       expect(choice.spectrum).toBe("reference");
-      expect(choice.note).toContain("reference wavelength");
+      expect(choice.note).toContain("because a glass has no Abbe number; showing the reference wavelength");
       expect(assessMtfSupport(unresolved, { ...options, spectrum }).reason).toBe("spectral-data-unavailable");
     }
     const resolved = prepareRuntimeState(buildChromaticPositiveElementLens(), 0, 0);

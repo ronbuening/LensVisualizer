@@ -40,6 +40,13 @@ export const MTF_MIN_RAYS = 16;
  */
 export const MTF_MAX_UNKNOWN_FLUX = 0.005;
 
+/**
+ * Spectral MTF accepts glasses whose C/F/g indices are estimated from (nd, vd) with normal-line partial dispersions,
+ * except above this Abbe number without an authored dPgF: that is where anomalous-dispersion glasses sit, and their
+ * missing secondary-spectrum correction can make a polychromatic estimate worse than the reference wavelength.
+ */
+export const MTF_ESTIMATED_DISPERSION_MAX_VD = 65;
+
 /** Conservative scalar-diffraction suitability limits; see agent_docs/architecture/optics-engine.md. */
 export const MTF_DIFFRACTION_LIMITS = Object.freeze({
   maxChiefIncidenceDeg: 15,

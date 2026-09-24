@@ -97,10 +97,16 @@ presented as the manufacturer's production MTF; the shared omitted-sensor limita
 
 **Spectra.** Monochromatic runs retain native d/e indices; mixed references require usable physical conversion. C/d/F
 (equal weights) and photopic (470/510/555/610/650 nm, CIE 1924 V(λ) weights on an equal-energy source, 555 nm
-first) require physical dispersion for every glass; `resolveMtfSpectrum` falls back to the reference wavelength with a
-note. Spectral indices are anchored: `anchoredIndexAtWavelength` (`chromatic/indexResolver.ts`) adds the catalog's
-wavelength dependence to each authored index (Sellmeier offset, or a four-term Cauchy fit through C/d/F/g line
-indices), so a spectral run keeps the design's focus at its reference line. Compatible catalog glass is explicitly a
+first) share one glass gate, `assessMtfSpectralData`. Catalog Sellmeier and d-referenced line indices qualify, and so
+do d-referenced nd/νd-only glasses through the Abbe tier's normal-line estimate, which the tab notes. A glass with no
+νd, an e-line glass without catalog data, or an nd/νd-only glass above νd 65 without `dPgF`
+(`MTF_ESTIMATED_DISPERSION_MAX_VD`, where anomalous glasses sit) blocks spectral sampling; `resolveMtfSpectrum` then
+falls back to the reference wavelength and names the reason. With about 17 % of each lens's glasses reduced to nd/νd,
+the estimate's median error against full-data photopic MTF was 0.002 over 18 lenses (the reference wavelength's was
+0.068), but degrading fluorite-class glasses without `dPgF` in a 400 mm telephoto cost up to 0.14. Spectral indices
+are anchored: `anchoredIndexAtWavelength` (`chromatic/indexResolver.ts`) adds the catalog's wavelength dependence
+to each authored index (Sellmeier offset, or a four-term Cauchy fit through C/d/F/g line indices), so a spectral run
+keeps the design's focus at its reference line. Compatible catalog glass is explicitly a
 spectral proxy. Complex OTFs combine, weighted by incident line weight × transmitted flux, before magnitude, which
 retains lateral color. Every chromatic trace sets `wavelengthNm` beside its indices.
 

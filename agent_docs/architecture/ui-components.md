@@ -79,8 +79,8 @@ To add a tab, follow the five registration points in `agent_docs/adding_an_analy
 thin container over the section components and data hooks in `src/components/display/analysis/aberrations/`; the
 distortion and vignetting tabs consume deferred/frozen inputs through `analysisJobsForState2`.
 
-`MtfTab` defaults to the diffraction-corrected method, a photopic spectrum (the reference line when a glass lacks
-spectral data, with a note), the design image plane and the image-height view at 10 % field steps showing 10 and
+`MtfTab` defaults to the diffraction-corrected method, a photopic spectrum (with a note when glass dispersion is
+estimated from nd/νd, or the reference line and the reason when a glass blocks spectral sampling), the design image plane and the image-height view at 10 % field steps showing 10 and
 30 lp/mm. Method, spectrum, image plane, sampling (128² or 256² cap), view, field step (10/5/2/1 %) and frequency chips
 (10–50 lp/mm) persist in localStorage through `src/utils/state/mtfPreferences.ts` and `useMtfPreferences`, which
 comparison panes share; the existing `tab=mtf` URL selects the tab. Every request computes 0–100 lp/mm for every

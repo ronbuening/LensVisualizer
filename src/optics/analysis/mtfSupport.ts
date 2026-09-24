@@ -6,6 +6,7 @@ import { mtfFiniteConjugate, mtfFiniteObjectPoint } from "./mtfConjugates.js";
 import {
   MTF_DEFAULT_GRID_CAP,
   MTF_DIFFRACTION_LIMITS,
+  MTF_ESTIMATED_DISPERSION_MAX_VD,
   MTF_FIELDS,
   MTF_FREQUENCIES,
   MTF_GRID_CAPS,
@@ -44,26 +45,50 @@ const SPECTRUM_LABELS: Record<Exclude<MtfSpectrum, "reference">, string> = {
   photopic: "Photopic",
 };
 
-/** Spectrum actually used for a request, and why it differs from the preferred one. */
+/** Spectrum actually used for a request, and a note when it differs from the preferred one or estimates dispersion. */
 export interface MtfSpectrumChoice {
   spectrum: MtfSpectrum;
   note: string | null;
 }
 
+/** Whether the glasses can support C/d/F or photopic sampling, and how many use estimated dispersion. */
+export interface MtfSpectralData {
+  /** Why a spectrum cannot be sampled, completing "…because …", or null when it can. */
+  blocker: string | null;
+  /** Glasses whose C/F/g indices are estimated from nd and vd. */
+  estimatedGlasses: number;
+}
+
 /**
- * True when every glass has physical wavelength data: catalog Sellmeier or measured line indices
- * referenced to d. The same test gates C/d/F and photopic sampling.
+ * Classify the glasses for spectral MTF. Catalog Sellmeier and d-referenced line indices are physical data;
+ * d-referenced nd/vd-only glasses use the Abbe tier's normal-line estimate (`abbeLineIndices`), which keeps the
+ * F−C span exact. Glasses with no Abbe number, native e-line glasses without catalog data, and nd/vd-only glasses
+ * above `MTF_ESTIMATED_DISPERSION_MAX_VD` without an authored dPgF block spectral sampling. The same test gates
+ * C/d/F and photopic sampling.
  *
  * @param state - prepared optical state
- * @returns whether anchored indices exist at any visible wavelength
+ * @returns the first blocker, and the number of estimated glasses
  */
-export function hasMtfSpectralData(state: PreparedOpticalState): boolean {
+export function assessMtfSpectralData(state: PreparedOpticalState): MtfSpectralData {
   const { lens } = state;
-  return lens.dispersion.every((dispersion, i) => {
-    if (dispersion.quality === "air" || dispersion.quality === "sellmeier") return true;
-    const element = lens.source.elements.find((e) => e.id === state.surfaces[i].elemId);
-    return dispersion.quality === "lineIndices" && element?.indexReference !== "e";
-  });
+  const estimated = new Set<number>();
+  for (const [i, dispersion] of lens.dispersion.entries()) {
+    if (dispersion.quality === "air" || dispersion.quality === "sellmeier") continue;
+    const surface = state.surfaces[i];
+    const element = lens.source.elements.find((e) => e.id === surface.elemId);
+    if (dispersion.quality === "constant") return { blocker: "a glass has no Abbe number", estimatedGlasses: 0 };
+    if (element?.indexReference === "e")
+      return { blocker: "an e-line glass has no catalog dispersion data", estimatedGlasses: 0 };
+    if (dispersion.quality !== "abbe") continue;
+    const vd = element?.vd ?? lens.runtime.vdByIdx[i] ?? 0;
+    if (vd > MTF_ESTIMATED_DISPERSION_MAX_VD && element?.dPgF === undefined)
+      return {
+        blocker: `a low-dispersion glass (νd ${vd.toFixed(1)}) has no partial-dispersion data`,
+        estimatedGlasses: 0,
+      };
+    estimated.add(surface.elemId ?? -1 - i);
+  }
+  return { blocker: null, estimatedGlasses: estimated.size };
 }
 
 /**
@@ -71,13 +96,22 @@ export function hasMtfSpectralData(state: PreparedOpticalState): boolean {
  *
  * @param state - prepared optical state
  * @param preferred - requested spectrum
- * @returns spectrum to request and a user-facing note when it differs
+ * @returns spectrum to request, with a user-facing note when it differs or estimates dispersion
  */
 export function resolveMtfSpectrum(state: PreparedOpticalState, preferred: MtfSpectrum): MtfSpectrumChoice {
-  if (preferred === "reference" || hasMtfSpectralData(state)) return { spectrum: preferred, note: null };
+  if (preferred === "reference") return { spectrum: preferred, note: null };
+  const { blocker, estimatedGlasses } = assessMtfSpectralData(state);
+  if (!blocker)
+    return {
+      spectrum: preferred,
+      note:
+        estimatedGlasses > 0
+          ? `Dispersion of ${estimatedGlasses === 1 ? "one glass" : `${estimatedGlasses} glasses`} is estimated from nd and νd.`
+          : null,
+    };
   return {
     spectrum: "reference",
-    note: `${SPECTRUM_LABELS[preferred]} MTF needs physical dispersion data for every glass; showing the reference wavelength.`,
+    note: `${SPECTRUM_LABELS[preferred]} MTF is unavailable because ${blocker}; showing the reference wavelength.`,
   };
 }
 
@@ -174,10 +208,11 @@ export function assessMtfSupport(state: PreparedOpticalState, options: MtfOption
     );
   if (options.spectrum !== "reference") {
     const label = SPECTRUM_LABELS[options.spectrum];
-    if (!hasMtfSpectralData(state))
+    const spectral = assessMtfSpectralData(state);
+    if (spectral.blocker)
       return reject(
         "spectral-data-unavailable",
-        `${label} MTF requires physical dispersion data for every glass. Reference-wavelength MTF remains available.`,
+        `${label} MTF is unavailable because ${spectral.blocker}. Reference-wavelength MTF remains available.`,
       );
     support.referenceWavelengthNm = support.spectralLines[0].wavelengthNm;
     support.useResolvedReference = true;
@@ -189,6 +224,10 @@ export function assessMtfSupport(state: PreparedOpticalState, options: MtfOption
     if (lens.dispersion.some((s) => s.quality === "sellmeier"))
       support.limitations.push(
         "Compatible catalog glasses supply spectral proxies anchored to the authored indices, not proof of production glass identity or MTF accuracy.",
+      );
+    if (spectral.estimatedGlasses > 0)
+      support.limitations.push(
+        `${spectral.estimatedGlasses === 1 ? "One glass has only nd and νd; its" : `${spectral.estimatedGlasses} glasses have only nd and νd; their`} dispersion is estimated from normal-line partial dispersions, which keeps primary color exact but approximates secondary spectrum.`,
       );
   }
   if (options.method === "geometric")
