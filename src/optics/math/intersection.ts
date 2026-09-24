@@ -74,8 +74,9 @@ interface SurfaceEvaluation {
  * Intersect a normalized ray with a surface profile at a vertex plane.
  *
  * Flat and tilted planes solve analytically. Curved profiles solve
- * f(t) = ray.z(t) - surface.z(ray.x(t), ray.y(t)) with a bracketed
- * Newton iteration so grazing roots remain bounded.
+ * f(t) = ray.z(t) - surface.z(ray.x(t), ray.y(t)) with a safeguarded Newton
+ * iteration inside a sign-changing bracket, so grazing and steep-rim roots
+ * remain bounded and cannot stall.
  *
  * @param ray - origin and direction in engine coordinates
  * @param profile - surface sag/normal evaluator
@@ -119,10 +120,17 @@ export function intersectSurfaceProfile(
   const zProjectedSeed = Math.abs(direction[2]) > VECTOR_EPSILON ? (vertexZ - ray.origin[2]) / direction[2] : NaN;
   let t = isFinite(zProjectedSeed) && zProjectedSeed > lo && zProjectedSeed < hi ? zProjectedSeed : (lo + hi) / 2;
   t = clamp(t, lo, hi);
+  /* Safeguarded Newton (rtsafe): a Newton step must stay inside the sign-changing
+   * bracket and be at most half the step before last; otherwise bisect. Without the
+   * halving rule, a seed on a sphere's steep continuation beyond |R| (slope ~1e6)
+   * creeps through the bracket in micrometre steps and never reaches a
+   * well-conditioned rim root elsewhere in it. */
+  let stepBeforeLast = hi - lo;
+  let lastStep = stepBeforeLast;
 
   for (let iterations = 1; iterations <= maxIterations; iterations++) {
     const current = evalAt(t);
-    if (!isFiniteEvaluation(current)) return failure("noConvergedIntersection", null, iterations);
+    if (!isFiniteValueEvaluation(current)) return failure("noConvergedIntersection", null, iterations);
     if (Math.abs(current.value) <= tolerance) {
       return makeSuccess(current, profile, vertexZ, tolerance, refractiveIndex, iterations);
     }
@@ -134,10 +142,12 @@ export function intersectSurfaceProfile(
       hi = t;
     }
 
-    /* Hybrid Newton/bisection: Newton is fast near the root, while bisection
-     * keeps the solve inside the sign-changing bracket for steep rim hits. */
-    const newtonT = t - current.value / current.derivative;
-    t = isFinite(newtonT) && newtonT > lo && newtonT < hi ? newtonT : (lo + hi) / 2;
+    const newtonT = isFiniteEvaluation(current) ? t - current.value / current.derivative : NaN;
+    const acceptNewton =
+      isFinite(newtonT) && newtonT > lo && newtonT < hi && Math.abs(newtonT - t) <= Math.abs(stepBeforeLast) / 2;
+    stepBeforeLast = lastStep;
+    lastStep = acceptNewton ? newtonT - t : (hi - lo) / 2;
+    t = acceptNewton ? newtonT : lo + lastStep;
   }
 
   const finalEval = evalAt((lo + hi) / 2);

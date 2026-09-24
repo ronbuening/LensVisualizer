@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { conicPolySag, sag, sagSlopeRaw } from "../../../src/optics/optics.js";
 import type { AsphericCoefficients } from "../../../src/types/optics.js";
+import type { Vec3 } from "../../../src/optics/types.js";
 import { createSurfaceProfile, createTiltedPlaneProfile } from "../../../src/optics/math/surfaceProfile.js";
 import { intersectSurfaceProfile } from "../../../src/optics/math/intersection.js";
 import {
@@ -315,6 +316,30 @@ describe("Optics engine surface intersections", () => {
     const tilted = createTiltedPlaneProfile({ y: 1, z: 1 });
     const tiltedHit = intersectSurfaceProfile({ origin: [0, 0, -5], direction: [0, 0, 1] }, tilted, 10);
     expect(tiltedHit.ok).toBe(true);
+  });
+
+  it("recovers steep-rim sphere hits when the vertex-plane seed lands on the sag continuation", () => {
+    // A rim ray of a strong concave surface (sd/|R| ≈ 0.89): the z-projected Newton seed lies beyond |R|,
+    // where the continued sag has slope ~1e6, while the real hit near r = 15.35 mm is well conditioned.
+    const R = -17.388;
+    const vertexZ = 67.46;
+    const ray = { origin: [-2.2042, -14.9501, 57.7633] as Vec3, direction: normalize([-0.01696, -0.44528, 0.89523])! };
+    const hit = intersectSurfaceProfile(ray, createSurfaceProfile({ R }, undefined), vertexZ, {
+      maxT: 22.6,
+      directionNormalized: true,
+    });
+    const center: Vec3 = [0, 0, vertexZ + R];
+    const offset: Vec3 = [ray.origin[0] - center[0], ray.origin[1] - center[1], ray.origin[2] - center[2]];
+    const b = dot(offset, ray.direction);
+    const c = dot(offset, offset) - R * R;
+    const analyticT = [-b - Math.sqrt(b * b - c), -b + Math.sqrt(b * b - c)].find(
+      (t) => ray.origin[2] + t * ray.direction[2] > center[2],
+    )!;
+    expect(hit.ok).toBe(true);
+    if (hit.ok) {
+      expectClose(hit.t, analyticT, 1e-8);
+      expect(hit.radius).toBeLessThan(15.5);
+    }
   });
 
   it("returns typed failures for invalid directions, invalid bounds, tangents, and misses", () => {
