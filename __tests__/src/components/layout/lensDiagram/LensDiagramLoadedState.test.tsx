@@ -130,6 +130,7 @@ function baseProps(overrides: Partial<LensDiagramLoadedStateProps> = {}): LensDi
       dark: true,
       isWide: true,
       compact: false,
+      analysisControls: "dock",
       showControls: true,
       showSliders: true,
       maxSvgHeight: "60vh",

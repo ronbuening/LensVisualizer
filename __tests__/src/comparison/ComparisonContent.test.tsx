@@ -41,6 +41,10 @@ vi.mock("../../../src/comparison/SharedSlidersBar.js", () => ({
   ),
 }));
 
+vi.mock("../../../src/comparison/SharedAnalysisDock.js", () => ({
+  default: () => <div data-testid="shared-analysis-dock" />,
+}));
+
 afterEach(() => cleanup());
 
 describe("ComparisonContent", () => {
@@ -49,7 +53,7 @@ describe("ComparisonContent", () => {
     const LB = buildSimplePositiveElementLens("comparison-b");
     const dispatch = vi.fn();
 
-    render(
+    const { rerender } = render(
       <ComparisonContent
         theme={themes.dark}
         isWide={true}
@@ -84,6 +88,9 @@ describe("ComparisonContent", () => {
 
     expect(screen.getByTestId("comparison-layout").textContent).toBe("lens-a vs lens-b");
     expect(screen.getByTestId("shared-sliders")).toBeTruthy();
+    expect(
+      screen.getByTestId("shared-analysis-dock").nextElementSibling?.contains(screen.getByTestId("shared-sliders")),
+    ).toBe(true);
 
     fireEvent.click(screen.getByRole("button", { name: "Zoom" }));
     expect(dispatch).toHaveBeenCalledWith({ type: SET_SHARED_ZOOM_T, value: 0.4 });
@@ -101,6 +108,41 @@ describe("ComparisonContent", () => {
     });
     fireEvent.click(screen.getByRole("button", { name: "Movement" }));
     expect(dispatch).toHaveBeenCalledWith({ type: SET_GROUP_MOVEMENT, open: true, mode: "focus" });
+
+    /* Mobile comparison keeps each pane's own pill launcher. */
+    rerender(
+      <ComparisonContent
+        theme={themes.dark}
+        isWide={false}
+        lensKeyA="lens-a"
+        lensKeyB="lens-b"
+        comparisonLenses={{ LA, LB }}
+        focusPair={computeFocusPair(0.2, LA, LB)}
+        aperturePair={computeAperturePair(0.1, LA, LB)}
+        zoomPair={computeZoomPair(0, LA, LB)}
+        movementPair={computeMovementPair(0, 0, LA, LB)}
+        scaleRatios={null}
+        maxHeaderHeight={0}
+        onHeaderHeight={vi.fn()}
+        flashPanel={null}
+        sharedFocusT={0.2}
+        sharedStopdownT={0.1}
+        sharedZoomT={0}
+        sharedShiftMm={0}
+        sharedTiltDeg={0}
+        onSharedFocusChange={vi.fn()}
+        onSharedStopdownChange={vi.fn()}
+        onSharedShiftChange={vi.fn()}
+        onSharedTiltChange={vi.fn()}
+        onFocusPointerDown={vi.fn()}
+        onAperturePointerDown={vi.fn()}
+        onSliderPointerUp={vi.fn()}
+        dispatch={dispatch}
+        showEffectiveFocalLength={false}
+        showEffectiveAperture={false}
+      />,
+    );
+    expect(screen.queryByTestId("shared-analysis-dock")).toBeNull();
   });
 
   it("renders an error display and suppresses sliders for failed comparison builds", () => {
@@ -139,5 +181,6 @@ describe("ComparisonContent", () => {
 
     expect(screen.getByText("Failed to build lens for comparison")).toBeTruthy();
     expect(screen.queryByTestId("shared-sliders")).toBeNull();
+    expect(screen.queryByTestId("shared-analysis-dock")).toBeNull();
   });
 });
