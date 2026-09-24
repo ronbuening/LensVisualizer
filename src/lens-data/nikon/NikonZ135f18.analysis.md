@@ -82,7 +82,7 @@ The finite station independently gives approximately −0.20001 magnification an
 
 The nominal aperture and first shortcut are f/1.85. The product's f/1.8 designation is retained in its name. The stop stays fixed during focusing; finite-conjugate effective aperture and pupil readouts are calculated quantities. A pupil estimate should not be interpreted as an independently published patent measurement.
 
-The source rear stack is 11.4681 mm air, 1.6000 mm glass at nd=1.51680 and 1.3712 mm air. Omitting that plate requires a final air-equivalent spacing of 13.8941523 mm, not the 14.4393 mm physical sum. This preserves paraxial back focus while omitting the filter's higher-order and chromatic effects. The physical total length is approximately 147.453 mm; the model's equivalent air track is 146.908 mm.
+The source rear stack is 11.4681 mm air, a 1.6000 mm filter FL at nd=1.51680, νd=64.14 and 1.3712 mm air. The model stores the physical 11.4681 mm gap after L16 and carries the filter in `rearPlates`: every analysis traces it, including its higher-order and chromatic contributions, but the diagram does not draw it. Its paraxial air equivalent is 13.8941523 mm, against the 14.4393 mm physical sum. The physical total length, including the filter, is approximately 147.453 mm; the equivalent air track is 146.908 mm.
 
 ## Model Limitations
 

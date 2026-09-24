@@ -226,7 +226,8 @@ const LENS_DATA = {
   //
   //  Source surface 13 is a virtual plane per ¶0128; its 2.7 mm is merged into STO.
   //  The thin layer at surface 6A has explicit optical constants and is rendered
-  //  as a bonded medium. The sensor filter is omitted using air-equivalent BF.
+  //  as a bonded medium. The removable filter FL (surfaces 25–26) is modeled in
+  //  `rearPlates` (traced, not drawn); surface 24's d is the physical 10.5 mm gap.
   //  Semi-diameters estimated from f/1.85 entrance pupil geometry (EP SD ≈ 14 mm)
   //  with 8–12% mechanical clearance.  Sized to ensure positive edge thickness
   //  and smooth SD progression across cemented doublets.
@@ -268,10 +269,21 @@ const LENS_DATA = {
     { label: "21", R: -63.69645, d: 1.9, nd: 1.64769, elemId: 11, sd: 18.0 }, // L32 front (junction)
     { label: "22", R: -482.01125, d: 2.887, nd: 1.0, elemId: 0, sd: 16.7 }, // L32 rear → air
     { label: "23", R: -50.20764, d: 1.9, nd: 1.64769, elemId: 12, sd: 18.0 }, // L33 front
-    { label: "24", R: 1e15, d: 12.554852320675106, nd: 1.0, elemId: 0, sd: 18.0 }, // L33 rear → air
+    { label: "24", R: 1e15, d: 10.5, nd: 1.0, elemId: 0, sd: 18.0 }, // L33 rear → air (gap to FL)
+  ],
 
-    // Source BF = 10.5 + 1.6 mm filter + 1 mm air;
-    // air-equivalent BF = 10.5 + 1.6/1.5168 + 1.
+  /* ── Filter FL (patent surfaces 25–26): traced, not drawn ──
+   *  Air-equivalent BF = 10.5 + 1.6/1.5168 + 1.0 = 12.5549 mm (Table 9 BFa 12.554). */
+  rearPlates: [
+    {
+      label: "FL",
+      thicknessMm: 1.6,
+      nd: 1.5168,
+      vd: 64.1,
+      glass: "J-BK7A",
+      gapAfterMm: 1.0,
+      source: "WO 2019/220618 A1, Example 9 Table 9 surfaces 25–26 (D26 = 1.000 at both focus states)",
+    },
   ],
 
   // §4 — Aspherical coefficients
@@ -312,7 +324,8 @@ const LENS_DATA = {
 
   // §5 — Variable air spacings [d_infinity, d_close_focus]
   //  G2 travels 7.911 mm toward object: D_STO shrinks, D19 expands.
-  //  D26 is constant at 1.000 mm (patent lists as variable but values are identical).
+  //  D26 is constant at 1.000 mm (patent lists as variable but values are identical);
+  //  it is the FL plate's `gapAfterMm`.
 
   var: {
     STO: [13.02, 5.109],
@@ -339,9 +352,9 @@ const LENS_DATA = {
   ],
 
   // §8 — Focus configuration
-  closeFocusM: 0.39945485232067507,
+  closeFocusM: 0.4,
   focusDescription:
-    "Patent inner focus: G2 translates 7.911 mm toward the object; G1, stop and G3 stay fixed. Source close distance is 0.4 m object-to-image (307.67 mm to the first surface); the model preserves that object leg after omitting the sensor plate.",
+    "Patent inner focus: G2 translates 7.911 mm toward the object; G1, stop and G3 stay fixed. Source close distance is 0.4 m object-to-image (307.67 mm to the first surface plus the 92.330 mm physical track including filter FL).",
 
   // §9 — Aperture configuration
   nominalFno: 1.85,

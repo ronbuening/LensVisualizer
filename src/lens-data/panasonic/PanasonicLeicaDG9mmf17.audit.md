@@ -47,3 +47,13 @@ Patent: US 2023/0367186 A1, Example 1
 - Surface 10: changed `S-TIH4` to code-first `752251` dense-flint wording because the exact FF8 coordinate does not prove the patent supplier.
 - Surface 20: changed `S-PHM52Q` to exact-coordinate OHARA `S-BSM15`.
 - Synchronized the analysis and removed the old phosphate-crown claim. No geometry changed.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Re-read US 2023/0367186 A1 Example 1 Table 1A (PDF p. 23): surface 25 d = 10.43000 to a cover glass (surfaces
+  26–27, t = 4.20000, nd = 1.51680, νd = 64.2) followed by 1.00000 air to the image plane. The legacy folded last gap
+  14.199 = 10.43 + 4.20/1.5168 + 1.00. Last surface `21` now stores the physical 10.43 mm (fixed; not a focus variable)
+  and the plate is a `rearPlates` entry with `gapAfterMm: 1.0`; glass `N-BK7` (exact nd/νd class match).
+- Plate check against HEAD: EFL identical at both focus keyframes; paraxial defocus changes by ≤ 1.3e-5 mm (rounding of
+  the legacy folded 14.199). Physical track grows by 1.431 mm = 4.20 × (1 − 1/1.5168), matching the patent's printed
+  total lens length 70.9975 mm. `closeFocusM` (0.095 m production spec) is unchanged.

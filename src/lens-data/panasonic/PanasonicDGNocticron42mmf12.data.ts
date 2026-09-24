@@ -8,8 +8,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ Kyoichi Miyazaki). Patent-scale prescription; not rescaled to 42.5 mm.     ║
  * ║                                                                            ║
  * ║ 14 powered elements / 11 air-separated groups. L15 in the patent is a      ║
- * ║ plane-parallel sensor cover/filter plate and is excluded here. Its paraxial║
- * ║ effect is folded into the final air-equivalent BFD after surface 26.       ║
+ * ║ plane-parallel sensor cover/filter plate (Table 29 surfaces 27-28:         ║
+ * ║ t = 4.2000 mm, nd 1.51680, νd 64.2). It is modeled in `rearPlates`         ║
+ * ║ (traced, not drawn); surface 26 keeps the patent d26 = 14.8222 mm to       ║
+ * ║ the plate. Trailing gap 1.0002 mm keeps the file's traced image plane      ║
+ * ║ (patent d28 1.0000 + BF -0.00016; derived, not printed).                   ║
  * ║                                                                            ║
  * ║ Focus: internal focus by L9/G2 only. d15 and d17 vary while their sum is   ║
  * ║ conserved at 8.8694 mm. L9 moves 4.9449 mm toward the image side from      ║
@@ -304,7 +307,25 @@ const LENS_DATA = {
     { label: "23", R: 19.2335, d: 3.2914, nd: 1, elemId: 0, sd: 12.1 },
     { label: "24", R: 48.259, d: 4.9831, nd: 1.91082, elemId: 13, sd: 12.6 },
     { label: "25", R: -29.5653, d: 0.9, nd: 1.72047, elemId: 14, sd: 12.4 },
-    { label: "26", R: 125.0004, d: 18.5914, nd: 1, elemId: 0, sd: 12.6 },
+    { label: "26", R: 125.0004, d: 14.8222, nd: 1, elemId: 0, sd: 12.6 },
+  ],
+
+  /* ── Sensor cover/filter plate L15 (patent surfaces 27–28): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "L15",
+      thicknessMm: 4.2,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      nC: 1.51432,
+      nF: 1.52237,
+      ng: 1.52667,
+      dPgF: -0.0016,
+      gapAfterMm: 1.0002,
+      source:
+        "US 2015/0192839 A1, Numerical Example 5 Tables 29-30 surfaces 27-28 (patent PgF 0.53418); gap after derived, not printed (d28 1.00000 + BF -0.00016, legacy traced image plane kept)",
+    },
   ],
 
   /* ── Aspherical coefficients ── */

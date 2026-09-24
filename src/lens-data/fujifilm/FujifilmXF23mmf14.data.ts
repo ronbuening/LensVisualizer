@@ -35,15 +35,16 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    K = −0.90 (near-paraboloid).  This file uses the standard K.   ║
  * ║                                                                    ║
  * ║  NOTE ON BACK FOCAL DISTANCE:                                      ║
- * ║    The patent lists D20 = 10.00 mm (to the cover glass) plus a    ║
- * ║    2.80 mm parallel plate (nd = 1.5168).  Since sensor/cover      ║
- * ║    glass is excluded per spec, the last surface d is set to the   ║
- * ║    paraxial air-equivalent BFD = 12.60 mm.                        ║
+ * ║    Table 7 lists D20 = 10.00 mm to the parallel plate PP          ║
+ * ║    (surfaces 21–22: 2.80 mm, nd 1.51680, νd 64.2), modeled in     ║
+ * ║    `rearPlates` (traced, not drawn).  D22 is not printed; the     ║
+ * ║    0.754 mm PP → image gap is derived from Table 11 BF = 12.60    ║
+ * ║    (air-equivalent): 12.60 − 10.00 − 2.80/1.5168.                 ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
  * ║    ✓ Aperture stop and variable focus gaps                        ║
- * ║    ✗ DO NOT include: sensor glass, filters, mechanical parts      ║
+ * ║    ✗ DO NOT include: mechanical parts (cover glass: `rearPlates`) ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -241,7 +242,21 @@ const LENS_DATA = {
 
     // ── G2 fixed rear element ──
     { label: "19", R: -91.051, d: 1.2, nd: 1.8081, elemId: 11, sd: 11.5 }, // L25 front
-    { label: "20", R: 249.64, d: 12.6, nd: 1.0, elemId: 0, sd: 11.8 }, // L25 rear → BFD (air-equiv, no cover glass)
+    { label: "20", R: 249.64, d: 10.0, nd: 1.0, elemId: 0, sd: 11.8 }, // L25 rear → patent D20 gap to plate PP
+  ],
+
+  /* ── Parallel plate PP (patent Table 7 surfaces 21–22): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PP",
+      thicknessMm: 2.8,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 0.754,
+      source:
+        "US 2014/0368926 A1, Example 4 Table 7 surfaces 21–22; gap to image derived, not printed (Table 11 BF 12.60 air-equivalent − 10.00 − 2.80/1.5168)",
+    },
   ],
 
   /* ── Aspherical coefficients ──

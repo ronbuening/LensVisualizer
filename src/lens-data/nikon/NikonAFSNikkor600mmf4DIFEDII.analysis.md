@@ -16,7 +16,7 @@ The modeled prescription is the third embodiment of Sato's internal-focusing tel
 
 Several independent features converge on that correlation:
 
-1. After the patent's front protective plate, rear filter, and inactive field-stop bookkeeping plane are excluded from the sequential model, Example 3 contains 10 glass elements in 7 air-separated groups. Nikon specifies the production lens as 10 elements in 7 groups, with a separate built-in protective front glass.
+1. After the patent's front protective plate and inactive field-stop bookkeeping plane are excluded from the sequential model, and the plane-parallel rear filter is carried separately as a traced-but-undrawn rear plate, Example 3 contains 10 glass elements in 7 air-separated groups. Nikon specifies the production lens as 10 elements in 7 groups, with a separate built-in protective front glass.
 2. Three patent elements share `nd = 1.497820, νd = 82.52`; the production lens is specified with three ED elements. The data file therefore identifies those three prescription elements as production-correlated ED/high-Abbe elements without assigning an unsupported glass vendor.
 3. Table 3 states a design focal length of 588.0 mm and f/4.08. Independent tracing of the final data file gives an effective focal length of 587.792929 mm. Nikon markets the production lens as 600 mm f/4; the rounded marketing values are not substituted into the prescription.
 4. The patent focuses by translating the negative second group G2 along the optical axis. Nikon describes the production lens as an internal-focusing AF-S lens using a Silent Wave Motor.
@@ -25,7 +25,7 @@ Several independent features converge on that correlation:
 
 The final data file therefore keeps two layers of specification separate: `600 mm` and `f/4` are production marketing values, while `587.792929 mm` and `f/4.08` are the modeled design values. No uniform scaling has been applied.
 
-A 600 dpi review of local PDF page 12 confirmed the Fig. 7 silhouette. The printed diameter condition independently anchors the front element, while the remaining optical rims track the authored relative proportions. Automated outliers came from the G1/G2/G3 brackets, leader labels, and the omitted protective/filter plates; visual isolation found no greater-than-25% shape discrepancy, so the semi-diameters were retained.
+A 600 dpi review of local PDF page 12 confirmed the Fig. 7 silhouette. The printed diameter condition independently anchors the front element, while the remaining optical rims track the authored relative proportions. Automated outliers came from the G1/G2/G3 brackets, leader labels, and the undrawn protective/filter plates; visual isolation found no greater-than-25% shape discrepancy, so the semi-diameters were retained.
 
 ## Optical Architecture
 
@@ -43,9 +43,9 @@ Independent first-order calculations from the final data file give the following
 
 These are assembled thick-group focal lengths computed from the corresponding air-to-air surface blocks. They are distinct from the standalone-in-air focal lengths listed for individual physical elements below.
 
-The normalized active optical model has 10 elements in 7 groups. It begins at patent surface 3 and retains patent surfaces 3–20, with surface 20 represented as the single `STO`. The patent's plane-parallel front protective glass, inactive field-stop bookkeeping plane, and rear filter are excluded in accordance with the data specification. The rear filter is not simply deleted from the optical distance: its d-line reduced distance is preserved by an air-equivalent stop-to-image spacing of 155.504765 mm. From the last powered surface to the image plane, the normalized spacing is 158.204765 mm.
+The normalized active optical model has 10 elements in 7 groups. It begins at patent surface 3 and retains patent surfaces 3–20, with surface 20 represented as the single `STO`. The patent's plane-parallel front protective glass and inactive field-stop bookkeeping plane are excluded in accordance with the data specification. The rear filter (Table 3 surfaces 22–23: 2.0 mm, nd 1.516800, νd 64.10) is modeled in `rearPlates`: every analysis traces it, but it is not drawn. `STO` stores the physical 36.5 + 2.0 = 38.5 mm to the filter, and the filter is followed by the printed Bf of 115.6862 mm. The physical last-powered-surface-to-image path is 158.8862 mm; its d-line air equivalent is 158.204765 mm (stop-to-image 155.504765 mm).
 
-The active surface-3-to-image track is 455.596265 mm at infinity. With the traced EFL of 587.792929 mm, `TL/EFL = 0.775097`, satisfying the project's quantitative telephoto criterion. The normalized back-focus ratio is much smaller than unity, so the design is not retrofocus.
+The physical surface-3-to-image track, including the rear filter, is 456.277700 mm at infinity (455.596265 mm air-equivalent). With the traced EFL of 587.792929 mm, `TL/EFL = 0.776256` (0.775097 air-equivalent), satisfying the project's quantitative telephoto criterion. The normalized back-focus ratio is much smaller than unity, so the design is not retrofocus.
 
 All powered surfaces in Example 3 are spherical. The data contains no aspherical coefficients, no folded optical path, no perspective-control movement, and no independent spherical-aberration control.
 
@@ -201,11 +201,11 @@ The patent does not provide per-surface semi-diameters. The authored clear apert
 
 The aperture-stop position is published by Table 3; its diameter is not. The data-file stop semi-diameter of 19.057003 mm is inferred from the traced EFL and the design f-number 4.08, giving an entrance-pupil semi-diameter of 72.033447 mm. At the published close state, a stop-filling paraxial marginal ray would reach 73.458348 mm at surface 3, slightly beyond the condition-(12)-anchored 72.05 mm semi-diameter. The model therefore allows the source-derived front aperture to become the limiting aperture at that extreme state rather than enlarging the front element beyond the patent-derived diameter constraint.
 
-The omitted rear filter is represented by the air-equivalent rear spacing described above. The front protective plate is omitted without altering the powered prescription because it has zero first-order power; when object-distance reference planes are compared, its reduced distance must still be distinguished from physical distance. The inactive source field-stop plane is omitted, and no additional S3 plane is invented because Table 3 does not provide a separate numerical surface for it.
+The rear filter is traced as a `rearPlates` entry with its physical spacing, as described above. The front protective plate is omitted without altering the powered prescription because it has zero first-order power; when object-distance reference planes are compared, its reduced distance must still be distinguished from physical distance. The inactive source field-stop plane is omitted, and no additional S3 plane is invented because Table 3 does not provide a separate numerical surface for it.
 
 Rendered inspection of Table 3 resolves three OCR-prone entries used by the model: the infinity value of d16 is 16.5738 mm, the Table-3 header is F = 588.0 mm, and surface 10 has radius +68.0010 mm. These are source readings, not alterations to the optical design.
 
-Independent tracing of the final arrays gives EFL = 587.792929 mm and BFL = 158.205141 mm from the last powered surface. The normalized authored last-surface-to-image spacing is 158.204765 mm, leaving a 0.000376 mm residual attributable to source rounding. All ten modeled elements retain positive rim thickness under the authored semi-diameters; the minimum computed edge thickness is 2.004156 mm. The maximum spherical rim angle is 36.0313°, and the tightest cross-gap check is the 13→14 air space, with 0.03759 mm margin under the current 90% sag-intrusion criterion.
+Independent tracing of the final arrays gives EFL = 587.792929 mm and BFL = 158.205141 mm from the last powered surface. The air-equivalent authored last-surface-to-image spacing is 158.204765 mm, leaving a 0.000376 mm residual attributable to source rounding. All ten modeled elements retain positive rim thickness under the authored semi-diameters; the minimum computed edge thickness is 2.004156 mm. The maximum spherical rim angle is 36.0313°, and the tightest cross-gap check is the 13→14 air space, with 0.03759 mm margin under the current 90% sag-intrusion criterion.
 
 These geometry values are calculations from the final data arrays, not patent specifications.
 

@@ -35,7 +35,7 @@ The second group, G2, spans surfaces 12-16 and has $f_{G2} = +34.73$ mm. It is t
 
 The third group, G3, is a single biconcave element L8 at surfaces 17-18 with $f_{G3} = -25.62$ mm. It is the rear negative compacting and field-control group. Its negative power increases the rear-group lateral magnification and helps hold the back focus and overall length within the patent’s compactness conditions.
 
-The system effective focal length independently computed from the prescription is 24.709 mm. The project data file excludes the patent cover glass and folds its optical path into the final air gap: $18.907 + 2.500/1.51680 + 1.000 = 21.555$ mm, matching the patent’s air-equivalent back focus.
+The system effective focal length independently computed from the prescription is 24.709 mm. The data file stores the patent’s 18.907 mm gap after surface 18 and models the cover glass CG (surfaces 19-20: 2.500 mm, $n_d = 1.51680$, $\nu_d = 64.20$, then 1.000 mm to the image) in `rearPlates`, so every analysis traces it but it is not drawn. Its paraxial equivalent is $18.907 + 2.500/1.51680 + 1.000 = 21.555$ mm, matching the patent’s air-equivalent back focus; the physical track including the plate is 60.852 mm.
 
 ## Element-by-Element Analysis
 
@@ -249,7 +249,7 @@ All load-bearing values were re-derived from the patent surface table using a pa
 
 Standalone and compound focal lengths were also checked: L1 = -36.45 mm, L2 glass = -33.11 mm, L2/L2r composite = -43.98 mm, L3 = +21.68 mm, L4 = -21.65 mm, L5 = +15.19 mm, L4/L5 doublet = +37.77 mm, L6r/L6 composite = -67.89 mm, L7 = +25.40 mm, and L8 = -25.62 mm.
 
-The data file reproduces the patent prescription with two deliberate implementation choices. First, sensor cover glass is excluded and folded into the final air-equivalent back focus, following the project data specification. Second, the aperture-stop semi-diameter is set to 5.6105 mm so the paraxial entrance pupil reproduces the patent F-number of 2.884; the patent’s tabulated stop H value of 5.769 mm is retained in the analysis as a clear-aperture value rather than as the entrance-pupil-defining stop radius.
+The data file reproduces the patent prescription with two deliberate implementation choices. First, the sensor cover glass is modeled as a traced but undrawn rear plate (`rearPlates`) behind the patent’s 18.907 mm final lens gap, so the air-equivalent back focus of 21.555 mm is reproduced by the plate path rather than folded into the last air gap. Second, the aperture-stop semi-diameter is set to 5.6105 mm so the paraxial entrance pupil reproduces the patent F-number of 2.884; the patent’s tabulated stop H value of 5.769 mm is retained in the analysis as a clear-aperture value rather than as the entrance-pupil-defining stop radius.
 
 ## Sources
 

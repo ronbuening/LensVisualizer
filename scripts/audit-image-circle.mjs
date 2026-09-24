@@ -99,7 +99,8 @@ async function auditLens(file) {
     z += surface.d;
     return row;
   });
-  const imageZ = z;
+  /* Modeled rear plates sit between the last authored gap and the image; the plates themselves are never drawn. */
+  const imageZ = z + (lens.rearPlates ?? []).reduce((sum, plate) => sum + plate.thicknessMm + plate.gapAfterMm, 0);
 
   const violations = [];
   for (const surface of surfaces) {

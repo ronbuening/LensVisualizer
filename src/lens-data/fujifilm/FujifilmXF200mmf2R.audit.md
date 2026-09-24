@@ -60,3 +60,9 @@ The G2 sd (21.2/21.2/20.7 mm) is retained even though FIG. 1 draws about 19.2 mm
 - The patent publishes no effective diameters, so the rims are figure-derived to about ±0.3 mm.
 - Glass names are coordinate equivalents. L3e and L3h are Δνd 0.03 and 0.05 from the named OHARA glass.
 - The off-axis ray view was not checked in the live page, because it needs a click.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Read Example 1 Table 1 on PDF page 15 (rendered at 200 dpi): surface 34 d = 28.1625; surfaces 35–36 are the optical member PP, 2.85 mm, nd 1.51680, νd 64.20, θgF 0.53430; surface 36 → image is 1.10 mm. The legacy fold 31.1415 mm reproduces 28.1625 + 2.85/1.5168 + 1.10 = 31.1414 mm.
+- Surface 34 now stores the patent's 28.1625 mm, with `rearPlates` PP labelled N-BK7 (exact 1.51680 / 64.2 row; OHARA S-BSL7 is the 1.51633 variant), dPgF −0.0015 from the printed θgF, and gapAfter 1.10 mm. The focus gaps DD[15]/DD[18] are ahead of the plate and unchanged.
+- Paraxial check against the previous data: EFL identical; defocus changes by 0.00004 mm at infinity and at the close state (rounding in the old 31.1415). Physical track grows by 0.971 mm and now equals the 218.997 mm printed-sum length the analysis quotes.

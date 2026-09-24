@@ -127,3 +127,12 @@ the AP position ("near the primary image plane" was wrong), and the last-surface
 - No close-focus data in the patent; the focus slider stays disabled and the focusing group is unknown.
 - Semi-diameters are figure measurements (about ±0.3 mm) or earlier ray-trace estimates; the patent lists none.
 - The iris schedule is inferred from the nominal f-number, not published.
+
+## 2026-09-23 — Cover glass modeled as `rearPlates`
+
+- Replaced the air-equivalent fold with the patent's physical rear stack: D34 = 15.00 / 24.22 / 29.66 mm (Example A
+  table), then `rearPlates` CG 1.96 mm, nd 1.51633, νd 64.1 (S-BSL7 class), and d36 = 2.75 mm. The plate is traced by
+  every analysis and hidden from the diagram and element lists.
+- Paraxial check against the previous data: EFL identical; defocus changes by +0.0026 mm at every station, which is the
+  rounding in the old stored 19.04 / 28.26 / 33.70 mm (exact fold 19.0426 / 28.2626 / 33.7026 mm). Physical track grows
+  by 1.96 × (1 − 1/1.51633) = 0.667 mm plus that rounding.

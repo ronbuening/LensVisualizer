@@ -23,10 +23,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ published. Status is NO_INTERNAL_RECONSTRUCTION; all focus pairs below are identical.║
  * ║ closeFocusM = 0.35 m records the marketed minimum macro distance only.               ║
  * ║                                                                                      ║
- * ║ Rear plates: source LPF/filter surfaces 26-29 are omitted. Surface 25 rear spacing   ║
- * ║ is converted to the same IMG reference plane with                                  ║
- * ║ D25_model = D25 + 2.010/1.5523 + 2.100 + 0.500/1.5567 + 1.000.                     ║
- * ║ The fixed added air-equivalent distance is 4.716045064762587 mm.                    ║
+ * ║ Rear plates: source surfaces 26-29 (LPF 2.010 mm nd 1.5523 νd 63.424, air 2.100;     ║
+ * ║ plate 0.500 mm nd 1.5567 νd 58.649, air 1.000) are modeled in `rearPlates`           ║
+ * ║ (traced, not drawn). D25 stores the physical Table 2 gap 2.000 / 9.935 / 21.801 mm;  ║
+ * ║ the air-equivalent D25 + 4.716045 mm matches the former folded value exactly.        ║
  * ║                                                                                      ║
  * ║ Stop: axial position is published. Physical semi-diameter is not published.          ║
  * ║ sd = 6.5985 mm is a Stage 2 calibration to the three published f-number states.     ║
@@ -308,7 +308,28 @@ const LENS_DATA = {
     { label: "23", R: -32.446, d: 1.0, nd: 1.0, elemId: 0, sd: 12.2 },
 
     { label: "24", R: 61.394, d: 2.916, nd: 1.9229, elemId: 14, sd: 13.2 },
-    { label: "25", R: -154.436, d: 6.716045064762587, nd: 1.0, elemId: 0, sd: 13.4 },
+    { label: "25", R: -154.436, d: 2.0, nd: 1.0, elemId: 0, sd: 13.4 }, // D25 var — gap to the LPF
+  ],
+
+  /* ── LPF and rear plate (patent surfaces 26–29): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "LPF",
+      thicknessMm: 2.01,
+      nd: 1.5523,
+      vd: 63.424,
+      glass: "N-PSK3",
+      gapAfterMm: 2.1,
+      source: "US 2008/0218875 A1, Example 1 Table 1 surfaces 26–27",
+    },
+    {
+      thicknessMm: 0.5,
+      nd: 1.5567,
+      vd: 58.649,
+      glass: "BAL15Y",
+      gapAfterMm: 1.0,
+      source: "US 2008/0218875 A1, Example 1 Table 1 surfaces 28–29",
+    },
   ],
 
   asph: {
@@ -386,9 +407,9 @@ const LENS_DATA = {
       [15.086, 15.086],
     ],
     "25": [
-      [6.716045064762587, 6.716045064762587],
-      [14.651045064762588, 14.651045064762588],
-      [26.517045064762584, 26.517045064762584],
+      [2.0, 2.0],
+      [9.935, 9.935],
+      [21.801, 21.801],
     ],
   },
 
@@ -398,7 +419,7 @@ const LENS_DATA = {
     ["16A", "D16"],
     ["18", "D18"],
     ["20A", "D20"],
-    ["25", "BF (air-eq.)"],
+    ["25", "D25"],
   ],
 
   zoomPositions: [14.71, 32.0597, 69.8725],

@@ -68,54 +68,58 @@ describe("catalog-mismatch scan", () => {
     let eLineSurfaces = 0;
     let eLineCatalogResolved = 0;
 
-    totalLenses = walkLensSurfaces(modules, ({ filePath, data, L }) => {
-      const patentNumber = extractPatentNumber(data.patentNumber, data.subtitle);
-      const elementById = new Map(L.elements.map((e) => [e.id, e]));
+    totalLenses = walkLensSurfaces(
+      modules,
+      ({ filePath, data, L }) => {
+        const patentNumber = extractPatentNumber(data.patentNumber, data.subtitle);
+        const elementById = new Map(L.elements.map((e) => [e.id, e]));
 
-      for (let i = 0; i < L.S.length; i++) {
-        const surface = L.S[i];
-        if (surface.nd === 1.0) continue; // Air interface
-        totalSurfaces++;
+        for (let i = 0; i < L.S.length; i++) {
+          const surface = L.S[i];
+          if (surface.nd === 1.0) continue; // Air interface
+          totalSurfaces++;
 
-        const element = surface.elemId ? elementById.get(surface.elemId) : undefined;
-        if (!element?.glass) continue;
-        totalGlassDeclarations++;
-        const referenceLine = element.indexReference ?? "d";
-        if (referenceLine === "e") eLineSurfaces++;
+          const element = surface.elemId ? elementById.get(surface.elemId) : undefined;
+          if (!element?.glass) continue;
+          totalGlassDeclarations++;
+          const referenceLine = element.indexReference ?? "d";
+          if (referenceLine === "e") eLineSurfaces++;
 
-        const compatibleEntry = resolveCompatibleGlass(element.glass, surface.nd, element.vd, element.indexReference);
-        if (compatibleEntry) {
+          const compatibleEntry = resolveCompatibleGlass(element.glass, surface.nd, element.vd, element.indexReference);
+          if (compatibleEntry) {
+            totalCatalogResolved++;
+            if (referenceLine === "e") eLineCatalogResolved++;
+            continue;
+          }
+
+          const entry = resolveGlass(element.glass);
+          if (!entry) continue;
           totalCatalogResolved++;
-          if (referenceLine === "e") eLineCatalogResolved++;
-          continue;
-        }
 
-        const entry = resolveGlass(element.glass);
-        if (!entry) continue;
-        totalCatalogResolved++;
-
-        const compatibility = assessCatalogGlassCompatibility(entry, surface.nd, element.vd, element.indexReference);
-        if (!compatibility.compatible) {
-          mismatches.push({
-            lensKey: data.key,
-            lensName: data.name ?? data.key,
-            patentNumber,
-            filePath,
-            surfaceLabel: surface.label ?? `surface[${i}]`,
-            surfaceIdx: i,
-            glassString: element.glass,
-            catalogName: entry.name,
-            referenceLine,
-            storedNd: surface.nd,
-            storedVd: element.vd,
-            catalogNd: compatibility.catalogIndex,
-            catalogVd: evaluateCatalogAbbeNumber(entry, referenceLine),
-            ndDiff: compatibility.indexDiff,
-            vdDiff: compatibility.abbeDiff,
-          });
+          const compatibility = assessCatalogGlassCompatibility(entry, surface.nd, element.vd, element.indexReference);
+          if (!compatibility.compatible) {
+            mismatches.push({
+              lensKey: data.key,
+              lensName: data.name ?? data.key,
+              patentNumber,
+              filePath,
+              surfaceLabel: surface.label ?? `surface[${i}]`,
+              surfaceIdx: i,
+              glassString: element.glass,
+              catalogName: entry.name,
+              referenceLine,
+              storedNd: surface.nd,
+              storedVd: element.vd,
+              catalogNd: compatibility.catalogIndex,
+              catalogVd: evaluateCatalogAbbeNumber(entry, referenceLine),
+              ndDiff: compatibility.indexDiff,
+              vdDiff: compatibility.abbeDiff,
+            });
+          }
         }
-      }
-    });
+      },
+      { includeRearPlates: true },
+    );
 
     // Group mismatches by lens for the report
     const byLens = new Map<string, Mismatch[]>();

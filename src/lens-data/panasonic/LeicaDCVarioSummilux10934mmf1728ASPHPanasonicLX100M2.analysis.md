@@ -26,7 +26,7 @@ The association with the LEICA DC VARIO-SUMMILUX 10.9–34 mm f/1.7–2.8 used i
 
 The correlation is not exact in marketed numbers. The patent publishes 11.2612, 19.1449, and 32.5307 mm at its three infinity-focus zoom samples, while Panasonic markets 10.9–34 mm. The source f-numbers are 1.76551, 2.51390, and 2.91140 rather than the engraved f/1.7–2.8 range. The final LensVisualizer model therefore keeps marketing fields separate and does not rescale the prescription to force the advertised endpoints.
 
-The final normalized model has computed effective focal lengths of 11.265298534 mm, 19.151668516 mm, and 32.537812044 mm. These differ slightly from the raw patent values because the model collapses three finite-thickness adhesive layers to direct cemented interfaces. The source rear parallel plate is also omitted and its effect is folded into a code-solved rear air gap. Those are explicit modeling transformations, not corrections to the patent.
+The final normalized model has computed effective focal lengths of 11.265298534 mm, 19.151668516 mm, and 32.537812044 mm. These differ slightly from the raw patent values because the model collapses three finite-thickness adhesive layers to direct cemented interfaces. The source rear parallel plate P is modeled in `rearPlates` (traced by every analysis, not drawn), and the gap in front of it is code-solved so the published infinity image planes are kept. Those are explicit modeling transformations, not corrections to the patent.
 
 The camera-family names also include Leica D-Lux (Typ 109), D-Lux 7 and D-Lux 8, whose official specifications list the 10.9–34mm f/1.7–2.8 ASPH. lens. These are production lens-family associations, not independent confirmation that each camera uses this exact patent prescription. [D-Lux (Typ 109) specifications](https://leica-camera.com/sites/default/files/pm-73538-Leica-D-Lux-%28Typ-109%29_Technical-Data_en.pdf), [D-Lux 7 specifications](https://leica-camera.com/sites/default/files/pm-54104-Technical_data_D-Lux_May_2020_en.pdf), [D-Lux 8 specifications](https://leica-camera.com/sites/default/files/pm-111399-leica-d-lux8_technical-data_en.pdf).
 
@@ -40,7 +40,7 @@ The normalized isolated zoom-unit focal lengths are approximately +66.804 mm for
 
 The three published zoom samples are all preserved as control points. This is necessary because the source spacings do not describe monotonic motion for every group. In the final model, G2 moves imageward from the wide sample to the middle sample and then reverses objectward by the longest-focal-length sample. G6 likewise shows a small middle-to-long-end reversal. Endpoint-only interpolation would erase those sampled trajectories.
 
-The physical track from the first surface to the image plane increases from 74.949211 mm to 80.726022 mm and then 93.636257 mm across the three modeled states. At the longest-focal-length endpoint, the track/EFL ratio is 2.87777 and the rear-gap/EFL ratio is 0.46319. Under the project definitions, this prescription is therefore not classified as a telephoto architecture (`TL/EFL < 1` is not satisfied) and is not retrofocus (`BFD > EFL` is not satisfied). The patent’s phrase “telephoto end” is retained only as the source’s name for its longest-focal-length state.
+The physical track from the first surface to the image plane, including plate P, increases from 75.324000 mm to 81.100811 mm and then 94.011046 mm across the three modeled states. At the longest-focal-length endpoint, the track/EFL ratio is 2.88929 and the physical BFD/EFL ratio is 0.47471 (air-equivalent 0.46319). Under the project definitions, this prescription is therefore not classified as a telephoto architecture (`TL/EFL < 1` is not satisfied) and is not retrofocus (`BFD > EFL` is not satisfied). The patent’s phrase “telephoto end” is retained only as the source’s name for its longest-focal-length state.
 
 The source Table 3 image heights increase through the zoom range while the focal length increases substantially, which is consistent with the changing angular field shown in the patent’s aberration diagrams. The final data file uses the manufacturer-backed `four-thirds` format classification for catalog and field-aware tooling, while preserving the patent’s smaller published maximum image height rather than inventing a custom format.
 
@@ -168,7 +168,7 @@ The patent publishes d-line refractive index and Abbe number, but not glass trad
 
 The palette spans νd = 19.3 to 71.5. That range establishes that the designer combined materials of very different dispersion, but nd/νd alone does not establish apochromatic correction or anomalous partial dispersion. The final data deliberately contains no nC, nF, ng, or dPgF fields and makes no APO claim.
 
-The three source adhesive media at nd = 1.56732, νd = 42.8 and the source rear plate at nd = 1.51680, νd = 64.2 remain recorded in the evidence dossier but are not application elements. The former are collapsed at same-radius cement junctions; the latter is omitted according to the project rule for rear sensor/filter plates.
+The three source adhesive media at nd = 1.56732, νd = 42.8 and the source rear plate at nd = 1.51680, νd = 64.2 are not application elements. The former are collapsed at same-radius cement junctions; the latter is modeled as the `rearPlates` entry P (N-BK7 dispersion), traced by every analysis but not drawn.
 
 ### Diagram color evidence
 
@@ -221,7 +221,7 @@ The patent gives three explicit conditions for the design family. Recalculation 
 | $D_{34T}/D_{34W}$ | 2.189697 | 1 < ratio < 3 | Satisfied |
 | $L_T/f_T$ | 2.889000 | 2 < ratio < 3.5 | Satisfied |
 
-These are source-model checks. In particular, the third ratio uses the patent’s own total length and focal length at its longest-focal-length state. The normalized application model has a slightly different track and EFL because of the direct-cement and rear-plate transformations, so its track/EFL ratio is reported separately rather than substituted into the patent condition.
+These are source-model checks. In particular, the third ratio uses the patent’s own total length and focal length at its longest-focal-length state. The normalized application model has a slightly different track and EFL because of the direct-cement transformation and the code-solved rear gap, so its track/EFL ratio is reported separately rather than substituted into the patent condition.
 
 Condition (1) expresses the strong contrast between positive G1 and negative G2. Condition (2) constrains the change in separation between G3 and G4. Condition (3) limits the total-length/focal-length ratio of the source design. The numerical example satisfies all three without altering the source values. [1, ¶¶0121–0138; Table 16]
 
@@ -235,9 +235,9 @@ The LensVisualizer data file is a centered sequential model. It records the L3�
 
 ## Verification Summary
 
-The final application prescription is normalized in three explicit ways. First, there is no uniform scale: `s = 1.0`. Second, each 0.01000 mm same-radius adhesive layer is collapsed to a direct cement interface, with its axial thickness added to the downstream element. Third, the source rear plate P is omitted and the final 23A-to-image air spacing is solved at each published infinity-focus zoom state.
+The final application prescription is normalized in three explicit ways. First, there is no uniform scale: `s = 1.0`. Second, each 0.01000 mm same-radius adhesive layer is collapsed to a direct cement interface, with its axial thickness added to the downstream element. Third, the source rear plate P (1.10000 mm, nd 1.51680, νd 64.2) is modeled in `rearPlates` with the wide-end Table 3 BF of 0.82178 mm after it, and the 23A-to-P air spacing is solved at each published infinity-focus zoom state.
 
-The solved rear gaps are 14.236411 mm, 15.219722 mm, and 15.071157 mm. These restore the paraxial infinity conjugate after the adhesive collapse and plate omission. They should not be mistaken for the patent’s original `d23`, plate thickness, or BF quantities.
+The solved 23A-to-P gaps are 12.689420 mm, 13.672731 mm, and 13.524166 mm (air-equivalent back focus 14.236411 mm, 15.219722 mm, and 15.071157 mm). These restore the paraxial infinity conjugate after the adhesive collapse. Compared with the patent’s `d23` of 12.6772, 13.6458, and 13.5187 mm, with the middle and tele BF differences from 0.82178 mm (BF 0.82978 and 0.79743 mm) carried in the gap, they are larger by about 0.012, 0.019, and 0.030 mm, so they should not be mistaken for the printed spacings.
 
 The direct-cement transformation changes the model EFL relative to the raw patent by +0.00410 mm, +0.00677 mm, and +0.00711 mm at the three authored states. Those residuals are larger than the raw-source transcription tolerance and are intentionally preserved as transformation effects rather than hidden by widening a comparison tolerance.
 
@@ -247,7 +247,7 @@ Likewise, all lens semi-diameters are modeled. They were derived from exact meri
 
 The minimum modeled edge thickness is about 0.11455 mm at L9. The maximum modeled rim angle is 46.07° at 16A. Neither quantity is a manufacturer mechanical specification; both depend on the inferred semi-diameters in the final model.
 
-The final surface-by-surface Petzval sum, using $\phi/(n n')$ on every refracting surface, is 0.004154170644 mm⁻¹, corresponding to a Petzval radius magnitude of about 240.722 mm. Collapsing the same-radius adhesive interfaces leaves this sum unchanged to numerical precision, and the omitted flat plate contributes no refracting power.
+The final surface-by-surface Petzval sum, using $\phi/(n n')$ on every refracting surface, is 0.004154170644 mm⁻¹, corresponding to a Petzval radius magnitude of about 240.722 mm. Collapsing the same-radius adhesive interfaces leaves this sum unchanged to numerical precision, and the flat plate P contributes no refracting power.
 
 The original dossier used portable verification. Repository integration results are recorded in the accompanying 2026-09-15 audit log.
 

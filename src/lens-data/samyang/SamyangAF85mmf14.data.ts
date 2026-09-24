@@ -7,9 +7,13 @@ import type { LensDataInput } from "../../types/optics.js";
  * 11 elements / 8 air-spaced groups, all spherical surfaces.
  * Focus: single negative meniscus focus group G320 moves image-ward by 5.053 mm.
  *
- * The patent includes a 2.5 mm, nd=1.5168 filter / cover-glass plate after surface 20.
- * Per project convention, that plate is excluded from the surfaces array and represented by
- * the patent's filterless "in Air" BFD values: 16.854 mm at infinity and 17.045 mm at 0.90 m.
+ * Table 5 surfaces 21-22 are a filter plate (2.5 mm, nd 1.5168, νd 64.2) followed by
+ * 0.5 mm air and D3 (0.03 mm at infinity) to the image. It is modeled in `rearPlates`
+ * (traced, not drawn) with gapAfter = 0.5 + 0.03 = 0.53 mm. Surface 20 stores the printed
+ * 14.678 mm gap to the filter at infinity. At 0.90 m the printed D3 row (0.033) disagrees
+ * with the printed "in Air" BFD row (16.854 -> 17.045, +0.191 mm), and only the in-Air
+ * value reproduces the close-focus image; the file keeps that image plane by carrying the
+ * +0.191 mm in the surface-20 gap (14.869 mm at 0.90 m, derived, not printed).
  *
  * Semi-diameters are inferred from the f/1.47 paraxial marginal ray and chief-ray traces,
  * then constrained by edge thickness, sd/|R| < 0.90, cross-gap sag clearance, and the 77 mm
@@ -208,7 +212,19 @@ const LENS_DATA = {
     { label: "17", R: 145.893, d: 4.589, nd: 2.001, elemId: 10, sd: 18.4 },
     { label: "18", R: -65.755, d: 16.474, nd: 1, elemId: 0, sd: 18.3 },
     { label: "19", R: -36.344, d: 1.5, nd: 1.94595, elemId: 11, sd: 19.6 },
-    { label: "20", R: -64.119, d: 16.854, nd: 1, elemId: 0, sd: 19.4 },
+    { label: "20", R: -64.119, d: 14.678, nd: 1, elemId: 0, sd: 19.4 },
+  ],
+
+  /* ── Filter plate (patent Table 5 surfaces 21–22): traced, not drawn ── */
+  rearPlates: [
+    {
+      thicknessMm: 2.5,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 0.53,
+      source: "WO 2021/085655 A1, Example 3 Table 5 surfaces 21–22 (0.5 mm + Table 6 D3 0.03 mm after)",
+    },
   ],
 
   asph: {},
@@ -216,12 +232,12 @@ const LENS_DATA = {
   var: {
     "7": [1.94373, 6.99684],
     "9": [9.91877, 4.86565],
-    "20": [16.854, 17.045],
+    "20": [14.678, 14.869],
   },
   varLabels: [
     ["7", "D1"],
     ["9", "D2"],
-    ["20", "BF (in air)"],
+    ["20", "BF (to filter)"],
   ],
 
   groups: [

@@ -84,3 +84,11 @@ track, giving 13.25 px/mm. The axis is at x 1252.5, and both sides read the same
 - Close-focus travel of B6 is not modelled; no spacings are published.
 - L1, L11, and L12 rims remain 12–15 % above the FIG. 1 silhouette, and no effective diameters are published.
 - The engine half-field at wide (33.7°) stays below the patent's 34.93° because S4 is capped by its sag against S5.
+
+## 2026-09-23 — Glass block modeled as `rearPlates`
+
+- Replaced the air-equivalent fold with the First Numerical Example's physical rear stack (p. 18 surface table, p. 19
+  variable gaps): d28 = 13.00 / 23.93 / 32.48 mm, then `rearPlates` GB 2.00 mm, nd 1.54400, νd 66.3, and
+  d30 = 1.09 mm. No catalog glass lies within tolerance of 1.544 / 66.3, so the plate uses the Abbe-number estimate.
+- Paraxial check against the previous data: EFL identical; defocus changes by 0.0003 mm (rounding in the old 15.385 /
+  26.315 / 34.865 mm). Physical track grows by 2.00 × (1 − 1/1.544) = 0.705 mm.

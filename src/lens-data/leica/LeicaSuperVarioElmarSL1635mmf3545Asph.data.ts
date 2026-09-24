@@ -21,9 +21,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ G1 reverses between W and T; the published M state brackets the reversal.   ║
  * ║ G2 and G4 have linked W→T displacement in the selected embodiment.          ║
  * ║                                                                              ║
- * ║ Rear-plate normalization: source PT surfaces 32/33 are omitted under the    ║
- * ║ project sensor-cover/filter rule. D31 includes the air-equivalent           ║
- * ║ contribution 1.400/1.51680 + 0.500 = 1.4229957805907 mm.                      ║
+ * ║ Rear plate: patent PT (surfaces 32/33; 1.400 mm, nd 1.51680, νd 64.20)       ║
+ * ║ is modeled in `rearPlates` (traced, not drawn) with the printed 0.500 mm     ║
+ * ║ BF to the image. D31 is the printed physical gap to PT,                      ║
+ * ║ 16.500 / 23.224 / 33.386 mm (W/M/T); stored track includes the plate.        ║
  * ║ No uniform prescription scaling is applied (s = 1).                         ║
  * ║                                                                              ║
  * ║ Aperture stop: the patent publishes the stop plane but no diameter. STO.sd  ║
@@ -333,7 +334,20 @@ const LENS_DATA = {
     { label: "28", R: -13.295, d: 1.5, nd: 1.91082, elemId: 17, sd: 11.5 },
     { label: "29", R: -42.004, d: 1.937, nd: 1.0, elemId: 0, sd: 11.5 },
     { label: "30", R: -20.443, d: 1.5, nd: 1.91082, elemId: 18, sd: 10.9 },
-    { label: "31", R: 1e15, d: 17.922995780590718, nd: 1.0, elemId: 0, sd: 12.8 },
+    { label: "31", R: 1e15, d: 16.5, nd: 1.0, elemId: 0, sd: 12.8 }, // D31 var — gap to the PT plate
+  ],
+
+  /* ── Parallel plate PT (patent surfaces 32–33): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PT",
+      thicknessMm: 1.4,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 0.5,
+      source: "JP 2018-087903 A, Example 1 surfaces 32–33 (BF 0.500)",
+    },
   ],
 
   asph: {
@@ -397,9 +411,9 @@ const LENS_DATA = {
       [4.056, 4.056],
     ],
     "31": [
-      [17.922995780590718, 17.922995780590718],
-      [24.646995780590718, 24.646995780590718],
-      [34.80899578059072, 34.80899578059072],
+      [16.5, 16.5],
+      [23.224, 23.224],
+      [33.386, 33.386],
     ],
   },
   varLabels: [
@@ -407,7 +421,7 @@ const LENS_DATA = {
     ["12", "D12 / Gr2a–STO"],
     ["18", "D18 / Gr2–Gr3"],
     ["26", "D26 / Gr3–Gr4"],
-    ["31", "BF (air-equivalent)"],
+    ["31", "D31 / Gr4–PT"],
   ],
 
   zoomPositions: [16.4, 23.7, 34.2],

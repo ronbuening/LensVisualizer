@@ -10,8 +10,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * Published zoom states: f = 18.56 / 31.50 / 53.46 mm with DD[3], DD[9], DD[18], DD[23].
  * Focus status: NO_INTERNAL_RECONSTRUCTION. The patent identifies G4-2 as the axial focus group but publishes no
  * numerical Example 1 close-focus spacings; production MFD is metadata only and no focus travel is invented.
- * Rear normalization: optional camera-side plate PP (source surfaces 26-27) is omitted. Surface 25 to image is
- * 16.1289556962 mm air-equivalent, preserving reduced-angle propagation through the omitted 2.85 mm / n=1.51680 plate.
+ * Rear plate: optional camera-side plate PP (Table 1 surfaces 26-27; 2.85 mm, nd 1.51680, vd 64.20) is modeled in
+ * `rearPlates` (traced, not drawn). Surface 25 keeps the patent's 11.83 mm gap to PP; PP to image is 2.42 mm.
  * Scaling: s = 1. No dimensional scaling. Fujifilm source KA=1 maps to LensVisualizer K=0; A3-A20 are unchanged.
  * Stop: source plane retained at surface 10. The 5.78 mm base STO semi-diameter is a modeled calibration from the
  * published wide-state FNo=2.89 and paraxial entrance-pupil imaging, not a published physical diaphragm radius.
@@ -271,7 +271,20 @@ const LENS_DATA = {
     { label: "22", R: 17.989, d: 2.92, nd: 1.48749, elemId: 13, sd: 8.40 },
     { label: "23", R: 52.455, d: 3.3, nd: 1.00000, elemId: 0, sd: 8.50 },
     { label: "24", R: 56.9749, d: 3.7, nd: 1.76200, elemId: 14, sd: 13.00 },
-    { label: "25", R: -260.0272, d: 16.1289556962, nd: 1.00000, elemId: 0, sd: 13.00 },
+    { label: "25", R: -260.0272, d: 11.83, nd: 1.00000, elemId: 0, sd: 13.00 },
+  ],
+
+  /* ── Parallel plate PP (patent Table 1 surfaces 26–27): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PP",
+      thicknessMm: 2.85,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 2.42,
+      source: "US 2015/0177500 A1, Example 1 Table 1 surfaces 26–27",
+    },
   ],
 
   asph: {

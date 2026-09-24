@@ -10,11 +10,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  8 elements / 5 air-spaced groups, 4 aspherical surfaces.                  ║
  * ║                                                                            ║
  * ║  NOTE ON FILTER STACK:                                                     ║
- * ║    Patent surfaces AF17-AF20 are two flat sensor/filter plates that the     ║
- * ║    patent explicitly excludes from the camera lens. They are therefore not ║
- * ║    represented as lens elements here. The final surface-to-image distance   ║
- * ║    folds their optical path into an air-equivalent BFD:                    ║
- * ║      0.5 + 1.2/1.51680 + 0.5 + 0.8/1.51680 + 2.0 = 4.3185654 mm.          ║
+ * ║    Patent Table 1 surfaces AF17-AF20 are two flat BK7 (Schott) plates      ║
+ * ║    that ¶0064 excludes from the camera lens but uses in the design. They   ║
+ * ║    are modeled in `rearPlates` (traced, not drawn): 1.20 mm + 0.50 mm air  ║
+ * ║    + 0.80 mm + 2.00 mm to IMG. Surface AF16 keeps the patent's 0.50 mm     ║
+ * ║    gap to the first plate. The patent names the glass without nd/vd;       ║
+ * ║    N-BK7 catalog values (1.51680 / 64.17) are used, as for the elements.   ║
  * ║                                                                            ║
  * ║  NOTE ON GLASS DATA:                                                       ║
  * ║    The patent table names OHARA glass types but omits nd/vd columns.       ║
@@ -193,7 +194,30 @@ const LENS_DATA = {
     { label: "11A", R: 1e15, d: 5.4, nd: 1.59522, elemId: 7, sd: 13.80054 },
     { label: "12A", R: -24.95694, d: 5.11947, nd: 1.0, elemId: 0, sd: 14.53752 },
     { label: "13A", R: -17.01007, d: 2.5, nd: 1.73077, elemId: 8, sd: 14.96886 },
-    { label: "14A", R: 1e15, d: 4.3185654, nd: 1.0, elemId: 0, sd: 18.4762 },
+    // Last surface AF16: patent gap to the first filter plate (AF17)
+    { label: "14A", R: 1e15, d: 0.5, nd: 1.0, elemId: 0, sd: 18.4762 },
+  ],
+
+  /* ── Filter plates 60 (patent Table 1 AF17-AF20): traced, not drawn ── */
+  rearPlates: [
+    {
+      thicknessMm: 1.2,
+      nd: 1.5168,
+      vd: 64.17,
+      glass: "N-BK7 (Schott)",
+      gapAfterMm: 0.5,
+      sd: 20.465,
+      source: "US 2018/0180842 A1, Example 1 Table 1 surfaces AF17-AF18 (BK7_Schott)",
+    },
+    {
+      thicknessMm: 0.8,
+      nd: 1.5168,
+      vd: 64.17,
+      glass: "N-BK7 (Schott)",
+      gapAfterMm: 2.0,
+      sd: 20.86325,
+      source: "US 2018/0180842 A1, Example 1 Table 1 surfaces AF19-AF20 (BK7_Schott)",
+    },
   ],
 
   asph: {

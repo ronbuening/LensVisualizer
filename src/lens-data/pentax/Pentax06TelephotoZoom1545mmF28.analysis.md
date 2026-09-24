@@ -31,9 +31,9 @@ G3 is a compact cemented positive/negative pair, L31/L32, immediately behind the
 
 G4 is a stationary positive relay composed of two subgroups. G4a contains positive L41 followed by the cemented L42/L43 pair; the latter is net negative at −83.798 mm, but together G4a is positive at +44.492 mm. G4b is the air-spaced L44/L45 pair and is positive at +36.255 mm. The complete G4 has a computed focal length of +24.717 mm, matching the patent's +24.72 mm. Its fixed axial position provides the stable rear relay against which the moving G2/G3 pair changes magnification.
 
-The product name uses “Telephoto Zoom” in the ordinary focal-range sense. Under the project's stricter architectural definition, however, the tele position is not a telephoto form because the source total length divided by EFL is approximately 1.715, greater than unity. It is likewise not retrofocus: the normalized back focal distance remains shorter than EFL at both wide and tele positions.
+The product name uses “Telephoto Zoom” in the ordinary focal-range sense. Under the project's stricter architectural definition, however, the tele position is not a telephoto form because the source total length divided by EFL is approximately 1.715, greater than unity. It is likewise not retrofocus: the air-equivalent back focal distance remains shorter than EFL at both wide and tele positions.
 
-The original patent includes a plane-parallel optical filter OP between G4 and the image plane. LensVisualizer excludes that plate under the current data policy. Its first-order optical effect is therefore folded into the rear air spacing after surface 25 so that the same paraxial image plane is retained. No sensor cover glass, dummy plane, flare-cutter plane, or folded path is present in the active model.
+The original patent includes a plane-parallel optical filter OP between G4 and the image plane (Table 1 surfaces 26–27: 1.05 mm, nd = 1.51633, νd = 64.1). LensVisualizer models it physically in `rearPlates`: every analysis traces the plate, but it is not drawn in the cross-section. No sensor cover glass, dummy plane, flare-cutter plane, or folded path is present in the active model.
 
 The patent publishes the stop location but not its clear diameter. The model therefore uses an inferred 3.93 mm stop semi-diameter, back-solved from the patent's FNO = 2.9. The resulting modeled wide/mid/tele f-numbers are 2.8961, 2.9017, and 2.9027. Element semi-diameters are likewise modeling values rather than patent data; they were derived from exact spherical marginal- and chief-ray tracing across all modeled zoom/focus states and checked for positive edge thickness, acceptable rim slope, shared-band cross-gap clearance, and off-axis containment.
 
@@ -149,9 +149,9 @@ Its moderate index and relatively high Abbe number provide positive relay power 
 
 **nd = 1.56732, νd = 42.8. Glass: S-TIL26 (OHARA, catalog-derived match). Standalone f = −44.220 mm.**
 
-L45 is the final refracting element and the negative member of G4b. The patent describes it as a negative meniscus with a convex image-side surface. Its negative power moderates L44 and completes the positive G4 relay before the omitted optical filter and image plane.
+L45 is the final refracting element and the negative member of G4b. The patent describes it as a negative meniscus with a convex image-side surface. Its negative power moderates L44 and completes the positive G4 relay before the optical filter OP and image plane.
 
-Because the LensVisualizer model removes the patent's plane-parallel OP filter, the air distance following L45 is not copied directly from Table 1. Instead, the rear spacing is normalized so that the active surfaces focus at the same paraxial image plane as the full patent system with the filter present.
+Table 1 prints d25 = 9.28 mm from L45 to the OP filter and a back focus fB = 0.56 / 0.55 / 0.53 mm (wide/intermediate/tele) behind it. The model keeps a single fixed 0.56 mm gap after the plate and stores d25 = 9.277 / 9.272 / 9.244 mm, which holds the previously verified paraxial image plane of the full patent system; the small fB variation and table rounding are therefore carried in d25. The air-equivalent rear spacing (d25 + 1.05/1.51633 + 0.56) is 10.529 / 10.525 / 10.496 mm, and the physical track is 0.358 mm longer than that paraxial equivalent.
 
 ## Glass Identification and Selection
 

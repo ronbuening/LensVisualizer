@@ -20,9 +20,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    Front element constrained by 52 mm filter thread.              ║
  * ║                                                                    ║
  * ║  NOTE ON COVER GLASS:                                              ║
- * ║    Patent surfaces 27–28 (nd = 1.51680, 2.0 mm) are sensor cover  ║
- * ║    glass; excluded per spec. Air-equivalent BFD folded onto the   ║
- * ║    final surface: 12.3 + 2.0/1.5168 + 1.0 ≈ 14.62 mm.           ║
+ * ║    Patent surfaces 27–28 (cover glass, 2.0 mm, nd 1.51680,       ║
+ * ║    νd 64.20) and the 1.0 mm D(28) air gap to the image are        ║
+ * ║    modeled in `rearPlates` (traced, not drawn). Surface 24 keeps  ║
+ * ║    the patent's 12.3 mm gap (patent S26) to the cover glass.      ║
  * ║                                                                    ║
  * ║  NOTE ON SURFACE 16 FOLD:                                          ║
  * ║    Patent lists a flat spacer surface (S16, R = 0, d = 0.2 mm)    ║
@@ -33,7 +34,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
  * ║    ✓ Aperture stop and variable focus gaps                        ║
- * ║    ✗ DO NOT include: sensor glass, filters, mechanical parts      ║
+ * ║    ✗ DO NOT include: mechanical parts (cover glass: `rearPlates`)  ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -285,7 +286,19 @@ const LENS_DATA = {
     { label: "21", R: -17.1788, d: 0.8, nd: 1.497, elemId: 13, sd: 8.5 },
     { label: "22", R: 46.3288, d: 6.9569, nd: 1.0, elemId: 0, sd: 9.0 },
     { label: "23", R: 26.8458, d: 7.0, nd: 1.51823, elemId: 14, sd: 10.0 },
-    { label: "24", R: 1e15, d: 14.62, nd: 1.0, elemId: 0, sd: 10.0 }, // BFD (air-equivalent, cover glass folded)
+    { label: "24", R: 1e15, d: 12.3, nd: 1.0, elemId: 0, sd: 10.0 }, // patent S26: gap to cover glass
+  ],
+
+  /* ── Cover glass (patent surfaces 27–28): traced, not drawn ── */
+  rearPlates: [
+    {
+      thicknessMm: 2.0,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "H-K9L",
+      gapAfterMm: 1.0,
+      source: "CN 110161666 A, Example 2 [0060]–[0061] surfaces 27–28; D(28) [0070]",
+    },
   ],
 
   /* ── Aspherical coefficients ── */

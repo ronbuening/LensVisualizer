@@ -99,14 +99,16 @@ const GOLDEN_LENSES: GoldenLens[] = [
     efl: 51.50581892028711,
     epSD: 9.197467664336985,
     stopPhysSD: 9.15243124498173,
-    imgZ: 94.9543248945,
-    zLast: 70.34,
-    marginal: { h: 6.4382, y: 3.102289011436177, u: -0.12605083196312913 },
+    /* Rear plate PP (1.22 mm, nd 1.5168) is modeled in rearPlates: imgZ grows by t(1 − 1/n) and the last
+     * vertex is the plate's rear face; EFL, pupil and exit slopes are unchanged. */
+    imgZ: 95.37,
+    zLast: 72.56,
+    marginal: { h: 6.4382, y: 2.8753046706583976, u: -0.12605083196312913 },
     skew: {
       x0: 3.0903,
       y0: 2.5753,
-      x: 1.4812269534854747,
-      y: 1.2343797603181395,
+      x: 1.3726550434168818,
+      y: 1.1439014119378372,
       ux: -0.06021965588711908,
       uy: -0.05018402090609257,
     },

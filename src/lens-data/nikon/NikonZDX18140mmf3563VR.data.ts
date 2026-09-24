@@ -19,12 +19,14 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                    ║
  * ║  Zoom variable gaps: D5, D13 (zoom only).                         ║
  * ║  Focus variable gaps: D26, D29 (zoom + focus).                    ║
- * ║  BFD: D33 (zoom only, cover glass folded to air-equivalent).      ║
+ * ║  Rear gap D33 (zoom only) ends at the cover glass (`rearPlates`).  ║
  * ║                                                                    ║
  * ║  NOTE ON COVER GLASS:                                              ║
- * ║    Patent lists PP (cover glass) as nd=1.51680, d=1.600 mm        ║
- * ║    followed by 1.000 mm air to image plane. Air-equivalent path   ║
- * ║    = 1.600/1.51680 + 1.000 = 2.055 mm, folded into BFD values.   ║
+ * ║    Patent surfaces 34-35 (plate PP, nd=1.51680, νd=64.14,          ║
+ * ║    d=1.600, then 1.000 mm air to the image plane) are modeled in   ║
+ * ║    `rearPlates` (traced, not drawn). D33 = patent 8.272 / 18.869 / ║
+ * ║    33.216 mm; air-equivalent Bf matches the patent's printed       ║
+ * ║    10.327 / 20.923 / 35.271 mm.                                    ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    Estimated via combined marginal + chief ray trace at all three  ║
@@ -233,7 +235,7 @@ const LENS_DATA = {
       nd: 1.5168,
       vd: 64.14,
       fl: 23.4,
-      glass: "S-BSL7 (OHARA)",
+      glass: "J-BK7A (Hikari)",
       cemented: "T1",
       role: "Glass body of hybrid composite L35; positive power in VR sub-group",
     },
@@ -353,7 +355,20 @@ const LENS_DATA = {
     { label: "30", R: -16.37, d: 1.1, nd: 1.90265, elemId: 18, sd: 11.0 },
     { label: "31", R: -32.544, d: 0.1, nd: 1.0, elemId: 0, sd: 11.5 },
     { label: "32", R: -502.457, d: 2.08, nd: 1.84666, elemId: 19, sd: 11.5 },
-    { label: "33", R: -52.88, d: 10.327, nd: 1.0, elemId: 0, sd: 12.0 },
+    { label: "33", R: -52.88, d: 8.272, nd: 1.0, elemId: 0, sd: 12.0 }, // D33 var — gap to the PP plate
+  ],
+
+  /* ── Cover glass PP (patent surfaces 34–35): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PP",
+      thicknessMm: 1.6,
+      nd: 1.5168,
+      vd: 64.14,
+      glass: "J-BK7A",
+      gapAfterMm: 1.0,
+      source: "WO 2022/264542 A1, Example 1 Table 1 surfaces 34–35",
+    },
   ],
 
   /* ── Aspherical Coefficients ──
@@ -387,7 +402,7 @@ const LENS_DATA = {
    *
    *  D5, D13: zoom only (identical inf/close).
    *  D26, D29: zoom + focus (G4 moves image-ward for close focus).
-   *  D33: zoom only (BFD with cover glass folded to air-equivalent).
+   *  D33: zoom only, gap to the PP cover glass (`rearPlates`).
    *
    *  Focus travel (D26 close − D26 inf):
    *    Wide:  1.557 mm
@@ -421,9 +436,9 @@ const LENS_DATA = {
       [18.046, 9.274],
     ],
     "33": [
-      [10.327, 10.327],
-      [20.924, 20.924],
-      [35.271, 35.271],
+      [8.272, 8.272],
+      [18.869, 18.869],
+      [33.216, 33.216],
     ],
   },
 

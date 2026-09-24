@@ -82,12 +82,16 @@ from wide to telephoto, while G6 remains fixed to numerical precision. None of t
 a movement reversal.
 
 The ordinary active model ends at L61. Patent surfaces 30-31 form the plane-parallel member PP, which the patent
-explicitly uses to represent cover glass, a prism, or filters between the lens and image plane. PP is excluded from the
-LensVisualizer lens-element model. Its on-axis paraxial effect is retained by replacing the physical rear sequence
-2.000 mm air + 2.850 mm at nd=1.5168 + 16.080 mm air with a single 19.958955696203 mm air-equivalent rear distance.
+explicitly uses to represent cover glass, a prism, or filters between the lens and image plane. PP is not a lens element:
+the data file models it physically through `rearPlates` (2.000 mm air, then 2.850 mm at nd=1.5168, νd=64.2, then
+16.080 mm air to the image plane), so every analysis traces it while the diagram does not draw it. Its paraxial
+air-equivalent is the single 2.000 + 2.850/1.5168 + 16.080 = 19.958955696203 mm rear distance; EFL and paraxial focus
+are the same as with that fold, while the plate's own contribution to spherical aberration, astigmatism, and axial colour
+in the converging image-side beam is now included.
 
 By the project's strict taxonomy, the zoom should not be described as a telephoto-form lens merely because it has a
-"telephoto end": the computed total-track/EFL ratio at 130.78 mm is 1.300717, not less than one. The wide endpoint does
+"telephoto end": the computed total-track/EFL ratio at 130.78 mm is 1.300717 with the air-equivalent PP path (1.308142 with the
+physical 171.079 mm track through the plate), not less than one. The wide endpoint does
 meet the project's retrofocus criterion because its computed BFD, 19.962301 mm, exceeds its 18.499552 mm EFL.
 
 ## Element-by-Element Analysis
@@ -398,9 +402,10 @@ tightest shared-band cross-gap margin at 7A->8
 8 (0.066536 mm).
 These are validation results for the modeled semi-diameters, not manufacturer mechanical dimensions.
 
-No uniform scaling is present. The patent PP plate is omitted with its paraxial effect folded into the
-19.958955696203 mm rear air-equivalent spacing, and no other dummy, filter, sensor-cover, or mechanical plane is included
-in the active sequential model.
+No uniform scaling is present. The patent PP plate is modeled in `rearPlates` (traced, not drawn) behind the physical
+2.000 mm d29 gap; its paraxial air-equivalent is the 19.958955696203 mm rear distance, and the computed BFD column above
+is that air-equivalent value (the physical last-surface-to-image distance is 0.971044 mm longer). No other dummy, filter,
+sensor-cover, or mechanical plane is included in the active sequential model.
 
 ## Sources / References
 

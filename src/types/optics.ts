@@ -35,6 +35,39 @@ export interface SurfaceData {
   stopPlacement?: "inside-element";
   interaction?: SurfaceInteraction;
   diffractive?: DiffractivePhaseSurface;
+  /** Set only by `expandRearPlates()`; authored data must not use it. Traced, never drawn. */
+  synthetic?: SyntheticOpticsKind;
+}
+
+/** Marker for engine-generated optics that participate in tracing but are hidden from drawing and element UI. */
+export type SyntheticOpticsKind = "rearPlate";
+
+/**
+ * Source-documented plane-parallel plate behind the last lens surface — sensor cover glass, IR/low-pass stack, or a
+ * rear filter. `buildLens()` expands each plate into two flat refracting surfaces so every trace and analysis sees
+ * it, while the diagram and element lists do not. When present, the last authored surface's `d` is the physical gap
+ * to the first plate (not an air-equivalent back focus).
+ */
+export interface RearPlateData {
+  /** Source designation such as "CG", "FL" or "LPF" (documentation and tooltips only). */
+  label?: string;
+  /** Physical plate thickness in mm. */
+  thicknessMm: number;
+  nd: number;
+  vd: number;
+  /** Catalog glass label resolved exactly like an element's `glass`. */
+  glass?: string;
+  indexReference?: RefractiveIndexReferenceLine;
+  dPgF?: number;
+  nC?: number;
+  nF?: number;
+  ng?: number;
+  /** Physical air gap after this plate in mm; for the last plate, the distance to the image plane. */
+  gapAfterMm: number;
+  /** Published clear semi-diameter; omitted plates get a non-clipping generated value. */
+  sd?: number;
+  /** Source citation, e.g. "US 2019/0000000 A1, Table 1 surfaces 27–28". */
+  source?: string;
 }
 
 export type SurfaceIncidentSide = "front" | "rear" | "both";
@@ -186,6 +219,8 @@ export interface ElementData {
   /** Explicit physical span for elements that contain optically neutral internal surfaces such as an embedded stop. */
   fromSurface?: string;
   toSurface?: string;
+  /** Set only by `expandRearPlates()`; synthetic elements feed dispersion lookup but are never drawn or listed. */
+  synthetic?: SyntheticOpticsKind;
 }
 
 export interface AnnotationData {
@@ -341,6 +376,8 @@ export interface LensData {
   fstopSeries: number[];
   elements: ElementData[];
   surfaces: SurfaceData[];
+  /** Source-documented rear plates, ordered lens → image; see `RearPlateData`. */
+  rearPlates?: RearPlateData[];
   asph?: Record<string, AsphericCoefficients>;
   var?: Record<string, VarRange>;
   varLabels?: [string, string][];
@@ -414,11 +451,16 @@ export interface SurfaceSpectral {
 
 /** Frozen runtime lens object returned by buildLens() */
 export interface RuntimeLens {
+  /** Lens data after defaults and `expandRearPlates()`; `surfaces`/`elements` include synthetic plates. */
   readonly data: LensData;
   readonly S: SurfaceData[];
   readonly N: number;
+  /** Drawable element spans; synthetic rear plates are excluded. */
   readonly ES: ElementSpan[];
+  /** Displayable elements; synthetic rear plates are excluded (they remain in `data.elements`). */
   readonly elements: ElementData[];
+  /** Index of the last authored (non-synthetic) surface — the rear lens vertex for back-focus readouts. */
+  readonly lastLensSurfaceIdx: number;
   readonly asphByIdx: Record<number, AsphericCoefficients>;
   readonly varByIdx: Record<number, VarRange>;
   readonly vdByIdx: Record<number, number>;

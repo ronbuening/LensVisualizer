@@ -3,8 +3,9 @@ import type { LensDataInput } from "../../types/optics.js";
 /**
  * JP2022092388A Example 1, Table 1 and Figures 1–2.
  * Patent nd values are authored; every vd and glass identity is inferred.
- * Filter element26/source surfaces47–48 excluded, with 1.6/1.5168 mm
- * added to rear air. No sensor stack is drawn or counted as a lens.
+ * Filter FL (source surfaces 47–48, t = 1.6 mm, nd = 1.5168; νd inferred as
+ * J-BK7A, like every element's vd) is modeled in `rearPlates` (traced, not
+ * drawn), 29.62 mm behind surface 46 and 0.000 mm before the image plane.
  * SDs remain estimated optical rims, reviewed against both source figures.
  */
 const LENS_DATA = {
@@ -405,7 +406,20 @@ const LENS_DATA = {
     { label: "43", R: -285.763, d: 1.0, nd: 1.49782, elemId: 24, sd: 20.5 },
     { label: "44", R: 43.194, d: 1.46, nd: 1.0, elemId: 0, sd: 20.5 },
     { label: "45", R: 47.384, d: 5.67, nd: 1.738, elemId: 25, sd: 21.0 },
-    { label: "46", R: 1194.653, d: 30.674852320675104, nd: 1.0, elemId: 0, sd: 21.5 },
+    { label: "46", R: 1194.653, d: 29.62, nd: 1.0, elemId: 0, sd: 21.5 }, // gap to the FL plate
+  ],
+
+  /* ── Filter FL (patent surfaces 47–48): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "FL",
+      thicknessMm: 1.6,
+      nd: 1.5168,
+      vd: 64.1,
+      glass: "J-BK7A",
+      gapAfterMm: 0,
+      source: "JP 2022-092388 A, Example 1 Table 1 surfaces 47–48 (νd inferred; Table 1 prints nd only)",
+    },
   ],
 
   asph: {},

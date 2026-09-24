@@ -27,10 +27,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  infers iris radii 9.04 / 10.68 / 11.94 mm (calculated). STO sd      ║
  * ║  records the largest inferred radius.                                ║
  * ║                                                                      ║
- * ║  COVER GLASS: patent surfaces 29–30 (GB, 2.00 mm, nd 1.54400) are    ║
- * ║  excluded. Last gap = d28 + 2.00/1.544 + d30 (1.09) = 15.385 /       ║
- * ║  26.315 / 34.865 mm, the air-equivalent bf (patent 15.39 / 26.31 /   ║
- * ║  34.87).                                                             ║
+ * ║  COVER GLASS: patent surfaces 29–30 (GB, 2.00 mm, nd 1.54400,        ║
+ * ║  νd 66.3; no catalog match, Abbe dispersion) and d30 = 1.09 mm are  ║
+ * ║  modeled in `rearPlates` (traced, not drawn). D28 stores the patent ║
+ * ║  gap to GB: 13.00 / 23.93 / 32.48 mm; the equivalent bf matches the  ║
+ * ║  patent 15.39 / 26.31 / 34.87.                                       ║
  * ║                                                                      ║
  * ║  SOURCE CONFLICT: the printed Total Lens Length (132.38 / 144.25 /   ║
  * ║  158.83) is 0.90 mm longer than the tabulated physical sum (131.48 / ║
@@ -313,7 +314,19 @@ const LENS_DATA = {
     // ── B7: Rear negative doublet (L14+L15 cemented doublet D3) ──
     { label: "26", R: -53.964, d: 1.3, nd: 1.744, elemId: 14, sd: 15.8 },
     { label: "27", R: 43.097, d: 4.8, nd: 1.92286, elemId: 15, sd: 15.8 }, // D3 junction
-    { label: "28", R: -750.0, d: 15.385, nd: 1.0, elemId: 0, sd: 15.8 }, // air-equivalent bf (d28 + 2.00/1.544 + d30)
+    { label: "28", R: -750.0, d: 13.0, nd: 1.0, elemId: 0, sd: 15.8 }, // d28 variable (zoom), gap to the GB plate
+  ],
+
+  /* ── Glass block GB (patent surfaces 29–30): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "GB",
+      thicknessMm: 2.0,
+      nd: 1.544,
+      vd: 66.3,
+      gapAfterMm: 1.09,
+      source: "US 2024/0329367 A1, First Numerical Example surfaces 29–30",
+    },
   ],
 
   /* ── Aspherical coefficients ── */
@@ -361,7 +374,7 @@ const LENS_DATA = {
   zoomStep: 0.004,
   zoomLabels: ["Wide", "Tele"],
 
-  /* ── Variable air spacings (zoom only — close-focus data not published; last gap is air-equivalent bf) ── */
+  /* ── Variable air spacings (zoom only — close-focus data not published; last gap ends at the GB plate) ── */
   var: {
     "2": [
       [0.85, 0.85],
@@ -394,9 +407,9 @@ const LENS_DATA = {
       [13.9, 13.9],
     ],
     "28": [
-      [15.385, 15.385],
-      [26.315, 26.315],
-      [34.865, 34.865],
+      [13.0, 13.0],
+      [23.93, 23.93],
+      [32.48, 32.48],
     ],
   },
   varLabels: [

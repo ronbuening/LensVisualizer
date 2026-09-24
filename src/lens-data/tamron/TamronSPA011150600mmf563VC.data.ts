@@ -22,8 +22,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    are collapsed into direct cemented junctions. Their thickness is added to the ║
  * ║    downstream element span so later axial stations are preserved.                ║
  * ║  - Inactive source surface 36 is removed and its D36 gap is transferred to s35.  ║
- * ║  - The uncounted 2.000 mm rear plate (nd 1.51680) plus 1.000 mm air is omitted   ║
- * ║    and replaced by 2/1.51680 + 1 = 2.3185654008 mm of air-equivalent spacing.    ║
+ * ║  - The uncounted 2.000 mm rear plate (Table 10 s43-44, nd 1.51680, vd 64.20)    ║
+ * ║    and its 1.000 mm air gap to the image are modeled in `rearPlates` (traced,    ║
+ * ║    not drawn). s42 stores the patent D42 = 51.0000 / 77.8106 / 97.8880 mm.       ║
  * ║  - No uniform scale factor is applied.                                            ║
  * ║                                                                                  ║
  * ║  MODELED EFL after normalization: 152.226594 / 297.631820 / 582.810656 mm.       ║
@@ -331,7 +332,19 @@ const LENS_DATA = {
     { label: "38", R: 25.8597, d: 6.9561, nd: 1.0, elemId: 0, sd: 14.0 },
     { label: "39", R: -55.4034, d: 1.3, nd: 1.48749, elemId: 19, sd: 14.5 },
     { label: "40", R: 29.6386, d: 5.91, nd: 1.72047, elemId: 20, sd: 15.0 },
-    { label: "42", R: -175.0744, d: 53.31856540084388, nd: 1.0, elemId: 0, sd: 15.0 },
+    { label: "42", R: -175.0744, d: 51.0, nd: 1.0, elemId: 0, sd: 15.0 },
+  ],
+
+  /* ── Rear plate (patent Table 10 surfaces 43–44): traced, not drawn ── */
+  rearPlates: [
+    {
+      thicknessMm: 2.0,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 1.0,
+      source: "US 10,545,321 B2, Example 4 Table 10 surfaces 43–44",
+    },
   ],
 
   asph: {},
@@ -358,9 +371,9 @@ const LENS_DATA = {
       [2.5, 13.6835],
     ],
     "42": [
-      [53.31856540084388, 53.31856540084388],
-      [80.12916540084387, 80.12916540084387],
-      [100.20656540084389, 100.20656540084389],
+      [51.0, 51.0],
+      [77.8106, 77.8106],
+      [97.888, 97.888],
     ],
   },
 
@@ -369,7 +382,7 @@ const LENS_DATA = {
     ["16", "D16"],
     ["STO", "D29"],
     ["35", "D36"],
-    ["42", "BF (air-eq.)"],
+    ["42", "D42"],
   ],
 
   zoomPositions: [152.1633, 297.4851, 582.52],

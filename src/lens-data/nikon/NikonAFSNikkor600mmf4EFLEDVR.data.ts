@@ -14,9 +14,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  SOURCE-PLANE NORMALIZATION:                                               ║
  * ║    - The curved front HG protective meniscus is retained as a real weak  ║
  * ║      optical element.                                                     ║
- * ║    - Source S32-S33 rear low-pass filter FL is excluded. Its 1.50 mm     ║
- * ║      plate at nd=1.51680 is replaced by air-equivalent spacing, making   ║
- * ║      S31-to-image d = 82.25892405063291 mm.                              ║
+ * ║    - Source S32-S33 rear low-pass filter FL (1.50 mm, nd 1.51680,        ║
+ * ║      νd 63.88) and its 75.12 mm gap to the image are modeled in          ║
+ * ║      `rearPlates` (traced, not drawn); S31.d keeps the patent's          ║
+ * ║      6.15 mm gap to FL.                                                  ║
  * ║    - No dimensional scaling is applied: s = 1.000000.                    ║
  * ║                                                                            ║
  * ║  STOP / PUPIL MODEL:                                                       ║
@@ -303,7 +304,7 @@ const LENS_DATA = {
   /* ── Surface prescription ──
    * Labels preserve Example-4 source surface numbers except source S15, which is the required STO label.
    * Cemented junctions S10, S13, S17, and S20 carry the downstream element's elemId and index.
-   * Source S32-S33 low-pass filter FL is omitted; the source-equivalent image plane is encoded in S31.d.
+   * Source S32-S33 low-pass filter FL is modeled in `rearPlates`; S31.d is the patent's 6.15 mm gap to FL.
    */
   surfaces: [
     { label: "1", R: 1200.5127, d: 5, nd: 1.5168, elemId: 1, sd: 78 },
@@ -336,7 +337,20 @@ const LENS_DATA = {
     { label: "28", R: -59.2874, d: 2.45, nd: 1.59319, elemId: 16, sd: 19 },
     { label: "29", R: 42.619, d: 1.95, nd: 1, elemId: 0, sd: 19 },
     { label: "30", R: 51.7215, d: 5.4, nd: 1.67003, elemId: 17, sd: 19.5 },
-    { label: "31", R: -154.5582, d: 82.25892405063291, nd: 1, elemId: 0, sd: 20 },
+    { label: "31", R: -154.5582, d: 6.15, nd: 1, elemId: 0, sd: 20 },
+  ],
+
+  /* ── Low-pass filter FL (patent Table 4 surfaces 32–33): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "FL",
+      thicknessMm: 1.5,
+      nd: 1.5168,
+      vd: 63.88,
+      glass: "J-BK7",
+      gapAfterMm: 75.12,
+      source: "US 2018/0031811 A1, Example 4 Table 4 surfaces 32–33",
+    },
   ],
 
   asph: {},

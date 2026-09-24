@@ -17,9 +17,9 @@ The production correlation rests on several convergent features rather than on a
 2. The 51.30 mm patent focal length and f/1.85 design aperture lie directly in the marketed 50 mm f/1.8 class.
 3. Example 2 publishes a 14.20 mm image height and a 30.86° full field; Sony markets the production lens for APS-C with a 32° angle of view.
 4. Example 2 uses a single laterally translating negative lens, L214, for image stabilization and a separate one-element negative inner-focus group, L221 (¶0053-¶0054). Sony describes the production SEL50F18 as having Optical SteadyShot and internal focusing.
-5. The closest published patent state is not identical to the production mechanical endpoint. The model uses the patent's 0.142× row and approximately 0.457 m normalized conjugate, while Sony markets 0.39 m minimum focus and 0.16× maximum magnification. Those product values are therefore identification evidence only; they are not used to extend the patent focus motion.
+5. The closest published patent state is not identical to the production mechanical endpoint. The model uses the patent's 0.142× row and approximately 0.458 m physical object-to-image conjugate, while Sony markets 0.39 m minimum focus and 0.16× maximum magnification. Those product values are therefore identification evidence only; they are not used to extend the patent focus motion.
 
-No patent numerical correction is applied. The optional sensor cover shown after G23 in Figure 8 and tabulated at surfaces 19-20 is omitted from the active prescription, as required by the data model; its first-order optical effect is retained through an air-equivalent rear spacing. The patent publishes the stop position but not its physical diameter, and it does not publish lens semi-diameters.
+No patent numerical correction is applied. The optional cover glass CG shown after G23 in Figure 8 and tabulated at surfaces 19-20 is modeled as a rear plate (`rearPlates`): every analysis traces it, but the diagram does not draw it. The patent publishes the stop position but not its physical diameter, and it does not publish lens semi-diameters.
 
 ## Optical Architecture
 
@@ -37,7 +37,7 @@ G21 is not simply a stack of positive elements. It begins with two positive elem
 
 G22 is deliberately minimal: the patent states that a one-element negative second group is preferable for low focusing mass and moves it imageward along the axis from infinity toward close focus (¶0023, ¶0054). G23 remains fixed in the published focus states and is net positive despite ending in the weak negative L232.
 
-The complete centered prescription has an independently recomputed infinity-focus EFL of 51.29998 mm. The powered vertex track from surface 1 through surface 18 is 59.6516 mm; the cover-normalized model track to IMG is 75.12017 mm. These are design-model quantities, not marketed mechanical dimensions.
+The complete centered prescription has an independently recomputed infinity-focus EFL of 51.29998 mm. The powered vertex track from surface 1 through surface 18 is 59.6516 mm; the physical model track to IMG, through the 2.0 mm cover glass, is 75.8016 mm (75.12017 mm air-equivalent with the plate folded to t/n). These are design-model quantities, not marketed mechanical dimensions.
 
 ## Element-by-Element Analysis
 
@@ -140,7 +140,7 @@ L221 translates imageward as object distance decreases. The patent supplies thre
 
 The small 0.002 mm spread in the summed adjacent gaps is consistent with the source table's three-decimal spacing precision. The intermediate 0.025× state lies on the same rigid-translation path to within 0.00059 mm of endpoint interpolation, but is stored explicitly so its spacing and inverse-distance slider position are both exact.
 
-Tracing the rounded prescription to the cover-normalized image plane gives approximately 0.1393× at the patent's row labeled 0.142× and an object-to-image conjugate of 456.98 mm. The data therefore stores `closeFocusM = 0.457` m as the model endpoint. The difference between traced and printed magnification is treated as source-precision rounding, not as a reason to alter the published spacings.
+Tracing the rounded prescription through the cover glass to the image plane gives approximately 0.1393× at the patent's row labeled 0.142× and an air-equivalent object-to-image conjugate of 456.98 mm; the physical conjugate, including the plate's 0.681 mm of extra glass path, is about 457.66 mm. The data therefore stores `closeFocusM = 0.458` m as the model endpoint. The difference between traced and printed magnification is treated as source-precision rounding, not as a reason to alter the published spacings.
 
 Sony's marketed 0.39 m minimum focusing distance and 0.16× maximum magnification describe the production lens, not an additional patent state. The data does not invent the extra motion needed to force Example 2 to those product endpoints.
 
@@ -174,13 +174,13 @@ The final data file preserves the Example-2 radii, thicknesses, nd values, and p
 
 At infinity focus, independent sequential y-ν tracing and ABCD composition give an EFL of 51.29998 mm, against the patent's 51.30 mm. The modeled stop semi-diameter is 9.631 mm; it is inferred from the published f/1.85 rather than copied from the patent. With that stop, the final prescription returns f/1.84997.
 
-The patent's optional 2.0 mm, nd = 1.5168 sensor cover is excluded from the active lens model. Its optical path is preserved by replacing the plate with its 1.318565 mm air-equivalent thickness inside the final rear spacing. Surface 18 therefore carries 15.468565 mm to IMG rather than the raw cover-containing 16.15 mm physical distance. No powered surface is altered by this normalization.
+The patent's optional 2.0 mm, nd = 1.5168, νd = 64.2 cover glass CG is modeled in `rearPlates` (N-BK7 catalog equivalent), followed by the printed 9.15 mm of air to IMG. Surface 18 stores the printed physical d18 = 5.0 mm, so the physical rear distance from surface 18 to IMG is 16.15 mm; its paraxial air equivalent, 5.0 + 2.0/1.5168 + 9.15 = 15.468565 mm, is unchanged. The plate is traced by every analysis but not drawn, and no powered surface is altered.
 
 The authored semi-diameters are modeling inferences. They are not patent clear-aperture values. They were constrained by the centered marginal and chief rays, all three published focus states, the full-field chief ray, the published L214 stabilization travel, direct Figure 8 silhouette comparison, and the production filter-diameter context. The final review tightened L211 to 10.7/10.1 mm, L212 to 10.0/9.6 mm, L213 and L214 to 9.0 mm, L215-L216 to 9.6 mm, L221 to 8.5 mm, and L232 to 9.8 mm. The remaining difference from the schematic's very small central drawing is intentional: the modeled f/1.85 stop and verified ray envelope set a harder lower bound. The final geometry passes the project's surface-domain, edge-thickness, rim-slope, image-circle, and ray-containment checks at all three published focus states.
 
 The surface-by-surface Petzval sum, evaluated as `Σ φ/(n·n′)`, is +0.00302765 mm⁻¹. This is a computed design quantity; the patent does not publish a Petzval radius for Example 2.
 
-No patent numerical correction, focus reconstruction, dimensional scaling, asphere transformation, sensor-filter element, inactive dummy plane, or synthetic cement layer is present in the final prescription.
+No patent numerical correction, focus reconstruction, dimensional scaling, asphere transformation, drawn sensor-filter element, inactive dummy plane, or synthetic cement layer is present in the final prescription.
 
 ## Sources
 

@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import ReferenceNewtonianSideFocusRaw from "../../../src/lens-data/reference/ReferenceNewtonianSideFocus.data.js";
 import { computeOpticalSummaryForState2, prepareRuntimeState } from "../../../src/optics/compat.js";
 import { computeAnalysisFieldGeometryAtState, eflAtFocus } from "../../../src/optics/optics.js";
-import { apertureAt, build, sharedSonnar50f15 } from "./testLensFixtures.js";
+import { apertureAt, build, buildRearPlateLens, REAR_PLATE_FIXTURE, sharedSonnar50f15 } from "./testLensFixtures.js";
 
 describe("computeOpticalSummaryForState2", () => {
   it("summarizes current refractive lens state from prepared optics data", () => {
@@ -41,5 +41,15 @@ describe("computeOpticalSummaryForState2", () => {
     expect(summary.focusDistanceM).toBeNull();
     expect(summary.imagePlaneZMm).toBeCloseTo(state.imgZ, 6);
     expect(summary.totalTrackMm).toBeCloseTo(state.totalTrack, 6);
+  });
+
+  it("counts authored surfaces only and reports modeled rear plates separately", () => {
+    const L = buildRearPlateLens();
+    const state = prepareRuntimeState(L, 0, 0);
+    const summary = computeOpticalSummaryForState2(state, L.EFL, L.EP.epSD, L.stopPhysSD);
+
+    expect(summary.surfaceCount).toBe(L.N - 2);
+    expect(summary.rearPlateCount).toBe(1);
+    expect(summary.rearPlateThicknessMm).toBe(REAR_PLATE_FIXTURE.thicknessMm);
   });
 });

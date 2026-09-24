@@ -10,9 +10,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * one ED element, and one Super ED element.
  *
  * Modeling notes:
- * - The patent's PP sensor cover plate is excluded from surfaces[] per project convention.
- *   Its 3.2500 mm thickness at nd=1.51680 is folded into the final air-equivalent BFD:
- *   25.8035 + 3.2500 / 1.51680 = 27.9461687764 mm.
+ * - The patent's PP sensor cover plate (Table 1 surfaces 28-29: 3.2500 mm, nd=1.51680,
+ *   vd=64.20) is modeled in `rearPlates` (traced, not drawn). Surface 27 keeps the printed
+ *   25.8035 mm gap to PP; Table 1 prints 0.0000 mm from PP to the image plane. The
+ *   air-equivalent BFD is unchanged: 25.8035 + 3.2500 / 1.51680 = 27.9462 mm.
  * - The production element count is 14. The data model represents the L21 hybrid compound
  *   as separate glass-substrate and resin-layer media, so elements[] contains 15 modeled media.
  * - The patent publishes only infinity-focus Example 1 spacings. Close-focus pairs for L24
@@ -279,7 +280,20 @@ const LENS_DATA = {
     { label: "24", R: -17.4832, d: 1.2, nd: 1.85026, elemId: 14, sd: 13.2 },
     { label: "25", R: -26.044, d: 1.0, nd: 1.0, elemId: 0, sd: 13.5 },
     { label: "26", R: -100.9926, d: 5.27, nd: 1.91082, elemId: 15, sd: 22.0 },
-    { label: "27", R: -47.4212, d: 27.9461687764, nd: 1.0, elemId: 0, sd: 24.0 },
+    { label: "27", R: -47.4212, d: 25.8035, nd: 1.0, elemId: 0, sd: 24.0 },
+  ],
+
+  /* ── Cover plate PP (patent surfaces 28–29): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PP",
+      thicknessMm: 3.25,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 0,
+      source: "US 10,191,246 B2, Example 1 Table 1 surfaces 28–29",
+    },
   ],
 
   asph: {

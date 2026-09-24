@@ -29,7 +29,7 @@ The XCD 3,5/120 Macro is a **doubled telephoto-type** (or "doubled reversed-retr
 
 $$G1(+) \;\;G2(+) \;\;G3(-) \;\;\text{[STO]} \;\;G4(+) \;\;G5(+) \;\;G6(-)$$
 
-This architecture is described in the patent as "telephoto-type optical systems that each have a positive–positive–negative arrangement of refractive powers and are coupled on the object side and the image plane side with the aperture stop in between" (¶0005). The term "telephoto" here refers to the power layout within each half (positive front / negative rear), not to the overall telephoto ratio of the complete system. The total track from the front vertex to the image plane (air-equivalent, cover glass excluded) is 153.4 mm, giving a telephoto ratio of $153.4/120.0 = 1.28$ — the system is slightly longer than its focal length, as is typical for macro lenses that must accommodate large focus travel.
+This architecture is described in the patent as "telephoto-type optical systems that each have a positive–positive–negative arrangement of refractive powers and are coupled on the object side and the image plane side with the aperture stop in between" (¶0005). The term "telephoto" here refers to the power layout within each half (positive front / negative rear), not to the overall telephoto ratio of the complete system. The physical total track from the front vertex to the image plane, including the 1.80 mm cover glass, is 154.0 mm (153.4 mm air-equivalent), giving a telephoto ratio of about $154.0/120.0 = 1.28$ — the system is slightly longer than its focal length, as is typical for macro lenses that must accommodate large focus travel.
 
 ### Group summary
 
@@ -266,7 +266,7 @@ Independent paraxial verification (y-nu ray trace, ABCD matrix) confirms the fol
 | Total track (to cover glass, constant) | 152.12 mm | — | ±0.00 mm |
 | Petzval sum | +0.00115 mm⁻¹ | — | — |
 
-All computed values agree with the patent's stated values within rounding tolerance. The data file's air-equivalent BFD (32.543 mm) was computed by folding the cover glass (Flat, d = 1.80 mm, nd = 1.51633) and trailing air gap (d = 0.10 mm) into an equivalent air path: $31.256 + 1.800/1.51633 + 0.100 = 32.543$ mm.
+All computed values agree with the patent's stated values within rounding tolerance. The data file stores the patent's 31.256 mm gap from surface 18 to the cover glass and models the cover glass itself (Flat, d = 1.80 mm, nd = 1.51633, νd = 64.14, S-BSL7 class) with its 0.10 mm trailing air gap in `rearPlates`: every analysis traces the plate, but it is not drawn. Its paraxial air-equivalent back focus is $31.256 + 1.800/1.51633 + 0.100 = 32.543$ mm.
 
 ## Sources
 

@@ -108,3 +108,13 @@ arrow).
 - L6 (1.87722 / 37.0) and L11 (1.68250 / 33.0) have no catalog Sellmeier; both run on the Abbe fallback.
 - The viewer's paraxial half-field (≈35°) understates the exact-ray field (39–41°) because of the steep rear
   aspheres; FIG. 1 is anisotropic, so figure-based rims carry about ±3% scale uncertainty.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Replaced the air-equivalent 21A gap with the physical rear stack from FIG. 14 (p. 15) and FIG. 16 (p. 17): d21 =
+  2.3 mm, then a cover glass 1.4 mm, nd 1.5168, νd 64.2 (N-BK7; the patent prints no label), and BF = 1.00114 mm.
+  FIG. 16 prints BF 1.0763 at 0.3 m, and `rearPlates` holds one fixed trailing gap, so the extra 0.0752 mm is carried
+  in d21 (`var["21A"]` = 2.3 / 2.3752).
+- Paraxial check against the previous data: EFL identical; defocus changes by at most 0.00004 mm (the rounding of the
+  old 0.9230 mm t/n fold). Physical track grows by 0.477 mm (1.4 × (1 − 1/1.5168)); S1 to S23 now matches the
+  patent's 63.98 mm overall length. `closeFocusM` 0.3 was already the physical object-to-image distance and stays.

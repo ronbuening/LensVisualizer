@@ -25,14 +25,15 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    d = 0.01 mm). These are preserved as thin surface entries.      ║
  * ║                                                                    ║
  * ║  NOTE ON COVER GLASS:                                              ║
- * ║    Patent includes a parallel plate (nd = 1.51680, d = 1.44 mm)   ║
- * ║    plus 0.80 mm air gap. Excluded per spec; air-equivalent path    ║
- * ║    folded into the final surface BFD.                              ║
+ * ║    Table 1A surfaces 20–21 (parallel plate P, 1.44 mm, nd 1.51680, ║
+ * ║    νd 64.2) and the 0.80 mm air to surface 22 (BF = 0) are modeled ║
+ * ║    in `rearPlates` (traced, not drawn), scaled ×1.26265 like the   ║
+ * ║    lens. Surface 18A keeps the physical gap to P (10.679 scaled).  ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
  * ║    ✓ Aperture stop and variable focus gaps                        ║
- * ║    ✗ DO NOT include: sensor glass, filters, mechanical parts      ║
+ * ║    ✗ DO NOT include: mechanical parts (cover glass: `rearPlates`)  ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -214,7 +215,21 @@ const LENS_DATA = {
     { label: "15", R: -29.539, d: 9.85437, nd: 1.84666, elemId: 8, sd: 17.3 },
     { label: "16", R: -42.79, d: 15.54364, nd: 1.0, elemId: 0, sd: 22.0 },
     { label: "17A", R: -20.856, d: 3.03037, nd: 1.68863, elemId: 9, sd: 17.0 },
-    { label: "18A", R: -65.154, d: 15.69272, nd: 1.0, elemId: 0, sd: 17.5 },
+    // Last surface: patent d19 = 10.679 (×1.26265) physical gap to plate P
+    { label: "18A", R: -65.154, d: 13.48387, nd: 1.0, elemId: 0, sd: 17.5 },
+  ],
+
+  /* ── Parallel plate P (patent Table 1A surfaces 20–21): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "P",
+      thicknessMm: 1.81822,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 1.01012,
+      source: "JP 2022-99402 A, Example 1 Table 1A surfaces 20–21 (1.44 mm, 0.80 mm to BF = 0; scaled ×1.26265)",
+    },
   ],
 
   /* ── Aspherical coefficients ──

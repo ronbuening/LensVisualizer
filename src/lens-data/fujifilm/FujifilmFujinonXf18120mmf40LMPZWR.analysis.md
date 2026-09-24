@@ -44,15 +44,15 @@ Independent first-order calculation gives group focal lengths of approximately *
 
 The zoom motion is compactly expressed by two conserved adjacent-gap sums. G2 moves imageward by 30.275 mm from wide to tele while `D5 + D13 = 32.230 mm`; G4 moves imageward by 11.925 mm while `D19 + D22 = 23.060 mm`. The patent supplies only the wide and tele zoom stations numerically, so the LensVisualizer model interpolates between those source endpoints and does not present the intermediate path as a measured production cam law.
 
-By the project's architecture definitions, the design is not a telephoto system at either endpoint: `TL/EFL` is approximately 7.482 at wide and 1.188 at tele, both greater than 1. The wide endpoint does meet the project's retrofocus test because its computed BFD, 24.829 mm, exceeds its 18.544 mm EFL; the tele endpoint does not.
+By the project's architecture definitions, the design is not a telephoto system at either endpoint: `TL/EFL` is approximately 7.535 at wide and 1.196 at tele on the 139.726 mm physical track through PP (7.482 and 1.188 on the 138.756 mm air-equivalent track), both greater than 1. The wide endpoint does meet the project's retrofocus test because its computed air-equivalent BFD, 24.829 mm (25.800 mm physical, measured through PP), exceeds its 18.544 mm EFL; the tele endpoint does not.
 
 ### Model normalization and aperture treatment
 
-Patent surfaces 29-30 are a plane-parallel optical member PP representing a filter and/or cover-glass surrogate (¶0084). They are excluded from the ordinary LensVisualizer prescription. Their first-order optical effect is retained by replacing the raw rear geometry with an air-equivalent S28-to-image spacing of
+Patent surfaces 29-30 are a plane-parallel optical member PP representing a filter and/or cover-glass surrogate (¶0084). PP is modeled in the data file's `rearPlates` field with the Table 1 values (2.850 mm, nd 1.51633, νd 64.14, θgF 0.53531; S-BSL7 coordinate), so every trace and analysis passes through it, but it is not drawn in the diagram. The last surface stores the physical D28 = 21.929 mm to PP, and 1.021 mm follows PP to the image plane. Paraxially this is equivalent to the air-equivalent S28-to-image spacing of
 
 `21.929 + 2.850 / 1.51633 + 1.021 = 24.829538095 mm`.
 
-This moves the normalized image plane 0.970462 mm objectward relative to the raw physical image plane through PP. All finite-distance comparisons in the modeled prescription use that normalized plane.
+The air-equivalent image plane lies 0.970462 mm objectward of the physical image plane behind PP, and the physical track is 0.970462 mm longer than the air-equivalent one. The finite-distance focus keyframes below were solved against the air-equivalent plane; measured to the physical image plane, each object-to-image distance is 0.970462 mm longer.
 
 The aperture stop position is not inferred: it is patent surface 14 and appears as the single `STO` in the data file. The patent's listed stop-row effective diameter, however, is not a published physical open-iris diameter. The physical wide-open iris schedule is therefore a modeling inference from the source-station f-numbers. Exact axial Snell tracing through the final aspheres gives physical stop semi-diameters of approximately **7.152960 mm at wide** and **8.239312 mm at tele**, with ratio **0.868150**, reproducing the patent's rounded Table-110 value 0.87. The active refracting-surface semi-diameters are not inferred; they use the patent effective diameters divided by two.
 
@@ -153,7 +153,7 @@ L52 is the highest-index element in the prescription and provides negative power
 
 **nd = 1.53172, νd = 48.85. Glass: 532489 class (supplier unresolved). f = +68.503 mm.**
 
-L53 is the final powered element. It restores positive power after L52 and forms the last refracting surface before the normalized rear air space to the image plane. Its standalone focal length is substantially longer than L51's, so the rear-group net behavior is determined by the complete three-element spacing and power distribution rather than by L53 alone.
+L53 is the final powered element. It restores positive power after L52 and forms the last powered surface before the rear air space to PP and the image plane. Its standalone focal length is substantially longer than L51's, so the rear-group net behavior is determined by the complete three-element spacing and power distribution rather than by L53 alone.
 
 ## Glass Identification and Selection
 
@@ -192,7 +192,7 @@ The design uses **single-group inner focus**. G4, the cemented L41+L42 doublet, 
 
 The patent publishes three relevant Example-1 states: wide infinity, tele infinity, and a tele near state. It does not publish a wide near row and does not publish a 0.6 m production-MFD row. The final data file therefore uses the disclosed status **CONSTRAINED_RECONSTRUCTION** rather than inventing unconstrained focus motion.
 
-The constraint is mechanical and optical: only G4 moves, and its adjacent gaps remain complementary so that `D19 + D22 = 23.060 mm` at every authored focus state. Three normalized focus keyframes are stored:
+The constraint is mechanical and optical: only G4 moves, and its adjacent gaps remain complementary so that `D19 + D22 = 23.060 mm` at every authored focus state. Three normalized focus keyframes are stored (object-to-image distances measured to the air-equivalent image plane):
 
 | Focus keyframe | Wide D19 / D22 (mm) | Tele D19 / D22 (mm) | Provenance |
 |---|---:|---:|---|
@@ -200,7 +200,7 @@ The constraint is mechanical and optical: only G4 moves, and its adjacent gaps r
 | Middle, 1.195394 m object-to-image | 1.060783 / 21.999217 | 16.026000 / 7.034000 | Tele pair published; wide pair code-solved under G4-only constraint |
 | Close, 0.600 m object-to-image | 1.135197 / 21.924803 | 19.540846 / 3.519154 | Both endpoints code-solved from production MFD |
 
-The middle tele keyframe preserves the patent's published near row exactly. The source describes that state as approximately 1.1 m from the first lens surface; after PP removal and reference-plane normalization, the modeled object-to-image distance is 1.195394 m and the calculated lateral magnification is approximately -0.100018.
+The middle tele keyframe preserves the patent's published near row exactly. The source describes that state as approximately 1.1 m from the first lens surface; measured to the air-equivalent image plane the modeled object-to-image distance is 1.195394 m (1.196365 m to the physical image plane behind PP), and the calculated lateral magnification is approximately -0.100018.
 
 At the modeled 0.6 m production MFD, G4 travels imageward from infinity by approximately **0.135197 mm at wide** and **6.615846 mm at tele**. The calculated tele magnification is approximately **-0.203252**, consistent with FUJIFILM's rounded 0.2× production specification. These 0.6 m positions are reconstruction results, not patent table rows.
 
@@ -427,9 +427,9 @@ Independent calculation from the authored TypeScript arrays confirms the load-be
 | Patent wide f | 18.544 mm |
 | Tele infinity EFL | 116.823552800 mm |
 | Patent tele f | 116.830 mm |
-| Wide computed BFD | 24.829048674 mm |
-| Tele computed BFD | 24.825694248 mm |
-| Authored air-equivalent rear spacing | 24.829538095 mm |
+| Wide computed BFD (air-equivalent) | 24.829048674 mm |
+| Tele computed BFD (air-equivalent) | 24.825694248 mm |
+| Air-equivalent rear spacing (21.929 + 2.850/1.51633 + 1.021) | 24.829538095 mm |
 | Petzval sum `Σφ/(n·n′)` | 0.002682204958 mm⁻¹ |
 | Petzval reciprocal | 372.827586 mm |
 | Minimum verified element edge thickness | 1.181609 mm at L41 |

@@ -20,3 +20,13 @@ Patent: JP 2016-021011 A, Example 4
 ### Analysis sync
 
 - Updated the analysis text to cite `514530` and `514428` as future-upgrade code labels.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Replaced the air-equivalent fold with the patent's physical rear stack from Example 4 (PDF p. 17 table, p. 18 fB):
+  d28 = 36.31 mm, then a 2.00 mm plate (surfaces 29–30, nd 1.51680, νd 64.2; J-BK7A class, no patent designation)
+  and fB = 1.00 mm. The close-focus d28 keeps the file's paraxial 0.20 m solve: 44.003394 − 2 / 1.5168 − 1 =
+  41.684829 mm, so the image plane is unchanged.
+- Paraxial check against the previous data: EFL identical and defocus unchanged at infinity and close focus (worst
+  |Δ| 4e-15 mm; the old fold was exact). Physical track grows by 2.00 × (1 − 1/1.5168) = 0.681 mm and now equals the
+  patent TL of 125.31 mm.

@@ -2,9 +2,10 @@ import type { LensDataInput } from "../../types/optics.js";
 
 // FUJINON GF23mmF4 R LM WR candidate patent prescription.
 // Source: US 2018/0210178 A1, Example 1. The patent's rear optical member PP
-// (nd = 1.51680, d = 3.2 mm) is excluded per LensVisualizer data convention;
-// its optical path is folded into the final air-equivalent back-focus gap:
-// 20.2074 + 3.2 / 1.51680 = 22.3171046414 mm.
+// (Table 1 surfaces 27–28: 3.2000 mm, nd 1.51680, νd 64.20, 0.0000 mm to the
+// image plane) is modeled in `rearPlates` (traced, not drawn). Surface 26
+// keeps the patent's 20.2074 mm gap to PP; the paraxial air equivalent is
+// 20.2074 + 3.2 / 1.51680 = 22.3171 mm.
 //
 // Surfaces 3A, 4A, 18A, and 19A store the exact Example 1 odd/even
 // coefficients through A16. The patent denominator uses KA, converted here
@@ -230,7 +231,20 @@ const LENS_DATA = {
     { label: "23", R: -173.3789, d: 1.4, nd: 1.60342, elemId: 13, sd: 15 },
     { label: "24", R: 91.72, d: 3.4827, nd: 1, elemId: 0, sd: 16 },
     { label: "25", R: 77.795, d: 7.51, nd: 1.53775, elemId: 14, sd: 22 },
-    { label: "26", R: -77.795, d: 22.317104641350213, nd: 1, elemId: 0, sd: 23 },
+    { label: "26", R: -77.795, d: 20.2074, nd: 1, elemId: 0, sd: 23 },
+  ],
+
+  /* ── Optical member PP (patent Table 1 surfaces 27–28): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PP",
+      thicknessMm: 3.2,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 0,
+      source: "US 2018/0210178 A1, Example 1 Table 1 surfaces 27–28",
+    },
   ],
 
   asph: {

@@ -86,3 +86,12 @@ Primary source inspected directly: local `patents/WO2019220618A1.pdf` (203-page 
 ### Batch follow-up
 
 Source follow-up: national grant JP7131609B2 (Google Patents original, stored locally) pp11–12 also omits equation (A). Existing conic conversion is retained as an explicitly unresolved interpretation in the public analysis. This limitation remains in the follow-up ledger.
+
+## 2026-09-23 — Filter modeled as `rearPlates`
+
+- Replaced the air-equivalent surface-24 gap (12.554852 mm) with Table 9's physical rear stack (PDF p. 52, printed
+  p. 50; FL named as a removable filter in ¶0127, PDF p. 50): surface 24 d = 10.500 mm, then `rearPlates` FL 1.600 mm,
+  nd 1.51680, νd 64.1 (J-BK7A, compatible catalog match), and D26 = 1.000 mm at both focus states.
+- Paraxial check against the previous data: EFL identical; defocus unchanged at infinity and close focus (the old fold
+  was computed exactly). Physical track grows by 0.545 mm to the patent's 92.330 mm total length, so `closeFocusM` returns
+  from the D0-preserving 0.399455 m to the source's 0.4 m object-to-image distance (D0 = 307.67 mm is unchanged).

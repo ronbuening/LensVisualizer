@@ -43,3 +43,11 @@ Local original WO2022071249A1 Example2: equation(A) p.20, Table2 pp.26–28 and 
 - Three source regressions pass. Production baseline and local infinity/near/half/f16 inspected: near19cm D5/D13/D17=3.17/1.34/8.49 EFL24.89; half38cm gaps4.01/2.89/6.10 EFL26.76; f16 stop1.87mm.
 
 UnresolvedL31 material remains follow-up. Batch21–30 fullgates/commit pending.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Replaced the equivalent-air D19 (13.137852 mm) with Table 2's physical rear stack (PDF p.27, 300 dpi): D19 = 11.223 mm,
+  then `rearPlates` FL 1.600 mm, nd 1.51680, νd 63.88, and Bf = 0.860 mm to the image (fixed; G4 does not move in
+  focus). Glass `J-BK7` (Hikari, exact 1.51680 / 63.88 coordinate).
+- Paraxial check against the previous data: EFL identical and paraxial defocus unchanged at infinity and near focus,
+  because the old fold was stored unrounded. Physical track grows by 0.545 mm to the source TL 54.610 mm.

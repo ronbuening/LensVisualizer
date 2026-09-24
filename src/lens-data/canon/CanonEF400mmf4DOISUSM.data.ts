@@ -14,10 +14,13 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║     +131.844 mm. Independent EFL/source-precision verification supports +131.844 mm.    ║
  * ║                                                                                          ║
  * ║ MODEL NORMALIZATION                                                                       ║
- * ║   • Patent r28-r29 is a 2.20 mm plane-parallel nd=1.51633 plate at the image side.      ║
- * ║     It is omitted under the project filter/cover-plate policy. Association with the     ║
- * ║     production lens's 52 mm drop-in filter is a modeling inference, not a patent label. ║
- * ║     Its translation is preserved with a 65.507775640 mm air-equivalent rear spacing.   ║
+ * ║   • Patent r28-r29 is a 2.20 mm plane-parallel plate (nd 1.51633, νd 64.1) at the        ║
+ * ║     image side, modeled in `rearPlates` (traced, not drawn); r27 keeps the printed       ║
+ * ║     d27 = 0.72 mm. The table ends at r29 = ∞ with no d29 or back focus, so the           ║
+ * ║     63.3369041 mm plate-to-image air is derived from the file's paraxial image           ║
+ * ║     plane: 0.72 + 2.20/1.51633 + 63.3369041 = 65.507775640 mm air-equivalent             ║
+ * ║     r27-to-image spacing. Association with the production lens's 52 mm drop-in           ║
+ * ║     filter is a modeling inference, not a patent label.                                  ║
  * ║   • The patent macro table therefore contributes 15 modeled refractive elements in      ║
  * ║     11 active air-separated groups. Canon markets the production lens as 17 elements    ║
  * ║     in 13 groups; the DOE microstructure/filter count cannot be mapped one-for-one.     ║
@@ -280,7 +283,20 @@ const LENS_DATA = {
     { label: "24", R: -31.349, d: 1.4, nd: 1.804, elemId: 14, sd: 12.5 },
     { label: "25", R: -170.115, d: 14.65, nd: 1.0, elemId: 0, sd: 12.5 },
     { label: "26", R: 82.731, d: 6.6, nd: 1.51633, elemId: 15, sd: 17.0 },
-    { label: "27", R: -106.118, d: 65.50777563957956, nd: 1.0, elemId: 0, sd: 17.0 },
+    { label: "27", R: -106.118, d: 0.72, nd: 1.0, elemId: 0, sd: 17.0 }, // printed d27 to the r28–r29 plate
+  ],
+
+  /* ── Image-side plate (patent surfaces r28–r29): traced, not drawn ── */
+  rearPlates: [
+    {
+      thicknessMm: 2.2,
+      nd: 1.51633,
+      vd: 64.1,
+      glass: "S-BSL7",
+      gapAfterMm: 63.3369041,
+      source:
+        "US 2002/0015231 A1, Numerical Example 1 r28–r29 (no d29/back focus printed; gap after derived from the paraxial image plane)",
+    },
   ],
 
   asph: {},

@@ -14,9 +14,10 @@
 
 The prescription is transcribed from Example 1 of CN 116500768 A. The patent describes a compact macro imaging lens in
 which only the negative second group moves during focusing, while the first and third groups remain fixed relative to the
-image plane [1, ¶0089–¶0094, ¶0313–¶0317]. The implemented data uses the patent's Example 1 optical surfaces 1–21 and
-omits the source's rear plane-parallel optical member PP, which the patent identifies as a filter and/or cover-glass
-placeholder that may be omitted [1, ¶0088; Table 1].
+image plane [1, ¶0089–¶0094, ¶0313–¶0317]. The implemented data uses the patent's Example 1 optical surfaces 1–21 as
+lens surfaces and models the source's rear plane-parallel optical member PP (surfaces 22–23), which the patent
+identifies as a filter and/or cover-glass placeholder without refractive power [1, ¶0088; Table 1], as a rear plate that
+is traced but not drawn.
 
 The link between Example 1 and the production FUJINON XF30mmF2.8 R LM WR Macro is a strong research correlation rather
 than manufacturer-confirmed patent attribution. No FUJIFILM source located for this dossier explicitly states that
@@ -64,17 +65,20 @@ The verified isolated-group paraxial powers, computed from the final data revisi
 | G3 | L31 | +60.767271 mm | +0.016456227 mm⁻¹ |
 
 These are isolated group quantities, not additive contributions to the assembled system. The assembled infinity EFL is
-29.109243840 mm. The normalized distance from the first lens vertex to the image plane is 81.034955696 mm after the rear
-plate is replaced by its air-equivalent path. The paraxial back focal distance from surface 21A is 20.702836598 mm.
+29.109243840 mm. The physical distance from the first lens vertex to the image plane, including the PP plate, is
+82.006 mm; its air-equivalent (PP thickness counted as 2.850/1.51680) is 81.034955696 mm. The air-equivalent paraxial
+back focal distance from surface 21A is 20.702836598 mm, or 21.673881 mm physically through the plate.
 
 The aperture stop lies between L13 and L14 at the patent-published axial station. Its physical diameter is not published.
 The data therefore uses a modeled stop semi-diameter of 6.550410636 mm, calibrated so that the normalized infinity model
 has F/2.9. Agreement with F/2.9 is a calibration result, not independent evidence of the physical production iris.
 
-The source PP plate after L31 is intentionally absent from the LensVisualizer prescription. The source path from surface
-21 to the image plane is 17.731 mm of air, 2.850 mm of `nd = 1.51680` plate glass, and 1.094 mm of air. Its verified
-air-equivalent replacement is 20.703955696203 mm. This is a reference-plane normalization; it does not change the lens
-powers.
+The source PP plate after L31 is modeled in the data file's `rearPlates` field: it is traced by every analysis but not
+drawn and not counted as a lens element. The source path from surface 21 to the image plane is 17.731 mm of air, 2.850
+mm of `nd = 1.51680`, `νd = 64.20` plate glass (θgF 0.53430), and 1.094 mm of air, and the data stores those values
+directly. The plate has no power, so EFL and paraxial focus are the same as for its air-equivalent path of
+20.703955696203 mm; it does add its own small spherical aberration, astigmatism and axial colour to the converging
+image-side beam, as the patent design includes.
 
 The data-file semi-diameters use the published Table 1 effective diameters divided by two. ED describes the effective ray diameter over the focus range [1, ¶0242–¶0245], not the larger mechanical rims drawn in Fig. 1. The earlier 0.30–0.40 mm padding has been removed; the optical model now preserves the source aperture limits.
 
@@ -199,8 +203,8 @@ fixed third group behind the focus group can assist correction of field curvatur
 G3 supports a shorter system length [1, ¶0107–¶0110]. Example 1 implements the one-component form as a single positive
 meniscus.
 
-The final rear spacing in the data is not the raw source distance to the plate. It is the air-equivalent 20.703955696203
-mm distance from surface 21A to the image plane after omission of PP.
+The final rear spacing in the data is the raw source distance, 17.731 mm, from surface 21A to the PP plate; the plate
+and the 1.094 mm of air behind it are stored in `rearPlates`.
 
 ## Glass Identification / Selection
 
@@ -464,8 +468,8 @@ floating-point precision. The principal verified values are:
 |---|---:|---|
 | Infinity EFL | 29.109243840 mm | Final data, d line, infinity state |
 | Closest-state EFL | 19.101214831 mm | Final data, d line, published closest gaps |
-| Infinity BFD | 20.702836598 mm | From surface 21A vertex |
-| Rear air-equivalent spacing | 20.703955696203 mm | Documented PP omission/normalization |
+| Infinity BFD | 20.702836598 mm | From surface 21A vertex, air-equivalent (21.673881 mm physically through PP) |
+| Rear air-equivalent spacing | 20.703955696203 mm | 17.731 + 2.850/1.51680 + 1.094; PP is modeled in `rearPlates` |
 | Closest transverse magnification | −1.000034724 | Published 18.2 mm object plane + final normalized model |
 | G2 focus travel | 8.453 mm imageward | Published DD14/DD19 endpoints |
 | Petzval sum | +0.005632207838 mm⁻¹ | Surface-by-surface `φ/(n·n′)` |
@@ -476,8 +480,8 @@ floating-point precision. The principal verified values are:
 | Infinity front principal plane H1 | +29.253435 mm from surface 1 vertex | Final data, d line |
 | Infinity rear principal plane H2 | −8.406407 mm relative to surface 21A vertex | Final data, d line |
 | Infinity exit pupil | −104.809145 mm relative to surface 21A vertex | Paraxial pupil image |
-| `TL/EFL` | 2.783822 | Not telephoto (`TL/EFL > 1`) |
-| `BFD/EFL` | 0.711212 | Not retrofocus (`BFD/EFL < 1`) |
+| `TL/EFL` | 2.783822 | Air-equivalent TL; not telephoto (`TL/EFL > 1`) |
+| `BFD/EFL` | 0.711212 | Air-equivalent BFD; not retrofocus (`BFD/EFL < 1`) |
 
 Portable exact meridional tracing sampled infinity, an interpolation midpoint, and the closest state. Forty-eight of 54
 sampled rays passed; six extreme off-axis samples clipped at air-facing surfaces 8, 9, or 10. There were no on-axis clips,

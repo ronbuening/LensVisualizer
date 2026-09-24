@@ -12,8 +12,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  • Five 0.01 mm adhesive shells were removed. At each cemented junction,  ║
  * ║    the downstream element's nd/elemId is used and 0.01 mm is added to its ║
  * ║    center thickness: L7 6.21, L12 1.21, L14 6.01, L17 3.71, L19 0.71 mm. ║
- * ║  • Rear plate P (2.1 mm, nd 1.51680) was omitted. Surface 45 uses the     ║
- * ║    air-equivalent image spacing 31 + 2.1/1.51680 + 1.09 = 33.47449367 mm. ║
+ * ║  • Table 7 surfaces 46–47 (parallel plate P, 2.1 mm, nd 1.51680, νd 64.2)  ║
+ * ║    and BF 1.09 mm are modeled in `rearPlates` (traced, not drawn).         ║
+ * ║    Surface 45 keeps the patent's physical 31.0 mm gap to the plate.        ║
  * ║  • No scale factor was applied. The normalized model computes EFLs of     ║
  * ║    72.45950, 120.01656, and 193.02488 mm. Its fixed stop computes         ║
  * ║    f/2.832625 at wide; the patent control value is f/2.83239.             ║
@@ -357,7 +358,20 @@ const LENS_DATA = {
     { label: "42", R: -46.9831, d: 1.4, nd: 1.84666, elemId: 21, sd: 14.5 },
     { label: "43", R: 117.6471, d: 0.2, nd: 1, elemId: 0, sd: 14.5 },
     { label: "44", R: 49.6263, d: 5, nd: 1.717, elemId: 22, sd: 14.5 },
-    { label: "45", R: 464.3283, d: 33.4744936709, nd: 1, elemId: 0, sd: 14.3 },
+    { label: "45", R: 464.3283, d: 31, nd: 1, elemId: 0, sd: 14.3 },
+  ],
+
+  /* ── Parallel plate P (patent Table 7 surfaces 46–47): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "P",
+      thicknessMm: 2.1,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 1.09,
+      source: "US 2021/0132345 A1, Third Example Table 7 surfaces 46–47; BF from Table 9A",
+    },
   ],
 
   asph: {

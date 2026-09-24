@@ -7,16 +7,22 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ Source: US 6,115,188 A, Numerical Example 1 (Nishio, Ogawa, Misaka; Canon).║
  * ║ Product correlation: Canon EF 300mm f/2.8L IS USM, marketed July 1999.     ║
  * ║ Active model: 15 refractive elements / 11 air-separated groups; spherical.║
- * ║ Canon's 17/13 production count includes a front protection glass and the   ║
- * ║ standard rear filter. The protection glass is not numerically specified in  ║
- * ║ Example 1, and the rear filter R28-R29 is omitted from the active model.     ║
- * ║ Its paraxial effect is folded into the R27-to-image air-equivalent spacing. ║
+ * ║ Canon's 17/13 production count includes a front protection glass and the     ║
+ * ║ standard rear filter. The protection glass is not numerically specified in   ║
+ * ║ Example 1. The rear filter R28-R29 (2.00 mm, nd 1.516330, νd 64.1) is        ║
+ * ║ modeled in `rearPlates` (traced, not drawn); R27 keeps the printed           ║
+ * ║ D27 = 8.00 mm. The patent prints D29 = 0.00 rather than a back focus, so     ║
+ * ║ the 59.3221048 mm filter-to-image air is derived from the file's paraxial    ║
+ * ║ image plane: 8.00 + 2.00/1.51633 + 59.3221048 = 68.641078902 mm air-         ║
+ * ║ equivalent R27-to-image spacing.                                             ║
  * ║                                                                              ║
  * ║ Focus status: CONSTRAINED_RECONSTRUCTION. The patent publishes only the     ║
  * ║ direction of L2 focus travel. The close endpoint solves a rigid imageward   ║
  * ║ translation of L2 to Canon's marketed 2.5 m MFD, measured from image plane  ║
- * ║ to object. D10 + D13 remains 67.11 mm. This gives 14.743206096 mm L2 travel ║
- * ║ and |m| = 0.135695; Canon's 0.13× figure is a rounded product specification.║
+ * ║ to object. D10 + D13 remains 67.11 mm. This gives 14.743206096 mm L2 travel  ║
+ * ║ and |m| = 0.135695; Canon's 0.13× figure is a rounded product specification. ║
+ * ║ The solve used the air-equivalent track; with the physical filter the same   ║
+ * ║ object sits 2.500681 m from the image plane (closeFocusM keeps Canon's 2.5). ║
  * ║                                                                              ║
  * ║ Semi-diameters are modeling values, not patent table values. They were      ║
  * ║ derived from the f/2.9 stop-constrained marginal ray, the reconstructed     ║
@@ -231,7 +237,7 @@ const LENS_DATA = {
       vd: 55.5,
       fl: 117.32398,
       glass: "697555 — lanthanum crown class (vendor unresolved)",
-      role: "Final positive element of L33; its plane rear surface precedes the normalized image-space gap.",
+      role: "Final positive element of L33; its plane rear surface precedes the 8.00 mm air gap to the rear filter FL.",
     },
   ],
 
@@ -262,7 +268,20 @@ const LENS_DATA = {
     { label: "24", R: -39.586, d: 1.8, nd: 1.834, elemId: 14, sd: 20.5 },
     { label: "25", R: -155.699, d: 4.0, nd: 1.0, elemId: 0, sd: 20.5 },
     { label: "26", R: 81.751, d: 5.5, nd: 1.696797, elemId: 15, sd: 22.0 },
-    { label: "27", R: 1e15, d: 68.641078902, nd: 1.0, elemId: 0, sd: 22.0 },
+    { label: "27", R: 1e15, d: 8.0, nd: 1.0, elemId: 0, sd: 22.0 },
+  ],
+
+  /* ── Rear filter FL (patent surfaces R28–R29): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "FL",
+      thicknessMm: 2.0,
+      nd: 1.51633,
+      vd: 64.1,
+      glass: "S-BSL7 (OHARA)",
+      gapAfterMm: 59.3221048,
+      source: "US 6,115,188 A, Numerical Example 1 R28–R29 (D29 = 0.00 printed; gap after derived from the paraxial image plane)",
+    },
   ],
 
   asph: {},

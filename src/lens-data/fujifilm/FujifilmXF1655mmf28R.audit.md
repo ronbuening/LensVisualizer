@@ -98,3 +98,17 @@ L41 10.9 and L42/L43 9.9 mm, all within about 15 % of the stored values. No stor
 - The viewer's paraxial half-field at wide (36.5°) is below the patent's 43.5° because the estimate overstates
   chief-ray heights on 7A.
 - L33 image-stabilization decentering (¶[0081]) is not modeled. The production XF16-55 mm Mark I has no OIS.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Replaced the air-equivalent fold with the patent's physical optical member PP (Table 1, p. 15, surfaces 30–33, read
+  on the rendered page): surface 30 now stores 19.630 mm to the first plate, then two cemented plates, 2.15 mm nd
+  1.54763 / νd 54.98 (N-BALF5, resolves within catalog tolerance) and 0.70 mm nd 1.49784 / νd 54.98 (no catalog
+  match, Abbe estimate), with 0.513 mm of air to the image. The patent prints no θgF for the plates. Traced by every
+  analysis, not drawn.
+- Paraxial check against the previous data: EFL identical at all three stations; defocus changes by +0.00056 mm at
+  every station and close-focus keyframe, the rounding in the old 21.999 mm (exact fold 21.99956 mm). Physical track
+  grows by 2.15 × (1 − 1/1.54763) + 0.70 × (1 − 1/1.49784) = 0.993 mm to 122.10 / 128.37 / 145.93 mm, the
+  physical values the analysis already quoted.
+- The derived close-focus gaps and Fujifilm's 0.30 / 0.40 m MFD are unchanged. The gaps were solved on the folded
+  track, so the physical object-to-image distance at close focus is about 1 mm longer (about 300.7 / 300.1 / 401.0 mm).

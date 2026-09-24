@@ -39,7 +39,7 @@ The aperture stop lies between G1 and G2. The patent argues that this placement 
 
 Under the project's explicit architecture definitions, the design is neither telephoto nor retrofocus. Using the air-equivalent track, $TL/EFL=1.43372063$, so $TL/EFL$ is not below unity. Likewise, $BFD/EFL=0.53055740$ and the back focal distance is shorter than the EFL, so the retrofocus criterion $BFD>EFL$ is not met.
 
-The patent's optional plane-parallel optical member PP is excluded from the ordinary sequential prescription. Paragraph ¶0053 expressly permits omission of PP, which represents filters and/or protective cover glass. Its optical effect is retained by replacing the physical rear path with the verified air-equivalent S19→IMG spacing of **32.9608687764 mm**.
+The patent's optional plane-parallel optical member PP, which represents filters and/or protective cover glass (¶0053 expressly permits omitting it), is modeled in the data file's `rearPlates`: every analysis traces it, but it is not drawn. S19 keeps the patent's 30.0000 mm gap to PP; the paraxially equivalent air-converted S19→IMG spacing is **32.9608687764 mm**, and the $TL/EFL$ figure above uses that air-equivalent track.
 
 ## Element-by-Element Analysis
 
@@ -202,15 +202,15 @@ The final TypeScript prescription independently reproduces the central first-ord
 | Quantity | Computed from final data | Patent Table 2 |
 |---|---:|---:|
 | EFL | 62.1249820968 mm | 62.12 mm |
-| BFL from S19 | 32.9610018622 mm | 32.96 mm |
-| PP-normalized S19→IMG | 32.9608687764 mm | 32.96 mm air-conversion Bf |
+| BFL from S19 (air-equivalent) | 32.9610018622 mm | 32.96 mm |
+| Air-converted S19→IMG (30.0000 + PP + 0.8182) | 32.9608687764 mm | 32.96 mm air-conversion Bf |
 | Modeled f-number | 2.870000 | 2.87 |
 
 Independent reduced-angle sequential tracing and ABCD multiplication agree to numerical precision. The verified Petzval sum, computed surface by surface as $\phi/(n n')$, is **+0.00186745094084 mm⁻¹**, with inverse magnitude 535.489302 mm. The weak-power condition $|f/f_3|=0.08564106$ is consistent with the patent's stated aim of suppressing Petzval contribution and focus-related aberration variation (¶0082).
 
 The model uses no uniform scaling: $s=1.0$. Example 1 is all-spherical, so `asph: {}` is intentional and there are no conic constants or polynomial coefficients to transform. No source prescription value is silently corrected.
 
-The rear PP plate is the only omitted optical member. Its source path is 30.0000 mm of air, 3.2500 mm of $n_d=1.51680$ plate, and 0.8182 mm of air. Converting the plate thickness to air gives 32.9608687764 mm, which is the authored final spacing and reproduces the patent Bf at printed precision.
+The rear PP plate is modeled physically in `rearPlates` (traced, not drawn). Its source path is 30.0000 mm of air, 3.2500 mm of $n_d=1.51680$, $\nu_d=64.20$ plate (N-BK7 class), and 0.8182 mm of air; the physical S19→IMG path is therefore 34.0682 mm. Converting the plate thickness to air gives 32.9608687764 mm, which reproduces the patent Bf at printed precision.
 
 The aperture and lens semi-diameters are modeling inferences because the patent publishes none. The stop semi-diameter is reconstructed from f/2.87. Lens rims are estimated from the 600 dpi Figure 1 using the 56.11 mm glass span (33.38 µm/px). The current SDs follow the optical boundaries, including the shorter L13 rear curve and the stepped rear doublet, without reproducing mechanical flanges. Surface-clearance and image-circle bounds pass. These inferred apertures do not promise unvignetted full-pupil transmission across the patent's 25.8° half-field.
 

@@ -21,6 +21,7 @@ import { buildAsphereIndex, buildLabelIndex, firstInfinityThickness } from "./in
 import { conicPolySag, FLAT_R_THRESHOLD, MAX_RIM_SLOPE_TAN, sagSlopeRaw } from "./internal/surfaceMath.js";
 import { traceExactSurfaceStack } from "./internal/exactSurfaceTrace.js";
 import type { ExactTraceLens } from "./internal/exactSurfaceTrace.js";
+import { REAR_PLATE_LABEL_PATTERN } from "./prescription/rearPlates.js";
 
 /* Validation operates on untrusted data — use a permissive record type
  * so dynamic-key checks compile without casts on every property access. */
@@ -333,6 +334,48 @@ function validateOpticalPath(value: unknown, surfaceLabels: Set<string>, errors:
         `"opticalPath.maxInteractions" must be at least surfaceOrder length plus image-plane termination (${requiredInteractions})`,
       );
     }
+  }
+}
+
+function validateRearPlates(data: UntrustedLensData, errors: string[]): void {
+  const plates = data.rearPlates;
+  if (!Array.isArray(plates) || plates.length === 0) {
+    errors.push(`"rearPlates" must be a non-empty array when provided`);
+    return;
+  }
+  const finite = (value: unknown): value is number => typeof value === "number" && Number.isFinite(value);
+  plates.forEach((plate: UntrustedLensData, i: number) => {
+    const at = `rearPlates[${i}]`;
+    if (!plate || typeof plate !== "object") {
+      errors.push(`${at}: must be an object`);
+      return;
+    }
+    if (!finite(plate.thicknessMm) || plate.thicknessMm <= 0) errors.push(`${at}: thicknessMm must be > 0`);
+    if (!finite(plate.nd) || plate.nd <= 1) errors.push(`${at}: nd must be a finite index > 1`);
+    if (!finite(plate.vd) || plate.vd <= 0) errors.push(`${at}: vd must be a finite Abbe number > 0`);
+    if (!finite(plate.gapAfterMm) || plate.gapAfterMm < 0) errors.push(`${at}: gapAfterMm must be >= 0`);
+    if (plate.sd !== undefined && (!finite(plate.sd) || plate.sd <= 0)) errors.push(`${at}: sd must be > 0`);
+    if (plate.indexReference !== undefined && plate.indexReference !== "d" && plate.indexReference !== "e") {
+      errors.push(`${at}: indexReference must be "d" or "e" when provided`);
+    }
+    for (const field of ["nC", "nF", "ng", "dPgF"]) {
+      if (plate[field] !== undefined && !finite(plate[field])) errors.push(`${at}: ${field} must be finite`);
+    }
+    for (const field of ["label", "glass", "source"]) {
+      if (plate[field] !== undefined && (typeof plate[field] !== "string" || !plate[field])) {
+        errors.push(`${at}: ${field} must be a non-empty string when provided`);
+      }
+    }
+  });
+  const folded =
+    data.opticalPath !== undefined ||
+    (Array.isArray(data.surfaces) &&
+      data.surfaces.some(
+        (surface: UntrustedLensData) => surface?.interaction && surface.interaction.type !== "refract",
+      ));
+  if (folded) errors.push(`"rearPlates" is not supported for folded or generalized optical paths`);
+  if (data.perspectiveControl !== undefined) {
+    errors.push(`"rearPlates" cannot be combined with "perspectiveControl" (plates would move with the lens)`);
   }
 }
 
@@ -766,6 +809,7 @@ export default function validateLensData(data: UntrustedLensData): string[] {
       errors.push(`"perspectiveControl" cannot be combined with generalized "opticalPath" metadata`);
     }
   }
+  if (data.rearPlates !== undefined) validateRearPlates(data, errors);
   if (data.projection !== undefined) validateProjection(data.projection, errors);
   if (data.lensMounts !== undefined) validateLensMounts(data.lensMounts, errors);
   if (data.imageFormat !== undefined) validateImageFormat(data.imageFormat, errors);
@@ -790,6 +834,12 @@ export default function validateLensData(data: UntrustedLensData): string[] {
       continue;
     }
     if (surfaceLabels.has(s.label)) errors.push(`Duplicate surface label: "${s.label}"`);
+    if (REAR_PLATE_LABEL_PATTERN.test(s.label)) {
+      errors.push(`surfaces[${i}] ("${s.label}"): labels RP<n>a/RP<n>b are reserved for generated rear plates`);
+    }
+    if (s.synthetic !== undefined) {
+      errors.push(`surfaces[${i}] ("${s.label}"): "synthetic" is engine-generated; declare plates in "rearPlates"`);
+    }
     surfaceLabels.add(s.label);
     if (s.label === "STO") stoCount++;
 
@@ -873,6 +923,9 @@ export default function validateLensData(data: UntrustedLensData): string[] {
       continue;
     }
     if (elemIds.has(e.id)) errors.push(`Duplicate element id: ${e.id}`);
+    if (e.synthetic !== undefined) {
+      errors.push(`elements[${i}]: "synthetic" is engine-generated; declare plates in "rearPlates"`);
+    }
     elemIds.add(e.id);
     if (e.indexReference !== undefined && e.indexReference !== "d" && e.indexReference !== "e") {
       errors.push(`elements[${i}]: indexReference must be "d" or "e" when provided`);

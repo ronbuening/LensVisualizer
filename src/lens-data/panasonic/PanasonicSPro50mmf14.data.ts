@@ -22,14 +22,15 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    while preserving the characteristic pinched second-element      ║
  * ║    rear aperture seen in the production diagram.                  ║
  * ║                                                                    ║
- * ║  Cover glass (CG, surfaces 26–27: 2.10 mm flat, nd=1.51680)      ║
- * ║  excluded; physical BFD folded into air-equivalent on surface 25A ║
- * ║  (13.42 + 2.10/1.5168 + 1.004 = 15.809 mm).                     ║
+ * ║  Cover glass (Table 3A surfaces 26–27: 2.10 mm flat, nd 1.51680,  ║
+ * ║  νd 64.2) and the BF 1.00419 mm air gap to the image are modeled  ║
+ * ║  in `rearPlates` (traced, not drawn). Surface 25A keeps the       ║
+ * ║  patent's 13.42 mm gap to the cover glass.                        ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
  * ║    ✓ Aperture stop and variable focus gaps                        ║
- * ║    ✗ DO NOT include: sensor glass, filters, mechanical parts      ║
+ * ║    ✗ DO NOT include: mechanical parts (cover glass: `rearPlates`) ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -85,7 +86,7 @@ const LENS_DATA = {
       nd: 1.5168,
       vd: 64.2,
       fl: -47.1,
-      glass: "S-BSL7 (OHARA)",
+      glass: "N-BK7 (SCHOTT catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Diverging element; forms air-spaced pair with L1 for deliberate chromatic under-correction.",
     },
@@ -270,7 +271,20 @@ const LENS_DATA = {
     { label: "22", R: 45.8027, d: 9.0554, nd: 1.55032, elemId: 12, sd: 19.5 },
     { label: "23", R: -55.2867, d: 6.539, nd: 1.0, elemId: 0, sd: 19.0 },
     { label: "24A", R: -30.7259, d: 2.0, nd: 1.68822, elemId: 13, sd: 18.0 },
-    { label: "25A", R: -215.5886, d: 15.8087, nd: 1.0, elemId: 0, sd: 16.0 },
+    // Last surface: patent gap to the cover glass
+    { label: "25A", R: -215.5886, d: 13.42, nd: 1.0, elemId: 0, sd: 16.0 },
+  ],
+
+  /* ── Cover glass (patent Table 3A surfaces 26–27): traced, not drawn ── */
+  rearPlates: [
+    {
+      thicknessMm: 2.1,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 1.00419,
+      source: "WO 2020/158622 A1, Numerical Example 3 Table 3A surfaces 26–27, Table 3C BF (infinity)",
+    },
   ],
 
   /* ── Aspherical coefficients ── */

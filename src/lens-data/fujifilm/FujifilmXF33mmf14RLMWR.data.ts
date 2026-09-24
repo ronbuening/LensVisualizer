@@ -12,9 +12,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * at its native f = 33.9303 mm scale rather than scaled to the rounded 33 mm label.
  *
  * NOTE ON COVER GLASS: Patent surfaces 27-28 are the generic optical member PP
- * representing a sensor cover/filter stack. Project convention excludes sensor glass
- * from the surfaces array, so its air-equivalent optical path is folded into the
- * final gap after surface 26A: 9.4071 + 2.8500 / 1.51680 + 0.2010 = 11.4871 mm.
+ * representing a sensor cover/filter stack (t = 2.8500 mm, nd = 1.51680, vd = 64.20).
+ * It is modeled physically in `rearPlates` (traced, not drawn) with the printed
+ * 0.2010 mm gap to the image plane; surface 26A stores the patent's 9.4071 mm gap
+ * to the plate. Air-equivalent back focus: 9.4071 + 2.8500 / 1.51680 + 0.2010 =
+ * 11.4871 mm (patent Table 10 Bf 11.49).
  *
  * NOTE ON SEMI-DIAMETERS: The patent does not publish clear apertures. SDs here are
  * independently estimated from the infinity F1.44 marginal bundle, the APS-C field,
@@ -291,7 +293,20 @@ const LENS_DATA = {
     { label: "23", R: -29.0764, d: 1.01, nd: 1.673, elemId: 14, sd: 11.2 },
     { label: "24", R: 41.7117, d: 3.13, nd: 1.0, elemId: 0, sd: 11.0 },
     { label: "25A", R: -55.6907, d: 1.6, nd: 1.68863, elemId: 15, sd: 10.7 },
-    { label: "26A", R: -250.0002, d: 11.4867571842, nd: 1.0, elemId: 0, sd: 10.9 },
+    { label: "26A", R: -250.0002, d: 9.4071, nd: 1.0, elemId: 0, sd: 10.9 }, // patent d26 to the PP plate
+  ],
+
+  /* ── Optical member PP (patent surfaces 27–28): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PP",
+      thicknessMm: 2.85,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 0.201,
+      source: "US 2022/0276464 A1, Example 3 Table 9 surfaces 27–28",
+    },
   ],
 
   asph: {

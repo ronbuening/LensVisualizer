@@ -120,3 +120,14 @@ close to the clear apertures rather than a loose sketch.
 - Glass names are catalog equivalents; the patent names none, and only L13 carries a printed θgF.
 - The engine's paraxial half-field estimate (15.6°) exceeds the patent's 14.0° because the enlarged rear rims admit
   a larger image circle than APS-C; the format diagonal governs the analysis field.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Re-read Table 7 on PDF page 12 (rendered): row 20 d = 10.00; rows 21–22 are the plate PP, 2.80 mm, nd 1.51680,
+  νd 64.2, no plate-to-image distance printed. Table 8 BF 16.53 mm (air-equivalent). Surface 20 now stores 10.00 mm;
+  `rearPlates` PP carries gapAfter 4.684 mm, derived, not printed (16.53 − 10.00 − 2.80/1.5168). Glass N-BK7 (exact
+  1.51680 / 64.2 class; OHARA S-BSL7 is 1.51633).
+- Paraxial check against the previous data: EFL identical; defocus changes by < 0.00001 mm at infinity and at the
+  calculated close state (rounding of the derived gap). Physical track grows by 0.954 mm to 81.14 mm, matching the
+  FIG. 3 surface-1-to-image measurement (81.1 mm). The calculated close column still focuses the object 619.8 mm ahead
+  of surface 1, now 0.701 m from the image plane; `closeFocusM` stays the production 0.7 m.

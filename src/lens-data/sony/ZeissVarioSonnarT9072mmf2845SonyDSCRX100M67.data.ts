@@ -28,10 +28,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    applied to R, d and sd; A_p -> A_p / 9^(p-1); K unchanged. The    ║
  * ║    source zoom ratio is 7.40x, so computed tele EFL is ~66.3 mm,     ║
  * ║    not the marketed 72 mm.                                           ║
- * ║  NOTE ON REAR PLATES: patent S29-S32 (two plane plates, nd 1.5168 /  ║
- * ║    1.5567) omitted; D28 carries their air-equivalent path            ║
- * ║    (0.301786 source mm, 2.716072 mm scaled) to the patent image      ║
- * ║    plane.                                                            ║
+ * ║  NOTE ON REAR PLATES: patent S29-S32 are two plane plates (optical   ║
+ * ║    filter FL, para. 0106), modeled in `rearPlates` (traced, not      ║
+ * ║    drawn), scaled x9: 0.288 mm nd 1.5168 / vd 64.2, 1.251 mm air,    ║
+ * ║    0.486 mm nd 1.5567 / vd 58.6, 0.963 mm to the image plane. D28    ║
+ * ║    is the patent's physical gap to the first plate (0.554 / 1.503 /  ║
+ * ║    1.996 source; 4.986 / 13.527 / 17.964 mm scaled).                 ║
  * ║  NOTE ON APERTURE: patent gives FNo 2.97 / 4.16 / 4.72 but no stop   ║
  * ║    diameter. Stop radius calibrated paraxially from those values     ║
  * ║    (4.04 / 3.92 / 4.16 mm); zoomApertureModel "from-nominal-fno"     ║
@@ -52,7 +54,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    spectral line data added.                                         ║
  * ║                                                                      ║
  * ║  Optical design only: glass surfaces, stop, variable gaps.           ║
- * ║  No sensor glass, filters, mechanics, or parent/donor designs.       ║
+ * ║  No mechanics or parent/donor designs (filter FL: `rearPlates`).     ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -314,7 +316,29 @@ const LENS_DATA = {
     { label: "25A", R: -38.997, d: 0.441, nd: 1.8514, elemId: 14, sd: 4.85 },
     { label: "26A", R: 48.528, d: 4.365, nd: 1.0, elemId: 0, sd: 4.8 },
     { label: "27A", R: 17.739, d: 1.08, nd: 1.8514, elemId: 15, sd: 5.5 },
-    { label: "28A", R: 19.584, d: 7.702072, nd: 1.0, elemId: 0, sd: 5.55 },
+    { label: "28A", R: 19.584, d: 4.986, nd: 1.0, elemId: 0, sd: 5.55 }, // D28: physical gap to plate S29
+  ],
+
+  /* ── Optical filter FL (patent Table 7 surfaces S29–S32, scaled x9): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "FL",
+      thicknessMm: 0.288,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 1.251,
+      source: "JP WO2019/188070 A1, Example 3 Table 7 surfaces 29–30 (scaled x9)",
+    },
+    {
+      label: "FL",
+      thicknessMm: 0.486,
+      nd: 1.5567,
+      vd: 58.6,
+      glass: "BAL15Y",
+      gapAfterMm: 0.963,
+      source: "JP WO2019/188070 A1, Example 3 Table 7 surfaces 31–32 (scaled x9)",
+    },
   ],
   asph: {
     "6A": {
@@ -471,9 +495,9 @@ const LENS_DATA = {
       [7.983, 7.983],
     ],
     "28A": [
-      [7.702072, 7.702072],
-      [16.243072, 16.243072],
-      [20.680072, 20.680072],
+      [4.986, 4.986],
+      [13.527, 13.527],
+      [17.964, 17.964],
     ],
   },
   varLabels: [
@@ -482,7 +506,7 @@ const LENS_DATA = {
     ["19", "D19"],
     ["22", "D22"],
     ["26A", "D26"],
-    ["28A", "BF"],
+    ["28A", "D28"],
   ],
   zoomPositions: [9.01, 23.6, 66.27],
   zoomLabels: ["Wide", "Tele"],

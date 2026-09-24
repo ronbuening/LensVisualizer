@@ -159,7 +159,7 @@ L23 is the final optical element before the image plane. It is strongly asymmetr
 
 ### Cover Glass (GC)
 
-The patent includes a parallel-plate cover glass (surfaces S20/S21, R = ∞/∞, d = 2.85 mm, nd = 1.51680 / νd = 64.2). This represents the sensor's protective cover glass and IR-cut filter stack. The glass is standard N-BK7 or S-BSL7. In the data file, the cover glass is excluded from the surface array and its optical path is folded into the back focal distance of surface S19 as an air-equivalent thickness: d_BFD = 18.46 + 2.85/1.51680 ≈ 20.34 mm.
+The patent includes a parallel-plate cover glass (surfaces S20/S21, R = ∞/∞, d = 2.85 mm, nd = 1.51680 / νd = 64.2). This represents the sensor's protective cover glass and IR-cut filter stack. The 1.51680 / 64.2 pair is the N-BK7 class (S-BSL7 is 1.51633). The data file models this plate in `rearPlates`: surface S19 stores the patent's 18.46 mm gap to GC, and the plate is traced by every analysis but not drawn. Its paraxial equivalent is an air-equivalent back focus of 18.46 + 2.85/1.51680 ≈ 20.34 mm.
 
 ---
 
@@ -267,7 +267,7 @@ The air gap between L17's rear surface (S13A) and L21's front surface (S14) is t
 | −0.2× magnification | 10.57 | +8.77 mm |
 | −0.5× magnification | 23.73 | +21.93 mm |
 
-All three Table 2 states are stored as focus keyframes. A paraxial check of the stored gaps gives magnifications of −0.200 and −0.500. The object-to-image distances are 436.6 mm and 266.5 mm with the cover plate counted as air-equivalent path (about 1 mm longer with the physical 2.85 mm plate). The close state therefore matches the production minimum focus distance of 26.7 cm. The patent's aberration diagrams give the working f-number as 3.10 at −0.2× and 4.03 at −0.5× (Figs. 8 and 9), with half-fields of 10.1° and 7.7°. The data file keeps the infinity FNO of 2.48 as the nominal aperture, and the app's effective-aperture readout derives the working value from the geometry.
+All three Table 2 states are stored as focus keyframes. A paraxial check of the stored gaps gives magnifications of −0.200 and −0.500. The object-to-image distances are 436.6 mm and 266.5 mm with the cover plate counted as air-equivalent path. With the physical 2.85 mm plate, which the data file now models, they are about 1 mm longer (437.6 and 266.5 + 0.97 = 267.5 mm). The close state therefore matches the production minimum focus distance of 26.7 cm. The patent's aberration diagrams give the working f-number as 3.10 at −0.2× and 4.03 at −0.5× (Figs. 8 and 9), with half-fields of 10.1° and 7.7°. The data file keeps the infinity FNO of 2.48 as the nominal aperture, and the app's effective-aperture readout derives the working value from the geometry.
 
 At maximum magnification (−0.5×), G1 has extended 21.93 mm forward from its infinity position. This is a substantial extension — approximately 36% of the design focal length — which is typical of macro lenses achieving 0.5× reproduction ratios. In practice, the front element protrudes significantly from the lens barrel at close focus, which is why the production lens ships with a deep metal hood.
 
@@ -302,7 +302,7 @@ The Fuji X-mount APS-C sensor diagonal is about 28.2 mm (23.5 × 15.6 mm). Fujif
 
 ### Back focal distance
 
-The patent specifies d_19 = 18.46 mm (S19 to cover glass front) plus a 2.85 mm cover glass (nd = 1.51680). The image plane falls at the exit face of the cover glass (verified by paraxial trace: residual distance ≈ 0 mm). For the data file, the cover glass is excluded and its optical path folded into the BFD as an air-equivalent thickness: d_BFD = 18.46 + 2.85/1.51680 = 20.34 mm.
+The patent specifies d_19 = 18.46 mm (S19 to cover glass front) plus a 2.85 mm cover glass (nd = 1.51680). The patent prints no distance after surface 21, and the image plane falls at the exit face of the cover glass (verified by paraxial trace: residual distance ≈ 0 mm). The data file stores the 18.46 mm gap on S19 and the plate in `rearPlates`, with a derived 0.001 mm trailing gap so that the image plane stays where the earlier air-equivalent value put it. The paraxial equivalent back focus is 18.46 + 2.85/1.51680 = 20.34 mm; the physical S19-to-image distance is 21.31 mm.
 
 ---
 

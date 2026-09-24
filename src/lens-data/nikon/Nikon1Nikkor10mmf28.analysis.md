@@ -41,7 +41,7 @@ The group powers are highly asymmetric. A surface-by-surface paraxial trace give
 | G2 focal length                         |   +9.9989 mm |
 | Air-equivalent BFD, surface 14 to image |   14.4310 mm |
 | Physical TL, first surface to image     |   37.9644 mm |
-| Air-equivalent TL, filter stack folded  |   37.0144 mm |
+| Air-equivalent TL, filter stack as t/n  |   37.0144 mm |
 
 G1 therefore contributes very little positive power; its focal length is roughly sixteen times the system focal length. Its principal role is not convergence but ray-bundle management. It gently changes the incidence of oblique bundles before they reach the steeply powered front of G2.
 
@@ -141,7 +141,7 @@ Example 1 focuses by translating the entire second group G2 toward the object. G
 | $d_2$                                      |  2.1334 mm |                  1.9061 mm | −0.2273 mm |
 | $d_{14}$, physical to filter stack         | 10.5166 mm |                 10.7439 mm | +0.2273 mm |
 | $d_{20}$, final filter-to-image gap        |  0.6644 mm |                  0.6644 mm |          0 |
-| Folded air-equivalent BFD after surface 14 | 14.4310 mm |                 14.6583 mm | +0.2273 mm |
+| Air-equivalent BFD after surface 14        | 14.4310 mm |                 14.6583 mm | +0.2273 mm |
 
 A finite-conjugate paraxial solve using the full patent system including the filter stack gives a G2 travel of 0.2273 mm for the patent's 0.50 m close-focus state, with distance measured from the image plane. This confirms that the published variable-gap table is internally consistent.
 
@@ -202,7 +202,7 @@ Conditions (1), (2), and (4) describe the unusual power split: G1 is very weak a
 
 ## Data File Transcription Notes
 
-The data file transcribes only the optical imaging prescription used by the renderer. Patent surfaces 15–20 form the sensor/filter stack and are not included as independent surfaces. Their air-equivalent optical path is folded into the final air gap after surface 14A. This yields a final folded BFD of 14.4309688722 mm at infinity.
+Patent surfaces 15–20 form the sensor/filter stack: three plane plates of nd = 1.51633, νd = 64.14 (0.50, 1.59, and 0.70 mm thick, separated by 1.11 and 0.30 mm of air, with $d_{20} = 0.6644$ mm to the image). The data file stores them in `rearPlates`, so every analysis traces them, but they are not drawn. The last surface gap is the patent's physical $d_{14}$ (10.5166 mm at infinity, 10.7439 mm at 0.50 m), and the stored physical track is the patent's 37.9644 mm. The air-equivalent BFD of 14.4310 mm remains the paraxial equivalent of that stack.
 
 The flare-cut stops are non-refracting mechanical apertures. Their axial spaces are retained in the prescription, but the data file models only the single optical aperture stop at the patent's surface 8 position.
 

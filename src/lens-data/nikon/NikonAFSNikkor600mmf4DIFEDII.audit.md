@@ -29,3 +29,9 @@ Patent: US 5,745,306 A, Example 3 / Figure 7
 ### Phase 4 — Analysis sync
 
 - Synchronized the product title, explicit qualified glass labels, supplier caveats, and ED inference wording in the companion analysis.
+
+## 2026-09-23 — Rear filter modeled as `rearPlates`
+
+- Read Table 3 on local `patents/US5745306.pdf` page 23 at 160 dpi: surface 20 (S1) d = 36.5000; 21 (inactive S2) d = 2.0000; 22–23 is the rear filter, 2.0000 mm, nd 1.516800, νd 64.10; Bf = 115.6862 at both infinity and the R = 6000 close state. Printed 38.5 + 2.0/1.5168 + 115.6862 reproduces the previous folded 155.504765 exactly.
+- `STO` now stores the physical 38.5 mm to the filter (the S21 plane is folded out), with `rearPlates` J-BK7A (Hikari, matching the file's other Hikari-equivalent labels; resolver-compatible for 1.5168 / 64.1) and gapAfter 115.6862 mm. The front protective plate (surfaces 1–2) stays omitted.
+- Paraxial check against the previous data: EFL identical and defocus unchanged (worst |Δ| 1.4e-14 mm) at infinity and close focus. Physical track grows by 0.681435 mm, to 456.277700 mm from surface 3.

@@ -106,3 +106,14 @@ native; every Example 4 number was also confirmed on the rendered page image.
   vs 0.958), so it was not used as evidence.
 - Design focal length 33.96 mm vs marketed 35 mm (−3 %) follows from the image-height normalization; all glass names
   are catalog equivalents because the patent lists only nd / νd (θgF for L22).
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Read local `patents/JP2019090947A.pdf` p. 17 (Example 4 surfaces 21–23, BF) and p. 18 (variable parameters): plate PT
+  (the text describes it as the cover glass + low-pass filter equivalent) t = 0.074, nd = 1.51680, νd = 64.13, Ri = 1.200;
+  d21 = 0.751 / 0.545 (POS1 / POS2); BF = 0.0425. At 21.6×: d21 = 16.2216 / 11.772 mm, t = 1.5984 mm, sd = 25.92 mm,
+  gapAfter 0.918 mm; d21 + t/n + BF reproduces the legacy fold 18.1934 / 13.7438 mm exactly. Glass J-BK7A (exact
+  1.51680 / 64.13, resolves compatibly; same label as L11).
+- Against the previous folded data, EFL is identical and paraxial defocus changes by ≤ 3 × 10⁻⁶ mm (fold rounding) at
+  infinity and POS2. Physical track grows by t(1 − 1/n) = 0.545 mm, from 97.80 to 98.34 mm, now matching the patent
+  TL 4.553 × 21.6. `closeFocusM` (Nikon 0.25 m) is unchanged. Surface validator and image-circle check pass.

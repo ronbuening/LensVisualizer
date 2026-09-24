@@ -11,11 +11,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  Focus: G1 fixed; G2 translates toward the object as a rigid unit. ║
  * ║                                                                    ║
  * ║  NOTE ON COVER GLASS:                                              ║
- * ║    Patent surfaces 26-27 are a 2.000 mm sensor cover plate         ║
- * ║    (nd = 1.51633) followed by BF = 1.000 mm. Per project spec,     ║
- * ║    the cover plate is excluded; surface 25A folds D25 + 2/n + BF  ║
- * ║    into an air-equivalent final gap: 39.628974 mm at infinity and ║
- * ║    49.024974 mm at the short-distance focus state.                ║
+ * ║    Patent FIG. 31 surfaces 26-27 (plate CG, 2.000 mm, nd 1.51633,  ║
+ * ║    νd 64.1) and BF = 1.00 mm to the image are modeled in           ║
+ * ║    `rearPlates` (traced, not drawn). Surface 25A keeps the         ║
+ * ║    patent's physical D25: 37.310 mm at infinity and 46.706 mm at   ║
+ * ║    the short-distance focus state.                                 ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    The patent does not list clear apertures. Semi-diameters below  ║
@@ -24,7 +24,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    edge-thickness, element-ratio, and cross-gap sag constraints.   ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design. It        ║
- * ║  excludes sensor cover glass, filters, and mechanical components.  ║
+ * ║  excludes mechanical components (cover glass: `rearPlates`).       ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -280,7 +280,21 @@ const LENS_DATA = {
     { label: "22", R: -30.183, d: 1.25, nd: 1.56732, elemId: 14, sd: 17.5 },
     { label: "23", R: 96.931, d: 0.632, nd: 1.0, elemId: 0, sd: 17.8 },
     { label: "24A", R: 67.722, d: 6.658, nd: 1.7725, elemId: 15, sd: 18.4 },
-    { label: "25A", R: -47.005, d: 39.628974, nd: 1.0, elemId: 0, sd: 18.7 },
+    // Last surface: patent D25, physical gap to the cover plate CG
+    { label: "25A", R: -47.005, d: 37.31, nd: 1.0, elemId: 0, sd: 18.7 },
+  ],
+
+  /* ── Cover plate CG (patent FIG. 31 surfaces 26–27): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "CG",
+      thicknessMm: 2.0,
+      nd: 1.51633,
+      vd: 64.1,
+      glass: "S-BSL7",
+      gapAfterMm: 1.0,
+      source: "US 2019/0250367 A1, Example 1 FIG. 31 surfaces 26–27 (BF 1.00)",
+    },
   ],
 
   asph: {
@@ -306,12 +320,12 @@ const LENS_DATA = {
 
   var: {
     "11": [10.407, 1.012],
-    "25A": [39.628974, 49.024974],
+    "25A": [37.31, 46.706],
   },
 
   varLabels: [
     ["11", "D11"],
-    ["25A", "BF (air-equivalent)"],
+    ["25A", "D25"],
   ],
 
   groups: [
@@ -332,7 +346,7 @@ const LENS_DATA = {
 
   closeFocusM: 0.4,
   focusDescription:
-    "Rear-group unit focusing. The first group is stationary; the complete second group translates toward the object. Patent Example 1 changes D11 from 10.407 mm to 1.012 mm and the folded air-equivalent back focus from 39.628974 mm to 49.024974 mm.",
+    "Rear-group unit focusing. The first group is stationary; the complete second group translates toward the object. Patent Example 1 changes D11 from 10.407 mm to 1.012 mm and D25 (last lens surface to the cover plate) from 37.310 mm to 46.706 mm.",
 
   nominalFno: 1.4,
   fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],

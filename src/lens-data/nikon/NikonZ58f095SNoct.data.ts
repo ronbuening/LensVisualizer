@@ -1,8 +1,8 @@
 import type { LensDataInput } from "../../types/optics.js";
 
 /** WO2019229849A1 Example 1; original table pp.21–23, equation p.20, Figure1 p.46.
- * Source surfaces/aspheres retained except separate filter rows29–30 omitted.
- * Final gap includes their equivalent-air propagation; compound lens members remain.
+ * Source surfaces/aspheres retained; filter FL rows29–30 are modeled in `rearPlates`
+ * (traced, not drawn): S28 = 14.50 mm to FL, then 1.60 mm nd1.5168 and 1.00 mm to image.
  * Figure rims exclude mechanical shoulders, with constrained facing S3/S4 optical radii.
  * Catalog names identify inferred coordinate counterparts, not production suppliers.
  */
@@ -288,7 +288,20 @@ const LENS_DATA = {
     { label: "25", R: 46.943, d: 0.8, nd: 1.0, elemId: 0, sd: 19.5 }, // L32 rear → air
     { label: "26", R: 55.281, d: 9.11, nd: 1.883, elemId: 16, sd: 19.2 }, // L33 front
     { label: "27", R: -144.041, d: 3.0, nd: 1.765538, elemId: 17, sd: 19.2 }, // L33→L34 junction
-    { label: "28A", R: 52.858, d: 16.554852320675106, nd: 1.0, elemId: 0, sd: 19.2 }, // L34 rear [asph] → equivalent air to image: 14.5 + 1.6/1.5168 + 1
+    { label: "28A", R: 52.858, d: 14.5, nd: 1.0, elemId: 0, sd: 19.2 }, // L34 rear [asph] → gap to the FL plate
+  ],
+
+  /* ── Filter FL (patent surfaces 29–30): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "FL",
+      thicknessMm: 1.6,
+      nd: 1.5168,
+      vd: 64.14,
+      glass: "J-BK7A",
+      gapAfterMm: 1.0,
+      source: "WO 2019/229849 A1, Example 1 Table 1 surfaces 29–30",
+    },
   ],
 
   /* ── Aspherical coefficients ── */
@@ -351,9 +364,9 @@ const LENS_DATA = {
   ],
 
   /* ── Focus configuration ── */
-  closeFocusM: 0.4993674976187823,
+  closeFocusM: 0.4999126452981072,
   focusDescription:
-    "Source near station beta−0.194 corresponds to about 49.94 cm in the filter-omitted model. GF and stop move 18.61 mm objectward; GR stays fixed. Intermediate motion is interpolated.",
+    "Source near station beta−0.194 corresponds to about 49.99 cm object-to-image, including the FL plate. GF and stop move 18.61 mm objectward; GR stays fixed. Intermediate motion is interpolated.",
 
   /* ── Aperture configuration ── */
   nominalFno: 0.98,

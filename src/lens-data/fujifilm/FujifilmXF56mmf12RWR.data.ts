@@ -12,9 +12,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * measured from the focal plane.
  *
  * 13 glass elements / 8 air-separated groups, with four aspherical surfaces on
- * two molded aspherical elements. The sensor cover glass / filter plate PP
- * listed as patent surfaces 23-24 is excluded; its optical path is folded into
- * the final air-equivalent back focal distance on surface 22A.
+ * two molded aspherical elements. The parallel-plate optical member PP
+ * (cover glass / filter) listed as patent surfaces 23-24 is modeled in
+ * `rearPlates` (traced, not drawn); surface 22A keeps the patent's physical
+ * 9.275 mm gap to the plate.
  *
  * Focus: G2, including the aperture stop, moves as a rigid unit objectward.
  * G1 and G3 remain fixed to the image plane.
@@ -236,7 +237,20 @@ const LENS_DATA = {
     { label: "19", R: -26.1773, d: 0.94, nd: 1.7888, elemId: 12, sd: 11.3 },
     { label: "20", R: 42.2791, d: 3.759, nd: 1.0, elemId: 0, sd: 11.0 },
     { label: "21A", R: -119.50352, d: 1.51, nd: 1.68863, elemId: 13, sd: 11.0 },
-    { label: "22A", R: -6171825.0395, d: 12.167012217972502, nd: 1.0, elemId: 0, sd: 13.2 },
+    { label: "22A", R: -6171825.0395, d: 9.275, nd: 1.0, elemId: 0, sd: 13.2 },
+  ],
+
+  /* ── Optical member PP (patent surfaces 23–24): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PP",
+      thicknessMm: 2.85,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 1.013,
+      source: "JP 2023-029039 A, Example 2 Table 4 surfaces 23–24 (patent θgF 0.53)",
+    },
   ],
 
   asph: {

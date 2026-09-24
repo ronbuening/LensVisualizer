@@ -42,7 +42,7 @@ The XF 200 mm F2 is Fujifilm's flagship APS‑C telephoto prime, providing a fie
 | Weight | — | 2 265 g | — |
 | Physical length | — | ≈ 205.5 mm (ex hood) | — |
 
-The two discrepancies between patent and production are expected and customary: Fujifilm markets the lens at its nominal focal length (200 mm) and aperture (f/2), Per the project convention, manufacturer values are authoritative for marketed specifications. The close‑focus figures are not a discrepancy: the patent's 1.57 m is measured from the first lens surface (the stored close‑state gaps focus an object 1 572 mm in front of L1a, calculated), and adding the 218 mm lens‑to‑image length gives 1.79 m from the image plane — Fujifilm's 1.8 m minimum focus distance, at a calculated magnification of 0.12×.
+The two discrepancies between patent and production are expected and customary: Fujifilm markets the lens at its nominal focal length (200 mm) and aperture (f/2), Per the project convention, manufacturer values are authoritative for marketed specifications. The close‑focus figures are not a discrepancy: the patent's 1.57 m is measured from the first lens surface (the stored close‑state gaps focus an object 1 572 mm in front of L1a, calculated), and adding the 219 mm lens‑to‑image length gives 1.79 m from the image plane — Fujifilm's 1.8 m minimum focus distance, at a calculated magnification of 0.12×.
 
 ## 3. Overall architecture
 
@@ -268,13 +268,13 @@ Fujifilm's published "three ED elements" specification (one Super ED + two ED) t
 
 **Telephoto ratio L / EFL:** 1.129. This exceeds 1, indicating a long‑focus architecture rather than a compact telephoto construction. The lens is *longer than its focal length* by ≈ 13 %.
 
-**Back focal distance:** 31.14 mm (air‑equivalent, including the plane‑parallel PP cover glass); 32.11 mm mechanical (surface 34 → image plane, as physically measured).
+**Back focal distance:** 31.14 mm (air‑equivalent, including the plane‑parallel PP cover glass); 32.11 mm mechanical (surface 34 → image plane, as physically measured). The data file stores the patent's 28.1625 mm gap from surface 34 to PP and models PP itself (2.85 mm, n\_d 1.51680, ν\_d 64.20) plus its 1.10 mm gap to the image in `rearPlates`: every analysis traces the plate, but it is not drawn. The 218.997 mm total length above is therefore also the stored physical track.
 
 **Principal plane positions.** Computed by forward and reverse paraxial traces: the rear principal plane H' lies at z ≈ +25.0 mm from the L1a front vertex (inside L1b, about 11 % of the way through the lens); the front principal plane H lies at z ≈ +159.8 mm from L1a, between the OIS group and the rear relay. The two principal planes are thus *crossed* — H is ≈ 135 mm to the image side of H' — which is characteristic of a multi‑group system that performs significant internal relay imaging between widely‑separated positive and negative subsystems. For the L/f‑ratio discussion: an L/f > 1 is the direct geometric consequence of H' being positioned *inside* the lens (at z ≈ 25 mm) rather than being *pushed forward* of L1a; in a true compact telephoto, H' lies ahead of the front element, giving L < f. For panoramic applications where a "no‑parallax point" matters, camera rotation should be about the front nodal point (coincident with H for a system in air), which sits deep inside the barrel around z ≈ 160 mm behind L1a.
 
 **Entrance pupil.** Object‑space diameter 94.18 mm (= EFL / f#); semi‑diameter 47.09 mm. The stop is 9.49 mm behind the rear of G1, well inside the front group's focal length (f\_G1 = +336 mm), so G1 images the stop *virtually* into image space. Paraxial back‑imaging of the stop gives a virtual EP located at z ≈ +214.6 mm from L1a (i.e., approximately at the image plane, about 4.4 mm in front of it), with a 2.34× magnification that accounts for the EP being larger than the physical iris. This is normal behaviour for long‑focus primes whose stop sits well inside the collector's focal length; it has no consequence for the f‑number (which depends only on EP diameter in object space) but does mean that, to a distant observer looking into the lens, the iris appears to lie roughly at the image plane rather than at the barrel's mid‑point.
 
-**Petzval sum (surface‑by‑surface, PP excluded):** Σ (1/n' − 1/n)/R = −8.76 × 10⁻⁴ mm⁻¹; Petzval radius R_P = −1 141 mm; |P · f| = 0.170. For reference, a value of |P · f| ≲ 0.3–0.4 is typical of well‑corrected long‑focus primes; 0.17 indicates more than adequate field flatness for a telephoto.
+**Petzval sum (surface‑by‑surface; PP's flat faces add nothing):** Σ (1/n' − 1/n)/R = −8.76 × 10⁻⁴ mm⁻¹; Petzval radius R_P = −1 141 mm; |P · f| = 0.170. For reference, a value of |P · f| ≲ 0.3–0.4 is typical of well‑corrected long‑focus primes; 0.17 indicates more than adequate field flatness for a telephoto.
 
 **Patent's Conditional Expressions (Example 1):**
 

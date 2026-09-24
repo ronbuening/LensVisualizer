@@ -16,7 +16,7 @@ The prescription transcribed here is Example 1 of US 8,755,132 B2. The patent gi
 
 The production identification rests on several independent checks. First, the patent’s f = 17.30 mm and Fno = 2.9 correspond to the marketed 17 mm f/2.8 once normal product rounding is applied. Second, the patent formula is a six-element, four-group layout: a front negative singlet, two cemented doublets, and a rear positive singlet. Olympus’s official instruction manual lists the product as 4 groups and 6 lenses, with 17 mm focal length, f/2.8 maximum aperture, 64.9° image angle, 0.2 m minimum focus, 57 × 22 mm dimensions, 71 g mass, and 37 mm filter thread. Third, the rear singlet L25 has two aspherical faces but is one physical aspherical element, matching the product’s known special-element count. Fourth, the optical track from surface 1 through surface 11 is 22.114 mm, essentially the published 22 mm barrel length. That length agreement is supporting evidence rather than proof, since mechanical barrel length is not identical to optical vertex track.
 
-The patent’s Example 1 also includes a 4.082 mm plane-parallel cover-glass stack with nd = 1.51633 and a 0.745 mm final air gap before the image plane. That is consistent with a digital Micro Four Thirds imaging path, but the project data file omits the cover glass and folds it into the final air-equivalent BFD. The folded infinity BFD used in the data file is 17.229 + 4.082 / 1.51633 + 0.745 = 20.6660 mm. A direct paraxial trace of the lens surfaces alone gives an ideal air BFD of 20.6736 mm; the 0.0075 mm difference is rounding in the patent table.
+The patent’s Example 1 also includes a 4.082 mm plane-parallel cover-glass stack with nd = 1.51633 and a 0.745 mm final air gap before the image plane. That is consistent with a digital Micro Four Thirds imaging path. The data file stores the patent's 17.229 mm gap after surface 11 and models the cover glass (νd = 64.14, S-BSL7 class) and its 0.745 mm gap to the image in `rearPlates`: every analysis traces it, but it is not drawn. Its paraxial air equivalent is 17.229 + 4.082 / 1.51633 + 0.745 = 20.6660 mm. A direct paraxial trace of the lens surfaces alone gives an ideal air BFD of 20.6736 mm; the 0.0075 mm difference is rounding in the patent table.
 
 Example 2 is excluded by focal length. Examples 3 and 4 are also excluded by focal length, and Example 4 differs in special-surface configuration because it adds an aspheric rear surface to the front negative meniscus. A Four Thirds SLR interpretation is implausible: the product is a Micro Four Thirds lens, and the official instruction manual identifies the mount as Micro Four Thirds.
 
@@ -29,7 +29,7 @@ The two main groups are:
 - **G1:** L11, a single negative meniscus convex to the object. The computed standalone group focal length is f₁ = −21.96 mm.
 - **G2:** SU21 + stop + SU22 + L25, a positive rear group. The computed group focal length is f₂ = +16.19 mm.
 
-The complete system EFL from the paraxial y–ν trace is 17.2985 mm. Since the folded air-equivalent BFD is about 20.67 mm, the design is genuinely retrofocus: BFD/EFL ≈ 1.19.
+The complete system EFL from the paraxial y–ν trace is 17.2985 mm. Since the air-equivalent BFD through the cover glass is about 20.67 mm, the design is genuinely retrofocus: BFD/EFL ≈ 1.19.
 
 The patent’s architectural signature is the pair of cemented doublets arranged around the aperture stop. SU21 lies before the stop and SU22 after it. The patent treats the combined diaphragm clearance as the largest air-space region, and the group boundary is the next large non-diaphragm space, the 2.478 mm air gap after L11. The previous wording “two largest air spaces straddling the diaphragm” is too loose for Example 1 if the front and rear diaphragm clearances are treated separately; the technically correct reading is the patent’s combined diaphragm-clearance convention.
 
@@ -110,12 +110,12 @@ Against a rectilinear f·tan(ω) reference, the patent’s Example 1 image heigh
 
 The patent describes focus by moving the entire optical system along the axis. It also describes moving the optical system toward the image pickup element beyond the infinity position in the non-operating, retracted state. No internal floating group is present in the numerical prescription.
 
-The official instruction manual gives a shooting range of 0.2 m to infinity and AF/MF switching. The data file models this as unit focus with a single variable BFD. With the cover glass omitted and folded into air, the infinity BFD is 20.6660 mm. Solving the thick-lens equation for a 0.2 m object distance measured from the image plane gives a close-focus BFD of 22.6101 mm, i.e. about 1.944 mm of whole-unit extension. The associated paraxial magnification is approximately 0.112×, consistent with the lens’s commonly published 0.11× class close-focus specification.
+The official instruction manual gives a shooting range of 0.2 m to infinity and AF/MF switching. The data file models this as unit focus with a single variable BFD. The cover glass stays fixed in front of the sensor, so only the gap from surface 11 to the plate changes. In air-equivalent terms the infinity BFD is 20.6660 mm; solving the thick-lens equation for a 0.2 m object distance measured from the image plane gives a close-focus air-equivalent BFD of 22.6101 mm, i.e. about 1.944 mm of whole-unit extension. The stored physical gap to the cover glass is therefore 17.229 mm at infinity and 19.1730 mm at 0.2 m. The associated paraxial magnification is approximately 0.112×, consistent with the lens’s commonly published 0.11× class close-focus specification.
 
-| Focus state | Folded BFD used in data file | Basis |
-|---|---:|---|
-| Infinity | 20.6660 mm | Patent d11 + cover glass / nd + final air gap |
-| 0.2 m | 22.6101 mm | Thick-lens unit-focus solve from official minimum shooting distance |
+| Focus state | Gap s11 → cover glass (data file) | Air-equivalent BFD | Basis |
+|---|---:|---:|---|
+| Infinity | 17.229 mm | 20.6660 mm | Patent d11; cover glass / nd + final air gap |
+| 0.2 m | 19.1730 mm | 22.6101 mm | Thick-lens unit-focus solve from official minimum shooting distance |
 
 ## Aspherical Surfaces
 
@@ -165,13 +165,13 @@ All load-bearing numerical claims were recomputed from the patent prescription u
 | SU22 focal length | +105.67 mm | Computed |
 | L25 standalone focal length | +30.00 mm | Computed |
 | Optical vertex track s1→s11 | 22.114 mm | Manufacturer overall length 22 mm |
-| Folded cover-glass BFD | 20.6660 mm | Patent d11, d12, d13 |
+| Air-equivalent BFD through cover glass | 20.6660 mm | Patent d11, d12, d13 |
 | Ideal paraxial air BFD from s11 | 20.6736 mm | Computed |
 | Exit pupil distance from image plane | −42.73 mm | |IH/EXP| = 0.268 |
 | Petzval sum | +7.155 × 10⁻³ mm⁻¹ | Computed |
 | Petzval radius | −139.8 mm | Computed |
 
-The data and analysis use the patent prescription as the numerical source, omit the patent cover glass from the data surfaces by folding it into the final air-equivalent BFD, and distinguish the patent’s design FNO from the marketed f/2.8 specification.
+The data and analysis use the patent prescription as the numerical source, model the patent cover glass as a traced but undrawn `rearPlates` entry behind the patent's 17.229 mm d11, and distinguish the patent’s design FNO from the marketed f/2.8 specification.
 
 ## Design Heritage and Context
 

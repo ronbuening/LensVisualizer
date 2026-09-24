@@ -44,11 +44,13 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    f = 53.436 mm (tele).  Fujifilm markets the lens as 16–55 mm;   ║
  * ║    the patent is already at production scale and is kept native.  ║
  * ║                                                                    ║
- * ║  NOTE ON BACK FOCUS:                                                ║
- * ║    Patent surfaces 31–33 (2.15 mm n 1.54763 + 0.70 mm n 1.49784   ║
- * ║    plates, 0.513 mm air) are excluded; the last gap 21.999 mm is   ║
- * ║    19.630 + 2.15/1.54763 + 0.70/1.49784 + 0.513 (air-equivalent),  ║
- * ║    matching the patent Bf of 22.000 mm at all three stations.      ║
+ * ║  NOTE ON BACK FOCUS:                                               ║
+ * ║    Patent optical member PP (surfaces 31–33: cemented plates       ║
+ * ║    2.15 mm nd 1.54763 / νd 54.98 and 0.70 mm nd 1.49784 / νd 54.98,║
+ * ║    then 0.513 mm air to the image) is modeled in `rearPlates`      ║
+ * ║    (traced, not drawn).  Surface 30 stores the physical 19.630 mm  ║
+ * ║    gap to the first plate; the air-equivalent 19.630 + t/n + 0.513 ║
+ * ║    = 21.9996 mm matches the patent Bf of 22.000 mm at all stations.║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                            ║
  * ║    Semi-diameters are NOT listed in the patent.  G1 (S1–S5), L21   ║
@@ -369,9 +371,28 @@ const LENS_DATA = {
     { label: "27", R: 45.984, d: 2.54, nd: 1.497, elemId: 16, sd: 10.0 }, // 27  L42/L43 cement
     { label: "28", R: -121.37904, d: 2.6, nd: 1.0, elemId: 0, sd: 10.2 }, // 28  L43 rear → DD28
 
-    // G5 — fixed positive field flattener; then cover-glass stack folded into BFD
+    // G5 — fixed positive field flattener; the PP plate stack follows in `rearPlates`
     { label: "29", R: 310.67587, d: 3.0, nd: 1.95906, elemId: 17, sd: 13.8 }, // 29  L51 front
-    { label: "30", R: -80.18906, d: 21.999, nd: 1.0, elemId: 0, sd: 13.8 }, // 30  L51 rear → image (air-equivalent BFD folds the 2.15/1.54763 + 0.70/1.49784 + 0.513 mm cover-glass stack)
+    { label: "30", R: -80.18906, d: 19.63, nd: 1.0, elemId: 0, sd: 13.8 }, // 30  L51 rear → PP (physical gap to the first plate)
+  ],
+
+  /* ── Optical member PP (patent surfaces 31–33): traced, not drawn ── */
+  rearPlates: [
+    {
+      thicknessMm: 2.15,
+      nd: 1.54763,
+      vd: 54.98,
+      glass: "N-BALF5",
+      gapAfterMm: 0,
+      source: "US 2016/0154221 A1, Example 1 Table 1 surfaces 31–32 (PP, first plate)",
+    },
+    {
+      thicknessMm: 0.7,
+      nd: 1.49784,
+      vd: 54.98,
+      gapAfterMm: 0.513,
+      source: "US 2016/0154221 A1, Example 1 Table 1 surfaces 32–33 (PP, second plate)",
+    },
   ],
 
   /* ── Aspherical coefficients ──

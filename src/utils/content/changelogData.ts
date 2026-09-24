@@ -20,6 +20,12 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-09-23",
+    type: "improvement",
+    summary:
+      "Sensor cover glass and rear filters from the patent are now traced in every analysis, without being drawn",
+  },
+  {
+    date: "2026-09-23",
     type: "fix",
     summary:
       "Reviewed and corrected 40 more lens diagrams against their patents: rims, zoom motion, apertures and glass",

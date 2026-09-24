@@ -66,17 +66,19 @@ The aperture stop lies behind G2 and ahead of G3a, as shown by source row 11 and
 patent's preference for placing the stop imageward of the moving negative focus group (¶0050–¶0054). The source does not
 publish a physical diaphragm diameter; the LensVisualizer stop semi-diameter is a modeled calibration discussed below.
 
-The normalized first-surface-to-image track is 1.180 times the computed infinity EFL, so the design does not satisfy the
-project's strict `TL/EFL < 1` definition of a telephoto optical form. Its Gaussian BFD from the final active surface is
-about 0.209 times EFL, so it is not retrofocus either. The patent itself uses “telephoto” in the focal-range sense for
+The physical first-surface-to-image track, including the cover glass, is 98.701 mm, or 1.190 times the computed
+infinity EFL (1.180 times on the air-equivalent path with the plate reduced to t/n), so the design does not satisfy the
+project's strict `TL/EFL < 1` definition of a telephoto optical form. Its air-equivalent Gaussian BFD from the final
+active surface is about 0.209 times EFL, so it is not retrofocus either. The patent itself uses “telephoto” in the focal-range sense for
 medium-telephoto through super-telephoto applications; that wording is not used here as a strict first-order
 classification (¶0040).
 
 The source prescription includes two optically inactive air-to-air bookkeeping planes and a rear CG/filter plate. The
 LensVisualizer model removes the two inactive planes and combines their adjacent air spaces without changing axial
-stations. It also excludes the source CG/filter plate, replacing the physical rear path of 14.700 mm air + 2.500 mm at
-nd = 1.5168 + 1.000 mm air with 17.348206751055 mm of air-equivalent first-order spacing. No dimensional scaling is
-applied.
+stations. The source CG plate (surfaces 23–24, labeled CG in Figure 6) is modeled in `rearPlates`: surface 22 keeps the
+printed 14.700 mm air gap, followed by the 2.500 mm plate at nd = 1.5168, νd = 64.20 and 1.000 mm air to the image. Every
+analysis traces the plate, but the diagram does not draw it. Its paraxial equivalent is 17.348206751055 mm of air-equivalent
+rear spacing. No dimensional scaling is applied.
 
 ## Element-by-Element Analysis
 
@@ -269,11 +271,11 @@ tracing and a separately implemented ABCD calculation give an infinity EFL of 82
 consistent with the rounded Table 4 values 82.01 mm and 77.72 mm within the source-precision tolerances used for the
 dossier.
 
-The source rear path includes a 2.500 mm CG/filter plate. After excluding it from the active model, the adopted
-17.348206751055 mm air-equivalent rear spacing differs from the Gaussian BFD of the rounded active prescription by only
-0.007293 mm. This comparison uses the final active surface as the BFD reference plane; the patent's printed 18.20 mm FB
-is the physical distance through air plus the refractive plate and therefore is not directly interchangeable with that
-Gaussian BFD.
+The source rear path includes a 2.500 mm CG plate, modeled in `rearPlates` rather than drawn. The printed rear path
+(14.700 mm air + 2.500 mm plate + 1.000 mm air) is equivalent to 17.348206751055 mm of air, which differs from the
+air-equivalent Gaussian BFD of the rounded active prescription by only 0.007293 mm. This comparison uses the final active
+surface as the BFD reference plane; the patent's printed 18.20 mm FB is the physical distance through air plus the
+refractive plate and therefore is not directly interchangeable with that Gaussian BFD.
 
 Petzval curvature was recomputed surface by surface as `φ/(n·n′)`. The active prescription sums to
 +0.001241061776 mm⁻¹, corresponding to a reciprocal radius of approximately +805.762 mm. This is a first-order Petzval

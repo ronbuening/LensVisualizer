@@ -267,6 +267,8 @@ Independent paraxial verification (y-nu marginal ray trace, surface-by-surface) 
 
 Group focal lengths: $f_{G1}$ ≈ 814 mm (weak positive), $f_{G2}$ ≈ 88 mm (strong positive), $f_{G3}$ ≈ 1675 mm (very weak positive).
 
+**Optical member PP:** Table 1 places a 3.20 mm parallel plate PP (nd = 1.51680, νd = 64.20, N-BK7 class) 20.1247 mm behind L34, followed by 1.05 mm of air to the image plane. The data file models it in `rearPlates`: every analysis traces it, but it is not drawn. The air-equivalent back focus 20.1247 + 3.20/1.51680 + 1.05 = 23.284 mm is the paraxial equivalent of the patent's $Bf$ = 23.28 mm; the physical rear-surface-to-image distance is 24.375 mm.
+
 
 ## Sources
 

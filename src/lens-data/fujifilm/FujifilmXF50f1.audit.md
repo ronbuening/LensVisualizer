@@ -52,3 +52,13 @@ Figure screening: page 8, `--rot90 --dpi=600`, crop `0.18,0.35,0.70,0.76`. Autom
 Source physical track is 111.268 mm; lens-only air-equivalent track is 110.296955696 mm. The plate conversion is paraxial: the omitted plate's nonparaxial/chromatic aberrations are not reproduced. G1/stop remain fixed, G2 moves −4.441 mm, and summed variable-gap change remains zero. No zoom exists. Intermediate focus is interpolated, not a published cam law.
 
 Production and local browser views inspected. Corrected local midpoint gaps show 9.25 / 19.50 mm and close gaps 7.03 / 21.72 mm; motion chart shows stationary G1 and 4.44 mm objectward G2. The close control displays 70 cm while the description explains the air-equivalent reference. The aspheric silhouette is now closer to Fig.7. Full gates are tracked in the batch record.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Re-read Example 3 Table 9 on PDF page 80 at 160 dpi: surfaces 23–24 are the optical member PP, 2.850 mm,
+  nd 1.51680, νd 64.20, θgF 0.53430, then 1.000 mm to the image; Table 11 gives DD[22] = 14.401 / 18.842 mm.
+- Surface 22 and its `var` row now store DD[22] physically, with `rearPlates` PP (N-BK7, dPgF −0.0015156 from the
+  printed θgF) and gapAfter 1.000 mm. `closeFocusM` returns to the source 0.700 m because the modeled image plane is
+  now the physical one; the stored BF label is now "G2–PP".
+- Paraxial check against the previous data: EFL identical and defocus unchanged at both focus keyframes (the old fold
+  was exact). Physical track grows by 0.971 mm to the source's 111.268 mm.

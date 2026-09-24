@@ -36,9 +36,9 @@ Example 1 is a **positive-negative-positive telephoto system** with inner focusi
 
 The stop lies between L2 and L31, exactly where the patent's Example 1 table places R14. L1 provides the dominant front positive power and convergence; L2 is small enough to serve as the internal focusing unit; L31 further converges the beam before it reaches the compact L32 stabilization group; and L33 restores positive rear power after the negative IS subunit. This is the architecture emphasized by the patent as a way of combining a fast telephoto layout with a relatively small focusing unit and a small transversely movable stabilization unit.
 
-The active infinity model has an effective focal length of **293.599593947 mm** and a first-surface-to-image track of **267.321078902 mm**, giving `TL/EFL = 0.910495397`. It therefore satisfies the project definition of a telephoto design. The active back focal distance is **68.641078902 mm**, or `BFD/EFL = 0.233791464`; the design is not retrofocus.
+The active infinity model has an effective focal length of **293.599593947 mm** and an air-equivalent first-surface-to-image track of **267.321078902 mm**, giving `TL/EFL = 0.910495397` (the physical track through the rear filter is **268.002104800 mm**, `TL/EFL = 0.912815`). It therefore satisfies the project definition of a telephoto design. The air-equivalent back focal distance is **68.641078902 mm**, or `BFD/EFL = 0.233791464`; the design is not retrofocus.
 
-No uniform scaling is applied: `s = 1`. Radii, element thicknesses, and published air spaces remain in the patent's dimensional millimetres. The only axial normalization is at the rear: the patent's plane-parallel filter R28–R29 is excluded from the active model, and its first-order optical effect is folded into the final air-equivalent R27-to-image spacing. The optional front protection plate described in the patent and present in the production lens is not numerically specified by Example 1 and is therefore not invented.
+No uniform scaling is applied: `s = 1`. Radii, element thicknesses, and published air spaces remain in the patent's dimensional millimetres. The patent's plane-parallel filter R28–R29 (2.00 mm, `nd = 1.516330`, `νd = 64.1`) is modeled in the data file's `rearPlates`: every analysis traces it, but it is not drawn. R27 keeps the printed D27 = 8.00 mm to the filter. The table prints D29 = 0.00 rather than a back focus, so the 59.3221048 mm filter-to-image air is the only derived rear distance; it places the image at the paraxial focus, reproducing the 68.641078902 mm air-equivalent R27-to-image spacing. The optional front protection plate described in the patent and present in the production lens is not numerically specified by Example 1 and is therefore not invented.
 
 ## Element-by-Element Analysis
 
@@ -152,7 +152,7 @@ E14 is the negative cemented partner to E13. Its negative power and lower Abbe n
 
 `nd = 1.696797, νd = 55.5.` Glass: **697555 — lanthanum crown class (vendor unresolved)**. Standalone `f = +117.32398 mm`.
 
-E15 is the final powered element and has a plane rear surface. It adds positive power to L33 and is followed only by the normalized image-space air gap in the active model. The patent's plane-parallel rear filter is not represented as an active element after E15.
+E15 is the final powered element and has a plane rear surface. It adds positive power to L33 and is followed by the printed 8.00 mm air gap to the patent's plane-parallel rear filter, which the data file traces as a `rearPlates` entry rather than as a lens element.
 
 ## Glass Identification and Selection
 
@@ -188,7 +188,7 @@ The final data file therefore uses a **CONSTRAINED_RECONSTRUCTION**, not a publi
 | Infinity | 26.710000000 | 40.400000000 | 67.110000000 |
 | Reconstructed 2.5 m | 41.453206096 | 25.656793904 | 67.110000000 |
 
-The implied imageward L2 travel is **14.743206096 mm**. A fresh finite-conjugate trace of the data-file close state gives paraxial magnification **−0.135694645**, or `|m| = 0.135695`. Canon markets maximum magnification as **0.13×**. The two production values are therefore not imposed simultaneously as exact constraints; the data file is calibrated to MFD and retains the 0.13× value only as a rounded commercial cross-check.
+The implied imageward L2 travel is **14.743206096 mm**. A fresh finite-conjugate trace of the data-file close state gives paraxial magnification **−0.135694645**, or `|m| = 0.135695`. Canon markets maximum magnification as **0.13×**. The two production values are therefore not imposed simultaneously as exact constraints; the data file is calibrated to MFD and retains the 0.13× value only as a rounded commercial cross-check. The travel was solved on the air-equivalent track; with the rear filter traced physically, the same object lies 2.500681 m from the image plane, within the rounding of Canon's 2.5 m figure.
 
 The production identity includes USM, and Canon describes high-speed autofocus for the commercial lens. The patent Example 1, however, specifies the optical motion rather than a particular production focus motor. USM is therefore product metadata, not a prescription-derived optical fact.
 
@@ -245,14 +245,14 @@ The final data file was independently recomputed from its actual TypeScript arra
 | Published focal length | 293.58 mm | 293.599593947 mm | +0.019594 mm residual |
 | Modeled wide-open f-number | 2.9 | 2.90000000007 | Stop-constrained reconstruction |
 | Full field | 8.4° | 21.560606438 mm semi-image height from 4.2° | Consistency check only |
-| Active back focal distance | — | 68.641078902 mm | Rear filter omitted and normalized |
-| Active first-surface-to-image track | — | 267.321078902 mm | `TL/EFL = 0.910495397` |
+| Air-equivalent back focal distance | — | 68.641078902 mm | 8.00 mm + filter + 59.3221048 mm, filter reduced to air |
+| Air-equivalent first-surface-to-image track | — | 267.321078902 mm | `TL/EFL = 0.910495397`; physical 268.002104800 mm |
 | Active Petzval sum | — | +0.000263395169635 mm⁻¹ | Surface-by-surface `φ/(n·n′)` sum |
 | Reconstructed close-focus magnification | Canon: 0.13× marketed | 0.135694645× | MFD-constrained model cross-check |
 
 The aperture stop position itself is published at R14, but its physical diameter is not. The authored `STO.sd = 17.662796669 mm` is therefore a model inference constrained by the patent's f/2.9 and the verified system power; it corresponds to an inferred entrance-pupil diameter of approximately **101.241239290 mm**. The surface semi-diameters are likewise modeling values rather than patent aperture-height data. They were derived from the stop-constrained marginal ray, the reconstructed close-focus ray, Fig. 1 proportions, and the production barrel envelope, then checked for positive edge thickness, actual rim slope, shared-band gap clearance, and representative off-axis containment.
 
-The rear filter is the only published Example 1 glass element intentionally removed from the ordinary active sequence. Its 2.00 mm thickness at `nd = 1.516330` is converted into the documented air-equivalent rear spacing, preserving the paraxial image-plane matrix. The front protection glass is not numerically specified in Example 1 and is omitted rather than guessed.
+The rear filter is the only published Example 1 glass element not stored as a lens element. Its 2.00 mm thickness at `nd = 1.516330`, `νd = 64.1` is modeled in `rearPlates` behind the printed 8.00 mm gap, so it is traced by every analysis but not drawn; the derived 59.3221048 mm filter-to-image air preserves the paraxial image plane. The front protection glass is not numerically specified in Example 1 and is omitted rather than guessed.
 
 Example 1 is entirely spherical. No aspherical coefficients, conic convention, or coefficient scaling is applicable. No formal Certificate of Correction changes an Example 1 numerical prescription value. The parsed patent text contains OCR artifacts such as `1.43387O`, `1.487.490`, `1834.807`, `S.52`, and `1.7724.99`; the rendered Example 1 table resolves these respectively as `1.433870`, `1.487490`, `1.834807`, `5.52`, and `1.772499`. These are transcription corrections, not changes to the patent prescription.
 

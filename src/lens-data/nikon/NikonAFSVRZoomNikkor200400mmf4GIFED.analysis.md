@@ -19,7 +19,7 @@ The selected production correlation is the original Nikon AF-S VR Zoom-Nikkor 20
 The correlation rests on several independent points of agreement:
 
 1. The production 200–400 mm f/4 range brackets the patent's 204–392 mm, FNO 4.08 design range closely without requiring scale transformation.
-2. The production construction is 24 elements in 17 groups, exactly matching the 24 active glass elements and 17 air-separated/cemented groups in Example 1 after the patent's separate rear filter plate is excluded.
+2. The production construction is 24 elements in 17 groups, exactly matching the 24 active glass elements and 17 air-separated/cemented groups in Example 1; the patent's separate rear filter plate is not a lens element and is carried outside the element count.
 3. Nikon specifies four ED elements. Example 1 contains four elements at the unusually low-dispersion coordinate nd = 1.49782, νd = 82.56 (L12, L13, L14, and L47). This count supports the correlation, but the patent does not identify those elements by Nikon ED trade name or by a public glass catalog designation, so the data retains a generic 498826 low-dispersion class rather than asserting a vendor identity.
 4. Nikon identifies the production lens as internally focusing. The patent focuses only by translating G1m, the L15–L17 subgroup (¶0072).
 5. Nikon identifies the production lens as VR-equipped. The patent performs vibration reduction by transverse displacement of G4m, the L44–L46 subgroup (¶0071).
@@ -30,7 +30,7 @@ This is a convergent production-to-patent correlation rather than a manufacturer
 
 Two source-table issues are explicitly normalized in the model. First, Table 1 prints the infinity/392 mm spacing d7 as -54.90581 mm even though the same focus-only subgroup is fixed at +54.90581 mm in the other infinity zoom states. Using the printed negative sign destroys the stated optical state; using +54.90581 mm restores the 392 mm EFL and published back focus. Second, Table 1 omits d26 in all infinity rows. Because the patent states that G1m alone performs focusing, d26 is a zoom-only G3-to-stop spacing; the model therefore reuses the published closest-focus d26 values at infinity. This is a mechanism-constrained fill of a source omission, not an invented focus reconstruction.
 
-The source rear-inserting filter is also normalized. Patent surfaces 44–45 form a 2.00 mm plane-parallel plate at nd = 1.51680. Filters are excluded from the active LensVisualizer prescription, so the final active surface 43 carries an air-equivalent image spacing of 95.48637540084388 mm. No other optical dimensions are scaled.
+The source rear-inserting filter BFL is carried as a physical plate. Patent surfaces 44–45 form a 2.00 mm plane-parallel plate at nd = 1.51680, νd = 64.12. The model stores it in `rearPlates`, so every analysis traces it but the diagram does not draw it: surface 43 keeps the printed 3.00 mm gap to the filter, and the plate carries the printed Bf = 91.16781 mm to the image plane. The paraxial air-equivalent of that rear stack is 3.00 + 2.00/1.51680 + 91.16781 = 95.48637540084388 mm. No optical dimensions are scaled.
 
 The patent publishes the aperture stop S1 and field stop S2 but no complete per-surface clear-aperture table. The model therefore uses an independently solved S1 semi-diameter of 19.12567431 mm and derived surface semi-diameters constrained by the published group effective diameters, ray envelopes, the optical section, and geometry validation. S2 is retained as an optically neutral clear-aperture plane with an inferred 17.90 mm semi-diameter. These aperture dimensions are modeling results, not patent-published per-surface clear apertures.
 
@@ -57,7 +57,7 @@ At infinity the G1m focus subgroup remains fixed while G2 and G3 move between th
 
 The aperture stop S1 lies immediately after G3. G4f then forms a positive relay before the separate field stop S2. Behind S2, G4m supplies the transverse stabilization motion and G4r completes the rear relay. This separation is central to the architecture described by the patent: zooming, focusing, and vibration-reduction motions are assigned to different subgroups (¶0092).
 
-The patent repeatedly describes the system as a telephoto zoom. That wording is retained here as a source description, not broadened into a project-level classification across the entire zoom range. Under the project's geometric criterion, the normalized active track is longer than EFL at the wide and middle states and only marginally shorter than EFL at the 392 mm endpoint; restoring the omitted physical filter makes even that endpoint slightly longer than EFL. The design is not retrofocus: its rear focal distance remains far below EFL throughout the zoom.
+The patent repeatedly describes the system as a telephoto zoom. That wording is retained here as a source description, not broadened into a project-level classification across the entire zoom range. Under the project's geometric criterion, the air-equivalent track is longer than EFL at the wide and middle states and only marginally shorter than EFL at the 392 mm endpoint; the stored physical track, which includes the 2.00 mm filter and is 0.68 mm longer, makes even that endpoint slightly longer than EFL. The design is not retrofocus: its rear focal distance remains far below EFL throughout the zoom.
 
 ## Element-by-Element Analysis
 
@@ -246,7 +246,7 @@ The occurrence count of this coordinate matches Nikon's marketed count of four E
 
 The final cemented pair has a computed net focal length of +205.230140 mm. L48 is strongly positive in isolation and L49 negative; the cemented result is a moderate positive relay contribution.
 
-The smallest modeled element edge thickness occurs in this final pair and remains positive under the derived semi-diameter set. After L49, the source's 3.00 mm air gap, 2.00 mm filter plate, and published Bf are represented by the normalized air-equivalent distance on surface 43 rather than by retaining the filter as an active element.
+The smallest modeled element edge thickness occurs in this final pair and remains positive under the derived semi-diameter set. After L49, the source's 3.00 mm air gap, 2.00 mm filter plate, and published Bf are stored as printed: the gap on surface 43 and the filter as a traced but undrawn `rearPlates` entry rather than as a lens element.
 
 ## Glass Identification and Selection
 
@@ -331,15 +331,15 @@ Condition (1) is particularly resistant to a simple diameter reinterpretation be
 
 The final TypeScript prescription was independently re-read and traced rather than assuming that the extracted patent values had been transcribed correctly. Sequential reduced-angle tracing and ABCD matrix calculations agree on the infinity-state focal lengths.
 
-| Published state | Computed EFL (mm) | Computed wide-open F/# | Paraxial BFL from active surface 43 (mm) |
+| Published state | Computed EFL (mm) | Computed wide-open F/# | Paraxial air-equivalent BFL from surface 43 (mm) |
 |---:|---:|---:|---:|
 | 204 mm | 204.004592 | 4.080003 | 95.484954 |
 | 300 mm | 300.003187 | 4.079996 | 95.484700 |
 | 392 mm | 392.001714 | 4.080000 | 95.484842 |
 
-The authored surface-43 image gap is 95.48637540084388 mm because it preserves the omitted 2.00 mm filter's optical path as an air-equivalent spacing. The approximately 0.0014–0.0017 mm difference between that authored value and the paraxial best-focus BFL is commensurate with the rounding precision of the patent radii, thicknesses, and indices.
+The printed rear stack (3.00 mm gap, 2.00 mm filter, Bf 91.16781 mm) has an air-equivalent length of 95.48637540084388 mm. The approximately 0.0014–0.0017 mm difference between that value and the paraxial best-focus BFL is commensurate with the rounding precision of the patent radii, thicknesses, and indices.
 
-The Petzval sum, evaluated surface by surface as φ/(n·n′), is 0.000210824338 mm⁻¹. Plane stops and the omitted plane-parallel filter contribute no surface power. This result is invariant across zoom because the refracting surface powers themselves do not change with the axial group separations.
+The Petzval sum, evaluated surface by surface as φ/(n·n′), is 0.000210824338 mm⁻¹. Plane stops and the plane-parallel rear filter contribute no surface power. This result is invariant across zoom because the refracting surface powers themselves do not change with the axial group separations.
 
 The physical stop semi-diameter of 19.12567431 mm is a computed model quantity. The patent does not publish that radius. Likewise, all per-surface semi-diameters other than the four group-diameter anchors are derived. The final model exactly preserves the patent maxima d1 = 102.10 mm, d1r = 55.86 mm, d4f = 38.49 mm, and d4m = 27.83 mm as 51.05, 27.93, 19.245, and 13.915 mm semi-diameter constraints.
 
@@ -347,7 +347,7 @@ The tightest modeled air-space geometry occurs between G2 surfaces 19 and 20. At
 
 Across the final semi-diameter set, the maximum spherical rim slope is 0.481772 in dz/dy magnitude and the minimum modeled element edge thickness is 0.304695 mm. The S2 full-field envelope is 17.825984 mm, below its inferred 17.90 mm clear semi-diameter. These checks support the modeled apertures without treating them as source-published mechanical diameters.
 
-No aspheres are present, so there are no conic-domain or polynomial-departure checks. No sensor cover, rear filter, flare-cutter, or dummy plane remains in the active sequential model. The separate source rear filter is represented only through the documented air-equivalent image spacing.
+No aspheres are present, so there are no conic-domain or polynomial-departure checks. No sensor cover, flare-cutter, or dummy plane is in the active sequential model. The separate source rear filter is modeled in `rearPlates` with its printed thickness, index, and gaps; it is traced by every analysis but not drawn.
 
 ## Sources and References
 

@@ -10,13 +10,16 @@ import type { LensDataInput } from "../../types/optics.js";
  * Prescription notes:
  * - Patent focal length is f = 20.69 mm and F-number is 1.46. The data file uses
  *   the manufacturer-marketed nominalFno of 1.4 and records the patent value as apertureDesign.
- * - The patent lists a 1.45 mm LPF/sensor cover plate after surface 27. Per project
- *   convention the plate is excluded and folded into the final air-equivalent BFD:
- *   d27_air = d27 + 1.45 / 1.52301 + BF, where BF = 0.9970 mm from the stated 161.26 mm total track.
+ * - The patent lists a 1.45 mm LPF plate (surfaces 28–29; nd 1.52301, νd 58.59) after surface 27.
+ *   It is modeled in `rearPlates` (traced, not drawn); surface 27A keeps the patent's physical d27 to
+ *   the plate (36.5001 mm at infinity, 37.0527 mm in the tabulated finite state). BF is printed only
+ *   symbolically, so BF = 0.9970 mm is derived from the stated 161.26 mm total track.
  * - The patent only tabulates one finite-focus state at an object-image distance of roughly 959 mm.
  *   The close-focus entries below extrapolate the same L2/L3 floating-motion ratio until the paraxial
  *   magnification reaches Sigma's published 1:7.1 at the published 0.276 m minimum focus distance.
- *   The patent-tabulated finite state is documented in the companion analysis.
+ *   The patent-tabulated finite state is documented in the companion analysis. The extrapolated
+ *   d27 (39.569472 mm) is the former air-equivalent 41.518534 mm less the plate fold, so its image
+ *   plane is unchanged.
  * - Semi-diameters are renderer-safe estimates. The patent does not publish clear apertures; values were
  *   estimated from paraxial marginal/chief-ray envelopes, then reduced where required by edge thickness,
  *   sd/|R|, and cross-gap sag-clearance checks. They should not be read as mechanical barrel dimensions.
@@ -260,7 +263,20 @@ const LENS_DATA = {
     { label: "24", R: -205.2853, d: 0.9, nd: 1.70154, elemId: 14, sd: 17.0 },
     { label: "25", R: 51.6317, d: 0.3905, nd: 1.0, elemId: 0, sd: 15.5 },
     { label: "26A", R: 54.8683, d: 7.1599, nd: 1.7645, elemId: 15, sd: 15.5 },
-    { label: "27A", R: -39.1917, d: 38.449162, nd: 1.0, elemId: 0, sd: 18.3 },
+    { label: "27A", R: -39.1917, d: 36.5001, nd: 1.0, elemId: 0, sd: 18.3 },
+  ],
+
+  /* ── Low-pass filter LPF (patent surfaces 28–29): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "LPF",
+      thicknessMm: 1.45,
+      nd: 1.52301,
+      vd: 58.59,
+      glass: "C12 (HOYA)",
+      gapAfterMm: 0.997,
+      source: "JP 2019-117419 A, Numerical Example 1 surfaces 28–29 (BF from the 161.26 mm total track)",
+    },
   ],
 
   asph: {
@@ -306,7 +322,7 @@ const LENS_DATA = {
   var: {
     "11": [7.5732, 6.5175, 1.709399],
     "16": [5.2496, 5.7528, 8.044584],
-    "27A": [38.449162, 39.001762, 41.518534],
+    "27A": [36.5001, 37.0527, 39.569472],
   },
   varLabels: [
     ["11", "D11 L1-L2"],

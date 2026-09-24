@@ -13,10 +13,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    Patent Table 6 lists φi full diameters; `sd` stores half that. ║
  * ║                                                                    ║
  * ║  NOTE ON COVER GLASS:                                              ║
- * ║    Patent surfaces 27–29 (cover glass GC, nd=1.51680/S-BSL7,     ║
- * ║    d=2.50 mm + 1.00 mm air) excluded; their optical path folded  ║
- * ║    into an air-equivalent BFD on surface 26:                      ║
- * ║      12.86 + 2.50/1.51680 + 1.00 = 15.508 mm.                    ║
+ * ║    Patent Table 6 surfaces 27–28 (cover glass GC, 2.50 mm,        ║
+ * ║    nd 1.51680, νd 64.2) and the 1.00 mm air gap to IMG are        ║
+ * ║    modeled in `rearPlates` (traced, not drawn). Surface 26 keeps  ║
+ * ║    the patent's 12.86 mm gap to the cover glass.                  ║
  * ║                                                                    ║
  * ║  NOTE ON GLASS LABELS:                                             ║
  * ║    Patent Table 6 gives nd/νd rather than vendor names. Labels    ║
@@ -27,7 +27,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
  * ║    ✓ Aperture stop and variable focus/zoom gaps                   ║
- * ║    ✗ DO NOT include: sensor glass, filters, mechanical parts      ║
+ * ║    ✗ DO NOT include: mechanical parts (cover glass: `rearPlates`)  ║
  * ║    ✗ DO NOT include: parent/donor designs (use final design only) ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
@@ -280,9 +280,21 @@ const LENS_DATA = {
     { label: "23", R: -168.209, d: 1.1, nd: 1.5927, elemId: 13, sd: 16.905 },
     { label: "24", R: 43.461, d: 6.98, nd: 1.0, elemId: 0, sd: 16.525 },
     { label: "25", R: -47.076, d: 1.1, nd: 1.86966, elemId: 14, sd: 16.615 },
-    // Last surface: air-equivalent BFD to image (cover glass OPL folded in)
-    // Patent: 12.86 (air) + 2.50/1.51680 (GC glass) + 1.00 (air) = 15.508 mm
-    { label: "26", R: -77.61, d: 15.508, nd: 1.0, elemId: 0, sd: 17.155 },
+    // Last surface: patent gap to the cover glass GC
+    { label: "26", R: -77.61, d: 12.86, nd: 1.0, elemId: 0, sd: 17.155 },
+  ],
+
+  /* ── Cover glass GC (patent Table 6 surfaces 27–28): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "GC",
+      thicknessMm: 2.5,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 1.0,
+      source: "WO 2025/239028 A1, Example 2 Table 6 surfaces 27–28",
+    },
   ],
 
   /* ── Aspherical coefficients ── */

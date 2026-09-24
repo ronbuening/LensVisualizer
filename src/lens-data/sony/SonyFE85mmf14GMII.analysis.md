@@ -176,7 +176,7 @@ The design uses 13 distinct glass types across 14 elements (L6 and L11 share the
 | L13 | 1.59270 | 35.4 | S-FTM16 | OHARA | Ti flint | Negative partner in rear doublet |
 | L14 | 1.86966 | 20.0 | 870200 | Patent code | Dense flint | Final field flattener |
 
-**Cover glass (GC):** nd = 1.51680, νd = 64.2 → S-BSL7 (OHARA), equivalent to N-BK7 (Schott).
+**Cover glass (GC):** nd = 1.51680, νd = 64.2 → N-BK7 (Schott) class. (S-BSL7 is the 1.51633 variant and does not match.) The data file models the 2.50 mm plate and its 1.00 mm gap to the image in `rearPlates`: every analysis traces it, but it is not drawn.
 
 The chromatic correction strategy rests on three pillars. First, the two ED elements L2 (S-FPL51, νd = 81.6) and L3 (S-FPM3, νd = 74.7) in G1 provide the anomalous partial dispersion needed for secondary spectrum correction. These correspond to Sony's marketed "2 ED glass elements." Second, the focusing group G2 contains its own internal achromatization via the crown/flint doublet L8+L9, where L8 (S-PHM52, νd = 63.4) is a phosphate crown with positive anomalous partial dispersion, stabilizing both primary and secondary chromatic performance as the group translates during focusing. Third, the rear doublet L12+L13 with its extreme index gap (Δnd = 0.393) controls lateral color in the image periphery.
 
@@ -288,4 +288,4 @@ Glass identifications now use catalog entries for L1–L8, L10, L11, L13, and th
 
 1. WO 2025/239028 A1, "Imaging Optical System and Imaging Device," Sony Group Corporation, published November 20, 2025. Example 2 (Tables 6–10, Figure 6).
 2. Sony Electronics, "FE 85mm F1.4 GM II" product page and specifications (SEL85F14GM2), announced August 28, 2024.
-3. OHARA Inc., *Optical Glass Catalog*, current edition — glass identifications for PBH21, S-FPL51, S-FPM3, S-NBH56, S-NBH5, S-LAH89, S-LAH98, S-PHM52, S-LAH65V, S-FTM16, and S-BSL7.
+3. OHARA Inc., *Optical Glass Catalog*, current edition — glass identifications for PBH21, S-FPL51, S-FPM3, S-NBH56, S-NBH5, S-LAH89, S-LAH98, S-PHM52, S-LAH65V, and S-FTM16; SCHOTT N-BK7 for the cover glass.

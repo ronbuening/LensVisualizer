@@ -64,7 +64,7 @@ Calculated from the stored prescription:
 | EFL | 18.24 mm (patent F = 18.3 mm) |
 | Design f-number | 2.56 (patent); iris radius 4.49 mm by real-ray trace |
 | Half-field | 38.0° in Fig. 2; 38.5° reaches a 14.3 mm image height |
-| Back focus, air-equivalent | 16.20 mm (last vertex to paraxial image) |
+| Back focus | 17.05 mm physical (14.10 air + 2.5 mm plate + 0.448 air); 16.20 mm air-equivalent |
 | Lens length, surface 1 to surface 16 | 32.66 mm |
 | Total length, surface 1 to image | 49.71 mm physical, including the 2.5 mm patent plate |
 | Total length / image diagonal | 1.74 (patent: "about 1.7", ¶0051) |
@@ -181,7 +181,6 @@ amounts (Claim 1, ¶0059, ¶0082). The patent tabulates two states (Table 2):
 |---|---|---|---|
 | D1 (stop → L5) | 4.46 | 3.85 | −0.61 |
 | D2 (L9 → cover plate), patent | 14.10 | 15.78 | +1.68 |
-| Stored last gap (air-equivalent, to image) | 16.196 | 17.876 | +1.68 |
 
 Because D2 is measured to the fixed plate, Group 2 advances 1.68 mm. Group 1 advances 1.68 − 0.61 = 1.07 mm (derived).
 Group 2 therefore moves farther than Group 1, and the gap between the groups closes. Condition (7) limits the ratio of
@@ -191,15 +190,19 @@ lengthens focus travel and slows focusing.
 
 The 200 mm "reference shortest distance" is the closest distance at which design performance is held (¶0024). Tracing
 the tabulated gaps places the object 198 mm in front of surface 1, which is the 200 mm value to within the rounding of
-D1 and D2. The object-to-image distance is then about 248 mm, which the data file uses as `closeFocusM` (0.248). The
+D1 and D2. The physical object-to-image distance is then about 249 mm (198.1 mm plus the 50.78 mm track through the plate),
+which the data file uses as `closeFocusM` (0.249). The
 magnification at that distance is −0.092 (calculated). This agrees with Ricoh's "approx. 20 cm – ∞ (from lens)". The
 patent publishes no intermediate focus state, so the app interpolates the two tabulated gap sets.
 
 **Back-focus convention.** Table 1 ends with a 2.5 mm plate (nd 1.5168), representing the cover glass and filters
-(¶0056–0057), followed by "—" for the plate-to-image distance. The data file drops the plate and folds its
-air-equivalent 2.5/1.5168 = 1.648 mm into the last gap. D2 + 1.648 = 15.748 mm is 0.447 mm short of the paraxial image,
-so the unlisted plate-to-image distance is taken as 0.447 mm in both states (derived). With that addition, the stored
-image plane lies on the paraxial focus to within 0.001 mm.
+(¶0056–0057), with νd 64.2, followed by "—" for the plate-to-image distance. The data file models the plate
+physically through `rearPlates` (N-BK7 class): it is traced by every analysis but not drawn, and D2 keeps the patent's
+14.10 / 15.78 mm gap to the plate. The plate's air-equivalent thickness is 2.5/1.5168 = 1.648 mm, and D2 + 1.648 =
+15.748 mm is 0.448 mm short of the paraxial image, so the unlisted plate-to-image distance is taken as 0.448 mm in both
+states (derived, not printed). With that distance the image plane lies on the paraxial focus to within 0.001 mm, as in
+the earlier air-equivalent model. The plate adds no power but contributes its own spherical aberration, astigmatism and
+axial colour in the converging beam, which the design was corrected to include.
 
 ## 6. Aspherical Surfaces
 

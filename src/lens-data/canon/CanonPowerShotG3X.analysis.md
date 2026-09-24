@@ -50,7 +50,7 @@ Example 6 contains one source-table omission that must be interpreted rather tha
 
 Source surface 12 is an air-to-air zero-power bookkeeping plane before B3. Because it has no refractive or blocking function, it is omitted from the ordinary sequential model and its 0.10 mm spacing is added to d11. The normalized W/M/T d11 values are therefore 28.43 / 15.98 / 0.45 mm.
 
-The patent's surfaces 34–35 form GB, which ¶0021 describes as an optical block corresponding to a filter, faceplate, low-pass filter, infrared-cut filter, or similar sensor-side plate. The LensVisualizer prescription excludes that block. Its axial optical effect is retained by replacing the final spacing after surface 33 with the air-equivalent distance `d33 + 0.80/1.51633 + 0.80`, giving 10.457589641 / 25.487589641 / 35.247589641 mm at W/M/T.
+The patent's surfaces 34–35 form GB, which ¶0021 describes as an optical block corresponding to a filter, faceplate, low-pass filter, infrared-cut filter, or similar sensor-side plate. The LensVisualizer data models that block physically in `rearPlates`: the patent d33 (9.13 / 24.16 / 33.92 mm at W/M/T) runs to GB, then the 0.80 mm plate (nd 1.51633, νd 64.1, catalogued as S-BSL7) and the final 0.80 mm air to the image plane. GB is traced by every analysis but not drawn. Paraxially the stack equals the air-equivalent distance `d33 + 0.80/1.51633 + 0.80`, 10.457589641 / 25.487589641 / 35.247589641 mm, which reproduces the patent's printed BF of 10.45 / 25.49 / 35.25 mm. The physical rear track is 0.80 × (1 − 1/1.51633) ≈ 0.272 mm longer than that air-equivalent distance.
 
 No dimensional scale is applied. Consequently all radii, thicknesses, semi-diameters, image-plane distances, and aspheric coefficients remain in the patent's original scale, and no `A_p / s^(p-1)` coefficient transformation is required.
 
@@ -275,7 +275,7 @@ Independent paraxial recomputation of the modeled prescription used sequential h
 | Middle | 24.18 mm | 24.178096589 mm | 25.484088007 mm | 25.487589641 mm |
 | Tele | 213.40 mm | 213.296029721 mm | 35.224494089 mm | 35.247589641 mm |
 
-The small differences between recomputed EFL/BFL and the printed patent values are consistent with propagation of the patent's rounded three-decimal radii and two-decimal variable spacings. The tele EFL difference is approximately −0.104 mm, or −0.049% of the published value.
+The BFL column is the air-equivalent back focus. The last column is the paraxial equivalent of the modeled d33 + GB + 0.80 mm stack. The small differences between recomputed EFL/BFL and the printed patent values are consistent with propagation of the patent's rounded three-decimal radii and two-decimal variable spacings. The tele EFL difference is approximately −0.104 mm, or −0.049% of the published value.
 
 The paraxial f-number check requires active physical stop diameters of 9.860711 mm, 10.089709 mm, and 10.106983 mm at W/M/T to reproduce the patent's f/2.88, f/4.41, and f/5.77 values. All three lie inside the published 10.20 mm surface-20 clear envelope. The data therefore uses the patent's modeled f-number array for `nominalFno` while retaining f/2.8–5.6 as marketing metadata.
 
@@ -283,7 +283,7 @@ Surface-by-surface Petzval, computed as `φ/(n·n′)` through the last active r
 
 The patent effective diameters are used directly as clear apertures by halving them to obtain the data-file semi-diameters. No semi-diameter is reduced for layout. The minimum computed element edge thickness is 0.716020 mm at L12, and the maximum actual rim-slope angle is 44.235823° at surface 7. The tightest shared air gap is between surfaces 17 and 18: at the shared 6.40 mm clear band, sag intrusion is 93.9167% of the 0.57 mm axial gap, leaving +0.034675 mm physical clearance. The data consequently uses `gapSagFrac: 0.95` rather than shrinking the published aperture.
 
-The modeled prescription contains exactly one stop, five aspherical surfaces, 18 elements, 13 air-separated assemblies, five cemented pairs, and six kinematic groups. The S12 dummy-plane omission, S20 stop correction, GB removal with air-equivalent rear spacing, absence of uniform scaling, and absence of a finite-focus reconstruction are all reflected consistently in the data and in this analysis.
+The modeled prescription contains exactly one stop, five aspherical surfaces, 18 elements, 13 air-separated assemblies, five cemented pairs, and six kinematic groups. The S12 dummy-plane omission, S20 stop correction, GB modeled as a traced `rearPlates` block behind the patent d33, absence of uniform scaling, and absence of a finite-focus reconstruction are all reflected consistently in the data and in this analysis.
 
 ## Sources and References
 

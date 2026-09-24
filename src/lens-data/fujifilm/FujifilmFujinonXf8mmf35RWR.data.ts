@@ -13,9 +13,9 @@ import type { LensDataInput } from "../../types/optics.js";
  *
  * Scaling: none. Patent dimensions are retained at scale 1.0.
  *
- * Rear plate normalization: source surfaces 23-24 are the optional parallel optical member PP and are omitted.
- * Surface 22 therefore uses the verified air-equivalent rear spacing 8.622 + 2.850 / 1.51680 + 1.104 =
- * 11.60495569620253 mm. This is paraxially exact for PP; finite-angle residuals are documented in the dossier.
+ * Rear plate: source surfaces 23-24 (Table 19) are the parallel optical member PP (filters and/or cover glass,
+ * t = 2.850 mm, nd 1.51680, vd 64.20, theta_gF 0.5343). PP is modeled physically in `rearPlates` (traced, not
+ * drawn), followed by the printed 1.104 mm air gap to the image. Surface 22 keeps the patent's 8.622 mm gap to PP.
  *
  * Stop: the patent publishes the stop position and FNo=3.60 but not a diaphragm diameter. STO.sd is calibrated from
  * the published F-number and the implemented paraxial entrance-pupil magnification. It is not a source-published size.
@@ -268,7 +268,21 @@ const LENS_DATA = {
     { label: "19A", R: -11.91332, d: 0.2, nd: 1, elemId: 0, sd: 7.8 },
     { label: "20", R: 1e15, d: 0.9, nd: 1.91082, elemId: 11, sd: 8.5 },
     { label: "21", R: 14.0436, d: 8.63, nd: 1.497, elemId: 12, sd: 9 },
-    { label: "22", R: -23.92085, d: 11.60495569620253, nd: 1, elemId: 0, sd: 10.5 },
+    { label: "22", R: -23.92085, d: 8.622, nd: 1, elemId: 0, sd: 10.5 }, // patent d22: gap to PP
+  ],
+
+  /* ── Parallel optical member PP (patent Table 19 surfaces 23–24): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PP",
+      thicknessMm: 2.85,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      dPgF: -0.0015156,
+      gapAfterMm: 1.104,
+      source: "JP 2023-001878 A, Example 7 Table 19 surfaces 23–24 (patent θgF 0.5343)",
+    },
   ],
 
   asph: {

@@ -33,7 +33,7 @@ The lens is a fixed-focal-length, large-aperture retrofocus wide-angle for Micro
 
 The patent explains the layout in terms of wobbling autofocus. G1 reduces the angle of the off-axis chief ray before the aperture stop, and G2 further moderates the ray angle before it reaches the focus group. This allows G3 to have relatively weak positive power and low mass while keeping focus-breathing and image-height variation small during high-frequency focus wobbling (¶0019-¶0026). G4 is weak in power but optically useful because the off-axis chief-ray height is large there; the patent specifically assigns it a role in correcting lateral chromatic aberration caused by the asymmetric power distribution around the stop (¶0045).
 
-The optical filter plate listed at patent surfaces 30-31 is not part of the production element count. In the `.data.ts` file it is excluded per project convention, and its optical path is folded into the final air-equivalent back distance. The patent physical distance from surface 29 to the image is 11.9400 + 4.2000 + 0.9999 = 17.1399 mm; the folded air-equivalent distance used in the data file is 11.9400 + 4.2000 / 1.51680 + 0.9999 = 15.7089 mm.
+The optical filter F listed at patent surfaces 30-31 is not part of the production element count. In the `.data.ts` file it is modeled in `rearPlates` (4.2000 mm, nd 1.51680, νd 64.20, BSC7-class) and is traced by every analysis but not drawn; surface 29 keeps the patent's 11.9400 mm gap to the filter, and the filter is followed by the printed BF of 0.9999 mm. The physical distance from surface 29 to the image is therefore 11.9400 + 4.2000 + 0.9999 = 17.1399 mm, and the modeled first-surface-to-image track reproduces the patent's 89.00 mm total length. Its paraxial air equivalent is 11.9400 + 4.2000 / 1.51680 + 0.9999 = 15.7089 mm.
 
 ## Element-by-Element Analysis
 
@@ -204,7 +204,7 @@ A fresh paraxial y-nu trace was run from the patent prescription. The table belo
 | Petzval radius | approximately -212.1 mm | not tabulated |
 | Close-focus magnification with rounded d0 | -0.0936 | approximately 0.1× production spec |
 
-The numerical checks confirm the Example 1 transcription, the focus-variable gaps, and the group focal lengths. The data file uses the patent's listed effective diameters divided by two as clear semi-diameters. Surface 30-31, the plane-parallel optical filter plate, is excluded from the surfaces array and folded into the final BFD as described above.
+The numerical checks confirm the Example 1 transcription, the focus-variable gaps, and the group focal lengths. The data file uses the patent's listed effective diameters divided by two as clear semi-diameters. Surfaces 30-31, the plane-parallel optical filter plate, are modeled in `rearPlates` rather than the surfaces array, as described above.
 
 ## Sources
 

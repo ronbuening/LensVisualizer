@@ -20,9 +20,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ - The repeated 586.56 nm d-line label is treated as a typo for the         ║
  * ║   standard 587.56 nm d line.                                               ║
  * ║                                                                            ║
- * ║ Sensor plate normalization: patent surfaces 21–22 are excluded. Their      ║
- * ║ 4.20 mm thickness at nd=1.51680 is folded into the rear air spacing as     ║
- * ║ 4.20/1.51680 = 2.768987341772 mm.                                          ║
+ * ║ Sensor plate: patent surfaces 21–22 (4.20 mm, nd 1.51680, νd 64.20; the    ║
+ * ║ image lies on surface 22, d22 = 0.00) are modeled in `rearPlates`          ║
+ * ║ (traced, not drawn). Surface 20 keeps the printed ZD20 gap to the plate.   ║
  * ║                                                                            ║
  * ║ Semi-diameters: the patent publishes none. Values were derived from the    ║
  * ║ f/0.93 inferred physical stop (sd=14.0833547383 mm), exact spherical ray   ║
@@ -224,7 +224,19 @@ const LENS_DATA = {
     { label: "17", R: 28.992, d: 7.68, nd: 1.883, elemId: 10, sd: 17.5 },
     { label: "18", R: -79.175, d: 0.2, nd: 1, elemId: 0, sd: 17 },
     { label: "19", R: 37.592, d: 3.52, nd: 1.883, elemId: 11, sd: 15.8 },
-    { label: "20", R: 73.007, d: 18.20898734177215, nd: 1, elemId: 0, sd: 15.4 },
+    { label: "20", R: 73.007, d: 15.44, nd: 1, elemId: 0, sd: 15.4 },
+  ],
+
+  /* ── Sensor plate (patent surfaces 21–22): traced, not drawn ── */
+  rearPlates: [
+    {
+      thicknessMm: 4.2,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "BSC7",
+      gapAfterMm: 0,
+      source: "JP 2021-076740 A, Example 2 Table 2 surfaces 21–22 (d22 = 0.00 to IMG)",
+    },
   ],
 
   asph: {},
@@ -232,12 +244,12 @@ const LENS_DATA = {
   focusPositions: [0, 0.4792059482960617, 1],
   var: {
     "11": [8.1, 14.29, 22.74],
-    "20": [18.20898734177215, 22.81898734177215, 28.208987341772154],
+    "20": [15.44, 20.05, 25.44],
   },
 
   varLabels: [
     ["11", "ZD11"],
-    ["20", "BF (cover normalized)"],
+    ["20", "ZD20"],
   ],
 
   groups: [

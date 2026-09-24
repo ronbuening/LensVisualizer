@@ -17,12 +17,15 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  FOCUS STATUS: PUBLISHED. G5 moves imageward and G6 objectward from        ║
  * ║  infinity to the shortest shooting range; G7 remains fixed.                ║
  * ║                                                                            ║
- * ║  SOURCE NORMALIZATION: the two explicitly published 0.01000 mm adhesive   ║
- * ║  media were collapsed to direct cemented junctions required by the        ║
- * ║  current schema. Their thicknesses were retained in D2 = 3.57220 mm and   ║
- * ║  D19 = 1.01000 mm. The sensor-cover plate was omitted. D37 includes the   ║
- * ║  plate's 2.1/1.5168 mm air-equivalent thickness plus the 1.0 mm BF.       ║
- * ║  No uniform scale factor was applied.                                      ║
+ * ║  SOURCE NORMALIZATION: the two explicitly published 0.01000 mm adhesive    ║
+ * ║  media were collapsed to direct cemented junctions required by the         ║
+ * ║  current schema. Their thicknesses were retained in D2 = 3.57220 mm and    ║
+ * ║  D19 = 1.01000 mm. No uniform scale factor was applied.                    ║
+ * ║                                                                            ║
+ * ║  REAR PLATE: parallel plate P (patent surfaces 38-39; sensor cover /       ║
+ * ║  UV-IR cut glass), 2.1 mm, nd 1.51680, vd 64.2, is modeled in              ║
+ * ║  `rearPlates` (traced, not drawn). D37 stores the patent's physical        ║
+ * ║  gap to the plate (18.9162 / 28.9895 / 38.2108 mm); BF = 1.0 mm.           ║
  * ║                                                                            ║
  * ║  SEMI-DIAMETERS: not published. They were derived from exact meridional   ║
  * ║  Snell tracing of axial marginal rays, the full-field chief ray, Figure 1 ║
@@ -304,7 +307,20 @@ const LENS_DATA = {
     { label: "34", R: 55.4225, d: 5.6953, nd: 1.84666, elemId: 17, sd: 16.0 },
     { label: "35", R: -82.6857, d: 1.3097, nd: 1.0, elemId: 0, sd: 16.5 },
     { label: "36", R: -160.4704, d: 1.2, nd: 1.95375, elemId: 18, sd: 16.5 },
-    { label: "37", R: 168.0432, d: 21.300693671, nd: 1.0, elemId: 0, sd: 16.5 },
+    { label: "37", R: 168.0432, d: 18.9162, nd: 1.0, elemId: 0, sd: 16.5 },
+  ],
+
+  /* ── Parallel plate P (patent surfaces 38–39): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "P",
+      thicknessMm: 2.1,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 1.0,
+      source: "US 2021/0055531 A1, Numerical Example 1 Table 1 surfaces 38–39 (BF 1.0 mm, Table 3A)",
+    },
   ],
 
   asph: {
@@ -400,9 +416,9 @@ const LENS_DATA = {
       [2.6369, 7.4408],
     ],
     "37": [
-      [21.300693671, 21.300693671],
-      [31.373993671, 31.373993671],
-      [40.595293671, 40.595293671],
+      [18.9162, 18.9162],
+      [28.9895, 28.9895],
+      [38.2108, 38.2108],
     ],
   },
   varLabels: [
@@ -412,7 +428,7 @@ const LENS_DATA = {
     ["29A", "D29 / G4-G5 / FOCUS"],
     ["31", "D31 / G5-G6 / FOCUS"],
     ["33A", "D33 / G6-G7 / FOCUS"],
-    ["37", "AIR-EQUIVALENT REAR SPACING"],
+    ["37", "D37 / G7-PLATE"],
   ],
 
   groups: [

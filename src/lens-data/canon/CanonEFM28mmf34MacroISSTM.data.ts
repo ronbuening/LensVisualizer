@@ -6,10 +6,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * ╠════════════════════════════════════════════════════════════════════════════╣
  * ║  Data source: US 2016/0313535 A1, Numerical Example 1 (Canon / Nakahara).║
  * ║  Positive L1 plus negative rear-focus L2 cemented doublet.              ║
- * ║  10 powered elements / 9 powered groups in this file; the patent also   ║
- * ║  tabulates a 1.00 mm nd=1.51633 plane-parallel plate after surface 22.  ║
- * ║  Project convention treats that plate as cover/window glass and folds    ║
- * ║  its air-equivalent optical path into the final BFD.                    ║
+ * ║  10 powered elements / 9 powered groups in this file. The patent's      ║
+ * ║  1.00 mm plane-parallel plate (surfaces 23–24; nd 1.51633, νd 64.1)     ║
+ * ║  is modeled in `rearPlates` (traced, not drawn) with d24 = 12.28 mm     ║
+ * ║  to the image; surface 22 keeps the patent d22 to the plate:            ║
+ * ║  29.28 mm at infinity, 20.49 mm at the 1.2× third finite state.         ║
  * ║  3 aspherical surfaces on 2 physical elements.                          ║
  * ║  Focus: rear focus by the cemented L2 doublet; this data file uses the  ║
  * ║  patent's infinity state and 1.2× third finite state as focus endpoints.║
@@ -27,7 +28,7 @@ const LENS_DATA = {
     "Canon EF-M / APS-C",
     "Patent f = 27.74 mm; recomputed f = 27.76 mm",
     "F/3.61 design; f/3.5 marketed",
-    "10 powered elements / 9 powered groups (+ folded cover plate)",
+    "10 powered elements / 9 powered groups (+ rear cover plate)",
     "3 aspherical surfaces on 2 elements; 1 UD-class element",
     "Rear-focus L2 cemented doublet; two-mode macro patent mechanism",
   ],
@@ -214,7 +215,19 @@ const LENS_DATA = {
     { label: "FC", R: 1e15, d: 0.94, nd: 1.0, elemId: 0, sd: 10.1 },
     { label: "20", R: 51.516, d: 1.22, nd: 1.95906, elemId: 9, sd: 9.8 },
     { label: "21", R: 332.148, d: 0.45, nd: 1.83481, elemId: 10, sd: 9.8 },
-    { label: "22", R: 16.99, d: 42.21948705097176, nd: 1.0, elemId: 0, sd: 9.7 },
+    { label: "22", R: 16.99, d: 29.28, nd: 1.0, elemId: 0, sd: 9.7 },
+  ],
+
+  /* ── Plane-parallel plate (patent surfaces 23–24): traced, not drawn ── */
+  rearPlates: [
+    {
+      thicknessMm: 1.0,
+      nd: 1.51633,
+      vd: 64.1,
+      glass: "S-BSL7 (OHARA)",
+      gapAfterMm: 12.28,
+      source: "US 2016/0313535 A1, Numerical Example 1 surfaces 23–24",
+    },
   ],
 
   asph: {
@@ -249,7 +262,7 @@ const LENS_DATA = {
 
   var: {
     FC: [0.94, 10.32],
-    "22": [42.21948705097176, 33.42948705097175],
+    "22": [29.28, 20.49],
   },
 
   varLabels: [
@@ -266,7 +279,7 @@ const LENS_DATA = {
 
   closeFocusM: 0.093,
   focusDescription:
-    "Patent rear-focus mechanism: L2 cemented doublet moves imageward within each focus mode; L1 and L2 shift objectward for the Super Macro mode. This file interpolates from infinity to the 1.2× third finite state and folds the patent cover plate into final BF.",
+    "Patent rear-focus mechanism: L2 cemented doublet moves imageward within each focus mode; L1 and L2 shift objectward for the Super Macro mode. This file interpolates from infinity to the 1.2× third finite state; the patent rear plate is modeled in rearPlates.",
 
   nominalFno: 3.5,
   fstopSeries: [3.5, 4, 5.6, 8, 11, 16, 22],

@@ -11,14 +11,15 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                    ║
  * ║  Zoom positions: patent f = 12.33 / 26.62 / 58.81 mm.              ║
  * ║  Zoom + focus variable gaps: D5, D11, D13.                         ║
- * ║  Zoom-only variable gaps: D19, BF.                                 ║
+ * ║  Zoom-only variable gaps: D19, D26 (BF, G4 to cover plate).        ║
  * ║                                                                    ║
  * ║  Independent paraxial trace of the printed prescription reproduces  ║
  * ║  f = 12.33 / 26.62 / 58.81 mm and the Ex. 4 condition table.        ║
  * ║                                                                    ║
- * ║  Sensor cover glass is excluded from the surfaces array. The patent ║
- * ║  cover plate d27 = 4.6000 mm, nd = 1.51633, plus d28 = 1.0586 mm   ║
- * ║  is folded into BF as an air-equivalent 4.092240 mm.          ║
+ * ║  Cover plate (patent surfaces 27–28: d27 = 4.6000 mm, nd = 1.51633, ║
+ * ║  νd = 64.14) is modeled in `rearPlates` (traced, not drawn) with    ║
+ * ║  d28 = 1.0586 mm to the image. d26 stores the patent gap to the     ║
+ * ║  plate: 29.58052 / 43.73719 / 60.80026 mm.                          ║
  * ║                                                                    ║
  * ║  Semi-diameters are estimated from paraxial marginal/chief-ray      ║
  * ║  heights, front-barrel constraints, and renderer clearance limits.  ║
@@ -333,7 +334,19 @@ const LENS_DATA = {
     { label: "23", R: -44.8085, d: 0.15, nd: 1.0, elemId: 0, sd: 13.4 },
     { label: "24", R: -180.8473, d: 1.234, nd: 1.883, elemId: 14, sd: 13.6 },
     { label: "25", R: 19.4304, d: 11.2743, nd: 1.497, elemId: 15, sd: 13.6 },
-    { label: "26", R: -27.2992, d: 33.67276, nd: 1.0, elemId: 0, sd: 14.6 },
+    { label: "26", R: -27.2992, d: 29.58052, nd: 1.0, elemId: 0, sd: 14.6 }, // d26 var — gap to the cover plate
+  ],
+
+  /* ── Cover plate (patent surfaces 27–28): traced, not drawn ── */
+  rearPlates: [
+    {
+      thicknessMm: 4.6,
+      nd: 1.51633,
+      vd: 64.14,
+      glass: "S-BSL7",
+      gapAfterMm: 1.0586,
+      source: "US 7,583,450 B2, Example 4 surfaces 27–28",
+    },
   ],
 
   asph: {
@@ -366,9 +379,9 @@ const LENS_DATA = {
       [0.8, 0.8],
     ],
     "26": [
-      [33.67276, 33.67276],
-      [47.82943, 47.82943],
-      [64.8925, 64.8925],
+      [29.58052, 29.58052],
+      [43.73719, 43.73719],
+      [60.80026, 60.80026],
     ],
   },
   varLabels: [

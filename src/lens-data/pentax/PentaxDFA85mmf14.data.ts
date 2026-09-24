@@ -10,10 +10,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ Focus: rear focus; patent publishes infinity separations only.      ║
  * ║                                                                      ║
  * ║ NOTE ON COVER GLASS:                                                 ║
- * ║   Patent surfaces 24-25 are a 2.00 mm flat cover glass at nd=1.51633 ║
- * ║   followed by fB=0.50 mm. Per project convention, the cover glass is ║
- * ║   excluded from the surfaces array and folded into the final BFD:    ║
- * ║   d23A = 38.06 + 2.00/1.51633 + 0.50 = 39.878974 mm.                ║
+ * ║   Patent Table 7 surfaces 24-25 (cover glass CG, 2.00 mm,            ║
+ * ║   nd 1.51633, νd 64.1) and the fB = 0.50 mm air gap to the image     ║
+ * ║   are modeled in `rearPlates` (traced, not drawn). Surface 23A       ║
+ * ║   keeps the patent's 38.06 mm gap to the cover glass.                ║
  * ║                                                                      ║
  * ║ NOTE ON SEMI-DIAMETERS:                                             ║
  * ║   The patent does not publish clear apertures. SDs were estimated by ║
@@ -23,8 +23,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║   intentionally mechanically vignetted, as expected for this class.  ║
  * ║                                                                      ║
  * ║ IMPORTANT: This file describes only the optical design. It excludes  ║
- * ║ sensor cover glass, filters, motors, barrel, diaphragm blades, and   ║
- * ║ other mechanical components.                                        ║
+ * ║ filters, motors, barrel, diaphragm blades, and other mechanical      ║
+ * ║ components (cover glass: `rearPlates`).                              ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -228,7 +228,21 @@ const LENS_DATA = {
     { label: "20", R: 34.393, d: 8.38, nd: 1.83481, elemId: 11, sd: 18.0 },
     { label: "21", R: -63.703, d: 0.25, nd: 1.0, elemId: 0, sd: 18.5 },
     { label: "22A", R: 206.484, d: 3.46, nd: 1.6935, elemId: 12, sd: 22.5 },
-    { label: "23A", R: -144.341, d: 39.87897410194351, nd: 1.0, elemId: 0, sd: 22.7 },
+    // Last surface: patent gap to the cover glass CG
+    { label: "23A", R: -144.341, d: 38.06, nd: 1.0, elemId: 0, sd: 22.7 },
+  ],
+
+  /* ── Cover glass CG (patent Table 7 surfaces 24–25): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "CG",
+      thicknessMm: 2.0,
+      nd: 1.51633,
+      vd: 64.1,
+      glass: "S-BSL7",
+      gapAfterMm: 0.5,
+      source: "US 2020/0301101 A1, Numerical Example 3, Table 7 surfaces 24–25; fB from Table 9",
+    },
   ],
 
   asph: {

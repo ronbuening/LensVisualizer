@@ -30,3 +30,14 @@ Patent: JP 2013-156459 A, Example 4
 ### Analysis sync
 
 - Updated affected element descriptions, glass table rows, and manufacturing note.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Replaced the air-equivalent surface-15 gap (6.72 mm) with the patent's physical rear stack from Numerical Example 4
+  (local PDF text layer, ¶0070): d15 = 1.0000 mm, filter F surfaces 16–17 = 1.2000 mm, nd 1.52301, νd 58.59, then
+  4.9300 mm to the image. Focus moves only d9, so the rear stack is identical at every focus keyframe.
+- Plate glass labelled `C12 (HOYA)` (nearest catalog match 1.52307 / 58.64; `resolveCompatibleGlass` accepts the stored
+  1.52301 / 58.59). The patent prints no θgF, so no dPgF is stored.
+- Paraxial check against the previous data: EFL identical; defocus changes by −0.0021 mm at all three focus keyframes
+  (rounding in the old 6.72 vs. 6.7179). Physical track grows by 0.41 mm (1.2 × (1 − 1/1.52301) = 0.412) and now
+  matches the patent's 39.83 mm total length.

@@ -85,3 +85,13 @@ OFF-AXIS/COLOR toggles could not be inspected visually.
 Open limitations: unchanged from the first pass (figure/ray-envelope semi-diameters, 0.25 m production MFD and Leica's
 single-element AF description unreconciled with the cemented Gr2a focus group). The visual live check of zoom endpoints
 is still outstanding.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Replaced the air-equivalent D31 with the physical rear stack from Example 1 (printed pp. 15–16, ¶¶0066 and 0068;
+  PT named in ¶0050): D31 = 16.500 / 23.224 / 33.386 mm (W/M/T, same at 0.35 m), then `rearPlates` PT 1.400 mm,
+  nd 1.51680, νd 64.20, and BF 0.500 mm. Glass N-BK7 (resolves for 1.51680 / 64.20; the elements already use N-BK7 for
+  the same coordinate). `varLabels` D31 renamed from "BF (air-equivalent)" to "D31 / Gr4–PT".
+- Paraxial check against the previous data: EFL and defocus identical at every zoom station and focus state (the old
+  fold used the exact 1.400/1.51680 + 0.500). Physical track grows by 0.477 mm and now matches the patent's
+  147.938 / 142.212 / 144.659 mm total lengths to within 0.002 mm.

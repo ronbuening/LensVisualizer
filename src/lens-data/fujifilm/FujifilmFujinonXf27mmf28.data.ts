@@ -13,9 +13,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  power groups (G1 positive, G2 negative, G3 positive).             ║
  * ║  Two aspherical surfaces, both on L23.                             ║
  * ║                                                                    ║
- * ║  REAR-PLATE NORMALIZATION: source PP surfaces 14–15 are omitted.   ║
- * ║  The active model uses the published 11.27 mm air-equivalent       ║
- * ║  S13-to-image spacing. No prescription scaling is applied.         ║
+ * ║  REAR PLATE: patent plane-parallel plate PP (surfaces 14–15,       ║
+ * ║  2.80 mm, nd 1.51680, νd 64.2) is modeled in `rearPlates`          ║
+ * ║  (traced, not drawn). S13 keeps the printed 6.00 mm gap to PP.     ║
+ * ║  Table 9 prints no spacing after S15; the 3.424008 mm plate-to-    ║
+ * ║  image gap is derived, not printed: printed air-equivalent         ║
+ * ║  BF 11.27 − 6.00 − 2.80/1.51680. No prescription scaling.          ║
  * ║                                                                    ║
  * ║  ASPHERE CONVENTION: the patent uses sqrt(1 - Kp*C^2*h^2).        ║
  * ║  LensVisualizer uses sqrt(1 - (1+K)*(h/R)^2), therefore            ║
@@ -173,7 +176,21 @@ const LENS_DATA = {
     { label: "10", R: -18.45, d: 1.52, nd: 1.80518, elemId: 6, sd: 7.65 },
     { label: "11", R: -64.769, d: 0.2, nd: 1.0, elemId: 0, sd: 8.99 },
     { label: "12", R: 100.01, d: 4.27, nd: 1.90366, elemId: 7, sd: 10.29 },
-    { label: "13", R: -29.001, d: 11.27, nd: 1.0, elemId: 0, sd: 11.02 },
+    { label: "13", R: -29.001, d: 6.0, nd: 1.0, elemId: 0, sd: 11.02 }, // physical gap to PP
+  ],
+
+  /* ── Plane-parallel plate PP (patent surfaces 14–15): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PP",
+      thicknessMm: 2.8,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 3.424008, // derived, not printed: BF 11.27 − 6.00 − 2.80/1.51680
+      source:
+        "US 2016/0011404 A1, Example 5 Table 9 surfaces 14–15; gap after PP derived, not printed (air-equivalent BF 11.27 − 6.00 − 2.80/1.51680)",
+    },
   ],
 
   asph: {

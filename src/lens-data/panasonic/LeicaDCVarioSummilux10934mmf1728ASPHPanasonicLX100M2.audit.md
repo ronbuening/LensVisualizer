@@ -62,3 +62,16 @@ The four Panasonic fixed-camera lenses consistently use Panasonic maker metadata
 **Assignees:** reviewed the 64-name corpus inventory and this publication. The four Panasonic publications share Panasonic Intellectual Property Management Co., Ltd.; the two German publications share Ernst Leitz GmbH. Existing canonical names are already consolidated. Historical legal renames and distinct subsidiaries remain separate.
 
 **Verification:** surface/image-circle audits, five-state render diagnostics, local-site wide/tele controls (zooms), disabled focus controls, and the required typecheck/format/lint/test/build gates.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Read Table 1 surfaces 24–25 (PDF p. 24) and Table 3 (PDF p. 25) on the rendered pages: plate P 1.10000 mm,
+  nd 1.51680, νd 64.2; d23 12.6772 / 13.6458 / 13.5187 mm; BF 0.82178 / 0.82978 / 0.79743 mm. Modeled as `rearPlates`
+  P (N-BK7, `resolveCompatibleGlass` true) with `gapAfterMm` 0.82178 (wide BF); the BF variation (≤ 0.032 mm) is
+  carried in the gap before the plate.
+- The legacy 23A gaps were code-solved after cement collapse, not the printed air-equivalent BF, so the file's image
+  planes were kept: new 23A gap = legacy − 1.1/1.5168 − 0.82178 = 12.689420 / 13.672731 / 13.524166 mm (patent d23
+  plus the BF shift, +0.012 / +0.019 / +0.030 mm). The var label changes from BF to D23.
+- Plate check against the previous data: EFL identical and paraxial defocus unchanged (worst |Δ| 4.6e-10 mm) at all
+  three zoom states. Physical track grows by 0.374789 mm to 75.324000 / 81.100811 / 94.011046 mm; surface validator
+  and image-circle audit pass with zero undersized surfaces.

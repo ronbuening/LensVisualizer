@@ -27,10 +27,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    patent image height and the drawn rims; see the analysis.      ║
  * ║                                                                    ║
  * ║  NOTE ON COVER GLASS:                                              ║
- * ║    Patent surfaces 22–23 (plane plate, nd = 1.5168, 1.4 mm) are   ║
- * ║    omitted; their equivalent air thickness t/n = 0.9230 mm is     ║
- * ║    folded into the last gap: 2.3 + 0.9230 + BF (1.00114 ∞ /       ║
- * ║    1.0763 at 0.3 m).                                               ║
+ * ║    Patent surfaces 22–23 (plane plate, nd = 1.5168, νd = 64.2,    ║
+ * ║    1.4 mm) are modeled in `rearPlates` (traced, not drawn) with   ║
+ * ║    BF = 1.00114 mm after it. d21 = 2.3 at infinity; FIG. 16       ║
+ * ║    prints BF 1.0763 at 0.3 m; the extra 0.0752 mm is carried in   ║
+ * ║    d21 (2.3752). Air-equivalent BF 4.2241 / 4.2993 mm unchanged.  ║
  * ║                                                                    ║
  * ║  Aperture: nominalFno is the patent F-number 1.75737 (f/1.76);    ║
  * ║  the engine derives the iris from it. Production is marketed f/1.7║
@@ -232,7 +233,19 @@ const LENS_DATA = {
 
     // ── G5: Field-flattener (L11), fixed ──
     { label: "20A", R: -17.7688, d: 2.0, nd: 1.6825, elemId: 11, sd: 15.5 }, // L11 front (asph; FIG. 1 curve ends ≈15.2–15.5)
-    { label: "21A", R: -286.769, d: 4.2241, nd: 1.0, elemId: 0, sd: 18.4 }, // L11 rear (asph; FIG. 1 blank) → image (2.3 + plate t/n + BF)
+    { label: "21A", R: -286.769, d: 2.3, nd: 1.0, elemId: 0, sd: 18.4 }, // L11 rear (asph; FIG. 1 blank) → cover glass
+  ],
+
+  /* ── Cover glass (patent surfaces 22–23): traced, not drawn ── */
+  rearPlates: [
+    {
+      thicknessMm: 1.4,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 1.00114,
+      source: "US 2016/0266350 A1, Example 1 FIG. 14 surfaces 22–23 (BF from FIG. 16)",
+    },
   ],
 
   /* ── Aspherical coefficients ── */
@@ -288,7 +301,9 @@ const LENS_DATA = {
    *  Floating inner focus: G2 and G4 move toward object (FIG. 16:
    *  d11 6.3788→4.4288, d14 3.0255→4.9755, d17 4.3357→1.3888,
    *  d19 5.6658→8.6128, BF 1.00114→1.0763; object distance d0 = 235 mm,
-   *  i.e. 0.300 m object-to-image). The last entry is 2.3 + 0.9230 + BF.
+   *  i.e. 0.300 m object-to-image). The last entry is the gap to the cover
+   *  glass: patent d21 = 2.3, plus the 0.0752 mm BF growth at 0.3 m
+   *  (rearPlates holds the infinity BF 1.00114 as its fixed trailing gap).
    *  Patent also defines State M2 (macro, 0.3–0.164 m) where G1–G4
    *  extend 2.3457 mm as a unit and the iris closes to F/2.9; that is a
    *  separate mechanical mode with no infinity conjugate and is not
@@ -299,7 +314,7 @@ const LENS_DATA = {
     "14": [3.0255, 4.9755],
     "17": [4.3357, 1.3888],
     "19A": [5.6658, 8.6128],
-    "21A": [4.2241, 4.2993],
+    "21A": [2.3, 2.3752],
   },
   varLabels: [
     ["STO", "D11"],

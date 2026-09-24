@@ -10,12 +10,15 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  Focus: inner focus by G21 (L61 + L71) only; G11 and G31 fixed.   ║
  * ║                                                                    ║
  * ║  NOTE ON COVER GLASS:                                              ║
- * ║    Patent Table 1 includes a rear plane-parallel filter/cover       ║
- * ║    plate after surface 18. Project convention excludes sensor       ║
- * ║    cover glass from `surfaces`, so surface 18 uses Table 3's        ║
- * ║    in-air rear spacing of 24.59 mm. The rounded prescription        ║
- * ║    independently traces to 24.611 mm paraxial BFD; the stored       ║
- * ║    value follows the patent's air-equivalent spacing.               ║
+ * ║    Patent Table 1 surfaces 19–20 ("Filter", 2.5 mm, nd 1.5168,     ║
+ * ║    νd 64.1973) are modeled in `rearPlates` (traced, not drawn).    ║
+ * ║    Surface 18 keeps the printed 22.444 mm gap to the plate. The    ║
+ * ║    printed 2.5 mm plate-to-image row conflicts with Table 3's      ║
+ * ║    in-air BF 24.59 mm and Table 16 f_Back 25.444 mm (both imply    ║
+ * ║    ≈0.5 mm), so the trailing gap is derived, not printed:          ║
+ * ║      24.59 − 22.444 − 2.5/1.5168 = 0.498 mm.                       ║
+ * ║    The rounded prescription traces to 24.611 mm paraxial BFD       ║
+ * ║    (air-equivalent); the image plane follows Table 3's 24.59 mm.   ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    The patent does not publish clear apertures. Semi-diameters      ║
@@ -29,7 +32,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  IMPORTANT: This file describes ONLY the optical design:            ║
  * ║    ✓ Glass elements and refracting surfaces through final image     ║
  * ║    ✓ Aperture stop and variable focus gaps D1 / D2                 ║
- * ║    ✗ Excludes rear sensor cover glass / filter plate               ║
+ * ║    ✓ Rear filter plate in `rearPlates` (traced, not drawn)         ║
  * ║    ✗ Excludes barrel, motor, mount, and mechanical components      ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
@@ -192,7 +195,21 @@ const LENS_DATA = {
     { label: "15A", R: -459.178, d: 3.77, nd: 1.76951, elemId: 8, sd: 9.0 },
     { label: "16A", R: -16.19, d: 0.15, nd: 1.0, elemId: 0, sd: 10.3 },
     { label: "17", R: -19.533, d: 0.7, nd: 1.72825, elemId: 9, sd: 10.3 },
-    { label: "18", R: 27.335, d: 24.59, nd: 1.0, elemId: 0, sd: 11.1 },
+    // Last surface: patent Table 1 gap to the rear filter plate
+    { label: "18", R: 27.335, d: 22.444, nd: 1.0, elemId: 0, sd: 11.1 },
+  ],
+
+  /* ── Rear filter plate (patent Table 1 surfaces 19–20): traced, not drawn ── */
+  rearPlates: [
+    {
+      thicknessMm: 2.5,
+      nd: 1.5168,
+      vd: 64.1973,
+      glass: "N-BK7",
+      gapAfterMm: 0.498,
+      source:
+        "WO 2021/246545 A1, Example 1 Table 1 surfaces 19–20 (\"Filter\"); gap after derived, not printed: Table 3 in-air BF 24.59 − 22.444 − 2.5/1.5168 (printed 2.5 mm row conflicts with Table 3 / Table 16)",
+    },
   ],
 
   asph: {

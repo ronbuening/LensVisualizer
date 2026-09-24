@@ -28,7 +28,7 @@ The third lens unit, surfaces 13–19, has positive refractive power with f = +2
 
 The aperture stop follows the third lens unit. In the patent's Example 4 prescription, the stop is surface 20 and moves with the third lens unit during zooming. The fourth lens unit, surfaces 21–22, is a single biconvex positive element with f = +44.82 mm and an aspherical rear surface. It is the rear-focus group.
 
-The patent includes a flat optical block G after the fourth lens unit. In the data file, this block is not represented as glass surfaces because it is a sensor/filter block rather than a lens element. Its optical path is folded into the final air-equivalent back focal distance.
+The patent includes a flat optical block G after the fourth lens unit (surfaces 23–24: 1.56 mm, nd = 1.51633, νd = 64.1, followed by 1.56 mm of air to the image plane). The data file models it in `rearPlates` as an S-BSL7-class plate behind the patent d22 gap. It is traced by every analysis but not drawn, because it is a sensor/filter block rather than a lens element.
 
 ## Element-by-Element Analysis
 
@@ -132,6 +132,8 @@ The lens uses rear focusing. The fourth lens unit moves along the optical axis f
 | d22, L4-to-filter-block gap         |  6.82 |   5.36 |      5.00 |
 | BF, air-equivalent L4 rear to image |  9.41 |   7.95 |      7.58 |
 
+The data file stores d22 as the last gap, ahead of the block G plate. At the telephoto end it stores 4.9912 mm, the printed BF 7.58 mm less the block's 1.56/1.51633 mm air-equivalent thickness and the 1.56 mm trailing air, so the image plane stays at the printed BF. The printed d22 of 5.00 mm would place it 0.009 mm farther back. Both printed values are rounded, and they are consistent with a d22 near 4.995 mm.
+
 The data file implements the patent's infinity-focus zoom positions. It does not infer close-focus rear-group travel, because the production minimum focusing distances are manufacturer camera specifications rather than patent-tabulated optical spacings.
 
 ## Aspherical Surfaces
@@ -179,7 +181,7 @@ The mismatches in conditions (1), (3), (4), and (8) are not OCR artifacts in the
 
 ## Verification Summary
 
-Independent paraxial verification used a reduced-coordinate y-nu ray trace with ABCD matrix cross-check. The filter block G was included for verification of the patent's air-equivalent BF convention and then omitted from the data file by folding its optical path into the final BF.
+Independent paraxial verification used a reduced-coordinate y-nu ray trace with ABCD matrix cross-check. The filter block G was included for verification of the patent's air-equivalent BF convention. The data file carries it as a traced `rearPlates` entry, so the physical track from surface 1 to the image is 0.531 mm longer than the air-equivalent track.
 
 | Quantity                           |      Wide |    Middle | Telephoto |
 | ---------------------------------- | --------: | --------: | --------: |

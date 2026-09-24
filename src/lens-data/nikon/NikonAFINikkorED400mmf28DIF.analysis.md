@@ -31,7 +31,7 @@ The ten physical elements form seven air-separated groups. G1 contains the three
 
 The nearly zero power of `G1 + G2` independently confirms the patent's description of that combination as substantially afocal. This is a central architectural choice: focus is obtained by moving a comparatively compact negative group inside a system whose front two macro-units contribute almost no residual net vergence as a pair.
 
-Using the active, filter-normalized model, total track divided by EFL is **0.952912**. Under the project definition this qualifies as telephoto. The Gaussian back focal distance from surface 17 is only **0.388183 EFL**, so the design is not retrofocus.
+With the rear filter included physically, total track (surface 1 to image, 374.228 mm) divided by EFL is **0.954650**; on the paraxial air-equivalent path (filter folded as t/n) it is **0.952912**. Under the project definition this qualifies as telephoto. The Gaussian back focal distance from surface 17 is only **0.388183 EFL**, so the design is not retrofocus.
 
 ## Element-by-Element Analysis
 
@@ -147,7 +147,7 @@ The final data file retains patent surfaces 1–17 at native scale. There is **n
 
 At infinity, the computed EFL is **392.005464 mm**, only **-0.001136 mm** from the patent's more precise `F = 392.0066 mm`. The modeled stop gives `f/2.880000`, matching the authored `nominalFno = 2.88`. The physical stop position is not tabulated by the patent: it is inferred from Figure 1 as **23.7 mm behind surface 17**, and its modeled semi-diameter **22.303806 mm** is solved to reproduce the patent design f-number. Both are modeling inferences.
 
-The patent also includes a 2.00 mm, `n = 1.51680` plane-parallel filter after G3. The active LensVisualizer model omits this filter and preserves its first-order axial effect by replacing the source rear path with an air-equivalent surface-17-to-image distance of **152.165465 mm**. This is a documented reference-plane normalization, not a change to the powered prescription.
+The patent also includes a 2.00 mm, `n = 1.51680`, `ν = 64.1` plane-parallel filter after G3 (surfaces 18–19, labeled FILTER in Figure 1). The data file models it in `rearPlates` (J-BK7A class): the stop-to-filter gap is the patent's 46.34 mm minus the inferred 23.7 mm stop offset, and the printed `Bf = 104.5069 mm` runs from the filter to the image. Every analysis traces the filter, but it is not drawn. Its paraxial air-equivalent surface-17-to-image distance is **152.165465 mm**, the value earlier versions stored as a folded rear gap; the filter does not change the powered prescription.
 
 Clear apertures are likewise not tabulated. Surface 1 uses `sd = 68.2 mm`, anchored by the patent's condition-(8) effective semi-diameter of approximately **68.046 mm**; the remaining semi-diameters are inferred from the marginal-ray envelope, Figure 1 proportions, and geometry constraints. Across the published infinity and close states, the final model has minimum edge thickness **2.6931 mm**, maximum spherical rim angle **39.2468°**, maximum positive cross-gap intrusion fraction **0.4581**, and minimum exact full-stop marginal-ray clearance **0.2810 mm**. These are validation results for the authored geometry, not patent specifications.
 

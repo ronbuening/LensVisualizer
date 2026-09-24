@@ -72,29 +72,33 @@ move integrally (¶¶0049–0051). The final model reproduces those kinematics. 
 0.998 mm imageward from wide to middle, then 3.755 mm objectward from middle to telephoto. G6 remains fixed relative to
 the modeled image plane.
 
-The strict project telephoto criterion is $TL/EFL<1$. Using the PP-normalized first-vertex-to-image track, the ratios are
+The strict project telephoto criterion is $TL/EFL<1$. Using the air-equivalent first-vertex-to-image track (PP reduced to $t/n$), the ratios are
 2.0264 at wide, 1.3979 at middle, and 0.7523 at telephoto. The design therefore meets the project definition of
 **telephoto only at the telephoto endpoint**. The corresponding rear-distance ratios are 0.4059, 0.2289, and 0.1005, so
-none of the three published states is retrofocus under the project criterion $BFD>EFL$.
+none of the three published states is retrofocus under the project criterion $BFD>EFL$. The stored physical track,
+which includes PP at its full 2.850 mm thickness, is 1.008 mm longer than the air-equivalent track at every zoom state.
 
 ### Reference-plane normalization and model boundaries
 
 The patent inserts a plane-parallel optical member `PP` between the lens and image plane and explicitly states that this
-member can represent filters or cover glass and may be omitted (¶0047). The LensVisualizer model omits `PP`, as required
-for an ordinary lens prescription, but preserves its first-order reduced propagation. The source rear path
+member can represent filters or cover glass and may be omitted (¶0047). The LensVisualizer model keeps `PP` physically
+as a `rearPlates` entry (Table 16 surfaces 31–32: 2.850 mm, $n_d$ = 1.54763, $\nu_d$ = 54.98, $\theta_{gF}$ = 0.55247,
+stored as `dPgF` +0.00115 with an Abbe-based dispersion because no catalog glass matches). Every analysis traces the
+plate, but the diagram does not draw it. The source rear path
 
 $$
 26.284 + 2.850 + 1.123\ \mathrm{mm}
 $$
 
-is replaced by the air-equivalent distance
+is stored as printed: surface 30's gap is 26.284 mm to `PP`, and 1.123 mm separates `PP` from the image plane. Its
+paraxial air-equivalent distance is
 
 $$
 26.284 + \frac{2.850}{1.54763} + 1.123 = 29.2485254292\ \mathrm{mm}.
 $$
 
-That value is the authored spacing after surface 30. It is a model reference-plane normalization, not a change to the
-active optical prescription.
+Earlier revisions of the data stored that value as the spacing after surface 30 with `PP` omitted; the physical form
+places the image plane at the same paraxial position.
 
 No uniform focal-length scaling is applied: $s=1$. Consequently, radii, axial spacings, image-plane coordinates, and
 asphere coefficients remain at the patent scale. The general scaling rule $A_p\rightarrow A_p/s^{p-1}$ therefore leaves
@@ -337,8 +341,8 @@ therefore uses **CONSTRAINED_RECONSTRUCTION**, not `PUBLISHED`, for its near-foc
 
 The reconstruction imposes only the disclosed mechanism: G4 translates as a unit, D18 decreases by the same amount that
 D23 increases, and $D18+D23$ remains 21.595 mm at every zoom position. The object plane is placed 0.83 m in front of the
-PP-normalized image plane, matching the production minimum-focus-distance reference. The required G4 travel is solved
-from the final 30-surface model after removal of `PP`.
+image plane, matching the production minimum-focus-distance reference. The required G4 travel was solved from the
+30-surface model with `PP` reduced to its air-equivalent path, which is paraxially identical to the physical plate.
 
 | Zoom state | D18 infinity (mm) | D18 close (mm) | D23 infinity (mm) | D23 close (mm) | G4 objectward shift (mm) | Reconstructed $|m|$ |
 |---|---:|---:|---:|---:|---:|---:|
@@ -495,7 +499,7 @@ independent ABCD matrix check. The resulting effective focal lengths are:
 | Middle | 127.769 | 127.767570640 | −0.001429360 | 4.90 |
 | Tele | 291.097 | 291.099455038 | +0.002455038 | 5.77 |
 
-The ABCD determinant is unity to floating-point precision in all three states. The PP-normalized rear spacing is
+The ABCD determinant is unity to floating-point precision in all three states. The air-equivalent rear spacing is
 29.2485254292 mm; the active-lens BFL from surface 30 differs from that value by −0.000307 mm, −0.002083 mm, and
 +0.000033 mm at wide, middle, and telephoto respectively. These residuals are consistent with the patent's rounded zoom
 spacing and focal-length tables.
@@ -513,7 +517,7 @@ hidden with layout controls.
 
 These geometry figures depend on inferred semi-diameters and should not be mistaken for patent-published clear-aperture
 dimensions. The active radii, fixed axial distances, infinity zoom gaps, glass coordinates, and aspheric coefficients are
-the source-transcribed quantities; the PP-normalized rear spacing, close-focus gaps, stop radius, and all surface
+the source-transcribed quantities; the close-focus gaps, stop radius, and all surface
 semi-diameters are explicitly modeled quantities.
 
 ## Sources / References

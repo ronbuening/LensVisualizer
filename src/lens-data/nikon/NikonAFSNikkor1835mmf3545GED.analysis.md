@@ -22,7 +22,7 @@ Example 1 is the strongest candidate for the optical prescription behind the Nik
 8. The patent priority date, July 2012, precedes the 2013 production lens announcement window by the expected design-to-product interval.
 9. The patent lateral-aberration diagrams give edge half-field angles of 51.18° at wide, 41.70° at mid, and 32.89° at tele for EX1. These correspond to full fields of approximately 102.4°, 83.4°, and 65.8°, close to Nikon's published 100°-63° FX angle of view. The patent's miscellaneous-data `2ω` row is not a conventional diagonal angle-of-view row and should not be used as the production-field check.
 
-The data file transcribes Example 1 at infinity focus. It omits the plane-parallel cover plate PT from the surface array, as required by the project data specification, and folds its optical thickness into the final air-equivalent back focal distance.
+The data file transcribes Example 1 at infinity focus. The plane-parallel cover plate PT is modeled in `rearPlates` with its printed thickness and glass: every analysis traces it, but the diagram does not draw it.
 
 ## Optical Architecture
 
@@ -140,7 +140,7 @@ The glass identifications in this revision use catalog matches conservatively. T
 
 The corrected N-LASF44 / 804465 identification for L3 and L9 is the main glass-catalog change relative to the earlier analysis. The earlier S-LAH65VS naming was not adequately supported by the patent's `nd`/`νd` pair.
 
-Because the patent publishes only d-line index and Abbe number, the companion data file deliberately omits structured `nC`, `nF`, and `ng` values. That keeps the prescription tied to the patent numbers and avoids falsely precise spectral data for catalog-class glass identifications.
+The patent publishes only d-line index and Abbe number. The companion data file adds `nC`, `nF`, and `ng` on the nine elements with an OHARA class identification (S-LAL18, S-TIM28, S-TIH6, S-FPL51, S-BAL42); these are catalog line indices for the identified class, not patent data, and they drive the chromatic tracing for those elements. The resin layers and the unmatched glasses carry no line indices.
 
 ## Focus Mechanism
 
@@ -222,19 +222,17 @@ The Example 1 prescription was re-entered and independently traced with a paraxi
 
 The surface-by-surface Petzval sum is `+0.003863`, corresponding to a Petzval radius of approximately `-258.8 mm`.
 
-The patent includes a plane-parallel plate PT with `d = 1.90 mm`, `nd = 1.51680`, followed by `1.00 mm` of air to the image plane. The data file excludes this plate and folds it into the final air-equivalent back focal distance:
+The patent includes a plane-parallel plate PT (surfaces 28-29) with `d = 1.90 mm`, `nd = 1.51680`, `νd = 64.20`, followed by `BF = 1.00 mm` of air to the image plane. The data file models it in `rearPlates` (N-BK7 class) and stores the patent's physical `d27` as the gap from surface `27A` to the plate. Its paraxial air-equivalent thickness is `1.90 / 1.51680 = 1.252637 mm`, so the air-equivalent distance from `27A` to the image is `d27 + 2.252637 mm`:
 
-`1.90 / 1.51680 + 1.00 = 2.252637 mm`.
-
-The final data-file air gaps from surface `27A` to the image plane are therefore:
-
-| Zoom position | Patent `d27` before PT | Folded final data-file gap |
+| Zoom position | Stored `d27` before PT | Air-equivalent `27A`-to-image distance |
 |---|---:|---:|
 | Wide | 37.70 mm | 39.952637 mm |
 | Mid | 47.12 mm | 49.372637 mm |
 | Tele | 59.88 mm | 62.132637 mm |
 
-A direct trace of the folded data file gives the same EFL values listed above; the remaining best-focus residual relative to the rounded patent `d27` table is below 0.012 mm across the three zoom positions.
+A direct trace of the data file gives the same EFL values listed above; the remaining best-focus residual relative to the rounded patent `d27` table is below 0.012 mm across the three zoom positions. Because the plate is carried at its physical thickness, the stored track is `1.90 × (1 − 1/1.51680) = 0.647 mm` longer than the air-equivalent track would be.
+
+The patent's printed total lens length does not close against its own table. Summing the Example 1 surface data from surface 1 through the plate and the 1.00 mm BF gives a physical track of 139.783 / 134.744 / 136.840 mm at wide / mid / tele (derived). The miscellaneous-data row prints TL = 139.69 / 134.64 / 136.74 mm (patent value), 0.093 / 0.104 / 0.100 mm shorter. Every thickness and gap in the data file matches the printed table, and the paraxial image lies 0.999 / 0.991 / 0.989 mm behind the plate, consistent with the printed BF = 1.00 mm, so the gap is neither a transcription error nor a back-focus or plate effect. Dropping the resin and cement layers does not explain it either, since they total 0.20 mm. The same excess of table sum over printed TL, 0.09-0.14 mm, appears in all six examples of the patent. It is treated as the source's own TL bookkeeping, and the data keeps the tabulated thicknesses.
 
 Semi-diameters in the data file are estimated, not patent-tabulated. They were chosen from marginal/chief-ray clear-aperture estimates and then reduced where necessary to satisfy renderer constraints: spherical rim limits, aspherical slope limits, edge thickness, and cross-gap intrusion. The front group is the limiting region because several strong meniscus surfaces have small radii.
 

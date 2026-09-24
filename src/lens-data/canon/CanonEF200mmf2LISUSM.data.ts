@@ -9,9 +9,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ type design with optical image stabilization by L32 decentering.   ║
  * ║                                                                    ║
  * ║ Patent/product count: 17 elements / 12 groups including the        ║
- * ║ 2.00 mm drop-in filter plate. This renderer file includes the      ║
- * ║ 16 powered lens elements and omits the filter per project data     ║
- * ║ spec; the filter's optical path is folded into the final BFD.      ║
+ * ║ 2.00 mm drop-in filter plate F (surfaces 29–30, nd 1.51633,        ║
+ * ║ νd 64.1). Surfaces hold the 16 powered elements; F and its 60.36   ║
+ * ║ mm gap to the image are modeled in `rearPlates` (traced, not       ║
+ * ║ drawn). Surface 28 keeps the patent's 3.27 mm gap to the filter.   ║
  * ║                                                                    ║
  * ║ Focus: L2 cemented doublet moves imageward. Paraxial close-focus   ║
  * ║ reconstruction for the official 1.9 m MFD gives +12.5604 mm        ║
@@ -317,7 +318,20 @@ const LENS_DATA = {
     { label: "25", R: -41.124, d: 2.0, nd: 1.80518, elemId: 15, sd: 20 },
     { label: "26", R: -347.988, d: 0.2, nd: 1.0, elemId: 0, sd: 20 },
     { label: "27", R: 72.365, d: 3.73, nd: 1.804, elemId: 16, sd: 21 },
-    { label: "28", R: 518.348, d: 64.948974, nd: 1.0, elemId: 0, sd: 21 },
+    { label: "28", R: 518.348, d: 3.27, nd: 1.0, elemId: 0, sd: 21 }, // patent gap to drop-in filter F
+  ],
+
+  /* ── Drop-in filter F (patent surfaces 29–30): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "F",
+      thicknessMm: 2.0,
+      nd: 1.51633,
+      vd: 64.1,
+      glass: "S-BSL7",
+      gapAfterMm: 60.36,
+      source: "JP 2008-145584 A, Numerical Example 1 (Table 1) surfaces 29–30",
+    },
   ],
 
   asph: {},

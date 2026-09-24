@@ -43,9 +43,9 @@ The computed functional-group powers at the d-line are:
 
 The patent's packaging logic is explicit. A positive first group condenses the beam before it reaches the moving groups, which reduces the diameter demanded of G2 and G3 (¶0041). G1 nevertheless begins with three negative lenses. The first two negatives are used to obtain the wide field while restraining front-group diameter (¶0042), and the third negative lens L13 further supports the wide-angle requirement (¶0047). Positive power is restored by the rear portion of G1, including two positive lenses, a configuration the patent associates with securing the group's positive power without worsening spherical aberration (¶0048–¶0049).
 
-The infinity back focal length from the last lens vertex is 17.744292 mm, slightly longer than the 16.475660 mm system EFL. Under the project's explicit criterion `BFD > EFL`, this is a retrofocus wide-angle design. The ratio BFD/EFL is 1.077000. “Retrofocus” here is a computed classification, not terminology used by the patent.
+The infinity air-equivalent back focal length from the last lens vertex is 17.744292 mm, slightly longer than the 16.475660 mm system EFL. Under the project's explicit criterion `BFD > EFL`, this is a retrofocus wide-angle design. The ratio BFD/EFL is 1.077000. “Retrofocus” here is a computed classification, not terminology used by the patent.
 
-The active optical prescription ends at L31. The patent then shows an optional plane-parallel member PP between the lens and image plane and explicitly states that PP may be omitted (¶0039). The data model omits PP and replaces its optical path with an air-equivalent rear spacing, preserving the patent image-plane reference without treating a sensor cover/filter plate as a lens element.
+The active optical prescription ends at L31. The patent then shows an optional plane-parallel member PP between the lens and image plane and explicitly states that PP may be omitted (¶0039). The data model keeps Example 1 as tabulated: PP (Table 1 surfaces 26–27, 2.8500 mm, nd 1.51680, νd 64.20) is modeled in `rearPlates`, traced by every analysis but not drawn, so it is not treated as a lens element. The last lens surface stores the patent's `DD25` gap to PP, and the 2.1206 mm air gap after PP reaches the patent image plane.
 
 ## Element-by-Element Analysis
 
@@ -196,13 +196,13 @@ The patent publishes three focus states—INFINITY, MIDDLE, and CLOSE—rather t
 | Patent `DD11` (G1→G2 gap) | 5.5671 mm | 5.0428 mm | 2.3627 mm |
 | Patent `DD23` (G2→G3 gap) | 1.0017 mm | 1.0660 mm | 1.9168 mm |
 | Patent `DD25` (L31→PP gap) | 13.7445 mm | 14.2045 mm | 16.0338 mm |
-| Data S25 air-equivalent rear spacing | 17.744056 mm | 18.204056 mm | 20.033356 mm |
+| Air-equivalent L31→image spacing | 17.744056 mm | 18.204056 mm | 20.033356 mm |
 | Patent β | 0.000 | 0.031 | 0.209 |
 | Patent FNo | 1.44 | 1.46 | 1.59 |
 
 From infinity to middle focus, G2 moves 0.5243 mm objectward and G3 moves 0.4600 mm objectward. From infinity to close focus, G2 moves 3.2044 mm objectward and G3 moves 2.2893 mm objectward. The G2–G3 air gap therefore increases as focus approaches the close limit. No reversal occurs across the three published states.
 
-The sum `DD11 + DD23 + DD25` is 20.3133 mm in all three patent states, so the physical first-surface-to-image-plane track remains constant when PP is included. The final data preserves the same image-plane transfer while omitting PP. The plate contribution is replaced by an air-equivalent offset of `2.8500/1.51680 + 2.1206 = 3.999555696 mm`, which is added to each published `DD25` value.
+The sum `DD11 + DD23 + DD25` is 20.3133 mm in all three patent states, so the physical first-surface-to-image-plane track remains constant when PP is included. The data stores these published `DD25` values on S25 and models PP physically in `rearPlates`, so the physical track includes the plate. Paraxially, PP and its rear air are equivalent to `2.8500/1.51680 + 2.1206 = 3.999555696 mm` of air, which gives the air-equivalent L31→image spacings in the table.
 
 The stop's axial location is source-published at patent surface 16. Its physical semi-diameter is not published. The data value `sd = 7.713774749562 mm` is inferred by calibrating the infinity prescription to FNo = 1.44. With that fixed stop, paraxial calculation predicts F/1.45586 at MIDDLE, closely reproducing the patent's F/1.46, but predicts approximately F/1.53438 at CLOSE rather than F/1.59. Because the patent gives no stop diameter or finite-conjugate F-number definition, the model retains the fixed stop and does not invent a state-dependent aperture.
 
@@ -316,7 +316,7 @@ Independent paraxial calculations were performed directly from the final TypeScr
 | MIDDLE | 16.381334 mm | 16.38 mm | 0.031100 | 0.031 |
 | CLOSE | 15.815479 mm | 15.82 mm | 0.208950 | 0.209 |
 
-At infinity, the computed back focal distance (BFD) from the L31 rear vertex is 17.744292 mm. The PP-normalized rear spacing stored in the data is 17.744056 mm, a residual of about 0.000237 mm. This is the expected comparison after the auxiliary plate is removed by air-equivalent normalization.
+At infinity, the computed back focal distance (BFD) from the L31 rear vertex is 17.744292 mm. The patent's rear spacing to the image plane, `DD25` + PP + rear air taken air-equivalent, is 17.744056 mm, a residual of about 0.000237 mm. That residual is the rounding-level paraxial defocus of the published image plane.
 
 Surface-by-surface Petzval summation using `φ/(n·n′)` gives `+0.005745970001 mm⁻¹`, corresponding to a signed reciprocal of approximately +174.035 mm. This is a first-order field-curvature quantity, not a direct prediction of the final best-focus image surface after higher-order correction.
 

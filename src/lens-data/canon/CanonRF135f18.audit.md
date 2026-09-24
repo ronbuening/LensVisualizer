@@ -129,3 +129,12 @@ No APO language added or removed — no dPgF or line-index data available from t
 ## 2026-09-09 — First-added audit, lens35
 
 Original scanned Numerical Example4 PDFp15 and correct Figure7 PDFp8 at600dpi reviewed (older Figure5reference was wrong). All lens R/d/nd/vd and calculated individual FLs retained. Omitted source plate1.50mm/nd1.51633 plus0.80mm rear air now correctly contributes to BF:12.63→14.4192305765mm. No cover/filter surfaces added. Near endpoint0.70→0.699370427m calculated from published gaps, unchanged18.21mm L7movement. Source overall148.55mm versus row-sum equivalent148.56923mm and source130.95mm versus calculated130.93936mm retained as rounding/summary differences. First aperturebutton1.8→1.86. Five unsupported inferredAPDbadges removed; all glassnames qualified as compatible counterparts, L11nowTAFD35. Removed unsupported chemistry, motor and correction-role assertions. Centered IS configuration explicit. SDs retained within Figure7tolerance; baseline surface/image-circle/nohiddenrimtrim checks pass. Productionbaseline inspected; local infinity/near/half-focus, f16 and motion-chart checks complete: EFL130.94→103.36mm, half117.46mm, D11/D13 endpoints confirmed, travel18.21mm, f16stop4.48mm. Three regression tests and final surface/image-circle gates pass. Batch31–40gatespending.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Re-read Numerical Example 4 on PDF page 15 (printed page 5, ¶0053) at 250 dpi: surface 30 d = 12.63; surfaces 31–32
+  are an unlabeled plate, 1.50 mm, nd 1.51633, νd 64.1; 32 → image plane is 0.80 mm. Focus varies only d11/d13, so
+  the rear gaps are fixed.
+- Surface 30 now stores the patent's 12.63 mm, with `rearPlates` (S-BSL7, the exact 1.51633 / 64.1 catalog row) and
+  gapAfter 0.80 mm. Paraxial check against the previous data: EFL identical and defocus unchanged at both focus
+  keyframes (the old 14.4192305765 was the exact fold). Physical track grows by 0.511 mm to 149.08 mm.

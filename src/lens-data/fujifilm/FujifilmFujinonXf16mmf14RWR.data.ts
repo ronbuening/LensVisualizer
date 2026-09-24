@@ -13,9 +13,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ ratio; it is a UI interpolation coordinate, not a published mechanism     ║
  * ║ coordinate.                                                                ║
  * ║                                                                            ║
- * ║ PP normalization: optional patent plate PP (2.8500 mm, nd=1.51680) and    ║
- * ║ its 2.1206 mm rear air gap are omitted. S25 d/var preserve the patent     ║
- * ║ image plane with DD25 + 2.8500/1.51680 + 2.1206 air-equivalent spacing.   ║
+ * ║ Rear plate: patent optical member PP (Table 1 S26–S27; 2.8500 mm,          ║
+ * ║ nd 1.51680, νd 64.20) and its 2.1206 mm air gap to IMG are modeled in      ║
+ * ║ `rearPlates` (traced, not drawn). S25 d/var store the patent DD25 gap.     ║
  * ║                                                                            ║
  * ║ Stop: patent surface 16 fixes the axial stop position but not its size.    ║
  * ║ STO sd=7.71377475 mm is inferred from the infinity design FNo=1.44.       ║
@@ -251,7 +251,20 @@ const LENS_DATA = {
     { label: "22", R: 1e15, d: 6.0100, nd: 1.49700, elemId: 12, sd: 11.8 },
     { label: "23", R: -17.3654, d: 1.0017, nd: 1.0, elemId: 0, sd: 10.9 },
     { label: "24", R: 125.9601, d: 2.8000, nd: 1.94595, elemId: 13, sd: 12.2 },
-    { label: "25", R: 52.8849, d: 17.744055696203, nd: 1.0, elemId: 0, sd: 12.1 }, // DD25 + PP air-equivalent + PP rear air
+    { label: "25", R: 52.8849, d: 13.7445, nd: 1.0, elemId: 0, sd: 12.1 }, // patent DD25: gap to optical member PP
+  ],
+
+  /* ── Optical member PP (patent Table 1 surfaces 26–27): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PP",
+      thicknessMm: 2.85,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 2.1206,
+      source: "US 2016/0282590 A1, Example 1 Table 1 surfaces 26–27",
+    },
   ],
 
   asph: {
@@ -345,12 +358,12 @@ const LENS_DATA = {
   var: {
     "11": [5.5671, 5.0428, 2.3627],
     "23": [1.0017, 1.066, 1.9168],
-    "25": [17.74405569620253, 18.20405569620253, 20.03335569620253],
+    "25": [13.7445, 14.2045, 16.0338],
   },
   varLabels: [
     ["11", "DD11"],
     ["23", "DD23"],
-    ["25", "AIR-EQUIV BF"],
+    ["25", "DD25"],
   ],
 
   groups: [
@@ -364,7 +377,7 @@ const LENS_DATA = {
   ],
 
   closeFocusM: 0.15,
-  focusDescription: "PUBLISHED floating focus: G1 fixed; G2 and G3 move objectward on distinct paths. Infinity/middle/close spacings are patent Table 3; focusPositions[1]=0.2499413665 is a solved UI coordinate. Optional PP is omitted with air-equivalent S25 rear spacing.",
+  focusDescription: "PUBLISHED floating focus: G1 fixed; G2 and G3 move objectward on distinct paths. Infinity/middle/close spacings are patent Table 3; focusPositions[1]=0.2499413665 is a solved UI coordinate. Optional plate PP is modeled in rearPlates behind the patent DD25 gap.",
 
   nominalFno: 1.44,
   fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],

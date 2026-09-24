@@ -35,7 +35,7 @@ The design consists of 10 elements organized in three macro-groups:
 
 The combined focal length of G1 + G2 is f₁₂ ≈ 69.1 mm, which provides nearly all of the system's refractive power. G3 functions as an aberration-correcting relay with near-zero net power: its cemented doublet B31 (f ≈ +79.5 mm) and trailing negative singlet L33 (f ≈ −75.5 mm) nearly cancel, yielding a combined group focal length exceeding 11 meters. The ratio f₃/f₁₂ ≈ 161 satisfies the patent's Condition (1): 2 ≤ f₃/f₁₂ ≤ 200.
 
-This architecture gives the lens mild telephoto character. The axial distance from the first optical surface S1 to the last optical surface S17 is 69.2 mm (WL in the patent's notation, defined in ¶0069 as the total length of the lens system). The back focal distance from S17 to the sensor cover glass is an additional 20.73 mm, giving a total optical path of approximately 91.7 mm from S1 to the image plane.
+This architecture gives the lens mild telephoto character. The axial distance from the first optical surface S1 to the last optical surface S17 is 69.2 mm (WL in the patent's notation, defined in ¶0069 as the total length of the lens system). The air gap from S17 to the sensor cover glass is an additional 20.73 mm, and the patent's two cemented cover plates (0.80 + 1.00 mm, S18–S20) sit directly on the image plane, giving a total physical path of approximately 91.7 mm from S1 to the image plane (about 91.1 mm air-equivalent).
 
 The power hierarchy is f₂ < f₁ < f₃ (Condition 13), meaning G2 carries the strongest positive power. This is intentional: by suppressing the power of G1 (which handles the largest beam diameters and steepest ray angles), aberration generation in the front group is kept manageable. The strongest power is placed in G2, where the beam diameter is smaller and where anomalous-dispersion glasses can be most effective for chromatic correction.
 
@@ -137,6 +137,8 @@ The design uses an all-OHARA glass palette with 10 distinct glass types — ever
 | L31 | S-LAH92 (OHARA) | 1.89190 | 37.13 | Dense lanthanum flint | Positive power in B31 + symmetry partner to L12 |
 | L32 | S-TIM35 (OHARA) | 1.69895 | 30.13 | Titanium flint (high disp.) | Chromatic partner in B31 |
 | L33 | S-FSL5 (OHARA) | 1.48749 | 70.24 | Fluorosilicate crown | Negative field flattener / image expander |
+
+**Cover glass (S18–S20):** two cemented plates, 0.80 mm nd = 1.53741 / νd = 61.81 and 1.00 mm nd = 1.52312 / νd = 54.36, with the image plane on the rear face (the patent prints no distance after S20). Neither matches a catalog glass, so they use Abbe-number dispersion estimates. The data file models both plates in `rearPlates`: every analysis traces them, but they are not drawn.
 
 The chromatic strategy employs three mechanisms operating at different positions in the system:
 

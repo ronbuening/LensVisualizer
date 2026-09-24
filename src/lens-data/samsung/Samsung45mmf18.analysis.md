@@ -32,7 +32,7 @@ The aperture stop lies in air between G2 and G3. Only the L1/L2 pair is cemented
 
 The distinguishing architectural choice is the single-element negative focusing group. G1, the stop, G3, and the image plane remain fixed while G2 translates. The arrangement reduces the moving optical mass compared with unit focusing, which is the central purpose stated in paragraphs 0029–0037.
 
-The patent title uses the term “telephoto,” but the modeled prescription is not classified as telephoto under the project's structural criterion: the filter-normalized first-surface-to-image track divided by computed EFL is 1.457141. It is also not retrofocus under the corresponding criterion because the paraxial BFL/EFL ratio is 0.505742; using the stored air-equivalent rear image distance instead gives 0.506315 and does not change the result. The architecture is therefore described here by its positive–negative–positive power distribution and internal-focus mechanism rather than by either structural label.
+The patent title uses the term “telephoto,” but the modeled prescription is not classified as telephoto under the project's structural criterion: the air-equivalent (filter-normalized) first-surface-to-image track divided by computed EFL is 1.457141. It is also not retrofocus under the corresponding criterion because the paraxial BFL/EFL ratio is 0.505742; using the air-equivalent surface-14-to-image distance instead gives 0.506315 and does not change the result. The architecture is therefore described here by its positive–negative–positive power distribution and internal-focus mechanism rather than by either structural label.
 
 ## Element-by-Element Analysis
 
@@ -122,7 +122,7 @@ The focus status is **PUBLISHED**. Table 1 gives both adjacent air gaps for infi
 
 The adjacent-gap sum changes from 9.80 to 9.79 mm. That 0.01 mm difference is retained as source precision rather than forced to exact conservation. The motion is therefore approximately 4.02–4.03 mm imageward and maintains effectively constant overall lens length, matching the inner-focus description in paragraphs 0029–0033.
 
-Samsung specifies a 0.45 m minimum focusing distance and 0.13× maximum magnification for the production lens. Those marketed values remain separate from the patent geometry. The patent instead gives D0 = 407.1 mm in its focus table. With the published D1/D2 close row and the retained filter-normalized image plane, independent paraxial tracing leaves a 1.687756 mm image-plane B residual; exact conjugacy for that geometry would require D0 = 421.116413 mm and would give a transverse magnification of −0.120413. The published movement is preserved, and no alternative focus row is substituted.
+Samsung specifies a 0.45 m minimum focusing distance and 0.13× maximum magnification for the production lens. Those marketed values remain separate from the patent geometry. The patent instead gives D0 = 407.1 mm in its focus table. With the published D1/D2 close row and the patent image plane behind the printed filter, independent paraxial tracing leaves a 1.687756 mm image-plane B residual; exact conjugacy for that geometry would require D0 = 421.116413 mm and would give a transverse magnification of −0.120413. The published movement is preserved, and no alternative focus row is substituted.
 
 ## Conditional Expressions
 
@@ -140,7 +140,7 @@ Here f2 is the isolated focal length of the single-element G2 group and f is the
 
 The prescription is unscaled. Every radius and axial spacing through surface 14 is retained at the patent's published size, while the marketed 45 mm designation remains separate from the computed 46.307118574 mm design EFL.
 
-Patent filter 400, represented by plane surfaces 15–16, is excluded from the active LensVisualizer prescription. Its d-line paraxial translation is preserved by replacing the published 21.48 mm air gap, 2.80 mm filter at nd = 1.51679, and 0.12 mm final air gap with a single 23.446003732 mm air-equivalent distance from surface 14 to the image plane. At infinity, the original physical first-surface-to-image track is 68.430000 mm; the normalized track is 67.476003732 mm, and the active vertex track through surface 14 is 44.030000 mm.
+Patent filter 400, represented by plane surfaces 15–16, is modeled in the data file's `rearPlates` field: surface 14 keeps the published 21.48 mm air gap, followed by the 2.80 mm filter at nd = 1.51679 / νd = 64.2 (N-BK7 class) and the 0.12 mm final air gap. Every analysis traces the filter, but it is not drawn. Its d-line paraxial equivalent is a single 23.446003732 mm air distance from surface 14 to the image plane. At infinity, the physical first-surface-to-image track is 68.430000 mm (the air-equivalent track is 67.476003732 mm), and the vertex track through surface 14 is 44.030000 mm.
 
 The stop position is published, but its diameter is not. The physical stop radius of 9.468059698 mm is inferred from the f/1.84 prescription and produces an entrance-pupil radius of 12.583456134 mm. All surface semi-diameters are likewise modeling values rather than patent clear-aperture data. Their construction uses the stop solution, Figure 1 proportions, the published 14.25 mm field as a boundary reference, geometry constraints, and exact spherical-ray envelopes for the viewer's defined on-axis and off-axis samples at both published focus geometries.
 
@@ -148,7 +148,7 @@ The stop position is published, but its diameter is not. The physical stop radiu
 |---|---:|
 | Infinity EFL | 46.307118574 mm |
 | Active paraxial BFL from surface 14 | 23.419464026 mm |
-| Stored air-equivalent surface-14-to-IMG distance | 23.446003732 mm |
+| Air-equivalent surface-14-to-IMG distance (21.48 + 2.80/1.51679 + 0.12) | 23.446003732 mm |
 | Retained rear-plane difference | +0.026539705 mm |
 | Derived wide-open f-number | 1.840000 |
 | G1 / G2 / G3 isolated functional focal lengths | +39.205305 / -31.692127 / +36.920127 mm |

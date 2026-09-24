@@ -19,8 +19,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * net wide-to-tele direction; the numerical table is preserved as model authority.
  *
  * Scaling: none (s = 1.0). Patent K is already the standard conic constant; no conversion is applied.
- * Cover glass: patent surfaces 37-38 are excluded. Surface 36A uses the verified air-equivalent rear spacing
- * 29.793 + 2.500/1.51633 + 1.000 = 32.441717627429384 mm.
+ * Cover glass: patent surfaces 37-38 (t = 2.500 mm, nd 1.51633, vd 64.14) and the trailing 1.000 mm air gap are
+ * modeled physically in `rearPlates` (traced, not drawn). Surface 36A stores the patent's 29.793 mm gap to the
+ * plate; the paraxial equivalent is the former air-equivalent 29.793 + 2.500/1.51633 + 1.000 = 32.441718 mm.
  *
  * Semi-diameters: patent Table 1 effective diameters phi are used as sd = phi/2 on active lens surfaces. The
  * source SDs leave a positive 0.206069 mm rim gap between surfaces 7-8 but exceed the default 90% shared-band
@@ -366,7 +367,20 @@ const LENS_DATA = {
     { label: "33", R: 48.45, d: 6.0, nd: 1.91082, elemId: 20, sd: 13.9865 },
     { label: "34", R: -48.45, d: 4.762, nd: 1.0, elemId: 0, sd: 14.0 },
     { label: "35A", R: -20.8842, d: 2.0, nd: 1.85108, elemId: 21, sd: 13.291 },
-    { label: "36A", R: -67.1148, d: 32.441717627429384, nd: 1.0, elemId: 0, sd: 13.9375 },
+    { label: "36A", R: -67.1148, d: 29.793, nd: 1.0, elemId: 0, sd: 13.9375 },
+  ],
+
+  /* ── Cover glass (patent surfaces 37–38): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "CG",
+      thicknessMm: 2.5,
+      nd: 1.51633,
+      vd: 64.14,
+      glass: "S-BSL7",
+      gapAfterMm: 1.0,
+      source: "JP 2021-43375 A, Example 1 Table 1 surfaces 37–38",
+    },
   ],
 
   /* Patent ¶0114 uses the same standard K convention as LensVisualizer. */

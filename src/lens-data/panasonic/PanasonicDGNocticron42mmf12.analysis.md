@@ -42,7 +42,7 @@ G1 contains the defining first sub-lens-unit E: two cemented negative-positive d
 
 G2 is only L9, a negative meniscus. It is the focusing element and moves toward the image side from infinity to close focus (¶0107, ¶0109).
 
-G3 begins with the ED meniscus L10, followed by the aspherical stabilizing element L11, a negative meniscus L12, and the final cemented doublet L13+L14. The plane-parallel plate L15 is not included in the production element count or in the data file's `elements` array; its optical effect is folded into the final air-equivalent back focal distance.
+G3 begins with the ED meniscus L10, followed by the aspherical stabilizing element L11, a negative meniscus L12, and the final cemented doublet L13+L14. The plane-parallel plate L15 is not included in the production element count or in the data file's `elements` array; it is modeled in `rearPlates`, traced by every analysis but not drawn.
 
 The main architectural decision is to keep the focus group extremely small while doing most of the f/1.2-class aberration work in the fixed front unit. The patent explicitly links the single negative focusing element to reduced aberration fluctuation and high-speed focusing (¶0115), while the two cemented doublets in G1 are controlled by conditions (1)-(4) (¶0128).
 
@@ -136,9 +136,9 @@ L14 is the negative member of the final doublet and is the element selected by c
 
 ### L15 - Plane-parallel plate (excluded from powered lens count)
 
-n_d = 1.51680, νd = 64.2. Glass: BK7-class cover/filter plate.
+n_d = 1.51680, νd = 64.2, P_g,F = 0.53418. Glass: N-BK7 class cover/filter plate. t = 4.2000 mm.
 
-L15 is the plane-parallel plate following L14. It is not counted as one of the production lens elements. The data file excludes it from `elements` and `surfaces` and folds its paraxial effect into the final air-equivalent back focal distance after surface 26.
+L15 is the plane-parallel plate following L14. It is not counted as one of the production lens elements. The data file keeps it out of `elements` and `surfaces` and models it in `rearPlates` with the patent's line indices: surface 26 stores the patent d26 = 14.8222 mm to the plate, and the plate is followed by 1.0002 mm to the image plane.
 
 ## Glass Identification and Selection
 
@@ -222,7 +222,7 @@ The design should not be described as apochromatic. The patent does not make an 
 
 The data file transcribes Numerical Example 5 at patent scale. It does not rescale the prescription to the marketed 42.5 mm focal length.
 
-The patent's L15 plane-parallel plate is excluded, per the project rule that sensor glass and cover plates do not appear as lens elements. Its paraxial effect is folded into the final air-equivalent distance after surface 26. The resulting final distance is 18.5914 mm, computed by tracing the infinity marginal ray after surface 26 to focus.
+The patent's L15 plane-parallel plate is not a lens element; it is modeled in `rearPlates` (4.2000 mm, n_d = 1.51680, νd = 64.2), traced by every analysis but not drawn. Surface 26 stores the patent d26 = 14.8222 mm. The earlier data folded the plate into an 18.5914 mm air-equivalent distance after surface 26, computed by tracing the infinity marginal ray to focus; the 1.0002 mm gap after the plate is derived from that traced image plane (18.5914 − 14.8222 − 4.2/1.5168) rather than printed, and differs from the patent's d28 = 1.0000 mm plus BF = −0.00016 mm by 0.0004 mm. The physical track therefore includes the plate and is 1.431 mm longer than the old air-equivalent track, in line with the patent's 92.4997 mm overall length.
 
 Semi-diameters are not published by the patent. They were inferred by combined marginal/chief paraxial ray tracing, then constrained by renderer safety checks: sd/|R| < 0.90, front/rear surface ratio not exceeding 1.25, minimum computed edge thickness at least 0.43 mm after rounding, and signed cross-gap clearance retained at the close-focus d17 spacing. These semi-diameters are rendering apertures, not manufacturer-published mechanical clear apertures.
 
@@ -242,7 +242,7 @@ The prescription was rechecked by an independent paraxial y-u trace and standalo
 | L1-L14 standalone focal lengths | match to rounding |                 Table 33 | Table 33            |
 | Focus-gap conservation          |         8.8694 mm |                8.8694 mm | Table 32            |
 | Close-focus magnification       |          -0.1016x | unit product in Table 35 | Table 35            |
-| Folded final BFD after L14      |        18.5914 mm |      computed from trace | Table 29 + Table 32 |
+| Air-equivalent BFD after L14    |        18.5914 mm |      computed from trace | Table 29 + Table 32 |
 
 The surface-by-surface Petzval sum, computed as Σφ/(n n') over powered surfaces L1-L14, is +0.0027759 mm^-1. The corresponding Petzval radius is +360.24 mm and P x f = +0.1156. This is not tabulated by the patent, but it is consistent with the relatively controlled astigmatism plot for Numerical Example 5 in FIG. 10.
 

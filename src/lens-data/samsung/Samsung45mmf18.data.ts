@@ -14,8 +14,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  SOURCE AND MODELING NOTES                                                   ║
  * ║  • No uniform scale is applied. Marketed 45 mm/f1.8 and the computed       ║
  * ║    46.307118574 mm/f1.84 design values remain separate.                    ║
- * ║  • Patent filter 400 (surfaces 15–16) is excluded. Its paraxial effect is   ║
- * ║    preserved by the 23.446003732 mm air-equivalent surface-14→IMG gap.     ║
+ * ║  • Patent filter 400 (surfaces 15–16: 2.80 mm, nd 1.51679, νd 64.2)         ║
+ * ║    is modeled in `rearPlates` (traced, not drawn). Surface 14 keeps the     ║
+ * ║    patent's 21.48 mm gap to the filter; 0.12 mm follows it to IMG.          ║
  * ║  • The patent publishes no clear apertures. Surface semi-diameters were     ║
  * ║    inferred from the f/1.84 stop, viewer ray samples at both focus states, ║
  * ║    and the published 14.25 mm field and Fig. 1 as boundary references.     ║
@@ -23,10 +24,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  • Patent ¶0046 incorrectly calls L3 negative. The numerical prescription, ║
  * ║    Fig. 1, and claim 10 establish a positive meniscus; raw R/d/nd values    ║
  * ║    are unchanged.                                                            ║
- * ║  • The normalized S14→IMG spacing exceeds the computed d-line BFL by      ║
- * ║    0.026539705 mm; this source-precision residual is retained.                ║
- * ║  • The published close row is preserved even though D0=407.1 mm leaves a   ║
- * ║    1.687756085 mm paraxial image-plane B residual after normalization.       ║
+ * ║  • The S14→IMG air-equivalent path (21.48 + 2.80/1.51679 + 0.12 =           ║
+ * ║    23.446003732 mm) exceeds the computed d-line BFL by 0.026539705 mm;      ║
+ * ║    this source-precision residual is retained.                              ║
+ * ║  • The published close row is preserved even though D0=407.1 mm leaves a    ║
+ * ║    1.687756085 mm paraxial image-plane B residual with the printed filter.  ║
  * ║  • The patent supplies nd and νd only. nC, nF, ng, and dPgF are omitted     ║
  * ║    rather than inferred from non-unique glass-class matches. Compatible      ║
  * ║    catalog curves do not identify Samsung's production supplier.             ║
@@ -167,7 +169,20 @@ const LENS_DATA = {
     { label: "11", R: 33.66, d: 2.94, nd: 1.83481, elemId: 6, sd: 11.1 },
     { label: "12", R: 287.183, d: 1.34, nd: 1.0, elemId: 0, sd: 10.2 },
     { label: "13", R: -43.649, d: 1.2, nd: 1.76495, elemId: 7, sd: 9.45 },
-    { label: "14", R: 24.24, d: 23.446003731564687, nd: 1.0, elemId: 0, sd: 9.3 },
+    // Last surface: patent gap to filter 400
+    { label: "14", R: 24.24, d: 21.48, nd: 1.0, elemId: 0, sd: 9.3 },
+  ],
+
+  /* ── Filter 400 (patent Example 1 surfaces 15–16): traced, not drawn ── */
+  rearPlates: [
+    {
+      thicknessMm: 2.8,
+      nd: 1.51679,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 0.12,
+      source: "US 2013/0314588 A1, Example 1 lens data surfaces 15–16",
+    },
   ],
 
   asph: {},

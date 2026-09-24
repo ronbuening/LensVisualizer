@@ -8,18 +8,18 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ Native-scale d-line prescription: 10 elements / 7 air-separated groups. ║
  * ║ Aspheres: source surfaces 3, 4, 14, and 15 (L12 and L34).               ║
  * ║                                                                            ║
- * ║ PP normalization: source surfaces 19–20 are the optional sensor-side     ║
- * ║ cover/filter proxy and are omitted. Surface 18 uses the Gaussian air     ║
- * ║ BFD independently recomputed from the rounded active prescription,       ║
- * ║ 13.3054559007 mm. Directly air-converting the published 11.46 mm air     ║
- * ║ gap plus 2.80 mm / 1.51680 PP gives 13.3059915612 mm; the 0.0005356605   ║
- * ║ mm difference is below the precision of the rounded source table.        ║
+ * ║ Rear plate: source surfaces 19–20 (PP, 2.80 mm, nd 1.51680, νd 64.2,       ║
+ * ║ on the image plane) are modeled in `rearPlates` — traced, not drawn.       ║
+ * ║ The file keeps its image plane at the Gaussian air BFD recomputed from     ║
+ * ║ the rounded active prescription, 13.3054559007 mm: surface 18 stores       ║
+ * ║ 13.3054559007 − 2.80/1.51680 = 11.4594643395 mm (printed 11.46 mm; the     ║
+ * ║ 0.0005356605 mm difference is below the source table's rounding).          ║
  * ║                                                                            ║
  * ║ Focus status: CONSTRAINED_RECONSTRUCTION. The patent states that only    ║
  * ║ G3 moves objectward for close focus; FUJIFILM specifies 0.18 m MFD       ║
  * ║ measured from the sensor plane. The code-solved 0.18 m state moves G3    ║
  * ║ 1.7804202520 mm objectward: STO→G3 changes 4.0000000000→2.2195797480     ║
- * ║ mm and the rear air gap changes 13.3054559007→15.0858761527 mm, with    ║
+ * ║ mm and the physical gap before PP changes 11.4594643395→13.2398845915 mm,  ║
  * ║ the image plane fixed. These close-focus spacings are reconstructed,     ║
  * ║ not patent-published.                                                      ║
  * ║                                                                            ║
@@ -222,7 +222,20 @@ const LENS_DATA = {
     { label: "15A", R: -14.923, d: 0.15, nd: 1.0, elemId: 0, sd: 8.1 },
     { label: "16", R: -24.453, d: 1.05, nd: 1.673, elemId: 9, sd: 8.1 },
     { label: "17", R: 21.331, d: 8.08, nd: 1.497, elemId: 10, sd: 9.0 },
-    { label: "18", R: -21.331, d: 13.305455900668472, nd: 1.0, elemId: 0, sd: 11.5 },
+    { label: "18", R: -21.331, d: 11.459464339487036, nd: 1.0, elemId: 0, sd: 11.5 },
+  ],
+
+  /* ── Plane-parallel plate PP (patent surfaces 19–20): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PP",
+      thicknessMm: 2.8,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 0,
+      source: "US 2015/0168694 A1, Example 1 Table 1 surfaces 19–20",
+    },
   ],
 
   /* ── Aspheres: source-convention K = 0 converted to project K = -1 ── */
@@ -316,7 +329,7 @@ const LENS_DATA = {
   /* ── Focus reconstruction: only G3 translates; image plane fixed ── */
   var: {
     STO: [4.0, 2.2195797479604145],
-    "18": [13.305455900668472, 15.085876152708057],
+    "18": [11.459464339487036, 13.239884591526621],
   },
   varLabels: [
     ["STO", "D8 (G3 front)"],

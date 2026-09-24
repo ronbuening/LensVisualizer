@@ -27,3 +27,13 @@ Patent: US 2022/0276464 A1, Example 7
 - SUMITA's discontinued-inclusive all-glass catalog publishes BAK2 at code `540597`, nd = 1.53996, νd = 59.7.
 - Relabeled L11 / S1 from a code/class annotation to `BAK2` as an exact catalog equivalent; the production supplier remains unspecified.
 - No prescription geometry or spectral-line metadata changed.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Read Example 7 Table 25 on PDF page 42 (rendered at 160 dpi): surface 26 d = 12.4725; surfaces 27–28 are the
+  parallel-plate optical member PP, 2.8500 mm, nd 1.51680, νd 64.20; 28 → image is 0.2112 mm. These reproduce the
+  legacy fold 12.4725 + 2.8500/1.51680 + 0.2112 = 14.562656 mm (14.178412 mm scaled). The gap is fixed during focus.
+- Surface 26A now stores 12.143406 mm and `rearPlates` holds PP (N-BK7 class) at 2.774801 mm with gapAfter
+  0.205627 mm, all lengths scaled by the file's 0.973614465993. Paraxial check against the previous data: EFL
+  identical; defocus changes by at most 0.000001 mm (rounding) at infinity and close focus. Physical track grows by
+  0.945 mm, the plate's t(1 − 1/n).

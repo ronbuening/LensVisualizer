@@ -16,8 +16,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * reconstructs the production 1.4 m minimum focus by translating cemented G2 12.285240686 mm toward
  * the object while conserving D11 + D14 = 25.140 mm. G1, STO, G3, G4, and the image plane remain fixed.
  *
- * The optional PP cover/filter plate is omitted. Its optical path is folded into the final air-equivalent
- * spacing: 68.817 + 3.200 / 1.51680 + 0.026 = 70.952704641 mm.
+ * The PP cover/filter plate (Table 1 surfaces 28–29: 3.200 mm, nd 1.51680, νd 64.20, θgF 0.53430) is
+ * modeled in `rearPlates` (traced, not drawn). Surface 27 keeps the patent's physical 68.817 mm gap to PP,
+ * followed by 0.026 mm air to the image plane (air-equivalent 70.952704641 mm).
  *
  * The patent does not publish semi-diameters or stop diameter. STO is inferred from the published F/4.12.
  * Other semi-diameters began as exact-trace envelopes in both focus states, then were compared with the
@@ -361,7 +362,21 @@ const LENS_DATA = {
     { label: "24", R: 129.07707, d: 5.69, nd: 1.60342, elemId: 15, sd: 19.5 },
     { label: "25", R: -82.47672, d: 16.42, nd: 1.00000, elemId: 0, sd: 19.5 },
     { label: "26", R: -104.71763, d: 1.75, nd: 1.72916, elemId: 16, sd: 20 },
-    { label: "27", R: -1000.23651, d: 70.9527046413502, nd: 1.00000, elemId: 0, sd: 20 },
+    { label: "27", R: -1000.23651, d: 68.817, nd: 1.00000, elemId: 0, sd: 20 },
+  ],
+
+  /* ── Optical member PP (patent surfaces 28–29): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PP",
+      thicknessMm: 3.2,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7 (SCHOTT)",
+      dPgF: -0.0015156,
+      gapAfterMm: 0.026,
+      source: "US 2019/0094496 A1, Example 1 Table 1 surfaces 28–29 (patent θgF 0.53430)",
+    },
   ],
 
   asph: {},

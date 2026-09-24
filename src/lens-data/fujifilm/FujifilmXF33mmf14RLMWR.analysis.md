@@ -228,7 +228,7 @@ Independent y-nu paraxial ray tracing reproduces the Example 3 first-order quant
 | Physical first-surface-to-image track with PP | 83.378 mm | - |
 | Close-state paraxial magnification | -0.149x | 0.15x production spec |
 
-The data file follows the patent at its native scale. It omits the patent's generic sensor cover/filter plate and folds it into the final air-equivalent back focal gap, per project convention.
+The data file follows the patent at its native scale. The patent's generic sensor cover/filter plate PP (surfaces 27–28: t = 2.8500 mm, nd = 1.51680, νd = 64.20) is modeled physically in `rearPlates`: it is traced by every analysis but not drawn. Surface 26A stores the patent's 9.4071 mm gap to the plate, and the printed 0.2010 mm gap follows it to the image plane. The plate adds no power, so EFL and focus match the air-equivalent back focus above (9.4071 + 2.8500 / 1.51680 + 0.2010 = 11.487 mm); the Gaussian image lies 0.0003 mm behind the patent image plane, which is rounding in the printed spacings. The stored first-surface-to-image track is therefore the physical 83.378 mm, which is 0.971 mm (2.85 × (1 − 1/1.5168)) longer than the air-converted length.
 
 ## Sources and References
 

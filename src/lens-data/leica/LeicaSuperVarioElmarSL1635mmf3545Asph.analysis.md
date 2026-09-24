@@ -24,7 +24,7 @@ The association with the production Leica Super-Vario-Elmar-SL 16-35mm f/3.5-4.5
 
 One material contradiction prevents treating the match as Leica-confirmed. Example 1 focuses by translating Gr2a, which is the cemented two-element pair L6+L7, whereas Leica's 2018 release material and current product description say that autofocus moves a single lightweight focusing element. The modeled prescription therefore follows the fixed patent embodiment, not the production mechanical statement. Leica also specifies a 0.25 m minimum focusing distance, while the patent provides internal spacings only for infinity and a nominal 0.35 m state. The data model preserves the published 0.35 m state and does not invent a 0.25 m internal-focus reconstruction.
 
-No uniform dimensional scaling is applied: the model uses the Example-1 prescription at scale factor $s=1$. The patent's rear plane-parallel plate PT is not represented as a photographic element because it is described as a cover/filter-class plate and the LensVisualizer data model excludes sensor cover glass and filters. Its first-order optical path is retained through a documented air-equivalent rear spacing, discussed below.
+No uniform dimensional scaling is applied: the model uses the Example-1 prescription at scale factor $s=1$. The patent's rear plane-parallel plate PT is not a photographic element; it is modeled in `rearPlates`, so every analysis traces it, but the diagram does not draw it (details below).
 
 ## Optical Architecture
 
@@ -276,13 +276,13 @@ The f-number agreement needs a specific qualification. The patent supplies the s
 
 The same distinction applies to surface semi-diameters. They are not patent dimensions: Gr1 and Gr4 follow rims measured on the patent's Figure 1 drawing, and the middle groups keep ray-envelope values. Three rims sit a little inside the drawing (S2 at 17.9 mm, 4A at 16.0 mm and S30 at 10.9 mm) because larger values would make neighboring surfaces overlap under the project's 90% air-gap intrusion limit. At all three zoom stations, at infinity and at the 0.35 m state, an exact meridional trace passes the axial marginal ray at the published f-number without clipping. The chief ray to the 21.6 mm image-circle edge also clears every rim at the middle and tele stations. At the wide end the chief-ray check only reaches about 49° and a 17.7 mm image height, because the real-ray search stops converging near the steeply curved S2 surface; up to that height nothing clips. These are finite model checks; they do not measure the production lens.
 
-The source rear plate PT consists of 1.400 mm of nd = 1.51680 glass followed by 0.500 mm of air before the image plane. Because the active model excludes that cover/filter-class plate, D31 receives the air-equivalent contribution
+The source rear plate PT (surfaces 32–33) consists of 1.400 mm of nd = 1.51680, νd = 64.20 glass followed by the printed 0.500 mm BF to the image plane. It is modeled in `rearPlates` with the N-BK7 catalog equivalent, so every analysis traces it, but the diagram does not draw it. D31 stores the printed physical gap to PT, 16.500, 23.224 and 33.386 mm at W/M/T. As a paraxial equivalent, the plate and BF amount to
 
 $$
-1.400/1.51680 + 0.500 = 1.4229957806\ \mathrm{mm}.
+1.400/1.51680 + 0.500 = 1.4229957806\ \mathrm{mm}
 $$
 
-The resulting active D31 values are 17.9229957806, 24.6469957806, and 34.8089957806 mm at W/M/T. Direct matrix comparison of the raw PT branch and the normalized air-equivalent branch agrees to floating-point precision, so the first-order transfer is preserved. The shorter geometric track in the normalized model is an expected consequence of replacing physical glass thickness with its reduced optical distance, not a correction to the patent.
+of air, so the air-equivalent back focus is 17.923, 24.647 and 34.809 mm. The stored physical track includes the plate and reproduces the patent's 147.938 / 142.212 / 144.659 mm total lengths at W/M/T to within 0.002 mm.
 
 The d-line surface-by-surface Petzval calculation uses $\phi/(n n')$ at each refracting interface. Its sum is +0.001662133491 mm⁻¹, corresponding to a paraxial Petzval radius of about +601.636 mm under the verifier's sign convention. This is a first-order curvature quantity; it should not be confused with the patent's full astigmatic field curves.
 

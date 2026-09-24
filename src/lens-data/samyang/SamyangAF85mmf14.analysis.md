@@ -103,7 +103,7 @@ This element is a major contributor to the compact all-spherical strategy. The v
 
 nd = 1.94595, νd = 17.98. Glass: FDS18 (HOYA) / H-ZF88 class - HR ultra-dense flint. f = -91.09 mm.
 
-L11 is the last refracting element before the filter / sensor-cover stack shown in the patent. Both radii are negative, R19 = -36.344 mm and R20 = -64.119 mm, giving a negative meniscus that is concave toward the object and convex toward the image.
+L11 is the last refracting element before the filter / sensor-cover plate shown in the patent (modeled in the data file's `rearPlates`). Both radii are negative, R19 = -36.344 mm and R20 = -64.119 mm, giving a negative meniscus that is concave toward the object and convex toward the image.
 
 The patent explicitly uses this orientation as a ghost-reduction measure. It states that when the last lens near a cover glass is flat or concave toward the image side, reflected light can return toward the image as ghost light, and that a convex image-side last lens surface disperses those reflections instead (¶60-61, ¶64). L11 therefore functions both as a weak negative field corrector and as a rear ghost-control element.
 
@@ -140,13 +140,15 @@ Focusing is by single-element inner focus. G310 and G330 remain fixed, while G32
 | D1, G310-to-G320 gap              |  1.94373 mm |         6.99684 mm |            +5.05311 mm |
 | D2, G320-to-stop gap              |  9.91877 mm |         4.86565 mm |            -5.05312 mm |
 | D1 + D2                           | 11.86250 mm |        11.86249 mm | approximately constant |
+| Patent surface-20 gap to filter   |   14.678 mm |          14.678 mm |                      0 |
 | Patent physical D3 after filter   |    0.030 mm |           0.033 mm |              +0.003 mm |
 | Patent in-air BFD from surface 20 |   16.854 mm |          17.045 mm |              +0.191 mm |
+| Data-file surface-20 gap          |   14.678 mm |          14.869 mm |              +0.191 mm |
 | Magnification                     |           0 |            0.1128x |                      - |
 
-The data file omits the patent's filter / cover-glass plate, as required by the project data specification. It therefore folds the rear optical path into the final surface-20 air gap and uses the patent's `in Air` BFD row: 16.854 mm at infinity and 17.045 mm at the close-focus position.
+The data file models the patent's filter plate (surfaces 21-22: 2.5 mm, nd 1.5168, νd 64.2) in `rearPlates`, followed by the 0.5 mm air space plus the 0.03 mm infinity D3 (0.53 mm total). Every analysis traces the plate, but it is not drawn. Surface 20 stores the printed 14.678 mm gap to the filter at infinity; its air-equivalent, 14.678 + 2.5/1.5168 + 0.53 = 16.856 mm, matches the patent's `in Air` BFD of 16.854 mm to rounding.
 
-The Table 6 physical D3 row changes by only 0.003 mm, while the filter-excluded `in Air` row changes by 0.191 mm. A finite-conjugate paraxial trace at D0 = 784 mm reproduces the close-focus image only with the `in Air` value of about 17.045 mm. The close-focus physical D3 row is therefore not interchangeable with the filterless BFD used in the data file.
+The Table 6 physical D3 row changes by only 0.003 mm, while the filter-excluded `in Air` row changes by 0.191 mm. A finite-conjugate paraxial trace at D0 = 784 mm reproduces the close-focus image only with the `in Air` value of about 17.045 mm. The close-focus physical D3 row is therefore inconsistent with the `in Air` row. The data file keeps the `in Air` image plane by carrying the +0.191 mm in the surface-20 gap to the filter, which becomes 14.869 mm at close focus. That value is derived, not printed.
 
 ## Conditional Expressions
 
@@ -178,7 +180,7 @@ The second and third lenses in G310 are L2 and L3. Their Abbe numbers are 81.61 
 
 ## Verification Summary
 
-The prescription was re-entered from the patent Table 5 raster image and checked by an independent paraxial y/ν ray trace. The filter / cover-glass plate in surfaces 21-22 was excluded from the data file and represented only by the folded `in Air` BFD row.
+The prescription was re-entered from the patent Table 5 raster image and checked by an independent paraxial y/ν ray trace. The filter / cover-glass plate in surfaces 21-22 is modeled in `rearPlates` (N-BK7 class, traced but not drawn); the surface-20 gaps reproduce the patent's `in Air` BFD row as paraxial equivalents. With the plate, the physical first-vertex-to-image length is 115.998 mm at infinity, matching Table 6 OAL = 116 mm.
 
 | Quantity                  |  Computed / used |  Patent value | Comment                                                                              |
 | ------------------------- | ---------------: | ------------: | ------------------------------------------------------------------------------------ |
@@ -195,7 +197,7 @@ The prescription was re-entered from the patent Table 5 raster image and checked
 | 1/nav                     |          0.55212 |       0.55212 | matches Table 7                                                                      |
 | Petzval sum               | +0.0013456 mm^-1 | not tabulated | surface-by-surface formula                                                           |
 | Petzval radius            |           743 mm | not tabulated | reciprocal of Petzval sum                                                            |
-| Close-focus magnification |         0.11275x |      0.11281x | using D0 = 784 mm and in-air BFD = 17.045 mm                                         |
+| Close-focus magnification |         0.11275x |      0.11281x | using D0 = 784 mm and in-air BFD = 17.045 mm (plate-equivalent surface-20 gap)       |
 | Semi-diameter constraints |          checked | not published | revised SDs keep max signed cross-gap sag intrusion below 90% and element SD ratios <= 1.25 |
 
 The patent prose at ¶112 gives `f = 85.86 mm` for Example 3, while Table 6 and Table 7 give `f = 84`. The independent paraxial trace supports the tabulated 84 mm value. The `f = 85.86 mm` prose value is therefore a text-level inconsistency, not the prescription focal length.

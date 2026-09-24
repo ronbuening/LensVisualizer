@@ -26,8 +26,8 @@ Example 4 corresponds to the production NIKKOR Z 40mm f/2. The identification is
 | Elements / groups | 6 / 3 (focusing groups) | 6 / 4 (optical components) |
 | Aspherical elements | 2 | 2 |
 | Close focus | Label β = −1/10; published gaps focus at 1.28 m, β ≈ −0.033 (calculated) | 0.29 m (MFD, 0.17×) |
-| Total track TL(air) | 59.265 mm | — |
-| Back focus Bf(air) | 12.113 mm | — |
+| Total track TL / TL(air) | 59.81 / 59.265 mm | — |
+| Back focus Bf / Bf(air) | 12.66 / 12.113 mm | — |
 | Filter size | — | 52 mm |
 | Diaphragm blades | — | 9 (rounded) |
 | Weight | — | 170 g |
@@ -38,7 +38,7 @@ Table 4 labels its near-focus state "β = −1/10", but the published gaps do no
 
 ## 2. Optical Configuration
 
-The lens follows a positive–positive–negative three-group topology with an aperture stop positioned between G1 and G2. This is a Petzval-derived field-flattened architecture: the two positive front groups (G1 and G2) provide converging power, while the separated negative rear group (G3) flattens the strongly curved Petzval field surface that would otherwise result. The back focus is 12.66 mm physically and 12.113 mm air-equivalent, including a 1.6 mm filter plate in front of the image plane. That is shorter than the Z mount's 16 mm flange focal distance, so the last lens surface must sit a few millimetres behind the mount flange, inside the camera throat (derived from the patent back focus; the barrel layout is not published). The telephoto ratio (TL/f) is 1.44, meaning the lens is moderately longer than its focal length — typical for a standard prime of this class.
+The lens follows a positive–positive–negative three-group topology with an aperture stop positioned between G1 and G2. This is a Petzval-derived field-flattened architecture: the two positive front groups (G1 and G2) provide converging power, while the separated negative rear group (G3) flattens the strongly curved Petzval field surface that would otherwise result. The back focus is 12.66 mm physically and 12.113 mm air-equivalent, including a 1.6 mm filter plate (FL) in front of the image plane. The data file models that plate physically in `rearPlates` (patent surfaces 14–15, nd = 1.5168, νd = 63.88): every analysis traces it, but it is not drawn. That is shorter than the Z mount's 16 mm flange focal distance, so the last lens surface must sit a few millimetres behind the mount flange, inside the camera throat (derived from the patent back focus; the barrel layout is not published). The telephoto ratio (TL/f) is 1.44, meaning the lens is moderately longer than its focal length — typical for a standard prime of this class.
 
 ### Group Architecture
 
@@ -223,7 +223,7 @@ The lens uses inner focusing (IF), where only G2 translates axially while G1, th
 | D4 | STO → G2 front | 11.250 mm | 10.042 mm | −1.209 mm |
 | D10 | G2 rear → G3 front | 13.790 mm | 14.999 mm | +1.209 mm |
 
-The total track remains constant at 59.265 mm (air-equivalent). G2 moves 1.21 mm toward the object when focusing from infinity to the patent's near state. Although the table labels that state β = −1/10, the gaps focus at 1.28 m object-to-image, β ≈ −0.033 (calculated; see Section 1). The viewer's focus scale therefore ends at 1.28 m, not at the production lens's 0.29 m. The focusing movement is small because G2's image displacement coefficient γ = (1 − β₂²) · β₃² = 1.108 is close to unity — meaning the image shifts almost exactly as much as G2 moves. This near-unity γ value is by design: Condition (1) of the patent constrains γ to the range 0.90–1.50, optimizing for compact focus travel while maintaining good aberration balance during focus.
+The total track remains constant at 59.81 mm physically, including the filter plate (59.265 mm air-equivalent). G2 moves 1.21 mm toward the object when focusing from infinity to the patent's near state. Although the table labels that state β = −1/10, the gaps focus at 1.28 m object-to-image, β ≈ −0.033 (calculated; see Section 1). The viewer's focus scale therefore ends at 1.28 m, not at the production lens's 0.29 m. The focusing movement is small because G2's image displacement coefficient γ = (1 − β₂²) · β₃² = 1.108 is close to unity — meaning the image shifts almost exactly as much as G2 moves. This near-unity γ value is by design: Condition (1) of the patent constrains γ to the range 0.90–1.50, optimizing for compact focus travel while maintaining good aberration balance during focus.
 
 ### Practical Implications
 

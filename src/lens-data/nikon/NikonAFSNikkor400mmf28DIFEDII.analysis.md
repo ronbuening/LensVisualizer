@@ -14,7 +14,7 @@ The modeled prescription is Example 4 of US 6,239,919 B1, retained at its native
 
 The production correlation to the **NIKON AI AF-S NIKKOR ED 400mm f/2.8D II IF** rests on several convergent features rather than focal length alone:
 
-1. Nikon specifies 11 lens elements in 9 groups, plus one protective glass. After the patent's plane-parallel source plates are excluded from the active prescription, Example 4 contains exactly 11 active glass elements in 9 air-separated groups.
+1. Nikon specifies 11 lens elements in 9 groups, plus one protective glass. Setting aside the patent's plane-parallel source plates (the front plate is omitted; the rear filter is carried separately in `rearPlates`), Example 4 contains exactly 11 active glass elements in 9 air-separated groups.
 2. Nikon identifies three ED elements at production element positions 1, 2, and 5. The final data file places the same low-dispersion coordinate, `nd = 1.497820`, `νd = 82.52`, at L11, L12, and L15, which occupy those same active-element positions.
 3. Nikon specifies zero aspherical elements. Example 4 and the final data file are entirely spherical.
 4. Nikon identifies the lens as an internal-focusing AF-S design. Example 4 focuses by translating only the negative G2 group toward the image side while the surrounding groups remain fixed.
@@ -31,9 +31,9 @@ The front half of the system carries most of the optical diameter and power. G1F
 
 The patent's two published effective diameters illustrate the intended reduction in focus-group size: the first active surface has `φ1 = 136.2 mm`, while the G2 front surface has `φ2 = 43.4 mm`, or about 0.319 of the former. The patent explicitly treats reduction of the moving group's effective diameter as a central design objective.
 
-The active surface-3-to-image track is 377.086128 mm. With the verified 391.998755 mm EFL, `TL/EFL = 0.961957`, so the prescription satisfies the project's quantitative telephoto criterion. The active rear focal distance from surface 23 is 114.057258 mm, giving `BFD/EFL = 0.290963`; it is therefore not a retrofocus design under the project's `BFD > EFL` criterion.
+The physical surface-3-to-image track, including the rear filter, is 377.767563 mm (377.086128 mm air-equivalent). With the verified 391.998755 mm EFL, `TL/EFL = 0.963696`, so the prescription satisfies the project's quantitative telephoto criterion. The air-equivalent rear focal distance from surface 23 is 114.057258 mm (114.738693 mm physical through the filter), giving `BFD/EFL = 0.290963`; it is therefore not a retrofocus design under the project's `BFD > EFL` criterion.
 
-The LensVisualizer model omits the patent's front plane-parallel plate, rear plane-parallel filter plate, and inactive field stop. The rear plate's optical effect is not discarded: its air-equivalent contribution is folded into the final rear spacing. Direct source normalization gives 114.057185 mm from source surface 23 to the image plane; the stored 114.057258 mm value is the independently solved spacing that closes the rounded patent prescription at infinity, differing by only 0.000073 mm.
+The LensVisualizer model omits the patent's front plane-parallel plate and inactive field stop. The rear plane-parallel filter (surfaces 25–26: 2.0 mm, `nd = 1.516800`, `νd = 64.10`, J-BK7A catalog equivalent) is modeled in `rearPlates`: it is traced by every analysis but not drawn, followed by the printed `Bf = 83.53862 mm` to the image. The stored surface-23 gap, 29.200073 mm, spans patent `d23 + d24 = 22.0 + 7.2 mm` to the filter. Its air-equivalent total, 114.057258 mm, is the independently solved spacing that closes the rounded patent prescription at infinity; direct source normalization gives 114.057185 mm, so the 0.000073 mm difference is kept in the gap before the filter.
 
 The axial position of S1 is published by the patent and is retained as the sole `STO`. Its physical diameter is not published. The modeled stop semi-diameter, 20.065472 mm, is therefore an inference obtained by calibrating the entrance pupil to the published F-number 2.88. The corresponding verified entrance-pupil diameter is 136.110679 mm.
 
@@ -151,7 +151,7 @@ The patent contains a source-table error that must be kept visible. Table 4 mark
 
 The patent's published close checkpoint corresponds to an object-to-image distance of 3.8 m. In the complete source train, G2 moves 10.85845 mm imageward, taking `d11` from 24.59533 to 35.45378 mm and `d16` from 27.44354 to 16.58509 mm. The patent prints a close-state magnification of `β = -0.11789`.
 
-The final LensVisualizer close-focus state is a **CONSTRAINED_RECONSTRUCTION**, not a patent-published 3.4 m row. Nikon specifies a 3.4 m manual-focus limit. After the source plates and field stop are removed and the rear reference plane is normalized, the actual active TypeScript model is re-solved with the published one-group mechanism and the D11+D16 constraint intact. The resulting 3.4 m state is:
+The final LensVisualizer close-focus state is a **CONSTRAINED_RECONSTRUCTION**, not a patent-published 3.4 m row. Nikon specifies a 3.4 m manual-focus limit. With the source front plate and field stop removed and the rear reference plane normalized (the rear filter, now in `rearPlates`, is paraxially identical to the former air-equivalent fold), the actual active TypeScript model is re-solved with the published one-group mechanism and the D11+D16 constraint intact. The resulting 3.4 m state is:
 
 | Quantity | Infinity | Modeled 3.4 m MF endpoint |
 |---|---:|---:|
@@ -191,7 +191,7 @@ Table 4 prints the two G3 rows as conditions (7) and (8), but that numbering con
 
 ## Verification Summary
 
-Independent sequential y–ν tracing of the final active arrays, with a conventional y–θ ABCD cross-check, gives an EFL of 391.998755 mm, an infinity BFD of 114.057258 mm from surface 23, and a computed wide-open F-number of exactly 2.88. The two matrix formulations agree to approximately `1.1e-13` in their transformed system matrices, and a unit parallel ray closes at the stored infinity image plane to approximately `1.2e-17 mm` in height.
+Independent sequential y–ν tracing of the final active arrays, with a conventional y–θ ABCD cross-check, gives an EFL of 391.998755 mm, an air-equivalent infinity BFD of 114.057258 mm from surface 23 (through the `rearPlates` filter), and a computed wide-open F-number of exactly 2.88. The two matrix formulations agree to approximately `1.1e-13` in their transformed system matrices, and a unit parallel ray closes at the stored infinity image plane to approximately `1.2e-17 mm` in height.
 
 The patent aberration figures use image height `Y = 21.60 mm`; with the verified EFL, the corresponding paraxial rectilinear half field is 3.153935°, or 6.307870° full field. Nikon's marketed angle of view is 6°10′. Those two values are retained as separate design and product specifications rather than forced into equality.
 

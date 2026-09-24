@@ -21,3 +21,13 @@ Patent: US 2018/0149842 A1, Example 1
 ### Phase 4 - Analysis sync
 
 - Updated `Laowa15mmf2ZeroD.analysis.md` to state that the three 1.49700 / 81.61 ED elements are marked as inferred APD while the patent itself provides only nd/vd.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Read Example 1 in local `patents/US20180149842A1.pdf` (table on PDF pp. 7–8, continued variable-gap table rendered on
+  p. 8): surfaces 24–25 are an unlabeled plane-parallel plate, 2.0000 mm, nd 1.51680, νd 64.20; D(23) = 15.6837 /
+  15.9816 mm (infinity / 0.020x); D(25) = 1.0000 mm in both states.
+- Surface 23A and its `var` row now store the physical D(23) values; `rearPlates` carries the plate as N-BK7 (exact
+  1.51680 / 64.2 catalog match) with gapAfter 1.0 mm. Paraxial check against the previous folded data: EFL identical
+  and defocus unchanged at both focus keyframes (the old 18.00227 / 18.30017 values were exact folds).
+- Physical track grows by 0.681 mm, the plate's t(1 − 1/n).

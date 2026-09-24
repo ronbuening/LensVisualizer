@@ -15,8 +15,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * gaps are those patent values; F1 travels 5.351 mm and F2 3.677 mm. Production MFD (0.3 m) is not tabulated,
  * so `closeFocusM` records the patent state rather than the production minimum.
  *
- * BACK FOCUS: Table 1 lists d33 = 10.38 to a 1.6 mm filter FL (nd 1.51680) and d35 = 1.00 to the image. The
- * filter is excluded and folded into the last gap as air: 10.38 + 1.6/1.5168 + 1.00 = 12.434 mm (= patent BFa).
+ * BACK FOCUS: Table 1 lists d33 = 10.38 to a 1.6 mm filter FL (nd 1.51680, νd 64.1) and d35 = 1.00 to the
+ * image. The last gap stores the physical d33 = 10.38 mm and FL is modeled in `rearPlates` (traced, not drawn);
+ * its air-equivalent path 10.38 + 1.6/1.5168 + 1.00 = 12.434 mm equals the patent BFa (physical BF 12.98 mm).
  *
  * APERTURE: the engine derives the iris from `nominalFno` 1.23; the exact f/1.23 stop radius is 19.86 mm
  * (calculated), matching the Fig. 1 stop tick marks (19.5–20.1 mm). STO sd 19.9 records that iris.
@@ -329,9 +330,21 @@ const LENS_DATA = {
     { label: "31", R: 37.80163, d: 7.53, nd: 1.0, elemId: 0, sd: 18.0 },
     // ── L44 (Biconcave negative, aspherical, R group) ──
     { label: "32A", R: -124.60117, d: 2.0, nd: 1.62372, elemId: 17, sd: 19.0 },
-    // Last gap: patent d33 10.38 + filter 1.6/1.5168 + d35 1.00 = 12.434 mm air-equivalent (= patent BFa);
-    // the filter group FL is excluded from the prescription.
-    { label: "33", R: 448.63838, d: 12.434, nd: 1.0, elemId: 0, sd: 19.0 },
+    // Last gap: patent d33 = 10.38 mm to the filter group FL (modeled in `rearPlates` below).
+    { label: "33", R: 448.63838, d: 10.38, nd: 1.0, elemId: 0, sd: 19.0 },
+  ],
+
+  /* ── Filter group FL (patent surfaces 34–35): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "FL",
+      thicknessMm: 1.6,
+      nd: 1.5168,
+      vd: 64.1,
+      glass: "J-BK7A",
+      gapAfterMm: 1.0,
+      source: "JP 2025-052870 A, Example 1 / Table 1 surfaces 34–35",
+    },
   ],
 
   /* ── Aspherical coefficients ── */

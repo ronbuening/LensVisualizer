@@ -113,3 +113,13 @@ text pages for ¶0062–0081, ¶0105–0116 and ¶0129.
 - The engine's paraxial half-field at wide is 38.0°, capped by S7A; the real trace reaches 43.5°.
 - The L21 glass code 808409 resolves to MC-NBFD135, whose catalog nd (1.80834) is 5.4e−4 above the patent value.
 - The G2 rims (S9–S13) and G4 rims were kept (within about 10 % of FIG. 11). Off-axis ray fans were not inspected live.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Replaced the folded S29 gap (17.494 mm) with Table 31's physical rear stack (PDF p. 58, Table 31-continued, digits
+  confirmed on the rendered page): S29 = 14.614 mm, then `rearPlates` PP (S30–S31) 2.850 mm, nd 1.51680, νd 64.20,
+  θgF 0.53430 (dPgF −0.00152), and 1.000 mm of air to the image plane. The patent names this plate the optical member PP.
+- Glass N-BK7, matching the L51 label for the same 1.51680 / 64.20 pair; it resolves as compatible.
+- Paraxial check against the previous data: EFL identical at all three stations; defocus moves by 0.0010 mm at each
+  station, the rounding of the old fold (17.494 stored against 14.614 + 2.850/1.51680 + 1.000 = 17.493). Physical
+  track grows by 0.970 mm (t(1 − 1/n) = 0.971).

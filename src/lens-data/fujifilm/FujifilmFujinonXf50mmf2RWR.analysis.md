@@ -39,15 +39,17 @@ respect to the image plane while only G2 moves toward the image side as focus is
 is therefore optically simple even though the fixed groups contain most of the correction structure. [US 10,168,507 B2,
 pp. 5–10]
 
-Under the project's explicit classification rules, this model is neither telephoto nor retrofocus: the normalized total
-track divided by EFL is 1.4864, while BFD divided by EFL is 0.4794. Those ratios are descriptive project metrics, not a
+Under the project's explicit classification rules, this model is neither telephoto nor retrofocus: the air-equivalent
+total track divided by EFL is 1.4864, while the air-equivalent BFD divided by EFL is 0.4794 (the physical track,
+including the PP plate, is 0.972 mm longer). Those ratios are descriptive project metrics, not a
 historical design-family label.
 
 The patent places a plane-parallel optical member PP behind the powered lens. It consists of 20.28 mm of air, 2.85 mm of
-glass at $n_d=1.51742$, and 1.10 mm of air to the image plane. Because the project excludes sensor-cover/filter plates,
-the plate is omitted from the sequential model and replaced by a first-order air-equivalent rear translation of
-23.25818798 mm. The raw plate path and normalized air path were verified to have the same reduced-angle ABCD translation
-to numerical precision. [US 10,168,507 B2, Table 10; p. 5]
+glass at $n_d=1.51742$, $\nu_d=52.4$ (S-NSL36 class), and 1.10 mm of air to the image plane. The data file keeps the
+patent's 20.28 mm gap on surface 17 and models the plate and its 1.10 mm trailing gap in `rearPlates`: every analysis
+traces it, but it is not drawn. Its paraxial air equivalent is a rear translation of 23.25818798 mm
+($20.28 + 2.85/1.51742 + 1.10$), and the physical path is 0.972 mm longer than that air equivalent.
+[US 10,168,507 B2, Table 10; p. 5]
 
 ## Element-by-Element Analysis
 
@@ -265,8 +267,8 @@ values that are not printed in the US grant. Both recalculated values remain saf
 ## Verification Summary
 
 The final authored prescription reproduces the patent's infinity EFL as 48.5190537 mm against 48.52 mm and the 1 m EFL
-as 47.7877257 mm against 47.79 mm. The infinity back focal distance from source surface 17 is 23.2602392 mm, within
-0.0021 mm of the normalized 23.2581880 mm image-plane spacing. Surface-by-surface Petzval summation using
+as 47.7877257 mm against 47.79 mm. The infinity air-equivalent back focal distance from source surface 17 is
+23.2602392 mm, within 0.0021 mm of the 23.2581880 mm air equivalent of the patent's 20.28 mm + PP + 1.10 mm path. Surface-by-surface Petzval summation using
 $\phi/(n n')$ gives +0.003671389669 mm$^{-1}$, corresponding to the project's reported radius convention of
 -272.3764 mm.
 
@@ -280,9 +282,9 @@ clearance outside the intentionally filled stop, and separately checked element 
 domain, and shared-band air-gap intrusion. Those semi-diameters are model geometry and must not be read as patent or
 production clear-aperture dimensions.
 
-The model contains 17 sequential surfaces because the rear PP plate is excluded, not because the source prescription has
-only 17 surfaces. The evidence record retains the original source surfaces 1–19 and the plate parameters. This distinction
-keeps the patent transcription separate from the project normalization.
+The model contains 17 drawn sequential surfaces because the rear PP plate (source surfaces 18–19) is carried in
+`rearPlates` rather than in `surfaces`; it is traced by every analysis but not drawn, so the full source surfaces 1–19
+remain represented.
 
 ## Sources and References
 

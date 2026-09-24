@@ -14,7 +14,7 @@
 
 Numerical Example 1 is the closest patent match to the Canon EF 200mm f/2L IS USM. The match rests on convergent evidence rather than on a single specification. The patent example gives $f = 194.99$ mm and Fno = 2.05; the production lens is marketed as a 200 mm f/2 lens. The patent structure is a large-aperture positive-negative-positive long-focus design with inner focusing by the negative second group and image stabilization by a decentered negative component in the third group. Canon's published product specification gives 17 elements in 12 groups, one fluorite element, two UD elements, a 1.9 m closest focusing distance, 0.12× maximum magnification, a drop-in 52-series filter, and an April 2008 market date.
 
-The element count needs one qualification. The optical prescription in Numerical Example 1 contains sixteen powered lens elements plus a 2.00 mm plane-parallel filter plate at the rear. Canon and the patent count this filter plate in the 17-element total. The accompanying `*.data.ts` file omits the filter surface in accordance with the project data specification and folds its optical path into the final equivalent back focal distance.
+The element count needs one qualification. The optical prescription in Numerical Example 1 contains sixteen powered lens elements plus a 2.00 mm plane-parallel filter plate at the rear. Canon and the patent count this filter plate in the 17-element total. The accompanying `*.data.ts` file keeps the sixteen powered elements in its surface list and models the filter plate in `rearPlates`: every analysis traces it, but it is not drawn.
 
 Among the four numerical examples in the patent, Example 1 is the best production match. Example 2 is also near 195 mm but is faster at F/1.87 and changes the front-group construction. Example 3 is again near 195 mm and F/2.05 but uses a different glass distribution in the stabilizer and rear groups. Example 4 is a 135 mm-class F/1.84 design and is not a direct 200 mm production match.
 
@@ -145,7 +145,7 @@ The final powered element is a high-index positive meniscus. Its current OHARA c
 
 nd = 1.51633, νd = 64.1. Glass: S-BSL7 (OHARA) / BK7-class borosilicate crown. Thickness = 2.00 mm.
 
-The patent includes a plane-parallel filter plate immediately before the final image-space distance. The filter is counted in the patent and Canon element total, but it is omitted from the data file because project convention excludes filters from the rendered surface list. Its axial optical path is folded into the final air-equivalent back focal distance: $3.27 + 2.00 / 1.51633 + 60.36 = 64.948974$ mm after powered surface 28.
+The patent includes a plane-parallel filter plate immediately before the final image-space distance. The filter is counted in the patent and Canon element total. The data file models it in `rearPlates` with the patent's physical spacing (3.27 mm from powered surface 28 to the filter, 2.00 mm of glass, 60.36 mm to the image), so every analysis traces it, but it is not drawn. Its paraxial air-equivalent back focal distance is $3.27 + 2.00 / 1.51633 + 60.36 = 64.948974$ mm after powered surface 28.
 
 ## Glass Selection and Chromatic Strategy
 
@@ -164,7 +164,7 @@ The corrected glass palette is as follows:
 | S-LAL18 (OHARA) | 1.72916 | 54.7 | L14 | High-index lanthanum crown, rear positive element |
 | S-TIH6 (OHARA) | 1.80518 | 25.4 | L15 | Dense titanium flint, L33 achromat partner |
 | S-LAH65V (OHARA) | 1.80400 | 46.6 | L16 | Dense lanthanum flint final meniscus |
-| S-BSL7 (OHARA) | 1.51633 | 64.1 | F | Plane filter plate, not rendered as a powered lens |
+| S-BSL7 (OHARA) | 1.51633 | 64.1 | F | Plane filter plate, modeled in `rearPlates` (traced, not drawn) |
 
 The principal chromatic correction occurs in L1, where fluorite and two S-FPL51 elements are placed in the large positive front collector. The rear cemented groups then add local chromatic balancing: L2 for focus-motion color stability, L31 for post-stop convergence, L32 for stabilizer-group correction, and L33 for final longitudinal and lateral color cleanup.
 
@@ -222,13 +222,13 @@ Independent paraxial verification of the transcribed prescription gives the foll
 | Full-track TL/EFL | 1.187 | Computed |
 | Powered train to last powered surface | 165.84 mm | Computed |
 | Powered-train/EFL ratio | 0.850 | Computed |
-| Final data-file BFD after filter folding | 64.948974 mm | $3.27 + 2.00/1.51633 + 60.36$ |
+| Air-equivalent BFD after surface 28 | 64.948974 mm | $3.27 + 2.00/1.51633 + 60.36$ |
 | Focus travel to 1.9 m MFD | +12.560 mm imageward | Reconstructed |
 | Close-focus paraxial magnification | 0.1236× | Canon publishes 0.12× |
 | Petzval sum | +5.9244e-4 mm^-1 | Surface-by-surface calculation |
 | Petzval radius | -1687.93 mm | Derived |
 
-The group focal lengths and conditional ratios recompute to the patent's Table 1 values to the precision shown there. The filter-omitted data file preserves the system EFL while replacing the filter plus image-space distance with an equivalent air distance after surface 28.
+The group focal lengths and conditional ratios recompute to the patent's Table 1 values to the precision shown there. The data file stores the patent's physical 3.27 mm gap after surface 28 and traces the filter plate and 60.36 mm image-space distance through `rearPlates`, which leaves the system EFL unchanged.
 
 ## Design Heritage and Context
 

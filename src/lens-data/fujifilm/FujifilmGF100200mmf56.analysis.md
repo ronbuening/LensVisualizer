@@ -238,11 +238,11 @@ All seven patent conditional expressions were recomputed from the transcribed Ex
 | (6) | vdifmax        |    47.69 |           47.69 |
 | (7) | Bf / ft        |    0.298 |           0.298 |
 
-For expression (1), TL uses the patent's air-equivalent back focus. In the data file, the patent cover glass PP is excluded as required by the project data specification and folded into the final air-equivalent BFD: 57.4777 mm + 3.2000 / 1.51680 mm + 1.0314 mm = 60.62 mm.
+For expression (1), TL uses the patent's air-equivalent back focus: 57.4777 mm + 3.2000 / 1.51680 mm + 1.0314 mm = 60.62 mm, matching the Table 2 Bf. The data file models the patent cover glass PP (surfaces 35–36, 3.2000 mm, nd = 1.51680, νd = 64.20) physically in `rearPlates`: it is traced by every analysis but not drawn, and d34 keeps the patent's 57.4777 mm gap to the plate with 1.0314 mm from the plate to the image. The plate adds no power, so EFL and paraxial focus match the air-equivalent value; the physical first-surface-to-image length is 3.2000 × (1 − 1/1.51680) = 1.09 mm longer than the air-converted TL.
 
 ## Verification Summary
 
-A fresh paraxial y–ν ray trace was run from the transcribed Example 1 prescription. The computed focal lengths are 101.688 mm, 152.547 mm, and 203.355 mm, compared with patent Table 2 values of 101.68 mm, 152.51 mm, and 203.35 mm. The air-equivalent back focus computes to approximately 60.62 mm at all three zoom states after folding PP into the final air gap. The physical stop semi-diameter required to reproduce the F5.70/F5.71/F5.70 design aperture is 11.04–11.06 mm, so the data file uses 11.06 mm.
+A fresh paraxial y–ν ray trace was run from the transcribed Example 1 prescription. The computed focal lengths are 101.688 mm, 152.547 mm, and 203.355 mm, compared with patent Table 2 values of 101.68 mm, 152.51 mm, and 203.35 mm. The air-equivalent back focus computes to approximately 60.62 mm at all three zoom states, counting PP at its air-equivalent thickness. The physical stop semi-diameter required to reproduce the F5.70/F5.71/F5.70 design aperture is 11.04–11.06 mm, so the data file uses 11.06 mm.
 
 The surface-by-surface Petzval sum, computed as Σ φ/(n·n′), is +0.0012337 mm⁻¹, corresponding to a Petzval radius of about +811 mm and P·ftele ≈ 0.251. This is a computed diagnostic only; the patent does not tabulate Petzval sum.
 

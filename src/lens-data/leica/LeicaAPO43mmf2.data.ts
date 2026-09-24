@@ -39,9 +39,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    design field and vignette at L11.                              ║
  * ║                                                                    ║
  * ║  NOTE ON COVER GLASS:                                              ║
- * ║    Patent parallel plate P (nd = 1.51680, d = 1.40) plus 1.00 mm ║
- * ║    air gap omitted; rear gap = 3.60 + 1.40/1.5168 + 1.00 = 5.523 ║
- * ║    mm air-equivalent (patent geometric BF = 6.00 mm incl. plate).║
+ * ║    Patent parallel plate P (Table 1A surfaces 24–25, 1.40 mm,      ║
+ * ║    nd 1.51680, νd 64.2) and the 1.00 mm air gap to the image       ║
+ * ║    (BF = 0) are modeled in `rearPlates` (traced, not drawn).       ║
+ * ║    Surface 19A keeps the patent's 3.60 mm gap to the plate         ║
+ * ║    (air-equivalent rear space 5.523 mm; geometric 6.00 mm).        ║
  * ║                                                                    ║
  * ║  NOTE ON FOCUS STATES:                                             ║
  * ║    Table 1C publishes infinity, middle (d0 = 1331.625 mm, 1.4 m  ║
@@ -249,7 +251,20 @@ const LENS_DATA = {
 
     // ── G5 (−) — L11 singlet ──
     { label: "18A", R: -17.1668, d: 2.0, nd: 1.5866, elemId: 11, sd: 15.8 }, // L11 front; optical extent 15.8 (flange to 18.3)
-    { label: "19A", R: -295.0, d: 5.523, nd: 1.0, elemId: 0, sd: 18.3 }, // L11 rear → image; 3.60 + 1.40/1.5168 + 1.00 (plate folded)
+    { label: "19A", R: -295.0, d: 3.6, nd: 1.0, elemId: 0, sd: 18.3 }, // L11 rear → plate P; patent d23 3.60
+  ],
+
+  /* ── Parallel plate P (patent Table 1A surfaces 24–25): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "P",
+      thicknessMm: 1.4,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 1.0,
+      source: "US 2024/0241349 A1, Example 1 Table 1A surfaces 24–25",
+    },
   ],
 
   /* ── Aspherical coefficients ── */

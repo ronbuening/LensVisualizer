@@ -17,3 +17,12 @@ The companion analysis reflects these dispositions. Marketed names remain distin
 Unified the G2/G3 rim at s3–5 to 27 mm, closer to Figure 1’s cylindrical cemented pair; retained all six aspheric-surface tags. Larger G1 and rear G13 trial rims fail shared-gap clearance and were rejected. OHARA L-BAL35P backfills G11 from its primary Sellmeier data sheet: 14/14 covered. Corrected closeFocusM to the patent image-plane-referenced 0.410 m; confirmed GR2 +6.1293 mm and GR4 −4.6776 mm near-focus travel. Marketing 0.4 m remains separately qualified in the analysis.
 
 Assignee audit: source-era Schneider names are consolidated as `Jos. Schneider & Co., Optische Werke`; the later GmbH & Co. KG remains distinct. Sony Group Corporation is retained for these source-era filings, separately from older Sony Corporation patents. No additional duplicate assignee spelling was found.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Read Example 1 Table 1 on PDF p. 14: surface 25 d = 13.1600; surfaces 26–27 are the optical member FL (¶0017),
+  2.5000 mm, nd 1.51680, νd 64.2; 27 → 28(IMG) is 1.0000 mm. Surface 25A now stores 13.16 mm, with `rearPlates` FL
+  (N-BK7, the 1.51680 / 64.2 class; the elements carry no supplier to prefer) and gapAfter 1.00 mm.
+- Paraxial check against the previous data: EFL identical; defocus changes by 0.0016 mm at both focus endpoints, the
+  difference between the legacy Table 31 Bf = 15.80982 mm and the Table 1 rows' 15.80820 mm. Physical track grows by
+  0.850 mm to 130.0002 mm, matching the printed L = 130.00 mm; closeFocusM 0.410 m already used the physical L.

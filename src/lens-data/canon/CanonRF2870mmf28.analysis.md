@@ -241,7 +241,7 @@ B7's position at the rear of the optical train, close to the image plane, means 
 
 ### Cover Glass (GB)
 
-**Surfaces 29–30** (Flat, nd = 1.54400, νd = 66.3, thickness = 2.00 mm): A filter/cover glass assembly representing the sensor stack. The flat surfaces contribute no optical power. In the data file, the cover glass is excluded from the surface prescription, and its physical thickness (2.00 mm) plus the trailing air gap (1.09 mm) are folded into the back focal distance of the last optical surface (S28).
+**Surfaces 29–30** (Flat, nd = 1.54400, νd = 66.3, thickness = 2.00 mm): A filter/cover glass assembly representing the sensor stack. The flat surfaces contribute no optical power. The data file models the block physically through `rearPlates`, with the patent d28 before it and the 1.09 mm d30 after it. It is traced by every analysis but not drawn. No catalog glass matches nd 1.544 / νd 66.3, so its dispersion is the Abbe-number estimate.
 
 ---
 
@@ -328,7 +328,7 @@ The production lens matches the patent's first embodiment closely in element cou
 
 The accompanying `CanonRF2870mmf28.data.ts` file encodes the first numerical example with the following conventions:
 
-- **Cover glass excluded:** The 2.00 mm glass block GB (nd = 1.54400) is removed. Its air-equivalent thickness 2.00/1.544 = 1.295 mm and the 1.09 mm trailing gap are folded into surface "28", so the last gap is d28 + 1.295 + 1.09 = 15.385 / 26.315 / 34.865 mm, the patent's air-equivalent bf.
+- **Cover glass traced, not drawn:** The 2.00 mm glass block GB (nd = 1.54400, νd = 66.3) and the 1.09 mm d30 are modeled in `rearPlates` behind the patent d28 (13.00 / 23.93 / 32.48 mm). Paraxially this equals the patent's air-equivalent bf, d28 + 2.00/1.544 + 1.09 = 15.385 / 26.315 / 34.865 mm. The block also adds its own spherical aberration and colour in the converging beam. Its dispersion is Abbe-estimated, because no catalog glass matches.
 - **Zoom-only variable gaps:** Since Example 1 provides only infinity-focus spacings, all seven variable gaps are encoded with identical [d_inf, d_close] pairs. If close-focus data becomes available (from another embodiment or measurement), gaps d23 and d25 should be updated to reflect the B6 focus travel.
 - **Semi-diameters estimated:** The patent publishes no effective diameters. The rims follow the FIG. 1 wide-end section, scaled at 13.25 px/mm from the S1–S28 vertex span. Values were changed where the earlier estimate differed from the figure by more than about 15 % or clipped the axial beam: L2 flange 18.0 mm, D1 rear 13.6 mm, L5 11.3 mm, L6 12.6 mm, D2 12.2 mm, D3 15.8 mm. Every rim passes the exact f/2.88–2.92 axial beam at all three stations. L1 (29.5 mm against a 26.3 mm figure rim), L11 and L12 remain 12–15 % above the figure. The steep R = 22.455 mm rear of L2 caps S4 at 15.3 mm against S5 across the 7.05 mm gap. Off-axis bundles are vignetted at the field corners, most strongly in B5–B6 at the wide end.
 - **Aperture schedule inferred:** The stop rides with B3 and the patent gives no iris diameters, so `zoomApertureModel: "from-nominal-fno"` derives iris radii of 9.04, 10.68, and 11.94 mm from the published f-numbers. These are calculated values, not patent data. The slider runs from the design f-number to f/22.

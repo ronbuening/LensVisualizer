@@ -19,7 +19,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * NOTE ON FOCUS:
  *   Table 3 publishes only infinity and "Close Range (1.57 m)". The stored close gaps focus an
  *   object 1572 mm in front of surface 1 (calculated), so the patent's 1.57 m is measured from the
- *   first surface; adding the 218.0 mm lens-to-image length gives 1.79 m object-to-image, which is
+ *   first surface; adding the 219.0 mm physical lens-to-image length gives 1.79 m object-to-image, which is
  *   the production 1.8 m minimum focus distance. G2 moves 11.55 mm toward the object (DD[15]
  *   18.63 → 7.08, DD[18] 4.92 → 16.47).
  *
@@ -36,9 +36,10 @@ import type { LensDataInput } from "../../types/optics.js";
  *   The 97.6 mm front clear diameter fits the production 105 mm filter thread.
  *
  * NOTE ON COVER GLASS:
- *   Patent surfaces 35–36 are a plane-parallel member PP (2.85 mm, nd 1.51680) plus 1.10 mm air.
- *   PP is excluded; the last gap is the air-equivalent 28.1625 + 2.85/1.5168 + 1.10 = 31.1415 mm
- *   (paraxial BFD 31.152 mm, defocus −0.010 mm).
+ *   Patent Table 1 surfaces 35–36 are the plane-parallel optical member PP (2.85 mm, nd 1.51680,
+ *   νd 64.20, θgF 0.53430) followed by 1.10 mm air to the image. PP is modeled in `rearPlates`
+ *   (traced, not drawn); surface 34 keeps the patent's 28.1625 mm gap to PP. Air-equivalent
+ *   last gap: 28.1625 + 2.85/1.5168 + 1.10 = 31.1414 mm (paraxial BFD 31.152 mm, defocus −0.010 mm).
  *
  * NOTE ON APERTURE STOP:
  *   Table 1 lists the stop as surface 15 with d = DD[15]; surface 14's 9.4871 mm is L1h rear to St.
@@ -391,7 +392,21 @@ const LENS_DATA = {
     { label: "31", R: -60.7409, d: 0.6043, nd: 1.0, elemId: 0, sd: 15.2 }, // L3g rear → air
     { label: "32", R: 53.252, d: 8.63, nd: 1.65412, elemId: 18, sd: 15.4 }, // L3h front
     { label: "33", R: -53.252, d: 1.9, nd: 1.8, elemId: 19, sd: 15.4 }, // L3h/L3i cem junction
-    { label: "34", R: 154.3014, d: 31.1415, nd: 1.0, elemId: 0, sd: 15.0 }, // L3i rear → BFD (PP folded into air-equivalent d)
+    { label: "34", R: 154.3014, d: 28.1625, nd: 1.0, elemId: 0, sd: 15.0 }, // L3i rear → PP (patent gap)
+  ],
+
+  /* ── Optical member PP (patent Table 1 surfaces 35–36): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PP",
+      thicknessMm: 2.85,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      dPgF: -0.0015, // from patent θgF = 0.53430
+      gapAfterMm: 1.1,
+      source: "US 2019/0265504 A1, Example 1 Table 1 surfaces 35–36",
+    },
   ],
 
   /* ── Aspherical coefficients ──
@@ -437,7 +452,7 @@ const LENS_DATA = {
   ],
 
   /* ── Focus configuration ── */
-  closeFocusM: 1.8, // patent 1.57 m from surface 1 + 218.0 mm to image = 1.79 m; production MFD 1.8 m
+  closeFocusM: 1.8, // patent 1.57 m from surface 1 + 219.0 mm to image = 1.79 m; production MFD 1.8 m
   focusDescription:
     "Inner focus — cemented doublet G2 (L2a+L2b) translates 11.55 mm toward the object between infinity and the patent's close state (1.57 m from the front vertex, ≈1.8 m from the image plane). Driven by twin linear motors for quiet, high-speed autofocus; small moving mass.",
 

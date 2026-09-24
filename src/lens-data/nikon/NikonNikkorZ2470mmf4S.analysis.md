@@ -251,7 +251,7 @@ The design has five optically significant variable air gaps. Their behavior acro
 | D9 | G2—G3 | 23.69 | 8.56 | 2.90 | Zoom only, decreasing |
 | D18 | G3—G4 | 4.58 | 8.45 | 10.82 | Zoom + focus, increasing |
 | D22 | G4—G5 | 8.25 | 4.38 | 2.00 | Zoom + focus, decreasing |
-| BF | G5—Image | 15.01 | 27.94 | 35.60 | Zoom only (air-equivalent; filter removed) |
+| D26 | G5—filter FL | 13.86 | 26.79 | 34.45 | Zoom only (FL and D28 = 0.10 follow; air-equivalent BF 15.01 / 27.94 / 35.60) |
 
 Three gaps (D3, D9, BFD) change only with zoom and are unaffected by focus. Two gaps (D18, D22) change with both zoom and focus.
 
@@ -336,4 +336,4 @@ All element focal lengths computed via thick-lens formula and independently veri
 - **Close-focus object distance:** The patent provides close-focus variable spacings at W/M/T but does not state the object distance. The calculated conjugate is 298.5 mm object-to-image at all three stations, which matches the manufacturer's 0.30 m used for `closeFocusM`.
 - **Aspherical coefficients:** Only A4–A10 provided in patent. A12–A14 set to 0.
 - **Glass identifications:** All assignments are inferences from 6-digit nd/νd codes. Exact matches (Δnd < 0.00001) found for 13 of 14 elements. L21 (nd = 1.74353, νd = 49.5, code 744495) uses Hoya M-NBF1 as the nearest coefficient-backed catalog equivalent (Δnd = −0.00023); the production supplier is not identified. Production glasses may differ from patent values.
-- **Cover glass:** Patent surfaces 27–28 (filter FL, nd = 1.51680, d = 1.60 mm) are excluded from the surface array. The last gap stores the patent's air-equivalent back focus (15.013 / 27.941 / 35.599 mm), so the image plane sits at paraxial best focus.
+- **Cover glass:** Patent surfaces 27–28 (filter FL, nd = 1.51680, νd = 64.1, d = 1.60 mm) and D28 = 0.10 mm are modeled physically through `rearPlates`. Every analysis traces the plate, but it is not drawn. D26 keeps the Table 1 gap to the plate (13.858 / 26.786 / 34.445 mm; mid and tele include the extra 0.001 mm of Table 1's D28 = 0.101). Paraxially this reproduces the patent's air-equivalent back focus (15.013 / 27.941 / 35.599 mm), so the image plane sits at paraxial best focus. The physical track matches the patent's 121.58–151.03 mm total length.

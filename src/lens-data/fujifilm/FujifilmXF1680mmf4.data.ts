@@ -24,10 +24,10 @@ import type { LensDataInput } from "../../types/optics.js";
  *   G5 is fixed (ground symbol in FIG. 11). D21 (G3–G4) rises from 2.400 to 3.974 mm and falls back to
  *   2.502 mm because G3 and G4 move at different rates. The lens gets 42.6 mm longer from wide to tele.
  *
- * BACK FOCUS: Table 31 gives 14.614 mm after S29, then a 2.850 mm plate (nd 1.51680) and 1.000 mm of air.
- * The plate is left out and its air-equivalent length is added to the last gap:
- * 14.614 + 2.850/1.51680 + 1.000 = 17.493 mm. The stored value is 17.494 mm, and the paraxial BFD is
- * 17.494 / 17.495 / 17.494 mm, so the defocus is ≤ 0.001 mm.
+ * BACK FOCUS: Table 31 gives 14.614 mm after S29, then the optical member PP (S30–S31: 2.850 mm, nd 1.51680,
+ * νd 64.20, θgF 0.53430) and 1.000 mm of air to the image plane. S29 stores the physical 14.614 mm and PP is
+ * modeled in `rearPlates` (traced, not drawn). The air-equivalent back focus is
+ * 14.614 + 2.850/1.51680 + 1.000 = 17.493 mm at every station (the old folded value was 17.494).
  *
  * FOCUS: Table 32 gives only infinity gaps, and no close-focus spacing is published. The focus pairs are
  * therefore identical, so focus travel is not modelled and no G4 travel was invented. closeFocusM 0.35 m
@@ -321,8 +321,7 @@ const LENS_DATA = {
    *  Flat surfaces use R = 1e15 per project convention. Labels follow the patent surface numbers;
    *  the "A" suffix marks the Table 31 asterisked (aspheric) surfaces.
    *  DD[5], DD[13], DD[21], DD[24] are zoom-variable (see `var` block below).
-   *  The Table 31 plate (S30–S31) is excluded; its air-equivalent path is folded into the S29 gap
-   *  (14.614 + 2.850/1.51680 + 1.000 = 17.493; stored 17.494).
+   *  The Table 31 optical member PP (S30–S31) follows S29 in `rearPlates`; the S29 gap is the physical 14.614.
    */
   surfaces: [
     // G1: L11 + L12 cemented doublet, L13 separated
@@ -366,7 +365,21 @@ const LENS_DATA = {
     { label: "26", R: -46.616, d: 1.2, nd: 1.6935, elemId: 15, sd: 13.2 }, // L51/L52 junction (cemented)
     { label: "27", R: 1e15, d: 0.511, nd: 1.0, elemId: 0, sd: 13.5 }, // L52 rear (FLAT) → air
     { label: "28A", R: -83.44813, d: 3.69, nd: 1.58313, elemId: 16, sd: 12.4 }, // L53 front (asph)
-    { label: "29A", R: -29.56019, d: 17.494, nd: 1.0, elemId: 0, sd: 13.8 }, // L53 rear → image (asph, air-equiv BFD incl. cover glass)
+    { label: "29A", R: -29.56019, d: 14.614, nd: 1.0, elemId: 0, sd: 13.8 }, // L53 rear → air (asph); gap to plate PP
+  ],
+
+  /* ── Optical member PP (patent surfaces 30–31): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PP",
+      thicknessMm: 2.85,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      dPgF: -0.00152, // θgF 0.53430
+      gapAfterMm: 1.0,
+      source: "US 2020/0166735 A1, Example 11 Table 31 surfaces 30–31",
+    },
   ],
 
   /* ── Aspherical coefficients ──

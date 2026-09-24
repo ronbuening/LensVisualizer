@@ -8,8 +8,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * Patent design: 11 elements / 9 groups, six aspherical surfaces, G1(+)-G2(- focus)-G3(+).
  * Focus status: PUBLISHED. Only G2 (L21-L23) moves imageward. DD14 changes 2.301 -> 10.754 mm,
  * while DD19 changes 13.210 -> 4.757 mm, for 8.453 mm rigid-group travel.
- * Rear normalization: source PP/filter-cover plate omitted. Surface 21A-to-image spacing is the verified
- * air-equivalent 20.703955696203 mm from 17.731 + 2.850/1.51680 + 1.094.
+ * Rear plate: Table 1 surfaces 22-23 (optical member PP, filter/cover glass; t=2.850, nd 1.51680, vd 64.20,
+ * thetaGF 0.53430) are modeled physically in `rearPlates` (traced, not drawn). Surface 21A stores the patent's
+ * 17.731 mm gap to PP; 1.094 mm of air follows PP to the image plane.
  * Stop: axial station is patent-published; physical diameter is not. STO sd=6.550410636 mm is calibrated
  * paraxially from the normalized infinity model to design FNo=2.9, so it is an inference.
  * Semi-diameters are Table 1 effective diameters ED/2. The larger Fig. 1 mechanical rims are not optical apertures.
@@ -230,7 +231,21 @@ const LENS_DATA = {
     { label: "18", R: -31.0144, d: 0.85, nd: 1.883, elemId: 10, sd: 7.96 },
     { label: "19", R: 17.59974, d: 13.21, nd: 1, elemId: 0, sd: 7.68 },
     { label: "20A", R: -362.90949, d: 4.47, nd: 1.51633, elemId: 11, sd: 11.29 },
-    { label: "21A", R: -29.00029, d: 20.703955696203, nd: 1, elemId: 0, sd: 11.745 },
+    { label: "21A", R: -29.00029, d: 17.731, nd: 1, elemId: 0, sd: 11.745 }, // patent D21: gap to PP
+  ],
+
+  /* ── Optical member PP (patent surfaces 22–23, filter/cover glass): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PP",
+      thicknessMm: 2.85,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      dPgF: -0.0015156, // Table 1: θgF=0.53430; ΔPgF=θgF−(0.6438−0.001682νd).
+      gapAfterMm: 1.094,
+      source: "CN 116500768 A, Example 1 Table 1 surfaces 22–23",
+    },
   ],
 
   /* ── Aspherical coefficients ── */

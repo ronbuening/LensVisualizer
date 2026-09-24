@@ -67,3 +67,13 @@ Patent: JP 2022-99402 A, Example 1
 - Rejected the prior OHARA `L-BBH1` attribution. OHARA's official all-products row is `2.101949 / 16.785097` and cannot represent this element.
 - Relabeled L9 to `E-FD8 (HOYA catalog equivalent; production supplier unspecified)`. The coefficient-backed `1.68893 / 31.16` row, code `689312`, reproduces the patent coordinate within rounding.
 - Removed the unsupported barium-borate and precision-molding claims from the analysis. The sources establish a double-aspherical element but do not establish its supplier or forming process.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Read Example 1 Table 1A on PDF page 19: d19 = 10.67900; surfaces 20–21 are the parallel plate P (named in the
+  description), 1.44000 mm, nd 1.51680, νd 64.2; d21 = 0.80000 to surface 22, and Table 1C prints BF = 0.00000.
+  Surface 18A now stores the physical 13.48387 mm (10.679 × 90/71.2785), and `rearPlates` holds P at 1.81822 mm with
+  1.01012 mm trailing air, both scaled like the lens. Glass label `N-BK7` (exact 1.51680 / 64.2 class).
+- Paraxial check against the previous air-equivalent 15.69272 mm: EFL identical; infinity defocus changes by 0.000009 mm
+  at both focus keyframes (rounding in the old fold). Physical track grows by 0.619 mm to 105.06 mm, matching the
+  patent's printed total length 83.2058 × the scale factor.

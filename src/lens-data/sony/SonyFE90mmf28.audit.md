@@ -23,3 +23,14 @@ Patent: WO 2016/136352 A1, Example 2
 ## 2026-07-29 - Catalog-coordinate correction
 
 - Corrected G7 from modern `S-NPH2` to historical OHARA `PBH21`, the exact 1.9229 / 20.88 row.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Read Example 2 Table 5 on PDF page 24 (printed page 22) at 200 dpi: surface 27 d = 22.747; surfaces 28–29 are one
+  plane plate, 2.500 mm, nd 1.5168, νd 64.1983, then 1.000 mm to IMG. Paragraph [0094] (page 23) names it optical
+  filter FL between GR5 and IMG. d27 is not a Table 8 variable gap, so the plate is camera-fixed.
+- Surface 27 now stores the patent's 22.747 mm, with `rearPlates` FL (N-BK7; 1.51680 / 64.2 class, catalog-compatible)
+  and gapAfter 1.000 mm, replacing the legacy air-equivalent 25.4 mm (the patent's two-decimal BF 25.40).
+- Paraxial check against the previous data: EFL identical at all three focus keyframes; defocus changes by 0.0048 mm
+  (22.747 + 2.500/1.5168 + 1.000 = 25.3952 vs the rounded 25.4). Physical track grows by 0.847 mm to 145.005 mm,
+  matching the analysis's physical S1-to-image figure.

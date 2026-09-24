@@ -23,7 +23,7 @@ The prescription is a strong match for the ZEISS Touit Makro-Planar T* 2.8/50M. 
 6. The patent uses a three-group floating inner-focus system in which G2, G4, and G5 move while G1, G3, the stop, and G6 remain fixed. ZEISS describes the production lens as using a floating-elements design.
 7. The patent applicants are Fujifilm Corporation and Carl Zeiss AG, matching the Touit system's Fujifilm X and Sony E APS-C production context.
 
-The patent includes a parallel plane plate PP behind the lens system. That plate represents camera-side cover glass or filter glass, not a lens element. In the accompanying data file it is excluded from the surface array and folded into the final air-equivalent back focal distance.
+The patent includes a parallel plane plate PP behind the lens system (surfaces 27–28: 1.22 mm, nd = 1.51680, νd = 64.20, followed by 22.81 mm of air to the image). That plate represents camera-side cover glass or filter glass, not a lens element. The data file models it physically through `rearPlates`: it is traced by every analysis but not drawn, and the last lens surface keeps the patent's 1.00 mm gap to the plate.
 
 ## Optical Architecture
 
@@ -295,7 +295,7 @@ A fresh paraxial y-nu ray trace was run directly from the patent's Example 1 sur
 | Quantity | Computed | Patent value | Comment |
 |---|---:|---:|---|
 | EFL at β = 0 | 51.506 mm | 51.52 mm | Matches within table rounding |
-| BFD, PP folded to air | 24.608 mm | 24.62 mm | Patent Bf′ includes the PP path |
+| BFD, PP folded to air | 24.608 mm | 24.62 mm | Patent Bf′ is the air-equivalent value (1.00 + 1.22/1.51680 + 22.81) |
 | FNo. | 2.88 | 2.88 | Stop semi-diameter set to 8.73 mm |
 | f3/f | 0.720 | 0.720 | Matches Table 21 |
 | f4/f | 1.369 | 1.368 | Rounding difference only |
@@ -306,7 +306,7 @@ A fresh paraxial y-nu ray trace was run directly from the patent's Example 1 sur
 
 The standalone in-air element focal lengths and the group focal lengths were also recomputed. The group values are: G1 = +28.36 mm, G2 = −17.48 mm, G3 = +37.09 mm, G4 = +70.52 mm, G5 = +48.51 mm, and G6 = −33.22 mm. These confirm the patent's positive-negative-positive-stop-positive-positive-negative architecture.
 
-The data file differs from the patent in one implementation detail: PP is excluded and folded into the final BFD, as required by the project data convention. All three focus rows are otherwise stored as exact keyframes, including the β = −0.5 expansion of DD[18]. The odd-order aspheres on surfaces 4 and 7, previously even-order fits, are also transcribed exactly. These implementation choices do not affect the infinity-focus paraxial focal length or group-power verification.
+The data file follows the patent's physical rear stack: PP is stored in `rearPlates` with the printed 1.00 mm and 22.81 mm gaps, so EFL and paraxial focus match the air-equivalent Bf′ while the plate also contributes its own small aberrations in the converging image-side beam. All three focus rows are otherwise stored as exact keyframes, including the β = −0.5 expansion of DD[18]. The odd-order aspheres on surfaces 4 and 7, previously even-order fits, are also transcribed exactly. These implementation choices do not affect the infinity-focus paraxial focal length or group-power verification.
 
 ## Sources
 

@@ -25,9 +25,9 @@ The identification rests on convergent evidence rather than on a single dimensio
 
 4. **Focus mechanism.** The patent moves only the positive third group G3 toward the object for close focus (¶0022, ¶0076). Sigma's production description identifies an inner-focus design with a light focus group and stepping-motor autofocus.
 
-5. **Close-focus consistency.** The patent only tabulates an intermediate 1:40 reproduction state, but an independent paraxial solve using the same single-G3 movement reaches β = -1/9.9 at a front-vertex object distance of 141.970 mm. Added to the cover-glass-folded optical track of 108.318 mm, this gives 250.288 mm from image plane to object, effectively reproducing Sigma's published 0.25 m minimum focus distance and 1:9.9 maximum magnification.
+5. **Close-focus consistency.** The patent only tabulates an intermediate 1:40 reproduction state, but an independent paraxial solve using the same single-G3 movement reaches β = -1/9.9 at a front-vertex object distance of 141.970 mm. Added to the physical optical track of 109.00 mm (cover plate included), this gives about 250.97 mm from image plane to object (250.288 mm with the plate's air-equivalent 108.318 mm track), effectively reproducing Sigma's published 0.25 m minimum focus distance and 1:9.9 maximum magnification.
 
-The data file therefore transcribes Example 1 without focal-length scaling. The 16 mm production value is treated as the marketed nominal focal length, while the patent design focal length remains 16.446 mm by paraxial trace. The patent's final plane-parallel plate is not included as a lens element in the data file; its optical path is folded into the final air gap as described in the Verification Summary.
+The data file therefore transcribes Example 1 without focal-length scaling. The 16 mm production value is treated as the marketed nominal focal length, while the patent design focal length remains 16.446 mm by paraxial trace. The patent's final plane-parallel plate is not a lens element in the data file; it is modeled through `rearPlates`, traced by every analysis but not drawn, as described in the Verification Summary.
 
 ## Optical Architecture
 
@@ -249,9 +249,9 @@ The revised transcription was checked with an independent paraxial y-ν matrix t
 
 - Infinity EFL = 16.44623 mm, matching the patent's 16.45 mm after rounding.
 - Group focal lengths reproduce the patent table: G1 = -25.91 mm, G2 = +24.01 mm, G3 = +85.41 mm, G4 = -82.42 mm; G1A = -25.04 mm, G1B = +168.02 mm, G1Bp = +28.72 mm, G1Bm = -25.81 mm.
-- The final plane-parallel plate at surfaces 31–32 was removed from the data file and folded into the last air gap as 15.5341 + 2.0000 / 1.51680 + 1.0000 = 17.8527 mm. This preserves the paraxial optical path while avoiding a sensor-cover-glass element in the LensVisualizer data.
-- The patent's physical front-vertex-to-image length is 109.00 mm including the plane-parallel plate. The folded data-file optical track is 108.318 mm.
-- The MFD endpoint in the data file is the solved β = -1/9.9 state: d23 = 1.6098 mm and d25 = 3.7863 mm. This keeps d23 + d25 constant and gives a sensor-to-object distance of 250.288 mm in the same paraxial model.
+- The final plane-parallel plate at surfaces 31–32 (2.0000 mm, nd 1.51680, νd 64.20, then BF 1.0000 mm) is modeled in the data file's `rearPlates`: every analysis traces it, but it is not drawn. Surface 30 keeps the patent's d30 = 15.5341 mm to the plate; the paraxial air-equivalent back focus is 15.5341 + 2.0000 / 1.51680 + 1.0000 = 17.8527 mm.
+- The patent's physical front-vertex-to-image length is 109.00 mm including the plane-parallel plate, which the data file now reproduces; the air-equivalent (plate-folded) track is 108.318 mm.
+- The MFD endpoint in the data file is the solved β = -1/9.9 state: d23 = 1.6098 mm and d25 = 3.7863 mm. This keeps d23 + d25 constant and gives a sensor-to-object distance of about 250.97 mm physically (250.288 mm air-equivalent) in the same paraxial model.
 - Petzval sum = 4.2266 × 10⁻³ mm⁻¹, Petzval radius ≈ 236.6 mm, P · f = 0.0695.
 - The inferred semi-diameters pass the project constraints used for this data file: sd/|R| < 0.90, front/rear element SD ratio ≤ 1.25, edge thickness ≥ 0.5 mm at the checked rim, and cross-gap sag intrusion ≤ 90% of the relevant air gap.
 

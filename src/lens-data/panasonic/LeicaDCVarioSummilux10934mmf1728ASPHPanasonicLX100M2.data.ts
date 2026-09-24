@@ -12,8 +12,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ - Uniform scale s = 1.0. Marketed 10.9-34 mm is not imposed on the patent model.  ║
  * ║ - The three 0.01000 mm same-radius adhesive media are collapsed to direct          ║
  * ║   cemented interfaces. Their thickness is added to L4, L7, and L10 respectively.  ║
- * ║ - Source rear plate P (1.10000 mm, nd 1.51680) is omitted. The S23-to-image air    ║
- * ║   gaps are code-solved after cement collapse for the published infinity states.    ║
+ * ║ - Source rear plate P (1.10000 mm, nd 1.51680, νd 64.2) is modeled in `rearPlates`  ║
+ * ║   (traced, not drawn) with the wide Table 3 BF 0.82178 mm after it. The 23A-to-P    ║
+ * ║   gaps are code-solved after cement collapse so the published infinity image        ║
+ * ║   planes are unchanged: 12.689420 / 13.672731 / 13.524166 mm against patent d23     ║
+ * ║   12.6772 / 13.6458 / 13.5187 (mid/tele BF 0.82978 / 0.79743 carried in the gap).   ║
  * ║ - The normalized model therefore differs slightly from the raw patent EFL:         ║
  * ║   11.265298534 / 19.151668516 / 32.537812044 mm.                                  ║
  * ║                                                                                     ║
@@ -256,7 +259,20 @@ const LENS_DATA = {
     { label: "19", R: -41.5809, d: 0.9896, nd: 1.84666, elemId: 10, sd: 10.2 },
     { label: "21", R: 13.9152, d: 5.0978, nd: 1, elemId: 0, sd: 9 },
     { label: "22A", R: 19.639, d: 4.6295, nd: 1.55343, elemId: 11, sd: 11.8 },
-    { label: "23A", R: 9746.5098, d: 14.236411354, nd: 1, elemId: 0, sd: 11.8 },
+    { label: "23A", R: 9746.5098, d: 12.689420384, nd: 1, elemId: 0, sd: 11.8 }, // gap to plate P (code-solved)
+  ],
+
+  /* ── Parallel plate P (patent surfaces 24–25): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "P",
+      thicknessMm: 1.1,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 0.82178,
+      source: "US 2016/0054550 A1, Example 1 Table 1 surfaces 24–25; BF from Table 3 (wide)",
+    },
   ],
 
   /* ── Aspherical coefficients ── */
@@ -363,9 +379,9 @@ const LENS_DATA = {
       [24.7534, 24.7534],
     ],
     "23A": [
-      [14.236411354, 14.236411354],
-      [15.219722288, 15.219722288],
-      [15.071156753, 15.071156753],
+      [12.689420384, 12.689420384],
+      [13.672731318, 13.672731318],
+      [13.524165783, 13.524165783],
     ],
   },
   varLabels: [
@@ -374,7 +390,7 @@ const LENS_DATA = {
     ["10A", "D10"],
     ["STO", "D15"],
     ["21", "D21"],
-    ["23A", "BF"],
+    ["23A", "D23"],
   ],
 
   /* ── Zoom control points use the patent Table 3 focal-length headings ── */

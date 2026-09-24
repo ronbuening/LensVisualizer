@@ -7,19 +7,20 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ Source: US 6,115,188 A, Numerical Example 25 (Nishio / Ogawa / Misaka; Canon Kabushiki Kaisha).             ║
  * ║ Production correlation: Canon EF 400mm f/2.8L IS USM, marketed September 1999.                              ║
  * ║                                                                                                              ║
- * ║ Modeled prescription: 16 optical elements / 12 air-separated groups, all spherical.                         ║
- * ║ Canon markets 17 elements / 13 groups because its published count includes both the front protection glass ║
- * ║ and the rear filter. The protection glass HG is retained here; the rear filter FL is omitted under current  ║
- * ║ project rules, as is the inactive flare-cutter plane FC.                                                     ║
+ * ║ Modeled prescription: 16 optical elements / 12 air-separated groups, all spherical, plus the rear filter.   ║
+ * ║ Canon markets 17 elements / 13 groups because its published count includes both the front protection glass  ║
+ * ║ and the rear filter. HG is a drawn element; the rear filter FL is modeled in `rearPlates` (traced, not      ║
+ * ║ drawn, not counted in elementCount). The inactive flare-cutter plane FC is omitted.                         ║
  * ║                                                                                                              ║
  * ║ No dimensional scaling is applied. The patent publishes f = 392.15 mm, Fno = 2.9, and 2ω = 6.3°.            ║
  * ║ Marketing metadata remains separate: 400 mm f/2.8, 3.0 m minimum focus, 0.15× maximum magnification.        ║
  * ║ nominalFno therefore uses the modeled/patent value 2.9 rather than the marketed f/2.8.                      ║
  * ║                                                                                                              ║
- * ║ Rear normalization: patent R29→IP contains a 2.20 mm plane-parallel filter and an inactive FC plane.        ║
- * ║ Removing those planes gives a literal air-equivalent R29→IP distance of 70.680871512 mm. The rounded source  ║
- * ║ prescription focuses +0.016884094 mm farther back, so the active model uses 70.697755606 mm to terminate at ║
- * ║ the independently computed paraxial infinity focus.                                                         ║
+ * ║ Rear stack: patent D29 = 15.00 mm, FL 2.20 mm (N17 = 1.516330, ν17 = 64.1), D31 = 15.28 mm to the inactive  ║
+ * ║ FC plane, D32 = 38.95 mm to IP. FL is modeled in `rearPlates` with gapAfterMm 54.23 (D31 + D32).            ║
+ * ║ The literal air-equivalent R29→IP distance is 70.680871512 mm; the rounded source prescription focuses      ║
+ * ║ +0.016884094 mm farther back, so R29→FL is stored as 15.016884094 mm (printed 15.00 + 0.016884094) to keep  ║
+ * ║ the image plane at the independently computed paraxial infinity focus.                                      ║
  * ║                                                                                                              ║
  * ║ Focus status — CONSTRAINED_RECONSTRUCTION. The patent fixes L2 as one cemented group translating toward the ║
  * ║ image side but publishes no close-focus spacing table. Close focus is solved from Canon's 3.0 m focal-plane ║
@@ -48,7 +49,7 @@ const LENS_DATA = {
   specs: [
     "400mm f/2.8 (marketed)",
     "Patent f = 392.15 mm, F/2.9",
-    "17 elements / 13 groups marketed; 16 / 12 modeled after rear-filter omission",
+    "17 elements / 13 groups marketed; 16 / 12 modeled plus traced rear filter",
     "3.0 m minimum focus",
     "1 fluorite + 2 UD elements (manufacturer correlation)",
   ],
@@ -283,7 +284,20 @@ const LENS_DATA = {
     { label: "26", R: -476.151, d: 0.2, nd: 1.0, elemId: 0, sd: 21.0 },
     { label: "27", R: 55.777, d: 9.7, nd: 1.6779, elemId: 15, sd: 21.0 },
     { label: "28", R: -98.88, d: 1.8, nd: 1.882997, elemId: 16, sd: 21.0 },
-    { label: "29", R: 259.489, d: 70.697755606, nd: 1.0, elemId: 0, sd: 21.0 },
+    { label: "29", R: 259.489, d: 15.016884094, nd: 1.0, elemId: 0, sd: 21.0 },
+  ],
+
+  /* ── Rear filter FL (patent surfaces R30–R31): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "FL",
+      thicknessMm: 2.2,
+      nd: 1.51633,
+      vd: 64.1,
+      glass: "S-BSL7",
+      gapAfterMm: 54.23, // D31 15.28 to the inactive FC plane + D32 38.95 to IP
+      source: "US 6,115,188 A, Numerical Example 25 surfaces R30–R31 (FC plane R32 omitted)",
+    },
   ],
 
   asph: {},
@@ -316,7 +330,7 @@ const LENS_DATA = {
 
   closeFocusM: 3.0,
   focusDescription:
-    "CONSTRAINED_RECONSTRUCTION: patent-defined cemented L2 translates imageward. Canon's 3.0 m focal-plane MFD solves D12 = 24.36 + δ and D15 = 98.83 − δ with δ = 18.794827332 mm; D12 + D15 stays 123.19 mm. Rear FL/FC are omitted and R29→IMG is normalized to 70.697755606 mm at infinity.",
+    "CONSTRAINED_RECONSTRUCTION: patent-defined cemented L2 translates imageward. Canon's 3.0 m focal-plane MFD solves D12 = 24.36 + δ and D15 = 98.83 − δ with δ = 18.794827332 mm; D12 + D15 stays 123.19 mm. Rear filter FL is traced via rearPlates (FC omitted); R29→FL is 15.016884094 mm at infinity (printed 15.00 plus the +0.016884094 mm paraxial-focus normalization).",
 
   nominalFno: 2.9,
   fstopSeries: [2.9, 4, 5.6, 8, 11, 16, 22, 32],

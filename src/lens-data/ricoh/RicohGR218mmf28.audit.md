@@ -82,3 +82,16 @@ p. 19; FIG. 3 p. 3 (sheet 2/10, axis horizontal, object at left); ¶[0045] (plat
 - The close-focus state is calculated, not published. The GR's 0.10 m macro range is not modeled. The repo reads
   `closeFocusM` as object-to-image; the basis of the production 0.30 m figure is not given in the patent.
 - The S13 A6 value is printed without its decimal point ("418583×10⁻⁶"). It is read as 4.18583e-6.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Re-read Example 3 ¶[0136] on PDF p. 18 (sheet p. 7): surface 13 D = 12.756; surface 14 is a plate ("FILTER",
+  patent plate F), 1.40 mm, nd 1.51680, νd 64.20, with no Pg,F; surface 15's D is blank. The 0.50 mm gap to the
+  image comes from ¶[0045] ("approximately 0.5 mm"), as the fold already used. Glass: HOYA BSC7, the catalog class
+  for 1.51680 / 64.2, to match the lens's HOYA element labels. The patent prints no glass name.
+- S13 and `var["13A"]` now store the physical gap, [12.756, 14.058] (infinity, calculated 0.30 m close). Plate F
+  follows in `rearPlates` with 0.50 mm after it. Paraxial check against the previous data: EFL identical; defocus
+  changes by 4 × 10⁻⁶ mm (rounding in the old 14.179).
+- Physical track grows by 0.477 mm to 30.30 mm, the patent's L (L/f = 1.656). `closeFocusM` stays at the production
+  0.30 m, and the 1.302 mm extension is unchanged. Measured over the physical track, that extension focuses at about
+  300.5 mm object-to-image.

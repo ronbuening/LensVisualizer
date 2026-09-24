@@ -2,8 +2,9 @@ import type { LensDataInput } from "../../types/optics.js";
 
 // Fujifilm FUJINON GF45mmF2.8 R WR
 // Patent transcription: US 2020/0174231 A1, Example 1 (Taiga Noda / FUJIFILM).
-// The patent's rear parallel plate PP is omitted per Lens Data Specification and folded
-// into an air-equivalent final image-space distance: 25.000 + 3.200 / 1.51680 + 4.617 = 31.726704641 mm.
+// The patent's rear parallel plate PP (Table 1 surfaces 21–22: 3.200 mm, nd 1.51680, νd 64.20,
+// θgF 0.53430) and its 4.617 mm gap to the image are modeled in `rearPlates` (traced, not drawn).
+// Surface 20 keeps the patent's 25.000 mm physical gap to PP.
 // Semi-diameters are inferred clear-aperture values. The patent does not publish CA/SD data; front entry
 // faces on surfaces 5, 7, 9, 15, and 16A are trimmed to avoid large visual overhangs against their local pairs.
 // Surfaces 16A and 17A store the exact Example 1 odd/even polynomial terms
@@ -194,7 +195,20 @@ const LENS_DATA = {
     { label: "17A", R: -31.18464, d: 1.89, nd: 1, elemId: 0, sd: 19 },
     { label: "18", R: -49.99927, d: 3.03, nd: 1.85026, elemId: 10, sd: 20 },
     { label: "19", R: -36.429, d: 1.41, nd: 1.58144, elemId: 11, sd: 20.6 },
-    { label: "20", R: 1e15, d: 31.726704641, nd: 1, elemId: 0, sd: 20.6 },
+    { label: "20", R: 1e15, d: 25, nd: 1, elemId: 0, sd: 20.6 }, // patent gap to the parallel plate PP
+  ],
+  /* ── Parallel plate PP (patent Table 1 surfaces 21–22): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PP",
+      thicknessMm: 3.2,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      dPgF: -0.00152,
+      gapAfterMm: 4.617,
+      source: "US 2020/0174231 A1, Example 1 Table 1 surfaces 21–22 (patent θgF 0.53430)",
+    },
   ],
   asph: {
     "16A": {

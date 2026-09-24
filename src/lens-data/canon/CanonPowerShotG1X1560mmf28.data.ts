@@ -12,18 +12,21 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                    ║
  * ║  Zoom variable gaps: D6, D12, D20/STO, BF.                         ║
  * ║  Gaps D6 and D12 are group-separation gaps. D20/STO is the         ║
- * ║  aperture-stop-to-fourth-unit gap. BF is the air-equivalent back   ║
- * ║  focal distance after the fourth-unit rear asphere.                 ║
+ * ║  aperture-stop-to-fourth-unit gap. BF is the patent d22, the gap   ║
+ * ║  from the fourth-unit rear asphere to optical block G.             ║
  * ║                                                                    ║
  * ║  NOTE ON SCALING:                                                  ║
  * ║    No scaling applied. The prescription is retained at the patent  ║
  * ║    design focal lengths of 15.57 / 30.33 / 58.93 mm.              ║
  * ║                                                                    ║
  * ║  NOTE ON SENSOR/FILTER BLOCK:                                      ║
- * ║    Patent surfaces 23-24 are the flat optical block G (filter /    ║
- * ║    faceplate / low-pass / IR-cut block). Per the project data      ║
- * ║    convention, that block is omitted from the surfaces array and   ║
- * ║    folded into the final air-equivalent BF values.                 ║
+ * ║    Patent surfaces 23-24 are the flat optical block G (1.56 mm,    ║
+ * ║    nd 1.51633, νd 64.1, S-BSL7 class) with 1.56 mm air to the      ║
+ * ║    image. It is modeled in `rearPlates` (traced, not drawn). BF    ║
+ * ║    stores d22 = 6.82 / 5.36 / 4.9912 mm. Tele keeps the printed    ║
+ * ║    BF 7.58 image plane: printed d22 5.00 would sit 0.009 mm longer ║
+ * ║    (both rounded; true d22 about 4.995). Air-equivalent BF         ║
+ * ║    = 9.409 / 7.949 / 7.580 mm (patent 9.41 / 7.95 / 7.58).         ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    The patent does not publish semi-diameters. Values here were    ║
@@ -36,7 +39,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
  * ║    ✓ Aperture stop and variable zoom gaps                         ║
- * ║    ✗ DOES NOT include sensor glass / filter block G as surfaces   ║
+ * ║    ✗ DO NOT include: mechanical parts (cover glass: `rearPlates`) ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -227,7 +230,20 @@ const LENS_DATA = {
     { label: "19", R: -40.597, d: 1.0, nd: 1.0, elemId: 0, sd: 4.3 },
     { label: "STO", R: 1e15, d: 11.0, nd: 1.0, elemId: 0, sd: 3.55 },
     { label: "21", R: 515.35, d: 4.4, nd: 1.58313, elemId: 11, sd: 13.1 },
-    { label: "22A", R: -27.443, d: 9.41, nd: 1.0, elemId: 0, sd: 13.4 },
+    { label: "22A", R: -27.443, d: 6.82, nd: 1.0, elemId: 0, sd: 13.4 }, // d22 variable (zoom), gap to block G
+  ],
+
+  /* ── Optical block G (patent surfaces 23–24): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "G",
+      thicknessMm: 1.56,
+      nd: 1.51633,
+      vd: 64.1,
+      glass: "S-BSL7",
+      gapAfterMm: 1.56,
+      source: "US 2013/0176385 A1, Numerical Example 4 surfaces 23–24",
+    },
   ],
 
   asph: {
@@ -295,9 +311,9 @@ const LENS_DATA = {
       [35.91, 35.91],
     ],
     "22A": [
-      [9.41, 9.41],
-      [7.95, 7.95],
-      [7.58, 7.58],
+      [6.82, 6.82],
+      [5.36, 5.36],
+      [4.9912, 4.9912], // printed BF 7.58 − 1.56/1.51633 − 1.56 (printed d22 5.00 rounds 0.009 longer)
     ],
   },
   varLabels: [

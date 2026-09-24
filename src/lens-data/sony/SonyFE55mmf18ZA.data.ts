@@ -23,15 +23,15 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    via paraxial inner-focus solve (D7 + D9 = 16.48 mm constant). ║
  * ║                                                                    ║
  * ║  COVER GLASS:                                                      ║
- * ║    Patent specifies SG: nd = 1.516798, d = 2.00 mm, followed by  ║
- * ║    1.00 mm air to image. Excluded from surfaces array; physical   ║
- * ║    path folded into air-equivalent BFD on surface 13.             ║
- * ║    BFD = 11.78 + 2.00/1.5168 + 1.00 ≈ 14.10 mm.                 ║
+ * ║    Patent Table 1 surfaces 14–15 (optical member SG, 2.00 mm,      ║
+ * ║    nd 1.516798, νd 64.2) and the 1.00 mm air gap to the image      ║
+ * ║    are modeled in `rearPlates` (traced, not drawn). Surface 13     ║
+ * ║    keeps the patent's 11.78 mm gap to SG.                          ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
  * ║    ✓ Aperture stop and variable focus gaps                        ║
- * ║    ✗ DO NOT include: sensor glass, filters, mechanical parts      ║
+ * ║    ✗ DO NOT include: mechanical parts (cover glass: `rearPlates`)  ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -173,8 +173,21 @@ const LENS_DATA = {
 
     // ── G3: Rear sub-group GR (L32) ──
     { label: "12", R: -18.057, d: 1.2, nd: 1.69895, elemId: 7, sd: 13.5 },
-    // BFD: 11.78 air + 2.00/1.5168 CG + 1.00 air ≈ 14.10 mm (air-equivalent to image)
-    { label: "13", R: -39.016, d: 14.1, nd: 1.0, elemId: 0, sd: 13.5 },
+    // Last surface: patent gap to the optical member SG
+    { label: "13", R: -39.016, d: 11.78, nd: 1.0, elemId: 0, sd: 13.5 },
+  ],
+
+  /* ── Optical member SG (patent Table 1 surfaces 14–15): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "SG",
+      thicknessMm: 2.0,
+      nd: 1.516798,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 1.0,
+      source: "US 2015/0092100 A1, Example 1 Table 1 surfaces 14–15",
+    },
   ],
 
   /* ── Aspherical coefficients ── */

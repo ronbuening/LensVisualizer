@@ -16,14 +16,16 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  objectward during wide-to-tele zooming.                           ║
  * ║                                                                    ║
  * ║  NOTE ON FLAT REAR OPTICS:                                         ║
- * ║    The patent rear train after L14 is d26 air, a 24.0 mm prism,     ║
- * ║    1.0 mm air, a 1.57 mm filter plate, 1.0 mm air, a 0.8 mm sensor  ║
- * ║    cover, then L = 1.290 mm to the image plane. The data file       ║
- * ║    includes the 24.0 mm prism as a rendered glass block. The filter ║
- * ║    and sensor cover are intentionally omitted under the data-file   ║
- * ║    rule against filters/sensor glass; the remaining rear train is   ║
- * ║    folded into the final 4.8248 mm air distance after the prism,    ║
- * ║    which re-closes paraxial focus with the rounded patent table.    ║
+ * ║    The patent rear train after L14 is d26 air, a 24.0 mm prism,    ║
+ * ║    1.0 mm air, a 1.57 mm filter plate, 1.0 mm air, a 0.8 mm sensor ║
+ * ║    cover, then L = 1.290 mm to the image plane. The 24.0 mm prism  ║
+ * ║    stays in `surfaces` as a rendered glass block. The filter plate ║
+ * ║    (nd 1.54771, νd 62.84) and sensor cover (nd 1.52300, νd 55.00)  ║
+ * ║    are modeled in `rearPlates` (traced, not drawn) with the        ║
+ * ║    printed 1.000 mm and 1.290 mm air after them. Surface 28        ║
+ * ║    stores 0.9951 mm (printed d28 = 1.000) so the previous image    ║
+ * ║    plane, which re-closes paraxial focus with the rounded patent   ║
+ * ║    table, is kept unchanged.                                       ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    The patent does not publish clear semi-diameters. SDs below were ║
@@ -318,7 +320,26 @@ const LENS_DATA = {
     { label: "25", R: 248.9494, d: 2.7894, nd: 1.6935, elemId: 14, sd: 12.4 },
     { label: "26A", R: -39.8402, d: 1.7, nd: 1, elemId: 0, sd: 12.4 },
     { label: "27", R: 1e15, d: 24, nd: 1.51633, elemId: 15, sd: 13 },
-    { label: "28", R: 1e15, d: 4.8248, nd: 1, elemId: 0, sd: 13 },
+    // Prism rear face: gap to the filter plate (printed d28 = 1.000; 0.9951 keeps the re-closed image plane)
+    { label: "28", R: 1e15, d: 0.9951, nd: 1, elemId: 0, sd: 13 },
+  ],
+
+  /* ── Filter plate and sensor cover (patent surfaces 29–32): traced, not drawn ── */
+  rearPlates: [
+    {
+      thicknessMm: 1.57,
+      nd: 1.54771,
+      vd: 62.84,
+      gapAfterMm: 1.0,
+      source: "US 2003/0072086 A1, Example 1 surfaces 29–30 (d29 filter plate, d30 air)",
+    },
+    {
+      thicknessMm: 0.8,
+      nd: 1.523,
+      vd: 55.0,
+      gapAfterMm: 1.29,
+      source: "US 2003/0072086 A1, Example 1 surfaces 31–32 (d31 sensor cover, L = 1.290 to image)",
+    },
   ],
 
   asph: {

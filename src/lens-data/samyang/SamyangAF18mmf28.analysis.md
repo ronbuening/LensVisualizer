@@ -28,9 +28,9 @@ G21 is the focusing group. It contains L61 and L71 and has a computed focal leng
 
 G31 is the fixed rear group. It contains L81 and L91 and has a computed focal length of −56.84 mm. Its negative power shifts the rear principal point and extends the back focus relative to the system focal length. The last element, L91, is a strong negative field flattener, a role explicitly described in the patent’s discussion of image-plane curvature correction.
 
-The patent prescription includes a plane-parallel rear filter or sensor-cover plate after surface 18. The data file omits that plate, following project convention. Surface 18 therefore uses the patent Table 3 in-air rear spacing of 24.59 mm. A direct paraxial trace from the rounded prescription gives 24.611 mm, a 0.021 mm residual attributable to tabular rounding.
+The patent prescription includes a plane-parallel rear filter or sensor-cover plate after surface 18 (Table 1 surfaces 19–20, "Filter", 2.5 mm, nd 1.5168, νd 64.1973). The data file models that plate in `rearPlates`: it is traced by every analysis but not drawn. Surface 18 stores the printed 22.444 mm gap to the plate. The air-equivalent rear spacing, 22.444 + 2.5/1.5168 + 0.498 mm, equals the patent Table 3 in-air value of 24.59 mm. A direct paraxial trace from the rounded prescription gives 24.611 mm, a 0.021 mm residual attributable to tabular rounding.
 
-The rear cover-stack values in the patent are internally inconsistent by about 0.5 mm. Table 1 prints surface 18–19 = 22.444 mm, filter thickness = 2.5 mm, and surface 20–21 = 2.5 mm. Table 16 gives f_Back = 25.444 mm, which instead requires roughly 0.5 mm of post-filter air. Table 3 gives OAL = 70.7079 mm, which matches the sum through the rear face of the 2.5 mm cover plate, not the focus plane implied by Table 16. The data file therefore prioritizes Table 3’s in-air spacing for the cover-glass-excluded model and records the cover-stack inconsistency in comments rather than forcing the printed rear stack into the optical prescription.
+The rear cover-stack values in the patent are internally inconsistent by about 0.5 mm. Table 1 prints surface 18–19 = 22.444 mm, filter thickness = 2.5 mm, and surface 20–21 = 2.5 mm. Table 16 gives f_Back = 25.444 mm, which instead requires roughly 0.5 mm of post-filter air. Table 3 gives OAL = 70.7079 mm, which matches the sum through the rear face of the 2.5 mm cover plate, not the focus plane implied by Table 16. The data file therefore keeps the printed 22.444 mm gap and the printed plate, but derives the plate-to-image gap from Table 3’s in-air spacing (24.59 − 22.444 − 2.5/1.5168 = 0.498 mm) instead of using the printed 2.5 mm row. That derived gap agrees with the roughly 0.5 mm implied by Table 16.
 
 ## Element-by-Element Analysis
 
@@ -181,7 +181,7 @@ The L81 pair sits in the fixed rear group. It gives a final correction layer for
 
 ## Conditional Expressions
 
-The patent defines four conditional expressions and tabulates values for all five embodiments in Table 16. Example 1 satisfies all four. For Equation 2, f_Back follows the patent convention: physical distance from surface 18 to the image plane with the rear plane-parallel cover plate in place, not the air-equivalent rear gap stored in the data file.
+The patent defines four conditional expressions and tabulates values for all five embodiments in Table 16. Example 1 satisfies all four. For Equation 2, f_Back follows the patent convention: physical distance from surface 18 to the image plane with the rear plane-parallel cover plate in place, not the air-equivalent rear spacing. In the data file, that physical distance is 22.444 + 2.5 + 0.498 = 25.442 mm.
 
 | Condition | Expression | Computed / inferred | Patent Table 16 | Patent range |
 |---|---|---:|---:|---:|
@@ -194,14 +194,14 @@ Equation 2 controls the back-working-distance relationship needed for a short-fl
 
 ## Verification Summary
 
-The prescription was re-entered and checked with an independent paraxial y–ν ray trace. The data file omits the rear cover glass and uses the patent’s air-equivalent rear spacing.
+The prescription was re-entered and checked with an independent paraxial y–ν ray trace. Paraxial checks trace the rear filter plate from `rearPlates`. The air-equivalent rear spacing is listed below as the equivalent cover-free value.
 
 | Quantity | Computed | Patent | Difference / note |
 |---|---:|---:|---|
 | EFL at infinity | 18.548 mm | 18.541 mm | +0.007 mm |
 | Air-equivalent BFD, no cover plate | 24.611 mm | 24.59 mm | +0.021 mm from rounded prescription |
 | Cover-stack f_Back from surface 18 | 25.463 mm | 25.444 mm | +0.019 mm; uses the Table 16 cover-stack convention |
-| f_Back / f | 1.372 | 1.372 | uses patent f_Back convention, not data-file air BFD |
+| f_Back / f | 1.372 | 1.372 | uses patent f_Back convention, not the air-equivalent BFD |
 | L_Front | 27.023 mm | 27.023 mm | exact from stop position |
 | L_Rear | 18.741 mm | 18.741 mm | exact from stop to last lens vertex |
 | L_Front / L_Rear | 1.442 | 1.442 | matches |
@@ -218,7 +218,7 @@ The small EFL and BFD residuals are consistent with a patent prescription rounde
 
 The data file uses the patent’s unscaled Example 1 prescription. No production scaling is applied, because the computed EFL is already 18.55 mm and the production lens is marketed as 18 mm.
 
-The cover glass/filter surfaces 19 and 20 are excluded. Surface 18 therefore has d = 24.59 mm, the Table 3 in-air spacing. The cover-excluded front-to-image distance in the data file is 70.354 mm. This is intentionally not the patent’s printed OAL because the patent OAL uses a rear-cover convention that is inconsistent with its own f_Back and in-air values by about 0.5 mm.
+The cover glass/filter surfaces 19 and 20 are modeled as one `rearPlates` entry (2.5 mm, nd 1.5168, νd 64.1973, N-BK7). The plate is traced but not drawn. Surface 18 has d = 22.444 mm, the printed Table 1 gap. The plate-to-image gap is 0.498 mm, derived from the Table 3 in-air spacing of 24.59 mm rather than taken from the printed 2.5 mm row. The physical front-to-image distance in the data file is 71.206 mm. The equivalent cover-free, air-equivalent distance is 70.354 mm. The patent’s printed OAL of 70.7079 mm matches the distance from the front vertex to the rear face of the plate.
 
 Semi-diameters are not published in the patent. The data file uses estimated renderer semi-diameters constrained by paraxial marginal and chief ray heights, Fig. 1 relative proportions, the 58 mm filter envelope, edge thickness, aspheric conic limits, and cross-gap sag clearance. They should not be read as measured mechanical clear apertures.
 

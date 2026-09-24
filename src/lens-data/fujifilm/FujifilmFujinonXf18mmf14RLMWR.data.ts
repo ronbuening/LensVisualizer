@@ -13,10 +13,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                    ║
  * ║ NOTE ON SCALING: none. Patent f=17.90 mm is used at native scale.  ║
  * ║                                                                    ║
- * ║ NOTE ON REAR PLATE: patent PP surfaces 26-27 represent filters /   ║
- * ║ cover glass and are omitted. Surface 25 d is the documented        ║
- * ║ air-equivalent rear spacing: 8.4141 + 2.8500/1.51680 + 1.1000     ║
- * ║ = 11.3930556962 mm.                                                ║
+ * ║ NOTE ON REAR PLATE: patent Table 1 surfaces 26-27 (optical member  ║
+ * ║ PP, filters / cover glass: 2.8500 mm, nd 1.51680, vd 64.20) and    ║
+ * ║ the 1.1000 mm air gap to Sim are modeled in `rearPlates` (traced,  ║
+ * ║ not drawn). Surface 25 keeps the patent's 8.4141 mm gap to PP.     ║
  * ║                                                                    ║
  * ║ NOTE ON APERTURE: the patent publishes the stop position but not   ║
  * ║ its diameter. STO sd=10.73762 mm is a modeling calibration to the  ║
@@ -292,7 +292,21 @@ const LENS_DATA = {
     { label: "22A", R: 11.0173, d: 6.72, nd: 1.0, elemId: 0, sd: 9.95 },
     { label: "23", R: 363.2443, d: 2.28, nd: 1.603, elemId: 14, sd: 9.55 },
     { label: "24", R: -62.1067, d: 0.92, nd: 1.84667, elemId: 15, sd: 9.85 },
-    { label: "25", R: 1e15, d: 11.3930556962, nd: 1.0, elemId: 0, sd: 10.2 },
+    // Last surface: patent gap to the parallel plate PP
+    { label: "25", R: 1e15, d: 8.4141, nd: 1.0, elemId: 0, sd: 10.2 },
+  ],
+
+  /* ── Optical member PP (patent Table 1 surfaces 26–27): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PP",
+      thicknessMm: 2.85,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 1.1,
+      source: "US 2022/0011542 A1, Example 1 Table 1 surfaces 26–27",
+    },
   ],
 
   /* ── Aspherical coefficients ── */

@@ -56,7 +56,7 @@ Relative to the fixed modeled image plane, the executed movement solution is:
 
 Positive values in this table are imageward. G1 first moves imageward and then partially reverses before the tele end; G2, G3, and G4 move objectward overall; G5 remains stationary. The reversal is not smoothed away by interpolation: the three patent states are retained as explicit zoom control points.
 
-The source also includes a plane-parallel optical member PP between the lens and image surface. Paragraph 0055 describes PP as a surrogate for camera-side cover glass, filters, or related components. The LensVisualizer prescription omits that plate and replaces the source path after surface 25 with the d-line air-equivalent distance 14.5180581737 mm. This preserves the relevant first-order rear optical path while avoiding an excluded sensor/filter surrogate. [US 2015/0131163 A1, ¶0055, ¶0076, Table 1.]
+The source also includes a plane-parallel optical member PP between the lens and image surface. Paragraph 0055 describes PP as a surrogate for camera-side cover glass, filters, or related components. Table 1 gives it as surfaces 26–27: 2.8500 mm thick, nd 1.516798, νd 64.20, preceded by a 5.0000 mm gap from surface 25 and followed by 7.6391 mm to the image. The data file models PP in `rearPlates` (N-BK7 class) with those physical gaps: every analysis traces it, but it is not drawn. Its d-line air-equivalent rear path, 5 + 2.85/1.516798 + 7.6391 = 14.5180581737 mm, is the paraxial equivalent of the source path. [US 2015/0131163 A1, ¶0055, ¶0076, Table 1.]
 
 No scale factor is applied: all radii, thicknesses, image-plane distances, and asphere coefficients remain at the patent’s native scale.
 
@@ -267,13 +267,13 @@ Accordingly, the LensVisualizer model contains no OIS decenter or stabilization 
 
 The final `.data.ts` was numerically evaluated as the implemented model rather than by reusing a separate hard-coded prescription. A strict literal parser loads the authored surfaces, variable spacings, aspheres, and metadata; separate ABCD and height/reduced-angle implementations then reproduce the first-order results.
 
-| State | Computed EFL (mm) | Patent f (mm) | Computed BFL from surface 25 (mm) | Model track to image (mm) |
+| State | Computed EFL (mm) | Patent f (mm) | Computed air-equivalent BFL from surface 25 (mm) | Physical track to image (mm) |
 | --- | ---: | ---: | ---: | ---: |
-| Wide | 10.3258082792 | 10.33 | 14.5094207414 | 102.4880581737 |
-| Intermediate | 15.2023514554 | 15.20 | 14.5107201820 | 96.8580581737 |
-| Tele | 23.3599771477 | 23.36 | 14.5028634382 | 99.6880581737 |
+| Wide | 10.3258082792 | 10.33 | 14.5094207414 | 103.4591 |
+| Intermediate | 15.2023514554 | 15.20 | 14.5107201820 | 97.8291 |
+| Tele | 23.3599771477 | 23.36 | 14.5028634382 | 100.6591 |
 
-The modeled rear path after surface 25 is 14.5180581737 mm in air-equivalent distance, reproducing the patent’s `Bf (in air) = 14.52 mm` at source precision. The paraxial BFL calculated from the rounded prescription differs slightly by zoom state; those residuals are retained as source-rounding effects rather than absorbed into the rear spacing.
+The modeled rear path after surface 25 is 15.4891 mm physically (5.0000 air + 2.8500 PP + 7.6391 air), including PP in the track, and 14.5180581737 mm in air-equivalent distance, reproducing the patent’s `Bf (in air) = 14.52 mm` at source precision. The paraxial BFL calculated from the rounded prescription differs slightly by zoom state; those residuals are retained as source-rounding effects rather than absorbed into the rear spacing.
 
 The surface-by-surface Petzval sum, calculated as `φ/(n·n′)` on all implemented refracting surfaces, is 0.00705687295443 mm⁻¹. Its reciprocal is not treated as a directly measured image-shell radius.
 

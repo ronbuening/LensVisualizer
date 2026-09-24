@@ -20,10 +20,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  Scaling: none. Patent Example 4 is already at 28.82-67.90 mm,     ║
  * ║  matching the production 28-70 mm class.                           ║
  * ║                                                                    ║
- * ║  Cover/filter handling: patent filter FL (2.5 mm, nd=1.51680) is   ║
- * ║  excluded from surfaces and folded into surface 18's air-          ║
- * ║  equivalent back focal distance: 30.521 + 2.5 / 1.51680 + 1.0      ║
- * ║  = 33.169207 mm.                                                  ║
+ * ║  Cover/filter handling: patent Table 13 filter FL (surfaces        ║
+ * ║  19–20, 2.500 mm, nd 1.51680, νd 64.20) and its 1.000 mm air gap   ║
+ * ║  to the image are modeled in `rearPlates` (traced, not drawn).     ║
+ * ║  Surface 18 keeps the patent's 30.521 mm gap to the filter.        ║
  * ║                                                                    ║
  * ║  Semi-diameters: not patent-listed. Values are inferred by         ║
  * ║  paraxial marginal/chief-ray envelopes with mechanical clearance,  ║
@@ -184,7 +184,20 @@ const LENS_DATA = {
     { label: "16A", R: 27.696, d: 4.959, nd: 1.0, elemId: 0, sd: 8.5 },
 
     { label: "17", R: -41.2519, d: 3.12, nd: 1.7495, elemId: 9, sd: 11.0 },
-    { label: "18", R: -27.9283, d: 33.169207, nd: 1.0, elemId: 0, sd: 13.7 },
+    { label: "18", R: -27.9283, d: 30.521, nd: 1.0, elemId: 0, sd: 13.7 },
+  ],
+
+  /* ── Filter FL (patent Table 13 surfaces 19–20): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "FL",
+      thicknessMm: 2.5,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 1.0,
+      source: "US 2015/0077859 A1, Example 4 Table 13 surfaces 19–20",
+    },
   ],
 
   asph: {

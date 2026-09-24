@@ -98,7 +98,7 @@ With the patent open to the prescription table, walk each surface in order and v
 
 | Field | Verify against | Notes |
 |---|---|---|
-| `R` | Patent table radius | Watch sign convention — some patents flip sign. Last-row image-side back focus is excluded. |
+| `R` | Patent table radius | Watch sign convention — some patents flip sign. Rear cover/filter plates and their gaps belong in `rearPlates`, not `surfaces`. |
 | `d` | Patent table thickness | For variable gaps, this should match `var[label][0][0]` (infinity, first zoom position). |
 | `nd` | Patent table or computed from glass | Already audited in Phase 1; spot-check that the surface and element values agree. |
 | `elemId` | Element identity | Cemented junctions carry the rear element's `elemId`; air gaps use `0`. See [LENS_DATA_SPEC.md](../src/lens-data/LENS_DATA_SPEC.md) Pairing Rules. |

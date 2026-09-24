@@ -30,10 +30,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    D1, D2 and L7 at ≈5.2–5.9 mm but its air-lens outlines do not   ║
  * ║    follow the tabulated sags. Corner bundle is vignetted by L2.    ║
  * ║                                                                    ║
- * ║  Cover glass: patent parallel flat plate F (nd=1.51680, d=1.40)   ║
- * ║    with 0.50 mm air to image (¶[0045]) excluded; air-equivalent   ║
- * ║    BFD folded into last surface d = 14.179 mm (paraxial focus     ║
- * ║    reproduces it to 0.0003 mm).                                    ║
+ * ║  Cover glass: patent parallel flat plate F (surface 14 "FILTER",   ║
+ * ║    1.40 mm, nd 1.51680, νd 64.20) is modeled in `rearPlates`       ║
+ * ║    (traced, not drawn). S13 keeps the patent's 12.756 mm gap to    ║
+ * ║    the plate; 0.50 mm plate-to-image from ¶[0045] ("approx.        ║
+ * ║    0.5 mm"; surface 15 D is not tabulated).                        ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -192,7 +193,20 @@ const LENS_DATA = {
 
     // ── Group IV (weak negative): L7 ──
     { label: "12", R: -12.419, d: 1.2, nd: 1.8208, elemId: 7, sd: 5.5 }, // L7 front
-    { label: "13A", R: -13.832, d: 14.179, nd: 1.0, elemId: 0, sd: 5.5 }, // L7 rear (asph) → air-eq BFD
+    { label: "13A", R: -13.832, d: 12.756, nd: 1.0, elemId: 0, sd: 5.5 }, // L7 rear (asph) → plate F
+  ],
+
+  /* ── Parallel flat plate F (patent surfaces 14–15): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "F",
+      thicknessMm: 1.4,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "BSC7 (HOYA)",
+      gapAfterMm: 0.5,
+      source: "US 2013/0321936 A1, Example 3 ¶[0136] surfaces 14–15; 0.5 mm to image from ¶[0045]",
+    },
   ],
 
   /* ── Aspherical coefficients ── */
@@ -219,13 +233,14 @@ const LENS_DATA = {
 
   /* ── Variable air spacings (unit focus) ──
    *  Unit focus: entire lens translates forward; only BFD changes.
-   *  BFD includes the folded sensor-cover path (12.756 + 1.40 / 1.51680 + 0.50 = 14.179 mm).
+   *  13A is the physical gap to plate F (patent 12.756 mm); the plate and 0.50 mm air follow in
+   *  `rearPlates` (air-equivalent BF 12.756 + 1.40 / 1.51680 + 0.50 = 14.179 mm).
    *  The patent tabulates no finite-focus state. The close value is CALCULATED: paraxial unit-focus
    *  extension of 1.302 mm for a 0.30 m object-to-image distance (production normal-mode MFD).
    *  The GR's 0.10 m macro mode is not modeled.
    */
   var: {
-    "13A": [14.179, 15.481],
+    "13A": [12.756, 14.058],
   },
   varLabels: [["13A", "BF"]],
 

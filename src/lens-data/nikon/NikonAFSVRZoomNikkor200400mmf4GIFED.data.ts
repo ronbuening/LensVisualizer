@@ -17,8 +17,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * d7 + d12 remains 78.75748 mm. G2 and G3 provide zoom motion. G4m shifts transversely for VR; that decenter is a
  * source fact but is not an authored axial var state in the ordinary sequential prescription.
  *
- * Rear normalization: source filter surfaces 44-45 (2.00 mm, nd=1.51680) are excluded. Surface 43 therefore uses the
- * air-equivalent rear spacing 3.00 + 2.00/1.51680 + 91.16781 = 95.48637540084388 mm to the image plane.
+ * Rear filter: source surfaces 44-45 (rear-inserting filter BFL, 2.00 mm, nd=1.51680, vd=64.12) are modeled in
+ * `rearPlates` (traced, not drawn). Surface 43 stores the printed 3.00 mm gap to the filter and the plate carries the
+ * printed Bf = 91.16781 mm (identical at every zoom and focus state) to the image plane. The air-equivalent rear
+ * spacing 3.00 + 2.00/1.51680 + 91.16781 = 95.48637540084388 mm is unchanged.
  *
  * Field stop S2 is retained as an optically neutral clear-aperture plane because the patent explicitly places a field
  * stop between G4f and G4m. Its sd=17.90 mm is inferred from the full-field (Y=21.60 mm) paraxial envelope at S2
@@ -372,7 +374,7 @@ const LENS_DATA = {
       fl: -66.168729,
       glass: "847238 - dense-flint class",
       cemented: "D48",
-      role: "Negative partner of L48 and final active glass element before the normalized rear image spacing.",
+      role: "Negative partner of L48 and final active glass element before the rear filter plate.",
     },
   ],
 
@@ -419,7 +421,20 @@ const LENS_DATA = {
     { label: "40", R: -91.116, d: 0.1, nd: 1, elemId: 0, sd: 20 },
     { label: "41", R: 64.829, d: 6.5, nd: 1.64, elemId: 23, sd: 19.8 },
     { label: "42", R: -64.829, d: 1.7, nd: 1.84666, elemId: 24, sd: 19.8 },
-    { label: "43", R: 417.363, d: 95.48637540084388, nd: 1, elemId: 0, sd: 19.8 },
+    { label: "43", R: 417.363, d: 3, nd: 1, elemId: 0, sd: 19.8 }, // gap to the BFL filter plate
+  ],
+
+  /* ── Rear-inserting filter BFL (patent surfaces 44–45): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "BFL",
+      thicknessMm: 2,
+      nd: 1.5168,
+      vd: 64.12,
+      glass: "J-BK7A",
+      gapAfterMm: 91.16781,
+      source: "US 2005/0157403 A1, Example 1 Table 1 surfaces 44–45",
+    },
   ],
 
   asph: {},

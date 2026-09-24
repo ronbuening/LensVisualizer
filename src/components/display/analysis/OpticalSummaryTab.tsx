@@ -96,6 +96,14 @@ export default function OpticalSummaryTab({
       <SummarySection title="Optical State" t={t}>
         <AnalysisMetricRow label="Path" value={summary.opticalPath === "folded" ? "Folded" : "Sequential"} t={t} />
         <AnalysisMetricRow label="Surfaces" value={summary.surfaceCount.toString()} t={t} />
+        {summary.rearPlateCount > 0 ? (
+          <AnalysisMetricRow
+            label="Rear plates"
+            value={`${summary.rearPlateCount} · ${formatMm(summary.rearPlateThicknessMm, 2)}`}
+            note="cover/filter glass, traced but not drawn"
+            t={t}
+          />
+        ) : null}
         <AnalysisMetricRow label="Focus" value={formatFocusDistance(summary.focusDistanceM)} t={t} />
         <AnalysisMetricRow label="Zoom" value={formatControl(summary.zoomT)} t={t} />
         <AnalysisMetricRow label="Aberration" value={formatControl(summary.aberrationT)} t={t} />

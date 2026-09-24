@@ -14,17 +14,17 @@ This analysis describes the `CANON EF 400mm f/4 DO IS USM` prescription represen
 
 Several independent facts make the selected example a close production correlate. Numerical Example 1 is a telephoto photographic system with a published focal length of 392.00 mm, F-number of 4.12, and full field of 6.32°. The verified model gives an image height of 21.643 mm at the 3.16° half-field, essentially the half-diagonal of the 36 × 24 mm format. Canon marketed the production lens as a 400 mm f/4 EF lens with a 6°10′ diagonal angle of view, and Canon's product block diagram identifies both a DO lens and a fluorite lens. The patent priority and filing dates also precede the lens's December 2001 market introduction by a short interval. These are convergent identification criteria rather than a literal claim that the production prescription is identical in every construction detail. [1][4][5]
 
-The marketed production construction is 17 elements in 13 groups. The LensVisualizer model contains 15 refractive elements in 11 active air-separated groups because the patent's terminal plane-parallel plate is omitted from the active prescription and the patent's thin DOE microstructure is represented as surface phase data rather than ordinary macro lens elements. No one-for-one identity between the marketed 17/13 count and the patent macro table is asserted. [4][5]
+The marketed production construction is 17 elements in 13 groups. The LensVisualizer model contains 15 refractive elements in 11 active air-separated groups because the patent's terminal plane-parallel plate is not a lens element (it is traced as a `rearPlates` entry) and the patent's thin DOE microstructure is represented as surface phase data rather than ordinary macro lens elements. No one-for-one identity between the marketed 17/13 count and the patent macro table is asserted. [4][5]
 
 Two source corrections are explicitly carried into the data. The selected A1 publication prints `r17 = +87.040 mm`; the same-application grant US 6,473,232 B2 and the direct divisional US 2003/0053212 A1 both print `r17 = -87.040 mm`, which is the value used by the model. The A1 and B2 print `r22 = +131.344 mm`, while the direct divisional prints `r22 = +131.844 mm`. Independent focal-length reconstruction supports the divisional value, and the model therefore uses `+131.844 mm`. The raw A1 values remain source facts; the substitutions are modeling corrections, not silent transcription changes. [1][2][3]
 
 No prescription scaling is applied. The production marketing focal length remains 400 mm, while the verified design EFL stored in the data is 392.025203770699 mm. Likewise, the production aperture designation is f/4, while the modeled design F-number and `nominalFno` are 4.12.
 
-The patent ends Numerical Example 1 with a 2.20 mm plane-parallel `nd = 1.51633` plate. Canon specifies a 52 mm drop-in filter for the production lens, but the patent does not identify its terminal plate as that filter. The model therefore treats the plate as an image-side filter/cover-plate normalization case rather than asserting a product-part identity. It is omitted from the active sequential prescription under the data specification, while its paraxial translation is preserved by a 65.507775640 mm air-equivalent spacing from surface 27 to the image plane.
+The patent ends Numerical Example 1 with a 2.20 mm plane-parallel `nd = 1.51633` plate. Canon specifies a 52 mm drop-in filter for the production lens, but the patent does not identify its terminal plate as that filter. The model therefore treats the plate as an image-side plate rather than asserting a product-part identity. It is modeled in the data file's `rearPlates` (2.20 mm, `nd = 1.51633`, `νd = 64.1`): every analysis traces it, but it is not drawn. Surface 27 keeps the printed `d27 = 0.72 mm` to the plate. The table ends at `r29 = ∞` without a d29 or back focus, so the 63.3369041 mm plate-to-image air is the only derived rear distance; it places the image at the paraxial focus, reproducing the 65.507775640 mm air-equivalent spacing from surface 27 to the image plane.
 
 ## Optical Architecture
 
-The patent explicitly describes the first embodiment as a telephoto-type photographic system (¶0033). The final model likewise satisfies the project's telephoto criterion: the normalized active track is 255.587775640 mm and the verified EFL is 392.025203771 mm, giving `TL/EFL = 0.651967713`. Because the back focal distance is much shorter than the EFL, the design is not retrofocus.
+The patent explicitly describes the first embodiment as a telephoto-type photographic system (¶0033). The final model likewise satisfies the project's telephoto criterion: the air-equivalent track is 255.587775640 mm and the verified EFL is 392.025203771 mm, giving `TL/EFL = 0.651967713` (the physical track through the image-side plate is 256.336904128 mm, `TL/EFL = 0.653878632`). Because the back focal distance is much shorter than the EFL, the design is not retrofocus.
 
 The active macro prescription contains 15 modeled refractive elements in 11 air-separated groups. Three conventional groups are cemented pairs: `D2` (L8–L9), `D3` (L10–L11), and `D4` (L13–L14). L1–L2 form the front `DO1` macro pair, but they are not labeled as a conventional cemented doublet because the patent describes the first-embodiment DOE as an adjacently laminated grating with a thin air layer between grating strata (¶¶0068–0084). Those microstructure layers are intentionally collapsed into the surface-2 diffractive interaction. The aperture stop lies between L7 and D2 at the patent's r14 position.
 
@@ -110,7 +110,7 @@ L13 is biconvex positive and L14 a negative meniscus, cemented at surface 24. As
 
 **L15:** `nd = 1.51633`, `νd = 64.1`. Glass: `S-BSL7-equivalent class (516641; vendor unproven)`. Standalone `f = +91.120 mm`.
 
-L15 is the final active refractive element. Its positive power converts the rear-group ray bundle toward the image plane after the alternating powers of D2, D3, L12, and D4. The modeled image plane lies 65.507775640 mm of air-equivalent distance behind surface 27 after normalization of the omitted plane plate.
+L15 is the final active refractive element. Its positive power converts the rear-group ray bundle toward the image plane after the alternating powers of D2, D3, L12, and D4. It is followed by the printed 0.72 mm air gap to the image-side plane plate, which the data file traces as a `rearPlates` entry; the image plane lies 65.507775640 mm of air-equivalent distance behind surface 27.
 
 ## Glass Identification and Selection
 
@@ -185,7 +185,7 @@ Independent computation of the final TypeScript prescription gives the numerical
 | Effective focal length | 392.025203771 mm |
 | Design F-number | 4.120000000 |
 | Entrance pupil diameter | 95.151748488 mm |
-| Normalized active track | 255.587775640 mm |
+| Air-equivalent track | 255.587775640 mm (physical 256.336904128 mm) |
 | `TL/EFL` | 0.651967713 |
 | Image height at 3.16° | 21.643081563 mm |
 | Petzval sum, including DOE as separate surface power | 2.529755554×10^-5 mm^-1 |

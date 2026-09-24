@@ -30,7 +30,11 @@ export interface OpticalSummaryMetrics2 {
   aberrationT: number;
   imagePlaneZMm: number | null;
   totalTrackMm: number | null;
+  /** Authored lens surfaces; synthetic rear plates are reported separately. */
   surfaceCount: number;
+  rearPlateCount: number;
+  /** Summed physical thickness of modeled rear plates in mm (0 when none). */
+  rearPlateThicknessMm: number;
   opticalPath: "sequential" | "folded";
   cardinalEFLMm: number | null;
   bfdMm: number | null;
@@ -90,7 +94,9 @@ export function computeOpticalSummaryForState2(
     aberrationT: state.aberrationT,
     imagePlaneZMm: finiteOrNull(state.imgZ),
     totalTrackMm: finiteOrNull(state.totalTrack),
-    surfaceCount: state.surfaces.length,
+    surfaceCount: L.S.filter((surface) => !surface.synthetic).length,
+    rearPlateCount: L.data.rearPlates?.length ?? 0,
+    rearPlateThicknessMm: (L.data.rearPlates ?? []).reduce((sum, plate) => sum + plate.thicknessMm, 0),
     opticalPath: state.lens.flags.isFoldedOptics ? "folded" : "sequential",
     cardinalEFLMm: finiteOrNull(cardinals?.distances.efl.valueMm),
     bfdMm: finiteOrNull(cardinals?.distances.bfd.valueMm),

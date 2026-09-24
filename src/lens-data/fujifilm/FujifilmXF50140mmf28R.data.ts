@@ -71,12 +71,13 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    sit 1.8 mm apart and leave only ~0.07 mm of air at the 10.4 mm   ║
  * ║    rim the axial beam requires.                                     ║
  * ║                                                                     ║
- * ║  COVER GLASS (patent surfaces 41-42, nd=1.51680, t=2.85 mm +        ║
- * ║  1.10 mm air): excluded per project convention. Its air-equivalent  ║
- * ║  path is folded into the last gap: d(40) = 26.4281 + 2.85/1.5168 +  ║
- * ║  1.10 = 29.4071 mm (patent Bf = 29.41, air-equivalent). The         ║
- * ║  paraxial BFD is 29.36-29.37 mm; the patent image plane sits        ║
- * ║  0.03-0.05 mm behind it (retained as published).                    ║
+ * ║  OPTICAL MEMBER PP (Table 1 surfaces 41-42, t=2.85 mm, nd 1.51680,  ║
+ * ║  νd 64.20, then 1.10 mm air to the image): modeled in `rearPlates`  ║
+ * ║  (traced, not drawn). Surface 40 keeps the patent's 26.4281 mm gap  ║
+ * ║  to PP. Air-equivalent: 26.4281 + 2.85/1.5168 + 1.10 = 29.4071 mm   ║
+ * ║  (patent Bf = 29.41). The paraxial BFD (air-equiv.) is 29.36-29.37  ║
+ * ║  mm; the patent image plane sits 0.03-0.05 mm behind it (retained   ║
+ * ║  as published).                                                     ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -168,7 +169,8 @@ const LENS_DATA = {
    *  exactly from patent TABLE 1. Variable thicknesses DD[7], DD[15],
    *  DD[20] shown below are values at the WIDE end; the same entries
    *  appear in the `var` block with [d_inf, d_close] per zoom position.
-   *  The last surface's d = 29.4071 folds the cover glass path into BFD.
+   *  The last surface's d = 26.4281 is the patent gap to optical member PP
+   *  (modeled in `rearPlates` below).
    */
   surfaces: [
     // G1 — Front group (4 elements, 3 air-separated groups: D1 doublet + L13 + L14)
@@ -219,7 +221,20 @@ const LENS_DATA = {
     { label: "37", R: -26.093, d: 1.31, nd: 1.80518, elemId: 22, sd: 13.85 }, // L49/L410 junction (D7)
     { label: "38", R: -92.8937, d: 4.4, nd: 1.0, elemId: 0, sd: 15.0 }, // L410 rear → air
     { label: "39", R: -27.4751, d: 1.26, nd: 1.91082, elemId: 23, sd: 14.4 }, // L411 front
-    { label: "40", R: -40.9228, d: 29.4071, nd: 1.0, elemId: 0, sd: 14.6 }, // L411 rear → image (cover glass air-equiv folded into BFD)
+    { label: "40", R: -40.9228, d: 26.4281, nd: 1.0, elemId: 0, sd: 14.6 }, // L411 rear → optical member PP (patent Table 1 d40)
+  ],
+
+  /* ── Optical member PP (patent Table 1 surfaces 41–42): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PP",
+      thicknessMm: 2.85,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 1.1,
+      source: "US 2017/0090163 A1, master lens Table 1 surfaces 41–42",
+    },
   ],
 
   /* ── Aspherical coefficients ──

@@ -32,7 +32,7 @@ G1 contains seven elements in seven groups: a positive collector pair (L1–L2),
 
 G2 is subdivided by the aperture stop into G2A (f = +181.6 mm) and G2B (f = +113.8 mm). G2A contains a positive meniscus singlet (L8) and a cemented doublet (L9/L10). G2B contains a cemented doublet (L11/L12), a negative biconcave field-flattener (L13), and a biconvex double-aspherical element (L14). The stop sits between G2A and G2B, producing a quasi-symmetric arrangement about the diaphragm that is the hallmark of the double-Gauss type and provides inherent cancellation of lateral color and distortion.
 
-Total track length is 166.36 mm at infinity. The back focal distance is 37.08 mm (excluding the 1.45 mm low-pass filter modeled in the patent), adequate for SLR mirror clearance on Canon EF, Nikon F, and Sigma SA mounts.
+Total track length is 166.36 mm at infinity, including the patent's 1.45 mm low-pass filter (LPF) and the 1.00 mm air gap behind it. The companion `.data.ts` file models that LPF through `rearPlates`: every analysis traces it, but it is not drawn, and the last lens surface keeps the patent's physical 37.08 mm gap to the filter (about 39.03 mm air-equivalent back focus to the image), adequate for SLR mirror clearance on Canon EF, Nikon F, and Sigma SA mounts.
 
 ## Element-by-Element Analysis
 

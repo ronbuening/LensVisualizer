@@ -53,9 +53,9 @@ These runtime values already matched Pg,F − (0.6438 − 0.001682 vd) and are r
 
 The patent has no numerical finite-focus schedule for this example. The viewer's unit-focus motion and 0.20 m image-to-object endpoint are reconstructed assumptions. All seven elements and the stop translate together; no internal gaps change.
 
-The source filter is omitted from the lens model. Its contribution is 1.40/1.51633 mm of equivalent air, giving rear spacing 14.378 + 1.40/1.51633 + 0.70 = 16.0012818714 mm. The table leaves the post-filter gap d15 blank: the retained 0.70 mm is inferred, not a transcribed value. Independent paraxial infinity focus predicts BF=16.001310496 mm, agreeing within 0.000029 mm; the reconstructed mechanical track 32.938 mm also agrees with the rounded source L/f=1.264. The former model incorrectly used the filter's full physical thickness, BF=16.478 mm.
+The source filter (surfaces 14–15: 1.40 mm, nd 1.51633, νd 64.14, S-BSL7 class) is modeled in `rearPlates`: every analysis traces it, but the diagram does not draw it. The last lens surface keeps the printed 14.378 mm gap to the filter, followed by the plate and 0.70 mm of air to the image. Paraxially this equals an air-equivalent rear spacing of 14.378 + 1.40/1.51633 + 0.70 = 16.0012818714 mm. The table leaves the post-filter gap d15 blank: the retained 0.70 mm is inferred, not a transcribed value. Independent paraxial infinity focus predicts an air-equivalent BF=16.001310496 mm, agreeing within 0.000029 mm; the reconstructed physical track 32.938 mm (lens span plus 14.378 + 1.40 + 0.70) also agrees with the rounded source L/f=1.264. The former model incorrectly used the filter's full physical thickness, BF=16.478 mm.
 
-Solving the rounded lens matrix for the assumed 0.20 m image-to-object distance gives near BF=20.8564680966 mm, extension 4.8551862252 mm. This replaces the former thin-lens estimate BF=20.38 mm. The aperture slider begins at the source f/2.87 rather than the retail f/2.8.
+Solving the rounded lens matrix for the assumed 0.20 m image-to-object distance gives an air-equivalent near BF=20.8564680966 mm (physical gap to the filter 19.2331862252 mm), extension 4.8551862252 mm. This replaces the former thin-lens estimate BF=20.38 mm. The aperture slider begins at the source f/2.87 rather than the retail f/2.8.
 
 ## Aspheres
 

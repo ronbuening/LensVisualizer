@@ -18,10 +18,16 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    Validated against edge-thickness (≥ 0.5 mm), sd/|R| (< 0.90), ║
  * ║    and cross-gap sag intrusion (< 90% of gap) constraints.       ║
  * ║                                                                    ║
+ * ║  NOTE ON OPTICAL FILTER:                                           ║
+ * ║    Patent Table 5 surfaces 28–29 (optical filter FL [0094],       ║
+ * ║    2.500 mm, nd 1.5168, νd 64.1983) and the 1.000 mm air gap to   ║
+ * ║    IMG are modeled in `rearPlates` (traced, not drawn). Surface   ║
+ * ║    27 keeps the patent's 22.747 mm gap to the filter.             ║
+ * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
  * ║    ✓ Aperture stop and variable focus gaps                        ║
- * ║    ✗ DO NOT include: sensor glass, filters, mechanical parts      ║
+ * ║    ✗ DO NOT include: mechanical parts (cover glass: `rearPlates`)  ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -280,7 +286,20 @@ const LENS_DATA = {
     { label: "24", R: -88.4506, d: 1.3, nd: 1.6584, elemId: 14, sd: 10.3 }, // G14 front
     { label: "25", R: 88.4506, d: 6.245, nd: 1.0, elemId: 0, sd: 10.1 }, // G14 rear → air
     { label: "26", R: -27.8033, d: 1.3, nd: 1.6968, elemId: 15, sd: 8.9 }, // G15 front
-    { label: "27", R: -75.2165, d: 25.4, nd: 1.0, elemId: 0, sd: 8.9 }, // G15 rear → image (air-equiv BFD; cover glass path folded in)
+    { label: "27", R: -75.2165, d: 22.747, nd: 1.0, elemId: 0, sd: 8.9 }, // G15 rear → patent gap to filter FL
+  ],
+
+  /* ── Optical filter FL (patent Table 5 surfaces 28–29): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "FL",
+      thicknessMm: 2.5,
+      nd: 1.5168,
+      vd: 64.1983,
+      glass: "N-BK7",
+      gapAfterMm: 1.0,
+      source: "WO 2016/136352 A1, Example 2 Table 5 surfaces 28–29",
+    },
   ],
 
   /* ── Aspherical coefficients ──

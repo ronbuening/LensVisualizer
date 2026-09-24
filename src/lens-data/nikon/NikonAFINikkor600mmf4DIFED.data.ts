@@ -21,9 +21,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ - Example-5 f1 = 197.75 and Φ = 109.8 are stale copy-through values; they  ║
  * ║   are not used in this prescription.                                       ║
  * ║                                                                            ║
- * ║ Omitted plates: patent surfaces 1-2 and 19-20 are fixed plane plates /     ║
- * ║ filters and are excluded. Their optical translation is normalized to air.  ║
- * ║ The rear plate is folded into the STO-to-image spacing.                    ║
+ * ║ Plane plates: patent surfaces 1-2 (front protective plate) are omitted;    ║
+ * ║ their translation is normalized to air. The rear fixed filter F (surfaces  ║
+ * ║ 19-20: 2.00 mm, nd 1.51680, vd 64.1) is modeled in `rearPlates` (traced,   ║
+ * ║ not drawn). STO keeps the physical 42.9 mm to F (65.20 - 22.3); F to image ║
+ * ║ is 135.3069 mm, the corrected focus-table d20 (constant table: 135.31).    ║
  * ║                                                                            ║
  * ║ Stop placement: the patent numerically gives 65.20 mm from surface 18 to   ║
  * ║ the rear filter but does not tabulate S. Figure 9 places S between G3 and  ║
@@ -198,7 +200,21 @@ const LENS_DATA = {
     { label: "16", R: 130.26, d: 17.8751, nd: 1, elemId: 0, sd: 27 },
     { label: "17", R: 218.27, d: 7, nd: 1.49782, elemId: 9, sd: 27 },
     { label: "18", R: -187.896, d: 22.3, nd: 1, elemId: 0, sd: 26.5 },
-    { label: "STO", R: 1e15, d: 179.5254654008439, nd: 1, elemId: 0, sd: 21.83991871847553 },
+    // STO -> rear filter F: patent 18->F 65.20 mm minus the inferred 22.3 mm 18->STO
+    { label: "STO", R: 1e15, d: 42.9, nd: 1, elemId: 0, sd: 21.83991871847553 },
+  ],
+
+  /* ── Rear fixed filter F (patent surfaces 19–20): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "F",
+      thicknessMm: 2,
+      nd: 1.5168,
+      vd: 64.1,
+      glass: "J-BK7A",
+      gapAfterMm: 135.3069,
+      source: "JP H04-238311 A, Example 5 surfaces 19–20; gap after = corrected focus-table d20 (constant table prints 135.31)",
+    },
   ],
 
   asph: {},

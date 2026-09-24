@@ -84,13 +84,13 @@ The trajectories deserve four specific observations:
 1. **G1 moves monotonically outward** (toward the subject) from wide to tele. Its rear vertex travels 23.8 mm further from the image plane across the zoom range.
 2. **G2 reverses direction.** The G2 rear-vertex-to-image-plane distance first *decreases* from 85.8 mm (wide) to 80.6 mm (mid) — a 5.2 mm movement toward the image — then *increases* back to 83.6 mm (tele) — a 3.0 mm movement away from the image. This is the classic non-monotonic variator trajectory of a five-group standard zoom and is shown in the patent's Figure 4 as a curved locus. The reversal allows G2 to provide both the magnification sweep and partial compensation for the image-plane drift caused by G1 motion.
 3. **G3 and G4 move monotonically outward.** G3 (which carries the aperture stop) moves 17.1 mm toward the subject; G4 moves 11.8 mm. Both contribute to maintaining focus across the zoom range, with G4 additionally providing the focusing degree of freedom for object distance.
-4. **G5 is fixed.** Its rear vertex sits a constant 23.0 mm from the image plane at all zoom positions — matching the patent's reported constant Bf of 22.000 mm when air-equivalent.
+4. **G5 is fixed.** Its rear vertex sits a constant 23.0 mm from the image plane at all zoom positions (19.630 mm of air, the 2.85 mm PP plate stack and 0.513 mm of air) — the patent's constant Bf of 22.000 mm when the plates are air-converted.
 
 ---
 
 ## 3. Patent prescription summary
 
-Example 1 comprises 30 optical surfaces plus a compound cover-glass stack (surfaces 31–33), for 33 surfaces total. Paraxial computation from Table 1 independently reproduces the patent's stated focal lengths and back-focal distance across all three zoom positions:
+Example 1 comprises 30 optical surfaces plus a compound cover-glass stack (surfaces 31–33), for 33 surfaces total. The stack is the patent's optical member PP: two cemented plane plates, 2.15 mm of nd 1.54763 / νd 54.98 and 0.70 mm of nd 1.49784 / νd 54.98, followed by 0.513 mm of air. The data file models it in `rearPlates`, so every analysis traces it but the diagram does not draw it; surface 30 stores the patent's physical 19.630 mm gap to the first plate. Paraxial computation from Table 1 independently reproduces the patent's stated focal lengths and back-focal distance across all three zoom positions:
 
 | Position | Patent EFL | Computed EFL | Residual | Patent Bf | Computed Bf |
 |---|---|---|---|---|---|
@@ -98,7 +98,7 @@ Example 1 comprises 30 optical surfaces plus a compound cover-glass stack (surfa
 | Mid   | 31.059 mm | **31.063 mm** | +0.004 | 22.000 mm | **21.999 mm** |
 | Tele  | 53.436 mm | **53.447 mm** | +0.011 | 22.000 mm | **22.001 mm** |
 
-Residuals are at the level of rounding in the published table (R values quoted to 5 decimals, thicknesses to 3). The back focal distance is essentially constant at 22.00 mm across the zoom range, consistent with G5 being stationary.
+Residuals are at the level of rounding in the published table (R values quoted to 5 decimals, thicknesses to 3). The back focal distance (air-equivalent, which is how the patent's Bf of 22.000 mm is stated) is essentially constant at 22.00 mm across the zoom range, consistent with G5 being stationary. The plates add no power, so EFL and paraxial focus are the same as with the air-converted 19.630 + 2.15/1.54763 + 0.70/1.49784 + 0.513 = 21.9996 mm gap; physically the image plane lies 2.15 × (1 − 1/1.54763) + 0.70 × (1 − 1/1.49784) = 0.99 mm further back, which the track lengths above already include.
 
 ---
 
@@ -431,4 +431,4 @@ Together these material and geometric choices, with the double-cemented-doublet 
 | Close-focus G4 travel (0.30 m W/M, 0.40 m T, from image plane) | — | 0.70 mm (W) / 2.04 mm (M) / 3.16 mm (T); within DD28 budget; tele 0.154× vs published 0.16× | ✓ (calculated) |
 | HOYA catalog cross-index for L21 (851401) | — | Matches M-TAFD305 exactly (OHARA 2018/2023 pocket catalogues list the cross-reference directly) | ✓ |
 | Data file paraxial EFL round-trip (re-traced from written surfaces) | patent | 16.492 / 31.063 / 53.447 mm — residuals ≤ 11 μm | ✓ |
-| Data file BFD round-trip (air-equivalent 21.999 mm target) | 22.000 mm | 21.995 / 21.999 / 22.001 mm | ✓ |
+| Data file BFD round-trip (19.630 mm + `rearPlates` PP stack; air-equivalent 21.9996 mm) | 22.000 mm | 21.995 / 21.999 / 22.001 mm | ✓ |

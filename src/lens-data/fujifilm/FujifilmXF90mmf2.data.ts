@@ -30,9 +30,10 @@ import type { LensDataInput } from "../../types/optics.js";
  *   iris from nominalFno.
  *
  * NOTE ON COVER GLASS:
- *   Table 1 ends with a parallel plate PP (surfaces 21–22, d = 2.850, nd = 1.51633) behind a 20.784 mm air gap.
- *   It is excluded from the surfaces array; the last gap is the patent's air-converted Bf = 24.663 mm
- *   (20.784 + 2.850/1.51633 = 22.664 mm, leaving a derived 1.999 mm of air behind the plate).
+ *   Table 1 ends with a parallel plate PP (surfaces 21–22, d = 2.850, nd = 1.51633, νd = 64.14, θgF = 0.53531)
+ *   behind the printed 20.784 mm air gap. It is modeled in `rearPlates` (traced, not drawn); surface 20 keeps the
+ *   physical d20 = 20.784 mm. Table 1 prints no d22, so the 1.999 mm of air behind the plate is derived from the
+ *   patent's air-converted Bf = 24.663 mm (24.663 − 20.784 − 2.850/1.51633); FIG. 1 draws about 2.0 mm.
  *
  * NOTE ON PARTIAL DISPERSION:
  *   Table 1 prints θgF for every element. dPgF is calculated as θgF − (0.6438 − 0.001682·νd). The patent does
@@ -257,7 +258,21 @@ const LENS_DATA = {
 
     // Sub-group G33 (negative): L35
     { label: "19", R: -75.1706, d: 1.35, nd: 1.51742, elemId: 11, sd: 13.5 }, // L35 front
-    { label: "20", R: 75.1706, d: 24.663, nd: 1.0, elemId: 0, sd: 13.5 }, // L35 rear → image (patent Bf, air-converted)
+    { label: "20", R: 75.1706, d: 20.784, nd: 1.0, elemId: 0, sd: 13.5 }, // L35 rear → PP plate (patent d20)
+  ],
+
+  /* ── Parallel plate PP (patent surfaces 21–22): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PP",
+      thicknessMm: 2.85,
+      nd: 1.51633,
+      vd: 64.14,
+      glass: "S-BSL7 (OHARA)",
+      dPgF: -0.00061,
+      gapAfterMm: 1.999,
+      source: "US 2016/0274335 A1, Example 1 Table 1 surfaces 21–22 (θgF 0.53531; air gap after derived from Bf 24.663)",
+    },
   ],
 
   /* ── Aspherical coefficients ── */
@@ -288,7 +303,8 @@ const LENS_DATA = {
   ],
 
   /* ── Focus configuration ── */
-  // Calculated conjugate of the patent's proximal state (object 700 mm from surface 1 + 115.07 mm track).
+  // Calculated conjugate of the patent's proximal state (object 700 mm from surface 1 + 115.07 mm air-converted
+  // track; the physical PP plate adds 0.97 mm, 0.816 m object-to-image physically).
   closeFocusM: 0.815,
   focusDescription:
     "Inner focus — only the G2 cemented doublet (L21+L22) moves, 8.1 mm toward the image from infinity to the patent's proximal state (β ≈ −0.14, about 0.82 m). Production MFD 0.6 m (0.2×) is beyond the published data and is not modeled.",
