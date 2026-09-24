@@ -1,15 +1,17 @@
-import { useEffect, useMemo } from "react";
+import { useEffect, useId, useMemo } from "react";
 import type { ComponentProps, ReactNode } from "react";
 import DiagramSVG from "../../diagram/DiagramSVG.js";
 import ChromaticOverlayContent from "../../diagram/ChromaticOverlayContent.js";
 import PetzvalOverlayContent from "../../diagram/PetzvalOverlayContent.js";
 import AnalysisDrawer from "../AnalysisDrawer.js";
+import AnalysisDock from "./AnalysisDock.js";
 import PanelOverlay from "../PanelOverlay.js";
 import { ANALYSIS_TABS } from "./analysisTabs.js";
 import { summarizeDispersionQuality } from "../../../optics/dispersion.js";
 import { elementHasAsphericSurface } from "../../display/asphericElementUtils.js";
 import type { AnalysisTabId } from "../../../types/state.js";
 import type { ChromaticRayFanSpreadByAxis } from "../../../types/optics.js";
+import type { AnalysisControlsMode } from "./panelModel.js";
 
 interface DiagramViewportProps extends Omit<
   ComponentProps<typeof DiagramSVG>,
@@ -27,6 +29,8 @@ interface DiagramViewportProps extends Omit<
   analysisDrawerTab: AnalysisTabId;
   onAnalysisTabChange: (tab: AnalysisTabId) => void;
   isWide: boolean;
+  /** Launcher for the analysis drawer; see AnalysisControlsMode. */
+  analysisControls: AnalysisControlsMode;
   analysisContent: ReactNode;
   /** Whether zoom/pan mode is active */
   zoomPanActive: boolean;
@@ -112,6 +116,7 @@ export default function DiagramViewport({
   analysisDrawerTab,
   onAnalysisTabChange,
   isWide,
+  analysisControls,
   analysisContent,
   zoomPanActive,
   onZoomPanToggle,
@@ -140,6 +145,8 @@ export default function DiagramViewport({
   const dispersionQuality = useMemo(() => summarizeDispersionQuality(L), [L]);
   const onAxisChromSpread = chromaticRayFanSpreads ? chromaticRayFanSpreads.onAxis : chromaticRayFanSpread;
   const overlayChromSpread = chromaticRayFanSpreads ? chromaticRayFanSpreads.onAxis : chromaticRayFanSpread;
+  const drawerId = useId();
+  const showPillControls = analysisControls === "pill";
   const selectedAsphericElementId = useMemo(() => {
     if (isWide || sel == null || !onOpenAsphericCompare) return null;
     return elementHasAsphericSurface(L, sel) ? sel : null;
@@ -202,8 +209,8 @@ export default function DiagramViewport({
       ? { flex: 1, minWidth: 0, position: "relative" as const }
       : { position: "relative" as const };
 
-  return (
-    <div style={viewportStyle}>
+  const stageContent = (
+    <>
       <DiagramSVG
         L={L}
         t={t}
@@ -295,8 +302,8 @@ export default function DiagramViewport({
         </PanelOverlay>
       ) : null}
 
-      {/* Analysis drawer toggle — hidden in zoom/pan mode */}
-      {!zoomPanActive && !analysisDrawerOpen ? (
+      {/* Analysis drawer toggle (mobile) — hidden in zoom/pan mode */}
+      {showPillControls && !zoomPanActive && !analysisDrawerOpen ? (
         <button
           onClick={() => onAnalysisDrawerToggle(true)}
           style={{
@@ -353,8 +360,8 @@ export default function DiagramViewport({
         </button>
       ) : null}
 
-      {/* Zoom/pan toggle button — bottom-right, hidden when zoom mode active */}
-      {!zoomPanActive ? (
+      {/* Zoom/pan toggle button (mobile) — bottom-right, hidden when zoom mode active */}
+      {showPillControls && !zoomPanActive ? (
         <button
           aria-label="Enter zoom and pan mode"
           onClick={() => onZoomPanToggle(true)}
@@ -449,10 +456,39 @@ export default function DiagramViewport({
         onTabChange={onAnalysisTabChange}
         tabs={ANALYSIS_TABS}
         t={t}
-        isWide={isWide}
+        showTabs={showPillControls}
+        id={drawerId}
       >
         {analysisContent}
       </AnalysisDrawer>
+    </>
+  );
+
+  if (analysisControls !== "dock") return <div style={viewportStyle}>{stageContent}</div>;
+
+  /* Desktop dock: the drawer and overlays cover only the stage, so the dock
+     below stays visible as the tab switcher. Zoom mode hands the dock's space
+     back to the diagram. */
+  const stageStyle = fillAvailableHeight
+    ? { position: "relative" as const, flex: "1 1 auto", minHeight: 0, overflow: "hidden" }
+    : { position: "relative" as const };
+
+  return (
+    <div style={{ ...viewportStyle, display: "flex", flexDirection: "column" }}>
+      <div style={stageStyle}>{stageContent}</div>
+      {!zoomPanActive ? (
+        <AnalysisDock
+          tabs={ANALYSIS_TABS}
+          activeTab={analysisDrawerTab}
+          drawerOpen={analysisDrawerOpen}
+          onAnalysisTabChange={onAnalysisTabChange}
+          onAnalysisDrawerToggle={onAnalysisDrawerToggle}
+          onZoomPanToggle={onZoomPanToggle}
+          t={t}
+          drawerId={drawerId}
+          variant="inline"
+        />
+      ) : null}
     </div>
   );
 }

@@ -11,9 +11,10 @@ The full inventory is in `src/comparison/readme.md`; these are the modules with 
 
 | Module | Purpose |
 | --- | --- |
-| `ComparisonContent.tsx` | Full comparison-mode content area. Wires `ComparisonLayout` and `SharedSlidersBar`; surfaces errors. |
+| `ComparisonContent.tsx` | Full comparison-mode content area. Wires `ComparisonLayout`, `SharedAnalysisDock` (desktop), and `SharedSlidersBar`; surfaces errors. |
 | `ComparisonLayout.tsx` | Side-by-side desktop or stacked mobile comparison panels. Passes prebuilt runtime lenses into each panel. |
 | `SharedSlidersBar.tsx` | Shared focus/aperture/zoom and perspective-movement controls for comparison mode, including independent shift/tilt reset actions. |
+| `SharedAnalysisDock.tsx` | Desktop-only analysis/ZOOM button dock under both panes. Drawer and zoom state are shared, so one dock opens the same tab in both panes; each pane's drawer is tabless (`analysisControls: "shared"`). |
 | `useComparisonOrchestration.ts` | LensViewer integration hook: comparison mode, sticky sliders, enter/exit, and default-aperture effect. |
 | `useComparisonMode.ts` | Runtime lens building, per-lens slider mapping, normalized scale ratios, and header-height alignment. |
 | `useStickySliders.ts` | Sticky shared-slider state machine. |

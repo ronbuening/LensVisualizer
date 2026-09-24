@@ -84,7 +84,7 @@ flowchart LR
 - Direct source files: 19
 - Direct subfolders: 0
 - Main outbound areas: package:react (19), src/types (15), same folder (13), src/optics/perspective (8), src/optics/optics.ts (7), src/optics/raySampling.ts (3), src/utils/state (3), src/optics/lensMovement.ts (2), +10 more
-- External consumers: src/benchmarks, src/components/controls, src/components/display, src/components/layout, src/components/relationshipMap, src/components/search
+- External consumers: src/benchmarks, src/comparison, src/components/controls, src/components/display, src/components/layout, src/components/relationshipMap, src/components/search
 
 ## Files
 
@@ -94,7 +94,7 @@ flowchart LR
 | `raySegmentUtils.ts` | Ray Segment Utils helper module | same folder, src/types | same folder (3), src/benchmarks | compileRaySegment, filterChannels |
 | `useChromaticRays.ts` | React hook module | same folder (3), src/optics/perspective (2), src/types (2), package:react, src/optics/optics.ts, +1 more | same folder, src/benchmarks, src/components/layout | ChromaticRaySegment, default, useChromaticRays |
 | `useDismissableDropdown.ts` | React hook module | package:react | src/components/layout, src/components/relationshipMap, src/components/search | default, useDismissableDropdown |
-| `useDispatchAdapters.ts` | React hook module | src/types (2), src/utils/state (2), package:react | src/components/layout | DispatchAdapters, default, useDispatchAdapters |
+| `useDispatchAdapters.ts` | React hook module | src/types (2), src/utils/state (2), package:react | src/comparison, src/components/layout | DispatchAdapters, default, useDispatchAdapters |
 | `useFlashOverlay.ts` | React hook module | package:react | src/components/layout | default, useFlashOverlay |
 | `useHeaderHeight.ts` | React hook module | package:react (2) | src/components/layout | default, useHeaderHeight |
 | `useInteractionSignal.ts` | React hook module | package:react | src/components/controls | InteractionSignal, default, useInteractionSignal |

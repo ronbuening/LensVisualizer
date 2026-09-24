@@ -80,6 +80,7 @@ export default function ComparisonLayout({
           minHeaderHeight={minHeaderHeight}
           flashOverlay={flashPanel === "a"}
           fillAvailableHeight={isWide}
+          sharedAnalysisControls={isWide}
         />
       </div>
       <div
@@ -108,6 +109,7 @@ export default function ComparisonLayout({
           minHeaderHeight={minHeaderHeight}
           flashOverlay={flashPanel === "b"}
           fillAvailableHeight={isWide}
+          sharedAnalysisControls={isWide}
         />
       </div>
     </div>

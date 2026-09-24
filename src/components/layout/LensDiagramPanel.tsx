@@ -63,6 +63,8 @@ interface LensDiagramPanelProps {
   flashOverlay?: boolean;
   sideLayoutEnabled?: boolean;
   fillAvailableHeight?: boolean;
+  /** Desktop comparison view: the shared dock under both panes replaces this panel's analysis launcher. */
+  sharedAnalysisControls?: boolean;
 }
 
 export default function LensDiagramPanel({
@@ -85,6 +87,7 @@ export default function LensDiagramPanel({
   flashOverlay = false,
   sideLayoutEnabled = false,
   fillAvailableHeight = false,
+  sharedAnalysisControls = false,
 }: LensDiagramPanelProps) {
   /* ── Read shared state from context ── */
   const { state, theme: t, isWide } = useLensCtx();
@@ -394,6 +397,7 @@ export default function LensDiagramPanel({
             dark,
             isWide,
             compact,
+            analysisControls: !isWide ? "pill" : sharedAnalysisControls ? "shared" : "dock",
             showControls,
             showSliders,
             headerHeight,

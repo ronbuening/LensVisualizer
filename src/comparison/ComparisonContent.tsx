@@ -2,12 +2,14 @@
  * ComparisonContent — Renders the full comparison-mode content area.
  *
  * Includes error display, ComparisonLayout (side-by-side panels),
+ * SharedAnalysisDock (desktop analysis/zoom launcher for both panes),
  * and SharedSlidersBar (unified slider controls).
  */
 
 import type { Dispatch } from "react";
 import ComparisonLayout from "./ComparisonLayout.js";
 import SharedSlidersBar from "./SharedSlidersBar.js";
+import SharedAnalysisDock from "./SharedAnalysisDock.js";
 import { isComparisonOk, type ComparisonLensesResult } from "./useComparisonMode.js";
 import { SET_SHARED_ZOOM_T } from "./comparisonReducer.js";
 import { SET_GROUP_MOVEMENT } from "../utils/state/lensReducer.js";
@@ -137,6 +139,9 @@ export default function ComparisonContent({
           </div>
         )
       )}
+      {isWide && isComparisonOk(comparisonLenses) && focusPair && aperturePair && zoomPair ? (
+        <SharedAnalysisDock theme={t} />
+      ) : null}
       {isComparisonOk(comparisonLenses) && focusPair && aperturePair && (
         <div style={isWide ? { flex: "0 0 auto", maxHeight: "34%", overflowY: "auto" } : undefined}>
           <SharedSlidersBar

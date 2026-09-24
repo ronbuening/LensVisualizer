@@ -20,6 +20,11 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-09-24",
+    type: "improvement",
+    summary: "Added a two-row analysis button bar with tooltips under the desktop lens diagram",
+  },
+  {
+    date: "2026-09-24",
     type: "fix",
     summary: "Placed the patent filters in four Nikon super-teles, including the 180-400mm's slip-in filter",
   },

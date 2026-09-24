@@ -9,6 +9,7 @@ Generated `readme.md` and `improvementsuggestions.md` files are intentionally om
 ```mermaid
 flowchart LR
   subgraph n_src_components_layout_lensDiagram["src/components/layout/lensDiagram"]
+    n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_AnalysisDock_tsx["AnalysisDock.tsx"]
     n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_AnalysisDrawerContent_tsx["AnalysisDrawerContent.tsx"]
     n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_analysisTabRenderers_tsx["analysisTabRenderers.tsx"]
     n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_analysisTabs_ts["analysisTabs.ts"]
@@ -25,6 +26,7 @@ flowchart LR
   n_external_src_components_layout["src/components/layout"]
   n_external_src_optics_compat_ts["src/optics/compat.ts"]
   n_external_src_optics_optics_ts["src/optics/optics.ts"]
+  n_external_src_components_controls["src/components/controls"]
   n_external_src_components_errors["src/components/errors"]
   n_external_src_optics_analysis["src/optics/analysis"]
   n_external_src_optics_cardinalElements_ts["src/optics/cardinalElements.ts"]
@@ -45,13 +47,17 @@ flowchart LR
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_LensDiagramLoadedState_tsx --> |2| n_external_src_components_layout
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_AnalysisDrawerContent_tsx --> |2| n_external_src_optics_compat_ts
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_AnalysisDrawerContent_tsx --> |2| n_external_src_optics_optics_ts
+  n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_AnalysisDock_tsx --> |2| n_external_src_types
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_DiagramViewport_tsx --> |2| n_external_src_types
+  n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_AnalysisDock_tsx --> n_external_pkg_react
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_AnalysisDrawerContent_tsx --> n_external_pkg_react
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_analysisTabRenderers_tsx --> n_external_pkg_react
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_panelModel_ts --> n_external_pkg_react
+  n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_AnalysisDock_tsx --> n_external_src_components_controls
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_AnalysisDrawerContent_tsx --> n_external_src_components_display
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_DiagramViewport_tsx --> n_external_src_components_display
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_LensDiagramErrorState_tsx --> n_external_src_components_errors
+  n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_AnalysisDock_tsx --> n_external_src_components_layout
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_analysisTabs_ts --> n_external_src_components_layout
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_AnalysisDrawerContent_tsx --> n_external_src_optics_analysis
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_panelModel_ts --> n_external_src_optics_cardinalElements_ts
@@ -62,27 +68,28 @@ flowchart LR
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_AnalysisDrawerContent_tsx --> n_external_src_optics_perspective
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_AnalysisDrawerContent_tsx --> n_external_src_optics_projection_ts
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_analysisTabRenderers_tsx --> n_external_src_optics_types_ts
+  n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_DiagramViewport_tsx --> n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_AnalysisDock_tsx
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_AnalysisDrawerContent_tsx --> n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_analysisTabRenderers_tsx
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_DiagramViewport_tsx --> n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_analysisTabs_ts
-  n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_LensDiagramLoadedState_tsx --> n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_DiagramViewport_tsx
-  n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_LensDiagramLoadedState_tsx --> n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_panelModel_ts
+  n_src_components_layout_lensDiagram_truncated["additional relationships omitted"]
 ```
 
 ## Directory Overview
 
-- Direct source files: 7
+- Direct source files: 8
 - Direct subfolders: 0
-- Main outbound areas: src/components/display (13), src/types (12), src/components/layout (9), package:react (5), src/components/diagram (3), src/optics/compat.ts (3), src/optics/optics.ts (3), src/components/hooks (2), +8 more
-- External consumers: src/components/layout
+- Main outbound areas: src/types (14), src/components/display (13), src/components/layout (12), package:react (6), src/components/diagram (3), src/optics/compat.ts (3), src/optics/optics.ts (3), src/components/hooks (2), +9 more
+- External consumers: src/comparison, src/components/layout
 
 ## Files
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
+| `AnalysisDock.tsx` | React component module | src/types (2), package:react, src/components/controls, src/components/layout | src/comparison, src/components/layout | ZOOM_DOCK_DESCRIPTION, default, AnalysisDock |
 | `AnalysisDrawerContent.tsx` | React component module | src/types (3), src/optics/compat.ts (2), src/optics/optics.ts (2), package:react, src/components/display, +4 more | src/components/layout | default, AnalysisDrawerContent |
 | `analysisTabRenderers.tsx` | React component module | src/components/display (9), src/types (3), package:react, src/optics/compat.ts, src/optics/optics.ts, +1 more | src/components/layout | AnalysisDrawerInputs, AnalysisTabRendererContext, ANALYSIS_TAB_RENDERERS |
-| `analysisTabs.ts` | Analysis Tabs helper module | src/components/layout | src/components/layout | ANALYSIS_TABS |
-| `DiagramViewport.tsx` | React component module | src/components/diagram (3), src/components/layout (3), package:react (2), src/types (2), src/components/display, +1 more | src/components/layout | default, DiagramViewport |
+| `analysisTabs.ts` | Analysis Tabs helper module | src/components/layout | src/comparison, src/components/layout | ANALYSIS_TABS |
+| `DiagramViewport.tsx` | React component module | src/components/layout (5), src/components/diagram (3), package:react (2), src/types (2), src/components/display, +1 more | src/components/layout | default, DiagramViewport |
 | `LensDiagramErrorState.tsx` | React component module | src/components/errors | src/components/layout | default, LensDiagramErrorState |
 | `LensDiagramLoadedState.tsx` | React component module | src/components/layout (4), src/components/display (2) | src/components/layout | default, LensDiagramLoadedState |
-| `panelModel.ts` | Panel Model helper module | src/types (4), src/components/hooks (2), package:react, src/optics/cardinalElements.ts, src/optics/lensMovement.ts | src/components/layout | VarReadout, PanelComputedModel, PanelRayDataModel, PanelDisplayFlagsModel, PanelOverlaysModel, PanelAdaptersModel, PanelZoomHookModel, PanelInteractionsModel, +1 more |
+| `panelModel.ts` | Panel Model helper module | src/types (4), src/components/hooks (2), package:react, src/optics/cardinalElements.ts, src/optics/lensMovement.ts | src/components/layout (2) | AnalysisControlsMode, VarReadout, PanelComputedModel, PanelRayDataModel, PanelDisplayFlagsModel, PanelOverlaysModel, PanelAdaptersModel, PanelZoomHookModel, +2 more |
