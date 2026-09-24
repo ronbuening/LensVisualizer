@@ -102,7 +102,7 @@ export default function AnalysisDock({
         t={t}
       >
         <span aria-hidden="true" style={{ fontSize: 12, marginRight: 6 }}>
-          {"🔍"}
+          {"\uD83D\uDD0D"}
         </span>
         ZOOM
       </DockButton>
