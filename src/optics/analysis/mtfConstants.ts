@@ -49,8 +49,8 @@ export const MTF_ESTIMATED_DISPERSION_MAX_VD = 65;
 
 /**
  * An authored image plane farther than this many diffraction depths of focus (2λN² at the d line and the lens's open
- * f-number) from its own prescription's paraxial focus is inconsistent lens data, not a design choice: usually a
- * source whose printed back focus contradicts its prescription. The test uses paraxial focus, so the spherical-
+ * f-number) from its own prescription's paraxial focus is inconsistent lens data, not a design choice: a printed back
+ * focus, or its transcription, that the prescription does not reproduce. The test uses paraxial focus, so the spherical-
  * aberration focus shift of fast lenses never triggers it; in the catalog it flags 43 lenses
  * (`scripts/audit-mtf.mjs --focus`).
  */

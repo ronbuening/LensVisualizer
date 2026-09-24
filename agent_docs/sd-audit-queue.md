@@ -113,8 +113,8 @@ passes every clear aperture; lenses whose edge merely misses the format corner a
 
 These lenses place their image plane away from their own prescription's paraxial focus at infinity, by more than
 `MTF_IMAGE_PLANE_DEPTHS` (10) diffraction depths of focus (2λN² at the d line and the open f-number). At the authored
-plane their MTF collapses, so the MTF tab's default Auto focus refocuses them and says why. The usual cause is a
-source whose printed back focus contradicts its prescription. Folding a listed plate to its air-equivalent, or
+plane their MTF collapses, so the MTF tab's default Auto focus refocuses them and says why. Where diagnosed, the
+source's printed back focus contradicts its prescription; undiagnosed rows may be transcription errors. Folding a listed plate to its air-equivalent, or
 modeling it in `rearPlates`, leaves paraxial defocus unchanged, so plates alone rarely explain these offsets.
 Regenerate (about three minutes):
 

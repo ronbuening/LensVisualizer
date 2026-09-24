@@ -217,8 +217,8 @@ function ImagePlaneNote({ result, t, onUseAuto }: { result: MtfResult | null; t:
   return (
     <p style={{ color: t.muted, margin: "4px 0" }}>
       The lens data places the image plane {Math.abs(offset).toFixed(2)} mm {offset > 0 ? "in front of" : "behind"} its
-      own prescription&apos;s paraxial focus, usually because the source&apos;s printed back focus and its prescription
-      disagree.{" "}
+      own prescription&apos;s paraxial focus: the printed back focus, or its transcription, disagrees with the
+      prescription.{" "}
       {focus.requestedMode === "auto" && focus.mode === "best-axial" ? (
         <>
           These curves use best axial focus ({shift >= 0 ? "+" : "−"}
