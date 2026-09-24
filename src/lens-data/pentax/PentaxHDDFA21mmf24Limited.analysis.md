@@ -144,7 +144,7 @@ The patent lists refractive index and Abbe number, not manufacturer glass names.
 | L6A | 1.90043 | 37.4 | Hoya TAFD37 / TAFD37A | exact nd; catalog νd = 37.37 | Dense-flint positive partner |
 | L8A | 1.81600 | 46.6 | S-LAH59 (OHARA) | exact catalog match | Rear cemented negative partner |
 | L9A | 1.43875 | 95.0 | S-FPL53 (OHARA) | exact nd; νd rounds from catalog 94.93 | Super-ED positive element |
-| CG | 1.51633 | 64.1 | S-BSL7 / N-BK7 class | cover glass only | Excluded from data-file surfaces |
+| CG | 1.51633 | 64.1 | S-BSL7 (OHARA) | exact catalog match | Parallel plate; modeled in `rearPlates` (traced, not drawn) |
 
 The four ED elements are L3A, L5A, L7A, and L11A. The single super-ED element is L9A. This mapping is inferred from the catalog glass identities and the published special-element count; it is not explicitly labeled surface-by-surface in the patent.
 
@@ -221,7 +221,7 @@ The patent's conditional expressions reflect this distribution. The front positi
 
 ## Verification Summary
 
-The Example 1 prescription was rebuilt as a paraxial y-nu ray trace. The cover glass was included for verification, then folded into the final air-equivalent BFD for the data file.
+The Example 1 prescription was rebuilt as a paraxial y-nu ray trace with the parallel plate CG included. The data file models CG in `rearPlates` (1.500 mm, nd 1.51633, νd 64.1), so every analysis traces it, but it is not drawn. Surface 20 keeps the patent's 38.340 mm gap to the plate. Table 1 prints no gap after the plate, so the 1.00 mm plate-to-image gap is derived from the Table 3 back focus, which is air-equivalent: 40.33 − 38.340 − 1.500/1.51633 = 1.00 mm. The back-focus and total-length rows below are air-equivalent; the physical rear-vertex-to-image distance is 40.84 mm and the physical track is 115.85 mm.
 
 | Quantity | Patent Table 3 | Independent trace |
 |---|---:|---:|
@@ -229,8 +229,8 @@ The Example 1 prescription was rebuilt as a paraxial y-nu ray trace. The cover g
 | Design F-number | 2.45 | 2.45 |
 | Half-field | 46.1° | consistent with Y = 21.64 mm |
 | Image height | 21.64 mm | 21.64 mm full-frame half-diagonal |
-| Back focus | 40.33 mm | 40.3293 mm |
-| Total length | 115.34 mm | 115.3363 mm |
+| Back focus (air-equivalent) | 40.33 mm | 40.3293 mm |
+| Total length (air-equivalent) | 115.34 mm | 115.3363 mm |
 
 Additional verified values: fF = -1839.0 mm, fR = 39.9664 mm, L3A+L4A = +53.68 mm, L5A+L6A = +133.20 mm, BL = -345.21 mm, fBO = -39.18 mm, and Petzval sum = +0.005047 mm^-1.
 

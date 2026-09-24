@@ -83,6 +83,7 @@ One dated bullet per decision with a source pointer; delete a bullet only when t
 - 2026-08-05 — `RuntimeLens.EFL` is `focalLengthDesign ?? focalLengthMarketing ?? axialExtent`, never derived; assertions about phase power must measure `diffractiveParaxialPower` or the traced ray. The monochrome tracer applies diffractive phase at `LINE_NM.d` = 587.5618 nm; `validateLensData` rejects `diffractionOrder: 0`; under an explicit `surfaceOrder` the generalized tracer rejects reverse-order rays with `failureReason: "noBracket"`. (code-health plan G12)
 - 2026-08-04 — Any chromatic trace entry point must set `wavelengthNm` beside per-channel glass indices (pattern in `src/optics/trace/rayAdapters.ts`). (code-health plan X12)
 - 2026-08-04 — `src/components/layout/StaticPageShell.tsx` renders `<main>`; page migrations onto it are visual-parity only, and `HomePage` / `LensIndexPage` are skipped rather than forced. (code-health plan U2)
+- 2026-09-23 — Source-listed rear cover/filter plates use one expanded prescription: `expandRearPlates()` runs inside `buildLens`, plates are traced everywhere and hidden only through the `synthetic` marker (`ES`, `elements`, `maxSD`). Do not add a separate analysis-only sensor stack or per-analysis plate corrections; folded and perspective-control lenses stay on the air-equivalent fold. (rear-plates PR)
 - 2026-08-04 — New feature ideas go to `FEATURE_ADDITION_PLAN.md` and new performance findings to `EFFICIENCY_IMPROVEMENT_PLAN.md`; there is no successor code-health backlog. (code-health plan)
 
 ## Checked and excluded (lens data)

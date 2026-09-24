@@ -18,10 +18,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    Solving the 0.50 m manufacturer MFD gives 12.9074477062 mm front-assembly travel,         ║
  * ║    represented here as D14 = 1.2600 → 14.1674477062 mm. This predicts 0.17119×.             ║
  * ║                                                                                              ║
- * ║  Rear-plane normalization:                                                                  ║
- * ║    Patent PP surfaces S20–S21 are an optional filter/protective plate and are excluded.      ║
- * ║    Their optical effect is folded into S19→IMG as the verified air-equivalent               ║
- * ║    30.0000 + 3.2500/1.51680 + 0.8182 = 32.9608687764 mm.                                   ║
+ * ║  Rear plate:                                                                                ║
+ * ║    Patent PP (Table 1 S20–S21: 3.2500 mm, nd 1.51680, νd 64.20; optional filter/protective  ║
+ * ║    plate) is modeled in `rearPlates` (traced, not drawn) with its 0.8182 mm gap to IMG.     ║
+ * ║    S19 keeps the patent's 30.0000 mm gap to PP (air-equivalent Bf 32.9608687764 mm).        ║
  * ║                                                                                              ║
  * ║  Semi-diameters:                                                                             ║
  * ║    No source SDs are published. The stop radius is reconstructed from the patent f/2.87.     ║
@@ -206,7 +206,7 @@ const LENS_DATA = {
     },
   ],
 
-  /* ── Surface prescription: Example 1, PP omitted with air-equivalent BFD normalization ── */
+  /* ── Surface prescription: Example 1 (PP plate S20–S21 in `rearPlates`) ── */
   surfaces: [
     { label: "1", R: 32.3262, d: 4.23, nd: 1.95375, elemId: 1, sd: 16.6 },
     { label: "2", R: 66.8687, d: 0.13, nd: 1.0, elemId: 0, sd: 16.6 },
@@ -226,7 +226,21 @@ const LENS_DATA = {
     { label: "16", R: -42.01, d: 1.47, nd: 1.60342, elemId: 9, sd: 18.9 },
     { label: "17", R: 1e15, d: 4.87, nd: 1.0, elemId: 0, sd: 20.8 },
     { label: "18", R: -85.0921, d: 1.44, nd: 1.51633, elemId: 10, sd: 21.0 },
-    { label: "19", R: -328.1791, d: 32.9608687764, nd: 1.0, elemId: 0, sd: 21.0 },
+    // Last surface: patent gap to the PP plate
+    { label: "19", R: -328.1791, d: 30.0, nd: 1.0, elemId: 0, sd: 21.0 },
+  ],
+
+  /* ── Filter/protective plate PP (patent Table 1 surfaces 20–21): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PP",
+      thicknessMm: 3.25,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 0.8182,
+      source: "US 2017/0242219 A1, Example 1 Table 1 surfaces 20–21",
+    },
   ],
 
   asph: {},

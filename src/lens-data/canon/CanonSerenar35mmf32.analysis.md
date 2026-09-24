@@ -6,7 +6,7 @@
 **Filed:** June 29, 1951 (priority: Japan, July 14, 1950)
 **Granted:** July 21, 1953
 **Marketed:** June 1951
-**Embodiment analyzed:** Example 1
+**Embodiment analyzed:** Sole illustrative embodiment (single figure; table in col. 3, repeated in claim 5)
 **Design type:** Modified double-Gauss (four-component, six-element)
 
 ---
@@ -32,7 +32,7 @@ The lens uses six elements arranged in four groups, following the classic double
 | G3 (rear doublet, "L₂" in patent) | L4 + L5 (cemented) | Meniscus doublet, concave front | Rear compound meniscus |
 | G4 (rear singlet) | L6 | Biconvex | Rear convergent component |
 
-The aperture stop sits between G2 and G3, in the central air space between the two compound meniscus doublets. This is the defining feature of the Gauss type: two thick meniscus groups flanking a central stop, which provides inherent symmetry for controlling lateral aberrations (distortion, lateral chromatic aberration, and coma) across wide field angles.
+The aperture stop S sits between G2 and G3, in the central air space between the two compound meniscus doublets; the patent's figure draws it nearer the rear doublet than the front one (see §4.1). This is the defining feature of the Gauss type: two thick meniscus groups flanking a central stop, which provides inherent symmetry for controlling lateral aberrations (distortion, lateral chromatic aberration, and coma) across wide field angles.
 
 ---
 
@@ -44,7 +44,7 @@ Ito's design philosophy, as articulated in the patent text, was instead to minim
 
 ---
 
-## 4. Prescription (Example 1)
+## 4. Prescription (Sole Example)
 
 The patent provides a single worked numerical example, normalized to a focal length of 1.0:
 
@@ -63,7 +63,7 @@ The patent provides a single worked numerical example, normalized to a focal len
 
 The stated design parameters are f/3.0 with a 64° included angle (2ω). At f = 35 mm production scale, the scale factor is approximately 35.62×.
 
-**Note on f-number:** The patent specifies f/3.0, but the production lens was marketed as f/3.2. This is a common practice — the production lens likely uses a slightly smaller stop aperture than the design maximum, providing a conservative speed rating with better edge-of-field performance. The half-stop difference (f/3.0 → f/3.2) corresponds to a ~6% reduction in stop diameter.
+**Note on f-number:** The patent specifies F:3.0, but the production lens was marketed as f/3.2. The diagram opens to the patent's f/3.0 (engine iris radius 4.07 mm at the stop) and keeps f/3.2 as the marketing value. Why production was rated slower is not stated anywhere in the patent; a slightly smaller production iris or a conservative speed rating are both plausible. The difference (f/3.0 → f/3.2) is about a fifth of a stop, a ~6% reduction in stop diameter.
 
 ### 4.1 Paraxial Verification
 
@@ -75,9 +75,11 @@ An ABCD matrix paraxial ray trace through the complete prescription yields:
 
 The small EFL discrepancy is typical for patents of this era, where the stated focal length is a rounded nominal value and the prescription values are given to only four decimal places. The computed Petzval sum is **0.337**, consistent with the patent's statement that it "should be in the neighborhood of 0.35 when the focal length is unity."
 
-The patent's stated field of 64° is consistent with a 35mm focal length on the 24×36 mm format: the diagonal half-field is arctan(21.63/35) ≈ 31.7°, giving 2ω ≈ 63.4°. At the computed EFL of ~34.4 mm, the field widens slightly to ~64.5°, matching the patent figure even more closely.
+The patent's stated field of 64° is consistent with a 35mm focal length on the 24×36 mm format: the paraxial diagonal half-field is arctan(21.63/35) ≈ 31.7°, and an exact real-ray trace of the scaled prescription puts the chief ray on the 21.6 mm image corner at ω = 32.0°, i.e. 2ω ≈ 64° — the patent's including angle, with essentially no distortion budget left over at the corner.
 
-**Stop position:** The patent figure shows the aperture stop between the two doublets, but the worked example does not list the stop as a separate row in the prescription table. The central air gap d₅ = 0.1428 spans the full distance from R₅ (rear of front doublet) to R₆ (front of rear doublet), and the stop sits somewhere within this space. For the data file, the stop is placed at the midpoint of this gap (each half = 0.0714, scaled to 2.543 mm), inferred from the symmetric iris placement visible in the patent's Fig. 1. This is consistent with the design's near-symmetry about the stop — the concave surfaces flanking the gap (R₅ = +0.2975, R₆ = −0.2907) are closely matched in absolute curvature, suggesting a centered stop.
+**Stop position:** The text names the stop S ("to either side of the stop S") and the single figure draws it as a pair of iris bars inside d₅, but the table has no stop row. The figure is drawn to scale: its vertex crossings give 21.5 px/mm at 300 dpi for d₁, for d₅ and for the whole r₁→r₁₀ length, and the drawn sags of r₅ and r₆ match their radii at that scale. On it the bars sit 3.2 mm behind r₅ and 1.9 mm ahead of r₆ (0.63 of d₅), so the data file places the stop there (3.200 + 1.887 mm) rather than at the mid-gap. The same drawing ends the optical surfaces r₅ and r₆ at ≈5.3 and ≈5.4 mm radius and bevels out to the doublet rims at ≈7.7 mm — the concave faces close toward each other at the edge, so the iris only fits between them because those clear apertures are small. In the model r₅'s rim lies 1.78 mm ahead of the stop and r₆'s 0.37 mm behind it (drawn: 1.74 and 0.51 mm).
+
+The other rims also come from the figure: L1 ≈ 9.9 mm, the front doublet ≈ 7.7 mm, the rear doublet ≈ 7.6 mm and the knife-edged L6 ≈ 9.1 mm, stored as 10.0 / 7.7 / 7.6 / 9.1 mm. An exact trace at f/3.0 and the 21.6 mm corner passes the axial beam and the corner chief ray at every surface; the full-field bundle is trimmed at L1–L2 on one side and at L6 on the other, the ordinary mechanical vignetting of a wide-angle Gauss of this period. The patent publishes no clear apertures, so these are figure measurements, not patent values.
 
 ---
 
@@ -85,20 +87,20 @@ The patent's stated field of 64° is consistent with a 35mm focal length on the 
 
 The patent explicitly states that the design uses only "common kinds" of glass: "heavy crown glass for the convex lens components and light flint glass for the concave lens components." This aligns with the inventor's stated philosophy of avoiding exotic glass types.
 
-All six glasses match standard Schott dense crown (SK) and light flint (LF) catalog types with negligible residuals:
+The patent names no glass types or supplier. Every printed nd/νd pair has a catalog glass that reproduces it at the patent's precision; the data file labels them as catalog equivalents:
 
-| Element | nd | νd | Six-Digit Code | Best Match | Δnd (×10⁻⁴) | Δνd |
+| Element | nd | νd | Six-Digit Code | Catalog equivalent (nd / νd) | Δnd (×10⁻⁴) | Δνd |
 |---------|------|------|----------------|------------|-------------|-----|
-| L1 | 1.5891 | 61.2 | 589/612 | **Schott SK5** | 0.0 | −0.1 |
-| L2 | 1.6073 | 59.5 | 607/595 | **SUMITA K-SK7 catalog equivalent** | 0.0 | +0.1 |
-| L3 | 1.5785 | 41.7 | 578/417 | **Schott LF5 or LF7** | −29 / +35 | +1.2 / +0.2 |
-| L4 | 1.5785 | 41.7 | 578/417 | **Schott LF5 or LF7** | (same) | (same) |
-| L5 | 1.6031 | 60.7 | 603/607 | **Schott SK14** | 0.0 | +0.1 |
-| L6 | 1.6228 | 56.9 | 623/569 | **Schott SK10** | 0.0 | −0.1 |
+| L1 | 1.5891 | 61.2 | 589/612 | **SK5** (1.58913 / 61.26) | +0.3 | +0.06 |
+| L2 | 1.6073 | 59.5 | 607/595 | **SUMITA K-SK7** (1.60729 / 59.47) | −0.1 | −0.03 |
+| L3 | 1.5785 | 41.7 | 578/417 | **HOYA FL4** (1.57845 / 41.71) | −0.5 | +0.01 |
+| L4 | 1.5785 | 41.7 | 578/417 | **HOYA FL4** (same) | (same) | (same) |
+| L5 | 1.6031 | 60.7 | 603/607 | **HOYA BACD14** (1.60311 / 60.69) | +0.1 | −0.01 |
+| L6 | 1.6228 | 56.9 | 623/569 | **Schott SK10** (catalog row N-SK10, 1.62278 / 56.98) | −0.2 | +0.08 |
 
-Elements L1, L2, L5, and L6 match their respective SK-type glasses to within catalog rounding precision. The identification of L3 and L4 is slightly less precise — the nd value of 1.5785 falls between Schott LF7 (1.5750) and LF5 (1.5814), with the Abbe number favoring LF7 (νd = 41.5 vs. 40.5 for LF5). It is likely that Canon used a Japanese-manufactured equivalent in the LF family with properties close to these values.
+The crowns are the barium dense-crown (SK) family throughout. The flint pair is a light flint: its nd = 1.5785 falls between Schott LF7 (1.5750) and LF5 (1.5814), so neither Schott glass fits both coordinates, while HOYA's FL4 matches both. Whether Canon bought Japanese-made equivalents of these glasses is not stated; the labels record catalog equivalents only.
 
-Notably, the design uses four distinct crown glasses rather than consolidating to fewer types. This allowed Ito to fine-tune the chromatic correction at each position independently — a practical trade-off of slightly increased material cost against better aberration balance.
+Notably, the design uses four distinct crown glasses (five glass types in all) rather than consolidating to fewer types. This allowed Ito to fine-tune the chromatic correction at each position independently — a practical trade-off of slightly increased material cost against better aberration balance.
 
 ---
 
@@ -137,10 +139,10 @@ The substantial thickness (d₃ = 0.1428, or about 14% of the focal length) is a
 | Shape | Biconcave |
 | Radii | R₄ = −2.3268, R₅ = +0.2975 |
 | Thickness | 0.0214 |
-| Glass | nd = 1.5785, νd = 41.7 (LF5/LF7) |
+| Glass | nd = 1.5785, νd = 41.7 (HOYA FL4 equivalent) |
 | Focal length | f = −0.455 (scaled: −16.2 mm) |
 
-L3 is a thin, strongly divergent biconcave flint element cemented to the rear of L2. Its primary role is threefold: it provides the negative power necessary to achromatize the doublet, it contributes the strongly concave rear surface R₅ = +0.2975 (whose magnitude the patent constrains to 0.25–0.35× focal length) that defines the meniscus shape of the doublet as a whole, and its low-dispersion flint glass provides the chromatic correction differential against the crown L2.
+L3 is a thin, strongly divergent biconcave flint element cemented to the rear of L2. Its primary role is threefold: it provides the negative power necessary to achromatize the doublet, it contributes the strongly concave rear surface R₅ = +0.2975 (whose magnitude the patent constrains to 0.25–0.35× focal length) that defines the meniscus shape of the doublet as a whole, and its light flint glass provides the chromatic correction differential against the crown L2.
 
 The cemented junction at R₄ = −2.3268 is very weakly curved — nearly flat — meaning the interface between L2 and L3 contributes minimal refraction. The chromatic correction is therefore dominated by the large dispersion difference between the two glasses (νd ≈ 59.5 vs. 41.7, a Δν of ~17.8) rather than by strong bending at the cement.
 
@@ -153,21 +155,21 @@ Despite being individually strongly negative (f ≈ −0.45), L3 combined with L
 | Shape | Biconcave |
 | Radii | R₆ = −0.2907, R₇ = +0.9054 |
 | Thickness | 0.0197 |
-| Glass | nd = 1.5785, νd = 41.7 (LF5/LF7) |
+| Glass | nd = 1.5785, νd = 41.7 (HOYA FL4 equivalent) |
 | Focal length | f = −0.378 (scaled: −13.5 mm) |
 
 L4 mirrors L3's role on the image side of the stop. It is a thin biconcave flint element forming the front (divergent) component of the image-side doublet L₂. The strongly concave front surface R₆ = −0.2907 faces the stop and is the most steeply curved surface in the system relative to its clear aperture. This surface is critical for controlling coma and astigmatism — the patent's insistence on near-symmetry about the stop depends on this surface's curvature being comparable to R₅ on the opposite side.
 
 L4 uses the same glass type as L3 (nd = 1.5785, νd = 41.7), maintaining the symmetry principle that helps cancel odd-order lateral aberrations.
 
-### L5 — Rear Doublet Positive Element (SK14-type)
+### L5 — Rear Doublet Positive Element (SK14-type, BACD14 equivalent)
 
 | Property | Value |
 |----------|-------|
 | Shape | Biconvex |
 | Radii | R₇ = +0.9054, R₈ = −0.3952 |
 | Thickness | 0.1025 |
-| Glass | nd = 1.6031, νd = 60.7 (SK14) |
+| Glass | nd = 1.6031, νd = 60.7 (HOYA BACD14 equivalent; SK14 family) |
 | Focal length | f = +0.470 (scaled: +16.7 mm) |
 
 L5 is the convergent crown element of the rear doublet, cemented to L4's rear surface. It is the second most powerful element (f ≈ +0.47) and provides the main convergent contribution in the rear half of the system. The cemented junction at R₇ = +0.9054 is moderately curved, contributing more refraction than the nearly flat junction R₄ in the front doublet — this breaks the symmetry slightly, which is a deliberate design choice to manage the asymmetric aberration contributions that arise from the different object and image conjugates.
@@ -209,9 +211,9 @@ The concave surfaces facing the stop (R₅ and R₆) are closely matched in abso
 
 The patent does not describe the focus mechanism. Given the lens's era (1951), mount (M39 Leica-thread), and construction, the Serenar 35mm f/3.2 almost certainly uses **unit focusing** — the entire optical assembly translates forward as a rigid body to focus on closer objects, with only the back focal distance changing. This is the standard approach for rangefinder lenses of this period and focal length.
 
-The minimum focus distance is 1 meter (manufacturer specification from Canon Camera Museum). At this distance, with a 35mm focal length, the lens extension from infinity is approximately:
+The minimum focus distance is 1 meter (manufacturer specification from Canon Camera Museum). The patent publishes no close-focus state, so the diagram's 1 m keyframe is a derived unit-focus extension: a paraxial solve of the scaled prescription for an object 1.000 m from the image plane (952.7 mm in front of the first vertex) gives a back-focus increase of
 
-$$\Delta = \frac{f^2}{d - f} = \frac{35^2}{1000 - 35} \approx 1.27 \text{ mm}$$
+$$\Delta \approx 1.32 \text{ mm} \quad (\text{BF } 25.00 \rightarrow 26.32 \text{ mm}, \; m \approx -0.038)$$
 
 This modest extension is easily accommodated by the helicoid mechanism in the lens barrel.
 

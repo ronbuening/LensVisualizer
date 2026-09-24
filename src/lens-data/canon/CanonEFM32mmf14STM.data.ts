@@ -4,9 +4,10 @@ import type { LensDataInput } from "../../types/optics.js";
 // Source: JP2018180366A, Numerical Data 1 / Example 1 (Canon Inc.).
 // Patent design values: f = 32.34 mm, Fno = 1.45, 2ω = 45.8°.
 // No production scaling is applied. The prescription is transcribed in patent millimeters.
-// The patent's plane-parallel GB/sensor cover glass is excluded from the surfaces array per
-// project convention; the final gap after surface 23 folds the patent cover into air-equivalent
-// back focus: 8.52 + 1.75 / 1.54400 + 1.55 = 11.2034 mm.
+// The patent's plane-parallel GB block (surfaces 24-25: 1.75 mm, nd 1.54400, vd 60.0; no catalog
+// match, Abbe dispersion) and the 1.55 mm air gap to the image are modeled in `rearPlates`
+// (traced, not drawn). Surface 23 keeps the patent's 8.52 mm gap to GB; the air-equivalent
+// back focus is 8.52 + 1.75 / 1.54400 + 1.55 = 11.2034 mm (patent BF 11.20).
 // Surface 20 is aspherical and is labeled 20A here. The only variable focus gap is d20.
 // Semi-diameters are inferred clear apertures, not patent-published values. They were constrained
 // by paraxial marginal/chief ray behavior, element edge thickness, front/rear element SD ratios,
@@ -241,7 +242,19 @@ const LENS_DATA = {
     { label: "20A", R: -122.383, d: 1.1, nd: 1.0, elemId: 0, sd: 10.5 },
     { label: "21", R: 99.228, d: 5.55, nd: 1.883, elemId: 13, sd: 12.5 },
     { label: "22", R: -27.877, d: 0.92, nd: 2.00069, elemId: 14, sd: 12.5 },
-    { label: "23", R: -138.637, d: 11.2034, nd: 1.0, elemId: 0, sd: 12.5 },
+    { label: "23", R: -138.637, d: 8.52, nd: 1.0, elemId: 0, sd: 12.5 }, // patent gap to the GB plate
+  ],
+
+  /* ── Glass block GB (patent surfaces 24–25): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "GB",
+      thicknessMm: 1.75,
+      nd: 1.544,
+      vd: 60.0,
+      gapAfterMm: 1.55,
+      source: "JP 2018-180366 A, Numerical Data 1 surfaces 24–25",
+    },
   ],
   asph: {
     "20A": {

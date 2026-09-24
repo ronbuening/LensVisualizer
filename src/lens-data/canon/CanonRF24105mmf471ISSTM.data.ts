@@ -15,15 +15,18 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    all authored [infinity, close] pairs are therefore identical.         ║
  * ║                                                                            ║
  * ║  ZOOM MODEL:                                                               ║
- * ║    Variable gaps D2, D8, D19, D21, D23, and rear BF are transcribed at  ║
+ * ║    Variable gaps D2, D8, D19, D21, D23, and D25 are transcribed at         ║
  * ║    the patent wide/middle/tele positions. D19 + D21 is nearly conserved ║
  * ║    because B4 is the translating focus unit, but no close-focus row is   ║
  * ║    reconstructed from that mechanism evidence.                            ║
  * ║                                                                            ║
- * ║  REAR REFERENCE-PLANE NORMALIZATION:                                      ║
- * ║    Patent surfaces 26-27 are GB, an optical filter/faceplate block, and  ║
- * ║    are excluded. Surface 25 d is replaced by d25 + 1.50/1.51633 + 1.12 ║
- * ║    so the omitted plate retains its first-order air-equivalent effect.    ║
+ * ║  REAR GLASS BLOCK GB:                                                      ║
+ * ║    Patent surfaces 26-27 are GB, an optical filter/faceplate block         ║
+ * ║    (1.50 mm, nd 1.51633, νd 64.1; S-BSL7 class). GB and d27 = 1.12 mm      ║
+ * ║    are modeled in `rearPlates` (traced, not drawn). Surface 25 d stores    ║
+ * ║    the patent d25 gap to GB: 11.12 / 34.65 / 35.56 mm; the paraxial        ║
+ * ║    equivalent BF is 13.229 / 36.759 / 37.669 mm (patent BF 13.24 /         ║
+ * ║    36.77 / 37.68).                                                         ║
  * ║                                                                            ║
  * ║  SCALE: none. Patent radii, thicknesses, and asphere coefficients remain ║
  * ║    at their native Example 1 scale. Patent k is the standard conic K.    ║
@@ -244,13 +247,13 @@ const LENS_DATA = {
       fl: 76.673936,
       glass: "847239 class (vendor unresolved)",
       apd: false,
-      role: "Single positive rear unit B6, immediately ahead of the normalized image-space gap.",
+      role: "Single positive rear unit B6, immediately ahead of the rear GB block and image-space gap.",
     },
   ],
 
   /* ── Surface prescription ──
    * Flat optical planes use the project infinity-radius convention R = 1e15.
-   * Surface 25 d is the air-equivalent surface-25-to-image distance after GB omission.
+   * Surface 25 d is the patent d25 gap to the GB block, which is modeled in rearPlates.
    */
   surfaces: [
     { label: "1", R: 56.962, d: 6.4, nd: 1.60311, elemId: 1, sd: 17.5 },
@@ -277,7 +280,20 @@ const LENS_DATA = {
     { label: "22A", R: -51.498, d: 2, nd: 1.5311, elemId: 12, sd: 7.7 },
     { label: "23A", R: -800, d: 1.16, nd: 1, elemId: 0, sd: 8.3 },
     { label: "24", R: 144.43, d: 3.6, nd: 1.84666, elemId: 13, sd: 11.5 },
-    { label: "25", R: -116.569, d: 13.229230576457631, nd: 1, elemId: 0, sd: 11.8 },
+    { label: "25", R: -116.569, d: 11.12, nd: 1, elemId: 0, sd: 11.8 },
+  ],
+
+  /* ── Glass block GB (patent surfaces 26–27): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "GB",
+      thicknessMm: 1.5,
+      nd: 1.51633,
+      vd: 64.1,
+      glass: "S-BSL7",
+      gapAfterMm: 1.12,
+      source: "US 2021/0003831 A1, Numerical Example 1 surfaces 26–27",
+    },
   ],
 
   /* ── Aspherical surfaces ──
@@ -335,9 +351,9 @@ const LENS_DATA = {
       [19.87, 19.87],
     ],
     "25": [
-      [13.229230576457631, 13.229230576457631],
-      [36.759230576457625, 36.759230576457625],
-      [37.66923057645763, 37.66923057645763],
+      [11.12, 11.12],
+      [34.65, 34.65],
+      [35.56, 35.56],
     ],
   },
   varLabels: [
@@ -346,7 +362,7 @@ const LENS_DATA = {
     ["19", "D19 / PRE-FOCUS (ZOOM)"],
     ["21", "D21 / POST-FOCUS (ZOOM)"],
     ["23A", "D23 (ZOOM)"],
-    ["25", "BF / AIR-EQUIVALENT (ZOOM)"],
+    ["25", "D25 / TO GB (ZOOM)"],
   ],
 
   zoomPositions: [24.72, 66.67, 101.85],

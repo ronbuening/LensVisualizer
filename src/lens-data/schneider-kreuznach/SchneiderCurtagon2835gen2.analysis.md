@@ -4,7 +4,7 @@
 **Filed:** July 18, 1963  
 **Priority:** Germany, September 12, 1962 (Sch 32,015)  
 **Granted:** May 9, 1967  
-**Inventor:** Karl H. Macher  
+**Inventor:** Karl Heinrich Macher  
 **Assignee:** Jos. Schneider & Co., Optische Werke  
 **Embodiment analyzed:** the sole representative numerical prescription, designated “Example 1” by the project job card
 

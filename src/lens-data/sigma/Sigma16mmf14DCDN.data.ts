@@ -16,12 +16,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    The production 16 mm value is treated as the marketed nominal    ║
  * ║    focal length.                                                    ║
  * ║                                                                    ║
- * ║  NOTE ON COVER GLASS:                                               ║
- * ║    Patent surfaces 31-32 are a 2.0000 mm plane-parallel plate       ║
- * ║    (nd = 1.51680) plus BF = 1.0000 mm. The plate is excluded from   ║
- * ║    the surfaces array and folded into surface 30's air-equivalent   ║
- * ║    final gap: 15.5341 + 2.0000 / 1.51680 + 1.0000 =                ║
- * ║    17.8527 mm.                                             ║
+ * ║  NOTE ON COVER GLASS:                                              ║
+ * ║    Patent surfaces 31-32 are a 2.0000 mm plane-parallel plate      ║
+ * ║    (nd 1.51680, νd 64.20) plus BF = 1.0000 mm. It is modeled in    ║
+ * ║    `rearPlates` (traced, not drawn); surface 30 keeps the patent   ║
+ * ║    d30 = 15.5341 mm to the plate.                                  ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    The patent omits clear-aperture data. Semi-diameters are         ║
@@ -284,7 +283,19 @@ const LENS_DATA = {
     { label: "27", R: 17.8877, d: 3.7091, nd: 1, elemId: 0, sd: 10.45 },
     { label: "28", R: 660, d: 6.0973, nd: 1.437, elemId: 15, sd: 10.45 },
     { label: "29", R: -17.1474, d: 0.9, nd: 1.90366, elemId: 16, sd: 10.8 },
-    { label: "30", R: -26.4237, d: 17.8526654008, nd: 1, elemId: 0, sd: 11 },
+    { label: "30", R: -26.4237, d: 15.5341, nd: 1, elemId: 0, sd: 11 },
+  ],
+
+  /* ── Cover glass (patent surfaces 31–32): traced, not drawn ── */
+  rearPlates: [
+    {
+      thicknessMm: 2.0,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 1.0,
+      source: "JP 2018-205527 A, Numerical Example 1 surfaces 31–32",
+    },
   ],
 
   asph: {

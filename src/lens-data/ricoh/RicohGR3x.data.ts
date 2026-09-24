@@ -4,8 +4,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * US20220026670A1 Example 3, Table 3 and Figure 3.
  * S2=24.908 mm is a reconstructed repair of the printed "0 224.908" row.
  * S12 is marked aspherical but coefficients are absent: spherical placeholder.
- * Filters are excluded; rear air includes t/nd, not physical plate thickness.
- * The unlisted 0.70 mm post-filter gap is reconstructed, not published.
+ * Filter S14–S15 (1.40 mm, nd 1.51633, νd 64.14) is modeled in `rearPlates`
+ * (traced, not drawn); S13 keeps the printed 14.378 mm gap to the filter.
+ * d15 is not printed: the 0.70 mm filter-to-image gap is the earlier
+ * reconstruction (paraxial focus), not a published spacing.
  */
 
 const LENS_DATA = {
@@ -130,8 +132,8 @@ const LENS_DATA = {
 
   /* ── Surface prescription ──
    *  Patent surface numbers: 1–15 (including filter and image).
-   *  Filter S14–S15 (1.40 mm, nd=1.51633) is omitted.
-   *  Rear air = 14.378 + 1.40/1.51633 + 0.70 = 16.0012818714 mm.
+   *  S13 → filter: printed 14.378 mm. Filter S14–S15 is in `rearPlates`.
+   *  Air-equivalent BF = 14.378 + 1.40/1.51633 + 0.70 = 16.0012818714 mm.
    *  The final 0.70 mm is inferred from conjugate and total-track consistency;
    *  the table leaves d15 blank. Do not present it as a published spacing.
    *  S12 is marked aspherical but its coefficients are unpublished here.
@@ -159,7 +161,20 @@ const LENS_DATA = {
 
     // ── Group IV: L7 (negative meniscus, 2× asph) ──
     { label: "12A", R: -18.0, d: 1.0, nd: 1.9027, elemId: 7, sd: 4.8 }, // Spherical placeholder for source-marked asphere; coefficients missing
-    { label: "13A", R: -26.676, d: 16.001281871360455, nd: 1.0, elemId: 0, sd: 5.2 }, // Published rear asphere → air-equivalent image spacing
+    { label: "13A", R: -26.676, d: 14.378, nd: 1.0, elemId: 0, sd: 5.2 }, // Published rear asphere → printed gap to filter
+  ],
+
+  /* ── Filter (patent surfaces 14–15): traced, not drawn ── */
+  rearPlates: [
+    {
+      thicknessMm: 1.4,
+      nd: 1.51633,
+      vd: 64.14,
+      glass: "S-BSL7",
+      gapAfterMm: 0.7,
+      source:
+        "US 2022/0026670 A1, Example 3 Table 3 surfaces 14–15 (\"various filters\"; d15 not printed, 0.70 mm is the earlier paraxial-focus reconstruction)",
+    },
   ],
 
   /* ── Aspherical coefficients ── */
@@ -196,13 +211,15 @@ const LENS_DATA = {
   },
 
   /* ── Variable air spacings (unit focus) ──
-   *  Unit focus: entire lens translates; only BFD changes.
+   *  Unit focus: entire lens translates; only the gap to the filter changes.
    *  The source has no finite focus table. Closest station is reconstructed
    *  for the assumed 0.20 m image-to-object distance using the rounded lens
    *  matrix; extension 4.8551862252 mm. All optics and stop move together.
+   *  Values are the physical S13 → filter gap (legacy air-equivalent minus
+   *  (1.40/1.51633 + 0.70) mm).
    */
   var: {
-    "13A": [16.001281871360455, 20.856468096571174],
+    "13A": [14.378, 19.23318622521072],
   },
 
   varLabels: [["13A", "BF"]],

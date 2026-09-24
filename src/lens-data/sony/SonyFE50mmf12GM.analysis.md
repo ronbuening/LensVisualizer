@@ -32,7 +32,7 @@ The physical construction contains 14 elements and four cemented pairs, yielding
 
 The patent attributes several system-level correction goals to this architecture. Moving two or more groups during focusing is described as facilitating control of field curvature, distortion, and lateral chromatic variation over focus. The positive and negative elements within GR2 are described as assisting axial chromatic correction. A positive and a negative element in GR3 are likewise described as useful for axial chromatic correction and Petzval control. These are patent-level statements about the group architecture; they should not be read as a surface-by-surface aberration decomposition. [JP 2022-140076 A, ¶¶0025, 0028]
 
-The implemented infinity-state effective focal length is 53.899471893 mm from both sequential height/reduced-angle tracing and an independent ABCD calculation. The normalized active-model track from surface 1 to the image plane is 129.15002 mm after removal of the patent's optional sensor-side plane-parallel optical member. The patent's physical L = 130.00 mm includes that plate and therefore is not the same modeled reference distance. [JP 2022-140076 A, p. 14, Tables 1–2; p. 32, Table 31]
+The implemented infinity-state effective focal length is 53.899471893 mm from both sequential height/reduced-angle tracing and an independent ABCD calculation. The physical track from surface 1 to the image plane is 130.0002 mm, matching the patent's L = 130.00 mm, because the sensor-side plane-parallel optical member FL is modeled in `rearPlates` rather than folded into an air-equivalent back focus. [JP 2022-140076 A, p. 14, Tables 1–2; p. 32, Table 31]
 
 ## Element-by-Element Analysis
 
@@ -120,7 +120,7 @@ G12 supplies νd(5G) = 18.0 for patent condition (7). The patent states that kee
 
 G14 is a negative meniscus convex toward the image and terminates the powered prescription. Both of its surfaces, 24A and 25A, are aspheric. [JP 2022-140076 A, ¶0070; Tables 1 and 4]
 
-The modeled active prescription ends after 25A. Patent surfaces 26–27 form the optional plane-parallel optical member FL between the lens and image plane. That plate is excluded from the ordinary LensVisualizer model as sensor-side cover/filter glass, and its optical effect is represented by the source-published air-equivalent rear spacing Bf = 15.80982 mm from powered surface 25 to the image plane. [JP 2022-140076 A, ¶0017; Tables 1 and 31]
+The modeled active prescription ends after 25A. Patent surfaces 26–27 form the optional plane-parallel optical member FL between the lens and image plane. The data file models that plate in `rearPlates` (2.50 mm, nd 1.51680, νd 64.2, N-BK7 class, then 1.00 mm of air to the image): every analysis traces it, but it is not drawn. Surface 25A keeps the patent's physical 13.16 mm gap to FL. The paraxial air-equivalent rear spacing is 15.8082 mm, against the Table 31 Bf = 15.80982 mm. [JP 2022-140076 A, ¶0017; Tables 1 and 31]
 
 ## Glass Identification and Selection
 
@@ -203,7 +203,7 @@ The patent defines seven principal conditions and, for each, a preferred tighter
 
 The patent links condition (1) to distortion control, condition (2) to balancing focus-group powers and focus travel, conditions (3) and (7) to chromatic-correction behavior, condition (4) to back-focus balance, condition (5) to keeping GR1 compact without excessive dispersion, and condition (6) to Petzval/field-curvature balance without excessively dispersive high-index glass. These are patent-stated rationales rather than independently isolated aberration sensitivities.
 
-For Bf, the source deserves a specific qualification. Table 31 publishes Bf = 15.80982 mm as an air-equivalent distance from the last powered surface to the image plane. Recomputing the plate-equivalent distance from the rounded Table 1 rows gives 15.8082068 mm, a -0.0016132 mm difference. The model preserves the mismatch and uses the explicit Table 31 Bf for the documented rear-plate omission transform rather than silently altering any patent row.
+For Bf, the source deserves a specific qualification. Table 31 publishes Bf = 15.80982 mm as an air-equivalent distance from the last powered surface to the image plane. Recomputing the plate-equivalent distance from the rounded Table 1 rows gives 15.8082068 mm, a -0.0016132 mm difference. The model now uses the Table 1 rows directly (13.16 mm air, the 2.50 mm FL plate in `rearPlates`, 1.00 mm air), so its paraxial image plane sits 0.0016 mm nearer than the Table 31 Bf would place it; no patent row is altered.
 
 ## Verification Summary
 
@@ -215,7 +215,7 @@ Likewise, all surface semi-diameters are modeled rather than patent-published. T
 
 The final model's surface-by-surface Petzval sum, computed as Σφ/(n·n′), is 0.001699067335 mm⁻¹. This value is a paraxial design diagnostic from the implemented prescription; it is not a manufacturer specification.
 
-No patent radius, spacing, refractive index, Abbe value, focus endpoint, or asphere coefficient was corrected. The only structural normalization is omission of the optional sensor-side FL plate and substitution of the patent's own Table 31 air-equivalent Bf as the rear spacing. The resulting active-model first-surface-to-image track is 129.15002 mm, while the source physical L remains 130.00 mm.
+No patent radius, spacing, refractive index, Abbe value, focus endpoint, or asphere coefficient was corrected. The sensor-side FL plate is modeled in `rearPlates` with its Table 1 spacings rather than folded into the last gap. The resulting first-surface-to-image track is 130.0002 mm, matching the source physical L = 130.00 mm.
 
 ## Sources and References
 
@@ -225,4 +225,4 @@ No patent radius, spacing, refractive index, Abbe value, focus endpoint, or asph
 4. Sony α Universe. **FE 50mm F1.2 GM developer interview**, 2021-03-17. https://www.sony.jp/ichigan/a-universe/news/547/ — independently driven dual floating-focus groups, fixed optical group between them, XD linear-motor arrangement, and focus-position sensing.
 5. Authoritative optical-glass catalog families checked for coordinate compatibility: HOYA Optical World (https://www.hoya-opticalworld.com/), OHARA (https://oharacorp.com/), SCHOTT optical glass (https://www.schott.com/en-gb/products/optical-glass-p1000267), HIKARI (https://www.hikari-g.co.jp/optical_glass/catalog/), CDGM (https://www.cdgmgd.com/), and SUMITA (https://www.sumita-opt.co.jp/en/download/). These checks support coordinate-class review only; they do not establish Sony's glass supplier or melt identity.
 
-The close-focus label uses the patent endpoint 0.410 m from the image plane (280 mm object distance plus 130 mm lens-to-image track), separately from Sony’s rounded marketed 0.4 m. The live diagram preserves GR2’s 6.1293 mm imageward travel and GR4’s 4.6776 mm objectward travel. Figure 1’s nearly common G2/G3 optical rim is represented by 27 mm semi-diameters at surfaces 3–5; the flat FL plate remains excluded under the documented rear-plate normalization.
+The close-focus label uses the patent endpoint 0.410 m from the image plane (280 mm object distance plus 130 mm lens-to-image track), separately from Sony’s rounded marketed 0.4 m. The live diagram preserves GR2’s 6.1293 mm imageward travel and GR4’s 4.6776 mm objectward travel. Figure 1’s nearly common G2/G3 optical rim is represented by 27 mm semi-diameters at surfaces 3–5; the flat FL plate is traced through `rearPlates` but not drawn.

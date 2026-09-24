@@ -3,7 +3,8 @@ import type { LensDataInput } from "../../types/optics.js";
 /** WO2022071249A1 Example2, Table2 pp.26–28 and Figure3 p.47.
  * Three source conics use kappa=1+K (equation p.20); K=0 is verified.
  * Nine source elements are ten modeled media because L24 includes a resin layer.
- * Filter20–21 stays omitted; final air-equivalent distance is11.223+1.6/1.5168+0.86.
+ * Filter FL (surfaces 20–21) is modeled in `rearPlates` (traced, not drawn): D19 = 11.223,
+ * FL 1.600 mm nd 1.51680 νd 63.88, then Bf 0.860 to the image (Bfa 13.138 air-equivalent).
  * Optical rims are inferred from Figure3 at600dpi, excluding shoulders and callouts.
  */
 
@@ -31,7 +32,7 @@ const LENS_DATA = {
   /* ── Elements ──
    *  Nikon counts 9 physical elements in 8 groups.
    *  The data format requires separate entries for the L24 glass body and resin
-   *  layer (different nd), yielding 10 entries total. The separate filter is excluded.
+   *  layer (different nd), yielding 10 entries total. The separate filter FL is in `rearPlates`.
    *
    *  Group structure: G1(+) — S — G2(+, GF1) — G3(+, GF2) — G4(−) — [FL]
    */
@@ -173,7 +174,7 @@ const LENS_DATA = {
    *    Patent 6–13* = surfaces "6"–"13A" (G2)
    *    Patent 14*–17 = surfaces "14A"–"17" (G3)
    *    Patent 18–19 = surfaces "18"–"19" (G4)
-   *    Patent 20–21 = filter (excluded; equivalent air spacing retained)
+   *    Patent 20–21 = filter FL (`rearPlates`, traced but not drawn)
    */
   surfaces: [
     // ── G1 — Front group (positive, f = +187.2 mm) ──
@@ -203,7 +204,20 @@ const LENS_DATA = {
 
     // ── G4 — Rear negative group (fixed, f = −44.3 mm) ──
     { label: "18", R: -34.46648, d: 1.2, nd: 1.64769, elemId: 10, sd: 14.6 }, // L41 front
-    { label: "19", R: 173.14403, d: 13.137852320675105, nd: 1.0, elemId: 0, sd: 16.1 }, // L41 rear → image plane (BFD; omitted filter represented by equivalent air spacing)
+    { label: "19", R: 173.14403, d: 11.223, nd: 1.0, elemId: 0, sd: 16.1 }, // L41 rear → filter FL (D19)
+  ],
+
+  /* ── Filter FL (patent surfaces 20–21): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "FL",
+      thicknessMm: 1.6,
+      nd: 1.5168,
+      vd: 63.88,
+      glass: "J-BK7",
+      gapAfterMm: 0.86,
+      source: "WO 2022/071249 A1, Example 2 Table 2 surfaces 20–21",
+    },
   ],
 
   /* ── Aspherical coefficients ──
@@ -277,7 +291,7 @@ const LENS_DATA = {
   /* ── Focus configuration ── */
   closeFocusM: 0.19,
   focusDescription:
-    "Source near station: 19 cm including the original filter path. G2 and G3 move 1.681 mm and 4.792 mm objectward; G1, stop and G4 stay fixed. Intermediate motion is interpolated.",
+    "Source near station: 19 cm including the filter path. G2 and G3 move 1.681 mm and 4.792 mm objectward; G1, stop and G4 stay fixed. Intermediate motion is interpolated.",
 
   /* ── Aperture configuration ── */
   nominalFno: 2.909,

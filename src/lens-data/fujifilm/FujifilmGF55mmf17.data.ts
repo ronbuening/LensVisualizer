@@ -10,10 +10,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  Focus: G2 inner focus; G1 and G3 fixed relative to the image plane.║
  * ║                                                                    ║
  * ║  NOTE ON SENSOR COVER GLASS:                                        ║
- * ║    Patent surfaces 26–27 are the optical member PP / sensor cover.  ║
- * ║    Per project convention they are excluded from the surfaces array. ║
- * ║    Their optical path is folded into the final air-equivalent BFD:   ║
- * ║    17.4498 + 3.2000 / 1.51680 + 1.0582 = 20.6177046414 mm.          ║
+ * ║    Patent Table 1 surfaces 26–27 (optical member PP, 3.2000 mm,     ║
+ * ║    nd 1.51680, νd 64.20) and the 1.0582 mm air gap to Sim are       ║
+ * ║    modeled in `rearPlates` (traced, not drawn). Surface 25A keeps   ║
+ * ║    the patent's 17.4498 mm gap to PP.                               ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    The patent does not publish clear apertures. SDs below are       ║
@@ -25,7 +25,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  IMPORTANT: This file describes ONLY the optical design:            ║
  * ║    ✓ Glass elements and surfaces from front element to image plane  ║
  * ║    ✓ Aperture stop and variable focus gaps                          ║
- * ║    ✗ Sensor cover glass is not modeled as refracting surfaces       ║
+ * ║    ✗ DO NOT include: mechanical parts (cover glass: `rearPlates`)   ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -240,7 +240,21 @@ const LENS_DATA = {
     { label: "22", R: -76.6425, d: 1.24, nd: 1.54072, elemId: 13, sd: 17.0 },
     { label: "23", R: -750.3849, d: 4.11, nd: 1.0, elemId: 0, sd: 18.5 },
     { label: "24A", R: -299.9968, d: 3.5, nd: 1.68863, elemId: 14, sd: 18.5 },
-    { label: "25A", R: -593.4954, d: 20.6177046414, nd: 1.0, elemId: 0, sd: 18.5 },
+    // Last surface: patent gap to the optical member PP
+    { label: "25A", R: -593.4954, d: 17.4498, nd: 1.0, elemId: 0, sd: 18.5 },
+  ],
+
+  /* ── Optical member PP (patent Table 1 surfaces 26–27): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PP",
+      thicknessMm: 3.2,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 1.0582,
+      source: "US 2023/0341664 A1, Example 1 Table 1 surfaces 26–27",
+    },
   ],
 
   asph: {

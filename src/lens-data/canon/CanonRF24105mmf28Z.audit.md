@@ -59,3 +59,72 @@ Catalog version: local working tree, 2026-05-19
 ### Report status
 
 - At the time RF24-105 remained in the six-digit missing-Sellmeier report only for L8 / 770297. The 2026-06-04 report run clears that row.
+
+## 2026-09-23 — First-added diagram audit, lens 96
+
+Source: local `patents/US20240192474A1.pdf` (image-only scan, no text layer). Pages used: 1 (front page), 8 (FIG. 7
+section, measured at 300 dpi), 9 (FIGS. 8A/8B aberrations), 18 (¶0027, ¶0030, ¶0034), 20–21 (¶0066–¶0072, including
+¶0069 for Example 4), 22 (¶0077–¶0078 BF and asphere definitions), 26–28 (Numerical Example 4 tables and unit data).
+
+### Re-verified and retained
+
+- Numerical Example 4 is stored; it matches Canon's 23 elements / 18 groups, four 497/815 rows (UD), and three
+  aspheres. Front-page fields (US 2024/0192474 A1, Shunji Iwamoto, Canon, 2024) are correct.
+- All 43 surface rows (R, d, nd, νd), the stop at S16, and the three aspheres (S22, S32, S37; K = 0 in the (1+K)
+  formula, A4–A10 with signs and exponents) match the rendered table.
+- Zoom data: wide, middle and tele are all tabulated (f 24.78 / 50.31 / 102.06; d8, d15, d24, d34, d36, d38, d43); no
+  interpolated stations. Computed EFL 24.784 / 50.314 / 102.080; overall length 211.98 at every station. The patent
+  lists no cover glass and d43 equals its BF; stored gaps sit −0.006 / +0.009 / −0.014 mm from paraxial focus.
+- Group motion (derived from the gap table, L1 fixed per ¶0069): L2 +33.90 mm toward the image; L3 −5.88, L4 −24.72,
+  L5 −26.12, L6 −27.00 mm toward the object; L7 −14.11 mm (wide→middle) then +6.74 mm back (middle→tele). FIG. 7
+  arrows and the app's zoom-movement overlay agree. The analysis motion table was already correct.
+- Unit focal lengths (90.57 / −27.00 / 119.23 / 35.02 / −47.42 / 112.74 / −90.78) and every element `fl` agree with
+  thick-lens values to the stored rounding.
+- Glass: every nd/νd equals the patent row; all labels except L19 already resolved to exact catalog coordinates.
+- Close focus: the patent gives no close-focus gaps for any example, so the finite-focus entries keep repeating the
+  infinity values (the app shows focus as "Not modeled"). No travel was invented; 0.45 m stays as Canon's production
+  MFD for reference.
+
+### Changes
+
+| Item | Before | After | Evidence |
+|---|---|---|---|
+| L6 focus direction (header, `focusDescription`, L21 role, analysis §3.6, §5) | L6 moves toward the object | L5 and L6 both move toward the image | ¶0069 (Example 4) and both FOCUS arrows in FIG. 7 |
+| `nominalFno` / aperture model | 2.8, fixed iris (engine iris 11.27 mm, ≈f/3.9 equivalent at tele) | 2.9 + `zoomApertureModel: "from-nominal-fno"`; traced iris radii 10.87 / 13.72 / 15.08 mm | Patent Fno 2.90 at all stations; stop moves with L3; no iris diameters published |
+| `fstopSeries` / `maxFstop` | starts f/2.8, default max 16 (f/22 button unreachable) | starts f/2.9, `maxFstop: 22` | Patent Fno; production f/22 minimum |
+| S9 / S10 sd | 17.5 / 15.8 | 20.0 / 17.0 | Wide corner chief ray (Y = 21.6, real ω 45.7°) needs 19.2 / 16.0 and was blocked; FIG. 7 draws L2's first element at 20.1 with the S10 rim at ≈17.3 |
+| S32A sd | 21.0 | 18.0 | The asphere's sag turns over at ≈18.2 mm; the f/2.9 axial beam needs 16.6 and the chief ray 16.2 |
+| S42 / S43 sd | 20.6 / 21.8 | 18.0 / 18.0 | FIG. 7 draws L24 at 17.9 (old values 15 % / 22 % large); the tele chief ray needs 17.65 at S43 |
+| L10 `type` | Positive Meniscus | Negative Meniscus | R 59.615 / 36.734 (both +, R1 > R2); thick-lens f = −98.2 |
+| L19 `glass` | N-SK14 (Schott) | S-BSM14 (OHARA) | Same 603/606 coordinate; Canon's usual supplier |
+| L21 `glass` | OHARA L-BAL42 PGM glass (583/594) | L-BAL42 (OHARA) | Label format; catalog equivalent |
+| `varLabels` d43 | BF | D43 | The patent names the gap d43 |
+| Group labels L4–L7 | "L4 (relay)" … "L7 (corrector)" | "L4" … "L7" | The long labels overlapped under the narrow L5/L6 units in the diagram |
+| Header | Box header with wrong L6 direction and d43 listed as a focus gap | Rewritten: zoom motion, focus, BF, aperture and SD basis | Findings above |
+
+Analysis sync: L3/L7 unit focal lengths (119.23, −90.78); E5 and E20 described as convex toward the object; E10 negative
+meniscus; E16 no longer called the strongest positive in L4 (E19, f ≈ +41 mm, is); the patent's ω noted as paraxial
+(¶0030); focus section rewritten for same-direction travel; inferred iris schedule stated; S32 clear-aperture limit
+and departure (≈ −0.87 mm at 18.0 mm) added; distortion quantified from FIG. 8A and the trace (≈ −12 % wide, about
++4 to +5 % tele, previously "several percent" / "minimal"); stale "element 8 code-only" wording removed; unsupported
+"first RF replica aspheric", "PGM confirmed by prefix" and UV-resin statements reworded as marketing or inference.
+
+### Checks on the result
+
+- Surface validator: no errors. Image-circle floor: 0 undersized.
+- Exact trace at f/2.9, Y = 21.6 mm: no axial clipping and no chief-ray blocking at any station. Corner vignetting is
+  heavy at wide (front group 74–98 % side, as before) and 73 % side at S32A.
+- Engine: iris 10.87 / 13.72 / 15.08 mm, FOPEN 2.9 at all stations, paraxial half-field estimate 36.4° at wide
+  (limited by S10–S12; patent paraxial ω 41.12°). Real rays still reach the corner.
+- Live headless check (local vs production): wide, middle and tele render cleanly with the new labels; the focus
+  panel reports "Not modeled"; the zoom-movement overlay matches FIG. 7 (L1 fixed, L2 rearward, L3–L6 forward, L7 net
+  forward).
+
+### Open limitations
+
+- Focus travel is not modeled (no published close-focus data). The FIG. 7 dotted loci show the two groups' close
+  positions differ from their infinity loci, but no numbers are given.
+- Rims are not published. The L4 rims (S27–S31) are 8–11 % larger than FIG. 7, and E20 (S35 19.4) is ≈15 % larger;
+  these were kept within tolerance. The replica layer stays capped at 15.5 mm (FIG. 7 ≈16.6) for edge thickness.
+- The engine's paraxial wide half-field (36.4°) is below the patent's paraxial 41.12°, because heavy barrel
+  distortion makes paraxial chief heights overstate the rims needed.

@@ -24,9 +24,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    doublet (L13: 0.90+0.01=0.91; L16: 7.77+0.01=7.78).           ║
  * ║                                                                    ║
  * ║  NOTE ON COVER GLASS:                                              ║
- * ║    Patent includes CG (nd=1.51680, d=2.10 mm) + 1.00 mm air       ║
- * ║    before image. Excluded per spec; physical path folded into      ║
- * ║    air-equivalent BFD: 12.42 + 2.10/1.51680 + 1.00 = 14.805 mm.  ║
+ * ║    Patent surfaces 28–29 (cover glass CG, 2.10 mm, nd 1.51680,     ║
+ * ║    νd 64.2) and the 1.00 mm air gap to IMG are modeled in          ║
+ * ║    `rearPlates` (traced, not drawn). Surface 20 (patent S27)       ║
+ * ║    keeps the patent's 12.42 mm gap to the cover glass.             ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    Not published in patent. Estimated from combined marginal ray   ║
@@ -40,7 +41,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
  * ║    ✓ Aperture stop and variable focus gaps                        ║
- * ║    ✗ DO NOT include: sensor glass, filters, mechanical parts      ║
+ * ║    ✗ DO NOT include: mechanical parts (cover glass: `rearPlates`)  ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -239,7 +240,20 @@ const LENS_DATA = {
     { label: "17A", R: 300.0, d: 7.0, nd: 1.51602, elemId: 10, sd: 14.1 },
     { label: "18A", R: -31.6485, d: 9.07, nd: 1.0, elemId: 0, sd: 14.2 },
     { label: "19", R: -26.1426, d: 2.16, nd: 1.5168, elemId: 11, sd: 15.0 },
-    { label: "20", R: -96.5349, d: 14.8045, nd: 1.0, elemId: 0, sd: 15.3 }, // BFD (CG folded to air-equivalent)
+    { label: "20", R: -96.5349, d: 12.42, nd: 1.0, elemId: 0, sd: 15.3 }, // patent S27: gap to cover glass CG
+  ],
+
+  /* ── Cover glass CG (patent surfaces 28–29): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "CG",
+      thicknessMm: 2.1,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 1.0,
+      source: "CN 216772097 U, Example 1 surfaces 28–29",
+    },
   ],
 
   /* ── Aspherical coefficients ──

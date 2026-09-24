@@ -9,8 +9,9 @@ import type { LensDataInput } from "../../types/optics.js";
  *
  * Source normalization:
  * - Source air-to-air bookkeeping planes 8 and 17 are omitted and their spacings folded into the adjacent air gaps.
- * - Source CG/filter surfaces 23-24 are excluded. Surface 22 uses 17.3482067511 mm air-equivalent rear spacing,
- *   replacing 14.700 mm air + 2.500 mm at nd=1.5168 + 1.000 mm air.
+ * - Source cover glass CG (Table 5 surfaces 23-24: 2.500 mm, nd=1.5168, νd=64.20; labeled CG in Fig. 6) and the
+ *   1.000 mm air gap to the image are modeled in `rearPlates` (traced, not drawn). Surface 22 keeps the patent's
+ *   14.700 mm gap to the cover glass.
  * - No dimensional scaling is applied; patent design and marketed focal/aperture values remain separate.
  *
  * Stop and aperture modeling:
@@ -223,7 +224,20 @@ const LENS_DATA = {
     { label: "19", R: -21.993, d: 2.369, nd: 1.4875, elemId: 10, sd: 15.8 },
     { label: "20", R: 143.555, d: 6.6, nd: 1.0, elemId: 0, sd: 15.8 },
     { label: "21", R: -25.154, d: 1.0, nd: 1.5182, elemId: 11, sd: 14.5 },
-    { label: "22", R: -55.588, d: 17.348206751055, nd: 1.0, elemId: 0, sd: 16.8 },
+    { label: "22", R: -55.588, d: 14.7, nd: 1.0, elemId: 0, sd: 16.8 },
+  ],
+
+  /* ── Cover glass CG (patent Table 5 surfaces 23–24): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "CG",
+      thicknessMm: 2.5,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 1.0,
+      source: "JP 2015-096915 A, Example 2 Table 5 surfaces 23–24",
+    },
   ],
 
   asph: {},

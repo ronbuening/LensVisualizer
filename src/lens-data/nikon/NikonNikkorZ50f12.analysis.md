@@ -36,7 +36,7 @@ or production close-focus endpoint.
 | Half field | 22.8° |
 | Image semi-height | 21.60 mm |
 | Total length including filter and image gap | 163.307 mm |
-| Air-equivalent back focus | 12.567 mm, rounded |
+| Air-equivalent back focus (d34 + filter t/n + d36) | 12.567 mm, rounded |
 | Close object distance from first surface | 467.50 mm |
 | Close magnification | −0.1000 |
 
@@ -148,16 +148,25 @@ Patent surface 9 is a dummy plane in air. Combining d8 = −3.000 mm and
 d9 = 3.100 mm preserves the actual 0.100 mm separation. Diagram labels
 thereafter are one less than patent surface numbers.
 
-The patent includes a 1.600 mm filter with nd = 1.51680 after L44.
-The diagram omits that camera-side plate and uses the paraxial air equivalent:
+The patent includes a 1.600 mm filter FL (surfaces 35–36, nd = 1.51680,
+νd = 63.9) after L44. The data models it physically in `rearPlates`: every
+analysis traces the plate, but the diagram does not draw it. The last lens gap
+is the patent's d34 = 10.810 mm to the filter, and the filter is followed by
+d36 = 0.702 mm to the image. The close station's 0.701 mm d36 is carried in
+d34 (10.809 mm), because `rearPlates` holds one fixed trailing gap; the printed
+lens-to-image path is unchanged. The paraxial air equivalent of this rear stack
+is:
 
 - Infinity rear gap: 10.810 + 1.600 / 1.51680 + 0.702 = **12.566852 mm**.
 - Close rear gap: **12.565852 mm**.
-- Close object-to-image distance: 467.500 + 162.759852 = **630.259852 mm**.
+- Close object-to-image distance, physical with the filter: 467.500 + 163.305 =
+  **630.805 mm** (the stored `closeFocusM`); the air-equivalent path is
+  467.500 + 162.759852 = 630.259852 mm.
 
-The old model ended at the filter's front face, 10.810 mm after L44.
-Preserving the object leg and using the air-equivalent image plane corrects
-that omission without inventing additional group movement. Independent
+An older model ended at the filter's front face, 10.810 mm after L44, with no
+filter behind it. Preserving the object leg and placing the image plane at the
+filter-corrected position corrects that omission without inventing additional
+group movement. Independent
 paraxial propagation through the rounded close prescription leaves less than
 0.004 mm ray-height residual for a unit reduced-angle launch from the source
 object point; the source station is retained rather than fitted.

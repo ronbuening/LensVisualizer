@@ -2,8 +2,9 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * WO 2021/241230 A1, Example 1, Table 1 (PDF pp28–31), Fig.1 (p63).
- * Surface labels omit the dummy plane after patent S8. Sensor-filter media
- * are replaced by an air-equivalent image gap. The patent's kappa multiplies
+ * Surface labels omit the dummy plane after patent S8. The sensor filter FL
+ * (patent S35–S36) is modeled in `rearPlates` (traced, not drawn); the last
+ * gap is the physical d34 to the filter. The patent's kappa multiplies
  * y^2/r^2 directly in equation (a), so stored standard K = kappa - 1.
  * Rims are inferred from the exact figure; no production glass vendor or
  * motor mechanism is established by the numerical prescription.
@@ -34,7 +35,7 @@ const LENS_DATA = {
    *  17 optical elements, front to rear.
    *  Patent element labels: L11–L19 (front group A), L21–L22 (F1),
    *  L31–L32 (F2), L41–L44 (R group).
-   *  (Filter plate modeled separately in camera body.)
+   *  (Filter plate FL modeled in `rearPlates`, not as an element.)
    */
   elements: [
     {
@@ -250,7 +251,7 @@ const LENS_DATA = {
   ],
 
   /* ── Surface prescription ──
-   *  Dummy plane S9 and filter surfaces S35–S36 omitted; optical surfaces retain source correspondence.
+   *  Dummy plane S9 omitted; filter surfaces S35–S36 are in `rearPlates`. Optical surfaces retain source correspondence.
    *  Patent surface numbering noted in comments for cross-reference.
    *
    *  elemId assignment:
@@ -294,7 +295,20 @@ const LENS_DATA = {
     { label: "30", R: -127.68, d: 1.8, nd: 1.61266, elemId: 16, sd: 20 }, // 31  L42→L43 cemented junction
     { label: "31", R: 40.89766, d: 7.76, nd: 1.0, elemId: 0, sd: 17.75 }, // 32  L43 rear → air
     { label: "32A", R: -64.58764, d: 1.8, nd: 1.5168, elemId: 17, sd: 18 }, // 33* L44 front (ASPH)
-    { label: "33", R: 423.87378, d: 12.566852320675107, nd: 1.0, elemId: 0, sd: 19.5 }, // 34 L44 rear → air-equivalent image plane (10.810 + 1.600/1.51680 + d36)
+    { label: "33", R: 423.87378, d: 10.81, nd: 1.0, elemId: 0, sd: 19.5 }, // 34 L44 rear → filter FL (d34, variable d)
+  ],
+
+  /* ── Filter FL (patent surfaces 35–36): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "FL",
+      thicknessMm: 1.6,
+      nd: 1.5168,
+      vd: 63.9,
+      glass: "J-BK7",
+      gapAfterMm: 0.702,
+      source: "WO 2021/241230 A1, Example 1 Table 1 surfaces 35–36",
+    },
   ],
 
   /* Patent equation (a), p26: K = kappa - 1; include every published term. */
@@ -339,7 +353,11 @@ const LENS_DATA = {
    *    d19: 19.164 → 11.437   (stop → F1)
    *    d23:  2.000 →  3.584   (F1 → F2)
    *    d27:  1.900 →  8.043   (F2 → R)
-   *    d36:  0.702 →  0.701   (BF)
+   *    d36:  0.702 →  0.701   (BF, filter → image)
+   *
+   *  `rearPlates` holds one fixed trailing gap (d36 = 0.702), so the close
+   *  station's −0.001 mm d36 change is carried in d34 (10.810 → 10.809);
+   *  the printed lens-to-image path is unchanged.
    *
    *  Note: Patent labels refer to patent surface numbers. Data file
    *  labels refer to the collapsed numbering used in the surfaces array.
@@ -348,14 +366,14 @@ const LENS_DATA = {
     STO: [19.164, 11.437], // d19: stop → F1 front
     22: [2.0, 3.584], // d23: F1 rear → F2 front
     26: [1.9, 8.043], // d27: F2 rear → R front
-    33: [12.566852320675107, 12.565852320675107], // filter omitted; source d36 differs by 0.001 mm
+    33: [10.81, 10.809], // d34 to filter FL; close carries source d36 0.702 → 0.701
   },
 
   varLabels: [
     ["STO", "STO–F1"], // Stop → F1
     ["22", "F1–F2"], // F1 → F2
     ["26", "F2–R"], // F2 → R
-    ["33", "BF (air equiv.)"],
+    ["33", "L44–FL"],
   ],
 
   /* ── Group and doublet annotations ── */
@@ -372,9 +390,9 @@ const LENS_DATA = {
   ],
 
   /* ── Focus configuration ── */
-  closeFocusM: 0.6302598523206751,
+  closeFocusM: 0.630805,
   focusDescription:
-    "Patent Example 1: F1 moves 7.727 mm and F2 6.143 mm objectward relative to the front/rear groups. Source close object distance is 467.50 mm from the first surface, about 0.630 m from the modeled image plane. The 0.001 mm image-gap change follows rounded source stations; intermediate motion is interpolated.",
+    "Patent Example 1: F1 moves 7.727 mm and F2 6.143 mm objectward relative to the front/rear groups. Source close object distance is 467.50 mm from the first surface, 0.630805 m from the physical image plane. The 0.001 mm d36 change follows rounded source stations and is carried in d34; intermediate motion is interpolated.",
 
   /* ── Aperture configuration ── */
   nominalFno: 1.23,

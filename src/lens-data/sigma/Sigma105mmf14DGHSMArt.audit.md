@@ -58,3 +58,11 @@ Patent: JP 2019-144477 A, Numerical Example 1
   formula-3 polynomial.
 - L4's exact `nd=1.61310`, `vd=44.36`, code `613444` coordinate now resolves to catalog dispersion.
 - No lens-data or prescription values changed.
+
+## 2026-09-23 — Cover plate modeled as `rearPlates`
+
+- Replaced the air-equivalent 30A gap with the patent's physical rear stack (Numerical Example 1 text layer):
+  d30 = 37.5626 / 50.4932 mm (infinity / close), then `rearPlates` 1.4500 mm, nd 1.52301, νd 58.59, θgF 0.5449
+  (dPgF −0.00035 against the project normal line; C12 (HOYA) coordinate-compatible spectral proxy), and BF 1.0000 mm.
+- Paraxial check against the previous data: EFL identical; defocus changes by 0.00004 mm at both focus keyframes
+  (rounding in the old 39.5147 / 52.4453). Physical track grows by 0.498 mm and matches the patent's 171.92 mm.

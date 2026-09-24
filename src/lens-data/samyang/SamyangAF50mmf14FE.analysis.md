@@ -13,7 +13,7 @@ The modeled prescription is Numerical Example 1 of KR 10-1825708 B1, correlated 
 
 The data file keeps marketing and design values distinct. The marketed focal length and maximum aperture are 50 mm and f/1.4, while the independently verified design values are 51.038626 mm and f/1.44. The optical prescription is unscaled (`s = 1.0`), so the patent radii, thicknesses, refractive indices, and aspherical coefficients are retained at their source scale.
 
-The patent itself describes the design as a telephoto-type standard-angle lens. Under the LensVisualizer project taxonomy, however, the modeled system is not classified as telephoto because its normalized total track exceeds its effective focal length. The air-equivalent model track is 110.669397 mm, giving `TL/EFL = 2.16835`. It is likewise not retrofocus because the rear focal distance is smaller than the effective focal length.
+The patent itself describes the design as a telephoto-type standard-angle lens. Under the LensVisualizer project taxonomy, however, the modeled system is not classified as telephoto because its normalized total track exceeds its effective focal length. The physical model track, including the 2.5 mm filter plate, is 111.521190 mm (`TL/EFL = 2.18504`); its air-equivalent value is 110.669397 mm (`TL/EFL = 2.16835`). It is likewise not retrofocus because the rear focal distance is smaller than the effective focal length.
 
 ## Optical Architecture
 
@@ -23,7 +23,7 @@ The patent characterizes G1 as a modified double-Gauss arrangement. Its independ
 
 The architecture is distinguished by the very small moving focus group. Patent ¶0049-0055 explicitly makes L7/G2 the sole focusing lens while G1 and G3 remain fixed, reducing the moving optical mass relative to a multi-element focusing group. The rear group then combines a strong positive aspherical element with a negative biconcave last element that the patent identifies as a field flattener near the image plane (¶0051-0052).
 
-The ordinary sequential model omits the patent's optional S19-S20 optical-filter plate. Patent ¶0075 permits the optical system to be used without that plate, and the project specification excludes generic sensor-side filters and cover plates. Its infinity optical effect is preserved by replacing the physical `19.5 + 2.5 mm glass + 1.02158 mm air` rear path with a 22.1697867511 mm air-equivalent gap after surface 18. Patent D5 is printed after IMG and is not treated as a pre-image spacing.
+The patent's S19-S20 optical-filter plate OF (2.5 mm, nd 1.51680, νd 64.20; N-BK7 class) is modeled in `rearPlates`: every analysis traces it, but it is not drawn. Patent ¶0075 notes that the optical system may also be used without the filter. Surface 18 stores the printed D3 = 19.5 mm gap to the plate, and the plate's gap to IMG is the infinity-row D4 = 1.02158 mm. The physical `19.5 + 2.5 mm glass + 1.02158 mm air` rear path is paraxially equivalent to a 22.1697867511 mm air gap. Patent D5 is printed after IMG and is not treated as a pre-image spacing.
 
 The patent publishes no clear-aperture table. The stop position is source-published, but its physical semi-diameter and all other surface semi-diameters are modeling inferences. The stop semi-diameter, 16.742525 mm, was back-solved from the verified f/1.44 model. The remaining semi-diameters were derived from exact marginal/chief-ray tracing in both defined focus states and checked against the patent optical section, edge thickness, actual aspheric rim slope, cross-gap intrusion, and off-axis containment.
 
@@ -131,7 +131,7 @@ For that reason, the final data file uses `CONSTRAINED_RECONSTRUCTION`, not a li
 
 The modeled G2 travel is +6.794937 mm toward the image side. The reconstructed finite-conjugate matrix has a B residual of approximately `-3.3e-10`, and the paraxial magnification is -0.149516. Those values are computed checks, not source-published performance specifications.
 
-The reference-plane comparison also requires restoring the physical thickness difference of the omitted filter plate. The air-equivalent model has a geometric object-to-IMG distance of 449.148207 mm at the close state. Adding back the omitted plate's 0.851793 mm physical-minus-reduced thickness gives 450.000000 mm to the physical sensor reference plane, matching the manufacturer's rounded 0.45 m minimum focusing distance.
+Because the filter plate is modeled physically, the close-state object-to-IMG distance is 450.000000 mm to the sensor reference plane, matching the manufacturer's rounded 0.45 m minimum focusing distance. The air-equivalent rear path would give 449.148207 mm; the 0.851793 mm difference is the plate's physical-minus-reduced thickness. The modeled close state keeps the infinity-row D4 behind the plate, since the fixed image plane does not follow the patent close row's D4 = 1.15459 mm.
 
 The manufacturer also specifies 0.15× maximum magnification. The source patent close row uses `m = -0.15`, while the fixed-sensor reconstruction gives -0.149516 paraxially. The agreement is consistent with the intended production correlation, but the sign difference is simply the ordinary inverted real-image convention.
 
@@ -163,16 +163,16 @@ The semi-diameters used for these edge values are modeling inferences. Geometry 
 The patent gives three design inequalities relevant to Example 1.
 
 1. `1.1 ≤ f12/f ≤ 1.9`. From the final data arrays, `f12/f = 1.419946`, so the model satisfies the condition.
-2. The detailed description gives `0.2 ≤ bf/f12 ≤ 0.35`, whereas Claim 8 prints the upper bound as 1.9. The source therefore contains an internal contradiction that is preserved rather than silently reconciled. Using the source physical S18-to-IMG distance excluding post-IMG D5 gives `bf/f12 = 0.317661`; using the air-equivalent modeled rear gap gives 0.305908. Both satisfy the narrower 0.2-0.35 description interval and necessarily the broader Claim-8 interval.
+2. The detailed description gives `0.2 ≤ bf/f12 ≤ 0.35`, whereas Claim 8 prints the upper bound as 1.9. The source therefore contains an internal contradiction that is preserved rather than silently reconciled. Using the source physical S18-to-IMG distance excluding post-IMG D5 gives `bf/f12 = 0.317661`; using the air-equivalent rear path gives 0.305908. Both satisfy the narrower 0.2-0.35 description interval and necessarily the broader Claim-8 interval.
 3. `0.6 ≤ vf/vr ≤ 0.9`. Using the stored Abbe numbers gives `vf/vr = 0.713999`, which satisfies the condition.
 
-Patent Table 10 also prints `bf = 23.0235 mm`. That number numerically incorporates the infinity D5 value even though Table 1 places D5 after IMG. The data file therefore does not use Table-10 `bf` as its sequential rear gap. It instead retains the physically normalized no-filter spacing described above.
+Patent Table 10 also prints `bf = 23.0235 mm`. That number numerically incorporates the infinity D5 value even though Table 1 places D5 after IMG. The data file therefore does not use Table-10 `bf` as its sequential rear gap. It instead uses the printed D3 and infinity-row D4 around the modeled filter plate, as described above.
 
 ## Verification Summary
 
 Independent y-ν tracing and an ABCD basis-ray cross-check were run from the final TypeScript arrays. The infinity matrix gives EFL 51.038626 mm, differing from the patent Table-10 value 51.0384 mm by only +0.000226 mm. The modeled entrance-pupil diameter is 35.443490 mm and recomputes the stored wide-open f-number as 1.440000.
 
-The computed last-vertex BFL is 22.170383 mm. The authored air-equivalent rear gap is 22.169787 mm, a difference of 0.000596 mm that is consistent with the printed prescription precision. Surface-by-surface Petzval summation using `φ/(n·n′)` gives +0.001796229 mm⁻¹; that value is retained as a computed diagnostic rather than converted into a claim about measured field curvature.
+The computed air-equivalent last-vertex BFL is 22.170383 mm. The printed rear path to IMG (D3 + plate + D4) is 22.169787 mm air-equivalent, a difference of 0.000596 mm that is consistent with the printed prescription precision. Surface-by-surface Petzval summation using `φ/(n·n′)` gives +0.001796229 mm⁻¹; that value is retained as a computed diagnostic rather than converted into a claim about measured field curvature.
 
 The final geometry checks cover both infinity and the constrained close-focus state. The tightest positive shared-gap margin is 0.342 mm between 6A and 7, and the minimum non-stop exact-ray clearance is 0.606 mm at infinity and 0.687 mm at close focus. These checks support the authored semi-diameters but do not make them patent-published apertures.
 

@@ -48,15 +48,15 @@ The three published infinity states are retained because two group trajectories 
 
 The stop remains 0.85 mm ahead of surface 11A at all three states. This fixed stop-to-G3 spacing implements the patent’s statement that the stop moves integrally with G3.
 
-Under the project’s strict terminology, the design is neither telephoto nor retrofocus at any defined state. The air-equivalent total-track-to-EFL ratios are 8.800, 4.674, and 2.686, all greater than unity, while the rear-air-space-to-EFL ratios are 0.834, 0.531, and 0.242, all less than unity.
+Under the project’s strict terminology, the design is neither telephoto nor retrofocus at any defined state. The air-equivalent total-track-to-EFL ratios are 8.800, 4.674, and 2.686, all greater than unity, while the air-equivalent rear-space-to-EFL ratios are 0.834, 0.531, and 0.242, all less than unity.
 
-The patent includes a plane-parallel optical member PP after G4 (¶0057 and Table 1). The data model omits this cover/filter surrogate and preserves its paraxial effect by replacing the rear region with the air-equivalent spacing
+The patent includes a plane-parallel optical member PP after G4 (¶0057 and Table 1): surfaces 22–23, 2.14 mm thick, nd = 1.516798, νd = 64.20. The data model carries it in `rearPlates` (N-BK7 catalog equivalent), so every analysis traces it, but it is not drawn in the section. The last stored gap is DD21, the physical air from surface 21 to PP, followed by the plate and DD23 = 0.61 mm to the image. Table 3 prints DD23 as 0.61 / 0.61 / 0.63 mm; the model keeps a single 0.61 mm trailing gap and adds the extra 0.02 mm at tele to DD21, so the stored DD21 values are 4.10, 5.55, and 4.67 mm and the physical surface-21-to-image distance is exactly as printed at every state. The paraxial equivalent of the rear region is unchanged:
 
 $$
-D_{21,\mathrm{model}} = DD21 + \frac{2.14}{1.516798} + DD23.
+Bf = DD21 + \frac{2.14}{1.516798} + DD23 = 6.12087,\ 7.57087,\ 6.69087\ \mathrm{mm}.
 $$
 
-The resulting authored rear spaces are 6.12087, 7.57087, and 6.69087 mm. No sensor cover, filter, dummy surface, or mechanical component remains in the ordinary sequential model.
+The physical track is 0.729 mm longer than this air-equivalent track, the plate's $t(1 - 1/n)$. No sensor cover, dummy surface, or mechanical component beyond PP is modeled.
 
 ## Element-by-Element Analysis
 

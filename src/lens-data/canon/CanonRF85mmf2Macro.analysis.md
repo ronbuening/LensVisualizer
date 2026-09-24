@@ -24,7 +24,9 @@ US 2021/0072505 A1 contains six numerical examples. **Example 1** — the First 
 | Image height | 21.64 mm | 21.64 mm (full-frame diagonal half) |
 | Maximum magnification | 0.5× (β = −0.5) | 0.5× |
 | UD elements | 1 (L3, nd = 1.497, vd = 81.5) | 1 UD |
-| Focus extension at 0.5× | 27.0 mm (computed) | ~28 mm (measured) |
+| Focus extension at 0.5× | 27.0 mm (d12 change, patent table) | ~28 mm (reported by reviewers) |
+| Closest focus distance | 346.2 mm object-to-image at β = −0.5 (calculated) | 0.35 m |
+| Minimum aperture | — | f/29 |
 | Overall optical track | 104.87 mm | — (barrel length 90.5 mm; not directly comparable) |
 
 Note: Example 2 (the Second Numerical Example) has only 9 elements in 8 groups with an f/1.86 aperture — a different, faster design variant that does not correspond to the production lens.
@@ -55,7 +57,7 @@ The aperture stop (surface 9) divides the front group into two optical subsystem
 
 **There are no aspherical surfaces in this design.** The patent lists no aspherical coefficient table for Example 1, and Canon's published specifications do not mention aspherical elements — a feature Canon consistently advertises when present (as in the RF 50mm f/1.2L USM or RF 85mm f/1.2L USM).
 
-Achieving good correction in a 12-element, all-spherical design at f/2 with half-macro magnification is noteworthy. The lens relies instead on a generous element count, careful glass selection (including one UD element and one ultra-high-index niobium phosphate element), and the aberration-balancing architecture of the front-positive / rear-negative group structure to control the Petzval sum, spherical aberration, and chromatic aberration across the full focus range.
+Achieving good correction in a 12-element, all-spherical design at f/2 with half-macro magnification is noteworthy. The lens relies instead on a generous element count, careful glass selection (including one UD element and one ultra-high-dispersion dense flint), and the aberration-balancing architecture of the front-positive / rear-negative group structure to control the Petzval sum, spherical aberration, and chromatic aberration across the full focus range.
 
 
 ## 4. Element-by-Element Analysis
@@ -67,18 +69,18 @@ Achieving good correction in a 12-element, all-spherical design at f/2 with half
 | L1 | 1–2 | 1.60311 | 60.6 | Positive meniscus (convex→obj) | +200.6 | S-BSM14 / N-SK14 |
 | L2 | 3–4 | 1.60311 | 60.6 | Positive meniscus (convex→obj) | +200.8 | S-BSM14 / N-SK14 |
 | L3 | 5–6 | 1.49700 | 81.5 | Positive meniscus (convex→obj) | +101.5 | S-FPL51 **(UD)** |
-| L4 | 7–8 | 1.68893 | 31.1 | Biconcave negative | −43.7 | S-TIM28 / FD60 |
+| L4 | 7–8 | 1.68893 | 31.1 | Biconcave negative | −43.7 | S-TIM28 / E-FD8 |
 | L5 | 10–11 | 1.84666 | 23.8 | Negative meniscus (convex→obj) | −95.1 | S-TIH53 |
-| L6 | 11–12 | 1.90043 | 37.4 | Biconvex positive | +35.1 | S-LAH58 |
+| L6 | 11–12 | 1.90043 | 37.4 | Biconvex positive | +35.1 | TAFD37A (HOYA) |
 | L5+L6 | 10–12 | — | — | Cemented doublet | +55.1 | — |
-| L7 | 13–14 | 1.72047 | 34.7 | Biconcave negative | −45.6 | S-TIH4 |
-| L8 | 15–16 | 1.80400 | 46.5 | Biconvex positive | +85.4 | TAFD30 / N-LASF44 |
-| L9 | 17–18 | 1.92286 | 20.9 | Positive meniscus (concave→obj) | +68.3 | PBH21 |
+| L7 | 13–14 | 1.72047 | 34.7 | Biconcave negative | −45.6 | S-NBH8 / N-KZFS8 |
+| L8 | 15–16 | 1.80400 | 46.5 | Biconvex positive | +85.4 | S-LAH65V |
+| L9 | 17–18 | 1.92286 | 20.9 | Positive meniscus (concave→obj) | +68.3 | E-FDS1 (HOYA) / PBH21 / N-SF66 |
 | L10 | 19–20 | 1.83400 | 37.2 | Biconcave negative | −34.6 | S-LAH60 |
-| L11 | 21–22 | 1.83481 | 42.7 | Biconvex positive | +35.6 | S-LAH65 |
+| L11 | 21–22 | 1.83481 | 42.7 | Biconvex positive | +35.6 | S-LAH55V |
 | L12 | 23–24 | 1.84666 | 23.8 | Negative meniscus (concave→obj) | −63.3 | S-TIH53 |
 
-All focal lengths are thick-lens, standalone-in-air values. Glass identifications are exact catalog matches (Δnd < 0.001, Δvd < 0.1). Where two names are listed, the first is OHARA and the second is the Schott or HOYA equivalent; either may be the actual production glass. Canon may source from multiple suppliers or use proprietary melts with matching optical constants. Notably, L8 has no exact OHARA catalog match — HOYA TAFD30 (nd = 1.80400, vd = 46.57) is the closest, suggesting Canon may use HOYA glass or an in-house equivalent for this element.
+All focal lengths are thick-lens, standalone-in-air values. Glass identifications are exact catalog matches (Δnd < 0.001, Δvd < 0.1). Where several names are listed they share the same six-digit glass code; the patent names no glass, so any of them may be the production melt. L6 (1.90043 / 37.4) is a HOYA TAFD37A coordinate with no exact OHARA equivalent in the catalog; L9 is labelled with the current lead-free HOYA E-FDS1, which shares its 923209 code with the older leaded OHARA PBH21 and Schott N-SF66.
 
 ### 4.2 Element Roles
 
@@ -88,21 +90,21 @@ All focal lengths are thick-lens, standalone-in-air values. Glass identification
 
 **L3 (S-FPL51, positive meniscus, fl = +101.5 mm) — UD element:** The sole UD (Ultra-low Dispersion) element. S-FPL51 is a fluorophosphate crown with anomalous partial dispersion (positive APD; the Pg,F value lies well above the normal glass line). This element carries roughly twice the refractive power of L1 or L2, providing the strongest positive contribution in the pre-stop group. Its low dispersion (vd = 81.5) and anomalous dispersion characteristics enable simultaneous correction of axial chromatic aberration and secondary spectrum. Paired with the high-dispersion negative L4 immediately behind it, L3 forms the primary achromatic pair of the pre-stop subsystem.
 
-**L4 (S-TIM28 / FD60, biconcave negative, fl = −43.7 mm):** The sole negative element in L1a, and the strongest element (by refractive power) in the pre-stop group. S-TIM28 is a titanium medium flint with moderate-to-high dispersion (vd = 31.1), making it the chromatic counterpart to L3. Its biconcave form generates strong negative spherical aberration to partially balance the positive contributions accumulated by L1–L3. Additionally, its negative Petzval contribution combats the field curvature introduced by the three preceding positive meniscus elements. The relatively large air gap following L4 (d8 = 4.90 mm) separates it from the aperture stop and provides design freedom for controlling the pupil aberrations.
+**L4 (S-TIM28 / E-FD8, biconcave negative, fl = −43.7 mm):** The sole negative element in L1a, and the strongest element (by refractive power) in the pre-stop group. S-TIM28 is a titanium medium flint with moderate-to-high dispersion (vd = 31.1), making it the chromatic counterpart to L3. Its biconcave form generates strong negative spherical aberration to partially balance the positive contributions accumulated by L1–L3. Additionally, its negative Petzval contribution combats the field curvature introduced by the three preceding positive meniscus elements. The relatively large air gap following L4 (d8 = 4.90 mm) separates it from the aperture stop and provides design freedom for controlling the pupil aberrations.
 
-**L5+L6 (S-TIH53 / S-LAH58, cemented doublet, fl = +55.1 mm):** The only cemented element in the entire system, positioned immediately after the aperture stop. L5 is a negative meniscus of extremely high dispersion flint (nd = 1.847, vd = 23.8, fl = −95.1 mm individually), and L6 is a biconvex positive of dense lanthanum flint (nd = 1.900, vd = 37.4, fl = +35.1 mm individually — the second-highest refractive index in the system after L9). Together they form a powerfully converging doublet that provides the dominant positive refractive power of the front group.
+**L5+L6 (S-TIH53 / TAFD37A, cemented doublet, fl = +55.1 mm):** The only cemented element in the entire system, positioned immediately after the aperture stop. L5 is a negative meniscus of extremely high dispersion flint (nd = 1.847, vd = 23.8, fl = −95.1 mm individually), and L6 is a biconvex positive of dense lanthanum flint (nd = 1.900, vd = 37.4, fl = +35.1 mm individually — the second-highest refractive index in the system after L9). Together they form a powerfully converging doublet that provides the dominant positive refractive power of the front group.
 
 This doublet serves multiple critical roles. Its position immediately after the stop means it operates at the narrowest beam diameter, keeping the element physically small despite its strong power. The very high index of L6 (nd = 1.900) allows strong curvature at the cemented junction (R = 46.967 mm) while maintaining manageable ray angles, correcting higher-order spherical aberration generated by the preceding elements. The Δvd between L5 and L6 (~13.6) provides the chromatic correction needed for the post-stop converging beam. The patent specifically notes (¶0042) that having "at least one positive lens and one negative lens at the image side of the aperture stop" in the front group facilitates correction of spherical aberration and field curvature changes during focusing.
 
-**L7 (S-TIH4, biconcave negative, fl = −45.6 mm):** The first element of the rear group L2 and the lens element F described in the patent. Its position at the front of the fixed rear group is specifically called out (¶0040) as preferring "a lens element F having a negative refractive power closest to an object in the rear lens group." This negative singlet receives the converging beam from L1 and sharply reduces its convergence, nearly collimating the beam before it enters the remaining rear elements. This suppresses changes in off-axis aberrations (field curvature, distortion) during the large focus excursion from infinity to 0.5× magnification. Its biconcave form also generates strong negative Petzval contribution.
+**L7 (S-NBH8 / N-KZFS8, biconcave negative, fl = −45.6 mm):** The first element of the rear group L2 and the lens element F described in the patent. Its position at the front of the fixed rear group is specifically called out (¶0040) as preferring "a lens element F having a negative refractive power closest to an object in the rear lens group." This negative singlet receives the converging beam from L1 and sharply reduces its convergence, nearly collimating the beam before it enters the remaining rear elements. This suppresses changes in off-axis aberrations (field curvature, distortion) during the large focus excursion from infinity to 0.5× magnification. Its biconcave form also generates strong negative Petzval contribution.
 
-**L8 (TAFD30 / N-LASF44, biconvex positive, fl = +85.4 mm):** A lanthanum dense flint element providing positive power in the rear group. Its nd/vd combination (1.804/46.5) places it in the high-index, moderate-dispersion region of the glass map, providing useful converging power without excessive chromatic contribution. Together with L9, it helps maintain the Petzval balance while keeping the beam collimated enough to traverse the remaining air gaps toward the rear of the lens.
+**L8 (S-LAH65V, biconvex positive, fl = +85.4 mm):** A lanthanum dense flint element providing positive power in the rear group. Its nd/vd combination (1.804/46.5) places it in the high-index, moderate-dispersion region of the glass map, providing useful converging power without excessive chromatic contribution. Together with L9, it helps maintain the Petzval balance while keeping the beam collimated enough to traverse the remaining air gaps toward the rear of the lens.
 
-**L9 (PBH21, positive meniscus concave→object, fl = +68.3 mm):** A niobium phosphate glass with the highest refractive index in the system (nd = 1.923) and the lowest Abbe number (vd = 20.9). PBH21 exhibits anomalous partial dispersion, and its extreme dispersion makes it a potent chromatic corrector when paired with the UD element L3 across the system. Despite being a positive meniscus, its concave-toward-object orientation and high index allow it to introduce strong higher-order aberration contributions that balance those from the front group, particularly at close focus distances.
+**L9 (E-FDS1, positive meniscus concave→object, fl = +68.3 mm):** An ultra-high-dispersion dense flint with the highest refractive index in the system (nd = 1.923) and the lowest Abbe number (vd = 20.9). Flints of this class sit above the normal partial-dispersion line (inferred from the catalog glass; the patent gives no θgF data), and its extreme dispersion makes it a potent chromatic balancing element against the UD element L3. Despite being a positive meniscus, its concave-toward-object orientation and high index allow it to introduce strong higher-order aberration contributions that balance those from the front group, particularly at close focus distances.
 
 **L10 (S-LAH60, biconcave negative, fl = −34.6 mm):** The strongest negative element in the system by focal length. Its symmetric biconcave form (R1 = −57.965, R2 = +57.965 mm — perfectly equal and opposite radii) is unusual and noteworthy: this bending factor of exactly q = 0 eliminates the shape-dependent coma contribution, leaving only the conjugate-dependent term. At the operational conjugate within the rear group, this results in very low residual coma from this element, making it function primarily as a Petzval corrector and spherical aberration generator. The equal-radius biconcave form is a classic design choice when the designer wants strong negative power with minimal off-axis asymmetric aberrations.
 
-**L11 (S-LAH65, biconvex positive, fl = +35.6 mm):** The strongest positive singlet in the system and the element identified in the patent as Gp — the positive lens adjacent to Gn (L12) at the object side (¶0048). The patent's conditional expression (7) states f2p/f = 0.431, confirmed by computation. This element provides the strong positive power needed near the image plane to correct magnification chromatic aberration and distortion aberration. Its biconvex form with substantial thickness (d = 9.02 mm) introduces significant principal plane separation, which the designer exploits to fine-tune the exit pupil position and telecentricity for the mirrorless sensor.
+**L11 (S-LAH55V, biconvex positive, fl = +35.6 mm):** The strongest positive singlet in the system and the element identified in the patent as Gp — the positive lens adjacent to Gn (L12) at the object side (¶0048). The patent's conditional expression (7) states f2p/f = 0.431, confirmed by computation. This element provides the strong positive power needed near the image plane to correct magnification chromatic aberration and distortion aberration. Its biconvex form with substantial thickness (d = 9.02 mm) introduces significant principal plane separation, which the designer exploits to fine-tune the exit pupil position and telecentricity for the mirrorless sensor.
 
 **L12 (S-TIH53, negative meniscus concave→object, fl = −63.3 mm):** The final glass element before the image plane, identified in the patent as Gn — the negative lens closest to the image (¶0034). It shares the same glass as L5 (S-TIH53, nd = 1.847, vd = 23.8). Its position close to the image plane (Dn/DL = 0.168) means it operates in a region where off-axis rays are spread apart and the chief ray height is near-maximum, making it highly effective for correcting field curvature (through its negative Petzval contribution) and controlling the exit angle of marginal field rays onto the sensor. The patent constrains Dn/DL < 0.23 (inequality 2) to ensure the off-axis flux remains high enough at this element for effective correction.
 
@@ -115,27 +117,27 @@ The 12 elements use ten distinct glass types spanning a wide range of the nd–v
 |---|---|---|---|---|
 | S-FPL51 | 1.497 | 81.5 | Fluorophosphate crown (UD) | L3 |
 | S-BSM14 / N-SK14 | 1.603 | 60.6 | Barium silicate crown | L1, L2 |
-| S-TIM28 / FD60 | 1.689 | 31.1 | Titanium medium flint | L4 |
-| S-TIH4 | 1.720 | 34.7 | Titanium heavy flint | L7 |
-| TAFD30 / N-LASF44 | 1.804 | 46.5 | Lanthanum dense flint | L8 |
+| S-TIM28 / E-FD8 | 1.689 | 31.1 | Titanium medium flint | L4 |
+| S-NBH8 / N-KZFS8 | 1.720 | 34.7 | Short flint (KZFS-type) | L7 |
+| S-LAH65V | 1.804 | 46.5 | Lanthanum dense flint | L8 |
 | S-LAH60 | 1.834 | 37.2 | Lanthanum heavy flint | L10 |
-| S-LAH65 | 1.835 | 42.7 | Lanthanum heavy flint | L11 |
+| S-LAH55V | 1.835 | 42.7 | Lanthanum heavy flint | L11 |
 | S-TIH53 | 1.847 | 23.8 | Titanium heavy flint | L5, L12 |
-| S-LAH58 | 1.900 | 37.4 | Lanthanum heavy flint | L6 |
-| PBH21 | 1.923 | 20.9 | Niobium phosphate heavy flint | L9 |
+| TAFD37A | 1.900 | 37.4 | Lanthanum heavy flint | L6 |
+| E-FDS1 | 1.923 | 20.9 | Ultra-high-dispersion dense flint | L9 |
 
-The strategy follows a clear pattern: the front pre-stop group uses conventional, cost-effective crowns (S-BSM14 / N-SK14) for the outer elements and the premium UD glass (S-FPL51) for secondary spectrum correction, paired with a single titanium flint (S-TIM28) for achromatization. The post-stop doublet and rear group escalate to higher-index lanthanum and niobium glasses, where the increased refractive power per surface permits stronger aberration correction with fewer elements.
+The strategy follows a clear pattern: the front pre-stop group uses conventional, cost-effective crowns (S-BSM14 / N-SK14) for the outer elements and the premium UD glass (S-FPL51) for secondary spectrum correction, paired with a single titanium flint (S-TIM28) for achromatization. The post-stop doublet and rear group escalate to higher-index lanthanum glasses and dense flints, where the increased refractive power per surface permits stronger aberration correction with fewer elements.
 
-Two glasses with anomalous partial dispersion are present:
+Two glasses are flagged as anomalous-dispersion in the data file (both inferred from the catalog glass; the patent gives no partial-dispersion data):
 
 - **S-FPL51** (L3): Strong positive APD. Canon's designation: UD (Ultra-low Dispersion). The fluorophosphate crown family lies well above the normal Pg,F line, enabling effective secondary spectrum correction when paired with high-dispersion flints.
 
-- **PBH21** (L9): Niobium phosphate heavy flint with known positive APD. The Pg,F value for PBH21 also deviates from the normal line, complementing S-FPL51 for apochromatic correction across the system.
+- **E-FDS1** (L9): Ultra-high-dispersion dense flint. Its Pg,F lies above the normal line, as is usual for flints of this class, which helps it balance S-FPL51's secondary-spectrum contribution.
 
 
 ## 6. Focusing Mechanism
 
-The lens uses **unit focusing**: the entire front group L1 (surfaces 1–12, containing 6 elements in 5 groups plus the aperture stop) translates forward as a rigid unit along the optical axis. The rear group L2 remains fixed relative to the image plane.
+The lens uses **unit focusing**: the entire front group L1 (surfaces 1–12, containing 6 elements in 5 groups plus the aperture stop) translates toward the object as a rigid unit along the optical axis (the FIG. 1 arrow under L1); the stop moves with it, so the iris diameter is fixed while the working f-number rises at close focus. The rear group L2 remains fixed relative to the image plane.
 
 The single variable air gap is d12 — the spacing between the rear surface of the cemented doublet L5+L6 and the front surface of L7:
 
@@ -145,7 +147,9 @@ The single variable air gap is d12 — the spacing between the rear surface of t
 | Near (β = −0.02) | −0.02 | 3.60 | +1.08 mm |
 | Close (β = −0.5) | −0.50 | 29.52 | +27.0 mm |
 
-The 27.0 mm extension at maximum magnification closely matches the ~28 mm measured by reviewers on the production lens, providing additional confidence in the Example 1 identification.
+All three published states are stored as focus keyframes. The β = −0.02 state focuses at about 4.28 m object-to-image and the β = −0.5 state at 346.2 mm (both calculated from the tabulated gaps), so the patent's closest state is the production lens's 0.35 m minimum focus distance.
+
+The 27.0 mm extension at maximum magnification closely matches the ~28 mm reported by reviewers on the production lens, providing additional confidence in the Example 1 identification.
 
 This unit-focus approach, where the entire front group including the aperture stop extends together, is mechanically straightforward and well-suited to the STM stepping motor drive. The trade-off is that the moving mass is substantial (6 elements), which partly explains why reviewers note that focus speed on long-distance changes is slower than USM-driven alternatives. Canon addresses this practically with the three-position focus limiter switch (Full / 0.5 m–∞ / 0.35–0.5 m) to reduce travel time in typical use scenarios.
 

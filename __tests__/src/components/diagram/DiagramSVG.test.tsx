@@ -905,6 +905,7 @@ describe("DiagramSVG", () => {
     const cardinalElements: CardinalElements = {
       frontVertexZ: 0,
       rearVertexZ: 20,
+      rearLensVertexZ: 20,
       imagePlaneZ: 43,
       objectIndex: 1,
       imageIndex: 1,

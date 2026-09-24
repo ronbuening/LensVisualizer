@@ -15,7 +15,7 @@ The prescription transcribed here is Example 1 of WO 2024/166548 A1. The patent 
 The association with the production **Sony FE 50mm F1.4 GM (SEL50F14GM)** is an evidence-based correlation, not a manufacturer statement that Example 1 is the production prescription. Several independent facts converge:
 
 1. Example 1 is a 51.50 mm, f/1.46 full-frame-class normal lens, while Sony specifies the production lens as 50 mm, f/1.4, 35 mm full frame.
-2. After the rear optical member GC is excluded, Example 1 contains 14 imaging elements in 11 air-spaced groups, matching Sony's 11-group / 14-element specification.
+2. Not counting the plane-parallel rear optical member GC, Example 1 contains 14 imaging elements in 11 air-spaced groups, matching Sony's 11-group / 14-element specification.
 3. Example 1 has four aspherical surfaces carried by two physical elements, L14 and L34. Sony states that the production lens uses two XA elements. The patent does not identify its aspherical elements as XA, so this is structural correlation rather than material confirmation.
 4. Example 1 contains one especially low-dispersion d-line coordinate, L17 at nd = 1.55032 and νd = 75.5. Sony states that the production lens uses one ED element. The patent does not identify L17 as the production ED glass or name a supplier.
 5. Example 1 focuses by moving only G2 toward the image while G1 and G3 remain fixed relative to the image plane (¶0068). Sony states that the production lens uses two XD linear motors for focus drive; that mechanical fact is consistent with a compact moving focus group but does not prove identical group kinematics.
@@ -33,11 +33,11 @@ G2 occupies surfaces 16–19 and contains L21 and L22 as two air-spaced elements
 
 G3 occupies surfaces 20–26 and contains L31, the cemented L32/L33 pair, and L34. It is net positive and fixed relative to the image plane during focusing. The patent identifies a second negative air lens, Gar, between L33 and L34 (¶0071).
 
-The final data model ends at surface 26A, the rear asphere of L34. Patent surfaces 27–28 form the plane-parallel optical member GC. Paragraph ¶0016 describes GC as a rear optical member that may be an optical filter such as a low-pass or infrared-cut filter. LensVisualizer excludes such rear filter/cover plates from the ordinary imaging prescription, so GC is omitted and the remaining rear distance is replaced by the first-order air-equivalent spacing
+The final data model ends at surface 26A, the rear asphere of L34. Patent surfaces 27–28 form the plane-parallel optical member GC. Paragraph ¶0016 describes GC as a rear optical member that may be an optical filter such as a low-pass or infrared-cut filter. The data file keeps the patent's physical 13.61 mm gap after surface 26A and models GC (2.50 mm, nd 1.51680, νd 64.2, N-BK7 class) with its 1.00 mm gap to the image in `rearPlates`: every analysis traces the plate, but it is not drawn and is not counted as an element. Its paraxial air equivalent is
 
-`13.61 + 2.50 / 1.51680 + 1.00 = 16.25820675105485 mm`.
+`13.61 + 2.50 / 1.51680 + 1.00 = 16.25820675105485 mm`,
 
-This is a modeling normalization, not a claim that an air gap reproduces the higher-order behavior of the plate exactly. The implemented first-surface-to-image track is consequently 113.128207 mm rather than the patent's physical 114.00 mm track that includes GC.
+and the modeled physical first-surface-to-image track, including GC, is the Table 1 sum of 113.98 mm (Table 2 prints L = 114.00 mm; the 0.02 mm difference is source rounding).
 
 ## Element-by-Element Analysis
 
@@ -216,7 +216,7 @@ Every non-stop semi-diameter in the data is the patent's published effective dia
 
 Exact full-field chief rays remain within the authored source radii at both published focus endpoints. The worst infinity chief-ray ratio is 0.976308 at surface 26A, and the corresponding 450 mm-state ratio is 0.947135. Extreme stop-edge axial samples slightly exceed a published effective radius—about 1.00021× at infinity and 1.01107× at 450 mm—so the model retains that source-defined vignetting/clearance behavior rather than enlarging the patent diameters.
 
-The rear GC omission is first-order only. Through surface 26A, the Gaussian BFL is 16.246443 mm, while the air-equivalent image spacing is 16.258207 mm. The small residual is retained as part of the disclosed normalization rather than being hidden by altering the source prescription.
+Through surface 26A, the Gaussian air-equivalent BFL is 16.246443 mm, while the air equivalent of the printed rear spacing (13.61 mm, GC, 1.00 mm) is 16.258207 mm. The small residual is the source prescription's own paraxial focus offset and is retained rather than hidden by altering the printed gaps.
 
 ## Sources and References
 

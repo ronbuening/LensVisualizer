@@ -46,3 +46,13 @@ classification. `apd: false` remains appropriate because the patent provides no 
 - Changed `SAMSUNG NX 45mm f/1.8` to `SAMSUNG 45mm f/1.8`. Samsung's EX-S45ANB support page calls the product
   “45mm F1.8”; NX remains correctly represented by `lensMounts: ["samsung-nx"]`.
 - Updated the companion analysis to use the catalog-equivalent glass labels and to keep supplier/APO claims bounded.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Read the Example 1 lens data on PDF page 12 at 200 dpi: surface 14 d = 21.48; surfaces 15–16 are filter 400,
+  2.80 mm, nd 1.51679, νd 64.2; 16 → IMG is 0.12 mm. 21.48 + 2.80/1.51679 + 0.12 = 23.446003732 reproduces the
+  legacy folded surface-14 gap exactly.
+- Surface 14 now stores the patent's 21.48 mm, with an unlabeled `rearPlates` entry (N-BK7 class; the patent prints
+  no designation beyond reference numeral 400) and gapAfter 0.12 mm. Paraxial check against the previous data: EFL
+  identical and defocus unchanged (worst difference 9e-16 mm) at both focus keyframes. Physical track grows by
+  0.953996 mm to the patent's 68.43 mm.

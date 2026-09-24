@@ -27,7 +27,7 @@ The LensVisualizer record therefore keeps the marketed values and design values 
 
 ## Optical Architecture
 
-Example 7 is a retrofocus ultrawide architecture in the project's strictly numerical sense: at infinity the computed cardinal back focal length from the last powered vertex is `11.604449 mm`, greater than the computed EFL `8.211393 mm`, giving `BFD/EFL = 1.41321`. The system is not telephoto; its verified `TL/EFL = 8.27435` is far above unity.
+Example 7 is a retrofocus ultrawide architecture in the project's strictly numerical sense: at infinity the computed cardinal back focal length from the last powered vertex is `11.604449 mm`, greater than the computed EFL `8.211393 mm`, giving `BFD/EFL = 1.41321`. The system is not telephoto; its verified air-converted `TL/EFL = 8.27435` (first surface to image, `67.944 mm`) is far above unity. Physically, with the PP plate in place, surface 1 to image is `68.915 mm` (`TL/EFL = 8.39261`).
 
 The optical train is divided by the aperture stop into front group Gf (L11–L17) and rear group Gr (L21–L25). Computed as isolated subassemblies in air, Gf has focal length `+10.5866 mm` and Gr `+39.4313 mm`. Those group values describe the isolated matrices and should not be confused with the in-situ contribution of each group inside the complete lens.
 
@@ -232,11 +232,11 @@ Conditions (7) and (14) are therefore retained as source discrepancies: the tabl
 
 The final parsed data reproduces the published infinity first-order design within source precision. Independent matrix and scalar height/reduced-angle calculations give EFL `8.211393 mm` versus Table 20's `8.211 mm`, and cardinal BFL `11.604449 mm` versus `11.604 mm`. The surface-by-surface Petzval sum, accumulated as `φ/(n·n′)`, is `0.01463110 mm⁻¹`.
 
-The source's generic rear parallel plate PP is omitted because it represents optional filters and/or cover glass (¶0035), which are outside the active LensVisualizer prescription. Its path is replaced by the verified air-equivalent distance
+The source's generic rear parallel plate PP (Table 19 surfaces 23–24; filters and/or cover glass, ¶0035) is modeled physically in the data file's `rearPlates`: `t = 2.850 mm`, `nd = 1.51680`, `νd = 64.20`, patent `θgF = 0.5343` (N-BK7 class), preceded by the patent's `8.622 mm` gap from surface 22 and followed by the printed `1.104 mm` air gap to the image. Every analysis traces the plate, but it is not drawn. Its paraxial air-equivalent distance is
 
-`8.622 + 2.850/1.51680 + 1.104 = 11.604955696 mm`.
+`8.622 + 2.850/1.51680 + 1.104 = 11.604955696 mm`,
 
-That substitution is paraxially exact for the plane plate, but not exactly equivalent at finite ray angle. Representative exact meridional tests found a maximum sampled image-intercept difference of about `0.02907 mm` between the raw plate chain and the air-equivalent model at the extreme field sample. The model therefore does not claim exact off-axis equivalence after PP removal.
+which is why EFL and paraxial focus are unchanged from the earlier air-equivalent model. That fold was not exactly equivalent at finite ray angle: representative exact meridional tests found a maximum sampled image-intercept difference of about `0.02907 mm` between the raw plate chain and the air-equivalent model at the extreme field sample. With the plate traced, the off-axis rays now follow the patent's own plate chain, and the physical track is `2.850 × (1 − 1/1.51680) = 0.971 mm` longer than the air-converted length.
 
 The patent publishes no clear apertures. Every surface semi-diameter in the data file is consequently a modeling value derived from exact d-line meridional ray envelopes and the qualitative taper of Figure 20, then checked for element edge thickness, actual rim slope, conic domain, shared-band gap intrusion, and sampled off-axis containment. The 2026-09-14 figure review enlarged L13–L15 toward Figure 20: surfaces 5/6 are 10.5/9.2 mm, 7/8 are 7.6/7.1 mm, and 9A/10A are 8.0/7.9 mm. The L13 rear rim and L14 apertures stop short of the drawn blank because larger values violate rim slope or shared-gap clearance. The independent source-geometry trace also requires the modeled front apertures to contain the independently reconstructed maximum-field stop-center chief ray. They are not source-published clear apertures or production mechanical drawings.
 

@@ -8,11 +8,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ 9 elements / 7 air-separated groups; 2 aspherical surfaces.       ║
  * ║ Focus: only G2/L21 moves imageward toward near focus.             ║
  * ║                                                                    ║
- * ║ Prescription normalization: the patent's rear plane-parallel PP   ║
- * ║ (20.28 mm air + 2.85 mm at nd=1.51742 + 1.10 mm air) is omitted  ║
- * ║ per project scope and replaced by 23.258187976960897 mm of air,   ║
- * ║ preserving its first-order reduced-angle translation. No uniform  ║
- * ║ focal-length scaling is applied.                                  ║
+ * ║ Rear plate: Table 10 surfaces 18-19 (plane-parallel member PP,    ║
+ * ║ 2.85 mm, nd 1.51742, vd 52.4) and the 1.10 mm air gap to IMG are  ║
+ * ║ modeled in `rearPlates` (traced, not drawn). Surface 17 keeps the ║
+ * ║ patent's 20.28 mm gap to PP. No uniform focal-length scaling is   ║
+ * ║ applied.                                                          ║
  * ║                                                                    ║
  * ║ Focus status: CONSTRAINED_RECONSTRUCTION. Infinity and 1 m are    ║
  * ║ patent-published states. The 0.39 m endpoint is reconstructed     ║
@@ -220,8 +220,21 @@ const LENS_DATA = {
     { label: "15", R: -164.932, d: 1.18, nd: 1.54072, elemId: 8, sd: 10.35 },
     // Cemented L31→L32 junction: downstream element owns elemId and index.
     { label: "16", R: 24.218, d: 5.97, nd: 1.72916, elemId: 9, sd: 10.8 },
-    // PP omitted; d is the air-equivalent surface-17-to-image spacing.
-    { label: "17", R: -44.857, d: 23.258187976960897, nd: 1, elemId: 0, sd: 10.95 },
+    // Last surface: patent gap to the plane-parallel member PP (Table 10 surface 17 d).
+    { label: "17", R: -44.857, d: 20.28, nd: 1, elemId: 0, sd: 10.95 },
+  ],
+
+  /* ── Plane-parallel member PP (patent surfaces 18–19): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PP",
+      thicknessMm: 2.85,
+      nd: 1.51742,
+      vd: 52.4,
+      glass: "S-NSL36",
+      gapAfterMm: 1.1,
+      source: "US 10,168,507 B2, Example 4 Table 10 surfaces 18–19",
+    },
   ],
 
   asph: {

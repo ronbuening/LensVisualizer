@@ -6,16 +6,16 @@
 **Inventor:** Kazuyasu Ohashi (Funabashi-shi, JP)
 **Priority:** JP 2012-127431, June 4, 2012
 **Filed:** May 31, 2013
-**Assignee:** Ricoh Co., Ltd. (assignment recorded on the filing date)
+**Assignee:** none printed (the inventor is the named applicant)
 **Embodiment analyzed:** Example 3
 **Production lens:** Ricoh GR (2013), Ricoh GR II (2015)  
-**Note:** The publication lists the inventor as applicant, while the USPTO assignment record documents transfer to Ricoh Co., Ltd. on the filing date.
+**Note:** The publication lists the inventor as applicant and prints no organizational assignee; the data file therefore records no assignee. The design is Ricoh's, but ownership is not stated on the publication itself.
 
 ---
 
 ## 1. Identification and Context
 
-US 2013/0321936 A1 discloses the optical design behind the Ricoh GR's fixed 18.3mm f/2.8 lens — the first GR-series lens designed for an APS-C image sensor. Example 3 is the embodiment that matches the production specifications: 7 elements in 5 groups (per physical air-separated grouping), two aspherical elements, approximately 18.3mm focal length at f/2.81, and a half angle of view of 38.2° covering a 28.4mm image diagonal. This corresponds to a sensor format of approximately 23.5 × 15.6 mm (APS-C), consistent with the Sony-derived 16.2 MP CMOS sensor used in both the Ricoh GR and GR II.
+US 2013/0321936 A1 discloses the optical design behind the Ricoh GR's fixed 18.3mm f/2.8 lens — the first GR-series lens designed for an APS-C image sensor. Example 3 is the embodiment that best matches the production specifications: 7 elements in 5 groups (per physical air-separated grouping), two aspherical elements, an 18.30mm focal length at f/2.81, and a half angle of view of 38.2° covering a 28.4mm image diagonal. The patent does not say which example went into production; Examples 1, 2, 4, 5 and 8 share the same 7/5 layout at about 18.3mm, so the choice of Example 3 is an attribution based on its exact 18.30mm focal length and its glass set. This corresponds to a sensor format of approximately 23.5 × 15.6 mm (APS-C), consistent with the Sony-derived 16.2 MP CMOS sensor used in both the Ricoh GR and GR II.
 
 The lens was carried unchanged from the GR (April 2013) to the GR II (June 2015). The GR III (2019) introduced a redesigned 6-element/4-group lens, so this patent covers only the first two generations.
 
@@ -31,7 +31,7 @@ The structure, front (object side) to rear (image side):
 
 **Group I (negative):** Single negative meniscus lens (L1), with the concave surface facing the image side. This is the only element in the first air-separated group.
 
-**Group II (positive):** Two sub-assemblies — a single negative meniscus lens (L2) with its concave surface facing the object side, followed by an air gap of 0.20 mm, then a cemented doublet (L3+L4) with net positive power. This arrangement produces two physical air-separated groups (groups 2 and 3 in the manufacturer's convention) but functions as a single positive power group in the patent's scheme.
+**Group II (positive):** Two sub-assemblies — a single biconcave negative lens (L2) whose strongly concave surface faces the object side (its rear surface, R = +200.4mm, is nearly flat), followed by an air gap of 0.20 mm, then a cemented doublet (L3+L4) with net positive power. This arrangement produces two physical air-separated groups (groups 2 and 3 in the manufacturer's convention) but functions as a single positive power group in the patent's scheme.
 
 **Aperture stop (S):** Located in the air gap between Groups II and III, 1.50 mm after the rear surface of the cemented doublet and 1.00 mm before the front surface of Group III.
 
@@ -75,7 +75,7 @@ All values computed via full surface-by-surface paraxial (y-nu) ray trace and AB
 |-----------|----------|---------------|
 | System EFL (f) | 18.298 mm | 18.30 mm |
 | F-number | 2.81 | 2.81 |
-| Half angle of view (ω) | 37.8° (paraxial) | 38.2° (patent) |
+| Half angle of view (ω) | 38.05° (real chief ray to Y′ = 14.2mm) | 38.2° (patent) |
 | Total track (L, S01 to image) | 30.30 mm | 30.30 mm (L/f = 1.656) |
 | Lens thickness (D_T, S01 to S13) | 15.64 mm | 15.66 mm (D_T/f = 0.855) |
 | BFD (air-equivalent, S13 to image) | 14.18 mm | — |
@@ -84,7 +84,7 @@ All values computed via full surface-by-surface paraxial (y-nu) ray trace and AB
 | Maximum image height (Y') | 14.2 mm | 14.2 mm |
 | Image diagonal | 28.4 mm | ~28.5 mm (APS-C) |
 
-The paraxial half angle of view (arctan Y'/f = 37.8°) is 0.4° less than the patent's stated 38.2°. This is typical: the patent value accounts for real (finite) ray tracing and barrel distortion, which slightly widens the effective field angle relative to the paraxial approximation. The telephoto ratio (L/f = 1.656) confirms the design is approximately-symmetric — longer than its focal length but substantially more compact than a typical retrofocus wide-angle (which would have L/f > 2).
+The paraxial half angle of view (arctan Y'/f = 37.8°) is less than the patent's stated 38.2°. An exact real-ray trace of the chief ray to the 14.2mm image height gives 38.05°, because the lens has about 1.5% barrel distortion at the corner (within the patent's statement that distortion stays at or below 2.0% in every example). The same trace puts the marginal-ray longitudinal spherical aberration at f/2.81 at about −0.003mm and the tangential focus within 0.07mm of the image plane out to full field. The telephoto ratio (L/f = 1.656) confirms the design is approximately-symmetric — longer than its focal length but substantially more compact than a typical retrofocus wide-angle (which would have L/f > 2).
 
 **Group focal lengths (thick-lens ABCD):**
 
@@ -128,7 +128,7 @@ The six-digit glass code is **497/816**, placing it in the extreme fluoride crow
 
 ### L2 — HOYA E-FD8 (nd = 1.68893, νd = 31.16, Pg,F = 0.5989)
 
-A dense flint glass with moderately high refractive index and low Abbe number. The "E-" prefix indicates an eco-glass formulation. The Pg,F value of 0.5989 places it above the normal line, indicating mild anomalous partial dispersion (positive dPgF). This same glass is used for L6 in the rear cemented doublet, creating a symmetric pair of flint elements about the aperture stop — consistent with the approximately-symmetric design philosophy.
+A dense flint glass with moderately high refractive index and low Abbe number. The "E-" prefix indicates an eco-glass formulation. The Pg,F value of 0.5989 sits slightly above the Schott normal line (dPgF = +0.0075), which is the ordinary position for a dense flint rather than an anomalous-dispersion feature. This same glass is used for L6 in the rear cemented doublet, creating a symmetric pair of flint elements about the aperture stop — consistent with the approximately-symmetric design philosophy.
 
 Glass code: **689/312**.
 
@@ -164,7 +164,7 @@ Glass code: **821/427**.
 | L6 | E-FD8 | 1.689 | 31.16 | 0.5989 | +0.00751 (slight positive) | Polished spherical |
 | L7 | M-TAFD51 | 1.821 | 42.71 | 0.5642 | −0.00776 (slight negative) | Glass-molded asphere |
 
-The dPg,F values are computed from the patent's Pg,F column relative to the Schott normal glass line (Pg,F = 0.6438 − 0.001682 × νd). The data file keeps the patent Hoya names in the descriptive label while exposing catalog-equivalent tokens where available: FCD1 for M-FCD1 and S-TIH53 for FDS90. M-TAFD51 now resolves through HOYA's official formula-3 polynomial and 821427 catalog code.
+The dPg,F values are computed from the patent's Pg,F column relative to the Schott normal glass line (Pg,F = 0.6438 − 0.001682 × νd). The data file uses the patent's own HOYA glass names, and all five resolve to exact catalog entries (M-FCD1, E-FD8, FDS90, TAFD30, M-TAFD51). The patent publishes Pg,F for every glass but does not call any element anomalous-dispersion, so only L1 is flagged as APD, and that flag is inferred from the fluorophosphate glass. The positive dPg,F values of E-FD8 and FDS90 are normal for dense flints and are not flagged.
 
 The combination of strongly positive-APD M-FCD1 in L1 with the moderate positive-APD FDS90 and slight negative-APD TAFD30 in the cemented doublets creates a secondary-spectrum correction budget across the system. This is what enables the low chromatic aberration observed in the production GR.
 
@@ -183,10 +183,10 @@ Note: Some third-party reviews describe the lens as having "two double-sided asp
 | K | +3.80085 |
 | A4 | +1.07069 × 10⁻⁴ |
 | A6 | −3.38949 × 10⁻⁶ |
-| A8 | −2.19205 × 10⁻⁷ |
+| A8 | +2.19205 × 10⁻⁷ |
 | A10 | −5.16455 × 10⁻⁹ |
 
-The positive conic constant K = +3.80 indicates a hyperboloidal base curve. At small heights, the aspherical departure is positive (the surface is slightly steeper than a sphere), reaching a peak departure of approximately +0.078 mm at h ≈ 4.8 mm. Beyond h ≈ 5.8 mm, the polynomial terms dominate and the departure reverses sign, flattening the surface relative to the sphere. This inflection behavior is characteristic of aspheres designed to correct field-dependent aberrations — the inner zone handles on-axis correction while the outer zone manages off-axis coma and astigmatism.
+The positive conic constant K = +3.80 gives an oblate-ellipsoid base that is steeper than the vertex sphere, and the positive A4 and A8 terms add to it. The departure from the base sphere is small across the axial beam (about +0.035mm at the 3.26mm marginal-ray height) but climbs quickly toward the edge: +0.23mm at 4.9mm and +0.56mm at the 5.8mm clear aperture used in the data file, where the surface slope reaches 48°. The surface therefore bends more and more steeply toward the image side at the edge, which adds negative power to the outer zone used only by oblique bundles. That is where the correction of astigmatism, coma and distortion the patent describes takes place. The A8 term is printed as +2.19205 × 10⁻⁷; an earlier transcription with the opposite sign produced about 0.7mm of spherical aberration at f/2.81, which confirms the printed sign.
 
 ### S13* — L7 rear surface (R = −13.832 mm)
 
@@ -198,7 +198,7 @@ The positive conic constant K = +3.80 indicates a hyperboloidal base curve. At s
 | A8 | +1.25343 × 10⁻⁷ |
 | A10 | −7.88154 × 10⁻¹⁰ |
 
-The strongly negative conic constant K = −2.86 places the base curve well beyond a paraboloid (K = −1), into the hyperboloidal regime on the concave side. This means the surface flattens significantly faster than a sphere at increasing aperture heights. The polynomial coefficients A4 through A8 are all positive, reinforcing this flattening effect. The combined result is dramatic: at h = 6 mm the aspherical departure exceeds +0.7 mm (the asphere is substantially flatter than the spherical reference). This large departure controls the chief ray angle at the image plane, helping the lens meet the exit pupil distance requirements for the on-chip microlens array of the image sensor. The patent's Conditional Expression (8) constrains tan(θP_max) to the range 0.6–0.95, and the computed value of 0.746 falls comfortably within this range.
+The strongly negative conic constant K = −2.86 places the base curve well beyond a paraboloid (K = −1), into the hyperboloidal regime on the concave side. This means the surface flattens significantly faster than a sphere at increasing aperture heights. The polynomial coefficients A4 through A8 are all positive, reinforcing this flattening effect. The combined result is dramatic: at the 5.5mm clear aperture the departure is +0.45mm, and the surface is almost flat there (sag −0.69mm against −1.14mm for the base sphere). The sag turns over just beyond, at about 5.58mm, which sets the upper limit on the element's usable radius. This large departure controls the chief ray angle at the image plane, helping the lens meet the exit pupil distance requirements for the on-chip microlens array of the image sensor. The patent's Conditional Expression (8) constrains tan(θP_max) to the range 0.6–0.95, and the computed value of 0.746 falls comfortably within this range.
 
 ---
 
@@ -216,7 +216,7 @@ As the front-most element exposed to the environment, the choice of glass also r
 
 ### L2 — Negative meniscus (Group II, front sub-assembly)
 
-**Shape:** Negative meniscus with the concave surface facing the object side (R₃ = −23.54 mm, R₄ = +200.4 mm).
+**Shape:** Biconcave, with a strongly concave object-side surface and a nearly flat rear surface (R₃ = −23.54 mm, R₄ = +200.4 mm).
 
 **Focal length:** −30.54 mm (moderate negative).
 
@@ -268,7 +268,7 @@ The computed Petzval sum of 0.00468 mm⁻¹ yields a Petzval radius of approxima
 
 The patent describes two focusing methods: "moving an entire lens groups, or by moving the image sensor to match an imaging plane" (¶0115). Notably, Example 3 provides no variable-spacing table — unlike zoom lens patents or designs with internal focusing, there are no tabulated air gap changes at different object distances. This is consistent with unit focusing, where the entire optical assembly translates along the optical axis as a rigid body.
 
-The Ricoh GR implements unit focusing: the entire optical assembly translates forward along the optical axis to focus at closer distances. (The lens barrel also extends from the collapsed body on power-up, but that is the startup deployment, not the focusing action.) The published close-focus distance is 30 cm in normal mode and 10 cm in macro mode. Computed unit-focus extensions are approximately 1.2 mm at 30 cm and 4.1 mm at 10 cm — modest movements consistent with the fast AF response reported by reviewers (0.2 seconds to focus lock).
+The data file models unit focusing: the entire optical assembly translates toward the object to focus closer, and only the back focal distance changes. (The lens barrel also extends from the collapsed body on power-up, but that is the startup deployment, not the focusing action.) The published close-focus distance is 30 cm in normal mode and 10 cm in macro mode. Because the patent tabulates no finite-focus state, the close-focus endpoint is calculated: a paraxial unit-focus extension of 1.30 mm focuses the lens at a 0.30 m object-to-image distance (magnification about −0.071). The 10 cm macro range is not modeled, since nothing in the patent describes it.
 
 Because the entire lens moves as a unit, there is no change in the inter-element spacings during focusing, which means the aberration balance designed for infinity is maintained at all focus distances with only the inherent field curvature shift of a unit-focus system. This is a practical advantage for a compact camera where manufacturing simplicity and mechanical reliability are priorities.
 
@@ -278,9 +278,9 @@ Because the entire lens moves as a unit, there is no change in the inter-element
 
 The patent provides eight examples, all sharing the same four-group architecture. Example 3 is distinguished by several features that likely led to its selection for production:
 
-**Highest-index positive elements:** Examples 3, 4, and 6 all use TAFD30 (nd = 1.883) for both primary positive elements — the highest refractive index among all eight examples. This enables the most compact design for a given focal length, consistent with the GR's emphasis on pocketability. The remaining examples use lower-index alternatives (TAFD5F at nd = 1.835, or TAF1 at nd = 1.773).
+**Highest-index positive elements:** Examples 3, 4, and 6 all use TAFD30 (nd = 1.883) for both primary positive elements — the highest refractive index among all eight examples. This enables the most compact design for a given focal length, consistent with the GR's emphasis on pocketability. The other examples use a lower-index glass (TAFD5F at nd = 1.835, or TAF1 at nd = 1.773) for at least one of the two.
 
-**Anomalous dispersion front element:** Example 3 is the only example that uses M-FCD1 (nd = 1.497, νd = 81.56) for L1 — an anomalous partial dispersion glass with dPg,F = +0.032. The other examples predominantly use HOYA FC5 (nd = 1.487, νd = 70.45), which has lower Abbe number and less anomalous dispersion. M-FCD1's ultra-low dispersion enables better secondary spectrum correction, contributing to the low chromatic aberration observed in production reviews.
+**Anomalous-dispersion front element:** Example 3 is the only example that uses M-FCD1 (nd = 1.497, νd = 81.56) for L1 — an anomalous partial dispersion glass with dPg,F = +0.032. The other examples predominantly use HOYA FC5 (nd = 1.487, νd = 70.45), which has lower Abbe number and less anomalous dispersion. M-FCD1's ultra-low dispersion enables better secondary spectrum correction, contributing to the low chromatic aberration observed in production reviews.
 
 **Balanced chromatic correction:** The combination of M-FCD1 (anomalous dispersion) with the symmetric use of E-FD8 in both doublets creates a chromatic correction strategy that addresses both primary and secondary spectrum — contributing to the low chromatic aberration observed in production reviews.
 
@@ -312,7 +312,7 @@ The Ricoh GR 18.3mm f/2.8 is a 7-element, 5-group (4 functional groups) approxim
 
 3. **Anomalous partial dispersion** in L1 (M-FCD1, dPg,F = +0.032) for secondary spectrum correction, with system-level achromatic balancing achieved by distributing chromatic contributions across all seven elements — the five negative elements collectively offset the two strong positive elements (L4 and L5, both TAFD30).
 
-4. **Unit focusing** — the entire lens assembly translates for focusing, with no internal moving groups. This keeps the design mechanically simple and preserves aberration balance across the focus range.
+4. **Unit focusing** — the patent focuses by moving the whole lens (or the sensor), with no internal moving groups. The data file's 0.30 m close-focus state is a calculated 1.30 mm extension; the patent publishes no close-focus data.
 
 5. **Approximately-symmetric power distribution** about the aperture stop, with deliberate asymmetry (f₁₋₂/f₃₋₄ = 1.203) to optimize performance at the camera's working magnification. The weak fourth group (f₄ = −240 mm) serves primarily as an exit pupil controller and field flattener.
 
@@ -320,41 +320,36 @@ The Ricoh GR 18.3mm f/2.8 is a 7-element, 5-group (4 functional groups) approxim
 
 ## 13. Semi-Diameter Estimation
 
-The patent does not list semi-diameters. Estimates were computed via paraxial ray tracing of both a marginal ray (at f/2.81 full aperture) and a chief ray at the maximum half-angle of view (ω = 38.2°), then validated against physical constraints.
+The patent does not list semi-diameters. The stored values are estimates, checked against an exact real-ray trace at the 14.2mm image height and against the Example 3 cross-section (FIG. 3), measured at 300 dpi with a scale of 31.36 px/mm taken from the first-to-last vertex span.
 
-### Methodology
+### Constraints
 
-The entrance pupil semi-diameter (EP_SD = EFL / 2F# = 3.26 mm) was traced through all surfaces to establish on-axis marginal ray heights. The chief ray was traced at several field fractions (0.5×, 0.7×, 0.85×, 1.0× full field) to model the off-axis beam envelope. Because a compact camera at f/2.8 with a wide field angle inevitably vignetted at the corners (consistent with production review observations of approximately 1–1.5 stops of vignetting at full field wide open), the beam envelope at 70% field was used as the primary sizing criterion for front and rear group elements, while elements near the stop were sized by the marginal ray with 5–8% mechanical clearance.
+**Axial beam and stop.** The f/2.81 axial beam needs 3.25–3.78mm at every surface, and the stop is recorded at 3.65mm, the real-ray iris radius for f/2.81. No surface clips the axial beam.
 
-### Binding Constraints
+**L1–L2 air lens.** With the tabulated S2 asphere, the rear of L1 curves sharply toward the image side at the edge, while the front of L2 curves toward the object. The two surfaces would meet at about 5.05mm from the axis across the 1.79mm gap. L2 is therefore held to 4.8mm, which leaves a practical clearance. The full-field bundle wants about 5.5mm here, so the corner bundle is vignetted by about 20% on one side at L2. This is ordinary for a compact f/2.8 wide-angle and matches the GR's known corner falloff.
 
-Two constraints proved most restrictive:
+**S2 asphere rim.** The full-field bundle reaches 5.42mm on S2. The rim is set at 5.8mm, where the surface slope is 48°. Beyond that it steepens rapidly (64° at 6.1mm and vertical at about 6.5mm).
 
-**Cemented junction edge thickness (L4 and L5):** The strongly curved cemented junctions at R₆ = 9.513 mm and R₁₀ = −9.087 mm create large sags that rapidly consume center thickness in the biconvex positive elements. L4 (ct = 2.34 mm) reaches minimum acceptable edge thickness (~0.55 mm) at SD ≈ 5.0 mm; L5 (ct = 2.59 mm) reaches ~0.51 mm at SD ≈ 4.7 mm. These constraints limit the doublet SDs to substantially less than the full beam envelope at those surfaces.
+**S13 asphere turnover.** The rear of L7 flattens so strongly that its sag turns over at about 5.58mm. The rim is 5.5mm, just inside the turnover and above the 5.08mm the full-field bundle needs.
 
-**Cross-gap sag overlap (L1→L2 and L6→L7):** Both air gaps between Groups I–II and Groups III–IV feature surfaces that curve *into* the gap from both sides — creating a "pinching" geometry that limits the maximum SD at which the surfaces remain non-overlapping. The L1→L2 gap (1.79 mm) constrains the effective sdCheck to ~5.5 mm, while the L6→L7 gap (1.73 mm) constrains it to ~4.7 mm (both verified to satisfy intrusion ≤ gap × 1.1).
+**Cemented doublets.** The strongly curved junctions (R₆ = 9.513mm, R₁₀ = −9.087mm) limit the doublet radii. L4 keeps about 0.55mm of edge at 5.0mm, and L5 about 0.5mm at 4.7mm; at FIG. 3's drawn 5.2mm, L5 would come to a knife edge. The L6–L7 air lens closes at about 4.6mm, which keeps the rear of L6 at 4.3mm.
 
 ### Final Semi-Diameter Values
 
-| Surface | SD (mm) | Constraint |
-|---------|---------|------------|
-| S01 (L1 front) | 7.50 | Wide-angle field acceptance |
-| S02A (L1 rear) | 6.50 | Cross-gap with S03 |
-| S03 (L2 front) | 5.50 | Cross-gap with S02A |
-| S04 (L2 rear) | 5.00 | Smooth progression toward doublet |
-| S05 (L3 front) | 5.00 | Edge thickness of L4 |
-| S06 (L3→L4 cement) | 5.00 | Matched to cemented pair |
-| S07 (L4 rear) | 5.00 | Matched to cemented pair |
-| STO | 3.55 | Gives F/2.80 at infinity |
-| S09 (L5 front) | 4.70 | Edge thickness of L5 |
-| S10 (L5→L6 cement) | 4.70 | Matched to cemented pair |
-| S11 (L6 rear) | 4.70 | Cross-gap with S12 |
-| S12 (L7 front) | 5.50 | Chief ray expansion after stop |
-| S13A (L7 rear) | 5.80 | Exit pupil geometry |
+| Surface | SD (mm) | FIG. 3 (mm) | Basis |
+|---------|---------|-------------|-------|
+| S01 (L1 front) | 7.00 | 6.8 (flat face incl. flange) | Front face |
+| S02A (L1 rear) | 5.80 | ≈5.7 | Full-field bundle 5.42; rim slope |
+| S03 (L2 front) | 4.80 | 5.75 | L1–L2 air-lens closure |
+| S04 (L2 rear) | 4.80 | 5.75 | Matched to S03 |
+| S05–S07 (L3+L4) | 5.00 | 5.35 | L4 edge thickness |
+| STO | 3.65 | — | Real-ray f/2.81 iris |
+| S09–S10 (L5+L6) | 4.70 | 5.2 | L5 edge thickness |
+| S11 (L6 rear) | 4.30 | 5.2 | L6–L7 air-lens closure |
+| S12 (L7 front) | 5.50 | 5.9 | Matched to S13 |
+| S13A (L7 rear) | 5.50 | 5.95 | Asphere turnover at 5.58 |
 
-All values validated: edge thickness ≥ 0.4 mm for all elements, cross-gap intrusion ≤ gap × 1.1 for all air gaps, sd/|R| < 0.55 for all surfaces. Front/rear SD ratios per element are all ≤ 1.23 (well within the 3.0 limit).
-
-These estimates are conservative. The actual production lens may have somewhat different clear apertures, particularly in the front group where the barrel design and filter thread constrain the physical element diameter. Renderer validation against the live ray trace may indicate adjustments needed, especially for the front group elements where vignetting behavior at the corners is sensitive to the chosen SDs.
+FIG. 3 draws the rear of L1 as a gentle curve that meets the front of L2 at about 5.7mm. The same crossing happens at L6 and L7, at about 5.2mm. The tabulated sags do not allow either, so the drawing's air-lens outlines are schematic. Where the figure is larger than the stored value by more than about 15% (L2 and the rear of L6), physical closure, not the figure, sets the limit.
 
 ---
 
@@ -362,11 +357,13 @@ These estimates are conservative. The actual production lens may have somewhat d
 
 ### Cover Glass Handling
 
-The patent's parallel flat plate F (surfaces 14–15: nd = 1.51680, d = 1.40 mm glass + 0.50 mm air to image) is excluded from the data file's surface array. Its optical effect is folded into the last surface's thickness as the air-equivalent back focal distance:
+The patent's parallel flat plate F (surfaces 14–15: nd = 1.51680, νd = 64.20, d = 1.40 mm glass + 0.50 mm air to image) is modeled in the data file's `rearPlates` field. Every analysis traces it, but the diagram does not draw it. The last surface S13 keeps the patent's physical 12.756 mm gap to the plate front. The table leaves surface 15's D blank, so the 0.50 mm plate-to-image gap comes from ¶[0045], which puts the plate about 0.5 mm in front of the image. The glass is labeled HOYA BSC7, the catalog class that matches 1.51680 / 64.2; the patent itself names it only "FILTER".
+
+The paraxial equivalent of this stack is an air-equivalent back focal distance of
 
 BFD_air-eq = 12.756 + 1.40/1.51680 + 0.50 = 14.179 mm
 
-where 12.756 mm is the patent's geometric distance from S13 to the filter front, 1.40/1.51680 = 0.923 mm is the air-equivalent thickness of the filter glass, and 0.50 mm is the air gap from filter rear to image plane.
+where 1.40/1.51680 = 0.923 mm is the air-equivalent thickness of the filter glass. The physical S1-to-image track is 15.64 + 12.756 + 1.40 + 0.50 = 30.30 mm, the patent's L.
 
 ### Stop Position
 
@@ -374,7 +371,7 @@ The patent lists the aperture stop as surface 08 (between surface 07 at R = −3
 
 ### Aspherical Coefficient Format
 
-The patent specifies coefficients up to 10th order (K, A4, A6, A8, A10) for both aspherical surfaces. The data file sets A12 and A14 to zero (required fields per the renderer spec). No higher-order terms (A16–A20) are needed.
+The patent specifies coefficients up to 10th order (K, A4, A6, A8, A10) for both aspherical surfaces, with no odd-order terms. The data file sets A12 and A14 to zero (required fields per the renderer spec). No higher-order terms (A16–A20) are needed. S2's A8 is +2.19205 × 10⁻⁷ as printed. S13's A6 is printed without its decimal point ("418583 × 10⁻⁶"); it is read as 4.18583 × 10⁻⁶, in line with the neighbouring examples.
 
 The conic constant convention matches the standard sag equation used by the renderer: K = 0 for a sphere, K = −1 for a paraboloid. The patent's "K" (labeled as conic constant in ¶0125) uses the same convention — verified by checking that the aspherical sag equation in the patent (¶0125) is algebraically identical to the renderer's sag equation.
 
@@ -382,11 +379,11 @@ The conic constant convention matches the standard sag equation used by the rend
 
 Since the lens uses unit focusing, only the back focal distance changes with focus. The data file encodes this as a single variable gap on the last surface:
 
-- `var["13A"] = [14.179, 18.28]` — infinity and close focus (0.10 m macro MFD)
-- Close-focus BFD computed via thin-lens extension: Δ = f²/(s − f) = 18.30²/(100 − 18.30) = 4.10 mm
-- BFD_close = 14.179 + 4.10 = 18.28 mm
+- `var["13A"] = [12.756, 14.058]` — physical S13-to-plate gap at infinity and calculated close focus
+- The close value is a paraxial unit-focus extension of 1.302mm, which focuses at a 0.30m object-to-image distance (the GR's normal-mode MFD) when measured over the air-equivalent track; over the physical track, with plate F, the same extension is about 0.30m + 0.48mm
+- `closeFocusM` is 0.30m. The 0.10m macro mode is not modeled, because the patent tabulates no finite-focus state at all.
 
-The Ricoh GR's normal-mode MFD is 0.30 m (extension ~1.19 mm, BFD ~15.37 mm). The macro-mode MFD of 0.10 m is used as `closeFocusM` in the data file to represent the absolute minimum focus distance.
+The paraxial image of the infinity prescription, traced through plate F, falls 0.0003mm from the image plane. That confirms the patent's 12.756mm gap, the 1.40mm plate and the 0.50mm air gap to the image.
 
 ### Numerical Precision
 

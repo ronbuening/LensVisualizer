@@ -10,10 +10,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ Focus: inner focus by axial travel of L6 / G2 toward the image.     ║
  * ║                                                                    ║
  * ║ NOTE ON COVER GLASS:                                               ║
- * ║   The patent lists a 2.5 mm cover glass after surface 18 and a      ║
- * ║   final 1.0 mm BF. Per project convention, the cover glass is not   ║
- * ║   included as an optical surface here; it is folded into the final  ║
- * ║   air-equivalent BFD: 15.309 + 2.5 / 1.516798 + 1.000 = 17.957209. ║
+ * ║   Table 28 surfaces 19–20 (cover glass, 2.500 mm, nd 1.516798,      ║
+ * ║   νd 64.2) and Table 30's 1.000 mm BF to IMG are modeled in         ║
+ * ║   `rearPlates` (traced, not drawn). Surface 18 keeps the patent's   ║
+ * ║   15.309 mm gap (air-equivalent BFD 17.957 mm).                     ║
  * ║                                                                    ║
  * ║ NOTE ON SEMI-DIAMETERS:                                            ║
  * ║   The patent does not publish clear semi-diameters. Values below    ║
@@ -23,8 +23,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                    ║
  * ║ NOTE ON CLOSE FOCUS:                                               ║
  * ║   The patent gives only the infinity prescription for Example 10.   ║
- * ║   The close-focus gaps are a paraxial solve in the folded-cover     ║
- * ║   data coordinate against Sony's 0.25 m MF / 0.16× specification.  ║
+ * ║   The close-focus gaps are a paraxial solve (made against the       ║
+ * ║   earlier folded-cover data, unchanged here) for Sony's 0.25 m MF / ║
+ * ║   0.16× specification.                                              ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -191,7 +192,20 @@ const LENS_DATA = {
     { label: "15", R: -137.164, d: 5.845, nd: 1.496997, elemId: 8, sd: 12.2 },
     { label: "16", R: -19.682, d: 5.367, nd: 1.0, elemId: 0, sd: 12.4 },
     { label: "17", R: -32.556, d: 1.3, nd: 1.846663, elemId: 9, sd: 10.8 },
-    { label: "18", R: 250.0, d: 17.957208924326114, nd: 1.0, elemId: 0, sd: 10.8 },
+    // Last surface: patent gap to the cover glass
+    { label: "18", R: 250.0, d: 15.309, nd: 1.0, elemId: 0, sd: 10.8 },
+  ],
+
+  /* ── Cover glass (patent Table 28 surfaces 19–20): traced, not drawn ── */
+  rearPlates: [
+    {
+      thicknessMm: 2.5,
+      nd: 1.516798,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 1.0,
+      source: "US 10,191,254 B2, Numerical Example 10, Table 28 surfaces 19–20; BF 1.000 from Table 30",
+    },
   ],
 
   asph: {
@@ -224,7 +238,7 @@ const LENS_DATA = {
 
   closeFocusM: 0.25,
   focusDescription:
-    "Inner focus: only L6 / G2 moves imageward. The close-focus state is paraxially solved in the folded-cover data coordinate for Sony's 0.25 m MF minimum focus distance; AF minimum focus is 0.29 m with shorter travel.",
+    "Inner focus: only L6 / G2 moves imageward. The close-focus state is paraxially solved for Sony's 0.25 m MF minimum focus distance; AF minimum focus is 0.29 m with shorter travel.",
 
   nominalFno: 2.0,
   maxFstop: 22,

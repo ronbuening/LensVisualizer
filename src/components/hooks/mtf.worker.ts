@@ -13,7 +13,13 @@ self.onmessage = (
   const message = event.data;
   if (message.type === "init") {
     try {
-      lens = buildLens(message.data);
+      // RuntimeLens.data already contains generated plates. Rebuild from the authored
+      // surfaces/elements plus rearPlates so validation and expansion run exactly once.
+      lens = buildLens({
+        ...message.data,
+        surfaces: message.data.surfaces.filter((surface) => !surface.synthetic),
+        elements: message.data.elements.filter((element) => !element.synthetic),
+      });
       initializationError = null;
     } catch (error) {
       lens = null;

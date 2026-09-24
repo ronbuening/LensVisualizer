@@ -1,5 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { build, buildChromaticPositiveElementLens, buildSimplePositiveElementLens } from "./testLensFixtures.js";
+import {
+  build,
+  buildChromaticPositiveElementLens,
+  buildSimplePositiveElementLens,
+  REAR_PLATE_FIXTURE,
+} from "./testLensFixtures.js";
 import { prepareRuntimeState } from "../../../src/optics/compat.js";
 import { assessMtfSupport, MTF_CDF_LINES } from "../../../src/optics/analysis/mtfSupport.js";
 import { combineOtfs, geometricOtf, otfMagnitude, translateOtf } from "../../../src/optics/analysis/mtfMath.js";
@@ -51,6 +56,17 @@ describe("qualified spectral MTF", () => {
     expect(support.available).toBe(true);
     expect(support.spectralLines.map((line) => line.weight)).toEqual([1 / 3, 1 / 3, 1 / 3]);
     expect(support.limitations.join(" ")).toContain("spectral proxies");
+  });
+  it("requires physical dispersion for hidden rear plates as well as visible elements", () => {
+    const base = buildChromaticPositiveElementLens();
+    const unknownPlate = { ...REAR_PLATE_FIXTURE, glass: undefined };
+    const unresolved = build({ ...base.data, rearPlates: [unknownPlate] });
+    const state = prepareRuntimeState(unresolved, 0, 0);
+    expect(unresolved.elements).toHaveLength(base.elements.length);
+    expect(assessMtfSupport(state, options).reason).toBe("spectral-data-unavailable");
+    expect(assessMtfSupport(state, { ...options, spectrum: "reference" }).available).toBe(true);
+    const resolved = build({ ...base.data, rearPlates: [REAR_PLATE_FIXTURE] });
+    expect(assessMtfSupport(prepareRuntimeState(resolved, 0, 0), options).available).toBe(true);
   });
   it("does not label a native e reference as a physical d index", () => {
     const L = buildSimplePositiveElementLens();

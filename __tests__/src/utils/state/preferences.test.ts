@@ -52,10 +52,18 @@ describe("loadPrefs", () => {
     expect(loadPrefs()).toEqual({});
   });
 
+  it("ignores rayTracksF saved before the v3 TRACKS FOCUS default", () => {
+    mockLocalStorage.setItem(PREFS_KEY, JSON.stringify({ v: 2, rayTracksF: false, showOnAxis: false }));
+    const prefs = loadPrefs();
+    expect(prefs.rayTracksF).toBeUndefined();
+    expect(prefs.showOnAxis).toBe(false);
+  });
+
   it("loads boolean preferences", () => {
     mockLocalStorage.setItem(
       PREFS_KEY,
       JSON.stringify({
+        v: 3,
         dark: true,
         highContrast: false,
         showOnAxis: true,

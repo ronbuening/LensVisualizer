@@ -15,10 +15,14 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    only post-stop) with 8% mechanical clearance.  All validated   ║
  * ║    against edge-thickness, sd/|R|, and cross-gap sag constraints. ║
  * ║                                                                    ║
+ * ║  LPF (patent surfaces 28–29: 1.45 mm, nd 1.52301, νd 58.59)       ║
+ * ║  is modeled in `rearPlates` (traced, not drawn); 27A keeps the    ║
+ * ║  patent d27 to the LPF: 37.0799 mm (inf) / 47.4637 mm (close).    ║
+ * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
  * ║    ✓ Aperture stop and variable focus gaps                        ║
- * ║    ✗ Cover glass / LPF excluded; BFD is air-equivalent           ║
+ * ║    ✗ DO NOT include: mechanical parts (LPF: `rearPlates`)         ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -238,8 +242,8 @@ const LENS_DATA = {
   ],
 
   /* ── Surface prescription ──
-   *  Patent: JP2018-5099A Example 4, surfaces 1–27 (LPF surfaces 28–29 excluded).
-   *  BFD is air-equivalent: d27_patent + LPF_air_equiv + BF = 37.0799 + 0.9524 + 1.0 = 39.032 mm.
+   *  Patent: JP2018-5099A Example 4, surfaces 1–27. The LPF (surfaces 28–29) is modeled in
+   *  `rearPlates` (traced, not drawn); 27A keeps the patent's physical d27 to the LPF.
    */
   surfaces: [
     // ── G1: 7 elements, fixed during focus ──
@@ -275,7 +279,21 @@ const LENS_DATA = {
     { label: "24", R: -73.544, d: 1.4194, nd: 1.6727, elemId: 13, sd: 15.1 }, // L13 front (Sm2)
     { label: "25", R: 116.0752, d: 0.5209, nd: 1.0, elemId: 0, sd: 15.0 }, // L13 rear → air
     { label: "26A", R: 74.3249, d: 8.0, nd: 1.85135, elemId: 14, sd: 15.0 }, // L14 front (asph)
-    { label: "27A", R: -55.4665, d: 39.032, nd: 1.0, elemId: 0, sd: 14.4 }, // L14 rear (asph) → image [VAR: air-equiv BFD]
+    { label: "27A", R: -55.4665, d: 37.0799, nd: 1.0, elemId: 0, sd: 14.4 }, // L14 rear (asph) → LPF [VAR: d27]
+  ],
+
+  /* ── Low-pass filter LPF (patent surfaces 28–29): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "LPF",
+      thicknessMm: 1.45,
+      nd: 1.52301,
+      vd: 58.59,
+      glass: "C12 (HOYA)",
+      dPgF: -0.00035,
+      gapAfterMm: 1.0,
+      source: "JP 2018-005099 A, Example 4 surfaces 28–29 (patent θgF 0.5449)",
+    },
   ],
 
   /* ── Aspherical coefficients ──
@@ -305,17 +323,16 @@ const LENS_DATA = {
   },
 
   /* ── Variable air spacings (floating rear focus) ──
-   *  Three variable gaps: G1→G2A, G2A→STO (differential G2A/G2B motion), BFD.
+   *  Three variable gaps: G1→G2A, G2A→STO (differential G2A/G2B motion), d27 (L14 → LPF).
    *  Close focus at 848 mm (production MFD: 850 mm).
-   *  BFD is air-equivalent (patent d27 + LPF air-equiv + BF).
-   *    Infinity: 37.0799 + 1.45/1.52301 + 1.0 = 39.032 mm
-   *    Close:    47.4637 + 1.45/1.52301 + 1.0 = 49.416 mm
+   *  27A is the patent's physical d27 to the LPF; BF = 1.0000 mm after the LPF is fixed
+   *  (`rearPlates`). Paraxial air-equivalent BFD: 39.032 mm (infinity) / 49.416 mm (close).
    *  Gap conservation: d14 + d19 + d27_patent = 64.870 (INF) → 64.910 (close); Δ = 0.04 mm (patent rounding).
    */
   var: {
     "14": [16.6759, 6.0661],
     "19": [11.1146, 11.3807],
-    "27A": [39.032, 49.416],
+    "27A": [37.0799, 47.4637],
   },
 
   varLabels: [

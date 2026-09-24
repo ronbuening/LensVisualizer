@@ -16,10 +16,16 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    field) with ~8 % mechanical clearance.  Validated for edge     ║
  * ║    thickness ≥ 0.3 mm and cross-gap sag intrusion ≤ 90 %.        ║
  * ║                                                                    ║
+ * ║  NOTE ON COVER GLASS:                                              ║
+ * ║    Patent surfaces 21–22 (1.500 mm plate, nd 1.52249, νd 59.48)   ║
+ * ║    and the 0.800 mm air gap to the image are modeled in           ║
+ * ║    `rearPlates` (traced, not drawn). Data surface 19 (patent 20)  ║
+ * ║    keeps the patent's 13.369 mm gap to the plate.                 ║
+ * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
  * ║    ✓ Aperture stop and variable focus gaps                        ║
- * ║    ✗ DO NOT include: sensor glass, filters, mechanical parts      ║
+ * ║    ✗ DO NOT include: mechanical parts (cover glass: `rearPlates`)  ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -178,8 +184,7 @@ const LENS_DATA = {
    *    7(stop)→"STO", 8→"7", 9→"8", 10→"9", 11→"10",
    *    12*→"11A", 13*→"12A", 14→"13", 15→"14", 16→"15",
    *    17→"16", 18→"17", 19→"18", 20→"19".
-   *  Cover glass (patent surfaces 21–22) excluded;
-   *  optical path folded into air-equivalent BFD.
+   *  Cover glass (patent surfaces 21–22) → `rearPlates` below.
    */
   surfaces: [
     // ── Gr1 (fixed, weakly positive — f₁ ≈ 1365 mm) ──
@@ -208,7 +213,19 @@ const LENS_DATA = {
     { label: "16", R: -15.039, d: 0.9, nd: 1.56883, elemId: 9, sd: 8.5 }, // L33 front
     { label: "17", R: -95.771, d: 0.3, nd: 1.0, elemId: 0, sd: 8.5 }, // L33 rear → air
     { label: "18", R: 38.336, d: 4.047, nd: 1.72916, elemId: 10, sd: 8.5 }, // L34 front
-    { label: "19", R: -721.431, d: 15.154, nd: 1.0, elemId: 0, sd: 8.0 }, // L34 rear → BFD (air-equiv)
+    { label: "19", R: -721.431, d: 13.369, nd: 1.0, elemId: 0, sd: 8.0 }, // L34 rear → cover glass
+  ],
+
+  /* ── Cover glass (patent surfaces 21–22): traced, not drawn ── */
+  rearPlates: [
+    {
+      thicknessMm: 1.5,
+      nd: 1.52249,
+      vd: 59.48,
+      glass: "S-NSL5",
+      gapAfterMm: 0.8,
+      source: "JP 2016-090725 A, Example 9 surfaces 21–22 (¶0110)",
+    },
   ],
 
   /* ── Aspherical coefficients ──

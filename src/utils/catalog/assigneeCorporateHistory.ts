@@ -36,6 +36,7 @@ const SOURCES = {
   konicaMinoltaIntegration: "https://www.konicaminolta.com/about/releases/minolta/2003/0805_01_01.html",
   leica1988: "https://timeline.leica-camera.com/en/years/1988",
   leica1996: "https://timeline.leica-camera.com/en/years/1996",
+  leicaOwnership: "https://en.wikipedia.org/wiki/Leica_Camera",
   leicaHistory: "https://leica-camera.com/en-US/press/four-generations-leitz-company-management-1869-1986",
   leitzCanadaHistory: "https://gmpphoto.blogspot.com/2019/05/a-very-important-part-of-leica-history.html",
   leitzCanadaSale: "https://phsc.ca/camera/once-upon-a-time-in-canada/",
@@ -45,6 +46,7 @@ const SOURCES = {
   olympusFounding: "https://www.olympus-global.com/company/milestones/founding.html?page=company",
   olympusImaging: "https://www.olympus-global.com/company/milestones/history/05.html?page=company",
   olympusAnnual2016: "https://www.olympus-global.com/ir/data/integratedreport/pdf/ar2016e_A3.pdf",
+  pentaconHistory: "https://de.wikipedia.org/wiki/Pentacon",
   panasonicHistory: "https://holdings.panasonic/global/corporate/about/history/chronicle/2008.html",
   panasonicIp: "https://www.panasonic.com/jp/company/pipm/company.html",
   panasonicXiamen: "https://panasonic.cn/about/panasonic-china/pavcx/",
@@ -64,6 +66,7 @@ const SOURCES = {
   vivitarNameChange: "https://uprp.gov.pl/sites/default/files/wup/1979/06/wup06_1979.pdf",
   voigtlanderRename: "https://patents.google.com/patent/US2662446A/en",
   voigtlanderHistory: "https://www.cosina.co.jp/voigtlander/",
+  yashicaHistory: "https://en.wikipedia.org/wiki/Yashica",
   zeissHistory: "https://www.zeiss.com/corporate/en/about-zeiss/past/history.html",
   zeissLocations: "https://www.zeiss.com/corporate/en/about-zeiss/past/history/locations.html",
   zeissSubsidiaries: "https://www.zeiss.com/corporate/en/about-zeiss/past/history/history-of-zeiss-subsidiaries.html",
@@ -77,6 +80,16 @@ const SOURCES = {
  * names or external organizations that explain the historical transition.
  */
 export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporateRelationships>> = {
+  "ACM Projektentwicklung GmbH": {
+    corporateFamily: [
+      {
+        family: "Leitz–Leica lineage",
+        effectiveFrom: "2006-09",
+        sourceUrl: SOURCES.leicaOwnership,
+        note: "Andreas Kaufmann's Salzburg holding company, majority shareholder of Leica Camera AG after buying the Hermès stake in September 2006; it is the applicant of record for the Summilux-C cine patents.",
+      },
+    ],
+  },
   "Agfa Camera-Werk AG": {
     acquiredBy: [
       {
@@ -413,6 +426,14 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
         effectiveDate: "1996",
         sourceUrl: SOURCES.leica1996,
         note: "The camera business became Leica Camera AG for its 1996 stock-market listing; earlier patent-era GmbH attributions remain separate.",
+      },
+    ],
+    subsidiaryOf: [
+      {
+        organization: "ACM Projektentwicklung GmbH",
+        effectiveFrom: "2006-09",
+        sourceUrl: SOURCES.leicaOwnership,
+        note: "Majority-owned by Andreas Kaufmann's ACM Projektentwicklung GmbH, with The Blackstone Group as minority shareholder.",
       },
     ],
     corporateFamily: [
@@ -823,6 +844,25 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
       },
     ],
   },
+  "VEB Pentacon Dresden Kamera- und Kinowerke": {
+    subsidiaryOf: [
+      {
+        organization: "VEB Carl Zeiss Jena",
+        effectiveFrom: "1985",
+        sourceUrl: SOURCES.pentaconHistory,
+        note: "Kombinat VEB Pentacon Dresden, which absorbed the former Meyer-Optik Görlitz works in 1968, was attached to Kombinat VEB Carl Zeiss Jena in 1985 while keeping its name.",
+      },
+    ],
+    corporateFamily: [
+      {
+        family: "ZEISS",
+        effectiveFrom: "1985",
+        effectiveTo: "1991",
+        sourceUrl: SOURCES.pentaconHistory,
+        note: "Part of the East German Carl Zeiss Jena combine only from 1985; earlier Pentacon patents predate that membership.",
+      },
+    ],
+  },
   "VEB Carl Zeiss Jena": {
     acquiredBy: [
       {
@@ -839,6 +879,23 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
         effectiveTo: "1991",
         sourceUrl: SOURCES.zeissLocations,
         note: "East German branch of the divided ZEISS lineage.",
+      },
+    ],
+  },
+  "Tomioka Optical Co., Ltd.": {
+    subsidiaryOf: [
+      {
+        organization: "Yashica Co., Ltd.",
+        effectiveFrom: "1968-08",
+        sourceUrl: SOURCES.yashicaHistory,
+        note: "Yashica acquired its lens maker, Tomioka Optical, in August 1968; Tomioka passed with Yashica to Kyocera in 1983.",
+      },
+    ],
+    corporateFamily: [
+      {
+        family: "Yashica–Kyocera",
+        effectiveFrom: "1968-08",
+        sourceUrl: SOURCES.yashicaHistory,
       },
     ],
   },
@@ -894,6 +951,24 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
         effectiveFrom: "1953",
         sourceUrl: SOURCES.voigtlanderHistory,
         note: "The window starts with the first US grant printed under the shortened style; the brand lineage itself dates from 1756.",
+      },
+    ],
+  },
+  "Yashica Co., Ltd.": {
+    acquiredBy: [
+      {
+        organization: "Kyocera Corporation",
+        effectiveDate: "1983-10",
+        sourceUrl: SOURCES.yashicaHistory,
+        note: "Kyocera (then Kyoto Ceramic) acquired Yashica Co., Ltd. in October 1983.",
+      },
+    ],
+    corporateFamily: [
+      {
+        family: "Yashica–Kyocera",
+        effectiveFrom: "1968-08",
+        sourceUrl: SOURCES.yashicaHistory,
+        note: "The family date marks Yashica's acquisition of Tomioka Optical, not Yashica's founding.",
       },
     ],
   },

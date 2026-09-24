@@ -7,7 +7,8 @@ import NikkorRaw from "../../../src/lens-data/nikon/NikonNikkorZ50f18S.data.js";
 import NikkorZ70200Raw from "../../../src/lens-data/nikon/NikonNikkorZ70200f28.data.js";
 import NoktonRaw from "../../../src/lens-data/voigtlander/VoigtlanderNokton50f1.data.js";
 import Sonnar50f15Raw from "../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
-import type { LensData, RuntimeLens, SurfaceData, VarRange } from "../../../src/types/optics.js";
+import { rearPlateAirEquivalentMm } from "../../../src/optics/prescription/rearPlates.js";
+import type { LensData, RearPlateData, RuntimeLens, SurfaceData, VarRange } from "../../../src/types/optics.js";
 
 /** Merge project defaults and build — the canonical test-side `buildLens` wrapper. */
 export function build(raw: object): RuntimeLens {
@@ -160,5 +161,60 @@ export function buildMissAfterFirstHitLens(key = "test-miss-after-first-hit-lens
       { label: "1", R: 20, nd: 1.5, sd: 10, d: 8, elemId: 1 },
       { label: "2", R: -20, nd: 1.0, sd: 10, d: 50, elemId: 1 },
     ],
+  });
+}
+
+/** Source-style rear plate: 2 mm N-BK7 cover glass followed by 1 mm air to the image plane. */
+export const REAR_PLATE_FIXTURE: RearPlateData = Object.freeze({
+  label: "CG",
+  thicknessMm: 2,
+  nd: 1.5168,
+  vd: 64.17,
+  glass: "N-BK7",
+  gapAfterMm: 1,
+});
+
+interface RearPlateLensOptions {
+  plates?: RearPlateData[];
+  /** Physical gap from the last lens surface to the first plate. */
+  gapBefore?: number;
+  /** Optional focus variation on the last lens gap (`var["2"]`), physical plate-model values. */
+  lastGapRange?: VarRange;
+  key?: string;
+}
+
+/**
+ * Simple positive element followed by modeled `rearPlates` (physical patent gaps).
+ *
+ * Pair with `buildRearPlateAirEquivalentLens()` — the legacy t/n fold of the same stack — to check that the
+ * expansion preserves paraxial focus while adding real plate behavior.
+ */
+export function buildRearPlateLens({
+  plates = [REAR_PLATE_FIXTURE],
+  gapBefore = 44,
+  lastGapRange,
+  key = "test-rear-plate",
+}: RearPlateLensOptions = {}): RuntimeLens {
+  return buildFixture({
+    key,
+    surfaces: simplePositiveSurfaces(1, 5, gapBefore),
+    rearPlates: plates,
+    ...(lastGapRange ? { var: { "2": lastGapRange } } : {}),
+  });
+}
+
+/** The same stack as `buildRearPlateLens()` with the plates folded into the last gap as Σ(t/n + gapAfter). */
+export function buildRearPlateAirEquivalentLens({
+  plates = [REAR_PLATE_FIXTURE],
+  gapBefore = 44,
+  lastGapRange,
+  key = "test-rear-plate-air-equivalent",
+}: RearPlateLensOptions = {}): RuntimeLens {
+  const fold = rearPlateAirEquivalentMm(plates);
+  const foldRange = lastGapRange?.map((value) => (value as number) + fold) as VarRange | undefined;
+  return buildFixture({
+    key,
+    surfaces: simplePositiveSurfaces(1, 5, gapBefore + fold),
+    ...(foldRange ? { var: { "2": foldRange } } : {}),
   });
 }

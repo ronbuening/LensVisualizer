@@ -56,3 +56,19 @@ Catalog version: ab3a508
 - Updated `OlympusMZuiko1240mmf28PRO.analysis.md` element narratives and glass table for the relabeled glasses above.
 - Removed the unsupported TAFD45 attribution for L12 and described it as an unmatched 946180 dense flint.
 - Updated the source list to reflect the OHARA/HOYA catalog labels now used by the data file.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Read Example 5 (¶0259) on PDF page 39 (printed page 13) at 160 dpi: surface 24 d = 12.5585; surfaces 25–26 are the
+  cover glass C (¶0199, PDF page 33), 4.000 mm, nd 1.51633, νd 64.14; 26 → image is 0.800 mm. FB (in air) prints
+  15.996 / 15.997 / 15.997, so the gaps are zoom-fixed. Surface 24 now stores 12.5585 mm with `rearPlates` C
+  (S-BSL7, exact 1.51633 / 64.14 OHARA match) and gapAfter 0.800 mm.
+- Paraxial check against the previous data: EFL identical at all three zoom stations; defocus changes by 0.00055 mm at
+  every station and focus keyframe (the old 15.997 rounded up the exact 15.99645 fold). Physical track grows by
+  1.3615 mm; `closeFocusM` 0.2 is the manufacturer MFD and is unchanged.
+
+## 2026-09-23 — Variable-gap label corrected
+
+- `varLabels` named the G4–G5 gap (surface 21, d21) "BF". That gap is the focus-compensating space between G4 and the
+  stationary G5, not the back focus, so the slider readout is now labelled "D21", matching the patent and the analysis
+  focus table. The back focus (d24 to cover glass C, then 0.8 mm) is fixed and has no slider.

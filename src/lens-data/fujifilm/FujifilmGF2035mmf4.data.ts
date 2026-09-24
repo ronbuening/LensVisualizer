@@ -15,9 +15,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * The middle close-focus DD[7]/DD[11] values below are linearly interpolated between the wide and tele
  * focus travels only for the LensVisualizer focus slider. Infinity positions are patent-transcribed.
  *
- * Cover-glass handling: the patent lists a rear 3.20 mm, nd=1.51680 parallel plate plus 2.05 mm air.
- * The project data format excludes sensor/cover glass, so surface 25 folds this into an air-equivalent BFD:
- * 17.0778 + 3.20/1.51680 + 2.05 = 21.237504641 mm.
+ * Cover-glass handling: the patent lists a rear optical member PP (surfaces 26-27: 3.20 mm,
+ * nd=1.51680, vd=64.20, θgF=0.53430) followed by 2.05 mm air to the image. It is modeled in
+ * `rearPlates` (traced, not drawn); surface 25 keeps the patent's physical 17.0778 mm gap to the plate.
+ * Air-equivalent BFD: 17.0778 + 3.20/1.51680 + 2.05 = 21.2375 mm (patent Bf 21.24).
  *
  * Aspheres: surfaces 3A, 4A, 10A, 11A, 17A, 18A, 22A, and 23A store the exact
  * Example 10 Table 30 odd/even A4-A10 polynomials. Patent KA=1 maps to project K=0.
@@ -257,7 +258,21 @@ const LENS_DATA = {
     { label: "22A", R: -45.8664, d: 1.5, nd: 1.6935, elemId: 13, sd: 13.4 },
     { label: "23A", R: -277.6916, d: 5.08, nd: 1.0, elemId: 0, sd: 13.865 },
     { label: "24", R: -254.4443, d: 6.55, nd: 1.8707, elemId: 14, sd: 15.5 },
-    { label: "25", R: -45.2499, d: 21.2375046414, nd: 1.0, elemId: 0, sd: 16.0 },
+    { label: "25", R: -45.2499, d: 17.0778, nd: 1.0, elemId: 0, sd: 16.0 },
+  ],
+
+  /* ── Optical member PP (patent surfaces 26–27): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PP",
+      thicknessMm: 3.2,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      dPgF: -0.00152,
+      gapAfterMm: 2.05,
+      source: "US 2022/0236544 A1, Example 10 Table 28 surfaces 26–27 (patent θgF 0.53430)",
+    },
   ],
 
   asph: {

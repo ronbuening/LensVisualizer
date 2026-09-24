@@ -1,273 +1,282 @@
 # Ricoh GR LENS A12 28mm f/2.5 — Optical Analysis
 
+## 1. Patent and Design Identification
+
 **Patent:** JP 2012-003015 A
-**Inventor:** Takashi Kubota (窪田 高士), Ricoh Co., Ltd.
-**Applicant:** Ricoh Co., Ltd.
+**Application Number:** JP 2010-137492
 **Filed:** 2010-06-16
 **Published:** 2012-01-05
-**Embodiment analyzed:** Example 3 (実施例３), Figure 5
-**Design focal length:** 18.3 mm (28 mm equiv. on APS-C)
-**Design f-number:** f/2.56
+**Inventor:** Takashi Kubota (窪田 高士)
+**Applicant:** Ricoh Co., Ltd.
+**Title:** 結像レンズおよびカメラ装置および携帯情報端末装置 (Imaging lens, camera device and portable information terminal device)
+**Embodiment analyzed:** Example 1 (実施例1): Table 1, aspherical data ¶0094–0095, focus gaps Table 2, Fig. 1, aberrations Fig. 2
+**Production lens:** Ricoh GR LENS A12 28mm F2.5 camera unit for the GXR system
 
----
+The GR LENS A12 28mm F2.5 is a sealed lens-and-sensor unit for Ricoh's GXR interchangeable-unit camera. It pairs an
+18.3 mm lens with a 23.6 × 15.7 mm (APS-C) CMOS sensor. Ricoh's unit manual gives the aperture range as f/2.5–f/22,
+the focus range as about 20 cm–∞ measured from the lens, a 40.5 mm filter thread, and the construction as "9 elements
+in 6 groups (2 aspherical lens elements with 2 surfaces)". Ricoh's product page adds that the design uses a special
+low-dispersion lens and a floating focus structure.
 
-## 1. Overview and Production Context
+JP 2012-003015 A publishes seven numerical examples of one positive–positive two-group wide-angle design. All seven
+have F = 18.3 mm, F/2.51–2.56, a half-field of about 38° and a 200 mm reference close distance (¶0049, ¶0155–0157). The
+patent's examples are for a solid-state sensor with a 28.6 mm diagonal (¶0051). Example 1 is identified here as the
+closest match to the production lens:
 
-The Ricoh GR LENS A12 28mm f/2.5 is a wide-angle prime module for the Ricoh GXR interchangeable-unit camera system, released at Photokina in September 2010. It pairs an 18.3 mm f/2.5 lens with a 23.6 × 15.7 mm (APS-C) CMOS sensor in a sealed, dust-free unit. The production module features a 40.5 mm filter thread, a minimum focus distance of approximately 20 cm from the front element, and a floating-focus lens structure.
+1. **Element and group count.** Example 1 is the only 9-element, 6-group example (¶0059). Examples 2, 3, 6 and 7 have
+   8 elements, and Examples 4 and 5 have 10.
+2. **Aspherical count.** Example 1 has one aspherical surface on each of two elements: the front of L2 (surface 3) and
+   the front of L9 (surface 15). This matches Ricoh's "2 aspherical lens elements with 2 surfaces". Example 3, which
+   this data file stored before the 2026-09-23 audit, has three aspherical surfaces (both sides of L1 and the rear of
+   L8).
+3. **Representative figure.** Fig. 1 (Example 1) is the drawing the patent selected for its abstract page (【選択図】図1).
+4. **Focal length, aperture, focus.** F = 18.3 mm and Fno = 2.56 (¶0091) match the 18.3 mm f/2.5 unit. Floating focus
+   by two groups and a 200 mm close distance match Ricoh's floating structure and the 20 cm minimum distance.
 
-Patent JP 2012-003015 A presents seven numerical examples of a positive–positive two-group imaging lens design. All share the same fundamental architecture: a positive first group and a positive second group separated by an aperture stop, with floating focus achieved by advancing both groups toward the object at different rates.
+The identification is not exact. None of the seven examples combines the 9/6 construction with an element that
+could be called a special low-dispersion glass. The lowest-dispersion glass in Example 1 is L1 at νd 58.6. Only the
+10-element Examples 4 and 5 use a νd 81.5 fluor crown. The production prescription may therefore differ from Example 1
+in glass choice, and the patent does not name the product. The match to Ricoh's element count, group count and
+aspherical count is an inference.
 
-**Production specification versus Example 3:** Ricoh's published specifications describe a 9-element, 6-group design with "2 aspherical lens elements with 2 surfaces," whereas Example 3 is an 8-element, 6-group design with 2 aspherical elements bearing 3 aspherical surfaces (both surfaces of L1 plus the rear surface of L8). Example 1 from the same patent — a 9-element, 6-group design with exactly 2 aspherical surfaces — is a closer match to the published element/group count and aspherical surface count. The production lens is likely a refinement whose overall topology more closely follows Example 1 or a hybrid of the two. Nevertheless, Example 3 is among the closest designs in the patent family and shares all the fundamental architectural and focusing principles of the production lens.
+## 2. Optical Architecture
 
----
+Example 1 has a weak positive first group (L1–L4), the aperture stop, and a strong positive second group (L5–L9)
+(¶0059, ¶0072):
 
-## 2. Lens Architecture
+| Group | Elements | Paraxial focal length | Content |
+|---|---|---|---|
+| Group 1 | L1, L2, L3+L4 | +942 mm (calculated) | negative meniscus, biconvex asphere, cemented doublet |
+| Stop | — | — | surface 8; moves with Group 1 |
+| Group 2 | L5+L6, L7+L8, L9 | +22.8 mm (calculated) | two cemented doublets, aspherical rear meniscus |
 
-Example 3 is a 2-group, 8-element design arranged in 6 air-separated groups. The prescription was verified computationally via paraxial ray trace in the (y, nu) convention, yielding an EFL of 18.28 mm (within 0.1% of the patent's stated 18.3 mm).
+The six air-separated groups are L1, L2, L3+L4, L5+L6, L7+L8 and L9. Group 1 has almost no net power. Its negative
+meniscus L1 and the positive L2 form a weak wide-angle front section. The cemented L3+L4 doublet faces the stop with a
+convex rear surface, and the L5+L6 doublet faces it with a convex front surface (Claim 8). The patent contrasts this
+positive-leading layout with a retrofocus design (¶0006). A retrofocus lens places the principal points behind the
+glass and makes the power layout asymmetric, which makes coma, distortion and lateral color harder to correct. The
+positive-leading layout keeps the power more symmetric about the stop, and the negative L1 keeps the field wide.
 
-### Group and Element Layout
+Calculated from the stored prescription:
 
-| Position | Element(s) | Air-Separated Group | Description |
-|----------|-----------|---------------------|-------------|
-| Front | L1 | Group A | Negative meniscus, 2× aspherical |
-| | L2 | Group B | Positive meniscus, convex to object |
-| | L3 + L4 | Group C | Cemented doublet (neg + pos) |
-| *Stop* | — | — | Aperture diaphragm |
-| | L5 + L6 | Group D | Cemented doublet (pos + neg) |
-| | L7 | Group E | Negative meniscus |
-| Rear | L8 | Group F | Biconvex positive, 1× aspherical |
-
-The overall topology is a modified double-Gauss variant adapted for a wide-angle, positive-leading design. Rather than the classic negative-leading retrofocus architecture used in most wide-angle SLR lenses, this design places positive power first, which yields a compact total track (≈ 1.7× the sensor diagonal at infinity focus, per the patent text) at the cost of somewhat greater difficulty in correcting distortion and field curvature. The positive–positive power split also enables a near-telecentric exit pupil, well-suited to the large APS-C sensor.
-
-### Key Computed Parameters
-
-| Parameter | Value |
-|-----------|-------|
-| Effective focal length (EFL) | 18.28 mm |
-| Back focal distance (BFD, to cover glass front) | 14.26 mm (infinity) |
-| Half-field angle (ω) | 37.8° |
-| Full field of view (2ω) | 75.6° |
-| 35 mm equivalent focal length | 27.9 mm |
-| Petzval sum | 0.00700 mm⁻¹ |
-| Petzval radius | 142.9 mm |
-| Total optical track (surface 1 to image) | 50.4 mm |
-| Minimum focus distance | 200 mm (patent design value) |
-| Group 1 focal length | +240.2 mm |
-| Group 2 focal length | +23.4 mm |
-
----
+| Quantity | Value |
+|---|---|
+| EFL | 18.24 mm (patent F = 18.3 mm) |
+| Design f-number | 2.56 (patent); iris radius 4.49 mm by real-ray trace |
+| Half-field | 38.0° in Fig. 2; 38.5° reaches a 14.3 mm image height |
+| Back focus | 17.05 mm physical (14.10 air + 2.5 mm plate + 0.448 air); 16.20 mm air-equivalent |
+| Lens length, surface 1 to surface 16 | 32.66 mm |
+| Total length, surface 1 to image | 49.71 mm physical, including the 2.5 mm patent plate |
+| Total length / image diagonal | 1.74 (patent: "about 1.7", ¶0051) |
+| Entrance pupil | 7.12 mm diameter, 8.3 mm behind surface 1 |
+| Exit pupil | about 40 mm in front of the image (air-equivalent) |
+| Petzval sum | +0.0070 mm⁻¹ (radius about 143 mm) |
+| Distortion at ω = 38° | −1.5 % (real-ray trace; Fig. 2 shows about −1.6 %) |
 
 ## 3. Element-by-Element Analysis
 
-All individual element focal lengths below are thick-lens values computed in-air (standalone), which is the standard reporting convention. Cemented doublet focal lengths are computed as complete air-to-air subsystems using ABCD matrix trace. Within the cemented groups, each element's optical contribution differs from its standalone value due to the higher-index surrounding medium; these contextual values are noted where relevant.
+Element focal lengths are thick-lens values in air, calculated from Table 1. Glass names are catalog equivalents
+matched on nd/νd. The patent lists only nd and νd.
 
-### L1 — Negative Meniscus with Two Aspherical Surfaces
+### L1 — Negative Meniscus, convex to object
 
-| Property | Value |
-|----------|-------|
-| Surfaces | 1\* (front, R = +23.77) / 2\* (rear, R = +9.53) |
-| Thickness | 1.1 mm |
-| nd / νd | 1.5163 / 64.1 |
-| Glass match | S-BSL7 (OHARA) or N-BK7 (SCHOTT) |
-| Focal length | −31.6 mm |
+nd = 1.6516, νd = 58.6. Glass: S-LAL7 (OHARA) equivalent — lanthanum crown. f = −25.2 mm.
 
-L1 is the most optically distinctive element in the design. It is the lowest-dispersion element in this prescription (νd = 64.1), and it carries aspherical correction on both surfaces — a highly unusual choice for a front element in a compact wide-angle lens. Its glass is a standard borosilicate crown (BK7 family), selected here for its low dispersion and excellent moldability. This element is almost certainly produced by precision glass molding (PGM).
+Claim 1 requires Group 1 to begin with a negative meniscus that is convex toward the object. L1 (R 23.72 / 9.52) has a
+deeply concave rear surface: its sag is about 3.5 mm at the 7.4 mm rim, compared with a 3.4 mm air space to L2. Fig. 1
+shows L2 fitted into that hollow. Condition (2) fixes the L1/L2 power ratio. L1 has νd 58.6, the highest Abbe number in
+this example, but it is an ordinary lanthanum crown and not a low-dispersion glass.
 
-As a negative meniscus with its convex side toward the object, L1 acts as a field-flattening element for the incoming wide-angle beam. Its negative power diverges the marginal ray bundle before it enters the high-power positive elements behind it, distributing the refraction across more surfaces and reducing the load on any single element.
+### L2 — Biconvex Positive, aspherical front surface
 
-**Front surface (surface 1\*):** K = −6.163 (strong hyperboloid in standard convention). The aspherical departure reaches +230 µm at h = 8.5 mm relative to the best-fit sphere. The complex profile controls both spherical aberration contribution and the refraction angle of wide-angle off-axis bundles entering the lens.
+nd = 1.8061, νd = 40.4. Glass: 806404 lanthanum flint (catalog unresolved; nearest catalog glasses are HOYA NBFD13
+1.80610/40.73 and OHARA S-LAH53 1.80610/40.93). f = +44.6 mm.
 
-**Rear surface (surface 2\*):** K = −0.812 (prolate ellipsoid, approaching paraboloidal). This surface carries the most dramatic aspherical departure in the design: −796 µm at h = 7.5 mm. This strong flattening reduces the divergence of the marginal ray exiting L1 at large heights, directly controlling spherical aberration and coma. The departure profile through A18 (eight polynomial terms) provides extremely fine control over the wide-angle beam geometry.
+L2 (R +59.04 / −90.61) is the first positive member of the lens and carries one of its two aspherical surfaces. The
+air space between L1 and L2 is condition (1)'s d₁₁₋₂ (3.4 mm). The air space from L2 to L3 is d₁₂₋₃ (1.1 mm). Both
+L2 and L9, the two aspherical elements, use high-index lanthanum glasses with νd ≈ 40.4. This fits precision glass
+molding, but the patent does not state how either element is made (inference).
 
-### L2 — Positive Meniscus
+### L3 — Biconcave Negative (cemented doublet D1)
 
-| Property | Value |
-|----------|-------|
-| Surfaces | 3 (front, R = +32.35) / 4 (rear, R = +133.80) |
-| Thickness | 1.7 mm |
-| nd / νd | 1.8830 / 40.8 |
-| Glass match | S-LAH58 (OHARA) or N-LASF45HT (SCHOTT) |
-| Focal length | +47.9 mm |
+nd = 1.6129, νd = 37.0. Glass: S-TIM3 (OHARA). f = −12.4 mm.
 
-L2 is a positive meniscus with its convex surface toward the object. It is the primary positive-power element of Group 1, using a high-index lanthanum glass (nd = 1.883) to provide strong convergence with relatively gentle surface curvatures.
+### L4 — Biconvex Positive (cemented doublet D1)
 
-L2 works in partnership with L1: the negative power of L1 partially pre-corrects the beam before L2 converges it. The patent's Condition (2) governs the focal-length ratio between L1 and L2, requiring −1.0 < f_L1/f_L2 < −0.1. The computed ratio is −0.66, indicating that L1 has about two-thirds the absolute power of L2.
+nd = 1.8348, νd = 42.7. Glass: S-LAH55V (OHARA) equivalent. f = +11.4 mm.
 
-### L3 + L4 — Cemented Doublet (Group 1 Rear)
-
-| Property | L3 (front element) | L4 (rear element) |
-|----------|--------------------|--------------------|
-| Surfaces | 5 (R = −17.05) | 6 (junction, R = +17.77) / 7 (R = −29.70) |
-| Thickness | 0.9 mm | 3.0 mm |
-| nd / νd | 1.6200 / 36.3 | 1.8830 / 40.8 |
-| Glass match | S-TIM2 (OHARA) / N-F2 (SCHOTT) | S-LAH58 (OHARA) |
-| Individual focal length (standalone) | −13.9 mm | +13.0 mm |
-| **Doublet focal length** | **+99.3 mm** | |
-
-This cemented doublet is the achromatic corrector for Group 1. L3 is a biconcave negative element in a moderate-dispersion flint glass, while L4 is a biconvex positive element in the same high-index lanthanum crown used by L2. The combination provides weak net positive power (+99.3 mm focal length) while strongly correcting axial chromatic aberration.
-
-The cemented interface at R = +17.77 is convex toward the image and nearly symmetric with L5's front surface (R = +22.92) across the stop. This near-symmetry, cited by the patent as the basis for Claim 8, is crucial for suppressing lateral chromatic aberration, coma, and distortion.
-
-The doublet focal-length ratio between this doublet and the Group 2 front doublet (L5+L6) is governed by Condition (3): 2.0 < f₁c/f₂c < 7.9. The computed value is 3.49, indicating that the Group 1 doublet is substantially weaker than the Group 2 doublet.
+L3 and L4 form the image-side cemented lens of Group 1, which Claim 6 requires. The two elements have nearly equal
+and opposite power, and the doublet as a whole is weak at +80.4 mm. Condition (3) compares it with the Group 2 front
+doublet, giving f₁ₑ/f₂₁ = 3.25. Condition (4) compares the Nd·νd contrast of this pair with that of L5+L6. L4's rear
+surface (R −29.58) is convex toward the stop and the adjacent L5 front surface (R +21.55) is convex toward it from the
+other side. That ratio is condition (6).
 
 ### Aperture Stop
 
-The stop is positioned between Group 1 and Group 2, in the air gap between L4 (rear surface 7) and L5 (front surface 9). At infinity focus, this gap is split as 2.2 mm (L4 rear to stop) + 5.58 mm (stop to L5 front) = 7.78 mm total. The surfaces flanking the stop — L4 rear (R = −29.70, convex toward image) and L5 front (R = +22.92, convex toward object) — are both convex toward the stop, creating the quasi-symmetric configuration described in Claim 8.
+The stop is patent surface 8, 2.2 mm behind L4. It belongs mechanically to Group 1: D1, the stop-to-L5 gap, is the
+spacing that changes between the two groups. Fig. 1 draws its opening at about 4.7 mm radius. The f/2.56 axial beam
+needs 4.49 mm (real-ray trace), and the data file uses 4.5 mm.
 
-### L5 + L6 — Cemented Doublet (Group 2 Front)
+### L5 — Biconvex Positive (cemented doublet D2)
 
-| Property | L5 (front element) | L6 (rear element) |
-|----------|--------------------|--------------------|
-| Surfaces | 9 (R = +22.92) | 10 (junction, R = −11.87) / 11 (R = +30.47) |
-| Thickness | 4.2 mm | 0.8 mm |
-| nd / νd | 1.8830 / 40.8 | 1.6727 / 32.2 |
-| Glass match | S-LAH58 (OHARA) | E-FD5 (HOYA) / S-TIF6 or N-SF5 class |
-| Individual focal length (standalone) | +9.4 mm | −12.6 mm |
-| **Doublet focal length** | **+28.5 mm** | |
+nd = 1.8348, νd = 42.7. Glass: S-LAH55V (OHARA) equivalent. f = +10.5 mm.
 
-This is the primary power-generating doublet of the entire system. L5 is a thick (4.2 mm) biconvex element — note that its standalone focal length of +9.4 mm makes it by far the strongest individual positive element when measured in air. Within the cemented group, its effective contribution is moderated by the high-index L6 glass (nd = 1.673) on its image side, which reduces the refraction at the junction compared to an air interface. L6 is a thin biconcave negative element providing chromatic correction.
+### L6 — Biconcave Negative (cemented doublet D2)
 
-The patent's Condition (4) governs the glass-dispersion balance between the Group 1 and Group 2 cemented doublets. The computed value of 0.78 falls within the required range of 0.7–1.6.
+nd = 1.5750, νd = 41.5. Glass: S-TIL27 (OHARA). f = −16.2 mm.
 
-### L7 — Negative Meniscus
+L5+L6 (+24.7 mm) is the strongest group in the lens and is Claim 6's object-side cemented lens of Group 2. At 4.3 mm,
+L5 is the thickest element. The pair is unusual because the flint has almost the same Abbe number as the crown (41.5
+vs 42.7). The index step at the junction (1.835 → 1.575) therefore acts mainly as a monochromatic correction surface,
+and the pair is only weakly achromatic. Most of the color correction in Group 2 comes from L7. Condition (4) expresses
+this balance, (Nd₄νd₄ − Nd₃νd₃)/(Nd₅νd₅ − Nd₆νd₆) = 1.44, within its 0.7–1.6 range.
 
-| Property | Value |
-|----------|-------|
-| Surfaces | 12 (front, R = −15.38) / 13 (rear, R = −129.05) |
-| Thickness | 0.8 mm |
-| nd / νd | 1.8467 / 23.9 |
-| Glass match | S-TIH53 (OHARA) or N-SF57 (SCHOTT) |
-| Focal length | −20.7 mm |
+### L7 — Biconcave Negative (cemented doublet D3)
 
-L7 is the most strongly dispersive element in the design (νd = 23.9), a dense flint glass with very high refractive index (nd = 1.847). It is a thin negative meniscus with its concave side toward the object. Its role is threefold: field flattener (pulling the Petzval sum toward zero), chromatic lever (extreme dispersion provides strong chromatic correction leverage with minimal power), and telephoto spacer (negative element between L5+L6 and L8 shortens the back focal distance).
+nd = 1.8467, νd = 23.8. Glass: S-TIH53 (OHARA) equivalent — dense flint. f = −12.5 mm.
 
-The separation between L7 and L8 is extremely thin (0.1 mm), suggesting they function almost as a compound doublet, though they are not cemented.
+### L8 — Biconvex Positive (cemented doublet D3)
 
-### L8 — Biconvex Positive with One Aspherical Surface
+nd = 1.8348, νd = 42.7. Glass: S-LAH55V (OHARA) equivalent. f = +15.0 mm.
 
-| Property | Value |
-|----------|-------|
-| Surfaces | 14 (front, R = +72.46) / 15\* (rear, R = −16.82) |
-| Thickness | 3.8 mm |
-| nd / νd | 1.8014 / 45.4 |
-| Glass match | S-LAH65V (OHARA) or N-LAF34 (SCHOTT) |
-| Focal length | +17.4 mm |
+The second Group 2 doublet has almost no net power (−216 mm), but its two elements are individually strong and very
+different in dispersion. It is the lens's main achromatizing element pair: the dense flint L7 (νd 23.8) against the
+lanthanum crown L8. The pair corrects axial and lateral color without much effect on focal length. Its concave front
+surface (R −16.16) also returns negative Petzval contribution close to the image. In Fig. 1 this doublet has the
+largest diameter in Group 2, about 9.1 mm radius.
 
-L8 is the final optical element and the strongest individual positive element at its system position (f = +17.4 mm standalone). It is a biconvex lens with a relatively weak front surface (R = +72.46) and a strongly curved aspherical rear surface.
+### L9 — Positive Meniscus, convex to image, aspherical front surface
 
-**Rear surface (surface 15\*):** K = −0.542 (prolate ellipsoid) with significant positive polynomial departure (+260 µm at h = 6.5 mm). As the last refracting surface, it has maximum leverage over field-dependent aberrations — particularly astigmatism and field curvature at the edge of the APS-C frame.
+nd = 1.8540, νd = 40.4. Glass: L-LAH85V (OHARA) equivalent — a low-Tg glass for molded aspheres. f = +63.3 mm.
 
----
+L9 is the weak last element (R −181.46 / −41.88), described in ¶0059 as a meniscus convex toward the image. Its rear
+radius is R₂ₑ in condition (5), |R₁₁/R₂ₑ| = 0.57. The aspherical front surface is the lens's main off-axis corrector.
+The full-field bundle reaches about 8.9 mm here, and the chief ray about 6.9 mm.
 
-## 4. Aspherical Surface Summary
+## 4. Glass Identification
 
-Example 3 uses three aspherical surfaces on two elements. The patent's sag formula uses the coefficient `k` in the position of `(1+K)` in the standard ISO sag equation. Therefore, K_standard = k_patent − 1. The polynomial coefficients transfer directly.
+| Glass (catalog equivalent) | nd | νd | Elements | Role |
+|---|---|---|---|---|
+| S-LAL7 (OHARA) | 1.6516 | 58.6 | L1 | front negative meniscus |
+| 806404 (unresolved) | 1.8061 | 40.4 | L2 | aspherical positive |
+| S-TIM3 (OHARA) | 1.6129 | 37.0 | L3 | flint in Group 1 doublet |
+| S-LAH55V (OHARA) | 1.8348 | 42.7 | L4, L5, L8 | positive power in all three doublets |
+| S-TIL27 (OHARA) | 1.5750 | 41.5 | L6 | low-index partner of L5 |
+| S-TIH53 (OHARA) | 1.8467 | 23.8 | L7 | dense flint, main color corrector |
+| L-LAH85V (OHARA) | 1.8540 | 40.4 | L9 | aspherical rear meniscus |
 
-| Surface | R (mm) | k (patent) | K (standard) | Shape | Dominant departure |
-|---------|--------|------------|-------------|-------|-------------------|
-| 1\* (L1 front) | +23.77 | −5.163 | −6.163 | Strong hyperboloid | +230 µm at h=8.5 mm |
-| 2\* (L1 rear) | +9.53 | +0.188 | −0.812 | Prolate ellipsoid | −796 µm at h=7.5 mm |
-| 15\* (L8 rear) | −16.82 | +0.458 | −0.542 | Prolate ellipsoid | +260 µm at h=6.5 mm |
+The patent names no glasses and gives no partial-dispersion data. Every label above is a catalog equivalent chosen
+because its nd/νd matches the table row. The OHARA labels are coordinate matches, not evidence of the supplier.
+L2's 1.8061/40.4 pair has no exact catalog match and uses the six-digit code form, so its dispersion is modeled from the
+Abbe number. No element is anomalous-dispersion, so all `apd` flags are false. The positive power is carried mostly by
+one glass: S-LAH55V-type lanthanum crown in three of the nine elements. Color is corrected mainly by the high-dispersion
+flint L7 in the rear doublet.
 
-Surface 2\* specifies polynomial terms through A18, providing extremely fine control over the wide-angle beam at the rear of L1. Surfaces 1\* and 15\* use terms through A12.
+## 5. Focus Mechanism
 
----
+Focusing is floating: Group 1 (L1–L4 with the stop) and Group 2 (L5–L9) both move toward the object, by different
+amounts (Claim 1, ¶0059, ¶0082). The patent tabulates two states (Table 2):
 
-## 5. Glass Selection and Material Strategy
+| Gap | ∞ | 200 mm | Change |
+|---|---|---|---|
+| D1 (stop → L5) | 4.46 | 3.85 | −0.61 |
+| D2 (L9 → cover plate), patent | 14.10 | 15.78 | +1.68 |
 
-The design uses a deliberate material palette organized around two principles: high-index lanthanum glasses for the positive power elements, and moderate-to-high-dispersion flint glasses for the negative elements.
+Because D2 is measured to the fixed plate, Group 2 advances 1.68 mm. Group 1 advances 1.68 − 0.61 = 1.07 mm (derived).
+Group 2 therefore moves farther than Group 1, and the gap between the groups closes. Condition (7) limits the ratio of
+the two gap changes, log|(D1∞ − D1ₜ)/(D2∞ − D2ₜ)| = log(0.61/1.68) = −0.44. According to ¶0035–0037, a smaller Group 1
+motion (below the lower limit) makes the lens sensitive to assembly error. A larger motion (above the upper limit)
+lengthens focus travel and slows focusing.
 
-| Element | nd | νd | Glass Type | Glass Code | Role |
-|---------|------|------|-----------|------------|------|
-| L1 | 1.5163 | 64.1 | Borosilicate crown | 516.641 | Low-dispersion aspherical corrector |
-| L2 | 1.8830 | 40.8 | Lanthanum crown | 883.408 | High-index positive power |
-| L3 | 1.6200 | 36.3 | Light flint | 620.363 | Chromatic corrector (neg.) |
-| L4 | 1.8830 | 40.8 | Lanthanum crown | 883.408 | Achromat positive element |
-| L5 | 1.8830 | 40.8 | Lanthanum crown | 883.408 | Primary positive power |
-| L6 | 1.6727 | 32.2 | Dense flint | 673.322 | Chromatic corrector (neg.) |
-| L7 | 1.8467 | 23.9 | Dense flint | 847.239 | Field flattener, chromatic lever |
-| L8 | 1.8014 | 45.4 | Lanthanum crown | 801.454 | Rear positive, aspherical corrector |
+The 200 mm "reference shortest distance" is the closest distance at which design performance is held (¶0024). Tracing
+the tabulated gaps places the object 198 mm in front of surface 1, which is the 200 mm value to within the rounding of
+D1 and D2. The physical object-to-image distance is then about 249 mm (198.1 mm plus the 50.78 mm track through the plate),
+which the data file uses as `closeFocusM` (0.249). The
+magnification at that distance is −0.092 (calculated). This agrees with Ricoh's "approx. 20 cm – ∞ (from lens)". The
+patent publishes no intermediate focus state, so the app interpolates the two tabulated gap sets.
 
-Three elements (L2, L4, L5) share the identical glass — nd = 1.8830, νd = 40.8 — corresponding to OHARA S-LAH58 or equivalent. This simplifies procurement and manufacturing.
+**Back-focus convention.** Table 1 ends with a 2.5 mm plate (nd 1.5168), representing the cover glass and filters
+(¶0056–0057), with νd 64.2, followed by "—" for the plate-to-image distance. The data file models the plate
+physically through `rearPlates` (N-BK7 class): it is traced by every analysis but not drawn, and D2 keeps the patent's
+14.10 / 15.78 mm gap to the plate. The plate's air-equivalent thickness is 2.5/1.5168 = 1.648 mm, and D2 + 1.648 =
+15.748 mm is 0.448 mm short of the paraxial image, so the unlisted plate-to-image distance is taken as 0.448 mm in both
+states (derived, not printed). With that distance the image plane lies on the paraxial focus to within 0.001 mm, as in
+the earlier air-equivalent model. The plate adds no power but contributes its own spherical aberration, astigmatism and
+axial colour in the converging beam, which the design was corrected to include.
 
-L7's extreme dispersion (νd = 23.9) marks it as a dense flint, likely OHARA S-TIH53 or SCHOTT N-SF57. Despite its thin profile (0.8 mm center thickness), its high dispersion gives it disproportionate chromatic correction leverage.
+## 6. Aspherical Surfaces
 
-No anomalous partial dispersion (APD) glasses are used in this design.
+The patent's sag formula (¶0089) is
 
-**A note on the "special low-dispersion lens" marketing claim:** Ricoh's marketing describes "one special low-dispersion lens." In Example 3, L1 (νd = 64.1, N-BK7/S-BSL7 type) is the lowest-dispersion element, but BK7 is not typically considered "special" by industry standards — that term usually denotes ED glass with νd > 80. Notably, Examples 4 and 5 in the same patent include elements with νd = 81.5 (likely S-FPL51 or equivalent fluorite crown), which would unambiguously qualify. The production design may incorporate glass selections from other examples in the patent family.
+X = (H²/R) / [1 + √(1 − k(H/R)²)] + C4·H⁴ + C6·H⁶ + C8·H⁸ + …
 
----
+Here k takes the place of (1 + K) in the standard form, so the data file stores K = k − 1. There are no odd-order
+terms.
 
-## 6. Focusing Mechanism
+| Surface | R | k (patent) | K (stored) | C4 | C6 | C8 | C10 |
+|---|---|---|---|---|---|---|---|
+| 3 (L2 front) | +59.04 | 16.511 | 15.511 | 1.057E-05 | −8.295E-07 | 3.194E-08 | −4.098E-10 |
+| 15 (L9 front) | −181.46 | 0.000 | −1 | −9.157E-05 | 1.096E-06 | −5.305E-08 | 1.237E-09 |
 
-The lens focuses by advancing both groups independently toward the object, with Group 1 moving farther than Group 2. This is the "floating focus" system described in the patent claims.
+| Surface | C12 | C14 | C16 | C18 |
+|---|---|---|---|---|
+| 3 | −1.550E-12 | 7.232E-14 | −6.999E-16 | −5.662E-18 |
+| 15 | −1.839E-11 | 1.517E-13 | −5.705E-16 | 3.284E-19 |
 
-| Parameter | Infinity | Close (200 mm) | Change |
-|-----------|---------|----------------|--------|
-| D1 (inter-group gap, stop to L5) | 5.58 mm | 5.06 mm | −0.52 mm |
-| D2 (BFD to cover glass front) | 14.26 mm | 15.92 mm | +1.66 mm |
-| Group 1 extension | — | — | 2.18 mm |
-| Group 2 extension | — | — | 1.66 mm |
-| Extension ratio (G1/G2) | — | — | 1.31× |
+**Surface 3.** The strongly oblate base (K = 15.5) and the polynomial terms largely cancel. The departure from the
+base sphere stays within +21 µm and −13 µm out to the 7.5 mm rim. At the axial marginal height (3.9 mm) it is only
+about 3 µm. The surface therefore acts on the oblique bundles, which fill L2 out to about 7 mm, rather than on axial
+spherical aberration. Its likely targets are coma and astigmatism of the wide field (interpretation).
 
-The differential extension ratio of 1.31:1 is governed by Condition (7), which limits the log of the extension ratio to between −15 and −0.05. The computed value of −0.50 places this design comfortably mid-range.
+**Surface 15.** The paraboloidal base differs from the sphere by less than 1 µm at this weak radius, so the
+correction comes from the polynomial. The departure is about −10 µm at the axial marginal height (3.4 mm), −208 µm at
+the full-field chief-ray height (6.9 mm) and −683 µm at the top of the full-field bundle (8.9 mm). At the 9.9 mm rim it
+reaches −1.26 mm. The added negative sag deepens the concave front of L9 toward the edge, so the effect increases with
+field height. That pattern points to control of astigmatism, field curvature and distortion near the image
+(interpretation). Fig. 2 shows sagittal and meridional field curves within about ±0.1 mm across the field, and
+distortion of about −1.6 % at 38°.
 
-The floating focus system provides two key optical benefits: it corrects for the change in aberration balance that occurs at finite conjugates, and it allows the close-focus distance to be quite short (200 mm) while maintaining excellent correction.
+The conic convention was also checked numerically. Reading k as K changes surface 3's sag by only about 2.5 µm and
+surface 15's by about 0.2 µm at the rims. The −1.5 % distortion and the small on-axis spherical aberration
+reproduce Fig. 2 under the printed formula.
 
-**Data file note:** The BFD values in the data file include the air-equivalent contribution of the cover glass (2.5 mm, nd = 1.5168), yielding air-equivalent BFDs of 15.91 mm (infinity) and 17.57 mm (close focus). The variable gap on the STO surface carries the inter-group spacing change.
+## 7. Conditional Expressions
 
----
+| Condition | Expression | Range | Example 1 (patent) | Recomputed |
+|---|---|---|---|---|
+| (1) | d₁₂₋₃ / d₁₁₋₂ | 0.0 – 1.0 | 0.32 | 0.324 |
+| (2) | f₁₁ / f₁₂ | −1.0 – −0.1 | −0.57 | −0.565 |
+| (3) | f₁ₑ / f₂₁ | 2.0 – 7.9 | 3.24 | 3.248 |
+| (4) | (Nd₄νd₄ − Nd₃νd₃) / (Nd₅νd₅ − Nd₆νd₆) | 0.7 – 1.6 | 1.44 | 1.438 |
+| (5) | \|R₁₁ / R₂ₑ\| | 0.4 – 2.1 | 0.57 | 0.566 |
+| (6) | \|R₁ₑ / R₂₁\| | 1.2 – 2.6 | 1.37 | 1.373 |
+| (7) | Log\|(D1∞ − D1ₜ)/(D2∞ − D2ₜ)\| | −15 – −0.05 | −0.44 | −0.440 |
 
-## 7. Aberration Correction Strategy
+All seven recomputed values agree with the patent's printed values (¶0098), which cross-checks the Table 1
+transcription. Two wording points were found in the patent text. First, Claim 2 prints the range of (2) with its limits
+reversed ("−0.1 < f₁₁/f₁₂ < −1.0"). Second, the printed value of (6) is obtained with R₁ₑ = L4's image-side radius
+(29.58) and R₂₁ = L5's object-side radius (21.55). These are the two surfaces facing the stop, as in Claim 8. The
+literal claim text instead names the other side of each cemented lens.
 
-The Petzval sum of 0.00700 mm⁻¹ corresponds to a Petzval radius of 142.9 mm — approximately 5× the image diagonal. This is a well-corrected value for a wide-angle lens.
+## 8. Semi-Diameters
 
-**Spherical aberration** is controlled primarily by the aspherical surfaces on L1, which pre-shape the beam entering the high-power positive elements. The high refractive indices of L2, L4, and L5 (all nd = 1.883) further reduce spherical aberration by minimizing surface curvatures for a given power.
+The patent does not list effective diameters. The data file's rims were measured from Fig. 1 at 400 dpi. The lens
+portion of Fig. 1 is drawn to scale, and the vertex crossings give 16.8 px/mm with every axial spacing within about
+0.15 mm. The plate is drawn nearer than D2 and was not used. The measured rims are about 9.4 mm for L1 and 7.4–7.5 mm
+for L2. L3/L4 measure 7.0/6.5 mm, and the L5+L6 doublet about 7.6 mm. The L7+L8 doublet measures 9.1 mm and L9 9.9 mm.
 
-**Axial chromatic aberration** is corrected by the two cemented doublets (L3+L4 and L5+L6), which bracket the aperture stop. L7's extreme dispersion provides additional fine-tuning.
+An exact real-ray trace at f/2.56 with a 14.3 mm image height shows that no surface clips the axial beam or blocks the
+full-field chief ray. Only L5 cuts the corner bundle, by a few percent. L3's front rim is 6.7 mm rather than the
+figure's 7.0 mm. At 7.0 mm, the concave front of L3 would cross L2's rear surface inside the 1.1 mm air space. Fig. 1
+draws these two elements touching at the rim. Two other pairs come close: L1–L2, with about 0.33 mm of clearance at the 7.4 mm rim, and L6–L7, where the
+clearance is about 0.07 mm at the L6 rim. For these near-contact gaps the data file uses `gapSagFrac: 0.98` instead of
+shrinking the figure rims.
 
-**Lateral chromatic aberration** is suppressed by the quasi-symmetric placement of the cemented doublets around the stop.
+## Sources
 
-**Astigmatism and field curvature** are managed by the distributed negative elements (especially L7 as a field flattener) and by the aspherical rear surface of L8.
-
-**Distortion** is controlled by the positive-leading architecture combined with the near-symmetric doublet placement. The patent claims distortion below 2.0% in absolute value.
-
-**Coma** is controlled by the differential bending of the cemented doublets and by the aspherical profile on L1's rear surface.
-
----
-
-## 8. Conditional Expression Verification
-
-All seven patent conditional expressions were verified computationally for Example 3:
-
-| Condition | Expression | Required Range | Computed | Patent Stated | Status |
-|-----------|-----------|---------------|----------|---------------|--------|
-| (1) | d₁₂₋₃ / d₁₁₋₂ | 0.0 – 1.0 | 0.347 | 0.36 | ✓ |
-| (2) | f₁₁ / f₁₂ | −1.0 – −0.1 | −0.660 | −0.66 | ✓ |
-| (3) | f₁c / f₂c | 2.0 – 7.9 | 3.486 | 3.48 | ✓ |
-| (4) | (Nd₄·νd₄−Nd₃·νd₃)/(Nd₅·νd₅−Nd₆·νd₆) | 0.7 – 1.6 | 0.785 | 0.78 | ✓ |
-| (5) | \|R₁₁ / R₂e\| | 0.4 – 2.1 | 1.413 | 1.41 | ✓ |
-| (6) | \|R₁e / R₂₁\| | 1.2 – 2.6 | 1.296 | 1.30 | ✓ |
-| (7) | Log\|(D1∞−D1c)/(D2∞−D2c)\| | −15 – −0.05 | −0.504 | −0.50 | ✓ |
-
-The close agreement between computed and patent-stated values (all within rounding tolerance) confirms the accuracy of the prescription transcription.
-
----
-
-## 9. Semi-Diameter Estimation
-
-The patent does not list semi-diameters. Values were estimated via combined marginal-ray and chief-ray paraxial trace at f/2.56 with a 37.8° half-field angle (APS-C sensor diagonal of 28.3 mm). The entrance pupil semi-diameter is 3.57 mm, located 10.1 mm behind surface 1.
-
-Marginal ray heights provide the on-axis beam size at each surface. Chief ray heights at 70% of the full field angle were used as the off-axis contribution, with 5–10% mechanical clearance added. The resulting estimates were validated against physical constraints: edge thickness > 0.3 mm for all elements, cross-gap sag intrusion < 1.1× the air gap, and sd/|R| < 0.90 for spherical surfaces. All constraints pass with the assigned values.
-
-The L2→L3 air gap (1.7 mm) and L4 edge thickness (0.38 mm at sd = 7.5) were the binding constraints that limited the doublet-region semi-diameters.
-
----
-
-## 10. Design Philosophy and Context
-
-This lens represents Ricoh's approach to a difficult optical problem: designing a fast (f/2.5), wide-angle (28 mm equiv.), compact prime for a large (APS-C) sensor, with close-focus capability down to 20 cm, while maintaining image quality across the entire field that justifies the "GR LENS" designation.
-
-The positive-leading two-group architecture is a departure from the more common retrofocus design. Since the GXR module has no mirror, the designer was free to use the more optically efficient positive-first layout, which yields shorter total track and better distortion characteristics.
-
-The use of only 8 elements (or 9 in production) to achieve f/2.5 at 28 mm equivalent with APS-C coverage is remarkably efficient. This economy is enabled by three key design choices: the double-aspherical front element (L1), the high-index lanthanum glasses (nd ≈ 1.88) used throughout, and the floating focus system. The resulting lens achieves a total optical track of approximately 50 mm (≈ 1.77× the sensor diagonal).
+- JP 2012-003015 A (Ricoh Co., Ltd.; inventor Takashi Kubota), published 2012-01-05: claims, ¶0024, ¶0034–0037,
+  ¶0049–0059, ¶0089–0098, ¶0155–0157, Tables 1–2, Figs. 1–2.
+- Ricoh, *GR LENS A12 28mm F2.5 Instruction Manual*, specifications page (focal length, f/2.5–f/22, focus range,
+  construction, filter diameter).
+- Ricoh Imaging, GXR camera unit product page for the GR LENS A12 28mm F2.5 (special low-dispersion lens, floating
+  lens structure, 20 cm minimum shooting distance).

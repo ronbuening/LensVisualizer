@@ -2,32 +2,46 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
- * ║           LENS DATA — RICOH GR LENS A12 28mm f/2.5                 ║
+ * ║           LENS DATA — RICOH GR LENS A12 28mm f/2.5                   ║
  * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Data source: JP 2012-003015 A, Example 3 (Kubota / Ricoh).       ║
- * ║  Positive–positive two-group wide-angle prime for APS-C sensor.   ║
- * ║  8 elements / 6 groups, 3 aspherical surfaces on 2 elements.      ║
- * ║  Focus: Floating — both groups advance independently.             ║
- * ║                                                                    ║
- * ║  NOTE ON PRODUCTION LENS:                                          ║
- * ║    Production GR LENS A12 28mm is 9 elements / 6 groups with      ║
- * ║    2 aspherical lenses bearing 2 aspherical surfaces. Example 3   ║
- * ║    is 8 elements / 6 groups with 3 aspherical surfaces. The       ║
- * ║    production design is likely a refinement blending features      ║
- * ║    from multiple examples in the patent family.                    ║
- * ║                                                                    ║
- * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    SDs estimated via marginal + chief ray paraxial trace with     ║
- * ║    5–10% mechanical clearance, subject to edge-thickness and      ║
- * ║    cross-gap sag intrusion constraints. Not patent-listed.        ║
- * ║                                                                    ║
- * ║  NOTE ON COVER GLASS:                                              ║
- * ║    Patent surfaces 16–17 are a 2.5 mm cover glass (nd = 1.5168). ║
- * ║    Air-equivalent BFD folded into last surface d value.           ║
- * ║    Air-equiv offset = 2.5 / 1.5168 = 1.648 mm.                   ║
- * ║                                                                    ║
- * ║  CONIC CONSTANT CONVENTION:                                        ║
- * ║    Patent sag uses k in place of (1+K). K_standard = k_patent − 1.║
+ * ║  Data source: JP 2012-003015 A, Example 1 (Table 1, aspheres ¶0094– ║
+ * ║    0095, focus gaps Table 2, Fig. 1) — Takashi Kubota / Ricoh.       ║
+ * ║  Positive–positive two-group wide-angle prime for an APS-C sensor   ║
+ * ║    (patent image diagonal 28.6 mm, ω = 38.0°).                       ║
+ * ║  9 elements / 6 groups; 2 aspherical surfaces on 2 elements          ║
+ * ║    (L2 front, L9 front).                                             ║
+ * ║  Focus: floating — Group 1 (L1–L4 + stop) and Group 2 (L5–L9) both   ║
+ * ║    advance toward the object by different amounts.                   ║
+ * ║                                                                      ║
+ * ║  NOTE ON EXAMPLE CHOICE:                                             ║
+ * ║    Ricoh's A12 28mm manual lists "9 elements in 6 groups (2          ║
+ * ║    aspherical lens elements with 2 surfaces)". Example 1 is the only ║
+ * ║    embodiment with exactly that construction and is the patent's     ║
+ * ║    representative figure. (This file previously stored Example 3,   ║
+ * ║    an 8-element design with 3 aspherical surfaces.) No example in    ║
+ * ║    the patent has the "special low-dispersion" element Ricoh lists   ║
+ * ║    together with those 9/6 counts, so the production prescription   ║
+ * ║    is not claimed to be identical.                                   ║
+ * ║                                                                      ║
+ * ║  NOTE ON BACK FOCUS:                                                 ║
+ * ║    Patent surfaces 17–18 are a 2.5 mm plate (nd 1.5168, νd 64.2)     ║
+ * ║    standing for cover glass/filters, modeled physically in           ║
+ * ║    `rearPlates` (traced, not drawn). D2 stores the patent gap to     ║
+ * ║    the plate: 14.10 (∞) / 15.78 (200 mm). The table gives no         ║
+ * ║    plate-to-image distance ("—"); 0.4478 mm is derived, not          ║
+ * ║    printed: it puts the image plane at the paraxial focus, where     ║
+ * ║    the Fig. 2 curves start at zero.                                  ║
+ * ║                                                                      ║
+ * ║  NOTE ON SEMI-DIAMETERS:                                             ║
+ * ║    Not tabulated. Rims measured from Fig. 1 at 400 dpi (lens part    ║
+ * ║    to scale, 16.8 px/mm from vertex crossings), then checked with an ║
+ * ║    exact real-ray trace at f/2.56 and Y = 14.3 mm. The stop is the  ║
+ * ║    traced f/2.56 iris radius.                                        ║
+ * ║                                                                      ║
+ * ║  CONIC CONSTANT CONVENTION:                                          ║
+ * ║    Patent sag X = (H²/R)/[1+√(1−k(H/R)²)] + ΣC·H^n puts k in the     ║
+ * ║    (1+K) slot, so K = k − 1 (surface 3: k 16.511 → K 15.511;         ║
+ * ║    surface 15: k 0 → K −1).                                          ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -36,12 +50,12 @@ const LENS_DATA = {
   key: "ricoh-gxr-a12-18f25",
   maker: "Ricoh",
   name: "RICOH GR LENS A12 28mm f/2.5 (Ricoh GXR A12)",
-  subtitle: "JP 2012-003015 A EXAMPLE 3 — KUBOTA / RICOH",
-  specs: ["8 ELEMENTS / 6 GROUPS", "f = 18.28 mm (28 mm equiv.)", "F/2.56", "2ω ≈ 75.6°", "3 ASPHERICAL SURFACES"],
+  subtitle: "JP 2012-003015 A EXAMPLE 1 — KUBOTA / RICOH",
+  specs: ["9 ELEMENTS / 6 GROUPS", "f = 18.24 mm (28 mm equiv.)", "F/2.56", "2ω = 76.0°", "2 ASPHERICAL SURFACES"],
 
   /* ── Explicit metadata ── */
   focalLengthMarketing: 18.3,
-  focalLengthDesign: 18.28,
+  focalLengthDesign: 18.24,
   apertureMarketing: 2.5,
   apertureDesign: 2.56,
   lensMounts: ["fixed-lens-camera"],
@@ -50,7 +64,7 @@ const LENS_DATA = {
   patentAuthors: ["Takashi Kubota"],
   patentAssignees: ["Ricoh Co., Ltd."],
   patentYear: 2012,
-  elementCount: 8,
+  elementCount: 9,
   groupCount: 6,
 
   /* ── Elements ── */
@@ -59,206 +73,221 @@ const LENS_DATA = {
       id: 1,
       name: "L1",
       label: "Element 1",
-      type: "Neg. Meniscus (2× Asph)",
-      nd: 1.5163,
-      vd: 64.1,
-      fl: -31.6,
-      glass: "S-BSL7 (OHARA) / N-BK7 (SCHOTT)",
+      type: "Negative Meniscus",
+      nd: 1.6516,
+      vd: 58.6,
+      fl: -25.2,
+      glass: "S-LAL7 (OHARA)",
       apd: false,
-      role: "Wide-angle field-flattening corrector; both surfaces aspherical. PGM candidate.",
+      role: "Front negative meniscus, convex to the object; widens the accepted field ahead of the positive members.",
     },
     {
       id: 2,
       name: "L2",
       label: "Element 2",
-      type: "Positive Meniscus",
-      nd: 1.883,
-      vd: 40.8,
-      fl: +47.9,
-      glass: "S-LAH58 (OHARA)",
+      type: "Biconvex Positive (1× Asph)",
+      nd: 1.8061,
+      vd: 40.4,
+      fl: +44.6,
+      glass: "806404 — lanthanum flint (catalog unresolved; nd 1.8061, νd 40.4)",
       apd: false,
-      role: "Primary positive power, Group 1. High-index lanthanum crown.",
+      role: "First positive member of Group 1; its aspherical front surface is the front-group corrector.",
     },
     {
       id: 3,
       name: "L3",
       label: "Element 3",
       type: "Biconcave Negative",
-      nd: 1.62,
-      vd: 36.3,
-      fl: -13.9,
-      glass: "S-TIM2 (OHARA) / N-F2 (SCHOTT)",
+      nd: 1.6129,
+      vd: 37.0,
+      fl: -12.4,
+      glass: "S-TIM3 (OHARA)",
       apd: false,
       cemented: "D1",
-      role: "Chromatic corrector in Group 1 rear doublet.",
+      role: "Flint half of the Group 1 rear doublet.",
     },
     {
       id: 4,
       name: "L4",
       label: "Element 4",
       type: "Biconvex Positive",
-      nd: 1.883,
-      vd: 40.8,
-      fl: +13.0,
-      glass: "S-LAH58 (OHARA)",
+      nd: 1.8348,
+      vd: 42.7,
+      fl: +11.4,
+      glass: "S-LAH55V (OHARA)",
       apd: false,
       cemented: "D1",
-      role: "Achromatic positive element in Group 1 rear doublet.",
+      role: "Positive half of the Group 1 rear doublet; its rear surface faces the stop.",
     },
     {
       id: 5,
       name: "L5",
       label: "Element 5",
       type: "Biconvex Positive",
-      nd: 1.883,
-      vd: 40.8,
-      fl: +9.4,
-      glass: "S-LAH58 (OHARA)",
+      nd: 1.8348,
+      vd: 42.7,
+      fl: +10.5,
+      glass: "S-LAH55V (OHARA)",
       apd: false,
       cemented: "D2",
-      role: "Primary power-generating element. Thick positive biconvex in Group 2 front doublet.",
+      role: "Thick positive element behind the stop; main power of the Group 2 front doublet.",
     },
     {
       id: 6,
       name: "L6",
       label: "Element 6",
       type: "Biconcave Negative",
-      nd: 1.6727,
-      vd: 32.2,
-      fl: -12.6,
-      glass: "E-FD5 (HOYA) / S-TIF6 or N-SF5 class (673322)",
+      nd: 1.575,
+      vd: 41.5,
+      fl: -16.2,
+      glass: "S-TIL27 (OHARA)",
       apd: false,
       cemented: "D2",
-      role: "Chromatic corrector in Group 2 front doublet.",
+      role: "Negative half of the Group 2 front doublet.",
     },
     {
       id: 7,
       name: "L7",
       label: "Element 7",
-      type: "Negative Meniscus",
+      type: "Biconcave Negative",
       nd: 1.8467,
-      vd: 23.9,
-      fl: -20.7,
-      glass: "S-TIH53 (OHARA) / N-SF57 (SCHOTT)",
+      vd: 23.8,
+      fl: -12.5,
+      glass: "S-TIH53 (OHARA)",
       apd: false,
-      role: "Dense flint field flattener and chromatic lever. Highest dispersion in system.",
+      cemented: "D3",
+      role: "Dense-flint negative half of the second Group 2 doublet; highest dispersion in the lens.",
     },
     {
       id: 8,
       name: "L8",
       label: "Element 8",
-      type: "Biconvex Positive (1× Asph)",
-      nd: 1.8014,
-      vd: 45.4,
-      fl: +17.4,
-      glass: "S-LAH65V (OHARA) / N-LAF34 (SCHOTT)",
+      type: "Biconvex Positive",
+      nd: 1.8348,
+      vd: 42.7,
+      fl: +15.0,
+      glass: "S-LAH55V (OHARA)",
       apd: false,
-      role: "Strongest individual positive element. Rear asphere controls field-dependent aberrations.",
+      cemented: "D3",
+      role: "Positive half of the second Group 2 doublet; the pair is nearly afocal (−216 mm).",
+    },
+    {
+      id: 9,
+      name: "L9",
+      label: "Element 9",
+      type: "Positive Meniscus (1× Asph)",
+      nd: 1.854,
+      vd: 40.4,
+      fl: +63.3,
+      glass: "L-LAH85V (OHARA)",
+      apd: false,
+      role: "Weak rear meniscus, convex to the image; its aspherical front surface corrects the outer field.",
     },
   ],
 
-  /* ── Surface prescription ── */
+  /* ── Surface prescription (Table 1; surfaces 17–18 plate in `rearPlates`) ── */
   surfaces: [
-    // ── Group 1: L1 (Group A) ──
-    { label: "1A", R: 23.77, d: 1.1, nd: 1.5163, elemId: 1, sd: 9.5 }, // L1 front (asph)
-    { label: "2A", R: 9.53, d: 4.9, nd: 1.0, elemId: 0, sd: 8.0 }, // L1 rear (asph) → air
+    // ── Group 1 ──
+    { label: "1", R: 23.72, d: 1.1, nd: 1.6516, elemId: 1, sd: 9.4 }, // L1 front
+    { label: "2", R: 9.52, d: 3.4, nd: 1.0, elemId: 0, sd: 7.4 }, // L1 rear → air
+    { label: "3A", R: 59.04, d: 1.7, nd: 1.8061, elemId: 2, sd: 7.5 }, // L2 front (asph)
+    { label: "4", R: -90.61, d: 1.1, nd: 1.0, elemId: 0, sd: 7.5 }, // L2 rear → air
+    { label: "5", R: -18.02, d: 0.9, nd: 1.6129, elemId: 3, sd: 6.7 }, // L3 front
+    { label: "6", R: 13.37, d: 3.0, nd: 1.8348, elemId: 4, sd: 6.7 }, // L3→L4 junction
+    { label: "7", R: -29.58, d: 2.2, nd: 1.0, elemId: 0, sd: 6.5 }, // L4 rear → air
 
-    // ── Group 1: L2 (Group B) ──
-    { label: "3", R: 32.35, d: 1.7, nd: 1.883, elemId: 2, sd: 9.5 }, // L2 front
-    { label: "4", R: 133.8, d: 1.7, nd: 1.0, elemId: 0, sd: 8.0 }, // L2 rear → air
+    // ── Aperture stop (surface 8; moves with Group 1) ──
+    { label: "STO", R: 1e15, d: 4.46, nd: 1.0, elemId: 0, sd: 4.5 }, // D1
 
-    // ── Group 1: L3 + L4 cemented doublet (Group C) ──
-    { label: "5", R: -17.05, d: 0.9, nd: 1.62, elemId: 3, sd: 6.6 }, // L3 front
-    { label: "6", R: 17.77, d: 3.0, nd: 1.883, elemId: 4, sd: 7.5 }, // L3→L4 junction
-    { label: "7", R: -29.7, d: 2.2, nd: 1.0, elemId: 0, sd: 7.5 }, // L4 rear → air
-
-    // ── Aperture stop ──
-    { label: "STO", R: 1e15, d: 5.58, nd: 1.0, elemId: 0, sd: 4.4 }, // Stop (d = D1 at infinity)
-
-    // ── Group 2: L5 + L6 cemented doublet (Group D) ──
-    { label: "9", R: 22.92, d: 4.2, nd: 1.883, elemId: 5, sd: 7.0 }, // L5 front
-    { label: "10", R: -11.87, d: 0.8, nd: 1.6727, elemId: 6, sd: 6.5 }, // L5→L6 junction
-    { label: "11", R: 30.47, d: 2.9, nd: 1.0, elemId: 0, sd: 6.5 }, // L6 rear → air
-
-    // ── Group 2: L7 (Group E) ──
-    { label: "12", R: -15.38, d: 0.8, nd: 1.8467, elemId: 7, sd: 6.0 }, // L7 front
-    { label: "13", R: -129.05, d: 0.1, nd: 1.0, elemId: 0, sd: 6.0 }, // L7 rear → air
-
-    // ── Group 2: L8 (Group F) ──
-    { label: "14", R: 72.46, d: 3.8, nd: 1.8014, elemId: 8, sd: 6.5 }, // L8 front
-    { label: "15A", R: -16.82, d: 15.91, nd: 1.0, elemId: 0, sd: 7.0 }, // L8 rear (asph) → air (BFD)
+    // ── Group 2 ──
+    { label: "9", R: 21.55, d: 4.3, nd: 1.8348, elemId: 5, sd: 7.6 }, // L5 front
+    { label: "10", R: -13.34, d: 0.8, nd: 1.575, elemId: 6, sd: 7.6 }, // L5→L6 junction
+    { label: "11", R: 31.58, d: 2.9, nd: 1.0, elemId: 0, sd: 7.6 }, // L6 rear → air
+    { label: "12", R: -16.16, d: 0.8, nd: 1.8467, elemId: 7, sd: 9.1 }, // L7 front
+    { label: "13", R: 31.25, d: 3.9, nd: 1.8348, elemId: 8, sd: 9.1 }, // L7→L8 junction
+    { label: "14", R: -19.67, d: 0.1, nd: 1.0, elemId: 0, sd: 9.1 }, // L8 rear → air
+    { label: "15A", R: -181.46, d: 2.0, nd: 1.854, elemId: 9, sd: 9.9 }, // L9 front (asph)
+    { label: "16", R: -41.88, d: 14.1, nd: 1.0, elemId: 0, sd: 9.9 }, // L9 rear → plate (D2)
   ],
 
-  /* ── Aspherical coefficients ──
-   *  Patent conic convention: k_patent occupies (1+K) position.
-   *  K_standard = k_patent − 1 applied below.
-   */
-  asph: {
-    "1A": {
-      K: -6.163,
-      A4: 1.99e-4,
-      A6: -3.715e-6,
-      A8: 5.008e-8,
-      A10: -3.466e-10,
-      A12: 1.083e-12,
-      A14: 0,
+  /* ── Cover glass / filter plate (patent surfaces 17–18): traced, not drawn ── */
+  rearPlates: [
+    {
+      thicknessMm: 2.5,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 0.4478,
+      source: "JP 2012-003015 A, Example 1 Table 1 surfaces 17–18 (plate-to-image 0.4478 mm derived, not printed)",
     },
-    "2A": {
-      K: -0.812,
-      A4: 1.317e-4,
-      A6: -5.317e-6,
-      A8: 6.213e-8,
-      A10: -6.522e-10,
-      A12: 1.333e-12,
-      A14: 1.496e-13,
-      A16: -3.28e-15,
-      A18: 1.898e-17,
+  ],
+
+  /* ── Aspherical coefficients (¶0094–0095); K = k_patent − 1 ── */
+  asph: {
+    "3A": {
+      K: 15.511,
+      A4: 1.057e-5,
+      A6: -8.295e-7,
+      A8: 3.194e-8,
+      A10: -4.098e-10,
+      A12: -1.55e-12,
+      A14: 7.232e-14,
+      A16: -6.999e-16,
+      A18: -5.662e-18,
     },
     "15A": {
-      K: -0.5418,
-      A4: 1.119e-4,
-      A6: 2.677e-7,
-      A8: 6.947e-9,
-      A10: -9.656e-11,
-      A12: 4.708e-13,
-      A14: 0,
+      K: -1,
+      A4: -9.157e-5,
+      A6: 1.096e-6,
+      A8: -5.305e-8,
+      A10: 1.237e-9,
+      A12: -1.839e-11,
+      A14: 1.517e-13,
+      A16: -5.705e-16,
+      A18: 3.284e-19,
     },
   },
 
-  /* ── Variable air spacings (floating focus) ──
-   *  Both groups advance toward object independently.
-   *  Group 1 extends 2.18 mm, Group 2 extends 1.66 mm at 200 mm focus.
-   *  D1 (inter-group gap) = STO surface d.
-   *  D2 (BFD) = S15A d, with cover glass folded as air-equivalent.
+  /* ── Variable air spacings (Table 2: INF / 200 mm) ──
+   *  D1 (stop → L5): 4.46 → 3.85. D2 (L9 → plate): 14.10 → 15.78, stored as printed; the plate and
+   *  the derived 0.4478 mm plate-to-image distance are in `rearPlates`. Group 2 advances 1.68 mm and Group 1 advances
+   *  1.68 − 0.61 = 1.07 mm toward the object (derived from the two gaps).
    */
   var: {
-    STO: [5.58, 5.06],
-    "15A": [15.91, 17.57],
+    STO: [4.46, 3.85],
+    "16": [14.1, 15.78],
   },
   varLabels: [
     ["STO", "D1"],
-    ["15A", "BF"],
+    ["16", "D2"],
   ],
 
   /* ── Group and doublet annotations ── */
   groups: [
-    { text: "GROUP 1", fromSurface: "1A", toSurface: "7" },
-    { text: "GROUP 2", fromSurface: "9", toSurface: "15A" },
+    { text: "GROUP 1", fromSurface: "1", toSurface: "7" },
+    { text: "GROUP 2", fromSurface: "9", toSurface: "16" },
   ],
   doublets: [
     { text: "D1", fromSurface: "5", toSurface: "7" },
     { text: "D2", fromSurface: "9", toSurface: "11" },
+    { text: "D3", fromSurface: "12", toSurface: "14" },
   ],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.2,
-  focusDescription: "Floating focus — both groups advance independently toward the object at different rates.",
+  /* ── Focus configuration ──
+   *  Patent reference close distance 200 mm (object to surface 1; the tabulated gaps trace to 198.1 mm);
+   *  physical object-to-image ≈ 248.9 mm (198.1 + 50.78 mm track including the plate).
+   */
+  closeFocusM: 0.249,
+  focusDescription:
+    "Floating focus — Group 1 (L1–L4 with the stop) and Group 2 (L5–L9) both advance toward the object; Group 2 moves farther (1.68 mm vs 1.07 mm at 200 mm).",
 
   /* ── Aperture configuration ── */
-  nominalFno: 2.5,
-  fstopSeries: [2.5, 2.8, 4, 5.6, 8, 11, 16, 22],
+  nominalFno: 2.56,
+  fstopSeries: [2.56, 2.8, 4, 5.6, 8, 11, 16, 22],
+  maxFstop: 22,
 
   /* ── Layout tuning ── */
+  gapSagFrac: 0.98,
   scFill: 0.55,
   yScFill: 0.45,
 } satisfies LensDataInput;

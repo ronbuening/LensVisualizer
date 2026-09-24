@@ -35,3 +35,13 @@ The live infinity/close states agree with FIG. 1: Gr2 moves objectward by 8.122 
 ### L15 front-rim correction
 
 The previous pass missed the overhanging front rim of L15. In FIG. 1 the S8 front optical rim terminates at the same height as the S9 cemented interface, giving a level upper/lower edge. Corrected S8 from 28.0 to 24.8 mm to match S9. The larger value produced an unsupported projecting tip even though the geometry validator accepted it. This is a figure-derived rim correction; radii, thicknesses and the cemented interface are unchanged.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Read Example 1 [0057] on PDF p. 10 (rendered at 160 dpi): surface 21* d = 21.790; surfaces 22–23 are the
+  plane-parallel plate PT, 1.410 mm, nd 1.51680, νd 64.20; surface 23 → image is 0.800 mm. Gr3 is fixed, so the rear
+  path is the same at POS1/POS2/POS3.
+- Surface 21A now stores the physical 21.790 mm (was the air-equivalent 23.5195886076), with `rearPlates` PT labelled
+  H-K9L (exact 1.51680 / 64.20 CDGM row, matching the H-K9L class already used for L11) and gapAfter 0.800 mm.
+- Paraxial check against the previous data: EFL and defocus identical at all three focus keyframes (worst difference
+  5e-12 mm, the old fold was stored unrounded). Physical track grows by 0.480 mm = 1.410 × (1 − 1/1.51680).

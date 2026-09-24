@@ -4,7 +4,7 @@
 **Priority:** February 17, 1959 (Germany)\
 **Filed:** February 11, 1960\
 **Granted:** October 9, 1962\
-**Inventors:** Günter Klemt; Karl Macher\
+**Inventors:** Günter Klemt; Karl Heinrich Macher\
 **Assignee:** Jos. Schneider & Co., Optische Werke\
 **Title:** High-Speed Photographic or Cinematographic Varifocal Objective\
 **Embodiment analyzed:** Example 1 — the patent's sole worked numerical prescription, tabulated at the intermediate `f = 100` state

@@ -18,11 +18,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * published near endpoint, GR2 moves image-side and GR4 moves object-side while the stop,
  * GR3, and GR5 remain fixed. Intermediate slider positions are viewer interpolation only.
  *
- * Rear normalization: source surfaces 26-27 are the optional sensor-side plane-parallel
- * optical member FL. They are omitted from the active LensVisualizer model. The final air
- * gap from powered surface 25A to IMG is set to the source-published air-equivalent
- * Bf = 15.80982 mm from Table 31. This gives a normalized first-surface-to-IMG track of
- * 129.15002 mm, distinct from the source physical L = 130.00 mm that includes FL.
+ * Rear plate: source Table 1 surfaces 26-27 are the sensor-side plane-parallel optical
+ * member FL (2.50 mm, nd 1.51680, vd 64.2), followed by 1.00 mm of air to IMG. FL is modeled
+ * in `rearPlates` (traced, not drawn). Surface 25A keeps the patent's physical 13.16 mm gap
+ * to FL, so the first-surface-to-IMG track is 130.0002 mm, matching the source L = 130.00 mm.
+ * The paraxial air-equivalent rear spacing is 13.16 + 2.50/1.51680 + 1.00 = 15.80820 mm;
+ * Table 31 prints Bf = 15.80982 mm (0.0016 mm rounding difference).
  *
  * Aperture: the patent publishes STO position and Fno = 1.21 but no diaphragm diameter.
  * STO sd = 20.22509 mm is a modeled calibration from the parsed infinity prescription and
@@ -284,7 +285,20 @@ const LENS_DATA = {
     { label: "22", R: -90.3001, d: 1.3559, nd: 1.5927, elemId: 13, sd: 17.7 },
     { label: "23", R: 25.9835, d: 7.0733, nd: 1, elemId: 0, sd: 15.2 },
     { label: "24A", R: -115.6443, d: 1.6384, nd: 1.85135, elemId: 14, sd: 16.11 },
-    { label: "25A", R: -3097.7167, d: 15.80982, nd: 1, elemId: 0, sd: 16.76 },
+    { label: "25A", R: -3097.7167, d: 13.16, nd: 1, elemId: 0, sd: 16.76 },
+  ],
+
+  /* ── Optical member FL (patent Table 1 surfaces 26–27): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "FL",
+      thicknessMm: 2.5,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 1.0,
+      source: "JP 2022-140076 A, Example 1 Table 1 surfaces 26–27",
+    },
   ],
 
   asph: {

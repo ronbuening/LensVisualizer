@@ -5,13 +5,43 @@ import {
   computeLongitudinalChromaticFocus,
 } from "../../../../src/optics/chromatic/analysis.js";
 import { doLayout } from "../../../../src/optics/optics.js";
-import { apertureAt, sharedApoLanthar50f2, sharedSonnar50f15 } from "../testLensFixtures.js";
+import {
+  apertureAt,
+  buildRearPlateAirEquivalentLens,
+  buildRearPlateLens,
+  REAR_PLATE_FIXTURE,
+  sharedApoLanthar50f2,
+  sharedSonnar50f15,
+} from "../testLensFixtures.js";
 
 function finiteSpan(values: number[]): number {
   return Math.max(...values) - Math.min(...values);
 }
 
 describe("chromatic analysis helpers", () => {
+  it("adds a modeled rear plate's own axial color, t(1 - 1/n) per channel, over the air-equivalent fold", () => {
+    const plated = buildRearPlateLens();
+    const folded = buildRearPlateAirEquivalentLens();
+    const focusByChannel = (L: typeof plated) => {
+      const { z: zPos } = doLayout(0, 0, L);
+      const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0);
+      const result = computeLongitudinalChromaticFocus(L, zPos, 0, 0, currentEPSD, currentPhysStopSD, 0, {
+        channels: ["R", "G", "B"],
+        longitudinalFractions: [0.02],
+      })!;
+      return Object.fromEntries(result.samples.map((sample) => [sample.channel, sample.focusZ!]));
+    };
+    const withPlate = focusByChannel(plated);
+    const withoutPlate = focusByChannel(folded);
+    const plateIndex = plated.indexByIdx[plated.lastLensSurfaceIdx + 1];
+
+    /* Near-axial rays: the residual is the plate's own ~1e-5 mm spherical term at this aperture. */
+    for (const channel of ["R", "G", "B"] as const) {
+      const n = plateIndex.fn(channel);
+      expect(withPlate[channel] - withoutPlate[channel]).toBeCloseTo(REAR_PLATE_FIXTURE.thicknessMm * (1 - 1 / n), 4);
+    }
+  });
+
   it("computes longitudinal focus shifts from the outermost usable marginal chromatic ray", () => {
     const L = sharedApoLanthar50f2();
     const focusT = 0;

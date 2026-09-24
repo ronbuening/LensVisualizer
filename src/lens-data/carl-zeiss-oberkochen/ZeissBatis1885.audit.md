@@ -38,3 +38,12 @@ Inventor romanization corroboration: [Hirofumi Tabata](https://patents.google.co
 The second live-site comparison retains the corrected rims. The rear-face limits exclude the patent's short mechanical steps and keep the preceding air gap open. L2 and L7 now carry inferred APD tags with H-FK61 and FCD515 proxy evidence, respectively; no measured patent partial-dispersion values are claimed. Catalog proxy names are explicit in the element inspector. The patent label preserves the leading zero in JP 2015-096915 A, and the specifications identify the VC group without implying that lateral stabilization is simulated.
 
 Infinity, the intermediate |β|=0.025 keyframe, and the |β|=0.125 endpoint are correctly ordered. The live control increases the G1–G2 gap 4.538 → 5.870 → 11.462 mm and decreases G2–STO 13.725 → 12.393 → 6.801 mm: G2 moves imageward.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Read Example 2 Table 5 on PDF page 21 at 110 dpi: surface 22 d = 14.700; surfaces 23–24 are one plate, 2.500 mm,
+  nd 1.5168, νd 64.20; 24 → IMG is 1.000 mm. Fig. 6 (PDF page 35) labels the plate CG. The focus gaps d1/d2
+  lie ahead of the stop, so the rear path is fixed at all three published states.
+- Surface 22 now stores the printed 14.700 mm, with `rearPlates` CG (N-BK7, the catalog match for 1.5168 / 64.2) and
+  gapAfter 1.000 mm. Paraxial check against the previous data: EFL identical and defocus unchanged at all three focus
+  states (the old 17.348206751055 mm fold was exact). Physical track grows by 0.852 mm, to 1.190 × EFL.

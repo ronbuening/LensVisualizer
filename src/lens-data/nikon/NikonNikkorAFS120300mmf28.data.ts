@@ -15,16 +15,18 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  Reversing groups: G4 (D3 and D4 non-monotonic).                  ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    Patent does not list SDs. Estimated from paraxial marginal ray  ║
- * ║    trace at f/2.91 across all three zoom positions, taking the     ║
- * ║    maximum height at each surface + ~8% mechanical clearance.      ║
- * ║    Front elements capped at 54 mm (112 mm filter thread radius).   ║
+ * ║    Patent lists no effective diameters. Values are estimates:      ║
+ * ║    G1 capped at 54 mm (FIG. 1 reads ~51–52 mm); G2–G3 set just     ║
+ * ║    above the exact f/2.91 axial marginal ray (tele governs) where  ║
+ * ║    FIG. 1 draws the elements rim-to-rim; G5 rear (L56–L59) sized   ║
+ * ║    from FIG. 1 (≈18–20.5 mm, L59 edge thickness matches). Stop sd  ║
+ * ║    17.2 records the fixed F/2.91 iris (real-ray value 17.15 mm).   ║
  * ║                                                                    ║
  * ║  NOTE ON CLOSE FOCUS:                                              ║
  * ║    Patent gives the focusing architecture (G4 moves object-side)   ║
- * ║    but no close-focus table. D3/D4 close values below are derived  ║
- * ║    by back-solving G4 travel needed to focus at the production      ║
- * ║    2.0 m MFD while keeping total track constant.                   ║
+ * ║    but no close-focus table. D3/D4 close values are calculated:    ║
+ * ║    paraxial G4 travel for a 2.0 m object-to-image distance (the    ║
+ * ║    production MFD) at each station, total track held constant.     ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -67,7 +69,7 @@ const LENS_DATA = {
       nd: 1.90265,
       vd: 35.77,
       fl: -322.4,
-      glass: "OHARA S-LAH93",
+      glass: "J-LASFH9 (Hikari)",
       apd: false,
       role: "Front negative meniscus; high-index corrector paired with ED element L12.",
       cemented: "J1",
@@ -80,9 +82,9 @@ const LENS_DATA = {
       nd: 1.49782,
       vd: 82.57,
       fl: 254.5,
-      glass: "S-FPL51 type (ED)",
+      glass: "J-FKH1 (Hikari)",
       apd: "inferred" as const,
-      apdNote: "νd = 82.57, phosphate-crown ED glass with moderate anomalous partial dispersion.",
+      apdNote: "νd = 82.57 matches Hikari J-FKH1, a fluor-crown ED glass; the patent lists nd/νd only.",
       role: "ED element; primary chromatic corrector in G1 front doublet.",
       cemented: "J1",
     },
@@ -95,8 +97,8 @@ const LENS_DATA = {
       vd: 95.27,
       fl: 312.1,
       glass: "CaF2 Fluorite",
-      apd: "patent" as const,
-      apdNote: "νd = 95.27; calcium fluoride — ultra-low dispersion, FL designation.",
+      apd: "inferred" as const,
+      apdNote: "nd = 1.433843 / νd = 95.27 is the calcium-fluoride coordinate; the patent lists the index pair only.",
       role: "Fluorite singlet; main positive power of G1 with negligible chromatic contribution.",
     },
     // G2 — Variator (negative, moves for zoom)
@@ -110,7 +112,9 @@ const LENS_DATA = {
       fl: 183.9,
       glass: "N-KZFS8 (Schott; exact patent coordinate and APD-family match)",
       apd: "inferred" as const,
-      apdNote: "θgF = 0.583; KZFS-family anomalous partial dispersion. Patent condition (5) constrains this glass.",
+      apdNote:
+        "Patent θgF = 0.583 (dPgF ≈ −0.0024 derived vs the normal line); KZFS short flint. Patent condition (5) constrains this glass.",
+      dPgF: -0.0024,
       role: "Chromatic pre-corrector at front of variator G2; positive element in negative group aids secondary spectrum control.",
     },
     {
@@ -134,7 +138,7 @@ const LENS_DATA = {
       nd: 1.6968,
       vd: 55.52,
       fl: -111.8,
-      glass: "697555 — lanthanum crown (patent coordinate; vendor unresolved)",
+      glass: "J-LAK14 (Hikari)",
       apd: false,
       role: "Negative element of G2 doublet; moderate dispersion for chromatic balance.",
       cemented: "J2",
@@ -147,7 +151,7 @@ const LENS_DATA = {
       nd: 1.804,
       vd: 46.6,
       fl: -69.0,
-      glass: "S-LAH65 (OHARA; exact patent coordinate match)",
+      glass: "J-LASF015 (Hikari)",
       apd: false,
       role: "Main negative power element of G2; cemented with anomalous-dispersion L25.",
       cemented: "J3",
@@ -163,8 +167,9 @@ const LENS_DATA = {
       glass: "J-SFH5 (Hikari) — anomalous-dispersion niobium flint (756247)",
       apd: "patent" as const,
       apdNote:
-        "θgF = 0.629; niobium-phosphate with strong anomalous dispersion. Patent conditions (6)–(8) constrain this glass for secondary spectrum correction.",
-      role: "Second positive APD lens in G2; paired with L24 for secondary spectrum control across zoom range.",
+        "Patent θgF = 0.629 (dPgF ≈ +0.027 derived vs the normal line). Condition (8) is stated by the patent to define this glass's anomalous dispersion for secondary-spectrum correction.",
+      dPgF: 0.027,
+      role: "The patent's \"second lens\": positive anomalous-dispersion flint in G2, paired with L24 for secondary-spectrum control across the zoom range.",
       cemented: "J3",
     },
     {
@@ -201,8 +206,8 @@ const LENS_DATA = {
       vd: 95.27,
       fl: 155.4,
       glass: "CaF2 Fluorite",
-      apd: "patent" as const,
-      apdNote: "νd = 95.27; second fluorite element in the design.",
+      apd: "inferred" as const,
+      apdNote: "νd = 95.27 calcium-fluoride coordinate; second fluorite element (patent lists nd/νd only).",
       role: "Fluorite relay element; strong positive power with ultra-low dispersion in fixed group.",
     },
     {
@@ -213,11 +218,10 @@ const LENS_DATA = {
       nd: 1.65413,
       vd: 39.72,
       fl: -76.0,
-      glass: "Schott N-KZFS5 / OHARA S-LAM61 (SR candidate)",
+      glass: "N-KZFS5 (Schott; OHARA S-NBH5 same coordinate)",
       apd: "inferred" as const,
-      apdNote:
-        "KZFS-family glass with anomalous blue-violet dispersion. Leading candidate for Nikon SR element designation.",
-      role: "Secondary spectrum corrector in fixed relay G3; paired with fluorite L32 and high-index L34 in triplet arrangement.",
+      apdNote: "KZFS short flint; catalog partial dispersion lies slightly below the normal line. No θgF is published.",
+      role: "Negative short-flint corrector in fixed relay G3, between fluorite L32 and high-index L34.",
     },
     {
       id: 13,
@@ -240,7 +244,7 @@ const LENS_DATA = {
       nd: 1.804,
       vd: 46.6,
       fl: 147.2,
-      glass: "S-LAH65 (OHARA; exact patent coordinate match)",
+      glass: "J-LASF015 (Hikari)",
       apd: false,
       role: "Front element of focusing group G4; flat object-side surface simplifies barrel mechanics.",
     },
@@ -252,7 +256,7 @@ const LENS_DATA = {
       nd: 1.59349,
       vd: 67.0,
       fl: 81.4,
-      glass: "OHARA S-FPM2",
+      glass: "J-PSKH4 (Hikari)",
       apd: false,
       role: "Low-dispersion positive crown in G4 achromatic doublet.",
       cemented: "J4",
@@ -265,7 +269,7 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.82,
       fl: -117.3,
-      glass: "OHARA S-TIH53W",
+      glass: "J-SF03 (Hikari)",
       apd: false,
       role: "High-dispersion negative flint in G4 doublet; Δνd ≈ 43 for effective achromatisation.",
       cemented: "J4",
@@ -291,7 +295,7 @@ const LENS_DATA = {
       nd: 1.72916,
       vd: 54.61,
       fl: 94.4,
-      glass: "S-LAL18 (OHARA)",
+      glass: "J-LAK18 (Hikari)",
       apd: false,
       role: "Positive element immediately after aperture stop.",
     },
@@ -315,7 +319,7 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.41,
       fl: 104.5,
-      glass: "S-TIH6 (OHARA; exact patent coordinate match)",
+      glass: "S-TIH6 (OHARA)",
       apd: false,
       role: "Positive element of probable VR doublet L54+L55.",
       cemented: "J5",
@@ -328,7 +332,7 @@ const LENS_DATA = {
       nd: 1.5168,
       vd: 64.14,
       fl: -69.6,
-      glass: "OHARA S-BSL7",
+      glass: "J-BK7A (Hikari)",
       apd: false,
       role: "Negative element of probable VR doublet; Δνd ≈ 39 for chromatic correction during stabilisation.",
       cemented: "J5",
@@ -353,7 +357,7 @@ const LENS_DATA = {
       nd: 1.804,
       vd: 46.6,
       fl: -92.0,
-      glass: "S-LAH65 (OHARA; exact patent coordinate match)",
+      glass: "J-LASF015 (Hikari)",
       apd: false,
       role: "Negative meniscus in rear cemented doublet L57+L58.",
       cemented: "J6",
@@ -366,9 +370,9 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.31,
       fl: 49.5,
-      glass: "OHARA S-FSL5 / Schott N-FK5 family",
+      glass: "J-FK5 (Hikari)",
       apd: false,
-      role: "Low-dispersion positive element completing rear doublet; provides final chromatic fine-tuning.",
+      role: "Low-dispersion fluor-crown positive element completing the rear doublet.",
       cemented: "J6",
     },
     {
@@ -398,21 +402,21 @@ const LENS_DATA = {
     { label: "7", R: 1981.8668, d: 12.972, nd: 1.0, elemId: 0, sd: 35.0 }, // L21 rear → air
     { label: "8", R: 275.6157, d: 4.7, nd: 1.71736, elemId: 5, sd: 30.0 }, // L22 front
     { label: "9", R: -275.46, d: 2.85, nd: 1.6968, elemId: 6, sd: 29.0 }, // L22–L23 junction
-    { label: "10", R: 109.0902, d: 3.124, nd: 1.0, elemId: 0, sd: 23.9 }, // L23 rear → air
+    { label: "10", R: 109.0902, d: 3.124, nd: 1.0, elemId: 0, sd: 24.8 }, // L23 rear → air
     { label: "11", R: -1986.3568, d: 2.65, nd: 1.804, elemId: 7, sd: 25.0 }, // L24 front
     { label: "12", R: 57.14, d: 3.7, nd: 1.75575, elemId: 8, sd: 25.0 }, // L24–L25 junction
-    { label: "13", R: 86.0604, d: 6.757, nd: 1.0, elemId: 0, sd: 22.5 }, // L25 rear → air
-    { label: "14", R: -84.2865, d: 2.5, nd: 1.870705, elemId: 9, sd: 23.5 }, // L26 front
-    { label: "15", R: -651.8818, d: 62.916, nd: 1.0, elemId: 0, sd: 23.5 }, // L26 rear → air (D2)
+    { label: "13", R: 86.0604, d: 6.757, nd: 1.0, elemId: 0, sd: 23.2 }, // L25 rear → air
+    { label: "14", R: -84.2865, d: 2.5, nd: 1.870705, elemId: 9, sd: 23.8 }, // L26 front
+    { label: "15", R: -651.8818, d: 62.916, nd: 1.0, elemId: 0, sd: 23.8 }, // L26 rear → air (D2)
     // G3 — Relay (positive, fixed)
-    { label: "16", R: 605.0183, d: 4.7, nd: 1.755, elemId: 10, sd: 23.5 }, // L31 front
-    { label: "17", R: -156.1367, d: 0.1, nd: 1.0, elemId: 0, sd: 23.5 }, // L31 rear → air
-    { label: "18", R: 88.3742, d: 6.8, nd: 1.433843, elemId: 11, sd: 23.5 }, // L32 front
-    { label: "19", R: -277.5645, d: 1.626, nd: 1.0, elemId: 0, sd: 19.0 }, // L32 rear → air
-    { label: "20", R: -115.6316, d: 4.7, nd: 1.65413, elemId: 12, sd: 16.0 }, // L33 front
-    { label: "21", R: 88.6408, d: 1.061, nd: 1.0, elemId: 0, sd: 13.0 }, // L33 rear → air
-    { label: "22", R: 123.7096, d: 5.3, nd: 1.91082, elemId: 13, sd: 13.5 }, // L34 front
-    { label: "23", R: -404.2232, d: 21.244, nd: 1.0, elemId: 0, sd: 13.5 }, // L34 rear → air (D3)
+    { label: "16", R: 605.0183, d: 4.7, nd: 1.755, elemId: 10, sd: 24.6 }, // L31 front
+    { label: "17", R: -156.1367, d: 0.1, nd: 1.0, elemId: 0, sd: 24.6 }, // L31 rear → air
+    { label: "18", R: 88.3742, d: 6.8, nd: 1.433843, elemId: 11, sd: 24.5 }, // L32 front
+    { label: "19", R: -277.5645, d: 1.626, nd: 1.0, elemId: 0, sd: 24.4 }, // L32 rear → air
+    { label: "20", R: -115.6316, d: 4.7, nd: 1.65413, elemId: 12, sd: 24.4 }, // L33 front
+    { label: "21", R: 88.6408, d: 1.061, nd: 1.0, elemId: 0, sd: 24.3 }, // L33 rear → air
+    { label: "22", R: 123.7096, d: 5.3, nd: 1.91082, elemId: 13, sd: 24.3 }, // L34 front
+    { label: "23", R: -404.2232, d: 21.244, nd: 1.0, elemId: 0, sd: 24.3 }, // L34 rear → air (D3)
     // G4 — Focus group (positive, moves for zoom and focus)
     { label: "24", R: 1e15, d: 4.0, nd: 1.804, elemId: 14, sd: 24.0 }, // L41 front (flat)
     { label: "25", R: -118.3357, d: 0.1, nd: 1.0, elemId: 0, sd: 24.0 }, // L41 rear → air
@@ -422,7 +426,7 @@ const LENS_DATA = {
     // G5 — Rear group (negative, fixed, contains aperture stop)
     { label: "29", R: -145.6141, d: 1.9, nd: 2.001, elemId: 17, sd: 18.5 }, // L51 front
     { label: "30", R: 91.0903, d: 5.002, nd: 1.0, elemId: 0, sd: 18.0 }, // L51 rear → air
-    { label: "STO", R: 1e15, d: 8.0, nd: 1.0, elemId: 0, sd: 16.7 }, // aperture stop
+    { label: "STO", R: 1e15, d: 8.0, nd: 1.0, elemId: 0, sd: 17.2 }, // aperture stop
     { label: "32", R: 375.1468, d: 5.0, nd: 1.72916, elemId: 18, sd: 18.0 }, // L52 front
     { label: "33", R: -83.7956, d: 3.919, nd: 1.0, elemId: 0, sd: 18.0 }, // L52 rear → air
     { label: "34", R: 368.0922, d: 2.0, nd: 1.870705, elemId: 19, sd: 17.0 }, // L53 front
@@ -431,13 +435,13 @@ const LENS_DATA = {
     { label: "37", R: -54.337, d: 1.9, nd: 1.5168, elemId: 21, sd: 16.5 }, // L54–L55 junction
     { label: "38", R: 107.7701, d: 5.617, nd: 1.0, elemId: 0, sd: 16.5 }, // L55 rear → air
     { label: "39", R: 1e15, d: 8.829, nd: 1.0, elemId: 0, sd: 16.0 }, // air gap
-    { label: "40", R: 79.609, d: 4.4, nd: 2.001, elemId: 22, sd: 16.0 }, // L56 front
-    { label: "41", R: -1873.4336, d: 0.782, nd: 1.0, elemId: 0, sd: 15.5 }, // L56 rear → air
-    { label: "42", R: 64.0354, d: 3.0, nd: 1.804, elemId: 23, sd: 15.5 }, // L57 front
-    { label: "43", R: 33.609, d: 10.0, nd: 1.48749, elemId: 24, sd: 14.5 }, // L57–L58 junction
-    { label: "44", R: -77.3539, d: 6.728, nd: 1.0, elemId: 0, sd: 13.0 }, // L58 rear → air
-    { label: "45", R: -70.8535, d: 2.0, nd: 1.90043, elemId: 25, sd: 10.5 }, // L59 front
-    { label: "46", R: 224.495, d: 54.819, nd: 1.0, elemId: 0, sd: 10.0 }, // L59 rear → BF
+    { label: "40", R: 79.609, d: 4.4, nd: 2.001, elemId: 22, sd: 20.5 }, // L56 front
+    { label: "41", R: -1873.4336, d: 0.782, nd: 1.0, elemId: 0, sd: 20.5 }, // L56 rear → air
+    { label: "42", R: 64.0354, d: 3.0, nd: 1.804, elemId: 23, sd: 20.0 }, // L57 front
+    { label: "43", R: 33.609, d: 10.0, nd: 1.48749, elemId: 24, sd: 19.8 }, // L57–L58 junction
+    { label: "44", R: -77.3539, d: 6.728, nd: 1.0, elemId: 0, sd: 19.8 }, // L58 rear → air
+    { label: "45", R: -70.8535, d: 2.0, nd: 1.90043, elemId: 25, sd: 18.4 }, // L59 front
+    { label: "46", R: 224.495, d: 54.819, nd: 1.0, elemId: 0, sd: 18.4 }, // L59 rear → BF
   ],
 
   /* ── Aspherical coefficients ── */
@@ -503,15 +507,21 @@ const LENS_DATA = {
   /* ── Focus configuration ── */
   closeFocusM: 2.0,
   focusDescription:
-    "G4 internal focus — G4 moves object-side for close focus. Constant overall length. G4 close-focus travel is estimated from ray tracing and production MFD, not tabulated in the patent.",
+    "G4 internal focus — G4 moves object-side for close focus (patent ¶0057). Constant overall length. G4 close-focus travel is calculated for the production 2.0 m MFD, not tabulated in the patent.",
 
   /* ── Aperture configuration ── */
+  // Stop sits in fixed G5 and everything behind it is fixed, so one physical iris gives F/2.91 at all
+  // three stations (derived); the patent publishes no iris diameter and no zoom aperture model is needed.
   nominalFno: 2.91,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
+  fstopSeries: [2.91, 4, 5.6, 8, 11, 16, 22],
+  maxFstop: 22,
 
   /* ── Layout tuning ── */
   scFill: 0.45,
   yScFill: 0.38,
+  // G2 (L23/L24, L25/L26) and G3 (L32/L33, L33/L34) rims nearly touch at the f/2.91 axial clear aperture;
+  // the patent figure draws these pairs rim-to-rim. 0.97 admits the traced clearance without editing spacings.
+  gapSagFrac: 0.97,
 } satisfies LensDataInput;
 
 export default LENS_DATA;

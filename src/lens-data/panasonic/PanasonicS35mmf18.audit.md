@@ -70,3 +70,14 @@ Patent: CN 216772097 U, Example 1
 - Re-rendered local `patents/CN216772097U.pdf`, PDF page 9. Example 1 visibly repeats `nd = 1.51602`, `νd = 56.5` at surfaces 18, 20, and 24.
 - Added Hoya C2 from the vendor's first-party 2026-07-07 obsolete-inclusive AGF; its polynomial evaluates to `nd = 1.516020`, `νd = 56.771`.
 - Relabeled L18, L21, and L31 to C2 as a catalog equivalent while retaining patent code `516565` and an explicit supplier caveat. No prescription geometry or APD status changed.
+
+## 2026-09-23 — Cover glass modeled as `rearPlates`
+
+- Re-rendered local `patents/CN216772097U.pdf` PDF page 9 (Example 1 table, ¶0106): surface 27 d = 12.42; surfaces 28–29
+  are the cover glass CG (named in ¶0095), 2.10 mm, nd 1.51680, νd 64.2; 29 → IMG is 1.00 mm. The gap is fixed during
+  focus (d1/d2 are the only variable spacings).
+- Surface 20 (patent S27) now stores the patent's 12.42 mm in place of the folded 14.8045 mm, with `rearPlates` CG
+  (N-BK7, exact 1.51680 / 64.2 match) and gapAfter 1.00 mm. Paraxial check against the previous data: EFL identical;
+  defocus changes by at most 0.000006 mm (rounding in the old fold) at infinity and at 0.24 m.
+- Physical track grows by 0.7155 mm (2.10 × (1 − 1/1.51680)) to 101.0 mm, now matching the analysis's quoted S1-to-image
+  total.

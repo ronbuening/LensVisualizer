@@ -55,3 +55,9 @@ Patent: WO 2024/147268 A1
 - Kept opposite-direction G2/G4 gap endpoints, labeled each group boundary, preserved f/1.85 in the aperture shortcut. Rewrote analysis around source values and explicit inferences.
 - Production baseline inspected live. Local infinity, near and half-focus/f16 states inspected: near EFL 98.82 mm, 82 cm distance, five-group movement chart with maximum travel 13.60 mm; half-focus 1.65 m/EFL 113.79 mm and stop diameter 4.96 mm at f16. Fixed groups and disabled zoom chart confirmed.
 - Surface and image-circle audits passed; four patent regression tests passed (matrix conjugates, normal-line conversion, group motion and five-state render diagnostics). Full gates and commit remain at the 11–20 batch boundary.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Re-read Table 1 (PDF pp. 21–22, printed pp. 19–20) and Figure 1 (p. 66): surface 31 d = 11.4681, filter FL surfaces 32–33 t = 1.6000, nd = 1.51680, νd = 64.14, then 1.3712 mm to the image. The gap before the filter is not in the variable-gap table, so it is fixed through focus. 11.4681 + 1.6/1.5168 + 1.3712 reproduces the legacy 13.8941523 mm air-equivalent BFD exactly.
+- Surface 31 now stores the physical 11.4681 mm, and the filter is a single `rearPlates` entry labeled FL. The glass is N-BK7, which matches L6's label for the same 1.51680/64.14 coordinate; `resolveCompatibleGlass` accepts it, and J-BK7A also matches. `closeFocusM` already used the physical object-to-image distance, so it is unchanged.
+- The plate check passed: EFL and paraxial defocus are identical to the folded model at infinity and at close focus (worst |Δ| 7e-15). The physical track grows by 0.545148 mm, which equals 1.6 × (1 − 1/1.5168). The surface and image-circle audits are clean.

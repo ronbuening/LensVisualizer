@@ -18,8 +18,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ 0.24 m MFD is retained only as product metadata; the authored var vectors    ║
  * ║ therefore repeat infinity spacing at both focus endpoints.                   ║
  * ║                                                                              ║
- * ║ REAR PLATE: source PP surfaces 26–27 are omitted. Surface 25A-to-image d is ║
- * ║ the d-line air-equivalent 5 + 2.85/1.516798 + 7.6391 = 14.5180581737 mm.    ║
+ * ║ REAR PLATE: Table 1 plane-parallel member PP (surfaces 26–27: 2.85 mm,       ║
+ * ║ nd 1.516798, νd 64.20) is modeled in `rearPlates` (traced, not drawn).       ║
+ * ║ Surface 25A keeps the patent's 5.0000 mm gap to PP; PP-to-image is           ║
+ * ║ 7.6391 mm. Air-equivalent 5 + 2.85/1.516798 + 7.6391 = 14.5180581737 mm      ║
+ * ║ reproduces Table 2 Bf' (in air) = 14.52 mm.                                  ║
  * ║                                                                              ║
  * ║ STOP: Table 2 gives FNo=4.12 at all three zoom states, but Fig. 7 labels   ║
  * ║ the Example-1 telephoto aberration panel FNo=4.55. The model follows the     ║
@@ -275,7 +278,20 @@ const LENS_DATA = {
     { label: "22", R: -83.55, d: 1, nd: 1.696797, elemId: 13, sd: 8.9 },
     { label: "23", R: 49.9738, d: 2, nd: 1, elemId: 0, sd: 9.3 },
     { label: "24A", R: 416.7292, d: 4, nd: 1.6935, elemId: 14, sd: 13.9 },
-    { label: "25A", R: -48.3381, d: 14.5180581737, nd: 1, elemId: 0, sd: 14.1 },
+    { label: "25A", R: -48.3381, d: 5, nd: 1, elemId: 0, sd: 14.1 }, // Table 1 gap to PP
+  ],
+
+  /* ── Plane-parallel member PP (patent Table 1 surfaces 26–27): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PP",
+      thicknessMm: 2.85,
+      nd: 1.516798,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 7.6391,
+      source: "US 2015/0131163 A1, Example 1 Table 1 surfaces 26–27",
+    },
   ],
 
   asph: {

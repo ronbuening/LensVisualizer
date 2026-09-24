@@ -21,8 +21,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ S12 is an inactive air-to-air bookkeeping plane and is omitted; its 0.10 mm is      ║
  * ║ folded into d11. Source S20 is relabeled STO because patent ¶0019 and Fig. 11 place ║
  * ║ SP between B3 and B4 although the Example-6 table omits the stop tag.                ║
- * ║ GB (source S34–S35) is omitted; d33 is replaced by                                  ║
- * ║ d33 + 0.80/1.51633 + 0.80 to preserve the patent's air-equivalent back focus.       ║
+ * ║ GB (source S34–S35: 0.80 mm, nd 1.51633, νd 64.1, S-BSL7) and the 0.80 mm air        ║
+ * ║ after it are modeled in `rearPlates` (traced, not drawn). d33 stores the patent gap  ║
+ * ║ to GB: 9.13 / 24.16 / 33.92 mm; the equivalent BF matches 10.45 / 25.49 / 35.25.     ║
  * ║                                                                                      ║
  * ║ The patent states that B6 reverses shortly before tele, but W/M/T do not bracket    ║
  * ║ that reversal. No synthetic keyframe is added; piecewise interpolation represents   ║
@@ -321,7 +322,20 @@ const LENS_DATA = {
     { label: "30", R: -136.987, d: 5.16, nd: 1.0, elemId: 0, sd: 8.30 },
     { label: "31A", R: 587.265, d: 0.60, nd: 1.85135, elemId: 17, sd: 6.55 },
     { label: "32", R: 10.445, d: 3.45, nd: 1.69895, elemId: 18, sd: 7.00 },
-    { label: "33", R: 51.970, d: 10.457589640777405, nd: 1.0, elemId: 0, sd: 7.00 }, // GB omitted; source d33 replaced by air-equivalent rear spacing
+    { label: "33", R: 51.970, d: 9.13, nd: 1.0, elemId: 0, sd: 7.00 }, // source d33, gap to the GB plate
+  ],
+
+  /* ── Glass block GB (patent surfaces 34–35): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "GB",
+      thicknessMm: 0.8,
+      nd: 1.51633,
+      vd: 64.1,
+      glass: "S-BSL7",
+      gapAfterMm: 0.8,
+      source: "JP 2016-148731 A, Numerical Example 6 surfaces 34–35",
+    },
   ],
 
   /* ── Aspherical coefficients ── */
@@ -404,9 +418,9 @@ const LENS_DATA = {
       [1.4, 1.4],
     ],
     "33": [
-      [10.457589640777405, 10.457589640777405],
-      [25.487589640777404, 25.487589640777404],
-      [35.2475896407774, 35.2475896407774],
+      [9.13, 9.13],
+      [24.16, 24.16],
+      [33.92, 33.92],
     ],
   },
   varLabels: [
@@ -415,7 +429,7 @@ const LENS_DATA = {
     ["STO", "d20"],
     ["23", "d23"],
     ["30", "d30"],
-    ["33", "BF (air-equivalent)"],
+    ["33", "d33"],
   ],
 
   /* ── Group and cemented-pair annotations ── */

@@ -8,8 +8,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * Scale: all radii, thicknesses, semi-diameters, and aspherical polynomial coefficients were uniformly scaled by 0.973614465993
  * to match the manufacturer-published 23 mm focal length. Refractive indices and Abbe numbers are unchanged.
  *
- * Sensor cover/filter plate PP from patent surfaces 27-28 is excluded per project convention; its optical path is
- * folded into the final air-equivalent back focal distance on surface 26A.
+ * Parallel-plate optical member PP (patent Table 25 surfaces 27-28: 2.8500 mm, nd 1.51680, νd 64.20) and its
+ * 0.2112 mm gap to the image are modeled in `rearPlates` (traced, not drawn), scaled by the same factor as the lens.
+ * Surface 26A keeps the patent's 12.4725 mm gap to PP (12.143406 mm scaled).
  *
  * Semi-diameters are estimated from an independent paraxial marginal/chief-ray envelope at f/1.4 and the patent
  * 33.8° half-field, then adjusted for smooth element apertures and checked against edge-thickness and air-gap
@@ -269,7 +270,20 @@ const LENS_DATA = {
     { label: "23", R: 40.831249, d: 3.378442, nd: 1.59282, elemId: 14, sd: 13.1438 },
     { label: "24", R: -177.253231, d: 0.166001, nd: 1, elemId: 0, sd: 11.97546 },
     { label: "25A", R: -94.043271, d: 1.557783, nd: 1.68863, elemId: 15, sd: 11.97546 },
-    { label: "26A", R: 38.839234, d: 14.178412, nd: 1, elemId: 0, sd: 11.97546 },
+    { label: "26A", R: 38.839234, d: 12.143406, nd: 1, elemId: 0, sd: 11.97546 },
+  ],
+
+  /* ── Optical member PP (patent Table 25 surfaces 27–28, scaled by s): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PP",
+      thicknessMm: 2.774801,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 0.205627,
+      source: "US 2022/0276464 A1, Example 7 Table 25 surfaces 27–28 (2.8500 / 0.2112 mm, scaled by 0.973614465993)",
+    },
   ],
 
   asph: {

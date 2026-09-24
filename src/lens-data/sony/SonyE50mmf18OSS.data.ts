@@ -14,9 +14,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  the close endpoint is the patent 0.142× row (D12=6.599, D14=7.027 mm).   ║
  * ║  The published 0.025× row lies on the same rigid translation to <0.001 mm.║
  * ║                                                                            ║
- * ║  Sensor-cover normalization: patent surfaces 19-20 (2.0 mm, nd=1.5168     ║
- * ║  cover + 9.15 mm air) are omitted. Surface 18 therefore uses              ║
- * ║  5.0 + 2.0/1.5168 + 9.15 = 15.468565 mm to the modeled IMG plane.        ║
+ * ║  Cover glass CG: patent surfaces 19-20 (2.0 mm, nd=1.5168, νd=64.2,        ║
+ * ║  then 9.15 mm air to IMG) are modeled in `rearPlates` — traced, not        ║
+ * ║  drawn. Surface 18 stores the printed physical d18 = 5.0 mm.               ║
  * ║                                                                            ║
  * ║  Semi-diameters are inferred, not patent-published. They were constrained ║
  * ║  by d-line marginal/chief-ray envelopes at all three published focus      ║
@@ -195,7 +195,20 @@ const LENS_DATA = {
     { label: "15", R: 46.8341, d: 6.215, nd: 1.72916, elemId: 8, sd: 11.0 },
     { label: "16", R: -33.8583, d: 7.8104, nd: 1.0, elemId: 0, sd: 11.1 },
     { label: "17", R: -25.3869, d: 2.0, nd: 1.80518, elemId: 9, sd: 9.8 },
-    { label: "18", R: -38.0301, d: 15.468565, nd: 1.0, elemId: 0, sd: 9.8 },
+    { label: "18", R: -38.0301, d: 5.0, nd: 1.0, elemId: 0, sd: 9.8 },
+  ],
+
+  /* ── Cover glass CG (patent surfaces 19–20): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "CG",
+      thicknessMm: 2.0,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 9.15,
+      source: "JP 2012-242690 A, Example 2 surfaces 19–20",
+    },
   ],
 
   asph: {},
@@ -222,10 +235,10 @@ const LENS_DATA = {
   ],
 
   /* ── Focus configuration ── */
-  closeFocusM: 0.457,
+  closeFocusM: 0.458,
   focusDescription:
     "PUBLISHED — L221 translates imageward by 4.803 mm from infinity to the patent 0.142× row; " +
-    "the normalized model conjugate is about 0.457 m. Sony's production 0.39 m / 0.16× endpoint is correlation " +
+    "the physical model object-to-image conjugate is about 0.458 m. Sony's production 0.39 m / 0.16× endpoint is correlation " +
     "metadata only and is not used to reconstruct additional travel.",
 
   /* ── Aperture configuration ── */

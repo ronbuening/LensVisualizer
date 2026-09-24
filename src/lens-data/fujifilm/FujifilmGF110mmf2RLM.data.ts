@@ -25,6 +25,14 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    Patent evaluates at 110 cm; production MFD is 0.9 m.          ║
  * ║    Close-focus spacings computed via brentq solver for 0.9 m,     ║
  * ║    gap sum conserved at 22.890 mm.                                ║
+ * ║                                                                    ║
+ * ║  NOTE ON REAR PLATE:                                               ║
+ * ║    Patent Table 1 surfaces 25–26 (plane-parallel member PP,        ║
+ * ║    the patent's cover-glass/filter stand-in: 3.20 mm, nd 1.51680,  ║
+ * ║    νd 64.20) and the 1.0003 mm air gap to IMG are modeled in       ║
+ * ║    `rearPlates` (traced, not drawn). Surface 24 keeps the patent's ║
+ * ║    23.8566 mm gap to PP; Table 2 BF 26.97 is the air-equivalent    ║
+ * ║    back focus.                                                     ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -229,7 +237,7 @@ const LENS_DATA = {
       nd: 1.5168,
       vd: 64.21,
       fl: -95.3,
-      glass: "S-BSL7 (OHARA)",
+      glass: "N-BK7 (SCHOTT catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Rear field flattener; concave-to-object meniscus improves Petzval sum and corrects astigmatism and distortion (¶0090).",
     },
@@ -267,7 +275,21 @@ const LENS_DATA = {
     { label: "21", R: 119.8382, d: 7.04, nd: 2.001, elemId: 13, sd: 25.5 },
     { label: "22", R: -96.6341, d: 19.51, nd: 1.0, elemId: 0, sd: 25.5 },
     { label: "23", R: -37.7586, d: 1.47, nd: 1.5168, elemId: 14, sd: 21.0 },
-    { label: "24", R: -163.9992, d: 26.97, nd: 1.0, elemId: 0, sd: 21.0 },
+    // Last surface: patent gap to the plane-parallel plate PP
+    { label: "24", R: -163.9992, d: 23.8566, nd: 1.0, elemId: 0, sd: 21.0 },
+  ],
+
+  /* ── Plane-parallel plate PP (patent Table 1 surfaces 25–26): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PP",
+      thicknessMm: 3.2,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 1.0003,
+      source: "US 2018/0100988 A1, Example 1 Table 1 surfaces 25–26",
+    },
   ],
 
   /* ── Aspherical coefficients (none — all-spherical design) ── */

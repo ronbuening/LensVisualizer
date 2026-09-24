@@ -13,6 +13,7 @@
 import { existsSync, readdirSync } from "node:fs";
 import validateLensData from "../../../src/optics/validateLensData.js";
 import { buildSpectralIndex } from "../../../src/optics/internal/lensState.js";
+import { expandRearPlates } from "../../../src/optics/prescription/rearPlates.js";
 import {
   assessCatalogGlassCompatibility,
   evaluateCatalogAbbeNumber,
@@ -70,6 +71,7 @@ export interface LensWalkContext {
 export function walkLensSurfaces(
   modules: Record<string, { default: LensData }>,
   visitor: (context: LensWalkContext) => void,
+  { includeRearPlates = false }: { includeRearPlates?: boolean } = {},
 ): number {
   let totalLenses = 0;
   for (const [modulePath, mod] of Object.entries(modules)) {
@@ -79,13 +81,15 @@ export function walkLensSurfaces(
     totalLenses++;
 
     if (validateLensData(data).length > 0) continue;
-    const S: SurfaceData[] = data.surfaces.map((s) => ({ ...s }));
-    const indexByIdx = buildSurfaceDispersionIndex(S, data.elements, buildSpectralIndex(S, data.elements));
+    /* Rear plates are opt-in so element coverage shares stay lens-only; label-compatibility scans include them. */
+    const traced = includeRearPlates ? expandRearPlates(data) : data;
+    const S: SurfaceData[] = traced.surfaces.map((s) => ({ ...s }));
+    const indexByIdx = buildSurfaceDispersionIndex(S, traced.elements, buildSpectralIndex(S, traced.elements));
     visitor({
       modulePath,
       filePath: toRepoRelativeLensPath(modulePath),
       data,
-      L: { S, elements: data.elements, indexByIdx },
+      L: { S, elements: traced.elements, indexByIdx },
     });
   }
   return totalLenses;

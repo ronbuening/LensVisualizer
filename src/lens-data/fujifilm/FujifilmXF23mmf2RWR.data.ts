@@ -27,8 +27,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    APS-C field coverage, element SD ratios ≤ 1.25, sd/|R| < 0.90, ║
  * ║    positive edge thickness, and cross-gap sag intrusion ≤ 90%.     ║
  * ║                                                                    ║
- * ║  IMPORTANT: Sensor cover glass / optical member PP is not included ║
- * ║    as a surface. Its optical path is folded into the final BFD.    ║
+ * ║  OPTICAL MEMBER PP: patent surfaces 18–19 (2.850 mm, nd 1.51680,   ║
+ * ║    νd 64.20, θgF 0.53430) and the 1.000 mm air gap to the image    ║
+ * ║    are modeled in `rearPlates` (traced, not drawn). Surface 17     ║
+ * ║    keeps the patent's 10.862 mm gap to PP.                         ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -225,7 +227,21 @@ const LENS_DATA = {
     { label: "14A", R: 2385.05256, d: 5.764, nd: 1.0, elemId: 0, sd: 7.9 },
     { label: "15", R: -205.25324, d: 1.1, nd: 1.7847, elemId: 9, sd: 7.5 },
     { label: "16", R: 33.79, d: 3.98, nd: 1.804, elemId: 10, sd: 7.5 },
-    { label: "17", R: -96.69231, d: 13.740955696202532, nd: 1.0, elemId: 0, sd: 7.4 },
+    { label: "17", R: -96.69231, d: 10.862, nd: 1.0, elemId: 0, sd: 7.4 }, // patent gap to optical member PP
+  ],
+
+  /* ── Optical member PP (patent Table 1 surfaces 18–19): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PP",
+      thicknessMm: 2.85,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      dPgF: -0.00152,
+      gapAfterMm: 1.0,
+      source: "US 2017/0351051 A1, Example 1 Table 1 surfaces 18–19 (patent θgF 0.53430)",
+    },
   ],
 
   asph: {

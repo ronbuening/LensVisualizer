@@ -92,3 +92,14 @@ images, not from the OCR layer.
 - The engine's half-field estimate (10.9°) exceeds the patent's 9.2° because the rear rims admit a larger image
   circle than APS-C; the format diagonal governs the analysis field.
 - Glass names are catalog equivalents; the patent names none.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Re-read Table 1 and Table 2 on the rendered p. 21: d20 = 20.784, PP (surfaces 21–22) d = 2.850, nd 1.51633,
+  νd 64.14, θgF 0.53531, no d22 printed; Bf = 24.663 (air-converted, ¶0100). Surface 20 now stores the physical
+  20.784 mm and `rearPlates` holds PP with `gapAfterMm` 1.999, derived as 24.663 − 20.784 − 2.850/1.51633 (1.9995);
+  FIG. 1 draws about 2.0 mm between PP and Sim.
+- Glass S-BSL7 (OHARA), the same exact-coordinate label as L11; dPgF −0.00061 from the printed θgF.
+- Paraxial check against the previous data: EFL identical; defocus changes by −0.0005 mm at infinity and at the
+  proximal state (the 1.999 mm rounding of the derived gap). Physical track grows by 2.850 × (1 − 1/1.51633) =
+  0.970 mm, to 116.04 mm.

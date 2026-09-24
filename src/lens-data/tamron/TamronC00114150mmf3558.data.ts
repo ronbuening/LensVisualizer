@@ -17,8 +17,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ - The optically active s7 hybrid-asphere resin layer is retained as a separate      ║
  * ║   modeling material entry (L4r). elementCount remains the 17 physical lenses;       ║
  * ║   elements[] therefore contains 18 material entries including L4r.                  ║
- * ║ - Rear plane-parallel plate s37-s38 is omitted. Surface 36 uses the documented      ║
- * ║   air-equivalent rear spacing 11 + 4.2/1.5168 + 1 = 14.768987341772153 mm.         ║
+ * ║ - Rear plane-parallel plate s37-s38 (4.2000 mm, nd 1.51680, vd 64.20) and the      ║
+ * ║   1.0000 mm air gap to the image are modeled in `rearPlates` (traced, not drawn).   ║
+ * ║   Surface 36 keeps the patent's 11.0000 mm gap to the plate.                        ║
  * ║                                                                                      ║
  * ║ ZOOM / FOCUS                                                                          ║
  * ║ - zoomPositions are the patent Table 11 values 14.43 / 57.85 / 145.40 mm.          ║
@@ -27,7 +28,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ - Focus status: CONSTRAINED_RECONSTRUCTION. Patent Table 12 is an approximately     ║
  * ║   1.0 m subject-to-image state, not the production 0.5 m MOD. The close pairs here  ║
  * ║   are code-solved for 0.5 m subject-to-image distance with G4 as the only focus     ║
- * ║   group, preserving the published mechanism constraint.                              ║
+ * ║   group, preserving the published mechanism constraint. Re-solved 2026-09-23 with   ║
+ * ║   the rear plate traced physically, so 0.5 m is measured to the stored image plane. ║
  * ║ - G3 and G5 share one zoom track. G4 reverses relative motion with respect to G3.   ║
  * ║ - Source discrepancy retained in audit: paragraph 0096 says G2 moves imageward      ║
  * ║   W->T, while Table 11 sensor-fixed geometry requires 3.7597 mm objectward motion.   ║
@@ -342,8 +344,20 @@ const LENS_DATA = {
     { label: "33", R: -18.5559, d: 0.9, nd: 1.80518, elemId: 17, sd: 9.0 },
     { label: "34", R: -28.5021, d: 1.03, nd: 1.0, elemId: 0, sd: 9.0 },
     { label: "35", R: -152.2485, d: 2.3543, nd: 1.72916, elemId: 18, sd: 11.2 },
-    // Rear s37-s38 plate omitted; d is air-equivalent distance from source s36 to the image plane.
-    { label: "36", R: -38.5471, d: 14.768987341772153, nd: 1.0, elemId: 0, sd: 11.2 },
+    // Last surface: patent gap from s36 to the rear plate (s37-s38 in rearPlates).
+    { label: "36", R: -38.5471, d: 11.0, nd: 1.0, elemId: 0, sd: 11.2 },
+  ],
+
+  /* ── Rear plane-parallel plate (patent Table 9 surfaces 37–38): traced, not drawn ── */
+  rearPlates: [
+    {
+      thicknessMm: 4.2,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 1.0,
+      source: "US 2014/0347522 A1, Example 3 Table 9 surfaces 37–38",
+    },
   ],
 
   asph: {
@@ -400,14 +414,14 @@ const LENS_DATA = {
       [1.7, 1.7],
     ],
     "28": [
-      [1.4374, 1.610542183445229],
-      [6.0872, 7.5038201232408905],
-      [3.6419, 9.49816160712323],
+      [1.4374, 1.6110744051830532],
+      [6.0872, 7.508402913928238],
+      [3.6419, 9.514974971429059],
     ],
     "32": [
-      [12.1029, 11.92975781655477],
-      [7.4531, 6.03647987675911],
-      [9.8984, 4.042138392876771],
+      [12.1029, 11.929225594816947],
+      [7.4531, 6.031897086071762],
+      [9.8984, 4.025325028570942],
     ],
     "34": [
       [1.03, 1.03],
@@ -443,7 +457,7 @@ const LENS_DATA = {
 
   closeFocusM: 0.5,
   focusDescription:
-    "CONSTRAINED_RECONSTRUCTION: production 0.5 m subject-to-image-plane MOD solved by translating G4 only; D28 + D32 is conserved at each zoom position. Patent Table 12 itself represents an approximately 1.0 m subject-to-image state.",
+    "CONSTRAINED_RECONSTRUCTION: production 0.5 m subject-to-image-plane MOD solved by translating G4 only, with the rear plate traced physically; D28 + D32 is conserved at each zoom position. Patent Table 12 itself represents an approximately 1.0 m subject-to-image state.",
 
   nominalFno: [3.6909409460450076, 5.387525251923575, 5.9052849086316925],
   fstopSeries: [3.5, 4, 5.6, 8, 11, 16, 22],

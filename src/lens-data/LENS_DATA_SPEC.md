@@ -31,9 +31,13 @@ Per-lens patent audit logs use `*.audit.md` alongside the data file. They are no
 - Mirror or blocking surfaces that participate in a folded path
 - Annular clear apertures or central obstructions when they are optically meaningful
 
+**Model through `rearPlates`, not as surfaces or elements:**
+- **Sensor glass / cover glass and rear filter plates** that the source prescription lists behind the last lens
+  surface (cover glass, IR-cut / low-pass stacks, rear drop-in filters). See [Rear Plates](#rear-plates-rearplates).
+
 **Do NOT include:**
-- **Sensor glass / cover glass** — the protective or thermal compensation glass plate on the camera sensor (rear of the assembly)
-- **Filters** — UV, ND, polarizing, or other filters mounted on the lens or in front of the sensor
+- **Front or mid-lens filters** — UV, ND, polarizing or protection plates mounted ahead of or inside the lens, and any
+  plate the source does not list
 - **Dummy / flare-cutter planes** — source-table bookkeeping surfaces that do not change medium and are not active
   blockers in the modeled path
 - **Mechanical components** — focus motors, aperture blades (mechanical detail), barrel, mounts
@@ -41,11 +45,12 @@ Per-lens patent audit logs use `*.audit.md` alongside the data file. They are no
 
 For telescope and mirror-lens fixtures, include the optical surfaces that rays can hit, not the full mechanical tube. A secondary baffle or obstruction that clips rays belongs in `surfaces`; a spider vane, cell, barrel, or mount detail does not.
 
-When an omitted cover/filter plate changes the source's optical path length or quoted back focus, convert the remaining
-rear spacing to the documented air-equivalent distance instead of leaving the prescription silently short.
-Record the source plate thickness, index/reference wavelength and spacing conversion in the lens notes. This is a
-paraxial replacement, not a complete optical equivalent; all analysis tabs currently inherit the omission. See
-[`Omitted Sensor Optics`](../../agent_docs/architecture/optics-engine.md#omitted-sensor-optics) for its consequences.
+Older files may fold a listed rear plate into the last air gap as the air-equivalent distance (gap before + t/n +
+gap after). New work uses `rearPlates` with source-backed physical gaps and glass values instead of folding t/n by
+hand. Where usable plate data is missing or the path is unsupported, retain the documented omission and any
+source-backed spacing conversion; do not invent plate parameters. An air-equivalent replacement preserves paraxial
+propagation, not higher-order or chromatic behavior. See
+[`Omitted Sensor Optics`](../../agent_docs/architecture/optics-engine.md#omitted-sensor-optics) for those limitations.
 
 ---
 
@@ -136,6 +141,7 @@ Keep it normalized even when the product's official styling varies by source:
 | `perspectiveControl` | `object` | | Optional shift-Y/tilt-X limits and camera-frame tilt pivot for perspective-control lenses. Omit for all ordinary and folded lenses. |
 | `projection` | `object` | `{ kind: "rectilinear" }` | Optional projection metadata. Use for non-rectilinear lenses, or for rare rectilinear designs whose published coverage should override the paraxial field estimate. |
 | `opticalPath` | `object` | | Optional generalized path metadata for mirror, folded, annular, or non-right-side image-plane systems. Omit for ordinary front-to-rear refractive lenses. |
+| `rearPlates` | `object[]` | | Source-listed cover glass / filter plates behind the last lens surface, ordered lens → image. Traced by every analysis, never drawn. See [Rear Plates](#rear-plates-rearplates). |
 | `focusDescription` | `string` | | Human-readable focus mechanism description |
 | `asph` | `object` | | Aspherical coefficients (see below) |
 | `var` | `object` | | Variable air gaps for focus (see below) |
@@ -244,6 +250,58 @@ patentAssignees: ["Canon Inc."],
 - Build metadata generation checks curated historical assignee aliases and legal-form start years derived from the
   corporate-history registry's successor dates, plus a short list of curated overrides. These checks flag
   impossible or non-canonical values for source review; they never infer or rewrite an assignee automatically.
+
+## Rear Plates (`rearPlates`)
+
+Use `rearPlates` when the source prescription lists plane-parallel plates between the last lens surface and the image
+plane: sensor cover glass, IR-cut or low-pass stacks, or a rear filter. Copy the source values as printed:
+
+```ts
+surfaces: [
+  // ...
+  { label: "26", R: 107.45414, d: 13.858, nd: 1.0, elemId: 0, sd: 17.5 }, // physical gap to the first plate
+],
+rearPlates: [
+  {
+    label: "FL",
+    thicknessMm: 1.6,
+    nd: 1.5168,
+    vd: 64.1,
+    glass: "J-BK7A",
+    gapAfterMm: 0.1, // last plate: distance to the image plane
+    source: "WO 2019/049372 A1, Example 1 Table 1 surfaces 27–28",
+  },
+],
+```
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `thicknessMm` | `number` | ✓ | Physical plate thickness (> 0) |
+| `nd` | `number` | ✓ | Plate index (> 1), at the `indexReference` line |
+| `vd` | `number` | ✓ | Abbe number; required so the plate never traces as dispersion-free |
+| `gapAfterMm` | `number` | ✓ | Physical air after the plate (≥ 0); for the last plate, the distance to the image plane |
+| `glass` | `string` | | Catalog glass label, resolved exactly like an element's `glass`. Omit when no catalog glass matches; the plate then uses the Abbe-number estimate |
+| `indexReference`, `nC`, `nF`, `ng`, `dPgF` | | | Same meaning as on an element |
+| `label` | `string` | | Source designation (`"CG"`, `"FL"`, `"GB"`, `"LPF"`) |
+| `sd` | `number` | | Published clear semi-diameter. Omit otherwise; the generated rim never clips rays |
+| `source` | `string` | | Source citation (publication, example, surface numbers) |
+
+Rules:
+
+- The last authored surface's `d` and its `var` entry are the **physical gap to the first plate**, not a back focus.
+  Focus and zoom variation stays on that gap; plate thicknesses and trailing gaps are fixed camera-side distances. If a
+  source prints a trailing gap that varies by rounding (e.g. 0.100 / 0.101), keep one `gapAfterMm` and carry the
+  difference in the variable gap, noting it in the header.
+- `buildLens()` appends two flat surfaces per plate (reserved labels `RP<n>a` / `RP<n>b`) and one synthetic element.
+  Tracing, pupils, field limits, aberration and chromatic analyses, and the image-plane position all include the
+  plate. The diagram, element numbering, element inspector, Abbe diagram and element counts do not show it.
+- Paraxially, a plate is equivalent to the old fold: gap before + t/n + gap after. Replacing a fold with `rearPlates`
+  moves the drawn image plane back by t(1 − 1/n) and leaves EFL and paraxial defocus unchanged; check both when
+  migrating.
+- BFD in the Summary tab and cardinal overlay is measured from the last lens vertex, so it includes the plates.
+- Not supported with `opticalPath` / non-refracting surfaces or with `perspectiveControl`. Keep the air-equivalent fold
+  for those lenses and for mid-lens filters.
+- Do not invent a camera stack: use `rearPlates` only for plates the source lists.
 
 ## Element Bulk Absorption
 
@@ -862,7 +920,7 @@ Rules:
 - **Nested correctors inside annular mirrors:** Folded mirror lenses may place a rear corrector group inside the empty central opening of an annular primary. This is valid only when `opticalPath` is present, the explicit mirror element span has matching `innerSd` on its front/back boundaries, at least one boundary is reflective, and every nested surface fits inside the central opening. Ordinary refractive element spans still reject non-stop internal surfaces.
 - **Shared annular/central mirror blanks:** Folded mirror lenses may split one physical blank into complementary rendered spans, such as a silvered annular primary shell plus a clear central L4 plug with the same axial depth and glass. This is valid only when `opticalPath` is present and the internal annular surfaces have no shared radial material band with the central span boundaries. Ordinary refractive element spans still reject non-stop internal surfaces.
 - **Blocker:** Use `interaction: { type: "block" }` and `elemId: 0` for a pure aperture obstruction. Use a non-zero `elemId` only if the blocker should be rendered as a physical element with a front/back surface span.
-- **Last surface:** for an ordinary sequential lens, `d` is the back focal distance to the default image plane. Folded systems should declare `opticalPath.imagePlane`; the final listed `d` need not represent a conventional rear BFD.
+- **Last surface:** for an ordinary sequential lens, `d` is the back focal distance to the default image plane, or the physical gap to the first plate when `rearPlates` is present. Folded systems should declare `opticalPath.imagePlane`; the final listed `d` need not represent a conventional rear BFD.
 
 ### Aperture Stop
 
@@ -1187,7 +1245,11 @@ doublets: [
 18. Element `indexReference`, when present, must be `"d"` or `"e"`
 19. `diffractive`, when present, must satisfy the radial-polynomial kind, wavelength/order bounds, canonical sorted term
     list, and refracting-surface restriction described above
-20. Perspective-control ranges, projection metadata, aberration-control gaps, explicit element spans, rim slope, edge thickness, and the remaining numeric bounds described above
+20. `rearPlates`, when present, is a non-empty array of plates with positive `thicknessMm`, `nd` > 1, positive `vd`
+    and non-negative `gapAfterMm`, and is not combined with `opticalPath`, non-refracting surfaces, or
+    `perspectiveControl`; authored surfaces may not use the reserved `RP<n>a` / `RP<n>b` labels or the engine-only
+    `synthetic` field
+21. Perspective-control ranges, projection metadata, aberration-control gaps, explicit element spans, rim slope, edge thickness, and the remaining numeric bounds described above
 
 On failure, `buildLens()` throws with all errors listed.
 

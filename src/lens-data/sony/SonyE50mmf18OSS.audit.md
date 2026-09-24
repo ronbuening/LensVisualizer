@@ -17,3 +17,9 @@ Patent: JP 2012-242690 A, Example 2
 - Added the patent's L211-L216, L221, and L231-L232 identifiers to the diagram, plus an explicit OSS annotation over L214. The displayed name remains the verified `SONY E 50mm f/1.8 OSS`.
 - Replaced opaque coordinate-only inspector text with the resolver-selected S-LAH55, TAFD35, H-ZF4A, NBFD15, J-SF03, J-SK16, TAC8, and J-SF6 catalog equivalents. Every one of the nine media remains covered by an existing trusted curve; supplier wording remains explicitly non-production-specific.
 - Added no catalog glass: the current catalog already covers every medium, and the patent supplies no evidence for APD/ED tags or authored partial dispersion.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Re-read Example 2 on PDF page 11 (¶0057 table): d18 = 5, cover glass CG d19 = 2 with nd10 = 1.5168 / νd10 = 64.2, d20 = 9.15 to the image plane, fixed across all three focus rows. Surface 18 now stores the physical 5.0 mm (legacy 15.468565 = 5 + 2/1.5168 + 9.15) and the plate is a `rearPlates` entry labeled CG with the N-BK7 catalog equivalent, which resolves compatibly for 1.5168 / 64.2.
+- Plate check against the folded version: EFL identical and paraxial defocus unchanged to ≤ 1e-6 mm at infinity, 0.025×, and 0.142×; the physical track grows by 0.681435 mm (= 2.0 × (1 − 1/1.5168)) to 75.8016 mm.
+- `closeFocusM` moves from 0.457 to 0.458 m because it was the traced air-equivalent conjugate (456.98 mm); the physical object-to-image distance is about 457.66 mm. Surface and image-circle audits pass with no undersized surfaces.

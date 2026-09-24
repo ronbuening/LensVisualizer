@@ -38,7 +38,7 @@ The front group is a negative lead section that expands the wide field and reduc
 
 The design is not telephoto in the classical sense because the total track length is longer than the focal length, and it is not retrofocus in the strict 35 mm SLR sense because its air-equivalent back focal distance is only about 31.727 mm for a 44.690 mm design focal length. It is better described as a compact negative-lead mirrorless wide-angle design.
 
-The total physical track through the patent's parallel plate PP is 110.197 mm from the first vertex to the image plane. When PP is omitted from the optical surface list and folded into an air-equivalent final distance, the modeled track is 109.107 mm. The air-equivalent back focal distance after the last glass surface is 25.000 + 3.200 / 1.51680 + 4.617 = 31.727 mm. This clears the Fujifilm G mount's 26.7 mm flange back while retaining enough space for the sensor cover stack and mechanical mount depth.
+The total physical track through the patent's parallel plate PP is 110.197 mm from the first vertex to the image plane. The data file models PP (3.200 mm, nd 1.51680, νd 64.20) in `rearPlates`, after the patent's 25.000 mm gap behind L3b and ahead of its 4.617 mm gap to the image: every analysis traces the plate, but it is not drawn, so the modeled physical track is the patent's 110.197 mm. The paraxially equivalent air distance after the last glass surface is 25.000 + 3.200 / 1.51680 + 4.617 = 31.727 mm; folding PP that way would shorten the track to 109.107 mm. This clears the Fujifilm G mount's 26.7 mm flange back while retaining enough space for the sensor cover stack and mechanical mount depth.
 
 Using the surface-by-surface Petzval formula, Σ φ/(n n′), the complete design gives a Petzval sum of +0.001523 mm⁻¹, equivalent to a Petzval radius of approximately 656.4 mm. That is a moderate positive residual, consistent with a large-format wide-angle lens where the negative rear group is used to control field curvature without forcing an excessively long back focus.
 
@@ -254,7 +254,7 @@ The prescription was re-entered and independently traced with a paraxial ABCD / 
 | Patent design F-number | 2.88 |
 | Entrance pupil semi-diameter required by f/FNo | 7.75868 mm |
 | Physical stop semi-diameter | 7.65317 mm |
-| Air-equivalent BFD after L3b | 31.7255 mm by ray trace; 31.7267 mm by folded PP sum |
+| Air-equivalent BFD after L3b (PP reduced to air) | 31.7255 mm by ray trace; 31.7267 mm by PP air-equivalent sum |
 | G1 focal length | −66.2813 mm |
 | G2 focal length | +43.4669 mm |
 | G3 focal length | −106.1496 mm |

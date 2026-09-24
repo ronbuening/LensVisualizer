@@ -2,38 +2,50 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — NIKON AF-S NIKKOR 16-35mm f/4G ED VR                 ║
+ * ║  LENS DATA — NIKON AF-S NIKKOR 16-35mm f/4G ED VR                    ║
  * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Data source: US 2010/0238560 A1 Example 1 (Fujimoto / Nikon).    ║
- * ║  Negative-positive-negative-positive four-group zoom with VR.     ║
- * ║  17 elements / 12 groups, 4 aspherical surfaces on 3 elements.    ║
- * ║  Focus: internal focusing via CL21 (G2) axial translation.        ║
- * ║  VR: G3 (L31+L32, L33, L34) shift perpendicular to optical axis. ║
- * ║                                                                    ║
- * ║  Zoom variable gaps: d9 (G1-G2), d14 (G2-G3), d22 (G3-G4), BFD.  ║
- * ║  All gaps zoom-only — patent provides no close-focus data.        ║
- * ║                                                                    ║
- * ║  NOTE ON SURFACE 30 RADIUS:                                        ║
- * ║    Patent lists R30 = -724.48 mm — verified as a decimal-point    ║
- * ║    error.  Correct value is R30 = -72.448 mm.  With -724.48, the  ║
- * ║    computed G4 focal length is +77.3 (vs. patent-stated +50.02)   ║
- * ║    and wide-end EFL is 26.9 (vs. 16.48).  With -72.448, all      ║
- * ║    group and system EFLs match to four significant figures.       ║
- * ║                                                                    ║
- * ║  NOTE ON ASPHERICAL CONVENTION:                                    ║
- * ║    Patent uses κ (kappa) where K = κ − 1.                        ║
- * ║    κ = 1 → K = 0 (sphere); κ = 0.017 → K = −0.983, etc.        ║
- * ║    Example 1 has odd-order coefficients all zero.                 ║
- * ║                                                                    ║
- * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    Patent provides no SDs.  Estimated via paraxial marginal +     ║
- * ║    chief ray trace across all zoom positions with ~8% clearance.  ║
- * ║    Front elements constrained by 77 mm filter thread (~37 mm SD). ║
- * ║    L11 rear (R = 14.627 mm, K = −0.983) now uses slope-based     ║
- * ║    validation — the near-paraboloidal surface has a gentle actual ║
- * ║    rim slope, so SD is no longer artificially constrained to      ║
- * ║    sd/|R| < 0.90.  Front group SDs moderately increased to       ║
- * ║    better match production lens proportions.                      ║
+ * ║  Data source: US 2010/0238560 A1 Example 1 (SL1), Table 1 and FIG. 1 ║
+ * ║  (Fujimoto / Nikon). Native patent scale (f = 16.48–33.94 mm).       ║
+ * ║  Negative-positive-negative-positive four-group zoom with VR.        ║
+ * ║  17 glass elements in 11 air-separated groups plus one resin layer   ║
+ * ║  (Nikon publishes 17 elements / 12 groups for the production lens).  ║
+ * ║  4 aspherical surfaces on 3 elements (1, 2, 7 resin, 30).            ║
+ * ║  Focus: CL21 (L21+L22) moves axially inside G2 (¶0060).              ║
+ * ║  VR: G3 lenses (CL31, L33, L34) shift perpendicular to the axis;     ║
+ * ║  the stop S stays put (¶0056, ¶0061).                                ║
+ * ║                                                                      ║
+ * ║  Zoom variable gaps: d9 (G1–G2), d14 (G2–stop), d22 (G3–G4), Bf.     ║
+ * ║  All four groups move (FIG. 1 arrows); G1 travels toward the image   ║
+ * ║  and back (TL 169.18 → 160.72 → 165.24 mm), G2–G4 move toward the    ║
+ * ║  object. Infinity-focus gaps only — the patent tabulates no close-   ║
+ * ║  focus state, so focus travel is not modeled.                        ║
+ * ║                                                                      ║
+ * ║  NOTE ON SURFACE 30 RADIUS:                                          ║
+ * ║    The printed Table 1 row reads R30 = −72.448 mm. The PDF's OCR     ║
+ * ║    text layer mis-reads it as −724.48; the printed value reproduces  ║
+ * ║    f = 16.48 / 23.99 / 33.94 and G4 f = +50.02 mm.                   ║
+ * ║                                                                      ║
+ * ║  NOTE ON ASPHERICAL CONVENTION:                                      ║
+ * ║    Patent expression (a) uses κ with κ = 1 for a sphere: K = κ − 1.  ║
+ * ║    A3–A11 odd terms are zero in Example 1.                           ║
+ * ║                                                                      ║
+ * ║  NOTE ON APERTURE:                                                   ║
+ * ║    FNO 4.1 at W/M/T with the stop riding in G3. No iris diameters    ║
+ * ║    are published; the iris schedule is inferred from the nominal     ║
+ * ║    f-number (zoomApertureModel). STO sd records the largest (tele)   ║
+ * ║    inferred iris radius, ≈ 9.0 mm.                                   ║
+ * ║                                                                      ║
+ * ║  NOTE ON SEMI-DIAMETERS:                                             ║
+ * ║    Patent provides no clear apertures. Values are measured from      ║
+ * ║    FIG. 1 (wide state, 300 dpi, 0.0822 mm/px from the 129.90 mm      ║
+ * ║    S1–S30 span) and checked by exact real-ray trace at Y = 21.64 mm  ║
+ * ║    (wide ω = 54.2°, patent 2ω = 108°) with FNO 4.1 at every station. ║
+ * ║    L11 rim 24.0 mm, surface 2 ends at 15.8 mm on a flat annulus      ║
+ * ║    (16.0 kept for chief-ray margin). S5 ends at 15.0 mm on L13's     ║
+ * ║    flat. S18/S19 are capped at 8.58/8.7 mm: the biconvex air lens    ║
+ * ║    closes at ≈ 9.0 mm, and the tele f/4.1 axial beam needs 8.56 /    ║
+ * ║    8.62 mm. S30 stops at 15.8 mm, short of its asphere turnover near ║
+ * ║    16.15 mm. Surfaces within ~15 % of FIG. 1 keep earlier estimates. ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -45,12 +57,12 @@ const LENS_DATA = {
   name: "NIKON AF-S NIKKOR 16-35mm f/4 G ED VR",
   subtitle: "US 2010/0238560 A1 EXAMPLE 1 — NIKON / FUJIMOTO",
   specs: [
-    "17 ELEMENTS / 12 GROUPS",
+    "17 ELEMENTS / 11 GROUPS (+ RESIN LAYER)",
     "f = 16.48–33.94 mm",
     "F/4.1 CONSTANT",
     "2ω = 108°–63°",
     "4 ASPHERICAL SURFACES / 3 ELEMENTS",
-    "2 ED GLASS ELEMENTS (S-FPL51)",
+    "2 ED-CLASS ELEMENTS (νd 82.5)",
   ],
 
   /* ── Explicit metadata ── */
@@ -65,7 +77,7 @@ const LENS_DATA = {
   patentAssignees: ["Nikon Corporation"],
   patentYear: 2010,
   elementCount: 17,
-  groupCount: 12,
+  groupCount: 11,
 
   /* ── Elements ── */
   elements: [
@@ -78,9 +90,9 @@ const LENS_DATA = {
       nd: 1.7669,
       vd: 46.85,
       fl: -25.3,
-      glass: "Q-LASFPH2S (Nikon)",
+      glass: "J-LASFH2 (HIKARI nearest catalog equivalent; patent 1.76690/46.85, catalog 1.76684/46.78)",
       apd: false,
-      role: "Front negative meniscus; both surfaces aspherical (PGM). Controls distortion and oblique SA at extreme field angles.",
+      role: "Front negative meniscus; both surfaces aspherical. Controls distortion and oblique SA at extreme field angles.",
     },
     {
       id: 2,
@@ -231,9 +243,10 @@ const LENS_DATA = {
       nd: 1.49782,
       vd: 82.51,
       fl: 36.8,
-      glass: "S-FPL51 (OHARA) — ED",
+      glass: "J-FKH1 (HIKARI catalog equivalent; S-FPL51-class ED fluorophosphate, vendor unspecified)",
       apd: "inferred",
-      dPgF: 0.033, apdNote: "S-FPL51 fluorophosphate ED glass; dPgF ≈ +0.033 above normal line.",
+      apdNote:
+        "Patent nd/νd 1.49782/82.51 matches the J-FKH1 fluorophosphate ED class; the patent itself does not call the glass anomalous.",
       role: "ED glass in CL41 triplet; corrects secondary spectrum.",
       cemented: "CL41",
     },
@@ -258,9 +271,10 @@ const LENS_DATA = {
       nd: 1.49782,
       vd: 82.51,
       fl: 59.3,
-      glass: "S-FPL51 (OHARA) — ED",
+      glass: "J-FKH1 (HIKARI catalog equivalent; S-FPL51-class ED fluorophosphate, vendor unspecified)",
       apd: "inferred",
-      dPgF: 0.033, apdNote: "S-FPL51 fluorophosphate ED glass; dPgF ≈ +0.033 above normal line.",
+      apdNote:
+        "Patent nd/νd 1.49782/82.51 matches the J-FKH1 fluorophosphate ED class; the patent itself does not call the glass anomalous.",
       role: "Second ED element in CL41; secondary spectrum correction.",
       cemented: "CL41",
     },
@@ -306,52 +320,47 @@ const LENS_DATA = {
   ],
 
   /* ── Surface prescription ──
-   *  SDs estimated via paraxial marginal+chief ray trace across all zoom positions.
-   *  Several SDs reduced from ray-trace values to satisfy renderer constraints:
-   *  sd/|R| < 0.90, element SD ratio ≤ 1.25, edge thickness > 0, cross-gap clearance.
-   *  L11 rear (R = 14.627 mm, K = −0.983) is the most restrictive — the near-parabolic
-   *  aspherical surface physically supports sd ≈ 37 mm (77 mm filter), but the renderer's
-   *  spherical sd/|R| limit requires sd ≤ 13.2 mm.  G1 elements appear undersized relative
-   *  to the actual production lens as a result.
+   *  R, d, nd from Table 1 (Example 1). Semi-diameters: see NOTE ON SEMI-DIAMETERS above
+   *  (FIG. 1 measurement + exact real-ray check; the patent publishes no clear apertures).
    */
   surfaces: [
     // ── G1: Front negative group ──
-    { label: "1A", R: 64.361, d: 3.0, nd: 1.7669, elemId: 1, sd: 20.0 },
-    { label: "2A", R: 14.627, d: 11.25, nd: 1.0, elemId: 0, sd: 14.0 },
-    { label: "3", R: -118.914, d: 1.55, nd: 1.883, elemId: 2, sd: 20.0 },
-    { label: "4", R: 261.338, d: 2.85, nd: 1.0, elemId: 0, sd: 15.4 },
-    { label: "5", R: -57.268, d: 1.5, nd: 1.883, elemId: 3, sd: 17.0 },
+    { label: "1A", R: 64.361, d: 3.0, nd: 1.7669, elemId: 1, sd: 24.0 },
+    { label: "2A", R: 14.627, d: 11.25, nd: 1.0, elemId: 0, sd: 16.0 },
+    { label: "3", R: -118.914, d: 1.55, nd: 1.883, elemId: 2, sd: 17.3 },
+    { label: "4", R: 261.338, d: 2.85, nd: 1.0, elemId: 0, sd: 17.3 },
+    { label: "5", R: -57.268, d: 1.5, nd: 1.883, elemId: 3, sd: 15.0 },
     { label: "6", R: 52.742, d: 0.4, nd: 1.55389, elemId: 4, sd: 17.0 },
     { label: "7A", R: 96.287, d: 1.5, nd: 1.0, elemId: 0, sd: 14.0 },
-    { label: "8", R: 42.407, d: 6.4, nd: 1.69895, elemId: 5, sd: 18.0 },
-    { label: "9", R: -65.202, d: 28.97, nd: 1.0, elemId: 0, sd: 17.5 },
+    { label: "8", R: 42.407, d: 6.4, nd: 1.69895, elemId: 5, sd: 15.3 },
+    { label: "9", R: -65.202, d: 28.97, nd: 1.0, elemId: 0, sd: 15.3 },
 
     // ── G2: Positive focusing group ──
-    { label: "10", R: 36.176, d: 1.05, nd: 1.84666, elemId: 6, sd: 15.0 },
-    { label: "11", R: 19.297, d: 4.95, nd: 1.60342, elemId: 7, sd: 12.0 },
-    { label: "12", R: -121.274, d: 4.7, nd: 1.0, elemId: 0, sd: 12.0 },
-    { label: "13", R: 65.31, d: 3.1, nd: 1.51823, elemId: 8, sd: 14.0 },
-    { label: "14", R: -65.31, d: 3.26, nd: 1.0, elemId: 0, sd: 14.0 },
+    { label: "10", R: 36.176, d: 1.05, nd: 1.84666, elemId: 6, sd: 10.6 },
+    { label: "11", R: 19.297, d: 4.95, nd: 1.60342, elemId: 7, sd: 10.6 },
+    { label: "12", R: -121.274, d: 4.7, nd: 1.0, elemId: 0, sd: 10.6 },
+    { label: "13", R: 65.31, d: 3.1, nd: 1.51823, elemId: 8, sd: 10.6 },
+    { label: "14", R: -65.31, d: 3.26, nd: 1.0, elemId: 0, sd: 10.6 },
 
     // ── G3: VR group ──
-    { label: "STO", R: 1e15, d: 3.26, nd: 1.0, elemId: 0, sd: 8.5 },
+    { label: "STO", R: 1e15, d: 3.26, nd: 1.0, elemId: 0, sd: 9.0 },
     { label: "16", R: -137.621, d: 2.1, nd: 1.70154, elemId: 9, sd: 10.5 },
     { label: "17", R: -31.799, d: 1.0, nd: 1.883, elemId: 10, sd: 10.5 },
-    { label: "18", R: 35.395, d: 2.9, nd: 1.0, elemId: 0, sd: 8.5 },
-    { label: "19", R: -24.463, d: 0.8, nd: 1.883, elemId: 11, sd: 8.5 },
+    { label: "18", R: 35.395, d: 2.9, nd: 1.0, elemId: 0, sd: 8.58 },
+    { label: "19", R: -24.463, d: 0.8, nd: 1.883, elemId: 11, sd: 8.7 },
     { label: "20", R: -40.108, d: 0.15, nd: 1.0, elemId: 0, sd: 10.5 },
-    { label: "21", R: 75.282, d: 2.7, nd: 1.84666, elemId: 12, sd: 13.0 },
-    { label: "22", R: -61.234, d: 12.46, nd: 1.0, elemId: 0, sd: 14.0 },
+    { label: "21", R: 75.282, d: 2.7, nd: 1.84666, elemId: 12, sd: 10.3 },
+    { label: "22", R: -61.234, d: 12.46, nd: 1.0, elemId: 0, sd: 10.3 },
 
     // ── G4: Rear positive group ──
     { label: "23", R: 29.863, d: 8.0, nd: 1.49782, elemId: 13, sd: 16.0 },
     { label: "24", R: -43.301, d: 1.1, nd: 1.834, elemId: 14, sd: 16.0 },
-    { label: "25", R: 75.908, d: 5.95, nd: 1.49782, elemId: 15, sd: 18.0 },
-    { label: "26", R: -47.092, d: 0.15, nd: 1.0, elemId: 0, sd: 18.0 },
+    { label: "25", R: 75.908, d: 5.95, nd: 1.49782, elemId: 15, sd: 16.0 },
+    { label: "26", R: -47.092, d: 0.15, nd: 1.0, elemId: 0, sd: 16.0 },
     { label: "27", R: 39.817, d: 1.1, nd: 1.883, elemId: 16, sd: 16.5 },
     { label: "28", R: 20.5, d: 12.15, nd: 1.48749, elemId: 17, sd: 16.0 },
     { label: "29", R: -40.025, d: 1.6, nd: 1.8061, elemId: 18, sd: 16.0 },
-    { label: "30A", R: -72.448, d: 38.6, nd: 1.0, elemId: 0, sd: 19.5 },
+    { label: "30A", R: -72.448, d: 38.6, nd: 1.0, elemId: 0, sd: 15.8 },
   ],
 
   /* ── Aspherical coefficients ── */
@@ -394,7 +403,7 @@ const LENS_DATA = {
     },
   },
 
-  /* ── Variable air spacings (zoom only — no close-focus data available) ── */
+  /* ── Variable air spacings (Table 1 W / M / T, infinity focus only — no close-focus data published) ── */
   zoomPositions: [16.48, 24.0, 33.94],
   zoomStep: 0.004,
   zoomLabels: ["Wide", "Tele"],
@@ -447,11 +456,13 @@ const LENS_DATA = {
   /* ── Focus configuration ── */
   closeFocusM: 0.29,
   focusDescription:
-    "Internal focusing via CL21 (L21+L22) axial translation within G2. No close-focus gap data in patent; zoom-only variable gaps.",
+    "Internal focusing by axial movement of cemented lens CL21 (L21+L22) inside G2 (¶0060). The patent tabulates no close-focus gaps, so focus travel is not modeled; 0.29 m is Nikon's published minimum focus distance.",
 
   /* ── Aperture configuration ── */
   nominalFno: 4.1,
-  fstopSeries: [4, 5.6, 8, 11, 16, 22],
+  zoomApertureModel: "from-nominal-fno",
+  fstopSeries: [4.1, 5.6, 8, 11, 16, 22],
+  maxFstop: 22,
 
   /* ── Layout tuning ── */
   scFill: 0.42,

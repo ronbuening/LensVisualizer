@@ -201,7 +201,7 @@ The `.data.ts` file is scaled to the manufacturer-published 23 mm focal length. 
 
 $$23 / 23.623313748258 = 0.973614465993$$
 
-All radii, axial spacings, semi-diameters, and focus-gap values were multiplied by $s$. Asphere coefficients were scaled with the dimensionally consistent inverse-power transform $A_{n,\mathrm{scaled}} = A_{n,\mathrm{patent}} / s^{n-1}$. Refractive indices and Abbe numbers were not scaled. Patent cover-glass surfaces 27 and 28 were omitted, and their optical path was folded into the final BFD. The unscaled air-equivalent BFD is:
+All radii, axial spacings, semi-diameters, and focus-gap values were multiplied by $s$. Asphere coefficients were scaled with the dimensionally consistent inverse-power transform $A_{n,\mathrm{scaled}} = A_{n,\mathrm{patent}} / s^{n-1}$. Refractive indices and Abbe numbers were not scaled. The parallel-plate optical member PP (patent surfaces 27 and 28, 2.8500 mm of nd = 1.51680, νd = 64.20 glass, N-BK7 class) is modeled in the data file's `rearPlates` field with the same scaling: every analysis traces it, but it is not drawn. Surface 26A stores the physical 12.4725 mm gap to PP (12.143406 mm scaled), and PP's 0.2112 mm gap to the image (0.205627 mm scaled) is stored with the plate. Its paraxial equivalent, the unscaled air-equivalent BFD, is:
 
 $$12.4725 + 2.8500 / 1.51680 + 0.2112 = 14.562656\,\text{mm}$$
 

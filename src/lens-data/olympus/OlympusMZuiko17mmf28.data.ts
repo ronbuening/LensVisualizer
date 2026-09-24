@@ -10,9 +10,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  Focus: unit focus; the full optical unit translates.              ║
  * ║                                                                    ║
  * ║  NOTE ON SENSOR COVER GLASS:                                       ║
- * ║    Patent surfaces 12–13 are the sensor cover-glass stack. Per     ║
- * ║    project convention they are omitted here and folded into the    ║
- * ║    final BFD: 17.229 + 4.082 / 1.51633 + 0.745 = 20.666026 mm.    ║
+ * ║    Patent surfaces 12–13 (plane plate, 4.082 mm, nd 1.51633,      ║
+ * ║    νd 64.14) and the 0.745 mm air gap to IMG are modeled in       ║
+ * ║    `rearPlates` (traced, not drawn). Surface 11A keeps the        ║
+ * ║    patent's 17.229 mm gap to the cover glass at infinity.         ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    The patent does not publish clear apertures. SDs below were     ║
@@ -22,8 +23,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces from front element to image plane ║
- * ║    ✓ Aperture stop and folded focus/BFD travel                    ║
- * ║    ✗ Sensor cover glass, filters, and mechanical parts omitted    ║
+ * ║    ✓ Aperture stop and unit-focus BFD travel                      ║
+ * ║    ✗ DO NOT include: mechanical parts (cover glass: `rearPlates`)  ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -146,7 +147,19 @@ const LENS_DATA = {
     { label: "8", R: 35.401, d: 4.899, nd: 1.72916, elemId: 5, sd: 7.35 },
     { label: "9", R: -10.81, d: 0.15, nd: 1, elemId: 0, sd: 7.35 },
     { label: "10A", R: 44.588, d: 3, nd: 1.8061, elemId: 6, sd: 9.25 },
-    { label: "11A", R: -51.256, d: 20.6660261421, nd: 1, elemId: 0, sd: 9.65 },
+    { label: "11A", R: -51.256, d: 17.229, nd: 1, elemId: 0, sd: 9.65 },
+  ],
+
+  /* ── Sensor cover glass (patent surfaces 12–13): traced, not drawn ── */
+  rearPlates: [
+    {
+      thicknessMm: 4.082,
+      nd: 1.51633,
+      vd: 64.14,
+      glass: "S-BSL7",
+      gapAfterMm: 0.745,
+      source: "US 8,755,132 B2, Example 1 surfaces 12–13",
+    },
   ],
 
   /* ── Aspherical coefficients ── */
@@ -173,8 +186,9 @@ const LENS_DATA = {
 
   /* ── Variable gaps ── */
   var: {
-    // Unit focus: close-focus BFD solved for manufacturer MFD = 0.2 m measured from the image plane.
-    "11A": [20.6660261421, 22.6100389954],
+    // Unit focus: gap to the cover glass. Close value keeps the image plane of the earlier
+    // air-equivalent solve for manufacturer MFD = 0.2 m (22.6100389954 − 4.082/1.51633 − 0.745).
+    "11A": [17.229, 19.1730128533],
   },
   varLabels: [["11A", "BF"]],
 
@@ -191,7 +205,7 @@ const LENS_DATA = {
   /* ── Focus configuration ── */
   closeFocusM: 0.2,
   focusDescription:
-    "Unit focus. The full optical system translates; the sensor cover glass is omitted and folded into the BFD.",
+    "Unit focus. The full optical system translates ahead of the fixed sensor cover glass.",
 
   /* ── Aperture configuration ── */
   nominalFno: 2.8,

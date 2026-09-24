@@ -45,13 +45,13 @@ These group powers are computed from the final modeled arrays. They are not inte
 
 During wide-to-tele zooming, the G1–G2 interval increases, the G2–G3 and G3–G4 intervals decrease, and the G4–G5 and G5–G6 intervals increase. The G6–G7 interval decreases from wide to middle and then increases slightly toward tele, reproducing the reversal visible in the published spacing row. The rear spacing also increases substantially toward tele. The patent states that G1, the stop/G3 assembly, and G4–G7 move objectward, while G2 follows a locus convex toward the image plane [¶0046–0048].
 
-The computed total-track-to-EFL ratios are greater than one at every station. The computed paraxial BFD values are 21.314818, 31.392325, and 40.553408 mm, each below the corresponding EFL. Under the project definitions, the prescription is therefore neither a telephoto-form system nor a retrofocus system. Those labels would be misleading here.
+The computed total-track-to-EFL ratios are greater than one at every station. The computed paraxial BFD values, expressed as air-equivalent distances through the rear plate, are 21.314818, 31.392325, and 40.553408 mm, each below the corresponding EFL. Under the project definitions, the prescription is therefore neither a telephoto-form system nor a retrofocus system. Those labels would be misleading here.
 
 ### Source Normalization and Geometry Model
 
 Two explicitly published 0.01000 mm adhesive media occur between L1–L2 and L9–L10. The modeled surface sequence represents bonded elements with a direct glass-to-glass interface, so those media were collapsed while their axial thicknesses were retained in the downstream element thicknesses. The model therefore uses 3.57220 mm for L2 and 1.01000 mm for L10. This changes the system EFL only at the sub-micrometre level relative to the fully explicit source trace, but it changes the standalone powers of L2 and L10 slightly; the final data values govern this analysis.
 
-The sensor-cover plate at patent surfaces 38–39 was excluded. Its 2.1 mm physical thickness at nd = 1.51680 was replaced by 1.384493671 mm of paraxially equivalent air, followed by the published 1.0 mm image-plane spacing. The modeled rear spacings are therefore 21.300693671, 31.373993671, and 40.595293671 mm at wide, middle, and tele.
+The parallel plate P at patent surfaces 38–39, which the patent describes as a sensor cover glass or UV-IR cut filter, is modeled in `rearPlates`: 2.1 mm at nd = 1.51680, νd = 64.2 (N-BK7 class), followed by the published 1.0 mm BF to the image plane. Every analysis traces it, but it is not drawn. D37 stores the patent's physical gap to the plate, 18.9162, 28.9895, and 38.2108 mm at wide, middle, and tele. Its paraxial air equivalents, with the plate replaced by 1.384493671 mm of air, are 21.300693671, 31.373993671, and 40.595293671 mm.
 
 The patent publishes no clear apertures or semi-diameters. Every authored semi-diameter is consequently a modeling inference derived from exact meridional ray envelopes at all infinity and published close-focus states. The stop semi-diameter stored in the base surface table is the wide-state value required by the 2.92728 design f-number; the larger middle and tele openings are solved from the zoom-dependent pupil model rather than asserted as patent dimensions.
 
@@ -245,7 +245,7 @@ G5 moves imageward and G6 moves objectward. The sum D29 + D31 + D33 remains cons
 | 40.8776 mm | 3.6205 → 7.2082 mm | 12.9949 → 5.3038 mm | 2.6123 → 6.7157 mm | 3.5877 mm | 4.1034 mm | 372.128 mm | 0.157203× |
 | 67.5503 mm | 4.8909 → 11.7536 mm | 16.4729 → 4.8064 mm | 2.6369 → 7.4408 mm | 6.8627 mm | 4.8038 mm | 370.815 mm | 0.253223× |
 
-The physical MFD values restore the omitted cover plate's physical thickness after the paraxial air-equivalent model is solved. The small difference from the fully explicit adhesive trace—0.223 mm at wide, 0.076 mm at middle, and 0.020 mm at tele—is a consequence of the disclosed cement normalization rather than a focus reconstruction.
+The physical MFD values include the plate's physical 2.1 mm thickness, which is now part of the modeled track. The small difference from the fully explicit adhesive trace—0.223 mm at wide, 0.076 mm at middle, and 0.020 mm at tele—is a consequence of the disclosed cement normalization rather than a focus reconstruction.
 
 Panasonic describes the production lens as using a double-focus system combining linear and stepping motors. That source establishes the product's drive arrangement. The patent and numerical model establish only the optical motion of G5 and G6; they do not assign a motor type to either group.
 

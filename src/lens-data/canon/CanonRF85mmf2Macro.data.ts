@@ -5,19 +5,27 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║           LENS DATA — Canon RF 85mm f/2 Macro IS STM              ║
  * ╠══════════════════════════════════════════════════════════════════════╣
  * ║  Data source: US 2021/0072505 A1, First Numerical Example         ║
- * ║  (Kobayashi, Canon Kabushiki Kaisha).                             ║
+ * ║  (Kobayashi, Canon Kabushiki Kaisha), stored at native patent     ║
+ * ║  scale (f = 82.45 mm, FNO 2.06, ω = 14.70°, Y = 21.64 mm).         ║
  * ║  Positive-front / negative-rear telephoto-type architecture.      ║
  * ║  12 elements / 11 groups, 0 aspherical surfaces.                  ║
- * ║  Focus: unit focus — entire front group (6 elements) extends.     ║
- * ║  Single variable gap D12 between front and fixed rear groups.     ║
+ * ║  Focus: whole front group L1 (surfaces 1–12, incl. stop) moves    ║
+ * ║  toward the object; rear group L2 is fixed. The only variable gap ║
+ * ║  is the patent's d12, tabulated at infinity, β = −0.02 and        ║
+ * ║  β = −0.5 (2.52 / 3.60 / 29.52 mm) — all three kept as keyframes. ║
+ * ║  The β = −0.5 state is 346.2 mm object-to-image (calculated),     ║
+ * ║  i.e. the production 0.35 m MFD. No cover glass or filter is      ║
+ * ║  listed; the last gap is the patent BF 17.60 mm.                  ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    Estimated from combined marginal/chief ray clearance, then      ║
- * ║    reshaped against Canon's published construction section so      ║
- * ║    the rendered silhouette stays proportional: moderate front      ║
- * ║    menisci, compact central correction group, and enlarged rear    ║
- * ║    positive / final meniscus. Tight L7→L8 clearance remains        ║
- * ║    constrained by the 0.49 mm d14 air gap.                         ║
+ * ║    The patent publishes no effective diameters. Values are        ║
+ * ║    ray-clearance estimates checked against FIG. 1 (profiled at    ║
+ * ║    0.0983 mm/px from the S1–S24 vertex span). Stored rims sit     ║
+ * ║    within ~15 % of the drawing (front menisci and L11/L12 about   ║
+ * ║    7–13 % larger than drawn). The cemented L5/L6 front and        ║
+ * ║    junction were raised to the drawn 14.2 mm rim because the      ║
+ * ║    f/2.06 axial pencil reaches 13.7 mm at S10 at β = −0.5.        ║
+ * ║    STO sd records the real-ray f/2.06 iris radius (13.5 mm).      ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -27,7 +35,7 @@ const LENS_DATA = {
   maker: "Canon",
   name: "CANON RF 85mm f/2 Macro IS STM",
   subtitle: "US 2021/0072505 A1 EXAMPLE 1 — CANON / KOBAYASHI",
-  specs: ["12 ELEMENTS / 11 GROUPS", "f ≈ 82.4 mm", "F/2.06", "2ω ≈ 29.4°", "ALL SPHERICAL"],
+  specs: ["12 ELEMENTS / 11 GROUPS", "f ≈ 82.45 mm", "F/2.06", "2ω ≈ 29.4°", "ALL SPHERICAL"],
 
   /* ── Explicit metadata fields ── */
   focalLengthMarketing: 85,
@@ -129,7 +137,7 @@ const LENS_DATA = {
       nd: 1.72047,
       vd: 34.7,
       fl: -45.6,
-      glass: "N-KZFS8 (Schott)",
+      glass: "S-NBH8 (OHARA)",
       apd: false,
       role: "First element of fixed rear group (patent element F). Nearly collimates converging beam from front group; suppresses off-axis aberration variation during focus excursion.",
     },
@@ -143,7 +151,7 @@ const LENS_DATA = {
       fl: 85.4,
       glass: "S-LAH65V (OHARA)",
       apd: false,
-      role: "Positive power in rear group; maintains Petzval balance. No exact OHARA match — HOYA TAFD30 is closest (Δnd = 0).",
+      role: "Positive power in rear group; maintains Petzval balance. Exact S-LAH65V coordinate (1.80400 / 46.5).",
     },
     {
       id: 9,
@@ -153,11 +161,11 @@ const LENS_DATA = {
       nd: 1.92286,
       vd: 20.9,
       fl: 68.3,
-      glass: "PBH21 (OHARA; historical 923209)",
+      glass: "E-FDS1 (HOYA)",
       apd: "inferred",
       apdNote:
-        "Niobium phosphate heavy flint; highest nd in system (1.923). Known positive APD (Pg,F deviates from normal line).",
-      role: "Concave-toward-object positive meniscus. Extreme dispersion and APD complement S-FPL51 (L3) for system-wide apochromatic correction.",
+        "Ultra-high-dispersion dense flint (νd 20.9); such flints lie above the normal Pg,F line. Inferred from the catalog glass — the patent gives no partial-dispersion data. OHARA PBH21 and Schott N-SF66 share the 923209 coordinate.",
+      role: "Concave-toward-object positive meniscus; highest index (1.923) and lowest Abbe number in the system. Rear-group chromatic balance element.",
     },
     {
       id: 10,
@@ -210,10 +218,10 @@ const LENS_DATA = {
     { label: "7", R: -147.348, d: 1.3, nd: 1.68893, elemId: 4, sd: 15.0 }, // L4 front
     { label: "8", R: 37.962, d: 4.9, nd: 1.0, elemId: 0, sd: 14.5 }, // L4 rear → air
     // Aperture stop
-    { label: "STO", R: 1e15, d: 2.86, nd: 1.0, elemId: 0, sd: 13.1 },
+    { label: "STO", R: 1e15, d: 2.86, nd: 1.0, elemId: 0, sd: 13.5 },
     // L1b: post-stop cemented doublet (L5+L6)
-    { label: "10", R: 114.201, d: 1.3, nd: 1.84666, elemId: 5, sd: 13.6 }, // L5 front
-    { label: "11", R: 46.967, d: 6.4, nd: 1.90043, elemId: 6, sd: 13.8 }, // L5→L6 junction
+    { label: "10", R: 114.201, d: 1.3, nd: 1.84666, elemId: 5, sd: 14.2 }, // L5 front
+    { label: "11", R: 46.967, d: 6.4, nd: 1.90043, elemId: 6, sd: 14.2 }, // L5→L6 junction
     { label: "12", R: -90.592, d: 2.52, nd: 1.0, elemId: 0, sd: 14.2 }, // L6 rear → air (variable)
     // ── Rear group L2 (negative, fixed during focus) ──
     { label: "13", R: -78.073, d: 1.15, nd: 1.72047, elemId: 7, sd: 13.0 }, // L7 front
@@ -234,11 +242,12 @@ const LENS_DATA = {
   asph: {},
 
   /* ── Published variable air spacings: infinity, β=-0.02, β=-0.5 ── */
-  focusPositions: [0, 0.0822777767555055, 1],
+  /* β=-0.02 coordinate = closeFocusM / 4.2775 m (calculated object-to-image for that state). */
+  focusPositions: [0, 0.0818, 1],
   var: {
     "12": [2.52, 3.6, 29.52],
   },
-  varLabels: [["12", "D12"]],
+  varLabels: [["12", "d12"]],
 
   /* ── Group and doublet annotations ── */
   groups: [
@@ -250,11 +259,12 @@ const LENS_DATA = {
   /* ── Focus configuration ── */
   closeFocusM: 0.35,
   focusDescription:
-    "Unit focus — entire front group L1 (6 elements, 5 groups + aperture stop) translates forward. Rear group L2 (6 elements, 6 groups) fixed. 27.0 mm extension at 0.5× magnification.",
+    "Unit focus — entire front group L1 (6 elements, 5 groups + aperture stop) translates toward the object. Rear group L2 (6 elements, 6 groups) fixed. Patent d12 grows 2.52 → 3.60 → 29.52 mm (∞, β = −0.02, β = −0.5): 27.0 mm extension at 0.5×.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 2.0,
-  fstopSeries: [2, 2.8, 4, 5.6, 8, 11, 16, 22, 29],
+  nominalFno: 2.06,
+  fstopSeries: [2.06, 2.8, 4, 5.6, 8, 11, 16, 22, 29],
+  maxFstop: 29,
   apertureBlades: 9,
 
   /* ── Layout tuning ── */

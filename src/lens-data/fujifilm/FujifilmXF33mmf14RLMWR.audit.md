@@ -16,3 +16,13 @@ Patent: US 2022/0276464 A1, Example 3
 - Visually rechecked `patents/US20220276464A1.pdf`, PDF page 38, Example 3. L26 remains `nd = 1.85343`, `νd = 40.55`.
 - HOYA L-LAH85V is within the runtime catalog-equivalent window (`Δnd = +0.000570`, `Δνd = -0.172`).
 - Relabeled L26 as an L-LAH85V optical equivalent while leaving the production supplier unspecified. No prescription geometry changed.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Replaced the air-equivalent fold with the patent's physical rear stack, read from `patents/US20220276464A1.pdf` PDF
+  page 38, Table 9 (Example 3): d26 = 9.4071 mm, then `rearPlates` PP 2.8500 mm, nd 1.51680, νd 64.20 (N-BK7, resolved
+  by the runtime catalog), and d28 = 0.2010 mm to the image plane. The plate is traced by every analysis but not drawn.
+- Paraxial check against the previous data: EFL identical; defocus moves by +0.0003 mm at infinity and close focus. The
+  old stored 11.4867571842 mm was the recomputed Gaussian BFD rather than the printed fold (11.4871 mm); the new file
+  keeps the patent's printed spacings. Physical track grows by 2.85 × (1 − 1/1.5168) = 0.971 mm plus that rounding, to
+  83.378 mm.

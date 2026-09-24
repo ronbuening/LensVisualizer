@@ -121,6 +121,44 @@ describe("validateLensData", () => {
     }
   });
 
+  it("accepts source-documented rear plates and rejects malformed or unsupported ones", () => {
+    const plate = { label: "CG", thicknessMm: 2, nd: 1.5168, vd: 64.17, glass: "N-BK7", gapAfterMm: 1 };
+    const errorsFor = (overrides: Record<string, unknown>) => validateLensData(makeValid(overrides));
+    const has = (errors: string[], text: string) => errors.some((error) => error.includes(text));
+
+    expect(errorsFor({ rearPlates: [plate] })).toEqual([]);
+    expect(has(errorsFor({ rearPlates: [] }), '"rearPlates" must be a non-empty array')).toBe(true);
+    const malformed = errorsFor({ rearPlates: [{ ...plate, thicknessMm: 0, nd: 1, vd: undefined, gapAfterMm: -1 }] });
+    for (const text of [
+      "thicknessMm must be > 0",
+      "nd must be a finite index > 1",
+      "vd must be",
+      "gapAfterMm must be",
+    ]) {
+      expect(has(malformed, text)).toBe(true);
+    }
+    expect(has(errorsFor({ rearPlates: [plate], opticalPath: { mode: "auto" } }), "folded or generalized")).toBe(true);
+    expect(
+      has(
+        errorsFor({ rearPlates: [plate], perspectiveControl: { shift: { enabled: false } } }),
+        'cannot be combined with "perspectiveControl"',
+      ),
+    ).toBe(true);
+  });
+
+  it("reserves synthetic markers and rear-plate labels for the engine", () => {
+    const valid = makeValid();
+    const surfaces = valid.surfaces as Record<string, unknown>[];
+    const errors = validateLensData({
+      ...valid,
+      surfaces: [{ ...surfaces[0], label: "RP1a" }, surfaces[1], { ...surfaces[2], synthetic: "rearPlate" }],
+      elements: [{ ...(valid.elements as Record<string, unknown>[])[0], synthetic: "rearPlate" }],
+    });
+
+    expect(errors.some((error) => error.includes("reserved for generated rear plates"))).toBe(true);
+    expect(errors.filter((error) => error.includes('"synthetic" is engine-generated'))).toHaveLength(2);
+  });
+
   it("rejects keys that are not URL- and cfg-safe", () => {
     for (const key of ["canon-ef-24mm-f1.4-l-usm", "Test-Lens", "double--hyphen", "-leading", "trailing-"]) {
       const errors = validateLensData(makeValid({ key }));

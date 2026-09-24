@@ -265,7 +265,9 @@ export default function useLensComputation({
   const varReadouts: VarReadout[] = L
     ? L.varLabels.map(([idx, label]) => {
         const val = thick(idx, focusT, zoomT, L, aberrationT).toFixed(2);
-        return { label, val };
+        /* With modeled rear plates the last lens gap ends at the plate stack, not the sensor. */
+        const toPlate = idx === L.lastLensSurfaceIdx && idx < L.N - 1;
+        return { label: toPlate ? `${label} (to plate)` : label, val };
       })
     : [];
   const aberrationReadouts: VarReadout[] = L?.aberrationControl

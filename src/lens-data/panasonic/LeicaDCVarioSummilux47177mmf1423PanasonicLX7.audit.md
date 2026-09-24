@@ -63,3 +63,16 @@ The four Panasonic fixed-camera lenses consistently use Panasonic maker metadata
 **Assignees:** reviewed the 64-name corpus inventory and this publication. The four Panasonic publications share Panasonic Intellectual Property Management Co., Ltd.; the two German publications share Ernst Leitz GmbH. Existing canonical names are already consolidated. Historical legal renames and distinct subsidiaries remain separate.
 
 **Verification:** surface/image-circle audits, five-state render diagnostics, local-site wide/tele controls (zooms), disabled focus controls, and the required typecheck/format/lint/test/build gates.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Table 1 (PDF p. 19) prints surface 23 d = 0.40000, then plate P at surfaces 24–25: 0.90000 mm, nd 1.51680, νd 64.2.
+  Table 3 (PDF p. 20) prints BF 0.62702 / 0.64271 / 0.62527 and overall length 62.7990 / 57.9551 / 65.9945 mm. Plate P
+  is now in `rearPlates` as N-BK7 (`resolveCompatibleGlass` accepts 1.51680/64.2), with the wide BF 0.62702 mm as the fixed
+  trailing gap.
+- The file's code-solved paraxial image plane is kept. Surface 23 = legacy air-equivalent spacing − 0.9/1.5168 − 0.62702,
+  which gives 0.400954 / 0.416574 / 0.399065 mm against the printed 0.40. The 0.0156 mm middle offset carries Table 3's BF
+  variation, and the remaining ≤ 0.001 mm is the solved-image residual. Paraxial check against the previous data: EFL is
+  identical, and defocus changes by less than 1e−6 mm at all three zoom states.
+- Physical track grows by 0.3066 mm (0.9 × (1 − 1/1.5168)) to 62.800 / 57.956 / 65.995 mm. That now matches Table 3's
+  overall lengths to within 0.001 mm.

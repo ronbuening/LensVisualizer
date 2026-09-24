@@ -18,7 +18,7 @@ The correlation with the production FUJINON XF18mmF1.4 R LM WR is strong but is 
 2. Example 1 has six elements in the moving G2 focus group, L21–L26. FUJIFILM states that the production lens uses a linear motor to drive all six focusing elements as one.
 3. The patent gives a 17.90 mm focal length and FNo 1.44 at infinity, while the marketed lens is 18 mm f/1.4.
 4. The patent maximum image height is 14.2 mm, corresponding to a 28.4 mm image diameter, consistent with the APS-C format used by the X system.
-5. For the patent's 110 mm object-distance state, the source physical first-surface-to-image track including PP is 91.0641 mm, so the raw object-to-Sim distance is 201.0641 mm. After the documented PP omission and air-equivalent normalization, the modeled first-surface-to-image track is 90.0930557 mm, giving 200.0931 mm from the source object plane to the modeled image plane. That normalized value is consistent, to the precision of the published prescription, with FUJIFILM's 200 mm minimum focus distance measured from the focal plane.
+5. For the patent's 110 mm object-distance state, the source physical first-surface-to-image track including PP is 91.0641 mm, so the raw object-to-Sim distance is 201.0641 mm. With PP reduced to its air equivalent (t/n), the first-surface-to-image track is 90.0930557 mm, giving 200.0931 mm from the source object plane to the paraxially equivalent image plane. That air-equivalent value is consistent, to the precision of the published prescription, with FUJIFILM's 200 mm minimum focus distance measured from the focal plane.
 6. The independently traced close-state paraxial magnification is -0.14617, close in magnitude to the marketed 0.15× maximum magnification.
 7. The patent's July 2020 priority date precedes the April 2021 product announcement and planned May 2021 release.
 
@@ -34,9 +34,9 @@ Computed as isolated group segments in air, G1 has an effective focal length of 
 
 The aperture stop follows L17 at the rear of G1. Its axial position is source-published, but its physical diameter is not: patent ¶0048 explicitly states that the stop shown in Figure 1 indicates position rather than size and shape. The modeled stop semi-diameter of 10.73762 mm is therefore a calibration to the published infinity FNo 1.44. It is not a measured or patent-tabulated diaphragm radius.
 
-The patent also places a parallel optical member PP between the last lens and the image plane (¶0046). Because PP represents filters and/or cover glass and may be omitted, it is excluded from the LensVisualizer prescription. Its physical rear region of 12.3641 mm is replaced by an air-equivalent 11.3930557 mm spacing after surface 25, preserving the paraxial image reference plane. This is a model transformation, not a change to the patent's raw table.
+The patent also places a parallel optical member PP between the last lens and the image plane (¶0046); it represents filters and/or cover glass and has no refractive power. The data file models PP as printed in Table 1 in `rearPlates`: surface 25 keeps the 8.4141 mm gap to the plate, followed by the 2.8500 mm plate (nd 1.51680, νd 64.20) and the 1.1000 mm gap to Sim. Every analysis traces the plate, but it is not drawn as an element. Its paraxial air equivalent is 11.3930557 mm from surface 25 to the image plane.
 
-The active first-surface-to-image track after that normalization is 90.0931 mm at infinity. The computed back focal distance from the last active vertex is 11.3918 mm. Under the project terminology rules, the design is therefore not labeled “retrofocus” merely because it is a wide-angle lens, and no telephoto classification is assigned.
+The physical first-surface-to-image track, including PP, is 91.0641 mm at infinity (90.0931 mm with PP reduced to its air equivalent). The computed air-equivalent back focal distance from the last lens vertex is 11.3918 mm. Under the project terminology rules, the design is therefore not labeled “retrofocus” merely because it is a wide-angle lens, and no telephoto classification is assigned.
 
 The patent publishes no clear or semi-diameters. The data file consequently uses modeled semi-diameters constrained by the exact meridional ray envelope and the optical section. For those modeled apertures, the smallest computed element edge thickness is 0.1419 mm, the largest actual rim-slope angle is 50.94°, and the largest positive shared-gap sag-intrusion fraction is 0.8909. Exact meridional containment checks cover the two published focus endpoints and three intermediate interpolation samples. These checks support the authored geometry but do not substitute for a production LensVisualizer render-diagnostics run.
 
@@ -130,7 +130,7 @@ L31 begins the fixed rear group G3 and is cemented to L32. The pair is weakly ne
 
 *nd = 1.84667, νd = 23.79. Glass: 847238 — dense-flint class (supplier unresolved). Standalone f = -73.354 mm.*
 
-L32 is the final physical lens element. Its cemented pairing with the higher-Abbe L31 yields the weak negative G3 power noted above. Surface 25 is flat and is followed by the modeled air-equivalent image spacing; the patent's separate PP plate is intentionally not represented as an element in the active lens model.
+L32 is the final physical lens element. Its cemented pairing with the higher-Abbe L31 yields the weak negative G3 power noted above. Surface 25 is flat and is followed by the patent's 8.4141 mm gap to the PP plate, which is traced through `rearPlates` but not drawn as a lens element.
 
 ## Glass Identification and Selection
 
@@ -166,7 +166,7 @@ The equal-and-opposite changes correspond to a rigid 2.50 mm objectward translat
 
 FUJIFILM states that the production XF18mmF1.4 uses a linear AF motor and that all six focusing elements move as one. This is consistent with the six-element G2 mechanism in the patent example, but it remains part of the correlation evidence rather than proof that the patent example and production prescription are identical.
 
-The source's “110 mm” distance is measured from the object to the first lens surface. Including the source PP plate, the raw 91.0641 mm first-surface-to-Sim track gives 201.0641 mm from object to Sim. In the PP-omitted LensVisualizer model, the air-equivalent first-surface-to-image track is 90.0930557 mm, so the same source object plane lies 200.0931 mm from the modeled image plane. FUJIFILM specifies a 20 cm minimum focus distance measured from the focal plane. The final data therefore uses `closeFocusM = 0.2` as the production/model reference while retaining the patent's published internal spacings at the close endpoint. The paraxial magnification at that patent state is -0.14617, compared with the marketed 0.15× maximum magnification.
+The source's “110 mm” distance is measured from the object to the first lens surface. Including the source PP plate, the raw 91.0641 mm first-surface-to-Sim track gives 201.0641 mm from object to Sim. With PP reduced to its air equivalent, the first-surface-to-image track is 90.0930557 mm, so the same source object plane lies 200.0931 mm from the paraxially equivalent image plane. FUJIFILM specifies a 20 cm minimum focus distance measured from the focal plane. The final data therefore uses `closeFocusM = 0.2` as the production/model reference while retaining the patent's published internal spacings at the close endpoint. The paraxial magnification at that patent state is -0.14617, compared with the marketed 0.15× maximum magnification.
 
 ## Aspherical Surfaces
 

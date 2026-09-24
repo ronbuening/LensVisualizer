@@ -27,3 +27,9 @@ Catalog version: local working tree, 2026-06-25
 ### Phase 4 - Analysis sync
 
 - Updated `ZeissZX1Distagon35mmf2.analysis.md` so the L5/L7 prose, glass table, and chromatic-correction summary describe S-FPM2 as catalog-inferred APD rather than merely low-dispersion glass.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Read Example 1 Table 1 on PDF page 21 (printed page 7) at 160 dpi: AF16 d = 0.50000 (not focus-variable in Table 2); AF17 1.20000 BK7_Schott (SD 20.17427 / AF18 20.46500); AF18 0.50000 air; AF19 0.80000 BK7_Schott (SD 20.66304 / AF20 20.86325); AF20 2.00000 to the image. ¶0064 excludes these filters 60 from the camera lens but says their thickness and index are used in the design.
+- Surface 14A (AF16) now stores the physical 0.5 mm gap, with two unlabelled `rearPlates` (gapAfter 0.5 and 2.0 mm, `sd` = the larger printed face SD of each plate). The patent names the glass but prints no nd/νd, so the plates use catalog N-BK7 (1.51680 / 64.17, `glass: "N-BK7 (Schott)"`), the same index the legacy fold used and the same trade-name-to-catalog convention as the OHARA elements.
+- Paraxial check against the previous data: EFL identical and defocus unchanged at both focus keyframes (worst |Δ| 8e-10 mm; the old 4.3185654 mm fold was exact). Physical track grows by 0.681 mm, so the stored AF2-to-image length now equals the patent's 57.000 mm.

@@ -5,7 +5,7 @@
 **Assignee:** Canon Camera Company, Ltd.  
 **Filed:** June 29, 1951 (priority: Japan, November 7, 1950)  
 **Granted:** June 22, 1954  
-**Embodiment analyzed:** Example 1, Claim 3  
+**Embodiment analyzed:** Sole numerical example (description table, repeated verbatim in claim 3)  
 **Marketed:** November 1951 (Canon Camera Museum)
 
 ---
@@ -16,7 +16,7 @@ The Canon Serenar 50mm f/1.8 is a six-element, four-group modified Gauss (double
 
 The lens has no aspherical surfaces — all ten optical surfaces are spherical. This is entirely expected for a 1950–51 design; aspherical surfaces in photographic objectives did not become practical until decades later.
 
-The patent provides a single worked numerical example (Example 1, Claim 3), normalized to a focal length of f = 1.00, at F/1.8 with an including field of 46°. This analysis focuses exclusively on that example.
+The patent provides a single numerical example, printed in the description and repeated verbatim in claim 3, headed f = 1.00, F:1.8, with an including field of 46°. This analysis focuses exclusively on that example.
 
 ### Key Specifications (Canon Camera Museum)
 
@@ -35,7 +35,7 @@ The patent provides a single worked numerical example (Example 1, Claim 3), norm
 
 ## 2. Optical Prescription
 
-The patent normalizes all dimensions to a focal length of f = 1.00. The prescription from Claim 3 is reproduced below:
+The patent heads its table f = 1.00. The prescription (identical in the description and in claim 3) is reproduced below:
 
 | Surface | Radius (r) | Thickness (d) | nd | νd |
 |---|---|---|---|---|
@@ -50,13 +50,17 @@ The patent normalizes all dimensions to a focal length of f = 1.00. The prescrip
 | r₉ | +1.700 | 0.070 | 1.6385 | 55.5 |
 | r₁₀ | −1.257 | (BFD) | (air) | — |
 
-The aperture stop is located in the air gap d₅ = 0.132, between surfaces r₅ and r₆. The patent does not explicitly specify the stop position within this gap, but the drawing shows it centered between Groups II and III, consistent with classic Gauss-type placement.
+The aperture stop is located in the air gap d₅ = 0.132: the text describes the concave faces r₅ and r₆ as "facing each other across the stop." The patent neither tabulates the stop position nor draws a diaphragm (the single figure shows glass only), so the diagram's mid-gap placement is a model choice consistent with classic Gauss-type practice.
 
 ### EFL Verification
 
-A paraxial ABCD matrix ray trace through the full prescription yields an EFL of approximately 0.897 (normalized), about 10% shorter than the stated f = 1.00. This level of discrepancy is not uncommon in patents of this era, where tabulated values are rounded to three or four significant figures and small rounding errors accumulate through a multi-element system. The computed image circle radius, when scaled to a 50 mm production focal length, is approximately 21.2 mm — closely matching the 21.6 mm half-diagonal of the 35mm format and confirming the design's intended coverage.
+A paraxial trace through the full prescription yields an EFL of 0.8973, about 10% shorter than the stated f = 1.00. Rounding of the printed values cannot account for a difference this large, and both printed copies of the table agree, so it is not a transcription slip between them. No plausible single-digit misprint restores f = 1.00 either: the only single-value change found that does so is d₈ = 0.203 instead of 0.003, which the patent figure contradicts (it draws d₈ as a hairline gap, far narrower than d₅). The discrepancy is therefore recorded as a source inconsistency rather than corrected.
 
-The scaling factor from patent units to the 50 mm production lens is approximately 55.7×.
+The diagram scales every radius and thickness by 55.725, which puts the computed EFL at the production 50 mm (49.99 mm) and the back focal distance at 25.42 mm. At that scale the patent's 46° field reaches an image height of 21.2 mm, close to the 21.6 mm half-diagonal of the 35mm format.
+
+### Semi-diameters
+
+The patent publishes no clear apertures, so the diagram's semi-diameters are estimates. Their absolute size is set by the exact f/1.8 marginal ray (it reaches 13.9 mm at the front surface, carried with 15.5 mm), and the proportions between elements follow the rim heights drawn in the patent figure: L1, the front doublet, the rear doublet and L6 stand roughly 1 : 0.84 : 0.74 : 0.83. The figure draws the two stop-facing concave surfaces (r₅ and r₆) ending inside a bevel well short of their elements' outer rims, and the diagram keeps that step. With these rims the full 23° chief ray clears every surface; the rear doublet and L6 had previously been drawn too small for it to pass.
 
 ---
 
@@ -77,7 +81,7 @@ L1 is a strongly positive meniscus that serves as the front collector. Its front
 
 ### Group II — Cemented Doublet: L2 (biconvex) + L3 (biconcave)
 
-This is the front compound meniscus, concave toward the image side. The overall group is a negative meniscus with a thick-lens focal length of approximately −74.3 mm (at 50 mm scale).
+This is the front compound meniscus, concave toward the image side. The overall group is a negative meniscus with a thick-lens focal length of approximately −74.4 mm (at 50 mm scale).
 
 #### L2: Biconvex Positive
 
@@ -99,7 +103,7 @@ L2 is the convex component of the front cemented doublet. Its front surface r₃
 | Glass | nd = 1.7400, νd = 28.2 |
 | Thickness | d = 0.044 |
 | Element focal length | −16.2 mm (at 50 mm scale) |
-| Glass match | **OHARA S-TIH3** (nd = 1.7400, νd = 28.2) — coefficient-backed catalog match |
+| Glass match | **OHARA S-TIH3** (nd = 1.74000, νd = 28.30 against the patent's 28.2) — coefficient-backed catalog equivalent |
 
 L3 is the concave component of the front doublet, and it is the single most critical element in the patent's innovation. Its glass has the highest refractive index in the entire system (nd = 1.7400), and the patent's central claim depends on this fact.
 
@@ -109,11 +113,11 @@ The rear surface r₅ = +0.2410 is the most powerful diverging surface in the sy
 
 ### Aperture Stop
 
-The stop sits in the air gap d₅ = 0.132 between Groups II and III, the characteristic location for a double-Gauss design. The patent drawing shows the stop centered in this space.
+The stop sits in the air gap d₅ = 0.132 between Groups II and III, the characteristic location for a double-Gauss design. The patent does not draw it; the centered position in the diagram is a model choice.
 
 ### Group III — Cemented Doublet: L4 (biconcave) + L5 (biconvex)
 
-This is the rear compound meniscus, concave toward the object side. The overall group is weakly positive, with a thick-lens focal length of approximately +193.0 mm (at 50 mm scale).
+This is the rear compound meniscus, concave toward the object side. The overall group is weakly positive, with a thick-lens focal length of approximately +192.9 mm (at 50 mm scale).
 
 #### L4: Biconcave Negative
 
@@ -141,7 +145,7 @@ The glass is an ordinary crown (K10), one of the simplest and cheapest optical g
 
 L5 is the convex component of the rear doublet. It provides the dominant positive power in Group III. Its historical SK18-type coordinate is modeled with coefficient-backed SUMITA K-SK18 without claiming that SUMITA supplied the patent glass. This dense barium crown has moderately high index and low dispersion. Notably, the Abbe number difference between L4 and L5 is only Δνd ≈ 1.0 — far too small for effective achromatization. This confirms that the rear doublet's cemented interface serves primarily for the Petzval balancing and spherical aberration redistribution described in the patent, rather than for chromatic correction. The large Δnd of 0.137 between L4 and L5 drives the refractive power at the junction, while chromatic correction for the rear half of the system is carried primarily by the curvatures and air spacings rather than by the cemented interface.
 
-**Interface curvature:** The cemented surface r₇ = +0.4380 is convex toward the object side, as required by the patent claims. The patent further specifies that the ratio |r₄|/|r₇| should be "substantially 5 to 1." The actual ratio is 2.100/0.438 = 4.79, close to the claimed 5:1. This ratio controls the balance of spherical aberration correction between the two cemented interfaces.
+**Interface curvature:** The cemented surface r₇ = +0.4380 is convex toward the object side, as required by the patent claims. Claim 1 bounds the two interfaces relative to the focal length (|r₄| between two and three times f, r₇ between 0.4 and 0.5 f), and claim 2 specifies that the ratio |r₄|/|r₇| should be "substantially 5 to 1." The actual ratio is 2.100/0.438 = 4.79, close to the claimed 5:1. This ratio controls the balance of spherical aberration correction between the two cemented interfaces.
 
 ### Group IV — L6: Biconvex Positive
 
@@ -165,7 +169,7 @@ The surface-by-surface Petzval sum computes to approximately +0.414 (normalized)
 
 ## 5. Focus Mechanism
 
-The Canon Serenar 50mm f/1.8 uses **unit focusing**: the entire optical assembly moves axially as a rigid unit, with only the back focal distance changing. This is standard for rangefinder lenses of this era and is consistent with the patent, which does not describe any internal focusing groups or floating elements. The Canon Camera Museum lists a minimum focusing distance of 1.0 m (approximately 3.3 ft).
+The Canon Serenar 50mm f/1.8 uses **unit focusing**: the entire optical assembly moves axially as a rigid unit, with only the back focal distance changing. This is standard for rangefinder lenses of this era and is consistent with the patent, which does not describe any internal focusing groups or floating elements. The Canon Camera Museum lists a minimum focusing distance of 1.0 m (approximately 3.3 ft). The patent publishes no close-focus state; in the diagram the whole lens moves 2.77 mm forward to focus an object 1.0 m from the film plane (magnification about 1:18). That extension is calculated from the scaled prescription, not a patent or factory value.
 
 ---
 
@@ -181,12 +185,12 @@ The Canon Serenar 50mm f/1.8 uses **unit focusing**: the entire optical assembly
 |---|---|---|---|---|---|
 | L1 | 1.6204 | 60.3 | 620/603 | Schott SK16 | Exact |
 | L2 | 1.6261 | 39.1 | 626/391 | CDGM H-BaF8 catalog equivalent; supplier unspecified | Code-backed |
-| L3 | 1.7400 | 28.2 | 740/282 | OHARA S-TIH3 | Exact |
+| L3 | 1.7400 | 28.2 | 740/282 | OHARA S-TIH3 (1.74000/28.30) | Excellent |
 | L4 | 1.5014 | 56.5 | 501/565 | Schott K10 (1.5014/56.4) | Excellent |
 | L5 | 1.6385 | 55.5 | 639/555 | SUMITA K-SK18 catalog equivalent (1.63854/55.5) | Coefficient-backed equivalent |
 | L6 | 1.6385 | 55.5 | 639/555 | SUMITA K-SK18 catalog equivalent (1.63854/55.5) | Coefficient-backed equivalent |
 
-Five of the six elements have coefficient-backed catalog matches or coordinate-equivalent models. L5 and L6 use SUMITA K-SK18 as the public spectral model for the patent's historical SK18 coordinate without asserting the production supplier. L3 uses coefficient-backed OHARA S-TIH3. L2 remains a code-family barium dense flint assignment because no current public catalog row round-trips 1.6261 / 39.1, and modern HOYA BAFD7 is a different 702/412 glass. These are modern catalog designations; the specific glass names available in 1950 would have differed.
+All six elements now resolve to coefficient-backed catalog rows within 1×10⁻⁴ in nd and 0.1 in νd of the patent pair. L5 and L6 use SUMITA K-SK18 as the public spectral model for the patent's historical SK18 coordinate without asserting the production supplier. L3 uses OHARA S-TIH3. L2 uses CDGM H-BaF8, which carries the same 626/391 code; modern HOYA BAFD7 is a different 702/412 glass. The patent names no glasses or suppliers; these are modern catalog designations, and the specific glass names available in 1950 would have differed.
 
 It is worth noting that L5 and L6 share the same glass type. This is a practical simplification: using a single glass for two elements reduces procurement complexity and melt-lot variability — an important consideration for a lens produced in large volume. Third-party estimates place total production of the Serenar 50mm f/1.8 at approximately 90,000 to over 100,000 units (Kitchingman, 2008; klassik-cameras.de).
 
@@ -221,4 +225,4 @@ The power is concentrated in the inner elements (S3 and S5), with the two outer 
 
 ---
 
-*Analysis based on US Patent 2,681,594 (Ito, 1954); Canon Camera Museum product pages for the Serenar 50mm f/1.8 I and Canon II C camera; and independent paraxial ray trace verification. Glass identifications are inferred from nd/νd matching against public Schott, OHARA, and HOYA catalogs. Modern catalog designations identify equivalent glass families but may not reflect the specific trade names used in 1950. Production volume estimates from Kitchingman (2008).*
+*Analysis based on US Patent 2,681,594 (Ito, 1954); Canon Camera Museum product pages for the Serenar 50mm f/1.8 I and Canon II C camera; and independent paraxial ray trace verification. Glass identifications are inferred from nd/νd matching against public Schott, OHARA, CDGM, and SUMITA catalogs. Modern catalog designations identify equivalent glass families but may not reflect the specific trade names used in 1950. Production volume estimates from Kitchingman (2008).*

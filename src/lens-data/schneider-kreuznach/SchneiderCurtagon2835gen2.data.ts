@@ -55,7 +55,7 @@ const LENS_DATA = {
   apertureDesign: 2.8,
   imageFormat: "135-full-frame",
   patentNumber: "US 3,318,653",
-  patentAuthors: ["Karl H. Macher"],
+  patentAuthors: ["Karl Heinrich Macher"],
   patentAssignees: ["Jos. Schneider & Co., Optische Werke"],
   patentYear: 1967,
   elementCount: 6,

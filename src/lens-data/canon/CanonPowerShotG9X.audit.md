@@ -34,3 +34,12 @@ Backfilled all five Example-1 θgF ratios from PDF pp. 12–13 as normal-line de
 Camera-fixed L1 reverses at mid (+2.63 then −1.61 mm relative to wide), L2 moves objectward, L3 imageward. The independently moving stop is preserved. No finite-focus table is published and no focus travel is fabricated.
 
 Surface/image-circle audits and the source-station, dispersion, and render-clearance regressions validate this follow-up; final repository gates are recorded in the batch record.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Replaced the air-equivalent fold with Example 1's physical rear stack (local PDF p. 13, ¶0074 surface table and
+  zoom data): d15 = 5.14 / 3.38 / 2.74 mm, then a 1.09 mm plate at nd 1.51633, νd 64.1 (surfaces 16–17; no patent
+  designation, described in ¶0070 as a filter member) and 1.62 mm to the image plane. Printed BF 7.48 / 5.72 / 5.08 mm
+  is reproduced by d15 + 1.09/1.51633 + 1.62. Glass label S-BSL7 (exact nd/νd match; resolves as compatible).
+- Paraxial check against the previous data: EFL identical and defocus unchanged at all three zoom stations (the old
+  fold was computed exactly). Physical track grows by 1.09 × (1 − 1/1.51633) = 0.371 mm.

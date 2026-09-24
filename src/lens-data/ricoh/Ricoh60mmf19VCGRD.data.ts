@@ -17,9 +17,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                            ║
  * ║ Scaling: none (s = 1.0). The computed d-line EFL is 6.002506 mm.           ║
  * ║                                                                            ║
- * ║ Rear normalization: patent surfaces 16-17 are the parallel filter /        ║
- * ║ sensor-cover plate F and are excluded. Surface 15 d is replaced by the     ║
- * ║ independently solved air-equivalent paraxial BFD, 8.684199096476275 mm.   ║
+ * ║ Rear plate: patent surfaces 16-17 (parallel plate F, filter / sensor       ║
+ * ║ cover glass, 1.50 mm, N = 1.50000, ν = 64.00) are modeled in `rearPlates`  ║
+ * ║ (traced, not drawn). Surface 15 keeps the printed 7.08 mm gap to F. The    ║
+ * ║ patent prints no gap after F; gapAfterMm = 0.604199 mm is derived, not     ║
+ * ║ printed (legacy air-equivalent paraxial BFD 8.684199 - 7.08 - 1.50/1.50),  ║
+ * ║ so the paraxial image plane is unchanged. No catalog glass matches.        ║
  * ║                                                                            ║
  * ║ Asphere note: Example 4 omits K for patent surface 14. K = 0 is a          ║
  * ║ disclosed inference, consistent with the patent equation and sibling       ║
@@ -215,7 +218,20 @@ const LENS_DATA = {
     { label: "12", R: 8.692, d: 2.96, nd: 1.497, elemId: 7, sd: 4.9 },
     { label: "13", R: -22.963, d: 2.56, nd: 1.0, elemId: 0, sd: 5.0 },
     { label: "14A", R: 21.924, d: 1.5, nd: 1.51633, elemId: 8, sd: 5.1 },
-    { label: "15", R: -134.256, d: 8.684199096476275, nd: 1.0, elemId: 0, sd: 5.1 },
+    { label: "15", R: -134.256, d: 7.08, nd: 1.0, elemId: 0, sd: 5.1 },
+  ],
+
+  /* ── Filter / cover plate F (patent surfaces 16–17): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "F",
+      thicknessMm: 1.5,
+      nd: 1.5,
+      vd: 64.0,
+      // Not printed: legacy air-equivalent paraxial BFD 8.684199096476275 − 7.08 − 1.50/1.50000.
+      gapAfterMm: 0.604199096476275,
+      source: "JP 2010-164839 A, Example 4 Table 7 surfaces 16–17 (gap after derived, not printed)",
+    },
   ],
 
   /* ── Aspherical coefficients ── */

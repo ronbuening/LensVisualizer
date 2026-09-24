@@ -41,7 +41,7 @@ The design is not a conventional long-back-focus SLR retrofocus lens, because it
 
 The aperture stop is at patent surface 13, immediately before Gr2. The fixed distance from the stop to L7 in both focus states shows that the stop translates with Gr2 in the patent model. In the data file, the stop is labeled `STO` and is included as part of the moving rear assembly.
 
-The patent also lists a plane-parallel image-side plate at surfaces 24-25 with $n_d = 1.51680$ and $\nu_d = 64.20$. It has no optical power. The data file excludes this plate, following the project convention for sensor/cover glass, and folds its optical path into the final air-equivalent back focus: $15.6837 + 2.0/1.51680 + 1.0000 = 18.0023\,\mathrm{mm}$ at infinity.
+The patent also lists a plane-parallel image-side plate at surfaces 24-25 with $n_d = 1.51680$ and $\nu_d = 64.20$. It has no optical power. The data file models this 2.0 mm plate in `rearPlates`: every analysis traces through it, but it is not drawn in the cross-section. Surface 23A stores the patent's physical $D(23) = 15.6837\,\mathrm{mm}$ gap to the plate, and the plate is followed by the $D(25) = 1.0000\,\mathrm{mm}$ air gap to the image. Paraxially this is equivalent to an air back focus of $15.6837 + 2.0/1.51680 + 1.0000 = 18.0023\,\mathrm{mm}$ at infinity.
 
 ## Element-by-Element Analysis
 
@@ -131,7 +131,7 @@ $n_d = 1.58313$, $\nu_d = 59.46$. Glass: **M-BACD12 / L-BAL42 / D-ZK2 class**. S
 
 L12 is the second aspherical element. Its base power is weakly negative, but its location near the image side makes it effective for final trimming of distortion, field curvature, and astigmatism. The updated glass label uses Hoya M-BACD12 as the primary catalog match, with L-BAL42 and D-ZK2 as cross-vendor equivalents.[^hoya-mbacd]
 
-This element is the last production lens element in the data file. The plane-parallel plate behind it is not counted as a production element and is not included as a data-file glass surface.
+This element is the last production lens element in the data file. The plane-parallel plate behind it is not counted as a production element; it is carried in `rearPlates` (traced, not drawn) rather than as a drawn glass surface.
 
 ## Glass Identification and Selection
 
@@ -149,7 +149,7 @@ The patent gives only $n_d$ and $\nu_d$ values, not supplier names. The glass na
 | L8 | 1.90366 | 31.31 | TAFD25 / N-LASF46B class | Negative member of rear triplet |
 | L10 | 1.83481 | 42.72 | TAFD5G class | Negative rear triplet corrector |
 | L12 | 1.58313 | 59.46 | M-BACD12 / L-BAL42 / D-ZK2 class | Weak rear aspherical meniscus |
-| Patent plate | 1.51680 | 64.20 | BSC7 / N-BK7 class | Plane-parallel image-side plate, excluded from data file |
+| Patent plate | 1.51680 | 64.20 | BSC7 / N-BK7 class | Plane-parallel image-side plate, modeled in `rearPlates` (traced, not drawn) |
 
 The chromatic strategy is distributed rather than localized. One ED element is in the fixed front recovery doublet, and two ED elements are in the moving rear group. That split is significant: the fixed front group receives chromatic correction before the stop, while the moving focus group carries its own low-dispersion correction so axial color does not become wholly focus-position dependent. The data file marks these three 1.49700 / 81.61 elements as inferred anomalous-partial-dispersion ED glass because the catalog-class match is fluorophosphate, but the patent itself publishes only $n_d$ and $\nu_d$.
 
@@ -164,7 +164,7 @@ The patent defines a rear/inner focusing mechanism: **Gr1 remains fixed**, while
 | $D(12)$, gap after fixed Gr1 | 3.4480 mm | 3.1500 mm | -0.2980 mm |
 | Physical $D(23)$, gap after L12 before patent plate | 15.6837 mm | 15.9816 mm | +0.2979 mm |
 | $D(25)$, plate-to-image distance | 1.0000 mm | 1.0000 mm | 0.0000 mm |
-| Data-file air-equivalent BF | 18.0023 mm | 18.3002 mm | +0.2979 mm |
+| Paraxial air-equivalent BF | 18.0023 mm | 18.3002 mm | +0.2979 mm |
 
 The equal-and-opposite changes mean that the stop-plus-Gr2 assembly translates objectward by approximately 0.298 mm at the patent's 0.020x state. The data file models this published patent interval. It does **not** extrapolate to the production lens's 15 cm / 0.25x close-focus specification, because the patent does not publish the full production close-focus spacing and a simple extrapolation would overrun the fixed Gr1-to-Gr2 clearance.
 
@@ -215,7 +215,7 @@ A fresh paraxial ray trace was run from the Example 1 prescription using a $y, n
 
 The conditional-expression check corrects a common possible drawing misread: **G1F is L1-L3**, not L1-L4. If L4 is incorrectly included in G1F, the recomputed $\lvert F_{11}\rvert/F$ no longer matches the patent's summary table.
 
-The $BF/F_2$ condition requires care. The value matches the patent only when BF is measured physically from the rear surface of L12 to the image plane, including the 2.0 mm plane-parallel plate and the 1.0 mm final image gap. The data file uses an air-equivalent BF after omitting the plate; this is a renderer/data-model convention, not a change to the patent optical calculation.
+The $BF/F_2$ condition requires care. The value matches the patent only when BF is measured physically from the rear surface of L12 to the image plane, including the 2.0 mm plane-parallel plate and the 1.0 mm final image gap. The data file now stores this physical path directly: $D(23)$ on surface 23A, the 2.0 mm plate in `rearPlates`, and the 1.0 mm final gap as the plate's trailing air.
 
 ## Sources
 

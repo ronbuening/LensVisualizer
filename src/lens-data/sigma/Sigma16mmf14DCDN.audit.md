@@ -49,3 +49,8 @@ Patent: JP 2018-205527 A, Numerical Example 1
 ### Phase 4 - Analysis sync
 
 - Updated the companion analysis prose and glass summary table for L18, L19, L21/L31, L22, and L43.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Replaced the air-equivalent surface-30 gap (17.8527 mm) with the patent's physical rear stack from Numerical Example 1 (p. 18 surface table, p. 19 variable-gap table): d30 = 15.5341 mm, then a 2.0000 mm plate with nd 1.51680 / νd 64.20 and BF = 1.0000 mm at both the infinity and 1:40 states. Glass label N-BK7 (exact 517/642 catalog match; no θgF printed).
+- Paraxial check against the previous data: EFL identical and defocus unchanged at all three focus keyframes (the old fold was stored unrounded). Physical track grows by 0.681 mm to 109.00 mm, matching the patent's printed total length; `closeFocusM` stays at Sigma's published 0.25 m.

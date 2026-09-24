@@ -39,3 +39,13 @@ All eleven θgF values are converted directly to dPgF = θgF − (0.6438 − 0.0
 Added the previously absent OHARA L-BSL7 low-softening-temperature entry from OHARA_260701.AGF, with the vendor's formula-2 coefficients. L31 now selects L-BSL7 explicitly (nd 1.51633, νd 64.065129, θgF approximately 0.53343), matching the patent's 1.51633/64.06/0.53345 more closely than S-BSL7. Removed the obsolete L-BSL7 → S-BSL7 alias. The existing 516641 bare-code precedence remains S-BSL7. All eleven elements retain compatible catalog coverage without implying production suppliers.
 
 The live focus slider orders infinity before the 10 cm state. Only G2 moves imageward by 8.453 mm; DD14/DD19 change from 2.301/13.210 to 10.754/4.757 mm. G1 and G3 remain fixed.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Replaced the air-equivalent fold (surface 21A d = 20.703955696203 mm) with the patent's physical rear stack from
+  Table 1 (PDF page 26, text layer confirmed on the rendered page): D21 = 17.731 mm, then `rearPlates` PP 2.850 mm,
+  nd 1.51680, νd 64.20, θgF 0.53430 (dPgF −0.0015156), and 1.094 mm to the image plane. Glass label N-BK7 (catalog
+  1.51680 / 64.17, compatible); the plate is traced by every analysis and hidden from the diagram and element lists.
+- Paraxial check against the previous data: EFL identical and defocus unchanged (worst |Δ| 5e-13 mm) at infinity and
+  the 0.1 m keyframe, because the old fold was stored unrounded. Physical track grows by 2.850 × (1 − 1/1.51680) =
+  0.971 mm to 82.006 mm, the patent's raw geometric length.

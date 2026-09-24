@@ -21,8 +21,9 @@ lens data; analysis tabs use current focus, zoom, and aperture state.
 
 ## Omitted Sensor Optics
 
-The diagram and analysis tabs currently share the authored optical prescription. Cover/filter plates omitted under
-`src/lens-data/LENS_DATA_SPEC.md` are therefore absent from analysis too; there is no separate analysis sensor stack.
+Source-listed cover/filter plates declared in `rearPlates` are traced by every analysis, including MTF, while staying
+hidden in the diagram; see [Rear Plates](#rear-plates). The limitations below apply only to optics still omitted
+because source data is missing, a prescription has not been migrated, or its path is unsupported.
 An air-equivalent replacement preserves paraxial propagation at the reference index, not higher-order aberrations or
 wavelength-dependent propagation. A converging beam through a plane-parallel plate can acquire spherical aberration,
 and a prescription designed with that plate can depend on its contribution.
@@ -39,8 +40,8 @@ Consequences depend on the analysis, not just whether its numerical solver conve
   coating/Fresnel and sensor-response effects.
 
 These are model limitations, not corrections to apply empirically or proof of an error in the manufactured lens.
-Use the source-prescription label for results. The proposed shared analysis-stack extension is tracked in
-`FEATURE_ADDITION_PLAN.md`; it must preserve the diagram omission and be validated across affected analyses.
+Use the source-prescription label for results. Model additional source-backed plates through the shared `rearPlates`
+contract in `src/lens-data/LENS_DATA_SPEC.md`; do not add an analysis-specific stack or infer missing plate data.
 
 ## Simulated MTF
 
@@ -74,7 +75,9 @@ complex OTFs before magnitude to retain lateral color. Compatible catalog glass 
 Finite rays share one isotropic object point and include spherical launch phase and launch-plane solid-angle
 weights. Only `finiteConjugates` stations are eligible; see `src/lens-data/LENS_DATA_SPEC.md` for source requirements.
 
-The MTF tab lazily creates a worker from serializable lens data. Superseding a running request terminates it;
+The MTF tab lazily creates a worker from serializable lens data. Worker initialization removes engine-generated
+synthetic surfaces/elements from `RuntimeLens.data` and rebuilds them once from `rearPlates`, preserving physical
+gaps and plate dispersion. Superseding a running request terminates it;
 request ids reject stale replies. Completed results use an LRU bounded to 64 MiB, while chart changes reuse
 curves without tracing. Sampling compares successive curves at all displayed frequencies (absolute delta ≤0.01),
 caps at 256² and reports unconverged results explicitly. The read-only census is `scripts/audit-mtf.mjs` (`--cdf`
@@ -117,6 +120,29 @@ published 120° coverage. The override only changes `halfField`; `tracingHalfFie
 value so rendered ray bundles stay safely within what real surfaces can carry.
 
 `paraxialTrace()` is exported for low-level first-order tracing tests.
+
+### Rear Plates
+
+Source-listed cover glass and filter plates (`LensData.rearPlates`) are expanded once, in `buildLens` right after
+validation, by `expandRearPlates()` in `src/optics/prescription/rearPlates.ts`. It appends two flat refracting surfaces
+per plate (reserved labels `RP<n>a` / `RP<n>b`) and one element per plate, all marked `synthetic: "rearPlate"`.
+Because the expansion runs before `S`, `N`, `labelIdx` and every derived constant, EFL, pupils, field limits, prepared
+states, the exact tracer, chromatic dispersion and all analyses see the plate, with no per-analysis correction.
+`RuntimeLens.data` holds the expanded data, so normalization stays index-aligned.
+
+What is hidden, and where:
+
+- `RuntimeLens.ES` and `RuntimeLens.elements` exclude synthetic elements. That covers diagram shapes, render
+  diagnostics, element numbering, the inspector, the Abbe diagram and fallback construction groups.
+  `RuntimeLens.data.elements` and `EngineLens.elements` keep every traced medium for dispersion lookup.
+- `maxSD` ignores synthetic surfaces, whose generated rims are deliberately non-clipping.
+- `RuntimeLens.lastLensSurfaceIdx` is the last authored surface. Cardinal BFD is measured from it, while the matrix
+  vertex (`rearVertexZ`) stays at the plate's rear face. The Summary tab counts authored surfaces and lists plates
+  separately; the last variable-gap readout is labelled "to plate".
+- Rays are drawn exactly as traced, including the small refraction at the invisible plate faces.
+
+Folded paths and perspective-control lenses reject `rearPlates`; a camera-fixed plate would otherwise tilt with the
+lens. Lenses whose notes still fold a plate as t/n remain valid; see `src/lens-data/LENS_DATA_SPEC.md`.
 
 ## optics.ts
 
@@ -364,7 +390,8 @@ directly, and rollback is an ordinary git revert or a focused fix with regressio
 
 `cardinalElements.ts` computes the Tier 1 first-order overlay from the current focus and zoom state. It uses current
 surface spacings, receives the visible `zPos`/image-plane positions from the diagram computation pipeline, and returns
-all six cardinal points atomically plus EFL, BFD, FFD, Hiatus, and Total track spans. For ordinary same-index
+all six cardinal points atomically plus EFL, BFD, FFD, Hiatus, and Total track spans. BFD starts at the last authored
+lens vertex, so modeled rear plates count as back focus. For ordinary same-index
 photographic lenses, H/N and H′/N′ are marked coincident explicitly; non-unity image-side systems compute N/N′
 independently. Axial folded reflective systems share the same paraxial transfer/interaction stepper with an enabled
 reflect branch; folded systems with tilted image planes still return no cardinal result until a rotated-frame reporting

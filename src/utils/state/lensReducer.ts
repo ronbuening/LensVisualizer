@@ -8,7 +8,7 @@
  */
 
 import { ENABLE_EDGE_PROJECTION } from "../featureFlags.js";
-import { DEFAULT_COLOR_TRACING } from "../appConfig.js";
+import { DEFAULT_COLOR_TRACING, DEFAULT_RAY_TRACKS_FOCUS } from "../appConfig.js";
 import { readSystemThemePreferences } from "../theme/themePreferences.js";
 import {
   isAnalysisTabId,
@@ -138,7 +138,7 @@ export function createInitialState(
       showOnAxis: prefs.showOnAxis ?? true,
       showOffAxis,
       rayDensity,
-      rayTracksF: prefs.rayTracksF ?? false,
+      rayTracksF: prefs.rayTracksF ?? DEFAULT_RAY_TRACKS_FOCUS,
       showChromatic: prefs.showChromatic ?? DEFAULT_COLOR_TRACING,
       chromR: prefs.chromR ?? true,
       chromG: prefs.chromG ?? true,

@@ -29,3 +29,9 @@ Display names follow the catalog's uppercase manufacturer/line convention. Canon
 ### Second figure, glass and live-diagram review
 
 The second local-site comparison with Example 5 / Fig. 5 retains the SDs: the enlarged rear elements and smaller stop-side pair agree with the optical outline. Dashed rays and stepped mechanical rims are excluded. All seven inspector labels explicitly identify compatible catalog proxies where a generic code previously hid the selected curve. Standard/high-index colors remain appropriate without measured APD evidence. The focus control remains disabled; the description distinguishes the marketed 0.34 m limit from unavailable travel data.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- The plate comes from Table 9 on PDF p. 19, checked on a render. It is PP on surfaces 14–15: t = 2.80 mm, nd 1.51680, νd 64.2. The S13 gap to PP is printed as 6.00 mm. The table prints no Di after surface 15, so the 3.424008 mm gap from PP to the image is derived, not printed: printed air-equivalent BF 11.27 − 6.00 − 2.80/1.51680. The same note is in the header and in the plate's `source` string. The plate uses the N-BK7 glass label, which `resolveCompatibleGlass` accepts for 1.51680/64.2.
+- The plate check against the folded HEAD model gives the same EFL (worst |Δ| 4.4e-7). Paraxial defocus is unchanged at −0.002434 mm because the derived trailing gap preserves the former 11.27 mm air-equivalent spacing exactly.
+- The physical track grows by 0.954 mm, which equals 2.80 × (1 − 1/1.51680). It goes from 37.03 mm air-equivalent to 37.98 mm physical. The surface audit reports no validation errors, and the image-circle audit reports none undersized.

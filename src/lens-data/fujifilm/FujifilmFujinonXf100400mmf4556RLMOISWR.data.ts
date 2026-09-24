@@ -7,13 +7,16 @@ import type { LensDataInput } from "../../types/optics.js";
  * Production correlation is an inference: the patent does not name the XF100-400 product.
  * No uniform scaling is applied (s = 1).
  *
- * The patent's sensor-side PP surrogate (surfaces 37-39) is omitted. Surface 36 therefore uses the
- * air-equivalent image spacing DD36 + 2.150/1.54763 + 0.700/1.49784 + 1.000 at each zoom state.
+ * The patent's sensor-side optical member PP (surfaces 37-39: two cemented plane plates, 2.150 mm
+ * nd 1.54763 / vd 54.99 and 0.700 mm nd 1.49784 / vd 54.95, then 1.000 mm air to the image) is modeled in
+ * `rearPlates` (traced, not drawn). Surface 36 stores the physical Table 3 DD[36] gap to the first plate:
+ * 36.048 / 28.853 / 29.788 mm. The air-equivalent BF is 38.904561 / 31.709561 / 32.644561 mm.
  *
  * Focus status: CONSTRAINED_RECONSTRUCTION. The patent publishes infinity-focus zoom spacings but no
  * close-focus table. G5 alone is translated imageward to the maker's 1.75 m minimum focus distance,
- * conserving D29 + D34 at each zoom state. The close-focus pairs below are solved in the normalized
- * PP-omitted project model; they are not patent-published spacings.
+ * conserving D29 + D34 at each zoom state. The close-focus pairs below are project reconstructions, not
+ * patent-published spacings. They were re-solved on 2026-09-23 with PP traced physically, so an object 1.75 m
+ * in front of the image plane is in paraxial focus on the stored image plane at every zoom state.
  *
  * Stop size: the patent does not publish a physical stop diameter. The three published f/F No. pairs
  * imply paraxial stop semi-diameters of 9.045284, 9.045848, and 9.074770 mm;
@@ -432,7 +435,28 @@ const LENS_DATA = {
     { label: "33", R: 14.909, d: 4.45, nd: 1.6935, elemId: 20, sd: 8.3 },
     { label: "34", R: 53.2203, d: 5.165, nd: 1.0, elemId: 0, sd: 8.3 },
     { label: "35", R: -249.66626, d: 2.91, nd: 1.54072, elemId: 21, sd: 14.2 },
-    { label: "36", R: -49.77001, d: 38.904560573563195, nd: 1.0, elemId: 0, sd: 14.2 },
+    { label: "36", R: -49.77001, d: 36.048, nd: 1.0, elemId: 0, sd: 14.2 }, // DD[36] — gap to the PP plates
+  ],
+
+  /* ── Optical member PP (patent surfaces 37–39): traced, not drawn ── */
+  rearPlates: [
+    {
+      thicknessMm: 2.15,
+      nd: 1.54763,
+      vd: 54.99,
+      dPgF: 0.00098318,
+      glass: "N-BALF5",
+      gapAfterMm: 0,
+      source: "US 2017/0090170 A1, Example 1 Table 1 surfaces 37–38 (PP, first plate; theta_gF 0.55229)",
+    },
+    {
+      thicknessMm: 0.7,
+      nd: 1.49784,
+      vd: 54.95,
+      dPgF: -0.0017841,
+      gapAfterMm: 1.0,
+      source: "US 2017/0090170 A1, Example 1 Table 1 surfaces 38–39 (PP, second plate; theta_gF 0.54959)",
+    },
   ],
 
   asph: {},
@@ -454,19 +478,19 @@ const LENS_DATA = {
       [24.28, 24.28],
     ],
     "29": [
-      [7.202, 8.791402526648897],
-      [7.574, 11.67367734335348],
-      [2.343, 17.194318909606018],
+      [7.202, 8.792362435881087],
+      [7.574, 11.676068221060385],
+      [2.343, 17.202735007397106],
     ],
     "34": [
-      [5.165, 3.575597473351104],
-      [17.208, 13.10832265664652],
-      [27.898, 13.046681090393982],
+      [5.165, 3.5746375641189134],
+      [17.208, 13.105931778939613],
+      [27.898, 13.038264992602894],
     ],
     "36": [
-      [38.904560573563195, 38.904560573563195],
-      [31.70956057356319, 31.70956057356319],
-      [32.64456057356319, 32.64456057356319],
+      [36.048, 36.048],
+      [28.853, 28.853],
+      [29.788, 29.788],
     ],
   },
 
@@ -503,7 +527,7 @@ const LENS_DATA = {
 
   closeFocusM: 1.75,
   focusDescription:
-    "CONSTRAINED_RECONSTRUCTION: G5 alone moves imageward to 1.75 m; D29 increases and D34 decreases by equal amounts at each zoom state. Close-focus spacings are code-solved in the normalized PP-omitted model, not patent-published.",
+    "CONSTRAINED_RECONSTRUCTION: G5 alone moves imageward to 1.75 m; D29 increases and D34 decreases by equal amounts at each zoom state. Close-focus spacings are code-solved for a 1.75 m object-to-image distance with the PP rear plates traced physically, not patent-published.",
 
   nominalFno: [4.614445088540655, 4.784521400670022, 5.791672588725861],
   fstopSeries: [4.5, 5.6, 8, 11, 16, 22],

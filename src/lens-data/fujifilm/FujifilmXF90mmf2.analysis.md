@@ -34,7 +34,7 @@ With the printed radii, a paraxial trace reproduces the patent's general data an
 | Bf/f | 0.282 | 0.282 |
 | D23/TL | 0.163 | 0.163 |
 
-Table 1 closes with a parallel plate PP (surfaces 21–22, d = 2.850 mm, nd = 1.51633) standing in for the sensor cover glass and filters (¶0075). Following the data-file convention the plate is omitted and the last air gap is the patent's air-converted back focus, 24.663 mm: 20.784 mm of air, 2.850/1.51633 = 1.880 mm for the plate, and a derived 1.999 mm behind it.
+Table 1 closes with a parallel plate PP (surfaces 21–22, d = 2.850 mm, nd = 1.51633) standing in for the sensor cover glass and filters (¶0075). The data file models the plate physically in `rearPlates` (νd 64.14, S-BSL7 (OHARA) class, θgF 0.53531): the last air gap is the printed d20 = 20.784 mm, then the 2.850 mm plate, then 1.999 mm of air to the image plane. Table 1 prints no spacing after the plate, so that last 1.999 mm is derived from the air-converted back focus, 24.663 mm = 20.784 + 2.850/1.51633 (1.880) + 1.999; FIG. 1 draws about 2.0 mm. The plate is traced by every analysis but not drawn, and paraxially it is equivalent to the 24.663 mm air-converted Bf.
 
 ---
 
@@ -50,7 +50,7 @@ The lens is a three-group telephoto-type design (group focal lengths are calcula
 
 The aperture stop is located between G1 and G2, fixed relative to the image plane during focusing. This placement is a key design choice: by positioning the stop ahead of the focusing group (rather than behind it, as in many competing designs), the front element diameters are reduced and the focus throw space is naturally available in the gap between G1 and G3.
 
-The telephoto ratio is TL/f = 1.315, meaning the air-converted length (115.1 mm from front vertex to image plane; 116.0 mm with the 2.85 mm plate in place) is about 31.5% longer than the focal length. This is a moderately compact telephoto arrangement.
+The telephoto ratio is TL/f = 1.315, meaning the air-converted length (115.1 mm from front vertex to image plane; the physical track the data file traces, with the 2.85 mm plate in place, is 116.0 mm) is about 31.5% longer than the focal length. This is a moderately compact telephoto arrangement.
 
 ---
 
@@ -81,7 +81,7 @@ The patent provides nd, vd, and θgF for each element but names no glass types. 
 | L33 | 1.67270 | 32.10 | 0.59891 | +0.0091 | S-TIM25 (OHARA) | 673/321 | Exact nd/vd |
 | L34 | 1.71300 | 53.87 | 0.54587 | −0.0073 | S-LAL8 (OHARA) | 713/539 | Exact nd/vd |
 | L35 | 1.51742 | 52.43 | 0.55649 | +0.0009 | S-NSL36 (OHARA) | 517/524 | Exact nd/vd |
-| PP | 1.51633 | 64.14 | 0.53531 | −0.0006 | S-BSL7 class plate (not modeled) | 516/641 | — |
+| PP | 1.51633 | 64.14 | 0.53531 | −0.0006 | S-BSL7 class plate (`rearPlates`, traced, not drawn) | 516/641 | — |
 
 Ten of the eleven elements match OHARA catalog coordinates; L12 matches the HOYA FCD1 coordinate most closely (OHARA S-FPL51 is 1.49700 / 81.55). The large positive ΔθgF of L21 is the ordinary behavior of a very dense flint (νd = 18.9), not an ED property.
 
@@ -124,7 +124,7 @@ The constant total gap (DD[8] + DD[11] = 23.353 mm) means the lens barrel length
 | Design focal length | 87.495 mm (marketed as 90 mm) |
 | Design f-number | f/2.06 (marketed as f/2.0); f/2.35 at the proximal state |
 | Half-field angle | 9.2° (full angle 18.4°) |
-| Total track (TL) | 115.1 mm |
+| Total track (TL, air-converted) | 115.1 mm (116.0 mm physical with the PP plate) |
 | Back focus (air) | 24.66 mm |
 | Telephoto ratio (TL/f) | 1.315 |
 | Elements / Groups | 11 / 8 |

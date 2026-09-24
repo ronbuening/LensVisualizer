@@ -19,7 +19,7 @@ The identification of Example 1 as the production Sony Sonnar T* FE 55mm F1.8 ZA
 6. **Half angle of view.** The patent states ω = 22.15°, giving 2ω = 44.3°. Sony publishes 43°; the slight difference reflects vignetting-limited vs. paraxial-traced field.
 7. **Inner focus mechanism.** The second lens group (G2) travels along the axis during focusing, consistent with Sony's specification of a linear-motor inner-focus system.
 8. **Filing chronology.** The Japanese priority date of September 27, 2013 precedes the lens's announcement by fewer than three weeks (the α7 system and SEL55F18Z were announced on October 16, 2013), consistent with a design patent filed at or near the end of the product development cycle.
-9. **Mount compatibility.** The patent describes the design as suitable for mirrorless cameras with short flange distances; the E-mount flange distance of 18 mm is compatible with the back focal distance of approximately 14.8 mm (from the last lens surface to the image plane, including the cover glass thickness).
+9. **Mount compatibility.** The patent describes the design as suitable for mirrorless cameras with short flange distances; the E-mount flange distance of 18 mm is compatible with the back focal distance of approximately 14.8 mm (from the last lens surface to the image plane: 11.78 mm air, the 2.00 mm optical member SG, and 1.00 mm air; about 14.10 mm air-equivalent). The SG plate (nd 1.516798, νd 64.2) is modeled in `rearPlates`, so every analysis traces through it, but it is not drawn in the cross-section.
 
 ## Optical Architecture
 

@@ -12,8 +12,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * - The published 0.01 mm adhesive layer at equal-radius source surfaces 12-13 is collapsed
  *   to one direct L6->L7 cemented junction at R = 56.2842 mm. The model junction carries
  *   the downstream L7 index/elemId, and the distance from the junction to surface 14 is 0.31 mm.
- * - The source 0.9 mm rear plane-parallel plate P is omitted. Surface 23 therefore carries
- *   the code-solved air rear spacing to the image plane at each published zoom state.
+ * - The source 0.9 mm rear plane-parallel plate P (surfaces 24-25, nd 1.51680, vd 64.2) is
+ *   modeled in `rearPlates` (traced, not drawn) with the Table 3 wide BF 0.62702 mm after it.
+ *   The model keeps its code-solved paraxial image plane: surface 23 stores that solved air
+ *   rear spacing minus 0.9/1.5168 and 0.62702, i.e. 0.400954 / 0.416574 / 0.399065 mm
+ *   against the printed 0.40 mm. The offsets absorb Table 3's BF variation (0.62702 /
+ *   0.64271 / 0.62527) and the <= 0.001 mm solved-image residual.
  * - Focus status is NO_INTERNAL_RECONSTRUCTION. The patent publishes only infinity-focus
  *   zoom spacings and says G4/L10 moves object-side for close focus; no close-focus spacing
  *   row is invented. All authored var pairs therefore repeat the published infinity spacing.
@@ -224,7 +228,20 @@ const LENS_DATA = {
     { label: "20A", R: 16.1873, d: 1.47, nd: 1.684, elemId: 10, sd: 4.2 },
     { label: "21A", R: 152.0174, d: 4.419, nd: 1.0, elemId: 0, sd: 4.2 },
     { label: "22A", R: -14.5416, d: 0.6, nd: 1.6355, elemId: 11, sd: 4.7 },
-    { label: "23", R: -50.7667, d: 1.6213283945286472, nd: 1.0, elemId: 0, sd: 4.7 },
+    { label: "23", R: -50.7667, d: 0.400954, nd: 1.0, elemId: 0, sd: 4.7 },
+  ],
+
+  /* ── Plane-parallel plate P (patent surfaces 24–25): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "P",
+      thicknessMm: 0.9,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 0.62702,
+      source: "US 2015/0124127 A1, Numerical Example 1 Table 1 surfaces 24–25; Table 3 wide BF",
+    },
   ],
 
   asph: {
@@ -342,9 +359,9 @@ const LENS_DATA = {
       [5.5372, 5.5372],
     ],
     "23": [
-      [1.6213283945286472, 1.6213283945286472],
-      [1.6369488190033854, 1.6369488190033854],
-      [1.6194398042737017, 1.6194398042737017],
+      [0.400954, 0.400954],
+      [0.416574, 0.416574],
+      [0.399065, 0.399065],
     ],
   },
   varLabels: [
@@ -352,7 +369,7 @@ const LENS_DATA = {
     ["8", "D8 (G2-G3)"],
     ["19A", "D19 (G3-G4)"],
     ["21A", "D21 (G4-G5)"],
-    ["23", "BF (plate omitted)"],
+    ["23", "D23 (L11-P)"],
   ],
 
   zoomPositions: [4.8862, 9.1227, 17.1948],

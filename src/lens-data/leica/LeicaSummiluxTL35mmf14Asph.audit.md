@@ -23,3 +23,13 @@ Named the existing compatible spectral proxies explicitly while retaining coordi
 ### Live geometry and travel follow-up
 
 The live infinity/close states agree with FIG. 4: the single negative Gr2 element moves imageward by 7.10 mm while Gr1/Gr3 remain fixed. Retained published effective radii and the documented S11 tracing clearance. Both aspheric elements and all four cemented pairs match the source labels. No zoom travel applies to this prime lens.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Read Example 4 surface data (¶0065, printed page 14) and miscellaneous data (¶0067, pages 14–15): surface 21 d = 18.13;
+  surfaces 22–23 are plate PT, 1.50 mm, nd 1.5168, νd 64.20, R 16.000; bf = 0.8; TL = 94.8. The fixed gap does not
+  vary with focus (only d14/d16 are variable).
+- Surface 21 now stores the patent's 18.13 mm, with `rearPlates` PT (N-BK7 class; `sd` 16.0 from the published
+  effective radius) and gapAfter 0.80 mm. Paraxial check against the previous 19.918924 mm fold: EFL identical and
+  defocus unchanged at POS1 and POS2 (the fold was carried at full precision).
+- Physical track grows by 0.511 mm to 94.76 mm, now consistent with the patent's printed TL 94.8 mm.

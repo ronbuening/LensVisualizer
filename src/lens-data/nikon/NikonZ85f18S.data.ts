@@ -3,7 +3,8 @@ import type { LensDataInput } from "../../types/optics.js";
 /** JP2020-173366A Example 3, Figure 3 (PDF pp.16–17 and20).
  * R/d/nd/vd are the original numerical rows; all surfaces are spherical.
  * Rims are inferred from the optical outline at600dpi, not listed clear apertures.
- * Omit PT surfaces22–23: rear air distance =11+1.6/1.5168+0.92 mm.
+ * PT surfaces 22–23 (1.6 mm, nd 1.51680, νd 64.20) are modeled in `rearPlates`
+ * (traced, not drawn): d21 = 11.000 mm to PT, bf 0.92 mm after it.
  * Source summaries FL83 and TL111.35 disagree with the numerical table; see analysis.
  */
 
@@ -201,7 +202,7 @@ const LENS_DATA = {
   ],
 
   /* ── Surface prescription ──
-   *  Patent surfaces 1–21 (cover glass excluded).
+   *  Patent surfaces 1–21; plate PT (22–23) follows in `rearPlates`.
    *  Stop (surface 11 in patent) is between Gr2 and Gr3, fixed during focus.
    *  All surfaces spherical — no aspherical surfaces in EX3.
    */
@@ -238,7 +239,20 @@ const LENS_DATA = {
     { label: "19", R: 130.583, d: 8.121, nd: 1.0, elemId: 0, sd: 17.9 }, // L44 rear → air
     // L45 singlet
     { label: "20", R: -35.4045, d: 1.4, nd: 1.64769, elemId: 12, sd: 19.2 }, // L45 front
-    { label: "21", R: -69.4719, d: 12.974852320675105, nd: 1.0, elemId: 0, sd: 19.2 }, // L45 rear → image (air-equivalent omitted PT path)
+    { label: "21", R: -69.4719, d: 11.0, nd: 1.0, elemId: 0, sd: 19.2 }, // L45 rear → air, gap to the PT plate
+  ],
+
+  /* ── Parallel plate PT (patent surfaces 22–23): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PT",
+      thicknessMm: 1.6,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "J-BK7A",
+      gapAfterMm: 0.92,
+      source: "JP 2020-173366 A, Example 3 surfaces 22–23 and bf (PDF p. 17)",
+    },
   ],
 
   /* ── Aspherical coefficients ──

@@ -26,7 +26,7 @@ No other example in the patent matches the production lens as closely. Example 1
 
 The design is a five-unit zoom of the form **positive–negative–positive–negative–positive**, with the power distribution G1(+) / G2(−) / G3(+) / G4(−) / G5(+). This symmetric-type power arrangement — bracketing a central positive group (G3) between negative groups (G2, G4) and enclosing everything between positive groups (G1, G5) — is a classical strategy for balancing off-axis aberrations at the wide end against axial aberrations at the telephoto end while maintaining a quasi-telecentric exit pupil appropriate for digital sensors.
 
-During zooming from wide to tele, G1 moves toward the object, G2 first moves toward the image and then reverses toward the object, G3 and G4 move toward the object, and G5 remains stationary. The stationary rear group serves as a dust seal and eliminates zoom-driven mechanical noise — a feature the patent explicitly highlights for video applications (¶0088). The back focus (FB ≈ 16.0 mm equivalent air) is fixed across the zoom range, confirming compatibility with mirrorless bodies that lack a reflex mirror.
+During zooming from wide to tele, G1 moves toward the object, G2 first moves toward the image and then reverses toward the object, G3 and G4 move toward the object, and G5 remains stationary. The stationary rear group serves as a dust seal and eliminates zoom-driven mechanical noise — a feature the patent explicitly highlights for video applications (¶0088). The back focus (FB ≈ 16.0 mm equivalent air) is fixed across the zoom range, confirming compatibility with mirrorless bodies that lack a reflex mirror. Physically it is the 12.5585 mm air gap behind L14, the 4.000 mm sensor cover glass C (nd = 1.51633, νd = 64.14), and a 0.800 mm air gap to the image; the data file models the cover glass in `rearPlates`, so every analysis traces it, but it is not drawn.
 
 | Parameter | Wide | Standard | Tele |
 |---|---|---|---|
@@ -34,9 +34,9 @@ During zooming from wide to tele, G1 moves toward the object, G2 first moves tow
 | f-number | 2.88 | 2.88 | 2.88 |
 | 2ω (°) | 88.92 | 53.84 | 30.48 |
 | Image height (mm) | 10.820 | 10.820 | 10.820 |
-| Total length (mm) | 104.79 | 105.13 | 129.98 |
+| Total length, in air (mm) | 104.79 | 105.13 | 129.98 |
 
-The zoom ratio is 3.19×, and the total track increases by roughly 25 mm from wide to tele. All five unit focal lengths have been independently verified via ABCD thick-lens ray trace (see §Verification Summary).
+The zoom ratio is 3.19×, and the total track increases by roughly 25 mm from wide to tele. The patent's total lengths are air-equivalent; the physical track with the cover glass is about 1.36 mm longer (4.000 × (1 − 1/1.51633)). All five unit focal lengths have been independently verified via ABCD thick-lens ray trace (see §Verification Summary).
 
 ## Element-by-Element Analysis
 
@@ -140,6 +140,8 @@ The design employs a distinctive glass palette spanning an unusually wide range 
 | L12 | 1.94595 | 17.98 | 946180 dense flint, unmatched | HR candidate; flint in G4 achromat |
 | L13 | 2.00069 | 25.46 | TAFD40 (HOYA) | HR candidate — Petzval corrector in G5 |
 | L14 | 1.58313 | 59.38 | L-BAL42 (OHARA) | Crown partner for G5 doublet |
+
+**Cover glass (C):** nd = 1.51633, νd = 64.14 → S-BSL7 (OHARA). The patent's 4.000 mm plane-parallel plate (surfaces 25–26) is modeled in `rearPlates` with its 0.800 mm gap to the image; every analysis traces it, but it is not drawn.
 
 Three distinct glass types dominate the design: the ED fluorophosphate (nd = 1.497, νd = 81.54) appears three times (L4, L8, L10), and the PGM barium crown L-BAL42 (nd = 1.583, νd = 59.38) appears twice (L7, L14). This consolidation reduces manufacturing complexity and cost. The three strongest HR candidates — L1 (nd = 1.923), L12 (nd = 1.946), and L13 (nd = 2.001) — account for the production lens's "2 HR" designation; the most probable pairing is L1 + L13 (bracketing the system at front and rear) or L12 + L13 (both in the rear half), but the official assignment has not been independently confirmed.
 
@@ -289,5 +291,5 @@ The overall aberration signature demonstrates the effectiveness of the symmetric
 
 1. US 2014/0139720 A1, "Zoom Lens and Image Pickup Apparatus Equipped with Same," Ogata et al., published May 22, 2014. Example 5 (¶0259).
 2. OM System / Olympus official product specifications for the M.Zuiko Digital ED 12–40 mm f/2.8 PRO and PRO II.
-3. OHARA optical glass catalog (S-NPH2, S-LAL14, S-LAM60, S-FPL51, S-LAH66, L-BAL42/S-BAL42, S-TIH6, S-LAH53 designations).
+3. OHARA optical glass catalog (S-NPH2, S-LAL14, S-LAM60, S-FPL51, S-LAH66, L-BAL42/S-BAL42, S-TIH6, S-LAH53, and cover-glass S-BSL7 designations).
 4. HOYA optical glass catalog (FCD1, TAFD40 designations).

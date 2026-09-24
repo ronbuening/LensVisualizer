@@ -48,8 +48,8 @@ with identical vergence inside the complete lens. This distinction is especially
 positive, yet the complete isolated G2 assembly is negative because the cemented Jc pair has substantial negative net
 power.
 
-The layout is not a telephoto-form design under the project definition: the normalized total track divided by EFL is
-1.678018, not less than 1. It is also not retrofocus, because the 18.218112 mm paraxial BFL is much shorter than the
+The layout is not a telephoto-form design under the project definition: the air-equivalent total track (the patent's
+97.57 mm TL) divided by EFL is 1.678018, not less than 1. It is also not retrofocus, because the 18.218112 mm paraxial BFL is much shorter than the
 58.145372 mm EFL. Cosina's description of the production lens as a short telephoto refers to its Micro Four Thirds
 angle of view, not to a telephoto-ratio classification.
 
@@ -145,7 +145,7 @@ The data file follows the diagram and prescription rather than the isolated pros
 L11 is the final powered element and a positive meniscus convex toward the object. It follows Jb across a 0.20 mm air
 gap and completes the five-element group 103 described for Example 2 (¶0072). Its material is optically identical in
 nd and νd to L9, but its weaker standalone power and rear position give it a different system role. It contributes to
-the final convergence and provides the last refracting surface before the normalized rear air space.
+the final convergence and provides the last powered surface before the rear air space and sensor plate.
 
 ## Glass Identification and Selection
 
@@ -182,13 +182,14 @@ unit, while the aperture stop and group 103 translate together as the rear unit.
 6.37 mm stop-to-G3 gap remain fixed. The variable spacing between surface 11 and the stop increases toward close focus,
 and the rear distance to the image plane also increases (¶0074–¶0078; Figure 5).
 
-| Published state | Object distance from surface 1 | ZD11 | Normalized surface-20-to-image spacing | Computed |m| |
-| --- | ---: | ---: | ---: | ---: |
-| Infinity | Infinity | 8.10 mm | 18.208987 mm | — |
-| 0.10× | 600.00 mm | 14.29 mm | 22.818987 mm | 0.101050 |
-| 0.20× | 300.00 mm | 22.74 mm | 28.208987 mm | 0.203222 |
+| Published state | Object distance from surface 1 | ZD11 | ZD20 (surface 20 to plate) | Air-equivalent surface-20-to-image | Computed |m| |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Infinity | Infinity | 8.10 mm | 15.44 mm | 18.208987 mm | — |
+| 0.10× | 600.00 mm | 14.29 mm | 20.05 mm | 22.818987 mm | 0.101050 |
+| 0.20× | 300.00 mm | 22.74 mm | 25.44 mm | 28.208987 mm | 0.203222 |
 
-The normalized rear values include the air-equivalent effect of the omitted sensor plate. Relative to infinity, the
+The data file stores the printed ZD20 values; the fixed 4.20 mm sensor plate follows, with the image on its rear face.
+The air-equivalent column adds the plate's 4.20/1.51680 = 2.768987 mm paraxial equivalent. Relative to infinity, the
 published 0.20× state moves the rear stop/G3 unit 10.00 mm toward the object and the front G1+G2 unit 24.64 mm toward
 the object, increasing the inter-unit gap by 14.64 mm. These translations are computed from the published variable
 spacings; they are not separately tabulated by the patent.
@@ -226,8 +227,9 @@ floating-point precision.
 | --- | ---: | --- |
 | Effective focal length | 58.145372 mm | Patent: 58.15 mm |
 | Modeled maximum aperture | f/0.930000 | Patent design value; physical stop inferred |
-| Paraxial BFL from surface 20 | 18.218112 mm | 0.009125 mm longer than normalized source spacing |
-| First-surface-to-image track | 97.568987 mm | Patent: 97.57 mm |
+| Paraxial BFL from surface 20 (air-equivalent) | 18.218112 mm | 0.009125 mm longer than the air-equivalent source spacing |
+| First-surface-to-image track (air-equivalent) | 97.568987 mm | Patent TL: 97.57 mm |
+| Physical first-surface-to-image track | 99.000000 mm | Table 2 row sum including the 4.20 mm plate |
 | Full field from published half-angle | 21.58° | Production specification: 21.5° |
 | Petzval sum | +0.005299457 mm⁻¹ | Surface-by-surface φ/(n·n′) computation |
 | TL/EFL | 1.678018 | Not telephoto-form under the project ratio test |
@@ -251,8 +253,9 @@ The model incorporates the following explicit departures from a literal transcri
 - **Inferred semi-diameters:** the patent publishes no clear-aperture heights. Surface semi-diameters are derived from
   exact spherical ray envelopes at all three published focus states, the 11.15 mm image height, and qualitative
   comparison with Cosina's optical section.
-- **Omitted sensor plate:** patent surfaces 21–22 represent a 4.20 mm, nd = 1.51680 sensor faceplate/filter assembly.
-  They are excluded, and 4.20/1.51680 = 2.768987 mm is added to each rear air spacing.
+- **Sensor plate:** patent surfaces 21–22 represent a 4.20 mm, nd = 1.51680, νd = 64.20 sensor faceplate/filter
+  assembly with the image on its rear face (d22 = 0.00). It is modeled in `rearPlates` (BSC7 class): every analysis
+  traces it, but it is not drawn. Surface 20 stores the printed ZD20 gap to the plate.
 - **Infinity-row correction:** Table 2 prints ZD0 = 0.10 in the 0.00× column. Paragraph 0075 identifies that column as
   the infinity state, so the model uses Infinity.
 - **Jb label correction:** paragraph 0073 reverses L9 and L10. Paragraph 0072, Figure 5, and the numerical sequence agree

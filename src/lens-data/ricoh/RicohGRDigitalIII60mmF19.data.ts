@@ -14,10 +14,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ Ricoh's production 1 cm macro endpoint uses additional group motion that is   ║
  * ║ not numerically determined by Example 4 and is intentionally not modeled.     ║
  * ║                                                                              ║
- * ║ Sensor cover / color-filter equivalent plate (source surfaces 16–17) omitted. ║
- * ║ Its 1.24 mm, n=1.50000 optical effect plus the infinity-inferred rear air gap ║
- * ║ are folded into the normalized surface-15→IMG air spacing: 7.2464760762 mm.  ║
- * ║ The close endpoint preserves the published +0.14 mm change: 7.3864760762 mm. ║
+ * ║ Sensor cover / color-filter equivalent plate (source surfaces 16–17) is        ║
+ * ║ modeled in `rearPlates` (t=1.24 mm, n=1.50000, ν=64.00): traced, not drawn.    ║
+ * ║ Surface 15 stores the printed physical gap C = 5.52 / 5.66 mm. The 0.8998 mm   ║
+ * ║ plate→IMG gap is derived, not printed (patent leaves surface-17 D blank): it   ║
+ * ║ preserves the previous normalized image plane (7.2464760762 mm air-equiv.).    ║
  * ║                                                                              ║
  * ║ Scaling: NONE. The patent's f=6.00 mm is used directly.                       ║
  * ║                                                                              ║
@@ -209,7 +210,19 @@ const LENS_DATA = {
     { label: "12", R: 8.277, d: 2.41, nd: 1.497, elemId: 7, sd: 4.65 },
     { label: "13", R: -67.66, d: 2.94, nd: 1, elemId: 0, sd: 4.6 },
     { label: "14A", R: 14.303, d: 1.37, nd: 1.51633, elemId: 8, sd: 4.4 },
-    { label: "15", R: 50.393, d: 7.246476076230979, nd: 1, elemId: 0, sd: 4.2 },
+    { label: "15", R: 50.393, d: 5.52, nd: 1, elemId: 0, sd: 4.2 },
+  ],
+
+  /* ── Equivalent sensor-cover / color-filter plate (patent surfaces 16–17): traced, not drawn ── */
+  rearPlates: [
+    {
+      thicknessMm: 1.24,
+      nd: 1.5,
+      vd: 64.0,
+      gapAfterMm: 0.899809409564313,
+      source:
+        "JP 2010-72639 A, Example 4 Table 10 surfaces 16–17; gap to image derived, not printed (previous normalized 7.2464760762 mm air-equivalent BF − 5.52 − 1.24/1.50000)",
+    },
   ],
 
   asph: {
@@ -236,12 +249,12 @@ const LENS_DATA = {
   var: {
     "6": [6.12, 6.02],
     STO: [3.82, 3.68],
-    "15": [7.246476076230979, 7.386476076230979],
+    "15": [5.52, 5.66],
   },
   varLabels: [
     ["6", "D(A)"],
     ["STO", "D(B)"],
-    ["15", "BF (normalized C)"],
+    ["15", "C"],
   ],
 
   groups: [

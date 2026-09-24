@@ -10,16 +10,17 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  4 zoom groups; 7 aspherical surfaces on 4 elements.                ║
  * ║  Focus: negative inner focus element Fa moves imageward to close.   ║
  * ║                                                                    ║
- * ║  Zoom variable gaps: d6, d7/STO, d13, d17, and folded BFD d19.      ║
+ * ║  Zoom variable gaps: d6, d7/STO, d13, d17, and d19 to cover glass.  ║
  * ║  The patent publishes infinity-focus zoom spacings only; close      ║
  * ║  focus spacings are therefore intentionally duplicated from the      ║
  * ║  infinity values.                                                   ║
  * ║                                                                    ║
  * ║  NOTE ON COVER GLASS:                                               ║
- * ║    Patent surfaces 20 and 21 are the sensor faceplate/cover glass,  ║
- * ║    not lens elements. They are excluded from the surfaces array.     ║
- * ║    Their optical path is folded into surface 19A BFD as:            ║
- * ║      d19 + 1.33 / 1.51633 + 0.50 mm.                                ║
+ * ║    Patent surfaces 20 and 21 are the sensor cover glass/filter      ║
+ * ║    (1.33 mm, nd 1.51633, νd 64.1, S-BSL7 class) with 0.50 mm air to ║
+ * ║    the image. They are modeled in `rearPlates` (traced, not drawn). ║
+ * ║    Surface 19A stores the patent d19: 7.93 / 6.39 / 3.33 mm; the    ║
+ * ║    equivalent BF d19 + 1.33/1.51633 + 0.50 = 9.307 / 7.767 / 4.707. ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                            ║
  * ║    The patent does not publish clear semi-diameters. Values below   ║
@@ -179,7 +180,19 @@ const LENS_DATA = {
     { label: "16", R: -24.719, d: 0.7, nd: 1.8061, elemId: 8, sd: 9.6 },
     { label: "17", R: -79.764, d: 5.42, nd: 1.0, elemId: 0, sd: 9.6 },
     { label: "18A", R: -71.0, d: 3.6, nd: 1.5316, elemId: 9, sd: 14.2 },
-    { label: "19A", R: -19.774, d: 9.307118, nd: 1.0, elemId: 0, sd: 14.2 },
+    { label: "19A", R: -19.774, d: 7.93, nd: 1.0, elemId: 0, sd: 14.2 }, // d19 variable (zoom), gap to the cover glass
+  ],
+
+  /* ── Cover glass / filter (patent surfaces 20–21): traced, not drawn ── */
+  rearPlates: [
+    {
+      thicknessMm: 1.33,
+      nd: 1.51633,
+      vd: 64.1,
+      glass: "S-BSL7",
+      gapAfterMm: 0.5,
+      source: "JP 2018-106021 A, Numerical Data 1 surfaces 20–21",
+    },
   ],
 
   asph: {
@@ -270,9 +283,9 @@ const LENS_DATA = {
       [31.32, 31.32],
     ],
     "19A": [
-      [9.307118, 9.307118],
-      [7.767118, 7.767118],
-      [4.707118, 4.707118],
+      [7.93, 7.93],
+      [6.39, 6.39],
+      [3.33, 3.33],
     ],
   },
 
@@ -281,7 +294,7 @@ const LENS_DATA = {
     ["STO", "SP1 → L2"],
     ["13", "SP2 → L3"],
     ["17", "L3 → L4"],
-    ["19A", "folded BFD"],
+    ["19A", "GRP → cover glass"],
   ],
 
   zoomPositions: [15.45, 26.05, 43.7],

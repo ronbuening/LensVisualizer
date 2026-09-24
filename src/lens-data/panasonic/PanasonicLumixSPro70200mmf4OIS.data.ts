@@ -21,8 +21,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  Source correction: the close-focus table prints d16; geometry and repeated values  ║
  * ║  establish that this is d15, represented by the STO key.                            ║
  * ║                                                                                      ║
- * ║  Filter normalization: source plane-parallel filter surfaces 42-43 are omitted.     ║
- * ║  Surface 41 rear spacing is 30.3551 + 2.1074 / 1.51680 + published BF.              ║
+ * ║  Rear filter F (source surfaces 42-43: 2.1074 mm, nd 1.51680, vd 64.17) is           ║
+ * ║  modeled in `rearPlates` (traced, not drawn). Wide-infinity BF 0.3481 mm is the      ║
+ * ║  fixed plate-to-image gap; the printed BF excess at other states (up to +0.0023      ║
+ * ║  mm) is carried in gap 41 = 30.3551 + (BF - 0.3481).                                 ║
  * ║                                                                                      ║
  * ║  Semi-diameters: inferred from reduced-angle axial and full-field bundles in all    ║
  * ║  six published states, checked against Figure 66, then constrained by positive edge ║
@@ -374,7 +376,20 @@ const LENS_DATA = {
     { label: "38", R: -24.1789, d: 0.9007, nd: 1.83481, elemId: 22, sd: 14.5 },
     { label: "39", R: -258.1522, d: 0.1501, nd: 1, elemId: 0, sd: 14.5 },
     { label: "40A", R: 33.5263, d: 4.9539, nd: 1.58913, elemId: 23, sd: 16.7 },
-    { label: "41", R: 213.167, d: 32.092572363, nd: 1, elemId: 0, sd: 16.7 },
+    { label: "41", R: 213.167, d: 30.3551, nd: 1, elemId: 0, sd: 16.7 }, // gap to filter F
+  ],
+
+  /* ── Filter F (patent surfaces 42–43): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "F",
+      thicknessMm: 2.1074,
+      nd: 1.5168,
+      vd: 64.17,
+      glass: "N-BK7",
+      gapAfterMm: 0.3481,
+      source: "JP 2020-086133 A, Numerical Example 6 surfaces 42–43",
+    },
   ],
 
   asph: {
@@ -421,9 +436,9 @@ const LENS_DATA = {
       [3.0468, 19.8325],
     ],
     "41": [
-      [32.092572363, 32.092672363],
-      [32.094872363, 32.094872363],
-      [32.092972363, 32.093072363],
+      [30.3551, 30.3552],
+      [30.3574, 30.3574],
+      [30.3555, 30.3556],
     ],
   },
 
@@ -434,7 +449,7 @@ const LENS_DATA = {
     ["18", "D18"],
     ["22", "D22"],
     ["25", "D25"],
-    ["41", "BF (AIR-EQUIVALENT)"],
+    ["41", "D41"],
   ],
 
   zoomPositions: [72.5, 117.6, 193.95],

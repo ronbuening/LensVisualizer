@@ -63,3 +63,12 @@ Patent: JP 2018-005099 A, Example 4
 - The prior `TAF105` label was not a valid match: current M-TAF105 is the distinct `1.77250 / 49.50` row.
 - HOYA TAF3D is the exact `1.80420 / 46.50` catalog coordinate and evaluates to PgF = 0.55724, independently reproducing the patent partial-dispersion value.
 - Relabeled L9 as a TAF3D catalog equivalent while leaving the production supplier unspecified. No prescription data changed.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Replaced the air-equivalent 27A gap with the patent's physical rear stack (Example 4, PDF pages 19–20 of local
+  `patents/JP2018005099A.pdf`, rendered): d27 = 37.0799 / 47.4637 mm (infinity / 848 mm), then `rearPlates` LPF
+  (符号の説明 designation) 1.4500 mm, nd 1.52301, νd 58.59, θgF 0.5449 (dPgF −0.00035 against the project normal
+  line; C12 (HOYA) coordinate-compatible spectral proxy, as in the Sigma 105 mm pilot), and BF 1.0000 mm.
+- Paraxial check against the previous data: EFL identical; defocus changes by at most 0.00024 mm (rounding in the
+  old 39.032 / 49.416). Physical track grows by 0.498 mm and now matches the patent's printed 166.36 mm total length.

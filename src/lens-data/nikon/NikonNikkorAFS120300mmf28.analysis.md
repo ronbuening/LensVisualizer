@@ -109,12 +109,12 @@ Where Δx2 = 61.357 mm is the image-side movement of G2 from wide to tele; Da21 
 | Type | Count | Elements | Glass family |
 |------|-------|----------|-------------|
 | Fluorite (FL) | 2 | L13 (G1), L32 (G3) | CaF₂ (nd = 1.4338, νd = 95.27) |
-| ED | 1 | L12 (G1) | S-FPL51 type (nd = 1.4978, νd = 82.57) |
-| SR | 1 | Uncertain — see §4.4 | KZFS-family or anomalous-dispersion glass |
+| ED | 1 | L12 (G1) | Hikari J-FKH1 coordinate (nd = 1.49782, νd = 82.57) |
+| SR | 1 | Not identified by the patent — see §4.4 | L25 is the most consistent candidate |
 
 ### 4.2 Fluorite elements (L13 and L32)
 
-Both fluorite elements share identical optical properties: nd = 1.433843, νd = 95.27. This matches calcium fluoride (CaF₂) to within measurement tolerance. Fluorite has the highest Abbe number of any practical optical material, giving it extremely low chromatic dispersion. It is also significantly lighter than optical glass of equivalent volume — a critical advantage in a 3.25 kg lens.
+Both fluorite elements share identical optical properties: nd = 1.433843, νd = 95.27. This matches calcium fluoride (CaF₂) to within measurement tolerance. The patent lists only the index pair and does not use the word fluorite, so the CaF₂ identity is inferred from the coordinate and Nikon's two-FL-element specification. Fluorite has the highest Abbe number of any practical optical material, giving it extremely low chromatic dispersion. It is also significantly lighter than optical glass of equivalent volume — a critical advantage in a 3.25 kg lens.
 
 **L13** is the rear element of G1, a plano-convex lens (convex front toward the object, flat rear; f = +312 mm). Positioned in the front group where ray heights are large, it provides powerful positive refractive power with minimal chromatic contribution. Its rear surface is flat (R = ∞), which simplifies the manufacture and testing of this expensive fluorite crystal.
 
@@ -122,53 +122,55 @@ Both fluorite elements share identical optical properties: nd = 1.433843, νd = 
 
 ### 4.3 ED element (L12)
 
-L12 (nd = 1.49782, νd = 82.57) is a biconvex positive lens in G1, cemented to the negative meniscus L11 to form a weakly positive achromatic doublet (f ≈ +1226 mm). The glass matches HIKARI MC-FPL51 — the HIKARI catalog equivalent of OHARA S-FPL51 — to full quoted precision. This is a phosphate-crown ED glass with very low dispersion (νd ≈ 82.6) and moderate anomalous partial dispersion.
+L12 (nd = 1.49782, νd = 82.57) is a biconvex positive lens in G1, cemented to the negative meniscus L11 to form a weakly positive achromatic doublet (f ≈ +1226 mm). The glass matches Hikari J-FKH1 (code 497826) to full quoted precision; it is not the 497816 S-FPL51 coordinate. J-FKH1 is a fluor-crown ED glass with very low dispersion (νd ≈ 82.6) and positive anomalous partial dispersion.
 
-Together, the L11+L12 cemented doublet at the front of G1 serves as a large-diameter achromatic corrector. L11 uses S-LAH93 (nd = 1.9027, νd = 35.77), a high-index lanthanum-crown glass. The strong negative meniscus L11 paired with the low-dispersion positive L12 provides first-order achromatisation for the entire front group, while the high refractive index of L11 keeps the front element diameter manageable despite the large entrance pupil required for f/2.8 at 300 mm.
+Together, the L11+L12 cemented doublet at the front of G1 serves as a large-diameter achromatic corrector. L11 uses a 1.90265 / 35.77 high-index lanthanum flint that matches Hikari J-LASFH9 (the previously cited OHARA S-LAH93 is 1.90525 / 35.04 and does not match). The strong negative meniscus L11 paired with the low-dispersion positive L12 provides first-order achromatisation for the entire front group, while the high refractive index of L11 keeps the front element diameter manageable despite the large entrance pupil required for f/2.8 at 300 mm.
 
 ### 4.4 SR element — candidates and uncertainty
 
 Nikon describes SR glass as "a high- and specialized-dispersion glass lens featuring characteristics to greatly refract light with wavelengths shorter than that of blue." One reviewer (Shutterbug) specifically notes the SR element "reduces spherochromatism" — the variation of chromatic aberration with aperture zone, a distinct aberration from simple longitudinal CA. No public Nikon source identifies which of the 25 elements carries the SR designation, and the patent does not use the term "SR." The identification must therefore be inferred from glass properties.
 
-Three elements in Example 1 use glasses from the KZFS ("short flint special") or anomalous-partial-dispersion families, making each a plausible SR candidate:
+Three elements in Example 1 have glasses with notable partial-dispersion behaviour, so each has been discussed as an SR candidate:
 
-**Candidate 1 — L21 (G2, positive meniscus):** nd = 1.720467, νd = 34.71, θgF = 0.583. This is the exact Schott N-KZFS8 coordinate and a KZFS glass with anomalous partial dispersion. L21 sits at the front of the moving variator group G2, where it acts as a chromatic pre-corrector. The patent's conditional expression (5) specifically constrains L21's partial dispersion, indicating Nikon selected this glass for its dispersion properties.
+**Candidate 1 — L21 (G2, positive meniscus):** nd = 1.720467, νd = 34.71, patent θgF = 0.583. This is the exact Schott N-KZFS8 coordinate. Against the normal line P<sub>g,F</sub> ≈ 0.6438 − 0.001682·νd the published θgF sits about 0.002 *below* normal, and condition (5) holds L21 slightly below a line of its own. L21 therefore refracts short wavelengths slightly *less* than a normal glass of its Abbe number — the opposite of Nikon's SR description.
 
-**Candidate 2 — L25 (G2, positive meniscus):** nd = 1.755750, νd = 24.71, θgF = 0.629. The six-digit code 756247 now resolves to Hikari J-SFH5, a coefficient-backed anomalous-dispersion dense flint whose published nd, νd, and P<sub>g,F</sub> match the patent row.
+**Candidate 2 — L25 (G2, positive meniscus):** nd = 1.755750, νd = 24.71, patent θgF = 0.629, about +0.027 above the normal line (derived). The six-digit code 756247 resolves to Hikari J-SFH5, a coefficient-backed anomalous-dispersion dense flint whose published nd, νd, and P<sub>g,F</sub> match the patent row. The patent names L25 as its "second lens" and says condition (8) defines this glass's anomalous dispersion so that the secondary spectrum is corrected along with first-order colour (paragraph 0032).
 
-**Candidate 3 — L33 (G3, biconcave negative):** nd = 1.654130, νd = 39.72. This matches Schott N-KZFS5 / OHARA S-LAM61 very closely (Δnd ≈ 0.00001). Like N-KZFS8, N-KZFS5 is a KZFS-family glass with anomalous blue-violet dispersion. L33 sits in the fixed relay group G3, sandwiched between the fluorite L32 and the high-index L34, forming a triplet arrangement ideal for secondary spectrum correction. Its position in a fixed group means its correction is invariant across the zoom range.
+**Candidate 3 — L33 (G3, biconcave negative):** nd = 1.654130, νd = 39.72, no θgF published. This matches Schott N-KZFS5 (OHARA S-NBH5 has the same coordinate). Like N-KZFS8, N-KZFS5 is a short flint whose catalog partial dispersion lies slightly *below* the normal line.
 
-**Assessment:** The patent does not distinguish any element as proprietary or "newly developed." All three candidates match well-established catalog glasses. It is possible that the SR designation in the production lens corresponds to a proprietary Nikon melt whose properties were approximated by a standard catalog glass in the patent embodiment — a common practice in optical patents. Of the three candidates, **L33 is the strongest from a design perspective**: it occupies a fixed group (constant correction across zoom), it is the only KZFS-type glass in a fixed group, and its triplet pairing with fluorite is the classic arrangement for secondary spectrum correction. However, this assessment remains inferential and cannot be confirmed without Nikon's proprietary lens construction diagrams.
+**Assessment:** The patent does not use the term "SR" and does not mark any glass as newly developed, so any identification is inference. Nikon describes SR glass as refracting light shorter than blue more strongly, i.e. a high-dispersion glass with partial dispersion *above* the normal line. Of the three, only L25 has that property, and it is the one element whose anomalous dispersion the patent singles out. **L25 is therefore the most consistent SR candidate.** Earlier versions of this analysis favoured L33 on the grounds that KZFS glasses show enhanced blue-violet refraction; that has the sign backwards, since KZFS short flints lie below the normal line. The production SR element may be a proprietary Nikon melt that the patent approximates with a catalog-equivalent coordinate.
 
 ### 4.5 Complete glass identification table
 
 | Element | nd | νd | θgF | Glass match | Residual | Confidence |
 |---------|----|----|-----|------------|----------|------------|
-| L11 | 1.902650 | 35.77 | — | OHARA S-LAH93 | exact | High |
-| L12 | 1.497820 | 82.57 | — | HIKARI MC-FPL51 (≈S-FPL51, **ED**) | exact | High |
+| L11 | 1.902650 | 35.77 | — | Hikari J-LASFH9 | Δνd = 0.04 | High |
+| L12 | 1.497820 | 82.57 | — | Hikari J-FKH1 (**ED**) | exact | High |
 | L13 | 1.433843 | 95.27 | — | CaF₂ (**fluorite**) | Δnd < 0.00001 | High |
 | L21 | 1.720467 | 34.71 | 0.583 | Schott N-KZFS8 | exact | High |
 | L22 | 1.717360 | 29.53 | — | OHARA S-TIH1 | exact | High |
-| L23 | 1.696800 | 55.52 | — | 697555 lanthanum crown (vendor unresolved) | patent coordinate only | Unresolved |
-| L24 | 1.804000 | 46.60 | — | OHARA S-LAH65 | exact | High |
+| L23 | 1.696800 | 55.52 | — | Hikari J-LAK14 | exact | High |
+| L24 | 1.804000 | 46.60 | — | Hikari J-LASF015 | exact | High |
 | L25 | 1.755750 | 24.71 | 0.629 | Hikari J-SFH5 (756247) | catalog-backed | High (patent + Hikari catalog) |
 | L26 | 1.870705 | 40.73 | — | TAFD32 (HOYA) | Δnd ≈ 0.00001 | High |
 | L31 | 1.755000 | 52.34 | — | J-LASKH2 (Hikari) | exact | High |
 | L32 | 1.433843 | 95.27 | — | CaF₂ (**fluorite**) | Δnd < 0.00001 | High |
-| L33 | 1.654130 | 39.72 | — | Schott N-KZFS5 / OHARA S-LAM61 (SR candidate) | Δnd ≈ 0.00001 | High |
+| L33 | 1.654130 | 39.72 | — | Schott N-KZFS5 (OHARA S-NBH5 same coordinate) | Δnd ≈ 0.00001 | High |
 | L34 | 1.910820 | 35.25 | — | TAFD35 (HOYA) | exact | High |
-| L41 | 1.804000 | 46.60 | — | OHARA S-LAH65 | exact | High |
-| L42 | 1.593490 | 67.00 | — | OHARA S-FPM2 | exact | High |
-| L43 | 1.846660 | 23.82 | — | OHARA S-TIH53W | Δνd = 0.04 | High |
+| L41 | 1.804000 | 46.60 | — | Hikari J-LASF015 | exact | High |
+| L42 | 1.593490 | 67.00 | — | Hikari J-PSKH4 | exact | High |
+| L43 | 1.846660 | 23.82 | — | Hikari J-SF03 | Δνd = 0.02 | High |
 | L51 | 2.001000 | 29.12 | — | S-LAH99 / TAFD55 (001291, HRI) | exact | High |
-| L52 | 1.729160 | 54.61 | — | S-LAL18 (OHARA) | exact | High |
+| L52 | 1.729160 | 54.61 | — | Hikari J-LAK18 | exact | High |
 | L53 | 1.870705 | 40.73 | — | TAFD32 (HOYA) | Δnd ≈ 0.00001 | High |
-| L54 | 1.805180 | 25.41 | — | OHARA S-TIH6 | exact | High |
-| L55 | 1.516800 | 64.14 | — | OHARA S-BSL7 | Δνd = 0.06 | High |
+| L54 | 1.805180 | 25.41 | — | OHARA S-TIH6 | Δνd = 0.02 | High |
+| L55 | 1.516800 | 64.14 | — | Hikari J-BK7A | Δνd = 0.01 | High |
 | L56 | 2.001000 | 29.12 | — | S-LAH99 / TAFD55 (001291, HRI) | exact | High |
-| L57 | 1.804000 | 46.60 | — | OHARA S-LAH65 | exact | High |
-| L58 | 1.487490 | 70.31 | — | OHARA S-FSL5 / Schott N-FK5 family | Δνd ≈ 0.08–0.13 | High |
+| L57 | 1.804000 | 46.60 | — | Hikari J-LASF015 | exact | High |
+| L58 | 1.487490 | 70.31 | — | Hikari J-FK5 | Δνd = 0.01 | High |
 | L59 | 1.900430 | 37.38 | — | HOYA TAFD37A catalog-equivalent (patent vendor unspecified) | exact coordinate | High |
+
+The patent names no glass vendor. Labels are catalog equivalents that reproduce each patent nd/νd pair; where Hikari (Nikon's usual supplier) lists the exact coordinate, the Hikari name is used.
 
 L26 and L53 share the same glass (nd = 1.870705, νd = 40.73). This pair round-trips to HOYA TAFD32, code 871/407, in the project catalog. The earlier M-TAFD305 wording belonged to a different 851/401 HOYA moldable glass and is not the correct catalog identity for these Nikon rows.
 
@@ -180,7 +182,7 @@ L26 and L53 share the same glass (nd = 1.870705, νd = 40.73). This pair round-t
 
 G1 is the large-diameter front group that collects light from the object. It has two sub-groups: a cemented doublet (L11+L12) and a singlet (L13).
 
-**L11 (negative meniscus, S-LAH93, f = −322 mm):** The first element the light encounters. Its high refractive index (nd = 1.903) reduces the curvature needed on the front surface, keeping the front element diameter manageable. As the negative element of the front doublet, it introduces negative dispersion that partially cancels the positive dispersion of L12.
+**L11 (negative meniscus, J-LASFH9 type, f = −322 mm):** The first element the light encounters. Its high refractive index (nd = 1.903) reduces the curvature needed on the front surface, keeping the front element diameter manageable. As the negative element of the front doublet, it introduces negative dispersion that partially cancels the positive dispersion of L12.
 
 **L12 (biconvex positive, ED glass, f = +255 mm):** Cemented to L11, this ED element provides the primary positive power of the front doublet. Its very high Abbe number (νd = 82.57) means it contributes almost no chromatic aberration despite its strong curvature. The L11+L12 doublet together has a very long focal length (+1226 mm), acting as a weak positive corrector — its primary role is chromatic correction rather than optical power.
 
@@ -194,9 +196,9 @@ G2 is the primary zoom variator. Its strong negative power (f = −69.7 mm) dive
 
 **L21 (positive meniscus, N-KZFS8, f = +184 mm):** The first element in G2 is *positive* — an unusual choice for a negative group. The patent explains (paragraph 0022) that placing a positive element at the object side of G2 aids chromatic correction across the zoom range. L21's partial dispersion (θgF = 0.583) satisfies condition (5), indicating it has specific anomalous dispersion properties that help correct secondary spectrum. The air gap after L21 (Da21 = 12.97 mm) is large relative to its thickness (7.6 mm), satisfying condition (4); this separation is needed for the positive element to work as an independent chromatic corrector rather than merely cancelling the adjacent negative elements.
 
-**L22+L23 (cemented doublet, f = −275 mm):** L22 (biconvex, S-TIH1, νd = 29.53) is a high-dispersion positive element cemented to L23 (biconcave, patent code 697555, νd = 55.52), a moderate-dispersion negative lens whose vendor is unresolved. This doublet is weakly negative and primarily serves to correct monochromatic aberrations (spherical aberration and coma) generated by the strong negative power of G2, while maintaining chromatic balance.
+**L22+L23 (cemented doublet, f = −275 mm):** L22 (biconvex, S-TIH1, νd = 29.53) is a high-dispersion positive element cemented to L23 (biconcave, Hikari J-LAK14 coordinate, νd = 55.52), a moderate-dispersion lanthanum-crown negative lens. This doublet is weakly negative and primarily serves to correct monochromatic aberrations (spherical aberration and coma) generated by the strong negative power of G2, while maintaining chromatic balance.
 
-**L24+L25 (cemented doublet, f = −99 mm):** This is the main power element of G2. L24 (biconcave, S-LAH65, νd = 46.60) provides the bulk of the negative power, while L25 (positive meniscus, Hikari J-SFH5 / 756247, νd = 24.71, θgF = 0.629) is a high-dispersion, anomalous-partial-dispersion glass. L25 is identified in the patent as the "second lens" (第2レンズ) and satisfies conditions (6)–(8), which specify its glass properties for secondary spectrum correction. The L24+L25 combination ensures that G2's strong negative power does not introduce excessive longitudinal chromatic aberration or secondary spectrum.
+**L24+L25 (cemented doublet, f = −99 mm):** This is the main power element of G2. L24 (biconcave, J-LASF015 type, νd = 46.60) provides the bulk of the negative power, while L25 (positive meniscus, Hikari J-SFH5 / 756247, νd = 24.71, θgF = 0.629) is a high-dispersion, anomalous-partial-dispersion glass. L25 is identified in the patent as the "second lens" (第2レンズ) and satisfies conditions (6)–(8); the patent states that condition (8) defines this glass's anomalous dispersion for secondary-spectrum correction. It is the most consistent candidate for the production SR element (§4.4). The L24+L25 combination ensures that G2's strong negative power does not introduce excessive longitudinal chromatic aberration or secondary spectrum.
 
 **L26 (negative meniscus convex to image, nd = 1.8707, f = −111 mm):** The rear element of G2, a meniscus with both surfaces concave toward the object (R14 = −84.29, R15 = −651.88). It adds negative power and helps control the divergence angle of the beam leaving G2, correcting field curvature and astigmatism.
 
@@ -208,7 +210,7 @@ G3 is a fixed positive relay group (f = +109 mm) that reconverges the diverging 
 
 **L32 (biconvex positive, fluorite, f = +155 mm):** The second fluorite element in the design. Its ultra-low dispersion provides strong positive power with negligible chromatic contribution — essential for maintaining achromatism through the relay.
 
-**L33 (biconcave negative, N-KZFS5 type, f = −76 mm):** The leading SR element candidate (see §4.4). This N-KZFS5 / S-LAM61 type glass has anomalous partial dispersion that is specifically suited for correcting secondary (residual) chromatic aberration — the colour error that remains after primary red-blue achromatisation. Positioned between two strong positive elements (the fluorite L32 and the high-index L34), L33 forms a triplet-like arrangement that simultaneously corrects secondary spectrum, Petzval field curvature, and higher-order chromatic aberrations. The "short flint special" glass family to which L33 belongs is characterised by enhanced refraction of short-wavelength (blue-violet) light, consistent with the property Nikon markets as "SR."
+**L33 (biconcave negative, N-KZFS5 type, f = −76 mm):** A short-flint negative element positioned between two strong positive elements (the fluorite L32 and the high-index L34). The resulting positive–negative–positive arrangement lets G3 balance spherical aberration, Petzval curvature and colour in a group that does not move during zoom. KZFS short flints have partial dispersion slightly below the normal line, which complements the above-normal partial dispersion of the fluorite L32 in secondary-spectrum correction. Earlier versions of this analysis named L33 as the leading SR candidate; see §4.4 for why L25 fits Nikon's SR description better.
 
 **L34 (biconvex positive, TAFD35, f = +105 mm):** A high-index, moderate-dispersion positive element (nd = 1.911, νd = 35.25) that completes the relay group. Its high refractive index keeps curvatures moderate despite the strong power, reducing higher-order spherical aberration.
 
@@ -216,9 +218,9 @@ G3 is a fixed positive relay group (f = +109 mm) that reconverges the diverging 
 
 G4 is a compact positive group (f = +89.9 mm, 3 elements, 2 sub-groups) that serves dual roles: it participates in zoom motion and is the sole focusing group. Its relatively small size and light weight enable fast autofocus actuation.
 
-**L41 (plano-convex, S-LAH65, f = +147 mm):** A high-index positive element with a flat object-side surface. The flat surface simplifies the mechanical interface where G4 slides within the barrel.
+**L41 (plano-convex, J-LASF015 type, f = +147 mm):** A high-index positive element with a flat object-side surface. The flat surface simplifies the mechanical interface where G4 slides within the barrel.
 
-**L42+L43 (cemented doublet, f = +241 mm):** L42 (biconvex, S-FPM2, νd = 67.00) is a low-dispersion positive crown cemented to L43 (biconcave, S-TIH53W, νd = 23.82), a high-dispersion negative flint. This is a classic achromatic doublet providing positive power with colour correction. The large Abbe-number difference (Δνd ≈ 43) ensures effective primary achromatisation.
+**L42+L43 (cemented doublet, f = +241 mm):** L42 (biconvex, J-PSKH4 type, νd = 67.00) is a low-dispersion positive crown cemented to L43 (biconcave, J-SF03 type, νd = 23.82), a high-dispersion negative flint. This is a classic achromatic doublet providing positive power with colour correction. The large Abbe-number difference (Δνd ≈ 43) ensures effective primary achromatisation.
 
 During focus, the entire G4 group translates toward the object to focus on closer subjects. Because G4 has a relatively short focal length (+89.9 mm) and sits behind the relay group in a region of moderate ray height, its motion produces efficient focus-distance change with minimal aberration variation — the patent notes (paragraph 0018) that this configuration minimises spherical aberration change during focus.
 
@@ -230,15 +232,15 @@ G5 is the largest group (9 elements, 7 sub-groups) and contains the aperture sto
 
 **Aperture stop** (surface 31): Located in an 8 mm air gap between L51 and L52. Fixed during zoom.
 
-**L52 (biconvex positive, S-LAL18, f = +94 mm):** Immediately after the stop, this moderate-power positive element begins reconverging the beam.
+**L52 (biconvex positive, J-LAK18 type, f = +94 mm):** Immediately after the stop, this moderate-power positive element begins reconverging the beam.
 
 **L53 (negative meniscus, nd = 1.8707, f = −144 mm):** A weak negative corrector that controls field curvature and astigmatism in the near-stop region.
 
-**L54+L55 (cemented doublet, f = −205 mm):** L54 (positive meniscus, S-TIH6, νd = 25.41) is cemented to L55 (biconcave negative, S-BSL7, νd = 64.14). This negative doublet is the probable **VR group**: its position behind the stop in a low-ray-height region makes it suitable for lateral shift to correct image shake. The large Abbe-number difference provides chromatic correction within the VR group to prevent colour shifts during stabilisation.
+**L54+L55 (cemented doublet, f = −205 mm):** L54 (positive meniscus, S-TIH6, νd = 25.41) is cemented to L55 (biconcave negative, J-BK7A type, νd = 64.14). This negative doublet is the probable **VR group**: its position behind the stop in a low-ray-height region makes it suitable for lateral shift to correct image shake. The large Abbe-number difference provides chromatic correction within the VR group to prevent colour shifts during stabilisation.
 
 **L56 (biconvex positive, S-LAH99 / TAFD55, f = +76 mm):** Another ultra-high-index element (nd = 2.001), providing strong positive power in a compact package.
 
-**L57+L58 (cemented doublet, f = +107 mm):** L57 (negative meniscus, S-LAH65) is cemented to L58 (biconvex positive, S-FPL7-type, νd = 70.31). This achromatic positive doublet continues the beam convergence toward the image plane. L58's high Abbe number indicates an ED-adjacent glass, contributing to the low residual chromatic aberration characteristic of this design.
+**L57+L58 (cemented doublet, f = +107 mm):** L57 (negative meniscus, J-LASF015 type) is cemented to L58 (biconvex positive, J-FK5 type, νd = 70.31). This achromatic positive doublet continues the beam convergence toward the image plane. L58 is an ordinary low-dispersion fluor crown (FK5 family), not an ED glass.
 
 **L59 (biconcave negative, TAFD37A catalog-equivalent, f = −60 mm):** The final element, a field-flattening negative lens. Its patent coordinate (nd = 1.900430, νd = 37.38) matches HOYA TAFD37A; the patent does not establish the production supplier. Positioned close to the image plane, it primarily corrects Petzval field curvature and adjusts the exit pupil position for compatibility with digital sensor microlens arrays.
 
@@ -252,7 +254,7 @@ The 120–300 mm f/2.8 zoom faces an extreme chromatic correction challenge: at 
 
 2. **Secondary spectrum correction in G2** via two specially selected glasses: L21 (N-KZFS8, θgF = 0.583) and L25 (Hikari J-SFH5 / 756247, θgF = 0.629). The patent's conditional expressions (5)–(8) specifically constrain these glasses' partial dispersion to control secondary spectrum across the zoom range. Because G2 moves during zoom, having two such correctors at different positions within the group ensures that the correction remains balanced as the group translates.
 
-3. **Fixed secondary-spectrum correction in G3** via the fluorite–KZFS–high-index triplet arrangement (L32–L33–L34). The fluorite L32 and KZFS-type L33 work as a pair: fluorite has anomalous partial dispersion on the "long" side (excessive blue-to-green relative to green-to-red), while the KZFS-type glass has anomalous dispersion on the "short" side. Together they cancel secondary spectrum more effectively than either could alone. If L33 is indeed the production SR element, this fixed-group placement ensures invariant secondary-spectrum correction across the zoom range. Nikon also notes that the SR element reduces spherochromatism — the variation of chromatic aberration with aperture zone — which is a significant concern at f/2.8 with a 100+ mm entrance pupil.
+3. **Fixed secondary-spectrum correction in G3** via the fluorite–KZFS–high-index arrangement (L32–L33–L34). Fluorite has partial dispersion above the normal line and the KZFS-type L33 slightly below it; pairing the two in a group that does not move keeps this part of the colour correction invariant across the zoom range. Nikon notes that the production SR element reduces spherochromatism — the variation of chromatic aberration with aperture zone — which is a significant concern at f/2.8 with a 100 mm entrance pupil; on the evidence of §4.4 that element is most plausibly L25 in G2 rather than a G3 element.
 
 4. **Residual correction in G5** via the high-index S-LAH99 / TAFD55 elements (L51, L56) and the low-dispersion L58, providing final chromatic fine-tuning in the fixed rear group.
 
@@ -343,26 +345,21 @@ The constant total track length (341.22 mm) deserves emphasis: the sum D1 + D2 +
 
 ### 10.2 Semi-diameter methodology
 
-The patent provides no semi-diameter data. SDs were estimated by the following procedure:
+The patent publishes no effective diameters, so every semi-diameter is an estimate. The values were set from three inputs: an exact real-ray trace at the design f/2.91 and image height Y = 21.63 mm at all three zoom stations, the patent's FIG. 1 cross-section (measured at its native 198 dpi raster, scale ≈ 0.476 mm/px from the 286.4 mm first-to-last-vertex span), and the renderer's edge-thickness and cross-gap limits.
 
-1. A paraxial marginal ray was traced at the design f-number (f/2.91) through all 46 surfaces at each of the three zoom positions (wide, mid, tele).
-2. The maximum marginal ray height at each surface across all three zoom positions was taken as the baseline aperture requirement.
-3. An 8% mechanical clearance factor was applied to each baseline height.
-4. The front four surfaces (m1–m4) were capped at 54 mm, corresponding to the 112 mm filter thread radius of the production lens.
-5. Cemented junction surfaces were assigned matching SDs on both sides of each cement boundary.
-6. Cross-gap sag clearance was validated at all zoom positions using the renderer's sag-intrusion algorithm. Several surfaces in G3 required significant SD reductions to satisfy the constraint:
+| Region | Data-file SD (mm) | FIG. 1 reading (mm) | Basis |
+|---|---|---|---|
+| G1 (L11–L13) | 54.0–51.5 | ≈ 50–52 | Retained; front bundle needs 50.0 mm on axis at tele |
+| L21 | 37.0 / 35.0 | ≈ 36 | Retained |
+| L22–L26 | 30.0–23.2 | ≈ 25–28.5 | Just above the f/2.91 axial marginal ray (tele governs) |
+| G3 (L31–L34) | 24.6–24.3 | ≈ 26 | Just above the 24.0–24.3 mm axial marginal ray |
+| G4 (L41–L43) | 24.0–21.5 | ≈ 22–24 | Retained |
+| L51–L55 | 18.5–16.5 | ≈ 17.8–19.3 | Retained |
+| L56–L59 | 20.5–18.4 | ≈ 18.4–20.5 | From FIG. 1 |
 
-| Surface | Initial SD (mm) | Final SD (mm) | Reason |
-|---------|----------------|---------------|--------|
-| m19 (L32 rear) | 25.5 | 19.0 | Gap to L33 is only 1.626 mm; sag from both sides would exceed gap |
-| m20 (L33 front) | 25.5 | 16.0 | Consistent with reduced m19 |
-| m21 (L33 rear) | 25.5 | 13.0 | Gap to L34 is only 1.061 mm; sag at larger SD exceeds gap |
-| m22 (L34 front) | 25.5 | 13.5 | Consistent with reduced m21 |
-| m23 (L34 rear) | 25.5 | 13.5 | Matching front SD |
+G2 and G3 contain three very thin air gaps between strongly curved surfaces: L23 → L24 (3.124 mm), L32 → L33 (1.626 mm) and L33 → L34 (1.061 mm). At the f/2.91 clear aperture the facing rims come within about 0.1 mm of each other. FIG. 1 draws these pairs rim-to-rim, and the data file sets `gapSagFrac: 0.97` so that the renderer accepts the traced clearance without changing any patent spacing. An earlier version of this file shrank L33 and L34 to 13–16 mm to satisfy the default 0.90 gap rule. Those values clipped the on-axis f/2.91 beam by as much as 11 mm of radius, and FIG. 1 does not support them: it draws all four G3 elements at about the same diameter.
 
-These reduced SDs are smaller than the paraxial marginal ray heights at those surfaces (~23–25 mm), meaning the diagram will show G3 elements L33 and L34 significantly narrower than the actual beam width. This is a necessary compromise to satisfy the renderer's cross-gap sag constraint — the very tight air gaps in G3 (1.061–1.626 mm) combined with the strong curvatures (R = 88.37 to 123.71 mm) produce substantial sag intrusion that physically would be accommodated by the lens barrel's mechanical design but cannot be rendered correctly at full beam-width SDs. The alternative would be to increase the air gaps, which would invalidate the patent prescription.
-
-The production lens's patent figure (Fig. 1) confirms that L33 and L34 are indeed smaller-diameter elements compared to L31 and L32 — the ray trace-derived SDs at those elements would be appropriate for the marginal beam, but the mechanical clear apertures are constrained by the tight spacing.
+The rear elements L56–L59 were previously 10–16 mm. That was below the full-field chief ray at the last surface and well under FIG. 1, which draws L59 at about 18.4 mm. At that radius L59's computed edge thickness (5.2 mm) matches the drawn rim. At the image-height field the wide-end corner bundle is still partially vignetted by G1, G2 and G3, as expected for a fast telephoto zoom.
 
 ### 10.3 Close-focus variable gaps
 
@@ -411,4 +408,4 @@ It has no optical effect but is retained to match the patent's surface numbering
 
 The aperture stop is at surface m = 31 in the patent, located in an 8.0 mm air gap between L51 and L52 within G5. The patent explicitly places it here (paragraph 0054). Because G5 is fixed during zoom, the stop position relative to the image plane is invariant.
 
-The stop SD of 16.7 mm was estimated from the marginal ray height at m = 31 (approximately 16.65 mm at all zoom positions, since G5 is fixed). At wide-open f/2.91, EP_SD ≈ EFL / (2 × 2.91) ranges from 21.2 mm (wide) to 50.0 mm (tele) at the entrance pupil, but the physical stop diameter is much smaller because it sits behind three groups of positive power.
+The stop sits in G5, and everything behind it (G5) is fixed during zoom. At a constant image-side f-number the marginal ray height at the stop is therefore the same at every zoom station, so one physical iris gives F/2.91 at wide, middle and tele. The real-ray value is 17.15 mm; the paraxial value is 16.65 mm. The patent publishes no iris diameter, and the data file needs neither a published iris schedule nor an inferred one. The stored stop semi-diameter of 17.2 mm records that iris, and the engine derives the working iris from the nominal F/2.91. The entrance-pupil radius grows from 21.2 mm (wide) to 50.0 mm (tele) because the magnification of G1–G4 onto the stop changes, not because the iris opens. The production lens's minimum aperture of f/22 sets the slider limit.

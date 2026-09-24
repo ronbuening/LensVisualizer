@@ -44,3 +44,12 @@ Patent: US 2020/0333569 A1, Example 1
 - Verification: `npm run typecheck` passed; `npm run test` 2440 tests passed; cross-section re-rendered
   and compared with FIG. 2.
 - Full method and per-lens results: agent_docs/records/patent-figure-sd-audit-2026-07.md.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Replaced the air-equivalent back focus (stored 4.861 mm) with the physical rear stack from Example 1 Table 1
+  (p. 19): S14 d = 3.504 mm (patent d15), then `rearPlates` PP 1.300 mm, nd 1.51680, νd 64.20 (N-BK7 class; the
+  elements' OHARA S-BSL7 is nd 1.51633, so the exact-nd Schott label was used), and 0.500 mm to the image.
+- Paraxial check against the previous data: EFL identical; defocus changes by +0.00007 mm at infinity and close focus,
+  the rounding in the old 4.861 mm (exact fold 4.86107 mm, which also matches Table 2 Bf). Physical track grows by
+  1.300 × (1 − 1/1.51680) = 0.443 mm, to 38.79 mm against the air-converted TL of 38.35 mm.

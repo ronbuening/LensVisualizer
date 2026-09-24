@@ -16,9 +16,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * - Patent surface 10 is an optically inert R = infinity, air-to-air reference
  *   plane with d = -0.10 mm. It is omitted here and folded into the preceding
  *   B2-B3 air spacing so every renderer-facing thickness is non-negative.
- * - Patent surfaces 29-30 are the sensor/filter optical block. Per project
- *   convention this cover glass is excluded and its optical path is folded into
- *   the final surface 28 back-focus as an air-equivalent distance.
+ * - Patent surfaces 29-30 are the sensor/filter optical block (1.55 mm,
+ *   nd 1.51633, vd 64.1, S-BSL7 class) with d30 = 3.31 mm to the image plane.
+ *   It is modeled in `rearPlates` (traced, not drawn); surface 28 stores the
+ *   patent d28 gap to the block: 3.41 / 8.24 / 9.52 mm.
  * - Patent surface 20 and surface 21 share R = 42.072 with d20 = 0.00. This is
  *   modeled as a zero-air-gap contact pair, not as a cemented interface.
  * - The patent does not publish close-focus spacings. B5 close-focus travel is
@@ -255,7 +256,19 @@ const LENS_DATA = {
     { label: "25A", R: -36.295, d: 0.7, nd: 1.85135, elemId: 13, sd: 7 },
     { label: "26A", R: 34.775, d: 4.49, nd: 1, elemId: 0, sd: 7.8 },
     { label: "27", R: 26.904, d: 3.5, nd: 1.91082, elemId: 14, sd: 13.2 },
-    { label: "28", R: 200, d: 7.742205, nd: 1, elemId: 0, sd: 13.2 },
+    { label: "28", R: 200, d: 3.41, nd: 1, elemId: 0, sd: 13.2 },
+  ],
+
+  /* ── Sensor/filter optical block (patent surfaces 29–30): traced, not drawn ── */
+  rearPlates: [
+    {
+      thicknessMm: 1.55,
+      nd: 1.51633,
+      vd: 64.1,
+      glass: "S-BSL7",
+      gapAfterMm: 3.31,
+      source: "US 2015/0219882 A1, Numerical Example 2 surfaces 29–30",
+    },
   ],
 
   asph: {
@@ -294,9 +307,9 @@ const LENS_DATA = {
       [12.85, 7.0914],
     ],
     "28": [
-      [7.742205, 7.742205],
-      [12.572205, 12.572205],
-      [13.852205, 13.852205],
+      [3.41, 3.41],
+      [8.24, 8.24],
+      [9.52, 9.52],
     ],
   },
   varLabels: [

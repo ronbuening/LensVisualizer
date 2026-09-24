@@ -27,3 +27,13 @@ Patent: US 2017/0351051 A1, Example 1
 - Visually rechecked local `patents/US20170351051A1.pdf`, PDF page 22, Example 1 / Table 1. L14 remains `nd = 1.84887`, `νd = 40.12`, `θgF = 0.57197`.
 - Re-sourced Hoya M-TAFD305 / MC-TAFD305 from the first-party 2026-07-07 AGF. Its coefficient curve (`1.851348 / 40.104 / 0.569519`) is within catalog-assignment tolerances and is explicitly a precision-molding family.
 - Relabeled only L14 to `M-TAFD305` as a catalog equivalent. Patent code `849401`, patent `dPgF`, and the unspecified production supplier remain explicit; L21 stays code-only.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Replaced the air-equivalent fold with the physical rear stack from `patents/US20170351051A1.pdf` PDF page 22,
+  Example 1 Table 1 (checked on the rendered page): d17 = 10.862 mm, then `rearPlates` PP 2.850 mm, nd 1.51680,
+  νd 64.20, θgF 0.53430, and 1.000 mm of air to the image. Surface 17 carries no focus `var` entry.
+- Plate glass labeled N-BK7 (exact nd / νd match; catalog-compatible), with the patent θgF kept as
+  dPgF −0.00152 against the project normal line.
+- Paraxial check against the previous data: EFL identical and defocus unchanged at all three focus keyframes (the old
+  13.740956 mm was the exact fold). Physical track grows by 2.850 × (1 − 1/1.51680) = 0.971 mm.

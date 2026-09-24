@@ -34,3 +34,13 @@
   the same Abbe number. It is labeled as a catalog equivalent because the patent does not identify the production
   supplier.
 - Strict and trusted catalog coverage are now complete at `22/22`; no geometry or asphere coefficients changed.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Read Table 7 (Third Example) and Table 9A on PDF page 24 (printed page 13) at 200 dpi: surface 45 d = 31.00000;
+  surfaces 46–47 are the parallel plate P (the patent's LPF/cover-glass stand-in), 2.10000 mm, nd 1.51680, νd 64.2;
+  BF = 1.0900 at wide, middle, and tele. 31 + 2.1/1.51680 + 1.09 reproduces the legacy 33.4744936709 mm fold.
+- Surface 45 now stores 31.0 mm, with `rearPlates` P labeled N-BK7 (exact 1.51680 / 64.2 class; the lens's other
+  elements carry no single vendor) and gapAfter 1.09 mm. Paraxial check against the previous data: EFL identical and
+  defocus unchanged (worst difference 1.4e-11 mm) at all three zoom stations. Physical track grows by 0.715506 mm to
+  224.9999 / 224.9998 / 224.9998 mm, matching Table 9A's total lens length.

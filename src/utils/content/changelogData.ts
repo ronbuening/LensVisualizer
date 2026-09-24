@@ -24,6 +24,23 @@ export const CHANGELOG: ChangelogEntry[] = [
     summary: "Added simulated lens MTF with image-height charts, spectral estimates and documented finite focus",
   },
   {
+    date: "2026-09-23",
+    type: "improvement",
+    summary:
+      "Sensor cover glass and rear filters from the patent are now traced in every analysis, without being drawn",
+  },
+  {
+    date: "2026-09-23",
+    type: "fix",
+    summary:
+      "Reviewed and corrected 40 more lens diagrams against their patents: rims, zoom motion, apertures and glass",
+  },
+  {
+    date: "2026-09-23",
+    type: "lens",
+    summary: "Added two Kodak Ektars, Leica Summilux-C 100, Super-Angulon-R 21 and SL/TL Super-Vario-Elmars",
+  },
+  {
     date: "2026-09-22",
     type: "lens",
     summary: "Added three Fujinon XF zooms and Meyer Orestor, Kino-Plasmat and Double-Plasmat models",

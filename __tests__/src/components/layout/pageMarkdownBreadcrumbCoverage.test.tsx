@@ -135,7 +135,7 @@ describe("page, markdown, and breadcrumb coverage", () => {
     expect(screen.getAllByText("x").length).toBeGreaterThan(0);
   });
 
-  it("renders single-lens breadcrumbs and dispatches settings changes", () => {
+  it("renders single-lens breadcrumbs with inline theme toggles", () => {
     const dispatch = vi.fn();
     const lensKey = CATALOG_KEYS[0];
     renderBreadcrumb({
@@ -153,11 +153,7 @@ describe("page, markdown, and breadcrumb coverage", () => {
     expect(searchLink.style.width).toBe("30px");
     expect(searchLink.style.height).toBe("30px");
 
-    const settingsTrigger = screen.getByRole("button", { name: /settings/i });
-    expect(settingsTrigger.getAttribute("aria-haspopup")).toBe("true");
-    expect(settingsTrigger.getAttribute("aria-expanded")).toBe("false");
-    fireEvent.click(settingsTrigger);
-    expect(settingsTrigger.getAttribute("aria-expanded")).toBe("true");
+    expect(screen.queryByRole("button", { name: /settings/i })).toBeNull();
 
     fireEvent.click(screen.getByRole("button", { name: /HC/i, pressed: false }));
     fireEvent.click(screen.getByRole("button", { name: /AUTO/i }));

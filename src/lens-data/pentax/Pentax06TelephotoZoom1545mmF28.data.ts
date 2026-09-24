@@ -20,9 +20,13 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ state. Reconstructed tele magnification is 0.049176x, consistent  ║
  * ║ with the marketed approximately 0.05x value.                       ║
  * ║                                                                    ║
- * ║ Filter normalization: patent OP surfaces 26-27 are excluded. The  ║
- * ║ surface-25 rear gap is the independently verified air-equivalent  ║
- * ║ spacing to the same paraxial image plane at each zoom state.       ║
+ * ║ Rear plate: patent OP filter (surfaces 26-27; t = 1.05 mm,         ║
+ * ║ nd 1.51633, vd 64.1, S-BSL7 class) is modeled in `rearPlates`      ║
+ * ║ (traced, not drawn) with a fixed 0.56 mm gap to the image. Table 1 ║
+ * ║ prints d25 = 9.28 and fB = 0.56 / 0.55 / 0.53; the stored d25 =    ║
+ * ║ 9.277 / 9.272 / 9.244 mm keeps the previously verified paraxial    ║
+ * ║ image plane, so the fB variation and rounding are carried in d25.  ║
+ * ║ Physical track grows by t(1 - 1/n) = 0.358 mm.                     ║
  * ║                                                                    ║
  * ║ Stop: patent surface 13 is STO. Its clear diameter is unpublished;║
  * ║ sd = 3.93 mm is back-solved from patent FNO = 2.9. With this stop,║
@@ -295,7 +299,7 @@ const LENS_DATA = {
     },
   ],
 
-  /* ── Surfaces: patent 1-25; OP filter omitted ── */
+  /* ── Surfaces: patent 1-25; OP filter in rearPlates ── */
   surfaces: [
     { label: "1", R: 45.554, d: 1.2, nd: 1.8081, elemId: 1, sd: 12.6 },
     { label: "2", R: 31.451, d: 4.3, nd: 1.497, elemId: 2, sd: 12.3 },
@@ -321,7 +325,20 @@ const LENS_DATA = {
     { label: "22", R: 20.735, d: 2.3, nd: 1.603, elemId: 13, sd: 5.2 },
     { label: "23", R: -31.228, d: 2.5, nd: 1, elemId: 0, sd: 5.1 },
     { label: "24", R: -9.86, d: 1, nd: 1.56732, elemId: 14, sd: 5.1 },
-    { label: "25", R: -16.841, d: 10.529475462274664, nd: 1, elemId: 0, sd: 5.2 },
+    { label: "25", R: -16.841, d: 9.277014058754322, nd: 1, elemId: 0, sd: 5.2 }, // d25 var — gap to the OP plate
+  ],
+
+  /* ── Optical filter OP (patent surfaces 26–27): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "OP",
+      thicknessMm: 1.05,
+      nd: 1.51633,
+      vd: 64.1,
+      glass: "S-BSL7",
+      gapAfterMm: 0.56,
+      source: "US 9,784,950 B2, Numerical Embodiment 1 Table 1 surfaces 26–27; gap after = Table 2 wide fB",
+    },
   ],
 
   asph: {},
@@ -351,9 +368,9 @@ const LENS_DATA = {
       [1.22, 1.22],
     ],
     "25": [
-      [10.529475462274664, 10.529475462274664],
-      [10.524527852113646, 10.524527852113646],
-      [10.496007798274823, 10.496007798274823],
+      [9.277014058754322, 9.277014058754322],
+      [9.272066448593304, 9.272066448593304],
+      [9.24354639475448, 9.24354639475448],
     ],
   },
   varLabels: [
@@ -361,7 +378,7 @@ const LENS_DATA = {
     ["5", "D5 (ZOOM + FOCUS)"],
     ["12", "D12 (ZOOM)"],
     ["16", "D16 (ZOOM)"],
-    ["25", "BF (OP-NORM)"],
+    ["25", "D25 (TO OP)"],
   ],
   focusDescription:
     "CONSTRAINED_RECONSTRUCTION: L13 alone moves approximately 2.787 mm objectward from infinity to the " +

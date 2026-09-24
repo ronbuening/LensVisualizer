@@ -7,6 +7,14 @@ import { isAnalysisTabId, isDesktopView, isOffAxisMode, isRayDensity, type Prefe
 export const PREFS_KEY: string = "lensvis:prefs";
 
 /**
+ * Stored-preferences schema version written by usePreferences.
+ *
+ * v3 changed the default ray mode to TRACKS FOCUS. Every earlier save wrote the old `rayTracksF: false` default
+ * whether or not the visitor chose it, so a pre-v3 `rayTracksF` is ignored once and the new default applies.
+ */
+export const PREFS_VERSION = 3;
+
+/**
  * Load persisted user preferences from localStorage.
  *
  * Validates each field individually — corrupt or unexpected values are
@@ -25,15 +33,16 @@ export function loadPrefs(): Partial<Preferences> {
     if (p.dark === null || typeof p.dark === "boolean") out.dark = p.dark;
     if (typeof p.highContrast === "boolean") out.highContrast = p.highContrast;
     if (typeof p.showOnAxis === "boolean") out.showOnAxis = p.showOnAxis;
-    /* showOffAxis: v2 stored boolean (true→"trueAngle", false→"off"),
-       v3+ stores string "off"|"trueAngle"|"edge" */
+    /* showOffAxis: early saves stored a boolean (true→"trueAngle", false→"off");
+       current saves store "off"|"trueAngle"|"edge" */
     if (isOffAxisMode(p.showOffAxis)) {
       out.showOffAxis = p.showOffAxis;
     } else if (typeof p.showOffAxis === "boolean") {
       out.showOffAxis = p.showOffAxis ? "trueAngle" : "off";
     }
     if (isRayDensity(p.rayDensity)) out.rayDensity = p.rayDensity;
-    if (typeof p.rayTracksF === "boolean") out.rayTracksF = p.rayTracksF;
+    const version = typeof p.v === "number" ? p.v : 0;
+    if (version >= 3 && typeof p.rayTracksF === "boolean") out.rayTracksF = p.rayTracksF;
     if (typeof p.showChromatic === "boolean") out.showChromatic = p.showChromatic;
     if (typeof p.chromR === "boolean") out.chromR = p.chromR;
     if (typeof p.chromG === "boolean") out.chromG = p.chromG;

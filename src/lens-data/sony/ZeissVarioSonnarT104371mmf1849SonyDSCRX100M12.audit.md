@@ -31,3 +31,13 @@ Enabled the existing from-nominal-fno zoom aperture model. The former fixed wide
 Zoom is correctly ordered: GR1 moves imageward then reverses, GR2 and GR3 move objectward, and GR4 moves imageward. The disabled focus control correctly limits the model to published infinity-focus states. L22 and L23 now display their existing S-LAH55 and E-FD4 spectral proxy names with production identity unconfirmed.
 
 Follow-up validation: typecheck, formatting, lint and all 2,717 tests in 276 files passed; the production build prerendered 1,397 pages. Glass reports retain 63/67 resolved batch elements and zero catalog mismatches. All six surface audits pass, the five applicable image-circle audits report no undersized surfaces, and renderer diagnostics report zero SD trim at five zoom positions and both focus-control endpoints. No additional changelog entry was added.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Read Example 3 Table 9 and Table 12 on PDF page 22 at 160 dpi: D15 = 5.065 / 4.371 / 3.625 mm; surfaces 16–17 are a
+  0.300 mm plate, nd 1.516798, νd 64.1983, then 0.150 mm air; surfaces 18–19 are a 0.500 mm plate, nd 1.556708,
+  νd 58.5624, then 1.000 mm to IMG. Paragraph 0102 names the stack filter SG; both plates carry that label, in order.
+- Surface 15A and its `var` rows now store the printed D15. Glass: N-BK7 (1.51680 / 64.17) and OHARA BAL15Y
+  (1.55671 / 58.68), both coordinate-compatible; no θgF is printed.
+- Paraxial check against the previous data: EFL identical and defocus unchanged (max difference 7e-15 mm) at all three
+  zoom states, since the old 1.668975685986314 mm fold was computed exactly. Physical track grows by 0.281 mm.

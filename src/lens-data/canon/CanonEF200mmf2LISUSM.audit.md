@@ -22,3 +22,13 @@ Patent: JP 2008-145584 A, Numerical Example 1
 | L2 | `apd` / `apdNote` | omitted | `inferred` | Fluorite nd/vd signature and production special-glass count identify the anomalous-dispersion front element. |
 | L3 | `apd` / `apdNote` | omitted | `inferred` | S-FPL51 UD-class element already has line-index fields; the badge metadata now matches the analysis. |
 | L6 | `apd` / `apdNote` | omitted | `inferred` | Second S-FPL51 UD-class element in the front chromatic-correction doublet. |
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Read Numerical Example 1 (Table 1, PDF page 9) at 160 dpi: surface 28 D = 3.27; surfaces 29–30 are the plane drop-in
+  filter F (designated `F` in the patent's reference list), 2.00 mm, nd 1.51633, νd 64.1; surface 30 → image 60.36.
+  Only the infinity table is printed, so the last gap is not variable.
+- Surface 28 now stores the patent's 3.27 mm, with `rearPlates` F (S-BSL7, resolver-compatible) and gapAfter 60.36 mm.
+  Paraxial check against the previous data: EFL identical; defocus unchanged at both focus keyframes (worst difference
+  1e-7 mm, since the old 64.948974 fold was exact). Physical track grows by 0.681 mm and now equals the 231.47 mm
+  first-surface-to-image sum already quoted in the analysis.

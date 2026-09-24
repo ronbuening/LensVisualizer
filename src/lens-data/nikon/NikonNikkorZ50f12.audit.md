@@ -59,3 +59,14 @@ Patent: WO 2021/241230 A1
 - Rewrote public analysis with the correct source station, conic convention, filter omission, source/catalog distinctions, and constrained rim estimates. Removed unsupported production-motor and exact-production-prescription claims.
 - Production infinity/close/motion chart inspected before edits. Local infinity/close/midpoint/f16 inspected after: f1.23/16, close63cm, named gaps19.16/2/1.9→11.44/3.58/8.04, midpoint15.30/2.79/4.97, BF12.57, EFL51.29→47.51 (mid49.35). Chart shows distinct F1/F2 objectward movements7.727/6.143mm with zoom disabled. Stop40.85mm wide open and3.14mm atf16. No overlapping glass in the live diagram.
 - Surface and image-circle probes pass. Five focused regressions pass: independent sag pins, preserved finite object leg, independent group motion, glass counterpart resolution, hidden-rim trimming. Full tests/build/glass reports remain for batch11–20.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Re-read Example 1 Table 1 on PDF pp. 30–31 (printed pp. 28–29): d34 = 10.810; surfaces 35–36 are a 1.600 mm plate,
+  nd 1.51680, νd 63.9 (labelled FL in Fig. 1, p. 63); d36 = 0.702 / 0.701 (infinity / close). Glass label Hikari J-BK7
+  (1.51680 / 63.88, resolver-compatible, same label as L44).
+- Surface 33 now stores the physical d34 (10.810 / 10.809) instead of the folded 12.566852 / 12.565852, with
+  `rearPlates` FL and gapAfter 0.702 mm; the close station's 0.001 mm d36 change is carried in d34. Paraxial check
+  against the previous data: EFL identical and defocus unchanged at both focus keyframes (the old fold was exact).
+- Physical track grows by 0.545 mm to 163.306 mm, matching the patent's 163.307 mm total length to rounding.
+  `closeFocusM` is now the physical close object-to-image distance, 0.630805 m (was the air-equivalent 0.6302599 m); it only labels focus distance.

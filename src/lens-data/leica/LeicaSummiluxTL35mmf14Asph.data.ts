@@ -12,9 +12,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * by 7.10 mm from POS1 (infinity) to POS2 (306 mm from source surface 1).
  *
  * Source surfaces 22-23 are the patent's plane-parallel sensor-cover / low-pass
- * equivalent plate PT and are omitted under the current LensVisualizer data rule.
- * The final air gap after source surface 21 is therefore the d-line air-equivalent
- * 18.13 + 1.50 / 1.5168 + 0.80 = 19.91892405063291 mm. No uniform scaling is used.
+ * equivalent plate PT (1.50 mm, nd 1.5168, νd 64.20, R 16.000) and are modeled in
+ * `rearPlates` (traced, not drawn). Source surface 21 keeps the patent's 18.13 mm
+ * gap to PT; bf = 0.80 mm from PT to the image. No uniform scaling is used.
  *
  * Semi-diameters use the patent's published effective radii as modeled optical
  * semi-diameters except source surface 11, which is widened from R_eff=11.836 mm
@@ -241,7 +241,21 @@ const LENS_DATA = {
     { label: "18", R: -52.79, d: 0.21, nd: 1.0, elemId: 0, sd: 14.6 },
     { label: "19", R: 47.533, d: 5.18, nd: 1.8348, elemId: 11, sd: 14.682 },
     { label: "20", R: -88.488, d: 1.5, nd: 1.6477, elemId: 12, sd: 14.458 },
-    { label: "21", R: 30.586, d: 19.91892405063291, nd: 1.0, elemId: 0, sd: 13.464 },
+    { label: "21", R: 30.586, d: 18.13, nd: 1.0, elemId: 0, sd: 13.464 },
+  ],
+
+  /* ── Plane-parallel plate PT (patent surfaces 22–23): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PT",
+      thicknessMm: 1.5,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      sd: 16.0,
+      gapAfterMm: 0.8,
+      source: "EP 3 029 504 A1, Example 4 surfaces 22–23 (¶0065) and bf (¶0067)",
+    },
   ],
 
   asph: {

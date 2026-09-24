@@ -18,8 +18,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ 0.6 m close-focus endpoints are code-solved constrained reconstructions with         ║
  * ║ D19 + D22 fixed at 23.060 mm. Focus status: CONSTRAINED_RECONSTRUCTION.              ║
  * ║                                                                                      ║
- * ║ The patent PP filter/cover plate (surfaces 29-30) is omitted. Its first-order         ║
- * ║ effect is folded into the final air-equivalent rear spacing: 24.8295380953 mm.        ║
+ * ║ The patent PP filter/cover plate (surfaces 29-30: 2.850 mm, nd 1.51633, vd 64.14,    ║
+ * ║ theta_gF 0.53531) is modeled in `rearPlates` (traced, not drawn): D28 = 21.929 mm to ║
+ * ║ PP and 1.021 mm from PP to the image plane. The air-equivalent rear spacing is       ║
+ * ║ unchanged at 24.8295380953 mm. Focus keyframes were solved against that              ║
+ * ║ air-equivalent image plane, which lies 0.970462 mm ahead of the physical one, so     ║
+ * ║ physical object-to-image distances are 0.970462 mm longer than the solved values.    ║
  * ║                                                                                      ║
  * ║ Semi-diameters are patent effective diameters ED/2. The STO source ED is not the      ║
  * ║ physical iris diameter; the authored STO sd is the exact axial-Snell wide-end model  ║
@@ -264,7 +268,7 @@ const LENS_DATA = {
   ],
 
   /* ── Optical surfaces ──
-   * Source surfaces 29-30 (PP cover/filter surrogate) are intentionally omitted.
+   * Source surfaces 29-30 (PP cover/filter surrogate) are modeled in rearPlates.
    * Source surface 14 is the aperture stop and is labeled STO here.
    */
   surfaces: [
@@ -295,7 +299,22 @@ const LENS_DATA = {
     { label: "25", R: -20.3393, d: 0.81, nd: 2.00069, elemId: 14, sd: 11.49 },
     { label: "26", R: -52.65464, d: 2.55, nd: 1.0, elemId: 0, sd: 12.235 },
     { label: "27", R: -170.95811, d: 3.93, nd: 1.53172, elemId: 15, sd: 13.17 },
-    { label: "28", R: -30.26663, d: 24.8295380952695, nd: 1.0, elemId: 0, sd: 13.43 },
+    { label: "28", R: -30.26663, d: 21.929, nd: 1.0, elemId: 0, sd: 13.43 }, // D28 — gap to PP
+  ],
+
+  /* ── Plane-parallel member PP (patent surfaces 29–30): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "PP",
+      thicknessMm: 2.85,
+      nd: 1.51633,
+      vd: 64.14,
+      glass: "S-BSL7",
+      dPgF: -0.00060652,
+      sd: 14.85,
+      gapAfterMm: 1.021,
+      source: "JP 2023-033114 A, Example 1 Table 1 surfaces 29–30 (ED 29.50 / 29.70)",
+    },
   ],
 
   /* ── Aspherical coefficients ── */
@@ -383,8 +402,9 @@ const LENS_DATA = {
   },
 
   /* ── Zoom and focus variable gaps ──
-   * focusPositions[1] corresponds to 1.195394397 m from object to normalized
-   * image plane. At tele, the middle D19/D22 pair is the patent-published near row.
+   * focusPositions[1] corresponds to 1.195394397 m from object to the air-equivalent
+   * image plane (1.196364859 m to the physical image plane behind PP). At tele,
+   * the middle D19/D22 pair is the patent-published near row.
    */
   focusPositions: [0, 0.5019263947098996, 1],
   var: {
@@ -433,7 +453,7 @@ const LENS_DATA = {
   focusDescription:
     "Single-group inner focus. G4 (L41-L42) moves imageward while D19 + D22 remains 23.060 mm. " +
     "The tele middle keyframe preserves the patent-published near row. The matching wide middle keyframe and " +
-    "the 0.6 m endpoints are mechanism-constrained reconstructions after PP reference-plane normalization.",
+    "the 0.6 m endpoints are mechanism-constrained reconstructions solved against the air-equivalent image plane.",
 
   nominalFno: [4.04, 4.11],
   // Physical iris schedule inferred by tracing each source-station modeled entrance pupil to STO.

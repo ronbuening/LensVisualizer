@@ -25,9 +25,9 @@ job-card assignment.
    its 2019 US publication. Canon lists 17 elements in 13 groups, 2.5 m closest focus, 0.17× maximum magnification, nine
    diaphragm blades, and optical image stabilization for the production lens.[2]
 4. The patent's unfiltered Numerical Data 2 reaches 17 optical media entries in 13 air-separated groups only when the
-   explicit image-side glass block G is counted. The LensVisualizer model intentionally omits that filter under project
-   policy, so its active prescription is 16 elements in 12 groups. The active-model count therefore should not be compared
-   directly with Canon's marketed 17/13 specification.
+   explicit image-side glass block G is counted. The LensVisualizer model carries that filter as a `rearPlates` entry
+   (traced by every analysis but not drawn), so its drawn prescription is 16 elements in 12 groups. The drawn count
+   therefore should not be compared directly with Canon's marketed 17/13 specification.
 
 Canon also describes two fluorite elements and one Super UD element in the production lens.[2] Those marketed material
 identities are not assigned one-for-one to patent elements here. Numerical Data 2 gives refractive-index, Abbe-number, and
@@ -36,8 +36,9 @@ relative-partial-dispersion coordinates, not Canon production material names.
 ## Optical Architecture
 
 The modeled prescription is a compact **telephoto** system. Independent paraxial tracing of the final data arrays gives an
-EFL of **391.938134 mm** and a normalized first-vertex-to-image track of **371.260872 mm**, so `TL/EFL = 0.947244 < 1`.
-The Gaussian back focal distance is only **69.862549 mm**, far below the EFL, so the design is not retrofocus.
+EFL of **391.938134 mm** and an air-equivalent first-vertex-to-image track of **371.260872 mm**, so
+`TL/EFL = 0.947244 < 1`. With the 2.20 mm glass block G physically in place the track is **372.010000 mm**
+(`TL/EFL = 0.949155`). The air-equivalent Gaussian back focal distance is only **69.862549 mm**, far below the EFL, so the design is not retrofocus.
 
 The patent divides the optical system into three principal units. The final data model further retains the L3 subdivisions
 shown in Figure 2A:
@@ -213,8 +214,8 @@ index residual. Its power is moderated by the negative rear member, giving D4 a 
 
 Element 16 closes the active refractive prescription. It is a high-index, high-dispersion negative partner to Element 15.
 The D4 pair remains net positive, and with Element 14 forms the verified **+63.939 mm** L3C sub-unit. The active model ends
-at its rear surface; the patent's following glass block G is intentionally omitted and represented by an air-equivalent
-rear spacing.
+at its rear surface; the patent's following glass block G is not drawn, but it is modeled in `rearPlates` at its
+physical position (7.77 mm behind surface 29) and traced by every analysis.
 
 ## Glass Identification and Selection
 
@@ -322,9 +323,10 @@ identified G1N gives condition (12) = 4.540161 rather than the table's 1.987. Th
 as reasons to alter Numerical Data 2.
 
 Condition (15) contains a separate reference-plane inconsistency. Table 1's `dF2` follows the physical path through the
-rear glass block while `LD` is defined using air-equivalent back focus. The normalized filter-removed model gives
-`dF2/LD = 0.417068` from `154.840872/371.260872`; the source table's mixed convention gives approximately
-`0.419100` from `155.593/371.255`. Both remain inside the broad condition.
+rear glass block while `LD` is defined using air-equivalent back focus. Using air-equivalent lengths for both terms, the
+model gives `dF2/LD = 0.417068` from `154.840872/371.260872`; the source table's mixed convention gives approximately
+`0.419100` from `155.593/371.255`. The model's physical `dF2` through the plate is 155.590 mm, matching the table's
+155.593 to rounding. Both ratios remain inside the broad condition.
 
 ## Image Stabilization
 
@@ -343,9 +345,10 @@ motion parameter.
 
 The final LensVisualizer data model preserves the patent's Numerical Data 2 without uniform scaling (`s = 1`). The
 marketed 400 mm f/2.8 identity is stored separately from the design values: **391.938134 mm traced EFL** and **F/2.90**.
-The patent's explicit image-side glass block G at surfaces 30–31 is omitted from the active sequential prescription and
-its optical path is folded into a final air-equivalent spacing of **69.920872 mm**. This produces the normalized
-**371.260872 mm** model track.
+The patent's explicit image-side glass block G at surfaces 30–31 (2.20 mm, nd 1.51633, νd 64.14) is modeled in
+`rearPlates`: surface 29 keeps the patent's 7.77 mm gap, and 60.70 mm of air follows the plate to the image. It is traced
+by every analysis but not drawn. The physical model track is **372.010000 mm**; its air-equivalent rear spacing of
+**69.920872 mm** gives the **371.260872 mm** air-equivalent track.
 
 The stop position is a patent fact, but its clear size is not. The model uses a stop semi-diameter of **23.608078 mm**,
 calibrated so the independently traced entrance pupil reproduces F/2.90. Likewise, the patent does not publish lens

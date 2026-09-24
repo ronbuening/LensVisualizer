@@ -13,10 +13,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  infinity to the patent's 450 mm state; no additional travel to   ║
  * ║  the production MFD is reconstructed.                              ║
  * ║                                                                    ║
- * ║  REAR-PLATE NORMALIZATION: patent optical member GC (surfaces      ║
- * ║  27–28, 2.50 mm at nd=1.51680) is excluded as a rear filter/plate.║
- * ║  Surface 26 therefore uses an air-equivalent image spacing of      ║
- * ║  16.25820675105485 mm = 13.61 + 2.50/1.51680 + 1.00.              ║
+ * ║  REAR PLATE: patent optical member GC (Table 1 surfaces 27–28,     ║
+ * ║  2.50 mm, nd 1.51680, νd 64.2) and the 1.00 mm air gap to IMG are  ║
+ * ║  modeled in `rearPlates` (traced, not drawn). Surface 26A keeps    ║
+ * ║  the patent's physical 13.61 mm gap to GC.                         ║
  * ║                                                                    ║
  * ║  APERTURE: the patent publishes STO φ=37.00 mm. Current           ║
  * ║  LensVisualizer semantics derive the active physical stop from     ║
@@ -272,7 +272,20 @@ const LENS_DATA = {
     { label: "23", R: -27.597, d: 1.2, nd: 1.69895, elemId: 13, sd: 14.45 },
     { label: "24", R: 33.777, d: 6.45, nd: 1, elemId: 0, sd: 13.61 },
     { label: "25A", R: 129.637, d: 1.4, nd: 1.76802, elemId: 14, sd: 13.9 },
-    { label: "26A", R: 41.253, d: 16.25820675105485, nd: 1, elemId: 0, sd: 14.645 },
+    { label: "26A", R: 41.253, d: 13.61, nd: 1, elemId: 0, sd: 14.645 }, // physical gap to GC
+  ],
+
+  /* ── Optical member GC (patent Table 1 surfaces 27–28): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "GC",
+      thicknessMm: 2.5,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 1.0,
+      source: "WO 2024/166548 A1, Example 1 Table 1 surfaces 27–28",
+    },
   ],
 
   /* ── Aspherical coefficients ── */

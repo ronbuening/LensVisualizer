@@ -16,12 +16,13 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    matching the production 0.25 m specification.                     ║
  * ║                                                                    ║
  * ║  NOTE ON COVER GLASS:                                               ║
- * ║    Patent surfaces 17 and 18 are a 4.2 mm plane-parallel cover       ║
- * ║    plate, followed by a 1.0 mm air space and a dummy flat BF plane.  ║
- * ║    Per project convention, the cover plate is omitted from the       ║
- * ║    surfaces array. Its paraxial optical thickness is folded into     ║
- * ║    the final air-equivalent BFD after L8:                            ║
- * ║      BF_air = 10.8 + 4.2 / 1.51680 + 1.0 + BF_patent.               ║
+ * ║    Patent surfaces 17 and 18 are the 4.2 mm plane-parallel plate M   ║
+ * ║    (nd 1.51680, νd 64.2), followed by a 1.0 mm air space and a       ║
+ * ║    dummy flat plane with BF = 0.00461 / 0.00488 / 0.00594 mm. M is   ║
+ * ║    modeled in `rearPlates` (traced, not drawn) with 1.00461 mm to    ║
+ * ║    the image. Surface 16 keeps the patent 10.8 mm gap to M; the BF   ║
+ * ║    growth at close focus (+0.00027 / +0.00133 mm) is carried in      ║
+ * ║    that gap (10.80027 / 10.80133), so the total path is as printed.  ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                            ║
  * ║    The patent does not publish clear semi-diameters. Values below    ║
@@ -221,7 +222,24 @@ const LENS_DATA = {
     { label: "13A", R: 31.3591, d: 6.5, nd: 1.5338, elemId: 7, sd: 11.8 },
     { label: "14A", R: -20.3491, d: 3.5472, nd: 1.0, elemId: 0, sd: 11.8 },
     { label: "15", R: -30.6242, d: 1.0, nd: 1.58144, elemId: 8, sd: 11.8 },
-    { label: "16", R: -82.3348, d: 14.573597341772153, nd: 1.0, elemId: 0, sd: 11.8 },
+    { label: "16", R: -82.3348, d: 10.8, nd: 1.0, elemId: 0, sd: 11.8 },
+  ],
+
+  /* ── Plane-parallel plate M (patent surfaces 17–18): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "M",
+      thicknessMm: 4.2,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "BSC7 (Hoya)",
+      nC: 1.51432,
+      nF: 1.52237,
+      ng: 1.52667,
+      dPgF: -0.00164,
+      gapAfterMm: 1.00461,
+      source: "US 2017/0059832 A1, Numerical Example 4 surfaces 17–19 (Tables 22–23, 25; patent θgF 0.53418)",
+    },
   ],
 
   /* ── Aspherical coefficients ── */
@@ -273,7 +291,7 @@ const LENS_DATA = {
   var: {
     "10": [2.35, 3.4869, 8.6131],
     "12A": [9.5295, 8.3965, 3.2651],
-    "16": [14.573597341772153, 14.573867341772154, 14.574927341772154],
+    "16": [10.8, 10.80027, 10.80133],
   },
 
   varLabels: [
@@ -293,7 +311,7 @@ const LENS_DATA = {
   /* ── Focus configuration ── */
   closeFocusM: 0.25,
   focusDescription:
-    "Inner focus: the single negative L6 element (G2) moves imageward; patent cover glass is folded into the final air-equivalent BF.",
+    "Inner focus: the single negative L6 element (G2) moves imageward; patent plate M is modeled in rearPlates (traced, not drawn).",
 
   /* ── Aperture configuration ── */
   nominalFno: 1.7,

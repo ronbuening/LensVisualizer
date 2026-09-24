@@ -6,7 +6,7 @@ marked (AO#n) came from the analysis-options roadmap; M1–M5 came from the mirr
 Efficiency and performance work lives in `EFFICIENCY_IMPROVEMENT_PLAN.md`.
 
 Every feature here is implementable from data and engine capability already in the repo unless it
-sits in the final "Blocked on new data" section. F4, F5, F13 and the shared sensor-optics follow-up carry full specs;
+sits in the final "Blocked on new data" section. F4, F5 and F13 carry full specs;
 other open items are rows in the Open Items Register. Signatures and file references were
 re-verified against the working tree on 2026-09-09; re-locate by symbol name if a line has drifted,
 and stop if reality contradicts the description (the feature may have shipped — check the Shipped
@@ -362,40 +362,6 @@ model is intentionally the scope until exhausted.
 ---
 
 ## Blocked On New Data — Do Not Attempt Without Schema/Data Work
-
-### Shared source-documented sensor optics for analysis
-
-- [ ] Effort: L · Cross-analysis accuracy
-
-What: represent source-documented rear cover/filter plates in a shared analysis prescription while retaining the
-lens-only diagram. Current consequences are documented in `agent_docs/architecture/optics-engine.md#omitted-sensor-optics`.
-This is follow-up work; the MTF release does not restore omitted plates.
-
-- **Files to touch.** Modified: `src/types/optics.ts`, `src/lens-data/LENS_DATA_SPEC.md`,
-  `src/optics/validateLensData.ts`, prepared-state/normalization adapters under `src/optics/`,
-  `src/components/layout/lensDiagram/analysisTabRenderers.tsx`, `src/components/hooks/mtf.worker.ts`, and source-backed
-  lens entries. New: a pure shared analysis-prescription builder and the smallest synthetic subsystem regressions.
-- **Reference to mimic.** `prepareRuntimeState` and the existing serializable lens-data worker initialization;
-  `finiteConjugates` demonstrates source-qualified, state-specific eligibility.
-- **Data-type contract.** Design optional source-backed analysis-stack metadata with plate thickness, physical
-  location/gaps, index reference and dispersion, clear-aperture evidence, applicable focus/zoom states, and source
-  citation. Keep physical sensor coordinates distinct from the diagram's air-equivalent rear spacing. Unknown data
-  remains explicit; never infer a stack from the camera mount or marketing model.
-- **Steps.** (1) Define and validate metadata plus coordinate conversion. (2) Build one complete analysis state and
-  use it across affected helpers, worker serialization and cache keys. (3) Add sourced plates and common UI labeling,
-  compare affected tabs, and regenerate docs. Complete tests and commit after each step.
-- **Gotchas.** `agent_docs/gotchas.md` warns that runtime and chief-ray caches depend on lens identity and optical
-  inputs; the stack choice must invalidate them. Preserve the existing diagram exclusion in `LENS_DATA_SPEC.md` and
-  avoid adding only an MTF-specific plate correction.
-- **Verification.** Analytic plane-parallel transfer and optical-path fixtures; index=1 identity; preserved paraxial
-  transfer after air-equivalent conversion; wavelength-dependent focus; pupil and clipping behavior; worker/main
-  parity; identical diagram output. Compare MTF, aberrations, chromatic, bokeh, distortion, pupils and summary at the
-  same physical image plane. Run `npm run typecheck`, `npm run format:check`, `npm run lint`, `npm run test`,
-  `npm run test:coverage`, `npm run build` and before/after optics benchmarks without lowering thresholds.
-- **Out of scope.** Guessed camera stacks, manufacturer-MTF matching, coatings, tolerances, polarization and sensor
-  processing. Missing plate dispersion must not silently qualify a spectral calculation.
-- **Rollback.** Revert the extension commits together, including metadata, regenerated docs and state/cache changes;
-  retain the current source-model limitation notice.
 
 ### Other data and validation boundaries
 

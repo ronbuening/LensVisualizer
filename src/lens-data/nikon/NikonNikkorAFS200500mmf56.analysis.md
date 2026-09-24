@@ -2,7 +2,7 @@
 
 **Patent:** JP 2014-209144 A (Published 2014-11-06)  
 **Applicants:** Nikon Corporation / Tamron Co., Ltd.  
-**Inventors:** Matsuo Taku, Suzuki Tsuyoshi, Sato Haruo (Nikon); Yamanaka Hisayuki (Tamron)  
+**Inventors:** Taku Matsuo, Takeshi Suzuki, Haruo Sato (Nikon); Hisayuki Yamanaka (Tamron)  
 **Published:** November 6, 2014  
 **Embodiment analyzed:** Example 2 (第2実施形態)  
 **Lens released:** August 2015
@@ -16,7 +16,7 @@ The patent presents four numerical examples. Example 2 was identified as the pro
 - **Element/group count:** 19 elements in 12 air-separated groups, matching Nikon's published specification exactly.
 - **ED element count:** Three elements with vd > 81, matching Nikon's stated "3 ED glass elements."
 - **Close focus distance:** 2.2 m, matching the production spec.
-- **Constant f/5.6 aperture:** The patent's computed f-numbers (FNo = 4.62–5.78) bracket f/5.6. In production, the electromagnetic diaphragm constrains the maximum aperture to f/5.6 at all focal lengths; the patent values represent the raw optical maximum.
+- **Constant f/5.6 aperture:** The patent's f-numbers (FNo = 4.62–5.78) bracket f/5.6. The patent keeps the iris diameter constant (¶0016), so its f-number rises with focal length; the production lens's constant f/5.6 maximum is a diaphragm limit that is not part of the patent example.
 - **All-spherical design:** No aspherical surfaces or coefficient tables appear in any of the four examples. Nikon's marketing materials confirm no aspherical elements.
 - **Internal focusing:** Focusing is performed exclusively by axial movement of Group 5 (L5), consistent with Nikon's stated "IF" (Internal Focusing) designation.
 
@@ -85,7 +85,7 @@ This is noteworthy for a 19-element zoom design released in 2015. The designers 
 
 Nikon specifies three ED (Extra-low Dispersion) glass elements. These are identified by their very high Abbe numbers (vd > 81):
 
-**Element 2** (nd = 1.49782, vd = 82.57) and **Element 3** (nd = 1.49782, vd = 82.57): These two biconvex elements form the core positive power of the front group G1. Their refractive properties are close to, but not identical with, OHARA S-FPL51 (nd = 1.49700, vd = 81.54) or HOYA FCD1 (nd = 1.49700, vd = 81.61). The small discrepancy (Δnd = +0.00082, Δvd ≈ +1.0) suggests either a proprietary Nikon ED glass formulation, a specific melt variant, or the patent convention of using slightly altered values. Six-digit glass code: 498/826.
+**Element 2** (nd = 1.49782, vd = 82.57) and **Element 3** (nd = 1.49782, vd = 82.57): These two biconvex elements form the core positive power of the front group G1. Their pair is an exact match for Hikari J-FKH1 (code 498/826), a fluorophosphate crown slightly different from the more common 497/816 S-FPL51/FCD1 type used for E13.
 
 **Element 13** (nd = 1.49700, vd = 81.61): This biconvex element in Group 4 is an exact match for OHARA S-FPL51 (code 497/816) or its HOYA equivalent FCD1. It provides the positive power needed in the relay group while simultaneously correcting secondary chromatic aberration.
 
@@ -93,28 +93,28 @@ All three ED elements are biconvex positive lenses positioned at locations where
 
 ### 4.2 Complete Glass Table
 
-The table below lists all 19 elements with their optical properties, computed focal lengths, and probable glass identifications. Focal lengths are computed via the thick-lens in-air formula. Shape names follow the radius sign convention: "Positive Meniscus" means both radii are positive (convex toward the object), "Negative Meniscus" means both radii are negative (concave toward the object). Note that a few meniscus elements have optical power opposite to what the shape name might suggest — for example, E1 is a "Positive Meniscus" (both R > 0) but has negative optical power (fl = −211.8 mm) because the rear surface is more strongly curved.
+The table below lists all 19 elements with their optical properties, computed focal lengths, and probable glass identifications. Focal lengths are computed via the thick-lens in-air formula. Meniscus names give the element's optical power: E1 and E11 are negative menisci convex toward the object, while E4 and E18 are positive menisci concave toward the object.
 
 | E# | nd | vd | Code | Shape | fl (mm) | Probable Glass | Catalog |
 |:--:|:----:|:----:|:----:|:------|:-------:|:---------------|:--------|
-| 1 | 1.80400 | 46.60 | 804/466 | Pos. Meniscus | −211.8 | S-LAH65 | OHARA |
+| 1 | 1.80400 | 46.60 | 804/466 | Neg. Meniscus | −211.8 | S-LAH65 | OHARA |
 | 2 | 1.49782 | 82.57 | 498/826 | Biconvex | +205.2 | Hikari J-FKH1 ED fluorophosphate | Hikari [ED] |
 | 3 | 1.49782 | 82.57 | 498/826 | Biconvex | +236.7 | Hikari J-FKH1 ED fluorophosphate | Hikari [ED] |
-| 4 | 1.60342 | 38.01 | 603/380 | Neg. Meniscus | +115.7 | S-TIM5 | OHARA |
+| 4 | 1.60342 | 38.01 | 603/380 | Pos. Meniscus | +115.7 | S-TIM5 | OHARA |
 | 5 | 1.72916 | 54.67 | 729/547 | Biconcave | −57.4 | S-LAL18 | OHARA |
 | 6 | 1.51742 | 52.15 | 517/522 | Biconcave | −71.6 | 517522 crown | — |
 | 7 | 1.80518 | 25.46 | 805/255 | Pos. Meniscus | +104.1 | S-TIH6 | OHARA |
-| 8 | 1.74330 | 49.22 | 743/492 | Biconcave | −143.2 | S-LAM60 | OHARA |
+| 8 | 1.74330 | 49.22 | 743/492 | Biconcave | −143.2 | NBF1 | HOYA |
 | 9 | 1.60738 | 56.82 | 607/568 | Biconvex | +45.2 | N-SK2 | Schott |
 | 10 | 1.65844 | 50.85 | 658/509 | Neg. Meniscus | −59.3 | Schott N-SSK5 extra dense crown | Schott |
-| 11 | 1.90366 | 31.31 | 904/313 | Pos. Meniscus | −209.5 | S-LAH95 | OHARA |
+| 11 | 1.90366 | 31.31 | 904/313 | Neg. Meniscus | −209.5 | S-LAH95 | OHARA |
 | 12 | 1.48749 | 70.44 | 487/704 | Biconvex | +71.6 | N-FK5 / E-FEL1 | Schott / HOYA |
 | 13 | 1.49700 | 81.61 | 497/816 | Biconvex | +99.0 | S-FPL51 / FCD1 | OHARA / HOYA [ED] |
-| 14 | 1.83400 | 37.34 | 834/373 | Neg. Meniscus | −97.2 | Unmatched dense lanthanum flint | Vendor unresolved |
-| 15 | 1.74330 | 49.22 | 743/492 | Pos. Meniscus | +139.2 | S-LAM60 | OHARA |
+| 14 | 1.83400 | 37.34 | 834/373 | Neg. Meniscus | −97.2 | NBFD10 catalog equivalent | HOYA (supplier unspecified) |
+| 15 | 1.74330 | 49.22 | 743/492 | Pos. Meniscus | +139.2 | NBF1 | HOYA |
 | 16 | 1.64769 | 33.84 | 648/338 | Biconvex | +97.2 | E-FD2 | HOYA |
 | 17 | 1.72916 | 54.67 | 729/547 | Biconcave | −42.8 | S-LAL18 | OHARA |
-| 18 | 1.58144 | 40.89 | 581/409 | Neg. Meniscus | +131.4 | E-FL5 | HOYA |
+| 18 | 1.58144 | 40.89 | 581/409 | Pos. Meniscus | +131.4 | E-FL5 | HOYA |
 | 19 | 1.83481 | 42.72 | 835/427 | Neg. Meniscus | −121.7 | S-LAH55 | OHARA |
 
 ### 4.3 Glass Selection Rationale
@@ -123,11 +123,11 @@ The glass palette reflects several deliberate design strategies:
 
 **Chromatic correction hierarchy.** The three ED elements (E2, E3, E13) each have vd > 81, placing them among the lowest-dispersion optical glasses available. They are paired with high-dispersion negative partners (E1 at vd = 46.60; E14 at vd = 37.34) to form achromatic doublets that suppress both primary and secondary longitudinal chromatic aberration. Element 12 (vd = 70.44, likely N-FK5) provides additional low-dispersion contribution in the G3 compensator, where it is cemented to E11 (nd = 1.90366, vd = 31.31) — a very high-index, high-dispersion lanthanum-based glass that provides strong negative correction per unit thickness.
 
-**Anomalous partial dispersion.** The ED elements (S-FPL51 family) are fluorophosphate crown glasses with anomalous partial dispersion, meaning their secondary spectrum departure (ΔθgF) is strongly negative relative to normal glasses. This is critical for a super-telephoto zoom where secondary spectrum would otherwise produce noticeable color fringing at 500 mm.
+**Anomalous partial dispersion.** The ED elements (J-FKH1 and S-FPL51/FCD1 types) are fluorophosphate crown glasses with anomalous partial dispersion, meaning their secondary spectrum departure (ΔθgF) is strongly negative relative to normal glasses. This is critical for a super-telephoto zoom where secondary spectrum would otherwise produce noticeable color fringing at 500 mm.
 
-**VR group optimization.** The VR group (L2B) uses comparatively lightweight glasses: E6 (517522 crown, nd = 1.517) and E7 (S-TIH6, nd = 1.805 but very thin at 3.8 mm). E8 (S-LAM60, nd = 1.743) is a thin singlet at 1.7 mm. The low density of the crown element and the thinness of all three elements minimize the VR group's mass, directly benefiting actuator size, power consumption, and responsiveness.
+**VR group optimization.** The VR group (L2B) uses comparatively lightweight glasses: E6 (517522 crown, nd = 1.517) and E7 (S-TIH6, nd = 1.805 but very thin at 3.8 mm). E8 (HOYA NBF1 equivalent, nd = 1.743) is a thin singlet at 1.7 mm. The low density of the crown element and the thinness of all three elements minimize the VR group's mass, directly benefiting actuator size, power consumption, and responsiveness.
 
-**Mixed catalog sourcing.** The glass identifications span OHARA (majority), HOYA, and Schott catalogs. This is consistent with Tamron's known sourcing practices and the joint Nikon–Tamron development.
+**Mixed catalog sourcing.** The catalog equivalents span OHARA, HOYA, Hikari, and Schott. These are coordinate matches for the patent's nd/νd pairs; the patent names no glass supplier.
 
 ---
 
@@ -135,7 +135,7 @@ The glass palette reflects several deliberate design strategies:
 
 ### Group 1 (L1): Front Objective — Elements 1–3
 
-**E1 (positive meniscus, nd = 1.804)** cemented to **E2 (biconvex ED, nd = 1.498):** This cemented doublet forms the first component of the front group. Element 1 is a high-index lanthanum glass (S-LAH65 class) that serves as the negative chromatic corrector for the strongly positive ED element behind it. Despite its meniscus shape being geometrically "positive" (both radii positive, convex toward the object), E1 has negative optical power (fl = −211.8 mm) because the rear surface (R = 122.1 mm) is more strongly curved than the front (R = 436.4 mm). The cemented pair has an extremely long focal length (+5,992 mm) — it contributes almost no net power but provides critical chromatic correction at the entrance aperture where the axial beam diameter is largest.
+**E1 (negative meniscus, nd = 1.804)** cemented to **E2 (biconvex ED, nd = 1.498):** This cemented doublet forms the first component of the front group. Element 1 is a high-index lanthanum glass (S-LAH65 class) that serves as the negative chromatic corrector for the strongly positive ED element behind it. It is convex toward the object, and its more strongly curved rear surface (R = 122.1 mm vs. 436.4 mm in front) gives it negative power (fl = −211.8 mm). The cemented pair has an extremely long focal length (+5,992 mm) — it contributes almost no net power but provides critical chromatic correction at the entrance aperture where the axial beam diameter is largest.
 
 **E3 (biconvex ED, nd = 1.498):** A standalone singlet separated from the doublet by a 0.3 mm air gap. Its focal length of +236.7 mm makes it the primary positive power contributor in G1. Using ED glass for this element ensures minimal chromatic contribution from the strongest individual positive element in the front group.
 
@@ -145,13 +145,13 @@ The front group collectively has strong positive power, as befits the front elem
 
 This is the most complex group, containing seven elements organized into three subgroups.
 
-**L2A — Elements 4+5 (cemented doublet, fl = −113.6 mm):** E4 is a negative meniscus of moderate-index flint (S-TIM5), cemented to E5, a biconcave crown (S-LAL18). This negative doublet conditions the beam angle entering the VR group. Its negative meniscus-biconcave configuration generates strong divergence while keeping the exiting chief ray angle manageable for the downstream VR elements.
+**L2A — Elements 4+5 (cemented doublet, fl = −113.6 mm):** E4 is a weak positive meniscus (fl = +115.7 mm, concave toward the object) of moderate-index flint (S-TIM5), cemented to E5, a biconcave crown (S-LAL18). This negative doublet conditions the beam angle entering the VR group. The strongly curved biconcave E5 generates the divergence while keeping the exiting chief ray angle manageable for the downstream VR elements.
 
 **L2B (VR Group) — Elements 6+7 (cemented doublet) + E8 (singlet), combined fl = −86.1 mm:** This is the image-stabilization group that shifts perpendicular to the optical axis during vibration reduction.
 
 - E6 (biconcave, 517522 crown, nd = 1.517): A low-index crown with moderate dispersion. The biconcave shape provides strong negative power. As the lowest-index element in the VR group, it is also the lightest, keeping the VR assembly mass down.
 - E7 (positive meniscus, S-TIH6, nd = 1.805, vd = 25.46): A very high-dispersion flint cemented to E6. This pairing corrects chromatic aberration within the VR group itself — critical because any residual chromatism in the VR group would produce wavelength-dependent image shift during stabilization, manifesting as color fringing during VR operation.
-- E8 (biconcave, S-LAM60, nd = 1.743): A standalone negative element separated from the doublet by a 2.0 mm air gap. It contributes additional negative power to increase the VR group's decentering sensitivity. The air gap between E7 and E8 provides a degree of freedom for correcting the off-axis aberrations (particularly coma and astigmatism) that arise when the VR group is decentered.
+- E8 (biconcave, HOYA NBF1 equivalent, nd = 1.743): A standalone negative element separated from the doublet by a 2.0 mm air gap. It contributes additional negative power to increase the VR group's decentering sensitivity. The air gap between E7 and E8 provides a degree of freedom for correcting the off-axis aberrations (particularly coma and astigmatism) that arise when the VR group is decentered.
 
 **L2C — Elements 9+10 (cemented doublet, fl = +178.2 mm):** E9 is a thick biconvex crown (N-SK2, d = 9.5 mm) cemented to E10, a thin negative meniscus now identified as Schott N-SSK5 (658509). This positive doublet partially cancels the strong negative aberrations generated by L2A and L2B. The patent text (paragraph [0031]) explicitly states that placing a positive subgroup after the VR group allows the VR group's negative power to be strengthened — increasing decentering sensitivity — while the positive L2C compensates the resulting aberration penalty.
 
@@ -159,7 +159,7 @@ This is the most complex group, containing seven elements organized into three s
 
 ### Group 3 (L3): Compensator — Elements 11–12
 
-**E11 (positive meniscus, S-LAH95, nd = 1.904) cemented to E12 (biconvex, N-FK5, nd = 1.487):** This doublet has a combined focal length of +107.0 mm. Element 11 is the highest-index glass in the entire system (nd = 1.904). Its meniscus shape is geometrically "positive" (both radii positive, convex toward the object), but it has negative optical power (fl = −209.5 mm) because the rear surface is more strongly curved. Its role in the cemented pair is as the chromatic corrector: paired with the low-dispersion E12, it forms a strongly achromatic positive doublet.
+**E11 (negative meniscus, S-LAH95, nd = 1.904) cemented to E12 (biconvex, N-FK5, nd = 1.487):** This doublet has a combined focal length of +107.0 mm. Element 11 is the highest-index glass in the entire system (nd = 1.904). It is convex toward the object and has negative power (fl = −209.5 mm) because the rear surface is more strongly curved. Its role in the cemented pair is as the chromatic corrector: paired with the low-dispersion E12, it forms a strongly achromatic positive doublet.
 
 The choice of S-LAH95 (vd = 31.31) paired with N-FK5 (vd = 70.44) gives a large Abbe number difference (Δvd ≈ 39), enabling efficient chromatic correction with moderate curvatures. Element 12's biconvex shape carries the majority of the group's positive power.
 
@@ -169,13 +169,13 @@ G3 moves toward the object during zooming (d16 decreases from 23.8 mm to 2.0 mm 
 
 **E13 (biconvex ED, S-FPL51, nd = 1.497) cemented to E14 (negative meniscus, NBFD10 catalog equivalent, nd = 1.834):** The third and final achromatic ED doublet. The patent gives E14's exact 834373 optical coordinate but no production vendor; HOYA's discontinued NBFD10 row supplies the matching coefficient-backed dispersion model. The cemented combination is nearly afocal (fl ≈ −5,356 mm — very weakly negative), meaning its primary role is chromatic correction rather than power contribution. The strong positive power of E13 (+99.0 mm) is almost exactly cancelled by the negative power of E14 (−97.2 mm), leaving a residual that aggressively corrects chromatic aberration in the relay section of the zoom.
 
-**E15 (positive meniscus, S-LAM60, nd = 1.743):** A standalone positive element (fl = +139.2 mm) that provides the actual positive power contribution of G4. Its meniscus shape (both radii positive) minimizes spherical aberration contribution while adding convergence to the beam before it reaches the aperture stop.
+**E15 (positive meniscus, HOYA NBF1 equivalent, nd = 1.743):** A standalone positive element (fl = +139.2 mm) that provides the actual positive power contribution of G4. Its meniscus shape (both radii positive) minimizes spherical aberration contribution while adding convergence to the beam before it reaches the aperture stop.
 
-The gap between G4 and the stop (d24) decreases from 32.6 mm to 5.0 mm during zooming. G2 and G4 are stated to be mechanically fixed during zoom — they do not move axially. This is a key simplification enabling a less complex barrel mechanism, as stated in the patent (paragraph [0014], claim 5).
+The gap between G4 and the stop (d24) decreases from 32.6 mm to 5.0 mm during zooming. Claim 5 and paragraph [0014] prefer G2 and G4 fixed to simplify the barrel, but [0014] also allows G4 to move to control spherical-aberration change and mid-zoom field curvature. Example 2 uses that option: Figure 5 draws a movement arrow under L4, and the ¶0044 gaps put G4 10.97 mm closer to the object at the telephoto end. Only G2 and G6 are fixed.
 
 ### Aperture Stop (S25)
 
-The stop is positioned between G4 and G5, moving independently during zoom (paragraph [0016], claim 6). Its independent motion allows the stop diameter to remain constant across the zoom range, which is how the lens achieves its constant f/5.6 maximum aperture. The stop's position between the relay group and the focus group means that the focus group (G5) receives a beam of consistent angular extent regardless of focal length, simplifying the focus group's aberration balance.
+The stop is positioned between G4 and G5, moving independently during zoom (paragraph [0016], claim 6). The patent says this lets the stop diameter stay small and constant across the zoom range. A real-ray check confirms it for Example 2: one iris radius of 14.05–14.06 mm gives the published FNo 4.62, 5.24, and 5.78 at the three stations. The f-number therefore rises with focal length. The production lens's constant f/5.6 is a diaphragm limit outside the patent example. The stop's position between the relay group and the focus group means that the focus group (G5) receives a beam of consistent angular extent regardless of focal length, simplifying the focus group's aberration balance.
 
 ### Group 5 (L5): Focus Group — Elements 16–17
 
@@ -188,15 +188,15 @@ The stop is positioned between G4 and G5, moving independently during zoom (para
 | Tele ∞ | 5.87 | 60.81 | 66.68 |
 | Tele 2.2m | 26.18 | 40.49 | 66.68 |
 
-The sum d25 + d28 remains constant at each zoom position, confirming unit focus: the focus group translates as a rigid body without changing the overall optical track. The focus throw increases dramatically with focal length — at the tele end, the group must travel 20.3 mm to reach 2.2 m focus, versus 5.5 mm at the wide end. This is physically expected: at longer focal lengths, a given object distance change corresponds to a smaller conjugate shift, requiring more focus-group travel.
+The sum d25 + d28 remains constant at each zoom position, confirming unit focus: the focus group translates as a rigid body without changing the overall optical track. The focus throw increases dramatically with focal length — at the tele end, the group must travel 20.3 mm to reach 2.2 m focus, versus 5.5 mm at the wide end. This is physically expected: the image-side conjugate shift for a given object distance grows roughly with the square of focal length, so the focus group must travel further.
 
-The choice of a negative focus group is significant. As the group moves toward the image, it reduces the system's overall positive power, which has the effect of extending the conjugate toward closer objects. This is the opposite of the more common approach of moving a positive group forward, but it has the advantage of keeping the focus group compact and close to the stop — where both the axial and marginal beams pass through a relatively narrow zone. The patent notes (paragraph [0017]) that this proximity to the stop means the focus group diameter need not be excessively large, enabling a more compact and lightweight IF mechanism.
+The choice of a negative focus group is significant. As the group moves toward the image, the system's focal length shortens (the patent's 2.2 m table gives f = 175.7 mm wide and 280.5 mm tele), which moves the object-side conjugate closer. This is the opposite of the more common approach of moving a positive group forward, but it has the advantage of keeping the focus group compact and close to the stop — where both the axial and marginal beams pass through a relatively narrow zone. The patent notes (paragraph [0017]) that this proximity to the stop means the focus group diameter need not be excessively large, enabling a more compact and lightweight IF mechanism.
 
 The glass pairing is unusual: E16 uses HOYA E-FD2, a dense flint with low Abbe number (33.84). Despite being the positive element in the doublet, it is a flint-type glass. E17 is an S-LAL18 crown (vd = 54.67). This "reversed" pairing (flint-positive, crown-negative) is deliberate: it provides chromatic correction with the correct sign while maintaining the required negative net power for the focus mechanism.
 
 ### Group 6 (L6): Fixed Rear — Elements 18–19
 
-**E18 (negative meniscus, E-FL5, nd = 1.581, vd = 40.89):** A weakly positive singlet (fl = +131.4 mm) despite its meniscus shape — both radii are negative, but |R2| < |R1| makes the rear surface more strongly curved, yielding net positive power.
+**E18 (positive meniscus, E-FL5, nd = 1.581, vd = 40.89):** A weakly positive singlet (fl = +131.4 mm), concave toward the object; the more strongly curved rear surface (|R2| < |R1|) gives it net positive power.
 
 **E19 (negative meniscus, S-LAH55, nd = 1.835, vd = 42.72):** A negative singlet (fl = −121.7 mm) with high-index glass.
 
@@ -210,10 +210,10 @@ These two elements are separated by a large fixed air gap of 21.04 mm and are th
 
 During zoom from 205 mm to 487 mm:
 
-- **Moving groups:** G1 (L1), G3 (L3), and G5 (L5) all move toward the object side, along with the aperture stop which moves independently (claim 6). G5 is notable for having a dual role: it moves during zoom (d28 increases from 19.8 mm to 60.8 mm, pushing G5 toward the object relative to the fixed G6) and also moves during focusing (translating toward the image for close-focus).
-- **Fixed groups:** G2 (L2), G4 (L4), and G6 (L6) remain stationary during zoom. G2 and G4 are explicitly stated as fixed in claim 5; G6's fixed status is confirmed by the constant back focal distance (bf = 54.32 mm at all zoom positions).
+- **Moving groups:** G1 (L1), G3 (L3), G4 (L4), and G5 (L5) all move toward the object side, along with the independently moving aperture stop (claim 6). Figure 5 draws movement arrows under L1, L3, L4, and L5. Total wide-to-tele travel derived from the ¶0044 gaps (infinity focus): G1 75.38 mm, G3 21.82 mm, G4 10.97 mm, stop 38.65 mm, G5 40.99 mm. Every group moves monotonically; the mid station lies between the ends for each. G5 is notable for having a dual role: it moves during zoom and also moves toward the image for close focus.
+- **Fixed groups:** G2 (L2) and G6 (L6). Figure 5 draws dashed lines under both. the variable air gaps behind G2 sum to 85.98 mm at every station, so G2 stays put relative to the image, and G6's fixed status follows from the constant back focal distance (bf = 54.32 mm at all zoom positions).
 
-This means only three lens groups plus the independently-moving stop require zoom cam slots, significantly simplifying the barrel mechanism compared to designs where five or six groups move.
+Claim 5 prefers G4 fixed as well, but Example 2 uses the moving-G4 option in paragraph [0014]. Four lens groups plus the stop therefore need zoom cams, still fewer than the six moving groups of the prior art cited in paragraph [0006].
 
 ### 6.2 Variable Gap Behavior
 
@@ -299,7 +299,7 @@ The prevalence of cemented doublets is a deliberate cost-quality trade-off: ceme
 
 2. **Three-subgroup G2 with integral VR** (L2A/L2B/L2C) enables a compact, lightweight VR group with high decentering sensitivity, addressed in claims 1–3 and conditions (1)–(4).
 
-3. **Fixed G2, G4, and G6 during zoom** simplifies the barrel mechanism to three moving groups plus the stop, reducing manufacturing complexity and improving mechanical reliability.
+3. **Fixed G2 (including the VR unit) and G6 during zoom** keeps the stabilizer and rear group stationary; G1, G3, G4, G5 and the stop move toward the object.
 
 4. **Internal focusing via negative G5** adjacent to the stop keeps the focus group small and lightweight, enables fast AF response, and maintains constant lens length during focus.
 
@@ -313,13 +313,15 @@ The prevalence of cemented doublets is a deliberate cost-quality trade-off: ceme
 
 ### 11.1 Semi-Diameter Estimation
 
-The patent provides no semi-diameter values. SDs were estimated via paraxial marginal ray trace at each of the three zoom positions (wide/mid/tele), using the patent's optical f-numbers (FNo = 4.62, 5.24, 5.78 at wide/mid/tele respectively). For each surface, the maximum marginal ray height across all zoom positions was taken, and approximately 8% mechanical clearance was applied. Front group SDs (S1–S5) were capped at 45.5 mm to remain consistent with the production lens's 95 mm filter thread.
+The patent provides no semi-diameter values. The stored values follow exact real-ray marginal and chief-ray envelopes at the three zoom stations, using the patent f-numbers (4.62, 5.24, 5.78), image height Y = 21.633 mm and ω = 5.90–2.49°. They were then checked against the Figure 5 cross-section, scaled from the first-vertex-to-image distance (309.32 mm at the wide end). Measured figure rims: L1 about 45.7 mm, L2A about 19.3 mm, L2B about 19.3 mm, L2C about 21.4 mm, L3 about 25.0 mm, L4 about 24.4 mm, stop about 13.7 mm, L5 about 14.1 mm, E18 about 17.6 mm and E19 about 17.2 mm. Most stored values are within 10 % of these. The front group (45.5 mm) also fits the 95 mm filter thread.
 
-The VR subgroup (L2B, surfaces S9–S13) required tighter SDs of 17.5 mm (vs. the 18.5 mm initially estimated with clearance) to satisfy the cross-gap sag overlap constraint at the S11→S12 air gap (2.0 mm). The combined sag intrusion from S11 (R = +99.3 mm, convex) and S12 (R = −411.9 mm, concave) exceeded the gap at 18.5 mm SD but clears at 17.5 mm (combined intrusion = 1.93 mm < 2.0 mm gap). The maximum marginal ray height in this region is ~17.1 mm, so 17.5 mm still provides approximately 2% clearance.
+The rear group L6 was raised from 10.0 / 6.5 mm to 17.5 / 17.2 mm. The old values blocked the full-field chief ray (10.1–12.4 mm high at S29–S32) and cut the engine's field to about 4.0° at the wide end and 1.3° at the telephoto end. The corrected values match the figure and leave only ordinary full-field vignetting.
+
+The VR subgroup (L2B) sits behind a 2.0 mm air gap between S11 (R = +99.3 mm) and S12 (R = −411.9 mm), so it cannot be drawn at the figure's ~19.3 mm without overlapping. The f/4.62 wide-end axial bundle reaches 17.33 mm at S11 and 17.58 mm at S13. S11 is therefore set to 17.4 mm and E8 to 17.7 mm, with `gapSagFrac: 0.96`. The combined rim sag of 1.90 mm then stays inside the 2.0 mm gap.
 
 ### 11.2 Nominal F-Number
 
-The data file uses the patent's optical f-numbers as a variable-aperture array: `nominalFno: [4.62, 5.24, 5.78]`. The production lens is marketed as constant f/5.6, achieved by the electromagnetic diaphragm constraining the aperture. The patent values were retained for accurate ray tracing and diagram rendering. The marketing specification is documented separately via `apertureMarketing: 5.6`.
+The data file uses the patent's f-numbers as a variable-aperture array: `nominalFno: [4.62, 5.24, 5.78]`. No `zoomApertureModel` is set, so the engine keeps one physical iris for the whole zoom range. This is what paragraph [0016] describes. A real-ray trace confirms that a single stop radius (14.05–14.06 mm) reproduces all three published f-numbers. The marketed constant f/5.6 (`apertureMarketing: 5.6`) is a production diaphragm limit. The f-stop list starts at the patent's wide-open value and runs to the production minimum aperture of f/32 (`maxFstop: 32`).
 
 ### 11.3 Zoom Variable Gaps
 
@@ -352,4 +354,4 @@ The sum varies with zoom because both the stop and G5 move independently during 
 
 ### 11.5 Errata and Corrections
 
-No corrections were required to the original analysis during data file preparation. All prescription values, conditional expression results, element focal lengths, and group focal lengths matched the independently computed values to within rounding tolerance. The glass identification table and functional analysis were confirmed as accurate.
+The 2026-09-23 figure audit corrected the moving-group description: Example 2 moves G4 during zoom, and only G2 and G6 are fixed. It also corrected four meniscus power names (E1, E4, E11, E18), the rear-group and VR-group semi-diameters (§11.1), and the aperture-model description (§11.2). It relabeled E8/E15 to the exact-coordinate HOYA NBF1 equivalent. All prescription values, variable gaps, conditional-expression results and element focal lengths were re-verified against the patent and needed no change.

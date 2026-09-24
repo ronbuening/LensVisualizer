@@ -21,7 +21,7 @@ The patent describes the lens as a "high aperture four component objective of th
 
 ## 3. Optical Prescription (Example 1)
 
-The patent provides the prescription at a normalized focal length of f = 1.00. To obtain the production lens dimensions, all linear quantities (radii, thicknesses, spacings) are scaled by a factor of 85×.
+The patent provides the prescription at a normalized focal length of f = 1.00. To obtain the production lens dimensions, all linear quantities (radii, thicknesses, spacings) are scaled by a factor of 85×. The table below is the one printed in the description (column 3). The same data are repeated in claim 4, where d₁ is printed as 0.104 instead of 0.105; every other entry agrees. The data file follows the description table (d₁ = 0.105 → 8.925 mm); the 0.001 difference would move the back focus by less than 0.1 mm.
 
 | Surface | Radius | Thickness | nd | νd | Element | Group |
 |---------|-------:|----------:|------:|-----:|---------|-------|
@@ -76,15 +76,15 @@ The overall power arrangement is P–N–P–P, which departs from the classic d
 - **Glass:** nd = 1.6385, νd = 55.5 → **Sumita K-SK18** (six-digit code 639/555), used here as a public coefficient-backed match to the patent constants.
 - **Focal length:** +118.4 mm (thick-lens)
 - **Cemented to:** L3 at surface r₄
-- **Role:** L2 is the leading element of the critical object-side cemented triplet. Its steeply curved front surface (r₃ = +0.440, the third-strongest curvature in the system after r₆ and r₇) introduces substantial spherical aberration on-axis, which is intentional — per the patent text, the object-side meniscus is designed to "act in concave manner to correct spherical aberration on the axis." L2's crown glass provides positive power with moderate dispersion.
+- **Role:** L2 is the leading element of the critical object-side cemented triplet. Its steeply curved front surface (r₃ = +0.440, jointly the third-strongest curvature in the system with r₉, after r₆ and r₇) introduces substantial spherical aberration on-axis, which is intentional — per the patent text, the object-side meniscus is designed to "act in concave manner to correct spherical aberration on the axis." L2's crown glass provides positive power with moderate dispersion.
 
 ### L3 — Biconvex Positive (Group II, center element of cemented triplet)
 
 - **Shape:** Biconvex (R₄ = +0.805, R₅ = −1.850)
-- **Glass:** nd = 1.5163, νd = 64.0 → **Schott BK7** or equivalent (Δnd = +0.5×10⁻⁴, Δνd = +0.2 from exact BK7 values of 1.5168/64.2; within typical patent rounding)
+- **Glass:** nd = 1.5163, νd = 64.0 → **OHARA S-BSL7** catalog equivalent (1.51633 / 64.14). This is the Japanese 516/641 borosilicate crown; Schott N-BK7 (1.5168 / 64.17) sits 5×10⁻⁴ higher in index, which is more than rounding of the patent's four-decimal value.
 - **Focal length:** +94.7 mm (thick-lens)
 - **Cemented to:** L2 at r₄, L4 at r₅
-- **Role:** L3 is the thickest single element in the system (d₄ = 0.190f = 16.15 mm). As a low-index, low-dispersion crown sandwiched between two higher-index glasses, it serves two purposes. First, it provides positive power to partially compensate L4's strong negative contribution, keeping the group's net power manageable. Second, the large index difference at the L3–L4 junction (Δnd = 0.173) creates the strong negative refractive power at surface r₅ that is central to spherical aberration correction. The use of BK7-type glass — the most common and economical optical crown — for this thick element was also likely a practical manufacturing consideration.
+- **Role:** L3 is the thickest single element in the system (d₄ = 0.190f = 16.15 mm). As a low-index, low-dispersion crown sandwiched between two higher-index glasses, it serves two purposes. First, it provides positive power to partially compensate L4's strong negative contribution, keeping the group's net power manageable. Second, the large index difference at the L3–L4 junction (Δnd = 0.173) creates the strong negative refractive power at surface r₅ that is central to spherical aberration correction. The use of a BK7-type borosilicate crown — the most common and economical optical crown — for this thick element was also likely a practical manufacturing consideration.
 
 ### L4 — Biconcave Negative (Group II, rear element of cemented triplet)
 
@@ -125,7 +125,7 @@ The design uses only five distinct glass types across seven elements:
 |------------|----:|-----:|---------------|----------|------|
 | 623/569 | 1.6228 | 56.9 | Schott SK10 | L1 | Dense barium crown |
 | 639/555 | 1.6385 | 55.5 | K-SK18 (Sumita) | L2, L7 | Dense barium crown |
-| 517/640 | 1.5163 | 64.0 | Schott BK7 (≈) | L3 | Borosilicate crown |
+| 516/640 | 1.5163 | 64.0 | S-BSL7 (OHARA) | L3 | Borosilicate crown |
 | 689/311 | 1.6889 | 31.1 | S-TIM28 (OHARA) | L4 | Dense flint |
 | 532/489 | 1.5317 | 48.9 | S-TIL6 optical equivalent | L5 | Light flint |
 | 658/508 | 1.6584 | 50.8 | BACED5 optical equivalent | L6 | Barium dense crown |
@@ -136,7 +136,7 @@ The glass palette reflects a careful balance between aberration correction and 1
 
 ### Stop Position
 
-The aperture stop is located in the air gap d₆ = 0.190f (≈ 16.2 mm) between Groups II and III, between surfaces r₆ and r₇. This is the classic Gauss-type stop placement: centered between the two opposing meniscus compound lenses. The patent does not specify the exact axial position of the iris within this gap, but the Figure 1 drawing shows it approximately centered, which is consistent with the symmetry of the design.
+The aperture stop is located in the air gap d₆ = 0.190f (≈ 16.2 mm) between Groups II and III, between surfaces r₆ and r₇. This is the classic Gauss-type stop placement: centered between the two opposing meniscus compound lenses. The patent neither tabulates nor draws the iris — Figure 1 shows glass only — so its axial position within this gap is not given. The data file places it at the centre of d₆, the conventional Gauss location.
 
 The stop has 20 diaphragm blades (per Canon Camera Museum specifications), producing a nearly circular aperture at all f-stops — an unusually high blade count that contributes to the smooth out-of-focus rendering that users of this lens frequently praise.
 
@@ -144,7 +144,7 @@ The stop has 20 diaphragm blades (per Canon Camera Museum specifications), produ
 
 The patent does not specify the focusing mechanism, which is typical for lens patents of this era that concern themselves only with the optical design. However, based on the design structure and the era of manufacture, this lens almost certainly uses **unit focusing** — the entire optical assembly moves forward as a unit to focus on closer objects, with only the back focal distance changing.
 
-This is confirmed by the Canon Camera Museum specification of a 1.0 m minimum focus distance. With unit focusing, the entire lens assembly translates forward along the optical axis; the distance from the last surface to the film plane increases as the lens extends to accommodate closer subjects. There are no internal floating elements or rear-focus groups — the design predates such mechanisms in photographic lenses.
+The production lens focuses to 1.0 m (Canon Camera Museum specification). With unit focusing, the entire lens assembly translates forward along the optical axis; the distance from the last surface to the film plane increases as the lens extends to accommodate closer subjects. The patent publishes no close-focus data, so the viewer's 1 m state is a derived extension: moving the whole lens forward by 8.58 mm (back focus 44.79 → 53.37 mm) focuses an object 1.0 m from the film plane at a magnification of about −0.10. There are no internal floating elements or rear-focus groups — the design predates such mechanisms in photographic lenses.
 
 ## 8. Patent Conditional Expressions
 
@@ -165,7 +165,7 @@ Ito's patent text explains the design philosophy clearly. Prior Gauss-type lense
 
 Ito's solution involved two key insights:
 
-1. **Three-element front meniscus:** By composing Group II from three cemented lenses rather than the conventional two, the designer gains an additional cemented interface to distribute the aberration correction. The thick BK7 center element (L3) serves as a "spacer" that separates the two strongly refracting interfaces (r₃ entering L2, and r₅/r₆ at the L3–L4 boundary), reducing the angle of incidence of off-axis rays at each surface and thereby reducing higher-order aberration contributions.
+1. **Three-element front meniscus:** By composing Group II from three cemented lenses rather than the conventional two, the designer gains an additional cemented interface to distribute the aberration correction. The thick borosilicate-crown center element (L3) serves as a "spacer" that separates the strongly refracting surfaces (r₃ entering L2, and r₅ at the L3–L4 boundary followed by the exit face r₆), reducing the angle of incidence of off-axis rays at each surface and thereby reducing higher-order aberration contributions.
 
 2. **Asymmetric meniscus action:** The front meniscus "acts in concave manner" (its concave exit face r₆ is the dominant aberration-correcting surface), while the rear meniscus "acts in convex manner" (its cemented interface r₈ provides the correction). This asymmetry allows independent control of the tangential and sagittal field components, enabling coma correction without disturbing the axial spherical aberration balance.
 
@@ -196,11 +196,11 @@ The following specifications are drawn from Canon's first-party documentation (C
 
 The companion `.data.ts` file adapts the patent prescription for the interactive renderer with the following accommodations:
 
-- **Air gap d₂ widened:** The patent specifies d₂ = 0.002f (0.17 mm at production scale) between L1 and the cemented triplet. At the estimated front-element semi-diameter of 27 mm, the sag of the nearly flat r₂ surface (R = 807.5 mm) exceeds this gap thickness (0.45 mm > 0.17 mm), causing a cross-gap overlap violation in the renderer's validator. The gap was widened to 0.50 mm (0.006f) to clear this constraint. The optical impact is negligible: ΔEFL < 0.2 mm, ΔBFD < 0.2 mm. The adjusted BFD at infinity is 44.63 mm (vs. 44.79 mm from the unmodified prescription).
+- **Prescription kept at patent values:** Every radius, thickness and spacing is the Example 1 value × 85, including the 0.002f (0.17 mm) air gap d₂ between L1 and the cemented triplet. That gap does not close toward the rim: r₂ (R = +807.5 mm) and r₃ (R = +37.4 mm) both curve away toward the image and r₃ curves much faster, so the separation grows with height. The stored back focus is 44.79 mm (0.527f).
 
-- **Stop position inferred:** The patent does not specify the exact axial position of the iris within the d₆ gap. Based on the Figure 1 drawing, the stop is placed at the center of the gap, splitting d₆ = 16.15 mm into two equal halves of 8.075 mm. The physical stop semi-diameter of 15.5 mm is derived from the paraxial marginal ray trace at f/1.5.
+- **Stop position inferred:** The patent neither tabulates nor draws the iris. The stop is placed at the centre of the d₆ gap, splitting 16.15 mm into two halves of 8.075 mm. Its 15.5 mm semi-diameter is a record of the largest iris; the viewer derives the working iris (15.36 mm) from the f/1.5 rating.
 
-- **Semi-diameters estimated:** The patent does not list semi-diameters. Values were estimated from a paraxial marginal ray trace at f/1.5 with 8–10% mechanical clearance, constrained by the 58 mm filter thread diameter, the 1.25× front-to-rear SD ratio limit per element, and the sd/|R| < 0.90 validator limit (particularly significant for the steeply curved r₆ surface at R = 21.42 mm).
+- **Semi-diameters estimated:** The patent does not list semi-diameters. The values come from an exact ray trace at f/1.5, which passes the axial marginal ray (entrance-pupil radius 28.3 mm) through every surface with at least 2% margin, and from the element proportions of Figure 1. The figure draws L1 as the largest element (rim about 31 mm at the figure's axial scale), a flat rim of about 26.7 mm shared by r₃ to r₅, a bevel down to about 15 mm at r₆, and a flat rim of about 17.8 mm across the rear doublet, with L7 at about 18.3 mm. L1 is set to 29.0 mm rather than 31 mm to stay inside the production lens's 58 mm filter thread and 62.5 mm barrel. The drawn r₇ rim of about 13 mm would clip the f/1.5 marginal ray, so r₇ is 15.6 mm. At full field the rear elements vignette the oblique bundle by roughly 40–50% on one side. This is ordinary for a fast Gauss design and is not a clipping defect.
 
 ---
 

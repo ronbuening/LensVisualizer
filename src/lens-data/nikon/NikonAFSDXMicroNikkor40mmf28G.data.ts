@@ -20,12 +20,14 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║   The patent CLD object-to-physical-focal-plane distance is 0.15264661 m;  ║
  * ║   closeFocusM retains Nikon's 0.163 m marketed MFD as product metadata.    ║
  * ║                                                                            ║
- * ║ REAR NORMALIZATION                                                         ║
- * ║   Patent surfaces 19–20 are a 2.000 mm, nd=1.51680 low-pass plate plus   ║
- * ║   the final Bf interval. The plate is excluded. The final active S18→IMG   ║
- * ║   air spacing is 39.07132 mm, derived from the published INF ACTL.         ║
- * ║   This is +0.000699 mm from the independently computed S18 BFL. The raw    ║
- * ║   source Bf/ACBf reference-plane inconsistency is preserved in the audit.  ║
+ * ║ REAR PLATE                                                                 ║
+ * ║   Patent surfaces 19–20 are a 2.000 mm low-pass filter P1 (nd=1.51680,     ║
+ * ║   νd=64.12), modeled in `rearPlates` (traced, not drawn) as J-BK7A.        ║
+ * ║   S18→P1 = 0.100 mm (patent d18). Trailing Bf = 37.65276 mm is derived     ║
+ * ║   from the printed INF TL (86.85516) and ACTL (86.17372); Table 1 prints   ║
+ * ║   Bf = 37.65 (constant). The air-equivalent S18→IMG is 39.07132 mm,        ║
+ * ║   +0.000699 mm from the independently computed S18 BFL. The raw source     ║
+ * ║   Bf/ACBf reference-plane inconsistency is preserved in the audit.         ║
  * ║                                                                            ║
  * ║ STOP MODEL                                                                 ║
  * ║   The stop axial station is patent-published; its diameter is not. STO.sd  ║
@@ -203,7 +205,21 @@ const LENS_DATA = {
     { label: "15", R: -311.9251, d: 1.2, nd: 1.48749, elemId: 8, sd: 8.2 },
     { label: "16", R: 31.2577, d: 1.55, nd: 1, elemId: 0, sd: 8.0 },
     { label: "17", R: -1620.783, d: 2.55, nd: 1.744, elemId: 9, sd: 8.0 },
-    { label: "18", R: -66.5158, d: 39.07132, nd: 1, elemId: 0, sd: 8.0 },
+    { label: "18", R: -66.5158, d: 0.1, nd: 1, elemId: 0, sd: 8.0 },
+  ],
+
+  /* ── Low-pass filter P1 (patent surfaces 19–20): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "P1",
+      thicknessMm: 2,
+      nd: 1.5168,
+      vd: 64.12,
+      glass: "J-BK7A",
+      gapAfterMm: 37.65276,
+      source:
+        "US 2011/0170195 A1, Example 1 Table 1 surfaces 19–20; Bf 37.65276 derived from printed INF TL/ACTL (printed Bf = 37.65)",
+    },
   ],
 
   asph: {

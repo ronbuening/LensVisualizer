@@ -12,8 +12,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  Focus status: CONSTRAINED_RECONSTRUCTION. The patent publishes G4 imageward       ║
  * ║  focusing, a 13.76 mm tele travel, 300 mm object-to-image distance, and about      ║
  * ║  0.5× tele magnification, but no close-focus spacing table. G4-only motion was     ║
- * ║  solved on the normalized model at all three zoom positions while preserving       ║
- * ║  d27 + d29. Imageward travel is 1.594494 / 4.601741 / 13.669691 mm.                ║
+ * ║  solved at all three zoom positions on the physical track (plate P traced)         ║
+ * ║  while preserving d27 + d29 (re-solved 2026-09-23): an object 300 mm from          ║
+ * ║  the image plane is in paraxial focus. Imageward travel is 1.600518 /              ║
+ * ║  4.619460 / 13.722694 mm. These are reconstructions, not patent values.            ║
  * ║                                                                                      ║
  * ║  Zoom gaps: 6, 14, 27A, 29A, and 33. G3-G4 and G4-G5 reverse between the middle   ║
  * ║  and tele positions. The aperture stop moves with G3. STO sd is the 10.893 mm      ║
@@ -21,8 +23,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  The patent's 40.9808°-12.0606° values are half-field angles ω, not full fields.    ║
  * ║                                                                                      ║
  * ║  Normalization: the three 0.005 mm UV-adhesive planes are collapsed into the       ║
- * ║  preceding element thicknesses. Rear plate P is omitted; surface 33 uses           ║
- * ║  d33 + 2.1 / 1.5168 + 2.7 mm air-equivalent spacing. No scale is applied.          ║
+ * ║  preceding element thicknesses. Surface 33 stores the physical patent d33            ║
+ * ║  (21.029 / 39.997 / 45.629 mm); parallel plate P (2.1 mm, nd 1.51680,                ║
+ * ║  νd 64.2) and the 2.7 mm air to the image are in `rearPlates`: traced,               ║
+ * ║  not drawn. The air-equivalent BF is unchanged. No scale is applied.                 ║
  * ║                                                                                      ║
  * ║  Semi-diameters: inferred from exact and reduced-angle axial/full-field bundles in  ║
  * ║  all six zoom/focus states, checked against patent Figure 1, then constrained by    ║
@@ -47,7 +51,7 @@ const LENS_DATA = {
     "MODELED F/4.119",
     "ω = 40.98°-12.06°",
     "8 ASPHERICAL SURFACES",
-    "0.300 m / 0.493× TELE MODEL",
+    "0.300 m / 0.494× TELE MODEL",
   ],
 
   focalLengthMarketing: [24, 105],
@@ -280,7 +284,20 @@ const LENS_DATA = {
     { label: "30", R: -106.5052, d: 1, nd: 1.497, elemId: 15, sd: 18 },
     { label: "31", R: 1030.8842, d: 0.2, nd: 1, elemId: 0, sd: 18.1 },
     { label: "32", R: 61.5545, d: 3.72, nd: 1.90043, elemId: 16, sd: 18.2 },
-    { label: "33", R: 449.3914, d: 25.113493671, nd: 1, elemId: 0, sd: 18.2 },
+    { label: "33", R: 449.3914, d: 21.029, nd: 1, elemId: 0, sd: 18.2 }, // D33 var — gap to plate P
+  ],
+
+  /* ── Parallel plate P (patent surfaces 34–35): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "P",
+      thicknessMm: 2.1,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 2.7,
+      source: "JP 2020-118738 A, Numerical Example 1 Table 1 surfaces 34–35",
+    },
   ],
 
   /* Patent convention is the standard conic constant K: K = 0 is a spherical base. */
@@ -372,19 +389,19 @@ const LENS_DATA = {
       [0.957, 0.957],
     ],
     "27A": [
-      [1.8, 3.394493514],
-      [2.62, 7.221740926],
-      [1.8, 15.469690819],
+      [1.8, 3.400517907],
+      [2.62, 7.239460293],
+      [1.8, 15.52269395],
     ],
     "29A": [
-      [16.125, 14.530506486],
-      [14.555, 9.953259074],
-      [29.64, 15.970309181],
+      [16.125, 14.524482093],
+      [14.555, 9.935539707],
+      [29.64, 15.91730605],
     ],
     "33": [
-      [25.113493671, 25.113493671],
-      [44.081493671, 44.081493671],
-      [49.713493671, 49.713493671],
+      [21.029, 21.029],
+      [39.997, 39.997],
+      [45.629, 45.629],
     ],
   },
 
@@ -393,7 +410,7 @@ const LENS_DATA = {
     ["14", "D14"],
     ["27A", "D27"],
     ["29A", "D29"],
-    ["33", "BF (AIR-EQUIVALENT)"],
+    ["33", "D33"],
   ],
 
   zoomPositions: [25.0078, 50.1541, 100.5897],
@@ -416,7 +433,7 @@ const LENS_DATA = {
 
   closeFocusM: 0.3,
   focusDescription:
-    "CONSTRAINED_RECONSTRUCTION: G4 (L14) translates imageward by 1.594494 / 4.601741 / 13.669691 mm from infinity to a 0.300 m object-to-image state at wide / middle / tele. The adjacent D27 and D29 gaps change equally and oppositely. The normalized tele state gives 0.4926× versus the patent's rounded 0.5× checkpoint.",
+    "CONSTRAINED_RECONSTRUCTION: G4 (L14) translates imageward by 1.600518 / 4.619460 / 13.722694 mm from infinity to a 0.300 m object-to-image state (solved on the physical track through plate P) at wide / middle / tele. The adjacent D27 and D29 gaps change equally and oppositely. The normalized tele state gives 0.4943× versus the patent's rounded 0.5× checkpoint.",
 
   nominalFno: 4.1194,
   fstopSeries: [4, 5.6, 8, 11, 16, 22],

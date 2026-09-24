@@ -42,3 +42,12 @@ Original WO2019229849A1, Example1: cover p.1, equation p.20, table pp.21–23 an
 ## 2026-09-09 — Live verification completed
 
 Production baseline and local infinity, near, midpoint, f16 and movement chart verified. Near50cm/D22=21.29/EFL62.75mm; midpoint100cm/D22=11.98/EFL61.14mm; f16 stop2.93mm. GF travels18.61mm objectward, GR fixed; excluded filter absent. Earlier lock blocker resolved. Full batch validation passed2877 tests, typecheck, format, lint, glass checks and build; included in batch21–30.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Table 1 (PDF p.22, printed p.20) rows 28–30: S28 d = 14.50, FL 1.60 mm nd 1.516800 νd 64.14, then 1.00 mm to I; BF
+  17.10, air-equivalent BF 16.55; FL is labeled in Figure 1 (p.46). S28 now stores the physical 14.5 mm (fixed; GR does
+  not move) and FL is a `rearPlates` entry with glass J-BK7A (Hikari, 1.51680/64.13; compatible with the stored pair).
+- Paraxial check against the previous data: EFL identical and defocus unchanged at infinity and near (the old fold was
+  exact). Physical track grows by 1.6(1 − 1/1.5168) = 0.545 mm, so `closeFocusM` moves from the filter-omitted
+  0.499367 m to the physical object-to-image 0.499913 m.

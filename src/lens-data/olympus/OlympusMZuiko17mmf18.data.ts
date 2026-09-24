@@ -6,9 +6,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * Source prescription: JP 2013-186458 A, Numerical Example 3 (Olympus Imaging Corporation).
  * Patent values: f = 17.30 mm, FNO = 1.716, IH = 10.82 mm, TL(in air) = 52.27 mm.
  *
- * The patent's sensor-side cover glass is omitted from the rendered prescription.
- * Final surface 16 d is the folded air-equivalent distance:
- *   10.832 + 4.082 / 1.51633 + 0.745 = 14.2690261421 mm.
+ * The patent's sensor-side cover plate (surfaces 17–18: 4.082 mm, nd 1.51633, νd 64.14) and
+ * its 0.745 mm air gap to the image are modeled in `rearPlates` (traced, not drawn). Final
+ * surface 16 keeps the patent's 10.832 mm gap to the plate (air-equivalent BFD 14.2690 mm).
  *
  * Semi-diameters are inferred from paraxial marginal/chief-ray traces and constrained by:
  *   sd/|R| < 0.90, per-element SD ratio <= 1.25, positive edge thickness,
@@ -187,7 +187,19 @@ const lensData = {
     { label: "13A", R: 48.56, d: 5.252, nd: 1.7432, elemId: 8, sd: 9.6 },
     { label: "14A", R: -13.158, d: 2.0857, nd: 1, elemId: 0, sd: 10.0 },
     { label: "15", R: -44.201, d: 1.1, nd: 1.5927, elemId: 9, sd: 10.2 },
-    { label: "16", R: -717.676, d: 14.2690261421, nd: 1, elemId: 0, sd: 10.2 },
+    { label: "16", R: -717.676, d: 10.832, nd: 1, elemId: 0, sd: 10.2 },
+  ],
+
+  /* ── Sensor-side cover plate (patent surfaces 17–18): traced, not drawn ── */
+  rearPlates: [
+    {
+      thicknessMm: 4.082,
+      nd: 1.51633,
+      vd: 64.14,
+      glass: "S-BSL7",
+      gapAfterMm: 0.745,
+      source: "JP 2013-186458 A, Numerical Example 3 surfaces 17–18",
+    },
   ],
 
   asph: {

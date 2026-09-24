@@ -7,3 +7,9 @@ Compared both local-viewer focus endpoints with Fig. 1, local `patents/US2017024
 G1 + stop + G2 move rigidly objectward by 12.9074477062 mm; G3 stays fixed. Infinity precedes the reconstructed 0.50 m state. No zoom travel. Surface/image-circle bounds pass and exact production-edge chief rays traverse all surfaces at infinity, intermediate, and close states.
 
 All ten glasses resolve. L21 now uses inferred-APD coloring from the compatible FCD505 curve (ΔPgF ≈ +0.01597); its production ED placement is separately sourced. Catalog evidence does not establish the historical supplier. Synchronized the analysis assignee with Fujifilm Corporation.
+
+## 2026-09-23 — Rear plate modeled as `rearPlates`
+
+- Read Example 1 Table 1-continued on PDF page 24 (printed page 6) at 160 dpi: S19 d = 30.0000; S20–S21 are the plate PP, 3.2500 mm, nd 1.51680, νd 64.20; S21 → IMG is 0.8182 mm. Table 2 prints Bf 32.96 (air conversion).
+- S19 now stores the patent's 30.0000 mm, with `rearPlates` PP (N-BK7; 1.51680 / 64.20 is the N-BK7 class) and gapAfter 0.8182 mm. D14 focus keyframes are unchanged.
+- Paraxial check against the previous data: EFL identical and defocus unchanged (|Δ| < 1e-10 mm) at infinity and the reconstructed 0.50 m state, since the old 32.9608687764 mm was the exact fold. Physical track grows by 1.107 mm.

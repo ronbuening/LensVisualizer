@@ -6,9 +6,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * Source/model treatment:
  * - The selected patent example is retained at native scale (design EFL 18.54 mm; no uniform scaling).
  * - The source rear spacing d22 = 25.606 mm is preserved in the dossier as an apparent patent-table error.
- *   The implemented source-precision correction is d22 = 22.083 mm. The 2.500 mm, nd=1.5168 sensor-cover
- *   plate and following 1.000 mm air space are omitted under the current data specification; their paraxial
- *   effect is folded into the final air gap, giving 24.731206751055 mm from surface 22A to the image plane.
+ *   The implemented source-precision correction is d22 = 22.083 mm (derived, not printed), stored on surface
+ *   22A. The printed cover glass CG (surfaces 23–24: 2.500 mm, nd 1.5168, νd 64.20) and the printed 1.000 mm
+ *   air space to the image plane are modeled in `rearPlates` (traced, not drawn). The paraxial equivalent is
+ *   the former air-equivalent final gap 22.083 + 2.500/1.5168 + 1.000 = 24.731206751055 mm.
  * - Focus status is PUBLISHED. G12/L121 moves imageward; D14 increases 1.472 -> 2.318 mm and D16 decreases
  *   6.519 -> 5.674 mm. G11 and G13 remain fixed. No production-MFD-driven internal reconstruction is used.
  * - The physical stop diameter is not published. STO semi-diameter 7.559068469367 mm is calibrated from the
@@ -235,7 +236,22 @@ const LENS_DATA = {
     { label: "19", R: -329.577, d: 4.036, nd: 1.497, elemId: 10, sd: 10.8 },
     { label: "20", R: -23.042, d: 0.329, nd: 1, elemId: 0, sd: 10.8 },
     { label: "21A", R: -400, d: 1.2, nd: 1.882, elemId: 11, sd: 10.8 },
-    { label: "22A", R: 26.785, d: 24.731206751055, nd: 1, elemId: 0, sd: 10.8 },
+    // Last surface: corrected gap to the cover glass CG (patent prints 25.606; see header)
+    { label: "22A", R: 26.785, d: 22.083, nd: 1, elemId: 0, sd: 10.8 },
+  ],
+
+  /* ── Cover glass CG (patent surfaces 23–24): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "CG",
+      thicknessMm: 2.5,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 1.0,
+      source:
+        "JP 2016-188967 A, Example 1 surfaces 23–24 (¶0095); preceding d22 = 22.083 is a derived correction of the printed 25.606",
+    },
   ],
 
   /* ── Aspherical coefficients ── */

@@ -22,10 +22,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ no close-focus D25/D28 values. Every authored [d_inf, d_close] pair is      ║
  * ║ therefore identical. Production MOD values remain metadata only.            ║
  * ║                                                                            ║
- * ║ SENSOR COVER GLASS: source surfaces 35-36 are omitted. The 2.500 mm plate  ║
- * ║ (nd=1.516798) is replaced by 2.500/1.516798 = 1.648208924 mm of air, plus  ║
- * ║ the source 1.000 mm rear air spacing. Authored surface 34 therefore uses    ║
- * ║ D34 + 2.648208924 mm to the project image plane.                            ║
+ * ║ SENSOR COVER GLASS: source surfaces 35-36 (CG, 2.500 mm, nd 1.516798,      ║
+ * ║ vd 64.20) and the 1.000 mm air gap to IMG are modeled in `rearPlates`      ║
+ * ║ (traced, not drawn). Surface 34 keeps the patent's D34 to the cover glass. ║
  * ║                                                                            ║
  * ║ STOP: the patent publishes the stop plane and design FNO but not a physical ║
  * ║ stop diameter. The stored wide-state STO sd=10.201416 mm is an exact-ray    ║
@@ -306,7 +305,7 @@ const LENS_DATA = {
 
   /* ── Surface prescription ──
    * Source surfaces 1-34 retained. Source surface 17 is the aperture stop and
-   * is labeled STO. Source CG surfaces 35-36 are omitted as described above.
+   * is labeled STO. Source CG surfaces 35-36 are carried in `rearPlates`.
    */
   surfaces: [
     { label: "1", R: 128.0, d: 1.2, nd: 1.804198, elemId: 1, sd: 28.8 },
@@ -342,7 +341,20 @@ const LENS_DATA = {
     { label: "31", R: -41.89, d: 0.8, nd: 1.900433, elemId: 18, sd: 14.5 },
     { label: "32", R: 208.5, d: 6.44, nd: 1.0, elemId: 0, sd: 14.5 },
     { label: "33", R: -23.4, d: 1.0, nd: 1.870705, elemId: 19, sd: 15.0 },
-    { label: "34", R: -44.74, d: 20.648208924326, nd: 1.0, elemId: 0, sd: 15.0 },
+    { label: "34", R: -44.74, d: 18.0, nd: 1.0, elemId: 0, sd: 15.0 },
+  ],
+
+  /* ── Cover glass CG (patent Example 1 surfaces 35–36): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "CG",
+      thicknessMm: 2.5,
+      nd: 1.516798,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 1.0,
+      source: "US 2024/0295723 A1, Example 1 surfaces 35–36",
+    },
   ],
 
   asph: {},
@@ -374,9 +386,9 @@ const LENS_DATA = {
       [16.5133, 16.5133],
     ],
     "34": [
-      [20.648208924326, 20.648208924326],
-      [25.425708924326, 25.425708924326],
-      [41.027408924326, 41.027408924326],
+      [18.0, 18.0],
+      [22.7775, 22.7775],
+      [38.3792, 38.3792],
     ],
   },
   varLabels: [
@@ -384,7 +396,7 @@ const LENS_DATA = {
     ["14", "D14"],
     ["25", "D25"],
     ["28", "D28"],
-    ["34", "BF (CG air-equivalent)"],
+    ["34", "D34"],
   ],
 
   groups: [

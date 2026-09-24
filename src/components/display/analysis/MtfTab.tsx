@@ -82,7 +82,8 @@ export default function MtfTab({
     <section style={{ color: t.value, fontSize: 12 }} aria-label="Simulated MTF">
       <h3 style={{ margin: "0 0 8px", fontSize: 14 }}>Simulated MTF</h3>
       <p style={{ color: t.muted }}>
-        Prescription estimate, not manufacturer MTF. Omitted sensor optics can substantially change these curves.
+        Prescription estimate, not manufacturer MTF. Modeled rear cover/filter plates are included; any omitted sensor
+        optics can substantially change these curves.
       </p>
       <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
         <label>

@@ -76,3 +76,83 @@ Changes made:
 - Visually rechecked `patents/JPWO2020157904A1.pdf`, PDF page 16, Example 1. L61 remains `nd = 1.82080`, `νd = 42.51`.
 - HOYA M-TAFD51 reproduces the d-line index essentially exactly and is within the runtime Abbe window (`Δnd = -0.000002`, `Δνd = +0.20`).
 - Relabeled L61 as an M-TAFD51 optical equivalent while leaving the production supplier unspecified. No prescription, asphere, focus, or zoom geometry changed.
+
+## 2026-09-23 — First-added diagram audit, lens 69
+
+Source: local `patents/JPWO2020157904A1.pdf` (JP WO2020/157904 A1, 71 pp.). Pages used: p. 1 (bibliography), pp. 14–17
+(¶0075–0093, Example 1 text and Table 1), p. 56 (Fig. 1, 300 ppi native raster), and the Example 2 and Example 13
+tables for the identification check. Every Table 1 row was read on the rendered page. Inventor Latin spellings come
+from the US family member US 2025/0306348 A1 on Google Patents, because the JP publication gives kanji only.
+
+### Re-verified and retained
+
+- All 35 prescription rows (R, D, nd, νd, stop at S15) match Table 1. The three aspheres match, including
+  A12 = 0.32673E-14 and 0.98445E-14. The patent's κ = 1.0000 on all three means K = 0 under Eq. (A).
+- All six variable gaps (D1–D5, BF) at W/M1/M2/T, infinity and near, match Table 1.
+- No cover glass or filter is listed; BF is the air-equivalent distance, so no plate is folded in.
+- Paraxial EFL is 24.720 / 50.001 / 105.054 / 193.996 mm against the patent's 24.720 / 50.000 / 105.051 / 193.991. Infinity defocus is 0.0004–0.0021 mm. Group focal lengths reproduce the lens-group table. The data stays at native scale.
+- Real-ray field check: the stored design reaches the patent's image heights at ω = 42.69° / 22.67° / 11.14° / 6.13°,
+  against the patent's 42.59° / 22.67° / 11.14° / 6.13°. At the wide end the maximum real image height is about
+  20.57 mm, against the patent's Y = 20.50 mm.
+- Zoom motion: per the Fig. 1 arrows and ¶0084, every group moves toward the object from W to T, and stop S, G3 and G6
+  move as one unit. Derived travel is G1 62.02, G2 8.99, S/G3/G6 26.73, G4 37.48 and G5 41.02 mm. These reproduce
+  conditions (1) 1.402, (2) 0.364, (10) 1.535 and (11) 0.366. The live group-movement overlay shows the same
+  direction for all six groups.
+- Focus: G5 moves toward the image (¶0091). D4 + D5 is conserved at every station, with G5 travel of 0.894 / 1.625 /
+  4.312 / 9.698 mm.
+- Glass: every stored nd/νd equals Table 1. All labels resolve to coordinate-compatible catalog glasses.
+- Metadata retained: counts, specs, mounts and format, groups/doublets, varLabels and element types (Example 1 has a biconcave L24,
+  ¶0086). `patentAuthors` was already correct.
+- Example identity: Example 1 is kept. Example 13 has 20 elements (an added fixed G7), so it is excluded. Example 2 is
+  a 19-element sibling whose near states come to exactly 0.500 / 0.700 m, against Example 1's 0.492 / 0.692 m. Public
+  specifications cannot separate Examples 1 and 2, and Example 1 is the publication's representative example
+  (abstract figure), so the analysis now says the match is to the design family.
+
+### Changes
+
+| Item | Before | After | Evidence |
+|---|---|---|---|
+| L24 sd (S13/S14) | 11.0 / 11.0 | 9.5 / 9.5 | Fig. 1 rim 73–74 px (9.45 mm) on both sides; stored value 16 % larger; axial 7.02 / 7.20 mm clears it |
+| L34 sd (S21/S22) | 10.1 / 10.3 | 8.3 / 8.3 | Fig. 1 rim 64 px (8.2 mm) on both sides, and the drawn edge thickness (≈ 1.8 mm) matches 8.2 mm; axial 7.57 / 7.64 mm |
+| L41+L42 sd (S23–S25) | 12.9 / 12.9 / 13.0 | 11.1 ×3 | Fig. 1 rim 85–87 px (11.0 mm); at 12.9 mm L41's edge thickness was ≈ 0; at 11.1 mm it is 1.2 mm, matching the drawing |
+| L43+L44 sd (S26–S28A) | 13.0 / 12.9 / 12.9 | 11.4 ×3 | Fig. 1 rim 86–89 px (11.3 mm); the L44 rear-rim position matches the S28A sag at 11.3 mm |
+| G5 sd (S29–S31A) | 13.7 / 13.7 / 13.1 | 11.8 ×3 | Fig. 1 rim 89–93 px (11.4–12.0 mm), 13–17 % smaller than stored |
+| L61 sd (S32/S33A) | 15.2 / 18.5 | 13.3 / 14.6 | Fig. 1 edge 113 px (14.5 mm); a flat annulus at 103–113 px marks where S32's optical surface ends (13.2 mm) |
+| L62 sd (S34/S35) | 20.2 / 21.2 | 17.5 / 17.5 | Fig. 1 rim 135–137 px (17.5 mm); the drawn 1.5 mm edge matches the sags at 17.5 mm |
+| STO sd | 7.4 | 7.5 | The inferred tele iris radius is 7.413 mm, so 7.4 was 0.01 mm short |
+| `zoomApertureModel` | absent (fixed 6.36 mm iris) | `"from-nominal-fno"` | No iris diameters are published; the FNO schedule implies radii of 6.36 / 6.36 / 6.69 / 7.41 mm; Fig. 1 (wide end) draws the stop opening at ≈ 6.3 mm |
+| `closeFocusM` / `zoomCloseFocusM` | 0.5 / absent | 0.4924 / [0.4924, 0.5425, 0.6426, 0.693] | Calculated D0 + lens length + near BF from Table 1; the near conjugate differs by station |
+| `fstopSeries` / `maxFstop` | starts 4 / default 16 | starts 4.12 / 22 | The first stop must be reachable; the series already included f/22 |
+| L44 glass | S-FPL51 (OHARA) | M-FCD1 (HOYA) catalog equivalent | Exact nd 1.49710 (S-FPL51 is 1.49700); νd 81.56 vs 81.49 |
+| L52 glass | `851401 — … (near S-LAH89 …)`, which resolved to S-LAH89 (Δνd +0.65) | M-TAFD305 (HOYA) catalog equivalent | 1.85135 / 40.10 against the patent's 1.85135 / 40.13 |
+| Element `fl` | stale, including L43 −31.0, L61 −84.3 and L32 −48.7 | thick-lens values (L43 −33.8, L61 −95.1, L32 −50.3, …) | Thick-lens trace of each element |
+| Header / subtitle | "Makita, Itō", 0.5 m, paraxial-estimate SD note | Makida / Ito / Miwa, figure-based SD note, zoom-travel and iris notes | Family romanization; this audit |
+| Analysis | Makita / Tetsushi; "confidently identified"; stale glass names (TAFD45 for L11/L42, PCD4, TAFD25, S-FPL51, 851401); doublet f +79.5 mm; MFD explained via flange distance | Corrected names, glasses and focal lengths; Example 2/13 sibling note; inferred iris schedule; calculated close conjugates; figure-based SD limitation; asphere departure-sign wording | Findings above |
+
+G1 (31.0 / 29.4 / 28.0 mm) was left unchanged. Fig. 1 draws it at 27.1 / 26.5 / 25.7 mm, 8–13 % smaller, which is inside
+the ~15 % tolerance. The earlier estimate was tied to the 67 mm filter thread. The remaining G2/G3 surfaces agree with
+the figure within about 10 %: L21 13.4 mm, L22 11.1 mm, L23 9.6 mm, L31 8.4 mm and L32/L33 9.2 mm.
+
+### Checks on the result
+
+- The surface validator reports no errors, and the image-circle audit reports 0 undersized.
+- The real-ray trace at Y = 21.7 mm (the wide station clamps at 20.57 mm) finds no axial clipping and no chief-ray
+  blocking at infinity or at near focus. Full-field vignetting is up to about 50 % on one side at G4 and G2, which is ordinary.
+- The engine derives stop radii of 6.362 / 6.358 / 6.691 / 7.413 mm and FOPEN of 4.12 / 5.59 / 6.40 / 6.50.
+- The engine's paraxial wide half-field estimate is now 37.3°, limited by S32, where it was 39.9° (limited by S8).
+  Both are below the patent's 42.59°. A real trace at 42.7° clears S32 at a chief-ray height of 11.7 mm.
+- The near states focus at a calculated 492.4 / 542.5 / 642.6 / 693.0 mm object-to-image distance, with magnification
+  −0.062 / −0.111 / −0.179 / −0.284, matching the patent's β.
+- Prettier reports clean formatting.
+- Live check with the headless local renderer: the wide-end infinity silhouette shows the smaller G4–G6 rims. At the
+  tele end the stop reads Ø 14.83 mm, and near focus at tele shows 69 cm with D4 = 11.70. The zoom-movement overlay
+  moves all six groups objectward; the focus overlay moves G5 imageward. The production baseline was shot at the wide
+  end. Off-axis rays were not toggled.
+
+### Open limitations
+
+- Semi-diameters are figure measurements, not tabulated effective diameters. G1 remains an estimate.
+- The iris schedule is inferred from the FNO values; no diameters are published.
+- Example 1 versus Example 2 as the production design is unresolved from public data.
+- L44's dPgF 0.028 is a family value; the patent lists no θgF.
+- The engine's paraxial wide half-field (37.3°) underestimates the patent's 42.59°.

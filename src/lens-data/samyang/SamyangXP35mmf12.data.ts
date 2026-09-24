@@ -13,14 +13,17 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  G13 is fixed. G23 and G33 move independently objectward from        ║
  * ║  infinity to the patent's nearest / maximum-magnification state.  ║
  * ║  Published endpoint gaps are used directly; no intermediate       ║
- * ║  focus reconstruction is authored. closeFocusM is normalized to   ║
- * ║  the plate-omitted model image plane while preserving the patent  ║
- * ║  near object distance D0 = 175.678043 mm.                         ║
- * ║                                                                    ║
- * ║  Rear reference-plane normalization: patent surfaces 24–25 are    ║
- * ║  a 2.500 mm, nd=1.51680 sensor-side optical plate and are omitted ║
- * ║  from the ordinary lens prescription. Surface 23A therefore uses  ║
- * ║  the paraxially equivalent s23→IMG spacing D3 + 2.5/1.5168 + D4.  ║
+ * ║  focus reconstruction is authored. closeFocusM is the physical    ║
+ * ║  object-to-image distance: patent near D0 = 175.678043 mm plus    ║
+ * ║  the physical track to the D3 + plate + D4 image plane.           ║
+ * ║                                                                   ║
+ * ║  Rear optical plate: patent surfaces 24–25 are a 2.500 mm,        ║
+ * ║  nd 1.51680 / νd 64.20 sensor-side plate, modeled in `rearPlates` ║
+ * ║  (traced, not drawn). Surface 23A keeps the patent D3 to the      ║
+ * ║  plate; the infinity D4 = 0.528568 mm is the plate-to-IMG gap.    ║
+ * ║  The close D4 = 0.562472 mm (+0.033904) is carried in the 23A     ║
+ * ║  close gap: 42.958030 + 0.033904 = 42.991934 mm, so the printed   ║
+ * ║  23A→IMG path is kept and the plate shifts only 0.034 mm.         ║
  * ║  D5 is not propagated: including it destroys the patent's near    ║
  * ║  imaging/magnification match, so it is retained as source         ║
  * ║  post-IMG/OAL bookkeeping rather than active optical space.       ║
@@ -245,7 +248,19 @@ const LENS_DATA = {
     { label: "20", R: -22, d: 1.7, nd: 1.5927, elemId: 11, sd: 18 },
     { label: "21", R: 963.293, d: 0.1, nd: 1, elemId: 0, sd: 21.3 },
     { label: "22A", R: 84.314, d: 9.57, nd: 1.85343, elemId: 12, sd: 22 },
-    { label: "23A", R: -37.681, d: 38.162369751054854, nd: 1, elemId: 0, sd: 22.5 },
+    { label: "23A", R: -37.681, d: 35.985595, nd: 1, elemId: 0, sd: 22.5 },
+  ],
+
+  /* ── Sensor-side optical plate (patent surfaces 24–25): traced, not drawn ── */
+  rearPlates: [
+    {
+      thicknessMm: 2.5,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 0.528568,
+      source: "KR 10-2077265 B1, Example 3 (Table 7 surfaces 24–25; Table 9 D4 at infinity)",
+    },
   ],
 
   /* ── Aspherical coefficients ── */
@@ -293,12 +308,12 @@ const LENS_DATA = {
   var: {
     "10": [6.795765, 1],
     "15": [7.732498, 6.565902],
-    "23A": [38.162369751054854, 45.16870875105485],
+    "23A": [35.985595, 42.991934],
   },
   varLabels: [
     ["10", "D1 (G13–G23)"],
     ["15", "D2 (G23–STO)"],
-    ["23A", "BF (air-equivalent)"],
+    ["23A", "D3 (L12–plate)"],
   ],
 
   groups: [
@@ -312,7 +327,7 @@ const LENS_DATA = {
   ],
 
   /* ── Focus configuration ── */
-  closeFocusM: 0.3398906537510548,
+  closeFocusM: 0.340742447,
   focusDescription:
     "Published floating internal focus: G23 and G33 move objectward by 5.796 and 6.962 mm relative to G13. " +
     "G13 is mechanically fixed in the patent. The preserved image-reference spacing adds a 0.044 mm common " +

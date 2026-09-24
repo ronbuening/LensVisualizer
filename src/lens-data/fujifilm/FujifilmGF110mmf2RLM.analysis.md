@@ -25,7 +25,7 @@ The prescription is identified as the basis for the production Fujinon GF110mmF2
 
 ## Optical Architecture
 
-The GF 110mm f/2 is a three-group inner-focus design of the form **positive–negative–positive** (G1–G2–G3). In broad terms, it follows the telephoto principle: the strong positive front group (G1, f₁ ≈ 86 mm) is followed by a weak negative focus group (G2, f₂ ≈ −57 mm), with a strong positive rear group (G3, f₃ ≈ 71 mm) relaying the image to the sensor plane. The overall system focal length of 108.47 mm is achieved through a total optical track of approximately 143 mm (S1 to image plane), but the three-group power distribution closely resembles a telephoto configuration adapted for an inner-focus mirrorless system.
+The GF 110mm f/2 is a three-group inner-focus design of the form **positive–negative–positive** (G1–G2–G3). In broad terms, it follows the telephoto principle: the strong positive front group (G1, f₁ ≈ 86 mm) is followed by a weak negative focus group (G2, f₂ ≈ −57 mm), with a strong positive rear group (G3, f₃ ≈ 71 mm) relaying the image to the sensor plane. The overall system focal length of 108.47 mm is achieved through a physical optical track of approximately 147.4 mm from S1 to the image plane, including the 3.2 mm plane-parallel plate PP (146.3 mm air-equivalent), but the three-group power distribution closely resembles a telephoto configuration adapted for an inner-focus mirrorless system.
 
 **Group G1** (6 elements, 4 air-separated sub-groups) serves as the front collector. It contains two cemented doublets that provide chromatic correction, flanking a positive singlet (L12) that bears much of the convergent power. Two of the four ED elements reside in G1 (L12 and L16), and the group's combined focal length of 86 mm means it does most of the bending work.
 
@@ -133,7 +133,7 @@ L35 sits in the converging beam of G3 and acts as the primary power relay betwee
 
 ### L36 — Negative Meniscus, concave to object (singlet; rear element)
 
-nd = 1.51680, νd = 64.21. Glass: S-BSL7 (OHARA) — borosilicate crown, equivalent to N-BK7 (Schott). f = −95.3 mm.
+nd = 1.51680, νd = 64.21. Glass: N-BK7 (Schott) class — borosilicate crown. (OHARA S-BSL7 is the 1.51633 variant and does not match the printed 1.51680.) f = −95.3 mm.
 
 L36 is the final optical element, positioned deep in the converging cone close to the image plane. The patent specifically describes it (¶0090): "by making the lens L36 closest to the image side in the third lens group G3 as a single lens which is concave toward the object side and has a negative refractive power, it is possible to improve the Petzval sum, it is possible to shorten the total length of the lens system, and it is possible to correct distortion. In particular, by using a lens which is concave toward the object side, it is possible to satisfactorily correct astigmatism."
 
@@ -156,7 +156,7 @@ The design employs 12 distinct nd/νd glass pairs across 14 elements (three elem
 | E-FD8 | 1.68893 | 31.16 | HOYA | L32 | Dense flint in cemented doublet D3 |
 | S-TIH14 | 1.76182 | 26.52 | OHARA | L34 | Titanium flint in cemented doublet D4 |
 | TAFD55 | 2.00100 | 29.13 | HOYA | L35 | Ultra-high-index power relay |
-| S-BSL7 | 1.51680 | 64.20 | OHARA | L36 | Borosilicate crown — field flattener |
+| N-BK7 | 1.51680 | 64.20 | Schott (class) | L36 | Borosilicate crown — field flattener |
 
 The chromatic correction strategy distributes achromatization across five cemented interfaces and all three groups. Each cemented doublet pairs a low-dispersion crown with a high-dispersion flint. The four ED elements (L12, L16, L31, L33) are all fluorophosphate crowns with anomalous partial dispersion, meaning their P(g,F) values deviate from the Schott normal line. This anomalous dispersion allows the design to address secondary spectrum — the residual chromatic error that persists even after primary color correction — which is important for maintaining contrast and color fidelity across the large GFX sensor's image circle.
 
@@ -223,7 +223,7 @@ All numerical claims in this analysis were independently verified via paraxial r
 | Variable gap conservation | 22.890 mm | 22.890 mm | ✓ |
 | ED element count | 4 | 4 (Fujifilm spec) | ✓ |
 
-The air-equivalent BFD was computed as 23.857 mm (air) + 3.200/1.51680 mm (cover glass) + 1.000 mm (air) = 26.967 mm, matching the patent's stated BF = 26.97 mm.
+The air-equivalent BFD was computed as 23.8566 mm (air) + 3.2000/1.51680 mm (plate PP) + 1.0003 mm (air) = 26.967 mm, matching the patent's stated BF = 26.97 mm. The data file stores the physical 23.8566 mm gap on surface 24 and models PP (Table 1 surfaces 25–26, nd 1.51680, νd 64.20, N-BK7 class) with its 1.0003 mm gap to the image in `rearPlates`: every analysis traces the plate, but it is not drawn.
 
 ## Sources
 
@@ -231,4 +231,5 @@ The air-equivalent BFD was computed as 23.857 mm (air) + 3.200/1.51680 mm (cover
 2. Fujifilm official product page: GF110mmF2 R LM WR specifications. https://www.fujifilm-x.com/global/products/lenses/gf110mmf2-r-lm-wr/specifications/
 3. HOYA optical glass catalog (FCD705, FCD515, E-FD8, TAFD45, TAFD55) — confirmed via refractiveindex.info and HOYA product data where nd/νd matches.
 4. NHG/Hubei New Huaguang H-ZLaF68L product data sheet — confirms d-code 883392, nd = 1.88300, νd = 39.22, and formula constants.
-5. OHARA optical glass catalog (S-LAH98, S-TIM27, S-NPH3, S-LAH89, S-TIH14, S-BSL7) — identifications based on nd/νd catalog matching; L13 remains code-only pending a catalog source.
+5. OHARA optical glass catalog (S-LAH98, S-TIM27, S-NPH3, S-LAH89, S-TIH14) — identifications based on nd/νd catalog matching; L13 remains code-only pending a catalog source.
+6. SCHOTT optical glass catalog (N-BK7) — class match for L36 and the rear plate PP.

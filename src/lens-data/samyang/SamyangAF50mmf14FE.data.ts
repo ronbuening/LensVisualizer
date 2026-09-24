@@ -17,11 +17,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║   production state. The close state here is code-solved for the marketed  ║
  * ║   0.45 m MFD, preserving D1 + D2 = 20.32961 mm and the single moving L7.  ║
  * ║                                                                            ║
- * ║ Rear-plane normalization:                                                  ║
- * ║   Patent S19-S20 are an optional generic sensor-side optical-filter plate  ║
- * ║   and are excluded. Their infinity optical path is folded into the S18     ║
- * ║   air-equivalent rear spacing: 19.5 + 2.5/1.51680 + 1.02158 =             ║
- * ║   22.1697867511 mm. Patent D5 is post-IMG bookkeeping and is excluded.     ║
+ * ║ Rear plate:                                                                ║
+ * ║   Patent Table 1 S19-S20 optical filter OF (2.5 mm, nd 1.51680, νd 64.20)  ║
+ * ║   is modeled in `rearPlates` (traced, not drawn). S18 keeps the printed    ║
+ * ║   D3 = 19.5 mm; the plate's gap to IMG is the infinity-row D4 = 1.02158.   ║
+ * ║   The close row's D4 = 1.15459 is not used (fixed image plane, see focus). ║
+ * ║   Patent D5 is post-IMG bookkeeping and is excluded.                       ║
  * ║                                                                            ║
  * ║ Semi-diameters: the patent does not publish clear apertures. SDs were      ║
  * ║   derived by code from the inferred f/1.44 stop, full on-axis marginal     ║
@@ -196,7 +197,20 @@ const LENS_DATA = {
     { label: "15A", R: 65.226, d: 7.5, nd: 1.6897, elemId: 8, sd: 16.8 },
     { label: "16A", R: -36.632, d: 7.539, nd: 1, elemId: 0, sd: 16.8 },
     { label: "17", R: -123.03, d: 1.5, nd: 1.56883, elemId: 9, sd: 14.6 },
-    { label: "18", R: 50, d: 22.1697867511, nd: 1, elemId: 0, sd: 14.4 },
+    { label: "18", R: 50, d: 19.5, nd: 1, elemId: 0, sd: 14.4 }, // patent D3: gap to the filter plate OF
+  ],
+
+  /* ── Optical filter OF (patent Table 1 surfaces S19–S20): traced, not drawn ── */
+  rearPlates: [
+    {
+      label: "OF",
+      thicknessMm: 2.5,
+      nd: 1.5168,
+      vd: 64.2,
+      glass: "N-BK7",
+      gapAfterMm: 1.02158,
+      source: "KR 10-1825708 B1, Example 1 Tables 1–2 surfaces S19–S20 (infinity-row D4)",
+    },
   ],
 
   /* ── Aspherical coefficients ──

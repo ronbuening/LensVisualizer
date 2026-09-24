@@ -19,9 +19,9 @@ The patent's regional angle-of-view comparison needs care. Example 4 lists fov =
 
 The design is a high-speed retrofocus wide-angle lens for a 135-format SLR. It consists of a negative first group, Gr1, and a positive second group, Gr2. Gr1 is fixed during focusing; Gr2 is the rear focusing group. The first group gives the lens its retrofocus character by expanding the incoming field and preserving mirror-box clearance, while the second group supplies the main convergence, aperture-stop control, and final aberration correction.
 
-The patent prescription includes 13 lens elements. In the data file, the thin resin layer on L12 and the two 0.01 mm cement layers are modeled explicitly as optical media, but they are not counted as production lens elements. The sensor cover plate in patent surfaces 29-30 is not modeled as a surface, because the LensVisualizer data convention excludes sensor glass. Instead, its optical path is folded into the final air-equivalent back focal distance.
+The patent prescription includes 13 lens elements. In the data file, the thin resin layer on L12 and the two 0.01 mm cement layers are modeled explicitly as optical media, but they are not counted as production lens elements. The sensor cover plate in patent surfaces 29-30 (2.00 mm, nd = 1.51680, νd = 64.2) is modeled physically in `rearPlates`: it is traced by every analysis but not drawn in the cross-section or counted in the element list.
 
-The meaningful retrofocus measure is the back focal clearance relative to focal length, not total track divided by focal length. With the patent's 36.31 mm air space from L27 to the cover plate, plus a 2.00 mm cover plate and 1.00 mm final air gap, the physical last-lens-to-image distance is 39.31 mm. Excluding the cover glass and folding it into air gives an air-equivalent final gap of 38.6286 mm. Against a 20.6001 mm computed EFL, this gives BFD/EFL ≈ 1.88. The total track from the first vertex to the image plane remains 125.31 mm.
+The meaningful retrofocus measure is the back focal clearance relative to focal length, not total track divided by focal length. With the patent's 36.31 mm air space from L27 to the cover plate, plus a 2.00 mm cover plate and 1.00 mm final air gap, the physical last-lens-to-image distance is 39.31 mm. Reducing the cover plate to its air equivalent gives a paraxially equivalent final gap of 38.6286 mm (36.31 + 2.00 / 1.51680 + 1.00). Against a 20.6001 mm computed EFL, this gives BFD/EFL ≈ 1.88. The physical total track from the first vertex to the image plane, including the plate, is the patent's 125.31 mm.
 
 The first group contains, from object to image: two negative menisci, a biconcave ED negative lens, a positive cemented doublet designated LS, and a positive meniscus behind the doublet. The second group begins with a negative meniscus, continues through a strong positive element and a near-afocal cemented achromat, contains the aperture stop, and finishes with a post-stop negative meniscus, a double-aspherical biconvex positive element, and a final positive meniscus.
 
@@ -129,13 +129,13 @@ The main correction to the previous document is the dense-glass palette. L14/L24
 
 The focus mechanism is rear-group focusing. The patent states that the first group remains fixed while the second group moves toward the object during close focusing (¶0006, ¶0043, ¶0045). This matches Nikon's production RF designation: only the rear lens group moves during focusing.
 
-The patent gives only the infinity prescription; it does not publish separate close-focus air spacings. A paraxial close-focus solve for Nikon's 0.20 m minimum focus distance gives a Gr2 object-ward shift of 5.375 mm. The Gr1-Gr2 air gap therefore closes from 7.510 mm to 2.135 mm. Holding total physical track constant, the patent-space L27-to-cover-plate distance increases from 36.310 mm to 41.685 mm. In the data file, after folding out the 2.00 mm cover plate, the final air-equivalent distance increases from 38.629 mm to 44.003 mm.
+The patent gives only the infinity prescription; it does not publish separate close-focus air spacings. A paraxial close-focus solve for Nikon's 0.20 m minimum focus distance gives a Gr2 object-ward shift of 5.375 mm. The Gr1-Gr2 air gap therefore closes from 7.510 mm to 2.135 mm. Holding total physical track constant, the patent-space L27-to-cover-plate distance increases from 36.310 mm to 41.685 mm. The data file stores these patent-space gaps for surface 28 and traces the 2.00 mm cover plate and 1.00 mm fB behind them; the air-equivalent distance from L27 to the image increases from 38.629 mm to 44.003 mm.
 
 | Spacing                           |  Infinity | Estimated 0.20 m close focus | Notes                  |
 | --------------------------------- | --------: | ---------------------------: | ---------------------- |
 | Gr1-Gr2 gap after surface 13      |  7.510 mm |                     2.135 mm | Gr2 moves object-ward  |
-| Patent physical air gap after L27 | 36.310 mm |                    41.685 mm | Before cover plate     |
-| Data-file air-equivalent BFD      | 38.629 mm |                    44.003 mm | Cover glass folded out |
+| Air gap after L27 (stored d28)    | 36.310 mm |                    41.685 mm | Before cover plate     |
+| Air-equivalent BFD                | 38.629 mm |                    44.003 mm | Paraxial equivalent    |
 | Paraxial magnification            |         0 |                       0.235× | Nikon publishes 0.23×  |
 
 ## Aspherical Surfaces
@@ -205,7 +205,7 @@ The prescription was re-entered and traced independently with a paraxial y-u ABC
 | Gr2 focal length                     |          +38.687 mm |      +38.6881 mm | Matches within 0.001 mm                     |
 | fB after cover plate                 |             1.00 mm |        1.0007 mm | Matches within patent rounding              |
 | Total track                          |           125.31 mm |        125.31 mm | Matches                                     |
-| Air-equivalent BFD used in data file | Not directly listed |       38.6286 mm | Derived from 36.31 + 2 / 1.51680 + 1        |
+| Air-equivalent BFD                   | Not directly listed |       38.6286 mm | Derived from 36.31 + 2 / 1.51680 + 1        |
 | Close-focus shift estimate           |       Not published |        5.3748 mm | Paraxial estimate for 0.20 m MFD            |
 | Close-focus magnification estimate   |       Not published |           0.235× | Consistent with Nikon's 0.23× specification |
 
@@ -213,7 +213,7 @@ The Petzval sum, computed surface by surface using φ/(n·n′) through the last
 
 ## Data File Notes
 
-The data file preserves the patent surface sequence through surface 28 and omits the cover plate surfaces 29-30. The two 0.01 mm cement layers are modeled explicitly as thin optical media to preserve the patent paraxial power. Semi-diameters are inferred because the patent does not list clear apertures; they are chosen for stable rendering rather than as measured production clear apertures.
+The data file preserves the patent surface sequence through surface 28 and carries the cover plate surfaces 29-30 as a traced, undrawn `rearPlates` entry (J-BK7A class for 1.51680 / 64.2, fB = 1.00 mm). The two 0.01 mm cement layers are modeled explicitly as thin optical media to preserve the patent paraxial power. Semi-diameters are inferred because the patent does not list clear apertures; they are chosen for stable rendering rather than as measured production clear apertures.
 
 The data file uses the marketed aperture, nominalFno = 1.8, as required by the LensVisualizer data specification. The patent design aperture, F/1.86, is recorded separately as apertureDesign.
 

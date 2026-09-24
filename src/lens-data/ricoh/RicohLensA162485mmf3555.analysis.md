@@ -37,7 +37,7 @@ The aperture stop moves with Group IV during zooming, as the patent states in ¶
 
 Power accounting must distinguish individual element power from cemented or assembled-group power. L1 is a standalone negative element with an air-space focal length of −115.441681 mm, while L2 is +48.032244 mm; together their cemented net is **+85.205890 mm**, which is also the net power of Group I. L8 is +22.707504 mm and L9 is −11.521427 mm as standalone elements, yet the cemented L8–L9 pair is **−27.321910 mm**. Adding L7 ahead of that negative cemented pair produces a complete Group IV focal length of **+38.989953 mm**. Group V provides another example: L10 is +18.878824 mm and L11 is −32.079411 mm individually, while their separated two-element group is positive at **+38.286361 mm**. These numbers describe different optical constructs and are not interchangeable measures of the same power.
 
-The patent also places two virtual parallel plates, F, between L11 and the image plane FP (¶¶0102–0104, ¶0190). They stand in for low-pass, infrared-cut, and cover-glass effects rather than lens elements. The modeled prescription therefore omits patent surfaces 22–25. Their reduced optical thickness and the recovered approximately 0.500063 mm plate-to-FP air gap are folded into the final air-equivalent spacing after surface 21. This keeps the active lens prescription at surfaces 1–21 while preserving the paraxial image-plane location.
+The patent also places two virtual parallel plates, F, between L11 and the image plane FP (¶¶0102–0104, ¶0190). They stand in for low-pass, infrared-cut, and cover-glass effects rather than lens elements. The model carries patent surfaces 22–25 in `rearPlates` rather than as lens elements: a 0.70 mm plate (nd 1.53770, νd 66.60), 1.50 mm of air, and a 0.70 mm plate (nd 1.50000, νd 64.00). Every analysis traces them, but the diagram does not draw them. Surface 21 stores the physical Table 3 gap E (27.38221 / 39.66109 / 51.81615 mm) to the first plate. The patent prints no surface-25 distance to FP, so the approximately 0.500027 mm plate-to-FP gap is derived from the paraxial image plane of the earlier air-equivalent model, not printed. Mid and tele E carry +0.00003 and +0.00008 mm so that image plane is unchanged. The active lens prescription stays at surfaces 1–21, and the physical track is 0.478 mm longer than the earlier air-equivalent track.
 
 ## Element-by-Element Analysis
 
@@ -119,7 +119,7 @@ The relatively high Abbe number of L10 contrasts with the high-index, lower-Abbe
 
 L11 is the final active lens element. It is individually negative, yet the separated L10–L11 assembly is a positive Group V with a computed focal length of **+38.286361 mm**. Its strong refractive index and relatively low Abbe number provide a substantially different dispersion and bending regime from L10 immediately ahead of it.
 
-The patent's virtual filter/cover plates follow L11, but they are not treated as lens elements in the model. Surface 21 therefore exits L11 into air and carries the normalized air-equivalent distance to the image plane.
+The patent's virtual filter/cover plates follow L11. The model carries them in `rearPlates` rather than as lens elements, so surface 21 exits L11 into air and stores the physical gap E to the first plate.
 
 ## Glass Identification and Selection
 
@@ -207,7 +207,7 @@ Condition (12) requires a source qualification. The US text prints a **positive*
 
 ## Verification Summary
 
-Independent sequential reduced-angle tracing and an ABCD matrix calculation reproduce the first-order properties of the final authored arrays. At the three infinity zoom states, the effective focal lengths are **16.146288, 29.486937, and 53.849931 mm**. The corresponding air-equivalent back focal distances from surface 21 are **30.304129, 42.583038, and 54.738148 mm**. The exact traced full-field chief-ray angles are **42.7711°, 25.5533°, and 14.4578°**, consistent with the patent's 42.8° wide and 14.46° telephoto values.
+Independent sequential reduced-angle tracing and an ABCD matrix calculation reproduce the first-order properties of the final authored arrays. At the three infinity zoom states, the effective focal lengths are **16.146288, 29.486937, and 53.849931 mm**. The corresponding air-equivalent back focal distances from surface 21, including the plate stack's reduced thickness, are **30.304129, 42.583038, and 54.738148 mm**. The exact traced full-field chief-ray angles are **42.7711°, 25.5533°, and 14.4578°**, consistent with the patent's 42.8° wide and 14.46° telephoto values.
 
 Surface-by-surface Petzval summation using `φ/(n·n′)` gives **+0.001806767942 mm⁻¹**, a signed inverse of approximately **+553.475 mm**. The small net value is the residual of substantially larger positive and negative surface contributions; it should not be interpreted as a group-power approximation.
 
@@ -215,7 +215,7 @@ The aperture stop's modeled semi-diameter is **5.994031 mm**, derived from the w
 
 The patent likewise publishes no lens-surface semi-diameters. The modeled clear apertures were derived from exact on-axis and off-axis ray envelopes through all three zoom states at infinity and reconstructed close focus, then checked against the relative element heights in FIG. 9 and the physical geometry validator. That comparison sets the larger rear edge of L9 and the Group V rims; it also leaves the strongly biconvex L10 with **0.375116 mm** of modeled edge thickness. The maximum actual rim-slope angle remains **56.514°**, and the largest shared-gap sag-intrusion fraction remains **0.89484** against the model's 0.90 limit. Exact ray containment through 0.75 of the patent's 14.3 mm image height passes in every defined infinity and close-focus state. These semi-diameters are modeling inferences and should not be read as Ricoh mechanical drawings.
 
-The two source corrections remain explicit: surface 6 uses `nd = 1.77030` rather than the apparent patent transposition `1.77703`, and condition (12) is interpreted with the negative slope required by FIG. 35. The rear virtual plates are omitted and normalized into the air-equivalent rear spacing. No uniform scale is applied. The finite-focus state remains a constrained reconstruction rather than a published example.
+The two source corrections remain explicit: surface 6 uses `nd = 1.77030` rather than the apparent patent transposition `1.77703`, and condition (12) is interpreted with the negative slope required by FIG. 35. The rear virtual plates are modeled in `rearPlates` with a derived, not printed, 0.500027 mm gap to FP. No uniform scale is applied. The finite-focus state remains a constrained reconstruction rather than a published example.
 
 ## Sources / References
 
