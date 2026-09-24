@@ -30,7 +30,7 @@ const MODE_LABELS: Record<GroupMovementMode, string> = {
 };
 
 /**
- * Group colors from the validated categorical slots. Each group owns a labelled row, so identity never
+ * Group colors from the validated categorical slots. Each group owns a labeled row, so identity never
  * rests on color alone, and repeating the five slots down the rows keeps neighboring rows distinct.
  */
 function movementColors(t: Theme): readonly string[] {

@@ -247,6 +247,11 @@ and `isFiniteEvaluation` (additionally requires non-zero derivative, used inside
 grazing meridional ray whose derivative collapses to zero at the optical axis can still anchor a bracket.
 The Newton seed falls back to the bracket midpoint when the z-projected guess is non-finite.
 
+The prepared-state engine in `src/optics/trace/` solves each intersection in `math/intersection.ts` with a
+safeguarded Newton step (rtsafe). A step is accepted only inside the sign-changing bracket and when it moves at
+most half the step before last; otherwise the solver bisects, so grazing and steep-rim roots cannot stall. The
+legacy `internal/surfaceIntersection.ts` loop does not have this safeguard yet.
+
 ### Bulk Absorption And Apodization
 
 `ElementData.absorptionCoefficientPerMm` opts a sequential element into broadband Beer–Lambert intensity loss.
