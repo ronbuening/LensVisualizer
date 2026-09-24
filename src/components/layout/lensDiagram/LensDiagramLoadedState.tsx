@@ -65,6 +65,7 @@ export default function LensDiagramLoadedState({
     dark,
     isWide,
     compact,
+    analysisControls,
     showControls,
     showSliders,
     maxSvgHeight,
@@ -194,6 +195,7 @@ export default function LensDiagramLoadedState({
             analysisDrawerTab={analysisDrawerTab}
             onAnalysisTabChange={adapters.onAnalysisTabChange}
             isWide={isWide}
+            analysisControls={analysisControls}
             zoomPanActive={zoomPanActive}
             onZoomPanToggle={onZoomPanToggle}
             zoomLevel={zoomHook.state.zoom}

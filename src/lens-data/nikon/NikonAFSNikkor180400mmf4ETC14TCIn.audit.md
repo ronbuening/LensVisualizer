@@ -24,3 +24,13 @@ The TC-engaged prescription retains its authored labels and patent coordinates. 
 
 - Added Hikari's first-party J-LASFH6 curve, allowing the existing explicit J-LASFH6 element to resolve by name.
 - Code-only `806333` resolution continues to prefer the established NBFD15 row; no prescription coordinate changed.
+
+## 2026-09-24 — Optical filters FL1 and FL2 at their printed positions
+
+- Table 10 (PDF pp. 63–64) prints FL1 at surfaces 62–63 (1.500 mm, 1.51680 / 63.88, 6.500 mm of air either side) and FL2
+  at surfaces 69–70 (2.000 mm) after 10.827 mm + a same-index dummy plane + 40.582 mm, then 0.100 mm to the image.
+- FL1 is now drawn as a `Plane-Parallel Plate` (sd 15.5 mm, not counted in elementCount; L411/L412 ids move to 35/36) and
+  FL2 is `rearPlates` with surface 67 storing 51.409 mm to it, matching the converter-out file and Nikon's
+  filter-must-be-inserted slip-in holder instruction.
+- EFL and paraxial defocus are identical at every zoom station and focus keyframe. Physical track grows by 1.192511 mm to
+  392.272 / 392.272 / 392.271 mm; the close keyframes image at 2.001193 m physical with unchanged magnifications.

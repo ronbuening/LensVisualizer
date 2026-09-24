@@ -14,6 +14,14 @@ import type { Theme } from "../../../types/theme.js";
 import type { ChromaticRaySegment } from "../../hooks/useChromaticRays.js";
 import type { RaySegment } from "../../hooks/useOnAxisRays.js";
 
+/**
+ * Where the analysis drawer is launched from:
+ * - "pill": mobile launcher pill + ZOOM button on the diagram; drawer has its own tab strip.
+ * - "dock": desktop two-row AnalysisDock under the diagram (single-lens view).
+ * - "shared": desktop comparison view; one SharedAnalysisDock under both panes drives every panel.
+ */
+export type AnalysisControlsMode = "pill" | "dock" | "shared";
+
 export interface VarReadout {
   label: string;
   val: string;
@@ -67,6 +75,7 @@ export interface PanelDisplayFlagsModel {
   dark: boolean;
   isWide: boolean;
   compact: boolean;
+  analysisControls: AnalysisControlsMode;
   showControls: boolean;
   showSliders: boolean;
   headerHeight: number;

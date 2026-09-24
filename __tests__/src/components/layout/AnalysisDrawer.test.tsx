@@ -7,10 +7,10 @@ import { installMatchMediaMock } from "../../../testUtils.js";
 import type { Theme } from "../../../../src/types/theme.js";
 
 const tabs: AnalysisTab[] = [
-  { id: "aberrations", label: "ABERRATIONS" },
-  { id: "distortion", label: "DISTORTION" },
-  { id: "breathing", label: "BREATHING" },
-  { id: "vignetting", label: "VIGNETTING" },
+  { id: "aberrations", label: "ABERRATIONS", description: "Aberrations help." },
+  { id: "distortion", label: "DISTORTION", description: "Distortion help." },
+  { id: "breathing", label: "BREATHING", description: "Breathing help." },
+  { id: "vignetting", label: "VIGNETTING", description: "Vignetting help." },
 ];
 
 const theme = {
@@ -33,32 +33,48 @@ describe("AnalysisDrawer", () => {
     cleanup();
   });
 
-  it("scrolls vertically when the wide tab rail is too tall", () => {
-    render(
+  it("renders a docked panel without a tab strip that slides up from the bottom", () => {
+    const { rerender } = render(
       <AnalysisDrawer
         open
         onClose={vi.fn()}
-        activeTab="aberrations"
+        activeTab="distortion"
         onTabChange={vi.fn()}
         tabs={tabs}
         t={theme}
-        isWide={true}
+        showTabs={false}
+        id="drawer-id"
       >
         <div>content</div>
       </AnalysisDrawer>,
     );
 
-    const tabButton = screen.getByRole("button", { name: "ABERRATIONS" });
-    const tabBar = tabButton.parentElement;
+    const region = screen.getByRole("region", { name: "DISTORTION analysis" });
+    expect(region.id).toBe("drawer-id");
+    expect(screen.queryByRole("button", { name: "DISTORTION" })).toBeNull();
+    expect(region.style.transform).toBe("translate(0, 0)");
 
-    expect(tabBar).not.toBeNull();
-    if (!tabBar) return;
+    rerender(
+      <AnalysisDrawer
+        open={false}
+        onClose={vi.fn()}
+        activeTab="distortion"
+        onTabChange={vi.fn()}
+        tabs={tabs}
+        t={theme}
+        showTabs={false}
+        id="drawer-id"
+      >
+        <div>content</div>
+      </AnalysisDrawer>,
+    );
 
-    expect(tabBar.style.overflowY).toBe("auto");
-    expect(tabBar.style.overflowX).toBe("hidden");
+    const closed = document.getElementById("drawer-id");
+    expect(closed?.style.transform).toBe("translateY(100%)");
+    expect(closed?.hasAttribute("inert")).toBe(true);
   });
 
-  it("keeps the compact tab rail horizontally scrollable on narrow layouts", () => {
+  it("keeps the tab strip horizontally scrollable", () => {
     render(
       <AnalysisDrawer
         open
@@ -67,7 +83,7 @@ describe("AnalysisDrawer", () => {
         onTabChange={vi.fn()}
         tabs={tabs}
         t={theme}
-        isWide={false}
+        showTabs
       >
         <div>content</div>
       </AnalysisDrawer>,
@@ -95,7 +111,7 @@ describe("AnalysisDrawer", () => {
         onTabChange={vi.fn()}
         tabs={tabs}
         t={theme}
-        isWide={true}
+        showTabs
       >
         <div>content</div>
       </AnalysisDrawer>,
@@ -116,7 +132,7 @@ describe("AnalysisDrawer", () => {
         onTabChange={onTabChange}
         tabs={tabs}
         t={theme}
-        isWide={true}
+        showTabs
       >
         <div>content</div>
       </AnalysisDrawer>,
@@ -137,7 +153,7 @@ describe("AnalysisDrawer", () => {
         onTabChange={vi.fn()}
         tabs={tabs}
         t={theme}
-        isWide={true}
+        showTabs
       >
         <div>content</div>
       </AnalysisDrawer>,
@@ -156,7 +172,7 @@ describe("AnalysisDrawer", () => {
         onTabChange={vi.fn()}
         tabs={tabs}
         t={theme}
-        isWide={true}
+        showTabs
       >
         <div>hidden-content</div>
       </AnalysisDrawer>,
@@ -174,7 +190,7 @@ describe("AnalysisDrawer", () => {
         onTabChange={vi.fn()}
         tabs={tabs}
         t={theme}
-        isWide={true}
+        showTabs
       >
         <div>visible-content</div>
       </AnalysisDrawer>,

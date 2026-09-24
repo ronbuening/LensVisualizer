@@ -27,8 +27,9 @@ than a manufacturer-published patent cross-reference.
    marketed 300mm/f/2.8 values remain separate metadata.
 6. Nikon specifies a 2.5 m minimum focus distance and maximum reproduction ratio of 1/7. Example 1 publishes a closest
    state labeled $R=2500$ mm with $\beta=-0.1413$ and directly tabulates the internal focusing spacings used in the model.
-7. Nikon specifies a 52 mm drop-in filter. Example 1 includes a plane-parallel rear filter before its final image-side
-   reference planes, although that plate is omitted from the active sequential model as described below.
+7. Nikon specifies a 52 mm drop-in filter, and the user's manual says always to use a filter with the lens (the holder
+   ships with an NC filter). Example 1 includes a plane-parallel rear filter before its final image-side reference
+   planes; the model traces that plate at its printed position without drawing it, as described below.
 
 The patent's general descriptive text contains one internal shape contradiction: it describes L11 in one passage as a
 "biconcave positive" element, while Fig. 1, Table 1, and the specific Example 1 description show the positive L11 as
@@ -63,14 +64,15 @@ G2 largely removes that convergence, and G3 receives a beam close to collimated 
 arrangement permits focusing by moving the relatively small negative G2 rather than translating the full optical system.
 
 The patent title and Nikon product literature use the word *telephoto*, but the project taxonomy applies that term only
-when normalized $TL/EFL<1$. With the excluded rear plate represented by its air-equivalent spacing, the active model has
-$TL/EFL=1.068894$; it is therefore **not classified as telephoto under the project criterion**. Its back focal distance is
+when normalized $TL/EFL<1$. With the 2.0 mm rear filter at its printed position, the active model's physical track from S3
+is 315.074700 mm and $TL/EFL=1.071210$; it is therefore **not classified as telephoto under the project criterion**. Its back focal distance is
 also smaller than its EFL, so it is not retrofocus under the corresponding project test.
 
 The data model begins at patent surface S3, the front surface of L11. The plane-parallel S1-S2 front protection glass is
-excluded because it is not part of the active powered prescription. At the rear, inactive field-stop planes S23 and S26
-and the S24-S25 filter plate are omitted. Their axial optical effect is represented by the final S22-to-image
-air-equivalent spacing of **106.9520654 mm**. The resulting normalized active train preserves the patent's image-plane
+excluded because it is not part of the active powered prescription. At the rear, the inactive field-stop planes S23 and
+S26 are folded out, and the S24-S25 filter plate (2.0 mm, nd 1.516800, νd 64.10) is modeled as a traced but undrawn rear
+plate: 21.5 mm of air from S22 to the filter (d22 + d23), the plate, then 84.1335 mm to the image (d25 + Bf). The
+air-equivalent S22-to-image spacing is unchanged at **106.9520654 mm**, so the model preserves the patent's image-plane
 location to source precision.
 
 The patent publishes the aperture-stop position at S16, retained as the single `STO`. It does **not** publish the physical
@@ -183,8 +185,8 @@ $n_d=1.487490$, $\nu_d=70.41$. Glass: N-FK5 catalog equivalent (patent 487704; p
 
 L33 is the final positive element of G3 and the last powered element in the active model. Its high Abbe number contrasts
 with the low-Abbe L32 immediately ahead of it, completing the positive-negative-positive sequence within the rear group.
-The final surface is followed by the normalized air-equivalent image spacing rather than by the patent's explicit rear
-filter and field-stop planes.
+The final surface is followed by 21.5 mm of air to the patent's rear filter, which is traced but not drawn, and then
+84.1335 mm to the image; the two inactive field-stop planes are folded out.
 
 ## Glass Identification and Selection
 
@@ -327,3 +329,6 @@ representative-ray containment checks in both published focus states.
 - Nikon Imaging. *NIKKOR — The Thousand and One Nights No. 11*. Records the AF-S Nikkor 300mm f/2.8D IF-ED as a November
   1996 release with a renewed optical system and built-in SWM.
   https://imaging.nikon.com/imaging/information/story/0011/
+- Nikon. *AF-S Nikkor ED 300mm f/2.8D IF* instruction manual. Slip-in glass filter holder for 52 mm screw-in filters;
+  directs the user always to use a filter with the lens, and the holder comes mounted with an NC filter.
+  https://cdn-10.nikon-cdn.com/pdf/manuals/archive/AF-S%20Nikkor%20ED%20300mm%20f-2.8%20D%20IF.pdf

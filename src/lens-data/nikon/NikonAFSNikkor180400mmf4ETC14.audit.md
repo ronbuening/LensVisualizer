@@ -75,3 +75,18 @@ Visually rechecked Example 1, Tables 8 and 10 in local `patents/WO2019131993A1.p
 | 786406 | 1.78605 / 40.63 | No tolerance-safe official catalog row; TC-engaged variant only |
 
 The visible and TC-engaged prescriptions retain their authored labels and patent coordinates. No geometry or optical constants changed.
+
+## 2026-09-24 — Optical filters FL1 and FL2 at their printed positions
+
+- ¶0254 (PDF p. 57) places optical filter FL1 inside G4D between the L49+L410 pair and L411, and FL2 between G4 and the
+  image plane. Table 8 (PDF pp. 59–62) prints FL1 at surfaces 50–51 (1.500 mm, 1.51680 / 63.88) with 6.500 mm of air
+  either side, and FL2 at surfaces 57–58 (2.000 mm, same glass) after 10.827 mm + a same-index dummy plane + 40.582 mm,
+  followed by 0.114 mm to the image.
+- Nikon's user's manual says a filter must be inserted in the slip-in holder (40.5 mm NC filter supplied). FL1 is the
+  slip-in position ahead of the last lens elements, so it is now two flat surfaces plus a drawn `Plane-Parallel Plate`
+  (sd 15.5 mm, never tighter than its neighbours L410 13.0 / L411 15.5), not counted in elementCount; L411/L412 ids move
+  to 27/28. FL2 is `rearPlates` (J-BK7 catalog equivalent) with surface 55 storing 51.409 mm to it.
+- EFL and paraxial defocus are identical at every zoom station and focus keyframe. Physical track grows by 1.192511 mm to
+  392.285 / 392.285 / 392.284 mm, the sums of the printed spacings. Recomputed Dc/Σ4 = 41.203 / 117.219 = 0.351505
+  (patent 0.352; the old folded value was 0.353044). The 2.0 m close solve now images at 2.001193 m physical, with
+  unchanged magnifications.

@@ -39,6 +39,9 @@ const LENS_DATA = {
   apertureMarketing: 5.6,
   lensMounts: ["large-format-lens-board"],
   imageFormat: "4x5" as const,
+  imageCircleMm: 198, // Schneider Super-Angulon brochure (1976): 198 mm at f/22 (105°), 156 mm at f/5.6
+  // audit:image-circle flags rear surfaces 10–12 at this circle through its wide-angle exit-pupil proxy; an exact
+  // chief-ray trace at the published 52.5° half-field did not converge, so the rear SDs are left for a trace-based review.
   patentNumber: "US 3,376,091",
   patentAuthors: ["Werner Wagner", "Karl Heinrich Macher"],
   patentAssignees: ["Jos. Schneider & Co., Optische Werke"],

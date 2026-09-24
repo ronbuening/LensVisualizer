@@ -107,6 +107,7 @@ const baseProps = {
   analysisDrawerTab: "aberrations" as const,
   onAnalysisTabChange: vi.fn(),
   isWide: true,
+  analysisControls: "pill" as const,
   analysisContent: <div>Drawer Body</div>,
   zoomPanActive: false,
   onZoomPanToggle: vi.fn(),
@@ -209,6 +210,55 @@ describe("DiagramViewport", () => {
     expect(screen.getByText("Drawer Body")).toBeTruthy();
     expect(screen.queryByRole("button", { name: /ABERRATIONS & DISTORTIONS/i })).toBeNull();
     expect(mockAnalysisDrawer.mock.calls[0][0].activeTab).toBe("aberrations");
+    expect(mockAnalysisDrawer.mock.calls[0][0].showTabs).toBe(true);
+  });
+
+  /* ── Desktop analysis dock ── */
+
+  it("replaces the pill and zoom button with a dock under the diagram stage in dock mode", () => {
+    render(<DiagramViewport {...baseProps} analysisControls="dock" fillAvailableHeight />);
+
+    expect(screen.queryByRole("button", { name: /ABERRATIONS & DISTORTIONS/i })).toBeNull();
+    const dock = screen.getByRole("group", { name: "Aberrations & distortions" });
+    expect(dock.querySelectorAll("button")).toHaveLength(11);
+
+    const stage = screen.getByTestId("diagram-svg").parentElement;
+    const viewport = stage?.parentElement;
+    expect(stage?.style.flex).toBe("1 1 auto");
+    expect(stage?.style.position).toBe("relative");
+    expect(viewport?.style.flexDirection).toBe("column");
+    expect(viewport?.lastElementChild).toBe(dock);
+
+    const drawerProps = mockAnalysisDrawer.mock.calls[0][0];
+    expect(drawerProps.showTabs).toBe(false);
+    expect(screen.getByRole("button", { name: "MTF" }).getAttribute("aria-controls")).toBe(drawerProps.id);
+
+    fireEvent.click(screen.getByRole("button", { name: "MTF" }));
+    expect(baseProps.onAnalysisTabChange).toHaveBeenCalledWith("mtf");
+    expect(baseProps.onAnalysisDrawerToggle).toHaveBeenCalledWith(true);
+
+    fireEvent.click(screen.getByRole("button", { name: /enter zoom and pan mode/i }));
+    expect(baseProps.onZoomPanToggle).toHaveBeenCalledWith(true);
+  });
+
+  it("keeps the dock visible while the drawer is open and hides it in zoom mode", () => {
+    const { rerender } = render(<DiagramViewport {...baseProps} analysisControls="dock" analysisDrawerOpen />);
+
+    expect(screen.getByTestId("analysis-drawer")).toBeTruthy();
+    expect(screen.getByRole("button", { name: "ABERRATIONS" }).getAttribute("aria-pressed")).toBe("true");
+
+    rerender(<DiagramViewport {...baseProps} analysisControls="dock" zoomPanActive />);
+    expect(screen.queryByRole("group", { name: "Aberrations & distortions" })).toBeNull();
+    expect(screen.getByRole("button", { name: /exit zoom and pan mode/i })).toBeTruthy();
+  });
+
+  it("leaves launch controls to the shared comparison dock in shared mode", () => {
+    render(<DiagramViewport {...baseProps} analysisControls="shared" />);
+
+    expect(screen.queryByRole("button", { name: /ABERRATIONS & DISTORTIONS/i })).toBeNull();
+    expect(screen.queryByRole("button", { name: /enter zoom and pan mode/i })).toBeNull();
+    expect(screen.queryByRole("group", { name: "Aberrations & distortions" })).toBeNull();
+    expect(mockAnalysisDrawer.mock.calls[0][0].showTabs).toBe(false);
   });
 
   it("shows a mobile aspheric compare button for a selected aspheric element", () => {

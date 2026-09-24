@@ -19,6 +19,21 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-09-24",
+    type: "improvement",
+    summary: "Added a two-row analysis button bar with tooltips under the desktop lens diagram",
+  },
+  {
+    date: "2026-09-24",
+    type: "fix",
+    summary: "Placed the patent filters in four Nikon super-teles, including the 180-400mm's slip-in filter",
+  },
+  {
+    date: "2026-09-24",
+    type: "lens",
+    summary: "Marked our 800th lens with three Nikkor 800mms: f/8 ED, AF-S f/5.6E FL ED VR and Z f/6.3 VR S",
+  },
+  {
     date: "2026-09-23",
     type: "feature",
     summary: "Added simulated lens MTF with image-height charts, spectral estimates and documented finite focus",

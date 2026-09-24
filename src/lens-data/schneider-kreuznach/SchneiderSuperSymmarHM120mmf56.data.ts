@@ -58,6 +58,7 @@ const LENS_DATA = {
   apertureMarketing: 5.6,
   apertureDesign: 5.6,
   imageFormat: "4x5",
+  imageCircleMm: 211, // Schneider Super-Symmar HM data sheet: 211 mm at f/22 (82°), 180 mm at f/5.6
   patentNumber: "US 4,773,745",
   patentAuthors: ["Hiltrud Ebbesmeier née Schitthof"],
   patentAssignees: ["Jos. Schneider Optische Werke Kreuznach GmbH & Co. KG"],

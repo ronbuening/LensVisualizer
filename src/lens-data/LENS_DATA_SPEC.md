@@ -30,14 +30,18 @@ Per-lens patent audit logs use `*.audit.md` alongside the data file. They are no
 - Variable air gaps for focus and zoom
 - Mirror or blocking surfaces that participate in a folded path
 - Annular clear apertures or central obstructions when they are optically meaningful
+- **Required in-lens drop-in / slip-in filters** — a plane plate the source prescription lists ahead of the last lens
+  surface, when the manufacturer says a filter must stay inserted (super-telephoto filter holders shipped with an NC
+  or clear filter). Author it at the source position as two flat surfaces and a drawn `Plane-Parallel Plate` element
+  with the source's physical gaps; never fold t/n into a neighbouring air gap. Keep it out of `elementCount`.
 
 **Model through `rearPlates`, not as surfaces or elements:**
 - **Sensor glass / cover glass and rear filter plates** that the source prescription lists behind the last lens
   surface (cover glass, IR-cut / low-pass stacks, rear drop-in filters). See [Rear Plates](#rear-plates-rearplates).
 
 **Do NOT include:**
-- **Front or mid-lens filters** — UV, ND, polarizing or protection plates mounted ahead of or inside the lens, and any
-  plate the source does not list
+- **Optional front or mid-lens filters** — accessory UV, ND, polarizing or protection plates mounted ahead of or
+  inside the lens, and any plate the source does not list (required drop-in filters are included; see above)
 - **Dummy / flare-cutter planes** — source-table bookkeeping surfaces that do not change medium and are not active
   blockers in the modeled path
 - **Mechanical components** — focus motors, aperture blades (mechanical detail), barrel, mounts
@@ -300,7 +304,7 @@ Rules:
   migrating.
 - BFD in the Summary tab and cardinal overlay is measured from the last lens vertex, so it includes the plates.
 - Not supported with `opticalPath` / non-refracting surfaces or with `perspectiveControl`. Keep the air-equivalent fold
-  for those lenses and for mid-lens filters.
+  for those lenses. A plate ahead of the last lens surface cannot use `rearPlates`; see What to Include.
 - Do not invent a camera stack: use `rearPlates` only for plates the source lists.
 
 ## Element Bulk Absorption

@@ -6,7 +6,7 @@
 **Application:** JP 2016-147248\
 **Filed:** July 27, 2016\
 **Published:** February 1, 2018\
-**Inventors:** Tetsushi Miwa; Hiroshi Yabumoto\
+**Inventors:** Satoshi Miwa; Hiroshi Yabumoto\
 **Applicant:** Nikon Corporation\
 **Title:** Optical system, optical instrument, and method for manufacturing an optical system\
 **Embodiment analyzed:** Example 2 / OL2, Figures 3–4 and Tables 5–8

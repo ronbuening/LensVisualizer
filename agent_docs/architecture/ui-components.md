@@ -51,9 +51,21 @@ variant. `ArticleTOC` (in `src/components/content/`) is opt-in per article via `
 
 ## Analysis Drawer
 
-The drawer is opened from `DiagramViewport` and controlled by `analysisDrawerOpen` / `analysisDrawerTab` in the panels
-slice. Desktop uses vertical tabs on the left; mobile uses horizontal tabs on top. Tab content unmounts when the drawer
-is closed, preventing hidden analysis work during slider drag.
+The drawer is controlled by `analysisDrawerOpen` / `analysisDrawerTab` in the panels slice and covers the diagram
+viewport. How it is launched depends on `AnalysisControlsMode` (`lensDiagram/panelModel.ts`), chosen in
+`LensDiagramPanel`:
+
+- `pill` (mobile, below the 900px `isWide` breakpoint): the "ABERRATIONS & DISTORTIONS" pill and ZOOM button float on the
+  diagram; the drawer slides down with its own horizontal tab strip.
+- `dock` (desktop single-lens): `AnalysisDock` renders two rows of buttons (one per `ANALYSIS_TABS` entry plus ZOOM) in
+  the bottom band of `DiagramViewport`, below a `position: relative` stage that holds the SVG, overlays, and drawer. The
+  drawer has no tab strip and slides up over the stage, so the dock stays visible as the tab switcher; clicking the lit
+  button closes it. Each button's hover/keyboard-focus tooltip is the tab's `description` (`PortalTooltip`). The dock
+  unmounts in zoom/pan mode.
+- `shared` (desktop comparison): each pane's drawer is tabless and has no launcher; `SharedAnalysisDock` under both panes
+  drives the shared drawer and zoom state.
+
+Tab content unmounts when the drawer is closed, preventing hidden analysis work during slider drag.
 
 Analysis tabs use stable `src/optics/*` imports only. The temporary engine selector has been removed; do not add a
 user-facing or developer-only old-vs-new selector back to analysis components.

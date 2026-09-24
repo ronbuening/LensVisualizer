@@ -45,7 +45,8 @@ const LENS_DATA = {
   focalLengthDesign: 103.0,
   apertureMarketing: 5.6,
   lensMounts: ["large-format-lens-board"],
-  imageFormat: "4x5" as const,
+  imageFormat: "6x9" as const,
+  imageCircleMm: 145, // Schneider APO-Symmar brochure (11/97): 145 mm at f/22 (72°), 120 mm at f/5.6
   patentNumber: "US 6,028,720",
   patentAuthors: ["Rolf Wartmann", "Udo Schauss"],
   patentAssignees: ["Jos. Schneider Optische Werke Kreuznach GmbH & Co. KG"],

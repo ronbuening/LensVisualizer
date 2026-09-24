@@ -50,3 +50,7 @@ Patent: JPWO2019116563A1 / WO2019/116563 A1, Example 3
 - Figure 5 at 600 dpi: first-to-last vertex span 111.187 mm calibrates the drawing; front L11 rim ~38 mm, L21 ~28 mm, L31 ~25 mm, rear doublets ~17 mm. Existing apertures broadly follow those proportions, but L32 front and its cemented interface were visibly too small. Changed surface 13 from 19 to 23.5 mm and 14 from 19.2 to 22.5 mm. Targeted surface validator passes.
 - Local views at focus 0, 0.5, 1 show no overlap. G1/G3 remain fixed; motion chart shows G2 moving imageward, 12.00 mm maximum travel. Source gaps display 7.96/17.03 at infinity, 13.96/11.03 at midpoint, 19.96/5.03 at close. Aperture endpoints now read f/1.45 and f/16. Wide-open EP is explicitly labeled as such.
 - Corrected analysis sourcing and removed unsupported mirror-box clearance claims. Clarified that the close station is approximately 1 m and DP1's thickness condition applies to L21, not every ED element. Authored regression tests for all source partial-dispersion ratios, fixed-camera motion and hidden trimming; batch tests/gates remain pending.
+
+## 2026-09-23 — Inventor romanization
+
+- The JPWO2019116563A1 front-page continuation names 三輪 哲史 at Nikon, the same Nikon inventor as the US front pages of US 2010/0220400 A1, US 2018/0031811 A1, and US 2021/0026133 A1, which all publish `Satoshi Miwa`. Normalized the analysis-prose inventor list from Tetsushi Miwa to Satoshi Miwa, matching the existing `patentAuthors` entry.

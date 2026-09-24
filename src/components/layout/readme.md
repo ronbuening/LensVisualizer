@@ -98,7 +98,7 @@ flowchart LR
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
-| `AnalysisDrawer.tsx` | React component module | src/types (2), package:react, src/utils/style, src/utils/usePrefersReducedMotion.ts | same folder (2) | AnalysisTab, default, AnalysisDrawer |
+| `AnalysisDrawer.tsx` | React component module | src/types (2), package:react, src/utils/style, src/utils/usePrefersReducedMotion.ts | same folder (3) | AnalysisTab, default, AnalysisDrawer |
 | `BreadcrumbBar.tsx` | React component module | src/pages/lensIndex (3), src/utils/catalog (3), src/utils/state (2), package:react-router, same folder, +4 more | same folder | default, BreadcrumbBar |
 | `ControlsBar.tsx` | React component module | src/types (2), package:react, src/components/controls, src/utils/featureFlags.ts, src/utils/state, +1 more | same folder | default, ControlsBar |
 | `DescriptionPanel.tsx` | React component module | package:react, src/components/markdown, src/types | same folder (2) | default, DescriptionPanel |

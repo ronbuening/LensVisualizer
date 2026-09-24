@@ -13,10 +13,14 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ corrected here to 8.4240 mm: this conserves the adjacent G2 gaps and     ║
  * ║ restores the patent's R=5000 mm object-to-image distance.                ║
  * ║                                                                          ║
- * ║ Filters/planes omitted: source surfaces 1-2 (front plane-glass filter),    ║
- * ║ source surface 24 (field stop S2), source surfaces 25-26 (drop-in        ║
- * ║ filter), and prose-only S3. The omitted rear filter path is retained by ║
- * ║ an air-equivalent surface-23-to-image spacing of 160.421965401 mm.        ║
+ * ║ Filters/planes: source surfaces 1-2 (front plane-glass filter), source ║
+ * ║ surface 24 (field stop S2) and prose-only S3 are omitted. Source         ║
+ * ║ surfaces 25-26 (drop-in filter, 2.0 mm, nd 1.516800, νd 64.10) are       ║
+ * ║ modeled in `rearPlates` (traced, not drawn): surface 23 stores           ║
+ * ║ d23 40.4 + d24 5.0 = 45.4 mm to the filter (S2 folded out), then the     ║
+ * ║ printed Bf 113.7034 mm to the image. Air-equivalent surface-23-to-image  ║
+ * ║ spacing is unchanged at 160.421965401 mm; physical track from surface 3  ║
+ * ║ is 422.122200 mm.                                                        ║
  * ║                                                                          ║
  * ║ Semi-diameters: inferred because Table 2 has no aperture table. The      ║
  * ║ front clear aperture is anchored by condition (12), the G2 front by the  ║
@@ -224,7 +228,20 @@ const LENS_DATA = {
     { label: "20", R: -67.4745, d: 3.5, nd: 1.80454, elemId: 10, sd: 20.0 },
     { label: "21", R: -192.317, d: 7.4, nd: 1.0, elemId: 0, sd: 20.2 },
     { label: "22", R: -5088.9661, d: 5.9, nd: 1.518601, elemId: 11, sd: 16.5 },
-    { label: "23", R: -75.9168, d: 160.421965401, nd: 1.0, elemId: 0, sd: 17.0 },
+    // Surface 23 → drop-in filter: source d23 40.4 + d24 5.0 (field stop S2 folded out)
+    { label: "23", R: -75.9168, d: 45.4, nd: 1.0, elemId: 0, sd: 17.0 },
+  ],
+
+  /* ── Drop-in filter (patent Table 2 surfaces 25–26): traced, not drawn ── */
+  rearPlates: [
+    {
+      thicknessMm: 2.0,
+      nd: 1.5168,
+      vd: 64.1,
+      glass: "J-BK7A",
+      gapAfterMm: 113.7034,
+      source: "US 5,745,306 A, Example 2 Table 2 surfaces 25–26 (Bf 113.7034 at infinity and close focus)",
+    },
   ],
 
   asph: {},

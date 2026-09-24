@@ -51,7 +51,7 @@ plain-language optics primers.
 
 ## Catalog scope
 
-- `798` visible lens pages are currently published from [`src/lens-data/`](src/lens-data/).
+- `801` visible lens pages are currently published from [`src/lens-data/`](src/lens-data/).
 - Lens and article content is auto-discovered; generated metadata keeps routes, search data, sitemap entries, and the
   catalog count in sync.
 - The site is prerendered so lens, maker, inventor, patent, mount, format, comparison, and article pages remain
