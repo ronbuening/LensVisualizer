@@ -67,7 +67,7 @@ const LENS_DATA = {
   lensMounts: ["nikon-f"],
   imageFormat: "135-full-frame",
   patentNumber: "JP 2015-215559 A",
-  patentAuthors: ["Kazumasa Tanaka", "Toshinori Take", "Tetsushi Miwa"],
+  patentAuthors: ["Kazumasa Tanaka", "Toshinori Take", "Satoshi Miwa"],
   patentAssignees: ["Nikon Corporation"],
   patentYear: 2015,
   elementCount: 16,

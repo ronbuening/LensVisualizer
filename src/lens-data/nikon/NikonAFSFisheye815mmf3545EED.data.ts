@@ -60,7 +60,7 @@ const LENS_DATA = {
   lensMounts: ["nikon-f"],
   imageFormat: "135-full-frame",
   patentNumber: "JP 2017-068114 A",
-  patentAuthors: ["Tetsushi Miwa", "Hiroshi Yamamoto", "Haruo Sato"],
+  patentAuthors: ["Satoshi Miwa", "Hiroshi Yamamoto", "Haruo Sato"],
   patentAssignees: ["Nikon Corporation"],
   patentYear: 2017,
   elementCount: 18,

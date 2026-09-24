@@ -16,3 +16,7 @@ Patent: JP 2015-215560 A, Example 1, Fig. 1 (PDF page 18)
 - Resolved patent coordinate `553551` to the exact-coordinate J-KZFH4 catalog curve while explicitly retaining its post-filing status and declining to assert it as the historical glass identity.
 - Restored the source group labels G2 and G3b while keeping focus and VR roles in metadata.
 - Confirmed published G2 travel is 13.898 mm imageward from infinity to the near endpoint. This prime lens has no zoom travel.
+
+## 2026-09-23 - Inventor romanization
+
+- The JP 2015-215560 A front-page continuation names 三輪 哲史 at Nikon, the same Nikon inventor as the US front pages of US 2010/0220400 A1, US 2018/0031811 A1, and US 2021/0026133 A1, which all publish `Satoshi Miwa`. Normalized the inventor from Tetsushi Miwa to the corpus-canonical Satoshi Miwa in lens metadata and analysis prose.

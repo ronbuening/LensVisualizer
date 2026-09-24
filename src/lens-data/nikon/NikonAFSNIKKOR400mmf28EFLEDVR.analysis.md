@@ -6,7 +6,7 @@
 **Application Number:** 特願2014-99624\
 **Filed:** 2014-05-13\
 **Published:** 2015-12-03\
-**Inventors:** Kazumasa Tanaka; Toshinori Take; Tetsushi Miwa\
+**Inventors:** Kazumasa Tanaka; Toshinori Take; Satoshi Miwa\
 **Applicant:** Nikon Corporation\
 **Title:** 光学系、光学装置、光学系の製造方法 (*Optical system, optical apparatus, and method of manufacturing an optical system*)\
 **Embodiment analyzed:** Example 1 / 第1実施例\
