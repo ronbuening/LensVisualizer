@@ -50,7 +50,7 @@ transversely for image stabilization.
 
 The physical Example 24 design contains 17 elements in 13 air-separated groups when the plane HG protection plate and
 plane FL rear filter are counted, matching Canon's published production count. The active LensVisualizer prescription
-contains 15 powered elements in 11 air-separated groups because HG and FL are omitted from the ordinary active model, as
+contains 15 powered elements in 11 air-separated groups with FL traced separately as a hidden rear plate, HG omitted, as
 is the inactive FC flare-cutter plane. The structured physical element/group metadata therefore remains 17/13 while the
 active arrays remain 15/11.
 
@@ -70,14 +70,17 @@ standalone element powers listed later. The final row describes the complete act
 | L3 overall | L3a + L3b + L3c | +3970.7843 | Weak net-positive rear unit after internal cancellation |
 | Complete active model | L1 + L2 + L3 | +491.3568 | Full-system Gaussian EFL from the rounded arrays |
 
-The complete modeled track from the first powered surface to the image plane is 403.820871512 mm. Relative to the
-computed EFL of 491.356789096 mm, the track ratio is 0.821848564; under the project definition this is a telephoto
-layout. The modeled final rear distance is well below the EFL, so the design is not retrofocus.
+The physical track from the first powered surface to the image plane is 404.57 mm.
+The rear filter FL is now traced with D29=30.00 mm, thickness 2.20 mm, nd=1.516330,
+νd=64.1, and trailing air D31+D32=31.34+38.94=70.28 mm. FC is an inactive plane;
+combining its adjacent air gaps changes no optical power. The front protection plate
+remains omitted and the previously normalized finite-object reference is retained.
 
-The omitted rear filter is not simply deleted from the axial reference. Its 2.20 mm glass thickness is replaced by its
-air-equivalent optical path, giving a final surface-29-to-image spacing of 101.730871512 mm. The omitted front
-protection
-plate is likewise accounted for when the finite-object reference is normalized for the reconstructed close-focus state.
+All powered R/d/index values match Numerical Example 24 (PDF p.79, columns 33–34).
+The source prescription gives EFL 491.356789 mm versus the printed 490.56 mm, and
+physical back focus 103.150443 mm versus its 102.48 mm image distance. The +0.670443 mm
+paraxial offset remains unchanged by unfolding FL. No single source-supported misprint
+resolves this discrepancy; the published prescription is retained rather than tuned.
 
 The patent publishes the aperture-stop location explicitly as surface 16. The model therefore does not infer the stop
 position. It does infer the physical stop semi-diameter, because Example 24 gives no stop diameter; the f/4.1 pupil

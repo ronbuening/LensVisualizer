@@ -21,6 +21,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-09-25",
     type: "fix",
+    summary: "Restored the Canon EF 500mm's source-listed rear filter and physical image-plane spacing",
+  },
+  {
+    date: "2026-09-25",
+    type: "fix",
     summary: "Corrected the Nikon AF-S 28-300mm's miscopied air gap from its patent",
   },
   {
