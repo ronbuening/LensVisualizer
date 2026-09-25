@@ -214,3 +214,13 @@ Close-focus variable gaps at MFD = 0.5 m (not published in the patent) were comp
 - HOYA Optical Glass catalog and cross-reference index; M-TAF101 data sheet (glass code 768/492).
 - Schott Optical Glass Data Sheets (N-FK5).
 - refractiveindex.info database for cross-vendor glass verification.
+
+## Image-plane source audit (2026-09-25)
+
+MTF image-plane audit (2026-09-25): US20150092100A1 Example 1, Tables 1–3
+(PDF p. 26) matches every radius, spacing, nd/vd and aspheric coefficient.
+The physical SG stack is already complete: 11.78 mm air + 2 mm glass
+(n=1.516798) + 1 mm air. The printed infinity state gives EFL 53.612458 mm
+(53.61 printed), but paraxial focus is 0.039278 mm behind the authored plane.
+No single transcription error was found. Retain the published plane; a
+finite-aperture best-focus interpretation is possible, not established.
