@@ -24,6 +24,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    ✓ Aperture stop and variable focus gaps                        ║
  * ║    ✗ DO NOT include: sensor glass, filters, mechanical parts      ║
  * ╚══════════════════════════════════════════════════════════════════════╝
+ *
+ * MTF source audit: Table II / claim 2 values match at uniform scale ×180.
+ * Printed Schnittweite 0.4126 becomes 74.268 mm, while paraxial BFL is
+ * 74.367782 mm (offset +0.099782); EFL is 180.055230 versus nominal 180.
+ * No plate or transcription error found. The patent does not establish a
+ * designer best-focus convention; retain its printed image distance.
  */
 
 const LENS_DATA = {
