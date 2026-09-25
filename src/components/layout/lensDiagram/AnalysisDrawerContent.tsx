@@ -95,7 +95,9 @@ export default function AnalysisDrawerContent({
   );
   // Defer one immutable snapshot so scalar controls and the prepared perspective
   // context can never transiently describe different slider states.
-  const analysisSnapshot = useDeferredValue(currentAnalysisSnapshot);
+  const deferredAnalysisSnapshot = useDeferredValue(currentAnalysisSnapshot);
+  // MTF already debounces worker jobs. Its state label and eligibility must follow the current sliders immediately.
+  const analysisSnapshot = activeTab === "mtf" ? currentAnalysisSnapshot : deferredAnalysisSnapshot;
   const deferredPerspectiveTraceContext = analysisSnapshot.perspectiveTraceContext;
   const analysisInputs = useMemo(() => {
     const { perspectiveTraceContext: _perspectiveTraceContext, ...inputs } = analysisSnapshot;

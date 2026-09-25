@@ -58,7 +58,7 @@ const SPECTRUM_HELP = [
   "Lenses without enough glass dispersion data use the reference line.",
 ].join("\n");
 const FOCUS_HELP = [
-  "Best axial focus: moves the image plane to where the on-axis image is sharpest, as focusing a real lens does.",
+  "Best axial focus: moves the MTF evaluation plane to where the on-axis image is sharpest. Lens elements and the diagram image plane stay in place.",
   "Design plane (auto): keeps the source's image plane unless it contradicts the lens's own prescription.",
   "Design plane (always): the source's image plane as authored, even when it is out of focus.",
 ].join("\n");

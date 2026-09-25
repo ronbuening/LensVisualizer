@@ -31,14 +31,18 @@ export function useMtfComputation(L: RuntimeLens, job: MtfJob | null): MtfComput
       new MtfWorkerClient(L.data, () => new Worker(new URL("./mtf.worker.ts", import.meta.url), { type: "module" })),
     [L],
   );
-  const [state, setState] = useState<{ client: MtfWorkerClient; value: MtfComputation }>({ client, value: IDLE });
+  const key = job ? JSON.stringify(job) : null;
+  const [state, setState] = useState<{ client: MtfWorkerClient; key: string | null; value: MtfComputation }>({
+    client,
+    key: null,
+    value: IDLE,
+  });
   // Results never carry over to another lens.
   const current = state.client === client ? state.value : IDLE;
   useEffect(() => () => client.dispose(), [client]);
-  const key = job ? JSON.stringify(job) : null;
   useEffect(() => {
     const set = (update: (previous: MtfComputation) => MtfComputation) =>
-      setState((previous) => ({ client, value: update(previous.client === client ? previous.value : IDLE) }));
+      setState((previous) => ({ client, key, value: update(previous.client === client ? previous.value : IDLE) }));
     if (!key) {
       set(() => IDLE);
       return;
@@ -64,5 +68,10 @@ export function useMtfComputation(L: RuntimeLens, job: MtfJob | null): MtfComput
       client.cancel();
     };
   }, [client, key]);
-  return current;
+  // Invalidate during render, before the effect can mark a previous request stale.
+  return {
+    ...current,
+    stale: current.result !== null && (current.stale || state.key !== key),
+    error: state.key === key ? current.error : null,
+  };
 }

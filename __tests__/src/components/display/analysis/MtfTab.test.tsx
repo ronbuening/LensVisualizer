@@ -1,5 +1,8 @@
 // @vitest-environment jsdom
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { useReducer } from "react";
+import lensReducer, { createInitialState } from "../../../../../src/utils/state/lensReducer.js";
+import { prepareState } from "../../../../../src/optics/state/prepareState.js";
 import { act, cleanup, fireEvent, render, screen, within } from "@testing-library/react";
 import LensStateSelector from "../../../../../src/components/display/analysis/mtf/LensStateSelector.js";
 import type { LensSourceState } from "../../../../../src/types/optics.js";
@@ -31,7 +34,11 @@ const focusedL = build({
 const focusedState = prepareRuntimeState(focusedL, 0, 0);
 
 /** Worker stand-in that runs the pure engine; `progress` first posts a result with every field pending. */
-function stubWorker({ progress = false, target = state }: { progress?: boolean; target?: typeof state } = {}) {
+function stubWorker({
+  progress = false,
+  manual = false,
+  target = state,
+}: { progress?: boolean; manual?: boolean; target?: typeof state } = {}) {
   const calls = { compute: 0, jobs: [] as MtfJob[] };
   const replies: Array<() => void> = [];
   vi.stubGlobal(
@@ -44,7 +51,8 @@ function stubWorker({ progress = false, target = state }: { progress?: boolean; 
         if (message.type !== "compute") return;
         calls.compute++;
         calls.jobs.push(message.job);
-        const result = computeMtf(target, { ...message.job.options, maxGridSize: 128 });
+        const prepared = prepareState(target.lens, message.job.focusT, message.job.zoomT, message.job.aberrationT);
+        const result = computeMtf(prepared, { ...message.job.options, maxGridSize: 128 });
         const send = (reply: MtfWorkerReply) => this.onmessage?.({ data: reply } as MessageEvent<MtfWorkerReply>);
         if (progress) {
           const pending: MtfResult = {
@@ -53,11 +61,12 @@ function stubWorker({ progress = false, target = state }: { progress?: boolean; 
           };
           queueMicrotask(() => send({ type: "progress", id: message.id, result: pending }));
           replies.push(() => send({ type: "result", id: message.id, result }));
-        } else queueMicrotask(() => send({ type: "result", id: message.id, result }));
+        } else if (manual) replies.push(() => send({ type: "result", id: message.id, result }));
+        else queueMicrotask(() => send({ type: "result", id: message.id, result }));
       }
     },
   );
-  return { calls, finish: () => replies.splice(0).forEach((reply) => reply()) };
+  return { calls, finish: () => replies.splice(0).forEach((reply) => reply()), finishNext: () => replies.shift()?.() };
 }
 
 const legendColor = (label: string) =>
@@ -155,7 +164,7 @@ describe("MTF tab", () => {
     fireEvent.pointerEnter(help, { pointerType: "touch" });
     fireEvent.mouseEnter(help);
     fireEvent.click(help);
-    expect(screen.getByRole("tooltip").textContent).toContain("Best axial focus: moves the image plane");
+    expect(screen.getByRole("tooltip").textContent).toContain("Best axial focus: moves the MTF evaluation plane");
   });
   it("refocuses a lens whose image plane contradicts its own prescription, and says so", async () => {
     stubWorker();
@@ -351,10 +360,12 @@ describe("Lens state selector", () => {
         ],
       },
     };
-    render(<LensStateSelector L={zoom} t={mockTheme} state={state} onSelect={vi.fn()} />);
+    const { rerender } = render(<LensStateSelector L={zoom} t={mockTheme} state={state} onSelect={vi.fn()} />);
     const groups = within(screen.getByRole("combobox", { name: "Lens state" })).getAllByRole("group");
     expect(groups.map((g) => g.getAttribute("label"))).toEqual(["Wide · 35 mm", "Tele · 70 mm"]);
     expect(within(groups[0]).getAllByRole("option")).toHaveLength(2);
+    rerender(<LensStateSelector L={zoom} t={mockTheme} state={{ ...state, zoomT: 0.25 }} onSelect={vi.fn()} />);
+    expect(screen.getByText(/Interpolated infinity geometry/)).toBeTruthy();
   });
   it("keeps selection available while movement blocks MTF", () => {
     const worker = vi.fn();
@@ -376,4 +387,102 @@ describe("Lens state selector", () => {
     expect(screen.getByRole("status").textContent).toContain("tilt or shift");
     expect(worker).not.toHaveBeenCalled();
   });
+});
+
+it("hides superseded station curves and preserves the diagram state when MTF closes", async () => {
+  const near: LensSourceState = {
+    id: "near",
+    label: "Near",
+    focusT: 0.7123456789,
+    zoomT: 0,
+    source: "Synthetic station",
+    conjugate: {
+      kind: "finite",
+      objectDistanceMm: 1000,
+      distanceReference: "first-surface",
+      distanceProvenance: "published",
+    },
+  };
+  const infinity: LensSourceState = {
+    ...near,
+    id: "infinity",
+    label: "Infinity",
+    focusT: 0,
+    conjugate: { kind: "infinity" },
+  };
+  const lens = build({ ...focusedL.data, focusPositions: [0, near.focusT, 1], sourceStates: [infinity, near] });
+  const worker = stubWorker({ manual: true, target: prepareRuntimeState(lens, 0, 0) });
+  function Viewer() {
+    const [viewer, dispatch] = useReducer(lensReducer, undefined, () => {
+      const initial = createInitialState({}, {}, true, [lens.data.key]);
+      initial.sliders.stopdownT = 0.4;
+      initial.panels.analysisDrawerOpen = true;
+      return initial;
+    });
+    const optical = prepareRuntimeState(lens, viewer.sliders.focusT, viewer.sliders.zoomT, viewer.sliders.aberrationT);
+    return (
+      <>
+        <output data-testid="diagram-state">
+          {JSON.stringify({
+            ...viewer.sliders,
+            rayTracksF: viewer.rays.rayTracksF,
+            z: optical.z,
+            imageZ: optical.imgZ,
+          })}
+        </output>
+        <button
+          onClick={() =>
+            dispatch({
+              type: "SET_PANEL_EXPANDED",
+              panel: "analysisDrawerOpen",
+              expanded: !viewer.panels.analysisDrawerOpen,
+            })
+          }
+        >
+          Toggle MTF
+        </button>
+        <button onClick={() => dispatch({ type: "SET_FOCUS_T", value: 0.5 })}>Intermediate focus</button>
+        {viewer.panels.analysisDrawerOpen ? (
+          <MtfTab
+            L={lens}
+            t={mockTheme}
+            preparedState={optical}
+            currentEPSD={0.1}
+            currentPhysStopSD={0.1}
+            onSelectSourceState={(lensKey, sourceState) =>
+              dispatch({ type: "SELECT_SOURCE_STATE", lensKey, sourceState })
+            }
+          />
+        ) : null}
+      </>
+    );
+  }
+  render(<Viewer />);
+  await vi.waitFor(() => expect(worker.calls.compute).toBe(1));
+  await act(async () => worker.finishNext());
+  expect(screen.getByRole("figure")).toBeTruthy();
+  fireEvent.change(screen.getByRole("combobox", { name: "Lens state" }), { target: { value: "near" } });
+  expect(screen.queryByRole("figure")).toBeNull();
+  const nearDiagram = screen.getByTestId("diagram-state").textContent!;
+  expect(JSON.parse(nearDiagram)).toMatchObject({ focusT: near.focusT, stopdownT: 0.4, rayTracksF: true });
+  await vi.waitFor(() => expect(worker.calls.compute).toBe(2));
+  fireEvent.change(screen.getByRole("combobox", { name: "Lens state" }), { target: { value: "infinity" } });
+  await act(async () => worker.finishNext()); // The cancelled near result arrives after the label changed.
+  expect(screen.queryByRole("figure")).toBeNull();
+  await screen.findByRole("figure"); // The correct infinity result is reused from cache.
+  fireEvent.change(screen.getByRole("combobox", { name: "Lens state" }), { target: { value: "near" } });
+  await vi.waitFor(() => expect(worker.calls.compute).toBe(3));
+  await act(async () => worker.finishNext());
+  expect(screen.getByRole("figure")).toBeTruthy();
+  expect(screen.getByTestId("diagram-state").textContent).toBe(nearDiagram);
+  fireEvent.click(screen.getByRole("button", { name: "Toggle MTF" }));
+  expect(screen.queryByRole("combobox", { name: "Lens state" })).toBeNull();
+  expect(screen.getByTestId("diagram-state").textContent).toBe(nearDiagram);
+  fireEvent.click(screen.getByRole("button", { name: "Toggle MTF" }));
+  expect((screen.getByRole("combobox", { name: "Lens state" }) as HTMLSelectElement).value).toBe("near");
+  fireEvent.click(screen.getByRole("button", { name: "Intermediate focus" }));
+  expect(screen.queryByRole("figure")).toBeNull();
+  expect(within(screen.getByRole("region", { name: "Simulated MTF" })).getByRole("status").textContent).toContain(
+    "Finite MTF",
+  );
 });

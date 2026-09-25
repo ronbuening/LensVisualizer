@@ -17,6 +17,15 @@ export default function LensStateSelector({ L, state, t, onSelect }: LensStateSe
   const id = useId();
   const states = lensSourceStates(L.data);
   const current = resolveLensSourceState(L.data, state.focusT, state.zoomT, state.aberrationT);
+  const interpolatedInfinity =
+    !current &&
+    state.focusT === 0 &&
+    state.aberrationT === 0 &&
+    L.isZoom &&
+    Math.abs(
+      state.zoomT * ((L.zoomPositions?.length ?? 1) - 1) -
+        Math.round(state.zoomT * ((L.zoomPositions?.length ?? 1) - 1)),
+    ) > 1e-8;
   const stations = [...new Set(states.map((s) => s.zoomT))].sort((a, b) => a - b);
   const option = (s: LensSourceState) => (
     <option key={s.id} value={s.id}>
@@ -60,9 +69,17 @@ export default function LensStateSelector({ L, state, t, onSelect }: LensStateSe
       </select>
       <div id={`${id}-details`} style={{ fontSize: 11, lineHeight: 1.5, marginTop: 4 }}>
         {!states.length ? (
-          <p>No source configurations have been verified for this prescription.</p>
+          <p>
+            {interpolatedInfinity ? "Interpolated infinity geometry. " : ""}No source configurations have been verified
+            for this prescription.
+          </p>
         ) : !current ? (
-          <p>This position does not match a verified source state. Select a state to apply its exact lens positions.</p>
+          <p>
+            {interpolatedInfinity
+              ? "Interpolated infinity geometry; not a verified source state."
+              : "This position does not match a verified source state."}{" "}
+            Select a state to apply its exact lens positions.
+          </p>
         ) : (
           <>
             <p style={{ margin: "4px 0" }}>

@@ -63,6 +63,11 @@ and a detached copy of any verified source state. Worker and main-thread results
 Cache keys include the complete geometry/options request; changing the lens data creates a new client, and worker
 initialization clears partial-field caches, so source evidence cannot leak between prescription revisions.
 
+MTF invalidates displayed curves in the render that changes a request, before effects schedule new work. Its labels
+use current viewer coordinates (worker work is independently debounced), and late cancelled responses are ignored.
+The evaluation-plane preference changes only the MTF diagnostic; closing the tab retains the selected geometry and rays.
+Interpolated infinity zoom positions are labeled; intermediate finite-focus positions remain unavailable.
+
 Source-state inventory: `node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-mtf.mjs --source-states`
 includes every prescription and separates hidden production configurations from reference fixtures. `--lens=KEY`
 selects one prescription; `--limit=N` limits output while preserving full inventory counts. Candidate coordinates

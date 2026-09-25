@@ -88,7 +88,7 @@ export default function MtfTab({
     [support.available, focusT, zoomT, aberrationT, options],
   );
   const { result, stale, running, error } = useMtfComputation(L, job);
-  const shown = support.available ? result : null;
+  const shown = support.available && !stale ? result : null;
   // Stop-down scales the pupil and stop radii by N/8, as the aperture control does.
   const compareF8Available = !!fNumber && fNumber < COMPARISON_F_NUMBER - 0.05 && L.maxFstop >= COMPARISON_F_NUMBER;
   const comparisonJob = useMemo(() => {
