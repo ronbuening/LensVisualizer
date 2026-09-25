@@ -45,6 +45,14 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ 27.2 mm diagonal), covered by the patent's 28 mm image diagonal; the   ║
  * ║ taxonomy has no PL mount id, so lensMounts stays unset.                ║
  * ╚════════════════════════════════════════════════════════════════════════════╝
+ *
+ * MTF image-plane audit (2026-09-25): US8508864B2 Example 2, Table 3
+ * (PDF p. 28), matches all radii, spacings, named glass codes and aspherics.
+ * The published F1 rear distance is 44.800 mm; the implemented named-glass
+ * prescription gives paraxial BFL 44.761613 mm (offset -0.038387 mm).
+ * The front 3 mm filter has no infinity-focus power; no rear plate is listed.
+ * The source evaluates polychromatic finite-aperture MTF, but does not define
+ * the tabulated plane as paraxial or best focus. Keep its published distance.
  */
 
 const LENS_DATA = {
