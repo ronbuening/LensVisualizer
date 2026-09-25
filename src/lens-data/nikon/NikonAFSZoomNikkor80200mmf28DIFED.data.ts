@@ -41,8 +41,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ SDs are modeling values constrained by the Example 1 optical section, paraxial   ║
  * ║ marginal bundles, edge thickness, actual spherical rim slope, shared-band        ║
  * ║ cross-gap intrusion, and off-axis containment. They are not patent source data.  ║
- * ║ The L43-equivalent relay element uses 10.6/10.4 mm SDs from the 300 dpi figure, ║
- * ║ correcting its prior oversized rendering relative to L44 and L45.                ║
+ * ║ The L43, L44 and L45 relay elements (surfaces 28-33) follow Figure 1, which is   ║
+ * ║ drawn to scale: calibrated on the published diameters it gives about 16.6, 17.7  ║
+ * ║ and 18.8 mm, clear of the corner chief ray (11.2-12.7 mm at surfaces 30-33) that ║
+ * ║ the former 10.4-11.2 mm values clipped (2026-09-24 field-coverage audit).        ║
  * ║                                                                                   ║
  * ║ GLASS                                                                             ║
  * ║ The patent publishes nd/vd coordinates only. Compatible coefficient-backed       ║
@@ -349,12 +351,12 @@ const LENS_DATA = {
     { label: "25", R: 39.9627, d: 6, nd: 1.49782, elemId: 14, sd: 19 },
     { label: "26", R: 168.823, d: 4.4, nd: 1.62004, elemId: 15, sd: 18.1 },
     { label: "27", R: 38.2994, d: 30.5, nd: 1, elemId: 0, sd: 17.5 },
-    { label: "28", R: 272.261, d: 5, nd: 1.531721, elemId: 16, sd: 10.6 },
-    { label: "29", R: -62.3609, d: 14.8, nd: 1, elemId: 0, sd: 10.4 },
-    { label: "30", R: -36.5028, d: 1.9, nd: 1.80384, elemId: 17, sd: 11.2 },
-    { label: "31", R: -160.6086, d: 0.2, nd: 1, elemId: 0, sd: 11.2 },
-    { label: "32", R: 137.3427, d: 4.6, nd: 1.772789, elemId: 18, sd: 11 },
-    { label: "33", R: -111.8713, d: 57.01947, nd: 1, elemId: 0, sd: 10.8 },
+    { label: "28", R: 272.261, d: 5, nd: 1.531721, elemId: 16, sd: 16.6 },
+    { label: "29", R: -62.3609, d: 14.8, nd: 1, elemId: 0, sd: 16.3 },
+    { label: "30", R: -36.5028, d: 1.9, nd: 1.80384, elemId: 17, sd: 17.7 },
+    { label: "31", R: -160.6086, d: 0.2, nd: 1, elemId: 0, sd: 17.7 },
+    { label: "32", R: 137.3427, d: 4.6, nd: 1.772789, elemId: 18, sd: 18.8 },
+    { label: "33", R: -111.8713, d: 57.01947, nd: 1, elemId: 0, sd: 18.5 },
   ],
 
   asph: {},

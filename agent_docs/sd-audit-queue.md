@@ -7,7 +7,8 @@ that seeded Sections B and C is written up in
 [records/patent-figure-sd-audit-2026-07.md](records/patent-figure-sd-audit-2026-07.md).
 
 Take **Section A top-down** — those rows have physics behind them. Section B is figure-evidence only and is lower
-value per hour.
+value per hour. Sections D and E hold the MTF field and image-plane censuses. Section F holds traced field-coverage
+shortfalls that need a source, a decision or engine support rather than a larger rim.
 
 Status values: `todo` · `in progress` · `blocked (reason)` · `partial (what remains)`.
 
@@ -21,29 +22,27 @@ npm run audit:image-circle -- --markdown
 
 A surface listed here cannot pass a corner ray to its own format. Rows marked **wide** have a half-field past ~42°,
 where the script's exit-pupil approximation stops being trustworthy — symmetric ultra-wides genuinely do have small
-rear elements, so those need a real chief-ray trace before anything is touched, and are parked at the bottom.
+rear elements, so settle those with the traced check (`npm run audit:field-coverage`, the Traced corner column). Wide
+rows whose converged corner chief ray clears every rim are false positives, recorded in [decisions.md](decisions.md)
+instead of here.
 
-| Lens | File | Patent | In `patents/` | Surfaces below floor (sd < floor) | Worst | Status |
-|---|---|---|---|---|---|---|
-| CARL ZEISS JENA BIOGON 35mm f/2.8 (pre-war) | `carl-zeiss-jena/ZeissBiogon35mmf28Prewar.data.ts` | US 2,084,309 | yes | 11 (12.40 < 15.19) | 2.79 mm | todo |
-| NIKON NIKKOR Z 50mm f/1.8 S | `nikon/NikonNikkorZ50f18S.data.ts` | JP WO2019/220618 A1 | yes (`WO2019220618A1.pdf`) | 25 (18.50 < 19.05), 26 (18.50 < 20.65) | 2.15 mm | todo |
-| LEICA SUMMILUX 28mm f/1.7 ASPH. (Leica Q) | `leica/Leica28mmf17.data.ts` | US 2016/0266350 A1 | yes | 21A (15.50 < 16.95) | 1.45 mm | todo |
-| OLYMPUS F.ZUIKO 35mm f/2.8 (Olympus XA) | `olympus/OlympusXAZuiko35mmf28.data.ts` | US 4,235,521 | yes | 11 (7.40 < 8.05) | 0.65 mm | todo |
-| RODENSTOCK GRANDAGON-N 90mm f/4.5 | `rodenstock/RodenstockGrandagonN90mmf45.data.ts` | DE 2444954 A1 | yes | 11 (20.20 < 28.85), 12 (25.20 < 33.46) | 8.65 mm | todo — **wide** |
-| SCHNEIDER SUPER-ANGULON 75mm f/5.6 | `schneider-kreuznach/SchneiderSuperAngulon75mmf56.data.ts` | US 3,376,091 | yes | 11 (17.00 < 22.76), 12 (18.50 < 26.23) | 7.73 mm | todo — **wide** |
-| RODENSTOCK GRANDAGON-N 75mm f/6.8 | `rodenstock/RodenstockGrandagonN75mmf68.data.ts` | DE 26 35 415 B1 | yes | 8 (10.60 < 12.33), 9 (15.80 < 23.20), 10 (19.00 < 25.37) | 7.40 mm | todo — **wide** |
-| RODENSTOCK GRANDAGON-N 65mm f/4.5 | `rodenstock/RodenstockGrandagonN65mmf45.data.ts` | DE 2444954 A1 | yes | 11 (14.40 < 21.64), 12 (18.00 < 25.09) | 7.24 mm | todo — **wide** |
-| CARL ZEISS HOLOGON 15mm f/8 | `carl-zeiss-oberkochen/ZeissHologon15mmf8.data.ts` | DE 1,241,637 B | yes | 4 (3.83 < 4.06), 5 (3.60 < 7.53), 6 (8.84 < 15.09) | 6.25 mm | todo — **wide** |
-| CARL ZEISS BIOGON 21mm f/4.5 | `carl-zeiss-oberkochen/ZeissBiogon21mmf45.data.ts` | US 2,721,499 | yes | 12 (6.72 < 11.72), 13 (7.98 < 14.07) | 6.09 mm | todo — **wide** |
-| RODENSTOCK GRANDAGON-N 75mm f/4.5 | `rodenstock/RodenstockGrandagonN75mmf45.data.ts` | DE 2444954 A1 | yes | 11 (16.80 < 21.57), 12 (21.00 < 25.04) | 4.77 mm | todo — **wide** |
-| SCHNEIDER TECHNIKA SUPER-ANGULON 75mm f/8 | `schneider-kreuznach/SchneiderTechnikaSuperAngulon75mmf8.data.ts` | JP S42-023896 | yes (`JPB 1967023896-000000.pdf`) | 9 (15.80 < 19.87), 10 (19.75 < 21.63) | 4.07 mm | todo — **wide** |
+| Lens | File | Patent | In `patents/` | Surfaces below floor (sd < floor) | Worst | Traced corner | Status |
+|---|---|---|---|---|---|---|---|
+| OLYMPUS F.ZUIKO 35mm f/2.8 (Olympus XA) | `olympus/OlympusXAZuiko35mmf28.data.ts` | US 4,235,521 | yes | 11 (7.40 < 8.05) | 0.65 mm | no chief ray past 25.7° with the inferred stop (Section F) | todo |
+| SAMSUNG 4.3mm f/1.5 (Galaxy S9) | `samsung/SamsungGalaxyS9MainWideCameraLens.data.ts` | US 2021/0149156 A1 | yes | 12A (1.76 < 1.83), 14A (2.00 < 2.51) | 0.51 mm | image height peaks at 2.74 mm (Section F) | blocked (needs higher-precision S13/S14 coefficients) |
+| RODENSTOCK GRANDAGON-N 90mm f/4.5 | `rodenstock/RodenstockGrandagonN90mmf45.data.ts` | DE 2444954 A1 | yes | 11 (20.20 < 28.85), 12 (25.20 < 33.46) | 8.65 mm | 11 and 12 clear; the 5×7 corner chief ray (50.3°) clips at 1 (30.66 > 25.2) | todo — **wide** |
+| RODENSTOCK GRANDAGON-N 65mm f/4.5 | `rodenstock/RodenstockGrandagonN65mmf45.data.ts` | DE 2444954 A1 | yes | 11 (14.40 < 21.64), 12 (18.00 < 25.09) | 7.24 mm | the 4×5 corner chief ray (51.7°) clips at 1 (22.82 > 18), 2 (14.58 > 14.4), 3 (12.77 > 12.7) and 12 (18.06 > 18) | todo — **wide** |
+| RODENSTOCK GRANDAGON-N 75mm f/4.5 | `rodenstock/RodenstockGrandagonN75mmf45.data.ts` | DE 2444954 A1 | yes | 11 (16.80 < 21.57), 12 (21.00 < 25.04) | 4.77 mm | 11 and 12 clear; the 4×5 corner chief ray (47.5°) clips at 1 (23.72 > 21) | todo — **wide** |
+
+The three Grandagon-N f/4.5 rows read 100% in `audit:field-coverage` because their declared 105° field is not
+clip-checked; the corner chief ray still clips at the front rims listed, so the traced floor is surface 1, not 11/12.
 
 ### Not covered by the check
 
-`npm run audit:image-circle` skips 29 of 470 lenses: five production folded designs (the axial gap to the image plane
-is not the distance the ray travels), eight `reference/` mirror fixtures, and sixteen files with no `imageFormat`.
-Filling in `imageFormat` where the format is unambiguous — see
-[lens-mount-format-backfill.md](lens-mount-format-backfill.md) — brings those into scope for free.
+`npm run audit:image-circle` skips 37 lenses: six folded designs (the axial gap to the image plane is not the distance
+the ray travels) and 31 files with no usable `imageFormat`, nine of them `reference/` mirror fixtures. Filling in
+`imageFormat` where the format is unambiguous — see [lens-mount-format-backfill.md](lens-mount-format-backfill.md) —
+brings those into scope for free.
 
 ## Section B — figure-vs-data shape deviations (odd-asphere set)
 
@@ -76,6 +75,10 @@ them, front groups drawn smaller. That is the signature of sizing from a margina
 under-counts chief-ray height near the image. Fixing it lens-by-lens off drawings will be slow and imprecise;
 re-deriving these from a real full-field chief-ray trace would settle the whole section at once and is probably the
 better investment.
+
+The 2026-09-24 field-coverage pass raised rims on six of these lenses to the traced format corner (XF 23mm f/2, XF 18mm
+f/2, GF 20-35mm, GFX100RF 35mm f/4, X100V 23mm f/2 and XF 16-55mm f/2.8 II; see their `*.audit.md` sidecars), so their
+ratios above are stale: re-measure before acting on those rows.
 
 ## Section C — source blockers
 
@@ -136,9 +139,44 @@ the row. Offset is paraxial focus minus the authored plane (positive: the plane 
 
 | Lens | File | Offset (mm) | Depths | Cause | Status |
 |---|---|---|---|---|---|
-| FUJIFILM FUJINON XF 18mm f/2 R | `fujifilm/FujifilmXF18mmf2.data.ts` | +4.993 | 1062 | D16 ends at omitted PP; Table 7 leaves its trailing image gap blank; EFL also differs | partial (source image distance missing; S13 A10 typo corrected, no paraxial effect) |
 | NIKON R-UW AF ZOOM-NIKKOR 20-35mm f/2.8 | `nikon/NikonRUWAFZoomNikkor2035mmf28.data.ts` | +0.220 | 24 | Water interface is already traced; several existing source emendations remain unverified | partial (rear plate migrated; source reconstruction unresolved) |
 | HASSELBLAD XCD 45mm f/3.5 | `hasselblad/HasselbladXCD3545.data.ts` | +0.171 | 12 | Data note: source infinity BF 26.88 mm kept although the raw prescription computes otherwise | blocked (patent missing: WO2017221949A1; only Japanese republication present) |
+
+## Section F — traced field coverage below 90%
+
+Regenerate the list at any time:
+
+```bash
+npm run audit:field-coverage -- --markdown
+```
+
+The analysis half-field follows the real chief ray to the format corner and ends at the first clear aperture that clips
+it ([architecture/optics-engine.md](architecture/optics-engine.md)). Stations whose patent prints a smaller image height
+(distortion-corrected wide ends) or declares a narrower field are correct as modeled; they are recorded under "Checked
+and excluded" in [decisions.md](decisions.md), not here. Every other station below 90% has a row here, and none of
+them is fixed by raising semi-diameters alone: each needs the source, decision or engine support in its row.
+
+| Lens | File | Station | Traced edge | Reason | Status |
+|---|---|---|---|---|---|
+| OLYMPUS OM ZUIKO 16mm f/3.5 Fisheye | `olympus/OlympusZuiko16mmf35.data.ts` | — | 43% | No `projection`: the 180° diagonal fisheye (US 3,850,509 col. 1; FIGS. 2B–2D at 90°) is traced as rectilinear and the solver gives up past ~52°. Declare `fisheye-equisolid` (fullFieldDeg 180, maxTraceFieldDeg 90, imageCircleMm ≈43.0 from the traced 21.52 mm at 90°), then raise the front rims to the 90° chief ray (1 20.9, 3 10.7, 4 9.7, 5 9.0, 6 7.0, 7 5.9 mm; 2 needs 11.2 mm on R 11.79, past the default rim-slope cap). FIG. 1 draws L1 ≈3.8× L4 (data 1.45×). | todo |
+| NIKON Gyogyotto 20mm f/8 | `nikon/NikonGyogyotto20mmf8.data.ts` | — | 67% | No `projection` for a "so-called fisheye" (US 5,949,588 Table 8; 2ω 164°, FIG. 16A Y = 22.0 mm, distortion referenced to 2f·sin(θ/2)). Declare `fisheye-equisolid` (fullFieldDeg 164, imageCircleMm 44.0), then rims at the 78.46° corner: 1 ≥ 28.85, 2 ≥ 18.13 mm. | todo |
+| KINOPTIK SUPER-TEGEA 1.9mm f/1.9 FISHEYE | `kinoptik/KinoptikSuperTegea19mmf19Fisheye.data.ts` | — | 85% | Its traced mapping is close to stereographic (US 3,037,426 Ex. 3; 197°, 8.7 mm circle), which no projection kind covers, so it is traced as rectilinear and no chief ray reaches the stop centre past ~81°. The rims are not the limit. | blocked (needs a stereographic projection kind) |
+| OLYMPUS F.ZUIKO 35mm f/2.8 (Olympus XA) | `olympus/OlympusXAZuiko35mmf28.data.ts` | — | 74% | The inferred stop sits mid-gap, 2.898 mm behind r6; FIG. 2 (US 4,235,521) draws it ≈0.6 mm behind r6. With the data's stop no chief ray exists past ~26°: L1's rear and L2's front meet at h ≈ 5.93 mm. Move the stop per FIG. 2 (surface 7 d ≈ 0.60, STO d ≈ 5.20), then raise 10 ≥ 7.13 and 11 ≥ 7.79 mm (also closes its Section A row). | todo |
+| NIKON ZOOM-NIKKOR AUTO 80-200mm f/4.5 | `nikon/NikonAutoZoomNikkor80200mmf45.data.ts` | 80 / 126.4 / 200 mm | 83 / 81 / 70% | US 3,615,125 prints no stop; the inferred stop mid-gap in D18 blocks every corner (at 200 mm the chief ray would cross L1 past its ≈30.3 mm knife edge; at 80 mm the 8/9 gap closes at ≈14.2 mm). A stop 1–3 mm behind r18 passes all three corners within the current rims. | todo (needs a measured diaphragm position) |
+| NIKON NIKKOR 800mm f/8 ED | `nikon/NikonNikkor800mmf8ED.data.ts` | — | 62% | Tagged `6x6` for the patent's 6° field (US 3,774,991 Ex. III). With the inferred focusing-unit stop, the 6×6 corner needs front-group chief-ray heights of 86–88 mm, past L1's ≈67 mm knife edge (ceiling ≈78%). On 24×36 the edge already clears the corner. | todo (format or stop decision) |
+| Nikon AI Zoom-Nikkor 35–105mm f/3.5–4.5S | `nikon/NikonAIZoomNikkor35105mmf3545.data.ts` | Wide 36.2 mm | 82% | d9 = 1.0 as printed (US 4,699,475 Table 7) thins L5 to a knife edge at h ≈ 6.62 mm, and no chief ray exists past ≈30.3°. d9 ≈ 3.5 fits better: focal lengths 36.33 / 60.32 / 103.72 mm against the printed 36.2 / 60 / 103 (1.0 gives 37.39 / 62.15 / 106.58), FIG. 14 draws L5 as thick as the 3.5 mm L8, and Embodiments 4–6 use 3.5. With 3.5 the corner needs 9 ≥ 7.71 and 10 ≥ 7.05 mm. | todo (prescription decision) |
+| PENTAX HD D FA645 35mm f/3.5 AL [IF] | `pentax/PentaxDFA64535mmf35AL.data.ts` | — | 70% | The declared 44.8° matches the patent's W, but its chief ray lands at 24.28 mm (−32% distortion; Fig. 14D shows −3% at y = 34.85). Table 4's surface-5A asphere (K +1.00, all coefficients positive; US 2001/0007512 A1 PDF p. 14) looks sign-damaged: K −1.00 with A6/A8/A10 negative traces to 34.82 mm. | blocked (confirm against JP Hei 11-354772) |
+| SAMSUNG 4.3mm f/1.5 (Galaxy S9) | `samsung/SamsungGalaxyS9MainWideCameraLens.data.ts` | — | 74% | 13A/14A are cut to 2.0 mm because the seven-decimal Table 4 coefficients diverge beyond it; with no apertures at all the image height peaks at 2.74 mm (patent Y 3.50 mm, US 2021/0149156 A1 FIG. 2). Restoring the published 2.720/2.880 radii cannot help. | blocked (needs higher-precision S13/S14 coefficients) |
+| VIVITAR SERIES 1 35-85mm f/2.8 VMC | `vivitar/VivitarSeries13585mmf28.data.ts` | Wide 36 mm | 75% | No chief ray exists past ~30° with any rims: it would cross L4 above its ≈16.07 mm zero-edge height, and S9 is capped by the L5/L6 contact at the tele gap. Table I computes to f 38.46–89.08 mm against the text's 36–83 mm (US 3,975,089), a possible Table I error. | blocked (needs a corrected Table I) |
+| OLYMPUS ZUIKO AUTO-W 18mm f/3.5 | `olympus/OlympusZuikoAutoW18mmf35.data.ts` | — | 73% | US 4,029,397 is not in `patents/`. With the inferred mid-d10 stop, surfaces 16 and 17 meet at h ≈ 5.66 mm and no chief ray exists past 42.3° (declared 50°). Check the FIG. 2 stop and r16/r17/d16 (and the documented r13 sign conflict) before touching rims. | blocked (patent PDF missing) |
+| SAMYANG AF 35-150mm f/2-2.8 FE / L | `samyang/SamyangAF35150mmf228.data.ts` | 35 mm | 81% | US 2025/0231383 A1 is not in `patents/`; its Google Patents text gives ω 30.9° at 35.989 mm (f·tanω 21.54 mm). Corner minimums: 6A ≥ 18.46, 7 ≥ 18.33, 8 ≥ 15.61, 40A ≥ 13.83, 41A ≥ 15.41 mm. | blocked (patent PDF missing) |
+| NIKON AF-P DX NIKKOR 18-55mm f/3.5-5.6 G VR | `nikon/NikonAFPDX1855mmf3556G.data.ts` | 18.5 mm | 86% | US 10,690,896 B2 is not in `patents/`; analysis.md gives Y 14.25 mm. Only surface 1 clips: 15.3 → ≥ 17.68 mm at the corner. | blocked (patent PDF missing) |
+| MINOLTA AF Zoom 35-70mm f/4 | `minolta/MinoltaAF3570mmf4.data.ts` | Wide 36 mm | 90% (89.6) | US 4,560,253 is not in `patents/`; analysis.md's y' = 21.6 mm is unverified. Corner minimums: 3 ≥ 15.26, 4 ≥ 14.82, 4A ≥ 14.76 mm. | blocked (patent PDF missing) |
+
+### Not covered by the traced check
+
+`npm run audit:field-coverage` skips fisheye projections and folded paths, whose field is declared rather than traced,
+hidden lenses, and files with no usable `imageFormat` (the same backfill as Section A).
 
 ## In-progress diagram sweep
 

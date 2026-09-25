@@ -71,3 +71,37 @@ Shortened diagram group captions to G3 (+) and G4 (−) to prevent OIS/FOCUS tex
 **Verification:** surface/image-circle audits, five-state render diagnostics, local-site wide/tele controls (zooms), disabled focus controls, and the required typecheck/format/lint/test/build gates.
 
 Additional material-source check: the [Mitsui APEL brochure](https://jp.mitsuichemicals.com/content/dam/mitsuichemicals/sites/mci/documents/sites/default/files/media/document/2020/apel_en.pdf.coredownload.inline.pdf) lists optical polymer grades around nd = 1.544 and νd = 56, near L14. It does not provide a complete coefficient curve or identify this patent material. This is a possible polymer-family coordinate, not grounds to add a glass curve, measured indices or a production supplier label. The Osaka Gas [OKP table](https://www.ogc.co.jp/products/fluorene/okp.html) likewise provides nominal polymer properties, not a verified compatible curve for LX7 L11.
+
+## 2026-09-24 — Semi-diameters raised to the traced format corner
+
+Numerical Example 1, Table 3 (printed p. 10 = PDF p. 27) prints half view angle 40.7907° and image height 3.4100 mm at
+the wide limit, and 10.4346° / 3.9020 mm and 2.2365° / 3.9020 mm at the middle position and tele limit. The 1/2.3-inch
+corner is 3.835 mm, so the wide design image circle stops short of it (the audit's unclipped wide chief ray stops
+solving past 44.4°, at 3.82 mm) and the wide goal is the patent's own field, while the middle and tele states cover the
+corner. Wide: the real chief ray (solved through the stop centre) at the patent's ω crosses 7A at 9.43 mm (sd 7.7) and
+8A at 7.44 mm (sd 7.5), so the analysis field stopped at 34.6° (2.83 mm, 74% of the corner, 83% of the patent's Y).
+Tele: the corner chief ray (2.20°) clipped at 28A (4.04 > 4.0) and 29 (3.89 > 3.8), leaving the field at 97.8%; the
+triage review had not flagged this station. Values follow the small-format rule (floor + ~3%, rounded up to 0.1 mm).
+8A (R 12.39) was not scaled with 7A: the 8A→9 cross-gap check fails from 7.7 mm, and the patent's wide ω crosses it
+inside its rim. 28A and 29 each take their own floor.
+
+Fig. 1(a) (PDF p. 2): the 2026-09-15 review sized L4 at the end of the concave 8A curve (about 160 px, 7.7 mm at its
+47.90 µm/px scale) and excluded the extended rectangular blank as mechanical. Re-read at 600 dpi, the flat front face
+(7A) is drawn straight out to the top of that rectangle (about 210 px, 10.1 mm), and the traced chief ray at the
+patent's wide field meets 7A at 9.43 mm, so the front-face part of the "blank" must be optical clear aperture; the 8A
+rim stays where that review put it.
+
+| Surface | Before | After | Justification |
+|---|---|---|---|
+| 7A | 7.7 | 9.8 | wide chief ray at the patent's ω = 40.79° crosses at 9.43 mm; + ~3% |
+| 28A | 4.0 | 4.2 | tele corner chief ray 4.04 mm; + ~3% |
+| 29 | 3.8 | 4.1 | tele corner chief ray 3.89 mm; + ~3% |
+
+The validator accepts the new values; 7A shows no slope reversal out to 11.8 mm and 28A none out to 8 mm (its slope
+flattens near 5.2 mm, then steepens). At wide the traced field now reaches 41.19° and 3.449 mm, 101% of the patent's
+Y = 3.41 mm and 89.9% of the 3.835 mm corner (it was 34.6° / 2.83 mm, 73.8%), stopped by the 8A rim, which the 8A→9
+cross-gap check caps at 7.6 mm; the corner itself stays out of reach as above. The middle station stays at 100%; tele
+rises from 97.8% to 100% with every rim clear, and at the patent's tele ω (2.2365°, image 3.900 mm) 28A and 29 keep
+0.08 and 0.14 mm. The image-circle floor still reports nothing undersized. Rim departures are now +0.4773 mm (7A at
+9.8 mm) and +0.3370 mm (28A at 4.2 mm), updated in the analysis; the largest rim angle (8A, 44.65°) and the thinnest
+edge (L3, 0.2418 mm) are unchanged.

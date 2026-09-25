@@ -23,6 +23,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    with 8% mechanical clearance, validated against edge thickness ║
  * ║    (≥ 0.3 mm), sd/|R| < 0.88, and cross-gap sag (≤ 90% of gap). ║
  * ║    STO SD = marginal ray height at the stop (wide end).           ║
+ * ║    L11 (surfaces 20/21) was raised to the 18.3 mm rim drawn in    ║
+ * ║    Fig. 3(a), which passes the traced chief ray to the patent's   ║
+ * ║    21.633 mm middle/tele image height (2026-09-24 field-coverage  ║
+ * ║    audit). Surface 3 was raised to pass the wide chief ray to the ║
+ * ║    design Y = 19.60 mm.                                           ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -204,7 +209,7 @@ const LENS_DATA = {
     { label: "2", R: 433.2915, d: 0.5, nd: 1.0, elemId: 0, sd: 19.5 }, // d2 variable
 
     /* ── G2: Variator (L2, L3+L4, L5) ── */
-    { label: "3", R: 52.4162, d: 1.1, nd: 1.90366, elemId: 2, sd: 14.5 },
+    { label: "3", R: 52.4162, d: 1.1, nd: 1.90366, elemId: 2, sd: 15.4 },
     { label: "4", R: 14.3826, d: 9.6762, nd: 1.0, elemId: 0, sd: 12.5 },
     { label: "5", R: -53.5391, d: 3.575, nd: 1.59283, elemId: 3, sd: 11.5 }, // L3 front
     { label: "6", R: 17.398, d: 8.74, nd: 1.85883, elemId: 4, sd: 11.5 }, // L3→L4 junction
@@ -227,8 +232,8 @@ const LENS_DATA = {
     { label: "19A", R: 191.0158, d: 12.294, nd: 1.0, elemId: 0, sd: 8.0 }, // d19 variable
 
     /* ── G5: Field flattener (L11, fixed) ── */
-    { label: "20", R: -44.4984, d: 2.8302, nd: 1.92286, elemId: 11, sd: 12.5 },
-    { label: "21", R: -32.7872, d: 22.2307, nd: 1.0, elemId: 0, sd: 13.0 }, // BFD to image; BF varies slightly with zoom
+    { label: "20", R: -44.4984, d: 2.8302, nd: 1.92286, elemId: 11, sd: 18.3 },
+    { label: "21", R: -32.7872, d: 22.2307, nd: 1.0, elemId: 0, sd: 18.3 }, // BFD to image; BF varies slightly with zoom
   ],
 
   /* ── Aspherical coefficients ── */

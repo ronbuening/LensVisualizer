@@ -178,6 +178,18 @@ ultrawides like the Carl Zeiss Hologon 15 mm f/8 where the paraxial chief-ray bi
 published 120° coverage. The override only changes `halfField`; `tracingHalfField` still uses the bisected
 value so rendered ray bundles stay safely within what real surfaces can carry.
 
+**Analysis half-field.** `computeFieldGeometryAtState()` recomputes that same paraxial-seeded estimate for the current
+focus/zoom state; the diagram's off-axis fan uses it, so it must stay in step with `L.halfField`. Analysis tabs and the
+Summary field of view instead use `computeAnalysisFieldGeometryAtState()`, which follows the real chief ray, solved
+through the stop centre, out to the format corner (`imageCircleMm`, else the `imageFormat` diagonal, full-frame when
+missing) and ends where a clear aperture first clips it. It searches both ways from the raw estimate, because pupil
+aberration and distortion move real chief rays off their paraxial heights in either direction. Each probe after the
+first re-solves from its converged neighbour, and the final field is confirmed with the full solve the analyses use
+(an unseeded walk runs when it fails), so the edge never lands where analysis chief rays fall back. Declared-coverage
+projections (fisheye, rectilinear `fullFieldDeg`/`maxTraceFieldDeg`) and folded paths keep the raw field, capped to
+the format. `npm run audit:field-coverage` reports each lens's modeled edge against its corner and names the stopping
+rim.
+
 `paraxialTrace()` is exported for low-level first-order tracing tests.
 
 ### Rear Plates
@@ -188,6 +200,9 @@ per plate (reserved labels `RP<n>a` / `RP<n>b`) and one element per plate, all m
 Because the expansion runs before `S`, `N`, `labelIdx` and every derived constant, EFL, pupils, field limits, prepared
 states, the exact tracer, chromatic dispersion and all analyses see the plate, with no per-analysis correction.
 `RuntimeLens.data` holds the expanded data, so normalization stays index-aligned.
+
+Generated plate rims are 1.5 × the larger of the largest authored `sd` and the image semi-diagonal, so a plate never
+clips or limits the field; a published plate `sd` overrides that.
 
 What is hidden, and where:
 
@@ -244,7 +259,12 @@ The public RuntimeLens trace adapters route through the prepared-state sequentia
 traces: the result preserves already solved hits for display and diagnostics, but does not fabricate fallback
 surface points after a miss. Aperture/semi-diameter clips remain distinct from misses; ghost mode can retain
 real clipped hit points, and the diagram display layer renders only the first clipped span so zoomed SVG
-bounds stay finite.
+bounds stay finite. The sequential search for a ray's first-surface hit starts `|sag(sd)| + 1` mm ahead of the
+first vertex (`sequentialSurfaceMinT()`, the chief-ray solver's launch plane), not at a far-upstream origin such as
+the diagram lead: aspheric polynomials diverge outside their clear aperture, and a steep wide-field ray would
+otherwise land on that extension. For the same reason `math/intersection.ts` evaluates a conic only inside its domain
+radius (`finiteRadiusLimit()`): samples past it count as no surface rather than as the clamped sag, and when a scan
+step crosses the domain edge the edge is bisected and sampled, so a root just inside it still brackets.
 
 The exact tracer in `internal/exactSurfaceTrace.ts` exposes these entry points:
 

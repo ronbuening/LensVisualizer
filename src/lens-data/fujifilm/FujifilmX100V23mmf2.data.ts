@@ -25,6 +25,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    intrusion limit applies. New values are measured off FIG. 2:   ║
  * ║    L31 9.4, L32 9.3/11.0, L33 12.1 mm. L32's front sd is its      ║
  * ║    optical aperture; the figure's 11.0 mm rectangle is the blank. ║
+ * ║    L23 (7A/8A) was raised to pass the traced chief ray to the     ║
+ * ║    patent's ω = 31.0° / Ymax = 14.20 mm corner (2026-09-24        ║
+ * ║    field-coverage audit).                                         ║
  * ║                                                                    ║
  * ║  NOTE ON OPTICAL MEMBER PP:                                        ║
  * ║    Patent surfaces 15–17: 3.504 mm air, PP (t = 1.300 mm, nd =    ║
@@ -187,8 +190,8 @@ const LENS_DATA = {
     { label: "4", R: -10.58606, d: 0.61, nd: 1.69895, elemId: 3, sd: 6.8 }, // L21 front
     { label: "5", R: 42.295, d: 4.35, nd: 1.7725, elemId: 4, sd: 7.3 }, // L21→L22 cemented junction
     { label: "6", R: -15.33039, d: 0.2, nd: 1.0, elemId: 0, sd: 7.4 }, // L22 rear → air
-    { label: "7A", R: 34.72225, d: 5.0, nd: 1.8078, elemId: 5, sd: 6.3 }, // L23 front (asph)
-    { label: "8A", R: -33.47682, d: 1.1, nd: 1.0, elemId: 0, sd: 6.2 }, // L23 rear (asph) → air [variable gap]
+    { label: "7A", R: 34.72225, d: 5.0, nd: 1.8078, elemId: 5, sd: 7.9 }, // L23 front (asph)
+    { label: "8A", R: -33.47682, d: 1.1, nd: 1.0, elemId: 0, sd: 8.5 }, // L23 rear (asph) → air [variable gap]
 
     // ── G3: three singlets L31, L32, L33 (fixed during focus) ──
     { label: "9A", R: 666.57127, d: 2.84, nd: 1.51633, elemId: 6, sd: 9.4 }, // L31 front (asph)

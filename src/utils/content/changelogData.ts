@@ -36,6 +36,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-09-25",
     type: "fix",
+    summary: "Brought the Fujifilm XF 18mm f/2 into focus by adding its patent cover plate",
+  },
+  {
+    date: "2026-09-25",
+    type: "fix",
     summary: "Restored the Viltrox AF 27mm f/1.2’s patent cover plate and physical image-plane gaps",
   },
   {
@@ -126,6 +131,21 @@ export const CHANGELOG: ChangelogEntry[] = [
     date: "2026-09-24",
     type: "improvement",
     summary: "Made Zoom span both rows at the right of the desktop analysis buttons",
+  },
+  {
+    date: "2026-09-24",
+    type: "fix",
+    summary: "Enlarged undersized element rims on 68 lenses so their analysis reaches the image corner",
+  },
+  {
+    date: "2026-09-24",
+    type: "fix",
+    summary: "Extended the analysis tabs to the sensor corner on wide lenses that used to stop short",
+  },
+  {
+    date: "2026-09-24",
+    type: "fix",
+    summary: "Fixed corner rays missing the front asphere on ultra-wides like the Nikon Z 14-24mm",
   },
   {
     date: "2026-09-24",

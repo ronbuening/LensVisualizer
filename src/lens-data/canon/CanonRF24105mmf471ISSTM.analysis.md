@@ -189,7 +189,7 @@ The data file also carries `A14 = 0` on both surfaces because the current LensVi
 
 Because no scaling is applied, these coefficients remain at their native patent scale. No coefficient transformation is required.
 
-The patent does not publish the clear aperture of the aspherical element. The asphere departures are therefore evaluated only at the verified authored semi-diameters. At **h = 7.7 mm** on `22A`, the modeled sag is **−0.377177 mm** more negative than the spherical base. At **h = 8.3 mm** on `23A`, the departure is **−0.440645 mm**. These are model departures at inferred, geometry-validated semi-diameters, not patent-listed edge departures.
+The patent does not publish the clear aperture of the aspherical element. The asphere departures are therefore evaluated only at the verified authored semi-diameters. At **h = 11.9 mm** on `22A`, the modeled sag is **−1.773518 mm** more negative than the spherical base. At **h = 12.8 mm** on `23A`, the departure is **−1.962182 mm**. These are model departures at inferred, geometry-validated semi-diameters, not patent-listed edge departures.
 
 The patent states that an aspherical second lens from the image side is effective for field-curvature correction (¶0054). It does not establish whether the production asphere is molded glass, polished glass, resin-composite, or another manufacturing form, so no manufacturing method is assigned here.
 
@@ -237,7 +237,7 @@ The small residuals are consistent with the patent's rounded radii, spacings, an
 
 Surface-by-surface Petzval summation using $\phi/(n n')$ gives **0.000945859774 mm⁻¹** for the active prescription. The value is invariant with zoom because the refracting surfaces and glass indices do not change; only the inter-unit spacings change.
 
-The geometry checks use the current semi-diameter policy rather than the obsolete universal radius-ratio rule. Across the three authored zoom states the minimum element thickness remains positive, the maximum actual modeled rim angle is **43.452889°**, all conic domains are valid, shared-gap surfaces retain positive clearance, and the representative on-axis/off-axis ray sets remain within the non-stop surface apertures. These results validate the authored visualization geometry but do not convert the inferred semi-diameters into patent facts.
+The geometry checks use the current semi-diameter policy rather than the obsolete universal radius-ratio rule. Across the three authored zoom states the minimum element thickness remains positive, the maximum actual modeled rim angle is **51.979965°** (surface 4), all conic domains are valid, shared-gap surfaces retain positive clearance, and the representative on-axis/off-axis ray sets remain within the non-stop surface apertures. These results validate the authored visualization geometry but do not convert the inferred semi-diameters into patent facts.
 
 ## Sources
 

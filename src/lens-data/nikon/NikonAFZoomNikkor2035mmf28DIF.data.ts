@@ -44,6 +44,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║   • Values include approximately 5–10% radial clearance over the governing traced ║
  * ║     ray heights, then were checked for edge thickness, actual rim slope, shared-  ║
  * ║     band cross-gap intrusion, and asphere/conic limits.                            ║
+ * ║   • Surfaces 1A-8 were raised to pass the real chief ray to the FX corner at the  ║
+ * ║     wide end (47.7°; Table 1's paraxial 2ω = 93.1° reaches 21.63 mm) in the       ║
+ * ║     2026-09-24 field-coverage audit.                                              ║
  * ║                                                                                    ║
  * ║ GLASS:                                                                             ║
  * ║   • The patent publishes d-line nd / νd only and names no glass manufacturer.     ║
@@ -259,14 +262,14 @@ const LENS_DATA = {
 
   /* ── Surface prescription: Example 1, wide-angle infinity base state ── */
   surfaces: [
-    { label: "1A", R: 49.529, d: 2.5, nd: 1.77279, elemId: 1, sd: 20.5 },
-    { label: "2", R: 19.409, d: 13, nd: 1, elemId: 0, sd: 16 },
-    { label: "3", R: -82.454, d: 2, nd: 1.78797, elemId: 2, sd: 12.5 },
-    { label: "4", R: 38.992, d: 2.8, nd: 1, elemId: 0, sd: 11.5 },
-    { label: "5", R: 153.969, d: 4, nd: 1.75692, elemId: 3, sd: 11.3 },
-    { label: "6", R: -153.969, d: 0.2, nd: 1, elemId: 0, sd: 10.8 },
-    { label: "7", R: 34.815, d: 3.5, nd: 1.75692, elemId: 4, sd: 11 },
-    { label: "8", R: 51.692, d: 17.8289, nd: 1, elemId: 0, sd: 11 },
+    { label: "1A", R: 49.529, d: 2.5, nd: 1.77279, elemId: 1, sd: 21.2 },
+    { label: "2", R: 19.409, d: 13, nd: 1, elemId: 0, sd: 16.5 },
+    { label: "3", R: -82.454, d: 2, nd: 1.78797, elemId: 2, sd: 14.3 },
+    { label: "4", R: 38.992, d: 2.8, nd: 1, elemId: 0, sd: 13.2 },
+    { label: "5", R: 153.969, d: 4, nd: 1.75692, elemId: 3, sd: 13 },
+    { label: "6", R: -153.969, d: 0.2, nd: 1, elemId: 0, sd: 12.7 },
+    { label: "7", R: 34.815, d: 3.5, nd: 1.75692, elemId: 4, sd: 12 },
+    { label: "8", R: 51.692, d: 17.8289, nd: 1, elemId: 0, sd: 12 },
     { label: "9", R: 43.02, d: 1.2, nd: 1.71736, elemId: 5, sd: 11.5 },
     { label: "10", R: 22.359, d: 5.5, nd: 1.5186, elemId: 6, sd: 11.5 },
     { label: "11", R: -56.755, d: 3.3045, nd: 1, elemId: 0, sd: 11.7 },

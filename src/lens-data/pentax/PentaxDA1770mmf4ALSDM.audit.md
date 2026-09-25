@@ -34,3 +34,27 @@ the surface-geometry and image-circle gates.
 
 The lens improves to 17/19 coefficient-backed material layers. The two remaining Abbe rows are the bonded resin
 layers.
+
+## 2026-09-24 — Semi-diameters raised to the traced format corner
+
+Table 4 (PDF p. 16) prints half-angles W = 40.3° / 21.8° / 11.6° and no image height; at those angles the traced chief
+ray lands just beyond the APS-C corner (14.23 / 14.27 / 14.18 mm), so the design covers it. The 2026-07-28 entry cut
+surfaces 4/5 from 21.0/19.6 to 15.0/14.0 mm to restore "the distinctly smaller third front element shown in Figure
+13", and that rim then clipped the real chief ray (solved through the stop centre) at every station: 33.9° at wide
+(11.33 mm, 80% of the corner), 16.5° at middle (74%) and 8.9° at tele (75%). Figure 13 (PDF p. 8, rendered at 600 dpi;
+r1 to r31 94.97 mm = 2124 px, 0.0447 mm/px) shows that entry shrank the wrong element. L3 (surfaces 4/5, the second
+tall meniscus) is drawn as tall as the front cemented pair, both faces meeting a flat edge about 545 px ≈ 24.4 mm from
+the axis (the pair measures ≈ 25.5 mm); the distinctly smaller element is L4 (6A–8, ≈ 13.1 mm, matching its stored
+13.2 mm). At the patent angles the chief ray needs surface 4 ≥ 20.00 and surface 5 ≥ 18.70 mm (middle station).
+Restoring 21.0/19.6 would clear every station, but L3 takes the drawn 24.4 mm on both faces, the larger of figure and
+floor.
+
+| Surface | Before | After | Justification |
+|---|---|---|---|
+| 4 | 15.0 | 24.4 | Fig. 13 L3 rim ≈ 24.4 mm; the middle chief ray at the patent's 21.8° needs 20.00 mm |
+| 5 | 14.0 | 24.4 | Fig. 13 L3 rim ≈ 24.4 mm; the middle chief ray at the patent's 21.8° needs 18.70 mm |
+
+The validator accepts the values (L3 edge thickness 1.90 mm at 24.4 mm), the image-circle floor still reports nothing
+undersized, and all three stations now reach the corner (40.2° / 21.7° / 11.6°, 100%) with every rim clear. The
+2026-07-28 rear-G5 changes are unaffected. No aspheric surface changed, and the analysis file quotes no L3
+semi-diameter.

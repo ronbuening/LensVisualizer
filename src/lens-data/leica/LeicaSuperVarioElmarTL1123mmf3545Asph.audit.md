@@ -72,3 +72,23 @@ The Gr2 trim changes the rendered order to match the drawing. Before, L9 and L10
 The surface validator reports no errors at all three zoom states, and the image-circle floor check passes. In the exact meridional trace at the printed F-numbers, nothing clips the axial beam and nothing blocks the chief ray at the middle and tele stations (Y = 14.2 mm) or at the wide station's reachable 44.7° field (10.47 mm). Off-axis side vignetting at L9–L10 rises from about 15–22 % to about 29–32 %, comparable with the existing D2 value (27–31 %). The asphere departures at the new rims are +0.017 mm (20A, at 7.8 mm) and +0.179 mm (21A, at 7.8 mm); the analysis table was updated. All 14 elements still resolve to catalog glasses with Sellmeier data (L2 through the documented L-LAH84 proxy), so the colour trace uses real dispersion. Element `type` strings match the R signs. The aspheric markers sit on 3A, 4A, 20A and 21A only. The D1–D3 and Gr1–Gr4 ranges match the patent group table (¶0113).
 
 Open limitations retained: the wide-end real field stops at about 10.5 mm image height (surface 2 near-hemisphere), the SDs are modeled, and the iris schedule is inferred from the F-numbers rather than published.
+
+## 2026-09-24 — Surface 2 raised to pass the patent's wide field
+
+JP 2016-133764 A Example 6 prints ω = 51.489° at the wide end with y'max = 14.200 mm (¶0112, PDF p. 24); the angle is
+the paraxial atan(14.2 / 11.3), and Fig. 14(C) shows about −10% distortion there. The real chief ray at 51.489° (solved
+through the stop centre) lands at 12.79 mm, 90% of the APS-C corner, so the wide end relies on distortion correction and
+12.79 mm is its design image height. The 14.0 mm surface-2 rim clipped that chief ray, which crosses it at 14.22 mm, so
+the wide analysis field ended at 87.7% of the corner (12.43 mm). The 2026-09-23 note that chief rays miss surface 2 past
+about 44.9° no longer matches the current trace: the chief ray reaches surface 2 at every field up to the corner, and
+the rim, not a miss, stopped it. Surface 2 takes its floor + ~0.5 mm; L1 is a strong meniscus, so surface 1 (20.2 mm,
+from condition (3)) is unchanged. Reaching the full APS-C corner would need a 55.19° field and surfaces 1/2/3A/4A of at
+least 21.07/14.93/14.66/12.51 mm, which the patent does not support.
+
+| Surface | Before | After | Justification |
+|---|---|---|---|
+| 2 | 14.0 | 14.8 | wide chief ray at the printed ω = 51.489° crosses it at 14.22 mm + clearance; 62.3° rim |
+
+The validator accepts the new value and the image-circle floor still reports nothing undersized. The wide analysis field
+now runs to 53.0° (13.34 mm, 94% of the corner), stopped by the 4A rim; the middle and tele stations still reach 100%.
+The data header and the analysis paragraph on the wide-end real field were updated to match.

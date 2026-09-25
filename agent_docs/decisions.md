@@ -40,6 +40,7 @@ One dated bullet per decision with a source pointer; delete a bullet only when t
 
 ## Rejected approaches
 
+- 2026-09-24 — Solving the real chief ray inside `computeFieldGeometryAtState2` was measured and rejected: it moved the raw half-field at ~600 of 1,422 stations, redrawing the off-axis diagram fan site-wide and splitting it from the legend's static `L.halfField`. Real-chief-ray coverage lives in `computeAnalysisFieldGeometryAtState2`; move the raw bound only together with `buildLens`'s `halfField`/`zoomHalfFields`. (field-coverage PR)
 - 2026-09-09 — Gitignoring `agent_docs/generated/` reports or `agent_docs/benchmarks/runs/*.json`, and rewriting git history to shrink them, are rejected (reaffirmed in the documentation rationalization); nothing reads them back, but they stay committed. Slim payloads instead. (code-health plan D5/D6; 2026-09-09 review)
 - 2026-09-09 — Replacing `AGENTS.md` with a symlink to `CLAUDE.md` is rejected (Windows checkouts, some loaders); it stays a byte copy guarded by `__tests__/docDrift.test.ts`. (2026-09-09 review)
 - 2026-09-09 — Tier subfolders under `agent_docs/` (`queues/`, `workflow/`) are rejected; CONTRIBUTING, README, and hundreds of `*.audit.md` sidecars link the flat recipe paths, so tags in `agent_docs/README.md` carry the tier. (2026-09-09 review)
@@ -88,6 +89,8 @@ One dated bullet per decision with a source pointer; delete a bullet only when t
 
 ## Checked and excluded (lens data)
 
+- 2026-09-24 — The image-circle floor's `wide` rows for the Zeiss Biogon 21mm f/4.5 and Hologon 15mm f/8, Schneider Technika Super-Angulon 75mm f/8, Super-Angulon 90mm f/8 and Super-Angulon 75mm f/5.6, Rodenstock Grandagon-N 75mm f/6.8, Nikon Nikkor-SW 75mm f/4.5 and Nikkor-O 2.1cm f/4, and Yashica Yashinon-DX 21mm f/3.3 are false positives: a converged corner chief ray clears every rim (`npm run audit:field-coverage`). Leave those semi-diameters alone. (field-coverage PR)
+- 2026-09-24 — These field-coverage stations stay below 90% of the format corner by design; the traced chief ray reaches the patent's own field with every rim clear, so leave their rims alone. Wide ends whose patent prints a smaller image height, left to in-camera distortion correction: Canon RF 24-50mm (Y 18.10 mm), RF 24mm f/1.4 L VCM (f·tanω 18.72 mm) and RF 16mm f/2.8 (Y 18.20 mm), and Panasonic LX100 II (Y 8.529 mm), LX7 (Y 3.821 mm) and FZ300 (Y 3.41 mm). Declared field: the Carl Zeiss Jena Sonnar 50mm f/1.5's 42° is the patent's "picture angle about 42°"; its rims would pass the 24×36 corner. (field-coverage PR; `agent_docs/sd-audit-queue.md` Section F)
 - 2026-07 — Odd-order asphere backfill needed nothing for `SigmaDGDNA35mmf14` and `NikonNikkorAFS1635mmf4` (odd coefficients all zero in the cited example), `NikonAFS28f14E` and `VoigtlanderNokton50f1` ("odd-order" refers to aberration symmetry, not coefficients), or `CanonEF2880mmf3556II` (the refit mention is unrelated). The odd-asphere queue closed in July 2026. (odd-asphere-backfill.md, deleted 2026-09-09)
 
 ## Corrections to earlier framing

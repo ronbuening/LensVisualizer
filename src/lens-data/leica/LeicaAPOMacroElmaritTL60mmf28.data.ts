@@ -15,6 +15,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    marginal + chief ray trace (60 % chief-ray fraction at full    ║
  * ║    field) with ~8 % mechanical clearance.  Validated for edge     ║
  * ║    thickness ≥ 0.3 mm and cross-gap sag intrusion ≤ 90 %.        ║
+ * ║    Surfaces 16-19 (L33, L34) were later raised to pass the         ║
+ * ║    traced chief ray to the APS-C corner (14.18 mm at 13.2°;        ║
+ * ║    patent y'max = 14.200 mm, ω = 13.319°); the old rims clipped    ║
+ * ║    it from 9.6° (2026-09-24 field-coverage audit).                 ║
  * ║                                                                    ║
  * ║  NOTE ON COVER GLASS:                                              ║
  * ║    Patent surfaces 21–22 (1.500 mm plate, nd 1.52249, νd 59.48)   ║
@@ -210,10 +214,10 @@ const LENS_DATA = {
     { label: "13", R: -814.44, d: 3.066, nd: 1.91082, elemId: 7, sd: 9.5 }, // L31 front
     { label: "14", R: -31.27, d: 1.01, nd: 1.51742, elemId: 8, sd: 9.5 }, // L31–L32 junction
     { label: "15", R: 19.473, d: 12.475, nd: 1.0, elemId: 0, sd: 9.5 }, // L32 rear → air
-    { label: "16", R: -15.039, d: 0.9, nd: 1.56883, elemId: 9, sd: 8.5 }, // L33 front
-    { label: "17", R: -95.771, d: 0.3, nd: 1.0, elemId: 0, sd: 8.5 }, // L33 rear → air
-    { label: "18", R: 38.336, d: 4.047, nd: 1.72916, elemId: 10, sd: 8.5 }, // L34 front
-    { label: "19", R: -721.431, d: 13.369, nd: 1.0, elemId: 0, sd: 8.0 }, // L34 rear → cover glass
+    { label: "16", R: -15.039, d: 0.9, nd: 1.56883, elemId: 9, sd: 9.6 }, // L33 front
+    { label: "17", R: -95.771, d: 0.3, nd: 1.0, elemId: 0, sd: 10.7 }, // L33 rear → air
+    { label: "18", R: 38.336, d: 4.047, nd: 1.72916, elemId: 10, sd: 13.0 }, // L34 front
+    { label: "19", R: -721.431, d: 13.369, nd: 1.0, elemId: 0, sd: 12.2 }, // L34 rear → cover glass
   ],
 
   /* ── Cover glass (patent surfaces 21–22): traced, not drawn ── */

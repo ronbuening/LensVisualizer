@@ -55,6 +55,32 @@ export function sequentialSurfaceMaxT(
 }
 
 /**
+ * Compute where the search for a ray's first-surface hit starts.
+ *
+ * Aspheric polynomials are fitted only over the clear aperture and diverge outside it. A steep ray launched far
+ * upstream, such as a wide-field chief ray from the diagram lead, is well outside the aperture there and can meet
+ * that non-physical extension before reaching the glass. The glass never lies more than its rim sag ahead of the
+ * vertex, so the search starts one millimetre ahead of that plane: the launch plane the chief-ray solver uses.
+ *
+ * @param state - prepared optical state
+ * @param surfaceIndex - surface being targeted
+ * @param origin - current ray origin
+ * @param direction - normalized ray direction
+ * @returns non-negative parametric minT; 0 for later surfaces and for origins already past the start plane
+ */
+export function sequentialSurfaceMinT(
+  state: PreparedOpticalState,
+  surfaceIndex: number,
+  origin: Vec3,
+  direction: Vec3,
+): number {
+  if (surfaceIndex !== 0 || !(direction[2] > 1e-12)) return 0;
+  const surface = state.surfaces[0];
+  const startZ = surface.z - Math.abs(surface.profile.sag(surface.sd ?? 0)) - 1;
+  return startZ > origin[2] ? (startZ - origin[2]) / direction[2] : 0;
+}
+
+/**
  * Compute a bounded search length for an explicitly targeted surface.
  *
  * Tilted planes and grazing vector launches cannot rely on z projection alone,

@@ -26,3 +26,25 @@ All revised asphere diagnostics were recomputed at the new modeled apertures. Th
 ### Motion
 
 - Rechecked the wide/middle/tele sequence and four zoom spacings. The 16.48 / 35.00 / 82.45 mm ordering is correct; all four functional groups move objectward overall, while G2 retains the patent's small imageward wide-to-mid reversal before moving objectward to tele. No close-focus motion is authored because the source publishes none.
+
+## 2026-09-24 — Semi-diameters raised to the traced format corner
+
+Table 2 (PDF p. 10) prints Y = 14.24 mm at every zoom state (half field 42.1° / 21.8° / 9.6°), just past the APS-C
+corner (14.175 mm). At wide, the L21 resin layer and its glass junction (surfaces 6A/7, both 11.0 mm) clipped the real
+chief ray (solved through the stop centre) from 37.8° (12.26 mm, 86% of the corner); middle and tele already reached
+the corner. At the patent Y (42.12°) the wide chief ray needs 6A ≥ 12.59 and 7 ≥ 12.50 mm, and surface 8 only 9.47 mm.
+Both clipping surfaces take floor + ~0.5 mm and stay equal, because the resin layer cannot overhang the glass it sits
+on. Surface 8 stays at 11.0 mm: the 2026-08-14 entry capped it at its 12.493 mm radius, and L21 is a strong meniscus,
+so it was not scaled with surface 7. No figure measurement was used.
+
+| Surface | Before | After | Justification |
+|---|---|---|---|
+| 6A | 11.0 | 13.1 | wide chief ray to Y 12.59 mm + clearance; scan to 15.72 mm shows no turnover |
+| 7 | 11.0 | 13.1 | wide chief ray to Y 12.50 mm; kept equal to the resin layer it carries |
+
+The validator accepts the values, the image-circle floor still reports nothing undersized, and all three stations now
+reach the corner (42.0° / 21.7° / 9.6° → 14.17–14.18 mm, 100%) with every rim clear. The resin layer's rim thickness
+falls to 0.0994 mm at 13.1 mm (was 0.1766 mm at 11.0 mm), and the 6A rim departure is now +332.2 µm (was +184.2 µm).
+`HDPentaxDA1685mmF3556EDDCWR.analysis.md` quotes both and was updated; the same sentence's maximum rim slope, still
+51.301° from the pre-2026-08-14 rims, now reads the stored 61.702° (surface 8), and a sentence notes that the chief
+ray is no longer clipped.

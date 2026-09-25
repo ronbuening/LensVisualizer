@@ -36,6 +36,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    + chief ray trace at 60% field with 8% mechanical clearance.   ║
  * ║    Front barrel constraint ≈ 20 mm outer diameter (≈ 9 mm max SD ║
  * ║    for objective/relay sections). Cemented groups use uniform SD.  ║
+ * ║    S32 (L17 rear) and S44-S47 (L24, L25) were later raised to      ║
+ * ║    pass the traced chief ray to the full-frame corner (21.65 mm    ║
+ * ║    at 44.5°; patent ω = 44.6°); the old rims clipped it from 38.6° ║
+ * ║    (2026-09-24 field-coverage audit).                              ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
@@ -459,7 +463,7 @@ const LENS_DATA = {
     { label: "29", R: 7.799, d: 11.8794, nd: 1.84666, elemId: 18, sd: 4.7 }, // L15→L16 junction (D6)
     { label: "30", R: -21.58, d: 0.54, nd: 1.0, elemId: 0, sd: 4.7 }, // L16 rear → air
     { label: "31", R: -11.452, d: 12.0, nd: 1.84666, elemId: 19, sd: 4.1 }, // L17 front
-    { label: "32", R: -18.876, d: 24.9577, nd: 1.0, elemId: 0, sd: 4.1 }, // L17 rear → air
+    { label: "32", R: -18.876, d: 24.9577, nd: 1.0, elemId: 0, sd: 4.7 }, // L17 rear → air
 
     // ── Macro (Magnification) Section ──
     { label: "33", R: 27.795, d: 10.1314, nd: 1.48749, elemId: 20, sd: 6.2 }, // L18 front
@@ -484,10 +488,10 @@ const LENS_DATA = {
     { label: "43", R: -48.42, d: 67.2829, nd: 1.0, elemId: 0, sd: 11.5 }, // L23/Foc rear → air, variable gap D(46)
 
     // ── Rear Correctors ──
-    { label: "44", R: -17.67, d: 2.0, nd: 1.6727, elemId: 26, sd: 5.9 }, // L24 front
-    { label: "45", R: 31.177, d: 1.1205, nd: 1.0, elemId: 0, sd: 6.1 }, // L24 rear → air
-    { label: "46", R: 1e15, d: 5.0, nd: 1.83481, elemId: 27, sd: 6.4 }, // L25 front (plano-convex)
-    { label: "47", R: -46.7, d: 39.154, nd: 1.0, elemId: 0, sd: 7.2 }, // L25 rear → BFD
+    { label: "44", R: -17.67, d: 2.0, nd: 1.6727, elemId: 26, sd: 7.4 }, // L24 front
+    { label: "45", R: 31.177, d: 1.1205, nd: 1.0, elemId: 0, sd: 7.7 }, // L24 rear → air
+    { label: "46", R: 1e15, d: 5.0, nd: 1.83481, elemId: 27, sd: 7.9 }, // L25 front (plano-convex)
+    { label: "47", R: -46.7, d: 39.154, nd: 1.0, elemId: 0, sd: 8.9 }, // L25 rear → BFD
   ],
 
   /* ── Aspherical coefficients ── */

@@ -24,7 +24,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ cross-gap sag intrusion. The very narrow clear apertures around    ║
  * ║ surfaces 7-13A, 25-27A, and 33-35A are renderer-safe mechanical    ║
  * ║ apertures for tightly curved, thin-gapped lens pairs, not patent   ║
- * ║ numerical apertures.                                                ║
+ * ║ numerical apertures. Surfaces 6A, 7, 10-13A and 34 were raised to  ║
+ * ║ pass the traced chief ray at the patent's wide-end ω = 38.26°      ║
+ * ║ (2ω = 76.52°); a thickness misprint in Table 2 keeps the full      ║
+ * ║ 21.6 mm corner out of reach (2026-09-24 field-coverage audit).     ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  *
  * Image-plane audit: Table 2 S16 prints .100 mm, corrected from 1.000.
@@ -314,14 +317,14 @@ const LENS_DATA = {
     { label: "4", R: 68.1452, d: 6.7, nd: 1.603, elemId: 3, sd: 30.0 },
     { label: "5", R: 484.4905, d: 2.534, nd: 1.0, elemId: 0, sd: 30.0 },
 
-    { label: "6A", R: 590.856, d: 1.3, nd: 1.76546, elemId: 4, sd: 14.7 },
-    { label: "7", R: 18.5437, d: 7.0, nd: 1.0, elemId: 0, sd: 11.8 },
+    { label: "6A", R: 590.856, d: 1.3, nd: 1.76546, elemId: 4, sd: 15.8 },
+    { label: "7", R: 18.5437, d: 7.0, nd: 1.0, elemId: 0, sd: 12.4 },
     { label: "8", R: -38.3401, d: 1.0, nd: 1.804, elemId: 5, sd: 11.8 },
     { label: "9", R: -310.1534, d: 0.1, nd: 1.0, elemId: 0, sd: 11.8 },
-    { label: "10", R: 38.1237, d: 4.85, nd: 1.84666, elemId: 6, sd: 8.75 },
-    { label: "11", R: -44.8791, d: 0.95, nd: 1.0, elemId: 0, sd: 7.0 },
-    { label: "12", R: -29.434, d: 1.0, nd: 1.804, elemId: 7, sd: 7.0 },
-    { label: "13A", R: 99.9238, d: 30.341, nd: 1.0, elemId: 0, sd: 8.75 },
+    { label: "10", R: 38.1237, d: 4.85, nd: 1.84666, elemId: 6, sd: 11.1 },
+    { label: "11", R: -44.8791, d: 0.95, nd: 1.0, elemId: 0, sd: 10.5 },
+    { label: "12", R: -29.434, d: 1.0, nd: 1.804, elemId: 7, sd: 10.0 },
+    { label: "13A", R: 99.9238, d: 30.341, nd: 1.0, elemId: 0, sd: 9.4 },
 
     { label: "STO", R: 1e15, d: 0.5, nd: 1.0, elemId: 0, sd: 10.5 },
     { label: "15", R: 53.396, d: 3.4, nd: 1.72916, elemId: 8, sd: 11.2 },
@@ -345,7 +348,7 @@ const LENS_DATA = {
     { label: "31", R: 59.3963, d: 6.9, nd: 1.54814, elemId: 18, sd: 12.8 },
     { label: "32", R: -21.2296, d: 1.1, nd: 1.90366, elemId: 19, sd: 12.8 },
     { label: "33", R: -43.5914, d: 1.6, nd: 1.0, elemId: 0, sd: 11.2 },
-    { label: "34", R: -28.9812, d: 1.3, nd: 1.8208, elemId: 20, sd: 9.0 },
+    { label: "34", R: -28.9812, d: 1.3, nd: 1.8208, elemId: 20, sd: 11.1 },
     { label: "35A", R: -136.6351, d: 38.422, nd: 1.0, elemId: 0, sd: 11.2 },
   ],
 

@@ -38,3 +38,22 @@ Catalog version: local working tree, 2026-06-25
 - Visually rechecked `patents/US2084309.pdf`, PDF page 3. L7 remains `nd = 1.5333`, `νd = 48.9` (code `533489`).
 - OHARA S-TIL6 is within the runtime catalog-equivalent window (`Δnd = -0.001583`, `Δνd = -0.059`).
 - Relabeled L7 as an S-TIL6 optical equivalent while leaving the production supplier unspecified. No prescription geometry changed.
+
+## 2026-09-24 — Semi-diameters raised to the traced format corner
+
+US 2,084,309 prints no field angle or image height (the text speaks only of a "large image angle"; the example table
+on PDF p.3 lists radii, thicknesses and glasses), but the production 3.5 cm lens covers 24×36 (the specs quote a 63.4°
+diagonal field). The estimated rear rim of L7 (surface 11, 12.4 mm) clipped the real chief ray (solved through the stop
+centre) from 26.7°, leaving the analysis field at 84% of the 21.65 mm corner. The traced corner chief ray (30.64°) needs
+surface 11 ≥ 14.29 mm; no other rim clips. The drawing (PDF p.1) is close to scale — surface vertices land within 0.45 mm
+of the prescription over the 36.90 mm R1–R11 span (0.0444 mm/px at 300 dpi) — and draws R11 out to 15.1–15.3 mm
+(mean 15.19 mm) with the prescription's sag at that height, so surface 11 follows the figure; that also clears the
+15.19 mm image-circle floor that listed it. R10 is drawn ending at about 9.6 mm with a bevel out to the element's outer
+edge, and its corner chief ray is 8.49 mm, so the strongly curved front of L7 keeps its 10.2 mm.
+
+| Surface | Before | After | Justification |
+|---|---|---|---|
+| 11 | 12.4 | 15.2 | corner chief ray 14.29 mm; R11 height on the patent drawing (15.1–15.3 mm) |
+
+The validator accepts the new value, the traced edge now reaches 21.65 mm at 30.6° with every rim clear, and the
+image-circle floor no longer reports surface 11. No aspheric surface changed.

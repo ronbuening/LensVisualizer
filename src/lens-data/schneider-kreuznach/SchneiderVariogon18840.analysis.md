@@ -258,10 +258,13 @@ The Figure 1 optical-rim review enlarged surfaces 6/7 from 8.0/7.3 to 11.2/10.2 
 No semi-diameters are published in the patent. The data's clear apertures are modeled from the ray envelope, the patent
 section, and the current geometry constraints. The enlarged rims remain constrained by positive edge thickness and the shared air-gap intrusion limit; these are modeled clear apertures, not manufacturer dimensions.
 
-At 0.6 of the source-frame half-field, the independent exact spherical-meridional sampler records clipping of one outer
-wide-end pupil sample at surface 10, the air boundary immediately before moving component III. That result is retained as
-modeled vignetting rather than enlarging surfaces 10 and 11 enough to violate the tele-end shared-gap clearance rule. It
-does not establish the production lens's full-field vignetting, because the source does not publish measured production vignetting.
+At 0.6 of the source-frame half-field, an exact meridional pupil scan clips the outer wide-end pupil rays at surface 11,
+the front of moving component III. Surface 10, the air boundary immediately before it, was raised from 5.10 to 7.20 mm
+so the wide-end chief ray reaches the 4.22 × 5.69 mm frame corner (3.54 mm at 23.8°); the tele-end shared-gap check
+covers only the radial band both surfaces share, which surface 11's 5.10 mm rim still bounds. The surface-11 clipping is
+retained as modeled vignetting rather than enlarging surface 11 enough to violate the tele-end shared-gap clearance rule.
+It does not establish the production lens's full-field vignetting, because the source does not publish measured
+production vignetting.
 
 ## Patent Conditions and Paraxial Verification
 

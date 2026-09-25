@@ -280,10 +280,10 @@ The source line literally prints `C=2.04161D` with no exponent. The $10^{-9}$ ex
 transcription. It is supported by the neighboring Example 1 coefficient, which is printed as
 $2.86527\times10^{-9}$, and by dimensional sanity: an exponentless coefficient would produce physically impossible sag.
 
-At the data file's estimated $16.0\ \mathrm{mm}$ semi-diameter, the reconstructed polynomial adds
-$+0.648227\ \mathrm{mm}$ to the base-sphere sag. The full local slope is $24.088^\circ$, well below the renderer's rim-angle
-limit. The positive departure is consistent with ¶0012's statement that positive refractive action increases toward the
-periphery.
+At the data file's estimated $22.5\ \mathrm{mm}$ semi-diameter, the reconstructed polynomial adds
+$+2.794651\ \mathrm{mm}$ to the base-sphere sag. The full local slope is $45.081^\circ$, below the renderer's $64.2^\circ$
+rim-angle limit, and it keeps rising out to 27 mm, so the polynomial does not turn over inside the rim. The positive
+departure is consistent with ¶0012's statement that positive refractive action increases toward the periphery.
 
 ## Independent Paraxial Verification
 
@@ -397,8 +397,16 @@ than presenting them as patent or production dimensions. The estimate combines:
 - the relative element proportions in the patent's Fig. 4;
 - explicit geometric checks at infinity and the inferred close-focus state.
 
-These values are sufficient for the default LensVisualizer ray display and geometry validation. They do not reconstruct
-the full-field physical clear apertures or factory barrel dimensions, which the patent does not provide.
+A 2026-09-24 field-coverage audit found that these estimates clipped the real chief ray (solved through the stop centre)
+from about 42°, well short of the patent's $w=56.72^\circ$. Surfaces 1–9 and 23–25 were therefore raised to the
+chief-ray height at 56.72° plus about 0.5 mm; Fig. 4 draws the front elements at roughly these sizes. Surface 2, the
+steep rear of the L1 meniscus, needs 23.88 mm; its 24.4 mm rim is a $69.8^\circ$ slope, past the renderer's default
+$64.2^\circ$ limit ($0.9|R|=23.39\ \mathrm{mm}$ on this sphere), so the data sets a lens-level `maxRimAngleDeg` of
+$72^\circ$. Fig. 4 draws the surface near 25 mm. The traced chief ray now clears every rim at 56.72° and out to the
+57.4° corner.
+
+These values are sufficient for the default LensVisualizer ray display and geometry validation. They remain estimates,
+not factory clear apertures or barrel dimensions, which the patent does not provide.
 
 The design stop semi-diameter is $6.149168\ \mathrm{mm}$. It gives a paraxial entrance-pupil semi-diameter of
 $2.455265\ \mathrm{mm}$ and therefore the patent design aperture $f/2.892$. The marketed `nominalFno` remains f/2.8 in
@@ -410,14 +418,16 @@ The final estimates pass the following checks:
 |---|---:|
 | Default on-axis / 0.6-field displayed rays clipped | 0 / 0 |
 | Minimum calculated element edge thickness | 1.664029 mm at L12 |
-| Maximum front/rear SD ratio for one element | 1.104000 |
-| Maximum positive signed cross-gap intrusion | 62.7980% of the nominal gap |
-| Maximum rim slope | 52.065° |
+| Maximum front/rear SD ratio for one element | 1.307377 at L1 |
+| Maximum positive signed cross-gap intrusion | 67.9462% of the nominal gap |
+| Maximum rim slope | 69.843° at surface 2 (lens limit 72°) |
 | Maximum renderer trim | 0 mm |
 
-The tightest signed cross-gap check is the 0.69 mm air lens between surfaces 20 and 21. At the common 6.8 mm
-semi-diameter its remaining rim gap is $0.256694\ \mathrm{mm}$, so intrusion is 62.7980%, below the 90% project limit.
-No cover glass or sensor stack is included.
+The largest signed cross-gap intrusion is the 6.43 mm air space between surfaces 6 and 7. At the shared 13.6 mm
+semi-diameter its remaining rim gap is $2.061057\ \mathrm{mm}$, so intrusion is 67.9462%, below the 90% project limit.
+The tightest absolute clearance is still the 0.69 mm air lens between surfaces 20 and 21: at the common 6.8 mm
+semi-diameter its remaining rim gap is $0.256694\ \mathrm{mm}$ (62.7980% intrusion). No cover glass or sensor stack is
+included.
 
 ## Aberration-Correction Strategy
 

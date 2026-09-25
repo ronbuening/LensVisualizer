@@ -63,6 +63,28 @@ Additional compatible curves (catalog minus source coordinates):
 | L4 | 1.7899 / 48 (e) | TAF4 | 0.002048 | -0.741 |
 | L6 | 1.7899 / 48 (e) | TAF4 | 0.002048 | -0.741 |
 
+## 2026-09-24 — Semi-diameters raised to the traced format corner
+
+Tableau 1 (fig. 1) prints f = 1,0, rapport d'ouverture 1 : 1,4 and angle de champ 64° (FR_1233449_A.pdf p. 1), so at the
+×35 model scale ω = 32° reaches f·tanω = 21.96 mm, 101% of the 24 × 36 corner (21.65 mm). The Fig. 1 rims adopted on
+2026-09-16 (surfaces 1–2 at 13 mm, 11–12 at 10.4 mm) clipped the real chief ray (solved through the centre of the
+inferred 75%-of-a2 stop, which was not moved) from 28.0°, leaving the analysis field at 86% of the corner. The traced
+corner chief ray (31.53°) needs surface 1 ≥ 14.40, 2 ≥ 13.91, 11 ≥ 11.40 and 12 ≥ 12.36 mm. The figure and the traced
+floor disagree, and the floor governs: the figure-reduced rims cannot pass the patent's own 64° field with the modeled
+stop. Values are floor + ~0.5 mm, with L1 and L7 (equal front and rear rims before) each scaled as one element, L1 by
+surface 1 and L7 by surface 12. L1's edge thins from 1.42 to 0.70 mm at the new rim; L7's from 2.98 to 1.94 mm.
+
+| Surface | Before | After | Justification |
+|---|---|---|---|
+| 1 | 13 | 14.9 | corner chief ray 14.40 mm + clearance; above the Fig. 1 reading |
+| 2 | 13 | 14.9 | corner chief ray 13.91 mm; L1 scaled with surface 1 |
+| 11 | 10.4 | 12.9 | corner chief ray 11.40 mm; L7 scaled with surface 12 |
+| 12 | 10.4 | 12.9 | corner chief ray 12.36 mm + clearance; above the Fig. 1 reading |
+
+The validator accepts the new values, the traced edge now reaches 21.65 mm at 31.5° with every rim clear (100%), and the
+image-circle floor still reports nothing undersized. All surfaces are spherical. The analysis paragraph that quoted the
+13 / 10.4 mm Fig. 1 rims now gives the new values and the reason.
+
 ## 2026-09-25 — MTF image-plane census
 
 Classification: small source prescription/image-distance mismatch; no transcription fix supported.

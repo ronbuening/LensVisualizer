@@ -47,6 +47,20 @@ const OBJECT_PLANE_BRACKET_SCAN_SAMPLES = 96;
 const BOUNDING_SPHERE_BRACKET_SCAN_SAMPLES = 96;
 const CONJUGATE_REFERENCE_PUPIL_FRACTION = 0.1;
 const FOCUS_INFINITY_THRESHOLD = 0.0001;
+/** Step bounds, in degrees, for walking the real chief ray out toward the format corner. */
+const ANALYSIS_FIELD_MIN_STEP_DEG = 0.25;
+const ANALYSIS_FIELD_MAX_STEP_DEG = 5;
+/** Aim a little past the linear corner prediction: image height grows faster than linearly with field. */
+const ANALYSIS_FIELD_STEP_OVERSHOOT = 1.1;
+/** Bisections that settle where a clear aperture first clips the real chief ray (~0.02° on a 5° step). */
+const ANALYSIS_FIELD_CLIP_BISECTIONS = 8;
+/** Regula falsi limit and image-height tolerance (mm) for the corner field found by the walk. */
+const ANALYSIS_FIELD_CORNER_ITERATIONS = 12;
+const ANALYSIS_FIELD_CORNER_TOLERANCE_MM = 1e-4;
+/** Margin under the proportional estimate when stepping down to bracket the corner from a field past it. */
+const CORNER_BRACKET_STEP_DOWN = 0.98;
+/** Times the bracket around a seeded launch height grows (×4 each) before the full solve takes over. */
+const SEEDED_CHIEF_RAY_BRACKET_ATTEMPTS = 4;
 
 /** Entrance-pupil geometry for current focus/zoom state. */
 export interface EntrancePupilState2 {
@@ -153,13 +167,19 @@ export function computeFieldGeometryAtState2(
 }
 
 /**
- * Limit field geometry to the declared image format when the traced edge exceeds it.
+ * Bound field geometry by the real chief ray and the declared image format.
+ *
+ * `computeFieldGeometryAtState2` returns a paraxial vignetting estimate checked against a ray aimed at the paraxial
+ * entrance pupil. Pupil aberration and distortion move real chief rays away from both, in either direction, so the
+ * analysis field follows the chief ray solved through the stop centre instead: it reaches the format corner unless
+ * a clear aperture clips that chief ray first. Declared-coverage projections and folded paths keep the raw field,
+ * capped to the format. A missing format is treated as full-frame.
  *
  * @param focusT - normalized focus position
  * @param zoomT - normalized zoom position
  * @param L - runtime lens prescription
  * @param aberrationT - normalized aberration control position
- * @returns field geometry capped to the active format diagonal when possible
+ * @returns field geometry whose half-field ends at the format corner or at the real chief ray's clipping field
  */
 export function computeAnalysisFieldGeometryAtState2(
   focusT: number,
@@ -174,17 +194,31 @@ export function computeAnalysisFieldGeometryAtState2(
   const maxImageHeight = (L.data?.imageCircleMm ?? format.diagonalMm) / 2;
   if (!Number.isFinite(maxImageHeight) || maxImageHeight <= 0) return geometry;
 
+  const followsRealChiefRay =
+    !L.isFoldedOptics &&
+    !isFisheyeProjection2(L.projection) &&
+    rectilinearProjectionMaxTraceField2(L.projection) === undefined;
+  let limit = followsRealChiefRay
+    ? realChiefRayFieldLimit2(focusT, zoomT, L, geometry, aberrationT, maxImageHeight, true)
+    : null;
+  /* Seeded probes can converge past the field where the full solve the analyses use gives up; walk again unseeded. */
+  if (limit?.settled && !solvesChiefRay2(limit.fieldDeg, focusT, zoomT, L, geometry, aberrationT)) {
+    limit = realChiefRayFieldLimit2(focusT, zoomT, L, geometry, aberrationT, maxImageHeight, false);
+  }
+  if (limit?.settled) return { ...geometry, halfFieldDeg: limit.fieldDeg };
+  const bounded = limit ? { ...geometry, halfFieldDeg: limit.fieldDeg } : geometry;
+
   const zPos = zPositionsForState(focusT, zoomT, L, aberrationT);
   const edgeImageHeight = chiefRayImageHeightAccurate2(
-    geometry.halfFieldDeg,
+    bounded.halfFieldDeg,
     zPos,
     focusT,
     zoomT,
     L,
-    geometry,
+    bounded,
     aberrationT,
   );
-  if (!Number.isFinite(edgeImageHeight) || Math.abs(edgeImageHeight) <= maxImageHeight + 1e-9) return geometry;
+  if (!Number.isFinite(edgeImageHeight) || Math.abs(edgeImageHeight) <= maxImageHeight + 1e-9) return bounded;
 
   const formatHalfFieldDeg = solveFieldAngleForImageHeightAccurate2(
     maxImageHeight,
@@ -192,12 +226,256 @@ export function computeAnalysisFieldGeometryAtState2(
     focusT,
     zoomT,
     L,
-    geometry,
+    bounded,
     aberrationT,
   );
-  if (formatHalfFieldDeg === null || !Number.isFinite(formatHalfFieldDeg)) return geometry;
+  if (formatHalfFieldDeg === null || !Number.isFinite(formatHalfFieldDeg)) return bounded;
 
-  return { ...geometry, halfFieldDeg: Math.min(geometry.halfFieldDeg, Math.max(0, formatHalfFieldDeg)) };
+  return { ...bounded, halfFieldDeg: Math.min(bounded.halfFieldDeg, Math.max(0, formatHalfFieldDeg)) };
+}
+
+interface RealChiefRayProbe2 {
+  clears: boolean;
+  height: number;
+}
+
+/**
+ * Walk the real chief ray from the raw half-field toward the format corner.
+ *
+ * An edge whose chief ray clips steps down until it clears; a clear edge short of the corner steps up, and one past it
+ * steps down. Where a clear aperture starts clipping is settled by bisection, and the corner, once bracketed by clear
+ * fields, by regula falsi on image height. Past the field where image height stops growing, larger fields fold back
+ * inside the image and add nothing. Probes after the first re-solve from their converged neighbour.
+ *
+ * @param focusT - normalized focus position
+ * @param zoomT - normalized zoom position
+ * @param L - runtime lens prescription
+ * @param geometry - raw field geometry for this state
+ * @param aberrationT - normalized aberration control position
+ * @param cornerHeight - format corner image height in mm
+ * @param seeded - re-solve each probe from its converged neighbour instead of running the full solve every time
+ * @returns `settled` with the analysis half-field, or unsettled with a clear field already past the corner that the
+ *   caller caps to the format; null when no clear chief ray is found
+ */
+function realChiefRayFieldLimit2(
+  focusT: number,
+  zoomT: number,
+  L: RuntimeLens,
+  geometry: FieldGeometryState2,
+  aberrationT: number,
+  cornerHeight: number,
+  seeded: boolean,
+): { fieldDeg: number; settled: boolean } | null {
+  const state = prepareState(normalizeRuntimeLens(L), focusT, zoomT, aberrationT);
+  const imageTransfer = state.surfaces[state.surfaces.length - 1]?.d ?? 0;
+  let seed: ChiefRaySolveResult2 | null = null;
+  const probe = (deg: number): RealChiefRayProbe2 | null => {
+    const solve =
+      (seeded && seed && solveChiefRayFromSeed2(deg, state, L, seed)) ||
+      computeChiefRaySolve2(deg, focusT, zoomT, L, geometry, aberrationT);
+    if (solve.status !== "converged" || solve.vectorLaunch) return null;
+    seed = solve;
+    const trace = traceStateSurfacesReal2(state, solve.yLaunch, solve.uField, { checkSemiDiameter: true });
+    if (!Number.isFinite(trace.y) || !Number.isFinite(trace.u)) return null;
+    return { clears: !trace.clipped, height: Math.abs(trace.y + trace.u * imageTransfer) };
+  };
+  const clears = (sample: RealChiefRayProbe2 | null): sample is RealChiefRayProbe2 => sample?.clears === true;
+
+  /* Image height is short of the corner at lo and past it at hi, both clear: Illinois regula falsi. */
+  const cornerField = (lo: number, loHeight: number, hi: number, hiHeight: number) => {
+    let fLo = loHeight - cornerHeight;
+    let fHi = hiHeight - cornerHeight;
+    let side = 0;
+    for (let i = 0; i < ANALYSIS_FIELD_CORNER_ITERATIONS && hi - lo > 1e-9; i++) {
+      const mid = hi - (fHi * (hi - lo)) / (fHi - fLo);
+      const sample = probe(mid);
+      if (!clears(sample)) break;
+      const fMid = sample.height - cornerHeight;
+      if (Math.abs(fMid) < ANALYSIS_FIELD_CORNER_TOLERANCE_MM) return { fieldDeg: mid, settled: true };
+      if (fMid < 0) {
+        lo = mid;
+        fLo = fMid;
+        if (side === -1) fHi /= 2;
+        side = -1;
+      } else {
+        hi = mid;
+        fHi = fMid;
+        if (side === 1) fLo /= 2;
+        side = 1;
+      }
+    }
+    return { fieldDeg: lo, settled: true };
+  };
+
+  /* Clear chief ray at lo, none at hi: settle where a clear aperture starts clipping it. */
+  const lastClear = (lo: number, loSample: RealChiefRayProbe2, hi: number) => {
+    let sample = loSample;
+    for (let i = 0; i < ANALYSIS_FIELD_CLIP_BISECTIONS; i++) {
+      const mid = (lo + hi) / 2;
+      const midSample = probe(mid);
+      if (clears(midSample)) {
+        lo = mid;
+        sample = midSample;
+      } else {
+        hi = mid;
+      }
+    }
+    return { fieldDeg: lo, sample };
+  };
+
+  /* Clear chief ray past the corner at hi: step down in proportion to image height until a clear field falls short of
+   * the corner, then settle the corner between them. Unsettled when a step clips, which leaves the caller's cap. */
+  const cornerBelow = (hi: number, hiSample: RealChiefRayProbe2) => {
+    for (let i = 0; i < ANALYSIS_FIELD_CORNER_ITERATIONS && hi > 0; i++) {
+      const lo = hi * (cornerHeight / hiSample.height) * CORNER_BRACKET_STEP_DOWN;
+      const loSample = probe(lo);
+      if (!clears(loSample)) break;
+      if (loSample.height < cornerHeight) return cornerField(lo, loSample.height, hi, hiSample.height);
+      hi = lo;
+      hiSample = loSample;
+    }
+    return { fieldDeg: hi, settled: false };
+  };
+
+  let fieldDeg = geometry.halfFieldDeg;
+  let sample = probe(fieldDeg);
+  if (!clears(sample)) {
+    let hi = fieldDeg;
+    let step = ANALYSIS_FIELD_MIN_STEP_DEG;
+    let lo = Math.max(0, hi - step);
+    let loSample = probe(lo);
+    while (!clears(loSample) && lo > 0) {
+      hi = lo;
+      step *= 2;
+      lo = Math.max(0, lo - step);
+      loSample = probe(lo);
+    }
+    if (!clears(loSample)) return null;
+    const clip = lastClear(lo, loSample, hi);
+    return clip.sample.height < cornerHeight
+      ? { fieldDeg: clip.fieldDeg, settled: true }
+      : cornerBelow(clip.fieldDeg, clip.sample);
+  }
+  if (sample.height >= cornerHeight) return cornerBelow(fieldDeg, sample);
+
+  const ceilingDeg = MAX_FIELD_LAUNCH_DEG - 1e-3;
+  let heightSlope = sample.height / fieldDeg;
+  while (fieldDeg < ceilingDeg) {
+    const predictedDeg =
+      heightSlope > 0 ? (ANALYSIS_FIELD_STEP_OVERSHOOT * (cornerHeight - sample.height)) / heightSlope : Infinity;
+    const nextDeg = Math.min(
+      fieldDeg + Math.min(Math.max(predictedDeg, ANALYSIS_FIELD_MIN_STEP_DEG), ANALYSIS_FIELD_MAX_STEP_DEG),
+      ceilingDeg,
+    );
+    const next = probe(nextDeg);
+    if (!clears(next)) {
+      const clip = lastClear(fieldDeg, sample, nextDeg);
+      return clip.sample.height >= cornerHeight
+        ? cornerField(fieldDeg, sample.height, clip.fieldDeg, clip.sample.height)
+        : { fieldDeg: clip.fieldDeg, settled: true };
+    }
+    if (next.height >= cornerHeight) return cornerField(fieldDeg, sample.height, nextDeg, next.height);
+    if (next.height <= sample.height) return { fieldDeg, settled: true };
+    heightSlope = (next.height - sample.height) / (nextDeg - fieldDeg);
+    fieldDeg = nextDeg;
+    sample = next;
+  }
+  return { fieldDeg, settled: true };
+}
+
+/**
+ * Whether the full chief-ray solve, the one the analyses use, converges on an object-plane launch at this field.
+ *
+ * @param fieldAngleDeg - field angle in degrees
+ * @param focusT - normalized focus position
+ * @param zoomT - normalized zoom position
+ * @param L - runtime lens prescription
+ * @param geometry - raw field geometry for this state
+ * @param aberrationT - normalized aberration control position
+ * @returns true when the solve converges without a vector launch
+ */
+function solvesChiefRay2(
+  fieldAngleDeg: number,
+  focusT: number,
+  zoomT: number,
+  L: RuntimeLens,
+  geometry: FieldGeometryState2,
+  aberrationT: number,
+): boolean {
+  const solve = computeChiefRaySolve2(fieldAngleDeg, focusT, zoomT, L, geometry, aberrationT);
+  return solve.status === "converged" && !solve.vectorLaunch;
+}
+
+/**
+ * Re-solve an object-plane chief ray next to a converged neighbour.
+ *
+ * Launch height scales almost linearly with launch slope, so the neighbour predicts the root closely: a narrow bracket
+ * around that prediction converges by Illinois regula falsi in a handful of stop traces, where the full solve scans
+ * outward from the paraxial seed. The field walk probes a sequence of nearby fields, so this carries most of its cost.
+ *
+ * @param fieldAngleDeg - field angle to solve
+ * @param state - prepared optical state for the current controls
+ * @param L - runtime lens prescription
+ * @param seed - converged chief ray at a neighbouring field
+ * @returns converged solve, or null when no bracket forms and the caller should run the full solve
+ */
+function solveChiefRayFromSeed2(
+  fieldAngleDeg: number,
+  state: PreparedOpticalState,
+  L: RuntimeLens,
+  seed: ChiefRaySolveResult2,
+): ChiefRaySolveResult2 | null {
+  if (Math.abs(fieldAngleDeg) < 1 || launchSurfaceForFieldDeg2(fieldAngleDeg, L.projection) !== "object-plane")
+    return null;
+  const launch = projectionLaunchSlopeForField2(L, fieldAngleDeg);
+  if (launch.status === "out-of-domain" || !(Math.abs(seed.uField) > 0)) return null;
+  const uField = launch.uField;
+  const stopIndex = state.lens.stop.surfaceIndex;
+  const heightAtStop = (yLaunch: number): number | null => {
+    const result = traceStateSurfacesReal2(state, yLaunch, uField, { stopAt: stopIndex });
+    return Number.isFinite(result.y) ? result.y : null;
+  };
+  const converged = (yLaunch: number, iterations: number): ChiefRaySolveResult2 => ({
+    yLaunch,
+    uField,
+    status: "converged",
+    iterations,
+    launchSurface: "object-plane",
+  });
+
+  const guess = (seed.yLaunch * uField) / seed.uField;
+  let half = Math.max(Math.abs(guess - seed.yLaunch) * 0.25, 1e-3);
+  for (let attempt = 0; attempt < SEEDED_CHIEF_RAY_BRACKET_ATTEMPTS; attempt++, half *= 4) {
+    let lo = guess - half;
+    let hi = guess + half;
+    let fLo = heightAtStop(lo);
+    let fHi = heightAtStop(hi);
+    if (fLo === null || fHi === null) return null;
+    if (Math.abs(fLo) < CHIEF_RAY_RESIDUAL_TOLERANCE) return converged(lo, 0);
+    if (Math.abs(fHi) < CHIEF_RAY_RESIDUAL_TOLERANCE) return converged(hi, 0);
+    if (fLo < 0 === fHi < 0) continue;
+    let side = 0;
+    for (let i = 0; i < CHIEF_RAY_MAX_ITERATIONS; i++) {
+      const mid = hi - (fHi * (hi - lo)) / (fHi - fLo);
+      const fMid = heightAtStop(mid);
+      if (fMid === null) return null;
+      if (Math.abs(fMid) < CHIEF_RAY_RESIDUAL_TOLERANCE) return converged(mid, i + 1);
+      if (fMid < 0 === fLo < 0) {
+        lo = mid;
+        fLo = fMid;
+        if (side === -1) fHi /= 2;
+        side = -1;
+      } else {
+        hi = mid;
+        fHi = fMid;
+        if (side === 1) fLo /= 2;
+        side = 1;
+      }
+      if (Math.abs(hi - lo) < CHIEF_RAY_BRACKET_EPSILON) return converged((lo + hi) / 2, i + 1);
+    }
+    return null;
+  }
+  return null;
 }
 
 /**

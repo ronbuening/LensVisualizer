@@ -27,6 +27,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    values below are conservative ray-envelope/mechanical estimates  ║
  * ║    constrained by the 49 mm filter thread, element SD ratios, edge  ║
  * ║    thickness, sd/|R| < 0.90, and cross-gap sag clearance.           ║
+ * ║    Surfaces 3-4 were raised to pass the traced chief ray past the   ║
+ * ║    patent's ω = 46° to 99.6% of the full-frame corner; surface 4    ║
+ * ║    stops at 7.75 mm, its 4→5 cross-gap limit (2026-09-24            ║
+ * ║    field-coverage audit).                                           ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes only the optical design: glass      ║
  * ║  elements, refracting surfaces, aperture stop, and focus BFD. It    ║
@@ -145,8 +149,8 @@ const LENS_DATA = {
   surfaces: [
     { label: "1", R: 34.1313, d: 3.9018, nd: 1.72, elemId: 1, sd: 18.0 },
     { label: "2", R: 67.9665, d: 0.0966, nd: 1.0, elemId: 0, sd: 16.0 },
-    { label: "3", R: 19.6203, d: 1.4637, nd: 1.618, elemId: 2, sd: 9.4 },
-    { label: "4", R: 8.6247, d: 3.7842, nd: 1.0, elemId: 0, sd: 7.55 },
+    { label: "3", R: 19.6203, d: 1.4637, nd: 1.618, elemId: 2, sd: 11.8 },
+    { label: "4", R: 8.6247, d: 3.7842, nd: 1.0, elemId: 0, sd: 7.75 },
     { label: "5", R: 21.525, d: 1.4637, nd: 1.713, elemId: 3, sd: 8.2 },
     { label: "6", R: 8.6604, d: 2.6523, nd: 1.0, elemId: 0, sd: 6.85 },
     { label: "7", R: 23.3247, d: 12.9213, nd: 1.5955, elemId: 4, sd: 7.5 },

@@ -40,3 +40,28 @@ Follow-up validation: typecheck, formatting, lint and all 2,717 tests in 276 fil
 - Paraxial check against the previous data: EFL and defocus identical at all three zoom states (the former fold was
   exactly D25 + 4.716045 mm, so no rounding shift). Physical track grows by 0.894 mm, to 114.500 / 122.288 /
   151.529 mm.
+
+## 2026-09-24 — Semi-diameters raised to the traced format corner
+
+Example 1 prints ω = 42.6615° / 21.9117° / 10.5638° at f = 14.71 / 32.0597 / 69.8725 mm (Table 2, PDF p. 19), and the
+aberration plots of Figs. 2–4 (PDF pp. 3–5) all stop at Y = 13.0 mm. The DSC-R1's 21.5 × 14.4 mm sensor has a 12.94
+mm half-diagonal, so the design circle is 26 mm rather than the canonical APS-C 28.35 mm; `imageCircleMm: 26` now
+bounds the analysis field (at wide the APS-C corner was unreachable: the chief-ray solve failed past 41.3°, 12.41 mm).
+The estimated G2 rims (a 0.6-field bundle, then a Fig. 1 audit that treated G2's outline beyond them as flange) clipped
+the real chief ray (solved through the stop centre) at surface 3 from 32.9° at wide, leaving 9.22 mm, 71% of the 13.0
+mm circle. With trial G2 rims the wide chief ray solves again: Y = 13.0 mm at 42.64° (the patent ω) needs surface 3 ≥
+18.12 and surface 4 ≥ 13.58 mm (18.13 / 13.58 at 42.6615°), with every other rim clear; the 32.06 mm and tele states
+already reached Y = 13.0 mm with every rim clear. G2 is a strong meniscus (R 160.93 / 17.45), so each surface takes its
+own floor + ~0.5 mm. Fig. 1 (300 dpi, 0.0921 mm/px) draws G2's front face and flat rear step to about 21.5 mm and ends
+the S4 concave arc at about 13.9 mm, so surface 4 matches the drawn optical arc within a line width and surface 3 stays
+inside the drawn outline.
+
+| Surface | Before | After | Justification |
+|---|---|---|---|
+| 3 | 12.7 | 18.7 | wide chief ray to Y = 13.0 mm 18.12 mm + clearance; inside Fig. 1's ≈21.5 mm face |
+| 4 | 11.0 | 14.1 | wide chief ray to Y = 13.0 mm 13.58 mm + clearance; Fig. 1's S4 arc ends at ≈13.9 mm |
+
+The validator accepts the new values, all three states now reach 100% of the 13.0 mm circle with every rim clear
+(42.64° / 21.91° / 10.56°), and the image-circle floor still reports nothing undersized. Surface 4 now carries the
+largest rim angle (53.9°, previously surface 21 at 50.1°) and the S4-S5 air gap is the tightest (0.68 mm at 14.0 mm);
+the analysis quotes neither, and no aspheric surface changed.

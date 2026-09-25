@@ -28,7 +28,9 @@ import type { LensDataInput } from "../../types/optics.js";
  *   marginal/chief-ray envelopes and then constrained for renderer-safe edge thickness,
  *   sd/|R|, surface slope, and cross-gap sag intrusion. They are not manufacturer mechanical
  *   clear-aperture specifications; the physical front element remains Sigma's published
- *   large molded asphere.
+ *   large molded asphere. Surfaces 1A-11 (G1) were raised to pass the traced wide-end chief
+ *   ray to the patent's Y = 21.63 mm corner (2026-09-24 field-coverage audit); surfaces 2
+ *   and 4 sit just under the 64.2° rim-slope limit.
  */
 
 const LENS_DATA = {
@@ -300,17 +302,17 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1A", R: 103.2579, d: 3.9, nd: 1.6935, elemId: 1, sd: 33.8 },
-    { label: "2", R: 30.9115, d: 8.0372, nd: 1, elemId: 0, sd: 27.1 },
-    { label: "3", R: 40.7164, d: 2.75, nd: 2.001, elemId: 2, sd: 24.0 },
-    { label: "4", R: 23.7204, d: 9.2439, nd: 1, elemId: 0, sd: 19.5 },
-    { label: "5A", R: 55.7625, d: 2.05, nd: 1.58913, elemId: 3, sd: 17.5 },
-    { label: "6A", R: 28.3734, d: 6.7015, nd: 1, elemId: 0, sd: 17.5 },
-    { label: "7", R: 82.8041, d: 1.4, nd: 1.55032, elemId: 4, sd: 16.5 },
-    { label: "8", R: 45.0874, d: 7.5827, nd: 1, elemId: 0, sd: 16.5 },
-    { label: "9", R: -77.7055, d: 1.5463, nd: 1.437, elemId: 5, sd: 16.0 },
-    { label: "10", R: 36.4668, d: 6.133, nd: 1.90043, elemId: 6, sd: 16.0 },
-    { label: "11", R: -775.0963, d: 29.2621, nd: 1, elemId: 0, sd: 16.0 },
+    { label: "1A", R: 103.2579, d: 3.9, nd: 1.6935, elemId: 1, sd: 37.3 },
+    { label: "2", R: 30.9115, d: 8.0372, nd: 1, elemId: 0, sd: 27.8 },
+    { label: "3", R: 40.7164, d: 2.75, nd: 2.001, elemId: 2, sd: 27.2 },
+    { label: "4", R: 23.7204, d: 9.2439, nd: 1, elemId: 0, sd: 21.3 },
+    { label: "5A", R: 55.7625, d: 2.05, nd: 1.58913, elemId: 3, sd: 21.0 },
+    { label: "6A", R: 28.3734, d: 6.7015, nd: 1, elemId: 0, sd: 18.7 },
+    { label: "7", R: 82.8041, d: 1.4, nd: 1.55032, elemId: 4, sd: 18.4 },
+    { label: "8", R: 45.0874, d: 7.5827, nd: 1, elemId: 0, sd: 18.4 },
+    { label: "9", R: -77.7055, d: 1.5463, nd: 1.437, elemId: 5, sd: 17.3 },
+    { label: "10", R: 36.4668, d: 6.133, nd: 1.90043, elemId: 6, sd: 17.0 },
+    { label: "11", R: -775.0963, d: 29.2621, nd: 1, elemId: 0, sd: 17.0 },
     { label: "12", R: 57.615, d: 0.8, nd: 1.92286, elemId: 7, sd: 13.4 },
     { label: "13", R: 21.7173, d: 4.5092, nd: 1.72047, elemId: 8, sd: 13.2 },
     { label: "14", R: 178.1154, d: 0.15, nd: 1, elemId: 0, sd: 13.2 },

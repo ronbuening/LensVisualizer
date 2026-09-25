@@ -180,6 +180,7 @@ interface RearPlateLensOptions {
   gapBefore?: number;
   /** Optional focus variation on the last lens gap (`var["2"]`), physical plate-model values. */
   lastGapRange?: VarRange;
+  imageFormat?: LensData["imageFormat"];
   key?: string;
 }
 
@@ -193,6 +194,7 @@ export function buildRearPlateLens({
   plates = [REAR_PLATE_FIXTURE],
   gapBefore = 44,
   lastGapRange,
+  imageFormat,
   key = "test-rear-plate",
 }: RearPlateLensOptions = {}): RuntimeLens {
   return buildFixture({
@@ -200,6 +202,7 @@ export function buildRearPlateLens({
     surfaces: simplePositiveSurfaces(1, 5, gapBefore),
     rearPlates: plates,
     ...(lastGapRange ? { var: { "2": lastGapRange } } : {}),
+    ...(imageFormat ? { imageFormat } : {}),
   });
 }
 

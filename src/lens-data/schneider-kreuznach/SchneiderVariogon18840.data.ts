@@ -16,11 +16,11 @@ import type { LensDataInput } from "../../types/optics.js";
  *
  * Semi-diameters: not published. Values below are modeled from paraxial/exact-meridional ray geometry and the patent
  * section, then constrained by current edge-thickness, rim-slope, and shared-gap intrusion rules. The d10 telephoto gap
- * is the limiting shared-gap geometry; surfaces 10 and 11 use 5.10 mm semi-diameters so the 90% gap-intrusion
- * rule passes.
- * Representative 0.6-field exact-meridional samples therefore vignette one wide-end outer pupil ray at surface 10
- * rather
- * than violating the physical gap. No production render-trim result is claimed here.
+ * is the limiting shared-gap geometry; surface 11 uses a 5.10 mm semi-diameter so the 90% gap-intrusion rule passes
+ * over the band it shares with surface 10. Surface 10 was raised from 5.10 to 7.20 mm to pass the traced wide-end
+ * chief ray to the patent's 4.22 × 5.69 mm frame corner (3.54 mm at 23.8°; 2026-09-24 field-coverage audit).
+ * Representative 0.6-field exact-meridional samples therefore vignette the outer wide-end pupil rays at surface 11
+ * rather than violating the physical gap. No production render-trim result is claimed here.
  *
  * Figure 1 rim review: surfaces 6/7 enlarged to 11.2/10.2 mm and 8/9 to 8.5 mm.
  * The latter pair remains below the roughly 9.8 mm drawn rim to preserve air-gap clearance.
@@ -230,7 +230,7 @@ const LENS_DATA = {
     { label: "7", R: 16.28, d: 4.6, nd: 1.0, elemId: 0, sd: 10.2 },
     { label: "8", R: -25.0, d: 2.1, nd: 1.80518, elemId: 5, sd: 8.5 },
     { label: "9", R: -15.61, d: 1.0, nd: 1.4645, elemId: 6, sd: 8.5 },
-    { label: "10", R: 43.09, d: 27.74, nd: 1.0, elemId: 0, sd: 5.1 },
+    { label: "10", R: 43.09, d: 27.74, nd: 1.0, elemId: 0, sd: 7.2 },
     { label: "11", R: -10.84, d: 1.0, nd: 1.62041, elemId: 7, sd: 5.1 },
     { label: "12", R: -23.02, d: 1.69, nd: 1.0, elemId: 0, sd: 6.4 },
     { label: "13", R: 64.68, d: 2.2, nd: 1.6223, elemId: 8, sd: 7.0 },

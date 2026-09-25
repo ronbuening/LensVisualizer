@@ -15,6 +15,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * envelopes and the patent section drawing, with reductions at the thin 0.2 mm relay
  * gaps to avoid cross-gap sag conflicts. Close-focus values are a paraxial solve using
  * Panasonic's 0.25 m published minimum focus distance and G4 image-side focus motion.
+ * Surfaces 1-8 and 21-26 were raised to pass the traced chief ray to the patent's
+ * Y = 10.815 mm Four Thirds corner at every zoom station; L4 (surfaces 7/8) had been
+ * stored at 3.5/2.85 mm against the ~10.9 mm drawn in Fig. 1(a) (2026-09-24
+ * field-coverage audit).
  */
 const LENS_DATA = {
   key: "panasonic-lumix-g-vario-7-14-f4",
@@ -253,14 +257,14 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 32.6161, d: 2, nd: 1.8042, elemId: 1, sd: 17.3 },
-    { label: "2", R: 20.0318, d: 6.2589, nd: 1, elemId: 0, sd: 13.9 },
-    { label: "3", R: 28.6219, d: 1.8, nd: 1.8042, elemId: 2, sd: 10.6 },
-    { label: "4", R: 16.57, d: 2.6412, nd: 1, elemId: 0, sd: 8.5 },
-    { label: "5", R: 20.5213, d: 1.7, nd: 1.808, elemId: 3, sd: 12.7 },
-    { label: "6A", R: 11.4706, d: 7.7813, nd: 1, elemId: 0, sd: 10.2 },
-    { label: "7", R: -302.2546, d: 1.05, nd: 1.497, elemId: 4, sd: 3.5 },
-    { label: "8", R: 17.8882, d: 0.26, nd: 1, elemId: 0, sd: 2.85 },
+    { label: "1", R: 32.6161, d: 2, nd: 1.8042, elemId: 1, sd: 22.9 },
+    { label: "2", R: 20.0318, d: 6.2589, nd: 1, elemId: 0, sd: 18 },
+    { label: "3", R: 28.6219, d: 1.8, nd: 1.8042, elemId: 2, sd: 17.2 },
+    { label: "4", R: 16.57, d: 2.6412, nd: 1, elemId: 0, sd: 14.2 },
+    { label: "5", R: 20.5213, d: 1.7, nd: 1.808, elemId: 3, sd: 13.9 },
+    { label: "6A", R: 11.4706, d: 7.7813, nd: 1, elemId: 0, sd: 12.1 },
+    { label: "7", R: -302.2546, d: 1.05, nd: 1.497, elemId: 4, sd: 11.5 },
+    { label: "8", R: 17.8882, d: 0.26, nd: 1, elemId: 0, sd: 10.5 },
     { label: "9", R: 18.0947, d: 4.0084, nd: 1.8061, elemId: 5, sd: 10.2 },
     { label: "10", R: 60.7962, d: 19.2075, nd: 1, elemId: 0, sd: 10.2 },
     { label: "11", R: 19.248, d: 0.7, nd: 1.7433, elemId: 6, sd: 5.4 },
@@ -273,12 +277,12 @@ const LENS_DATA = {
     { label: "18", R: -9.5357, d: 0.8, nd: 1.5168, elemId: 10, sd: 4.9 },
     { label: "19", R: 21.1996, d: 2.8915, nd: 1.497, elemId: 11, sd: 4.9 },
     { label: "20", R: -15.0247, d: 0.2, nd: 1, elemId: 0, sd: 4.5 },
-    { label: "21", R: -58.8651, d: 1.9718, nd: 1.497, elemId: 12, sd: 4.5 },
-    { label: "22", R: -20.7231, d: 0.2, nd: 1, elemId: 0, sd: 4.2 },
-    { label: "23", R: 41.6674, d: 3.2343, nd: 1.497, elemId: 13, sd: 4.2 },
-    { label: "24", R: -20.805, d: 2.5261, nd: 1, elemId: 0, sd: 4.8 },
-    { label: "25", R: 26.6563, d: 0.8, nd: 1.51823, elemId: 14, sd: 5.4 },
-    { label: "26", R: 17.5364, d: 5.1612, nd: 1, elemId: 0, sd: 5.4 },
+    { label: "21", R: -58.8651, d: 1.9718, nd: 1.497, elemId: 12, sd: 5.4 },
+    { label: "22", R: -20.7231, d: 0.2, nd: 1, elemId: 0, sd: 5 },
+    { label: "23", R: 41.6674, d: 3.2343, nd: 1.497, elemId: 13, sd: 5.4 },
+    { label: "24", R: -20.805, d: 2.5261, nd: 1, elemId: 0, sd: 5.9 },
+    { label: "25", R: 26.6563, d: 0.8, nd: 1.51823, elemId: 14, sd: 6.5 },
+    { label: "26", R: 17.5364, d: 5.1612, nd: 1, elemId: 0, sd: 6.5 },
     { label: "27", R: 84.0809, d: 0.9, nd: 1.80518, elemId: 15, sd: 11 },
     { label: "28", R: 27.4443, d: 3.5772, nd: 1.523, elemId: 16, sd: 11.6 },
     { label: "29A", R: -39.9934, d: 15.38321, nd: 1, elemId: 0, sd: 12 },

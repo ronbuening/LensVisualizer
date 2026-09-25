@@ -60,3 +60,30 @@ Patent: CN 210573001 U, Example 1
   νd = 31.42 remains compatible with the patent's 31.31 value.
 - L24's exact 1.67270 / 32.17 H-ZF2 annotation now resolves directly to the CDGM coefficient row.
 - No prescription geometry changed.
+
+## 2026-09-24 — Semi-diameters raised to the traced format corner
+
+Patent Example 1 (实施例1) prints focal length 23.70, F/14 and half field angle ω = 44.6° (¶0046–0048, PDF p. 5; the
+¶0083 table on p. 13 gives f = 23.7059), and FIG. 2 (PDF p. 16) labels its infinity image-height axis 21.60 mm, 99.8%
+of the full-frame corner (21.65 mm); at ω = 44.6° the traced chief ray lands at 21.70 mm, so the design covers the
+format. The relay-exit rim (surface 32) and the rear corrector rims (surfaces 44–47), estimated for a chief ray at 60%
+of the field, clipped the real chief ray (solved through the stop centre) from 38.6°, leaving the analysis field at 83%
+of the corner. The traced corner chief ray (44.52°) needs surface 32 ≥ 4.15, 44 ≥ 6.41, 45 ≥ 7.11, 46 ≥ 7.27 and
+47 ≥ 8.38 mm. Surfaces 32, 45 and 47 take floor + ~0.5 mm; L24 (biconcave) and L25 (plano-convex) are scaled as whole
+elements by their rear surfaces' factors, which leaves surfaces 44 and 46 above their own floors plus clearance.
+Surface 31, the front of the thick L17 meniscus, keeps 4.1 mm: the corner chief ray crosses it at 2.72 mm, and the
+shared factor (4.7 mm) fails the air-gap intrusion check against L16 across the 0.54 mm gap (largest accepted 4.6 mm).
+Surface 32 stays inside the ≈ 9 mm relay-section bound in the header. No figure measurement was used.
+
+| Surface | Before | After | Justification |
+|---|---|---|---|
+| 32 | 4.1 | 4.7 | corner chief ray 4.15 mm + clearance; surface 31 unchanged (scaled value fails the 30→31 gap check) |
+| 44 | 5.9 | 7.4 | corner chief ray 6.41 mm; L24 scaled with surface 45 |
+| 45 | 6.1 | 7.7 | corner chief ray 7.11 mm + clearance |
+| 46 | 6.4 | 7.9 | corner chief ray 7.27 mm; L25 scaled with surface 47 |
+| 47 | 7.2 | 8.9 | corner chief ray 8.38 mm + clearance |
+
+The validator accepts the new values (the tightest new clearance is the 45→46 air gap, 0.15 mm at 7.7 mm, 86% intrusion
+against the 90% limit), the traced edge now reaches 21.65 mm at 44.5° with every rim clear (100%), and the image-circle
+floor still reports nothing undersized. All surfaces are spherical, and the analysis quotes none of the changed
+semi-diameters.

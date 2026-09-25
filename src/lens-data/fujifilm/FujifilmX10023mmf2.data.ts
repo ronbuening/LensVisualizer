@@ -14,14 +14,13 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    marginal + chief ray trace (0.6× field, 8% clearance),         ║
  * ║    then tuned to the manufacturer cross-section proportions.      ║
  * ║    Values are validated against cross-gap sag intrusion, edge      ║
- * ║    thickness, and molded-asphere polynomial behavior; S11A stays  ║
- * ║    capped at 6.0 mm to avoid a steep polynomial rim.              ║
- * ║    G3 (S12–S15) was enlarged in the 2026-07-24 patent-figure      ║
- * ║    audit: the old values could not pass an APS-C corner ray from  ║
- * ║    2.80 mm (S15) ahead of the image plane. FIG. 1 is a rotated,   ║
- * ║    ray-overlaid scan that would not measure reliably, so the new  ║
- * ║    values are set from the image-circle floor plus clearance      ║
- * ║    rather than from the drawing.                                  ║
+ * ║    thickness, and molded-asphere polynomial behavior. S10A-S15     ║
+ * ║    were raised to pass the traced chief ray to the patent's        ║
+ * ║    ω = 31.0° / Y = 14.2 mm corner (2026-09-24 field-coverage       ║
+ * ║    audit; G3 was first enlarged on 2026-07-24). L6's aspheres      ║
+ * ║    pass a designed gull-wing inflection near h = 5.4-5.7 mm,       ║
+ * ║    which FIG. 2 draws, and stay smooth to about 8.3 mm (S10A)      ║
+ * ║    and 9.5 mm (S11A), so the old 6.0 mm S11A cap was lifted.       ║
  * ║                                                                    ║
  * ║  NOTE ON ASPHERICAL COEFFICIENTS:                                  ║
  * ║    Patent uses Zd = C·h²/{1+√(1−K·C²h²)} + Σ Am·h^m (m=3..20).  ║
@@ -34,10 +33,16 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    Variable gap (S11A) at close focus estimated from G1+G2 focus  ║
  * ║    throw at MFD = 0.10 m (Fujifilm spec, macro mode).            ║
  * ║                                                                    ║
+ * ║  OPTICAL MEMBER PP:                                                ║
+ * ║    Patent Table 1 surfaces 16-17 (2.33 mm, nd 1.51680, νd 64.2)    ║
+ * ║    are modeled in `rearPlates` (traced, not drawn). Surface 15     ║
+ * ║    keeps the patent's 2.80 mm gap to PP; the ≈1.194 mm gap after   ║
+ * ║    PP is BF 5.53 (Table 11, in air) - 2.80 - 2.33/1.5168.          ║
+ * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
  * ║    ✓ Aperture stop and variable focus gaps                        ║
- * ║    Source PP is traced through rearPlates, hidden from drawing. ║
+ * ║    ✗ DO NOT include: mechanical parts (cover glass: `rearPlates`)  ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  *
  * Rear path: Table 1 D15 = 2.80 mm precedes PP (2.33 mm, nd 1.51680,
@@ -188,24 +193,28 @@ const LENS_DATA = {
     { label: "7", R: -10.059, d: 0.91, nd: 1.5927, elemId: 4, sd: 5.4 }, // L4 front
     { label: "8", R: 13.211, d: 7.36, nd: 1.883, elemId: 5, sd: 6.9 }, // L4/L5 junction → L5
     { label: "9", R: -18.976, d: 0.2, nd: 1.0, elemId: 0, sd: 7.2 }, // L5 rear → air
-    { label: "10A", R: 47.945, d: 2.5, nd: 1.56865, elemId: 6, sd: 6.4 }, // L6 front (asph)
-    { label: "11A", R: 89.234, d: 5.13, nd: 1.0, elemId: 0, sd: 6.0 }, // L6 rear (asph) → air
+    { label: "10A", R: 47.945, d: 2.5, nd: 1.56865, elemId: 6, sd: 7.9 }, // L6 front (asph)
+    { label: "11A", R: 89.234, d: 5.13, nd: 1.0, elemId: 0, sd: 8.4 }, // L6 rear (asph) → air
 
     // ── G3: L7 (neg. meniscus) + L8 (plano-convex) ──
-    { label: "12", R: -12.593, d: 1.1, nd: 1.80809, elemId: 7, sd: 8.0 }, // L7 front
-    { label: "13", R: -45.06, d: 0.2, nd: 1.0, elemId: 0, sd: 8.6 }, // L7 rear → air
-    { label: "14", R: 46.628, d: 3.08, nd: 1.883, elemId: 8, sd: 11.2 }, // L8 front
-    { label: "15", R: 1e15, d: 2.8, nd: 1.0, elemId: 0, sd: 11.9 }, // L8 rear → physical air gap to PP
+    { label: "12", R: -12.593, d: 1.1, nd: 1.80809, elemId: 7, sd: 8.9 }, // L7 front
+    { label: "13", R: -45.06, d: 0.2, nd: 1.0, elemId: 0, sd: 10.4 }, // L7 rear → air
+    { label: "14", R: 46.628, d: 3.08, nd: 1.883, elemId: 8, sd: 12.6 }, // L8 front
+    { label: "15", R: 1e15, d: 2.8, nd: 1.0, elemId: 0, sd: 12.9 }, // L8 rear → air (physical gap to PP)
   ],
 
+  /* ── Optical member PP (patent Table 1 surfaces 16–17): traced, not drawn ──
+   *  Table 1 prints no gap after PP; ≈1.194 mm = BF 5.53 (Table 11, in air) − 2.80 − 2.33/1.5168.
+   */
   rearPlates: [
     {
       label: "PP",
       thicknessMm: 2.33,
       nd: 1.5168,
       vd: 64.2,
+      glass: "N-BK7",
       gapAfterMm: 5.53 - 2.8 - 2.33 / 1.5168,
-      source: "US 2012/0069456 A1, Example 1 Table 1 S16-S17; Table 11 air-equivalent BF",
+      source: "US 2012/0069456 A1, Example 1 Table 1 surfaces 16–17; Table 11 air-equivalent BF",
     },
   ],
 

@@ -77,7 +77,7 @@ surface 6. Its semi-diameter, 7.827436 mm, is calibrated so the paraxial entranc
 opening ratio. Neither the stop split nor its physical diameter is published by the patent; matching f/1.4 is therefore a
 calibration, not independent evidence of the manufactured diaphragm.
 
-The patent supplies no clear semi-diameters. The front and final element rims are now 13 and 10.4 mm, respectively, following Fig. 1. Inner apertures retain the geometry-constrained model. These are inferred optical rims, not published dimensions; previous ray-envelope clearance results do not establish field clearance for this revised aperture set.
+The patent supplies no clear semi-diameters. Fig. 1 suggests front and final element rims of about 13 and 10.4 mm, but with the modeled stop those rims clip the chief ray from 28° off axis, short of the patent's 64° field angle (32° half-field). The front and final elements are therefore 14.9 and 12.9 mm: the traced chief ray to the 24 × 36 corner (21.65 mm at 31.5°) plus about 0.5 mm of clearance. Inner apertures retain the geometry-constrained model. These are inferred optical rims, not published dimensions.
 
 ## Element-by-Element Analysis
 

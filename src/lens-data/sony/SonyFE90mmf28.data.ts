@@ -17,6 +17,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    for rear elements), with 8–10% mechanical clearance.           ║
  * ║    Validated against edge-thickness (≥ 0.5 mm), sd/|R| (< 0.90), ║
  * ║    and cross-gap sag intrusion (< 90% of gap) constraints.       ║
+ * ║    Surfaces 1-5, 26 and 27 were raised to pass the traced chief   ║
+ * ║    ray to the full-frame corner (13.27°; the patent prints        ║
+ * ║    ω = 13.15° and Fig. 6 Y = 21.63 mm); S5 is scaled with S4      ║
+ * ║    (2026-09-24 field-coverage audit).                             ║
  * ║                                                                    ║
  * ║  NOTE ON OPTICAL FILTER:                                           ║
  * ║    Patent Table 5 surfaces 28–29 (optical filter FL [0094],       ║
@@ -250,11 +254,11 @@ const LENS_DATA = {
   /* ── Surface prescription ── */
   surfaces: [
     // ──── GR1: Object-side group (4 elements, fixed) ────
-    { label: "1", R: 60.7452, d: 6.483, nd: 1.7292, elemId: 1, sd: 17.7 }, // G1 front
-    { label: "2", R: -742.4113, d: 0.5, nd: 1.0, elemId: 0, sd: 16.9 }, // G1 rear → air
-    { label: "3", R: 85.188, d: 4.575, nd: 1.497, elemId: 2, sd: 16.8 }, // G2 front (cemented Da)
-    { label: "4", R: -300.7794, d: 1.8, nd: 1.8467, elemId: 3, sd: 15.8 }, // G2/G3 junction → G3
-    { label: "5", R: 62.5282, d: 0.5, nd: 1.0, elemId: 0, sd: 15.5 }, // G3 rear → air
+    { label: "1", R: 60.7452, d: 6.483, nd: 1.7292, elemId: 1, sd: 19.6 }, // G1 front
+    { label: "2", R: -742.4113, d: 0.5, nd: 1.0, elemId: 0, sd: 18.7 }, // G1 rear → air
+    { label: "3", R: 85.188, d: 4.575, nd: 1.497, elemId: 2, sd: 17.4 }, // G2 front (cemented Da)
+    { label: "4", R: -300.7794, d: 1.8, nd: 1.8467, elemId: 3, sd: 16.4 }, // G2/G3 junction → G3
+    { label: "5", R: 62.5282, d: 0.5, nd: 1.0, elemId: 0, sd: 16.1 }, // G3 rear → air
     { label: "6", R: 46.3651, d: 4.722, nd: 1.768, elemId: 4, sd: 15.4 }, // G4 front
     { label: "7A", R: 478.0475, d: 2.8, nd: 1.0, elemId: 0, sd: 14.5 }, // G4 rear (asph) → air [d7 variable]
 
@@ -285,8 +289,8 @@ const LENS_DATA = {
     { label: "23", R: -43.4556, d: 1.5, nd: 1.0, elemId: 0, sd: 10.8 }, // G13 rear → air
     { label: "24", R: -88.4506, d: 1.3, nd: 1.6584, elemId: 14, sd: 10.3 }, // G14 front
     { label: "25", R: 88.4506, d: 6.245, nd: 1.0, elemId: 0, sd: 10.1 }, // G14 rear → air
-    { label: "26", R: -27.8033, d: 1.3, nd: 1.6968, elemId: 15, sd: 8.9 }, // G15 front
-    { label: "27", R: -75.2165, d: 22.747, nd: 1.0, elemId: 0, sd: 8.9 }, // G15 rear → patent gap to filter FL
+    { label: "26", R: -27.8033, d: 1.3, nd: 1.6968, elemId: 15, sd: 11.2 }, // G15 front
+    { label: "27", R: -75.2165, d: 22.747, nd: 1.0, elemId: 0, sd: 12.0 }, // G15 rear → patent gap to filter FL
   ],
 
   /* ── Optical filter FL (patent Table 5 surfaces 28–29): traced, not drawn ── */

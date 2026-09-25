@@ -199,7 +199,7 @@ At the current data-file semi-diameters, the exact profiles have these departure
 
 | Surface | Semi-diameter | Exact departure |
 |---|---:|---:|
-| 6A | 12.5 mm | +377.281 µm |
+| 6A | 14.5 mm | +635.885 µm |
 | 7A | 10.1 mm | +16.939 µm |
 | 14A | 9.8 mm | −126.997 µm |
 | 15A | 10.2 mm | +102.315 µm |

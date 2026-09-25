@@ -13,7 +13,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * The patent does not publish clear-aperture semi-diameters.  The `sd` values below are renderer-safe
  * estimates from the default 0.6-field meridional ray envelope, then checked against rim-slope, edge-
  * thickness, and cross-gap intrusion limits.  They should not be treated as Canon-published physical
- * clear apertures.
+ * clear apertures.  Surfaces 1A-4 were raised to pass the traced chief ray to the full-frame corner at
+ * the 20.6 mm end, where FIG. 2(a) prints ω = 46.4° (2026-09-24 field-coverage audit).
  *
  * The data format has one physical stop semi-diameter.  The value below is the tele-end f/2.8 equivalent
  * stop radius; nominalFno remains the catalog aperture used by the UI.
@@ -237,10 +238,10 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1A", R: 62.0, d: 2.2, nd: 1.7725, elemId: 1, sd: 18.0 },
-    { label: "2", R: 20.619, d: 10.4, nd: 1.0, elemId: 0, sd: 15.8 },
-    { label: "3", R: -394.519, d: 3.4, nd: 1.61293, elemId: 2, sd: 13.8 },
-    { label: "4", R: -90.646, d: 3.6, nd: 1.0, elemId: 0, sd: 13.5 },
+    { label: "1A", R: 62.0, d: 2.2, nd: 1.7725, elemId: 1, sd: 21.6 },
+    { label: "2", R: 20.619, d: 10.4, nd: 1.0, elemId: 0, sd: 17.0 },
+    { label: "3", R: -394.519, d: 3.4, nd: 1.61293, elemId: 2, sd: 15.8 },
+    { label: "4", R: -90.646, d: 3.6, nd: 1.0, elemId: 0, sd: 15.5 },
     { label: "5", R: -52.98, d: 1.6, nd: 1.883, elemId: 3, sd: 13.1 },
     { label: "6", R: 53.109, d: 1.94, nd: 1.0, elemId: 0, sd: 13.1 },
     { label: "7", R: 58.07, d: 3.5, nd: 1.84666, elemId: 4, sd: 13.8 },

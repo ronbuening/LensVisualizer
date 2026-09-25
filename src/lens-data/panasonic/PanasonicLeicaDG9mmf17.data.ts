@@ -14,6 +14,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    field (front group) and 60% field (mid/rear), with 8%           ║
  * ║    mechanical clearance. Validated against edge thickness           ║
  * ║    (≥ 0.3 mm), sd/|R| < 0.90, and cross-gap sag intrusion.        ║
+ * ║    Surface 1 was raised to 14.2 mm, the L1 front rim drawn in      ║
+ * ║    Fig. 1A, so the traced chief ray passes the patent's            ║
+ * ║    Y = 10.00 mm image height (2026-09-24 field-coverage audit).    ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
@@ -208,7 +211,7 @@ const LENS_DATA = {
    */
   surfaces: [
     // ── G1A: Negative front group (L1–L6) ──
-    { label: "1", R: 21.5241, d: 1.3, nd: 1.8042, elemId: 1, sd: 10.3 },
+    { label: "1", R: 21.5241, d: 1.3, nd: 1.8042, elemId: 1, sd: 14.2 },
     { label: "2", R: 11.4951, d: 2.8898, nd: 1.0, elemId: 0, sd: 10.1 },
     { label: "3A", R: 10.1831, d: 2.5, nd: 1.5338, elemId: 2, sd: 9.5 },
     { label: "4A", R: 6.6667, d: 4.6172, nd: 1.0, elemId: 0, sd: 8.0 },

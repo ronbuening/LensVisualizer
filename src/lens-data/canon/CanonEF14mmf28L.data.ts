@@ -22,6 +22,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  proportioned against the Example 2 section drawing, then checked for    ║
  * ║  clearance, edge thickness, surface slope, SD ratio, and signed          ║
  * ║  cross-gap sag intrusion. They are not factory clear apertures.          ║
+ * ║  Surfaces 1-9 and 23-25 were raised to pass the traced chief ray at the  ║
+ * ║  patent's w = 56.72° (2026-09-24 field-coverage audit). Surface 2 runs   ║
+ * ║  to 24.4 mm, a 69.8° rim, so maxRimAngleDeg is raised to 72 (Fig. 4      ║
+ * ║  draws it near 25 mm); the chief ray clears every rim to the corner.     ║
  * ╚════════════════════════════════════════════════════════════════════════════╝
  */
 
@@ -267,15 +271,15 @@ const LENS_DATA = {
 
   /* ── Surfaces ── */
   surfaces: [
-    { label: "1", R: 44.219, d: 3.1, nd: 1.6968, elemId: 1, sd: 22.0 },
-    { label: "2", R: 25.992, d: 11.3, nd: 1.0, elemId: 0, sd: 20.5 },
-    { label: "3A", R: 58.892, d: 5.83, nd: 1.60311, elemId: 2, sd: 16.0 },
-    { label: "4", R: 52.468, d: 0.15, nd: 1.0, elemId: 0, sd: 15.0 },
-    { label: "5", R: 36.687, d: 1.7, nd: 1.6968, elemId: 3, sd: 13.8 },
-    { label: "6", R: 17.786, d: 6.43, nd: 1.0, elemId: 0, sd: 12.5 },
-    { label: "7", R: 48.285, d: 1.3, nd: 1.7725, elemId: 4, sd: 11.0 },
-    { label: "8", R: 20.678, d: 8.28, nd: 1.0, elemId: 0, sd: 10.2 },
-    { label: "9", R: 205.374, d: 1.5, nd: 1.6968, elemId: 5, sd: 9.2 },
+    { label: "1", R: 44.219, d: 3.1, nd: 1.6968, elemId: 1, sd: 31.9 },
+    { label: "2", R: 25.992, d: 11.3, nd: 1.0, elemId: 0, sd: 24.4 },
+    { label: "3A", R: 58.892, d: 5.83, nd: 1.60311, elemId: 2, sd: 22.5 },
+    { label: "4", R: 52.468, d: 0.15, nd: 1.0, elemId: 0, sd: 21.1 },
+    { label: "5", R: 36.687, d: 1.7, nd: 1.6968, elemId: 3, sd: 18.4 },
+    { label: "6", R: 17.786, d: 6.43, nd: 1.0, elemId: 0, sd: 14.6 },
+    { label: "7", R: 48.285, d: 1.3, nd: 1.7725, elemId: 4, sd: 13.6 },
+    { label: "8", R: 20.678, d: 8.28, nd: 1.0, elemId: 0, sd: 12.0 },
+    { label: "9", R: 205.374, d: 1.5, nd: 1.6968, elemId: 5, sd: 9.8 },
     { label: "10", R: 15.663, d: 10.13, nd: 1.59551, elemId: 6, sd: 8.8 },
     { label: "11", R: -47.65, d: 3.25, nd: 1.0, elemId: 0, sd: 8.0 },
     { label: "12", R: 57.504, d: 8.21, nd: 1.56732, elemId: 7, sd: 7.0 },
@@ -289,9 +293,9 @@ const LENS_DATA = {
     { label: "20", R: 77.455, d: 0.69, nd: 1.0, elemId: 0, sd: 6.8 },
     { label: "21", R: -172.305, d: 0.8, nd: 1.92286, elemId: 12, sd: 6.8 },
     { label: "22", R: 32.045, d: 5.85, nd: 1.48749, elemId: 13, sd: 6.9 },
-    { label: "23", R: -18.398, d: 0.15, nd: 1.0, elemId: 0, sd: 7.5 },
-    { label: "24", R: 333.594, d: 3.3, nd: 1.804, elemId: 14, sd: 8.0 },
-    { label: "25", R: -37.974, d: 38.72581151, nd: 1.0, elemId: 0, sd: 8.2 },
+    { label: "23", R: -18.398, d: 0.15, nd: 1.0, elemId: 0, sd: 8.4 },
+    { label: "24", R: 333.594, d: 3.3, nd: 1.804, elemId: 14, sd: 9.9 },
+    { label: "25", R: -37.974, d: 38.72581151, nd: 1.0, elemId: 0, sd: 10.1 },
   ],
 
   asph: {
@@ -334,6 +338,8 @@ const LENS_DATA = {
   apertureBlades: 5,
   maxFstop: 22,
 
+  // Surface 2, the rear of the L1 meniscus, runs to a 69.8° rim to pass the chief ray at the patent's w = 56.72°.
+  maxRimAngleDeg: 72,
   scFill: 0.55,
   yScFill: 0.45,
 } satisfies LensDataInput;

@@ -37,10 +37,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * chief ray. Gr2: L5 and D1's shared/rear rims keep the earlier traced values; L6 front, L8, L9 and
  * L10 were trimmed on 2026-09-23 toward Fig. 6 at 0.0766 mm/px (figure about 6.6 / 6.7 / 7.3 / 7.7 mm)
  * to 7.1 / 7.0-7.1 / 7.5-7.6 / 7.8 mm, restoring the figure's order (L10 about as tall as D2, D3 tallest).
- * Wide-end real field: surface 2 is a near-hemisphere (R = 16.711), and chief rays steeper than about
- * 44.9 deg miss it, so the wide state reaches only about 10.5 mm real image height in this prescription
- * (the printed omega = 51.489 deg equals atan(14.2 / 11.3), a paraxial value; Fig. 14 shows about
- * -10 % wide-end distortion).
+ * Wide-end real field: the printed omega = 51.489 deg equals atan(14.2 / 11.3), a paraxial value (Fig. 14
+ * shows about -10 % wide-end distortion); its real chief ray lands at 12.79 mm. Surface 2 (R = 16.711) was
+ * raised from 14.0 to 14.8 mm to pass that chief ray (2026-09-24 field-coverage audit), and the wide
+ * analysis field now runs to about 53.0 deg (13.34 mm, 94% of the APS-C corner), where the 4A rim clips it.
  *
  * Patent discrepancy register retained in the dossier:
  * - Condition (1) is printed in reciprocal order relative to Table 1 across Examples 1-8.
@@ -249,7 +249,7 @@ const LENS_DATA = {
 
   surfaces: [
     { label: "1", R: 46.36, d: 2.456, nd: 1.72916, elemId: 1, sd: 20.2 },
-    { label: "2", R: 16.711, d: 5.262, nd: 1.0, elemId: 0, sd: 14.0 },
+    { label: "2", R: 16.711, d: 5.262, nd: 1.0, elemId: 0, sd: 14.8 },
     { label: "3A", R: 34.511, d: 2.133, nd: 1.80866, elemId: 2, sd: 14.5 },
     { label: "4A", R: 14.605, d: 12.764, nd: 1.0, elemId: 0, sd: 12.0 },
     { label: "5", R: 24.234, d: 3.564, nd: 1.69895, elemId: 3, sd: 10.8 },

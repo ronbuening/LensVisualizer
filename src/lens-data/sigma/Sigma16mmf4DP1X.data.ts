@@ -16,7 +16,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * The stop semi-diameter (3.2186 mm) is derived from the patent design f-number and entrance-pupil trace.
  *
  * The project taxonomy has no exact id for Sigma's 20.7 x 13.8 mm Foveon sensor.  The lens is therefore
- * tagged as fixed-lens APS-C class, while the projection block pins tracing to the patent's 73.7° full field.
+ * tagged as fixed-lens APS-C class with imageCircleMm set to that sensor's 24.9 mm diagonal, while the projection
+ * block pins tracing to the patent's 73.7° full field.
  */
 const LENS_DATA = {
   key: "sigma-dp1x-16mm-f4",
@@ -37,6 +38,9 @@ const LENS_DATA = {
   apertureMarketing: 4,
   apertureDesign: 4.02,
   lensMounts: ["fixed-lens-camera"],
+  // Sigma's 20.7 x 13.8 mm Foveon sensor diagonal. Condition (4), |Is/d4| = 2.23 with d4 = 5.60, puts the patent's
+  // image height at 12.49 mm, the same circle.
+  imageCircleMm: 24.9,
   imageFormat: "aps-c",
   patentNumber: "JP 2008-040033 A",
   patentAuthors: ["Shizuka Yoshino"],

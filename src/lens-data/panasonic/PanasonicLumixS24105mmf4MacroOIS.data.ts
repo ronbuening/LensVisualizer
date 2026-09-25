@@ -32,6 +32,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  all six zoom/focus states, checked against patent Figure 1, then constrained by    ║
  * ║  edge thickness, actual aspherical rim slope, conic validity, shared-band gap       ║
  * ║  clearance, off-axis containment, and render-trim surrogates.                      ║
+ * ║  Surface 7 was raised to pass the traced wide chief ray to the patent's design image ║
+ * ║  height Y = 19.60 mm (2026-09-24 field-coverage audit).                              ║
  * ║                                                                                      ║
  * ║  Glass labels are conservative six-digit nd/vd classes or an explicit Unmatched    ║
  * ║  label. nC, nF, ng, and dPgF are not authored because the patent gives no line     ║
@@ -260,7 +262,7 @@ const LENS_DATA = {
     { label: "4", R: -2000, d: 0.2, nd: 1, elemId: 0, sd: 31 },
     { label: "5", R: 62.087, d: 5.44, nd: 1.72916, elemId: 3, sd: 28.2 },
     { label: "6", R: 220.8867, d: 0.7, nd: 1, elemId: 0, sd: 28.2 },
-    { label: "7", R: 124.3864, d: 1.2, nd: 1.7725, elemId: 4, sd: 16 },
+    { label: "7", R: 124.3864, d: 1.2, nd: 1.7725, elemId: 4, sd: 16.9 },
     { label: "8", R: 16.2116, d: 10.36, nd: 1, elemId: 0, sd: 13.1 },
     { label: "9A", R: -33.929, d: 1.2, nd: 1.80755, elemId: 5, sd: 14.2 },
     { label: "10A", R: -209.797, d: 1.22, nd: 1, elemId: 0, sd: 14.2 },

@@ -25,6 +25,9 @@ import type { LensDataInput } from "../../types/optics.js";
  *
  * Semi-diameters: only ED values for surfaces 8 and 23 are patent-listed (diameters 18.11 and 27.73 mm).
  * Other SDs are conservative renderer estimates checked for edge thickness and cross-gap sag clearance.
+ * Surfaces 1-4A and 24-25 were raised to pass the traced chief ray to the 44x33 corner that the patent's
+ * 2ω = 110.0°/87.6°/74.6° reaches at every station; 3A and 4A stop at the 2-3A and 4A-5 gap-intrusion
+ * limits (2026-09-24 field-coverage audit).
  */
 
 const LENS_DATA = {
@@ -234,10 +237,10 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 42.2962, d: 1.4, nd: 1.95906, elemId: 1, sd: 17.0 },
-    { label: "2", R: 21.1899, d: 6.3511, nd: 1.0, elemId: 0, sd: 16.0 },
-    { label: "3A", R: 61.1798, d: 2.29, nd: 1.58313, elemId: 2, sd: 15.0 },
-    { label: "4A", R: 19.1309, d: 9.1788, nd: 1.0, elemId: 0, sd: 14.0 },
+    { label: "1", R: 42.2962, d: 1.4, nd: 1.95906, elemId: 1, sd: 22.0 },
+    { label: "2", R: 21.1899, d: 6.3511, nd: 1.0, elemId: 0, sd: 17.8 },
+    { label: "3A", R: 61.1798, d: 2.29, nd: 1.58313, elemId: 2, sd: 17.4 },
+    { label: "4A", R: 19.1309, d: 9.1788, nd: 1.0, elemId: 0, sd: 14.3 },
     { label: "5", R: -56.2094, d: 1.21, nd: 1.497, elemId: 3, sd: 14.5 },
     { label: "6", R: 26.1773, d: 4.79, nd: 1.84667, elemId: 4, sd: 14.0 },
     { label: "7", R: 137.3349, d: 17.46, nd: 1.0, elemId: 0, sd: 14.0 },
@@ -257,8 +260,8 @@ const LENS_DATA = {
     { label: "21", R: 42.3986, d: 4.7645, nd: 1.0, elemId: 0, sd: 11.0 },
     { label: "22A", R: -45.8664, d: 1.5, nd: 1.6935, elemId: 13, sd: 13.4 },
     { label: "23A", R: -277.6916, d: 5.08, nd: 1.0, elemId: 0, sd: 13.865 },
-    { label: "24", R: -254.4443, d: 6.55, nd: 1.8707, elemId: 14, sd: 15.5 },
-    { label: "25", R: -45.2499, d: 17.0778, nd: 1.0, elemId: 0, sd: 16.0 },
+    { label: "24", R: -254.4443, d: 6.55, nd: 1.8707, elemId: 14, sd: 21.0 },
+    { label: "25", R: -45.2499, d: 17.0778, nd: 1.0, elemId: 0, sd: 21.8 },
   ],
 
   /* ── Optical member PP (patent surfaces 26–27): traced, not drawn ── */

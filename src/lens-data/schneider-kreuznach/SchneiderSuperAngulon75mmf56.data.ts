@@ -15,13 +15,16 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    Patent at f=100; all R, d, and sd values scaled ×0.75 to       ║
  * ║    f≈75mm production focal length.                                ║
  * ║                                                                    ║
- * ║  NOTE ON SEMI-DIAMETERS:                                          ║
- * ║    Patent does not list SDs.  Estimated via combined marginal +   ║
- * ║    chief ray trace at 60% of the 50° half-field (30°), with 8%   ║
- * ║    mechanical clearance.  Capped at sd/|R| ≤ 0.85 for surfaces   ║
- * ║    r2, r9, r11 where the raw trace exceeded physical limits.      ║
- * ║    The outer menisci (L1, L8) naturally vignette at full field;   ║
- * ║    SDs represent the physically constrained clear aperture.       ║
+ * ║  NOTE ON SEMI-DIAMETERS:                                           ║
+ * ║    Patent does not list SDs.  Estimated via combined marginal +    ║
+ * ║    chief ray trace at 60% of the 50° half-field (30°), with 8%     ║
+ * ║    mechanical clearance.  Capped at sd/|R| ≤ 0.85 for surfaces     ║
+ * ║    r2, r9, r11 where the raw trace exceeded physical limits.       ║
+ * ║    The outer menisci (L1, L8) naturally vignette at full field;    ║
+ * ║    SDs represent the physically constrained clear aperture.        ║
+ * ║    Surfaces 1, 2 and 12 were raised to pass the traced chief ray   ║
+ * ║    to the 198 mm image-circle corner (52.7°; 2026-09-24            ║
+ * ║    field-coverage audit); r2 is now above the 0.85 cap (0.89).     ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -40,8 +43,8 @@ const LENS_DATA = {
   lensMounts: ["large-format-lens-board"],
   imageFormat: "4x5" as const,
   imageCircleMm: 198, // Schneider Super-Angulon brochure (1976): 198 mm at f/22 (105°), 156 mm at f/5.6
-  // audit:image-circle flags rear surfaces 10–12 at this circle through its wide-angle exit-pupil proxy; an exact
-  // chief-ray trace at the published 52.5° half-field did not converge, so the rear SDs are left for a trace-based review.
+  // audit:image-circle flags rear surfaces 10–12 at this circle through its wide-angle exit-pupil proxy; the exact
+  // chief ray to the 99 mm corner (52.7°) clears 10 and 11, and surface 12 was raised to pass it (2026-09-24).
   patentNumber: "US 3,376,091",
   patentAuthors: ["Werner Wagner", "Karl Heinrich Macher"],
   patentAssignees: ["Jos. Schneider & Co., Optische Werke"],
@@ -161,8 +164,8 @@ const LENS_DATA = {
    */
   surfaces: [
     // Group I — L1 front dispersive meniscus
-    { label: "1", R: 92.063, d: 5.28, nd: 1.4645, elemId: 1, sd: 23.0 },
-    { label: "2", R: 19.118, d: 10.988, nd: 1.0, elemId: 0, sd: 16.0 },
+    { label: "1", R: 92.063, d: 5.28, nd: 1.4645, elemId: 1, sd: 26.2 },
+    { label: "2", R: 19.118, d: 10.988, nd: 1.0, elemId: 0, sd: 17.0 },
 
     // Group II — front cemented triplet (L2 + L3 + L4)
     { label: "3", R: 26.168, d: 9.75, nd: 1.717, elemId: 2, sd: 17.5 },
@@ -181,7 +184,7 @@ const LENS_DATA = {
 
     // Group IV — L8 rear dispersive meniscus
     { label: "11", R: -19.485, d: 3.203, nd: 1.52015, elemId: 8, sd: 17.0 },
-    { label: "12", R: -96.24, d: 50.87, nd: 1.0, elemId: 0, sd: 18.5 },
+    { label: "12", R: -96.24, d: 50.87, nd: 1.0, elemId: 0, sd: 22.7 },
   ],
 
   /* ── Aspherical coefficients ── */

@@ -31,3 +31,23 @@ Patent: US 2018/0149842 A1, Example 1
   1.51680 / 64.2 catalog match) with gapAfter 1.0 mm. Paraxial check against the previous folded data: EFL identical
   and defocus unchanged at both focus keyframes (the old 18.00227 / 18.30017 values were exact folds).
 - Physical track grows by 0.681 mm, the plate's t(1 − 1/n).
+
+## 2026-09-24 — Semi-diameters raised to the traced format corner
+
+Patent Example 1 prints f = 15.5, Fno = 2.06 and half angle of view ω = 54.7° (¶0033, PDF p. 7), and FIG. 2 (sheet 2,
+PDF p. 3) labels its image-height axis 21.63 mm, 99.9% of the full-frame corner (21.65 mm), so the design covers the
+format. The estimated rear rim of L12 (surface 23A, 9.0 mm) clipped the real chief ray (solved through the stop centre)
+from 50.7°, leaving the analysis field at 90% of the corner. The traced corner chief ray (53.44°) needs surface
+23A ≥ 9.53 mm; the value is floor + ~0.5 mm. Surface 22A, L12's front, was not scaled with it: the corner chief ray
+crosses it at 8.11 mm, inside its 9.0 mm rim, and its conic (K = 1.1397) ends at 9.61 mm, so the validator rejects the
+scaled 10.1 mm (conic height and rim slope). The next-tightest rims at the corner, 3A (9.76 mm vs 10.0) and 4A
+(8.07 mm vs 8.3), clear and are unchanged. Scanned to 12.1 mm (1.2× the new sd), 23A's slope never changes sign; its
+departure at the new rim is 1.08 mm. No figure measurement was used.
+
+| Surface | Before | After | Justification |
+|---|---|---|---|
+| 23A | 9.0 | 10.1 | corner chief ray 9.53 mm + clearance; aspheric, no turnover within 12.1 mm |
+
+The validator accepts the new value, the traced edge now reaches 21.65 mm at 53.4° with every rim clear (100%), and the
+image-circle floor still reports nothing undersized. The analysis quotes no semi-diameters, rim angles or rim
+departures, so it needs no change.

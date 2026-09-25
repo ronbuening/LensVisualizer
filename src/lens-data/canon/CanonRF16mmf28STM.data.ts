@@ -22,10 +22,19 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    The STO semi-diameter below is inferred for the marketed f/2.8  ║
  * ║    production aperture; apertureDesign records the patent value.   ║
  * ║                                                                    ║
+ * ║  NOTE ON TRACE FIELD:                                              ║
+ * ║    maxTraceFieldDeg is 52.9°, the field of the Fig. 6 aberration   ║
+ * ║    plots, whose real chief ray reaches the 18.20 mm image height   ║
+ * ║    (84% of the full-frame corner). The table's 47.84° half field   ║
+ * ║    is the paraxial atan(Y/f) and stopped the trace at 15.8 mm      ║
+ * ║    (2026-09-24 field-coverage audit).                              ║
+ * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    The patent omits clear apertures. SDs were inferred from a      ║
  * ║    paraxial marginal/chief-ray envelope and constrained by element ║
  * ║    SD ratio, edge thickness, rim slope, and cross-gap sag checks.  ║
+ * ║    Surfaces 16-17 were raised to pass the traced chief ray at      ║
+ * ║    52.9° (2026-09-24 field-coverage audit).                        ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces from front element to image plane ║
@@ -43,7 +52,7 @@ const LENS_DATA = {
     "9 elements / 7 groups",
     "f = 16.49 mm design / 16 mm marketed",
     "F/2.90 design / f/2.8 marketed",
-    "2ω = 95.68° patent trace / 108°10′ marketed diagonal",
+    "2ω = 105.8° patent trace (Fig. 6) / 108°10′ marketed diagonal",
     "1 PMo aspherical element / 2 aspherical surfaces",
   ],
   focalLengthMarketing: 16,
@@ -61,7 +70,8 @@ const LENS_DATA = {
   projection: {
     kind: "rectilinear",
     fullFieldDeg: 108.1667,
-    maxTraceFieldDeg: 47.84,
+    // Fig. 6 plots Example 3 to ω = 52.9°, the real field reaching Y = 18.20 mm; the table's 47.84° is atan(Y/f).
+    maxTraceFieldDeg: 52.9,
   },
   apertureBlades: 7,
 
@@ -208,8 +218,8 @@ const LENS_DATA = {
     { label: "13", R: -26.412, d: 0.91, nd: 1, elemId: 0, sd: 8.4 },
     { label: "14A", R: -50.009, d: 2.1, nd: 1.5311, elemId: 8, sd: 9 },
     { label: "15A", R: -32.615, d: 6.74, nd: 1, elemId: 0, sd: 9.5 },
-    { label: "16", R: -109.118, d: 4.42, nd: 1.62299, elemId: 9, sd: 10 },
-    { label: "17", R: -31.658, d: 12.54, nd: 1, elemId: 0, sd: 10.5 },
+    { label: "16", R: -109.118, d: 4.42, nd: 1.62299, elemId: 9, sd: 13.2 },
+    { label: "17", R: -31.658, d: 12.54, nd: 1, elemId: 0, sd: 13.9 },
   ],
 
   asph: {

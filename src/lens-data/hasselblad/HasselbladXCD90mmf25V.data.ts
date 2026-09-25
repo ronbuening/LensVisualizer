@@ -18,6 +18,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    Estimated from combined paraxial marginal ray (at F/2.56) and   ║
  * ║    chief ray (at 60% of half-field), scaled to production, with    ║
  * ║    ~8% mechanical clearance. Cemented junction SDs unified.        ║
+ * ║    Surfaces 17A-18A (L9) were raised to pass the traced chief ray  ║
+ * ║    to the 44×33 corner (27.39 mm; patent Y = 21.633 × 1.26265 =    ║
+ * ║    27.32 mm) (2026-09-24 field-coverage audit).                    ║
  * ║                                                                    ║
  * ║  NOTE ON CEMENT LAYERS:                                            ║
  * ║    The patent models three cemented interfaces (L2–L3, L5–L6,      ║
@@ -214,9 +217,9 @@ const LENS_DATA = {
     { label: "14", R: -29.539, d: 0.01263, nd: 1.56732, elemId: 0, sd: 17.3 }, // L7–L8 cement
     { label: "15", R: -29.539, d: 9.85437, nd: 1.84666, elemId: 8, sd: 17.3 },
     { label: "16", R: -42.79, d: 15.54364, nd: 1.0, elemId: 0, sd: 22.0 },
-    { label: "17A", R: -20.856, d: 3.03037, nd: 1.68863, elemId: 9, sd: 17.0 },
+    { label: "17A", R: -20.856, d: 3.03037, nd: 1.68863, elemId: 9, sd: 17.7 },
     // Last surface: patent d19 = 10.679 (×1.26265) physical gap to plate P
-    { label: "18A", R: -65.154, d: 13.48387, nd: 1.0, elemId: 0, sd: 17.5 },
+    { label: "18A", R: -65.154, d: 13.48387, nd: 1.0, elemId: 0, sd: 20.4 },
   ],
 
   /* ── Parallel plate P (patent Table 1A surfaces 20–21): traced, not drawn ── */

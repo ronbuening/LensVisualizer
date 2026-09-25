@@ -43,3 +43,28 @@ APD status remains `false` for all elements. The patent describes ordinary wide-
 - Visually rechecked Table I in local `patents/US3376091.pdf`; L6 remains `1.61375 / 56.3`, rounded code 614563.
 - HOYA's 2026-07-07 catalog publishes BACD6 at `1.613753 / 56.377856`, inside both runtime tolerances, with a vendor polynomial.
 - Relabeled L6 as a BACD6 catalog equivalent while leaving Schneider's production supplier unspecified. This supersedes the earlier no-match disposition; no geometry changed.
+
+## 2026-09-24 — Semi-diameters raised to the traced format corner
+
+US 3,376,091 states that Tables I and II define an f/5.6 objective of f = 100 with an effective field angle of 100°
+(col. 3, ll. 10–16; PDF p. 3). The data file declares Schneider's 198 mm image circle (105° at f/22), so the traced
+corner is Y = 99 mm at 52.7°, past both the patent's 50° half-field and the 4x5 corner (81.3 mm, 47.3°). The estimated
+rims were sized for a 30° chief ray: rim 12 stopped the real chief ray (solved through the stop centre) at 45.2° (76% of
+the corner). The corner chief ray (52.72°) crosses surface 1 at 25.63, 2 at 16.40 and 12 at 22.17 mm, and clears
+surfaces 10 (12.51 mm) and 11 (15.44 mm). For comparison, the patent's 50° field needs surface 1 ≥ 24.05 and 12 ≥ 20.80
+mm, and the 4x5 corner needs 12 ≥ 19.49 mm. The validator accepts the 198 mm target, so the new values cover it: each is
+the corner height + ~0.5 mm, rounded up. Neither partner follows its outer surface. Scaling surface 2 with 1 (to 18.2
+mm) gives a 72° rim slope against the 64.2° limit (17.21 mm), and surface 11 (R −19.49) cannot pass 17.54 mm. Both
+elements are strong menisci, so each partner keeps its own value. No figure measurement was used.
+
+| Surface | Before | After | Justification |
+|---|---|---|---|
+| 1 | 23.0 | 26.2 | 198 mm corner chief ray 25.63 mm + clearance (patent 50° field: 24.05 mm) |
+| 2 | 16.0 | 17.0 | 198 mm corner chief ray 16.40 mm + clearance; rim slope 62.8°, so not scaled with surface 1 |
+| 12 | 18.5 | 22.7 | 198 mm corner chief ray 22.17 mm + clearance (50°: 20.80; 4x5: 19.49 mm); surface 11 unchanged |
+
+The validator accepts the new values, the traced edge now reaches the 99 mm corner at 52.7° with every rim clear, and
+no render trim or gap overlap appears. The image-circle floor still lists surfaces 10–12 (sd-audit queue Section A)
+through its wide-angle exit-pupil proxy (floors 15.81, 27.72 and 31.94 mm); the exact chief ray to the same corner
+clears all three, so 10 and 11 are unchanged. Surface 2 now has the lens's largest rim angle (62.8°). The analysis
+quotes none of these rims and is unchanged.

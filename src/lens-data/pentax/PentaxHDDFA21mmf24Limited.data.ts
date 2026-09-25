@@ -15,7 +15,9 @@ import type { LensDataInput } from "../../types/optics.js";
  *
  * Semi-diameters are conservative renderer estimates derived from the design
  * f/2.45 stop, marginal ray trace, full-frame field, and edge/gap checks. The
- * patent does not publish clear-aperture or semi-diameter values.
+ * patent does not publish clear-aperture or semi-diameter values. L2A (surfaces
+ * 3A/4A) was raised to the 15.9/13.3 mm rims drawn in Fig. 1, which pass the
+ * traced chief ray to the patent's Y = 21.64 mm (2026-09-24 field-coverage audit).
  */
 
 const LENS_DATA = {
@@ -215,8 +217,8 @@ const LENS_DATA = {
   surfaces: [
     { label: "1", R: 33.991, d: 2.2, nd: 2.001, elemId: 1, sd: 20.0 },
     { label: "2", R: 19.117, d: 4.91, nd: 1, elemId: 0, sd: 16.0 },
-    { label: "3A", R: 19, d: 2.7, nd: 1.5808, elemId: 2, sd: 11.6 },
-    { label: "4A", R: 10.532, d: 12.932, nd: 1, elemId: 0, sd: 9.45 },
+    { label: "3A", R: 19, d: 2.7, nd: 1.5808, elemId: 2, sd: 15.9 },
+    { label: "4A", R: 10.532, d: 12.932, nd: 1, elemId: 0, sd: 13.3 },
     { label: "5", R: 114.302, d: 1.65, nd: 1.497, elemId: 3, sd: 12.0 },
     { label: "6", R: 33.318, d: 5.41, nd: 1.91082, elemId: 4, sd: 12.1 },
     { label: "7", R: -449.604, d: 3.26, nd: 1, elemId: 0, sd: 12.2 },
