@@ -3,6 +3,44 @@
 Patent: JP2021-47297A, Numerical Example 1 (Canon / Taki, Mori, Nakahara)
 Catalog version: 952b877
 
+## 2026-09-25 — Source-state review
+
+Source-state review outcome: verified. All three authored candidates reviewed; normal-SA infinity,
+half life-size and 1.4× Super Macro are enabled. Both finite distances are calculated; intermediate travel is not certified.
+
+Source: local `patents/JP2021047297A.pdf`, visually inspected pages 9–11, paragraph 0054 / Numerical Example 1.
+All 31 prescription rows and the three normal-SA spacing columns match the retained source geometry.
+R15 is STO; no rear plate appears. Paragraph 0052 defines BF as air-equivalent; the existing 14.66 mm
+air gap is retained without inventing a sensor stack. The first column uses magnification -1e-6 as its
+numerical infinity representation, consistent with the text's infinity configuration.
+
+| Gap (mm) | Infinity | -0.5× | -1.4× |
+|---|---:|---:|---:|
+| d15 / STO | 3.10 | 11.72 | 27.41 |
+| d20 | 27.41 | 18.80 | 3.10 |
+| d25 | 4.17 | 11.48 | 29.50 |
+| d29 | 26.63 | 19.32 | 1.30 |
+| BF | 14.66 | 14.66 | 14.66 |
+
+| State | Exact focusT | Matrix A | Matrix B (mm) | Object before R1 (mm) | Object-to-image (mm) |
+|---|---:|---:|---:|---:|---:|
+| half-life-size | 0.6787635163962894 | -0.499985881793 | 106.396374787189 | 212.798758248315 | 375.178758248315 |
+| super-macro | 1 | -1.399993095495 | 129.202077315537 | 92.287653225808 | 254.657653225808 |
+
+Distances use s=-B/A at the authored image plane. Independent exact-ray roots at
+0.01/0.005/0.0025 mm first-vertex heights reproduce the source distances within 0.0000017 mm;
+axial image residuals are below 1.13e-10 mm. At the smallest height, exact magnifications are
+-0.499985881819 and -1.399993096315, within 0.00283% and 0.00050% of the source values.
+The middle state's d15+d20 sum is 0.01 mm longer than the endpoints, so its computed track is 162.38 mm
+versus 162.37 mm at the endpoints. The discrepancy is published and retained. The infinity formal finite
+solution is a rounded-table residual, not a new finite state.
+
+Reproduce with `node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-mtf.mjs --derive-source-states --lens=canon-rf100f28-macro`.
+Numeric precision supports repeatability, not source accuracy. The separate SA-adjustment columns are
+not authored keyframes, and the previously recorded second-SA spacing inconsistency remains a source blocker.
+The normal-SA states do not simulate an adjustable SA mechanism. Existing qualified glass matches and
+clear-aperture limits remain unchanged; no prescription geometry, aperture, movement or image plane is altered.
+
 ## 2026-05-10 - Glass relabel + patent prescription audit
 
 ### Phase 1 - Glass corrections

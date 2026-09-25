@@ -338,6 +338,47 @@ const LENS_DATA = {
    *    d_STO + d20 = 3.10 + 27.41 = 30.51 mm
    *    d25  + d29 = 4.17 + 26.63 = 30.80 mm
    */
+  sourceStates: [
+    {
+      id: "infinity",
+      label: "Infinity · normal SA",
+      focusT: 0,
+      zoomT: 0,
+      source: "JP2021047297A, Numerical Example 1, pp. 10–11, normal-SA infinity column (source magnification -1e-6); BF=14.66 mm retained.",
+      conjugate: { kind: "infinity" },
+    },
+    {
+      id: "half-life-size",
+      label: "Half life-size · normal SA",
+      focusT: 0.6787635163962894,
+      zoomT: 0,
+      source: "JP2021047297A, Numerical Example 1, pp. 10\u201311, normal-SA magnification -0.5 column; BF=14.66 mm retained. Independent distance evidence in CanonRF100f28.audit.md.",
+      conjugate: {
+        kind: "finite",
+        objectDistanceMm: 212.7987582483148,
+        distanceReference: "first-surface",
+        distanceProvenance: "calculated",
+        derivation: "Fixed published normal-SA geometry and image plane: s=-B/A with A=-0.4999858817927645 and B=106.39637478718899 mm. Independently checked by small-height exact rays. Calculated object-to-image distance 375.1787582483148 mm; published magnification reproduced within 0.003% (rounded source tables).",
+        magnification: -0.5,
+      },
+    },
+    {
+      id: "super-macro",
+      label: "Super Macro · normal SA",
+      focusT: 1,
+      zoomT: 0,
+      source: "JP2021047297A, Numerical Example 1, pp. 10\u201311, normal-SA magnification -1.4 column; BF=14.66 mm retained. Independent distance evidence in CanonRF100f28.audit.md.",
+      conjugate: {
+        kind: "finite",
+        objectDistanceMm: 92.28765322580776,
+        distanceReference: "first-surface",
+        distanceProvenance: "calculated",
+        derivation: "Fixed published normal-SA geometry and image plane: s=-B/A with A=-1.3999930954946675 and B=129.20207731553705 mm. Independently checked by small-height exact rays. Calculated object-to-image distance 254.65765322580773 mm; published magnification reproduced within 0.003% (rounded source tables).",
+        magnification: -1.4,
+      },
+    },
+  ],
+
   focusPositions: [0, 0.6787635163962894, 1],
   var: {
     STO: [3.1, 11.72, 27.41],

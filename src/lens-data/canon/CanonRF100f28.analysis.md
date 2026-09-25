@@ -77,3 +77,12 @@ Two renderer limits are explicit: S17/S18 use 13.25 mm instead of the source 13.
 - Local original: patents/JP2021047297A.pdf, paragraphs 51–52, Numerical Example 1 (PDF pp. 10–11), Figures 1–3 (p. 17).
 - [JP 2021-047297 A patent record](https://patents.google.com/patent/JP2021047297A/en).
 - Local glass catalog: compatible optical counterparts only; no production identity established.
+
+## Selectable source configurations
+
+The normal-SA infinity, 0.5× and 1.4× keyframes are selectable source states. Finite object distances are
+**calculated** as 212.7988 and 92.2877 mm before the first surface (375.1788 and 254.6577 mm from the
+retained image plane). Independent small-height exact rays verify these sources and reproduce the published
+magnifications within 0.003%. The middle state retains the source's 0.01 mm spacing-sum discrepancy.
+The separate SA-adjustment tables are not authored geometry; neither those configurations nor intermediate
+focus travel are certified for selection. Source-state selection restores the normal-SA geometry.
