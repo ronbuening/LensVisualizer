@@ -26,3 +26,26 @@ Figure 1, PDF p. 17 at 600 dpi, supports smaller G1/G2 rims than the earlier ray
 | S12A/S13A | 14.8 | 12.6 | L23 optical rim |
 
 S1 remains 13.3 mm and S2/S3 retain the 11.25 mm shared-gap cap. G3/G4, the stop, radii, spacings, glass assignments and published focus travel are unchanged. The revised L23 polynomial departures are −0.172906841 mm on S12A and +0.232537036 mm on S13A at SD 12.6 mm; the analysis table is synchronized. The earlier smallest-edge and ray-containment narrative is superseded by the revised geometry.
+
+## 2026-09-25 — MTF image-plane and Tier A source audit
+
+Opened local `patents/CN211955963U.pdf`, Example 1 Tables 1–3, PDF pp.6–8.
+Visually compared every radius, gap, index, all ten Abbe numbers, and all four
+K/A4/A6/A8/A10 rows. Infinity D1=1.00 and D2=8.69 match; the close row is 5.92/3.77.
+No scaling. Retained the documented source stop/asphere label corrections: physical
+row 8 is the stop and coefficient rows 13–16 belong to L23/L31 surfaces 12A–15A.
+
+**Cause: folded plate plus source image-distance contradiction.** Restored GL
+(2.00 mm, 1.52/64.2) to rearPlates with source D19=22.12 and D21=1.00 mm.
+Air-equivalent BFL 23.883594338 becomes physical BFL 24.567804865 mm, while the
+printed physical image distance is 25.12 mm. Independent EFL is 34.545216929 mm
+versus printed 34.5. All values match the source; no single supported misprint
+explains the residual. Runtime offset **-0.552195 → -0.552195 mm**. Retained
+published values; deleted Section E row. Changelog records the physical plate fix.
+
+**Tier A:** L41/source S16 is 1.49/81.59. Reviewed the prescription, explanatory
+prose and dispersion content: no θgF, ΔPgF, nC/nF/ng or glass identity is supplied.
+The F/d/C wavelength labels on aberration figures are not refractive indices.
+Deleted the completed patent-search row without fabricating spectral data; the
+spectral-data-unavailable limitation remains. No supplier identity was inferred.
+Focused runtime checks passed; full corpus validation follows at the batch checkpoint.

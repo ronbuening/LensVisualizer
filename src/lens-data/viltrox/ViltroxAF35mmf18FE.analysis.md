@@ -15,7 +15,7 @@ Several independent characteristics align. The production lens is a full-frame 3
 
 Three source irregularities require explicit normalization. First, patent Fig. 1 places the aperture stop between L14 and L21, whereas Table 1 labels a later refracting row as `STP`. The model therefore uses the flat air row printed as surface 8 for `STO` and interprets the printed `STP` row as physical refracting surface 11. This placement also reproduces condition (1), `L1s/L = 0.443158207`, which rounds to the patent's 0.44. Second, both Table 1's asphere type tags and Table 3's coefficient-row labels identify surfaces 13–16, but the claims and ¶0083 explicitly assign both faces of L23 and both faces of L31 as aspheric. Once the stop-row error is corrected, those physical faces are surfaces 12–15. The model therefore treats the 13–16 table markings as the same +1 source-index error and maps the four coefficient sets to `12A`–`15A`. Third, paragraph ¶0091 states f/1.4, but the Example-1 aberration plots themselves are labeled Fno 1.8. The modeled f-number is therefore 1.8, consistent with the selected production lens.
 
-The patent also inserts a 2.00 mm, nd = 1.52 parallel plate (`GL`) between L42 and the image plane and states that it may be replaced by air (¶0071). That plate is not part of the active LensVisualizer prescription. Its optical path is instead absorbed into an air-equivalent rear spacing of 24.435789474 mm from the L42 rear vertex to the modeled image plane.
+The patent also inserts a 2.00 mm, nd = 1.52 parallel plate (`GL`) between L42 and the image plane and states that it may be replaced by air (¶0071). The plate is traced through `rearPlates`, with 22.12 mm of air before and 1.00 mm after. The physical image distance is 25.12 mm; its air equivalent is 24.435789474 mm.
 
 No clear-aperture or semi-diameter table is published. The semi-diameters in the data file are therefore modeling quantities, not patent dimensions. They were constrained by the f/1.8 pupil geometry, the patent's 31.6° half-field, the optical-section proportions, and the current edge-thickness, rim-slope, cross-gap, and off-axis containment rules.
 
@@ -23,7 +23,7 @@ No clear-aperture or semi-diameter table is published. The semi-diameters in the
 
 The design is best described by the patent's own four-functional-group architecture rather than by forcing it into a classical named family. From object to image, the power sequence is **positive / positive / negative / positive**: G1, the aperture stop, G2, the moving G3 focus group, and fixed rear group G4 (CN 211955963 U ¶0057). The data file also records eight air-separated physical groups: L11; the cemented L12+L13 pair; L14; the cemented L21+L22 pair; L23; L31; L41; and L42.
 
-The independently traced infinity prescription has an effective focal length of **34.545216929 mm**, compared with the patent's rounded 34.5 mm and the production marketing value of 35 mm. Its active first-vertex-to-L42-rear track is **67.38 mm**, giving `TL/EFL = 1.950487100`; under the project's strict definition this is not a telephoto layout. The Gaussian back focal distance from the L42 rear vertex is **23.883594338 mm**, less than the EFL, so the design likewise does not meet the project's `BFD > EFL` criterion for a retrofocus lens. With positive axial distance directed imageward, the front principal plane lies **33.007637702 mm** imageward of the first vertex and the rear principal plane lies **10.661622591 mm** objectward of the L42 rear vertex.
+The independently traced infinity prescription has an effective focal length of **34.545216929 mm**, compared with the patent's rounded 34.5 mm and the production marketing value of 35 mm. Its active first-vertex-to-L42-rear track is **67.38 mm**, giving `TL/EFL = 1.950487100`; under the project's strict definition this is not a telephoto layout. The air-equivalent Gaussian back focal distance from the L42 rear vertex is **23.883594338 mm** (physical BFL with GL: 24.567804865 mm), less than the EFL, so the design likewise does not meet the project's `BFD > EFL` criterion for a retrofocus lens. With positive axial distance directed imageward, the front principal plane lies **33.007637702 mm** imageward of the first vertex and the rear principal plane lies **10.661622591 mm** objectward of the L42 rear vertex.
 
 The four functional groups have independently recomputed prescription powers of:
 
@@ -122,7 +122,7 @@ The exact source pair is unusual. Common public 497816-family low-dispersion gla
 
 L42 is the final refractive element and the negative partner to L41 in G4. Its lower νd creates the large dispersion separation used by patent condition (5): `νd(L41) - νd(L42) = 47.94`.
 
-The pair does not behave like a strongly powered rear relay. The complete G4 group has only +252.490141 mm EFL, so its role is comparatively weak in first-order power while remaining important to rear-group chromatic and field correction. The active data prescription ends at L42's rear surface; the patent's following GL plate is omitted and replaced by the air-equivalent image spacing described above.
+The pair does not behave like a strongly powered rear relay. The complete G4 group has only +252.490141 mm EFL, so its role is comparatively weak in first-order power while remaining important to rear-group chromatic and field correction. The active data prescription ends at L42's rear surface; the patent's following GL plate is traced separately with the physical spacing described above.
 
 ## Glass Identification and Selection
 
@@ -204,11 +204,11 @@ The patent defines five design conditions. Recalculation from the corrected Exam
 | (4) `BFL/F`, literal L42-rear-to-IMG distance | 0.6–0.7 | 0.728115942 | outside range |
 | (5) `νd4a - νd4b` | 30–50 | 47.940000000 | within range |
 
-Condition (4) is not repaired by altering the prescription. The patent literally defines BFL as the axial distance from the L42 rear surface to IMG; with the printed 22.12 mm air gap, 2.00 mm GL plate, and 1.00 mm final air gap, that distance is 25.12 mm and `BFL/F = 0.728115942`. After omitting GL, the model preserves the source image-plane translation with the air-equivalent 24.435789474 mm rear spacing, which gives **0.708283753** against the patent's 34.5 mm focal length and is still outside the stated interval. Only the system's **Gaussian** BFL divided by computed EFL gives **0.691371960**, which falls inside the interval but does not match the patent's literal axial-distance definition. The source's final summary table is also inconsistent with the Example-1 prescription: it prints 0.65 for condition (2), 6.81 for condition (3), 1.73 for condition (4), and 47.75 for condition (5). Those summary values are not substituted into the model.
+Condition (4) is not repaired by altering the prescription. The patent literally defines BFL as the axial distance from the L42 rear surface to IMG; with the printed 22.12 mm air gap, 2.00 mm GL plate, and 1.00 mm final air gap, that distance is 25.12 mm and `BFL/F = 0.728115942`. Its air-equivalent 24.435789474 mm rear spacing gives **0.708283753** against the patent's 34.5 mm focal length and is still outside the stated interval. Only the system's **Gaussian** BFL divided by computed EFL gives **0.691371960**, which falls inside the interval but does not match the patent's literal axial-distance definition. The source's final summary table is also inconsistent with the Example-1 prescription: it prints 0.65 for condition (2), 6.81 for condition (3), 1.73 for condition (4), and 47.75 for condition (5). Those summary values are not substituted into the model.
 
 ## Verification Summary
 
-The final data file contains 19 listed surfaces including exactly one `STO`, ten refractive elements, two cemented pairs, and four aspheric surfaces. The GL plate is excluded from the active prescription and its optical path is represented by the air-equivalent rear spacing. No scaling is applied; all radii, thicknesses, and aspheric coefficients remain at the patent's native dimensional scale.
+The final data file contains 19 listed surfaces including exactly one `STO`, ten refractive elements, two cemented pairs, and four aspheric surfaces. The GL plate is traced as two additional hidden surfaces with its source physical gaps. No scaling is applied; all radii, thicknesses, and aspheric coefficients remain at the patent's native dimensional scale.
 
 Independent reduced-angle sequential tracing and a separate ABCD/basis-ray matrix calculation agree to numerical precision. At infinity the model gives EFL = **34.545216929 mm**, Gaussian BFL = **23.883594338 mm**, and f-number = **1.800000000** from the modeled entrance pupil. At the published nearest-focus state the EFL becomes **32.931776271 mm**. The G3 travel is **4.92 mm**, exactly matching the D1/D2 spacing change.
 
@@ -232,3 +232,13 @@ Reviewed the local `patents/CN211955963U.pdf`, PDF page 17, Figure 1, at 600 dpi
 8. **HIKARI optical-glass catalog:** https://www.hikari-g.co.jp/optical_glass/
 9. **CDGM optical-glass database:** https://www.cdgmgd.com/database/toWebDatabase.htm?typeId=18&url=database
 10. **SUMITA optical-glass data downloads:** https://www.sumita-opt.co.jp/en/download/
+
+## Image-plane and spectral source audit (2026-09-25)
+
+The complete native-scale Example 1 prescription reproduces the powered-surface data,
+but its physical image distance 25.12 mm differs from paraxial BFL 24.567805 mm.
+The -0.552195 mm offset survives unfolding GL; EFL is 34.545217 mm versus printed
+34.5 mm. No single supported misprint explains these residuals. Preserve the source
+values and existing documented stop/asphere mapping rather than tuning focus.
+The patent supplies no θgF, ΔPgF or line indices for L41 (1.49 / 81.59). Its Tier A
+source search is complete, but spectral MTF remains unavailable for that glass.

@@ -16,7 +16,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **303** code-only missing-Sellmeier elements in Sweep 2: **4** active unreviewed, **166** self-recording explicit dispositions, **0** dispositions missing any review record
 - **1** unresolved named-token elements in Sweep 2B, producing **1** token occurrences across **1** distinct tokens
-- **23** Tier A proprietary backfill rows in Sweep 3
+- **22** Tier A proprietary backfill rows in Sweep 3
 
 ## Sweep 1 - Relabel Mismatches
 
@@ -227,6 +227,5 @@ Use local untracked patents first. Populate patent-listed `nC`, `nF`, `ng`, and 
 | [schneider-kreuznach/SchneiderAPOSymmar100mmf56.data.ts](../../src/lens-data/schneider-kreuznach/SchneiderAPOSymmar100mmf56.data.ts) | US 6,028,720 | Element 3 (1.52055 / 69.9) | patents/US6028720.pdf | Matched untracked local patent PDF | νd > 65 without ΔPgF: look for θgF/ΔPgF, nC/nF/ng, or a glass name that resolves to a catalog curve. |
 | [sony/SonyFE2870mmf2GM.data.ts](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) | WO 2025/263124 A1 | Element 2 (1.59489 / 68.6); Element 3 (1.59561 / 67) | patents/WO_2025263124_A1.pdf | Matched untracked local patent PDF | νd > 65 without ΔPgF: look for θgF/ΔPgF, nC/nF/ng, or a glass name that resolves to a catalog curve. |
 | [viltrox/ViltroxAF33mmf14E.data.ts](../../src/lens-data/viltrox/ViltroxAF33mmf14E.data.ts) | CN 211826699 U | Element L14 (1.51 / 81.59) | patents/CN211826699U.pdf | Matched untracked local patent PDF | νd > 65 without ΔPgF: look for θgF/ΔPgF, nC/nF/ng, or a glass name that resolves to a catalog curve. |
-| [viltrox/ViltroxAF35mmf18FE.data.ts](../../src/lens-data/viltrox/ViltroxAF35mmf18FE.data.ts) | CN 211955963 U | Element 9 (1.49 / 81.59) | patents/CN211955963U.pdf | Matched untracked local patent PDF | νd > 65 without ΔPgF: look for θgF/ΔPgF, nC/nF/ng, or a glass name that resolves to a catalog curve. |
 | [voigtlander/VoigtlanderNokton60mmf95.data.ts](../../src/lens-data/voigtlander/VoigtlanderNokton60mmf95.data.ts) | JP 2021-076740 A | Element 5 (1.57774 / 67.11) | patents/JPA 2021076740-000000.pdf | Matched untracked local patent PDF | νd > 65 without ΔPgF: look for θgF/ΔPgF, nC/nF/ng, or a glass name that resolves to a catalog curve. |
 
