@@ -9,12 +9,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **813** lenses scanned (**801** visible)
-- **8479 / 9117** non-air surfaces use strict catalog Sellmeier data (93.0%)
-- **8494 / 9117** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.2%)
+- **819** lenses scanned (**807** visible)
+- **8561 / 9221** non-air surfaces use strict catalog Sellmeier data (92.8%)
+- **8576 / 9221** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.0%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
-- **303** code-only missing-Sellmeier elements in Sweep 2: **4** active unreviewed, **166** self-recording explicit dispositions, **0** dispositions missing any review record
+- **323** code-only missing-Sellmeier elements in Sweep 2: **17** active unreviewed, **173** self-recording explicit dispositions, **0** dispositions missing any review record
 - **1** unresolved named-token elements in Sweep 2B, producing **1** token occurrences across **1** distinct tokens
 - **0** Tier A proprietary backfill rows in Sweep 3
 
@@ -189,8 +189,21 @@ Add catalog entries only when public coefficient-backed vendor data is available
 | Code | Active elements | Lens files | localPatentStatus | Representative rows |
 |---|---:|---:|---|---|
 | 682419 | 2 | 1 | patents/DE_1157000_B.pdf | [CARL ZEISS JENA FLEKTOGON 50mm f/4](../../src/lens-data/carl-zeiss-jena/ZeissFlektogon50mmf4.data.ts) Element 3 (1.68169 / 41.90)<br>[CARL ZEISS JENA FLEKTOGON 50mm f/4](../../src/lens-data/carl-zeiss-jena/ZeissFlektogon50mmf4.data.ts) Element 4 (1.68169 / 41.90) |
+| 576388 | 1 | 1 | patents/WO2024154461A1.pdf | [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L77 (1.57567 / 38.80) |
+| 634299 | 1 | 1 | patents/WO2024154461A1.pdf | [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L75 (1.63362 / 29.90) |
+| 646287 | 1 | 1 | patents/WO2024154461A1.pdf | [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L711 (1.64579 / 28.70) |
+| 656277 | 1 | 1 | patents/WO2024154461A1.pdf | [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L79 (1.65611 / 27.70) |
+| 670266 | 1 | 1 | patents/WO2024154461A1.pdf | [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L72 (1.66961 / 26.60) |
+| 673343 | 1 | 1 | patents/WO2024154461A1.pdf | [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L52 (1.67300 / 34.30) |
 | 681472 | 1 | 1 | patents/DE_1157000_B.pdf | [CARL ZEISS JENA FLEKTOGON 50mm f/4](../../src/lens-data/carl-zeiss-jena/ZeissFlektogon50mmf4.data.ts) Element 7 (1.68078 / 47.20) |
 | 683315 | 1 | 1 | patents/JPA 1987249119-000000.pdf | [MINOLTA AF 20mm f/2.8](../../src/lens-data/minolta/MinoltaAF20mmf28.data.ts) Element 4 (1.68300 / 31.52) |
+| 721234 | 1 | 1 | patents/WO2024154461A1.pdf | [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L61 (1.72146 / 23.40) |
+| 729364 | 1 | 1 | patents/WO2024154461A1.pdf | [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L22 (1.72884 / 36.40) |
+| 827336 | 1 | 1 | patents/WO2024154461A1.pdf | [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L76 (1.82673 / 33.60) |
+| 837333 | 1 | 1 | patents/WO2024154461A1.pdf | [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L44 (1.83720 / 33.30) |
+| 839196 | 1 | 1 | patents/WO2024154461A1.pdf | [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L32 (1.83909 / 19.60) |
+| 868323 | 1 | 1 | patents/WO2024154461A1.pdf | [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L33 (1.86758 / 32.30) |
+| 958300 | 1 | 1 | patents/WO2024154461A1.pdf | [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) Element L51 (1.95787 / 30.00) |
 
 ## Sweep 2B - Named Tokens Missing Catalog Resolution
 
