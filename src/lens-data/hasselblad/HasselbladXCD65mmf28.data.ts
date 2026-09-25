@@ -25,6 +25,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    ✓ Aperture stop and variable focus gap                         ║
  * ║    ✗ DO NOT include: mechanical parts (cover glass: `rearPlates`)  ║
  * ╚══════════════════════════════════════════════════════════════════════╝
+ *
+ * MTF source audit: US20200319427A1 Fig. 2–3 values match at infinity.
+ * The printed cover stack ends at S20 (image plane in Fig. 1); paraxial
+ * focus falls 0.232471 mm beyond it. EFL 65.015872 agrees with 65.02,
+ * but the air-equivalent rear path 21.906903 does not equal BFL 22.139374.
+ * Retain the source rearPlates and physical image plane; no focus tuning.
  */
 
 const LENS_DATA = {

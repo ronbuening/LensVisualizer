@@ -49,3 +49,15 @@ Patent: US 2020/0319427 A1, Example 1 / Table 1
   (nearest BAK2/S-BAL12 and N-KF9/C12 fail the compatibility check), so `glass` is omitted and dispersion uses the
   Abbe estimate. Paraxial check against the previous data: EFL identical at all three focus states; defocus changes by
   0.0031 mm (rounding in the old 21.91 vs 21.907). Physical track grows by 0.62 mm.
+
+## 2026-09-25 — MTF image-plane census
+
+Local PDF `patents/US20200319427A1.pdf`, Example 1: visually inspected Fig. 1 (PDF p. 2), Fig. 2 prescription and Fig. 3 focus stations (p. 3). All 16 powered radii, stop, thicknesses/gaps and ten lens nd/νd pairs agree. No scale or aspheres. The infinity d12 is 1.00 mm (other stations 3.02 and 14.46).
+
+The source explicitly lists S17 air gap 20.73 mm, S18 COVER 0.80 mm / 1.53741 / 61.81 and S19 COVER 1.00 mm / 1.52312 / 54.36, already represented by two touching rearPlates. S20 is the terminal row without a following distance; Fig. 1 places image plane 5 on the stack rear face. Keep the existing zero trailing gap; do not add the calculated defocus as invented air.
+
+Independent trace: EFL 65.015871503 versus printed 65.02 mm, air BFL 22.139373529 versus rear reduced distance 20.73+0.8/1.53741+1/1.52312=21.906902751 mm. Runtime physical focus is 0.232470779 mm behind S20. No transcription discrepancy or single supported source misprint explains the image-distance discrepancy.
+
+**Cause/action:** source image-plane inconsistency; retain all prescription/plate values, document the residual. Offset **+0.232471 → +0.232471 mm**; Section E row deleted. No changelog entry because numerical behavior is unchanged.
+
+Validation: focused runtime/paraxial check; full corpus gates at the ten-lens checkpoint.
