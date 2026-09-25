@@ -158,3 +158,11 @@ The Group II mismatch is deliberately retained rather than hidden by changing th
 5. Nikon Corporation / HIKARI, J-series Optical Glass catalog and family tables (including J-LAK9, J-SK16, and J-SF10). https://www.nikon.com/business/components/lineup/materials/optical-glass/catalog/
 6. SCHOTT Advanced Optics, Optical Glass catalog/search, including N-SK16 and SF10-family reference coordinates. https://www.us.schott.com/shop/advanced-optics/en/search/
 7. CDGM Glass Co., Ltd., Colourless Optical Glass catalog, current catalog family comparisons. https://www.cdgmgd.com/go.htm?k=Colourless_Optical_Glass&url=goods
+
+## Image-plane source audit (2026-09-25)
+
+MTF source audit: Table 3 / PDF p. 5 retains the documented MD04
+parabola correction; all other radii, gaps and glass coordinates match.
+Computed EFL 1.955900 vs printed 1.98 and BFL 9.330584 vs 9.28 show
+a residual source inconsistency. The source does not specify designer best
+focus; preserve the image distance and do not further tune the paraboloid.

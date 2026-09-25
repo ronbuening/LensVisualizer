@@ -40,6 +40,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ fixed-focus placeholder. No variable spacing or finite MFD is      ║
  * ║ asserted by this model.                                             ║
  * ╚══════════════════════════════════════════════════════════════════════╝
+ *
+ * MTF source audit: Table 3 / PDF p. 5 retains the documented MD04
+ * parabola correction; all other radii, gaps and glass coordinates match.
+ * Computed EFL 1.955900 vs printed 1.98 and BFL 9.330584 vs 9.28 show
+ * a residual source inconsistency. The source does not specify designer best
+ * focus; preserve the image distance and do not further tune the paraboloid.
  */
 
 const LENS_DATA = {
