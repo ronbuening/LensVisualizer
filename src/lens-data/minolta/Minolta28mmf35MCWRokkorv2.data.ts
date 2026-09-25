@@ -10,7 +10,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ SOURCE CORRECTIONS:                                                       ║
  * ║   The raw Example 2 table prints r9 = +0.5260 and r12 = -5421.           ║
  * ║   Same-example Petzval data on the following patent page require         ║
- * ║   r9 = -0.5260 and r12 = -0.5421. Raw values remain in evidence.json.    ║
+ * ║   r9 = -0.5260 and r12 = -0.5421. Raw values are recorded in the companion audit.    ║
  * ║                                                                          ║
  * ║ SCALING:                                                                  ║
  * ║   Patent Example 2 is normalized to f = 1. All dimensional prescription  ║
@@ -40,6 +40,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║   closeFocusM = 0.6 is product metadata; no internal focus var is        ║
  * ║   invented.                                                               ║
  * ╚════════════════════════════════════════════════════════════════════════════╝
+ *
+ * MTF source audit: Example 2 retains published BF=1.32 ×28 =36.96 mm.
+ * With the already documented Petzval-supported R9/R12 source emendations,
+ * paraxial BFL is 36.714083 mm (offset −0.245917 mm), EFL 28.009933 mm.
+ * All other printed values match; no plate is present. Preserve the source BF.
  */
 
 // FIG. 1 optical-rim audit: S1-S6 = 21.0/19.0/18.5/18.5/15.0/13.5 mm. Rear SDs retain ray-envelope estimates. All remain modeled, not source dimensions.

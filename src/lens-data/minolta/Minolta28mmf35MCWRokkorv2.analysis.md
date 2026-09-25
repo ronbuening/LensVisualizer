@@ -211,3 +211,10 @@ track does not meet the project's `TL/EFL < 1` telephoto criterion, so no teleph
 ### Catalog proxy labels
 
 The viewer names the compatible catalog curve explicitly while retaining the original coordinate code and the supplier/melt qualification. The selected curves are unchanged: L2 → LAFN7, L3 → N-BK7, L4 → S-BAH10, L6 → LAC10, L7 → N-BK7. These labels identify spectral proxies, not production glass suppliers.
+
+## Image-plane source audit (2026-09-25)
+
+MTF source audit: Example 2 retains published BF=1.32 ×28 =36.96 mm.
+With the already documented Petzval-supported R9/R12 source emendations,
+paraxial BFL is 36.714083 mm (offset −0.245917 mm), EFL 28.009933 mm.
+All other printed values match; no plate is present. Preserve the source BF.

@@ -137,7 +137,6 @@ the row. Offset is paraxial focus minus the authored plane (positive: the plane 
 | Lens | File | Offset (mm) | Depths | Cause | Status |
 |---|---|---|---|---|---|
 | FUJIFILM FUJINON XF 18mm f/2 R | `fujifilm/FujifilmXF18mmf2.data.ts` | +4.993 | 1062 | D16 ends at omitted PP; Table 7 leaves its trailing image gap blank; EFL also differs | partial (source image distance missing; S13 A10 typo corrected, no paraxial effect) |
-| MINOLTA MC W.ROKKOR-SG 28mm f/3.5 | `minolta/Minolta28mmf35MCWRokkorv2.data.ts` | -0.246 | 17 | Not yet diagnosed; check the source image distance | todo |
 | HASSELBLAD XCD 65mm f/2.8 | `hasselblad/HasselbladXCD65mmf28.data.ts` | +0.232 | 25 | Cover glass already in `rearPlates`; offset remains | todo |
 | CANON 12.5-62.5mm f/2.0-3.9 (PowerShot G1 X Mark II) | `canon/CanonPowerShotG1XII125625mmf239.data.ts` | +0.221 | 47 | Sensor block already in `rearPlates`; offset remains | todo |
 | NIKON R-UW AF ZOOM-NIKKOR 20-35mm f/2.8 | `nikon/NikonRUWAFZoomNikkor2035mmf28.data.ts` | +0.220 | 24 | Underwater lens designed with water in object space; in-air MTF is not its design condition | todo |
