@@ -199,3 +199,13 @@ Independent sequential height/reduced-angle tracing and ABCD multiplication give
 - [Cosina, official optical-section diagram](https://www.cosina.co.jp/wp/wp-content/uploads/2021/09/50_15ii_VM_LDe.svg)
 - [OHARA, L-TIM low-transition-temperature optical glasses](https://oharacorp.com/glass-type/l-tim/)
 - Official OHARA, HIKARI, SCHOTT, HOYA, SUMITA, and CDGM catalog and cross-reference data used in the glass audit.
+
+## Image-plane source audit (2026-09-25)
+
+MTF image-plane audit (2026-09-25): JP2022012964A Example 2, Table 2
+(PDF p. 20), matches all radii, spacings, nd/vd and A4–A10 terms.
+The source itself folds unspecified sensor plates into air-equivalent
+back focus (paragraph 77); no physical plate values are available to
+unfold. Published infinity ZD16=25.00 mm gives a -0.027512 mm paraxial
+offset. Preserve it: no transcription error was found, and designer
+best-focus intent is not explicit despite the small finite-aperture residual.

@@ -51,9 +51,42 @@ curve supplies the C/d/F channels.
 
 ## Tier A — active source blockers
 
+Each row has an nd/νd-only glass above νd 65 without `dPgF`, the anomalous-dispersion range where the normal-line
+estimate fails, so photopic and C/d/F MTF fall back to the reference wavelength (`assessMtfSpectralData` in
+`src/optics/analysis/mtfSupport.ts`). Elements are listed as label (nd / νd). Regenerate the set with
+`scripts/audit-mtf.mjs --photopic` (reason `spectral-data-unavailable`). The other lenses with that reason are not patent
+tasks:
+
+- 14 native e-line lenses with non-catalog glasses need an engine estimate across C′/e/F′.
+- Voigtländer Dynar 100, Heliar 100 (second asymmetric) and Meyer Kino-Plasmat 100 already record their patents'
+  nD/nG′ pairs; they need an engine path for two-line historical indices.
+- Hasselblad XCD 90V: its three 0.0126 mm cement layers carry the patent's νd 42.8 only in the header, because
+  surfaces cannot hold νd; they need element modeling or a surface-level νd.
+- Nikon R-UW 20-35: the water medium in front of the lens has no νd.
+
 | Lens file | Patent reference | Elements needing backfill | Notes |
 |---|---|---|---|
-| _None._ | | | |
+| [canon/CanonEFS1022mmf3545.data.ts](../src/lens-data/canon/CanonEFS1022mmf3545.data.ts) | US 2005/0286139 A1 | L4 rear positive asphere (1.48456 / 70) | νd > 65 without ΔPgF: look for θgF/ΔPgF, nC/nF/ng, or a glass name that resolves to a catalog curve. |
+| [canon/CanonRF2870mmf28.data.ts](../src/lens-data/canon/CanonRF2870mmf28.data.ts) | US 2024/0329367 A1 | GB (1.544 / 66.3) | νd > 65 without ΔPgF: look for θgF/ΔPgF, nC/nF/ng, or a glass name that resolves to a catalog curve. |
+| [carl-zeiss-jena/ZeissSonnar50f15.data.ts](../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.ts) | US 1,975,678 | Element 3 (1.4075 / 65.7) | νd > 65 without ΔPgF: look for θgF/ΔPgF, nC/nF/ng, or a glass name that resolves to a catalog curve. |
+| [minolta/MinoltaAF400mmf45APOG.data.ts](../src/lens-data/minolta/MinoltaAF400mmf45APOG.data.ts) | JP 1996-327896 A | Element 1 (1.4931 / 83.6); Element 2 (1.4931 / 83.6) | νd > 65 without ΔPgF: look for θgF/ΔPgF, nC/nF/ng, or a glass name that resolves to a catalog curve. |
+| [minolta/MinoltaAF70200mmf28APO.data.ts](../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) | JP 2004-109559 A | Element 2 (1.4931 / 83.58); Element 3 (1.4931 / 83.58); Element 12 (1.4931 / 83.58); Element 15 (1.4931 / 83.58) | νd > 65 without ΔPgF: look for θgF/ΔPgF, nC/nF/ng, or a glass name that resolves to a catalog curve. |
+| [minolta/MinoltaAF80200mmf28APO.data.ts](../src/lens-data/minolta/MinoltaAF80200mmf28APO.data.ts) | JP 1989-039542 A | Element 12 (1.4931 / 83.6) | νd > 65 without ΔPgF: look for θgF/ΔPgF, nC/nF/ng, or a glass name that resolves to a catalog curve. |
+| [nikon/NikonAINikkor180mmf28.data.ts](../src/lens-data/nikon/NikonAINikkor180mmf28.data.ts) | US 4,338,001 | Element 1 (1.50032 / 81.9) | νd > 65 without ΔPgF: look for θgF/ΔPgF, nC/nF/ng, or a glass name that resolves to a catalog curve. |
+| [nikon/NikonAIZoomNikkor3601200mmf11ED.data.ts](../src/lens-data/nikon/NikonAIZoomNikkor3601200mmf11ED.data.ts) | US 3,743,384 | Front ED-type singlet (1.48606 / 81.5); Front triplet positive (1.48606 / 81.5); Hyperchromatic doublet negative (1.48606 / 81.5); Compensator second doublet positive (1.48606 / 81.5); Relay triplet positive (1.48606 / 81.5) | νd > 65 without ΔPgF: look for θgF/ΔPgF, nC/nF/ng, or a glass name that resolves to a catalog curve. |
+| [nikon/NikonNikkor300mmf45ED.data.ts](../src/lens-data/nikon/NikonNikkor300mmf45ED.data.ts) | US 3,774,991 | Element 1 (1.48606 / 81.5); Element 4 (1.48606 / 81.5) | νd > 65 without ΔPgF: look for θgF/ΔPgF, nC/nF/ng, or a glass name that resolves to a catalog curve. |
+| [nikon/NikonNikkor600mmf56ED.data.ts](../src/lens-data/nikon/NikonNikkor600mmf56ED.data.ts) | US 3,774,991 | Element 1 (1.48606 / 81.5) | νd > 65 without ΔPgF: look for θgF/ΔPgF, nC/nF/ng, or a glass name that resolves to a catalog curve. |
+| [nikon/NikonNikkor800mmf8ED.data.ts](../src/lens-data/nikon/NikonNikkor800mmf8ED.data.ts) | US 3,774,991 | Element 1 (1.48614 / 81.5) | νd > 65 without ΔPgF: look for θgF/ΔPgF, nC/nF/ng, or a glass name that resolves to a catalog curve. |
+| [nikon/NikonNikkorSW75mmf45.data.ts](../src/lens-data/nikon/NikonNikkorSW75mmf45.data.ts) | JP S53-57028 A | Element 4 (1.52 / 70.1) | νd > 65 without ΔPgF: look for θgF/ΔPgF, nC/nF/ng, or a glass name that resolves to a catalog curve. |
+| [nikon/NikonZoomNikkor2845mmf45.data.ts](../src/lens-data/nikon/NikonZoomNikkor2845mmf45.data.ts) | US 3,771,853 A | Element 3 (1.44628 / 67.2) | νd > 65 without ΔPgF: look for θgF/ΔPgF, nC/nF/ng, or a glass name that resolves to a catalog curve. |
+| [panasonic/PanasonicLeicaDG15mmf17.data.ts](../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) | US 2015/0268449 A1 | Element 1 (1.49913 / 80.1) | νd > 65 without ΔPgF: look for θgF/ΔPgF, nC/nF/ng, or a glass name that resolves to a catalog curve. |
+| [panasonic/PanasonicLumixGVario714mmf4.data.ts](../src/lens-data/panasonic/PanasonicLumixGVario714mmf4.data.ts) | US 2010/0194930 A1 | Element 16 (1.523 / 70.1) | νd > 65 without ΔPgF: look for θgF/ΔPgF, nC/nF/ng, or a glass name that resolves to a catalog curve. |
+| [pentax/Pentax02StandardZoom515mmF2845.data.ts](../src/lens-data/pentax/Pentax02StandardZoom515mmF2845.data.ts) | US 8,824,059 B2 | L31 (1.49283 / 82.7); L34 (1.51885 / 65.8) | νd > 65 without ΔPgF: look for θgF/ΔPgF, nC/nF/ng, or a glass name that resolves to a catalog curve. |
+| [ricoh/RicohLensA162485mmf3555.data.ts](../src/lens-data/ricoh/RicohLensA162485mmf3555.data.ts) | US 2012/0307375 A1 | F (1.5377 / 66.6) | νd > 65 without ΔPgF: look for θgF/ΔPgF, nC/nF/ng, or a glass name that resolves to a catalog curve. |
+| [rodenstock/RodenstockApoSironarW150mmf56.data.ts](../src/lens-data/rodenstock/RodenstockApoSironarW150mmf56.data.ts) | DE 3,907,928 A1 | Element 6 (1.46 / 65.8) | νd > 65 without ΔPgF: look for θgF/ΔPgF, nC/nF/ng, or a glass name that resolves to a catalog curve. |
+| [schneider-kreuznach/SchneiderAPOSymmar100mmf56.data.ts](../src/lens-data/schneider-kreuznach/SchneiderAPOSymmar100mmf56.data.ts) | US 6,028,720 | Element 3 (1.52055 / 69.9) | νd > 65 without ΔPgF: look for θgF/ΔPgF, nC/nF/ng, or a glass name that resolves to a catalog curve. |
+| [sony/SonyFE2870mmf2GM.data.ts](../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) | WO 2025/263124 A1 | Element 2 (1.59489 / 68.6); Element 3 (1.59561 / 67) | νd > 65 without ΔPgF: look for θgF/ΔPgF, nC/nF/ng, or a glass name that resolves to a catalog curve. |
+| [voigtlander/VoigtlanderNokton60mmf95.data.ts](../src/lens-data/voigtlander/VoigtlanderNokton60mmf95.data.ts) | JP 2021-076740 A | Element 5 (1.57774 / 67.11) | νd > 65 without ΔPgF: look for θgF/ΔPgF, nC/nF/ng, or a glass name that resolves to a catalog curve. |
 
 ## Tier B — likely infeasible (vintage proprietary)
 
@@ -61,9 +94,11 @@ curve supplies the C/d/F channels.
 |---|---|
 | [leica/LeicaElcan50mmf2.data.ts](../src/lens-data/leica/LeicaElcan50mmf2.data.ts) | Leitz mil-spec; sparse public documentation. Defer indefinitely. |
 | [leica/LeicaSummicronV550mmf2.data.ts](../src/lens-data/leica/LeicaSummicronV550mmf2.data.ts) | Leitz vintage with ThO₂-bearing melts; original recipes destroyed/undocumented. Defer indefinitely. |
+| [fujifilm/FujifilmFujinar210mmf45.data.ts](../src/lens-data/fujifilm/FujifilmFujinar210mmf45.data.ts) | JP S29-2685 B prints one index (N) per glass; Abbe number and spectral reference are not published, which blocks spectral MTF. |
+| [voigtlander/VoigtlanderColorSkopar28mmf28Aspherical.data.ts](../src/lens-data/voigtlander/VoigtlanderColorSkopar28mmf28Aspherical.data.ts) | JP 2023-032663 A omits νd for the cemented biconcave member (its nd is inferred from the published focal length), which blocks spectral MTF. |
 
-These remain on the Abbe path. The LCA inset's quality badge reads "Abbe approx" for them, which is honest — there is
-no better data available.
+These remain on the Abbe path, or on a constant index where no νd is published. The LCA inset's quality badge reads
+"Abbe approx" or "No dispersion" for them, which is honest — there is no better data available.
 
 ## Closed — do not re-audit
 

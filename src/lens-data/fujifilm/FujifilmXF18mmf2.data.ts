@@ -36,6 +36,14 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    ✓ Aperture stop and variable focus gap                         ║
  * ║    ✗ DO NOT include: mechanical parts (cover glass: `rearPlates`)  ║
  * ╚══════════════════════════════════════════════════════════════════════╝
+ *
+ * Image-plane audit: Table 7 D16 = 7.80 mm ends at PP, not the image.
+ * PP is 2.70 mm, nd = 1.516330, vd = 64.14; D18 is blank. Because the
+ * source prints no trailing gap at all, `rearPlates` fills it at the
+ * prescription's paraxial focus (box above). This fills a blank; it does
+ * not override a printed distance. The printed f = 18.844 mm differs from
+ * the table's 18.626043 mm paraxial EFL, consistent with the suspected
+ * d12 misprint. See the audit sidecar.
  */
 
 const LENS_DATA = {
@@ -251,7 +259,7 @@ const LENS_DATA = {
       A7: -3.89232232e-6,
       A8: -8.50728357e-7,
       A9: 3.21279636e-7,
-      A10: -1.416866834e-8,
+      A10: -1.41686834e-8,
       A11: -9.17275261e-10,
       A12: -2.40950739e-11,
       A14: 0,

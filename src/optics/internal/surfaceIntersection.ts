@@ -122,8 +122,9 @@ export function surfaceNormalAtHit(x: number, y: number, surfaceIdx: number, L: 
 /**
  * Intersect a ray with one spherical or aspheric sag surface.
  *
- * Solves f(t) = z_ray(t) - (vertexZ + sag(r(t))) with bracketed Newton
- * iteration; flat surfaces fall back to an analytic plane intersection.
+ * Solves f(t) = z_ray(t) - (vertexZ + sag(r(t))) with a safeguarded Newton
+ * iteration inside a sign-changing bracket, so grazing and steep-rim roots
+ * cannot stall; flat surfaces fall back to an analytic plane intersection.
  *
  * @param ray - origin and direction in engine coordinates
  * @param surfaceIdx - zero-based surface index
@@ -177,10 +178,17 @@ export function intersectSagSurface(
   const initialSeed =
     isFinite(zProjectedSeed) && zProjectedSeed > lo && zProjectedSeed < hi ? zProjectedSeed : (lo + hi) / 2;
   let t = clamp(initialSeed, lo, hi);
+  /* Safeguarded Newton (rtsafe): a Newton step must stay inside the sign-changing
+   * bracket and be at most half the step before last; otherwise bisect. Without the
+   * halving rule, a seed on a sphere's steep continuation beyond |R| (slope ~1e6)
+   * creeps through the bracket in micrometer steps and never reaches a
+   * well-conditioned rim root elsewhere in it. */
+  let stepBeforeLast = hi - lo;
+  let lastStep = stepBeforeLast;
 
   for (let iterations = 1; iterations <= maxIterations; iterations++) {
     const current = evalAt(t);
-    if (!isFiniteEvaluation(current)) return failure(surfaceIdx, "noConvergedIntersection", null, iterations);
+    if (!isFiniteValueEvaluation(current)) return failure(surfaceIdx, "noConvergedIntersection", null, iterations);
     if (Math.abs(current.value) <= tolerance) {
       return makeSuccess(current, surfaceIdx, L, tolerance, refractiveIndex, iterations);
     }
@@ -192,8 +200,12 @@ export function intersectSagSurface(
       hi = t;
     }
 
-    const newtonT = t - current.value / current.derivative;
-    t = isFinite(newtonT) && newtonT > lo && newtonT < hi ? newtonT : (lo + hi) / 2;
+    const newtonT = isFiniteEvaluation(current) ? t - current.value / current.derivative : NaN;
+    const acceptNewton =
+      isFinite(newtonT) && newtonT > lo && newtonT < hi && Math.abs(newtonT - t) <= Math.abs(stepBeforeLast) / 2;
+    stepBeforeLast = lastStep;
+    lastStep = acceptNewton ? newtonT - t : (hi - lo) / 2;
+    t = acceptNewton ? newtonT : lo + lastStep;
   }
 
   const finalEval = evalAt((lo + hi) / 2);

@@ -19,6 +19,126 @@ Pure optics modules have no React dependencies. Helpers accept the runtime lens 
 State-dependent analysis must remain outside `buildLens()`. `buildLens()` constructs build-time/runtime constants from
 lens data; analysis tabs use current focus, zoom, and aperture state.
 
+## Omitted Sensor Optics
+
+Source-listed cover/filter plates declared in `rearPlates` are traced by every analysis, including MTF, while staying
+hidden in the diagram; see [Rear Plates](#rear-plates). The limitations below apply only to optics still omitted
+because source data is missing, a prescription has not been migrated, or its path is unsupported.
+An air-equivalent replacement preserves paraxial propagation at the reference index, not higher-order aberrations or
+wavelength-dependent propagation. A converging beam through a plane-parallel plate can acquire spherical aberration,
+and a prescription designed with that plate can depend on its contribution.
+
+Consequences depend on the analysis, not just whether its numerical solver converges:
+
+- MTF, spherical aberration, coma, real sagittal/tangential focus curves and bokeh can change substantially, particularly
+  at wide apertures. The flat plate has zero Petzval surface power; that does not preserve the traced focus curves.
+- Chromatic focus and lateral color omit the plate's dispersion; distortion can change through chief-ray displacement.
+- A rear plate leaves the entrance pupil and upstream lens-aperture clipping unchanged at a fixed field angle, assuming
+  it adds no clipping. Exit-pupil positions and off-axis behavior can change; field bounds may also change.
+- Effective focal length, physical stop size and EFL-based breathing are largely preserved. Physical back-focus and
+  track distances are not interchangeable with air-equivalent coordinates. Existing illumination estimates also omit
+  coating/Fresnel and sensor-response effects.
+
+These are model limitations, not corrections to apply empirically or proof of an error in the manufactured lens.
+Use the source-prescription label for results. Model additional source-backed plates through the shared `rearPlates`
+contract in `src/lens-data/LENS_DATA_SPEC.md`; do not add an analysis-specific stack or infer missing plate data.
+
+## Simulated MTF
+
+`src/optics/mtf.ts` accepts a prepared state and explicit physical aperture, method, spectrum, focus, field and
+frequency options. This estimates the authored prescription; numerical convergence and source-data confidence are
+separate. Sagittal frequencies run along image X, tangential along Y; the field lies in the Y/Z meridian. Both chart
+views share the same computed fields, one image plane and physical lp/mm units.
+
+**Field axis** (`mtfFields.ts`). Field fractions are fractions of a reference image height: the declared format-corner
+radius (`imageCircleMm`, else the canonical format diagonal), or the modeled edge when neither is declared. The
+modeled edge is the largest height whose real, stop-aimed chief ray passes every authored clear aperture. It starts
+from the shared field geometry, which tests a paraxially launched chief and can stop short in wide-angle designs with
+strong pupil aberration, and walks outward; a chief that passes the format corner is solved back to it, so the edge
+angle always lands on the edge height. Targets map to chief angles through the shared exact inversion (infinity) or a
+bracketed root solve on the aimed finite-source chief. Heights beyond the modeled edge are
+`outside-modeled-field` and are not traced. Fields run center, corner, then coarse to fine.
+
+**Pupil sampling** (`mtfFootprint.ts`, `mtfTracing.ts`). Each field scans a 20 × 20 launch-plane grid at the
+reference wavelength, doubling until no transmitted sample touches its border, then traces the whole transmitted
+beam; off-axis retrofocus beams can be much larger than the axial entrance pupil, as with ray aiming in lens-design
+software. Launch cells are square, `gridSize` across the beam's larger dimension, with an even column count so a
+meridional field of an x-symmetric lens traces one half and mirrors it. Transmitted rays in the footprint's guard
+band widen it and retrace. A grid with too few transmitted rays refines rather than failing, because the footprint
+scan has already found flux: near the modeled edge cat's-eye vignetting can leave a slit a few cells high. Collimated
+cells carry equal launch flux; finite sources use solid-angle weights. A beam thinner than one scan cell can fall
+between the samples; when the chief ray transmits, its reach along each launch axis sizes a box stretched to the
+beam, which the same scan then resolves. A field whose scan and chief ray both miss is `vignetted`. Full-beam results depend on authored clear apertures, so estimated semi-diameters that vignette less than
+the production lens lower off-axis curves.
+
+**Ray failures** (`mtfRayClassification.ts`). TIR and aperture clips are blocking. A failed intersection blocks only
+when an independent proof shows the ray misses the next clear cap: analytic for flat and spherical caps, a Lipschitz
+interval test for aspheres. Unresolved flux ε up to 0.5% of launch flux is omitted with a note bounding the geometric
+MTF error at 2ε; more makes the field unavailable. Scalar diffraction needs every ray. The reference chief is traced
+without aperture checks, so a clipped chief still fixes the common image reference.
+
+**Methods.** Geometric OTF is the normalized intensity-weighted Fourier sum of exact landing points. The
+diffraction-corrected method (`geometric-dl`, `mtfDiffractionLimit.ts`) multiplies each wavelength's geometric OTF by
+the zero-phase OTF of the traced exit pupil: √flux autocorrelated on the regular launch lattice, with lags mapped into
+image-space direction cosines by the fitted pupil scale per axis. It needs no scalar-FFT validity gates. On test
+pupils it matches the analytic circular OTF within 0.005 from 32 rays across; like any geometric × diffraction-limit
+product it can understate contrast where residual aberrations are comparable to a wavelength.
+
+Scalar diffraction opts into sequential `recordOpticalPath`, which accumulates incident-medium optical length
+from the input origin to the final hit without changing ordinary trace outputs. `mtfWavefront.ts` includes the
+incident plane/spherical phase and signed transfer to an image-centered reference sphere whose radius is the paraxial
+exit-pupil distance when positive, else the reference ray's last-surface distance; a clipped chief uses the
+transmitted-flux centroid instead. Piston is removed, but wavelengths are not refocused or independently recentered.
+`mtfDiffraction.ts` triangulates unwrapped path onto transverse direction-cosine coordinates; its Jacobian and
+square-root transmission conserve pupil flux. A double-precision FFT of a 2× padded pupil produces linear
+autocorrelation. Image frequency shifts the pupil by wavelength × frequency. The scalar approximation is restricted
+to air image space, perpendicular image planes, chief incidence ≤15°, pupil cone radius ≤0.25 and blur ≤2% of
+reference radius (`MTF_DIFFRACTION_LIMITS`). Folded/singular pupil maps and insufficient phase sampling are
+unavailable. These are conservative suitability limits, not an accuracy guarantee; see [Ansys FFT MTF](https://ansyshelp.ansys.com/public/Views/Secured/Zemax/v251/en/OpticStudio_User_Guide/OpticStudio_Help/topics/FFT_MTF.html).
+The ray-cone restriction excludes many lenses wider than approximately f/2 even when geometric tracing
+succeeds. More grid samples cannot remove this domain restriction. The source-prescription result must not be
+presented as the manufacturer's production MTF; the shared omitted-sensor limitations above also apply.
+
+**Spectra.** Monochromatic runs retain native d/e indices; mixed references require usable physical conversion. C/d/F
+(equal weights) and photopic (470/510/555/610/650 nm, CIE 1924 V(λ) weights on an equal-energy source, 555 nm
+first) share one glass gate, `assessMtfSpectralData`. Catalog Sellmeier and d-referenced line indices qualify, and so
+do d-referenced nd/νd-only glasses through the Abbe tier's normal-line estimate, which the tab notes. A glass with no
+νd, an e-line glass without catalog data, or an nd/νd-only glass above νd 65 without `dPgF`
+(`MTF_ESTIMATED_DISPERSION_MAX_VD`, where anomalous glasses sit) blocks spectral sampling; `resolveMtfSpectrum` then
+falls back to the reference wavelength and names the reason. With about 17 % of each lens's glasses reduced to nd/νd,
+the estimate's median error against full-data photopic MTF was 0.002 over 18 lenses (the reference wavelength's was
+0.068), but degrading fluorite-class glasses without `dPgF` in a 400 mm telephoto cost up to 0.14. Spectral indices
+are anchored: `anchoredIndexAtWavelength` (`chromatic/indexResolver.ts`) adds the catalog's wavelength dependence
+to each authored index (Sellmeier offset, or a four-term Cauchy fit through C/d/F/g line indices), so a spectral run
+keeps the design's focus at its reference line. Compatible catalog glass is explicitly a
+spectral proxy. Complex OTFs combine, weighted by incident line weight × transmitted flux, before magnitude, which
+retains lateral color. Every chromatic trace sets `wavelengthNm` beside its indices.
+
+**Convergence and focus.** Grids refine 16 → 256 (scalar diffraction from 32) up to `maxGridSize`. Convergence is
+judged at and below 50 lp/mm (absolute change ≤0.01), where a sampled geometric sum is not yet dominated by aliasing
+noise; each field reports `convergedThroughLpMm`. A finer grid that fails keeps the last good curve as unconverged.
+The axial bundle is re-projected without retracing to find the image plane that maximizes mean axial MTF at
+10–50 lp/mm (a scan of the ray-crossing range, then golden-section refinement). It is always reported as a
+diagnostic, and `focus: "best-axial"` (the tab's default) applies the shift to every field. `mtfImagePlaneOffset` (`mtfFocus.ts`) also
+compares the authored plane with the prescription's paraxial focus at infinity: beyond `MTF_IMAGE_PLANE_DEPTHS` (10)
+depths of focus, 2λN² at the d line and the open f-number, the plane is flagged as inconsistent lens data.
+`focus: "auto"` applies best axial focus only to flagged lenses and keeps the design plane otherwise, so the
+spherical-aberration focus shift of fast classic designs stays visible there. `scripts/audit-mtf.mjs --focus` lists the
+flagged lenses, and Section E of `agent_docs/sd-audit-queue.md` queues them. Finite rays share one isotropic object
+point and include spherical launch phase and launch-plane solid-angle weights. Only `finiteConjugates` stations are
+eligible; see `src/lens-data/LENS_DATA_SPEC.md` for source requirements.
+
+The MTF tab lazily creates a worker from serializable lens data. Worker initialization removes engine-generated
+synthetic surfaces/elements from `RuntimeLens.data` and rebuilds them once from `rearPlates`, preserving physical
+gaps and plate dispersion. The typed protocol (`init | compute | cancel` → `progress | result | error`) runs
+`computeMtfSteps` in ~30 ms slices and posts partial results at most every 100 ms. Cancellation is cooperative, so the
+built lens stays warm, and request ids reject stale replies. The worker caches finished fields and the focus search
+per request minus its field list (`MtfJobCache`), so a finer field step reuses coarser fields. Completed results use
+a client LRU bounded to 64 MiB, while chart changes reuse curves without tracing. The read-only census is `scripts/audit-mtf.mjs` (`--cdf`/`--photopic` for spectral
+eligibility, `--fields` for center, half-height and modeled-edge availability); `scripts/benchmark-mtf.mjs` flags are
+listed in `agent_docs/benchmarks/README.md`. Benchmarks retain status alongside timings so fast rejection is not
+confused with a completed curve.
+
 ## buildLens.ts
 
 `buildLens(data)` is the stable public constructor and delegates to `buildLens2` in `src/optics/compat.ts`.
@@ -35,7 +155,12 @@ The constructor validates lens data and constructs a frozen `RuntimeLens` with:
 - Per-surface dispersion resolvers. Catalog Sellmeier substitution compares d-line-authored elements at C/d/F and
   native e-line elements at C′/e/F′. E-line matching requires an explicit catalog name or alias; six-digit codes stay
   d-line-only because their encoded coordinates are nd/νd. For d-line elements with authored `dPgF`, the catalog
-  curve supplies C/d/F while the patent/source partial dispersion remains authoritative at g.
+  curve supplies C/d/F while the patent/source partial dispersion remains authoritative at g. The Abbe tier
+  (`abbeLineIndices`) keeps the exact F−C span from `nd`/`vd` and places the d line within it with the catalog-fitted
+  P_d,C normal line (`normalLinePdC`, ≈0.28–0.31 for real glasses; native e-line elements use `normalLinePeC` across
+  C′–F′), extending to g with the Schott P_g,F line plus `dPgF`. A midpoint split (P_d,C = 0.5) misstates focus
+  against wavelength wherever estimated glasses sit beside real ones. Anomalous-dispersion glasses without `dPgF`
+  remain uncertain at g.
 - Folded-path metadata: resolved `opticalPath`, explicit `imagePlane`, `isFoldedOptics`, and normalized surface/image-plane
   normals when mirror data opts into the generalized model.
 - Folded entrance/exit pupil geometry derived from generalized real-ray stop and full-system basis traces, with finite
@@ -161,6 +286,11 @@ splits its finiteness predicate into `isFiniteValueEvaluation` (used by `findBra
 and `isFiniteEvaluation` (additionally requires non-zero derivative, used inside Newton iteration) so a
 grazing meridional ray whose derivative collapses to zero at the optical axis can still anchor a bracket.
 The Newton seed falls back to the bracket midpoint when the z-projected guess is non-finite.
+
+Both intersection solvers, `math/intersection.ts` (used by the prepared-state engine in `src/optics/trace/`) and
+the legacy `internal/surfaceIntersection.ts`, share the same safeguarded Newton step (rtsafe). A step is accepted
+only inside the sign-changing bracket and when it moves at most half the step before last; otherwise the solver
+bisects, so grazing and steep-rim roots cannot stall. A zero or non-finite derivative bisects instead of failing.
 
 ### Bulk Absorption And Apodization
 

@@ -100,6 +100,54 @@ describe("AnalysisDrawer", () => {
     expect(tabButton.style.flex).toBe("1 0 88px");
   });
 
+  it("scrolls the strip, not the page, to reveal the active tab and marks it pressed", () => {
+    const drawer = (activeTab: AnalysisTab["id"], open = true) => (
+      <AnalysisDrawer
+        open={open}
+        onClose={vi.fn()}
+        activeTab={activeTab}
+        onTabChange={vi.fn()}
+        tabs={tabs}
+        t={theme}
+        showTabs
+      >
+        <div>content</div>
+      </AnalysisDrawer>
+    );
+    const { rerender } = render(drawer("aberrations", false));
+    const tabBar = screen.getByRole("button", { name: "ABERRATIONS", hidden: true }).parentElement!;
+    // A 200 px strip showing tabs 0–200; each 88 px tab sits at 88·i before scrolling.
+    let scrollLeft = 0;
+    Object.defineProperty(tabBar, "scrollLeft", {
+      configurable: true,
+      get: () => scrollLeft,
+      set: (value: number) => {
+        scrollLeft = Math.max(0, value);
+      },
+    });
+    const rect = (left: number, width: number) => ({ left, right: left + width, width }) as DOMRect;
+    tabBar.getBoundingClientRect = () => rect(0, 200);
+    tabs.forEach((tab, i) => {
+      screen.getByRole("button", { name: tab.label, hidden: true }).getBoundingClientRect = () =>
+        rect(88 * i - scrollLeft, 88);
+    });
+    const scrollIntoView = vi.fn();
+    Element.prototype.scrollIntoView = scrollIntoView;
+
+    // A tab already inside the 24 px margins leaves the strip alone.
+    rerender(drawer("distortion"));
+    expect(scrollLeft).toBe(0);
+    // Opening on a deep-linked tab beyond the strip brings it in with the margin to spare.
+    rerender(drawer("vignetting"));
+    expect(scrollLeft).toBe(88 * 3 + 88 - 200 + 24);
+    expect(screen.getByRole("button", { name: "VIGNETTING" }).getAttribute("aria-pressed")).toBe("true");
+    expect(screen.getByRole("button", { name: "ABERRATIONS" }).getAttribute("aria-pressed")).toBe("false");
+    // A tab off the left edge scrolls back.
+    rerender(drawer("aberrations"));
+    expect(scrollLeft).toBe(0);
+    expect(scrollIntoView).not.toHaveBeenCalled();
+  });
+
   it("calls onClose when the close button is pressed", () => {
     const onClose = vi.fn();
 

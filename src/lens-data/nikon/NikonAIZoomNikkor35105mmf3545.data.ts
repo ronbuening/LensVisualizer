@@ -14,6 +14,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  SDs: estimated from paraxial stop-edge rays and constrained by     ║
  * ║  edge thickness, element SD ratio <=1.25, and cross-gap clearance.  ║
  * ╚══════════════════════════════════════════════════════════════════════╝
+ *
+ * Source image-plane contradiction: Table 7 at wide infinity gives
+ * EFL 37.391953 / BFL 53.302330 mm, not stated F 36.2 / Bf 52.36 mm.
+ * Every R/d/nd/vd entry matches, including the 0.8 mm stop split.
+ * No plates or aspheres are listed. Preserve the published Bf and
+ * +0.942330 mm residual; do not tune the table to focus (see audit).
  */
 
 const LENS_DATA = {

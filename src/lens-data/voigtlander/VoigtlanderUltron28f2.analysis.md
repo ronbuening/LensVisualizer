@@ -74,3 +74,11 @@ All SDs remain unchanged. Surface and image-circle checks pass with explicit ful
 - [Granted JP7546909B2 PDF](https://patentimages.storage.googleapis.com/8f/d3/23/80c0b08aeccb67/JP7546909B2.pdf), retrieved to check the ambiguous coefficient; Table1 p.6 repeats it and the numerical prescription.
 
 Follow-up remains for ASP18 A6, the printed-table/source-summary focus discrepancy, and the unspecified plate's optical path. These do not authorize replacing source values with a visually convenient fit.
+
+## Image-plane source audit (2026-09-25)
+
+MTF census: Table 1 / ¶0035 explicitly defines ZD18 as last lens to image.
+At infinity ZD18=18.40; computed d-line BFL=18.469147 and EFL=28.579770
+versus printed 28.50. All radii/gaps/indices match. Preserve the source
+image distance and documented malformed A6; no evidence establishes a
+designer best-focus plane or supplies parameters for the depicted filter.

@@ -218,9 +218,9 @@ describe("exact trace golden values — diffractive phase surface", () => {
       return trace.u;
     });
 
-    expect(slopes[0]).toBeCloseTo(-0.060977497009293086, 8);
+    expect(slopes[0]).toBeCloseTo(-0.06098096391425138, 8);
     expect(slopes[1]).toBeCloseTo(-0.060974169984543934, 8);
-    expect(slopes[2]).toBeCloseTo(-0.06098385934050328, 8);
+    expect(slopes[2]).toBeCloseTo(-0.06098734014575166, 8);
     // Distinct per channel: identical slopes would mean wavelength never
     // reached the glass indices or the phase kick.
     expect(new Set(slopes).size).toBe(3);

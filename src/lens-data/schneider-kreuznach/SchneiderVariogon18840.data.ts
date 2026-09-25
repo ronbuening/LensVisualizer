@@ -32,6 +32,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * Glass labels use neutral six-digit/class descriptions because nd/νd coordinate matches do not establish the
  * historical
  * supplier or melt. No catalog line indices or partial-dispersion values are authored.
+ *
+ * MTF source audit: Table I (PDF p. 4) matches all dimensions and nd/νd
+ * pairs, including the internal 9 mm reflex prism. No rear plate is omitted.
+ * Wide EFL 8.260539 vs printed 8 and BFL 13.162519 vs 13.1 leave
+ * +0.062519 mm offset. Preserve published values; the source invokes
+ * Gaussian back-focus constancy and does not specify a best-focus convention.
  */
 
 const LENS_DATA = {

@@ -153,7 +153,7 @@ The zoom gap sum d2 + d8 + d18 + d20 is constant at 81.8001 mm, within rounding,
 
 ## Conditional Expressions
 
-The First Embodiment satisfies the patent's conditional system when the corrected Table 1 readings are used. Values below use fW = 20.6007 mm.
+The adopted reconstruction does not reproduce all of the First Embodiment's conditional values. Values below use fW = 20.6007 mm.
 
 | # | Expression | Patent value, First Embodiment | Recomputed value | Note |
 |---:|---|---:|---:|---|
@@ -174,7 +174,7 @@ The First Embodiment satisfies the patent's conditional system when the correcte
 | 14 | x2 / x3 | 1.291 | 1.291 | From wide-to-tele group travel |
 | 15 | f1 / fW | -145.63 | -144.63 | G1 with water as object medium |
 
-The residuals in conditions (2), (3), (9), and (15) are not independent proof of a different design; they are the expected consequence of reconstructing missing leading digits from a degraded scan. A group-condition-optimized reconstruction was also tested, but it gives materially worse full-system EFL and BFD agreement. The adopted values therefore prioritize the Table 1 system focal lengths and back focus while preserving all cleanly readable ratio conditions.
+The residuals in conditions (2), (3), (9), and (15) are not independent proof of a different design; they expose unresolved uncertainty in the inferred source emendations. A group-condition-optimized reconstruction was also tested, but it gives materially worse full-system EFL and BFD agreement. Those existing inferred values remain provisional; this audit does not endorse focus agreement as evidence for them.
 
 ## Verification Summary
 
@@ -212,3 +212,12 @@ The result is an unusual underwater zoom topology. G1 is fixed and serves as bot
 3. SCHOTT optical glass datasheets for N-BK7, N-SF1, N-SK16, and N-SF6. Source for exact nd/νd catalog checks.
 4. OHARA optical glass pages / catalog data for S-LAL14 and legacy cross-reference data. Source for the S-LAL14 and BAH26-class glass checks.
 5. Prior draft analysis supplied with this review, used as a comparison target only; corrected values in this document supersede it.
+
+## Image-plane source audit (2026-09-25)
+
+MTF census remains PARTIAL: local Table 1 contains apparent source misprints
+(r8=0.316, r11=9.429, r12=0.582, r14=7.948, d16=40). Existing inferred
+repairs are not established transcriptions and do not reproduce all Table 4
+conditions. The +0.219790 mm residual already includes the WTR interface;
+it is not explained by air-only propagation. No additional focus tuning.
+The fully specified rear protective plate now uses rearPlates with d20=38.563.

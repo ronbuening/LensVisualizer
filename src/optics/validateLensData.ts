@@ -1030,6 +1030,50 @@ export default function validateLensData(data: UntrustedLensData): string[] {
     }
   }
 
+  /* ── Explicit finite conjugates ── */
+  if (data.finiteConjugates !== undefined) {
+    if (!Array.isArray(data.finiteConjugates) || data.finiteConjugates.length === 0) {
+      errors.push('"finiteConjugates" must be a non-empty array of source-backed stations');
+    } else {
+      const seen = new Set<string>();
+      const focusStations = data.focusPositions ?? [0, 1];
+      const zoomCount = Array.isArray(data.zoomPositions) ? data.zoomPositions.length : 1;
+      for (const c of data.finiteConjugates) {
+        if (
+          !c ||
+          typeof c !== "object" ||
+          !Number.isFinite(c.focusT) ||
+          c.focusT <= 0 ||
+          c.focusT > 1 ||
+          !Number.isFinite(c.zoomT) ||
+          c.zoomT < 0 ||
+          c.zoomT > 1 ||
+          !Number.isFinite(c.objectDistanceMm) ||
+          c.objectDistanceMm <= 0 ||
+          !["first-surface", "image-plane"].includes(c.distanceReference) ||
+          typeof c.source !== "string" ||
+          !c.source.trim()
+        ) {
+          errors.push(
+            '"finiteConjugates" requires finite coordinates, positive distance, an explicit reference and source',
+          );
+          continue;
+        }
+        if (
+          !Array.isArray(focusStations) ||
+          !focusStations.some((f: number) => Math.abs(f - c.focusT) < 1e-8) ||
+          (zoomCount <= 1
+            ? c.zoomT !== 0
+            : Math.abs(c.zoomT * (zoomCount - 1) - Math.round(c.zoomT * (zoomCount - 1))) > 1e-8)
+        )
+          errors.push('"finiteConjugates" must identify authored focus and zoom stations, not interpolated positions');
+        const key = `${c.focusT}:${c.zoomT}`;
+        if (seen.has(key)) errors.push('"finiteConjugates" contains a duplicate focus/zoom station');
+        seen.add(key);
+      }
+    }
+  }
+
   /* ── Optional zoom fields ── */
   if (data.zoomStep !== undefined) {
     if (typeof data.zoomStep !== "number" || !isFinite(data.zoomStep) || data.zoomStep <= 0)

@@ -24,6 +24,11 @@ export const ANALYSIS_TABS = [
     description: "Off-axis ray footprints and fans showing comatic flare across the field.",
   },
   {
+    id: "mtf",
+    label: "MTF",
+    description: "Simulated contrast transfer across image height and spatial frequency at the current lens settings.",
+  },
+  {
     id: "bokeh",
     label: "BOKEH",
     description: "Shape and structure of out-of-focus point images across the field.",

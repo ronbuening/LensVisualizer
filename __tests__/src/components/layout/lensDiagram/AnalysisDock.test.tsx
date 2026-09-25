@@ -38,16 +38,16 @@ describe("AnalysisDock", () => {
   it("opens the drawer on the clicked tab and closes it when the lit tab is clicked again", () => {
     const { props, rerender } = renderDock();
 
-    fireEvent.click(screen.getByRole("button", { name: "COMA" }));
-    expect(props.onAnalysisTabChange).toHaveBeenCalledWith("coma");
+    fireEvent.click(screen.getByRole("button", { name: "MTF" }));
+    expect(props.onAnalysisTabChange).toHaveBeenCalledWith("mtf");
     expect(props.onAnalysisDrawerToggle).toHaveBeenCalledWith(true);
 
     props.onAnalysisTabChange.mockClear();
     fireEvent.click(screen.getByRole("button", { name: "ABERRATIONS" }));
     expect(props.onAnalysisTabChange).not.toHaveBeenCalled();
 
-    rerender(<AnalysisDock {...props} activeTab="coma" drawerOpen />);
-    expect(screen.getByRole("button", { name: "COMA" }).getAttribute("aria-pressed")).toBe("true");
+    rerender(<AnalysisDock {...props} activeTab="mtf" drawerOpen />);
+    expect(screen.getByRole("button", { name: "MTF" }).getAttribute("aria-pressed")).toBe("true");
     expect(screen.getByRole("button", { name: "BOKEH" }).getAttribute("aria-pressed")).toBe("false");
 
     props.onAnalysisDrawerToggle.mockClear();
@@ -55,7 +55,7 @@ describe("AnalysisDock", () => {
     expect(props.onAnalysisTabChange).toHaveBeenCalledWith("bokeh");
     expect(props.onAnalysisDrawerToggle).not.toHaveBeenCalled();
 
-    fireEvent.click(screen.getByRole("button", { name: "COMA" }));
+    fireEvent.click(screen.getByRole("button", { name: "MTF" }));
     expect(props.onAnalysisDrawerToggle).toHaveBeenCalledWith(false);
   });
 
@@ -72,16 +72,16 @@ describe("AnalysisDock", () => {
     vi.useFakeTimers();
     renderDock({ drawerId: "drawer-id" });
 
-    const coma = screen.getByRole("button", { name: "COMA" });
-    const comaDescription = ANALYSIS_TABS.find((tab) => tab.id === "coma")?.description;
-    expect(document.getElementById(coma.getAttribute("aria-describedby") ?? "")?.textContent).toBe(comaDescription);
-    expect(coma.getAttribute("aria-controls")).toBe("drawer-id");
+    const mtf = screen.getByRole("button", { name: "MTF" });
+    const mtfDescription = ANALYSIS_TABS.find((tab) => tab.id === "mtf")?.description;
+    expect(document.getElementById(mtf.getAttribute("aria-describedby") ?? "")?.textContent).toBe(mtfDescription);
+    expect(mtf.getAttribute("aria-controls")).toBe("drawer-id");
 
-    fireEvent.mouseEnter(coma);
+    fireEvent.mouseEnter(mtf);
     expect(screen.queryByRole("tooltip")).toBeNull();
     act(() => vi.advanceTimersByTime(300));
-    expect(screen.getByRole("tooltip").textContent).toBe(comaDescription);
-    fireEvent.mouseLeave(coma);
+    expect(screen.getByRole("tooltip").textContent).toBe(mtfDescription);
+    fireEvent.mouseLeave(mtf);
     expect(screen.queryByRole("tooltip")).toBeNull();
 
     const zoom = screen.getByRole("button", { name: "Enter zoom and pan mode" });

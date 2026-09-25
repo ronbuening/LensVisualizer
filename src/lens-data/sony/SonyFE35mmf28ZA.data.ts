@@ -23,6 +23,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    ✓ Aperture stop and variable focus gaps                        ║
  * ║    ✗ DO NOT include: sensor glass, filters, mechanical parts      ║
  * ╚══════════════════════════════════════════════════════════════════════╝
+ *
+ * MTF audit: JP2015041012A Example 1, paragraphs 0077–0080, matches
+ * every radius, gap, index and all six K/A4–A10 rows at native scale.
+ * Printed d13=20.03 mm precedes the image directly (no plate). EFL
+ * 35.948432 / BFL 20.500542 do not reproduce source 36.06 / 20.03 mm.
+ * Retain the source contradiction and +0.470542 mm offset; see audit.
  */
 
 const LENS_DATA = {

@@ -1,9 +1,9 @@
 # Adding an Analysis Drawer Tab
 
-Recipe for adding a new tab to the lens-viewer analysis drawer. Four registration points, all
+Recipe for adding a new tab to the lens-viewer analysis drawer. Five registration points, all
 enforced by the type system — if `npm run typecheck` passes, the wiring is complete.
 
-## The Four Registration Points
+## The Five Registration Points
 
 1. **Tab id** — `src/types/state.ts`: add your id string to the `ANALYSIS_TAB_IDS` const array
    (near the top of the file). This drives the `AnalysisTabId` union and the `isAnalysisTabId()`
@@ -12,8 +12,8 @@ enforced by the type system — if `npm run typecheck` passes, the wiring is com
 2. **Tab label** — `src/components/layout/lensDiagram/analysisTabs.ts`: add
    `{ id: "yourTab", label: "YOUR TAB", description: "…" }` to `ANALYSIS_TABS` (labels are ALL
    CAPS; order in this array is display order). `description` is the one-sentence tooltip on the
-   desktop dock button. The dock is a 5 × 2 grid holding the nine current tabs plus ZOOM, so a
-   tenth tab needs `DOCK_COLUMNS` in `lensDiagram/AnalysisDock.tsx` revisited.
+   desktop dock button. The dock distributes analysis tabs across two rows and reserves the final
+   column for a double-height ZOOM button (currently five analysis columns plus ZOOM).
 3. **Display component** — new file `src/components/display/analysis/YourTab.tsx`. Copy the
    structure of an existing simple tab (`FocusBreathingTab.tsx` or `VignettingTab.tsx` are good
    models; `OpticalSummaryTab.tsx` shows the metric-row pattern via `AnalysisMetricRow` from
@@ -21,6 +21,9 @@ enforced by the type system — if `npm run typecheck` passes, the wiring is com
 4. **Renderer** — `src/components/layout/lensDiagram/analysisTabRenderers.tsx`: add an entry to
    `ANALYSIS_TAB_RENDERERS`. It is a `Record<AnalysisTabId, AnalysisTabRenderer>`, so typecheck
    FAILS until you add your entry — this is the safety net.
+5. **Movement support** — register its analysis sections in `AnalysisDrawerContent.tsx` and add
+   new section ids to `analysisMovementSupport.ts`. Only register movement-aware support after
+   fixed-sensor fixtures pass; otherwise the drawer suppresses the tab during active movement.
 
 ## What Your Renderer Receives
 

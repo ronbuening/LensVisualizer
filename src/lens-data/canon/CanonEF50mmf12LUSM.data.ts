@@ -38,6 +38,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * Product metadata sources:
  * - Canon Camera Museum: https://global.canon/en/c-museum/product/ef392.html
  * - Canon U.S.A.: https://www.usa.canon.com/shop/p/ef-50mm-f-1-2l-usm
+ *
+ * Source image-plane audit: all R/d/nd/vd and S14 coefficients match
+ * JP2007333790A Example 1 (PDF pp.10–11). EFL 51.695042 agrees with
+ * 51.70, but printed D15=38.88 is not paraxial BFL 38.333791 mm.
+ * No source plate or supported correction explains the -0.546209 mm
+ * offset. Retain the published image distance; best-focus intent is unproven.
  */
 
 const LENS_DATA = {

@@ -33,6 +33,13 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ - printed asphere radii are rounded relative to the stated K(1)=1/R rule  ║
  * ║ Product 11873 correlation is strong but not manufacturer-confirmed here.  ║
  * ╚════════════════════════════════════════════════════════════════════════════╝
+ *
+ * MTF source audit: the e-line prescription gives BFL 19.636496 against
+ * published S15-to-image 19.595 mm (offset +0.041496), EFL 35.411722
+ * against nominal 35. The source discusses best focusing and −0.07 mm
+ * defocus for field curvature, but does not tie those to the S15 spacing.
+ * Retain the equation-consistent aspheres and published image plane; do not
+ * interpret this small offset as a proven designer optimum.
  */
 
 const LENS_DATA = {

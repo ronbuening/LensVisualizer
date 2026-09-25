@@ -46,3 +46,11 @@ Patent: US 6,115,188 A, Numerical Example 22 / Figure 85
   position. No `dPgF` was invented because Example 22 publishes no partial-dispersion row.
 - Confirmed that L2 translates 18.829163964 mm imageward from infinity to the modeled 5.5 m state, while L1/L3 remain
   fixed. This prime lens has no zoom travel.
+
+## 2026-09-25 — MTF image-plane census
+
+Source: local `patents/US6115188.pdf`, Numerical Example 22, PDF pp.78–79 (columns 32–33). Visually checked every R3–R29 radius, thickness and index, all 15 powered-element Abbe values, infinity D12=45.86/D15=98.91, and stop R16. All match, without scaling or aspheres. The source correction certificate does not amend Example 22. The declared finite-focus reconstruction is outside this infinity comparison.
+
+**Cause: folded filter plus source image-distance contradiction.** Restored source FL surfaces 30–31 in rearPlates: 2.00 mm, nd=1.516330, νd=64.4 (the actual printed filter value), with D29=12.00 and trailing D31+D32=64.77+39.01=103.78 mm across inactive FC. The front HG plate remains omitted under existing rules; it adds no infinity optical power. No inferred glass identity was assigned to FL. Independent EFL 585.327789123 mm differs from printed 585.20, air BFL is 116.605717247, and physical BFL is 117.286743145 versus source image distance 117.78. No single source-backed misprint resolves the discrepancy. Preserve the source values. Runtime offset **-0.493257 → -0.493257 mm**. Section E row deleted; changelog records physical filter restoration.
+
+Validation: focused runtime/paraxial check; full corpus gates at the ten-lens checkpoint.

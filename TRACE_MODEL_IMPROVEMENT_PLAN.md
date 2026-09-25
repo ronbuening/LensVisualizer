@@ -86,8 +86,9 @@ The enforced rules are listed in `agent_docs/gotchas.md`; this section records t
 - **`buildRayBundleForField()` shared bundle builder.** Vector-launch policy is still module-specific (bokeh,
   vignetting, pupil aberration, distortion grid, image height, visible and chromatic off-axis). Pupil-sampling
   shapes differ enough that unification is premature; revisit only if new work starts copying launch policy again.
-- **Web Workers for analysis.** Solver memoization plus heavy-lens density LOD may make them unnecessary. Only
-  worth the complexity if Nikon 6mm settled compute still exceeds ~100 ms after profiling.
+- **Web Workers for other analysis tabs.** MTF already uses a cancellable worker; see
+  `agent_docs/architecture/optics-engine.md`. For other tabs, solver memoization plus heavy-lens density LOD may be
+  sufficient. Expand worker execution only when profiling demonstrates a remaining interaction bottleneck.
 - **Reverse trace from the image side.** Needed only if bounding-sphere launch cannot cover some extreme geometry.
   Defer until a concrete failure case surfaces.
 - **Cached launch radius on `RuntimeLens`.** Bisection is ~30 iterations and the radius is O(N) over surfaces;

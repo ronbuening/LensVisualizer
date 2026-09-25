@@ -223,7 +223,7 @@ The patent correspondence table labels conditions (3) and (4) as G5L1. For Examp
 
 ## Data File Transcription and Semi-Diameter Notes
 
-The TypeScript data file uses the unscaled Example 1 prescription from the patent. It includes all 17 glass elements, the aperture stop, the two focus-variable air gaps, and all eight aspherical surfaces. It omits sensor cover glass, filters, and mechanical parts.
+The TypeScript data file uses the unscaled Example 1 prescription from the patent. It includes all 17 glass elements, the aperture stop, the two focus-variable air gaps, and all eight aspherical surfaces. The source lists the image immediately after S32 with BF as its spacing; it supplies no rear cover/filter plate prescription. No plate is invented.
 
 The patent-published signed partial-dispersion deviations are stored on every glass as `dPgF` for chromatic tracing. The APD marker is narrower: it is applied only to L2, L11, and L14, the two FLD-class elements and one SLD-class element supported by the production special-element census.
 
@@ -241,7 +241,7 @@ Independent paraxial tracing of the d-line spherical-base prescription gives the
 | G4 | -49.60 mm | -49.5941 mm |
 | G5 | +36.37 mm | +36.3714 mm |
 
-The same trace gives system EFL = 24.0037 mm. The patent table gives f = 23.86 mm. The paraxial focus from the last surface is 21.9873 mm, while the patent BF entry is 23.0355 mm. Because the group powers and condition values reproduce the patent table and no surface transcription error was found, the data file preserves the patent's tabulated BF rather than forcing the first-order paraxial focus.
+The same trace gives system EFL = 24.0037 mm. The patent table gives f = 23.86 mm. The paraxial focus from the last surface is 21.9873 mm, while the patent BF entry is 23.0355 mm. Because the group powers and condition values reproduce the patent table and no surface transcription error was found, the data file preserves the patent's tabulated BF rather than forcing the first-order paraxial focus. The resulting image-plane offset is −1.048151 mm. The surface spacings plus BF also total 116.762 mm, versus the summary table's 113.95 mm lens length. These source inconsistencies are disclosed; neither an omitted plate nor a specific single misprint is established by the source.
 
 The Petzval sum, computed surface by surface as Σ φ/(n·n'), is +0.003265 mm^-1, corresponding to a Petzval radius of -306.24 mm. This small residual is consistent with the use of high-index positive elements and the rear aspheric field element.
 

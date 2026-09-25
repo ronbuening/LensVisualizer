@@ -58,3 +58,15 @@ Patent: US 6,445,511 B1, Embodiment 3 / Table 3
 - Confirmed the high-index elements remain L5, L6, L8, and L9 (nd >= 1.8), all ordinary high-index correction glasses rather than APD elements.
 - Rendered and reviewed the patent drawing. The stored SDs match the long telephoto proportions: dominant fixed front group, compact moving G2 doublet, and smaller rear relay group. No SD edits were made.
 - Verification: `npm run generate:glass-reports`, `npm run typecheck`, `npm run format:check`, `npm run lint`, `npm run test`, and `git diff --check` passed.
+
+## 2026-09-25 — MTF image-plane census
+
+Visually inspected `patents/US6445511.pdf`, Embodiment 3 Table 3, PDF p. 10 (column 6). Every radius, distance and ten nd/νd pairs was compared. All-spherical, no rear plate. Source dimensions are normalized to f=1 and authored scale is ×210.07; the former data rounded each scaled radius and distance to 0.01 mm, losing source precision. D4=0.01516×210.07=3.1846612 had become 3.19; D13=0.03463×210.07=7.2747241 had become 7.28.
+
+Restored all R/d products to seven decimal places, not only the two incorrect roundings. Infinity D7/D10=0.05212/0.10896 become 10.9488484/22.8892272; the second station 0.11679/0.04429 becomes 24.5330753/9.3050003. Both gap sums are 33.8380756. Source D17=0.45940 becomes 96.506158 mm. All indices/Abbe values and inferred semi-diameters are unchanged. The patent labels the second station “8.5 m” even with f=1 normalization; removed the unsupported assertion that its object distance is unequivocally 8.5 normalized units.
+
+Independent native trace gives EFL 0.999672803206 and BFL 0.459008318086; scaled EFL 210.001265769 and BFL 96.423877380. This leaves −0.082280620 mm defocus instead of −0.204236100, below the 0.188019776 mm limit. The small native residual remains a source precision/image-distance limitation; no dimension was tuned.
+
+**Cause/action:** scaling precision loss/transcription; restore full scaled source dimensions. Offset **−0.204236 → −0.082281 mm**; Section E row deleted. Changelog records the user-visible focus correction.
+
+Validation: focused runtime/paraxial check; full corpus gates at the ten-lens checkpoint.

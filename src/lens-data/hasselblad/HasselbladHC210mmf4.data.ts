@@ -10,8 +10,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  Focus: inner focus — G2 (cemented doublet) translates axially.    ║
  * ║                                                                    ║
  * ║  NOTE ON SCALING:                                                  ║
- * ║    Patent normalized to f = 1.0. All R, d, and sd values scaled   ║
- * ║    ×210.07 to match the production 210 mm focal length.            ║
+ * ║    Patent normalized to f = 1.0. Source R and d values scaled   ║
+ * ║    ×210.07; retain scaled source precision, without 0.01 mm rounding.            ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    Not patent-listed. Estimated from combined marginal + chief     ║
@@ -22,6 +22,13 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    ✓ Aperture stop and variable focus gaps                        ║
  * ║    ✗ DO NOT include: sensor glass, filters, mechanical parts      ║
  * ╚══════════════════════════════════════════════════════════════════════╝
+ *
+ * MTF source audit: Table 3 dimensions were rounded prematurely to 0.01 mm
+ * after scaling ×210.07 (D4 and D13 also rounded upward incorrectly).
+ * Restore full scaled printed precision. Offset improves −0.204236 to
+ * −0.082281 mm, below the 0.188020 mm census limit. Native source
+ * EFL 0.999672803 and BFL 0.459008318 retain small differences from
+ * f=1 and D17=0.45940; keep those published values, without focus tuning.
  */
 
 const LENS_DATA = {
@@ -183,23 +190,23 @@ const LENS_DATA = {
    *  All surfaces spherical. Stop at surface #11 (patent surface #11).
    */
   surfaces: [
-    { label: "1", R: 79.49, d: 10.95, nd: 1.48749, elemId: 1, sd: 30.5 }, // L1 front
-    { label: "2", R: -1663.69, d: 0.46, nd: 1.0, elemId: 0, sd: 28.5 }, // L1 rear → air
-    { label: "3", R: 50.08, d: 13.24, nd: 1.497, elemId: 2, sd: 29.5 }, // L2 front
-    { label: "4", R: -923.57, d: 3.19, nd: 1.65412, elemId: 3, sd: 24.5 }, // L2→L3 junction
-    { label: "5", R: 97.33, d: 0.2, nd: 1.0, elemId: 0, sd: 24.5 }, // L3 rear → air
-    { label: "6", R: 41.53, d: 7.3, nd: 1.58144, elemId: 4, sd: 24.5 }, // L4 front
-    { label: "7", R: 28.3, d: 10.95, nd: 1.0, elemId: 0, sd: 21.0 }, // L4 rear → air (D7, variable)
-    { label: "8", R: 268.43, d: 4.98, nd: 1.80518, elemId: 5, sd: 18.0 }, // L5 front
-    { label: "9", R: -172.24, d: 2.99, nd: 1.816, elemId: 6, sd: 18.5 }, // L5→L6 junction
-    { label: "10", R: 66.13, d: 22.89, nd: 1.0, elemId: 0, sd: 18.0 }, // L6 rear → air (D10, variable)
-    { label: "STO", R: 1e15, d: 12.78, nd: 1.0, elemId: 0, sd: 13.3 }, // Aperture stop
-    { label: "12", R: -81.07, d: 5.8, nd: 1.71736, elemId: 7, sd: 14.5 }, // L7 front
-    { label: "13", R: 81.07, d: 7.28, nd: 1.804, elemId: 8, sd: 16.0 }, // L7→L8 junction
-    { label: "14", R: -156.48, d: 6.2, nd: 1.0, elemId: 0, sd: 16.0 }, // L8 rear → air
-    { label: "15", R: 190.11, d: 5.93, nd: 1.80518, elemId: 9, sd: 15.5 }, // L9 front
-    { label: "16", R: 69.6, d: 9.95, nd: 1.74, elemId: 10, sd: 15.5 }, // L9→L10 junction
-    { label: "17", R: -162.64, d: 96.51, nd: 1.0, elemId: 0, sd: 14.8 }, // L10 rear → air (BFD)
+    { label: "1", R: 79.490488, d: 10.9467477, nd: 1.48749, elemId: 1, sd: 30.5 }, // L1 front
+    { label: "2", R: -1663.691379, d: 0.4579526, nd: 1.0, elemId: 0, sd: 28.5 }, // L1 rear → air
+    { label: "3", R: 50.080688, d: 13.2365107, nd: 1.497, elemId: 2, sd: 29.5 }, // L2 front
+    { label: "4", R: -923.572755, d: 3.1846612, nd: 1.65412, elemId: 3, sd: 24.5 }, // L2→L3 junction
+    { label: "5", R: 97.325431, d: 0.1995665, nd: 1.0, elemId: 0, sd: 24.5 }, // L3 rear → air
+    { label: "6", R: 41.530839, d: 7.3041339, nd: 1.58144, elemId: 4, sd: 24.5 }, // L4 front
+    { label: "7", R: 28.296429, d: 10.9488484, nd: 1.0, elemId: 0, sd: 21.0 }, // L4 rear → air (D7, variable)
+    { label: "8", R: 268.427446, d: 4.9765583, nd: 1.80518, elemId: 5, sd: 18.0 }, // L5 front
+    { label: "9", R: -172.236393, d: 2.9850947, nd: 1.816, elemId: 6, sd: 18.5 }, // L5→L6 junction
+    { label: "10", R: 66.130036, d: 22.8892272, nd: 1.0, elemId: 0, sd: 18.0 }, // L6 rear → air (D10, variable)
+    { label: "STO", R: 1e15, d: 12.7785581, nd: 1.0, elemId: 0, sd: 13.3 }, // Aperture stop
+    { label: "12", R: -81.066013, d: 5.8021334, nd: 1.71736, elemId: 7, sd: 14.5 }, // L7 front
+    { label: "13", R: 81.066013, d: 7.2747241, nd: 1.804, elemId: 8, sd: 16.0 }, // L7→L8 junction
+    { label: "14", R: -156.481143, d: 6.1991657, nd: 1.0, elemId: 0, sd: 16.0 }, // L8 rear → air
+    { label: "15", R: 190.11335, d: 5.9302761, nd: 1.80518, elemId: 9, sd: 15.5 }, // L9 front
+    { label: "16", R: 69.596191, d: 9.9510159, nd: 1.74, elemId: 10, sd: 15.5 }, // L9→L10 junction
+    { label: "17", R: -162.636194, d: 96.506158, nd: 1.0, elemId: 0, sd: 14.8 }, // L10 rear → air (BFD)
   ],
 
   /* ── Aspherical coefficients ── */
@@ -209,12 +216,13 @@ const LENS_DATA = {
    *  Inner focus: G2 (L5+L6) translates axially.
    *  D7 = G1–G2 gap (increases toward close focus).
    *  D10 = G2–G3 gap (decreases toward close focus).
-   *  Gap-sum conservation: D7 + D10 = 33.84 mm at all focus positions.
-   *  Patent close-focus distance: 8.5 normalized = 1.79 m ≈ 1.8 m (production MFD).
+   *  Gap-sum conservation: D7 + D10 = 33.8380756 mm at both focus positions.
+   *  The source labels its second state “8.5 m” despite f=1 normalization;
+   * production closeFocusM=1.8 is metadata, not a verified source conjugate.
    */
   var: {
-    "7": [10.95, 24.53],
-    "10": [22.89, 9.3],
+    "7": [10.9488484, 24.5330753],
+    "10": [22.8892272, 9.3050003],
   },
 
   varLabels: [
@@ -238,7 +246,7 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 1.8,
-  focusDescription: "Inner focus — cemented doublet G2 (L5+L6) translates axially; 13.6 mm travel, infinity to 1.8 m.",
+  focusDescription: "Published inner focus — cemented doublet G2 (L5+L6) translates 13.584 mm. The patent labels its second station 8.5 m despite f=1 normalization; the marketed 1.8 m minimum is not a verified source conjugate.",
 
   /* ── Aperture configuration ── */
   nominalFno: 4.0,

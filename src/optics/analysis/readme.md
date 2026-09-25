@@ -9,87 +9,58 @@ Generated `readme.md` and `improvementsuggestions.md` files are intentionally om
 ```mermaid
 flowchart LR
   subgraph n_src_optics_analysis["src/optics/analysis"]
-    n_src_optics_analysis_src_optics_analysis_aberrations_ts["aberrations.ts"]
-    n_src_optics_analysis_src_optics_analysis_analysisContext_ts["analysisContext.ts"]
-    n_src_optics_analysis_src_optics_analysis_analysisJobs_ts["analysisJobs.ts"]
-    n_src_optics_analysis_src_optics_analysis_analysisMovementSupport_ts["analysisMovementSupport.ts"]
-    n_src_optics_analysis_src_optics_analysis_analysisQuality_ts["analysisQuality.ts"]
-    n_src_optics_analysis_src_optics_analysis_asphericComparison_ts["asphericComparison.ts"]
-    n_src_optics_analysis_src_optics_analysis_bokeh_ts["bokeh.ts"]
-    n_src_optics_analysis_src_optics_analysis_chromatic_ts["chromatic.ts"]
-    n_src_optics_analysis_src_optics_analysis_chromaticRayFanScaling_ts["chromaticRayFanScaling.ts"]
-    n_src_optics_analysis_src_optics_analysis_distortion_ts["distortion.ts"]
-    n_src_optics_analysis_src_optics_analysis_fieldCurvature_ts["fieldCurvature.ts"]
-    n_src_optics_analysis_src_optics_analysis_groupMovement_ts["groupMovement.ts"]
-    n_src_optics_analysis_src_optics_analysis_perspectiveAnalysisJobs_ts["perspectiveAnalysisJobs.ts"]
-    n_src_optics_analysis_src_optics_analysis_preparedStateAdapters_ts["preparedStateAdapters.ts"]
-    n_src_optics_analysis_src_optics_analysis_pupilAberration_ts["pupilAberration.ts"]
-    n_src_optics_analysis_src_optics_analysis_summary_ts["summary.ts"]
-    n_src_optics_analysis_src_optics_analysis_vignetting_ts["vignetting.ts"]
+    n_src_optics_analysis_TypeScript_modules["TypeScript modules (30)"]
   end
+  n_external_src_optics_types_ts["src/optics/types.ts"]
+  n_external_src_types["src/types"]
   n_external_src_optics_perspective["src/optics/perspective"]
   n_external_src_optics_chromatic["src/optics/chromatic"]
+  n_external_src_optics_optics_ts["src/optics/optics.ts"]
+  n_external_src_optics_trace["src/optics/trace"]
+  n_external_src_optics_field["src/optics/field"]
+  n_external_src_optics_layout_ts["src/optics/layout.ts"]
+  n_external_src_optics_math["src/optics/math"]
   n_external_src_optics_aberration["src/optics/aberration"]
-  n_external_src_types["src/types"]
+  n_external_src_optics_first_order["src/optics/first-order"]
+  n_external_src_optics_spectralLines_ts["src/optics/spectralLines.ts"]
   n_external_src_optics_aberrationAnalysis_ts["src/optics/aberrationAnalysis.ts"]
   n_external_src_optics_constants_ts["src/optics/constants.ts"]
   n_external_src_optics_distortionAnalysis_ts["src/optics/distortionAnalysis.ts"]
-  n_external_src_optics_field["src/optics/field"]
-  n_external_src_optics_first_order["src/optics/first-order"]
   n_external_src_optics_focusDistance_ts["src/optics/focusDistance.ts"]
   n_external_src_optics_groupMovement_ts["src/optics/groupMovement.ts"]
-  n_external_src_optics_layout_ts["src/optics/layout.ts"]
-  n_external_src_optics_math["src/optics/math"]
-  n_external_src_optics_optics_ts["src/optics/optics.ts"]
   n_external_src_optics_pupilAberration_ts["src/optics/pupilAberration.ts"]
   n_external_src_optics_rayTrace_ts["src/optics/rayTrace.ts"]
-  n_external_src_optics_trace["src/optics/trace"]
-  n_external_src_optics_types_ts["src/optics/types.ts"]
-  n_src_optics_analysis_src_optics_analysis_perspectiveAnalysisJobs_ts --> |8| n_external_src_optics_perspective
-  n_src_optics_analysis_src_optics_analysis_chromatic_ts --> |4| n_external_src_optics_chromatic
-  n_src_optics_analysis_src_optics_analysis_chromatic_ts --> |2| n_external_src_optics_aberration
-  n_src_optics_analysis_src_optics_analysis_analysisContext_ts --> |2| n_external_src_optics_chromatic
-  n_src_optics_analysis_src_optics_analysis_groupMovement_ts --> |2| n_external_src_types
-  n_src_optics_analysis_src_optics_analysis_bokeh_ts --> n_external_src_optics_aberration
-  n_src_optics_analysis_src_optics_analysis_aberrations_ts --> n_external_src_optics_aberrationAnalysis_ts
-  n_src_optics_analysis_src_optics_analysis_analysisJobs_ts --> n_external_src_optics_chromatic
-  n_src_optics_analysis_src_optics_analysis_perspectiveAnalysisJobs_ts --> n_external_src_optics_chromatic
-  n_src_optics_analysis_src_optics_analysis_asphericComparison_ts --> n_external_src_optics_constants_ts
-  n_src_optics_analysis_src_optics_analysis_distortion_ts --> n_external_src_optics_distortionAnalysis_ts
-  n_src_optics_analysis_src_optics_analysis_chromatic_ts --> n_external_src_optics_field
-  n_src_optics_analysis_src_optics_analysis_summary_ts --> n_external_src_optics_first_order
-  n_src_optics_analysis_src_optics_analysis_summary_ts --> n_external_src_optics_focusDistance_ts
-  n_src_optics_analysis_src_optics_analysis_groupMovement_ts --> n_external_src_optics_groupMovement_ts
-  n_src_optics_analysis_src_optics_analysis_chromatic_ts --> n_external_src_optics_layout_ts
-  n_src_optics_analysis_src_optics_analysis_summary_ts --> n_external_src_optics_layout_ts
-  n_src_optics_analysis_src_optics_analysis_asphericComparison_ts --> n_external_src_optics_math
-  n_src_optics_analysis_src_optics_analysis_aberrations_ts --> n_external_src_optics_optics_ts
-  n_src_optics_analysis_src_optics_analysis_analysisContext_ts --> n_external_src_optics_optics_ts
-  n_src_optics_analysis_src_optics_analysis_analysisJobs_ts --> n_external_src_optics_optics_ts
-  n_src_optics_analysis_src_optics_analysis_chromatic_ts --> n_external_src_optics_optics_ts
-  n_src_optics_analysis_src_optics_analysis_distortion_ts --> n_external_src_optics_optics_ts
-  n_src_optics_analysis_src_optics_analysis_pupilAberration_ts --> n_external_src_optics_optics_ts
-  n_src_optics_analysis_src_optics_analysis_summary_ts --> n_external_src_optics_optics_ts
-  n_src_optics_analysis_src_optics_analysis_vignetting_ts --> n_external_src_optics_optics_ts
-  n_src_optics_analysis_src_optics_analysis_analysisContext_ts --> n_external_src_optics_perspective
-  n_src_optics_analysis_src_optics_analysis_analysisMovementSupport_ts --> n_external_src_optics_perspective
-  n_src_optics_analysis_src_optics_analysis_pupilAberration_ts --> n_external_src_optics_pupilAberration_ts
-  n_src_optics_analysis_src_optics_analysis_chromatic_ts --> n_external_src_optics_rayTrace_ts
-  n_src_optics_analysis_src_optics_analysis_chromatic_ts --> n_external_src_optics_trace
-  n_src_optics_analysis_src_optics_analysis_aberrations_ts --> n_external_src_optics_types_ts
-  n_src_optics_analysis_src_optics_analysis_analysisContext_ts --> n_external_src_optics_types_ts
-  n_src_optics_analysis_src_optics_analysis_analysisJobs_ts --> n_external_src_optics_types_ts
-  n_src_optics_analysis_src_optics_analysis_bokeh_ts --> n_external_src_optics_types_ts
-  n_src_optics_analysis_src_optics_analysis_chromatic_ts --> n_external_src_optics_types_ts
-  n_src_optics_analysis_truncated["additional relationships omitted"]
+  n_external_src_optics_vignetteAnalysis_ts["src/optics/vignetteAnalysis.ts"]
+  n_external_src_utils_catalog["src/utils/catalog"]
+  n_src_optics_analysis_TypeScript_modules --> |20| n_external_src_optics_types_ts
+  n_src_optics_analysis_TypeScript_modules --> |17| n_external_src_types
+  n_src_optics_analysis_TypeScript_modules --> |10| n_external_src_optics_perspective
+  n_src_optics_analysis_TypeScript_modules --> |9| n_external_src_optics_chromatic
+  n_src_optics_analysis_TypeScript_modules --> |8| n_external_src_optics_optics_ts
+  n_src_optics_analysis_TypeScript_modules --> |7| n_external_src_optics_trace
+  n_src_optics_analysis_TypeScript_modules --> |5| n_external_src_optics_field
+  n_src_optics_analysis_TypeScript_modules --> |5| n_external_src_optics_layout_ts
+  n_src_optics_analysis_TypeScript_modules --> |4| n_external_src_optics_math
+  n_src_optics_analysis_TypeScript_modules --> |3| n_external_src_optics_aberration
+  n_src_optics_analysis_TypeScript_modules --> |2| n_external_src_optics_first_order
+  n_src_optics_analysis_TypeScript_modules --> |2| n_external_src_optics_spectralLines_ts
+  n_src_optics_analysis_TypeScript_modules --> n_external_src_optics_aberrationAnalysis_ts
+  n_src_optics_analysis_TypeScript_modules --> n_external_src_optics_constants_ts
+  n_src_optics_analysis_TypeScript_modules --> n_external_src_optics_distortionAnalysis_ts
+  n_src_optics_analysis_TypeScript_modules --> n_external_src_optics_focusDistance_ts
+  n_src_optics_analysis_TypeScript_modules --> n_external_src_optics_groupMovement_ts
+  n_src_optics_analysis_TypeScript_modules --> n_external_src_optics_pupilAberration_ts
+  n_src_optics_analysis_TypeScript_modules --> n_external_src_optics_rayTrace_ts
+  n_src_optics_analysis_TypeScript_modules --> n_external_src_optics_vignetteAnalysis_ts
+  n_src_optics_analysis_TypeScript_modules --> n_external_src_utils_catalog
 ```
 
 ## Directory Overview
 
-- Direct source files: 17
+- Direct source files: 30
 - Direct subfolders: 0
-- Main outbound areas: same folder (23), src/optics/types.ts (11), src/optics/perspective (10), src/types (10), src/optics/chromatic (8), src/optics/optics.ts (8), src/optics/aberration (3), src/optics/layout.ts (2), +12 more
-- External consumers: src/benchmarks, src/components/layout, src/optics/aberration, src/optics/analysisJobs.ts, src/optics/compat.ts, src/optics/distortionAnalysis.ts, src/optics/vignetteAnalysis.ts
+- Main outbound areas: same folder (52), src/optics/types.ts (20), src/types (17), src/optics/perspective (10), src/optics/chromatic (9), src/optics/optics.ts (8), src/optics/trace (7), src/optics/field (5), +14 more
+- External consumers: src/benchmarks, src/components/layout, src/optics/aberration, src/optics/analysisJobs.ts, src/optics/compat.ts, src/optics/distortionAnalysis.ts, src/optics/mtf.ts, src/optics/vignetteAnalysis.ts
 
 ## Files
 
@@ -107,6 +78,19 @@ flowchart LR
 | `distortion.ts` | Distortion helper module | same folder (2), src/optics/distortionAnalysis.ts, src/optics/optics.ts, src/optics/types.ts, src/types | same folder, src/optics/compat.ts | computeDistortionCurveForState2, computeDistortionFieldGridForState2, computeDistortionCurve2, computeDistortionFieldGrid2 |
 | `fieldCurvature.ts` | Field Curvature helper module | same folder | none | computeFieldCurvature2, computeFieldCurvatureBundleForState2, computeFieldCurvatureForState2 |
 | `groupMovement.ts` | Group Movement helper module | src/types (2), src/optics/groupMovement.ts, src/optics/types.ts | src/optics/compat.ts | computeGroupMovementProfileForState2, computeGroupMovementProfile2, firstAvailableGroupMovementMode2, getGroupMovementAvailability2, inferLensMovementGroups2, isGroupMovementModeAvailable2 |
+| `mtf.ts` | Mtf helper module | same folder (9), src/optics/types.ts, src/types | src/optics/mtf.ts | MtfJobCache, emptyMtfField, MtfUnresolvedFlux, assessUnresolvedFlux, MtfGridOutcome, refineMtfField, resolveMtfGeometry, computeMtfSteps, +1 more |
+| `mtfConjugates.ts` | Mtf Conjugates helper module | src/optics/field, src/optics/types.ts, src/types | same folder (2) | mtfFiniteConjugate, mtfFiniteObjectPoint |
+| `mtfConstants.ts` | Mtf Constants helper module | src/types | same folder (4) | MTF_GRID_LADDER, MTF_GRID_CAPS, MTF_DEFAULT_GRID_CAP, MTF_CONVERGENCE_TOLERANCE, MTF_CONVERGENCE_BAND_LPMM, MTF_MAX_FIELDS, MTF_MAX_FREQUENCIES, MTF_MAX_FREQUENCY_LPMM, +11 more |
+| `mtfDiffraction.ts` | Mtf Diffraction helper module | same folder (4), src/optics/layout.ts, src/optics/math, src/optics/types.ts | same folder (2) | ComplexPupil, DiffractionOtf, PupilReconstruction, PupilAutocorrelation, pupilAutocorrelation, sampleAutocorrelation, pupilOtf, reconstructMtfPupil |
+| `mtfDiffractionLimit.ts` | Mtf Diffraction Limit helper module | same folder (2) | same folder | MtfDiffractionLimit, diffractionLimitFromBundle, ellipticalLimit |
+| `mtfFields.ts` | Mtf Fields helper module | src/optics/field (2), same folder, src/optics/layout.ts, src/optics/math, src/optics/trace, +3 more | same folder | MtfFieldTarget, MtfChiefHeight, mtfModeledHalfField, declaredFormatRadiusMm, resolveMtfFieldGeometry, resolveMtfFieldTargets, mtfChiefHeight, mtfFieldProcessingOrder |
+| `mtfFocus.ts` | Mtf Focus helper module | same folder (3), src/optics/first-order, src/optics/layout.ts, src/optics/spectralLines.ts, src/optics/types.ts, +1 more | same folder | MtfFocusBundle, MtfBestFocus, MtfImagePlaneOffset, mtfImagePlaneOffset, findAxialBestFocus, landingPoints |
+| `mtfFootprint.ts` | Mtf Footprint helper module | same folder | same folder (2) | MtfFootprint, MtfLaunchClassifier, findMtfFootprint, expandMtfFootprint |
+| `mtfMath.ts` | Mtf Math helper module | none | same folder (4) | MtfSpot, ComplexOtf, geometricOtf, otfMagnitude, translateOtf, multiplyOtf, combineOtfs |
+| `mtfRayClassification.ts` | Mtf Ray Classification helper module | src/optics/trace (2), src/optics/types.ts | same folder (2) | MtfRayClass, mtfTraceClassification, provesApertureMiss |
+| `mtfSupport.ts` | Mtf Support helper module | same folder (3), src/optics/spectralLines.ts, src/optics/types.ts, src/types | same folder, src/optics/mtf.ts | MTF_FIELDS, MTF_FREQUENCIES, MTF_CDF_LINES, MTF_PHOTOPIC_LINES, MtfSpectrumChoice, MtfSpectralData, assessMtfSpectralData, resolveMtfSpectrum, +1 more |
+| `mtfTracing.ts` | Mtf Tracing helper module | same folder (5), src/optics/trace (3), src/optics/chromatic, src/optics/field, src/optics/math, +2 more | same folder (6) | mtfTraceClassification, MtfPupilRay, MtfOpenBorders, MtfBundle, MtfFieldLaunch, mtfImagePoint, mtfIndexResolver, mtfTraceOptions, +8 more |
+| `mtfWavefront.ts` | Mtf Wavefront helper module | same folder, src/optics/types.ts | same folder | WavefrontSample, launchPhaseMm, sampleReferenceWavefront |
 | `perspectiveAnalysisJobs.ts` | Perspective Analysis Jobs helper module | src/optics/perspective (8), same folder, src/optics/chromatic | same folder | PerspectiveAnalysisJobParams, PerspectiveAnalysisSamplingPlan, PerspectiveAnalysisJobs, perspectiveAnalysisSamplingPlan, createPerspectiveAnalysisJobs |
 | `preparedStateAdapters.ts` | Prepared State Adapters helper module | src/optics/types.ts | same folder (5) | zPosForPreparedAnalysis2 |
 | `pupilAberration.ts` | Pupil Aberration helper module | src/optics/optics.ts, src/optics/pupilAberration.ts, src/optics/types.ts, src/types | same folder, src/optics/compat.ts | PUPIL_ABERRATION_SAMPLE_COUNT_2, computeBothPupilAberrationProfilesForState2, computePupilAberrationProfile2, computeExitPupilAberrationProfile2, computeBothPupilAberrationProfiles2 |

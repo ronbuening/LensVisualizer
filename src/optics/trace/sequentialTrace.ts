@@ -69,6 +69,7 @@ export function traceSequential(
   let origin: Vec3 = [input.origin[0], input.origin[1], input.origin[2]];
   let direction: Vec3 = direction0;
   let n = 1;
+  let opticalPathLengthMm = 0;
   let clipped = false;
   let terminalPoint: Vec3 = origin;
   let terminalSurfaceIndex = -1;
@@ -90,6 +91,7 @@ export function traceSequential(
     }
 
     const point = hit.point;
+    if (options.recordOpticalPath) opticalPathLengthMm += hit.opticalPathLength ?? n * hit.segmentLength;
     const normal = hit.normal;
     const radius = hit.radius;
     terminalPoint = point;
@@ -157,7 +159,7 @@ export function traceSequential(
   }
 
   const returnVertexIndex = resolveReturnVertexIndex(stopAt, skipLastTransfer, terminalSurfaceIndex, total);
-  return finalizeTraceResult({
+  const result = finalizeTraceResult({
     state,
     input: { origin: input.origin, direction: direction0 },
     hits,
@@ -175,6 +177,7 @@ export function traceSequential(
     autoSteps: [],
     loopKey: null,
   });
+  return options.recordOpticalPath ? { ...result, opticalPathLengthMm } : result;
 }
 
 function failedBeforeHit(

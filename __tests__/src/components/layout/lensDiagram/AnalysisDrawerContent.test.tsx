@@ -16,6 +16,7 @@ const {
   mockBokehTab,
   mockChromaticTab,
   mockComaTab,
+  mockMtfTab,
   mockDistortionTab,
   mockFocusBreathingTab,
   mockPupilAberrationTab,
@@ -28,6 +29,7 @@ const {
   mockBokehTab: vi.fn(),
   mockChromaticTab: vi.fn(),
   mockComaTab: vi.fn(),
+  mockMtfTab: vi.fn(),
   mockDistortionTab: vi.fn(),
   mockFocusBreathingTab: vi.fn(),
   mockPupilAberrationTab: vi.fn(),
@@ -83,6 +85,13 @@ vi.mock("../../../../../src/components/display/analysis/ComaTab.js", () => ({
   default: (props: Record<string, unknown>) => {
     mockComaTab(props);
     return <div>Coma</div>;
+  },
+}));
+
+vi.mock("../../../../../src/components/display/analysis/MtfTab.js", () => ({
+  default: (props: Record<string, unknown>) => {
+    mockMtfTab(props);
+    return <div>MTF</div>;
   },
 }));
 
@@ -160,6 +169,7 @@ describe("AnalysisDrawerContent", () => {
     mockBokehTab.mockReset();
     mockChromaticTab.mockReset();
     mockComaTab.mockReset();
+    mockMtfTab.mockReset();
     mockDistortionTab.mockReset();
     mockFocusBreathingTab.mockReset();
     mockPupilAberrationTab.mockReset();
@@ -351,6 +361,7 @@ describe("AnalysisDrawerContent", () => {
       },
       chromatic: { mock: mockChromaticTab, text: "Chromatic", props: { preparedState: mockPreparedState } },
       coma: { mock: mockComaTab, text: "Coma", props: { aberrationT: 0.37, preparedState: mockPreparedState } },
+      mtf: { mock: mockMtfTab, text: "MTF", props: { preparedState: mockPreparedState } },
       bokeh: { mock: mockBokehTab, text: "Bokeh", props: { preparedState: mockPreparedState } },
       distortion: { mock: mockDistortionTab, text: "Distortion", props: { preparedState: mockPreparedState } },
       breathing: { mock: mockFocusBreathingTab, text: "Breathing", props: {} },

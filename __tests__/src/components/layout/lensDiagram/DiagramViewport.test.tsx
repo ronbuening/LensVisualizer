@@ -220,7 +220,7 @@ describe("DiagramViewport", () => {
 
     expect(screen.queryByRole("button", { name: /ABERRATIONS & DISTORTIONS/i })).toBeNull();
     const dock = screen.getByRole("group", { name: "Aberrations & distortions" });
-    expect(dock.querySelectorAll("button")).toHaveLength(10);
+    expect(dock.querySelectorAll("button")).toHaveLength(11);
 
     const stage = screen.getByTestId("diagram-svg").parentElement;
     const viewport = stage?.parentElement;
@@ -231,10 +231,10 @@ describe("DiagramViewport", () => {
 
     const drawerProps = mockAnalysisDrawer.mock.calls[0][0];
     expect(drawerProps.showTabs).toBe(false);
-    expect(screen.getByRole("button", { name: "COMA" }).getAttribute("aria-controls")).toBe(drawerProps.id);
+    expect(screen.getByRole("button", { name: "MTF" }).getAttribute("aria-controls")).toBe(drawerProps.id);
 
-    fireEvent.click(screen.getByRole("button", { name: "COMA" }));
-    expect(baseProps.onAnalysisTabChange).toHaveBeenCalledWith("coma");
+    fireEvent.click(screen.getByRole("button", { name: "MTF" }));
+    expect(baseProps.onAnalysisTabChange).toHaveBeenCalledWith("mtf");
     expect(baseProps.onAnalysisDrawerToggle).toHaveBeenCalledWith(true);
 
     fireEvent.click(screen.getByRole("button", { name: /enter zoom and pan mode/i }));

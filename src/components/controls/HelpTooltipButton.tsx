@@ -12,9 +12,11 @@ interface HelpTooltipButtonProps {
   theme: Theme;
   label: string;
   text: string;
+  /** Tooltip width in px; defaults to the shared tooltip width. */
+  width?: number;
 }
 
-export default function HelpTooltipButton({ theme: t, label, text }: HelpTooltipButtonProps) {
+export default function HelpTooltipButton({ theme: t, label, text, width }: HelpTooltipButtonProps) {
   const triggerRef = useRef<HTMLButtonElement | null>(null);
   const [open, setOpen] = useState(false);
 
@@ -52,8 +54,14 @@ export default function HelpTooltipButton({ theme: t, label, text }: HelpTooltip
         aria-label={label}
         aria-expanded={open}
         onClick={() => setOpen((value) => !value)}
-        onMouseEnter={() => setOpen(true)}
-        onMouseLeave={() => setOpen(false)}
+        /* Hover is a mouse affordance. A tap also fires a compatibility mouseenter before its click, which
+         * would open the tooltip only for the click to toggle it shut, so only a mouse pointer hovers. */
+        onPointerEnter={(event) => {
+          if (event.pointerType === "mouse") setOpen(true);
+        }}
+        onPointerLeave={(event) => {
+          if (event.pointerType === "mouse") setOpen(false);
+        }}
         onBlur={() => setOpen(false)}
         style={{
           width: 16,
@@ -74,7 +82,7 @@ export default function HelpTooltipButton({ theme: t, label, text }: HelpTooltip
       >
         ?
       </button>
-      <PortalTooltip anchorRef={triggerRef} open={open} text={text} theme={t} />
+      <PortalTooltip anchorRef={triggerRef} open={open} text={text} theme={t} width={width} />
     </>
   );
 }

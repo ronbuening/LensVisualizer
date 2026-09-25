@@ -24,6 +24,7 @@ const EXPECTED_TAB_CONTENT = {
   aberrations: ["Intrinsic Lens-Axis Spherical Aberration (Classical)", "Fixed-Sensor Field Focus &amp; Astigmatism"],
   chromatic: ["Intrinsic Lens-Axis LoCA (Classical)", "Fixed-Sensor Chromatic Focus, TCA &amp; Ray Fans"],
   coma: ["Fixed-Sensor Coma Footprints &amp; Ray Fans"],
+  mtf: ["not available while tilt or shift is active"],
   bokeh: ["Fixed-Sensor Bokeh &amp; Blur Footprints"],
   distortion: ["Perspective distortion — fixed sensor"],
   breathing: ["Focus breathing — intrinsic / lens-local"],
@@ -84,9 +85,11 @@ describe("AnalysisDrawerContent with a moved perspective-control lens", () => {
     for (const tab of ANALYSIS_TABS) {
       const html = renderToStaticMarkup(<AnalysisDrawerContent {...sharedProps} activeTab={tab.id} />);
 
-      expect(html, `${tab.id} should not fall back to the obsolete centered-analysis warning`).not.toContain(
-        "centered-lens computation is suppressed",
-      );
+      if (tab.id !== "mtf") {
+        expect(html, `${tab.id} should not fall back to the obsolete centered-analysis warning`).not.toContain(
+          "centered-lens computation is suppressed",
+        );
+      }
       for (const expected of EXPECTED_TAB_CONTENT[tab.id]) {
         expect(html, `${tab.id} should render ${expected}`).toContain(expected);
       }

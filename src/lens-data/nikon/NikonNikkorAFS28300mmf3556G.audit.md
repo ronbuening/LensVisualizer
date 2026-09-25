@@ -65,3 +65,35 @@ at 11.23 mm), and the 100 mm and 292 mm stations stay at 100%. The image-circle 
 undersized. Rim departures moved to 0.363739 mm for 6A at 15.8 mm (was 0.253861 mm at 14.7 mm) and −0.001281 mm for
 13A at 9.4 mm (was −0.000099 mm at 8.75 mm); the analysis quotes neither, and none of the changed values, so it is
 unchanged.
+
+## 2026-09-25 - MTF census: S16 transcription corrected; source conflicts retained
+
+Source: local `patents/US20100220400A1.pdf`, Example 2 Table 2, PDF page
+24 (printed page 8). Visually inspected the complete table and S16 at
+350 dpi: the source prints `.100`, not 1.000 or 1.100 mm. Paragraph 0085
+defines distances in mm and the d-line indices. No scaling is applied.
+
+| Field | Before | After / evidence |
+|---|---|---|
+| S16 d | 1.000 mm | 0.100 mm, literal Table 2 `.100` |
+| Other S1-S35 radii, thicknesses and nd | Authored | Every row matches Table 2, including the 0.190 mm internal resin layer. |
+| All 20 medium vd values | Authored | Match Table 2. |
+| S6/S13/S27/S35 aspheres | Authored | Every K/A4-A10 matches with Kstd = kappa - 1, confirmed against paragraph 0082 equation (PDF page 22); higher coefficients absent/zero. |
+| Variable zoom/focus rows | Authored | All d1-d4 infinity and close columns checked and retained, as are Bf 38.422/65.896/79.261. |
+
+Independent ABCD with the corrected literal prescription:
+
+| Infinity station | EFL (mm) | BFL (mm) | Source Bf (mm) | Offset (mm) |
+|---|---:|---:|---:|---:|
+| Wide | 28.447933 | 39.244078 | 38.422 | +0.822078 |
+| Mid | 99.280999 | 66.244876 | 65.896 | +0.348876 |
+| Tele | 290.494641 | 79.478272 | 79.261 | +0.217272 |
+
+The printed EFLs are 28.79/100/292. The tabulated track sums are
+157.586/202.890/230.349 mm versus stated TL 159.888/205.193/232.653 mm.
+Correcting the transcription does not resolve these source contradictions;
+it increases the wide offset from +0.714173 to +0.822078 mm. No rear plate
+is listed, and no single further supported misprint explains the conflicts.
+Keep the published Bf and all other source values, without fitting focus.
+The header and analysis now disclose this; Section E row deleted, census
+flag expected. Existing glass and spectral data remain unchanged.

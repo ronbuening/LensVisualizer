@@ -7,8 +7,8 @@ that seeded Sections B and C is written up in
 [records/patent-figure-sd-audit-2026-07.md](records/patent-figure-sd-audit-2026-07.md).
 
 Take **Section A top-down** — those rows have physics behind them. Section B is figure-evidence only and is lower
-value per hour. Section D holds traced field-coverage shortfalls that need a source, a decision or engine support
-rather than a larger rim.
+value per hour. Sections D and E hold the MTF field and image-plane censuses. Section F holds traced field-coverage
+shortfalls that need a source, a decision or engine support rather than a larger rim.
 
 Status values: `todo` · `in progress` · `blocked (reason)` · `partial (what remains)`.
 
@@ -28,8 +28,8 @@ instead of here.
 
 | Lens | File | Patent | In `patents/` | Surfaces below floor (sd < floor) | Worst | Traced corner | Status |
 |---|---|---|---|---|---|---|---|
-| OLYMPUS F.ZUIKO 35mm f/2.8 (Olympus XA) | `olympus/OlympusXAZuiko35mmf28.data.ts` | US 4,235,521 | yes | 11 (7.40 < 8.05) | 0.65 mm | no chief ray past 25.7° with the inferred stop (Section D) | todo |
-| SAMSUNG 4.3mm f/1.5 (Galaxy S9) | `samsung/SamsungGalaxyS9MainWideCameraLens.data.ts` | US 2021/0149156 A1 | yes | 12A (1.76 < 1.83), 14A (2.00 < 2.51) | 0.51 mm | image height peaks at 2.74 mm (Section D) | blocked (needs higher-precision S13/S14 coefficients) |
+| OLYMPUS F.ZUIKO 35mm f/2.8 (Olympus XA) | `olympus/OlympusXAZuiko35mmf28.data.ts` | US 4,235,521 | yes | 11 (7.40 < 8.05) | 0.65 mm | no chief ray past 25.7° with the inferred stop (Section F) | todo |
+| SAMSUNG 4.3mm f/1.5 (Galaxy S9) | `samsung/SamsungGalaxyS9MainWideCameraLens.data.ts` | US 2021/0149156 A1 | yes | 12A (1.76 < 1.83), 14A (2.00 < 2.51) | 0.51 mm | image height peaks at 2.74 mm (Section F) | blocked (needs higher-precision S13/S14 coefficients) |
 | RODENSTOCK GRANDAGON-N 90mm f/4.5 | `rodenstock/RodenstockGrandagonN90mmf45.data.ts` | DE 2444954 A1 | yes | 11 (20.20 < 28.85), 12 (25.20 < 33.46) | 8.65 mm | 11 and 12 clear; the 5×7 corner chief ray (50.3°) clips at 1 (30.66 > 25.2) | todo — **wide** |
 | RODENSTOCK GRANDAGON-N 65mm f/4.5 | `rodenstock/RodenstockGrandagonN65mmf45.data.ts` | DE 2444954 A1 | yes | 11 (14.40 < 21.64), 12 (18.00 < 25.09) | 7.24 mm | the 4×5 corner chief ray (51.7°) clips at 1 (22.82 > 18), 2 (14.58 > 14.4), 3 (12.77 > 12.7) and 12 (18.06 > 18) | todo — **wide** |
 | RODENSTOCK GRANDAGON-N 75mm f/4.5 | `rodenstock/RodenstockGrandagonN75mmf45.data.ts` | DE 2444954 A1 | yes | 11 (16.80 < 21.57), 12 (21.00 < 25.04) | 4.77 mm | 11 and 12 clear; the 4×5 corner chief ray (47.5°) clips at 1 (23.72 > 21) | todo — **wide** |
@@ -92,7 +92,54 @@ Nothing can be audited on these until the source is available.
 | Sigma 10-18mm f/2.8 | 図8 printed as a thumbnail; <20 px per element edge at 600 dpi | a higher-resolution copy of JP 2024-104911 A |
 | Sigma 14-24mm f/2.8 | 図1 exists only as the front-page abstract drawing (the drawing section starts at 図3) | a higher-resolution copy of JP 2018-189733 A |
 
-## Section D — traced field coverage below 90%
+## Section D — MTF field census
+
+MTF traces the whole transmitted beam through the authored clear apertures, so it surfaces semi-diameters that block
+light the production lens transmits. Regenerate at any time (about three minutes):
+
+```bash
+node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-mtf.mjs --fields --list
+```
+
+Rows are lenses at infinity, wide open, at the wide end. "Edge" is the largest image height whose real chief ray
+passes every clear aperture; lenses whose edge merely misses the format corner are not listed here, and fisheyes
+without a declared `projection` are queued in Section F. Later rows are
+full-beam findings where the edge is reached but the authored clear apertures pass too little or too much of the beam
+there; check them against the patent figure.
+
+| Lens | File | Finding | Status |
+|---|---|---|---|
+| VIVITAR SERIES 1 70-210mm f/3.5 | `vivitar/VivitarSeries170210mmf35.data.ts` | On axis only the beam around the chief ray transmits and 30 lp/mm reads 0.00; in photopic mode the chief-ray solve fails beyond 2 % of the field. Surface 21 sits at zero gap before the stop, so rays meet the stop plane behind themselves | todo |
+| SONY FE 12-24mm f/2.8 GM | `sony/SonyFE1224mmf28GM.data.ts` | Clear apertures likely wider than production: the 10.8 mm field traces 7,288 pupil rays against 4,060 on axis, and tangential 30 lp/mm falls to 0.03 there | todo |
+| CANON RF 24-105mm f/2.8 L IS USM Z | `canon/CanonRF24105mmf28Z.data.ts` | Chief ray reaches the 21.6 mm corner, but the cat's-eye closes to a hairline around it (no sample of a 300 × 300 lattice over 1.5 entrance-pupil radii transmits); 20.6 mm still transmits 814 rays | todo |
+| MEYER OPTIK GÖRLITZ DOUBLE-PLASMAT 135mm f/4.5 (patent model) | `meyer-optik-goerlitz/MeyerOptikGorlitz135mmf45DoublePlasmat.data.ts` | Chief ray reaches the 158.6 mm corner, but the cat's-eye closes to a hairline around it | todo |
+| SONY ZEISS VARIO-SONNAR T* 9-72mm f/2.8-4.5 (RX100 VI / VII) | `sony/ZeissVarioSonnarT9072mmf2845SonyDSCRX100M67.data.ts` | The chief ray is blocked in a band near 98 % of the 7.17 mm edge and transmits again beyond it; tangential 30 lp/mm is 0.00 from 7.1 mm | todo |
+
+## Section E — MTF image-plane census
+
+These lenses place their image plane away from their own prescription's paraxial focus at infinity, by more than
+`MTF_IMAGE_PLANE_DEPTHS` (10) diffraction depths of focus (2λN² at the d line and the open f-number). At the authored
+plane their MTF collapses; the MTF tab's default best axial focus (and its "Design plane (auto)" option) refocuses
+them and says why. Where diagnosed, the
+source's printed back focus contradicts its prescription; undiagnosed rows may be transcription errors. Folding a listed plate to its air-equivalent, or
+modeling it in `rearPlates`, leaves paraxial defocus unchanged, so plates alone rarely explain these offsets.
+Regenerate (about three minutes):
+
+```bash
+node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-mtf.mjs --focus
+```
+
+Work each row with [lens-patent-audit.md](lens-patent-audit.md) and the source PDF. Correct transcription errors,
+and model plates the source lists in `rearPlates`. Where the source itself is inconsistent, keep the published value
+and document the contradiction in the lens header and `*.audit.md`, as the Voigtländer 28/2 audit does, then delete
+the row. Offset is paraxial focus minus the authored plane (positive: the plane sits in front of focus).
+
+| Lens | File | Offset (mm) | Depths | Cause | Status |
+|---|---|---|---|---|---|
+| NIKON R-UW AF ZOOM-NIKKOR 20-35mm f/2.8 | `nikon/NikonRUWAFZoomNikkor2035mmf28.data.ts` | +0.220 | 24 | Water interface is already traced; several existing source emendations remain unverified | partial (rear plate migrated; source reconstruction unresolved) |
+| HASSELBLAD XCD 45mm f/3.5 | `hasselblad/HasselbladXCD3545.data.ts` | +0.171 | 12 | Data note: source infinity BF 26.88 mm kept although the raw prescription computes otherwise | blocked (patent missing: WO2017221949A1; only Japanese republication present) |
+
+## Section F — traced field coverage below 90%
 
 Regenerate the list at any time:
 

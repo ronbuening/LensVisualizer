@@ -81,3 +81,39 @@ not used to raise them further.
 The validator accepts the new values, the traced edge now reaches 14.17 mm at 31.0° with every rim clear, and the
 image-circle floor reports nothing undersized. The analysis now quotes the L6 departures at the new rims (S10A
 −753.547 µm at 7.9 mm, S11A −636.708 µm at 8.4 mm) and replaces the old "kept at 6.4 mm or below" rationale.
+
+## 2026-09-25 - MTF image-plane census: omitted rear path corrected
+
+Source: local `patents/US20120069456A1.pdf`, Example 1, Tables 1-2 on PDF
+pages 17-18 and Table 11 on page 20. Paragraph 0120 identifies infinity
+rays; paragraphs 0124-0129 specify the d-line prescription and asphere
+convention. No scaling is applied.
+
+| Field | Before | After / source evidence |
+|---|---|---|
+| S1-S15 radii, thicknesses, nd; L1-L8 vd | Existing values | Every row matches Table 1. D15 = 2.80 mm is the gap to PP. |
+| S10/S11 conic and A3-A20 | Existing exact odd/even terms | Every coefficient matches Table 2; source K = 0 maps to renderer K = -1. |
+| PP | Omitted | `rearPlates`: t = 2.33 mm, nd = 1.51680, vd = 64.2, from S16-S17. |
+| Gap after PP | Omitted | 5.53 - 2.80 - 2.33/1.51680 mm, derived from the published air-equivalent BF in Table 11. |
+| Physical last-lens-to-image distance | 2.80 mm | 6.323871 mm. |
+
+Independent reduced-angle ABCD propagation gives EFL 23.716635 mm (source
+23.72 mm) and air BFL 5.526349 mm (source BF 5.53 mm). The authored plane
+had stopped at PP's front face. This is an omitted plate **and** omitted
+trailing path, not an air-equivalent fold: restoring only the plate would
+not restore the published BF. The trailing gap is derived from a source
+image-distance constraint, never from the computed paraxial focus.
+
+Offset: +2.726349 -> -0.003651 mm (limit 0.047005 mm). Section E row deleted.
+The 2.80 mm physical gap remains on S15; the front-focus variable gap on
+S11 is unchanged. No finite-focus station has been inferred from this audit.
+The plate has only source nd/vd; the patent adds no line indices or partial
+dispersion for the unresolved L6. Existing qualified glass labels remain.
+The analysis now distinguishes physical and air-equivalent distances.
+
+## 2026-09-25 — Parallel plate audits reconciled
+
+The 2026-09-24 and 2026-09-25 audits above independently modeled the same PP plate from Table 1 and the Table 11 BF.
+The merged data keeps the 2026-09-24 semi-diameters and N-BK7 label, and writes the trailing gap as the exact
+expression 5.53 − 2.80 − 2.33/1.51680 (≈ 1.194 mm) instead of the rounded 1.19 mm, so no rounding enters the published
+BF. The difference is 0.004 mm, below one depth of focus. Image-plane offset −0.003651 mm (limit 0.047005 mm).

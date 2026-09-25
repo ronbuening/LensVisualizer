@@ -177,7 +177,7 @@ This placement matters because the rear group's correction strategy is not just 
 
 ## Verification Summary
 
-The final data arrays reproduce the patent prescription at source scale. Independent reduced-angle tracing and ABCD accumulation give an EFL of **51.695042 mm**, agreeing with the patent's rounded 51.70 mm headline value. The Gaussian paraxial BFD from surface 15 is **38.333791 mm**, whereas the patent-authored image-plane spacing `D15` is **38.88 mm**. The data retains the source `D15`; the 0.546209 mm difference is treated as a distinction between the authored/optimized image-plane location and the Gaussian paraxial back-focus reference, not as a source error.
+The final data arrays reproduce the patent prescription at source scale. Independent reduced-angle tracing and ABCD accumulation give an EFL of **51.695042 mm**, agreeing with the patent's rounded 51.70 mm headline value. The Gaussian paraxial BFD from surface 15 is **38.333791 mm**, whereas the patent-authored image-plane spacing `D15` is **38.88 mm**. The data retains the source `D15`; the 0.546209 mm difference remains a source image-distance discrepancy. The source does not establish a designer best-focus rationale, and no source-supported correction was found.
 
 The patent publishes neither glass-surface semi-diameters nor a physical stop diameter. The data file therefore uses inferred semi-diameters. The stop semi-diameter, **14.591344 mm**, is derived from the modeled f/1.25 entrance pupil and computed pupil magnification; the remaining surface apertures are geometry-modeling values constrained by marginal rays, Figure 1, and the current edge/slope/cross-gap rules. These dimensions are not represented as patent measurements.
 
@@ -198,3 +198,11 @@ The S-TIM27 catalog curve now models the 640345 position: its evaluated nd = 1.6
 ## Live-diagram follow-up
 
 The second live-site comparison straightened G11/G12 and the second cemented pair: S2 is now 22.0 mm, S4 20.0 mm, S6 16.5 mm, and S11 18.9 mm. Other radii remain unchanged, including the 19.0 mm asphere aperture. These optical-rim refinements reduce artificial taper without copying mechanical steps. A larger 18.5 mm G13 front rim was rejected by the cross-gap rule. The source whole-unit focus direction remains objectward, with both GF and GR moving by the same reconstructed 7.067215 mm.
+
+## Image-plane source audit (2026-09-25)
+
+Source image-plane audit: all R/d/nd/vd and S14 coefficients match
+JP2007333790A Example 1 (PDF pp.10–11). EFL 51.695042 agrees with
+51.70, but printed D15=38.88 is not paraxial BFL 38.333791 mm.
+No source plate or supported correction explains the -0.546209 mm
+offset. Retain the published image distance; best-focus intent is unproven.

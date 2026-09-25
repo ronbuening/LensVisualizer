@@ -35,3 +35,15 @@ Patent: US 2015/0092100 A1, Example 1
   gapAfter 1.00 mm. Paraxial check against the previous data: EFL identical; defocus changes by 0.0014 mm at every
   focus keyframe (rounding in the old 14.10 vs 14.0986). Physical track grows by 0.68 mm and now matches the 79.35 mm
   total length quoted in the analysis. `closeFocusM` 0.5 m is the marketing MFD and is unchanged.
+
+## 2026-09-25 — MTF image-plane census
+
+Classification: small published-plane/paraxial mismatch, with no source-backed correction.
+
+Visually checked local `patents/US20150092100A1.pdf`, PDF p. 26, Example 1 Tables 1–3 and paragraphs 100–104. All 13 active rows, seven nd/vd pairs, and all five conics and A4/A6/A8/A10 terms match. No scale is applied. Table 2 explicitly identifies infinity D7=2.81 and D9=13.67; beta=−0.033 uses 4.07/12.41. The separately documented extrapolated 0.5 m endpoint does not enter this census.
+
+Table 1 ends with D13=11.78, SG S14–15 (2 mm, nd=1.516798, vd=64.2), and D15=1.00 to the image. These physical distances are already represented by `rearPlates`; there is no omitted gap or additional Bf row. Their reduced distance is 14.098567139 mm, versus independent paraxial BFL 14.137844961 mm. EFL 53.612457671 agrees with printed 53.61 to rounding.
+
+Offset remains **+0.039277822 mm**, just above the 0.038074005 mm census limit. A reference-index, on-axis geometric MTF diagnostic (812 rays, pupil grid 32, 10/20/40 lp/mm) selects +0.021110798 mm, score 0.875358 → 0.988246. This is compatible with a small finite-aperture compromise, but the text does not define the listed plane as designer best focus and this diagnostic is not evidence of authorial intent. Keep all published values and record the residual; Section E row deleted. No user-visible data change or changelog entry.
+
+Validation: focused runtime/paraxial check; full corpus gates at the ten-lens checkpoint.

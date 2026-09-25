@@ -4,6 +4,26 @@ import type { ThemeVariant } from "../../../../src/types/theme.js";
 
 const THEME_NAMES: ThemeVariant[] = ["dark", "light", "darkHC", "lightHC"];
 
+/** WCAG relative luminance of `#rrggbb` or `rgb[a](r,g,b[,a])`; alpha is ignored for near-opaque panels. */
+function luminance(color: string): number {
+  const channels = color.startsWith("#")
+    ? [1, 3, 5].map((i) => parseInt(color.slice(i, i + 2), 16))
+    : color
+        .match(/[\d.]+/g)!
+        .slice(0, 3)
+        .map(Number);
+  const [r, g, b] = channels.map((v) => {
+    const c = v / 255;
+    return c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
+  });
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+}
+
+function contrast(a: string, b: string): number {
+  const [hi, lo] = [luminance(a), luminance(b)].sort((x, y) => y - x);
+  return (hi + 0.05) / (lo + 0.05);
+}
+
 describe("theme definitions", () => {
   it("exports all four themes", () => {
     for (const name of THEME_NAMES) {
@@ -15,6 +35,16 @@ describe("theme definitions", () => {
     const baseKeys = Object.keys(T.dark).sort();
     for (const name of THEME_NAMES) {
       expect(Object.keys(T[name]).sort()).toEqual(baseKeys);
+    }
+  });
+
+  it("keeps five distinct chart-series slots with 3:1 contrast against the panel", () => {
+    for (const name of THEME_NAMES) {
+      const series = T[name].chartSeries;
+      expect(series, name).toHaveLength(5);
+      expect(new Set(series).size, name).toBe(5);
+      for (const color of series)
+        expect(contrast(color, T[name].panelBg), `${name} ${color}`).toBeGreaterThanOrEqual(3);
     }
   });
 

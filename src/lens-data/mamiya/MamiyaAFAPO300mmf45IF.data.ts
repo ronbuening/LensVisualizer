@@ -37,6 +37,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ are catalog-derived from those class references and are stored directly on ║
  * ║ the elements; the prescription nd/νd remains the patent's rounded data.     ║
  * ╚══════════════════════════════════════════════════════════════════════════════╝
+ *
+ * Infinity image-plane source limit: Table 1 prints fb = 32.14 at f = 99.84.
+ * Its rounded-index prescription instead gives native EFL 99.270917 and
+ * BFL 31.798654. At the retained scale, BFL is 95.548840 vs the authored
+ * 96.574519 mm, offset -1.025679 mm. All table entries match; preserve
+ * published values without tuning indices or image distance (see audit).
  */
 
 const LENS_DATA = {

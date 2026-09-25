@@ -11,7 +11,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ 18.21→20.28 mm. No close-focus reconstruction is introduced.       ║
  * ║                                                                    ║
  * ║ SOURCE DISCREPANCY: the printed close endpoint (D0 = 428.00 mm)    ║
- * ║ has first-order matrix B = +6.097174 mm rather than zero. The      ║
+ * ║ has first-order matrix B = -0.647619 mm rather than zero. The      ║
  * ║ published endpoint is retained without repair.                     ║
  * ║                                                                    ║
  * ║ SCALING: none. Radii, spacings, and asphere coefficients remain    ║
@@ -24,8 +24,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ L10, while L14/L15 step up behind L13 and L16 is only slightly      ║
  * ║ taller than the front L9 element.                                   ║
  * ║                                                                    ║
- * ║ STOP: the patent omits its diameter. STO sd = 7.9141613257 mm      ║
- * ║ enforces F/2.06 against the 29.1260062712 mm paraxial EFL computed ║
+ * ║ STOP: the patent omits its diameter. STO sd = 7.8641922198 mm      ║
+ * ║ enforces F/2.06 against the 28.9421080118 mm paraxial EFL computed ║
  * ║ from this prescription.                                            ║
  * ║                                                                    ║
  * ║ GLASS: names are catalog-equivalent matches or explicitly          ║
@@ -34,6 +34,13 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ a disclosed line-index proxy. APD flags follow the six positions   ║
  * ║ marked in Cosina's production section, mapped by topology.         ║
  * ╚══════════════════════════════════════════════════════════════════════╝
+ *
+ * 2026-09-25 source recheck: Table 6 S17 is R=580.403, d=5.45 mm,
+ * correcting 580.103/5.15. Updated EFL is 28.942108 mm; BFL 18.144592
+ * versus printed D21=18.21, so offset is now -0.065408 mm. Source TL
+ * 71.19 also disagrees with the 71.55 mm sum. Retain the remaining source
+ * contradiction; the earlier audit's S17 transcription and calculations
+ * are superseded. No focus-fitting or inferred plate is introduced.
  */
 
 const LENS_DATA = {
@@ -52,7 +59,7 @@ const LENS_DATA = {
   ],
 
   focalLengthMarketing: 28,
-  focalLengthDesign: 29.126006271204375,
+  focalLengthDesign: 28.94210801178852,
   apertureMarketing: 2,
   apertureDesign: 2.06,
   lensMounts: ["leica-m"],
@@ -240,7 +247,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.55032,
       vd: 75.5,
-      fl: 33.532749,
+      fl: 33.539224,
       glass: "FCD705 (HOYA) equivalent — 550755",
       apd: "inferred",
       apdNote:
@@ -302,13 +309,13 @@ const LENS_DATA = {
     { label: "8", R: 51.264, d: 3.86, nd: 1.90043, elemId: 5, sd: 8.6 },
     { label: "9", R: -51.262, d: 1.0, nd: 1.85451, elemId: 6, sd: 8.6 },
     { label: "10", R: 98.206, d: 3.84, nd: 1.0, elemId: 0, sd: 8.6 },
-    { label: "STO", R: 1e15, d: 3.83, nd: 1.0, elemId: 0, sd: 7.914161325746969 },
+    { label: "STO", R: 1e15, d: 3.83, nd: 1.0, elemId: 0, sd: 7.864192219821862 },
     { label: "12", R: -19.549, d: 1.0, nd: 1.72047, elemId: 7, sd: 9.0 },
     { label: "13", R: 17.5, d: 5.84, nd: 1.62846, elemId: 8, sd: 9.0 },
     { label: "14", R: -34.531, d: 0.3, nd: 1.0, elemId: 0, sd: 9.0 },
     { label: "15", R: 36.135, d: 4.92, nd: 1.90525, elemId: 9, sd: 10.4 },
     { label: "16", R: -36.135, d: 0.15, nd: 1.0, elemId: 0, sd: 10.4 },
-    { label: "17", R: 580.103, d: 5.15, nd: 1.55032, elemId: 10, sd: 10.6 },
+    { label: "17", R: 580.403, d: 5.45, nd: 1.55032, elemId: 10, sd: 10.6 },
     { label: "18", R: -19.0, d: 1.0, nd: 1.72047, elemId: 11, sd: 10.6 },
     { label: "19", R: 161.504, d: 5.64, nd: 1.0, elemId: 0, sd: 10.6 },
     { label: "20A", R: -116.659, d: 2.1, nd: 1.8061, elemId: 12, sd: 12 },
@@ -382,7 +389,7 @@ const LENS_DATA = {
   focusDescription:
     "PUBLISHED double-floating endpoints: G1 and G2 move independently toward the object; " +
     "D11 3.83→3.36 mm and BF 18.21→20.28 mm. The printed endpoint is preserved although " +
-    "its first-order object-to-image matrix has B = +6.097 mm.",
+    "its first-order object-to-image matrix has B = -0.648 mm.",
 
   nominalFno: 2.06,
   fstopSeries: [2.06, 2.8, 4, 5.6, 8, 11, 16],

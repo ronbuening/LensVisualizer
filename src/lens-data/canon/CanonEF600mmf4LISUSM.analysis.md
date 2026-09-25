@@ -29,12 +29,10 @@ statement that this patent is the production prescription. Four independent feat
 4. The patent's inner-focus L2 unit and transversely moving L3b stabilization unit agree with the production lens's inner
    focusing and image-stabilization functions, and the patent predates Canon's September 1999 market introduction.
 
-The LensVisualizer model deliberately differs from the manufacturer's 17/13 count because it follows the current data
-rules for an ordinary sequential prescription. HG, the rear filter FL, and the inactive flare-cutter plane FC are not
-modeled as active elements. The resulting modeled prescription contains **15 elements in 11 groups**. The optical effect
-of the omitted 2.00 mm rear filter is retained by replacing the final path to the image plane with an air-equivalent
-spacing of **117.098974102 mm**. No uniform scaling is applied. The 2001 Certificate of Correction does not alter
-Numerical Example 22, so no Example-22 numerical correction is applied.
+The visible model contains **15 powered elements in 11 groups**; front HG and inactive
+FC remain omitted. Rear FL is traced through `rearPlates` with D29=12.00 mm, t=2.00 mm,
+nd=1.516330, νd=64.4 and trailing air D31+D32=103.78 mm. No scaling is applied.
+The 2001 Certificate of Correction does not alter Numerical Example 22.
 
 The marketed and design quantities are kept separate throughout this analysis. Canon identifies the product as a 600 mm
 f/4 lens; the authored prescription computes to **585.327789123 mm** and uses the patent/model value **F/4.12** for the
@@ -44,8 +42,8 @@ magnification, eight diaphragm blades, and a minimum aperture of f/32.
 ## Optical Architecture
 
 The design is a long-focus **positive–negative–positive telephoto system** with internal focusing and a transverse
-stabilization group. The active normalized track from the first modeled powered surface to the source image plane is
-**468.018974102 mm**. Dividing by the computed EFL gives **TL/EFL = 0.799584409**, so the design meets the project's
+stabilization group. The physical track from the first modeled powered surface to the source image plane is
+**468.70 mm**. Dividing by the computed EFL gives **TL/EFL ≈ 0.800748**, so the design meets the project's
 telephoto criterion of TL/EFL < 1. The normalized rear distance is only about 0.2001 EFL, so the design is not
 retrofocus by the project's BFD > EFL definition.
 
@@ -246,11 +244,9 @@ L3c-1 contributes substantial additional power.
 **nd = 1.846658, νd = 23.9. Glass: 847238/847239 dense-flint class (vendor unresolved; source vd rounded 23.9). Standalone f = −121.262876 mm.**
 
 L3c-3 is the final powered element of the active model. Its negative standalone power tempers the strong positive
-L3c-2 while leaving both the cemented pair and the complete L3c subunit positive. The rear filter and flare-cutter planes
-that appear after this element in the patent are intentionally omitted from the active sequential prescription.
+L3c-2 while leaving both the cemented pair and the complete L3c subunit positive. The rear filter is traced as a hidden plate; the inactive flare-cutter plane is omitted.
 
-The data's final spacing after L3c-3 is therefore not the patent's raw physical air distance. It is the normalized
-air-equivalent distance that preserves the source image-plane reference after the rear filter is removed.
+The final authored spacing is the source's 12.00 mm physical air gap to FL.
 
 ## Glass Identification and Selection
 
@@ -385,8 +381,7 @@ precision. The computed infinity-state EFL is **585.327789123 mm**, only **+0.12
 a stop diameter, this value is calibrated from Fno = 4.12 rather than treated as a source dimension. The resulting
 recovered f-number is **4.1199999999**.
 
-The normalized final spacing to the source image plane is **117.098974102 mm**, while the Gaussian paraxial BFD from the
-last powered surface is **116.605717247 mm**. The retained source image plane therefore lies **0.493256855 mm** behind the
+The physical final distance to the source image plane is **117.78 mm**, while Gaussian paraxial BFD including FL is **117.286743145 mm** (air equivalents 117.098974102 / 116.605717247 mm). The retained source image plane therefore lies **0.493256855 mm** behind the
 Gaussian paraxial focus. The model preserves that source reference rather than silently moving the image plane to the
 paraxial focus.
 
@@ -401,10 +396,7 @@ shared semi-diameter of 57.2 mm, the computed rim clearance remains positive at 
 computed element edge thickness is **0.333 mm**, and the largest spherical rim angle is about **44.09°**. These clear
 apertures should not be interpreted as Canon manufacturing dimensions.
 
-No aspherical surface, folded path, sensor cover, or active filter is present in the modeled prescription. The front HG
-protection plate, rear FL filter, and inactive FC flare-cutter plane are source features omitted by design; only the rear
-filter's optical-path effect is preserved through the air-equivalent final spacing. No uniform scaling or hidden focal
-length correction is applied.
+No asphere, folded path, uniform scaling or hidden focal-length correction is applied. Front HG and inactive FC remain omitted, while rear FL is traced explicitly with its source values.
 
 ## Sources and References
 
@@ -419,3 +411,11 @@ length correction is applied.
    35 mm EOS system context. <https://global.canon/en/c-museum/history/story07.html>
 4. Official optical-glass catalogs and selector data from **OHARA, HOYA, HIKARI, CDGM, Sumita, and SCHOTT**, used only for
    coordinate/class comparison. Vendor ambiguity is retained wherever the patent does not establish a supplier.
+
+## Image-plane source audit (2026-09-25)
+
+Image-plane source audit: Example 22 R/d/N/v all match. FL is traced
+via rearPlates with D29=12.00, t=2.00, nd=1.516330, vd=64.4 and
+D31+D32=103.78 mm after it. Source image distance 117.78 mm exceeds
+physical paraxial BFL 117.286743 mm. Preserve the -0.493257 mm source
+discrepancy; no supported single misprint explains it. See audit.

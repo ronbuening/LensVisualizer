@@ -233,3 +233,11 @@ A source/model discrepancy remains intentionally visible. From the rounded paten
 ### Catalog proxy labels
 
 The viewer names the compatible catalog curve explicitly while retaining the original coordinate code and the supplier/melt qualification. The selected curves are unchanged: L11 → H-K9L, L12 → E-FD13, L13 → J-LAK14, L14 → N-SF66, L15 → FCD515, L16 → H-ZF4A, L21 → S-LAH55, L22 → J-SF14, L23 → L-LAM69, L31 → E-FD15. These labels identify spectral proxies, not production glass suppliers.
+
+## Image-plane source audit (2026-09-25)
+
+MTF source audit: Example 1 pp. 10–11 values match, including all four
+aspheres and PT (1.410 mm, nd=1.51680, νd=64.20, rear air 0.800 mm).
+EFL 51.962733 vs 51.964; paraxial focus is 0.075274 mm behind the
+published image plane. No source-supported correction or explicit designer
+best-focus convention found. Retain the printed physical path.

@@ -4,7 +4,7 @@
  */
 
 import { useCallback, useEffect } from "react";
-import { eflAtZoom, formatDist } from "../../optics/optics.js";
+import { eflAtZoom, formatDist, formatFNumber } from "../../optics/optics.js";
 import { fisheyeProjectionFocalLengthAtZoom, isFisheyeProjection } from "../../optics/projection.js";
 import { getGroupMovementAvailability } from "../../optics/groupMovement.js";
 import { isMovementAxisEnabled, perspectiveControlSteps } from "../../optics/lensMovement.js";
@@ -19,13 +19,6 @@ import type { GroupMovementMode } from "../../types/groupMovement.js";
 interface VarReadout {
   label: string;
   val: string;
-}
-
-/** Preserve hundredth-stop patent apertures while keeping whole stops compact. */
-function fmtF(f: number): string {
-  const rounded = Math.round(f * 100) / 100;
-  if (Number.isInteger(rounded)) return rounded < 10 ? rounded.toFixed(1) : String(rounded);
-  return rounded.toFixed(2).replace(/0$/, "");
 }
 
 interface DiagramControlsProps {
@@ -447,14 +440,14 @@ export default function DiagramControls({
           useSideLayout={useSideLayout}
           label="APERTURE"
           labelMinWidth={85}
-          displayValue={`f/${fmtF(fNumber)}${showEffectiveAperture && effApertureDiffers ? ` (eff. f/${fmtF(effectiveFNum)})` : ""}`}
+          displayValue={`f/${formatFNumber(fNumber)}${showEffectiveAperture && effApertureDiffers ? ` (eff. f/${formatFNumber(effectiveFNum)})` : ""}`}
           displayValueStyle={{ minWidth: "3.5em" }}
           value={stopdownT}
           step={L.apertureStep}
           onPointerDown={beginInteraction}
           onChange={handleStopdownChange}
           onPointerUp={handlePointerUp}
-          minLabel={`f/${fmtF(currentFOPEN)}`}
+          minLabel={`f/${formatFNumber(currentFOPEN)}`}
           maxLabel={`f/${L.maxFstop}`}
           flexBasis="220px"
           collapsible={true}
@@ -494,7 +487,7 @@ export default function DiagramControls({
                       handleStopdownChange(Math.log(n / L.FOPEN) / Math.log(L.maxFstop / L.FOPEN));
                       handlePointerUp();
                     }}
-                    aria-label={`Set aperture to f/${fmtF(n)}`}
+                    aria-label={`Set aperture to f/${formatFNumber(n)}`}
                     style={{
                       background: "none",
                       border: "none",
@@ -506,7 +499,7 @@ export default function DiagramControls({
                       transition: "opacity 0.15s",
                     }}
                   >
-                    f/{fmtF(n)}
+                    f/{formatFNumber(n)}
                   </button>
                 ))}
               </div>

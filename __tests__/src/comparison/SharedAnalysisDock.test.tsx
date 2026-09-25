@@ -38,8 +38,8 @@ describe("SharedAnalysisDock", () => {
   it("drives the shared drawer and zoom state for both comparison panes", () => {
     const dispatch = renderSharedDock({ analysisDrawerOpen: false, analysisDrawerTab: "aberrations" });
 
-    fireEvent.click(screen.getByRole("button", { name: "DISTORTION" }));
-    expect(dispatch).toHaveBeenCalledWith({ type: "SET_ANALYSIS_TAB", tab: "distortion" });
+    fireEvent.click(screen.getByRole("button", { name: "MTF" }));
+    expect(dispatch).toHaveBeenCalledWith({ type: "SET_ANALYSIS_TAB", tab: "mtf" });
     expect(dispatch).toHaveBeenCalledWith({ type: "SET_PANEL_EXPANDED", panel: "analysisDrawerOpen", expanded: true });
 
     fireEvent.click(screen.getByRole("button", { name: "Enter zoom and pan mode" }));

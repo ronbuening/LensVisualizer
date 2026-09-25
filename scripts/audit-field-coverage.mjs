@@ -25,7 +25,7 @@
  * A short field is not automatically a data error. Many patents print a maximum image height below the format
  * half-diagonal and leave the corners to in-camera distortion correction; semi-diameters transcribed from such a
  * patent correctly stop the field there. Compare the modeled edge with the patent's image height before editing, and
- * follow agent_docs/patent-figure-sd-audit-procedure.md. Open rows live in agent_docs/sd-audit-queue.md, Section D.
+ * follow agent_docs/patent-figure-sd-audit-procedure.md. Open rows live in agent_docs/sd-audit-queue.md, Section F.
  *
  * Chief rays are solved through the stop centre (solveChiefRay) and launched from just ahead of the first surface,
  * like the solver. Folded paths and fisheye projections are skipped: their field is declared, not traced.

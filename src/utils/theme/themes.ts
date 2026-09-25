@@ -112,6 +112,7 @@ const T: { dark: Theme; light: Theme; darkHC: Theme; lightHC: Theme } = {
     toggleActiveBorder: "rgba(0,200,220,0.45)",
     toggleActiveText: "#d0eef4",
     toggleInactiveText: "#607080",
+    chartSeries: ["#3987e5", "#d95926", "#199e70", "#9085e9", "#d55181"],
     legendSwatches: [
       ["rgba(0,184,212,0.28)", "rgba(0,200,220,0.65)", "Patent-listed APD"],
       ["rgba(179,136,255,0.22)", "rgba(179,136,255,0.55)", "Inferred APD"],
@@ -228,6 +229,7 @@ const T: { dark: Theme; light: Theme; darkHC: Theme; lightHC: Theme } = {
     toggleActiveBorder: "rgba(0,96,128,0.45)",
     toggleActiveText: "#005060",
     toggleInactiveText: "#8896a4",
+    chartSeries: ["#2a78d6", "#c4531f", "#0f8a63", "#6a4bc4", "#c2447f"],
     legendSwatches: [
       ["rgba(0,120,160,0.18)", "rgba(0,96,128,0.60)", "Patent-listed APD"],
       ["rgba(90,40,180,0.13)", "rgba(90,40,180,0.50)", "Inferred APD"],
@@ -344,6 +346,7 @@ const T: { dark: Theme; light: Theme; darkHC: Theme; lightHC: Theme } = {
     toggleActiveBorder: "rgba(0,220,240,0.55)",
     toggleActiveText: "#e0f4f8",
     toggleInactiveText: "#708090",
+    chartSeries: ["#3987e5", "#d95926", "#199e70", "#9085e9", "#d55181"],
     legendSwatches: [
       ["rgba(0,200,230,0.35)", "rgba(0,220,240,0.75)", "Patent-listed APD"],
       ["rgba(190,150,255,0.28)", "rgba(190,150,255,0.65)", "Inferred APD"],
@@ -460,6 +463,7 @@ const T: { dark: Theme; light: Theme; darkHC: Theme; lightHC: Theme } = {
     toggleActiveBorder: "rgba(0,80,112,0.55)",
     toggleActiveText: "#003848",
     toggleInactiveText: "#748498",
+    chartSeries: ["#1f67c2", "#b24716", "#0a7b56", "#5b3db5", "#ad3570"],
     legendSwatches: [
       ["rgba(0,105,145,0.24)", "rgba(0,80,112,0.70)", "Patent-listed APD"],
       ["rgba(75,30,165,0.18)", "rgba(75,30,165,0.60)", "Inferred APD"],

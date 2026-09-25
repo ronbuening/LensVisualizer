@@ -234,3 +234,11 @@ Glass identification yielded exact OHARA catalog matches (Δnd = 0.00000) for al
 - US 2020/0319427 A1, "Lens System and Image Pickup Apparatus," Nittoh Inc. / Takuya Yazaki. Published October 8, 2020.
 - Hasselblad XCD 2,8/65mm Datasheet (Dec 2018, v2). Available at hasselblad.com.
 - OHARA Optical Glass Catalog, May 2023 edition (glass nd/νd verification).
+
+## Image-plane source audit (2026-09-25)
+
+MTF source audit: US20200319427A1 Fig. 2–3 values match at infinity.
+The printed cover stack ends at S20 (image plane in Fig. 1); paraxial
+focus falls 0.232471 mm beyond it. EFL 65.015872 agrees with 65.02,
+but the air-equivalent rear path 21.906903 does not equal BFL 22.139374.
+Retain the source rearPlates and physical image plane; no focus tuning.

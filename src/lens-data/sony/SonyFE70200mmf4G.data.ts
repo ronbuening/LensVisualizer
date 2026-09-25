@@ -9,7 +9,12 @@ import type { LensDataInput } from "../../types/optics.js";
  *
  * Prescription: 21 elements / 15 air-separated groups; three aspherical surfaces.
  * Patent infinity EFLs: 72.0974, 122.9480, 193.9726 mm. Patent total lens length: 190.0000 mm.
- * No scaling has been applied. Sensor cover glass and filters are excluded.
+ * No scaling has been applied; the source lists no rear plate.
+ * Source image-plane contradiction: Table 3's 190.0000 mm total length
+ * implies BF = 42.9273 mm, but the wide-infinity prescription gives
+ * EFL = 72.160241 mm (printed 72.0974) and BFL = 42.115294 mm.
+ * All Table 1-3 entries match. Retain the published track and -0.812006 mm
+ * offset rather than fitting BF to focus; see the audit sidecar.
  *
  * Variable gaps:
  *   - d5, d12, d17: zoom-only gaps from patent Table 3.

@@ -194,3 +194,13 @@ The final semi-diameter model retains the patent's active clear-aperture half-di
 3. Leica Camera AG, **Development Team of the Leica Summilux-C Lenses Receives the Scientific and Engineering Award**, 2015; identifies Iain Neil with optical design of the SUMMILUX-C family. https://leica-camera.com/en-MY/Company/Press-Centre/Press-Releases/2015/Press-Release-Development-Team-of-the-Leica-Summilux-C-Lenses-Receives-the-Scientific-and-Engineering-Award%C2%AE
 4. OHARA INC., **Optical Glass** catalog and technical information, used for the catalog identities, d-line coordinates, C/F/g line indices, and partial-dispersion reference calculation. https://www.ohara-inc.co.jp/en/product/01000/ and https://www.ohara-inc.co.jp/en/product/technology/
 5. OHARA INC., **All Glass Types** and the S-LAH63 data sheet, used to distinguish the duplicated 750353 code and the legacy S-LAH63 coordinates from the current S-LAH63Q listing. https://www.ohara-inc.co.jp/en/product/01001/ and https://www.ohara-inc.co.jp/assets/en/product/pdf/eslah63.pdf
+
+## Image-plane source audit (2026-09-25)
+
+MTF image-plane audit (2026-09-25): US8508864B2 Example 2, Table 3
+(PDF p. 28), matches all radii, spacings, named glass codes and aspherics.
+The published F1 rear distance is 44.800 mm; the implemented named-glass
+prescription gives paraxial BFL 44.761613 mm (offset -0.038387 mm).
+The front 3 mm filter has no infinity-focus power; no rear plate is listed.
+The source evaluates polychromatic finite-aperture MTF, but does not define
+the tabulated plane as paraxial or best focus. Keep its published distance.

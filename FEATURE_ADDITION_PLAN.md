@@ -6,8 +6,8 @@ marked (AO#n) came from the analysis-options roadmap; M1–M5 came from the mirr
 Efficiency and performance work lives in `EFFICIENCY_IMPROVEMENT_PLAN.md`.
 
 Every feature here is implementable from data and engine capability already in the repo unless it
-sits in the final "Blocked on new data" section. Three items (F4, F5, F13) carry full specs; every
-other open item is one row in the Open Items Register. Signatures and file references were
+sits in the final "Blocked on new data" section. F4, F5 and F13 carry full specs;
+other open items are rows in the Open Items Register. Signatures and file references were
 re-verified against the working tree on 2026-09-09; re-locate by symbol name if a line has drifted,
 and stop if reality contradicts the description (the feature may have shipped — check the Shipped
 list and git log first).
@@ -69,6 +69,12 @@ Verified in code on 2026-07-06 (pins re-checked 2026-09-09):
   `src/utils/state/lensViewUrlState.ts`. (Was AO#4.)
 - **Analysis summary tab** — `src/optics/analysis/summary.ts` +
   `src/components/display/analysis/OpticalSummaryTab.tsx`. (AO#1.)
+- **Simulated MTF** — `src/optics/mtf.ts` + `src/components/display/analysis/MtfTab.tsx`; diffraction-corrected
+  photopic default, geometric and scalar diffraction methods, image-height fields to the format corner in 1–10 % steps,
+  10–50 lp/mm chart frequencies, full-beam pupil sampling, optional best-axial focus, both chart views, a keyboard
+  crosshair readout, CSV copy, an f/8 comparison overlay, qualified spectra and documented finite conjugates. Current eligibility and limitations live in
+  `agent_docs/architecture/optics-engine.md`. Open follow-up: a worker pool if photopic 1–2 % sweeps prove slow on
+  mid-range hardware.
 - **Field-selectable coma detail fans** — `src/components/display/analysis/ComaTab.tsx` has a
   detail-field selection (`COMA_DETAIL_FIELD_OPTIONS`, default/25/50/75/100%, lines ~20–22 and
   ~79–80) feeding `sampling.comaDetailFieldFraction` through
@@ -360,10 +366,17 @@ model is intentionally the scope until exhausted.
 
 ## Blocked On New Data — Do Not Attempt Without Schema/Data Work
 
+### Other data and validation boundaries
+
 Carried from the analysis roadmap so nobody re-proposes them as "quick":
 
-- **True diffraction MTF / Strehl / wavefront error** — tracing is geometric; patent data lacks
-  what diffraction needs. Allowed limited version: F14's clearly-labeled geometric proxies.
+- **Production-lens MTF / Strehl / wavefront error** — manufactured-lens claims require measured
+  data. Simulated geometric and scalar diffraction MTF can use complete authored prescriptions;
+  source precision, omitted optics, spectral data, pupil mapping and numerical convergence limit
+  their validity. See `agent_docs/architecture/optics-engine.md` for the simulated MTF contract.
+  Extensions to folded mirrors, diffractive surfaces, fisheyes, active tilt/shift, tolerances or
+  camera-system MTF require separate physical validation. Additional finite-focus catalog coverage
+  requires documented conjugates and authored focus/zoom configurations, not inferred focus labels.
 - **Flare/ghosting/transmission/coating models** — no coating or transmission data. Allowed
   limited version: count air-glass interfaces as an explicitly heuristic badge.
 - **AF speed / OIS / actuator loads** — no mass/actuator data. Allowed limited version: group

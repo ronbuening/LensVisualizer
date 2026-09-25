@@ -14,50 +14,50 @@ Generated from the latest benchmark JSON records in `agent_docs/benchmarks/runs/
 
 | Category | Current median ms | vs previous | vs 10-run median |
 |---|---:|---:|---:|
-| build | 0.41 | -0.3% | -28.6% |
-| layout | 1.70 | +54.3% | +48.9% |
-| rays | 1.51 | +4.0% | +2.0% |
-| analysis | 78.53 | +9.4% | +7.1% |
-| svgRender | 0.13 | -0.6% | -0.2% |
-| totalCold | 143.06 | -8.2% | -4.7% |
-| totalWarm | 79.85 | +8.4% | +6.8% |
+| build | 0.41 | -0.3% | -16.5% |
+| layout | 1.70 | +54.3% | +46.9% |
+| rays | 1.51 | +4.0% | -1.8% |
+| analysis | 78.53 | +9.4% | +6.2% |
+| svgRender | 0.13 | -0.6% | -0.5% |
+| totalCold | 143.06 | -8.2% | -9.2% |
+| totalWarm | 79.85 | +8.4% | +5.0% |
 
 ## Analysis Work Trends
 
 | Analysis category | Current median ms | vs previous | vs 10-run median |
 |---|---:|---:|---:|
-| summary | 0.00 | -0.0% | +21.0% |
-| distortionCurve | 4.73 | +5.4% | +11.8% |
-| distortionGrid | 1.72 | +9.2% | +14.1% |
-| vignetting | 17.26 | +3.6% | +13.6% |
-| pupils | 0.30 | +1.0% | +8.0% |
-| bokehPair | 40.86 | -1.4% | -3.4% |
-| bestFocus | 0.85 | +2.0% | +9.4% |
-| perspectiveFocus | 213.99 | +5.1% | +3.0% |
-| perspectiveFieldAberrations | 189.56 | +3.0% | +0.6% |
-| perspectiveChromatic | 194.00 | +4.2% | +1.8% |
-| perspectiveDistortion | 21.11 | +4.7% | +3.1% |
-| perspectiveVignetting | 292.74 | +4.5% | +1.1% |
-| perspectivePupils | 172.32 | +3.7% | +1.7% |
+| summary | 0.00 | -0.0% | +8.3% |
+| distortionCurve | 4.73 | +5.4% | +1.2% |
+| distortionGrid | 1.72 | +9.2% | +4.2% |
+| vignetting | 17.26 | +3.6% | -0.5% |
+| pupils | 0.30 | +1.0% | -1.0% |
+| bokehPair | 40.86 | -1.4% | -3.8% |
+| bestFocus | 0.85 | +2.0% | -0.2% |
+| perspectiveFocus | 213.99 | +5.1% | +0.2% |
+| perspectiveFieldAberrations | 189.56 | +3.0% | -0.6% |
+| perspectiveChromatic | 194.00 | +4.2% | -0.4% |
+| perspectiveDistortion | 21.11 | +4.7% | -1.4% |
+| perspectiveVignetting | 292.74 | +4.5% | +0.0% |
+| perspectivePupils | 172.32 | +3.7% | -0.2% |
 
 ## Aberration Panel Trends
 
 | Panel category | Current median ms | vs previous | vs 10-run median |
 |---|---:|---:|---:|
-| data.chromaticFieldCurvature | 38.25 | -1.5% | -2.7% |
-| data.coma | 8.45 | +0.8% | -1.1% |
-| data.fieldCurvature | 32.40 | -1.0% | -1.5% |
-| data.fieldCurvatureBundle | 38.19 | -1.4% | -3.0% |
+| data.chromaticFieldCurvature | 38.25 | -1.5% | -5.9% |
+| data.coma | 8.45 | +0.8% | -3.6% |
+| data.fieldCurvature | 32.40 | -1.0% | -5.6% |
+| data.fieldCurvatureBundle | 38.19 | -1.4% | -6.6% |
 | data.saBlurCharacter | 5.66 | +5.7% | +1.9% |
-| data.saProfile | 0.85 | +1.4% | +9.2% |
-| data.sphericalAberration | 0.96 | +2.7% | +8.6% |
-| render.aberrationsTab | 0.26 | -2.1% | -3.9% |
+| data.saProfile | 0.85 | +1.4% | -0.2% |
+| data.sphericalAberration | 0.96 | +2.7% | +0.2% |
+| render.aberrationsTab | 0.26 | -2.1% | -4.7% |
 | render.astigmatismSection | 0.06 | -4.3% | -3.0% |
-| render.comaPreviewSection | 0.33 | -1.7% | -3.5% |
-| render.comaTab | 0.45 | -2.5% | -8.2% |
+| render.comaPreviewSection | 0.33 | -1.7% | -2.6% |
+| render.comaTab | 0.45 | -2.5% | -7.4% |
 | render.fieldCurvatureSection | 0.17 | -2.2% | -3.0% |
-| render.meridionalComaSection | 0.05 | -3.8% | -2.8% |
-| render.sagittalComaSection | 0.06 | -3.2% | -2.8% |
+| render.meridionalComaSection | 0.05 | -3.8% | -3.2% |
+| render.sagittalComaSection | 0.06 | -3.2% | -3.1% |
 | render.sphericalSection | 0.03 | -5.8% | -4.2% |
 
 ## Slowest Current Cases

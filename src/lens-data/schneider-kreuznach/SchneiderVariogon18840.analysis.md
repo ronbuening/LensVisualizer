@@ -307,3 +307,11 @@ also reproduces the patent's printed component focal lengths within the source-p
 ## Live diagram and coverage review
 
 Canonical `super-8` now supplies the 5.69 × 4.22 mm gate explicitly described in US 3,442,573 (6th May 1969), with a 7.08 mm minimum coverage diagonal. No larger optical circle is asserted. The diagram uses the patent labels L1–L12 and P; the prism no longer shifts the rear element numbering. L2 is biconcave (r2 < 0, r3 > 0), correcting its earlier meniscus label. Component II moves imageward with zoom; III first moves objectward, then reverses imageward. The published three stations and unmodeled-focus status are preserved.
+
+## Image-plane source audit (2026-09-25)
+
+MTF source audit: Table I (PDF p. 4) matches all dimensions and nd/νd
+pairs, including the internal 9 mm reflex prism. No rear plate is omitted.
+Wide EFL 8.260539 vs printed 8 and BFL 13.162519 vs 13.1 leave
++0.062519 mm offset. Preserve published values; the source invokes
+Gaussian back-focus constancy and does not specify a best-focus convention.

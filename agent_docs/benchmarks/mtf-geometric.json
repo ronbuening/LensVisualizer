@@ -1,0 +1,249 @@
+{
+  "createdAt": "2026-09-23T00:33:38.673Z",
+  "commit": "e883df478908a07db70b3e2a01d7bde012f934a0",
+  "node": "v24.15.0",
+  "cpu": "Apple M4 Pro",
+  "method": "geometric",
+  "spectrum": "reference",
+  "apertureScale": 1,
+  "focusT": 0,
+  "fieldFractions": [
+    0,
+    0.5,
+    1
+  ],
+  "rows": [
+    {
+      "key": "canon-serenar-50f18",
+      "maxGridSize": 32,
+      "support": "candidate",
+      "medianMs": 23.28,
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "status": "unconverged",
+          "reason": null,
+          "gridSize": 32,
+          "maxDelta": 0.15698414742507796
+        },
+        {
+          "fieldFraction": 0.5,
+          "status": "unconverged",
+          "reason": null,
+          "gridSize": 32,
+          "maxDelta": 0.13620948580269965
+        },
+        {
+          "fieldFraction": 1,
+          "status": "unconverged",
+          "reason": null,
+          "gridSize": 32,
+          "maxDelta": 0.31346609528384484
+        }
+      ]
+    },
+    {
+      "key": "canon-serenar-50f18",
+      "maxGridSize": 64,
+      "support": "candidate",
+      "medianMs": 80.01,
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "status": "unconverged",
+          "reason": null,
+          "gridSize": 64,
+          "maxDelta": 0.052697000532214225
+        },
+        {
+          "fieldFraction": 0.5,
+          "status": "unconverged",
+          "reason": null,
+          "gridSize": 64,
+          "maxDelta": 0.0697254499882731
+        },
+        {
+          "fieldFraction": 1,
+          "status": "unconverged",
+          "reason": null,
+          "gridSize": 64,
+          "maxDelta": 0.04507155595263789
+        }
+      ]
+    },
+    {
+      "key": "canon-serenar-50f18",
+      "maxGridSize": 128,
+      "support": "candidate",
+      "medianMs": 308.87,
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "status": "unconverged",
+          "reason": null,
+          "gridSize": 128,
+          "maxDelta": 0.038763438783168756
+        },
+        {
+          "fieldFraction": 0.5,
+          "status": "unconverged",
+          "reason": null,
+          "gridSize": 128,
+          "maxDelta": 0.015618637482561109
+        },
+        {
+          "fieldFraction": 1,
+          "status": "unconverged",
+          "reason": null,
+          "gridSize": 128,
+          "maxDelta": 0.012754150092556564
+        }
+      ]
+    },
+    {
+      "key": "canon-serenar-50f18",
+      "maxGridSize": 256,
+      "support": "candidate",
+      "medianMs": 1231.28,
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 256,
+          "maxDelta": 0.0018509958420774228
+        },
+        {
+          "fieldFraction": 0.5,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 256,
+          "maxDelta": 0.001402713170784249
+        },
+        {
+          "fieldFraction": 1,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 256,
+          "maxDelta": 0.002881993670141479
+        }
+      ]
+    },
+    {
+      "key": "sony-fe-24-70mm-f28-gm-ii",
+      "maxGridSize": 32,
+      "support": "candidate",
+      "medianMs": 107.3,
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "status": "unconverged",
+          "reason": null,
+          "gridSize": 32,
+          "maxDelta": 0.0316645741732583
+        },
+        {
+          "fieldFraction": 0.5,
+          "status": "unconverged",
+          "reason": null,
+          "gridSize": 32,
+          "maxDelta": 0.030604439094972125
+        },
+        {
+          "fieldFraction": 1,
+          "status": "unconverged",
+          "reason": null,
+          "gridSize": 32,
+          "maxDelta": 0.01170842898994262
+        }
+      ]
+    },
+    {
+      "key": "sony-fe-24-70mm-f28-gm-ii",
+      "maxGridSize": 64,
+      "support": "candidate",
+      "medianMs": 441.36,
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 64,
+          "maxDelta": 0.007035650855340303
+        },
+        {
+          "fieldFraction": 0.5,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 64,
+          "maxDelta": 0.00916361581156977
+        },
+        {
+          "fieldFraction": 1,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 64,
+          "maxDelta": 0.007208722436814918
+        }
+      ]
+    },
+    {
+      "key": "sony-fe-24-70mm-f28-gm-ii",
+      "maxGridSize": 128,
+      "support": "candidate",
+      "medianMs": 442.6,
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 64,
+          "maxDelta": 0.007035650855340303
+        },
+        {
+          "fieldFraction": 0.5,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 64,
+          "maxDelta": 0.00916361581156977
+        },
+        {
+          "fieldFraction": 1,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 64,
+          "maxDelta": 0.007208722436814918
+        }
+      ]
+    },
+    {
+      "key": "sony-fe-24-70mm-f28-gm-ii",
+      "maxGridSize": 256,
+      "support": "candidate",
+      "medianMs": 443.48,
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 64,
+          "maxDelta": 0.007035650855340303
+        },
+        {
+          "fieldFraction": 0.5,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 64,
+          "maxDelta": 0.00916361581156977
+        },
+        {
+          "fieldFraction": 1,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 64,
+          "maxDelta": 0.007208722436814918
+        }
+      ]
+    }
+  ]
+}

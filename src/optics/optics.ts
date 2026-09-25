@@ -91,4 +91,4 @@ export {
   type SkewRayTraceResult,
 } from "./rayTrace.js";
 export { stopInnerBlockedSemiDiameter } from "./stopObstruction.js";
-export { formatDist, formatPetzvalRadius } from "./opticsFormat.js";
+export { formatDist, formatFNumber, formatPetzvalRadius } from "./opticsFormat.js";

@@ -205,3 +205,11 @@ field-curvature specification.
 ## Image coverage
 
 The [manufacturer brochure, page 2](https://www.pacificrimcamera.com/rl/00030/00030.pdf) specifies 108° on 16 × 22 mm and 130° on 24 × 36 mm with slight vignetting. The authored cinema format requires a 27.20 mm diagonal. The 43.27 mm full-frame diagonal is qualified, vignetted coverage, not the default analysis format or a measured clear image-circle boundary.
+
+## Image-plane source audit (2026-09-25)
+
+MTF source audit: Table 2 matches all prescription entries, including
+the R=15, K=-1 paraboloid and the split 5.97 mm stop gap. The source
+prints EFL 9.759 and image distance 21.841 mm; independent values are
+9.784067 and 22.377889 mm. Retain this source contradiction (+0.536889
+mm defocus); no supported single misprint resolves it. See audit.

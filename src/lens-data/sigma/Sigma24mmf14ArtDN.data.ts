@@ -31,8 +31,13 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes only the optical design: glass     ║
  * ║  elements, optical surfaces, aperture stop, and focus spacings.   ║
- * ║  It excludes filters, sensor cover glass, and mechanical parts.   ║
+ * ║  The source lists no rear plate between surface 32 and the image.║
  * ╚══════════════════════════════════════════════════════════════════════╝
+ *
+ * Source contradiction (Example 1, PDF pp.14-16): all table entries match,
+ * yet EFL is 24.003700 vs printed 23.86 mm and BFL is 21.987349 vs
+ * printed BF 23.0355 mm (offset -1.048151 mm). No listed plate explains
+ * this mismatch. Keep source values; see the audit sidecar.
  */
 
 const LENS_DATA = {

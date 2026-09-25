@@ -46,7 +46,7 @@ An ABCD matrix ray trace through all 16 optical surfaces (excluding the cover gl
 | Petzval sum | 0.00728 mm⁻¹ | — |
 | Petzval radius | 137.4 mm | — |
 
-The ~1.1% discrepancy in EFL is attributable to rounding in the patent's tabulated radii and thicknesses (which are published to limited decimal places). The F-number and all conditional formula values from Table 17 of the patent are reproduced to within rounding tolerance, confirming a clean transcription.
+The printed prescription gives EFL = 18.626043 mm, versus the stated 18.844 mm. The retained R/d/nd values match Table 7. The difference is consistent with a misprinted d12: the stated focal length is reproduced at d12 ≈ 3.21 mm, and FIG. 4 draws that gap as 3.18 mm, but the data keeps the printed 2.40 mm. The prescription's air-equivalent back focus from L8 is 12.792891 mm. Table 7 prints no distance after the cover plate, so the model places the image plane at that paraxial focus (7.80 mm of air, the 2.70 mm plate, then 3.21 mm of air).
 
 The Petzval sum of 0.00728 mm⁻¹ (Petzval sum × f ≈ 0.136) is quite well-controlled for a fast wide-angle. This is achieved through the use of very high-index glasses in the rear group (L6 at nd = 1.923, L7 and L8 both above nd = 1.80), which allow strong curvatures to be deployed with smaller Petzval contributions per unit of optical power.
 
@@ -213,7 +213,7 @@ The companion data file transcribes Table 8 directly and converts each patent co
 | A7 | −3.89232232E−06 | −1.61504338E−06 |
 | A8 | −8.50728357E−07 | 1.55286768E−07 |
 | A9 | 3.21279636E−07 | 4.00169628E−08 |
-| A10 | −1.416866834E−08 | −1.95650895E−08 |
+| A10 | −1.41686834E−08 | −1.95650895E−08 |
 | A11 | −9.17275261E−10 | 2.66391220E−09 |
 | A12 | −2.40950739E−11 | −1.17572834E−10 |
 | A14 | 0 | 0 |

@@ -42,7 +42,7 @@ Tags: `[policy]` how we work · `[recipe]` steps for one change type · `[archit
 - [recipe] [`glass-catalog-buildout.md`](glass-catalog-buildout.md) — glass catalog playbook and how to add a Sellmeier entry safely
 - [recipe] [`adding_an_article.md`](adding_an_article.md) — article and series frontmatter, TOC, links, verification
 - [recipe] [`adding_a_route.md`](adding_a_route.md) — new page/route with prerender and sitemap wiring
-- [recipe] [`adding_an_analysis_tab.md`](adding_an_analysis_tab.md) — the four registration points for a new analysis drawer tab
+- [recipe] [`adding_an_analysis_tab.md`](adding_an_analysis_tab.md) — the five registration points for a new analysis drawer tab
 - [recipe] [`adding_url_state.md`](adding_url_state.md) — the three coordinated edits for a URL-shareable view-state field
 - [recipe] [`adding_ui_controls.md`](adding_ui_controls.md) — sliders and toggles via shared controls and dispatch adapters
 - [recipe] [`theme_tokens.md`](theme_tokens.md) — adding or changing theme color tokens across all four variants
@@ -53,7 +53,7 @@ Tags: `[policy]` how we work · `[recipe]` steps for one change type · `[archit
 - [queue] [`../FEATURE_ADDITION_PLAN.md`](../FEATURE_ADDITION_PLAN.md) — planned features; owns the per-item template and the "already shipped" list
 - [queue] [`../EFFICIENCY_IMPROVEMENT_PLAN.md`](../EFFICIENCY_IMPROVEMENT_PLAN.md) — open cleanup and performance items with verification gates
 - [queue] [`../TRACE_MODEL_IMPROVEMENT_PLAN.md`](../TRACE_MODEL_IMPROVEMENT_PLAN.md) — trace-model status, deferred items, suggested next work
-- [queue] [`sd-audit-queue.md`](sd-audit-queue.md) — semi-diameter floor failures, shape deviations, source blockers, traced field-coverage shortfalls, the in-progress diagram sweep
+- [queue] [`sd-audit-queue.md`](sd-audit-queue.md) — semi-diameter floor failures, shape deviations, source blockers, MTF field and image-plane censuses, traced field-coverage shortfalls, the in-progress diagram sweep
 - [queue] [`lens-mount-format-backfill.md`](lens-mount-format-backfill.md) — mount/format metadata coverage and review queue
 - [queue] [`glass-relabel-followup.md`](glass-relabel-followup.md) — catalog-mismatch relabel status and closed families
 - [queue] [`proprietary-glass-backfill.md`](proprietary-glass-backfill.md) — patent line-index backfill for proprietary glasses

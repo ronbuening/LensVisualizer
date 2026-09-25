@@ -8,8 +8,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  Production correlation: Canon EF 500mm f/4L IS USM (July 1999). ║
  * ║  Physical/source count: 17 elements / 13 air-separated groups.    ║
  * ║  Active model: 15 powered elements / 11 air-separated groups.     ║
- * ║  elementCount/groupCount retain the physical 17/13 count; HG and  ║
- * ║  FL are omitted from the active arrays, as is inactive FC.        ║
+ * ║  elementCount/groupCount retain the physical 17/13 count.         ║
+ * ║  HG is omitted; FL is traced via rearPlates; FC is inactive.        ║
  * ║                                                                    ║
  * ║  No scaling is applied. Patent f = 490.56 mm and Fno = 4.1; the   ║
  * ║  rounded prescription recomputes to EFL ≈ 491.356789 mm.           ║
@@ -24,9 +24,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  equivalent active-model MFD is 4.497548307 m. L3b stabilization  ║
  * ║  motion is transverse only and is not represented as axial focus. ║
  * ║                                                                    ║
- * ║  Rear reference normalization: the omitted 2.20 mm rear filter    ║
- * ║  is replaced by its air-equivalent thickness. Surface 29 therefore║
- * ║  carries d = 101.730871512 mm to the image plane.                 ║
+ * ║  Rear filter FL is traced via rearPlates: D29=30.00, t=2.20,      ║
+ * ║  nd=1.516330, vd=64.1; trailing air D31+D32=70.28 mm.             ║
+ * ║  Example 24 reproduces EFL 491.356789, not printed 490.56 mm.     ║
+ * ║  Its physical image distance 102.48 mm is 0.670443 mm ahead of   ║
+ * ║  paraxial focus. Published values retained; see the audit log.    ║
  * ║                                                                    ║
  * ║  Semi-diameters are inferred because Example 24 publishes none.   ║
  * ║  They were solved from exact d-line spherical ray traces at        ║
@@ -277,8 +279,13 @@ const LENS_DATA = {
     { label: "26", R: -389.655, d: 0.3, nd: 1.0, elemId: 0, sd: 13.6 },
     { label: "27", R: 62.574, d: 7.6, nd: 1.517417, elemId: 14, sd: 13.6 },
     { label: "28", R: -62.574, d: 1.8, nd: 1.72, elemId: 15, sd: 13.2 },
-    { label: "29", R: -235.693, d: 101.73087151213785, nd: 1.0, elemId: 0, sd: 13.0 },
+    { label: "29", R: -235.693, d: 30.0, nd: 1.0, elemId: 0, sd: 13.0 },
   ],
+
+  rearPlates: [{
+    label: "FL", thicknessMm: 2.2, nd: 1.51633, vd: 64.1, gapAfterMm: 70.28,
+    source: "US 6,115,188 A, Numerical Example 24, R30–R32; D31 + D32",
+  }],
 
   asph: {},
 

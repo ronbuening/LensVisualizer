@@ -31,7 +31,7 @@ G1 uses a negative–positive–positive–negative sequence. The patent states 
 
 The aperture-stop record requires one source correction. In the Example 1 numerical table, the powered row printed as `STP` has `R = +34.11 mm` and changes the refractive index from L21 glass to L22 glass, so it is physically the cemented L21→L22 boundary. Figure 1 instead places the iris in the preceding air space between L14 and L21. The data therefore maps the actual plane in that gap to the sole `STO` and retains the powered source row as surface 11. This is a correction of a patent table label, not a change to the prescription values.
 
-The patent also places a plane-parallel filter plate GL behind L42 and explicitly states that the plate may be converted to air (¶0073). The published physical S20-to-image path is 16.67 mm: 13.67 mm of air, 2.00 mm of glass at `nd = 1.52`, and 1.00 mm of air. LensVisualizer excludes that filter and preserves its optical thickness by replacing the path with a 15.985789 mm air-equivalent spacing from surface 20 to the image plane. No sensor cover, filter, dummy plane, folded path, or other non-lens optical component remains in the active prescription.
+The patent also places a plane-parallel filter plate GL behind L42 and explicitly states that the plate may be converted to air (¶0073). The published physical S20-to-image path is 16.67 mm: 13.67 mm of air, 2.00 mm of glass at `nd = 1.52`, and 1.00 mm of air. LensVisualizer traces GL as a hidden rear plate using those physical gaps; its air equivalent remains 15.985789 mm.
 
 The design is not described here as telephoto or retrofocus. In the normalized active model, total track divided by computed EFL is about 1.52, and the normalized rear spacing is far shorter than the EFL, so neither project criterion is satisfied.
 
@@ -169,17 +169,17 @@ CN 211955965 U states six design conditions. The table compares the patent's Exa
 | `Vd3` | 50–85 | 54.66 | 54.67 |
 | `(Ra + Rb) / (Ra − Rb)` | −4.5 to −1 | −2.46 | −2.456 |
 
-The small differences between the source summary and active-model ratios are not treated as prescription errors. The Example 1 table rounds every glass index to two decimals, while the active model also omits GL and normalizes the rear path to an air-equivalent image spacing. An independent catalog-coordinate sensitivity array that rounds back to the published glass rows reproduces the patent's `F4/F ≈ 0.81` and `F2/F ≈ 0.65` summaries; it is used only as a precision check, not as replacement prescription data. The `Vd3` difference is the direct 54.67-versus-54.66 inconsistency between the Example 1 prescription and Table 9.
+The small differences between the source summary and active-model ratios are not treated as prescription errors. The Example 1 table rounds every glass index to two decimals, with the GL plate now represented explicitly at its physical gaps. An independent catalog-coordinate sensitivity array that rounds back to the published glass rows reproduces the patent's `F4/F ≈ 0.81` and `F2/F ≈ 0.65` summaries; it is used only as a precision check, not as replacement prescription data. The `Vd3` difference is the direct 54.67-versus-54.66 inconsistency between the Example 1 prescription and Table 9.
 
 ## Verification Summary
 
-The active prescription contains exactly ten elements, nine physical groups, twenty modeled surfaces including one `STO`, and no aspheres. The complete infinity-state sequential y–ν trace and an independent ABCD construction agree to machine precision. From the final rounded-index arrays, the infinity EFL is 56.234583 mm; the front and rear principal planes lie 44.8146 mm and 29.5815 mm, respectively, from surface 1. The Gaussian back focal distance is 16.4961 mm behind surface 20, whereas the source-constrained normalized image plane is 15.985789 mm behind that surface. The 0.5103 mm residual is retained as a source-precision effect rather than used to alter the published prescription. The surface-by-surface Petzval sum, using `φ/(n·n′)`, is +0.003489611 mm⁻¹.
+The active prescription contains exactly ten elements, nine physical groups, twenty modeled surfaces including one `STO`, and no aspheres. The complete infinity-state sequential y–ν trace and an independent ABCD construction agree to machine precision. From the final rounded-index arrays, the infinity EFL is 56.234583 mm; the front and rear principal planes lie 44.8146 mm and 29.5815 mm, respectively, from surface 1. The Gaussian back focal distance is 16.4961 mm behind surface 20, whereas the source-constrained normalized image plane is 15.985789 mm behind that surface. The 0.5103 mm residual is retained as a source discrepancy; precision loss is plausible but unproven. Physical BFL with GL is 17.180324 mm versus the 16.67 mm source image distance. The surface-by-surface Petzval sum, using `φ/(n·n′)`, is +0.003489611 mm⁻¹.
 
 The patent states f/1.4 but does not publish a physical stop diameter. The data therefore uses an **inferred** stop semi-diameter of 12.5889997 mm. A higher-precision catalog-coordinate sensitivity array that rounds to the patent's printed `nd`/`νd` rows gives EFL 55.9033 mm and independently reproduces f/1.4 at that same stop size. With the rounded indices actually retained in the data, the physical stop gives the modeled `nominalFno = 1.4120949`; the marketed and patent design aperture remain separately recorded as f/1.4.
 
 The patent likewise does not publish clear-aperture semi-diameters. The authored semi-diameters are modeling inferences derived from the final spherical geometry and checked at both published focus states for edge thickness, actual rim slope, cross-gap intrusion, and on/off-axis ray containment. For the close-state ray check, the patent's 0.63 m distance is applied from surface 1, consistent with the independently recovered 625.4 mm paraxial conjugate. They are not claimed as factory lens diameters. The closest modeled rim-band clearance occurs across the 0.97 mm S2–S3 air gap, where the selected clear apertures leave approximately 0.0082 mm axial clearance at the shared radial band; the data's non-default gap allowance reflects this source-geometry constraint rather than a layout adjustment.
 
-No uniform scaling is applied, and there are no aspheric coefficients to transform. The GL filter omission is the only rear-path normalization: its 2.00 mm, `nd = 1.52` optical thickness is folded into the 15.985789 mm air-equivalent S20-to-image spacing. The patent's mislabeled powered `STP` row and the ¶0025 L41 power-sign statement are retained as documented source errors rather than silently changing the numerical design.
+No uniform scaling is applied, and there are no aspheric coefficients to transform. The 2.00 mm GL filter at `nd = 1.52`, νd=64.2 is modeled in rearPlates with its 13.67/1.00 mm physical air gaps. The patent's mislabeled powered `STP` row and the ¶0025 L41 power-sign statement are retained as documented source errors rather than silently changing the numerical design.
 
 ### Patent-figure SD review (2026-09-10 UTC)
 
@@ -196,3 +196,11 @@ Reviewed the local `patents/CN211955965U.pdf`, PDF page 16, Figure 1, at 600 dpi
 7. **HIKARI optical-glass catalog:** https://www.hikari-g.co.jp/optical_glass/catalog/
 8. **CDGM optical-glass data:** https://www.cdgmgd.com/go.htm?k=High_Transmittance_Optical_Glass&url=goods
 9. **Sumita optical-glass data:** https://www.sumita-opt.co.jp/en/download/
+
+## Image-plane source audit (2026-09-25)
+
+MTF audit: Example 1 R/d/nd/vd all match. GL is now traced at its
+physical gaps in rearPlates. Physical BFL 17.180324 mm differs from
+source image distance 16.67 mm; +0.510324 mm offset is unchanged.
+Coarse source indices are a plausible cause, not proven glass identity.
+Keep the source values; no supported single misprint resolves the mismatch.

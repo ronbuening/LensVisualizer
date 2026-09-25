@@ -33,7 +33,29 @@ export const CHANGELOG: ChangelogEntry[] = [
     type: "lens",
     summary: "Added Sony FE 70-200mm f/4 Macro G OSS II and FE 8-14mm f/3.5 Fisheye G",
   },
-
+  {
+    date: "2026-09-25",
+    type: "fix",
+    summary:
+      "Corrected 17 lenses against their patents: miscopied or over-rounded values, and cover plates and filters now traced at their physical spacing",
+  },
+  {
+    date: "2026-09-24",
+    type: "fix",
+    summary:
+      "Corrected chromatic focus and lateral color for 256 lenses whose glasses have only an index and Abbe number",
+  },
+  {
+    date: "2026-09-24",
+    type: "improvement",
+    summary:
+      "Made vignetting, pupil and lens-group movement chart colors easier to tell apart, especially in light mode",
+  },
+  {
+    date: "2026-09-24",
+    type: "improvement",
+    summary: "Made Zoom span both rows at the right of the desktop analysis buttons",
+  },
   {
     date: "2026-09-24",
     type: "fix",
@@ -63,6 +85,11 @@ export const CHANGELOG: ChangelogEntry[] = [
     date: "2026-09-24",
     type: "lens",
     summary: "Marked our 800th lens with three Nikkor 800mms: f/8 ED, AF-S f/5.6E FL ED VR and Z f/6.3 VR S",
+  },
+  {
+    date: "2026-09-23",
+    type: "feature",
+    summary: "Added simulated lens MTF: diffraction-corrected photopic curves at 10–50 lp/mm out to the format corner",
   },
   {
     date: "2026-09-23",

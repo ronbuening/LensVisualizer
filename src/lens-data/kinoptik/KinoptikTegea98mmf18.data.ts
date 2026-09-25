@@ -36,6 +36,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  FORMAT: manufacturer 22×16 mm cine coverage; full-frame use has ║
  * ║  slight vignetting. Historical mounts remain uncatalogued.       ║
  * ╚══════════════════════════════════════════════════════════════════════╝
+ *
+ * MTF source audit: Table 2 matches all prescription entries, including
+ * the R=15, K=-1 paraboloid and the split 5.97 mm stop gap. The source
+ * prints EFL 9.759 and image distance 21.841 mm; independent values are
+ * 9.784067 and 22.377889 mm. Retain this source contradiction (+0.536889
+ * mm defocus); no supported single misprint resolves it. See audit.
  */
 
 const LENS_DATA = {

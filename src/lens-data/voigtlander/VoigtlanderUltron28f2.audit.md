@@ -49,3 +49,15 @@ JP2022100641A Example 1: table p.7, equation/definitions p.8 and Figure1 p.16 at
 - Three source regressions pass. Production baseline and local infinity/near/midpoint/f22 inspected: near49cm/BF20.33, midpoint98cm/BF19.36, EFL28.58 unchanged, f22 stop1.36mm. All lenses/stop translate1.93mm together.
 
 Follow-up: ASP18 A6, table/summary finite-conjugate mismatch and unspecified plate path. These remain qualified limitations, not fully verified patent reconstruction. Batch31–40 gates/commit pending.
+
+## 2026-09-25 — MTF image-plane census
+
+Visually checked `patents/JP2022100641A.pdf`, Example 1 Table 1, PDF p. 7, and sag/distance definitions ¶0032–0036 on pp. 7–8. All 17 optical radii, gaps, ten nd/νd pairs and both aspheric coefficient sets match except the already disclosed ASP18 A6 decimal repair: source literally prints −336E−07; stored −3.36e−7 remains inferred. Higher-order A6 does not affect paraxial focus, so it cannot explain this census residual. No additional coefficient change is justified. Scale s=1.
+
+ZD18=18.40 at infinity and 20.33 at ZD0=430; ¶0035 defines it from the last lens to IMG. No plate thickness/index/gap is given for the schematic filter 101, so do not invent rearPlates. Independent EFL 28.579770488 versus 28.5000 and BFL 18.469146876 versus 18.40; surface track to image 60.24 versus printed LT60.2274. These are multiple source numerical inconsistencies with no single supported correction.
+
+Best-focus inquiry: the source describes infinity aberration plots but no deliberate best-focus convention for ZD18. Reference-index axial geometric MTF (32 grid, 812 rays, 10/20/40 lp/mm) prefers +0.058777 mm, score 0.513701→0.981134. It does not validate the authored plane as axial best focus; designer full-field intent remains unknown, and the unresolved A6 makes finite-ray conclusions conditional.
+
+**Cause/action:** source summary/prescription inconsistency; keep published distances and explicitly qualified A6 reconstruction. Offset **+0.069147 → +0.069147 mm**; Section E row deleted. No numerical change/changelog; the existing separate asphere limitation is not declared resolved.
+
+Validation: focused runtime/paraxial check; full corpus gates at the ten-lens checkpoint.

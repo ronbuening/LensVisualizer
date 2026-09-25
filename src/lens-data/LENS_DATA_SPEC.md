@@ -49,9 +49,12 @@ Per-lens patent audit logs use `*.audit.md` alongside the data file. They are no
 
 For telescope and mirror-lens fixtures, include the optical surfaces that rays can hit, not the full mechanical tube. A secondary baffle or obstruction that clips rays belongs in `surfaces`; a spider vane, cell, barrel, or mount detail does not.
 
-Older files fold a listed rear plate into the last air gap as the air-equivalent distance (gap before + t/n + gap
-after). That remains valid for lenses not yet migrated and for sources that describe a plate without usable numbers;
-new work uses `rearPlates` instead of folding t/n by hand.
+Older files may fold a listed rear plate into the last air gap as the air-equivalent distance (gap before + t/n +
+gap after). New work uses `rearPlates` with source-backed physical gaps and glass values instead of folding t/n by
+hand. Where usable plate data is missing or the path is unsupported, retain the documented omission and any
+source-backed spacing conversion; do not invent plate parameters. An air-equivalent replacement preserves paraxial
+propagation, not higher-order or chromatic behavior. See
+[`Omitted Sensor Optics`](../../agent_docs/architecture/optics-engine.md#omitted-sensor-optics) for those limitations.
 
 ---
 
@@ -1043,6 +1046,24 @@ var: {
 `focusPositions` follows the existing focus control: `0` is infinity and `1` is `closeFocusM`. When a published
 object-to-image distance is available, its coordinate is `closeFocusM / focusDistanceM`. Values between authored
 positions are piecewise-linearly interpolated and should not be presented as source-published mechanical positions.
+
+`finiteConjugates` optionally certifies individual authored states for finite-distance MTF. Each entry has
+`focusT` (an authored nonzero focus station), `zoomT` (0 for a prime; source zoom station index divided by
+`zoomPositions.length - 1` for a zoom), positive `objectDistanceMm`, `distanceReference` (`"first-surface"` or
+`"image-plane"`), and a nonempty `source` identifying the evidence for both the distance and focus spacings.
+Distance is axial, from the object plane to the current first vertex or fixed image plane. Duplicate stations
+are invalid. MTF never infers these entries from `closeFocusM`, production MFD, or interpolated slider labels;
+undocumented intermediate states remain unavailable. Do not certify calculated focus travel as a published
+configuration. Source-rounded prescriptions may retain residual defocus: MTF evaluates the authored image plane
+by default, reports the axial best-focus shift as a diagnostic, and moves the plane only when the viewer asks.
+Do not edit the authored image distance to improve simulated MTF.
+
+```typescript
+finiteConjugates: [{
+  focusT: 1, zoomT: 0, objectDistanceMm: 700, distanceReference: "image-plane",
+  source: "Patent publication, example and tables identifying this finite configuration",
+}],
+```
 
 ### Zoom Lens Format (with `zoomPositions`)
 

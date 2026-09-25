@@ -41,6 +41,15 @@ import type { LensDataInput } from "../../types/optics.js";
  * diagonal), which the patent's stated 28 mm image diagonal covers; the
  * marketed 33 mm Super 35 circle has no separate canonical id. The taxonomy has
  * no PL mount id, so lensMounts is intentionally omitted rather than fabricated.
+ *
+ * MTF image-plane audit (2026-09-25): US8508864B2 Example 3, Table 5
+ * (PDF pp. 30–31), matches the active radii, spacings, named glass codes
+ * and the already documented aspheric typo interpretations. F1 retains
+ * 44.800 mm to the image, versus paraxial BFL 44.763797 mm (offset
+ * -0.036203 mm). The front filter has no infinity-focus power; no rear
+ * plate is listed. The small difference may include finite-aperture and
+ * spectral design-focus choices, but these are not specified by the source.
+ * Keep the published image distance rather than adjusting it to focus.
  */
 
 const LENS_DATA = {

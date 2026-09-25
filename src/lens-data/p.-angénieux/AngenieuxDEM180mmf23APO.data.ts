@@ -43,6 +43,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  No sensor cover, filter, inactive dummy plane, flare cutter, or mechanical  ║
  * ║  part is included.                                                           ║
  * ╚══════════════════════════════════════════════════════════════════════════════╝
+ *
+ * MTF source audit: Example 1 (PDF p. 7, column 3) matches every stored
+ * radius/gap/index at scale ×1.8, with the documented V1=61.2 emendation.
+ * Native EFL 99.959464 and BFL 44.708683 differ from F=100 and BF=44.79.
+ * Scaled offset −0.146370 mm is retained as source inconsistency; no plate
+ * or additional focus adjustment is supported by the published prescription.
  */
 
 const LENS_DATA = {

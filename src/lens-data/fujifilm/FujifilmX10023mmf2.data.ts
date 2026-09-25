@@ -36,7 +36,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  OPTICAL MEMBER PP:                                                ║
  * ║    Patent Table 1 surfaces 16-17 (2.33 mm, nd 1.51680, νd 64.2)    ║
  * ║    are modeled in `rearPlates` (traced, not drawn). Surface 15     ║
- * ║    keeps the patent's 2.80 mm gap to PP; the 1.19 mm gap after     ║
+ * ║    keeps the patent's 2.80 mm gap to PP; the ≈1.194 mm gap after   ║
  * ║    PP is BF 5.53 (Table 11, in air) - 2.80 - 2.33/1.5168.          ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
@@ -44,6 +44,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    ✓ Aperture stop and variable focus gaps                        ║
  * ║    ✗ DO NOT include: mechanical parts (cover glass: `rearPlates`)  ║
  * ╚══════════════════════════════════════════════════════════════════════╝
+ *
+ * Rear path: Table 1 D15 = 2.80 mm precedes PP (2.33 mm, nd 1.51680,
+ * vd 64.2). Table 11 defines BF = 5.53 mm in air, so its physical
+ * trailing gap is 5.53 - 2.80 - 2.33/1.51680 mm. This reconstructs the
+ * published BF, not a fitted paraxial plane; residual offset is -0.003651 mm.
  */
 
 const LENS_DATA = {
@@ -199,7 +204,7 @@ const LENS_DATA = {
   ],
 
   /* ── Optical member PP (patent Table 1 surfaces 16–17): traced, not drawn ──
-   *  Table 1 prints no gap after PP; 1.19 mm = BF 5.53 (Table 11, in air) − 2.80 − 2.33/1.5168.
+   *  Table 1 prints no gap after PP; ≈1.194 mm = BF 5.53 (Table 11, in air) − 2.80 − 2.33/1.5168.
    */
   rearPlates: [
     {
@@ -208,8 +213,8 @@ const LENS_DATA = {
       nd: 1.5168,
       vd: 64.2,
       glass: "N-BK7",
-      gapAfterMm: 1.19,
-      source: "US 2012/0069456 A1, Example 1 Table 1 surfaces 16–17",
+      gapAfterMm: 5.53 - 2.8 - 2.33 / 1.5168,
+      source: "US 2012/0069456 A1, Example 1 Table 1 surfaces 16–17; Table 11 air-equivalent BF",
     },
   ],
 

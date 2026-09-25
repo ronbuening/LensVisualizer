@@ -1,0 +1,161 @@
+{
+  "createdAt": "2026-09-23T00:03:01.488Z",
+  "commit": "990d3273686da7d11033247e2555596b7c34b6e2",
+  "node": "v24.15.0",
+  "cpu": "Apple M4 Pro",
+  "method": "diffraction",
+  "spectrum": "reference",
+  "apertureScale": 0.25,
+  "focusT": 1,
+  "fieldFractions": [
+    0,
+    0.5,
+    1
+  ],
+  "rows": [
+    {
+      "key": "fujifilm-gf80-f17",
+      "maxGridSize": 32,
+      "support": "candidate",
+      "conjugate": {
+        "focusT": 1,
+        "zoomT": 0,
+        "objectDistanceMm": 576.6736,
+        "distanceReference": "first-surface",
+        "source": "US20210294073A1, Example 1, ¶0084 and Tables 1/3: 700 mm to the physical image plane minus 123.3264 mm summed physical track = 576.6736 mm to the first vertex; DD4=1.932 mm, DD15=16.728 mm. The model omits PP and uses air-equivalent back focus."
+      },
+      "medianMs": 21.02,
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "status": "unconverged",
+          "reason": null,
+          "gridSize": 32,
+          "maxDelta": null
+        },
+        {
+          "fieldFraction": 0.5,
+          "status": "unconverged",
+          "reason": null,
+          "gridSize": 32,
+          "maxDelta": null
+        },
+        {
+          "fieldFraction": 1,
+          "status": "unavailable",
+          "reason": "chief-ray-failed",
+          "gridSize": 32,
+          "maxDelta": null
+        }
+      ]
+    },
+    {
+      "key": "fujifilm-gf80-f17",
+      "maxGridSize": 64,
+      "support": "candidate",
+      "conjugate": {
+        "focusT": 1,
+        "zoomT": 0,
+        "objectDistanceMm": 576.6736,
+        "distanceReference": "first-surface",
+        "source": "US20210294073A1, Example 1, ¶0084 and Tables 1/3: 700 mm to the physical image plane minus 123.3264 mm summed physical track = 576.6736 mm to the first vertex; DD4=1.932 mm, DD15=16.728 mm. The model omits PP and uses air-equivalent back focus."
+      },
+      "medianMs": 99.03,
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "status": "unconverged",
+          "reason": null,
+          "gridSize": 64,
+          "maxDelta": 0.02445664837983519
+        },
+        {
+          "fieldFraction": 0.5,
+          "status": "unconverged",
+          "reason": null,
+          "gridSize": 64,
+          "maxDelta": 0.013688967603790236
+        },
+        {
+          "fieldFraction": 1,
+          "status": "unavailable",
+          "reason": "chief-ray-failed",
+          "gridSize": 32,
+          "maxDelta": null
+        }
+      ]
+    },
+    {
+      "key": "fujifilm-gf80-f17",
+      "maxGridSize": 128,
+      "support": "candidate",
+      "conjugate": {
+        "focusT": 1,
+        "zoomT": 0,
+        "objectDistanceMm": 576.6736,
+        "distanceReference": "first-surface",
+        "source": "US20210294073A1, Example 1, ¶0084 and Tables 1/3: 700 mm to the physical image plane minus 123.3264 mm summed physical track = 576.6736 mm to the first vertex; DD4=1.932 mm, DD15=16.728 mm. The model omits PP and uses air-equivalent back focus."
+      },
+      "medianMs": 387.66,
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 128,
+          "maxDelta": 0.0021388590871717628
+        },
+        {
+          "fieldFraction": 0.5,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 128,
+          "maxDelta": 0.003641763769402062
+        },
+        {
+          "fieldFraction": 1,
+          "status": "unavailable",
+          "reason": "chief-ray-failed",
+          "gridSize": 32,
+          "maxDelta": null
+        }
+      ]
+    },
+    {
+      "key": "fujifilm-gf80-f17",
+      "maxGridSize": 256,
+      "support": "candidate",
+      "conjugate": {
+        "focusT": 1,
+        "zoomT": 0,
+        "objectDistanceMm": 576.6736,
+        "distanceReference": "first-surface",
+        "source": "US20210294073A1, Example 1, ¶0084 and Tables 1/3: 700 mm to the physical image plane minus 123.3264 mm summed physical track = 576.6736 mm to the first vertex; DD4=1.932 mm, DD15=16.728 mm. The model omits PP and uses air-equivalent back focus."
+      },
+      "medianMs": 378.45,
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 128,
+          "maxDelta": 0.0021388590871717628
+        },
+        {
+          "fieldFraction": 0.5,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 128,
+          "maxDelta": 0.003641763769402062
+        },
+        {
+          "fieldFraction": 1,
+          "status": "unavailable",
+          "reason": "chief-ray-failed",
+          "gridSize": 32,
+          "maxDelta": null
+        }
+      ]
+    }
+  ]
+}

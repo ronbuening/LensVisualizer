@@ -56,7 +56,7 @@ flowchart LR
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
-| `cardinals.ts` | Cardinals helper module | same folder, src/optics/math, src/optics/prescription, src/optics/state, src/optics/trace, +2 more | src/optics/analysis, src/optics/compat.ts | CardinalPoint2, CardinalDistance2, CardinalElements2, computeCardinalElements2, buildCardinalElementsFromMatrix2, computeCardinalElementsAtState2 |
+| `cardinals.ts` | Cardinals helper module | same folder, src/optics/math, src/optics/prescription, src/optics/state, src/optics/trace, +2 more | src/optics/analysis (2), src/optics/compat.ts | CardinalPoint2, CardinalDistance2, CardinalElements2, computeCardinalElements2, buildCardinalElementsFromMatrix2, computeCardinalElementsAtState2 |
 | `fNumber.ts` | F Number helper module | same folder, src/optics/focusDistance.ts, src/optics/layout.ts, src/types | src/optics/compat.ts | effectiveFNumber2 |
 | `focusBreathing.ts` | Focus Breathing helper module | src/optics/layout.ts, src/optics/math, src/optics/prescription, src/optics/state, src/types | same folder, src/optics/compat.ts, src/optics/perspective | eflAtFocus2 |
 | `pupils.ts` | Pupils helper module | src/optics/math, src/optics/types.ts | src/optics/perspective (3) | FirstOrderPupilState, entrancePupilFromStop2, paraxialPupilGeometry2 |

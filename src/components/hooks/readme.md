@@ -9,6 +9,8 @@ Generated `readme.md` and `improvementsuggestions.md` files are intentionally om
 ```mermaid
 flowchart LR
   subgraph n_src_components_hooks["src/components/hooks"]
+    n_src_components_hooks_src_components_hooks_mtf_worker_ts["mtf.worker.ts"]
+    n_src_components_hooks_src_components_hooks_mtfWorkerClient_ts["mtfWorkerClient.ts"]
     n_src_components_hooks_src_components_hooks_offAxisRayUtils_ts["offAxisRayUtils.ts"]
     n_src_components_hooks_src_components_hooks_raySegmentUtils_ts["raySegmentUtils.ts"]
     n_src_components_hooks_src_components_hooks_useChromaticRays_ts["useChromaticRays.ts"]
@@ -20,6 +22,8 @@ flowchart LR
     n_src_components_hooks_src_components_hooks_useLensAnalysisMarkdown_ts["useLensAnalysisMarkdown.ts"]
     n_src_components_hooks_src_components_hooks_useLensComputation_ts["useLensComputation.ts"]
     n_src_components_hooks_src_components_hooks_useModalDialog_ts["useModalDialog.ts"]
+    n_src_components_hooks_src_components_hooks_useMtfComputation_ts["useMtfComputation.ts"]
+    n_src_components_hooks_src_components_hooks_useMtfPreferences_ts["useMtfPreferences.ts"]
     n_src_components_hooks_src_components_hooks_useOffAxisRays_ts["useOffAxisRays.ts"]
     n_src_components_hooks_src_components_hooks_useOnAxisRays_ts["useOnAxisRays.ts"]
     n_src_components_hooks_src_components_hooks_useOverlays_ts["useOverlays.ts"]
@@ -35,11 +39,6 @@ flowchart LR
   n_external_src_optics_perspective["src/optics/perspective"]
   n_external_src_types["src/types"]
   n_external_src_utils_state["src/utils/state"]
-  n_external_src_optics_aberration["src/optics/aberration"]
-  n_external_src_optics_apertureStop_ts["src/optics/apertureStop.ts"]
-  n_external_src_optics_buildLens_ts["src/optics/buildLens.ts"]
-  n_external_src_optics_cardinalElements_ts["src/optics/cardinalElements.ts"]
-  n_external_src_optics_compat_ts["src/optics/compat.ts"]
   n_src_components_hooks_src_components_hooks_useHeaderHeight_ts --> |2| n_external_pkg_react
   n_src_components_hooks_src_components_hooks_useSideLayoutDetection_ts --> |2| n_external_pkg_react
   n_src_components_hooks_src_components_hooks_useLensComputation_ts --> |2| n_external_src_optics_lensMovement_ts
@@ -47,9 +46,12 @@ flowchart LR
   n_src_components_hooks_src_components_hooks_useChromaticRays_ts --> |2| n_external_src_optics_perspective
   n_src_components_hooks_src_components_hooks_useOffAxisRays_ts --> |2| n_external_src_optics_perspective
   n_src_components_hooks_src_components_hooks_useOnAxisRays_ts --> |2| n_external_src_optics_perspective
+  n_src_components_hooks_src_components_hooks_mtf_worker_ts --> |2| n_external_src_types
+  n_src_components_hooks_src_components_hooks_mtfWorkerClient_ts --> |2| n_external_src_types
   n_src_components_hooks_src_components_hooks_offAxisRayUtils_ts --> |2| n_external_src_types
   n_src_components_hooks_src_components_hooks_useChromaticRays_ts --> |2| n_external_src_types
   n_src_components_hooks_src_components_hooks_useDispatchAdapters_ts --> |2| n_external_src_types
+  n_src_components_hooks_src_components_hooks_useMtfComputation_ts --> |2| n_external_src_types
   n_src_components_hooks_src_components_hooks_useOffAxisRays_ts --> |2| n_external_src_types
   n_src_components_hooks_src_components_hooks_useOnAxisRays_ts --> |2| n_external_src_types
   n_src_components_hooks_src_components_hooks_useRayTracing_ts --> |2| n_external_src_types
@@ -64,6 +66,8 @@ flowchart LR
   n_src_components_hooks_src_components_hooks_useLensAnalysisMarkdown_ts --> n_external_pkg_react
   n_src_components_hooks_src_components_hooks_useLensComputation_ts --> n_external_pkg_react
   n_src_components_hooks_src_components_hooks_useModalDialog_ts --> n_external_pkg_react
+  n_src_components_hooks_src_components_hooks_useMtfComputation_ts --> n_external_pkg_react
+  n_src_components_hooks_src_components_hooks_useMtfPreferences_ts --> n_external_pkg_react
   n_src_components_hooks_src_components_hooks_useOffAxisRays_ts --> n_external_pkg_react
   n_src_components_hooks_src_components_hooks_useOnAxisRays_ts --> n_external_pkg_react
   n_src_components_hooks_src_components_hooks_useOverlays_ts --> n_external_pkg_react
@@ -71,25 +75,22 @@ flowchart LR
   n_src_components_hooks_src_components_hooks_useRayTracing_ts --> n_external_pkg_react
   n_src_components_hooks_src_components_hooks_useSvgViewport_ts --> n_external_pkg_react
   n_src_components_hooks_src_components_hooks_useViewBoxZoom_ts --> n_external_pkg_react
-  n_src_components_hooks_src_components_hooks_offAxisRayUtils_ts --> n_external_src_optics_aberration
-  n_src_components_hooks_src_components_hooks_useLensComputation_ts --> n_external_src_optics_apertureStop_ts
-  n_src_components_hooks_src_components_hooks_useLensComputation_ts --> n_external_src_optics_buildLens_ts
-  n_src_components_hooks_src_components_hooks_useLensComputation_ts --> n_external_src_optics_cardinalElements_ts
-  n_src_components_hooks_src_components_hooks_useLensComputation_ts --> n_external_src_optics_compat_ts
   n_src_components_hooks_truncated["additional relationships omitted"]
 ```
 
 ## Directory Overview
 
-- Direct source files: 19
+- Direct source files: 23
 - Direct subfolders: 0
-- Main outbound areas: package:react (19), src/types (15), same folder (13), src/optics/perspective (8), src/optics/optics.ts (7), src/optics/raySampling.ts (3), src/utils/state (3), src/optics/lensMovement.ts (2), +10 more
+- Main outbound areas: package:react (21), src/types (21), same folder (15), src/optics/perspective (8), src/optics/optics.ts (7), src/utils/state (4), src/optics/raySampling.ts (3), src/optics/buildLens.ts (2), +11 more
 - External consumers: src/benchmarks, src/comparison, src/components/controls, src/components/display, src/components/layout, src/components/relationshipMap, src/components/search
 
 ## Files
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
+| `mtf.worker.ts` | Mtf helper module | src/types (2), same folder, src/optics/buildLens.ts, src/optics/compat.ts, src/optics/mtf.ts | none | none |
+| `mtfWorkerClient.ts` | Mtf Worker Client helper module | src/types (2) | same folder (2) | MtfJob, MtfWorkerRequest, MtfWorkerReply, MtfWorkerPort, MtfWorkerClient |
 | `offAxisRayUtils.ts` | Off Axis Ray Utils helper module | src/types (2), src/optics/aberration, src/optics/optics.ts, src/optics/projection.ts, src/utils/featureFlags.ts | same folder (2), src/benchmarks | OffAxisTraceGeometry, computeOffAxisTraceGeometry |
 | `raySegmentUtils.ts` | Ray Segment Utils helper module | same folder, src/types | same folder (3), src/benchmarks | compileRaySegment, filterChannels |
 | `useChromaticRays.ts` | React hook module | same folder (3), src/optics/perspective (2), src/types (2), package:react, src/optics/optics.ts, +1 more | same folder, src/benchmarks, src/components/layout | ChromaticRaySegment, default, useChromaticRays |
@@ -101,6 +102,8 @@ flowchart LR
 | `useLensAnalysisMarkdown.ts` | React hook module | package:react, src/utils/catalog, src/utils/featureFlags.ts | src/components/layout | default, useLensAnalysisMarkdown |
 | `useLensComputation.ts` | React hook module | src/optics/lensMovement.ts (2), src/optics/optics.ts (2), package:react, src/optics/apertureStop.ts, src/optics/buildLens.ts, +6 more | src/components/layout | default, useLensComputation |
 | `useModalDialog.ts` | React hook module | package:react | src/components/layout (2) | default, useModalDialog |
+| `useMtfComputation.ts` | React hook module | src/types (2), package:react, same folder | src/components/display | MtfComputation, useMtfComputation |
+| `useMtfPreferences.ts` | React hook module | package:react, src/utils/state | src/components/display | useMtfPreferences |
 | `useOffAxisRays.ts` | React hook module | same folder (3), src/optics/perspective (2), src/types (2), package:react, src/optics/optics.ts, +1 more | same folder | default, useOffAxisRays |
 | `useOnAxisRays.ts` | React hook module | src/optics/perspective (2), src/types (2), package:react, same folder, src/optics/optics.ts, +1 more | same folder (4), src/benchmarks, src/components/layout | RaySegment, default, useOnAxisRays |
 | `useOverlays.ts` | React hook module | package:react, src/types, src/utils/state | src/components/layout | default, useOverlays |

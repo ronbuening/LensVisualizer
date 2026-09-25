@@ -15,13 +15,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ Focus status: PUBLISHED. G24 (L3+L4) translates; G14 and G34 are fixed.                 ║
  * ║ D1/D2 preserve all three Table 12 states and D1+D2 is constant to printed precision. ║
  * ║                                                                                      ║
- * ║ FILTER / REAR PLANE: Patent surfaces 15-16 are a plane-parallel Filter and are       ║
- * ║ excluded from the ordinary LensVisualizer stack. Surface 14A d uses the patent's     ║
- * ║ published filter-absent "in Air" distance, 19.70032771 mm, as the documented        ║
- * ║ air-equivalent rear spacing. The patent's OAL and "in Air" values do not fully      ║
- * ║ reconcile with the independent Gaussian image plane; that source discrepancy is      ║
- * ║ preserved explicitly and no invented rear-spacing correction is applied.              ║
- * ║                                                                                      ║
+ * FILTER / REAR PLANE: Table 10's physical rear path is preserved: d14=16.862,
+ * Filter t=2.500, nd=1.51680, vd=64.20, d16=0.500 mm, modeled in rearPlates.
+ * Table 12's “in Air”=19.70032771 and OAL=46.500 contradict this path and
+ * the computed image plane. See the companion audit; do not tune the gaps.
+ *
  * ║ INDEX / GLASS NOTE: Table 10 labels its index column nd, but the seven stored index   ║
  * ║ values are e-line-like while the paired Abbe values are d-line νd-like. The raw      ║
  * ║ patent values are retained exactly because they reproduce the patent EFL.             ║
@@ -47,6 +45,13 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ https://www.lksamyang.com/en/product/product-view.php?seq=151                         ║
  * ║ https://www.lksamyang.com/en/about/notice-view.php?seq=399                            ║
  * ╚══════════════════════════════════════════════════════════════════════════════════════╝
+ *
+ * MTF source audit: all powered radii, gaps, raw index/Abbe pairs and three
+ * K/A4–A10 sets match Tables 10–12. Restoring the printed physical filter path
+ * changes offset −0.190103 to +0.500018 mm because the previously used “in Air”
+ * row is not the air equivalent of that path. EFL 35.182840 vs 35.179406;
+ * air BFL 19.510225 vs physical path reduced to 19.010207 mm. Source conflict
+ * retained explicitly; no invented gap reconciles the competing printed values.
  */
 
 const LENS_DATA = {
@@ -179,8 +184,10 @@ const LENS_DATA = {
     { label: "11", R: -9.684, d: 1.0, nd: 1.65222, elemId: 6, sd: 7.5 },
     { label: "12", R: 59.99, d: 4.246, nd: 1.0, elemId: 0, sd: 7.4 },
     { label: "13A", R: -8.419, d: 1.5, nd: 1.69385, elemId: 7, sd: 7.7 },
-    { label: "14A", R: -10.5, d: 19.70032771, nd: 1.0, elemId: 0, sd: 8.4 },
+    { label: "14A", R: -10.5, d: 16.862, nd: 1.0, elemId: 0, sd: 8.4 },
   ],
+
+  rearPlates: [{ label: "Filter", thicknessMm: 2.5, nd: 1.5168, vd: 64.2, gapAfterMm: 0.5, source: "KR 10-2127451 B1 Example 4 Table 10 surfaces 15–16" }],
 
   asph: {
     "3A": {

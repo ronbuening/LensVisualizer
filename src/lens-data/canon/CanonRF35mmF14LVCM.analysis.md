@@ -266,3 +266,11 @@ No uniform scale is applied: $s=1$. Consequently all radii, spacings, semi-diame
 4. OHARA, **Optical Glass — Detailed Data**, catalog PDF used for the coordinate-proxy and line-index checks. https://oharacorp.com/wp-content/uploads/2025/04/all-detailed-data-20250418.pdf
 5. HOYA Optical World, **Optical Glass Data**, catalog spreadsheet used for the coordinate-proxy and line-index checks. https://www.hoya-opticalworld.com/common/xls/HOYA20260601.xlsx
 6. Takahiro Ode, **Optical System and Image Pickup Apparatus Having the Same**, US 2024/0302626 A1, published September 12, 2024; Numerical Example 2, Fig. 4, Tables 3–4 and 9, ¶0031, ¶0038, ¶0047–¶0048, ¶0071, ¶0078–¶0081.
+
+## Image-plane source audit (2026-09-25)
+
+MTF source audit: all Example 2 Table 3/4 values match, including the more
+precise aspheric base radii. EFL 33.942092 vs printed 34.0 and BFL
+15.360904 vs 15.444 leave −0.083096 mm offset. Paragraph 0079 defines
+back focus as paraxial, not a designer best-focus convention. Keep the
+printed prescription; no rear plate or supported single misprint explains it.

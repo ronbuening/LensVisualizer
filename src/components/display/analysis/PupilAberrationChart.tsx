@@ -79,14 +79,14 @@ export default function PupilAberrationChart({ profiles, t, width = 320, height 
       referenceLines={[{ value: 0, opacity: 0.5 }]}
     >
       {/* ── EP shift curve (solid) ── */}
-      <path d={epPath} fill="none" stroke={t.sliderAccent} strokeWidth={1.5} strokeLinejoin="round" />
+      <path d={epPath} fill="none" stroke={t.chartSeries[0]} strokeWidth={1.5} strokeLinejoin="round" />
 
       {/* ── XP shift curve (dashed) ── */}
       {!telecentricXP && (
         <path
           d={xpPath}
           fill="none"
-          stroke={t.rayOffWarm}
+          stroke={t.chartSeries[1]}
           strokeWidth={1.5}
           strokeLinejoin="round"
           strokeDasharray="4,3"
@@ -100,7 +100,7 @@ export default function PupilAberrationChart({ profiles, t, width = 320, height 
           cx={xScale(s.fieldDeg)}
           cy={yScale(s.epShiftMm)}
           r={2}
-          fill={t.sliderAccent}
+          fill={t.chartSeries[0]}
           opacity={0.8}
         />
       ))}
@@ -113,7 +113,7 @@ export default function PupilAberrationChart({ profiles, t, width = 320, height 
             cx={xScale(s.fieldDeg)}
             cy={yScale(s.xpShiftMm)}
             r={2}
-            fill={t.rayOffWarm}
+            fill={t.chartSeries[1]}
             opacity={0.8}
           />
         ))}
@@ -138,8 +138,8 @@ export default function PupilAberrationChart({ profiles, t, width = 320, height 
         y={legendY}
         t={t}
         items={[
-          { label: "EP shift", color: t.sliderAccent },
-          { label: "XP shift", color: t.rayOffWarm, dasharray: "4,3" },
+          { label: "EP shift", color: t.chartSeries[0] },
+          { label: "XP shift", color: t.chartSeries[1], dasharray: "4,3" },
         ]}
       />
     </SvgChartFrame>

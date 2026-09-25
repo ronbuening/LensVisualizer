@@ -18,10 +18,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║   • Patent paragraph [0091] says f/1.4, but Figs. 2 and 5 print Fno 1.8;  ║
  * ║     f/1.8 is used here and agrees with the production lens identity.       ║
  * ║                                                                            ║
- * ║ REAR-PLATE NORMALIZATION:                                                  ║
- * ║   The patent GL plate (2.00 mm, nd=1.52) is excluded from the active      ║
- * ║   prescription. Surface 19 therefore uses the air-equivalent L42-rear →   ║
- * ║   IMG spacing 22.12 + 2.00/1.52 + 1.00 = 24.43578947368421 mm.           ║
+ * ║ REAR PLATE: GL is traced in rearPlates at its physical source gaps:     ║
+ * ║ 22.12 mm before, 2.00 mm / nd 1.52 / vd 64.2, 1.00 mm after.            ║
+ * ║ Source image distance 25.12 mm exceeds paraxial BFL 24.567805 mm.       ║
+ * ║ The -0.552195 mm offset remains; published values retained (see audit). ║
  * ║                                                                            ║
  * ║ SEMI-DIAMETERS:                                                            ║
  * ║   No patent clear apertures are published. G1/G2 SDs follow Figure 1     ║
@@ -223,7 +223,12 @@ const LENS_DATA = {
     { label: "16", R: 88.04, d: 7.12, nd: 1.49, elemId: 9, sd: 15.8 },
     { label: "17", R: -33.46, d: 0.1, nd: 1.0, elemId: 0, sd: 15.8 },
     { label: "18", R: 666.0, d: 1.0, nd: 1.65, elemId: 10, sd: 15.8 },
-    { label: "19", R: 37.08, d: 24.43578947368421, nd: 1.0, elemId: 0, sd: 15.8 },
+    { label: "19", R: 37.08, d: 22.12, nd: 1.0, elemId: 0, sd: 15.8 },
+  ],
+
+  rearPlates: [
+    { label: "GL", thicknessMm: 2.0, nd: 1.52, vd: 64.2, gapAfterMm: 1.0,
+      source: "CN 211955963 U, Example 1 Table 1, surfaces 20–21" },
   ],
 
   /* ── Aspherical coefficients ──

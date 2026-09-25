@@ -473,6 +473,7 @@ export default function LensDiagramPanel({
                 dynamicEFL={dynamicEFL}
                 currentEPSD={currentEPSD}
                 currentPhysStopSD={currentPhysStopSD}
+                fNumber={fNumber}
                 fieldGeometry={fieldGeometry}
                 perspectiveTraceContext={perspectiveTraceContext}
                 sliderInteracting={sliderInteracting}

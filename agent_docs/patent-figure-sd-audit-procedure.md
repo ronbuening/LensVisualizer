@@ -78,7 +78,7 @@ It follows the real chief ray to the format corner at every zoom station and nam
 `blocked` when the aimed rays leave a clear aperture before they can reach the stop centre). A stopped field is
 proof only when the patent's printed image height reaches the corner. Many patents print a smaller maximum image
 height and leave the corners to in-camera distortion correction; there the short field is correct, and the lens's
-row in [sd-audit-queue.md](sd-audit-queue.md) Section D says so.
+row in [sd-audit-queue.md](sd-audit-queue.md) Section F says so.
 
 ## Step 2 — Find the right figure sheet
 

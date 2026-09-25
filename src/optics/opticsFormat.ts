@@ -1,5 +1,5 @@
 /**
- * Optics formatting helpers — small presentation strings for distance and Petzval values.
+ * Optics formatting helpers — small presentation strings for distance, f-number and Petzval values.
  *
  * Kept in the pure optics layer so analysis displays share unit conventions without importing React components.
  */
@@ -7,6 +7,19 @@
 import { closeFocusAtZoom } from "./focusDistance.js";
 import type { RuntimeLens } from "../types/optics.js";
 import { FOCUS_INFINITY_THRESHOLD } from "./layout.js";
+
+/**
+ * Format an f-number as the aperture control shows it: hundredth-stop patent apertures keep their
+ * precision while whole stops stay compact.
+ *
+ * @param f - f-number
+ * @returns number text without the "f/" prefix, e.g. "1.45", "2.8", "16"
+ */
+export function formatFNumber(f: number): string {
+  const rounded = Math.round(f * 100) / 100;
+  if (Number.isInteger(rounded)) return rounded < 10 ? rounded.toFixed(1) : String(rounded);
+  return rounded.toFixed(2).replace(/0$/, "");
+}
 
 /**
  * Format a normalized focus slider as user-facing object distance.

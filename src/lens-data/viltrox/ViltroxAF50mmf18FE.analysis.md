@@ -13,7 +13,7 @@ This analysis follows the fixed correlation to the **VILTROX AF 50mm f/1.8 FE**.
 
 Several independent design facts make Example 1 internally consistent with the selected product correlation. The patent gives a 49 mm infinity focal length and Fno 1.8, while the final model computes an infinity EFL of 49.073753 mm. The patent also gives a 23.9° half-field, which is appropriate to a 36 × 24 mm image diagonal at this focal length. Example 1 contains 11 physical elements with one cemented pair, giving ten air-separated element groups, and uses a single-element internal focusing group. The data therefore retains the native patent scale, with `focalLengthMarketing = 50` mm and `focalLengthDesign = 49.073753` mm rather than forcing the prescription to exactly 50 mm.
 
-The source and model differ in several documented ways that are necessary for a valid LensVisualizer representation. Patent `STP` is normalized to the canonical `STO` label. The source GL plane-parallel filter is excluded from the ordinary sequential model and its optical translation is folded into an air-equivalent rear spacing. The patent publishes no clear-aperture table, so all surface semi-diameters in the data are modeling values rather than source dimensions. Finally, the patent's asphere coefficient table contains a surface-numbering error: the four coefficient rows printed as 13–16 are mapped to physical surfaces 15A–18A because the prescription table, ¶0087, and Fig. 1 all identify the two faces of L23 and the two faces of L31 as the four aspheres.
+The source and model differ in several documented ways that are necessary for a valid LensVisualizer representation. Patent `STP` is normalized to the canonical `STO` label. The source GL plane-parallel filter is traced through `rearPlates` and hidden from the diagram. The patent publishes no clear-aperture table, so all surface semi-diameters in the data are modeling values rather than source dimensions. Finally, the patent's asphere coefficient table contains a surface-numbering error: the four coefficient rows printed as 13–16 are mapped to physical surfaces 15A–18A because the prescription table, ¶0087, and Fig. 1 all identify the two faces of L23 and the two faces of L31 as the four aspheres.
 
 No uniform scale factor is applied (`s = 1`). Consequently, radii, thicknesses, semi-diameters, and image-plane coordinates remain in the patent's native scale, and the asphere coefficients require no scale transformation.
 
@@ -215,15 +215,14 @@ The final TypeScript arrays were independently recomputed using both sequential 
 | Quantity | Infinity | Published 0.5 m configuration |
 |---|---:|---:|
 | EFL (mm) | 49.073752888 | 46.687632148 |
-| BFL from surface 22 vertex (mm) | 31.744476320 | 27.188518798 |
+| Air-equivalent BFL from surface 22 vertex (mm) | 31.744476320 | 27.188518798 |
 | Front principal plane H1 from surface 1 (mm) | +33.141247306 | +29.971082307 |
 | Rear principal plane H2 from surface 22 (mm) | -17.329276569 | -19.499113350 |
 
-The patent's source rear path contains a 2.00 mm plane-parallel GL filter of `nd = 1.52`, preceded by 28.44 mm of air and followed by 1.00 mm of air (¶0075). Because filters are excluded from the ordinary lens model, the final surface-22 rear spacing is normalized to the paraxially equivalent air distance
+The patent's source rear path contains a 2.00 mm plane-parallel GL filter of nd = 1.52 and vd = 64.2, preceded by 28.44 mm air and followed by 1.00 mm air (Table 1 S22-S24, ¶0075). The model traces these physical distances through `rearPlates`. Their reduced propagation is 28.44 + 2.00/1.52 + 1.00 = 30.755789 mm, equal to the former air-equivalent fold.
 
-`28.44 + 2.00/1.52 + 1.00 = 30.755789 mm`.
+The physical paraxial BFL is 32.428687 mm, while the published image plane is 31.44 mm behind S22. The +0.988687 mm offset remains unchanged by unfolding. Every source radius, thickness, index, Abbe number and asphere coefficient matches after the documented source-label correction. No additional transcription error explains the mismatch. The patent's coarse numeric precision may contribute, but its original unrounded design is unavailable; retain the published values without tuning to focus.
 
-This normalization changes the modeled axial coordinate of the image plane but does not change the powered prescription or EFL. The source's physical surface-22-to-image distance is 31.44 mm; the authored air-equivalent value is 30.755789 mm. The rounded powered prescription independently gives an infinity paraxial BFL of 31.744476 mm, so the Gaussian focus lies 0.988687 mm behind the preserved source image plane in the air-equivalent model. The data keeps the source IMG location rather than shifting it to force exact paraxial focus, because the patent tabulates radii and refractive indices only to coarse precision.
 
 The semi-diameter model passes the edge-thickness, actual rim-slope, conic, cross-gap, normal off-axis containment, and published-focus endpoint checks. These semi-diameters remain modeling inferences because the patent does not publish clear apertures. The tightest modeled air gap is between surfaces 8 and 9; the facing surfaces remain physically separated at the authored rim.
 
