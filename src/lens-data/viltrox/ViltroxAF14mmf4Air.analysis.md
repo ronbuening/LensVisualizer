@@ -33,11 +33,11 @@ The computed group powers are negative-positive-negative: G1 has an effective fo
 
 The front group is only weakly negative as a whole despite containing several individually strong positive and negative components. That internal cancellation allows the front section to accept the very wide field while delivering a relatively moderate vergence to the stop. The compact positive G2 then carries most of the focusing sensitivity. The fixed negative G3 reshapes the converging bundle behind the focus group and completes the wide-angle back-focus geometry.
 
-At infinity, the complete powered prescription computes to an effective focal length of 14.192130 mm and a Gaussian back focal distance of 14.292563 mm measured from the S22 vertex. By the project's strict criterion `BFD > EFL`, the printed prescription is narrowly retrofocus, with `BFD/EFL = 1.00708`. This is a first-order property of the rounded patent indices, not a mechanical flange-distance claim.
+At infinity, the complete powered prescription computes to an effective focal length of 14.192130 mm and an air-equivalent Gaussian back focal distance of 14.292563 mm measured from the S22 vertex. By the project's strict criterion `BFD > EFL`, the printed prescription is narrowly retrofocus, with `BFD/EFL = 1.00708`. This is a first-order property of the rounded patent indices, not a mechanical flange-distance claim.
 
 The stop location itself is published in the prescription between S10 and S12. Its semi-diameter is not published. The model's `STO.sd = 3.451627 mm` is an inferred f/4 aperture derived from the final optical model rather than a patent clear-aperture value.
 
-The patent also inserts a plane-parallel filter after L12 (¶0121 and Table 1, S23-S24). Filters are excluded from the ordinary LensVisualizer prescription. The physical rear path of 12.49 mm air, 2.85 mm of n=1.52 plate, and 1.00 mm air is therefore replaced by a paraxially equivalent 15.365 mm air spacing after S22. No focal-length scaling is applied anywhere in the prescription.
+The patent inserts a plane-parallel filter after L12 (¶0121 and Table 1, S23-S24). The physical rear path is 12.49 mm air, 2.85 mm of nd=1.52 / vd=64.2 plate, and 1.00 mm air. It is traced through `rearPlates` and hidden from the diagram. Its 15.365 mm air-equivalent distance is unchanged from the former folded representation. The computed physical paraxial BFL is 15.267563 mm, whereas the source image plane is 16.34 mm behind S22: the −1.072437 mm offset persists after unfolding. Every source prescription entry matches, and no single transcription error explains the discrepancy; retain the published path and its rounded indices. No focal-length scaling is applied.
 
 ## Element-by-Element Analysis
 
@@ -133,7 +133,7 @@ No defensible current public catalog match was found for the stored rounded coor
 
 L12 is the final positive element. Its rear radius of -1352.722 mm is optically very weak compared with its +47.039 mm front surface, hence the near plano-convex description used by the data file. The element partially offsets L10's negative power, but the complete fixed rear group still computes to -41.474157 mm.
 
-The source places a plane-parallel filter behind L12. Because that plate is excluded from the active model, L12 is followed directly by the 15.365 mm air-equivalent rear spacing described above rather than by explicit filter surfaces.
+The source places a plane-parallel filter behind L12. That plate now participates in tracing through `rearPlates`, while the diagram and element count show only the twelve powered lens elements.
 
 ## Glass Identification and Selection
 
@@ -213,11 +213,11 @@ The patent gives eight design conditions, of which conditions (1)-(5), (7), and 
 | (7) `1.5 ≤ TTL/D ≤ 2` | 1.64261 | Pass |
 | (8) `4 ≤ TTL/F ≤ 6` | 4.96993 | Pass |
 
-For condition (7), the evaluation uses the source physical S1-to-image track of 71.07 mm and the 43.2666 mm diagonal of the production full-frame format. The patent does not independently print a numerical target-size `D` in Example 1, so the format substitution is a production-correlation inference. For condition (8), the same 71.07 mm source physical track is divided by the patent's printed 14.3 mm focal length. The active LensVisualizer model is shorter, 70.095 mm, only because the rear filter plate is replaced by its air-equivalent translation.
+For condition (7), the evaluation uses the source physical S1-to-image track of 71.07 mm and the 43.2666 mm diagonal of the production full-frame format. The patent does not independently print a numerical target-size `D` in Example 1, so the format substitution is a production-correlation inference. For condition (8), the same 71.07 mm source physical track is divided by the patent's printed 14.3 mm focal length. The active model now retains that 71.07 mm physical track; its air-equivalent track remains 70.095 mm.
 
 ## Verification Summary
 
-The final data file's load-bearing first-order values were recomputed directly from its TypeScript surface and focus arrays using sequential height/reduced-angle tracing and an independent ABCD construction. The two methods agree to machine precision. At infinity, the model gives EFL 14.192130 mm, Gaussian BFD 14.292563 mm, and a Petzval sum of +0.009564851 mm⁻¹ when each refracting surface is accumulated as `φ/(n·n′)`.
+The final data file's load-bearing first-order values were recomputed directly from its TypeScript surface and focus arrays using sequential height/reduced-angle tracing and an independent ABCD construction. The two methods agree to machine precision. At infinity, the model gives EFL 14.192130 mm, air-equivalent Gaussian BFD 14.292563 mm (physical BFD 15.267563 mm through the filter), and a Petzval sum of +0.009564851 mm⁻¹ when each refracting surface is accumulated as `φ/(n·n′)`.
 
 The authored semi-diameters are inferred optical rims measured from Figure 1 at 600 dpi, with the unchanged f/4 stop. The 54.73 mm glass span yields 14.75 µm/px. Mechanical steps at the rear of L1 and L2 are excluded. L11 retains the original 7.2/7.7 mm radii because surface 20A turns over near 7.8 mm, before the drawn rim. Other apertures are enlarged from the original ray-envelope estimates. Surface validation, aspheric slope scans, image-circle checks, and production render diagnostics pass.
 

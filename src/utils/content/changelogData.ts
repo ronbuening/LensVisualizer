@@ -21,6 +21,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-09-25",
     type: "fix",
+    summary: "Restored the Viltrox AF 14mm f/4 AIR's physical patent filter path",
+  },
+  {
+    date: "2026-09-25",
+    type: "fix",
     summary: "Corrected a lens gap and asphere coefficient in the Canon EF 24mm f/1.4 L",
   },
   {

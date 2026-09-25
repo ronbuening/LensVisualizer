@@ -12,9 +12,13 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ stated single moving G2 requires D1+D2 to remain 8.31 mm. The modeled    ║
  * ║ close state therefore uses D1=3.75 mm and D2=4.56 mm.                    ║
  * ║                                                                            ║
- * ║ FILTER NORMALIZATION: Patent filter planes S23-S24 are omitted. Their    ║
- * ║ 12.49 mm air + 2.85 mm at n=1.52 + 1.00 mm air rear path is replaced    ║
- * ║ by the paraxially equivalent 15.365 mm air spacing after S22.            ║
+ * ║ REAR FILTER: Source S23-S24 is traced through rearPlates.               ║
+ * ║ S22 retains 12.49 mm physical air; PP is 2.85 mm, nd=1.52, vd=64.2,    ║
+ * ║ followed by 1.00 mm air. This preserves the source image plane.         ║
+ * ║ Source contradiction: the physical BFL computes to 15.267563 mm,       ║
+ * ║ vs the printed path's 16.34 mm; EFL 14.192130 vs stated 14.3 mm.        ║
+ * ║ Unfolding the filter leaves the -1.072437 mm focus offset unchanged.    ║
+ * ║ No additional transcription error explains it; keep source values.     ║
  * ║                                                                            ║
  * ║ APERTURE NOTE: ¶0135 prints f/1.47, but independent exact meridional     ║
  * ║ tracing shows that its paraxial entrance pupil cannot traverse the       ║
@@ -234,7 +238,7 @@ const LENS_DATA = {
       apd: "inferred",
       fl: 77.116985,
       glass: "593686 class",
-      role: "Final positive element ahead of the normalized rear air space.",
+      role: "Final positive element ahead of the source rear filter.",
     },
   ],
 
@@ -261,7 +265,18 @@ const LENS_DATA = {
     { label: "19A", R: -12.615, d: 2.08, nd: 1.64, elemId: 11, sd: 7.2 },
     { label: "20A", R: -13.232, d: 0.06, nd: 1.0, elemId: 0, sd: 7.7 },
     { label: "21", R: 47.039, d: 3.38, nd: 1.59, elemId: 12, sd: 13.3 },
-    { label: "22", R: -1352.722, d: 15.365, nd: 1.0, elemId: 0, sd: 13.3 },
+    { label: "22", R: -1352.722, d: 12.49, nd: 1.0, elemId: 0, sd: 13.3 },
+  ],
+
+  rearPlates: [
+    {
+      label: "PP",
+      thicknessMm: 2.85,
+      nd: 1.52,
+      vd: 64.2,
+      gapAfterMm: 1,
+      source: "CN 121091494 A, Example 1 Table 1 S23-S24",
+    },
   ],
 
   /* ── Aspherical coefficients ── */
