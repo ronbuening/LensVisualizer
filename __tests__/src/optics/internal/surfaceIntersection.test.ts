@@ -143,6 +143,27 @@ describe("surface intersection helpers", () => {
     expect(result.failureReason).toBe("noBracket");
   });
 
+  it("recovers steep-rim sphere hits when the vertex-plane seed lands on the sag continuation", () => {
+    // A rim ray of a strong concave surface (sd/|R| ≈ 0.89): the z-projected Newton seed lies beyond |R|,
+    // where the continued sag has slope ~1e6, while the real hit near r = 15.35 mm is well conditioned.
+    const R = -17.388;
+    const vertexZ = 67.46;
+    const origin: [number, number, number] = [-2.2042, -14.9501, 57.7633];
+    const direction = normalizeVector3([-0.01696, -0.44528, 0.89523])!;
+    const result = intersectSagSurface({ origin, direction }, 0, vertexZ, lensWithSurface(R), { maxT: 22.6 });
+
+    const offset = [origin[0], origin[1], origin[2] - (vertexZ + R)];
+    const b = offset[0] * direction[0] + offset[1] * direction[1] + offset[2] * direction[2];
+    const c = offset[0] ** 2 + offset[1] ** 2 + offset[2] ** 2 - R * R;
+    const analyticT = [-b - Math.sqrt(b * b - c), -b + Math.sqrt(b * b - c)].find(
+      (t) => origin[2] + t * direction[2] > vertexZ + R,
+    )!;
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.t).toBeCloseTo(analyticT, 8);
+    expect(result.radius).toBeLessThan(15.5);
+  });
+
   it("computes rotationally symmetric normals at hit points", () => {
     const L = lensWithSurface(50);
     const positive = surfaceNormalAtHit(3, 4, 0, L);

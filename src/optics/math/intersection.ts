@@ -123,7 +123,7 @@ export function intersectSurfaceProfile(
   /* Safeguarded Newton (rtsafe): a Newton step must stay inside the sign-changing
    * bracket and be at most half the step before last; otherwise bisect. Without the
    * halving rule, a seed on a sphere's steep continuation beyond |R| (slope ~1e6)
-   * creeps through the bracket in micrometre steps and never reaches a
+   * creeps through the bracket in micrometer steps and never reaches a
    * well-conditioned rim root elsewhere in it. */
   let stepBeforeLast = hi - lo;
   let lastStep = stepBeforeLast;
