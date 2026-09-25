@@ -138,7 +138,7 @@ the row. Offset is paraxial focus minus the authored plane (positive: the plane 
 |---|---|---|---|---|---|
 | FUJIFILM FUJINON XF 18mm f/2 R | `fujifilm/FujifilmXF18mmf2.data.ts` | +4.993 | 1062 | D16 ends at omitted PP; Table 7 leaves its trailing image gap blank; EFL also differs | partial (source image distance missing; S13 A10 typo corrected, no paraxial effect) |
 | NIKON R-UW AF ZOOM-NIKKOR 20-35mm f/2.8 | `nikon/NikonRUWAFZoomNikkor2035mmf28.data.ts` | +0.220 | 24 | Water interface is already traced; several existing source emendations remain unverified | partial (rear plate migrated; source reconstruction unresolved) |
-| HASSELBLAD XCD 45mm f/3.5 | `hasselblad/HasselbladXCD3545.data.ts` | +0.171 | 12 | Data note: source infinity BF 26.88 mm kept although the raw prescription computes otherwise | todo |
+| HASSELBLAD XCD 45mm f/3.5 | `hasselblad/HasselbladXCD3545.data.ts` | +0.171 | 12 | Data note: source infinity BF 26.88 mm kept although the raw prescription computes otherwise | blocked (patent missing: WO2017221949A1; only Japanese republication present) |
 | P. ANGÉNIEUX DEM 180mm f/2.3 APO | `p.-angénieux/AngenieuxDEM180mmf23APO.data.ts` | -0.146 | 24 | Not yet diagnosed; check the source image distance | todo |
 | CARL ZEISS OLYMPIA-SONNAR 180mm f/2.8 | `carl-zeiss-oberkochen/CarlZeissOlympiaSonnar180mmf28.data.ts` | +0.100 | 11 | Not yet diagnosed; check the source image distance | todo |
 | CANON RF 35mm f/1.4 L VCM | `canon/CanonRF35mmF14LVCM.data.ts` | -0.083 | 33 | Small offset; may be a designer best-focus plane, check the source | todo |
