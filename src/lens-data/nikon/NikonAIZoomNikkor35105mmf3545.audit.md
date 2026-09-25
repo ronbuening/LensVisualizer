@@ -61,3 +61,26 @@ Patent: US 4,699,475, Seventh Embodiment / Table 7
 - HOYA NBFD2 at `1.797199 / 41.143795` is within `+0.001199 / +0.243795`, so both elements now use its official
   formula-3 model as an optical equivalent.
 - Synchronized the analysis and left the production supplier unspecified. No prescription or zoom data changed.
+
+## 2026-09-25 - MTF census: source Bf contradiction retained
+
+Source: local `patents/US4699475.pdf`, PDF page 23, Table 7 (Seventh
+Embodiment), printed columns 15-16. Checked all 28 radii, all fixed
+gaps/thicknesses, all 16 nd/vd pairs, and every wide/mid/tele variable
+spacing. No scaling, aspheres or source rear plates. Source infinity
+stations F=36.2/60/103 are selected, with no modeled close-focus travel.
+
+Source d6 = 0.98/10.62/19.77, d14 = 12.52/6.77/1.49,
+d20 = 10.84/6.96/3.08 and Bf = 52.36/65.30/78.24 mm all match.
+The stop is correctly 0.8 mm ahead of L9: authored S14 gaps
+11.72/5.97/0.69 plus STO-to-S15 0.8 reproduce source d14 exactly.
+
+Independent ABCD at wide infinity gives EFL 37.391953 mm versus source
+36.2 mm and BFL 53.302330 mm versus source Bf 52.36 mm. There is no
+transcription mismatch or single supported misprint to correct. Retain the
+published image distance and document the contradiction in the header and
+analysis; do not replace the three-decimal indices with catalog values to
+fit focus. Source spectral evidence and qualified glass labels are unchanged.
+
+Offset before/after: +0.942330 -> +0.942330 mm. Section E row deleted;
+the numerical census flag remains by design. No visible data fix/changelog.
