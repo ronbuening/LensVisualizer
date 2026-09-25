@@ -211,3 +211,11 @@ The patent publishes no semi-diameters. The modeled values are inferred from the
 4. OHARA, S-FPL51 datasheet and current optical-glass tables, including Sellmeier constants and the nearest catalog-coordinate references used in the glass audit. <https://www.ohara-inc.co.jp/en/product/01000/>
 5. SCHOTT, *Optical Glass Collection Datasheets*, March 2018, P-LASF47 data page.
 6. SUMITA, all-glass Zemax catalog, 7 November 2025, including discontinued SK5 and K-SFLD11 rows.
+
+## Image-plane source audit (2026-09-25)
+
+MTF source audit: Example 1 (PDF p. 7, column 3) matches every stored
+radius/gap/index at scale ×1.8, with the documented V1=61.2 emendation.
+Native EFL 99.959464 and BFL 44.708683 differ from F=100 and BF=44.79.
+Scaled offset −0.146370 mm is retained as source inconsistency; no plate
+or additional focus adjustment is supported by the published prescription.
