@@ -48,6 +48,31 @@ const LENS_DATA = {
     "Floating inner focus: negative L2 moves imageward and positive L4 moves objectward from infinity to 1×; L1, L3, and L5 remain stationary.",
   scFill: 0.62,
   yScFill: 0.56,
+  sourceStates: [
+    {
+      id: "infinity",
+      label: "Infinity",
+      focusT: 0,
+      zoomT: 0,
+      source: "US7864451B2, First Numerical Example, printed pp. 8–9 (PDF pp. 18–19), infinity column of the variable-spacing table; retained published BF 48.35 mm.",
+      conjugate: { kind: "infinity" },
+    },
+    {
+      id: "life-size",
+      label: "Life-size",
+      focusT: 1,
+      zoomT: 0,
+      source: "US7864451B2, First Numerical Example, printed pp. 8–9 (PDF pp. 18–19), magnification -1 column; retained published BF 48.35 mm. Independent distance evidence in CanonEF100mmf28LIS.audit.md.",
+      conjugate: {
+        kind: "finite",
+        objectDistanceMm: 134.75650911160233,
+        distanceReference: "first-surface",
+        distanceProvenance: "calculated",
+        derivation: "Fixed published -1 geometry and BF: s=-B/A with A=-0.9999046850728703 and B=134.7436648047561 mm; independently checked by small-height exact rays. Calculated object-to-image distance 297.6665091116023 mm; published magnification reproduced within 0.0096% (rounded source tables).",
+        magnification: -1,
+      },
+    },
+  ],
 
   elements: [
     {

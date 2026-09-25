@@ -156,6 +156,13 @@ The patent publishes variable spacings at infinity, -0.5x, and -1x. The first, t
 
 A finite-conjugate paraxial trace of the -1x spacing gives magnification -0.999905 and an object-to-image distance of 297.66 mm, consistent with Canon's 0.30 m minimum focusing distance. The same trace gives -0.500190 magnification at the intermediate spacing. The effective focal length of the internal-focus system shortens at close range: 99.996 mm at infinity, 90.456 mm at the -0.5x spacing, and 73.998 mm at the -1x spacing.
 
+The selectable source states are infinity and life-size, matching the two authored geometry endpoints.
+The life-size object distance is **calculated**, 134.7565 mm before the first surface (297.6665 mm from the
+retained image plane), and independently checked with small-height exact rays against the published -1
+magnification. The patent's -0.5× column is not an authored keyframe in this model: its four moving gaps cannot
+be reproduced simultaneously by the endpoint interpolation. It is therefore not selectable. See the audit
+sidecar for evidence; intermediate focus travel remains a visualization rather than a verified MTF state.
+
 ## Image Stabilization
 
 The stabilizer is L5a, the E12+E13 cemented doublet. The patent states that this fifth-a lens unit has negative refractive power and moves in a direction having a component perpendicular to the optical axis so that the image position is shifted. Canon's production description identifies this as Hybrid IS, compensating both angular shake and shift shake.
