@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **813** lenses scanned
-- **9116** non-air surfaces examined
-- **9126** element glass declarations examined
-- **232** non-explicit-unmatched annotations did not resolve
-- **119** distinct unresolved glass-like tokens found
+- **819** lenses scanned
+- **9220** non-air surfaces examined
+- **9230** element glass declarations examined
+- **245** non-explicit-unmatched annotations did not resolve
+- **132** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -58,6 +58,7 @@ or per-lens patent backfills.
 | 570481 | 1 | 1 | |
 | 570575 | 1 | 1 | |
 | 571560 | 1 | 1 | |
+| 576388 | 1 | 1 | |
 | 585417 | 1 | 1 | |
 | 593348 | 1 | 1 | |
 | 595686 | 1 | 1 | |
@@ -71,12 +72,17 @@ or per-lens patent backfills.
 | 624584 | 1 | 1 | |
 | 625533 | 1 | 1 | |
 | 630346 | 1 | 1 | |
+| 634299 | 1 | 1 | |
 | 640353 | 1 | 1 | |
 | 642581 | 1 | 1 | |
+| 646287 | 1 | 1 | |
+| 656277 | 1 | 1 | |
 | 658397 | 1 | 1 | |
 | 667311 | 1 | 1 | |
+| 670266 | 1 | 1 | |
 | 672323 | 1 | 1 | |
 | 672388 | 1 | 1 | |
+| 673343 | 1 | 1 | |
 | 680312 | 1 | 1 | |
 | 681472 | 1 | 1 | |
 | 682366 | 1 | 1 | |
@@ -86,7 +92,9 @@ or per-lens patent backfills.
 | 694312 | 1 | 1 | |
 | 700555 | 1 | 1 | |
 | 701301 | 1 | 1 | |
+| 721234 | 1 | 1 | |
 | 721334 | 1 | 1 | |
+| 729364 | 1 | 1 | |
 | 738493 | 1 | 1 | |
 | 744479 | 1 | 1 | |
 | 744494 | 1 | 1 | |
@@ -117,9 +125,13 @@ or per-lens patent backfills.
 | 803456 | 1 | 1 | |
 | 805410 | 1 | 1 | |
 | 806404 | 1 | 1 | |
+| 827336 | 1 | 1 | |
 | 835447 | 1 | 1 | |
+| 837333 | 1 | 1 | |
+| 839196 | 1 | 1 | |
 | 840433 | 1 | 1 | |
 | 866450 | 1 | 1 | |
+| 868323 | 1 | 1 | |
 | 877370 | 1 | 1 | |
 | 882408 | 1 | 1 | |
 | 904293 | 1 | 1 | |
@@ -128,6 +140,7 @@ or per-lens patent backfills.
 | 916364 | 1 | 1 | |
 | 930240 | 1 | 1 | |
 | 933209 | 1 | 1 | |
+| 958300 | 1 | 1 | |
 | BAM5 | 1 | 1 | |
 | D-ZLAF85 | 1 | 1 | |
 | FPL51 | 1 | 1 | |
@@ -339,6 +352,10 @@ or per-lens patent backfills.
 
 - [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 17: `571560 — barium crown (patent nd=1.57125, νd=56.0)`
 
+### 576388 — 1 occurrence
+
+- [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) 37: `576388 — catalog unresolved (supplier unconfirmed)`
+
 ### 585417 — 1 occurrence
 
 - [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) 3A: `585417 — light flint (patent nd=1.58542, nu_d=41.7)`
@@ -391,6 +408,10 @@ or per-lens patent backfills.
 
 - [SONY SONNAR T* FE 35mm f/2.8 ZA](../../src/lens-data/sony/SonyFE35mmf28ZA.data.ts) 10: `630346 - dense flint (patent nd=1.63000, vd=34.57; no exact public catalog match)`
 
+### 634299 — 1 occurrence
+
+- [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) 34: `634299 — catalog unresolved (supplier unconfirmed)`
+
 ### 640353 — 1 occurrence
 
 - [MINOLTA MD ROKKOR 45mm f/2](../../src/lens-data/minolta/MinoltaRokkor45mmf2MD.data.ts) 7: `640353 - medium flint (catalog unresolved)`
@@ -398,6 +419,14 @@ or per-lens patent backfills.
 ### 642581 — 1 occurrence
 
 - [CARL ZEISS BIOGON 21mm f/4.5](../../src/lens-data/carl-zeiss-oberkochen/ZeissBiogon21mmf45.data.ts) 12: `LaK/SK crown (642/581)`
+
+### 646287 — 1 occurrence
+
+- [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) 44: `646287 — catalog unresolved (supplier unconfirmed)`
+
+### 656277 — 1 occurrence
+
+- [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) 41: `656277 — catalog unresolved (supplier unconfirmed)`
 
 ### 658397 — 1 occurrence
 
@@ -407,6 +436,10 @@ or per-lens patent backfills.
 
 - [FUJIFILM FUJINON XF 60mm f/2.4 R Macro](../../src/lens-data/fujifilm/FujifilmXF60mmf24R.data.ts) 6: `667311 - dense flint (patent nd=1.66680, vd=31.1; no exact public catalog match)`
 
+### 670266 — 1 occurrence
+
+- [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) 29: `670266 — catalog unresolved (supplier unconfirmed)`
+
 ### 672323 — 1 occurrence
 
 - [CARL ZEISS JENA PANCOLAR 50mm f/2](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPancolar50mmf2.data.ts) 4: `Dense flint (672/323, Jena in-house; no exact public catalog match)`
@@ -414,6 +447,10 @@ or per-lens patent backfills.
 ### 672388 — 1 occurrence
 
 - [NIKON NIKKOR-SW 75mm f/4.5](../../src/lens-data/nikon/NikonNikkorSW75mmf45.data.ts) 4: `672388 — dense-flint/lanthanum coordinate class (vendor unresolved)`
+
+### 673343 — 1 occurrence
+
+- [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) 22: `673343 — catalog unresolved (supplier unconfirmed)`
 
 ### 680312 — 1 occurrence
 
@@ -451,9 +488,17 @@ or per-lens patent backfills.
 
 - [MINOLTA MD ROKKOR 45mm f/2](../../src/lens-data/minolta/MinoltaRokkor45mmf2MD.data.ts) 5: `701301 - dense flint (catalog unresolved)`
 
+### 721234 — 1 occurrence
+
+- [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) 24: `721234 — catalog unresolved (supplier unconfirmed)`
+
 ### 721334 — 1 occurrence
 
 - [MINOLTA AF APO Tele 200mm f/2.8](../../src/lens-data/minolta/MinoltaAF200mmf28.data.ts) 7: `721334 - dense lanthanum flint (catalog unresolved)`
+
+### 729364 — 1 occurrence
+
+- [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) 7: `729364 — catalog unresolved (supplier unconfirmed)`
 
 ### 738493 — 1 occurrence
 
@@ -575,9 +620,21 @@ or per-lens patent backfills.
 
 - [RICOH GR LENS A12 28mm f/2.5 (Ricoh GXR A12)](../../src/lens-data/ricoh/RicohGXRA1218mmf25.data.ts) 3A: `806404 — lanthanum flint (catalog unresolved; nd 1.8061, νd 40.4)`
 
+### 827336 — 1 occurrence
+
+- [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) 35: `827336 — catalog unresolved (supplier unconfirmed)`
+
 ### 835447 — 1 occurrence
 
 - [LAOWA 12mm f/2.8 Zero-D](../../src/lens-data/laowa/Laowa12mmf28ZeroD.data.ts) 8: `835447 - high-index lanthanum class (patent nd=1.83481, vd=44.72; unresolved)`
+
+### 837333 — 1 occurrence
+
+- [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) 19: `837333 — catalog unresolved (supplier unconfirmed)`
+
+### 839196 — 1 occurrence
+
+- [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) 10: `839196 — catalog unresolved (supplier unconfirmed)`
 
 ### 840433 — 1 occurrence
 
@@ -586,6 +643,10 @@ or per-lens patent backfills.
 ### 866450 — 1 occurrence
 
 - [LAOWA 58mm f/2.8 2× Ultra-Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) 1: `866450 - high-index lanthanum flint (patent nd=1.86665, vd=45.0)`
+
+### 868323 — 1 occurrence
+
+- [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) 12: `868323 — catalog unresolved (supplier unconfirmed)`
 
 ### 877370 — 1 occurrence
 
@@ -618,6 +679,10 @@ or per-lens patent backfills.
 ### 933209 — 1 occurrence
 
 - [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 24: `933209 — ultra-dense flint (patent nd=1.93323, nu_d=20.9)`
+
+### 958300 — 1 occurrence
+
+- [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) 21: `958300 — catalog unresolved (supplier unconfirmed)`
 
 ### BAM5 — 1 occurrence
 

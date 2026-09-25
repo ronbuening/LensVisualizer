@@ -796,6 +796,13 @@ For elements with anomalous partial dispersion, populate the structured numeric 
 
 The structured fields (`dPgF`, `nC`, `nF`, `ng`) are consumed by the chromatic engine; the prose `apdNote` is for human readers and is ignored by the engine. When both are present, keep them consistent — the structured number is authoritative.
 
+If the source defines a different normal line, recover its absolute `P_g,F` first and store
+`dPgF = P_g,F − normalLinePgF(vd)` using the engine's baseline in
+[`dispersion.ts`](../optics/dispersion.ts). Do not copy a patent-specific deviation directly.
+Keep the source's original deviation separately in the analysis when evaluating its conditions.
+A published partial-dispersion ratio alone does not justify `apd: "patent"`; that display tag
+requires the source to identify the material as anomalous.
+
 ### Cross-vendor equivalents
 
 Several glasses have catalog equivalents across vendors:

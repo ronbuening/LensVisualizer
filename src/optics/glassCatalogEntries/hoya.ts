@@ -6,6 +6,43 @@ import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
   {
+    name: "NBFD265",
+    vendor: "Hoya",
+    polynomial: [3.6415592, -0.017833211, 0.049779099, 0.0043665512, -0.00035538803, 4.031812e-5],
+    nd: 1.95203,
+    vd: 26.2,
+    source:
+      "HOYA Zemax catalog 2026-07-07 including obsolete glasses; formula 1 polynomial, accessed 2026-09-25. https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf",
+  },
+  {
+    name: "NBFD6",
+    vendor: "Hoya",
+    polynomial: [2.9881998, -0.0071192799, 0.033239024, 0.00020485311, 9.2252594e-5, 2.4443305e-7],
+    nd: 1.756702,
+    vd: 36.345258,
+    source:
+      "HOYA Zemax catalog 2026-07-07 including obsolete glasses; formula 1 polynomial, accessed 2026-09-25. https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf",
+  },
+  {
+    name: "MP-TAC80-60",
+    vendor: "Hoya",
+    polynomial: [2.9372128, -0.016185789, 0.01839514, 0.0010266071, -9.2379872e-5, 5.0509237e-6],
+    nd: 1.72963,
+    vd: 54.07,
+    source:
+      "HOYA Zemax catalog 2026-07-07 including obsolete glasses; formula 1 polynomial, accessed 2026-09-25. https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf",
+  },
+  {
+    name: "ADF405",
+    vendor: "Hoya",
+    polynomial: [2.7356649, -0.012562447, 0.025182823, 0.00072910592, 2.1020657e-6, 2.9773777e-6],
+    nd: 1.6765,
+    vd: 37.477902,
+    source:
+      "HOYA Zemax catalog 2026-07-07 including obsolete glasses; formula 1 polynomial, accessed 2026-09-25. https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf",
+  },
+
+  {
     name: "PC3",
     vendor: "Hoya",
     polynomial: [2.2982798, -0.010575328, 0.010358192, 0.00032740673, -2.298532e-5, 1.2091861e-6],
