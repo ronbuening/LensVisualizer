@@ -334,11 +334,18 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.7,
-  finiteConjugates: [{
+  sourceStates: [{
+    id: "close",
+    label: "Close focus · 0.7 m",
     focusT: 1,
     zoomT: 0,
-    objectDistanceMm: 576.6736,
-    distanceReference: "first-surface",
+    conjugate: {
+      kind: "finite",
+      objectDistanceMm: 576.6736,
+      distanceReference: "first-surface",
+      distanceProvenance: "calculated",
+      derivation: "Coordinate conversion of the published 700 mm object-to-image distance: subtract the source physical track of 123.3264 mm. Preserve the existing verified first-vertex source position despite the model air-equivalent back focus.",
+    },
     source: "US20210294073A1, Example 1, ¶0084 and Tables 1/3: 700 mm to the physical image plane minus 123.3264 mm summed physical track = 576.6736 mm to the first vertex; DD4=1.932 mm, DD15=16.728 mm. The model omits PP and uses air-equivalent back focus.",
   }],
   focusDescription: "Inner focus: G2 (L21–L26 + stop) moves toward object. G1 and G3 fixed. DC motor with GMR sensor.",

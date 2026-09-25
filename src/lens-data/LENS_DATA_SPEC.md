@@ -1060,7 +1060,9 @@ Calculated distances additionally require a `derivation` describing first-order 
 verification and relevant source evidence. Optional signed `magnification` is source-published, not a computed label.
 The source remains authoritative when a rounded prescription retains residual defocus: never tune spacing to improve MTF.
 
-`finiteConjugates` optionally certifies individual authored states for finite-distance MTF. Each entry has
+`finiteConjugates` is the legacy declaration of individual authored states for finite-distance MTF.
+New authoring uses `sourceStates`; legacy entries receive deterministic IDs from their coordinates. Never declare
+the same coordinates in both arrays. Each entry has
 `focusT` (an authored nonzero focus station), `zoomT` (0 for a prime; source zoom station index divided by
 `zoomPositions.length - 1` for a zoom), positive `objectDistanceMm`, `distanceReference` (`"first-surface"` or
 `"image-plane"`), and a nonempty `source` identifying the evidence for both the distance and focus spacings.

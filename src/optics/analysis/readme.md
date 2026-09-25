@@ -30,6 +30,7 @@ flowchart LR
   n_external_src_optics_groupMovement_ts["src/optics/groupMovement.ts"]
   n_external_src_optics_pupilAberration_ts["src/optics/pupilAberration.ts"]
   n_external_src_optics_rayTrace_ts["src/optics/rayTrace.ts"]
+  n_external_src_optics_sourceStates_ts["src/optics/sourceStates.ts"]
   n_external_src_optics_vignetteAnalysis_ts["src/optics/vignetteAnalysis.ts"]
   n_external_src_utils_catalog["src/utils/catalog"]
   n_src_optics_analysis_TypeScript_modules --> |20| n_external_src_optics_types_ts
@@ -51,6 +52,7 @@ flowchart LR
   n_src_optics_analysis_TypeScript_modules --> n_external_src_optics_groupMovement_ts
   n_src_optics_analysis_TypeScript_modules --> n_external_src_optics_pupilAberration_ts
   n_src_optics_analysis_TypeScript_modules --> n_external_src_optics_rayTrace_ts
+  n_src_optics_analysis_TypeScript_modules --> n_external_src_optics_sourceStates_ts
   n_src_optics_analysis_TypeScript_modules --> n_external_src_optics_vignetteAnalysis_ts
   n_src_optics_analysis_TypeScript_modules --> n_external_src_utils_catalog
 ```
@@ -59,7 +61,7 @@ flowchart LR
 
 - Direct source files: 30
 - Direct subfolders: 0
-- Main outbound areas: same folder (52), src/optics/types.ts (20), src/types (17), src/optics/perspective (10), src/optics/chromatic (9), src/optics/optics.ts (8), src/optics/trace (7), src/optics/field (5), +14 more
+- Main outbound areas: same folder (52), src/optics/types.ts (20), src/types (17), src/optics/perspective (10), src/optics/chromatic (9), src/optics/optics.ts (8), src/optics/trace (7), src/optics/field (5), +15 more
 - External consumers: src/benchmarks, src/components/layout, src/optics/aberration, src/optics/analysisJobs.ts, src/optics/compat.ts, src/optics/distortionAnalysis.ts, src/optics/mtf.ts, src/optics/vignetteAnalysis.ts
 
 ## Files
@@ -79,7 +81,7 @@ flowchart LR
 | `fieldCurvature.ts` | Field Curvature helper module | same folder | none | computeFieldCurvature2, computeFieldCurvatureBundleForState2, computeFieldCurvatureForState2 |
 | `groupMovement.ts` | Group Movement helper module | src/types (2), src/optics/groupMovement.ts, src/optics/types.ts | src/optics/compat.ts | computeGroupMovementProfileForState2, computeGroupMovementProfile2, firstAvailableGroupMovementMode2, getGroupMovementAvailability2, inferLensMovementGroups2, isGroupMovementModeAvailable2 |
 | `mtf.ts` | Mtf helper module | same folder (9), src/optics/types.ts, src/types | src/optics/mtf.ts | MtfJobCache, emptyMtfField, MtfUnresolvedFlux, assessUnresolvedFlux, MtfGridOutcome, refineMtfField, resolveMtfGeometry, computeMtfSteps, +1 more |
-| `mtfConjugates.ts` | Mtf Conjugates helper module | src/optics/field, src/optics/types.ts, src/types | same folder (2) | mtfFiniteConjugate, mtfFiniteObjectPoint |
+| `mtfConjugates.ts` | Mtf Conjugates helper module | src/optics/field, src/optics/sourceStates.ts, src/optics/types.ts, src/types | same folder (2) | mtfFiniteConjugate, mtfFiniteObjectPoint |
 | `mtfConstants.ts` | Mtf Constants helper module | src/types | same folder (4) | MTF_GRID_LADDER, MTF_GRID_CAPS, MTF_DEFAULT_GRID_CAP, MTF_CONVERGENCE_TOLERANCE, MTF_CONVERGENCE_BAND_LPMM, MTF_MAX_FIELDS, MTF_MAX_FREQUENCIES, MTF_MAX_FREQUENCY_LPMM, +11 more |
 | `mtfDiffraction.ts` | Mtf Diffraction helper module | same folder (4), src/optics/layout.ts, src/optics/math, src/optics/types.ts | same folder (2) | ComplexPupil, DiffractionOtf, PupilReconstruction, PupilAutocorrelation, pupilAutocorrelation, sampleAutocorrelation, pupilOtf, reconstructMtfPupil |
 | `mtfDiffractionLimit.ts` | Mtf Diffraction Limit helper module | same folder (2) | same folder | MtfDiffractionLimit, diffractionLimitFromBundle, ellipticalLimit |

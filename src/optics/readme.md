@@ -23,12 +23,12 @@ flowchart LR
     n_src_optics_src_optics_prescription["prescription/"]
     n_src_optics_src_optics_state["state/"]
     n_src_optics_src_optics_trace["trace/"]
-    n_src_optics_TypeScript_modules["TypeScript modules (38)"]
+    n_src_optics_TypeScript_modules["TypeScript modules (39)"]
   end
   n_external_src_types["src/types"]
   n_external_src_utils_catalog["src/utils/catalog"]
   n_external_src_utils_featureFlags_ts["src/utils/featureFlags.ts"]
-  n_src_optics_TypeScript_modules --> |26| n_external_src_types
+  n_src_optics_TypeScript_modules --> |27| n_external_src_types
   n_src_optics_TypeScript_modules --> |21| n_src_optics_src_optics_internal
   n_src_optics_TypeScript_modules --> |18| n_src_optics_src_optics_analysis
   n_src_optics_TypeScript_modules --> |8| n_src_optics_src_optics_glassCatalogEntries
@@ -48,9 +48,9 @@ flowchart LR
 
 ## Directory Overview
 
-- Direct source files: 38
+- Direct source files: 39
 - Direct subfolders: 14
-- Main outbound areas: src/types (26), src/optics/internal (21), src/optics/analysis (18), src/optics/compat.ts (11), src/optics/glassCatalogEntries (8), src/optics/optics.ts (8), src/optics/chromatic (7), src/optics/aberration (6), +28 more
+- Main outbound areas: src/types (27), src/optics/internal (21), src/optics/analysis (18), src/optics/compat.ts (11), src/optics/glassCatalogEntries (8), src/optics/optics.ts (8), src/optics/chromatic (7), src/optics/aberration (6), +28 more
 - External consumers: src/benchmarks, src/comparison, src/components/controls, src/components/diagram, src/components/display, src/components/hooks, src/components/layout, src/optics/aberration, +12 more
 
 ## Subfolders
@@ -109,6 +109,7 @@ flowchart LR
 | `raySampling.ts` | Ray Sampling helper module | src/types (2), src/optics/stopObstruction.ts | src/components/hooks (3), src/benchmarks, src/components/layout, src/optics/distortionAnalysis.ts, src/optics/field, +2 more | isHeavyLensForRayWork, rayFractionsForDensity, obstructionAwareRayFractionsForDensity, raySampleCountForDensity |
 | `rayTrace.ts` | Ray Trace helper module | src/optics/chromatic (3), src/optics/internal (2), src/optics/constants.ts, src/optics/layout.ts, src/optics/trace, +1 more | src/optics/aberration (6), src/optics/perspective (2), src/optics/analysis, src/optics/optics.ts | SkewRayTraceResult, VectorRayTraceInput, SkewImagePlaneIntercept, OrthogonalPupilSample, CircularPupilSample, DEFAULT_ORTHOGONAL_PUPIL_FAN_SAMPLE_COUNT, DEFAULT_CIRCULAR_PUPIL_RING_SAMPLES, wavelengthNd, +15 more |
 | `runtimeLens.ts` | Runtime Lens module with default export | src/optics/internal (5), src/optics/dispersion.ts, src/optics/field, src/optics/math, src/optics/prescription, +3 more | src/optics/buildLens.ts, src/optics/compat.ts, src/optics/prescription | default, buildLens, paraxialTrace, realTraceToStop |
+| `sourceStates.ts` | Source States helper module | src/types | src/optics/analysis | lensSourceStates, resolveLensSourceState, sourceFiniteConjugate |
 | `spectralLines.ts` | Spectral Lines helper module | none | src/optics/analysis (2), src/optics/chromatic (2), src/optics/constants.ts, src/optics/glassCatalog.ts, src/optics/math | LINE_NM |
 | `stopObstruction.ts` | Stop Obstruction helper module | src/types | src/optics/optics.ts, src/optics/raySampling.ts | stopInnerBlockedSemiDiameter |
 | `types.ts` | Shared TypeScript types | src/optics/dispersion.ts, src/optics/glassCatalog.ts, src/types | src/optics/analysis (20), src/optics/perspective (20), src/components/display (14), src/optics/trace (12), src/optics/math (6), +10 more | Vec3, Ray3, Plane3, SurfaceProfile, CompiledSurfaceInteraction, CompiledRadialPhaseTerm, CompiledDiffractivePhase, CompiledSurface, +16 more |

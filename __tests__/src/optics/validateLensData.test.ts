@@ -139,6 +139,23 @@ describe("validateLensData", () => {
       source: "Synthetic source table",
     };
     expect(validateLensData(makeValid({ finiteConjugates: [station] }))).toEqual([]);
+    expect(
+      validateLensData(
+        makeValid({
+          finiteConjugates: [station],
+          sourceStates: [
+            {
+              id: "close",
+              label: "Close",
+              focusT: 1,
+              zoomT: 0,
+              source: "Source",
+              conjugate: { kind: "infinity" },
+            },
+          ],
+        }),
+      ).join(" "),
+    ).toContain("conflicts");
     for (const finiteConjugates of [
       [],
       [null],

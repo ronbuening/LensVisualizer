@@ -1135,6 +1135,13 @@ export default function validateLensData(data: UntrustedLensData): string[] {
             : Math.abs(c.zoomT * (zoomCount - 1) - Math.round(c.zoomT * (zoomCount - 1))) > 1e-8)
         )
           errors.push('"finiteConjugates" must identify authored focus and zoom stations, not interpolated positions');
+        if (
+          Array.isArray(data.sourceStates) &&
+          data.sourceStates.some(
+            (state) => state && Math.abs(state.focusT - c.focusT) < 1e-8 && Math.abs(state.zoomT - c.zoomT) < 1e-8,
+          )
+        )
+          errors.push('"finiteConjugates" conflicts with a "sourceStates" declaration at the same coordinates');
         const key = `${c.focusT}:${c.zoomT}`;
         if (seen.has(key)) errors.push('"finiteConjugates" contains a duplicate focus/zoom station');
         seen.add(key);
