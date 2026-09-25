@@ -34,13 +34,15 @@ The patent-listed group focal lengths are:
 
 The strict optical telephoto condition is satisfied at the long end: the patent total length at telephoto is 232.653 mm against a listed focal length of 292.00 mm, giving $TL/f \approx 0.797$. At the wide end, the back focal length is longer than the focal length: $BF/f = 38.422 / 28.79 \approx 1.335$, reflecting the long rear clearance required by a Nikon F-mount SLR mirror box.
 
-A re-run paraxial trace using the corrected Table 2 prescription gives the following first-order values. The residuals are acceptable for a first-order trace of a rounded patent prescription and are materially better than traces made from OCR-corrupted thickness values.
+A re-run paraxial trace using the corrected Table 2 prescription gives the following first-order values. S16 is corrected from 1.000 mm to the printed .100 mm. The remaining discrepancies are source contradictions, not established rounding error: all other prescription entries match, but the printed focal lengths, Bf and total lengths are not reproduced. No rear plate is listed and no single further source-supported misprint resolves them. Preserve the source values instead of tuning focus.
 
 | Position | Patent EFL | Computed EFL | EFL residual | Patent Bf | Computed BFD |
 |---|---:|---:|---:|---:|---:|
-| Wide | 28.790 mm | 28.532 mm | −0.258 mm | 38.422 mm | 39.136 mm |
-| Mid | 100.000 mm | 99.255 mm | −0.745 mm | 65.896 mm | 66.244 mm |
-| Tele | 292.000 mm | 290.002 mm | −1.998 mm | 79.261 mm | 79.444 mm |
+| Wide | 28.790 mm | 28.448 mm | −0.342 mm | 38.422 mm | 39.244 mm |
+| Mid | 100.000 mm | 99.281 mm | −0.719 mm | 65.896 mm | 66.245 mm |
+| Tele | 292.000 mm | 290.495 mm | −1.505 mm | 79.261 mm | 79.478 mm |
+
+The resulting wide-infinity image-plane offset is +0.822078 mm. Tabulated spacings plus Bf sum to 157.586 / 202.890 / 230.349 mm rather than the printed TL values 159.888 / 205.193 / 232.653 mm. Both sets of source numbers remain disclosed.
 
 The stop semi-diameter implied by the patent focal lengths and f-numbers is roughly constant: 10.02 mm at the wide end, 9.95 mm at the middle position, and 10.40 mm at the telephoto end after tracing the entrance-pupil magnification back to the aperture stop. The data file therefore uses a 10.5 mm stop semi-diameter.
 

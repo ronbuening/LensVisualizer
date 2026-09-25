@@ -26,6 +26,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ apertures for tightly curved, thin-gapped lens pairs, not patent   ║
  * ║ numerical apertures.                                                ║
  * ╚══════════════════════════════════════════════════════════════════════╝
+ *
+ * Image-plane audit: Table 2 S16 prints .100 mm, corrected from 1.000.
+ * Other R/d/nd/vd and aspheres match. At wide infinity the source now
+ * yields EFL 28.447933 / BFL 39.244078 mm, versus printed 28.79 / 38.422.
+ * Source total lengths also do not equal the tabulated spacing sums.
+ * Preserve published Bf despite the +0.822078 mm residual; see audit.
  */
 
 const LENS_DATA = {
@@ -319,7 +325,7 @@ const LENS_DATA = {
 
     { label: "STO", R: 1e15, d: 0.5, nd: 1.0, elemId: 0, sd: 10.5 },
     { label: "15", R: 53.396, d: 3.4, nd: 1.72916, elemId: 8, sd: 11.2 },
-    { label: "16", R: -92.103, d: 1.0, nd: 1.0, elemId: 0, sd: 11.2 },
+    { label: "16", R: -92.103, d: 0.1, nd: 1.0, elemId: 0, sd: 11.2 },
     { label: "17", R: 39.7508, d: 5.0, nd: 1.49782, elemId: 9, sd: 11.5 },
     { label: "18", R: -41.4651, d: 1.0, nd: 1.84666, elemId: 10, sd: 11.5 },
     { label: "19", R: -356.7126, d: 0.1, nd: 1.0, elemId: 0, sd: 11.5 },

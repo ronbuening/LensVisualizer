@@ -21,6 +21,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-09-25",
     type: "fix",
+    summary: "Corrected the Nikon AF-S 28-300mm's miscopied air gap from its patent",
+  },
+  {
+    date: "2026-09-25",
+    type: "fix",
     summary: "Restored the Viltrox AF 50mm f/1.8 FE's physical patent filter path",
   },
   {
