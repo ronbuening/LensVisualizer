@@ -137,7 +137,6 @@ the row. Offset is paraxial focus minus the authored plane (positive: the plane 
 | Lens | File | Offset (mm) | Depths | Cause | Status |
 |---|---|---|---|---|---|
 | FUJIFILM FUJINON XF 18mm f/2 R | `fujifilm/FujifilmXF18mmf2.data.ts` | +4.993 | 1062 | D16 ends at omitted PP; Table 7 leaves its trailing image gap blank; EFL also differs | partial (source image distance missing; S13 A10 typo corrected, no paraxial effect) |
-| SONY FE 70-200mm f/4 G OSS | `sony/SonyFE70200mmf4G.data.ts` | -0.812 | 43 | Not yet diagnosed; check the source image distance | todo |
 | NIKON AF-S NIKKOR 28-300mm f/3.5-5.6 G ED VR | `nikon/NikonNikkorAFS28300mmf3556G.data.ts` | +0.714 | 48 | Not yet diagnosed; check the source image distance | todo |
 | CANON EF 500mm f/4 L IS USM | `canon/CanonEF500mmf4LISUSM.data.ts` | +0.670 | 34 | Rear filter folded to air-equivalent; offset is the source image distance, not the fold | todo |
 | VILTROX AF 35mm f/1.8 FE | `viltrox/ViltroxAF35mmf18FE.data.ts` | -0.552 | 145 | Plate folded to air-equivalent; analysis notes the printed BFL condition is not reproduced | todo |

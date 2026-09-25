@@ -254,7 +254,7 @@ The transcribed prescription was independently checked with a paraxial y/nu trac
 | Middle | 122.9480 mm | 122.9747 mm | +0.0267 mm | 4.0559 |
 | Telephoto | 193.9726 mm | 193.9119 mm | -0.0607 mm | 4.1269 |
 
-The back-focus distance implied by the 190.0000 mm total lens length is 42.9273 mm at all zoom positions. The stop semi-diameter used in the data file is 12.25 mm, which reproduces the patent f-number range to first-order tolerance. Estimated semi-diameters were checked for edge thickness and cross-gap intrusion; the tightest edge thickness is 0.404 mm at element 10, and the largest same-element semi-diameter ratio is 1.25.
+The back-focus distance implied by the 190.0000 mm total lens length is 42.9273 mm at all zoom positions. The wide-infinity prescription instead gives paraxial BFL 42.115294 mm, placing focus 0.812006 mm in front of that authored image plane. Every R/d/nd/vd row, asphere coefficient and infinity zoom spacing matches Tables 1–3, and no rear plate is listed. The source track and its residual contradiction are retained without fitting BF or attributing the mismatch to an unverified misprint. The stop semi-diameter used in the data file is 12.25 mm, which reproduces the patent f-number range to first-order tolerance. Estimated semi-diameters were checked for edge thickness and cross-gap intrusion; the tightest edge thickness is 0.404 mm at element 10, and the largest same-element semi-diameter ratio is 1.25.
 
 ## Sources
 
