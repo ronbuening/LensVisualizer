@@ -12,6 +12,7 @@ import type { PaneCoordinates } from "./comparisonTypes.js";
 import type { LensState, LensAction } from "../types/state.js";
 
 /* ── Action type constants ── */
+export const SELECT_PANE_SOURCE_STATE = "SELECT_PANE_SOURCE_STATE";
 export const SET_COMPARISON_FOCUS_ZOOM = "SET_COMPARISON_FOCUS_ZOOM";
 export const SET_PANE_COORDINATES = "SET_PANE_COORDINATES";
 export const SET_SCALE_MODE = "SET_SCALE_MODE";
@@ -30,6 +31,28 @@ export const EXIT_COMPARE = "EXIT_COMPARE";
  */
 export default function comparisonReducer(state: LensState, action: LensAction): LensState | null {
   switch (action.type) {
+    case SELECT_PANE_SOURCE_STATE: {
+      if (!state.lens.comparing || action.lensKey !== (action.pane === "a" ? state.lens.lensKeyA : state.lens.lensKeyB))
+        return state;
+      const current = state.sharedSliders.focusZoom;
+      const positions = current.mode === "independent" ? current : action.positions;
+      const { focusT, zoomT } = action.sourceState;
+      if (!validCoordinates(positions.a) || !validCoordinates(positions.b) || !validCoordinates({ focusT, zoomT }))
+        return state;
+      return {
+        ...state,
+        rays: { ...state.rays, rayTracksF: true },
+        sharedSliders: {
+          ...state.sharedSliders,
+          focusZoom: {
+            mode: "independent",
+            a: { ...positions.a },
+            b: { ...positions.b },
+            [action.pane]: { focusT, zoomT },
+          },
+        },
+      };
+    }
     case SET_COMPARISON_FOCUS_ZOOM: {
       if (!state.lens.comparing) return state;
       const value = action.focusZoom;

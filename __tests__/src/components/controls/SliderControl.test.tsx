@@ -112,3 +112,14 @@ describe("SliderControl", () => {
     expect(wrapper.style.borderBottom).toBeFalsy();
   });
 });
+
+it("retains an authored coordinate between steps and preserves configured keyboard increments", () => {
+  const onChange = vi.fn();
+  const value = 0.7123456789;
+  render(<SliderControl {...baseProps} value={value} onChange={onChange} />);
+  const input = screen.getByRole("slider") as HTMLInputElement;
+  expect(input.value).toBe(String(value));
+  expect(input.step).toBe("any");
+  fireEvent.keyDown(input, { key: "ArrowRight" });
+  expect(onChange).toHaveBeenCalledExactlyOnceWith(value + baseProps.step);
+});

@@ -5,6 +5,8 @@
  * keeping the core state types focused on single-lens concerns.
  */
 
+import type { LensSourceState } from "../types/optics.js";
+
 export interface PaneCoordinates {
   focusT: number;
   zoomT: number;
@@ -29,6 +31,13 @@ export interface SharedSlidersSlice {
 
 /** Comparison-specific action variants. */
 export type ComparisonAction =
+  | {
+      type: "SELECT_PANE_SOURCE_STATE";
+      pane: "a" | "b";
+      lensKey: string;
+      sourceState: LensSourceState;
+      positions: ComparisonPositions;
+    }
   | { type: "SET_COMPARISON_FOCUS_ZOOM"; focusZoom: ComparisonFocusZoomState }
   | { type: "SET_PANE_COORDINATES"; pane: "a" | "b"; lensKey: string; coordinates: PaneCoordinates }
   | { type: "SET_SCALE_MODE"; scaleMode: "independent" | "normalized" }

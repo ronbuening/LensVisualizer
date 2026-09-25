@@ -6,12 +6,18 @@
  * and SharedSlidersBar (unified slider controls).
  */
 
+import type { ComparisonFocusZoomState } from "./comparisonTypes.js";
 import type { Dispatch } from "react";
 import ComparisonLayout from "./ComparisonLayout.js";
 import SharedSlidersBar from "./SharedSlidersBar.js";
 import SharedAnalysisDock from "./SharedAnalysisDock.js";
 import { isComparisonOk, type ComparisonLensesResult } from "./useComparisonMode.js";
-import { SET_SHARED_ZOOM_T } from "./comparisonReducer.js";
+import {
+  SELECT_PANE_SOURCE_STATE,
+  SET_COMPARISON_FOCUS_ZOOM,
+  SET_PANE_COORDINATES,
+  SET_SHARED_ZOOM_T,
+} from "./comparisonReducer.js";
 import { SET_GROUP_MOVEMENT } from "../utils/state/lensReducer.js";
 import { ErrorDisplay } from "../components/errors/ErrorBoundary.js";
 import type { FocusPairResult, AperturePairResult, ZoomPairResult, MovementPairResult } from "./comparisonSliders.js";
@@ -33,6 +39,7 @@ interface ComparisonContentProps {
   maxHeaderHeight: number;
   onHeaderHeight: (panelId: string, height: number) => void;
   flashPanel: string | null;
+  focusZoom?: ComparisonFocusZoomState;
   sharedFocusT: number;
   sharedStopdownT: number;
   sharedZoomT: number;
@@ -64,6 +71,7 @@ export default function ComparisonContent({
   maxHeaderHeight,
   onHeaderHeight,
   flashPanel,
+  focusZoom = { mode: "linked" },
   sharedFocusT,
   sharedStopdownT,
   sharedZoomT,
@@ -96,6 +104,43 @@ export default function ComparisonContent({
           : undefined
       }
     >
+      {focusPair && zoomPair ? (
+        <div style={{ padding: "8px 14px", color: t.desc, fontSize: 12 }}>
+          <label>
+            Focus &amp; zoom{" "}
+            <select
+              aria-label="Comparison focus and zoom"
+              value={focusZoom.mode}
+              style={{
+                color: t.value,
+                background: t.panelBg,
+                border: `1px solid ${t.panelDivider}`,
+                padding: 5,
+                borderRadius: 4,
+              }}
+              onChange={(event) =>
+                dispatch({
+                  type: SET_COMPARISON_FOCUS_ZOOM,
+                  focusZoom:
+                    event.target.value === "independent"
+                      ? {
+                          mode: "independent",
+                          a: { focusT: focusPair.focusA, zoomT: zoomPair.zoomA },
+                          b: { focusT: focusPair.focusB, zoomT: zoomPair.zoomB },
+                        }
+                      : { mode: "linked" },
+                })
+              }
+            >
+              <option value="linked">Linked</option>
+              <option value="independent">Independent</option>
+            </select>
+          </label>
+          <span style={{ marginLeft: 8 }}>
+            Aperture stays shared. Selecting a lens state makes focus and zoom independent.
+          </span>
+        </div>
+      ) : null}
       {comparisonLenses?.error ? (
         <div
           style={{
@@ -135,6 +180,22 @@ export default function ComparisonContent({
               maxHeaderHeight={maxHeaderHeight}
               onHeaderHeight={onHeaderHeight}
               flashPanel={flashPanel}
+              independent={focusZoom.mode === "independent"}
+              onPaneCoordinates={(pane, lensKey, coordinates) =>
+                dispatch({ type: SET_PANE_COORDINATES, pane, lensKey, coordinates })
+              }
+              onSelectSourceState={(pane, lensKey, sourceState) =>
+                dispatch({
+                  type: SELECT_PANE_SOURCE_STATE,
+                  pane,
+                  lensKey,
+                  sourceState,
+                  positions: {
+                    a: { focusT: focusPair.focusA, zoomT: zoomPair.zoomA },
+                    b: { focusT: focusPair.focusB, zoomT: zoomPair.zoomB },
+                  },
+                })
+              }
             />
           </div>
         )
@@ -145,6 +206,7 @@ export default function ComparisonContent({
       {isComparisonOk(comparisonLenses) && focusPair && aperturePair && (
         <div style={isWide ? { flex: "0 0 auto", maxHeight: "34%", overflowY: "auto" } : undefined}>
           <SharedSlidersBar
+            independentFocusZoom={focusZoom.mode === "independent"}
             LA={comparisonLenses.LA}
             LB={comparisonLenses.LB}
             sharedFocusT={sharedFocusT}

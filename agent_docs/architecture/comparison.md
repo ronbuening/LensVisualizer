@@ -40,6 +40,11 @@ Independent mode retains exact normalized coordinates for A and B. Entering Inde
 resolved positions before a pane changes, avoiding jumps when prime/zoom ranges differ. Aperture and perspective
 movement remain shared. The pure `computeComparisonGeometry` helper resolves the effective coordinates for all panes.
 
+The Focus & zoom mode control and each pane's MTF source selector use this shared state. Selecting a source state
+enters Independent atomically, changes only that pane, and enables focus-following rays. Per-pane focus/zoom sliders
+remain below the diagrams when MTF closes; the bottom bar continues to own aperture and movement. Range controls
+preserve authored values between slider steps rather than allowing the browser to round the displayed coordinate.
+
 ## Scale Modes
 
 Comparison mode can normalize the two panels so users can compare physical scale or framing. Scale ratios are computed

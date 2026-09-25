@@ -738,3 +738,45 @@ it("copies both resolved panes atomically on unlink and retains exact independen
     }),
   ).toBe(changed);
 });
+
+it("selects either pane's source state without moving the other pane or shared aperture", () => {
+  const state = makeState();
+  state.lens.comparing = true;
+  state.sharedSliders.sharedStopdownT = 0.35;
+  state.rays.rayTracksF = false;
+  const positions = { a: { focusT: 0.2, zoomT: 0.3 }, b: { focusT: 0.4, zoomT: 0.5 } };
+  const sourceState = {
+    id: "near",
+    label: "Near",
+    focusT: 0.7123456789,
+    zoomT: 1 / 3,
+    source: "Synthetic",
+    conjugate: { kind: "infinity" as const },
+  };
+  const a = lensReducer(state, {
+    type: "SELECT_PANE_SOURCE_STATE",
+    pane: "a",
+    lensKey: state.lens.lensKeyA,
+    sourceState,
+    positions,
+  });
+  expect(a.sharedSliders.focusZoom).toEqual({
+    mode: "independent",
+    a: { focusT: sourceState.focusT, zoomT: sourceState.zoomT },
+    b: positions.b,
+  });
+  const b = lensReducer(a, {
+    type: "SELECT_PANE_SOURCE_STATE",
+    pane: "b",
+    lensKey: state.lens.lensKeyB,
+    sourceState: { ...sourceState, focusT: 1 },
+    positions,
+  });
+  expect(b.sharedSliders.focusZoom).toEqual({
+    mode: "independent",
+    a: { focusT: sourceState.focusT, zoomT: sourceState.zoomT },
+    b: { focusT: 1, zoomT: sourceState.zoomT },
+  });
+  expect(b.sharedSliders.sharedStopdownT).toBe(0.35);
+  expect(b.rays.rayTracksF).toBe(true);
+});

@@ -38,7 +38,7 @@ import AnalysisDrawerContent from "./lensDiagram/AnalysisDrawerContent.js";
 import LensGroupMovementOverlay from "../display/overlays/LensGroupMovementOverlay.js";
 import LensDiagramErrorState from "./lensDiagram/LensDiagramErrorState.js";
 import LensDiagramLoadedState from "./lensDiagram/LensDiagramLoadedState.js";
-import type { RuntimeLens } from "../../types/optics.js";
+import type { LensSourceState, RuntimeLens } from "../../types/optics.js";
 import { foldedHitOrderLabelsForDisplay } from "../../optics/foldedPathDisplay.js";
 import { isHeavyLensForRayWork } from "../../optics/raySampling.js";
 import { normalizePanelId, selectedElementKeyForPanel } from "../../types/state.js";
@@ -65,6 +65,7 @@ interface LensDiagramPanelProps {
   fillAvailableHeight?: boolean;
   /** Desktop comparison view: the shared dock under both panes replaces this panel's analysis launcher. */
   sharedAnalysisControls?: boolean;
+  onSelectSourceState?: (lensKey: string, sourceState: LensSourceState) => void;
 }
 
 export default function LensDiagramPanel({
@@ -88,6 +89,7 @@ export default function LensDiagramPanel({
   sideLayoutEnabled = false,
   fillAvailableHeight = false,
   sharedAnalysisControls = false,
+  onSelectSourceState,
 }: LensDiagramPanelProps) {
   /* ── Read shared state from context ── */
   const { state, theme: t, isWide } = useLensCtx();
@@ -479,7 +481,7 @@ export default function LensDiagramPanel({
                 sliderInteracting={sliderInteracting}
                 aberrationsExpanded={aberrationsExpanded}
                 onAberrationsExpandedChange={adapters.onAberrationsExpandedChange}
-                onSelectSourceState={adapters.onSelectSourceState}
+                onSelectSourceState={onSelectSourceState ?? adapters.onSelectSourceState}
               />
             ) : null
           }

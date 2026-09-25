@@ -72,6 +72,7 @@ interface SharedSlidersBarProps {
   onOpenGroupMovement?: (mode: GroupMovementMode) => void;
   theme: Theme;
   isWide: boolean;
+  independentFocusZoom?: boolean;
 }
 
 export default function SharedSlidersBar({
@@ -105,6 +106,7 @@ export default function SharedSlidersBar({
   onOpenGroupMovement,
   theme: t,
   isWide,
+  independentFocusZoom = false,
 }: SharedSlidersBarProps) {
   const { commonPoint: focusCP, minCloseFocus } = focusPair;
   const { commonPoint: apertureCP, widerFOPEN, sharedMaxFstop } = aperturePair;
@@ -221,7 +223,7 @@ export default function SharedSlidersBar({
         }}
       >
         {/* Zoom slider (only when at least one lens is a zoom) */}
-        {showZoom && (
+        {showZoom && !independentFocusZoom && (
           <SharedSliderSection
             theme={t}
             label="ZOOM"
@@ -334,37 +336,39 @@ export default function SharedSlidersBar({
         )}
 
         {/* Focus slider */}
-        <SharedSliderSection
-          theme={t}
-          label="FOCUS"
-          valueLabel={focusDistStr}
-          minLabel={"\u221e"}
-          maxLabel={`${minCloseFocus} m`}
-          sliderValue={sharedFocusT}
-          onSliderChange={onSharedFocusChange}
-          onPointerDown={onFocusPointerDown}
-          onPointerUp={onSliderPointerUp}
-          markerPositions={showFocusCP ? [focusCP] : []}
-          action={
-            movementAvailabilityA.focus || movementAvailabilityB.focus ? motionButton("focus", "focus") : undefined
-          }
-          readouts={
-            <>
-              <span>
-                A: {formatDist(focusPair.focusA, LA, zoomPair?.zoomA)}
-                {focusPair.focusA > 0.003 && focusedEflDiffersA && (
-                  <span style={{ opacity: 0.7 }}> ({dynamicEflA.toFixed(1)} mm)</span>
-                )}
-              </span>
-              <span>
-                B: {formatDist(focusPair.focusB, LB, zoomPair?.zoomB)}
-                {focusPair.focusB > 0.003 && focusedEflDiffersB && (
-                  <span style={{ opacity: 0.7 }}> ({dynamicEflB.toFixed(1)} mm)</span>
-                )}
-              </span>
-            </>
-          }
-        />
+        {!independentFocusZoom && (
+          <SharedSliderSection
+            theme={t}
+            label="FOCUS"
+            valueLabel={focusDistStr}
+            minLabel={"\u221e"}
+            maxLabel={`${minCloseFocus} m`}
+            sliderValue={sharedFocusT}
+            onSliderChange={onSharedFocusChange}
+            onPointerDown={onFocusPointerDown}
+            onPointerUp={onSliderPointerUp}
+            markerPositions={showFocusCP ? [focusCP] : []}
+            action={
+              movementAvailabilityA.focus || movementAvailabilityB.focus ? motionButton("focus", "focus") : undefined
+            }
+            readouts={
+              <>
+                <span>
+                  A: {formatDist(focusPair.focusA, LA, zoomPair?.zoomA)}
+                  {focusPair.focusA > 0.003 && focusedEflDiffersA && (
+                    <span style={{ opacity: 0.7 }}> ({dynamicEflA.toFixed(1)} mm)</span>
+                  )}
+                </span>
+                <span>
+                  B: {formatDist(focusPair.focusB, LB, zoomPair?.zoomB)}
+                  {focusPair.focusB > 0.003 && focusedEflDiffersB && (
+                    <span style={{ opacity: 0.7 }}> ({dynamicEflB.toFixed(1)} mm)</span>
+                  )}
+                </span>
+              </>
+            }
+          />
+        )}
 
         {/* Aperture slider */}
         <SharedSliderSection

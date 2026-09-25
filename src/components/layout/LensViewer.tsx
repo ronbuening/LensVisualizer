@@ -360,6 +360,7 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
                 maxHeaderHeight={maxHeaderHeight}
                 onHeaderHeight={handleHeaderHeight}
                 flashPanel={flashPanel}
+                focusZoom={sharedSliders.focusZoom}
                 sharedFocusT={sharedFocusT}
                 sharedStopdownT={sharedStopdownT}
                 sharedZoomT={sharedZoomT}

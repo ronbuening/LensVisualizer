@@ -9,9 +9,10 @@
  */
 
 import { createElement } from "react";
-import { cleanup, render, screen } from "@testing-library/react";
+import { cleanup, render, screen, fireEvent } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import ComparisonLayout from "../../../src/comparison/ComparisonLayout.js";
+import { buildVariableStopGapLens } from "../optics/testLensFixtures.js";
 import themes from "../../../src/utils/theme/themes.js";
 
 const lensDiagramPanelMock = vi.fn((props: { panelId: string; lensKey: string }) =>
@@ -81,6 +82,7 @@ describe("ComparisonLayout", () => {
     expect(lensDiagramPanelMock).toHaveBeenCalledTimes(2);
     expect(lensDiagramPanelMock.mock.calls[0]?.[0]).toMatchObject({
       lensKey: "lens-a",
+      aberrationT: 0,
       focusT: 0.25,
       zoomT: 0.1,
       stopdownT: 0.2,
@@ -95,6 +97,7 @@ describe("ComparisonLayout", () => {
     });
     expect(lensDiagramPanelMock.mock.calls[1]?.[0]).toMatchObject({
       lensKey: "lens-b",
+      aberrationT: 0,
       focusT: 0.75,
       zoomT: 0.9,
       stopdownT: 0.6,
@@ -108,8 +111,8 @@ describe("ComparisonLayout", () => {
       fillAvailableHeight: true,
     });
 
-    expect(getByTestId("panel-a").parentElement?.style.borderRight).toContain("solid");
-    expect(getByTestId("panel-a").parentElement?.parentElement?.style.height).toBe("100%");
+    expect(getByTestId("panel-a").parentElement?.parentElement?.style.borderRight).toContain("solid");
+    expect(getByTestId("panel-a").parentElement?.parentElement?.parentElement?.style.height).toBe("100%");
     expect(getByTestId("panel-a").parentElement?.style.minHeight).toBe("0px");
   });
 
@@ -147,6 +150,45 @@ describe("ComparisonLayout", () => {
       scaleRatio: null,
       fillAvailableHeight: false,
     });
-    expect(getByTestId("panel-a").parentElement?.style.borderBottom).toContain("solid");
+    expect(getByTestId("panel-a").parentElement?.parentElement?.style.borderBottom).toContain("solid");
   });
+});
+
+it("keeps exact independent focus controls below both diagram panels", () => {
+  const LA = buildVariableStopGapLens([10, 11], "pane-a");
+  const LB = buildVariableStopGapLens([10, 12], "pane-b");
+  const onPaneCoordinates = vi.fn();
+  render(
+    createElement(ComparisonLayout, {
+      theme: themes.dark,
+      isWide: true,
+      lensKeyA: LA.data.key,
+      lensKeyB: LB.data.key,
+      independent: true,
+      comparisonLenses: { LA, LB },
+      onPaneCoordinates,
+      focusPair: { focusA: 0.7123456789, focusB: 0.4, commonPoint: 1, minCloseFocus: 0.4, maxCloseFocus: 0.4 },
+      zoomPair: { zoomA: 0, zoomB: 0, showZoom: false },
+      aperturePair: {
+        stopdownA: 0.2,
+        stopdownB: 0.2,
+        commonPoint: 0,
+        widerFOPEN: 2,
+        narrowerFOPEN: 2,
+        sharedMaxFstop: 16,
+      },
+      scaleRatios: null,
+      maxHeaderHeight: 0,
+      onHeaderHeight: vi.fn(),
+      flashPanel: null,
+    }),
+  );
+  const a = screen.getByRole("slider", { name: "A FOCUS" }) as HTMLInputElement;
+  const b = screen.getByRole("slider", { name: "B FOCUS" }) as HTMLInputElement;
+  expect(a.value).toBe("0.7123456789");
+  expect(b.value).toBe("0.4");
+  fireEvent.change(a, { target: { value: "0.8" } });
+  expect(onPaneCoordinates).toHaveBeenCalledExactlyOnceWith("a", LA.data.key, { focusT: 0.8, zoomT: 0 });
+  expect(b.value).toBe("0.4");
+  cleanup();
 });

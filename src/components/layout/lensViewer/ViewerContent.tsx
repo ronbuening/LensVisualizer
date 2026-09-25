@@ -16,6 +16,7 @@ import type {
 } from "../../../comparison/comparisonSliders.js";
 import type { Theme } from "../../../types/theme.js";
 import type { DesktopView, LensAction, MobileView } from "../../../types/state.js";
+import type { ComparisonFocusZoomState } from "../../../comparison/comparisonTypes.js";
 import type { Dispatch } from "react";
 
 interface ViewerContentProps {
@@ -34,6 +35,7 @@ interface ViewerContentProps {
   maxHeaderHeight: number;
   onHeaderHeight: (panelId: string, height: number) => void;
   flashPanel: string | null;
+  focusZoom?: ComparisonFocusZoomState;
   sharedFocusT: number;
   sharedStopdownT: number;
   sharedZoomT: number;
@@ -71,6 +73,7 @@ export default function ViewerContent({
   maxHeaderHeight,
   onHeaderHeight,
   flashPanel,
+  focusZoom = { mode: "linked" },
   sharedFocusT,
   sharedStopdownT,
   sharedZoomT,
@@ -107,6 +110,7 @@ export default function ViewerContent({
         maxHeaderHeight={maxHeaderHeight}
         onHeaderHeight={onHeaderHeight}
         flashPanel={flashPanel}
+        focusZoom={focusZoom}
         sharedFocusT={sharedFocusT}
         sharedStopdownT={sharedStopdownT}
         sharedZoomT={sharedZoomT}

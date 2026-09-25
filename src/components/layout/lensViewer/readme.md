@@ -13,8 +13,8 @@ flowchart LR
     n_src_components_layout_lensViewer_src_components_layout_lensViewer_ViewerContent_tsx["ViewerContent.tsx"]
     n_src_components_layout_lensViewer_src_components_layout_lensViewer_ViewerOverlays_tsx["ViewerOverlays.tsx"]
   end
-  n_external_src_components_layout["src/components/layout"]
   n_external_src_comparison["src/comparison"]
+  n_external_src_components_layout["src/components/layout"]
   n_external_src_types["src/types"]
   n_external_pkg_react["pkg:react"]
   n_external_src_components_controls["src/components/controls"]
@@ -23,8 +23,8 @@ flowchart LR
   n_external_src_utils_featureFlags_ts["src/utils/featureFlags.ts"]
   n_external_src_utils_state["src/utils/state"]
   n_external_src_utils_style["src/utils/style"]
+  n_src_components_layout_lensViewer_src_components_layout_lensViewer_ViewerContent_tsx --> |4| n_external_src_comparison
   n_src_components_layout_lensViewer_src_components_layout_lensViewer_ViewerChrome_tsx --> |4| n_external_src_components_layout
-  n_src_components_layout_lensViewer_src_components_layout_lensViewer_ViewerContent_tsx --> |3| n_external_src_comparison
   n_src_components_layout_lensViewer_src_components_layout_lensViewer_ViewerOverlays_tsx --> |3| n_external_src_components_layout
   n_src_components_layout_lensViewer_src_components_layout_lensViewer_ViewerChrome_tsx --> |2| n_external_src_types
   n_src_components_layout_lensViewer_src_components_layout_lensViewer_ViewerContent_tsx --> |2| n_external_src_types
@@ -44,7 +44,7 @@ flowchart LR
 
 - Direct source files: 3
 - Direct subfolders: 0
-- Main outbound areas: src/components/layout (8), src/types (5), src/comparison (3), package:react (2), src/components/controls, src/components/display, src/utils/catalog, src/utils/featureFlags.ts, +2 more
+- Main outbound areas: src/components/layout (8), src/types (5), src/comparison (4), package:react (2), src/components/controls, src/components/display, src/utils/catalog, src/utils/featureFlags.ts, +2 more
 - External consumers: src/components/layout
 
 ## Files
@@ -52,5 +52,5 @@ flowchart LR
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
 | `ViewerChrome.tsx` | React component module | src/components/layout (4), src/types (2), package:react, src/components/controls, src/utils/catalog, +3 more | src/components/layout | default, ViewerChrome |
-| `ViewerContent.tsx` | React component module | src/comparison (3), src/types (2), package:react, src/components/layout | src/components/layout | default, ViewerContent |
+| `ViewerContent.tsx` | React component module | src/comparison (4), src/types (2), package:react, src/components/layout | src/components/layout | default, ViewerContent |
 | `ViewerOverlays.tsx` | React component module | src/components/layout (3), src/components/display, src/types | src/components/layout | default, ViewerOverlays |

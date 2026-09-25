@@ -78,13 +78,31 @@ export default function SliderControl({
     cursor: disabled ? "not-allowed" : "pointer",
     accentColor: disabled ? t.focusEndpoint : t.sliderAccent,
   };
+  // A controlled authored station can lie between slider steps. Preserve its exact DOM value;
+  // keyboard changes still use the configured step rather than the browser's default for `any`.
+  const aligned = Math.abs((value - min) / step - Math.round((value - min) / step)) < 1e-8;
   const rangeInput = (
     <input
       aria-label={label}
       type="range"
       min={min}
       max={max}
-      step={step}
+      step={aligned ? step : "any"}
+      onKeyDown={(event) => {
+        if (aligned || disabled || !onChange) return;
+        const increments: Record<string, number | undefined> = {
+          ArrowRight: 1,
+          ArrowUp: 1,
+          ArrowLeft: -1,
+          ArrowDown: -1,
+          PageUp: 10,
+          PageDown: -10,
+        };
+        const delta = increments[event.key];
+        if (delta === undefined) return;
+        event.preventDefault();
+        onChange(Math.max(min, Math.min(max, value + delta * step)));
+      }}
       value={value}
       disabled={disabled}
       onPointerDown={disabled ? undefined : onPointerDown}

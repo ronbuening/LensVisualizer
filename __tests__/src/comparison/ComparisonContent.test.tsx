@@ -92,6 +92,17 @@ describe("ComparisonContent", () => {
       screen.getByTestId("shared-analysis-dock").nextElementSibling?.contains(screen.getByTestId("shared-sliders")),
     ).toBe(true);
 
+    fireEvent.change(screen.getByRole("combobox", { name: "Comparison focus and zoom" }), {
+      target: { value: "independent" },
+    });
+    expect(dispatch).toHaveBeenCalledWith({
+      type: "SET_COMPARISON_FOCUS_ZOOM",
+      focusZoom: {
+        mode: "independent",
+        a: { focusT: 0.2, zoomT: 0 },
+        b: { focusT: 0.2, zoomT: 0 },
+      },
+    });
     fireEvent.click(screen.getByRole("button", { name: "Zoom" }));
     expect(dispatch).toHaveBeenCalledWith({ type: SET_SHARED_ZOOM_T, value: 0.4 });
     fireEvent.click(screen.getByRole("button", { name: "Focal length" }));
