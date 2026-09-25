@@ -182,6 +182,12 @@ At the 1.0× endpoint, a paraxial object-distance solution from the final data g
 
 Canon's manual also distinguishes nominal maximum aperture from close-focus effective f-number: it lists effective f/3.8 at 1:10 and f/5.8 at 1:1. The patent aberration plots are very similar, showing about f/3.9 at 0.1× and f/5.8 at 1.0×. These close-focus effective values do not replace the authored `nominalFno: 3.6`, which is the infinity design f-number controlling the modeled stop and pupil geometry.
 
+All four published keyframes are selectable source states. The finite object distances are **calculated**
+from each fixed prescription and the published 67.54 mm final image distance, then independently verified
+with small-height exact rays against the source reproduction ratios. They are 1871.3713, 431.8924 and
+252.0562 mm before the first surface at 0.1×, 0.5× and 1× respectively. Source rounding remains visible;
+no focus travel, aperture or image-plane value was adjusted for this verification.
+
 ## Chromatic Correction Strategy
 
 The chromatic strategy is visible at the level of index/Abbe placement and patent constraints, but not at the level of verified secondary-spectrum ray tracing. Canon identifies Elements 2, 4, and 11 as UD in the production lens; the three corresponding data elements share nd = 1.49700 and νd = 81.6. Two lie in the fixed positive L1a group and one is the positive member of the moving L3 cemented pair.

@@ -276,6 +276,62 @@ const LENS_DATA = {
 
   asph: {},
 
+  sourceStates: [
+    {
+      id: "infinity",
+      label: "Infinity",
+      focusT: 0,
+      zoomT: 0,
+      source: "JP1997211319A, Numerical Example 1, PDF p. 6 (printed pp. 9–10), infinity spacing column; fixed d27=67.54 mm.",
+      conjugate: { kind: "infinity" },
+    },
+    {
+      id: "one-tenth-life-size",
+      label: "One-tenth life-size",
+      focusT: 0.22912992694228013,
+      zoomT: 0,
+      source: "JP1997211319A, Numerical Example 1, PDF p. 6 (printed pp. 9–10), 0.1x spacing column; fixed d27=67.54 mm. Independent distance evidence in CanonEF180mmf35LMacroUSM.audit.md.",
+      conjugate: {
+        kind: "finite",
+        objectDistanceMm: 1871.3713033965507,
+        distanceReference: "first-surface",
+        distanceProvenance: "calculated",
+        derivation: "Fixed published geometry and image plane: s=-B/A with A=-0.09999423164489235 and B=187.1263356054388 mm; independently checked by small-height exact rays. Calculated object-to-image distance 2094.8813033965507 mm; published reproduction ratio reproduced within 0.036% (rounded source tables).",
+        magnification: 0.1,
+      },
+    },
+    {
+      id: "half-life-size",
+      label: "Half life-size",
+      focusT: 0.7323745404242055,
+      zoomT: 0,
+      source: "JP1997211319A, Numerical Example 1, PDF p. 6 (printed pp. 9–10), 0.5x spacing column; fixed d27=67.54 mm. Independent distance evidence in CanonEF180mmf35LMacroUSM.audit.md.",
+      conjugate: {
+        kind: "finite",
+        objectDistanceMm: 431.89235699888576,
+        distanceReference: "first-surface",
+        distanceProvenance: "calculated",
+        derivation: "Fixed published geometry and image plane: s=-B/A with A=-0.5000809158387507 and B=215.98112543175947 mm; independently checked by small-height exact rays. Calculated object-to-image distance 655.4023569988858 mm; published reproduction ratio reproduced within 0.036% (rounded source tables).",
+        magnification: 0.5,
+      },
+    },
+    {
+      id: "life-size",
+      label: "Life-size",
+      focusT: 1,
+      zoomT: 0,
+      source: "JP1997211319A, Numerical Example 1, PDF p. 6 (printed pp. 9–10), 1x spacing column; fixed d27=67.54 mm. Independent distance evidence in CanonEF180mmf35LMacroUSM.audit.md.",
+      conjugate: {
+        kind: "finite",
+        objectDistanceMm: 252.0562480324801,
+        distanceReference: "first-surface",
+        distanceProvenance: "calculated",
+        derivation: "Fixed published geometry and image plane: s=-B/A with A=-1.0003596722341306 and B=252.14690566633652 mm; independently checked by small-height exact rays. Calculated object-to-image distance 475.5662480324801 mm; published reproduction ratio reproduced within 0.036% (rounded source tables).",
+        magnification: 1,
+      },
+    },
+  ],
+
   focusPositions: [0, 0.22912992694228013, 0.7323745404242055, 1],
   var: {
     "12": [2.2, 5.19, 17.03, 31.58],
