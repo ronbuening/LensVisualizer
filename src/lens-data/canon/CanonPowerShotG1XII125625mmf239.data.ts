@@ -28,6 +28,13 @@ import type { LensDataInput } from "../../types/optics.js";
  * - Clear semi-diameters are estimated from multi-state marginal/chief ray
  *   envelopes, then constrained to satisfy sd/|R| < 0.90, element SD ratio <= 1.25,
  *   signed cross-gap sag intrusion <= 90% of the gap, and positive edge thickness.
+ *
+ * MTF source audit: Numerical Example 2 (PDF pp. 30–31) matches the stored
+ * prescription, including all six aspheres and the rear sensor block. At wide
+ * infinity, EFL 12.571053 differs from printed 12.84; air BFL 7.962884
+ * differs from printed BF 7.75 and rear reduced path 7.742205 mm.
+ * Paragraph 0085 explicitly calls BF paraxial. Preserve the source values
+ * and residual +0.220679 mm offset; this is not established designer best focus.
  */
 
 const LENS_DATA = {

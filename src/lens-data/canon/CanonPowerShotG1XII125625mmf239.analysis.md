@@ -235,3 +235,12 @@ All six zoom-group focal lengths re-compute to the patent values within normal t
 - Canon regional official PowerShot G1 X Mark II specifications: source for 14 elements in 11 groups, one double-sided UA aspherical lens, two double-sided aspherical lenses, 5 cm wide-angle closest focus, and 40 cm telephoto closest focus.
 - OHARA official glass catalog/search pages for S-NPH2, S-LAH66, S-LAL8, S-NPH3, S-FSL5, S-TIH6, and S-LAH60V.
 - HOYA optical glass catalog and molding-glass catalog data for TAFD35 / TAFD35L, M-TAF101, TAFD40, M-LAC130 / MP-LAC130, and M-TAFD305.
+
+## Image-plane source audit (2026-09-25)
+
+MTF source audit: Numerical Example 2 (PDF pp. 30–31) matches the stored
+prescription, including all six aspheres and the rear sensor block. At wide
+infinity, EFL 12.571053 differs from printed 12.84; air BFL 7.962884
+differs from printed BF 7.75 and rear reduced path 7.742205 mm.
+Paragraph 0085 explicitly calls BF paraxial. Preserve the source values
+and residual +0.220679 mm offset; this is not established designer best focus.
