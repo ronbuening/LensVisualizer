@@ -10,9 +10,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  Asphere: L54, both surfaces (source 26/27 → schema labels 26A/27A).                              ║
  * ║  Focus status: PUBLISHED. G4/L41 alone moves 5.09 mm imageward; D1 and D2 conserve 6.96 mm.       ║
  * ║                                                                                                    ║
- * ║  No prescription scaling is applied. The source GL sensor-cover plate (2.8 mm, n=1.517) and       ║
- * ║  its final 0.5 mm air space are omitted. Surface 27A therefore uses an air-equivalent rear         ║
- * ║  spacing of 13.929 + 2.800/1.517 + 0.500 = 16.2747481872 mm.                                     ║
+ * No prescription scaling is applied. Source GL is traced via rearPlates:
+ * 13.929 mm air + 2.8 mm glass (nd=1.517, vd=64.199) + 0.5 mm air.
+ * It is hidden from the lens diagram; its physical dispersion is unresolved.
  * ║                                                                                                    ║
  * ║  Semi-diameters are MODELING INFERENCES because Example 4 publishes none. STO.sd is calibrated    ║
  * ║  by first-order pupil tracing to the patent's nominal f/1.2 infinity state. Lens-surface SDs were  ║
@@ -30,6 +30,14 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    https://viltrox.com/blogs/insights/unleashing-creativity-with-the-viltrox-27mm-f1-2-xf-lens   ║
  * ║  Catalog sources: CDGM 2026 optical-glass database/catalog; HOYA 2026 optical-glass catalog.       ║
  * ╚════════════════════════════════════════════════════════════════════════════════════════════════════╝
+ *
+ * MTF image-plane audit (2026-09-25): CN115840281A Example 4, Tables
+ * 10–12 (PDF pp. 13–14), matches all R/d, nd/vd and aspheric coefficients.
+ * Restoring physical GL leaves the paraxial offset +0.024627 mm unchanged.
+ * EFL 27.706645 mm reproduces printed 27.7, but the source physical rear
+ * distance 17.229 mm differs from its prescription BFL 17.253627 mm.
+ * A small finite-aperture best-focus compromise is plausible, not stated
+ * by the patent. Preserve the source plane and document the residual.
  */
 
 /* SD review: CN115840281A, PDF p. 33, Fig. 4-1, 600 dpi, 2026-09-10 UTC.
@@ -270,7 +278,18 @@ const LENS_DATA = {
     { label: "24", R: 36.502, d: 6.6, nd: 1.946, elemId: 14, sd: 15.2 },
     { label: "25", R: -62.0, d: 1.842, nd: 1.0, elemId: 0, sd: 15.2 },
     { label: "26A", R: 32.474, d: 1.6, nd: 1.822, elemId: 15, sd: 14.2 },
-    { label: "27A", R: 21.22, d: 16.2747481872116, nd: 1.0, elemId: 0, sd: 14.0 },
+    { label: "27A", R: 21.22, d: 13.929, nd: 1.0, elemId: 0, sd: 14.0 },
+  ],
+
+  rearPlates: [
+    {
+      label: "GL",
+      thicknessMm: 2.8,
+      nd: 1.517,
+      vd: 64.199,
+      gapAfterMm: 0.5,
+      source: "CN115840281A, Example 4 Table 10, surfaces 28–29",
+    },
   ],
 
   /* ── Aspherical surfaces: patent uses the standard K convention ── */

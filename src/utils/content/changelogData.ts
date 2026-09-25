@@ -21,6 +21,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-09-25",
     type: "fix",
+    summary: "Restored the Viltrox AF 27mm f/1.2’s patent cover plate and physical image-plane gaps",
+  },
+  {
+    date: "2026-09-25",
+    type: "fix",
     summary: "Restored the Samyang AF 35mm f/2.8’s patent filter and physical image-plane gaps",
   },
   {

@@ -38,7 +38,7 @@ G1 is a weak negative front group composed of an air-spaced positive/negative pa
 
 The design has a negative front functional group, but under the project's geometric classification it is **not retrofocus**: the infinity Gaussian BFD/EFL ratio is **0.5883**, below the required `BFD > EFL` threshold. It is also not telephoto under the project's `TL/EFL < 1` definition; the active air-equivalent track/EFL ratio is **3.9013**.
 
-No uniform scale is applied. The source GL plate immediately ahead of the image plane is a 2.8 mm, n=1.517 sensor-cover plate and is excluded from the active LensVisualizer prescription. Its optical effect is retained by replacing the source rear path with a documented **16.2747482 mm air-equivalent spacing** after surface 27A. The resulting active air-equivalent first-surface-to-image track is **108.0917482 mm**.
+No uniform scale is applied. Source GL is traced through `rearPlates`: **13.929 mm air + 2.8 mm glass (nd=1.517, vd=64.199) + 0.5 mm air** after surface 27A. The physical first-surface-to-image track is **109.046 mm**. Its former 16.2747482 mm air-equivalent rear spacing preserved only paraxial propagation; the physical plate also affects finite-aperture rays. The source gives no supplier or line indices for GL, so its physical dispersion remains unresolved.
 
 The patent does not publish clear semi-diameters or a physical stop diameter. The data file therefore treats all surface semi-diameters and the stop semi-diameter as modeling inferences. The stop semi-diameter is **13.0957725 mm**, calibrated by first-order pupil tracing so that the infinity state is exactly f/1.2. These inferred apertures are not patent-published dimensions.
 
@@ -254,7 +254,7 @@ The active prescription's Petzval sum, evaluated surface by surface as `φ/(n·n
 
 The modeled semi-diameters and stop are not patent dimensions. They were validated against positive element edge thickness, actual spherical/aspherical rim slope, conic-domain limits, shared-band cross-gap intrusion, and exact meridional containment at both defined focus states. The model retains real wide-open edge-field vignetting where ray envelopes exceed physically valid apertures rather than enlarging surfaces beyond the geometry limits.
 
-There is no focus reconstruction, zoom model, folded path, filter, inactive dummy surface, or prescription scale factor. The only source-plane normalization is the documented omission of the sensor-cover plate and conversion of the final rear path to its air-equivalent spacing.
+There is no focus reconstruction, zoom model, folded path, inactive dummy surface, or prescription scale factor. The source sensor-cover plate and its physical gaps are modeled in `rearPlates`.
 
 ### Patent-figure SD review (2026-09-10 UTC)
 
@@ -267,3 +267,13 @@ Reviewed the local `patents/CN115840281A.pdf`, PDF page 33, Figure 4-1, at 600 d
 3. **Viltrox, “Unleashing Creativity with the Viltrox 27mm F1.2 XF Lens,” 2023-08-24**: https://viltrox.com/blogs/insights/unleashing-creativity-with-the-viltrox-27mm-f1-2-xf-lens
 4. **CDGM optical-glass catalog/database**, current catalog release used for L11–L53 dispersion-coordinate anchors: https://www.cdgmgd.com/go.htm?k=Colourless_Optical_Glass&url=goods
 5. **HOYA Optical World data downloads**, current catalog used for the L54 Hoya-family dispersion anchor: https://www.hoya-opticalworld.com/english/datadownload/index.html
+
+## Image-plane source audit (2026-09-25)
+
+MTF image-plane audit (2026-09-25): CN115840281A Example 4, Tables
+10–12 (PDF pp. 13–14), matches all R/d, nd/vd and aspheric coefficients.
+Restoring physical GL leaves the paraxial offset +0.024627 mm unchanged.
+EFL 27.706645 mm reproduces printed 27.7, but the source physical rear
+distance 17.229 mm differs from its prescription BFL 17.253627 mm.
+A small finite-aperture best-focus compromise is plausible, not stated
+by the patent. Preserve the source plane and document the residual.
