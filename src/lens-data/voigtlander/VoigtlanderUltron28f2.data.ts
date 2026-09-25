@@ -6,6 +6,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * Source radii, spacings, glass coordinates, source-listed element focal lengths and SDs retained.
  * Source summary and rounded table disagree in EFL/near conjugate; see analysis.
  * Figure101 cover/filter is excluded; no plate thickness/index is supplied for conversion.
+ *
+ * MTF census: Table 1 / ¶0035 explicitly defines ZD18 as last lens to image.
+ * At infinity ZD18=18.40; computed d-line BFL=18.469147 and EFL=28.579770
+ * versus printed 28.50. All radii/gaps/indices match. Preserve the source
+ * image distance and documented malformed A6; no evidence establishes a
+ * designer best-focus plane or supplies parameters for the depicted filter.
  */
 
 const LENS_DATA = {
