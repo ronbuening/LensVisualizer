@@ -479,6 +479,7 @@ export default function LensDiagramPanel({
                 sliderInteracting={sliderInteracting}
                 aberrationsExpanded={aberrationsExpanded}
                 onAberrationsExpandedChange={adapters.onAberrationsExpandedChange}
+                onSelectSourceState={adapters.onSelectSourceState}
               />
             ) : null
           }

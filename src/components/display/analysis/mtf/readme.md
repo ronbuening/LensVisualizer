@@ -9,6 +9,7 @@ Generated `readme.md` and `improvementsuggestions.md` files are intentionally om
 ```mermaid
 flowchart LR
   subgraph n_src_components_display_analysis_mtf["src/components/display/analysis/mtf"]
+    n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_LensStateSelector_tsx["LensStateSelector.tsx"]
     n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_MtfControls_tsx["MtfControls.tsx"]
     n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_mtfCsv_ts["mtfCsv.ts"]
     n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_MtfFieldSummary_tsx["MtfFieldSummary.tsx"]
@@ -17,19 +18,26 @@ flowchart LR
   n_external_src_components_controls["src/components/controls"]
   n_external_src_types["src/types"]
   n_external_pkg_react["pkg:react"]
+  n_external_src_optics_sourceStates_ts["src/optics/sourceStates.ts"]
+  n_external_src_optics_types_ts["src/optics/types.ts"]
   n_external_src_utils_state["src/utils/state"]
   n_external_src_utils_style["src/utils/style"]
   n_external_src_utils_useMediaQuery_ts["src/utils/useMediaQuery.ts"]
   n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_MtfControls_tsx --> |2| n_external_src_components_controls
+  n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_LensStateSelector_tsx --> |2| n_external_src_types
   n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_MtfControls_tsx --> |2| n_external_src_types
   n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_MtfFieldSummary_tsx --> |2| n_external_src_types
   n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_MtfValueTable_tsx --> |2| n_external_src_types
+  n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_LensStateSelector_tsx --> n_external_pkg_react
   n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_MtfControls_tsx --> n_external_pkg_react
   n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_MtfFieldSummary_tsx --> n_external_pkg_react
+  n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_LensStateSelector_tsx --> n_external_src_optics_sourceStates_ts
+  n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_LensStateSelector_tsx --> n_external_src_optics_types_ts
   n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_mtfCsv_ts --> n_external_src_types
   n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_MtfControls_tsx --> n_external_src_utils_state
   n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_MtfFieldSummary_tsx --> n_external_src_utils_state
   n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_MtfValueTable_tsx --> n_external_src_utils_state
+  n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_LensStateSelector_tsx --> n_external_src_utils_style
   n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_MtfControls_tsx --> n_external_src_utils_style
   n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_MtfControls_tsx --> n_external_src_utils_useMediaQuery_ts
   n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_MtfFieldSummary_tsx --> n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_mtfCsv_ts
@@ -38,15 +46,16 @@ flowchart LR
 
 ## Directory Overview
 
-- Direct source files: 4
+- Direct source files: 5
 - Direct subfolders: 0
-- Main outbound areas: src/types (7), src/utils/state (3), package:react (2), src/components/controls (2), src/components/display (2), src/utils/style, src/utils/useMediaQuery.ts
+- Main outbound areas: src/types (9), package:react (3), src/utils/state (3), src/components/controls (2), src/components/display (2), src/utils/style (2), src/optics/sourceStates.ts, src/optics/types.ts, +1 more
 - External consumers: src/components/display
 
 ## Files
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
+| `LensStateSelector.tsx` | React component module | src/types (2), package:react, src/optics/sourceStates.ts, src/optics/types.ts, src/utils/style | src/components/display | default, LensStateSelector |
 | `MtfControls.tsx` | React component module | src/components/controls (2), src/types (2), package:react, src/utils/state, src/utils/style, +1 more | src/components/display | default, MtfControls |
 | `mtfCsv.ts` | Mtf Csv helper module | src/types | src/components/display | mtfCsv |
 | `MtfFieldSummary.tsx` | React component module | src/components/display (2), src/types (2), package:react, src/utils/state | src/components/display | default, MtfFieldSummary |

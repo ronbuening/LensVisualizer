@@ -47,6 +47,11 @@ reducer update: exact focus/zoom coordinates, neutral aberration control, and fo
 aperture, movement, analysis panels, and preferences. Movement therefore still blocks MTF through the optical support
 checks. Source identity is resolved from coordinates rather than stored as a second copy of slider state.
 
+The MTF Lens state selector lists normalized source declarations, grouped by authored zoom station. It never changes
+sliders on mount. Unverified positions and prescriptions with no declarations have explicit placeholders; calculated
+distances and their reference plane remain visible with source/derivation details. The MTF image-plane control is a
+separate diagnostic. Selection stays available while movement blocks computation.
+
 ## Shareable View URLs
 
 Canonical lens identity stays in route paths: `/lens/:slug` and `/compare/:slugA/:slugB`. Query params encode the

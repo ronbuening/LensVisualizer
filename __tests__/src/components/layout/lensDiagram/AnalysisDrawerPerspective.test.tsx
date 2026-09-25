@@ -24,7 +24,7 @@ const EXPECTED_TAB_CONTENT = {
   aberrations: ["Intrinsic Lens-Axis Spherical Aberration (Classical)", "Fixed-Sensor Field Focus &amp; Astigmatism"],
   chromatic: ["Intrinsic Lens-Axis LoCA (Classical)", "Fixed-Sensor Chromatic Focus, TCA &amp; Ray Fans"],
   coma: ["Fixed-Sensor Coma Footprints &amp; Ray Fans"],
-  mtf: ["not available while tilt or shift is active"],
+  mtf: ["MTF is unavailable while tilt or shift is active.", "Lens state"],
   bokeh: ["Fixed-Sensor Bokeh &amp; Blur Footprints"],
   distortion: ["Perspective distortion — fixed sensor"],
   breathing: ["Focus breathing — intrinsic / lens-local"],

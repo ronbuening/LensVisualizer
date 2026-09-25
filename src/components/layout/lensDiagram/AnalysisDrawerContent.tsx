@@ -3,7 +3,7 @@ import { ANALYSIS_TAB_RENDERERS } from "./analysisTabRenderers.js";
 import usePreparedAnalysisState from "../../display/analysis/usePreparedAnalysisState.js";
 import { createAnalysisComputationContext } from "../../../optics/compat.js";
 import { analysisSamplingForQuality, type AnalysisQuality } from "../../../optics/analysis/analysisQuality.js";
-import type { RuntimeLens } from "../../../types/optics.js";
+import type { LensSourceState, RuntimeLens } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
 import type { FieldGeometryState } from "../../../optics/optics.js";
 import { traceRay } from "../../../optics/optics.js";
@@ -30,6 +30,7 @@ interface AnalysisDrawerContentProps {
   sliderInteracting?: boolean;
   aberrationsExpanded: boolean;
   onAberrationsExpandedChange: (expanded: boolean) => void;
+  onSelectSourceState?: (lensKey: string, sourceState: LensSourceState) => void;
 }
 
 const FOLDED_OPTICS_UNSUPPORTED_TABS = new Set<AnalysisTabId>(["chromatic", "coma", "distortion", "vignetting"]);
@@ -64,6 +65,7 @@ export default function AnalysisDrawerContent({
   sliderInteracting = false,
   aberrationsExpanded,
   onAberrationsExpandedChange,
+  onSelectSourceState,
 }: AnalysisDrawerContentProps) {
   // Defer all slider-derived inputs so analysis tabs only recompute when React
   // has idle time, keeping the main viewport responsive during drag.
@@ -203,7 +205,7 @@ export default function AnalysisDrawerContent({
   return withAnalysisNotices(
     foldedUnsupported
       ? foldedUnsupportedContent
-      : movementUnsupported
+      : movementUnsupported && activeTab !== "mtf"
         ? movementUnsupportedContent
         : ANALYSIS_TAB_RENDERERS[activeTab]({
             L,
@@ -214,6 +216,7 @@ export default function AnalysisDrawerContent({
             inputs: analysisInputs,
             aberrationsExpanded,
             onAberrationsExpandedChange,
+            onSelectSourceState,
           }),
   );
 }

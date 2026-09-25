@@ -1,6 +1,8 @@
 // @vitest-environment jsdom
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { act, cleanup, fireEvent, render, screen, within } from "@testing-library/react";
+import LensStateSelector from "../../../../../src/components/display/analysis/mtf/LensStateSelector.js";
+import type { LensSourceState } from "../../../../../src/types/optics.js";
 import MtfTab from "../../../../../src/components/display/analysis/MtfTab.js";
 import MtfChart from "../../../../../src/components/display/analysis/MtfChart.js";
 import { installMatchMediaMock, mockTheme } from "../../../../testUtils.js";
@@ -285,5 +287,93 @@ describe("MTF export and aperture comparison", () => {
     unmount();
     render(<MtfTab L={L} t={mockTheme} preparedState={state} currentEPSD={1} currentPhysStopSD={1} fNumber={8} />);
     expect(screen.queryByRole("button", { name: "Compare f/8" })).toBeNull();
+  });
+});
+
+describe("Lens state selector", () => {
+  const near: LensSourceState = {
+    id: "near",
+    label: "Close focus",
+    focusT: 0.7123456789,
+    zoomT: 0,
+    source: "Synthetic Table 3",
+    conjugate: {
+      kind: "finite",
+      objectDistanceMm: 1000,
+      distanceReference: "first-surface",
+      distanceProvenance: "calculated",
+      derivation: "Independent synthetic verification",
+      magnification: -0.1,
+    },
+  };
+  const lens = build({ ...L.data, focusPositions: [0, near.focusT, 1], sourceStates: [near] });
+  it("offers a single verified state without selecting it on mount, and exposes its evidence", () => {
+    const select = vi.fn();
+    const props = { L: lens, t: mockTheme, onSelect: select };
+    const { rerender } = render(<LensStateSelector {...props} state={prepareRuntimeState(lens, 0, 0)} />);
+    const control = screen.getByRole("combobox", { name: "Lens state" }) as HTMLSelectElement;
+    expect(control.value).toBe("");
+    expect(control.disabled).toBe(false);
+    expect(select).not.toHaveBeenCalled();
+    control.focus();
+    expect(document.activeElement).toBe(control);
+    expect(control.getAttribute("aria-describedby")).toBeTruthy();
+    fireEvent.change(control, { target: { value: "near" } });
+    expect(select).toHaveBeenCalledExactlyOnceWith(lens.data.key, near);
+    rerender(<LensStateSelector {...props} state={prepareRuntimeState(lens, near.focusT, 0)} />);
+    expect(control.value).toBe("near");
+    expect(screen.getByText(/Calculated object distance:/).textContent).toContain("1,000 mm from the first surface");
+    expect(screen.getByRole("option", { name: /0.1× · calculated distance/ })).toBeTruthy();
+    expect(screen.getByText(near.source)).toBeTruthy();
+    expect(screen.getByText("Independent synthetic verification")).toBeTruthy();
+    rerender(<LensStateSelector {...props} state={prepareRuntimeState(lens, near.focusT + 0.001, 0)} />);
+    expect(control.value).toBe("");
+  });
+  it("explains missing metadata without offering inferred states", () => {
+    render(<LensStateSelector L={L} t={mockTheme} state={state} onSelect={vi.fn()} />);
+    const control = screen.getByRole("combobox", { name: "Lens state" }) as HTMLSelectElement;
+    expect(control.disabled).toBe(true);
+    expect(control.options).toHaveLength(1);
+    expect(screen.getByText(/No source configurations have been verified/)).toBeTruthy();
+  });
+  it("groups verified configurations by exact zoom station", () => {
+    const zoom = {
+      ...lens,
+      isZoom: true,
+      zoomPositions: [35, 50, 70],
+      zoomLabels: ["Wide · 35 mm", "50 mm", "Tele · 70 mm"],
+      data: {
+        ...lens.data,
+        sourceStates: [
+          { ...near, id: "tele-near", zoomT: 1 },
+          { ...near, id: "wide-near", zoomT: 0 },
+          { ...near, id: "wide-infinity", focusT: 0, zoomT: 0, conjugate: { kind: "infinity" as const } },
+        ],
+      },
+    };
+    render(<LensStateSelector L={zoom} t={mockTheme} state={state} onSelect={vi.fn()} />);
+    const groups = within(screen.getByRole("combobox", { name: "Lens state" })).getAllByRole("group");
+    expect(groups.map((g) => g.getAttribute("label"))).toEqual(["Wide · 35 mm", "Tele · 70 mm"]);
+    expect(within(groups[0]).getAllByRole("option")).toHaveLength(2);
+  });
+  it("keeps selection available while movement blocks MTF", () => {
+    const worker = vi.fn();
+    vi.stubGlobal("Worker", worker);
+    const select = vi.fn();
+    render(
+      <MtfTab
+        L={lens}
+        t={mockTheme}
+        preparedState={prepareRuntimeState(lens, 0, 0)}
+        currentEPSD={1}
+        currentPhysStopSD={1}
+        movementActive
+        onSelectSourceState={select}
+      />,
+    );
+    fireEvent.change(screen.getByRole("combobox", { name: "Lens state" }), { target: { value: "near" } });
+    expect(select).toHaveBeenCalledExactlyOnceWith(lens.data.key, near);
+    expect(screen.getByRole("status").textContent).toContain("tilt or shift");
+    expect(worker).not.toHaveBeenCalled();
   });
 });

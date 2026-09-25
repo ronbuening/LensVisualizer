@@ -1,6 +1,6 @@
 /** MTF stays outside render-time optics; requests execute only in the mounted tab's worker. */
 import { useMemo } from "react";
-import type { RuntimeLens } from "../../../types/optics.js";
+import type { LensSourceState, RuntimeLens } from "../../../types/optics.js";
 import type { MtfMethod, MtfOptions, MtfResult, MtfSpectrum } from "../../../types/mtf.js";
 import type { PreparedOpticalState } from "../../../optics/types.js";
 import type { Theme } from "../../../types/theme.js";
@@ -10,6 +10,7 @@ import { useMtfComputation } from "../../hooks/useMtfComputation.js";
 import { useMtfPreferences } from "../../hooks/useMtfPreferences.js";
 import { AnalysisEmptyState } from "./analysisUi.js";
 import MtfChart from "./MtfChart.js";
+import LensStateSelector from "./mtf/LensStateSelector.js";
 import MtfControls from "./mtf/MtfControls.js";
 import MtfFieldSummary from "./mtf/MtfFieldSummary.js";
 
@@ -23,6 +24,7 @@ interface MtfTabProps {
   fNumber?: number;
   focalLengthMm?: number;
   movementActive?: boolean;
+  onSelectSourceState?: (lensKey: string, sourceState: LensSourceState) => void;
 }
 
 /** Comparison aperture of manufacturer charts. */
@@ -59,6 +61,7 @@ export default function MtfTab({
   fNumber,
   focalLengthMm,
   movementActive = false,
+  onSelectSourceState,
 }: MtfTabProps) {
   const [preferences, updatePreferences] = useMtfPreferences();
   const spectrum = useMemo(
@@ -106,6 +109,7 @@ export default function MtfTab({
       <p style={muted}>{headerLine(options, support.referenceWavelengthNm, fNumber, focalLengthMm, shown)}</p>
       {spectrum.note ? <p style={muted}>{spectrum.note}</p> : null}
       <ImagePlaneNote result={shown} t={t} onUseAuto={() => updatePreferences({ focus: "auto" })} />
+      <LensStateSelector L={L} state={preparedState} t={t} onSelect={onSelectSourceState} />
       <MtfControls
         t={t}
         preferences={preferences}

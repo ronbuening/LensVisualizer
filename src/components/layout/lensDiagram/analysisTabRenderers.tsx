@@ -12,7 +12,7 @@ import VignettingTab from "../../display/analysis/VignettingTab.js";
 import type { PreparedOpticalState } from "../../../optics/types.js";
 import type { AnalysisComputationContext } from "../../../optics/compat.js";
 import type { FieldGeometryState } from "../../../optics/optics.js";
-import type { RuntimeLens } from "../../../types/optics.js";
+import type { LensSourceState, RuntimeLens } from "../../../types/optics.js";
 import type { AnalysisTabId } from "../../../types/state.js";
 import type { Theme } from "../../../types/theme.js";
 
@@ -37,12 +37,13 @@ export interface AnalysisTabRendererContext {
   inputs: AnalysisDrawerInputs;
   aberrationsExpanded: boolean;
   onAberrationsExpandedChange: (expanded: boolean) => void;
+  onSelectSourceState?: (lensKey: string, sourceState: LensSourceState) => void;
 }
 
 type AnalysisTabRenderer = (context: AnalysisTabRendererContext) => ReactNode;
 
 export const ANALYSIS_TAB_RENDERERS: Record<AnalysisTabId, AnalysisTabRenderer> = {
-  mtf: ({ L, t, preparedState, analysisContext, inputs }) => (
+  mtf: ({ L, t, preparedState, analysisContext, inputs, onSelectSourceState }) => (
     <MtfTab
       L={L}
       t={t}
@@ -52,6 +53,7 @@ export const ANALYSIS_TAB_RENDERERS: Record<AnalysisTabId, AnalysisTabRenderer> 
       fNumber={inputs.fNumber}
       focalLengthMm={inputs.dynamicEFL}
       movementActive={analysisContext?.movementActive}
+      onSelectSourceState={onSelectSourceState}
     />
   ),
   summary: ({ L, t, preparedState, analysisContext, inputs }) => (
