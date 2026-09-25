@@ -29,3 +29,15 @@ Added OHARA S-FTL10 from its [manufacturer datasheet](https://oharacorp.com/wp-c
 ### Live geometry and travel follow-up
 
 Retained SDs after comparison with the rotated FIG. 1 optical rims. Source element labels 30–46, five groups and two aspheric elements agree with the diagram. Focus remains explicitly not modeled. The patent-era Leica Camera GmbH attribution is retained and linked to the Leitz–Leica succession rather than rewritten as the later AG entity. No zoom travel applies to this prime lens.
+
+## 2026-09-25 — MTF image-plane census
+
+Visually inspected `patents/US_5161060_A.pdf`, FIG. 1 preferred-embodiment construction table and equation/coefficient table, PDF pp. 5–6 (columns 2–4). All fourteen refracting radii, spacings, nine native ne/νe pairs and twelve polynomial K(n) values match the authored conversion. No scaling or plate; single infinity state. The source expressly states K(1)=1/Rvertex, so R4=1/0.035278 and R13=1/0.016659 correctly supersede rounded 28.346/60.026. LensVisualizer K=−1 is an algebraic carrier for the polynomial, with A(2n)=K(n)/2^n; every coefficient was rechecked.
+
+Column 3 explicitly defines S15 spacing 19.595 as distance to image plane 16; column 2 prose instead says 19 mm. Independent native-e EFL 35.411722282 versus nominal 35 and BFL 19.636495674 versus 19.595 remain source inconsistencies. Do not silently interpret the native e-line data as d-line indices.
+
+For the small-offset inquiry, column 4 explicitly mentions a best focusing plane and −0.07 mm defocus improving meridional field curvature. It does not identify either with the tabulated S15 image distance, and −0.07 is not the measured +0.041496 residual. A reference-index axial geometric diagnostic (32 grid, 812 rays, 10/20/40 lp/mm) prefers +1.262108 mm, score .047536→.282942, so it certainly does not demonstrate that the authored plane is the reconstructed lens’s axial best focus. This larger finite-ray mismatch is a source/model limitation, not permission to change coefficients or tune the image plane.
+
+**Cause/action:** source numerical inconsistency with explicit but non-identical best-focus discussion; preserve published values and equation convention. Offset **+0.041496 → +0.041496 mm**; Section E row deleted, no numerical change/changelog.
+
+Validation: focused runtime/paraxial check; full corpus gates at the ten-lens checkpoint.
