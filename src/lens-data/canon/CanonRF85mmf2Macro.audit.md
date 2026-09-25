@@ -2,6 +2,39 @@
 
 Patent: US 2021/0072505 A1, Numerical Example 1
 
+## 2026-09-25 — Source-state review
+
+Source-state review outcome: verified. All three authored candidates reviewed; infinity, one-fiftieth life-size
+and half life-size are enabled. Both finite distances are calculated; intermediate travel is not certified.
+
+Source: local `patents/US20210072505A1.pdf`, visually inspected PDF page 19, printed page 5, First Numerical
+Example / paragraph 0058. All 24 prescription rows match the retained radii, indices and fixed spacings.
+R9 is STO; d12=2.52/3.60/29.52 mm corresponds explicitly to infinity/-0.02/-0.5. The final physical
+gap is the published BF=17.60 mm, and no rear plate is listed. The other examples on this page were not used.
+
+| State | Exact focusT | Matrix A | Matrix B (mm) | Object before R1 (mm) | Object-to-image (mm) |
+|---|---:|---:|---:|---:|---:|
+| one-fiftieth-life-size | 0.0818 | -0.020116437128 | 83.441624649460 | 4147.932564669342 | 4253.882564669342 |
+| half-life-size | 1 | -0.500142006642 | 107.156769476053 | 214.252688342368 | 346.122688342368 |
+
+Distances use s=-B/A at the fixed authored image plane. Independent exact-ray roots at
+0.01/0.005/0.0025 mm first-vertex heights reproduce them within 0.0000116 mm and 0.0000012 mm,
+respectively; maximum axial image residual is 2.78e-11 mm. At the smallest height the exact magnifications
+are -0.020116437128 and -0.500142006697. Their relative discrepancies from published values are 0.5822%
+and 0.0284%. The former is amplified by division by the small 0.02 ratio; its absolute difference is
+0.0001164, comparable to the retained rounded infinity table's A=-0.0001154 residual. The source rounds
+spacings to 0.01 mm and labels magnification to two decimals. No prescription value is tuned.
+
+The prior approximate 4277.5/346.2 mm audit estimates are superseded for source-state calculations by
+the fixed-plane values above. No exact source distance was published. The legacy 0.0818 coordinate remains
+an authored geometry keyframe, not a claim that the inverse-distance slider label is an exact conjugate.
+The production 0.35 m specification is not used to derive either source.
+
+Reproduce with `node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-mtf.mjs --derive-source-states --lens=canon-rf-85f2-macro`.
+Numeric precision supports repeatability, not source accuracy. The formal infinity finite solution near 715 m
+is a rounding residual, not an added state. Existing inferred clear apertures, iris size and qualified glass
+matches remain unchanged, as do the source prescription, movement and image plane.
+
 ## 2026-05-20 - Glass relabel pass
 
 - Opened the data, analysis, and local patent PDF `patents/US20210072505A1.pdf`; local text confirms the queued rows.

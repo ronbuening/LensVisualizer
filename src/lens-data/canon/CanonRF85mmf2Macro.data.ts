@@ -13,8 +13,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  toward the object; rear group L2 is fixed. The only variable gap ║
  * ║  is the patent's d12, tabulated at infinity, β = −0.02 and        ║
  * ║  β = −0.5 (2.52 / 3.60 / 29.52 mm) — all three kept as keyframes. ║
- * ║  The β = −0.5 state is 346.2 mm object-to-image (calculated),     ║
- * ║  i.e. the production 0.35 m MFD. No cover glass or filter is      ║
+ * ║  The β = −0.5 state is 346.1 mm object-to-image (calculated),     ║
+ * ║  near the rounded production 0.35 m MFD. No cover glass is      ║
  * ║  listed; the last gap is the patent BF 17.60 mm.                  ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
@@ -242,7 +242,48 @@ const LENS_DATA = {
   asph: {},
 
   /* ── Published variable air spacings: infinity, β=-0.02, β=-0.5 ── */
-  /* β=-0.02 coordinate = closeFocusM / 4.2775 m (calculated object-to-image for that state). */
+  /* Retain the authored 0.0818 coordinate; sourceStates carries the independently verified object distance. */
+  sourceStates: [
+    {
+      id: "infinity",
+      label: "Infinity",
+      focusT: 0,
+      zoomT: 0,
+      source: "US20210072505A1, First Numerical Example, printed p. 5 (PDF p. 19), infinity d12=2.52 mm; fixed published BF=17.60 mm.",
+      conjugate: { kind: "infinity" },
+    },
+    {
+      id: "one-fiftieth-life-size",
+      label: "One-fiftieth life-size",
+      focusT: 0.0818,
+      zoomT: 0,
+      source: "US20210072505A1, First Numerical Example, printed p. 5 (PDF p. 19), magnification -0.02 column, d12=3.6 mm and BF=17.60 mm. Independent distance evidence in CanonRF85mmf2Macro.audit.md.",
+      conjugate: {
+        kind: "finite",
+        objectDistanceMm: 4147.932564669342,
+        distanceReference: "first-surface",
+        distanceProvenance: "calculated",
+        derivation: "Fixed published geometry and image plane: s=-B/A with A=-0.02011643712826655 and B=83.44162464946025 mm. Independently checked by small-height exact rays. Calculated object-to-image distance 4253.882564669342 mm; magnification relative residual 0.5822% against the rounded source.",
+        magnification: -0.02,
+      },
+    },
+    {
+      id: "half-life-size",
+      label: "Half life-size",
+      focusT: 1,
+      zoomT: 0,
+      source: "US20210072505A1, First Numerical Example, printed p. 5 (PDF p. 19), magnification -0.5 column, d12=29.52 mm and BF=17.60 mm. Independent distance evidence in CanonRF85mmf2Macro.audit.md.",
+      conjugate: {
+        kind: "finite",
+        objectDistanceMm: 214.25268834236795,
+        distanceReference: "first-surface",
+        distanceProvenance: "calculated",
+        derivation: "Fixed published geometry and image plane: s=-B/A with A=-0.5001420066422715 and B=107.15676947605311 mm. Independently checked by small-height exact rays. Calculated object-to-image distance 346.12268834236795 mm; magnification relative residual 0.0284% against the rounded source.",
+        magnification: -0.5,
+      },
+    },
+  ],
+
   focusPositions: [0, 0.0818, 1],
   var: {
     "12": [2.52, 3.6, 29.52],

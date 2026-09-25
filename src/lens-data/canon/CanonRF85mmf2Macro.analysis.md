@@ -25,7 +25,7 @@ US 2021/0072505 A1 contains six numerical examples. **Example 1** — the First 
 | Maximum magnification | 0.5× (β = −0.5) | 0.5× |
 | UD elements | 1 (L3, nd = 1.497, vd = 81.5) | 1 UD |
 | Focus extension at 0.5× | 27.0 mm (d12 change, patent table) | ~28 mm (reported by reviewers) |
-| Closest focus distance | 346.2 mm object-to-image at β = −0.5 (calculated) | 0.35 m |
+| Closest focus distance | 346.1 mm object-to-image near β = −0.5 (calculated) | 0.35 m |
 | Minimum aperture | — | f/29 |
 | Overall optical track | 104.87 mm | — (barrel length 90.5 mm; not directly comparable) |
 
@@ -147,7 +147,7 @@ The single variable air gap is d12 — the spacing between the rear surface of t
 | Near (β = −0.02) | −0.02 | 3.60 | +1.08 mm |
 | Close (β = −0.5) | −0.50 | 29.52 | +27.0 mm |
 
-All three published states are stored as focus keyframes. The β = −0.02 state focuses at about 4.28 m object-to-image and the β = −0.5 state at 346.2 mm (both calculated from the tabulated gaps), so the patent's closest state is the production lens's 0.35 m minimum focus distance.
+All three published keyframes are selectable source states. At the retained 17.60 mm image distance, the finite object distances are **calculated** as 4147.9326 and 214.2527 mm before the first surface (4253.8826 and 346.1227 mm object-to-image). Independent small-height exact rays reproduce these sources. The computed magnifications are −0.0201164 and −0.5001420, respectively: the source's rounded −0.02/−0.5 labels are not imposed as exact optical constraints. The earlier approximate 4.28 m estimate is superseded for source-state analysis; the authored 0.0818 slider coordinate is retained. The production 0.35 m minimum-focus distance remains descriptive metadata, not the source distance.
 
 The 27.0 mm extension at maximum magnification closely matches the ~28 mm reported by reviewers on the production lens, providing additional confidence in the Example 1 identification.
 
