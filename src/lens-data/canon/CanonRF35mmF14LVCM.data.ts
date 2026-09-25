@@ -47,6 +47,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    than a 36×24 mm corner. No scale or projection override is introduced; ║
  * ║    the source-field mismatch is retained explicitly for later analysis.   ║
  * ╚══════════════════════════════════════════════════════════════════════════════╝
+ *
+ * MTF source audit: all Example 2 Table 3/4 values match, including the more
+ * precise aspheric base radii. EFL 33.942092 vs printed 34.0 and BFL
+ * 15.360904 vs 15.444 leave −0.083096 mm offset. Paragraph 0079 defines
+ * back focus as paraxial, not a designer best-focus convention. Keep the
+ * printed prescription; no rear plate or supported single misprint explains it.
  */
 
 const LENS_DATA = {
