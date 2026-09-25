@@ -214,7 +214,7 @@ Independent paraxial ray trace (y-nu method, all 13 surfaces) yields:
 |-----------|----------|----------------|-----------|
 | EFL | 35.95 mm | 36.06 mm | 0.11 mm (0.3%) |
 | Half-field angle $\omega$ | 31.0° | 31.28° | 0.28° |
-| BFD | 20.03 mm | 20.03 mm | Exact |
+| BFD / source image distance | 20.500542 mm | 20.03 mm | +0.470542 mm |
 | $L_1$ (G1 vertex length) | 7.52 mm | 7.52 mm | Exact |
 | $L$ (total vertex length) | 27.55 mm | 27.55 mm | Exact |
 | Gap sum conservation | 7.02 mm (both) | — | Perfect |
@@ -236,3 +236,11 @@ The joint Tamron–Sony development is consistent with the cooperative model in 
 - Sony SEL35F28Z product specification page (sony.co.uk/electronics/camera-lenses/sel35f28z/specifications).
 - OHARA Optical Glass catalog (pocket edition, May 2023) — for glass identification and PGM designation cross-reference.
 - Public HOYA/OHARA/refractiveindex.info lookup — no exact coefficient-backed matches found for `800255`, `630346`, or `680312`.
+
+## Image-plane source audit (2026-09-25)
+
+MTF audit: JP2015041012A Example 1, paragraphs 0077–0080, matches
+every radius, gap, index and all six K/A4–A10 rows at native scale.
+Printed d13=20.03 mm precedes the image directly (no plate). EFL
+35.948432 / BFL 20.500542 do not reproduce source 36.06 / 20.03 mm.
+Retain the source contradiction and +0.470542 mm offset; see audit.

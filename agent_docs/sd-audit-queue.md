@@ -137,7 +137,6 @@ the row. Offset is paraxial focus minus the authored plane (positive: the plane 
 | Lens | File | Offset (mm) | Depths | Cause | Status |
 |---|---|---|---|---|---|
 | FUJIFILM FUJINON XF 18mm f/2 R | `fujifilm/FujifilmXF18mmf2.data.ts` | +4.993 | 1062 | D16 ends at omitted PP; Table 7 leaves its trailing image gap blank; EFL also differs | partial (source image distance missing; S13 A10 typo corrected, no paraxial effect) |
-| SONY SONNAR T* FE 35mm f/2.8 ZA | `sony/SonyFE35mmf28ZA.data.ts` | +0.471 | 51 | Not yet diagnosed; check the source image distance | todo |
 | VOIGTLÄNDER APO-LANTHAR 28mm f/2 Aspherical VM | `voigtlander/VoigtlanderAPOLanthar28mmf2Aspherical.data.ts` | +0.373 | 75 | Source contradiction (audit): printed D21 18.21 mm vs 18.58 mm prescription back focus | todo |
 | VILTROX AF 33mm f/1.4 E | `viltrox/ViltroxAF33mmf14E.data.ts` | +0.366 | 159 | Plate folded to air-equivalent; offset is the source image distance, not the fold | todo |
 | KONICA HEXANON AR 50mm f/1.8 | `konica/KonicaHexanonAR50mmf18.data.ts` | +0.344 | 90 | Analysis: printed axial spacings do not sum to the published track | todo |
