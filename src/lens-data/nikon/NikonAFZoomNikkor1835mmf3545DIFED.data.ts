@@ -27,6 +27,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  L13 is slightly taller than L14 to follow the Figure 4A front-group silhouette.                   ║
  * ║  The 0.7 mm air gap 16→17 is the geometric limiter; its shared SD is intentionally 7.4 mm.          ║
  * ║  The STO SD is a physical-clearance ceiling; per-zoom wide-open aperture follows nominalFno.        ║
+ * ║  Surfaces 1, 3A and 4 were raised to pass the traced chief ray to the FX corner at the wide end    ║
+ * ║  (49.8°; Table 2 prints 2ω = 101.84° and FIG. 5A plots Y = 21.60 mm) in the 2026-09-24             ║
+ * ║  field-coverage audit.                                                                             ║
  * ║                                                                                                    ║
  * ║  Spectral data: the patent publishes only nd and νd. Compatible coefficient-backed catalog         ║
  * ║  equivalents model dispersion without asserting production suppliers; no patent nC/nF/ng or dPgF   ║
@@ -220,10 +223,10 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 50.7591, d: 2.5, nd: 1.794997, elemId: 1, sd: 20.0 },
+    { label: "1", R: 50.7591, d: 2.5, nd: 1.794997, elemId: 1, sd: 22.5 },
     { label: "2", R: 19.409, d: 7.0, nd: 1.0, elemId: 0, sd: 17.2 },
-    { label: "3A", R: 44.2666, d: 0.1, nd: 1.50625, elemId: 2, sd: 15.0 },
-    { label: "4", R: 28.8114, d: 2.0, nd: 1.794997, elemId: 3, sd: 15.0 },
+    { label: "3A", R: 44.2666, d: 0.1, nd: 1.50625, elemId: 2, sd: 16.3 },
+    { label: "4", R: 28.8114, d: 2.0, nd: 1.794997, elemId: 3, sd: 16.1 },
     { label: "5", R: 22.1978, d: 8.2, nd: 1.0, elemId: 0, sd: 14.5 },
     { label: "6", R: -121.5705, d: 1.7, nd: 1.744, elemId: 4, sd: 14.0 },
     { label: "7", R: 49.845, d: 6.8, nd: 1.0, elemId: 0, sd: 14.0 },

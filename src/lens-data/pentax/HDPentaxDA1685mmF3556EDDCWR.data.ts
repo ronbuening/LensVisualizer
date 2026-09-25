@@ -31,6 +31,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * limits (edge thickness, actual rim slope, shared-gap intrusion). Full-field envelopes inform the large
  * G1/G4 apertures; strongly curved G2 surfaces are capped by physical sag/gap limits while containing the
  * default 0.6-field off-axis bundle with clearance. These SDs are not claimed as patent values.
+ * Surfaces 6A and 7 (the L21 resin layer and its junction) were raised to 13.1 mm to pass the traced
+ * wide chief ray to the patent's Y = 14.24 mm; surface 8 stays at 11.0 mm, capped by its 12.493 mm
+ * radius (2026-09-24 field-coverage audit).
  *
  * Glass labels: the patent publishes d-line nd/vd coordinates but no vendors. Vendor-neutral six-digit
  * optical codes are used where defensible; the hybrid resin is explicitly unmatched. No nC/nF/ng/dPgF
@@ -265,8 +268,8 @@ const LENS_DATA = {
     { label: "3", R: 840.691, d: 0.15, nd: 1.0, elemId: 0, sd: 30.0 },
     { label: "4", R: 60.115, d: 4.797, nd: 1.804, elemId: 3, sd: 24.0 },
     { label: "5", R: 155.158, d: 2.523, nd: 1.0, elemId: 0, sd: 24.0 },
-    { label: "6A", R: 54.995, d: 0.2, nd: 1.52972, elemId: 4, sd: 11.0 },
-    { label: "7", R: 48.193, d: 1.25, nd: 1.883, elemId: 5, sd: 11.0 },
+    { label: "6A", R: 54.995, d: 0.2, nd: 1.52972, elemId: 4, sd: 13.1 },
+    { label: "7", R: 48.193, d: 1.25, nd: 1.883, elemId: 5, sd: 13.1 },
     { label: "8", R: 12.493, d: 7.732, nd: 1.0, elemId: 0, sd: 11.0 },
     { label: "9", R: -29.668, d: 1.2, nd: 1.7725, elemId: 6, sd: 9.5 },
     { label: "10", R: 54.485, d: 0.469, nd: 1.0, elemId: 0, sd: 9.5 },

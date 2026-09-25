@@ -17,7 +17,7 @@ The prescription represented here is Example 1 of JPS58137812A. The production c
 3. The patent describes a four-functional-group positive–negative–positive–positive zoom in which the second group varies focal length, the third compensates image-plane motion, and a lens within the fourth group performs focusing. The Example 1 prescription identifies that focus lens as the plano-concave negative L12 at surfaces 20–21.
 4. The source's inner-focus mechanism is consistent with the production lens's short 0.8 m minimum focusing distance. The patent itself tabulates Example 1 focusing only to an object–image distance of 1.2 m; the 0.8 m state in the data file is therefore a constrained reconstruction rather than a published patent row.
 
-The data file retains the patent at its native scale. No uniform scaling, radius correction, thickness correction, or index conversion has been applied. The marketed focal range remains 70–150mm, while the independently recomputed Gaussian design endpoints stored in the data file are 72.062790 and 146.196286 mm. The production aperture is separately recorded as f/4; the modeled optical stop is discussed below because the patent does not publish one.
+The data file retains the patent at its native scale. No uniform scaling, radius correction, thickness correction, or index conversion has been applied. The marketed focal range remains 70–150mm, while the independently recomputed Gaussian design endpoints stored in the data file are 72.062790 and 146.196652 mm. The production aperture is separately recorded as f/4; the modeled optical stop is discussed below because the patent does not publish one.
 
 ## Optical Architecture
 
@@ -27,11 +27,11 @@ The first functional group, G1 (L1–L3), is positive in net power and remains f
 
 G2 (L4–L7) is the negative variator. It contains a weak positive L4, a negative L5, and the cemented L6–L7 pair D2, which is net negative. The complete G2 group has negative intrinsic paraxial power. Across the three published zoom states its front station moves imageward by approximately 11.22 mm at the middle state and 21.66 mm at the tele state relative to the wide position. This motion provides the principal change in focal length.
 
-G3 is the cemented L8–L9 pair D3. It is positive in net power and serves as the compensator. Its motion is deliberately non-monotonic: it moves about 3.72 mm imageward at the middle state and returns essentially to its wide-state axial station at the tele endpoint. The corresponding D15 air gap changes from 6.310 to 2.592 and back to 6.310 mm. This reversal is the axial compensation that allows the image plane and rear master group to remain effectively stationary while G2 varies magnification.
+G3 is the cemented L8–L9 pair D3. It is positive in net power and serves as the compensator. Its motion is deliberately non-monotonic: it moves about 3.72 mm imageward at the middle state and returns essentially to its wide-state axial station at the tele endpoint. The corresponding D15 air gap changes from 6.310 to 2.592 and back to 6.318 mm. This reversal is the axial compensation that allows the image plane and rear master group to remain effectively stationary while G2 varies magnification.
 
 G4 (L10–L15) is the positive master group. The group is stationary through zoom to the precision of the published table, but it contains the moving focus element L12. The master begins with two positive menisci, inserts the negative plano-concave focus element, and then uses a positive L13, a strong negative L14, and a final positive L15. The complete G4 group nevertheless has positive intrinsic paraxial power; its system behavior results from a mixed-power relay rather than from a uniformly positive sequence.
 
-The source spacing table gives a first-vertex-to-image track of approximately 139.88–139.89 mm across the three states. By the project's strict terminology, the complete zoom is not uniformly a telephoto architecture on a track/EFL basis: only the tele endpoint has `TL/EFL < 1`. No state satisfies the project's retrofocus test `BFD > EFL`.
+The source spacing table gives a first-vertex-to-image track of 139.888 mm in all three states. By the project's strict terminology, the complete zoom is not uniformly a telephoto architecture on a track/EFL basis: only the tele endpoint has `TL/EFL < 1`. No state satisfies the project's retrofocus test `BFD > EFL`.
 
 ## Element-by-Element Analysis
 
@@ -156,14 +156,14 @@ The patent publishes three focal-length states and a constant 38.255 mm back-foc
 | Published state (mm) | Computed Gaussian EFL (mm) | Computed Gaussian BFL from s27 (mm) | First vertex→image track (mm) |
 |---:|---:|---:|---:|
 | 72.164 | 72.062790 | 38.171221 | 139.888 |
-| 97.746 | 97.607135 | 38.171391 | 139.890 |
-| 146.388 | 146.196286 | 38.180572 | 139.880 |
+| 97.746 | 97.613188 | 38.174122 | 139.888 |
+| 146.388 | 146.196652 | 38.180565 | 139.888 |
 
 The small systematic EFL and BFL differences are retained as source-versus-Gaussian discrepancies in the rounded prescription; they are not corrected by altering the patent data. Sequential y–ν propagation and an independent ABCD matrix product agree to floating-point precision. The surface-by-surface Petzval sum, using `φ/(n·n′)`, is +0.002170699763 mm⁻¹; its reciprocal is +460.680937 mm and is treated only as the signed paraxial Petzval-curvature diagnostic, not as a literal best-focus image-surface radius.
 
 The aperture model requires particular caution. Example 1 publishes neither the stop position nor its diameter, and Figure 1 does not show an unambiguous iris. LensVisualizer therefore inserts exactly one stationary `STO` at the midpoint of the source's 4.00 mm s19→s20 air gap, preserving the source gap as 2.00 + 2.00 mm at infinity. The modeled stop semi-diameter is 8.511342052 mm. A geometry-valid stop compatible with the inferred clear apertures gives a modeled nominal f-number of f/4.3, while the manufacturer specification remains f/4.0. The two values are deliberately kept separate rather than treating the modeled f/4.3 as a production specification or the marketed f/4 as a patent-derived pupil result.
 
-The patent likewise publishes no surface semi-diameters. Every `sd` in the data file is therefore a modeling inference based on traced on-axis marginal rays, full-135-format chief rays, the relative proportions of patent Figure 1, the production 67 mm maximum diameter and 55 mm filter envelope, and the current geometry constraints. A 600-dpi Figure-1 comparison found L3 too large relative to the front cemented pair and L13-L15 about 30-40% undersized relative to the drawing's whole-lens scale. L3 was reduced from 17.5/17.0 mm to 14.5/14.0 mm, while the rear three rims were enlarged to 10.0, 11.2, and 12.8 mm. The revised surfaces pass edge-thickness, rim-slope, shared-gap, and image-circle validation. These checks verify the modeled geometry; they do not convert the inferred semi-diameters into measured production apertures.
+The patent likewise publishes no surface semi-diameters. Every `sd` in the data file is therefore a modeling inference based on traced on-axis marginal rays, full-135-format chief rays, the relative proportions of patent Figure 1, the production 67 mm maximum diameter and 55 mm filter envelope, and the current geometry constraints. A 600-dpi Figure-1 comparison found L3 too large relative to the front cemented pair and L13-L15 about 30-40% undersized relative to the drawing's whole-lens scale. L3 was reduced from 17.5/17.0 mm to 14.5/14.0 mm, while the rear three rims were enlarged to 10.0, 11.2, and 12.8 mm. A later traced field-coverage check found that the figure-reduced L3 clipped the chief ray to the 24×36 corner at the 97.7 mm and 146.4 mm states, where it needs at least 16.33/15.78 mm, so L3 now stands at 16.9/16.3 mm: where the drawing and the traced floor disagree, the floor wins. The revised surfaces pass edge-thickness, rim-slope, shared-gap, and image-circle validation. These checks verify the modeled geometry; they do not convert the inferred semi-diameters into measured production apertures.
 
 ## Sources and References
 

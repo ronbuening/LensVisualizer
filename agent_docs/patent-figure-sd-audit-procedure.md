@@ -17,7 +17,8 @@ Your job is to find the ones that are **wrong**, not to repaint the ones that ar
 
 Change an `sd` only when you have one of these:
 
-- **Proof** — the surface fails the image-circle floor (Step 1). Always fix these.
+- **Proof** — the surface fails the image-circle floor, or the traced check shows it clipping the corner chief ray of
+  a design whose printed image height reaches that corner (Step 1). Always fix these.
 - **Strong figure evidence** — the patent drawing disagrees by more than ~25%, both measurements agree, and you
   confirmed it on a zoomed render (Steps 3–4).
 
@@ -65,7 +66,19 @@ amount. This needs no patent and has no measurement error — it is the stronges
   figure (Steps 2–4) to pick the actual value, and only fall back to `floor` + ~0.5 mm if the figure is unusable.
 - **Row marked `wide — verify by trace`** → the lens's half-field is past ~42°, where the script's exit-pupil
   approximation breaks down. Symmetric ultra-wides really do have small rear elements. **Do not change these on the
-  strength of this check alone.** Note it and move on.
+  strength of this check alone.** The traced check below settles them.
+
+Then trace it, with no approximation:
+
+```bash
+npm run audit:field-coverage -- ./src/lens-data/<maker>/<Lens>.data.ts --below=1.01
+```
+
+It follows the real chief ray to the format corner at every zoom station and names the rim that stops it (`clip`, or
+`blocked` when the aimed rays leave a clear aperture before they can reach the stop centre). A stopped field is
+proof only when the patent's printed image height reaches the corner. Many patents print a smaller maximum image
+height and leave the corners to in-camera distortion correction; there the short field is correct, and the lens's
+row in [sd-audit-queue.md](sd-audit-queue.md) Section D says so.
 
 ## Step 2 — Find the right figure sheet
 
@@ -249,7 +262,7 @@ Record as a blocker and change nothing when:
 - the patent PDF is missing from `patents/`;
 - the figure is a thumbnail (fewer than ~20 px per element edge even at 600 dpi);
 - the sheet is a scan with ray overlays that will not measure after two honest crop attempts;
-- the lens is flagged `wide — verify by trace`;
+- the lens is flagged `wide — verify by trace` and the traced check does not show its corner chief ray clipped;
 - the only way to reach the figure's value is past an aspheric turnover or through a validator rejection.
 
 A blocker recorded precisely is worth more than a guessed number.

@@ -31,6 +31,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ proportions in patent Figs. 7 and 10. G2 and G4 rim heights are silhouette-          ║
  * ║ tuned to Fig. 7 after the ray-envelope pass. The fixed physical stop radius is        ║
  * ║ 8.106239 mm, the mean radius implied independently by the three printed f-numbers.   ║
+ * ║ Surfaces 1-3 and the hybrid front element (6A/7) were raised to pass the traced      ║
+ * ║ chief ray to the patent's Y = 21.64 mm at every zoom state (2026-09-24 field-        ║
+ * ║ coverage audit).                                                                     ║
  * ║                                                                                      ║
  * ║ Patent Table 5 publishes nd and νd only. nC, nF, ng, and dPgF are intentionally      ║
  * ║ omitted rather than inferred. Glass strings retain six-digit classes unless a vendor ║
@@ -262,13 +265,13 @@ const LENS_DATA = {
 
   /* ── Surface prescription ── */
   surfaces: [
-    { label: "1", R: 1208.96, d: 1.96, nd: 1.84666, elemId: 1, sd: 19.6 },
-    { label: "2", R: 110.306, d: 5.07, nd: 1.816, elemId: 2, sd: 19.5 },
-    { label: "3", R: -518.616, d: 0.1, nd: 1, elemId: 0, sd: 19.2 },
+    { label: "1", R: 1208.96, d: 1.96, nd: 1.84666, elemId: 1, sd: 22.5 },
+    { label: "2", R: 110.306, d: 5.07, nd: 1.816, elemId: 2, sd: 21.7 },
+    { label: "3", R: -518.616, d: 0.1, nd: 1, elemId: 0, sd: 21.2 },
     { label: "4", R: 49.637, d: 3.91, nd: 1.816, elemId: 3, sd: 19 },
     { label: "5", R: 79.494, d: 3.978, nd: 1, elemId: 0, sd: 18 },
-    { label: "6A", R: 81.778, d: 0.15, nd: 1.52972, elemId: 4, sd: 10.2 },
-    { label: "7", R: 64.271, d: 1.1, nd: 1.883, elemId: 5, sd: 10.2 },
+    { label: "6A", R: 81.778, d: 0.15, nd: 1.52972, elemId: 4, sd: 11.4 },
+    { label: "7", R: 64.271, d: 1.1, nd: 1.883, elemId: 5, sd: 11.4 },
     { label: "8", R: 14.655, d: 5.69, nd: 1, elemId: 0, sd: 10.2 },
     { label: "9", R: -43.844, d: 0.82, nd: 1.72916, elemId: 6, sd: 9 },
     { label: "10", R: 47.989, d: 0.48, nd: 1, elemId: 0, sd: 9 },

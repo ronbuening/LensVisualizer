@@ -178,7 +178,7 @@ At the adopted data-file semi-diameters, the polynomial departure from the spher
 
 | Surface | Adopted semi-diameter | Polynomial departure |
 |---|---:|---:|
-| 1A | 17.0 mm | +1.237 mm |
+| 1A | 25.0 mm | +4.349 mm |
 | 5A | 13.0 mm | -0.643 mm |
 | 25A | 12.0 mm | +1.065 mm |
 

@@ -15,7 +15,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * Semi-diameters are inferred render apertures, not patent-published clear apertures. They were constrained by
  * paraxial marginal/chief-ray geometry, the 72 mm production filter thread, conic limits, rim slope, edge thickness,
  * and cross-gap sag intrusion. The off-axis ray field fraction is deliberately conservative because this is a
- * 109.4 degree full-field ultra-wide design and the viewer's diagnostic rays are paraxial.
+ * 109.4 degree full-field ultra-wide design and the viewer's diagnostic rays are paraxial. Surface 23A was later
+ * raised from 9.0 to 10.1 mm to pass the traced chief ray to the full-frame corner (21.65 mm at 53.4°; patent
+ * Y = 21.63 mm, ω = 54.7°) in the 2026-09-24 field-coverage audit; surface 22A stays at 9.0 mm, inside its
+ * 9.61 mm conic limit.
  */
 
 const LENS_DATA = {
@@ -222,7 +225,7 @@ const LENS_DATA = {
     { label: "20", R: 30.3336, d: 7.0, nd: 1.497, elemId: 11, sd: 10.0 },
     { label: "21", R: -24.3462, d: 10.5287, nd: 1.0, elemId: 0, sd: 10.0 },
     { label: "22A", R: -14.0614, d: 1.8, nd: 1.58313, elemId: 12, sd: 9.0 },
-    { label: "23A", R: -20.0, d: 15.6837, nd: 1.0, elemId: 0, sd: 9.0 },
+    { label: "23A", R: -20.0, d: 15.6837, nd: 1.0, elemId: 0, sd: 10.1 },
   ],
 
   /* ── Image-side plane-parallel plate (patent surfaces 24–25): traced, not drawn ── */

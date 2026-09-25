@@ -38,6 +38,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ prescription. Sizing contains full on-axis marginal rays and representative      ║
  * ║ off-axis rays at 0.6× the patent half-field through all W/M/T states plus        ║
  * ║ midpoints of W-M and M-T. Values are not patent-published clear apertures.       ║
+ * ║ Surfaces 7A, 28A and 29 were raised (2026-09-24 field-coverage audit) so the     ║
+ * ║ traced chief ray reaches the patent's wide ω = 40.79° (Y = 3.41 mm) and the      ║
+ * ║ tele format corner (patent tele Y = 3.902 mm).                                   ║
  * ╚══════════════════════════════════════════════════════════════════════════════════╝
  */
 
@@ -263,7 +266,7 @@ const LENS_DATA = {
     { label: "4", R: -427.7536, d: 0.15, nd: 1.0, elemId: 0, sd: 22.3 },
     { label: "5", R: 47.3115, d: 3.5449, nd: 1.59282, elemId: 3, sd: 21.5 },
     { label: "6", R: 127.1777, d: 0.5, nd: 1.0, elemId: 0, sd: 21.4 },
-    { label: "7A", R: 1000.0, d: 0.7, nd: 1.88202, elemId: 4, sd: 7.7 },
+    { label: "7A", R: 1000.0, d: 0.7, nd: 1.88202, elemId: 4, sd: 9.8 },
     { label: "8A", R: 12.3851, d: 4.581, nd: 1.0, elemId: 0, sd: 7.5 },
     { label: "9", R: -28.3905, d: 0.55, nd: 1.7725, elemId: 5, sd: 7.7 },
     { label: "10", R: 12.3607, d: 3.6897, nd: 1.92286, elemId: 6, sd: 7.7 },
@@ -282,8 +285,8 @@ const LENS_DATA = {
     { label: "25", R: 14.5013, d: 4.7802, nd: 1.0, elemId: 0, sd: 4.6 },
     { label: "26A", R: 10.7551, d: 3.3, nd: 1.51776, elemId: 13, sd: 4.7 },
     { label: "27A", R: -15.5641, d: 2.684, nd: 1.0, elemId: 0, sd: 4.5 },
-    { label: "28A", R: -11.552, d: 0.8736, nd: 1.5441, elemId: 14, sd: 4.0 },
-    { label: "29", R: 20.7491, d: 2.3802988429508094, nd: 1.0, elemId: 0, sd: 3.8 },
+    { label: "28A", R: -11.552, d: 0.8736, nd: 1.5441, elemId: 14, sd: 4.2 },
+    { label: "29", R: 20.7491, d: 2.3802988429508094, nd: 1.0, elemId: 0, sd: 4.1 },
   ],
 
   asph: {

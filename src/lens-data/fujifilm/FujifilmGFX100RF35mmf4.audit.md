@@ -34,3 +34,22 @@ Notes:
 - Verification: `npm run typecheck` passed; `npm run test` 2440 tests passed; cross-section re-rendered
   and compared with FIG. 13.
 - Full method and per-lens results: agent_docs/records/patent-figure-sd-audit-2026-07.md.
+
+## 2026-09-24 — Semi-diameters raised to the traced format corner
+
+Table 14 (PDF p.34) prints 2ω = 83.0° for Example 5, and the traced chief ray reaches the 27.39 mm 44×33 corner at
+41.56°, matching the printed 41.5° half-angle, so the design covers the corner. The 2026-07-24 values still clipped the
+real chief ray (solved through the stop centre) at surface 17 from 35.5°, leaving the analysis field at 84% of the
+corner. The corner chief ray needs surface 17 ≥ 15.65 mm; surface 16 needs 12.18 mm and already has 12.3 mm, and no
+other rim clips. The chief-ray solve that previously failed at surface 16 past 37.9° now converges at the corner.
+FIG. 13 (PDF p.14) is to scale (19.58 px/mm at 200 dpi; the S16–S19 vertices fall within 1 px of the prescription) and
+draws surface 17 out to L22's flat edge at about 15.4 mm, with surface 16's curve ending near 12.0 mm at the front step.
+The drawing sits just under the trace, so the traced value governs. Surface 16 (R −14.35) was not scaled with
+surface 17: the scaled 14.7 mm lies past the sphere's edge and the validator rejects it (90° rim slope).
+
+| Surface | Before | After | Justification |
+|---|---|---|---|
+| 17 | 13.5 | 16.2 | corner chief ray 15.65 mm + clearance; 5% above the FIG. 13 edge (≈15.4 mm) |
+
+The validator accepts the new value, the traced edge now reaches 27.39 mm at 41.6° with every rim clear, and the
+image-circle floor reports nothing undersized. No aspheric surface changed.

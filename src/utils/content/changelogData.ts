@@ -36,6 +36,21 @@ export const CHANGELOG: ChangelogEntry[] = [
 
   {
     date: "2026-09-24",
+    type: "fix",
+    summary: "Enlarged undersized element rims on 68 lenses so their analysis reaches the image corner",
+  },
+  {
+    date: "2026-09-24",
+    type: "fix",
+    summary: "Extended the analysis tabs to the sensor corner on wide lenses that used to stop short",
+  },
+  {
+    date: "2026-09-24",
+    type: "fix",
+    summary: "Fixed corner rays missing the front asphere on ultra-wides like the Nikon Z 14-24mm",
+  },
+  {
+    date: "2026-09-24",
     type: "improvement",
     summary: "Added a two-row analysis button bar with tooltips under the desktop lens diagram",
   },

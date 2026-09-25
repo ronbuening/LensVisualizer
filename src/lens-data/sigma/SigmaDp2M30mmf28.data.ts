@@ -13,6 +13,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    Patent does not list semi-diameters. SDs estimated from         ║
  * ║    combined marginal + chief ray trace at f/2.86 with 60%          ║
  * ║    field fraction and ~5–10% mechanical clearance.                 ║
+ * ║    Surfaces 12-15 (L7, L8) were raised to pass the traced          ║
+ * ║    chief ray to the patent's Y = 14.20 mm corner (2026-09-24       ║
+ * ║    field-coverage audit), each element scaled as one unit.         ║
  * ║                                                                    ║
  * ║  FILTER F:                                                         ║
  * ║    Patent filter F (surfaces 16–17: d = 1.2 mm, nd = 1.52301,      ║
@@ -180,10 +183,10 @@ const LENS_DATA = {
     /* ── G2: L6, L7, L8 air-spaced ── */
     { label: "10", R: 150.15, d: 0.9, nd: 1.58144, elemId: 6, sd: 6.9 },
     { label: "11", R: 43.88, d: 5.46, nd: 1.0, elemId: 0, sd: 6.9 },
-    { label: "12", R: -12.38, d: 0.9, nd: 1.53172, elemId: 7, sd: 7.3 },
-    { label: "13", R: -1000.0, d: 0.15, nd: 1.0, elemId: 0, sd: 7.5 },
-    { label: "14", R: 63.82, d: 4.55, nd: 1.91082, elemId: 8, sd: 7.6 },
-    { label: "15", R: -49.1, d: 1.0, nd: 1.0, elemId: 0, sd: 8.3 },
+    { label: "12", R: -12.38, d: 0.9, nd: 1.53172, elemId: 7, sd: 9.8 },
+    { label: "13", R: -1000.0, d: 0.15, nd: 1.0, elemId: 0, sd: 10.1 },
+    { label: "14", R: 63.82, d: 4.55, nd: 1.91082, elemId: 8, sd: 11.3 },
+    { label: "15", R: -49.1, d: 1.0, nd: 1.0, elemId: 0, sd: 12.3 },
   ],
 
   /* ── Filter F (patent surfaces 16–17): traced, not drawn ── */

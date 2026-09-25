@@ -165,11 +165,11 @@ The companion data file transcribes Example 1 Table 2 directly, including every 
 | A19 | +9.4871080E−18 | −3.5021994E−16 |
 | A20 | −7.9734604E−19 | +1.8725398E−17 |
 
-At the data-file semi-diameters, the exact profiles depart from the corresponding paraxial spheres by −246.111 µm (S10A, 6.4 mm) and −104.580 µm (S11A, 6.0 mm).
+At the data-file semi-diameters, the exact profiles depart from the corresponding paraxial spheres by −753.547 µm (S10A, 7.9 mm) and −636.708 µm (S11A, 8.4 mm).
 
-The patent's polynomial is numerically ill-conditioned at heights above approximately 7 mm — individual terms reach magnitudes of hundreds of millimeters but cancel nearly perfectly — indicating that the polynomial was optimized for a smaller clear aperture than the raw marginal+chief ray estimate would suggest. The L6 semi-diameters in the data file are accordingly kept at 6.4 mm or below, where the polynomial remains well-behaved.
+The S11 polynomial is ill-conditioned in its monomial form: its largest single term is about 145 mm at h = 7 mm and about 930 mm at 8.4 mm, cancelling to a total of −0.25 and −0.64 mm. At the printed eight-digit precision that cancellation costs well under a micrometre, and the design uses this zone: the patent's full-field chief ray (ω = 31.0°, Y = 14.2 mm) crosses L6 at 7.34 mm (S10) and 7.86 mm (S11), and FIG. 2 draws L6 as a gull-wing element whose faces droop toward the object near its 8.9 mm edge. Both profiles peak near h = 5.4–5.7 mm and then turn back toward the object; they stay smooth to about 8.3 mm on S10, where its curvature starts to grow rapidly, and 9.5 mm on S11, whose slope reverses again near 9.8 mm, and diverge beyond. The data-file L6 semi-diameters (7.9 and 8.4 mm) pass the corner chief ray with clearance inside that smooth zone.
 
-The rear surface S11 carries the larger low-order polynomial coefficients, indicating that it primarily corrects residual spherical aberration from the strong biconvex L5 and simultaneously controls field curvature and coma that accumulate across the post-stop elements. The front surface S10 provides complementary zonal correction; despite its smaller low-order coefficients, the complete high-order polynomial produces the larger rim departure at its 6.4 mm data-file semi-diameter.
+The rear surface S11 carries the larger low-order polynomial coefficients, indicating that it primarily corrects residual spherical aberration from the strong biconvex L5 and simultaneously controls field curvature and coma that accumulate across the post-stop elements. The front surface S10 provides complementary zonal correction; despite its smaller low-order coefficients, the complete high-order polynomial produces the larger rim departure at its 7.9 mm data-file semi-diameter.
 
 ## Verification Summary
 

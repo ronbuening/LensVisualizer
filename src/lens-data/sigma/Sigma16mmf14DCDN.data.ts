@@ -26,7 +26,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    The patent omits clear-aperture data. Semi-diameters are         ║
  * ║    paraxial estimates constrained by f/1.46 axial rays, 0.35-field  ║
  * ║    displayed off-axis rays, edge thickness, sd/|R| < 0.90, and      ║
- * ║    cross-gap sag intrusion <= 90% of the air gap.                  ║
+ * ║    cross-gap sag intrusion <= 90% of the air gap. Surfaces 1-3      ║
+ * ║    were raised to pass the traced chief ray to the patent's         ║
+ * ║    Y = 14.20 mm APS-C corner (2026-09-24 field-coverage audit).     ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -254,9 +256,9 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 125.246, d: 2.9671, nd: 1.5168, elemId: 1, sd: 17 },
-    { label: "2", R: 404.5429, d: 0.5, nd: 1, elemId: 0, sd: 16.6 },
-    { label: "3", R: 34.369, d: 1.4, nd: 2.001, elemId: 2, sd: 14.6 },
+    { label: "1", R: 125.246, d: 2.9671, nd: 1.5168, elemId: 1, sd: 21 },
+    { label: "2", R: 404.5429, d: 0.5, nd: 1, elemId: 0, sd: 20.5 },
+    { label: "3", R: 34.369, d: 1.4, nd: 2.001, elemId: 2, sd: 16 },
     { label: "4", R: 16.3986, d: 5.0945, nd: 1, elemId: 0, sd: 14.4 },
     { label: "5", R: 26, d: 1.5, nd: 1.58913, elemId: 3, sd: 13.8 },
     { label: "6A", R: 15.576, d: 10.6088, nd: 1, elemId: 0, sd: 13.45 },

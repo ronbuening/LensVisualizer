@@ -18,6 +18,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  SDs are conservative rendering estimates constrained by paraxial   ║
  * ║  ray heights, element SD ratio, edge thickness, and signed          ║
  * ║  cross-gap sag intrusion. They are not production aperture data.    ║
+ * ║  Surfaces 1A/2, 22 and 23A were raised to pass the traced chief     ║
+ * ║  ray to the patent's Y = 14.20 mm APS-C corner at the wide end,     ║
+ * ║  with partners 21/24A scaled (2026-09-24 field-coverage audit).     ║
  * ║                                                                    ║
  * ║  NOTE ON ASPHERES: patent surface 4 includes odd-order terms.       ║
  * ║  Numerical Example 2 A3–A14 are transcribed exactly; the other      ║
@@ -253,8 +256,8 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1A", R: 72.6802, d: 1.9, nd: 1.85135, elemId: 1, sd: 13.75 },
-    { label: "2", R: 14.1404, d: 6.0015, nd: 1.0, elemId: 0, sd: 11.0 },
+    { label: "1A", R: 72.6802, d: 1.9, nd: 1.85135, elemId: 1, sd: 16.8 },
+    { label: "2", R: 14.1404, d: 6.0015, nd: 1.0, elemId: 0, sd: 12.3 },
     { label: "3A", R: 25.7643, d: 1.3, nd: 1.59201, elemId: 2, sd: 12.0 },
     { label: "4A", R: 12.3826, d: 6.9302, nd: 1.0, elemId: 0, sd: 10.25 },
     { label: "5", R: -33.1567, d: 0.9, nd: 1.437, elemId: 3, sd: 10.25 },
@@ -273,10 +276,10 @@ const LENS_DATA = {
     { label: "18A", R: -26.248, d: 1.6, nd: 1.0, elemId: 0, sd: 8.8 },
     { label: "19", R: -119.0214, d: 0.9, nd: 1.7433, elemId: 11, sd: 8.8 },
     { label: "20", R: 22.8303, d: 4.6173, nd: 1.0, elemId: 0, sd: 8.8 },
-    { label: "21", R: 24.8505, d: 5.2005, nd: 1.437, elemId: 12, sd: 7.05 },
-    { label: "22", R: -17.5, d: 0.3091, nd: 1.0, elemId: 0, sd: 5.65 },
-    { label: "23A", R: -72.4668, d: 0.85, nd: 1.8061, elemId: 13, sd: 5.65 },
-    { label: "24A", R: 51.0249, d: 16.3954, nd: 1.0, elemId: 0, sd: 7.05 },
+    { label: "21", R: 24.8505, d: 5.2005, nd: 1.437, elemId: 12, sd: 8.7 },
+    { label: "22", R: -17.5, d: 0.3091, nd: 1.0, elemId: 0, sd: 7.0 },
+    { label: "23A", R: -72.4668, d: 0.85, nd: 1.8061, elemId: 13, sd: 7.1 },
+    { label: "24A", R: 51.0249, d: 16.3954, nd: 1.0, elemId: 0, sd: 8.8 },
   ],
 
   asph: {

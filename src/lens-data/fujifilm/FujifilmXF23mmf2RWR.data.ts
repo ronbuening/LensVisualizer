@@ -26,6 +26,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    are ray-trace estimates constrained by f/2.06 marginal rays,    ║
  * ║    APS-C field coverage, element SD ratios ≤ 1.25, sd/|R| < 0.90, ║
  * ║    positive edge thickness, and cross-gap sag intrusion ≤ 90%.     ║
+ * ║    Surfaces 15-17 (L31/L32) were raised to pass the traced chief   ║
+ * ║    ray to the APS-C corner that the patent's ω = 32.4° reaches     ║
+ * ║    (2026-09-24 field-coverage audit).                              ║
  * ║                                                                    ║
  * ║  OPTICAL MEMBER PP: patent surfaces 18–19 (2.850 mm, nd 1.51680,   ║
  * ║    νd 64.20, θgF 0.53430) and the 1.000 mm air gap to the image    ║
@@ -225,9 +228,9 @@ const LENS_DATA = {
     { label: "12", R: -15.5086, d: 2.312, nd: 1.0, elemId: 0, sd: 8.6 },
     { label: "13A", R: -32.42595, d: 1.75, nd: 1.80312, elemId: 8, sd: 8.0 },
     { label: "14A", R: 2385.05256, d: 5.764, nd: 1.0, elemId: 0, sd: 7.9 },
-    { label: "15", R: -205.25324, d: 1.1, nd: 1.7847, elemId: 9, sd: 7.5 },
-    { label: "16", R: 33.79, d: 3.98, nd: 1.804, elemId: 10, sd: 7.5 },
-    { label: "17", R: -96.69231, d: 10.862, nd: 1.0, elemId: 0, sd: 7.4 }, // patent gap to optical member PP
+    { label: "15", R: -205.25324, d: 1.1, nd: 1.7847, elemId: 9, sd: 8.8 },
+    { label: "16", R: 33.79, d: 3.98, nd: 1.804, elemId: 10, sd: 9.4 },
+    { label: "17", R: -96.69231, d: 10.862, nd: 1.0, elemId: 0, sd: 9.9 }, // patent gap to optical member PP
   ],
 
   /* ── Optical member PP (patent Table 1 surfaces 18–19): traced, not drawn ── */

@@ -26,6 +26,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    Semi-diameters are inferred from paraxial marginal/chief-ray envelopes   ║
  * ║    and then constrained by spherical rim slope, element edge thickness,     ║
  * ║    ≤1.25 front/rear element SD ratio, and ≤90% cross-gap sag intrusion.    ║
+ * ║    Surfaces 1-5 (L1, L2, L3 front) were later raised to pass the traced    ║
+ * ║    chief ray to the 24x36 corner (21.65 mm at 38.4°; patent 2ω = 75°,      ║
+ * ║    28 tan 37.5° = 21.49 mm); the old rims clipped it from 33.6°            ║
+ * ║    (2026-09-24 field-coverage audit).                                      ║
  * ╚══════════════════════════════════════════════════════════════════════════════╝
  */
 
@@ -162,11 +166,11 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 2105.264, d: 3.78, nd: 1.6935, elemId: 1, sd: 16.0 },
-    { label: "2", R: -418.5356, d: 0.1456, nd: 1.0, elemId: 0, sd: 15.2 },
-    { label: "3", R: 33.0176, d: 1.68, nd: 1.5111, elemId: 2, sd: 11.25 },
-    { label: "4", R: 15.1788, d: 3.36, nd: 1.0, elemId: 0, sd: 9.0 },
-    { label: "5", R: 32.2, d: 1.68, nd: 1.5111, elemId: 3, sd: 9.2 },
+    { label: "1", R: 2105.264, d: 3.78, nd: 1.6935, elemId: 1, sd: 16.7 },
+    { label: "2", R: -418.5356, d: 0.1456, nd: 1.0, elemId: 0, sd: 15.9 },
+    { label: "3", R: 33.0176, d: 1.68, nd: 1.5111, elemId: 2, sd: 12.9 },
+    { label: "4", R: 15.1788, d: 3.36, nd: 1.0, elemId: 0, sd: 10.7 },
+    { label: "5", R: 32.2, d: 1.68, nd: 1.5111, elemId: 3, sd: 10.2 },
     { label: "6", R: 14.7448, d: 8.6016, nd: 1.0, elemId: 0, sd: 11.5 },
     { label: "7", R: 31.4328, d: 3.92, nd: 1.762, elemId: 4, sd: 12.2 },
     { label: "7p", R: 194.5804, d: 1.12, nd: 1.0, elemId: 0, sd: 11.5 },

@@ -302,7 +302,7 @@ base spheres are:
 
 | Surface | Inferred semi-diameter | Model-edge departure | Actual rim angle |
 |---|---:|---:|---:|
-| 6A | 10.200 mm | +0.146711 mm | 10.474° |
+| 6A | 11.400 mm | +0.233519 mm | 12.852° |
 | 24A | 10.300 mm | −0.074701 mm | 9.452° |
 | 25A | 10.800 mm | +0.215927 mm | 18.786° |
 
@@ -351,7 +351,9 @@ recomputed group powers from the final prescription; Table 29 rounds the Embodim
 - **Semi-diameters:** The patent does not publish clear apertures. The model semi-diameters were inferred from on-axis and
   off-axis paraxial envelopes across all three states, given conservative clearance, and checked against Figs. 7 and
   10. The Fig. 7 pass enlarged G2's hybrid front element to 10.2 mm, regularized the remaining G2 rims to 8.8–9.0 mm,
-  and reduced G4 to 7.8 mm. They are modeling values, not source facts.
+  and reduced G4 to 7.8 mm. The 2026-09-24 field-coverage pass then raised surfaces 1–3 and the hybrid front element
+  (6A/7, now 11.4 mm) so the full-field chief ray reaches the 21.64 mm image height at every state. They are modeling
+  values, not source facts.
 - **Focus:** No internal focus motion was reconstructed. The 0.5 m product specification is metadata only.
 - **Spectral data:** The patent publishes `nd` and `νd` but not `nC`, `nF`, `ng`, or `dPgF`; none were invented.
 - **Excluded planes:** No sensor cover glass, filter, inactive dummy plane, flare cutter, or mechanical plane occurs in
@@ -382,7 +384,7 @@ Petzval radius of −797.075 mm under the model's sign convention. This is a par
 measurement of final image-plane flatness after higher-order correction.
 
 The inferred apertures pass the geometry checks for every defined zoom state, and the representative on-axis,
-0.6-field, and full-field-chief bundles remain contained. The minimum element rim thickness is 0.179230 mm in the L21
+0.6-field, and full-field-chief bundles remain contained. The minimum element rim thickness is 0.137103 mm in the L21
 resin layer, the maximum actual rim angle is 44.108°, and the largest cross-gap intrusion uses 81.405% of its physical
 gap. The aspherical conic limits are unrestrictive because all three surfaces use `K = 0`.
 

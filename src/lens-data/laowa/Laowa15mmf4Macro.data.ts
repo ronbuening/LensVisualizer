@@ -20,6 +20,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    validated against edge thickness ≥ 0.3 mm, cross-gap sag       ║
  * ║    intrusion ≤ 90%, sd/|R| < 0.90, and element SD ratio ≤ 3.0.   ║
  * ║    Front element (S1) constrained by 77 mm filter thread.         ║
+ * ║    S3 (L2 front) and S5 (L3 front) were later raised to pass the   ║
+ * ║    traced chief ray to the full-frame corner (21.65 mm at 55.3°;   ║
+ * ║    patent ω = 55.199°); the old rims clipped it from 49.2°         ║
+ * ║    (2026-09-24 field-coverage audit).                              ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -205,9 +209,9 @@ const LENS_DATA = {
     /* --- SF group: L1–L6 (surfaces 1–13) --- */
     { label: "1", R: 51.1838, d: 3.9185, nd: 1.7725, elemId: 1, sd: 27.5 }, // L1 front
     { label: "2", R: 78.9199, d: 0.15, nd: 1.0, elemId: 0, sd: 23.0 }, // L1 rear → air
-    { label: "3", R: 24.9469, d: 1.35, nd: 1.91082, elemId: 2, sd: 12.5 }, // L2 front
+    { label: "3", R: 24.9469, d: 1.35, nd: 1.91082, elemId: 2, sd: 15.1 }, // L2 front
     { label: "4", R: 12.5294, d: 5.1363, nd: 1.0, elemId: 0, sd: 11.0 }, // L2 rear → air
-    { label: "5", R: 28.226, d: 1.2, nd: 1.90366, elemId: 3, sd: 9.2 }, // L3 front
+    { label: "5", R: 28.226, d: 1.2, nd: 1.90366, elemId: 3, sd: 10.6 }, // L3 front
     { label: "6", R: 10.0604, d: 4.9375, nd: 1.0, elemId: 0, sd: 8.0 }, // L3 rear → air
     { label: "7", R: 212.9888, d: 3.4261, nd: 1.84666, elemId: 4, sd: 10.5 }, // L4a front (D1)
     { label: "8", R: -21.6379, d: 1.2, nd: 1.72916, elemId: 5, sd: 10.0 }, // L4a→L4b cemented junction (D1)

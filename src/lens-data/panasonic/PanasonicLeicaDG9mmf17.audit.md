@@ -57,3 +57,25 @@ Patent: US 2023/0367186 A1, Example 1
 - Plate check against HEAD: EFL identical at both focus keyframes; paraxial defocus changes by ≤ 1.3e-5 mm (rounding of
   the legacy folded 14.199). Physical track grows by 1.431 mm = 4.20 × (1 − 1/1.5168), matching the patent's printed
   total lens length 70.9975 mm. `closeFocusM` (0.095 m production spec) is unchanged.
+
+## 2026-09-24 — Semi-diameters raised to the traced format corner
+
+Table 1C (PDF p. 24) prints f = 9.3466 mm, half view angle 49.8179° and image height 10.0000 mm, 92.4% of the Four
+Thirds corner (10.82 mm), so Y is a design image circle. The stored surface 1 rim (10.3 mm) clipped the real chief ray
+(solved through the stop centre) from 44.1° (8.38 mm, 84% of Y); at the patent ω that chief ray needs surface 1 ≥ 11.71
+mm and clears every other rim. Fig. 1A (PDF p. 2, rendered at 400 dpi; 70.9975 mm total length = 1546 px, cross-checked
+by the 4.20 mm cover glass = 91 px) draws the L1 front surface running straight into its edge at ≈ 308 px ≈ 14.2 mm,
+and the rear surface ending at ≈ 238 px ≈ 11.0 mm behind a flat step. Surface 1 takes the drawn 14.2 mm, the larger of
+figure and floor. The 2026-06-24 entry's statement that the existing proportions match the drawing envelope was wrong
+for L1: the drawn front rim is 38% larger than the stored one. Surface 2 (R 11.495; drawn ≈ 11.0 vs 10.1 stored,
+inside the ~15% noise band) is unchanged, because L1 is a strong meniscus and scaling surface 2 with surface 1 would
+exceed its radius.
+
+| Surface | Before | After | Justification |
+|---|---|---|---|
+| 1 | 10.3 | 14.2 | Fig. 1A L1 front rim ≈ 14.2 mm; traced floor at the patent ω is 11.71 mm |
+
+The validator accepts the value and the image-circle floor still reports nothing undersized. The chief ray now reaches
+Y at 49.81° with every rim clear, and with the drawn rim the analysis edge reaches the full Four Thirds corner (52.3° →
+10.82 mm, 100%; surface 1 chief ray 12.34 mm there). No aspheric surface changed, and the analysis file quotes no
+surface 1 value.

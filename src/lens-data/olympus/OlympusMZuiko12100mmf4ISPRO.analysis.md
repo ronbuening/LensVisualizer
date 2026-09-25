@@ -71,7 +71,7 @@ $n_d = 1.88227$, $\nu_d = 37.18$. Glass: **882372 — HOYA M-TAFD307 / MC-TAFD30
 
 L4 is the dominant optical correction element in G2. It is strongly negative, sits at the object side of the variator, and carries both DSA aspherical surfaces. The earlier draft labeled it OHARA L-LAH85V, but current OHARA L-LAH85V is around 1.854 / 40.38 and therefore cannot represent the patent value. HOYA's M-TAFD307/MC-TAFD307 family is the correct class by six-digit glass code and by molded-asphere use, though the patent value has no exact public coefficient-backed catalog row.
 
-The front asphere has a computed departure of **+91 µm at h = 12.5 mm**. The rear asphere has a computed departure of **-264 µm at h = 10.2 mm**, the largest verified departure in the design. This rear surface is the main wide-end correction surface for distortion, field curvature, and coma.
+The front asphere has a computed departure of **+145 µm at h = 13.4 mm**. The rear asphere has a computed departure of **-264 µm at h = 10.2 mm**, the largest verified departure in the design. This rear surface is the main wide-end correction surface for distortion, field curvature, and coma.
 
 ### L5 — Biconcave Negative, cemented to L6
 
@@ -197,7 +197,7 @@ The tabulated `k = 0.000` is therefore the standard conic constant $K = 0$ spher
 
 | Surface | Element  | Coefficients copied from patent                                                                    | Selected SD | Polynomial departure at SD |
 | ------- | -------- | -------------------------------------------------------------------------------------------------- | ----------: | -------------------------: |
-| S6      | L4 front | A4=-7.50532e-6, A6=1.23396e-7, A8=-4.26522e-10, A10=6.20739e-13                                    |     12.5 mm |                   +91.1 µm |
+| S6      | L4 front | A4=-7.50532e-6, A6=1.23396e-7, A8=-4.26522e-10, A10=6.20739e-13                                    |     13.4 mm |                  +144.9 µm |
 | S7      | L4 rear  | A4=-3.12688e-5, A6=6.45994e-8, A8=-5.06358e-10, A10=1.39139e-11, A12=-1.22469e-13, A14=3.55245e-16 |     10.2 mm |                  -263.9 µm |
 | S14     | L8 front | A4=-1.21943e-5, A6=-3.40663e-8, A8=-3.04610e-11, A10=4.72594e-13                                   |      9.7 mm |                  -135.2 µm |
 | S15     | L8 rear  | A4=7.50787e-6, A6=-4.91245e-8, A8=9.97723e-11                                                      |     10.1 mm |                   +36.8 µm |

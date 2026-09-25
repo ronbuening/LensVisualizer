@@ -47,6 +47,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║   geometry. They were checked for edge thickness, actual rim slope, conic limits,   ║
  * ║   shared-band cross-gap intrusion, and paraxial vignetting-limited off-axis rays.   ║
  * ║   They are not represented as patent-published clear apertures.                      ║
+ * ║ - Surfaces 7A and 8 were raised to pass the traced wide-end chief ray to the Four    ║
+ * ║   Thirds corner (10.82 mm at 39.56°; Table 11's ω = 37.102° reaches 9.89 mm), which  ║
+ * ║   Fig. 9's L4 front face supports (2026-09-24 field-coverage audit).                 ║
  * ║                                                                                      ║
  * ║ ASPHERES / SPECTRAL DATA                                                              ║
  * ║ - Patent epsilon convention converts as K = epsilon - 1; all Example 3 epsilon=1,   ║
@@ -315,8 +318,8 @@ const LENS_DATA = {
     { label: "4", R: -146.2327, d: 0.2, nd: 1.0, elemId: 0, sd: 20.0 },
     { label: "5", R: 39.5728, d: 3.97, nd: 1.618, elemId: 3, sd: 17.5 },
     { label: "6", R: 112.3407, d: 1.133, nd: 1.0, elemId: 0, sd: 17.5 },
-    { label: "7A", R: 79.0234, d: 0.2, nd: 1.5146, elemId: 4, sd: 7.5 },
-    { label: "8", R: 65.0676, d: 0.9, nd: 1.91082, elemId: 5, sd: 7.5 },
+    { label: "7A", R: 79.0234, d: 0.2, nd: 1.5146, elemId: 4, sd: 9.9 },
+    { label: "8", R: 65.0676, d: 0.9, nd: 1.91082, elemId: 5, sd: 9.7 },
     { label: "9", R: 12.3717, d: 4.1854, nd: 1.0, elemId: 0, sd: 7.5 },
     { label: "10", R: -23.873, d: 0.75, nd: 1.91082, elemId: 6, sd: 7.2 },
     { label: "11", R: 42.3962, d: 0.493, nd: 1.0, elemId: 0, sd: 7.2 },

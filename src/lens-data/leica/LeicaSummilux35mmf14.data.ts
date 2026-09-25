@@ -22,10 +22,13 @@ import type { LensDataInput } from "../../types/optics.js";
  * pupil to the patent's published f/1.4 ratio. This is not an independently
  * published or measured physical diaphragm diameter.
  *
- * SEMI-DIAMETERS: inferred from Fig. 1, not published. Outer front/rear
- * rims are 13/10.4 mm. The front retains clearance for the modeled 12.5511 mm
- * entrance pupil. Inner rims remain geometry-constrained; gapSagFrac 0.985
- * retains positive 7–8 gap separation at the 7.56 mm shared rim.
+ * SEMI-DIAMETERS: inferred, not published. Fig. 1 suggests outer front/rear
+ * rims of about 13/10.4 mm, but with the modeled stop those clip the chief ray
+ * short of the patent's 64° field. Surfaces 1-2 and 11-12 were therefore
+ * raised to 14.9/12.9 mm to pass the traced chief ray to the 24 × 36 corner
+ * (21.65 mm at 31.5°; 2026-09-24 field-coverage audit). Inner rims remain
+ * geometry-constrained; gapSagFrac 0.985 retains positive 7–8 gap separation
+ * at the 7.56 mm shared rim.
  *
  * FOCUS: NO_INTERNAL_RECONSTRUCTION. FR Example 1 publishes one optical
  * state only. closeFocusM = 1.0 m is production metadata and does not drive
@@ -152,8 +155,8 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 29.45985, d: 3.5, nd: 1.72341, elemId: 1, sd: 13 },
-    { label: "2", R: 89.9115, d: 0.021, nd: 1, elemId: 0, sd: 13 },
+    { label: "1", R: 29.45985, d: 3.5, nd: 1.72341, elemId: 1, sd: 14.9 },
+    { label: "2", R: 89.9115, d: 0.021, nd: 1, elemId: 0, sd: 14.9 },
     { label: "3", R: 13.447, d: 4.5395, nd: 1.7899, elemId: 2, sd: 11.65 },
     { label: "4", R: 30.2365, d: 1.309, nd: 1.70444, elemId: 3, sd: 11.65 },
     { label: "5", R: 8.932, d: 6.061125, nd: 1, elemId: 0, sd: 8.02 },
@@ -163,8 +166,8 @@ const LENS_DATA = {
     { label: "8", R: -12.068, d: 1.309, nd: 1.76167, elemId: 5, sd: 9.4 },
     { label: "9", R: -47.999, d: 4.599, nd: 1.7899, elemId: 6, sd: 9.4 },
     { label: "10", R: -16.0125, d: 0.5985, nd: 1, elemId: 0, sd: 10.6 },
-    { label: "11", R: -700, d: 4.7985, nd: 1.72056, elemId: 7, sd: 10.4 },
-    { label: "12", R: -29.4595, d: 19.1415, nd: 1, elemId: 0, sd: 10.4 },
+    { label: "11", R: -700, d: 4.7985, nd: 1.72056, elemId: 7, sd: 12.9 },
+    { label: "12", R: -29.4595, d: 19.1415, nd: 1, elemId: 0, sd: 12.9 },
   ],
 
   asph: {},

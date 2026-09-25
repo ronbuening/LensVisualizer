@@ -21,6 +21,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ off-axis field fraction, then reduced where required by edge-thickness and       ║
  * ║ cross-gap sag constraints. They are renderer-safe clear-aperture estimates, not  ║
  * ║ patent-published mechanical diameters.                                           ║
+ * ║ Surface 6A was raised to pass the traced wide chief ray at the patent's 2ω =     ║
+ * ║ 83.05° (Y ≈ 9.76 mm; 2026-09-24 field-coverage audit).                           ║
  * ╚════════════════════════════════════════════════════════════════════════════════════╝
  */
 
@@ -275,7 +277,7 @@ const LENS_DATA = {
     { label: "3", R: 1e15, d: 0.15, nd: 1, elemId: 0, sd: 29.3 },
     { label: "4", R: 61.099, d: 5.02, nd: 1.497, elemId: 3, sd: 28.3 },
     { label: "5", R: 172.659, d: 0.72, nd: 1, elemId: 0, sd: 28.3 },
-    { label: "6A", R: 231.854, d: 1.65, nd: 1.88227, elemId: 4, sd: 12.5 },
+    { label: "6A", R: 231.854, d: 1.65, nd: 1.88227, elemId: 4, sd: 13.4 },
     { label: "7A", R: 14.124, d: 7.35, nd: 1, elemId: 0, sd: 10.2 },
     { label: "8", R: -22.507, d: 1, nd: 1.59282, elemId: 5, sd: 10.2 },
     { label: "9", R: 32.319, d: 4.23, nd: 2.00069, elemId: 6, sd: 11.6 },

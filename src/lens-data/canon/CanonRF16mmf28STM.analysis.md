@@ -13,7 +13,7 @@ Numerical Example 3 is the strongest match to the Canon RF 16mm F2.8 STM among t
 
 The prescription has 9 elements in 7 air-spaced groups. That matches Canon's production specification for the RF 16mm F2.8 STM. The sole aspherical element is L8, carrying aspherical surfaces on both sides; Canon's public specifications identify one aspherical element. The resin or PMo-class identification used here is inferred from the patent's unmatched nd/νd pair rather than from a patent material name. The patent example contains no optical image-stabilization group, consistent with Canon's production specification that the lens itself has no optical IS.
 
-The patent's image height is 18.20 mm with a stated half field of 47.84°. This is smaller than the 21.6 mm half-diagonal of a 36 × 24 mm frame, while Canon markets the production lens with a diagonal field of 108°10′. The data file therefore preserves the patent trace field as `maxTraceFieldDeg: 47.84` and records the production diagonal field separately as the rectilinear full-field metadata. This avoids treating the patent's reduced image height as if it were the full corrected production field.
+The patent's image height is 18.20 mm with a stated half field of 47.84°. That table angle is the paraxial atan(Y/f); the Example 3 aberration plots (Fig. 6) run to ω = 52.9°, the real field whose chief ray reaches the 18.20 mm image height through the design's strong barrel distortion. This is smaller than the 21.6 mm half-diagonal of a 36 × 24 mm frame, while Canon markets the production lens with a diagonal field of 108°10′. The data file therefore declares the patent trace field as `maxTraceFieldDeg: 52.9` and records the production diagonal field separately as the rectilinear full-field metadata. This avoids treating the patent's reduced image height as if it were the full corrected production field.
 
 Canon Camera Museum lists the RF16mm F2.8 STM as marketed in October 2021, with 9 elements in 7 groups, 7 aperture blades, 0.13 m minimum focusing distance, 0.26× maximum magnification, 43 mm filter diameter, and approximately 165 g weight. The same Canon source describes the RF mount's large internal diameter and short back focus as enabling the 9/7 optical configuration to sit close to the imaging plane. That statement is important: this is a short-back-focus mirrorless wide-angle, not a long-back-focus SLR retrofocus lens.
 
@@ -175,7 +175,7 @@ The rounded prescription gives PD = 16.12 mm, while Table 1 prints 16.13 mm; the
 
 The stop position follows the patent exactly. Because the patent reports F/2.90 but Canon markets the production lens as f/2.8 and does not publish the actual stop radius, the file records `apertureDesign: 2.9`, `apertureMarketing: 2.8`, and uses an inferred stop semi-diameter for the marketed aperture.
 
-The file records Canon RF mount and 135 full-frame format metadata. The optical trace field is kept at the patent value, while the production diagonal field is stored as projection metadata. That separation is necessary because the patent's 18.20 mm image height is not the full-frame half-diagonal.
+The file records Canon RF mount and 135 full-frame format metadata. The optical trace field is kept at the patent's plotted 52.9°, while the production diagonal field is stored as projection metadata. That separation is necessary because the patent's 18.20 mm image height is not the full-frame half-diagonal.
 
 ## Sources
 

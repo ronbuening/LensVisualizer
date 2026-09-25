@@ -73,3 +73,34 @@ The solve treats the patent's published direction as authoritative and estimates
 - Rejected the prior OHARA `L-PHL1` attribution. OHARA's official all-products row is `1.564550 / 60.818065`, well outside the d-line index guard.
 - Relabeled L10 to `M-BACD12 (HOYA catalog equivalent; production supplier unspecified)`. HOYA's coefficient row is the exact-index, closest-Abbe match at `1.58313 / 59.46`.
 - Synchronized the analysis and removed unsupported claims about L10's composition and forming process. No geometry or focus data changed.
+
+## 2026-09-24 — Semi-diameters raised to the traced format corner
+
+Table 6A (PDF p. 19) prints image height 19.6000 mm at wide (half view angle 46.6920°) and 21.6330 mm at middle and
+telephoto (31.9506° / 20.3158°). The middle and tele heights reach the full-frame corner (21.65 mm); the wide one is a
+design image circle (90.5% of the corner), so only the middle and tele stations were sized. There the stored L11 rims
+(12.5 / 13.0 mm) clipped the real chief ray (solved through the stop centre) from 29.4° at middle (19.45 mm, 90% of the
+corner) and 15.8° at tele (16.38 mm, 76%). The traced corner chief ray needs surface 20 ≥ 16.26 and surface 21 ≥ 16.75
+mm at tele (13.59 / 14.24 mm at middle). Fig. 3(a) (PDF p. 25, rendered at 600 dpi; 105.8668 mm wide overall length =
+1050.5 px, 0.1008 mm/px) draws L11 as a thin meniscus whose two faces meet at a narrow rim about 182 px ≈ 18.3 mm from
+the axis, 46% above the stored value. L11 takes the drawn 18.3 mm on both faces, the larger of figure and floor.
+
+| Surface | Before | After | Justification |
+|---|---|---|---|
+| 20 | 12.5 | 18.3 | Fig. 3(a) L11 rim ≈ 18.3 mm; tele corner chief ray 16.26 mm |
+| 21 | 13.0 | 18.3 | Fig. 3(a) L11 rim ≈ 18.3 mm; tele corner chief ray 16.75 mm |
+
+The validator accepts the values (L11 edge thickness 1.19 mm at 18.3 mm) and the image-circle floor still reports
+nothing undersized. Middle and tele now reach the corner (32.0° and 20.3° → 21.65 mm, 100%) with every rim clear. Wide
+is unchanged at 45.8° → 19.01 mm (88% of the corner, 97% of the 19.60 mm design height), stopped by surface 3 (L2
+front, 14.5 mm); passing the design height would need surface 3 ≥ 14.90 mm. No aspheric surface changed, and the
+analysis file quotes no L11 semi-diameter.
+
+Wide end, same day: Table 6A prints the wide state at ω 46.6920° with image height 19.6000 mm (90.5% of the corner), a
+design image circle. The real chief ray at that ω crosses surface 3 at 14.89 mm, so surface 3 now takes that floor +
+~0.5 mm; Fig. 3(a) draws the surface at about 17.3 mm. Its partner, surface 4 (R 14.38, the concave rear of the L2
+meniscus), is unchanged. The wide analysis field now runs to 47.4° (20.08 mm, 93% of the corner), where surface 1 clips.
+
+| Surface | Before | After | Justification |
+|---|---|---|---|
+| 3 | 14.5 | 15.4 | wide chief ray at the printed ω crosses it at 14.89 mm + clearance (Fig. 3(a) ≈ 17.3) |

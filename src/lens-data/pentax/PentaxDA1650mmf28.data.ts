@@ -27,6 +27,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    paraxial marginal ray (at F/2.9) + chief ray (60% field),      ║
  * ║    envelope across all three zoom positions, with 8% mechanical   ║
  * ║    clearance. Front elements constrained by 77 mm filter thread.  ║
+ * ║    Surfaces 1-7 were raised so the traced chief ray reaches the   ║
+ * ║    APS-C corner (14.175 mm) at every zoom position (2026-09-24    ║
+ * ║    field-coverage audit).                                         ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -281,15 +284,15 @@ const LENS_DATA = {
    */
   surfaces: [
     // ── Group 10 ──
-    { label: "1", R: 228.853, d: 2.4, nd: 1.84666, elemId: 1, sd: 25.7 }, // L11 front
-    { label: "2", R: 90.908, d: 6.36, nd: 1.713, elemId: 2, sd: 25.3 }, // L11→L12 cemented junction
-    { label: "3", R: 868.199, d: 0.2, nd: 1.0, elemId: 0, sd: 24.4 }, // L12 rear → air
-    { label: "4", R: 66.977, d: 4.95, nd: 1.7725, elemId: 3, sd: 24.4 }, // L13 front
-    { label: "5", R: 143.503, d: 3.1, nd: 1.0, elemId: 0, sd: 23.0 }, // L13 rear → air (variable: G1–G2)
+    { label: "1", R: 228.853, d: 2.4, nd: 1.84666, elemId: 1, sd: 27.7 }, // L11 front
+    { label: "2", R: 90.908, d: 6.36, nd: 1.713, elemId: 2, sd: 26.5 }, // L11→L12 cemented junction
+    { label: "3", R: 868.199, d: 0.2, nd: 1.0, elemId: 0, sd: 25.9 }, // L12 rear → air
+    { label: "4", R: 66.977, d: 4.95, nd: 1.7725, elemId: 3, sd: 25.0 }, // L13 front
+    { label: "5", R: 143.503, d: 3.1, nd: 1.0, elemId: 0, sd: 23.6 }, // L13 rear → air (variable: G1–G2)
 
     // ── Group 20 ──
-    { label: "6A", R: 69.698, d: 0.1, nd: 1.52972, elemId: 4, sd: 10.6 }, // L21r resin front (asph)
-    { label: "7", R: 50.745, d: 1.45, nd: 1.83481, elemId: 5, sd: 10.6 }, // L21r→L21g hybrid junction
+    { label: "6A", R: 69.698, d: 0.1, nd: 1.52972, elemId: 4, sd: 13.5 }, // L21r resin front (asph)
+    { label: "7", R: 50.745, d: 1.45, nd: 1.83481, elemId: 5, sd: 13.5 }, // L21r→L21g hybrid junction
     { label: "8", R: 13.792, d: 6.68, nd: 1.0, elemId: 0, sd: 10.0 }, // L21g rear → air
     { label: "9", R: -48.189, d: 1.2, nd: 1.83481, elemId: 6, sd: 9.0 }, // L22 front
     { label: "10", R: 44.128, d: 0.34, nd: 1.0, elemId: 0, sd: 9.0 }, // L22 rear → air

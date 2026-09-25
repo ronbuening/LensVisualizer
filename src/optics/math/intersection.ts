@@ -62,6 +62,9 @@ export interface SurfaceIntersectionFailure {
 /** Union result for exact surface-profile intersection. */
 export type SurfaceIntersectionResult = SurfaceIntersectionSuccess | SurfaceIntersectionFailure;
 
+/** Bisections that locate where a ray crosses the edge of a surface's domain (~1e-12 of the sample spacing). */
+const DOMAIN_EDGE_BISECTIONS = 40;
+
 interface SurfaceEvaluation {
   t: number;
   point: Vec3;
@@ -106,7 +109,12 @@ export function intersectSurfaceProfile(
   }
 
   if (!Number.isFinite(maxT)) return failure("invalidBounds", null, 0);
-  const evalAt = (t: number): SurfaceEvaluation => evaluateProfile(ray.origin, direction, profile, vertexZ, t);
+  /* A conic's sag is real only inside its domain radius; beyond it the sag is clamped into a fake extension that
+   * no glass occupies. Points out there evaluate as no surface, so a ray passing outside the domain finds the real
+   * surface instead of a root on the extension. Along a straight ray the in-domain span is one interval. */
+  const domainRadius = profile.finiteRadiusLimit();
+  const evalAt = (t: number): SurfaceEvaluation =>
+    evaluateProfile(ray.origin, direction, profile, vertexZ, t, domainRadius);
   const bracket = findBracket(evalAt, minT, maxT, tolerance, bracketSamples);
   if (bracket.kind === "success")
     return makeSuccess(bracket.value, profile, vertexZ, tolerance, refractiveIndex, bracket.iterations);
@@ -190,9 +198,11 @@ function evaluateProfile(
   profile: SurfaceProfile,
   vertexZ: number,
   t: number,
+  domainRadius: number | null,
 ): SurfaceEvaluation {
   const point = addRay(origin, direction, t);
   const radius = Math.hypot(point[0], point[1]);
+  if (domainRadius !== null && radius > domainRadius) return { t, point, radius, value: NaN, derivative: NaN };
   const slope = profile.slope(radius);
   /* Chain rule for f(t) = z_ray(t) - z_surface(r(t)):
    * df/dt = dz/dt - (dz/dr) * dr/dt. */
@@ -215,32 +225,72 @@ function findBracket(
   bracketSamples: number,
 ): BracketResult {
   const loEval = evalAt(minT);
-  if (!isFiniteValueEvaluation(loEval))
-    return { kind: "failure", failureReason: "noBracket", residual: null, iterations: 0 };
-  if (Math.abs(loEval.value) <= tolerance) return { kind: "success", value: loEval, iterations: 0 };
+  const loValid = isFiniteValueEvaluation(loEval);
+  if (loValid && Math.abs(loEval.value) <= tolerance) return { kind: "success", value: loEval, iterations: 0 };
 
   const hiEval = evalAt(maxT);
-  if (!isFiniteValueEvaluation(hiEval))
-    return { kind: "failure", failureReason: "noBracket", residual: null, iterations: 0 };
-  if (Math.abs(hiEval.value) <= tolerance) return { kind: "success", value: hiEval, iterations: 0 };
-  if (!sameSign(loEval.value, hiEval.value)) return { kind: "bracket", lo: minT, hi: maxT, fLo: loEval.value };
+  const hiValid = isFiniteValueEvaluation(hiEval);
+  if (hiValid && Math.abs(hiEval.value) <= tolerance) return { kind: "success", value: hiEval, iterations: 0 };
+  if (loValid && hiValid && !sameSign(loEval.value, hiEval.value))
+    return { kind: "bracket", lo: minT, hi: maxT, fLo: loEval.value };
 
+  /* Scan for the first sign change between surface points. Points outside the surface's domain are skipped, but
+   * the domain edge itself joins the scan: a steep near-hemispherical rim is crossed in the sliver between that
+   * edge and the nearest sample. */
   const samples = Math.max(2, Math.round(bracketSamples));
-  let previous = loEval;
-  let best = Math.abs(loEval.value) <= Math.abs(hiEval.value) ? loEval : hiEval;
-  for (let i = 1; i <= samples; i++) {
-    const t = minT + ((maxT - minT) * i) / samples;
-    const current = evalAt(t);
-    if (!isFiniteValueEvaluation(current)) continue;
-    if (Math.abs(current.value) < Math.abs(best.value)) best = current;
-    if (Math.abs(current.value) <= tolerance) return { kind: "success", value: current, iterations: i };
-    if (!sameSign(previous.value, current.value)) {
+  let previous: SurfaceEvaluation | null = loValid ? loEval : null;
+  let best: SurfaceEvaluation | null = previous;
+  if (hiValid && (best === null || Math.abs(hiEval.value) < Math.abs(best.value))) best = hiEval;
+  let lastT = minT;
+  let lastValid = loValid;
+  const visit = (current: SurfaceEvaluation, iterations: number): BracketResult | null => {
+    if (best === null || Math.abs(current.value) < Math.abs(best.value)) best = current;
+    if (Math.abs(current.value) <= tolerance) return { kind: "success", value: current, iterations };
+    if (previous !== null && !sameSign(previous.value, current.value)) {
       return { kind: "bracket", lo: previous.t, hi: current.t, fLo: previous.value };
     }
     previous = current;
+    return null;
+  };
+  for (let i = 1; i <= samples; i++) {
+    const t = minT + ((maxT - minT) * i) / samples;
+    const current = evalAt(t);
+    const currentValid = isFiniteValueEvaluation(current);
+    if (currentValid !== lastValid) {
+      const edge = currentValid ? domainEdge(evalAt, lastT, t) : domainEdge(evalAt, t, lastT);
+      const found = edge && visit(edge, i);
+      if (found) return found;
+    }
+    lastT = t;
+    lastValid = currentValid;
+    if (!currentValid) continue;
+    const found = visit(current, i);
+    if (found) return found;
   }
 
-  return { kind: "failure", failureReason: "noBracket", residual: best.value, iterations: samples };
+  return { kind: "failure", failureReason: "noBracket", residual: best?.value ?? null, iterations: samples };
+}
+
+/**
+ * Last surface point before the ray leaves the surface's domain, between a point outside it and one inside.
+ *
+ * @param evalAt - surface evaluation along the ray
+ * @param outsideT - parameter of a point outside the domain
+ * @param insideT - parameter of a point inside the domain
+ * @returns the inside evaluation nearest the domain edge, or null when none is valid
+ */
+function domainEdge(
+  evalAt: (t: number) => SurfaceEvaluation,
+  outsideT: number,
+  insideT: number,
+): SurfaceEvaluation | null {
+  for (let i = 0; i < DOMAIN_EDGE_BISECTIONS; i++) {
+    const mid = (outsideT + insideT) / 2;
+    if (isFiniteValueEvaluation(evalAt(mid))) insideT = mid;
+    else outsideT = mid;
+  }
+  const edge = evalAt(insideT);
+  return isFiniteValueEvaluation(edge) ? edge : null;
 }
 
 function makeSuccess(

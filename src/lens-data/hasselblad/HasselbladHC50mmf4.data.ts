@@ -32,6 +32,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    constrained by 77 mm filter thread (SD ≤ ~36.5 mm).           ║
  * ║    Meniscus elements (L11, L12, L16, L22) significantly           ║
  * ║    constrained by edge thickness — physical vignetting expected.  ║
+ * ║    Surfaces 1-4 (L11, L12) and 14-15 (L22) were later raised to   ║
+ * ║    pass the traced chief ray to the 645 corner (34.85 mm at       ║
+ * ║    35.1°; patent 2ω = 69.4°); the earlier values clipped it from  ║
+ * ║    25.2° (2026-09-24 field-coverage audit).                       ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:          ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
@@ -187,11 +191,11 @@ const LENS_DATA = {
   surfaces: [
     // ── G1A: Front Diverging Group (negative) ──
     // L11 — Negative Meniscus, convex to object
-    { label: "1", R: 65.765, d: 2.685, nd: 1.8061, elemId: 1, sd: 16.2 },
-    { label: "2", R: 32.54, d: 8.34, nd: 1.0, elemId: 0, sd: 16.2 },
+    { label: "1", R: 65.765, d: 2.685, nd: 1.8061, elemId: 1, sd: 24.1 },
+    { label: "2", R: 32.54, d: 8.34, nd: 1.0, elemId: 0, sd: 21.1 },
     // L12 — Negative Meniscus, convex to object
-    { label: "3", R: 109.76, d: 2.285, nd: 1.8061, elemId: 2, sd: 13.6 },
-    { label: "4", R: 35.195, d: 11.635, nd: 1.0, elemId: 0, sd: 13.6 },
+    { label: "3", R: 109.76, d: 2.285, nd: 1.8061, elemId: 2, sd: 20.0 },
+    { label: "4", R: 35.195, d: 11.635, nd: 1.0, elemId: 0, sd: 18.5 },
     // L13 — Biconvex Positive
     { label: "5", R: 105.535, d: 8.91, nd: 1.7847, elemId: 3, sd: 25.5 },
     { label: "6", R: -185.45, d: 2.985, nd: 1.0, elemId: 0, sd: 24.7 },
@@ -213,8 +217,8 @@ const LENS_DATA = {
     { label: "12", R: -116.945, d: 3.18, nd: 1.7725, elemId: 7, sd: 13.5 },
     { label: "13", R: -39.16, d: 1.98, nd: 1.0, elemId: 0, sd: 14.6 },
     // L22 — Negative Meniscus, concave to object
-    { label: "14", R: -20.395, d: 1.59, nd: 1.6398, elemId: 8, sd: 7.0 },
-    { label: "15", R: -691.675, d: 1.49, nd: 1.0, elemId: 0, sd: 7.0 },
+    { label: "14", R: -20.395, d: 1.59, nd: 1.6398, elemId: 8, sd: 10.3 },
+    { label: "15", R: -691.675, d: 1.49, nd: 1.0, elemId: 0, sd: 10.3 },
     // L23 — Positive Meniscus, convex to image
     { label: "16", R: -68.115, d: 5.12, nd: 1.618, elemId: 9, sd: 17.1 },
     { label: "17", R: -28.5, d: 0.2, nd: 1.0, elemId: 0, sd: 20.1 },

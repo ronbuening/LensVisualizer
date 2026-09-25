@@ -159,7 +159,7 @@ The companion data file stores Table 3 directly. Patent columns 8–11 map in or
 | 9A | -3.1786078E-11 | -2.6828331E-12 | 1.9590923E-13 | 6.6935119E-15 | -8.5735230E-16 | -4.4918245E-18 | 1.6151998E-18 | 8.0183252E-20 | -8.8086271E-21 |
 | 10A | 5.9393956E-11 | -3.9309708E-12 | 6.5830604E-13 | -5.2709876E-14 | 1.1668344E-15 | 2.1822742E-17 | 3.5346850E-19 | 3.5695647E-19 | -3.5705496E-20 |
 
-The exact profiles depart from their paraxial spheres by +27.447 µm at 7A ($h=6.3$ mm), +94.584 µm at 8A ($h=6.2$ mm), +662.051 µm at 9A ($h=9.4$ mm), and +563.937 µm at 10A ($h=9.4$ mm).
+The exact profiles depart from their paraxial spheres by +74.985 µm at 7A ($h=7.9$ mm), +307.126 µm at 8A ($h=8.5$ mm), +662.051 µm at 9A ($h=9.4$ mm), and +563.937 µm at 10A ($h=9.4$ mm).
 
 ### Surface-by-surface aspherical roles
 
@@ -167,7 +167,7 @@ The exact profiles depart from their paraxial spheres by +27.447 µm at 7A ($h=6
 
 **L23 rear (surface 8A, $R = -33.48$ mm).** The rear surface carries a strong positive $A_4$ departure that opens up the periphery, creating a complex correction profile that varies across aperture zones. Surfaces 7A and 8A work as a correction pair to balance the spherical aberration budget of the entire system.
 
-**L31 front and rear (surfaces 9A and 10A).** These surfaces carry smaller departures than L23's, consistent with L31's weak paraxial power and its role as a field corrector. Because L31 is positioned far from the aperture stop and close to the image, off-axis ray bundles are well separated radially at these surfaces, and the patent (¶0044) identifies L31's aspherical contribution as primarily correcting astigmatism.
+**L31 front and rear (surfaces 9A and 10A).** These surfaces depart from their spheres at least as much as L23's do, even at equal height, although L31 has weak paraxial power and works as a field corrector. Because L31 is positioned far from the aperture stop and close to the image, off-axis ray bundles are well separated radially at these surfaces, and the patent (¶0044) identifies L31's aspherical contribution as primarily correcting astigmatism.
 
 ## Verification Summary
 

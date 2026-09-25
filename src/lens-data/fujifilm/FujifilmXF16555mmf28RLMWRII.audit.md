@@ -20,3 +20,25 @@ Notes:
 - No `dPgF` values were changed; this pass only made the existing patent-derived values visible through the APD metadata where justified.
 - The patent DA diameter anchors remain rational and unchanged: S1 DA=52.4 mm maps to `sd: 26.2`, S11 DA=20.6 mm maps to `sd: 10.3`, and S25 DA=21.6 mm maps to `sd: 10.8`. Remaining SDs are inferred as documented in the data-file header.
 - No radius, spacing, focus, asphere, glass-name, mount, or format edits were made.
+
+## 2026-09-24 — Semi-diameters raised to the traced format corner
+
+Table 2 (PDF p.35) prints 2ω = 88.6° / 44.8° / 29.4° at the wide / middle / telephoto ends. The traced chief ray reaches
+the 14.175 mm APS-C corner at 43.17° / 21.45° / 13.91°, so the design circle is slightly larger than the format (the
+patent's 44.3° wide half-angle lands at 14.72 mm). The estimated front rim of L21 (surface 6A, 12.5 mm) clipped the real
+chief ray (solved through the stop centre) at the wide end from 39.8°, leaving the analysis field there at 90% of the
+corner; the middle and telephoto stations already reached it. The wide-corner chief ray needs 6A ≥ 14.00 mm; no other
+rim clips at any station. 6A is set to floor + 0.5 mm. Its partner 7A (R 14.15, the deep concave rear of a near
+plano-concave meniscus) was not scaled with it: its own corner chief ray is 10.04 mm against its 10.1 mm rim. Covering
+the patent's full 44.3° would also need 6A ≥ 14.58 and 7A ≥ 10.25 mm, which is beyond the format the analysis uses.
+`--scan` shows no turnover on 6A to 17.4 mm (rim slope 12.2° at 14.5 mm). The Table 1 DA column (S1 52.4, S11 20.6, S25
+21.6) is the lens outer diameter per ¶0144 and stays as stored. FIG. 1's wide panel (PDF p.2; 7.825 px/mm at 200 dpi
+over the 108.24 mm wide-state track, with 6A and 7A within 1 px) draws L21's front edge at about 15.4 mm. That is 6%
+above the new value, inside the noise band, so the drawing was not used.
+
+| Surface | Before | After | Justification |
+|---|---|---|---|
+| 6A | 12.5 | 14.5 | wide-corner chief ray 14.00 mm + clearance; FIG. 1 edge ≈15.4 mm |
+
+The validator accepts the new value, the traced edge now reaches 14.17 mm at every station with every rim clear, and the
+image-circle floor reports nothing undersized. The analysis departure table now quotes 6A at 14.5 mm (+635.885 µm).

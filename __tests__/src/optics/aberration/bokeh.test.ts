@@ -23,6 +23,7 @@ import {
   computeFieldGeometryAtState,
   doLayout,
   solveChiefRay,
+  traceRay,
 } from "../../../../src/optics/optics.js";
 import { computeOffAxisFieldGeometry } from "../../../../src/optics/aberration/offAxis.js";
 import buildLens from "../../../../src/optics/buildLens.js";
@@ -199,12 +200,21 @@ describe("analysis field geometry", () => {
     expect(apsC.halfFieldDeg).toBeLessThan(fullFrame.halfFieldDeg);
   });
 
-  it("does not expand beyond the raw vignetting-limited field for larger formats", () => {
-    const raw = computeFieldGeometryAtState(0, 0, L);
-    const largeFormat = computeAnalysisFieldGeometryAtState(0, 0, withImageFormat(L, "8x10"));
+  /* The raw half-field is a paraxial estimate; stopping there left wide lenses well short of their corners. For a
+   * format the lens cannot cover, the analysis edge is where a clear aperture first clips the real chief ray. */
+  it("ends where a clear aperture first clips the real chief ray for formats the lens cannot cover", () => {
+    const largeFormat = withImageFormat(L, "8x10");
+    const edgeDeg = computeAnalysisFieldGeometryAtState(0, 0, largeFormat).halfFieldDeg;
+    const layout = doLayout(0, 0, largeFormat);
+    const chiefRayClipped = (fieldDeg: number) => {
+      const solve = solveChiefRay(fieldDeg, 0, 0, largeFormat);
+      expect(solve.status).toBe("converged");
+      return traceRay(solve.yLaunch, solve.uField, layout.z, 0, 0, undefined, false, largeFormat).clipped;
+    };
 
-    expect(largeFormat.halfFieldDeg).toBeLessThanOrEqual(raw.halfFieldDeg);
-    expect(largeFormat.halfFieldDeg).toBeCloseTo(raw.halfFieldDeg, 10);
+    expect(edgeDeg).toBeGreaterThan(computeFieldGeometryAtState(0, 0, largeFormat).halfFieldDeg);
+    expect(chiefRayClipped(edgeDeg)).toBe(false);
+    expect(chiefRayClipped(edgeDeg + 0.05)).toBe(true);
   });
 });
 

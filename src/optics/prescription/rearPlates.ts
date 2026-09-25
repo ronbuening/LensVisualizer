@@ -8,12 +8,29 @@
  */
 
 import type { ElementData, LensData, RearPlateData, SurfaceData } from "../../types/optics.js";
+import { IMAGE_FORMAT_BY_ID, isImageFormatId } from "../../utils/catalog/lensTaxonomy.js";
 
 /** Flat-surface radius used by authored prescriptions. */
 const FLAT_R = 1e15;
 
-/** Generated plate semi-diameter as a multiple of the largest authored semi-diameter (never clips or limits field). */
+/**
+ * Generated plate semi-diameter as a multiple of the larger of the largest authored semi-diameter and the image
+ * semi-diagonal, so the plate never clips or limits the field. A plate sits just ahead of the image, where the
+ * corner chief ray is already near full image height: compact designs whose rear element is much smaller than the
+ * format need the image term, or the plate would set the half-field.
+ */
 const GENERATED_SD_FACTOR = 1.5;
+
+/**
+ * Half the larger of the declared image circle and format diagonal, or 0 when neither is declared.
+ *
+ * @param data - lens data after defaults merging
+ * @returns image semi-diagonal in mm
+ */
+function imageSemiDiagonalMm(data: LensData): number {
+  const formatDiagonal = isImageFormatId(data.imageFormat) ? IMAGE_FORMAT_BY_ID[data.imageFormat].diagonalMm : 0;
+  return Math.max(formatDiagonal, data.imageCircleMm ?? 0) / 2;
+}
 
 /** Reserved synthetic surface labels: `RP<n>a` (plate front) and `RP<n>b` (plate rear). */
 export const REAR_PLATE_LABEL_PATTERN = /^RP\d+[ab]$/;
@@ -55,7 +72,8 @@ export function expandRearPlates(data: LensData): LensData {
   const plates = data.rearPlates;
   if (!plates || plates.length === 0) return data;
 
-  const generatedSd = GENERATED_SD_FACTOR * Math.max(...data.surfaces.map((surface) => surface.sd));
+  const generatedSd =
+    GENERATED_SD_FACTOR * Math.max(...data.surfaces.map((surface) => surface.sd), imageSemiDiagonalMm(data));
   let nextElementId = Math.max(0, ...data.elements.map((element) => element.id)) + 1;
   const surfaces: SurfaceData[] = [...data.surfaces];
   const elements: ElementData[] = [...data.elements];
