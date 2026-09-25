@@ -2,6 +2,40 @@
 
 Patent: JP 2018-132674 A, Numerical Data 1 (Mizuma / Canon)
 
+## 2026-09-25 — Source-state review
+
+Source-state review outcome: verified. Both authored candidates reviewed; infinity and half life-size are enabled.
+The finite distance is calculated; intermediate travel is not certified. Active tilt/shift remains unavailable for MTF.
+
+The original [JP2018132674A PDF](https://patentimages.storage.googleapis.com/78/9b/09/143bd312270a07/JP2018132674A.pdf)
+was retrieved because it is absent from the local patent collection. Visually inspected pages 5, 10 and 11:
+paragraph 0014 identifies Example 1's close configuration as 0.5×; Numerical Data 1 supplies all 19 surface
+rows and the two focus columns. Radii, nd values and fixed gaps match the authored prescription. R11 is STO.
+BF=78.33 mm is retained. The rounded surface sums give tracks 183.77/183.75 mm, versus the printed
+183.76 mm infinity total; no spacing is adjusted to eliminate that source rounding.
+
+| Gap (mm) | Infinity | Close / 0.5× |
+|---|---:|---:|
+| d5 | 4.04 | 19.81 |
+| d10 | 22.15 | 6.37 |
+| d11 / STO | 19.94 | 11.39 |
+| d16 | 4.35 | 12.89 |
+| BF | 78.33 | 78.33 |
+
+At focusT=1, the first-vertex-to-image matrix has A=-0.49985156864764996 and B=151.94895705560077 mm,
+so s=-B/A=303.9881568576431 mm before R1, or 487.7381568576431 mm object-to-image. This does not use
+the marketed 0.49 m minimum-focus distance as optical evidence.
+
+Independent exact-ray roots at 0.01/0.005/0.0025 mm first-vertex heights give distances
+303.988155990616/303.988156645310/303.988156786865 mm, with axial image residuals below 1.44e-11 mm.
+The exact magnification approaches -0.499851568652, within 0.0297% in magnitude of the source's 0.5×.
+The formal infinity finite solution near 690 m is a rounded-table residual, not an added finite state.
+Reproduce with `node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-mtf.mjs --derive-source-states --lens=canon-tse-135mm-f4l`.
+
+Numeric precision supports repeatability, not source accuracy. The inferred clear apertures and iris, qualified
+spectral substitutions, and centered-analysis restrictions remain unchanged. Selecting a source state preserves
+tilt/shift controls and cannot bypass the movement guard. No prescription geometry or image plane is altered.
+
 ## 2026-06-23 - Patent geometry and glass review
 
 ### Source note

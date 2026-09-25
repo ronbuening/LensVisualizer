@@ -278,6 +278,31 @@ const LENS_DATA = {
   ],
 
   asph: {},
+  sourceStates: [
+    {
+      id: "infinity",
+      label: "Infinity",
+      focusT: 0,
+      zoomT: 0,
+      source: "JP2018132674A, Numerical Data 1, pp. 10–11, infinity spacing column; retained BF=78.33 mm. Centered configuration only for MTF.",
+      conjugate: { kind: "infinity" },
+    },
+    {
+      id: "half-life-size",
+      label: "Half life-size",
+      focusT: 1,
+      zoomT: 0,
+      source: "JP2018132674A, Numerical Data 1, pp. 10–11, close spacing column; paragraph 0014 identifies 0.5x. Retained BF=78.33 mm. Independent distance evidence in CanonTSE135mmf4L.audit.md; centered configuration only for MTF.",
+      conjugate: {
+        kind: "finite",
+        objectDistanceMm: 303.9881568576431,
+        distanceReference: "first-surface",
+        distanceProvenance: "calculated",
+        derivation: "Fixed published close geometry and image plane: s=-B/A with A=-0.49985156864764996 and B=151.94895705560077 mm. Independent small-height exact rays reproduce the source and 0.5x ratio within 0.030%; calculated object-to-image distance 487.7381568576431 mm.",
+        magnification: 0.5,
+      },
+    },
+  ],
   var: {
     "5": [4.04, 19.81],
     "10": [22.15, 6.37],

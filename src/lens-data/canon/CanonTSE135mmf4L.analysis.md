@@ -197,3 +197,11 @@ The main design interest is not aspherical correction but floating-focus color c
 - Schott N-SSK5 optical-glass data for the 658509 dense-crown match, plus OHARA optical glass catalog and product pages for S-FPL51, S-LAH55V, S-NBH5, S-LAH99, S-LAL14, S-NBH56, S-LAH98, and S-LAL7.
 - OHARA 2018 S-LAL7Q announcement. Used to distinguish the time-consistent S-LAL7 label from the later S-LAL7Q variant.
 - HOYA optical glass catalog for TAFD35L equivalence to G3.
+
+## Selectable source configurations
+
+Infinity and the published 0.5× endpoint are selectable source states. The finite object distance is
+**calculated**, 303.9882 mm before the first surface (487.7382 mm from the retained image plane).
+Independent small-height exact rays verify the source and reproduce the published ratio within 0.030%.
+MTF requires the centered configuration; active tilt/shift and intermediate finite travel remain unavailable.
+The source's rounded gaps and the model's inferred physical apertures are retained.
