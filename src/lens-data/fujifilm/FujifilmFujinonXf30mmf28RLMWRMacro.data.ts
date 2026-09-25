@@ -40,6 +40,30 @@ const LENS_DATA = {
   patentYear: 2023,
   elementCount: 11,
   groupCount: 9,
+  sourceStates: [
+    {
+      id: "infinity",
+      label: "Infinity",
+      focusT: 0,
+      zoomT: 0,
+      source: "CN 116500768 A, Example 1 Tables 1–2, infinity column; paragraph 0317.",
+      conjugate: { kind: "infinity" },
+    },
+    {
+      id: "life-size",
+      label: "Life-size · 1×",
+      focusT: 1,
+      zoomT: 0,
+      source: "CN 116500768 A, Example 1 Tables 1–2, closest column; paragraph 0317 publishes 18.2 mm from the first surface; Table 25 gives |β|=1.",
+      conjugate: {
+        kind: "finite",
+        objectDistanceMm: 18.2,
+        distanceReference: "first-surface",
+        distanceProvenance: "published",
+        magnification: 1,
+      },
+    },
+  ],
 
   /* ── Physical glass elements ── */
   elements: [

@@ -1,5 +1,36 @@
 # FUJIFILM FUJINON XF 30mm f/2.8 R LM WR Macro — integration audit
 
+## 2026-09-25 — Source-state review
+
+Source-state review outcome: verified. Both authored candidates reviewed; infinity and life-size are
+enabled. The finite distance is published, with an explicit first-surface reference. Intermediate travel
+is not certified.
+
+Visually inspected local `patents/CN116500768A.pdf` pages 25–26 and 42: Example 1 Tables 1–2,
+paragraph 0317, and Table 25. All 23 source rows match the retained prescription, including physical
+PP surfaces 22–23, which expand exactly once. Paragraph 0317 explicitly places the closest object
+18.2 mm before the first surface. Table 25 gives |β|=1. No production specification substitutes for
+that distance. The patent notes rounding in paragraph 0326.
+
+| Gap (mm) | Infinity | Closest |
+|---|---:|---:|
+| DD14 | 2.301 | 10.754 |
+| DD19 | 13.210 | 4.757 |
+| d21, before PP | 17.731 | 17.731 |
+| PP thickness / following air | 2.850 / 1.094 | 2.850 / 1.094 |
+
+At focusT=1 the fixed first-vertex-to-image matrix gives A=-1.000034724319364 and
+B=18.201295690745386 mm. Its source solution is 18.20066368508695 mm before the first surface,
+or 100.20666368508695 mm object-to-image. This differs from the published distance by 0.000664 mm
+(0.00365%); magnification differs from 1 by 0.00348%. The declaration retains the published 18.2 mm.
+Independent exact-ray roots at 0.01/0.005/0.0025 mm first-vertex heights give
+18.200670893635/18.200665486098/18.200664135340 mm, with axial residuals below 3.97e-9 mm and
+signed magnification approaching -1.000034726185. The rounded infinity matrix's formal finite source
+near 757 m is not treated as a finite state.
+
+The stop remains inferred and supplier curves remain qualified proxies. Existing source-condition-table
+discrepancies remain documented in the analysis. No geometry, image plane, aperture or glass changes.
+
 ## 2026-09-15 (UTC)
 
 ### Patent geometry

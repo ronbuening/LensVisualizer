@@ -257,6 +257,13 @@ FUJIFILM describes the production lens as an inner-focus design in which three f
 high-precision linear motor [2]. That mechanical description converges strongly with Example 1's three-element G2 motion,
 but it does not itself identify this patent example as the production prescription.
 
+The MTF Lens state selector enables these two published endpoints. The life-size state uses the published
+18.2 mm first-surface distance, not the production lens's rounded 0.1 m image-plane specification. With the
+physical PP plate retained, the fixed-plane calculation independently gives 18.200664 mm and magnification
+−1.000035; the small difference is consistent with the rounded source data. Intermediate slider positions
+are not verified finite MTF states. Numerical convergence and the source-state check do not establish
+production performance or remove the inferred-stop and glass-proxy limitations.
+
 ## Aspherical Surfaces
 
 Example 1 has six aspherical surfaces on three physical elements: **1A and 2A on L11, 13A and 14A on L17, and 20A and
