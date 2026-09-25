@@ -242,6 +242,31 @@ const LENS_DATA = {
   ],
 
   asph: {},
+  sourceStates: [
+    {
+      id: "infinity",
+      label: "Infinity",
+      focusT: 0,
+      zoomT: 0,
+      source: "US10571651B2, Numerical Data 1, printed p. 11 (PDF p. 17), infinity column: d6=1.01, d10=7.61 and BF=55.96 mm. Centered configuration only for MTF.",
+      conjugate: { kind: "infinity" },
+    },
+    {
+      id: "half-life-size",
+      label: "Half life-size",
+      focusT: 1,
+      zoomT: 0,
+      source: "US10571651B2, Numerical Data 1, printed p. 11 (PDF p. 17), -0.5 column: d6=6.84, d10=1.78 and BF=81.07 mm. Independent distance evidence in CanonTSE50mmf28L.audit.md; centered configuration only for MTF.",
+      conjugate: {
+        kind: "finite",
+        objectDistanceMm: 94.30209694008478,
+        distanceReference: "first-surface",
+        distanceProvenance: "calculated",
+        derivation: "Fixed published -0.5 geometry including BF=81.07 mm: s=-B/A with A=-0.49996424109100923 and B=47.14767632994027 mm. Independent small-height exact rays reproduce the source and magnification within 0.0072%; calculated object-to-image distance 272.8320969400848 mm.",
+        magnification: -0.5,
+      },
+    },
+  ],
 
   var: {
     "6": [1.01, 6.84],

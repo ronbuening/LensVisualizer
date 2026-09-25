@@ -217,3 +217,11 @@ The transcribed patent prescription is all-spherical. Canon's product copy, howe
 - Canon U.S.A., TS-E 50mm f/2.8L MACRO product specifications: focal length/aperture, two UD elements, 12 elements / 9 groups, manual focus, closest focusing distance, 77 mm filter, dimensions, and weight.
 - Canon Europe / Canon Ireland, TS-E 50mm f/2.8L MACRO specifications and overview: ±8.5° tilt, ±12 mm shift, 1:2 macro ratio, 12/9 construction, 0.273 m closest focusing distance, 0.50× magnification, 77 mm filter, 945 g weight, and the public aspherical/UD element statement.
 - OHARA INC., Optical Glass Chart / All Glass Types catalog references: S-FTM16, S-LAM7, S-NBH5, S-NBH56, S-FPL51, S-NBH55, S-PHM52, S-LAH98, and S-LAH99 glass-code matches.
+
+## Selectable source configurations
+
+Infinity and the published −0.5× endpoint are selectable source states. The finite object distance is
+**calculated**, 94.3021 mm before the first surface (272.8321 mm from the image plane), using the
+published close-state 81.07 mm back focus. Independent small-height exact rays verify this source and
+reproduce the published magnification within 0.0072%. Active tilt/shift and intermediate finite travel
+remain unavailable for MTF; source selection preserves the movement controls and physical aperture.

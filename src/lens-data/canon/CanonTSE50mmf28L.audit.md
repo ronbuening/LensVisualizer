@@ -2,6 +2,33 @@
 
 Patent: US 10,571,651 B2, Numerical Data 1 (Sakai / Canon)
 
+## 2026-09-25 — Source-state review
+
+Source-state review outcome: verified. Both authored candidates reviewed; infinity and half life-size are enabled.
+The finite distance is calculated; intermediate travel is not certified. Active tilt/shift remains unavailable for MTF.
+
+The original [US10571651B2 PDF](https://patentimages.storage.googleapis.com/a8/cc/5b/a69d62bcd5ffd1/US10571651.pdf)
+was retrieved because it is absent from the local patent collection. Visually inspected PDF page 17, printed
+page 11, Numerical Data 1. All 22 source surface rows match the retained radii, indices and fixed spacings;
+R17 is STO. The source's infinity/-0.5 columns give d6=1.01/6.84, d10=7.61/1.78 and BF=55.96/81.07 mm.
+The changed final image distance is authored optical geometry and is preserved exactly. Numerical Data 2,
+in the right column, was not used.
+
+At focusT=1, the fixed first-vertex-to-image matrix has A=-0.49996424109100923 and B=47.14767632994027 mm.
+Thus s=-B/A=94.30209694008478 mm before R1, or 272.8320969400848 mm object-to-image. The summed
+close-state track is 178.53 mm versus the source's rounded total 178.54 mm; no gap is adjusted.
+
+Independent exact-ray roots at 0.01/0.005/0.0025 mm first-vertex heights give distances
+94.302091198482/94.302095501939/94.302096588782 mm, with axial image residuals below 3.05e-10 mm.
+The signed exact magnification approaches -0.499964241056, within 0.0072% of the published -0.5.
+The formal infinity finite solution near 679 m is a rounded-table residual, not an additional source state.
+Reproduce with `node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-mtf.mjs --derive-source-states --lens=canon-tse-50f28l-macro`.
+
+Numeric precision supports repeatability, not source accuracy. The published close-state effective F-number
+does not replace the physical iris: the existing stop estimate and clear apertures remain unchanged. Source
+selection preserves tilt/shift, and active movement still blocks MTF. No prescription geometry, glass or
+image plane is altered; qualified spectral matching and existing field-coverage limitations still apply.
+
 ## 2026-06-23 - Patent geometry and glass review
 
 ### Source note
