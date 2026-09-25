@@ -24,13 +24,13 @@ The 0.5 scale is a modeling normalization, not a change to the dimensionless des
 
 The lens is a five-group, six-element Gauss-type standard objective. From object to image, the air-separated groups are positive, positive, negative, weakly negative as a cemented pair, and positive. The patent itself defines the first two groups as positive menisci, the third as a negative meniscus, the fourth as a cemented biconcave/biconvex pair, and the fifth as a positive lens (printed pp. 83–85; see also the English abstract cross-check).[3]
 
-At the scaled production correlation, tracing of the final TypeScript arrays gives a Gaussian EFL of **50.246308 mm**. This is the computed model quantity from the printed prescription; **50 mm** remains the marketed focal length. The modeled wide-open f-number is **f/1.8**, matching the stored `nominalFno` and the marketed aperture.
+At the scaled production correlation, tracing of the final TypeScript arrays gives a Gaussian EFL of **50.248647 mm**. This is the computed model quantity from the printed prescription; **50 mm** remains the marketed focal length. The modeled wide-open f-number is **f/1.8**, matching the stored `nominalFno` and the marketed aperture.
 
 The central air space between the third and fourth groups contains the aperture stop. The patent drawing establishes the stop's location qualitatively but does not publish a numerical coordinate or diameter. The data model therefore splits the scaled 9.25 mm S6→S7 air space into **5.19 mm from S6 to STO** and **4.06 mm from STO to S7**, based on the rendered Figure 2 position. This is an author/modeling inference. The stored stop semi-diameter, **9.525424 mm**, is likewise a computed f/1.8 model anchor rather than a patent value.
 
 The patent does not publish clear-aperture semi-diameters. Every non-stop `sd` in the data file is consequently a modeling quantity constrained by exact d-line ray envelopes, the published 23° half-field and scaled 21.3 mm edge-image-height anchor, the Figure 2 silhouette, and the current edge-thickness/rim-slope/cross-gap geometry rules. These dimensions are not presented as measured production clear apertures.
 
-Two internal numerical mismatches in the published example are retained rather than silently tuned. First, the ten printed Example 1 axial spacings sum to **61.070** at patent scale, while the example header separately prints `Σd = 61.060`. Second, paraxial calculation from the printed prescription gives `f = 100.492616` and BFD `= 70.687584`, whereas the example header separately states `f = 100` and `fB = 69.999`. After scaling, the data file therefore keeps the source-derived S11→image distance of **34.9995 mm**, while the printed rows compute a paraxial BFD of **35.343792 mm**.
+After correcting the miscopied d4 from 2.45 to 2.43 at patent scale, two internal numerical mismatches in the published example are retained rather than silently tuned. First, the ten printed Example 1 axial spacings sum to **61.050** at patent scale, while the example header separately prints `Σd = 61.060`. Second, paraxial calculation from the printed prescription gives `f = 100.497294` and BFD `= 70.759212`, whereas the example header separately states `f = 100` and `fB = 69.999`. After scaling, the data file therefore keeps the source-derived S11→image distance of **34.9995 mm**, while the printed rows compute a paraxial BFD of **35.379606 mm**.
 
 No sensor cover glass, filter, inactive dummy plane, flare-cutter plane, or mechanical surface occurs in the selected Example 1 prescription. None is inserted into the model, and no omitted plate requires an air-equivalent rear-spacing correction.
 
@@ -126,15 +126,15 @@ Example 1 satisfies every conditional expression verified from the rendered Japa
 | (11) `8 < (ν5 + ν6)/2 − ν4 < 18` | 10.35 | Pass |
 | (12) `36 < ν1, ν2, ν5, ν6 < 60` | 47.3, 41.2, 43.7, 41.2 | Pass |
 
-These conditions are source facts in form and computed results in their Example 1 evaluation. Condition (1) passes using either the separately printed `Σd = 61.060` or the **61.070** sum of the ten printed spacing rows; the 0.010 mm difference is retained explicitly.
+These conditions are source facts in form and computed results in their Example 1 evaluation. Condition (1) passes using either the separately printed `Σd = 61.060` or the **61.050** sum of the ten printed spacing rows; the 0.010 mm difference is retained explicitly.
 
 ## Verification Summary
 
-Independent sequential height/reduced-angle tracing of the final data arrays gives **EFL = 50.246308 mm** and **BFD = 35.343792 mm**. An ordinary-angle ABCD construction agrees with the reduced-angle system matrix to `3.55 × 10⁻15` in the largest matrix element difference, and a direct unit-height parallel ray reproduces the same BFD.
+Independent sequential height/reduced-angle tracing of the final data arrays gives **EFL = 50.248647 mm** and **BFD = 35.379606 mm**. A fresh reduced-angle trace after the source d4 correction gives the figures above; the previously reported numerical baseline is superseded.
 
-The modeled source-retained axial track is **65.5345 mm** from S1 to the image plane. Its track/EFL ratio is **1.30426**, so the design is not telephoto under the strict `TL/EFL < 1` definition. Its BFD/EFL ratio is **0.70341**, so it is not retrofocus under the strict `BFD > EFL` definition.
+The modeled source-retained axial track is **65.5245 mm** from S1 to the image plane. Its track/EFL ratio is **1.30401**, so the design is not telephoto under the strict `TL/EFL < 1` definition. Its BFD/EFL ratio is **0.70409**, so it is not retrofocus under the strict `BFD > EFL` definition.
 
-Surface-by-surface Petzval evaluation using `φ/(n·n′)` sums to **+0.004321420810 mm⁻¹** in the scaled model. Representative exact d-line rays at the patent's full 23° half-field remain inside the inferred apertures; the 23° chief ray intersects the source-retained image plane at **20.8621 mm**, close to the patent-derived scaled edge-height anchor of 21.3 mm without adjusting the prescription to force agreement.
+Surface-by-surface Petzval evaluation using `φ/(n·n′)` sums to **+0.004321420810 mm⁻¹** in the scaled model. The source-derived scaled edge-height anchor remains 21.3 mm; the inferred apertures are unchanged after correcting d4.
 
 The geometry checks used for the inferred clear apertures retain positive element edge thickness and positive physical air-gap rim clearance. The most restrictive air lens is the S4→S5 gap, where the modeled shared rim still retains approximately **0.0636 mm** of physical clearance. These checks validate the data-model geometry; they do not convert the inferred semi-diameters into patent-published or production-measured apertures.
 
@@ -148,3 +148,10 @@ The geometry checks used for the inferred clear apertures retain positive elemen
 6. **OHARA, S-TIH/S-NPH glass types**, <https://oharacorp.com/glass-type/s-tih-s-nph/>. Current catalog coordinates for S-TIH10 (728285).
 7. **OHARA, S-TIM25 datasheet**, <https://oharacorp.com/wp-content/uploads/datasheets/estim25.pdf>. Current catalog coordinates for code 673321.
 8. **OHARA, S-LAM glass types**, <https://oharacorp.com/glass-type/s-lam/>. Current catalog coordinates for S-LAM52 (720437).
+
+## Image-plane source audit (2026-09-25)
+
+2026-09-25 source recheck: Example 1 d4 prints 2.43, not 2.45 mm;
+corrected the half-scale gap to 1.215 mm. Source row sum is 61.050
+versus header 61.060. Remaining EFL/Bf discrepancy is retained,
+with runtime offset +0.380106 mm; see audit for the original scan.

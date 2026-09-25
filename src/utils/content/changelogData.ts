@@ -18,6 +18,7 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  { date: "2026-09-25", type: "fix", summary: "Corrected the Konica Hexanon 50mm f/1.8's patent-transcribed air gap" },
   {
     date: "2026-09-25",
     type: "fix",

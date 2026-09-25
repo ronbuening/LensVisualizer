@@ -12,12 +12,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  prescription values are scaled ×0.5 for the 50mm production correlation.  ║
  * ║  Indices and Abbe numbers are unchanged. There are no aspheres.            ║
  * ║                                                                            ║
- * ║  SOURCE NUMERICS: The ten printed d rows sum to 61.070, while the patent   ║
+ * ║  SOURCE NUMERICS: The ten printed d rows sum to 61.050, while the patent   ║
  * ║  separately prints Σd=61.060. The row values are retained unchanged, so    ║
- * ║  the scaled S1→S11 length is 30.535 mm. The published fB=69.999 is         ║
+ * ║  the scaled S1→S11 length is 30.525 mm. The published fB=69.999 is         ║
  * ║  retained as S11→IMG = 34.9995 mm even though the scaled prescription      ║
- * ║  independently computes BFD=35.343792 mm. The computed Gaussian EFL is     ║
- * ║  50.246308 mm; marketed focal length remains 50mm.                         ║
+ * ║  independently computes BFD=35.379606 mm. The computed Gaussian EFL is     ║
+ * ║  50.248647 mm; marketed focal length remains 50mm.                         ║
  * ║                                                                            ║
  * ║  FOCUS STATUS — NO_INTERNAL_RECONSTRUCTION:                                ║
  * ║  The patent publishes one infinity state and no focus kinematics. The      ║
@@ -37,13 +37,18 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  0.6-field bundles, the 23° source half-field / 21.3mm scaled image-height  ║
  * ║  anchor, Figure 2 silhouette proportions, positive edge thickness, actual   ║
  * ║  rim slope, shared-band gap clearance, and zero hidden render trim. The     ║
- * ║  S4→S5 air lens requires gapSagFrac=0.95; physical rim clearance remains    ║
- * ║  positive (~0.064 mm at the shared 11.42mm band).                           ║
+ * ║  S4→S5 air lens requires gapSagFrac=0.96; physical rim clearance remains    ║
+ * ║  positive (~0.054 mm at the shared 11.42mm band).                           ║
  * ║                                                                            ║
  * ║  GLASS: The patent gives d-line nd/νd coordinates only. Six-digit labels    ║
  * ║  are supplier-neutral coordinate codes; no production glass vendor is      ║
  * ║  asserted and no catalog nC/nF/ng/dPgF values are imported.                 ║
  * ╚══════════════════════════════════════════════════════════════════════════════╝
+ *
+ * 2026-09-25 source recheck: Example 1 d4 prints 2.43, not 2.45 mm;
+ * corrected the half-scale gap to 1.215 mm. Source row sum is 61.050
+ * versus header 61.060. Remaining EFL/Bf discrepancy is retained,
+ * with runtime offset +0.380106 mm; see audit for the original scan.
  */
 
 const LENS_DATA = {
@@ -54,7 +59,7 @@ const LENS_DATA = {
   specs: ["6 ELEMENTS / 5 GROUPS", "50mm", "f/1.8-f/22", "46°", "MFD 0.55m"],
 
   focalLengthMarketing: 50,
-  focalLengthDesign: 50.246308,
+  focalLengthDesign: 50.248647,
   apertureMarketing: 1.8,
   apertureDesign: 1.8,
   lensMounts: ["konica-ar"],
@@ -147,7 +152,7 @@ const LENS_DATA = {
     { label: "1", R: 26.13, d: 5.26, nd: 1.67003, elemId: 1, sd: 15.5 },
     { label: "2", R: 187.1695, d: 0.095, nd: 1.0, elemId: 0, sd: 15.5 },
     { label: "3", R: 19.791, d: 3.605, nd: 1.70154, elemId: 2, sd: 12.6 },
-    { label: "4", R: 32.6695, d: 1.225, nd: 1.0, elemId: 0, sd: 11.42 },
+    { label: "4", R: 32.6695, d: 1.215, nd: 1.0, elemId: 0, sd: 11.42 },
     { label: "5", R: 72.9375, d: 1.17, nd: 1.72825, elemId: 3, sd: 11.8 },
     // Source d6 = 9.25 mm after scaling. Figure-2 stop placement is inferred: 5.19 + 4.06 mm.
     { label: "6", R: 14.0945, d: 5.19, nd: 1.0, elemId: 0, sd: 10.2 },
@@ -176,7 +181,7 @@ const LENS_DATA = {
   fstopSeries: [1.8, 2.8, 4, 5.6, 8, 11, 16, 22],
   maxFstop: 22,
 
-  gapSagFrac: 0.95,
+  gapSagFrac: 0.96,
   yScFill: 0.3,
 } satisfies LensDataInput;
 
