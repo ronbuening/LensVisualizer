@@ -16,10 +16,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ consistent with the claims/prose, Fig. 1, and condition (3). This file      ║
  * ║ therefore labels source row 9 as the sole STO and retains row 11 as “11”.   ║
  * ║                                                                            ║
- * ║ FILTER OMISSION / REAR-PLANE NORMALIZATION:                                ║
- * ║ The patent GL plate after L42 is excluded under the current data spec.      ║
- * ║ Its 2.00 mm, n=1.52 plate plus 1.00 mm rear air are folded into the final   ║
- * ║ air spacing: 17.01 + 2.00/1.52 + 1.00 = 19.32578947368421 mm.              ║
+ * ║ REAR FILTER: GL is traced in rearPlates: 17.01 mm before, 2.00 mm      ║
+ * ║ at nd=1.52/vd=64.2, and 1.00 mm after. Physical image gap=20.01 mm.    ║
  * ║                                                                            ║
  * ║ FOCUS STATES:                                                               ║
  * ║ Infinity: D1 = 1.00 mm, D2 = 6.24 mm.                                      ║
@@ -45,6 +43,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ Product metadata source:                                                    ║
  * ║ https://viltrox.com/products/viltrox-33mm-f1-4-e-mount-autofocus-prime-lens ║
  * ╚══════════════════════════════════════════════════════════════════════════════╝
+ *
+ * MTF audit: all Example 1 source rows match; GL is restored via
+ * rearPlates at its physical gaps. EFL 33.754006 differs from printed
+ * 33.21 mm; physical BFL 20.375898 differs from image distance 20.01.
+ * The +0.365898 mm source contradiction remains. Tier A source search
+ * is exhausted: no theta-gF, delta-PgF or line indices for L14; see audit.
  */
 
 /* SD review: CN211826699U, PDF p. 16, Fig. 1, 600 dpi, 2026-09-10 UTC.
@@ -216,7 +220,12 @@ const LENS_DATA = {
     { label: "17", R: 36.49, d: 7.23, nd: 1.74, elemId: 9, sd: 12.4 },
     { label: "18", R: -26.54, d: 0.1, nd: 1.0, elemId: 0, sd: 12.3 },
     { label: "19", R: -27.77, d: 1.0, nd: 1.85, elemId: 10, sd: 12.2 },
-    { label: "20", R: -287.72, d: 19.32578947368421, nd: 1.0, elemId: 0, sd: 12.0 },
+    { label: "20", R: -287.72, d: 17.01, nd: 1.0, elemId: 0, sd: 12.0 },
+  ],
+
+  rearPlates: [
+    { label: "GL", thicknessMm: 2.0, nd: 1.52, vd: 64.2, gapAfterMm: 1.0,
+      source: "CN 211826699 U, Example 1 Table 1, surfaces 21–22" },
   ],
 
   asph: {},

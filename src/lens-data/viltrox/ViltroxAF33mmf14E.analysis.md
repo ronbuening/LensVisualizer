@@ -64,11 +64,9 @@ focus group: a single negative meniscus. G4 is a net-positive rear group formed 
 patent uses its axial thickness as a design constraint governing exit-pupil placement and the trade between image-height
 stability and spherical/astigmatic correction (¶0071-¶0074).
 
-The source GL plane-parallel filter behind L42 is not present in the LensVisualizer prescription. Under the current data
-rules, its optical effect is represented by an air-equivalent final spacing from L42 to the image plane of **19.325789
-mm**, replacing the source sequence of 17.01 mm air + 2.00 mm at `n = 1.52` + 1.00 mm air. The source physical rear
-distance is 20.01 mm; the data-model distance is deliberately shorter because it is an air-equivalent optical
-normalization.
+The source GL plane-parallel filter behind L42 is traced via `rearPlates`: 17.01 mm
+of air, 2.00 mm glass at nd=1.52/νd=64.2 and 1.00 mm of air. The physical image
+distance is 20.01 mm; its paraxial air equivalent remains 19.325789 mm.
 
 The patent publishes no clear semi-diameters and no stop diameter. The stop semi-diameter and all element semi-diameters
 in the data file are therefore modeling inferences, not source measurements. The stop is calibrated to the rounded-index
@@ -230,8 +228,7 @@ claim is made here.
 
 The patent gives five explicit design conditions. The source Table 9 values are preserved below, alongside an
 independent check from the final rounded-index data. Conditions (1), (2), and (5) use the final model's recomputed EFL;
-condition (3) uses the source-normalized physical stop-to-image distance because the data file omits GL and stores an
-air-equivalent rear spacing. For condition (4), the patent defines `h4` as the ray height at the L41 object-side surface
+condition (3) uses the source physical stop-to-image distance including GL. For condition (4), the patent defines `h4` as the ray height at the L41 object-side surface
 for a ray at the principal wavelength entering from the maximum field, but it does not publish that ray's pupil
 coordinate. The independent value below is therefore a stop-centered 22.8° d-line chief-ray proxy, not a claimed
 reconstruction of the patent's `h4`.
@@ -258,7 +255,7 @@ load-bearing results are:
 | Computed EFL | 33.754006 mm | Patent: 33.21 mm |
 | Computed close-state EFL | 32.607944 mm | Patent: 32.08 mm |
 | Modeled wide-open f-number | 1.400000 | Patent aberration plots: f/1.4 |
-| Air-equivalent L42-rear→IMG spacing | 19.325789 mm | Source physical distance with GL: 20.01 mm |
+| Physical L42-rear→IMG spacing | 20.01 mm | Source physical distance with GL: 20.01 mm |
 | Petzval sum, `Σ φ/(n·n′)` | +0.005283735 mm⁻¹ | Reciprocal: +189.260 mm |
 
 The approximately 1.64% focal-length difference at both focus endpoints follows from tracing the patent's indices
@@ -289,3 +286,11 @@ Reviewed the local `patents/CN211826699U.pdf`, PDF page 16, Figure 1, at 600 dpi
    https://www.hoya-opticalworld.com/english/products/press_01.html
 6. **CDGM**, optical-glass database, including H-QF56 (code 567-428), used only as a coordinate-family check:
    https://www.cdgmgd.com/database/toWebDatabase.htm?k=Products_Data&pageIndex=13&url=database
+
+## Image-plane source audit (2026-09-25)
+
+MTF audit: all Example 1 source rows match; GL is restored via
+rearPlates at its physical gaps. EFL 33.754006 differs from printed
+33.21 mm; physical BFL 20.375898 differs from image distance 20.01.
+The +0.365898 mm source contradiction remains. Tier A source search
+is exhausted: no theta-gF, delta-PgF or line indices for L14; see audit.

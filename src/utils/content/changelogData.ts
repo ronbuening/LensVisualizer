@@ -21,6 +21,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-09-25",
     type: "fix",
+    summary: "Restored the Viltrox AF 33mm's source rear filter and physical image-plane spacing",
+  },
+  {
+    date: "2026-09-25",
+    type: "fix",
     summary: "Corrected the APO-Lanthar 28mm's miscopied rear-doublet radius and thickness from its patent",
   },
   {
