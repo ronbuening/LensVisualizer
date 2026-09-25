@@ -21,6 +21,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-09-25",
     type: "fix",
+    summary: "Restored the Samyang AF 35mm f/2.8’s patent filter and physical image-plane gaps",
+  },
+  {
+    date: "2026-09-25",
+    type: "fix",
     summary: "Restored source precision in the scaled Hasselblad HC 210mm prescription, reducing its image-plane error",
   },
   {

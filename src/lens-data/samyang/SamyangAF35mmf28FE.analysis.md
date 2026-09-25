@@ -49,7 +49,7 @@ The aperture stop is explicitly published as surface 5 and is normalized to the 
 
 The patent calls this family “telephoto type” because its effective focal length is longer than its back focal distance (¶0052). The verified Example 4 Gaussian BFD is 19.510224994 mm and its EFL is 35.182840213 mm. Under the project's stricter full-track terminology, however, the first-vertex-to-Gaussian-image track is 46.648832044 mm, giving track/EFL = 1.325897; this analysis therefore does not use **telephoto** as the LensVisualizer architectural label. It is also not **retrofocus**, because BFD/EFL = 0.554538 and thus BFD is not greater than EFL.
 
-The patent's plane-parallel Filter at source surfaces 15–16 is omitted from the ordinary lens stack. The final data file instead uses the patent's filter-absent infinity `in Air` value, 19.70032771 mm, as the rear air spacing after surface 14A. This preserves the source's stated plate-omitted distance without adding a synthetic cover plate. The patent's OAL, `in Air`, and independently derived Gaussian image plane do not completely reconcile, so no additional hidden correction is introduced.
+The patent’s plane-parallel Filter at surfaces 15–16 is traced through rearPlates with Table 10’s physical gaps. The competing Table 12 “in Air” value is documented below; it does not equal that path’s air equivalent.
 
 ## Element-by-Element Analysis
 
@@ -208,9 +208,9 @@ Because Example 4 does not publish semi-diameters, all lens-surface `sd` values 
 
 Several source/reference-plane discrepancies remain intentionally visible:
 
-- Patent Table 10 gives 16.862 mm from surface 14 to the Filter, while Table 12 gives a filter-absent `in Air` distance of 19.70032771 mm. The latter is used as the final model's rear air spacing after omitting the Filter.
-- The authored 19.70032771 mm rear spacing is 0.190102716 mm longer than the independently derived Gaussian BFL of 19.510224994 mm.
-- The source OAL of 46.500 mm differs from the Gaussian first-vertex-to-image track by −0.148832044 mm and from the authored filter-absent track by −0.338934760 mm. No unreported rear-spacing correction is inserted to force agreement.
+- Patent Table 10 gives 16.862 mm from surface 14 to the Filter, while Table 12 gives a filter-absent `in Air` distance of 19.70032771 mm. The previous model used the latter; the 2026-09-25 audit restores the explicit physical path.
+- The former 19.70032771 mm rear spacing is 0.190102716 mm longer than the independently derived Gaussian BFL of 19.510224994 mm.
+- The source OAL of 46.500 mm differs from the Gaussian first-vertex-to-image track by −0.148832044 mm and from the former filter-absent track by −0.338934760 mm. No unreported rear-spacing correction is inserted to force agreement.
 - Table 13 prints `LT = 27.13801 mm`, while direct summation of the Example 4 active lens stack gives 27.13860705 mm, a 0.00059705 mm source-level discrepancy.
 - Patent ¶0059's functional-group power signs conflict with the numerical prescription, as described above.
 
@@ -229,3 +229,12 @@ No dimensional scaling is applied. The marketed 35 mm / f/2.8 values remain cata
 9. **CDGM H-ZLaF55D official data sheet.** Catalog class 835427; `nd = 1.834810`, `ne = 1.839455`, `νd = 42.73`. https://www.cdgmgd.com/webapp/pdf/H-ZLaF55D.pdf
 10. **CDGM H-ZF1 official data sheet.** Catalog class 648338; `nd = 1.647690`, `ne = 1.652216`, `νd = 33.84`. https://www.cdgmgd.com/webapp/pdf/H-ZF1.pdf
 11. **HIKARI J-SF8 official catalog.** Catalog class 689312; `nd = 1.688930`, `ne = 1.694153`, `νd = 31.16`. https://www.hikari-g.co.jp/optical_glass/catalog/document/HIKARI_Catalog.pdf
+
+## Image-plane source audit (2026-09-25)
+
+MTF source audit: all powered radii, gaps, raw index/Abbe pairs and three
+K/A4–A10 sets match Tables 10–12. Restoring the printed physical filter path
+changes offset −0.190103 to +0.500018 mm because the previously used “in Air”
+row is not the air equivalent of that path. EFL 35.182840 vs 35.179406;
+air BFL 19.510225 vs physical path reduced to 19.010207 mm. Source conflict
+retained explicitly; no invented gap reconciles the competing printed values.
