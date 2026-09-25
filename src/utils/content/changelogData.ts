@@ -21,6 +21,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-09-25",
     type: "fix",
+    summary: "Restored the Canon EF 600mm's source rear filter and physical image-plane spacing",
+  },
+  {
+    date: "2026-09-25",
+    type: "fix",
     summary: "Restored the Viltrox AF 56mm's source rear filter and physical image-plane spacing",
   },
   {

@@ -9,10 +9,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                            ║
  * ║ The patent source path contains 17 media elements / 13 groups when the     ║
  * ║ front protection glass (HG) and rear filter (FL) are counted. Per current  ║
- * ║ LensVisualizer rules, HG, FL, and the inactive flare-cutter plane (FC) are ║
- * ║ omitted here, leaving 15 active elements / 11 air-separated groups. The    ║
- * ║ omitted 2.00 mm rear filter is preserved by replacing the R29→IP path with ║
- * ║ an air-equivalent final spacing of 117.098974102 mm. No scaling is applied.║
+ * ║ HG and inactive FC remain omitted; FL is traced via rearPlates.          ║
+ * ║ The visible model has 15 elements / 11 groups. No scaling is applied.     ║
  * ║                                                                            ║
  * ║ Design quantities: patent f = 585.20 mm, Fno = 4.12, 2ω = 4.2°. The       ║
  * ║ actual active arrays compute EFL ≈ 585.327789 mm. nominalFno therefore     ║
@@ -42,6 +40,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ indices or anomalous-dispersion values are invented. Generic class/code    ║
  * ║ labels are retained where the vendor is unresolved.                        ║
  * ╚══════════════════════════════════════════════════════════════════════════════╝
+ *
+ * Image-plane source audit: Example 22 R/d/N/v all match. FL is traced
+ * via rearPlates with D29=12.00, t=2.00, nd=1.516330, vd=64.4 and
+ * D31+D32=103.78 mm after it. Source image distance 117.78 mm exceeds
+ * physical paraxial BFL 117.286743 mm. Preserve the -0.493257 mm source
+ * discrepancy; no supported single misprint explains it. See audit.
  */
 
 const LENS_DATA = {
@@ -313,7 +317,12 @@ const LENS_DATA = {
     { label: "26", R: -888.536, d: 6.96, nd: 1.0, elemId: 0, sd: 15.5 },
     { label: "27", R: 79.378, d: 4.27, nd: 1.7495, elemId: 14, sd: 15.5 },
     { label: "28", R: -194.536, d: 1.9, nd: 1.846658, elemId: 15, sd: 15.5 },
-    { label: "29", R: 218.38, d: 117.098974102, nd: 1.0, elemId: 0, sd: 15.5 },
+    { label: "29", R: 218.38, d: 12.0, nd: 1.0, elemId: 0, sd: 15.5 },
+  ],
+
+  rearPlates: [
+    { label: "FL", thicknessMm: 2.0, nd: 1.51633, vd: 64.4, gapAfterMm: 103.78,
+      source: "US 6,115,188 A, Numerical Example 22, R30–R32; D31 + D32" },
   ],
 
   asph: {},
